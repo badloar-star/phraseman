@@ -108,13 +108,6 @@ const WORK_ORDER_OVERRIDES = {
     gates: ['assessment_level_gate', 'exam_item_source_gate', 'result_feedback_language_gate'],
     reasoningLevel: 'deep',
   },
-  personal_plans: {
-    builderId: 'french_personal_plan_builder',
-    requiredSources: ['coe_cefr_companion_2020', 'tv5monde_apprendre', 'alliance_francaise_normandie_levels'],
-    outputArtifacts: ['fr_personal_plan_catalog.json', 'fr_plan_audio_manifest.json'],
-    gates: ['plan_content_target_gate', 'plan_audio_gate', 'plan_progress_storage_gate'],
-    reasoningLevel: 'deep',
-  },
   audio_tts: {
     builderId: 'french_audio_tts_manifest_builder',
     requiredSources: ['le_robert_dictionary', 'phraseman_english_feature_atlas'],

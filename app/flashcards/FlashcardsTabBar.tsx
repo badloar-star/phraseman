@@ -131,7 +131,94 @@ type Props = {
   active: 'cards' | 'packs' | 'mine';
   /** Нижний safe-area инсет экрана. */
   bottomInset?: number;
+  /**
+   * Транспорт скролла экрана (`useFcTabBarScroll`). Пока его нет, капсула просто
+   * статична — экраны без списка ничего не подключают.
+   */
+  scroll?: FcTabBarScroll | null;
 };
+
+/**
+ * Сворачивание капсулы при скролле — ровно как у таббара главного экрана.
+ *
+ * Экран создаёт транспорт хуком и:
+ *   • отдаёт `scrollHandler` Reanimated-списку (UI-поток, без JS на кадр), либо
+ *   • отдаёт `onScroll` обычному FlatList / `listener`-у чужого `Animated.event`,
+ *     если список уже занят своим нативным драйвером;
+ *   • передаёт сам объект в `<FlashcardsTabBar scroll={...} />`.
+ *
+ * Состояние живёт в shared values: покадрового `setState` нет ни в одном из
+ * вариантов, а сама анимация (`withTiming`) в обоих случаях идёт на UI-потоке.
+ */
+export type FcTabBarScroll = {
+  /** 0 — капсула раскрыта, 1 — сжата. */
+  chrome: SharedValue<number>;
+  /** Для Reanimated-списков: `onScroll={scroll.scrollHandler}`. */
+  scrollHandler: ReturnType<typeof useAnimatedScrollHandler>;
+  /** Для обычных списков: `onScroll={scroll.onScroll}` + `scrollEventThrottle={16}`. */
+  onScroll: (e: { nativeEvent?: { contentOffset?: { y?: number } } } | undefined) => void;
+  /** Мгновенно вернуть капсулу (смена экрана, раскрытие меню). */
+  expandNow: () => void;
+};
+
+export function useFcTabBarScroll(): FcTabBarScroll {
+  const reduceMotion = useFcReduceMotion();
+  /** §8: «уменьшить движение» / слабое устройство / web — капсула просто не двигается. */
+  const enabled = !(reduceMotion || isLowPowerEffective() || Platform.OS === 'web');
+
+  const chrome = useSharedValue(0);
+  /** Целевое состояние машины (0/1) — отдельно от анимируемого прогресса. */
+  const collapsed = useSharedValue(0);
+  const lastY = useSharedValue(0);
+  const toggledAt = useSharedValue(0);
+
+  /** Один шаг машины состояний. Воркет: зовётся и с UI-, и с JS-потока. */
+  const step = useCallback((y: number) => {
+    'worklet';
+    if (!enabled) return;
+    const action = fcTabChromeAction(y, lastY.value);
+    lastY.value = Number.isFinite(y) ? Math.max(0, y) : 0;
+    if (action === 'keep') return;
+
+    if (action === 'expand_now') {
+      collapsed.value = 0;
+      if (chrome.value !== 0) chrome.value = 0;
+      return;
+    }
+
+    const target = action === 'collapse' ? 1 : 0;
+    if (collapsed.value === target) return;
+    const now = Date.now();
+    if (now - toggledAt.value < TAB_SCROLL_TOGGLE_COOLDOWN_MS) return;
+    toggledAt.value = now;
+    collapsed.value = target;
+    chrome.value = withTiming(target, {
+      duration: target === 1 ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
+      easing: Easing.out(Easing.cubic),
+    });
+  }, [chrome, collapsed, enabled, lastY, toggledAt]);
+
+  const scrollHandler = useAnimatedScrollHandler(
+    { onScroll: (e) => { step(e.contentOffset.y); } },
+    [step],
+  );
+
+  const onScroll = useCallback((e: { nativeEvent?: { contentOffset?: { y?: number } } } | undefined) => {
+    const y = e?.nativeEvent?.contentOffset?.y;
+    if (typeof y === 'number') step(y);
+  }, [step]);
+
+  const expandNow = useCallback(() => {
+    lastY.value = 0;
+    collapsed.value = 0;
+    chrome.value = 0;
+  }, [chrome, collapsed, lastY]);
+
+  return useMemo(
+    () => ({ chrome, scrollHandler, onScroll, expandNow }),
+    [chrome, scrollHandler, onScroll, expandNow],
+  );
+}
 
 type MenuItemProps = {
   t: Theme;

@@ -27,7 +27,6 @@ const FEATURE_SOURCE_MAP = {
   community_card_packs: ['le_robert_dictionary', 'phraseman_english_feature_atlas'],
   daily_phrase: ['tv5monde_apprendre', 'le_robert_dictionary'],
   diagnostics_exams: ['coe_cefr_companion_2020', 'tv5monde_a1', 'tv5monde_a2'],
-  personal_plans: ['coe_cefr_companion_2020', 'tv5monde_apprendre', 'alliance_francaise_normandie_levels'],
   audio_tts: ['le_robert_dictionary', 'phraseman_english_feature_atlas'],
   server_course_packs: ['phraseman_english_feature_atlas'],
   storage_cloud_isolation: ['phraseman_english_feature_atlas'],
@@ -82,9 +81,6 @@ const FEATURE_CLAIMS = {
   ],
   diagnostics_exams: [
     'Diagnostics and exams must be CEFR-aligned and test French competence, not recognition of translated English.',
-  ],
-  personal_plans: [
-    'Personal plans must use French plan content, listening/speaking tasks, audio metadata and target-scoped progress.',
   ],
   audio_tts: [
     'Every voice-required French phrase, dialogue, question or explanation needs an audio manifest row, checksum and server path.',

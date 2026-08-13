@@ -209,3 +209,42 @@ describe('магазин отвечает за свои действия отд�
     }
   });
 });
+
+/**
+ * Отказ действия — не отказ загрузки, и на экранах расширения это было
+ * перепутано так же, как в магазине: сорвавшаяся пауза партнёрства,
+ * непрошедший вызов на серию и неудавшееся создание записи писали
+ * `state = 'error'`. Экран целиком превращался в «не удалось загрузить» и
+ * предлагал перезагрузку вместо повтора действия — вместе с уже загруженным
+ * списком, который никуда не девался.
+ */
+describe('действия на экранах расширения отвечают за себя', () => {
+  const read = (rel: string) => fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8');
+
+  const SCREENS: readonly string[] = [
+    'app/arena_partner.tsx',
+    'app/arena_rivalries.tsx',
+    'app/arena_ghost_duel.tsx',
+  ];
+
+  it('у каждого экрана отказ действия отделён от отказа загрузки', () => {
+    for (const screen of SCREENS) {
+      const source = read(screen);
+      expect(source).toContain('actionFailed');
+      // Осталась ровно одна установка ошибки экрана — на самой загрузке.
+      expect(source.split("setState('error')").length - 1).toBe(1);
+    }
+  });
+
+  it('отказ действия объясняет, что ничего не изменилось', () => {
+    for (const screen of SCREENS) {
+      expect(read(screen)).toContain("'actionFailedHint'");
+    }
+    for (const lang of LANGS) {
+      expect(arenaExpansionText(lang, 'actionFailed').length).toBeGreaterThan(0);
+      expect(arenaExpansionText(lang, 'actionFailedHint').length).toBeGreaterThan(0);
+      // И звучит не так, как отказ загрузки: это разные события.
+      expect(arenaExpansionText(lang, 'actionFailed')).not.toBe(arenaExpansionText(lang, 'loadFailed'));
+    }
+  });
+});

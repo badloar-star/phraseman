@@ -59,7 +59,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   streak_stats: 'statistics',
   phrase_analytics_screen: 'statistics',
   trainer: 'statistics',
-  trainer_plan_session: 'lessonPractice',
   trainer_words_session: 'lessonPractice',
   trainer_phrases_session: 'lessonPractice',
   problem_coach: 'lessonPractice',

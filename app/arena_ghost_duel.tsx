@@ -3,7 +3,7 @@ import { Pressable, Share, StyleSheet, Text, TextInput, View } from 'react-nativ
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { ArenaDisclosureBadge, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
+import { ArenaDisclosureBadge, ArenaStateCard, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -29,6 +29,12 @@ export default function ArenaGhostDuelScreen() {
   const [friendStableUid, setFriendStableUid] = useState(params.friendStableUid ?? '');
   const [created, setCreated] = useState<ArenaGhostCreateResponse | null>(null);
   const [busy, setBusy] = useState(false);
+  /**
+   * Отказ ДЕЙСТВИЯ отдельно от отказа загрузки: сорвавшееся создание записи
+   * или отклонение писали `state = 'error'`, и весь экран превращался в «не
+   * удалось загрузить» — вместе с уже загруженным списком записей.
+   */
+  const [actionFailed, setActionFailed] = useState(false);
   const createId = useRef<string | null>(null);
   const acceptId = useRef<string | null>(null);
   const sourceKind: ArenaGhostSourceKind = params.sourceKind === 'arena_today' ? 'arena_today' : 'arena_match';
@@ -36,6 +42,7 @@ export default function ArenaGhostDuelScreen() {
 
   const load = useCallback(() => {
     setState('loading');
+    setActionFailed(false);
     void Promise.all([arenaExpansionHome(), arenaGhostStatus(token || undefined)]).then(([home, response]) => {
       if (!home.availability.ghost) { setState('unavailable'); return; }
       setSelected(response.selected ?? null);
@@ -51,22 +58,24 @@ export default function ArenaGhostDuelScreen() {
     const requestId = createId.current ?? createArenaRequestId('ghost_create');
     createId.current = requestId;
     setBusy(true);
+    setActionFailed(false);
     void arenaGhostCreate(friendStableUid, params.sourceRunId, sourceKind, requestId).then((response) => {
       setCreated(response);
       setToken(response.inviteToken);
       createId.current = null;
-    }).catch(() => setState('error')).finally(() => setBusy(false));
+    }).catch(() => setActionFailed(true)).finally(() => setBusy(false));
   };
   const accept = () => {
     if (!token || busy) return;
     const requestId = acceptId.current ?? createArenaRequestId('ghost_accept');
     acceptId.current = requestId;
     setBusy(true);
+    setActionFailed(false);
     void arenaGhostAccept(token, requestId).then((response) => {
       acceptId.current = null;
       setSelected(response);
       if (response.matchId) router.replace({ pathname: '/arena_today', params: { runId: response.matchId, runKind: 'ghost' } } as never);
-    }).catch(() => setState('error')).finally(() => setBusy(false));
+    }).catch(() => setActionFailed(true)).finally(() => setBusy(false));
   };
 
   return (
@@ -75,6 +84,7 @@ export default function ArenaGhostDuelScreen() {
       <ArenaDisclosureBadge text={arenaExpansionText(lang, 'noEconomy')} />
       {state === 'loading' ? <ArenaStateNotice state="loading" /> : null}
       {state === 'unavailable' || state === 'expired' || state === 'error' ? <ArenaStateNotice state={state} ghost onRetry={load} onBack={() => router.replace('/arena' as never)} /> : null}
+      {actionFailed ? <ArenaStateCard state="error" title={arenaExpansionText(lang, 'actionFailed')} body={arenaExpansionText(lang, 'actionFailedHint')} /> : null}
       {state === 'ready' ? (
         <>
           {params.sourceRunId && !created ? <V2Card style={styles.card}><Text style={[styles.title, { color: P.text }]}>{arenaExpansionText(lang, 'ghostCreate')}</Text><View style={styles.friends}>{(friends?.friends ?? []).map((friend) => { const profile = friends?.profiles[friend.uid]; const activeFriend = friendStableUid === friend.uid; return <Pressable key={friend.uid} accessibilityRole="button" accessibilityState={{ selected: activeFriend }} onPress={() => setFriendStableUid(friend.uid)} style={[styles.friend, { backgroundColor: activeFriend ? P.accent : P.elev2 }]}><Text style={[styles.friendText, { color: activeFriend ? P.okInk : P.text }]}>{profile?.name ?? friend.displayName}</Text></Pressable>; })}</View><V2Cta disabled={!friendStableUid || busy} onPress={create}>{arenaExpansionText(lang, 'ghostCreate')}</V2Cta></V2Card> : !params.sourceRunId && !token ? <ArenaStateNotice state="empty" emptyHint="emptyGhost" /> : null}
@@ -84,7 +94,7 @@ export default function ArenaGhostDuelScreen() {
             <TextInput accessibilityLabel={arenaExpansionText(lang, 'inviteCode')} value={token} onChangeText={setToken} autoCapitalize="none" autoCorrect={false} style={[styles.input, { color: P.text, backgroundColor: P.elev2 }]} />
             <V2Cta disabled={!token || busy || selected?.status === 'expired'} onPress={accept}>{arenaExpansionText(lang, 'ghostAccept')}</V2Cta>
           </V2Card> : null}
-          {ghosts.map((ghost) => <V2Card key={ghost.ghostId} style={styles.card}><Text style={[styles.title, { color: P.text }]}>{ghost.ownerName}</Text><Text style={[styles.status, { color: ghost.state === 'expired' ? P.danger : P.muted }]}>{ghost.result ? arenaExpansionText(lang, 'score').replace('{you}', String(ghost.direction === 'incoming' ? ghost.result.guestScore : ghost.result.hostScore)).replace('{them}', String(ghost.direction === 'incoming' ? ghost.result.hostScore : ghost.result.guestScore)) : arenaExpansionText(lang, ghost.state === 'expired' ? 'expired' : ghost.state === 'unavailable' ? 'unavailable' : 'recordingBadge')}</Text>{ghost.direction === 'incoming' && ghost.inviteToken && !ghost.result ? <><V2Cta disabled={busy} onPress={() => { setToken(ghost.inviteToken ?? ''); }}>{arenaExpansionText(lang, 'ghostAccept')}</V2Cta><V2Cta tone="ghost" disabled={busy} onPress={() => void arenaGhostDecline(ghost.inviteToken as string).then(load).catch(() => setState('error'))}>{arenaText(lang, 'decline')}</V2Cta></> : null}{ghost.direction === 'outgoing' && ghost.shareUrl && !ghost.result ? <V2Cta tone="ghost" onPress={() => void Share.share({ message: ghost.shareUrl as string })}>{arenaExpansionText(lang, 'share')}</V2Cta> : null}</V2Card>)}
+          {ghosts.map((ghost) => <V2Card key={ghost.ghostId} style={styles.card}><Text style={[styles.title, { color: P.text }]}>{ghost.ownerName}</Text><Text style={[styles.status, { color: ghost.state === 'expired' ? P.danger : P.muted }]}>{ghost.result ? arenaExpansionText(lang, 'score').replace('{you}', String(ghost.direction === 'incoming' ? ghost.result.guestScore : ghost.result.hostScore)).replace('{them}', String(ghost.direction === 'incoming' ? ghost.result.hostScore : ghost.result.guestScore)) : arenaExpansionText(lang, ghost.state === 'expired' ? 'expired' : ghost.state === 'unavailable' ? 'unavailable' : 'recordingBadge')}</Text>{ghost.direction === 'incoming' && ghost.inviteToken && !ghost.result ? <><V2Cta disabled={busy} onPress={() => { setToken(ghost.inviteToken ?? ''); }}>{arenaExpansionText(lang, 'ghostAccept')}</V2Cta><V2Cta tone="ghost" disabled={busy} onPress={() => void arenaGhostDecline(ghost.inviteToken as string).then(load).catch(() => setActionFailed(true))}>{arenaText(lang, 'decline')}</V2Cta></> : null}{ghost.direction === 'outgoing' && ghost.shareUrl && !ghost.result ? <V2Cta tone="ghost" onPress={() => void Share.share({ message: ghost.shareUrl as string })}>{arenaExpansionText(lang, 'share')}</V2Cta> : null}</V2Card>)}
         </>
       ) : null}
     </ArenaScreen>

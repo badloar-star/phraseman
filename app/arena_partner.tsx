@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
-import { ArenaProgress, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
+import { ArenaProgress, ArenaStateCard, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
@@ -28,9 +28,17 @@ export default function ArenaPartnerScreen() {
   const [busy, setBusy] = useState(false);
   const [nudgesEnabled, setNudgesEnabled] = useState(false);
   const ids = useRef(new Map<string, string>());
+  /**
+   * Отказ ДЕЙСТВИЯ отдельно от отказа загрузки. Раньше сорвавшаяся пауза или
+   * удаление партнёрства писали `state = 'error'` — экран показывал «не
+   * удалось загрузить» и предлагал перезагрузку, хотя загрузка была ни при чём,
+   * а игрок не знал, изменилось что-нибудь или нет.
+   */
+  const [actionFailed, setActionFailed] = useState(false);
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent('partner', 'hub')); }, []);
   const load = useCallback(() => {
     setState('loading');
+    setActionFailed(false);
     void arenaExpansionHome().then((home) => {
       if (!home.availability.partner) { setState('unavailable'); return; }
       setPartners(home.partners);
@@ -45,6 +53,7 @@ export default function ArenaPartnerScreen() {
     const requestId = ids.current.get(key) ?? createArenaRequestId('partner');
     ids.current.set(key, requestId);
     setBusy(true);
+    setActionFailed(false);
     void action(requestId).then((response) => {
       ids.current.delete(key);
       setPartners((current) => {
@@ -53,7 +62,7 @@ export default function ArenaPartnerScreen() {
         setState(next.length ? 'ready' : 'empty');
         return next;
       });
-    }).catch(() => setState('error')).finally(() => setBusy(false));
+    }).catch(() => setActionFailed(true)).finally(() => setBusy(false));
   };
 
   const updateNudgePreferences = () => {
@@ -68,7 +77,7 @@ export default function ArenaPartnerScreen() {
         setNudgesEnabled(response.enabled);
         load();
       })
-      .catch(() => setState('error'))
+      .catch(() => setActionFailed(true))
       .finally(() => setBusy(false));
   };
 
@@ -76,6 +85,14 @@ export default function ArenaPartnerScreen() {
     <ArenaHubChrome>
     <ArenaScreen title={arenaExpansionText(lang, 'partner')} subtitle={arenaExpansionText(lang, 'partnerBody')}>
       {state === 'loading' || state === 'unavailable' || state === 'error' || state === 'empty' ? <ArenaStateNotice state={state} emptyHint="emptyPartner" onRetry={load} onBack={() => router.replace('/arena' as never)} /> : null}
+      {actionFailed ? (
+        <ArenaStateCard
+          state="error"
+          title={arenaExpansionText(lang, 'actionFailed')}
+          body={arenaExpansionText(lang, 'actionFailedHint')}
+        />
+      ) : null}
+
       {state === 'empty' || state === 'ready' ? <V2Card style={styles.card}>
         <Text style={[styles.title, { color: P.text }]}>{arenaExpansionText(lang, 'nudgePreferences')}</Text>
         <Text style={[styles.body, { color: P.muted }]}>{arenaExpansionText(lang, 'nudgeQuietHours')}</Text>

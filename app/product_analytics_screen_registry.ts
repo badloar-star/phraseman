@@ -10,14 +10,12 @@ const STATIC_SCREEN_NAMES = [
   'lesson_theory_v2', 'lesson_words', 'level_exam', 'level_gifts_inventory', 'lingman_video_player',
   'lingman_videos', 'manage_subscription', 'pack_opening', 'paywall_a', 'paywall_b', 'paywall_c',
   'paywall_d', 'paywall_e', 'paywall_f', 'paywall_g',
-  'personal_plan', 'personal_plan_complete', 'personal_plan_dev', 'personal_plan_exercise_transition',
-  'personal_plan_runtime_dev', 'personal_plan_stats_screen', 'personal_plan_task_done',
-  'personal_plan_thank_you', 'personal_plan_theory', 'phrase_analytics_screen', 'premium_modal',
+  'phrase_analytics_screen', 'premium_modal',
   'preposition_drill', 'privacy_screen', 'problem_coach', 'promo_code_entry',
   'referrals', 'review', 'settings_edu', 'settings_language',
   'settings_notifications', 'settings_themes', 'shards_shop', 'streak_stats', 'terms_screen',
   'top_helpers', 'trainer', 'trainer_phrases_session',
-  'trainer_plan_session', 'trainer_words_session',
+  'trainer_words_session',
 ] as const;
 
 const EXACT_SCREEN_IDS: Readonly<Record<string, string>> = Object.freeze({

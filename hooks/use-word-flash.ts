@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
  * Вспышка плитки слова/ответа при нажатии — акцентным цветом темы.
  *
  * Единый хук для ВСЕХ экранов с выбором слов (lesson1, lesson_words, review,
- * quizzes, exam, personal_plan_exercise, trainer_phrases_session и т.д.), чтобы
+ * quizzes, exam, trainer_phrases_session и т.д.), чтобы
  * объёмные плитки везде вели себя одинаково.
  *
  * Использование:

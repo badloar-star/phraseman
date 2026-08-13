@@ -56,7 +56,6 @@ export function shouldRenderLessonSoftUpsell(seqDone: boolean, opportunity: unkn
 
 export function createLessonSoftUpsellCtaHandler(input: {
   onCta: () => boolean | Promise<boolean>;
-  navigatePersonal: () => void;
   navigatePaywall: () => void;
 }): (trigger: SoftUpsellTrigger) => Promise<void> {
   let inFlight = false;
@@ -66,8 +65,7 @@ export function createLessonSoftUpsellCtaHandler(input: {
     try {
       const authorized = await input.onCta();
       if (!authorized) return;
-      if (trigger === 'first_lesson') input.navigatePersonal();
-      else input.navigatePaywall();
+      input.navigatePaywall();
     } finally {
       inFlight = false;
     }

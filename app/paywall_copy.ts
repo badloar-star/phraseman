@@ -305,15 +305,6 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
   },
 };
 
-PAYWALL_COPY.personal_plan = {
-  titleRu: 'Получить персональный план',
-  titleUk: 'Отримати персональний план',
-  titleEs: 'Activar tu plan personal',
-  subtitleRu: 'Plus включает задания на каждый день: уроки, живые фразы, повторение и проверки под твою цель. План держит темп, а материалы открываются без лишних остановок.',
-  subtitleUk: 'Plus вмикає завдання на кожен день: уроки, живі фрази, повторення й перевірки під твою ціль. План тримає темп, а матеріали відкриваються без зайвих пауз.',
-  subtitleEs: 'Plus activa tareas diarias: lecciones, frases reales, repaso y pruebas según tu meta. El plan mantiene el ritmo y los materiales se abren sin pausas extra.',
-};
-
 PAYWALL_COPY.intro_ended = {
   // Библия: gain-framing (не loss — стрика 7+ тут нет), ≤10 слов/предложение, «ты».
   titleRu: 'Продолжай в полном доступе',
@@ -582,23 +573,6 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
       tr: 'Daha çok pratik, daha az sınır ve her gün istikrarlı ilerleme.',
       pl: 'Więcej praktyki, mniej ograniczeń i stabilny postęp każdego dnia.',
     },
-  },
-};
-
-PAYWALL_PLANNED_COPY.personal_plan = {
-  title: {
-    'pt-BR': 'Ative seu plano pessoal',
-    vi: 'Kích hoạt kế hoạch cá nhân',
-    id: 'Aktifkan rencana personalmu',
-    tr: 'Kişisel planını aç',
-    pl: 'Włącz swój plan osobisty',
-  },
-  subtitle: {
-    'pt-BR': 'Plus libera tarefas diárias: lições, frases reais, revisão e prática alinhadas ao seu objetivo.',
-    vi: 'Plus mở nhiệm vụ hằng ngày: bài học, câu thật, ôn tập và luyện tập theo mục tiêu của bạn.',
-    id: 'Plus membuka tugas harian: pelajaran, frasa nyata, pengulangan, dan latihan sesuai tujuanmu.',
-    tr: 'Plus günlük görevleri açar: dersler, gerçek ifadeler, tekrar ve hedefe uygun pratik.',
-    pl: 'Plus otwiera codzienne zadania: lekcje, żywe frazy, powtórki i praktykę pod twój cel.',
   },
 };
 
@@ -1068,12 +1042,6 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   ],
 };
 
-CONTEXT_BENEFITS.personal_plan = [
-  { ru: 'Персональный план с заданиями на каждый день', uk: 'Персональний план із завданнями на кожен день', es: 'Plan personal con tareas diarias', 'pt-BR': 'Plano pessoal com tarefas diárias', vi: 'Kế hoạch cá nhân với nhiệm vụ hằng ngày', id: 'Rencana personal dengan tugas harian', tr: 'Günlük görevli kişisel plan', pl: 'Plan osobisty z codziennymi zadaniami' },
-  { ru: 'Уроки, фразы, повторение и отдельные проверки плана', uk: 'Уроки, фрази, повторення й окремі перевірки плану', es: 'Lecciones, frases, repaso y prácticas del plan', 'pt-BR': 'Lições, frases, revisão e práticas do plano', vi: 'Bài học, câu, ôn tập và luyện tập của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan latihan rencana', tr: 'Dersler, ifadeler, tekrar ve plan pratikleri', pl: 'Lekcje, frazy, powtórki i ćwiczenia planu' },
-  { ru: 'Все нужные материалы открываются без лишних пауз', uk: 'Усі потрібні матеріали відкриваються без зайвих пауз', es: 'Materiales necesarios sin pausas extra', 'pt-BR': 'Materiais necessários sem pausas extras', vi: 'Tài liệu cần thiết không bị dừng thêm', id: 'Materi yang dibutuhkan tanpa jeda ekstra', tr: 'Gerekli materyaller ekstra duraklama olmadan', pl: 'Potrzebne materiały bez dodatkowych przerw' },
-];
-
 CONTEXT_BENEFITS.ai_explain = [
   { ru: 'Разбор каждой ошибки сразу после ответа', uk: 'Розбір кожної помилки одразу після відповіді', es: 'Análisis de cada error justo al responder', 'pt-BR': 'Análise de cada erro logo após responder', vi: 'Phân tích từng lỗi ngay sau khi trả lời', id: 'Analisis tiap kesalahan langsung setelah menjawab', tr: 'Her hatanın yanıttan hemen sonra analizi', pl: 'Analiza każdego błędu zaraz po odpowiedzi' },
   { ru: 'Понятно: что не так, почему и как правильно', uk: 'Зрозуміло: що не так, чому і як правильно', es: 'Claro: qué falló, por qué y cómo decirlo bien', 'pt-BR': 'Claro: o que falhou, por quê e como corrigir', vi: 'Rõ ràng: sai ở đâu, vì sao và nói đúng thế nào', id: 'Jelas: apa yang salah, kenapa, dan cara benarnya', tr: 'Net: ne yanlış, neden ve doğrusu nasıl', pl: 'Jasno: co nie tak, dlaczego i jak poprawnie' },
@@ -1266,12 +1234,6 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
     { 'pt-BR': 'Você sabe onde se destaca e onde crescer', vi: 'Biết bạn mạnh ở đâu và nên phát triển gì', id: 'Tahu di mana kamu unggul dan perlu berkembang', tr: 'Nerede güçlü olduğunu ve nereye büyüyeceğini bilirsin', pl: 'Wiesz, gdzie jesteś mocny i gdzie rosnąć dalej' },
   ],
 };
-
-CONTEXT_BENEFITS_PLANNED.personal_plan = [
-  { 'pt-BR': 'Plano pessoal com tarefas diárias', vi: 'Kế hoạch cá nhân với nhiệm vụ hằng ngày', id: 'Rencana personal dengan tugas harian', tr: 'Günlük görevli kişisel plan', pl: 'Plan osobisty z codziennymi zadaniami' },
-  { 'pt-BR': 'Lições, frases, revisão e práticas do plano', vi: 'Bài học, câu, ôn tập và luyện tập của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan latihan rencana', tr: 'Dersler, ifadeler, tekrar ve plan pratikleri', pl: 'Lekcje, frazy, powtórki i ćwiczenia planu' },
-  { 'pt-BR': 'Materiais necessários sem pausas extras', vi: 'Tài liệu cần thiết không bị dừng thêm', id: 'Materi yang dibutuhkan tanpa jeda ekstra', tr: 'Gerekli materyaller ekstra duraklama olmadan', pl: 'Potrzebne materiały bez dodatkowych przerw' },
-];
 
 CONTEXT_BENEFITS_PLANNED.ai_explain = [
   { 'pt-BR': 'Análise de cada erro logo após responder', vi: 'Phân tích từng lỗi ngay sau khi trả lời', id: 'Analisis tiap kesalahan langsung setelah menjawab', tr: 'Her hatanın yanıttan hemen sonra analizi', pl: 'Analiza każdego błędu zaraz po odpowiedzi' },

@@ -1,5 +1,5 @@
 import { TranscriptAccumulator } from '../app/speaking_transcript_accumulator';
-import { scorePronunciationTranscript, PRONUNCIATION_PASS_THRESHOLD } from '../app/personal_plan_pronunciation_scoring_core';
+import { scorePronunciationTranscript, PRONUNCIATION_PASS_THRESHOLD } from '../app/pronunciation_scoring_core';
 
 function addRecognitionEvent(
   acc: TranscriptAccumulator,

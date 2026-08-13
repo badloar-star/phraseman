@@ -8,7 +8,7 @@ import {
   NEURAL_JUDGE_TIMEOUT_MS,
   neuralControlScore,
 } from '../app/speaking_neural_judge';
-import { scorePlanPronunciationTranscript } from '../app/personal_plan_pronunciation_scoring_client';
+import { scoreSpeechPronunciationTranscript } from '../app/pronunciation_scoring_client';
 
 describe('neural judge model spec', () => {
   it('downloads the quantized tiny.en over https into a dedicated directory', () => {
@@ -28,7 +28,7 @@ describe('neural control score', () => {
     const target = 'I would like a coffee';
     const transcript = 'I would like a coffee';
     expect(neuralControlScore(target, transcript)).toBe(
-      scorePlanPronunciationTranscript({ targetText: target, transcript }).score,
+      scoreSpeechPronunciationTranscript({ targetText: target, transcript }).score,
     );
   });
 

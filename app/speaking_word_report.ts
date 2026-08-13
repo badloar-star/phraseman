@@ -14,7 +14,7 @@ import {
   lowConfidenceWordsFromSegments,
   normalizedComparisonWords,
   type TranscriptSegment,
-} from './personal_plan_pronunciation_scoring_core';
+} from './pronunciation_scoring_core';
 
 export type SpokenWordStatus = 'clean' | 'fuzzy' | 'missed';
 

@@ -50,7 +50,6 @@ import EnergyBar from '../../components/EnergyBar';
 import DialogsTabContent from '../../components/DialogsTabContent';
 import PlusBadge from '../../components/PlusBadge';
 import { isAiDialogEnabled } from '../ai_dialog_flags';
-import { readPersonalPlanState } from '../personal_plan_state';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson, getCourseLevelIndex, getPreviousCourseLevel, type CourseLevel, } from '../course_levels';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { examContentAvailableForTarget, frenchExamGateCopy } from '../exam_target_gate';
@@ -863,7 +862,6 @@ export default function LessonsTab({
         legacyFreeLessonCap,
         freeLessonLimit: FREE_LESSON_LIMIT,
     }, devLocalPlusOverride);
-    const planAccess = useFeatureAccess('personal_plan');
     const dialogAccess = useFeatureAccess('ai_dialog');
     const [scores, setScores] = useState<number[]>(() => boot?.scores ?? new Array(32).fill(0));
     const [progCounts, setProgCounts] = useState<number[]>(() => boot?.progCounts ?? new Array(32).fill(0));
@@ -902,20 +900,6 @@ export default function LessonsTab({
         }
         safeRouterBack(router, HOME_BACK_FALLBACK as any);
     }, [goHome, isRetainedTab, page, router]);
-    const openLearningRoute = useCallback(() => {
-        hapticTap();
-        if (!planAccess) {
-            openPremiumPaywall(router, { context: 'personal_plan' });
-            return;
-        }
-        void readPersonalPlanState()
-            .then((state) => {
-                router.push((state ? '/personal_plan' : '/personal_plan_setup') as any);
-            })
-            .catch(() => {
-                router.push('/personal_plan_setup' as any);
-            });
-    }, [planAccess, router]);
     const openDialogs = useCallback(() => {
         if (page === 'dialogs') return;
         hapticTap();
@@ -1360,7 +1344,7 @@ return (<LessonCard key={`l-${num}`}
           </View>
         </View>
 
-        {/* Переключатель страниц: Уроки | Маршрут | Диалоги */}
+        {/* Переключатель страниц: Уроки | Диалоги */}
         <View style={{ flexDirection: 'row', gap: 16, paddingHorizontal: 18, borderBottomWidth: 1, borderBottomColor: t.border, marginBottom: 2 }}>
             <TabUnderlineButton
               label={s.tabs.lessons}
@@ -1371,18 +1355,6 @@ return (<LessonCard key={`l-${num}`}
               fontSize={f.body}
               themeMode={themeMode}
               onPress={() => { if (page !== 'lessons') { hapticTap(); setPage('lessons'); } }}
-            />
-            <TabUnderlineButton
-              label={triLang(lang, { ru: 'Маршрут', uk: 'Маршрут', es: 'Ruta', 'pt-BR': 'Rota', vi: 'Lộ trình', id: 'Rute', tr: 'Rota', pl: 'Trasa' })}
-              active={false}
-              color={t.textPrimary}
-              mutedColor={t.textMuted}
-              accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
-              fontSize={f.body}
-              themeMode={themeMode}
-              plusBadge={!planAccess}
-              plusBadgeLabel={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
-              onPress={openLearningRoute}
             />
             {dialogsEnabled ? (
             <TabUnderlineButton

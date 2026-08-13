@@ -11,10 +11,10 @@ import { File } from 'expo-file-system';
 
 import {
   isSpeechRecognitionAvailable,
-  loadPlanSpeechModule,
+  loadSpeechRecognitionModule,
   requestSpeechPermissionForHold,
-  type PlanSpeechModule,
-} from '../../app/personal_plan_speech_module';
+  type SpeechRecognitionModule,
+} from '../../app/speech_recognition_module';
 import { buildSpeakingStartOptions } from '../../app/speaking_recognition_options';
 import { isSpeakingEnabled } from '../../app/remote_flags';
 import { speakingMatchedFlags, speakingTargetTokens } from '../../app/speaking_word_match';
@@ -85,7 +85,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   const [activeTab, setActiveTab] = useState<'mine' | 'ref' | null>(null);
   const [shadowPlayed, setShadowPlayed] = useState(false);
 
-  const speechRef = useRef<PlanSpeechModule | null>(null);
+  const speechRef = useRef<SpeechRecognitionModule | null>(null);
   const sessionSubsRef = useRef<Sub[]>([]);
   // audioend может прийти позже end — подписка живёт до ретрая/анмаунта.
   const audioEndSubRef = useRef<Sub>(undefined);
@@ -176,7 +176,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   }, [clearWatchdog, releaseRecording, removeSessionListeners, targetText]);
 
   const subscribeSession = useCallback(
-    (speech: PlanSpeechModule, generation: number) => {
+    (speech: SpeechRecognitionModule, generation: number) => {
       const isCurrentSession = () =>
         mountedRef.current && runtimeActiveRef.current && generation === captureGenerationRef.current;
       const playCueOnce = () => {
@@ -231,7 +231,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   );
 
   const beginAttempt = useCallback(
-    (speech: PlanSpeechModule, generation: number) => {
+    (speech: SpeechRecognitionModule, generation: number) => {
       if (!runtimeActiveRef.current || generation !== captureGenerationRef.current) return;
       // Сброс прошлой попытки: гипотезы, карта, запись, реплей-плеер.
       finishingRef.current = false;
@@ -310,7 +310,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       goFallback('disabled');
       return;
     }
-    const speech = speechRef.current ?? loadPlanSpeechModule();
+    const speech = speechRef.current ?? loadSpeechRecognitionModule();
     speechRef.current = speech;
     if (!speech || !isSpeechRecognitionAvailable(speech)) {
       goFallback('unavailable');

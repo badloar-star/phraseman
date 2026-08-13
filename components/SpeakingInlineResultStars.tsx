@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { View } from 'react-native';
 
-import { PLAN_PRONUNCIATION_PASS_THRESHOLD } from '../app/personal_plan_pronunciation_scoring_client';
+import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from '../app/pronunciation_scoring_client';
 import { speakingBand } from '../app/speaking_score_bands';
 import SpeakingScoreStars from './SpeakingScoreStars';
 import { inlineSpeakingResultColor, type SpeakingPanelTheme } from './SpeakingPanel';
@@ -18,12 +18,12 @@ interface SpeakingInlineResultStarsProps {
 }
 
 function SpeakingInlineResultStars({ result, theme, testID }: SpeakingInlineResultStarsProps) {
-  const band = speakingBand(result.score, PLAN_PRONUNCIATION_PASS_THRESHOLD);
+  const band = speakingBand(result.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD);
   return (
     <View testID={testID} accessibilityLabel={`${result.score}`}>
       <SpeakingScoreStars
         score={result.score}
-        passThreshold={PLAN_PRONUNCIATION_PASS_THRESHOLD}
+        passThreshold={SPEECH_PRONUNCIATION_PASS_THRESHOLD}
         color={inlineSpeakingResultColor(band, theme)}
         emptyColor={theme.textMuted}
         size={20}

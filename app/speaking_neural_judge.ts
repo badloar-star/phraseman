@@ -21,7 +21,7 @@
 
 import { Platform } from 'react-native';
 
-import { scorePlanPronunciationTranscript } from './personal_plan_pronunciation_scoring_client';
+import { scoreSpeechPronunciationTranscript } from './pronunciation_scoring_client';
 import {
   MODEL_EN,
   WHISPER_MODEL_DIRECTORY,
@@ -56,7 +56,7 @@ export const NEURAL_JUDGE_TIMEOUT_MS = 6000;
 export function neuralControlScore(targetText: string, transcript: string): number | null {
   const text = transcript.trim();
   if (!text) return null;
-  return scorePlanPronunciationTranscript({ targetText, transcript: text }).score;
+  return scoreSpeechPronunciationTranscript({ targetText, transcript: text }).score;
 }
 
 type WhisperModule = {

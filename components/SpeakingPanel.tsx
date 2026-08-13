@@ -18,9 +18,9 @@ import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
 import {
-  PLAN_PRONUNCIATION_PASS_THRESHOLD,
-  scorePlanPronunciationTranscript,
-} from '../app/personal_plan_pronunciation_scoring_client';
+  SPEECH_PRONUNCIATION_PASS_THRESHOLD,
+  scoreSpeechPronunciationTranscript,
+} from '../app/pronunciation_scoring_client';
 import {
   normalizeSpokenWord,
   speakingMatchedFlags,
@@ -98,7 +98,7 @@ import {
   isSpeechRecognitionAvailable,
   requestSpeechPermissionForHold,
   type HoldPermissionResult,
-} from '../app/personal_plan_speech_module';
+} from '../app/speech_recognition_module';
 
 // Запись попытки живёт до следующей попытки/закрытия панели — дальше это мусор,
 // копящийся в кэше (wav на каждую попытку каждого юзера).
@@ -487,7 +487,7 @@ export function SpeakingPanel({
             for (const alt of alternatives) {
               const t = String(alt?.transcript ?? '').trim();
               if (!t) continue;
-              const s = scorePlanPronunciationTranscript({ targetText, transcript: t }).score;
+              const s = scoreSpeechPronunciationTranscript({ targetText, transcript: t }).score;
               if (bestControl == null || s > bestControl) bestControl = s;
             }
           }),
@@ -517,7 +517,7 @@ export function SpeakingPanel({
       captureGeneration: number,
     ) => {
       if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
-      const biased = scorePlanPronunciationTranscript({ targetText, transcript: text, segments });
+      const biased = scoreSpeechPronunciationTranscript({ targetText, transcript: text, segments });
       const { score: honestScore, flagged } = applyControlScore(biased.score, control);
       const passed = honestScore >= biased.threshold;
       const report = buildSpokenWordReport({ targetText, transcript: text, segments });
@@ -978,7 +978,7 @@ export function SpeakingPanel({
     ) => {
       const c = candidate.trim();
       if (!c) return;
-      const s = scorePlanPronunciationTranscript({ targetText, transcript: c, segments }).score;
+      const s = scoreSpeechPronunciationTranscript({ targetText, transcript: c, segments }).score;
       if (s > bestScore) {
         bestScore = s;
         best = c;
@@ -1784,7 +1784,7 @@ export function SpeakingPanel({
   // На успехе фраза засчитана — микрофон больше не нужен (иначе юзер «застревает»
   // на экране с микрофоном и «Сказать ещё раз», не понимая, что уже готово).
   // Вместо микрофона показываем явную кнопку «Готово», которая закрывает панель.
-  const passThreshold = PLAN_PRONUNCIATION_PASS_THRESHOLD;
+  const passThreshold = SPEECH_PRONUNCIATION_PASS_THRESHOLD;
   const warnColor = theme.warn ?? WARN_COLOR_FALLBACK;
   // Тренировка слов ДВИГАЕТ балл фразы: каждое дочиненное проблемное слово честно
   // поднимает результат от исходного к полному проходу; когда закрыты ВСЕ

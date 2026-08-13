@@ -79,9 +79,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
 import {
   isSpeechRecognitionAvailable,
-  loadPlanSpeechModule,
+  loadSpeechRecognitionModule,
   requestSpeechPermissionForHold,
-} from './personal_plan_speech_module';
+} from './speech_recognition_module';
 import { isSpeakingEnabled } from './remote_flags';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
@@ -191,7 +191,7 @@ function AiDialogSession() {
   const dialogAccess = useFeatureAccess('ai_dialog');
   const router = useRouter();
   const { speak, stop: stopSpeaking } = useAudio();
-  const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
+  const speechModule = useMemo(() => (isSpeakingEnabled() ? loadSpeechRecognitionModule() : null), []);
   const recordingAudio = useManagedRecordingAudio(() => {
     try { speechModule?.abort(); } catch { /* native capture already gone */ }
   });

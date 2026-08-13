@@ -72,10 +72,6 @@ export type RemoteBoolKey =
   | 'ai_global_disable'
   | 'maintenance_banner'
   | 'maintenance_block'
-  // Legacy remote flag kept for compatibility with already-published configs.
-  // The active onboarding is now always the clean midnight plan-first flow;
-  // this flag must not re-enable any old two-button or skip-app path.
-  | 'onboarding_plan_only_enabled'
   // Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт TRUE =
   // kill-switch: боты работают как сейчас, админ может выключить их в «Пульте»
   // живьём — тогда матчатся только реальные игроки друг с другом, а при пустой
@@ -331,10 +327,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Кнопка «Видео PHRASEMAN» на главной: дефолт TRUE = kill-switch (показывается
   // как сейчас). Админ ставит false в «Пульте» → кнопка прячется у всех живьём.
   video_button_enabled: true,
-  // Первый экран онбординга «только план»: дефолт FALSE = старый экран с двумя
-  // кнопками. true → одна кнопка «Составить мой план» + иной текст (см. описание
-  // ключа выше). Меняется у всех живьём из «Пульта».
-  onboarding_plan_only_enabled: false,
   // Премиум-гейты: дефолт TRUE = фича за премиум-замком (текущее поведение).
   // Админ ставит false в «Пульте» → фича становится бесплатной у всех живьём.
   gate_lessons_premium: true,
@@ -891,12 +883,6 @@ export function shouldShowPromoBanner(params: {
   return true;
 }
 
-/**
- * Первый экран онбординга «только план»: дефолт false = экран с двумя кнопками
- * (план / просто посмотреть). true → одна кнопка «Составить мой план» в поток
- * плана + иной текст. Управляется из «Пульта» (remote_config/app.bools).
- */
-export const isOnboardingPlanOnly = () => getRemoteBool('onboarding_plan_only_enabled');
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 export const isLeagueStartupRegistrationEnabled = () => getRemoteBool('league_startup_registration_enabled');
 // зачем: league_realtime_members_enabled удалён целиком (тип+дефолт+хелпер) —
@@ -1002,7 +988,7 @@ export function getTrainerAbGroup(userId: string): TrainerAbGroup {
 
 /**
  * Deprecated onboarding A/B compatibility helper. The old branches
- * branches are retired; all users enter the new plan-first onboarding.
+ * branches are retired; all users enter the current onboarding.
  */
 export function getOnboardingAbVariant(_userId: string): OnboardingAbVariant {
   return 'current';

@@ -244,12 +244,24 @@ export default function ArenaHubScreen() {
       headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion?.wallet.walletStars ?? 0} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
     >
       <ArenaSectionTabs selected={section} labels={labels} onSelect={(next) => router.setParams({ section: next })} />
-      {baseError ? <ArenaStateNotice state="error" onRetry={load} /> : null}
+      {/*
+        Пока Арена не включена на сервере, все кнопки погашены — и без
+        объяснения это выглядит как поломка приложения. Владелец увидел ровно
+        это: «играть кнопки недоступны». Отказ вызова тут означает не «плохая
+        сеть», а «серверная часть ещё не развёрнута».
+      */}
+      {baseError ? (
+        <ArenaStateCard
+          state="unavailable"
+          title={arenaText(lang, 'arenaNotDeployed')}
+          body={arenaText(lang, 'arenaNotDeployedHint')}
+        />
+      ) : null}
       {/* Отчёт, застрявший из-за старой сборки, повторами не спасти: игроку
           надо сказать, что от него требуется, иначе награда не придёт никогда,
           а он даже не узнает почему. */}
       {reportBlocked ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'reportBlocked')} body={arenaText(lang, 'reportBlockedHint')} /> : null}
-      {home && !home.availability.enabled ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'maintenance')} /> : null}
+      {home && !home.availability.enabled ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'maintenance')} body={arenaText(lang, 'maintenanceHint')} /> : null}
       {section === 'today' ? todayContent : section === 'play' ? playContent : section === 'growth' ? growthContent : togetherContent}
     </ArenaScreen>
     </ArenaHubChrome>

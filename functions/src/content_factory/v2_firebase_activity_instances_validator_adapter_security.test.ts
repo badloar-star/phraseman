@@ -19,6 +19,8 @@ describe("V2 Firebase activity-instances validator adapter security boundary", (
         "createFirebaseAdminV2ActivityInstancesValidatorAdapterV1",
         "getV2FirebaseActivityInstancesValidatorSummaryV1",
         "isV2FirebaseActivityInstancesValidatorResultHandleV1",
+        "resolveV2FirebaseActivityInstancesPublicationSessionMaterialV1",
+        "resolveV2FirebaseActivityInstancesServerEvaluatorSessionMaterialV1",
         "resolveV2FirebaseActivityInstancesValidatorResultMaterialV1",
       ].sort(),
     );
@@ -62,6 +64,28 @@ describe("V2 Firebase activity-instances validator adapter security boundary", (
     );
     expect(source).toContain(
       "childReadbackAggregateFingerprint:\n          childReadback?.readbackAggregateFingerprint ?? null",
+    );
+  });
+
+  it("separates learner publication bytes from the server-only evaluator resolver", () => {
+    expect(source).toContain("publicationMaterials.get(input.handle)");
+    expect(source).toContain(
+      'material.summary.outcome !== "eligible_for_human_review_only"',
+    );
+    expect(source).toContain("material.summary.validatedSessionCount !== 12");
+    expect(source).toContain("material.summary.validatedTaskCount !== 144");
+    expect(source).toMatch(
+      /createHash\("sha256"\)\.update\(bytes\)\.digest\("hex"\)\s*!==\s*permit\.contentHash/,
+    );
+    expect(source).toContain("renderRaw: session.renderRaw");
+    expect(source).toContain("capsuleEnvelopeRaw: session.capsuleEnvelopeRaw");
+    expect(source).not.toContain("sourceRaw: session.sourceRaw");
+    expect(source).toContain("sidecarRaw: session.sidecarRaw");
+    expect(source).toContain(
+      'evaluatorKeyDelivery: "server_only_never_learner_projection" as const',
+    );
+    expect(source).toContain(
+      'evaluationAuthority: "candidate_only_server_policy_required" as const',
     );
   });
 

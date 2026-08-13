@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 describe('admin app messages poll contract', () => {
-  const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
+  const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'legacy.html'), 'utf8');
   const functionsSource = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'app_messages.ts'), 'utf8');
 
   it('lets admins choose a poll option count from 2 to 6', () => {

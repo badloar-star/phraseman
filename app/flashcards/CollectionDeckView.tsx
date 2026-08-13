@@ -1,6 +1,7 @@
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 /**
  * cards-2.0 (E11): полноэкранный режим «Колода» в коллекции (§3.2) —
- * просмотр без оценки (звёзд НЕ даёт, решение по п.22 критики).
+ * просмотр без оценки (решение по п.22 критики).
  *
  * Стек из ≤3 смонтированных PhraseCard: верхняя + 2 подложки (scale 0.95/0.90,
  * translateY 12/24), подложки подтягиваются useDerivedValue от tx верхней.
@@ -22,7 +23,7 @@ import Reanimated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { triLang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
 import { FC_SPRING, FC_SWIPE } from '../../constants/flashcards_motion';
@@ -45,7 +46,7 @@ type Props = {
   /** Видимые карточки колоды (после фильтра/поиска/лимита). */
   cards: CardItem[];
   initialIndex?: number;
-  lang: 'ru' | 'uk' | 'es';
+  lang: FlashcardContentLang;
   cardContentLang: FlashcardContentLang;
   t: Theme;
   f: Record<string, number>;
@@ -75,7 +76,7 @@ export default function CollectionDeckView({
   onExitToList,
   strengthForCard = null,
 }: Props) {
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { width: screenW, height: screenH } = useWindowDimensions();
   const isWeb = Platform.OS === 'web';
   const reduceMotion = useFcReduceMotion();

@@ -4,7 +4,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { addShardsRaw } from '../shards_system';
-import { getTodayKey } from '../daily_tasks';
+import { getUtcDayKey } from '../local_date';
 import { utcWeekNumberFromTodayKey } from './boon_engine';
 
 /** Описание разовой награды бонуса. */
@@ -58,7 +58,7 @@ export function pickMysteryReward(roll: number): BoonReward {
 export const COMEBACK_REWARD: BoonReward = { shards: 1 };
 
 /** Текущий week-id (UTC, ISO-неделя-подобный номер) — для недельных claim-ключей. */
-export function currentWeekId(todayKey: string = getTodayKey()): string {
+export function currentWeekId(todayKey: string = getUtcDayKey()): string {
   return `w${utcWeekNumberFromTodayKey(todayKey)}`;
 }
 

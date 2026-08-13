@@ -1,3 +1,12 @@
+import { flashcardsDeleteHintSeenKey, type RuntimeStudyTarget } from '../target_storage_keys';
+import { useLang } from '../../components/LangContext';
+import {
+  flashcardsCommunityPacksAvailableForTarget,
+  flashcardsOfficialPacksAvailableForTarget,
+} from '../flashcards_target_gate';
+import { ensureFrenchRemoteFlashcards, prefetchFrenchRemoteFlashcards } from '../french_flashcard_remote_runtime';
+import { storageStudyTarget } from '../target_storage_keys';
+import { useStudyTarget } from '../../components/StudyTargetContext';
 /**
  * cards-2.0 (E11): загрузка данных коллекции, вынесенная из монолита
  * flashcards_collection.tsx (§7 E11 — разбиение до ≤600 строк).
@@ -18,7 +27,6 @@ import {
 } from '../../hooks/use-flashcards';
 import { getTranscription } from '../transcription';
 import { actionToastTri, emitAppEvent } from '../events';
-import { updateMultipleTaskProgress } from '../daily_tasks';
 import { checkAchievements } from '../achievements';
 import { deleteCustomCard, restoreCustomCard } from './custom_cards_store';
 import { fcHaptic } from './SoundService';
@@ -36,7 +44,7 @@ import {
   buildMarketplaceOwnedCards,
   bundledPacksForOwned,
   consumeDevActivePack,
-  fallbackBundledMarketPacks,
+  reserveBundledMarketPacks,
   loadBuiltMarketplaceCardsCache,
   loadMarketplacePacks,
   loadAccessiblePackIds,
@@ -50,6 +58,12 @@ import {
   getStagedNavigationPackId,
 } from '../community_packs/staging';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
+import { ugcCardChrome } from '../community_packs/ugcCardThemePresets';
+import {
+  loadLocalAuthorPacks,
+  localAuthorPackCardItems,
+  mergeLocalAuthorPacks,
+} from '../community_packs/localAuthorPacks';
 import {
   fetchCommunityPackCards,
   loadPublishedCommunityMarketPacks,
@@ -105,11 +119,11 @@ export const savedToCard = (f: Flashcard): CardItem => ({
  * Прогрів кешу колекції до відкриття екрана: збережені + кастомні з AsyncStorage
  * (і розігрів шляху built-market cache). Не блокує JS — тільки void Promise.
  */
-export function primeFlashcardsCollectionCache() {
+export function primeFlashcardsCollectionCache(studyTarget?: RuntimeStudyTarget) {
   void Promise.all([
-    loadFlashcards().catch((): Flashcard[] => []),
-    readCustomCards().catch(() => null),
-    loadAccessiblePackIds().catch((): string[] => []),
+    loadFlashcards(studyTarget).catch((): Flashcard[] => []),
+    readCustomCards(studyTarget).catch(() => null),
+    loadAccessiblePackIds(studyTarget).catch((): string[] => []),
     loadBuiltMarketplaceCardsCache().catch((): null => null),
   ]).then(([saved, rawCustom]) => {
     _savedCardsCache = saved.map(savedToCard);
@@ -146,20 +160,46 @@ export function useCollectionData(opts: {
   onLoaded: (info: CollectionLoadedInfo) => void;
 }) {
   const { isDevMarketEnabled } = opts;
+  // Изоляция целей обучения: все чтения/записи коллекции идут в хранилище
+  // текущей цели (иначе французская коллекция видит английские карточки).
+  const { studyTarget } = useStudyTarget();
+  const { lang } = useLang();
+  /**
+   * Гейты цели обучения: у не-английских целей официальные и community-наборы
+   * скрыты (иначе французская коллекция показывает английские паки).
+   */
+  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
+  const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
+  /** Французские карточки приезжают удалённо — греем до первой отрисовки. */
+  useEffect(() => {
+    if (storageStudyTarget(studyTarget) !== 'fr') return;
+    prefetchFrenchRemoteFlashcards(lang);
+    let cancelled = false;
+    ensureFrenchRemoteFlashcards(lang).catch(() => {});
+    return () => {
+      cancelled = true;
+      void cancelled;
+    };
+  }, [lang, studyTarget]);
   const onLoadedRef = useRef(opts.onLoaded);
   onLoadedRef.current = opts.onLoaded;
 
   const [savedCards, setSavedCards] = useState<CardItem[]>(_savedCardsCache ?? []);
   const [customCards, setCustomCards] = useState<CardItem[]>(_customCardsCache ?? []);
   const [marketCards, setMarketCards] = useState<CardItem[]>(() => {
-    const com = consumeStagedCommunityPackMarketCards();
+    if (!officialPacksEnabled && !communityPacksEnabled) {
+      consumeStagedCommunityPackMarketCards();
+      stagedOwnedPackMarketCards = null;
+      return [];
+    }
+    const com = communityPacksEnabled ? consumeStagedCommunityPackMarketCards() : null;
     if (com && com.length > 0) return com;
     const snap = stagedOwnedPackMarketCards;
     stagedOwnedPackMarketCards = null;
     return snap ?? [];
   });
   const [marketPackCatalog, setMarketPackCatalog] = useState<FlashcardMarketPack[]>(
-    () => fallbackBundledMarketPacks(),
+    () => (officialPacksEnabled ? reserveBundledMarketPacks(studyTarget, lang) : []),
   );
   /** Список купленных паков из хранилища — для `?pack=` до отрисовки `marketCards` (иначе гонка с кэшем). */
   const [ownedPackIdList, setOwnedPackIdList] = useState<string[]>([]);
@@ -205,13 +245,13 @@ export function useCollectionData(opts: {
       if (!_savedCardsCache && !_customCardsCache) setLoading(true);
       const [saved, customParsed, progressParsed, hintSeen, ownedIdsEarly, builtMarketCache, communityOwnedEarly] =
         await Promise.all([
-          loadFlashcards(),
-          readCustomCards(),
-          readFlashcardsProgress(),
-          AsyncStorage.getItem('flashcard_delete_hint_seen'),
-          loadAccessiblePackIds(),
+          loadFlashcards(studyTarget),
+          readCustomCards(studyTarget),
+          readFlashcardsProgress(studyTarget),
+          AsyncStorage.getItem(flashcardsDeleteHintSeenKey(studyTarget)),
+          loadAccessiblePackIds(studyTarget),
           loadBuiltMarketplaceCardsCache().catch((): null => null),
-          loadCommunityOwnedPackIds().catch((): string[] => []),
+          loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []),
         ]);
       const custom: CardItem[] = Array.isArray(customParsed) ? (customParsed as CardItem[]) : [];
       // Швидке відображення: одразу з AsyncStorage, без import lesson data / маркету.
@@ -226,7 +266,7 @@ export function useCollectionData(opts: {
         setMarketCards(builtMarketCache.cards);
         setOwnedPackIdList(ownedIdsEarly);
         setCommunityOwnedIdList(communityOwnedEarly);
-        setMarketPackCatalog(fallbackBundledMarketPacks());
+        setMarketPackCatalog(reserveBundledMarketPacks());
       } else if (ownedIdsEarly.length > 0 || communityOwnedEarly.length > 0) {
         /** Одразу з бандла — не чекаємо Firestore у `marketPromise`, інакше `?pack=` показує порожній custom. */
         setOwnedPackIdList(ownedIdsEarly);
@@ -235,7 +275,7 @@ export function useCollectionData(opts: {
         if (ownedBundled.length > 0) {
           setMarketCards(buildMarketplaceOwnedCards(ownedBundled));
         }
-        setMarketPackCatalog(fallbackBundledMarketPacks());
+        setMarketPackCatalog(reserveBundledMarketPacks());
       }
       /**
        * Блокуємо лоадер лише якщо без маркет-кешу користувач побачить порожній список
@@ -290,21 +330,34 @@ export function useCollectionData(opts: {
       })();
 
       const marketPromise = (async () => {
-        const [ownedIds, marketPacks, communityOwnedIds, communityPublished, activePackIdRaw] = await Promise.all([
-          loadAccessiblePackIds(),
+        const [ownedIds, marketPacks, communityOwnedIds, communityPublished, activePackIdRaw, localAuthored] = await Promise.all([
+          loadAccessiblePackIds(studyTarget),
           loadMarketplacePacks(),
-          loadCommunityOwnedPackIds().catch((): string[] => []),
+          loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []),
           loadPublishedCommunityMarketPacks().catch((): FlashcardMarketPack[] => []),
-          isDevMarketEnabled ? consumeDevActivePack() : Promise.resolve(null as string | null),
+          isDevMarketEnabled ? consumeDevActivePack(studyTarget) : Promise.resolve(null as string | null),
+          loadLocalAuthorPacks(studyTarget).catch(() => []),
         ]);
+        /** Свои наборы с устройства: доступны сразу после «Сохранить», без ожидания модерации. */
+        const localAuthoredMarket = mergeLocalAuthorPacks(communityPublished, localAuthored, studyTarget);
+        const localAuthoredIds = localAuthoredMarket.map((p) => p.id);
+        const localAuthoredCards = localAuthored
+          .filter((p) => localAuthoredIds.includes(p.id))
+          .flatMap(localAuthorPackCardItems);
         setOwnedPackIdList(ownedIds);
-        setCommunityOwnedIdList(communityOwnedIds);
+        setCommunityOwnedIdList([...communityOwnedIds, ...localAuthoredIds]);
         const mergedCatalog: FlashcardMarketPack[] = [...marketPacks];
         const seenCat = new Set(marketPacks.map((p) => p.id));
         for (const cp of communityPublished) {
           if (!seenCat.has(cp.id)) {
             seenCat.add(cp.id);
             mergedCatalog.push(cp);
+          }
+        }
+        for (const lp of localAuthoredMarket) {
+          if (!seenCat.has(lp.id)) {
+            seenCat.add(lp.id);
+            mergedCatalog.push(lp);
           }
         }
         setMarketPackCatalog(mergedCatalog);
@@ -326,12 +379,13 @@ export function useCollectionData(opts: {
           communityIdsToLoad.map((id) => fetchCommunityPackCards(id).catch((): CardItem[] => [])),
         );
         const builtMarket = [...officialBuilt, ...communityCardLists.flat()];
-        setMarketCards(builtMarket);
+        setMarketCards([...builtMarket, ...localAuthoredCards]);
+        /** Локальные наборы в кэш не пишем: они меняются на устройстве и всегда читаются заново. */
         void saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket);
         if (mustDelayForEmptyMarketOnly) setLoading(false);
         return {
           ownedIds,
-          communityOwnedIds,
+          communityOwnedIds: [...communityOwnedIds, ...localAuthoredIds],
           communityPublished,
           activePackId: activePackIdRaw as string | null,
         };
@@ -625,36 +679,24 @@ export function useCollectionDeletion(args: {
   return { undoEntry, deleteCardById, undoDelete };
 }
 
-// ── E11: трекинг просмотров/переворотов (daily tasks + ачивка сессии) ────────
+// ── E11: трекинг ачивки сессии ──────────────────────────────────────────────
 export function useFlashcardViewTracking() {
+  /** Изоляция целей: счётчик просмотров считает карточки текущей цели. */
+  const { studyTarget } = useStudyTarget();
   const sessionDoneRef = useRef(false); // achievement fired once per session
   /** Просмотренные id из словаря flashcards_v1 — для ачивки «все карточки за сессию». */
   const flashAchievementSeenRef = useRef<Set<string>>(new Set());
-  /** Задание дня «пролистать карточки»: не дублировать одну и ту же карточку за сессию. */
-  const flashcardDailyViewCountedRef = useRef<Set<string>>(new Set());
-  useEffect(() => () => { flashcardDailyViewCountedRef.current.clear(); }, []);
-
   const resetSession = useCallback(() => {
     sessionDoneRef.current = false;
     flashAchievementSeenRef.current.clear();
   }, []);
 
   const registerFlashcardViewed = useCallback((cardIds: string[]) => {
-    const set = flashcardDailyViewCountedRef.current;
-    let n = 0;
-    for (const id of cardIds) {
-      if (!id || set.has(id)) continue;
-      set.add(id);
-      n += 1;
-    }
-    if (n > 0) {
-      updateMultipleTaskProgress([{ type: 'flashcard_view', increment: n }]).catch(() => {});
-    }
     for (const id of cardIds) {
       if (id) flashAchievementSeenRef.current.add(id);
     }
     if (!sessionDoneRef.current && cardIds.length > 0) {
-      loadFlashcards()
+      loadFlashcards(studyTarget)
         .then((all) => {
           if (all.length === 0) return;
           const seen = flashAchievementSeenRef.current;
@@ -667,15 +709,7 @@ export function useFlashcardViewTracking() {
     }
   }, []);
 
-  /** Переворот на рубашку: flashcard_flip всегда, flashcard_view — раз на карточку за сессию. */
-  const trackCardFlip = useCallback((cardId: string) => {
-    const set = flashcardDailyViewCountedRef.current;
-    const isNewView = !set.has(cardId);
-    if (isNewView) set.add(cardId);
-    const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [{ type: 'flashcard_flip', increment: 1 }];
-    if (isNewView) updates.push({ type: 'flashcard_view', increment: 1 });
-    updateMultipleTaskProgress(updates).catch(() => {});
-  }, []);
+  const trackCardFlip = useCallback((_cardId: string) => {}, []);
 
   return { registerFlashcardViewed, trackCardFlip, resetSession };
 }
@@ -764,6 +798,23 @@ export function usePackBrowseVisual(args: {
   }, [currentMarketPack, themeMode, isLightTheme]);
 
   const packCardTheme = useMemo(() => {
+    /**
+     * UGC-набор: цвет карточек берём напрямую из выбранной автором палитры
+     * (`ugcCardChrome`), а не из декора paywall-модалки — иначе в светлой теме
+     * выбор «Цвет карточек» не влиял ни на что (владелец, 2026-08-13).
+     */
+    if (currentMarketPack?.isCommunityUgc) {
+      const chrome = ugcCardChrome(currentMarketPack.ugcCardThemeKey, {
+        isLight: isLightTheme,
+        bgCard,
+        bgSurface,
+      });
+      return {
+        borderAccent: chrome.borderAccent,
+        frontGradient: chrome.frontGradient,
+        backGradient: chrome.backGradient,
+      };
+    }
     if (!packPremiumVisual) return null;
     const c0 = packPremiumVisual.ctaColors[0];
     const c1 = packPremiumVisual.ctaColors[1];
@@ -774,7 +825,7 @@ export function usePackBrowseVisual(args: {
       frontGradient: [c0 + fa, bgCard] as [string, string],
       backGradient: [c1 + ba, bgSurface] as [string, string],
     };
-  }, [packPremiumVisual, isLightTheme, bgCard, bgSurface]);
+  }, [currentMarketPack, packPremiumVisual, isLightTheme, bgCard, bgSurface]);
 
   return { currentMarketPack, packPremiumVisual, packCardTheme };
 }

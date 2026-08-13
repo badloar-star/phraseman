@@ -23,7 +23,7 @@ describe('Olive premium asset suite', () => {
       }
     }
 
-    expect(required.size).toBe(68);
+    expect(required.size).toBe(67);
     for (const file of required) {
       expect(fs.existsSync(file)).toBe(true);
       expect(path.extname(file)).toMatch(/\.(webp|png)$/);

@@ -7,7 +7,7 @@
 // useFeatureAccess). Здесь только то, что надо ОДИН раз записать на день.
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getTodayKey } from '../daily_tasks';
+import { getUtcDayKey } from '../local_date';
 import { emitAppEvent } from '../events';
 import { setPackGiftTrial48hOnce } from '../flashcards/pack_trial_gift';
 import { applyMonthlyPremiumFreezeAllowance } from '../premium_freeze_allowance';
@@ -96,7 +96,7 @@ async function applyTurboRegen(todayKey: string): Promise<void> {
  */
 export async function applyTodaysBoonsOnAppOpen(
   studyTarget?: RuntimeStudyTarget,
-  todayKey: string = getTodayKey(),
+  todayKey: string = getUtcDayKey(),
 ): Promise<void> {
   // Plus-перк: месячный лимит бесплатных заморозок стрика. Не boon, но живёт в том
   // же bootstrap-цикле открытия главной (идемпотентен, best-effort внутри).

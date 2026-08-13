@@ -31,6 +31,16 @@ service firebase.storage {
       allow write: if false;
     }
 
+    // Published Learning V2 voice assets. Exact object coordinates arrive only
+    // through the authenticated active-release descriptor. The app reads one
+    // immutable object by exact path, verifies byte size + SHA-256 and stores no
+    // token URL. Browsing/listing and every client write remain forbidden.
+    match /learning-v2/voice-audio/{allPaths=**} {
+      allow get: if request.auth != null;
+      allow list: if false;
+      allow write: if false;
+    }
+
     // Public, read-only course-pack content (plan_content first: manifest.json,
     // index.json, per-day rows). Same model as the audio buckets: the app fetches
     // these over HTTPS, sha256-verifies them, and disk-caches them so heavy content

@@ -25,12 +25,15 @@ export const FUZZY_MIN_TYPO_WORD_LEN = 5;
  * снимается, пробелы схлопываются. Артикли сознательно НЕ трогаем (§3.6).
  */
 export function normalizeAnswer(text: string): string {
-  const base = normalizeLessonAssemblyAnswer(String(text ?? ''));
-  return base
+  // Порядок важен: письменные эквивалентности снимаем ДО contractions-пайплайна,
+  // иначе его собственная нормализация кириллицы разводит «ещё» и «еще».
+  const pre = String(text ?? '')
     .replace(/[ёѐ]/g, 'е')
     .replace(/ї/g, 'і') // ї → і
+    .replace(/є/g, 'е'); // є → е
+  const base = normalizeLessonAssemblyAnswer(pre);
+  return base
     .replace(/[іi]/g, 'i') // кир. і и лат. i → один символ (симметрично обеим сторонам)
-    .replace(/є/g, 'е') // є → е
     .replace(/[–—-]/g, ' ') // дефис/тире → пробел («ice-cream» == «ice cream»)
     .replace(/[.,!?;:…"«»„“”()[\]]/g, '')
     .replace(/\s+/g, ' ')

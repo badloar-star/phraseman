@@ -1,4 +1,11 @@
-import { BUNDLED_MARKETPLACE_PACKS, buildMarketplaceOwnedCards, loadMarketplacePacks } from '../app/flashcards/marketplace';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  BUNDLED_MARKETPLACE_PACKS,
+  buildMarketplaceOwnedCards,
+  loadMarketplacePacks,
+  resetAccessiblePackIdsCache,
+} from '../app/flashcards/marketplace';
+import { flashcardsOwnedPacksKey } from '../app/target_storage_keys';
 import {
   OFFICIAL_DARK_LOGIC_EN_ID,
   OFFICIAL_NEGOTIATOR_EN_ID,
@@ -33,10 +40,21 @@ describe('marketplace: bundled', () => {
     ]);
   });
 
-  it('loadMarketplacePacks (без Firestore) повертає бандл', async () => {
-    const packs = await loadMarketplacePacks();
-    expect(packs.length).toBe(12);
-    expect(packs[0].id).toBe(OFFICIAL_MOVIE_SERIES_EN_ID);
+  /**
+   * Cards 2.1 §1.1: офіційні набори виведені з каталогу — у видачі вони лише у власників.
+   */
+  it('loadMarketplacePacks: новий юзер не бачить офіційні паки, власник бачить свій', async () => {
+    const ownedKey = flashcardsOwnedPacksKey();
+    resetAccessiblePackIdsCache();
+    await AsyncStorage.setItem(ownedKey, JSON.stringify([]));
+    expect(await loadMarketplacePacks()).toEqual([]);
+
+    await AsyncStorage.setItem(ownedKey, JSON.stringify([OFFICIAL_NEGOTIATOR_EN_ID]));
+    const owned = await loadMarketplacePacks();
+    expect(owned.map((p) => p.id)).toEqual([OFFICIAL_NEGOTIATOR_EN_ID]);
+
+    resetAccessiblePackIdsCache();
+    await AsyncStorage.setItem(ownedKey, JSON.stringify([]));
   });
 
   it('Negotiator: 30 карток з бандла', () => {

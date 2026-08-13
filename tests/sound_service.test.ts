@@ -77,6 +77,23 @@ const ALL_SFX: FcSfxName[] = [
 
 const { Platform } = require('react-native');
 
+jest.mock('../hooks/use-haptics', () => ({
+  hapticSuccess: jest.fn(async () => {}),
+  hapticError: jest.fn(async () => {}),
+  hapticLightImpact: jest.fn(async () => {}),
+  hapticMediumImpact: jest.fn(async () => {}),
+  hapticTap: jest.fn(async () => {}),
+}));
+const hapticsMock = require('../hooks/use-haptics') as {
+  hapticSuccess: jest.Mock;
+  hapticError: jest.Mock;
+  hapticLightImpact: jest.Mock;
+  hapticMediumImpact: jest.Mock;
+  hapticTap: jest.Mock;
+};
+
+
+
 const flushMicrotasks = async () => {
   // playSfx: seekTo(0) → then(play); хаптика: async-цепочка runIfEnabled → getItem → run
   for (let i = 0; i < 8; i++) await Promise.resolve();
@@ -93,6 +110,11 @@ beforeEach(() => {
   speechSpeakMock.mockClear();
   speechStopMock.mockClear();
   Platform.OS = 'ios';
+  hapticsMock.hapticSuccess.mockClear();
+  hapticsMock.hapticError.mockClear();
+  hapticsMock.hapticLightImpact.mockClear();
+  hapticsMock.hapticMediumImpact.mockClear();
+  hapticsMock.hapticTap.mockClear();
 });
 
 describe('playSfx + тумблер fc_sfx_on', () => {
@@ -326,9 +348,9 @@ describe('fcHaptic — платформенный маппинг §5', () => {
     fcHaptic('correct');
     fcHaptic('wrong');
     await flushMicrotasks();
-    expect(notificationAsyncMock).toHaveBeenCalledWith('success');
-    expect(notificationAsyncMock).toHaveBeenCalledWith('error');
-    expect(impactAsyncMock).not.toHaveBeenCalled();
+    expect(hapticsMock.hapticSuccess).toHaveBeenCalledTimes(1);
+    expect(hapticsMock.hapticError).toHaveBeenCalledTimes(1);
+    expect(hapticsMock.hapticLightImpact).not.toHaveBeenCalled();
   });
 
   it('Android: notification*/Medium деградируют до impact Light', async () => {
@@ -337,16 +359,16 @@ describe('fcHaptic — платформенный маппинг §5', () => {
     fcHaptic('wrong');
     fcHaptic('star');
     await flushMicrotasks();
-    expect(notificationAsyncMock).not.toHaveBeenCalled();
-    expect(impactAsyncMock).toHaveBeenCalledTimes(3);
-    expect(impactAsyncMock).toHaveBeenCalledWith('light');
+    expect(hapticsMock.hapticSuccess).not.toHaveBeenCalled();
+    expect(hapticsMock.hapticError).not.toHaveBeenCalled();
+    expect(hapticsMock.hapticLightImpact).toHaveBeenCalledTimes(3);
   });
 
   it('порог свайпа → selection на обеих платформах', async () => {
     Platform.OS = 'android';
     fcHaptic('threshold');
     await flushMicrotasks();
-    expect(selectionAsyncMock).toHaveBeenCalledTimes(1);
+    expect(hapticsMock.hapticTap).toHaveBeenCalledTimes(1);
   });
 
   it('web → полный no-op', async () => {
@@ -355,8 +377,8 @@ describe('fcHaptic — платформенный маппинг §5', () => {
     fcHaptic('threshold');
     fcHaptic('star');
     await flushMicrotasks();
-    expect(notificationAsyncMock).not.toHaveBeenCalled();
-    expect(impactAsyncMock).not.toHaveBeenCalled();
-    expect(selectionAsyncMock).not.toHaveBeenCalled();
+    expect(hapticsMock.hapticSuccess).not.toHaveBeenCalled();
+    expect(hapticsMock.hapticLightImpact).not.toHaveBeenCalled();
+    expect(hapticsMock.hapticTap).not.toHaveBeenCalled();
   });
 });

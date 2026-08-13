@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const ROOT = path.resolve(__dirname, '..');
-const ADMIN_INDEX = path.join(ROOT, 'admin', 'v2', 'legacy.html');
+const ADMIN_INDEX = path.join(ROOT, 'admin', 'legacy.html');
 const ADMIN_AVATARS = path.join(ROOT, 'admin', 'avatars');
 const APP_LEVEL_AVATARS = path.join(ROOT, 'assets', 'images', 'levels', 'generated-v5-dalle');
 

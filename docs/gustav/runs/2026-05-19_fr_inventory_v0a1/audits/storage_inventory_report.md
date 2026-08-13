@@ -4,21 +4,21 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Status: `HOLD`
 
-Generated at: 2026-08-11T20:32:04.102Z
+Generated at: 2026-08-13T01:51:55.132Z
 
 ## Summary
 
-- Files scanned: 4134
-- Records: 3634
-- Unique literal keys: 587
+- Files scanned: 4261
+- Records: 3698
+- Unique literal keys: 600
 - Key patterns: 81
-- Unknown expressions: 1045
-- Cloud sync keys observed: 139
-- Learning-state records: 579
-- Target namespace required: 129
-- Blockers: 0
-- High risks: 128
-- Unknown-scope records: 306
+- Unknown expressions: 1062
+- Cloud sync keys observed: 140
+- Learning-state records: 583
+- Target namespace required: 132
+- Blockers: 1
+- High risks: 130
+- Unknown-scope records: 350
 
 ## Top Risks
 
@@ -33,12 +33,13 @@ Generated at: 2026-08-11T20:32:04.102Z
 - `high` ai_mistake_limit_notice_shown_v1: app/ai_mistake_explain_limit_session.ts:56 (legacy_english, get)
 - `high` ai_mistake_limit_notice_shown_v1: app/ai_mistake_explain_limit_session.ts:69 (legacy_english, set)
 - `high` doomed: app/cache_reset.ts:93 (unknown, multiRemove)
-- `high` [...keys]: app/cloud_sync.ts:818 (unknown, multiGet)
-- `high` stickyOwnedKeys: app/cloud_sync.ts:2771 (unknown, multiGet)
-- `high` stickyLessonKeys: app/cloud_sync.ts:2793 (unknown, multiGet)
-- `high` authoritativeGiftPerks.removeKeys: app/cloud_sync.ts:2875 (unknown, multiRemove)
-- `high` Array.from(: app/cloud_sync.ts:3541 (unknown, multiRemove)
-- `high` sourceAccountKeys: app/cloud_sync.ts:3669 (unknown, multiGet)
+- `high` [...keys]: app/cloud_sync.ts:833 (unknown, multiGet)
+- `high` fcKey: app/cloud_sync.ts:2729 (unknown, get)
+- `high` stickyOwnedKeys: app/cloud_sync.ts:2820 (unknown, multiGet)
+- `high` stickyLessonKeys: app/cloud_sync.ts:2842 (unknown, multiGet)
+- `high` authoritativeGiftPerks.removeKeys: app/cloud_sync.ts:2924 (unknown, multiRemove)
+- `high` Array.from(: app/cloud_sync.ts:3590 (unknown, multiRemove)
+- `high` sourceAccountKeys: app/cloud_sync.ts:3718 (unknown, multiGet)
 - `high` lessonIds.map((id: app/daily_tasks.ts:2140 (unknown, multiGet)
 - `high` ids.map((id: app/daily_tasks.ts:2452 (unknown, multiGet)
 - `high` ids.map((id: app/daily_tasks.ts:2453 (unknown, multiGet)
@@ -51,6 +52,8 @@ Generated at: 2026-08-11T20:32:04.102Z
 - `high` flashcardsSwipeHintSeenKey(studyTarget: app/flashcards_swipe.tsx:2026 (unknown, get)
 - `high` flashcardsSwipeHintSeenKey(studyTarget: app/flashcards_swipe.tsx:2039 (unknown, set)
 - `high` [[inventoryKey, JSON.stringify(next: app/flashcards/pack_trial_gift.ts:271 (unknown, multiSet)
+- `high` active_recall_items: app/flashcards/word_strength.ts:114 (legacy_english, get)
+- `blocker` trainer_store_v1: app/flashcards/word_strength.ts:115 (legacy_english, get)
 - `high` effectPairs: app/friend_gift_inbox.ts:109 (unknown, multiSet)
 - `high` missingKeys: app/friend_gift_inbox.ts:111 (unknown, multiRemove)
 - `high` restorePairs: app/friend_gift_inbox.ts:115 (unknown, multiSet)
@@ -59,9 +62,6 @@ Generated at: 2026-08-11T20:32:04.102Z
 - `high` storageKey: app/friend_gift_inventory.ts:89 (unknown, set)
 - `high` legacyKeys: app/friend_gift_inventory.ts:91 (unknown, multiRemove)
 - `high` storageKey: app/friend_gift_inventory.ts:121 (unknown, set)
-- `high` ownerKey: app/gift_account_storage.ts:71 (unknown, get)
-- `high` ownerKey: app/gift_account_storage.ts:76 (unknown, set)
-- `high` ownerKey: app/gift_account_storage.ts:78 (unknown, get)
 
 ## Unknowns
 
@@ -102,28 +102,31 @@ Generated at: 2026-08-11T20:32:04.102Z
 - level_up_shown_levels_v1 at app/cloud_sync.ts:1
 - shard_survey_last_at_ms at app/cloud_sync.ts:1
 - season_cosmetics_v1 at app/cloud_sync.ts:355
-- [...keys] at app/cloud_sync.ts:818
-- season_cosmetics_v1 at app/cloud_sync.ts:2741
-- stickyOwnedKeys at app/cloud_sync.ts:2771
-- stickyLessonKeys at app/cloud_sync.ts:2793
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:2844
-- authoritativeGiftPerks.removeKeys at app/cloud_sync.ts:2875
-- ${...}${...}:0 at app/cloud_sync.ts:3403
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3435
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3441
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3442
-- Array.from( at app/cloud_sync.ts:3541
-- ${...}${...}:${...} at app/cloud_sync.ts:3569
-- ${...}${...}:${...} at app/cloud_sync.ts:3596
-- ${...}${...}:${...} at app/cloud_sync.ts:3597
-- sourceAccountKeys at app/cloud_sync.ts:3669
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3674
+- [...keys] at app/cloud_sync.ts:833
+- fcKey at app/cloud_sync.ts:2729
+- season_cosmetics_v1 at app/cloud_sync.ts:2790
+- stickyOwnedKeys at app/cloud_sync.ts:2820
+- stickyLessonKeys at app/cloud_sync.ts:2842
+- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:2893
+- authoritativeGiftPerks.removeKeys at app/cloud_sync.ts:2924
+- ${...}${...}:0 at app/cloud_sync.ts:3452
+- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3484
+- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3490
+- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3491
+- Array.from( at app/cloud_sync.ts:3590
+- ${...}${...}:${...} at app/cloud_sync.ts:3618
+- ${...}${...}:${...} at app/cloud_sync.ts:3645
+- ${...}${...}:${...} at app/cloud_sync.ts:3646
+- sourceAccountKeys at app/cloud_sync.ts:3718
+- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3723
 - coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:42
 - coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:43
 - coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:95
 - coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:105
 - coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:120
 - coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:133
+- community_pack_liked_ids_v1 at app/community_packs/packSocialStorage.ts:10
+- community_pack_added_registered_ids_v1 at app/community_packs/packSocialStorage.ts:11
 - daily_phrase_home_pulse_day_v1 at app/daily_phrase_pulse.ts:3
 - lessonIds.map((id at app/daily_tasks.ts:2140
 - ids.map((id at app/daily_tasks.ts:2452
@@ -142,9 +145,6 @@ Generated at: 2026-08-11T20:32:04.102Z
 - top_helpers_remote_at_v2 at app/firestore_top_helpers.ts:39
 - top_helpers_snapshot_v2 at app/firestore_top_helpers.ts:147
 - top_helpers_snapshot_v2 at app/firestore_top_helpers.ts:163
-- top_helpers_remote_at_v2 at app/firestore_top_helpers.ts:172
-- top_helpers_remote_at_v2 at app/firestore_top_helpers.ts:189
-- flashcardsSwipeHintSeenKey(studyTarget at app/flashcards_swipe.tsx:2026
 
 ## Notes
 

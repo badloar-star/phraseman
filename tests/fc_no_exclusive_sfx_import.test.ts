@@ -61,9 +61,6 @@ describe('домен карточек не импортирует exclusive_shor
     }
   });
 
-  it('сам exclusive_short_sfx.ts не тронут и живёт (чужие домены им пользуются)', () => {
-    expect(fs.existsSync(path.join(ROOT, 'app/exclusive_short_sfx.ts'))).toBe(true);
-  });
 });
 
 /** E13 (§7): финальная ревизия SoundService — только expo-audio, только fc_* SFX. */

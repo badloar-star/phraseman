@@ -5,7 +5,6 @@ import path from 'path';
 // (квизы) удалены вместе с этими фичами; живые экраны ниже сохраняют проверку.
 const screens = [
   'app/club_screen.tsx',
-  'app/daily_tasks_screen.tsx',
   'app/lesson_menu.tsx',
   'app/personal_plan.tsx',
   'app/personal_plan_stats_screen.tsx',

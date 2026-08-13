@@ -143,8 +143,6 @@ function isTargetLearningKey(entry: Pick<CloudSyncMappingEntry, 'key' | 'keyPatt
     key.includes('active_recall') ||
     key.includes('diagnostic') ||
     key.includes('irregular_verbs') ||
-    key === 'daily_tasks_progress' ||
-    key === 'daily_tasks_progress_day' ||
     key === 'flashcards' ||
     key === 'flashcards_v1' ||
     key === 'custom_flashcards_v2' ||
@@ -257,10 +255,6 @@ function classify(entry: Pick<CloudSyncMappingEntry, 'key' | 'keyPattern'>): Omi
     return global('Lifetime profile quiz counters are shared account-level statistics.', 'medium', 'high');
   }
 
-  if (key === 'daily_tasks_progress' || key === 'daily_tasks_progress_day') {
-    return global('Daily task progress is account-level by current product design, but task definitions must be audited for target-content payloads.', 'high');
-  }
-
   if (
     key.includes('user_total_xp') ||
     key.includes('user_prev_xp') ||
@@ -268,8 +262,7 @@ function classify(entry: Pick<CloudSyncMappingEntry, 'key' | 'keyPattern'>): Omi
     key.includes('week_points') ||
     key.includes('streak') ||
     key.includes('last_active_date') ||
-    key.includes('login_bonus') ||
-    key.includes('lifetime_daily_tasks')
+    key.includes('login_bonus')
   ) {
     return global('Gamification/account continuity state. Confirm product decision to share it across study targets.', 'medium');
   }

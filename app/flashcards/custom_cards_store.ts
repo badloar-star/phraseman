@@ -8,7 +8,10 @@
 // Формат данных сохраняется 1:1 (CardItem с categoryId 'custom', isSystem false;
 // незнакомые поля элементов не отбрасываются). Ключ существующий — новых не вводим.
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FLASHCARDS_CUSTOM_KEY } from './storage';
+import { customFlashcardsKey } from '../target_storage_keys';
+
+/** Ключ сохранённых custom-карточек текущей цели обучения (см. target_storage_keys). */
+const FLASHCARDS_CUSTOM_KEY = customFlashcardsKey();
 import type { CardItem } from './types';
 
 /** In-memory кэш последнего закоммиченного состояния (для быстрых повторных чтений). */

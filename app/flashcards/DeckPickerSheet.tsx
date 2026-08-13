@@ -1,33 +1,47 @@
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 /**
  * cards-2.0 (E8): DeckPickerSheet — bottom-sheet выбора набора + размера сессии
  * (§3.1 п.5, §3.5 мастер-плана). Свой, без сторонних либ: Reanimated translateY
  * (spring) + backdrop opacity — только transform/opacity на UI-потоке (принцип 3).
  *
+ * cards-2.1 (§6 SPEC_2_1): МУЛЬТИВЫБОР — чекбоксы вместо радио, можно отметить
+ * несколько наборов сразу; счётчик «Выбрано 3 · 84 карточки» (карточки суммируются
+ * с дедупликацией по стабильному id, если списки id переданы в `cardIds`); старт
+ * заблокирован при нуле выбранных. «Слабые» (due-очередь тренера) — не набор, а
+ * режим, поэтому выбирается только в одиночку (deck_selection.toggleDeckSelection).
+ *
  * Открывается по long-press / иконке ⚙ на плитке режима — быстрый старт идёт
  * мимо него (принцип 2: ≤2 тапа до тренировки). Выбор сохраняется в
  * fc_mode_prefs_v1.lastPreset — следующий тап по режиму стартует с ним.
  *
- * Наборы: Слабые (due тренера) / Все сохранённые / Мои карточки / Пак X (owned).
- * Размер: 10/15/20. reduceMotion/web — timing вместо spring (без оверскролл-хвоста).
+ * Размер: 10/15/20. reduceMotion/web/lowPower — timing вместо spring, без стаггера.
  */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, Platform, Pressable, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import Reanimated, {
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
-import { FC_TIMING } from '../../constants/flashcards_motion';
+import { FC_TIMING, fcStaggerDelay } from '../../constants/flashcards_motion';
 import { fcHaptic } from './SoundService';
+import { isLowPowerEffective } from './low_power';
+import {
+  deckSelectionLabel,
+  summarizeDeckSelection,
+  toggleDeckSelection,
+  type DeckCountable,
+} from './deck_selection';
 import {
   FC_SESSION_SIZES,
   FC_DEFAULT_SESSION_SIZE,
+  presetDeckIds,
   setLastPreset,
   type FcDeckId,
   type FcModePreset,
@@ -35,11 +49,17 @@ import {
   type FcSessionSize,
 } from './mode_prefs';
 
-export type DeckSheetOption = {
+export type DeckSheetOption = DeckCountable & {
   deckId: FcDeckId;
   title: string;
   /** Кол-во карточек в наборе (бейдж; 0 — набор задизейблен). */
   count: number;
+  /**
+   * cards-2.1: стабильные id карточек набора. Если переданы — суммарный счётчик
+   * выбранного дедуплицируется (одна карточка в двух наборах считается один раз).
+   * Без них счётчик просто складывает `count`.
+   */
+  cardIds?: readonly string[];
   icon: keyof typeof Ionicons.glyphMap;
 };
 
@@ -49,7 +69,7 @@ type Props = {
   /** Старт сессии с выбранным пресетом (после сохранения в fc_mode_prefs_v1). */
   onStart: (preset: FcModePreset) => void;
   decks: DeckSheetOption[];
-  /** Последний пресет — предвыбор при открытии. */
+  /** Последний пресет — предвыбор при открытии (мультивыбор: preset.deckIds). */
   initialPreset?: FcModePreset | null;
   lang: Lang;
   t: Theme;
@@ -60,7 +80,126 @@ type Props = {
 };
 
 const SHEET_SPRING = { damping: 22, stiffness: 260, mass: 0.9 } as const;
+/** Мягкая пружина галочки — заметная, но без «резинового» перелёта. */
+const CHECK_SPRING = { damping: 15, stiffness: 320, mass: 0.7 } as const;
+const ROW_SPRING = { damping: 20, stiffness: 240, mass: 0.8 } as const;
 const SHEET_HIDE_Y = 620;
+const ROW_ENTER_Y = 10;
+
+// ── Строка набора: пружинная галочка + стаггер входа ─────────────────────────
+
+type DeckRowProps = {
+  deck: DeckSheetOption;
+  index: number;
+  active: boolean;
+  onToggle: (deckId: FcDeckId) => void;
+  /** Упрощённая анимация: reduce motion / слабое устройство / web. */
+  simple: boolean;
+  t: Theme;
+  f: Props['f'];
+};
+
+function DeckRow({ deck, index, active, onToggle, simple, t, f }: DeckRowProps) {
+  const empty = deck.count <= 0;
+  /** Вход строки: opacity + translateY со стаггером (только transform/opacity). */
+  const enter = useSharedValue(simple ? 1 : 0);
+  /** Галочка: 0 — снята, 1 — стоит (мягкая пружина). */
+  const check = useSharedValue(active ? 1 : 0);
+
+  useEffect(() => {
+    if (simple) {
+      enter.value = 1;
+      return;
+    }
+    enter.value = 0;
+    enter.value = withDelay(fcStaggerDelay(index), withSpring(1, ROW_SPRING));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    check.value = simple
+      ? withTiming(active ? 1 : 0, { duration: FC_TIMING.fast })
+      : withSpring(active ? 1 : 0, CHECK_SPRING);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, simple]);
+
+  const rowStyle = useAnimatedStyle(() => ({
+    opacity: enter.value,
+    transform: [{ translateY: (1 - enter.value) * ROW_ENTER_Y }],
+  }));
+  const checkStyle = useAnimatedStyle(() => ({
+    opacity: check.value,
+    transform: [{ scale: 0.6 + check.value * 0.4 }],
+  }));
+
+  return (
+    <Reanimated.View style={rowStyle}>
+      <Pressable
+        testID={`fc-deck-option-${deck.deckId}`}
+        accessibilityLabel={`qa-fc-deck-option-${deck.deckId}`}
+        accessible
+        accessibilityRole="checkbox"
+        accessibilityState={{ checked: active, disabled: empty }}
+        disabled={empty}
+        onPress={() => {
+          fcHaptic('tap');
+          onToggle(deck.deckId);
+        }}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 12,
+          borderRadius: 16,
+          borderWidth: 1.5,
+          borderColor: active ? t.accent : t.border,
+          backgroundColor: active ? `${t.accent}14` : t.bgSurface,
+          paddingVertical: 12,
+          paddingHorizontal: 14,
+          opacity: empty ? 0.45 : 1,
+        }}
+      >
+        <View
+          style={{
+            width: 34,
+            height: 34,
+            borderRadius: 12,
+            backgroundColor: active ? `${t.accent}26` : `${t.textMuted}1A`,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Ionicons name={deck.icon} size={18} color={active ? t.accent : t.textMuted} />
+        </View>
+        <Text
+          style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: active ? '800' : '600' }}
+          numberOfLines={1}
+        >
+          {deck.title}
+        </Text>
+        <Text style={{ color: active ? t.accent : t.textMuted, fontSize: f.sub, fontWeight: '800' }}>
+          {deck.count}
+        </Text>
+        {/* Чекбокс: рамка статична, «птичка» въезжает пружиной (scale + opacity) */}
+        <View
+          style={{
+            width: 22,
+            height: 22,
+            borderRadius: 7,
+            borderWidth: 2,
+            borderColor: active ? t.accent : t.textGhost,
+            backgroundColor: active ? t.accent : 'transparent',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Reanimated.View style={checkStyle}>
+            <Ionicons name="checkmark" size={15} color={t.correctText} />
+          </Reanimated.View>
+        </View>
+      </Pressable>
+    </Reanimated.View>
+  );
+}
 
 export default function DeckPickerSheet({
   visible,
@@ -74,33 +213,31 @@ export default function DeckPickerSheet({
   reduceMotion = false,
   mode = 'trainer',
 }: Props) {
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { height: winH, width: winW } = useWindowDimensions();
   /** Modal живёт чуть дольше visible — успевает проиграться анимация закрытия. */
   const [mounted, setMounted] = useState(visible);
-  const [deckId, setDeckId] = useState<FcDeckId>(initialPreset?.deckId ?? 'weak');
+  /** cards-2.1: мультивыбор колод (§6). Пустой список — старт заблокирован. */
+  const [deckIds, setDeckIds] = useState<FcDeckId[]>(() => presetDeckIds(initialPreset));
   const [size, setSize] = useState<FcSessionSize>(initialPreset?.size ?? FC_DEFAULT_SESSION_SIZE);
   const [starting, setStarting] = useState(false);
+
+  /** Упрощённая анимация строк: reduce motion / слабое устройство / web. */
+  const simpleMotion = reduceMotion || Platform.OS === 'web' || isLowPowerEffective();
 
   const ty = useSharedValue(SHEET_HIDE_Y);
   const backdrop = useSharedValue(0);
 
   const unmount = useCallback(() => setMounted(false), []);
 
+  /** Предвыбор текущего открытия уже сделан (один раз на открытие). */
+  const presetAppliedRef = useRef(false);
+
   useEffect(() => {
     if (visible) {
       setMounted(true);
       setStarting(false);
-      // Предвыбор из последнего пресета (мог обновиться между открытиями).
-      // E10: один шит на несколько режимов — выбор прошлого открытия может
-      // отсутствовать в текущем списке (у слушания нет 'weak') → первый набор.
-      const isListed = (id: FcDeckId | undefined | null) => !!id && decks.some((d) => d.deckId === id);
-      if (initialPreset && isListed(initialPreset.deckId)) {
-        setDeckId(initialPreset.deckId);
-        setSize(initialPreset.size);
-      } else if (!isListed(deckId) && decks.length > 0) {
-        setDeckId(decks[0].deckId);
-      }
+      presetAppliedRef.current = false;
     } else if (mounted) {
       backdrop.value = withTiming(0, { duration: FC_TIMING.base });
       ty.value = withTiming(SHEET_HIDE_Y, { duration: FC_TIMING.base }, (fin) => {
@@ -109,6 +246,34 @@ export default function DeckPickerSheet({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
+
+  /**
+   * Предвыбор из последнего пресета (мог обновиться между открытиями).
+   * E10: один шит на несколько режимов — колоды прошлого открытия могут
+   * отсутствовать в текущем списке (у слушания нет 'weak') → фильтруем.
+   *
+   * cards-2.1: список колод грузится АСИНХРОННО и на первом кадре открытия
+   * бывает пустым — тогда ждём его и предвыбираем, когда колоды приедут
+   * (иначе шит открывался с нулём отмеченных и заблокированным стартом).
+   */
+  useEffect(() => {
+    if (!visible || presetAppliedRef.current || decks.length === 0) return;
+    presetAppliedRef.current = true;
+    const listed = new Set<FcDeckId>(decks.map((d) => d.deckId));
+    const fromPreset = presetDeckIds(initialPreset).filter((id) => listed.has(id));
+    if (fromPreset.length > 0) {
+      setDeckIds(fromPreset);
+      if (initialPreset) setSize(initialPreset.size);
+      return;
+    }
+    setDeckIds((prev) => {
+      const kept = prev.filter((id) => listed.has(id));
+      if (kept.length > 0) return kept;
+      const firstUsable = decks.find((d) => d.count > 0) ?? decks[0];
+      return firstUsable ? [firstUsable.deckId] : [];
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, decks]);
 
   // Анимация входа — ПОСЛЕ монтирования Modal (иначе стартовый кадр web
   // пропускает начатую до маунта анимацию и шит остаётся за экраном).
@@ -127,19 +292,25 @@ export default function DeckPickerSheet({
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdrop.value }));
   const sheetStyle = useAnimatedStyle(() => ({ transform: [{ translateY: ty.value }] }));
 
-  /** Выбранный набор недоступен (0 карточек) → кнопка старта задизейблена. */
-  const selected = decks.find((d) => d.deckId === deckId) ?? null;
-  const canStart = !!selected && selected.count > 0 && !starting;
+  const toggleDeck = useCallback((id: FcDeckId) => {
+    setDeckIds((prev) => toggleDeckSelection(prev, id));
+  }, []);
+
+  /** «Выбрано 3 · 84 карточки» — суммарно, с дедупликацией по стабильному id. */
+  const summary = useMemo(() => summarizeDeckSelection(decks, deckIds), [decks, deckIds]);
+  const selectedIds = useMemo(() => new Set<FcDeckId>(deckIds), [deckIds]);
+  /** Нечего тренировать (0 выбрано или в выбранном нет карточек) → старт заблокирован. */
+  const canStart = summary.deckCount > 0 && summary.cardCount > 0 && !starting;
 
   const handleStart = useCallback(() => {
-    if (!canStart || !selected) return;
+    if (!canStart || deckIds.length === 0) return;
     setStarting(true);
     fcHaptic('tap');
-    const preset: FcModePreset = { deckId: selected.deckId, size };
+    const preset: FcModePreset = { deckId: deckIds[0], deckIds: [...deckIds], size };
     // Оптимистик: сохраняем пресет и стартуем не дожидаясь записи (очередь mode_prefs)
     void setLastPreset(mode, preset);
     onStart(preset);
-  }, [canStart, selected, size, onStart, mode]);
+  }, [canStart, deckIds, size, onStart, mode]);
 
   if (!mounted) return null;
 
@@ -193,7 +364,7 @@ export default function DeckPickerSheet({
           <View style={{ alignItems: 'center', marginBottom: 6 }}>
             <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: t.border }} />
           </View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
               {mode === 'listening'
                 ? triLang(lang, { ru: 'Что слушаем?', uk: 'Що слухаємо?', es: '¿Qué escuchamos?' })
@@ -220,65 +391,42 @@ export default function DeckPickerSheet({
             </Pressable>
           </View>
 
-          {/* Наборы */}
+          {/* §6: счётчик выбранного — «Выбрано 3 · 84 карточки»; при нуле — подсказка */}
+          <Text
+            testID="fc-deck-selection-summary"
+            accessibilityLabel="qa-fc-deck-selection-summary"
+            accessible
+            style={{
+              color: summary.deckCount > 0 ? t.accent : t.textMuted,
+              fontSize: f.caption,
+              fontWeight: '800',
+              marginBottom: 12,
+            }}
+          >
+            {summary.deckCount > 0
+              ? deckSelectionLabel(lang, summary)
+              : triLang(lang, {
+                  ru: 'Отметьте один или несколько наборов',
+                  uk: 'Позначте один або кілька наборів',
+                  es: 'Marca uno o varios mazos',
+                })}
+          </Text>
+
+          {/* Наборы — чекбоксы (мультивыбор) */}
           <ScrollView style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
             <View style={{ gap: 8 }}>
-              {decks.map((d) => {
-                const active = d.deckId === deckId;
-                const empty = d.count <= 0;
-                return (
-                  <Pressable
-                    key={d.deckId}
-                    testID={`fc-deck-option-${d.deckId}`}
-                    accessibilityLabel={`qa-fc-deck-option-${d.deckId}`}
-                    accessible
-                    disabled={empty}
-                    onPress={() => {
-                      fcHaptic('tap');
-                      setDeckId(d.deckId);
-                    }}
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: 12,
-                      borderRadius: 16,
-                      borderWidth: 1.5,
-                      borderColor: active ? t.accent : t.border,
-                      backgroundColor: active ? `${t.accent}14` : t.bgSurface,
-                      paddingVertical: 12,
-                      paddingHorizontal: 14,
-                      opacity: empty ? 0.45 : 1,
-                    }}
-                  >
-                    <View
-                      style={{
-                        width: 34,
-                        height: 34,
-                        borderRadius: 12,
-                        backgroundColor: active ? `${t.accent}26` : `${t.textMuted}1A`,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <Ionicons name={d.icon} size={18} color={active ? t.accent : t.textMuted} />
-                    </View>
-                    <Text
-                      style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: active ? '800' : '600' }}
-                      numberOfLines={1}
-                    >
-                      {d.title}
-                    </Text>
-                    <Text style={{ color: active ? t.accent : t.textMuted, fontSize: f.sub, fontWeight: '800' }}>
-                      {d.count}
-                    </Text>
-                    <Ionicons
-                      name={active ? 'radio-button-on' : 'radio-button-off'}
-                      size={18}
-                      color={active ? t.accent : t.textGhost}
-                    />
-                  </Pressable>
-                );
-              })}
+              {decks.map((d, i) => (
+                <DeckRow
+                  key={d.deckId}
+                  deck={d}
+                  index={i}
+                  active={selectedIds.has(d.deckId)}
+                  onToggle={toggleDeck}
+                  simple={simpleMotion}
+                  t={t}
+                  f={f}
+                />
+              ))}
             </View>
 
             {/* Размер сессии (блиц — на время, размер не выбирается: E12 §3.9) */}
@@ -344,6 +492,7 @@ export default function DeckPickerSheet({
             testID="fc-deck-start"
             accessibilityLabel="qa-fc-deck-start"
             accessible
+            accessibilityState={{ disabled: !canStart }}
             disabled={!canStart}
             onPress={handleStart}
             style={{

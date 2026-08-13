@@ -100,6 +100,11 @@ describe('Arena Expansion pure contracts', () => {
     expect(arenaRunEligibility('today', 'friend')).toMatchObject({ todayStars: true, mastery: true, spin: false });
     expect(arenaRunEligibility('ghost', 'quick')).toMatchObject({ baseStars: false, rating: false, mastery: false });
     expect(arenaRunEligibility('rival', 'ranked')).toMatchObject({ baseStars: false, rating: false, spin: false });
+    // D-07: быстрый матч звёзд не начисляет, но право на редкую награду и на
+    // зачёт дневных целей сохраняет.
+    expect(arenaRunEligibility('match', 'quick'))
+      .toMatchObject({ baseStars: false, rating: false, spin: true, mastery: true, partnerActivity: true });
+    expect(arenaRunEligibility('match', 'ranked')).toMatchObject({ baseStars: true, rating: true, spin: true });
   });
 
   it('uses weekly spotlight thresholds three and five for at most 30 stars', () => {

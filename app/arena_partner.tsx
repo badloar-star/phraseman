@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
-import { ArenaProgress, ArenaStateCard } from '../components/arena/ArenaExpansionUI';
+import { ArenaProgress, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
+import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -15,6 +17,7 @@ import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
 import { trackArenaTelemetry } from './arena_telemetry';
 
 export default function ArenaPartnerScreen() {
+  const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
   const active = useRuntimeActive();
@@ -70,8 +73,9 @@ export default function ArenaPartnerScreen() {
   };
 
   return (
+    <ArenaHubChrome>
     <ArenaScreen title={arenaExpansionText(lang, 'partner')} subtitle={arenaExpansionText(lang, 'partnerBody')}>
-      {state === 'loading' || state === 'unavailable' || state === 'error' ? <ArenaStateCard state={state} title={arenaExpansionText(lang, state === 'error' ? 'unavailable' : state)} actionLabel={state === 'error' ? arenaExpansionText(lang, 'retry') : undefined} onAction={state === 'error' ? load : undefined} /> : null}
+      {state === 'loading' || state === 'unavailable' || state === 'error' || state === 'empty' ? <ArenaStateNotice state={state} emptyHint="emptyPartner" onRetry={load} onBack={() => router.replace('/arena' as never)} /> : null}
       {state === 'empty' || state === 'ready' ? <V2Card style={styles.card}>
         <Text style={[styles.title, { color: P.text }]}>{arenaExpansionText(lang, 'nudgePreferences')}</Text>
         <Text style={[styles.body, { color: P.muted }]}>{arenaExpansionText(lang, 'nudgeQuietHours')}</Text>
@@ -95,6 +99,7 @@ export default function ArenaPartnerScreen() {
         <V2Cta tone="ghost" disabled={busy} onPress={() => run(`remove:${partner.partnershipId}`, (requestId) => arenaPartnerRemove(partner.partnershipId, requestId))}>{arenaExpansionText(lang, 'remove')}</V2Cta>
       </V2Card>)}
     </ArenaScreen>
+    </ArenaHubChrome>
   );
 }
 

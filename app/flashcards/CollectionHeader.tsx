@@ -1,11 +1,13 @@
 /**
- * cards-2.0 (E11): шапка коллекции (§3.2) — назад/заголовок, DEV-бейдж,
+ * cards-2.0 (E11): шапка коллекции (§3.2) — назад/заголовок,
  * переключатель «Список / Колода», кнопка фильтра и строка поиска.
  * Вынесена из монолита flashcards_collection.tsx; состояние остаётся у контейнера.
+ *
+ * 2026-08-13 (владелец): входа в DEV-«магазин наборов» в разделе карточек больше нет.
  */
 import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo } from 'react';
-import { Platform, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
 import { CATEGORIES } from './constants';
@@ -23,8 +25,6 @@ type Props = {
   marketPackCatalog: FlashcardMarketPack[];
   fallbackTitle: string;
   onBack: () => void;
-  isDevMarketEnabled: boolean;
-  onOpenDevMarket: () => void;
   /** Переключатель «Список / Колода» — скрыт на пустой коллекции. */
   showViewToggle: boolean;
   viewMode: FcCollectionViewMode;
@@ -50,8 +50,6 @@ export default function CollectionHeader({
   marketPackCatalog,
   fallbackTitle,
   onBack,
-  isDevMarketEnabled,
-  onOpenDevMarket,
   showViewToggle,
   viewMode,
   onToggleViewMode,
@@ -78,20 +76,33 @@ export default function CollectionHeader({
     return base;
   }, [f.h3, screenW]);
 
+  /**
+   * Высота строки поиска: минимум 44pt (тап-таргет) и всегда больше строки текста
+   * при крупном системном шрифте — иначе подсказка обрезается по высоте.
+   */
+  const searchFieldHeight = useMemo(() => Math.max(44, Math.round(f.sub * 2.6)), [f.sub]);
+
   const headerTitle = useMemo(() => {
     if (packDeeplink && marketPackCatalog.length > 0) {
       const p = marketPackCatalog.find((x) => x.id === packDeeplink);
       if (p) return packTitleForInterface(p, lang);
     }
     const cat = CATEGORIES.find((c) => c.id === activeCat);
-    const full =
+    // Плановые локали: полное имя категории на всех 8 языках интерфейса.
+    const fullByLang: Record<Lang, string> | undefined =
       cat == null
         ? undefined
-        : lang === 'uk'
-          ? cat.fullLabelUK
-          : lang === 'es'
-            ? cat.fullLabelES
-            : cat.fullLabelRU;
+        : {
+            ru: cat.fullLabelRU,
+            uk: cat.fullLabelUK,
+            es: cat.fullLabelES,
+            'pt-BR': cat.fullLabelPtBr,
+            vi: cat.fullLabelVi,
+            id: cat.fullLabelId,
+            tr: cat.fullLabelTr,
+            pl: cat.fullLabelPl,
+          };
+    const full = fullByLang?.[lang];
     return full ?? fallbackTitle;
   }, [packDeeplink, marketPackCatalog, lang, activeCat, fallbackTitle]);
 
@@ -115,33 +126,11 @@ export default function CollectionHeader({
             flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4,
           }}
           numberOfLines={1}
-          adjustsFontSizeToFit
-          minimumFontScale={0.48}
           maxFontSizeMultiplier={1.2}
         >
           {headerTitle}
         </Text>
         <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 8, flexShrink: 0 }}>
-          {isDevMarketEnabled && (
-            <TouchableOpacity
-              onPress={onOpenDevMarket}
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: 3,
-                paddingHorizontal: 8,
-                paddingVertical: 5,
-                borderRadius: 10,
-                borderWidth: 1,
-                borderColor: `${t.accent}66`,
-                backgroundColor: `${t.accent}1A`,
-              }}
-            >
-              <Ionicons name="flask-outline" size={12} color={t.accent} />
-              <Text style={{ fontSize: f.caption, color: t.accent, fontWeight: '700' }}>DEV</Text>
-            </TouchableOpacity>
-          )}
           {/* E11: переключатель «Список / Колода» (персист fc_collection_view_v1) */}
           {showViewToggle && (
             <TouchableOpacity
@@ -201,7 +190,9 @@ export default function CollectionHeader({
             marginHorizontal: 16,
             marginTop: 8,
             paddingHorizontal: 12,
-            borderRadius: 12,
+            paddingVertical: 0,
+            height: searchFieldHeight,
+            borderRadius: 14,
             borderWidth: 1,
             borderColor: searchActive ? `${t.accent}88` : t.border,
             backgroundColor: t.bgSurface,
@@ -218,7 +209,23 @@ export default function CollectionHeader({
             autoCorrect={false}
             autoCapitalize="none"
             returnKeyType="search"
-            style={{ flex: 1, paddingVertical: Platform.OS === 'web' ? 9 : 8, color: t.textPrimary, fontSize: f.sub }}
+            maxFontSizeMultiplier={1.2}
+            /**
+             * Вертикаль поля задаём ВЫСОТОЙ, а не paddingVertical: на iOS однострочный
+             * TextInput = UITextField, он центрирует текст сам, а вертикальные паддинги
+             * ужимали строку — у подсказки срезалась нижняя половина букв.
+             */
+            style={{
+              flex: 1,
+              height: searchFieldHeight - 2,
+              paddingTop: 0,
+              paddingBottom: 0,
+              paddingVertical: 0,
+              includeFontPadding: false,
+              textAlignVertical: 'center',
+              color: t.textPrimary,
+              fontSize: f.sub,
+            }}
           />
           {searchInput.length > 0 && (
             <TouchableOpacity
@@ -234,42 +241,5 @@ export default function CollectionHeader({
         </View>
       )}
     </>
-  );
-}
-
-/** DEV-«магазин наборов» FAB (absolute) — рендерится контейнером поверх контента. */
-export function DevMarketFab({
-  t,
-  f,
-  bottomOffset,
-  onPress,
-}: {
-  t: Theme;
-  f: Record<string, number>;
-  bottomOffset: number;
-  onPress: () => void;
-}) {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={{
-        position: 'absolute',
-        right: 14,
-        bottom: bottomOffset,
-        zIndex: 60,
-        borderRadius: 12,
-        borderWidth: 1,
-        borderColor: `${t.accent}66`,
-        backgroundColor: `${t.accent}1F`,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 6,
-      }}
-    >
-      <Ionicons name="storefront-outline" size={14} color={t.accent} />
-      <Text style={{ fontSize: f.caption, color: t.accent, fontWeight: '800' }}>DEV MARKET</Text>
-    </TouchableOpacity>
   );
 }

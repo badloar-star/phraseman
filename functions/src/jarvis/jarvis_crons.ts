@@ -14,6 +14,12 @@ import { upsertPlan } from './jarvis_plans_store';
 import { parseJarvisFollowUpTasksFlag } from './jarvis_follow_up_tasks';
 import type { Decision } from './decision';
 import { buildTelegramDigest, selectTelegramDecisions } from './telegram_digest';
+import {
+  JARVIS_NOTIFICATION_MEMORY_FIELD,
+  parseNotificationMemory,
+  recordDeliveredNotifications,
+  selectNovelNotifications,
+} from './notification_memory';
 import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
 import { JARVIS_APPROVAL_AUDIT_COLLECTION } from './approval_audit';
 import { hashDecision } from './issue_decision_buttons';
@@ -49,6 +55,7 @@ import { dayKeyFromMs, dayKeyToStartMs, nextDayKey, type RawRevenueEventForBucke
 import { readRecentHistory, writeHistoryPoints, writePeakTier } from './business_tier_history_store';
 import { buildBusinessTierSnapshot } from './business_tier_snapshot';
 import { readPeakTier } from './business_tier_history_store';
+import { readJarvisPmBusinessContext } from './pm_business_context';
 
 /**
  * Суточные планировщики Джарвиса — второй режим работы наряду с «по кнопке».
@@ -199,7 +206,9 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
 
   // зачем проверять режим ДО работы: если владелец выключил Джарвиса, прогон
   // не должен стоить ни одного чтения. Одно чтение конфига вместо десятков.
-  const control = parseControl((await db.doc(JARVIS_CONTROL_DOC).get().catch(() => null))?.data());
+  const controlSnapshot = await db.doc(JARVIS_CONTROL_DOC).get().catch(() => null);
+  const controlData = controlSnapshot?.data();
+  const control = parseControl(controlData);
   if (!canRun(control)) {
     logger.info('jarvis_daily_departments: выключен владельцем', { reason: control.reason });
     return;
@@ -302,6 +311,16 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     nowMs,
   });
 
+  // contentHash меняется вместе со счётчиком, поэтому exact-dedupe недостаточно:
+  // междневная память объединяет наблюдения одного бизнес-вопроса и пропускает
+  // только новые/материально изменившиеся темы (для P0 также safety-reminder).
+  const novelty = selectNovelNotifications({
+    decisions,
+    memory: parseNotificationMemory(controlData),
+    nowMs,
+  });
+  const notificationDecisions = novelty.selected;
+
   // зачем сохранять планы ДО проверки тихих часов/выключателя: раздел
   // «Планы» в админке — постоянный архив находок, он не должен зависеть от
   // того, дошло ли сообщение в Telegram. Владелец 2026-08-04: находки видны
@@ -325,7 +344,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   // Поверх режима — политика тишины: ночью будят только платежи и
   // безопасность, за ними стоит конкретный человек. Остальное ждёт утра.
   const speakingDepartments = [
-    ...decisions.map((d) => d.department),
+    ...notificationDecisions.map((d) => d.department),
     ...snapshot.departmentErrors,
   ];
   const notifyVerdict = shouldNotifyNow({
@@ -341,9 +360,9 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     // зачем обогащать только здесь, а не раньше: если тихие часы/лимит/
     // выключатель всё равно погасят отправку, платить LLM за narrative,
     // который никто не увидит, бессмысленно.
-    const narrativeByHash = await buildNarrativeMap(db, decisions);
+    const narrativeByHash = await buildNarrativeMap(db, notificationDecisions);
     const text = buildTelegramDigest({
-      decisions,
+      decisions: notificationDecisions,
       appTier: snapshot.appTier,
       departmentErrors: snapshot.departmentErrors,
       narrativeByHash,
@@ -352,7 +371,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     // не задан, сводка обязана приходить всё равно — просто без кнопок.
     const ownerConfig = parseOwnerConfig(JARVIS_TELEGRAM_CONFIG.value());
     const keyboard = ownerConfig ? await issueDecisionButtons({
-      db, decisions: selectTelegramDecisions(decisions), config: ownerConfig, nowMs,
+      db, decisions: selectTelegramDecisions(notificationDecisions), config: ownerConfig, nowMs,
     }) : null;
 
     telegramSent = keyboard && ownerConfig
@@ -372,6 +391,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     departmentErrors: snapshot.departmentErrors,
     telegramSent,
     rejectedSuppressed: snapshot.decisions.length - decisions.length,
+    repeatedSuppressed: novelty.suppressed.length,
     // зачем логировать причину: «сообщение не пришло» без объяснения — это
     // час разбирательства. Здесь сразу видно: тихие часы, режим или пусто.
     mode: control.mode,
@@ -380,8 +400,19 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
 
   // зачем писать сюда же: /status в Telegram должен ответить за одно чтение
   // документа jarvis_control, а не искать «последний прогон» по логам.
+  const nextNotificationMemory = telegramSent
+    ? recordDeliveredNotifications({
+      memory: parseNotificationMemory(controlData),
+      delivered: selectTelegramDecisions(notificationDecisions),
+      nowMs,
+    })
+    : parseNotificationMemory(controlData);
   await db.doc(JARVIS_CONTROL_DOC).set(
-    { lastRunAtMs: nowMs, lastRunOpenDecisions: decisions.length },
+    {
+      lastRunAtMs: nowMs,
+      lastRunOpenDecisions: decisions.length,
+      ...(telegramSent ? { [JARVIS_NOTIFICATION_MEMORY_FIELD]: nextNotificationMemory } : {}),
+    },
     { merge: true },
   ).catch((error) => {
     logger.warn('jarvis_daily_departments: last-run write failed', error);
@@ -406,10 +437,14 @@ async function buildNarrativeMap(
 ): Promise<Map<string, string>> {
   const narrativeByHash = new Map<string, string>();
   try {
+    // Один общий контекст на весь прогон: Джарвис видит stage, 7-day business
+    // history и свежие current-vs-previous comparisons, а не мыслит каждым
+    // департаментом в вакууме. Ни сырого user text, ни PII сюда не попадает.
+    const businessContext = await readJarvisPmBusinessContext(db, Date.now());
     const config = await resolveJobConfig(db, 'jarvis');
     assertJobEnabled(config, 'jarvis');
     const enriched = await enrichDecisionsWithNarrative(
-      { decisions },
+      { decisions, businessContext },
       buildEnricherDependencies(db, config.model),
     );
     for (const item of enriched) {

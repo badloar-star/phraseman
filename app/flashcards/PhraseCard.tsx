@@ -386,8 +386,6 @@ function PhraseCardImpl({
       <Text
         maxFontSizeMultiplier={1.35}
         numberOfLines={4}
-        adjustsFontSizeToFit
-        minimumFontScale={0.5}
         style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22) + 2, fontWeight: '600', textAlign: 'center', width: '100%' }}
       >
         {en}
@@ -407,8 +405,6 @@ function PhraseCardImpl({
     <Text
       maxFontSizeMultiplier={1.35}
       numberOfLines={6}
-      adjustsFontSizeToFit
-      minimumFontScale={0.5}
       style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22), fontWeight: '400', textAlign: 'center', width: '100%' }}
     >
       {translation ?? ''}

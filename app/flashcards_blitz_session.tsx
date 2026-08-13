@@ -3,18 +3,19 @@
 // мастер-плана — Speed Review по Memrise, «Ещё разок»-драйвер сессий/день).
 //
 // 60 секунд, вопросы «EN → выбери перевод из 4» из выбранной колоды
-// (?deck= — deck_sources; без параметра — все сохранённые + мои карточки),
+// (?deck= — deck_sources; без параметра — все сохранённые + мои карточки).
+// cards-2.1 (§6 SPEC_2_1): ?deck= принимает СПИСОК колод через запятую —
+// карточки объединяются в один пул (loadDeckCardsMulti),
 // 3 жизни (ошибка = −1), комбо-серия ×3/×5/×10 → SFX fc_combo_* с питчем
 // вверх + пружинный бейдж, счёт очков (верно = 100 × комбо-множитель).
 //
 // Механика 4 кнопок — концептуальный реюз trainer_arena_session (подсветка
 // правильного/неверного, лок, автопереход), но быстрее: 350мс / 700мс на
-// ошибке (BLITZ_ADVANCE_* в stars_config). Таймер-полоса — Reanimated
+// ошибке (BLITZ_ADVANCE_* в blitz_logic). Таймер-полоса — Reanimated
 // transform scaleX (НЕ width — принцип 3), origin слева.
 //
-// Финал (таймер 0 / жизни 0) → SessionResultScreen: звёзды
-// awardSessionStars('blitz') (§4: 0–3★, кэп 3★/день) + best-звёзды колоды
-// (deckKey в fc_deck_best_stars_v1, E12). XP блиц не даёт (безлимитный режим).
+// Финал (таймер 0 / жизни 0) → SessionResultScreen (верно/ошибок/точность
+// + счёт). XP блиц не даёт (безлимитный режим).
 // Чистая логика (очки/комбо/жизни/вопрос) — flashcards/blitz_logic.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -40,22 +41,20 @@ import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import SessionResultScreen from './flashcards/SessionResultScreen';
 import { comboSfxForStreak, fcHaptic, playSfx } from './flashcards/SoundService';
-import { awardSessionStars, type AwardStarsOutcome } from './flashcards/stars_system';
 import {
   BLITZ_ADVANCE_OK_MS,
   BLITZ_ADVANCE_WRONG_MS,
   BLITZ_DURATION_SEC,
   BLITZ_LIVES,
   BLITZ_MIN_CARDS,
-} from './flashcards/stars_config';
-import {
   applyBlitzAnswer,
   buildBlitzQuestion,
   initialBlitzState,
   type BlitzQuestion,
   type BlitzState,
 } from './flashcards/blitz_logic';
-import { loadDeckCards, parseDeckParam, type DeckCard, type DeckRef } from './flashcards/deck_sources';
+import { loadDeckCardsMulti, parseDeckParams, type DeckCard, type DeckRef } from './flashcards/deck_sources';
+import { decksCountLabel } from './flashcards/deck_selection';
 import { summarizeSession, type SessionAnswerEvent, type SessionOutcomeSummary } from './flashcards/session_queue';
 
 /** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050 / listening #9C6ADE). */
@@ -66,7 +65,7 @@ const BAD = '#E05050';
 const DANGER_SEC = 10;
 
 type BtnState = 'idle' | 'correct' | 'wrong';
-type ResultState = { summary: SessionOutcomeSummary; outcome: AwardStarsOutcome | null; score: number };
+type ResultState = { summary: SessionOutcomeSummary; score: number };
 
 // Fisher-Yates (паттерн trainer_words_session)
 function shuffleArr<T>(a: readonly T[]): T[] {
@@ -88,9 +87,7 @@ export default function FlashcardsBlitzSession() {
   const params = useLocalSearchParams<{ deck?: string }>();
 
   const deckParamStr = Array.isArray(params.deck) ? params.deck[0] : params.deck;
-  const deckRef = useMemo<DeckRef | null>(() => parseDeckParam(deckParamStr), [deckParamStr]);
-  /** Ключ best-звёзд (fc_deck_best_stars_v1); смешанная колода по умолчанию best не пишет. */
-  const deckKey = deckRef && deckParamStr ? deckParamStr : undefined;
+  const deckRefs = useMemo<DeckRef[]>(() => parseDeckParams(deckParamStr), [deckParamStr]);
   const contentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
 
   const [loading, setLoading] = useState(true);
@@ -144,17 +141,11 @@ export default function FlashcardsBlitzSession() {
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      let cards: DeckCard[];
-      if (deckRef) {
-        cards = await loadDeckCards(deckRef, contentLang).catch((): DeckCard[] => []);
-      } else {
-        const [saved, custom] = await Promise.all([
-          loadDeckCards({ kind: 'saved' }, contentLang).catch((): DeckCard[] => []),
-          loadDeckCards({ kind: 'custom' }, contentLang).catch((): DeckCard[] => []),
-        ]);
-        const seen = new Set<string>();
-        cards = [...saved, ...custom].filter((c) => (seen.has(c.id) ? false : (seen.add(c.id), true)));
-      }
+      // cards-2.1 (§6): одна или несколько колод — один объединённый пул;
+      // дефолт (без ?deck=) — «сохранённые + мои карточки» тем же загрузчиком.
+      const refs: DeckRef[] =
+        deckRefs.length > 0 ? deckRefs : [{ kind: 'saved' }, { kind: 'custom' }];
+      const cards = await loadDeckCardsMulti(refs, contentLang).catch((): DeckCard[] => []);
       if (cancelled) return;
       setPool(cards);
       setLoading(false);
@@ -162,9 +153,9 @@ export default function FlashcardsBlitzSession() {
     return () => {
       cancelled = true;
     };
-  }, [deckRef, contentLang]);
+  }, [deckRefs, contentLang]);
 
-  // ── Финал: таймер 0 или жизни 0 → звёзды + best колоды → результат ─────────
+  // ── Финал: таймер 0 или жизни 0 → результат ───────────────────────────────
   const finish = useCallback(() => {
     if (finishingRef.current) return;
     finishingRef.current = true;
@@ -172,22 +163,8 @@ export default function FlashcardsBlitzSession() {
     cancelAnimation(progress);
     const summary = summarizeSession(eventsRef.current);
     const score = blitzRef.current.score;
-    void (async () => {
-      // §4: блиц 0–3★ (accuracy 70/90/100 + среднее ≤5с choice), кэп 3★/день;
-      // deckKey → best-звёзды колоды пишутся тем же вызовом (E12).
-      const outcome =
-        summary.total > 0
-          ? await awardSessionStars('blitz', {
-              correct: summary.correct,
-              total: summary.total,
-              avgAnswerSec: summary.avgAnswerSec,
-              inputKind: 'choice',
-              ...(deckKey ? { deckKey } : {}),
-            }).catch(() => null)
-          : null;
-      setResult({ summary, outcome, score });
-    })();
-  }, [clearRoundTimers, progress, deckKey]);
+    setResult({ summary, score });
+  }, [clearRoundTimers, progress]);
 
   // ── Старт/рестарт раунда: перемешка, таймер-полоса, первый вопрос ─────────
   useEffect(() => {
@@ -333,11 +310,16 @@ export default function FlashcardsBlitzSession() {
   }, []);
 
   const deckTitle = useMemo(() => {
-    if (!deckRef) return triLang(lang, { ru: 'Все карточки', uk: 'Усі картки', es: 'Todas las tarjetas' });
+    if (deckRefs.length === 0) return triLang(lang, { ru: 'Все карточки', uk: 'Усі картки', es: 'Todas las tarjetas' });
+    if (deckRefs.length > 1) {
+      /** cards-2.1 (§6): форма слова по числу — «2 колоды», а не «2 колод». */
+      return decksCountLabel(lang, deckRefs.length);
+    }
+    const deckRef = deckRefs[0]!;
     if (deckRef.kind === 'custom') return triLang(lang, { ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas' });
     if (deckRef.kind === 'pack') return triLang(lang, { ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas' });
     return triLang(lang, { ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas' });
-  }, [deckRef, lang]);
+  }, [deckRefs, lang]);
 
   // ── Рендер ─────────────────────────────────────────────────────────────────
   if (loading) {
@@ -356,7 +338,6 @@ export default function FlashcardsBlitzSession() {
         correct={result.summary.correct}
         wrong={result.summary.wrong}
         xpGained={0}
-        outcome={result.outcome}
         learnLeft={0}
         onRetryWrong={restart}
         retryLabel={triLang(lang, { ru: 'Ещё разок!', uk: 'Ще разок!', es: '¡Otra vez!' })}
@@ -496,8 +477,6 @@ export default function FlashcardsBlitzSession() {
               <Text
                 testID="fc-blitz-question"
                 numberOfLines={3}
-                adjustsFontSizeToFit
-                minimumFontScale={0.6}
                 style={[styles.questionText, { color: t.textPrimary, fontSize: (f.h1 ?? 24) + 2 }]}
               >
                 {question?.card.en ?? ''}

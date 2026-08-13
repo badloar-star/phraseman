@@ -5,14 +5,6 @@ const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
 describe('home startup stability', () => {
-  it('keeps three base daily tasks while preserving the weekend task when present', () => {
-    const tasks = read('app/daily_tasks.ts');
-
-    expect(tasks).toContain('export function ensureDailyTaskBaseCount');
-    expect(tasks).toContain('const DAILY_TASK_BASE_COUNT = 3;');
-    expect(tasks.match(/return ensureDailyTaskBaseCount\(/g)?.length).toBeGreaterThanOrEqual(2);
-  });
-
   it('hydrates the persisted league state before Home chooses its first league row', () => {
     const bootstrap = read('app/app_snapshot_bootstrap.ts');
     const home = read('app/(tabs)/home.tsx');
@@ -23,13 +15,6 @@ describe('home startup stability', () => {
     expect(home).toContain('buildHomeLeagueChest(cachedLeagueState.group');
   });
 
-  it('starts the Home task indicator from the real base count and keeps it dynamic', () => {
-    const home = read('app/(tabs)/home.tsx');
-
-    expect(home).toContain('initialSurveyDailyTask ? 4 : 3');
-    expect(home).toContain('setDailyTaskBarCount(');
-  });
-
   it('always creates the league row for the first Home frame', () => {
     const home = read('app/(tabs)/home.tsx');
 
@@ -37,13 +22,14 @@ describe('home startup stability', () => {
     expect(home).not.toContain('{homeLeagueChest && (<>');
   });
 
-  it('primes the persisted survey result before Home derives its initial indicator count', () => {
-    const cache = read('app/survey_daily_task_cache.ts');
+  it('keeps the independent survey cache primed and exposes a standalone Home offer', () => {
+    const cache = read('app/survey_offer_cache.ts');
     const rootLayout = read('app/_layout.tsx');
     const home = read('app/(tabs)/home.tsx');
 
-    expect(cache).toContain('primeSurveyDailyTaskCacheFromStorage');
-    expect(rootLayout).toContain('primeSurveyDailyTaskCacheFromStorage().catch(() => {})');
-    expect(home).toContain('initialSurveyDailyTask ? 4 : 3');
+    expect(cache).toContain('primeSurveyOfferCacheFromStorage');
+    expect(rootLayout).toContain('primeSurveyOfferCacheFromStorage().catch(() => {})');
+    expect(home).toContain('fetchActiveSurveyWithRetry');
+    expect(home).toContain('<SurveyTaskCard');
   });
 });

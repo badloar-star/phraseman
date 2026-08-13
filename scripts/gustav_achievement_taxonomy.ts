@@ -247,7 +247,7 @@ function classify(id: string, category: string): Omit<AchievementEntry, 'id' | '
     id.startsWith('daily_no_reroll') ||
     id === 'all_daily'
   ) {
-    return implementedTarget('Daily task achievement state and all-done/no-reroll streak evidence are scoped by studyTarget; daily task claim flow passes studyTarget before unlock.');
+    return implementedTarget('Retired Daily Tasks achievement state remains target-scoped and dormant so historical earned/notified/shard-claim state stays readable; no active claim flow is expected.');
   }
 
   if (

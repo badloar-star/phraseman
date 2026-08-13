@@ -34,14 +34,16 @@ describe('Arena V2 integration boundary', () => {
     expect(layout).toContain('<Stack.Protected guard={ENABLE_TOURNAMENTS}>');
   });
 
-  test('exposes Arena from Home and keeps lime foreground dark', () => {
-    expect(read('app/(tabs)/home.tsx')).toContain('<ArenaHomeCard />');
-    const card = read('components/arena/ArenaHomeCard.tsx');
-    expect(card).toContain("router.push('/arena' as never)");
-    expect(card).toContain("colors={['#C7FF4A', '#72E86E', '#43C9A5']}");
-    expect(card).toContain("color: '#07110A'");
-    expect(card).toContain('width: 44');
-    expect(card).toContain('height: 44');
+  test('exposes Arena from the centre of the tab bar, not from a Home card', () => {
+    // Владелец (2026-08-12): плашка Арены убрана с главной, единственная точка
+    // входа — центральная кнопка таббара. Карточка-компонент осталась в репо,
+    // но не должна монтироваться на главном экране.
+    expect(read('app/(tabs)/home.tsx')).not.toContain('<ArenaHomeCard />');
+    expect(read('app/(tabs)/home.tsx')).not.toContain('ArenaHomeCard');
+    const tabs = read('app/(tabs)/_layout.tsx');
+    expect(tabs).toContain("const ARENA_BAR_ROUTE = '/arena';");
+    expect(tabs).toMatch(/key: 'arena',[\s\S]{0,200}logicalIdx: -1,/);
+    expect(tabs).toContain('tabBarRouter.push(tab.route as never);');
   });
 
   test('uses only versioned Arena roots and does not import retired Tournament runtime', () => {
@@ -84,7 +86,9 @@ describe('Arena V2 integration boundary', () => {
     ]) {
       expect(index).toContain(name);
     }
-    expect(index).toContain("from './arena_v2'");
+    // Стиль кавычек в точке входа переписывает форматирование, и держать
+    // договор за него — значит краснеть от прогона prettier, а не от ошибки.
+    expect(/from ['"]\.\/arena_v2['"]/.test(index)).toBe(true);
   });
 
   test('keeps Arena economy separate from Learning V2 authority', () => {

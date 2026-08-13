@@ -77,6 +77,22 @@ describe('support reply delivery contract', () => {
     expect(Object.isFrozen(prepared)).toBe(true);
   });
 
+  test('pins instruction provenance without changing immutable SMTP payload identity', () => {
+    const prepared = buildPreparedSupportReply({
+      operationId: 'sr_instructions', messageDocId: 'message-1', replySequence: 1,
+      idempotencyKey: 'idem-instructions', requestId: 'request-instructions', requestFingerprint: 'fingerprint',
+      draftRevision: 5, draftOrigin: 'jarvis', instructionsSchemaVersion: 1, instructionsPromptVersion: 1,
+      instructionsRevision: 7, instructionsFingerprint: 'f'.repeat(64),
+      payload, confirmationNonce: 'nonce', confirmationExpiresAt: '2030-01-01T01:00:00.000Z',
+      actorUid: 'system:jarvis', createdAt: '2030-01-01T00:00:00.000Z',
+    });
+    expect(prepared).toMatchObject({
+      draftOrigin: 'jarvis', instructionsSchemaVersion: 1, instructionsPromptVersion: 1,
+      instructionsRevision: 7, instructionsFingerprint: 'f'.repeat(64),
+      payloadHash: canonicalReplyPayloadHash(payload),
+    });
+  });
+
   test('two concurrent dispatches invoke SMTP at most once', async () => {
     let current = operation();
     let sends = 0;

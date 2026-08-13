@@ -1,10 +1,11 @@
 import { triLang, type Lang } from '../../constants/i18n';
+import { arenaSearchingCount, arenaSearchingCountForms } from './searching_copy';
 
 const C = {
   title: ['Арена', 'Арена', 'Arena', 'Arena', 'Đấu trường', 'Arena', 'Arena', 'Arena'],
-  subtitle: ['Дуэль из 10 заданий', 'Дуель із 10 завдань', 'Duelo de 10 preguntas', 'Duelo de 10 perguntas', 'Đấu 10 câu hỏi', 'Duel 10 soal', '10 soruluk düello', 'Pojedynek na 10 pytań'],
+  subtitle: ['Дуэль на скорость', 'Дуель на швидкість', 'Duelo de velocidad', 'Duelo de velocidade', 'Đấu tốc độ', 'Duel kecepatan', 'Hız düellosu', 'Pojedynek na czas'],
   quick: ['Быстрый матч', 'Швидкий матч', 'Partida rápida', 'Partida rápida', 'Trận nhanh', 'Laga cepat', 'Hızlı maç', 'Szybki mecz'],
-  quickHint: ['Люди и боты · без рейтинга', 'Люди й боти · без рейтингу', 'Personas y bots · sin rango', 'Pessoas e bots · sem ranking', 'Người và bot · không xếp hạng', 'Pemain dan bot · tanpa peringkat', 'İnsanlar ve botlar · derecesiz', 'Ludzie i boty · bez rankingu'],
+  quickHint: ['Соперник по уровню · без рейтинга', 'Суперник за рівнем · без рейтингу', 'Rival de tu nivel · sin rango', 'Adversário do seu nível · sem ranking', 'Đối thủ cùng trình độ · không xếp hạng', 'Lawan selevel · tanpa peringkat', 'Seviyene uygun rakip · derecesiz', 'Rywal na twoim poziomie · bez rankingu'],
   ranked: ['Рейтинг', 'Рейтинг', 'Clasificatoria', 'Ranqueada', 'Xếp hạng', 'Peringkat', 'Dereceli', 'Ranking'],
   rankedHint: ['Только игроки · ранг ±1', 'Лише гравці · ранг ±1', 'Solo jugadores · rango ±1', 'Só jogadores · rank ±1', 'Chỉ người chơi · hạng ±1', 'Hanya pemain · rank ±1', 'Sadece oyuncular · rank ±1', 'Tylko gracze · ranga ±1'],
   friend: ['Дуэль с другом', 'Дуель із другом', 'Duelo con amigo', 'Duelo com amigo', 'Đấu với bạn', 'Duel teman', 'Arkadaşla düello', 'Pojedynek ze znajomym'],
@@ -30,6 +31,45 @@ const C = {
   createInvite: ['Создать приглашение', 'Створити запрошення', 'Crear invitación', 'Criar convite', 'Tạo lời mời', 'Buat undangan', 'Davet oluştur', 'Utwórz zaproszenie'],
   inviteReady: ['Приглашение готово', 'Запрошення готове', 'Invitación lista', 'Convite pronto', 'Lời mời đã sẵn sàng', 'Undangan siap', 'Davet hazır', 'Zaproszenie gotowe'],
   join: ['Войти в дуэль', 'Увійти в дуель', 'Entrar al duelo', 'Entrar no duelo', 'Tham gia đấu', 'Masuk duel', 'Düelloya katıl', 'Dołącz do pojedynku'],
+  resultTierUp: ['Новый тир', 'Новий тир', 'Nuevo nivel', 'Novo tier', 'Hạng mới', 'Tier baru', 'Yeni seviye', 'Nowy tier'],
+  resultTierDown: ['Тир потерян', 'Тир втрачено', 'Nivel perdido', 'Tier perdido', 'Mất hạng', 'Tier hilang', 'Seviye kaybedildi', 'Tier utracony'],
+  resultRankUp: ['Деление выше', 'Поділ вище', 'Subiste de división', 'Subiu de divisão', 'Lên bậc', 'Naik divisi', 'Bölüm yükseldi', 'Wyższa dywizja'],
+  resultRankDown: ['Деление ниже', 'Поділ нижче', 'Bajaste de división', 'Desceu de divisão', 'Xuống bậc', 'Turun divisi', 'Bölüm düştü', 'Niższa dywizja'],
+  resultUnlocked: ['Открыто за тир', 'Відкрито за тир', 'Desbloqueado por el nivel', 'Desbloqueado pelo tier', 'Mở khoá theo hạng', 'Terbuka karena tier', 'Seviye ödülü açıldı', 'Odblokowane za tier'],
+  loadFailed: ['Не удалось загрузить', 'Не вдалося завантажити', 'No se pudo cargar', 'Não foi possível carregar', 'Không tải được', 'Gagal memuat', 'Yüklenemedi', 'Nie udało się wczytać'],
+  loadFailedHint: ['Проверь связь и попробуй снова', 'Перевір зв’язок і спробуй ще раз', 'Revisa la conexión e inténtalo otra vez', 'Verifique a conexão e tente de novo', 'Kiểm tra kết nối rồi thử lại', 'Periksa koneksi dan coba lagi', 'Bağlantını kontrol edip tekrar dene', 'Sprawdź połączenie i spróbuj ponownie'],
+  entryOffline: ['Нет сети — матч не начать', 'Немає мережі — матч не почати', 'Sin conexión: no se puede empezar', 'Sem conexão: não dá para começar', 'Không có mạng — không thể bắt đầu', 'Tidak ada jaringan — tidak bisa mulai', 'Ağ yok — maç başlatılamaz', 'Brak sieci — nie zaczniesz meczu'],
+  hubLastMatch: ['Последний матч', 'Останній матч', 'Último duelo', 'Último duelo', 'Trận gần nhất', 'Duel terakhir', 'Son maç', 'Ostatni mecz'],
+  hubNearYou: ['Рядом с тобой', 'Поруч із тобою', 'Cerca de ti', 'Perto de você', 'Gần bạn', 'Di dekatmu', 'Sana yakın', 'Blisko ciebie'],
+  hubSearchingNow: ['Сейчас в поиске', 'Зараз у пошуку', 'Buscando ahora', 'Procurando agora', 'Đang tìm trận', 'Sedang mencari', 'Şu an arıyor', 'Teraz szuka'],
+  hubInPromo: ['Идёт серия за новый тир', 'Триває серія за новий тир', 'Serie por el nuevo nivel', 'Série pelo novo tier', 'Đang loạt thăng hạng', 'Seri naik tier', 'Yeni seviye serisi', 'Trwa seria o nowy tier'],
+  hubMore: ['Все разделы', 'Усі розділи', 'Todas las secciones', 'Todas as seções', 'Tất cả mục', 'Semua bagian', 'Tüm bölümler', 'Wszystkie sekcje'],
+  goalPlay: ['Сыграть матчи', 'Зіграти матчі', 'Jugar duelos', 'Jogar duelos', 'Chơi trận', 'Main duel', 'Maç oyna', 'Zagraj mecze'],
+  goalSpeed: ['Ответить первым', 'Відповісти першим', 'Responder primero', 'Responder primeiro', 'Trả lời trước', 'Jawab lebih dulu', 'İlk cevapla', 'Odpowiedz pierwszy'],
+  goalAccuracy: ['Выиграть матч', 'Виграти матч', 'Ganar un duelo', 'Vencer um duelo', 'Thắng một trận', 'Menang duel', 'Bir maç kazan', 'Wygraj mecz'],
+  goalsAllDone: ['Все цели дня выполнены', 'Усі цілі дня виконано', 'Todas las metas del día', 'Todas as metas do dia', 'Hoàn thành mục tiêu ngày', 'Semua target hari ini', 'Günün hedefleri tamam', 'Wszystkie cele dnia'],
+  goalsTitle: ['Цели дня', 'Цілі дня', 'Metas del día', 'Metas do dia', 'Mục tiêu hôm nay', 'Target hari ini', 'Günün hedefleri', 'Cele dnia'],
+  reviewTitle: ['Разбор матча', 'Розбір матчу', 'Análisis del duelo', 'Análise do duelo', 'Phân tích trận', 'Ulasan duel', 'Maç incelemesi', 'Analiza meczu'],
+  reviewYourAnswer: ['Твой ответ', 'Твоя відповідь', 'Tu respuesta', 'Sua resposta', 'Câu trả lời của bạn', 'Jawabanmu', 'Cevabın', 'Twoja odpowiedź'],
+  reviewCorrect: ['Правильно', 'Правильно', 'Correcto', 'Correto', 'Đáp án đúng', 'Yang benar', 'Doğrusu', 'Poprawnie'],
+  reviewTimeout: ['Не успел', 'Не встиг', 'No llegaste a tiempo', 'Não deu tempo', 'Không kịp', 'Tidak sempat', 'Yetişemedin', 'Nie zdążyłeś'],
+  reviewPartial: ['Собрано не всё', 'Зібрано не все', 'No completaste todo', 'Não completou tudo', 'Chưa ghép hết', 'Belum semua', 'Hepsi tamamlanmadı', 'Nie wszystko złożone'],
+  reviewNoAnswer: ['Без ответа', 'Без відповіді', 'Sin respuesta', 'Sem resposta', 'Không trả lời', 'Tanpa jawaban', 'Cevapsız', 'Bez odpowiedzi'],
+  reviewEmpty: ['Разбор пока не готов', 'Розбір ще не готовий', 'El análisis aún no está listo', 'A análise ainda não está pronta', 'Phân tích chưa sẵn sàng', 'Ulasan belum siap', 'İnceleme henüz hazır değil', 'Analiza jeszcze niegotowa'],
+  streakLabel: ['Серия побед', 'Серія перемог', 'Racha de victorias', 'Sequência de vitórias', 'Chuỗi thắng', 'Rentetan menang', 'Galibiyet serisi', 'Seria zwycięstw'],
+  todayTab: ['Сегодня', 'Сьогодні', 'Hoy', 'Hoje', 'Hôm nay', 'Hari ini', 'Bugün', 'Dzisiaj'],
+  topsTab: ['Топы', 'Топи', 'Tops', 'Tops', 'Bảng đầu', 'Top', 'Zirve', 'Topki'],
+  historyTab: ['История', 'Історія', 'Historial', 'Histórico', 'Lịch sử', 'Riwayat', 'Geçmiş', 'Historia'],
+  matchCta: ['Начать матч', 'Почати матч', 'Empezar duelo', 'Começar duelo', 'Bắt đầu trận', 'Mulai duel', 'Maça başla', 'Zacznij mecz'],
+  historyEmpty: ['Матчей пока нет', 'Матчів поки немає', 'Aún no hay duelos', 'Ainda não há duelos', 'Chưa có trận nào', 'Belum ada duel', 'Henüz maç yok', 'Nie ma jeszcze meczów'],
+  rankProgress: ['До следующего деления', 'До наступного поділу', 'Hasta la siguiente división', 'Até a próxima divisão', 'Đến bậc tiếp theo', 'Ke divisi berikutnya', 'Sonraki bölüme', 'Do następnej dywizji'],
+  rankTop: ['Вершина шкалы', 'Вершина шкали', 'Cima de la escala', 'Topo da escala', 'Đỉnh thang bậc', 'Puncak peringkat', 'Sıralamanın zirvesi', 'Szczyt skali'],
+  rankShieldIntact: ['Щит цел: одно поражение не уронит тир', 'Щит цілий: одна поразка не скине тир', 'Escudo intacto: una derrota no baja de nivel', 'Escudo intacto: uma derrota não rebaixa', 'Khiên còn: một trận thua chưa rớt hạng', 'Perisai utuh: satu kekalahan tidak menurunkan tier', 'Kalkan sağlam: bir yenilgi seviye düşürmez', 'Tarcza cała: jedna porażka nie zrzuci z tieru'],
+  rankShieldSpent: ['Щит израсходован: следующее поражение уронит тир', 'Щит витрачено: наступна поразка скине тир', 'Escudo gastado: la próxima derrota baja de nivel', 'Escudo gasto: a próxima derrota rebaixa', 'Đã dùng khiên: thua tiếp sẽ rớt hạng', 'Perisai terpakai: kekalahan berikutnya menurunkan tier', 'Kalkan tükendi: sonraki yenilgi seviye düşürür', 'Tarcza zużyta: kolejna porażka zrzuci z tieru'],
+  rankBest: ['Лучший тир сезона', 'Найкращий тир сезону', 'Mejor nivel de la temporada', 'Melhor tier da temporada', 'Hạng cao nhất mùa', 'Tier terbaik musim', 'Sezonun en iyi seviyesi', 'Najlepszy tier sezonu'],
+  rankPercentile: ['Ты выше', 'Ти вище', 'Estás por encima del', 'Você está acima de', 'Bạn cao hơn', 'Kamu di atas', 'Şunun üstündesin', 'Jesteś wyżej niż'],
+  friendsBoard: ['Среди друзей', 'Серед друзів', 'Entre amigos', 'Entre amigos', 'Trong bạn bè', 'Di antara teman', 'Arkadaşlar arasında', 'Wśród znajomych'],
+  rankLocked: ['Ещё не открыт', 'Ще не відкритий', 'Aún bloqueado', 'Ainda bloqueado', 'Chưa mở', 'Belum terbuka', 'Henüz kilitli', 'Jeszcze zablokowany'],
   loading: ['Загрузка…', 'Завантаження…', 'Cargando…', 'Carregando…', 'Đang tải…', 'Memuat…', 'Yükleniyor…', 'Ładowanie…'],
   retry: ['Повторить', 'Повторити', 'Reintentar', 'Tentar novamente', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Spróbuj ponownie'],
   share: ['Поделиться', 'Поділитися', 'Compartir', 'Compartilhar', 'Chia sẻ', 'Bagikan', 'Paylaş', 'Udostępnij'],
@@ -50,7 +90,6 @@ const C = {
   tierLegend: ['Легенда', 'Легенда', 'Leyenda', 'Lenda', 'Huyền thoại', 'Legenda', 'Efsane', 'Legenda'],
   back: ['Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz'],
   you: ['Ты', 'Ти', 'Tú', 'Você', 'Bạn', 'Kamu', 'Sen', 'Ty'],
-  bot: ['Тренировочный соперник', 'Тренувальний суперник', 'Rival de práctica', 'Adversário de treino', 'Đối thủ luyện tập', 'Lawan latihan', 'Antrenman rakibi', 'Rywal treningowy'],
   submit: ['Ответить', 'Відповісти', 'Responder', 'Responder', 'Trả lời', 'Jawab', 'Yanıtla', 'Odpowiedz'],
   selectFriend: ['Выбери друга', 'Обери друга', 'Elige un amigo', 'Escolha um amigo', 'Chọn một người bạn', 'Pilih teman', 'Bir arkadaş seç', 'Wybierz znajomego'],
   noFriends: ['Здесь появятся твои друзья', 'Тут з’являться твої друзі', 'Aquí aparecerán tus amigos', 'Seus amigos aparecerão aqui', 'Bạn bè sẽ xuất hiện ở đây', 'Temanmu akan muncul di sini', 'Arkadaşların burada görünecek', 'Tutaj pojawią się znajomi'],
@@ -87,4 +126,22 @@ export type ArenaCopyKey = keyof typeof C;
 export function arenaText(lang: Lang, key: ArenaCopyKey): string {
   const [ru, uk, es, ptBR, vi, id, tr, pl] = C[key];
   return triLang(lang, { ru, uk, es, 'pt-BR': ptBR, vi, id, tr, pl });
+}
+
+/**
+ * Сколько живых игроков ищет сейчас.
+ *
+ * Сами строки и правило склонения лежат в `searching_copy.ts`: там их видно
+ * тесту без запуска приложения. Здесь остаётся только выбор локали.
+ */
+export function arenaSearchingCountText(lang: Lang, count: number): string {
+  const value = arenaSearchingCount(count);
+  // Ноль — отдельная фраза, а не «0 игроков»: пустой рейтинг честнее назвать
+  // пустым, чем показывать цифру, от которой игрок ждёт соперника.
+  if (value === 0) return arenaText(lang, 'rankedEmptyHint');
+  const forms = arenaSearchingCountForms(value);
+  return triLang(lang, {
+    ru: forms.ru, uk: forms.uk, es: forms.es, 'pt-BR': forms['pt-BR'],
+    vi: forms.vi, id: forms.id, tr: forms.tr, pl: forms.pl,
+  });
 }

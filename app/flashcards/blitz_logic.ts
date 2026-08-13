@@ -4,17 +4,29 @@
  * (множитель очков + SFX fc_combo_*), счёт: верно = 100 × множитель.
  *
  * Без RN-импортов — юнит-тестируется в node (tests/fc_blitz.test.ts).
- * Все числа — в stars_config (задел под remote config, §1).
+ * Все числа режима — здесь же (задел под remote config, §1).
  */
-import {
-  BLITZ_COMBO_STEPS,
-  BLITZ_LIVES,
-  BLITZ_POINTS_CORRECT,
-} from './stars_config';
+
+// ── Числа блица (§3.9) ───────────────────────────────────────────────────────
+export const BLITZ_DURATION_SEC = 60;
+export const BLITZ_LIVES = 3;
+/** Минимум карточек в колоде для блица (нужны 4 варианта ответа). */
+export const BLITZ_MIN_CARDS = 4;
+/** База очков за верный ответ (умножается на комбо-множитель). */
+export const BLITZ_POINTS_CORRECT = 100;
+/** Комбо-серии → множитель очков (пороги ×3/×5/×10 — SFX fc_combo_*, §5). */
+export const BLITZ_COMBO_STEPS: readonly { streak: number; mult: number }[] = [
+  { streak: 10, mult: 3 },
+  { streak: 5, mult: 2 },
+  { streak: 3, mult: 1.5 },
+];
+/** Автопереход к следующему вопросу: быстрее арены (§3.9) — 350мс / 700мс на ошибке. */
+export const BLITZ_ADVANCE_OK_MS = 350;
+export const BLITZ_ADVANCE_WRONG_MS = 700;
 
 // ── Комбо и очки ─────────────────────────────────────────────────────────────
 
-/** Множитель очков для текущей серии (×1 / ×1.5 / ×2 / ×3 — stars_config). */
+/** Множитель очков для текущей серии (×1 / ×1.5 / ×2 / ×3). */
 export function comboMultiplier(streak: number): number {
   for (const step of BLITZ_COMBO_STEPS) {
     if (streak >= step.streak) return step.mult;

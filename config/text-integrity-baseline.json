@@ -1007,36 +1007,6 @@
       }
     },
     {
-      "file": "components/DailyTaskRewardToast.tsx",
-      "ownerName": "DailyTaskRewardToast",
-      "ownerPath": "DailyTaskRewardToast",
-      "ancestorPath": [
-        "Animated.View",
-        "LinearGradient",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "1b63282fdc296a3e589af7ad40266d6e09644ef43f5de809bf8701e9fb982fa6",
-      "count": 2,
-      "lineHints": [
-        795,
-        801
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/lesson1.tsx",
       "ownerName": "LessonContent",
       "ownerPath": "LessonContent",

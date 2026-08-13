@@ -8,15 +8,12 @@ const SOURCE = fs.readFileSync(
 );
 
 describe('Gustav French dev surface navigation guard V2 packet', () => {
-  it('tracks challenge, daily and arena surfaces as explicit guarded groups', () => {
+  it('tracks challenge and arena surfaces as explicit guarded groups', () => {
     expect(SOURCE).toContain('challengeSurfaceGuardsReady');
-    expect(SOURCE).toContain('dailySurfaceGuardsReady');
     expect(SOURCE).toContain('arenaSurfaceGuardsReady');
     expect(SOURCE).toContain('challenge_surface_guards_not_ready');
-    expect(SOURCE).toContain('daily_surface_guards_not_ready');
     expect(SOURCE).toContain('arena_surface_guards_not_ready');
     expect(SOURCE).toContain("'quiz_thematic_challenges_visible_while_source_gated'");
-    expect(SOURCE).toContain("'daily_tasks_screen_theory_gate'");
     expect(SOURCE).toContain("'trainer_arena_session_source_gate'");
     expect(SOURCE).toContain("'admin_no_direct_arena_session_push'");
   });

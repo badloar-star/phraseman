@@ -14,7 +14,8 @@ function decision(over: Partial<Decision> = {}): Decision {
 describe('Jarvis telegram digest — short, honest, safe to render as HTML', () => {
   test('says plainly that nothing needs attention when there are no decisions', () => {
     const text = buildTelegramDigest({ decisions: [], appTier: 'growth', departmentErrors: [] });
-    expect(text).toMatch(/в порядке|ничего/i);
+    expect(text).toMatch(/материальных изменений нет|в порядке|ничего/i);
+    expect(text).toMatch(/не повторя/i);
   });
 
   test('leads with the finding, not with department jargon', () => {

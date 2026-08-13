@@ -165,7 +165,7 @@ export type ListeningEffect =
   | { kind: 'no_voice'; side: ListeningSide }
   /** Экран обязан Speech.stop() + очистить свои таймеры (watchdog/gap). */
   | { kind: 'stop_speech' }
-  /** Карточка дослушана целиком (счётчик для звёзд §4). */
+  /** Карточка дослушана целиком (счётчик прослушанных). */
   | { kind: 'progress'; listened: number }
   /** Колода закончилась (loop выключен) → экран финалит сессию. */
   | { kind: 'done'; cardsListened: number };

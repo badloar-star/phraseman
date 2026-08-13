@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  AccessibilityInfo,
   Animated,
   Modal,
   PanResponder,
@@ -28,6 +29,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import LevelUpThresholdModal, { type LevelUpPreviewVariant } from '../LevelUpThresholdModal';
 import ResultsSequence from '../feedback/ResultsSequence';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
+import { useOverlayVisible } from '../OverlayArbiter';
 import { usePremium } from '../PremiumContext';
 import { useTheme } from '../ThemeContext';
 import {
@@ -35,10 +37,14 @@ import {
   type DevTool,
   type DevToolAction,
 } from './devToolRegistry';
+import LeagueResultModal from '../../app/LeagueResultModal';
+import { buildLeagueDevSeed, type LeagueDevSeedId } from './leagueDevSeeds';
 
 export type DevHubSheetProps = Readonly<{
   visible: boolean;
   onClose: () => void;
+  onOpen?: () => void;
+  onSurfaceActiveChange?: (active: boolean) => void;
 }>;
 
 type PreviewState =
@@ -55,6 +61,11 @@ type PreviewState =
   | Readonly<{
       type: 'spin-plaque';
       variant?: never;
+      run: number;
+    }>
+  | Readonly<{
+      type: 'league';
+      seed: LeagueDevSeedId;
       run: number;
     }>;
 
@@ -102,7 +113,7 @@ function ToolRow({
   );
 }
 
-export default function DevHubSheet({ visible, onClose }: DevHubSheetProps) {
+export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveChange }: DevHubSheetProps) {
   const { theme: t, themeMode, f } = useTheme();
   const { hasPremiumAccess, reload } = usePremium();
   const insets = useStableSafeAreaInsets();
@@ -113,6 +124,8 @@ export default function DevHubSheet({ visible, onClose }: DevHubSheetProps) {
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState('');
   const runRef = useRef(0);
+  const headingRef = useRef<Text>(null);
+  const headingFocusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closingRef = useRef(false);
   const backdropOpacity = useRef(new Animated.Value(0)).current;
   const sheetY = useRef(new Animated.Value(SHEET_HIDDEN_Y)).current;
@@ -120,6 +133,26 @@ export default function DevHubSheet({ visible, onClose }: DevHubSheetProps) {
   const previewTranslateY = useRef(new Animated.Value(16)).current;
   const previewGlow = useRef(new Animated.Value(0)).current;
   const sections = useMemo(() => getOrderedDevToolSections(), []);
+  const devSurfaceWanted = visible || preview !== null;
+  const devSurfaceGranted = useOverlayVisible('devHub', devSurfaceWanted);
+
+  useEffect(() => {
+    const active = devSurfaceWanted && devSurfaceGranted;
+    onSurfaceActiveChange?.(active);
+    return () => onSurfaceActiveChange?.(false);
+  }, [devSurfaceGranted, devSurfaceWanted, onSurfaceActiveChange]);
+
+  const focusDevHeading = useCallback(() => {
+    if (headingFocusTimerRef.current) clearTimeout(headingFocusTimerRef.current);
+    headingFocusTimerRef.current = setTimeout(() => {
+      headingFocusTimerRef.current = null;
+      if (headingRef.current) AccessibilityInfo.sendAccessibilityEvent(headingRef.current, 'focus');
+    }, 40);
+  }, []);
+
+  useEffect(() => () => {
+    if (headingFocusTimerRef.current) clearTimeout(headingFocusTimerRef.current);
+  }, []);
 
   useEffect(() => {
     if (!visible) return undefined;
@@ -217,6 +250,19 @@ export default function DevHubSheet({ visible, onClose }: DevHubSheetProps) {
     requestClose(true);
   }, [requestClose]);
 
+  const openLeaguePreview = useCallback((seed: LeagueDevSeedId) => {
+    hapticTap();
+    runRef.current += 1;
+    setPreview({ type: 'league', seed, run: runRef.current });
+    requestClose(true);
+  }, [requestClose]);
+
+  // Результат собирается в памяти на каждый показ: ни диска, ни сети.
+  const leagueSeedResult = useMemo(
+    () => (preview?.type === 'league' ? buildLeagueDevSeed(preview.seed) : null),
+    [preview],
+  );
+
   const openSpinRewardPreview = useCallback(async () => {
     if (busy || account.phase !== 'active' || !account.stableId) return;
     const accountToken = captureAccountGeneration();
@@ -301,13 +347,25 @@ export default function DevHubSheet({ visible, onClose }: DevHubSheetProps) {
       case 'preview-spin-reward':
         void openSpinRewardPreview();
         return;
+      case 'preview-league-promoted':
+        openLeaguePreview('promoted');
+        return;
+      case 'preview-league-demoted':
+        openLeaguePreview('demoted');
+        return;
+      case 'preview-league-stay':
+        openLeaguePreview('stay');
+        return;
+      case 'preview-league-rank-mismatch':
+        openLeaguePreview('rank-mismatch');
+        return;
       case 'grant-plus':
         void applyPlusOverride('granted');
         return;
       case 'revoke-plus':
         void applyPlusOverride('removed');
     }
-  }, [applyPlusOverride, openLessonResultsPreview, openPreview, openSpinRewardPreview]);
+  }, [applyPlusOverride, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const milestone = preview?.type === 'level-up' && preview.variant === 'milestone';
@@ -320,10 +378,11 @@ export default function DevHubSheet({ visible, onClose }: DevHubSheetProps) {
   return (
     <>
       <Modal
-        visible={visible}
+        visible={visible && devSurfaceGranted}
         transparent
         animationType="none"
         statusBarTranslucent
+        onShow={focusDevHeading}
       onRequestClose={handleSheetClose}
       >
         <View style={styles.root}>
@@ -358,7 +417,7 @@ export default function DevHubSheet({ visible, onClose }: DevHubSheetProps) {
                 <Ionicons name="flask-outline" size={20} color={t.accent} />
               </View>
               <View style={styles.headerCopy}>
-                <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>DEV-центр</Text>
+                <Text ref={headingRef} accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>DEV-центр</Text>
                 <Text style={[styles.subtitle, { color: t.textMuted, fontSize: f.caption }]}>Локальные инструменты разработки</Text>
               </View>
               <Pressable
@@ -510,6 +569,20 @@ export default function DevHubSheet({ visible, onClose }: DevHubSheetProps) {
           ) : null}
         </View>
       </Modal>
+
+      {preview?.type === 'league' && leagueSeedResult ? (
+        <LeagueResultModal
+          key={preview.run}
+          visible={!visible && devSurfaceGranted}
+          result={leagueSeedResult}
+          previewMode
+          onClose={() => {
+            closePreview();
+            onOpen?.();
+          }}
+        />
+      ) : null}
+
     </>
   );
 }

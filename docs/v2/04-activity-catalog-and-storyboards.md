@@ -117,7 +117,12 @@ Copy не использует формулировки «плохое прои�
 
 Обязательные ограничения:
 
-- для обычной ошибки не используется shake;
+- для обычной ошибки не используется общий shake экрана; единственное
+  разрешённое исключение — короткий прозрачный `wrong_option_nudge` самого
+  ошибочного слова/варианта после первой ошибки: без красной рамки, без
+  сохранения выбора и только через transform/opacity. После второй ошибки
+  показывается утверждённое текстовое объяснение; reduced motion заменяет
+  nudge коротким crossfade без движения;
 - за один раз анимируются один-два смысловых элемента, а не весь экран;
 - изменяются преимущественно transform/opacity, а не width/height/margin;
 - бесконечный loader или pulse работает только при активном экране и активном AppState и останавливается при blur/unmount;
@@ -302,7 +307,7 @@ audio_quality
 `ComposerShell` настраивается через `sourceType`, `tokenMode`, `inputMode` и `validationPolicy`. Для cloze показывается sentence context; для dictation target text не раскрывается до попытки.
 
 **Controls и gestures:** tap-first; drag не является единственным маршрутом.  
-**Motion/haptics:** placement 120 ms; никакого shake.  
+**Motion/haptics:** placement 120 ms; экран и собранная фраза не трясутся. Ошибочный chip может получить только общий `wrong_option_nudge` из motion policy выше.
 **Accessibility:** actions `Добавить в ответ`/`Убрать`; focus следует за перемещённым chip; answer переносится при 200% text.  
 **References:** контекстный cloze в [Rosetta Stone Learning Path](https://www.rosettastone.com/learning-path), последовательность [ELSA Grammar Coach](https://elsanow.freshdesk.com/en/support/solutions/articles/31000178081-coach-grammar-coach).
 

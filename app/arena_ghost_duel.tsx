@@ -3,7 +3,7 @@ import { Pressable, Share, StyleSheet, Text, TextInput, View } from 'react-nativ
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { ArenaDisclosureBadge, ArenaStateCard } from '../components/arena/ArenaExpansionUI';
+import { ArenaDisclosureBadge, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -73,11 +73,11 @@ export default function ArenaGhostDuelScreen() {
     <ArenaScreen title={arenaExpansionText(lang, 'ghost')} subtitle={arenaExpansionText(lang, 'recordingBadge')}>
       <ArenaDisclosureBadge text={arenaExpansionText(lang, 'ghostDisclosure')} />
       <ArenaDisclosureBadge text={arenaExpansionText(lang, 'noEconomy')} />
-      {state === 'loading' ? <ArenaStateCard state="loading" title={arenaExpansionText(lang, 'loading')} /> : null}
-      {state === 'unavailable' || state === 'expired' || state === 'error' ? <ArenaStateCard state={state} title={arenaExpansionText(lang, state === 'error' ? 'unavailable' : state)} actionLabel={state === 'error' ? arenaExpansionText(lang, 'retry') : undefined} onAction={state === 'error' ? load : undefined} /> : null}
+      {state === 'loading' ? <ArenaStateNotice state="loading" /> : null}
+      {state === 'unavailable' || state === 'expired' || state === 'error' ? <ArenaStateNotice state={state} ghost onRetry={load} onBack={() => router.replace('/arena' as never)} /> : null}
       {state === 'ready' ? (
         <>
-          {params.sourceRunId && !created ? <V2Card style={styles.card}><Text style={[styles.title, { color: P.text }]}>{arenaExpansionText(lang, 'ghostCreate')}</Text><View style={styles.friends}>{(friends?.friends ?? []).map((friend) => { const profile = friends?.profiles[friend.uid]; const activeFriend = friendStableUid === friend.uid; return <Pressable key={friend.uid} accessibilityRole="button" accessibilityState={{ selected: activeFriend }} onPress={() => setFriendStableUid(friend.uid)} style={[styles.friend, { backgroundColor: activeFriend ? P.accent : P.elev2 }]}><Text style={[styles.friendText, { color: activeFriend ? P.okInk : P.text }]}>{profile?.name ?? friend.displayName}</Text></Pressable>; })}</View><V2Cta disabled={!friendStableUid || busy} onPress={create}>{arenaExpansionText(lang, 'ghostCreate')}</V2Cta></V2Card> : !params.sourceRunId && !token ? <ArenaStateCard state="empty" title={arenaExpansionText(lang, 'sourceRequired')} /> : null}
+          {params.sourceRunId && !created ? <V2Card style={styles.card}><Text style={[styles.title, { color: P.text }]}>{arenaExpansionText(lang, 'ghostCreate')}</Text><View style={styles.friends}>{(friends?.friends ?? []).map((friend) => { const profile = friends?.profiles[friend.uid]; const activeFriend = friendStableUid === friend.uid; return <Pressable key={friend.uid} accessibilityRole="button" accessibilityState={{ selected: activeFriend }} onPress={() => setFriendStableUid(friend.uid)} style={[styles.friend, { backgroundColor: activeFriend ? P.accent : P.elev2 }]}><Text style={[styles.friendText, { color: activeFriend ? P.okInk : P.text }]}>{profile?.name ?? friend.displayName}</Text></Pressable>; })}</View><V2Cta disabled={!friendStableUid || busy} onPress={create}>{arenaExpansionText(lang, 'ghostCreate')}</V2Cta></V2Card> : !params.sourceRunId && !token ? <ArenaStateNotice state="empty" emptyHint="emptyGhost" /> : null}
           {created ? <V2Card style={styles.card}><Text selectable style={[styles.code, { color: P.text, backgroundColor: P.elev2 }]}>{created.inviteToken}</Text><V2Cta onPress={() => void Share.share({ message: created.shareUrl })}>{arenaExpansionText(lang, 'share')}</V2Cta></V2Card> : null}
           {!created ? <V2Card style={styles.card}>
             <Text style={[styles.title, { color: P.text }]}>{arenaExpansionText(lang, 'inviteCode')}</Text>

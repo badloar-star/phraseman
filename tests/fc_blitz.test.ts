@@ -11,14 +11,12 @@ import {
   comboThresholdHit,
   initialBlitzState,
   pointsForCorrect,
-  type BlitzCardLike,
-  type BlitzState,
-} from '../app/flashcards/blitz_logic';
-import {
   BLITZ_COMBO_STEPS,
   BLITZ_LIVES,
   BLITZ_POINTS_CORRECT,
-} from '../app/flashcards/stars_config';
+  type BlitzCardLike,
+  type BlitzState,
+} from '../app/flashcards/blitz_logic';
 
 // ════════════════════════════════════════════════════════════════════════════
 describe('комбо-пороги (§3.9: ×3/×5/×10)', () => {

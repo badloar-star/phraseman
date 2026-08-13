@@ -1,15 +1,29 @@
-# Arena V2 — implementation handover
+# Арена — технический handover
 
-Статус на 2026-08-11: **implemented locally, not deployed**.
+Статус на 2026-08-13: **код готов локально, деплой не выполнялся.**
 
-Это описание текущего snapshot, а не будущая архитектура. Код, client routes,
-Rules, Indexes и tests находятся в checkout. Production config не создан этой
-работой; Functions, Firestore и app binary не деплоились. Device QA не было.
+Это описание текущего состояния кода, а не планов. Клиент, сервер, правила
+доступа, индексы, админская страница конфига и тесты лежат в checkout.
+Production-конфиг не создавался, Functions/Firestore/приложение не
+разворачивались, проверок на живых устройствах не было.
+
+**Матч переписан на дуэль v3** (план + отчёт вместо пошаговых вызовов).
+Пошаговая машина v2 сохранена и обслуживает Today и Ghost; матчи v3 помечены
+`duelVersion: 3` и через неё не проходят. Продуктовая сторона описана в
+[`README.md`](./README.md), решения владельца и журнал — в
+[`OWNER_DECISIONS.md`](./OWNER_DECISIONS.md).
 
 ## 1. Источники реализации
 
 | Область | Файлы |
 |---|---|
+| Дуэль v3: план, отчёт, закрытие | `functions/src/arena_duel_v3.ts` |
+| Движок звёзд | `modules/arena/stars.ts` + байт-копия `functions/src/arena_stars_v3.ts` |
+| Движок рангов | `modules/arena/rank_engine.ts` + байт-копия `functions/src/arena_rank_engine.ts` |
+| Награды за тир | `modules/arena/tier_rewards.ts` + `functions/src/arena_tier_rewards.ts` |
+| Машина матча на устройстве | `modules/arena/match_machine.ts`, `modules/arena/match_store.ts`, `hooks/use_arena_local_match.ts` |
+| Разбор плана и живой канал | `modules/arena/duel_plan.ts`, `modules/arena/live_channel.ts` |
+| Конфиг и админка | `functions/src/arena_config_contract.ts`, `functions/src/admin_arena_config.ts`, `admin/arena-config.html` |
 | Pure product/core | `functions/src/arena_v2_core.ts`, `functions/src/arena_expansion_core.ts` |
 | Callables/scheduler | `functions/src/arena_v2.ts`, `functions/src/arena_expansion.ts`, export в `functions/src/index.ts` |
 | Client transport/listeners | `app/arena_client.ts` |
@@ -34,6 +48,7 @@ release flag остаются отдельными.
 | `arena_v2_queue/{stableUid}` | owner-readable queue ticket |
 | `arena_v2_queue_locks/{quick|ranked}` | server-only per-mode transaction contention doc |
 | `arena_v2_matches/{matchId}` | participant-safe public live projection |
+| `arena_v2_match_live/{matchId}/seats/{seatId}` | живой прогресс соперника; **единственное место, куда пишет сам клиент** |
 | `arena_v2_match_private/{matchId}` | server-only tasks, identities, bot plan, answers, totals, rewards |
 | `arena_v2_invites/{sha256(token)}` | server-only invite identity/status |
 | `arena_v2_pair_limits/{hmacPairHash_day}` | server-only Ranked reservation/cooldown/day cap |
@@ -98,6 +113,12 @@ release flag остаются отдельными.
 }
 ```
 
+Форма документа и разбор его проблем вынесены в
+`functions/src/arena_config_contract.ts` — один контракт на сервер и на
+админскую страницу, чтобы страница не могла записать документ, который сервер
+потом отвергнет. Читает и пишет его только пара `adminArenaConfigGet` /
+`adminArenaConfigSet`; клиентская запись запрещена правилами.
+
 `app/arena_client.ts` добавляет установленный `clientVersion` ко всем вызовам.
 Сервер принимает semver-like `x.y.z` с optional suffix и fail-closed отвечает
 `arena_client_update_required`, если версия отсутствует, invalid или ниже min.
@@ -141,6 +162,13 @@ reduced result. После eligible human result он может кратко с
 accepting → countdown → task_active → task_reveal → ... → settled
 accepting/task flow → aborted
 ```
+
+**У матча v3 этот ряд состояний почти не используется.** `arenaV2MatchPlan`
+помечает матч `duelVersion: 3` в транзакции и выдаёт план целиком; дальше матч
+живёт на устройстве, а сервер видит только отчёт. Шаговая машина (`advanceMatch`)
+разделена на `advanceAnyMatch`: матч v3 в неё не попадает — иначе она записала
+бы ему нулевые квитанции и уничтожила результат. Публичный документ обновляется
+на финише, а не на каждом задании.
 
 `closedField` содержит `{taskIndex, seatAwards[]}` с seat, `correct`, `points`
 и `seasonStars`; correct answer/explanation там нет. `result.rewards[seat]`
@@ -195,6 +223,12 @@ Auth связывается с stable identity; hidden/deleted/banned caller о�
 
 | Callable | Request без автоматически добавленного `clientVersion` | Результат/эффект |
 |---|---|---|
+| `arenaV2MatchPlan` | `{matchId}` | **v3:** план матча целиком: задания, отпечатки ответов, ходы бота, путь живого канала |
+| `arenaV2MatchFinish` | `{matchId, reportId, report}` | **v3:** один отчёт за весь матч; пересчёт, квитанции, закрытие при готовности обоих |
+| `arenaV2MatchSettle` | `{matchId}` | **v3:** один запрос о закрытии, если соперник опоздал; идемпотентен, опрос по кругу запрещён |
+| `arenaV2FriendsBoard` | `{}` | таблица друзей по рангу; один пакетный `getAll` вместо цикла |
+| `adminArenaConfigGet` | `{}` | текущий `arena_v2_config/current` и разбор его проблем (только админ) |
+| `adminArenaConfigSet` | `{flags…, reason}` | запись конфига с причиной изменения (только админ) |
 | `arenaV2Home` | `{}` | availability + own profile/season/queue/active safe match |
 | `arenaV2FindMatch` | `{mode, requestId}` | waiting ticket или human match |
 | `arenaV2QueueCancel` | `{requestId?}` | cancel только своей актуальной queue |
@@ -236,6 +270,11 @@ Auth связывается с stable identity; hidden/deleted/banned caller о�
 | `arenaStarStore` | `{}` | versioned catalog, own wallet/entitlements/equipment |
 | `arenaStarPurchase` | `{itemId, catalogVersion, requestId}` | permanent entitlement, exact wallet debit |
 | `arenaStarEquip` | `{itemId, slot, requestId}` | entitlement-checked equipment update |
+
+`arenaV2SubmitAnswer`, `arenaV2SubmitSpeedAttempt` и `arenaV2SyncMatch` в матче
+v3 не вызываются: во время игры устройство к серверу не обращается вовсе. Они
+остаются рабочими для Today/Ghost и для восстановления матчей, начатых старой
+сборкой.
 
 `expectedVersion` у `SyncMatch` сейчас только валидируется как integer; он не
 является compare-and-swap guard. Transaction state остаётся authoritative.
@@ -291,6 +330,18 @@ Expansion reconciliation:
 
 - Rating меняется только для `mode=ranked`, `opponentKind=human`, двух людей и
   snapshot divisions с разницей не более 1.
+- **Звёзды в кошелёк начисляет только рейтинговый матч** (D-07: быстрый платит
+  опытом). Гейт один и тот же на клиенте и на сервере — политика режима в
+  движке звёзд; второго списка режимов нет намеренно, иначе план матча обещал
+  бы игроку ноль, а сервер записывал звёзды.
+- Счётчик матчей, дающих право на редкую награду (`dailyRewardMatches`, шесть
+  за сутки), отдельный от счётчика начисления звёзд (`dailyEligibleMatches`,
+  затухание 4×100 % → 2×50 % и потолок 160). Быстрый матч увеличивает первый и
+  не трогает второй. Старое поле читается как запасное, чтобы у игравших
+  сегодня окно награды не открылось заново.
+- Награда за тир — косметика, один раз за всю жизнь (D-63). Ключ операции
+  `arena_tier.t{N}` содержит ровно одно двоеточие: с двумя реестр звёзд отверг
+  бы её молча. Выдаются все тиры между прошлым пожизненным лучшим и новым.
 - Match settlement читает profile/season/receipt каждого человека и создаёт
   receipt в той же transaction, где пишет rating/stars/profile/result.
 - Pity хранится в root profile и поэтому переживает 63-day season rollover.
@@ -332,12 +383,20 @@ Rules:
 - base economy, Match Lab, Partner week, star ledger и entitlements
   owner-readable/server-write-only; sealed attempts/runs/signatures/activity/
   expansion receipts полностью закрыты;
-- все direct client writes запрещены.
+- живой канал `arena_v2_match_live/{matchId}/seats/{seatId}` — единственное
+  исключение из запрета клиентской записи: писать можно только в СВОЁ место за
+  столом, и правило сверяет `seatId` с меткой участия. Ограничены схема, длина
+  списка ходов и обязательность метки времени, по которой уборка находит
+  брошенные каналы. Сам документ матча в этой коллекции доступен только на
+  чтение;
+- все остальные direct client writes запрещены.
 
 Composite indexes:
 
 ```text
 tournamentTasks: poolVersion, mode, difficulty, __name__
+arena_v2_members (COLLECTION_GROUP): expireAt
+seats (COLLECTION_GROUP): updatedAtMs
 arena_v2_queue: mode, status, joinedAtMs
 arena_v2_matches: terminal, stateDeadlineAtMs
 arena_v2_invites: fromStableUid, status
@@ -385,11 +444,18 @@ Quick bound: own profile/queue/lock 3 + queue results до 10 + candidate profil
 дополнительно.
 
 Типичное создание пишет 6 документов для bot match, 9 для Quick human, 10 для
-Ranked и 7 для Friend. Каждая обычная answer transaction может писать public и
-private docs; каждый новый speed attempt — те же два. На двух `speed_match`
-досках существует до 32 уникальных pair/selected combinations на игрока, а
-server cap ledger IDs — 40. Поэтому adversarial write cost существенно выше
-старого бюджета даже при bounded payload.
+Ranked и 7 для Friend.
+
+**Дуэль v3 сняла главную статью расхода.** Раньше каждый ответ и каждая попытка
+на доске пар писали два документа, и на двух досках это давало до 32 записей на
+игрока при полном переборе. Теперь во время матча сервер не пишет ничего:
+транзакции остались только у плана, отчёта и закрытия. Живой канал соперника
+стоит **одну запись на задание** — это проверяется тестом, а не декларируется.
+
+Устройство обращается к серверу три раза за матч; четвёртый вызов
+(`arenaV2MatchSettle`) случается только если соперник не сдал отчёт вовремя, и
+ровно один раз. Опроса по кругу нет нигде — это прямое требование владельца по
+стоимости базы.
 
 Client listener billing зависит от числа public snapshots, reconnects и
 metadata/cache behavior и не измерен. Global per-mode lock сериализует pairing
@@ -434,133 +500,124 @@ Friend create/accept проверяет reciprocal friendship documents, moderat
 полагается на то, что блокировка удаляет friendship docs — это остаётся пунктом
 social-safety QA до rollout.
 
-## 12. Фактические test results
+## 12. Фактические результаты тестов
 
-Повторно зелёные в текущем snapshot 2026-08-11:
+Прогон на 2026-08-13: **33 набора, 640 утверждений, все зелёные.** Из них 29
+клиентских и 4 серверных чистых набора Арены. Срез типов Арены
+(`npx tsc -p tsconfig.arena.json --noEmit`) и типы Functions чисты.
 
-```text
-cd functions
-npx jest --runInBand src/arena_expansion_core.test.ts \
+```bash
+npx tsc -p tsconfig.arena.json --noEmit
+cd functions && npx tsc --noEmit -p tsconfig.json
+
+# полный прогон наборов Арены
+npx jest --runInBand tests/arena_*.test.ts
+cd functions && npx jest --runInBand \
+  src/arena_duel_v3.test.ts src/arena_config_contract.test.ts \
+  src/arena_v2_core.test.ts src/arena_expansion_core.test.ts \
   src/arena_speed_progress_codec.test.ts \
-  src/arena_v2_core.test.ts src/arena_v2_backend_contract.test.ts \
-  src/arena_rival_backend_contract.test.ts src/account_delete.test.ts \
-  src/jarvis/jarvis_data_contract_guard.test.ts --silent
-# 7 suites, 89 tests passed
-
-cd ..
-npx jest --runInBand \
-  tests/arena_expansion_client_contract.test.ts \
-  tests/arena_expansion_client_source_contract.test.ts \
-  tests/arena_expansion_integration_contract.test.ts \
-  tests/arena_v2_client_contract.test.ts \
-  tests/arena_v2_client_source_contract.test.ts \
-  tests/arena_v2_integration_contract.test.ts \
-  tests/product_analytics_screen_registry.test.ts \
-  tests/product_analytics_event_catalog.test.ts \
-  tests/native_intent_referral.test.ts \
-  tests/user_notifications_account_cache.test.ts \
-  tests/firestore_rules_security.test.ts --silent
-# 11 suites, 203 tests passed
+  src/arena_v2_backend_contract.test.ts src/arena_rival_backend_contract.test.ts \
+  src/account_delete.test.ts
 ```
 
-Firestore emulator suites также фактически получили green:
+Что именно закреплено тестами, а не обещаниями:
 
-```text
-cd functions
-npm run test:emulator:arena-v2-gameplay
-npm run test:emulator:arena-v2-rules
-npm run test:emulator:arena-expansion-gameplay
-npm run test:emulator:arena-rival-gameplay
-```
+- **паритет клиента и сервера** — движки звёзд и рангов существуют в двух
+  байт-идентичных копиях, `arena_stars_parity` и `arena_rank_parity` прогоняют
+  обе на одних входах и падают при первом расхождении. Расхождение здесь
+  означает, что игрок видит одно число, а получает другое;
+- **бюджет живого канала** — полный матч из десяти заданий, где публикация
+  дёргается по двадцать раз на задание, даёт ровно десять записей;
+- **начисление звёзд гейтится одной политикой режима** — быстрый матч не
+  начисляет (D-07), и второго списка режимов на сервере больше нет;
+- **интерфейс не врёт** — четыре состояния загрузки на всех экранах, отказ
+  важнее пустоты, и список экранов в тесте перечислен поимённо, чтобы
+  следующий экран не завёл ту же ложь заново;
+- **рейтинговый матч без сети не начинается** (D-72);
+- **идентификатор операции награды за тир** содержит ровно одно двоеточие,
+  иначе реестр звёзд отверг бы его молча.
 
-Base gameplay: 4 tests. Rules: 5 tests (ожидаемые `PERMISSION_DENIED` в negative
-probes). Expansion gameplay: 5 tests — Today exact-once/economy/mastery/activity,
-Ghost accept/result/TTL/zero-economy/caps, Partner thresholds/anti-idle, Store
-purchase/equip/idempotency. Rival gameplay: 2 tests — mutual accept + series
-settlement/reconciliation и caps/leave behavior.
+Эмуляторные наборы Firestore (base gameplay, rules, expansion gameplay, rival
+gameplay) в этом прогоне не запускались: они были зелёными на архитектуре v2 и
+требуют пересмотра под дуэль v3 — часть их сценариев проверяет пошаговые
+вызовы, которых в матче v3 больше нет.
 
-Не проверены device E2E и часть emulator concurrency: Quick human/Ranked/Friend
-decline/accept races, full pair caps, reconnect/forfeit, season claims,
-pity/drop boundaries, orphan backlog и account delete на реальном Firestore.
-Нет device QA на iOS/Android, accessibility, deep-link install/onboarding,
-background/reconnect, animations/haptics/sound. Cost counters не снимались.
+Не проверены: реальные два устройства, конкурентность экономики и спинов,
+замеры стоимости, проверки на iOS/Android, доступность, глубокие ссылки,
+восстановление после сворачивания, анимации, звук и вибрация.
 
-## 13. Manual prerequisites и acceptance checklist
+## 13. Что нужно сделать перед выпуском
 
-Перед любым deploy обязательно:
+Владельцу:
 
-- [ ] явно принять bounded-cost trade-offs из sections 7, 10 и 12;
-- [ ] provision три HMAC secrets через production-approved secret/env path;
-- [ ] создать exact `arena_v2_config/current` с flags initially false,
-  production `minClientVersion`, pool version и проверенным manifest digest;
-- [ ] подтвердить, что `tpool_20260801_v10` полностью опубликован и каждая из
-  required mode/difficulty cells достаточна; перепубликовать exact deterministic
-  output, чтобы все task docs содержали `arenaPublication` Merkle proofs;
-- [ ] deploy composite indexes и дождаться `READY`;
-- [ ] deploy Rules и повторить rules emulator/production staging probes;
-- [ ] проверить global user App Check policy для Arena client callables, не
-  изменяя admin App Check policy;
-- [ ] включить Firestore TTL для retention fields; hard spin expiry уже
-  проверяется сервером независимо от TTL;
-- [ ] выполнить two-user emulator matrix и instrumented cost test;
-- [ ] выполнить iOS/Android device QA, deep-link, background/reconnect,
-  Reduced Motion, screen reader, large text, sound/haptics settings;
-- [ ] проверить privacy/account deletion и observability без raw IDs/answers;
-- [ ] получить явное разрешение владельца на Functions/Rules/Indexes/app deploy;
-- [ ] только после deploy включать `enabled` и mode/reward flags поэтапно.
+- [ ] выдать три секрета Functions одобренным способом:
+  `ARENA_V2_PAIR_HMAC_KEY`, `ARENA_V2_INVITE_HMAC_KEY`, `ARENA_V2_SPIN_HMAC_KEY`.
+  Без ключа пары и приглашений соответствующий поток отказывает, без ключа
+  спина награда не выдаётся. Значения не должны попадать в репозиторий и логи;
+- [ ] подтвердить, что пул `tpool_20260801_v10` опубликован целиком и каждая
+  требуемая пара «тип × сложность» набирается; задания должны нести
+  `arenaPublication` с Merkle proof;
+- [ ] сгенерировать звуковые файлы по `SOUND_PROMPTS.md` (на каждый звук три
+  промпта в разных стилях) и положить их по ключам каталога;
+- [ ] пересобрать приложение: серверная часть без сборки работает, но экраны
+  матча, рангов, истории, топов, разбора и таббар приедут только с ней;
+- [ ] принять компромиссы по стоимости из разделов 7, 10 и 12 — замеров
+  реальной стоимости не делалось;
+- [ ] выполнить проверку на живых iOS/Android: глубокие ссылки, сворачивание и
+  возврат, уменьшенное движение, экранный диктор, крупный шрифт, звук и
+  вибрация, удаление аккаунта.
 
-### Operator config procedure
+### Последовательность деплоя
 
-У Arena Expansion нет operator control в live `admin/v2/legacy.html`. До
-отдельно одобренного admin UI конфиг меняется только контролируемой server/Admin
-операцией; client write невозможен по Rules.
+Порядок важен: каждый шаг опирается на предыдущий, а последний — единственный,
+который видят игроки.
 
-1. Считать и сохранить текущий `arena_v2_config/current`; не заменять документ
-   неполным payload и не терять base flags, `minClientVersion` или publication.
-2. Сначала развернуть composite indexes и дождаться состояния `READY`, затем
-   Rules и Functions при всех Expansion flags `false`, после этого app binary
-   с routes. Само наличие кода не включает feature.
-3. Merge exact base config и Expansion поля, оставив все восемь Expansion
-   boolean flags `false`. Одновременно записать
-   `arenaCosmeticCatalogVersion: 'arena-cosmetics.v1'` и
-   `arenaRivalRuntimeVersion: 'arena-rival.v1'`.
-4. Проверить `arenaV2Home`/`arenaExpansionHome`, recovery существующего матча,
-   deny-rules probes, secret availability и production client-version gate.
-5. Включать по одному gate с наблюдением ошибок/стоимости: общий
-   `arenaExpansionEnabled` → Today/Lab/Mastery → Store → Ghost → Partner →
-   Rival. Для Store/Rival boolean без exact version намеренно не сработает.
-6. Не включать percentile/friend cohort или copy про turning point: таких
-   runtime flags/DTO в этом snapshot нет.
-7. Rollback: сначала выключить только проблемный child flag; при неизвестной
-   ошибке выключить `arenaExpansionEnabled`. Не удалять config/version fields:
-   recovery callables всё ещё валидируют совместимый config. Base Arena можно
-   оставить включённой, если инцидент изолирован в Expansion.
+1. `firebase deploy --only firestore:indexes` — первым, потому что индексы
+   строятся не мгновенно, а запросы без них падают. Новые:
+   `arena_v2_members.expireAt`, `seats.updatedAtMs`. Дождаться `READY`.
+2. `firebase deploy --only firestore:rules` — добавлено
+   `arena_v2_match_live/{matchId}/seats/{seatId}`, единственное место
+   клиентской записи.
+3. `firebase deploy --only functions` — новое: `arenaV2MatchPlan`,
+   `arenaV2MatchFinish`, `arenaV2MatchSettle`, `arenaV2FriendsBoard`,
+   `adminArenaConfigGet`, `adminArenaConfigSet`.
+4. `firebase deploy --only hosting:admin` — страница `admin/arena-config.html`.
+5. Открыть эту страницу, поставить переключатели, указать причину, записать.
 
-Пример **initially disabled merge fields** (не самостоятельный полный config):
+**Шаг 5 обязателен и ничем не заменяется.** Без документа
+`arena_v2_config/current` бэкенд Арены отказывает во всём — это и есть ответ на
+вопрос «почему Арена не работает». Изменение доезжает до игроков примерно за
+пятнадцать секунд: это кеш конфига, а не сбой.
 
-```ts
-{
-  arenaExpansionEnabled: false,
-  arenaTodayEnabled: false,
-  arenaMatchLabEnabled: false,
-  arenaMasteryEnabled: false,
-  arenaGhostEnabled: false,
-  arenaRivalEnabled: false,
-  arenaPartnerEnabled: false,
-  arenaStarStoreEnabled: false,
-  arenaCosmeticCatalogVersion: 'arena-cosmetics.v1',
-  arenaRivalRuntimeVersion: 'arena-rival.v1',
-}
-```
+Раньше конфигом нельзя было управлять вообще: документ server-only, клиентская
+запись запрещена правилами, а экрана не существовало. Теперь он редактируется
+страницей, которая проверяет полноту документа перед записью и не даёт
+затереть базовые поля неполным payload.
 
-## 14. Точный no-deploy handover
+### Порядок включения
 
-В этой передаче локально добавлены Arena V2 + Expansion client, isolated
-backend, Rules, Indexes, account-delete integration, tests и эта документация.
-Tournament runtime и Learning V2 economy не связаны с Arena. Production state
-не менялся и ни одна Firebase/app deployment команда не запускалась. Live admin
-не получил Arena config controls.
+Включать по одному, наблюдая ошибки и стоимость: сначала общий `enabled`, затем
+быстрый матч, затем рейтинговый и матч с другом, затем награды и спин. Дальше
+расширение: общий `arenaExpansionEnabled` → Today/Lab/Mastery → магазин →
+Ghost → Partner → Rivalry. Для магазина и Rivalry булев флаг без точной версии
+рантайма намеренно не сработает.
 
-Перед rollout остаются manual secrets/config/index readiness, расширенная
-two-device/concurrency/cost матрица и реальный iOS/Android QA. Локальные green
-tests не являются утверждением о production deployment.
+Откат: сначала выключить только проблемный дочерний флаг; при непонятной ошибке
+выключить `arenaExpansionEnabled`. Поля версий и конфига не удалять —
+восстановительные вызовы всё равно проверяют совместимый конфиг. Базовую Арену
+можно оставить включённой, если происшествие изолировано в расширении.
+
+Не включать процентиль дня, сравнение с когортой друзей и тексты про
+«поворотный момент»: таких полей и флагов в этой сборке нет.
+
+## 14. Точная граница этой передачи
+
+Локально добавлены и переписаны: дуэль v3 (план и отчёт), движки звёзд и рангов
+в двух сверяемых копиях, награды за тир косметикой, живой канал с бюджетом
+записей, машина матча на устройстве, экраны хаба, истории, топов, разбора,
+целей дня и рангов, каталог звуков и их расстановка, контракт конфига и
+админская страница, правила доступа, индексы и тесты.
+
+Турнирный рантайм и экономика Learning V2 с Ареной не связаны. Состояние
+production не менялось: ни одна команда деплоя не запускалась. Зелёные
+локальные тесты не являются утверждением о работоспособности в production.

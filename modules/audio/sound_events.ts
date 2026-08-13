@@ -8,7 +8,8 @@ export type SoundFamily =
   | 'streak'
   | 'reward'
   | 'league'
-  | 'social';
+  | 'social'
+  | 'arena';
 
 export type SoundEventDefinition = Readonly<{
   source: number | null;
@@ -138,6 +139,46 @@ export const SOUND_EVENTS = Object.freeze({
   // зачем: лёгкий сигнал «теперь вы друзья» на стороне того, кто принял
   // заявку — не путать с friend_request (входящая заявка).
   'pm.social.friend_added': event(require('../../assets/audio/sfx/v1/social/pm_social_friend_added_v1.wav'), 0.30, 55, 2000, 1000, 'social', { deferAfterVoice: true }),
+  /**
+   * Звуки Арены.
+   *
+   * Источник пуст НАМЕРЕННО: файлы генерирует владелец через Adobe Firefly по
+   * промптам из `docs/arena/SOUND_PROMPTS.md`, и их пока нет. Директор молча
+   * пропускает события без источника, поэтому места вызова уже расставлены и
+   * работают — когда файл кладут в `assets/sounds/ar/`, меняется ровно одна
+   * строка здесь. Заглушек в коде экранов при этом не появляется.
+   *
+   * Числа не выдуманы здесь: они взяты из `modules/arena/sound_catalog.ts`, и
+   * тест `arena_sound_catalog` падает при первом же расхождении.
+   */
+  'pm.arena.search_start': event(null, 0.35, 55, 600, 400, 'arena'),
+  'pm.arena.search_loop': event(null, 0.12, 20, 1800, 2000, 'arena'),
+  'pm.arena.opponent_found': event(null, 0.6, 78, 1500, 700, 'arena'),
+  'pm.arena.countdown_tick': event(null, 0.34, 62, 700, 200, 'arena'),
+  'pm.arena.countdown_go': event(null, 0.55, 74, 1200, 500, 'arena'),
+  'pm.arena.task_in': event(null, 0.24, 40, 500, 260, 'arena'),
+  'pm.arena.option_tap': event(null, 0.2, 30, 60, 120, 'arena'),
+  'pm.arena.answer_correct': event(null, 0.42, 70, 160, 380, 'arena'),
+  'pm.arena.answer_first': event(null, 0.48, 72, 160, 460, 'arena'),
+  'pm.arena.answer_wrong': event(null, 0.28, 68, 220, 320, 'arena'),
+  'pm.arena.opponent_answered': event(null, 0.22, 45, 400, 200, 'arena'),
+  'pm.arena.timer_tick': event(null, 0.3, 60, 700, 140, 'arena'),
+  'pm.arena.timeout': event(null, 0.34, 66, 500, 420, 'arena'),
+  'pm.arena.combo_start': event(null, 0.38, 64, 600, 420, 'arena'),
+  'pm.arena.combo_up': event(null, 0.4, 65, 300, 380, 'arena'),
+  'pm.arena.combo_break': event(null, 0.26, 58, 600, 340, 'arena'),
+  'pm.arena.pair_match': event(null, 0.34, 66, 80, 180, 'arena'),
+  'pm.arena.pair_miss': event(null, 0.24, 62, 120, 200, 'arena'),
+  'pm.arena.pair_clear': event(null, 0.46, 74, 800, 520, 'arena'),
+  'pm.arena.result_win': event(null, 0.55, 90, 2000, 1400, 'arena'),
+  'pm.arena.result_loss': event(null, 0.38, 90, 2000, 1200, 'arena'),
+  'pm.arena.result_draw': event(null, 0.42, 90, 2000, 1100, 'arena'),
+  'pm.arena.star_fly': event(null, 0.26, 50, 70, 240, 'arena'),
+  'pm.arena.star_land': event(null, 0.34, 56, 90, 260, 'arena'),
+  'pm.arena.goal_complete': event(null, 0.44, 76, 1500, 700, 'arena'),
+  'pm.arena.reward_unlock': event(null, 0.5, 84, 1500, 900, 'arena'),
+  'pm.arena.rank_up': event(null, 0.55, 88, 2000, 1300, 'arena'),
+  'pm.arena.rank_down': event(null, 0.34, 82, 2000, 900, 'arena'),
 });
 
 export type SoundEventId = keyof typeof SOUND_EVENTS;

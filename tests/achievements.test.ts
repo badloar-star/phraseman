@@ -155,7 +155,8 @@ describe('achievements', () => {
     expect(new Set(ids).size).toBe(ids.length);
     expect(ids.length).toBeGreaterThanOrEqual(81);
 
-    const missingEs = ids.filter(id => !ACHIEVEMENT_ES[id]);
+    const activeIds = ALL_ACHIEVEMENTS.filter(achievement => !achievement.retired).map(achievement => achievement.id);
+    const missingEs = activeIds.filter(id => !ACHIEVEMENT_ES[id]);
     expect(missingEs).toEqual([]);
 
     // зачем: арт больше не бандлится целиком — «ядро» лежит в require-реестре,
@@ -170,7 +171,7 @@ describe('achievements', () => {
     const bundledIds = new Set([...imageBlock.matchAll(/^\s*([a-z0-9_]+):\s*require/gm)].map(m => m[1]));
     const remoteIds = new Set([...urlMap.matchAll(/^\s{2}"([a-z0-9_]+)":\s*"https:/gm)].map(m => m[1]));
 
-    const missingImages = ids.filter(id => !bundledIds.has(id) && !remoteIds.has(id));
+    const missingImages = activeIds.filter(id => !bundledIds.has(id) && !remoteIds.has(id));
     expect(missingImages).toEqual([]);
   });
 
@@ -335,7 +336,8 @@ describe('achievements', () => {
     const source = fs.readFileSync(screenPath, 'utf8');
 
     expect(source).toContain('const showAllAchievements = ENABLE_DEV_TOOLS && devShowAllAchievements;');
-    expect(source).toContain('isVisibleAchievement(a, stateMap)');
+    expect(source).toContain('ALL_ACHIEVEMENTS.filter(isVisibleAchievement)');
+    expect(source).toContain('return !a.retired;');
     expect(source).toContain('testID="achievements-dev-show-all-toggle"');
     expect(source).toContain('if (catAchs.length === 0) return [];');
     expect(source).not.toContain('unlockedCount} / {total}');
@@ -433,12 +435,6 @@ describe('achievements', () => {
     await checkAchievements({ type: 'backfill' });
 
     await checkAchievements({ type: 'combo', count: 500 });
-    jest.useFakeTimers().setSystemTime(new Date('2026-05-01T12:00:00'));
-    for (let i = 0; i < 30; i += 1) {
-      jest.setSystemTime(new Date(2026, 4, 1 + i, 12, 0, 0));
-      await checkAchievements({ type: 'daily_task', allDone: true, noReroll: true });
-    }
-    jest.useRealTimers();
     for (let i = 0; i < 100; i += 1) {
       await checkAchievements({ type: 'daily_phrase', action: 'read' });
       await checkAchievements({ type: 'daily_phrase', action: 'save' });
@@ -522,7 +518,7 @@ describe('achievements', () => {
     }
 
     const unlocked = await unlockedIds();
-    const missing = idsOf(ALL_ACHIEVEMENTS).filter(id => !unlocked.has(id));
+    const missing = idsOf(ALL_ACHIEVEMENTS.filter(achievement => !achievement.retired)).filter(id => !unlocked.has(id));
     expect(missing).toEqual([]);
   });
 

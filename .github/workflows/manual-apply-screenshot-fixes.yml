@@ -56,10 +56,6 @@ jobs:
           cat > /tmp/expected-code.txt <<'EOF'
           app/(tabs)/home.tsx
           app/club_screen.tsx
-          app/daily_task_navigation.ts
-          app/daily_tasks.ts
-          app/daily_tasks_es_locale.ts
-          app/daily_tasks_screen.tsx
           app/home_last_lesson_resolver.ts
           app/home_screen_hydration.ts
           app/lesson1.tsx
@@ -70,19 +66,8 @@ jobs:
           app/trainer_phrases_session.tsx
           app/trainer_words_session.tsx
           tests/daily_quests_active_catalog_contract.test.ts
-          tests/daily_task_reroll.test.ts
-          tests/daily_tasks_active_executability_contract.test.ts
-          tests/daily_tasks_claim.test.ts
-          tests/daily_tasks_completed_card_stability.test.ts
-          tests/daily_tasks_inflight_progress.test.ts
-          tests/daily_tasks_language_availability.test.ts
-          tests/daily_tasks_recall_availability.test.ts
-          tests/daily_tasks_safe_fallback.test.ts
-          tests/daily_tasks_screen_cache.test.ts
-          tests/daily_tasks_trainer_availability.test.ts
           tests/home_runtime_truth_contract.test.ts
           tests/league_focus_refresh_contract.test.ts
-          tests/lesson_completion_daily_task_delivery_contract.test.ts
           tests/personal_plan_completion_persistence_contract.test.ts
           tests/plan_content_runtime_adapter.test.ts
           tests/plan_content_screenshot_phrase_integrity.test.ts
@@ -111,8 +96,7 @@ jobs:
           npm run assets:verify:boons
           npx tsc --noEmit
           npx eslint \
-            'app/(tabs)/home.tsx' app/club_screen.tsx app/daily_task_navigation.ts \
-            app/daily_tasks.ts app/daily_tasks_es_locale.ts app/daily_tasks_screen.tsx \
+            'app/(tabs)/home.tsx' app/club_screen.tsx \
             app/home_last_lesson_resolver.ts app/home_screen_hydration.ts app/lesson1.tsx \
             app/personal_plan_exercise.tsx app/personal_plan_progress.ts \
             app/plan_content_runtime_adapter.ts app/review.tsx \
@@ -126,19 +110,8 @@ jobs:
           set -euo pipefail
           npx jest --no-cache --runInBand --runTestsByPath \
             tests/daily_quests_active_catalog_contract.test.ts \
-            tests/daily_task_reroll.test.ts \
-            tests/daily_tasks_active_executability_contract.test.ts \
-            tests/daily_tasks_claim.test.ts \
-            tests/daily_tasks_completed_card_stability.test.ts \
-            tests/daily_tasks_inflight_progress.test.ts \
-            tests/daily_tasks_language_availability.test.ts \
-            tests/daily_tasks_recall_availability.test.ts \
-            tests/daily_tasks_safe_fallback.test.ts \
-            tests/daily_tasks_screen_cache.test.ts \
-            tests/daily_tasks_trainer_availability.test.ts \
             tests/home_runtime_truth_contract.test.ts \
             tests/league_focus_refresh_contract.test.ts \
-            tests/lesson_completion_daily_task_delivery_contract.test.ts \
             tests/personal_plan_completion_persistence_contract.test.ts \
             tests/plan_content_runtime_adapter.test.ts \
             tests/plan_content_screenshot_phrase_integrity.test.ts \

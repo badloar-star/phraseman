@@ -10,7 +10,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useOverlayVisible } from './OverlayArbiter';
 import { getTodaysBoons } from '../app/boons/boon_engine';
-import { getTodayKey } from '../app/daily_tasks';
+import { getUtcDayKey } from '../app/local_date';
 import { onAppEvent } from '../app/events';
 import { isEnergyFreeWindowActive, ENERGY_FREE_WINDOW_START_HOUR } from '../app/boons/boon_effects_energy';
 import type { BoonId } from '../app/boons/boon_types';
@@ -53,7 +53,7 @@ export default function BoonActivatedHost() {
   const markShown = useCallback(async (): Promise<boolean> => {
     if (shownRef.current) return true;
     try {
-      await AsyncStorage.setItem(SHOWN_KEY, getTodayKey());
+      await AsyncStorage.setItem(SHOWN_KEY, getUtcDayKey());
       shownRef.current = true;
       return true;
     } catch {
@@ -81,7 +81,7 @@ export default function BoonActivatedHost() {
       if (alive()) clearPending();
       return;
     }
-    const todayKey = getTodayKey();
+    const todayKey = getUtcDayKey();
     try {
       const shown = await AsyncStorage.getItem(SHOWN_KEY);
       if (shown === todayKey) return; // уже показывали сегодня

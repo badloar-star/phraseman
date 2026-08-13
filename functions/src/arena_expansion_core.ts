@@ -200,7 +200,13 @@ export function arenaRunEligibility(runKind: ArenaExpansionRunKind, mode: string
     mastery: false, partnerActivity: false, profileOutcome: true,
   };
   return {
-    rating: mode === 'ranked', baseStars: mode === 'quick' || mode === 'ranked',
+    /**
+     * Звёзды в кошелёк начисляет только рейтинговый матч (D-07: «быстрый матч
+     * звёзды не начисляет, только опыт»). Право на редкую награду и на зачёт
+     * дневных целей быстрый матч при этом сохраняет — оно считается отдельным
+     * счётчиком, а не этим полем.
+     */
+    rating: mode === 'ranked', baseStars: mode === 'ranked',
     todayStars: false, spin: mode === 'quick' || mode === 'ranked',
     mastery: mode === 'quick' || mode === 'ranked', partnerActivity: mode === 'quick' || mode === 'ranked',
     profileOutcome: true,

@@ -1,7 +1,7 @@
 /**
  * cards-2.0 (E5): чистая логика каркаса сессии (§3.5 мастер-плана).
  * «Ошибка → карточка в конец очереди, максимум 2 повтора за сессию» + расчёт
- * итога сессии (счёт/точность/среднее время) для awardSessionStars.
+ * итога сессии (счёт/точность/среднее время) для экрана результата.
  * Без RN-импортов — юнит-тестируется в node (tests/fc_session_queue.test.ts).
  */
 
@@ -47,7 +47,7 @@ export type SessionAnswerEvent = {
   /** Стабильный ключ карточки (для списка «Ещё учу»). */
   key: string;
   correct: boolean;
-  /** Время ответа, мс (для среднего времени 3★). */
+  /** Время ответа, мс (для среднего времени сессии). */
   ms?: number;
 };
 
@@ -60,13 +60,13 @@ export type SessionOutcomeSummary = {
   total: number;
   /** Точность 0..1 (0 при пустой сессии). */
   accuracy: number;
-  /** Среднее время ответа, сек; undefined — нет замеров (3★ недостижимы). */
+  /** Среднее время ответа, сек; undefined — нет замеров. */
   avgAnswerSec?: number;
   /** Уникальные ключи карточек с хотя бы одной ошибкой — для CTA «Добить: Ещё учу (N)». */
   learnKeys: string[];
 };
 
-/** Свести журнал ответов сессии к итогу для SessionResultScreen/awardSessionStars. */
+/** Свести журнал ответов сессии к итогу для SessionResultScreen. */
 export function summarizeSession(events: readonly SessionAnswerEvent[]): SessionOutcomeSummary {
   let correct = 0;
   let wrong = 0;

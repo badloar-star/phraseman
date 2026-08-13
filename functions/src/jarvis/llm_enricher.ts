@@ -1,22 +1,27 @@
 import type { Decision } from './decision';
+import {
+  formatJarvisPmBusinessContext,
+  type JarvisPmBusinessContext,
+} from './pm_business_context';
 
 /**
- * LLM-обогатитель Джарвиса — narrative ПОВЕРХ уже готовых решений.
+ * LLM-обогатитель Джарвиса — короткий PM-план ПОВЕРХ готовых фактов.
  *
  * зачем отдельный шаг после крона, а не внутри него (совет Advisor, план
  * владельца 2026-08-03): департаменты уже посчитали факты, пороги и severity
  * детерминированно — LLM НИКОГДА не участвует в этом счёте. Единственная его
  * работа — превратить готовое решение в связный текст для владельца. Если
  * LLM недоступен, ошибся или бюджет исчерпан — решение остаётся полностью
- * рабочим с narrative=null, просто без художественного пересказа.
+ * рабочим с narrative=null, просто без дополнительной продуктовой гипотезы.
  *
  * Порядок проверок ДО вызова OpenAI (каждая — дешёвое чтение Firestore,
  * дорогой сетевой вызов — последним):
  *  1. bail out, если у решения нет вообще ни одного доверенного доказательства
- *     (LLM нечего пересказывать, а выдумывать на пустом месте запрещено);
- *  2. технический бюджет (llm_budget.ts) — денежный потолок;
- *  3. слот идемпотентности (llm_enrichment_cache.ts) — не платить дважды за
- *     тот же contentHash при ретрае крона.
+ *     (LLM не на чем строить гипотезу, а выдумывать факты запрещено);
+ *  2. слот идемпотентности (llm_enrichment_cache.ts) — вернуть готовый кэш
+ *     или не платить дважды за тот же contentHash при ретрае крона;
+ *  3. технический бюджет (llm_budget.ts) — денежный потолок только для
+ *     действительно нового вызова.
  * Только после всех трёх — реальный вызов LLM.
  */
 
@@ -27,6 +32,8 @@ export interface EnricherBudgetVerdict {
 
 export interface EnricherSlotVerdict {
   readonly reserved: boolean;
+  /** Готовый результат предыдущего запуска; отсутствует у in-flight слота. */
+  readonly narrative?: string;
 }
 
 export interface EnricherNarrativeResult {
@@ -48,6 +55,8 @@ export interface EnricherDependencies {
 
 export interface EnrichDecisionsInput {
   readonly decisions: readonly Decision[];
+  /** Общая бизнес-динамика, прочитанная один раз на весь прогон. */
+  readonly businessContext?: JarvisPmBusinessContext;
 }
 
 export interface EnrichedDecision {
@@ -66,16 +75,21 @@ const DEPARTMENT_LABEL: Record<string, string> = {
  * evidence-записей туда не попадает вовсе — LLM не должен даже видеть имя
  * источника, которому нельзя верить, не то что опираться на его число.
  */
-function buildPrompt(decision: Decision): { system: string; user: string } {
+function buildPrompt(
+  decision: Decision,
+  businessContext?: JarvisPmBusinessContext,
+): { system: string; user: string } {
   const trustedEvidence = decision.evidence
     .filter((item) => item.trustworthy)
     .map((item) => `- ${item.sourceId}: ${item.count ?? '—'}`)
     .join('\n');
 
-  const system = 'Ты помощник, который кратко и по-деловому пересказывает готовое решение '
-    + 'аналитической системы владельцу приложения. Не придумывай фактов, не меняй цифры, '
-    + 'не давай новых рекомендаций — только свяжи уже данные факты в связный абзац на русском, '
-    + 'не длиннее 3-4 предложений.';
+  const system = 'Ты виртуальный product manager Phraseman — мобильного приложения для изучения языков. '
+    + 'На основании ТОЛЬКО переданных проверенных фактов предложи конкретную продуктовую гипотезу и самый дешёвый '
+    + 'проверяемый следующий шаг. Не придумывай метрики, сегменты, причины или события, которых нет во входе, '
+    + 'и не выдавай гипотезу за факт. Ответь на русском ровно в 3 коротких пунктах: '
+    + '«Почему это важно: …», «Гипотеза: …», «Эксперимент: …; успех: …». '
+    + 'Эксперимент должен быть выполнимым, иметь срок проверки и использовать переданную метрику успеха.';
 
   const user = [
     `Департамент: ${DEPARTMENT_LABEL[decision.department] ?? decision.department}`,
@@ -83,26 +97,38 @@ function buildPrompt(decision: Decision): { system: string; user: string } {
     `Находка: ${decision.finding}`,
     `Гипотеза: ${decision.hypothesis}`,
     `Рекомендация: ${decision.recommendation}`,
+    `Метрика успеха: ${decision.successMetric}`,
+    `Риск: ${decision.risk}`,
+    `Ограничения: ${decision.constraints.join('; ') || 'нет дополнительных'}`,
     trustedEvidence ? `Данные:\n${trustedEvidence}` : null,
+    businessContext
+      ? `Контекст бизнеса Phraseman (используй для приоритета, но не приписывай ему причинность):\n${formatJarvisPmBusinessContext(businessContext)}`
+      : null,
   ].filter((line): line is string => line !== null).join('\n');
 
   return { system, user };
 }
 
-async function enrichOne(decision: Decision, deps: EnricherDependencies): Promise<EnrichedDecision> {
+async function enrichOne(
+  decision: Decision,
+  deps: EnricherDependencies,
+  businessContext?: JarvisPmBusinessContext,
+): Promise<EnrichedDecision> {
   const hasTrustworthyEvidence = decision.evidence.some((item) => item.trustworthy);
   if (!hasTrustworthyEvidence) return { decision, narrative: null };
 
   const nowMs = deps.nowMs();
 
+  const slotVerdict = await deps.reserveSlot({ contentHash: decision.contentHash, nowMs });
+  if (!slotVerdict.reserved) return { decision, narrative: slotVerdict.narrative ?? null };
+
+  // Бюджет резервируется ПОСЛЕ cache/slot: повторный contentHash не должен
+  // увеличивать committedUsd, когда дорогой вызов всё равно не произойдёт.
   const budgetVerdict = await deps.checkBudget({ estimatedCostUsd: deps.estimateCostUsd(), nowMs });
   if (!budgetVerdict.allowed) return { decision, narrative: null };
 
-  const slotVerdict = await deps.reserveSlot({ contentHash: decision.contentHash, nowMs });
-  if (!slotVerdict.reserved) return { decision, narrative: null };
-
   try {
-    const prompt = buildPrompt(decision);
+    const prompt = buildPrompt(decision, businessContext);
     const generated = await deps.generateNarrative(prompt);
     const actualCostUsd = deps.actualCostUsd({
       promptTokens: generated.promptTokens,
@@ -131,7 +157,7 @@ export async function enrichDecisionsWithNarrative(
 ): Promise<readonly EnrichedDecision[]> {
   const results: EnrichedDecision[] = [];
   for (const decision of input.decisions) {
-    results.push(await enrichOne(decision, deps));
+    results.push(await enrichOne(decision, deps, input.businessContext));
   }
   return results;
 }

@@ -3,7 +3,7 @@
 // дисково кэшировать арт вместо бандла 199 webp (~6 MB) в нативный бинарь.
 // Читается через constants/achievementImageAssets.ts; «ядро» из
 // constants/achievementCoreArt.ts остаётся в бандле и сюда не попадает.
-// Entries: 165.
+// Entries: 158.
 
 export const ACHIEVEMENT_IMAGE_URL_MAP: Readonly<Record<string, string>> = {
   "avatar_custom": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Favatar_custom.webp?alt=media&token=3fe7b544-8d2c-4e0d-8471-17c292f42832",
@@ -13,13 +13,6 @@ export const ACHIEVEMENT_IMAGE_URL_MAP: Readonly<Record<string, string>> = {
   "combo_250": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fcombo_250.webp?alt=media&token=5834841c-7ff2-4299-939d-6d603e23c950",
   "combo_50": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fcombo_50.webp?alt=media&token=923bece4-bee0-44d2-a89d-fe6f3a474654",
   "combo_500": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fcombo_500.webp?alt=media&token=a8eb0a72-8b1c-4c07-95cd-88bef4acc8bc",
-  "daily_all_14": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fdaily_all_14.webp?alt=media&token=c09c2f59-0eb4-494c-aa79-fe668a80e6c3",
-  "daily_all_3": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fdaily_all_3.webp?alt=media&token=f1559f9d-b46d-45f4-aa34-1fd79ae7fb48",
-  "daily_all_30": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fdaily_all_30.webp?alt=media&token=07579d29-7093-49d0-a5fd-0e740338084a",
-  "daily_all_7": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fdaily_all_7.webp?alt=media&token=baa6ebb3-2f11-4714-94e0-f7c02e212636",
-  "daily_no_reroll": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fdaily_no_reroll.webp?alt=media&token=3a7f6dbf-180d-42b6-acc5-acd764dabb90",
-  "daily_no_reroll_30": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fdaily_no_reroll_30.webp?alt=media&token=c5f57be9-1952-430a-99a8-d702eefd4bc8",
-  "daily_no_reroll_7": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fdaily_no_reroll_7.webp?alt=media&token=2ad43f44-70c4-4257-8255-ddcc23e2132c",
   "daily_phrase_read_30": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fdaily_phrase_read_30.webp?alt=media&token=12d2b875-2dbc-4219-ba3c-b4f61c90df34",
   "daily_phrase_save": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fdaily_phrase_save.webp?alt=media&token=55fbe7d4-ebe2-42cb-8bb5-948c6e489412",
   "daily_phrase_save_100": "https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/achievement-images%2Fdaily_phrase_save_100.webp?alt=media&token=ca47b514-3fbc-4d9b-ba6a-c79b14139b70",

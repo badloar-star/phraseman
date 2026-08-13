@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
-import { ArenaProgress, ArenaStateCard } from '../components/arena/ArenaExpansionUI';
+import { ArenaProgress, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
+import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -48,13 +49,14 @@ export default function ArenaRivalriesScreen() {
   const propose = () => params.sourceMatchId && run(`propose:${params.sourceMatchId}`, (requestId) => arenaRivalPropose(params.sourceMatchId as string, requestId));
 
   return (
+    <ArenaHubChrome>
     <ArenaScreen title={arenaExpansionText(lang, 'rivalry')} subtitle={arenaExpansionText(lang, 'rivalryBody')} scroll={false}>
       <FlatList
         data={items}
         keyExtractor={(item) => item.rivalryId}
         contentContainerStyle={styles.list}
-        ListHeaderComponent={<View style={styles.header}>{state === 'error' ? <ArenaStateCard state="error" title={arenaExpansionText(lang, 'unavailable')} actionLabel={arenaExpansionText(lang, 'retry')} onAction={load} /> : null}{params.sourceMatchId ? <V2Cta disabled={['loading', 'unavailable', 'error'].includes(state) || Boolean(busyId)} onPress={propose}>{arenaExpansionText(lang, 'rivalryPropose')}</V2Cta> : null}</View>}
-        ListEmptyComponent={<View style={styles.center}><ArenaStateCard state={state} title={arenaExpansionText(lang, state === 'error' ? 'unavailable' : state)} actionLabel={state === 'error' ? arenaExpansionText(lang, 'retry') : undefined} onAction={state === 'error' ? load : undefined} /></View>}
+        ListHeaderComponent={<View style={styles.header}>{state === 'error' ? <ArenaStateNotice state="error" onRetry={load} /> : null}{params.sourceMatchId ? <V2Cta disabled={['loading', 'unavailable', 'error'].includes(state) || Boolean(busyId)} onPress={propose}>{arenaExpansionText(lang, 'rivalryPropose')}</V2Cta> : null}</View>}
+        ListEmptyComponent={<View style={styles.center}><ArenaStateNotice state={state === 'ready' ? 'empty' : state} emptyHint="emptyRivalry" onRetry={load} onBack={() => router.replace('/arena' as never)} /></View>}
         renderItem={({ item }) => {
           const score = arenaExpansionText(lang, 'score').replace('{you}', String(item.viewerWins)).replace('{them}', String(item.opponentWins));
           return <V2Card style={styles.card}>
@@ -70,6 +72,7 @@ export default function ArenaRivalriesScreen() {
         }}
       />
     </ArenaScreen>
+    </ArenaHubChrome>
   );
 }
 

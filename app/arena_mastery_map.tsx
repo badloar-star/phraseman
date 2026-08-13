@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
-import { ArenaProgress, ArenaStateCard } from '../components/arena/ArenaExpansionUI';
+import { ArenaProgress, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
+import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -15,6 +17,7 @@ import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
 import { trackArenaTelemetry } from './arena_telemetry';
 
 export default function ArenaMasteryMapScreen() {
+  const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
   const active = useRuntimeActive();
@@ -32,12 +35,13 @@ export default function ArenaMasteryMapScreen() {
   useEffect(() => { if (active) load(); }, [active, load]);
 
   return (
+    <ArenaHubChrome>
     <ArenaScreen title={arenaExpansionText(lang, 'mastery')} scroll={false}>
       <FlatList
         data={items}
         keyExtractor={(item) => item.mode}
         contentContainerStyle={styles.list}
-        ListEmptyComponent={<View style={styles.center}><ArenaStateCard state={state} title={arenaExpansionText(lang, state === 'error' ? 'unavailable' : state)} actionLabel={state === 'error' ? arenaExpansionText(lang, 'retry') : undefined} onAction={state === 'error' ? load : undefined} /></View>}
+        ListEmptyComponent={<View style={styles.center}><ArenaStateNotice state={state === 'ready' ? 'empty' : state} emptyHint="masteryLow" onRetry={load} onBack={() => router.replace('/arena' as never)} /></View>}
         renderItem={({ item }) => {
           const level = masteryLevel(item);
           return <V2Card style={styles.card}>
@@ -48,6 +52,7 @@ export default function ArenaMasteryMapScreen() {
         }}
       />
     </ArenaScreen>
+    </ArenaHubChrome>
   );
 }
 

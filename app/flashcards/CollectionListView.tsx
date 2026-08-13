@@ -1,3 +1,4 @@
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 /**
  * cards-2.0 (E11): списочный view коллекции, вынесенный 1:1 из монолита
  * flashcards_collection.tsx (§3.2, §7 E11). Контейнер остаётся оркестратором
@@ -21,7 +22,7 @@ import {
 } from 'react-native';
 import Reanimated, { FadeInDown, type SharedValue } from 'react-native-reanimated';
 import ReanimatedSwipeable, { SwipeDirection } from 'react-native-gesture-handler/ReanimatedSwipeable';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { IS_EXPO_GO } from '../config';
 import { triLang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
@@ -52,7 +53,7 @@ type Props = {
   hiddenByLimitCount: number;
   activeCat: CategoryId;
   packDeeplink: string | null;
-  lang: 'ru' | 'uk' | 'es';
+  lang: FlashcardContentLang;
   cardContentLang: FlashcardContentLang;
   t: Theme;
   f: Record<string, number>;
@@ -86,6 +87,8 @@ type Props = {
   onListenDeck: () => void;
   /** E13: «сила слова» по EN карточки (word_strength.strengthFor); null — без точек. */
   strengthForCard?: ((en: string) => WordStrength | null) | null;
+  /** Cards 2.1 §5.2: запас снизу под закреплённый таббар раздела (0 — таббара нет). */
+  extraBottomPad?: number;
 };
 
 export default function CollectionListView({
@@ -123,8 +126,9 @@ export default function CollectionListView({
   onTrainDeck,
   onListenDeck,
   strengthForCard = null,
+  extraBottomPad = 0,
 }: Props) {
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const flatListRef = useRef<any>(null);
   const [scrollViewH, setScrollViewH] = useState(0);
   const scrollViewHRef = useRef(0);
@@ -458,7 +462,8 @@ export default function CollectionListView({
   ]);
 
   /** Нижний «хвост» — чтобы последнюю картку можно было прокрутить к центру. */
-  const listPadBottom = scrollViewH > 0 ? Math.max(12, scrollViewH - cardHeight - 12 - peek) : 20;
+  const listPadBottom =
+    (scrollViewH > 0 ? Math.max(12, scrollViewH - cardHeight - 12 - peek) : 20) + Math.max(0, extraBottomPad);
 
   return (
     <View style={{ flex: 1 }}>
@@ -731,7 +736,7 @@ export function UndoDeleteSnackbar({
   onUndo,
 }: {
   bottomOffset: number;
-  lang: 'ru' | 'uk' | 'es';
+  lang: FlashcardContentLang;
   t: Theme;
   f: Record<string, number>;
   onUndo: () => void;
@@ -810,7 +815,7 @@ export function CollectionEmptyState({
   onCreatePack,
 }: {
   activeCat: CategoryId;
-  lang: 'ru' | 'uk' | 'es';
+  lang: FlashcardContentLang;
   t: Theme;
   f: Record<string, number>;
   emptyTitle: string;

@@ -1,3 +1,4 @@
+import { customCardLocalizationForLang } from './flashcards_collection';
 // cards-2.0 (E7): отдельный экран create/edit кастомной карточки.
 // Роуты: /flashcards_card_editor?create=1&cat=custom — создание;
 //        /flashcards_card_editor?id=<cardId>        — редактирование (закрывает баг 8).
@@ -110,8 +111,6 @@ export default function FlashcardsCardEditorScreen() {
 
   const strLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const s = STR[strLang];
-  /** Бейдж языка перевода — поле хранит ровно этот язык (инвариант). */
-  const trLangBadge = lang === 'uk' ? 'UK' : lang === 'es' ? 'ES' : 'RU';
 
   const [existing, setExisting] = useState<CardItem | null>(null);
   /** edit: пока карточка не найдена — форма не показывается (иначе save создаст дубликат). */
@@ -122,6 +121,8 @@ export default function FlashcardsCardEditorScreen() {
   /** Перевод текущей локали на момент загрузки — чтобы отличать «не было» от «стёр». */
   const prefillTrRef = useRef('');
   const [focusedField, setFocusedField] = useState<'front' | 'back' | 'description'>('front');
+  /** Необязательная подсказка спрятана до явного запроса — на первом экране только две стороны. */
+  const [descriptionOpen, setDescriptionOpen] = useState(false);
   const [saving, setSaving] = useState(false);
 
   const backInputRef = useRef<TextInput | null>(null);
@@ -234,6 +235,7 @@ export default function FlashcardsCardEditorScreen() {
       prefillTrRef.current = own;
       setDraftTR(own);
       setDraftDescription(card.description ?? '');
+      setDescriptionOpen((card.description ?? '').trim().length > 0);
       setLoadingCard(false);
     };
     const cachedList = peekCustomCardsSync();
@@ -303,6 +305,7 @@ export default function FlashcardsCardEditorScreen() {
     // When editing in UK mode, only `uk` is updated; `ru` is preserved from existing card.
     // When editing in RU mode, only `ru` is updated; `uk` is preserved from existing card.
     // When editing in ES mode, only `es` is updated; `ru` / `uk` are preserved.
+    const localized = customCardLocalizationForLang(lang, trVal, existing ?? undefined);
     const descTrim = draftDescription.trim();
     const newCard: CardItem = {
       // Спред существующей карточки — не теряем прочие поля (transcription и т.п.)
@@ -311,9 +314,12 @@ export default function FlashcardsCardEditorScreen() {
       en: draftEN.trim(),
       // E13: автотранскрипция — считаем от актуального EN (правка EN обновляет IPA)
       transcription: getTranscription(draftEN.trim()) || existing?.transcription,
-      ru: lang === 'uk' ? (existing?.ru ?? '') : lang === 'es' ? (existing?.ru ?? '') : trVal,
-      uk: lang === 'uk' ? trVal : (existing?.uk ?? ''),
-      es: lang === 'es' ? trVal : (existing?.es ?? ''),
+      // Плановые локали: ru/uk/es — базовые поля, остальные 5 языков уходят в
+      // sourceLocales (иначе перевод терялся у pt-BR/vi/id/tr/pl).
+      ru: localized.baseRu,
+      uk: localized.baseUk,
+      es: localized.baseEs,
+      sourceLocales: localized.plannedSourceLocales,
       description: descTrim.length > 0 ? descTrim : undefined,
       categoryId: 'custom',
       isSystem: false,
@@ -356,11 +362,10 @@ export default function FlashcardsCardEditorScreen() {
   ]);
 
   const fieldLabelStyle = {
-    color: t.textMuted,
-    fontSize: f.caption,
+    color: t.textSecond,
+    fontSize: f.sub,
     fontWeight: '700' as const,
-    letterSpacing: 1.2,
-    textTransform: 'uppercase' as const,
+    letterSpacing: 0.2,
   };
   const inputBaseStyle = (focused: boolean) => ({
     backgroundColor: t.bgSurface,
@@ -394,8 +399,6 @@ export default function FlashcardsCardEditorScreen() {
                 <Text
                   style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', letterSpacing: 0.2 }}
                   numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.6}
                 >
                   {isEdit ? s.editCard : s.newCard}
                 </Text>
@@ -418,7 +421,7 @@ export default function FlashcardsCardEditorScreen() {
                 <View style={{ gap: 8 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                     <Ionicons name="language-outline" size={13} color={t.textMuted} />
-                    <Text style={[fieldLabelStyle, { flex: 1 }]}>{s.editFront} · EN</Text>
+                    <Text style={[fieldLabelStyle, { flex: 1 }]}>{s.editFront}</Text>
                     {/* E13: TTS-превью введённого EN */}
                     {draftEN.trim() ? (
                       <TouchableOpacity
@@ -507,7 +510,7 @@ export default function FlashcardsCardEditorScreen() {
                 <View style={{ gap: 8 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                     <Ionicons name="swap-horizontal-outline" size={13} color={t.textMuted} />
-                    <Text style={fieldLabelStyle}>{s.editBack} · {trLangBadge}</Text>
+                    <Text style={fieldLabelStyle}>{s.editBack}</Text>
                   </View>
                   <TextInput
                     ref={backInputRef}
@@ -518,9 +521,12 @@ export default function FlashcardsCardEditorScreen() {
                     placeholderTextColor={t.textGhost}
                     value={draftTR}
                     onChangeText={setDraftTR}
-                    returnKeyType="next"
-                    onSubmitEditing={() => descriptionInputRef.current?.focus()}
-                    blurOnSubmit={false}
+                    returnKeyType={descriptionOpen ? 'next' : 'done'}
+                    onSubmitEditing={() => {
+                      if (descriptionOpen) descriptionInputRef.current?.focus();
+                      else void handleSave();
+                    }}
+                    blurOnSubmit={!descriptionOpen}
                     maxLength={80}
                     onFocus={() => setFocusedField('back')}
                   />
@@ -553,7 +559,8 @@ export default function FlashcardsCardEditorScreen() {
                   ) : null}
                 </View>
 
-                {/* Optional description */}
+                {/* Optional description — раскрывается по запросу (упрощение 2026-08-13) */}
+                {descriptionOpen ? (
                 <View style={{ gap: 8 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                     <Ionicons name="document-text-outline" size={13} color={t.textMuted} />
@@ -582,6 +589,34 @@ export default function FlashcardsCardEditorScreen() {
                     {draftDescription.length}/220
                   </Text>
                 </View>
+                ) : (
+                  <TouchableOpacity
+                    testID="fc-editor-description-open"
+                    accessibilityLabel="qa-fc-editor-description-open"
+                    accessible
+                    activeOpacity={0.8}
+                    onPress={() => {
+                      setDescriptionOpen(true);
+                      requestAnimationFrame(() => descriptionInputRef.current?.focus());
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: 8,
+                      alignSelf: 'flex-start',
+                      paddingVertical: 8,
+                    }}
+                  >
+                    <Ionicons name="add-circle-outline" size={16} color={t.textSecond} />
+                    <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '600' }}>
+                      {triLang(lang, {
+                        ru: 'Добавить заметку',
+                        uk: 'Додати нотатку',
+                        es: 'Añadir una nota',
+                      })}
+                    </Text>
+                  </TouchableOpacity>
+                )}
 
                 {/* Save button */}
                 <TouchableOpacity

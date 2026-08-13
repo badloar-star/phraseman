@@ -165,6 +165,7 @@ describe('accountDelete query plan', () => {
       'arena_v2_star_ledger',
       'arena_v2_entitlements',
       'arena_v2_expansion_receipts',
+      'star_operations',
     ]);
   });
 

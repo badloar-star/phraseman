@@ -20,6 +20,8 @@ import { OLIVE_RICH } from '../../constants/oliveTheme';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import HomeScreen       from './home';
+import DevHubSheetGate from '../../components/dev/DevHubSheetGate';
+import { ENABLE_DEV_TOOLS } from '../config';
 import {
   captureAccountGeneration,
   subscribeAccountGeneration,
@@ -367,26 +369,57 @@ const TABS: TabDef[] = [
   { key: 'settings',    icon: 'settings-outline',    active: 'settings' },
 ];
 
-// Видимый таббар и свайп-пейджер используют один и тот же список страниц.
-// Скрытых физических страниц здесь быть не должно: иначе в них можно попасть свайпом.
-const TAB_BAR_TABS = TABS.map((tab, logicalIdx) => ({
-  ...tab,
-  logicalIdx,
-}));
+/** Центральная кнопка таббара: Арена — полноэкранный push-маршрут, а не свайп-страница.
+ *  logicalIdx = -1 намеренно: у неё нет физической страницы в TabSlider, поэтому
+ *  свайпом в неё попасть нельзя и tab_page_model остаётся неизменной. */
+const ARENA_BAR_ROUTE = '/arena';
+type TabBarEntry = TabDef & { logicalIdx: number; route?: string; center?: boolean };
+
+const TAB_BAR_TABS: TabBarEntry[] = (() => {
+  const pages: TabBarEntry[] = TABS.map((tab, logicalIdx) => ({ ...tab, logicalIdx }));
+  const middle = Math.ceil(pages.length / 2);
+  const arena: TabBarEntry = {
+    key: 'arena',
+    icon: 'shield-half-outline',
+    active: 'shield-half',
+    logicalIdx: -1,
+    route: ARENA_BAR_ROUTE,
+    center: true,
+  };
+  return [...pages.slice(0, middle), arena, ...pages.slice(middle)];
+})();
 
 
-type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: boolean; visualIdx: number; physicalPageIdx: PhysicalPageIndex };
+type TabScaffoldProps = {
+  tabScreens: React.ReactNode[];
+  currentRouteIsTab: boolean;
+  visualIdx: number;
+  physicalPageIdx: PhysicalPageIndex;
+  devHubVisible: boolean;
+  onCloseDevHub: () => void;
+  onOpenDevHub: () => void;
+};
 
 /**
  * Один full-screen ScreenGradient (орбы/градиент) под системным статус-баром + paddingTop по insets
  * (без SafeAreaView сверху — иначе над контентом оставалась «плашка» из bgPrimary).
  */
-function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx }: TabScaffoldProps) {
+function TabScaffold({
+  tabScreens,
+  currentRouteIsTab,
+  visualIdx,
+  physicalPageIdx,
+  devHubVisible,
+  onCloseDevHub,
+  onOpenDevHub,
+}: TabScaffoldProps) {
   const { theme: t, ds, statusBarLight, themeMode } = useTheme();
   const { lang } = useLang();
   const { tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useStableSafeAreaInsets();
+  const tabBarRouter = useRouter();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
+  const [devOverlayVisible, setDevOverlayVisible] = useState(false);
   const topFadeScroll = useTopFadeScroll();
   /** Sage использует собственную акцентную капсулу вместо чужого чёрного scrim.
    * Тёмные состояния иконок держат контраст и в полном, и в компактном таббаре. */
@@ -576,6 +609,9 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
       <View
         onLayout={notifyFirstContentReady}
         style={{ flex: 1, paddingTop: insets.top }}
+        pointerEvents={devOverlayVisible ? 'none' : 'auto'}
+        accessibilityElementsHidden={devOverlayVisible}
+        importantForAccessibility={devOverlayVisible ? 'no-hide-descendants' : 'auto'}
       >
         <View style={{ flex: 1, width: '100%', alignSelf: 'stretch', flexDirection: 'column' }}>
           <View style={s.tabContent}>
@@ -631,7 +667,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
 
               {TAB_BAR_TABS.map((tab, barIndex) => {
                 const visuallyFocused = activeBarTabIdx === barIndex;
-                const color = visuallyFocused ? tabIconActive : tabIconMuted;
+                const color = tab.center ? tabIconActive : visuallyFocused ? tabIconActive : tabIconMuted;
                 const iconScale = pressedTabIdx === barIndex
                   ? tabPressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.08] })
                   : 1;
@@ -641,19 +677,25 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                     testID={`tab-${tab.key}`}
                     accessibilityLabel={triLang(lang, { ru: tab.key === 'home' ? 'Главная' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'friends' ? 'Друзья' : 'Настройки', uk: tab.key === 'home' ? 'Головна' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'friends' ? 'Друзі' : 'Налаштування', es: tab.key === 'home' ? 'Inicio' : tab.key === 'lessons' ? 'Lecciones' : tab.key === 'friends' ? 'Amigos' : 'Ajustes', 'pt-BR': tab.key === 'home' ? 'Início' : tab.key === 'lessons' ? 'Lições' : tab.key === 'friends' ? 'Amigos' : 'Configurações', vi: tab.key === 'home' ? 'Trang chủ' : tab.key === 'lessons' ? 'Bài học' : tab.key === 'friends' ? 'Bạn bè' : 'Cài đặt', id: tab.key === 'home' ? 'Beranda' : tab.key === 'lessons' ? 'Pelajaran' : tab.key === 'friends' ? 'Teman' : 'Pengaturan', tr: tab.key === 'home' ? 'Ana sayfa' : tab.key === 'lessons' ? 'Dersler' : tab.key === 'friends' ? 'Arkadaşlar' : 'Ayarlar', pl: tab.key === 'home' ? 'Strona główna' : tab.key === 'lessons' ? 'Lekcje' : tab.key === 'friends' ? 'Znajomi' : 'Ustawienia' })}
                     accessible={true}
-                    accessibilityRole="tab"
-                    accessibilityState={{ selected: visuallyFocused }}
+                    accessibilityRole={tab.center ? 'button' : 'tab'}
+                    accessibilityState={tab.center ? undefined : { selected: visuallyFocused }}
                     style={s.tabBtn}
                     onPressIn={() => beginTabPress(barIndex)}
                     onPressOut={endTabPress}
-                    onPress={() => goToTab(tab.logicalIdx)}
+                    onPress={() => {
+                      if (tab.route) {
+                        tabBarRouter.push(tab.route as never);
+                        return;
+                      }
+                      goToTab(tab.logicalIdx);
+                    }}
                     activeOpacity={1}
                   >
                     {!ENABLE_TAB_HIGHLIGHT_TRAVEL && visuallyFocused ? (
                       <View style={[s.tabActivePill, { backgroundColor: tabActiveBg }]} />
                     ) : null}
                     <Animated.View style={{ transform: [{ scale: iconScale }] }}>
-                      <Ionicons name={visuallyFocused ? tab.active : tab.icon} size={26} color={color} />
+                      <Ionicons name={tab.center || visuallyFocused ? tab.active : tab.icon} size={tab.center ? 29 : 26} color={color} />
                     </Animated.View>
                   </TouchableOpacity>
                 );
@@ -662,6 +704,14 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
           </View>
         </View>
       </View>
+      {ENABLE_DEV_TOOLS ? (
+        <DevHubSheetGate
+          visible={devHubVisible}
+          onClose={onCloseDevHub}
+          onOpen={onOpenDevHub}
+          onSurfaceActiveChange={setDevOverlayVisible}
+        />
+      ) : null}
     </ScreenGradient>
   );
 }
@@ -710,6 +760,9 @@ function ReleasedTabLayout() {
   const visualIdxRef = useRef(visualIdx);
   visualIdxRef.current = visualIdx;
   const [focusTick, setFocusTick] = useState(0);
+  const [devHubVisible, setDevHubVisible] = useState(false);
+  const openDevHub = useCallback(() => setDevHubVisible(true), []);
+  const closeDevHub = useCallback(() => setDevHubVisible(false), []);
   // Ліниве монтування: слот таба появляется сразу, а тяжелый экран монтируется в idle после первого кадра.
   // Начальный таб всегда в visited/mounted — чтобы первый рендер не был плейсхолдером.
   const [visitedTabs, setVisitedTabs] = useState(() => {
@@ -922,7 +975,7 @@ function ReleasedTabLayout() {
     // (свайп-драг показывает соседнюю панель — она не должна быть пустой).
     const freezeWanted = (logicalIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx) - physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE;
     return [
-      show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen /></TabPane> : placeholder('ph-home'),
+      show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen onOpenDevHub={openDevHub} /></TabPane> : placeholder('ph-home'),
       show(1) ? (
         <LessonsPaneBoundary
           key="lessons"
@@ -934,14 +987,29 @@ function ReleasedTabLayout() {
       show(2) ? <TabPane key="friends" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
       show(3) ? <TabPane key="settings" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
     ];
-  }, [activeIdx, mountedTabs, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
+  }, [activeIdx, mountedTabs, openDevHub, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 
   const runtimeOwnerId = physicalPageToRuntimeOwner(physicalPageIdx);
 
   return (
-    <TabProvider activeIdx={activeIdx} runtimeOwnerId={runtimeOwnerId} onTabChange={handleTabChange} onSwipeStart={handleSwipeStart} onSwipeComplete={handleSwipeComplete} focusTick={focusTick}>
+    <TabProvider
+      activeIdx={activeIdx}
+      runtimeOwnerId={runtimeOwnerId}
+      onTabChange={handleTabChange}
+      onSwipeStart={handleSwipeStart}
+      onSwipeComplete={handleSwipeComplete}
+      focusTick={focusTick}
+    >
       <TopFadeScrollProvider>
-        <TabScaffold tabScreens={tabScreens} currentRouteIsTab={currentRouteIsTab} visualIdx={visualIdx} physicalPageIdx={physicalPageIdx} />
+        <TabScaffold
+          tabScreens={tabScreens}
+          currentRouteIsTab={currentRouteIsTab}
+          visualIdx={visualIdx}
+          physicalPageIdx={physicalPageIdx}
+          devHubVisible={devHubVisible}
+          onCloseDevHub={closeDevHub}
+          onOpenDevHub={openDevHub}
+        />
       </TopFadeScrollProvider>
     </TabProvider>
   );

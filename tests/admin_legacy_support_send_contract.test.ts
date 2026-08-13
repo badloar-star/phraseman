@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const legacy = fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
+const legacy = fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'legacy.html'), 'utf8');
 
 function functionBlock(startMarker: string, endMarker: string): string {
   const start = legacy.indexOf(startMarker);
@@ -35,7 +35,7 @@ describe('Legacy admin support mail delivery contract', () => {
   test('bulk reply is prepared, previewed, and dispatched with the sealed batch fields', () => {
     const block = functionBlock(
       'window.supportSendAllDrafts = async function()',
-      'window.supportSetStatus = async function(id, status)',
+      'window.supportSetStatus = async function(id, status, button)',
     );
 
     const prepareIndex = block.indexOf("supportCallable('adminSupportPrepareReplyBatch')");
@@ -54,7 +54,7 @@ describe('Legacy admin support mail delivery contract', () => {
   test('legacy support actions no longer use the removed mutable send payload', () => {
     const block = functionBlock(
       'window.supportSendOne = async function(id)',
-      'window.supportSetStatus = async function(id, status)',
+      'window.supportSetStatus = async function(id, status, button)',
     );
 
     expect(block).not.toContain("supportCallable('adminSupportSendReply')");
@@ -79,5 +79,54 @@ describe('Legacy admin support mail delivery contract', () => {
     expect(block).toContain("supportCallable('adminSupportSaveDraft')");
     expect(block).toContain('expectedDraftRevision');
     expect(block).toContain('Новая версия отправлена вам в Telegram');
+  });
+
+  test('support cards load one isolated conversation through the permission-checked callable', () => {
+    expect(legacy).toContain('История переписки');
+    const block = functionBlock(
+      'window.supportToggleConversation = async function(messageId, conversationId, button)',
+      'window.supportPullMail = async function()',
+    );
+    expect(block).toContain("supportCallable('adminSupportConversation')");
+    expect(block).toContain('Пользователь');
+    expect(block).toContain('Поддержка');
+    expect(block).toContain('escapeHtml');
+  });
+
+  test('Jarvis briefing is editable, byte-bounded, revisioned and saved without HTML rendering', () => {
+    expect(legacy).toContain('id="gsi-owner-instructions"');
+    expect(legacy).toContain('id="gsi-instructions-status"');
+    expect(legacy).toContain('id="gsi-instructions-count"');
+    const block = functionBlock('window.supportSaveInstructions = async function()', 'window.loadUserReports = async function()');
+    expect(block).toContain("supportCallable('adminSupportSaveInstructions')");
+    expect(block).toContain('expectedRevision: _supportInstructionsRevision');
+    expect(block).toContain('supportInstructionByteLength(text)');
+    expect(block).not.toContain('innerHTML');
+  });
+
+  test('single and visible bulk archive use one guarded server archive callable with loading and result feedback', () => {
+    expect(legacy).toContain('id="gsi-archive-all"');
+    expect(legacy).toContain('Архивировать все показанные');
+    const single = functionBlock(
+      'window.supportSetStatus = async function(id, status, button)',
+      'window.supportArchiveAllVisible = async function()',
+    );
+    expect(single).toContain("supportCallable('adminSupportArchiveMessages')");
+    expect(single).toContain('button.disabled = true');
+    expect(single).toContain('Письмо перемещено в архив');
+
+    const bulk = functionBlock(
+      'window.supportArchiveAllVisible = async function()',
+      'window.supportSaveSignature = async function()',
+    );
+    expect(bulk).toContain("supportCallable('adminSupportArchiveMessages')");
+    expect(bulk).toContain('selectSupportInboxRows(statusFilter).visibleArchiveTargets');
+    expect(bulk).toContain('items: targets.map((row) => ({');
+    expect(bulk).toContain('expectedStatus: row.status');
+    expect(bulk).toContain('expectedDraftRevision');
+    expect(bulk).not.toContain('showSupportReplyConfirmation');
+    expect(bulk).toContain('showConfirmModal');
+    expect(bulk).toContain('btn.disabled = true');
+    expect(bulk).not.toContain("supportCallable('adminSupportSetStatus')");
   });
 });

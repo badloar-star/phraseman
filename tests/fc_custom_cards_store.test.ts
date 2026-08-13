@@ -14,7 +14,9 @@ import {
   updateCustomCards,
   upsertCustomCard,
 } from '../app/flashcards/custom_cards_store';
-import { FLASHCARDS_CUSTOM_KEY } from '../app/flashcards/storage';
+import { customFlashcardsKey } from '../app/target_storage_keys';
+
+const FLASHCARDS_CUSTOM_KEY = customFlashcardsKey();
 import type { CardItem } from '../app/flashcards/types';
 
 const card = (id: string, extra: Partial<CardItem> = {}): CardItem => ({

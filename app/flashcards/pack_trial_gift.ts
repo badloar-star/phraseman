@@ -345,6 +345,10 @@ export async function hasActiveCommunityPackGiftVoucher(_studyTarget?: RuntimeSt
   return hasActivePackGiftVoucher();
 }
 
+/**
+ * Знищити ваучер (одноразовий — «згоряє» одразу після redemption).
+ * Cards 2.1 §1.1: офіційні набори виведені з каталогу, тож ваучерний флоу наборів більше не викликається.
+ */
 export async function consumePackGiftTrial(voucher: string | PackTrialState | undefined): Promise<void> {
   const token = captureAccountGeneration();
   await serialize(async () => {

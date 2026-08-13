@@ -1,0 +1,438 @@
+import {
+  arenaAwardLines,
+  arenaComboView,
+  arenaMatchHud,
+  arenaOpponentSignal,
+  arenaResolvedPairs,
+} from '../modules/arena/match_view';
+import {
+  ARENA_ACCEPT_WINDOW_MS,
+  arenaEntryStep,
+  arenaMachinePlan,
+  arenaParseMatchPlan,
+  arenaCanStartOffline,
+  arenaEntryFailure,
+  arenaPlanTaskToPublic,
+  type ArenaMatchPlanWire,
+} from '../modules/arena/duel_plan';
+import {
+  ARENA_LOCAL_READING_MS,
+  arenaLocalMatchInit,
+  arenaLocalMatchReduce,
+  type ArenaLocalMatchState,
+} from '../modules/arena/match_machine';
+import { arenaLocalPhase } from '../modules/arena/local_clock';
+import { ARENA_ANSWER_MS, ARENA_COMBO_THRESHOLD } from '../modules/arena/stars';
+
+/**
+ * Модель представления матча.
+ *
+ * Экран не считает ничего сам, поэтому всё, что он покажет, проверяется здесь.
+ * Особенно два владельческих требования: индикатор обязан загораться, как
+ * только соперник ответил, и игрок обязан понимать, почему звёзд две, а не три.
+ */
+
+const MODES = ['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match'] as const;
+
+const PLAN = arenaParseMatchPlan({
+  schemaVersion: 'arena-match-plan.v2',
+  rulesVersion: 'arena-stars.v3',
+  matchId: 'm1',
+  mode: 'ranked',
+  viewerSeat: 'a',
+  taskCount: 5,
+  countdownMs: 3_200,
+  readingMs: 1_500,
+  revealMs: 1_200,
+  rules: {
+    starsCorrect: 2, starsCorrectFirst: 3, starsPerPair: 1, comboThreshold: 3,
+    comboBonus: 1, timeQuantumMs: 100, starPolicy: 'banked',
+    awardsRankPoints: true, matchStarCeiling: 19,
+  },
+  tasks: MODES.map((mode, taskIndex) => ({
+    taskId: `t${taskIndex}`, taskIndex, mode, kind: 'choice', difficulty: 2,
+    answerMs: ARENA_ANSWER_MS[mode],
+    payload: { phrase: 'give up', options: ['a', 'b', 'c', 'd'] },
+    answerFingerprints: ['fp0', 'fp1', 'fp2', 'fp3'],
+  })),
+  opponent: { seat: 'b', name: 'Соперник', rank: 4 },
+  opponentTicks: [],
+  liveChannelPath: 'arenaLive/m1',
+  planHash: 'h',
+  issuedAtMs: 1_000,
+}) as ArenaMatchPlanWire;
+
+const MACHINE = arenaMachinePlan(PLAN);
+const MONO0 = 10_000;
+const WALL0 = 1_700_000_000_000;
+const COUNTDOWN = 3_200;
+
+const init = (): ArenaLocalMatchState => arenaLocalMatchInit(MACHINE, {
+  monoNowMs: MONO0, wallNowMs: WALL0, monoEpochId: 'e1', countdownRemainingMs: COUNTDOWN,
+});
+
+const step = (s: ArenaLocalMatchState, monoNowMs: number) =>
+  arenaLocalMatchReduce(MACHINE, s, { type: 'tick', monoNowMs });
+
+/** Доводит матч до фазы ответа на задании 0. */
+function toAnswer(): ArenaLocalMatchState {
+  let s = step(init(), MONO0 + COUNTDOWN);
+  s = step(s, s.phaseStartedAtMonoMs + ARENA_LOCAL_READING_MS);
+  if (s.phase !== 'answer') throw new Error('ожидалась фаза ответа');
+  return s;
+}
+
+const answerNow = (s: ArenaLocalMatchState, at: number, correct: boolean) =>
+  arenaLocalMatchReduce(MACHINE, s, {
+    type: 'answer', monoNowMs: at, wallNowMs: WALL0 + at, correct, answer: { selectedIndex: 1 },
+  });
+
+const hudOf = (s: ArenaLocalMatchState, monoNowMs: number) =>
+  arenaMatchHud(PLAN, s, arenaLocalPhase(s, monoNowMs), monoNowMs);
+
+describe('фикстура', () => {
+  it('план разобрался', () => {
+    expect(PLAN).not.toBeNull();
+    expect(PLAN.tasks.length).toBe(5);
+  });
+});
+
+describe('серия', () => {
+  it('единица серией не считается', () => {
+    expect(arenaComboView(0).visible).toBe(false);
+    expect(arenaComboView(1).visible).toBe(false);
+    expect(arenaComboView(2).visible).toBe(true);
+  });
+
+  it('до порога показывает, сколько осталось', () => {
+    expect(arenaComboView(1).toBonus).toBe(ARENA_COMBO_THRESHOLD - 1);
+    expect(arenaComboView(2).toBonus).toBe(ARENA_COMBO_THRESHOLD - 2);
+  });
+
+  it('на пороге начинает платить и перестаёт считать остаток', () => {
+    const view = arenaComboView(ARENA_COMBO_THRESHOLD);
+    expect(view.paying).toBe(true);
+    expect(view.toBonus).toBe(0);
+  });
+
+  it('мусор и отрицательное не ломают', () => {
+    expect(arenaComboView(-5).streak).toBe(0);
+    expect(arenaComboView(2.9).streak).toBe(2);
+  });
+});
+
+describe('индикатор соперника', () => {
+  it('молчит, пока соперник ничего не сообщил', () => {
+    expect(arenaOpponentSignal(toAnswer(), MONO0 + 20_000).kind).toBe('silent');
+  });
+
+  it('загорается сразу, как пришёл тик по текущему заданию', () => {
+    const s = arenaLocalMatchReduce(MACHINE, toAnswer(), {
+      type: 'opponent_answered',
+      monoNowMs: MONO0 + 6_000,
+      tick: { taskIndex: 0, correct: true, raceElapsedMs: 900 },
+    });
+    const signal = arenaOpponentSignal(s, MONO0 + 6_000);
+    expect(signal.kind).toBe('answered');
+    expect(signal.kind === 'answered' && signal.correct).toBe(true);
+  });
+
+  it('тик про ЧУЖОЕ задание индикатор не зажигает', () => {
+    const s = arenaLocalMatchReduce(MACHINE, toAnswer(), {
+      type: 'opponent_answered',
+      monoNowMs: MONO0 + 6_000,
+      tick: { taskIndex: 3, correct: true, raceElapsedMs: 900 },
+    });
+    expect(arenaOpponentSignal(s, MONO0 + 6_000).kind).toBe('silent');
+  });
+
+  it('считает опережение только в фазе ответа', () => {
+    const answering = arenaLocalMatchReduce(MACHINE, toAnswer(), {
+      type: 'opponent_answered',
+      monoNowMs: MONO0 + 6_000,
+      tick: { taskIndex: 0, correct: true, raceElapsedMs: 1_000 },
+    });
+    const at = answering.phaseStartedAtMonoMs + 2_500;
+    const signal = arenaOpponentSignal(answering, at);
+    expect(signal.kind === 'answered' && signal.aheadByMs).toBe(1_500);
+  });
+
+  it('опережение не бывает отрицательным', () => {
+    const s = arenaLocalMatchReduce(MACHINE, toAnswer(), {
+      type: 'opponent_answered',
+      monoNowMs: MONO0 + 6_000,
+      tick: { taskIndex: 0, correct: true, raceElapsedMs: 5_000 },
+    });
+    const signal = arenaOpponentSignal(s, s.phaseStartedAtMonoMs + 100);
+    expect(signal.kind === 'answered' && signal.aheadByMs).toBe(0);
+  });
+
+  it('доигранный матч отдаёт «закончил» независимо от тиков', () => {
+    let s = init();
+    for (let guard = 0; guard < 200 && s.phase !== 'finished'; guard += 1) {
+      s = step(s, s.phaseStartedAtMonoMs + s.phaseBudgetMs);
+    }
+    expect(arenaOpponentSignal(s, MONO0).kind).toBe('finished');
+  });
+
+  it('соперник закончил раньше — видно и без тика по заданию', () => {
+    const s = arenaLocalMatchReduce(MACHINE, toAnswer(), {
+      type: 'opponent_finished', monoNowMs: MONO0 + 6_000,
+    });
+    expect(arenaOpponentSignal(s, MONO0 + 6_000).kind).toBe('finished');
+  });
+});
+
+describe('таймер', () => {
+  it('в фазе ответа отдаёт долю прошедшего', () => {
+    const s = toAnswer();
+    const hud = hudOf(s, s.phaseStartedAtMonoMs + ARENA_ANSWER_MS.guess_phrase / 2);
+    expect(hud.timer).not.toBeNull();
+    expect(hud.timer!.fraction).toBeCloseTo(0.5, 3);
+    expect(hud.timer!.remainingMs).toBe(ARENA_ANSWER_MS.guess_phrase / 2);
+  });
+
+  it('доля не выходит за границы', () => {
+    const s = toAnswer();
+    expect(hudOf(s, s.phaseStartedAtMonoMs).timer!.fraction).toBe(0);
+    expect(hudOf(s, s.phaseStartedAtMonoMs + 10 * ARENA_ANSWER_MS.guess_phrase).timer!.fraction).toBe(1);
+    expect(hudOf(s, s.phaseStartedAtMonoMs - 5_000).timer!.fraction).toBe(0);
+  });
+
+  it('тревога включается за три секунды до конца, не раньше', () => {
+    const s = toAnswer();
+    const window = ARENA_ANSWER_MS.guess_phrase;
+    expect(hudOf(s, s.phaseStartedAtMonoMs + window - 3_001).timer!.alarm).toBe(false);
+    expect(hudOf(s, s.phaseStartedAtMonoMs + window - 3_000).timer!.alarm).toBe(true);
+  });
+
+  it('вне фазы ответа таймера нет — кольцо рисовать не по чему', () => {
+    expect(hudOf(init(), MONO0).timer).toBeNull();
+    const reading = step(init(), MONO0 + COUNTDOWN);
+    expect(hudOf(reading, reading.phaseStartedAtMonoMs).timer).toBeNull();
+  });
+});
+
+describe('кадр целиком', () => {
+  it('номер задания показывается от единицы', () => {
+    expect(hudOf(toAnswer(), MONO0).taskOrdinal).toBe(1);
+    expect(hudOf(toAnswer(), MONO0).taskCount).toBe(5);
+  });
+
+  it('нажатия принимаются только в фазе ответа', () => {
+    expect(hudOf(init(), MONO0).interactive).toBe(false);
+    expect(hudOf(toAnswer(), MONO0).interactive).toBe(true);
+    const s = toAnswer();
+    const revealed = answerNow(s, s.phaseStartedAtMonoMs + 500, true);
+    expect(revealed.phase).toBe('reveal');
+    expect(hudOf(revealed, revealed.phaseStartedAtMonoMs).interactive).toBe(false);
+  });
+
+  it('звёзды летят только в показе результата и только если они есть', () => {
+    const s = toAnswer();
+    expect(hudOf(s, MONO0).starsToFly).toBe(0);
+    const won = answerNow(s, s.phaseStartedAtMonoMs + 500, true);
+    expect(hudOf(won, won.phaseStartedAtMonoMs).starsToFly).toBeGreaterThan(0);
+    const lost = answerNow(s, s.phaseStartedAtMonoMs + 500, false);
+    expect(lost.phase).toBe('reveal');
+    expect(hudOf(lost, lost.phaseStartedAtMonoMs).starsToFly).toBe(0);
+  });
+
+  it('награда видна в показе результата и не раньше', () => {
+    const s = toAnswer();
+    expect(hudOf(s, MONO0).award).toBeNull();
+    const revealed = answerNow(s, s.phaseStartedAtMonoMs + 500, true);
+    expect(hudOf(revealed, revealed.phaseStartedAtMonoMs).award).not.toBeNull();
+  });
+
+  it('доигранный матч не отдаёт задания', () => {
+    let s = init();
+    for (let guard = 0; guard < 200 && s.phase !== 'finished'; guard += 1) {
+      s = step(s, s.phaseStartedAtMonoMs + s.phaseBudgetMs);
+    }
+    const hud = hudOf(s, MONO0);
+    expect(hud.task).toBeNull();
+    expect(hud.mode).toBeNull();
+    expect(hud.interactive).toBe(false);
+  });
+
+  it('номер задания не выходит за длину матча', () => {
+    let s = init();
+    for (let guard = 0; guard < 200 && s.phase !== 'finished'; guard += 1) {
+      s = step(s, s.phaseStartedAtMonoMs + s.phaseBudgetMs);
+    }
+    expect(hudOf(s, MONO0).taskOrdinal).toBe(5);
+  });
+
+  it('накопленные звёзды растут вместе с матчем', () => {
+    const s = toAnswer();
+    const won = answerNow(s, s.phaseStartedAtMonoMs + 500, true);
+    expect(hudOf(won, MONO0).matchStars).toBeGreaterThan(hudOf(s, MONO0).matchStars);
+  });
+});
+
+describe('доска пар', () => {
+  /** Доводит матч до фазы ответа на задании с парами (индекс 4). */
+  function toPairs(): ArenaLocalMatchState {
+    let s = toAnswer();
+    while (s.taskIndex < 4) {
+      s = answerNow(s, s.phaseStartedAtMonoMs + 400, true);
+      s = step(s, s.phaseStartedAtMonoMs + s.phaseBudgetMs);
+      if (s.phase === 'reading') s = step(s, s.phaseStartedAtMonoMs + s.phaseBudgetMs);
+    }
+    if (s.phase !== 'answer') throw new Error('ожидалась фаза ответа на парах');
+    return s;
+  }
+
+  it('разобранные пары накапливаются по порядку', () => {
+    let s = toPairs();
+    expect(arenaResolvedPairs(s)).toEqual([]);
+    s = arenaLocalMatchReduce(MACHINE, s, {
+      type: 'speed_attempt', monoNowMs: s.phaseStartedAtMonoMs + 100, pairIndex: 2, selectedIndex: 2, correct: true,
+    });
+    s = arenaLocalMatchReduce(MACHINE, s, {
+      type: 'speed_attempt', monoNowMs: s.phaseStartedAtMonoMs + 200, pairIndex: 0, selectedIndex: 0, correct: true,
+    });
+    expect(arenaResolvedPairs(s)).toEqual([0, 2]);
+  });
+
+  it('кадр отдаёт разобранные пары только на доске пар', () => {
+    const pairs = toPairs();
+    expect(hudOf(pairs, pairs.phaseStartedAtMonoMs).mode).toBe('speed_match');
+    expect(hudOf(toAnswer(), MONO0).resolvedPairs).toEqual([]);
+  });
+});
+
+describe('расшифровка награды', () => {
+  it('пустая награда — пустой список, а не падение', () => {
+    expect(arenaAwardLines(null)).toEqual([]);
+  });
+
+  it('неприменимые строки на экран не попадают', () => {
+    const s = toAnswer();
+    const revealed = answerNow(s, s.phaseStartedAtMonoMs + 500, true);
+    const award = hudOf(revealed, revealed.phaseStartedAtMonoMs).award;
+    const lines = arenaAwardLines(award);
+    expect(lines.length).toBeGreaterThan(0);
+    expect(lines.every((line) => line.state !== 'not_applicable')).toBe(true);
+  });
+
+  /**
+   * Ровно тот случай, ради которого строки и заведены: владелец потребовал,
+   * чтобы игрок понимал, почему звёзд две, а не три.
+   */
+  it('упущенный бонус за скорость остаётся в списке отдельной строкой', () => {
+    const withRival = arenaLocalMatchReduce(MACHINE, toAnswer(), {
+      type: 'opponent_answered',
+      monoNowMs: MONO0 + 100,
+      tick: { taskIndex: 0, correct: true, raceElapsedMs: 300 },
+    });
+    const revealed = answerNow(withRival, withRival.phaseStartedAtMonoMs + 4_000, true);
+    const award = hudOf(revealed, revealed.phaseStartedAtMonoMs).award!;
+    expect(award.firstBonus).toBe(0);
+    const missed = arenaAwardLines(award).filter((line) => line.state === 'missed');
+    expect(missed.length).toBeGreaterThan(0);
+    expect(missed.some((line) => line.reason === 'first')).toBe(true);
+  });
+});
+
+describe('вход в матч', () => {
+  /**
+   * Ровно та дыра, из-за которой Арена не работала: принятие дуэли не звалось
+   * НИГДЕ, и матч навсегда оставался в состоянии «принимается» — плана для
+   * него не существует, сервер отказывает, экран висит.
+   */
+  it('пока матч принимается — принимаем дальше', () => {
+    expect(arenaEntryStep({ state: 'accepting', elapsedSinceEntryMs: 0 })).toBe('accept');
+    expect(arenaEntryStep({ state: 'accepting', elapsedSinceEntryMs: ARENA_ACCEPT_WINDOW_MS - 1 })).toBe('accept');
+  });
+
+  it('окно принятия истекло — дальше стучаться незачем', () => {
+    expect(arenaEntryStep({ state: 'accepting', elapsedSinceEntryMs: ARENA_ACCEPT_WINDOW_MS })).toBe('give_up');
+  });
+
+  it('матч пошёл — берём план', () => {
+    for (const state of ['countdown', 'task_active', 'task_reveal']) {
+      expect(arenaEntryStep({ state, elapsedSinceEntryMs: 0 })).toBe('plan');
+    }
+  });
+
+  it('матч уже кончился или отменён — плана не просим', () => {
+    expect(arenaEntryStep({ state: 'aborted', elapsedSinceEntryMs: 0 })).toBe('give_up');
+    expect(arenaEntryStep({ state: 'settled', elapsedSinceEntryMs: 0 })).toBe('give_up');
+  });
+
+  it('пустое состояние не заставляет ждать вечно', () => {
+    expect(arenaEntryStep({ state: '', elapsedSinceEntryMs: 0 })).toBe('plan');
+  });
+});
+
+describe('задание для компонента вопроса', () => {
+  it('отпечатки ответов в пропсы НЕ уезжают', () => {
+    const publicTask = arenaPlanTaskToPublic(PLAN.tasks[0]);
+    expect(publicTask).not.toHaveProperty('answerFingerprints');
+    expect(JSON.stringify(publicTask)).not.toContain('fp0');
+  });
+
+  it('всё нужное для отрисовки на месте', () => {
+    const publicTask = arenaPlanTaskToPublic(PLAN.tasks[0]);
+    expect(publicTask.taskId).toBe('t0');
+    expect(publicTask.mode).toBe('guess_phrase');
+    expect(publicTask.payload).toEqual(PLAN.tasks[0].payload);
+    expect(publicTask.isVoice).toBe(false);
+  });
+});
+
+describe('вход без сети (D-72)', () => {
+  /**
+   * Владелец сказал прямо: рейтинговый матч нельзя начать без сети. И отдельно
+   * (D-58): НАЧАТЫЙ матч доигрывается оффлайн. Разница тонкая и в коде теряется
+   * легко: «начать» и «доиграть» — разные вещи.
+   *
+   * Начать нельзя не из-за технического ограничения, а потому что соперник
+   * живой: матч, начатый в одностороннем порядке, — это матч, которого у
+   * второго игрока не было.
+   */
+  it('начать матч без сети нельзя ни в каком режиме', () => {
+    expect(arenaCanStartOffline()).toBe(false);
+  });
+
+  it('обрыв сети распознаётся как отсутствие сети', () => {
+    for (const error of [
+      { code: 'unavailable', message: 'network error' },
+      new Error('Failed to fetch'),
+      'ECONNREFUSED',
+      { code: 'functions/unavailable' },
+    ]) {
+      expect(arenaEntryFailure(error)).toBe('offline');
+    }
+  });
+
+  /**
+   * Выключенная Арена и отсутствующий конфиг — НЕ отсутствие сети. Повтор их
+   * не лечит, и предлагать игроку «попробовать ещё раз» значит врать ему.
+   */
+  it('выключенная Арена и старое приложение — не «нет сети»', () => {
+    for (const error of [
+      'arena_config_missing',
+      'arena_config_incompatible',
+      'arena_disabled',
+      'arena_client_update_required',
+    ]) {
+      expect(arenaEntryFailure(error)).toBe('gated');
+    }
+  });
+
+  it('временный отказ сервера отделён от окончательного', () => {
+    expect(arenaEntryFailure('deadline-exceeded')).toBe('transient');
+    expect(arenaEntryFailure({ code: 'resource-exhausted' })).toBe('transient');
+    expect(arenaEntryFailure('arena_match_missing')).toBe('rejected');
+    expect(arenaEntryFailure('arena_match_not_participant')).toBe('rejected');
+  });
+
+  it('пустая ошибка не выдаётся за отсутствие сети', () => {
+    for (const error of [null, undefined, '', {}]) {
+      expect(arenaEntryFailure(error)).toBe('rejected');
+    }
+  });
+});

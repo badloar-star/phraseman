@@ -108,5 +108,57 @@ export function ugcCardThemeLabel(id: string, lang: Lang): string {
   return id;
 }
 
+/**
+ * Акцент выбранной палитры набора — ОТДЕЛЬНО от декора paywall-модалки.
+ *
+ * зачем 2026-08-13 (владелец: «цвет карточек не работает, проверял на светлой теме»):
+ * раньше цвет карточек брался из `getCommunityUgcPackPaywallTheme`, а тот в светлой
+ * теме `sagePorcelain` возвращает спокойную фарфоровую оболочку ДО применения палитры —
+ * выбор пользователя не влиял ни на превью, ни на карточки набора. Здесь палитра живёт
+ * сама по себе и работает во всех темах; у светлых тем — затемнённый вариант акцента,
+ * чтобы он читался на белой поверхности.
+ */
+const UGC_CARD_ACCENT: Record<UgcCardThemeId, { dark: string; light: string }> = {
+  neon_lime: { dark: '#C8FF00', light: '#6F8C00' },
+  aqua_pulse: { dark: '#00D0FF', light: '#0E7490' },
+  magenta_pop: { dark: '#FF006E', light: '#C01360' },
+  solar_gold: { dark: '#FBB040', light: '#B4720F' },
+  violet_nebula: { dark: '#A78BFA', light: '#6D46D6' },
+  ember_coal: { dark: '#E85D3A', light: '#B8431F' },
+};
+
+export function ugcCardThemeAccent(id: string, opts?: { isLight?: boolean }): string {
+  const key: UgcCardThemeId = isUgcCardThemeId(id) ? id : UGC_CARD_THEME_DEFAULT_ID;
+  const pair = UGC_CARD_ACCENT[key];
+  return opts?.isLight ? pair.light : pair.dark;
+}
+
+export type UgcCardChrome = {
+  accent: string;
+  borderAccent: string;
+  frontGradient: [string, string];
+  backGradient: [string, string];
+};
+
+/**
+ * Хром карточки набора: лицевая/оборотная заливка и рамка от выбранной палитры.
+ * Один источник правды для превью в редакторе и для карточек набора в коллекции.
+ */
+export function ugcCardChrome(
+  id: string | undefined,
+  opts: { isLight?: boolean; bgCard: string; bgSurface: string },
+): UgcCardChrome {
+  const accent = ugcCardThemeAccent(id ?? UGC_CARD_THEME_DEFAULT_ID, { isLight: opts.isLight });
+  /** Светлая тема требует более плотной заливки — иначе оттенок теряется на белом. */
+  const frontAlpha = opts.isLight ? '2E' : '3E';
+  const backAlpha = opts.isLight ? '24' : '32';
+  return {
+    accent,
+    borderAccent: `${accent}${opts.isLight ? '99' : '66'}`,
+    frontGradient: [`${accent}${frontAlpha}`, opts.bgCard],
+    backGradient: [`${accent}${backAlpha}`, opts.bgSurface],
+  };
+}
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

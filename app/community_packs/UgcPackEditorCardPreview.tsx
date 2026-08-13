@@ -93,7 +93,27 @@ export default function UgcPackEditorCardPreview({
       ? sourceLocales?.[lang]?.trim()
       : '';
   const backText = plannedBackText || (lang === 'es' ? (es?.trim() || ru.trim()) : ru.trim());
-  const backLabel = plannedBackText ? lang.toUpperCase() : lang === 'es' && es?.trim() ? 'ES' : 'RU';
+  /** Подписи сторон карточки: только «Передняя»/«Задняя», без языковых кодов (владелец, 2026-08-13). */
+  const frontLabel = triLang(lang, {
+    ru: 'Передняя',
+    uk: 'Передня',
+    es: 'Delantera',
+    'pt-BR': 'Frente',
+    vi: 'Mặt trước',
+    id: 'Depan',
+    tr: 'Ön',
+    pl: 'Przednia',
+  });
+  const backLabel = triLang(lang, {
+    ru: 'Задняя',
+    uk: 'Зворотна',
+    es: 'Trasera',
+    'pt-BR': 'Verso',
+    vi: 'Mặt sau',
+    id: 'Belakang',
+    tr: 'Arka',
+    pl: 'Tylna',
+  });
   const canScrollFront = (en.trim() || '').length > 72;
   const canScrollBack = (backText || '').length > 72;
   const textInsetTop = 32;
@@ -227,7 +247,7 @@ export default function UgcPackEditorCardPreview({
                 color: t.accent,
                 fontSize: 10,
                 fontWeight: '800',
-                letterSpacing: 1.5,
+                letterSpacing: 0.6,
                 zIndex: 1,
               }}
             >
@@ -278,7 +298,7 @@ export default function UgcPackEditorCardPreview({
         </TouchableOpacity>
 
         <Animated.View style={{ position: 'absolute', top: 14, left: 44, opacity: cFrontOp, zIndex: 1 }} pointerEvents="none">
-          <Text style={{ color: t.textGhost, fontSize: 10, fontWeight: '800', letterSpacing: 1.5 }}>EN</Text>
+          <Text style={{ color: t.textGhost, fontSize: 10, fontWeight: '800', letterSpacing: 0.6 }}>{frontLabel}</Text>
         </Animated.View>
 
         {hasDescription ? (

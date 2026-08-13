@@ -3,8 +3,16 @@
 // §3.8 мастер-плана — киллер-фича, главный запрос заказчика).
 //
 // Плеер: большой PhraseCard с автофлипом синхронно с озвучкой сторон, прогресс,
-// ⏮ ⏯ ⏭, чипы порядка озвучки (EN→RU / RU→EN / EN×2 / только EN), степпер паузы
-// «подумать» (1/2/3/5с), тумблер повтора колоды. Foreground only + expo-keep-awake.
+// ⏮ ⏯ ⏭, кнопка режима озвучки, степпер паузы «подумать» (1/2/3/5с), тумблер
+// повтора колоды. Foreground only + expo-keep-awake.
+//
+// cards-2.1 (SPEC_2_1 §7):
+//  - §7.1 эквалайзер `ListeningEqualizer` — полосы «дышат» во время озвучки и
+//    опадают на паузе; только transform: scaleY на UI-потоке Reanimated;
+//  - §7.2 четыре чипа порядка озвучки заменены ОДНОЙ кнопкой с выпадающим
+//    списком (`ListeningModePicker`), сохранение в fc_listening_prefs_v1 то же;
+//  - §6 ?deck= принимает СПИСОК колод (parseDeckParams + loadDeckCardsMulti),
+//    пустой список → сохранённые карточки.
 //
 // Драйвит чистая state machine (flashcards/listening_machine.ts):
 //  - speak через useAudio().speak с onDone-коллбеком (сигнатура SpeakOpts);
@@ -17,8 +25,7 @@
 // приглушается, silent-mode iOS озвучивает), mixWithOthers обратно на выходе.
 // SFX correct/incorrect в слушании выключены — только речь + tick между карточками.
 //
-// Награда (§4): фикс 1★ за сессию ≥10 прослушанных карточек, кэп 2★/день
-// (stars_config E4) — awardSessionStars('listening'). Финал → SessionResultScreen.
+// Финал → SessionResultScreen (сколько карточек прослушано).
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -39,10 +46,10 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import PhraseCard from './flashcards/PhraseCard';
 import SessionResultScreen from './flashcards/SessionResultScreen';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
-import { awardSessionStars, type AwardStarsOutcome } from './flashcards/stars_system';
-import { LISTENING_SESSION_MIN_CARDS } from './flashcards/stars_config';
-import { loadDeckCards, parseDeckParam, type DeckRef } from './flashcards/deck_sources';
+import { deckRefKey, loadDeckCardsMulti, parseDeckParams, type DeckRef } from './flashcards/deck_sources';
 import { isValidSessionSize, FC_DEFAULT_SESSION_SIZE } from './flashcards/mode_prefs';
+import ListeningEqualizer from './flashcards/ListeningEqualizer';
+import ListeningModePicker from './flashcards/ListeningModePicker';
 import {
   ListeningMachine,
   LISTENING_DEFAULT_PAUSE_SEC,
@@ -111,7 +118,7 @@ function shuffleArr<T>(a: readonly T[]): T[] {
   return r;
 }
 
-type ResultState = { listened: number; outcome: AwardStarsOutcome | null };
+type ResultState = { listened: number };
 
 // ── Экран ────────────────────────────────────────────────────────────────────
 export default function FlashcardsListeningSession() {
@@ -125,10 +132,13 @@ export default function FlashcardsListeningSession() {
   // Не гасить экран на время сессии (§3.8: foreground only, expo-keep-awake)
   useKeepAwake();
 
-  const deckRef = useMemo<DeckRef>(
-    () => parseDeckParam(params.deck) ?? { kind: 'saved' },
-    [params.deck],
-  );
+  // cards-2.1 (§6): ?deck= — СПИСОК колод (`saved,custom,pack:abc`). Пустой/мусор → сохранённые.
+  const deckRefs = useMemo<DeckRef[]>(() => {
+    const parsed = parseDeckParams(params.deck);
+    return parsed.length > 0 ? parsed : [{ kind: 'saved' }];
+  }, [params.deck]);
+  /** Ключ списка колод — стабильная зависимость эффекта загрузки (массив пересоздаётся). */
+  const deckKey = useMemo(() => deckRefs.map(deckRefKey).join(','), [deckRefs]);
   const sessionSize = useMemo(() => {
     const raw = Array.isArray(params.size) ? params.size[0] : params.size;
     const n = raw ? parseInt(raw, 10) : NaN;
@@ -141,6 +151,8 @@ export default function FlashcardsListeningSession() {
   const [cardIndex, setCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [phase, setPhase] = useState<'playing' | 'paused'>('playing');
+  /** Прямо сейчас звучит речь — эквалайзер «дышит» только под неё (§7.1). */
+  const [speaking, setSpeaking] = useState(false);
   const [listened, setListened] = useState(0);
   const [noVoiceSide, setNoVoiceSide] = useState<ListeningSide | null>(null);
   const [order, setOrder] = useState<ListeningOrder>(DEFAULT_PREFS.order);
@@ -175,17 +187,9 @@ export default function FlashcardsListeningSession() {
     finishedRef.current = true;
     clearWatchdog();
     clearGapTimer();
+    setSpeaking(false);
     stopSpeech();
-    void (async () => {
-      // §4: фикс 1★ за сессию ≥10 карточек, кэп 2★/день — логика в stars_system/config
-      const outcome =
-        cardsListened > 0
-          ? await awardSessionStars('listening', { correct: cardsListened, total: cardsListened }).catch(
-              () => null,
-            )
-          : null;
-      setResult({ listened: cardsListened, outcome });
-    })();
+    setResult({ listened: cardsListened });
   }, [clearWatchdog, clearGapTimer, stopSpeech]);
 
   // ── Исполнение эффектов машины (через ref — машина создаётся один раз) ────
@@ -205,9 +209,11 @@ export default function FlashcardsListeningSession() {
           break;
         case 'no_voice':
           setNoVoiceSide(e.side);
+          setSpeaking(false);
           break;
         case 'speak': {
           clearWatchdog();
+          setSpeaking(true);
           const token = e.token;
           // Watchdog ОБЯЗАТЕЛЕН (§3.8): onDone может не стрельнуть — глушим и едем дальше
           watchdogRef.current = setTimeout(() => {
@@ -233,6 +239,7 @@ export default function FlashcardsListeningSession() {
         }
         case 'gap': {
           clearGapTimer();
+          setSpeaking(false);
           const token = e.token;
           gapTimerRef.current = setTimeout(() => {
             gapTimerRef.current = null;
@@ -243,6 +250,7 @@ export default function FlashcardsListeningSession() {
         case 'stop_speech':
           clearWatchdog();
           clearGapTimer();
+          setSpeaking(false);
           stopSpeech();
           break;
         case 'progress':
@@ -273,7 +281,10 @@ export default function FlashcardsListeningSession() {
     let createdMachine: ListeningMachine | null = null;
     void (async () => {
       const [pool, rawPrefs] = await Promise.all([
-        loadDeckCards(deckRef, contentLang).catch((): Awaited<ReturnType<typeof loadDeckCards>> => []),
+        // cards-2.1 (§6): несколько колод одной объединённой (дедуп по id + шаффл внутри)
+        loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch(
+          (): Awaited<ReturnType<typeof loadDeckCardsMulti>> => [],
+        ),
         AsyncStorage.getItem(LISTENING_PREFS_KEY).catch(() => null),
       ]);
       const prefs = parseListeningPrefs(rawPrefs);
@@ -330,9 +341,10 @@ export default function FlashcardsListeningSession() {
       createdMachine?.send({ type: 'STOP' });
     };
     // Пересоздание машины при смене deck/size — валидный сценарий только при новом пуше роута
-  }, [deckRef, sessionSize, contentLang]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deckKey, sessionSize, contentLang]);
 
-  // ── Выход: STOP глушит всё; loop-сессия ≥10 карточек награждается тихо ────
+  // ── Выход: STOP глушит всё ───────────────────────────────────────────────
   useEffect(() => {
     return () => {
       machineRef.current?.send({ type: 'STOP' });
@@ -340,13 +352,6 @@ export default function FlashcardsListeningSession() {
       if (watchdogRef.current) clearTimeout(watchdogRef.current);
       if (gapTimerRef.current) clearTimeout(gapTimerRef.current);
       stopSpeech();
-      if (!finishedRef.current && listenedRef.current >= LISTENING_SESSION_MIN_CARDS) {
-        finishedRef.current = true;
-        void awardSessionStars('listening', {
-          correct: listenedRef.current,
-          total: listenedRef.current,
-        }).catch(() => {});
-      }
     };
   }, [stopSpeech]);
 
@@ -408,20 +413,15 @@ export default function FlashcardsListeningSession() {
 
   // ── Заголовок по колоде (паттерн trainer_words_session E8) ────────────────
   const deckTitle = useMemo(() => {
+    // cards-2.1: несколько колод — «Колод: N», одна — как раньше
+    if (deckRefs.length > 1) {
+      return `${triLang(lang, { ru: 'Колод', uk: 'Колод', es: 'Mazos' })}: ${deckRefs.length}`;
+    }
+    const deckRef = deckRefs[0]!;
     if (deckRef.kind === 'custom') return triLang(lang, { ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas' });
     if (deckRef.kind === 'pack') return triLang(lang, { ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas' });
     return triLang(lang, { ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas' });
-  }, [deckRef, lang]);
-
-  const orderLabels: Record<ListeningOrder, string> = useMemo(
-    () => ({
-      en_ru: triLang(lang, { ru: 'EN → RU', uk: 'EN → UA', es: 'EN → ES' }),
-      ru_en: triLang(lang, { ru: 'RU → EN', uk: 'UA → EN', es: 'ES → EN' }),
-      en_x2: 'EN ×2',
-      en_only: triLang(lang, { ru: 'Только EN', uk: 'Лише EN', es: 'Solo EN' }),
-    }),
-    [lang],
-  );
+  }, [deckRefs, lang]);
 
   // ── Рендер ─────────────────────────────────────────────────────────────────
   if (loading) {
@@ -440,17 +440,10 @@ export default function FlashcardsListeningSession() {
         correct={result.listened}
         wrong={0}
         xpGained={0}
-        outcome={result.outcome}
         learnLeft={0}
         onDone={leave}
         accentColor={ACCENT}
         listeningStats
-        maxStars={1}
-        zeroStarsNote={triLang(lang, {
-          ru: `★ — за сессию от ${LISTENING_SESSION_MIN_CARDS} карточек`,
-          uk: `★ — за сесію від ${LISTENING_SESSION_MIN_CARDS} карток`,
-          es: `★ por sesión de ${LISTENING_SESSION_MIN_CARDS}+ tarjetas`,
-        })}
         testID="fc-listen-result"
       />
     );
@@ -567,8 +560,6 @@ export default function FlashcardsListeningSession() {
                   <Text
                     maxFontSizeMultiplier={1.35}
                     numberOfLines={5}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.5}
                     style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22) + 4, fontWeight: '700', textAlign: 'center' }}
                   >
                     {card.front}
@@ -581,8 +572,6 @@ export default function FlashcardsListeningSession() {
                   <Text
                     maxFontSizeMultiplier={1.35}
                     numberOfLines={6}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.5}
                     style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22) + 1, fontWeight: '500', textAlign: 'center' }}
                   >
                     {card.back}
@@ -591,49 +580,38 @@ export default function FlashcardsListeningSession() {
                 </View>
               )}
             />
-            {/* Прослушано (важно для loop-сессий: видно набранное на ★) */}
+            {/* Эквалайзер (§7.1): полосы «дышат» во время озвучки, опадают на паузе.
+                Только transform: scaleY, анимация на UI-потоке Reanimated. */}
+            <View style={styles.eqRow}>
+              <ListeningEqualizer
+                playing={phase === 'playing' && speaking}
+                active={phase === 'playing'}
+                barCount={7}
+                color={ACCENT}
+                height={34}
+                testID="fc-listen-equalizer"
+              />
+            </View>
+
+            {/* Прослушано (важно для loop-сессий: видно набранное) */}
             <View style={styles.listenedRow}>
               <Ionicons name="headset-outline" size={13} color={t.textMuted} />
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }} testID="fc-listen-count">
                 {triLang(lang, { ru: 'Прослушано', uk: 'Прослухано', es: 'Escuchadas' })}: {listened}
-                {cards.length >= LISTENING_SESSION_MIN_CARDS
-                  ? `  ·  ≥${LISTENING_SESSION_MIN_CARDS} = ★`
-                  : ''}
               </Text>
             </View>
           </View>
 
-          {/* Чипы порядка озвучки (§3.8) */}
+          {/* Режим озвучки (§7.2): ОДНА кнопка + выпадающий список вместо 4 чипов */}
           <View style={styles.orderRow}>
-            {LISTENING_ORDERS.map((o) => {
-              const active = o === order;
-              return (
-                <TouchableOpacity
-                  key={o}
-                  onPress={() => onPickOrder(o)}
-                  testID={`fc-listen-order-${o}`}
-                  accessibilityLabel={`qa-fc-listen-order-${o}`}
-                  accessible
-                  style={[
-                    styles.orderChip,
-                    {
-                      borderColor: active ? ACCENT : t.border,
-                      backgroundColor: active ? `${ACCENT}1F` : t.bgSurface,
-                    },
-                  ]}
-                >
-                  <Text
-                    style={{
-                      color: active ? ACCENT : t.textMuted,
-                      fontSize: f.caption,
-                      fontWeight: active ? '800' : '600',
-                    }}
-                  >
-                    {orderLabels[o]}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
+            <ListeningModePicker
+              value={order}
+              onChange={onPickOrder}
+              lang={lang}
+              t={t}
+              f={f}
+              accent={ACCENT}
+            />
           </View>
 
           {/* Пауза «подумать» + повтор колоды */}
@@ -760,19 +738,16 @@ const styles = StyleSheet.create({
     gap: 5,
     marginTop: 12,
   },
+  eqRow: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 16,
+  },
   orderRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
     justifyContent: 'center',
-    gap: 8,
     paddingHorizontal: 16,
     marginTop: 4,
-  },
-  orderChip: {
-    borderRadius: 999,
-    borderWidth: 1.5,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
   },
   settingsRow: {
     flexDirection: 'row',

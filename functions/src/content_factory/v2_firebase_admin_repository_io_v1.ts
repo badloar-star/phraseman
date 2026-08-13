@@ -66,6 +66,13 @@ export interface V2FirebaseAdminRepositoryObjectReadV1 {
   readonly bytes: Uint8Array;
 }
 
+export interface V2FirebaseAdminCanonicalDocumentReadV1 {
+  readonly documentPath: string;
+  readonly canonicalRaw: string;
+  readonly readTime: V2AuthenticatedRepositoryFirestoreTimestampV1;
+  readonly updateTime: V2AuthenticatedRepositoryFirestoreTimestampV1;
+}
+
 export interface V2FirebaseAdminVoiceProfileRequirementV1 {
   readonly profileKind: V2VoiceProfileRepositoryKindV1;
   readonly profileId: string;
@@ -100,6 +107,10 @@ export interface V2FirebaseAdminVoiceProfileObjectReadV1 {
 export interface V2FirebaseAdminRepositoryIoV1 {
   readonly firestore: V2RepositoryFirestorePortV1;
   readonly storage: V2RepositoryImmutableStoragePortV1;
+  readCanonicalDocumentExact(input: {
+    readonly documentPath: string;
+    readonly maximumBytes: number;
+  }): Promise<V2FirebaseAdminCanonicalDocumentReadV1>;
   readCoherentHeadSnapshot(
     requirements: readonly V2AuthenticatedRepositoryRequirementV1[],
   ): Promise<V2FirebaseAdminRepositoryHeadSnapshotV1>;
@@ -177,6 +188,44 @@ function canonicalDocumentBytes(
   if (utf8ByteLengthV1(raw) < 1 || utf8ByteLengthV1(raw) > maximumBytes)
     fail("v2_firebase_admin_repository_document_size_invalid");
   return encoder.encode(raw);
+}
+
+async function readCanonicalDocumentExact(
+  db: admin.firestore.Firestore,
+  input: Readonly<{ documentPath: string; maximumBytes: number }>,
+): Promise<V2FirebaseAdminCanonicalDocumentReadV1> {
+  if (
+    !isRecord(input) ||
+    Object.keys(input).sort().join("|") !== "documentPath|maximumBytes" ||
+    typeof input.documentPath !== "string" ||
+    input.documentPath.length < 3 ||
+    input.documentPath.length > 1024 ||
+    input.documentPath.startsWith("/") ||
+    input.documentPath.includes("..") ||
+    input.documentPath.split("/").length % 2 !== 0 ||
+    !Number.isSafeInteger(input.maximumBytes) ||
+    input.maximumBytes < 1 ||
+    input.maximumBytes > 1024 * 1024
+  )
+    fail("v2_firebase_admin_repository_document_read_input_invalid");
+  const reference = db.doc(input.documentPath);
+  const snapshots = await db.getAll(reference);
+  const snapshot = snapshots[0];
+  if (
+    snapshots.length !== 1 ||
+    !snapshot?.exists ||
+    snapshot.ref.path !== input.documentPath ||
+    snapshot.readTime === null ||
+    snapshot.updateTime === null
+  )
+    fail("v2_firebase_admin_repository_document_read_missing");
+  const bytes = canonicalDocumentBytes(snapshot.data(), input.maximumBytes);
+  return Object.freeze({
+    documentPath: input.documentPath,
+    canonicalRaw: new TextDecoder("utf-8", { fatal: true }).decode(bytes),
+    readTime: timestamp(snapshot.readTime),
+    updateTime: timestamp(snapshot.updateTime),
+  });
 }
 
 function requirementPaths(requirement: V2AuthenticatedRepositoryRequirementV1) {
@@ -668,6 +717,8 @@ export function createV2FirebaseAdminRepositoryIoV1(): V2FirebaseAdminRepository
   const io: V2FirebaseAdminRepositoryIoV1 = {
     firestore: firestorePort(db),
     storage: storagePort(bucket),
+    readCanonicalDocumentExact: (input) =>
+      readCanonicalDocumentExact(db, input),
     readCoherentHeadSnapshot: (
       requirements: readonly V2AuthenticatedRepositoryRequirementV1[],
     ) => readHeadSnapshot(db, requirements),

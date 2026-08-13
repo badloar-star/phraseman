@@ -50,6 +50,20 @@ describe('support Telegram review contract', () => {
     expect(buildSupportTelegramReviewPreview({ finalText: 'Write to learner@example.com', draftRevision: 4 })).toMatchObject({ approvable: false });
   });
 
+  test('never offers approval or auto-send for an ungrounded or internal reply', () => {
+    expect(buildSupportTelegramReviewPreview({
+      finalText: 'В доступном снимке продукта не нашлось достаточно надёжных фактов.',
+      draftRevision: 5,
+      customerReady: false,
+      customerIssue: 'Куда делся Компас?',
+    })).toMatchObject({ approvable: false, violations: expect.arrayContaining(['internal_process_language']) });
+    expect(buildSupportTelegramReviewPreview({
+      finalText: 'Здравствуйте! Здесь нужна ручная проверка.',
+      draftRevision: 5,
+      customerReady: false,
+    })).toMatchObject({ approvable: false });
+  });
+
   test('a stale worker cannot settle a job after a newer lease reclaims it', () => {
     const reclaimed = {
       action: 'send' as const,

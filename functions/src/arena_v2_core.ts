@@ -11,6 +11,7 @@ import {
   OWNER_APPROVED_TOURNAMENT_MODES,
   type OwnerApprovedTournamentMode,
 } from './tournament_mode_contract';
+import { ARENA_STAR_POLICY, type ArenaEntryMode } from './arena_stars_v3';
 
 export const ARENA_V2_COLLECTIONS = Object.freeze({
   config: 'arena_v2_config',
@@ -19,6 +20,9 @@ export const ARENA_V2_COLLECTIONS = Object.freeze({
   queueLocks: 'arena_v2_queue_locks',
   matches: 'arena_v2_matches',
   matchPrivate: 'arena_v2_match_private',
+  /** Живой прогресс соперника. Единственное, куда пишет сам клиент. */
+  matchLive: 'arena_v2_match_live',
+  matchLiveSeats: 'seats',
   invites: 'arena_v2_invites',
   taskSource: 'tournamentTasks',
   seasons: 'arena_v2_seasons',
@@ -30,11 +34,39 @@ export const ARENA_V2_COLLECTIONS = Object.freeze({
   members: 'arena_v2_members',
 });
 
+/** Рейтинг, дружеская дуэль, серия, Arena Today — полный матч. */
 export const ARENA_V2_TASK_COUNT = 10;
+/** Владелец (2026-08-12): быстрый матч укорочен до пяти заданий (~60–80 секунд). */
+export const ARENA_V2_QUICK_TASK_COUNT = 5;
+
+/** Число заданий по режиму. Строка, а не union, чтобы вызывающие не тянули типы. */
+export function arenaTaskCount(mode?: string): number {
+  return mode === 'quick' ? ARENA_V2_QUICK_TASK_COUNT : ARENA_V2_TASK_COUNT;
+}
 export const ARENA_V2_MAX_TASK_DOC_READS = 10;
 export const ARENA_V2_SPEED_MATCH_PAIRS = 4;
 export const ARENA_V2_PRIVATE_BUDGET_BYTES = 384 * 1_024;
-export const ARENA_V2_QUICK_BOT_FALLBACK_MS = 6_000;
+/**
+ * Владелец (2026-08-12): бот в быстром матче подключается не через фиксированные
+ * 6 секунд, а в СЛУЧАЙНЫЙ момент 8–55 секунд со смещением к 10–25 с. Момент
+ * назначает сервер при постановке в очередь и кладёт в очередь как botDueAtMs;
+ * клиент только ждёт до него. Живой соперник всегда перебивает бота.
+ */
+export const ARENA_V2_QUICK_BOT_MIN_MS = 8_000;
+export const ARENA_V2_QUICK_BOT_MAX_MS = 55_000;
+/** Смещение к началу диапазона: медиана ≈ 23 с, большинство матчей 10–30 с. */
+export const ARENA_V2_QUICK_BOT_BIAS = 1.6;
+
+/** `unit` — равномерное [0,1). Возвращает задержку в миллисекундах. */
+export function arenaQuickBotDelayMs(unit: number): number {
+  const safe = Number.isFinite(unit) ? Math.max(0, Math.min(1, unit)) : 0.5;
+  const biased = Math.pow(safe, ARENA_V2_QUICK_BOT_BIAS);
+  const span = ARENA_V2_QUICK_BOT_MAX_MS - ARENA_V2_QUICK_BOT_MIN_MS;
+  return Math.round(ARENA_V2_QUICK_BOT_MIN_MS + biased * span);
+}
+
+/** Совместимость: минимальная граница, раньше которой сервер бота не отдаёт. */
+export const ARENA_V2_QUICK_BOT_FALLBACK_MS = ARENA_V2_QUICK_BOT_MIN_MS;
 export const ARENA_V2_ACCEPT_MS = 12_000;
 export const ARENA_V2_COUNTDOWN_MS = 3_200;
 export const ARENA_V2_REVEAL_MS = 1_200;
@@ -219,17 +251,28 @@ export const ARENA_V2_DIFFICULTY_BY_DIVISION_BAND = Object.freeze({
   '18-23': [2, 2, 2, 3, 3, 3, 3, 2, 3, 3],
 } as const);
 
-export function arenaDifficultyPlan(divisionIndex: number): readonly number[] {
-  if (divisionIndex <= 5) return ARENA_V2_DIFFICULTY_BY_DIVISION_BAND['0-5'];
-  if (divisionIndex <= 11) return ARENA_V2_DIFFICULTY_BY_DIVISION_BAND['6-11'];
-  if (divisionIndex <= 17) return ARENA_V2_DIFFICULTY_BY_DIVISION_BAND['12-17'];
-  return ARENA_V2_DIFFICULTY_BY_DIVISION_BAND['18-23'];
+/**
+ * Первые пять слотов полного порядка — ровно по одному заданию каждого типа,
+ * поэтому короткий быстрый матч получается обычным срезом и остаётся
+ * сбалансированным по типам.
+ */
+export function arenaModeOrder(mode?: string): readonly OwnerApprovedTournamentMode[] {
+  return ARENA_V2_MODE_ORDER.slice(0, arenaTaskCount(mode)) as readonly OwnerApprovedTournamentMode[];
+}
+
+export function arenaDifficultyPlan(divisionIndex: number, mode?: string): readonly number[] {
+  const band = divisionIndex <= 5 ? ARENA_V2_DIFFICULTY_BY_DIVISION_BAND['0-5']
+    : divisionIndex <= 11 ? ARENA_V2_DIFFICULTY_BY_DIVISION_BAND['6-11']
+    : divisionIndex <= 17 ? ARENA_V2_DIFFICULTY_BY_DIVISION_BAND['12-17']
+    : ARENA_V2_DIFFICULTY_BY_DIVISION_BAND['18-23'];
+  return band.slice(0, arenaTaskCount(mode));
 }
 
 export function selectArenaTasks(
   source: readonly TournamentTask[],
   seed: string,
   divisionIndex = 0,
+  matchMode?: string,
 ): TournamentTask[] | null {
   const grouped = new Map<string, TournamentTask[]>();
   const seen = new Set<string>();
@@ -243,8 +286,9 @@ export function selectArenaTasks(
   }
   const difficulties = arenaDifficultyPlan(Math.max(0, Math.min(23, Math.trunc(divisionIndex))));
   const result: TournamentTask[] = [];
-  for (let index = 0; index < ARENA_V2_MODE_ORDER.length; index += 1) {
-    const mode = ARENA_V2_MODE_ORDER[index];
+  const order = arenaModeOrder(matchMode);
+  for (let index = 0; index < order.length; index += 1) {
+    const mode = order[index];
     const difficulty = difficulties[index];
     const candidates = deterministicOrder(grouped.get(`${mode}:${difficulty}`) ?? [], `${seed}|${index}`);
     const selected = candidates.find((task) => !result.some((entry) => entry.taskId === task.taskId));
@@ -253,7 +297,7 @@ export function selectArenaTasks(
     if (!adapted) return null;
     result.push(adapted);
   }
-  return result.length === ARENA_V2_TASK_COUNT ? result : null;
+  return result.length === arenaTaskCount(matchMode) ? result : null;
 }
 
 /** No answer fingerprints and no explanation ever cross the public boundary. */
@@ -266,9 +310,11 @@ export function toArenaPublicTask(task: TournamentTask): ArenaV2PublicTask | nul
 
 export function validateArenaPrivateEnvelope(
   envelope: ArenaV2PrivateEnvelope,
+  matchMode?: string,
 ): { ok: true; serializedBytes: number } | { ok: false; reason: string; serializedBytes: number } {
   const serializedBytes = Buffer.byteLength(JSON.stringify(envelope), 'utf8');
-  if (envelope.tasks.length !== ARENA_V2_TASK_COUNT) {
+  const expectedTasks = arenaTaskCount(matchMode);
+  if (envelope.tasks.length !== expectedTasks) {
     return { ok: false, reason: 'task_count_invalid', serializedBytes };
   }
   const counts = new Map<string, number>();
@@ -278,7 +324,8 @@ export function validateArenaPrivateEnvelope(
     }
     counts.set(task.mode, (counts.get(task.mode) ?? 0) + 1);
   }
-  if (OWNER_APPROVED_TOURNAMENT_MODES.some((mode) => counts.get(mode) !== 2)) {
+  const perMode = expectedTasks / OWNER_APPROVED_TOURNAMENT_MODES.length;
+  if (OWNER_APPROVED_TOURNAMENT_MODES.some((mode) => counts.get(mode) !== perMode)) {
     return { ok: false, reason: 'mode_quota_invalid', serializedBytes };
   }
   if (serializedBytes >= ARENA_V2_PRIVATE_BUDGET_BYTES) {
@@ -299,12 +346,17 @@ export function arenaRanksCompatible(
   return Math.abs(Math.trunc(leftRankIndex) - Math.trunc(rightRankIndex)) <= arenaRankWindow(mode);
 }
 
+/**
+ * Владелец (2026-08-12): время на ответ сокращено примерно на четверть.
+ * Медиана ответа около 7 секунд, запас всё равно остаётся, зато гонка
+ * «кто ответил первым» становится острее — а она теперь определяет звёзды.
+ */
 export const ARENA_V2_ANSWER_MS = Object.freeze({
-  guess_phrase: 11_000,
-  fill_gap: 11_000,
-  find_oddity: 13_000,
-  translate_build: 18_000,
-  speed_match: 22_000,
+  guess_phrase: 8_000,
+  fill_gap: 8_000,
+  find_oddity: 10_000,
+  translate_build: 14_000,
+  speed_match: 18_000,
 } as const);
 
 export function arenaTaskDurationMs(mode: OwnerApprovedTournamentMode): number {
@@ -452,7 +504,14 @@ export function arenaSeasonStars(input: {
   eligibleMatchIndex: number;
   dailyStarsBefore: number;
 }): number {
-  if (input.mode === 'friend' || input.mode === 'series') return 0;
+  /**
+   * Начисляется ли за режим звёзды в кошелёк, решает ОДИН список — политика
+   * режима в движке звёзд. Владелец (D-07): «быстрый матч звёзды не начисляет,
+   * только опыт». Второй список режимов здесь и был причиной расхождения:
+   * клиент получал в плане `starPolicy: 'none'` и обещал игроку ноль, а сервер
+   * по своему списку записывал звёзды в сезон и кошелёк.
+   */
+  if (ARENA_STAR_POLICY[input.mode as ArenaEntryMode] !== 'banked') return 0;
   const multiplied = Math.floor(Math.max(0, input.rawStars) * arenaDailyMultiplier(input.eligibleMatchIndex));
   return Math.max(0, Math.min(multiplied, 160 - Math.max(0, input.dailyStarsBefore)));
 }
@@ -472,10 +531,18 @@ export function arenaTaskStars(input: {
   return input.correct ? ({ 1: 3, 2: 4, 3: 5 }[input.task.difficulty] ?? 0) : 0;
 }
 
+/**
+ * Сколько матчей за сутки дают право на редкую награду. Считаются быстрые и
+ * рейтинговые; звёзды при этом начисляет только рейтинговый (D-07), поэтому
+ * счётчик отдельный от счётчика начисления.
+ */
+export const ARENA_DAILY_REWARD_MATCHES = 6;
 export const ARENA_V2_SPIN_PITY_MATCHES = 80;
 export const ARENA_V2_SPIN_MINIMUM_ANSWERS = 8;
 export const ARENA_V2_SPIN_ODDS_BPS = Object.freeze({
-  quick_bot: 25,
+  // Владелец (2026-08-12): шанс против бота выровнен с человеческим — иначе
+  // внимательный игрок вычислял бы бота по статистике дропов.
+  quick_bot: 50,
   quick_human: 50,
   ranked_human: 100,
 } as const);

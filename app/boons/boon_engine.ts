@@ -2,10 +2,10 @@
 //
 // Чистые функции (без побочных эффектов) → переиспользуются и в UI, и в местах
 // применения эффекта, и легко тестируются. День РОТАЦИИ считается по UTC (синхронно
-// со сбросом daily-tasks/арены/стрика). Эффекты по времени суток (early-bird,
+// со сбросом арены/стрика). Эффекты по времени суток (early-bird,
 // energy-window) проверяют локальный час отдельно — это не задача резолвера.
 
-import { getTodayKey } from '../daily_tasks';
+import { getUtcDayKey } from '../local_date';
 import { getWeeklyBoonsConfigRaw, hasRemoteConfigSnapshotApplied } from '../remote_flags';
 import { parseWeeklyBoonsConfig } from './boon_config';
 import {
@@ -32,7 +32,7 @@ function isModifierEnabled(cfg: WeeklyBoonsConfig, id: BoonModifierId): boolean 
  * Берём именно из today-key, а не из new Date().getUTCDay() напрямую, чтобы день
  * ротации точно совпадал с днём сброса прочих систем.
  */
-export function utcWeekdayFromTodayKey(todayKey: string = getTodayKey()): number {
+export function utcWeekdayFromTodayKey(todayKey: string = getUtcDayKey()): number {
   // todayKey = "YYYY-MM-DD". Полдень UTC выбран намеренно: исключает любые
   // краевые сдвиги дня при парсинге и совпадает с UTC-датой today-key.
   const d = new Date(`${todayKey}T12:00:00Z`);
@@ -44,7 +44,7 @@ export function utcWeekdayFromTodayKey(todayKey: string = getTodayKey()): number
  * Номер недели по UTC от эпохи. Привязан к понедельнику (как недельный XP-сброс).
  * Используется как индекс для чередующихся слотов расписания.
  */
-export function utcWeekNumberFromTodayKey(todayKey: string = getTodayKey()): number {
+export function utcWeekNumberFromTodayKey(todayKey: string = getUtcDayKey()): number {
   const d = new Date(`${todayKey}T12:00:00Z`);
   const ms = d.getTime();
   if (!Number.isFinite(ms)) return 0;
@@ -82,7 +82,7 @@ function resolvePrimaryFromSlot(
  */
 export function resolveTodaysBoons(
   cfg: WeeklyBoonsConfig,
-  todayKey: string = getTodayKey(),
+  todayKey: string = getUtcDayKey(),
 ): TodaysBoons {
   const utcWeekday = utcWeekdayFromTodayKey(todayKey);
   const weekNumber = utcWeekNumberFromTodayKey(todayKey);
@@ -106,7 +106,7 @@ let _cachedBoons: TodaysBoons | null = null;
  * Удобная обёртка: читает «живой» конфиг из Remote Config и резолвит сегодняшние
  * бонусы. Мемоизировано по (сырой конфиг + день) — дёшево даже в hot-path (XP, энергия).
  */
-export function getTodaysBoons(todayKey: string = getTodayKey()): TodaysBoons {
+export function getTodaysBoons(todayKey: string = getUtcDayKey()): TodaysBoons {
   // Fail closed during cold start. The bundled defaults intentionally enable
   // weekly boons, but they must never win a race against a persisted/live
   // admin kill-switch that has not been applied yet.
@@ -131,11 +131,11 @@ export function getTodaysBoons(todayKey: string = getTodayKey()): TodaysBoons {
 }
 
 /** Активен ли сейчас конкретный primary-бонус (синхронно, по живому конфигу). */
-export function isPrimaryBoonActive(id: BoonId, todayKey: string = getTodayKey()): boolean {
+export function isPrimaryBoonActive(id: BoonId, todayKey: string = getUtcDayKey()): boolean {
   return getTodaysBoons(todayKey).primary === id;
 }
 
 /** Активен ли сейчас always-on модификатор. */
-export function isBoonModifierActive(id: BoonModifierId, todayKey: string = getTodayKey()): boolean {
+export function isBoonModifierActive(id: BoonModifierId, todayKey: string = getUtcDayKey()): boolean {
   return getTodaysBoons(todayKey).modifiers.includes(id);
 }

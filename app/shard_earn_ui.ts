@@ -67,16 +67,6 @@ const LABELS: Record<string, ShardEarnLabel> = {
     tr: "30 günlük seri: parlayan gerçek disiplin",
     pl: "30 dni serii: dyscyplina, która błyszczy",
   },
-  daily_tasks_all: {
-    ru: 'Три дневных вызова закрыты — день прожит с пользой',
-    uk: 'Три денні виклики закриті — день прожитий з користю',
-    es: 'Las 3 tareas del día: jornada redonda',
-    'pt-BR': "As 3 tarefas do dia: jornada completa",
-    vi: "Hoàn tất 3 nhiệm vụ ngày: một ngày trọn vẹn",
-    id: "3 tugas harian selesai: hari yang produktif",
-    tr: "Günün 3 görevi tamam: dolu dolu bir gün",
-    pl: "3 zadania dnia ukończone: udany dzień",
-  },
   topic_completed: {
     ru: 'Вся тема пройдена — большой рывок, большой приз',
     uk: 'Уся тема пройдена — великий ривок, великий приз',
@@ -231,6 +221,12 @@ const LABELS: Record<string, ShardEarnLabel> = {
     ru: 'Сундук недельного трека карточек открыт — звёзды превратились в осколки',
     uk: 'Скриню тижневого треку карток відкрито — зірки стали осколками',
     es: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
+
+    'pt-BR': 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
+    vi: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
+    id: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
+    tr: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
+    pl: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
   },
   generic_raw: {
     ru: 'Начисление жемчужин',

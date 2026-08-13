@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen, ArenaStat } from '../components/arena/ArenaScreen';
+import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { StarGlyph } from '../components/tournament/TournamentFx';
@@ -34,6 +35,7 @@ export default function ArenaSeasonPassScreen() {
       .finally(() => setBusyKey(null));
   };
   return (
+    <ArenaHubChrome>
     <ArenaScreen title={arenaText(lang, 'season')} variant="season" scroll={false}>
       <FlatList
         data={home?.season.levels ?? []}
@@ -65,6 +67,7 @@ export default function ArenaSeasonPassScreen() {
         )}
       />
     </ArenaScreen>
+    </ArenaHubChrome>
   );
 }
 

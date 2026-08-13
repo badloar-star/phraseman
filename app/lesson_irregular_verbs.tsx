@@ -31,7 +31,6 @@ import { useAudio } from '../hooks/use-audio';
 import fk from './feedback/feedback_kit';
 import VictoryBurst from '../components/feedback/VictoryBurst';
 import { verbLearnedDoneTitle, verbFormsSubtitle } from './feedback/feedback_i18n';
-import { updateMultipleTaskProgress } from './daily_tasks';
 import { MOTION_SCALE } from '../constants/motion';
 import { loadSettings } from './settings_edu';
 import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb, acceptedFormsFor, portionsForVerbs } from './irregular_verbs_data';
@@ -501,13 +500,6 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
             AsyncStorage.setItem(irregularStorageKey, JSON.stringify(g));
           });
           setLearnedCnt(c => c + 1);
-          // зачем: задание дня двигается и на ПОВТОРЕ уже выученного глагола
-          // (владелец: «задания дня можно выполнить, просто повторив пройденное»).
-          // Здесь это работает без правки: очередь повтора (practiceAll → onReset)
-          // содержит ВСЕ глаголы урока, а не только «на сегодня», и каждый чистый
-          // проход попадает сюда. Повторный XP отсекается идемпотентным eventId
-          // ниже ('verb:...:learned'), поэтому фермы опыта не возникает.
-          updateMultipleTaskProgress([{ type: 'verb_learned' }], { studyTarget });
           registerXP(POINTS_PER_VERB, 'verb_learned', userName || '', lang, lessonId, {
             eventId: [
               'verb',
@@ -1093,12 +1085,8 @@ export default function LessonIrregularVerbs() {
   const rootPack = stringsForLang(lang);
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
   const canTrain = energyUnlimited || energy > 0;
-  const { id, autoPractice: autoPracticeParam } = useLocalSearchParams<{ id: string; autoPractice?: string | string[] }>();
+  const { id } = useLocalSearchParams<{ id: string }>();
   const lessonId = parseInt(id || '1', 10);
-  // зачем: заход из задания дня, когда по SRS на сегодня глаголов нет (activePortion
-  // пустой) — экран сразу показывал «Всё выучено», и verb_learned было не выполнить.
-  // Флаг включает режим повтора всех глаголов урока; SRS и прогресс не сбрасываются.
-  const autoPractice = (Array.isArray(autoPracticeParam) ? autoPracticeParam[0] : autoPracticeParam) === '1';
   useEffect(() => {
     let cancelled = false;
     void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
@@ -1125,7 +1113,6 @@ export default function LessonIrregularVerbs() {
   const [learnTabKey, setLearnTabKey] = useState(0);
   // Карта SRS грузится асинхронно; до неё activePortion пуст просто из-за отсутствия
   // данных, и решать «учить нечего» нельзя — иначе повтор включится по ложной причине.
-  const [srsLoaded, setSrsLoaded] = useState(false);
 
   useEffect(() => {
     if (!canTrain) {
@@ -1154,7 +1141,7 @@ export default function LessonIrregularVerbs() {
       if (Object.keys(map).length === 0 && Object.keys(counts).length > 0) {
         map = await seedSrsFromLegacyCounts(counts, studyTarget);
       }
-      if (!cancelled) { setSrsMap(map); setSrsLoaded(true); }
+      if (!cancelled) setSrsMap(map);
     })();
     return () => { cancelled = true; };
   }, [irregularStorageKey, studyTarget]);
@@ -1176,23 +1163,6 @@ export default function LessonIrregularVerbs() {
     }
     return [];
   }, [portions, dueBaseSet]);
-
-  // зачем: приход из задания дня (autoPractice=1) — задание требует повтора, а по SRS
-  // на сегодня может не быть ни одного глагола. Тогда сразу включаем режим «все глаголы
-  // урока» и открываем вкладку «Учить», чтобы задание было выполнимо, а не упиралось в
-  // экран «Всё выучено». Прогресс и SRS не сбрасываем — practiceAll меняет только очередь.
-  const autoPracticeFiredRef = useRef(false);
-  useEffect(() => {
-    if (!autoPractice || autoPracticeFiredRef.current) return;
-    if (!srsLoaded || !canTrain || frenchIrregularBlocked) return;
-    if (allVerbs.length === 0) return;
-    autoPracticeFiredRef.current = true;
-    setUserTab('learn');
-    // Есть что учить по расписанию — обычная очередь сама даст прогресс, повтор не нужен.
-    if (activePortion.length > 0) return;
-    setPracticeAll(true);
-    setLearnTabKey(k => k + 1);
-  }, [autoPractice, srsLoaded, canTrain, frenchIrregularBlocked, allVerbs.length, activePortion.length]);
 
   // В режиме practiceAll тренируем все глаголы урока (прогресс/SRS как обычно).
   const verbsForLearnTab = practiceAll ? allVerbs : activePortion;

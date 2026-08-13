@@ -4,7 +4,7 @@ import path from 'path';
 const onboarding = fs.readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8');
 const sheet = fs.readFileSync(path.join(process.cwd(), 'components', 'OnboardingWelcomeSheet.tsx'), 'utf8');
 const flags = fs.readFileSync(path.join(process.cwd(), 'app', 'remote_flags.ts'), 'utf8');
-const legacy = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
+const legacy = fs.readFileSync(path.join(process.cwd(), 'admin', 'legacy.html'), 'utf8');
 const host = fs.readFileSync(path.join(process.cwd(), 'components', 'OnboardingWelcomeHost.tsx'), 'utf8');
 const rootLayout = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
 

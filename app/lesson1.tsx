@@ -33,8 +33,6 @@ import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
-import { deliverDailyTaskProgressEvent, getTodayKey, pruneDatedDailyTasksStorageKeys, resetAndUpdateTaskProgress, updateMultipleTaskProgress, updateTaskProgress } from './daily_tasks';
-import { daysSinceLastActive } from './boons/comeback';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { getCurrentMultiplierBreakdown, getLessonDifficultyMultiplier, registerXP } from './xp_manager';
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
@@ -132,7 +130,7 @@ import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
-import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonLastCompletedAtKey, lessonPassCountKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
+import { fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
@@ -2114,8 +2112,7 @@ export default function LessonScreen() {
   // CHANGE v5: contraction branching state
   const [phraseWordIdx, setPhraseWordIdx] = useState(0);        // position in original phrase words
   const [contrExpanded, setContrExpanded] = useState<string[] | null>(null); // pending expansion tokens
-  const correctStreakRef = useRef(0);  // для задания correct_streak + combo badge
-  const todayAnswersRef  = useRef(0);  // для задания total_answers
+  const correctStreakRef = useRef(0);  // серия правильных ответов + combo badge
   const userNameRef      = useRef<string | null>(null); // кешируем имя чтобы не читать AsyncStorage на каждый ответ
   // [COMBO] Отображаемое значение комбо для UI-бейджа. Обновляется в setState.
   const [comboCount, setComboCount] = useState(0);
@@ -2211,17 +2208,6 @@ export default function LessonScreen() {
     lessonAnalyticsKeyRef.current = lessonAnalyticsKey;
     lessonAnalyticsAttemptRef.current = createLessonAnalyticsAttempt(Crypto.randomUUID);
   }
-  const differentLessonTrackedRef = useRef(false); // засчитали different_lessons для этого урока сегодня
-  // last_active_date на СТАРТЕ урока: первое начисление XP перезапишет её сегодняшней
-  // датой, и «возвращение после перерыва» перестанет быть видно (comeback_lesson).
-  const comebackLastActiveRef = useRef<string | null | undefined>(undefined);
-
-  useEffect(() => {
-    AsyncStorage.getItem('last_active_date')
-      .then((value) => { comebackLastActiveRef.current = value; })
-      .catch(() => { comebackLastActiveRef.current = null; });
-  }, []);
-
   useEffect(() => {
     let cancelled = false;
     const lessonMultiplier = getLessonDifficultyMultiplier(lessonId);
@@ -2981,26 +2967,6 @@ export default function LessonScreen() {
       tags: { lessonId, cellIndex, isRight, replay: overridePhraseCell !== null },
     });
     trackAnswer(isRight).catch(() => {});
-    if (isRight && !differentLessonTrackedRef.current) {
-      differentLessonTrackedRef.current = true;
-      (async () => {
-        const dayKey = new Date().toISOString().split('T')[0];
-        const lessonKey = dailyTaskLessonVisitedKey(dayKey, studyTargetRef.current);
-        const visitedRaw = await AsyncStorage.getItem(lessonKey);
-        let visited: number[] = [];
-        try { visited = visitedRaw ? JSON.parse(visitedRaw) : []; } catch { visited = []; }
-        if (!Array.isArray(visited)) visited = [];
-        if (!visited.includes(lessonId)) {
-          visited.push(lessonId);
-          await AsyncStorage.setItem(lessonKey, JSON.stringify(visited));
-          void pruneDatedDailyTasksStorageKeys([lessonKey]).catch(() => {});
-          updateMultipleTaskProgress(
-            [{ type: 'different_lessons', increment: 1 }],
-            { studyTarget: studyTargetRef.current },
-          ).catch(() => {});
-        }
-      })();
-    }
     const np = [...progress];
 
     // КЛЮЧЕВАЯ ЛОГИКА:
@@ -3125,21 +3091,10 @@ export default function LessonScreen() {
       }
     }
 
-    // Триггеры ежедневных заданий + XP
+    // Серия ответов + XP
     if (isRight) {
       correctStreakRef.current += 1;
-      todayAnswersRef.current += 1;
       setComboCount(correctStreakRef.current);
-      const lessonUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [
-        { type: 'correct_streak' },
-        { type: 'lesson_no_mistakes' },
-        { type: 'total_answers' },
-        { type: 'daily_active' },
-      ];
-      const hour = new Date().getHours();
-      if (hour < 12) lessonUpdates.push({ type: 'morning_session' });
-      if (hour >= 18) lessonUpdates.push({ type: 'evening_session' });
-      updateMultipleTaskProgress(lessonUpdates, { studyTarget: studyTargetRef.current });
       // Начисляем XP: 5 базовых × комбо-множитель (за серию без ошибок подряд внутри урока)
       const comboM = correctStreakRef.current >= 25 ? 3.0
         : correctStreakRef.current >= 15 ? 2.5
@@ -3235,26 +3190,10 @@ export default function LessonScreen() {
     } else {
       correctStreakRef.current = 0;
       setComboCount(0);
-      todayAnswersRef.current += 1;
-      if (!isReplayRef.current) {
-        // Атомарно сбрасываем streak-задания и считаем total_answers
-        resetAndUpdateTaskProgress(
-          ['lesson_no_mistakes', 'correct_streak'],
-          [{ type: 'total_answers' }],
-          studyTargetRef.current,
-        );
-      } else {
-        updateMultipleTaskProgress([{ type: 'total_answers' }], { studyTarget: studyTargetRef.current });
-      }
-
       // При ОШИБКЕ: тратим энергию через контекст (используем refs — нет stale closure)
       if ((currentEnergyRef.current > 0 || bonusEnergyRef.current > 0) && !testerEnergyDisabledRef.current) {
         spendOneRef.current().then(success => {
           if (success) {
-            updateMultipleTaskProgress(
-              [{ type: 'energy_spend', increment: 1 }],
-              { studyTarget: studyTargetRef.current },
-            ).catch(() => {});
             if (currentEnergyRef.current === 0 && bonusEnergyRef.current === 0) {
               setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 1000);
             }
@@ -3402,85 +3341,6 @@ export default function LessonScreen() {
           correct,
           effectiveTotal,
         }, 'lesson1');
-        const lessonFinishUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [
-          { type: 'lesson_complete', increment: 1 },
-        ];
-        // weekend_marathon: уроки в выходной (локальный день недели) считаются отдельно.
-        const finishWeekday = new Date().getDay();
-        if (finishWeekday === 0 || finishWeekday === 6) {
-          lessonFinishUpdates.push({ type: 'weekend_marathon', increment: 1 });
-        }
-        // perfect_big_lesson: длинный урок (20+ фраз) без единой ошибки за проход.
-        if (effectiveTotal >= 20 && lessonWrongMistakesRef.current.length === 0) {
-          lessonFinishUpdates.push({ type: 'perfect_big_lesson', increment: 1 });
-        }
-        // comeback_lesson: урок в день возвращения после 3+ дней перерыва
-        // (last_active_date прочитана на старте урока — см. comebackLastActiveRef).
-        const finishTodayKey = getTodayKey();
-        if (daysSinceLastActive(comebackLastActiveRef.current, finishTodayKey) >= 3) {
-          lessonFinishUpdates.push({ type: 'comeback_lesson', increment: 1 });
-        }
-        // revision_lesson: предыдущее прохождение этого урока было 7+ дней назад.
-        // Бутстрэп: уроки без метки времени (пройдены до её появления) с pass_count>0
-        // считаем «старыми» — иначе задание было бы мёртвым первые 7 дней после релиза.
-        const finishedAtKey = lessonLastCompletedAtKey(lessonId, studyTargetRef.current);
-        let revisionEligible = false;
-        try {
-          const [prevFinishedAt, prevPassCountRaw] = await Promise.all([
-            AsyncStorage.getItem(finishedAtKey),
-            AsyncStorage.getItem(lessonPassCountKey(lessonId, studyTargetRef.current)),
-          ]);
-          revisionEligible = prevFinishedAt
-            ? daysSinceLastActive(prevFinishedAt, finishTodayKey) >= 7
-            : (parseInt(prevPassCountRaw ?? '0', 10) || 0) > 0;
-        } catch {
-          revisionEligible = false;
-        }
-        if (revisionEligible) {
-          lessonFinishUpdates.push({ type: 'revision_lesson', increment: 1 });
-        }
-        void AsyncStorage.setItem(finishedAtKey, finishTodayKey).catch(() => {});
-        const finishDailyTaskEventId = [
-  'lesson-finish',
-  finishTodayKey,
-  safeProgressEventPart(studyTargetRef.current),
-  safeProgressEventPart(lessonId),
-  safeProgressEventPart(nextAttemptId),
-].join(':');
-const startLessonFinishDelivery = () => deliverDailyTaskProgressEvent(
-  finishDailyTaskEventId,
-  lessonFinishUpdates,
-  { studyTarget: studyTargetRef.current },
-);
-const firstLessonFinishDelivery = startLessonFinishDelivery();
-const finishLessonDeliveryInBackground = async () => {
-  try {
-    await firstLessonFinishDelivery;
-    return;
-  } catch (deliveryError) {
-    void trackFeatureError('lesson', 'daily_task_delivery', deliveryError, {
-      lessonId,
-      finishDailyTaskEventId,
-    }, 'lesson1');
-  }
-
-  try {
-    // Exactly-once journal semantics make retrying the same event id safe.
-    await startLessonFinishDelivery();
-  } catch (deliveryError) {
-    void trackFeatureError('lesson', 'daily_task_delivery_retry', deliveryError, {
-      lessonId,
-      finishDailyTaskEventId,
-    }, 'lesson1');
-    emitAppEvent('action_toast', {
-      type: 'error',
-      messageRu: 'Урок сохранён, но прогресс вызовов сейчас не обновился.',
-      messageUk: 'Урок збережено, але прогрес викликів зараз не оновився.',
-      messageEs: 'La lección se guardó, pero el progreso de los desafíos no se actualizó.',
-    });
-  }
-};
-void finishLessonDeliveryInBackground();
         void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
 
         let coachRouteParams = {};
@@ -3517,8 +3377,6 @@ void finishLessonDeliveryInBackground();
         };
 
         // There is one completion surface: go straight to lesson_complete.
-        // Daily Challenge delivery continues independently and retries once,
-        // so storage/network trouble can never strand the learner here.
         await navigate();
         } catch (e) {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');

@@ -29,7 +29,7 @@ describe('survey screen submission contract', () => {
       source.indexOf('await submitSurvey('),
     );
     const balance = source.indexOf('await replaceShardsBalanceForAccountGeneration(res.balanceAfter');
-    const marker = source.indexOf('await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey');
+    const marker = source.indexOf('await markSurveyOfferDone({ stableId, dayKey: openedDayKey');
     const mountedPresentation = source.indexOf('if (!mountedRef.current || attemptIdRef.current !== attemptId) return;');
     expect(generationGate).toBeGreaterThan(-1);
     expect(balance).toBeGreaterThan(generationGate);

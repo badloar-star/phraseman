@@ -5,7 +5,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import type { ActiveSurvey } from './survey_client';
 import type { Lang } from '../constants/i18n';
-import { peekSurveyDailyTask } from './survey_daily_task_cache';
+import { peekSurveyOffer } from './survey_offer_cache';
 
 type SurveyHandoff = { survey: ActiveSurvey; stableId: string; dayKey: string; lang: Lang };
 let pendingSurvey: SurveyHandoff | null = null;
@@ -23,7 +23,7 @@ export function takePrimedSurvey(surveyId: string, scope?: Omit<SurveyHandoff, '
     && pendingSurvey.lang === scope.lang) {
     return pendingSurvey.survey;
   }
-  const cached = peekSurveyDailyTask(scope);
+  const cached = peekSurveyOffer(scope);
   return cached?.survey?.surveyId === surveyId ? cached.survey : null;
 }
 

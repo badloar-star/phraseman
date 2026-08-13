@@ -21,11 +21,12 @@ jest.mock('../app/navigation_back', () => ({ safeRouterBack: () => mockBack() })
 jest.mock('../app/survey_client', () => ({ submitSurvey: (...args: unknown[]) => mockSubmitSurvey(...args) }));
 jest.mock('../app/shards_system', () => ({
   replaceShardsBalanceForAccountGeneration: (...args: unknown[]) => mockReplaceBalance(...args),
+  SHARD_REWARDS: { survey_completed: 1 },
 }));
-jest.mock('../app/survey_daily_task', () => ({ markSurveyDailyTaskDone: (...args: unknown[]) => mockMarkDone(...args) }));
-jest.mock('../app/survey_daily_task_cache', () => ({
-  beginSurveyDailyTaskRequest: (...args: unknown[]) => mockBeginCache(...args),
-  commitSurveyDailyTaskRequest: (...args: unknown[]) => mockCommitCache(...args),
+jest.mock('../app/survey_completion_marker', () => ({ markSurveyOfferDone: (...args: unknown[]) => mockMarkDone(...args) }));
+jest.mock('../app/survey_offer_cache', () => ({
+  beginSurveyOfferRequest: (...args: unknown[]) => mockBeginCache(...args),
+  commitSurveyOfferRequest: (...args: unknown[]) => mockCommitCache(...args),
 }));
 jest.mock('../app/events', () => ({ emitAppEvent: (...args: unknown[]) => mockEmit(...args) }));
 jest.mock('../app/survey_handoff', () => ({
@@ -36,11 +37,11 @@ jest.mock('../app/survey_handoff', () => ({
   }),
   clearPrimedSurvey: () => mockClearPrimed(),
 }));
-jest.mock('../app/survey_daily_challenge_model', () => ({
+jest.mock('../app/survey_offer_model', () => ({
   buildServerConfirmedLegacyCompletion: () => ({ phase: 'completed', survey: null, surveyId: 'survey-a', title: 'Survey A' }),
 }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn(() => Promise.resolve('account-a')) }));
-jest.mock('../app/daily_tasks', () => ({ getTodayKey: () => '2099-01-01' }));
+jest.mock('../app/local_date', () => ({ getUtcDayKey: () => '2099-01-01' }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn(), hapticSuccess: jest.fn() }));
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'en' }) }));
 jest.mock('../components/ThemeContext', () => ({
@@ -72,6 +73,10 @@ jest.mock('react-native-safe-area-context', () => {
 jest.mock('@expo/vector-icons', () => {
   const { Text: MockText } = require('react-native');
   return { Ionicons: ({ name }: any) => <MockText>{name}</MockText> };
+});
+jest.mock('@expo/vector-icons/Ionicons', () => {
+  const { Text: MockText } = require('react-native');
+  return ({ name }: any) => <MockText>{name}</MockText>;
 });
 jest.mock('../components/survey/SurveyRewardPanel', () => {
   const { Pressable: MockPressable, Text: MockText, View: MockView } = require('react-native');

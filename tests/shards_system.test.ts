@@ -166,7 +166,7 @@ describe('shards_system guards and one-time awards', () => {
 
   it('excludes store-purchased shards from achievement balance', async () => {
     await expect(addShardsRaw(80, 'shards_store_purchase', { skipServerAwait: true })).resolves.toBe(80);
-    await expect(addShardsRaw(5, 'daily_tasks_all', { skipServerAwait: true })).resolves.toBe(5);
+    await expect(addShardsRaw(5, 'achievement:first_steps', { skipServerAwait: true })).resolves.toBe(5);
 
     await expect(getShardsBalance()).resolves.toBe(85);
     await expect(getShardAchievementEligibleBalance()).resolves.toBe(5);
@@ -243,7 +243,7 @@ describe('shards_system guards and one-time awards', () => {
   it('does not keep spent store shards excluded forever', async () => {
     await expect(addShardsRaw(80, 'shards_store_purchase', { skipServerAwait: true })).resolves.toBe(80);
     await expect(spendShards(80, 'card_pack')).resolves.toBe(true);
-    await expect(addShardsRaw(100, 'daily_tasks_all', { skipServerAwait: true })).resolves.toBe(100);
+    await expect(addShardsRaw(100, 'achievement:first_steps', { skipServerAwait: true })).resolves.toBe(100);
 
     await expect(getShardsBalance()).resolves.toBe(100);
     await expect(getShardAchievementEligibleBalance()).resolves.toBe(100);
@@ -254,7 +254,7 @@ describe('shards_system guards and one-time awards', () => {
     mockStorage.shards_balance_meta_v1 = JSON.stringify({
       updatedAtMs: 2_000,
       op: 'earn',
-      reason: 'daily_tasks_all',
+      reason: 'achievement:first_steps',
     });
 
     await replaceShardsBalanceLocal(30, {
@@ -272,7 +272,7 @@ describe('shards_system guards and one-time awards', () => {
     mockStorage.shards_balance_meta_v1 = JSON.stringify({
       updatedAtMs: 2_000,
       op: 'earn',
-      reason: 'daily_tasks_all',
+      reason: 'achievement:first_steps',
     });
 
     await replaceShardsBalanceLocal(30, {

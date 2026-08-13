@@ -31,7 +31,7 @@ describe('Gustav fr-001 research best practices work order', () => {
       'compass_ai',
       'personal_practice',
       'flashcards',
-      'daily_phrase_tasks',
+      'daily_phrase',
       'diagnostics_exams',
       'personal_plans',
       'arena',

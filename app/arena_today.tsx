@@ -5,7 +5,7 @@ import Animated, { FadeIn, SlideInRight } from 'react-native-reanimated';
 import { useLang } from '../components/LangContext';
 import { ArenaQuestion } from '../components/arena/ArenaQuestion';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { ArenaDisclosureBadge, ArenaProgress, ArenaStateCard } from '../components/arena/ArenaExpansionUI';
+import { ArenaDisclosureBadge, ArenaProgress, ArenaStateCard, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { V2Card, V2Cta, V2Segments } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette, v2motion } from '../components/tournament/tournament_theme';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -141,12 +141,26 @@ export default function ArenaTodayScreen() {
   };
 
   if (status === 'loading') return <ArenaScreen title={screenTitle}>{ghostRun ? <ArenaDisclosureBadge text={arenaExpansionText(lang, 'ghostDisclosure')} /> : null}<ArenaStateCard state="loading" title={arenaExpansionText(lang, 'loading')} /></ArenaScreen>;
-  if (status === 'unavailable' || status === 'expired' || status === 'error') return (
-    <ArenaScreen title={screenTitle}>
-      {ghostRun ? <ArenaDisclosureBadge text={arenaExpansionText(lang, 'ghostDisclosure')} /> : null}
-      <ArenaStateCard state={status} title={arenaExpansionText(lang, status === 'error' ? 'unavailable' : status)} actionLabel={status === 'error' ? arenaExpansionText(lang, 'retry') : undefined} onAction={status === 'error' ? load : undefined} />
-    </ArenaScreen>
-  );
+  if (status === 'unavailable' || status === 'expired' || status === 'error') {
+    /**
+     * Три разные причины — три разных объяснения, и все они выбираются одной
+     * общей развилкой. Раньше все три показывали «Сейчас недоступно», и
+     * неудачная загрузка выглядела как выключенный раздел: игрок уходил там,
+     * где достаточно было повторить.
+     */
+    return (
+      <ArenaScreen title={screenTitle}>
+        {ghostRun ? <ArenaDisclosureBadge text={arenaExpansionText(lang, 'ghostDisclosure')} /> : null}
+        <ArenaStateNotice
+          state={status}
+          ghost={ghostRun}
+          onRetry={load}
+          onBack={() => router.replace('/arena' as never)}
+        />
+      </ArenaScreen>
+    );
+  }
+
   if (status === 'complete') return (
     <ArenaScreen title={screenTitle}>
       {ghostRun ? <><ArenaDisclosureBadge text={arenaExpansionText(lang, 'ghostDisclosure')} /><ArenaDisclosureBadge text={arenaExpansionText(lang, 'noEconomy')} /></> : null}

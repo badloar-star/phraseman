@@ -13,7 +13,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { bundleLang, triLang } from '../constants/i18n';
 import { getShardsBalance } from './shards_system';
 import {
-  loadMarketplacePacks,
+  allBundledMarketPacks,
   FlashcardMarketPack,
   loadDevOwnedPackIds,
   packTitleForInterface,
@@ -72,7 +72,8 @@ export default function FlashcardsMarketDevScreen() {
     }
     const [balance, list, owned] = await Promise.all([
       getShardsBalance(),
-      loadMarketplacePacks(studyTarget, lang),
+      /** DEV-инструмент: официальные наборы выведены из каталога (Cards 2.1 §1.1), но здесь выдаём их вручную. */
+      Promise.resolve(allBundledMarketPacks(studyTarget, lang)),
       loadDevOwnedPackIds(studyTarget),
     ]);
     setShards(balance);

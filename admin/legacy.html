@@ -11200,16 +11200,190 @@
     #tab-v2-generator .v2-course-primary{background:#c8ff3d!important;border:1px solid #a7e51d!important;color:#07110a!important;box-shadow:none!important}
     #tab-v2-generator .v2-course-primary:hover{background:#b9f52c!important;border-color:#94cf15!important;color:#07110a!important}
     #tab-v2-generator .v2-course-secondary{background:#1e293b!important;border:1px solid #334155!important;color:#dbeafe!important;box-shadow:none!important}
+    #tab-v2-generator .v2-owner-studio{max-width:1120px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:14px;padding:18px;margin-bottom:14px;color:#0f172a}
+    #tab-v2-generator .v2-owner-studio button,#tab-v2-generator .v2-owner-studio input,#tab-v2-generator .v2-owner-studio select,#tab-v2-generator .v2-owner-studio textarea{font:inherit}
+    #tab-v2-generator .v2-owner-studio button:focus-visible,#tab-v2-generator .v2-owner-studio input:focus-visible,#tab-v2-generator .v2-owner-studio select:focus-visible,#tab-v2-generator .v2-owner-studio textarea:focus-visible{outline:3px solid #38bdf8;outline-offset:2px}
+    #tab-v2-generator .v2-owner-field{display:grid;gap:6px;color:#334155;font-size:13px;font-weight:750}
+    #tab-v2-generator .v2-owner-control{width:100%;min-height:44px;box-sizing:border-box;background:#fff;border:1px solid #94a3b8;border-radius:9px;color:#0f172a;padding:9px 11px}
+    #tab-v2-generator .v2-owner-button{min-height:44px;border-radius:9px;padding:9px 14px;cursor:pointer;font-weight:850;transition:background-color .18s,border-color .18s,opacity .18s}
+    #tab-v2-generator .v2-owner-button:disabled{cursor:not-allowed;opacity:.55}
+    #tab-v2-generator .v2-owner-primary{background:#c8ff3d;border:1px solid #8fbd14;color:#07110a}
+    #tab-v2-generator .v2-owner-primary:hover:not(:disabled){background:#b9f52c}
+    #tab-v2-generator .v2-owner-secondary{background:#fff;border:1px solid #64748b;color:#0f172a}
+    #tab-v2-generator .v2-owner-secondary:hover:not(:disabled){background:#e2e8f0}
+    #tab-v2-generator .v2-owner-episode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+    #tab-v2-generator .v2-owner-episode{min-height:64px;text-align:left;background:#fff;border:1px solid #cbd5e1;border-radius:9px;padding:8px 10px;cursor:pointer;color:#0f172a}
+    #tab-v2-generator .v2-owner-episode[aria-pressed="true"]{border:2px solid #2563eb;background:#eff6ff;padding:7px 9px}
+    #tab-v2-generator .v2-owner-status{border-radius:9px;padding:10px 12px;font-size:13px;line-height:1.5;background:#eff6ff;border:1px solid #93c5fd;color:#1e3a8a}
+    #tab-v2-generator .v2-owner-status[data-tone="ok"]{background:#ecfdf5;border-color:#86efac;color:#14532d}
+    #tab-v2-generator .v2-owner-status[data-tone="error"]{background:#fef2f2;border-color:#fca5a5;color:#7f1d1d}
+    #tab-v2-generator .v2-owner-mode-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    #tab-v2-generator .v2-owner-mode-tab[aria-pressed="true"]{background:#0f172a;border-color:#0f172a;color:#f8fafc}
+    #tab-v2-generator .v2-owner-editor-summary{display:grid;grid-template-columns:repeat(3,minmax(110px,1fr));gap:8px;margin:12px 0}
+    #tab-v2-generator .v2-owner-editor-metric{border:1px solid #cbd5e1;border-radius:9px;background:#fff;padding:9px 10px}
+    #tab-v2-generator .v2-owner-editor-metric strong{display:block;font-size:18px;color:#0f172a}
+    #tab-v2-generator .v2-owner-editor-metric span{display:block;font-size:11px;color:#64748b;margin-top:2px}
+    #tab-v2-generator .v2-owner-session-nav{display:grid;grid-template-columns:repeat(6,minmax(88px,1fr));gap:7px}
+    #tab-v2-generator .v2-owner-session-button{min-height:52px;text-align:left;background:#fff;border:1px solid #cbd5e1;border-radius:9px;padding:7px 9px;color:#0f172a;cursor:pointer}
+    #tab-v2-generator .v2-owner-session-button[aria-pressed="true"]{background:#eff6ff;border:2px solid #2563eb;padding:6px 8px}
+    #tab-v2-generator .v2-owner-session-button[data-errors="true"]{border-color:#dc2626;background:#fef2f2}
+    #tab-v2-generator .v2-owner-task-list{display:grid;gap:8px;margin-top:12px}
+    #tab-v2-generator .v2-owner-task-card{border:1px solid #cbd5e1;border-radius:10px;background:#fff;overflow:hidden}
+    #tab-v2-generator .v2-owner-task-card[data-errors="true"]{border-color:#dc2626}
+    #tab-v2-generator .v2-owner-task-summary{display:grid;grid-template-columns:48px minmax(180px,1fr) auto;align-items:center;gap:10px;min-height:56px;padding:8px 10px;cursor:pointer;color:#0f172a;list-style:none}
+    #tab-v2-generator .v2-owner-task-summary::-webkit-details-marker{display:none}
+    #tab-v2-generator .v2-owner-task-number{width:38px;height:38px;border-radius:10px;background:#e2e8f0;display:grid;place-items:center;font-size:14px;font-weight:900}
+    #tab-v2-generator .v2-owner-task-body{border-top:1px solid #e2e8f0;padding:12px;background:#f8fafc}
+    #tab-v2-generator .v2-owner-task-grid{display:grid;grid-template-columns:repeat(2,minmax(180px,1fr));gap:10px}
+    #tab-v2-generator .v2-owner-task-wide{grid-column:1/-1}
+    #tab-v2-generator .v2-owner-inline-error{margin:8px 0 0;color:#991b1b;font-size:12px;line-height:1.45}
+    #tab-v2-generator .v2-owner-editor-help{font-size:12px;color:#475569;line-height:1.55;margin:8px 0}
+    #tab-v2-generator .v2-owner-test-intro{border:1px solid #f59e0b;border-radius:10px;background:#fffbeb;color:#78350f;padding:12px;margin:10px 0;font-size:13px;line-height:1.5}
+    #tab-v2-generator .v2-owner-test-intro strong{display:block;color:#451a03;margin-bottom:4px}
+    @media(prefers-reduced-motion:reduce){#tab-v2-generator .v2-owner-button{transition:none}}
     @media(max-width:760px){
       #tab-v2-generator .v2-course-form{grid-template-columns:1fr!important}
       #tab-v2-generator .v2-course-wide{grid-column:1!important}
       #tab-v2-generator .v2-course-actions{display:grid!important;grid-template-columns:1fr!important}
       #tab-v2-generator .v2-course-actions button{width:100%}
       #tab-v2-generator .v2-course-stage{grid-template-columns:1fr!important}
+      #tab-v2-generator .v2-owner-actions{display:grid!important;grid-template-columns:1fr!important}
+      #tab-v2-generator .v2-owner-actions button{width:100%}
+      #tab-v2-generator .v2-owner-studio{padding:14px}
+      #tab-v2-generator .v2-owner-load-row,#tab-v2-generator .v2-owner-import-grid{grid-template-columns:1fr!important}
+      #tab-v2-generator .v2-owner-session-nav{grid-template-columns:repeat(3,minmax(82px,1fr))}
+      #tab-v2-generator .v2-owner-task-grid{grid-template-columns:1fr}
+      #tab-v2-generator .v2-owner-task-wide{grid-column:1}
+      #tab-v2-generator .v2-owner-editor-summary{grid-template-columns:1fr}
+      #tab-v2-generator .v2-owner-task-summary{grid-template-columns:40px minmax(0,1fr)}
+      #tab-v2-generator .v2-owner-task-summary>:last-child{grid-column:2}
     }
   </style>
   <h2 style="margin:0 0 4px">Learning V2 · Студия курса</h2>
   <div style="color:#cbd5e1;font-size:15px;line-height:1.55;margin-bottom:14px;max-width:960px">Одна управляемая очередь готовит учебный маршрут с целями от Pre-A1 до C2. Это не сертификат уровня: каждый этап, перевод, аудиофайл и проверка должны получить отдельные доказательства и ручное одобрение.</div>
+
+  <section class="v2-owner-studio" aria-labelledby="v2-owner-title">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+      <div style="max-width:760px">
+        <h3 id="v2-owner-title" style="margin:0 0 5px;font-size:19px;color:#0f172a">Ваши эпизоды E1–E32</h3>
+        <p style="margin:0;color:#475569;font-size:14px;line-height:1.55">Вы создаёте весь реальный учебный контент. Генератор только выводит точный слот эпизода, проверяет 12 сессий × 12 заданий, сохраняет пакет и открывает предпросмотр. Автоматического сочинения эпизодов здесь нет.</p>
+      </div>
+      <span style="display:inline-flex;align-items:center;min-height:32px;border:1px solid #94a3b8;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:800;color:#334155;background:#fff">Релиз всегда отдельно</span>
+    </div>
+
+    <div id="v2-owner-status" class="v2-owner-status" role="status" aria-live="polite">Введите ID сезонного плана и загрузите рабочее место.</div>
+
+    <div class="v2-owner-load-row" style="display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:10px;align-items:end;margin-top:14px">
+      <label class="v2-owner-field" for="v2-owner-job-id">ID сезонного плана
+        <input id="v2-owner-job-id" class="v2-owner-control" value="learning-v2-en-v1" maxlength="128" autocomplete="off" spellcheck="false" aria-describedby="v2-owner-job-help">
+        <span id="v2-owner-job-help" style="font-size:12px;font-weight:500;color:#64748b">Это техническое имя рабочего сезона. Оно не меняет содержание эпизодов.</span>
+      </label>
+      <button type="button" id="v2-owner-load-btn" class="v2-owner-button v2-owner-secondary" onclick="v2OwnerLoadWorkspace()" title="Прочитает состояния E1–E32. Ничего не создаёт и не публикует.">Загрузить рабочее место</button>
+    </div>
+
+    <div id="v2-owner-workspace" hidden style="margin-top:16px">
+      <div id="v2-owner-workspace-summary" style="font-size:13px;color:#475569;margin-bottom:10px"></div>
+      <div id="v2-owner-episodes" class="v2-owner-episode-grid" role="list" aria-label="Эпизоды сезона"></div>
+
+      <div id="v2-owner-editor" hidden style="border-top:1px solid #cbd5e1;margin-top:16px;padding-top:16px">
+        <h4 id="v2-owner-selected-title" style="margin:0 0 4px;font-size:17px;color:#0f172a">Выбранный эпизод</h4>
+        <div id="v2-owner-selected-state" style="font-size:13px;color:#475569;margin-bottom:14px"></div>
+
+        <div id="v2-owner-import-panel">
+          <div class="v2-owner-import-grid" style="display:grid;grid-template-columns:minmax(180px,.55fr) minmax(240px,1fr);gap:10px;margin-bottom:10px">
+            <label class="v2-owner-field" for="v2-owner-input-id">ID вашей версии
+              <input id="v2-owner-input-id" class="v2-owner-control" maxlength="128" autocomplete="off" spellcheck="false" placeholder="episode-01-r1">
+            </label>
+            <label class="v2-owner-field" for="v2-owner-json-file">Файл эпизода JSON
+              <input id="v2-owner-json-file" class="v2-owner-control" type="file" accept="application/json,.json" onchange="v2OwnerReadEpisodeFile(event)" aria-describedby="v2-owner-file-help">
+              <span id="v2-owner-file-help" style="font-size:12px;font-weight:500;color:#64748b">Файл должен содержать массив из 12 сессий или объект <code>{ sessionSources: [...] }</code>.</span>
+            </label>
+          </div>
+          <div class="v2-owner-mode-tabs" role="group" aria-label="Режим редактирования эпизода">
+            <button type="button" id="v2-owner-skeleton-btn" class="v2-owner-button v2-owner-primary" onclick="v2OwnerCreateTechnicalSkeleton()" title="Создаст только технические ID, 12 сессий и правила 144 слотов. Фразы, объяснения и ответы останутся пустыми.">Начать с пустой структуры</button>
+            <button type="button" id="v2-owner-test-fixture-btn" class="v2-owner-button v2-owner-secondary" onclick="v2OwnerCreateNeutralTestFixture()" title="Только локально: создаёт нейтральное тестовое интро и 12×12 заполненных тестовых заданий. Такой пакет нельзя загрузить или опубликовать." hidden>Открыть тестовый пример 12×12</button>
+            <button type="button" id="v2-owner-promote-fixture-btn" class="v2-owner-button v2-owner-secondary" onclick="v2OwnerPromoteReferenceFixture()" title="Локально копирует эталонный тестовый эпизод в новую производственную кандидатуру выбранного эпизода. Исходный тестовый пакет не изменяется; сервер повторно проверит всю копию." hidden>Взять эталон как основу</button>
+            <button type="button" id="v2-owner-visual-tab" class="v2-owner-button v2-owner-secondary v2-owner-mode-tab" aria-pressed="true" onclick="v2OwnerSetEditorMode('visual')">Визуальный редактор</button>
+            <button type="button" id="v2-owner-json-tab" class="v2-owner-button v2-owner-secondary v2-owner-mode-tab" aria-pressed="false" onclick="v2OwnerSetEditorMode('json')">Технический JSON</button>
+          </div>
+          <div id="v2-owner-visual-editor" hidden>
+            <p class="v2-owner-editor-help">Редактор ничего не сочиняет: он показывает ваш пакет как 12 сессий и 144 задания. Изменения записываются в тот же JSON и передаются строгой серверной проверке.</p>
+            <div id="v2-owner-test-intro" class="v2-owner-test-intro" hidden></div>
+            <div id="v2-owner-editor-summary" class="v2-owner-editor-summary" role="status" aria-live="polite"></div>
+            <div id="v2-owner-editor-errors" class="v2-owner-status" data-tone="error" hidden></div>
+            <div id="v2-owner-session-nav" class="v2-owner-session-nav" role="tablist" aria-label="Двенадцать сессий эпизода"></div>
+            <div id="v2-owner-task-list" class="v2-owner-task-list"></div>
+          </div>
+          <div id="v2-owner-json-panel" hidden>
+            <label class="v2-owner-field" for="v2-owner-json">Содержимое эпизода
+              <textarea id="v2-owner-json" class="v2-owner-control" rows="8" spellcheck="false" oninput="v2OwnerJsonChanged()" placeholder='{"sessionSources":[...12 сессий...]}' style="resize:vertical;min-height:180px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.5"></textarea>
+            </label>
+          </div>
+          <div class="v2-owner-actions" style="display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:10px">
+            <button type="button" id="v2-owner-import-btn" class="v2-owner-button v2-owner-primary" onclick="v2OwnerPrepareAndImport()" title="Проверит 12 сессий и 144 задания на сервере, сохранит неизменяемый черновик и откроет его для предпросмотра. Ничего не публикует.">Проверить и загрузить эпизод</button>
+            <span style="font-size:12px;color:#64748b">Ошибочный пакет не сохраняется. Повтор той же версии безопасен.</span>
+          </div>
+        </div>
+
+        <div class="v2-owner-actions" style="display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:12px">
+          <button type="button" id="v2-owner-preview-btn" class="v2-owner-button v2-owner-secondary" onclick="v2OwnerPreviewSelected()" title="Прочитает сохранённый неизменяемый пакет и покажет сводку 12 сессий. Ничего не изменяет.">Открыть предпросмотр</button>
+        </div>
+        <div id="v2-owner-preview" hidden style="margin-top:14px;border:1px solid #94a3b8;border-radius:10px;background:#fff;padding:14px"></div>
+      </div>
+    </div>
+
+    <details style="margin-top:16px;border-top:1px solid #cbd5e1;padding-top:12px">
+      <summary style="cursor:pointer;font-weight:800;color:#334155;min-height:32px">Первичная настройка сезонного плана</summary>
+      <p style="font-size:13px;line-height:1.5;color:#475569;margin:8px 0 12px">Это разовый шаг. Выберите опубликованные профили и шаблоны — система соберёт команду сама и создаст ровно 32 пустых слота. Содержание E1–E32 не создаётся.</p>
+      <div class="v2-owner-import-grid" style="display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:10px">
+        <label class="v2-owner-field" for="v2-owner-setup-language">Изучаемый язык
+          <select id="v2-owner-setup-language" class="v2-owner-control">
+            <option value="en">Английский</option><option value="fr">Французский</option><option value="de">Немецкий</option><option value="es">Испанский</option><option value="it">Итальянский</option><option value="pt">Португальский</option>
+          </select>
+        </label>
+        <label class="v2-owner-field" for="v2-owner-setup-job">ID рабочего сезона
+          <input id="v2-owner-setup-job" class="v2-owner-control" value="learning-v2-en-v1" maxlength="128" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="v2-owner-field" for="v2-owner-setup-season">ID сезона
+          <input id="v2-owner-setup-season" class="v2-owner-control" value="learning-v2-en-season-v1" maxlength="128" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="v2-owner-field" for="v2-owner-setup-workspace">ID рабочей области
+          <input id="v2-owner-setup-workspace" class="v2-owner-control" value="learning-v2-owner-en" maxlength="128" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="v2-owner-field" for="v2-owner-setup-revision">Версия настройки
+          <input id="v2-owner-setup-revision" class="v2-owner-control" type="number" min="1" max="1000000" step="1" value="1">
+        </label>
+        <div class="v2-owner-field" style="align-content:end">
+          <button type="button" id="v2-owner-setup-load-btn" class="v2-owner-button v2-owner-secondary" onclick="v2OwnerLoadSetupCatalog()" title="Читает только опубликованные профили и шаблоны. Ничего не создаёт и не публикует.">Загрузить опубликованные настройки</button>
+        </div>
+      </div>
+      <div id="v2-owner-setup-status" class="v2-owner-status" role="status" aria-live="polite" style="margin-top:10px">Сначала загрузите опубликованные настройки.</div>
+      <div id="v2-owner-setup-catalog" hidden style="margin-top:12px">
+        <div class="v2-owner-import-grid" style="display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:10px">
+          <label class="v2-owner-field" for="v2-owner-setup-language-profile">Языковой профиль<select id="v2-owner-setup-language-profile" class="v2-owner-control"></select></label>
+          <label class="v2-owner-field" for="v2-owner-setup-speech-profile">Речевой профиль<select id="v2-owner-setup-speech-profile" class="v2-owner-control"></select></label>
+          <label class="v2-owner-field" for="v2-owner-setup-voice-profile">Профиль четырёх голосов<select id="v2-owner-setup-voice-profile" class="v2-owner-control"></select></label>
+          <label class="v2-owner-field" for="v2-owner-setup-decision-registry">Набор правил курса<select id="v2-owner-setup-decision-registry" class="v2-owner-control"></select></label>
+        </div>
+        <fieldset style="border:1px solid #94a3b8;border-radius:9px;margin:12px 0 0;padding:10px 12px">
+          <legend style="font-size:13px;font-weight:850;color:#334155;padding:0 5px">Шаблоны заданий для всех E1–E32</legend>
+          <div id="v2-owner-setup-templates" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:7px"></div>
+          <p style="font-size:12px;color:#64748b;margin:9px 0 0">По умолчанию выбрана самая новая опубликованная версия каждого шаблона. Максимум — 28 шаблонов сезона.</p>
+        </fieldset>
+        <button type="button" id="v2-owner-setup-create-btn" class="v2-owner-button v2-owner-primary" onclick="v2OwnerCreatePlanFromWizard()" title="Создаст 32 пустых слота и не создаст ни одного реального задания." style="margin-top:10px">Создать 32 пустых эпизода</button>
+      </div>
+      <details style="margin-top:14px">
+        <summary style="cursor:pointer;font-size:12px;font-weight:800;color:#64748b;min-height:28px">Техническая команда JSON · аварийный режим</summary>
+        <label class="v2-owner-field" for="v2-owner-plan-file" style="margin-top:8px">Файл настройки сезона JSON
+          <input id="v2-owner-plan-file" class="v2-owner-control" type="file" accept="application/json,.json" onchange="v2OwnerReadPlanFile(event)">
+        </label>
+        <label class="v2-owner-field" for="v2-owner-plan-json" style="margin-top:9px">Каноническая команда
+          <textarea id="v2-owner-plan-json" class="v2-owner-control" rows="7" spellcheck="false" placeholder='{"schemaVersion":"v2-admin-canonical-generation-command.v2",...}' style="resize:vertical;min-height:150px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.5"></textarea>
+        </label>
+        <button type="button" id="v2-owner-plan-btn" class="v2-owner-button v2-owner-secondary" onclick="v2OwnerCreatePlan()" title="Проверит готовую техническую команду и создаст только пустые слоты." style="margin-top:10px">Выполнить техническую команду</button>
+      </details>
+    </details>
+  </section>
 
   <section aria-labelledby="v2-course-queue-title" style="background:#111827;border:1px solid #293244;border-radius:14px;padding:16px;margin-bottom:14px;max-width:1120px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px">
@@ -13920,7 +14094,7 @@
   const V2_COURSE_STAGES = Object.freeze([
     { kind:'learning_v2_research', title:'1. Исследование', desc:'Основа курса и проверяемые источники' },
     { kind:'learning_v2_curriculum', title:'2. Программа Pre-A1 → C2', desc:'Цели, порядок навыков и учебный цикл' },
-    { kind:'learning_v2_lesson_outline', title:'3. Карта курса', desc:'Секторы, эпизоды, уроки и экзамены' },
+    { kind:'learning_v2_lesson_outline', title:'3. Карта курса', desc:'Порядок тем, практики и ближайших проверок' },
     { kind:'learning_v2_localized_course', title:'4. Весь учебный контент', desc:'Интро, объяснения, задания, подсказки и проверки на 8 языках' },
     { kind:'learning_v2_audio', title:'5. Аудио', desc:'Манифест Ash, Onyx, Nova и Coral; файлы и прослушивание проверяются отдельно' },
     { kind:'learning_v2_quality_assurance', title:'6. Проверка качества', desc:'Языки, педагогика, доступность, зависимости и аудио' },
@@ -13936,6 +14110,443 @@
     const el = _v2CourseEl('v2-course-status'); if (!el) return;
     el.textContent = text; el.style.color = tone === 'error' ? '#fca5a5' : tone === 'ok' ? '#86efac' : '#94a3b8';
   }
+
+  // === Learning V2 · рабочее место владельца E1–E32 ===
+  // Здесь нет генерации учебных текстов: браузер только передаёт на строгий
+  // серверный валидатор двенадцать сессий, созданных владельцем.
+  const _v2OwnerState = { busy:false, workspace:null, selectedStageId:null, preview:null, setupCatalog:null, editorMode:'visual', editorDocument:null, editorSessionIndex:0 };
+  const V2_OWNER_STATE_VIEW = Object.freeze({
+    reserved:['Пустой слот','Можно загрузить'],
+    ready_for_preview:['Ждёт проверки','Откройте предпросмотр'],
+    owner_confirmed:['Подтверждено вами','Релиз всё ещё закрыт'],
+    approved_draft:['Черновик одобрен','Релиз всё ещё закрыт'],
+    changes_requested:['Нужно исправить','Загрузите новую версию'],
+  });
+  function _v2OwnerEl(id) { return document.getElementById(id); }
+  function _v2OwnerSetStatus(text, tone) {
+    const element = _v2OwnerEl('v2-owner-status'); if (!element) return;
+    element.textContent = text; element.dataset.tone = tone || '';
+  }
+  function _v2OwnerSetBusy(value) {
+    _v2OwnerState.busy = value;
+    ['v2-owner-load-btn','v2-owner-import-btn','v2-owner-preview-btn','v2-owner-plan-btn','v2-owner-setup-load-btn','v2-owner-setup-create-btn'].forEach(function(id) {
+      const button = _v2OwnerEl(id); if (button) button.disabled = value;
+    });
+  }
+  function _v2OwnerSetSetupStatus(text, tone) {
+    const element = _v2OwnerEl('v2-owner-setup-status'); if (!element) return;
+    element.textContent = text; element.dataset.tone = tone || '';
+  }
+  function _v2OwnerEditorApi() {
+    const api = window.LearningV2OwnerEpisodeEditorV1;
+    if (!api) throw new Error('Визуальный редактор не загрузился. Используйте технический JSON и обновите страницу позже.');
+    return api;
+  }
+  function _v2OwnerSetEditorDocumentFromRaw(options) {
+    const raw = String(_v2OwnerEl('v2-owner-json')?.value || '');
+    try {
+      _v2OwnerState.editorDocument = _v2OwnerEditorApi().parseRaw(raw);
+      _v2OwnerRenderVisualEditor();
+      return true;
+    } catch (error) {
+      _v2OwnerState.editorDocument = null;
+      _v2OwnerRenderVisualEditor(String(error?.message || error));
+      if (!options?.quiet) _v2OwnerSetStatus('Визуальный редактор не открыт: ' + String(error?.message || error), 'error');
+      return false;
+    }
+  }
+  function _v2OwnerSyncEditorRaw() {
+    if (!_v2OwnerState.editorDocument) return;
+    const raw = _v2OwnerEl('v2-owner-json');
+    if (raw) raw.value = _v2OwnerEditorApi().serialize(_v2OwnerState.editorDocument);
+  }
+  function _v2OwnerOptionsText(task) {
+    const options = Array.isArray(task?.learner?.responseOptions) ? task.learner.responseOptions : [];
+    return options.map(function(option) { return String(option.text || ''); }).join('\n');
+  }
+  function _v2OwnerAcceptedText(task) {
+    return Array.isArray(task?.evaluator?.acceptedResponses) ? task.evaluator.acceptedResponses.join('\n') : '';
+  }
+  function _v2OwnerOptionId(task, optionIndex) {
+    const base = String(task?.taskId || 'task').toLowerCase().replace(/[^a-z0-9._-]+/g, '-').replace(/^-+|-+$/g, '') || 'task';
+    return (base + '-response-' + String(optionIndex + 1).padStart(2, '0')).slice(0, 160);
+  }
+  function _v2OwnerRenderVisualEditor(parseError) {
+    const editor = _v2OwnerEl('v2-owner-visual-editor');
+    const summaryBox = _v2OwnerEl('v2-owner-editor-summary');
+    const errorsBox = _v2OwnerEl('v2-owner-editor-errors');
+    const sessionBox = _v2OwnerEl('v2-owner-session-nav');
+    const taskBox = _v2OwnerEl('v2-owner-task-list');
+    const introBox = _v2OwnerEl('v2-owner-test-intro');
+    if (!editor || !summaryBox || !errorsBox || !sessionBox || !taskBox) return;
+    if (!_v2OwnerState.editorDocument) {
+      summaryBox.innerHTML = '<div class="v2-owner-editor-metric"><strong>—</strong><span>сессии</span></div><div class="v2-owner-editor-metric"><strong>—</strong><span>задания</span></div><div class="v2-owner-editor-metric"><strong>—</strong><span>ошибки формы</span></div>';
+      errorsBox.hidden = false; errorsBox.textContent = parseError || 'Откройте JSON-файл эпизода: после этого появятся 12 сессий и карточки заданий.';
+      if (introBox) { introBox.hidden = true; introBox.innerHTML = ''; }
+      sessionBox.innerHTML = ''; taskBox.innerHTML = '';
+      return;
+    }
+    const api = _v2OwnerEditorApi(); const report = api.inspect(_v2OwnerState.editorDocument);
+    const selectedIntro = Array.isArray(_v2OwnerState.editorDocument?.sessionIntros) ? _v2OwnerState.editorDocument.sessionIntros[_v2OwnerState.editorSessionIndex] : null;
+    const isTestIntro = _v2OwnerState.editorDocument?.contentClass === 'neutral_test_fixture';
+    if (introBox) {
+      introBox.hidden = !selectedIntro;
+      introBox.innerHTML = !selectedIntro ? '' : '<strong>' + (isTestIntro ? 'Тестовое интро · только локальная проверка' : 'Интро выбранной сессии') + '</strong><label class="v2-owner-field">Заголовок интро<input class="v2-owner-control" maxlength="240" value="' + _v2CourseEscape(selectedIntro.title || '') + '" onchange="v2OwnerPatchIntroField(\'title\',this.value)"></label><label class="v2-owner-field" style="margin-top:8px">Абзацы · один на строке<textarea class="v2-owner-control" rows="4" maxlength="12000" onchange="v2OwnerPatchIntroField(\'paragraphsText\',this.value)">' + _v2CourseEscape((selectedIntro.paragraphs || []).join('\n')) + '</textarea></label><label class="v2-owner-field" style="margin-top:8px">Понятия · заголовок | объяснение<textarea class="v2-owner-control" rows="4" maxlength="16000" onchange="v2OwnerPatchIntroField(\'conceptsText\',this.value)">' + _v2CourseEscape((selectedIntro.concepts || []).map(function(concept) { return String(concept.heading || '') + ' | ' + String(concept.explanation || ''); }).join('\n')) + '</textarea></label>' + (isTestIntro ? '<div style="margin-top:6px;font-weight:800">Только локальная проверка · публикация и серверная загрузка запрещены</div>' : '<div style="margin-top:6px;font-weight:700">Слоты 1–3 этой сессии проверяют именно это интро.</div>');
+    }
+    summaryBox.innerHTML = '<div class="v2-owner-editor-metric"><strong>' + report.sessionCount + '/12</strong><span>сессии</span></div><div class="v2-owner-editor-metric"><strong>' + report.taskCount + '/144</strong><span>задания</span></div><div class="v2-owner-editor-metric"><strong>' + report.issueCount + '</strong><span>ошибки до сервера</span></div>';
+    errorsBox.hidden = report.issues.length === 0;
+    errorsBox.textContent = report.issues.join(' ');
+    if (_v2OwnerState.editorSessionIndex >= report.rows.length) _v2OwnerState.editorSessionIndex = 0;
+    sessionBox.innerHTML = report.rows.map(function(row, index) { const active = index === _v2OwnerState.editorSessionIndex; return '<button type="button" class="v2-owner-session-button" role="tab" aria-selected="' + active + '" aria-pressed="' + active + '" data-errors="' + (row.issueCount > 0) + '" onclick="v2OwnerSelectEditorSession(' + index + ')"><strong style="display:block">Сессия ' + row.ordinal + '</strong><span style="display:block;font-size:11px;color:#64748b;margin-top:2px">' + row.taskCount + ' заданий' + (row.issueCount ? ' · ошибок ' + row.issueCount : ' · готово') + '</span></button>'; }).join('');
+    const source = _v2OwnerState.editorDocument.sessionSources[_v2OwnerState.editorSessionIndex];
+    const tasks = Array.isArray(source?.session?.tasks) ? source.session.tasks : [];
+    const row = report.rows[_v2OwnerState.editorSessionIndex];
+    taskBox.innerHTML = tasks.map(function(task, taskIndex) {
+      const issueRows = row?.tasks?.[taskIndex]?.issues || []; const optionsText = _v2OwnerOptionsText(task); const accepted = _v2OwnerAcceptedText(task);
+      const choiceCorrect = api.isChoiceFamily(task.family) ? '<label class="v2-owner-field">Правильный вариант<select class="v2-owner-control" onchange="v2OwnerPatchTaskField(' + taskIndex + ',\'choiceCorrect\',this.value)">' + (task?.learner?.responseOptions || []).map(function(option) { return '<option value="' + _v2CourseEscape(option.responseId) + '"' + (option.responseId === task?.evaluator?.correctResponse ? ' selected' : '') + '>' + _v2CourseEscape(option.text) + '</option>'; }).join('') + '</select></label>' : '<label class="v2-owner-field">Правильный ответ<input class="v2-owner-control" maxlength="512" value="' + _v2CourseEscape(task?.evaluator?.correctResponse || '') + '" onchange="v2OwnerPatchTaskField(' + taskIndex + ',\'correctResponse\',this.value)"></label>';
+      const acceptedField = api.isChoiceFamily(task.family) ? '<div class="v2-owner-field"><span>Принимаемый ответ</span><div class="v2-owner-control" style="display:flex;align-items:center;background:#e2e8f0;color:#475569">Совпадает с выбранным правильным вариантом</div></div>' : '<label class="v2-owner-field">Принимаемые ответы · по одному на строке<textarea class="v2-owner-control" rows="4" maxlength="3000" onchange="v2OwnerPatchTaskField(' + taskIndex + ',\'acceptedText\',this.value)">' + _v2CourseEscape(accepted) + '</textarea></label>';
+      const alternateField = task.scriptedAlternate ? '<label class="v2-owner-field v2-owner-task-wide">Доступная инструкция без аудио/распознавания<textarea class="v2-owner-control" rows="2" maxlength="500" onchange="v2OwnerPatchTaskField(' + taskIndex + ',\'alternateInstruction\',this.value)">' + _v2CourseEscape(task.scriptedAlternate.instruction || '') + '</textarea></label>' : '';
+      return '<details class="v2-owner-task-card" data-errors="' + (issueRows.length > 0) + '"><summary class="v2-owner-task-summary"><span class="v2-owner-task-number">' + (taskIndex + 1) + '</span><span><strong style="display:block;font-size:14px">' + _v2CourseEscape(api.PURPOSE_LABELS[task.purpose] || task.purpose || 'Задание') + '</strong><span style="display:block;font-size:12px;color:#64748b;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + _v2CourseEscape(task?.learner?.prompt || 'Условие не заполнено') + '</span></span><span style="font-size:12px;font-weight:800;color:' + (issueRows.length ? '#991b1b' : '#14532d') + '">' + (issueRows.length ? 'Ошибок: ' + issueRows.length : 'Готово') + '</span></summary><div class="v2-owner-task-body"><div class="v2-owner-task-grid"><div class="v2-owner-field"><span>Тип задания · задаётся шаблоном</span><div class="v2-owner-control" style="display:flex;align-items:center;background:#e2e8f0;color:#334155">' + _v2CourseEscape(api.FAMILY_LABELS[task.family] || task.family) + '</div></div><label class="v2-owner-field">Учебная цель<input class="v2-owner-control" maxlength="240" value="' + _v2CourseEscape(task.learningFunction || '') + '" onchange="v2OwnerPatchTaskField(' + taskIndex + ',\'learningFunction\',this.value)"></label><label class="v2-owner-field v2-owner-task-wide">Условие для ученика<textarea class="v2-owner-control" rows="3" maxlength="1000" onchange="v2OwnerPatchTaskField(' + taskIndex + ',\'prompt\',this.value)">' + _v2CourseEscape(task?.learner?.prompt || '') + '</textarea></label><label class="v2-owner-field">Варианты или части фразы · по одному на строке<textarea class="v2-owner-control" rows="4" maxlength="3000" onchange="v2OwnerPatchTaskField(' + taskIndex + ',\'optionsText\',this.value)">' + _v2CourseEscape(optionsText) + '</textarea></label>' + acceptedField + choiceCorrect + '<label class="v2-owner-field">Описание для озвучивания интерфейса<input class="v2-owner-control" maxlength="300" value="' + _v2CourseEscape(task?.learner?.accessibilityLabel || '') + '" onchange="v2OwnerPatchTaskField(' + taskIndex + ',\'accessibilityLabel\',this.value)"></label>' + alternateField + '</div>' + (issueRows.length ? '<div class="v2-owner-inline-error">' + issueRows.map(_v2CourseEscape).join('<br>') + '</div>' : '') + '</div></details>';
+    }).join('');
+  }
+  window.v2OwnerSetEditorMode = function(mode) {
+    if (mode !== 'visual' && mode !== 'json') return;
+    _v2OwnerState.editorMode = mode;
+    const visual = _v2OwnerEl('v2-owner-visual-editor'); const json = _v2OwnerEl('v2-owner-json-panel');
+    const visualTab = _v2OwnerEl('v2-owner-visual-tab'); const jsonTab = _v2OwnerEl('v2-owner-json-tab');
+    if (visual) visual.hidden = mode !== 'visual'; if (json) json.hidden = mode !== 'json';
+    if (visualTab) visualTab.setAttribute('aria-pressed', String(mode === 'visual')); if (jsonTab) jsonTab.setAttribute('aria-pressed', String(mode === 'json'));
+    if (mode === 'visual') _v2OwnerSetEditorDocumentFromRaw({ quiet:true });
+  };
+  window.v2OwnerCreateTechnicalSkeleton = function() {
+    const episode = _v2OwnerSelectedEpisode();
+    if (!episode || !_v2OwnerState.workspace) { _v2OwnerSetStatus('Сначала выберите пустой эпизод.', 'error'); return; }
+    const existing = String(_v2OwnerEl('v2-owner-json')?.value || '').trim();
+    if (existing && !window.confirm('Заменить текущий несохранённый JSON пустой технической структурой?')) return;
+    _v2OwnerState.editorDocument = _v2OwnerEditorApi().createTechnicalSkeleton({ episodeId:episode.episodeId, targetLanguage:_v2OwnerState.workspace.targetLanguage });
+    _v2OwnerState.editorSessionIndex = 0; _v2OwnerSyncEditorRaw(); window.v2OwnerSetEditorMode('visual');
+    _v2OwnerSetStatus('Создан только технический каркас 12×12. Заполните собственные условия, варианты, ответы, интро и объяснения.', 'ok');
+  };
+  window.v2OwnerCreateNeutralTestFixture = function() {
+    if (!window.__pmAdminLocalVisualTest || new URLSearchParams(window.location.search).get('devV2Course') !== '1') { _v2OwnerSetStatus('Тестовый пакет доступен только локально.', 'error'); return; }
+    const episode = _v2OwnerSelectedEpisode();
+    if (!episode || !_v2OwnerState.workspace) { _v2OwnerSetStatus('Сначала откройте локальное рабочее место.', 'error'); return; }
+    _v2OwnerState.editorDocument = _v2OwnerEditorApi().createNeutralTestFixture({ episodeId:'neutral-' + episode.episodeId + '-never-release', targetLanguage:_v2OwnerState.workspace.targetLanguage });
+    _v2OwnerState.editorSessionIndex = 0; _v2OwnerSyncEditorRaw(); window.v2OwnerSetEditorMode('visual');
+    const inputId = _v2OwnerEl('v2-owner-input-id'); if (inputId) inputId.value = 'neutral-test-fixture-never-release';
+    _v2OwnerSetStatus('Открыт нейтральный тестовый пакет: интро, 12 сессий и 144 задания. Он нужен только для проверки интерфейса и никогда не отправляется на сервер.', 'ok');
+  };
+  window.v2OwnerPromoteReferenceFixture = function() {
+    const episode = _v2OwnerSelectedEpisode();
+    if (!_v2OwnerState.editorDocument || _v2OwnerState.editorDocument.contentClass !== 'neutral_test_fixture' || !_v2OwnerState.workspace || !episode) { _v2OwnerSetStatus('Сначала откройте эталонный тестовый эпизод и выберите пустой эпизод назначения.', 'error'); return; }
+    if (!window.confirm('Создать отдельную производственную кандидатуру из эталона для выбранного эпизода? Исходный тест останется тестом. Новая копия получит другие ID и должна пройти все проверки и ваше подтверждение.')) return;
+    try {
+      _v2OwnerState.editorDocument = _v2OwnerEditorApi().promoteReferenceFixture(_v2OwnerState.editorDocument, { episodeId:episode.episodeId, targetLanguage:_v2OwnerState.workspace.targetLanguage });
+      _v2OwnerState.editorSessionIndex = 0; _v2OwnerSyncEditorRaw(); window.v2OwnerSetEditorMode('visual');
+      const inputId = _v2OwnerEl('v2-owner-input-id'); if (inputId) inputId.value = String(episode.episodeId).replace(/[^a-z0-9._-]+/g, '-') + '-reference-r1';
+      _v2OwnerSetStatus('Создана отдельная production_candidate-копия. Проверьте и отредактируйте все интро и задания; затем сервер заново проверит 12×12. Ничего ещё не сохранено и не опубликовано.', 'ok');
+    } catch (error) { _v2OwnerSetStatus('Копия не создана: ' + String(error?.message || error), 'error'); }
+  };
+  window.v2OwnerJsonChanged = function() { _v2OwnerState.editorDocument = null; };
+  window.v2OwnerSelectEditorSession = function(index) { _v2OwnerState.editorSessionIndex = Number(index) || 0; _v2OwnerRenderVisualEditor(); };
+  window.v2OwnerPatchTaskField = function(taskIndex, field, value) {
+    if (!_v2OwnerState.editorDocument) return;
+    const api = _v2OwnerEditorApi(); const task = api.taskAt(_v2OwnerState.editorDocument, _v2OwnerState.editorSessionIndex, taskIndex); const patch = {};
+    if (field === 'optionsText') patch.responseOptions = String(value).split(/\r?\n/).map(function(text) { return text.trim(); }).filter(Boolean).slice(0, 6).map(function(text, optionIndex) { return { responseId:task?.learner?.responseOptions?.[optionIndex]?.responseId || _v2OwnerOptionId(task, optionIndex), text:text }; });
+    else if (field === 'acceptedText') patch.acceptedResponses = String(value).split(/\r?\n/).map(function(text) { return text.trim(); }).filter(Boolean);
+    else if (field === 'choiceCorrect') { patch.correctResponse = String(value); patch.acceptedResponses = [String(value)]; }
+    else patch[field] = value;
+    try { _v2OwnerState.editorDocument = api.patchTask(_v2OwnerState.editorDocument, _v2OwnerState.editorSessionIndex, taskIndex, patch); _v2OwnerSyncEditorRaw(); _v2OwnerRenderVisualEditor(); }
+    catch (error) { _v2OwnerSetStatus('Изменение не применено: ' + String(error?.message || error), 'error'); }
+  };
+  window.v2OwnerPatchIntroField = function(field, value) {
+    if (!_v2OwnerState.editorDocument) return;
+    const api = _v2OwnerEditorApi(); const intro = _v2OwnerState.editorDocument?.sessionIntros?.[_v2OwnerState.editorSessionIndex];
+    if (!intro) { _v2OwnerSetStatus('Интро выбранной сессии не найдено.', 'error'); return; }
+    const patch = {};
+    if (field === 'paragraphsText') patch.paragraphs = String(value).split(/\r?\n/).map(function(text) { return text.trim(); }).filter(Boolean).slice(0, 12);
+    else if (field === 'conceptsText') {
+      const rows = String(value).split(/\r?\n/).map(function(text) { return text.trim(); }).filter(Boolean);
+      patch.concepts = intro.concepts.map(function(concept, index) { const pieces = String(rows[index] || '').split('|'); return { conceptId:concept.conceptId, heading:String(pieces.shift() || '').trim(), explanation:pieces.join('|').trim() }; });
+    } else patch[field] = value;
+    try { _v2OwnerState.editorDocument = api.patchSessionIntro(_v2OwnerState.editorDocument, _v2OwnerState.editorSessionIndex, patch); _v2OwnerSyncEditorRaw(); _v2OwnerRenderVisualEditor(); }
+    catch (error) { _v2OwnerSetStatus('Интро не изменено: ' + String(error?.message || error), 'error'); }
+  };
+  function _v2OwnerSetupToken(id, label) {
+    const value = String(_v2OwnerEl(id)?.value || '').trim();
+    if (!/^[a-z0-9][a-z0-9._-]{0,127}$/.test(value)) throw new Error(label + ': используйте строчные буквы, цифры, точку, дефис или подчёркивание.');
+    return value;
+  }
+  function _v2OwnerSetupSelected(id, entries) {
+    const index = Number(_v2OwnerEl(id)?.value);
+    const entry = Array.isArray(entries) ? entries[index] : null;
+    if (!entry) throw new Error('Выберите все обязательные опубликованные настройки.');
+    return entry;
+  }
+  function _v2OwnerFillSetupSelect(id, entries, label) {
+    const select = _v2OwnerEl(id); if (!select) return;
+    select.innerHTML = entries.map(function(entry, index) {
+      const name = entry.profileId || entry.registryId || entry.decisionId || 'запись';
+      const details = entry.speechLocale ? ' · ' + entry.speechLocale : entry.model ? ' · ' + entry.model : '';
+      return '<option value="' + index + '">' + _v2CourseEscape(name + ' · v' + entry.version + details) + '</option>';
+    }).join('');
+    if (!entries.length) select.innerHTML = '<option value="">Нет опубликованных ' + _v2CourseEscape(label) + '</option>';
+    select.disabled = !entries.length;
+  }
+  function _v2OwnerRenderSetupCatalog() {
+    const catalog = _v2OwnerState.setupCatalog; const box = _v2OwnerEl('v2-owner-setup-catalog');
+    if (!catalog || !box) return;
+    box.hidden = false;
+    _v2OwnerFillSetupSelect('v2-owner-setup-language-profile', catalog.languageProfiles || [], 'языковых профилей');
+    _v2OwnerFillSetupSelect('v2-owner-setup-speech-profile', catalog.speechProfiles || [], 'речевых профилей');
+    _v2OwnerFillSetupSelect('v2-owner-setup-voice-profile', catalog.voiceGenerationProfiles || [], 'профилей голосов');
+    _v2OwnerFillSetupSelect('v2-owner-setup-decision-registry', catalog.decisionRegistries || [], 'наборов правил');
+    const newestByTemplate = new Map();
+    (catalog.templates || []).forEach(function(entry, index) {
+      const previous = newestByTemplate.get(entry.templateId);
+      if (!previous || Number(entry.version) > Number(previous.entry.version)) newestByTemplate.set(entry.templateId, { entry:entry, index:index });
+    });
+    const templateBox = _v2OwnerEl('v2-owner-setup-templates');
+    if (templateBox) templateBox.innerHTML = Array.from(newestByTemplate.values()).map(function(item) {
+      const entry = item.entry;
+      return '<label style="display:flex;gap:8px;align-items:flex-start;min-height:44px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;padding:8px 9px;color:#0f172a;cursor:pointer"><input type="checkbox" data-v2-owner-template-index="' + item.index + '" checked style="width:18px;height:18px;margin:2px 0 0"><span><strong style="display:block;font-size:13px">' + _v2CourseEscape(entry.humanName || entry.templateId) + '</strong><span style="font-size:11px;color:#64748b">' + _v2CourseEscape(entry.family + ' · v' + entry.version) + '</span></span></label>';
+    }).join('') || '<div style="font-size:13px;color:#7f1d1d">Нет опубликованных шаблонов заданий.</div>';
+    const available = [catalog.languageProfiles,catalog.speechProfiles,catalog.voiceGenerationProfiles,catalog.decisionRegistries].every(function(entries) { return Array.isArray(entries) && entries.length > 0; }) && newestByTemplate.size > 0;
+    const create = _v2OwnerEl('v2-owner-setup-create-btn'); if (create) create.disabled = !available;
+    const rejected = catalog.rejectedCounts || {}; const rejectedTotal = Object.values(rejected).reduce(function(sum, value) { return sum + Number(value || 0); }, 0);
+    _v2OwnerSetSetupStatus(available ? 'Настройки готовы. Найдено шаблонов: ' + newestByTemplate.size + '. Неподходящих записей пропущено: ' + rejectedTotal + '.' : 'Не хватает хотя бы одного опубликованного профиля, набора правил или шаблона. Сезон создать нельзя.', available ? 'ok' : 'error');
+  }
+  window.v2OwnerLoadSetupCatalog = async function() {
+    if (_v2OwnerState.busy) return;
+    const targetLanguage = String(_v2OwnerEl('v2-owner-setup-language')?.value || 'en');
+    _v2OwnerSetBusy(true); _v2OwnerSetSetupStatus('Проверяю опубликованные профили, правила и шаблоны…');
+    try {
+      const response = await _v2CourseFn('adminGetV2OwnerGeneratorSetupCatalog')({ targetLanguage:targetLanguage });
+      _v2OwnerState.setupCatalog = response?.data || null;
+      _v2OwnerRenderSetupCatalog();
+    } catch (error) {
+      _v2OwnerState.setupCatalog = null; const box = _v2OwnerEl('v2-owner-setup-catalog'); if (box) box.hidden = true;
+      _v2OwnerSetSetupStatus('Настройки не загружены: ' + String(error?.message || error), 'error');
+    } finally { _v2OwnerSetBusy(false); }
+  };
+  window.v2OwnerCreatePlanFromWizard = async function() {
+    if (_v2OwnerState.busy) return;
+    try {
+      const catalog = _v2OwnerState.setupCatalog; if (!catalog) throw new Error('Сначала загрузите опубликованные настройки.');
+      const targetLanguage = String(_v2OwnerEl('v2-owner-setup-language')?.value || 'en');
+      if (catalog.targetLanguage !== targetLanguage) throw new Error('Язык изменился. Загрузите настройки заново.');
+      const jobId = _v2OwnerSetupToken('v2-owner-setup-job', 'ID рабочего сезона');
+      const seasonId = _v2OwnerSetupToken('v2-owner-setup-season', 'ID сезона');
+      const workspaceId = _v2OwnerSetupToken('v2-owner-setup-workspace', 'ID рабочей области');
+      const authoringRevision = Number(_v2OwnerEl('v2-owner-setup-revision')?.value);
+      if (!Number.isSafeInteger(authoringRevision) || authoringRevision < 1 || authoringRevision > 1000000) throw new Error('Версия настройки должна быть целым числом от 1 до 1 000 000.');
+      const language = _v2OwnerSetupSelected('v2-owner-setup-language-profile', catalog.languageProfiles);
+      const speech = _v2OwnerSetupSelected('v2-owner-setup-speech-profile', catalog.speechProfiles);
+      const voice = _v2OwnerSetupSelected('v2-owner-setup-voice-profile', catalog.voiceGenerationProfiles);
+      const decision = _v2OwnerSetupSelected('v2-owner-setup-decision-registry', catalog.decisionRegistries);
+      const templates = Array.from(document.querySelectorAll('[data-v2-owner-template-index]:checked')).map(function(input) { return catalog.templates[Number(input.dataset.v2OwnerTemplateIndex)]; }).filter(Boolean);
+      if (templates.length < 1 || templates.length > 28) throw new Error('Выберите от 1 до 28 опубликованных шаблонов.');
+      const episodeIds = Array.from({ length:32 }, function(_, index) { return 'episode-' + String(index + 1).padStart(2, '0'); });
+      const templateRefs = templates.map(function(entry) { return { templateId:entry.templateId, version:entry.version, contentHash:entry.contentHash }; });
+      const command = {
+        schemaVersion:'v2-admin-canonical-generation-command.v2',
+        generationRequest:{ schemaVersion:'v2-admin-generation-request.v1', seasonId:seasonId, scope:'full_season', episodeIds:episodeIds, studyTarget:targetLanguage, sourceLocale:'ru', targetLocales:['uk','es','pt-BR','vi','id','tr','pl'], templateBindings:episodeIds.map(function(episodeId) { return { episodeId:episodeId, templateRefs:templateRefs }; }), idempotencyKey:jobId, languageProfileRef:{ profileId:language.profileId, version:language.version, contentHash:language.contentHash } },
+        canonicalBridge:{ schemaVersion:'v2-admin-canonical-generation-bridge.v1', workspaceId:workspaceId, authoringRevision:authoringRevision, speechProfileRef:{ profileId:speech.profileId, targetLanguage:speech.targetLanguage, speechLocale:speech.speechLocale, version:speech.version, contentHash:speech.contentHash }, voiceGenerationProfileRef:{ profileId:voice.profileId, version:voice.version, contentHash:voice.contentHash }, decisionRegistryRef:{ decisionId:'HYP-V2-007', version:decision.version, contentHash:decision.contentHash } },
+      };
+      const raw = _v2OwnerEl('v2-owner-plan-json'); if (raw) raw.value = JSON.stringify(command, null, 2);
+      const job = _v2OwnerEl('v2-owner-job-id'); if (job) job.value = jobId;
+      if (!window.confirm('Создать 32 пустых эпизода? Ни одной фразы или задания система не сочинит.')) return;
+      await _v2OwnerCreatePlanCommand(command);
+    } catch (error) { _v2OwnerSetSetupStatus('Сезон не создан: ' + String(error?.message || error), 'error'); }
+  };
+  function _v2OwnerSelectedEpisode() {
+    return _v2OwnerState.workspace && Array.isArray(_v2OwnerState.workspace.episodes)
+      ? _v2OwnerState.workspace.episodes.find(function(item) { return item.stageId === _v2OwnerState.selectedStageId; }) || null
+      : null;
+  }
+  function _v2OwnerDefaultInputId(episode) {
+    const revision = Number(_v2OwnerState.workspace?.authoringRevision || 1);
+    return String(episode?.episodeId || 'episode').toLowerCase().replace(/[^a-z0-9._-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 110) + '-r' + revision;
+  }
+  function _v2OwnerRenderWorkspace() {
+    const workspaceBox = _v2OwnerEl('v2-owner-workspace');
+    const summary = _v2OwnerEl('v2-owner-workspace-summary');
+    const episodesBox = _v2OwnerEl('v2-owner-episodes');
+    if (!workspaceBox || !summary || !episodesBox || !_v2OwnerState.workspace) return;
+    const workspace = _v2OwnerState.workspace;
+    workspaceBox.hidden = false;
+    const episodes = Array.isArray(workspace.episodes) ? workspace.episodes : [];
+    const completed = episodes.filter(function(item) { return item.state === 'owner_confirmed' || item.state === 'approved_draft'; }).length;
+    const waiting = episodes.filter(function(item) { return item.state === 'ready_for_preview'; }).length;
+    summary.textContent = 'Язык: ' + String(workspace.targetLanguage || '—') + ' · эпизодов: ' + episodes.length + ' · подтверждено: ' + completed + ' · ждут проверки: ' + waiting + '. Контент создаёте только вы.';
+    episodesBox.innerHTML = episodes.map(function(episode, index) {
+      const view = V2_OWNER_STATE_VIEW[episode.state] || [String(episode.state || 'Неизвестно'),''];
+      const selected = episode.stageId === _v2OwnerState.selectedStageId;
+      return '<button type="button" class="v2-owner-episode" role="listitem" aria-pressed="' + (selected ? 'true' : 'false') + '" onclick="v2OwnerSelectEpisode(decodeURIComponent(\'' + encodeURIComponent(String(episode.stageId)) + '\'))" title="Открывает рабочие действия выбранного эпизода. Ничего не изменяет."><span style="display:block;font-size:14px;font-weight:900">E' + (index + 1) + '</span><span style="display:block;font-size:11px;color:#475569;margin-top:3px">' + _v2CourseEscape(view[0]) + '</span></button>';
+    }).join('');
+    if (_v2OwnerState.selectedStageId && !_v2OwnerSelectedEpisode()) _v2OwnerState.selectedStageId = null;
+    _v2OwnerRenderSelected();
+  }
+  function _v2OwnerRenderSelected() {
+    const editor = _v2OwnerEl('v2-owner-editor');
+    const episode = _v2OwnerSelectedEpisode();
+    if (!editor) return;
+    editor.hidden = !episode;
+    if (!episode) return;
+    const episodes = _v2OwnerState.workspace.episodes;
+    const index = episodes.findIndex(function(item) { return item.stageId === episode.stageId; });
+    const view = V2_OWNER_STATE_VIEW[episode.state] || [String(episode.state || 'Неизвестно'),''];
+    const title = _v2OwnerEl('v2-owner-selected-title');
+    const state = _v2OwnerEl('v2-owner-selected-state');
+    const inputId = _v2OwnerEl('v2-owner-input-id');
+    const importPanel = _v2OwnerEl('v2-owner-import-panel');
+    const previewButton = _v2OwnerEl('v2-owner-preview-btn');
+    if (title) title.textContent = 'E' + (index + 1) + ' · ' + String(episode.episodeId);
+    if (state) state.textContent = view[0] + '. ' + view[1] + '. Публикация этим экраном невозможна.';
+    if (inputId && !inputId.value) inputId.value = _v2OwnerDefaultInputId(episode);
+    if (importPanel) importPanel.hidden = !episode.canImport;
+    if (previewButton) { previewButton.hidden = !episode.canPreview; previewButton.disabled = _v2OwnerState.busy || !episode.canPreview; }
+    _v2OwnerState.editorDocument = null; _v2OwnerState.editorSessionIndex = 0; window.v2OwnerSetEditorMode(_v2OwnerState.editorMode || 'visual');
+    const preview = _v2OwnerEl('v2-owner-preview'); if (preview) { preview.hidden = true; preview.innerHTML = ''; }
+    _v2OwnerState.preview = null;
+  }
+  window.v2OwnerSelectEpisode = function(stageId) {
+    _v2OwnerState.selectedStageId = String(stageId || '');
+    _v2OwnerRenderWorkspace();
+  };
+  async function _v2OwnerReadFile(file, targetId, maximumBytes) {
+    if (!file) return;
+    if (file.size < 1 || file.size > maximumBytes) throw new Error('Файл пустой или превышает допустимый размер.');
+    const text = await file.text(); JSON.parse(text);
+    const target = _v2OwnerEl(targetId); if (target) target.value = text;
+  }
+  window.v2OwnerReadEpisodeFile = async function(event) {
+    try { await _v2OwnerReadFile(event?.target?.files?.[0], 'v2-owner-json', 7 * 1024 * 1024); _v2OwnerSetEditorDocumentFromRaw({ quiet:true }); window.v2OwnerSetEditorMode('visual'); _v2OwnerSetStatus('Файл прочитан локально. Проверьте 12 сессий в визуальном редакторе, затем загрузите эпизод.', 'ok'); }
+    catch (error) { if (event?.target) event.target.value = ''; _v2OwnerSetStatus('Файл не открыт: ' + String(error?.message || error), 'error'); }
+  };
+  window.v2OwnerReadPlanFile = async function(event) {
+    try { await _v2OwnerReadFile(event?.target?.files?.[0], 'v2-owner-plan-json', 1024 * 1024); _v2OwnerSetStatus('Настройка сезона прочитана локально. Проверьте её перед созданием слотов.', 'ok'); }
+    catch (error) { if (event?.target) event.target.value = ''; _v2OwnerSetStatus('Файл настройки не открыт: ' + String(error?.message || error), 'error'); }
+  };
+  async function _v2OwnerLoadWorkspaceInternal(options) {
+    const jobId = String(_v2OwnerEl('v2-owner-job-id')?.value || '').trim();
+    if (!/^[a-z0-9][a-z0-9._-]{0,127}$/.test(jobId)) { _v2OwnerSetStatus('ID сезонного плана: только строчные буквы, цифры, точка, дефис или подчёркивание.', 'error'); return; }
+    _v2OwnerSetBusy(true); _v2OwnerSetStatus('Загружаю точные состояния эпизодов…');
+    try {
+      const response = await _v2CourseFn('adminGetV2OwnerGeneratorWorkspace')({ jobId:jobId });
+      _v2OwnerState.workspace = response?.data || null;
+      if (!_v2OwnerState.selectedStageId || !_v2OwnerSelectedEpisode()) _v2OwnerState.selectedStageId = _v2OwnerState.workspace?.episodes?.[0]?.stageId || null;
+      _v2OwnerRenderWorkspace();
+      const count = Number(_v2OwnerState.workspace?.expectedEpisodeCount || 0);
+      _v2OwnerSetStatus('Рабочее место загружено: ' + count + ' пустых или сохранённых эпизодов. Автоматическая генерация содержания отключена.', 'ok');
+    } catch (error) {
+      _v2OwnerSetStatus('Рабочее место не загружено: ' + String(error?.message || error) + '. Если сезон ещё не создан, откройте «Первичная настройка сезонного плана».', 'error');
+      if (!options?.preserve) { _v2OwnerState.workspace = null; const box = _v2OwnerEl('v2-owner-workspace'); if (box) box.hidden = true; }
+    } finally { _v2OwnerSetBusy(false); _v2OwnerRenderSelected(); }
+  }
+  window.v2OwnerLoadWorkspace = async function(options) {
+    if (_v2OwnerState.busy) return;
+    await _v2OwnerLoadWorkspaceInternal(options);
+  };
+  window.v2OwnerPrepareAndImport = async function() {
+    if (_v2OwnerState.busy) return;
+    const episode = _v2OwnerSelectedEpisode();
+    if (!episode || !episode.canImport || !_v2OwnerState.workspace) { _v2OwnerSetStatus('Выберите пустой эпизод или эпизод, возвращённый на исправление.', 'error'); return; }
+    _v2OwnerSyncEditorRaw(); let parsed;
+    try { parsed = JSON.parse(String(_v2OwnerEl('v2-owner-json')?.value || '')); }
+    catch { _v2OwnerSetStatus('JSON эпизода не читается. Исправьте синтаксис файла.', 'error'); return; }
+    if (parsed?.contentClass === 'neutral_test_fixture' || parsed?.localTestOnly === true) { _v2OwnerSetStatus('Нейтральный тестовый пример нельзя отправить на сервер или опубликовать. Создайте отдельную пустую структуру для вашего реального контента.', 'error'); return; }
+    const sessionSources = Array.isArray(parsed) ? parsed : parsed?.sessionSources;
+    const sessionIntros = Array.isArray(parsed?.sessionIntros) ? parsed.sessionIntros : null;
+    if (!Array.isArray(sessionSources) || sessionSources.length !== 12) { _v2OwnerSetStatus('Нужно ровно 12 сессий. Сейчас найдено: ' + (Array.isArray(sessionSources) ? sessionSources.length : 0) + '.', 'error'); return; }
+    if (sessionIntros && sessionIntros.length !== 12) { _v2OwnerSetStatus('Нужно ровно 12 интро — по одному для каждой сессии.', 'error'); return; }
+    const ownerInputId = String(_v2OwnerEl('v2-owner-input-id')?.value || '').trim();
+    if (!/^[a-z0-9][a-z0-9._-]{0,127}$/.test(ownerInputId)) { _v2OwnerSetStatus('ID версии должен состоять из строчных букв, цифр, точки, дефиса или подчёркивания.', 'error'); return; }
+    _v2OwnerSetBusy(true); _v2OwnerSetStatus('Проверяю 12 сессий и 144 задания. Ничего не публикую…');
+    try {
+      const prepared = await _v2CourseFn('adminPrepareV2OwnerEpisodeDraft')({ planRequestRaw:_v2OwnerState.workspace.planRequestRaw, stageId:episode.stageId, ownerInputId:ownerInputId, sessionSources:sessionSources, ...(sessionIntros ? { sessionIntros:sessionIntros } : {}) });
+      const material = prepared?.data;
+      if (!material || material.sessionCount !== 12 || material.taskCount !== 144 || typeof material.ownerInputRaw !== 'string') throw new Error('Сервер не вернул полный пакет 12×12.');
+      if (sessionIntros && material.introCount !== 12) throw new Error('Сервер не связал все 12 интро с пакетом эпизода.');
+      await _v2CourseFn('adminImportV2OwnerEpisodeStage')({ planRequestRaw:_v2OwnerState.workspace.planRequestRaw, stageId:episode.stageId, ownerInputRaw:material.ownerInputRaw });
+      _v2OwnerSetStatus('Эпизод сохранён как неизменяемый черновик: 12 сессий, 144 задания. Теперь откройте предпросмотр.', 'ok');
+      await _v2OwnerLoadWorkspaceInternal({ preserve:true });
+      _v2OwnerState.selectedStageId = episode.stageId; _v2OwnerRenderWorkspace();
+      await _v2OwnerPreviewSelectedInternal();
+    } catch (error) { _v2OwnerSetStatus('Эпизод не сохранён: ' + String(error?.message || error), 'error'); }
+    finally { _v2OwnerSetBusy(false); }
+  };
+  function _v2OwnerPreviewCounts(payload) {
+    const raws = Array.isArray(payload?.sessionSourceRaws) ? payload.sessionSourceRaws : [];
+    const introRaws = Array.isArray(payload?.sessionIntroRaws) ? payload.sessionIntroRaws : [];
+    let tasks = 0; const rows = [];
+    raws.forEach(function(raw, index) {
+      try { const source = JSON.parse(raw); const count = Array.isArray(source?.session?.tasks) ? source.session.tasks.length : 0; tasks += count; rows.push({ ordinal:Number(source?.session?.ordinal || index + 1), sessionId:String(source?.session?.sessionId || ''), tasks:count }); }
+      catch { rows.push({ ordinal:index + 1, sessionId:'не читается', tasks:0 }); }
+    });
+    const intros = introRaws.map(function(raw, index) {
+      try { const intro = JSON.parse(raw); return { ordinal:index + 1, title:String(intro?.title || ''), concepts:Array.isArray(intro?.concepts) ? intro.concepts.length : 0 }; }
+      catch { return { ordinal:index + 1, title:'не читается', concepts:0 }; }
+    });
+    return { sessions:raws.length, tasks:tasks, rows:rows, introCount:introRaws.length, intros:intros };
+  }
+  function _v2OwnerRenderPreview() {
+    const box = _v2OwnerEl('v2-owner-preview'); const preview = _v2OwnerState.preview; const episode = _v2OwnerSelectedEpisode();
+    if (!box || !preview || !episode) return;
+    const counts = _v2OwnerPreviewCounts(preview.payload);
+    const expectsIntros = preview?.stage?.schemaVersion === 'v2-owner-authored-episode-stage.v2';
+    const complete = counts.sessions === 12 && counts.tasks === 144 && (!expectsIntros || counts.introCount === 12);
+    box.hidden = false;
+    box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap"><div><div style="font-size:16px;font-weight:900;color:#0f172a">Предпросмотр ' + _v2CourseEscape(String(episode.episodeId)) + '</div><div style="font-size:13px;color:' + (complete ? '#14532d' : '#7f1d1d') + ';margin-top:3px">' + counts.sessions + ' сессий · ' + counts.tasks + ' заданий' + (expectsIntros ? ' · ' + counts.introCount + ' интро' : ' · старый пакет без отдельных интро') + ' · ' + (complete ? 'структура полная' : 'подтверждение запрещено') + '</div></div><button type="button" class="v2-owner-button v2-owner-secondary" onclick="v2OwnerClosePreview()" title="Закрывает только предпросмотр. Черновик остаётся сохранённым.">Закрыть</button></div>'
+      + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:7px;margin-top:12px">' + counts.rows.map(function(row) { return '<div style="border:1px solid #cbd5e1;border-radius:8px;padding:7px 9px;background:#f8fafc"><strong style="display:block">Сессия ' + row.ordinal + '</strong><span style="font-size:12px;color:#475569">' + row.tasks + ' заданий</span></div>'; }).join('') + '</div>'
+      + (expectsIntros ? '<details style="margin-top:12px"><summary style="cursor:pointer;font-size:13px;font-weight:800;color:#334155">Проверить 12 интро</summary><div style="display:grid;gap:7px;margin-top:8px">' + counts.intros.map(function(intro) { return '<div style="border:1px solid #cbd5e1;border-radius:8px;padding:8px;background:#f8fafc"><strong>Сессия ' + intro.ordinal + ' · ' + _v2CourseEscape(intro.title) + '</strong><div style="font-size:12px;color:#475569;margin-top:3px">Понятий в интро: ' + intro.concepts + ' · вопросы 1–3 связаны с этой версией</div></div>'; }).join('') + '</div></details>' : '')
+      + '<details style="margin-top:12px"><summary style="cursor:pointer;font-size:13px;font-weight:800;color:#334155">Технические данные пакета</summary><pre style="max-height:360px;overflow:auto;white-space:pre-wrap;word-break:break-word;background:#0f172a;color:#e2e8f0;border-radius:8px;padding:10px;font-size:11px">' + _v2CourseEscape(JSON.stringify({ stage:preview.stage, qaReceipt:preview.qaReceipt, reviewFingerprint:preview.reviewFingerprint }, null, 2)) + '</pre></details>'
+      + (episode.canConfirm && complete ? '<label class="v2-owner-field" for="v2-owner-confirm-reason" style="margin-top:12px">Что вы проверили<input id="v2-owner-confirm-reason" class="v2-owner-control" maxlength="500" placeholder="Например: проверил все 12 сессий и правильность заданий"></label><button type="button" id="v2-owner-confirm-btn" class="v2-owner-button v2-owner-primary" onclick="v2OwnerConfirmSelected()" title="Запишет ваше отдельное подтверждение точной версии эпизода. Не публикует курс и не включает его пользователям." style="margin-top:9px">Подтвердить этот черновик</button><p style="font-size:12px;color:#64748b;margin:7px 0 0">Это второй осознанный шаг владельца. Он не заменяет языковую, аудио-, device- и release-проверку.</p>' : '');
+  }
+  async function _v2OwnerPreviewSelectedInternal() {
+    const episode = _v2OwnerSelectedEpisode(); if (!episode?.canPreview) { _v2OwnerSetStatus('Сначала загрузите и проверьте эпизод.', 'error'); return; }
+    _v2OwnerSetBusy(true); _v2OwnerSetStatus('Читаю сохранённые байты эпизода для предпросмотра…');
+    try { const response = await _v2CourseFn('adminPreviewContentStage')({ stageId:episode.stageId }); _v2OwnerState.preview = response?.data || null; _v2OwnerRenderPreview(); _v2OwnerSetStatus('Предпросмотр открыт. Проверьте каждую сессию перед подтверждением.', 'ok'); }
+    catch (error) { _v2OwnerSetStatus('Предпросмотр не открыт: ' + String(error?.message || error), 'error'); }
+    finally { _v2OwnerSetBusy(false); }
+  }
+  window.v2OwnerPreviewSelected = async function() {
+    if (_v2OwnerState.busy) return;
+    await _v2OwnerPreviewSelectedInternal();
+  };
+  window.v2OwnerClosePreview = function() { const box = _v2OwnerEl('v2-owner-preview'); if (box) box.hidden = true; _v2OwnerState.preview = null; };
+  window.v2OwnerConfirmSelected = async function() {
+    if (_v2OwnerState.busy) return;
+    const episode = _v2OwnerSelectedEpisode(); const preview = _v2OwnerState.preview;
+    const reason = String(_v2OwnerEl('v2-owner-confirm-reason')?.value || '').trim();
+    if (!episode?.canConfirm || !preview?.reviewFingerprint) { _v2OwnerSetStatus('Откройте актуальный предпросмотр перед подтверждением.', 'error'); return; }
+    if (reason.length < 5) { _v2OwnerSetStatus('Напишите, что именно вы проверили.', 'error'); return; }
+    if (!window.confirm('Подтвердить именно эту неизменяемую версию эпизода? Это не публикация и не релиз.')) return;
+    _v2OwnerSetBusy(true); _v2OwnerSetStatus('Сохраняю ваше отдельное подтверждение…');
+    try { await _v2CourseFn('adminConfirmV2OwnerEpisode')({ stageId:episode.stageId, expectedReviewFingerprint:String(preview.reviewFingerprint), reason:reason }); _v2OwnerSetStatus('Эпизод подтверждён вами. Он остаётся черновиком до остальных проверок и отдельного релиза.', 'ok'); window.v2OwnerClosePreview(); await _v2OwnerLoadWorkspaceInternal({ preserve:true }); }
+    catch (error) { _v2OwnerSetStatus('Подтверждение не сохранено: ' + String(error?.message || error), 'error'); }
+    finally { _v2OwnerSetBusy(false); }
+  };
+  async function _v2OwnerCreatePlanCommand(command) {
+    _v2OwnerSetBusy(true); _v2OwnerSetStatus('Проверяю опубликованные профили и шаблоны, затем создаю пустые слоты…');
+    try {
+      const response = await _v2CourseFn('adminCreateV2GenerationPlan')(command); const data = response?.data || {};
+      if (data.jobId) { const field = _v2OwnerEl('v2-owner-job-id'); if (field) field.value = String(data.jobId); }
+      _v2OwnerSetStatus(data.replayed ? 'Сезон уже существует. Открываю рабочее место.' : 'Пустые слоты сезона созданы. Реальный контент пока отсутствует.', 'ok');
+      _v2OwnerSetSetupStatus(data.replayed ? 'Этот сезон уже существует. Его 32 слота открыты ниже.' : 'Готово: созданы 32 пустых эпизода. Теперь наполняйте их только своим контентом.', 'ok');
+      await _v2OwnerLoadWorkspaceInternal();
+    } catch (error) { _v2OwnerSetStatus('Сезон не создан: ' + String(error?.message || error), 'error'); _v2OwnerSetSetupStatus('Сезон не создан: ' + String(error?.message || error), 'error'); }
+    finally { _v2OwnerSetBusy(false); }
+  }
+  window.v2OwnerCreatePlan = async function() {
+    if (_v2OwnerState.busy) return;
+    let command;
+    try { command = JSON.parse(String(_v2OwnerEl('v2-owner-plan-json')?.value || '')); }
+    catch { _v2OwnerSetStatus('JSON настройки сезона не читается.', 'error'); return; }
+    if (command?.schemaVersion !== 'v2-admin-canonical-generation-command.v2') { _v2OwnerSetStatus('Нужна каноническая команда v2-admin-canonical-generation-command.v2.', 'error'); return; }
+    if (!window.confirm('Создать пустые слоты сезона по этой команде? Содержание эпизодов создано не будет.')) return;
+    await _v2OwnerCreatePlanCommand(command);
+  };
   function _v2CourseInput() {
     const studyTarget = String(_v2CourseEl('v2-course-target')?.value || 'en');
     return { requestId:String(_v2CourseEl('v2-course-request')?.value || '').trim(), studyTarget, sourceLocale:'multi', cefr:'PRE_A1', objective:String(_v2CourseEl('v2-course-objective')?.value || '').trim(), scopeId:'course-' + studyTarget, count:1 };
@@ -14086,6 +14697,22 @@
   window.loadV2Generator = async function(force) {
     window._v2GenLoaded = true;
     if (window.__pmAdminLocalVisualTest && new URLSearchParams(window.location.search).get('devV2Course') === '1') {
+      _v2OwnerState.workspace = {
+        schemaVersion:'v2-owner-generator-workspace.v1',
+        jobId:'neutral-local-visual',
+        targetLanguage:'en',
+        authoringRevision:1,
+        expectedEpisodeCount:32,
+        planRequestRaw:'neutral-local-visual-no-authority',
+        episodes:Array.from({ length:32 }, function(_, index) {
+          const ordinal = index + 1;
+          return { stageId:'neutral-local-stage-' + String(ordinal).padStart(2, '0'), episodeId:'neutral-local-episode-' + String(ordinal).padStart(2, '0'), state:'reserved', canImport:true, canPreview:false, canConfirm:false };
+        }),
+      };
+      _v2OwnerState.selectedStageId = _v2OwnerState.workspace.episodes[0].stageId;
+      _v2OwnerRenderWorkspace();
+      const fixtureButton = _v2OwnerEl('v2-owner-test-fixture-btn'); if (fixtureButton) fixtureButton.hidden = false;
+      const promoteButton = _v2OwnerEl('v2-owner-promote-fixture-btn'); if (promoteButton) promoteButton.hidden = false;
       _v2CourseState.stages = [
         { id:'demo:learning_v2_research:course-en:r1', kind:'learning_v2_research', state:'approved', revision:1 },
         { id:'demo:learning_v2_curriculum:course-en:r1', kind:'learning_v2_curriculum', state:'approved', revision:1 },
@@ -39859,6 +40486,7 @@
   setTimeout(init, 1200);
 })();
 </script>
+<script src="learning_v2_owner_episode_editor.js"></script>
 <script src="scripts/components/analytics-language.js"></script>
 <script src="scripts/pages/product-sessions.js"></script>
 <script src="scripts/pages/learning-diagnostics.js"></script>

@@ -11,8 +11,6 @@ import {
   comboAchievementCounterKey,
   dailyPhraseAchievementReadCountKey,
   dailyPhraseAchievementSaveCountKey,
-  dailyTasksAchievementAllDoneStreakKey,
-  dailyTasksAchievementNoRerollStreakKey,
   flashcardsAchievementFlipCountKey,
   flashcardsAchievementSavedCountKey,
   flashcardsAchievementSourceSetKey,
@@ -227,32 +225,6 @@ describe('Gustav achievement state target isolation', () => {
 
     expect(legacy.find((s: { id: string }) => s.id === 'diagnosis')).toBeUndefined();
     expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'diagnosis')?.unlockedAt).not.toBeNull();
-  });
-
-  it('keeps French daily task achievement streaks out of legacy English storage', async () => {
-    await AsyncStorage.multiSet([
-      ['achievement_all_daily_streak_v1', JSON.stringify({ day: '2026-05-22', streak: 30 })],
-      ['achievement_daily_no_reroll_streak_v1', JSON.stringify({ day: '2026-05-22', streak: 30 })],
-    ]);
-
-    await checkAchievements({ type: 'daily_task', allDone: true, noReroll: true, studyTarget: 'fr' });
-
-    const legacy = JSON.parse(await AsyncStorage.getItem('achievements_v1') ?? '[]');
-    const french = JSON.parse(await AsyncStorage.getItem(achievementStateKey('fr')) ?? '[]');
-
-    expect(await AsyncStorage.getItem('achievement_all_daily_streak_v1')).toBe(JSON.stringify({ day: '2026-05-22', streak: 30 }));
-    expect(await AsyncStorage.getItem('achievement_daily_no_reroll_streak_v1')).toBe(JSON.stringify({ day: '2026-05-22', streak: 30 }));
-    expect(JSON.parse(await AsyncStorage.getItem(dailyTasksAchievementAllDoneStreakKey('fr')) ?? '{}').streak).toBe(1);
-    expect(JSON.parse(await AsyncStorage.getItem(dailyTasksAchievementNoRerollStreakKey('fr')) ?? '{}').streak).toBe(1);
-    expect(legacy.find((s: { id: string }) => s.id === 'daily_task_first')).toBeUndefined();
-    expect(legacy.find((s: { id: string }) => s.id === 'all_daily')).toBeUndefined();
-    expect(legacy.find((s: { id: string }) => s.id === 'daily_no_reroll')).toBeUndefined();
-    expect(legacy.find((s: { id: string }) => s.id === 'daily_all_30')).toBeUndefined();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'daily_task_first')?.unlockedAt).not.toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'all_daily')?.unlockedAt).not.toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'daily_no_reroll')?.unlockedAt).not.toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'daily_all_3')?.unlockedAt).toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'daily_no_reroll_7')?.unlockedAt).toBeNull();
   });
 
   it('keeps French pack and share achievements out of legacy English storage', async () => {

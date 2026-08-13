@@ -16,6 +16,13 @@ describe('admin independent content stage callables', () => {
     expect(source).not.toContain('enforceAppCheck: ENFORCE_APP_CHECK }');
   });
 
+  it('keeps owner-authored V2 stages on their dedicated confirmation path', () => {
+    const source = require('node:fs').readFileSync(__filename.replace(/admin_content_stages\.test\.ts$/, 'admin_content_stages.ts'), 'utf8');
+    expect(source).toContain("preliminary.schemaVersion === 'v2-owner-authored-episode-stage.v1'");
+    expect(source).toContain("'v2_owner_episode_confirmation_required'");
+    expect(parseContentStageListRequest({ requestId: 'workspace-1', state: 'owner_confirmed' })).toMatchObject({ state: 'owner_confirmed' });
+  });
+
   it('accepts Learning V2 only as one multilingual all-content course queue', () => {
     const research = parseContentStageCreateRequest({ requestId: 'learning-v2-en-v1', kind: 'learning_v2_research', studyTarget: 'en', sourceLocale: 'multi', cefr: 'PRE_A1', objective: 'Build a complete course from absolute zero through C2 in all interface languages', scopeId: 'course-en', count: 1, revision: 1, prerequisiteStageIds: [] });
     expect(research).toMatchObject({ kind: 'learning_v2_research', sourceLocale: 'multi', cefr: 'PRE_A1' });

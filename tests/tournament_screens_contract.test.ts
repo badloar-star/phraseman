@@ -359,10 +359,8 @@ describe('экраны режима «Турниры»', () => {
     const layout = read('app/(tabs)/_layout.tsx');
     const model = read('app/tab_page_model.ts');
 
-    // зачем 2026-08-03: экран «Сегодня» убран — нулевой физической страницы
-    // слева от главной больше нет, страниц ровно столько же, сколько табов
-    // (четыре). Legacy-суффиксы /journal и /lessons остаются привязаны к
-    // вкладке уроков; турнирного суффикса среди пользовательских табов нет.
+    // Экран «Сегодня» убран — нулевой физической страницы слева от главной
+    // больше нет, страниц ровно столько же, сколько табов (четыре).
     expect(model).toMatch(/LOGICAL_TAB_IDS\s*=\s*\['home', 'lessons', 'friends', 'settings'\]/);
     expect(model).toContain('export type LogicalTabIndex = 0 | 1 | 2 | 3;');
     expect(model).toContain('export type PhysicalPageIndex = 0 | 1 | 2 | 3;');

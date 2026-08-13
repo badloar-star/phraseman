@@ -206,7 +206,7 @@ export const shardsApplyDelta = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
   const db = admin.firestore();
   // Тот же документ, под которым клиент хранит осколки (getCanonicalUserId ===
   // stableId). Без проброса stableId сервер для юзеров с релинком (анон→Google,
-  // мердж) писал бы в ДРУГОЙ документ — см. коммент в daily_tasks_shards.ts.
+  // мердж) писал бы в другой документ, нарушая идемпотентность операции.
   const authUid = request.auth.uid;
   const resolvedStableId = await resolveStableUidForAuth(
     db,

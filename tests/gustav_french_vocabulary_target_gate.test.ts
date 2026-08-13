@@ -83,7 +83,6 @@ describe('Gustav French vocabulary target gate', () => {
   it('routes irregular verbs through scoped progress and the French source gate before English verb banks can render', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_irregular_verbs.tsx'), 'utf8');
     const menuSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
-    const dailySource = fs.readFileSync(path.join(ROOT, 'app', 'daily_tasks.ts'), 'utf8');
 
     expect(source).toContain("vocabularyContentAvailableForTarget(studyTarget, 'irregular_verbs')");
     expect(source).toContain('FrenchIrregularVerbsUnavailable');
@@ -96,7 +95,6 @@ describe('Gustav French vocabulary target gate', () => {
     expect(source).not.toContain("AsyncStorage.setItem('irregular_verbs_global'");
     expect(source).not.toContain('`lesson${lessonId ?? 0}_irregular_shards_granted`');
     expect(menuSource).toContain('const irregularKey = irregularVerbsGlobalKey(studyTarget)');
-    expect(dailySource).toContain('AsyncStorage.getItem(irregularVerbsGlobalKey(studyTarget))');
   });
 
   it('routes preposition drill through scoped progress and the French source gate before English preposition banks can render', () => {

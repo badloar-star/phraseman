@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-const html = readFileSync(join(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
+const html = readFileSync(join(__dirname, '..', 'admin', 'legacy.html'), 'utf8');
 const owners = [
   'dpDrop', 'editCardPack', 'loadBanList', 'loadCancelSurveys', 'loadCardPacks',
   'loadClubsData', 'loadDailyPhrases', 'loadPremiumData', 'loadPushJobs',

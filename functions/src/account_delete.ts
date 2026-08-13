@@ -234,6 +234,10 @@ export const ARENA_EXPANSION_USER_SUBCOLLECTIONS = Object.freeze([
   'arena_v2_star_ledger',
   'arena_v2_entitlements',
   'arena_v2_expansion_receipts',
+  // Расписки единого журнала звёзд (владелец 2026-08-12). Коллекция общая для
+  // всего приложения, а не только для Арены, но живёт под тем же документом
+  // игрока и обязана удаляться вместе с ним.
+  'star_operations',
 ] as const);
 
 function cleanId(value: unknown): string {

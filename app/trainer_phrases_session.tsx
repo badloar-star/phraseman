@@ -71,7 +71,6 @@ import {
   WORD_SESSION_LIMIT,
   type SessionCard,
 } from './trainer_practice_hall';
-import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
 import { type WordBankTile } from './review_evaluator';
 import { getLessonData } from './lesson_data_all';
@@ -681,7 +680,6 @@ export default function TrainerPhrasesSession() {
   const [accessReady, setAccessReady] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
-  const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
   // Время ожидания entitlement не входит в длительность оплаченной практики.
   const sessionStartRef = useRef(0);
@@ -783,14 +781,7 @@ export default function TrainerPhrasesSession() {
 
     pendingResultRef.current = (async () => {
       await markTrainerResult(card.item.key, card.item.queue, answeredCorrectly, studyTarget);
-      const updates: { type: TaskType; increment: number }[] = [];
-      if (!dailySessionTracked.current) {
-        dailySessionTracked.current = true;
-        updates.push({ type: 'recall_session', increment: 1 });
-      }
       if (answeredCorrectly) {
-        updates.push({ type: 'recall_answers', increment: 1 });
-        updates.push({ type: 'trainer_phrases', increment: 1 });
         checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
       } else if (!energyRef.current.energyUnlimited) {
         // При ОШИБКЕ тратим энергию — та же механика, что в review.tsx/lesson1.tsx.
@@ -799,17 +790,12 @@ export default function TrainerPhrasesSession() {
         const totalBefore = energyRef.current.energy + energyRef.current.bonusEnergy;
         spendOne().then((success) => {
           if (!success) return;
-          // зачем: аудит нашёл, что дневное задание «потрать энергию» (es1-es4, до 66 XP)
-          // никогда не засчитывалось из этого экрана — lesson1.tsx/review.tsx шлют этот
-          // инкремент, а «Моя практика» — нет. Квест молча не продвигался у части юзеров.
-          updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }], { studyTarget }).catch(() => {});
           setTimeout(() => {
             const totalAfter = energyRef.current.energy + energyRef.current.bonusEnergy;
             if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
           }, 800);
         }).catch(() => {});
       }
-      if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
     })().catch(() => {});
   }, [deck, current, studyTarget, spendOne]);
 
@@ -825,9 +811,6 @@ export default function TrainerPhrasesSession() {
     await pendingResultRef.current;
     const next = current + 1;
     if (next >= deck.length) {
-      if (deck.length >= 5 && wrong === 0) {
-        updateMultipleTaskProgress([{ type: 'recall_perfect', increment: 1 }], { studyTarget }).catch(() => {});
-      }
       checkAchievements({
         type: 'trainer_session_result',
         correct,

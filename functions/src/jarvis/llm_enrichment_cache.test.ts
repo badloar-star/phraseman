@@ -59,6 +59,14 @@ describe('reserveEnrichmentSlot', () => {
     expect(second.reserved).toBe(true);
   });
 
+  test('returns a completed cached narrative to the next retry', async () => {
+    const { db } = makeFakeDb();
+    expect((await reserveEnrichmentSlot({ db, contentHash: 'cached', nowMs: 1_000 })).reserved).toBe(true);
+    await recordEnrichmentResult({ db, contentHash: 'cached', narrative: 'Готовый план', nowMs: 1_001 });
+    await expect(reserveEnrichmentSlot({ db, contentHash: 'cached', nowMs: 1_002 }))
+      .resolves.toEqual({ reserved: false, narrative: 'Готовый план' });
+  });
+
   test('storage failure fails closed — refuses the slot rather than risking a double spend', async () => {
     const brokenDb = {
       doc() {

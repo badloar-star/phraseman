@@ -31,7 +31,7 @@ describe('legacy monetization copy contract', () => {
   });
 
   it('keeps legacy admin defaults aligned with runtime guardrails', () => {
-    const source = read('admin', 'v2', 'legacy.html');
+    const source = read('admin', 'legacy.html');
     expect(source).toContain("{ key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 3");
     expect(source).toContain("{ key: 'free_daily_quiz_limit', label: 'Free: квизов в день', def: 1");
     expect(source).toContain("{ key: 'free_trainer_sessions_per_day', label: 'Free: сессий тренера в день', def: 1");

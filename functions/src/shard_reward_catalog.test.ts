@@ -23,7 +23,6 @@ describe('generic shard earn compatibility catalog (zeroed by 2026-07-20 economy
     ['arena_win', 1],
     ['arena_10_wins', 1],
     ['arena_rank_up_streak', 1],
-    ['daily_tasks_all', 1],
     ['topic_completed', 3],
     ['exam_excellent', 3],
     ['diagnostic_test', 1],

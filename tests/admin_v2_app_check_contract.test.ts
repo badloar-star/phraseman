@@ -1,70 +1,100 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
-const root = path.resolve(__dirname, '..');
-const read = (relativePath: string) => fs.readFileSync(path.join(root, relativePath), 'utf8');
+const root = path.resolve(__dirname, "..");
+const read = (relativePath: string) =>
+  fs.readFileSync(path.join(root, relativePath), "utf8");
 
-describe('live admin web App Check contract', () => {
-  const live = read('admin/v2/legacy.html');
-  const giftServer = read('functions/src/web_checkout.ts');
+describe("live admin web App Check contract", () => {
+  const live = read("admin/legacy.html");
+  const giftServer = read("functions/src/web_checkout.ts");
 
-  test('initializes the registered Enterprise provider before any Firebase service is constructed', () => {
+  test("initializes the registered Enterprise provider before any Firebase service is constructed", () => {
     expect(live).toContain(
       "import { initializeAppCheck, ReCaptchaEnterpriseProvider, getToken as getAppCheckToken } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js';",
     );
-    expect(live).toContain("const ADMIN_APP_CHECK_ENTERPRISE_SITE_KEY = '6LfteFAtAAAAAKa9jvjgCAeZjnN8je2BZZJlf2OR';");
-    expect(live).toContain('provider: new ReCaptchaEnterpriseProvider(ADMIN_APP_CHECK_ENTERPRISE_SITE_KEY)');
-    expect(live).toContain('isTokenAutoRefreshEnabled: true');
-    expect(live).toContain('getAppCheckToken(_adminAppCheck, false)');
+    expect(live).toContain(
+      "const ADMIN_APP_CHECK_ENTERPRISE_SITE_KEY = '6LfteFAtAAAAAKa9jvjgCAeZjnN8je2BZZJlf2OR';",
+    );
+    expect(live).toContain(
+      "provider: new ReCaptchaEnterpriseProvider(ADMIN_APP_CHECK_ENTERPRISE_SITE_KEY)",
+    );
+    expect(live).toContain("isTokenAutoRefreshEnabled: true");
+    expect(live).toContain("getAppCheckToken(_adminAppCheck, false)");
 
-    const appCheckInit = live.indexOf('initializeAppCheck(app, {');
-    const firestoreInit = live.indexOf('const db = getFirestore(app);');
-    const authInit = live.indexOf('const auth = getAuth(app);');
-    const functionsInit = live.indexOf("const functionsUs = getFunctions(app, 'us-central1');");
+    const appCheckInit = live.indexOf("initializeAppCheck(app, {");
+    const firestoreInit = live.indexOf("const db = getFirestore(app);");
+    const authInit = live.indexOf("const auth = getAuth(app);");
+    const functionsInit = live.indexOf(
+      "const functionsUs = getFunctions(app, 'us-central1');",
+    );
     expect(appCheckInit).toBeGreaterThan(0);
     expect(firestoreInit).toBeGreaterThan(appCheckInit);
     expect(authInit).toBeGreaterThan(appCheckInit);
     expect(functionsInit).toBeGreaterThan(appCheckInit);
   });
 
-  test('fails closed and explicitly sends both Firebase credentials for gift callables', () => {
-    const helperStart = live.indexOf('function createAppCheckProtectedGiftCallable(name)');
-    const helperEnd = live.indexOf("const functionsUs = getFunctions(app, 'us-central1');", helperStart);
+  test("fails closed and explicitly sends both Firebase credentials for gift callables", () => {
+    const helperStart = live.indexOf(
+      "function createAppCheckProtectedGiftCallable(name)",
+    );
+    const helperEnd = live.indexOf(
+      "const functionsUs = getFunctions(app, 'us-central1');",
+      helperStart,
+    );
     const helper = live.slice(helperStart, helperEnd);
     expect(helperStart).toBeGreaterThan(0);
     expect(helperEnd).toBeGreaterThan(helperStart);
-    expect(helper).toContain('const appCheckToken = await requireAdminAppCheckForGiftCertificates();');
-    expect(helper).toContain('const idToken = await auth.currentUser?.getIdToken();');
+    expect(helper).toContain(
+      "const appCheckToken = await requireAdminAppCheckForGiftCertificates();",
+    );
+    expect(helper).toContain(
+      "const idToken = await auth.currentUser?.getIdToken();",
+    );
     expect(helper).toContain("Authorization: `Bearer ${idToken}`");
     expect(helper).toContain("'X-Firebase-AppCheck': appCheckToken");
     expect(helper).toContain("body: JSON.stringify({ data })");
-    expect(helper).toContain('return giftCertificateParseCallableEnvelope(payload, response.ok, response.status);');
-    expect(helper).not.toContain('httpsCallable(functionsUs, name)');
-    expect(live).toContain('Защита App Check недоступна. Обновите страницу и повторите действие — запрос не отправлен.');
+    expect(helper).toContain(
+      "return giftCertificateParseCallableEnvelope(payload, response.ok, response.status);",
+    );
+    expect(helper).not.toContain("httpsCallable(functionsUs, name)");
+    expect(live).toContain(
+      "Защита App Check недоступна. Обновите страницу и повторите действие — запрос не отправлен.",
+    );
 
     for (const name of [
-      'adminCreateGiftCertificateBatch',
-      'adminListGiftCertificates',
-      'adminUpdateGiftCertificatePersonalization',
-      'adminGetGiftCertificateDownload',
-      'adminReplaceSyntheticGiftCertificate',
-      'adminSendPreparedGiftCertificate',
+      "adminCreateGiftCertificateBatch",
+      "adminListGiftCertificates",
+      "adminUpdateGiftCertificatePersonalization",
+      "adminGetGiftCertificateDownload",
+      "adminReplaceSyntheticGiftCertificate",
+      "adminSendPreparedGiftCertificate",
     ]) {
       expect(live).toContain(`createAppCheckProtectedGiftCallable('${name}')`);
       expect(live).not.toContain(`httpsCallable(functionsUs, '${name}')`);
     }
   });
 
-  test('does not weaken server enforcement or copy App Check initialization to redirect stubs', () => {
-    expect(giftServer).toContain('export const GIFT_CERTIFICATE_MUTATION_OPTIONS = { region: REGION, enforceAppCheck: true } as const;');
-    expect(giftServer).toContain('export const GIFT_CERTIFICATE_READ_OPTIONS = { region: REGION, enforceAppCheck: true } as const;');
+  test("does not weaken server enforcement or copy App Check initialization to redirect stubs", () => {
+    expect(giftServer).toContain(
+      "export const GIFT_CERTIFICATE_MUTATION_OPTIONS = { region: REGION, enforceAppCheck: true } as const;",
+    );
+    expect(giftServer).toContain(
+      "export const GIFT_CERTIFICATE_READ_OPTIONS = { region: REGION, enforceAppCheck: true } as const;",
+    );
 
-    for (const frozen of ['admin/index.html', 'admin/full.html', 'admin/site.html']) {
+    for (const frozen of [
+      "admin/index.html",
+      "admin/full.html",
+      "admin/site.html",
+    ]) {
       const absolute = path.join(root, frozen);
       if (fs.existsSync(absolute)) {
-        expect(fs.readFileSync(absolute, 'utf8')).not.toContain('firebase-app-check.js');
+        expect(fs.readFileSync(absolute, "utf8")).not.toContain(
+          "firebase-app-check.js",
+        );
       }
     }
-    expect(fs.existsSync(path.join(root, 'admin/v2/index.html'))).toBe(false);
+    expect(fs.existsSync(path.join(root, "admin/v2/index.html"))).toBe(false);
   });
 });

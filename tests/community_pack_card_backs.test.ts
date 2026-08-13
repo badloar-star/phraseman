@@ -14,8 +14,8 @@ import {
 } from '../app/flashcards/bundles/packIds';
 import { BUNDLED_MARKETPLACE_PACKS } from '../app/flashcards/marketplace';
 import { packTileImageForPack } from '../app/flashcards/packMarketplaceIcons';
+// Cards 2.1 §1.2: цена набора удалена из схемы — в payload'е поля priceShards больше нет.
 import {
-  COMMUNITY_PACK_PRICE_SHARDS,
   buildCommunityPackPayloadForCloud,
   validateCommunityPackPayload,
   type CommunityPackSubmissionPayload,
@@ -31,7 +31,6 @@ function validPayload(cardBackKey: string): CommunityPackSubmissionPayload {
   return {
     title: 'Creator pack',
     description: 'Community examples',
-    priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     cardThemeKey: 'aqua_pulse',
     cardBackKey,
     cards: Array.from({ length: 10 }, (_, i) => ({

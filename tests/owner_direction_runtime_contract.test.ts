@@ -278,9 +278,8 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain("AsyncStorage.getItem('streak_last_shown')");
 
     expect(source).toContain('const [specialTitleStoragePairs, achievementStates] = await Promise.all([');
-    expect(source).toContain('AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY, dailyAllDoneKey])');
+    expect(source).toContain('AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY])');
     expect(source).not.toContain('AsyncStorage.getItem(HELPFUL_REPORTS_CONFIRMED_KEY)');
-    expect(source).not.toContain('AsyncStorage.getItem(dailyTasksAchievementAllDoneStreakKey(studyTarget))');
 
     expect(source).toContain('const lessonEntriesWithLastOpened = await AsyncStorage.multiGet([...lessonKeys, lastOpenedKey])');
     expect(source).toContain('const saved = lessonEntries[lastId - 1]?.[1] ?? null');
@@ -877,17 +876,11 @@ describe('owner runtime direction contract', () => {
   });
 
   it('keeps reward claim callables protected by deterministic claim markers', () => {
-    const dailyTasks = read('functions/src/daily_tasks_shards.ts');
     const leagueChest = read('functions/src/league_chest.ts');
     const collectibles = read('functions/src/collectibles.ts');
     const profileCard = read('functions/src/profile_card_upgrade.ts');
     const promoCodes = read('functions/src/promo_codes.ts');
     const revenueCat = read('functions/src/revenuecat_shards.ts');
-
-    expect(dailyTasks).toContain("userRef.collection(REWARD_CLAIMS_COLLECTION).doc(`daily_tasks_all_${dayKey}`)");
-    expect(dailyTasks).toContain('if (claimSnap.exists) {');
-    expect(dailyTasks).toContain('return { alreadyClaimed: true, newBalance: existingBalance, shardsUpdatedAtMs };');
-    expect(dailyTasks).toContain('return { alreadyClaimed: false, newBalance, shardsUpdatedAtMs };');
 
     expect(leagueChest).toContain('const claimRef = db.collection(\'league_chest_claims\').doc(claimDocId(stableUid, weekId, groupId));');
     expect(leagueChest).toContain('function buildClaimedRewardResponse');
@@ -998,17 +991,11 @@ describe('owner runtime direction contract', () => {
     expect(outbox).toContain('resumePendingFriendGiftSends');
   });
 
-  it('keeps server-first profile upgrades and daily rerolls visibly pending', () => {
+  it('keeps server-first profile upgrades visibly pending', () => {
     const profileUpgrade = read('components/PlayerProfileModal.tsx');
-    const dailyTasks = read('app/daily_tasks_screen.tsx');
 
     expect(profileUpgrade).toContain('const result = await upgradeProfileCardLevel();');
     expect(profileUpgrade).toContain('disabled={upgradeBusy}');
     expect(profileUpgrade).toContain('<ActivityIndicator size="small" color="#1A1205" />');
-
-    expect(dailyTasks).toContain('rerollDailyTask(target.id, studyTarget)');
-    expect(dailyTasks).toContain('setRerollBusyId(target.id)');
-    expect(dailyTasks).toContain('disabled={!!rerollBusyId}');
-    expect(dailyTasks).toContain('<ActivityIndicator size="small" color={isGoldTheme ? t.textOnGold : t.correctText} />');
   });
 });

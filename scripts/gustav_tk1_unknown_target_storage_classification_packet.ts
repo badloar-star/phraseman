@@ -131,7 +131,6 @@ function currentDomainForRecord(record: StorageRecord): string {
   }
   if (id.includes('quiz') || file.includes('quiz')) return 'analytics_stats';
   if (id.includes('daily_phrase')) return 'achievements';
-  if (id.includes('daily_task') || file.includes('daily_tasks')) return 'analytics_stats';
   if (id.includes('diagnos') || file.includes('diagnos')) return 'personal_practice';
   if (file.includes('league') || file.includes('release_wave') || id.includes('claim') || id.includes('native_build')) return 'global_account_scoped';
   return 'unknown_target_storage';
@@ -154,13 +153,6 @@ function proposedClassificationForFile(sourcePath: string, currentUnknownTargetR
       classification: 'global_account_scoped',
       confidence: 'medium',
       rationale: 'Current evidence looks like account/global reward or release flow state, not target-language learning state.',
-    };
-  }
-  if (sourcePath.includes('daily_tasks')) {
-    return {
-      classification: currentTargetRequiredRecords > 0 ? 'target_scoped_cloud' : 'reviewed_exception',
-      confidence: 'medium',
-      rationale: 'Daily task records can mix target-learning counters and global task UI state; keep blocked until each task key is explicitly scoped.',
     };
   }
   if (sourcePath.includes('quiz')) {

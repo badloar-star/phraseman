@@ -13,6 +13,11 @@ import { lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { storageStudyTarget } from './target_storage_keys';
 import type { StreakWeekDayMarkerKind } from './streak_week_markers';
 import type { AppSnapshotSource } from './app_snapshot_store';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from './account_generation';
 
 export type HomeScreenHydration = {
   userName: string;
@@ -44,20 +49,42 @@ export type HomeScreenHydration = {
     leaderPoints: number;
   } | null;
   personalPlanSnapshot?: PersonalPlanHomeSnapshot | null;
-  // зачем: dueCount/tasksCompleted раньше стартовали с useState(0) и «прыгали» на
+  // зачем: dueCount раньше стартовал с useState(0) и «прыгал» на
   // реальное число вторым проходом (после belowFoldReady) при каждом повторном
   // открытии таба — тот же класс бага, что и остальные поля тут. Кладём последнее
   // известное значение в снапшот, чтобы первый рендер второго прохода уже показывал
   // правду, а не 0.
   dueCount?: number;
-  tasksCompleted?: number;
-  tasksTotal?: number;
 };
 
-let snapshotByTarget: Partial<Record<string, HomeScreenHydration>> = {};
+type OwnedHomeScreenHydration = Readonly<{
+  snapshot: HomeScreenHydration;
+  owner: AccountGenerationToken;
+}>;
 
-export function rememberHomeScreenHydration(next: HomeScreenHydration, studyTarget?: StudyTargetLang): void {
-  snapshotByTarget[storageStudyTarget(studyTarget)] = next;
+let snapshotByTarget: Partial<Record<string, OwnedHomeScreenHydration>> = {};
+
+function ownerIsCurrent(owner: AccountGenerationToken): boolean {
+  const current = captureAccountGeneration();
+  if (current.phase === 'transitioning') return false;
+  if (owner.phase === 'uninitialized') {
+    return current.phase === 'uninitialized'
+      && current.generation === owner.generation
+      && current.stableId === owner.stableId;
+  }
+  return owner.phase === 'active' && isCurrentAccountGeneration(owner, owner.stableId);
+}
+
+export function rememberHomeScreenHydration(
+  next: HomeScreenHydration,
+  studyTarget?: StudyTargetLang,
+  owner: AccountGenerationToken = captureAccountGeneration(),
+): void {
+  if (!ownerIsCurrent(owner)) return;
+  snapshotByTarget[storageStudyTarget(studyTarget)] = {
+    snapshot: next,
+    owner,
+  };
 }
 
 export function patchHomeScreenHydration(
@@ -66,12 +93,20 @@ export function patchHomeScreenHydration(
 ): void {
   const key = storageStudyTarget(studyTarget);
   const current = snapshotByTarget[key];
-  if (!current) return;
-  snapshotByTarget[key] = { ...current, ...patch };
+  if (!current || !ownerIsCurrent(current.owner)) return;
+  snapshotByTarget[key] = {
+    snapshot: { ...current.snapshot, ...patch },
+    owner: captureAccountGeneration(),
+  };
 }
 
 export function peekHomeScreenHydration(studyTarget?: StudyTargetLang): HomeScreenHydration | null {
-  return snapshotByTarget[storageStudyTarget(studyTarget)] ?? null;
+  const current = snapshotByTarget[storageStudyTarget(studyTarget)];
+  return current && ownerIsCurrent(current.owner) ? current.snapshot : null;
+}
+
+export function __resetHomeScreenHydrationForTests(): void {
+  snapshotByTarget = {};
 }
 
 /**

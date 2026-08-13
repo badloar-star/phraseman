@@ -79,17 +79,8 @@ export type AppEventMap = {
   pack_trial_gift_set: undefined;
   /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
   pack_trial_gift_consumed: undefined;
-  daily_task_completed: { taskId: string; studyTarget?: RuntimeStudyTarget };
-  /** Любое сохранённое изменение прогресса, включая частичное (например 1/3 уроков). */
-  daily_task_progress_changed: { studyTarget?: RuntimeStudyTarget };
   personal_plan_updated: { planId?: string; taskId?: string; snapshot?: PersonalPlanHomeSnapshot } | undefined;
   personal_plan_onboarding_nickname_ready: undefined;
-  /** Тост или экран забрал награду — обновить список на daily_tasks / главной. */
-  daily_task_reward_claimed: { taskId: string; studyTarget?: RuntimeStudyTarget };
-  /** Пользователь сменил дневное задание за осколки — UI обязан перечитать список и прогресс. */
-  daily_task_rerolled: { oldTaskId: string; newTaskId: string };
-  /** Пользователь сменил весь сегодняшний набор дневных заданий из утреннего модала. */
-  daily_tasks_set_rerolled: { oldTaskIds: string[]; newTaskIds: string[]; studyTarget?: RuntimeStudyTarget };
   energy_purchased_shards: undefined;
   /** Цепочка только что обнулена, доступен оффер восстановления (24ч). home.tsx показывает модалку. */
   streak_revive_offer: { lostStreak: number; missedDays?: number };
@@ -138,11 +129,15 @@ export type AppEventMap = {
   /** Диалог завершён (или прогресс сброшен) — список диалогов обновляет состояния «Пройдено» и hero «Продолжить». */
   dialogs_progress_changed: undefined;
   /**
-   * Юзер зашёл в урок (любым путём: меню, задания дня, личный план, повтор) — карточка
+   * Юзер зашёл в урок (любым путём: меню, личный план, повтор) — карточка
    * «Продолжить урок X» на Главной обязана смениться СРАЗУ, не дожидаясь возврата на таб
    * или полного loadData(). lesson1.tsx эмитит сразу при входе, home.tsx патчит lastLesson точечно.
    */
   last_opened_lesson_changed: { lessonId: number; progress: number; score: string; studyTarget?: RuntimeStudyTarget };
+  /** Cards 2.1 §1.3: набор сообщества добавлен себе (бесплатно, без списаний) — обновить каталог/коллекцию. */
+  community_pack_added: { packId: string };
+  /** Cards 2.1 §2.2: лайк набора поставлен/снят — плитки и экран набора обновляют счётчик. */
+  community_pack_like_changed: { packId: string; liked: boolean };
 };
 
 /** RU + UK + ES для `action_toast` без дублирования полей. */

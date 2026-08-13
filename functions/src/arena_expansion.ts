@@ -39,6 +39,12 @@ import {
   type ArenaFirestoreSpeedProgress,
 } from './arena_v2_core';
 import {
+  commitStarOperations,
+  prepareStarOperations,
+  type StarOpRequest,
+} from './stars_ledger';
+import { arenaWeekKeyForMs } from './arena_xp';
+import {
   ARENA_COSMETIC_CATALOG,
   ARENA_EXPANSION_CATALOG_VERSION,
   ARENA_EXPANSION_COLLECTIONS,
@@ -53,7 +59,6 @@ import {
   arenaLabTask,
   arenaMasteryObservation,
   arenaPartnerSpotlightAward,
-  arenaRivalSeriesAfterGame,
   arenaSanitizeAnswerSnapshot,
   arenaTodayBand,
   arenaTodayDayKey,
@@ -492,8 +497,9 @@ async function settleExpansionRun(
   const signatureRefs = (run.expansionFlags?.mastery === true ? exposed : [])
     .map((index) => userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.masterySignatures)
     .doc(arenaCanonicalTaskSignature(tasks[index])));
-  const [seasonSnap, dailySnap, ...signatureSnaps] = await Promise.all([
-    tx.get(seasonRef), tx.get(dailyRef), ...signatureRefs.map((ref) => tx.get(ref)),
+  const userRef = db.collection('users').doc(who.stableUid);
+  const [seasonSnap, dailySnap, userSnap, ...signatureSnaps] = await Promise.all([
+    tx.get(seasonRef), tx.get(dailyRef), tx.get(userRef), ...signatureRefs.map((ref) => tx.get(ref)),
   ]);
   const additions: Partial<Record<ArenaMasteryMode, ReturnType<typeof arenaMasteryObservation>[]>> = {};
   (run.expansionFlags?.mastery === true ? exposed : []).forEach((taskIndex, index) => {
@@ -516,12 +522,59 @@ async function settleExpansionRun(
   const walletBefore = Math.max(0, Math.trunc(Number(profileData.starWalletBalance ?? 0)));
   const seasonData = seasonSnap.data() ?? {};
   const seasonStarsAfter = Math.max(0, Math.trunc(Number(seasonData.stars ?? 0))) + todayEarned;
+  /**
+   * Единый журнал звёзд (владелец D-05/D-06). Готовим операции здесь, до первой
+   * записи в транзакции: Firestore требует, чтобы все чтения шли до всех
+   * записей. Забег дня и пороги мастерства — две разные операции, поэтому
+   * уходят одним пакетом: раздельные вызовы прочитали бы одно состояние и
+   * второй затёр бы первый.
+   */
+  const starOps: StarOpRequest[] = [];
+  if (run.expansionFlags?.wallet === true && todayEarned > 0) {
+    starOps.push({
+      opId: `arena_today:${run.runId}`,
+      delta: todayEarned,
+      reason: 'arena_today',
+      sourceKind: 'arena_today',
+      sourceId: run.runId,
+      ruleVersion: 1,
+      earnedAtMs: now,
+      meta: {
+        correct: run.totals.correct,
+        submitted: run.totals.submittedAnswers,
+        runKind: String(run.runKind),
+      },
+    });
+  }
+  if (masteryWalletAward > 0) {
+    starOps.push({
+      opId: `arena_today_mastery:${run.runId}`,
+      delta: masteryWalletAward,
+      reason: 'arena_today_mastery',
+      sourceKind: 'arena_today_mastery',
+      sourceId: run.runId,
+      ruleVersion: 1,
+      earnedAtMs: now,
+      meta: { thresholds: masteryApplied.newlyClaimed.join(',') },
+    });
+  }
+  const starsPrepared = starOps.length
+    ? await prepareStarOperations(tx, db, who.stableUid, userSnap, starOps, {
+      nowMs: now,
+      activeSeasonId: season.seasonId,
+      weekKeyNow: arenaWeekKeyForMs(now),
+      weekKeyForMs: arenaWeekKeyForMs,
+      authUid: who.authUid ?? '',
+    })
+    : null;
+
   const result = {
     receiptId: receiptRef.id, starsEarned: todayEarned, masteryStarsEarned: masteryWalletAward,
     walletBalanceAfter: walletBefore + walletAward, seasonStarsAfter, ratingDelta: 0, spinAwarded: false,
     settledAtMs: now,
   };
   run.state = run.state === 'expired' ? 'expired' : 'settled'; run.terminal = true; run.result = result;
+  if (starsPrepared) commitStarOperations(tx, starsPrepared);
   tx.set(profileRef, {
     starWalletBalance: walletBefore + walletAward,
     lifetimeWalletStarsEarned: Math.max(0, Number(profileData.lifetimeWalletStarsEarned ?? 0)) + walletAward,
@@ -972,8 +1025,9 @@ export const arenaStarPurchase = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
   const entitlementRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.entitlements).doc(itemId);
   const receiptRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.receipts).doc(`purchase_${requestId}`);
   const result = await db.runTransaction(async (tx) => {
-    const [profileSnap, entitlementSnap, receiptSnap] = await Promise.all([
-      tx.get(profileRef), tx.get(entitlementRef), tx.get(receiptRef),
+    const userRef = db.collection('users').doc(who.stableUid);
+    const [profileSnap, entitlementSnap, receiptSnap, userSnap] = await Promise.all([
+      tx.get(profileRef), tx.get(entitlementRef), tx.get(receiptRef), tx.get(userRef),
     ]);
     if (receiptSnap.exists) {
       if (receiptSnap.data()?.operation !== 'purchase' || receiptSnap.data()?.itemId !== itemId
@@ -993,9 +1047,37 @@ export const arenaStarPurchase = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
     }
     if (balance < item.price) throw new HttpsError('failed-precondition', 'arena_store_insufficient_stars');
     const balanceAfter = balance - item.price;
+    const purchasedAtMs = nowMs();
+    /**
+     * Списание идёт через единый журнал звёзд (владелец D-05/D-06): трата
+     * уменьшает тратимый баланс и НЕ трогает счётчик заработанного за всё
+     * время, который открывает награды (D-10).
+     *
+     * Ключ дедупликации — предмет и версия каталога, а не requestId клиента:
+     * повторная покупка того же предмета отсекается правом владения выше, а
+     * стабильный ключ переживает переустановку приложения.
+     */
+    const purchaseSeason = arenaSeasonWindow(purchasedAtMs);
+    const purchasePrepared = await prepareStarOperations(tx, db, who.stableUid, userSnap, [{
+      opId: `spend_shop:${itemId}_${ARENA_EXPANSION_CATALOG_VERSION}`,
+      delta: -item.price,
+      reason: 'spend_shop',
+      sourceKind: 'spend_shop',
+      sourceId: `${itemId}_${ARENA_EXPANSION_CATALOG_VERSION}`,
+      ruleVersion: 1,
+      earnedAtMs: purchasedAtMs,
+      meta: { itemId, slot: item.slot, price: item.price },
+    }], {
+      nowMs: purchasedAtMs,
+      activeSeasonId: purchaseSeason.seasonId,
+      weekKeyNow: arenaWeekKeyForMs(purchasedAtMs),
+      weekKeyForMs: arenaWeekKeyForMs,
+      authUid: who.authUid ?? '',
+    });
     const resultDoc = { receiptId: receiptRef.id, operation: 'purchase', itemId, slot: item.slot,
       catalogVersion: ARENA_EXPANSION_CATALOG_VERSION,
-      status: 'purchased', price: item.price, balanceAfter, purchasedAtMs: nowMs() };
+      status: 'purchased', price: item.price, balanceAfter, purchasedAtMs };
+    commitStarOperations(tx, purchasePrepared);
     tx.set(profileRef, {
       starWalletBalance: balanceAfter,
       lifetimeWalletStarsSpent: Math.max(0, Number(profile.lifetimeWalletStarsSpent ?? 0)) + item.price,
@@ -1708,6 +1790,7 @@ export const arenaPartnerClaimSpotlight = onCall(ARENA_EXPANSION_CALLABLE_OPTION
       userSubcollection(otherUid, ARENA_EXPANSION_COLLECTIONS.activityDays).doc(day),
     ]);
     const activity = await Promise.all(activityRefs.map((ref) => tx.get(ref)));
+    const spotlightUserSnap = await tx.get(db.collection('users').doc(who.stableUid));
     const sharedDays = days.filter((_, index) => activity[index * 2].data()?.qualifying === true
       && activity[index * 2 + 1].data()?.qualifying === true).length;
     if (!week.spotlightPartnershipId) {
@@ -1760,6 +1843,30 @@ export const arenaPartnerClaimSpotlight = onCall(ARENA_EXPANSION_CALLABLE_OPTION
       claimedThresholds, starsEarned: award.walletStars, balanceAfter, claimedAtMs: now };
     tx.set(weekRef, { weekKey, spotlightPartnershipId: id, sharedDays, claimedThresholds,
       ...(!week.spotlightPartnershipId ? { lockedAtMs: now } : {}), updatedAtMs: now }, { merge: true });
+    /**
+     * Партнёрский спотлайт — обычное начисление в единый журнал (D-05/D-06).
+     * Ключ включает неделю, партнёрство и набор порогов: он стабилен и
+     * переживает повтор запроса, а порог, взятый один раз, второй раз не платит.
+     */
+    const spotlightPrepared = award.walletStars > 0
+      ? await prepareStarOperations(tx, db, who.stableUid, spotlightUserSnap, [{
+        opId: `arena_partner:${weekKey}_${id}_${award.thresholds.join('_')}`,
+        delta: award.walletStars,
+        reason: 'arena_partner',
+        sourceKind: 'arena_partner',
+        sourceId: `${weekKey}_${id}_${award.thresholds.join('_')}`,
+        ruleVersion: 1,
+        earnedAtMs: now,
+        meta: { weekKey, partnershipId: id, sharedDays, thresholds: award.thresholds.join(',') },
+      }], {
+        nowMs: now,
+        activeSeasonId: season.seasonId,
+        weekKeyNow: arenaWeekKeyForMs(now),
+        weekKeyForMs: arenaWeekKeyForMs,
+        authUid: who.authUid ?? '',
+      })
+      : null;
+    if (spotlightPrepared) commitStarOperations(tx, spotlightPrepared);
     if (award.walletStars > 0) {
       tx.set(profileRef, { starWalletBalance: balanceAfter,
         lifetimeWalletStarsEarned: Math.max(0, Number(profile.lifetimeWalletStarsEarned ?? 0)) + award.walletStars,

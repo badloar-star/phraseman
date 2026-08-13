@@ -94,11 +94,11 @@ const WORK_ORDER_OVERRIDES = {
     gates: ['collectible_content_target_gate', 'pack_manifest_gate', 'admin_pack_status_gate'],
     reasoningLevel: 'deep',
   },
-  daily_phrase_tasks: {
+  daily_phrase: {
     builderId: 'french_daily_phrase_builder',
     requiredSources: ['tv5monde_apprendre', 'le_robert_dictionary'],
-    outputArtifacts: ['fr_daily_phrase_bank.json', 'fr_daily_task_phrase_map.json'],
-    gates: ['daily_phrase_target_gate', 'daily_task_storage_gate', 'no_english_fallback_gate'],
+    outputArtifacts: ['fr_daily_phrase_bank.json'],
+    gates: ['daily_phrase_target_gate', 'no_english_fallback_gate'],
     reasoningLevel: 'deep',
   },
   diagnostics_exams: {

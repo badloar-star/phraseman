@@ -22,7 +22,6 @@ import { LinearGradient } from './SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { softShadow, noAndroidOutline } from '../constants/androidGlow';
 import { checkAchievements } from '../app/achievements';
-import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import { claimDailyPhrasePulseForDay } from '../app/daily_phrase_pulse';
 import { getLocalDayKey } from '../app/local_date';
 import {
@@ -512,7 +511,6 @@ function DailyPhraseCard({
     }
 
     setDetailsVisible(true);
-    updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }], { studyTarget }).catch(() => {});
     checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
   };
 

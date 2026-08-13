@@ -1,5 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { COMMUNITY_PACK_CARD_COUNT_MAX, COMMUNITY_PACK_PRICE_SHARDS } from './schema';
+import { COMMUNITY_PACK_CARD_COUNT_MAX } from './schema';
+
+/**
+ * Cards 2.1 §1.2: цены удалены — в черновике больше нет `priceShards`.
+ * Старые черновики читаются как есть: лишнее поле просто игнорируется.
+ */
 import { UGC_CARD_THEME_IDS } from './ugcCardThemePresets';
 import { UGC_CARD_BACK_IDS } from '../flashcards/cardBackCatalog';
 import {
@@ -27,8 +32,6 @@ export type CommunityPackCreateDraftV1 = {
   v: 1;
   title: string;
   description: string;
-  /** Всегда `COMMUNITY_PACK_PRICE_SHARDS`; поле сохраняется для совместимости черновиков. */
-  priceShards: number;
   themeIdx: number;
   cardBackIdx: number;
   rows: CommunityPackCreateDraftRow[];
@@ -97,7 +100,6 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
       v: 1,
       title: typeof o.title === 'string' ? o.title : '',
       description: typeof o.description === 'string' ? o.description : '',
-      priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       themeIdx: clampThemeIdx(typeof o.themeIdx === 'number' ? o.themeIdx : 0),
       cardBackIdx: clampCardBackIdx(typeof o.cardBackIdx === 'number' ? o.cardBackIdx : 0),
       rows,
@@ -142,7 +144,6 @@ export async function saveCommunityPackCreateDraft(
     v: 1,
     title: d.title,
     description: d.description,
-    priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     themeIdx: clampThemeIdx(d.themeIdx),
     cardBackIdx: clampCardBackIdx(d.cardBackIdx),
     rows: d.rows.slice(0, COMMUNITY_PACK_CARD_COUNT_MAX).map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })),

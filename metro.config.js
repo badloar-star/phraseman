@@ -15,7 +15,12 @@ const config = getDefaultConfig(__dirname);
 // «не видел» node_modules — не резолвился даже прямой относительный путь к файлу.
 // Отключаем Watchman: Metro сканирует файлы своим node-крawler'ом и больше не зависит от
 // сбоев внешнего демона. Платой является чуть более долгий первый старт бандлера.
-config.resolver.useWatchman = false;
+// 2026-08-12: отключение Watchman нужно ТОЛЬКО на Windows (там из-за мёртвого
+// sock-файла демон падал и Metro получал пустой обход). На macOS/Linux Watchman —
+// единственный надёжный источник событий об изменении файлов: без него Metro
+// крауллит дерево сам и на проекте такого размера пропускает правки, поэтому
+// Fast Refresh на телефоне не срабатывает и приходится жать reload руками.
+config.resolver.useWatchman = process.platform !== 'win32';
 
 const existingBlockList = config.resolver.blockList;
 const blockList = Array.isArray(existingBlockList)

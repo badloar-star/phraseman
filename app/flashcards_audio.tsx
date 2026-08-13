@@ -32,7 +32,6 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { checkAchievements } from './achievements';
-import { updateMultipleTaskProgress } from './daily_tasks';
 import {
   audioTextForSide,
   buildFlashcardAudioDeck,
@@ -448,14 +447,12 @@ export default function FlashcardsAudioScreen() {
   const registerViewed = useCallback((card: TrainingCard) => {
     if (viewedRef.current.has(card.trainingKey)) return;
     viewedRef.current.add(card.trainingKey);
-    updateMultipleTaskProgress([{ type: 'flashcard_view', increment: 1 }], { studyTarget }).catch(() => {});
     checkAchievements({ type: 'flashcard_viewed', count: 1, studyTarget }).catch(() => {});
   }, [studyTarget]);
 
   const registerFlipped = useCallback((card: TrainingCard) => {
     if (flippedRef.current.has(card.trainingKey)) return;
     flippedRef.current.add(card.trainingKey);
-    updateMultipleTaskProgress([{ type: 'flashcard_flip', increment: 1 }], { studyTarget }).catch(() => {});
     checkAchievements({ type: 'flashcard_flipped', count: 1, studyTarget }).catch(() => {});
   }, [studyTarget]);
 

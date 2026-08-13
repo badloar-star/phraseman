@@ -444,6 +444,22 @@ runtime, валидаторы, preview, versioning, QA, device/release gates и 
 используют только нейтральные тестовые данные, доказывают возможности генератора
 и никогда не считаются реальным контентом или owner approval E1–E32.
 
+Текущий технический статус 2026-08-13: канонический callable-командный формат
+V2, сохранение точного plan request, ручной owner import в общий preview store,
+32 подтверждения, 224 обязательных release-leaf readback и приватный единый
+activation CAS реализованы как server-only/authority-bounded пакеты. Ближайший
+нейтральный сквозной harness
+`Create Plan → owner import → preview → confirmation → release A/B → rollback A`
+проходит. Незакрытый шаг P6 — callable/emulator readback с полными 224 строгими
+листами, после чего остаётся физическая device/offline/accessibility/visual QA.
+Реальные E1–E32 не входят в harness и остаются только ручной работой владельца.
+
+Экран реальной V2-сессии теперь использует отдельный полный интерфейсный
+словарь для всех восьми активных локалей. Локализованы mode labels, offline
+audio fallback, первая/вторая ошибка, Report/Save/Voice, mic permissions,
+подсказка/пропуск, звёзды и ceremony. Визуальная композиция не менялась и не
+считается поддельным reference evidence. Узкий gate: 3 suites / 27 tests PASS.
+
 ### P7 — energy migration and exact removal — AFTER P2/P3/P6
 
 Сначала полная инвентаризация потребителей и миграционный контракт, затем
@@ -484,3 +500,33 @@ content/release issue не остаётся. Production deploy — отдель�
    мультиагентная оценка минимум по трём осям: spec/learning, security/data и
    architecture/UX. Findings взвешиваются до реализации; решение и причины
    записываются в HANDOVER.
+
+## Текущий следующий шаг после 15.148
+
+Корневой owner-редактор теперь умеет показывать и локально проверять полный
+нейтральный пакет `интро → 12 сессий → 144 задания`, но тестовый fixture
+физически отделён от production и не отправляется на сервер. Реальные E1–E32
+по-прежнему создаёт только владелец.
+
+Immutable owner-authored intro artifact уже добавлен: новый owner-input/stage v2
+хранит 12 тел интро, 36 связанных comprehension questions и общий fingerprint;
+старые v1 читаются. Локальный reference episode можно только скопировать в новый
+production_candidate с новыми ID/fingerprint и полным повторным server
+validation.
+
+Learner-safe intro projection и private exact confirmed-owner readback закрыты:
+12 интро / 36 видимых вопросов доступны только через opaque handle после
+generation-pinned чтения stage, plan, owner input и confirmation. JSON или
+копия handle authority не получают.
+
+Additive learner-core inventory v2 уже связывает `intro + render + capsule` для
+каждой из 12 сессий, всего 36 immutable objects, не ломая v1.
+
+Первый незакрытый generator contract: добавить Firebase publisher/readback для
+inventory v2 и released-session package v2. После этого нужно замкнуть текущие отдельные
+canonical plan/preview/release seams в один root-owner E2E, повторить neutral
+Emulator drill и перейти к физической
+iOS/Android offline/restart/microphone/accessibility/reduced-motion/rollback
+матрице. Нейтральные тестовые сессии и интро создаёт Codex исключительно для
+проверки генератора; содержательные решения реального курса не входят в его
+роль.

@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
-import { ArenaStateCard } from '../components/arena/ArenaExpansionUI';
+import { ArenaStateCard, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { ArenaScreen, ArenaStat } from '../components/arena/ArenaScreen';
+import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -17,6 +19,7 @@ import { ARENA_LOCALIZED_STORE_ITEM_IDS, type ArenaStoreItemId } from '../module
 import { arenaExpansionHome, arenaStarEquip, arenaStarPurchase, arenaStarStore, arenaV2SpinClaim, arenaV2SpinStatus, createArenaRequestId } from './arena_client';
 
 export default function ArenaStarWalletScreen() {
+  const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
   const active = useRuntimeActive();
@@ -69,20 +72,23 @@ export default function ArenaStarWalletScreen() {
   const header = store ? <View style={styles.header}>
     <View style={styles.stats}><ArenaStat label={arenaExpansionText(lang, 'spendable')} value={store.wallet.walletStars} /><ArenaStat label={arenaExpansionText(lang, 'seasonEarned')} value={store.wallet.seasonStarsEarned} /></View>
     {spins > 0 ? <V2Card style={styles.spin}><View style={styles.icon}><Ionicons name="sparkles" size={26} color={P.onGold} /></View><View style={styles.flex}><Text style={[styles.title, { color: P.text }]}>{arenaExpansionText(lang, 'spin')}</Text><Text style={[styles.body, { color: P.muted }]}>{spins}</Text></View><View style={styles.action}><V2Cta disabled={busySku === 'spin'} onPress={claimSpin}>{arenaExpansionText(lang, 'spinClaim')}</V2Cta></View></V2Card> : null}
-    {state === 'insufficient' || state === 'success' || state === 'error' ? <ArenaStateCard state={state === 'insufficient' ? 'unavailable' : state === 'success' ? 'ready' : 'error'} title={arenaExpansionText(lang, state === 'insufficient' ? 'insufficient' : state === 'success' ? 'purchaseSuccess' : 'unavailable')} actionLabel={state === 'error' ? arenaExpansionText(lang, 'retry') : undefined} onAction={state === 'error' ? load : undefined} /> : null}
+    {state === 'error' ? <ArenaStateNotice state="error" onRetry={load} /> : null}
+    {state === 'insufficient' || state === 'success' ? <ArenaStateCard state={state === 'insufficient' ? 'unavailable' : 'ready'} title={arenaExpansionText(lang, state === 'insufficient' ? 'insufficient' : 'purchaseSuccess')} /> : null}
   </View> : null;
 
   return (
+    <ArenaHubChrome>
     <ArenaScreen title={arenaExpansionText(lang, 'wallet')} subtitle={arenaExpansionText(lang, 'store')} scroll={false}>
       <FlatList
         data={store?.items ?? []}
         keyExtractor={(item) => item.sku}
         contentContainerStyle={styles.list}
         ListHeaderComponent={header}
-        ListEmptyComponent={<View style={styles.center}><ArenaStateCard state={state === 'insufficient' || state === 'success' ? 'empty' : state} title={arenaExpansionText(lang, state === 'error' ? 'unavailable' : state === 'insufficient' || state === 'success' ? 'empty' : state)} actionLabel={state === 'error' ? arenaExpansionText(lang, 'retry') : undefined} onAction={state === 'error' ? load : undefined} /></View>}
+        ListEmptyComponent={<View style={styles.center}><ArenaStateNotice state={state === 'insufficient' || state === 'success' || state === 'ready' ? 'empty' : state} emptyHint="emptyStore" onRetry={load} onBack={() => router.replace('/arena' as never)} /></View>}
         renderItem={({ item }) => { const wired = Boolean(arenaStoreItemTitle(lang, item.sku)) && arenaCosmeticDefinition(item.sku)?.slot === item.slot; return <V2Card style={styles.item}><View style={[styles.itemIcon, { backgroundColor: P.elev2 }]}><Ionicons name={item.icon ?? 'shield'} size={25} color={P.gold} /></View><View style={styles.flex}><Text style={[styles.title, { color: P.text }]}>{arenaStoreItemTitle(lang, item.sku) ?? arenaExpansionText(lang, 'unavailable')}</Text><Text style={[styles.price, { color: P.gold }]}>{item.priceStars}</Text></View><View style={styles.itemAction}>{item.equipped ? <Text style={[styles.owned, { color: P.accent }]}>{arenaExpansionText(lang, 'equipped')}</Text> : item.owned ? <V2Cta tone="ghost" disabled={!wired || busySku === item.sku} onPress={() => equip(item)}>{arenaExpansionText(lang, 'equip')}</V2Cta> : <V2Cta disabled={!wired || !item.available || busySku === item.sku} onPress={() => purchase(item)}>{arenaExpansionText(lang, 'buy').replace('{amount}', String(item.priceStars))}</V2Cta>}</View></V2Card>; }}
       />
     </ArenaScreen>
+    </ArenaHubChrome>
   );
 }
 

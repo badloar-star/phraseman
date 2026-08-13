@@ -164,26 +164,6 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
     nameEs: 'Invencible',
     descEs: '100 aciertos seguidos en una misma racha.',
   },
-  daily_task_first: {
-    nameEs: 'Primera tarea',
-    descEs: 'Completa una de las tareas diarias en la pantalla de tareas.',
-  },
-  all_daily: {
-    nameEs: 'Día completo',
-    descEs: 'En un mismo día calendario, las tres tareas diarias hechas.',
-  },
-  daily_all_3: {
-    nameEs: 'Tres días en orden',
-    descEs: 'Completa todas las tareas diarias durante 3 días seguidos.',
-  },
-  daily_all_7: {
-    nameEs: 'Semana sin pendientes',
-    descEs: 'Completa todas las tareas diarias durante 7 días seguidos.',
-  },
-  daily_no_reroll: {
-    nameEs: 'Sin cambios',
-    descEs: 'Completa todas las tareas del día sin reemplazar ninguna.',
-  },
   daily_phrase_first: {
     nameEs: 'Frase del día',
     descEs: 'Abre la tarjeta de la frase del día y lee la explicación.',
@@ -487,10 +467,6 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
   combo_150: { nameEs: '150 seguidas', descEs: 'Consigue 150 respuestas correctas seguidas en una serie.' },
   combo_250: { nameEs: 'Ritmo inhumano', descEs: 'Consigue 250 respuestas correctas seguidas en una serie.' },
   combo_500: { nameEs: 'Error prohibido', descEs: 'Consigue 500 respuestas correctas seguidas en una serie.' },
-  daily_all_14: { nameEs: 'Dos semanas en orden', descEs: 'Completa todas las tareas diarias durante 14 días seguidos.' },
-  daily_all_30: { nameEs: '30 días sin pendientes', descEs: 'Completa todas las tareas diarias durante 30 días seguidos.' },
-  daily_no_reroll_7: { nameEs: 'Semana sin cambios', descEs: 'Completa todas las tareas sin cambiar ninguna durante 7 días seguidos.' },
-  daily_no_reroll_30: { nameEs: 'Sin negociar', descEs: 'Completa todas las tareas sin cambiar ninguna durante 30 días seguidos.' },
   daily_phrase_read_30: { nameEs: '30 frases del día', descEs: 'Abre y lee 30 frases del día.' },
   daily_phrase_save_30: { nameEs: 'Frases en reserva', descEs: 'Guarda 30 frases del día en tarjetas.' },
   daily_phrase_save_100: { nameEs: 'Cien frases guardadas', descEs: 'Guarda 100 frases del día en tarjetas.' },

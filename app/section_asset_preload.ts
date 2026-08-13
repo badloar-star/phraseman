@@ -3,7 +3,6 @@ import { Image as ExpoImage } from 'expo-image';
 import { Asset } from 'expo-asset';
 import type { ThemeMode } from '../constants/theme';
 import { getHomeMenuImages } from './home_menu_icons';
-import { FLASHCARDS_MODE_ICON_ASSETS } from './flashcards/FlashcardsCategoryHub';
 
 /**
  * Предзагрузка ассетов РАЗДЕЛОВ (не главной).
@@ -28,14 +27,13 @@ const warmedThemes = new Set<ThemeMode>();
 
 function sectionAssetsForTheme(themeMode: ThemeMode): ImageSourcePropType[] {
   const menu = getHomeMenuImages(themeMode);
-  const hub = FLASHCARDS_MODE_ICON_ASSETS[themeMode];
   return [
-    // Разделы с главной: уроки, карточки, вызовы дня, лига, тест, практика, диалоги,
+    // Разделы с главной: уроки, карточки, лига, тест, практика, диалоги,
     // экзамен, магазин, карта героя.
-    menu.lesson, menu.cards, menu.dayTasks, menu.league, menu.test,
+    menu.lesson, menu.cards, menu.league, menu.test,
     menu.practice, menu.dialogs, menu.exam, menu.shop, menu.heroMap,
-    // Плитки внутри раздела «Карточки».
-    ...(hub ? [hub.saved, hub.custom, hub.training, hub.audio, hub.collection] : []),
+    // cards-2.0: хаб карточек больше не рисует тематические плитки-иконки —
+    // греть нечего, секции ленты собираются из векторных иконок и обложек наборов.
   ];
 }
 

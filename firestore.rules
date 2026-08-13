@@ -23,11 +23,15 @@ service cloud.firestore {
       return collection.matches('content_(mode|season|episode|studio)_.*')
         || collection == 'content_app_support_manifests'
         || collection == 'content_decision_registries'
+        || collection == 'content_factory_stages'
+        || collection == 'content_v2_owner_episode_confirmations'
+        || collection.matches('content_v2_unified_course_release_(heads|roots)')
         || collection.matches('content_language_profile_.*')
         || collection.matches('content_(speech|voice_generation)_profile_.*')
         || collection == 'content_v2_repository_auth'
+        || collection == 'content_v2_voice_human_reviews'
         || collection.matches('content_v2_stage_(repository_commits|candidate_pins)')
-        || collection.matches('content_v2_(required_session|season_release)_.*');
+        || collection.matches('content_v2_(required_session|season_release|activity_auxiliary_release|activity_learner_core_release|activity_server_evaluator_release)_.*');
     }
 
     // Support correspondence, sealed delivery operations, Telegram review state,
@@ -39,6 +43,8 @@ service cloud.firestore {
         || collection.matches('support_telegram_(reviews|edit_sessions|reply_jobs)')
         || collection.matches('support_reply_(operations|batches)')
         || collection == 'support_inbox'
+        || collection == 'support_conversations'
+        || collection == 'support_email_message_index'
         || collection == 'admin_command_operations'
         || collection == 'admin_config';
     }
@@ -166,6 +172,10 @@ service cloud.firestore {
           // Разовая миграция осколков→монет 20:1 — пишет только сервер.
           'coins_migration_v1',
           'coins_migration_v1_record',
+          // Единый баланс звёзд (владелец 2026-08-12, D-05/D-06). Пишет ТОЛЬКО
+          // сервер через functions/src/stars_ledger.ts. Клиент читает и никогда
+          // не пишет: звезда — общая валюта приложения, а не локальный счётчик.
+          'stars',
         ]);
     }
 
@@ -192,6 +202,10 @@ service cloud.firestore {
           // Разовая миграция осколков→монет 20:1 — пишет только сервер.
           'coins_migration_v1',
           'coins_migration_v1_record',
+          // Единый баланс звёзд (владелец 2026-08-12, D-05/D-06). Пишет ТОЛЬКО
+          // сервер через functions/src/stars_ledger.ts. Клиент читает и никогда
+          // не пишет: звезда — общая валюта приложения, а не локальный счётчик.
+          'stars',
         ]);
     }
 
@@ -1378,6 +1392,13 @@ service cloud.firestore {
         allow read: if userDocOwnerMatchesAuth(userId);
         allow write: if false;
       }
+      // Расписки единого журнала звёзд. Владелец видит свою историю начислений
+      // и трат — это и есть объяснение «почему 7, а не 14». Пишет только сервер
+      // (functions/src/stars_ledger.ts) внутри той же транзакции, что и баланс.
+      match /star_operations/{opId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
+      }
       match /arena_v2_entitlements/{itemId} {
         allow read: if userDocOwnerMatchesAuth(userId);
         allow write: if false;
@@ -2055,9 +2076,41 @@ service cloud.firestore {
     }
 
     // â”€â”€ Community (UGC) packs â€” Ð·Ð°Ð¿Ð¸ÑÑŒ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ‡ÐµÑ€ÐµÐ· Cloud Functions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Cards 2.1 §2: клиенту разрешены ТОЛЬКО соц-счётчики набора (likesCount / addedCount)
+    // и только шагом ±1; название, карточки, статус модерации остаются за Cloud Functions.
+    function communityPackCounterDelta(field) {
+      return request.resource.data.get(field, 0) - resource.data.get(field, 0);
+    }
+
+    function communityPackSocialCountersOnly() {
+      return request.auth != null
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likesCount', 'addedCount'])
+        && request.resource.data.get('likesCount', 0) >= 0
+        && request.resource.data.get('addedCount', 0) >= 0
+        && communityPackCounterDelta('likesCount') >= -1
+        && communityPackCounterDelta('likesCount') <= 1
+        && communityPackCounterDelta('addedCount') >= 0
+        && communityPackCounterDelta('addedCount') <= 1;
+    }
+
     match /community_packs/{packId} {
       allow read: if request.auth != null;
-      allow write: if false;
+      allow create, delete: if false;
+      allow update: if communityPackSocialCountersOnly();
+
+      // «Кто лайкнул»: один пользователь — один лайк, повторное нажатие снимает.
+      match /pack_likes/{likeUserId} {
+        allow read: if request.auth != null;
+        allow create, delete: if request.auth != null;
+        allow update: if false;
+      }
+
+      // «Кто добавил себе»: дедупликация счётчика добавлений (снять добавление нельзя).
+      match /pack_adds/{addUserId} {
+        allow read: if request.auth != null;
+        allow create: if request.auth != null;
+        allow update, delete: if false;
+      }
     }
 
     match /community_pack_submissions/{submissionId} {
@@ -2214,6 +2267,21 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Compass why-now AI is callable-only. Cache is account-scoped on the server;
+    // rate, budget, and billing records must never be readable or writable by apps.
+    match /compass_why_cache/{docId} {
+      allow read, write: if false;
+    }
+    match /compass_why_rate_limits/{docId} {
+      allow read, write: if false;
+    }
+    match /compass_why_daily_budget/{docId} {
+      allow read, write: if false;
+    }
+    match /compass_why_billing/{docId} {
+      allow read, write: if false;
+    }
+
     // Внутренние CF-only коллекции фичи: бюджет/лимиты/биллинг. Всё пишет и читает только
     // сервер (Admin SDK). НЕ через isAdmin(): эти коллекции НЕ открыты admin-панели
     // (в отличие от referral_owners), поэтому read И write = false.
@@ -2329,6 +2397,12 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /support_reply_batches/{document=**} {
+      allow read, write: if false;
+    }
+    match /support_conversations/{document=**} {
+      allow read, write: if false;
+    }
+    match /support_email_message_index/{document=**} {
       allow read, write: if false;
     }
     match /admin_command_operations/{document=**} {
@@ -2713,6 +2787,19 @@ service cloud.firestore {
     match /content_decision_registries/{docId} {
       allow read, write: if false;
     }
+    match /content_factory_stages/{docId} {
+      allow read, write: if false;
+    }
+
+    match /content_v2_owner_episode_confirmations/{docId} {
+      allow read, write: if false;
+    }
+    match /content_v2_unified_course_release_heads/{docId} {
+      allow read, write: if false;
+    }
+    match /content_v2_unified_course_release_roots/{docId} {
+      allow read, write: if false;
+    }
     // Authenticated repository evidence is Firebase-Admin-only. These roots
     // are reserved before the adapter is wired so no browser credential can
     // forge a published profile, a repository claim, or a durable stage pin.
@@ -2737,6 +2824,9 @@ service cloud.firestore {
     match /content_v2_repository_auth/{docId} {
       allow read, write: if false;
     }
+    match /content_v2_voice_human_reviews/{docId} {
+      allow read, write: if false;
+    }
     match /content_v2_stage_repository_commits/{docId} {
       allow read, write: if false;
     }
@@ -2759,6 +2849,15 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /content_v2_season_release_manifests/{docId} {
+      allow read, write: if false;
+    }
+    match /content_v2_activity_auxiliary_release_pointers/{docId} {
+      allow read, write: if false;
+    }
+    match /content_v2_activity_learner_core_release_pointers/{docId} {
+      allow read, write: if false;
+    }
+    match /content_v2_activity_server_evaluator_release_pointers/{docId} {
       allow read, write: if false;
     }
 
@@ -2790,6 +2889,25 @@ service cloud.firestore {
     // callable only. Direct client access could bypass immutable catalog and
     // account-generation cross-checks or expose another device's pending data.
     match /users/{uid}/v2_required_session_completion_inbox/{docId} {
+      allow read, write: if false;
+    }
+    // Released Activity completions are accepted only by the App Check/Auth
+    // callable after active-release and account-generation reconciliation.
+    // Direct client access could forge completion coordinates or inspect a
+    // different device's pending post-session verification record.
+    match /users/{uid}/v2_activity_released_completion_inbox/{docId} {
+      allow read, write: if false;
+    }
+
+    // Learning V2 post-session answer batches and server evaluations are
+    // server-only. Clients receive only the narrow callable receipt.
+    match /users/{uid}/v2_activity_released_submission_inbox/{docId} {
+      allow read, write: if false;
+    }
+    // The settlement decision binds one evaluated released submission to the
+    // shared required-session economy state and protected reward receipt.
+    // It is transaction-owned and never a client-mintable progress record.
+    match /users/{uid}/v2_activity_released_settlement_decisions/{docId} {
       allow read, write: if false;
     }
 
@@ -2956,6 +3074,44 @@ service cloud.firestore {
         allow read: if request.auth != null && request.auth.uid == authUid;
         allow write: if false;
       }
+    }
+    /**
+     * Живой прогресс соперника во время матча.
+     *
+     * Единственное место во всей Арене, куда пишет САМ клиент. Пускать его сюда
+     * приходится потому, что индикатор «соперник ответил» обязан срабатывать
+     * мгновенно, а любой серверный посредник — это задержка, которую владелец
+     * запретил.
+     *
+     * Опасности в этом нет: канал не участвует в начислении. Итог матча
+     * пересчитывает сервер по запечатанным заданиям, а сюда попадают только
+     * номер задания, признак «верно» и время. Ответов здесь нет.
+     *
+     * Ключ документа — МЕСТО ЗА СТОЛОМ, а не идентификатор игрока. Иначе, чтобы
+     * прочитать соперника, пришлось бы знать его uid, а он намеренно спрятан:
+     * ради этого и заведены отдельные метки участия.
+     */
+    match /arena_v2_match_live/{matchId}/seats/{seatId} {
+      allow read: if request.auth != null
+        && exists(/databases/$(database)/documents/arena_v2_matches/$(matchId)/arena_v2_members/$(request.auth.uid));
+      // Писать можно ТОЛЬКО в своё место: метка участия называет его явно.
+      allow create, update: if request.auth != null
+        && (seatId == 'a' || seatId == 'b')
+        && get(/databases/$(database)/documents/arena_v2_matches/$(matchId)/arena_v2_members/$(request.auth.uid)).data.seatId == seatId
+        && request.resource.data.schemaVersion == 'arena-live.v1'
+        && request.resource.data.ticks is list
+        // Потолок на размер: канал живёт ровно столько, сколько матч, и
+        // раздувать его нечем и незачем.
+        && request.resource.data.ticks.size() <= 10
+        // Метка времени обязательна: по ней почасовая уборка находит
+        // протухшие каналы. Без неё документ остался бы навсегда.
+        && request.resource.data.updatedAtMs is number;
+      allow delete: if false;
+    }
+    match /arena_v2_match_live/{matchId} {
+      allow read: if request.auth != null
+        && exists(/databases/$(database)/documents/arena_v2_matches/$(matchId)/arena_v2_members/$(request.auth.uid));
+      allow write: if false;
     }
     match /arena_v2_invites/{inviteId} {
       allow read, write: if false;

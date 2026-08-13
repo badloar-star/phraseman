@@ -1,10 +1,18 @@
 import {
+  __resetHomeScreenHydrationForTests,
   patchHomeScreenHydration,
   peekHomeScreenHydration,
   rememberHomeScreenHydration,
   resolveHomeProfileVisuals,
   type HomeScreenHydration,
 } from '../app/home_screen_hydration';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  beginInitialAccountGeneration,
+  invalidateAccountGeneration,
+  captureAccountGeneration,
+} from '../app/account_generation';
 
 const base: HomeScreenHydration = {
   userName: 'A', totalXP: 1, streak: 1, displayStreak: 1, weekDone: [], weekPoints: 0,
@@ -13,10 +21,59 @@ const base: HomeScreenHydration = {
   lastLessonProgress: 0, lastLessonScore: '0', homeLeagueChest: null,
 };
 
+beforeEach(() => {
+  __resetAccountGenerationForTests();
+  __resetHomeScreenHydrationForTests();
+});
+
 it('patches the cached home league snapshot after async league refresh', () => {
   rememberHomeScreenHydration(base, 'en');
   patchHomeScreenHydration({ homeLeagueChest: { leagueName: 'Silver', progress: 215_000, goal: 220_000, myContribution: 1, leaderName: 'A', leaderPoints: 1 } }, 'en');
   expect(peekHomeScreenHydration('en')?.homeLeagueChest?.progress).toBe(215_000);
+});
+
+it('keeps an uninitialized boot snapshot only until account adoption', () => {
+  rememberHomeScreenHydration(base, 'en');
+  expect(peekHomeScreenHydration('en')).toMatchObject({ userName: 'A' });
+
+  expect(beginInitialAccountGeneration('account-a')).not.toBeNull();
+  expect(peekHomeScreenHydration('en')).toBeNull();
+});
+
+it('rejects A cache and A patch after transitioning to B', () => {
+  beginAccountGeneration('account-a');
+  rememberHomeScreenHydration({ ...base, userName: 'Account A', lastLessonId: 7 }, 'en');
+  expect(peekHomeScreenHydration('en')).toMatchObject({ userName: 'Account A', lastLessonId: 7 });
+
+  invalidateAccountGeneration();
+  expect(peekHomeScreenHydration('en')).toBeNull();
+  beginAccountGeneration('account-b');
+  patchHomeScreenHydration({ userName: 'Patched by B', lastLessonId: 9 }, 'en');
+  expect(peekHomeScreenHydration('en')).toBeNull();
+
+  rememberHomeScreenHydration({ ...base, userName: 'Account B', lastLessonId: 2 }, 'en');
+  expect(peekHomeScreenHydration('en')).toMatchObject({ userName: 'Account B', lastLessonId: 2 });
+});
+
+it('rejects a snapshot after a new generation even for the same stable id', () => {
+  beginAccountGeneration('account-a');
+  rememberHomeScreenHydration(base, 'en');
+  beginAccountGeneration('account-a');
+  expect(peekHomeScreenHydration('en')).toBeNull();
+});
+
+it('rejects a late Home write captured before an account switch', () => {
+  beginAccountGeneration('account-a');
+  const accountAOperation = captureAccountGeneration();
+  invalidateAccountGeneration();
+  beginAccountGeneration('account-b');
+
+  rememberHomeScreenHydration(
+    { ...base, userName: 'Late Account A', lastLessonId: 12 },
+    'en',
+    accountAOperation,
+  );
+  expect(peekHomeScreenHydration('en')).toBeNull();
 });
 
 it('hydrates first-frame profile visuals from cached home state before async storage', () => {

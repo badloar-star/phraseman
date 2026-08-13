@@ -67,20 +67,6 @@ describe('Gustav French diagnostic target gate', () => {
     expect(diagnosticContentAvailableForTarget('fr')).toBe(true);
   });
 
-  it('keeps the daily-task diagnostic entry point target-aware before opening diagnostic_test', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'daily_tasks_screen.tsx'), 'utf8');
-
-    expect(source).toContain("import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate'");
-    expect(source).toContain('const openDiagnosticOrFrenchGate = () => {');
-    expect(source).toContain('if (!diagnosticContentAvailableForTarget(studyTarget)) {');
-    expect(source).toContain('const copy = frenchDiagnosticGateCopy(lang);');
-    expect(source).toContain("messageEs: 'French diagnostic is still behind source gate.'");
-    expect(source).toMatch(/case 'diagnostic_complete':\s+openDiagnosticOrFrenchGate\(\);/);
-
-    const diagnosticCase = source.slice(source.indexOf("case 'diagnostic_complete':"), source.indexOf("case 'invite_friend':"));
-    expect(diagnosticCase).not.toContain("router.push('/diagnostic_test')");
-  });
-
   it('extends the global French source gate to require verified French diagnostic materials', () => {
     expect(FRENCH_CONTENT_SOURCE_GATE.requiredEvidenceBeforeActivation).toEqual(expect.arrayContaining([
       'french_diagnostic_question_bank',

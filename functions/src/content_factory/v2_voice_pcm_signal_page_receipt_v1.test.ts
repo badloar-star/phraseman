@@ -128,7 +128,6 @@ describe("Learning V2 decoded PCM signal page receipt", () => {
         manifest: manifest as never,
         audioEpisodeReceipt: audioEpisodeReceipt as never,
         decoderPage: physicalDecoderPage as never,
-        observations: [observation(physicalDecoderPage, samples)],
       }).receiptFingerprint,
     ).toBe(result.receiptFingerprint);
   });

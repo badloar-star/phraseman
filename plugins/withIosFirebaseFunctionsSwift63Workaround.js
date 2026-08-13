@@ -66,6 +66,14 @@ const RUBY_WORKAROUND = `    ${MARKER}
         }
       PHRASEMAN_FIXED_SWIFT
 
+      # Squiggly heredocs remove the method's two-space file indentation. Put
+      # it back so the guarded replacement matches the pristine pod source.
+      indent_swift_method = lambda do |method_source|
+        method_source.lines.map { |line| line.strip.empty? ? line : "  #{line}" }.join
+      end
+      broken = indent_swift_method.call(broken)
+      fixed = indent_swift_method.call(fixed)
+
       if source.include?(broken)
         File.write(firebase_functions_context, source.sub(broken, fixed))
         Pod::UI.puts 'Applied Firebase Functions Swift 6.3 Release workaround'

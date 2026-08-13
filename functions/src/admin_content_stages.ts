@@ -26,6 +26,7 @@ import { contentStageReviewFingerprint } from './content_factory/review_fingerpr
 import { LEARNING_V2_GENERATION_STAGE_KINDS, type LearningV2GenerationStageKind } from './content_factory/learning_v2_generation_artifacts';
 import { buildLearningV2OwnerApprovalTrail } from './content_factory/learning_v2_prerequisite_grounding';
 import { buildLearningV2CourseWorkspaceProjectionV1 } from './content_factory/learning_v2_course_workspace_projection';
+import { handleV2OwnerEpisodePreviewV1 } from './content_factory/v2_owner_episode_preview_v1';
 
 const REGION = 'us-central1';
 const CONTENT_STUDIO_CALLABLE_OPTIONS = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK_ADMIN } as const;
@@ -153,7 +154,7 @@ export function parseContentStageListRequest(data: unknown) {
   const scopeId = String(record.scopeId ?? '').trim();
   const requestedLimit = Number(record.limit ?? 50);
   const limit = Number.isFinite(requestedLimit) ? Math.max(1, Math.min(100, Math.floor(requestedLimit))) : 50;
-  const states = ['queued', 'running', 'paused', 'failed', 'needs_review', 'approved', 'rejected', 'cancelled', 'superseded'];
+  const states = ['queued', 'running', 'paused', 'failed', 'needs_review', 'owner_confirmed', 'approved', 'rejected', 'cancelled', 'superseded'];
   if (!TOKEN_RE.test(requestId) || (cursor && !STAGE_ID_RE.test(cursor)) || (kind && !KINDS.includes(kind as GenerationStageKind)) || (state && !states.includes(state)) || (studyTarget && !LOCALE_RE.test(studyTarget)) || (sourceLocale && !LOCALE_RE.test(sourceLocale)) || (scopeId && !TOKEN_RE.test(scopeId))) throw new HttpsError('invalid-argument', 'content_stage_list_invalid');
   return Object.freeze({ requestId, limit, cursor, kind, state, studyTarget, sourceLocale, scopeId });
 }
@@ -333,6 +334,21 @@ export const adminPreviewContentStage = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, 
   const snapshot = await admin.firestore().collection('content_factory_stages').doc(stageId).get();
   if (!snapshot.exists) throw new HttpsError('not-found', 'content_stage_not_found');
   const stage = snapshot.data() ?? {};
+  if (stage.schemaVersion === 'v2-owner-authored-episode-stage.v1') {
+    return handleV2OwnerEpisodePreviewV1(request, {
+      async readStage() { return Object.freeze({ exists: true, id: snapshot.id, data: Object.freeze(stage) }); },
+      async readObject(input) {
+        const file = admin.storage().bucket().file(input.objectPath);
+        const [metadata] = await file.getMetadata();
+        const byteSize = Number(metadata.size);
+        if (!Number.isSafeInteger(byteSize) || byteSize < 1 || byteSize > input.maximumBytes) throw new HttpsError('data-loss', 'content_stage_object_metadata_mismatch');
+        let bytes: Buffer;
+        try { [bytes] = await admin.storage().bucket().file(input.objectPath, { generation: input.objectGeneration }).download({ validation: 'crc32c' }); }
+        catch { throw new HttpsError('data-loss', 'content_stage_generation_mismatch'); }
+        return Object.freeze({ objectGeneration: String(metadata.generation ?? ''), byteSize, contentType: String(metadata.contentType ?? ''), bytes: new Uint8Array(bytes) });
+      },
+    });
+  }
   const revision = Number(stage.revision);
   const objectPath = String(stage.objectPath ?? '');
   const contentHash = String(stage.contentHash ?? '');
@@ -357,6 +373,7 @@ export const adminReviewContentStage = onCall(CONTENT_STUDIO_CALLABLE_OPTIONS, a
   const preliminarySnapshot = await stageRef.get();
   if (!preliminarySnapshot.exists) throw new HttpsError('not-found', 'content_stage_not_found');
   const preliminary = preliminarySnapshot.data() ?? {};
+  if (preliminary.schemaVersion === 'v2-owner-authored-episode-stage.v1') throw new HttpsError('failed-precondition', 'v2_owner_episode_confirmation_required');
   assertContentStageReviewerDifferentFromCreator(preliminary.createdBy, request.auth!.uid);
   let phraseGrounding: Awaited<ReturnType<typeof loadApprovedLessonGrounding>> | null = null;
   let questionBatch: Awaited<ReturnType<typeof loadQuestionBatchForReview>> | null = null;

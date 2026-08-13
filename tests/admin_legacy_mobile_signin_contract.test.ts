@@ -25,7 +25,7 @@ function extractBracedBlock(source: string, marker: string, fromIndex = 0): stri
 // Этот контракт сторожит именно боевой файл.
 describe('admin legacy mobile sign-in contract', () => {
   const adminHtml = fs.readFileSync(
-    path.join(process.cwd(), 'admin', 'v2', 'legacy.html'),
+    path.join(process.cwd(), 'admin', 'legacy.html'),
     'utf8',
   );
 

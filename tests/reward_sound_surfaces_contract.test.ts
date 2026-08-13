@@ -9,7 +9,6 @@ describe('reward sound surfaces', () => {
     expect(read('components/AchievementToast.tsx')).toContain("soundDirector.request('pm.reward.achievement'");
     expect(read('components/CollectibleDropModal.tsx')).toContain("soundDirector.request('pm.reward.collectible'");
     expect(read('components/BoonChestModal.tsx')).toContain("soundDirector.request('pm.reward.chest_open'");
-    expect(read('components/DailyTaskRewardToast.tsx')).toContain("soundDirector.request('pm.social.quest_complete'");
     expect(read('app/_layout.tsx')).toContain("soundDirector.request('pm.reward.level_up'");
   });
 

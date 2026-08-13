@@ -11,8 +11,7 @@ import type { TrainerPracticeSnapshot } from './trainer_practice_prefetch';
  * аналитики фраз, премиум-статуса, персональных тренировок и активности за 365 дней.
  * Поэтому храним РЕЗУЛЬТАТ последнего успешного расчёта на диске, поднимаем его в
  * бутстрапе приложения и синхронно отдаём экрану на первом кадре. Свежие цифры догоняют
- * фоном (loadData на фокусе всё равно вызывается с force). Тот же паттерн, что
- * daily_tasks_screen_persist и survey_daily_task_cache.
+ * фоном (loadData на фокусе всё равно вызывается с force).
  */
 
 const STORAGE_KEY = 'trainer_practice_snapshot_v1';

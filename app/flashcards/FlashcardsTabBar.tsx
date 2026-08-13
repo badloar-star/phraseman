@@ -734,7 +734,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         {/* §5.2: список режимов выезжает ВВЕРХ над левой позицией «Тренировка» */}
         <View
           pointerEvents="box-none"
-          style={{ position: 'absolute', left: ds.spacing.lg, bottom: barTotalH + 10 }}
+          style={{ position: 'absolute', left: menuSideInset, bottom: barTotalH + 10 }}
         >
           <View pointerEvents="box-none" style={{ gap: 8, alignItems: 'flex-start' }}>
             {trainOptions.map((option, i) => (
@@ -759,7 +759,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         {/* Два раздела наборов раскрываются НАД правой позицией */}
         <View
           pointerEvents="box-none"
-          style={{ position: 'absolute', right: ds.spacing.lg, bottom: barTotalH + 10 }}
+          style={{ position: 'absolute', right: menuSideInset, bottom: barTotalH + 10 }}
         >
           <View pointerEvents="box-none" style={{ gap: 8, alignItems: 'flex-end' }}>
             {FC_PACKS_OPTIONS.map((option, i) => (
@@ -803,15 +803,18 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
           </View>
         </View>
 
-        {/* Плавающая капсула — один в один с таббаром главного экрана */}
+        {/* Плавающая капсула. Хром (сжатие от скролла) — на внешнем слое, чтобы
+            не спорить с «вдавливанием» при нажатии на внутреннем. */}
+        <Reanimated.View
+          pointerEvents="box-none"
+          style={[styles.pillDock, { bottom: pillBottom }, scrollChromeStyle]}
+        >
         <Animated.View
-          onLayout={(event) => setPillWidth(event.nativeEvent.layout.width)}
           style={[
             styles.pill,
             TAB_PILL_SHADOW,
             {
-              bottom: pillBottom,
-              marginHorizontal: ds.spacing.lg,
+              width: pillW,
               height: tabBarHeight,
               borderRadius: tabBarHeight / 2,
               shadowColor: t.shadowDark,
@@ -821,30 +824,28 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         >
           <View pointerEvents="none" style={[styles.pillFill, { backgroundColor: pillBackground }]} />
 
-          {pillWidth > 0 ? (
-            <Animated.View
-              pointerEvents="none"
-              style={[
-                styles.activePill,
-                {
-                  top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
-                  left: tabHighlightInset(pillWidth, BAR_SLOTS.length),
-                  backgroundColor: activePillBg,
-                  opacity: Animated.multiply(highlightOpacity, activePillPressOpacity),
-                  transform: [
-                    {
-                      translateX: highlightAnim.interpolate({
-                        inputRange: BAR_SLOTS.map((_, index) => index),
-                        outputRange: BAR_SLOTS.map((_, index) => tabHighlightOffset(pillWidth, index, BAR_SLOTS.length)),
-                        extrapolate: 'clamp',
-                      }),
-                    },
-                    { scale: activePillPressScale },
-                  ],
-                },
-              ]}
-            />
-          ) : null}
+          <Animated.View
+            pointerEvents="none"
+            style={[
+              styles.activePill,
+              {
+                top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
+                left: tabHighlightInset(),
+                backgroundColor: activePillBg,
+                opacity: Animated.multiply(highlightOpacity, activePillPressOpacity),
+                transform: [
+                  {
+                    translateX: highlightAnim.interpolate({
+                      inputRange: BAR_SLOTS.map((_, index) => index),
+                      outputRange: BAR_SLOTS.map((_, index) => tabHighlightOffset(index)),
+                      extrapolate: 'clamp',
+                    }),
+                  },
+                  { scale: activePillPressScale },
+                ],
+              },
+            ]}
+          />
 
           {BAR_SLOTS.map((slot) => {
             const isCenter = slot === CENTER_SLOT;
@@ -882,6 +883,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
             );
           })}
         </Animated.View>
+        </Reanimated.View>
       </View>
 
       {/* §6: мультивыбор наборов перед стартом режима (⚙ / долгий тап на пункте) */}
@@ -902,19 +904,24 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
 }
 
 const styles = StyleSheet.create({
-  /** Плавающая капсула остаётся целой и слегка вдавливается при нажатии. */
-  pill: {
+  /** Слой-«док»: держит капсулу по центру и несёт сжатие от скролла. */
+  pillDock: {
     position: 'absolute',
     left: 0,
     right: 0,
+    alignItems: 'center',
+  },
+  /** Плавающая капсула остаётся целой и слегка вдавливается при нажатии. */
+  pill: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     overflow: 'hidden',
     borderWidth: 0,
   },
   pillFill: { ...StyleSheet.absoluteFillObject },
   slot: {
-    flex: 1,
+    width: TAB_SLOT_WIDTH,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'stretch',

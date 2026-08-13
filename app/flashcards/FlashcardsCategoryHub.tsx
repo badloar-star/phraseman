@@ -3,11 +3,12 @@
  * правая позиция таббара «Наборы»).
  *
  * Что здесь есть:
- *   • «Мои наборы» — уже добавленные наборы (открываются как колода);
- *   • «Наборы сообщества» — бесплатные UGC-наборы с лайками активности,
- *     счётчиком добавлений и кнопкой «Добавить себе» (`CommunityPackSocialBar`).
- *     Сортировка §2.3: лайки ↓ → добавления ↓ → свежесть; топ-наборы выделяются
- *     аккуратным акцентом раздела (не «золото»: бейдж не должен читаться как платный).
+ *   • «Мои наборы» — уже добавленные наборы (открываются как набор карточек);
+ *   • «Наборы сообщества» — сетка компактных плиток ПО 3 В РЯД: иконка, название,
+ *     лайки и счётчик добавлений. Плитка открывается ДО добавления — в режиме
+ *     просмотра (`preview=1`), где и живут «Добавить себе» и лайк;
+ *   • фильтр каталога: поиск по названию + сортировка «Популярные / Новые /
+ *     Больше карточек» (замечания владельца после теста на iPhone).
  *
  * Чего здесь БОЛЬШЕ НЕТ (по спеке):
  *   • чипа баланса осколков в шапке и любых цен/paywall (§1.2, §1.3);
@@ -27,6 +28,7 @@ import {
   Pressable,
   Platform,
   Text,
+  TextInput,
   TouchableOpacity,
   useWindowDimensions,
   View,
@@ -53,7 +55,8 @@ import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/commun
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { sortPacksBySocial, topLikedPackIds } from '../community_packs/packSocial';
-import { bundledPackTilePng } from './packMarketplaceIcons';
+import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons';
+import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ReportPackModal from '../../components/ReportPackModal';
 import { hideCommunityPackOnDevice, loadHiddenCommunityPackIds } from '../community_packs/communityPackHiddenStorage';
@@ -268,6 +271,189 @@ function HubTileShell({ testID, a11y, onPress, onLongPress, disabled, reduceMoti
   );
 }
 
+/** Сортировка каталога сообщества (§ фильтр, замечание владельца). */
+export type CommunityPacksSort = 'popular' | 'new' | 'size';
+
+const COMMUNITY_SORTS: CommunityPacksSort[] = ['popular', 'new', 'size'];
+
+export function communitySortLabel(sort: CommunityPacksSort, lang: Lang): string {
+  if (sort === 'new') {
+    return triLang(lang, {
+      ru: 'Новые', uk: 'Нові', es: 'Nuevos',
+      'pt-BR': 'Novos', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe',
+    });
+  }
+  if (sort === 'size') {
+    return triLang(lang, {
+      ru: 'Больше карточек', uk: 'Більше карток', es: 'Más tarjetas',
+      'pt-BR': 'Mais cartões', vi: 'Nhiều thẻ hơn', id: 'Kartu terbanyak', tr: 'Daha çok kart', pl: 'Więcej kart',
+    });
+  }
+  return triLang(lang, {
+    ru: 'Популярные', uk: 'Популярні', es: 'Populares',
+    'pt-BR': 'Populares', vi: 'Phổ biến', id: 'Populer', tr: 'Popüler', pl: 'Popularne',
+  });
+}
+
+/** Совпадение по названию набора во всех локалях каталога. */
+export function communityPackMatchesQuery(pack: FlashcardMarketPack, query: string): boolean {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  const fields = [
+    pack.titleRu, pack.titleUk, pack.titleEs, pack.titlePtBr,
+    pack.titleVi, pack.titleId, pack.titleTr, pack.titlePl, pack.codeName,
+  ];
+  return fields.some((f) => String(f ?? '').toLowerCase().includes(q));
+}
+
+/** Чистая функция каталога: поиск по названию + выбранная сортировка. */
+export function applyCommunityPacksFilter(
+  packs: FlashcardMarketPack[],
+  query: string,
+  sort: CommunityPacksSort,
+): FlashcardMarketPack[] {
+  const found = packs.filter((p) => communityPackMatchesQuery(p, query));
+  if (sort === 'new') {
+    return [...found].sort(
+      (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime() || a.id.localeCompare(b.id),
+    );
+  }
+  if (sort === 'size') {
+    return [...found].sort((a, b) => b.cardCount - a.cardCount || a.id.localeCompare(b.id));
+  }
+  return sortPacksBySocial(found);
+}
+
+type CommunityPackTileProps = {
+  pack: FlashcardMarketPack;
+  lang: Lang;
+  t: Theme;
+  width: number;
+  owned: boolean;
+  isTop: boolean;
+  reduceMotion: boolean;
+  showEdit: boolean;
+  labelSize: number;
+  icon: React.ReactNode;
+  onOpen: () => void;
+  onLongPress?: () => void;
+  onEdit: () => void;
+};
+
+/**
+ * Компактная плитка набора сообщества (сетка 3-в-ряд): иконка, название,
+ * ник автора, лайки и счётчик добавлений. Открывается и БЕЗ добавления —
+ * в режиме просмотра.
+ */
+function CommunityPackTile({
+  pack, lang, t, width, owned, isTop, reduceMotion, showEdit, labelSize, icon, onOpen, onLongPress, onEdit,
+}: CommunityPackTileProps) {
+  const authorName = useCommunityAuthorName(pack, lang);
+  const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
+
+  return (
+    <View style={{ width, alignItems: 'center', paddingBottom: 4, position: 'relative' }}>
+      <HubTileShell
+        testID={`flashcards-pack-card-${pack.id}`}
+        a11y={`qa-flashcards-pack-card-${pack.id}`}
+        width={width}
+        reduceMotion={reduceMotion}
+        onPress={onOpen}
+        onLongPress={onLongPress}
+      >
+        <View
+          style={[
+            {
+              width,
+              height: width,
+              borderRadius: TILE_RADIUS,
+              borderWidth: isTop ? 1.5 : 1,
+              borderColor: isTop ? `${t.accent}88` : owned ? t.accent : t.border,
+              backgroundColor: t.bgSurface,
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+              position: 'relative',
+            },
+            shadowForTile(t, isTop ? 'top' : owned ? 'owned' : 'base'),
+          ]}
+        >
+          {icon}
+          {pack.cardCount > 0 ? (
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute', right: 5, bottom: 5,
+                borderRadius: 9, paddingHorizontal: 6, paddingVertical: 1,
+                backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border,
+              }}
+            >
+              <Text style={{ fontSize: 9, fontWeight: '800', color: t.textSecond }}>{pack.cardCount}</Text>
+            </View>
+          ) : null}
+          {isTop ? (
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute', left: 5, top: 5,
+                borderRadius: 999, padding: 3,
+                backgroundColor: `${t.accent}22`, borderWidth: 1, borderColor: `${t.accent}66`,
+              }}
+            >
+              <Ionicons name="trending-up-outline" size={10} color={t.accent} />
+            </View>
+          ) : null}
+          {owned ? (
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute', right: 5, top: 5,
+                borderRadius: 999, padding: 3,
+                backgroundColor: `${t.accent}22`, borderWidth: 1, borderColor: `${t.accent}66`,
+              }}
+            >
+              <Ionicons name="checkmark" size={10} color={t.accent} />
+            </View>
+          ) : null}
+        </View>
+      </HubTileShell>
+
+      {showEdit ? (
+        <TouchableOpacity
+          testID={`flashcards-pack-card-edit-${pack.id}`}
+          onPress={onEdit}
+          hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+          style={{
+            position: 'absolute', top: 2, left: 2, zIndex: 8,
+            padding: 6, borderRadius: 12, backgroundColor: `${t.bgPrimary}CC`,
+          }}
+        >
+          <Ionicons name="create-outline" size={15} color={t.textPrimary} />
+        </TouchableOpacity>
+      ) : null}
+
+      <Text
+        style={{
+          marginTop: 7, fontSize: labelSize + 1, fontWeight: '700',
+          color: t.textPrimary, textAlign: 'center', lineHeight: labelSize + 4,
+        }}
+        numberOfLines={2}
+      >
+        {title}
+      </Text>
+      <Text
+        style={{ marginTop: 2, fontSize: Math.max(8, labelSize - 1), fontWeight: '600', color: t.textMuted, textAlign: 'center' }}
+        numberOfLines={1}
+      >
+        {authorName}
+      </Text>
+      <View style={{ marginTop: 5 }}>
+        <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="tile" />
+      </View>
+    </View>
+  );
+}
+
 export default function FlashcardsCategoryHub({
   lang,
   t,
@@ -454,10 +640,22 @@ export default function FlashcardsCategoryHub({
     </View>
   );
 
+  /**
+   * Иконка/обложка набора. Раньше бралась только по `pack.id` — у наборов
+   * сообщества такой картинки нет, и плитки выходили пустыми. Теперь сперва
+   * пробуем обложку, выбранную автором в редакторе (`ugcCardBackKey`), затем
+   * бандл по id, и только потом — осмысленный дефолт по категории набора.
+   */
   const packIcon = (pack: FlashcardMarketPack, size: number) => {
-    const png = bundledPackTilePng(pack.id);
+    const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);
     if (png) return <Image source={png} style={{ width: size, height: size }} contentFit="contain" />;
-    return <Ionicons name={packCategoryIonIcon(pack.category) as any} size={size} color={t.textPrimary} />;
+    return (
+      <Ionicons
+        name={(packCategoryIonIcon(pack.category) || 'albums-outline') as any}
+        size={size}
+        color={pack.isCommunityUgc ? t.accent : t.textPrimary}
+      />
+    );
   };
 
   /** Плитка «Мои наборы» — открывает набор как колоду. */

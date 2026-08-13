@@ -444,20 +444,42 @@ function PhraseCardImpl({
     };
   }, [crossfade]);
 
-  const edgeStyle = useAnimatedStyle(() => ({
-    // Грань «сжимается» при нажатии — только transform (высоту не анимируем)
-    transform: [{ scaleY: interpolate(pressed.value, [0, 1], [1, 0.45]) }],
-    opacity: interpolate(pressed.value, [0, 1], [1, 0.7]),
-  }));
-
-  const knowOverlayStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(tx.value, [0, cardW.value * FC_SWIPE.thresholdRatio], [0, 1]),
-  }));
-  const learnOverlayStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(tx.value, [-cardW.value * FC_SWIPE.thresholdRatio, 0], [1, 0]),
-  }));
+  /**
+   * Оверлеи свайпа. Было: интерполяция без CLAMP от 0 до порога улёта — подпись
+   * успевала показаться только у самого порога, а на противоположной стороне
+   * opacity уходила в минус (RN клампил, но на iOS это давало мигание).
+   * Стало: полная непрозрачность уже на FC_SWIPE.labelFullRatio ширины, жёсткий
+   * CLAMP и защёлка `flyingOut` — подпись держится весь жест и весь улёт.
+   */
+  const knowOverlayStyle = useAnimatedStyle(() => {
+    const full = Math.max(1, cardW.value * FC_SWIPE.labelFullRatio);
+    const byDrag = interpolate(tx.value, [0, full], [0, 1], Extrapolation.CLAMP);
+    return { opacity: flyingOut.value === 1 && tx.value >= 0 ? 1 : byDrag };
+  });
+  const learnOverlayStyle = useAnimatedStyle(() => {
+    const full = Math.max(1, cardW.value * FC_SWIPE.labelFullRatio);
+    const byDrag = interpolate(tx.value, [-full, 0], [1, 0], Extrapolation.CLAMP);
+    return { opacity: flyingOut.value === 1 && tx.value < 0 ? 1 : byDrag };
+  });
 
   const accent = packTheme?.borderAccent ?? t.accent;
+  /** Подписи свайп-индикатора: явный проп важнее, иначе локаль (8 языков). */
+  const swipeLabels = gradeLabels ?? PHRASE_CARD_GRADE_LABELS[lang] ?? PHRASE_CARD_GRADE_LABELS.ru;
+  /**
+   * Подпись индикатора: одинаковый стиль для «знаю» и «учу», центрирование по
+   * оси карточки (раньше подпись стояла криво — её просто не было, а иконка
+   * жила без общей типографики).
+   */
+  const swipeLabelTextStyle = (color: string) => ({
+    color,
+    marginTop: 10,
+    fontSize: (f.h2 ?? f.body ?? 17) + 1,
+    fontWeight: '800' as const,
+    letterSpacing: 0.5,
+    textAlign: 'center' as const,
+    textTransform: 'uppercase' as const,
+    width: '100%' as const,
+  });
   const faceBaseStyle: ViewStyle = {
     position: 'absolute',
     top: 0,
@@ -604,48 +626,57 @@ function PhraseCardImpl({
           {renderFront ? renderFront() : defaultFront}
         </View>
 
-        {/* Цветные оверлеи свайпа ✓/✕ */}
+        {/* Цветные оверлеи свайпа: иконка + подпись, ровно по центру карточки */}
         {mode === 'grade' && (
           <>
             <Reanimated.View
               pointerEvents="none"
+              accessibilityElementsHidden
+              importantForAccessibility="no-hide-descendants"
               style={[
                 faceBaseStyle,
                 { backgroundColor: `${t.correct}2E`, borderColor: t.correct, borderWidth: 2 },
                 knowOverlayStyle,
               ]}
+              testID={testID ? `${testID}-swipe-know` : 'fc-swipe-know'}
             >
               <Ionicons name="checkmark-circle" size={56} color={t.correct} />
+              <Text
+                numberOfLines={1}
+                maxFontSizeMultiplier={1.2}
+                style={swipeLabelTextStyle(t.correct)}
+              >
+                {swipeLabels.know}
+              </Text>
             </Reanimated.View>
             <Reanimated.View
               pointerEvents="none"
+              accessibilityElementsHidden
+              importantForAccessibility="no-hide-descendants"
               style={[
                 faceBaseStyle,
                 { backgroundColor: `${t.wrong}2E`, borderColor: t.wrong, borderWidth: 2 },
                 learnOverlayStyle,
               ]}
+              testID={testID ? `${testID}-swipe-learn` : 'fc-swipe-learn'}
             >
               <Ionicons name="close-circle" size={56} color={t.wrong} />
+              <Text
+                numberOfLines={1}
+                maxFontSizeMultiplier={1.2}
+                style={swipeLabelTextStyle(t.wrong)}
+              >
+                {swipeLabels.learn}
+              </Text>
             </Reanimated.View>
           </>
         )}
       </Pressable>
-
-      {/* «Толстая» нижняя грань 4px в цвет акцента (Duolingo-press) */}
-      <Reanimated.View
-        pointerEvents="none"
-        style={[
-          {
-            height: EDGE_H,
-            marginTop: -EDGE_H / 2,
-            marginHorizontal: 10,
-            borderBottomLeftRadius: CARD_RADIUS,
-            borderBottomRightRadius: CARD_RADIUS,
-            backgroundColor: accent,
-          },
-          edgeStyle,
-        ]}
-      />
+      {/*
+        Декоративной «толстой» нижней грани здесь больше нет (репорт владельца
+        после теста на iPhone: «убрать полоску снизу карточки»). Press-эффект
+        остался в outerStyle — scale + сдвиг вниз, только transform.
+      */}
     </Reanimated.View>
   );
 

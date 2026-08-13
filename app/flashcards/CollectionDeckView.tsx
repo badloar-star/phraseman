@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 /**
- * cards-2.0 (E11): полноэкранный режим «Колода» в коллекции (§3.2) —
+ * cards-2.0 (E11): полноэкранный режим «Стопка» в коллекции (§3.2) —
  * просмотр без оценки (решение по п.22 критики).
  *
  * Стек из ≤3 смонтированных PhraseCard: верхняя + 2 подложки (scale 0.95/0.90,
@@ -8,12 +8,14 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
  * Tap = флип; свайп L/R = следующая/предыдущая (native); кнопки ‹ › — web,
  * доступность и одноручный режим. Только transform/opacity (Reanimated 4);
  * lowPower/reduceMotion — навигация без улёта (мгновенная подмена).
+ * Подсказки «тап — перевернуть» на экране нет (репорт владельца).
  */
 import { Ionicons } from '@expo/vector-icons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Platform, Pressable, Text, View, useWindowDimensions } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Reanimated, {
+  cancelAnimation,
   interpolate,
   Extrapolation,
   runOnJS,
@@ -43,7 +45,7 @@ const UNDER_2 = { scale: 0.90, ty: 24 } as const;
 const UNDER_REVEAL = 8;
 
 type Props = {
-  /** Видимые карточки колоды (после фильтра/поиска/лимита). */
+  /** Видимые карточки набора (после фильтра/поиска/лимита). */
   cards: CardItem[];
   initialIndex?: number;
   lang: FlashcardContentLang;
@@ -88,10 +90,15 @@ export default function CollectionDeckView({
   const [flipped, setFlipped] = useState(false);
   const indexRef = useRef(index);
   indexRef.current = index;
-  /** Навигация «идёт» (улёт) — игнорим повторные свайпы/тапы по кнопкам. */
-  const navBusyRef = useRef(false);
+  /**
+   * Навигация «идёт» (улёт) — игнорим повторные свайпы/тапы по кнопкам.
+   * SharedValue, а не ref: решение «улетать или вернуться» принимается прямо
+   * в worklet'е onEnd, без прыжка на JS-поток (раньше карточка успевала
+   * пружиной вернуться назад, пока JS был занят — репорт владельца).
+   */
+  const navBusySV = useSharedValue(0);
 
-  // Смена состава колоды (поиск/фильтр/удаление) — индекс в границы
+  // Смена состава набора (поиск/фильтр/удаление) — индекс в границы
   useEffect(() => {
     if (total === 0) return;
     if (indexRef.current > total - 1) setIndex(total - 1);
@@ -157,6 +164,17 @@ export default function CollectionDeckView({
     };
   });
 
+  /**
+   * Границы стопки в SharedValue — чтобы worklet свайпа сам решал «улетать или
+   * вернуться», не дожидаясь JS-потока.
+   */
+  const canNextSV = useSharedValue(0);
+  const canPrevSV = useSharedValue(0);
+  useEffect(() => {
+    canNextSV.value = index < total - 1 ? 1 : 0;
+    canPrevSV.value = index > 0 ? 1 : 0;
+  }, [index, total, canNextSV, canPrevSV]);
+
   /** Подмена верхней карточки (JS): сброс флипа и позиции стека. */
   const settleAt = useCallback((next: number, enterFromLeft: boolean) => {
     setFlipped(false);
@@ -169,22 +187,28 @@ export default function CollectionDeckView({
       });
     } else {
       tx.value = 0;
-      navBusyRef.current = false;
+      navBusySV.value = 0;
     }
   }, [screenW, tx]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function unlockNav() {
-    navBusyRef.current = false;
+    navBusySV.value = 0;
   }
+
+  /** Финал свайпа: улёт уже отыгран на UI-потоке, здесь только подмена индекса. */
+  const settleFromSwipe = useCallback((forward: boolean) => {
+    const cur = indexRef.current;
+    settleAt(forward ? cur + 1 : cur - 1, !forward);
+  }, [settleAt]);
 
   const goNext = useCallback(() => {
     const cur = indexRef.current;
-    if (navBusyRef.current) return;
+    if (navBusySV.value === 1) return;
     if (cur >= total - 1) {
       tx.value = withSpring(0, FC_SPRING.return);
       return;
     }
-    navBusyRef.current = true;
+    navBusySV.value = 1;
     if (instantNav) {
       settleAt(cur + 1, false);
       return;
@@ -193,16 +217,16 @@ export default function CollectionDeckView({
       if (finished) runOnJS(settleAt)(cur + 1, false);
       else runOnJS(unlockNav)();
     });
-  }, [instantNav, screenW, settleAt, total, tx]);
+  }, [instantNav, navBusySV, screenW, settleAt, total, tx]);
 
   const goPrev = useCallback(() => {
     const cur = indexRef.current;
-    if (navBusyRef.current) return;
+    if (navBusySV.value === 1) return;
     if (cur <= 0) {
       tx.value = withSpring(0, FC_SPRING.return);
       return;
     }
-    navBusyRef.current = true;
+    navBusySV.value = 1;
     if (instantNav) {
       settleAt(cur - 1, false);
       return;
@@ -212,30 +236,75 @@ export default function CollectionDeckView({
       if (finished) runOnJS(settleAt)(cur - 1, true);
       else runOnJS(unlockNav)();
     });
-  }, [instantNav, screenW, settleAt, tx]);
+  }, [instantNav, navBusySV, screenW, settleAt, tx]);
+
+  /**
+   * lowPower/reduceMotion как SharedValue — worklet выбирает ветку «мгновенно»
+   * без чтения JS-замыкания (и без пересборки жеста при смене режима).
+   */
+  const instantNavSV = useSharedValue(instantNav ? 1 : 0);
+  useEffect(() => {
+    instantNavSV.value = instantNav ? 1 : 0;
+  }, [instantNav, instantNavSV]);
 
   // ── Свайп L/R (native; web — кнопки ‹ ›) ──
+  const swipeEnabled = !isWeb && total > 1;
   const pan = useMemo(
     () =>
       Gesture.Pan()
-        .enabled(!isWeb && total > 1)
+        .enabled(swipeEnabled)
         .activeOffsetX([-FC_SWIPE.activationOffsetX, FC_SWIPE.activationOffsetX])
+        // Вертикаль отдаём наружу (шторка/скролл), иначе Pan «съедал» движение
+        // и жест срывался посреди свайпа.
+        .failOffsetY([-FC_SWIPE.failOffsetY, FC_SWIPE.failOffsetY])
+        .onBegin(() => {
+          // Незавершённый возврат предыдущего жеста не должен драться с новым.
+          if (navBusySV.value === 0) cancelAnimation(tx);
+        })
         .onUpdate((e) => {
+          if (navBusySV.value === 1) return;
           tx.value = e.translationX;
         })
         .onEnd((e) => {
+          if (navBusySV.value === 1) return;
           const threshold = screenW * FC_SWIPE.thresholdRatio;
           const passed =
             Math.abs(e.translationX) > threshold ||
             Math.abs(e.velocityX) > FC_SWIPE.velocityThreshold;
-          if (!passed) {
+          const signed = e.translationX !== 0 ? e.translationX : e.velocityX;
+          const forward = signed < 0;
+          const allowed = forward ? canNextSV.value === 1 : canPrevSV.value === 1;
+          if (!passed || !allowed) {
             tx.value = withSpring(0, FC_SPRING.return);
             return;
           }
-          if (e.translationX < 0) runOnJS(goNext)();
-          else runOnJS(goPrev)();
+          navBusySV.value = 1;
+          if (instantNavSV.value === 1) {
+            tx.value = 0;
+            runOnJS(settleFromSwipe)(forward);
+            return;
+          }
+          // Улёт стартует прямо здесь, на UI-потоке: раньше решение уходило
+          // на JS (runOnJS(goNext)) и при занятом JS карточка успевала
+          // «прыгнуть назад» до старта анимации.
+          tx.value = withTiming(
+            (forward ? -1 : 1) * screenW * 1.2,
+            { duration: FC_SWIPE.flyOutMs },
+            (finished) => {
+              if (finished) {
+                runOnJS(settleFromSwipe)(forward);
+              } else {
+                navBusySV.value = 0;
+                tx.value = withSpring(0, FC_SPRING.return);
+              }
+            },
+          );
+        })
+        .onFinalize((_e, success) => {
+          // Жест отменён системой — карточка не должна зависнуть посреди экрана.
+          if (!success && navBusySV.value === 0) tx.value = withSpring(0, FC_SPRING.return);
         }),
-    [isWeb, total, screenW, tx, goNext, goPrev],
+    [swipeEnabled, screenW, tx, navBusySV, canNextSV, canPrevSV, instantNavSV, settleFromSwipe],
   );
 
   // ── Контент карточек ──
@@ -445,9 +514,12 @@ export default function CollectionDeckView({
         >
           <Ionicons name="chevron-back" size={26} color={index <= 0 ? t.textMuted : t.accent} />
         </Pressable>
-        <Text style={{ color: t.textMuted, fontSize: f.caption, minWidth: 60, textAlign: 'center' }}>
-          {triLang(lang, { ru: 'Тап — перевернуть', uk: 'Тап — перевернути', es: 'Toca para girar' })}
-        </Text>
+        {/*
+          Подсказки «Тап — перевернуть» здесь больше нет (репорт владельца после
+          теста на iPhone). Отступ между ‹ и › держим спейсером, чтобы кнопки
+          не съезжались к центру.
+        */}
+        <View style={{ width: 60 }} />
         <Pressable
           testID="fc-deck-next"
           accessibilityRole="button"

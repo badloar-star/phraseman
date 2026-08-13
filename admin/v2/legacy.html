@@ -9942,8 +9942,8 @@
   <div class="tab" onclick="switchTab('card-packs')" data-i18n-es="Packs de tarjetas">Card packs</div>
   <div class="tab" onclick="switchTab('daily-phrases')" data-i18n-es="Frases del día">Daily phrases</div>
   <div class="tab" onclick="switchTab('clubs')" data-i18n-es="Ligas">Clubs</div>
-  <!-- зачем: раздел управления режимом «Турниры» — генерация заданий из контента планов,
-       ревью перед публикацией, готовность пула по раундам и включение слотов -->
+  <!-- Раздел управления режимом «Турниры»: генерация ИИ-заданий,
+       ревью перед публикацией, готовность пула по раундам и включение слотов. -->
   <div class="tab" onclick="switchTab('tournaments')" title="Задания турниров: генерация, проверка, публикация, расписание" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">🏆 Турниры</div>
   <div class="tab" onclick="switchTab('referrals')" data-i18n-es="Referidos">Referrals</div>
   <div class="tab" onclick="switchTab('app-health')" data-i18n-es="Salud de la app">App Health</div>
@@ -10043,11 +10043,6 @@
           <button type="button" class="cp-btn" onclick="switchTab('promo-codes')" title="Открыть генератор, одноразовые коды, свои коды и список промокодов" style="margin-top:8px;background:#172033;border:1px solid #334155;color:#bfdbfe;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:800;min-height:36px">Открыть раздел Промокоды</button>
         </div>
         <label title="Включить или выключить промокоды для всех пользователей" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-promo_codes_enabled" class="cp-toggle" onchange="saveControlPanelBool('promo_codes_enabled', this.checked)" disabled/><span id="cp-bool-label-promo_codes_enabled" class="cp-bool-chip">…</span></label>
-      </div>
-      <div class="cp-switch-row">
-        <div class="cp-switch-ico">🚪</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Онбординг: новый плановый вход</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Новый первый экран начинается с бренда, кнопки «Начать» и входа для существующего аккаунта. Дальше: язык, цель, уровень, время, mini aha, план, пейвол, имя и согласия.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-onboarding_plan_only_enabled" class="cp-toggle" onchange="saveControlPanelBool('onboarding_plan_only_enabled', this.checked)" disabled/><span id="cp-bool-label-onboarding_plan_only_enabled" class="cp-bool-chip">…</span></label>
       </div>
       <div class="cp-switch-row">
         <div class="cp-switch-ico">⏳</div>
@@ -13028,9 +13023,8 @@
 </div>
 
 <!-- TOURNAMENTS TAB -->
-<!-- зачем: владелец управляет режимом «Турниры» отсюда — собрать задания из
-     контента планов, проверить каждое глазами, опубликовать одобренные,
-     увидеть готовность раундов и включить слоты. Публикация только вручную:
+<!-- Владелец управляет режимом «Турниры» отсюда: проверить каждое задание,
+     опубликовать одобренные, увидеть готовность раундов и включить слоты. Публикация только вручную:
      ни одно задание не уходит игрокам без явного «Опубликовать». -->
 <div id="tab-tournaments" class="reports-tab">
   <div style="padding:4px 0 16px;max-width:1080px">
@@ -13043,11 +13037,6 @@
 
   <!-- Готовность режима -->
   <div id="tn-stats" style="margin-bottom:18px"></div>
-
-  <!-- зачем: генератор «из планов» удалён по решению владельца 2026-07-26.
-       Фразы уроков («Hi, I am Anna») не работают как соревновательные вопросы:
-       дистракторы не конкурируют, ответ угадывается без знания языка.
-       Турнирные задания создаются ТОЛЬКО ИИ-генератором ниже. -->
 
   <!-- Шаг 1: ИИ-генератор (единственный источник турнирных заданий) -->
   <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
@@ -13070,7 +13059,7 @@
         <option value="60">до 60 заданий</option>
       </select>
       <button type="button" onclick="tnFillPool(true)" title="Показать, что будет создано — ничего не тратя"
-        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 План</button>
+        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Предпросмотр</button>
       <button type="button" onclick="tnFillPool(false)" title="Создать недостающие задания всех типов"
         style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:9px 20px;border-radius:8px;cursor:pointer;font-weight:800;font-size:14px">🤖 Наполнить пул</button>
       <span id="tn-fill-status" style="font-size:13px;color:#9ca3af"></span>
@@ -27362,7 +27351,6 @@
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
     { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: true },
     { key: 'ideas_enabled', label: 'Раздел «Идеи» (год Плюс за идею)', def: false },
-    { key: 'onboarding_plan_only_enabled', label: 'Онбординг: новый плановый вход включён', def: true },
     { key: 'paywall_timers_enabled', label: 'Пейволы: таймеры срочности (выкл = скрыть у всех)', def: true },
     { key: 'paywall_reviews_enabled', label: 'Пейволы: отзывы «что говорят ученики» (выкл = скрыть у всех)', def: true },
   ];
@@ -28162,7 +28150,6 @@
     { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: true, hint: 'Продукт phraseman_premium_lifetime_v1 заведён в RC (2026-06-21). Покажется, когда RevenueCat вернёт пакет.' },
     { key: 'ideas_enabled',            label: 'Раздел «Идеи»',                  def: false, hint: 'Юзер шлёт идею → год Плюс при одобрении (вкладка «Идеи»).' },
     { key: 'promo_codes_enabled',      label: 'Промокоды в настройках',          def: false, hint: 'Sell-switch. Вкл → пункт «Промокоды» виден в настройках и сервер принимает promoCodeRedeem; выкл → скрыто и promo_disabled.' },
-    { key: 'onboarding_plan_only_enabled', label: 'Онбординг: новый плановый вход', def: true, hint: 'Новый порядок: бренд → язык → цель → уровень → время → mini aha → план → пейвол → имя → 16+ и согласия.' },
     { key: 'paywall_timers_enabled',   label: 'Пейволы: таймеры срочности',      def: true,  hint: 'Вкл по умолчанию. Выкл → блок обратного отсчёта «старой цены» (и плашка «цена сохранена») прячется на всех пейволах A/B/C у всех живьём, без релиза.' },
     { key: 'paywall_reviews_enabled',  label: 'Пейволы: отзывы учеников',        def: true,  hint: 'Вкл по умолчанию. Выкл → секция «Что говорят ученики» пропадает на всех пейволах A/B/C у всех живьём, без релиза. Ничего не ломается — блок просто исчезает. Вкл возвращает.' },
     { key: 'video_button_enabled',     label: 'Кнопка «Видео» на главной',       def: true,  hint: 'Вкл по умолчанию. Выкл → иконка-плей с входом на экран видео прячется в шапке главной у всех живьём, без релиза. Какой канал показывать — настраивается в карточке «YouTube-канал» (вкладка Remote Config).' },
@@ -39439,9 +39426,8 @@
   // ═══════════════════════════════════════════════════════════════════════
   // ТУРНИРЫ — генерация заданий, проверка, публикация, расписание.
   //
-  // зачем: владелец управляет режимом отсюда. Задания собираются из фраз
-  // обучающих планов (серверный tournament_task_factory) и НИКОГДА не
-  // уходят игрокам сами: сначала «На проверке», публикация — только явным
+  // Задания создаются ИИ и НИКОГДА не уходят игрокам сами:
+  // сначала «На проверке», публикация — только явным
   // нажатием. Экономия Firestore: список идёт страницами по 25, статистика
   // считается серверными агрегатами, повторный вход во вкладку не
   // перезапрашивает данные (флаг _tournamentsLoaded).
@@ -39747,16 +39733,6 @@
     }
   };
 
-  // зачем: window.tnGenerate (генератор заданий из фраз обучающих планов)
-  // удалён 2026-07-26 вместе со своим блоком UI — владелец забраковал такие
-  // задания для турниров: фразы уроков не работают как соревновательные
-  // вопросы. Единственный источник теперь — tnAiGenerate ниже.
-
-  // зачем: кнопка удаления пула из планов убрана — владелец уточнил, что
-  // задания должны ОСТАТЬСЯ в базе, просто не использоваться в турнирах.
-  // Неучастие обеспечено на сервере: loadResourcePool берёт только source:'ai'
-  // (tournaments.ts). Неиспользование обратимо, удаление — нет.
-
   window.tnPublishVisible = async function tnPublishVisible() {
     // зачем: только список ревью (#tn-list) — карточки-примеры в панелях
     // генерации тоже несут чекбоксы, и глобальный селектор пытался бы
@@ -39817,10 +39793,7 @@
           На проверке: <strong style="color:#fbbf24">${d.drafts ?? 0}</strong>
         </div>
         ${(() => {
-          // зачем: карточка «Пул из планов» убрана — турниры играют только на
-          // вопросах ИИ, и вечные нули по неучаствующему пулу лишь засоряли
-          // экран. Задания из планов остаются в базе и видны через фильтр
-          // источника в списке ниже.
+          // Турниры играют только на одобренных вопросах ИИ.
           const ai = (d.sources || {}).ai || { total: 0, published: 0, drafts: 0 };
           return `<div style="background:#15151f;border-radius:10px;padding:12px 14px;max-width:360px">
             <div style="font-size:12px;color:#6b7280;margin-bottom:6px">🤖 Вопросы от ИИ</div>

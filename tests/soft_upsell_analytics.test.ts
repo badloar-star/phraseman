@@ -30,9 +30,9 @@ test('publishes the exact finite soft-upsell event catalog', () => {
 });
 
 test('forwards a valid bounded payload through the existing analytics path', async () => {
-  await trackSoftUpsellEvent('soft_upsell_cta', { ...base, destination: 'personal_plan' });
+  await trackSoftUpsellEvent('soft_upsell_cta', { ...base, destination: 'paywall' });
   expect(capturePostHog).toHaveBeenCalledWith('soft_upsell_cta', {
-    context: 'first_lesson_success', trigger: 'first_lesson', destination: 'personal_plan',
+    context: 'first_lesson_success', trigger: 'first_lesson', destination: 'paywall',
     studyTarget: 'en', overlayOccupied: false, schemaVersion: 1, triggerValue: 1,
   });
   expect(firebaseLogEvent).toHaveBeenCalled();
@@ -40,8 +40,8 @@ test('forwards a valid bounded payload through the existing analytics path', asy
 
 test.each([
   ['soft_upsell_eligible', base],
-  ['soft_upsell_impression', { ...base, destination: 'personal_plan' }],
-  ['soft_upsell_cta', { ...base, destination: 'personal_plan' }],
+  ['soft_upsell_impression', { ...base, destination: 'paywall' }],
+  ['soft_upsell_cta', { ...base, destination: 'paywall' }],
   ['soft_upsell_dismiss', base],
   ['soft_upsell_suppressed', { ...base, suppressionReason: 'disabled' }],
 ] as const)('forwards valid %s payload', async (event, payload) => {

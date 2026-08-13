@@ -18,7 +18,7 @@ jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: { bgCard: '#fff', bgSurface: '#eee', cardGradient: ['#fff', '#ddd'], border: '#ddd', textPrimary: '#111', textMuted: '#555', accent: '#b7ff00', correctText: '#07110A' }, f: { body: 16, caption: 13, label: 15 }, isFlat: false }) }));
 
-const opportunity = { trigger: 'first_lesson' as const, value: 1, studyTarget: 'en' as const, context: 'first_lesson_success' as const, destination: 'personal_plan' as const, milestoneId: 'first_lesson:1:en' };
+const opportunity = { trigger: 'first_lesson' as const, value: 1, studyTarget: 'en' as const, context: 'first_lesson_success' as const, destination: 'paywall' as const, milestoneId: 'first_lesson:1:en' };
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
 afterEach(async () => { await cleanup(); });
@@ -27,7 +27,7 @@ it('is inline, accessible, and reports a visible layout once', async () => {
   const onImpression = jest.fn();
   const onDismiss = jest.fn();
   const onCta = jest.fn();
-  const localized = { dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Скрывает эту подсказку', ctaAccessibilityLabel: 'Открыть мой план', ctaAccessibilityHint: 'Показывает персональный план' };
+  const localized = { dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Скрывает эту подсказку', ctaAccessibilityLabel: 'Открыть Plus', ctaAccessibilityHint: 'Показывает возможности Plus' };
   const view = await render(React.createElement(SoftContextualUpsellCard, { title: 'Great result', body: 'Keep learning', ctaLabel: 'Продолжить обучение с очень длинной подписью', ...localized, opportunity, onImpression, onDismiss, onCta }));
   await fireEvent(view.getByTestId('soft-upsell-card'), 'layout', { nativeEvent: { layout: { width: 300, height: 120 } } });
   await fireEvent(view.getByTestId('soft-upsell-card'), 'layout', { nativeEvent: { layout: { width: 300, height: 120 } } });
@@ -39,7 +39,7 @@ it('is inline, accessible, and reports a visible layout once', async () => {
   expect(view.getByText('Keep learning')).toBeTruthy();
   expect(view.getByText('Продолжить обучение с очень длинной подписью')).toBeTruthy();
   expect(view.getByText('Не сейчас')).toBeTruthy();
-  await fireEvent.press(view.getByLabelText('Открыть мой план'));
+  await fireEvent.press(view.getByLabelText('Открыть Plus'));
   await fireEvent.press(view.getByLabelText('Закрыть предложение'));
   expect(onCta).toHaveBeenCalledTimes(1);
   expect(onDismiss).toHaveBeenCalledTimes(1);

@@ -7,8 +7,14 @@
  * сначала осознанная проверка безопасности; тест обновлять только когда формулировка
  * в rules стабильна и согласована.
  */
-import { readFileSync } from "fs";
+import { readFileSync as readFileSyncRaw } from "fs";
 import path from "path";
+
+// зачем: контракт разбирает правила построчно и сверяет многострочные фрагменты
+// с "\n". На Windows (core.autocrlf=true) те же файлы лежат в CRLF, и проверки
+// валились по переводу строки, а не по сути. Нормализуем на входе один раз.
+const readFileSync = (...args: Parameters<typeof readFileSyncRaw>): string =>
+  String(readFileSyncRaw(...args)).replace(/\r\n/g, "\n");
 
 const rulesPath = path.join(process.cwd(), "firestore.rules");
 
@@ -16,9 +22,14 @@ type ParsedMatchBlock = { path: string; source: string };
 type ParsedAllowStatement = { operations: string; expression: string };
 
 function stripRulesComments(source: string): string {
+  // зачем: строчные комментарии убираем ПЕРВЫМИ. В правилах есть строки вида
+  // «...в users/*.» внутри обычного // -комментария; при обратном порядке этот
+  // «/*» открывал фиктивный блочный комментарий и съедал ~136 КБ правил вместе
+  // с целыми match-блоками (user_consents, public_profiles и др.). Проверки
+  // при этом молча «проходили», сравнивая пустоту, — то есть охраняли ничего.
   return source
-    .replace(/\/\*[\s\S]*?\*\//g, (comment) => comment.replace(/[^\r\n]/g, " "))
-    .replace(/\/\/[^\r\n]*/g, "");
+    .replace(/\/\/[^\r\n]*/g, "")
+    .replace(/\/\*[\s\S]*?\*\//g, (comment) => comment.replace(/[^\r\n]/g, " "));
 }
 
 function balancedBlockEnd(source: string, openBrace: number): number | null {
@@ -697,9 +708,11 @@ ${indent}}`,
       path.join(process.cwd(), "functions/src/index.ts"),
       "utf8",
     );
-    expect(functionsIndex).toContain("require('./league_groups');");
+    // зачем: важно, что модуль подключён через require, а не стиль кавычек —
+    // Prettier в functions/ ставит двойные, и жёсткая строка ломала контракт.
+    expect(functionsIndex).toMatch(/require\(['"]\.\/league_groups['"]\);/);
     expect(functionsIndex).toMatch(
-      /leagueJoinOrUpdateGroup,\s*leagueUpdateMyMember,\s*leagueSyncMyBoost[\s\S]*?=\s*require\('\.\/league_groups'\);/,
+      /leagueJoinOrUpdateGroup,\s*leagueUpdateMyMember,\s*leagueSyncMyBoost[\s\S]*?=\s*require\(['"]\.\/league_groups['"]\);/,
     );
     expect(functionsIndex).toContain(
       "exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;",
@@ -1244,8 +1257,8 @@ describe("firestore.rules friend system (Phase 1)", () => {
       path.join(process.cwd(), "functions/src/friend_codes.ts"),
       "utf8",
     );
-    expect(functionsIndex).toContain(
-      "const { friendEnsureMyCode } = require('./friend_codes');",
+    expect(functionsIndex).toMatch(
+      /const \{ friendEnsureMyCode \} = require\(['"]\.\/friend_codes['"]\);/,
     );
     expect(functionsIndex).toContain(
       "exports.friendEnsureMyCode = friendEnsureMyCode;",

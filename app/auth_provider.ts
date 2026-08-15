@@ -2372,6 +2372,9 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null>
     () => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),
     null,
   );
+  // зачем: для связанной/неизвестной личности отказываем ДО стирания. Без замка
+  // тот же провайдер вошёл бы снова и восстановил данные; аноним этим не связан.
+  if (!isProvablyAnonymousAccount && !pendingDeleteLock) return null;
   // зачем: владелец (2026-07-27) — «даже анонимный пользователь должен иметь
   // возможность удалить всё; локальные данные стираются сразу и мгновенный
   // переход на первый экран онбординга». Поэтому локальная очистка живёт ЗДЕСЬ,

@@ -14,8 +14,11 @@ import {
   warmLesson1SessionRuntime,
 } from "../modules/learning-v2/runtime/lesson1_session_runtime";
 
+// зачем: контракт сверяет многострочные фрагменты исходников с "\n" внутри.
+// На Windows (core.autocrlf=true) те же файлы лежат в CRLF, и проверки падали
+// не по существу, а из-за перевода строки. Нормализуем при чтении.
 const source = (relative: string) =>
-  readFileSync(join(__dirname, "..", relative), "utf8");
+  readFileSync(join(__dirname, "..", relative), "utf8").replace(/\r\n/g, "\n");
 
 test("premium session route uses the real twelve-card compiler without the rejected lab player", () => {
   const runtime = source("app/learning-v2/session/[id].tsx");

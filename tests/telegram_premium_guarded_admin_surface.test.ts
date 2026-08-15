@@ -35,7 +35,10 @@ describe('canonical Telegram Premium admin activation surface', () => {
     expect(live).toContain('window.confirm(');
     expect(live).toContain('telegram-premium-activation-status');
     expect(live).not.toContain("updateDoc(doc(db, 'telegram_premium_orders'");
-    expect(index).toContain("export { adminActivateTelegramPremiumOrder } from './telegram_premium_admin';");
+    // зачем: важен сам экспорт, а не стиль кавычек — Prettier в functions/ ставит двойные.
+    expect(index).toMatch(
+      /export \{ adminActivateTelegramPremiumOrder \} from ['"]\.\/telegram_premium_admin['"];/,
+    );
   });
 
   it('blocks every direct client mutation of payment-linked orders', () => {

@@ -247,6 +247,10 @@ export const jarvisTelegramApprovalWebhook = onRequest(
           action: outcome.ok ? outcome.doc.action : 'approve',
           department: outcome.ok ? outcome.doc.department : 'unknown',
           decisionHash: outcome.ok ? outcome.doc.decisionHash : '',
+          // зачем протаскивать из токена: только здесь есть отклонённое
+          // решение, а без темы завтрашний прогон не свяжет тот же совет
+          // с сегодняшним «нет» — счётчик в тексте успеет измениться.
+          decisionTopicKey: outcome.ok ? outcome.doc.decisionTopicKey : undefined,
           outcome: outcome.ok ? 'accepted' : outcome.reason,
           nowMs,
         });

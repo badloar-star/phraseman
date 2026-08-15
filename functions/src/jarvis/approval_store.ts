@@ -24,6 +24,8 @@ export const JARVIS_APPROVAL_COLLECTION = 'jarvis_approval_tokens';
 export interface IssueApprovalTokenInput {
   readonly db: FirebaseFirestore.Firestore;
   readonly decisionHash: string;
+  /** Ключ темы: переживает смену счётчиков, см. ApprovalTokenDoc. */
+  readonly decisionTopicKey?: string;
   readonly department: string;
   readonly action: ApprovalAction;
   readonly ownerTelegramUserId: string;
@@ -41,6 +43,7 @@ export interface IssuedApprovalToken {
 export async function issueApprovalToken(input: IssueApprovalTokenInput): Promise<IssuedApprovalToken> {
   const built = buildApprovalToken({
     decisionHash: input.decisionHash,
+    decisionTopicKey: input.decisionTopicKey,
     department: input.department,
     action: input.action,
     ownerTelegramUserId: input.ownerTelegramUserId,

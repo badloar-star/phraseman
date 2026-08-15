@@ -39,6 +39,16 @@ export type ApprovalRejectReason =
 export interface ApprovalTokenDoc {
   readonly nonceHash: string;
   readonly decisionHash: string;
+  /**
+   * Ключ ТЕМЫ решения — устойчив к смене счётчиков внутри той же находки.
+   *
+   * зачем рядом с decisionHash, а не вместо: decisionHash адресует конкретную
+   * показанную формулировку, и кнопка обязана гасить именно её. Но память
+   * отказов должна пережить «125 писем» → «126 писем», иначе вчерашнее «нет»
+   * забывается за сутки. Опционально: токены, выданные до этой правки,
+   * доживают свои 10 минут без поля.
+   */
+  readonly decisionTopicKey?: string;
   readonly department: string;
   readonly action: ApprovalAction;
   readonly ownerTelegramUserId: string;
@@ -52,6 +62,7 @@ export interface ApprovalTokenDoc {
 export interface BuildApprovalTokenInput {
   readonly nonce?: string;
   readonly decisionHash: string;
+  readonly decisionTopicKey?: string;
   readonly department: string;
   readonly action: ApprovalAction;
   readonly ownerTelegramUserId: string;
@@ -91,6 +102,9 @@ export function buildApprovalToken(input: BuildApprovalTokenInput): BuildApprova
   const doc: ApprovalTokenDoc = Object.freeze({
     nonceHash: hashNonce(nonce),
     decisionHash: input.decisionHash,
+    // зачем условно: Firestore не принимает undefined в документе, а поле
+    // опционально ради токенов, выданных до появления темы.
+    ...(input.decisionTopicKey ? { decisionTopicKey: input.decisionTopicKey } : {}),
     department: input.department,
     action: input.action,
     ownerTelegramUserId: String(input.ownerTelegramUserId),

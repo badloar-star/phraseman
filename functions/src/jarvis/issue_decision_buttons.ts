@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { logger } from 'firebase-functions';
 import type { Decision } from './decision';
 import { issueApprovalToken } from './approval_store';
+import { rejectionTopicKey } from './recent_rejections';
 import type { OwnerConfig } from './approval_webhook_core';
 import { buildDecisionKeyboard, MAX_BUTTON_ROWS, type DecisionButtonSpec, type InlineKeyboard } from './telegram_buttons';
 
@@ -58,6 +59,10 @@ export async function issueDecisionButtons(
       const common = {
         db: input.db,
         decisionHash,
+        // зачем обе величины: decisionHash гасит именно ту формулировку,
+        // что владелец видел на кнопке; тема переживает смену счётчиков
+        // и не даёт вчерашнему «нет» забыться к завтрашнему прогону.
+        decisionTopicKey: rejectionTopicKey(decision),
         department: decision.department,
         ownerTelegramUserId: input.config.ownerTelegramUserId,
         ownerTelegramChatId: input.config.ownerTelegramChatId,

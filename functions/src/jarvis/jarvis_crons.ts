@@ -23,7 +23,7 @@ import {
 import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
 import { JARVIS_APPROVAL_AUDIT_COLLECTION } from './approval_audit';
 import { hashDecision } from './issue_decision_buttons';
-import { filterOutRecentlyRejected, REJECTION_MEMORY_MS } from './recent_rejections';
+import { filterOutRecentlyRejected, rejectionTopicKey, REJECTION_MEMORY_MS } from './recent_rejections';
 import { canNotify, canRun, JARVIS_CONTROL_DOC, parseControl } from './control';
 import { shouldNotifyNow } from './notify_policy';
 import { parseOwnerConfig } from './approval_webhook_core';
@@ -309,7 +309,11 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   const recentRejections = await readRecentRejections(db, nowMs);
   const decisions = filterOutRecentlyRejected({
     decisions: snapshot.decisions,
-    hashOf: hashDecision,
+    // зачем тема, а не hashDecision: тот меняется вместе со счётчиком внутри
+    // находки, и отказ владельца забывался уже назавтра — «125 писем» и
+    // «126 писем» выглядели разными советами. Владелец 2026-08-15:
+    // «пишет одно и то же», «не учится» — это был один и тот же баг.
+    hashOf: rejectionTopicKey,
     rejectedHashes: recentRejections,
     nowMs,
   });
@@ -487,12 +491,20 @@ async function readRecentRejections(
     for (const doc of snap.docs) {
       const data = doc.data() as Record<string, unknown>;
       const hash = typeof data.decisionHash === 'string' ? data.decisionHash : null;
+      const topicKey = typeof data.decisionTopicKey === 'string' ? data.decisionTopicKey : null;
       const atMs = typeof data.atMs === 'number' ? data.atMs : null;
-      if (!hash || atMs === null) continue;
+      if (atMs === null) continue;
+      // зачем в карту кладутся ОБА ключа: тема (устойчива к смене счётчиков,
+      // по ней и работает подавление) и старый decisionHash — записи,
+      // сделанные до появления темы, не должны потерять силу в переходный
+      // период. Лишний ключ никого не глушит: он просто ни с чем не совпадёт.
       // зачем max, а не последний встреченный: несколько отклонений одного
       // решения должны продлевать память, а не сокращать её случайным порядком.
-      const existing = result.get(hash);
-      if (existing === undefined || atMs > existing) result.set(hash, atMs);
+      for (const key of [topicKey, hash]) {
+        if (!key) continue;
+        const existing = result.get(key);
+        if (existing === undefined || atMs > existing) result.set(key, atMs);
+      }
     }
   } catch (error) {
     // Недоступный журнал — не повод молчать: просто без памяти в этом проходе.

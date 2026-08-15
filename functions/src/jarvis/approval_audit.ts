@@ -29,6 +29,15 @@ export interface ApprovalAuditEntry {
   readonly department: string;
   /** '' для команд — решения департамента здесь нет. */
   readonly decisionHash: string;
+  /**
+   * Ключ темы отказа — по нему подавляется повтор совета.
+   *
+   * зачем отдельно от decisionHash: тот содержит сегодняшние числа, и завтра
+   * при «126 писем» вместо «125» отказ владельца уже не находится. Поле
+   * опционально: записи, сделанные до этой правки, его не имеют, и чтение
+   * обязано это переживать.
+   */
+  readonly decisionTopicKey?: string;
   readonly outcome: ApprovalOutcome;
   readonly atMs: number;
 }
@@ -37,6 +46,7 @@ export interface BuildApprovalAuditEntryInput {
   readonly action: AuditAction;
   readonly department: string;
   readonly decisionHash: string;
+  readonly decisionTopicKey?: string;
   readonly outcome: ApprovalOutcome;
   readonly nowMs: number;
 }
@@ -53,6 +63,9 @@ export function buildApprovalAuditEntry(input: BuildApprovalAuditEntryInput): Ap
     action: input.action,
     department: input.department,
     decisionHash: input.decisionHash,
+    // зачем условно: Firestore отвергает undefined в документе, а поле
+    // опционально ради записей, сделанных до появления темы.
+    ...(input.decisionTopicKey ? { decisionTopicKey: input.decisionTopicKey } : {}),
     outcome: input.outcome,
     atMs: input.nowMs,
   });

@@ -11450,8 +11450,24 @@
 </style>
 
 <div id="tab-v2-generator" class="reports-tab">
-  <h2 style="margin:0 0 4px">🧬 Learning V2 · Генератор юнитов</h2>
-  <div style="color:#9ca3af;font-size:13px;margin-bottom:14px">Вертикальный срез E1: демо-банк → детерминированная компиляция 12 сессий → блокирующий QA → артефакт. Постановка в очередь с пинами шаблонов включится после публикации шаблонов режимов в Content Studio.</div>
+  <h2 style="margin:0 0 4px">🧬 Learning V2 · Генератор урока</h2>
+  <div style="color:#9ca3af;font-size:13px;margin-bottom:16px">Урок владельца разворачивается в 56 сессий, проходит проверки и ждёт вашего утверждения. Контент пишете вы — генератор только собирает, проверяет и публикует.</div>
+
+  <!-- ПАЙПЛАЙН: карта стадий S0-S9. Источник истины — docs/v2/GENERATOR_PIPELINE_SPEC_2026-08-15.md.
+       зачем: владелец должен видеть, где именно стоит работа и что мешает, а не «идёт/готово».
+       Статусы честные: пока стадия не доказана, она не зелёная. -->
+  <div style="background:#111827;border-radius:14px;padding:18px;margin-bottom:14px">
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px">
+      <div style="font-weight:800;color:#e5e7eb;font-size:15px">Пайплайн урока</div>
+      <div style="color:#6b7280;font-size:12px">Следующая стадия начинается только после закрытия предыдущей</div>
+    </div>
+    <div id="v2g-pipeline-progress" style="color:#9ca3af;font-size:13px;margin-bottom:14px">Готово 0 из 10 · открыта S0</div>
+    <div id="v2g-pipeline" style="display:flex;flex-direction:column;gap:2px"></div>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+      <button type="button" onclick="v2gPipelineRefresh()" title="Перечитает состояние стадий. Ничего не изменит, генерацию не запустит." style="background:#1f2937;color:#93c5fd;border:none;padding:9px 14px;border-radius:9px;cursor:pointer;font-weight:600;min-height:44px">Обновить состояние</button>
+      <button type="button" onclick="v2gPipelineExpandAll()" title="Раскроет все стадии сразу, чтобы прочитать входы, выходы и условия приёмки целиком." style="background:#1f2937;color:#93c5fd;border:none;padding:9px 14px;border-radius:9px;cursor:pointer;font-weight:600;min-height:44px">Раскрыть все</button>
+    </div>
+  </div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:14px">
     <div style="background:#111827;border-radius:14px;padding:16px">
@@ -14169,6 +14185,9 @@
   }
   window.loadV2Generator = async function(force) {
     window._v2GenLoaded = true;
+    // зачем: карта пайплайна рисуется из локального описания и не ждёт сеть —
+    // владелец видит структуру мгновенно, статусы шагов догружаются ниже.
+    try { v2gRenderPipeline(); } catch (_e) { /* карта не должна ронять вкладку */ }
     const sourceBox = _v2gEl('v2g-source-status');
     const jobBox = _v2gEl('v2g-job-status');
     if (sourceBox) sourceBox.textContent = 'Читаю статус…';
@@ -14247,6 +14266,163 @@
     }
   };
   window.v2gRefresh = function() { void window.loadV2Generator(true); };
+
+  // ── Пайплайн генератора урока ────────────────────────────────────────────
+  // зачем: владелец решил (2026-08-15), что генератор — это подробный пайплайн
+  // в админке, по которому работает Claude/Codex, а не вызов внешней модели за
+  // текстом. Экран обязан показывать, где стоит работа и что мешает.
+  // Источник истины: docs/v2/GENERATOR_PIPELINE_SPEC_2026-08-15.md.
+  // Статус НЕ вычисляется оптимистично: стадия зелёная, только если доказана.
+  const V2G_PIPELINE_STAGES = Object.freeze([
+    {
+      id: 'S0', title: 'Приём авторского материала', state: 'partial',
+      input: 'Владелец выбирает урок 1–32 и вводит свои фразы, тему и смысловые заметки.',
+      output: 'Неизменяемый авторский пакет с отпечатком и пометкой класса контента.',
+      gate: ['Урок выбран явно', 'У каждой фразы есть перевод-смысл', 'Класс контента проставлен', 'Отпечаток посчитан'],
+      blocker: 'Сквозной путь «ввод владельца → пакет» ещё не замкнут.',
+    },
+    {
+      id: 'S1', title: 'Развёртка 56 сессий', state: 'ready',
+      input: 'Авторский пакет из S0.',
+      output: 'Каркас урока: 7 глав по 8 сессий, роли и бюджет взаимодействий.',
+      gate: ['Ровно 56 сессий и 7 глав', 'Сессии 8/16/24/32/40/48 — проверки главы', 'Сессия 56 — экзамен', 'Ни одна сессия не длиннее 22 взаимодействий'],
+      blocker: '',
+    },
+    {
+      id: 'S2', title: 'Распределение материала', state: 'partial',
+      input: 'Авторский пакет и каркас урока.',
+      output: 'План сессий и таблица покрытия целей.',
+      gate: ['Ни одна фраза не используется раньше, чем введена', 'Покрытие видно по каждой цели', 'Пробелы выписаны отдельно', 'Экзамен не переиспользует тренировочные ответы'],
+      blocker: 'Таблица покрытия не собирается автоматически.',
+    },
+    {
+      id: 'S3', title: 'Сборка сессии', state: 'proven',
+      input: 'План одной сессии.',
+      output: 'Интро, практика, локальный проверяющий и вспомогательные действия.',
+      gate: ['Ровно 3 страницы интро, вопрос внизу каждой', 'Практика начинается с четвёртого шага', 'Порядок заданий совпадает во всех частях', 'Есть репорт, сохранение в карточки и голосовой ответ', 'Готово объяснение второй ошибки'],
+      blocker: '',
+    },
+    {
+      id: 'S4', title: 'Восемь языков интерфейса', state: 'partial',
+      input: 'Собранная сессия.',
+      output: 'Тексты на ru, uk, es, pt-BR, vi, id, tr, pl.',
+      gate: ['Все восемь языков заполнены', 'По каждому языку отдельная проверка', 'Машина даёт только «можно показать человеку»', 'Блокеры перечислены явно'],
+      blocker: 'Языковое ревью живым специалистом не проводилось.',
+    },
+    {
+      id: 'S5', title: 'Проверка качества', state: 'partial',
+      input: 'Сессия с готовыми переводами.',
+      output: 'Оценки по измерениям, находки и покрытие доказательствами.',
+      gate: ['Минимум 15 измерений с уверенностью', 'Счётчики блокеров и ошибок', 'Ни одного открытого блокера', 'Проверяющий не является автором'],
+      blocker: 'Панель качества ещё не собрана.',
+    },
+    {
+      id: 'S6', title: 'Просмотр и утверждение', state: 'partial',
+      input: 'Пакет, прошедший проверку качества.',
+      output: 'Решение владельца: утвердить или вернуть на доработку.',
+      gate: ['Показано ровно то, что увидит ученик', 'Видны находки, а не только «готово»', 'Подтверждение в два шага', 'Никаких надписей, создающих ложную готовность'],
+      blocker: 'Двухшаговое подтверждение не замкнуто.',
+    },
+    {
+      id: 'S7', title: 'Озвучка четырьмя голосами', state: 'partial',
+      input: 'Утверждённый владельцем пакет.',
+      output: 'По четыре варианта звука на каждую реплику и каждое слово.',
+      gate: ['Четыре голоса на каждый звук', 'У каждого выбираемого слова свой звук', 'Размер и отпечаток прочитаны обратно', 'В занятии нет запроса в сеть на каждое воспроизведение'],
+      blocker: 'Конвейер на реальной озвучке не прогонялся. Это единственная платная стадия.',
+    },
+    {
+      id: 'S8', title: 'Публикация версии', state: 'partial',
+      input: 'Пакет со звуком.',
+      output: 'Неизменяемая версия урока и возможность отката.',
+      gate: ['Пакет неизменяемый и связан отпечатками', 'Обратное чтение совпало', 'Переключение активной версии атомарное', 'Откат отрепетирован'],
+      blocker: 'Репетиция отката на этой сборке не повторялась.',
+    },
+    {
+      id: 'S9', title: 'Проверка на устройстве', state: 'blocked',
+      input: 'Опубликованная версия.',
+      output: 'Доказательство, что урок работает на реальном телефоне.',
+      gate: ['Холодный запуск и работа без сети', 'Возврат из фона', 'Частые повторные касания', 'Озвучка не конфликтует с записью голоса', 'Голосовые подсказки и крупный шрифт', 'Итог уходит в фон только после полного завершения'],
+      blocker: 'Не проходилась. Зелёные тесты её не заменяют.',
+    },
+  ]);
+
+  const V2G_STATE_LABELS = Object.freeze({
+    proven:  { text: 'Доказано',      bg: '#064e3b', fg: '#6ee7b7' },
+    ready:   { text: 'Реализовано',   bg: '#1e3a5f', fg: '#93c5fd' },
+    partial: { text: 'Частично',      bg: '#4a3410', fg: '#fcd34d' },
+    blocked: { text: 'Не пройдено',   bg: '#4c1d1d', fg: '#fca5a5' },
+  });
+
+  function v2gRenderPipeline() {
+    const host = _v2gEl('v2g-pipeline');
+    if (!host) return;
+    host.textContent = '';
+    V2G_PIPELINE_STAGES.forEach((stage, index) => {
+      const badge = V2G_STATE_LABELS[stage.state] || V2G_STATE_LABELS.partial;
+      const row = document.createElement('details');
+      // Разделяем строки тоном, а не обводкой — правило владельца.
+      row.style.cssText = 'background:' + (index % 2 ? '#0f1623' : '#131b2b')
+        + ';border-radius:10px;padding:10px 14px';
+
+      const head = document.createElement('summary');
+      head.style.cssText = 'cursor:pointer;display:flex;align-items:center;gap:12px;'
+        + 'list-style:none;min-height:36px';
+      head.innerHTML =
+        '<span style="color:#6b7280;font-family:ui-monospace,monospace;font-size:12px;'
+        + 'min-width:26px">' + stage.id + '</span>'
+        + '<span style="color:#e5e7eb;font-weight:600;font-size:14px;flex:1">'
+        + stage.title + '</span>'
+        + '<span style="background:' + badge.bg + ';color:' + badge.fg
+        + ';border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;'
+        + 'white-space:nowrap">' + badge.text + '</span>';
+      row.appendChild(head);
+
+      const body = document.createElement('div');
+      body.style.cssText = 'padding:12px 0 6px 38px;color:#9ca3af;font-size:13px;line-height:1.6';
+      const gateItems = stage.gate
+        .map(function (item) {
+          return '<li style="margin-bottom:3px">' + item + '</li>';
+        })
+        .join('');
+      body.innerHTML =
+        '<div style="margin-bottom:8px"><span style="color:#6b7280">Вход:</span> '
+        + stage.input + '</div>'
+        + '<div style="margin-bottom:8px"><span style="color:#6b7280">Выход:</span> '
+        + stage.output + '</div>'
+        + '<div style="color:#6b7280;margin-bottom:4px">Условия приёмки:</div>'
+        + '<ul style="margin:0 0 8px;padding-left:18px">' + gateItems + '</ul>'
+        + (stage.blocker
+          ? '<div style="color:#fcd34d">Что мешает: ' + stage.blocker + '</div>'
+          : '<div style="color:#6ee7b7">Условия закрыты.</div>');
+      row.appendChild(body);
+      host.appendChild(row);
+    });
+
+    const progress = _v2gEl('v2g-pipeline-progress');
+    if (progress) {
+      const done = V2G_PIPELINE_STAGES.filter(function (s) {
+        return s.state === 'proven';
+      }).length;
+      const open = V2G_PIPELINE_STAGES.find(function (s) {
+        return s.state !== 'proven';
+      });
+      progress.textContent = 'Доказано ' + done + ' из ' + V2G_PIPELINE_STAGES.length
+        + (open ? ' · ближайшая незакрытая: ' + open.id + ' — ' + open.title : '');
+    }
+  }
+
+  window.v2gPipelineRefresh = function () { v2gRenderPipeline(); };
+  window.v2gPipelineExpandAll = function () {
+    const host = _v2gEl('v2g-pipeline');
+    if (!host) return;
+    const rows = host.querySelectorAll('details');
+    // Если раскрыто хоть что-то — сворачиваем, иначе раскрываем. Одна кнопка,
+    // предсказуемое поведение, без второй кнопки «свернуть».
+    let anyOpen = false;
+    rows.forEach(function (row) { if (row.open) anyOpen = true; });
+    rows.forEach(function (row) { row.open = !anyOpen; });
+  };
+
   let _fnCommunityModerate = null;
   function getCommunityModerateCallable() {
     if (!_fnCommunityModerate) {

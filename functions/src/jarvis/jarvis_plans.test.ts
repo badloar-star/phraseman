@@ -84,11 +84,17 @@ describe('buildPlanFromDecision', () => {
     expect(rerun.status).toBe('archived');
   });
 
-  test('plan id is derived from contentHash — stable and collision-safe across departments', () => {
+  test('plan id is derived from the topic key — stable and collision-safe across departments', () => {
     const a = buildPlanFromDecision(makeDecision({ department: 'quality' }), null, 2_000);
     const b = buildPlanFromDecision(makeDecision({ department: 'growth', question: 'Другой вопрос' }), null, 2_000);
     expect(a.id).not.toBe(b.id);
-    expect(a.id).toBe(a.contentHash);
+    // зачем изменено (владелец 2026-08-15, «пишет одно и то же»): раньше id
+    // был contentHash, который сдвигается вместе с любым числом в тексте
+    // находки — каждое утро заводился новый план про ту же проблему.
+    // contentHash остался отдельным полем: на нём держится проверка,
+    // что формулировка изменилась с момента одобрения.
+    expect(a.id).toBe(a.topicKey);
+    expect(a.contentHash).not.toBe(a.topicKey);
   });
 
   test('JARVIS_PLANS_COLLECTION is a stable, non-empty constant', () => {

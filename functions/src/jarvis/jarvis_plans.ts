@@ -4,6 +4,7 @@ import {
   type JarvisInternalFollowUpTask,
 } from './jarvis_follow_up_tasks';
 import { hashDecision } from './issue_decision_buttons';
+import { decisionTopicKey } from './decision_topic';
 
 /**
  * Раздел «Планы» — постоянный архив всех находок Джарвиса.
@@ -23,10 +24,42 @@ import { hashDecision } from './issue_decision_buttons';
 
 export const JARVIS_PLANS_COLLECTION = 'jarvis_plans';
 
-export type JarvisPlanLifecycleStatus = 'open' | 'resolved' | 'archived';
+/**
+ * Жизненный цикл находки.
+ *
+ * зачем добавлены 'accepted' и 'vanished' (владелец 2026-08-15):
+ * раньше согласие владельца оставляло план 'open' навсегда, а исчезнувшая
+ * проблема висела открытой вечно — список открытых рос и обесценивался,
+ * а кнопка «принять» не завершала ничего. Теперь у находки есть конец:
+ *  - accepted — владелец согласился, ждём проверки результата через неделю;
+ *  - resolved — результат подтвердил, что сработало (ставит проверка);
+ *  - vanished — проблема ушла из данных сама, без вмешательства;
+ *  - archived — владелец отклонил.
+ */
+export type JarvisPlanLifecycleStatus =
+  | 'open'
+  | 'accepted'
+  | 'resolved'
+  | 'vanished'
+  | 'archived';
+
+/** Статусы, которые автомат не имеет права перебивать: владелец уже высказался. */
+export const OWNER_DECIDED_STATUSES: readonly JarvisPlanLifecycleStatus[] = Object.freeze([
+  'accepted', 'resolved', 'archived',
+]);
 
 export interface JarvisPlan {
   readonly id: string;
+  /**
+   * Адрес ТЕМЫ — устойчив к смене счётчиков внутри той же находки.
+   * Совпадает с id: одна проблема = один документ, сколько бы ни менялись числа.
+   */
+  readonly topicKey: string;
+  /**
+   * Хеш текущего содержания. Меняется вместе с любым числом в тексте —
+   * по нему видно, что формулировка обновилась, и на нём держится защита
+   * «одобрение прежней версии больше не действует».
+   */
   readonly contentHash: string;
   /** Короткая версия id, запечатанная в Telegram approval token. */
   readonly approvalDecisionHash?: string;
@@ -51,6 +84,10 @@ export interface JarvisPlan {
   /** Optional for backward compatibility with plans written before safe follow-ups existed. */
   readonly followUpTask?: JarvisInternalFollowUpTask;
   readonly status: JarvisPlanLifecycleStatus;
+  /** Когда владелец согласился — от этого момента отсчитывается проверка результата. */
+  readonly acceptedAtMs?: number;
+  /** Когда проблема перестала наблюдаться в данных. */
+  readonly vanishedAtMs?: number;
   readonly createdAtMs: number;
   readonly updatedAtMs: number;
 }
@@ -75,8 +112,14 @@ export function buildPlanFromDecision(
     nowMs,
     enabled: options.followUpTasksEnabled === true,
   });
+  // зачем id по теме, а не по contentHash (владелец 2026-08-15, «пишет одно
+  // и то же»): contentHash меняется вместе с любым числом в тексте находки,
+  // поэтому каждое утро заводился НОВЫЙ документ про ту же проблему, а старый
+  // оставался открытым. Тема устойчива к счётчикам — одна проблема, один план.
+  const topicKey = decisionTopicKey(decision);
   return Object.freeze({
-    id: decision.contentHash,
+    id: topicKey,
+    topicKey,
     contentHash: decision.contentHash,
     approvalDecisionHash: hashDecision(decision),
     department: decision.department,

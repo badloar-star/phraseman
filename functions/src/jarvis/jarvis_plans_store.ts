@@ -1,5 +1,12 @@
 import type { Decision } from './decision';
-import { buildPlanFromDecision, JARVIS_PLANS_COLLECTION, type JarvisPlan, type JarvisPlanLifecycleStatus } from './jarvis_plans';
+import { decisionTopicKey } from './decision_topic';
+import {
+  buildPlanFromDecision,
+  JARVIS_PLANS_COLLECTION,
+  OWNER_DECIDED_STATUSES,
+  type JarvisPlan,
+  type JarvisPlanLifecycleStatus,
+} from './jarvis_plans';
 
 export { JARVIS_PLANS_COLLECTION };
 
@@ -23,7 +30,10 @@ export interface UpsertPlanInput {
  * здесь только I/O.
  */
 export async function upsertPlan(input: UpsertPlanInput): Promise<JarvisPlan> {
-  const ref = input.db.collection(JARVIS_PLANS_COLLECTION).doc(input.decision.contentHash);
+  // зачем адрес по теме, а не по contentHash: см. buildPlanFromDecision —
+  // contentHash сдвигается вместе с любым числом в тексте, и вместо обновления
+  // плана заводился новый документ каждое утро.
+  const ref = input.db.collection(JARVIS_PLANS_COLLECTION).doc(decisionTopicKey(input.decision));
   const snap = await ref.get();
   const existing = snap.exists ? (snap.data() as JarvisPlan) : null;
   const plan = buildPlanFromDecision(input.decision, existing, input.nowMs, {
@@ -110,8 +120,58 @@ export async function recordPlanOwnerDecision(input: RecordPlanOwnerDecisionInpu
       decidedAtMs: input.nowMs,
       source: 'telegram',
     },
-    status: input.action === 'reject' ? 'archived' : 'open',
+    // зачем 'accepted', а не 'open' (владелец 2026-08-15, «говорит, а не
+    // делает»): раньше согласие оставляло план открытым навсегда — владелец
+    // жал «принять», а назавтра находка снова в открытых. Единственный
+    // доступный ему орган управления не управлял ничем. Теперь согласие
+    // уводит находку из открытых и ставит её в очередь на проверку результата.
+    status: input.action === 'reject' ? 'archived' : 'accepted',
+    ...(input.action === 'approve' ? { acceptedAtMs: input.nowMs } : {}),
     updatedAtMs: input.nowMs,
   }, { merge: true });
   return true;
+}
+
+export interface CloseVanishedPlansInput {
+  readonly db: FirebaseFirestore.Firestore;
+  /** Темы, которые сегодняшний прогон увидел в данных. */
+  readonly seenTopicKeys: readonly string[];
+  readonly nowMs: number;
+}
+
+/**
+ * Закрывает планы, чья проблема перестала наблюдаться в данных.
+ *
+ * зачем (владелец 2026-08-15): без автозакрытия список открытых находок рос
+ * вечно. Проблема давно ушла, а план висел — и владелец переставал верить
+ * этому списку целиком. Закрытие «само» так же важно, как появление.
+ *
+ * зачем не трогать решённое владельцем: он уже вынес вердикт (принял,
+ * отклонил, подтвердил результат) — автомат не имеет права его перебивать.
+ *
+ * @returns сколько планов закрыто
+ */
+export async function closeVanishedPlans(input: CloseVanishedPlansInput): Promise<number> {
+  const seen = new Set(input.seenTopicKeys);
+  // guard-ok (limit): выборка ограничена LIST_PLANS_LIMIT и берёт только
+  // открытые планы — коллекция растёт на единицы записей в сутки.
+  const snap = await input.db.collection(JARVIS_PLANS_COLLECTION)
+    .where('status', '==', 'open')
+    .limit(LIST_PLANS_LIMIT)
+    .get();
+
+  let closed = 0;
+  for (const doc of snap.docs) {
+    const plan = doc.data() as JarvisPlan;
+    if (OWNER_DECIDED_STATUSES.includes(plan.status)) continue;
+    const key = plan.topicKey ?? plan.id;
+    if (seen.has(key)) continue;
+    await doc.ref.set({
+      status: 'vanished' satisfies JarvisPlanLifecycleStatus,
+      vanishedAtMs: input.nowMs,
+      updatedAtMs: input.nowMs,
+    }, { merge: true });
+    closed += 1;
+  }
+  return closed;
 }

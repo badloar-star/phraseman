@@ -1,5 +1,5 @@
-import { createHash } from 'node:crypto';
 import type { Decision } from './decision';
+import { decisionTopicKey } from './decision_topic';
 
 /**
  * Не повторять совет, который владелец только что отклонил (бриф в181-190:
@@ -26,29 +26,11 @@ export const REJECTION_MEMORY_MS = 3 * 24 * 60 * 60 * 1_000;
  * «126 писем» — хеш другой, отказ забыт, и совет приходит снова. Владелец
  * 2026-08-15 назвал это «пишет одно и то же» и «не учится» — это один баг.
  *
- * Тот же приём уже применён в notification_memory.notificationTopicKey;
- * здесь он нужен для второго, независимого канала подавления.
+ * зачем реэкспорт, а не своя реализация: ключей темы в проекте было уже два,
+ * посчитанных по-разному. Один источник истины — `decision_topic.ts`; имя
+ * оставлено прежним, чтобы не трогать вызывающих.
  */
-export function rejectionTopicKey(decision: Decision): string {
-  const material = `${decision.department}|${stripVolatileNumbers(decision.finding ?? '')}`
-    + `|${stripVolatileNumbers(decision.recommendation ?? '')}`;
-  return createHash('sha256').update(material, 'utf8').digest('hex').slice(0, 16);
-}
-
-/**
- * Вычищает числа и регистр, оставляя формулировку проблемы.
- *
- * зачем не выбрасывать числа молча в никуда: «3 платежа зависли» и
- * «125 писем без ответа» обязаны остаться РАЗНЫМИ темами — иначе подавление
- * одного отказа заглушило бы весь департамент. Различает их текст, а не цифра.
- */
-function stripVolatileNumbers(value: string): string {
-  return value
-    .toLocaleLowerCase('ru')
-    .replace(/\d[\d\s.,]*/g, '#')
-    .replace(/[^\p{L}\p{N}#]+/gu, ' ')
-    .trim();
-}
+export const rejectionTopicKey = decisionTopicKey;
 
 export interface FilterOutRecentlyRejectedInput {
   readonly decisions: readonly Decision[];

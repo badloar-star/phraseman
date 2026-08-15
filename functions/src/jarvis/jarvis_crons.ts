@@ -10,7 +10,8 @@ import { enrichDecisionsWithNarrative, type EnricherDependencies } from './llm_e
 import { estimateEnrichmentCostUsd, actualEnrichmentCostUsd } from './llm_enricher_cost';
 import { checkAndReserveBudget, recordActualSpend } from './llm_budget';
 import { reserveEnrichmentSlot, recordEnrichmentResult } from './llm_enrichment_cache';
-import { upsertPlan } from './jarvis_plans_store';
+import { upsertPlan, closeVanishedPlans } from './jarvis_plans_store';
+import { decisionTopicKey } from './decision_topic';
 import { parseJarvisFollowUpTasksFlag } from './jarvis_follow_up_tasks';
 import type { Decision } from './decision';
 import { buildTelegramDigest, selectTelegramDecisions } from './telegram_digest';
@@ -23,7 +24,7 @@ import {
 import { JARVIS_APPROVAL_COLLECTION } from './approval_store';
 import { JARVIS_APPROVAL_AUDIT_COLLECTION } from './approval_audit';
 import { hashDecision } from './issue_decision_buttons';
-import { filterOutRecentlyRejected, rejectionTopicKey, REJECTION_MEMORY_MS } from './recent_rejections';
+import { filterOutRecentlyRejected, REJECTION_MEMORY_MS } from './recent_rejections';
 import { canNotify, canRun, JARVIS_CONTROL_DOC, parseControl } from './control';
 import { shouldNotifyNow } from './notify_policy';
 import { parseOwnerConfig } from './approval_webhook_core';
@@ -313,7 +314,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     // находки, и отказ владельца забывался уже назавтра — «125 писем» и
     // «126 писем» выглядели разными советами. Владелец 2026-08-15:
     // «пишет одно и то же», «не учится» — это был один и тот же баг.
-    hashOf: rejectionTopicKey,
+    hashOf: decisionTopicKey,
     rejectedHashes: recentRejections,
     nowMs,
   });
@@ -341,6 +342,19 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   }).catch((error: unknown) => {
     logger.warn('jarvis_daily_departments: plan upsert failed', { department: decision.department, error });
   })));
+
+  // зачем закрывать исчезнувшее (владелец 2026-08-15): без этого список
+  // открытых находок рос вечно — проблема давно ушла из данных, а план висел.
+  // Владелец переставал верить списку целиком. Закрытие «само» так же важно,
+  // как появление. Считаем по ПОЛНОМУ снимку, а не по отфильтрованным
+  // decisions: тема, погашенная отказом или анти-повтором, наблюдается —
+  // молчать о ней можно, объявлять исчезнувшей нельзя.
+  const observedTopicKeys = snapshot.decisions.map(decisionTopicKey);
+  const vanishedCount = await closeVanishedPlans({ db, seenTopicKeys: observedTopicKeys, nowMs })
+    .catch((error: unknown) => {
+      logger.warn('jarvis_daily_departments: vanished-plan sweep failed', error);
+      return 0;
+    });
 
   // зачем молчать, когда всё чисто: ежедневное «всё хорошо» приучает не
   // читать сообщения, и настоящая находка потеряется среди них. Пишем только
@@ -399,6 +413,9 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     telegramSent,
     rejectedSuppressed: snapshot.decisions.length - decisions.length,
     repeatedSuppressed: novelty.suppressed.length,
+    // зачем логировать: единственный способ увидеть, что автозакрытие живёт
+    // и список открытых находок реально разгружается, а не только растёт.
+    vanishedClosed: vanishedCount,
     // зачем логировать причину: «сообщение не пришло» без объяснения — это
     // час разбирательства. Здесь сразу видно: тихие часы, режим или пусто.
     mode: control.mode,

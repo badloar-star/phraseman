@@ -10638,7 +10638,9 @@
     <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px">
       <span style="color:#6b7280">Показать:</span>
       <button type="button" class="jf-plans-filter-btn" data-status="open" onclick="renderFilteredJarvisPlans('open')" style="background:none;border:none;color:#e2e8f0;cursor:pointer;padding:3px 6px">Открытые</button>
-      <button type="button" class="jf-plans-filter-btn" data-status="resolved" onclick="renderFilteredJarvisPlans('resolved')" style="background:none;border:none;color:#4ade80;cursor:pointer;padding:3px 6px">Решённые</button>
+      <button type="button" class="jf-plans-filter-btn" data-status="accepted" onclick="renderFilteredJarvisPlans('accepted')" style="background:none;border:none;color:#fcd34d;cursor:pointer;padding:3px 6px">Принятые</button>
+      <button type="button" class="jf-plans-filter-btn" data-status="resolved" onclick="renderFilteredJarvisPlans('resolved')" style="background:none;border:none;color:#4ade80;cursor:pointer;padding:3px 6px">Сработали</button>
+      <button type="button" class="jf-plans-filter-btn" data-status="vanished" onclick="renderFilteredJarvisPlans('vanished')" style="background:none;border:none;color:#94a3b8;cursor:pointer;padding:3px 6px">Ушли сами</button>
       <button type="button" class="jf-plans-filter-btn" data-status="archived" onclick="renderFilteredJarvisPlans('archived')" style="background:none;border:none;color:#94a3b8;cursor:pointer;padding:3px 6px">Архив</button>
       <button type="button" class="jf-plans-filter-btn" data-status="" onclick="renderFilteredJarvisPlans(null)" style="background:none;border:none;color:#6b7280;cursor:pointer;padding:3px 6px">Все</button>
     </div>
@@ -28277,10 +28279,23 @@
     return lines.join('\n');
   }
 
+  // зачем новые статусы (владелец 2026-08-15): раньше «принять» оставляло
+  // находку открытой навсегда, а исчезнувшая проблема висела вечно. Теперь у
+  // находки есть конец, и подпись обязана его показывать — иначе accepted и
+  // vanished выглядели бы как «Открыто» и врали владельцу.
   function jarvisPlanStatusLabel(status) {
-    if (status === 'resolved') return 'Решено';
+    if (status === 'accepted') return 'Принято, проверяем';
+    if (status === 'resolved') return 'Сработало';
+    if (status === 'vanished') return 'Ушло само';
     if (status === 'archived') return 'В архиве';
     return 'Открыто';
+  }
+
+  function jarvisPlanStatusChipType(status) {
+    if (status === 'resolved') return 'success';
+    if (status === 'accepted') return 'warn';
+    if (status === 'archived' || status === 'vanished') return '';
+    return 'info';
   }
 
   function renderJarvisPlanCard(plan) {
@@ -28292,7 +28307,7 @@
       '<div style="display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;cursor:pointer" onclick="toggleJarvisPlanDetails(\'' + plan.id + '\')">' +
         '<span class="cp-status-chip" data-type="info" style="background:rgba(' + meta.accentRgb + ',0.16);color:rgb(' + meta.accentRgb + ')">' + escapeHtml(meta.title) + '</span>' +
         '<div style="font-weight:800;color:#e2e8f0;font-size:13.5px;flex:1;min-width:0">' + escapeHtml(plan.question) + '</div>' +
-        '<span class="cp-status-chip" data-type="' + (plan.status === 'resolved' ? 'success' : plan.status === 'archived' ? '' : 'info') + '">' + jarvisPlanStatusLabel(plan.status) + '</span>' +
+        '<span class="cp-status-chip" data-type="' + jarvisPlanStatusChipType(plan.status) + '">' + jarvisPlanStatusLabel(plan.status) + '</span>' +
       '</div>' +
       '<div style="margin-top:6px;color:#cbd5e1;font-size:12.5px;line-height:1.5">' + escapeHtml(plan.finding) + '</div>' +
       '<div id="' + detailsId + '" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">' +

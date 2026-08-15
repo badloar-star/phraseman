@@ -10,8 +10,9 @@ import { enrichDecisionsWithNarrative, type EnricherDependencies } from './llm_e
 import { estimateEnrichmentCostUsd, actualEnrichmentCostUsd } from './llm_enricher_cost';
 import { checkAndReserveBudget, recordActualSpend } from './llm_budget';
 import { reserveEnrichmentSlot, recordEnrichmentResult } from './llm_enrichment_cache';
-import { upsertPlan, closeVanishedPlans } from './jarvis_plans_store';
+import { upsertPlan, closeVanishedPlans, reviewAcceptedPlans } from './jarvis_plans_store';
 import { decisionTopicKey } from './decision_topic';
+import { countDegradedSources } from './data_health_snapshot';
 import { parseJarvisFollowUpTasksFlag } from './jarvis_follow_up_tasks';
 import type { Decision } from './decision';
 import { buildTelegramDigest, selectTelegramDecisions } from './telegram_digest';
@@ -356,6 +357,16 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
       return 0;
     });
 
+  // зачем проверять результат (владелец 2026-08-15, «не учится»): без этого
+  // у системы нет ни одного сигнала, отличающего полезный совет от пустого —
+  // а на собственных рассуждениях агент улучшаться не способен. Неделю спустя
+  // после согласия смотрим факт: проблема ушла или осталась.
+  const outcome = await reviewAcceptedPlans({ db, seenTopicKeys: observedTopicKeys, nowMs })
+    .catch((error: unknown) => {
+      logger.warn('jarvis_daily_departments: accepted-plan review failed', error);
+      return { worked: 0, didNotWork: 0 };
+    });
+
   // зачем молчать, когда всё чисто: ежедневное «всё хорошо» приучает не
   // читать сообщения, и настоящая находка потеряется среди них. Пишем только
   // когда есть что сказать — либо находка, либо недоступный департамент.
@@ -387,6 +398,10 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
       appTier: snapshot.appTier,
       departmentErrors: snapshot.departmentErrors,
       narrativeByHash,
+      // зачем (аудит 2026-08-15): data_health считался каждый прогон и
+      // выбрасывался — детектор недостоверности молчал сам, и владелец не
+      // мог узнать, что выводы построены на дырявых данных.
+      degradedSources: countDegradedSources(snapshot.dataHealth),
     });
     // зачем два пути: кнопки требуют секрета с Telegram id владельца. Пока он
     // не задан, сводка обязана приходить всё равно — просто без кнопок.
@@ -416,6 +431,10 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     // зачем логировать: единственный способ увидеть, что автозакрытие живёт
     // и список открытых находок реально разгружается, а не только растёт.
     vanishedClosed: vanishedCount,
+    // зачем логировать вердикты: это первая в системе честная цифра о
+    // собственной пользе — сколько принятых советов реально закрыли проблему.
+    outcomeWorked: outcome.worked,
+    outcomeDidNotWork: outcome.didNotWork,
     // зачем логировать причину: «сообщение не пришло» без объяснения — это
     // час разбирательства. Здесь сразу видно: тихие часы, режим или пусто.
     mode: control.mode,

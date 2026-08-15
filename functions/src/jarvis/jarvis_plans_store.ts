@@ -1,5 +1,6 @@
 import type { Decision } from './decision';
 import { decisionTopicKey } from './decision_topic';
+import { judgePlanOutcome } from './plan_outcome';
 import {
   buildPlanFromDecision,
   JARVIS_PLANS_COLLECTION,
@@ -130,6 +131,62 @@ export async function recordPlanOwnerDecision(input: RecordPlanOwnerDecisionInpu
     updatedAtMs: input.nowMs,
   }, { merge: true });
   return true;
+}
+
+export interface ReviewAcceptedPlansInput {
+  readonly db: FirebaseFirestore.Firestore;
+  /** Темы, наблюдаемые в свежем снимке данных. */
+  readonly seenTopicKeys: readonly string[];
+  readonly nowMs: number;
+}
+
+export interface ReviewAcceptedPlansResult {
+  readonly worked: number;
+  readonly didNotWork: number;
+}
+
+/**
+ * Проверяет, сработали ли принятые советы, и записывает вердикт.
+ *
+ * зачем (владелец 2026-08-15, «не учится»): без этой проверки у системы нет
+ * ни одного сигнала, отличающего полезный совет от бесполезного. Здесь
+ * появляется первый настоящий факт о собственной работе: проблема после
+ * согласия ушла или осталась.
+ *
+ * Решение о вердикте принимает чистый `judgePlanOutcome`, здесь только I/O.
+ */
+export async function reviewAcceptedPlans(
+  input: ReviewAcceptedPlansInput,
+): Promise<ReviewAcceptedPlansResult> {
+  const seen = new Set(input.seenTopicKeys);
+  // guard-ok (limit): только принятые планы, их единицы — это не скан коллекции.
+  const snap = await input.db.collection(JARVIS_PLANS_COLLECTION)
+    .where('status', '==', 'accepted')
+    .limit(LIST_PLANS_LIMIT)
+    .get();
+
+  let worked = 0;
+  let didNotWork = 0;
+  for (const doc of snap.docs) {
+    const plan = doc.data() as JarvisPlan;
+    const outcome = judgePlanOutcome({
+      plan,
+      stillObserved: seen.has(plan.topicKey ?? plan.id),
+      nowMs: input.nowMs,
+    });
+    if (outcome.nextStatus === null) continue;
+    await doc.ref.set({
+      status: outcome.nextStatus,
+      outcome: {
+        verdict: outcome.verdict,
+        checkedAtMs: input.nowMs,
+      },
+      updatedAtMs: input.nowMs,
+    }, { merge: true });
+    if (outcome.verdict === 'worked') worked += 1;
+    if (outcome.verdict === 'did_not_work') didNotWork += 1;
+  }
+  return Object.freeze({ worked, didNotWork });
 }
 
 export interface CloseVanishedPlansInput {

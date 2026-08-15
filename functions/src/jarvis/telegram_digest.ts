@@ -48,6 +48,16 @@ export interface BuildTelegramDigestInput {
    * бюджет или ещё не успеть отработать, и дайджест обязан остаться прежним.
    */
   readonly narrativeByHash?: ReadonlyMap<string, string>;
+  /**
+   * Сколько источников данных сегодня непригодны (устарели, неполны, обрезаны,
+   * недоступны).
+   *
+   * зачем в сводке (аудит 2026-08-15): `data_health_snapshot` считал это
+   * честно и никуда не доставлял — встроенный детектор недостоверности
+   * молчал сам. Владелец не мог узнать, что сегодняшние выводы построены
+   * на дырявых данных. Молчаливая ложь опаснее явной поломки.
+   */
+  readonly degradedSources?: number;
 }
 
 function escapeHtml(value: string): string {
@@ -79,6 +89,24 @@ export function selectTelegramDecisions(decisions: readonly Decision[]): readonl
   return Object.freeze([...decisions]
     .sort((a, b) => SEVERITY_ORDER.indexOf(classifySeverity(a)) - SEVERITY_ORDER.indexOf(classifySeverity(b)))
     .slice(0, JARVIS_MAX_DECISIONS_IN_DIGEST));
+}
+
+/**
+ * Склонение слова «источник» под число.
+ *
+ * зачем вручную: «1 источников» читается как небрежность, а сводка —
+ * единственное, что владелец видит от Джарвиса каждый день.
+ */
+function sourceWord(count: number): string {
+  const mod100 = count % 100;
+  if (mod100 >= 11 && mod100 <= 14) return 'источников';
+  switch (count % 10) {
+    case 1: return 'источник';
+    case 2:
+    case 3:
+    case 4: return 'источника';
+    default: return 'источников';
+  }
 }
 
 export function buildTelegramDigest(input: BuildTelegramDigestInput): string {
@@ -126,6 +154,13 @@ export function buildTelegramDigest(input: BuildTelegramDigestInput): string {
     // зачем отдельной строкой: недоступный департамент — это «неизвестно»,
     // и владелец должен видеть, что картина неполная.
     lines.push(`⚠️ Не удалось проверить: ${escapeHtml(names)} — данные недоступны.`);
+  }
+
+  // зачем только при поломке: строка «с данными всё хорошо» каждое утро — это
+  // ровно тот шум, от которого владелец перестаёт читать сообщения целиком.
+  const degraded = input.degradedSources ?? 0;
+  if (degraded > 0) {
+    lines.push(`⚠️ Данные неполны: ${degraded} ${sourceWord(degraded)} устарели или доступны частично — выводы могут быть неточны.`);
   }
 
   const text = lines.join('\n').trim();

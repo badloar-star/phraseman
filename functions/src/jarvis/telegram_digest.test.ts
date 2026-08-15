@@ -123,4 +123,30 @@ describe('Jarvis telegram digest — short, honest, safe to render as HTML', () 
     });
     expect(text).not.toContain('<script>');
   });
+
+  test('говорит, когда данным нельзя доверять', () => {
+    // зачем (аудит 2026-08-15): data_health считался честно и никуда не
+    // доставлялся — встроенный детектор недостоверности молчал сам.
+    // Молчаливая ложь опаснее явной поломки.
+    const text = buildTelegramDigest({
+      decisions: [decision()],
+      appTier: 'growth',
+      departmentErrors: [],
+      degradedSources: 3,
+    });
+    expect(text).toMatch(/данн/i);
+    expect(text).toContain('3');
+  });
+
+  test('молчит о здоровье данных, когда все источники в порядке', () => {
+    // зачем: строка «с данными всё хорошо» каждый день — это ровно тот шум,
+    // от которого владелец перестаёт читать сообщения.
+    const text = buildTelegramDigest({
+      decisions: [decision()],
+      appTier: 'growth',
+      departmentErrors: [],
+      degradedSources: 0,
+    });
+    expect(text).not.toMatch(/источник/i);
+  });
 });

@@ -86,6 +86,17 @@ export interface JarvisPlan {
   readonly status: JarvisPlanLifecycleStatus;
   /** Когда владелец согласился — от этого момента отсчитывается проверка результата. */
   readonly acceptedAtMs?: number;
+  /**
+   * Чем закончился принятый совет.
+   *
+   * зачем хранить: это единственный настоящий факт о собственной пользе,
+   * который система когда-либо получает. Без него она не отличает
+   * сработавший совет от бесполезного.
+   */
+  readonly outcome?: {
+    readonly verdict: 'worked' | 'did_not_work';
+    readonly checkedAtMs: number;
+  };
   /** Когда проблема перестала наблюдаться в данных. */
   readonly vanishedAtMs?: number;
   readonly createdAtMs: number;

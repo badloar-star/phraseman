@@ -13,6 +13,17 @@ export interface DataHealthSnapshot {
   readonly decision: Decision | null;
 }
 
+/**
+ * Сколько источников сегодня непригодны для выводов.
+ *
+ * зачем (аудит 2026-08-15): снимок здоровья данных считался каждый прогон и
+ * никуда не доставлялся — механизм против молчаливой лжи молчал сам. Владельцу
+ * нужно одно число, а не разбор по состояниям: «данным сегодня верить нельзя».
+ */
+export function countDegradedSources(snapshot: DataHealthSnapshot): number {
+  return DEGRADED_STATES.reduce((sum, state) => sum + (snapshot.stateCounts[state] ?? 0), 0);
+}
+
 export interface BuildDataHealthSnapshotInput {
   readonly evidence: readonly Evidence[];
   readonly nowMs: number;

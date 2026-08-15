@@ -45,6 +45,38 @@ interface FieldContract {
  * департамент видит правду».
  */
 const FIELD_CONTRACTS: readonly FieldContract[] = [
+  // зачем добавлены money/payments/quality (аудит 2026-08-15): три
+  // департамента — включая оба денежных — были вне стража. Переименуют поле,
+  // читатель вернёт пустоту, и Джарвис бодро отчитается, что всё в порядке.
+  // Именно этот сценарий описан в CLAUDE.md как «молчаливая ложь».
+  {
+    department: 'money',
+    writtenIn: 'admin_user_profile.ts',
+    readIn: 'jarvis/money_firestore_fetcher.ts',
+    field: 'openingBalance',
+    breaks: 'баланс экономики стал бы неизмеримым, а расхождения — невидимыми',
+  },
+  {
+    department: 'money',
+    writtenIn: 'admin_analytics.ts',
+    readIn: 'jarvis/money_firestore_fetcher.ts',
+    field: 'eventTimestampMs',
+    breaks: 'события выручки выпали бы из окна выборки, и доход выглядел бы нулевым',
+  },
+  {
+    department: 'payments',
+    writtenIn: 'telegram_premium_bot.ts',
+    readIn: 'jarvis/payments_firestore_fetcher.ts',
+    field: 'hasSuccessfulPayment',
+    breaks: 'оплативший без доступа перестал бы отличаться от неоплатившего',
+  },
+  {
+    department: 'quality',
+    writtenIn: 'quality_daily_aggregate.ts',
+    readIn: 'jarvis/quality_firestore_fetcher.ts',
+    field: 'affectedUserCount',
+    breaks: 'массовая ошибка выглядела бы как единичная жалоба',
+  },
   {
     department: 'safety',
     writtenIn: 'ai_safety.ts',

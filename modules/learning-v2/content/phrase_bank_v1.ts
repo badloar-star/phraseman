@@ -23,6 +23,16 @@ export const LEARNING_V2_PHRASE_BANK_SCHEMA_V1 =
 /** Максимальная длина фразы для pre-A1: длиннее новичок не произнесёт. */
 export const LEARNING_V2_BEGINNER_MAX_WORDS_V1 = 8 as const;
 
+/**
+ * зачем: русский перевод от лица мужчины («я готов», «я устал», «я не знал»)
+ * заставит женщину заучить фразу о себе в чужом роде. Ловим типовые формы:
+ * прошедшее время на «-л» и частые прилагательные состояния в мужском роде.
+ * Женские формы («готова», «устала») сюда намеренно не попадают — они
+ * появляются осознанно, парой к мужской.
+ */
+const GENDER_CODED_RU =
+  /\bя\s+(?:готов|уверен|занят|устал|рад|должен|свободен|болен|женат|согласен)\b|\bя\s+\S*(?<!ла)л\b/iu;
+
 export type LearningV2BankPhraseV1 = Readonly<{
   id: string;
   /** Целевой язык (английский или испанский). */
@@ -98,6 +108,7 @@ export function buildLearningV2PhraseBankV1(
   const issues: LearningV2PhraseBankIssueV1[] = [];
   const seenIds = new Set<string>();
   const seenTexts = new Set<string>();
+  const seenTranslations = new Map<string, string>();
   const componentCoverage: Record<string, number> = Object.fromEntries(
     input.objectiveComponents.map((component) => [component, 0]),
   );
@@ -172,6 +183,38 @@ export function buildLearningV2PhraseBankV1(
           severity: "error" as const,
           code: "translation_missing",
           message: `У фразы «${phrase.text}» перевод совпадает с оригиналом.`,
+        }),
+      );
+    }
+
+    // зачем: одинаковый русский у двух разных фраз ломает обратную проверку —
+    // приложение получает два верных ответа на один вопрос и один засчитает
+    // как ошибку. Ловилось вручную трижды подряд, теперь ловится само.
+    const ruKey = phrase.ru.trim().toLowerCase();
+    const clash = seenTranslations.get(ruKey);
+    if (clash) {
+      issues.push(
+        Object.freeze({
+          phraseId: phrase.id,
+          severity: "error" as const,
+          code: "duplicate_translation",
+          message: `Перевод «${phrase.ru}» уже занят фразой ${clash} — обратная проверка сломается.`,
+        }),
+      );
+    } else {
+      seenTranslations.set(ruKey, phrase.id);
+    }
+
+    // зачем: русский перевод с окончанием мужского рода заставит женщину
+    // заучить фразу о себе в чужом роде. Ловим самые частые формы: «-л»
+    // прошедшего времени и типовые прилагательные состояния.
+    if (GENDER_CODED_RU.test(phrase.ru)) {
+      issues.push(
+        Object.freeze({
+          phraseId: phrase.id,
+          severity: "warning" as const,
+          code: "gender_coded_translation",
+          message: `Перевод «${phrase.ru}» звучит от лица мужчины — женщине придётся менять окончание.`,
         }),
       );
     }

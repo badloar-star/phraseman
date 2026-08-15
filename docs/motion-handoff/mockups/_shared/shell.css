@@ -1,0 +1,88 @@
+/* ============ SHELL — оболочка каталога (нейтральная, не мешает дизайну) ==== */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter',system-ui,sans-serif;
+  background:#0a0a0c;color:#e7e7ea;overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.app{display:grid;grid-template-columns:264px 1fr 0px;height:100vh;transition:grid-template-columns .34s cubic-bezier(.32,.72,0,1)}
+.app.show-code{grid-template-columns:264px 1fr 420px}
+
+/* ---- сайдбар ---- */
+.nav{border-right:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;min-height:0;background:#0d0d10}
+.nav-head{padding:20px 18px 14px;border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-head .dn{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.nav-head .dt{font-size:11.5px;color:#8b8b96;margin-top:4px;line-height:1.45}
+.nav-head .badge{display:inline-block;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+  padding:3px 7px;border-radius:5px;background:var(--brand-dim,rgba(255,255,255,.08));color:var(--brand,#fff);margin-bottom:9px;font-weight:700}
+.srch{margin:12px 14px 8px}
+.srch input{width:100%;background:#151519;border:1px solid rgba(255,255,255,.08);border-radius:9px;
+  padding:8px 11px;color:#e7e7ea;font-size:12.5px;outline:none;font-family:inherit}
+.srch input:focus{border-color:var(--brand,#666)}
+.list{flex:1;overflow-y:auto;padding:2px 8px 24px;scrollbar-width:thin;scrollbar-color:#2a2a30 transparent}
+.list::-webkit-scrollbar{width:7px}.list::-webkit-scrollbar-thumb{background:#26262e;border-radius:4px}
+.cat{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:#5c5c68;
+  padding:15px 10px 6px;font-weight:700}
+.item{padding:7px 10px;border-radius:8px;cursor:pointer;display:flex;gap:9px;align-items:baseline;
+  transition:background .13s}
+.item:hover{background:rgba(255,255,255,.045)}
+.item.on{background:var(--brand-dim,rgba(255,255,255,.1))}
+.item .id{font-size:9.5px;color:#4e4e5a;font-variant-numeric:tabular-nums;flex:none;width:34px;font-weight:600}
+.item.on .id{color:var(--brand,#fff)}
+.item .tx{font-size:12.5px;line-height:1.32;color:#b8b8c2}
+.item.on .tx{color:#fff;font-weight:600}
+
+/* ---- сцена ---- */
+.stage{display:flex;flex-direction:column;min-width:0;position:relative;
+  background:radial-gradient(1100px 700px at 50% -12%,rgba(255,255,255,.045),transparent 62%),#0a0a0c}
+.stage-top{padding:16px 24px 0;display:flex;align-items:baseline;gap:12px;min-height:52px}
+.stage-top h2{margin:0;font-size:15px;font-weight:650;letter-spacing:-.01em}
+.stage-top .sub{font-size:11.5px;color:#7c7c88}
+.stage-body{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;padding:8px 0 4px}
+
+.phone{
+  width:376px;height:calc(376px * 2.164);max-height:calc(100vh - 168px);
+  aspect-ratio:376/814;border-radius:52px;padding:11px;flex:none;position:relative;
+  background:linear-gradient(160deg,#3a3a42,#141418 34%,#101014 66%,#33333b);
+  box-shadow:0 44px 90px -22px rgba(0,0,0,.92),0 0 0 1px rgba(255,255,255,.07),inset 0 0 0 1px rgba(0,0,0,.7);
+}
+.screen{
+  width:100%;height:100%;border-radius:42px;overflow:hidden;position:relative;
+  background:var(--bg,#07100A);isolation:isolate;
+  transform:translateZ(0);
+}
+.notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:104px;height:29px;
+  background:#000;border-radius:16px;z-index:900;pointer-events:none}
+
+/* ---- док ---- */
+.dock{display:flex;gap:8px;align-items:center;justify-content:center;padding:10px 24px 16px;flex-wrap:wrap}
+.btn{background:#17171c;border:1px solid rgba(255,255,255,.09);color:#c7c7d2;border-radius:9px;
+  padding:7px 13px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:550;transition:.14s;display:flex;gap:6px;align-items:center}
+.btn:hover{background:#202027;color:#fff;border-color:rgba(255,255,255,.17)}
+.btn.pri{background:var(--brand,#4a4a55);border-color:transparent;color:#06060a;font-weight:700}
+.btn.pri:hover{filter:brightness(1.12)}
+.seg{display:flex;background:#17171c;border:1px solid rgba(255,255,255,.09);border-radius:9px;overflow:hidden}
+.seg button{background:none;border:none;color:#7d7d8a;padding:7px 11px;font-size:11.5px;cursor:pointer;font-family:inherit;font-weight:600;transition:.13s}
+.seg button:hover{color:#ddd}
+.seg button.on{background:var(--brand-dim,rgba(255,255,255,.13));color:var(--brand,#fff)}
+
+/* ---- таймлайн ---- */
+.tl{height:36px;margin:0 24px 10px;position:relative;border-radius:6px;background:#111116;
+  border:1px solid rgba(255,255,255,.06);overflow:hidden;flex:none}
+.tl .head{position:absolute;top:0;bottom:0;width:1.5px;background:var(--brand,#fff);left:0;opacity:0;box-shadow:0 0 8px var(--brand,#fff)}
+.tl .mk{position:absolute;top:0;height:18px;border-left:1px dashed rgba(255,255,255,.16);padding-left:5px;
+  font-size:8.5px;color:#75758a;display:flex;align-items:center;white-space:nowrap;pointer-events:none}
+.tl .mk.r1{top:18px;color:#5e5e70}
+
+/* ---- инспектор кода ---- */
+.code{border-left:1px solid rgba(255,255,255,.07);background:#0d0d10;overflow-y:auto;min-width:0}
+.app:not(.show-code) .code{display:none}
+.code-h{padding:15px 18px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5c5c68;font-weight:700;
+  position:sticky;top:0;background:#0d0d10;border-bottom:1px solid rgba(255,255,255,.06);z-index:2}
+.code pre{margin:0;padding:14px 18px 40px;font-size:11px;line-height:1.62;color:#a9b6c4;white-space:pre-wrap;
+  font-family:'SF Mono',ui-monospace,Menlo,monospace}
+.code .kw{color:#c792ea}.code .num{color:#f78c6c}.code .str{color:#c3e88d}.code .cm{color:#54606e;font-style:italic}.code .fn{color:#82aaff}
+
+.hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;
+  gap:10px;color:#4e4e5a;font-size:12.5px;text-align:center;padding:40px;pointer-events:none}

@@ -1,5 +1,8 @@
 import { buildLearningV2PhraseBankV1 } from "../modules/learning-v2/content/phrase_bank_v1";
 import { EN_LESSON_01_PHRASES_V1 } from "../modules/learning-v2/content/banks/en_lesson_01_v1";
+import { EN_LESSON_02_PHRASES_V1 } from "../modules/learning-v2/content/banks/en_lesson_02_v1";
+import { EN_LESSON_03_PHRASES_V1 } from "../modules/learning-v2/content/banks/en_lesson_03_v1";
+import { ES_LESSON_01_PHRASES_V1 } from "../modules/learning-v2/content/banks/es_lesson_01_v1";
 import { LEARNING_V2_COURSE_PLAN_V1 } from "../modules/learning-v2/content/course_plan_v1";
 
 /**
@@ -107,5 +110,73 @@ describe("Learning V2 phrase bank — English lesson 1", () => {
 
   test("the machine still cannot approve the bank", () => {
     expect(bank().approvalAuthority).toBe("owner_only_machine_cannot_approve");
+  });
+});
+
+/**
+ * зачем: каждый новый банк обязан пройти те же гейты, что и первый. Иначе
+ * качество держится только на первом уроке, а дальше сползает.
+ */
+describe("Learning V2 phrase banks — every shipped lesson", () => {
+  const SHIPPED = [
+    { lessonOrdinal: 1, language: "en-US", phrases: EN_LESSON_01_PHRASES_V1 },
+    { lessonOrdinal: 2, language: "en-US", phrases: EN_LESSON_02_PHRASES_V1 },
+    { lessonOrdinal: 3, language: "en-US", phrases: EN_LESSON_03_PHRASES_V1 },
+    { lessonOrdinal: 1, language: "es-ES", phrases: ES_LESSON_01_PHRASES_V1 },
+  ] as const;
+
+  for (const shipped of SHIPPED) {
+    const label = `${shipped.language} lesson ${shipped.lessonOrdinal}`;
+
+    test(`${label} passes every gate`, () => {
+      const lesson = LEARNING_V2_COURSE_PLAN_V1[shipped.lessonOrdinal - 1]!;
+      const result = buildLearningV2PhraseBankV1({
+        lessonOrdinal: shipped.lessonOrdinal,
+        targetLanguage: shipped.language,
+        objectiveComponents: lesson.objectiveComponents,
+        phrases: shipped.phrases,
+      });
+
+      expect(result.structuralIssues.filter((i) => i.severity === "blocker")).toEqual([]);
+      expect(result.structuralIssues.filter((i) => i.severity === "error")).toEqual([]);
+      expect(result.evidenceReport.blockerCount).toBe(0);
+      expect(result.evidenceReport.errorCount).toBe(0);
+      expect(result.verdict).toBe("eligible_for_human_review");
+
+      // Каждый компонент цели урока реально обслуживается.
+      for (const component of lesson.objectiveComponents) {
+        expect(result.componentCoverage[component]).toBeGreaterThan(0);
+      }
+    });
+
+    test(`${label} has no duplicate Russian translations`, () => {
+      // Одинаковый перевод у двух разных фраз ломает обратную проверку:
+      // приложение засчитает верный ответ как ошибку.
+      const seen = new Map<string, string>();
+      for (const phrase of shipped.phrases) {
+        const key = phrase.ru.trim().toLowerCase();
+        const clash = seen.get(key);
+        expect(clash).toBeUndefined();
+        seen.set(key, phrase.id);
+      }
+    });
+  }
+
+  test("Spanish lesson 1 teaches ser vs estar correctly", () => {
+    const byId = new Map(ES_LESSON_01_PHRASES_V1.map((p) => [p.id, p]));
+    // Происхождение — ser.
+    expect(byId.get("es-l1-13")!.text).toContain("Soy de");
+    expect(byId.get("es-l1-14")!.text).toContain("Soy de");
+    // Временное состояние — estar.
+    expect(byId.get("es-l1-11")!.text).toContain("Estoy de");
+  });
+
+  test("Spanish lesson 1 gives both tú and usted, and both speaker genders", () => {
+    const texts = ES_LESSON_01_PHRASES_V1.map((p) => p.text);
+    expect(texts).toContain("¿Cómo te llamas?");
+    expect(texts).toContain("¿Cómo se llama usted?");
+    // Иначе женщину научили бы говорить о себе в мужском роде.
+    expect(texts).toContain("Encantada");
+    expect(texts).toContain("Encantado");
   });
 });

@@ -19,6 +19,10 @@ import { ES_LESSON_05_PHRASES_V1 } from "../modules/learning-v2/content/banks/es
 import { ES_LESSON_06_PHRASES_V1 } from "../modules/learning-v2/content/banks/es_lesson_06_v1";
 import { ES_LESSON_07_PHRASES_V1 } from "../modules/learning-v2/content/banks/es_lesson_07_v1";
 import { ES_LESSON_08_PHRASES_V1 } from "../modules/learning-v2/content/banks/es_lesson_08_v1";
+import { ES_LESSON_09_PHRASES_V1 } from "../modules/learning-v2/content/banks/es_lesson_09_v1";
+import { ES_LESSON_10_PHRASES_V1 } from "../modules/learning-v2/content/banks/es_lesson_10_v1";
+import { ES_LESSON_11_PHRASES_V1 } from "../modules/learning-v2/content/banks/es_lesson_11_v1";
+import { ES_LESSON_12_PHRASES_V1 } from "../modules/learning-v2/content/banks/es_lesson_12_v1";
 import { LEARNING_V2_COURSE_PLAN_V1 } from "../modules/learning-v2/content/course_plan_v1";
 
 /**
@@ -155,6 +159,10 @@ describe("Learning V2 phrase banks — every shipped lesson", () => {
     { lessonOrdinal: 6, language: "es-ES", phrases: ES_LESSON_06_PHRASES_V1 },
     { lessonOrdinal: 7, language: "es-ES", phrases: ES_LESSON_07_PHRASES_V1 },
     { lessonOrdinal: 8, language: "es-ES", phrases: ES_LESSON_08_PHRASES_V1 },
+    { lessonOrdinal: 9, language: "es-ES", phrases: ES_LESSON_09_PHRASES_V1 },
+    { lessonOrdinal: 10, language: "es-ES", phrases: ES_LESSON_10_PHRASES_V1 },
+    { lessonOrdinal: 11, language: "es-ES", phrases: ES_LESSON_11_PHRASES_V1 },
+    { lessonOrdinal: 12, language: "es-ES", phrases: ES_LESSON_12_PHRASES_V1 },
   ] as const;
 
   for (const shipped of SHIPPED) {

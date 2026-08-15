@@ -37,7 +37,7 @@ describe('Gustav onboarding server prefetch contract V2 packet', () => {
     expect(report.summary.frenchPrefetchRecordIsSeparateFromActiveTarget).toBe(true);
     expect(report.summary.englishPrefetchDoesNotOverwriteFrenchRecord).toBe(true);
     expect(report.summary.bundledFrenchContentImported).toBe(false);
-    expect(report.summary.englishPackRegistrationImported).toBe(false);
+    expect(report.summary.legacyEnglishRegistrationImported).toBe(false);
     expect(report.summary.activationApproved).toBe(true);
     expect(report.summary.readyForRuntimeDownloadActivation).toBe(true);
   });

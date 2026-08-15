@@ -13253,3 +13253,94 @@ rapid tap, hold-to-talk, VoiceOver/TalkBack и reduced motion.
 `/learning-v2/course` и lesson routes используют тематический backdrop `lessons`,
 а динамические session routes — `lessonPractice`, вместо молчаливого fallback на
 home art. Focused backdrop contract: 1 suite / 8 tests PASS.
+
+## 15.161 — Neutral QA package, локальный E2E harness и hostile RED (2026-08-15)
+
+Закрыт первый незакрытый шаг из `CODEX_NEXT_COMPUTER_START_HERE_2026-08-15.md`:
+neutral QA package плюс локальный non-production harness, без deploy и без
+публикации. Это НЕ release-readiness и не заменяет device-матрицу.
+
+### Что добавлено
+
+`modules/learning-v2/content/neutral_qa_session_fixture_v1.ts` — нейтральный
+пакет одной сессии: 3 intro-страницы с вопросом внизу каждой (canonical slots
+1–3) и 14 практических взаимодействий, итого 17 — внутри standard-профиля
+14–18. Педагогически цельный (supported → guided → retrieval → interleaved →
+near transfer → independent check), но заведомо непроизводственный:
+`contentClass: neutral_test_fixture`, `releaseAuthority: false`,
+`productionSelectable: false`, идентификаторы с префиксом `qa-neutral-`, которые
+физически не могут совпасть с production `lesson-NN:session:NN`.
+
+`tests/learning_v2_neutral_qa_session_e2e_harness_v1.test.ts` — проход через
+настоящие рантайм-модули на fake/in-memory адаптере: модалка с учебным
+результатом → «Начать» → intro page 1 → intro-вопрос 3 открывает практику со
+slot 4 → локальный correct/wrong → отдельное аудио каждого selectable и один
+голос на фразу и слова → подготовленное объяснение второй ошибки →
+Report/Save/hold-to-talk с обязательной tap-альтернативой → background
+interruption и новый run с intro page 1 → полное завершение → answer-free
+сводка, принятая fake-приёмником. **1 suite / 10 tests PASS.**
+
+`tests/learning_v2_neutral_qa_hostile_red_matrix_v1.test.ts` — восемь
+fail-closed сценариев: answer-поле в сводке; transcript/verdict; partial run как
+завершённый; stale run и попытка переатрибуции; рассинхрон голоса фразы и слов;
+подделка audio hash/generation/path; correctness с сервера; повышение
+нейтрального пакета до release authority. **1 suite / 8 tests PASS.**
+
+### Мутационная проверка (важное)
+
+Каждый RED-кейс проверен на способность краснеть: защита в исходнике временно
+отключалась, тест обязан был упасть, затем исходник восстанавливался побайтово
+(`git diff` пустой).
+
+Первая версия кейса с подделкой аудио **прошла даже при отключённой** проверке
+`objectPath.endsWith('/<contentHash>.mp3')` — то есть охраняла не то, что
+заявляла. Кейс переписан: он честно пересчитывает `fileFingerprint`,
+`selectableFingerprint`, `interactionAudioFingerprint` и `audioFingerprint`, как
+сделал бы атакующий со знанием алгоритма, и оставляет единственное расхождение —
+путь указывает на другой объект. После этого отключение проверки роняет тест.
+
+Это тот же класс дефекта, что и инцидент с `firestore_rules_security` в тот же
+день: сторож выглядит зелёным, а сравнивает пустоту.
+
+### Пайплайн генератора (решение владельца 2026-08-15)
+
+Владелец зафиксировал: генератор — **не** вызов внешней модели за текстом урока,
+а подробный структурный пайплайн в админке, по которому работает Claude/Codex.
+OpenAI API остаётся только для TTS (`ash`, `onyx`, `nova`, `coral`).
+
+Добавлен `docs/v2/GENERATOR_PIPELINE_SPEC_2026-08-15.md`: стадии S0–S9, у каждой
+вход, выход, условия приёмки, условия отказа, плюс таблица инвариантов I1–I12 со
+ссылками на код, который их держит.
+
+Вкладка `#v2-generator` в `admin/v2/legacy.html` показывает эту карту с честными
+статусами: «Доказано» только там, где есть доказательство, у остальных явно
+написано, что мешает. Сейчас панель показывает **«Доказано 1 из 10»** (S3) и
+ближайшую незакрытую S0. Следует Admin UI Bible: статус текстом плюс цветом,
+подсказки объясняют действие и способ отмены, разделение тоном без обводок.
+
+Отпадает только интеграция с провайдером текста. Валидаторы, preview/approve,
+release, rollback, TTS-конвейер и админка остаются в полном объёме.
+
+### Проверки на этом checkout
+
+- Neutral QA E2E harness: **1 suite / 10 tests PASS**
+- Hostile RED matrix: **1 suite / 8 tests PASS**
+- Handoff root gate (session runtime + art backdrop): **2 suites / 17 tests PASS**
+- Functions completion gate: **1 suite / 2 tests PASS**
+- Правила Firestore + retired Personal Plan: **4 suites / 143 tests PASS**
+- Админские контракты + borderless audit: **4 suites / 25 tests PASS**
+- Jarvis data contract guard: **1 suite / 30 tests PASS**
+- Рендер карты пайплайна проверен фактически: 10 строк, статусы текстом,
+  обводок нет.
+
+Deploy, push, production writes и provider spend не выполнялись.
+
+### Что остаётся открытым
+
+1. S9 device-матрица не пройдена: cold load, LKG offline, background restart,
+   rapid taps, аудио-арбитраж с hold-to-talk, VoiceOver/TalkBack, reduced motion.
+2. Owner-generator E2E (S0→S8) не замкнут сквозным прогоном.
+3. Языковое ревью восьми локалей живым специалистом не проводилось.
+4. Quality dashboard (15 измерений) не собран.
+5. Rollback drill не повторён на этом checkout.
+6. Реальный контент E1–E32 отсутствует намеренно — его создаёт владелец.

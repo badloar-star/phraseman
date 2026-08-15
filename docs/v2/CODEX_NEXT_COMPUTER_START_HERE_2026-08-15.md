@@ -160,23 +160,42 @@ PASS: это узкие доказательства отдельных гран
 
 ## 6. Точный следующий безопасный шаг
 
-Первый незакрытый шаг — **neutral QA package + локальный, не production,
-end-to-end harness**, без deploy:
+### ЗАКРЫТО 2026-08-15 — neutral QA package + локальный E2E harness
 
-1. взять только нейтральные owner-safe данные с невозможными production IDs;
-2. прогнать их через актуальную 32×56 topology/generator boundary, но физически
-   материализовать только минимальный lesson/session smoke slice;
-3. получить те же canonical learner/audio bytes, которые читает v3 app client;
-4. загрузить их только в fake/in-memory или emulator-bound adapter;
-5. доказать: modal → intro → local correct/wrong → per-word audio → interruption
-   → новый run/intro page 1 → complete → answer-free background summary;
-6. добавить hostile RED: попытка отправить answer/transcript/verdict на сервер,
-   partial completion upload, stale run resume, audio voice mismatch, tampered
-   hash/generation и server-returned correctness;
-7. после GREEN обновить `HANDOVER.md` и этот файл фактическими counts.
+Шаг выполнен, **повторять не нужно**. Подробности: `HANDOVER.md` § 15.161.
 
-Если этот шаг уже закрыт более новым коммитом, не повторять его: проверить
-доказательства и взять следующий незакрытый пункт из Execution Plan.
+- `modules/learning-v2/content/neutral_qa_session_fixture_v1.ts` — нейтральный
+  пакет: 3 intro-страницы + 14 практических, `neutral_test_fixture`,
+  `releaseAuthority:false`, ID с префиксом `qa-neutral-`.
+- `tests/learning_v2_neutral_qa_session_e2e_harness_v1.test.ts` —
+  **1 suite / 10 tests PASS**.
+- `tests/learning_v2_neutral_qa_hostile_red_matrix_v1.test.ts` —
+  **1 suite / 8 tests PASS**, каждый кейс проверен мутацией исходника.
+
+Отдельно зафиксировано решение владельца о генераторе: это пайплайн в админке,
+исполнитель Claude/Codex, OpenAI только для TTS. Спецификация стадий S0–S9 —
+`GENERATOR_PIPELINE_SPEC_2026-08-15.md`, карта видна во вкладке `#v2-generator`
+(сейчас честно показывает «Доказано 1 из 10»).
+
+### Следующий незакрытый шаг — S9 device-матрица
+
+Локальные тесты её НЕ заменяют. Нужен физический проход на устройстве:
+
+1. подписанная сборка на реальном телефоне (dev-клиент для iPhone собран
+   2026-08-15, коммит `b3c6b86e1`);
+2. cold load, LKG offline reopen, background restart;
+3. быстрые повторные тапы по chip;
+4. аудио-арбитраж с hold-to-talk;
+5. VoiceOver / TalkBack, крупный шрифт, reduced motion;
+6. подтвердить, что answer-free сводка уходит в фон только после полного
+   завершения сессии.
+
+Учесть: neutral QA package **не опубликован**, поэтому на устройстве занятие
+по-прежнему упрётся в `Сессия недоступна`. Публикация требует отдельного
+разрешения владельца — deploy запрещён без него.
+
+Параллельно доступны без deploy: S2 coverage matrix, S5 quality dashboard,
+S6 двухшаговое подтверждение.
 
 ## 7. Правила работы следующего Codex
 

@@ -14,7 +14,7 @@ import {
   isCustomAvatarGiftOnly,
   isCustomAvatarShardShop,
 } from '../constants/custom_avatars';
-import { AVATAR_AURAS } from '../constants/avatar_auras';
+import { AVATAR_AURAS, getAvatarAuraById } from '../constants/avatar_auras';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
@@ -280,6 +280,7 @@ describe('level gift milestone rewards', () => {
       kind: 'aura',
       id: activeAura,
     });
+    expect(getAvatarAuraById(activeAura)?.retiredFromShop).not.toBe(true);
     expect(result.cosmeticUnlocked?.labelRu).toBeTruthy();
   });
 
@@ -287,7 +288,7 @@ describe('level gift milestone rewards', () => {
     const { registerXP } = jest.requireMock('../app/xp_manager') as { registerXP: jest.Mock };
     mockStorage.avatar_aura_owned_v1 = JSON.stringify(Object.fromEntries(
       AVATAR_AURAS
-        .filter(aura => !aura.premiumOnly && aura.unlockLevel === undefined)
+        .filter(aura => !aura.premiumOnly && !aura.retiredFromShop && aura.unlockLevel === undefined)
         .map(aura => [aura.id, true]),
     ));
 

@@ -6,12 +6,14 @@ import {
   TOURNAMENT_PUSH_COOLDOWN_MS,
   TOURNAMENT_PUSH_MAX_INACTIVE_DAYS,
   TOURNAMENT_PUSH_WINDOW_MS,
+  TOURNAMENT_START_PUSH_ENABLED,
   buildTournamentPushMessage,
   chunkMessages,
   isLobbyOpeningNow,
   isValidExpoPushToken,
   parseTournamentPushUser,
   pickTournamentCopy,
+  runTournamentStartPush,
   selectTournamentPushCandidates,
   shouldSendTournamentPush,
   type TournamentPushUser,
@@ -22,6 +24,16 @@ const TOKEN = 'ExponentPushToken[abc123]';
 
 /** Полдень в Москве — заведомо вне тихих часов для этой таймзоны. */
 const NOON_MSK = Date.parse('2026-08-03T09:00:00.000Z');
+
+test('релизный сервер не читает Firestore и не отправляет push о закрытом разделе турниров', async () => {
+  expect(TOURNAMENT_START_PUSH_ENABLED).toBe(false);
+  await expect(runTournamentStartPush('closed-room', NOON_MSK)).resolves.toEqual({
+    scanned: 0,
+    candidates: 0,
+    sent: 0,
+    failedChunks: 0,
+  });
+});
 
 function user(overrides: Partial<TournamentPushUser> = {}): TournamentPushUser {
   return {

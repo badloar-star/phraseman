@@ -17,12 +17,12 @@ function hydratedSnapshot(): CustomizationSnapshot {
     source: 'storage',
     updatedAt: 100,
     activeAvatar: 'custom:custom-gen-41:aurora:white',
-    storedAuraSelection: 'aura-aurora',
+    storedAuraSelection: 'aura-ember',
     totalXp: 1250,
     level: 18,
     shards: 77,
     ownedAvatars: { 'custom-gen-41': 'aurora:white' },
-    ownedAuras: { 'aura-aurora': true },
+    ownedAuras: { 'aura-ember': true },
     giftedAvatarId: null,
     giftedAuraId: null,
   };
@@ -33,9 +33,13 @@ describe('avatar studio first frame', () => {
     const source = readProjectFile('app', 'avatar_select.tsx');
     expect(source).toContain('useAppSnapshotSelector');
     expect(source).toContain('createCustomizationInitialState');
+    expect(source).toContain('patchAppSnapshotCustomizationSelection(snapshot);');
     expect(source).not.toContain('const [level, setLevel] = useState(1)');
     expect(source).not.toContain("const [activeAvatar, setActiveAvatar] = useState<string>('1')");
     expect(source).not.toContain('const [activeAuraId, setActiveAuraId] = useState<string | null>(null)');
+    expect(source).toContain('createAccountScope: () => {');
+    expect(source).toContain('withAccountTransitionLock(async () => {');
+    expect(source).toContain('isCurrentAccountGeneration(accountToken)');
   });
 
   it('exposes all real values before delayed storage resolves', async () => {

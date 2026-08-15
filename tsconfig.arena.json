@@ -1,0 +1,13 @@
+{
+  "//": "Ускоренная проверка типов Арены. Полный tsc по корню падает по памяти, поэтому проверяем срез: экраны Арены, её модули, компоненты и хук.",
+  "extends": "./tsconfig.json",
+  "include": [
+    "app/arena*.ts",
+    "app/arena*.tsx",
+    "hooks/use_arena_local_match.ts",
+    "modules/arena/**/*.ts",
+    "components/arena/**/*.tsx",
+    "tests/arena_*.test.ts",
+    "expo-env.d.ts"
+  ]
+}

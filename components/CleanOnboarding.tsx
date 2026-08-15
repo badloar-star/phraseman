@@ -67,15 +67,6 @@ import {
   prefetchAndRecordStudyTargetServerPack,
 } from '../app/study_target_server_prefetch';
 import {
-  PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
-  queuePendingPersonalPlanActivation,
-} from '../app/personal_plan_activation';
-import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_plan_catalog';
-import {
-  resolvePersonalPlanForGoal,
-  type PersonalPlanSetupGoal,
-} from '../app/personal_plan_recommendation';
-import {
   addDays,
   estimateDaysToTarget,
   type CurrentLevel,
@@ -119,10 +110,8 @@ const ONBOARDING_ASSETS = {
   minutes20: require('../assets/images/flow_clean_202607/minutes_20.webp'),
   introCompass: require('../assets/images/flow_clean_202607/intro_compass.webp'),
   notifications: require('../assets/images/flow_clean_202607/notifications.webp'),
-  planResult: require('../assets/images/flow_clean_202607/plan_result.webp'),
   startPlus: require('../assets/images/flow_clean_202607/start_plus.webp'),
   startFree: require('../assets/images/flow_clean_202607/start_free.webp'),
-  benefitPlan: require('../assets/images/flow_clean_202607/benefit_plan.webp'),
   benefitSpeech: require('../assets/images/flow_clean_202607/benefit_speech.webp'),
   benefitRepeat: require('../assets/images/flow_clean_202607/benefit_repeat.webp'),
   benefitFlow: require('../assets/images/flow_clean_202607/benefit_flow.webp'),
@@ -136,9 +125,11 @@ export type OnboardingProps = {
   initialLang?: Lang;
   onLangSelect?: (lang: Lang) => Promise<void> | void;
   onIntroFullAccessStart?: () => Promise<boolean | void> | boolean | void;
-  onPersonalPlanPaywallStart?: () => Promise<boolean | void> | boolean | void;
   startAtNameStep?: boolean;
 };
+
+type OnboardingGoal = 'series' | 'everyday' | 'travel' | 'words' | 'mind';
+type OnboardingMinutesChoice = 5 | 10 | 15 | 20;
 
 export type CleanOnboardingStep =
   | 'welcome'
@@ -217,47 +208,49 @@ type AgeAnswer = 'yes' | 'no' | null;
 
 type Option<T extends string | number> = {
   id: T;
-  title: string;
+  title: OnboardingCopy;
   icon: IoniconName;
   asset?: ImageSourcePropType;
 };
 
+type LocalizedOption<T extends string | number> = Omit<Option<T>, 'title'> & { title: string };
+
 const DISCOVERY_OPTIONS: Option<DiscoverySource>[] = [
-  { id: 'tiktok', title: 'TikTok', icon: 'musical-notes-outline', asset: ONBOARDING_ASSETS.sourceTiktok },
-  { id: 'store', title: 'App Store / Google Play', icon: 'storefront-outline', asset: ONBOARDING_ASSETS.sourceStore },
-  { id: 'social', title: 'Instagram / Facebook', icon: 'camera-outline', asset: ONBOARDING_ASSETS.sourceSocial },
-  { id: 'youtube', title: 'YouTube', icon: 'logo-youtube', asset: ONBOARDING_ASSETS.sourceYoutube },
-  { id: 'google', title: 'Google Search', icon: 'search-outline', asset: ONBOARDING_ASSETS.sourceGoogle },
-  { id: 'friends', title: 'Друзья', icon: 'people-outline', asset: ONBOARDING_ASSETS.sourceFriends },
-  { id: 'other', title: 'Другое', icon: 'ellipsis-horizontal-circle-outline', asset: ONBOARDING_ASSETS.sourceOther },
+  { id: 'tiktok', title: { ru: 'TikTok', uk: 'TikTok', es: 'TikTok', 'pt-BR': 'TikTok', vi: 'TikTok', id: 'TikTok', tr: 'TikTok', pl: 'TikTok' }, icon: 'musical-notes-outline', asset: ONBOARDING_ASSETS.sourceTiktok },
+  { id: 'store', title: { ru: 'App Store / Google Play', uk: 'App Store / Google Play', es: 'App Store / Google Play', 'pt-BR': 'App Store / Google Play', vi: 'App Store / Google Play', id: 'App Store / Google Play', tr: 'App Store / Google Play', pl: 'App Store / Google Play' }, icon: 'storefront-outline', asset: ONBOARDING_ASSETS.sourceStore },
+  { id: 'social', title: { ru: 'Instagram / Facebook', uk: 'Instagram / Facebook', es: 'Instagram / Facebook', 'pt-BR': 'Instagram / Facebook', vi: 'Instagram / Facebook', id: 'Instagram / Facebook', tr: 'Instagram / Facebook', pl: 'Instagram / Facebook' }, icon: 'camera-outline', asset: ONBOARDING_ASSETS.sourceSocial },
+  { id: 'youtube', title: { ru: 'YouTube', uk: 'YouTube', es: 'YouTube', 'pt-BR': 'YouTube', vi: 'YouTube', id: 'YouTube', tr: 'YouTube', pl: 'YouTube' }, icon: 'logo-youtube', asset: ONBOARDING_ASSETS.sourceYoutube },
+  { id: 'google', title: { ru: 'Поиск Google', uk: 'Пошук Google', es: 'Búsqueda de Google', 'pt-BR': 'Busca Google', vi: 'Tìm kiếm Google', id: 'Pencarian Google', tr: 'Google Arama', pl: 'Wyszukiwarka Google' }, icon: 'search-outline', asset: ONBOARDING_ASSETS.sourceGoogle },
+  { id: 'friends', title: { ru: 'Друзья', uk: 'Друзі', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi' }, icon: 'people-outline', asset: ONBOARDING_ASSETS.sourceFriends },
+  { id: 'other', title: { ru: 'Другое', uk: 'Інше', es: 'Otro', 'pt-BR': 'Outro', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' }, icon: 'ellipsis-horizontal-circle-outline', asset: ONBOARDING_ASSETS.sourceOther },
 ];
 
-const LANGUAGE_OPTIONS: Array<Option<StudyTarget> & { code: string; native: string }> = [
-  { id: 'en', code: 'EN', native: 'Английский', title: 'Английский', icon: 'chatbubbles-outline', asset: ONBOARDING_ASSETS.languageEn },
-  { id: 'fr', code: 'FR', native: 'Французский', title: 'Французский', icon: 'cafe-outline', asset: ONBOARDING_ASSETS.languageFr },
+const LANGUAGE_OPTIONS: Array<Option<StudyTarget> & { code: string; native: OnboardingCopy }> = [
+  { id: 'en', code: 'EN', native: { ru: 'Английский', uk: 'Англійська', es: 'Inglés', 'pt-BR': 'Inglês', vi: 'Tiếng Anh', id: 'Bahasa Inggris', tr: 'İngilizce', pl: 'Angielski' }, title: { ru: 'Английский', uk: 'Англійська', es: 'Inglés', 'pt-BR': 'Inglês', vi: 'Tiếng Anh', id: 'Bahasa Inggris', tr: 'İngilizce', pl: 'Angielski' }, icon: 'chatbubbles-outline', asset: ONBOARDING_ASSETS.languageEn },
+  { id: 'fr', code: 'FR', native: { ru: 'Французский', uk: 'Французька', es: 'Francés', 'pt-BR': 'Francês', vi: 'Tiếng Pháp', id: 'Bahasa Prancis', tr: 'Fransızca', pl: 'Francuski' }, title: { ru: 'Французский', uk: 'Французька', es: 'Francés', 'pt-BR': 'Francês', vi: 'Tiếng Pháp', id: 'Bahasa Prancis', tr: 'Fransızca', pl: 'Francuski' }, icon: 'cafe-outline', asset: ONBOARDING_ASSETS.languageFr },
 ];
 
 const LEVEL_OPTIONS: Option<LevelChoice>[] = [
-  { id: 'a0', title: 'Я начинаю с нуля', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelA0 },
-  { id: 'a1', title: 'Знаю отдельные слова', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelA1 },
-  { id: 'a2', title: 'Могу поддержать простой разговор', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelA2 },
-  { id: 'b1', title: 'Говорю на знакомые темы', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelB1 },
-  { id: 'b2', title: 'Обсуждаю почти всё', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelB2 },
+  { id: 'a0', title: { ru: 'Я начинаю с нуля', uk: 'Я починаю з нуля', es: 'Empiezo desde cero', 'pt-BR': 'Estou começando do zero', vi: 'Tôi bắt đầu từ số 0', id: 'Saya mulai dari nol', tr: 'Sıfırdan başlıyorum', pl: 'Zaczynam od zera' }, icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelA0 },
+  { id: 'a1', title: { ru: 'Знаю отдельные слова', uk: 'Знаю окремі слова', es: 'Conozco palabras sueltas', 'pt-BR': 'Conheço palavras isoladas', vi: 'Tôi biết một số từ riêng lẻ', id: 'Saya tahu beberapa kata', tr: 'Tek tek kelimeler biliyorum', pl: 'Znam pojedyncze słowa' }, icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelA1 },
+  { id: 'a2', title: { ru: 'Могу поддержать простой разговор', uk: 'Можу підтримати просту розмову', es: 'Puedo mantener una conversación sencilla', 'pt-BR': 'Consigo manter uma conversa simples', vi: 'Tôi có thể duy trì cuộc trò chuyện đơn giản', id: 'Saya bisa melakukan percakapan sederhana', tr: 'Basit bir sohbeti sürdürebilirim', pl: 'Potrafię prowadzić prostą rozmowę' }, icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelA2 },
+  { id: 'b1', title: { ru: 'Говорю на знакомые темы', uk: 'Говорю на знайомі теми', es: 'Hablo de temas conocidos', 'pt-BR': 'Falo sobre temas conhecidos', vi: 'Tôi nói được về chủ đề quen thuộc', id: 'Saya berbicara tentang topik yang dikenal', tr: 'Tanıdık konular hakkında konuşuyorum', pl: 'Rozmawiam na znane tematy' }, icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelB1 },
+  { id: 'b2', title: { ru: 'Обсуждаю почти всё', uk: 'Обговорюю майже все', es: 'Puedo hablar de casi todo', 'pt-BR': 'Consigo falar sobre quase tudo', vi: 'Tôi có thể nói về hầu hết mọi thứ', id: 'Saya bisa membahas hampir semua hal', tr: 'Neredeyse her şeyi konuşabilirim', pl: 'Potrafię rozmawiać niemal o wszystkim' }, icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelB2 },
 ];
 
-const GOAL_OPTIONS: Option<PersonalPlanSetupGoal>[] = [
-  { id: 'series', title: 'Понимать кино и сериалы', icon: 'volume-high-outline', asset: ONBOARDING_ASSETS.goalSeries },
-  { id: 'everyday', title: 'Говорить в обычной жизни', icon: 'chatbubble-ellipses-outline', asset: ONBOARDING_ASSETS.goalEveryday },
-  { id: 'travel', title: 'Путешествовать', icon: 'airplane-outline', asset: ONBOARDING_ASSETS.goalTravel },
-  { id: 'words', title: 'Нужные фразы каждый день', icon: 'cube-outline', asset: ONBOARDING_ASSETS.goalWords },
-  { id: 'mind', title: 'Учиться для себя', icon: 'school-outline', asset: ONBOARDING_ASSETS.goalMind },
+const GOAL_OPTIONS: Option<OnboardingGoal>[] = [
+  { id: 'series', title: { ru: 'Понимать кино и сериалы', uk: 'Розуміти кіно й серіали', es: 'Entender películas y series', 'pt-BR': 'Entender filmes e séries', vi: 'Hiểu phim và chương trình dài tập', id: 'Memahami film dan serial', tr: 'Film ve dizileri anlamak', pl: 'Rozumieć filmy i seriale' }, icon: 'volume-high-outline', asset: ONBOARDING_ASSETS.goalSeries },
+  { id: 'everyday', title: { ru: 'Говорить в обычной жизни', uk: 'Говорити у звичайному житті', es: 'Hablar en la vida diaria', 'pt-BR': 'Falar no dia a dia', vi: 'Giao tiếp trong đời sống hằng ngày', id: 'Berbicara dalam kehidupan sehari-hari', tr: 'Günlük hayatta konuşmak', pl: 'Mówić w codziennym życiu' }, icon: 'chatbubble-ellipses-outline', asset: ONBOARDING_ASSETS.goalEveryday },
+  { id: 'travel', title: { ru: 'Путешествовать', uk: 'Подорожувати', es: 'Viajar', 'pt-BR': 'Viajar', vi: 'Du lịch', id: 'Bepergian', tr: 'Seyahat etmek', pl: 'Podróżować' }, icon: 'airplane-outline', asset: ONBOARDING_ASSETS.goalTravel },
+  { id: 'words', title: { ru: 'Нужные фразы каждый день', uk: 'Потрібні фрази щодня', es: 'Frases útiles cada día', 'pt-BR': 'Frases úteis todos os dias', vi: 'Cụm từ cần thiết mỗi ngày', id: 'Frasa penting setiap hari', tr: 'Her gün gerekli ifadeler', pl: 'Przydatne zwroty każdego dnia' }, icon: 'cube-outline', asset: ONBOARDING_ASSETS.goalWords },
+  { id: 'mind', title: { ru: 'Учиться для себя', uk: 'Вчитися для себе', es: 'Aprender por gusto', 'pt-BR': 'Aprender por prazer', vi: 'Học vì bản thân', id: 'Belajar untuk diri sendiri', tr: 'Kendim için öğrenmek', pl: 'Uczyć się dla siebie' }, icon: 'school-outline', asset: ONBOARDING_ASSETS.goalMind },
 ];
 
-const MINUTE_OPTIONS: Array<Option<PlanMinutesChoice> & { tone: string }> = [
-  { id: 5, title: '5 минут в день', tone: 'без давления', icon: 'leaf-outline', asset: ONBOARDING_ASSETS.minutes5 },
-  { id: 10, title: '10 минут в день', tone: 'лучший ритм', icon: 'time-outline', asset: ONBOARDING_ASSETS.minutes10 },
-  { id: 15, title: '15 минут в день', tone: 'быстрее прогресс', icon: 'flash-outline', asset: ONBOARDING_ASSETS.minutes15 },
-  { id: 20, title: '20 минут в день', tone: 'глубже практика', icon: 'rocket-outline', asset: ONBOARDING_ASSETS.minutes20 },
+const MINUTE_OPTIONS: Array<Option<OnboardingMinutesChoice> & { tone: OnboardingCopy }> = [
+  { id: 5, title: { ru: '5 минут в день', uk: '5 хвилин на день', es: '5 minutos al día', 'pt-BR': '5 minutos por dia', vi: '5 phút mỗi ngày', id: '5 menit per hari', tr: 'Günde 5 dakika', pl: '5 minut dziennie' }, tone: { ru: 'без давления', uk: 'без тиску', es: 'sin presión', 'pt-BR': 'sem pressão', vi: 'không áp lực', id: 'tanpa tekanan', tr: 'baskısız', pl: 'bez presji' }, icon: 'leaf-outline', asset: ONBOARDING_ASSETS.minutes5 },
+  { id: 10, title: { ru: '10 минут в день', uk: '10 хвилин на день', es: '10 minutos al día', 'pt-BR': '10 minutos por dia', vi: '10 phút mỗi ngày', id: '10 menit per hari', tr: 'Günde 10 dakika', pl: '10 minut dziennie' }, tone: { ru: 'лучший ритм', uk: 'найкращий ритм', es: 'el mejor ritmo', 'pt-BR': 'melhor ritmo', vi: 'nhịp độ lý tưởng', id: 'ritme terbaik', tr: 'en iyi tempo', pl: 'najlepsze tempo' }, icon: 'time-outline', asset: ONBOARDING_ASSETS.minutes10 },
+  { id: 15, title: { ru: '15 минут в день', uk: '15 хвилин на день', es: '15 minutos al día', 'pt-BR': '15 minutos por dia', vi: '15 phút mỗi ngày', id: '15 menit per hari', tr: 'Günde 15 dakika', pl: '15 minut dziennie' }, tone: { ru: 'быстрее прогресс', uk: 'швидший прогрес', es: 'progreso más rápido', 'pt-BR': 'progresso mais rápido', vi: 'tiến bộ nhanh hơn', id: 'kemajuan lebih cepat', tr: 'daha hızlı ilerleme', pl: 'szybszy postęp' }, icon: 'flash-outline', asset: ONBOARDING_ASSETS.minutes15 },
+  { id: 20, title: { ru: '20 минут в день', uk: '20 хвилин на день', es: '20 minutos al día', 'pt-BR': '20 minutos por dia', vi: '20 phút mỗi ngày', id: '20 menit per hari', tr: 'Günde 20 dakika', pl: '20 minut dziennie' }, tone: { ru: 'глубже практика', uk: 'глибша практика', es: 'práctica más profunda', 'pt-BR': 'prática mais profunda', vi: 'luyện tập sâu hơn', id: 'latihan lebih mendalam', tr: 'daha derin pratik', pl: 'głębsza praktyka' }, icon: 'rocket-outline', asset: ONBOARDING_ASSETS.minutes20 },
 ];
 function normalizedStoredStep(value: string | null): CleanOnboardingStep | null {
   if (value === 'start') return 'welcome';
@@ -278,13 +271,13 @@ function levelToCurrentLevel(level: LevelChoice): CurrentLevel {
   return 'b2';
 }
 
-function minutesToProfileMinutes(minutes: PlanMinutesChoice): MinutesPerDay {
+function minutesToProfileMinutes(minutes: OnboardingMinutesChoice): MinutesPerDay {
   if (minutes === 5) return 5;
   if (minutes === 10 || minutes === 15) return 15;
   return 30;
 }
 
-function goalToLearningGoal(goal: PersonalPlanSetupGoal): LearningGoal {
+function goalToLearningGoal(goal: OnboardingGoal): LearningGoal {
   if (goal === 'travel') return 'tourism';
   if (goal === 'series' || goal === 'everyday') return 'hobby';
   if (goal === 'words') return 'work';
@@ -301,16 +294,16 @@ function targetAfterLevel(currentLevel: CurrentLevel): TargetLevel {
 // Обещание на 3 месяца — конкретные умения, без числовых клеймов (юр. безопасно).
 const PLUS_THREE_MONTH_PROMISES = [
   {
-    title: 'Сказать нужную фразу вовремя',
-    body: 'Кафе, дорога, встреча или короткий ответ — слова придут сами.',
+    title: { ru: 'Сказать нужную фразу вовремя', uk: 'Сказати потрібну фразу вчасно', es: 'Decir la frase adecuada a tiempo', 'pt-BR': 'Dizer a frase certa na hora certa', vi: 'Nói đúng câu vào đúng lúc', id: 'Mengucapkan frasa yang tepat pada waktunya', tr: 'Doğru ifadeyi zamanında söylemek', pl: 'Powiedzieć właściwą frazę we właściwym momencie' },
+    body: { ru: 'Кафе, дорога, встреча или короткий ответ — слова придут сами.', uk: 'Кафе, дорога, зустріч чи коротка відповідь — слова приходитимуть самі.', es: 'En un café, de viaje, en una reunión o en una respuesta breve: las palabras saldrán solas.', 'pt-BR': 'No café, na viagem, numa reunião ou numa resposta curta: as palavras vão surgir naturalmente.', vi: 'Ở quán cà phê, trên đường, trong cuộc gặp hay khi trả lời ngắn — từ ngữ sẽ tự đến.', id: 'Di kafe, saat bepergian, dalam pertemuan, atau saat menjawab singkat — kata-kata akan muncul dengan sendirinya.', tr: 'Kafede, yolda, toplantıda ya da kısa bir yanıtta — kelimeler kendiliğinden gelecek.', pl: 'W kawiarni, w podróży, na spotkaniu czy w krótkiej odpowiedzi — słowa przyjdą same.' },
   },
   {
-    title: 'Понять ответ без паники',
-    body: 'Сначала смысл, потом звук и повтор — речь перестанет быть шумом.',
+    title: { ru: 'Понять ответ без паники', uk: 'Зрозуміти відповідь без паніки', es: 'Entender una respuesta sin agobio', 'pt-BR': 'Entender uma resposta sem pânico', vi: 'Hiểu câu trả lời mà không hoảng hốt', id: 'Memahami jawaban tanpa panik', tr: 'Yanıtı paniklemeden anlamak', pl: 'Rozumieć odpowiedź bez paniki' },
+    body: { ru: 'Сначала смысл, потом звук и повтор — речь перестанет быть шумом.', uk: 'Спершу зміст, потім звук і повторення — мовлення перестане бути шумом.', es: 'Primero el sentido, luego el sonido y la repetición: el habla dejará de ser ruido.', 'pt-BR': 'Primeiro o sentido, depois o som e a repetição: a fala deixará de ser apenas ruído.', vi: 'Trước hết là ý nghĩa, rồi âm thanh và lặp lại — lời nói sẽ không còn là tiếng ồn.', id: 'Makna dulu, lalu suara dan pengulangan — ucapan tidak lagi terdengar seperti kebisingan.', tr: 'Önce anlam, sonra ses ve tekrar: konuşma artık gürültü gibi gelmeyecek.', pl: 'Najpierw sens, potem dźwięk i powtórka — mowa przestanie być szumem.' },
   },
   {
-    title: 'Возвращаться каждый день без борьбы',
-    body: 'Короткая сессия, которую реально держать неделя за неделей.',
+    title: { ru: 'Возвращаться каждый день без борьбы', uk: 'Повертатися щодня без боротьби', es: 'Volver cada día sin esforzarte de más', 'pt-BR': 'Voltar todos os dias sem esforço', vi: 'Quay lại mỗi ngày một cách nhẹ nhàng', id: 'Kembali setiap hari tanpa terasa berat', tr: 'Her gün zorlanmadan geri dönmek', pl: 'Wracać każdego dnia bez walki' },
+    body: { ru: 'Короткая сессия, которую реально держать неделя за неделей.', uk: 'Коротке заняття, якого реально дотримуватися тиждень за тижнем.', es: 'Una sesión corta que de verdad puedes mantener semana tras semana.', 'pt-BR': 'Uma sessão curta que você consegue manter semana após semana.', vi: 'Một phiên học ngắn mà bạn thực sự có thể duy trì hết tuần này qua tuần khác.', id: 'Sesi singkat yang benar-benar bisa kamu pertahankan minggu demi minggu.', tr: 'Haftalar boyunca gerçekten sürdürebileceğiniz kısa bir oturum.', pl: 'Krótka sesja, której naprawdę możesz trzymać się tydzień po tygodniu.' },
   },
 ] as const;
 
@@ -318,14 +311,13 @@ const PLUS_THREE_MONTH_PROMISES = [
 // копирайт-выкладки пейвола (paywall_copy.ts → CONTEXT_BENEFITS). У Free — прочерк
 // (эти фичи только в Plus), у Plus — галочка, появляется каскадом сверху вниз.
 // Слово «ИИ» в приложении не используем — «разговорная практика» вместо «диалоги с ИИ».
-const PLAN_COMPARISON_BENEFITS: { icon: IoniconName; title: string }[] = [
-  { icon: 'flash-outline', title: 'Безлимит энергии' },
-  { icon: 'mic-outline', title: 'Практика произношения' },
-  { icon: 'chatbubbles-outline', title: 'Разговорная практика' },
-  { icon: 'bulb-outline', title: 'Разбор ошибок' },
-  { icon: 'map-outline', title: 'Персональный план' },
-  { icon: 'locate-outline', title: 'Тренер слабых мест' },
-  { icon: 'stats-chart-outline', title: 'Аналитика 365 дней' },
+const PLAN_COMPARISON_BENEFITS: { icon: IoniconName; title: OnboardingCopy }[] = [
+  { icon: 'flash-outline', title: { ru: 'Безлимит энергии', uk: 'Безліміт енергії', es: 'Energía ilimitada', 'pt-BR': 'Energia ilimitada', vi: 'Năng lượng không giới hạn', id: 'Energi tanpa batas', tr: 'Sınırsız enerji', pl: 'Nielimitowana energia' } },
+  { icon: 'mic-outline', title: { ru: 'Практика произношения', uk: 'Практика вимови', es: 'Práctica de pronunciación', 'pt-BR': 'Prática de pronúncia', vi: 'Luyện phát âm', id: 'Latihan pengucapan', tr: 'Telaffuz pratiği', pl: 'Ćwiczenie wymowy' } },
+  { icon: 'chatbubbles-outline', title: { ru: 'Разговорная практика', uk: 'Розмовна практика', es: 'Práctica de conversación', 'pt-BR': 'Prática de conversação', vi: 'Luyện hội thoại', id: 'Latihan percakapan', tr: 'Konuşma pratiği', pl: 'Ćwiczenie rozmowy' } },
+  { icon: 'bulb-outline', title: { ru: 'Разбор ошибок', uk: 'Розбір помилок', es: 'Análisis de errores', 'pt-BR': 'Análise de erros', vi: 'Phân tích lỗi', id: 'Analisis kesalahan', tr: 'Hata analizi', pl: 'Analiza błędów' } },
+  { icon: 'locate-outline', title: { ru: 'Тренер слабых мест', uk: 'Тренер слабких місць', es: 'Entrenador de puntos débiles', 'pt-BR': 'Treinador de pontos fracos', vi: 'Huấn luyện điểm yếu', id: 'Pelatih kelemahan', tr: 'Zayıf yön koçu', pl: 'Trener słabych stron' } },
+  { icon: 'stats-chart-outline', title: { ru: 'Аналитика 365 дней', uk: 'Аналітика за 365 днів', es: 'Estadísticas de 365 días', 'pt-BR': 'Análise de 365 dias', vi: 'Phân tích 365 ngày', id: 'Analitik 365 hari', tr: '365 gün analizi', pl: 'Analityka z 365 dni' } },
 ];
 
 function reactionForLevel(level: LevelChoice, target: StudyTarget): string {
@@ -335,27 +327,17 @@ function reactionForLevel(level: LevelChoice, target: StudyTarget): string {
     case 'a1': return 'Хорошо. Соберём короткие фразы и первые ответы на те случаи, которые часто нужны сразу.';
     case 'a2': return 'Понятная точка: говорить уже можно, просто нужны готовые связки для живой речи.';
     case 'b1': return 'Отлично, пойдём не в правила, а в скорость, слух и более естественные ответы.';
-    case 'b2': return 'Тут важны не азы, а точность и темп. План будет держать взрослую сложность.';
+    case 'b2': return 'Тут важны не азы, а точность и темп. Практика будет держать взрослую сложность.';
   }
 }
 
-function reactionForGoal(goal: PersonalPlanSetupGoal): string {
+function reactionForGoal(goal: OnboardingGoal): string {
   switch (goal) {
-    case 'series': return 'Тогда первый маршрут будет про живую реплику на слух, а не про список слов.';
+    case 'series': return 'Тогда начнём с живой реплики на слух, а не со списка слов.';
     case 'everyday': return 'Берём обычные ситуации: услышал мысль, ответил коротко, продолжил разговор.';
-    case 'travel': return 'Соберём маршрут, где фразы сразу работают в дороге, отеле и кафе.';
+    case 'travel': return 'Начнём с фраз, которые сразу работают в дороге, отеле и кафе.';
     case 'words': return 'Будем брать нужные фразы дня и быстро возвращать их в речь.';
-    case 'mind': return 'Сделаем спокойный план: коротко, понятно, без ощущения «я опять отстал».';
-  }
-}
-
-function planNameForGoal(goal: PersonalPlanSetupGoal): string {
-  switch (goal) {
-    case 'series': return 'Реплика';
-    case 'everyday': return 'Диалог';
-    case 'travel': return 'Маршрут';
-    case 'words': return 'Фразы дня';
-    case 'mind': return 'Ритм';
+    case 'mind': return 'Будем заниматься спокойно: коротко, понятно, без ощущения «я опять отстал».';
   }
 }
 type OnboardingAnalyticsTags = Record<string, string | number | boolean | null>;
@@ -464,6 +446,7 @@ const OnboardingOrderContext = React.createContext<readonly OnboardingStepId[]>(
 
 function ProgressHeader({ step, onBack, light = false }: { step: CleanOnboardingStep; onBack?: () => void; light?: boolean }) {
   const enabledOrder = React.useContext(OnboardingOrderContext);
+  const lang = React.useContext(OnboardingLocaleContext);
   const { progress, total } = getOnboardingProgress(enabledOrder, step);
   const fraction = Math.max(0, Math.min(1, progress / total));
   const [trackWidth, setTrackWidth] = useState(0);
@@ -495,13 +478,13 @@ function ProgressHeader({ step, onBack, light = false }: { step: CleanOnboarding
         style={({ pressed }) => [styles.backButton, pressed && styles.pressed, !onBack && styles.hidden]}
         hitSlop={10}
         accessibilityRole="button"
-        accessibilityLabel="Назад"
+        accessibilityLabel={onboardingCopy(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
       >
         <Ionicons name="chevron-back" size={30} color={light ? '#1F2A44' : '#DCE4FF'} />
       </Pressable>
       <View
         style={[styles.progressTrack, light && styles.progressTrackLight]}
-        accessibilityLabel={`Шаг ${progress} из ${total}`}
+        accessibilityLabel={onboardingCopy(lang, { ru: `Шаг ${progress} из ${total}`, uk: `Крок ${progress} з ${total}`, es: `Paso ${progress} de ${total}`, 'pt-BR': `Etapa ${progress} de ${total}`, vi: `Bước ${progress} trên ${total}`, id: `Langkah ${progress} dari ${total}`, tr: `${total} adımın ${progress}. adımı`, pl: `Krok ${progress} z ${total}` })}
         onLayout={(event) => setTrackWidth(event.nativeEvent.layout.width)}
       >
         <Animated.View style={[StyleSheet.absoluteFillObject, { transform: [{ translateX }] }]}>
@@ -719,7 +702,7 @@ function OptionCard<T extends string | number>({
   onPress,
   testID,
 }: {
-  option: Option<T>;
+  option: LocalizedOption<T>;
   selected?: boolean;
   onPress: () => void;
   testID?: string;
@@ -753,7 +736,7 @@ function LanguageCard({
   selected,
   onPress,
 }: {
-  option: (typeof LANGUAGE_OPTIONS)[number];
+  option: Omit<(typeof LANGUAGE_OPTIONS)[number], 'title' | 'native'> & { title: string; native: string };
   selected: boolean;
   onPress: () => void;
 }) {
@@ -792,12 +775,33 @@ function LanguageCard({
  * плана», второй выход бил бы по конверсии).
  */
 const OnboardingSkipContext = React.createContext<(() => void) | null>(null);
+const OnboardingLocaleContext = React.createContext<Lang>('ru');
+
+type OnboardingCopy = Record<Lang, string>;
+
+function onboardingCopy(lang: Lang, copy: OnboardingCopy): string {
+  return triLang(lang, copy);
+}
+
+function ageAnswerCopy(lang: Lang, age: number, isAdult: boolean): string {
+  if (isAdult) {
+    return triLang(lang, {
+      ru: `Мне есть ${age}`, uk: `Мені є ${age}`, es: `Tengo ${age} años`, 'pt-BR': `Tenho ${age} anos`,
+      vi: `Tôi đã đủ ${age} tuổi`, id: `Saya sudah berusia ${age} tahun`, tr: `${age} yaşındayım`, pl: `Mam ${age} lat`,
+    });
+  }
+  return triLang(lang, {
+    ru: `Мне нет ${age}`, uk: `Мені ще немає ${age}`, es: `No tengo ${age} años`, 'pt-BR': `Não tenho ${age} anos`,
+    vi: `Tôi chưa đủ ${age} tuổi`, id: `Saya belum berusia ${age} tahun`, tr: `${age} yaşında değilim`, pl: `Nie mam jeszcze ${age} lat`,
+  });
+}
 
 /** Экран оплаты исключён намеренно: см. комментарий выше. */
 const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name'];
 
 function OnboardingSkipLink({ step, light }: { step: CleanOnboardingStep; light?: boolean }) {
   const skip = React.useContext(OnboardingSkipContext);
+  const lang = React.useContext(OnboardingLocaleContext);
   if (!skip || SKIP_HIDDEN_STEPS.includes(step)) return null;
   return (
     <Pressable
@@ -807,9 +811,9 @@ function OnboardingSkipLink({ step, light }: { step: CleanOnboardingStep; light?
       style={({ pressed }) => [styles.skipButton, pressed && styles.pressed]}
       hitSlop={8}
       accessibilityRole="button"
-      accessibilityLabel="Пропустить знакомство"
+      accessibilityLabel={onboardingCopy(lang, { ru: 'Пропустить знакомство', uk: 'Пропустити знайомство', es: 'Omitir la bienvenida', 'pt-BR': 'Pular a apresentação', vi: 'Bỏ qua phần làm quen', id: 'Lewati perkenalan', tr: 'Tanışmayı atla', pl: 'Pomiń wprowadzenie' })}
     >
-      <Text style={[styles.skipLabel, light && styles.skipLabelLight]}>Пропустить</Text>
+      <Text style={[styles.skipLabel, light && styles.skipLabelLight]}>{onboardingCopy(lang, { ru: 'Пропустить', uk: 'Пропустити', es: 'Omitir', 'pt-BR': 'Pular', vi: 'Bỏ qua', id: 'Lewati', tr: 'Atla', pl: 'Pomiń' })}</Text>
     </Pressable>
   );
 }
@@ -879,20 +883,23 @@ function ScreenFrame({
 
 function NotificationMock() {
   const isIos = Platform.OS === 'ios';
+  const lang = React.useContext(OnboardingLocaleContext);
   return (
     <View style={styles.notificationMockWrap}>
       <View style={styles.notificationMock}>
         <Text style={styles.notificationMockTitle}>
-          {isIos ? 'Приложение хочет отправлять уведомления' : 'Разрешить уведомления?'}
+          {isIos
+            ? onboardingCopy(lang, { ru: 'Приложение хочет отправлять уведомления', uk: 'Застосунок хоче надсилати сповіщення', es: 'La app quiere enviarte notificaciones', 'pt-BR': 'O app quer enviar notificações', vi: 'Ứng dụng muốn gửi thông báo', id: 'Aplikasi ingin mengirim notifikasi', tr: 'Uygulama bildirim göndermek istiyor', pl: 'Aplikacja chce wysyłać powiadomienia' })
+            : onboardingCopy(lang, { ru: 'Разрешить уведомления?', uk: 'Дозволити сповіщення?', es: '¿Permitir notificaciones?', 'pt-BR': 'Permitir notificações?', vi: 'Cho phép thông báo?', id: 'Izinkan notifikasi?', tr: 'Bildirimlere izin verilsin mi?', pl: 'Zezwolić na powiadomienia?' })}
         </Text>
         <Text style={styles.notificationMockBody}>
           {isIos
-            ? 'Уведомления могут включать напоминания, звуки и значки.'
-            : 'Мы будем напоминать о короткой практике в выбранное время.'}
+            ? onboardingCopy(lang, { ru: 'Уведомления могут включать напоминания, звуки и значки.', uk: 'Сповіщення можуть містити нагадування, звуки й значки.', es: 'Las notificaciones pueden incluir recordatorios, sonidos e insignias.', 'pt-BR': 'As notificações podem incluir lembretes, sons e emblemas.', vi: 'Thông báo có thể gồm lời nhắc, âm thanh và huy hiệu.', id: 'Notifikasi dapat berisi pengingat, suara, dan lencana.', tr: 'Bildirimler hatırlatmalar, sesler ve rozetler içerebilir.', pl: 'Powiadomienia mogą zawierać przypomnienia, dźwięki i plakietki.' })
+            : onboardingCopy(lang, { ru: 'Мы будем напоминать о короткой практике в выбранное время.', uk: 'Ми нагадаємо про коротке заняття у вибраний час.', es: 'Te recordaremos hacer una práctica corta a la hora elegida.', 'pt-BR': 'Vamos lembrar você de fazer uma prática curta no horário escolhido.', vi: 'Chúng tôi sẽ nhắc bạn luyện tập ngắn vào giờ đã chọn.', id: 'Kami akan mengingatkanmu untuk latihan singkat pada waktu yang dipilih.', tr: 'Seçtiğin saatte kısa bir pratik için hatırlatma yapacağız.', pl: 'Przypomnimy Ci o krótkim ćwiczeniu o wybranej porze.' })}
         </Text>
         <View style={styles.notificationMockActions}>
-          <Text style={styles.notificationMockMuted}>{isIos ? 'Не разрешать' : 'Не сейчас'}</Text>
-          <Text style={styles.notificationMockAllow}>Разрешить</Text>
+          <Text style={styles.notificationMockMuted}>{isIos ? onboardingCopy(lang, { ru: 'Не разрешать', uk: 'Не дозволяти', es: 'No permitir', 'pt-BR': 'Não permitir', vi: 'Không cho phép', id: 'Jangan izinkan', tr: 'İzin verme', pl: 'Nie zezwalaj' }) : onboardingCopy(lang, { ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Bây giờ không', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz' })}</Text>
+          <Text style={styles.notificationMockAllow}>{onboardingCopy(lang, { ru: 'Разрешить', uk: 'Дозволити', es: 'Permitir', 'pt-BR': 'Permitir', vi: 'Cho phép', id: 'Izinkan', tr: 'İzin ver', pl: 'Zezwól' })}</Text>
         </View>
       </View>
       <Ionicons name="arrow-up" size={42} color="#86B7FF" style={styles.notificationArrow} />
@@ -1051,7 +1058,6 @@ function PaywallPlanCard({
 function CleanOnboarding({
   onDone,
   initialLang,
-  onPersonalPlanPaywallStart,
   startAtNameStep,
 }: OnboardingProps) {
   const lang = initialLang ?? getDeviceBootstrapLocale();
@@ -1074,8 +1080,8 @@ function CleanOnboarding({
   const [source, setSource] = useState<DiscoverySource | null>(null);
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const [level, setLevel] = useState<LevelChoice | null>(null);
-  const [goal, setGoal] = useState<PersonalPlanSetupGoal | null>(null);
-  const [minutes, setMinutes] = useState<PlanMinutesChoice | null>(null);
+  const [goal, setGoal] = useState<OnboardingGoal | null>(null);
+  const [minutes, setMinutes] = useState<OnboardingMinutesChoice | null>(null);
   const [plusSelected, setPlusSelected] = useState(true);
   const [notificationBusy, setNotificationBusy] = useState(false);
   const [paywallBusy, setPaywallBusy] = useState(false);
@@ -1086,7 +1092,8 @@ function CleanOnboarding({
   const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(getEnabledOnboardingSteps);
   // зачем: оба рубильника читаются как обычные kill-switch'и и обновляются по
   // тому же событию remote_config_changed, что и список экранов — владелец
-  // выключает их из админки без релиза, живые сессии подхватывают за секунды.
+  // выключает их из админки без релиза; клиенты применяют кэш при старте/возврате
+  // и foreground-обновление не позднее примерно пяти минут.
   const [skipEnabled, setSkipEnabled] = useState(() => getRemoteBool('onboarding_skip_enabled'));
   const [welcomeSheetEnabled, setWelcomeSheetEnabled] = useState(
     () => getRemoteBool('onboarding_welcome_sheet_enabled'),
@@ -1097,7 +1104,6 @@ function CleanOnboarding({
   const selectedGoal = goal ?? 'everyday';
   const selectedMinutes = minutes ?? 10;
   const selectedLevel = level ?? 'a2';
-  const planId = useMemo<PersonalPlanId>(() => resolvePersonalPlanForGoal(selectedGoal), [selectedGoal]);
   const {
     selected: selectedBillingPlan,
     selectPlan: selectBillingPlan,
@@ -1116,8 +1122,8 @@ function CleanOnboarding({
     handlePurchase: paywallHandlePurchase,
   } = usePaywallPurchase({
     variant: 'C',
-    context: 'personal_plan',
-    source: 'onboarding_plan',
+    context: 'generic',
+    source: 'onboarding',
     lang,
     forceTrialUI: true,
   });
@@ -1224,7 +1230,7 @@ function CleanOnboarding({
         const savedTarget = SHOW_ONBOARDING_LANGUAGE_STEP ? map.get(ONBOARDING_REQUESTED_STUDY_TARGET_KEY) : 'en';
         if (savedTarget === 'en' || savedTarget === 'fr') setStudyTarget(savedTarget);
         const savedGoal = map.get(PLAN_GOAL_KEY);
-        if (GOAL_OPTIONS.some((item) => item.id === savedGoal)) setGoal(savedGoal as PersonalPlanSetupGoal);
+        if (GOAL_OPTIONS.some((item) => item.id === savedGoal)) setGoal(savedGoal as OnboardingGoal);
         const savedLevel = map.get(PLAN_LEVEL_KEY);
         if (LEVEL_OPTIONS.some((item) => item.id === savedLevel)) setLevel(savedLevel as LevelChoice);
         const savedMinutes = Number(map.get(PLAN_MINUTES_KEY));
@@ -1368,13 +1374,13 @@ function CleanOnboarding({
     trackOnboarding('onboarding_plan_level_select', { level: next });
   }, []);
 
-  const chooseGoal = useCallback((next: PersonalPlanSetupGoal) => {
+  const chooseGoal = useCallback((next: OnboardingGoal) => {
     setGoal(next);
     void AsyncStorage.setItem(PLAN_GOAL_KEY, next).catch(() => {});
     trackOnboarding('onboarding_plan_goal_select', { goal: next });
   }, []);
 
-  const chooseMinutes = useCallback((next: PlanMinutesChoice) => {
+  const chooseMinutes = useCallback((next: OnboardingMinutesChoice) => {
     setMinutes(next);
     void AsyncStorage.setItem(PLAN_MINUTES_KEY, String(next)).catch(() => {});
     trackOnboarding('onboarding_plan_minutes_select', { minutes: next });
@@ -1398,12 +1404,12 @@ function CleanOnboarding({
       }
       if (blocked) {
         Alert.alert(
-          'Напоминание не включилось',
-          'Разрешение на уведомления отключено. Включить его можно в настройках телефона.',
+          onboardingCopy(lang, { ru: 'Напоминание не включилось', uk: 'Нагадування не ввімкнулося', es: 'No se activó el recordatorio', 'pt-BR': 'Não foi possível ativar o lembrete', vi: 'Không bật được lời nhắc', id: 'Pengingat tidak dapat diaktifkan', tr: 'Hatırlatıcı açılamadı', pl: 'Nie udało się włączyć przypomnienia' }),
+          onboardingCopy(lang, { ru: 'Разрешение на уведомления отключено. Включить его можно в настройках телефона.', uk: 'Дозвіл на сповіщення вимкнено. Його можна ввімкнути в налаштуваннях телефону.', es: 'El permiso de notificaciones está desactivado. Puedes activarlo en los ajustes del teléfono.', 'pt-BR': 'A permissão para notificações está desativada. Você pode ativá-la nos ajustes do telefone.', vi: 'Quyền thông báo đang tắt. Bạn có thể bật trong phần cài đặt điện thoại.', id: 'Izin notifikasi dinonaktifkan. Kamu dapat mengaktifkannya di pengaturan ponsel.', tr: 'Bildirim izni kapalı. Telefon ayarlarından açabilirsin.', pl: 'Uprawnienie do powiadomień jest wyłączone. Możesz je włączyć w ustawieniach telefonu.' }),
           [
-            { text: 'Позже', style: 'cancel', onPress: continueAfterNotificationDialog },
+            { text: onboardingCopy(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' }), style: 'cancel', onPress: continueAfterNotificationDialog },
             {
-              text: 'Открыть настройки',
+              text: onboardingCopy(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', 'pt-BR': 'Abrir configurações', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' }),
               onPress: () => {
                 Linking.openSettings().catch(() => {});
                 go('plusBenefits');
@@ -1425,17 +1431,9 @@ function CleanOnboarding({
     trackOnboarding('onboarding_plan_billing_select', { plan: next });
   }, [selectBillingPlan]);
 
-  const queueSelectedPlan = useCallback(async (billing: PaywallPlan = selectedBillingPlan) => {
-    await queuePendingPersonalPlanActivation({
-      planId,
-      minutesPerDay: selectedMinutes,
-      source: 'onboarding',
-    });
-    await AsyncStorage.multiSet([
-      [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
-      [PLAN_BILLING_KEY, billing],
-    ]);
-  }, [planId, selectedBillingPlan, selectedMinutes]);
+  const persistSelectedBillingPlan = useCallback(async (billing: PaywallPlan = selectedBillingPlan) => {
+    await AsyncStorage.setItem(PLAN_BILLING_KEY, billing);
+  }, [selectedBillingPlan]);
 
   // Выбор Free → сразу к имени. Выбор Plus → сначала лёгкий экран сравнения выгод
   // (planComparison), и только с него — к ценам. Подготовку плана и трекинг пейвола
@@ -1451,15 +1449,14 @@ function CleanOnboarding({
     setPaywallBusy(true);
     try {
       await runOnboardingTransitionEffects(decision, paywallTransitionBusyRef, {
-        createPendingPlan: () => queueSelectedPlan('yearly'),
-        preparePaywall: () => trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: 'yearly' }),
-        trackPaywallView: () => trackOnboardingPlanPaywallView({ planId, minutes: selectedMinutes, plan: 'yearly' }),
+        preparePaywall: () => persistSelectedBillingPlan('yearly').then(() => trackOnboardingPlanTrialCta({ minutes: selectedMinutes, plan: 'yearly' })),
+        trackPaywallView: () => trackOnboardingPlanPaywallView({ minutes: selectedMinutes, plan: 'yearly' }),
       });
       go(decision.destination);
     } finally {
       setPaywallBusy(false);
     }
-  }, [enabledOrder, go, paywallBusy, planId, plusSelected, queueSelectedPlan, selectedMinutes]);
+  }, [enabledOrder, go, paywallBusy, persistSelectedBillingPlan, plusSelected, selectedMinutes]);
 
   const continueFromPlanComparison = useCallback(async () => {
     if (paywallBusy || paywallTransitionBusyRef.current) return;
@@ -1467,33 +1464,26 @@ function CleanOnboarding({
     try {
       const decision = decideOnboardingTransition(enabledOrder, 'planComparison');
       await runOnboardingTransitionEffects(decision, paywallTransitionBusyRef, {
-        createPendingPlan: () => queueSelectedPlan('yearly'),
-        preparePaywall: () => trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: 'yearly' }),
-        trackPaywallView: () => trackOnboardingPlanPaywallView({ planId, minutes: selectedMinutes, plan: 'yearly' }),
+        preparePaywall: () => persistSelectedBillingPlan('yearly').then(() => trackOnboardingPlanTrialCta({ minutes: selectedMinutes, plan: 'yearly' })),
+        trackPaywallView: () => trackOnboardingPlanPaywallView({ minutes: selectedMinutes, plan: 'yearly' }),
       });
       go(decision.destination);
     } finally {
       setPaywallBusy(false);
     }
-  }, [enabledOrder, go, paywallBusy, planId, queueSelectedPlan, selectedMinutes]);
+  }, [enabledOrder, go, paywallBusy, persistSelectedBillingPlan, selectedMinutes]);
 
   const continueFromOnboardingPaywall = useCallback(async () => {
     if (paywallBusy || paywallPurchasing) return;
     setPaywallBusy(true);
     try {
-      // Ставим план в очередь активации ДО покупки: после успеха хук вызывает
-      // finishPersonalPlanActivationFlow, который читает pending-nickname ключ
-      // (его выставляет queueSelectedPlan) и возвращает в онбординг на шаг «Имя».
-      await queueSelectedPlan(selectedBillingPlan);
-      trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: selectedBillingPlan });
-      // Реальная покупка выбранного тарифа. Хук сам обрабатывает отмену
-      // (userCancelled — тихо остаёмся на шаге), ошибку (свой Alert) и
-      // навигацию при успехе (finishPersonalPlanActivationFlow → шаг «Имя»).
+      await persistSelectedBillingPlan(selectedBillingPlan);
+      trackOnboardingPlanTrialCta({ minutes: selectedMinutes, plan: selectedBillingPlan });
       await paywallHandlePurchase();
     } finally {
       setPaywallBusy(false);
     }
-  }, [paywallBusy, paywallHandlePurchase, paywallPurchasing, planId, queueSelectedPlan, selectedBillingPlan, selectedMinutes]);
+  }, [paywallBusy, paywallHandlePurchase, paywallPurchasing, persistSelectedBillingPlan, selectedBillingPlan, selectedMinutes]);
 
   const finish = useCallback(async () => {
     if (finishingRef.current) return;
@@ -1580,7 +1570,7 @@ function CleanOnboarding({
       }
       onDone();
       void resumePendingGeneratedNickname();
-      void AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
+      void AsyncStorage.removeItem(STEP_KEY).catch(() => {});
       void recordConsentToCloud().catch(() => null);
       void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
     } finally {
@@ -1632,12 +1622,14 @@ function CleanOnboarding({
                   нашлось — на этой развилке заголовок меняется на нейтральный, иначе
                   экран сам себе противоречит. */}
               {authMode
-                ? (unknownAccountEmail !== null ? 'Начнём с чистого листа' : 'Вернём твой прогресс')
-                : 'От первых слов до свободной речи.'}
+                ? (unknownAccountEmail !== null
+                  ? onboardingCopy(lang, { ru: 'Начнём с чистого листа', uk: 'Почнімо з чистого аркуша', es: 'Empecemos desde cero', 'pt-BR': 'Vamos começar do zero', vi: 'Hãy bắt đầu lại từ đầu', id: 'Mari mulai dari awal', tr: 'Sıfırdan başlayalım', pl: 'Zacznijmy od nowa' })
+                  : onboardingCopy(lang, { ru: 'Вернём твой прогресс', uk: 'Повернемо ваш прогрес', es: 'Recuperemos tu progreso', 'pt-BR': 'Vamos recuperar seu progresso', vi: 'Khôi phục tiến độ của bạn', id: 'Mari pulihkan progresmu', tr: 'İlerlemenizi geri getirelim', pl: 'Odzyskajmy Twój postęp' }))
+                : onboardingCopy(lang, { ru: 'От первых слов до свободной речи.', uk: 'Від перших слів до вільного мовлення.', es: 'De las primeras palabras a hablar con soltura.', 'pt-BR': 'Das primeiras palavras à fala fluente.', vi: 'Từ những từ đầu tiên đến giao tiếp tự tin.', id: 'Dari kata pertama hingga berbicara lancar.', tr: 'İlk kelimelerden akıcı konuşmaya.', pl: 'Od pierwszych słów do swobodnej mowy.' })}
             </Text>
             {authMode ? null : (
               <FadeUp delay={520}>
-                <Text style={styles.welcomeSubtitle}>Живые фразы · короткие сессии · твой маршрут</Text>
+                <Text style={styles.welcomeSubtitle}>{onboardingCopy(lang, { ru: 'Живые фразы · короткие сессии · заметный прогресс', uk: 'Живі фрази · короткі сесії · помітний прогрес', es: 'Frases reales · sesiones cortas · progreso visible', 'pt-BR': 'Frases reais · sessões curtas · progresso visível', vi: 'Cụm từ thực tế · phiên ngắn · tiến bộ rõ rệt', id: 'Frasa nyata · sesi singkat · kemajuan nyata', tr: 'Canlı ifadeler · kısa oturumlar · gözle görülür ilerleme', pl: 'Żywe zwroty · krótkie sesje · widoczny postęp' })}</Text>
               </FadeUp>
             )}
           </View>
@@ -1646,16 +1638,16 @@ function CleanOnboarding({
             <View style={styles.authButtons}>
               <Text style={styles.unknownAccountText}>
                 {unknownAccountEmail
-                  ? `Аккаунта ${unknownAccountEmail} у нас нет.`
-                  : 'Такого аккаунта у нас нет.'}
+                  ? onboardingCopy(lang, { ru: `Аккаунта ${unknownAccountEmail} у нас нет.`, uk: `У нас немає облікового запису ${unknownAccountEmail}.`, es: `No encontramos la cuenta ${unknownAccountEmail}.`, 'pt-BR': `Não encontramos a conta ${unknownAccountEmail}.`, vi: `Chúng tôi không tìm thấy tài khoản ${unknownAccountEmail}.`, id: `Kami tidak menemukan akun ${unknownAccountEmail}.`, tr: `${unknownAccountEmail} hesabını bulamadık.`, pl: `Nie znaleźliśmy konta ${unknownAccountEmail}.` })
+                  : onboardingCopy(lang, { ru: 'Такого аккаунта у нас нет.', uk: 'Такого облікового запису немає.', es: 'No encontramos esa cuenta.', 'pt-BR': 'Não encontramos essa conta.', vi: 'Chúng tôi không tìm thấy tài khoản này.', id: 'Kami tidak menemukan akun tersebut.', tr: 'Böyle bir hesap bulunamadı.', pl: 'Nie znaleźliśmy takiego konta.' })}
               </Text>
               <PrimaryButton
-                label="Создать аккаунт"
+                label={onboardingCopy(lang, { ru: 'Создать аккаунт', uk: 'Створити обліковий запис', es: 'Crear cuenta', 'pt-BR': 'Criar conta', vi: 'Tạo tài khoản', id: 'Buat akun', tr: 'Hesap oluştur', pl: 'Utwórz konto' })}
                 onPress={continueAsNewAccount}
                 testID="onboarding-unknown-account-create"
               />
               <SecondaryButton
-                label="Войти другим способом"
+                label={onboardingCopy(lang, { ru: 'Войти другим способом', uk: 'Увійти іншим способом', es: 'Entrar de otra forma', 'pt-BR': 'Entrar de outra forma', vi: 'Đăng nhập bằng cách khác', id: 'Masuk dengan cara lain', tr: 'Başka bir yöntemle giriş yap', pl: 'Zaloguj się inaczej' })}
                 onPress={() => setUnknownAccountEmail(null)}
                 testID="onboarding-unknown-account-retry"
               />
@@ -1664,7 +1656,7 @@ function CleanOnboarding({
             <View style={styles.authButtons}>
               {googleAvailable ? (
                 <GoogleSignInButton
-                  label="Войти через Google"
+                  label={onboardingCopy(lang, { ru: 'Войти через Google', uk: 'Увійти через Google', es: 'Entrar con Google', 'pt-BR': 'Entrar com Google', vi: 'Đăng nhập bằng Google', id: 'Masuk dengan Google', tr: 'Google ile giriş yap', pl: 'Zaloguj przez Google' })}
                   variant="dark"
                   loading={authLoading === 'google'}
                   disabled={!!authLoading}
@@ -1673,26 +1665,26 @@ function CleanOnboarding({
               ) : null}
               {appleAvailable ? (
                 <AppleSignInButton
-                  label="Войти через Apple"
+                  label={onboardingCopy(lang, { ru: 'Войти через Apple', uk: 'Увійти через Apple', es: 'Entrar con Apple', 'pt-BR': 'Entrar com Apple', vi: 'Đăng nhập bằng Apple', id: 'Masuk dengan Apple', tr: 'Apple ile giriş yap', pl: 'Zaloguj przez Apple' })}
                   loading={authLoading === 'apple'}
                   disabled={!!authLoading}
                   onPress={() => { void handleAuth('apple'); }}
                 />
               ) : null}
               {!googleAvailable && !appleAvailable ? (
-                <Text style={styles.errorText}>Вход через Google или Apple недоступен на этом устройстве.</Text>
+                <Text style={styles.errorText}>{onboardingCopy(lang, { ru: 'Вход через Google или Apple недоступен на этом устройстве.', uk: 'Вхід через Google або Apple недоступний на цьому пристрої.', es: 'El inicio de sesión con Google o Apple no está disponible en este dispositivo.', 'pt-BR': 'O login com Google ou Apple não está disponível neste dispositivo.', vi: 'Không thể đăng nhập bằng Google hoặc Apple trên thiết bị này.', id: 'Login dengan Google atau Apple tidak tersedia di perangkat ini.', tr: 'Bu cihazda Google veya Apple ile giriş kullanılamıyor.', pl: 'Logowanie przez Google lub Apple nie jest dostępne na tym urządzeniu.' })}</Text>
               ) : null}
               {authError ? <Text style={styles.errorText}>{authError}</Text> : null}
               <SecondaryButton
-                label="Назад"
+                label={onboardingCopy(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
                 onPress={() => { setAuthMode(false); setAuthError(null); }}
                 testID="onboarding-auth-back"
               />
             </View>
           ) : (
             <View style={styles.welcomeButtons}>
-              <PrimaryButton label="Начать" onPress={() => go('source')} testID="onboarding-start" />
-              <SecondaryButton label="У меня уже есть аккаунт" onPress={() => setAuthMode(true)} testID="onboarding-existing-account" />
+              <PrimaryButton label={onboardingCopy(lang, { ru: 'Начать', uk: 'Почати', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij' })} onPress={() => go('source')} testID="onboarding-start" />
+              <SecondaryButton label={onboardingCopy(lang, { ru: 'У меня уже есть аккаунт', uk: 'У мене вже є обліковий запис', es: 'Ya tengo una cuenta', 'pt-BR': 'Já tenho uma conta', vi: 'Tôi đã có tài khoản', id: 'Saya sudah punya akun', tr: 'Zaten hesabım var', pl: 'Mam już konto' })} onPress={() => setAuthMode(true)} testID="onboarding-existing-account" />
             </View>
           )}
         </View>
@@ -1703,14 +1695,14 @@ function CleanOnboarding({
   const renderSource = () => (
     <ScreenFrame
       step="source"
-      title="Как ты узнал о нас?"
+      title={onboardingCopy(lang, { ru: 'Как ты узнал о нас?', uk: 'Як ви дізналися про нас?', es: '¿Cómo nos conociste?', 'pt-BR': 'Como você nos conheceu?', vi: 'Bạn biết đến chúng tôi bằng cách nào?', id: 'Bagaimana kamu mengetahui kami?', tr: 'Bizi nasıl duydunuz?', pl: 'Skąd się o nas dowiedziałeś?' })}
       onBack={back}
     >
       <View style={styles.optionList}>
         {DISCOVERY_OPTIONS.map((item) => (
           <OptionCard
             key={item.id}
-            option={item}
+            option={{ ...item, title: onboardingCopy(lang, item.title) }}
             selected={source === item.id}
             testID={`onboarding-source-${item.id}`}
             onPress={() => chooseSource(item.id)}
@@ -1723,15 +1715,15 @@ function CleanOnboarding({
   const renderLanguage = () => (
     <ScreenFrame
       step="language"
-      title="Какой язык учим?"
+      title={onboardingCopy(lang, { ru: 'Какой язык учим?', uk: 'Яку мову вивчаємо?', es: '¿Qué idioma aprendemos?', 'pt-BR': 'Qual idioma vamos aprender?', vi: 'Bạn muốn học ngôn ngữ nào?', id: 'Bahasa apa yang akan dipelajari?', tr: 'Hangi dili öğreniyoruz?', pl: 'Jakiego języka się uczymy?' })}
       onBack={back}
-      footer={<PrimaryButton label="Выбрать язык" onPress={() => go('level')} testID="onboarding-language-continue" />}
+      footer={<PrimaryButton label={onboardingCopy(lang, { ru: 'Выбрать язык', uk: 'Обрати мову', es: 'Elegir idioma', 'pt-BR': 'Escolher idioma', vi: 'Chọn ngôn ngữ', id: 'Pilih bahasa', tr: 'Dil seç', pl: 'Wybierz język' })} onPress={() => go('level')} testID="onboarding-language-continue" />}
     >
       <View style={styles.optionList}>
         {LANGUAGE_OPTIONS.map((item) => (
           <LanguageCard
             key={item.id}
-            option={item}
+            option={{ ...item, title: onboardingCopy(lang, item.title), native: onboardingCopy(lang, item.native) }}
             selected={studyTarget === item.id}
             onPress={() => { void chooseStudyTarget(item.id); }}
           />
@@ -1745,13 +1737,13 @@ function CleanOnboarding({
       step="level"
       title={level ? reactionForLevel(level, studyTarget) : `Сколько ${targetLabel(studyTarget)} ты уже знаешь?`}
       onBack={back}
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('goal')} disabled={!level} testID="onboarding-level-continue" />}
+      footer={<PrimaryButton label={onboardingCopy(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })} onPress={() => go('goal')} disabled={!level} testID="onboarding-level-continue" />}
     >
       <View style={styles.optionList}>
         {LEVEL_OPTIONS.map((item) => (
           <OptionCard
             key={item.id}
-            option={item}
+            option={{ ...item, title: onboardingCopy(lang, item.title) }}
             selected={level === item.id}
             testID={`onboarding-level-${item.id}`}
             onPress={() => chooseLevel(item.id)}
@@ -1766,13 +1758,13 @@ function CleanOnboarding({
       step="goal"
       title={goal ? reactionForGoal(goal) : `Зачем тебе ${targetLabel(studyTarget, 'accusative')}?`}
       onBack={back}
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('minutes')} disabled={!goal} testID="onboarding-goal-continue" />}
+      footer={<PrimaryButton label={onboardingCopy(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })} onPress={() => go('minutes')} disabled={!goal} testID="onboarding-goal-continue" />}
     >
       <View style={styles.optionList}>
         {GOAL_OPTIONS.map((item) => (
           <OptionCard
             key={item.id}
-            option={item}
+            option={{ ...item, title: onboardingCopy(lang, item.title) }}
             selected={goal === item.id}
             testID={`onboarding-goal-${item.id}`}
             onPress={() => chooseGoal(item.id)}
@@ -1785,15 +1777,15 @@ function CleanOnboarding({
   const renderMinutes = () => (
     <ScreenFrame
       step="minutes"
-      title="Сколько времени в день?"
+      title={onboardingCopy(lang, { ru: 'Сколько времени в день?', uk: 'Скільки часу на день?', es: '¿Cuánto tiempo al día?', 'pt-BR': 'Quanto tempo por dia?', vi: 'Mỗi ngày bao nhiêu thời gian?', id: 'Berapa waktu per hari?', tr: 'Günde ne kadar zaman?', pl: 'Ile czasu dziennie?' })}
       onBack={back}
-      footer={<PrimaryButton label="К плану" onPress={() => go('aha')} disabled={!minutes} testID="onboarding-minutes-continue" />}
+      footer={<PrimaryButton label={onboardingCopy(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })} onPress={() => go('aha')} disabled={!minutes} testID="onboarding-minutes-continue" />}
     >
       <View style={styles.optionList}>
         {MINUTE_OPTIONS.map((item) => (
           <OptionCard
             key={item.id}
-            option={item}
+            option={{ ...item, title: onboardingCopy(lang, item.title) }}
             selected={minutes === item.id}
             testID={`onboarding-minutes-${item.id}`}
             onPress={() => chooseMinutes(item.id)}
@@ -1817,11 +1809,11 @@ function CleanOnboarding({
   const renderNotifications = () => (
     <ScreenFrame
       step="notifications"
-      title="Напомнить о занятии"
+      title={onboardingCopy(lang, { ru: 'Напомнить о занятии', uk: 'Нагадувати про заняття', es: 'Recordarme estudiar', 'pt-BR': 'Lembrar de estudar', vi: 'Nhắc tôi học', id: 'Ingatkan untuk belajar', tr: 'Çalışmayı hatırlat', pl: 'Przypomnij o nauce' })}
       onBack={back}
       footer={
         <>
-          <PrimaryButton label="Включить напоминание" onPress={requestPracticeNotification} loading={notificationBusy} testID="onboarding-notifications-allow" />
+          <PrimaryButton label={onboardingCopy(lang, { ru: 'Включить напоминание', uk: 'Увімкнути нагадування', es: 'Activar recordatorio', 'pt-BR': 'Ativar lembrete', vi: 'Bật lời nhắc', id: 'Aktifkan pengingat', tr: 'Hatırlatıcıyı aç', pl: 'Włącz przypomnienie' })} onPress={requestPracticeNotification} loading={notificationBusy} testID="onboarding-notifications-allow" />
           <Pressable
             testID="onboarding-notifications-skip"
             onPressIn={() => { void hapticTap(); }}
@@ -1829,7 +1821,7 @@ function CleanOnboarding({
             style={styles.textButton}
             accessibilityRole="button"
           >
-            <Text style={styles.textButtonLabel}>Не сейчас</Text>
+            <Text style={styles.textButtonLabel}>{onboardingCopy(lang, { ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Bây giờ không', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz' })}</Text>
           </Pressable>
         </>
       }
@@ -1842,9 +1834,9 @@ function CleanOnboarding({
   const renderStartMode = () => (
     <ScreenFrame
       step="startMode"
-      title="Как хочешь начать?"
+      title={onboardingCopy(lang, { ru: 'Как хочешь начать?', uk: 'Як хочете почати?', es: '¿Cómo quieres empezar?', 'pt-BR': 'Como você quer começar?', vi: 'Bạn muốn bắt đầu thế nào?', id: 'Bagaimana kamu ingin memulai?', tr: 'Nasıl başlamak istersiniz?', pl: 'Jak chcesz zacząć?' })}
       onBack={back}
-      footer={<PrimaryButton label="Продолжить" onPress={openPaywallOrName} loading={paywallBusy} testID="onboarding-start-mode-continue" />}
+      footer={<PrimaryButton label={onboardingCopy(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })} onPress={openPaywallOrName} loading={paywallBusy} testID="onboarding-start-mode-continue" />}
     >
       <View style={styles.optionList}>
         <Pressable
@@ -1854,7 +1846,7 @@ function CleanOnboarding({
           style={({ pressed }) => [styles.modeCard, plusSelected && styles.modeCardSelected, pressed && styles.pressed]}
         >
           <Image source={ONBOARDING_ASSETS.startPlus} style={styles.modeAsset} resizeMode="contain" />
-          <View style={styles.recommendedBadge}><Text style={styles.recommendedText}>Рекомендую</Text></View>
+          <View style={styles.recommendedBadge}><Text style={styles.recommendedText}>{onboardingCopy(lang, { ru: 'Рекомендую', uk: 'Рекомендую', es: 'Recomendado', 'pt-BR': 'Recomendado', vi: 'Đề xuất', id: 'Rekomendasi', tr: 'Önerilen', pl: 'Polecane' })}</Text></View>
           <Text style={styles.modeTitle}>Phraseman Plus</Text>
         </Pressable>
         <Pressable
@@ -1864,7 +1856,7 @@ function CleanOnboarding({
           style={({ pressed }) => [styles.modeCard, !plusSelected && styles.modeCardSelected, pressed && styles.pressed]}
         >
           <Image source={ONBOARDING_ASSETS.startFree} style={styles.modeAsset} resizeMode="contain" />
-          <Text style={styles.modeTitle}>Начать бесплатно</Text>
+          <Text style={styles.modeTitle}>{onboardingCopy(lang, { ru: 'Начать бесплатно', uk: 'Почати безкоштовно', es: 'Empezar gratis', 'pt-BR': 'Começar grátis', vi: 'Bắt đầu miễn phí', id: 'Mulai gratis', tr: 'Ücretsiz başla', pl: 'Zacznij za darmo' })}</Text>
         </Pressable>
       </View>
     </ScreenFrame>
@@ -1873,19 +1865,19 @@ function CleanOnboarding({
   const renderPlusBenefits = () => (
     <ScreenFrame
       step="plusBenefits"
-      title="Через 3 месяца по твоему маршруту ты сможешь:"
+      title={onboardingCopy(lang, { ru: 'Через 3 месяца регулярной практики ты сможешь:', uk: 'За 3 місяці регулярної практики ви зможете:', es: 'Después de 3 meses de práctica regular podrás:', 'pt-BR': 'Após 3 meses de prática regular, você poderá:', vi: 'Sau 3 tháng luyện tập đều đặn, bạn có thể:', id: 'Setelah 3 bulan latihan rutin, kamu akan bisa:', tr: '3 aylık düzenli pratikten sonra şunları yapabileceksiniz:', pl: 'Po 3 miesiącach regularnej praktyki będziesz mógł:' })}
       onBack={back}
-      footer={<PrimaryButton label="Хочу так" onPress={() => go('startMode')} testID="onboarding-plus-benefits-continue" />}
+      footer={<PrimaryButton label={onboardingCopy(lang, { ru: 'Хочу так', uk: 'Хочу так', es: 'Lo quiero', 'pt-BR': 'Quero isso', vi: 'Tôi muốn vậy', id: 'Saya mau', tr: 'Bunu istiyorum', pl: 'Chcę tak' })} onPress={() => go('startMode')} testID="onboarding-plus-benefits-continue" />}
     >
       <View style={styles.plusBenefitList}>
         {PLUS_THREE_MONTH_PROMISES.map((item, index) => (
           <PlusBenefitRow
-            key={item.title}
+            key={item.title.ru}
             index={index}
             icon={index === 0 ? 'chatbubble-ellipses-outline' : index === 1 ? 'volume-high-outline' : 'refresh-outline'}
-            title={item.title}
-            body={item.body}
-            asset={index === 0 ? ONBOARDING_ASSETS.benefitPlan : index === 1 ? ONBOARDING_ASSETS.benefitSpeech : ONBOARDING_ASSETS.benefitRepeat}
+            title={onboardingCopy(lang, item.title)}
+            body={onboardingCopy(lang, item.body)}
+            asset={index === 0 ? ONBOARDING_ASSETS.benefitFlow : index === 1 ? ONBOARDING_ASSETS.benefitSpeech : ONBOARDING_ASSETS.benefitRepeat}
           />
         ))}
       </View>
@@ -1897,13 +1889,13 @@ function CleanOnboarding({
   const renderPlanComparison = () => (
     <ScreenFrame
       step="planComparison"
-      title="С Plus открыто всё"
+      title={onboardingCopy(lang, { ru: 'С Plus открыто всё', uk: 'З Plus відкрито все', es: 'Con Plus todo está abierto', 'pt-BR': 'Com o Plus, tudo fica liberado', vi: 'Plus mở khóa mọi thứ', id: 'Dengan Plus, semuanya terbuka', tr: 'Plus ile her şey açık', pl: 'Z Plusem wszystko jest odblokowane' })}
       onBack={back}
       light
       plainTitle
-      footer={<PrimaryButton label="Хочу так" onPress={() => void continueFromPlanComparison()} loading={paywallBusy} testID="onboarding-plan-comparison-continue" />}
+      footer={<PrimaryButton label={onboardingCopy(lang, { ru: 'Хочу так', uk: 'Хочу так', es: 'Lo quiero', 'pt-BR': 'Quero isso', vi: 'Tôi muốn vậy', id: 'Saya mau', tr: 'Bunu istiyorum', pl: 'Chcę tak' })} onPress={() => void continueFromPlanComparison()} loading={paywallBusy} testID="onboarding-plan-comparison-continue" />}
     >
-      <Text style={styles.cmpSubtitle}>Вот что добавится к бесплатному</Text>
+      <Text style={styles.cmpSubtitle}>{onboardingCopy(lang, { ru: 'Вот что добавится к бесплатному', uk: 'Ось що додасться до безкоштовного доступу', es: 'Esto es lo que se añade al plan gratuito', 'pt-BR': 'Veja o que se soma ao plano gratuito', vi: 'Đây là những gì được thêm vào bản miễn phí', id: 'Inilah yang ditambahkan ke paket gratis', tr: 'Ücretsiz plana bunlar eklenir', pl: 'Oto, co dochodzi do wersji darmowej' })}</Text>
       <View style={styles.cmpHeaderRow}>
         <View style={styles.cmpLabelCell} />
         <Text style={styles.cmpHeaderFree}>FREE</Text>
@@ -1911,7 +1903,7 @@ function CleanOnboarding({
       </View>
       <View style={styles.cmpList}>
         {PLAN_COMPARISON_BENEFITS.map((item, index) => (
-          <PlanComparisonRow key={item.title} index={index} icon={item.icon} title={item.title} />
+          <PlanComparisonRow key={item.icon} index={index} icon={item.icon} title={onboardingCopy(lang, item.title)} />
         ))}
       </View>
     </ScreenFrame>
@@ -1922,21 +1914,21 @@ function CleanOnboarding({
     // и заметным ценовым элементом. Поэтому у «Года» КРУПНО показываем полную цену
     // за год ($24.99 в год), а расчётную цену за месяц ($2.08 / мес) — мелкой
     // подписью снизу. Для «Месяца» списываемая сумма и есть месячная цена.
-    const yearlyLabel = yearlyPrice ? `${yearlyPrice} в год` : 'Год';
-    const yearlySubLabel = yearlyPerMonth ? `${yearlyPerMonth} / мес` : undefined;
-    const monthlyLabel = monthlyPrice ? `${monthlyPrice} / мес` : 'Месяц';
-    const lifetimeLabel = lifetimePrice || (lifetimeAvailable ? 'Разовая покупка' : 'Разовый доступ');
+    const yearlyLabel = yearlyPrice ? onboardingCopy(lang, { ru: `${yearlyPrice} в год`, uk: `${yearlyPrice} на рік`, es: `${yearlyPrice} al año`, 'pt-BR': `${yearlyPrice} por ano`, vi: `${yearlyPrice} mỗi năm`, id: `${yearlyPrice} per tahun`, tr: `${yearlyPrice} / yıl`, pl: `${yearlyPrice} rocznie` }) : onboardingCopy(lang, { ru: 'Год', uk: 'Рік', es: 'Año', 'pt-BR': 'Ano', vi: 'Năm', id: 'Tahun', tr: 'Yıl', pl: 'Rok' });
+    const yearlySubLabel = yearlyPerMonth ? onboardingCopy(lang, { ru: `${yearlyPerMonth} / мес`, uk: `${yearlyPerMonth} / міс`, es: `${yearlyPerMonth} / mes`, 'pt-BR': `${yearlyPerMonth} / mês`, vi: `${yearlyPerMonth} / tháng`, id: `${yearlyPerMonth} / bln`, tr: `${yearlyPerMonth} / ay`, pl: `${yearlyPerMonth} / mies.` }) : undefined;
+    const monthlyLabel = monthlyPrice ? onboardingCopy(lang, { ru: `${monthlyPrice} / мес`, uk: `${monthlyPrice} / міс`, es: `${monthlyPrice} / mes`, 'pt-BR': `${monthlyPrice} / mês`, vi: `${monthlyPrice} / tháng`, id: `${monthlyPrice} / bln`, tr: `${monthlyPrice} / ay`, pl: `${monthlyPrice} / mies.` }) : onboardingCopy(lang, { ru: 'Месяц', uk: 'Місяць', es: 'Mes', 'pt-BR': 'Mês', vi: 'Tháng', id: 'Bulan', tr: 'Ay', pl: 'Miesiąc' });
+    const lifetimeLabel = lifetimePrice || (lifetimeAvailable ? onboardingCopy(lang, { ru: 'Разовая покупка', uk: 'Разова покупка', es: 'Compra única', 'pt-BR': 'Compra única', vi: 'Mua một lần', id: 'Pembelian sekali', tr: 'Tek seferlik satın alma', pl: 'Zakup jednorazowy' }) : onboardingCopy(lang, { ru: 'Разовый доступ', uk: 'Разовий доступ', es: 'Acceso único', 'pt-BR': 'Acesso único', vi: 'Truy cập một lần', id: 'Akses sekali', tr: 'Tek seferlik erişim', pl: 'Dostęp jednorazowy' }));
     return (
       <ScreenFrame
         step="onboardingPaywall"
-        title="Открой полный доступ Phraseman Plus"
+        title={onboardingCopy(lang, { ru: 'Открой полный доступ Phraseman Plus', uk: 'Відкрийте повний доступ Phraseman Plus', es: 'Desbloquea todo Phraseman Plus', 'pt-BR': 'Desbloqueie o acesso completo ao Phraseman Plus', vi: 'Mở khóa toàn bộ Phraseman Plus', id: 'Buka akses penuh Phraseman Plus', tr: 'Phraseman Plus’ın tüm erişimini açın', pl: 'Odblokuj pełny dostęp do Phraseman Plus' })}
         onBack={back}
         light
         plainTitle
         footer={
           <>
             <PrimaryButton
-              label={paywallOfferingsFailed ? 'Повторить' : 'Продолжить'}
+              label={paywallOfferingsFailed ? onboardingCopy(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }) : onboardingCopy(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
               onPress={() => {
                 if (paywallOfferingsFailed) { reloadOfferings(); return; }
                 void continueFromOnboardingPaywall();
@@ -1954,7 +1946,7 @@ function CleanOnboarding({
                 disabled={paywallRestoring}
                 accessibilityRole="button"
               >
-                <Text style={styles.paywallFooterLink}>{paywallRestoring ? 'Восстанавливаем...' : 'Восстановить'}</Text>
+                <Text style={styles.paywallFooterLink}>{paywallRestoring ? onboardingCopy(lang, { ru: 'Восстанавливаем...', uk: 'Відновлюємо...', es: 'Restaurando...', 'pt-BR': 'Restaurando...', vi: 'Đang khôi phục...', id: 'Memulihkan...', tr: 'Geri yükleniyor...', pl: 'Przywracanie...' }) : onboardingCopy(lang, { ru: 'Восстановить', uk: 'Відновити', es: 'Restaurar', 'pt-BR': 'Restaurar', vi: 'Khôi phục', id: 'Pulihkan', tr: 'Geri yükle', pl: 'Przywróć' })}</Text>
               </Pressable>
               <Text style={styles.paywallFooterDot}>·</Text>
               <Pressable
@@ -1963,7 +1955,7 @@ function CleanOnboarding({
                 onPress={() => go('name')}
                 accessibilityRole="button"
               >
-                <Text style={styles.paywallFooterLink}>Продолжить бесплатно</Text>
+                <Text style={styles.paywallFooterLink}>{onboardingCopy(lang, { ru: 'Продолжить бесплатно', uk: 'Продовжити безкоштовно', es: 'Seguir gratis', 'pt-BR': 'Continuar grátis', vi: 'Tiếp tục miễn phí', id: 'Lanjut gratis', tr: 'Ücretsiz devam et', pl: 'Kontynuuj za darmo' })}</Text>
               </Pressable>
             </View>
           </>
@@ -1972,10 +1964,10 @@ function CleanOnboarding({
         <View style={styles.paywallPlanList}>
           <PaywallPlanCard
             plan="yearly"
-            title="Год"
-            price={paywallLoading ? 'Загрузка цены...' : yearlyLabel}
+            title={onboardingCopy(lang, { ru: 'Год', uk: 'Рік', es: 'Año', 'pt-BR': 'Ano', vi: 'Năm', id: 'Tahun', tr: 'Yıl', pl: 'Rok' })}
+            price={paywallLoading ? onboardingCopy(lang, { ru: 'Загрузка цены...', uk: 'Завантаження ціни...', es: 'Cargando precio...', 'pt-BR': 'Carregando preço...', vi: 'Đang tải giá...', id: 'Memuat harga...', tr: 'Fiyat yükleniyor...', pl: 'Wczytywanie ceny...' }) : yearlyLabel}
             subprice={paywallLoading ? undefined : yearlySubLabel}
-            badge="лучший старт"
+            badge={onboardingCopy(lang, { ru: 'лучший старт', uk: 'найкращий старт', es: 'mejor comienzo', 'pt-BR': 'melhor começo', vi: 'khởi đầu tốt nhất', id: 'awal terbaik', tr: 'en iyi başlangıç', pl: 'najlepszy start' })}
             selected={selectedBillingPlan === 'yearly'}
             onPress={choosePaywallPlan}
             asset={ONBOARDING_ASSETS.paywallYearly}
@@ -1983,8 +1975,8 @@ function CleanOnboarding({
           />
           <PaywallPlanCard
             plan="monthly"
-            title="Месяц"
-            price={paywallLoading ? 'Загрузка цены...' : monthlyLabel}
+            title={onboardingCopy(lang, { ru: 'Месяц', uk: 'Місяць', es: 'Mes', 'pt-BR': 'Mês', vi: 'Tháng', id: 'Bulan', tr: 'Ay', pl: 'Miesiąc' })}
+            price={paywallLoading ? onboardingCopy(lang, { ru: 'Загрузка цены...', uk: 'Завантаження ціни...', es: 'Cargando precio...', 'pt-BR': 'Carregando preço...', vi: 'Đang tải giá...', id: 'Memuat harga...', tr: 'Fiyat yükleniyor...', pl: 'Wczytywanie ceny...' }) : monthlyLabel}
             selected={selectedBillingPlan === 'monthly'}
             onPress={choosePaywallPlan}
             asset={ONBOARDING_ASSETS.paywallMonthly}
@@ -1993,8 +1985,8 @@ function CleanOnboarding({
           <PaywallPlanCard
             plan="lifetime"
             title="Phraseman Pro"
-            price={paywallLoading ? 'Загрузка цены...' : lifetimeLabel}
-            badge="разово"
+            price={paywallLoading ? onboardingCopy(lang, { ru: 'Загрузка цены...', uk: 'Завантаження ціни...', es: 'Cargando precio...', 'pt-BR': 'Carregando preço...', vi: 'Đang tải giá...', id: 'Memuat harga...', tr: 'Fiyat yükleniyor...', pl: 'Wczytywanie ceny...' }) : lifetimeLabel}
+            badge={onboardingCopy(lang, { ru: 'разово', uk: 'разово', es: 'una vez', 'pt-BR': 'único', vi: 'một lần', id: 'sekali', tr: 'tek seferlik', pl: 'jednorazowo' })}
             selected={selectedBillingPlan === 'lifetime'}
             onPress={choosePaywallPlan}
             asset={ONBOARDING_ASSETS.paywallLifetime}
@@ -2008,12 +2000,12 @@ function CleanOnboarding({
   const renderName = () => (
     <ScreenFrame
       step="name"
-      title="Почти готово"
+      title={onboardingCopy(lang, { ru: 'Почти готово', uk: 'Майже готово', es: 'Casi listo', 'pt-BR': 'Quase pronto', vi: 'Sắp xong', id: 'Hampir selesai', tr: 'Neredeyse hazır', pl: 'Prawie gotowe' })}
       plainTitle
       onBack={back}
       footer={(
         <PrimaryButton
-          label="Начать обучение"
+          label={onboardingCopy(lang, { ru: 'Начать обучение', uk: 'Почати навчання', es: 'Empezar a aprender', 'pt-BR': 'Começar a aprender', vi: 'Bắt đầu học', id: 'Mulai belajar', tr: 'Öğrenmeye başla', pl: 'Zacznij naukę' })}
           onPress={() => {
             Keyboard.dismiss();
             void finish();
@@ -2030,7 +2022,7 @@ function CleanOnboarding({
           onPress={() => { setAgeAnswer('yes'); setLegalError(null); }}
           style={({ pressed }) => [styles.ageButton, ageAnswer === 'yes' && styles.ageButtonSelected, pressed && styles.pressed]}
         >
-          <Text style={styles.ageButtonText}>Мне есть {MIN_FULL_ACCESS_AGE}</Text>
+          <Text style={styles.ageButtonText}>{ageAnswerCopy(lang, MIN_FULL_ACCESS_AGE, true)}</Text>
         </Pressable>
         <Pressable
           testID="onboarding-age-no"
@@ -2041,10 +2033,10 @@ function CleanOnboarding({
           }}
           style={({ pressed }) => [styles.ageButton, ageAnswer === 'no' && styles.ageButtonSelected, pressed && styles.pressed]}
         >
-          <Text style={styles.ageButtonText}>Мне нет {MIN_FULL_ACCESS_AGE}</Text>
+          <Text style={styles.ageButtonText}>{ageAnswerCopy(lang, MIN_FULL_ACCESS_AGE, false)}</Text>
         </Pressable>
       </View>
-      <Text style={styles.consentSectionLabel}>ТВОЙ ВЫБОР</Text>
+      <Text style={styles.consentSectionLabel}>{onboardingCopy(lang, { ru: 'ТВОЙ ВЫБОР', uk: 'ТВІЙ ВИБІР', es: 'TU ELECCIÓN', 'pt-BR': 'SUA ESCOLHA', vi: 'LỰA CHỌN CỦA BẠN', id: 'PILIHANMU', tr: 'SEÇİMİN', pl: 'TWÓJ WYBÓR' })}</Text>
       <Pressable
         testID="onboarding-analytics-checkbox"
         onPressIn={() => { void hapticTap(); }}
@@ -2057,8 +2049,8 @@ function CleanOnboarding({
           <Ionicons name="stats-chart-outline" size={22} color="#B9C8FF" />
         </View>
         <View style={styles.consentDecisionCopy}>
-          <Text style={styles.consentDecisionTitle}>Анонимная аналитика</Text>
-          <Text style={styles.consentDecisionHint}>Помогает улучшать приложение</Text>
+          <Text style={styles.consentDecisionTitle}>{onboardingCopy(lang, { ru: 'Анонимная аналитика', uk: 'Анонімна аналітика', es: 'Analítica anónima', 'pt-BR': 'Análise anônima', vi: 'Phân tích ẩn danh', id: 'Analitik anonim', tr: 'Anonim analiz', pl: 'Anonimowa analityka' })}</Text>
+          <Text style={styles.consentDecisionHint}>{onboardingCopy(lang, { ru: 'Помогает улучшать приложение', uk: 'Допомагає покращувати застосунок', es: 'Ayuda a mejorar la app', 'pt-BR': 'Ajuda a melhorar o app', vi: 'Giúp cải thiện ứng dụng', id: 'Membantu meningkatkan aplikasi', tr: 'Uygulamayı geliştirmeye yardımcı olur', pl: 'Pomaga ulepszać aplikację' })}</Text>
         </View>
         <View style={[styles.consentSwitch, analyticsAllowed && styles.consentSwitchOn]}>
           <View style={[styles.consentSwitchThumb, analyticsAllowed && styles.consentSwitchThumbOn]} />
@@ -2076,19 +2068,19 @@ function CleanOnboarding({
           <Ionicons name="document-text-outline" size={23} color="#B9C8FF" />
         </View>
         <View style={styles.consentDecisionCopy}>
-          <Text style={styles.consentDecisionTitle}>Принимаю правила</Text>
-          <Text style={styles.consentDecisionHint}>Условия и конфиденциальность</Text>
+          <Text style={styles.consentDecisionTitle}>{onboardingCopy(lang, { ru: 'Принимаю правила', uk: 'Приймаю умови', es: 'Acepto las condiciones', 'pt-BR': 'Aceito os termos', vi: 'Tôi đồng ý với điều khoản', id: 'Saya menyetujui ketentuan', tr: 'Koşulları kabul ediyorum', pl: 'Akceptuję warunki' })}</Text>
+          <Text style={styles.consentDecisionHint}>{onboardingCopy(lang, { ru: 'Условия и конфиденциальность', uk: 'Умови та конфіденційність', es: 'Condiciones y privacidad', 'pt-BR': 'Termos e privacidade', vi: 'Điều khoản và quyền riêng tư', id: 'Ketentuan dan privasi', tr: 'Koşullar ve gizlilik', pl: 'Warunki i prywatność' })}</Text>
         </View>
         <View style={[styles.consentCheck, legalAccepted && styles.consentCheckSelected]}>
           {legalAccepted ? <Ionicons name="checkmark" size={20} color="#07111F" /> : null}
         </View>
       </Pressable>
       <View style={styles.consentLegalLinks}>
-        <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
-        <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Конфиденциальность</Text>
+        <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>{onboardingCopy(lang, { ru: 'Условия', uk: 'Умови', es: 'Condiciones', 'pt-BR': 'Termos', vi: 'Điều khoản', id: 'Ketentuan', tr: 'Koşullar', pl: 'Warunki' })}</Text>
+        <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>{onboardingCopy(lang, { ru: 'Конфиденциальность', uk: 'Конфіденційність', es: 'Privacidad', 'pt-BR': 'Privacidade', vi: 'Quyền riêng tư', id: 'Privasi', tr: 'Gizlilik', pl: 'Prywatność' })}</Text>
       </View>
       {legalError ? <Text style={styles.errorText}>{legalError}</Text> : null}
-      <Text style={styles.consentNameHint}>Имя создадим автоматически — изменить можно позже</Text>
+      <Text style={styles.consentNameHint}>{onboardingCopy(lang, { ru: 'Имя создадим автоматически — изменить можно позже', uk: 'Ім’я створимо автоматично — його можна змінити пізніше', es: 'Crearemos un nombre automáticamente; podrás cambiarlo después', 'pt-BR': 'Criaremos um nome automaticamente; você poderá alterá-lo depois', vi: 'Chúng tôi sẽ tạo tên tự động; bạn có thể đổi sau', id: 'Kami akan membuat nama otomatis; kamu bisa mengubahnya nanti', tr: 'Adını otomatik oluşturacağız; sonra değiştirebilirsin', pl: 'Utworzymy nazwę automatycznie — później możesz ją zmienić' })}</Text>
     </ScreenFrame>
   );
   // Welcome (свои анимации) и aha (полноэкранная сцена со своими переходами)
@@ -2117,6 +2109,7 @@ function CleanOnboarding({
   return (
     <OnboardingOrderContext.Provider value={enabledOrder}>
     <OnboardingSkipContext.Provider value={skipHandler}>
+    <OnboardingLocaleContext.Provider value={lang}>
     <View style={styles.root}>
       <Background />
       {bare ? (
@@ -2140,6 +2133,7 @@ function CleanOnboarding({
         />
       )}
     </View>
+    </OnboardingLocaleContext.Provider>
     </OnboardingSkipContext.Provider>
     </OnboardingOrderContext.Provider>
   );

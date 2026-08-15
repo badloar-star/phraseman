@@ -8,8 +8,8 @@ describe('lesson completion soft upsell integration', () => {
   it('derives first-only candidates from the canonical first-completion grant', () => {
     expect(source).toContain("firstBonus.status === 'granted'");
     expect(helperSource).toMatch(/lessonId === 1[\s\S]*trigger: 'first_lesson'/);
-    expect(helperSource).toMatch(/lessonId === FREE_LESSON_LIMIT[\s\S]*trigger: 'free_lessons_complete'/);
-    expect(helperSource).not.toMatch(/lessonId\s*>=\s*FREE_LESSON_LIMIT/);
+    expect(helperSource).toMatch(/lessonId === freeLessonLimit[\s\S]*trigger: 'free_lessons_complete'/);
+    expect(helperSource).not.toMatch(/lessonId\s*>=\s*freeLessonLimit/);
     expect(helperSource).toContain("input.status !== 'granted'");
   });
 
@@ -31,8 +31,8 @@ describe('lesson completion soft upsell integration', () => {
     expect(source).toContain('testID="lesson-complete-back-home"');
   });
 
-  it('routes the first lesson to the personal path and the boundary lesson to the explicit paywall context', () => {
-    expect(source).toContain("router.push('/personal_plan_setup' as any)");
+  it('routes both offers to explicit paywall contexts', () => {
+    expect(source).not.toContain("router.push('/personal_plan_setup' as any)");
     expect(source).toContain("pathname: '/premium_modal'");
     expect(source).toContain("context: 'free_lessons_complete'");
     expect(source).toContain("source: 'lesson_complete_soft_upsell'");

@@ -3,9 +3,44 @@
 // CocoaPods, so the correct script is "${PODS_ROOT}/FirebaseCrashlytics/run".
 // Without this phase, iOS crashes may appear late, unsymbolicated, or be harder to find in Crashlytics.
 
-const { withXcodeProject, createRunOncePlugin, IOSConfig } = require('@expo/config-plugins');
+const fs = require('fs');
+const path = require('path');
+const {
+  withDangerousMod,
+  withXcodeProject,
+  createRunOncePlugin,
+  IOSConfig,
+} = require('@expo/config-plugins');
 
 const PHASE_COMMENT = '[Firebase] Crashlytics — upload dSYMs';
+const POST_INTEGRATE_MARKER = '# phraseman-crashlytics-phase-last';
+
+const POST_INTEGRATE_HOOK = `
+# CocoaPods adds its own app-target phases after Expo config plugins run. Keep
+# Crashlytics last after integration, otherwise embedding WidgetKit can form an
+# Xcode dependency cycle through Info.plist and the app dSYM.
+post_integrate do |installer|
+  ${POST_INTEGRATE_MARKER}
+  installer.aggregate_targets.each do |aggregate_target|
+    project = aggregate_target.user_project
+    next unless project
+    app_target = project.targets.find { |target| target.name == 'Phraseman' }
+    next unless app_target
+    crashlytics_phase = app_target.shell_script_build_phases.find do |phase|
+      phase.shell_script.to_s.include?('FirebaseCrashlytics/run')
+    end
+    next unless crashlytics_phase
+    app_target.build_phases.delete(crashlytics_phase)
+    app_target.build_phases << crashlytics_phase
+    project.save
+  end
+end
+`;
+
+function patchPodfileContents(contents) {
+  if (contents.includes(POST_INTEGRATE_MARKER)) return contents;
+  return `${contents.trimEnd()}\n${POST_INTEGRATE_HOOK}`;
+}
 
 function findCrashlyticsPhaseUuids(project) {
   const phases = project.hash?.project?.objects?.PBXShellScriptBuildPhase;
@@ -44,7 +79,7 @@ function movePhasesToEnd(project, targetUuid, phaseUuids) {
 }
 
 function withIosFirebaseCrashlyticsUpload(config) {
-  return withXcodeProject(config, (cfg) => {
+  let nextConfig = withXcodeProject(config, (cfg) => {
     const project = cfg.modResults;
     const projectRoot = cfg.modRequest.projectRoot;
     const projectName = IOSConfig.XcodeUtils.getProjectName(projectRoot);
@@ -81,6 +116,19 @@ function withIosFirebaseCrashlyticsUpload(config) {
 
     return cfg;
   });
+
+  nextConfig = withDangerousMod(nextConfig, [
+    'ios',
+    async (cfg) => {
+      const podfilePath = path.join(cfg.modRequest.platformProjectRoot, 'Podfile');
+      const current = fs.readFileSync(podfilePath, 'utf8');
+      const patched = patchPodfileContents(current);
+      if (patched !== current) fs.writeFileSync(podfilePath, patched);
+      return cfg;
+    },
+  ]);
+
+  return nextConfig;
 }
 
 module.exports = createRunOncePlugin(
@@ -88,3 +136,4 @@ module.exports = createRunOncePlugin(
   'with-ios-firebase-crashlytics-dsym-upload',
   '1.0.0',
 );
+module.exports.patchPodfileContents = patchPodfileContents;

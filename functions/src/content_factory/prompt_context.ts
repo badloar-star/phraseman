@@ -1,7 +1,7 @@
 export interface PromptContext {
   readonly studyTarget: string;
   readonly sourceLocale: string;
-  readonly cefr: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+  readonly cefr: 'PRE_A1' | 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
   readonly objective: string;
   readonly count: number;
   readonly approvedArtifactIds: readonly string[];
@@ -10,7 +10,7 @@ export interface PromptContext {
 }
 
 const LOCALE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
-const CEFR_RE = /^(?:A1|A2|B1|B2|C1|C2)$/;
+const CEFR_RE = /^(?:PRE_A1|A1|A2|B1|B2|C1|C2)$/;
 const HASH_RE = /^[a-f0-9]{64}$/i;
 const INSTRUCTION_RE = /(?:ignore|disregard|override)\s+(?:all\s+)?(?:previous|prior|system)\s+instructions?|system\s*prompt|developer\s*message/i;
 

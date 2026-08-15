@@ -85,6 +85,143 @@ describe('safeRouterBack', () => {
     expect(router.dismissTo).toHaveBeenCalledTimes(1);
   });
 
+  it('does not return from one section root into a previously visited foreign section', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/(tabs)/home');
+    navigation.rememberNavigationPath('/trainer');
+    navigation.rememberNavigationPath('/lingman_videos');
+    navigation.safeRouterBack(router, '/(tabs)/home' as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/trainer');
+  });
+
+  it('returns from a child screen to its previous screen inside the same section', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/(tabs)/home');
+    navigation.rememberNavigationPath('/trainer');
+    navigation.rememberNavigationPath('/trainer_words_session');
+    navigation.safeRouterBack(router, '/trainer' as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/trainer');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/(tabs)/home');
+  });
+
+  it('lets a contextual portal inherit its opener section', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/(tabs)/home');
+    navigation.rememberNavigationPath('/trainer');
+    navigation.rememberNavigationPath('/shards_shop?source=trainer');
+    navigation.safeRouterBack(router, '/(tabs)/home' as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/trainer');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/(tabs)/home');
+  });
+
+  it('fails closed to the fallback for an unknown route after another section', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/(tabs)/home');
+    navigation.rememberNavigationPath('/trainer');
+    navigation.rememberNavigationPath('/future_section_without_policy');
+    navigation.safeRouterBack(router, '/(tabs)/home' as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/trainer');
+  });
+
+  it('preserves an object fallback and all of its identity params across a section boundary', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+    const fallback = { pathname: '/lesson_menu', params: { id: '7' } } as any;
+
+    navigation.rememberNavigationPath('/trainer');
+    navigation.rememberNavigationPath('/hint?id=7');
+    navigation.safeRouterBack(router, fallback);
+
+    expect(router.dismissTo).toHaveBeenCalledWith(fallback);
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/trainer');
+  });
+
+  it('keeps nested Settings navigation inside the Settings section', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/trainer');
+    navigation.rememberNavigationPath('/(tabs)/settings');
+    navigation.rememberNavigationPath('/settings_language');
+    navigation.rememberNavigationPath('/language_welcome');
+    navigation.safeRouterBack(router, '/settings_language' as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/settings_language');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/trainer');
+  });
+
+  it('does not native-dismiss a direct Settings deep link onto a foreign underlay', () => {
+    const navigation = loadNavigationBack();
+    const router = makeDismissableRouter();
+
+    navigation.rememberNavigationPath('/promo_code_entry?source=settings');
+    navigation.safeRouterBack(router, '/(tabs)/settings' as any);
+
+    expect(router.dismiss).not.toHaveBeenCalled();
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/settings');
+  });
+
+  it('returns a contextual Education sheet to the lesson that opened it', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/lesson_menu?id=4');
+    navigation.rememberNavigationPath('/settings_edu');
+    navigation.safeRouterBack(router, '/(tabs)/settings' as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/lesson_menu?id=4');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/(tabs)/settings');
+  });
+
+  it('keeps AI and MAX child routes in the Lessons branch that opened them', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/(tabs)/lessons');
+    navigation.rememberNavigationPath('/ai_dialog_briefing?scenarioId=intro');
+    navigation.markNextNavigationAsReplace();
+    navigation.rememberNavigationPath('/ai_dialog_session?scenarioId=intro');
+    navigation.safeRouterBack(router, '/(tabs)/home' as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/lessons');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/(tabs)/home');
+  });
+
+  it('treats Flashcards catalog pages as children of the Flashcards root', () => {
+    const navigation = loadNavigationBack();
+    const router = makeRouter(true);
+
+    navigation.rememberNavigationPath('/flashcards');
+    navigation.rememberNavigationPath('/flashcards_packs');
+    navigation.safeRouterBack(router, '/(tabs)/home' as any);
+
+    expect(router.dismissTo).toHaveBeenCalledWith('/flashcards');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/(tabs)/home');
+  });
+
+  it('sends section roots home and section children to their canonical root', () => {
+    const navigation = loadNavigationBack();
+
+    expect(navigation.navigationFallbackForPath('/arena_history')).toBe('/(tabs)/home');
+    expect(navigation.navigationFallbackForPath('/arena_review?matchId=m-1')).toBe('/arena');
+    expect(navigation.navigationFallbackForPath('/flashcards')).toBe('/(tabs)/home');
+    expect(navigation.navigationFallbackForPath('/flashcards_packs')).toBe('/flashcards');
+  });
+
   // Регрессия: выход из теории/любого экрана урока должен вернуть на меню ИМЕННО
   // того урока, из которого зашли, а не на меню урока 1. Раньше basePath отрезал
   // ?id=N, и «назад» делал replace на голый '/lesson_menu' → дефолт parseInt||1 →

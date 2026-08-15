@@ -27,6 +27,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
+import { useLang } from '../LangContext';
+import { triLang } from '../../constants/i18n';
 import { INNER_LIGHT, T, motion, radius, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -166,10 +168,11 @@ type SheetProps = {
 /** Нижняя шторка: подтверждение входа, профиль игрока. Свайп-вниз закрывает. */
 export const Sheet = memo(function Sheet({ visible, onClose, children }: SheetProps) {
   const P = useTournamentPalette();
+  const { lang } = useLang();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <Pressable style={styles.sheetBackdrop} onPress={onClose} accessibilityLabel="Закрыть" />
+      <Pressable style={styles.sheetBackdrop} onPress={onClose} accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} />
       <View style={styles.sheet}>
         <View style={styles.sheetGrip} />
         {children}

@@ -1,14 +1,16 @@
 // Lesson Data Type Definitions
 
-import type { HeisenbergSourceLocale } from './source_locales';
+import type { HeisenbergSourceLocale } from "./source_locales";
 
-export type LessonPhraseSourceLocales = Partial<Record<HeisenbergSourceLocale, string>>;
+export type LessonPhraseSourceLocales = Partial<
+  Record<HeisenbergSourceLocale, string>
+>;
 
 export interface LessonWord {
-  text: string;           // The word
-  correct: string;        // Same as text (for validation)
-  distractors: string[];  // 5 specific distractors
-  category?: string;      // 'pronoun', 'to-be', 'article', etc.
+  text: string; // The word
+  correct: string; // Same as text (for validation)
+  distractors: string[]; // 5 specific distractors
+  category?: string; // 'pronoun', 'to-be', 'article', etc.
   teachingNote?: LessonTeachingNote;
 }
 
@@ -98,21 +100,21 @@ export interface LessonPhrase {
  * - 'mistakes'           — разбор главных ошибок (warning, wrong)
  */
 export type LessonIntroBlockKind =
-  | 'why'
-  | 'how'
-  | 'tip'
-  | 'trap'
-  | 'mechanic'
-  | 'core_idea'
-  | 'main_formula'
-  | 'be_choice'
-  | 'description_logic'
-  | 'memory_tip'
-  | 'negative_formula'
-  | 'question_formula'
-  | 'after_be'
-  | 'negative_questions'
-  | 'mistakes';
+  | "why"
+  | "how"
+  | "tip"
+  | "trap"
+  | "mechanic"
+  | "core_idea"
+  | "main_formula"
+  | "be_choice"
+  | "description_logic"
+  | "memory_tip"
+  | "negative_formula"
+  | "question_formula"
+  | "after_be"
+  | "negative_questions"
+  | "mistakes";
 
 export interface LessonIntroExample {
   en: string;
@@ -139,7 +141,7 @@ export interface LessonIntroScreen {
   textTr?: string;
   textPl?: string;
   /** Тип блока — определяет иконку, цвет акцента, заголовок по умолчанию */
-  kind?: LessonIntroBlockKind | 'concept' | 'formula' | 'practice';
+  kind?: LessonIntroBlockKind | "concept" | "formula" | "practice";
   /** Свой заголовок (если не задан — берётся дефолт по kind) */
   titleRU?: string;
   titleUK?: string;
@@ -170,12 +172,14 @@ export interface LessonIntroScreen {
   linesId?: IntroLine[];
   linesTr?: IntroLine[];
   linesPl?: IntroLine[];
-  developerNotes?: LessonIntroScreenV2['developerNotes'];
+  developerNotes?: LessonIntroScreenV2["developerNotes"];
   /**
    * Интерактивный блок экрана (раунд 2). Опционально — старые экраны без него
    * рендерятся статично. Раскрывается опт-ин, без XP, tap-only.
    */
   interaction?: IntroInteraction;
+  /** Learning V2 only: canonical task slot 1–3 embedded in this exact page. */
+  learningV2EmbeddedQuestion?: LearningV2EmbeddedIntroQuestion;
   /**
    * Уникальный цвет темы для этого экрана/урока. Если не задан — рендерер
    * берёт topicAccent из реестра по lessonId, иначе fallback на t.accent темы.
@@ -183,17 +187,36 @@ export interface LessonIntroScreen {
   topicAccent?: TopicAccent;
 }
 
+export interface LearningV2EmbeddedIntroQuestion {
+  kind: "embedded_intro_question";
+  taskSlot: 1 | 2 | 3;
+  questionId: string;
+  promptByLocale: Record<
+    "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl",
+    string
+  >;
+  choicesByLocale: Record<
+    "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl",
+    readonly string[]
+  >;
+  correctChoiceIndex: number;
+  explanationByLocale: Record<
+    "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl",
+    string
+  >;
+}
+
 // V2 Intro Screen types — rich inline markup with tones and line types
 export type IntroTextTone =
-  | 'normal'
-  | 'muted'
-  | 'strong'
-  | 'accent'
-  | 'success'
-  | 'danger'
-  | 'warning'
-  | 'formula'
-  | 'code';
+  | "normal"
+  | "muted"
+  | "strong"
+  | "accent"
+  | "success"
+  | "danger"
+  | "warning"
+  | "formula"
+  | "code";
 
 export type IntroTextPart = {
   text: string;
@@ -201,7 +224,15 @@ export type IntroTextPart = {
 };
 
 export type IntroLine = {
-  type: 'text' | 'formula' | 'example' | 'wrong' | 'correct' | 'step' | 'tip' | 'spacer';
+  type:
+    | "text"
+    | "formula"
+    | "example"
+    | "wrong"
+    | "correct"
+    | "step"
+    | "tip"
+    | "spacer";
   parts?: IntroTextPart[];
   text?: string;
 };
@@ -229,7 +260,7 @@ export interface IntroI18nText {
  * Реюзает существующие EN-фразы урока. Перевод (prompt) и формула видны всегда.
  */
 export interface IntroBuildInteraction {
-  kind: 'word_bank';
+  kind: "word_bank";
   /** Подсказка на родном языке над слотами («Она готова»). */
   prompt: IntroI18nText;
   /** Эталонная сборка по словам, по порядку. Напр. ['She','is','ready']. */
@@ -242,7 +273,7 @@ export interface IntroBuildInteraction {
 
 /** «Выбери форму» — один пропуск, 2-3 кнопки (3-Tile Choice). */
 export interface IntroChoiceInteraction {
-  kind: 'choice';
+  kind: "choice";
   /** Фраза с пропуском: части до и после слота. */
   before: string;
   after: string;
@@ -256,7 +287,7 @@ export interface IntroChoiceInteraction {
 
 /** «Найди промах» — тапни лишнее/неверное слово (Spot-the-Slip). */
 export interface IntroSpotInteraction {
-  kind: 'spot_slip';
+  kind: "spot_slip";
   /** Слова неверной фразы как чипы. */
   chips: string[];
   /** Индекс «лишнего/неверного» чипа в chips. */
@@ -269,13 +300,13 @@ export interface IntroSpotInteraction {
 
 /** «Финал-чек» — выбор из двух фраз (Binary Recognition). */
 export interface IntroBinaryInteraction {
-  kind: 'binary';
+  kind: "binary";
   question: IntroI18nText;
   /** Две фразы-варианта. */
   optionA: string;
   optionB: string;
   /** Какая верна. */
-  correct: 'A' | 'B';
+  correct: "A" | "B";
   /** Объяснение после ответа. */
   explain: IntroI18nText;
 }
@@ -317,7 +348,7 @@ export type IntroExample = {
   ru: string;
   uk: string;
   es: string;
-  'pt-BR'?: string;
+  "pt-BR"?: string;
   vi?: string;
   id?: string;
   tr?: string;
@@ -336,7 +367,7 @@ export type LessonIntroScreenV2 = {
   lessonId: number;
   screenId: string;
   order: number;
-  kind: 'concept' | 'formula' | 'practice';
+  kind: "concept" | "formula" | "practice";
   titleRU: string;
   titleUK: string;
   titleES: string;
@@ -386,7 +417,7 @@ export interface LessonData {
   phrases: LessonPhrase[];
 }
 
-export type PrepositionKind = 'time' | 'place' | 'direction' | 'other';
+export type PrepositionKind = "time" | "place" | "direction" | "other";
 
 export interface PrepositionToken {
   text: string;
@@ -416,4 +447,6 @@ export interface LessonPrepositionPack {
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
-export default function __RouteShim() { return null; }
+export default function __RouteShim() {
+  return null;
+}

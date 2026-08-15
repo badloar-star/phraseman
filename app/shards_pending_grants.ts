@@ -1,6 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
 import { withStorageLock } from './storage_mutex';
-import { getShardsBalance, loadShardsFromCloud, getShardAchievementEligibleBalance } from './shards_system';
+import {
+  getShardsBalance,
+  loadShardsFromCloud,
+  getShardAchievementEligibleBalance,
+} from './shards_system';
 import { emitAppEvent } from './events';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
 import {
@@ -15,6 +20,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { commitRevenueCatResultForGeneration } from './revenuecat_account_identity';
+import { correlatePendingPurchases } from './revenuecat_pending_correlation';
 
 const STORAGE_KEY_PREFIX = 'pending_shard_grants_v2:';
 const LEGACY_STORAGE_KEY = 'pending_shard_grants_v1';
@@ -22,6 +28,7 @@ const QUARANTINE_KEY_PREFIX = 'pending_shard_grants_quarantine_v1:';
 const LEGACY_QUARANTINE_OWNER_KEY = 'pending_shard_grants_v1_quarantine_owner_v1';
 const DELETE_MARKER_PREFIX = 'pending_shard_grants_delete_cleanup_v1:';
 const RECOVERY_NEEDED_PREFIX = 'pending_shard_grants_recovery_needed_v1:';
+const CORRELATED_EVENT_PREFIX = 'pending_shard_grants_correlated_event_v1:';
 const PENDING_TTL_MS = 24 * 60 * 60 * 1000;
 const ACCOUNT_COMMIT_TIMEOUT_MS = 1_500;
 const MAX_PENDING_GRANTS = 32;
@@ -66,6 +73,14 @@ function deleteMarkerKey(stableId: string): string {
 
 function recoveryNeededKey(stableId: string): string {
   return ownerKey(RECOVERY_NEEDED_PREFIX, stableId);
+}
+
+async function correlatedEventKey(stableId: string, eventId: string): Promise<string> {
+  const hash = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    `revenuecat-pending-correlation:${eventId}`,
+  );
+  return `${CORRELATED_EVENT_PREFIX}${encodeURIComponent(stableId)}:${hash}`;
 }
 
 function accountIsCurrent(token: AccountGenerationToken): token is AccountGenerationToken & { stableId: string } {
@@ -187,6 +202,31 @@ async function writePendingLocked(
     }
     const raw = JSON.stringify({ version: 2, ownerStableId: token.stableId, grants });
     return await verifySet(key, raw) && accountIsCurrent(token);
+  } catch {
+    return false;
+  }
+}
+
+async function writePendingAndCorrelationMarkersLocked(
+  token: AccountGenerationToken & { stableId: string },
+  grants: PendingShardGrant[],
+  eventIds: readonly string[],
+): Promise<boolean> {
+  if (!accountIsCurrent(token) || grants.length > MAX_PENDING_GRANTS || !grants.every(validGrant)) return false;
+  try {
+    const pairs: [string, string][] = [[
+      pendingStorageKey(token.stableId),
+      JSON.stringify({ version: 2, ownerStableId: token.stableId, grants }),
+    ]];
+    for (const eventId of eventIds) {
+      pairs.push([await correlatedEventKey(token.stableId, eventId), JSON.stringify({
+        version: 1, ownerStableId: token.stableId, eventId, correlatedAtMs: Date.now(),
+      })]);
+    }
+    await AsyncStorage.multiSet(pairs);
+    if (!accountIsCurrent(token)) return false;
+    const verified = await AsyncStorage.multiGet(pairs.map(([key]) => key));
+    return verified.every(([, value], index) => value === pairs[index][1]);
   } catch {
     return false;
   }
@@ -404,34 +444,95 @@ async function resumePendingShardGrantsInternal(token: AccountGenerationToken): 
     return { resolved: 0, stillPending: list.length, expired: 0 };
   }
   if (!isCurrent()) return { resolved: 0, stillPending: list.length, expired: 0 };
-  const cloudBalance = await getShardsBalance().catch(() => null);
-  if (cloudBalance === null || !isCurrent()) return { resolved: 0, stillPending: list.length, expired: 0 };
+  const currentBalance = await getShardsBalance().catch(() => null);
+  if (currentBalance === null || !isCurrent()) return { resolved: 0, stillPending: list.length, expired: 0 };
   const now = Date.now();
-  const resolved = list.filter((grant) => cloudBalance >= grant.beforeBalance + grant.expectedShards);
-  const expired = list.filter((grant) => !resolved.includes(grant) && now - grant.createdAtMs > PENDING_TTL_MS);
+  const resolved: PendingShardGrant[] = [];
+  const resolvedEventIds = new Map<string, string>();
+  const reservedEventIds = new Set<string>();
+  if (isCurrent()) {
+    const externalEvents = await import('./economy/external_shard_event_sync')
+      .then(({ listConfirmedRevenueCatPurchaseEventsFromCloud }) => (
+        listConfirmedRevenueCatPurchaseEventsFromCloud(token.stableId)
+      ))
+      .catch(() => []);
+    if (!isCurrent()) return { resolved: 0, stillPending: list.length, expired: 0 };
+    const eventMarkerPairs = await Promise.all(externalEvents.map(async (event) => ({
+      eventId: event.eventId,
+      key: await correlatedEventKey(token.stableId, event.eventId),
+    })));
+    const eventMarkerValues = await AsyncStorage.multiGet(eventMarkerPairs.map(({ key }) => key));
+    eventMarkerPairs.forEach(({ eventId }, index) => {
+      if (eventMarkerValues[index]?.[1] !== null) reservedEventIds.add(eventId);
+    });
+    const correlated = correlatePendingPurchases(
+      list,
+      externalEvents.flatMap((event) => {
+        if (
+          event.source !== 'revenuecat_purchase'
+          || event.delta <= 0
+          || event.kind !== 'real_money_shard_pack'
+        ) return [];
+        const payload = event.payload ?? {};
+        const aliases = [
+          payload.transactionId,
+          payload.originalTransactionId,
+          payload.revenueCatEventId,
+        ].filter((value): value is string => typeof value === 'string' && value.trim().length > 0);
+        return [{
+          eventId: event.eventId,
+          amount: event.delta,
+          productId: event.subjectId,
+          createdAtMs: event.createdAtMs,
+          transactionAliases: aliases,
+        }];
+      }),
+      reservedEventIds,
+    );
+    for (const grant of list) {
+      const eventId = correlated.get(grant.journalId);
+      if (eventId) {
+        resolved.push(grant);
+        resolvedEventIds.set(grant.journalId, eventId);
+      }
+    }
+  }
+  // A paid purchase obligation never expires merely because a webhook or a
+  // device was offline. Keep it pending until the exact immutable event lands.
+  const expired: PendingShardGrant[] = [];
   const removedIds = new Set([...resolved, ...expired].map((grant) => grant.journalId));
   const remaining = list.filter((grant) => !removedIds.has(grant.journalId));
   if (removedIds.size > 0) {
     const committed = await withAccountStorageCommit(token, false, async (currentToken) => {
       const latest = await readPendingLocked(currentToken);
       if (latest.status !== 'ok') return false;
-      return writePendingLocked(currentToken, latest.grants.filter((grant) => !removedIds.has(grant.journalId)));
+      const currentResolvedEventIds = latest.grants
+        .filter((grant) => removedIds.has(grant.journalId))
+        .flatMap((grant) => {
+          const eventId = resolvedEventIds.get(grant.journalId);
+          return eventId ? [eventId] : [];
+        });
+      return writePendingAndCorrelationMarkersLocked(
+        currentToken,
+        latest.grants.filter((grant) => !removedIds.has(grant.journalId)),
+        currentResolvedEventIds,
+      );
     });
     if (!committed || !isCurrent()) return { resolved: 0, stillPending: list.length, expired: 0 };
   }
-  for (const grant of expired) {
+  for (const grant of list.filter((item) => !resolved.includes(item) && now - item.createdAtMs > PENDING_TTL_MS)) {
     DebugLogger.error('shards_pending_grants:expired', new Error(
-      `productId=${grant.productId} journal=${grant.journalId} expected=${grant.expectedShards} before=${grant.beforeBalance} cloudNow=${cloudBalance} ageMs=${now - grant.createdAtMs}`,
+      `productId=${grant.productId} journal=${grant.journalId} expected=${grant.expectedShards} before=${grant.beforeBalance} localNow=${currentBalance} ageMs=${now - grant.createdAtMs}`,
     ), 'critical');
   }
   if (!isCurrent()) return { resolved: 0, stillPending: list.length, expired: 0 };
   const eligibleAchievementBalance = resolved.length > 0
-    ? await getShardAchievementEligibleBalance(cloudBalance).catch(() => cloudBalance)
-    : cloudBalance;
+    ? await getShardAchievementEligibleBalance(currentBalance).catch(() => currentBalance)
+    : currentBalance;
   if (!isCurrent()) return { resolved: 0, stillPending: list.length, expired: 0 };
   for (const grant of resolved) {
     emitAppEvent('shards_balance_updated', {
-      balance: cloudBalance,
+      balance: currentBalance,
       op: 'earn',
       reason: 'shards_store_purchase',
       eligibleAchievementBalance,

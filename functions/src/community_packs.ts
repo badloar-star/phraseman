@@ -10,6 +10,7 @@ import { ACCOUNT_DELETE_AUTH_MARKERS, ACCOUNT_DELETE_TOMBSTONES } from './accoun
 import { hasClaimedPermission } from './admin/permissions';
 import { applyFlashcardRegistryDocumentMutation, planFlashcardRegistryPackMutation } from './content_factory/flashcard_registry_mutations';
 import { resolvePremiumAccess } from './premium_status';
+import { appendExternalEconomyEvent } from './external_economy_events';
 
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
@@ -416,26 +417,10 @@ function safeCardBackKey(p: SubmissionPayload): string {
   return UGC_CARD_BACK_KEYS.has(k) ? k : UGC_CARD_BACK_DEFAULT_KEY;
 }
 
-function parseShards(data: admin.firestore.DocumentData | undefined): number {
-  const raw = data?.shards;
-  const n = typeof raw === 'number' ? raw : Number(raw);
-  if (!Number.isFinite(n) || n < 0) return 0;
-  return Math.floor(n);
-}
-
 function authorNetShards(price: number): number {
   const fee = Math.floor((price * PLATFORM_FEE_BPS) / 10_000);
   const net = price - fee;
   return Math.max(0, net);
-}
-
-function shardLedgerMeta(op: 'earn' | 'spend', reason: string, updatedAtMs: number) {
-  return {
-    shards_updated_at_ms: updatedAtMs,
-    shards_updated_op: op,
-    shards_updated_reason: reason,
-    updatedAt: updatedAtMs,
-  };
 }
 
 /**
@@ -1016,19 +1001,10 @@ export const communityPurchasePack = onCall({ enforceAppCheck: ENFORCE_APP_CHECK
       return { alreadyOwned: true as const, priceShards: price, studyTarget };
     }
 
-    const buyerShards = parseShards(buyerSnap.data());
-    if (buyerShards < price) {
-      throw new HttpsError('failed-precondition', 'Insufficient shards');
-    }
-
     const authorRef = db.collection('users').doc(authorStableId);
-    const authorSnap = await tx.get(authorRef);
-    const authorShards = parseShards(authorSnap.data());
     const net = authorNetShards(price);
     const now = Date.now();
     const nowIso = new Date(now).toISOString();
-    const buyerBalanceAfter = buyerShards - price;
-    const authorBalanceAfter = authorShards + net;
 
     tx.set(purchaseRef, {
       packId,
@@ -1044,14 +1020,16 @@ export const communityPurchasePack = onCall({ enforceAppCheck: ENFORCE_APP_CHECK
       buyerDisplayName,
     });
 
-    tx.set(buyerRef, {
-      shards: buyerBalanceAfter,
-      ...shardLedgerMeta('spend', 'community_pack_purchase', now),
-    }, { merge: true });
-    tx.set(authorRef, {
-      shards: authorBalanceAfter,
-      ...shardLedgerMeta('earn', 'community_pack_sale', now),
-    }, { merge: true });
+    appendExternalEconomyEvent(tx, buyerRef, {
+      source: 'community_pack_purchase', eventId: purchaseId, ownerStableId: buyerStableId,
+      delta: -price, reason: 'community_pack_purchase', kind: 'person_to_person_pack_purchase',
+      subjectId: packId, payload: { packId, studyTarget }, createdAtMs: now,
+    });
+    appendExternalEconomyEvent(tx, authorRef, {
+      source: 'community_pack_sale', eventId: purchaseId, ownerStableId: authorStableId,
+      delta: net, reason: 'community_pack_sale', kind: 'person_to_person_pack_sale',
+      subjectId: packId, payload: { packId, buyerStableId, studyTarget, grossAmount: price }, createdAtMs: now,
+    });
 
     tx.set(buyerRef.collection('shard_log').doc(), {
       ts: nowIso,
@@ -1061,8 +1039,7 @@ export const communityPurchasePack = onCall({ enforceAppCheck: ENFORCE_APP_CHECK
       packId,
       studyTarget,
       authorStableId,
-      balanceBefore: buyerShards,
-      balanceAfter: buyerBalanceAfter,
+      authority: 'external_event',
     });
 
     tx.set(authorRef.collection('shard_log').doc(), {
@@ -1075,8 +1052,7 @@ export const communityPurchasePack = onCall({ enforceAppCheck: ENFORCE_APP_CHECK
       packId,
       studyTarget,
       buyerStableId,
-      balanceBefore: authorShards,
-      balanceAfter: authorBalanceAfter,
+      authority: 'external_event',
     });
 
     tx.update(packRef, {
@@ -1102,8 +1078,7 @@ export const communityPurchasePack = onCall({ enforceAppCheck: ENFORCE_APP_CHECK
       alreadyOwned: false as const,
       priceShards: price,
       authorNetShards: net,
-      buyerBalanceAfter,
-      shardsUpdatedAtMs: now,
+      purchaseId,
       studyTarget,
     };
   });
@@ -1153,21 +1128,18 @@ export const adminRefundCommunityPackPurchase = onCall(
       const packId = String(purchase.packId ?? '').trim();
       if (!buyerStableId || !packId) throw new HttpsError('failed-precondition', 'purchase_identity_missing');
       const buyerRef = db.collection('users').doc(buyerStableId);
-      const buyerSnap = await tx.get(buyerRef);
-      if (!buyerSnap.exists) throw new HttpsError('not-found', 'buyer_not_found');
+      if (!(await tx.get(buyerRef)).exists) throw new HttpsError('not-found', 'buyer_not_found');
 
       const amountShards = UGC_PACK_PRICE_SHARDS;
-      const balanceBefore = parseShards(buyerSnap.data());
-      const balanceAfter = balanceBefore + amountShards;
       const nowMs = Date.now();
       const nowIso = new Date(nowMs).toISOString();
       const shardLogRef = buyerRef.collection('shard_log').doc();
 
-      tx.set(buyerRef, {
-        shards: balanceAfter,
-        ...shardLedgerMeta('earn', 'admin_community_pack_refund', nowMs),
-        updatedAt: nowMs,
-      }, { merge: true });
+      appendExternalEconomyEvent(tx, buyerRef, {
+        source: 'community_pack_refund', eventId: purchaseId, ownerStableId: buyerStableId,
+        delta: amountShards, reason: 'admin_community_pack_refund', kind: 'person_to_person_pack_refund',
+        subjectId: packId, payload: { purchaseId, actorUid }, createdAtMs: nowMs,
+      });
       tx.create(shardLogRef, {
         ts: nowIso,
         type: 'earn',
@@ -1177,8 +1149,7 @@ export const adminRefundCommunityPackPurchase = onCall(
         purchaseId,
         packId,
         targetUid: buyerStableId,
-        balanceBefore,
-        balanceAfter,
+        authority: 'external_event',
         actorUid,
         actorEmail,
       });
@@ -1204,7 +1175,7 @@ export const adminRefundCommunityPackPurchase = onCall(
         timestamp: nowIso,
       });
 
-      return { purchaseId, buyerStableId, packId, amountShards, balanceAfter, refundedAt: nowIso };
+      return { purchaseId, buyerStableId, packId, amountShards, refundedAt: nowIso };
     });
   },
 );

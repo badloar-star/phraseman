@@ -27,14 +27,12 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import DuoPressable from '../components/DuoPressable';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
-import LessonLoadingSkeleton from '../components/LessonLoadingSkeleton';
+import LessonFirstFrame from '../modules/lesson_first_frame';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
-import { deliverDailyTaskProgressEvent, getTodayKey, pruneDatedDailyTasksStorageKeys, resetAndUpdateTaskProgress, updateMultipleTaskProgress, updateTaskProgress } from './daily_tasks';
-import { daysSinceLastActive } from './boons/comeback';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { getCurrentMultiplierBreakdown, getLessonDifficultyMultiplier, registerXP } from './xp_manager';
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
@@ -62,7 +60,6 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
 import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
-import { soundDirector } from '../modules/audio/sound_director';
 import ComboRing from '../components/feedback/ComboRing';
 import { recordMistake } from './active_recall';
 import { logMistake } from './mistake_log';
@@ -97,9 +94,6 @@ import { answerDisplayLineWithCanonicalPunctuation, phraseAnswerAlternatives, ph
 const NATIVE_LESSON_DISMISS_ENABLED =
   typeof process === 'undefined' || process.env.EXPO_PUBLIC_NATIVE_POP_TO_BACK !== '0';
 import { isCorrectLessonHardModeTypedAnswer } from './lesson_hard_mode_answer_tolerance';
-import { isFlexiblePlanNameAnswer, shouldSkipPlanGrammarAnalytics } from './personal_plan_mistake_context';
-import { getPersonalPlanPhraseLesson, personalizePlanPhraseLesson } from './personal_plan_phrase_lessons';
-import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import { frenchStudyActive, spanishLessonUiStringsActive, spanishStudyActive, spanishSurfacesEnabled } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -133,16 +127,18 @@ import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
-import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonLastCompletedAtKey, lessonPassCountKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
+import { fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { emitAppEvent } from './events';
 import { patchHomeScreenHydration } from './home_screen_hydration';
 import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
 import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
+import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
+import { LESSON_REPLAY_XP_RATE, resolveLessonAnswerBaseXp } from './lesson_replay_reward';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const GRAMMAR_HINTS = [
@@ -226,9 +222,6 @@ const encodeConfirmedLessonMultipliers = (
   return encoded.length <= MAX_LESSON_MULTIPLIER_PARAM_LENGTH ? encoded : '[]';
 };
 
-const makeLessonServerAttemptId = (): string =>
-  `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
-
 // Clean phrase.english for display: strip article markers, remove empty tokens
 // e.g. 'I bought a new - phone.' → 'I bought a new phone.'
 const cleanPhraseForDisplay = (english: string): string =>
@@ -275,10 +268,6 @@ const dedupeOptions = (opts: string[]): string[] => {
 
 const safeGetDistracts = (phrase: any, wordIndex: number, studyTarget: StudyTargetLang): string[] => {
   const phraseId = String(phrase?.id ?? '');
-  const planWord = phraseId.startsWith('gavan_') ? (phrase?.words ?? [])[wordIndex] : null;
-  if (planWord?.correct && Array.isArray(planWord.distractors) && planWord.distractors.length > 0) {
-    return dedupeOptions([planWord.correct, ...planWord.distractors]).sort(() => Math.random() - 0.5).slice(0, 6);
-  }
   const result = getPerWordDistracts(phrase, wordIndex, studyTarget);
   // Same token list as handleWordPress (phrase.words authoritative; avoids tokenization mismatch)
   const correctWord = getPhraseTokens(phrase, studyTarget)[wordIndex];
@@ -310,6 +299,8 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const LESSON_ENTER_MS = MOTION_DURATION.normal;
 const PRESS_IN_MS = 70;
 const ERROR_REPLAY_DELAY_ANSWERS = 2;
+const COMBO_ACHIEVEMENT_THRESHOLDS = new Set([3, 10, 20, 50, 100, 150, 250, 500]);
+const WORD_DISPATCH_LOCK_MS = 90;
 
 function isValidLessonPhraseOrder(order: unknown, phraseCount: number): order is number[] {
   const count = Math.min(phraseCount, TOTAL);
@@ -331,11 +322,6 @@ function shuffleLessonPhraseOrder(phraseCount: number): number[] {
     [order[i], order[j]] = [order[j], order[i]];
   }
   return order.slice(0, count);
-}
-
-function buildPlanPhraseRecallOrder(phraseCount: number): number[] {
-  const count = Math.min(phraseCount, TOTAL);
-  return Array.from({ length: count }, (_, index) => count - 1 - index);
 }
 
 type LessonPressableProps = React.ComponentProps<typeof Pressable> & {
@@ -410,121 +396,6 @@ const DEFAULT_SETTINGS: Settings = {
 
 // ── Гексагональный прогресс-индикатор ────────────────────────────────────────
 // LessonHexProgress is now imported from components/LessonHexProgress.tsx
-
-// ── Модалка "Конец цикла урока" ───────────────────────────────────────────────
-export const CYCLE_END_SHOWN_KEY = 'lesson_cycle_end_intro_shown';
-
-function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onClose }: {
-  visible: boolean;
-  hasErrors: boolean;
-  lang: Lang;
-  studyTarget: StudyTargetLang;
-  t: any;
-  f: any;
-  onClose: () => void;
-}) {
-  const scaleAnim = useRef(new Animated.Value(0.85)).current;
-  const opacityAnim = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    if (visible) {
-      Animated.parallel([
-        Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true, tension: 60, friction: 8 }),
-        Animated.timing(opacityAnim, { toValue: 1, duration: 250, useNativeDriver: true }),
-      ]).start();
-    } else {
-      scaleAnim.setValue(0.85);
-      opacityAnim.setValue(0);
-    }
-  }, [visible]);
-
-  if (!visible) return null;
-
-  const title = triLang(lang, {
-    ru: '🎉 Ты прошёл весь урок!',
-    uk: '🎉 Ти пройшов увесь урок!',
-    es: '🎉 ¡Has cerrado todo el ciclo!',
-    'pt-BR': '🎉 Você concluiu toda a lição!',
-    vi: '🎉 Bạn đã hoàn thành toàn bộ bài học!',
-    id: '🎉 Kamu telah menyelesaikan semua pelajaran!',
-    tr: '🎉 Tüm dersi tamamladın!',
-    pl: '🎉 Ukończyłeś całą lekcję!',
-  });
-  const subtitle = triLang(lang, {
-    ru: 'Можешь проходить сколько угодно раз — каждый новый круг улучшает твой результат.',
-    uk: 'Можеш продовжувати скільки завгодно разів — кожне нове коло покращує твій результат.',
-    es: 'Puedes seguir todas las vueltas que quieras; cada nueva ronda afianza mejor tu resultado.',
-    'pt-BR': 'Você pode repetir quantas vezes quiser — cada nova rodada melhora seu resultado.',
-    vi: 'Bạn có thể luyện tập bao nhiêu lần tùy thích — mỗi vòng mới đều cải thiện kết quả.',
-    id: 'Kamu bisa mengulang sebanyak yang kamu mau — setiap putaran baru meningkatkan hasilmu.',
-    tr: 'İstediğin kadar tekrar edebilirsin — her yeni tur sonucunu iyileştirir.',
-    pl: 'Możesz powtarzać ile chcesz — każda nowa runda poprawia twój wynik.',
-  });
-  const errorText = triLang(lang, {
-    ru: 'У тебя были ошибки — пройди ещё раз, чтобы исправить их и закрепить знания.',
-    uk: 'У тебе були помилки — пройди ще раз, щоб виправити їх і закріпити знання.',
-    es: 'Hubo errores: repásalo otra vez para corregirlos y fijar lo aprendido.',
-    'pt-BR': 'Você teve erros — repita para corrigi-los e fixar o aprendizado.',
-    vi: 'Bạn có lỗi — hãy làm lại để sửa và củng cố kiến thức.',
-    id: 'Kamu punya kesalahan — ulangi untuk memperbaikinya dan memperkuat pemahaman.',
-    tr: 'Hatalar yaptın — düzeltmek ve öğrendiklerini pekiştirmek için tekrar et.',
-    pl: 'Miałeś błędy — powtórz, żeby je poprawić i utrwalić wiedzę.',
-  });
-  const btnLabel = triLang(lang, {
-    ru: 'Продолжить',
-    uk: 'Продовжити',
-    es: 'Continuar',
-    'pt-BR': 'Continuar',
-    vi: 'Tiếp tục',
-    id: 'Lanjutkan',
-    tr: 'Devam et',
-    pl: 'Kontynuuj',
-  });
-
-  return (
-    <Modal transparent visible={visible} animationType="none" onRequestClose={onClose}>
-      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 }}>
-        <Animated.View testID="lesson-cycle-end-modal" style={{
-          backgroundColor: t.bgCard,
-          borderRadius: 24,
-          padding: 28,
-          width: '100%',
-          maxWidth: 360,
-          alignItems: 'center',
-          opacity: opacityAnim,
-          transform: [{ scale: scaleAnim }],
-          shadowColor: '#000',
-          shadowOpacity: 0.25,
-          shadowRadius: 20,
-          ...noAndroidOutline,
-        }}>
-          <Text style={{ fontSize: 48, marginBottom: 12 }}>🏆</Text>
-          <Text style={{ fontSize: f.h2, fontWeight: '700', color: t.textPrimary, textAlign: 'center', marginBottom: 10 }}>
-            {title}
-          </Text>
-          <Text style={{ fontSize: f.body, color: t.textSecond, textAlign: 'center', lineHeight: 22, marginBottom: hasErrors ? 12 : 24 }}>
-            {subtitle}
-          </Text>
-          {hasErrors && (
-            <View style={{ backgroundColor: t.accentBg, borderRadius: 12, padding: 12, marginBottom: 24, width: '100%' }}>
-              <Text style={{ fontSize: f.body, color: t.accent, textAlign: 'center', lineHeight: 20 }}>
-                {errorText}
-              </Text>
-            </View>
-          )}
-          <TapScale
-            testID="lesson-cycle-end-continue"
-            onPress={onClose}
-            scaleTo={0.96}
-            style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 40, width: '100%', alignItems: 'center' }}
-          >
-            <Text style={{ fontSize: f.bodyLg, fontWeight: '700', color: t.correctText }}>{btnLabel}</Text>
-          </TapScale>
-        </Animated.View>
-      </View>
-    </Modal>
-  );
-}
 
 /**
  * [REVIEW] Одна пройденная фраза для режима «Назад к фразам» (просмотр/сравнение, read-only).
@@ -616,13 +487,6 @@ interface LessonContentProps {
   toastAnim: Animated.Value;
   from?: string;
   onHeaderBack: () => void;
-  isPlanLessonTask: boolean;
-  isLinkedLessonSliceTask: boolean;
-  isPlanPhraseRecallTask: boolean;
-  planRequiredPhrases: number;
-  planLessonAnswered: number;
-  planLessonRemaining: number;
-  isPlanPhraseLessonTask: boolean;
   lessonTeachingNote: ResolvedLessonTeachingNote | null;
   lessonTheorySupportBlocked: boolean;
   lessonHintSupportBlocked: boolean;
@@ -697,13 +561,6 @@ const LessonContent = React.memo(function LessonContent({
   toastAnim,
   from,
   onHeaderBack,
-  isPlanLessonTask,
-  isLinkedLessonSliceTask,
-  isPlanPhraseRecallTask,
-  planRequiredPhrases,
-  planLessonAnswered,
-  planLessonRemaining,
-  isPlanPhraseLessonTask,
   lessonTeachingNote,
   lessonTheorySupportBlocked,
   lessonHintSupportBlocked,
@@ -713,7 +570,7 @@ const LessonContent = React.memo(function LessonContent({
   const { bottomInset } = useScreen();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const progressCellCount = Math.max(1, totalCells);
-  const linkedSliceCompact = isLinkedLessonSliceTask;
+  const linkedSliceCompact = false;
   const lessonHorizontalPadding = linkedSliceCompact ? 14 : 20;
   const linkedSlicePromptFont = Math.max(f.h2, f.h2 + (linkedSliceCompact ? 0 : 6));
   const linkedSliceAnswerFont = Math.max(f.bodyLg, f.h1 - (linkedSliceCompact ? 4 : 0));
@@ -838,6 +695,9 @@ const LessonContent = React.memo(function LessonContent({
   const [grammarHintText, setGrammarHintText] = useState<string | null>(null);
   const grammarHintAnim = useRef(new Animated.Value(0)).current;
   const grammarHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const grammarHintAnimationRef = useRef<Animated.CompositeAnimation | null>(null);
+  const grammarHintGenerationRef = useRef(0);
+  const grammarHintSeenCacheRef = useRef(new Set<string>());
   // Вспышка плитки при тапе слова привязана к конкретной опции и шагу фразы.
   // Чёткий визуальный отклик «выбрано/верно/неверно» (раньше плитка никак не реагировала).
   const [flashWord, setFlashWord] = useState<{ optionKey: string; correct: boolean } | null>(null);
@@ -848,9 +708,8 @@ const LessonContent = React.memo(function LessonContent({
     flashTimerRef.current = setTimeout(() => setFlashWord(null), 260);
   }, []);
   useEffect(() => () => { if (flashTimerRef.current) clearTimeout(flashTimerRef.current); }, []);
-  // Пока ждём отложенный handleWordPress (170 мс на показ вспышки),
-  // блокируем и логику, и нативный press-отклик всего банка. Иначе быстрый второй тап
-  // визуально нажимает другую плитку, хотя её onPress затем отбрасывается защитой через ref.
+  // Ответ применяется сразу; короткий lock нужен только против двойного тапа,
+  // чтобы второй нативный press не успел выбрать соседнюю плитку в том же жесте.
   const [wordDispatchPending, setWordDispatchPending] = useState(false);
   const wordDispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (wordDispatchTimerRef.current) clearTimeout(wordDispatchTimerRef.current); }, []);
@@ -904,11 +763,11 @@ const LessonContent = React.memo(function LessonContent({
         word,
         index: i,
         isCorrectOption,
-        shouldShowHint: !isPlanLessonTask && !isPlanPhraseLessonTask && showToBeHint && cellIndex < 2 && isCorrectOption,
+        shouldShowHint: showToBeHint && cellIndex < 2 && isCorrectOption,
         displayText,
       };
     });
-  }, [shuffled, phraseEnterKey, phraseWordIdx, contrExpanded, currentCorrectWord, currentValidContraction, isPlanLessonTask, isPlanPhraseLessonTask, showToBeHint, cellIndex, s.lesson.noArticle]);
+  }, [shuffled, phraseEnterKey, phraseWordIdx, contrExpanded, currentCorrectWord, currentValidContraction, showToBeHint, cellIndex, s.lesson.noArticle]);
   const selectedAnswerMatchesAlternative = Boolean(
     gradeAlts?.length && isCorrectAnswer(selectedAnswer, gradeTarget, gradeAlts)
   );
@@ -921,7 +780,10 @@ const LessonContent = React.memo(function LessonContent({
   const triggerGrammarHint = useCallback(async (currentWord: string, force = false) => {
     if (!currentWord) return;
     if (lessonHintSupportBlocked) return;
+    const generation = ++grammarHintGenerationRef.current;
     if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
+    grammarHintAnimationRef.current?.stop();
+    grammarHintAnim.stopAnimation();
     for (const hint of GRAMMAR_HINTS) {
       if (lessonId >= hint.lessonTeaches) continue;
       if (!hint.detect(currentWord)) continue;
@@ -929,35 +791,60 @@ const LessonContent = React.memo(function LessonContent({
         // Ключ «подсказка уже показана» скоупится по языку-цели: en — легаси-ключ,
         // fr — отдельный namespace, чтобы прогресс подсказок en/fr не смешивался.
         const seenKey = grammarHintSeenKey(hint.key, studyTarget);
-        const seen = await AsyncStorage.getItem(seenKey);
+        // Один и тот же артикль встречается много раз за урок. После первой
+        // проверки держим ключ в памяти: повторный AsyncStorage bridge-call на
+        // каждом слове создавал очередь и через несколько фраз тормозил UI.
+        if (grammarHintSeenCacheRef.current.has(seenKey)) continue;
+        const seen = await AsyncStorage.getItem(seenKey).catch(() => null);
+        if (generation !== grammarHintGenerationRef.current) return;
+        if (seen) grammarHintSeenCacheRef.current.add(seenKey);
         if (seen) continue;
-        await AsyncStorage.setItem(seenKey, '1');
+        grammarHintSeenCacheRef.current.add(seenKey);
+        void AsyncStorage.setItem(seenKey, '1').catch(() => {});
       }
       const text = grammarHintLine(lang, hint, studyTarget);
-      Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true }).start(() => {
+      const fadeOut = Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true });
+      grammarHintAnimationRef.current = fadeOut;
+      fadeOut.start(({ finished }) => {
+        if (!finished || generation !== grammarHintGenerationRef.current) return;
         setGrammarHintText(text);
-        Animated.timing(grammarHintAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start();
+        const fadeIn = Animated.timing(grammarHintAnim, { toValue: 1, duration: 400, useNativeDriver: true });
+        grammarHintAnimationRef.current = fadeIn;
+        fadeIn.start();
         grammarHintTimerRef.current = setTimeout(() => {
-          Animated.timing(grammarHintAnim, { toValue: 0, duration: 400, useNativeDriver: true }).start(() => setGrammarHintText(null));
+          if (generation !== grammarHintGenerationRef.current) return;
+          const dismiss = Animated.timing(grammarHintAnim, { toValue: 0, duration: 400, useNativeDriver: true });
+          grammarHintAnimationRef.current = dismiss;
+          dismiss.start(({ finished: dismissed }) => {
+            if (dismissed && generation === grammarHintGenerationRef.current) setGrammarHintText(null);
+          });
         }, 10000);
       });
       return;
     }
-  }, [lessonHintSupportBlocked, lessonId, lang, studyTarget]);
+  }, [grammarHintAnim, lessonHintSupportBlocked, lessonId, lang, studyTarget]);
 
   const hideGrammarHint = useCallback(() => {
+    grammarHintGenerationRef.current += 1;
     if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
-    Animated.timing(grammarHintAnim, { toValue: 0, duration: 200, useNativeDriver: true }).start(() => setGrammarHintText(null));
+    grammarHintTimerRef.current = null;
+    grammarHintAnimationRef.current?.stop();
+    grammarHintAnimationRef.current = null;
+    grammarHintAnim.stopAnimation();
+    const dismiss = Animated.timing(grammarHintAnim, { toValue: 0, duration: 120, useNativeDriver: true });
+    grammarHintAnimationRef.current = dismiss;
+    dismiss.start(({ finished }) => {
+      if (finished) setGrammarHintText(null);
+    });
   }, [grammarHintAnim]);
 
   useEffect(() => {
-    if (isPlanLessonTask || isPlanPhraseLessonTask || isPlanPhraseRecallTask) return;
     if (!phrase) return;
     const tokens = getPhraseTokens(phrase, studyTarget);
     const word = tokens[phraseWordIdx] ?? '';
     triggerGrammarHint(word, false);
     return hideGrammarHint;
-  }, [isPlanLessonTask, isPlanPhraseLessonTask, isPlanPhraseRecallTask, phrase?.english, phrase?.spanish, phraseWordIdx, studyTarget, triggerGrammarHint, hideGrammarHint]);
+  }, [phrase?.english, phrase?.spanish, phraseWordIdx, studyTarget, triggerGrammarHint, hideGrammarHint]);
 
   useEffect(() => {
     if (barWidth === 0) return;
@@ -1064,7 +951,7 @@ const LessonContent = React.memo(function LessonContent({
   // финальным контентом (Performance Bible: instant first frame).
   if (!introGateReady) {
     return (
-      <LessonLoadingSkeleton theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
+      <LessonFirstFrame theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
     );
   }
 
@@ -1075,7 +962,7 @@ const LessonContent = React.memo(function LessonContent({
   // прогресс-бар), см. эталон app/review.tsx ~1297-1345.
   if (!phrase) {
     return (
-      <LessonLoadingSkeleton theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
+      <LessonFirstFrame theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
     );
   }
 
@@ -1253,7 +1140,7 @@ const LessonContent = React.memo(function LessonContent({
               <TextInput
                 testID="lesson1-typed-input"
                 ref={textInputRef}
-                style={{ color: sx.second, fontSize: interactiveAnswerFont, padding: 0, minHeight: linkedSliceCompact ? 34 : 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
+                style={{ color: sx.primary, fontSize: interactiveAnswerFont, padding: 0, minHeight: linkedSliceCompact ? 34 : 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
                 value={typedText}
                 onChangeText={setTypedText}
                 onSubmitEditing={handleTypedSubmit}
@@ -1269,8 +1156,8 @@ const LessonContent = React.memo(function LessonContent({
               />
             ) : (
               <Text
-                style={{ color: sx.second, fontSize: interactiveAnswerFont, width: '100%', textAlign: 'center' }}
-                numberOfLines={linkedSliceCompact ? 2 : undefined}
+                testID="lesson1-selected-answer"
+                style={{ color: sx.primary, fontSize: interactiveAnswerFont, fontWeight: '600', width: '100%', textAlign: 'center' }}
               >
                 {selectedWords.length > 0
                   ? (() => {
@@ -1288,7 +1175,10 @@ const LessonContent = React.memo(function LessonContent({
                       return first + (rest ? ' ' + rest : '');
                     })()
                   : ''
-                }<Animated.Text style={{ color: sx.primary, opacity: cursorAnim }}>|</Animated.Text>
+                }{selectedWords.length > 0 && phraseWordIdx < phraseTokens.length ? '\u00A0' : ''}
+                <Animated.Text style={{ color: t.accent, opacity: selectedWords.length > 0 ? 1 : cursorAnim }}>
+                  {selectedWords.length > 0 ? (phraseWordIdx < phraseTokens.length ? '…' : '') : '|'}
+                </Animated.Text>
               </Text>
             )}
           </View>
@@ -1505,18 +1395,17 @@ const LessonContent = React.memo(function LessonContent({
                           setTypedText(current ? current + ' ' + w : w);
                           setTimeout(() => textInputRef.current?.focus(), 50);
                         } else {
-                          // Вспышка плитки акцентным цветом темы. handleWordPress зовёт
-                          // setShuffled → банк плиток пересобирается и нажатая плитка
-                          // размонтируется; задержка 170мс < окна вспышки 260мс держит
-                          // акцент+объём (pressedExternally) видимыми на нажатой плитке.
+                          // Вспышка плитки начинается сразу, но сам ответ тоже обязан
+                          // примениться в этот же кадр. Прежняя задержка 170 мс ради
+                          // вспышки делала каждую кнопку ощутимо «тормозной».
                           if (wordDispatchTimerRef.current) return;
                           setWordDispatchPending(true);
                           triggerWordFlash(optionKey, isCorrectOption);
                           wordDispatchTimerRef.current = setTimeout(() => {
                             wordDispatchTimerRef.current = null;
-                            handleWordPress(word);
                             setWordDispatchPending(false);
-                          }, 170);
+                          }, WORD_DISPATCH_LOCK_MS);
+                          handleWordPress(word);
                         }
                         // [FeedbackKit] Решение владельца: плитки слов — БЕЗ клик-звука
                         // (звук только на управляющих кнопках). Оставляем родную вибрацию.
@@ -1586,7 +1475,7 @@ const LessonContent = React.memo(function LessonContent({
           {/* 50/50 — затемнить неверные плитки. Общий лимит с «Объясни» (fifty_fifty_* счётчик).
               Прячем, когда плиток-вариантов уже нет (ответ собран, ждём «Проверить») — гасить
               нечего, кнопка висела бесполезно. */}
-          {!settings.hardMode && !isPlanPhraseRecallTask && status === 'playing' && shuffled.length > 0 && (
+          {!settings.hardMode && status === 'playing' && shuffled.length > 0 && (
             (() => {
               const canUse50 = explainHintsLeft > 0 && !fiftyFiftyActive;
               return (
@@ -1860,16 +1749,7 @@ const LessonContent = React.memo(function LessonContent({
           <TapScale
             style={{ position: 'absolute', bottom: 90, right: 12, backgroundColor: 'rgba(40,40,40,0.85)', borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, zIndex: 999 }}
             onPress={() => {
-              const hint = GRAMMAR_HINTS[0];
-              if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
-              const text = grammarHintLine(lang, hint, studyTarget);
-              Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true }).start(() => {
-                setGrammarHintText(text);
-                Animated.timing(grammarHintAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start();
-                grammarHintTimerRef.current = setTimeout(() => {
-                  Animated.timing(grammarHintAnim, { toValue: 0, duration: 400, useNativeDriver: true }).start(() => setGrammarHintText(null));
-                }, 10000);
-              });
+              void triggerGrammarHint('the', true);
             }}
           >
             <Text style={{ color: '#fff', fontSize: 11, fontWeight: '600' }}>DEV: grammar hint</Text>
@@ -2025,86 +1905,23 @@ export default function LessonScreen() {
     from: fromParam,
     replayIntro: replayIntroParam,
     replayIntroAt: replayIntroAtParam,
-    planTask: planTaskParam,
-    lessonShellMode: lessonShellModeParam,
-    planPracticeMode: planPracticeModeParam,
-    allowCorrectWordHighlighting: allowCorrectWordHighlightingParam,
-    requiredPhrases: requiredPhrasesParam,
-    requiredPhraseIds: requiredPhraseIdsParam,
-    planTaskId: planTaskIdParam,
-    planInstanceId: planInstanceIdParam,
-    planId: planIdParam,
-    planDayIndex: planDayIndexParam,
-    planPhraseLessonId: planPhraseLessonIdParam,
-    planPhraseMode: planPhraseModeParam,
+    serverAttemptId: serverAttemptIdParam,
   } = useLocalSearchParams<{
     id?: string | string[];
     from?: string | string[];
     replayIntro?: string | string[];
     replayIntroAt?: string | string[];
-    planTask?: string | string[];
-    lessonShellMode?: string | string[];
-    planPracticeMode?: string | string[];
-    allowCorrectWordHighlighting?: string | string[];
-    requiredPhrases?: string | string[];
-    requiredPhraseIds?: string | string[];
-    planTaskId?: string | string[];
-    planInstanceId?: string | string[];
-    planId?: string | string[];
-    planDayIndex?: string | string[];
-    planPhraseLessonId?: string | string[];
-    planPhraseMode?: string | string[];
+    serverAttemptId?: string | string[];
   }>();
   const id = (Array.isArray(idParam) ? idParam[0] : idParam) || '1';
   const from = Array.isArray(fromParam) ? fromParam[0] : fromParam;
-  const isPlanLessonTask = (Array.isArray(planTaskParam) ? planTaskParam[0] : planTaskParam) === '1';
-  const lessonShellMode = Array.isArray(lessonShellModeParam) ? lessonShellModeParam[0] : lessonShellModeParam;
-  const planPracticeMode = Array.isArray(planPracticeModeParam) ? planPracticeModeParam[0] : planPracticeModeParam;
-  const allowCorrectWordHighlighting = Array.isArray(allowCorrectWordHighlightingParam) ? allowCorrectWordHighlightingParam[0] : allowCorrectWordHighlightingParam;
-  const planAllowsCorrectWordHighlighting = allowCorrectWordHighlighting === '1';
-  const isLinkedLessonSliceTask = isPlanLessonTask && lessonShellMode === 'linked_lesson_slice' && planPracticeMode === 'linked_lesson';
-  const requiredPhrasesRaw = Array.isArray(requiredPhrasesParam) ? requiredPhrasesParam[0] : requiredPhrasesParam;
-  const requiredPhraseIdsRaw = Array.isArray(requiredPhraseIdsParam) ? requiredPhraseIdsParam[0] : requiredPhraseIdsParam;
-  const planTaskId = Array.isArray(planTaskIdParam) ? planTaskIdParam[0] : planTaskIdParam;
-  const planInstanceId = Array.isArray(planInstanceIdParam) ? planInstanceIdParam[0] : planInstanceIdParam;
-  const planId = Array.isArray(planIdParam) ? planIdParam[0] : planIdParam;
-  const planDayIndexRaw = Array.isArray(planDayIndexParam) ? planDayIndexParam[0] : planDayIndexParam;
-  const planPhraseLessonId = Array.isArray(planPhraseLessonIdParam) ? planPhraseLessonIdParam[0] : planPhraseLessonIdParam;
-  const planPhraseMode = Array.isArray(planPhraseModeParam) ? planPhraseModeParam[0] : planPhraseModeParam;
-  const isPlanPhraseRecallTask = planPhraseMode === 'recall';
-  const [planUserName, setPlanUserName] = useState('Phraseman');
-  const [planUserNameReady, setPlanUserNameReady] = useState(false);
-  const rawPlanPhraseLesson = getPersonalPlanPhraseLesson(planPhraseLessonId);
-  const planPhraseLesson = rawPlanPhraseLesson ? personalizePlanPhraseLesson(rawPlanPhraseLesson, planUserName) : null;
-  const isPlanPhraseLessonTask = Boolean(planPhraseLesson);
-  const isPlanPhraseBuildTask = isPlanPhraseLessonTask && lessonShellMode === 'plan_phrase_build' && planPracticeMode === 'build';
-  const shouldDisablePlanPhraseHints = isPlanPhraseBuildTask && !planAllowsCorrectWordHighlighting;
-  const planMistakeContext = {
-    planId,
-    planInstanceId,
-    planTaskId,
-    planDayIndex: parseInt(planDayIndexRaw ?? '1', 10) || 1,
-    planPhraseLessonId,
-  };
-  const planRequiredPhrases = isPlanLessonTask
-    ? Math.max(1, Math.min(50, parseInt(requiredPhrasesRaw ?? '0', 10) || 0))
-    : 0;
-  const planRequiredPhraseIds = useMemo(
-    () => isPlanLessonTask && requiredPhraseIdsRaw
-      ? requiredPhraseIdsRaw.split(',').map((item) => item.trim()).filter(Boolean)
-      : [],
-    [isPlanLessonTask, requiredPhraseIdsRaw],
-  );
-  const planRequiredPhraseIdSet = useMemo(
-    () => new Set(planRequiredPhraseIds),
-    [planRequiredPhraseIds],
-  );
+  const routeServerAttemptId = normalizeLessonServerAttemptId(serverAttemptIdParam);
   const replayIntro = (Array.isArray(replayIntroParam) ? replayIntroParam[0] : replayIntroParam) === '1';
   const replayIntroAt = Array.isArray(replayIntroAtParam) ? replayIntroAtParam[0] : replayIntroAtParam;
   const replayIntroToken = replayIntro ? (replayIntroAt || 'manual') : '';
   const lessonId = parseInt(id, 10) || 1;
   const frenchRemoteSourceLocale = lang === 'uk' ? 'uk' : 'ru';
-  const frenchRemoteLessonRequired = frenchStudyActive(studyTarget) && !isPlanPhraseLessonTask;
+  const frenchRemoteLessonRequired = frenchStudyActive(studyTarget);
   const [remoteFrenchLessonRows, setRemoteFrenchLessonRows] = useState<LessonPhrase[] | null>(null);
   const [remoteFrenchLessonLoadState, setRemoteFrenchLessonLoadState] = useState<'idle' | 'loading' | 'ready' | 'failed'>('idle');
   const [remoteFrenchLessonReloadNonce, setRemoteFrenchLessonReloadNonce] = useState(0);
@@ -2130,9 +1947,7 @@ export default function LessonScreen() {
       });
     return () => { cancelled = true; };
   }, [frenchRemoteLessonRequired, frenchRemoteSourceLocale, lessonId, remoteFrenchLessonReloadNonce]);
-  const lessonStorageId = isPlanPhraseLessonTask
-    ? `${isPlanPhraseRecallTask ? 'plan_phrase_recall_' : 'plan_phrase_'}${planPhraseLesson?.id ?? 'unknown'}`
-    : lessonId;
+  const lessonStorageId = lessonId;
   const LESSON_KEY = lessonProgressKey(lessonStorageId, studyTarget);
   const CELL_KEY   = lessonSessionKey(lessonStorageId, 'cellIndex', studyTarget);
   const ORDER_KEY  = lessonSessionKey(lessonStorageId, 'phraseOrder', studyTarget);
@@ -2143,12 +1958,11 @@ export default function LessonScreen() {
 
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
   const LESSON_DATA = useMemo(
-    () => (planPhraseLesson?.phrases ?? remoteFrenchLessonRows ?? getLessonData(lessonId)).filter(p => {
+    () => (remoteFrenchLessonRows ?? getLessonData(lessonId)).filter(p => {
       if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return false;
-      if (isPlanLessonTask && planRequiredPhraseIdSet.size > 0 && !planRequiredPhraseIdSet.has(String(p.id))) return false;
       return p.words && p.words.length > 0;
     }),
-    [planPhraseLesson, remoteFrenchLessonRows, lessonId, studyTarget, isPlanLessonTask, planRequiredPhraseIdSet],
+    [remoteFrenchLessonRows, lessonId, studyTarget],
   );
   // Если в уроке меньше 50 фраз — не повторяем. effectiveTotal = реальное кол-во фраз.
   const effectiveTotal = Math.min(LESSON_DATA.length, TOTAL);
@@ -2161,11 +1975,11 @@ export default function LessonScreen() {
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      const blocked = !isPlanPhraseLessonTask && await shouldBlockLessonAccess(lessonId, studyTarget);
+      const blocked = await shouldBlockLessonAccess(lessonId, studyTarget);
       if (!cancelled && blocked) await openLessonGateByRuntime(router, lessonId, studyTarget);
     })();
     return () => { cancelled = true; };
-  }, [lessonId, router, isPlanPhraseLessonTask]);
+  }, [lessonId, router, studyTarget]);
   // Refs to avoid stale closures in useCallback (checkAnswer has [progress,...] deps, not energy)
   const currentEnergyRef = useRef(currentEnergy);
   const bonusEnergyRef = useRef(bonusEnergy);
@@ -2187,28 +2001,31 @@ export default function LessonScreen() {
   // только их — нельзя листать фразы, до которых юзер ещё не дошёл в этом проходе
   // (важно для повторных проходов, где progress[] уже полностью заполнен с прошлого раза).
   const [passAnsweredCells, setPassAnsweredCells] = useState<ReadonlySet<number>>(() => new Set());
-  const [planLessonAnswered, setPlanLessonAnswered] = useState(0);
-  const [planLessonDoneVisible, setPlanLessonDoneVisible] = useState(false);
   const [settings,     setSettings]     = useState<Settings>(DEFAULT_SETTINGS);
   const spokenResultKeyRef = useRef('');
   const [wasWrong,     setWasWrong]     = useState(false);
   const [lessonTeachingNote, setLessonTeachingNote] = useState<ResolvedLessonTeachingNote | null>(null);
+  // Снимок заметок загружается вместе с остальным состоянием урока. Нельзя
+  // ходить в AsyncStorage перед показом результата каждого правильного ответа:
+  // нативный мост задерживает кадр, а через несколько фраз очередь растёт.
+  const teachingNoteSeenIdsRef = useRef<string[]>([]);
   const [typedText,    setTypedText]    = useState('');
   const [showTapHint,  setShowTapHint]  = useState(false);
   // CHANGE v5: contraction branching state
   const [phraseWordIdx, setPhraseWordIdx] = useState(0);        // position in original phrase words
   const [contrExpanded, setContrExpanded] = useState<string[] | null>(null); // pending expansion tokens
-  const correctStreakRef = useRef(0);  // для задания correct_streak + combo badge
-  const todayAnswersRef  = useRef(0);  // для задания total_answers
+  const correctStreakRef = useRef(0);  // серия правильных ответов + combo badge
   const userNameRef      = useRef<string | null>(null); // кешируем имя чтобы не читать AsyncStorage на каждый ответ
   // [COMBO] Отображаемое значение комбо для UI-бейджа. Обновляется в setState.
   const [comboCount, setComboCount] = useState(0);
-  // зачем: звук комбо должен играть только на ПЕРЕСЕЧЕНИЕ порога (3/5/10),
-  // не на каждый верный ответ внутри уровня — сравниваем с предыдущим уровнем.
-  const comboLevelRef = useRef(0);
   const [xpToastAmount, setXpToastAmount] = useState(0);
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const xpToastAnim = useRef(new Animated.Value(0)).current;
+  const xpToastSequenceRef = useRef<Animated.CompositeAnimation | null>(null);
+  useEffect(() => () => {
+    xpToastSequenceRef.current?.stop();
+    xpToastAnim.stopAnimation();
+  }, [xpToastAnim]);
   const lessonXpEstimateMultiplierRef = useRef(1);
   // The completion screen reports only XP that registerXP actually committed.
   // Keep its in-flight awards so navigation cannot race their final multipliers.
@@ -2216,6 +2033,15 @@ export default function LessonScreen() {
   const lessonEarnedBaseXpRef = useRef(0);
   const lessonEarnedMultipliersRef = useRef<Map<string, ConfirmedLessonMultiplierEntry>>(new Map());
   const pendingLessonXpAwardsRef = useRef<Promise<void>[]>([]);
+  const replayNormalBaseXpRef = useRef(0);
+  const replayAwardedBaseXpRef = useRef(0);
+  const replayXpScope = `${lessonStorageId}:${studyTarget}:${routeServerAttemptId ?? 'stored'}`;
+  const replayXpScopeRef = useRef(replayXpScope);
+  if (replayXpScopeRef.current !== replayXpScope) {
+    replayXpScopeRef.current = replayXpScope;
+    replayNormalBaseXpRef.current = 0;
+    replayAwardedBaseXpRef.current = 0;
+  }
   const [fiftyFiftyUsedToday, setFiftyFiftyUsedToday] = useState(0);
   const [bonusHints, setBonusHints] = useState(0);
   const [passCount, setPassCount]   = useState(0);
@@ -2232,8 +2058,6 @@ export default function LessonScreen() {
   const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
   const [failedTapCount, setFailedTapCount] = useState(0);
   const [recoveryTimeText, setRecoveryTimeText] = useState('');
-  const [showCycleEndModal, setShowCycleEndModal] = useState(false);
-  const [cycleEndHasErrors, setCycleEndHasErrors] = useState(false);
   /**
    * false until loadData finishes, unless we primed from AsyncStorage before navigation
    * (see lesson_menu / primeLessonScreenFromStorage) — then first paint is already at saved cell.
@@ -2241,10 +2065,6 @@ export default function LessonScreen() {
   const [lessonHydrated, setLessonHydrated] = useState(
     () => isLessonScreenPrimedThisSession(lessonStorageId, LESSON_DATA.length, effectiveTotal)
   );
-  // Ref для хранения колбека после закрытия модалки (навигация на lesson_complete)
-  const cycleEndCallbackRef = useRef<(() => void | Promise<void>) | null>(null);
-  const cycleEndContinueInFlightRef = useRef(false);
-
   const fadeAnim    = useRef(new Animated.Value(0)).current;
   const toastAnim   = useRef(new Animated.Value(0)).current;
   const cursorAnim  = useRef(new Animated.Value(1)).current;
@@ -2267,7 +2087,10 @@ export default function LessonScreen() {
   const replayAudioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const textInputRef = useRef<any>(null);
   const sessionAnswerCount = useRef(0);   // кол-во ответов в текущей сессии
-  const serverAttemptIdRef = useRef<string>('');
+  // A repeat opened from lesson_complete receives its fresh attempt id in the
+  // route, so Android cannot race the asynchronous AsyncStorage write and reuse
+  // the previous pass id (which made every reward look like a duplicate).
+  const serverAttemptIdRef = useRef<string>(routeServerAttemptId ?? '');
   const lessonWrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
   const isReplayRef        = useRef(false); // true если урок уже был пройден полностью
   const isCompletingRef    = useRef(false); // true пока идёт задержка перед переходом на lesson_complete
@@ -2287,17 +2110,6 @@ export default function LessonScreen() {
     lessonAnalyticsKeyRef.current = lessonAnalyticsKey;
     lessonAnalyticsAttemptRef.current = createLessonAnalyticsAttempt(Crypto.randomUUID);
   }
-  const differentLessonTrackedRef = useRef(false); // засчитали different_lessons для этого урока сегодня
-  // last_active_date на СТАРТЕ урока: первое начисление XP перезапишет её сегодняшней
-  // датой, и «возвращение после перерыва» перестанет быть видно (comeback_lesson).
-  const comebackLastActiveRef = useRef<string | null | undefined>(undefined);
-
-  useEffect(() => {
-    AsyncStorage.getItem('last_active_date')
-      .then((value) => { comebackLastActiveRef.current = value; })
-      .catch(() => { comebackLastActiveRef.current = null; });
-  }, []);
-
   useEffect(() => {
     let cancelled = false;
     const lessonMultiplier = getLessonDifficultyMultiplier(lessonId);
@@ -2399,10 +2211,8 @@ export default function LessonScreen() {
       AsyncStorage.getItem('user_name')
         .then(n => {
           userNameRef.current = n;
-          setPlanUserName((n ?? '').trim() || 'Phraseman');
-          setPlanUserNameReady(true);
         })
-        .catch(() => setPlanUserNameReady(true));
+        .catch(() => {});
     });
     return () => {
       task.cancel();
@@ -2413,7 +2223,7 @@ export default function LessonScreen() {
   useEffect(() => {
     let cancelled = false;
     const introKey = lessonIntroShownKey(lessonId, studyTarget);
-    const hasIntroScreens = !isPlanPhraseLessonTask && getLessonIntroScreens(lessonId, studyTarget).length > 0;
+    const hasIntroScreens = getLessonIntroScreens(lessonId, studyTarget).length > 0;
     if (!hasIntroScreens) {
       setShowIntroScreens(false);
       setIntroGateReady(true);
@@ -2452,7 +2262,7 @@ export default function LessonScreen() {
     return () => {
       cancelled = true;
     };
-  }, [lessonId, replayIntro, replayIntroToken, studyTarget, isPlanPhraseLessonTask]);
+  }, [lessonId, replayIntro, replayIntroToken, studyTarget]);
 
   // Показываем подсказку один раз за сессию
   useEffect(() => {
@@ -2767,6 +2577,7 @@ export default function LessonScreen() {
         setShuffled([]);
         setSelectedWords([]);
         setTypedText('');
+        teachingNoteSeenIdsRef.current = [];
         setPhraseWordIdx(0);
         setContrExpanded(null);
         touchLessonScreenPrimed(lessonStorageId, {
@@ -2785,7 +2596,7 @@ export default function LessonScreen() {
       // всё уже готово.
       const introKey = lessonIntroShownKey(lessonId, studyTargetRef.current);
       const introShownRaw = await AsyncStorage.getItem(introKey);
-      if (!isPlanPhraseLessonTask && !introShownRaw && getLessonIntroScreens(lessonId, studyTargetRef.current).length > 0) {
+      if (!introShownRaw && getLessonIntroScreens(lessonId, studyTargetRef.current).length > 0) {
         await AsyncStorage.setItem(introKey, 'true').catch(() => {});
         syncLessonIntroShownFlagNow();
         setShowIntroScreens(true);
@@ -2798,7 +2609,8 @@ export default function LessonScreen() {
       // energy state comes from EnergyContext — no local load needed
 
       loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
-      const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw, serverAttemptRaw] = await Promise.all([
+      const teachingNoteMemoryKey = lessonTeachingNoteSeenStorageKey(lessonStorageId, studyTargetRef.current);
+      const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw, serverAttemptRaw, teachingNoteSeenRaw] = await Promise.all([
         AsyncStorage.getItem(LESSON_KEY),
         AsyncStorage.getItem(SETTINGS_KEY),
         AsyncStorage.getItem(CELL_KEY),
@@ -2807,10 +2619,12 @@ export default function LessonScreen() {
         AsyncStorage.getItem(ERROR_REPLAY_SINCE_KEY),
         AsyncStorage.getItem(ERROR_REPLAY_OVERRIDE_KEY),
         AsyncStorage.getItem(SERVER_ATTEMPT_KEY),
+        AsyncStorage.getItem(teachingNoteMemoryKey),
       ]);
-      const serverAttemptId = serverAttemptRaw || makeLessonServerAttemptId();
+      teachingNoteSeenIdsRef.current = parseLessonTeachingNoteSeenIds(teachingNoteSeenRaw);
+      const serverAttemptId = routeServerAttemptId || serverAttemptRaw || makeLessonServerAttemptId();
       serverAttemptIdRef.current = serverAttemptId;
-      if (!serverAttemptRaw) {
+      if (serverAttemptRaw !== serverAttemptId) {
         AsyncStorage.setItem(SERVER_ATTEMPT_KEY, serverAttemptId).catch(() => {});
       }
 
@@ -2921,19 +2735,19 @@ export default function LessonScreen() {
         if (restoredOrder) {
           phraseOrderRef.current = restoredOrder;
         } else {
-          phraseOrderRef.current = isPlanPhraseRecallTask ? buildPlanPhraseRecallOrder(n) : shuffleLessonPhraseOrder(n);
+          phraseOrderRef.current = shuffleLessonPhraseOrder(n);
           // Сохраняем новый порядок сразу
           AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(() => {});
         }
       } else if (LESSON_DATA.length > 0 && !hasUsableLessonPhraseOrder(phraseOrderRef.current, LESSON_DATA.length)) {
-        phraseOrderRef.current = isPlanPhraseRecallTask ? buildPlanPhraseRecallOrder(LESSON_DATA.length) : shuffleLessonPhraseOrder(LESSON_DATA.length);
+        phraseOrderRef.current = shuffleLessonPhraseOrder(LESSON_DATA.length);
         AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(() => {});
       }
 
       // Подсказка (подсветка правильного слова) только для урока 1 при первом посещении
-      if (!isPlanLessonTask && !shouldDisablePlanPhraseHints && lessonId === 1 && startCell === 0 && !sp) {
+      if (lessonId === 1 && startCell === 0 && !sp) {
         setShowToBeHint(true);
-      } else if (isPlanLessonTask || shouldDisablePlanPhraseHints) {
+      } else {
         setShowToBeHint(false);
       }
       setCellIndex(startCell);
@@ -3018,16 +2832,13 @@ export default function LessonScreen() {
     const expected = phraseCanonicalAnswer(phrase, st);
     const answerAlts = phraseAnswerAlternatives(phrase, st);
     const isRight = isCorrectAnswer(answer, expected, answerAlts)
-      || (settings.hardMode && isCorrectLessonHardModeTypedAnswer(phrase, st, answer))
-      || (isPlanPhraseLessonTask && isFlexiblePlanNameAnswer(phrase, answer, st));
+      || (settings.hardMode && isCorrectLessonHardModeTypedAnswer(phrase, st, answer));
     const teachingMistakeToken = isRight
       ? undefined
       : resolvePhraseMistakeToken(expected, answer)?.tokenIndex;
-    const shouldResolveTeachingNote = shouldShowLessonTeachingNote({ isPlanPhraseRecallTask, isRight });
+    const shouldResolveTeachingNote = shouldShowLessonTeachingNote();
     const teachingNoteMemoryKey = lessonTeachingNoteSeenStorageKey(lessonStorageId, st);
-    const seenTeachingNoteIds = isRight
-      ? parseLessonTeachingNoteSeenIds(await AsyncStorage.getItem(teachingNoteMemoryKey))
-      : [];
+    const seenTeachingNoteIds = isRight ? teachingNoteSeenIdsRef.current : [];
     const nextTeachingNote = shouldResolveTeachingNote
       ? resolvePhraseTeachingNote(
         phrase,
@@ -3040,9 +2851,11 @@ export default function LessonScreen() {
       : null;
     setLessonTeachingNote(nextTeachingNote);
     if (isRight && nextTeachingNote) {
+      const nextSeenTeachingNoteIds = [...seenTeachingNoteIds, nextTeachingNote.id];
+      teachingNoteSeenIdsRef.current = nextSeenTeachingNoteIds;
       void AsyncStorage.setItem(
         teachingNoteMemoryKey,
-        serializeLessonTeachingNoteSeenIds([...seenTeachingNoteIds, nextTeachingNote.id]),
+        serializeLessonTeachingNoteSeenIds(nextSeenTeachingNoteIds),
       ).catch(() => {});
     }
     logLessonAnswer(lessonId, isRight, cellIndex, effectiveTotal, lessonAnalyticsAttemptRef.current!.id);
@@ -3053,26 +2866,6 @@ export default function LessonScreen() {
       tags: { lessonId, cellIndex, isRight, replay: overridePhraseCell !== null },
     });
     trackAnswer(isRight).catch(() => {});
-    if (isRight && !differentLessonTrackedRef.current) {
-      differentLessonTrackedRef.current = true;
-      (async () => {
-        const dayKey = new Date().toISOString().split('T')[0];
-        const lessonKey = dailyTaskLessonVisitedKey(dayKey, studyTargetRef.current);
-        const visitedRaw = await AsyncStorage.getItem(lessonKey);
-        let visited: number[] = [];
-        try { visited = visitedRaw ? JSON.parse(visitedRaw) : []; } catch { visited = []; }
-        if (!Array.isArray(visited)) visited = [];
-        if (!visited.includes(lessonId)) {
-          visited.push(lessonId);
-          await AsyncStorage.setItem(lessonKey, JSON.stringify(visited));
-          void pruneDatedDailyTasksStorageKeys([lessonKey]).catch(() => {});
-          updateMultipleTaskProgress(
-            [{ type: 'different_lessons', increment: 1 }],
-            { studyTarget: studyTargetRef.current },
-          ).catch(() => {});
-        }
-      })();
-    }
     const np = [...progress];
 
     // КЛЮЧЕВАЯ ЛОГИКА:
@@ -3081,25 +2874,6 @@ export default function LessonScreen() {
     //   В режиме повтора (isReplay) ошибка может перекрыть зелёную ячейку → оценка падает
     if (isCompletingRef.current) return;
     sessionAnswerCount.current += 1;
-    const currentPhraseCountsForPlan = planRequiredPhraseIdSet.size === 0 || planRequiredPhraseIdSet.has(String(phrase?.id ?? ''));
-    if (isRight && isPlanLessonTask && planRequiredPhrases > 0 && currentPhraseCountsForPlan) {
-      setPlanLessonAnswered(prev => {
-        const next = Math.min(planRequiredPhrases, prev + 1);
-        if (next >= planRequiredPhrases && prev < planRequiredPhrases) {
-          if (planTaskId) {
-            markPersonalPlanTaskCompleted({
-              taskId: planTaskId,
-              planInstanceId,
-              planId,
-              studyTarget: studyTargetRef.current,
-              dayIndex: parseInt(planDayIndexRaw ?? '1', 10) || 1,
-            }).catch(() => {});
-          }
-          setPlanLessonDoneVisible(true);
-        }
-        return next;
-      });
-    }
     // [FeedbackKit] Значение серии ДО любых сбросов этого ответа (ветка ошибки
     // сбрасывает correctStreakRef ниже). Нужно, чтобы отличить обрыв серии
     // (comboBreak) от обычной ошибки (wrong). Только для ОЩУЩЕНИЙ — XP-формула
@@ -3158,7 +2932,6 @@ export default function LessonScreen() {
           const tokenRows = phraseWordRowsForStudyTarget(phrase, stRm);
           const tokenIndex = resolvedToken?.tokenIndex ?? 0;
           const tokenRow = tokenIndex >= 0 ? tokenRows[tokenIndex] : undefined;
-          const skipPlanGrammarAnalytics = isPlanPhraseLessonTask && shouldSkipPlanGrammarAnalytics(tokenRow?.category);
           const errWord = resolvedToken?.tokenText ?? tokenRow?.correct ?? tokenRow?.text ?? correctTokens[0] ?? canonKey;
           const mistakeMeta = {
             phraseId: phrase.id,
@@ -3167,63 +2940,50 @@ export default function LessonScreen() {
             expected: tokenRow?.correct ?? tokenRow?.text ?? errWord,
             picked: resolvedToken?.picked,
             rawCategory: tokenRow?.category,
-            ...planMistakeContext,
           };
-          if (!skipPlanGrammarAnalytics) {
-            recordMistake(
-              canonKey,
-              phrase.russian,
-              lessonId,
-              phrase.ukrainian,
-              'lesson',
-              spanishSurfacesEnabled(lang, stRm) ? phrase.spanish : undefined,
-              mistakeMeta,
-            );
-            logMistake(analyticsPhraseKey || canonKey, lessonId, 'lesson', 'wrong_pick', mistakeMeta, stRm);
-            lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
-            void recordPhraseMistake(
-              canonKey,
-              phrase.russian,
-              phrase.ukrainian ?? phrase.russian,
-              lessonId,
-              errWord,
-              tokenRow?.category,
-              phrase.spanish,
-              stRm,
-              isPlanPhraseLessonTask ? planMistakeContext : undefined,
-            );
-          }
+          recordMistake(
+            canonKey,
+            phrase.russian,
+            lessonId,
+            phrase.ukrainian,
+            'lesson',
+            spanishSurfacesEnabled(lang, stRm) ? phrase.spanish : undefined,
+            mistakeMeta,
+          );
+          logMistake(analyticsPhraseKey || canonKey, lessonId, 'lesson', 'wrong_pick', mistakeMeta, stRm);
+          lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
+          void recordPhraseMistake(
+            canonKey,
+            phrase.russian,
+            phrase.ukrainian ?? phrase.russian,
+            lessonId,
+            errWord,
+            tokenRow?.category,
+            phrase.spanish,
+            stRm,
+          );
         }
       }
     }
 
-    // Триггеры ежедневных заданий + XP
+    // Серия ответов + XP
     if (isRight) {
       correctStreakRef.current += 1;
-      todayAnswersRef.current += 1;
       setComboCount(correctStreakRef.current);
-      const newComboLevel = comboLevelFor(correctStreakRef.current);
-      if (newComboLevel > comboLevelRef.current) {
-        soundDirector.request('pm.learn.combo_up', { scope: 'lesson-combo' });
-      }
-      comboLevelRef.current = newComboLevel;
-      const lessonUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [
-        { type: 'correct_streak' },
-        { type: 'lesson_no_mistakes' },
-        { type: 'total_answers' },
-        { type: 'daily_active' },
-      ];
-      const hour = new Date().getHours();
-      if (hour < 12) lessonUpdates.push({ type: 'morning_session' });
-      if (hour >= 18) lessonUpdates.push({ type: 'evening_session' });
-      updateMultipleTaskProgress(lessonUpdates, { studyTarget: studyTargetRef.current });
       // Начисляем XP: 5 базовых × комбо-множитель (за серию без ошибок подряд внутри урока)
       const comboM = correctStreakRef.current >= 25 ? 3.0
         : correctStreakRef.current >= 15 ? 2.5
         : correctStreakRef.current >= 10 ? 2.0
         : correctStreakRef.current >= 5  ? 1.5
         : 1.0;
-      const xpAmount = Math.round(5 * comboM);
+      const normalBaseXp = Math.round(5 * comboM);
+      const answerBaseXp = resolveLessonAnswerBaseXp(normalBaseXp, isReplayRef.current, {
+        normalBaseXpTotal: replayNormalBaseXpRef.current,
+        awardedBaseXpTotal: replayAwardedBaseXpRef.current,
+      });
+      replayNormalBaseXpRef.current = answerBaseXp.normalBaseXpTotal;
+      replayAwardedBaseXpRef.current = answerBaseXp.awardedBaseXpTotal;
+      const xpAmount = answerBaseXp.baseXp;
 
       // Local-first XP: show the toast now and write the answer XP immediately.
       const answerCell = overridePhraseCell ?? cellIndex;
@@ -3242,7 +3002,6 @@ export default function LessonScreen() {
           safeProgressEventPart(phrase.id ?? answerCell, 50),
           overridePhraseCell !== null ? 'replay' : 'main',
         ].join(':'),
-        skipLeagueChestMultiplier: true,
         payload: {
           surface: 'lesson1_answer',
           studyTarget: studyTargetRef.current,
@@ -3252,6 +3011,8 @@ export default function LessonScreen() {
           cellIndex: answerCell,
           phraseId: phrase.id ?? null,
           baseAnswerXp: xpAmount,
+          normalBaseAnswerXp: answerBaseXp.normalBaseXp,
+          replayRewardRate: isReplayRef.current ? LESSON_REPLAY_XP_RATE : 1,
           optimisticAnswerXp: optimisticXpAmount,
           combo: correctStreakRef.current,
           replay: overridePhraseCell !== null,
@@ -3284,42 +3045,30 @@ export default function LessonScreen() {
 
       setXpToastAmount(optimisticXpAmount);
       setXpToastVisible(true);
+      xpToastSequenceRef.current?.stop();
+      xpToastAnim.stopAnimation();
       xpToastAnim.setValue(0);
-      Animated.sequence([
+      const xpToastSequence = Animated.sequence([
         Animated.timing(xpToastAnim, { toValue: 1, duration: 200, useNativeDriver: true }),
         Animated.delay(900),
         Animated.timing(xpToastAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
-      ]).start(() => setXpToastVisible(false));
-      // [COMBO] Ачивки за серию правильных ответов
-      checkAchievements({ type: 'combo', count: correctStreakRef.current }).catch(() => {});
-      // [TIME] Ачивки за ночное/утреннее обучение
-      if (correctStreakRef.current === 1) {
-        checkAchievements({ type: 'time_of_day' }).catch(() => {});
+      ]);
+      xpToastSequenceRef.current = xpToastSequence;
+      xpToastSequence.start(({ finished }) => {
+        if (finished) setXpToastVisible(false);
+      });
+      // Проверка combo читает/пишет состояние всех достижений. Она нужна только
+      // на реальных порогах, а не после каждого правильного ответа.
+      if (COMBO_ACHIEVEMENT_THRESHOLDS.has(correctStreakRef.current)) {
+        checkAchievements({ type: 'combo', count: correctStreakRef.current, studyTarget: st }).catch(() => {});
       }
     } else {
       correctStreakRef.current = 0;
-      comboLevelRef.current = 0;
       setComboCount(0);
-      todayAnswersRef.current += 1;
-      if (!isReplayRef.current) {
-        // Атомарно сбрасываем streak-задания и считаем total_answers
-        resetAndUpdateTaskProgress(
-          ['lesson_no_mistakes', 'correct_streak'],
-          [{ type: 'total_answers' }],
-          studyTargetRef.current,
-        );
-      } else {
-        updateMultipleTaskProgress([{ type: 'total_answers' }], { studyTarget: studyTargetRef.current });
-      }
-
       // При ОШИБКЕ: тратим энергию через контекст (используем refs — нет stale closure)
       if ((currentEnergyRef.current > 0 || bonusEnergyRef.current > 0) && !testerEnergyDisabledRef.current) {
         spendOneRef.current().then(success => {
           if (success) {
-            updateMultipleTaskProgress(
-              [{ type: 'energy_spend', increment: 1 }],
-              { studyTarget: studyTargetRef.current },
-            ).catch(() => {});
             if (currentEnergyRef.current === 0 && bonusEnergyRef.current === 0) {
               setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 1000);
             }
@@ -3391,7 +3140,7 @@ export default function LessonScreen() {
     void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(() => {});
     touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress: np, override: overridePhraseCell }, studyTargetRef.current);
 
-    const pendingCycleEndReplay = nextCell === 0 && !isPlanPhraseLessonTask && errorQueueRef.current.length > 0;
+    const pendingCycleEndReplay = nextCell === 0 && errorQueueRef.current.length > 0;
     if (pendingCycleEndReplay) {
       // At the lesson boundary there may be no natural "two questions later".
       // Prime the existing replay queue so the next tap opens the missed phrase
@@ -3403,7 +3152,11 @@ export default function LessonScreen() {
     // Урок закрывается по кругу позиций: дошли до последней позиции и ответили.
     // Ошибки, replay и очередь ошибок влияют только на оценку/модалку, но не блокируют финал.
     if (nextCell === 0 && !pendingCycleEndReplay) {
-      if (isPlanPhraseLessonTask) return;
+      // Preserve the identity that earned this run's answer XP before rotating
+      // storage to the next replay. Completion dedupe follows the real attempt,
+      // never pass_count (whose medal semantics are independent).
+      const completedAttemptId = normalizeLessonServerAttemptId(serverAttemptIdRef.current)
+        ?? makeLessonServerAttemptId();
       const nextAttemptId = makeLessonServerAttemptId();
       serverAttemptIdRef.current = nextAttemptId;
       AsyncStorage.setItem(SERVER_ATTEMPT_KEY, nextAttemptId).catch(() => {});
@@ -3462,63 +3215,6 @@ export default function LessonScreen() {
           correct,
           effectiveTotal,
         }, 'lesson1');
-        const lessonFinishUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [
-          { type: 'lesson_complete', increment: 1 },
-        ];
-        // weekend_marathon: уроки в выходной (локальный день недели) считаются отдельно.
-        const finishWeekday = new Date().getDay();
-        if (finishWeekday === 0 || finishWeekday === 6) {
-          lessonFinishUpdates.push({ type: 'weekend_marathon', increment: 1 });
-        }
-        // perfect_big_lesson: длинный урок (20+ фраз) без единой ошибки за проход.
-        if (effectiveTotal >= 20 && lessonWrongMistakesRef.current.length === 0) {
-          lessonFinishUpdates.push({ type: 'perfect_big_lesson', increment: 1 });
-        }
-        // comeback_lesson: урок в день возвращения после 3+ дней перерыва
-        // (last_active_date прочитана на старте урока — см. comebackLastActiveRef).
-        const finishTodayKey = getTodayKey();
-        if (daysSinceLastActive(comebackLastActiveRef.current, finishTodayKey) >= 3) {
-          lessonFinishUpdates.push({ type: 'comeback_lesson', increment: 1 });
-        }
-        // revision_lesson: предыдущее прохождение этого урока было 7+ дней назад.
-        // Бутстрэп: уроки без метки времени (пройдены до её появления) с pass_count>0
-        // считаем «старыми» — иначе задание было бы мёртвым первые 7 дней после релиза.
-        const finishedAtKey = lessonLastCompletedAtKey(lessonId, studyTargetRef.current);
-        let revisionEligible = false;
-        try {
-          const [prevFinishedAt, prevPassCountRaw] = await Promise.all([
-            AsyncStorage.getItem(finishedAtKey),
-            AsyncStorage.getItem(lessonPassCountKey(lessonId, studyTargetRef.current)),
-          ]);
-          revisionEligible = prevFinishedAt
-            ? daysSinceLastActive(prevFinishedAt, finishTodayKey) >= 7
-            : (parseInt(prevPassCountRaw ?? '0', 10) || 0) > 0;
-        } catch {
-          revisionEligible = false;
-        }
-        if (revisionEligible) {
-          lessonFinishUpdates.push({ type: 'revision_lesson', increment: 1 });
-        }
-        void AsyncStorage.setItem(finishedAtKey, finishTodayKey).catch(() => {});
-        const finishDailyTaskEventId = [
-  'lesson-finish',
-  finishTodayKey,
-  safeProgressEventPart(studyTargetRef.current),
-  safeProgressEventPart(lessonId),
-  safeProgressEventPart(nextAttemptId),
-].join(':');
-const startLessonFinishDelivery = () => deliverDailyTaskProgressEvent(
-  finishDailyTaskEventId,
-  lessonFinishUpdates,
-  { studyTarget: studyTargetRef.current },
-);
-let lessonFinishDeliveryPromise = startLessonFinishDelivery();
-void lessonFinishDeliveryPromise.catch((deliveryError) => {
-  void trackFeatureError('lesson', 'daily_task_delivery', deliveryError, {
-    lessonId,
-    finishDailyTaskEventId,
-  }, 'lesson1');
-});
         void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);
 
         let coachRouteParams = {};
@@ -3537,6 +3233,7 @@ void lessonFinishDeliveryPromise.catch((deliveryError) => {
           await Promise.all(pendingLessonXpAwardsRef.current);
           resetShuffleForNextPass();
           lessonWrongMistakesRef.current = [];
+          markNextNavigationAsReplace();
           router.replace({
             pathname: '/lesson_complete',
             params: {
@@ -3545,51 +3242,23 @@ void lessonFinishDeliveryPromise.catch((deliveryError) => {
               earnedXp: String(lessonEarnedXpRef.current),
               earnedBaseXp: String(lessonEarnedBaseXpRef.current),
               earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
+              completedAttemptId,
+              repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
               ...coachRouteParams,
             },
           });
         };
 
-        const finalizeLessonCompletion = async () => {
-  try {
-    try {
-      await lessonFinishDeliveryPromise;
-    } catch {
-      // The first attempt starts while the learner reads the completion modal.
-      // A failed Continue performs one explicit retry with the same event id.
-      lessonFinishDeliveryPromise = startLessonFinishDelivery();
-      await lessonFinishDeliveryPromise;
-    }
-  } catch (deliveryError) {
-    void trackFeatureError('lesson', 'daily_task_delivery_retry', deliveryError, {
-      lessonId,
-      finishDailyTaskEventId,
-    }, 'lesson1');
-    emitAppEvent('action_toast', {
-      type: 'error',
-      messageRu: 'Урок завершён, но вызовы не сохранились. Нажми «Продолжить» ещё раз.',
-      messageUk: 'Урок завершено, але виклики не збереглися. Натисни «Продовжити» ще раз.',
-      messageEs: 'La lección terminó, pero los desafíos no se guardaron. Pulsa «Continuar» otra vez.',
-    });
-    return;
-  }
-  setShowCycleEndModal(false);
-  cycleEndCallbackRef.current = null;
-  navigate();
-};
-
-const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
-cycleEndContinueInFlightRef.current = false;
-cycleEndCallbackRef.current = finalizeLessonCompletion;
-setCycleEndHasErrors(hasErrors);
-setShowCycleEndModal(true);
+        // There is one completion surface: go straight to lesson_complete.
+        await navigate();
         } catch (e) {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
           await Promise.all(pendingLessonXpAwardsRef.current);
           resetShuffleForNextPass();
           lessonWrongMistakesRef.current = [];
+          markNextNavigationAsReplace();
           router.replace({
             pathname: '/lesson_complete',
             params: {
@@ -3598,6 +3267,8 @@ setShowCycleEndModal(true);
               earnedXp: String(lessonEarnedXpRef.current),
               earnedBaseXp: String(lessonEarnedBaseXpRef.current),
               earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
+              completedAttemptId,
+              repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
             },
           });
@@ -3616,7 +3287,7 @@ setShowCycleEndModal(true);
         goNext(np);
       }, 4000);
     }
-  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId, SERVER_ATTEMPT_KEY]);
+  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, lessonStorageId, SERVER_ATTEMPT_KEY]);
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);
@@ -3870,8 +3541,6 @@ setShowCycleEndModal(true);
   const correctCount = useMemo(() => progress.filter(p => p === 'correct' || p === 'replay_correct').length, [progress]);
   const wrongCount   = useMemo(() => progress.filter(p => p === 'wrong').length, [progress]);
   const score = useMemo(() => Number((correctCount / effectiveTotal * 5).toFixed(1)), [correctCount, effectiveTotal]);
-  const planLessonRemaining = isPlanLessonTask ? Math.max(0, planRequiredPhrases - planLessonAnswered) : 0;
-
   // зачем: владелец — «зашёл в урок, а плашка "Продолжить урок" на Главной ещё старая,
   // пока не перезайду в приложение». Раньше last-opened писался только в AsyncStorage —
   // это переживает перезапуск, но НЕ обновляет уже смонтированный home.tsx (он лежит на
@@ -3883,11 +3552,11 @@ setShowCycleEndModal(true);
   // «прыгнула» при следующем полном перечитывании.
   const lastOpenedSyncedRef = useRef(false);
   useEffect(() => {
-    if (isPlanPhraseLessonTask || lessonId < 1 || lessonId > 32) return;
+    if (lessonId < 1 || lessonId > 32) return;
     lastOpenedSyncedRef.current = false;
-  }, [lessonId, isPlanPhraseLessonTask]);
+  }, [lessonId]);
   useEffect(() => {
-    if (isPlanPhraseLessonTask || lessonId < 1 || lessonId > 32) return;
+    if (lessonId < 1 || lessonId > 32) return;
     if (lastOpenedSyncedRef.current) return;
     lastOpenedSyncedRef.current = true;
     const homeScore = (correctCount / 50 * 5).toFixed(1);
@@ -3903,22 +3572,42 @@ setShowCycleEndModal(true);
       score: homeScore,
       studyTarget,
     });
-  }, [lessonId, studyTarget, isPlanPhraseLessonTask, correctCount]);
+  }, [lessonId, studyTarget, correctCount]);
 
   // ── Medal tier change toast ──────────────────────────────────────────────────
   const prevMedalTierRef = useRef<MedalTier>('none');
   const medalToastInitializedRef = useRef(false);
   const [medalToast, setMedalToast] = useState<{ tier: MedalTier; promoted: boolean } | null>(null);
   const medalToastAnim = useRef(new Animated.Value(0)).current;
+  const medalToastSequenceRef = useRef<Animated.CompositeAnimation | null>(null);
+
+  const dismissMedalToast = useCallback(() => {
+    medalToastSequenceRef.current?.stop();
+    medalToastSequenceRef.current = null;
+    medalToastAnim.stopAnimation();
+    medalToastAnim.setValue(0);
+    setMedalToast(null);
+  }, [medalToastAnim]);
 
   const showMedalToast = useCallback((tier: MedalTier, promoted: boolean) => {
+    medalToastSequenceRef.current?.stop();
+    medalToastAnim.stopAnimation();
     setMedalToast({ tier, promoted });
     medalToastAnim.setValue(0);
-    Animated.sequence([
+    const sequence = Animated.sequence([
       Animated.spring(medalToastAnim, { toValue: 1, useNativeDriver: true, friction: 6 }),
       Animated.delay(2200),
       Animated.timing(medalToastAnim, { toValue: 0, duration: 350, useNativeDriver: true }),
-    ]).start(() => setMedalToast(null));
+    ]);
+    medalToastSequenceRef.current = sequence;
+    sequence.start(({ finished }) => {
+      if (finished) setMedalToast(null);
+    });
+  }, [medalToastAnim]);
+
+  useEffect(() => () => {
+    medalToastSequenceRef.current?.stop();
+    medalToastAnim.stopAnimation();
   }, [medalToastAnim]);
 
   useEffect(() => {
@@ -3984,21 +3673,16 @@ setShowCycleEndModal(true);
   const frenchLessonRemotePending = frenchRemoteLessonRequired && (remoteFrenchLessonLoadState === 'idle' || remoteFrenchLessonLoadState === 'loading');
   const frenchLessonRemoteFailed = frenchRemoteLessonRequired && remoteFrenchLessonLoadState === 'failed' && !hasPlayableLessonRows;
   const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed;
-  const planPhraseContentReady = !isPlanPhraseLessonTask || planUserNameReady;
-
   // зачем: тот же полноэкранный ActivityIndicator дёргал геометрию при загрузке
   // французского урока с сервера — переиспользуем один скелетон-компонент вместо
   // третьего отдельного спиннерного состояния (было 3 разных состояния подряд).
   if (frenchLessonRemotePending) {
     return (
       <TouchableWithoutFeedback onPress={undefined}>
-        {/* зачем: этот гейт живёт в LessonScreen — переменные linkedSliceCompact/
-            lessonHorizontalPadding из внутреннего компонента тут не видны,
-            выводим ту же геометрию из локального isLinkedLessonSliceTask. */}
-        <LessonLoadingSkeleton
+        <LessonFirstFrame
           theme={t}
-          compact={isLinkedLessonSliceTask}
-          horizontalPadding={isLinkedLessonSliceTask ? 14 : 20}
+          compact={false}
+          horizontalPadding={20}
         />
       </TouchableWithoutFeedback>
     );
@@ -4070,7 +3754,7 @@ setShowCycleEndModal(true);
             </Text>
             <TapScale
               accessibilityRole="button"
-              onPress={() => router.replace('/lessons_list' as any)}
+              onPress={() => { markNextNavigationAsReplace(); router.replace('/lessons_list' as any); }}
               scaleTo={0.96}
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
             >
@@ -4106,7 +3790,7 @@ setShowCycleEndModal(true);
             lessonId={lessonId}
             compact={compact}
             isSmallScreen={isSmallScreen}
-            phrase={lessonHydrated && planPhraseContentReady ? phrase : null}
+            phrase={lessonHydrated ? phrase : null}
             selectedWords={selectedWords}
             status={status}
             handleBgTap={handleBgTap}
@@ -4170,13 +3854,6 @@ setShowCycleEndModal(true);
             toastAnim={toastAnim}
             from={from}
                 onHeaderBack={handleLessonHeaderBack}
-                isPlanLessonTask={isPlanLessonTask}
-                isLinkedLessonSliceTask={isLinkedLessonSliceTask}
-                isPlanPhraseLessonTask={isPlanPhraseLessonTask}
-                isPlanPhraseRecallTask={isPlanPhraseRecallTask}
-                planRequiredPhrases={planRequiredPhrases}
-                planLessonAnswered={planLessonAnswered}
-                planLessonRemaining={planLessonRemaining}
                 lessonTeachingNote={lessonTeachingNote}
                 lessonTheorySupportBlocked={lessonTheorySupportBlocked}
                 lessonHintSupportBlocked={lessonHintSupportBlocked}
@@ -4193,75 +3870,17 @@ setShowCycleEndModal(true);
             isLightTheme={false}
             lang={lang}
             spanishUiActive={spanishLessonUiStringsActive(lang, studyTarget)}
+            onDismiss={dismissMedalToast}
           />
         )}
         {/* ────────────────────────────── */}
       </ScreenGradient>
     </TouchableWithoutFeedback>
-    <Modal transparent animationType="fade" visible={planLessonDoneVisible} onRequestClose={() => setPlanLessonDoneVisible(false)}>
-      <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.68)', paddingHorizontal: 18, paddingVertical: 28 }}>
-        <Pressable style={{ ...StyleSheet.absoluteFillObject }} onPress={() => setPlanLessonDoneVisible(false)} />
-        <View style={{ width: '100%', maxWidth: 520, alignSelf: 'center' }}>
-          <View style={{ borderRadius: 30, backgroundColor: t.bgCard, padding: 22, shadowColor: t.correct, shadowOpacity: 0.28, shadowRadius: 30, shadowOffset: { width: 0, height: 16 }, ...noAndroidOutline,}}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, lineHeight: f.h2 + 5, fontWeight: '900' }}>
-              {isLinkedLessonSliceTask
-                ? triLang(lang, { ru: 'Часть урока готова', uk: 'Частина уроку готова', es: 'Parte de la lección lista', 'pt-BR': 'Parte da lição pronta', vi: 'Phần bài học đã xong', id: 'Bagian pelajaran selesai', tr: 'Dersin bölümü hazır', pl: 'Część lekcji gotowa' })
-                : triLang(lang, { ru: 'Фразы дня готовы', uk: 'Фрази дня готові', es: 'Frases del día listas', 'pt-BR': 'Frases do dia prontas', vi: 'Cụm từ trong ngày đã xong', id: 'Frasa hari ini selesai', tr: 'Günün ifadeleri hazır', pl: 'Frazy dnia gotowe' })}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: f.body + 6, fontWeight: '700', marginTop: 8 }}>
-              {isLinkedLessonSliceTask
-                ? triLang(lang, { ru: 'Нужные фразы засчитаны. Можно вернуться к плану или продолжить урок для закрепления.', uk: 'Потрібні фрази зараховано. Можна повернутися до плану або продовжити урок для закріплення.', es: 'Las frases necesarias están contabilizadas. Puedes volver al plan o seguir la lección para reforzar.', 'pt-BR': 'As frases necessárias foram contabilizadas. Você pode voltar ao plano ou continuar a lição para fixar.', vi: 'Các cụm từ cần thiết đã được tính. Bạn có thể quay lại kế hoạch hoặc tiếp tục bài học để củng cố.', id: 'Frasa yang diperlukan sudah dihitung. Kamu bisa kembali ke rencana atau lanjut pelajaran untuk memperkuat.', tr: 'Gerekli ifadeler sayıldı. Plana dönebilir veya pekiştirmek için derse devam edebilirsin.', pl: 'Potrzebne frazy zostały zaliczone. Możesz wrócić do planu lub kontynuować lekcję dla utrwalenia.' })
-                : triLang(lang, { ru: 'Фразы дня засчитаны. Можно вернуться к плану или потренироваться дальше, если есть силы.', uk: 'Фрази дня зараховано. Можна повернутися до плану або потренуватися далі, якщо є сили.', es: 'Las frases del día están contabilizadas. Puedes volver al plan o seguir practicando si te quedan fuerzas.', 'pt-BR': 'As frases do dia foram contabilizadas. Você pode voltar ao plano ou continuar praticando se tiver energia.', vi: 'Cụm từ trong ngày đã được tính. Bạn có thể quay lại kế hoạch hoặc luyện tập tiếp nếu còn sức.', id: 'Frasa hari ini sudah dihitung. Kamu bisa kembali ke rencana atau lanjut berlatih jika masih ada tenaga.', tr: 'Günün ifadeleri sayıldı. Plana dönebilir veya gücün varsa pratiğe devam edebilirsin.', pl: 'Frazy dnia zostały zaliczone. Możesz wrócić do planu lub ćwiczyć dalej, jeśli masz siły.' })}
-            </Text>
-            <View style={{ flexDirection: 'row', gap: 12, marginTop: 18 }}>
-              <TapScale
-                accessibilityRole="button"
-                accessibilityLabel={triLang(lang, { ru: 'Вернуться к плану', uk: 'Повернутися до плану', es: 'Volver al plan', 'pt-BR': 'Voltar ao plano', vi: 'Quay lại kế hoạch', id: 'Kembali ke rencana', tr: 'Plana dön', pl: 'Wróć do planu' })}
-                onPress={() => {
-                  setPlanLessonDoneVisible(false);
-                  router.push('/personal_plan' as any);
-                }}
-                scaleTo={0.96}
-                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct, shadowColor: t.correct, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 10 }, ...noAndroidOutline,}}
-              >
-                <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>{triLang(lang, { ru: 'К плану', uk: 'До плану', es: 'Al plan', 'pt-BR': 'Ao plano', vi: 'Tới kế hoạch', id: 'Ke rencana', tr: 'Plana', pl: 'Do planu' })}</Text>
-              </TapScale>
-              <TapScale
-                accessibilityRole="button"
-                accessibilityLabel={triLang(lang, { ru: 'Продолжить урок', uk: 'Продовжити урок', es: 'Continuar la lección', 'pt-BR': 'Continuar a lição', vi: 'Tiếp tục bài học', id: 'Lanjut pelajaran', tr: 'Derse devam et', pl: 'Kontynuuj lekcję' })}
-                onPress={() => setPlanLessonDoneVisible(false)}
-                scaleTo={0.96}
-                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2, shadowColor: '#000', shadowOpacity: 0.22, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, ...noAndroidOutline,}}
-              >
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>{triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'Devam et', pl: 'Kontynuuj' })}</Text>
-              </TapScale>
-            </View>
-          </View>
-        </View>
-      </View>
-    </Modal>
-
     <NoEnergyModal
       visible={showNoEnergyModal}
       onClose={resetNoEnergyModal}
       onGotIt={dismissEnergyModal}
       paywallContext="no_energy"
-    />
-    <LessonCycleEndModal
-      visible={showCycleEndModal}
-      hasErrors={cycleEndHasErrors}
-      lang={lang}
-      studyTarget={studyTarget}
-      t={t}
-      f={f}
-      onClose={() => {
-  const callback = cycleEndCallbackRef.current;
-  if (!callback || cycleEndContinueInFlightRef.current) return;
-  cycleEndContinueInFlightRef.current = true;
-  void Promise.resolve(callback()).finally(() => {
-    cycleEndContinueInFlightRef.current = false;
-  });
-}}
     />
     </>
   );

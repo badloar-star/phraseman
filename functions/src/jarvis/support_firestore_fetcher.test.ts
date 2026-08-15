@@ -1,4 +1,8 @@
-import { fetchSupportSource, SUPPORT_LOOKBACK_MS } from './support_firestore_fetcher';
+import {
+  fetchSupportSource,
+  SUPPORT_LOOKBACK_MS,
+  SUPPORT_SYNC_MAX_AGE_MS,
+} from './support_firestore_fetcher';
 
 const NOW = 1_800_000_000_000;
 const HOUR = 60 * 60 * 1_000;
@@ -38,8 +42,20 @@ function queryOf(docs: readonly FakeDoc[], failing = false): FirebaseFirestore.Q
   return makeCollection(docs, failing).query;
 }
 
+function syncDocument(imapSyncedAt: unknown, failing = false) {
+  return {
+    get: async () => {
+      if (failing) throw new Error('unavailable');
+      return {
+        exists: true,
+        data: () => ({ imapSyncedAt }),
+      };
+    },
+  } as unknown as Pick<FirebaseFirestore.DocumentReference, 'get'>;
+}
+
 function letter(over: Partial<Record<string, unknown>> = {}): FakeDoc {
-  return { receivedAtMs: NOW - 2 * HOUR, status: 'new', mailCategory: 'human', ...over };
+  return { receivedAtMs: NOW - 2 * HOUR, status: 'new', mailCategory: 'human', triageState: 'kept', ...over };
 }
 
 describe('Jarvis support fetcher — measures how long real people wait for an answer', () => {
@@ -54,6 +70,22 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
     expect(result.state).toBe('ready');
     expect(result.waitingCount).toBe(2);
     expect(result.oldestWaitingMs).toBe(50 * HOUR);
+    expect(result.actionableWaitingCount).toBe(2);
+    expect(result.legacyWaitingCount).toBe(0);
+  });
+
+  test('keeps an untriaged legacy backlog visible but outside the actionable daily queue', async () => {
+    const result = await fetchSupportSource({
+      collection: queryOf([
+        letter({ receivedAtMs: NOW - 110 * 24 * HOUR, triageState: undefined }),
+        letter({ receivedAtMs: NOW - 3 * HOUR }),
+      ]),
+      nowMs: NOW,
+    });
+    expect(result.waitingCount).toBe(2);
+    expect(result.actionableWaitingCount).toBe(1);
+    expect(result.oldestActionableWaitingMs).toBe(3 * HOUR);
+    expect(result.legacyWaitingCount).toBe(1);
   });
 
   test('automated mail never counts as an unanswered person', async () => {
@@ -127,6 +159,26 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
     expect(result.medianReplyMs).toBeNull();
   });
 
+  test('a stale IMAP checkpoint is an error, never a comforting empty inbox', async () => {
+    const result = await fetchSupportSource({
+      collection: queryOf([]),
+      syncDocument: syncDocument(new Date(NOW - SUPPORT_SYNC_MAX_AGE_MS - 1).toISOString()),
+      nowMs: NOW,
+    });
+    expect(result.state).toBe('error');
+    expect(result.waitingCount).toBeNull();
+  });
+
+  test('a fresh IMAP checkpoint permits normal support evidence', async () => {
+    const result = await fetchSupportSource({
+      collection: queryOf([letter()]),
+      syncDocument: syncDocument(new Date(NOW - 5 * 60 * 1_000).toISOString()),
+      nowMs: NOW,
+    });
+    expect(result.state).toBe('ready');
+    expect(result.waitingCount).toBe(1);
+  });
+
   test('the window covers at least a week of support history', () => {
     expect(SUPPORT_LOOKBACK_MS).toBeGreaterThanOrEqual(7 * 24 * HOUR);
   });
@@ -144,6 +196,7 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
 
     expect(result.waitingCount).toBe(1);
     expect(result.oldestWaitingMs).toBe(9 * 24 * HOUR);
+    expect(result.actionableWaitingCount).toBe(1);
     expect(collection.getCalls).toBe(2);
   });
 
@@ -154,6 +207,15 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
     });
     expect(result.waitingCount).toBe(1);
     expect(result.oldestWaitingMs).toBe(5 * HOUR);
+  });
+
+  test('an old verified human request stays actionable regardless of age', async () => {
+    const result = await fetchSupportSource({
+      collection: queryOf([letter({ receivedAtMs: NOW - 110 * 24 * HOUR, triageState: 'kept' })]),
+      nowMs: NOW,
+    });
+    expect(result.actionableWaitingCount).toBe(1);
+    expect(result.legacyWaitingCount).toBe(0);
   });
 
   test('excludes future-dated messages from all metrics', async () => {
@@ -174,7 +236,7 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
     const collection = makeCollection([letter()]);
     await fetchSupportSource({ collection: collection.query, nowMs: NOW });
     expect(collection.selectedFields[0]).toEqual([
-      'receivedAtMs', 'status', 'repliedAt', 'mailCategory',
+      'receivedAtMs', 'status', 'repliedAt', 'mailCategory', 'triageState',
     ]);
     expect(collection.selectedFields.flat()).not.toEqual(expect.arrayContaining([
       'fromEmail', 'fromName', 'subject', 'bodyText',

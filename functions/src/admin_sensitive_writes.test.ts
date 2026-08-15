@@ -36,6 +36,28 @@ describe('critical admin write boundaries', () => {
     expect(() => requireAdminAppCheck({ app: {} })).not.toThrow();
   });
 
+  it('keeps every Content Studio callable on the owner-controlled admin App Check flag', () => {
+    for (const file of ['admin_content_stages.ts', 'admin_content_studio_callables.ts', 'admin_content_studio_authoring.ts']) {
+      const source = read(file);
+      expect(source).toContain('ENFORCE_APP_CHECK_ADMIN');
+      expect(source).not.toContain('ENFORCE_APP_CHECK_CONTENT_STUDIO');
+    }
+  });
+
+  it('keeps every Gmail support admin callable isolated from the global App Check flag', () => {
+    const source = read('support_inbox.ts');
+    expect(source).toContain("import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';");
+    expect(source).not.toContain('enforceAppCheck: ENFORCE_APP_CHECK');
+    expect(source).toMatch(/function requireSupportPermission[\s\S]*?requireAdminAppCheck\(request\);/);
+    const callableNames = [...source.matchAll(/export const (adminSupport\w+) = onCall\(/g)].map((match) => match[1]);
+    expect(callableNames.length).toBeGreaterThanOrEqual(10);
+    for (const name of callableNames) {
+      const start = source.indexOf(`export const ${name} = onCall(`);
+      const next = source.indexOf('\nexport const ', start + 1);
+      expect(source.slice(start, next > start ? next : undefined)).toContain('ADMIN_SENSITIVE_WRITE_OPTIONS');
+    }
+  });
+
   // зачем (владелец, 2026-08-03): «никогда не включать App Check, пока сам не скажу».
   // Глобальный раскат ENFORCE_APP_CHECK=true не имеет права утащить админку за собой —
   // иначе требование нарушается побочным эффектом чужой задачи.

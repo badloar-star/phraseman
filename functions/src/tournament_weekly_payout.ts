@@ -29,8 +29,9 @@ import {
   weeklyBankPayouts,
   type WeeklyStanding,
 } from './tournament_economy';
-import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { parseActiveTournamentTicket } from './tournaments';
+import { assertTournamentsReleased, TOURNAMENTS_RELEASED } from './tournament_release_gate';
+import { appendExternalEconomyEvent } from './external_economy_events';
 
 const REGION = 'us-central1';
 const TOURNAMENT_SCHEDULE_COLLECTION = 'tournamentSchedule';
@@ -112,8 +113,8 @@ export async function payoutWeeklyBank(
 
   // Транзакция: банк помечается выплаченным ровно один раз. Если крон
   // сработает повторно (или параллельно), второй проход увидит paidOutAtMs.
-  // guard-ok: ВСЁ ниже — внутри транзакции, баланс меняется только через
-  // FieldValue.increment, документ банка помечается paidOutAtMs один раз.
+  // guard-ok: ВСЁ ниже — внутри транзакции; immutable reward events и отметка
+  // paidOutAtMs коммитятся атомарно, без server wallet projection.
   // Гонка двух запусков невозможна: второй увидит отметку и выйдет.
   const applied = await db.runTransaction(async (tx) => {
     const fresh = await tx.get(bankRef);
@@ -122,12 +123,11 @@ export async function payoutWeeklyBank(
     for (const payout of payouts) {
       if (payout.gems <= 0) continue;
       const userRef = db.collection('users').doc(payout.uid);
-      tx.set(userRef, {
-        shards: admin.firestore.FieldValue.increment(payout.gems),
-        shards_updated_at_ms: nowMs,
-        shards_updated_op: 'earn',
-        shards_updated_reason: 'tournament_weekly_bank',
-      }, { merge: true });
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'tournament_weekly_bank', eventId: weekId, ownerStableId: payout.uid,
+        delta: payout.gems, reason: 'tournament_weekly_bank', kind: 'competition_weekly_bank_reward',
+        subjectId: weekId, payload: { weekId, place: payout.place }, createdAtMs: nowMs,
+      });
       // guard-ok: лог — НОВЫЙ документ с детерминированным id по неделе;
       // merge не нужен, повторная запись затрёт саму себя, а не создаст
       // вторую строку. Тот же приём, что у призов турнира.
@@ -140,23 +140,6 @@ export async function payoutWeeklyBank(
         place: payout.place,
       });
 
-      // зачем: начисление идёт кроном ночью — без уведомления игрок узнал бы
-      // о награде только по изменившемуся балансу, то есть скорее всего никак.
-      // Тот же канал, что у подарков друзей: клиент уже умеет его показывать.
-      // id по неделе → повторный прогон не создаст второе уведомление.
-      const placeWord = payout.place === 1 ? 'Первое место' : payout.place === 2 ? 'Второе место' : 'Третье место';
-      tx.set(
-        userNotificationRef(db, payout.uid, `tournament_weekly_${weekId}`),
-        buildUserNotification({
-          type: 'tournament_weekly_bank',
-          fromUid: 'system',
-          fromName: 'Турниры',
-          fromAvatar: '🏆',
-          text: `${placeWord} недели! Ваша доля банка: ${payout.gems}`,
-          nav: { kind: 'tournament_season' },
-        }, nowMs),
-        { merge: true },
-      );
     }
 
     tx.set(bankRef, {
@@ -202,6 +185,7 @@ export async function payoutWeeklyBank(
 export const tournamentWeeklyBankCron = onSchedule(
   { schedule: '10 0 * * 1', timeZone: 'UTC', region: REGION },
   async () => {
+    if (!TOURNAMENTS_RELEASED) return;
     const db = admin.firestore();
     const nowMs = Date.now();
     const weekId = previousWeekId(nowMs);
@@ -215,6 +199,7 @@ export const adminPayoutTournamentWeeklyBank = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 120 },
   async (request) => {
     if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
+    assertTournamentsReleased();
     const data = request.data && typeof request.data === 'object' ? request.data as Record<string, unknown> : {};
     const nowMs = Date.now();
     const weekId = typeof data.weekId === 'string' && /^\d{4}-W\d{2}$/.test(data.weekId)
@@ -236,6 +221,7 @@ export const adminSetTournamentEconomy = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
   async (request) => {
     if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
+    assertTournamentsReleased();
     const economy = normalizeTournamentEconomy(request.data);
     const db = admin.firestore();
     const nowMs = Date.now();
@@ -261,6 +247,7 @@ export const adminGetTournamentEconomy = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
   async (request) => {
     if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
+    assertTournamentsReleased();
     const snap = await admin.firestore()
       .collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy').get();
     return { ok: true, economy: normalizeTournamentEconomy(snap.data()) };
@@ -282,6 +269,7 @@ export const adminGetTournamentEconomy = onCall(
 export const tournamentWeeklyBankInfo = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
   async (request) => {
+    assertTournamentsReleased();
     if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
     const nowMs = Date.now();
@@ -305,7 +293,6 @@ export const tournamentWeeklyBankInfo = onCall(
     );
     const economy = normalizeTournamentEconomy(economySnap.data());
     const userData = userSnap.data() || {};
-    const gemBalance = Math.max(0, readInt(userData.shards, 0));
     const freeEntryAvailable = String(userData.tournament_free_entry_week_id ?? '') !== currentWeek;
     // зачем 2026-08-04 (владелец: Season Pass tournament_ticket — «появится
     // ассет в разделе турнир в правом углу»): та же userSnap, что и
@@ -336,7 +323,6 @@ export const tournamentWeeklyBankInfo = onCall(
       serverNowMs: nowMs,
       /** Цена входа (владелец: «билет стоит 5 жемчужин») — экран билетов считает от неё. */
       entryGems: economy.entryGems,
-      gemBalance,
       freeEntryAvailable,
       seasonTicketAvailable,
       lastWeek: {

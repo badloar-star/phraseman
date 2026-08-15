@@ -21,11 +21,11 @@ function extractBracedBlock(source: string, marker: string, fromIndex = 0): stri
 // legacy.html (единственная боевая админка) звал только signInWithPopup, а
 // getRedirectResult не звал вообще: Google возвращал на страницу, и вход молча
 // терялся. Существующий admin_v2_auth_persistence_lifecycle.test.mjs сторожил
-// ЗАМОРОЖЕННЫЙ admin/v2/scripts/admin-firebase.js, поэтому регрессию не поймал.
+// УДАЛЁННЫЙ admin/v2/scripts/admin-firebase.js раньше маскировал эту регрессию.
 // Этот контракт сторожит именно боевой файл.
 describe('admin legacy mobile sign-in contract', () => {
   const adminHtml = fs.readFileSync(
-    path.join(process.cwd(), 'admin', 'v2', 'legacy.html'),
+    path.join(process.cwd(), 'admin', 'legacy.html'),
     'utf8',
   );
 

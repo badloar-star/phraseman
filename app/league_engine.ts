@@ -329,10 +329,8 @@ export interface GroupMember {
   isBot?:    boolean;
   /**
    * Синтетический «житель», дозаполняющий комнату (владелец 2026-08-04).
-   * В таблице виден как обычный игрок, но в НАГРАДАХ не участвует: сервер
-   * (league_finalize_cron) считает ранги и зоны перехода только среди живых,
-   * и клиент обязан считать так же — иначе покажет один результат, а сервер
-   * запишет другой.
+   * В таблице виден как обычный соперник: входит в total, места и зоны перехода.
+   * Но сам не получает награду и не имеет серверного итого недели.
    */
   isResident?: boolean;
   isPremium?: boolean;
@@ -490,6 +488,58 @@ const ensureCurrentUserInGroup = (
   });
 };
 
+/**
+ * Порядок участников для показа в модалке итогов недели.
+ *
+ * зачем: `myRank`/`totalInGroup` авторитетно приходят с сервера (leagueFinalizeCron
+ * считает их по реальным финальным очкам ВСЕХ участников комнаты), а `group` —
+ * это локальный снимок комнаты, который к моменту ролловера мог отстать: мои
+ * последние очки недели не долетели до кэша, чужие тоже. Модалка печатала
+ * «Твоё место N» из серверного поля, а список рисовала по индексам снимка —
+ * и на N-й строке стоял чужой ник. Здесь сводим оба представления к одному
+ * порядку: сортируем по очкам, а если моя позиция в снимке разошлась с
+ * авторитетным местом — переставляем свою строку ровно на это место.
+ * Сервер — источник истины, снимок — только оформление вокруг него.
+ */
+export const orderGroupForResultDisplay = (
+  group: GroupMember[] | null | undefined,
+  myRank: number,
+): GroupMember[] => {
+  const source = Array.isArray(group) ? group.filter(Boolean) : [];
+  const sorted = [...source].sort((a, b) => {
+    const diff = readMemberPoints(b, 0) - readMemberPoints(a, 0);
+    if (diff !== 0) return diff;
+    // Стабильный тай-брейк по имени: без него порядок равных зависел бы от
+    // порядка записей в снимке и «прыгал» между открытиями модалки.
+    return String(a?.name ?? '').localeCompare(String(b?.name ?? ''));
+  });
+
+  const meIndex = sorted.findIndex(m => m?.isMe === true);
+  if (meIndex < 0 || !Number.isFinite(myRank)) return sorted;
+
+  const targetIndex = Math.min(Math.max(Math.floor(myRank) - 1, 0), sorted.length - 1);
+  if (targetIndex === meIndex) return sorted;
+
+  const me = sorted[meIndex];
+  const rest = sorted.filter((_, index) => index !== meIndex);
+  return [...rest.slice(0, targetIndex), me, ...rest.slice(targetIndex)];
+};
+
+/**
+ * Проставляет моей строке очки из серверного итога недели.
+ *
+ * зачем: серверный документ league_week_results несёт не только место, но и
+ * финальные очки. Локальный снимок группы мог остановиться на более раннем
+ * значении — тогда в списке рядом с авторитетным местом стояло заниженное
+ * число очков. Берём серверное, если оно валидное.
+ */
+const applyAuthoritativeMyPoints = (group: GroupMember[], points: unknown): GroupMember[] => {
+  const value = Number(points);
+  if (!Number.isFinite(value) || value < 0) return group;
+  const normalized = Math.floor(value);
+  return group.map(m => (m?.isMe ? { ...m, points: normalized } : m));
+};
+
 const getMyUidSafe = async (): Promise<string | null> => {
   try { return await getCanonicalUserId(); } catch { return null; }
 };
@@ -525,7 +575,9 @@ const repairPendingResultForCurrentUser = async (
   // аккуратно добавит запись с isMe, поля исхода всё равно сохраняются.
   return {
     ...result,
-    group: repairedGroup,
+    // Порядок приводим к авторитетному месту здесь же: pending мог быть записан
+    // старой версией приложения, где список и «Твоё место» расходились.
+    group: orderGroupForResultDisplay(repairedGroup, result.myRank),
   };
 };
 
@@ -783,12 +835,8 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
   const normalizedGroup = ensureCurrentUserInGroup(state.group, '', myWeekPoints, null);
   const updated = normalizedGroup
     .map(m => m.isMe ? { ...m, points: myWeekPoints } : m)
-    // зачем (аудит 2026-08-04): жители дозаполняют комнату визуально, но в
-    // наградах не участвуют. Сервер (computeGroupResults) считает ранг и зоны
-    // перехода ТОЛЬКО среди живых — клиент обязан считать так же, иначе
-    // покажет «Переход», а сервер запишет другое место. Плюс жители раздували
-    // бы total, сдвигая границы топ-15%/низ-15% для живых.
-    .filter(m => !isResidentGroupMember(m))
+    // Жители входят в реальный размер группы и места. Награды им не выдаются
+    // сервером, но исключать их из ranking нельзя: экран должен показывать 1/28, а не 1/4.
     .sort((a, b) => b.points - a.points);
 
   const total        = updated.length;
@@ -827,7 +875,10 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
     totalInGroup: total,
     promoted,
     demoted,
-    group: updated,
+    // При равных очках competition ranking даёт мне место 1, хотя в отсортированном
+    // массиве я мог стоять третьим среди равных. Приводим список к тому же месту,
+    // которое печатает модалка.
+    group: orderGroupForResultDisplay(updated, myRank),
   };
 };
 
@@ -1058,7 +1109,10 @@ export const checkLeagueOnAppOpen = async (
         totalInGroup: last.total,
         promoted: cappedLeagueId > state.leagueId,
         demoted: cappedLeagueId < state.leagueId,
-        group: rolloverGroup,
+        group: orderGroupForResultDisplay(
+          applyAuthoritativeMyPoints(rolloverGroup, last.points),
+          last.rank,
+        ),
       };
     } else {
     const serverResult = myUid ? await fetchServerLeagueResult(myUid, state.weekId) : null;
@@ -1080,7 +1134,10 @@ export const checkLeagueOnAppOpen = async (
         totalInGroup: serverResult.total,
         promoted: serverResult.promoted,
         demoted: serverResult.demoted,
-        group: rolloverGroup,
+        group: orderGroupForResultDisplay(
+          applyAuthoritativeMyPoints(rolloverGroup, serverResult.points),
+          serverResult.rank,
+        ),
       };
     } else if (
       myUid

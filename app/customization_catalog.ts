@@ -7,14 +7,15 @@ import {
 } from '../constants/avatar_auras';
 import {
   CUSTOM_AVATAR_BUY_COST,
-  CUSTOM_AVATAR_GIFT_ONLY,
   CUSTOM_AVATAR_GRADIENTS,
+  CUSTOM_AVATARS,
   CUSTOM_AVATAR_SHOP,
   makeCustomAvatarValue,
   parseCustomAvatarValue,
   type CustomAvatarDef,
   type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
+import { isCosmeticAssetForSale } from '../constants/cosmetic_asset_availability';
 import type { OwnedAuras, OwnedAvatars } from './customization_snapshot';
 
 export type CatalogAvailability =
@@ -59,6 +60,8 @@ export interface BuildAvatarCatalogInput {
   activeAvatar: string;
   defaultGradientId?: string;
   defaultLogoColor?: CustomAvatarLogoColor;
+  /** UI invalidation token for the mutable, cached server catalog. */
+  catalogRevision?: number;
 }
 
 export interface BuildAuraCatalogInput {
@@ -69,6 +72,8 @@ export interface BuildAuraCatalogInput {
   isPremium: boolean;
   isVip: boolean;
   isPro?: boolean;
+  /** UI invalidation token for the mutable, cached server catalog. */
+  catalogRevision?: number;
 }
 
 function ownedAvatarStyle(
@@ -88,10 +93,22 @@ export function buildAvatarCatalog(input: BuildAvatarCatalogInput): Customizatio
   const active = parseCustomAvatarValue(input.activeAvatar);
   const defaultGradientId = input.defaultGradientId ?? CUSTOM_AVATAR_GRADIENTS[0].id;
   const defaultLogoColor = input.defaultLogoColor ?? 'black';
-  const visibleGiftAvatars = CUSTOM_AVATAR_GIFT_ONLY.filter((avatar) =>
-    avatar.id === input.giftedAvatarId || avatar.id === active?.avatarId || !!input.ownedAvatars[avatar.id]);
+  const visibleRemoteAvatars = CUSTOM_AVATARS.filter((avatar) =>
+    avatar.id.startsWith('custom-gen-')
+    && !CUSTOM_AVATAR_SHOP.some((shopAvatar) => shopAvatar.id === avatar.id)
+    && (isCosmeticAssetForSale('avatar', avatar.id, false)
+      || avatar.id === input.giftedAvatarId
+      || avatar.id === active?.avatarId
+      || !!input.ownedAvatars[avatar.id]));
 
-  return [...CUSTOM_AVATAR_SHOP, ...visibleGiftAvatars].map((avatar) => {
+  const visibleShopAvatars = CUSTOM_AVATAR_SHOP.filter((avatar) =>
+    isCosmeticAssetForSale('avatar', avatar.id, true)
+    || avatar.id === input.giftedAvatarId
+    || avatar.id === active?.avatarId
+    || !!input.ownedAvatars[avatar.id]);
+
+  return [...visibleShopAvatars, ...visibleRemoteAvatars].map((avatar) => {
+    const defaultForSale = CUSTOM_AVATAR_SHOP.some((shopAvatar) => shopAvatar.id === avatar.id);
     const isOwned = !!input.ownedAvatars[avatar.id] || avatar.id === input.giftedAvatarId || avatar.id === active?.avatarId;
     const style = active?.avatarId === avatar.id
       ? { gradientId: active.gradientId, logoColor: active.logoColor }
@@ -104,7 +121,9 @@ export function buildAvatarCatalog(input: BuildAvatarCatalogInput): Customizatio
       isActive: active?.avatarId === avatar.id,
       availability: isOwned
         ? { kind: 'owned' as const }
-        : { kind: 'shards' as const, cost: CUSTOM_AVATAR_BUY_COST },
+        : isCosmeticAssetForSale('avatar', avatar.id, defaultForSale)
+          ? { kind: 'shards' as const, cost: CUSTOM_AVATAR_BUY_COST }
+          : { kind: 'reward' as const },
       previewValue: makeCustomAvatarValue(avatar.id, style.gradientId, style.logoColor),
     };
   });
@@ -132,7 +151,7 @@ function auraAvailability(
   if (isOwned) return { isOwned: true, availability: { kind: 'owned' } };
   // зачем: rewardOnly остался только у ручных наград админки («Нимб») — арена-ауры
   // владелец перевёл на уровни 52-55, старое деление по источнику стало мёртвым.
-  if (aura.rewardOnly) {
+  if (aura.rewardOnly || !isCosmeticAssetForSale('aura', aura.id, !aura.retiredFromShop)) {
     return { isOwned: false, availability: { kind: 'reward' } };
   }
   if (aura.unlockLevel !== undefined) {
@@ -153,7 +172,8 @@ export function buildAuraCatalog(input: BuildAuraCatalogInput): CustomizationCat
     availability: { kind: 'none' },
   };
   const visibleAuras = AVATAR_AURAS.filter((aura) =>
-    !aura.rewardOnly
+    (!aura.rewardOnly && isCosmeticAssetForSale('aura', aura.id, !aura.retiredFromShop))
+    || aura.premiumOnly === true
     || input.ownedAuras[aura.id] === true
     || normalizedActiveAuraId === aura.id);
   return [noneItem, ...visibleAuras.map((aura): CustomizationCatalogItem => {

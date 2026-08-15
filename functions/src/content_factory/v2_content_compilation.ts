@@ -7,6 +7,7 @@ import { hashCanonicalBody } from '../../../modules/learning-v2/policies/decisio
 import {
   compileV2RequiredSessions,
   type V2CompiledEpisodeContent,
+  type V2SessionActivityBinding,
 } from '../../../modules/learning-v2/content/session_compiler';
 import { selectOptionalPracticeSlots } from '../../../modules/learning-v2/content/optional_practice';
 import { validateV2LanguageProfile, type V2LanguageProfileBody, type V2LanguageProfileRef } from '../../../modules/learning-v2/content/language_profile';
@@ -17,6 +18,11 @@ import {
   qaV2EpisodeContent,
   type V2EpisodeContentQualityReport,
 } from './v2_episode_content_qa';
+import {
+  materializeRequiredSessionTaskAnswerKey,
+  type RequiredSessionTaskAnswerKeyV1,
+  type ServerVerifiableRequiredSessionFamily,
+} from '../learning_v2/required_session_answer_verifier';
 
 export interface V2ResolvedLanguageProfile {
   readonly ref: V2LanguageProfileRef;
@@ -30,14 +36,78 @@ export interface V2CompileEpisodeContentInput {
   readonly episodeId: string;
   readonly canDoOutcomeId: string;
   readonly contentItems: readonly V2ContentItem[];
+  readonly activityBindings: readonly V2SessionActivityBinding[];
   readonly resolveLanguageProfile: (ref: V2LanguageProfileRef) => Promise<V2ResolvedLanguageProfile>;
 }
 
 export interface V2CompiledEpisodeArtifact extends V2CompiledEpisodeContent {
   readonly languageProfileRef: V2LanguageProfileRef;
   readonly optionalPracticeTemplates: readonly V2OptionalPracticeSlot[];
+  /** Server-only answer fingerprints for the six non-voice required modes. */
+  readonly requiredTaskAnswerKeys: readonly RequiredSessionTaskAnswerKeyV1[];
   readonly qualityReport: V2EpisodeContentQualityReport;
 }
+
+const SERVER_VERIFIABLE_FAMILIES = new Set<ServerVerifiableRequiredSessionFamily>([
+  'phrase_builder',
+  'listen_choose',
+  'sound_contrast',
+  'listen_build_dictation',
+  'context_gap_grammar',
+  'speed_match',
+]);
+
+const expectedAnswerForCard = (
+  family: ServerVerifiableRequiredSessionFamily,
+  item: V2ContentItem,
+): string => {
+  if (family === 'listen_choose') {
+    const meaning = item.learnerMeanings[0]?.value;
+    if (!meaning) throw new Error('required_session_answer_source_missing');
+    return meaning;
+  }
+  if (family === 'context_gap_grammar') {
+    const tokens = item.target.text.replace(/[?.!,]/g, '').split(/\s+/).filter(Boolean);
+    const answer = tokens[Math.min(1, tokens.length - 1)];
+    if (!answer) throw new Error('required_session_answer_source_missing');
+    return answer;
+  }
+  return item.target.text;
+};
+
+/**
+ * Derives answer fingerprints from the same immutable content/card mapping as
+ * the compiler. Raw answers are consumed here and are not stored in the key.
+ */
+export const materializeCompiledRequiredTaskAnswerKeys = (
+  compiled: V2CompiledEpisodeContent,
+  contentItems: readonly V2ContentItem[],
+): readonly RequiredSessionTaskAnswerKeyV1[] => {
+  const items = new Map(contentItems.map((item) => [item.contentItemId, item]));
+  const answerKeys = compiled.sessions.flatMap((session) => session.cards.flatMap((card) => {
+    if (!SERVER_VERIFIABLE_FAMILIES.has(card.family as ServerVerifiableRequiredSessionFamily)) {
+      if (card.family !== 'scripted_repeat_compare') {
+        throw new Error('required_session_answer_family_unsupported');
+      }
+      return [];
+    }
+    const item = items.get(card.contentItemId);
+    if (!item || item.episodeId !== compiled.episodeId) {
+      throw new Error('required_session_answer_source_missing');
+    }
+    const family = card.family as ServerVerifiableRequiredSessionFamily;
+    return [materializeRequiredSessionTaskAnswerKey({
+      taskId: card.cardId,
+      activityId: card.activityId,
+      family,
+      expectedAnswer: expectedAnswerForCard(family, item),
+    })];
+  }));
+  if (new Set(answerKeys.map((entry) => entry.taskId)).size !== answerKeys.length) {
+    throw new Error('required_session_answer_key_duplicate');
+  }
+  return Object.freeze(answerKeys);
+};
 
 function deepFreeze<T>(value: T): T {
   if (typeof value === 'object' && value !== null && !Object.isFrozen(value)) {
@@ -50,7 +120,7 @@ function deepFreeze<T>(value: T): T {
 export async function compileV2EpisodeContent(
   input: V2CompileEpisodeContentInput,
 ): Promise<V2CompiledEpisodeArtifact> {
-  const { request, episodeId, canDoOutcomeId, contentItems, resolveLanguageProfile } = input;
+  const { request, episodeId, canDoOutcomeId, contentItems, activityBindings, resolveLanguageProfile } = input;
 
   if (!request.episodeIds.includes(episodeId)) {
     throw new Error(`compilation_episode_not_requested: ${episodeId}`);
@@ -78,6 +148,7 @@ export async function compileV2EpisodeContent(
     canDoOutcomeId,
     profile: validated.value,
     items: contentItems,
+    activityBindings,
   });
 
   // Шаблоны опциональной практики консервативны: возможности устройства неизвестны
@@ -89,7 +160,6 @@ export async function compileV2EpisodeContent(
     networkAvailable: true,
     dueContentItemIds: [],
     mistakeContentItemIds: [],
-    personalPlanContentItemIds: [],
     capabilities: ([
       { capabilityId: 'quick-speak-v1', family: 'quick_spoken_response', requiresMicrophone: true, requiresNetwork: false, expectedSeconds: 75 },
       { capabilityId: 'echo-rhythm-v1', family: 'shadowing_prosody', requiresMicrophone: true, requiresNetwork: false, expectedSeconds: 90 },
@@ -100,6 +170,7 @@ export async function compileV2EpisodeContent(
     compiled,
     contentItems,
     validated.value,
+    activityBindings,
     optionalPracticeTemplates,
     requested,
   );
@@ -107,10 +178,16 @@ export async function compileV2EpisodeContent(
     throw new Error(`episode_content_qa_blocked: ${qualityReport.blockingIssues.join(',')}`);
   }
 
+  const requiredTaskAnswerKeys = materializeCompiledRequiredTaskAnswerKeys(
+    compiled,
+    contentItems,
+  );
+
   return deepFreeze({
     ...compiled,
     languageProfileRef: requested,
     optionalPracticeTemplates,
+    requiredTaskAnswerKeys,
     qualityReport,
   });
 }

@@ -60,6 +60,7 @@ beforeEach(() => {
   readGiftAccessFromCloud.mockResolvedValue(null);
   syncRevenueCatProjectionForAccount.mockResolvedValue(true);
   getAppUserID.mockImplementation(async () => 'premium-guard-test');
+  getCustomerInfo.mockResolvedValue({ entitlements: { active: {} }, activeSubscriptions: [] });
   resetStore();
   const generation = require('../app/account_generation');
   generation.beginAccountGeneration('premium-guard-test');
@@ -95,12 +96,12 @@ test('tester_no_premium wins when tester_no_limits is also enabled', async () =>
 test('__DEV__ does not preserve a stale premium_active flag without a store plan', async () => {
   (globalThis as any).__DEV__ = true;
   asyncStore.premium_active = 'true';
-  const { getVerifiedPremiumStatus } = require('../app/premium_guard');
+  const { getVerifiedPremiumStatus, __waitForPremiumBackgroundRefreshForTests } = require('../app/premium_guard');
   const result = await getVerifiedPremiumStatus();
   expect(result).toBe(false);
   expect(asyncStore.premium_active).toBe('false');
-  // Initial verification plus the existing post-cloud-refresh recheck.
-  expect(getCustomerInfo).toHaveBeenCalledTimes(2);
+  await __waitForPremiumBackgroundRefreshForTests();
+  expect(getCustomerInfo).toHaveBeenCalled();
 });
 
 test('admin override gives VIP access without making real Premium active', async () => {
@@ -201,15 +202,17 @@ test('an unrelated RevenueCat entitlement or subscription does not unlock Premiu
   expect(syncRevenueCatProjectionForAccount).not.toHaveBeenCalled();
 });
 
-test('awaits server projection sync only when RevenueCat reports managed Premium active', async () => {
+test('returns the local decision first and syncs a managed RevenueCat entitlement in background', async () => {
   getCustomerInfo.mockResolvedValue({
     entitlements: {
       active: { premium: { productIdentifier: 'phraseman_premium_monthly_399:monthly-base' } },
     },
     activeSubscriptions: ['phraseman_premium_monthly_399:monthly-base'],
   });
-  const { getVerifiedRealPremiumStatus } = require('../app/premium_guard');
+  const { getVerifiedRealPremiumStatus, __waitForPremiumBackgroundRefreshForTests } = require('../app/premium_guard');
 
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
+  await __waitForPremiumBackgroundRefreshForTests();
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(true);
   expect(syncRevenueCatProjectionForAccount).toHaveBeenCalledTimes(1);
   expect(syncRevenueCatProjectionForAccount).toHaveBeenCalledWith('premium-guard-test');
@@ -223,8 +226,10 @@ test('preserves local paid access and logs warning when projection sync fails', 
     activeSubscriptions: ['phraseman_premium_monthly_399:monthly-base'],
   });
   syncRevenueCatProjectionForAccount.mockRejectedValue(new Error('offline'));
-  const { getVerifiedRealPremiumStatus } = require('../app/premium_guard');
+  const { getVerifiedRealPremiumStatus, __waitForPremiumBackgroundRefreshForTests } = require('../app/premium_guard');
 
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
+  await __waitForPremiumBackgroundRefreshForTests();
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(true);
   expect(debugError).toHaveBeenCalledWith(
     'premium_guard:revenuecat_projection_sync',
@@ -260,6 +265,7 @@ test('drops account A projection completion after account generation changes', a
   releaseSync(true);
 
   await expect(staleResult).resolves.toBe(false);
+  await guard.__waitForPremiumBackgroundRefreshForTests();
   expect(asyncStore.premium_active).not.toBe('true');
 });
 

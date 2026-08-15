@@ -185,7 +185,17 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
                   ? 'Повідомити про помилку в описі картки'
                   : lang === 'es'
                     ? 'Informar de un error en la nota de la tarjeta'
-                    : 'Сообщить об ошибке в описании карточки'
+                    : lang === 'pt-BR'
+                      ? 'Informar um erro na descrição do cartão'
+                      : lang === 'vi'
+                        ? 'Báo lỗi trong mô tả thẻ'
+                        : lang === 'id'
+                          ? 'Laporkan kesalahan pada deskripsi kartu'
+                          : lang === 'tr'
+                            ? 'Kart açıklamasındaki hatayı bildir'
+                            : lang === 'pl'
+                              ? 'Zgłoś błąd w opisie karty'
+                              : 'Сообщить об ошибке в описании карточки'
               }
             />
           )}

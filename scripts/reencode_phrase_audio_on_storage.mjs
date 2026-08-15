@@ -17,7 +17,7 @@
  *   4. PATCH metadata to restore the same download token + immutable cache.
  *
  * Auth: OAuth access token minted from the firebase CLI login via
- * scripts/_mint_fb_token.mjs (same path as the plan-audio uploader).
+ * scripts/_mint_fb_token.mjs.
  *
  * Run (dry, sample only, no writes):
  *   node scripts/reencode_phrase_audio_on_storage.mjs --dry

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { spendShards, getShardsBalance } from './shards_system';
+import { commitShardCompositeOperation } from './shards_system';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { checkAchievements } from './achievements';
@@ -34,19 +34,29 @@ export async function refillEnergyWithShards(params: {
   if (isUnlimited) return { ok: false, reason: 'unlimited' };
   if (baseEnergy >= maxEnergy) return { ok: false, reason: 'already_full' };
   const cost = energyRefillShardCost(maxEnergy);
-  const balance = await getShardsBalance();
-  if (balance < cost) return { ok: false, reason: 'insufficient_shards' };
-  const okSpend = await spendShards(cost, 'buy_energy');
-  if (!okSpend) return { ok: false, reason: 'spend_failed' };
   try {
     const esRaw = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
     const es = esRaw
       ? (JSON.parse(esRaw) as { current: number; lastRecoveryTime: number })
       : { current: 0, lastRecoveryTime: Date.now() };
-    await AsyncStorage.setItem(
-      ENERGY_STORAGE_KEY,
-      JSON.stringify({ current: maxEnergy, lastRecoveryTime: es.lastRecoveryTime }),
-    );
+    const nextEnergyState = JSON.stringify({
+      current: maxEnergy,
+      lastRecoveryTime: Number.isFinite(es.lastRecoveryTime) ? es.lastRecoveryTime : Date.now(),
+    });
+    const purchase = await commitShardCompositeOperation({
+      amount: cost,
+      reason: 'buy_energy',
+      grant: {
+        kind: 'energy_refill',
+        subjectId: 'base_energy',
+        payload: { current: maxEnergy },
+      },
+      localWrites: [[ENERGY_STORAGE_KEY, nextEnergyState]],
+    });
+    if (purchase.status === 'insufficient') {
+      return { ok: false, reason: 'insufficient_shards' };
+    }
+    if (purchase.status === 'failed') return { ok: false, reason: 'persist_failed' };
   } catch (error) {
     DebugLogger.error('energy_shard_refill:persist', error, 'warning');
     return { ok: false, reason: 'persist_failed' };

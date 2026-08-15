@@ -126,7 +126,4 @@ describe('inline speaking surface contract', () => {
     expect(panel).not.toContain('Говори… отпусти, когда закончишь');
   });
 
-  it('keeps the personal plan out of this change', () => {
-    expect(read('app/personal_plan_exercise.tsx')).not.toContain('SpeakingInlineSlot');
-  });
 });

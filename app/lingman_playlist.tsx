@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
@@ -7,10 +7,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
+import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
 import { ExpandableText } from '../components/text-integrity';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { captureAccountGeneration } from './account_generation';
 import { safeRouterBack } from './navigation_back';
 import { getTrustedLingmanYoutubeUrl } from './lingman_youtube';
@@ -32,12 +34,14 @@ export default function LingmanPlaylistScreen() {
   const { playlistId = '', channelId = '' } = useLocalSearchParams<{ playlistId?: string; channelId?: string }>();
   const { lang } = useLang();
   const { theme: t } = useTheme();
+  const screenRuntimeActive = useRuntimeActive(true);
   const token = useMemo(() => captureAccountGeneration(), []);
   const initial = peekYoutubeCatalogScreenSnapshot(token);
   const [catalog, setCatalog] = useState<YoutubeCatalogScreenSnapshot | null>(initial?.channel.id === channelId ? initial : null);
   const catalogRef = useRef(catalog);
   catalogRef.current = catalog;
   const [loading, setLoading] = useState(!catalog);
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const playlist = catalog?.playlists.find((item) => item.id === playlistId);
   const videos = useMemo(() => catalog?.videos.filter((video) => video.playlistIds.includes(playlistId)) ?? [], [catalog, playlistId]);
   const copy = {
@@ -53,7 +57,8 @@ export default function LingmanPlaylistScreen() {
       .finally(() => setLoading(false));
   }, [channelId, token]);
 
-  const openVideo = (video: (typeof videos)[number]) => router.push({ pathname: '/lingman_video_player', params: { id: video.id, title: video.title, watchUrl: video.watchUrl } } as any);
+  const openVideo = (video: (typeof videos)[number]) => setActiveVideoId(video.id);
+  const closeVideo = useCallback(() => setActiveVideoId(null), []);
   const playAll = () => {
     if (!playlist) return;
     const url = trustedPlaylistUrl(playlist.url, playlist.id);
@@ -75,7 +80,23 @@ export default function LingmanPlaylistScreen() {
             <Text style={[styles.title, { color: t.textPrimary }]}>{playlist.title}</Text>
             {!!playlist.description && <ExpandableText testID="youtube-playlist-description" provenance="external" text={playlist.description} previewCharacterBudget={260} style={[styles.description, { color: t.textMuted }]} />}
             <TouchableOpacity testID="youtube-playlist-play-all" accessibilityRole="button" accessibilityLabel={copy.playAll} onPress={playAll} style={[styles.playAll, { backgroundColor: t.accent }]}><Ionicons name="play" size={18} color="#071015" /><Text style={styles.playAllText}>{copy.playAll}</Text></TouchableOpacity>
-            <View style={styles.videoList}>{videos.length ? videos.map((video) => <YoutubeVideoCard key={video.id} video={video} onWatch={() => openVideo(video)} onOpenYoutube={() => { const url = getTrustedLingmanYoutubeUrl(video.watchUrl, video.id); if (url) void Linking.openURL(url); }} />) : <Text style={[styles.empty, { color: t.textMuted }]}>{copy.empty}</Text>}</View>
+            <View style={styles.videoList}>{videos.length ? videos.map((video) => (
+              <YoutubeVideoCard
+                key={video.id}
+                video={video}
+                highlighted={video.id === activeVideoId}
+                onWatch={() => openVideo(video)}
+                inlinePlayer={video.id === activeVideoId ? (
+                  <YoutubeInlinePlayer
+                    videoId={video.id}
+                    title={video.title}
+                    active={screenRuntimeActive}
+                    onClose={closeVideo}
+                    presentation="preview"
+                  />
+                ) : undefined}
+              />
+            )) : <Text style={[styles.empty, { color: t.textMuted }]}>{copy.empty}</Text>}</View>
           </ScrollView>
         ) : <Text style={[styles.empty, { color: t.textMuted }]}>{copy.empty}</Text>}
       </SafeAreaView>

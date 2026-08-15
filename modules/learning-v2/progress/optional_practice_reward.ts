@@ -34,6 +34,27 @@ export interface V2OptionalPracticeRewardProjection {
   readonly policyVersion: number;
 }
 
+export interface V2OptionalPracticeRewardPolicyV2 {
+  readonly schemaVersion: 'v2-optional-practice-reward-policy.v2';
+  readonly key: string;
+  readonly version: number;
+  readonly repeatBands: readonly V2OptionalPracticeRepeatBand[];
+  readonly dueBoostBasisPoints: number;
+  readonly mistakeRepairBoostBasisPoints: number;
+}
+
+export interface V2OptionalPracticeRewardCarryInput extends V2OptionalPracticeRewardInput {
+  readonly carryRemainderBasisPoints: number;
+}
+
+export interface V2OptionalPracticeRewardCarryProjection {
+  readonly awardedStars: number;
+  readonly nextCarryRemainderBasisPoints: number;
+  readonly hardCapReached: false;
+  readonly policyKey: string;
+  readonly policyVersion: number;
+}
+
 export type V2RewardPolicyValidation =
   | { readonly ok: true; readonly value: Readonly<V2OptionalPracticeRewardPolicy> }
   | { readonly ok: false; readonly issues: readonly string[] };
@@ -49,6 +70,10 @@ const POLICY_KEYS = Object.freeze([
 ] as const);
 const BAND_KEYS = Object.freeze(['minimumPriorExactCompletions', 'multiplierBasisPoints'] as const);
 const BASIS_DENOMINATOR = 10000;
+const POLICY_V2_KEYS = Object.freeze([
+  'schemaVersion', 'key', 'version', 'repeatBands',
+  'dueBoostBasisPoints', 'mistakeRepairBoostBasisPoints',
+] as const);
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -133,6 +158,76 @@ export function projectOptionalPracticeReward(
 
   return Object.freeze({
     awardedStars,
+    hardCapReached: false as const,
+    policyKey: policy.key,
+    policyVersion: policy.version,
+  });
+}
+
+export function validateOptionalPracticeRewardPolicyV2(
+  value: unknown,
+): value is Readonly<V2OptionalPracticeRewardPolicyV2> {
+  if (!isPlainObject(value) ||
+    Object.keys(value).length !== POLICY_V2_KEYS.length ||
+    Object.keys(value).some((key) => !POLICY_V2_KEYS.includes(key as typeof POLICY_V2_KEYS[number])) ||
+    value.schemaVersion !== 'v2-optional-practice-reward-policy.v2' ||
+    typeof value.key !== 'string' || !value.key.trim() ||
+    !Number.isSafeInteger(value.version) || Number(value.version) < 1 ||
+    !isNonNegativeInteger(value.dueBoostBasisPoints) ||
+    !isNonNegativeInteger(value.mistakeRepairBoostBasisPoints) ||
+    !Array.isArray(value.repeatBands) || value.repeatBands.length === 0) return false;
+  let priorThreshold = -1;
+  let priorMultiplier = Number.MAX_SAFE_INTEGER;
+  return value.repeatBands.every((band, index) => {
+    if (!isPlainObject(band) || Object.keys(band).length !== BAND_KEYS.length ||
+      Object.keys(band).some((key) => !BAND_KEYS.includes(key as typeof BAND_KEYS[number])) ||
+      !isNonNegativeInteger(band.minimumPriorExactCompletions) ||
+      !isNonNegativeInteger(band.multiplierBasisPoints) ||
+      Number(band.multiplierBasisPoints) > BASIS_DENOMINATOR ||
+      (index === 0 && band.minimumPriorExactCompletions !== 0) ||
+      Number(band.minimumPriorExactCompletions) <= priorThreshold ||
+      Number(band.multiplierBasisPoints) > priorMultiplier) return false;
+    priorThreshold = Number(band.minimumPriorExactCompletions);
+    priorMultiplier = Number(band.multiplierBasisPoints);
+    return true;
+  });
+}
+
+/** Exact carry-forward projection: no per-award round-up and no lost fraction. */
+export function projectOptionalPracticeRewardWithRemainder(
+  input: V2OptionalPracticeRewardCarryInput,
+  policy: V2OptionalPracticeRewardPolicyV2,
+): V2OptionalPracticeRewardCarryProjection {
+  if (!validateOptionalPracticeRewardPolicyV2(policy) || !isPlainObject(input) ||
+    !Number.isSafeInteger(input.baseStars) || input.baseStars < 0 ||
+    !Number.isSafeInteger(input.priorExactCompletions) || input.priorExactCompletions < 0 ||
+    typeof input.due !== 'boolean' || typeof input.mistakeRepair !== 'boolean' ||
+    !Number.isSafeInteger(input.carryRemainderBasisPoints) ||
+    input.carryRemainderBasisPoints < 0 || input.carryRemainderBasisPoints >= BASIS_DENOMINATOR) {
+    throw new Error('reward_carry_input_invalid');
+  }
+  let band = policy.repeatBands[0];
+  for (const candidate of policy.repeatBands) {
+    if (input.priorExactCompletions >= candidate.minimumPriorExactCompletions) band = candidate;
+  }
+  const basis = band.multiplierBasisPoints
+    + (input.due ? policy.dueBoostBasisPoints : 0)
+    + (input.mistakeRepair ? policy.mistakeRepairBoostBasisPoints : 0);
+  if (!Number.isSafeInteger(basis) || basis < 0) throw new Error('reward_carry_input_invalid');
+  if (input.baseStars === 0) {
+    return Object.freeze({
+      awardedStars: 0,
+      nextCarryRemainderBasisPoints: input.carryRemainderBasisPoints,
+      hardCapReached: false as const,
+      policyKey: policy.key,
+      policyVersion: policy.version,
+    });
+  }
+  const numerator = input.baseStars * basis + input.carryRemainderBasisPoints;
+  if (!Number.isSafeInteger(numerator)) throw new Error('reward_carry_input_invalid');
+  return Object.freeze({
+    awardedStars: Math.floor(numerator / BASIS_DENOMINATOR),
+    nextCarryRemainderBasisPoints: numerator % BASIS_DENOMINATOR,
     hardCapReached: false as const,
     policyKey: policy.key,
     policyVersion: policy.version,

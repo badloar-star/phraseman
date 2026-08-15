@@ -109,15 +109,9 @@ const TARGET_STORAGE_HELPERS = new Set([
   'achievementLessonPerfectPassesKey',
   'comboAchievementCounterKey',
   'customFlashcardsKey',
-  'dailyTaskLessonVisitedKey',
-
-  'dailyTasksProgressKey',
-  'dailyTasksRerollKey',
   'dailyPhraseKey',
   'dailyPhraseAchievementReadCountKey',
   'dailyPhraseAchievementSaveCountKey',
-  'dailyTasksAchievementAllDoneStreakKey',
-  'dailyTasksAchievementNoRerollStreakKey',
   'shareAchievementCounterKey',
   'dailyPhraseLastDateKey',
   'dailyPhraseRemoteCacheKey',
@@ -358,17 +352,6 @@ const REVIEWED_GLOBAL_KEY_PATTERNS = [
 // Scoped as study_target with targetNamespaceRequired:false because French gets
 // its own namespace via the target-aware helpers while English stays legacy.
 const REVIEWED_TARGET_SENSITIVE_LITERAL_KEYS = new Set([
-  // Personal learning plan — progress/state of the generated study plan.
-  'personal_plan_state_v1',
-  'personal_plan_progress_v1',
-  'personal_plan_completed_tasks_v1',
-  'personal_plan_task_progress_v1',
-  'personal_plan_counted_phrases_v1',
-  'personal_plan_xp_ledger_v1',
-  'personal_plan_attempt_events_v1',
-  'personal_plan_recovery_applied_actions_v1',
-  'personal_plan_pending_activation_v1',
-  'plan_day_shard_rewards_v1',
   // Server-progress event pipeline — carries per-target learning progress.
   'progress_server_event_queue_v1',
   'progress_server_snapshot_migrated_v1',
@@ -1281,7 +1264,6 @@ function classifyKey(input: {
     key.includes('warning') ||
     key.includes('update') ||
     key.includes('shards') ||
-    key.includes('daily_tasks') ||
     key.includes('login_bonus') ||
     key.includes('gift_') ||
     key.includes('club_') ||

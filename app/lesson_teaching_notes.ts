@@ -10,11 +10,8 @@ export type ResolvedLessonTeachingNote = {
   tone: 'correct' | 'wrong';
 };
 
-export function shouldShowLessonTeachingNote(input: {
-  isPlanPhraseRecallTask: boolean;
-  isRight: boolean;
-}): boolean {
-  return !(input.isPlanPhraseRecallTask && input.isRight);
+export function shouldShowLessonTeachingNote(): boolean {
+  return true;
 }
 
 type SeenTeachingNoteIds = ReadonlySet<string> | readonly string[] | null | undefined;

@@ -330,21 +330,18 @@ describe('экраны режима «Турниры»', () => {
     const home = read('app/(tabs)/home.tsx');
     const model = read('app/tab_page_model.ts');
 
-    // зачем 2026-08-02: таб «Уроки» убран — индексы сдвинулись на единицу
-    // (tournaments 1, friends 2, settings 3) во всех трёх картах сразу.
-    expect(layout).toContain("key: 'tournaments'");
-    expect(layout).toContain('loadTournamentsScreen');
-    expect(model).toContain("'tournaments'");
+    // После удаления физической страницы friends/settings сдвинуты на 2/3
+    // во всех картах; отдельного «скрытого» индекса турниров не остаётся.
+    expect(layout).not.toContain("key: 'tournaments'");
+    expect(layout).not.toContain('loadTournamentsScreen');
+    expect(model).not.toContain("'home', 'lessons', 'tournaments'");
     expect(layout).toContain("'/lessons': 1");
-    expect(layout).toContain("'/tournaments': 2");
-    expect(layout).toContain("'/(tabs)/tournaments'");
     expect(layout).toMatch(/lessons:\s*1/);
-    expect(layout).toMatch(/tournaments:\s*2/);
-    expect(layout).toMatch(/friends:\s*3/);
-    expect(layout).toMatch(/settings:\s*4/);
-    expect(home).toMatch(/'\/\(tabs\)\/tournaments':\s*2/);
-    expect(home).toMatch(/'\/\(tabs\)\/friends':\s*3/);
-    expect(home).toMatch(/'\/\(tabs\)\/settings':\s*4/);
+    expect(layout).toMatch(/friends:\s*2/);
+    expect(layout).toMatch(/settings:\s*3/);
+    expect(home).not.toMatch(/'\/\(tabs\)\/tournaments':/);
+    expect(home).toMatch(/'\/\(tabs\)\/friends':\s*2/);
+    expect(home).toMatch(/'\/\(tabs\)\/settings':\s*3/);
     expect(home).not.toContain('HomeDevTournamentsButton');
   });
 
@@ -362,26 +359,24 @@ describe('экраны режима «Турниры»', () => {
     const layout = read('app/(tabs)/_layout.tsx');
     const model = read('app/tab_page_model.ts');
 
-    // зачем 2026-08-03: экран «Сегодня» убран — нулевой физической страницы
-    // слева от главной больше нет, страниц ровно столько же, сколько табов
-    // (четыре). Legacy-суффиксы /journal и /lessons остаются в
-    // TAB_PATH_SUFFIXES и ведут на главную (старые диплинки).
-    expect(model).toMatch(/LOGICAL_TAB_IDS\s*=\s*\['home', 'lessons', 'tournaments', 'friends', 'settings'\]/);
-    expect(model).toContain('export type LogicalTabIndex = 0 | 1 | 2 | 3 | 4;');
-    expect(model).toContain('export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4;');
-    expect(layout).toContain('loadTournamentsScreen');
-    expect(layout).toMatch(/TAB_PATH_SUFFIXES\s*=\s*\['\/home', '\/journal', '\/lessons', '\/tournaments', '\/friends', '\/settings'\]/);
+    // Экран «Сегодня» убран — нулевой физической страницы слева от главной
+    // больше нет, страниц ровно столько же, сколько табов (четыре).
+    expect(model).toMatch(/LOGICAL_TAB_IDS\s*=\s*\['home', 'lessons', 'friends', 'settings'\]/);
+    expect(model).toContain('export type LogicalTabIndex = 0 | 1 | 2 | 3;');
+    expect(model).toContain('export type PhysicalPageIndex = 0 | 1 | 2 | 3;');
+    expect(layout).not.toContain('loadTournamentsScreen');
+    expect(layout).toMatch(/TAB_PATH_SUFFIXES\s*=\s*\['\/home', '\/journal', '\/lessons', '\/friends', '\/settings'\]/);
     expect(layout).toMatch(/const TABS:[\s\S]*?=\s*\[[\s\S]*?\];/);
-    expect(layout).toMatch(/const TABS:[\s\S]{0,900}tournaments/);
-    expect(layout).toContain('key="tournaments"');
+    const tabsBlock = layout.slice(layout.indexOf('const TABS:'), layout.indexOf('type TabScaffoldProps'));
+    expect(tabsBlock).not.toContain('tournaments');
+    expect(layout).not.toContain('key="tournaments"');
     expect(layout).toContain('key="lessons"');
-    expect(layout).toMatch(/key="tournaments"[\s\S]{0,160}loadScreen=\{loadTournamentsScreen\}/);
-    expect(layout).toMatch(/shouldLoad\(3\)\} loadScreen=\{loadFriendsScreen\}/);
-    expect(layout).toMatch(/shouldLoad\(4\)\} loadScreen=\{loadSettingsScreen\}/);
+    expect(layout).toMatch(/shouldLoad\(2\)\} loadScreen=\{loadFriendsScreen\}/);
+    expect(layout).toMatch(/shouldLoad\(3\)\} loadScreen=\{loadSettingsScreen\}/);
     expect(layout).toContain('case 1: return loadLessonsScreen();');
-    expect(layout).toContain('case 2: return loadTournamentsScreen();');
-    expect(layout).toContain('case 3: return loadFriendsScreen();');
-    expect(layout).toContain('case 4: return loadSettingsScreen();');
+    expect(layout).toContain('case 2: return loadFriendsScreen();');
+    expect(layout).toContain('case 3: return loadSettingsScreen();');
+    expect(layout).not.toContain('case 4:');
   });
 
   it('главный экран берёт данные с сервера, а не из заглушки', () => {
@@ -716,7 +711,7 @@ describe('экраны режима «Турниры»', () => {
   it('прогресс-подпись раунда показывает реальное число вопросов', () => {
     // Подпись должна следовать фактически активированному сервером набору.
     const round = read('app/tournament_round.tsx');
-    expect(round).toMatch(/из \{total\}/);
+    expect(round).toContain("ru: `из ${total}`");
   });
 
   it('translate («собери фразу») рисуется, а не пустует', () => {
@@ -772,7 +767,7 @@ describe('экраны режима «Турниры»', () => {
     expect(home).toContain("router.replace('/(tabs)/home'");
     // Кнопка выхода есть, но она ведёт на главную осознанно.
     expect(home).toContain('testID="tournaments-back"');
-    expect(home).toContain('accessibilityLabel="На главную"');
+    expect(home).toContain("accessibilityLabel={L({ ru: 'На главную'");
   });
 
   it('интерактивные элементы доступны для скринридера', () => {

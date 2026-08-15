@@ -25,7 +25,27 @@ function isAllowedNativeBackFile(file: string): boolean {
   return baseName.startsWith('_admin_');
 }
 
+const DIRECT_DISMISS_ALLOWLIST = new Set([
+  path.join('app', 'navigation_back.ts'),
+  path.join('app', 'flashcards_collection.tsx'),
+  path.join('app', 'lesson1.tsx'),
+  path.join('app', 'tournament_navigation.ts'),
+]);
+
 describe('navigation back underlay', () => {
+  it('classifies every production screen registered in the root navigator', () => {
+    const rootLayout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
+    const navigation = require('../app/navigation_back') as typeof import('../app/navigation_back');
+    const screenNames = [...rootLayout.matchAll(/<Stack\.Screen\s+name="([^"]+)"/g)]
+      .map((match) => match[1]!)
+      .filter((name) => name !== 'index' && name !== '(tabs)');
+
+    const unknown = screenNames.filter((name) =>
+      navigation.navigationRoutePolicyForAudit(`/${name}`).role === 'unknown');
+
+    expect(unknown).toEqual([]);
+  });
+
   it('opens every Settings destination as a sheet and keeps Settings as its close fallback', () => {
     const rootLayout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
     const settings = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'settings.tsx'), 'utf8');
@@ -54,8 +74,10 @@ describe('navigation back underlay', () => {
     expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'referrals.tsx'), 'utf8')).toContain("params.source === 'settings' ? '/(tabs)/settings'");
     expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'top_helpers.tsx'), 'utf8')).toContain("source === 'settings' ? '/(tabs)/settings'");
     expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'manage_subscription.tsx'), 'utf8')).toContain("? '/(tabs)/settings'");
-    expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'navigation_back.ts'), 'utf8')).toContain("const forceSettingsFallback = basePath(String(fallback ?? '')) === '/(tabs)/settings';");
-    expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'navigation_back.ts'), 'utf8')).toContain("if (forceSettingsFallback && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss())");
+    const navigationBack = fs.readFileSync(path.join(__dirname, '..', 'app', 'navigation_back.ts'), 'utf8');
+    expect(navigationBack).toContain("'/settings_edu',");
+    expect(navigationBack).toContain("&& leaving?.section === 'settings'");
+    expect(navigationBack).toContain("candidate.section !== leaving.section");
     expect(fs.readFileSync(path.join(__dirname, '..', 'components', 'SectionSheetHeader.tsx'), 'utf8')).toContain('left: 12');
     expect(fs.readFileSync(path.join(__dirname, '..', 'components', 'referral_sheet_shell.tsx'), 'utf8')).toContain("flexDirection: 'row-reverse'");
     expect(settings).toContain('settingsScrollYRef.current');
@@ -120,5 +142,32 @@ describe('navigation back underlay', () => {
     }
 
     expect(offenders).toEqual([]);
+  });
+
+  it('allows direct native dismiss only for audited deterministic targets', () => {
+    const offenders: string[] = [];
+    const sourceFiles = SOURCE_ROOTS.flatMap(listSourceFiles);
+
+    for (const file of sourceFiles) {
+      const relativePath = path.relative(path.join(__dirname, '..'), file);
+      if (DIRECT_DISMISS_ALLOWLIST.has(relativePath)) continue;
+      const source = fs.readFileSync(file, 'utf8');
+      source.split(/\r?\n/).forEach((line, index) => {
+        const code = line.replace(/\/\/.*$/, '');
+        if (/\brouter\.dismiss(?:To)?\s*\(/.test(code)) {
+          offenders.push(`${relativePath}:${index + 1}`);
+        }
+      });
+    }
+
+    expect(offenders).toEqual([]);
+  });
+
+  it('routes Android hardware Back through the same section guard', () => {
+    const rootLayout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
+
+    expect(rootLayout).toContain("BackHandler.addEventListener('hardwareBackPress'");
+    expect(rootLayout).toContain('shouldHandleGlobalHardwareBack(navigationPathSignature ?? pathname)');
+    expect(rootLayout).toContain('safeRouterBack(router, navigationFallbackForPath(currentPath))');
   });
 });

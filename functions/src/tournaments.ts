@@ -7,7 +7,9 @@ import { TOURNAMENT_MODES } from './tournament_pool_plan';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
+import { assertTournamentsReleased, TOURNAMENTS_RELEASED } from './tournament_release_gate';
 import { resolveStableUidForAuth } from './auth_identity';
+import { appendExternalEconomyEvent } from './external_economy_events';
 import { isLobbyOpeningNow, runTournamentStartPush } from './tournament_start_push';
 import {
   TOURNAMENT_REDDIT_BOT_PERSONA_SEED,
@@ -1352,7 +1354,6 @@ export function planTournamentStartNowJoinedRoom(input: {
   if (economy.entryGems !== 0 || economy.botEntryGems !== 0) {
     throw new HttpsError('failed-precondition', 'tournament_test_economy_invalid');
   }
-  const gemsBefore = readGemBalance(user.shards);
   const playerProfile = resolveTournamentPlayerProfile(
     publicProfile,
     leaderboardProfile,
@@ -1373,6 +1374,7 @@ export function planTournamentStartNowJoinedRoom(input: {
       ticketsSpent: 0,
       bankContributionGems: 0,
       weekId: tournamentWeekId(room.startsAt),
+      joinAttemptId: `${room.roomId}:v${room.version + 1}`,
     },
   };
   let joinPlan: ReturnType<typeof planTournamentHumanLobbyJoin>;
@@ -1450,7 +1452,6 @@ export function planTournamentStartNowJoinedRoom(input: {
       joined: true,
       roomId: room.roomId,
       entryGems: 0,
-      gemsLeft: gemsBefore,
       startImmediately: fillsLastSeat,
     },
   };
@@ -1459,6 +1460,7 @@ export function planTournamentStartNowJoinedRoom(input: {
 export const tournamentCreateRooms = onSchedule(
   { schedule: '*/5 * * * *', timeZone: 'UTC', region: 'europe-west1', maxInstances: 1 },
   async () => {
+    if (!TOURNAMENTS_RELEASED) return;
     const db = admin.firestore();
     const [config, resources, economySnap] = await Promise.all([
       loadScheduleConfig(db),
@@ -1647,6 +1649,7 @@ export async function tournamentJoinTransaction(
     );
     const entryGems = economy.entryGems;
     const weekId = tournamentWeekId(room.startsAt);
+    const joinAttemptId = `${room.roomId}:v${room.version + 1}`;
     // зачем 2026-07-27 (решение владельца): один турнир на слот на человека.
     // С шардингом комнат слота стало много, и без этого лимита можно было бы
     // за один слот пройти пять турниров подряд и нафармить банк недели —
@@ -1694,10 +1697,10 @@ export async function tournamentJoinTransaction(
     const usesTicket = admissionMode === 'scheduled'
       && !freeEntryAvailable
       && readActiveTournamentTicket(user);
-    const gemsBefore = readGemBalance(user.shards);
-    if (!freeEntryAvailable && !usesTicket && gemsBefore < entryGems) {
-      throw new HttpsError('failed-precondition', 'not_enough_gems');
-    }
+    // Competition confirms the admission fact and fixed debit. Personal-wallet
+    // affordability belongs to the migrated client journal; a concurrent or
+    // cross-device admission may create debt but can never be server-rejected
+    // from a stale users.shards projection.
     // Билет освобождает ИГРОКА от оплаты, но банк турнира получает свой взнос
     // как обычно — контрибуция считается ОТДЕЛЬНО от того, платит ли игрок.
     const contribution = freeEntryAvailable ? 0 : entryGems;
@@ -1721,6 +1724,7 @@ export async function tournamentJoinTransaction(
         ticketsSpent: 0,
         bankContributionGems: contribution,
         weekId,
+        joinAttemptId,
         // зачем 2026-08-04: банк получил contribution, но эти жемчужины не
         // были списаны у игрока — leave-транзакция не должна их "возвращать".
         ...(usesTicket ? { seasonTicketUsed: true } : {}),
@@ -1769,8 +1773,7 @@ export async function tournamentJoinTransaction(
         updatedAtMs: nowMs,
       });
     }
-    // зачем: списываем жемчужины из профиля (то же поле shards, что и везде
-    // в игре), а весь взнос кладём в банк турнира — комната сама посчитает,
+    // зачем: подтверждаем immutable debit-факт, а весь взнос кладём в банк турнира — комната сама посчитает,
     // сколько уйдёт призёрам и сколько в недельный банк. Бесплатный вход
     // недели жемчужины не трогает, только ставит маркер использования.
     //
@@ -1781,13 +1784,17 @@ export async function tournamentJoinTransaction(
     // 5 жемчужин (contribution выше не зависит от usesTicket).
     if (admissionMode === 'scheduled') {
       tx.set(userRef, {
-        ...((freeEntryAvailable || usesTicket) ? {} : { shards: admin.firestore.FieldValue.increment(-entryGems) }),
         ...(freeEntryAvailable ? { tournament_free_entry_week_id: weekId } : {}),
         ...(usesTicket ? { 'progress.season_tournament_ticket_v1': admin.firestore.FieldValue.delete() } : {}),
         tournament_last_slot_key: slotKey,
         tournament_last_slot_room_id: room.roomId,
         updatedAt: nowMs,
       }, { merge: true });
+      if (!freeEntryAvailable && !usesTicket && entryGems > 0) appendExternalEconomyEvent(tx, userRef, {
+        source: 'tournament_entry', eventId: joinAttemptId, ownerStableId: stableUid,
+        delta: -entryGems, reason: 'tournament_entry', kind: 'competition_tournament_entry',
+        subjectId: room.roomId, payload: { roomId: room.roomId, weekId, joinAttemptId }, createdAtMs: nowMs,
+      });
     }
     const priorLobbyEvents = room.lobbyEvents ?? [];
     const priorBotFunding = priorLobbyEvents.reduce((sum, event) => sum + Math.max(0, event.potDeltaGems), 0);
@@ -1826,14 +1833,13 @@ export async function tournamentJoinTransaction(
       version: nextRoom.version,
       updatedAt: nowMs,
     }, { merge: true });
-    // Клиенту отдаём новый баланс: экран сразу покажет списание без
-    // отдельного запроса (Optimistic UI догоняет ответом сервера).
+    // Клиент подтянет immutable tournament_entry event и применит его к своему
+    // журналу; server wallet projection в ответ не возвращается.
     return {
       ok: true,
       joined: true,
       roomId,
       entryGems,
-      gemsLeft: gemsBefore - contribution,
       startImmediately: fillsLastSeat,
       // serverNowMs — сэмпл серверных часов для клиента (см. tournamentStartNow).
       serverNowMs: Date.now(),
@@ -1861,7 +1867,10 @@ export async function tournamentLeaveTransaction(
     if (!roomSnap.exists) throw new HttpsError('not-found', 'room_not_found');
     assertTransactionalTournamentAccess(authUid, stableUid, authLinkSnap, userSnap, bannedSnap);
 
-    if (receiptSnap.exists) {
+    const room = hydratePrivateBotMetadata(readRoom(roomSnap), botMetadataSnap.data());
+    const player = room.players.find((candidate) => !candidate.isBot && candidate.id === stableUid);
+    if (!player) {
+      if (!receiptSnap.exists) throw new HttpsError('failed-precondition', 'not_in_room');
       const receipt = receiptSnap.data() || {};
       const refundedGems = readInt(receipt.refundedGems, -1);
       const potGems = readInt(receipt.potGems, -1);
@@ -1871,15 +1880,17 @@ export async function tournamentLeaveTransaction(
       }
       return { ok: true, alreadyLeft: true, roomId, refundedGems, potGems };
     }
-
-    const room = hydratePrivateBotMetadata(readRoom(roomSnap), botMetadataSnap.data());
     const cutoffAtMs = room.stateDeadlineAtMs ?? room.startsAt;
     if ((room.state !== 'scheduled' && room.state !== 'lobby')
       || cutoffAtMs <= 0 || nowMs >= cutoffAtMs) {
       throw new HttpsError('failed-precondition', 'room_not_leaveable');
     }
-    const player = room.players.find((candidate) => !candidate.isBot && candidate.id === stableUid);
-    if (!player) throw new HttpsError('failed-precondition', 'not_in_room');
+    const joinAttemptId = sanitizeString(player.entry?.joinAttemptId, 512)
+      || `${roomId}:legacy:v${room.version}`;
+    if (receiptSnap.exists
+      && sanitizeString(receiptSnap.data()?.joinAttemptId, 512) === joinAttemptId) {
+      throw new HttpsError('failed-precondition', 'tournament_leave_state_conflict');
+    }
 
     // The immutable room snapshot caps the refund; the per-player provenance
     // proves what this exact join actually contributed. Test rooms are always
@@ -1926,9 +1937,6 @@ export async function tournamentLeaveTransaction(
     // свежий 72ч срок — щедрое округление в пользу игрока (не его вина, что
     // он вышел до старта), а не попытка точно восстановить удалённое поле.
     tx.set(userRef, {
-      ...(refundedGems > 0
-        ? { shards: admin.firestore.FieldValue.increment(refundedGems) }
-        : {}),
       ...(usedFreeEntry ? { tournament_free_entry_week_id: admin.firestore.FieldValue.delete() } : {}),
       ...(enteredWithSeasonTicket
         ? { 'progress.season_tournament_ticket_v1': JSON.stringify({ usesLeft: 1, expiresAt: nowMs + 72 * 60 * 60 * 1000 }) }
@@ -1941,10 +1949,18 @@ export async function tournamentLeaveTransaction(
         : {}),
       updatedAt: nowMs,
     }, { merge: true });
-    tx.create(receiptRef, {
+    if (refundedGems > 0) appendExternalEconomyEvent(tx, userRef, {
+      source: 'tournament_lobby_leave', eventId: joinAttemptId, ownerStableId: stableUid,
+      delta: refundedGems, reason: 'tournament_lobby_leave_refund', kind: 'competition_tournament_refund',
+      subjectId: roomId, payload: { roomId, joinAttemptId }, createdAtMs: nowMs,
+    });
+    // One current receipt slot per room is overwritten only by a later
+    // joinAttemptId; immutable economy event ids preserve every attempt.
+    tx.set(receiptRef, {
       kind: 'tournament_lobby_leave_v1',
       roomId,
       playerId: stableUid,
+      joinAttemptId,
       refundedGems,
       potGems,
       createdAtMs: nowMs,
@@ -2325,6 +2341,7 @@ async function ensureRoomPlayable(db: FirebaseFirestore.Firestore, roomId: strin
 }
 
 export const tournamentJoin = onCall({ ...HOT_CALLABLE_OPTIONS, enforceAppCheck: false }, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -2431,6 +2448,7 @@ export const tournamentJoin = onCall({ ...HOT_CALLABLE_OPTIONS, enforceAppCheck:
 });
 
 export const tournamentLeave = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const roomId = sanitizeString(request.data?.roomId, 160);
   if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
@@ -2442,6 +2460,7 @@ export const tournamentLeave = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
 });
 
 export const tournamentForfeit = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const roomId = sanitizeString(request.data?.roomId, 160);
   if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
@@ -2531,11 +2550,11 @@ async function cancelRoomInTransaction(
     const creditGems = cancellationCreditGems(refund);
     const userPatch: FirebaseFirestore.UpdateData<FirebaseFirestore.DocumentData> = {};
     if (creditGems > 0) {
-      userPatch.shards = admin.firestore.FieldValue.increment(creditGems);
-      userPatch.shards_updated_at_ms = nowMs;
-      userPatch.shards_updated_op = 'earn';
-      userPatch.shards_updated_reason = 'tournament_cancel_refund';
-      userPatch.updatedAt = nowMs;
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'tournament_cancel', eventId: room.roomId, ownerStableId: refund.playerId,
+        delta: creditGems, reason: 'tournament_cancel_refund', kind: 'competition_tournament_refund',
+        subjectId: room.roomId, payload: { roomId: room.roomId }, createdAtMs: nowMs,
+      });
     }
     if (refund.restoreFreeWeek && userData.tournament_free_week === refund.restoreFreeWeek) {
       userPatch.tournament_free_week = admin.firestore.FieldValue.delete();
@@ -2876,6 +2895,7 @@ export async function processTournamentFillRooms(
 export const tournamentFillBots = onSchedule(
   { schedule: '* * * * *', timeZone: 'UTC', region: 'europe-west1', maxInstances: 1 },
   async () => {
+    if (!TOURNAMENTS_RELEASED) return;
     const db = admin.firestore();
     await processTournamentFillRooms({ db, nowMs: Date.now() });
   },
@@ -3527,6 +3547,7 @@ export async function tournamentSubmitTransaction(
 }
 
 export const tournamentSubmitSpeedMatchAttempt = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const stableUid = await resolveStableUid(db, request.auth.uid);
@@ -3549,6 +3570,7 @@ export const tournamentSubmitSpeedMatchAttempt = onCall(HOT_CALLABLE_OPTIONS, as
 });
 
 export const tournamentSubmitTaskAnswer = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const roomId = sanitizeString(request.data?.roomId, 160);
   const taskId = sanitizeString(request.data?.taskId, 160);
@@ -3579,6 +3601,7 @@ export const tournamentSubmitTaskAnswer = onCall(HOT_CALLABLE_OPTIONS, async (re
 });
 
 export const tournamentSubmitAnswers = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const stableUid = await resolveStableUid(db, request.auth.uid);
@@ -3687,12 +3710,11 @@ export async function tournamentFinalizeTransaction(
         updatedAt: nowMs,
       }, { merge: true });
       if (rewardGems > 0) {
-        tx.set(userRef, {
-          shards: admin.firestore.FieldValue.increment(rewardGems),
-          shards_updated_at_ms: nowMs,
-          shards_updated_op: 'earn',
-          shards_updated_reason: 'tournament_prize',
-        }, { merge: true });
+        appendExternalEconomyEvent(tx, userRef, {
+          source: 'tournament_prize', eventId: roomId, ownerStableId: effect.playerId,
+          delta: rewardGems, reason: 'tournament_prize', kind: 'competition_tournament_prize',
+          subjectId: roomId, payload: { roomId, place: effect.place }, createdAtMs: nowMs,
+        });
         tx.set(userRef.collection('shard_log').doc(`tournament_prize_${roomId}`), {
           ts: new Date(nowMs).toISOString(),
           type: 'earn',
@@ -3766,6 +3788,7 @@ export async function tournamentFinalizeTransaction(
 }
 
 export const tournamentFinalize = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (request.auth?.token?.admin !== true) throw new HttpsError('permission-denied', 'Admin only');
   const roomId = sanitizeString(request.data?.roomId, 160);
   if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
@@ -4291,6 +4314,7 @@ export async function cleanupExpiredTournamentReviewEvidence(
 export const tournamentAdvanceRooms = onSchedule(
   { schedule: '* * * * *', timeZone: 'UTC', region: 'europe-west1', maxInstances: 1 },
   async () => {
+    if (!TOURNAMENTS_RELEASED) return;
     const db = admin.firestore();
     const nowMs = Date.now();
     await processDueTournamentRooms({ db, nowMs });
@@ -4361,8 +4385,9 @@ export const tournamentAdvanceRound = onCall(
   // rechecked transactionally below. App Check cannot be a hard dependency
   // here: an otherwise valid Android participant would be stranded until the
   // minute scheduler whenever attestation is unavailable or rejected.
-  { ...HOT_CALLABLE_OPTIONS, enforceAppCheck: false, minInstances: 1 },
+  { ...HOT_CALLABLE_OPTIONS, enforceAppCheck: false, minInstances: TOURNAMENTS_RELEASED ? 1 : 0 },
   async (request) => {
+    assertTournamentsReleased();
     if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
     const roomId = sanitizeString(request.data?.roomId, 160);
     const expectedState = sanitizeString(request.data?.expectedState, 20);
@@ -4427,12 +4452,11 @@ export async function tournamentClaimTransaction(
     }
     const nowMs = requestedNowMs ?? Date.now();
     if (gems > 0) {
-      tx.set(userRef, {
-        shards: admin.firestore.FieldValue.increment(gems),
-        shards_updated_at_ms: nowMs,
-        shards_updated_op: 'earn',
-        shards_updated_reason: 'tournament_prize',
-      }, { merge: true });
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'tournament_prize', eventId: roomId, ownerStableId: stableUid,
+        delta: gems, reason: 'tournament_prize', kind: 'competition_tournament_prize',
+        subjectId: roomId, payload: { roomId, place: readInt(receipt.place, 0) }, createdAtMs: nowMs,
+      });
       tx.set(userRef.collection('shard_log').doc(`tournament_prize_${roomId}`), {
         ts: new Date(nowMs).toISOString(),
         type: 'earn',
@@ -4464,6 +4488,7 @@ export async function tournamentClaimTransaction(
 }
 
 export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const stableUid = await resolveStableUid(db, request.auth.uid);
@@ -4517,10 +4542,11 @@ export const tournamentStartNow = onCall(
     region: 'europe-west1',
     enforceAppCheck: false,
     timeoutSeconds: 60,
-    minInstances: 1,
+    minInstances: TOURNAMENTS_RELEASED ? 1 : 0,
     maxInstances: 10,
   },
   async (request) => {
+    assertTournamentsReleased();
     try {
     if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
     const authUid = request.auth.uid;
@@ -4709,6 +4735,7 @@ export const tournamentStartNow = onCall(
  * свои: во время игры это был бы чит, а чужие ответы не нужны никому.
  */
 export const tournamentRoundReview = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  assertTournamentsReleased();
   const uid = request.auth?.uid;
   if (!uid) throw new HttpsError('unauthenticated', 'auth_required');
   const roomId = sanitizeString((request.data as { roomId?: unknown })?.roomId, 140);

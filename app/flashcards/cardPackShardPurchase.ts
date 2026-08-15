@@ -1,15 +1,12 @@
 import { emitAppEvent } from '../events';
 import { logCardPackPurchasedShards } from '../firebase';
-import { addShardsRaw, getShardsBalance, spendShardsIdempotent } from '../shards_system';
-import {
-  emitShardPurchaseSyncPendingToast,
-  reconcileShardsBeforePurchase,
-} from '../shards_purchase_reconcile';
-import { newShardOpId } from '../shards_delta_queue';
+import { commitShardCompositeOperation, getShardsBalance } from '../shards_system';
+import { semanticShardOperationId } from '../economy/client_shard_semantic_id';
 import { trackCardPackPurchase } from '../user_stats';
 import {
   addOwnedPackId,
   loadOwnedPackIds,
+  primeOwnedPackIdsCache,
   primeMarketplaceBuiltCardsCacheFromOwnedStorage,
   type FlashcardMarketPack,
 } from './marketplace';
@@ -24,7 +21,12 @@ import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { flashcardsOfficialPacksAvailableForTarget } from '../flashcards_target_gate';
 import { callFlashcardPackGiftRedeem } from '../community_packs/functionsClient';
 import { getCanonicalUserId } from '../user_id_policy';
-import { storageStudyTarget } from '../target_storage_keys';
+import { flashcardsOwnedPacksKey, storageStudyTarget } from '../target_storage_keys';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from '../account_generation';
 
 export type CardPackShardPurchaseResult =
   | 'ok'
@@ -60,78 +62,66 @@ export async function purchaseCardPackWithShards(
     emitSourceGatedPackToast();
     return 'source_gated';
   }
-  const owned = await loadOwnedPackIds(studyTarget);
-  if (owned.includes(pack.id)) return 'already_owned';
-  // Не блокируем покупку по одному локальному snapshot: он может быть ниже
-  // облачного либо уже включать pending-начисление. Сначала завершаем очередь,
-  // затем окончательное решение всё равно принимает server-authoritative spend.
-  const reconciliation = await reconcileShardsBeforePurchase();
-  if (reconciliation.status !== 'ready') {
-    emitShardPurchaseSyncPendingToast();
-    return 'wallet_sync_pending';
-  }
-  const balance = reconciliation.balance;
-  const spendResult = await spendShardsIdempotent(
-    pack.priceShards,
-    'card_pack',
-    newShardOpId(),
+  const operationToken = captureAccountGeneration();
+  const operationOwnerStableId = operationToken.stableId;
+  const isOperationCurrent = (): boolean => Boolean(
+    operationOwnerStableId
+    && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
   );
-  if (spendResult === 'insufficient') {
-    const balanceAfter = await getShardsBalance();
-    emitAppEvent('shards_balance_updated', { balance: balanceAfter });
-    return 'insufficient';
-  }
-  if (spendResult === 'failed') {
-    emitAppEvent('action_toast', {
-      type: 'error',
-      messageRu: 'Жемчужины не списались. Попробуй ещё раз.',
-      messageUk: 'Не вдалося списати перлини.',
-      messageEs: 'No ha sido posible gastar perlas.',
-    });
-    return 'spend_failed';
-  }
-  // зачем (НАЙДЕНО АУДИТОМ 2026-07-25): монеты уже списаны строкой выше. Если
-  // выдача пака упадёт (AsyncStorage.setItem бросает при заполненном диске —
-  // saveOwnedPackIds его не ловит), юзер оставался БЕЗ ДЕНЕГ И БЕЗ ПАКА, без
-  // отката. Возвращаем монеты и честно говорим, что покупка не прошла.
-  // Причина 'card_pack_refund' в списке исключений перка — иначе бонус
-  // карточки IV+ начислил бы +5% сверх возврата, и юзер вышел бы в плюс.
-  try {
-    await addOwnedPackId(pack.id, studyTarget);
-  } catch {
-    try {
-      await addShardsRaw(pack.priceShards, 'card_pack_refund');
-    } catch {
-      // Возврат тоже не прошёл — молчать нельзя, но и упасть нельзя.
-      // Баланс сверится с облаком при следующем входе (источник истины там).
-    }
-    const balanceBack = await getShardsBalance().catch(() => balance);
-    emitAppEvent('shards_balance_updated', { balance: balanceBack });
-    emitAppEvent('action_toast', {
-      type: 'error',
-      // зачем: единая валюта — жемчуг; тост обещал возврат «монет», которых в приложении нет.
-      messageRu: 'Набор не удалось сохранить. Жемчуг возвращён.',
-      messageUk: 'Не вдалося зберегти набір. Перлини повернуто.',
-      messageEs: 'No se pudo guardar el pack. Perlas devueltas.',
-    });
-    return 'spend_failed';
-  }
-  // Кэш карточек — не критичен: пак уже в «Моих», список подтянется при входе.
-  await primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget).catch(() => {});
-  const nb = await getShardsBalance();
-  emitAppEvent('shards_balance_updated', { balance: nb });
-  const toastTitleEs =
-    pack.titleEs.trim() || pack.titleUk.trim() || pack.titleRu.trim() || pack.id;
-  emitAppEvent('action_toast', {
-    type: 'success',
-    messageRu: `Набор «${pack.titleRu}» доступен в разделе «Карточки».`,
-    messageUk: `Набір «${pack.titleUk}» доступний у розділі «Картки».`,
-    messageEs: `El pack «${toastTitleEs}» está disponible en Tarjetas.`,
+  if (!isOperationCurrent()) return 'spend_failed';
+  const owned = await loadOwnedPackIds(studyTarget);
+  if (!isOperationCurrent()) return 'spend_failed';
+  if (owned.includes(pack.id)) return 'already_owned';
+  const nextOwned = [...owned, pack.id];
+  const purchase = await commitShardCompositeOperation({
+    amount: pack.priceShards,
+    reason: 'card_pack',
+    operationId: await semanticShardOperationId(
+      'official_card_pack',
+      `${storageStudyTarget(studyTarget)}:${pack.id}`,
+    ),
+    grant: {
+      kind: 'official_card_pack',
+      subjectId: pack.id,
+      payload: { studyTarget: storageStudyTarget(studyTarget) },
+    },
+    localWrites: [[flashcardsOwnedPacksKey(studyTarget), JSON.stringify(nextOwned)]],
   });
-  logCardPackPurchasedShards(pack.id, pack.priceShards);
-  void trackCardPackPurchase(pack.id);
-  void trackCardPackAcquiredAchievement(studyTarget);
-  return 'ok';
+  return withAccountTransitionLock(async () => {
+    if (!isOperationCurrent()) return 'spend_failed';
+    if (purchase.status === 'insufficient') {
+      const balanceAfter = await getShardsBalance();
+      emitAppEvent('shards_balance_updated', { balance: balanceAfter });
+      return 'insufficient';
+    }
+    if (purchase.status === 'failed') {
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Покупку не удалось сохранить. Жемчуг не списан.',
+        messageUk: 'Не вдалося зберегти покупку. Перлини не списані.',
+        messageEs: 'No se pudo guardar la compra. No se gastaron perlas.',
+      });
+      return 'spend_failed';
+    }
+    const committedOwned = await loadOwnedPackIds(studyTarget);
+    primeOwnedPackIdsCache(committedOwned, studyTarget);
+    // Кэш карточек — не критичен: пак уже в «Моих», список подтянется при входе.
+    await primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget).catch(() => {});
+    const nb = await getShardsBalance();
+    emitAppEvent('shards_balance_updated', { balance: nb });
+    const toastTitleEs =
+      pack.titleEs.trim() || pack.titleUk.trim() || pack.titleRu.trim() || pack.id;
+    emitAppEvent('action_toast', {
+      type: 'success',
+      messageRu: `Набор «${pack.titleRu}» доступен в разделе «Карточки».`,
+      messageUk: `Набір «${pack.titleUk}» доступний у розділі «Картки».`,
+      messageEs: `El pack «${toastTitleEs}» está disponible en Tarjetas.`,
+    });
+    logCardPackPurchasedShards(pack.id, pack.priceShards);
+    void trackCardPackPurchase(pack.id);
+    void trackCardPackAcquiredAchievement(studyTarget);
+    return 'ok';
+  });
 }
 
 /**

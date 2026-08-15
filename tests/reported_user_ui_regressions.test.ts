@@ -17,6 +17,10 @@ const lessonSource = fs.readFileSync(
   path.join(__dirname, '..', 'app', 'lesson1.tsx'),
   'utf8',
 );
+const flashcardsSwipeSource = fs.readFileSync(
+  path.join(__dirname, '..', 'app', 'flashcards_swipe.tsx'),
+  'utf8',
+);
 
 describe('reported user UI regressions', () => {
   it('does not make the phrase check button look active before the word bank is complete', () => {
@@ -84,5 +88,39 @@ describe('reported user UI regressions', () => {
       expect(item.options.length).toBeGreaterThanOrEqual(2);
       expect(item.options).toContain(item.correct);
     }
+  });
+
+  it('cannot leave the next swipe card transparent after the Android settle watchdog wins', () => {
+    // ИСТОРИЯ (владелец, 2026-08-13). Раньше этот тест держал порядок
+    // «вернуть opacity/смещение → after()» внутри finish(). Именно он и давал
+    // вторую жалобу — «карточка улетает, а затем возвращается»: значения
+    // нативно-драйвенные, их сброс долетал до UI-потока сразу, а следующая
+    // карточка приезжала только следующим коммитом React, и в этом зазоре
+    // старая вьюха успевала показаться в центре экрана.
+    // Защита от НЕВИДИМОЙ карточки (запоздавший fade после победы страховочного
+    // таймера) не ослаблена, а переехала: она живёт в useLayoutEffect, который
+    // отрабатывает уже в коммите новой карточки и по-прежнему ГАСИТ живую
+    // анимацию перед восстановлением значения.
+    const finishStart = flashcardsSwipeSource.indexOf('const finish = () => {');
+    const finishEnd = flashcardsSwipeSource.indexOf('// зачем: A-39', finishStart);
+    const finish = flashcardsSwipeSource.slice(finishStart, finishEnd);
+
+    expect(finishStart).toBeGreaterThanOrEqual(0);
+    expect(finish).toContain('after();');
+    /** Ни одно нативное значение карточки не трогается до смены состояния. */
+    expect(finish).not.toContain('flyOpacity.setValue');
+    expect(finish).not.toContain('position.setValue');
+
+    const effectStart = flashcardsSwipeSource.indexOf('useLayoutEffect(() => {');
+    const effect = flashcardsSwipeSource.slice(
+      effectStart,
+      flashcardsSwipeSource.indexOf('}, [', effectStart),
+    );
+    const stop = effect.indexOf('flyOpacity.stopAnimation();');
+    const restore = effect.indexOf('flyOpacity.setValue(1);');
+
+    expect(effectStart).toBeGreaterThanOrEqual(0);
+    expect(stop).toBeGreaterThanOrEqual(0);
+    expect(restore).toBeGreaterThan(stop);
   });
 });

@@ -57,6 +57,7 @@ import {
   type LessonSoftUpsellIdentity,
 } from './lesson_complete_soft_upsell';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
+import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import { prefetchLessonMenuCache } from './lesson_menu';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
@@ -69,6 +70,7 @@ import { buildLessonShareMessage } from './lesson_share';
 import { coachToastDecisionFromRouteParams, type CoachToastDecision } from './coach_toast_trigger';
 import { syncToCloud } from './cloud_sync';
 import { submitProgressEvent } from './progress_events_client';
+import { finalizeLessonXpMultipliers } from './xp_manager';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
@@ -77,6 +79,7 @@ import { frenchStudyActive } from './spanish_content_gate';
 import {
   lessonPerfectMilestoneKey,
   lessonProgressKey,
+  lessonSessionKey,
   lessonTopicShardGrantedKey,
 } from './target_storage_keys';
 
@@ -181,25 +184,25 @@ export const deriveConfirmedLessonResults = (input: {
 type LessonSoftUpsellCopy = { title: string; body: string; ctaLabel: string; dismissLabel: string; dismissAccessibilityLabel: string; dismissAccessibilityHint: string; ctaAccessibilityLabel: string; ctaAccessibilityHint: string };
 
 const LESSON_SOFT_UPSELL_COPY = {
-  ru: { title: 'Первый урок — готово', body: 'Собери личный маршрут, чтобы дальше учить именно то, что пригодится тебе.', ctaLabel: 'Настроить мой путь', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Продолжить без настройки личного пути', ctaAccessibilityLabel: 'Настроить личный путь', ctaAccessibilityHint: 'Открыть настройку персонального плана' },
-  uk: { title: 'Перший урок — готово', body: 'Склади особистий маршрут, щоб далі вчити саме те, що знадобиться тобі.', ctaLabel: 'Налаштувати мій шлях', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Продовжити без налаштування особистого шляху', ctaAccessibilityLabel: 'Налаштувати особистий шлях', ctaAccessibilityHint: 'Відкрити налаштування персонального плану' },
-  es: { title: 'Primera lección completada', body: 'Crea una ruta personal para aprender justo lo que necesitas.', ctaLabel: 'Crear mi ruta', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Continuar sin crear una ruta personal', ctaAccessibilityLabel: 'Crear mi ruta personal', ctaAccessibilityHint: 'Abrir la configuración del plan personal' },
-  'pt-BR': { title: 'Primeira lição concluída', body: 'Crie uma rota pessoal para aprender exatamente o que você precisa.', ctaLabel: 'Criar minha rota', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Continuar sem criar uma rota pessoal', ctaAccessibilityLabel: 'Criar minha rota pessoal', ctaAccessibilityHint: 'Abrir a configuração do plano pessoal' },
-  vi: { title: 'Đã xong bài học đầu tiên', body: 'Tạo lộ trình cá nhân để học đúng những gì bạn cần.', ctaLabel: 'Tạo lộ trình của tôi', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Tiếp tục mà không tạo lộ trình cá nhân', ctaAccessibilityLabel: 'Tạo lộ trình cá nhân', ctaAccessibilityHint: 'Mở phần thiết lập kế hoạch cá nhân' },
-  id: { title: 'Pelajaran pertama selesai', body: 'Buat jalur pribadi untuk mempelajari hal yang benar-benar kamu perlukan.', ctaLabel: 'Buat jalur saya', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Lanjut tanpa membuat jalur pribadi', ctaAccessibilityLabel: 'Buat jalur pribadi', ctaAccessibilityHint: 'Buka pengaturan rencana pribadi' },
-  tr: { title: 'İlk ders tamamlandı', body: 'Tam ihtiyacın olanları öğrenmek için kişisel bir yol oluştur.', ctaLabel: 'Yolumu oluştur', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Kişisel yol oluşturmadan devam et', ctaAccessibilityLabel: 'Kişisel yol oluştur', ctaAccessibilityHint: 'Kişisel plan kurulumunu aç' },
-  pl: { title: 'Pierwsza lekcja ukończona', body: 'Ułóż własną ścieżkę, aby uczyć się dokładnie tego, czego potrzebujesz.', ctaLabel: 'Ułóż moją ścieżkę', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Kontynuuj bez układania własnej ścieżki', ctaAccessibilityLabel: 'Ułóż własną ścieżkę', ctaAccessibilityHint: 'Otwórz konfigurację planu osobistego' },
+  ru: { title: 'Первый урок — готово', body: 'Plus откроет все уроки и позволит заниматься без бесплатных остановок.', ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Продолжить без просмотра Plus', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о Plus' },
+  uk: { title: 'Перший урок — готово', body: 'Plus відкриє всі уроки й дозволить займатися без безкоштовних зупинок.', ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Продовжити без перегляду Plus', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про Plus' },
+  es: { title: 'Primera lección completada', body: 'Plus abre todas las lecciones y elimina las pausas del modo gratis.', ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Continuar sin ver Plus', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre Plus' },
+  'pt-BR': { title: 'Primeira lição concluída', body: 'O Plus libera todas as lições e remove as pausas do modo grátis.', ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Continuar sem ver o Plus', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre o Plus' },
+  vi: { title: 'Đã xong bài học đầu tiên', body: 'Plus mở mọi bài học và bỏ các quãng dừng của chế độ miễn phí.', ctaLabel: 'Xem Plus', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Tiếp tục mà không xem Plus', ctaAccessibilityLabel: 'Xem Plus', ctaAccessibilityHint: 'Mở thông tin về Plus' },
+  id: { title: 'Pelajaran pertama selesai', body: 'Plus membuka semua pelajaran dan menghapus jeda mode gratis.', ctaLabel: 'Lihat Plus', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Lanjut tanpa melihat Plus', ctaAccessibilityLabel: 'Lihat Plus', ctaAccessibilityHint: 'Buka informasi tentang Plus' },
+  tr: { title: 'İlk ders tamamlandı', body: 'Plus tüm dersleri açar ve ücretsiz moddaki duraklamaları kaldırır.', ctaLabel: 'Plus’ı gör', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Plus’ı görmeden devam et', ctaAccessibilityLabel: 'Plus’ı gör', ctaAccessibilityHint: 'Plus bilgisini aç' },
+  pl: { title: 'Pierwsza lekcja ukończona', body: 'Plus otwiera wszystkie lekcje i usuwa przerwy trybu darmowego.', ctaLabel: 'Zobacz Plus', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Kontynuuj bez oglądania Plus', ctaAccessibilityLabel: 'Zobacz Plus', ctaAccessibilityHint: 'Otwórz informacje o Plus' },
 } satisfies Record<Lang, LessonSoftUpsellCopy>;
 
 const FREE_LIMIT_SOFT_UPSELL_COPY = {
-  ru: { title: '3 бесплатных урока пройдено', body: 'Ты дошёл до границы бесплатного курса. Plus откроет следующие уроки и весь маршрут.', ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Остаться на экране результата', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о доступе к следующим урокам' },
-  uk: { title: '3 безкоштовні уроки пройдено', body: 'Ти дістався межі безкоштовного курсу. Plus відкриє наступні уроки й увесь маршрут.', ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Залишитися на екрані результату', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про доступ до наступних уроків' },
-  es: { title: '3 lecciones gratis completadas', body: 'Has llegado al límite del curso gratuito. Plus abre las siguientes lecciones y toda la ruta.', ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Permanecer en la pantalla de resultados', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre las siguientes lecciones' },
-  'pt-BR': { title: '3 lições grátis concluídas', body: 'Você chegou ao limite do curso gratuito. O Plus libera as próximas lições e toda a rota.', ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Permanecer na tela de resultado', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre as próximas lições' },
-  vi: { title: 'Đã hoàn thành 3 bài miễn phí', body: 'Bạn đã đến giới hạn khóa học miễn phí. Plus mở các bài tiếp theo và toàn bộ lộ trình.', ctaLabel: 'Xem Plus', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Ở lại màn hình kết quả', ctaAccessibilityLabel: 'Xem Plus', ctaAccessibilityHint: 'Mở thông tin về quyền truy cập các bài tiếp theo' },
-  id: { title: '3 pelajaran gratis selesai', body: 'Kamu telah mencapai batas kursus gratis. Plus membuka pelajaran berikutnya dan seluruh jalur.', ctaLabel: 'Lihat Plus', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Tetap di layar hasil', ctaAccessibilityLabel: 'Lihat Plus', ctaAccessibilityHint: 'Buka informasi akses pelajaran berikutnya' },
-  tr: { title: '3 ücretsiz ders tamamlandı', body: 'Ücretsiz kurs sınırına ulaştın. Plus sonraki dersleri ve tüm yolu açar.', ctaLabel: 'Plus’ı gör', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Sonuç ekranında kal', ctaAccessibilityLabel: 'Plus’ı gör', ctaAccessibilityHint: 'Sonraki derslere erişim bilgisini aç' },
-  pl: { title: 'Ukończono 3 darmowe lekcje', body: 'To koniec darmowej części kursu. Plus otwiera kolejne lekcje i całą ścieżkę.', ctaLabel: 'Zobacz Plus', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Pozostań na ekranie wyniku', ctaAccessibilityLabel: 'Zobacz Plus', ctaAccessibilityHint: 'Otwórz informacje o dostępie do kolejnych lekcji' },
+  ru: { title: '3 бесплатных урока пройдено', body: 'Ты дошёл до границы бесплатного курса. Plus откроет следующие уроки и весь курс.', ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Остаться на экране результата', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о доступе к следующим урокам' },
+  uk: { title: '3 безкоштовні уроки пройдено', body: 'Ти дістався межі безкоштовного курсу. Plus відкриє наступні уроки й увесь курс.', ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Залишитися на екрані результату', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про доступ до наступних уроків' },
+  es: { title: '3 lecciones gratis completadas', body: 'Has llegado al límite del curso gratuito. Plus abre las siguientes lecciones y el curso completo.', ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Permanecer en la pantalla de resultados', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre las siguientes lecciones' },
+  'pt-BR': { title: '3 lições grátis concluídas', body: 'Você chegou ao limite do curso gratuito. O Plus libera as próximas lições e o curso completo.', ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Permanecer na tela de resultado', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre as próximas lições' },
+  vi: { title: 'Đã hoàn thành 3 bài miễn phí', body: 'Bạn đã đến giới hạn khóa học miễn phí. Plus mở các bài tiếp theo và toàn bộ khóa học.', ctaLabel: 'Xem Plus', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Ở lại màn hình kết quả', ctaAccessibilityLabel: 'Xem Plus', ctaAccessibilityHint: 'Mở thông tin về quyền truy cập các bài tiếp theo' },
+  id: { title: '3 pelajaran gratis selesai', body: 'Kamu telah mencapai batas kursus gratis. Plus membuka pelajaran berikutnya dan seluruh kursus.', ctaLabel: 'Lihat Plus', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Tetap di layar hasil', ctaAccessibilityLabel: 'Lihat Plus', ctaAccessibilityHint: 'Buka informasi akses pelajaran berikutnya' },
+  tr: { title: '3 ücretsiz ders tamamlandı', body: 'Ücretsiz kurs sınırına ulaştın. Plus sonraki dersleri ve tüm kursu açar.', ctaLabel: 'Plus’ı gör', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Sonuç ekranında kal', ctaAccessibilityLabel: 'Plus’ı gör', ctaAccessibilityHint: 'Sonraki derslere erişim bilgisini aç' },
+  pl: { title: 'Ukończono 3 darmowe lekcje', body: 'To koniec darmowej części kursu. Plus otwiera kolejne lekcje i cały kurs.', ctaLabel: 'Zobacz Plus', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Pozostań na ekranie wyniku', ctaAccessibilityLabel: 'Zobacz Plus', ctaAccessibilityHint: 'Otwórz informacje o dostępie do kolejnych lekcji' },
 } satisfies Record<Lang, LessonSoftUpsellCopy>;
 
 function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onClose }: {
@@ -606,10 +609,16 @@ export default function LessonComplete() {
     earnedXp?: string | string[];
     earnedBaseXp?: string | string[];
     earnedMultipliers?: string | string[];
+    completedAttemptId?: string | string[];
+    repeatAttemptId?: string | string[];
     passed?: string | string[];
   }>();
   const { id } = params;
   const lessonId = parseInt(id || '1', 10);
+  const completionAttemptId = useMemo(
+    () => normalizeLessonServerAttemptId(params.completedAttemptId) ?? makeLessonServerAttemptId(),
+    [lessonId, params.completedAttemptId, studyTarget],
+  );
   const c = s.lessonComplete;
   const [completionRequiresPremium, setCompletionRequiresPremium] = useState(false);
   const [completionAccessReady, setCompletionAccessReady] = useState(() => lessonId >= 32);
@@ -716,7 +725,6 @@ export default function LessonComplete() {
 
   const runSoftUpsellCta = useMemo(() => createLessonSoftUpsellCtaHandler({
     onCta: softUpsell.onCta,
-    navigatePersonal: () => router.push('/personal_plan_setup' as any),
     navigatePaywall: () => router.push({
           pathname: '/premium_modal',
           params: {
@@ -886,7 +894,6 @@ export default function LessonComplete() {
         lessonId,
         studyTarget: softUpsellStudyTarget,
       };
-      const suppress = { suppressEarnEvent: true } as const;
       const shardKeys: ShardSource[] = [];
 
       // Бонус первого прохождения (сундук XP + осколки lesson_first).
@@ -937,7 +944,10 @@ export default function LessonComplete() {
       }
       checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId, studyTarget }).catch(() => {});
       if (wasPerfect) {
-        const nP = await addShards('lesson_perfect', suppress);
+        const nP = await addShards('lesson_perfect', {
+          eventId: `lesson:${studyTarget}:${lessonId}:perfect`,
+          suppressEarnEvent: true,
+        });
         if (nP > 0) shardKeys.push('lesson_perfect');
       }
       const activeDays = wasPerfect ? await getReviewActiveDays() : 0;
@@ -955,10 +965,13 @@ export default function LessonComplete() {
           const perfKey = lessonPerfectMilestoneKey(perfectCount, studyTarget);
         const alreadyPerfect = await AsyncStorage.getItem(perfKey);
         if (!alreadyPerfect) {
-          const n5 = await addShards('lessons_5_perfect', suppress);
+          const n5 = await addShards('lessons_5_perfect', {
+            eventId: `perfect-milestone:${studyTarget}:${perfectCount}`,
+            localWrites: [[perfKey, '1']],
+            suppressEarnEvent: true,
+          });
           if (n5 > 0) {
             shardKeys.push('lessons_5_perfect');
-            AsyncStorage.setItem(perfKey, '1').catch(() => {});
           }
         }
       }
@@ -980,10 +993,13 @@ export default function LessonComplete() {
         const topicKey = lessonTopicShardGrantedKey(currentCefr, studyTarget);
         const alreadyTopic = await AsyncStorage.getItem(topicKey);
         if (!alreadyTopic) {
-          const nT = await addShards('topic_completed', suppress);
+          const nT = await addShards('topic_completed', {
+            eventId: `topic:${studyTarget}:${currentCefr}:completed`,
+            localWrites: [[topicKey, '1']],
+            suppressEarnEvent: true,
+          });
           if (nT > 0) {
             shardKeys.push('topic_completed');
-            AsyncStorage.setItem(topicKey, '1').catch(() => {});
           }
         }
       }
@@ -1079,9 +1095,15 @@ export default function LessonComplete() {
     void (async () => {
       const canApply = await canApplyCompletionRewards();
       if (!canApply) {
-        if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/lessons_list' as any);
+        if (!cancelled && frenchStudyActive(studyTarget)) {
+          markNextNavigationAsReplace();
+          router.replace('/lessons_list' as any);
+        }
         return;
       }
+      // Ответы уже получили XP со всеми активными lesson-scoped множителями.
+      // Здесь один раз закрываем их расходные заряды по identity этой попытки.
+      void finalizeLessonXpMultipliers(completionAttemptId).catch(() => {});
       void grantBonus().finally(() => {
         if (!cancelled) setCompletionXpReady(true);
       });
@@ -1122,7 +1144,7 @@ export default function LessonComplete() {
             safeLessonCompleteEventPart(studyTarget),
             String(lessonId),
             'complete',
-            String(Math.max(1, newPassCount)),
+            safeLessonCompleteEventPart(completionAttemptId),
           ].join(':'),
           type: 'lesson_complete',
           payload: {
@@ -1133,6 +1155,7 @@ export default function LessonComplete() {
             progress: p,
             cellIndex: p.length,
             xpDelta: 0,
+            attemptId: completionAttemptId,
           },
         }).catch(() => {});
         void syncToCloud({ forceNow: true }).catch(() => {});
@@ -1186,7 +1209,7 @@ export default function LessonComplete() {
       cancelled = true;
       clearLessonCompleteNotifTimer();
     };
-  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, grantBonus, lessonId, params.unlocked, router, scheduleActiveNotif, studyTarget]);
+  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, completionAttemptId, grantBonus, lessonId, params.unlocked, router, scheduleActiveNotif, studyTarget]);
 
   // ── Триггер регистрационной модалки после первого урока ────────────────────
   // Показывается ровно один раз: только для урока 1, только если юзер ещё не залогинен
@@ -1237,15 +1260,18 @@ export default function LessonComplete() {
           return;
         }
         await prefetchLessonMenuCache(next, studyTarget);
+        markNextNavigationAsReplace();
         router.replace({ pathname: '/lessons_list', params: { id: next } });
       })();
     } else {
+      markNextNavigationAsReplace();
       router.replace('/(tabs)/home' as any);
     }
   };
 
   const goBackFromComplete = useCallback(() => {
     hapticTap();
+    markNextNavigationAsReplace();
     router.replace({ pathname: '/lessons_list', params: { id: lessonId } });
   }, [router, lessonId]);
 
@@ -1253,14 +1279,24 @@ export default function LessonComplete() {
     if (repeatOpeningRef.current) return;
     repeatOpeningRef.current = true;
     setRepeatOpening(true);
+    const repeatAttemptId = normalizeLessonServerAttemptId(params.repeatAttemptId)
+      ?? makeLessonServerAttemptId();
+    // The route is the synchronous source of truth for the next screen. Storage
+    // remains the durable fallback, but navigation never waits for the native
+    // write and therefore stays instant on Android.
+    void AsyncStorage.setItem(
+      lessonSessionKey(lessonId, 'serverAttemptId', studyTarget),
+      repeatAttemptId,
+    ).catch(() => {});
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
     try {
-      router.replace({ pathname: '/lesson1', params: { id: lessonId } });
+      markNextNavigationAsReplace();
+      router.replace({ pathname: '/lesson1', params: { id: lessonId, serverAttemptId: repeatAttemptId } });
     } catch {
       repeatOpeningRef.current = false;
       setRepeatOpening(false);
     }
-  }, [lessonId, router, studyTarget]);
+  }, [lessonId, params.repeatAttemptId, router, studyTarget]);
 
   // Android: системный «Назад» НЕ должен попадать на сам пройденный урок.
   // Раньше lesson_complete не перехватывал hardwareBackPress — pop возвращал на
@@ -1658,7 +1694,7 @@ export default function LessonComplete() {
               borderColor: 'transparent',
               overflow: 'hidden',
             }}
-            onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}
+            onPress={() => { hapticTap(); markNextNavigationAsReplace(); router.replace('/(tabs)/home' as any); }}
           >
             <Text style={{ color: t.textMuted, fontSize: 16 }}>{c.backHome}</Text>
           </TouchableOpacity>

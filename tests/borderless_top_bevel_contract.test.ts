@@ -53,11 +53,10 @@ describe('borderless top bevel contract', () => {
     expect(friends).toContain("...(isMilestone ? { borderTopWidth: 1, borderTopColor: color + '55' } : null)");
   });
 
-  it('keeps diagnostic, referral, drill, and plan-complete panels tonal', () => {
+  it('keeps diagnostic, referral, and drill panels tonal', () => {
     const diagnostic = readSource('app/diagnostic_test.tsx');
     const referrals = readSource('app/referrals.tsx');
     const prepositionDrill = readSource('app/preposition_drill.tsx');
-    const personalPlanComplete = readSource('app/personal_plan_complete.tsx');
 
     expectNoDecorativeTopBevelAround(diagnostic, 's.diagnostic.prevResult');
     expectNoDecorativeTopBevelAround(diagnostic, 's.diagnostic.correct');
@@ -66,7 +65,6 @@ describe('borderless top bevel contract', () => {
     // тональность проверяем на карточке кода.
     expectNoDecorativeTopBevelAround(referrals, 'testID="referrals-my-code-card"');
     expectNoDecorativeTopBevelAround(prepositionDrill, '{subtitle}');
-    expectNoDecorativeTopBevelAround(personalPlanComplete, 'styles.card');
   });
 
   it('keeps core flashcard setup and completion panels tonal', () => {

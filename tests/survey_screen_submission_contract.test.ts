@@ -23,22 +23,21 @@ describe('survey screen submission contract', () => {
     expect(source).toContain('dayKey: openedDayKey');
   });
 
-  test('reconciles authoritative state before mounted presentation and gates stale accounts', () => {
+  test('applies the confirmed event without accepting a server balance projection', () => {
     const generationGate = source.indexOf(
       'if (!isCurrentAccountGeneration(accountToken, stableId)) {',
       source.indexOf('await submitSurvey('),
     );
-    const balance = source.indexOf('await replaceShardsBalanceForAccountGeneration(res.balanceAfter');
-    const marker = source.indexOf('await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey');
+    const event = source.indexOf('await commitConfirmedExternalShardEvent({');
+    const marker = source.indexOf('await markSurveyOfferDone({ stableId, dayKey: openedDayKey');
     const mountedPresentation = source.indexOf('if (!mountedRef.current || attemptIdRef.current !== attemptId) return;');
     expect(generationGate).toBeGreaterThan(-1);
-    expect(balance).toBeGreaterThan(generationGate);
-    expect(marker).toBeGreaterThan(balance);
+    expect(event).toBeGreaterThan(generationGate);
+    expect(marker).toBeGreaterThan(event);
     expect(mountedPresentation).toBeGreaterThan(marker);
-    expect(source).not.toContain('replaceShardsBalanceLocal(res.balanceAfter');
-    expect(source).toContain("balanceReconciled === 'stale-generation'");
+    expect(source).not.toContain('replaceShardsBalance');
+    expect(source).not.toContain('res.balanceAfter');
     expect(source).toContain('presentAccountChanged(attemptId)');
-    expect(source).toContain("if (balanceReconciled === 'failed')");
     expect(source.match(/isCurrentAccountGeneration\(accountToken, stableId\)/g)?.length).toBeGreaterThanOrEqual(5);
   });
 

@@ -5,12 +5,21 @@ describe('versioned stage prompt registry', () => {
   const context = buildPromptContext({ studyTarget: 'fr', sourceLocale: 'ru', cefr: 'A1', objective: 'Identity and introductions', count: 10, approvedArtifactIds: ['phrases-1'], exemplarIds: ['gold-1'], previousContentFingerprints: ['a'.repeat(64)] });
 
   it('has a dedicated versioned definition for every independent stage', () => {
-    for (const kind of ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'challenge_topic', 'challenge_questions', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement'] as const) {
+    for (const kind of ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'challenge_topic', 'challenge_questions', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'learning_v2_research', 'learning_v2_curriculum', 'learning_v2_lesson_outline', 'learning_v2_localized_course', 'learning_v2_audio', 'learning_v2_quality_assurance', 'learning_v2_release'] as const) {
       const definition = promptDefinitionFor(kind, 'v1');
       expect(definition.kind).toBe(kind);
       expect(definition.version).toBe('v1');
       expect(definition.outputSchema).toBeTruthy();
     }
+  });
+
+  it('pins all-interface-language Learning V2 prompts to the existing queue and blocks automatic publication', () => {
+    const localized = promptDefinitionFor('learning_v2_localized_course', 'v2');
+    expect(localized.task).toContain('existing Generation Queue');
+    expect(localized.task).toContain('ru, uk, es, pt-BR, vi, id, tr, pl');
+    expect(JSON.stringify(localized.outputSchema)).toContain('requiredContentKinds');
+    expect(JSON.stringify(promptDefinitionFor('learning_v2_audio', 'v2').outputSchema)).toContain('ash');
+    expect(promptDefinitionFor('learning_v2_release', 'v2').task).toContain('never publish or self-approve');
   });
 
   it('builds a reproducible packet with explicit field languages and exact count', () => {

@@ -11,48 +11,22 @@ const GUARD = path.join(ROOT, 'scripts', 'canonical_workspace_guard.mjs');
 const CONFIG = JSON.parse(
   readFileSync(path.join(ROOT, 'config', 'canonical-workspace.json'), 'utf8'),
 );
-const CANONICAL_BRANCH = CONFIG.primaryBranch;
-
-test('project instructions prohibit branches and worktrees without an explicit owner request', () => {
+test('project instructions allow the current checkout while prohibiting implicit branch/worktree creation', () => {
   const agents = readFileSync(path.join(ROOT, 'AGENTS.md'), 'utf8');
 
-  assert.match(agents, /## Single Workspace And Branch Invariant/);
-  assert.match(agents, /C:\\appsprojects\\phraseman/);
-  assert.match(agents, new RegExp(CANONICAL_BRANCH.replace('/', '\\/')));
-  assert.match(agents, /config\/canonical-workspace\.json/);
+  assert.match(agents, /## Workspace And Branch Safety/);
+  assert.match(agents, /currently checked-out branch is valid/);
   assert.match(agents, /explicit owner request/);
+  assert.doesNotMatch(agents, /The only canonical checkout/);
+  assert.doesNotMatch(agents, /The only canonical working branch/);
 });
 
-test('workspace list stays closed: exactly one owner-approved folder', () => {
-  assert.equal(CONFIG.root, 'C:\\appsprojects\\phraseman');
-  assert.ok(Array.isArray(CONFIG.workspaces));
-
-  // зачем: правило «не плодить копии дерева» держится ровно этим — список закрытый.
-  // Если папок стало больше, кто-то (агент) их дописал: тест должен упасть.
-  assert.equal(CONFIG.workspaces.length, 1, 'разрешена ровно одна папка');
-  assert.equal(CONFIG.workspaces[0].path, 'C:\\appsprojects\\phraseman');
-  assert.ok(CONFIG.allowedBranches.includes(CANONICAL_BRANCH));
-});
-
-test('guard rejects a branch that is not in the allowed list', () => {
-  const blocked = spawnSync(process.execPath, [GUARD], {
-    cwd: ROOT,
-    encoding: 'utf8',
-    env: { ...process.env, PHRASEMAN_ALLOW_BRANCH: 'definitely-not-a-real-branch' },
-  });
-
-  const currentBranch = spawnSync('git', ['branch', '--show-current'], {
-    cwd: ROOT,
-    encoding: 'utf8',
-  }).stdout.trim();
-
-  // зачем: override не должен обходить проверку папки и не должен «разрешать» чужое имя ветки —
-  // он совпадает только с реально выбранной веткой.
-  if (CONFIG.allowedBranches.includes(currentBranch)) {
-    assert.equal(blocked.status, 0, 'ветка уже в списке — override ничего не ломает');
-  } else {
-    assert.notEqual(blocked.status, 0);
-  }
+test('fixed OS paths and fixed branches are disabled by owner policy', () => {
+  assert.equal(CONFIG.policy, 'current-checkout-root');
+  assert.equal(CONFIG.enforceFixedWorkspace, false);
+  assert.equal(CONFIG.enforceFixedBranch, false);
+  assert.doesNotMatch(JSON.stringify(CONFIG), /C:\\\\appsprojects\\\\phraseman/);
+  assert.doesNotMatch(JSON.stringify(CONFIG), /feature\/referral-roulette/);
 });
 
 test('runtime entry points invoke the canonical workspace guard', () => {
@@ -89,7 +63,7 @@ test('runtime entry points invoke the canonical workspace guard', () => {
   }
 });
 
-test('guard allows the canonical checkout and rejects another directory', () => {
+test('guard allows this checkout root and rejects another directory', () => {
   const allowed = spawnSync(process.execPath, [GUARD], {
     cwd: ROOT,
     encoding: 'utf8',
@@ -103,7 +77,7 @@ test('guard allows the canonical checkout and rejects another directory', () => 
       encoding: 'utf8',
     });
     assert.notEqual(blocked.status, 0);
-    assert.match(`${blocked.stdout}\n${blocked.stderr}`, /C:\\appsprojects\\phraseman/);
+    assert.match(`${blocked.stdout}\n${blocked.stderr}`, /корня текущего checkout/);
   } finally {
     rmSync(otherDirectory, { recursive: true, force: true });
   }

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 describe('admin manual update platform targeting contract', () => {
-  const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
+  const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'legacy.html'), 'utf8');
 
   it('lets admins target manual update modal by platform', () => {
     expect(html).toContain('id="cp-manual-update-platform"');

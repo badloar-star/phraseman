@@ -36,11 +36,11 @@ describe('perf freeze contract', () => {
 
   it('allows freezeOnBlur:false only for the realtime allowlist', () => {
     const source = read('app/_layout.tsx');
-    // Экраны, которым разрешено НЕ замораживаться. Сейчас — только экзамен (живой таймер).
-    // зачем 2026-08-02: PvP-Арена декомиссирована (tests/quiz_arena_decommission_contract.test.ts),
-    // её экранов в _layout больше нет — храповик сужен, чтобы возврат arena_* не пролез молча.
+    // Экраны, которым разрешено НЕ замораживаться: экзамен и новый
+    // server-authoritative live-матч Arena V2. У Arena listener/timer ownership
+    // дополнительно гейтится focus + AppState внутри экрана.
     // Добавление нового исключения = осознанное решение хозяина: расширь список и объясни зачем.
-    const allowed = ['exam'];
+    const allowed = ['exam', 'arena_match'];
     const offenders = source
       .split(/\r?\n/)
       .filter((line) => line.includes('freezeOnBlur: false'))
@@ -58,7 +58,6 @@ describe('perf freeze contract', () => {
   it('keeps heavy thematic quiz packs behind the lazy registry seam', () => {
     // Мегабайтные паки вопросов грузятся ТОЛЬКО через quiz_thematic_registry
     // (ленивый require) — это же шов для будущей серверной доставки контента.
-    // Аналогичная граница для plan_content_* — tests/plan_content_pack_boundary_contract.test.ts.
     const dirs = ['app', 'components', 'hooks'];
     const files = dirs.flatMap((d) => walk(path.join(ROOT, d)));
     const offenders: string[] = [];

@@ -481,7 +481,7 @@ export async function markLingmanYoutubeCatalogSeen(latestVideoId: string | null
   await AsyncStorage.multiSet(entries);
 }
 
-export function buildLingmanEmbedHtml(videoId: string): string {
+export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boolean } = {}): string {
   const baseOrigin = LINGMAN_YOUTUBE_EMBED_BASE_URL.replace(/\/$/, '');
   const playerParams = new URLSearchParams({
     playsinline: '1',
@@ -490,6 +490,7 @@ export function buildLingmanEmbedHtml(videoId: string): string {
     origin: baseOrigin,
     widget_referrer: LINGMAN_YOUTUBE_EMBED_BASE_URL,
   });
+  if (options.autoplay) playerParams.set('autoplay', '1');
   const embedUrl = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${playerParams.toString()}`;
   return `<!doctype html>
 <html>
@@ -505,7 +506,7 @@ export function buildLingmanEmbedHtml(videoId: string): string {
     <iframe
       src="${embedUrl}"
       title="Phraseman YouTube video"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allow="${options.autoplay ? 'autoplay; ' : ''}accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen
       referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </body>

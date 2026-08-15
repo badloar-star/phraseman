@@ -85,14 +85,4 @@ describe('Gustav French lesson entry point gate', () => {
     );
   });
 
-  it('lets daily task lesson and theory navigation rely on the opened French gates', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'app', 'daily_tasks_screen.tsx'), 'utf8');
-
-    expect(source).toContain("import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate'");
-    expect(source).toContain('const openLessonOrFrenchGate = async () =>');
-    expect(source).toContain('if (!frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId))');
-    expect(source).toContain("router.push({ pathname: '/lesson1'");
-    expect(source).toContain("if (!lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId))");
-    expect(source).toContain("router.push({ pathname: '/lesson_help'");
-  });
 });

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(process.cwd());
-const legacyAdminPath = path.join(root, 'admin', 'v2', 'legacy.html');
+const legacyAdminPath = path.join(root, 'admin', 'legacy.html');
 const source = fs.readFileSync(legacyAdminPath, 'utf8');
 
 describe('legacy admin YouTube catalog workspace', () => {

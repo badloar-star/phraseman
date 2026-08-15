@@ -6,6 +6,7 @@ import {
   createEpisodeDraft,
   removeActivityInstance,
   removeEpisodeGraphNode,
+  validateEpisodeDraft,
   validateEpisodeGraph,
   type EpisodeDraft,
 } from "../modules/learning-v2/authoring/episode_draft";
@@ -97,5 +98,34 @@ describe("V2 episode authoring graph", () => {
     expect(clone.body.graph.edges[0]?.fromNodeId).toBe(
       clone.body.graph.nodes[0]?.nodeId,
     );
+  });
+
+  it("preserves a valid source session pin but requires a clone to compile its own", () => {
+    const source = {
+      ...emptyDraft(),
+      body: {
+        ...emptyDraft().body,
+        sessionSetRef: {
+          episodeId: "ep-01",
+          version: 1,
+          contentHash: "a".repeat(64),
+        },
+      },
+    } as EpisodeDraft;
+    expect(validateEpisodeDraft(source)).not.toContain("episode_session_set_ref_invalid");
+    expect(validateEpisodeDraft({
+      ...source,
+      body: {
+        ...source.body,
+        sessionSetRef: { ...source.body.sessionSetRef!, episodeId: "another-episode" },
+      },
+    })).toContain("episode_session_set_ref_invalid");
+
+    const clone = cloneEpisodeDraft(source, {
+      draftId: "draft-ep-02",
+      episodeId: "ep-02",
+      ordinal: 2,
+    });
+    expect(clone.body.sessionSetRef).toBeUndefined();
   });
 });

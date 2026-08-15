@@ -1,4 +1,11 @@
 import { createNetStatusCoordinator, OFFLINE_BACKOFF_MS, ONLINE_SAFETY_MS, PROBE_URLS } from '../app/net_status';
+import {
+  __resetInteractiveNetworkQuietForTests,
+  beginInteractiveNetworkQuiet,
+  releaseInteractiveNetworkQuiet,
+  waitForInteractiveNetworkQuiet,
+  withBackgroundNetworkLease,
+} from '../app/interactive_network_quiet';
 
 function harness() {
   let now = 0;
@@ -6,7 +13,7 @@ function harness() {
   let nextTimerId = 1;
   const timers = new Map<number, { listener: () => void; at: number }>();
   const activeListeners = new Set<(active: boolean) => void>();
-  const fetches: Array<{ resolve: () => void; reject: () => void; signal?: AbortSignal }> = [];
+  const fetches: { resolve: () => void; reject: () => void; signal?: AbortSignal }[] = [];
   let settledCount = 0;
   const deps = {
     fetch: jest.fn((_input: string, init: RequestInit) => new Promise<void>((resolve, reject) => {
@@ -35,7 +42,8 @@ function harness() {
     setActive(next: boolean) { active = next; activeListeners.forEach((listener) => listener(next)); },
     async finishFetch(online: boolean) {
       const request = fetches.at(-1)!;
-      online ? request.resolve() : request.reject();
+      if (online) request.resolve();
+      else request.reject();
       await settle();
     },
     // Multi-host probe: «offline» наступает только когда упали ВСЕ хосты,
@@ -44,7 +52,8 @@ function harness() {
       for (;;) {
         if (fetches.length === settledCount) break;
         const request = fetches[settledCount++];
-        online ? request.resolve() : request.reject();
+        if (online) request.resolve();
+        else request.reject();
         await settle();
       }
     },
@@ -107,6 +116,21 @@ describe('net status coordinator', () => {
     expect(h.deps.fetch).toHaveBeenCalledTimes(PROBE_URLS.length);
   });
 
+  it('keeps duplicate callback subscriptions independently removable', async () => {
+    const h = harness();
+    const listener = jest.fn();
+    const first = h.net.subscribe(listener);
+    const second = h.net.subscribe(listener);
+    await h.finishFetch(true);
+    expect(listener).toHaveBeenCalledTimes(2);
+
+    first();
+    h.net.reportFailure();
+    expect(listener).toHaveBeenCalledTimes(3);
+    second();
+    expect(h.net.debug().subscriberCount).toBe(0);
+  });
+
   it('stops timers and aborts fetches in background; zero subscribers stay idle', async () => {
     const h = harness();
     const off = h.net.subscribe(() => {});
@@ -136,10 +160,112 @@ describe('net status coordinator', () => {
     expect(h.net.debug().foregroundProbePending).toBe(false);
   });
 
+  it('runs one fresh probe after last-unsubscribe abort and immediate resubscribe', async () => {
+    const h = harness();
+    const first = h.net.subscribe(() => {});
+    expect(h.deps.fetch).toHaveBeenCalledTimes(1);
+    first();
+    expect(h.fetches[0]?.signal?.aborted).toBe(true);
+
+    h.net.subscribe(() => {});
+    expect(h.net.debug().foregroundProbePending).toBe(true);
+    await h.finishFetch(false);
+    expect(h.deps.fetch).toHaveBeenCalledTimes(2);
+    await h.finishFetch(true);
+    expect(h.net.getStatus()).toBe('online');
+  });
+
   it('manual retry does not fetch while backgrounded', async () => {
     const h = harness();
     h.setActive(false);
     await expect(h.net.checkOnlineNow()).resolves.toBe(false);
     expect(h.deps.fetch).not.toHaveBeenCalled();
+  });
+
+  it('does not count an interactive-session abort as another offline failure', async () => {
+    const h = harness();
+    h.net.subscribe(() => undefined);
+    await h.finishAllFetches(false);
+    expect(h.net.getStatus()).toBe('offline');
+    expect(h.net.debug().offlineAttempt).toBe(0);
+    expect(h.net.debug().nextDelayMs).toBe(OFFLINE_BACKOFF_MS[0]);
+
+    await h.fireProbeTimer();
+    expect(h.deps.fetch).toHaveBeenCalledTimes(PROBE_URLS.length + 1);
+    h.net.pauseForInteractiveQuiet();
+    await h.finishFetch(false);
+
+    expect(h.net.getStatus()).toBe('offline');
+    expect(h.net.debug().offlineAttempt).toBe(0);
+    expect(h.net.debug().nextDelayMs).toBe(OFFLINE_BACKOFF_MS[0]);
+    expect(h.net.debug().hasProbeTimer).toBe(false);
+
+    h.net.resumeAfterInteractiveQuiet();
+    await Promise.resolve();
+    expect(h.deps.fetch).toHaveBeenCalledTimes(PROBE_URLS.length + 2);
+  });
+
+  it('does not start a connectivity probe while an interactive session is quiet', async () => {
+    __resetInteractiveNetworkQuietForTests();
+    const quiet = beginInteractiveNetworkQuiet();
+    await waitForInteractiveNetworkQuiet(quiet);
+    const fetchProbe = jest.fn(async () => undefined);
+    const net = createNetStatusCoordinator({
+      fetch: fetchProbe,
+      withNetworkLease: (work) => withBackgroundNetworkLease(
+        'net_status.test_probe',
+        (lease) => work(lease.signal),
+      ),
+      now: () => 0,
+      setTimeout: () => 1,
+      clearTimeout: () => undefined,
+      isAppActive: () => true,
+      subscribeAppActive: () => () => undefined,
+    });
+
+    net.subscribe(() => undefined);
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(fetchProbe).not.toHaveBeenCalled();
+
+    releaseInteractiveNetworkQuiet(quiet);
+    await Promise.resolve();
+    net.resumeAfterInteractiveQuiet();
+    await Promise.resolve();
+    expect(fetchProbe).toHaveBeenCalledTimes(1);
+    net.dispose();
+  });
+
+  it('aborts and settles an active connectivity probe before quiet becomes ready', async () => {
+    __resetInteractiveNetworkQuietForTests();
+    const observed: { signal?: AbortSignal } = {};
+    const fetchProbe = jest.fn((_input: string, init: RequestInit) =>
+      new Promise<void>((_resolve, reject) => {
+        if (init.signal) observed.signal = init.signal;
+        init.signal?.addEventListener('abort', () => reject(new Error('aborted')), { once: true });
+      }));
+    const net = createNetStatusCoordinator({
+      fetch: fetchProbe,
+      withNetworkLease: (work) => withBackgroundNetworkLease(
+        'net_status.test_probe',
+        (lease) => work(lease.signal),
+      ),
+      now: () => 0,
+      setTimeout: () => 1,
+      clearTimeout: () => undefined,
+      isAppActive: () => true,
+      subscribeAppActive: () => () => undefined,
+    });
+    net.subscribe(() => undefined);
+    await Promise.resolve();
+    expect(fetchProbe).toHaveBeenCalledTimes(1);
+
+    const quiet = beginInteractiveNetworkQuiet();
+    expect(observed.signal?.aborted).toBe(true);
+    await waitForInteractiveNetworkQuiet(quiet);
+    expect(fetchProbe).toHaveBeenCalledTimes(1);
+    net.dispose();
+    releaseInteractiveNetworkQuiet(quiet);
+    await Promise.resolve();
   });
 });

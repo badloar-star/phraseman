@@ -2,7 +2,10 @@
 // в трёх зонах с угасанием подсказок». RED фиксирует форму до реализации.
 import { compileV2RequiredSessions } from '../modules/learning-v2/content/session_compiler';
 import { validateV2SessionSet } from '../modules/learning-v2/contracts/session';
-import { buildEnglishProfile, buildE1ContentItems } from './support/learning_v2_content_builders';
+import { buildActivityBindingsForContentItems, buildEnglishProfile, buildE1ContentItems } from './support/learning_v2_content_builders';
+
+const e1Items = () => buildE1ContentItems();
+const e1Bindings = () => buildActivityBindingsForContentItems(e1Items());
 
 test('compiles twelve ordered sessions in three zones', () => {
   const result = compileV2RequiredSessions({
@@ -10,6 +13,7 @@ test('compiles twelve ordered sessions in three zones', () => {
     canDoOutcomeId: 'obj-introduce-self',
     profile: buildEnglishProfile(),
     items: buildE1ContentItems(),
+    activityBindings: e1Bindings(),
   });
   expect(result.sessions).toHaveLength(12);
   expect(result.sessions.map((session) => session.zone)).toEqual([
@@ -41,6 +45,7 @@ test('fades support and ends with independent non-reused prompts', () => {
     canDoOutcomeId: 'obj-introduce-self',
     profile: buildEnglishProfile(),
     items: buildE1ContentItems(),
+    activityBindings: e1Bindings(),
   });
   expect(result.sessions[0].support).toBe('model');
   expect(result.sessions[11].support).toBe('none');
@@ -48,11 +53,13 @@ test('fades support and ends with independent non-reused prompts', () => {
 });
 
 test('fails when the bank cannot produce twelve traceable cards per session', () => {
+  const items = buildE1ContentItems().slice(0, 1);
   expect(() => compileV2RequiredSessions({
     episodeId: 'ep-01',
     canDoOutcomeId: 'obj-introduce-self',
     profile: buildEnglishProfile(),
-    items: buildE1ContentItems().slice(0, 1),
+    items,
+    activityBindings: buildActivityBindingsForContentItems(items),
   })).toThrow('session_content_insufficient');
 });
 
@@ -76,6 +83,7 @@ test('fails closed instead of substituting an unapproved activity family', () =>
       supportedActivityFamilies,
     },
     items,
+    activityBindings: buildActivityBindingsForContentItems(items),
   })).toThrow('session_content_insufficient');
 });
 
@@ -88,9 +96,10 @@ test('emits a canonical session set that passes the frozen contract validator', 
     canDoOutcomeId: 'obj-introduce-self',
     profile: buildEnglishProfile(),
     items: buildE1ContentItems(),
+    activityBindings: e1Bindings(),
   });
   const sessionSet = {
-    schemaVersion: 'v2-session-set.v1',
+    schemaVersion: 'v2-session-set.v2',
     episodeId: 'ep-01',
     version: 1,
     sessions: result.sessions.map(({ support: _support, ...session }) => ({
@@ -109,9 +118,14 @@ test('is deterministic and independent of content bank ordering', () => {
     canDoOutcomeId: 'obj-introduce-self',
     profile: buildEnglishProfile(),
     items: buildE1ContentItems(),
+    activityBindings: e1Bindings(),
   };
   const first = compileV2RequiredSessions(input);
-  const second = compileV2RequiredSessions({ ...input, items: [...input.items].reverse() });
+  const second = compileV2RequiredSessions({
+    ...input,
+    items: [...input.items].reverse(),
+    activityBindings: [...input.activityBindings].reverse(),
+  });
   expect(JSON.parse(JSON.stringify(second))).toEqual(JSON.parse(JSON.stringify(first)));
   expect(Object.isFrozen(first)).toBe(true);
   expect(Object.isFrozen(first.sessions[0])).toBe(true);
@@ -126,6 +140,7 @@ test('every card traces to a real item, its objective and a supported family', (
     canDoOutcomeId: 'obj-introduce-self',
     profile,
     items,
+    activityBindings: buildActivityBindingsForContentItems(items),
   });
   const promptIds = new Set<string>();
   for (const session of result.sessions) {
@@ -135,10 +150,56 @@ test('every card traces to a real item, its objective and a supported family', (
       expect(item!.objectiveIds).toContain(card.objectiveId);
       expect(item!.compatibleFamilies).toContain(card.family);
       expect(profile.supportedActivityFamilies).toContain(card.family);
+      expect(card.activityId).toBe(`activity-${card.family}-${card.contentItemId}`);
       expect(promptIds.has(card.promptId)).toBe(false);
       promptIds.add(card.promptId);
     }
   }
+});
+
+test('fails closed when an approved activity binding is missing or ambiguous', () => {
+  const items = buildE1ContentItems();
+  const bindings = buildActivityBindingsForContentItems(items);
+  const required = bindings.find((binding) =>
+    binding.family === 'listen_choose' && binding.contentUnitIds[0] === items[0].contentItemId,
+  );
+  expect(required).toBeDefined();
+
+  expect(() => compileV2RequiredSessions({
+    episodeId: 'ep-01',
+    canDoOutcomeId: 'obj-introduce-self',
+    profile: buildEnglishProfile(),
+    items,
+    activityBindings: bindings.filter((binding) => binding !== required),
+  })).toThrow('session_activity_binding_missing');
+
+  expect(() => compileV2RequiredSessions({
+    episodeId: 'ep-01',
+    canDoOutcomeId: 'obj-introduce-self',
+    profile: buildEnglishProfile(),
+    items,
+    activityBindings: [
+      ...bindings,
+      { ...required!, activityId: `${required!.activityId}-duplicate` },
+    ],
+  })).toThrow('session_activity_binding_ambiguous');
+});
+
+test('rejects hostile activity binding descriptors without executing them', () => {
+  const items = buildE1ContentItems();
+  const bindings = buildActivityBindingsForContentItems(items);
+  const getter = jest.fn(() => bindings[0].activityId);
+  const hostile = { ...bindings[0] } as Record<string, unknown>;
+  Object.defineProperty(hostile, 'activityId', { enumerable: true, get: getter });
+
+  expect(() => compileV2RequiredSessions({
+    episodeId: 'ep-01',
+    canDoOutcomeId: 'obj-introduce-self',
+    profile: buildEnglishProfile(),
+    items,
+    activityBindings: [hostile as unknown as typeof bindings[number], ...bindings.slice(1)],
+  })).toThrow('session_activity_binding_invalid');
+  expect(getter).not.toHaveBeenCalled();
 });
 
 test('rejects items from a foreign episode or foreign language', () => {
@@ -148,5 +209,6 @@ test('rejects items from a foreign episode or foreign language', () => {
     canDoOutcomeId: 'obj-introduce-self',
     profile: buildEnglishProfile(),
     items,
+    activityBindings: buildActivityBindingsForContentItems(items),
   })).toThrow('session_content_episode_mismatch');
 });

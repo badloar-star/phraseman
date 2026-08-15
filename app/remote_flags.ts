@@ -5,7 +5,7 @@
 // free-tier limits, energy economy, trainer A/B split, and the paywall variant
 // split. Resolution order (highest priority first):
 //
-//   1. Firestore override   (admin/index.html → remote_config/* → onSnapshot)
+//   1. Firestore override   (admin/v2/legacy.html → remote_config/* → cached foreground polling)
 //   2. Build-time env        (EXPO_PUBLIC_* — useful for QA builds)
 //   3. Hardcoded default     (DEFAULT_NUMBERS / DEFAULT_FLAGS below)
 //
@@ -72,10 +72,6 @@ export type RemoteBoolKey =
   | 'ai_global_disable'
   | 'maintenance_banner'
   | 'maintenance_block'
-  // Legacy remote flag kept for compatibility with already-published configs.
-  // The active onboarding is now always the clean midnight plan-first flow;
-  // this flag must not re-enable any old two-button or skip-app path.
-  | 'onboarding_plan_only_enabled'
   // Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт TRUE =
   // kill-switch: боты работают как сейчас, админ может выключить их в «Пульте»
   // живьём — тогда матчатся только реальные игроки друг с другом, а при пустой
@@ -117,10 +113,10 @@ export type RemoteBoolKey =
   | 'gate_lessons_premium'
   | 'gate_speaking_premium'
   | 'gate_ai_dialog_premium'
+  | 'gate_ai_voice_call'
   | 'gate_smart_trainer_premium'
   | 'gate_trainer_modes_premium'
   | 'gate_diagnosis_training_premium'
-  | 'gate_personal_plan_premium'
   | 'gate_stats_premium'
   | 'gate_flashcards_premium'
   | 'gate_themes_premium'
@@ -331,19 +327,18 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Кнопка «Видео PHRASEMAN» на главной: дефолт TRUE = kill-switch (показывается
   // как сейчас). Админ ставит false в «Пульте» → кнопка прячется у всех живьём.
   video_button_enabled: true,
-  // Первый экран онбординга «только план»: дефолт FALSE = старый экран с двумя
-  // кнопками. true → одна кнопка «Составить мой план» + иной текст (см. описание
-  // ключа выше). Меняется у всех живьём из «Пульта».
-  onboarding_plan_only_enabled: false,
   // Премиум-гейты: дефолт TRUE = фича за премиум-замком (текущее поведение).
   // Админ ставит false в «Пульте» → фича становится бесплатной у всех живьём.
   gate_lessons_premium: true,
   gate_speaking_premium: true,
   gate_ai_dialog_premium: true,
+  // MAX voice: здесь семантика не «премиум-замок», а kill switch фичи целиком.
+  // Дефолт FALSE = звонки выключены до запуска; включает только явный true из
+  // «Пульта» (remote_config/app.bools). Потребитель: app/max_voice_flags.ts.
+  gate_ai_voice_call: false,
   gate_smart_trainer_premium: true,
   gate_trainer_modes_premium: true,
   gate_diagnosis_training_premium: true,
-  gate_personal_plan_premium: true,
   gate_stats_premium: true,
   gate_flashcards_premium: true,
   gate_themes_premium: true,
@@ -888,12 +883,6 @@ export function shouldShowPromoBanner(params: {
   return true;
 }
 
-/**
- * Первый экран онбординга «только план»: дефолт false = экран с двумя кнопками
- * (план / просто посмотреть). true → одна кнопка «Составить мой план» в поток
- * плана + иной текст. Управляется из «Пульта» (remote_config/app.bools).
- */
-export const isOnboardingPlanOnly = () => getRemoteBool('onboarding_plan_only_enabled');
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 export const isLeagueStartupRegistrationEnabled = () => getRemoteBool('league_startup_registration_enabled');
 // зачем: league_realtime_members_enabled удалён целиком (тип+дефолт+хелпер) —
@@ -934,7 +923,6 @@ export const isAiDialogPremiumGated = () => getRemoteBool('gate_ai_dialog_premiu
 export const isSmartTrainerPremiumGated = () => getRemoteBool('gate_smart_trainer_premium');
 export const isTrainerModesPremiumGated = () => getRemoteBool('gate_trainer_modes_premium');
 export const isDiagnosisTrainingPremiumGated = () => getRemoteBool('gate_diagnosis_training_premium');
-export const isPersonalPlanPremiumGated = () => getRemoteBool('gate_personal_plan_premium');
 export const isStatsPremiumGated = () => getRemoteBool('gate_stats_premium');
 export const isFlashcardsPremiumGated = () => getRemoteBool('gate_flashcards_premium');
 export const isThemesPremiumGated = () => getRemoteBool('gate_themes_premium');
@@ -1000,7 +988,7 @@ export function getTrainerAbGroup(userId: string): TrainerAbGroup {
 
 /**
  * Deprecated onboarding A/B compatibility helper. The old branches
- * branches are retired; all users enter the new plan-first onboarding.
+ * branches are retired; all users enter the current onboarding.
  */
 export function getOnboardingAbVariant(_userId: string): OnboardingAbVariant {
   return 'current';

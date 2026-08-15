@@ -19,7 +19,7 @@ const previousSnapshot: CustomizationSnapshot = {
 };
 
 const purchaseInput: PurchaseCustomizationInput = {
-  target: 'aura', itemId: 'aura-aurora', cost: 120,
+  target: 'aura', itemId: 'aura-ember', cost: 120,
   spendReason: 'avatar_aura', mode: 'buy-only', ownedValue: true,
 };
 
@@ -41,7 +41,10 @@ function makeDeps(memory = makeMemoryStorage()): CustomizationPurchaseDeps {
   return {
     storage: memory.api,
     getAccountScope: jest.fn().mockResolvedValue('account-a'),
-    spendShardsIdempotent: jest.fn().mockResolvedValue('applied'),
+    commitShardCompositeOperation: jest.fn(async (input) => {
+      await memory.api.multiSet(input.localWrites);
+      return { status: 'applied', balanceBefore: 200, balanceAfter: 80 } as any;
+    }),
     getCurrentSnapshot: jest.fn().mockReturnValue(previousSnapshot),
     publishSnapshot: jest.fn(),
     invalidateCaches: jest.fn().mockResolvedValue(undefined),
@@ -81,12 +84,12 @@ describe('customization purchase intent', () => {
 
     await resumePersistedCustomizationPurchase(deps);
 
-    expect(deps.spendShardsIdempotent).toHaveBeenCalledWith(
-      purchaseInput.cost,
-      purchaseInput.spendReason,
-      legacyOpId,
-      { requireCloudReceiptForLocalLedger: true },
-    );
+    expect(deps.commitShardCompositeOperation).toHaveBeenCalledWith(expect.objectContaining({
+      amount: purchaseInput.cost,
+      reason: purchaseInput.spendReason,
+      operationId: legacyOpId,
+      grant: expect.objectContaining({ kind: 'avatar_aura', subjectId: purchaseInput.itemId }),
+    }));
   });
 
   it.each(['charged', 'granted'] as const)(
@@ -106,11 +109,11 @@ describe('customization purchase intent', () => {
 
       await resumePersistedCustomizationPurchase(deps);
 
-      expect(deps.spendShardsIdempotent).not.toHaveBeenCalled();
+      expect(deps.commitShardCompositeOperation).not.toHaveBeenCalled();
     },
   );
 
-  it('persists charged recovery and resumes after restart without a second spend', async () => {
+  it('keeps the prepared intent when the composite result write fails and safely retries', async () => {
     const memory = makeMemoryStorage();
     const deps = makeDeps(memory);
     const realMultiSet = memory.api.multiSet.getMockImplementation()!;
@@ -122,15 +125,15 @@ describe('customization purchase intent', () => {
     const prepared = await prepareCustomizationPurchase(purchaseInput, deps);
     await expect(resumeCustomizationPurchase(prepared, deps)).rejects.toThrow('owned write failed');
     expect(JSON.parse(memory.values.get('customization_purchase_intent_v1')!))
-      .toMatchObject({ phase: 'charged', opId: prepared.opId });
+      .toMatchObject({ phase: 'prepared', opId: prepared.opId });
     expect(deps.publishSnapshot).not.toHaveBeenCalled();
 
     const restartedMemory = makeMemoryStorage(Object.fromEntries(memory.values));
     const restartedDeps = makeDeps(restartedMemory);
     await resumePersistedCustomizationPurchase(restartedDeps);
 
-    expect(restartedDeps.spendShardsIdempotent).not.toHaveBeenCalled();
-    expect(restartedMemory.values.get('avatar_aura_owned_v1')).toContain('aura-aurora');
+    expect(restartedDeps.commitShardCompositeOperation).toHaveBeenCalledTimes(1);
+    expect(restartedMemory.values.get('avatar_aura_owned_v1')).toContain('aura-ember');
     expect(restartedMemory.values.has('customization_purchase_intent_v1')).toBe(false);
   });
 
@@ -145,7 +148,7 @@ describe('customization purchase intent', () => {
 
     await resumePersistedCustomizationPurchase(deps);
 
-    expect(deps.spendShardsIdempotent).not.toHaveBeenCalled();
+    expect(deps.commitShardCompositeOperation).not.toHaveBeenCalled();
     expect(deps.onOwnershipGranted).not.toHaveBeenCalled();
   });
 
@@ -157,7 +160,7 @@ describe('customization purchase intent', () => {
 
     await expect(resumeCustomizationPurchase(prepared, deps))
       .rejects.toThrow('invalid_customization_purchase_product');
-    expect(deps.spendShardsIdempotent).not.toHaveBeenCalled();
+    expect(deps.commitShardCompositeOperation).not.toHaveBeenCalled();
     expect(memory.values.has('customization_purchase_intent_v1')).toBe(false);
   });
 
@@ -169,12 +172,12 @@ describe('customization purchase intent', () => {
       ...purchaseInput,
       mode: 'buy-and-apply',
       applyInput: {
-        avatarValue: '18', storedAuraSelection: 'aura-aurora', level: 18, frameId: 'frame-18',
+        avatarValue: '18', storedAuraSelection: 'aura-ember', level: 18, frameId: 'frame-18',
       },
     }, deps);
 
     await expect(resumeCustomizationPurchase(prepared, deps)).resolves.toBe('purchased-only');
-    expect(memory.values.get('avatar_aura_owned_v1')).toContain('aura-aurora');
+    expect(memory.values.get('avatar_aura_owned_v1')).toContain('aura-ember');
     expect(deps.publishSnapshot).not.toHaveBeenCalled();
   });
 
@@ -183,23 +186,23 @@ describe('customization purchase intent', () => {
     const deps = makeDeps(memory);
     let accountScope = 'account-a';
     deps.getAccountScope = jest.fn(async () => accountScope);
-    let resolveSpend!: (result: 'applied') => void;
-    deps.spendShardsIdempotent = jest.fn(() => new Promise((resolve) => {
+    let resolveSpend!: (result: any) => void;
+    deps.commitShardCompositeOperation = jest.fn(() => new Promise((resolve) => {
       resolveSpend = resolve;
     }));
     const prepared = await prepareCustomizationPurchase(purchaseInput, deps);
 
     const pending = resumeCustomizationPurchase(prepared, deps);
     for (let index = 0; index < 20
-      && (deps.spendShardsIdempotent as jest.Mock).mock.calls.length === 0; index += 1) {
+      && (deps.commitShardCompositeOperation as jest.Mock).mock.calls.length === 0; index += 1) {
       await Promise.resolve();
     }
-    expect(deps.spendShardsIdempotent).toHaveBeenCalledTimes(1);
+    expect(deps.commitShardCompositeOperation).toHaveBeenCalledTimes(1);
 
     invalidateAccountGeneration();
     accountScope = 'account-b';
     beginAccountGeneration('account-b');
-    resolveSpend('applied');
+    resolveSpend({ status: 'applied', balanceBefore: 200, balanceAfter: 80 });
 
     await expect(pending).rejects.toThrow('customization_purchase_account_mismatch');
     expect(memory.values.has('avatar_aura_owned_v1')).toBe(false);

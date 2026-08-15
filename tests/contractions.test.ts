@@ -257,7 +257,7 @@ describe('isCorrectAnswer — BrE answer accepted as AmE', () => {
   });
 
   // Регресс 2026-07-20: юзер собрал "I am Anna" из плиток "listen & build" (impuls_d3_p1),
-  // канон хранится как "I'm Anna." — раньше личный план (personal_plan_exercise.tsx)
+  // канон хранится как "I'm Anna."
   // сравнивал через свою нормализацию без раскрытия сокращений и засчитывал ошибку.
   it('expanded contraction from listen-build tiles matches contracted canonical answer', () => {
     expect(isCorrectAnswer('I am Anna', "I'm Anna.")).toBe(true);

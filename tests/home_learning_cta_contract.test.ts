@@ -56,11 +56,12 @@ describe('home learning CTA contract', () => {
     expect(source).not.toContain("router.push('/personal_plan_setup' as any)");
   });
 
-  // зачем: машинерия плана (кэш снапшота + события) остаётся тёплой для
-  // CompassBriefingHost и снапшота главной, хотя карточка плана больше не рендерится.
-  it('keeps the personal plan snapshot machinery warm for other consumers', () => {
-    expect(source).toContain("onAppEvent('personal_plan_updated', (payload)");
-    expect(source).toContain('setPersonalPlanSnapshot(payload.snapshot)');
-    expect(source).toContain('setPersonalPlanSnapshot((previous) => planSnapshot ?? (nextHasActivePersonalPlan ? previous : null))');
+  // Компас не входит в релиз, а карточка плана на Home уже снята. Поэтому Home
+  // не держит отдельный plan snapshot/event listener; сам Personal Plan пока
+  // остаётся доступен в разделе обучения до полной замены Learning V2.
+  it('does not keep a retired personal-plan snapshot pipeline on home', () => {
+    expect(source).not.toContain("onAppEvent('personal_plan_updated', (payload)");
+    expect(source).not.toContain('setPersonalPlanSnapshot(payload.snapshot)');
+    expect(source).not.toContain('personalPlanSnapshot: planSnapshot');
   });
 });

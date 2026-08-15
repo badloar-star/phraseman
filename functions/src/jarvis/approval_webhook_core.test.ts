@@ -50,6 +50,7 @@ describe('Jarvis approval webhook core — refuse anything that is not provably 
     });
     expect(result.status).toBe(200);
     expect(consume).toHaveBeenCalledTimes(1);
+    expect(consume).toHaveBeenCalledWith(expect.objectContaining({ requestedAction: 'approve' }));
     expect(result.answerText).toMatch(/принято|подтвержд/i);
   });
 
@@ -139,6 +140,20 @@ describe('Jarvis approval webhook core — refuse anything that is not provably 
       nowMs: NOW,
     });
     expect(result.status).toBe(200);
+    expect(consume).not.toHaveBeenCalled();
+    expect(result.ownerText).toBeUndefined();
+  });
+
+  test('returns verified owner text for a support edit session without touching approval storage', async () => {
+    const consume = jest.fn();
+    const result = await handleApprovalCallback({
+      body: { message: { text: 'Сделай короче и теплее', from: { id: 374480287 }, chat: { id: 374480287 } } },
+      providedSecret: OWNER_CONFIG.webhookSecret,
+      config: OWNER_CONFIG,
+      consume,
+      nowMs: NOW,
+    });
+    expect(result).toMatchObject({ status: 200, ownerText: 'Сделай короче и теплее' });
     expect(consume).not.toHaveBeenCalled();
   });
 

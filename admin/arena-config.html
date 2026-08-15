@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Настройки Арены</title>
+  <style>
+    :root { --bg:#0b0b10; --fg:#eaeaf2; --fg-dim:#9aa0b0; --acc:#818cf8; --card:#16161f;
+            --good:#34d399; --warn:#fbbf24; --bad:#f87171; --line:#27272f; }
+    * { box-sizing: border-box; }
+    body { margin:0; font:14px/1.45 -apple-system, system-ui, sans-serif; background:var(--bg); color:var(--fg); }
+    header { padding:16px 20px; border-bottom:1px solid var(--line); display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+    header h1 { margin:0; font-size:18px; }
+    header .sub { color:var(--fg-dim); font-size:12px; }
+    main { padding:20px; display:grid; gap:16px; max-width:900px; margin:0 auto; }
+    section { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
+    section h2 { margin:0 0 12px; font-size:12px; font-weight:600; text-transform:uppercase; color:var(--fg-dim); letter-spacing:.05em; }
+    button, input { min-height:44px; background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:8px 12px; font:inherit; transition:border-color .2s ease, box-shadow .2s ease; }
+    button { cursor:pointer; }
+    button:hover:not(:disabled) { border-color:var(--acc); }
+    button:disabled { opacity:.5; cursor:not-allowed; }
+    button:focus-visible, input:focus-visible { outline:2px solid #38bdf8; outline-offset:2px; }
+    button.primary { background:var(--acc); color:#0b0b10; border-color:var(--acc); font-weight:600; }
+    .state { font-size:22px; font-weight:700; }
+    .state.good { color:var(--good); } .state.bad { color:var(--bad); } .state.warn { color:var(--warn); }
+    .hint { color:var(--fg-dim); font-size:12px; margin-top:6px; }
+    .flags { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+    label.flag { display:flex; align-items:center; gap:10px; padding:10px 12px; border:1px solid var(--line); border-radius:8px; cursor:pointer; }
+    label.flag input { width:18px; height:18px; min-height:18px; }
+    label.flag:has(input:focus-visible) { outline:2px solid #38bdf8; outline-offset:2px; }
+    label.flag .name { font-weight:600; }
+    label.flag .why { display:block; color:var(--fg-dim); font-size:11px; font-weight:400; }
+    ul.problems { margin:0; padding-left:18px; color:var(--bad); font-size:13px; }
+    .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .row input[type=text] { flex:1; min-width:220px; }
+    .field-label { display:block; margin-bottom:6px; font-weight:600; }
+    .msg { margin-top:10px; font-size:13px; }
+    .msg.ok { color:var(--good); } .msg.err { color:var(--bad); }
+    @media (max-width:480px) {
+      body { font-size:16px; }
+      main { padding:12px; }
+      section { padding:14px; }
+      .row input[type=text], .row button { width:100%; min-width:0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Настройки Арены</h1>
+    <span class="sub" id="who"></span>
+  </header>
+
+  <main>
+    <section>
+      <h2>Состояние</h2>
+      <div class="state" id="state" role="status" aria-live="polite">Загрузка…</div>
+      <div class="hint" id="stateHint"></div>
+      <ul class="problems" id="problems" style="display:none"></ul>
+    </section>
+
+    <section>
+      <h2>Режимы</h2>
+      <div class="flags" id="flags"></div>
+    </section>
+
+    <section>
+      <h2>Дополнительно</h2>
+      <div class="flags" id="expansionFlags"></div>
+    </section>
+
+    <section>
+      <h2>Сохранить</h2>
+      <label class="field-label" for="reason">Причина изменения</label>
+      <div class="row">
+        <input type="text" id="reason" placeholder="Например: включаю быстрые матчи" />
+        <button
+          class="primary"
+          id="save"
+          title="Сохранит выбранные режимы для всех игроков. Изменение появится примерно через 15 секунд. Откатить можно переключателем на этой же странице."
+          disabled
+        >Сохранить</button>
+      </div>
+      <div class="hint">
+        Изменение появится в приложении примерно через <strong>15 секунд</strong>.
+      </div>
+      <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+    import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
+
+    const app = initializeApp({
+      apiKey: "AIzaSyBxO_8xe9-HV-wFSMO4abkCHvZX8zb-T7s",
+      authDomain: "phraseman-ea0b3.firebaseapp.com",
+      projectId: "phraseman-ea0b3",
+      storageBucket: "phraseman-ea0b3.firebasestorage.app",
+    });
+    const auth = getAuth(app);
+    const fns = getFunctions(app, 'us-central1');
+    const $ = (id) => document.getElementById(id);
+
+    // Подписи объясняют ПОСЛЕДСТВИЕ, а не повторяют имя поля: «enabled» и так
+    // видно, а вот что при выключении отказывают все вызовы — нет.
+    const FLAGS = [
+      ['enabled', 'Арена включена', 'Выключено — отказывают ВСЕ вызовы Арены, включая уже идущие матчи.'],
+      ['quickEnabled', 'Быстрый матч', '5 заданий, звёзды не начисляются, только опыт.'],
+      ['rankedEnabled', 'Рейтинговый матч', '10 заданий, звёзды и очки ранга. Ботов здесь нет.'],
+      ['friendEnabled', 'Дуэль с другом', 'Без рейтинга и наград.'],
+      ['rewardsEnabled', 'Награды сезона', 'Выдача сезонных наград.'],
+      ['spinEnabled', 'Редкий дроп', 'Случайная награда после матча.'],
+    ];
+    const EXPANSION = [
+      ['arenaExpansionEnabled', 'Расширение (общий)', 'Главный выключатель. При нём выключенном не работает ни один раздел ниже.'],
+      ['arenaTodayEnabled', '«Сегодня»', 'Ежедневный забег. Нужен и общий выключатель, и этот.'],
+      ['arenaMatchLabEnabled', 'Лаборатория', 'Повторы заданий. Разбор матча от этого НЕ зависит.'],
+      ['arenaMasteryEnabled', 'Карта мастерства', ''],
+      ['arenaGhostEnabled', 'Призрачные дуэли', 'Матч с записью забега друга.'],
+      ['arenaRivalEnabled', 'Соперничества', 'Серии до двух побед. Версия правил подставляется сборкой.'],
+      ['arenaPartnerEnabled', 'Напарники', ''],
+      ['arenaStarStoreEnabled', 'Магазин косметики', 'Версия каталога подставляется сборкой.'],
+    ];
+
+    const PROBLEM_TEXT = {
+      schema_version: 'Версия схемы документа не та, которую ждёт бэкенд.',
+      product_version: 'Версия продуктового конфига не та.',
+      min_client_version: 'Минимальная версия приложения записана неразборчиво.',
+      pool_version: 'Версия пула заданий не совпадает со сборкой — выкатите функции.',
+      manifest_sha: 'Хеш содержимого не совпадает со сборкой — выкатите функции.',
+      merkle_root: 'Корневой хеш содержимого не совпадает со сборкой.',
+      flags: 'Не все переключатели записаны булевыми значениями.',
+    };
+
+    function renderFlags(host, defs, values) {
+      host.innerHTML = '';
+      for (const [key, name, why] of defs) {
+        const label = document.createElement('label');
+        label.className = 'flag';
+        const box = document.createElement('input');
+        box.type = 'checkbox';
+        box.id = 'flag_' + key;
+        box.checked = values && values[key] === true;
+        const text = document.createElement('span');
+        text.className = 'name';
+        text.textContent = name;
+        if (why) {
+          const small = document.createElement('span');
+          small.className = 'why';
+          small.textContent = why;
+          text.appendChild(small);
+        }
+        label.appendChild(box);
+        label.appendChild(text);
+        host.appendChild(label);
+      }
+    }
+
+    function collect(defs) {
+      const out = {};
+      for (const [key] of defs) out[key] = $('flag_' + key).checked === true;
+      return out;
+    }
+
+    function paint(status) {
+      const state = $('state');
+      const hint = $('stateHint');
+      const problems = $('problems');
+      if (!status.exists) {
+        state.textContent = 'Арена не настроена';
+        state.className = 'state bad';
+        // Без документа бэкенд отвечает arena_config_missing.
+        hint.textContent = 'Выберите режимы и нажмите «Сохранить».';
+      } else if (!status.valid) {
+        state.textContent = 'Настройки требуют обновления';
+        state.className = 'state bad';
+        // Несовместимый документ даёт arena_config_incompatible.
+        hint.textContent = 'Обновите серверные функции Арены.';
+      } else if (status.liveForPlayers) {
+        state.textContent = 'Арена работает';
+        state.className = 'state good';
+        hint.textContent = 'Игроки могут играть.';
+      } else {
+        state.textContent = 'Документ в порядке, Арена выключена';
+        state.className = 'state warn';
+        hint.textContent = 'Поставьте «Арена включена», чтобы открыть её игрокам.';
+      }
+
+      if (status.problems && status.problems.length) {
+        problems.style.display = 'block';
+        problems.innerHTML = '';
+        for (const code of status.problems) {
+          const li = document.createElement('li');
+          li.textContent = PROBLEM_TEXT[code] || code;
+          problems.appendChild(li);
+        }
+      } else {
+        problems.style.display = 'none';
+      }
+
+      renderFlags($('flags'), FLAGS, status.flags);
+      renderFlags($('expansionFlags'), EXPANSION, status.expansionFlags);
+      $('save').disabled = false;
+    }
+
+    async function load() {
+      try {
+        const res = await httpsCallable(fns, 'adminArenaConfigGet')({});
+        paint(res.data.status);
+      } catch (error) {
+        $('state').textContent = 'Не удалось прочитать конфиг';
+        $('state').className = 'state bad';
+        $('stateHint').textContent = String(error && error.message ? error.message : error);
+      }
+    }
+
+    $('save').addEventListener('click', async () => {
+      const reason = $('reason').value.trim();
+      const msg = $('msg');
+      if (!reason) {
+        msg.className = 'msg err';
+        msg.textContent = 'Укажите причину: она попадёт в журнал админских действий.';
+        return;
+      }
+      $('save').disabled = true;
+      msg.className = 'msg';
+      msg.textContent = 'Записываем…';
+      try {
+        const res = await httpsCallable(fns, 'adminArenaConfigSet')({
+          reason,
+          flags: collect(FLAGS),
+          expansionFlags: collect(EXPANSION),
+          // Версию приложения администратор не вводит: конфиг подходит любой сборке.
+          minClientVersion: '0.0.0',
+        });
+        paint(res.data.status);
+        const seconds = Math.round((res.data.propagationDelayMs || 0) / 1000);
+        msg.className = 'msg ok';
+        msg.textContent = 'Записано. Игроки увидят изменение примерно через ' + seconds + ' секунд — это кеш конфига, а не сбой.';
+        $('reason').value = '';
+      } catch (error) {
+        msg.className = 'msg err';
+        msg.textContent = String(error && error.message ? error.message : error);
+      } finally {
+        $('save').disabled = false;
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        $('who').textContent = 'Войдите в админку';
+        $('state').textContent = 'Нужен вход';
+        $('state').className = 'state warn';
+        return;
+      }
+      $('who').textContent = user.email || user.uid;
+      void load();
+    });
+  </script>
+</body>
+</html>

@@ -2,13 +2,12 @@ import type { ImageSourcePropType } from 'react-native';
 import type { ThemeMode } from '../constants/theme';
 
 /**
- * Иконки главного меню по теме (уроки, квизы, карточки, задания, тест, экзамен, магазин, арена, карта героя).
+ * Иконки главного меню по теме (уроки, квизы, карточки, тест, экзамен, магазин, арена, карта героя).
  * Все require статические — для Metro.
  */
 export type HomeMenuImageSet = {
   lesson: ImageSourcePropType;
   cards: ImageSourcePropType;
-  dayTasks: ImageSourcePropType;
   league: ImageSourcePropType;
   test: ImageSourcePropType;
   practice: ImageSourcePropType;
@@ -23,7 +22,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     return {
       lesson: require('../assets/images/home_menu/indigo/home-indigo-lessons.webp'),
       cards: require('../assets/images/home_menu/indigo/home-indigo-cards.webp'),
-      dayTasks: require('../assets/images/home_menu/indigo/home-indigo-daily-tasks.webp'),
       league: require('../assets/images/home_menu/indigo/home-indigo-league.webp'),
       test: require('../assets/images/home_menu/indigo/home-indigo-diagnostic-test.webp'),
       practice: require('../assets/images/home_menu/indigo/home-indigo-practice.webp'),
@@ -37,7 +35,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     return {
       lesson: require('../assets/images/home_menu/business/home-business-lessons-lite.avif'),
       cards: require('../assets/images/home_menu/business/home-business-cards-lite.avif'),
-      dayTasks: require('../assets/images/home_menu/business/home-business-daily-tasks-lite.avif'),
       league: require('../assets/images/home_menu/business/home-business-league-lite.avif'),
       test: require('../assets/images/home_menu/business/home-business-diagnostic-test-lite.avif'),
       practice: require('../assets/images/home_menu/business/home-business-practice-lite.avif'),
@@ -51,7 +48,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     return {
       lesson: require('../assets/images/home_menu/businessLight/home-businessLight-lessons-lite.avif'),
       cards: require('../assets/images/home_menu/businessLight/home-businessLight-cards-lite.avif'),
-      dayTasks: require('../assets/images/home_menu/businessLight/home-businessLight-daily-tasks-lite.avif'),
       league: require('../assets/images/home_menu/businessLight/home-businessLight-league-lite.avif'),
       test: require('../assets/images/home_menu/businessLight/home-businessLight-diagnostic-test-lite.avif'),
       practice: require('../assets/images/home_menu/businessLight/home-businessLight-practice-lite.avif'),
@@ -65,7 +61,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     return {
       lesson: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-lessons.webp'),
       cards: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-cards.webp'),
-      dayTasks: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-daily-tasks.webp'),
       league: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-league.webp'),
       test: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-diagnostic-test.webp'),
       practice: require('../assets/images/home_menu/sagePorcelain/home-sagePorcelain-practice.webp'),
@@ -79,7 +74,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     return {
       lesson: require('../assets/images/home_menu/midnight/home-midnight-lessons.webp'),
       cards: require('../assets/images/home_menu/midnight/home-midnight-cards.webp'),
-      dayTasks: require('../assets/images/home_menu/midnight/home-midnight-daily-tasks.webp'),
       league: require('../assets/images/home_menu/midnight/home-midnight-league.webp'),
       test: require('../assets/images/home_menu/midnight/home-midnight-diagnostic-test.webp'),
       practice: require('../assets/images/home_menu/midnight/home-midnight-practice.webp'),
@@ -93,7 +87,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     return {
       lesson: require('../assets/images/home_menu/ember/home-ember-lessons.webp'),
       cards: require('../assets/images/home_menu/ember/home-ember-cards.webp'),
-      dayTasks: require('../assets/images/home_menu/ember/home-ember-daily-tasks.webp'),
       league: require('../assets/images/home_menu/ember/home-ember-league.webp'),
       test: require('../assets/images/home_menu/ember/home-ember-diagnostic-test.webp'),
       practice: require('../assets/images/home_menu/ember/home-ember-practice.webp'),
@@ -107,7 +100,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     return {
       lesson: require('../assets/images/home_menu/aurora/home-aurora-lessons.webp'),
       cards: require('../assets/images/home_menu/aurora/home-aurora-cards.webp'),
-      dayTasks: require('../assets/images/home_menu/aurora/home-aurora-daily-tasks.webp'),
       league: require('../assets/images/home_menu/aurora/home-aurora-league.webp'),
       test: require('../assets/images/home_menu/aurora/home-aurora-diagnostic-test.webp'),
       practice: require('../assets/images/home_menu/aurora/home-aurora-practice.webp'),
@@ -121,7 +113,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     return {
       lesson: require('../assets/images/home_menu/volt/home-volt-lessons.webp'),
       cards: require('../assets/images/home_menu/volt/home-volt-cards.webp'),
-      dayTasks: require('../assets/images/home_menu/volt/home-volt-daily-tasks.webp'),
       league: require('../assets/images/home_menu/volt/home-volt-league.webp'),
       test: require('../assets/images/home_menu/volt/home-volt-diagnostic-test.webp'),
       practice: require('../assets/images/home_menu/volt/home-volt-practice.webp'),
@@ -135,7 +126,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     return {
       lesson: require('../assets/images/home_menu/gold/home-gold-lessons.webp'),
       cards: require('../assets/images/home_menu/gold/home-gold-cards.webp'),
-      dayTasks: require('../assets/images/home_menu/gold/home-gold-daily-tasks.webp'),
       league: require('../assets/images/home_menu/gold/home-gold-league.webp'),
       test: require('../assets/images/home_menu/gold/home-gold-diagnostic-test.webp'),
       practice: require('../assets/images/home_menu/gold/home-gold-practice.webp'),
@@ -147,13 +137,12 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
   }
   if (themeMode === 'olive') {
     return {
-      lesson: require('../assets/images/home_menu/olive/home-olive-lessons.webp'), cards: require('../assets/images/home_menu/olive/home-olive-cards.webp'), dayTasks: require('../assets/images/home_menu/olive/home-olive-daily-tasks.webp'), league: require('../assets/images/home_menu/olive/home-olive-league.webp'), test: require('../assets/images/home_menu/olive/home-olive-diagnostic-test.webp'), practice: require('../assets/images/home_menu/olive/home-olive-practice.webp'), dialogs: require('../assets/images/home_menu/olive/home-olive-dialogs.webp'), exam: require('../assets/images/home_menu/olive/home-olive-exam.webp'), shop: require('../assets/images/home_menu/olive/home-olive-shop.webp'), heroMap: require('../assets/images/home_menu/olive/home-olive-hero-map.webp'),
+      lesson: require('../assets/images/home_menu/olive/home-olive-lessons.webp'), cards: require('../assets/images/home_menu/olive/home-olive-cards.webp'), league: require('../assets/images/home_menu/olive/home-olive-league.webp'), test: require('../assets/images/home_menu/olive/home-olive-diagnostic-test.webp'), practice: require('../assets/images/home_menu/olive/home-olive-practice.webp'), dialogs: require('../assets/images/home_menu/olive/home-olive-dialogs.webp'), exam: require('../assets/images/home_menu/olive/home-olive-exam.webp'), shop: require('../assets/images/home_menu/olive/home-olive-shop.webp'), heroMap: require('../assets/images/home_menu/olive/home-olive-hero-map.webp'),
     };
   }
   return {
     lesson: require('../assets/images/home_menu/home-forest-lessons.webp'),
     cards: require('../assets/images/home_menu/home-forest-cards.webp'),
-    dayTasks: require('../assets/images/home_menu/home-forest-daily-tasks.webp'),
     league: require('../assets/images/home_menu/home-forest-league.webp'),
     test: require('../assets/images/home_menu/home-forest-diagnostic-test.webp'),
     practice: require('../assets/images/home_menu/home-forest-practice.webp'),

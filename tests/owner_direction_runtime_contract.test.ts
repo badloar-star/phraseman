@@ -151,7 +151,9 @@ describe('owner runtime direction contract', () => {
     // Явное действие пользователя (применить/купить) — немедленный sync.
     expect(avatarSource).toContain("cloudSyncMode: 'immediate'");
     // Режим по умолчанию и сброс к уровневому аватару остаются отложенными (deferred).
-    expect(customizationService).toContain("await deps.syncCloud(input.cloudSyncMode ?? 'deferred')");
+    expect(customizationService).toContain("return deps.syncCloud(input.cloudSyncMode ?? 'deferred')");
+    expect(customizationService).not.toContain("await deps.syncCloud(input.cloudSyncMode ?? 'deferred')");
+    expect(customizationService).not.toContain('await deps.syncPublicProfile(');
     expect(customizationService).toContain("cloudSyncMode: 'deferred'");
 
     expect(profileCardSource).not.toContain('PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS');
@@ -169,7 +171,12 @@ describe('owner runtime direction contract', () => {
       // Один тик хаба под гвардом видимости таба (runtimeOwnerId), пересчёт
       // состояния окна; на невидимом табе спит.
       'app/(tabs)/tournaments.tsx': 1,
-      'app/club_screen.tsx': 1,
+      // Arena V2 ranked queue heartbeat (15 s). It is active only while the
+      // matchmaking push screen owns focus + foreground; Quick uses one
+      // six-second timeout instead and gameplay uses the shared wall clock.
+      'app/arena_matchmaking.tsx': 1,
+      // Remote refresh and boost countdown both stop on blur/background through runtimeActive.
+      'app/club_screen.tsx': 2,
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
       // и дополнительно очищается при unmount.
       'app/exam.tsx': 1,
@@ -200,12 +207,16 @@ describe('owner runtime direction contract', () => {
       // Три внутренних scheduler-тика одного shared countdown store; подписчики
       // не создают свои интервалы, а последний unsubscribe останавливает clock.
       'components/energy_countdown_clock.ts': 3,
+      // Wall-clock exam deadline remains honest; only the visible UI tick sleeps off-screen/background.
+      'components/level-exam/LevelExamV2.tsx': 1,
       // Конечный 16мс XP count-up результата, очищается по достижении цели/unmount.
       'components/HomeTheoAdvisorCard.tsx': 1,
       // Отсчёт жизни кода восстановления — уже под `screenFocused &&
       // recoveryAppActive`, вне модалки не тикает.
       'components/RegistrationPromptModal.tsx': 1,
       'components/StreakReviveModal.tsx': 1,
+      // Premiere countdown is owned by useRuntimeActive and self-stops at the scheduled boundary.
+      'components/youtube/YoutubePremiereHero.tsx': 1,
       // Общий секундный отсчёт турнира: считает от целевого момента, поэтому
       // гвард видимости не ломает точность (при возврате догоняет сразу).
       'components/tournament/TournamentCountdown.tsx': 1,
@@ -267,9 +278,8 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain("AsyncStorage.getItem('streak_last_shown')");
 
     expect(source).toContain('const [specialTitleStoragePairs, achievementStates] = await Promise.all([');
-    expect(source).toContain('AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY, dailyAllDoneKey])');
+    expect(source).toContain('AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY])');
     expect(source).not.toContain('AsyncStorage.getItem(HELPFUL_REPORTS_CONFIRMED_KEY)');
-    expect(source).not.toContain('AsyncStorage.getItem(dailyTasksAchievementAllDoneStreakKey(studyTarget))');
 
     expect(source).toContain('const lessonEntriesWithLastOpened = await AsyncStorage.multiGet([...lessonKeys, lastOpenedKey])');
     expect(source).toContain('const saved = lessonEntries[lastId - 1]?.[1] ?? null');
@@ -291,7 +301,9 @@ describe('owner runtime direction contract', () => {
       'app/firestore_friend_requests.ts': 2,
       'app/league_group_boosts.ts': 2,
       'app/remote_account_deletion_monitor.ts': 1,
-      'app/remote_config_client.ts': 1,
+      // Remote Config deliberately uses foreground-only one-shot polling.
+      // A native onSnapshot cannot be synchronously fenced when an interactive
+      // lesson starts, so it is no longer an allowed permanent listener.
       // зачем 2026-07-27 (владелец: «приложение греет телефон»): две живые
       // подписки турнира (комната + реакции) приехали 27.07 мимо этого ревью.
       // Комната переписывается сервером каждые 5–12 секунд и будит JS-поток на
@@ -313,6 +325,14 @@ describe('owner runtime direction contract', () => {
     }
 
     expect(found).toEqual(allowlist);
+  });
+
+  it('refreshes client Remote Config on foreground with a five-minute ceiling instead of a permanent listener', () => {
+    const source = read('app/remote_config_client.ts');
+    expect(source).toContain('const REMOTE_CONFIG_LIVE_REFRESH_MS = 5 * 60_000;');
+    expect(source).toContain("db.collection(REMOTE_CONFIG_COLLECTION).doc(REMOTE_CONFIG_DOC).get()");
+    expect(source).toContain('runtimeAppStateStore.subscribe');
+    expect(source).not.toContain('.onSnapshot(');
   });
 
   it('keeps energy recovery polling idle when full, unlimited, or backgrounded', () => {
@@ -687,7 +707,7 @@ describe('owner runtime direction contract', () => {
     expect(friendQuests).toContain("const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null)");
     expect(friendQuests).toContain('const nextXp = Math.max(localXp, serverXp)');
     expect(friendQuests).toContain("AsyncStorage.setItem('user_total_xp', String(nextXp))");
-    expect(friendQuests).toContain('await withAccountTransitionLock(async () => {');
+    expect(friendQuests).toContain('await withAccountTransitionLock(async (): Promise<void> => {');
     expect(friendQuests).not.toContain("AsyncStorage.setItem('user_total_xp', String(res.data.callerXp))");
 
     expect(progressServer).toContain('if (incoming > current) patch[key] = String(incoming);');
@@ -701,48 +721,29 @@ describe('owner runtime direction contract', () => {
     expect(xpManager).not.toContain('const newXP =');
   });
 
-  it('keeps server shard balance mirrors timestamp-guarded instead of blind client replaces', () => {
-    const shardsSystem = read('app/shards_system.ts');
-    const friendQuests = read('app/friend_quests.ts');
-    const friendGifts = read('app/friend_gifts.ts');
-    const communityPurchase = read('app/community_packs/purchaseCommunityPack.ts');
-    const communityClient = read('app/community_packs/functionsClient.ts');
-    const leagueBoosts = read('app/league_group_boosts.ts');
-    const leagueChestClient = read('app/services/league_chest_rewards.ts');
-    const collectiblesClient = read('app/collectibles/storage.ts');
-
-    expect(shardsSystem).toContain('type ReplaceShardBalanceOptions = {');
-    expect(shardsSystem).toContain('const serverUpdatedAtMs = parseUpdatedAtMs(options?.updatedAtMs)');
-    expect(shardsSystem).toContain("if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return 'already-newer';");
-    expect(shardsSystem).toContain('await persistLocalBalance(n, meta)');
-    expect(shardsSystem).toContain('const mirrorServerShardBalanceLocal = async (');
-    expect(shardsSystem).toContain('const mirrorOutcome = await mirrorServerShardBalanceLocal(');
-    expect(shardsSystem).not.toContain('await persistLocalBalance(cloudApplied.balance, meta)');
-    expect(shardsSystem).not.toContain('setShardsBalanceMemory(cloudApplied.balance)');
-
-    for (const source of [
-      friendQuests,
-      friendGifts,
-      communityPurchase,
-      leagueBoosts,
-      leagueChestClient,
-      collectiblesClient,
+  it('keeps server shard effects as external facts instead of balance mirrors', () => {
+    for (const file of [
+      'functions/src/friend_gifts.ts',
+      'functions/src/community_packs.ts',
+      'functions/src/league_groups.ts',
+      'functions/src/league_chest.ts',
+      'functions/src/collectibles.ts',
     ]) {
-      expect(source).toContain('updatedAtMs:');
+      const source = read(file);
+      expect(source).toContain('appendExternalEconomyEvent');
     }
 
-    expect(communityClient).toContain('shardsUpdatedAtMs?: number');
-    expect(friendQuests).toContain('shardsUpdatedAtMs?: number');
-    expect(friendGifts).toContain('shardsUpdatedAtMs?: number');
-    expect(leagueBoosts).toContain('shardsUpdatedAtMs?: number');
-    expect(leagueChestClient).toContain('shardsUpdatedAtMs?: number');
-    expect(collectiblesClient).toContain('shardsUpdatedAtMs?: number | null');
-
-    expect(read('functions/src/friend_gifts.ts')).toContain('shardsUpdatedAtMs');
-    expect(read('functions/src/community_packs.ts')).toContain('shardsUpdatedAtMs: now');
-    expect(read('functions/src/league_groups.ts')).toContain('shardsUpdatedAtMs: now');
-    expect(read('functions/src/league_chest.ts')).toContain('shardsUpdatedAtMs: shardReward > 0 ? now');
-    expect(read('functions/src/collectibles.ts')).toContain('shardsUpdatedAtMs: decision.bonusShards > 0 ? now : null');
+    for (const file of [
+      'app/friend_gifts.ts',
+      'app/community_packs/purchaseCommunityPack.ts',
+      'app/league_group_boosts.ts',
+      'app/services/league_chest_rewards.ts',
+      'app/collectibles/storage.ts',
+    ]) {
+      const source = read(file);
+      expect(source).not.toContain('replaceShardsBalanceLocal(');
+      expect(source).not.toContain('keepShardsBalanceLocalAtLeast(');
+    }
   });
 
   it('keeps selected server-first economy callables idempotent against duplicate retries', () => {
@@ -799,7 +800,8 @@ describe('owner runtime direction contract', () => {
 
     expect(activityLikeServer).toContain('const alreadyLikedSameEvent =');
     expect(activityLikeServer).toContain('idempotentReplay: true');
-    expect(activityLikeServer).toContain("throw new HttpsError('resource-exhausted', 'Daily activity like limit reached');");
+    expect(activityLikeServer).toContain("collection('friend_activity_likes_sent').doc(recordId)");
+    expect(activityLikeServer).not.toContain('Daily activity like limit reached');
     expect(leagueBoostsClient).toContain('const next = res.idempotentReplay');
 
     expect(weeklyReviewServer).toContain('lastBriefingHash: params.briefingHash');
@@ -837,9 +839,14 @@ describe('owner runtime direction contract', () => {
     for (const source of [explainPhrase, explainChoice]) {
       expect(source).toContain('let budgetReservation: ExplainBudgetReservation | null = null');
       expect(source).toContain('budgetReservation = await reserveExplainBudget(');
-      expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');");
       expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'provider_failed');");
     }
+    // explainPhrase claims the cache lock before charging, so a lost lock race
+    // has nothing to refund. explainChoice still charges first and must refund.
+    expect(explainPhrase.indexOf('const claimed = await claimPendingLock')).toBeLessThan(
+      explainPhrase.indexOf('budgetReservation = await reserveExplainBudget('),
+    );
+    expect(explainChoice).toContain("await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');");
 
     expect(statsInsights).toContain('const budgetReservedAtMs = Date.now();');
     expect(statsInsights).toContain('await enforceGlobalBudget(jobCfg.globalDailyCap);');
@@ -850,17 +857,11 @@ describe('owner runtime direction contract', () => {
   });
 
   it('keeps reward claim callables protected by deterministic claim markers', () => {
-    const dailyTasks = read('functions/src/daily_tasks_shards.ts');
     const leagueChest = read('functions/src/league_chest.ts');
     const collectibles = read('functions/src/collectibles.ts');
     const profileCard = read('functions/src/profile_card_upgrade.ts');
     const promoCodes = read('functions/src/promo_codes.ts');
     const revenueCat = read('functions/src/revenuecat_shards.ts');
-
-    expect(dailyTasks).toContain("userRef.collection(REWARD_CLAIMS_COLLECTION).doc(`daily_tasks_all_${dayKey}`)");
-    expect(dailyTasks).toContain('if (claimSnap.exists) {');
-    expect(dailyTasks).toContain('return { alreadyClaimed: true, newBalance: existingBalance, shardsUpdatedAtMs };');
-    expect(dailyTasks).toContain('return { alreadyClaimed: false, newBalance, shardsUpdatedAtMs };');
 
     expect(leagueChest).toContain('const claimRef = db.collection(\'league_chest_claims\').doc(claimDocId(stableUid, weekId, groupId));');
     expect(leagueChest).toContain('function buildClaimedRewardResponse');
@@ -872,7 +873,8 @@ describe('owner runtime direction contract', () => {
     expect(collectibles).toContain('seedBase: `collect:${stableUid}:${eventIdRaw}`');
 
     expect(profileCard).toContain('if (expectedLevel !== null && currentLevel > expectedLevel) {');
-    expect(profileCard).toContain('return { ok: true, alreadyApplied: true, level: currentLevel, balance, spent: 0 };');
+    expect(profileCard).toContain('return { ok: true, alreadyApplied: true, level: currentLevel, spent: 0 };');
+    expect(profileCard).not.toContain('balance, spent');
 
     expect(promoCodes).toContain('const redemptionRef = userRef.collection(PROMO_REDEMPTIONS).doc(code);');
     expect(promoCodes).toContain('alreadyRedeemed: redemptionSnap.exists');
@@ -900,38 +902,31 @@ describe('owner runtime direction contract', () => {
     expect(packTrial).toContain('expiresAtOverride');
   });
 
-  it('keeps release-wave shard grants stamped with shard wallet freshness meta', () => {
+  it('keeps release-wave shard grants deterministic and atomic with their marker', () => {
     const source = read('app/release_wave_bonus.ts');
 
-    expect(source).toContain('const updatedAtMs = Date.now()');
-    expect(source).toContain("shards_updated_at_ms: updatedAtMs");
-    expect(source).toContain("shards_updated_op: 'earn'");
-    expect(source).toContain("shards_updated_reason: 'release_wave_bonus'");
-    expect(source).toContain('await replaceShardsBalanceLocal(newBalance, {');
+    expect(source).toContain('commitShardCreditOperation({');
+    expect(source).toContain('operationId: `release-wave:${wave}`');
     expect(source).toContain("reason: 'release_wave_bonus'");
-    expect(source).toContain("await AsyncStorage.setItem(claimKey(wave), '1')");
-    expect(source).not.toContain("['shards_balance', String(newBalance)]");
+    expect(source).toContain("localWrites: [[claimKey(wave), '1']]");
+    expect(source).not.toContain('replaceShardsBalanceLocal(');
+    expect(source).not.toContain("AsyncStorage.setItem(claimKey(wave), '1')");
   });
 
-  it('keeps account merge shard writes stamped so stale local wallets cannot overwrite them', () => {
+  it('never derives an account-merge economy event from legacy server shards', () => {
     const source = read('functions/src/auth_merge.ts');
-
-    // зачем: рефакторинг 3eba05191 переименовал winnerData/update → winner.data/
-    // winnerUpdate и перенёс чтения внутрь транзакции; сама защита (merge = max +
-    // штампы свежести кошелька) не менялась — контракт перепривязан к живым именам.
-    expect(source).toContain('const mergedShards = mergeShards(winner.data.shards, loser.data.shards);');
-    expect(source).toContain('winnerUpdate.shards = mergedShards;');
-    expect(source).toContain('winnerUpdate.shards_updated_at_ms = now;');
-    expect(source).toContain("winnerUpdate.shards_updated_op = 'replace';");
-    expect(source).toContain("winnerUpdate.shards_updated_reason = 'account_merge';");
+    expect(source).not.toContain('mergeShards(winner.data.shards, loser.data.shards)');
+    expect(source).not.toContain("source: 'account_merge'");
+    expect(source).not.toContain('account_merge_balance_import');
   });
 
-  it('keeps level gift shard fallback on the shared shard mirror instead of raw balance writes', () => {
+  it('keeps retired level gift pearls as a hard no-op with no balance bypass', () => {
     const source = read('app/level_gift_system.ts');
 
-    expect(source).toContain("const options = { op: 'earn' as const, reason: 'level_gift_fallback' }");
-    expect(source).toContain('replaceShardsBalanceLocalWhileAccountTransitionLocked(before + safe, accountToken, options)');
-    expect(source).toContain('replaceShardsBalanceLocal(before + safe, options)');
+    expect(source).toContain('public compatibility API as an explicit no-op');
+    expect(source).not.toContain('level_gift_fallback');
+    expect(source).not.toContain('replaceShardsBalanceLocalWhileAccountTransitionLocked');
+    expect(source).not.toContain('replaceShardsBalanceLocal(before + safe');
     expect(source).not.toContain("AsyncStorage.setItem('shards_balance'");
     expect(source).not.toContain('AsyncStorage.setItem("shards_balance"');
   });
@@ -944,34 +939,38 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain('false && purchasing');
   });
 
-  it('keeps friend gift sends optimistic without exposing auth-link internals', () => {
+  it('keeps friend gift sends non-blocking, offline-aware, server-authoritative, and account-owned', () => {
     const friendsTab = read('app/(tabs)/friends.tsx');
+    const outbox = read('app/friend_gift_outbox.ts');
+    const durableEnqueue = friendsTab.indexOf('const queued = await enqueueFriendGiftSend');
+    const successToast = friendsTab.indexOf("type: 'success'", durableEnqueue);
 
-    expect(friendsTab).toContain('sendFriendGiftWithShards');
-    expect(friendsTab).toContain('setGiftBusyId(giftId)');
-    expect(friendsTab).toContain("reason: 'friend_gift_optimistic'");
-    expect(friendsTab).toContain("reason: 'friend_gift_rollback'");
-    expect(friendsTab).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
-    expect(friendsTab).toContain('setGiftBalance(guardedBalance)');
-    expect(friendsTab).not.toContain('setGiftBalance(res.senderBalanceAfter)');
+    expect(friendsTab).toContain('enqueueFriendGiftSend');
+    expect(friendsTab).toContain("if (getNetStatus() === 'offline')");
+    expect(durableEnqueue).toBeGreaterThan(-1);
+    expect(friendsTab.indexOf('setGiftTarget(null);', durableEnqueue)).toBeGreaterThan(durableEnqueue);
+    expect(successToast).toBeGreaterThan(durableEnqueue);
+    expect(friendsTab).toContain('void queued.completion.then(async (res) =>');
+    expect(friendsTab).toContain('const guardedBalance = await getShardsBalance().catch(() => null);');
+    expect(friendsTab).toContain('if (guardedBalance !== null) setGiftBalance(guardedBalance);');
+    expect(friendsTab).not.toContain('res.senderBalanceAfter');
     expect(friendsTab).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
     expect(friendsTab).not.toContain(['Подожди пару секунд', 'и попробуй снова'].join(' '));
-
-    expect(friendsTab).toContain('setSentGiftReceipt({');
-    expect(friendsTab).toContain('balanceAfter: guardedBalance');
+    expect(friendsTab).not.toContain('ActivityIndicator');
+    expect(friendsTab).not.toContain('setSentGiftReceipt');
+    expect(friendsTab).not.toContain("status: 'pending'");
+    expect(friendsTab).not.toContain('Отправляем подарок…');
+    expect(outbox).toContain("schemaVersion: 'friend-gift-send-outbox.v1'");
+    expect(outbox).toContain('idempotencyKey: entry.idempotencyKey');
+    expect(outbox).toContain("if (kind === 'network' || kind === 'unknown') throw error;");
+    expect(outbox).toContain('resumePendingFriendGiftSends');
   });
 
-  it('keeps server-first profile upgrades and daily rerolls visibly pending', () => {
+  it('keeps server-first profile upgrades visibly pending', () => {
     const profileUpgrade = read('components/PlayerProfileModal.tsx');
-    const dailyTasks = read('app/daily_tasks_screen.tsx');
 
     expect(profileUpgrade).toContain('const result = await upgradeProfileCardLevel();');
     expect(profileUpgrade).toContain('disabled={upgradeBusy}');
     expect(profileUpgrade).toContain('<ActivityIndicator size="small" color="#1A1205" />');
-
-    expect(dailyTasks).toContain('rerollDailyTask(target.id, studyTarget)');
-    expect(dailyTasks).toContain('setRerollBusyId(target.id)');
-    expect(dailyTasks).toContain('disabled={!!rerollBusyId}');
-    expect(dailyTasks).toContain('<ActivityIndicator size="small" color={isGoldTheme ? t.textOnGold : t.correctText} />');
   });
 });

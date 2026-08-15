@@ -6,27 +6,27 @@ import {
 } from '../app/paywall_copy';
 
 // «Некоторые пейволы имеют неактуальный захардкоженный текст»: после премиум→фри
-// при открытии плана было «Получить персональный план» вместо «верни доступ».
+// в feature paywall был первичный CTA вместо «верни доступ».
 // applyWinBackCopy централизованно подменяет заголовок для вернувшегося юзера.
 
 describe('paywall win-back copy', () => {
   it('returns original copy when user never had premium', () => {
-    const base = getPaywallCopy('personal_plan');
-    expect(applyWinBackCopy(base, 'personal_plan', false)).toBe(base);
+    const base = getPaywallCopy('trainer_limit');
+    expect(applyWinBackCopy(base, 'trainer_limit', false)).toBe(base);
   });
 
   it('replaces a first-time feature title with win-back for a returning user', () => {
-    const base = getPaywallCopy('personal_plan');
-    expect(base.titleRu).toBe('Получить персональный план');
-    const out = applyWinBackCopy(base, 'personal_plan', true);
+    const base = getPaywallCopy('trainer_limit');
+    expect(base.titleRu).toBe('Тренируйся сколько хочешь');
+    const out = applyWinBackCopy(base, 'trainer_limit', true);
     expect(out.titleRu).toBe('Верни полный доступ Plus');
     expect(out.titleUk).toBe('Поверни повний доступ Plus');
     expect(out.titleEs).toBe('Recupera tu acceso Plus completo');
   });
 
   it('keeps the subtitle untouched (it describes what Premium gives)', () => {
-    const base = getPaywallCopy('personal_plan');
-    const out = applyWinBackCopy(base, 'personal_plan', true);
+    const base = getPaywallCopy('trainer_limit');
+    const out = applyWinBackCopy(base, 'trainer_limit', true);
     expect(out.subtitleRu).toBe(base.subtitleRu);
     expect(out.subtitleUk).toBe(base.subtitleUk);
     expect(out.subtitleEs).toBe(base.subtitleEs);
@@ -48,16 +48,16 @@ describe('paywall win-back copy', () => {
   });
 
   it('swaps planned-locale title for returning user, keeps planned subtitle', () => {
-    const planned = getHeroPlannedCopy('personal_plan', 0);
-    const out = applyWinBackPlannedCopy(planned, 'personal_plan', true);
+    const planned = getHeroPlannedCopy('trainer_limit', 0);
+    const out = applyWinBackPlannedCopy(planned, 'trainer_limit', true);
     expect(out.title['pt-BR']).toBe('Recupere seu acesso Plus completo');
     expect(out.title.tr).toBe('Tüm Plus erişimini geri kazan');
     expect(out.subtitle).toBe(planned.subtitle);
   });
 
   it('planned: no change for never-premium or already-return contexts', () => {
-    const planned = getHeroPlannedCopy('personal_plan', 0);
-    expect(applyWinBackPlannedCopy(planned, 'personal_plan', false)).toBe(planned);
+    const planned = getHeroPlannedCopy('trainer_limit', 0);
+    expect(applyWinBackPlannedCopy(planned, 'trainer_limit', false)).toBe(planned);
     const expired = getHeroPlannedCopy('premium_expired', 0);
     expect(applyWinBackPlannedCopy(expired, 'premium_expired', true)).toBe(expired);
   });

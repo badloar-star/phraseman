@@ -179,7 +179,7 @@ describe('useSoftUpsellOpportunity', () => {
     await waitFor(() => expect(active.result.current.opportunity).toBeNull());
     expect(storage.markSoftUpsellDismissed).toHaveBeenCalledTimes(1);
     expect(analytics).toHaveBeenCalledWith('soft_upsell_dismiss', expect.any(Object));
-    expect(analytics).toHaveBeenCalledWith('soft_upsell_cta', expect.objectContaining({ destination: 'personal_plan' }));
+    expect(analytics).toHaveBeenCalledWith('soft_upsell_cta', expect.objectContaining({ destination: 'paywall' }));
   });
 
   it('hides immediately on dismiss, retries transient persistence, and tracks only success', async () => {

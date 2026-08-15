@@ -74,7 +74,6 @@ function PressableScale({
     // хаптик догоняет следом — Taptic Engine всё равно получает свою фору,
     // потому что onPressIn срабатывает задолго до onPress.
     if (unavailable) {
-      if (!silent && withHaptic) hapticTap();
       return;
     }
     if (reduceMotion) {

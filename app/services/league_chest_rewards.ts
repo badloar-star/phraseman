@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { ensureAnonUser } from '../cloud_sync';
-import { replaceShardsBalanceLocal } from '../shards_system';
+import { commitConfirmedExternalShardEvent } from '../shards_system';
 import { emitAppEvent } from '../events';
 import { LEAGUE_RACE_MIN_PARTICIPANTS } from '../league_race_visibility';
 import { setPackGiftTrial48hOnce } from '../flashcards/pack_trial_gift';
@@ -130,8 +130,6 @@ export type LeagueChestClaim = {
   pending?: boolean;
   claimedAtMs?: number;
   crown?: LeagueCrown | null;
-  balance?: number;
-  shardsUpdatedAtMs?: number;
   rewards?: {
     drops: LeagueChestRewardDrop[];
     shards?: number;
@@ -455,7 +453,8 @@ function rewardAmount(drop: LeagueChestRewardDrop | undefined): number {
 }
 
 async function grantAvatarAuraReward(auraId?: string): Promise<void> {
-  const aura = AVATAR_AURAS.find((item) => item.id === auraId && !item.premiumOnly);
+  const aura = AVATAR_AURAS.find((item) =>
+    item.id === auraId && !item.premiumOnly && !item.retiredFromShop);
   if (!aura) return;
   const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
   let owned: Record<string, true> = {};
@@ -491,8 +490,6 @@ async function grantCustomAvatarReward(drop: LeagueChestRewardDrop): Promise<voi
 
 async function applyLocalRewardPack(
   rewardPack: NonNullable<LeagueChestClaim['rewards']>,
-  balance?: number,
-  shardsUpdatedAtMs?: number,
   studyTarget?: RuntimeStudyTarget,
   claimEffectId?: string,
   claimedAtMs?: number,
@@ -503,13 +500,21 @@ async function applyLocalRewardPack(
     .filter((drop) => drop.kind === 'shards' || drop.kind === 'gold_theme_duplicate')
     .reduce((sum, drop) => sum + rewardAmount(drop), 0);
 
-  if (typeof balance === 'number' && Number.isFinite(balance)) {
-    await replaceShardsBalanceLocal(balance, {
-      updatedAtMs: shardsUpdatedAtMs,
-      op: 'earn',
+  if (shardAmount > 0 && claimEffectId) {
+    const credited = await commitConfirmedExternalShardEvent({
+      source: 'league_chest',
+      eventId: claimEffectId,
+      delta: shardAmount,
       reason: 'league_chest',
+      grant: {
+        kind: 'competition_chest_reward',
+        subjectId: claimEffectId,
+        payload: { claimEffectId },
+      },
     });
-    if (shardAmount > 0) emitAppEvent('shards_earned', { amount: shardAmount, reasonKey: 'league_chest' });
+    if (credited.status !== 'applied' && credited.status !== 'already-applied') {
+      throw new Error('league_chest_shard_event_failed');
+    }
   }
 
   const writes: [string, string][] = [];
@@ -612,7 +617,7 @@ export async function ensureLeagueChestRewards(params: {
 
   const fn = callable<
     { weekId: string; groupId: string },
-    LeagueChestClaim & { ok?: boolean; balance?: number; alreadyClaimed?: boolean }
+    LeagueChestClaim & { ok?: boolean; alreadyClaimed?: boolean }
   >('leagueChestClaim');
   if (!fn) return { claimed: true, pending: alreadyLocal !== '1' };
   const key = leagueChestClaimRequestKey(myUid, params.weekId, params.groupId);
@@ -638,8 +643,6 @@ export async function ensureLeagueChestRewards(params: {
         if (safeData.rewards) {
           await applyLocalRewardPack(
             safeData.rewards,
-            safeData.balance,
-            safeData.shardsUpdatedAtMs,
             params.studyTarget,
             claimDocId(myUid, params.weekId, params.groupId),
             safeData.claimedAtMs,

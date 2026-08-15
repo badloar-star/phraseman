@@ -16,7 +16,6 @@ export const TARGET_KEY_DOMAINS = [
   'level_exams',
   'trainer_practice',
   'personal_practice',
-  'daily_tasks',
   'cloud_sync',
   'daily_phrase',
   'flashcards',
@@ -54,11 +53,6 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^last_opened_lesson$/,
   /^fifty_fifty_\d{4}-\d{2}-\d{2}$/,
   /^bonus_hints_\d{4}-\d{2}-\d{2}$/,
-  /^daily_tasks_\d{4}-\d{2}-\d{2}$/,
-  /^daily_tasks_reroll_v1$/,
-  /^daily_tasks_admin_override_v1$/,
-  /^achievement_all_daily_streak_v1$/,
-  /^achievement_daily_no_reroll_streak_v1$/,
   /^daily_phrase_v3$/,
   /^last_phrase_date_v3$/,
   /^daily_phrase_remote_cache_v1$/,
@@ -94,6 +88,7 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^achievement_trainer_correct_streak_v1$/,
   /^achievement_trainer_perfect_session_count$/,
   /^community_owned_pack_ids_v1$/,
+  /^community_local_author_packs_v1$/,
   new RegExp(`^${FLASHCARDS_MARKET_DEV_OWNED_KEY}$`),
   /^flashcards_owned_packs_v1$/,
   /^flashcards_progress_v1$/,
@@ -117,7 +112,7 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^resolved_personal_trainings_v1$/,
   /^pos_mastery_v1$/,
 ];
-const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|trainer_practice|daily_tasks|cloud_sync|daily_phrase|flashcards|quiz_session|quiz_achievements|target_stats|achievements)_v2::(?:en|fr)(?:::|$)|personal_practice_v2::(?:en|fr)::(?:ru|uk)(?:::|$))/;
+const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|trainer_practice|cloud_sync|daily_phrase|flashcards|quiz_session|quiz_achievements|target_stats|achievements)_v2::(?:en|fr)(?:::|$)|personal_practice_v2::(?:en|fr)::(?:ru|uk)(?:::|$))/;
 
 function assertMember<T extends string>(value: string, allowed: readonly T[], label: string): T {
   if ((allowed as readonly string[]).includes(value)) return value as T;
@@ -266,28 +261,6 @@ export function fiftyFiftyUsageKey(dayKey: string, studyTarget?: RuntimeStudyTar
 export function lessonBonusHintsKey(dayKey: string, studyTarget?: RuntimeStudyTarget): string {
   const raw = `bonus_hints_${dayKey}`;
   return scopedOrLegacyKey(raw, 'lesson_rewards', studyTarget);
-}
-
-export function dailyTasksProgressKey(dayKey: string, studyTarget?: RuntimeStudyTarget): string {
-  const raw = `daily_tasks_${dayKey}`;
-  return scopedOrLegacyKey(raw, 'daily_tasks', studyTarget);
-}
-
-export function dailyTasksRerollKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('daily_tasks_reroll_v1', 'daily_tasks', studyTarget);
-}
-
-export function dailyTasksAchievementAllDoneStreakKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('achievement_all_daily_streak_v1', 'daily_tasks', studyTarget);
-}
-
-export function dailyTasksAchievementNoRerollStreakKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('achievement_daily_no_reroll_streak_v1', 'daily_tasks', studyTarget);
-}
-
-export function dailyTaskLessonVisitedKey(dayKey: string, studyTarget?: RuntimeStudyTarget): string {
-  const raw = `lesson_visited_${dayKey}`;
-  return scopedOrLegacyKey(raw, 'daily_tasks', studyTarget);
 }
 
 export function dailyPhraseKey(studyTarget?: RuntimeStudyTarget): string {
@@ -557,6 +530,10 @@ export function flashcardsCommunityOwnedPacksKey(studyTarget?: RuntimeStudyTarge
   return scopedOrLegacyKey('community_owned_pack_ids_v1', 'flashcards', studyTarget);
 }
 
+export function flashcardsLocalAuthorPacksKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('community_local_author_packs_v1', 'flashcards', studyTarget);
+}
+
 export function flashcardsMarketDevOwnedPacksKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey(FLASHCARDS_MARKET_DEV_OWNED_KEY, 'flashcards', studyTarget);
 }
@@ -660,6 +637,18 @@ export function assertTargetKey(key: string): string {
     throw new Error('Raw target-sensitive key is blocked: ' + key);
   }
   return key;
+}
+
+/**
+ * Совместимое чтение логических флагов прогресса. Старые клиенты писали `1/0`,
+ * а каноническое облачное восстановление пишет `true/false`. Все потребители
+ * обязаны понимать оба формата, иначе успешно сданный экзамен снова закрывает
+ * уровень сразу после cloud sync.
+ */
+export function storedProgressFlagIsTrue(value: unknown): boolean {
+  if (value === true || value === 1) return true;
+  const normalized = String(value ?? '').trim().toLowerCase();
+  return normalized === 'true' || normalized === '1' || normalized === 'yes';
 }
 
 export default function __TargetStorageKeysRouteShim() {

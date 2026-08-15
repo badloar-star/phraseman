@@ -1,11 +1,8 @@
 /**
  * Grammar map of the app's 32 core lessons.
  *
- * This is the single source of truth for "which grammatical construction lives in
- * which lesson, and how hard it is". Personal-plan day generation uses it to:
- *   - keep early plan days on early-lesson grammar (no gerund/passive on day 1),
- *   - recommend which lessons to finish before a given plan day,
- *   - order plan content by real difficulty instead of guesswork.
+ * This is the single source of truth for which grammatical construction lives in
+ * which lesson and how hard it is.
  *
  * Lesson order mirrors LESSON_NAMES_RU in constants/lessons.ts (1-indexed).
  * Pure module, no runtime deps — fully unit-testable.

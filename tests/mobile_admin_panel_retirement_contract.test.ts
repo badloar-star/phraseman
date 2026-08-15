@@ -72,7 +72,6 @@ const retiredAdminOnlySymbols: Record<string, readonly string[]> = {
   'app/active_recall.ts': ['seedAdminTestReviewSession', 'ADMIN_TEST_BENCH'],
   'app/activity_365_analytics.ts': ['devSeedActivity365Scenario'],
   'app/app_messages.ts': ['seedLocalVipSurveyTestMessage'],
-  'app/daily_tasks.ts': ['DailyTaskAdminPack', 'seedDailyTasksAdminPack', 'dailyTasksAdminOverrideKey'],
   'app/intro_full_access.ts': ['resetIntroFullAccessForAdmin'],
   'app/leaderboard_stats.ts': ['injectMockLeaderboardStats', 'clearMockLeaderboardStats'],
   'app/lifetime_profile_stats.ts': ['devSeedLifetimeStatsScenario'],
@@ -153,9 +152,7 @@ describe('mobile dev admin panel retirement', () => {
 
     expect(devRoutes).toContain('POS_ANALYTICS_AUDIT_ROUTE_NAME');
     expect(devRoutes).toContain('FLASHCARDS_MARKET_DEV_ROUTE_NAME');
-    expect(devRoutes).toContain('PERSONAL_PLAN_RUNTIME_DEV_ROUTE_NAME');
     expect(fs.existsSync(path.join(ROOT, 'app', 'pos_analytics_audit.tsx'))).toBe(true);
     expect(fs.existsSync(path.join(ROOT, 'app', 'flashcards_market_dev.tsx'))).toBe(true);
-    expect(fs.existsSync(path.join(ROOT, 'app', 'personal_plan_runtime_dev.tsx'))).toBe(true);
   });
 });

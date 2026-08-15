@@ -20,7 +20,7 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
   const title = triLang(lang, { ru: 'Наши каналы', uk: 'Наші канали', es: 'Our channels', 'pt-BR': 'Nossos canais', vi: 'Kênh của chúng tôi', id: 'Kanal kami', tr: 'Kanallarımız', pl: 'Nasze kanały' });
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <Pressable style={styles.scrim} onPress={onClose} accessibilityRole="button" accessibilityLabel="Close channel picker" />
+      <Pressable style={styles.scrim} onPress={onClose} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть выбор канала', uk: 'Закрити вибір каналу', es: 'Cerrar selector de canal', 'pt-BR': 'Fechar seletor de canal', vi: 'Đóng bộ chọn kênh', id: 'Tutup pemilih kanal', tr: 'Kanal seçiciyi kapat', pl: 'Zamknij wybór kanału' })} />
       <View style={[styles.sheet, { backgroundColor: t.bgSurface }]}>
         <View style={styles.handle} />
         <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>

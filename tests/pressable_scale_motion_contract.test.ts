@@ -25,6 +25,8 @@ describe('canonical PressableScale motion contract', () => {
   test('does not emit haptic feedback for unavailable actions', () => {
     expect(source).toContain('const unavailable = Boolean(disabled || busy)');
     expect(source).toContain('if (!silent && !unavailable && withHaptic) hapticTap()');
+    const unavailableBlock = source.slice(source.indexOf('if (unavailable)'), source.indexOf('if (reduceMotion)'));
+    expect(unavailableBlock).not.toContain('hapticTap()');
     expect(source).toContain('disabled={unavailable}');
   });
 });

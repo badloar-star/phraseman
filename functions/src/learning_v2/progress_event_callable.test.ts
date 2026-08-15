@@ -214,7 +214,7 @@ describe('V2 progress callable auth adapter', () => {
     await expect(handler({ data: requestBody, auth: { uid: 'auth-user' } })).rejects.toThrow('account_generation_mismatch');
   });
 
-  it('production executor rejects a forged positive candidate when no trusted scorer is configured', async () => {
+  it('production executor supplies the immutable template reader but still rejects when its store returns no trusted score', async () => {
     const createStore = jest.fn(() => ({
       runTransaction: async (work: any) => work({
         readOperation: async () => undefined,
@@ -243,6 +243,31 @@ describe('V2 progress callable auth adapter', () => {
       stableUid: 'stable-canonical',
       accountGeneration: 1,
       accountScopeHash: deriveProgressAccountScopeHash('stable-canonical', 1),
+      scoringTemplates: expect.objectContaining({ read: expect.any(Function) }),
+      scoringPolicies: undefined,
+    }));
+  });
+
+  it('does not install the client-result pilot table as a production scorer', async () => {
+    const createStore = jest.fn(() => ({
+      runTransaction: async () => {
+        throw new Error('stop_after_dependency_capture');
+      },
+    } as any));
+    const handler = createProgressEventProductionHandler({
+      db: {} as any,
+      createStore,
+    });
+    await expect(handler({
+      authUid: 'auth-user', stableUid: 'stable-canonical', accountGeneration: 1,
+      input: {
+        ...requestBody,
+        accountScopeHash: deriveProgressAccountScopeHash('stable-canonical', 1),
+      },
+    })).rejects.toThrow('stop_after_dependency_capture');
+    expect(createStore).toHaveBeenCalledWith(expect.objectContaining({
+      scoringPolicies: undefined,
+      resolveServerScore: undefined,
     }));
   });
 

@@ -41,7 +41,7 @@ const TARGET_SEQUENCE = [
   lesson(29, 'A2.2', ['conditionnel present', 'polite requests', 'advice'], ['requests', 'suggestions', 'hypotheticals'], [11, 23, 24], 'Conditionnel supports politeness and advice after modals/future/comparison are known.'),
   lesson(30, 'A2.2', ['subjunctive awareness', 'il faut que', 'wishes/necessity'], ['needs', 'wishes', 'opinions'], [21, 26, 29], 'Only awareness-level subjunctive belongs here; production remains limited and source-gated.'),
   lesson(31, 'A2.2', ['faire causative', 'laisser + infinitive', 'advanced verb chains'], ['services', 'repairs', 'getting things done'], [11, 26, 29], 'Causative faire is useful but structurally complex and should not appear before pronoun/infinitive chains.'),
-  lesson(32, 'A2.2', ['mixed review', 'dialogue integration', 'exam readiness', 'targeted weak spots'], ['review', 'situations', 'exam prep'], [1, 31], 'Final lesson integrates all A1/A2 systems and feeds diagnostics, exams, arena and personal plans.'),
+  lesson(32, 'A2.2', ['mixed review', 'dialogue integration', 'exam readiness', 'targeted weak spots'], ['review', 'situations', 'exam prep'], [1, 31], 'Final lesson integrates all A1/A2 systems and feeds diagnostics, exams and arena.'),
 ];
 
 function lesson(lessonId, cefrBand, targetGrammarFocus, targetVocabularyFocus, prerequisiteLessonIds, reasonThisComesHere) {

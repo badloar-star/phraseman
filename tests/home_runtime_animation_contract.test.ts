@@ -7,7 +7,10 @@ describe('Home runtime animation ownership', () => {
   it('gates Home repeating motion by visible tab and foreground focus', () => {
     const source = read('app/(tabs)/home.tsx');
     expect(source).toContain("const isHomeOwner = runtimeOwnerId === 'home';");
-    expect(source).toContain('const homeRuntimeActive = useRuntimeActive(isHomeOwner);');
+    // Home is mounted underneath the full-screen onboarding overlay. Owning the
+    // tab is not enough: heavy work and repeating animation stay off until the
+    // overlay has actually finished.
+    expect(source).toContain('const homeRuntimeActive = useRuntimeActive(isHomeOwner && homeOnboardingDone);');
     expect(source).toContain('if (!homeRuntimeActive || !shouldPulse)');
     expect(source).toContain('if (!homeStatsReady || !homeRuntimeActive)');
   });

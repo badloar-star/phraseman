@@ -5,8 +5,9 @@
 //   • Премиум  → флаг gate_<feature>_premium = true  (замок на месте, как сейчас)
 //   • Фри      → флаг gate_<feature>_premium = false (замок снимается у ВСЕХ живьём)
 //
-// Изменение прилетает через remote_config/app.bools → onSnapshot за секунды, без
-// релиза/OTA. Дефолт каждого флага = true, поэтому без вмешательства админа
+// Изменение прилетает через remote_config/app.bools из кэша при старте/возврате
+// в приложение и затем foreground-polling не реже чем раз примерно в 5 минут,
+// без релиза/OTA. Дефолт каждого флага = true, поэтому без вмешательства админа
 // поведение приложения не меняется.
 //
 // Гейт-сайты в приложении больше НЕ проверяют `isPremium` напрямую для решения
@@ -27,7 +28,6 @@ export type FeatureGate =
   | 'smart_trainer'
   | 'trainer_modes'
   | 'diagnosis_training'
-  | 'personal_plan'
   | 'stats'
   | 'flashcards'
   | 'themes'
@@ -44,7 +44,6 @@ const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
   smart_trainer: 'gate_smart_trainer_premium',
   trainer_modes: 'gate_trainer_modes_premium',
   diagnosis_training: 'gate_diagnosis_training_premium',
-  personal_plan: 'gate_personal_plan_premium',
   stats: 'gate_stats_premium',
   flashcards: 'gate_flashcards_premium',
   themes: 'gate_themes_premium',

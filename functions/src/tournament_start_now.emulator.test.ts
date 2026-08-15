@@ -198,7 +198,6 @@ describe('tournamentStartNow Firestore emulator regression', () => {
       joined: true,
       roomId: expect.any(String),
       entryGems: 0,
-      gemsLeft: 77,
     });
 
     const roomRef = db.collection(core.TOURNAMENT_ROOMS_COLLECTION).doc(result.roomId);

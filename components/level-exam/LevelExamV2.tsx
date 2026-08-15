@@ -26,13 +26,12 @@ import {
 import {
   clearActiveLevelExamAttempt,
   loadActiveLevelExamAttempt,
-  levelExamAttemptRecoveryKey,
   persistActiveLevelExamAttempt,
   recordCompletedLevelExamAttemptOnce,
 } from '../../app/level_exam_attempts';
 import { scoreLevelExam, type LevelExamScoreResult } from '../../app/level_exam_scoring';
 import type { LevelExamBlueprint, LevelExamLevel, LevelExamTask } from '../../app/level_exam_types';
-import { levelExamKey } from '../../app/target_storage_keys';
+import { levelExamKey, storedProgressFlagIsTrue } from '../../app/target_storage_keys';
 import { getCanonicalUserId } from '../../app/user_id_policy';
 import { saveExamProgress } from '../../app/medal_utils';
 import { getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel } from '../../app/course_levels';
@@ -41,7 +40,8 @@ import { addShards, awardOneTime } from '../../app/shards_system';
 import { registerXP } from '../../app/xp_manager';
 import { safeRouterBack } from '../../app/navigation_back';
 import { useEnergy } from '../EnergyContext';
-import { addEnergy } from '../../app/energy_system';
+import { usePremium } from '../PremiumContext';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import NoEnergyModal from '../NoEnergyModal';
 import ScreenGradient from '../ScreenGradient';
 import TapScale from '../TapScale';
@@ -110,7 +110,10 @@ function taskPrompt(task: LevelExamTask, lang: Lang): string {
 export default function LevelExamV2({ level, lang, accessState, blockedText }: Props) {
   const router = useRouter();
   const { theme: t, f, ds } = useTheme();
-  const { isUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
+  const { isUnlimited, spendAmount, energy, bonusEnergy, energyReady } = useEnergy();
+  const { hasPremiumAccess } = usePremium();
+  const unlimitedEnergy = isUnlimited || hasPremiumAccess;
+  const examRuntimeActive = useRuntimeActive();
   const [phase, setPhase] = useState<Phase>('loading');
   const [ownerStableUid, setOwnerStableUid] = useState<string | null>(null);
   const [identityUnavailable, setIdentityUnavailable] = useState(false);
@@ -121,6 +124,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   const [rewardState, setRewardState] = useState<LevelExamRewardState>('none');
   const [bestScore, setBestScore] = useState<number | null>(null);
   const [starting, setStarting] = useState(false);
+  const beginQuizInFlightRef = useRef(false);
   const [noEnergy, setNoEnergy] = useState(false);
   const [exitConfirm, setExitConfirm] = useState(false);
   const [contentUnavailable, setContentUnavailable] = useState(false);
@@ -154,7 +158,12 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
 
     try {
       const previousPassed = await AsyncStorage.getItem(levelExamKey(level, 'passed', 'en'));
-      const previousPct = Number(await AsyncStorage.getItem(levelExamKey(level, 'pct', 'en')) ?? 0);
+      const previousPctRaw = Number(await AsyncStorage.getItem(levelExamKey(level, 'pct', 'en')) ?? 0);
+      // Повреждённое/устаревшее значение не должно превращать новый честный
+      // результат в строку `NaN` и визуально снова закрывать уровень.
+      const previousPct = Number.isFinite(previousPctRaw)
+        ? Math.max(0, Math.min(100, Math.round(previousPctRaw)))
+        : 0;
       const attemptNumber = await recordCompletedLevelExamAttemptOnce(
         ownerStableUid,
         level,
@@ -163,7 +172,9 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       );
       await AsyncStorage.multiSet([
         [levelExamKey(level, 'pct', 'en'), String(Math.max(previousPct, scored.pct))],
-        [levelExamKey(level, 'passed', 'en'), previousPassed === '1' || scored.passed ? '1' : '0'],
+        // Keep local 1/0 for older clients. Compatible readers also accept the
+        // canonical true/false strings restored from cloud progress events.
+        [levelExamKey(level, 'passed', 'en'), storedProgressFlagIsTrue(previousPassed) || scored.passed ? '1' : '0'],
       ]);
       if (scored.passed) {
         const nextLevel = getNextCourseLevel(level);
@@ -173,8 +184,10 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         }
         const shardKey = `level_exam_quiz_shard_en_${level}`;
         if (await AsyncStorage.getItem(shardKey) !== '1') {
-          const added = await addShards('lesson_quiz_passed').catch(() => 0);
-          if (added > 0) await AsyncStorage.setItem(shardKey, '1');
+          await addShards('lesson_quiz_passed', {
+            eventId: `level-exam:en:${level}:first-pass`,
+            localWrites: [[shardKey, '1']],
+          }).catch(() => 0);
         }
       }
       if (scored.pct >= 90) void awardOneTime('exam_excellent');
@@ -199,7 +212,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
           finishReason: reason,
         },
       });
-      const firstPass = previousPassed !== '1';
+      const firstPass = !storedProgressFlagIsTrue(previousPassed);
       setRewardState(scored.passed ? (firstPass ? 'pending' : 'already_claimed') : 'none');
       if (scored.passed && firstPass) {
         void progressEvent.then(() => setRewardState('earned')).catch(() => setRewardState('pending'));
@@ -237,12 +250,6 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       if (!cancelled) setBestScore(Number.isFinite(storedBest) ? storedBest : null);
       if (!owner) {
         return;
-      }
-      const recoveryKey = levelExamAttemptRecoveryKey(owner, level, 'en');
-      const recoveryRefundKey = `${recoveryKey}::refunded`;
-      if (await AsyncStorage.getItem(recoveryKey) && await AsyncStorage.getItem(recoveryRefundKey) !== '1') {
-        await addEnergy(ENERGY_COST).catch(() => {});
-        await AsyncStorage.setItem(recoveryRefundKey, '1').catch(() => {});
       }
       const stored = await loadActiveLevelExamAttempt(owner, level, 'en');
       if (cancelled || !stored) {
@@ -286,7 +293,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   }, [accessState, finishExam, lang, level]);
 
   useEffect(() => {
-    if (phase !== 'quiz' || !attempt || attempt.status !== 'active') return undefined;
+    if (!examRuntimeActive || phase !== 'quiz' || !attempt || attempt.status !== 'active') return undefined;
     const update = () => {
       const nextRemaining = remainingLevelExamMs(attempt, Date.now());
       setRemainingMs(nextRemaining);
@@ -295,14 +302,12 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     update();
     const timer = setInterval(update, 1_000);
     return () => clearInterval(timer);
-  }, [attempt, finishExam, phase]);
+  }, [attempt, examRuntimeActive, finishExam, phase]);
 
   const startExam = useCallback(async () => {
-    if (starting) return;
+    if (starting || (!hasPremiumAccess && !energyReady)) return;
     if (!ownerStableUid) return;
     setStarting(true);
-    let energySpent = false;
-    let attemptPersisted = false;
     try {
       const startedAtMs = Date.now();
       const startToken = `${startedAtMs.toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
@@ -319,16 +324,14 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         void trackFeatureError('level_exam', 'content_unavailable', error, { level, lang }, 'level_exam_v3');
         return;
       }
-      if (!isUnlimited && energy + bonusEnergy < ENERGY_COST) {
+      if (!unlimitedEnergy && energy + bonusEnergy < ENERGY_COST) {
         setNoEnergy(true);
         return;
       }
-      if (!isUnlimited && !await spendAmount(ENERGY_COST)) {
-        setNoEnergy(true);
-        return;
-      }
-      energySpent = !isUnlimited;
       if (nextBlueprint.scoredUnitIds.length !== 30) throw new Error('level_exam_v2_score_units_invalid');
+      // This is a memory-only prepared attempt used by the countdown. It is
+      // deliberately not persisted until the first question opens and the
+      // idempotent energy debit succeeds.
       const nextAttempt = createLevelExamAttempt({
         energySpent: true,
         ownerStableUid,
@@ -343,8 +346,6 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         startedAtMs,
         durationMs: nextBlueprint.durationMs,
       });
-      await persistActiveLevelExamAttempt(nextAttempt);
-      attemptPersisted = true;
       finishingRef.current = false;
       blueprintRef.current = nextBlueprint;
       attemptRef.current = nextAttempt;
@@ -356,12 +357,11 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       setPhase('countdown');
       void trackFeatureStart('level_exam', 'start', { level, total: 30, formatCount: 5 }, 'level_exam_v2');
     } catch (error) {
-      if (energySpent && !attemptPersisted) await addEnergy(ENERGY_COST).catch(() => {});
       void trackFeatureError('level_exam', 'start', error, { level }, 'level_exam_v2');
     } finally {
       setStarting(false);
     }
-  }, [bonusEnergy, energy, isUnlimited, lang, level, ownerStableUid, spendAmount, starting]);
+  }, [bonusEnergy, energy, energyReady, hasPremiumAccess, lang, level, ownerStableUid, starting, unlimitedEnergy]);
 
   const updateAnswer = useCallback((scoreUnitId: string, answerValue: PersistedLevelExamAnswer) => {
     const current = attemptRef.current;
@@ -391,14 +391,35 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     storeAttempt({ ...currentAttempt, currentTaskIndex: currentAttempt.currentTaskIndex + 1 });
   }, [finishExam, storeAttempt]);
 
-  const beginQuiz = useCallback(() => {
+  const beginQuiz = useCallback(async () => {
+    if (beginQuizInFlightRef.current) return;
     const current = attemptRef.current;
     if (!current || current.status !== 'active') return;
-    const started = beginLevelExamQuiz(current, Date.now());
-    storeAttempt(started);
-    setRemainingMs(started.deadlineAtMs - started.startedAtMs);
-    setPhase('quiz');
-  }, [storeAttempt]);
+    beginQuizInFlightRef.current = true;
+    try {
+      if (!unlimitedEnergy) {
+        if (energy + bonusEnergy < ENERGY_COST || !await spendAmount(ENERGY_COST)) {
+          setNoEnergy(true);
+          setPhase('intro');
+          return;
+        }
+      }
+
+      // No fallible content/network work remains after the debit. Commit the
+      // visible first question synchronously, then persist the same paid
+      // attempt for crash-safe resume. Resume never debits or refunds again.
+      const started = beginLevelExamQuiz(current, Date.now());
+      attemptRef.current = started;
+      setAttempt(started);
+      setRemainingMs(started.deadlineAtMs - started.startedAtMs);
+      setPhase('quiz');
+      await persistActiveLevelExamAttempt(started).catch((error) => {
+        void trackFeatureError('level_exam', 'attempt_persist', error, { level }, 'level_exam_v2');
+      });
+    } finally {
+      beginQuizInFlightRef.current = false;
+    }
+  }, [bonusEnergy, energy, level, spendAmount, unlimitedEnergy]);
 
   const pauseAndExit = useCallback(() => {
     const current = attemptRef.current;
@@ -449,9 +470,10 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
           lastLesson={getLastLessonForLevel(level)}
           durationMinutes={level === 'A1' ? 12 : level === 'A2' ? 13 : level === 'B1' ? 14 : 15}
           energyCost={ENERGY_COST}
-          availableEnergy={isUnlimited ? ENERGY_COST : energy + bonusEnergy}
+          availableEnergy={energy + bonusEnergy}
+          unlimitedEnergy={unlimitedEnergy}
           bestScore={bestScore === null ? null : Math.round(bestScore * 0.3)}
-          starting={starting || accessState === 'checking' || phase === 'loading'}
+          starting={starting || (!hasPremiumAccess && !energyReady) || accessState === 'checking' || phase === 'loading'}
           onBack={() => safeRouterBack(router, '/lessons_list' as never)}
           onStart={startExam}
         />

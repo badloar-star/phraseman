@@ -70,6 +70,7 @@ export type ConsumeFn = (input: {
   readonly fromTelegramUserId: string;
   readonly fromTelegramChatId: string;
   readonly nowMs: number;
+  readonly requestedAction: ApprovalAction;
 }) => Promise<
   // зачем поля обязательные: журнал подтверждений берёт их отсюда. С
   // необязательными он молча писал бы пустоту при рефакторинге хранилища.
@@ -116,6 +117,8 @@ export interface HandleApprovalCallbackResult {
   /** Только при УСПЕШНОМ подтверждении — есть что дорисовать в сообщении. */
   readonly messageEdit?: ApprovalMessageEdit;
   readonly callbackQueryId?: string;
+  /** Обычный текст владельца; транспорт решает, относится ли он к edit-сессии. */
+  readonly ownerText?: string;
 }
 
 /** Одинаковый ответ всем посторонним: не подсказываем, что именно не так. */
@@ -146,13 +149,15 @@ export async function handleApprovalCallback(
     const message = (body.message ?? {}) as Record<string, unknown>;
     const msgFrom = (message.from ?? {}) as Record<string, unknown>;
     const msgChat = (message.chat ?? {}) as Record<string, unknown>;
-    const command = parseCommand(message.text);
+    const rawText = typeof message.text === 'string' ? message.text.trim() : '';
+    const command = parseCommand(rawText);
     // зачем та же строгость, что для кнопок: /stop меняет состояние системы,
     // это не безобидное чтение. Постороннему — молчание, а не подсказка.
     const isOwner = String(msgFrom.id ?? '') === input.config.ownerTelegramUserId
       && String(msgChat.id ?? '') === input.config.ownerTelegramChatId;
-    if (!command || !isOwner) return { status: 200 };
-    return { status: 200, command };
+    if (!isOwner) return { status: 200 };
+    if (command) return { status: 200, command };
+    return rawText ? { status: 200, ownerText: rawText } : { status: 200 };
   }
 
   const callbackQueryId = typeof callback.id === 'string' ? callback.id : undefined;
@@ -178,13 +183,17 @@ export async function handleApprovalCallback(
     fromTelegramUserId: fromUserId,
     fromTelegramChatId: fromChatId,
     nowMs: input.nowMs,
+    requestedAction: parsed.action,
   });
 
   if (!outcome.ok) {
     return { status: 200, callbackQueryId, answerText: REASON_ANSWER[outcome.reason] ?? 'Не получилось.' };
   }
 
-  const answerText = parsed.action === 'approve' ? 'Принято, подтверждено.' : 'Принято, отклонено.';
+  const isSupport = outcome.doc.department.startsWith('support_email:');
+  const answerText = isSupport
+    ? (parsed.action === 'approve' ? 'Ответ поставлен в очередь отправки.' : 'Пришлите ваши правки следующим сообщением.')
+    : (parsed.action === 'approve' ? 'Принято, подтверждено.' : 'Принято, отклонено.');
   const messageId = typeof message.message_id === 'number' ? message.message_id : null;
   // зачем messageId может отсутствовать: старые/нестандартные апдейты Telegram
   // технически могут не нести message_id — тогда просто нечего редактировать,

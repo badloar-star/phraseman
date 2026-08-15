@@ -39,14 +39,12 @@ type Report = {
     remotePackSurfaces: number;
     requiredRemotePackSurfaces: number;
     currentAppDomains: number;
-    challengeDailyArenaCoveredByNavigationGuard: boolean;
+    challengeArenaCoveredByNavigationGuard: boolean;
     challengeSurfaceGuardsReady: boolean;
-    dailySurfaceGuardsReady: boolean;
     arenaSurfaceGuardsReady: boolean;
     challengeSurfaceProbes: number;
-    dailySurfaceProbes: number;
     arenaSurfaceProbes: number;
-    challengeDailyArenaRequiresExtraPackSurface: false;
+    challengeArenaRequiresExtraPackSurface: false;
     missingRemotePackSurfaces: string[];
     extraRemotePackSurfaces: string[];
     activationApproved: false;
@@ -88,7 +86,6 @@ const APP_DOMAIN_PARITY_ROLES: Record<string, SurfaceDomain['parityRole']> = {
   target_storage_and_cloud_sync: 'target_state_or_navigation',
   ai_dialog_scenarios: 'app_domain_content',
   collectible_reward_assets: 'ui_or_reward_global',
-  personal_plan_content: 'app_domain_content',
 };
 
 function argValue(name: string): string | null {
@@ -186,25 +183,22 @@ export function buildFrenchAppSurfaceParity(input: {
   const missingRemotePackSurfaces = REQUIRED_REMOTE_PACK_SURFACES.filter((surface) => !remotePackSurfaces.includes(surface));
   const extraRemotePackSurfaces = remotePackSurfaces.filter((surface) => !REQUIRED_REMOTE_PACK_SURFACES.includes(surface));
   const unknownDomains = Object.keys(domainCounts).filter((domain) => !APP_DOMAIN_PARITY_ROLES[domain]);
-  const challengeDailyArenaCoveredByNavigationGuard =
+  const challengeArenaCoveredByNavigationGuard =
     s(devNavigationGuard, 'status') === 'PASS' &&
     b(devNavigationSummary, 'visibleSurfaceParityReady') &&
-    b(devNavigationSummary, 'dailyTaskNavigationGuardsReady') &&
     b(devNavigationSummary, 'challengeSurfaceGuardsReady') &&
-    b(devNavigationSummary, 'dailySurfaceGuardsReady') &&
     b(devNavigationSummary, 'arenaSurfaceGuardsReady') &&
     b(devNavigationSummary, 'trainerSessionSelfGatesReady') &&
     n(devNavigationSummary, 'probesPassed') === n(devNavigationSummary, 'probes') &&
-    n(devNavigationSummary, 'probes') >= 70;
+    n(devNavigationSummary, 'probes') >= 50;
 
   if (s(currentSurfaceInventory, 'status') !== 'PASS') addFinding(findings, 'blocker', 'current_surface_inventory_not_pass', 'Current app surface inventory must be PASS.', rel(input.repoRoot, currentSurfaceInventoryPath));
   if (n(currentSurfaceSummary, 'unclassifiedDirtyAppComponentTestFiles') !== 0) addFinding(findings, 'blocker', 'unclassified_dirty_surfaces', 'French activation cannot proceed with unclassified dirty app/component/test surfaces.', rel(input.repoRoot, currentSurfaceInventoryPath));
   if (missingRemotePackSurfaces.length > 0) addFinding(findings, 'blocker', 'missing_remote_pack_surfaces', `Missing French remote pack surfaces: ${missingRemotePackSurfaces.join(', ')}.`, rel(input.repoRoot, registrationPath));
   if (extraRemotePackSurfaces.length > 0) addFinding(findings, 'blocker', 'extra_remote_pack_surfaces', `Unexpected French remote pack surfaces: ${extraRemotePackSurfaces.join(', ')}.`, rel(input.repoRoot, registrationPath));
   if (unknownDomains.length > 0) addFinding(findings, 'blocker', 'unknown_app_surface_domains', `Unknown current app surface domains: ${unknownDomains.join(', ')}.`, rel(input.repoRoot, currentSurfaceInventoryPath));
-  if (!challengeDailyArenaCoveredByNavigationGuard) addFinding(findings, 'blocker', 'challenge_daily_arena_navigation_not_guarded', 'Challenges/daily/arena-like French dev surfaces must be visible but fail-closed/target-gated by navigation guard.', rel(input.repoRoot, devNavigationGuardPath));
+  if (!challengeArenaCoveredByNavigationGuard) addFinding(findings, 'blocker', 'challenge_arena_navigation_not_guarded', 'Challenge and arena-like French dev surfaces must be visible but fail-closed/target-gated by navigation guard.', rel(input.repoRoot, devNavigationGuardPath));
   if (!b(devNavigationSummary, 'challengeSurfaceGuardsReady')) addFinding(findings, 'blocker', 'challenge_surface_guards_not_ready', 'French challenge surfaces must be explicitly visible/source-gated in the navigation guard.', rel(input.repoRoot, devNavigationGuardPath));
-  if (!b(devNavigationSummary, 'dailySurfaceGuardsReady')) addFinding(findings, 'blocker', 'daily_surface_guards_not_ready', 'French daily surfaces must be explicitly visible/source-gated in the navigation guard.', rel(input.repoRoot, devNavigationGuardPath));
   if (!b(devNavigationSummary, 'arenaSurfaceGuardsReady')) addFinding(findings, 'blocker', 'arena_surface_guards_not_ready', 'French arena surfaces must be explicitly self-gated in the navigation guard.', rel(input.repoRoot, devNavigationGuardPath));
   if (s(dirtySurfaceGuard, 'status') !== 'PASS' || !b(dirtySurfaceSummary, 'readyForP8ReadinessExtension')) {
     addFinding(findings, 'blocker', 'dirty_surface_state_guard_not_ready', 'Dirty stateful surfaces must be classified and guarded before French activation.', rel(input.repoRoot, dirtySurfaceGuardPath));
@@ -251,14 +245,12 @@ export function buildFrenchAppSurfaceParity(input: {
       remotePackSurfaces: remotePackSurfaces.length,
       requiredRemotePackSurfaces: REQUIRED_REMOTE_PACK_SURFACES.length,
       currentAppDomains: Object.keys(domainCounts).length,
-      challengeDailyArenaCoveredByNavigationGuard,
+      challengeArenaCoveredByNavigationGuard,
       challengeSurfaceGuardsReady: b(devNavigationSummary, 'challengeSurfaceGuardsReady'),
-      dailySurfaceGuardsReady: b(devNavigationSummary, 'dailySurfaceGuardsReady'),
       arenaSurfaceGuardsReady: b(devNavigationSummary, 'arenaSurfaceGuardsReady'),
       challengeSurfaceProbes: n(devNavigationSummary, 'challengeSurfaceProbes'),
-      dailySurfaceProbes: n(devNavigationSummary, 'dailySurfaceProbes'),
       arenaSurfaceProbes: n(devNavigationSummary, 'arenaSurfaceProbes'),
-      challengeDailyArenaRequiresExtraPackSurface: false,
+      challengeArenaRequiresExtraPackSurface: false,
       missingRemotePackSurfaces,
       extraRemotePackSurfaces,
       activationApproved: false,
@@ -297,10 +289,10 @@ function renderMarkdown(report: Report): string {
     `- Remote pack surfaces: ${report.summary.remotePackSurfaces}/${report.summary.requiredRemotePackSurfaces}`,
     `- Current app domains: ${report.summary.currentAppDomains}`,
     `- Dev navigation probes: ${report.summary.devNavigationProbesPassed}/${report.summary.devNavigationProbes}`,
-    `- Challenges/daily/arena covered by navigation guard: ${report.summary.challengeDailyArenaCoveredByNavigationGuard ? 'yes' : 'no'}`,
-    `- Challenge/daily/arena explicit guards: ${report.summary.challengeSurfaceGuardsReady ? 'yes' : 'no'}/${report.summary.dailySurfaceGuardsReady ? 'yes' : 'no'}/${report.summary.arenaSurfaceGuardsReady ? 'yes' : 'no'}`,
-    `- Challenge/daily/arena explicit probes: ${report.summary.challengeSurfaceProbes}/${report.summary.dailySurfaceProbes}/${report.summary.arenaSurfaceProbes}`,
-    `- Challenges/daily/arena require extra pack surface: ${report.summary.challengeDailyArenaRequiresExtraPackSurface ? 'yes' : 'no'}`,
+    `- Challenges/arena covered by navigation guard: ${report.summary.challengeArenaCoveredByNavigationGuard ? 'yes' : 'no'}`,
+    `- Challenge/arena explicit guards: ${report.summary.challengeSurfaceGuardsReady ? 'yes' : 'no'}/${report.summary.arenaSurfaceGuardsReady ? 'yes' : 'no'}`,
+    `- Challenge/arena explicit probes: ${report.summary.challengeSurfaceProbes}/${report.summary.arenaSurfaceProbes}`,
+    `- Challenges/arena require extra pack surface: ${report.summary.challengeArenaRequiresExtraPackSurface ? 'yes' : 'no'}`,
     '',
     '## Domains',
     '',

@@ -9,7 +9,6 @@ const ICON_SOURCES = [
   'app/home_last_lesson_assets.ts',
   'app/coin_icons.ts',
   'app/flashcards/FlashcardsCategoryHub.tsx',
-  'app/personal_plan_task_visuals.ts',
   'components/EnergyIcon.tsx',
   'constants/generatedThemeIconAssets.ts',
   'constants/socialIconAssets.ts',

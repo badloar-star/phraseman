@@ -1400,8 +1400,6 @@ export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
     .then(({ updateServerPushPrefs }) => updateServerPushPrefs({
       streak: normalized.master && normalized.categories.streak,
       offers: normalized.master && normalized.categories.offers,
-      // зачем: под «Лигой» живёт и серверный пуш «турнир начинается» —
-      // без зеркала выключенная категория не остановила бы его.
       league: normalized.master && normalized.categories.league,
     }))
     .catch(() => {});
@@ -2627,12 +2625,8 @@ export const setupNotificationTapHandler = (
           });
           break;
         case 'tournament_starting':
-          // зачем: ведём на вкладку турниров, а НЕ прямо в лобби по roomId —
-          // вход требует билета и проверок, которые живут на вкладке. Прыжок в
-          // лобби мимо них упёрся бы в ошибку вместо игры.
-          scheduleNav(() => {
-            router.push('/(tabs)/tournaments' as any);
-          });
+          // Owner lock: an already delivered notification is inert. Do not
+          // navigate, show a fallback screen, or resurrect a retired route.
           break;
         default:
           // Unknown notifications from older builds always land on a safe screen.

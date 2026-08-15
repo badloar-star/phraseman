@@ -4,7 +4,7 @@ import type { LessonMapInput } from './lesson_map_model';
 /** Converts only persisted V2 session state into the presentation model. */
 export function lesson1MapInputFromProgress(
   state: Lesson1LocalProgressState,
-): Omit<LessonMapInput, 'personalPlanTasks' | 'tournamentTasks'> {
+): Omit<LessonMapInput, 'tournamentTasks'> {
   const completedSessionIds = state.requiredSessionIds.filter(
     sessionId => state.sessions[sessionId] === 'completed',
   );

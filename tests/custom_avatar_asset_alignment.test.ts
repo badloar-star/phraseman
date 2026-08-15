@@ -2,7 +2,13 @@ import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 
-const AVATAR_ASSET_DIR = path.join(__dirname, '..', 'assets', 'images', 'avatars');
+const AVATAR_ASSET_DIR = path.join(
+  __dirname,
+  '..',
+  'admin',
+  'avatars',
+);
+const MOBILE_AVATAR_ASSET_DIR = path.join(__dirname, '..', 'assets', 'images', 'avatars');
 const CUSTOM_AVATAR_ASSET_RE = /^custom-idea-\d{2}-(black|white)\.webp$/;
 
 type AlphaBounds = {
@@ -61,6 +67,24 @@ async function readAlphaBounds(filePath: string): Promise<AlphaBounds> {
 }
 
 describe('custom avatar assets', () => {
+  it('ships custom avatar artwork from hosting instead of the mobile bundle', () => {
+    const hostedFiles = fs
+      .readdirSync(AVATAR_ASSET_DIR)
+      .filter((file) => CUSTOM_AVATAR_ASSET_RE.test(file));
+    const bundledFiles = fs
+      .readdirSync(MOBILE_AVATAR_ASSET_DIR)
+      .filter((file) => CUSTOM_AVATAR_ASSET_RE.test(file));
+    const catalogSource = fs.readFileSync(
+      path.join(__dirname, '..', 'constants', 'custom_avatars.ts'),
+      'utf8',
+    );
+
+    expect(hostedFiles).toHaveLength(124);
+    expect(bundledFiles).toEqual([]);
+    expect(catalogSource).toContain('CUSTOM_AVATAR_ASSET_BASE_URL');
+    expect(catalogSource).not.toContain("require('../assets/images/avatars/custom-idea-");
+  });
+
   it('renders badge images as absolute centered layers', () => {
     const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'CustomAvatarBadge.tsx'), 'utf8');
 

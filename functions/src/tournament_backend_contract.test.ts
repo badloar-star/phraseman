@@ -124,15 +124,20 @@ describe('tournament backend hardening source contracts', () => {
     expect(admin).not.toContain('const testingEnabled =');
   });
 
-  it('adds and returns only the amount actually charged for a scheduled entry', () => {
+  it('adds only the confirmed contribution and never returns a server wallet projection', () => {
     const joinStart = source.indexOf('export async function tournamentJoinTransaction');
     const joinEnd = source.indexOf('export async function tournamentLeaveTransaction', joinStart);
     const joinBlock = source.slice(joinStart, joinEnd);
 
     expect(joinBlock).toContain("lobbyBasePot + (admissionMode === 'scheduled' ? contribution : 0)");
-    expect(joinBlock).toContain('gemsLeft: gemsBefore - contribution');
+    expect(joinBlock).toContain("source: 'tournament_entry'");
+    expect(joinBlock).toContain('delta: -entryGems');
+    expect(joinBlock).toContain('eventId: joinAttemptId');
+    expect(joinBlock).toContain('const joinAttemptId = `${room.roomId}:v${room.version + 1}`');
     expect(joinBlock).not.toContain("lobbyBasePot + (admissionMode === 'scheduled' ? entryGems : 0)");
-    expect(joinBlock).not.toContain('gemsLeft: gemsBefore - entryGems');
+    expect(joinBlock).not.toContain('gemsLeft:');
+    expect(joinBlock).not.toContain('user.shards');
+    expect(joinBlock).not.toContain('not_enough_gems');
   });
 
   it('exports a server-authoritative first-answer callable backed by private receipts', () => {
@@ -149,6 +154,8 @@ describe('tournament backend hardening source contracts', () => {
     expect(source).toContain('export const tournamentLeave = onCall');
     expect(source).toContain("doc(`leave_${roomId}`)");
     expect(source).toContain("kind: 'tournament_lobby_leave_v1'");
+    expect(source).toContain("source: 'tournament_lobby_leave', eventId: joinAttemptId");
+    expect(source).toContain('joinAttemptId,');
     expect(source).toContain("throw new HttpsError('failed-precondition', 'room_not_leaveable')");
     expect(index).toContain('tournamentLeave,');
   });

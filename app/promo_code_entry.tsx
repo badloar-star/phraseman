@@ -235,8 +235,8 @@ export default function PromoCodeEntryScreen() {
     setCelebrationVisible(false);
     setCelebrationMarker(null);
     if (marker) void consumeVipCelebration(marker);
-    safeRouterBack(router, '/(tabs)/settings' as any);
-  }, [celebrationMarker, router]);
+    safeRouterBack(router, closeFallback as any);
+  }, [celebrationMarker, closeFallback, router]);
 
   return (
     <ScreenGradient artBackdrop="friends">

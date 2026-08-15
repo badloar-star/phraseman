@@ -3,8 +3,6 @@ const mockCallableInvoker = jest.fn(async (_payload: unknown) => ({
     ok: true,
     giftId: 'chain_shield_1',
     costShards: 5,
-    senderBalanceAfter: 95,
-    shardsUpdatedAtMs: 3_000,
     dailyRemaining: 2,
   },
 }));
@@ -19,6 +17,7 @@ const mockEnsureStableAuthLinkForStableIdDetailed = jest.fn(async (stableUid: st
 }));
 const mockReplaceShardsBalanceLocal = jest.fn(async () => undefined);
 const mockReplaceShardsBalanceForAccountGeneration = jest.fn(async () => 'applied');
+const mockCommitConfirmedExternalShardEvent = jest.fn(async () => ({ status: 'applied', balanceAfter: 95 }));
 const mockBumpLifetimeShardsSpent = jest.fn(async () => undefined);
 const mockCheckAchievements = jest.fn(async () => []);
 const mockInitFirebaseAppCheckIfAvailable = jest.fn(async () => undefined);
@@ -60,6 +59,7 @@ jest.mock('../app/app_check_init', () => ({
 jest.mock('../app/shards_system', () => ({
   replaceShardsBalanceLocal: mockReplaceShardsBalanceLocal,
   replaceShardsBalanceForAccountGeneration: mockReplaceShardsBalanceForAccountGeneration,
+  commitConfirmedExternalShardEvent: mockCommitConfirmedExternalShardEvent,
 }));
 
 jest.mock('../app/lifetime_profile_stats', () => ({
@@ -78,8 +78,6 @@ beforeEach(() => {
       ok: true,
       giftId: 'chain_shield_1',
       costShards: 5,
-      senderBalanceAfter: 95,
-      shardsUpdatedAtMs: 3_000,
       dailyRemaining: 2,
     },
   }));
@@ -197,17 +195,11 @@ test('sendFriendGiftWithShards prepares auth before calling the gift function', 
   expect(mockEnsureAnonUser.mock.invocationCallOrder[0]).toBeLessThan(
     mockCallableInvoker.mock.invocationCallOrder[0],
   );
-  expect(mockReplaceShardsBalanceForAccountGeneration).toHaveBeenCalledWith(
-    95,
-    expect.objectContaining({ stableId: 'stable-from-auth', phase: 'active' }),
-    'stable-from-auth',
-    {
-      updatedAtMs: 3_000,
-      op: 'spend',
-      reason: 'friend_gift',
-    },
-  );
+  expect(mockCommitConfirmedExternalShardEvent).toHaveBeenCalledWith(expect.objectContaining({
+    source: 'friend_gift', delta: -5, reason: 'friend_gift',
+  }));
   expect(mockReplaceShardsBalanceLocal).not.toHaveBeenCalled();
+  expect(mockReplaceShardsBalanceForAccountGeneration).not.toHaveBeenCalled();
 });
 
 test('sendFriendGiftWithShards does not call the gift function when auth link is unavailable', async () => {
@@ -287,8 +279,6 @@ test('send retry reuses one idempotency key after an ambiguous timeout until a d
         ok: true,
         giftId: 'chain_shield_1',
         costShards: 5,
-        senderBalanceAfter: 95,
-        shardsUpdatedAtMs: 3_000,
         dailyRemaining: 2,
       },
     })
@@ -297,16 +287,18 @@ test('send retry reuses one idempotency key after an ambiguous timeout until a d
         ok: true,
         giftId: 'chain_shield_1',
         costShards: 5,
-        senderBalanceAfter: 90,
-        shardsUpdatedAtMs: 4_000,
         dailyRemaining: 1,
       },
     });
 
   const request = { friendStableId: 'friend-timeout', giftId: 'chain_shield_1' as const };
   await expect(sendFriendGiftWithShards(request)).rejects.toMatchObject({ code: 'functions/deadline-exceeded' });
-  await expect(sendFriendGiftWithShards(request)).resolves.toMatchObject({ senderBalanceAfter: 95 });
-  await expect(sendFriendGiftWithShards(request)).resolves.toMatchObject({ senderBalanceAfter: 90 });
+  const replay = await sendFriendGiftWithShards(request);
+  const fresh = await sendFriendGiftWithShards(request);
+  expect(replay).toMatchObject({ costShards: 5, dailyRemaining: 2 });
+  expect(fresh).toMatchObject({ costShards: 5, dailyRemaining: 1 });
+  expect(replay).not.toHaveProperty('senderBalanceAfter');
+  expect(fresh).not.toHaveProperty('senderBalanceAfter');
 
   const keys = mockCallableInvoker.mock.calls.map((call) => (
     call[0] as { idempotencyKey: string }
@@ -337,8 +329,6 @@ test('pre-call account switch cannot discard an already ambiguous account key', 
     ok: true,
     giftId: 'chain_shield_1',
     costShards: 5,
-    senderBalanceAfter: 95,
-    shardsUpdatedAtMs: 3_000,
     dailyRemaining: 2,
     idempotentReplay: true,
   } } as any);
@@ -356,8 +346,6 @@ test('unmapped callable failure retains its key because commit status is ambiguo
       ok: true,
       giftId: 'chain_shield_1',
       costShards: 5,
-      senderBalanceAfter: 95,
-      shardsUpdatedAtMs: 3_000,
       dailyRemaining: 2,
       idempotentReplay: true,
     } } as any);
@@ -389,8 +377,6 @@ test('concurrent identical sends share storage, callable, result, and idempotenc
         ok: true,
         giftId: 'chain_shield_1',
         costShards: 5,
-        senderBalanceAfter: 95,
-        shardsUpdatedAtMs: 3_000,
         dailyRemaining: 2,
         idempotencyKey: payload.idempotencyKey,
       },
@@ -426,8 +412,7 @@ test('ambiguous send retry reuses its persisted account-scoped key after module 
   jest.resetModules();
   require('../app/account_generation').beginAccountGeneration('stable-from-auth');
   mockCallableInvoker.mockResolvedValueOnce({ data: {
-    ok: true, giftId: 'chain_shield_1', costShards: 5, senderBalanceAfter: 95,
-    shardsUpdatedAtMs: 3_000, dailyRemaining: 2,
+    ok: true, giftId: 'chain_shield_1', costShards: 5, dailyRemaining: 2,
   } });
   gifts = require('../app/friend_gifts');
   await gifts.sendFriendGiftWithShards(request);
@@ -441,9 +426,9 @@ test('post-response local hydration failure stays ancillary to the authoritative
   const { sendFriendGiftWithShards } = require('../app/friend_gifts');
   const request = { friendStableId: 'friend-post-commit', giftId: 'chain_shield_1' as const };
 
-  await expect(sendFriendGiftWithShards(request)).resolves.toMatchObject({
-    senderBalanceAfter: 95,
-  });
+  const result = await sendFriendGiftWithShards(request);
+  expect(result).toMatchObject({ ok: true, costShards: 5 });
+  expect(result).not.toHaveProperty('senderBalanceAfter');
   expect(mockCallableInvoker).toHaveBeenCalledTimes(1);
 });
 
@@ -452,8 +437,6 @@ test('account switch after a committed send resolves the server result without m
     ok: true;
     giftId: 'chain_shield_1';
     costShards: number;
-    senderBalanceAfter: number;
-    shardsUpdatedAtMs: number;
     dailyRemaining: number;
   } }) => void;
   mockCallableInvoker.mockReturnValueOnce(new Promise((resolve) => { releaseCallable = resolve; }));
@@ -470,12 +453,12 @@ test('account switch after a committed send resolves the server result without m
     ok: true,
     giftId: 'chain_shield_1',
     costShards: 5,
-    senderBalanceAfter: 95,
-    shardsUpdatedAtMs: 3_000,
     dailyRemaining: 2,
   } });
 
-  await expect(pending).resolves.toMatchObject({ ok: true, senderBalanceAfter: 95 });
+  const result = await pending;
+  expect(result).toMatchObject({ ok: true, costShards: 5 });
+  expect(result).not.toHaveProperty('senderBalanceAfter');
   expect(mockCallableInvoker).toHaveBeenCalledTimes(1);
   expect((mockCallableInvoker.mock.calls[0][0] as { idempotencyKey: string }).idempotencyKey).toBe(sentKey);
   expect(mockReplaceShardsBalanceForAccountGeneration).not.toHaveBeenCalled();
@@ -501,15 +484,15 @@ test('account A retry cap does not block an independent send from account B', as
     ok: true,
     giftId: 'chain_shield_1',
     costShards: 5,
-    senderBalanceAfter: 50,
-    shardsUpdatedAtMs: 4_000,
     dailyRemaining: 2,
   } });
 
-  await expect(sendFriendGiftWithShards({
+  const result = await sendFriendGiftWithShards({
     friendStableId: 'friend-b',
     giftId: 'chain_shield_1',
-  })).resolves.toMatchObject({ ok: true, senderBalanceAfter: 50 });
+  });
+  expect(result).toMatchObject({ ok: true, costShards: 5 });
+  expect(result).not.toHaveProperty('senderBalanceAfter');
   expect(mockCallableInvoker).toHaveBeenCalledTimes(33);
 });
 

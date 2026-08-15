@@ -1,6 +1,5 @@
 import { DeviceEventEmitter } from 'react-native';
 import type { PlannedTriLangCopy } from '../constants/i18n';
-import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import type { SoundEventId } from '../modules/audio/sound_events';
 
@@ -41,6 +40,8 @@ export type AppEventMap = {
   app_messages_local_changed: undefined;
   /** Remote Config обновился (admin → Firestore) — перечитать зависящие от флагов экраны/A-B. */
   remote_config_changed: undefined;
+  /** Серверный каталог продажи косметики обновлён; экраны перечитывают доступность. */
+  cosmetic_asset_catalog_changed: undefined;
   /** «Сундук недели» (mystery_monday) забран — плашка TodaysBoonStrip должна сразу сменить текст на «уже открыт». */
   mystery_chest_claimed: undefined;
   /**
@@ -79,15 +80,6 @@ export type AppEventMap = {
   pack_trial_gift_set: undefined;
   /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
   pack_trial_gift_consumed: undefined;
-  daily_task_completed: { taskId: string; studyTarget?: RuntimeStudyTarget };
-  personal_plan_updated: { planId?: string; taskId?: string; snapshot?: PersonalPlanHomeSnapshot } | undefined;
-  personal_plan_onboarding_nickname_ready: undefined;
-  /** Тост или экран забрал награду — обновить список на daily_tasks / главной. */
-  daily_task_reward_claimed: { taskId: string; studyTarget?: RuntimeStudyTarget };
-  /** Пользователь сменил дневное задание за осколки — UI обязан перечитать список и прогресс. */
-  daily_task_rerolled: { oldTaskId: string; newTaskId: string };
-  /** Пользователь сменил весь сегодняшний набор дневных заданий из утреннего модала. */
-  daily_tasks_set_rerolled: { oldTaskIds: string[]; newTaskIds: string[]; studyTarget?: RuntimeStudyTarget };
   energy_purchased_shards: undefined;
   /** Цепочка только что обнулена, доступен оффер восстановления (24ч). home.tsx показывает модалку. */
   streak_revive_offer: { lostStreak: number; missedDays?: number };
@@ -120,6 +112,13 @@ export type AppEventMap = {
    * См. energyOnboardingGate + home.tsx
    */
   energy_onboarding_may_show: undefined;
+  /**
+   * CleanOnboarding уже сохранил onboarding_done и корневой оверлей готов закрыться.
+   * Скрытые под оверлеем табы используют событие, чтобы только теперь включить
+   * тяжёлые загрузки, подписки и анимации.
+   */
+  onboarding_completed: undefined;
+  onboarding_paywall_completed: undefined;
   /** Первый пользовательский экран уже смонтирован: можно скрывать нативный splash без пустого промежутка. */
   app_first_content_ready: undefined;
   /**
@@ -130,11 +129,15 @@ export type AppEventMap = {
   /** Диалог завершён (или прогресс сброшен) — список диалогов обновляет состояния «Пройдено» и hero «Продолжить». */
   dialogs_progress_changed: undefined;
   /**
-   * Юзер зашёл в урок (любым путём: меню, задания дня, личный план, повтор) — карточка
+   * Юзер зашёл в урок (любым путём: меню или повтор) — карточка
    * «Продолжить урок X» на Главной обязана смениться СРАЗУ, не дожидаясь возврата на таб
    * или полного loadData(). lesson1.tsx эмитит сразу при входе, home.tsx патчит lastLesson точечно.
    */
   last_opened_lesson_changed: { lessonId: number; progress: number; score: string; studyTarget?: RuntimeStudyTarget };
+  /** Cards 2.1 §1.3: набор сообщества добавлен себе (бесплатно, без списаний) — обновить каталог/коллекцию. */
+  community_pack_added: { packId: string };
+  /** Cards 2.1 §2.2: лайк набора поставлен/снят — плитки и экран набора обновляют счётчик. */
+  community_pack_like_changed: { packId: string; liked: boolean };
 };
 
 /** RU + UK + ES для `action_toast` без дублирования полей. */

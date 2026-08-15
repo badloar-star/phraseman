@@ -4,7 +4,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { replaceShardsBalanceForAccountGeneration } from './shards_system';
+import { commitConfirmedExternalShardEvent } from './shards_system';
 import { enqueueAuthoritativeLevelSpinLevels } from './level_spin_level_up_queue';
 import { persistAuthoritativeLevelSpinBalance } from './level_reward_spins_client';
 import {
@@ -51,10 +51,9 @@ export type FriendQuestClaimResponse = {
   questId: string;
   rewardApplied: boolean;
   reached?: boolean;
-  callerShards?: number;
-  shardsUpdatedAtMs?: number;
   callerXpBeforeReward?: number;
   rewardXpApplied?: number;
+  rewardShardsApplied?: number;
   callerXp?: number;
   levelSpinMintedCredits?: Array<{
     id: string;
@@ -162,18 +161,19 @@ export async function claimFriendQuestReward(questId: string): Promise<FriendQue
     }, FriendQuestClaimResponse>('friendClaimQuestReward');
     const res = await fn({ stableId, questId, levelSpinProtocol: 'v1' });
     if (!isCurrentAccountGeneration(accountGeneration, stableId)) return res.data;
-    if (Number.isFinite(res.data.callerShards)) {
-      const shardOutcome = await replaceShardsBalanceForAccountGeneration(
-        res.data.callerShards as number,
-        accountGeneration,
-        stableId,
-        {
-          updatedAtMs: res.data.shardsUpdatedAtMs,
-          op: 'earn',
-          reason: 'friend_quest_reward',
+    if (Number(res.data.rewardShardsApplied) > 0) {
+      const credit = await commitConfirmedExternalShardEvent({
+        source: 'friend_quest',
+        eventId: questId,
+        delta: Number(res.data.rewardShardsApplied),
+        reason: 'friend_quest_reward',
+        grant: {
+          kind: 'social_quest_reward',
+          subjectId: questId,
+          payload: { questId },
         },
-      );
-      if (shardOutcome === 'stale-generation') return res.data;
+      });
+      if (credit.status !== 'applied' && credit.status !== 'already-applied') return res.data;
     }
     await withAccountTransitionLock(async (): Promise<void> => {
       if (!isCurrentAccountGeneration(accountGeneration, stableId)) return;

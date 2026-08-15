@@ -31,12 +31,19 @@ export async function callCommunitySubmitPackForReview(data: {
   return callFunction<typeof data, { submissionId: string }>('communitySubmitPackForReview', data);
 }
 
+/**
+ * Cards 2.1 §1.2/§1.3: в КАТАЛОГЕ наборов покупки больше нет — набор добавляется
+ * бесплатно через `communityPackActions.addCommunityPackToLibrary`, а `priceShards`
+ * в ответе — легаси-поле, которое клиент игнорирует. Сам callable оставлен только
+ * для легаси-пути «Магазина осколков» (`purchaseCommunityPack.ts`).
+ */
 export type CommunityPurchaseResponse = {
   alreadyOwned?: boolean;
   priceShards?: number;
   authorNetShards?: number;
   buyerBalanceAfter?: number;
   shardsUpdatedAtMs?: number;
+  purchaseId?: string;
   studyTarget?: 'en' | 'fr';
 };
 

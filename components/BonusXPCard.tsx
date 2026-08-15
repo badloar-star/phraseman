@@ -12,6 +12,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { View, Text, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { hapticMediumImpact } from '../hooks/use-haptics';
 import { useTheme } from './ThemeContext';
+import { useLang } from './LangContext';
+import { triLang, type Lang } from '../constants/i18n';
 import { isLightThemeMode } from '../constants/theme';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { OLIVE_RICH } from '../constants/oliveTheme';
@@ -30,6 +32,8 @@ function BonusXPCard({
   duration = 2000,
 }: BonusXPCardProps) {
   const { theme: t, themeMode } = useTheme();
+  const { lang } = useLang();
+  const L = (copy: Record<Lang, string>) => triLang(lang, copy);
   const isGoldTheme = themeMode === 'gold';
   const isOliveTheme = themeMode === 'olive';
   // зачем: карточка была фикс-тёмной #1a1a2e, а тексты — токенами темы: на
@@ -153,13 +157,13 @@ function BonusXPCard({
         {isOliveTheme ? <Ionicons name="sparkles" size={26} color={OLIVE_RICH.champagne} style={styles.emoji} /> : <Text style={styles.emoji}>{getTierEmoji()}</Text>}
 
         <View style={styles.textContainer}>
-          <Text style={[styles.label, { color: t.textPrimary }]}>Бонус XP!</Text>
+          <Text style={[styles.label, { color: t.textPrimary }]}>{L({ ru: 'Бонус XP!', uk: 'Бонус XP!', es: '¡Bonificación de XP!', 'pt-BR': 'Bônus de XP!', vi: 'Thưởng XP!', id: 'Bonus XP!', tr: 'XP Bonusu!', pl: 'Bonus XP!' })}</Text>
           <Text style={[styles.bonus, { color: getTierColor() }]}>
             +{bonusXP}
           </Text>
         </View>
 
-        <Text style={[styles.tap, { color: t.textMuted }]}>Тап</Text>
+        <Text style={[styles.tap, { color: t.textMuted }]}>{L({ ru: 'Нажми', uk: 'Торкнись', es: 'Toca', 'pt-BR': 'Toque', vi: 'Chạm', id: 'Ketuk', tr: 'Dokun', pl: 'Dotknij' })}</Text>
       </TouchableOpacity>
     </Animated.View>
   );

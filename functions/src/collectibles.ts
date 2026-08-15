@@ -20,6 +20,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
+import { appendExternalEconomyEvent } from './external_economy_events';
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
@@ -30,6 +31,7 @@ import {
   type TournamentRoomDoc,
 } from './tournament_core';
 import { normalizeTournamentEconomy } from './tournament_economy';
+import { assertTournamentsReleased } from './tournament_release_gate';
 import {
   COLLECTIBLE_POOL,
   COLLECTIBLE_SECRET_BY_SET,
@@ -403,6 +405,10 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
   if (!EVENT_ID_RE.test(eventIdRaw)) {
     throw new HttpsError('invalid-argument', 'bad_event_id');
   }
+  // Collectibles is a shared callable, so it needs its own fail-closed check:
+  // an old tournament client must not bypass the retired tournament callables
+  // by submitting a tournament event through this otherwise-live endpoint.
+  if (eventIdRaw.startsWith('tournament:')) assertTournamentsReleased();
 
   const db = admin.firestore();
   await assertCollectibleRewardEventEligible(eventIdRaw, async (roomId) => {
@@ -484,13 +490,18 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
     };
     const userPatch: Record<string, unknown> = { progress: progressPatch, updatedAt: now };
 
-    const beforeShards = Math.max(0, readInt(user.shards, 0));
-    const afterShards = beforeShards + decision.bonusShards;
     if (decision.bonusShards > 0) {
-      userPatch.shards = afterShards;
-      userPatch.shards_updated_at_ms = now;
-      userPatch.shards_updated_op = 'earn';
-      userPatch.shards_updated_reason = 'collectible_set_bonus';
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'collectibles',
+        eventId: eventIdRaw,
+        ownerStableId: stableUid,
+        delta: decision.bonusShards,
+        reason: 'collectible_set_bonus',
+        kind: 'collectible_set_bonus',
+        subjectId: decision.card.setId,
+        payload: { cardId: decision.card.id, setId: decision.card.setId },
+        createdAtMs: now,
+      });
     }
 
     tx.set(claimRef, {
@@ -514,8 +525,7 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
         type: 'earn',
         amount: decision.bonusShards,
         reason: 'collectible_set_bonus',
-        balanceBefore: beforeShards,
-        balanceAfter: afterShards,
+        authority: 'external_event',
         setId: decision.card.setId,
       });
     }
@@ -527,8 +537,6 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
       setCompleted: decision.setCompleted,
       secretCardId: decision.secretCardId,
       bonusShards: decision.bonusShards,
-      shardsBalance: decision.bonusShards > 0 ? afterShards : null,
-      shardsUpdatedAtMs: decision.bonusShards > 0 ? now : null,
       ownedCount: Object.keys(newOwned).length,
       dropsToday: nextState.drops,
       dropsCapToday: isPremium ? dropConfig.dailyDropCapPremium : dropConfig.dailyDropCapFree,

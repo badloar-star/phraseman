@@ -175,7 +175,7 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
   }
 
   if (drop.kind === 'avatar_aura') {
-    const aura = getAvatarAuraById(drop.auraId) ?? getAvatarAuraById('aura-violet')!;
+    const aura = getAvatarAuraById(drop.auraId) ?? getAvatarAuraById('aura-ember')!;
     const preview = cosmeticPreviewAvatar();
     return {
       title: triLang(lang, {

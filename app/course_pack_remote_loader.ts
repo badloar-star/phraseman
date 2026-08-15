@@ -1,6 +1,6 @@
 // ════════════════════════════════════════════════════════════════════════════
 // course_pack_remote_loader.ts — runtime download + disk-cache + integrity for
-// server-served course packs (plan_content first).
+// server-served course packs.
 //
 // DISABLED BY DEFAULT. Every entry point short-circuits while
 // COURSE_PACK_REMOTE_LOADING_ENABLED === false, so importing or calling this
@@ -16,21 +16,20 @@
 //   5. fall back to bundled compatibility content on any miss/corruption.
 //
 // It NEVER blocks startup and NEVER deletes bundled content. Callers always have
-// a synchronous bundled fallback (plan_content_readiness) to use until a remote
-// pack is fully downloaded and verified.
+// a synchronous bundled fallback to use until a remote pack is fully downloaded
+// and verified.
 // ════════════════════════════════════════════════════════════════════════════
 import * as Crypto from 'expo-crypto';
 import { Directory, File, Paths } from 'expo-file-system';
 
 import {
-  PLAN_CONTENT_REMOTE_ENABLED,
+  VERIFIED_COURSE_PACK_REMOTE_ENABLED,
 } from './course_pack_loader';
 import {
   buildCoursePackCacheKey,
   validateCoursePackManifest,
   type CoursePackManifest,
 } from './course_pack_manifest';
-import { canonicalPlanContentString } from './plan_content_canonical_hash';
 
 const CACHE_ROOT_NAME = 'course-packs';
 const MANIFEST_TIMEOUT_MS = 6000;
@@ -42,7 +41,7 @@ const MIN_BYTES = 2;
 // flag is currently a `false as const`). When the flag is flipped to enable
 // remote loading, these guards open up with no code change here.
 function remoteLoadingEnabled(): boolean {
-  return Boolean(PLAN_CONTENT_REMOTE_ENABLED);
+  return Boolean(VERIFIED_COURSE_PACK_REMOTE_ENABLED);
 }
 
 /** Result of attempting to make a remote pack available on disk. */
@@ -271,8 +270,8 @@ export async function ensureCachedCoursePackRow(
   return task;
 }
 
-/** A cached day-row artifact as stored on the server (plan-content-day-v1). */
-type CachedDayRowArtifact = {
+/** A cached row artifact as stored on the server. */
+type CachedRowArtifact = {
   contentHash?: string;
   content?: unknown;
 };
@@ -282,10 +281,20 @@ type CachedDayRowArtifact = {
  * serialization the pack exporter used, so a correct server day verifies and a
  * tampered/corrupt one fails. Returns the lowercase hex digest.
  */
-export async function computePlanContentDayHash(content: unknown): Promise<string> {
+function canonicalCoursePackContent(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonicalCoursePackContent).join(',')}]`;
+  if (value && typeof value === 'object') {
+    const record = value as Record<string, unknown>;
+    return `{${Object.keys(record).filter((key) => record[key] !== undefined).sort()
+      .map((key) => `${JSON.stringify(key)}:${canonicalCoursePackContent(record[key])}`).join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
+export async function computeCoursePackContentHash(content: unknown): Promise<string> {
   return Crypto.digestStringAsync(
     Crypto.CryptoDigestAlgorithm.SHA256,
-    canonicalPlanContentString(content),
+    canonicalCoursePackContent(content),
   );
 }
 
@@ -301,13 +310,13 @@ export async function readVerifiedCoursePackDay<T = unknown>(
   rowPath: string,
 ): Promise<T | null | { corrupt: true }> {
   if (!remoteLoadingEnabled()) return null;
-  const artifact = await readCachedCoursePackRow<CachedDayRowArtifact>(cacheKey, rowPath);
+  const artifact = await readCachedCoursePackRow<CachedRowArtifact>(cacheKey, rowPath);
   if (!artifact || typeof artifact.contentHash !== 'string' || artifact.content === undefined) {
     return null;
   }
   let actual: string;
   try {
-    actual = await computePlanContentDayHash(artifact.content);
+    actual = await computeCoursePackContentHash(artifact.content);
   } catch {
     return null;
   }

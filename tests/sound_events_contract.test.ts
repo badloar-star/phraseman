@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
 import { applyUserSettingsNow, getUserSettingsSnapshot } from '@/app/user_settings_store';
 import { SOUND_EVENTS, type SoundEventId } from '@/modules/audio/sound_events';
 import {
@@ -10,13 +13,13 @@ const MISSING_EVENTS: SoundEventId[] = [
 ];
 
 describe('semantic sound event catalog', () => {
-  test('types every manifest event and enables exactly the supplied 44 assets', () => {
+  test('types every manifest event and enables every supplied asset', () => {
     const ids = Object.keys(SOUND_EVENTS) as SoundEventId[];
     const enabled = ids.filter((id) => SOUND_EVENTS[id].source !== null);
     const disabled = ids.filter((id) => SOUND_EVENTS[id].source === null);
 
-    expect(ids).toHaveLength(54);
-    expect(enabled).toHaveLength(53);
+    expect(ids).toHaveLength(61);
+    expect(enabled).toHaveLength(60);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });
@@ -47,6 +50,19 @@ describe('semantic sound event catalog', () => {
       expect(definition.cooldownMs).toBeGreaterThanOrEqual(0);
       expect(definition.durationMs).toBeGreaterThan(0);
     });
+  });
+
+  test('keeps the rejected lesson combo cue deleted', () => {
+    const rejectedEventId = 'pm.learn.combo_up';
+    const rejectedAsset = path.resolve(
+      __dirname,
+      '../assets/audio/sfx/v1/learning/pm_learn_combo_up_v1.wav',
+    );
+    const lessonSource = fs.readFileSync(path.resolve(__dirname, '../app/lesson1.tsx'), 'utf8');
+
+    expect(SOUND_EVENTS).not.toHaveProperty(rejectedEventId);
+    expect(fs.existsSync(rejectedAsset)).toBe(false);
+    expect(lessonSource).not.toContain(rejectedEventId);
   });
 });
 

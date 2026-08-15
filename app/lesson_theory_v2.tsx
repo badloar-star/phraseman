@@ -4,7 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
-import { updateTaskProgress } from './daily_tasks';
 import { lessonTheorySectionsSeenKey, lessonTheoryXpClaimedKey } from './target_storage_keys';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
@@ -214,9 +213,6 @@ export default function LessonTheoryV2Screen() {
         if (!cancelled) setInitialClaimed(value === '1');
       })
       .catch(() => {});
-    if (hasNewTheory) {
-      updateTaskProgress('open_theory', 1, studyTarget).catch(() => {});
-    }
     return () => { cancelled = true; };
   }, [claimStorageKey, hasNewTheory, studyTarget]);
 

@@ -70,6 +70,13 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     department: 'support',
     writtenIn: 'support_inbox.ts',
     readIn: 'jarvis/support_firestore_fetcher.ts',
+    field: 'status',
+    breaks: 'автоматически отвеченные письма продолжили бы выглядеть ожидающими ответа',
+  },
+  {
+    department: 'support',
+    writtenIn: 'support_inbox.ts',
+    readIn: 'jarvis/support_firestore_fetcher.ts',
     field: 'repliedAt',
     breaks: 'скорость ответа перестала бы считаться',
   },
@@ -79,6 +86,20 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     readIn: 'jarvis/support_firestore_fetcher.ts',
     field: 'mailCategory',
     breaks: 'письма роботов попали бы в очередь ожидающих ответа людей',
+  },
+  {
+    department: 'support',
+    writtenIn: 'support_inbox.ts',
+    readIn: 'jarvis/support_firestore_fetcher.ts',
+    field: 'triageState',
+    breaks: 'неразмеченный legacy-спам снова стал бы выглядеть как доказанный живой SLA',
+  },
+  {
+    department: 'support',
+    writtenIn: 'support_inbox.ts',
+    readIn: 'jarvis/support_firestore_fetcher.ts',
+    field: 'imapSyncedAt',
+    breaks: 'устаревший IMAP-снимок выглядел бы как пустая живая очередь',
   },
   {
     department: 'content + factory',
@@ -129,7 +150,44 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     field: 'd7ReturningUsers',
     breaks: 'D7 retention стал бы ложным нулём',
   },
+  {
+    department: 'PM business context',
+    writtenIn: 'admin_daily_digest.ts',
+    readIn: 'jarvis/pm_business_context.ts',
+    field: 'generatedAtMs',
+    breaks: 'устаревший сравнительный дайджест стал бы выглядеть свежим бизнес-контекстом',
+  },
+  {
+    department: 'PM business context',
+    writtenIn: 'admin_daily_digest.ts',
+    readIn: 'jarvis/pm_business_context.ts',
+    field: 'comparisons',
+    breaks: 'Джарвис потерял бы current-vs-previous динамику и снова видел бы только текущие счётчики',
+  },
 ];
+
+const ISOLATED_COLLECTION_CONTRACTS = [
+  {
+    collection: 'client_economy_operations',
+    writer: 'app/economy/client_shard_operation_sync.ts',
+    authority: 'client append-only persistence; read-only Jarvis money diagnostics',
+  },
+  {
+    collection: 'client_economy_opening',
+    writer: 'app/economy/client_shard_operation_sync.ts',
+    authority: 'immutable one-time legacy opening snapshot; read-only Jarvis money diagnostics',
+  },
+  {
+    collection: 'external_economy_events',
+    writer: 'functions Admin SDK external-event writers',
+    authority: 'server append-only external facts; read-only Jarvis money diagnostics',
+  },
+  {
+    collection: 'cosmetic_asset_archive_overrides',
+    writer: 'functions Admin SDK cosmetic asset archive controls',
+    authority: 'server-managed sale availability; not a Jarvis business projection',
+  },
+] as const;
 
 describe('Jarvis data contract — silence must never replace a broken source', () => {
   test('the real safety_flags writer and Jarvis share one explicit age taxonomy contract', () => {
@@ -194,6 +252,26 @@ describe('Jarvis data contract — silence must never replace a broken source', 
       expect(verdict).toBe('ok');
     }
   });
+
+  test.each(ISOLATED_COLLECTION_CONTRACTS)(
+    'economy schema "$collection" is explicit and cannot silently become a Jarvis metric',
+    ({ collection, writer, authority }) => {
+      const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+      const jarvisDir = path.join(functionsSrc, 'jarvis');
+      const jarvisReaders = fs.readdirSync(jarvisDir)
+        .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+        .map((file) => fs.readFileSync(path.join(jarvisDir, file), 'utf8'))
+        .join('\n');
+      const writerExists = writer.startsWith('app/')
+        ? fs.existsSync(path.join(root, writer))
+        : true;
+
+      expect(writerExists).toBe(true);
+      expect(rules).toContain(`/${collection}/`);
+      expect(jarvisReaders).not.toContain(`collection('${collection}')`);
+      expect(authority.length).toBeGreaterThan(20);
+    },
+  );
 
   test('каждый департамент подключён к общему своду — иначе он невидим владельцу', () => {
     // зачем: департамент можно написать и забыть подключить. Тогда он есть в

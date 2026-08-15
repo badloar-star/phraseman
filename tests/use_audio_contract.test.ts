@@ -51,18 +51,18 @@ describe('useAudio TTS resiliency', () => {
     expect(phraseAudioSource).toContain('inFlightDownloads.delete(key);');
   });
 
-  it('acquires spoken-audio activity for every generated clip playback', () => {
-    expect(phraseAudioSource).toContain("acquireAudioActivity('spoken')");
-    expect(phraseAudioSource).toContain('await whenAudioActivitySettled();');
+  it('claims exclusive spoken-audio ownership for every generated clip playback', () => {
+    expect(phraseAudioSource).toContain('claimSpokenAudio(stopPhraseAudio)');
+    expect(phraseAudioSource).toContain('await whenSpokenAudioReady(voiceClaim)');
     expect(phraseAudioSource).not.toContain('audioModeReady');
     expect(phraseAudioSource).toContain('player.volume = 1');
   });
 
-  it('acquires spoken-audio activity before system TTS fallback too', () => {
-    expect(audioSource).toContain("acquireAudioActivity('spoken')");
-    expect(audioSource).toContain('whenAudioActivitySettled()');
+  it('claims exclusive spoken-audio ownership before system TTS fallback too', () => {
+    expect(audioSource).toContain('claimSpokenAudio(stopSystemSpeechNow)');
+    expect(audioSource).toContain('whenSpokenAudioReady(speechClaim)');
     expect(audioSource).toContain('if (lastTextRef.current !== dedupeKey)');
-    expect(audioSource.indexOf("acquireAudioActivity('spoken')")).toBeLessThan(
+    expect(audioSource.indexOf('claimSpokenAudio(stopSystemSpeechNow)')).toBeLessThan(
       audioSource.indexOf('Speech.speak(spokenText, speechOptions)'),
     );
   });
@@ -101,6 +101,15 @@ describe('useAudio TTS resiliency', () => {
     expect(phraseAudioSource).toContain('if (!started) teardown(true)');
     // A failed start reports onError so use-audio.ts falls back to system TTS.
     expect(phraseAudioSource).toContain("cb?.onError?.(new Error('phrase clip failed to start'))");
+  });
+
+  it('skips remote phrase audio immediately until connectivity is confirmed online', () => {
+    expect(phraseAudioSource).toContain("import { getNetStatus } from '../app/net_status'");
+    expect(phraseAudioSource).toContain("if (getNetStatus() !== 'online') return null");
+    expect(phraseAudioSource).toContain("if (!cachedUri && getNetStatus() !== 'online') return false");
+    expect(phraseAudioSource.indexOf('if (file.exists)')).toBeLessThan(
+      phraseAudioSource.indexOf("if (getNetStatus() !== 'online') return null"),
+    );
   });
 
   it('frees a failed native player immediately on the ExoPlayer idle-error signal', () => {

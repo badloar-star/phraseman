@@ -14,60 +14,118 @@ type ModalDismissRouter = SafeBackRouter & {
   dismiss?: (count?: number) => void;
 };
 
-// ──────────────────────────────────────────────────────────────────────────
-// Честная история навигации.
-//
-// Раньше тут хранились ДВЕ переменные (remembered + previous), и возврат брал
-// «последний по времени» маршрут. Это давало замкнутый цикл: открыл Б из А →
-// «назад» кидал в Б (последний), потом снова в Б и т.д. — по кругу, потому что
-// сам возврат через replace тоже записывался как «последний переход».
-//
-// Теперь ведём НАСТОЯЩИЙ стек посещённых маршрутов:
-//  - заходишь на новый экран → push в стек;
-//  - возвращаешься назад → pop текущего и переход на предыдущий в стеке;
-//  - переход, инициированный самим safeRouterBack, НЕ пушится повторно
-//    (флаг suppressNextRemember), иначе возврат снова попал бы в стек.
-// Дубликаты подряд (тот же путь) не пушим — это смены query-параметров и т.п.
-// ──────────────────────────────────────────────────────────────────────────
+type NavigationSection =
+  | 'home'
+  | 'lessons'
+  | 'practice'
+  | 'flashcards'
+  | 'dialogs'
+  | 'lingman'
+  | 'arena'
+  | 'tournaments'
+  | 'friends'
+  | 'settings'
+  | 'league'
+  | 'stats';
 
-const MAX_HISTORY = 50;
-// Native POP_TO removes the abandoned screens instead of leaving replace-created
-// instances behind. Keep a remote build-time kill switch for the old Android/Fabric
-// teardown regression: EXPO_PUBLIC_NATIVE_POP_TO_BACK=0 restores deterministic replace.
-const NATIVE_POP_TO_BACK_ENABLED =
-  typeof process === 'undefined' || process.env.EXPO_PUBLIC_NATIVE_POP_TO_BACK !== '0';
-let navigationStack: string[] = [];
-let suppressNextRemember = false;
-// Когда экран уходит через router.replace (свап, а не push) — следующий честный
-// rememberNavigationPath должен ЗАМЕНИТЬ верх стека, а не добавить поверх него.
-// Иначе наш стек расходится с нативным: replace убирает экран из expo-router,
-// но в нашем массиве он остаётся, и «назад» из нового экрана возвращает на тот
-// самый заменённый экран (без query-параметров → пустой).
-let replaceTopOnNextRemember = false;
-let paywallDismissShouldReplace = false;
-let pendingNoopBackTimer: ReturnType<typeof setTimeout> | null = null;
+type RouteRole = 'root' | 'child' | 'portal' | 'transient' | 'unknown';
 
-// Транзитные маршруты-редиректы, которые НЕ должны попадать в стек «назад».
-// premium_modal — диспетчер пейвола: он мгновенно делает replace на paywall_a/b/c.
-// Если бы он оставался в стеке, «закрыть пейвол» возвращало бы на диспетчер, а тот
-// тут же снова открывал бы пейвол → бесконечный цикл (нельзя закрыть пейвол).
-const TRANSIENT_REDIRECT_PATHS: ReadonlySet<string> = new Set([
+type NavigationEntry = Readonly<{
+  /** Полный href: source/from/returnTo нужны экрану после возврата. */
+  href: string;
+  /** Ключ экрана: pathname + только параметры идентичности сущности. */
+  key: string;
+  /** Владелец непрерывной ветки. null означает fail-closed неизвестный маршрут. */
+  section: NavigationSection | null;
+  role: RouteRole;
+}>;
+
+type FixedRoutePolicy = Readonly<{ role: 'root' | 'child'; section: NavigationSection }>;
+type RoutePolicy = FixedRoutePolicy | Readonly<{ role: 'portal' | 'transient' | 'unknown' }>;
+
+// Корень раздела — жёсткая граница. После входа в него прежняя ветка другого
+// раздела больше не может стать целью Back.
+const SECTION_ROOTS: ReadonlyMap<string, NavigationSection> = new Map([
+  ['/', 'home'],
+  ['/home', 'home'],
+  ['/(tabs)', 'home'],
+  ['/(tabs)/home', 'home'],
+
+  ['/lessons', 'lessons'],
+  ['/journal', 'lessons'],
+  ['/(tabs)/lessons', 'lessons'],
+  ['/(tabs)/journal', 'lessons'],
+  ['/lessons_list', 'lessons'],
+
+  ['/trainer', 'practice'],
+  ['/review', 'practice'],
+
+  ['/flashcards', 'flashcards'],
+  ['/ai_dialog_home', 'dialogs'],
+  ['/lingman_videos', 'lingman'],
+
+  ['/arena', 'arena'],
+  ['/arena_ranks', 'arena'],
+  ['/arena_tops', 'arena'],
+  ['/arena_history', 'arena'],
+
+  ['/tournaments', 'tournaments'],
+  ['/(tabs)/tournaments', 'tournaments'],
+
+  ['/friends', 'friends'],
+  ['/(tabs)/friends', 'friends'],
+  ['/settings', 'settings'],
+  ['/(tabs)/settings', 'settings'],
+
+  ['/league_screen', 'league'],
+  ['/club_screen', 'league'],
+  ['/streak_stats', 'stats'],
+]);
+
+// Порталы открываются из нескольких разделов и наследуют владельца точки входа.
+// Назначить им один статический раздел нельзя: например shards_shop открывается
+// из Home, Friends, Stats, Flashcards, Arena/Tournaments и Avatar.
+const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/premium_modal',
+  '/paywall_a',
+  '/paywall_b',
+  '/paywall_c',
+  '/paywall_d',
+  '/paywall_e',
+  '/paywall_f',
+  '/paywall_g',
+  '/manage_subscription',
+  '/shards_shop',
+  '/coin_exchange',
+  '/avatar_select',
+  '/collectibles_screen',
+  '/achievements_screen',
+  '/level_gifts_inventory',
+  '/level_reward_spin',
+  '/season_pass',
+  '/referrals',
+  '/promo_code_entry',
+  '/top_helpers',
+  '/settings_edu',
+  '/flashcards_voice_picker',
+  '/trainer_words_session',
+  '/problem_coach',
+  '/survey_screen',
+  '/ai_dialog_briefing',
+  '/ai_dialog_consent_gate',
+  '/ai_dialog_session',
+  '/ai_companion_session',
+  '/max_call_prestart',
+  '/max_call_session',
+  '/max_voice_review',
+]);
+
+// Единственный настоящий redirect в этой семье. premium_modal теперь сам
+// рисует выбранный paywall и поэтому является контекстным экраном, не redirect.
+const TRANSIENT_REDIRECT_PATHS: ReadonlySet<string> = new Set([
   '/premium_modal_v2',
 ]);
 
-function isTransientRedirectPath(path: string): boolean {
-  return TRANSIENT_REDIRECT_PATHS.has(path);
-}
-
-// Сами экраны пейвола (paywall_a/b/c) — это КОНЕЧНАЯ точка показа, а НЕ место,
-// куда можно «вернуться». Если при рассинхроне стека «назад» с пейвола разрешается
-// в запись, которая сама является пейволом (или диспетчером premium_modal), то
-// safeRouterBack делает replace на тот же пейвол → он закрывается и тут же
-// открывается «на месте», бесконечно (баг «не закрыть пейвол»). Поэтому при выборе
-// цели возврата мы ПРОПУСКАЕМ любые такие записи и уходим на первый реальный экран
-// под ними (или на home-fallback). Сравниваем по basePath: query (context/source)
-// не должен мешать сопоставлению.
 const PAYWALL_BASE_PATHS: ReadonlySet<string> = new Set([
   '/paywall_a',
   '/paywall_b',
@@ -78,66 +136,61 @@ const PAYWALL_BASE_PATHS: ReadonlySet<string> = new Set([
   '/paywall_g',
 ]);
 
-// Экраны СЫГРАННОГО турнира — тоже конечные точки, а не место возврата.
-//
-// зачем 2026-08-02 (владелец: «если турнир закончен, то при выходе потом
-// кнопка назад из общего раздела возвращает в окно „турнир завершён“»):
-// турнир — одноразовое событие. Его лобби, раунд, межраундовая таблица и
-// экран итогов существуют, пока идёт игра; после выхода возвращаться туда
-// некуда — комната закрыта, играть в ней больше нельзя. Оставаясь в стеке,
-// они делали «назад» из хаба турниров ловушкой: игрок снова видел «Турнир
-// завершён» вместо возврата на предыдущий экран.
-//
-// Тот же класс проблемы, что с пейволом выше, и лечится тем же приёмом:
-// при выборе цели возврата такие записи пропускаются, и «назад» уходит на
-// первый реальный экран под ними.
-const FINISHED_TOURNAMENT_BASE_PATHS: ReadonlySet<string> = new Set([
+// Эти экраны владеют особыми Android Back-сценариями (подтверждение выхода,
+// закрытие внутренней панели, сохранение сессии). Глобальный guard их не перебивает.
+const SCREEN_OWNED_ANDROID_BACK_PATHS: ReadonlySet<string> = new Set([
+  '/arena_match',
+  '/exam',
+  '/flashcards_collection',
+  '/flashcards_my_packs',
+  '/flashcards_packs',
+  '/flashcards_swipe',
+  '/lesson1',
+  '/lesson_complete',
+  '/lesson_words',
+  '/pack_opening',
+  '/review',
+  '/shards_shop',
   '/tournament_lobby',
-  '/tournament_round',
-  '/tournament_table',
-  '/tournament_results',
 ]);
 
-/** true для пейволов, транзитных диспетчеров и отыгранных экранов турнира. */
-function isNonBackTargetPath(path: string): boolean {
-  const base = basePath(path);
-  return PAYWALL_BASE_PATHS.has(base)
-    || FINISHED_TOURNAMENT_BASE_PATHS.has(base)
-    || isTransientRedirectPath(base);
+const MAX_HISTORY = 50;
+const NATIVE_POP_TO_BACK_ENABLED =
+  typeof process === 'undefined' || process.env.EXPO_PUBLIC_NATIVE_POP_TO_BACK !== '0';
+
+let navigationStack: NavigationEntry[] = [];
+let suppressNextRemember = false;
+let replaceTopOnNextRemember = false;
+let paywallDismissShouldReplace = false;
+
+function pathnameOf(path: string): string {
+  const end = path.search(/[?#]/);
+  const pathname = (end >= 0 ? path.slice(0, end) : path).replace(/\/$/, '');
+  return pathname || '/';
 }
 
-/**
- * Пометить, что СЛЕДУЮЩИЙ переход — это router.replace (свап текущего экрана),
- * а не push. Вызывать НЕПОСРЕДСТВЕННО перед router.replace, который уводит
- * пользователя с текущего экрана на новый «вместо» него.
- *
- * Пример: «Теория дня» по кнопке «Начать урок» делает replace на упражнение —
- * теория должна исчезнуть и из нашего стека «назад», чтобы возврат из упражнения
- * вёл в МЕНЮ ПЛАНА, а не открывал пустую (без параметров) теорию.
- */
-export function markNextNavigationAsReplace(): void {
-  replaceTopOnNextRemember = true;
+function hrefForTarget(target: unknown): string | null {
+  if (typeof target === 'string') return target.length > 0 ? target : null;
+  if (!target || typeof target !== 'object') return null;
+
+  const pathname = (target as { pathname?: unknown }).pathname;
+  if (typeof pathname !== 'string' || pathname.length === 0) return null;
+  const params = (target as { params?: unknown }).params;
+  if (!params || typeof params !== 'object') return pathname;
+
+  const query = Object.entries(params as Record<string, unknown>)
+    .filter(([, value]) => value !== undefined && value !== null)
+    .flatMap(([key, value]) => {
+      const values = Array.isArray(value) ? value : [value];
+      return values.map((item) => `${encodeURIComponent(key)}=${encodeURIComponent(String(item))}`);
+    })
+    .sort()
+    .join('&');
+  return query ? `${pathname}?${query}` : pathname;
 }
 
-function clearPendingNoopBackTimer(): void {
-  if (pendingNoopBackTimer) {
-    clearTimeout(pendingNoopBackTimer);
-    pendingNoopBackTimer = null;
-  }
-}
-
-/** Текущий (верхний) маршрут в стеке. */
-function currentPath(): string | null {
-  return navigationStack.length > 0 ? navigationStack[navigationStack.length - 1]! : null;
-}
-
-// Параметры, которые ИДЕНТИФИЦИРУЮТ сущность экрана (а не косметику внутри него).
-// Их нужно СОХРАНИТЬ в ключе стека: '/lesson_menu?id=5' и '/lesson_menu?id=6' — это
-// РАЗНЫЕ экраны (меню урока 5 и урока 6), а не два состояния одного экрана. Если их
-// отрезать, «назад» делает replace на голый '/lesson_menu' без id, а тот по дефолту
-// показывает урок 1 — отсюда и баг «выход из теории/урока кидает в меню урока 1».
-// Косметические же параметры (tab, from, replayIntro, filter…) по-прежнему отбрасываем,
-// иначе смена вкладки/фильтра внутри одного экрана плодила бы записи в стеке.
+// Параметры, которые идентифицируют экземпляр экрана. Остальные параметры
+// сохраняются в href, но не создают отдельный history entry.
 const IDENTITY_QUERY_KEYS: ReadonlySet<string> = new Set([
   'id',
   'roomId',
@@ -146,21 +199,32 @@ const IDENTITY_QUERY_KEYS: ReadonlySet<string> = new Set([
   'planId',
   'dayIndex',
   'planInstanceId',
+  'pack',
+  'packId',
+  'deck',
+  'matchId',
+  'runId',
+  'requestId',
+  'inviteId',
+  'inviteToken',
+  'scenarioId',
+  'playlistId',
+  'videoId',
+  'surveyId',
+  'trainingId',
+  'microDiagnosisId',
 ]);
 
-/**
- * Ключ экрана в стеке: путь + только ИДЕНТИФИЦИРУЮЩИЕ параметры (id и т.п.),
- * отсортированные для стабильности. Косметические query отбрасываются, поэтому
- * смена вкладки/фильтра не плодит записи, но «назад» на id-зависимый экран
- * (меню урока, exam уровня, день плана) сохраняет нужную сущность.
- */
 function basePath(path: string): string {
-  const q = path.indexOf('?');
-  if (q < 0) return path;
-  const base = path.slice(0, q);
-  const identityParams = path
+  const hashIndex = path.indexOf('#');
+  const withoutHash = hashIndex >= 0 ? path.slice(0, hashIndex) : path;
+  const q = withoutHash.indexOf('?');
+  if (q < 0) return pathnameOf(withoutHash);
+  const base = pathnameOf(withoutHash.slice(0, q));
+  const identityParams = withoutHash
     .slice(q + 1)
     .split('&')
+    .filter(Boolean)
     .filter((pair) => {
       const key = decodeURIComponent(pair.split('=')[0] ?? '');
       return IDENTITY_QUERY_KEYS.has(key);
@@ -169,170 +233,323 @@ function basePath(path: string): string {
   return identityParams.length > 0 ? `${base}?${identityParams.join('&')}` : base;
 }
 
-export function rememberNavigationPath(path: string | null | undefined): void {
-  const raw = path && path.length > 0 ? path : null;
-  if (raw === null) return;
-  const nextPath = basePath(raw);
+function fixedChildSection(pathname: string): NavigationSection | null {
+  if (
+    pathname.startsWith('/learning-v2/')
+    || pathname.startsWith('/learning_v2_')
+    || pathname.startsWith('/lesson')
+    || pathname === '/hint'
+    || pathname === '/preposition_drill'
+    || pathname === '/diagnostic_test'
+    || pathname === '/exam'
+    || pathname === '/level_exam'
+  ) return 'lessons';
 
-  // Диспетчер пейвола (premium_modal) — транзитный редирект: в стек его не кладём,
-  // чтобы «назад/закрыть» с пейвола не возвращало на него (иначе он снова откроет пейвол).
-  // If the transient route was reached through router.replace, keep the replace marker
-  // alive for the real target (/paywall_a/b/c). Otherwise a blocked source screen remains
-  // under the paywall and immediately reopens it after close.
-  if (isTransientRedirectPath(nextPath)) {
+  if (
+    pathname === '/trainer_phrases_session'
+    || pathname === '/phrase_analytics_screen'
+    || pathname === '/_pos_analytics_audit'
+    || pathname === '/pos_analytics_audit'
+  ) return 'practice';
+
+  if (
+    pathname.startsWith('/flashcards')
+    || pathname === '/community_pack_create'
+    || pathname === '/pack_opening'
+  ) return 'flashcards';
+
+  if (pathname.startsWith('/lingman_')) return 'lingman';
+  if (pathname.startsWith('/arena_')) return 'arena';
+  if (pathname.startsWith('/tournament_')) return 'tournaments';
+
+  if (
+    pathname.startsWith('/settings_')
+    || pathname === '/privacy_settings'
+    || pathname === '/privacy_screen'
+    || pathname === '/terms_screen'
+    || pathname === '/account_details'
+    || pathname === '/ideas_submit'
+    || pathname === '/language_welcome'
+  ) return 'settings';
+
+  return null;
+}
+
+function routePolicy(path: string): RoutePolicy {
+  const pathname = pathnameOf(path);
+  if (TRANSIENT_REDIRECT_PATHS.has(pathname)) return { role: 'transient' };
+  const rootSection = SECTION_ROOTS.get(pathname);
+  if (rootSection) return { role: 'root', section: rootSection };
+  if (CONTEXTUAL_PORTAL_PATHS.has(pathname)) return { role: 'portal' };
+  const childSection = fixedChildSection(pathname);
+  if (childSection) return { role: 'child', section: childSection };
+  return { role: 'unknown' };
+}
+
+function sourceSectionHint(href: string): NavigationSection | null {
+  const q = href.indexOf('?');
+  if (q < 0) return null;
+  const params = new URLSearchParams(href.slice(q + 1));
+  const hint = `${params.get('source') ?? ''} ${params.get('from') ?? ''} ${params.get('returnTo') ?? ''}`.toLowerCase();
+  if (/settings/.test(hint)) return 'settings';
+  if (/trainer|practice|diagnos/.test(hint)) return 'practice';
+  if (/flash|card|pack/.test(hint)) return 'flashcards';
+  if (/lesson|dialog|max_call/.test(hint)) return 'lessons';
+  if (/arena/.test(hint)) return 'arena';
+  if (/tournament|season/.test(hint)) return 'tournaments';
+  if (/friend|referral/.test(hint)) return 'friends';
+  if (/streak|stats/.test(hint)) return 'stats';
+  if (/home|afterwin|winback/.test(hint)) return 'home';
+  return null;
+}
+
+function currentEntry(): NavigationEntry | null {
+  return navigationStack.length > 0 ? navigationStack[navigationStack.length - 1]! : null;
+}
+
+function createEntry(href: string, policy: RoutePolicy, opener: NavigationEntry | null): NavigationEntry {
+  const section = policy.role === 'root' || policy.role === 'child'
+    ? policy.section
+    : policy.role === 'portal'
+      ? (opener?.section ?? sourceSectionHint(href))
+      : null;
+  return { href, key: basePath(href), section, role: policy.role };
+}
+
+function trimHistory(): void {
+  if (navigationStack.length > MAX_HISTORY) {
+    navigationStack = navigationStack.slice(navigationStack.length - MAX_HISTORY);
+  }
+}
+
+function rememberEntry(entry: NavigationEntry): void {
+  if (entry.role === 'root') {
+    navigationStack = [entry];
+    return;
+  }
+
+  const current = currentEntry();
+  if (current?.key === entry.key) {
+    navigationStack[navigationStack.length - 1] = entry;
+    return;
+  }
+
+  // Fixed child of a different branch and every unknown route start an isolated
+  // segment. We never search deeper through a foreign branch for a familiar path.
+  if (
+    entry.section === null
+    || (entry.role === 'child' && current?.section !== entry.section)
+  ) {
+    navigationStack = [entry];
+    return;
+  }
+
+  navigationStack.push(entry);
+  trimHistory();
+}
+
+function isNonBackTargetPath(path: string): boolean {
+  const pathname = pathnameOf(path);
+  return PAYWALL_BASE_PATHS.has(pathname)
+    || pathname === '/premium_modal'
+    || TRANSIENT_REDIRECT_PATHS.has(pathname);
+}
+
+/** Следующая смена маршрута является router.replace, а не push. */
+export function markNextNavigationAsReplace(): void {
+  replaceTopOnNextRemember = true;
+}
+
+export function rememberNavigationPath(path: string | null | undefined): void {
+  const href = path && path.length > 0 ? path : null;
+  if (!href) return;
+
+  const policy = routePolicy(href);
+  if (policy.role === 'transient') {
     if (replaceTopOnNextRemember) paywallDismissShouldReplace = true;
     if (suppressNextRemember) suppressNextRemember = false;
-    clearPendingNoopBackTimer();
     return;
   }
 
-  // Переход, который вызвал сам safeRouterBack: текущий уже снят со стека,
-  // целевой уже в стеке — повторно не пушим, просто гасим флаг.
+  const opener = currentEntry();
+  const entry = createEntry(href, policy, opener);
+
   if (suppressNextRemember) {
     suppressNextRemember = false;
-    if (replaceTopOnNextRemember) replaceTopOnNextRemember = false;
-    // На случай рассинхрона: если верх стека не равен целевому — выровняем.
-    if (currentPath() !== nextPath) {
-      const existingIdx = navigationStack.lastIndexOf(nextPath);
-      if (existingIdx >= 0) {
-        navigationStack = navigationStack.slice(0, existingIdx + 1);
-      } else {
-        navigationStack.push(nextPath);
-      }
-    }
-    clearPendingNoopBackTimer();
+    replaceTopOnNextRemember = false;
+    rememberEntry(entry);
     return;
   }
 
-  // router.replace: текущий верх стека заменяется новым экраном. Снимаем верх,
-  // чтобы дальше отработала обычная логика push/сворачивания — итог идентичен
-  // нативному стеку (заменённый экран в «назад» не появится).
   if (replaceTopOnNextRemember) {
-    if (isNonBackTargetPath(nextPath)) paywallDismissShouldReplace = true;
     replaceTopOnNextRemember = false;
-    if (navigationStack.length > 0 && currentPath() !== nextPath) {
+    if (isNonBackTargetPath(href)) paywallDismissShouldReplace = true;
+    if (navigationStack.length > 0 && currentEntry()?.key !== entry.key) {
       navigationStack.pop();
     }
   }
 
-  // Тот же путь подряд (смена query, ре-навигация на себя) — не дублируем.
-  if (currentPath() === nextPath) {
-    clearPendingNoopBackTimer();
-    return;
+  rememberEntry(entry);
+}
+
+function popBackCandidate(leaving: NavigationEntry | null): NavigationEntry | null {
+  if (navigationStack.length > 0) navigationStack.pop();
+
+  while (navigationStack.length > 0 && isNonBackTargetPath(currentEntry()!.href)) {
+    navigationStack.pop();
   }
 
-  // Если возвращаемся жестом/системной кнопкой на экран, который уже есть
-  // глубже в стеке, — сворачиваем стек до него (а не плодим дубль), чтобы
-  // история не разрасталась и не закольцовывалась.
-  const existingIdx = navigationStack.lastIndexOf(nextPath);
-  if (existingIdx >= 0) {
-    navigationStack = navigationStack.slice(0, existingIdx + 1);
-  } else {
-    navigationStack.push(nextPath);
-    if (navigationStack.length > MAX_HISTORY) {
-      navigationStack = navigationStack.slice(navigationStack.length - MAX_HISTORY);
-    }
+  const candidate = currentEntry();
+  if (
+    !leaving
+    || leaving.role === 'root'
+    || leaving.section === null
+    || !candidate
+    || candidate.section !== leaving.section
+  ) {
+    // Чужая/неизвестная ветка не должна воскреснуть после перехода на fallback.
+    navigationStack = [];
+    return null;
   }
-  clearPendingNoopBackTimer();
+  return candidate;
+}
+
+function safeTarget(candidate: NavigationEntry | null, fallback: any): { target: any; path: string } {
+  const fallbackPath = hrefForTarget(fallback) ?? HOME_BACK_FALLBACK;
+  const candidatePath = candidate?.href ?? null;
+  if (candidatePath && !isNonBackTargetPath(candidatePath)) {
+    return { target: candidatePath, path: candidatePath };
+  }
+  if (!isNonBackTargetPath(fallbackPath)) return { target: fallback, path: fallbackPath };
+  return { target: HOME_BACK_FALLBACK, path: HOME_BACK_FALLBACK };
 }
 
 export function safeRouterBack(
   router: SafeBackRouter,
   fallback: any = HOME_BACK_FALLBACK,
 ): void {
-  clearPendingNoopBackTimer();
-  const leavingPath = currentPath();
+  const leaving = currentEntry();
+  const candidate = popBackCandidate(leaving);
+  const chosen = safeTarget(candidate, fallback);
 
-  // Снимаем текущий маршрут со стека и берём предыдущий — честный «назад».
-  if (navigationStack.length > 0) {
-    navigationStack.pop();
-  }
-
-  // Пропускаем любые записи-пейволы/диспетчеры под нами: «назад» с пейвола НИКОГДА
-  // не должно вести на другой пейвол (иначе replace на тот же экран = бесконечное
-  // «моргание на месте», пейвол не закрыть). Снимаем их со стека, пока сверху не
-  // окажется реальный экран. Если под пейволом ничего реального нет — уйдём на
-  // fallback (home) ниже.
-  while (navigationStack.length > 0 && isNonBackTargetPath(currentPath()!)) {
-    navigationStack.pop();
-  }
-  // Settings sheets must always return to Settings. Their opener can be a cached
-  // tab, which is not guaranteed to be present in the reconstructed history.
-  const forceSettingsFallback = basePath(String(fallback ?? '')) === '/(tabs)/settings';
-  const target = forceSettingsFallback ? fallback : (currentPath() ?? fallback);
-
-  // Если по какой-то причине предыдущий совпал с местом, где мы стоим, или
-  // стек опустел — уходим на fallback (главную), чтобы не было no-op/петли.
-  // Доп. страховка: даже если в target каким-то образом просочился пейвол —
-  // не возвращаемся на него, а уходим на fallback.
-  const safeTarget =
-    target && target.length > 0 && !isNonBackTargetPath(target) ? target : fallback;
-
-  // A Settings sheet is opened above the already-mounted Settings tab. Dismiss it
-  // instead of replacing the route so the tab instance and its scroll offset stay intact.
-  if (forceSettingsFallback && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
+  // Settings sheets are mounted over the retained Settings tab. A native one-step
+  // dismiss preserves that tab instance, but only when Settings owns this branch.
+  const forceSettingsFallback = basePath(hrefForTarget(fallback) ?? '') === '/(tabs)/settings'
+    && leaving?.section === 'settings';
+  if (
+    forceSettingsFallback
+    && candidate !== null
+    && typeof router.canDismiss === 'function'
+    && typeof router.dismiss === 'function'
+    && router.canDismiss()
+  ) {
     router.dismiss(1);
     return;
   }
 
-  // `dismissTo` performs a native POP_TO: abandoned screens are actually unmounted,
-  // so their subscriptions/animations cannot survive as retained stack work. For two
-  // parameterized instances of the same pathname POP_TO is ambiguous, therefore pop
-  // exactly one native entry instead. The replace fallback remains remotely switchable.
-  const samePathDifferentIdentity =
-    !!leavingPath &&
-    leavingPath.split('?')[0] === String(safeTarget).split('?')[0] &&
-    basePath(leavingPath) !== basePath(String(safeTarget));
+  const samePathDifferentIdentity = !!leaving
+    && pathnameOf(leaving.href) === pathnameOf(chosen.path)
+    && leaving.key !== basePath(chosen.path);
+
   if (NATIVE_POP_TO_BACK_ENABLED) {
-    if (samePathDifferentIdentity && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
+    if (
+      samePathDifferentIdentity
+      && candidate !== null
+      && typeof router.canDismiss === 'function'
+      && typeof router.dismiss === 'function'
+      && router.canDismiss()
+    ) {
       router.dismiss(1);
       return;
     }
     if (typeof router.dismissTo === 'function') {
-      router.dismissTo(safeTarget);
+      router.dismissTo(chosen.target);
       return;
     }
   }
 
-  // Гасим запись следующего rememberNavigationPath, иначе целевой маршрут
-  // запушится заново и стек снова закольцуется.
   suppressNextRemember = true;
   paywallDismissShouldReplace = false;
-  router.replace(safeTarget);
+  router.replace(chosen.target);
 }
 
 export function dismissPaywallModal(
   router: ModalDismissRouter,
   fallback: any = HOME_BACK_FALLBACK,
 ): void {
-  clearPendingNoopBackTimer();
-
-  if (navigationStack.length > 0) {
-    navigationStack.pop();
-  }
-
-  while (navigationStack.length > 0 && isNonBackTargetPath(currentPath()!)) {
-    navigationStack.pop();
-  }
-  // The Plus modal opened from Settings goes through a transient dispatcher, so
-  // use its explicit Settings fallback instead of stale tab history.
-  const forceSettingsFallback = basePath(String(fallback ?? '')) === '/(tabs)/settings';
-  const target = forceSettingsFallback ? fallback : (currentPath() ?? fallback);
-  const safeTarget =
-    target && target.length > 0 && !isNonBackTargetPath(target) ? target : fallback;
-
+  const leaving = currentEntry();
+  const candidate = popBackCandidate(leaving);
+  const chosen = safeTarget(candidate, fallback);
   const shouldReplace = paywallDismissShouldReplace;
   paywallDismissShouldReplace = false;
-  if (!forceSettingsFallback && !shouldReplace && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
+
+  if (
+    !shouldReplace
+    && candidate !== null
+    && typeof router.canDismiss === 'function'
+    && typeof router.dismiss === 'function'
+    && router.canDismiss()
+  ) {
     router.dismiss(1);
     return;
   }
 
   if (NATIVE_POP_TO_BACK_ENABLED && typeof router.dismissTo === 'function') {
-    router.dismissTo(safeTarget);
+    router.dismissTo(chosen.target);
     return;
   }
 
   suppressNextRemember = true;
-  router.replace(safeTarget);
+  router.replace(chosen.target);
+}
+
+function fallbackForSection(section: NavigationSection | null): string {
+  switch (section) {
+    case 'lessons': return '/lessons_list';
+    case 'practice': return '/trainer';
+    case 'flashcards': return '/flashcards';
+    case 'dialogs': return '/(tabs)/lessons';
+    case 'lingman': return '/lingman_videos';
+    case 'arena': return '/arena';
+    case 'tournaments': return '/(tabs)/tournaments';
+    case 'friends': return '/(tabs)/friends';
+    case 'settings': return '/(tabs)/settings';
+    default: return HOME_BACK_FALLBACK;
+  }
+}
+
+/** Детерминированный fallback для Android Back и общих экранных оболочек. */
+export function navigationFallbackForPath(path: string | null | undefined): string {
+  if (!path) return HOME_BACK_FALLBACK;
+  const policy = routePolicy(path);
+  if (policy.role === 'root') return HOME_BACK_FALLBACK;
+  if (policy.role === 'child') return fallbackForSection(policy.section);
+  if (policy.role === 'portal') {
+    const current = currentEntry();
+    if (current && pathnameOf(current.href) === pathnameOf(path)) {
+      return fallbackForSection(current.section);
+    }
+    return fallbackForSection(sourceSectionHint(path));
+  }
+  return HOME_BACK_FALLBACK;
+}
+
+/** Home может закрыть Android-приложение; остальные экраны идут через branch guard. */
+export function shouldHandleGlobalHardwareBack(path: string | null | undefined): boolean {
+  if (!path) return false;
+  const pathname = pathnameOf(path);
+  const homeSection = SECTION_ROOTS.get(pathname) === 'home';
+  return !homeSection && !SCREEN_OWNED_ANDROID_BACK_PATHS.has(pathname);
+}
+
+/** Read-only surface for the route-registry contract test and future audits. */
+export function navigationRoutePolicyForAudit(path: string): Readonly<{
+  role: RouteRole;
+  section: NavigationSection | null;
+}> {
+  const policy = routePolicy(path);
+  return {
+    role: policy.role,
+    section: policy.role === 'root' || policy.role === 'child' ? policy.section : null,
+  };
 }

@@ -3,7 +3,15 @@ import path from 'path';
 
 const ROOT = path.resolve(__dirname, '..');
 const ADMIN_INDEX = path.join(ROOT, 'admin', 'v2', 'legacy.html');
-const ADMIN_AVATARS = path.join(ROOT, 'admin', 'avatars');
+// Numeric level avatars are an older, unrelated mirror contract. Keep its
+// established source while this change moves only custom-gen artwork.
+const ADMIN_LEVEL_AVATARS = path.join(ROOT, 'admin', 'avatars');
+const ADMIN_CUSTOM_AVATARS = path.join(
+  ROOT,
+  'admin',
+  'v2',
+  'avatars',
+);
 const APP_LEVEL_AVATARS = path.join(ROOT, 'assets', 'images', 'levels', 'generated-v5-dalle');
 
 function extractAvatarImgFunctionSource(): string {
@@ -21,7 +29,7 @@ function renderAvatar(value: string, size = 32): string {
 }
 
 describe('admin avatar rendering contract', () => {
-  it('renders current custom-gen avatars with the same static assets as the app', () => {
+  it('renders current custom-gen avatars from the server-hosted archive', () => {
     const html = renderAvatar('custom:custom-gen-41:ruby:white');
 
     expect(html).toContain('avatars/custom-idea-41-white.webp');
@@ -40,7 +48,7 @@ describe('admin avatar rendering contract', () => {
 
     for (let i = 1; i <= 60; i += 1) {
       const fileName = `${i}.webp`;
-      const adminBytes = fs.readFileSync(path.join(ADMIN_AVATARS, fileName));
+      const adminBytes = fs.readFileSync(path.join(ADMIN_LEVEL_AVATARS, fileName));
       const appBytes = fs.readFileSync(path.join(APP_LEVEL_AVATARS, fileName));
       expect(adminBytes.equals(appBytes)).toBe(true);
     }
@@ -49,8 +57,8 @@ describe('admin avatar rendering contract', () => {
   it('ships every current custom-gen avatar image to static admin hosting', () => {
     for (let i = 1; i <= 62; i += 1) {
       const id = String(i).padStart(2, '0');
-      expect(fs.existsSync(path.join(ADMIN_AVATARS, `custom-idea-${id}-black.webp`))).toBe(true);
-      expect(fs.existsSync(path.join(ADMIN_AVATARS, `custom-idea-${id}-white.webp`))).toBe(true);
+      expect(fs.existsSync(path.join(ADMIN_CUSTOM_AVATARS, `custom-idea-${id}-black.webp`))).toBe(true);
+      expect(fs.existsSync(path.join(ADMIN_CUSTOM_AVATARS, `custom-idea-${id}-white.webp`))).toBe(true);
     }
   });
 });

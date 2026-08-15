@@ -14,15 +14,13 @@ import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
 import { File } from 'expo-file-system';
 import * as Speech from 'expo-speech';
 
-import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from '../app/audio_playback_mode';
-import { setManagedAudioMode } from '../app/audio_session_coordinator';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
 import {
-  PLAN_PRONUNCIATION_PASS_THRESHOLD,
-  scorePlanPronunciationTranscript,
-} from '../app/personal_plan_pronunciation_scoring_client';
+  SPEECH_PRONUNCIATION_PASS_THRESHOLD,
+  scoreSpeechPronunciationTranscript,
+} from '../app/pronunciation_scoring_client';
 import {
   normalizeSpokenWord,
   speakingMatchedFlags,
@@ -89,18 +87,18 @@ import { WordDrillCard } from './WordDrillCard';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { useNoSpeechCue } from '../hooks/use-no-speech-cue';
+import { useAudio } from '../hooks/use-audio';
+import { useManagedRecordingAudio } from '../hooks/use_managed_recording_audio';
+import {
+  claimSpokenAudio,
+  type SpokenAudioClaim,
+  whenSpokenAudioReady,
+} from '../modules/audio/audio_runtime_arbiter';
 import {
   isSpeechRecognitionAvailable,
   requestSpeechPermissionForHold,
   type HoldPermissionResult,
-} from '../app/personal_plan_speech_module';
-
-// Вернуть аудио-сессию в «громкое воспроизведение». Распознавание переводит её
-// в запись (playAndRecord) — без сброса всё, что играет после (эталон, «Моя
-// запись», mp3 в уроках), выходит тихим/через разговорный динамик или молчит.
-function restoreLoudPlaybackMode(): void {
-  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
-}
+} from '../app/speech_recognition_module';
 
 // Запись попытки живёт до следующей попытки/закрытия панели — дальше это мусор,
 // копящийся в кэше (wav на каждую попытку каждого юзера).
@@ -119,7 +117,7 @@ function deleteRecordingFile(uri: string | null): void {
  *
  * Self-contained: owns mic permission, on-device speech recognition, the live
  * waveform, word-by-word highlighting and scoring. Drop it anywhere (lesson /
- * trainer / personal plan) and it manages its own lifecycle. The host
+ * trainer) and it manages its own lifecycle. The host
  * only supplies the target phrase and is told when the attempt passes.
  *
  * Оценка честная и конкретная (всё локально, без платных серверов):
@@ -295,6 +293,13 @@ export function SpeakingPanel({
   runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
   const { playNoSpeech } = useNoSpeechCue();
+  const { speak: speakReferenceAudio, stop: stopReferenceAudio } = useAudio();
+  const recordingAudio = useManagedRecordingAudio(() => {
+    try { speech?.abort(); } catch { /* native capture already gone */ }
+  });
+  // Historical call sites use this name. It now releases only this panel's
+  // scoped claim; it can no longer overwrite a newer screen's microphone mode.
+  const restoreLoudPlaybackMode = recordingAudio.release;
   const [status, setStatus] = useState<SpeakingPanelStatus>('idle');
   const statusRef = useRef<SpeakingPanelStatus>('idle');
   statusRef.current = status;
@@ -349,6 +354,8 @@ export function SpeakingPanel({
   const [recordingUri, setRecordingUri] = useState<string | null>(null);
   // Плеер повтора своей записи; пересоздаётся на каждый тап, гасится на анмаунте.
   const replayPlayerRef = useRef<AudioPlayer | null>(null);
+  const replayStatusSubRef = useRef<{ remove?: () => void } | null>(null);
+  const replayClaimRef = useRef<SpokenAudioClaim | null>(null);
   // Токен последнего запроса воспроизведения (эталон / слово / «Моя запись»).
   // Каждый тап инкрементирует его. Переключение аудиорежима асинхронно, поэтому
   // фактический speak()/play() отложен в .finally(); к этому моменту мог прилететь
@@ -356,16 +363,26 @@ export function SpeakingPanel({
   // тихо отваливаются. Без этого параллельные тапы перетасовывали stop/speak и
   // обрывали друг друга («ломали» озвучку).
   const playbackTokenRef = useRef(0);
-  useEffect(() => voicePlaybackPolicy.registerStop(() => {
+  const stopReplayPlayback = useCallback(() => {
     playbackTokenRef.current += 1;
-    try { Speech.stop(); } catch {}
-  }), []);
+    try { replayStatusSubRef.current?.remove?.(); } catch { /* stale subscription */ }
+    replayStatusSubRef.current = null;
+    replayClaimRef.current?.release();
+    replayClaimRef.current = null;
+    const player = replayPlayerRef.current;
+    replayPlayerRef.current = null;
+    try { player?.pause(); } catch { /* released player */ }
+    try { player?.remove(); } catch { /* released player */ }
+  }, []);
+  useEffect(() => voicePlaybackPolicy.registerStop(() => {
+    stopReplayPlayback();
+  }), [stopReplayPlayback]);
   // Гард от двойного финиша: end и error могут прийти оба, а финиш теперь
   // асинхронный (контрольный прогон) — второй вызов запустил бы его дважды.
   const finishingRef = useRef(false);
   // Equalizer is driven IMPERATIVELY via a ref (setSample) so each ~250ms
   // volumechange sample does NOT re-render the whole modal — that re-render storm
-  // was the source of the equalizer lag. Mirrors personal_plan_exercise.
+  // was the source of the equalizer lag.
   const equalizerRef = useRef<VoiceEqualizerRef>(null);
   const [score, setScore] = useState<number | null>(null);
   const listenersRef = useRef<Array<{ remove?: () => void }>>([]);
@@ -470,7 +487,7 @@ export function SpeakingPanel({
             for (const alt of alternatives) {
               const t = String(alt?.transcript ?? '').trim();
               if (!t) continue;
-              const s = scorePlanPronunciationTranscript({ targetText, transcript: t }).score;
+              const s = scoreSpeechPronunciationTranscript({ targetText, transcript: t }).score;
               if (bestControl == null || s > bestControl) bestControl = s;
             }
           }),
@@ -500,7 +517,7 @@ export function SpeakingPanel({
       captureGeneration: number,
     ) => {
       if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
-      const biased = scorePlanPronunciationTranscript({ targetText, transcript: text, segments });
+      const biased = scoreSpeechPronunciationTranscript({ targetText, transcript: text, segments });
       const { score: honestScore, flagged } = applyControlScore(biased.score, control);
       const passed = honestScore >= biased.threshold;
       const report = buildSpokenWordReport({ targetText, transcript: text, segments });
@@ -535,7 +552,7 @@ export function SpeakingPanel({
       }
       restoreLoudPlaybackMode();
     },
-    [targetText, onPass, onScore, clearAutoAdvance],
+    [targetText, onPass, onScore, clearAutoAdvance, restoreLoudPlaybackMode],
   );
 
   // ===== Тренировка слов: послушать / повторить / оценить ОДНО слово =====
@@ -625,37 +642,13 @@ export function SpeakingPanel({
   const speakWord = useCallback(
     (word: string) => {
       hapticTap();
-      const voicePolicyToken = voicePlaybackPolicy.captureStart();
-      if (voicePolicyToken === null) return;
       // Токен + синхронный stop: быстрые повторные тапы по словам не перетасовывают
       // stop/speak и не обрывают друг друга — озвучивается только последнее слово.
-      const token = ++playbackTokenRef.current;
-      try {
-        replayPlayerRef.current?.pause();
-      } catch {
-        /* no-op */
-      }
-      try {
-        Speech.stop();
-      } catch {
-        /* no-op */
-      }
-      void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
-        .catch(() => undefined)
-        .finally(() => {
-          if (
-            playbackTokenRef.current !== token
-            || !voicePlaybackPolicy.canStart(voicePolicyToken)
-          ) return;
-          try {
-            Speech.stop();
-            Speech.speak(word, { language: recognitionLocale });
-          } catch {
-            /* no-op */
-          }
-        });
+      stopReplayPlayback();
+      stopReferenceAudio();
+      speakReferenceAudio(word, 1, { language: recognitionLocale, voice: '' });
     },
-    [recognitionLocale],
+    [recognitionLocale, speakReferenceAudio, stopReferenceAudio, stopReplayPlayback],
   );
 
   // Общий хвост оценки одного слова: из услышанного текста строим вердикт и
@@ -684,7 +677,7 @@ export function SpeakingPanel({
       }
       restoreLoudPlaybackMode();
     },
-    [tokens, markCleanedWord],
+    [tokens, markCleanedWord, playNoSpeech, restoreLoudPlaybackMode],
   );
 
   // Запись+распознавание одного слова СИСТЕМНЫМ движком (iOS + Android-фолбэк).
@@ -805,7 +798,7 @@ export function SpeakingPanel({
       }
       if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       try {
-        await setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE).catch(() => undefined);
+        if (!await recordingAudio.begin()) return;
         if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current || !wordSystemPressActiveRef.current) {
           cleanupWordListeners();
           setWordPhase('idle');
@@ -843,7 +836,7 @@ export function SpeakingPanel({
         if (mountedRef.current) { setWordPhase('no_speech'); playNoSpeech(); }
       }
     },
-    [speech, tokens, recognitionLocale, cleanupWordListeners, clearWordWatchdog, applyWordResult, playRecordStart],
+    [speech, tokens, recognitionLocale, cleanupWordListeners, clearWordWatchdog, applyWordResult, playNoSpeech, playRecordStart, recordingAudio, restoreLoudPlaybackMode],
   );
 
   const finishAttempt = useCallback(
@@ -879,7 +872,7 @@ export function SpeakingPanel({
       if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       applyScoredResult(text, segments, control, captureGeneration);
     },
-    [clearWatchdog, cleanupListeners, waitForRecordingUri, runControlPass, applyScoredResult],
+    [clearWatchdog, cleanupListeners, waitForRecordingUri, runControlPass, applyScoredResult, playNoSpeech, restoreLoudPlaybackMode],
   );
 
   const stopListening = useCallback(() => {
@@ -904,7 +897,7 @@ export function SpeakingPanel({
     } catch {
       /* no-op */
     }
-  }, [speech, clearWatchdog, cleanupListeners]);
+  }, [speech, clearWatchdog, cleanupListeners, restoreLoudPlaybackMode]);
 
   const startListening = useCallback(async () => {
     if (!runtimeActiveRef.current) return;
@@ -924,11 +917,7 @@ export function SpeakingPanel({
     hapticTap();
     // «Сказать ещё раз» может прилететь, пока играет эталон или «Моя запись» —
     // глушим их, чтобы микрофон не поймал хвост воспроизведения.
-    try {
-      replayPlayerRef.current?.pause();
-    } catch {
-      /* no-op */
-    }
+    stopReplayPlayback();
     try {
       Speech.stop();
     } catch {
@@ -989,7 +978,7 @@ export function SpeakingPanel({
     ) => {
       const c = candidate.trim();
       if (!c) return;
-      const s = scorePlanPronunciationTranscript({ targetText, transcript: c, segments }).score;
+      const s = scoreSpeechPronunciationTranscript({ targetText, transcript: c, segments }).score;
       if (s > bestScore) {
         bestScore = s;
         best = c;
@@ -1121,7 +1110,7 @@ export function SpeakingPanel({
 
     try {
       try {
-        await setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE);
+        if (!await recordingAudio.begin()) return;
       } catch {
         // Recognition can still work on runtimes that manage the native session
         // themselves; do not turn a mode-sync hiccup into a dead microphone.
@@ -1177,7 +1166,7 @@ export function SpeakingPanel({
       restoreLoudPlaybackMode();
       if (mountedRef.current) setStatus('unavailable');
     }
-  }, [speech, recognitionLocale, targetText, cleanupListeners, cleanupAudioEndListener, finishAttempt, playRecordStart, clearWatchdog]);
+  }, [speech, recognitionLocale, targetText, cleanupListeners, cleanupAudioEndListener, finishAttempt, playNoSpeech, playRecordStart, recordingAudio, restoreLoudPlaybackMode, stopReplayPlayback, clearWatchdog]);
 
   // ===== Android: «зажми и говори» → запись → whisper (в обход системного
   // распознавателя). На iOS системный движок надёжен и whisper выключен, поэтому
@@ -1224,11 +1213,7 @@ export function SpeakingPanel({
     holdPressActiveRef.current = true;
     const captureGeneration = ++captureGenerationRef.current;
     // Глушим эталон/реплей, чтобы микрофон не поймал хвост воспроизведения.
-    try {
-      replayPlayerRef.current?.pause();
-    } catch {
-      /* no-op */
-    }
+    stopReplayPlayback();
     try {
       Speech.stop();
     } catch {
@@ -1276,7 +1261,7 @@ export function SpeakingPanel({
       }
       holdRecRef.current = startHoldRecording(holdCaptureOptions);
     })();
-  }, [holdMode, ensureHoldMicPermission, playRecordStart]);
+  }, [holdMode, ensureHoldMicPermission, playRecordStart, stopReplayPlayback]);
 
   const endHold = useCallback(async () => {
     const captureGeneration = captureGenerationRef.current;
@@ -1325,7 +1310,7 @@ export function SpeakingPanel({
     // whisper — уже НЕЙТРАЛЬНЫЙ движок (не знает цели), поэтому его же балл идёт
     // как контрольный: honesty-поправка не даёт biasing «подарить» зачёт.
     applyScoredResult(text, undefined, verdict?.controlScore ?? null, captureGeneration);
-  }, [targetText, recognitionLocale, applyScoredResult]);
+  }, [targetText, recognitionLocale, applyScoredResult, playNoSpeech]);
 
   // The exercise owns the press target, but recognition must follow the same
   // proven platform route as the original modal: iOS/system ASR; Android
@@ -1379,11 +1364,7 @@ export function SpeakingPanel({
       wordFinishingRef.current = false;
       wordHoldPressActiveRef.current = true;
       const captureGeneration = ++captureGenerationRef.current;
-      try {
-        replayPlayerRef.current?.pause();
-      } catch {
-        /* no-op */
-      }
+      stopReplayPlayback();
       try {
         Speech.stop();
       } catch {
@@ -1423,7 +1404,7 @@ export function SpeakingPanel({
         wordHoldRecRef.current = startHoldRecording({ onFirstAudio: onWordFirstAudio });
       })();
     },
-    [pcmHoldMode, ensureHoldMicPermission, playRecordStart, clearAutoAdvance],
+    [pcmHoldMode, ensureHoldMicPermission, playNoSpeech, playRecordStart, clearAutoAdvance, stopReplayPlayback],
   );
 
   const endWordHold = useCallback(
@@ -1466,7 +1447,7 @@ export function SpeakingPanel({
       if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
       applyWordResult(index, (verdict?.transcript ?? '').trim(), captureGeneration);
     },
-    [tokens, recognitionLocale, applyWordResult],
+    [tokens, recognitionLocale, applyWordResult, playNoSpeech],
   );
 
   // Единая точка начала системного push-to-talk для слова.
@@ -1504,7 +1485,7 @@ export function SpeakingPanel({
         /* no-op */
       }
     }
-  }, [cleanupWordListeners, speech]);
+  }, [cleanupWordListeners, restoreLoudPlaybackMode, speech]);
 
   // Тап по слову карты: открыть карточку И СРАЗУ проиграть эталон слова. Каждый
   // тап (в т.ч. повторный по уже открытому слову) переигрывает звук — отдельная
@@ -1567,7 +1548,7 @@ export function SpeakingPanel({
     setWordPhase('idle');
     setWordVerdict(null);
     setDrill((prev) => closeWord(prev));
-  }, [cleanupWordListeners, clearAutoAdvance, speech]);
+  }, [cleanupWordListeners, clearAutoAdvance, restoreLoudPlaybackMode, speech]);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -1602,11 +1583,7 @@ export function SpeakingPanel({
         /* no-op */
       }
       wordHoldRecRef.current = null;
-      try {
-        replayPlayerRef.current?.remove();
-      } catch {
-        /* no-op */
-      }
+      stopReplayPlayback();
       try {
         Speech.stop();
       } catch {
@@ -1616,7 +1593,7 @@ export function SpeakingPanel({
       deleteRecordingFile(recordingUriRef.current);
       restoreLoudPlaybackMode();
     };
-  }, [speech, cleanupListeners, cleanupAudioEndListener, clearWatchdog, clearWordWatchdog, clearAutoAdvance]);
+  }, [speech, cleanupListeners, cleanupAudioEndListener, clearWatchdog, clearWordWatchdog, clearAutoAdvance, restoreLoudPlaybackMode, stopReplayPlayback]);
 
   // зачем: свернуть приложение — НЕ то же самое, что закрыть панель. Размонтирования не
   // происходит, cleanup выше не срабатывает, и распознавание продолжало слушать микрофон в
@@ -1668,11 +1645,7 @@ export function SpeakingPanel({
       /* no-op */
     }
     wordHoldRecRef.current = null;
-    try {
-      replayPlayerRef.current?.pause();
-    } catch {
-      /* no-op */
-    }
+    stopReplayPlayback();
     try {
       Speech.stop();
     } catch {
@@ -1683,7 +1656,7 @@ export function SpeakingPanel({
     equalizerRef.current?.setSample(0);
     if (mountedRef.current && phraseCaptureWasActive) setStatus('idle');
     if (mountedRef.current && wordCaptureWasActive) setWordPhase('idle');
-  }, [runtimeActive, speech, clearWatchdog, clearWordWatchdog, clearAutoAdvance, cleanupListeners, cleanupAudioEndListener, cleanupWordListeners]);
+  }, [runtimeActive, speech, clearWatchdog, clearWordWatchdog, clearAutoAdvance, cleanupListeners, cleanupAudioEndListener, cleanupWordListeners, restoreLoudPlaybackMode, stopReplayPlayback]);
 
   // Модель whisper не смогла подготовиться (нет сети при первом запуске) —
   // откатываемся на системный путь, чтобы юзер не застрял на «идёт подготовка».
@@ -1735,11 +1708,7 @@ export function SpeakingPanel({
     }
     // «Готово»/крестик глушат всё, что ещё звучит (эталон, «Моя запись»),
     // и возвращают громкую сессию хосту (уроку/тренажёру).
-    try {
-      replayPlayerRef.current?.pause();
-    } catch {
-      /* no-op */
-    }
+    stopReplayPlayback();
     try {
       Speech.stop();
     } catch {
@@ -1747,7 +1716,7 @@ export function SpeakingPanel({
     }
     restoreLoudPlaybackMode();
     onClose();
-  }, [stopListening, speech, onClose]);
+  }, [stopListening, speech, onClose, restoreLoudPlaybackMode, stopReplayPlayback]);
 
   const openAppSettings = useCallback(() => {
     hapticTap();
@@ -1763,46 +1732,51 @@ export function SpeakingPanel({
     // Токен: пока переключается аудиорежим, повторный тап мог застолбить свой
     // запрос — тогда НЕ создаём ещё один плеер (иначе накапливались лишние плееры
     // и одновременно играло несколько записей).
-    const token = ++playbackTokenRef.current;
-    try {
-      Speech.stop();
-    } catch {
-      /* no-op */
-    }
-    try {
-      replayPlayerRef.current?.remove();
-    } catch {
-      /* no-op */
-    }
-    replayPlayerRef.current = null;
-    // Сначала «громкое воспроизведение»: после распознавания сессия всё ещё в
-    // записи, и без сброса запись играла бы тихо через разговорный динамик.
-    void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE)
-      .catch(() => undefined)
-      .finally(() => {
-        if (!mountedRef.current || !runtimeActiveRef.current || playbackTokenRef.current !== token) return;
-        try {
-          const player = createAudioPlayer(recordingUri);
-          if (!mountedRef.current || !runtimeActiveRef.current || playbackTokenRef.current !== token) {
-            try {
-              player.remove();
-            } catch {
-              /* no-op */
-            }
-            return;
-          }
-          replayPlayerRef.current = player;
-          try {
-            player.volume = 1;
-          } catch {
-            /* no-op: runtime без настраиваемой громкости */
-          }
-          player.play();
-        } catch {
-          /* no-op: повтор не критичен — тихо пропускаем */
-        }
+    stopReferenceAudio();
+    stopReplayPlayback();
+    const token = playbackTokenRef.current;
+    let claim: SpokenAudioClaim | null = null;
+    claim = claimSpokenAudio(() => {
+      if (replayClaimRef.current !== claim) return;
+      stopReplayPlayback();
+    });
+    if (!claim) return;
+    replayClaimRef.current = claim;
+    void whenSpokenAudioReady(claim).then((audioReady) => {
+      if (
+        !audioReady
+        || !claim?.isCurrent()
+        || !mountedRef.current
+        || !runtimeActiveRef.current
+        || playbackTokenRef.current !== token
+      ) {
+        claim?.release();
+        if (replayClaimRef.current === claim) replayClaimRef.current = null;
+        return;
+      }
+      let player: AudioPlayer;
+      try {
+        player = createAudioPlayer(recordingUri);
+      } catch {
+        stopReplayPlayback();
+        return;
+      }
+      if (!claim.isCurrent() || playbackTokenRef.current !== token) {
+        try { player.remove(); } catch { /* no-op */ }
+        return;
+      }
+      replayPlayerRef.current = player;
+      replayStatusSubRef.current = player.addListener('playbackStatusUpdate', (status) => {
+        if (status.didJustFinish) stopReplayPlayback();
       });
-  }, [recordingUri]);
+      try { player.volume = 1; } catch { /* runtime без настраиваемой громкости */ }
+      try {
+        player.play();
+      } catch {
+        stopReplayPlayback();
+      }
+    });
+  }, [recordingUri, stopReferenceAudio, stopReplayPlayback]);
 
   const listening = status === 'listening';
   const showResult = status === 'passed' || status === 'failed';
@@ -1810,7 +1784,7 @@ export function SpeakingPanel({
   // На успехе фраза засчитана — микрофон больше не нужен (иначе юзер «застревает»
   // на экране с микрофоном и «Сказать ещё раз», не понимая, что уже готово).
   // Вместо микрофона показываем явную кнопку «Готово», которая закрывает панель.
-  const passThreshold = PLAN_PRONUNCIATION_PASS_THRESHOLD;
+  const passThreshold = SPEECH_PRONUNCIATION_PASS_THRESHOLD;
   const warnColor = theme.warn ?? WARN_COLOR_FALLBACK;
   // Тренировка слов ДВИГАЕТ балл фразы: каждое дочиненное проблемное слово честно
   // поднимает результат от исходного к полному проходу; когда закрыты ВСЕ

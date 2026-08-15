@@ -1,13 +1,9 @@
 import type { Lang } from '../constants/i18n';
-import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 
 export type HomeTheoAction =
   | 'lesson'
   | 'lessons'
   | 'trainer'
-  | 'dailyTasks'
-  | 'personalPlan'
-  | 'personalPlanSetup'
   | 'stats'
   | 'aiDialog'
   | 'flashcards'
@@ -29,22 +25,17 @@ export type HomeTheoAdvisorContext = {
   lessonsCompleted: number;
   lastLessonId: number | null;
   lastLessonProgress: number;
-  tasksCompleted: number;
-  dailyTaskBarCount: number;
   dueCount: number;
   energyCount: number;
   energyMax: number;
   hasPremiumAccess: boolean;
   isPremium: boolean;
   isVip: boolean;
-  onboardingPlanBilling: string | null;
   hadPremiumEver: boolean;
   freezeActive: boolean;
   streakAtRisk: boolean;
   showRepairCard: boolean;
   repairProgress: number;
-  hasActivePersonalPlan: boolean;
-  personalPlanSnapshot: PersonalPlanHomeSnapshot | null;
   homeXpPercentile: number | null;
   medalTotal: number;
   weekDone: readonly boolean[];
@@ -73,10 +64,7 @@ function stablePick<T>(items: readonly T[], salt: number): T {
 
 function matches(ctx: HomeTheoAdvisorContext, ruleId: string): boolean {
   const todayDoneCount = ctx.weekDone.filter(Boolean).length;
-  const dailyTasksTotal = Math.max(1, ctx.dailyTaskBarCount);
   switch (ruleId) {
-    case 'premium_onboarding':
-      return ctx.hasPremiumAccess && Boolean(ctx.onboardingPlanBilling) && ctx.totalXP < 600;
     case 'vip_welcome':
       return ctx.isVip;
     case 'first_visit':
@@ -99,20 +87,6 @@ function matches(ctx: HomeTheoAdvisorContext, ruleId: string): boolean {
       return ctx.dueCount >= 10;
     case 'trainer_due_some':
       return ctx.dueCount > 0;
-    case 'daily_tasks_zero':
-      return ctx.tasksCompleted === 0;
-    case 'daily_tasks_almost':
-      return ctx.tasksCompleted > 0 && ctx.tasksCompleted < dailyTasksTotal;
-    case 'daily_tasks_done':
-      return ctx.tasksCompleted >= dailyTasksTotal;
-    case 'personal_plan_today':
-      return Boolean(ctx.personalPlanSnapshot) && !ctx.personalPlanSnapshot?.todayDone;
-    case 'personal_plan_done':
-      return Boolean(ctx.personalPlanSnapshot?.todayDone);
-    case 'no_personal_plan_premium':
-      return ctx.hasPremiumAccess && !ctx.hasActivePersonalPlan;
-    case 'no_personal_plan_free':
-      return !ctx.hasPremiumAccess && !ctx.hasActivePersonalPlan && ctx.level >= 2;
     case 'energy_low':
       return !ctx.hasPremiumAccess && ctx.energyCount <= Math.max(1, Math.floor(ctx.energyMax / 3));
     case 'premium_multiplier':
@@ -142,28 +116,13 @@ function matches(ctx: HomeTheoAdvisorContext, ruleId: string): boolean {
     case 'lessons_8_done':
       return ctx.lessonsCompleted >= 8;
     case 'ai_dialog_suggestion':
-      return ctx.lessonsCompleted >= 1 && ctx.dueCount === 0 && ctx.tasksCompleted > 0;
+      return ctx.lessonsCompleted >= 1 && ctx.dueCount === 0;
     default:
       return true;
   }
 }
 
 const RULES: readonly HomeTheoAdvice[] = [
-  {
-    id: 'premium_onboarding',
-    priority: 1000,
-    action: 'personalPlanSetup',
-    copy: fallbackCopy(
-      'Ого, всё открыто для тебя. Не распыляйся: выбери личный план — и пусть приложение ведёт тебя по дням.',
-      'Ого, все відкрито для тебе. Не розпорошуйся: обери особистий план — і хай застосунок веде тебе по днях.',
-      '¡Vaya, ya tienes todo abierto! No te disperses: elige un plan personal y deja que la app te guíe día a día.',
-      'Uau, tudo liberado pra você. Não se disperse: escolha um plano pessoal e deixe o app te guiar dia a dia.',
-      'Ô, mọi thứ đã mở cho bạn. Đừng dàn trải: chọn kế hoạch cá nhân và để app dẫn bạn từng ngày.',
-      'Wow, semua sudah terbuka untukmu. Jangan terpencar: pilih rencana pribadi dan biarkan app memandumu tiap hari.',
-      'Vay be, her şey sana açık. Dağılma: kişisel bir plan seç, uygulama seni günden güne yönlendirsin.',
-      'O, masz wszystko otwarte. Nie rozpraszaj się: wybierz plan osobisty i pozwól, by aplikacja prowadziła cię dzień po dniu.',
-    ),
-  },
   {
     id: 'vip_welcome',
     priority: 990,
@@ -270,36 +229,6 @@ const RULES: readonly HomeTheoAdvice[] = [
     ),
   },
   {
-    id: 'daily_tasks_almost',
-    priority: 850,
-    action: 'dailyTasks',
-    copy: fallbackCopy(
-      'Вызовы дня почти закрыты. Добей последний — это хороший якорь для ежедневной практики.',
-      'Виклики дня майже закриті. Добий останній — це добрий якір для щоденної практики.',
-      'Los retos de hoy están casi listos. Cierra el último: es un buen ancla para practicar a diario.',
-      'Os desafios de hoje estão quase prontos. Feche o último: é uma boa âncora para a prática diária.',
-      'Thử thách hôm nay gần xong. Hoàn tất cái cuối để giữ nhịp luyện mỗi ngày.',
-      'Tantangan hari ini hampir selesai. Tuntaskan yang terakhir: jadi jangkar latihan harian.',
-      'Günün görevleri neredeyse bitti. Sonuncuyu tamamla: günlük pratiğe iyi bir çapa olur.',
-      'Wyzwania dnia są prawie gotowe. Domknij ostatnie: to dobra kotwica codziennej praktyki.',
-    ),
-  },
-  {
-    id: 'personal_plan_today',
-    priority: 840,
-    action: 'personalPlan',
-    copy: fallbackCopy(
-      'В личном плане есть шаг на сегодня. Сделай его первым: там меньше шума и понятнее маршрут.',
-      'В особистому плані є крок на сьогодні. Зроби його першим: там менше шуму й ясніший маршрут.',
-      'Tu plan personal tiene el paso de hoy. Hazlo primero: menos ruido y una ruta más clara.',
-      'Seu plano pessoal tem o passo de hoje. Faça primeiro: menos ruído e rota mais clara.',
-      'Kế hoạch cá nhân có bước hôm nay. Làm trước đi: ít nhiễu, rõ đường hơn.',
-      'Rencana pribadi punya langkah hari ini. Kerjakan dulu: lebih sedikit gangguan, rute lebih jelas.',
-      'Kişisel planda bugünün adımı var. Önce onu yap: daha az gürültü, daha net rota.',
-      'Plan osobisty ma dzisiejszy krok. Zrób go najpierw: mniej szumu, jaśniejsza trasa.',
-    ),
-  },
-  {
     id: 'energy_low',
     priority: 830,
     action: 'trainer',
@@ -312,21 +241,6 @@ const RULES: readonly HomeTheoAdvice[] = [
       'Energi rendah. Pilih mode pendek: trainer titik lemah atau pengulangan lebih baik dari ronde panjang.',
       'Enerji az. Kısa mod seç: zayıf noktalar antrenörü ya da tekrar, uzun bir turdan iyi.',
       'Mało energii. Wybierz krótki tryb: trener słabych miejsc albo powtórka zamiast długiej rundy.',
-    ),
-  },
-  {
-    id: 'no_personal_plan_premium',
-    priority: 820,
-    action: 'personalPlanSetup',
-    copy: fallbackCopy(
-      'У тебя есть полный доступ к маршруту. Собери личный план — он убирает вопрос «что делать дальше?».',
-      'У тебе є повний доступ до маршруту. Збери особистий план — він прибирає питання «що далі?».',
-      'Tienes acceso completo a la ruta. Arma un plan personal y quitas la pregunta «¿qué hago ahora?».',
-      'Você tem acesso completo à rota. Monte um plano pessoal e tire a dúvida «o que faço agora?».',
-      'Bạn có toàn quyền truy cập lộ trình. Tạo kế hoạch cá nhân để khỏi phải nghĩ «làm gì tiếp theo?».',
-      'Kamu punya akses penuh ke rute. Buat rencana pribadi dan hilangkan pertanyaan «berikutnya apa?».',
-      'Rotaya tam erişimin var. Kişisel bir plan kur, «şimdi ne yapsam?» sorusu bitsin.',
-      'Masz pełny dostęp do trasy. Ułóż plan osobisty i zdejmij pytanie «co dalej?».',
     ),
   },
   {
@@ -349,13 +263,9 @@ const RULES: readonly HomeTheoAdvice[] = [
 const ROTATION: readonly HomeTheoAdvice[] = [
   { id: 'continue_lesson', priority: 500, action: 'lesson', copy: fallbackCopy('Лучший следующий шаг уже открыт: продолжи последний раунд, пока всё свежо.', 'Найкращий наступний крок уже відкритий: продовж останній раунд, доки все свіже.', 'El mejor paso siguiente ya está abierto: continúa la última ronda mientras todo está fresco.', 'O melhor próximo passo já está aberto: continue a última rodada enquanto está tudo fresco.', 'Bước tiếp theo tốt nhất đã mở sẵn: tiếp tục vòng gần nhất khi còn nhớ rõ.', 'Langkah terbaik berikutnya sudah terbuka: lanjutkan ronde terakhir selagi masih segar.', 'En iyi sonraki adım açık: her şey tazeyken son tura devam et.', 'Najlepszy kolejny krok już czeka: kontynuuj ostatnią rundę, póki wszystko świeże.') },
   { id: 'trainer_due_some', priority: 490, action: 'trainer', copy: fallbackCopy('Есть пара фраз на повторение. Закрой их до нового раунда — так новое лучше цепляется.', 'Є кілька фраз на повторення. Закрий їх до нового раунду — так нове краще чіпляється.', 'Hay un par de frases para repasar. Ciérralas antes de una ronda nueva: lo nuevo se queda mejor.', 'Há algumas frases para repassar. Feche antes de uma rodada nova: o novo fixa melhor.', 'Có vài câu cần ôn. Xử lý trước vòng mới để bài mới nhớ chắc hơn.', 'Ada beberapa frasa untuk diulang. Selesaikan sebelum ronde baru biar yang baru lebih nempel.', 'Tekrarlanacak birkaç ifade var. Yeni turdan önce bitir; yenisi daha iyi tutunur.', 'Czeka kilka fraz do powtórki. Zrób je przed nową rundą, żeby nowe lepiej weszło.') },
-  { id: 'daily_tasks_zero', priority: 470, action: 'dailyTasks', copy: fallbackCopy('Начни с одного вызова дня. Это самый быстрый способ сказать себе «я сегодня позанимался».', 'Почни з одного виклику дня. Це найшвидший спосіб сказати собі «я сьогодні позаймався».', 'Empieza con un reto del día. Es la forma más rápida de decirte «hoy practiqué».', 'Comece com um desafio do dia. É o jeito mais rápido de dizer «hoje eu pratiquei».', 'Bắt đầu bằng một thử thách trong ngày. Đó là cách nhanh nhất để nói «hôm nay mình đã học».', 'Mulai dari satu tantangan hari ini. Cara tercepat untuk bilang «hari ini aku latihan».', 'Bir günlük görevle başla. Kendine «bugün çalıştım» demenin en hızlı yolu.', 'Zacznij od jednego wyzwania dnia. To najszybszy sposób, by powiedzieć «dziś poćwiczyłem».') },
-  { id: 'daily_tasks_done', priority: 460, action: 'trainer', copy: fallbackCopy('Вызовы дня закрыты. Есть ещё 5 минут? Повтори слабые места, а не гонись за количеством.', 'Виклики дня закриті. Є ще 5 хвилин? Повтори слабкі місця, а не женися за кількістю.', 'Los retos del día están listos. ¿Tienes 5 minutos más? Repasa los puntos débiles, no corras por cantidad.', 'Os desafios do dia estão prontos. Tem mais 5 minutos? Repasse os pontos fracos, não corra por quantidade.', 'Thử thách hôm nay đã xong. Còn 5 phút? Ôn lại điểm yếu thay vì chạy theo số lượng.', 'Tantangan hari ini selesai. Ada 5 menit lagi? Ulang titik lemah, jangan kejar jumlah.', 'Günün görevleri bitti. 5 dakika daha mı var? Sayı kovalama, zayıf noktaları tekrar et.', 'Wyzwania dnia zrobione. Masz jeszcze 5 minut? Powtórz słabe miejsca, nie goń za ilością.') },
-  { id: 'personal_plan_done', priority: 450, action: 'aiDialog', copy: fallbackCopy('План на сегодня закрыт. Хороший момент для лёгкого разговора: переведи знание в быстрый ответ.', 'План на сьогодні закрито. Гарний момент для легкої розмови: переведи знання у швидку відповідь.', 'El plan de hoy está listo. Buen momento para una charla ligera: convierte lo que sabes en respuesta rápida.', 'O plano de hoje está pronto. Bom momento pra um papo leve: transforme o que sabe em resposta rápida.', 'Kế hoạch hôm nay đã xong. Lúc tốt để trò chuyện nhẹ: biến kiến thức thành phản xạ.', 'Rencana hari ini selesai. Saat yang pas untuk obrolan ringan: ubah yang kamu tahu jadi jawaban cepat.', 'Bugünün planı bitti. Hafif bir sohbet için güzel an: bildiğini hızlı cevaba çevir.', 'Plan na dziś zamknięty. Dobry moment na luźną rozmowę: zamień wiedzę w szybką odpowiedź.') },
-  { id: 'no_personal_plan_free', priority: 440, action: 'personalPlanSetup', copy: fallbackCopy('Ты уже не совсем новичок. Личный план поможет не метаться между режимами и учиться ровнее.', 'Ти вже не зовсім новачок. Особистий план допоможе не метатися між режимами й учитися рівніше.', 'Ya no eres principiante del todo. Un plan personal te evita saltar entre modos y te hace avanzar más parejo.', 'Você já não é iniciante total. Um plano pessoal te evita pular entre modos e deixa o avanço mais constante.', 'Bạn không còn là người mới hoàn toàn. Kế hoạch cá nhân giúp khỏi nhảy giữa các chế độ và học đều hơn.', 'Kamu bukan pemula total lagi. Rencana pribadi membantumu tidak lompat antar mode dan belajar lebih stabil.', 'Artık tamamen yeni değilsin. Kişisel plan, modlar arasında dolanmadan daha dengeli ilerlemeni sağlar.', 'Nie jesteś już zupełnie początkujący. Plan osobisty pomoże nie skakać między trybami i uczyć się równiej.') },
   { id: 'good_streak', priority: 430, action: 'stats', copy: fallbackCopy('Серия уже крепкая. Смотри не только на дни, а на качество: твои результаты покажут слабые места.', 'Серія вже міцна. Дивись не лише на дні, а й на якість: твої результати покажуть слабкі місця.', 'Tu racha ya es sólida. Mira no solo los días, sino la calidad: tus resultados muestran los puntos débiles.', 'Sua sequência já está firme. Olhe não só os dias, mas a qualidade: seus resultados mostram os pontos fracos.', 'Chuỗi của bạn đã chắc. Đừng chỉ nhìn số ngày, hãy nhìn chất lượng: kết quả sẽ chỉ ra điểm yếu.', 'Rangkaianmu sudah kuat. Lihat bukan cuma harinya, tapi kualitasnya: hasilmu menunjukkan titik lemah.', 'Serin sağlam artık. Sadece günlere değil kaliteye de bak: sonuçların zayıf noktaları gösterir.', 'Twoja seria jest już mocna. Patrz nie tylko na dni, ale na jakość: twoje wyniki pokażą słabe miejsca.') },
   { id: 'big_streak', priority: 420, action: 'trainer', copy: fallbackCopy('Большая серия — это сила. Чтобы не уйти в автопилот, добавляй тренажёр слабых мест раз в пару дней.', 'Велика серія — це сила. Щоб не перейти в автопілот, додавай тренажер слабких місць раз на кілька днів.', 'Una racha grande es fuerza. Para no entrar en piloto automático, suma el entrenador de puntos débiles cada par de días.', 'Uma sequência grande é força. Pra não entrar no piloto automático, some o treino dos pontos fracos a cada par de dias.', 'Chuỗi dài là sức mạnh. Để khỏi rơi vào tự động, thêm luyện điểm yếu vài ngày một lần.', 'Rangkaian panjang itu kekuatan. Biar tidak autopilot, tambah trainer titik lemah tiap beberapa hari.', 'Büyük seri güçtür. Otomatiğe bağlanmamak için birkaç günde bir zayıf noktalar antrenörü ekle.', 'Duża seria to siła. Żeby nie wejść w autopilota, dodaj trener słabych miejsc co kilka dni.') },
-  { id: 'new_week', priority: 410, action: 'dailyTasks', copy: fallbackCopy('Неделя ещё пустая. Один маленький заход сегодня сделает завтра легче.', 'Тиждень ще порожній. Один маленький захід сьогодні зробить завтра легшим.', 'La semana aún está vacía. Un pequeño paso hoy hará el mañana más fácil.', 'A semana ainda está vazia. Um passo pequeno hoje deixa o amanhã mais fácil.', 'Tuần còn trống. Một lượt nhỏ hôm nay sẽ làm ngày mai dễ hơn.', 'Minggu masih kosong. Satu langkah kecil hari ini bikin besok lebih mudah.', 'Hafta daha boş. Bugün küçük bir adım yarını kolaylaştırır.', 'Tydzień jest jeszcze pusty. Mały krok dziś ułatwi jutro.') },
+  { id: 'new_week', priority: 410, action: 'lesson', copy: fallbackCopy('Неделя ещё пустая. Один маленький заход сегодня сделает завтра легче.', 'Тиждень ще порожній. Один маленький захід сьогодні зробить завтра легшим.', 'La semana aún está vacía. Un pequeño paso hoy hará el mañana más fácil.', 'A semana ainda está vazia. Um passo pequeno hoje deixa o amanhã mais fácil.', 'Tuần còn trống. Một lượt nhỏ hôm nay sẽ làm ngày mai dễ hơn.', 'Minggu masih kosong. Satu langkah kecil hari ini bikin besok lebih mudah.', 'Hafta daha boş. Bugün küçük bir adım yarını kolaylaştırır.', 'Tydzień jest jeszcze pusty. Mały krok dziś ułatwi jutro.') },
   { id: 'week_active', priority: 400, action: 'aiDialog', copy: fallbackCopy('Неделя уже активная. Добавь разговор: проверь, можешь ли доставать фразы без подсказки.', 'Тиждень уже активний. Додай розмову: перевір, чи дістаєш фрази без підказки.', 'La semana ya está activa. Añade conversación: comprueba si sacas las frases sin pistas.', 'A semana já está ativa. Adicione conversa: veja se tira as frases sem dicas.', 'Tuần này đã sôi nổi. Thêm hội thoại: thử xem bạn có nhớ câu mà không cần gợi ý.', 'Minggu ini sudah aktif. Tambah percakapan: cek apakah kamu bisa keluarkan frasa tanpa petunjuk.', 'Hafta zaten hareketli. Konuşma ekle: ipuçsuz ifadeleri çıkarabiliyor musun gör.', 'Tydzień już aktywny. Dodaj rozmowę: sprawdź, czy wyciągasz frazy bez podpowiedzi.') },
   { id: 'percentile_visible', priority: 390, action: 'stats', copy: fallbackCopy('Ты уже в сравнении по очкам. Это компас, но выбирай по слабым местам, а не по гонке.', 'Ти вже у порівнянні за очками. Це компас, але обирай за слабкими місцями, а не за гонкою.', 'Ya estás en la comparación por puntos. Úsalo de brújula, pero elige por tus puntos débiles, no por la carrera.', 'Você já está na comparação por pontos. Use de bússola, mas escolha pelos pontos fracos, não pela corrida.', 'Bạn đã có trong bảng so sánh điểm. Coi như la bàn, nhưng chọn theo điểm yếu, đừng chạy đua.', 'Kamu sudah ada di perbandingan poin. Pakai sebagai kompas, tapi pilih dari titik lemah, bukan balapan.', 'Puan karşılaştırmasındasın artık. Pusula olsun, ama yarışa değil zayıf noktalara göre seç.', 'Jesteś już w porównaniu według punktów. Niech to będzie kompas, ale wybieraj po słabych miejscach, nie po wyścigu.') },
   { id: 'medal_collector', priority: 370, action: 'lessons', copy: fallbackCopy('Медали уже копятся. Дальше рост не в наградах, а в повторе сложных мест.', 'Медалі вже накопичуються. Далі ріст не в нагородах, а в повторі складних місць.', 'Las medallas ya se acumulan. El próximo avance no está en premios, sino en repetir las partes difíciles.', 'As medalhas já se acumulam. O próximo avanço não está nos prêmios, mas em repetir as partes difíceis.', 'Huy chương đã gom được. Bước tiến tiếp theo không ở phần thưởng mà ở việc ôn lại chỗ khó.', 'Medali sudah terkumpul. Pertumbuhan berikutnya bukan di hadiah, tapi di mengulang bagian sulit.', 'Madalyalar birikiyor. Sıradaki gelişim ödüllerde değil, zor yerleri tekrarlamakta.', 'Medale już się zbierają. Dalszy wzrost nie w nagrodach, lecz w powtórkach trudnych miejsc.') },

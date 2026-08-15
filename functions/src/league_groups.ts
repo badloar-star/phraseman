@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { appendExternalEconomyEvent } from './external_economy_events';
 import { isVipActive, resolvePremiumAccess, resolveIsLifetimePlan } from './premium_status';
 import {
   countLiveMembers,
@@ -663,7 +664,7 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
       // Вместимость — по живым: жители мест не занимают и уступают человеку.
       if (!members[stableUid] && countLiveMembers(members) >= GROUP_SIZE) return;
       members[stableUid] = mergeCurrentWeekMember(members[stableUid], currentMember);
-      // зачем (владелец 2026-08-04): крон жителей ходит раз в 6 часов, а комната
+      // зачем (владелец 2026-08-04): даже часовой крон не заменяет мгновенное
       // нужна полной ПРЯМО СЕЙЧАС — иначе вошедший увидит «Упс, ты здесь один»
       // до следующего запуска. Подселяем в той же транзакции.
       const withResidents = fillRoomWithResidents(members, candidate, weekStartMs(), Date.now());
@@ -833,7 +834,6 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
   const logRef = userRef.collection('shard_log').doc();
   const now = Date.now();
   let createdBoost: Record<string, unknown> | null = null;
-  let shardsBalance = 0;
   let usedGiftVoucher = false;
   let clubGiftFreeBoostCountAfter = 0;
 
@@ -867,7 +867,6 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
     if (active && readInt(active.expiresAt, 0) > now) {
       if (String(active.buyerUid || '') === stableUid) {
         createdBoost = active;
-        shardsBalance = Math.max(0, readInt(userSnap.data()?.shards, 0));
         usedGiftVoucher = active.usedGiftVoucher === true;
         return;
       }
@@ -880,11 +879,6 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
     // нельзя было использовать дважды.
     usedGiftVoucher = giftVoucherCount > 0;
     const boostCost = usedGiftVoucher ? 0 : LEAGUE_GROUP_BOOST_COST_SHARDS;
-    const before = Math.max(0, readInt(userData.shards, 0));
-    if (before < boostCost) {
-      throw new HttpsError('failed-precondition', 'insufficient-shards');
-    }
-    const after = before - boostCost;
     const startedAt = now;
     const expiresAt = now + LEAGUE_GROUP_BOOST_DURATION_MS;
     const likeEventId = `league_group_boost_${groupWeekId}_${groupId}_${startedAt}`;
@@ -910,14 +904,7 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
       usedGiftVoucher,
       clubGiftFreeBoostCountAfter: usedGiftVoucher ? giftVoucherCount - 1 : giftVoucherCount,
     };
-    shardsBalance = after;
-
-    const userPatch: Record<string, unknown> = {
-      shards: after,
-      shards_updated_at_ms: now,
-      shards_updated_op: 'spend',
-      shards_updated_reason: usedGiftVoucher ? 'league_group_boost_gift' : 'league_group_boost',
-    };
+    const userPatch: Record<string, unknown> = {};
     if (usedGiftVoucher) {
       const remainingGiftVouchers = giftVoucherCount - 1;
       clubGiftFreeBoostCountAfter = remainingGiftVouchers;
@@ -927,13 +914,23 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
       userPatch.club_gift_free_boost_v1 = canonicalValue;
       userPatch['progress.club_gift_free_boost_v1'] = canonicalValue;
     }
-    tx.update(userRef, userPatch);
+    if (Object.keys(userPatch).length > 0) tx.update(userRef, userPatch);
+    if (boostCost > 0) appendExternalEconomyEvent(tx, userRef, {
+      source: 'league_group_boost',
+      eventId: likeEventId,
+      ownerStableId: stableUid,
+      delta: -boostCost,
+      reason: 'league_group_boost',
+      kind: 'competition_group_boost',
+      subjectId: likeEventId,
+      payload: { groupId, weekId: groupWeekId, leagueId },
+      createdAtMs: now,
+    });
     tx.create(logRef, {
       type: 'spend',
       amount: usedGiftVoucher ? 0 : LEAGUE_GROUP_BOOST_COST_SHARDS,
       reason: usedGiftVoucher ? 'league_group_boost_gift' : 'league_group_boost',
-      balanceBefore: before,
-      balanceAfter: after,
+      authority: 'external_event',
       ts: new Date(now).toISOString(),
     });
     tx.set(userRef.collection('my_events').doc(likeEventId), {
@@ -959,8 +956,6 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
     ok: true,
     groupId,
     boost: createdBoost,
-    shardsBalance,
-    shardsUpdatedAtMs: now,
     usedGiftVoucher,
     clubGiftFreeBoostCountAfter,
   };
@@ -970,8 +965,8 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
 // списать 50 shards у ЛЮБОГО аккаунта (griefing) в обход App Check. Переведено на onCall:
 // uid берётся из request.auth, stableId резолвится через resolveStableUidForAuth — списать
 // можно только со своего аккаунта. Клиент уже зовёт это как callable (league_group_boosts.ts),
-// поэтому сигнатура вызова не меняется; поля ответа (ok/groupId/boost/shardsBalance) теперь
-// корректно ложатся в res.data (раньше клиент читал их из обёртки {result} и получал undefined).
+// поэтому сигнатура вызова не меняется; receipt-поля (ok/groupId/boost) корректно
+// ложатся в res.data без какой-либо server wallet projection.
 export const leagueActivateGroupBoost = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();

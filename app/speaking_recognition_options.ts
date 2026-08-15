@@ -1,7 +1,7 @@
 // Single source of truth for how Phraseman starts on-device speech recognition
 // in the speaking ("Устно") / pronunciation modes.
 //
-// Why centralize: three call sites (SpeakingPanel, the personal-plan recorder,
+// Why centralize: all speech-recognition call sites
 // and the dev spike screen) each used to call ExpoSpeechRecognitionModule.start()
 // with slightly different, under-tuned options. The accuracy of recognizing a
 // KNOWN target English phrase depends almost entirely on these options:
@@ -48,7 +48,7 @@ export interface BuildSpeakingStartOptionsInput {
   /**
    * Persist the captured attempt audio to a cache file (recordingOptions).
    * Default true — SpeakingPanel читает его («Моя запись» + контрольный
-   * прогон). Поверхности БЕЗ реплея (план, ИИ-диалог) передают false, чтобы
+   * прогон). Поверхности БЕЗ реплея (например, ИИ-диалог) передают false, чтобы
    * не копить wav-файлы, которые никто не прочитает.
    */
   persistRecording?: boolean;

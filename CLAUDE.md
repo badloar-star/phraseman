@@ -1,14 +1,27 @@
 # Phraseman — Claude instructions
 
+## ⛔ АРЕНА: НЕ ОТКАТЫВАТЬ
+
+Файлы Арены (`modules/arena/**`, `components/arena/**`, `app/arena*`,
+`functions/src/arena_*`, `tests/arena_*`, `docs/arena/**`,
+`components/tournament/TournamentBackdrop.tsx`) переписываются по прямому
+заданию владельца. Их **нельзя** откатывать (`git revert`, `git checkout`
+чужой версии) и нельзя перезаписывать из своего буфера. Работа уже дважды
+терялась именно так. Подробности и порядок восстановления — в
+`____АРЕНА_НЕ_ОТКАТЫВАТЬ____.md` в корне.
+
+
 ## ⛔ АДМИНКА: писать ТОЛЬКО в `admin/v2/legacy.html`
 
 Владелец пользуется одной админкой — https://phraseman-ea0b3.web.app/legacy.html#control-panel
 Её исходник — **`admin/v2/legacy.html`**, и hosting публикует именно папку `admin/v2`.
 Любая правка админки вне этого файла на боевую НЕ попадёт.
 
-`admin/legacy.html`, `admin/index.html`, `admin/full.html`, `admin/v2/index.html`
-и `admin/v2/scripts/*` — **заморожены**, только чтение. Подробности и таблица
-файлов: `AGENTS.md` → «ЕДИНСТВЕННАЯ РАБОЧАЯ АДМИНКА».
+`admin/legacy.html`, `admin/index.html`, `admin/full.html` — **заморожены**, только
+чтение. Белая V2-панель `admin/v2/index.html` и её router/core/UI удалены
+навсегда; восстанавливать их запрещено. Корень Hosting обязан перенаправлять на
+`/legacy.html`. Подробности: `AGENTS.md` → «ЕДИНСТВЕННАЯ РАБОЧАЯ АДМИНКА» и
+`docs/admin/WHITE_ADMIN_V2_RETIRED.md`.
 
 ### 👤 Правило: рядом с uid ВСЕГДА имя (владелец, 2026-08-02)
 

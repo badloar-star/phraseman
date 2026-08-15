@@ -68,7 +68,6 @@ function dependencies(overrides: Partial<BuildBriefingDependencies> = {}): Build
       phrasesLearned: 0,
       flashcardsSaved: 0,
       dailyTasksClaimed: 0,
-      planTasksCompleted: 0,
     },
   }));
   return {

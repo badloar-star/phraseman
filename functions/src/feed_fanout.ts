@@ -15,7 +15,7 @@
  */
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
-import { onDocumentCreated } from 'firebase-functions/v2/firestore';
+import { onDocumentWritten } from 'firebase-functions/v2/firestore';
 
 const REGION = 'us-central1';
 const USERS = 'users';
@@ -36,18 +36,26 @@ interface FanoutEventData {
 }
 
 /**
- * my_events → feed всех друзей. Идемпотентно: docId в feed = исходный eventId,
- * повторная доставка триггера просто перезапишет тот же документ (merge).
+ * my_events → feed всех друзей. Создание разносит событие целиком, а изменение
+ * activityLikeCount обновляет счётчик во всех уже созданных копиях. Идемпотентно:
+ * docId в feed = исходный eventId, повторная доставка делает тот же merge.
  */
-export const feedFanoutOnMyEvent = onDocumentCreated(
+export const feedFanoutOnMyEvent = onDocumentWritten(
   { region: REGION, document: 'users/{uid}/my_events/{eventId}' },
   async (event) => {
-    const snap = event.data;
-    if (!snap) return;
+    const change = event.data;
+    const snap = change?.after;
+    if (!snap?.exists) return;
     const authorUid = String(event.params.uid ?? '').trim();
     if (!authorUid) return;
     const data = snap.data() as FanoutEventData;
     if (!data.type || !data.ts) return;
+    const beforeData = change?.before?.exists ? change.before.data() as FanoutEventData : null;
+    if (beforeData) {
+      const beforeLikes = Math.max(0, Math.floor(Number(beforeData.activityLikeCount ?? 0) || 0));
+      const afterLikes = Math.max(0, Math.floor(Number(data.activityLikeCount ?? 0) || 0));
+      if (beforeLikes === afterLikes) return;
+    }
 
     const db = admin.firestore();
     const friendsSnap = await db

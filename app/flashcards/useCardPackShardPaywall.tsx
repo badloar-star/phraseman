@@ -60,14 +60,12 @@ export function useCardPackShardPaywall(args: {
       // Активний подарунок можна обміняти на будь-який доступний набір каталогу.
       // Для community постійний entitlement підтверджує захищений server callable.
       const voucherEligible = hasVoucher && (!pack.isCommunityUgc || hasCommunityVoucher);
-      const mode: 'voucher' | 'confirm' | 'insufficient' = voucherEligible
-        ? 'voucher'
-        : balance < pack.priceShards
-        ? 'insufficient'
-        : 'confirm';
+      // The displayed snapshot never authorizes or blocks a purchase. The
+      // composite ledger checks the current local projection at commit time.
+      const mode: 'voucher' | 'confirm' = voucherEligible ? 'voucher' : 'confirm';
       setPaywall({ pack, mode });
     },
-    [balance, hasCommunityVoucher, hasVoucher, purchasing],
+    [hasCommunityVoucher, hasVoucher, purchasing],
   );
 
   useEffect(() => {
@@ -77,13 +75,11 @@ export function useCardPackShardPaywall(args: {
       const voucherEligible = hasVoucher && (!prev.pack.isCommunityUgc || hasCommunityVoucher);
       const desiredMode = voucherEligible
         ? 'voucher'
-        : balance < prev.pack.priceShards
-          ? 'insufficient'
-          : 'confirm';
+        : prev.mode === 'insufficient' ? 'insufficient' : 'confirm';
       if (prev.mode === desiredMode) return prev;
       return { ...prev, mode: desiredMode };
     });
-  }, [balance, hasCommunityVoucher, hasVoucher]);
+  }, [hasCommunityVoucher, hasVoucher]);
 
   const closePaywall = useCallback(() => {
     if (purchasing) return;
@@ -129,9 +125,7 @@ export function useCardPackShardPaywall(args: {
         ]);
         setPaywall(null);
       } else if (r === 'insufficient') {
-        // Локальный баланс был завышен (рассинхрон с облаком). spendShards уже
-        // выровнял его — переключаем модалку в режим «не хватает» вместо тихого
-        // отказа, чтобы юзер не жал «Купить» по кругу.
+        // The atomic local ledger made the final decision at commit time.
         setPaywall((prev) => (prev ? { ...prev, mode: 'insufficient' } : prev));
       } else if (r === 'spend_failed' || r === 'source_gated') {
         // Both helpers already emit the visible failure. Close the stale modal so

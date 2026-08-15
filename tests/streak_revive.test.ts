@@ -11,6 +11,7 @@ import {
 import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
+jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'streak-revive-test-account') }));
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/lifetime_profile_stats', () => ({

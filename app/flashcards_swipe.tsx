@@ -4,7 +4,7 @@ import TapScale from '../components/TapScale';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   BackHandler,
@@ -54,19 +54,29 @@ import {
 } from './flashcards/marketplace';
 import {
   clearFlashcardsSwipeSessionDraft,
+  deckIdsForSwipeSources,
   loadFlashcardsSwipeSessionDraft,
   saveFlashcardsSwipeSessionDraft,
+  swipeSourceIdsForDeckIds,
   type FlashcardsSwipePromptDraft,
   type FlashcardsSwipeSessionDraft,
   type FlashcardsSwipeSessionScope,
+  swipeBadgeFullAtPx,
+  swipeCommitDirection,
 } from './flashcards_swipe_session';
+import { parseDeckIdList, type FcDeckId } from './flashcards/deck_selection';
+import {
+  FC_DEFAULT_SESSION_SIZE,
+  isValidSessionSize,
+  setLastPreset,
+  type FcSessionSize,
+} from './flashcards/mode_prefs';
 import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsSwipeHintSeenKey, flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
-import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import {
   flashcardsCommunityPacksAvailableForTarget,
   flashcardsOfficialPacksAvailableForTarget,
@@ -126,6 +136,12 @@ type SessionStats = {
 type FeedbackState = {
   kind: 'wrong' | 'hint';
   prompt: Prompt;
+};
+
+type CorrectTranslationReminder = {
+  id: string;
+  english: string;
+  translation: string;
 };
 
 type CardMemory = {
@@ -603,9 +619,22 @@ function buildCachedTrainingSources(
   return next;
 }
 
-function initialSelectionForSources(sources: TrainingSource[], requestedSourceId: string): Set<string> {
+/**
+ * Что отмечено на экране выбора при входе:
+ *  1) точечный `?source=` (заход из конкретного набора) — только он;
+ *  2) `?deck=` из таббара/DeckPickerSheet (мультивыбор, `saved,custom,pack:id`)
+ *     — ровно эти наборы: человек уже выбрал их и ожидает увидеть отмеченными;
+ *  3) иначе — всё, что есть (первый заход, тренируем всю библиотеку).
+ */
+function initialSelectionForSources(
+  sources: TrainingSource[],
+  requestedSourceId: string,
+  requestedDeckIds: readonly FcDeckId[] = [],
+): Set<string> {
   const valid = new Set(sources.map((source) => source.id));
   if (requestedSourceId && valid.has(requestedSourceId)) return new Set([requestedSourceId]);
+  const fromDecks = swipeSourceIdsForDeckIds(sources, requestedDeckIds);
+  if (fromDecks.length > 0) return new Set(fromDecks);
   return valid;
 }
 
@@ -803,12 +832,10 @@ export default function FlashcardsSwipeScreen() {
     source?: string | string[];
     filter?: string | string[];
     owned?: string | string[];
-    planFlashcardsTask?: string | string[];
-    requiredCards?: string | string[];
-    planTaskId?: string | string[];
-    planInstanceId?: string | string[];
-    planId?: string | string[];
-    planDayIndex?: string | string[];
+    /** §6: мультивыбор наборов из таббара/DeckPickerSheet — `saved,custom,pack:id`. */
+    deck?: string | string[];
+    /** Размер сессии из шита (10/15/20). Без параметра тренируем весь выбранный пул. */
+    size?: string | string[];
   }>();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -834,6 +861,17 @@ export default function FlashcardsSwipeScreen() {
     return typeof raw === 'string' ? raw.trim() : '';
   }, [params.filter]);
   const requestedOfficialOwnedIds = useMemo(() => parseRouteIdList(params.owned), [params.owned]);
+  /**
+   * §6 (FIX владельца, 2026-08-13): «Тренировка» приходит сюда из таббара с
+   * последним выбором наборов — предотмечаем ровно его, чтобы повторный запуск
+   * был в один тап, но сам выбор оставался на виду и его можно было изменить.
+   */
+  const requestedDeckIds = useMemo(() => parseDeckIdList(params.deck), [params.deck]);
+  /** Размер сессии из шита; 0 — параметра нет, тренируем весь выбранный пул. */
+  const requestedSessionSize = useMemo<FcSessionSize | 0>(() => {
+    const raw = Number(routeParamString(params.size));
+    return isValidSessionSize(raw) ? raw : 0;
+  }, [params.size]);
   const visibleRequestedOfficialOwnedIds = useMemo(
     () => (officialPacksEnabled ? requestedOfficialOwnedIds : []),
     [officialPacksEnabled, requestedOfficialOwnedIds],
@@ -851,8 +889,8 @@ export default function FlashcardsSwipeScreen() {
     [lang, requestedFilter, requestedSourceId, studyTarget, visibleRequestedOfficialOwnedIds],
   );
   const initialSelectedIds = useMemo(
-    () => initialSelectionForSources(initialSources, requestedSourceId),
-    [initialSources, requestedSourceId],
+    () => initialSelectionForSources(initialSources, requestedSourceId, requestedDeckIds),
+    [initialSources, requestedDeckIds, requestedSourceId],
   );
   const initialSessionInfo = useMemo(
     () => optimisticSessionInfoForSources(initialSources, initialSelectedIds),
@@ -867,22 +905,39 @@ export default function FlashcardsSwipeScreen() {
   const [trainingCards, setTrainingCards] = useState<TrainingCard[]>([]);
   const [queue, setQueue] = useState<Prompt[]>([]);
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
+  const [correctTranslationReminder, setCorrectTranslationReminder] = useState<CorrectTranslationReminder | null>(null);
   const [stats, setStats] = useState<SessionStats>(() => initialStats(0));
   const [sessionInfo, setSessionInfo] = useState<SessionInfo>(() => initialSessionInfo);
   const [settling, setSettling] = useState(false);
+  /**
+   * FIX (владелец, 2026-08-13) «карточка улетает и возвращается»: счётчик
+   * завершённых улётов. Меняется в один батч со сменой очереди, поэтому
+   * обнуление смещения (useLayoutEffect ниже) попадает РОВНО в тот коммит, где
+   * на месте улетевшей карточки уже стоит следующая, — и даже когда карточка
+   * осталась прежней (страховочный таймер улёта).
+   */
+  const [cardEpoch, setCardEpoch] = useState(0);
   // зачем: одноразовая подсказка «как пользоваться экраном» для новых юзеров —
   // репорт «не понимают карточку/аудио/свайп». Схема 1:1 с flashcardsDeleteHintSeenKey
   // из flashcards_collection.tsx (тот же "seen"-флаг в AsyncStorage, тот же UX баннера).
   const [showSwipeHint, setShowSwipeHint] = useState(false);
   const swipeHintAnim = useRef(new Animated.Value(0)).current;
   const swipeHintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const correctTranslationReminderAnim = useRef(new Animated.Value(0)).current;
+  const correctTranslationReminderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const swipeHintCheckedRef = useRef(false);
   const progressRef = useRef<Record<string, CardProgress>>({});
   const memoryRef = useRef<SwipeMemory>({});
   const settlingRef = useRef(false);
+  /**
+   * Один вопрос — один ответ. Ошибочный ответ больше не блокирует экран улётом
+   * карточки (см. answerCurrent), а `feedback` доезжает только со следующей
+   * перерисовкой — поэтому защита от двойного срабатывания синхронная, на ref.
+   * Id вопроса уникален при каждом создании, сбрасывать значение не нужно.
+   */
+  const answeredPromptIdRef = useRef<string | null>(null);
   // Страховочный таймер settleCard: сбрасывает settling, если Animated-колбэк не выстрелил.
   const settleGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const planFlashcardsCompletionTracked = useRef(false);
   const quickStartDoneRef = useRef(false);
   const draftRestoreAttemptedRef = useRef(false);
   /**
@@ -908,12 +963,18 @@ export default function FlashcardsSwipeScreen() {
   const reduceMotionRef = useRef(reduceMotion);
   useEffect(() => { reduceMotionRef.current = reduceMotion; }, [reduceMotion]);
   const topFadeScrollY = useRef(new Animated.Value(0)).current;
-  const planFlashcardsTaskId = routeParamString(params.planFlashcardsTask) === '1' ? routeParamString(params.planTaskId) : '';
-  const isPlanFlashcardsTask = Boolean(planFlashcardsTaskId);
-  const planFlashcardsRequiredCards = Math.max(1, Math.min(50, parseInt(routeParamString(params.requiredCards) || '3', 10) || 3));
-  const planFlashcardsDayIndex = Math.max(1, parseInt(routeParamString(params.planDayIndex) || '1', 10) || 1);
-  // Normal training lands on setup; a plan task starts directly from the plan-selected source.
-  const quickStart = Boolean(planFlashcardsTaskId);
+  /**
+   * Быстрый старт (§6): пришли из DeckPickerSheet, наборы уже отмечены человеком
+   * — сессия стартует сама, без второго экрана выбора. Обычный вход в режим
+   * (тап по «Тренировке» в таббаре) флага не несёт: там выбор наборов и есть
+   * первый шаг режима. Повторный показ выбора по ⚙ внутри сессии этот флаг
+   * гасит (`quickStartDoneRef`), поэтому в цикл экран не уходит.
+   */
+  const quickStart = useMemo(
+    () => routeParamString(params.quick).trim() === '1' && requestedDeckIds.length > 0,
+    [params.quick, requestedDeckIds.length],
+  );
+  const isCompactFlashcardsTask = false;
 
   const openFlashcardsPlusPaywall = useCallback((source: string) => {
     // replace на пейвол из гейта = всегда mark, иначе экран остаётся в стеке «назад» → петля.
@@ -1207,8 +1268,8 @@ export default function FlashcardsSwipeScreen() {
       startLoading: triLang(lang, {
         ru: 'Загружаем наборы…',
         uk: 'Завантажуємо набори…',
-        es: 'Cargando mazos…',
-        'pt-BR': 'Carregando baralhos…',
+        es: 'Cargando packs…',
+        'pt-BR': 'Carregando pacotes…',
         vi: 'Đang tải bộ thẻ…',
         id: 'Memuat set…',
         tr: 'Setler yükleniyor…',
@@ -1217,8 +1278,8 @@ export default function FlashcardsSwipeScreen() {
       startNoSelection: triLang(lang, {
         ru: 'Выберите набор ниже',
         uk: 'Виберіть набір нижче',
-        es: 'Elige un mazo abajo',
-        'pt-BR': 'Escolha um baralho abaixo',
+        es: 'Elige un pack abajo',
+        'pt-BR': 'Escolha um pacote abaixo',
         vi: 'Chọn bộ thẻ bên dưới',
         id: 'Pilih set di bawah',
         tr: 'Aşağıdan set seç',
@@ -1627,7 +1688,10 @@ export default function FlashcardsSwipeScreen() {
         const valid = new Set(next.map((source) => source.id));
         if (requestedSourceId && valid.has(requestedSourceId)) return new Set([requestedSourceId]);
         const kept = new Set([...cur].filter((id) => valid.has(id)));
-        return kept.size > 0 ? kept : valid;
+        if (kept.size > 0) return kept;
+        // Кэша наборов не было — предвыбор из `?deck=` делаем на приехавшем списке.
+        const fromDecks = swipeSourceIdsForDeckIds(next, requestedDeckIds);
+        return fromDecks.length > 0 ? new Set(fromDecks) : valid;
       });
     } catch {
       setLoadError(
@@ -1645,7 +1709,7 @@ export default function FlashcardsSwipeScreen() {
     } finally {
       setLoadingSources(false);
     }
-  }, [communityPacksEnabled, lang, officialPacksEnabled, requestedFilter, requestedSourceId, studyTarget, text.custom, text.saved]);
+  }, [communityPacksEnabled, lang, officialPacksEnabled, requestedDeckIds, requestedFilter, requestedSourceId, studyTarget, text.custom, text.saved]);
 
   useEffect(() => {
     void loadSources({ quiet: hasVisibleSourcesRef.current });
@@ -1772,11 +1836,11 @@ export default function FlashcardsSwipeScreen() {
       const byKey = new Map<string, TrainingCard>();
       for (const card of chunks.flat()) byKey.set(card.trainingKey, card);
       const now = Date.now();
-      const ranked = smartSortCards([...byKey.values()], memory, now).slice(0, planFlashcardsTaskId ? planFlashcardsRequiredCards : undefined);
+      const ranked = smartSortCards([...byKey.values()], memory, now);
       const info = sessionInfoFor(ranked, now);
       return { cards: ranked, info };
     },
-    [answerFor, planFlashcardsRequiredCards, planFlashcardsTaskId],
+    [answerFor],
   );
 
   /**
@@ -1835,20 +1899,34 @@ export default function FlashcardsSwipeScreen() {
         );
         return;
       }
+      /**
+       * §6: размер сессии из DeckPickerSheet (10/15/20). Карточки уже отсортированы
+       * `smartSortCards`, поэтому берём верхушку очереди — самые нужные сейчас.
+       * Без параметра (прямой заход на экран) поведение прежнее: весь пул.
+       */
+      const sessionCards = requestedSessionSize > 0 ? cards.slice(0, requestedSessionSize) : cards;
+      /**
+       * Запоминаем выбор наборов (`fc_mode_prefs_v1`) — следующий запуск
+       * «Тренировки» из таббара придёт сюда уже с ними отмеченными.
+       */
+      void setLastPreset('trainer', {
+        deckIds: deckIdsForSwipeSources(selectedSources),
+        size: requestedSessionSize === 0 ? FC_DEFAULT_SESSION_SIZE : requestedSessionSize,
+      }).catch(() => {});
       progressRef.current = Object.fromEntries(
-        cards.map((card) => [card.trainingKey, emptyProgress()]),
+        sessionCards.map((card) => [card.trainingKey, emptyProgress()]),
       );
       position.setValue({ x: 0, y: 0 });
       setFeedback(null);
-      setTrainingCards(cards);
-      setQueue(buildPromptQueue(cards));
-      setStats(initialStats(cards.length));
+      setTrainingCards(sessionCards);
+      setQueue(buildPromptQueue(sessionCards));
+      setStats(initialStats(sessionCards.length));
       setSessionInfo(info);
       setPhase('play');
     } finally {
       setStarting(false);
     }
-  }, [buildPromptQueue, buildSessionCards, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, selectedSources, starting, studyTarget]);
+  }, [buildPromptQueue, buildSessionCards, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, requestedSessionSize, selectedSources, starting, studyTarget]);
 
   useEffect(() => {
     if (draftRestoreAttemptedRef.current) return;
@@ -1959,15 +2037,29 @@ export default function FlashcardsSwipeScreen() {
   const progressPct = stats.total > 0 ? Math.min(100, Math.round((stats.mastered / stats.total) * 100)) : 0;
   const currentPrompt = queue[0] ?? null;
 
-  // зачем: СТРАХОВКА от невидимой карточки. flyOpacity гасится при улёте и
-  // раньше возвращался в 1 ТОЛЬКО внутри finish(). Любой другой путь смены
-  // карточки (смена набора, перезапуск сессии, возврат на экран, обрыв
-  // анимации при уходе в фон) оставлял значение 0 — и следующая карточка
-  // рисовалась ПУСТОЙ. Привязываем сброс к самой карточке: новая карточка в
-  // кадре — всегда видима, независимо от того, как она там оказалась.
-  useEffect(() => {
-    flyOpacity.stopAnimation(() => flyOpacity.setValue(1));
-  }, [currentPrompt?.id, flyOpacity]);
+  /**
+   * FIX (владелец, 2026-08-13): «когда свайпаешь, она улетает, а затем возвращается».
+   *
+   * Корневая причина: смещение и прозрачность улетевшей карточки обнулялись в
+   * колбэке анимации (`finish()` в settleCard) — то есть ДО того, как React
+   * перерисует очередь. Оба значения нативно-драйвенные: `setValue` долетает до
+   * UI-потока сразу, а коммит с новой карточкой приходит следующим кадром (и
+   * позже — рендер сессии тяжёлый). В этом зазоре СТАРАЯ вьюха возвращалась в
+   * центр экрана с полной непрозрачностью и прежним текстом — это и читалось
+   * как «улетела и вернулась».
+   *
+   * Теперь сброс живёт здесь и выполняется СИНХРОННО в том же коммите, где на
+   * месте улетевшей карточки уже стоит следующая (useLayoutEffect, не обычный
+   * effect: обычный отрабатывает после кадра и зазор остаётся). Останов
+   * native-анимации ПЕРЕД setValue сохранён: если страховочный таймер выиграл
+   * гонку, ещё живой fade иначе снова запишет opacity 0 новой карточке.
+   */
+  useLayoutEffect(() => {
+    position.stopAnimation();
+    position.setValue({ x: 0, y: 0 });
+    flyOpacity.stopAnimation();
+    flyOpacity.setValue(1);
+  }, [cardEpoch, currentPrompt?.id, flyOpacity, position]);
   const done = phase === 'play' && !currentPrompt && stats.total > 0;
 
   useEffect(() => {
@@ -1987,25 +2079,6 @@ export default function FlashcardsSwipeScreen() {
     });
     void saveFlashcardsSwipeSessionDraft(draft, studyTarget).catch(() => {});
   }, [done, feedback, phase, queue, sessionDraftScope, stats, studyTarget, trainingCards]);
-
-  useEffect(() => {
-    if (!done || !planFlashcardsTaskId || planFlashcardsCompletionTracked.current) return;
-    planFlashcardsCompletionTracked.current = true;
-    void markPersonalPlanTaskCompleted({
-      taskId: planFlashcardsTaskId,
-      planId: routeParamString(params.planId),
-      planInstanceId: routeParamString(params.planInstanceId),
-      studyTarget,
-      dayIndex: planFlashcardsDayIndex,
-    });
-  }, [done, params.planId, params.planInstanceId, planFlashcardsDayIndex, planFlashcardsTaskId, studyTarget]);
-
-  useEffect(() => {
-    if (!currentPrompt?.id) return;
-    position.stopAnimation(() => {
-      position.setValue({ x: 0, y: 0 });
-    });
-  }, [currentPrompt?.id, position]);
 
   // зачем: показываем подсказку один раз — при первом реальном входе в play-фазу
   // (не на restore черновика посреди сессии, поэтому проверяем currentPrompt, а
@@ -2041,18 +2114,76 @@ export default function FlashcardsSwipeScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSwipeHint]);
 
-  // зачем: репорт «свайп срабатывает мгновенно, аудио послушать не успеваю» —
-  // на быстром свайпе onPanResponderRelease мог сработать раньше, чем звук карточки
-  // вообще стартовал (речь запускается тапом по карточке, а не автоматически).
-  // Штампуем момент показа карточки и в релизе жеста считаем ответ полноценным
-  // свайпом только после короткой выдержки — это не блокирует жест визуально
-  // (карта всё ещё тянется пальцем), а лишь решает, when a fast flick counts.
+  const clearCorrectTranslationReminder = useCallback(() => {
+    if (correctTranslationReminderTimer.current) {
+      clearTimeout(correctTranslationReminderTimer.current);
+      correctTranslationReminderTimer.current = null;
+    }
+    correctTranslationReminderAnim.stopAnimation();
+    correctTranslationReminderAnim.setValue(0);
+    setCorrectTranslationReminder(null);
+  }, [correctTranslationReminderAnim]);
+
+  const showCorrectTranslationReminder = useCallback((prompt: Prompt) => {
+    if (correctTranslationReminderTimer.current) {
+      clearTimeout(correctTranslationReminderTimer.current);
+    }
+    const reminder: CorrectTranslationReminder = {
+      id: `${prompt.id}:${Date.now()}`,
+      english: s(prompt.card.en),
+      translation: prompt.trueTranslation,
+    };
+    setCorrectTranslationReminder(reminder);
+    correctTranslationReminderAnim.stopAnimation();
+    correctTranslationReminderAnim.setValue(0);
+    Animated.timing(correctTranslationReminderAnim, {
+      toValue: 1,
+      duration: 180,
+      useNativeDriver: true,
+    }).start();
+    // зачем: когда пользователь правильно нажал «Неверно», сама карточка уже
+    // улетает дальше, но верный перевод раньше вообще не показывался. Короткий
+    // неблокирующий toast даёт напоминание и не добавляет кнопку/паузу в сессию.
+    correctTranslationReminderTimer.current = setTimeout(() => {
+      correctTranslationReminderTimer.current = null;
+      Animated.timing(correctTranslationReminderAnim, {
+        toValue: 0,
+        duration: 180,
+        useNativeDriver: true,
+      }).start(({ finished }) => {
+        if (!finished) return;
+        setCorrectTranslationReminder((current) => current?.id === reminder.id ? null : current);
+      });
+    }, 3200);
+  }, [correctTranslationReminderAnim]);
+
+  useEffect(() => () => {
+    if (correctTranslationReminderTimer.current) {
+      clearTimeout(correctTranslationReminderTimer.current);
+      correctTranslationReminderTimer.current = null;
+    }
+    correctTranslationReminderAnim.stopAnimation();
+  }, [correctTranslationReminderAnim]);
+
+  useEffect(() => {
+    if (phase !== 'play' && correctTranslationReminder) {
+      clearCorrectTranslationReminder();
+    }
+  }, [clearCorrectTranslationReminder, correctTranslationReminder, phase]);
+
+  // FIX (владелец, 2026-08-13): «я свайпаю, а карточки прыгают назад».
+  // Раньше здесь была выдержка MIN_SWIPE_DWELL_MS = 220мс с момента показа
+  // карточки: любой свайп раньше неё НЕ засчитывался и карта пружиной уезжала
+  // обратно. На реальном устройстве человек свайпает пачкой быстрее 220мс —
+  // и получал «жест не работает». Выдержку снижаем до символической: она
+  // защищает только от случайного «прилипшего» жеста предыдущей карточки
+  // (double-fire на подмене), а не от нормального флика.
   const cardShownAtRef = useRef(0);
   useEffect(() => {
     if (!currentPrompt?.id) return;
     cardShownAtRef.current = Date.now();
   }, [currentPrompt?.id]);
-  const MIN_SWIPE_DWELL_MS = 220;
+  const MIN_SWIPE_DWELL_MS = 40;
 
   const settleCard = useCallback(
     (direction: 'left' | 'right', after: () => void) => {
@@ -2072,11 +2203,12 @@ export default function FlashcardsSwipeScreen() {
           clearTimeout(settleGuardRef.current);
           settleGuardRef.current = null;
         }
-        position.setValue({ x: 0, y: 0 });
-        // зачем: вернуть непрозрачность ДО показа следующей карты — иначе
-        // она въедет в кадр невидимой (значение осталось бы 0 после улёта).
-        flyOpacity.setValue(1);
+        // ЗДЕСЬ БЫЛО обнуление position/flyOpacity — ПЕРЕД сменой состояния.
+        // Именно оно возвращало улетевшую карточку в центр на 1–3 кадра
+        // (см. useLayoutEffect выше). Порядок перевёрнут: сначала продвигаем
+        // сессию, а смещение обнуляется уже в коммите новой карточки.
         after();
+        setCardEpoch((n) => n + 1);
         settlingRef.current = false;
         setSettling(false);
       };
@@ -2107,12 +2239,14 @@ export default function FlashcardsSwipeScreen() {
           useNativeDriver: true,
         }),
       ]).start(() => {
-        position.stopAnimation(() => {
-          finish();
-        });
+        // Прежний `position.stopAnimation(cb → finish())` стоил лишнего
+        // раунд-трипа на UI-поток, и всё это время ввод оставался заблокирован
+        // (settlingRef) — «свайп не срабатывает». Синхронизацию значения делает
+        // useLayoutEffect новой карточки, поэтому продвигаемся сразу.
+        finish();
       });
     },
-    [position, width],
+    [flyOpacity, position, width],
   );
 
   // Гасим страховочный таймер settleCard при размонтировании, чтобы не дёргать
@@ -2170,6 +2304,9 @@ export default function FlashcardsSwipeScreen() {
           score: cur.score + scoreAward,
         };
       });
+      if (!saysMatch) {
+        showCorrectTranslationReminder(prompt);
+      }
       if (mastered) {
         setQueue(rest);
       } else {
@@ -2180,21 +2317,43 @@ export default function FlashcardsSwipeScreen() {
         );
       }
     },
-    [makePrompt, queue, trainingCards, updateCardMemory],
+    [makePrompt, queue, showCorrectTranslationReminder, trainingCards, updateCardMemory],
   );
 
   const answerCurrent = useCallback(
     (saysMatch: boolean) => {
       if (!currentPrompt || feedback || settling || settlingRef.current) return;
+      if (answeredPromptIdRef.current === currentPrompt.id) return;
+      answeredPromptIdRef.current = currentPrompt.id;
+      clearCorrectTranslationReminder();
+      if (showSwipeHint) dismissSwipeHint();
+      // FIX (владелец, 2026-08-13), вторая половина «улетает и возвращается»:
+      // ошибочный ответ раньше тоже уводил карточку за край экрана, но разбор
+      // (правильный перевод) показывается НА ТОЙ ЖЕ карточке — и она честно
+      // возвращалась в центр. Улетает только отвеченная верно карточка: её
+      // место занимает следующая. Ошибочная остаётся на месте — мягко
+      // возвращается из-под пальца и разворачивается разбором.
+      const correct = saysMatch === currentPrompt.isMatch;
+      if (!correct) {
+        Animated.spring(position, {
+          toValue: { x: 0, y: 0 },
+          friction: 6,
+          tension: 80,
+          useNativeDriver: true,
+        }).start();
+        applyAnswer(currentPrompt, saysMatch);
+        return;
+      }
       // NB: не выставляем settlingRef здесь — settleCard делает `if (settlingRef.current) return`,
       // поэтому преждевременная установка флага заставляла его сразу выйти, и карточка/кнопки «зависали».
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
-    [applyAnswer, currentPrompt, feedback, settleCard, settling],
+    [applyAnswer, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, position, settleCard, settling, showSwipeHint],
   );
 
   const revealCurrent = useCallback(() => {
     if (!currentPrompt || feedback || settling || settlingRef.current) return;
+    clearCorrectTranslationReminder();
     void hapticTap();
     // зачем: раскрытие подсказки — осознанное действие ученика (счётчик hints,
     // сброс серии), поэтому у него свой звук, а не общий «тап». Ставим после
@@ -2212,7 +2371,7 @@ export default function FlashcardsSwipeScreen() {
       streak: 0,
     }));
     setFeedback({ kind: 'hint', prompt: currentPrompt });
-  }, [currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
+  }, [clearCorrectTranslationReminder, currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
 
   const continueAfterFeedback = useCallback(() => {
     if (!feedback) return;
@@ -2241,7 +2400,7 @@ export default function FlashcardsSwipeScreen() {
     () =>
       PanResponder.create({
         onMoveShouldSetPanResponder: (_, gesture) =>
-          !isPlanFlashcardsTask &&
+          !isCompactFlashcardsTask &&
           !!currentPrompt &&
           !feedback &&
           !settling &&
@@ -2251,17 +2410,20 @@ export default function FlashcardsSwipeScreen() {
           position.setValue({ x: gesture.dx, y: gesture.dy * 0.16 });
         },
         onPanResponderRelease: (_, gesture) => {
-          // зачем: см. MIN_SWIPE_DWELL_MS выше — очень быстрый флик (меньше выдержки
-          // с момента появления карточки) не засчитываем как ответ, а мягко
-          // возвращаем карточку на место, чтобы у пользователя был шанс услышать
-          // озвучку/прочитать карточку перед тем, как жест «съест» её целиком.
+          // FIX (владелец, 2026-08-13): фиксированный порог 96px был великоват —
+          // обычный быстрый флик до него не доезжал, и карта возвращалась
+          // пружиной («свайп не берётся»). Теперь порог относительный
+          // (SWIPE_DISTANCE_RATIO от ширины экрана, с разумными границами) И
+          // есть второй путь срабатывания — по скорости жеста: короткий, но
+          // быстрый флик засчитывается сразу, как в нативных свайп-лентах.
           const dwellMs = Date.now() - cardShownAtRef.current;
           const dwellOk = dwellMs >= MIN_SWIPE_DWELL_MS;
-          if (dwellOk && gesture.dx > 96) {
+          const direction = swipeCommitDirection(gesture, width);
+          if (dwellOk && direction === 'right') {
             answerCurrent(true);
             return;
           }
-          if (dwellOk && gesture.dx < -96) {
+          if (dwellOk && direction === 'left') {
             answerCurrent(false);
             return;
           }
@@ -2281,11 +2443,11 @@ export default function FlashcardsSwipeScreen() {
           }).start();
         },
       }),
-    [answerCurrent, currentPrompt, feedback, isPlanFlashcardsTask, position, settling],
+    [answerCurrent, currentPrompt, feedback, isCompactFlashcardsTask, position, settling, width],
   );
 
-  const cardWidth = Math.min(width - (isPlanFlashcardsTask ? 32 : 36), 430);
-  const cardHeight = isPlanFlashcardsTask
+  const cardWidth = Math.min(width - (isCompactFlashcardsTask ? 32 : 36), 430);
+  const cardHeight = isCompactFlashcardsTask
     ? Math.min(292, Math.max(218, height * 0.34))
     : Math.min(360, Math.max(250, height * 0.42));
   const feedbackMaxHeight = Math.max(120, Math.floor(cardHeight * 0.5));
@@ -2294,7 +2456,7 @@ export default function FlashcardsSwipeScreen() {
   // блок теории вылез поверх карточки). Верхний предел считаем от уже известных величин,
   // а НЕ через onLayout: замер дал бы прыжок геометрии на первом кадре, что запрещено
   // контрактом стабильности лэйаута. Прокрутка остаётся внутри feedbackScroll.
-  const cardMaxHeight = Math.max(cardHeight, Math.floor(height * (isPlanFlashcardsTask ? 0.46 : 0.62)));
+  const cardMaxHeight = Math.max(cardHeight, Math.floor(height * (isCompactFlashcardsTask ? 0.46 : 0.62)));
   // зачем: A-39 — на улёте карта доворачивается до 16deg (в макете это
   // финальная поза). При перетаскивании пальцем наклон мягче (7deg на пол-экрана),
   // поэтому две точки: жест — деликатный, улёт за край — выразительный.
@@ -2303,13 +2465,21 @@ export default function FlashcardsSwipeScreen() {
     outputRange: ['-16deg', '-7deg', '0deg', '7deg', '16deg'],
     extrapolate: 'clamp',
   });
+  // FIX (владелец, 2026-08-13): «подпись гаснет слишком рано». Диапазон был
+  // [20;130] при пороге 96px — бейдж набирал единицу почти на самом пороге и
+  // всю решающую часть жеста оставался полупрозрачным. Теперь полная
+  // непрозрачность достигается на ~12% ширины экрана (BADGE_FULL_RATIO) и
+  // держится clamp-ом до конца жеста И весь улёт карточки (position.x на улёте
+  // уходит за ±width*1.15), то есть вплоть до подмены карточки.
+  const badgeFullAt = swipeBadgeFullAtPx(width);
+  const badgeStartAt = Math.max(6, Math.round(badgeFullAt * 0.25));
   const yesOpacity = position.x.interpolate({
-    inputRange: [20, 130],
+    inputRange: [badgeStartAt, badgeFullAt],
     outputRange: [0, 1],
     extrapolate: 'clamp',
   });
   const noOpacity = position.x.interpolate({
-    inputRange: [-130, -20],
+    inputRange: [-badgeFullAt, -badgeStartAt],
     outputRange: [1, 0],
     extrapolate: 'clamp',
   });
@@ -2569,10 +2739,10 @@ export default function FlashcardsSwipeScreen() {
   const renderDone = () => {
     const cleanSession = stats.wrong === 0 && stats.hints === 0;
     return (
-      <View style={[styles.playWrap, isPlanFlashcardsTask && styles.planPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isPlanFlashcardsTask ? Math.max(10, bottomInset + 8) : Math.max(20, bottomInset + 20) }]}>
+      <View style={[styles.playWrap, isCompactFlashcardsTask && styles.compactPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isCompactFlashcardsTask ? Math.max(10, bottomInset + 8) : Math.max(20, bottomInset + 20) }]}>
         <TapScale
           onPress={exitTraining}
-          style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface, alignSelf: 'flex-start' }]}
+          style={[styles.iconButton, isCompactFlashcardsTask && styles.compactIconButton, { backgroundColor: t.bgSurface, alignSelf: 'flex-start' }]}
           accessibilityLabel={triLang(lang, {
             ru: 'Выйти из тренировки',
             uk: 'Вийти з тренування',
@@ -2584,54 +2754,54 @@ export default function FlashcardsSwipeScreen() {
             pl: "Wyjdź z treningu",
           })}
         >
-          <Ionicons name="chevron-back" size={isPlanFlashcardsTask ? 20 : 22} color={t.textPrimary} />
+          <Ionicons name="chevron-back" size={isCompactFlashcardsTask ? 20 : 22} color={t.textPrimary} />
         </TapScale>
-        <View style={[styles.doneBox, isPlanFlashcardsTask && styles.planDoneBox, { backgroundColor: glassFill(t.bgSurface, 0.46) }]}>
-          <Ionicons name={cleanSession ? 'trophy-outline' : 'checkmark-done-circle-outline'} size={isPlanFlashcardsTask ? 32 : 42} color={cleanSession ? t.gold : t.correct} />
-          <Text style={[styles.doneTitle, isPlanFlashcardsTask && styles.planDoneTitle, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.bodyLg : f.h2 }]}>
+        <View style={[styles.doneBox, isCompactFlashcardsTask && styles.compactDoneBox, { backgroundColor: glassFill(t.bgSurface, 0.46) }]}>
+          <Ionicons name={cleanSession ? 'trophy-outline' : 'checkmark-done-circle-outline'} size={isCompactFlashcardsTask ? 32 : 42} color={cleanSession ? t.gold : t.correct} />
+          <Text style={[styles.doneTitle, isCompactFlashcardsTask && styles.compactDoneTitle, { color: t.textPrimary, fontSize: isCompactFlashcardsTask ? f.bodyLg : f.h2 }]}>
             {cleanSession ? text.cleanDone : text.done}
           </Text>
-          <Text style={[styles.doneSubtitle, isPlanFlashcardsTask && styles.planDoneSubtitle, { color: t.textMuted, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 2 : undefined}>
+          <Text style={[styles.doneSubtitle, isCompactFlashcardsTask && styles.compactDoneSubtitle, { color: t.textMuted, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={isCompactFlashcardsTask ? 2 : undefined}>
             {cleanSession ? text.cleanDoneSub : text.learnedDoneSub}
           </Text>
-          <View style={[styles.doneScorePill, isPlanFlashcardsTask && styles.planDoneScorePill, { backgroundColor: `${t.accent}20` }]}>
+          <View style={[styles.doneScorePill, isCompactFlashcardsTask && styles.compactDoneScorePill, { backgroundColor: `${t.accent}20` }]}>
             <Ionicons name="flash-outline" size={16} color={t.accent} />
             <Text style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption }]}>
               {text.scoreLabel}: {stats.score}
             </Text>
           </View>
-          <View style={[styles.doneGrid, isPlanFlashcardsTask && styles.planDoneGrid]}>
+          <View style={[styles.doneGrid, isCompactFlashcardsTask && styles.compactDoneGrid]}>
             {[
               [text.mastered, stats.mastered],
               [text.mistakes, stats.wrong],
               [text.hints, stats.hints],
               [text.bestStreak, stats.bestStreak],
             ].map(([label, value]) => (
-              <View key={String(label)} style={[styles.doneStat, isPlanFlashcardsTask && styles.planDoneStat, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
+              <View key={String(label)} style={[styles.doneStat, isCompactFlashcardsTask && styles.compactDoneStat, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
                 <Text style={[styles.doneStatValue, { color: t.textPrimary, fontSize: f.numMd }]}>{value}</Text>
                 <Text style={[styles.doneStatLabel, { color: t.textMuted, fontSize: f.caption }]}>{label}</Text>
               </View>
             ))}
           </View>
-          <View style={[styles.doneButtons, isPlanFlashcardsTask && styles.planDoneButtons]}>
+          <View style={[styles.doneButtons, isCompactFlashcardsTask && styles.compactDoneButtons]}>
             <DuoPressable
               onPress={() => {
                 void startSession();
               }}
               edgeColor={t.accent}
               wrapStyle={styles.doneButtonWrap}
-              style={[styles.primaryDoneButton, isPlanFlashcardsTask && styles.planDoneButton, { backgroundColor: t.accent }]}
+              style={[styles.primaryDoneButton, isCompactFlashcardsTask && styles.compactDoneButton, { backgroundColor: t.accent }]}
               accessibilityLabel={text.nextRound}
             >
               <Ionicons name="play" size={18} color={t.correctText} />
-              <Text style={[styles.doneButtonText, { color: t.correctText, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.nextRound}</Text>
+              <Text style={[styles.doneButtonText, { color: t.correctText, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.nextRound}</Text>
             </DuoPressable>
             <TouchableOpacity
               onPress={openSettings}
-              style={[styles.secondaryDoneButton, isPlanFlashcardsTask && styles.planDoneButton, { backgroundColor: t.bgCard }]}
+              style={[styles.secondaryDoneButton, isCompactFlashcardsTask && styles.compactDoneButton, { backgroundColor: t.bgCard }]}
               accessibilityLabel={text.toSets}
             >
-              <Text style={[styles.doneButtonText, { color: t.textSecond, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.toSets}</Text>
+              <Text style={[styles.doneButtonText, { color: t.textSecond, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.toSets}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -2654,11 +2824,11 @@ export default function FlashcardsSwipeScreen() {
       .filter((line) => s(line))
       .join('\n');
     return (
-      <View style={[styles.playWrap, isPlanFlashcardsTask && styles.planPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isPlanFlashcardsTask ? Math.max(8, bottomInset + 6) : Math.max(14, bottomInset + 10) }]}>
-        <View style={[styles.playHeader, isPlanFlashcardsTask && styles.planPlayHeader]}>
+      <View style={[styles.playWrap, isCompactFlashcardsTask && styles.compactPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isCompactFlashcardsTask ? Math.max(8, bottomInset + 6) : Math.max(14, bottomInset + 10) }]}>
+        <View style={[styles.playHeader, isCompactFlashcardsTask && styles.compactPlayHeader]}>
           <TapScale
             onPress={exitTraining}
-            style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface }]}
+            style={[styles.iconButton, isCompactFlashcardsTask && styles.compactIconButton, { backgroundColor: t.bgSurface }]}
             accessibilityLabel={triLang(lang, {
               ru: 'Выйти из тренировки',
               uk: 'Вийти з тренування',
@@ -2670,13 +2840,13 @@ export default function FlashcardsSwipeScreen() {
               pl: "Wyjdź z treningu",
             })}
           >
-            <Ionicons name="chevron-back" size={isPlanFlashcardsTask ? 20 : 22} color={t.textPrimary} />
+            <Ionicons name="chevron-back" size={isCompactFlashcardsTask ? 20 : 22} color={t.textPrimary} />
           </TapScale>
-          <View style={[styles.headerStats, isPlanFlashcardsTask && styles.planHeaderStats]}>
+          <View style={[styles.headerStats, isCompactFlashcardsTask && styles.compactHeaderStats]}>
             <Text style={[styles.headerStatText, { color: t.textPrimary, fontSize: f.caption }]}>
-              {isPlanFlashcardsTask ? `${stats.mastered}/${stats.total}` : `${text.mastered}: ${stats.mastered}/${stats.total}`}
+              {isCompactFlashcardsTask ? `${stats.mastered}/${stats.total}` : `${text.mastered}: ${stats.mastered}/${stats.total}`}
             </Text>
-            {!isPlanFlashcardsTask && (
+            {!isCompactFlashcardsTask && (
               <Text style={[styles.headerStatText, { color: t.textMuted, fontSize: f.caption }]}>
                 {queue.length} {text.inQueue}
               </Text>
@@ -2692,14 +2862,14 @@ export default function FlashcardsSwipeScreen() {
           </View>
           <TouchableOpacity
             onPress={openSettings}
-            style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface }]}
+            style={[styles.iconButton, isCompactFlashcardsTask && styles.compactIconButton, { backgroundColor: t.bgSurface }]}
             accessibilityLabel={text.settings}
           >
-            <Ionicons name="options-outline" size={isPlanFlashcardsTask ? 19 : 21} color={t.textPrimary} />
+            <Ionicons name="options-outline" size={isCompactFlashcardsTask ? 19 : 21} color={t.textPrimary} />
           </TouchableOpacity>
         </View>
 
-        <View style={[styles.progressTrack, isPlanFlashcardsTask && styles.planProgressTrack, { backgroundColor: t.bgSurface2 }]}>
+        <View style={[styles.progressTrack, isCompactFlashcardsTask && styles.compactProgressTrack, { backgroundColor: t.bgSurface2 }]}>
           <View style={[styles.progressFill, { width: `${progressPct}%` as `${number}%`, backgroundColor: t.accent }]} />
         </View>
 
@@ -2732,7 +2902,7 @@ export default function FlashcardsSwipeScreen() {
           </Animated.View>
         ) : null}
 
-        <View style={[styles.cardStage, isPlanFlashcardsTask && styles.planCardStage]}>
+        <View style={[styles.cardStage, isCompactFlashcardsTask && styles.compactCardStage]}>
           {queue[1] ? (
             <View
               style={[
@@ -2747,10 +2917,10 @@ export default function FlashcardsSwipeScreen() {
           ) : null}
           <Animated.View
             key={currentPrompt.id}
-            {...(isPlanFlashcardsTask ? {} : panResponder.panHandlers)}
+            {...(isCompactFlashcardsTask ? {} : panResponder.panHandlers)}
             style={[
               styles.trainingCard,
-              isPlanFlashcardsTask && styles.planTrainingCard,
+              isCompactFlashcardsTask && styles.compactTrainingCard,
               {
                 width: cardWidth,
                 minHeight: cardHeight,
@@ -2783,7 +2953,7 @@ export default function FlashcardsSwipeScreen() {
               <Text style={[styles.swipeBadgeText, { color: t.correct }]}>{text.match}</Text>
             </Animated.View>
 
-            <View style={[styles.cardTopLine, isPlanFlashcardsTask && styles.planCardTopLine]}>
+            <View style={[styles.cardTopLine, isCompactFlashcardsTask && styles.compactCardTopLine]}>
               <View
                 onStartShouldSetResponder={() => true}
                 onMoveShouldSetResponder={() => false}
@@ -2795,7 +2965,7 @@ export default function FlashcardsSwipeScreen() {
                   dataId={`flashcard_${currentPrompt.card.id ?? 'unknown'}`}
                   dataText={reportDataText}
                   variant="icon-flag"
-                  accessibilityLabel="Сообщить об ошибке в карточке"
+                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
                   testID="flashcards-swipe-report"
                 />
               </View>
@@ -2817,22 +2987,22 @@ export default function FlashcardsSwipeScreen() {
                   pl: 'Odsłuchaj fiszkę',
                 })}
               >
-                <View style={[styles.speakButton, isPlanFlashcardsTask && styles.planSpeakButton, { backgroundColor: t.bgCard }]}>
-                  <Ionicons name="volume-high-outline" size={isPlanFlashcardsTask ? 16 : 18} color={t.textSecond} />
+                <View style={[styles.speakButton, isCompactFlashcardsTask && styles.compactSpeakButton, { backgroundColor: t.bgCard }]}>
+                  <Ionicons name="volume-high-outline" size={isCompactFlashcardsTask ? 16 : 18} color={t.textSecond} />
                 </View>
               </View>
             </View>
 
-            <View style={[styles.enBox, isPlanFlashcardsTask && styles.planEnBox]}>
+            <View style={[styles.enBox, isCompactFlashcardsTask && styles.compactEnBox]}>
               <Text style={[styles.enLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.phraseLabel}</Text>
               {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- лимит строк вместо запрещённого сжатия: фраза в карточке фикс-геометрии свайпа, аномально длинная не должна выдавить кнопки */}
               <Text
-                style={[styles.englishText, isPlanFlashcardsTask && styles.planEnglishText, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? Math.min(20, f.h2) : Math.min(24, f.h1 + 1) }]}
+                style={[styles.englishText, isCompactFlashcardsTask && styles.compactEnglishText, { color: t.textPrimary, fontSize: isCompactFlashcardsTask ? Math.min(20, f.h2) : Math.min(24, f.h1 + 1) }]}
                 // зачем: adjustsFontSizeToFit запрещён (Performance Bible/владелец) — сжатие
                 // теряло слово при системном увеличении шрифта на Android («to work» → «to»).
                 // Вместо сжатия: чуть меньший базовый fontSize + больше строк — enBox не имеет
                 // фиксированной высоты (flex:1, justifyContent:'center'), поэтому перенос безопасен.
-                numberOfLines={isPlanFlashcardsTask ? 4 : 3}
+                numberOfLines={isCompactFlashcardsTask ? 4 : 3}
               >
                 {/* зачем: если у карточки в данных пустой en, enBox (flex:1, center) не
                     схлопывается — карточка превращалась в пустой серый прямоугольник без
@@ -2848,13 +3018,13 @@ export default function FlashcardsSwipeScreen() {
               ) : null}
             </View>
 
-            <View style={[styles.translationBox, isPlanFlashcardsTask && styles.planTranslationBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
+            <View style={[styles.translationBox, isCompactFlashcardsTask && styles.compactTranslationBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
               <Text style={[styles.translationLabel, { color: t.textMuted, fontSize: f.caption }]}>
                 {text.shownTranslation}
               </Text>
               <Text
-                style={[styles.translationText, isPlanFlashcardsTask && styles.planTranslationText, { color: t.textSecond, fontSize: isPlanFlashcardsTask ? f.body : f.bodyLg }]}
-                numberOfLines={isPlanFlashcardsTask ? 3 : undefined}
+                style={[styles.translationText, isCompactFlashcardsTask && styles.compactTranslationText, { color: t.textSecond, fontSize: isCompactFlashcardsTask ? f.body : f.bodyLg }]}
+                numberOfLines={isCompactFlashcardsTask ? 3 : undefined}
               >
                 {currentPrompt.shownTranslation}
               </Text>
@@ -2864,7 +3034,7 @@ export default function FlashcardsSwipeScreen() {
               <ScrollView
                 style={[
                   styles.feedbackBox,
-                  isPlanFlashcardsTask && styles.planFeedbackBox,
+                  isCompactFlashcardsTask && styles.compactFeedbackBox,
                   styles.feedbackScroll,
                   { maxHeight: feedbackMaxHeight },
                   {
@@ -2879,7 +3049,7 @@ export default function FlashcardsSwipeScreen() {
                 <Text
                   style={[
                     styles.feedbackTitle,
-                    { color: feedback.kind === 'wrong' ? t.wrong : t.gold, fontSize: isPlanFlashcardsTask ? f.caption : f.body },
+                    { color: feedback.kind === 'wrong' ? t.wrong : t.gold, fontSize: isCompactFlashcardsTask ? f.caption : f.body },
                   ]}
                 >
                   {feedback.kind === 'wrong' ? text.wrongTitle : text.hintTitle}
@@ -2887,17 +3057,17 @@ export default function FlashcardsSwipeScreen() {
                 <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {text.correctChoice}
                 </Text>
-                <FlowText testID="flashcards-feedback-answer" provenance="authored" style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>
+                <FlowText testID="flashcards-feedback-answer" provenance="authored" style={[styles.feedbackAnswer, isCompactFlashcardsTask && styles.compactFeedbackAnswer, { color: t.textPrimary, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]}>
                   {feedback.prompt.isMatch ? `${text.match}: ${text.matchHint}` : `${text.mismatch}: ${text.mismatchHint}`}
                 </FlowText>
                 <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {text.correctTranslation}
                 </Text>
-                <FlowText testID="flashcards-feedback-translation" provenance="authored" style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>
+                <FlowText testID="flashcards-feedback-translation" provenance="authored" style={[styles.feedbackAnswer, isCompactFlashcardsTask && styles.compactFeedbackAnswer, { color: t.textPrimary, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]}>
                   {currentPrompt.trueTranslation}
                 </FlowText>
-                {!isPlanFlashcardsTask && <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{text.recoveryNote}</Text>}
-                {note && !isPlanFlashcardsTask ? <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{note}</Text> : null}
+                {!isCompactFlashcardsTask && <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{text.recoveryNote}</Text>}
+                {note && !isCompactFlashcardsTask ? <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{note}</Text> : null}
               </ScrollView>
             ) : null}
           </Animated.View>
@@ -2907,57 +3077,56 @@ export default function FlashcardsSwipeScreen() {
           <DuoPressable
             onPress={continueAfterFeedback}
             edgeColor={t.accent}
-            style={[styles.continueButton, isPlanFlashcardsTask && styles.planContinueButton, { backgroundColor: t.accent }]}
+            style={[styles.continueButton, isCompactFlashcardsTask && styles.compactContinueButton, { backgroundColor: t.accent }]}
           >
-            <Text style={[styles.continueText, { color: t.correctText, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>{text.continue}</Text>
+            <Text style={[styles.continueText, { color: t.correctText, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]}>{text.continue}</Text>
           </DuoPressable>
         ) : (
           <>
             <TouchableOpacity
               onPress={revealCurrent}
-              style={[styles.revealButton, isPlanFlashcardsTask && styles.planRevealButton, { backgroundColor: t.bgSurface }]}
+              style={[styles.revealButton, isCompactFlashcardsTask && styles.compactRevealButton, { backgroundColor: t.bgSurface }]}
             >
               <Ionicons name="eye-outline" size={18} color={t.textSecond} />
               <Text style={[styles.revealText, { color: t.textSecond, fontSize: f.caption }]}>{text.reveal}</Text>
             </TouchableOpacity>
-            <View style={[styles.answerButtons, isPlanFlashcardsTask && styles.planAnswerButtons]}>
+            <View style={[styles.answerButtons, isCompactFlashcardsTask && styles.compactAnswerButtons]}>
               <TouchableOpacity
                 onPress={() => answerCurrent(false)}
                 disabled={settling}
                 style={[
                   styles.answerButton,
-                  isPlanFlashcardsTask && styles.planAnswerButton,
+                  isCompactFlashcardsTask && styles.compactAnswerButton,
                   {
                     backgroundColor: t.wrongBg,
                     borderColor: 'transparent',
                     opacity: settling ? 0.65 : 1,
                   },
                 ]}
-                accessibilityLabel={`${text.mismatch}: ${text.mismatchHint}`}
+                accessibilityRole="button"
+                accessibilityLabel={`${text.mismatchAction}. ${text.mismatch}: ${text.mismatchHint}`}
               >
-                <Ionicons name="close" size={22} color={t.wrong} />
-                <View style={styles.answerCopy}>
-                  <Text style={[styles.answerText, { color: t.wrong, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.mismatchAction}</Text>
-                </View>
+                {/* FIX (владелец, 2026-08-13): кнопки ответа — только иконка,
+                    без подписи «Неверно». Смысл держит accessibilityLabel. */}
+                <Ionicons name="close" size={isCompactFlashcardsTask ? 24 : 28} color={t.wrong} />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => answerCurrent(true)}
                 disabled={settling}
                 style={[
                   styles.answerButton,
-                  isPlanFlashcardsTask && styles.planAnswerButton,
+                  isCompactFlashcardsTask && styles.compactAnswerButton,
                   {
                     backgroundColor: t.correctBg,
                     borderColor: 'transparent',
                     opacity: settling ? 0.65 : 1,
                   },
                 ]}
-                accessibilityLabel={`${text.match}: ${text.matchHint}`}
+                accessibilityRole="button"
+                accessibilityLabel={`${text.matchAction}. ${text.match}: ${text.matchHint}`}
               >
-                <View style={styles.answerCopy}>
-                  <Text style={[styles.answerText, { color: t.correct, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.matchAction}</Text>
-                </View>
-                <Ionicons name="checkmark" size={22} color={t.correct} />
+                {/* FIX (владелец, 2026-08-13): только иконка, без подписи «Верно». */}
+                <Ionicons name="checkmark" size={isCompactFlashcardsTask ? 24 : 28} color={t.correct} />
               </TouchableOpacity>
             </View>
           </>
@@ -3039,7 +3208,47 @@ export default function FlashcardsSwipeScreen() {
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
       <SafeAreaView style={[styles.safe, { paddingTop: topSafeInset }]} edges={['left', 'right', 'bottom']}>
         <ContentWrap>
-          <View style={styles.screen}>{renderScreen()}</View>
+          <View style={styles.screen}>
+            {renderScreen()}
+            {correctTranslationReminder ? (
+              <Animated.View
+                pointerEvents="none"
+                testID="flashcards-correct-translation-reminder"
+                accessibilityRole="alert"
+                accessibilityLiveRegion="polite"
+                accessibilityLabel={`${text.correctTranslation}: ${correctTranslationReminder.english} — ${correctTranslationReminder.translation}`}
+                style={[
+                  styles.correctTranslationReminderToast,
+                  {
+                    top: isCompactFlashcardsTask ? 54 : 70,
+                    backgroundColor: t.correctBg,
+                    shadowColor: t.correct,
+                    opacity: correctTranslationReminderAnim,
+                    transform: [{
+                      translateY: correctTranslationReminderAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [-8, 0],
+                      }),
+                    }],
+                  },
+                ]}
+              >
+                <Ionicons name="checkmark-circle" size={20} color={t.correct} />
+                <View style={styles.correctTranslationReminderCopy}>
+                  <Text style={[styles.correctTranslationReminderLabel, { color: t.correct, fontSize: f.caption }]}>
+                    {text.correctTranslation}
+                  </Text>
+                  <FlowText
+                    testID="flashcards-correct-translation-reminder-copy"
+                    provenance="authored"
+                    style={[styles.correctTranslationReminderText, { color: t.textPrimary, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.3) }]}
+                  >
+                    {correctTranslationReminder.english} — {correctTranslationReminder.translation}
+                  </FlowText>
+                </View>
+              </Animated.View>
+            ) : null}
+          </View>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>
@@ -3105,7 +3314,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  planIconButton: {
+  compactIconButton: {
     width: 36,
     height: 36,
     borderRadius: 12,
@@ -3278,7 +3487,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 10,
   },
-  planPlayWrap: {
+  compactPlayWrap: {
     paddingTop: 6,
   },
   playHeader: {
@@ -3286,7 +3495,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  planPlayHeader: {
+  compactPlayHeader: {
     minHeight: 38,
   },
   headerStats: {
@@ -3296,7 +3505,7 @@ const styles = StyleSheet.create({
     gap: 2,
     paddingHorizontal: 8,
   },
-  planHeaderStats: {
+  compactHeaderStats: {
     gap: 0,
   },
   headerStatText: {
@@ -3322,13 +3531,42 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginTop: 14,
   },
-  planProgressTrack: {
+  compactProgressTrack: {
     height: 4,
     marginTop: 7,
   },
   progressFill: {
     height: '100%',
     borderRadius: 999,
+  },
+  correctTranslationReminderToast: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    zIndex: 60,
+    elevation: 60,
+    minHeight: 58,
+    borderRadius: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    shadowOpacity: 0.18,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 5 },
+    ...noAndroidOutline,
+  },
+  correctTranslationReminderCopy: {
+    flex: 1,
+    minWidth: 0,
+  },
+  correctTranslationReminderLabel: {
+    fontWeight: '900',
+  },
+  correctTranslationReminderText: {
+    marginTop: 2,
+    fontWeight: '800',
   },
   // зачем: одноразовая подсказка-баннер над карточкой — без обводки (запрещена),
   // разделяется тоном подложки (glassFill) + мягкой тенью, как остальные карточки проекта.
@@ -3356,7 +3594,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 10,
   },
-  planCardStage: {
+  compactCardStage: {
     paddingVertical: 6,
   },
   cardBack: {
@@ -3374,13 +3612,16 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     ...noAndroidOutline,
   },
-  planTrainingCard: {
+  compactTrainingCard: {
     borderRadius: 18,
     padding: 12,
     shadowOpacity: 0.14,
     shadowRadius: 12,
     ...noAndroidOutline,
   },
+  // FIX (владелец, 2026-08-13): «подпись стоит криво» — у бейджей был наклон
+  // rotate ±7deg. Поворот убран полностью, обе подписи выровнены одинаково:
+  // одна высота, центрирование текста внутри плашки, симметричные отступы.
   swipeBadge: {
     position: 'absolute',
     top: 18,
@@ -3388,19 +3629,21 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 12,
     paddingVertical: 7,
-    paddingHorizontal: 11,
-    transform: [{ rotate: '-7deg' }],
+    paddingHorizontal: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   noBadge: {
     left: 18,
   },
   yesBadge: {
     right: 18,
-    transform: [{ rotate: '7deg' }],
   },
   swipeBadgeText: {
     fontSize: 13,
     fontWeight: '900',
+    textAlign: 'center',
+    includeFontPadding: false,
   },
   cardTopLine: {
     flexDirection: 'row',
@@ -3408,7 +3651,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 10,
   },
-  planCardTopLine: {
+  compactCardTopLine: {
     minHeight: 28,
   },
   cardReportHitbox: {
@@ -3436,7 +3679,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  planSpeakButton: {
+  compactSpeakButton: {
     width: 34,
     height: 34,
     borderRadius: 12,
@@ -3447,7 +3690,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 18,
   },
-  planEnBox: {
+  compactEnBox: {
     paddingVertical: 8,
   },
   enLabel: {
@@ -3461,7 +3704,7 @@ const styles = StyleSheet.create({
     lineHeight: 31,
     letterSpacing: 0,
   },
-  planEnglishText: {
+  compactEnglishText: {
     lineHeight: 25,
   },
   transcriptionText: {
@@ -3476,7 +3719,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 14,
   },
-  planTranslationBox: {
+  compactTranslationBox: {
     minHeight: 66,
     borderRadius: 14,
     padding: 10,
@@ -3491,7 +3734,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     lineHeight: 24,
   },
-  planTranslationText: {
+  compactTranslationText: {
     lineHeight: 20,
   },
   feedbackBox: {
@@ -3499,7 +3742,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 16,
   },
-  planFeedbackBox: {
+  compactFeedbackBox: {
     marginTop: 8,
     borderRadius: 12,
   },
@@ -3521,7 +3764,7 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     lineHeight: 22,
   },
-  planFeedbackAnswer: {
+  compactFeedbackAnswer: {
     marginTop: 2,
     lineHeight: 18,
   },
@@ -3541,7 +3784,7 @@ const styles = StyleSheet.create({
     gap: 7,
     marginBottom: 12,
   },
-  planRevealButton: {
+  compactRevealButton: {
     minHeight: 34,
     borderRadius: 12,
     marginBottom: 7,
@@ -3554,7 +3797,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 12,
   },
-  planAnswerButtons: {
+  compactAnswerButtons: {
     gap: 8,
   },
   answerButton: {
@@ -3568,24 +3811,10 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingHorizontal: 10,
   },
-  planAnswerButton: {
+  compactAnswerButton: {
     minHeight: 50,
     borderRadius: 14,
     paddingHorizontal: 8,
-  },
-  answerText: {
-    fontWeight: '900',
-    textAlign: 'center',
-  },
-  answerCopy: {
-    flex: 1,
-    minWidth: 0,
-    alignItems: 'center',
-  },
-  answerSubText: {
-    marginTop: 1,
-    fontWeight: '800',
-    textAlign: 'center',
   },
   continueButton: {
     minHeight: 56,
@@ -3593,7 +3822,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  planContinueButton: {
+  compactContinueButton: {
     minHeight: 44,
     borderRadius: 14,
   },
@@ -3606,7 +3835,7 @@ const styles = StyleSheet.create({
     padding: 18,
     alignItems: 'center',
   },
-  planDoneBox: {
+  compactDoneBox: {
     marginTop: 12,
     borderRadius: 18,
     padding: 12,
@@ -3616,7 +3845,7 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     textAlign: 'center',
   },
-  planDoneTitle: {
+  compactDoneTitle: {
     marginTop: 8,
   },
   doneSubtitle: {
@@ -3625,7 +3854,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '700',
   },
-  planDoneSubtitle: {
+  compactDoneSubtitle: {
     marginTop: 4,
     lineHeight: 18,
   },
@@ -3638,7 +3867,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
   },
-  planDoneScorePill: {
+  compactDoneScorePill: {
     marginTop: 9,
     paddingVertical: 5,
   },
@@ -3652,7 +3881,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 10,
   },
-  planDoneGrid: {
+  compactDoneGrid: {
     marginTop: 10,
     gap: 7,
   },
@@ -3663,7 +3892,7 @@ const styles = StyleSheet.create({
     paddingVertical: 13,
     alignItems: 'center',
   },
-  planDoneStat: {
+  compactDoneStat: {
     paddingVertical: 8,
     borderRadius: 13,
   },
@@ -3679,7 +3908,7 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 18,
   },
-  planDoneButtons: {
+  compactDoneButtons: {
     marginTop: 10,
     gap: 8,
   },
@@ -3695,7 +3924,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 7,
   },
-  planDoneButton: {
+  compactDoneButton: {
     minHeight: 42,
     borderRadius: 13,
   },

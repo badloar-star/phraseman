@@ -43,7 +43,6 @@ import { wordsSessionDoneTitle, wordsSessionDoneSubtitle } from './feedback/feed
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { useAudio } from '../hooks/use-audio';
 import { hapticTap } from '../hooks/use-haptics';
-import { updateMultipleTaskProgress } from './daily_tasks';
 import { loadSettings } from './settings_edu';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
@@ -2694,7 +2693,7 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
-function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, autoPractice = false, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget, onAndroidBackIntercept }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; autoPractice?: boolean; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void }) {
+function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget, onAndroidBackIntercept }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -2993,15 +2992,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           // выше) — здесь его НЕ дублируем, чтобы не появлялся повторно/поздно.
         }
 
-        // зачем: владелец — задания дня должны выполняться и на ПОВТОРЕ уже
-        // пройденного (репорт «кидает в урок, где слова уже выучены, и повтор
-        // не засчитывается»). Раньше зачёт жил внутри if (wordJustCompleted) и
-        // на повторе (prevCount === REQUIRED) молча не срабатывал — прогресс
-        // висел 0/3. Теперь двигаем задание на КАЖДЫЙ правильный ответ, а XP и
-        // статистика остаются привязаны к первому освоению (см. ниже) — иначе
-        // получилась бы бесконечная ферма опыта на одном уроке.
-        updateMultipleTaskProgress([{ type: 'words_learned' }], { studyTarget });
-
         if (wordJustCompleted) {
           void bumpStatsDaily('words_learned', 1, studyTarget);
           // Слово выучено — убираем все оставшиеся карточки этого слова из очереди
@@ -3014,12 +3004,10 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               // Осколок за завершение раздела слов (единоразово)
               AsyncStorage.getItem(wordsShardGrantKey).then(done => {
                 if (!done) {
-                  addShards('lesson_completed')
-                    .then(n => {
-                      if (n > 0) {
-                        AsyncStorage.setItem(wordsShardGrantKey, '1').catch(() => {});
-                      }
-                    })
+                  addShards('lesson_completed', {
+                    eventId: `words:${studyTarget}:${lessonId}:completed`,
+                    localWrites: [[wordsShardGrantKey, '1']],
+                  })
                     .catch(() => {});
                 }
               }).catch(() => {});
@@ -3098,22 +3086,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     victoryFiredRef.current = false;
     setVictoryShown(false);
   };
-
-  // зачем: приход из задания дня (autoPractice=1) в уже пройденный раздел не должен
-  // упираться в экран «Всё выучено» — задание требует ПОВТОРА, значит очередь нужно
-  // собрать сразу. Ждём готовности слов, стартуем один раз за монтирование (guard),
-  // прогресс на диске не трогаем: startPractice только пересобирает очередь.
-  const autoPracticeFiredRef = useRef(false);
-  const startPracticeRef = useRef(startPractice);
-  startPracticeRef.current = startPractice;
-  useEffect(() => {
-    if (!autoPractice || autoPracticeFiredRef.current) return;
-    if (words.length === 0) return;
-    // Повтор нужен только когда учить уже нечего — иначе обычная очередь сама даст прогресс.
-    if (countLearnedWords(words, countsRef.current) < words.length) return;
-    autoPracticeFiredRef.current = true;
-    startPracticeRef.current();
-  }, [autoPractice, words]);
 
   const trainingStepLabel = `${learnedCnt} / ${words.length}`;
   const xpToastOverlay = xpToastVisible ? (
@@ -3570,12 +3542,8 @@ export default function LessonWords() {
   const { studyTarget } = useStudyTarget();
   const { energy, isUnlimited: energyUnlimited } = useEnergy();
   const canTrain = energyUnlimited || energy > 0;
-  const { id, tab: tabParam, qaFocusWords, autoPractice: autoPracticeParam } = useLocalSearchParams<{ id:string; tab?: string | string[]; qaFocusWords?: string | string[]; autoPractice?: string | string[] }>();
+  const { id, tab: tabParam, qaFocusWords } = useLocalSearchParams<{ id:string; tab?: string | string[]; qaFocusWords?: string | string[] }>();
   const lessonId = parseInt(id || '1', 10);
-  // зачем: заход из задания дня в УЖЕ пройденный раздел упирался в экран «Всё
-  // выучено» — задание было не выполнить, хотя повторять разрешено. С этим
-  // флагом тренировка стартует сразу на всех словах урока (прогресс не сбрасываем).
-  const autoPractice = (Array.isArray(autoPracticeParam) ? autoPracticeParam[0] : autoPracticeParam) === '1';
   const initialTab = (Array.isArray(tabParam) ? tabParam[0] : tabParam) === 'list' ? 'list' : null;
   useEffect(() => {
     let cancelled = false;
@@ -3761,7 +3729,6 @@ export default function LessonWords() {
             userName={userName}
             initialLearned={learnedListForTraining}
             initialCounts={learnedCounts}
-            autoPractice={autoPractice}
             onCountUpdate={(word, count) => setLearnedCounts(prev => ({ ...prev, [word]: count }))}
             onNoEnergy={() => setNoEnergyModalOpen(true)}
             studyTarget={studyTarget}

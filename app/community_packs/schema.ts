@@ -25,7 +25,7 @@ export const COMMUNITY_PACK_SUBMISSIONS_COLLECTION = 'community_pack_submissions
 /** Черновики (резерв; клиент пока без прямой записи в rules). */
 export const COMMUNITY_PACK_DRAFTS_COLLECTION = 'community_pack_drafts';
 
-/** Покупки: идемпотентный ключ `${buyerStableId}__${packId}`. */
+/** Легаси-покупки (Cards 2.1: наборы бесплатны, новая запись не создаётся). */
 export const COMMUNITY_PACK_PURCHASES_COLLECTION = 'community_pack_purchases';
 
 /** Оценки после покупки. */
@@ -37,11 +37,11 @@ export const COMMUNITY_SELLER_INBOX_SUBCOLLECTION = 'community_seller_inbox';
 export const COMMUNITY_PACK_CARD_COUNT_MIN = 10;
 export const COMMUNITY_PACK_CARD_COUNT_MAX = 50;
 
-/** Фиксированная цена UGC-набора в жемчуге. Пользователь и сохранённые документы её не задают. */
-export const COMMUNITY_PACK_PRICE_SHARDS = 10;
-
-/** Доля «платформы» в осколках: базисные пункты (10000 = 100%). Например 1500 = 15% остаётся в экономике приложения (сжигание). */
-export const COMMUNITY_PACK_PLATFORM_FEE_BPS = 1500;
+/**
+ * Cards 2.1 §1.2: цены удалены. Наборы сообщества бесплатны, автор не может назначать цену.
+ * В уже опубликованных документах Firestore поле `priceShards` может остаться —
+ * при чтении оно игнорируется (`mapCommunityPackDocToMarket` отдаёт 0).
+ */
 
 export type CommunityPackListingStatus =
   | 'draft'
@@ -84,8 +84,6 @@ export type CommunityPackSubmissionPayload = {
   description: string;
   cardThemeKey?: CommunityPackCardThemeKey;
   cardBackKey?: CommunityPackCardBackKey;
-  /** Legacy transport field; reads and server writes always replace it with the fixed price. */
-  readonly priceShards?: number;
   cards: CommunityPackCardPayload[];
   sourceLang?: Lang;
   /** Legacy — ігнорується, якщо задані title/description. */
@@ -180,7 +178,6 @@ export function buildCommunityPackPayloadForCloud(p: CommunityPackSubmissionPayl
     descriptionId,
     descriptionTr,
     descriptionPl,
-    priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     cards: p.cards,
     cardThemeKey: String(p.cardThemeKey ?? '').trim() || undefined,
     cardBackKey: String(p.cardBackKey ?? '').trim() || undefined,

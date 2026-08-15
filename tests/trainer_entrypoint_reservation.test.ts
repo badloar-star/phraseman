@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import * as dailyTaskNavigation from '../app/daily_task_navigation';
 import { startReservedTrainerSession } from '../app/trainer_session_navigation';
 
 const mockReserveTrainerSessionEntry = jest.fn();
@@ -27,10 +26,6 @@ jest.mock('../app/lesson_premium_gate', () => ({
 
 jest.mock('../app/lesson_screen_bootstrap', () => ({
   primeLessonScreenFromStorage: jest.fn(async () => undefined),
-}));
-
-jest.mock('../app/daily_tasks', () => ({
-  dailyTaskAvailableForStudyTarget: () => true,
 }));
 
 jest.mock('../app/trainer_target_gate', () => ({
@@ -217,52 +212,4 @@ describe('Plus-only trainer entrypoint', () => {
     expect(words).not.toContain("isFeatureFreeForEveryone('trainer_modes')");
   });
 
-  it('routes the full daily-tasks screen direct sessions through the same reservation', () => {
-    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'daily_tasks_screen.tsx'), 'utf8');
-
-    expect(source).toContain("import { startReservedTrainerSession } from './trainer_session_navigation';");
-    expect(source).toContain('const trainerSessionStartLockRef = useRef(false);');
-    expect(source).toMatch(/await startReservedTrainerSession\(\{[\s\S]*premiumAccess: getVerifiedPremiumStatus,[\s\S]*lock: trainerSessionStartLockRef,/);
-    expect(source).not.toContain("router.push('/trainer_words_session')");
-    expect(source).not.toContain("router.push('/trainer_phrases_session')");
-    expect(source).not.toContain("router.push('/trainer_arena_session')");
-  });
-
-  it('opens the Plus paywall for a non-Plus daily-task trainer entry', async () => {
-    mockGetVerifiedPremiumStatus.mockResolvedValue(false);
-    mockReserveTrainerSessionEntry.mockResolvedValue(true);
-    const router = { push: jest.fn(), replace: jest.fn() };
-
-    await dailyTaskNavigation.navigateDailyTask({
-      lang: 'ru',
-      router,
-      studyTarget: 'en',
-      task: { type: 'trainer_words' } as never,
-    });
-
-    expect(mockGetVerifiedPremiumStatus).toHaveBeenCalledTimes(1);
-    expect(mockReserveTrainerSessionEntry).not.toHaveBeenCalled();
-    expect(router.push).toHaveBeenCalledWith({
-      pathname: '/premium_modal',
-      params: { context: 'trainer_limit' },
-    });
-    expect(router.push).not.toHaveBeenCalledWith('/trainer_words_session');
-  });
-
-  it('falls back to lesson 1 when the last opened lesson is currently locked', async () => {
-    mockAsyncStorageGetItem.mockResolvedValue('19');
-    mockResolveLessonRuntimeGate.mockResolvedValue('premium_required');
-    const router = { push: jest.fn(), replace: jest.fn() };
-
-    await dailyTaskNavigation.navigateDailyTask({
-      lang: 'ru',
-      router,
-      studyTarget: 'en',
-      task: { type: 'total_answers' } as never,
-    });
-
-    expect(mockResolveLessonRuntimeGate).toHaveBeenCalledWith(19, 'en');
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/lesson1', params: { id: 1 } });
-    expect(router.push).not.toHaveBeenCalledWith({ pathname: '/lesson1', params: { id: 19 } });
-  });
 });

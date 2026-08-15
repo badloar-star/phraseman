@@ -4,7 +4,7 @@ import vm from 'vm';
 
 describe('legacy admin daily digest contract', () => {
   const root = path.resolve(__dirname, '..');
-  const admin = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
+  const admin = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
   const digestV2 = fs.readFileSync(path.join(root, 'admin', 'v2', 'daily-digest.js'), 'utf8');
 
   it('shows an exact since-last-open interval and readable comparison surface', () => {

@@ -3,7 +3,8 @@
  * Контракт callables (сервер, НЕ менять без синхронизации с functions/):
  *   getCoinExchangeQuote()                          → { rate, corridorMin, corridorMax, nextRecalcAt }
  *   getCoinExchangeHistory({ days })                → { points: [{ date, rate, volume }] }
- *   exchangeCoinsForStars({ coins, idempotencyKey }) → { starsGranted, rateUsed }
+ *   exchangeCoinsForStars({ coins, idempotencyKey }) → { starsGranted, rateUsed,
+ *     walletRewardRequest? }
  * Курс считается ТОЛЬКО сервером; клиент ничего не пересчитывает, кроме
  * отображаемой оценки «монеты × текущий курс».
  */
@@ -19,7 +20,26 @@ export type CoinExchangeQuote = {
 
 export type CoinExchangeHistoryPoint = { date: string; rate: number; volume: number };
 
-export type CoinExchangeResult = { starsGranted: number; rateUsed: number };
+export type CoinExchangeWalletRewardRequest = {
+  schemaVersion: 'learning-v2-server-wallet-reward-request.v1';
+  rewardId: string;
+  rewardFingerprint: string;
+};
+
+export type CoinExchangeResult = {
+  starsGranted: number;
+  rateUsed: number;
+  eventId?: string;
+  coinsDebited?: number;
+  walletRewardRequest?: CoinExchangeWalletRewardRequest;
+};
+
+type CoinExchangeWalletRewardResolution = {
+  schemaVersion: 'learning-v2-server-wallet-reward-resolution.v1';
+  rewardId: string;
+  rewardFingerprint: string;
+  encoded: string;
+};
 
 const QUOTE_CACHE_KEY = 'coin_exchange_quote_cache_v1';
 const HISTORY_CACHE_KEY = 'coin_exchange_history_cache_v1';
@@ -139,7 +159,68 @@ export const exchangeCoinsForStars = async (
   if (!Number.isFinite(starsGranted) || starsGranted < 0 || !Number.isFinite(rateUsed) || rateUsed <= 0) {
     throw new Error('coin_exchange_bad_response');
   }
-  return { starsGranted: Math.floor(starsGranted), rateUsed };
+  const reward = row?.walletRewardRequest as Partial<CoinExchangeWalletRewardRequest> | undefined;
+  const eventId = typeof row?.eventId === 'string' ? row.eventId : idempotencyKey;
+  const coinsDebited = Math.max(0, Math.floor(Number(row?.coinsDebited) || safe));
+  const { commitConfirmedExternalShardEvent } = await import('./shards_system');
+  const debit = await commitConfirmedExternalShardEvent({
+    source: 'coin_exchange', eventId, delta: -coinsDebited, reason: 'coin_exchange',
+    grant: {
+      kind: 'external_currency_exchange',
+      subjectId: idempotencyKey,
+      payload: { starsGranted: Math.floor(starsGranted), rateUsed },
+    },
+  });
+  if (debit.status !== 'applied' && debit.status !== 'already-applied') {
+    throw new Error('coin_exchange_debit_event_failed');
+  }
+  const walletRewardRequest = reward?.schemaVersion === 'learning-v2-server-wallet-reward-request.v1'
+    && typeof reward.rewardId === 'string'
+    && /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/.test(reward.rewardId)
+    && typeof reward.rewardFingerprint === 'string'
+    && /^[a-f0-9]{64}$/.test(reward.rewardFingerprint)
+    ? {
+        schemaVersion: reward.schemaVersion,
+        rewardId: reward.rewardId,
+        rewardFingerprint: reward.rewardFingerprint,
+      }
+    : undefined;
+  return {
+    starsGranted: Math.floor(starsGranted),
+    rateUsed,
+    eventId,
+    coinsDebited,
+    ...(walletRewardRequest ? { walletRewardRequest } : {}),
+  };
+};
+
+/**
+ * Fetches exact protected source bytes for the Owner Repository authority.
+ * The returned JSON is still only a source receipt; the repository binds it to
+ * its own current wallet revision and active account-generation fence.
+ */
+export const resolveCoinExchangeWalletRewardReceipt = async (
+  accountScopeHash: string,
+  request: CoinExchangeWalletRewardRequest,
+): Promise<string> => {
+  if (!/^[a-f0-9]{16,128}$/.test(accountScopeHash) ||
+    request.schemaVersion !== 'learning-v2-server-wallet-reward-request.v1' ||
+    !/^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/.test(request.rewardId) ||
+    !/^[a-f0-9]{64}$/.test(request.rewardFingerprint)) {
+    throw new Error('coin_exchange_wallet_reward_request_invalid');
+  }
+  const raw = await callCoinExchange<unknown>(
+    'resolveLearningV2WalletRewardReceipt',
+    { accountScopeHash, ...request },
+  );
+  const response = raw as Partial<CoinExchangeWalletRewardResolution> | null;
+  if (response?.schemaVersion !== 'learning-v2-server-wallet-reward-resolution.v1' ||
+    response.rewardId !== request.rewardId ||
+    response.rewardFingerprint !== request.rewardFingerprint ||
+    typeof response.encoded !== 'string') {
+    throw new Error('coin_exchange_wallet_reward_bad_response');
+  }
+  return response.encoded;
 };
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

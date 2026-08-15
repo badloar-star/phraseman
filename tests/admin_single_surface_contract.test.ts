@@ -1,95 +1,69 @@
 /**
- * Контракт единственной рабочей админки.
+ * Контракт единственной разрешённой корневой админки.
  *
- * зачем: владелец пользуется ровно одной админкой —
- * https://phraseman-ea0b3.web.app/legacy.html#control-panel, её исходник
- * admin/v2/legacy.html (проверено побайтово: md5 живой страницы == md5 файла).
- * Firebase Hosting target `admin` публикует папку admin/v2, поэтому правки в
- * любой другой файл админки на боевую не попадают. Раньше AGENTS.md велел
- * писать в admin/index.html (редирект-заглушка) — из-за этого сессии дважды
- * правили мёртвые файлы. Тест фиксирует границу машинно, а не «на словах».
+ * Firebase Hosting публикует только `admin/v2`, где единственная рабочая
+ * поверхность — `legacy.html`. Белый V2 entry удалён навсегда.
  */
 
-import { existsSync, readFileSync } from 'node:fs';
-import path from 'node:path';
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
 
-const repoRoot = path.resolve(__dirname, '..');
-const read = (rel: string) => readFileSync(path.join(repoRoot, rel), 'utf8');
+const repoRoot = path.resolve(__dirname, "..");
+const read = (rel: string) => readFileSync(path.join(repoRoot, rel), "utf8");
 
-/** Единственная поверхность, куда разрешено писать. */
-const LIVE_ADMIN = 'admin/v2/legacy.html';
+const LIVE_ADMIN = "admin/v2/legacy.html";
+const RETIRED_V2_ENTRY = "admin/v2/index.html";
 
-/** Замороженные файлы: только чтение, развивать нельзя. */
-const FROZEN_ADMIN_FILES = [
-  'admin/legacy.html',
-  'admin/index.html',
-  'admin/full.html',
-  'admin/site.html',
-  'admin/v2/index.html',
-] as const;
-
-describe('единственная рабочая админка', () => {
-  it('живая админка существует и это полноценная панель, а не заглушка', () => {
+describe("единственная разрешённая корневая админка", () => {
+  it("рабочая legacy-поверхность существует, а белый V2 entry удалён", () => {
     expect(existsSync(path.join(repoRoot, LIVE_ADMIN))).toBe(true);
-    const html = read(LIVE_ADMIN);
-    // Полноценная админка — сотни килобайт разметки, а не редирект в 20 строк.
-    expect(html.length).toBeGreaterThan(500_000);
-    expect(html).toContain('control-panel');
+    expect(existsSync(path.join(repoRoot, RETIRED_V2_ENTRY))).toBe(false);
+
+    const liveHtml = read(LIVE_ADMIN);
+    expect(liveHtml.length).toBeGreaterThan(500_000);
+    expect(liveHtml).toContain("control-panel");
+    expect(liveHtml).toContain("adminArenaConfigGet");
+    expect(liveHtml).toContain("adminArenaConfigSet");
+    expect(liveHtml).toContain('id="cp-arena-card"');
   });
 
-  it('hosting target admin публикует папку admin/v2 — иначе правки не доедут', () => {
-    const firebaseJson = JSON.parse(read('firebase.json')) as {
+  it("Hosting публикует canonical admin/v2 и перенаправляет старые входы", () => {
+    const firebaseJson = JSON.parse(read("firebase.json")) as {
       hosting?: unknown;
     };
-    const hostingList = Array.isArray(firebaseJson.hosting)
+    const hosting = Array.isArray(firebaseJson.hosting)
       ? (firebaseJson.hosting as Array<Record<string, unknown>>)
       : [firebaseJson.hosting as Record<string, unknown>];
-    const adminTarget = hostingList.find((entry) => entry?.target === 'admin');
+    const adminTarget = hosting.find((entry) => entry?.target === "admin");
 
-    expect(adminTarget).toBeDefined();
-    expect(adminTarget?.public).toBe('admin/v2');
-    // LIVE_ADMIN обязан лежать внутри публикуемой папки.
-    expect(LIVE_ADMIN.startsWith(`${String(adminTarget?.public)}/`)).toBe(true);
-  });
+    expect(adminTarget?.public).toBe("admin/v2");
+    expect(adminTarget?.ignore).not.toEqual(expect.arrayContaining(["v2/**"]));
 
-  it('admin/index.html — редирект-заглушка, в неё нельзя писать функциональность', () => {
-    if (!existsSync(path.join(repoRoot, 'admin/index.html'))) return;
-    const html = read('admin/index.html');
-    // Заглушка обязана остаться крошечной: если кто-то начал писать сюда код —
-    // размер выдаст это раньше, чем правка уедет в никуда.
-    expect(html.length).toBeLessThan(5_000);
-    expect(html).toContain('legacy.html');
-  });
-
-  it('отставшая копия admin/legacy.html не выдаёт себя за живую админку', () => {
-    const stalePath = path.join(repoRoot, 'admin/legacy.html');
-    if (!existsSync(stalePath)) return; // удалена — идеальный исход
-
-    // Если копии разошлись, admin/legacy.html — мёртвый дубль. Тест не требует
-    // их совпадения (это невозможно поддерживать), но требует, чтобы правила
-    // явно называли её замороженной.
-    const agents = read('AGENTS.md');
-    expect(agents).toContain('admin/legacy.html');
-    expect(agents.toUpperCase()).toContain('ЗАМОРОЖЕН');
-    expect(stalePath).not.toBe(path.join(repoRoot, LIVE_ADMIN));
-  });
-
-  it('правила проекта называют admin/v2/legacy.html единственной поверхностью', () => {
-    const agents = read('AGENTS.md');
-    const claude = read('CLAUDE.md');
-
-    expect(agents).toContain(LIVE_ADMIN);
-    expect(claude).toContain(LIVE_ADMIN);
-
-    // Старое правило «писать в admin/index.html» должно быть вычищено —
-    // именно оно уводило сессии в мёртвый файл.
-    expect(agents).not.toMatch(/PREPARED_REPORT_REPLIES` in `admin\/index\.html`/);
-  });
-
-  it('замороженные файлы перечислены в правилах поимённо', () => {
-    const agents = read('AGENTS.md');
-    for (const frozen of FROZEN_ADMIN_FILES) {
-      expect(agents).toContain(frozen);
+    const redirects = adminTarget?.redirects as Array<Record<string, unknown>>;
+    for (const source of ["/", "/index.html", "/v2", "/v2/**"]) {
+      expect(redirects).toContainEqual({
+        source,
+        destination: "/legacy.html",
+        type: 301,
+      });
     }
+    expect(redirects).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          destination: expect.stringMatching(/^\/v2(?:\/|$)/),
+        }),
+      ]),
+    );
+  });
+
+  it("оба deploy-guard проверяют canonical каталог до публикации", () => {
+    const hostingGuard = read("scripts/admin_hosting_deploy_guard.mjs");
+    const globalGuard = read("scripts/deploy_lock_guard.mjs");
+
+    expect(hostingGuard).toMatch(/const ADMIN_PUBLIC_DIR = ["']admin\/v2["']/u);
+    expect(hostingGuard).toContain('path.join("admin", "v2", "legacy.html")');
+    expect(globalGuard).toMatch(
+      /adminTarget\?\.public !== ["']admin\/v2["']/u,
+    );
   });
 });

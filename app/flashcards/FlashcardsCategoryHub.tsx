@@ -1,222 +1,126 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
+/**
+ * Cards 2.1 §1–§3 — КАТАЛОГ НАБОРОВ раздела «Карточки» (экран `/flashcards_packs`,
+ * правая позиция таббара «Наборы»).
+ *
+ * Что здесь есть:
+ *   • «Мои наборы» — уже добавленные наборы (открываются как набор карточек);
+ *   • «Наборы сообщества» — сетка компактных плиток ПО 3 В РЯД: иконка, название,
+ *     лайки и счётчик добавлений. Плитка открывается ДО добавления — в режиме
+ *     просмотра (`preview=1`), где и живут «Добавить себе» и лайк.
+ *
+ * Чего здесь БОЛЬШЕ НЕТ (по спеке):
+ *   • заголовка «Наборы» и подзаголовка секции «Наборы сообщества» — дубль убран,
+ *     единственный заголовок живёт в ШАПКЕ экрана (`flashcards_packs.tsx`);
+ *   • строки поиска и кнопок сортировки — они переехали в шапку экрана
+ *     (лупа + две круглые кнопки фильтров); сюда приходят уже готовые
+ *     `communityQuery` / `communitySort` (замечания владельца после iPhone);
+ *   • чипа баланса осколков в шапке и любых цен/paywall (§1.2, §1.3);
+ *   • hero-CTA и входа «Тренировка» из раздела (§4) — режимы живут в таббаре (§5.2);
+ *   • секции «Режимы практики» и витрины официальных наборов (§1.1);
+ *   • какой-либо звёздной механики раздела (§3).
+ *
+ * Анимации §8: каскад FadeInDown секций, spring-press на карточках; только
+ * transform/opacity, деградация при reduceMotion / lowPower.
+ */
+import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   AccessibilityInfo,
-  AppState,
   Pressable,
   Platform,
   Text,
   TouchableOpacity,
   useWindowDimensions,
   View,
-  type ImageSourcePropType,
   type ViewStyle,
 } from 'react-native';
 import Reanimated, {
-  cancelAnimation,
-  Easing,
   FadeInDown,
   useAnimatedStyle,
   useSharedValue,
-  withRepeat,
-  withSequence,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { triLang } from '../../constants/i18n';
 import type { Lang } from '../../constants/i18n';
 import type { Theme, ThemeMode } from '../../constants/theme';
-import { monoIcon } from '../../constants/monoIcon';
-import { categoriesForFlashcardsHub } from './constants';
-import { packHubCodeName, packHubLabelForInterface, packTitleForInterface, packCategoryIonIcon, type FlashcardMarketPack } from './marketplace';
-import { useCardPackShardPaywall } from './useCardPackShardPaywall';
-import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
+import { FC_SPRING, FC_TIMING, fcStaggerDelay } from '../../constants/flashcards_motion';
+import { packHubCodeName, packTitleForInterface, packCategoryIonIcon, type FlashcardMarketPack } from './marketplace';
+import { isLowPowerEffective } from './low_power';
 
-import { oskolokImageForPackShards } from '../oskolok';
-import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
-import { stageOwnedPackCardsForNavigation } from '../flashcards_collection';
+import { stageOwnedPackCardsForNavigation } from './useCollectionData';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
+import { onAppEvent } from '../events';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
-import { packTileImageForPack } from './packMarketplaceIcons';
-import { hasActiveCommunityPackGiftVoucher, hasActivePackGiftVoucher } from './pack_trial_gift';
-import { syncFlashcardPackGiftState } from './pack_gift_sync';
-import DuoPressable from '../../components/DuoPressable';
-import FlashcardsHubHeader from '../../components/flashcards/FlashcardsHubHeader';
-import GlassSurface, { glassFill } from '../../components/GlassSurface';
-import PlusBadge from '../../components/PlusBadge';
+import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
+import { topLikedPackIds } from '../community_packs/packSocial';
+import {
+  applyCommunityPacksFilter,
+  type CommunityPacksSort,
+} from '../community_packs/communityCatalogFilter';
+import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons';
+import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import ReportErrorButton from '../../components/ReportErrorButton';
-import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import ReportPackModal from '../../components/ReportPackModal';
 import { hideCommunityPackOnDevice, loadHiddenCommunityPackIds } from '../community_packs/communityPackHiddenStorage';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
-import { hapticTap } from '../../hooks/use-haptics';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
-import { frenchFlashcardsGateCopy } from '../flashcards_target_gate';
-import { isCollectiblesEnabled } from '../remote_flags';
-import { getCollectiblesOwnedMap } from '../collectibles/storage';
+import { hapticTap } from '../../hooks/use-haptics';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
 type Props = {
   lang: Lang;
   t: Theme;
-  studyTarget?: RuntimeStudyTarget;
   marketPacks: FlashcardMarketPack[];
   ownedPackIds: string[];
-  shardBalance: number;
+  /** Перечитать каталог/владение после «Добавить себе». */
   onMarketRefresh: () => void | Promise<void>;
-  /** Вкладки «Мої / Вітрина / Спільнота» + UGC-каталог (без Expo Go, з cloud). */
+  /** UGC-каталог доступен только с облаком (без Expo Go). */
   cloudCommunityEnabled?: boolean;
   communityPacks?: FlashcardMarketPack[];
   ownedCommunityPackIds?: string[];
-  /** Stable id автора — кнопка «редагувати» на своїх UGC. */
+  /** Stable id автора — кнопка «редактировать» на своих UGC. */
   hubAuthorStableId?: string | null;
-  onTrainingPress: () => void;
-  onAudioPress: () => void;
-  hasFlashcardsPlus?: boolean;
-  /** Для контрасту підписей / сегментів на `ScreenGradient` (Океан / Сакура). */
+  /** Для контраста подписей на `ScreenGradient` (Океан / Сакура). */
   themeMode: ThemeMode;
+  /** Изоляция целей обучения: черновики/скрытые наборы/staging читаются по текущей цели. */
+  studyTarget?: RuntimeStudyTarget;
+  /** Поиск по названию — состояние живёт в шапке экрана (лупа). */
+  communityQuery?: string;
+  /** Сортировка каталога — круглые кнопки фильтров в шапке экрана. */
+  communitySort?: CommunityPacksSort;
 };
 
 const COLS = 3;
 const GAP = 10;
 const H_PAD = 16;
 const TILE_RADIUS = 18;
-const STAGGER_MS = 42;
-const STAGGER_CAP = 14;
-const ENTRANCE_DURATION = 400;
-const FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED = false;
-const FLASHCARD_HUB_REPEATING_MOTION_ENABLED = false;
-
-type FlashcardsModeAction = 'saved' | 'custom' | 'training' | 'audio' | 'collection';
 
 /**
- * The action art is deliberately theme-specific instead of tinting one shared icon.
- * Keep every entry as a static require: Metro must see the complete slot inventory at
- * bundle time and per-theme art cannot safely be resolved with a dynamic path.
+ * Инвариант проекта (layout_stability_contract): разделы открываются СТАТИЧНО —
+ * входной каскад держим за выключенным флагом. Код анимации оставлен, но не
+ * применяется; чтобы вернуть каскад §8, достаточно переключить флаг.
  */
-// зачем: экспорт нужен предзагрузчику (app/section_asset_preload.ts) — плитки хаба
-// «догружались» в момент открытия раздела и толкали верстку, поэтому греем их
-// на старте, пока пользователь ещё на главной.
-export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsModeAction, ImageSourcePropType>> = {
-  midnight: {
-    saved: require('../../assets/images/flashcards/mode_icons/midnight/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/midnight/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/midnight/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/midnight/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/midnight/collection.webp'),
-  },
-  ember: {
-    saved: require('../../assets/images/flashcards/mode_icons/ember/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/ember/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/ember/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/ember/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/ember/collection.webp'),
-  },
-  aurora: {
-    saved: require('../../assets/images/flashcards/mode_icons/aurora/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/aurora/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/aurora/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/aurora/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/aurora/collection.webp'),
-  },
-  volt: {
-    saved: require('../../assets/images/flashcards/mode_icons/volt/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/volt/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/volt/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/volt/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/volt/collection.webp'),
-  },
-  minimalDark: {
-    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
-  },
-  candyBlue: {
-    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
-  },
-  indigo: {
-    saved: require('../../assets/images/flashcards/mode_icons/indigo/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/indigo/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/indigo/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/indigo/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/indigo/collection.webp'),
-  },
-  dark: {
-    saved: require('../../assets/images/flashcards/mode_icons/dark/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/dark/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/dark/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/dark/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/dark/collection.webp'),
-  },
-  gold: {
-    saved: require('../../assets/images/flashcards/mode_icons/gold/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/gold/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/gold/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/gold/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/gold/collection.webp'),
-  },
-  olive: {
-    saved: require('../../assets/images/flashcards/mode_icons/olive/saved.webp'), custom: require('../../assets/images/flashcards/mode_icons/olive/custom.webp'), training: require('../../assets/images/flashcards/mode_icons/olive/training.webp'), audio: require('../../assets/images/flashcards/mode_icons/olive/audio.webp'), collection: require('../../assets/images/flashcards/mode_icons/olive/collection.webp'),
-  },
-  business: {
-    saved: require('../../assets/images/flashcards/mode_icons/business/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/business/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/business/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/business/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/business/collection.webp'),
-  },
-  businessLight: {
-    saved: require('../../assets/images/flashcards/mode_icons/businessLight/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/businessLight/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/businessLight/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/businessLight/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/businessLight/collection.webp'),
-  },
-  sagePorcelain: {
-    saved: require('../../assets/images/flashcards/mode_icons/sagePorcelain/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/sagePorcelain/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/sagePorcelain/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/sagePorcelain/audio.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/sagePorcelain/collection.webp'),
-  },
-};
+const FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED = false;
+/** Каскад секций: FadeInDown.duration(300).delay(min(i,8)*60).springify().damping(14) */
+const sectionEntering = (i: number) =>
+  FadeInDown.duration(FC_TIMING.enter).delay(fcStaggerDelay(i)).springify().damping(14);
 
-const HUB_CATEGORY_PLANNED_LABELS: Record<string, { ptBR: string; vi: string; id: string; tr: string; pl: string }> = {
-  saved: { ptBR: 'Salvos', vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane' },
-  custom: { ptBR: 'Criar', vi: 'Tạo', id: 'Buat', tr: 'Oluştur', pl: 'Utwórz' },
-};
+const SPRING_CFG = { ...FC_SPRING.press, mass: 0.35 } as const;
 
-const enteringForIndex = (i: number) =>
-  FadeInDown.duration(ENTRANCE_DURATION)
-    .delay(Math.min(i, STAGGER_CAP) * STAGGER_MS)
-    .easing(Easing.out(Easing.cubic));
-
-const SPRING_CFG = { damping: 16, stiffness: 420, mass: 0.35 } as const;
-
-function shadowForTile(t: Theme, kind: 'base' | 'owned' | 'shop'): ViewStyle {
+function shadowForTile(t: Theme, kind: 'base' | 'owned' | 'top'): ViewStyle {
   const os = getEffectivePlatformOS();
-  if (os === 'web') {
-    return {};
-  }
-  if (os === 'android') {
-    return { elevation: kind === 'base' ? 3 : 4 };
-  }
-  if (kind === 'shop') {
+  if (os === 'web') return {};
+  if (os === 'android') return { elevation: kind === 'base' ? 3 : 4 };
+  if (kind === 'top') {
     return {
       shadowColor: t.accent,
       shadowOffset: { width: 0, height: 3 },
-      shadowOpacity: 0.14,
-      shadowRadius: 10,
+      shadowOpacity: 0.16,
+      shadowRadius: 12,
     };
   }
   if (kind === 'owned') {
@@ -235,21 +139,6 @@ function shadowForTile(t: Theme, kind: 'base' | 'owned' | 'shop'): ViewStyle {
   };
 }
 
-function PlusCornerBadge({ themeMode }: { themeMode: ThemeMode }) {
-  return (
-    <View
-      pointerEvents="none"
-      style={{
-        position: 'absolute',
-        right: 7,
-        top: 7,
-      }}
-    >
-      <PlusBadge themeMode={themeMode} size="xs" showIcon={false} />
-    </View>
-  );
-}
-
 type HubTileShellProps = {
   testID: string;
   a11y: string;
@@ -261,7 +150,7 @@ type HubTileShellProps = {
   children: React.ReactNode;
 };
 
-/** Пружина на нажатии — як у в polished apps (scale ~0,96). */
+/** Пружина на нажатии (scale ~0,96) — мягкая, без «мультяшности» (§8). */
 function HubTileShell({ testID, a11y, onPress, onLongPress, disabled, reduceMotion, width, children }: HubTileShellProps) {
   const s = useSharedValue(1);
   const aStyle = useAnimatedStyle(() => ({ transform: [{ scale: s.value }] }));
@@ -292,381 +181,219 @@ function HubTileShell({ testID, a11y, onPress, onLongPress, disabled, reduceMoti
   );
 }
 
-type UnownedCardProps = {
-  t: Theme;
-  themeMode: ThemeMode;
-  tileW: number;
+type CommunityPackTileProps = {
   pack: FlashcardMarketPack;
-  ion: string;
-  /** Вбудована PNG-іконка набору; інакше `ion` (Ionicons). */
-  packPng?: ImageSourcePropType;
-  iconSize: number;
-  cardShadow: ViewStyle;
+  lang: Lang;
+  t: Theme;
+  width: number;
+  owned: boolean;
+  isTop: boolean;
   reduceMotion: boolean;
+  showEdit: boolean;
+  labelSize: number;
+  icon: React.ReactNode;
+  onOpen: () => void;
+  onLongPress?: () => void;
+  onEdit: () => void;
 };
 
-/** Картка магазину: глянець, м\'якший CTA, «живі» деталі. */
-function UnownedMarketPackCard({
-  t,
-  themeMode,
-  tileW,
-  pack,
-  ion,
-  packPng,
-  iconSize,
-  cardShadow,
-  reduceMotion,
-}: UnownedCardProps) {
-  const pfOs = getEffectivePlatformOS();
-  const ctaScale = useSharedValue(1);
-  const isFocused = useIsScreenFocused();
-
-  // Пульс CTA живёт только на видимом экране и активном приложении:
-  // freezeOnBlur:false держит ушедшие экраны живыми, без гарда луп грел бы
-  // телефон в фоне (паттерн components/AvatarAura.tsx).
-  useEffect(() => {
-    if (reduceMotion || !FLASHCARD_HUB_REPEATING_MOTION_ENABLED || !isFocused) {
-      cancelAnimation(ctaScale);
-      ctaScale.value = 1;
-      return;
-    }
-
-    const start = () => {
-      cancelAnimation(ctaScale);
-      ctaScale.value = 1;
-      ctaScale.value = withRepeat(
-        withSequence(
-          withTiming(1, { duration: 2000, easing: Easing.inOut(Easing.ease) }),
-          withTiming(1.03, { duration: 2000, easing: Easing.inOut(Easing.ease) })
-        ),
-        -1,
-        true
-      );
-    };
-    const stop = () => {
-      cancelAnimation(ctaScale);
-      ctaScale.value = 1;
-    };
-
-    if (AppState.currentState === 'active') start();
-    const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') start();
-      else stop();
-    });
-    return () => {
-      appSub.remove();
-      cancelAnimation(ctaScale);
-    };
-  }, [reduceMotion, ctaScale, isFocused]);
-
-  const ctaStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: ctaScale.value }],
-  }));
-
-  const glimmerH = Math.max(32, Math.floor(tileW * 0.42));
+/**
+ * Компактная плитка набора сообщества (сетка 3-в-ряд): иконка, название,
+ * ник автора, лайки и счётчик добавлений. Открывается и БЕЗ добавления —
+ * в режиме просмотра.
+ */
+function CommunityPackTile({
+  pack, lang, t, width, owned, isTop, reduceMotion, showEdit, labelSize, icon, onOpen, onLongPress, onEdit,
+}: CommunityPackTileProps) {
+  const authorName = useCommunityAuthorName(pack, lang);
+  const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
 
   return (
-    <View
-      style={[
-        {
-          width: tileW,
-          height: tileW,
-          borderRadius: TILE_RADIUS,
-          overflow: 'hidden',
-        },
-        cardShadow,
-      ]}
-    >
-      <LinearGradient
-        colors={t.cardGradient}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={{ width: tileW, height: tileW, flexDirection: 'column' }}
+    <View style={{ width, alignItems: 'center', paddingBottom: 4, position: 'relative' }}>
+      <HubTileShell
+        testID={`flashcards-pack-card-${pack.id}`}
+        a11y={`qa-flashcards-pack-card-${pack.id}`}
+        width={width}
+        reduceMotion={reduceMotion}
+        onPress={onOpen}
+        onLongPress={onLongPress}
       >
-        <LinearGradient
-          colors={['rgba(255,255,255,0.07)', 'rgba(255,255,255,0)', 'transparent']}
-          start={{ x: 0.5, y: 0 }}
-          end={{ x: 0.5, y: 1 }}
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: glimmerH,
-          }}
-        />
         <View
-          pointerEvents="none"
-          style={{
-            position: 'absolute',
-            top: 8,
-            left: 8,
-            width: 28,
-            height: 28,
-            borderRadius: 14,
-            backgroundColor: t.bgCard,
-            borderWidth: 0,
-            borderColor: t.border,
-            alignItems: 'center',
-            justifyContent: 'center',
-            ...(pfOs === 'ios'
-              ? {
-                  shadowColor: '#000',
-                  shadowOffset: { width: 0, height: 1 },
-                  shadowOpacity: 0.35,
-                  shadowRadius: 2,
-                }
-              : pfOs === 'android'
-                ? { elevation: 2 }
-                : {}),
-          }}
-        >
-          <Ionicons name="lock-closed" size={12} color={t.textSecond} style={{ opacity: 0.9 }} />
-        </View>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingHorizontal: 2,
-          }}
-        >
-          {packPng ? (
-            <Image source={packPng} style={{ width: iconSize, height: iconSize }} contentFit="contain" />
-          ) : (
-            <Ionicons name={ion as any} size={iconSize} color={t.textPrimary} />
-          )}
-        </View>
-        <Reanimated.View
           style={[
-            ctaStyle,
             {
-              position: 'absolute',
-              right: 8,
-              bottom: 8,
-              zIndex: 10,
-              ...pfOs === 'ios'
-                ? {
-                    shadowColor: '#000',
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.45,
-                    shadowRadius: 4,
-                  }
-                : pfOs === 'android'
-                  ? { elevation: 8 }
-                  : {},
+              width,
+              height: width,
+              borderRadius: TILE_RADIUS,
+              borderWidth: isTop ? 1.5 : 1,
+              borderColor: isTop ? `${t.accent}88` : owned ? t.accent : t.border,
+              backgroundColor: t.bgSurface,
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+              position: 'relative',
             },
+            shadowForTile(t, isTop ? 'top' : owned ? 'owned' : 'base'),
           ]}
         >
-          <LinearGradient
-            colors={['rgba(24,34,58,0.98)', 'rgba(33,48,80,0.96)']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={{
-              borderRadius: 12,
-              borderWidth: 0,
-              borderColor: 'rgba(255,255,255,0.22)',
-              paddingVertical: 5,
-              paddingHorizontal: 8,
-            }}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-              <Image source={oskolokImageForPackShards(pack.priceShards)} style={{ width: 12, height: 12 }} contentFit="contain" />
-              <Text style={{ fontSize: 11, fontWeight: '800', color: monoIcon(themeMode, '#F1F5F9'), letterSpacing: 0.2 }}>
-                {pack.priceShards}
-              </Text>
+          {icon}
+          {pack.cardCount > 0 ? (
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute', right: 5, bottom: 5,
+                borderRadius: 9, paddingHorizontal: 6, paddingVertical: 1,
+                backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border,
+              }}
+            >
+              <Text style={{ fontSize: 9, fontWeight: '800', color: t.textSecond }}>{pack.cardCount}</Text>
             </View>
-          </LinearGradient>
-        </Reanimated.View>
-        <View
+          ) : null}
+          {isTop ? (
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute', left: 5, top: 5,
+                borderRadius: 999, padding: 3,
+                backgroundColor: `${t.accent}22`, borderWidth: 1, borderColor: `${t.accent}66`,
+              }}
+            >
+              <Ionicons name="trending-up-outline" size={10} color={t.accent} />
+            </View>
+          ) : null}
+          {owned ? (
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute', right: 5, top: 5,
+                borderRadius: 999, padding: 3,
+                backgroundColor: `${t.accent}22`, borderWidth: 1, borderColor: `${t.accent}66`,
+              }}
+            >
+              <Ionicons name="checkmark" size={10} color={t.accent} />
+            </View>
+          ) : null}
+        </View>
+      </HubTileShell>
+
+      {showEdit ? (
+        <TouchableOpacity
+          testID={`flashcards-pack-card-edit-${pack.id}`}
+          onPress={onEdit}
+          hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
           style={{
-            paddingHorizontal: 8,
-            paddingBottom: 8,
-            paddingTop: 2,
+            position: 'absolute', top: 2, left: 2, zIndex: 8,
+            padding: 6, borderRadius: 12, backgroundColor: `${t.bgPrimary}CC`,
           }}
-        />
-      </LinearGradient>
+        >
+          <Ionicons name="create-outline" size={15} color={t.textPrimary} />
+        </TouchableOpacity>
+      ) : null}
+
+      <Text
+        style={{
+          marginTop: 7, fontSize: labelSize + 1, fontWeight: '700',
+          color: t.textPrimary, textAlign: 'center', lineHeight: labelSize + 4,
+        }}
+        numberOfLines={2}
+      >
+        {title}
+      </Text>
+      <Text
+        style={{ marginTop: 2, fontSize: Math.max(8, labelSize - 1), fontWeight: '600', color: t.textMuted, textAlign: 'center' }}
+        numberOfLines={1}
+      >
+        {authorName}
+      </Text>
+      <View style={{ marginTop: 5 }}>
+        <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="tile" />
+      </View>
     </View>
   );
 }
 
-/** Сетка 3 в ряд; вертикальна прокрутка — на екрані-хабі (`flashcards.tsx`). */
 export default function FlashcardsCategoryHub({
   lang,
   t,
-  studyTarget,
   marketPacks,
   ownedPackIds,
-  shardBalance,
   onMarketRefresh,
   cloudCommunityEnabled = false,
   communityPacks = [],
   ownedCommunityPackIds = [],
   hubAuthorStableId = null,
-  onTrainingPress,
-  onAudioPress,
-  hasFlashcardsPlus = false,
   themeMode,
+  studyTarget,
+  communityQuery = '',
+  communitySort = 'popular',
 }: Props) {
   const router = useRouter();
-  const [buyingPackId, setBuyingPackId] = useState<string | null>(null);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [hubPackSegment, setHubPackSegment] = useState<'mine' | 'showcase' | 'community'>('mine');
   const [hasUnfinishedPackDraft, setHasUnfinishedPackDraft] = useState(false);
-  const [discardDraftForNewOpen, setDiscardDraftForNewOpen] = useState(false);
   const [hiddenCommunityPackIds, setHiddenCommunityPackIds] = useState<Set<string>>(() => new Set());
   const [ugcReportHintPackId, setUgcReportHintPackId] = useState<string | null>(null);
   const [reportModalPack, setReportModalPack] = useState<FlashcardMarketPack | null>(null);
-  // Подарок-ваучер на бесплатный официальный набор (48 ч). Без этого флага пейвол
-  // никогда не откроется в режиме 'voucher' и подарок нельзя забрать с этого экрана.
-  const [hasPackVoucher, setHasPackVoucher] = useState(false);
-  const [hasCommunityPackVoucher, setHasCommunityPackVoucher] = useState(false);
+  /**
+   * §1.3: «Добавить себе» — оптимистично. Локально помеченные наборы сразу читаются
+   * как свои (плитка становится открываемой), сервер/сторедж догоняют по `onMarketRefresh`.
+   */
+  const [locallyAddedPackIds, setLocallyAddedPackIds] = useState<Set<string>>(() => new Set());
 
-  const refreshHiddenCommunityPacks = useCallback(async (optimisticPackId?: string | null) => {
-    if (optimisticPackId) {
-      setHiddenCommunityPackIds(prev => {
-        const next = new Set(prev);
-        next.add(optimisticPackId);
-        return next;
-      });
-      return;
-    }
+  const lowPower = isLowPowerEffective();
+  /** Каскад входа выключаем при reduceMotion / lowPower (декоративная ветка §8). */
+  const animateSections = FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED && !reduceMotion && !lowPower;
+  const enterProps = (i: number) =>
+    (animateSections ? { entering: FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? sectionEntering(i) : undefined } : {});
+
+  const refreshHiddenCommunityPacks = useCallback(async () => {
     const ids = await loadHiddenCommunityPackIds(studyTarget);
     setHiddenCommunityPackIds(new Set(ids));
-  }, [studyTarget]);
-
-  const refreshVoucherState = useCallback(async (isCurrent: () => boolean = () => true) => {
-    const [voucher, communityVoucher] = await Promise.all([
-      hasActivePackGiftVoucher(studyTarget),
-      hasActiveCommunityPackGiftVoucher(studyTarget),
-    ]);
-    if (!isCurrent()) return;
-    setHasPackVoucher(voucher);
-    setHasCommunityPackVoucher(communityVoucher);
   }, [studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
-      let timer: ReturnType<typeof setInterval> | null = null;
-      const isCurrent = () => !cancelled;
-      const stopTimer = () => {
-        if (timer) clearInterval(timer);
-        timer = null;
-      };
-      const startTimer = () => {
-        stopTimer();
-        if (AppState.currentState !== 'active') return;
-        timer = setInterval(() => { void refreshVoucherState(isCurrent); }, 60_000);
-      };
       void (async () => {
         const ok = await hasMeaningfulCommunityPackCreateDraft(studyTarget, lang);
         if (!cancelled) setHasUnfinishedPackDraft(ok);
       })();
-      void refreshVoucherState(isCurrent);
-      void syncFlashcardPackGiftState().then(() => refreshVoucherState(isCurrent));
-      startTimer();
-      const appSub = AppState.addEventListener('change', (state) => {
-        if (state === 'active') {
-          void refreshVoucherState(isCurrent);
-          startTimer();
-        } else stopTimer();
-      });
       void refreshHiddenCommunityPacks();
       return () => {
         cancelled = true;
-        stopTimer();
-        appSub.remove();
       };
-    }, [lang, refreshHiddenCommunityPacks, refreshVoucherState, studyTarget]),
+    }, [refreshHiddenCommunityPacks, studyTarget, lang]),
   );
 
-  // Ваучер выдаётся/сгорает вне фокуса этого экрана (подарок за уровень, redeem
-  // в пейволе) — держим флаг в актуальном состоянии по событиям, а не только на фокус.
-  useEffect(() => {
-    let cancelled = false;
-    const refreshVoucher = () => { void refreshVoucherState(() => !cancelled); };
-    const subSet = onAppEvent('pack_trial_gift_set', refreshVoucher);
-    const subConsumed = onAppEvent('pack_trial_gift_consumed', refreshVoucher);
-    return () => {
-      cancelled = true;
-      subSet.remove();
-      subConsumed.remove();
-    };
-  }, [refreshVoucherState]);
-
-  const { openPaywall, CardPackPaywallModalEl } = useCardPackShardPaywall({
-    balance: shardBalance,
-    hasVoucher: hasPackVoucher,
-    hasCommunityVoucher: hasCommunityPackVoucher,
-    studyTarget,
-    lang,
-    router,
-    onAfterPurchase: onMarketRefresh,
-    onPurchaseStart: (id) => setBuyingPackId(id),
-    onPurchaseEnd: () => setBuyingPackId(null),
-    onCommunityPackHiddenOnDevice: refreshHiddenCommunityPacks,
-  });
   const { width: winW } = useWindowDimensions();
   const tileW = useMemo(() => {
     const inner = winW - H_PAD * 2 - GAP * (COLS - 1);
     return Math.max(96, Math.floor(inner / COLS));
   }, [winW]);
 
-  /** Категорії хабу — компактні Ionicons. */
-  const iconSize = Math.min(32, Math.floor(tileW * 0.38));
-  /** The action art fills its own touch area — it is not boxed inside a second square card. */
-  const modeIconSize = Math.min(104, Math.max(76, Math.floor(tileW * 0.9)));
-  /**
-   * У веерных PNG есть прозрачная безопасная зона, поэтому номинальный размер
-   * должен быть больше плитки: видимая иллюстрация заполняет её, но не режется.
-   */
-  const packTileIconSize = Math.max(96, Math.floor(tileW * 1.16));
+  /** Плитки наборов: PNG/линия — крупный центр. */
+  const packTileIconSize = Math.max(72, Math.floor(tileW * 0.86));
   const labelSize = Math.max(9, Math.min(11, Math.floor(tileW * 0.11)));
 
-  const hubCategories = useMemo(() => categoriesForFlashcardsHub(), []);
-
+  /**
+   * В этом проекте градиентных тем (`ocean` / `sakura`) нет — подписи всегда
+   * рендерятся на обычной поверхности, поэтому берём цвета прямо из темы.
+   */
   const isGradientSurface = false;
-  const hubLabelPrimary = t.textPrimary;
   const hubLabelMuted = t.textMuted;
   const hubLabelAccent = t.accent;
-  const tabOnBg = `${t.accent}22`;
-  const tabOnText = t.accent;
-  const tabOffBg = t.bgSurface;
-  const tabOffText = t.textSecond;
-  const tabOffBorder = t.border;
-  const giftEligibleLabel = triLang(lang, {
-    ru: 'Можно навсегда забрать в подарок',
-    uk: 'Можна назавжди забрати в подарунок',
-    es: 'Se puede añadir para siempre como regalo',
-    'pt-BR': 'Pode ser adicionado para sempre como presente',
-    vi: 'Có thể thêm vĩnh viễn bằng quà tặng',
-    id: 'Bisa ditambahkan permanen sebagai hadiah',
-    tr: 'Hediye olarak kalıcı biçimde eklenebilir',
-    pl: 'Można dodać na stałe jako prezent',
-  });
 
-  /**
-   * Куплений UGC, авторський набір, або UGC id у спільному `ownedPackIds` (легасі/гілка без isCommunityUgc).
-   */
+  /** Свой набор: добавлен, авторский, или id в общем `ownedPackIds` (легаси-ветка). */
   const isCommunityPackMine = useCallback(
     (p: FlashcardMarketPack) =>
       ownedCommunityPackIds.includes(p.id) ||
+      locallyAddedPackIds.has(p.id) ||
       (!!hubAuthorStableId && !!p.authorStableId && p.authorStableId === hubAuthorStableId) ||
       (!!p.isCommunityUgc && ownedPackIds.includes(p.id)),
-    [ownedCommunityPackIds, hubAuthorStableId, ownedPackIds],
+    [ownedCommunityPackIds, locallyAddedPackIds, hubAuthorStableId, ownedPackIds],
   );
 
-  const mineOwnedPacks = useMemo(
-    () => [...marketPacks.filter((p) => ownedPackIds.includes(p.id)), ...communityPacks.filter(isCommunityPackMine)],
-    [marketPacks, communityPacks, ownedPackIds, isCommunityPackMine],
-  );
-
-  /**
-   * Вкладка «Мои»: без витрины платных официальных наборов — только то, что уже в «Моїх» (`ownedPackIds`).
-   * Подари: ваучер активується в paywall → `redeemPackGiftVoucher` додає id в owned — тоді плитка з\'являється тут.
-   */
-  const mineTabPacksOnlyOwned = useMemo(() => {
+  /** «Мои наборы»: добавленные официальные (легаси-владение) + свои/добавленные UGC. */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- секция убрана намеренно
+  const mineOwnedPacks = useMemo(() => {
     const catalogOwnedOrdered = marketPacks.filter((p) => ownedPackIds.includes(p.id));
     const catalogIds = new Set(marketPacks.map((p) => p.id));
     const extraOwnedCommunity = communityPacks.filter(
@@ -675,17 +402,26 @@ export default function FlashcardsCategoryHub({
     return [...catalogOwnedOrdered, ...extraOwnedCommunity];
   }, [marketPacks, communityPacks, ownedPackIds, isCommunityPackMine]);
 
-  const showcaseTabPacks = useMemo(
-    () => marketPacks.filter((p) => !ownedPackIds.includes(p.id)),
-    [marketPacks, ownedPackIds],
-  );
-
-  const visibleCommunityPacks = useMemo(
-    () => communityPacks.filter((p) => !hiddenCommunityPackIds.has(p.id)),
+  /**
+   * §2.3: каталог сортируется по лайкам ↓ → добавлениям ↓ → свежести.
+   * Свои наборы «только на устройстве» (`local_only`) в общий каталог не попадают —
+   * они живут в «Мои наборы» до публикации.
+   */
+  const catalogCommunityPacks = useMemo(
+    () => communityPacks.filter((p) => !hiddenCommunityPackIds.has(p.id) && p.listingStatus !== 'local_only'),
     [communityPacks, hiddenCommunityPackIds],
   );
 
-  const isPackInMineOwned = useCallback((p: FlashcardMarketPack) => mineOwnedPacks.some((m) => m.id === p.id), [mineOwnedPacks]);
+  const visibleCommunityPacks = useMemo(
+    () => applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort),
+    [catalogCommunityPacks, communityQuery, communitySort],
+  );
+
+  /** Топ по лайкам — визуальный акцент и бейдж «В топе» (без «премиальных» коннотаций). */
+  const topPackIds = useMemo(
+    () => new Set(topLikedPackIds(catalogCommunityPacks)),
+    [catalogCommunityPacks],
+  );
 
   useEffect(() => {
     if (Platform.OS === 'web') {
@@ -697,693 +433,426 @@ export default function FlashcardsCategoryHub({
     return () => sub.remove();
   }, []);
 
-  // Прогрев кэша инвентаря «Сокровищницы»: отсюда открывается экран коллекции,
-  // и к моменту тапа карта уже в памяти → коллекция откроется сразу, без лага.
-  useEffect(() => {
-    if (isCollectiblesEnabled()) void getCollectiblesOwnedMap();
-  }, []);
-
-  // зачем: тап по своему набору должен открывать карточки сразу. Раньше UGC-ветка
-  // ждала ответ Firestore перед router.push — экран «залипал» на тапе. Теперь
-  // staging уходит в фон, а коллекция показывает первый кадр из кэша.
-  const openOwnedPack = (pack: FlashcardMarketPack) => {
+  const openOwnedPack = async (pack: FlashcardMarketPack) => {
     setUgcReportHintPackId(null);
     if (pack.isCommunityUgc) {
+      /** Staging UGC синхронный: помечаем pack и уходим, карточки догружаются фоном. */
       stageCommunityPackCardsForNavigation(pack.id, studyTarget);
     } else {
-      const staged = stageOwnedPackCardsForNavigation(pack.id, studyTarget);
-      if (!staged) {
-        emitAppEvent(
-          'action_toast',
-          actionToastTri('info', {
-            ru: frenchFlashcardsGateCopy('ru').body,
-            uk: frenchFlashcardsGateCopy('uk').body,
-            es: frenchFlashcardsGateCopy('ru').body,
-            'pt-BR': frenchFlashcardsGateCopy('ru').body,
-            vi: frenchFlashcardsGateCopy('ru').body,
-            id: frenchFlashcardsGateCopy('ru').body,
-            tr: frenchFlashcardsGateCopy('ru').body,
-            pl: frenchFlashcardsGateCopy('ru').body,
-          }),
-        );
-        return;
-      }
+      /** КРИТИЧНО: staging СИНХРОННО перед router.push — первый кадр коллекции уже с карточками. */
+      stageOwnedPackCardsForNavigation(pack.id);
     }
-    router.push({ pathname: '/flashcards_collection', params: { pack: pack.id } } as any);
+    // `from` нужен, чтобы «назад» из набора вернул РОВНО в каталог сообщества
+    // одним POP_TO, без остановки на промежуточных экранах (см. fc_pack_open_back_contract).
+    router.push({ pathname: '/flashcards_collection', params: { pack: pack.id, from: 'community' } } as any);
   };
 
-  const onLockedPackPress = useCallback(
+  /**
+   * Просмотр набора ДО добавления себе: карточки видно, тренировать/редактировать
+   * нельзя (`preview=1`). Карточки подгружаются тем же staging-путём, что и у своих.
+   */
+  const openPackPreview = useCallback(
     (pack: FlashcardMarketPack) => {
-      if (buyingPackId) return;
       setUgcReportHintPackId(null);
-      openPaywall(pack);
+      stageCommunityPackCardsForNavigation(pack.id, studyTarget);
+      router.push({
+        pathname: '/flashcards_collection',
+        params: { pack: pack.id, preview: '1' },
+      } as any);
     },
-    [buyingPackId, openPaywall],
+    [router, studyTarget],
   );
 
   /**
-   * Тап по обложке на полке: купленный пак открываем, чужой — ведём в пейвол.
-   * Тот же путь, что у плиток ниже, — чтобы полка и сетка вели себя одинаково.
+   * §2.1: набор добавлен — сразу помечаем локально, каталог перечитываем в фоне.
+   *
+   * Кнопка «Добавить себе» теперь живёт на самом экране набора (его открывают
+   * ДО добавления), поэтому хаб узнаёт о добавлении по событию приложения.
    */
-  const openPackById = useCallback(
-    (id: string) => {
-      const pack = [...marketPacks, ...communityPacks].find((p) => p.id === id);
-      if (!pack) return;
-      if (ownedPackIds.includes(pack.id) || isPackInMineOwned(pack)) {
-        openOwnedPack(pack);
-      } else {
-        onLockedPackPress(pack);
-      }
+  const onPackAdded = useCallback(
+    (packId: string) => {
+      setLocallyAddedPackIds((prev) => {
+        if (prev.has(packId)) return prev;
+        const next = new Set(prev);
+        next.add(packId);
+        return next;
+      });
+      void onMarketRefresh();
     },
-    // openOwnedPack — обычная функция, не мемо: в зависимости не берём, иначе
-    // колбэк пересоздавался бы на каждый рендер хаба.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [marketPacks, communityPacks, ownedPackIds, isPackInMineOwned, onLockedPackPress],
+    [onMarketRefresh],
   );
 
-  let tileAnimIndex = 0;
-  const labelStyle = (owned: boolean) => ({
-    marginTop: 8,
-    fontSize: labelSize,
-    fontWeight: '600' as const,
-    letterSpacing: 0.15,
-    color: owned ? hubLabelMuted : hubLabelPrimary,
-    textAlign: 'center' as const,
-    lineHeight: labelSize + 2,
-  });
+  useEffect(() => {
+    const sub = onAppEvent('community_pack_added', ({ packId }) => {
+      if (packId) onPackAdded(packId);
+    });
+    return () => sub.remove();
+  }, [onPackAdded]);
 
-  const packCodeLabelStyle = (owned: boolean) => ({
-    marginTop: 8,
-    fontSize: labelSize,
-    fontWeight: '600' as const,
-    letterSpacing: 0.15,
-    color: owned ? hubLabelAccent : hubLabelPrimary,
-    textAlign: 'center' as const,
-    lineHeight: labelSize + 2,
-  });
-
+  // ── Общие стили секций ─────────────────────────────────────────────────────
   const hubBarW = winW - H_PAD * 2;
+  const sectionGapStyle = { marginBottom: 22 } as const;
 
-  const renderHubSegmentTab = (id: 'mine' | 'showcase' | 'community', label: string) => {
-    const active = hubPackSegment === id;
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          setUgcReportHintPackId(null);
-          setHubPackSegment(id);
-        }}
-        style={{
-          flex: 1,
-          minWidth: 0,
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingVertical: 8,
-          paddingHorizontal: 8,
-          borderRadius: 12,
-          borderWidth: 0,
-          borderColor: 'transparent',
-          backgroundColor: active ? tabOnBg : tabOffBg,
-        }}
-      >
-        <Text
-          numberOfLines={1}
-          style={{
-            color: active ? tabOnText : tabOffText,
-            fontWeight: '800',
-            fontSize: labelSize + 1,
-            textAlign: 'center',
-          }}
-        >
-          {label}
-        </Text>
-      </TouchableOpacity>
-    );
+  const packCodeLabelStyle = {
+    marginTop: 8,
+    fontSize: labelSize,
+    fontWeight: '600' as const,
+    letterSpacing: 0.15,
+    color: hubLabelAccent,
+    textAlign: 'center' as const,
+    lineHeight: labelSize + 2,
   };
 
-  const renderPackTiles = (
-    packList: FlashcardMarketPack[],
-    ownedFn: (pack: FlashcardMarketPack) => boolean,
-    ugcCommunityCatalog = false,
-  ) =>
-    packList.map((pack) => {
-      const owned = ownedFn(pack);
-      const giftEligible = (pack.isCommunityUgc ? hasCommunityPackVoucher : hasPackVoucher) && !owned;
-      const showUgcReportShortcut = ugcCommunityCatalog && !!pack.isCommunityUgc && !owned;
-      const displayTitle = packTitleForInterface(pack, lang);
-      const hubCode = packHubCodeName(pack);
-      /** UGC: під плиткою показуємо назву набору, а не id / похідний codeName. */
-      const packTileLabel = packHubLabelForInterface(pack, lang);
-      const ion = packCategoryIonIcon(pack.category) as any;
-      const packPng = packTileImageForPack(pack);
-      const dimWhileOtherBuying = !owned && buyingPackId && buyingPackId !== pack.id;
-      const i = tileAnimIndex++;
-      const cardShadow: ViewStyle = !owned ? shadowForTile(t, 'shop') : {};
-      const showAuthorEdit =
-        !!hubAuthorStableId &&
-        !!pack.isCommunityUgc &&
-        !!pack.authorStableId &&
-        pack.authorStableId === hubAuthorStableId;
-      return (
-        <Reanimated.View
-          key={`mkt_${pack.id}`}
-          {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
-          style={{ width: tileW, alignItems: 'center', paddingBottom: 6, position: 'relative' }}
-        >
-          <HubTileShell
-            testID={`flashcards-hub-pack-${pack.id}`}
-            a11y={`${pack.isCommunityUgc ? `${pack.titleRu}. ${pack.titleUk}` : `${hubCode}. ${displayTitle}`}${giftEligible ? `. ${giftEligibleLabel}` : ''}`}
-            width={tileW}
-            reduceMotion={reduceMotion}
-            disabled={!owned && !!buyingPackId}
-            onPress={() => (owned ? openOwnedPack(pack) : onLockedPackPress(pack))}
-            onLongPress={
-              showUgcReportShortcut
-                ? () => {
-                    void hapticTap();
-                    setUgcReportHintPackId((cur) => (cur === pack.id ? null : pack.id));
-                  }
-                : undefined
-            }
-          >
-            <View style={{ width: tileW, position: 'relative', opacity: dimWhileOtherBuying ? 0.55 : 1 }}>
-              {owned ? (
-                <GlassSurface
-                  tone="raised"
-                  radius={TILE_RADIUS}
-                  highlight
-                  style={{
-                    width: tileW,
-                    height: tileW,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    paddingHorizontal: 4,
-                    position: 'relative',
-                  }}
-                >
-                  {packPng ? (
-                    <Image source={packPng} style={{ width: packTileIconSize, height: packTileIconSize }} contentFit="contain" />
-                  ) : (
-                    <Ionicons name={ion} size={packTileIconSize} color={t.textPrimary} />
-                  )}
-                </GlassSurface>
-              ) : (
-                <UnownedMarketPackCard
-                  t={t}
-                  themeMode={themeMode}
-                  tileW={tileW}
-                  pack={pack}
-                  iconSize={packTileIconSize}
-                  ion={ion}
-                  packPng={packPng}
-                  cardShadow={cardShadow}
-                  reduceMotion={reduceMotion}
-                />
-              )}
-              {giftEligible ? (
-                <View
-                  pointerEvents="none"
-                  accessible={false}
-                  style={{
-                    position: 'absolute',
-                    top: 8,
-                    right: 8,
-                    minWidth: 32,
-                    height: 32,
-                    paddingHorizontal: 7,
-                    borderRadius: 16,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: t.gold,
-                    zIndex: 6,
-                    ...shadowForTile(t, 'shop'),
-                  }}
-                >
-                  <Ionicons name="gift-outline" size={18} color={t.bgPrimary} />
-                </View>
-              ) : null}
-            </View>
-          </HubTileShell>
-          {showUgcReportShortcut && ugcReportHintPackId === pack.id ? (
-            <View style={{ marginTop: 4, width: '100%' }}>
-              <TouchableOpacity
-                onPress={() => {
-                  void hapticTap();
-                  setReportModalPack(pack);
-                  setUgcReportHintPackId(null);
-                }}
-                style={{ paddingVertical: 4, width: '100%' }}
-                hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
-              >
-                <Text
-                  style={{
-                    color: t.wrong,
-                    fontSize: Math.max(9, labelSize),
-                    fontWeight: '800',
-                    textAlign: 'center',
-                    textDecorationLine: 'underline',
-                  }}
-                >
-                  {triLang(lang, {
-                    ru: 'Пожаловаться на набор',
-                    uk: 'Поскаржитися на набір',
-                    es: 'Reportar el pack',
-                    'pt-BR': 'Reportar o pacote',
-                    vi: 'Báo cáo bộ thẻ',
-                    id: 'Laporkan paket',
-                    tr: 'Paketi bildir',
-                    pl: 'Zgłoś zestaw',
-                  })}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={async () => {
-                  void hapticTap();
-                  setUgcReportHintPackId(null);
-                  try {
-                    await hideCommunityPackOnDevice(pack.id, studyTarget);
-                    await refreshHiddenCommunityPacks();
-                  } catch {
-                    // no-op: AsyncStorage unavailable
-                  }
-                }}
-                style={{ paddingVertical: 4, width: '100%' }}
-                hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
-              >
-                <Text
-                  style={{
-                    color: isGradientSurface ? hubLabelMuted : t.textMuted,
-                    fontSize: Math.max(9, labelSize),
-                    fontWeight: '800',
-                    textAlign: 'center',
-                    textDecorationLine: 'underline',
-                  }}
-                >
-                  {triLang(lang, {
-                    ru: 'Не показывать мне',
-                    uk: 'Не показувати мені',
-                    es: 'No mostrarme',
-                    'pt-BR': 'Não mostrar para mim',
-                    vi: 'Đừng hiển thị cho tôi',
-                    id: 'Jangan tampilkan untuk saya',
-                    tr: 'Bana gösterme',
-                    pl: 'Nie pokazuj mi',
-                  })}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          ) : null}
-          {showAuthorEdit ? (
-            <TouchableOpacity
-              onPress={() =>
-                router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as any)
-              }
-              style={{
-                position: 'absolute',
-                top: 2,
-                right: 2,
-                zIndex: 8,
-                padding: 7,
-                borderRadius: 12,
-                backgroundColor: 'rgba(0,0,0,0.55)',
-              }}
-              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-            >
-              <Ionicons name="create-outline" size={17} color="#fff" />
-            </TouchableOpacity>
-          ) : null}
-          <Text style={packCodeLabelStyle(owned)} numberOfLines={2}>
-            {packTileLabel}
-          </Text>
-          {pack.isPendingUpdateReview ? (
-            <Text style={{ fontSize: 10, color: isGradientSurface ? hubLabelAccent : t.accent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
-              {triLang(lang, { ru: 'На модерации', uk: 'На модерації', es: 'En moderación', 'pt-BR': 'Em moderação', vi: 'Đang kiểm duyệt', id: 'Dalam moderasi', tr: 'İncelemede', pl: 'W moderacji' })}
-            </Text>
-          ) : null}
-        </Reanimated.View>
-      );
-    });
-
-  const renderHubCategoryTiles = () =>
-    hubCategories.map((cat) => {
-      const plannedLabel = HUB_CATEGORY_PLANNED_LABELS[cat.id];
-      const label = triLang(lang, { ru: cat.labelRU, uk: cat.labelUK, es: cat.labelES, 'pt-BR': plannedLabel.ptBR, vi: plannedLabel.vi, id: plannedLabel.id, tr: plannedLabel.tr, pl: plannedLabel.pl });
-      const i = tileAnimIndex++;
-      return (
-        <Reanimated.View
-          key={cat.id}
-          {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
-          style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
-        >
-          <HubTileShell
-            testID={`flashcards-hub-tile-${cat.id}`}
-            a11y={label}
-            width={tileW}
-            reduceMotion={reduceMotion}
-            onPress={() =>
-              router.push({
-                pathname: '/flashcards_collection',
-                params: cat.id === 'custom' ? { cat: cat.id, create: '1' } : { cat: cat.id },
-              } as any)
-            }
-          >
-            <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-              <Image source={FLASHCARDS_MODE_ICON_ASSETS[themeMode][cat.id as 'saved' | 'custom']} style={{ width: modeIconSize, height: modeIconSize }} contentFit="contain" accessibilityLabel={label} />
-            </View>
-          </HubTileShell>
-          <Text style={labelStyle(true)} numberOfLines={2}>
-            {label}
-          </Text>
-        </Reanimated.View>
-      );
-    });
-
-  const renderTrainingTile = () => {
-    const i = tileAnimIndex++;
-    const label = triLang(lang, {
-      ru: 'Тренировка',
-      uk: 'Тренування',
-      es: 'Práctica',
-      'pt-BR': 'Praticar',
-      vi: 'Luyện tập',
-      id: 'Latihan',
-      tr: 'Pratik',
-      pl: 'Trening',
-    });
-
-    return (
-      <Reanimated.View
-        key="training"
-        {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
-        style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
-      >
-        <HubTileShell
-          testID="flashcards-hub-tile-training"
-          a11y={label}
-          width={tileW}
-          reduceMotion={reduceMotion}
-          onPress={onTrainingPress}
-        >
-          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-            <Image source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].training} style={{ width: modeIconSize, height: modeIconSize }} contentFit="contain" accessibilityLabel={label} />
-            {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
-          </View>
-        </HubTileShell>
-        <Text style={labelStyle(true)} numberOfLines={2}>
-          {label}
-        </Text>
-      </Reanimated.View>
-    );
-  };
-
-  const renderAudioTile = () => {
-    const i = tileAnimIndex++;
-    const label = triLang(lang, {
-      ru: 'Слушать',
-      uk: 'Слухати',
-      es: 'Escuchar',
-      'pt-BR': 'Ouvir',
-      vi: 'Nghe',
-      id: 'Dengar',
-      tr: 'Dinle',
-      pl: 'Słuchaj',
-    });
-
-    return (
-      <Reanimated.View
-        key="audio"
-        {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
-        style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
-      >
-        <HubTileShell
-          testID="flashcards-hub-tile-audio"
-          a11y={label}
-          width={tileW}
-          reduceMotion={reduceMotion}
-          onPress={onAudioPress}
-        >
-          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-            <Image source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].audio} style={{ width: modeIconSize, height: modeIconSize }} contentFit="contain" accessibilityLabel={label} />
-            {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
-          </View>
-        </HubTileShell>
-        <Text style={labelStyle(true)} numberOfLines={2}>
-          {label}
-        </Text>
-      </Reanimated.View>
-    );
-  };
-
-  const renderCollectionTile = () => {
-    const i = tileAnimIndex++;
-    const label = triLang(lang, {
-      ru: 'Коллекция',
-      uk: 'Колекція',
-      es: 'Colección',
-      'pt-BR': 'Coleção',
-      vi: 'Bộ sưu tập',
-      id: 'Koleksi',
-      tr: 'Koleksiyon',
-      pl: 'Kolekcja',
-    });
-
-    return (
-      <Reanimated.View
-        key="collection"
-        {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
-        style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
-      >
-        <HubTileShell
-          testID="flashcards-hub-tile-collection"
-          a11y={label}
-          width={tileW}
-          reduceMotion={reduceMotion}
-          onPress={() => router.push('/collectibles_screen' as any)}
-        >
-          <View style={{ width: tileW, height: modeIconSize, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-            <Image source={FLASHCARDS_MODE_ICON_ASSETS[themeMode].collection} style={{ width: modeIconSize, height: modeIconSize }} contentFit="contain" accessibilityLabel={label} />
-          </View>
-        </HubTileShell>
-        <Text style={labelStyle(true)} numberOfLines={2}>
-          {label}
-        </Text>
-      </Reanimated.View>
-    );
-  };
-
-  const hubSegmentTabs = cloudCommunityEnabled ? (
+  /** Пилюля счётчика карточек на плитке набора. */
+  const countPill = (label: string) => (
     <View
+      pointerEvents="none"
       style={{
-        width: hubBarW,
-        flexDirection: 'row',
-        gap: 8,
-        marginBottom: 14,
+        position: 'absolute',
+        right: 6,
+        bottom: 6,
+        borderRadius: 10,
+        paddingHorizontal: 7,
+        paddingVertical: 2,
+        backgroundColor: t.bgCard,
+        borderWidth: 1,
+        borderColor: t.border,
       }}
     >
-      {renderHubSegmentTab('mine', triLang(lang, { ru: 'Мои', uk: 'Мої', es: 'Mis', 'pt-BR': 'Meus', vi: 'Của tôi', id: 'Milik saya', tr: 'Benim', pl: 'Moje' }))}
-      {renderHubSegmentTab('showcase', triLang(lang, { ru: 'Витрина', uk: 'Вітрина', es: 'Vitrina', 'pt-BR': 'Vitrine', vi: 'Gian hàng', id: 'Etalase', tr: 'Vitrin', pl: 'Witryna' }))}
-      {renderHubSegmentTab('community', triLang(lang, { ru: 'Сообщество', uk: 'Спільнота', es: 'Comunidad', 'pt-BR': 'Comunidade', vi: 'Cộng đồng', id: 'Komunitas', tr: 'Topluluk', pl: 'Społeczność' }))}
+      <Text style={{ fontSize: 10, fontWeight: '800', color: t.textSecond }}>{label}</Text>
     </View>
-  ) : null;
+  );
+
+  /**
+   * Иконка/обложка набора. Раньше бралась только по `pack.id` — у наборов
+   * сообщества такой картинки нет, и плитки выходили пустыми. Теперь сперва
+   * пробуем обложку, выбранную автором в редакторе (`ugcCardBackKey`), затем
+   * бандл по id, и только потом — осмысленный дефолт по категории набора.
+   */
+  const packIcon = (pack: FlashcardMarketPack, size: number) => {
+    const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);
+    if (png) return <Image source={png} style={{ width: size, height: size }} contentFit="contain" />;
+    return (
+      <Ionicons
+        name={(packCategoryIonIcon(pack.category) || 'albums-outline') as any}
+        size={size}
+        color={pack.isCommunityUgc ? t.accent : t.textPrimary}
+      />
+    );
+  };
+
+  /** Плитка «Мои наборы» — открывает набор карточек. */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const renderOwnedPackTile = (pack: FlashcardMarketPack) => {
+    const displayTitle = packTitleForInterface(pack, lang);
+    const hubCode = packHubCodeName(pack);
+    const packTileLabel =
+      pack.isCommunityUgc && displayTitle.trim().length > 0 ? displayTitle.trim() : hubCode;
+    const showAuthorEdit =
+      !!hubAuthorStableId &&
+      !!pack.isCommunityUgc &&
+      !!pack.authorStableId &&
+      pack.authorStableId === hubAuthorStableId;
+    return (
+      <View
+        key={`mine_${pack.id}`}
+        style={{ width: tileW, alignItems: 'center', paddingBottom: 6, position: 'relative' }}
+      >
+        <HubTileShell
+          testID={`flashcards-hub-pack-${pack.id}`}
+          a11y={pack.isCommunityUgc ? `${pack.titleRu}. ${pack.titleUk}` : `${hubCode}. ${displayTitle}`}
+          width={tileW}
+          reduceMotion={reduceMotion}
+          onPress={() => void openOwnedPack(pack)}
+        >
+          <View
+            style={[
+              {
+                width: tileW,
+                height: tileW,
+                borderRadius: TILE_RADIUS,
+                borderWidth: 1.5,
+                borderColor: t.accent,
+                backgroundColor: t.bgSurface,
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingHorizontal: 4,
+                position: 'relative',
+              },
+              shadowForTile(t, 'owned'),
+            ]}
+          >
+            {packIcon(pack, packTileIconSize)}
+            {pack.cardCount > 0 ? countPill(String(pack.cardCount)) : null}
+          </View>
+        </HubTileShell>
+        {showAuthorEdit ? (
+          <TouchableOpacity
+            testID={`flashcards-hub-pack-edit-${pack.id}`}
+            onPress={() =>
+              router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as any)
+            }
+            style={{
+              position: 'absolute',
+              top: 2,
+              right: 2,
+              zIndex: 8,
+              padding: 7,
+              borderRadius: 12,
+              backgroundColor: `${t.bgPrimary}CC`,
+            }}
+            hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+          >
+            <Ionicons name="create-outline" size={17} color={t.textPrimary} />
+          </TouchableOpacity>
+        ) : null}
+        <Text style={packCodeLabelStyle} numberOfLines={2}>
+          {packTileLabel}
+        </Text>
+        {pack.isPendingUpdateReview ? (
+          <Text style={{ fontSize: 9, color: hubLabelAccent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
+            {triLang(lang, {
+              ru: 'На проверке', uk: 'На перевірці', es: 'En revisión',
+              'pt-BR': 'Em revisão', vi: 'Đang duyệt', id: 'Sedang ditinjau', tr: 'İncelemede', pl: 'W trakcie sprawdzania',
+            })}
+          </Text>
+        ) : null}
+      </View>
+    );
+  };
+
+  /**
+   * Плитка каталога сообщества. Тап открывает набор ДО добавления — в режиме
+   * просмотра (`preview=1`): карточки видно, тренировать/редактировать нельзя,
+   * «Добавить себе» и лайк живут на самом экране набора.
+   */
+  const renderCommunityPackTile = (pack: FlashcardMarketPack) => {
+    const owned = isCommunityPackMine(pack);
+    const showReportShortcut = !!pack.isCommunityUgc && !owned;
+    const showAuthorEdit =
+      !!hubAuthorStableId &&
+      !!pack.isCommunityUgc &&
+      !!pack.authorStableId &&
+      pack.authorStableId === hubAuthorStableId;
+
+    return (
+      <CommunityPackTile
+        key={`ugc_${pack.id}`}
+        pack={pack}
+        lang={lang}
+        t={t}
+        width={tileW}
+        owned={owned}
+        isTop={topPackIds.has(pack.id)}
+        reduceMotion={reduceMotion}
+        showEdit={showAuthorEdit}
+        labelSize={labelSize}
+        icon={packIcon(pack, Math.floor(tileW * 0.68))}
+        onOpen={() => {
+          void hapticTap();
+          if (owned) {
+            void openOwnedPack(pack);
+          } else {
+            openPackPreview(pack);
+          }
+        }}
+        onLongPress={
+          showReportShortcut
+            ? () => {
+                void hapticTap();
+                setUgcReportHintPackId((cur) => (cur === pack.id ? null : pack.id));
+              }
+            : undefined
+        }
+        onEdit={() =>
+          router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as any)
+        }
+      />
+    );
+  };
+
+  /** Действия по долгому тапу на чужой набор — отдельной строкой под сеткой. */
+  const renderReportShortcutRow = () => {
+    const pack = visibleCommunityPacks.find((p) => p.id === ugcReportHintPackId);
+    if (!pack) return null;
+    return (
+      <View
+        style={{
+          width: hubBarW,
+          marginTop: 12,
+          flexDirection: 'row',
+          gap: 16,
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingVertical: 10,
+          paddingHorizontal: 12,
+          borderRadius: 14,
+          borderWidth: 1,
+          borderColor: t.border,
+          backgroundColor: t.bgSurface,
+        }}
+      >
+        <TouchableOpacity
+          onPress={() => {
+            void hapticTap();
+            setReportModalPack(pack);
+            setUgcReportHintPackId(null);
+          }}
+          hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
+        >
+          <Text style={{ color: t.wrong, fontSize: 12, fontWeight: '800', textDecorationLine: 'underline' }}>
+            {triLang(lang, {
+              ru: 'Пожаловаться на набор',
+              uk: 'Поскаржитися на набір',
+              es: 'Reportar el pack',
+              'pt-BR': 'Denunciar o pacote',
+              vi: 'Báo cáo bộ thẻ',
+              id: 'Laporkan paket',
+              tr: 'Paketi bildir',
+              pl: 'Zgłoś zestaw',
+            })}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={async () => {
+            void hapticTap();
+            setUgcReportHintPackId(null);
+            try {
+              await hideCommunityPackOnDevice(pack.id, studyTarget);
+              await refreshHiddenCommunityPacks();
+            } catch {
+              // no-op: AsyncStorage unavailable
+            }
+          }}
+          hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
+        >
+          <Text style={{ color: t.textMuted, fontSize: 12, fontWeight: '800', textDecorationLine: 'underline' }}>
+            {triLang(lang, {
+              ru: 'Не показывать мне',
+              uk: 'Не показувати мені',
+              es: 'No mostrarme',
+              'pt-BR': 'Não mostrar para mim',
+              vi: 'Không hiển thị nữa',
+              id: 'Jangan tampilkan lagi',
+              tr: 'Bana gösterme',
+              pl: 'Nie pokazuj mi',
+            })}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   return (
     <View style={{ paddingHorizontal: H_PAD }}>
-      {/* зачем: макет A1 `.hub-top` — заголовок раздела + баланс монет. Раньше
-          баланса на экране не было вообще: юзер узнавал, что жемчужин не хватает,
-          только упёршись в пейвол. Теперь решение принимается до тапа. */}
-      <FlashcardsHubHeader
-        title={triLang(lang, {
-          ru: 'Карточки',
-          uk: 'Картки',
-          es: 'Tarjetas',
-          'pt-BR': 'Cartões',
-          vi: 'Thẻ',
-          id: 'Kartu',
-          tr: 'Kartlar',
-          pl: 'Karty',
-        })}
-        balance={shardBalance}
-        t={t}
-        themeMode={themeMode}
-      />
+      {/* ── 1. Заголовок экрана переехал в ШАПКУ (`flashcards_packs.tsx`):
+           раньше здесь был крупный «Наборы», а ниже — секция «Наборы сообщества»,
+           то есть два заголовка об одном и том же (замечание владельца). ── */}
 
-      {/* зачем: полки «Продолжи / Наборы / Темы» из макета A1 УБРАНЫ решением
-          владельца — они дублировали вкладки «Мои / Витрина / Сообщество» и
-          сетку плиток под ними, экран становился длинным и повторяющимся.
-          Оставлена привычная структура: шапка с балансом → вкладки → плитки. */}
-      {hubSegmentTabs}
+      {/* ── 2. «Мои наборы» живут на отдельном экране `/flashcards_my_packs`
+           (таббар → «Наборы» → «Мои наборы»). Здесь только каталог сообщества —
+           это два разных раздела, а не один смешанный список. ── */}
 
+      {/* ── 3. Каталог сообщества ── */}
       {cloudCommunityEnabled ? (
-        hubPackSegment === 'mine' ? (
-          <View
-            style={{
-              width: hubBarW,
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              gap: GAP,
-              justifyContent: 'flex-start',
-            }}
-          >
-            {renderHubCategoryTiles()}
-            {renderTrainingTile()}
-            {renderAudioTile()}
-            {isCollectiblesEnabled() && renderCollectionTile()}
-            {renderPackTiles(mineTabPacksOnlyOwned, isPackInMineOwned, false)}
-          </View>
-        ) : hubPackSegment === 'showcase' ? (
-          <View
-            style={{
-              width: hubBarW,
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              gap: GAP,
-              justifyContent: 'flex-start',
-            }}
-          >
-            {renderPackTiles(showcaseTabPacks, (p) => ownedPackIds.includes(p.id), false)}
-          </View>
-        ) : (
-          <View style={{ width: hubBarW }}>
-            {hasUnfinishedPackDraft ? (
-              <DuoPressable
-                onPress={() => router.push('/community_pack_create' as any)}
-                edgeColor={t.accent}
-                wrapStyle={{ width: hubBarW, marginBottom: 10 }}
-                style={{
-                  width: hubBarW,
-                  paddingVertical: 12,
-                  paddingHorizontal: 14,
-                  borderRadius: 14,
-                  borderWidth: 0,
-                  borderColor: 'transparent',
-                  backgroundColor: isGradientSurface ? t.bgCard : `${t.accent}1A`,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 8,
-                }}
-              >
-                <Ionicons name="document-text-outline" size={20} color={t.accent} />
-                <Text style={{ color: isGradientSurface ? t.textPrimary : t.accent, fontWeight: '800', fontSize: labelSize + 2 }}>
-                  {triLang(lang, {
-                    ru: 'Продолжить создание набора',
-                    uk: 'Продовжити створення набору',
-                    es: 'Seguir creando el pack',
-                    'pt-BR': 'Continuar criando o pacote',
-                    vi: 'Tiếp tục tạo bộ thẻ',
-                    id: 'Lanjut membuat paket',
-                    tr: 'Paketi oluşturmaya devam et',
-                    pl: 'Kontynuuj tworzenie zestawu',
-                  })}
-                </Text>
-              </DuoPressable>
-            ) : null}
-            <DuoPressable
-              onPress={() => {
-                if (hasUnfinishedPackDraft) {
-                  setDiscardDraftForNewOpen(true);
-                  return;
-                }
-                router.push('/community_pack_create' as any);
-              }}
-              edgeColor={t.accent}
-              wrapStyle={{ width: hubBarW, marginBottom: 12 }}
+        <Reanimated.View {...enterProps(2)} style={sectionGapStyle}>
+          {/* Подзаголовок «Наборы сообщества» убран: он дублировал заголовок экрана
+              и теперь стоит в шапке, справа от стрелки «назад». */}
+          {hasUnfinishedPackDraft ? (
+            <TouchableOpacity
+              testID="flashcards-packs-continue-draft"
+              onPress={() => router.push('/community_pack_create' as any)}
               style={{
                 width: hubBarW,
+                marginBottom: 12,
                 paddingVertical: 12,
                 paddingHorizontal: 14,
                 borderRadius: 14,
-                backgroundColor: t.accent,
+                borderWidth: 1.5,
+                borderColor: t.accent,
+                backgroundColor: isGradientSurface ? t.bgCard : `${t.accent}1A`,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
               }}
             >
-              <Text style={{ color: t.correctText, fontWeight: '800', fontSize: labelSize + 2 }}>
-                {triLang(lang, { ru: '+ Создать набор', uk: '+ Створити набір', es: '+ Crear pack', 'pt-BR': '+ Criar pacote', vi: '+ Tạo bộ thẻ', id: '+ Buat paket', tr: '+ Paket oluştur', pl: '+ Utwórz zestaw' })}
+              <Ionicons name="document-text-outline" size={20} color={t.accent} />
+              <Text style={{ color: isGradientSurface ? t.textPrimary : t.accent, fontWeight: '800', fontSize: 14 }}>
+                {triLang(lang, {
+                  ru: 'Продолжить создание набора',
+                  uk: 'Продовжити створення набору',
+                  es: 'Seguir creando el pack',
+                  'pt-BR': 'Continuar criando o pacote',
+                  vi: 'Tiếp tục tạo bộ thẻ',
+                  id: 'Lanjutkan membuat paket',
+                  tr: 'Paketi oluşturmaya devam et',
+                  pl: 'Kontynuuj tworzenie zestawu',
+                })}
               </Text>
-            </DuoPressable>
-            {visibleCommunityPacks.length === 0 ? (
-              communityPacks.length === 0 ? (
-                <Text style={{ width: hubBarW, color: isGradientSurface ? hubLabelMuted : t.textMuted, fontSize: labelSize + 2, textAlign: 'center', marginBottom: 8 }}>
-                  {triLang(lang, {
-                    ru: 'Создай свой набор и опубликуй его для других пользователей. После модерации его увидят все.',
-                    uk: 'Ви можете створити власний набір і опублікувати його для інших користувачів. Після модерації його зможуть побачити всі користувачі.',
-                    es: 'Puedes crear tu propio pack y publicarlo para otros usuarios. Tras la moderación, todos los usuarios podrán verlo.',
-                    'pt-BR': 'Você pode criar seu próprio pacote e publicá-lo para outros usuários. Após a moderação, todos os usuários poderão vê-lo.',
-                    vi: 'Bạn có thể tạo bộ thẻ riêng và đăng cho người dùng khác. Sau khi kiểm duyệt, mọi người dùng đều có thể thấy bộ thẻ đó.',
-                    id: 'Kamu bisa membuat paket sendiri dan menerbitkannya untuk pengguna lain. Setelah moderasi, semua pengguna dapat melihatnya.',
-                    tr: 'Kendi paketini oluşturup diğer kullanıcılar için yayımlayabilirsin. Moderasyondan sonra tüm kullanıcılar görebilir.',
-                    pl: 'Możesz utworzyć własny zestaw i opublikować go dla innych użytkowników. Po moderacji zobaczą go wszyscy użytkownicy.',
+            </TouchableOpacity>
+          ) : null}
+          {visibleCommunityPacks.length === 0 ? (
+            <Text style={{ color: hubLabelMuted, fontSize: 13, marginBottom: 8 }}>
+              {catalogCommunityPacks.length === 0
+                ? triLang(lang, {
+                    ru: 'Здесь появятся наборы после публикации.',
+                    uk: 'Тут з\'являться набори після публікації.',
+                    es: 'Aquí verás packs tras publicarlos.',
+                    'pt-BR': 'Aqui você verá pacotes após publicá-los.',
+                    vi: 'Bộ thẻ sẽ xuất hiện ở đây sau khi đăng.',
+                    id: 'Paket akan muncul di sini setelah dipublikasikan.',
+                    tr: 'Paketler yayınlandıktan sonra burada görünür.',
+                    pl: 'Zestawy pojawią się tu po opublikowaniu.',
+                  })
+                : triLang(lang, {
+                    ru: 'Ничего не найдено.',
+                    uk: 'Нічого не знайдено.',
+                    es: 'No se encontró nada.',
+                    'pt-BR': 'Nada encontrado.',
+                    vi: 'Không tìm thấy gì.',
+                    id: 'Tidak ada yang ditemukan.',
+                    tr: 'Bir şey bulunamadı.',
+                    pl: 'Nic nie znaleziono.',
                   })}
-                </Text>
-              ) : null
-            ) : (
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: GAP }}>
-                {renderPackTiles(visibleCommunityPacks, isCommunityPackMine, true)}
+            </Text>
+          ) : (
+            <>
+              <View
+                style={{
+                  width: hubBarW,
+                  flexDirection: 'row',
+                  flexWrap: 'wrap',
+                  gap: GAP,
+                  justifyContent: 'flex-start',
+                }}
+              >
+                {visibleCommunityPacks.map(renderCommunityPackTile)}
               </View>
-            )}
-          </View>
-        )
-      ) : (
-        <View
-          style={{
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: GAP,
-            justifyContent: 'flex-start',
-          }}
-        >
-          {renderHubCategoryTiles()}
-          {renderTrainingTile()}
-          {renderAudioTile()}
-          {isCollectiblesEnabled() && renderCollectionTile()}
-          {renderPackTiles(marketPacks, (p) => ownedPackIds.includes(p.id), false)}
-        </View>
-      )}
-      <View style={{ alignItems: 'center', marginTop: 12, marginBottom: 8, width: '100%' }}>
+              {renderReportShortcutRow()}
+            </>
+          )}
+        </Reanimated.View>
+      ) : null}
+
+      {/* ── 4. Футер: «Сообщить о баге» ── */}
+      <Reanimated.View {...enterProps(3)} style={{ alignItems: 'center', marginTop: 2, marginBottom: 8, width: '100%' }}>
         <ReportErrorButton
-          screen="flashcards_hub"
-          dataId="flashcards_hub_main"
+          screen="flashcards_packs"
+          dataId="flashcards_packs_catalog"
           dataText={triLang(lang, {
-            ru: 'Карточки: категории и пакеты',
-            uk: 'Картки: категорії та пакети',
-            es: 'Tarjetas: categorías y packs',
-            'pt-BR': 'Cartões: categorias e pacotes',
-            vi: 'Thẻ: danh mục và bộ thẻ',
-            id: 'Kartu: kategori dan paket',
-            tr: 'Kartlar: kategoriler ve paketler',
-            pl: 'Karty: kategorie i zestawy',
+            ru: 'Карточки: каталог наборов',
+            uk: 'Картки: каталог наборів',
+            es: 'Tarjetas: catálogo de packs',
+            'pt-BR': 'Cartões: catálogo de pacotes',
+            vi: 'Thẻ: danh mục bộ thẻ',
+            id: 'Kartu: katalog paket',
+            tr: 'Kartlar: paket kataloğu',
+            pl: 'Karty: katalog zestawów',
           })}
         />
-      </View>
-      <ThemedConfirmModal
-        visible={discardDraftForNewOpen}
-        title={triLang(lang, { ru: 'Новый набор', uk: 'Новий набір', es: 'Nuevo pack', 'pt-BR': 'Novo pacote', vi: 'Bộ thẻ mới', id: 'Paket baru', tr: 'Yeni paket', pl: 'Nowy zestaw' })}
-        message={triLang(lang, {
-          ru: 'Черновик на устройстве будет удалён. Продолжить?',
-          uk: 'Чернетку на пристрої буде видалено. Продовжити?',
-          es: 'Se borrará el borrador en el dispositivo. ¿Continuar?',
-          'pt-BR': 'O rascunho no dispositivo será excluído. Continuar?',
-          vi: 'Bản nháp trên thiết bị sẽ bị xóa. Tiếp tục?',
-          id: 'Draf di perangkat akan dihapus. Lanjutkan?',
-          tr: 'Cihazdaki taslak silinecek. Devam edilsin mi?',
-          pl: 'Szkic na urządzeniu zostanie usunięty. Kontynuować?',
-        })}
-        cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
-        confirmLabel={triLang(lang, {
-          ru: 'Удалить и создать новый',
-          uk: 'Видалити й створити новий',
-          es: 'Eliminar y crear otro',
-          'pt-BR': 'Excluir e criar novo',
-          vi: 'Xóa và tạo mới',
-          id: 'Hapus dan buat baru',
-          tr: 'Sil ve yenisini oluştur',
-          pl: 'Usuń i utwórz nowy',
-        })}
-        confirmVariant="default"
-        onCancel={() => setDiscardDraftForNewOpen(false)}
-        onConfirm={() => {
-          setDiscardDraftForNewOpen(false);
-          router.push({ pathname: '/community_pack_create', params: { fresh: '1' } } as any);
-        }}
-      />
+      </Reanimated.View>
+
       {reportModalPack ? (
         <ReportPackModal
           visible
@@ -1391,12 +860,10 @@ export default function FlashcardsCategoryHub({
           packTitle={packTitleForInterface(reportModalPack, lang)}
           authorStableId={reportModalPack.authorStableId ?? null}
           lang={lang}
-          studyTarget={studyTarget}
           onClose={() => setReportModalPack(null)}
           onPackHiddenOnDevice={refreshHiddenCommunityPacks}
         />
       ) : null}
-      {CardPackPaywallModalEl}
     </View>
   );
 }

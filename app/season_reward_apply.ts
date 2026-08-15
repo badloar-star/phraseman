@@ -10,17 +10,15 @@
 // есть явные состояния «применяю…» и откат-тост при ошибке.
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { resetEnergyToMax } from './energy_system';
-import { applyTurboRegenOverride } from './boons/boon_effects_energy';
-import { activateLeagueBoost } from './league_personal_boosts';
-import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
+import * as Crypto from 'expo-crypto';
+import { getEffectiveMaxEnergyValue } from './energy_system';
+import { getEnergyRecoveryIntervalMs } from './remote_flags';
 import { reviveStreak } from './streak_revive';
 import { addOwnedPackId } from './flashcards/marketplace';
 import { unlockRandomCustomAvatarGift, type GiftCosmeticUnlock } from './level_gift_system';
-import { addShardsLocalOnlyForPendingServerClaim } from './shards_system';
+import { commitShardCreditOperation } from './shards_system';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
-import { getCanonicalUserId } from './user_id_policy';
-import { readVipSnapshotForAccount, writeVipSnapshotForAccount } from './premium_vip_storage';
+import { prepareVipSnapshotWritesForAccount, readVipSnapshotForAccount } from './premium_vip_storage';
 import { emitAppEvent } from './events';
 import {
   grantSeasonAuraStage,
@@ -34,6 +32,12 @@ import {
 } from './season_cosmetics';
 import type { SeasonReward } from './season_pass_track_config';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
+import { ENABLE_TOURNAMENTS } from './config';
+import {
+  commitSeasonPassGiftEffect,
+  markSeasonPassGiftUsed,
+  prepareSeasonPassGiftUseLocalWrites,
+} from './season_pass_gift_inventory';
 
 /** Пак сезона 1 — фирменный набор, открывается навсегда (каталог §6, ур. 45). */
 export const SEASON1_CARD_PACK_ID = 'official_peaky_blinders_en';
@@ -45,60 +49,34 @@ const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
 export const SEASON_COLLECTION_MAGNET_KEY = 'season_collection_magnet_v1';
 export const SEASON_TOURNAMENT_TICKET_KEY = 'season_tournament_ticket_v1';
 const DAY_MS = 24 * 60 * 60 * 1000;
+const ENERGY_STORAGE_KEY = 'energy_state';
+const BOON_ENERGY_OVERRIDE_KEY = 'boon_energy_override_v1';
+const LEAGUE_PERSONAL_BOOST_KEY = 'league_personal_boost_v1';
+const CLUB_GIFT_FREE_BOOST_KEY = 'club_gift_free_boost_v1';
+const CHAIN_SHIELD_KEY = 'chain_shield';
 
-async function activateCollectionMagnet(nowMs: number = Date.now()): Promise<void> {
-  const raw = await AsyncStorage.getItem(SEASON_COLLECTION_MAGNET_KEY);
-  let existingExpiry = 0;
+function parseObject(raw: string | null): Record<string, unknown> {
   try {
-    existingExpiry = Math.max(0, Number((JSON.parse(raw ?? '{}') as { expiresAt?: unknown }).expiresAt) || 0);
+    const parsed: unknown = raw ? JSON.parse(raw) : {};
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+      ? parsed as Record<string, unknown>
+      : {};
   } catch {
-    // A corrupt old value must not prevent a newly earned gift from working.
+    return {};
   }
-  await AsyncStorage.setItem(SEASON_COLLECTION_MAGNET_KEY, JSON.stringify({
-    multiplier: 2,
-    activatedAt: nowMs,
-    expiresAt: Math.max(nowMs, existingExpiry) + DAY_MS,
-  }));
 }
 
-async function grantTournamentTicket(nowMs: number = Date.now()): Promise<void> {
-  const raw = await AsyncStorage.getItem(SEASON_TOURNAMENT_TICKET_KEY);
-  let usesLeft = 0;
-  let existingExpiry = 0;
-  try {
-    const parsed = JSON.parse(raw ?? '{}') as { usesLeft?: unknown; expiresAt?: unknown };
-    usesLeft = Math.max(0, Math.floor(Number(parsed.usesLeft) || 0));
-    existingExpiry = Math.max(0, Number(parsed.expiresAt) || 0);
-  } catch {
-    // Replace corrupt storage with a valid local ticket.
-  }
-  await AsyncStorage.setItem(SEASON_TOURNAMENT_TICKET_KEY, JSON.stringify({
-    usesLeft: usesLeft + 1,
-    expiresAt: Math.max(nowMs, existingExpiry) + 3 * DAY_MS,
-  }));
-}
-
-async function grantSeasonPlusDays(days: number, nowMs: number = Date.now()): Promise<void> {
-  const token = captureAccountGeneration();
-  const stableId = token.stableId;
-  if (!stableId || !isCurrentAccountGeneration(token, stableId)) {
-    throw new Error('season_plus_identity_not_ready');
-  }
-  const existing = await readVipSnapshotForAccount(stableId);
-  if (!isCurrentAccountGeneration(token, stableId)) throw new Error('season_plus_identity_changed');
-  const previousUntil = Math.max(0, Number(existing?.vip_until) || 0);
-  const untilMs = Math.max(nowMs, previousUntil) + Math.max(1, Math.floor(days)) * DAY_MS;
-  await writeVipSnapshotForAccount(stableId, {
-    vip_active: 'true',
-    vip_plan: 'season_pass',
-    vip_from: String(nowMs),
-    vip_until: String(untilMs),
-    vip_admin_override: 'true',
-    vip_admin_grant_at: String(nowMs),
-  });
-  if (!isCurrentAccountGeneration(token, stableId)) throw new Error('season_plus_identity_changed');
-  emitAppEvent('vip_activated');
-  emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+async function commitIncrementalSeasonGift(
+  giftId: string | undefined,
+  buildWrites: () => Promise<readonly (readonly [string, string])[]>,
+  afterCommit?: () => void,
+): Promise<ApplySeasonRewardResult> {
+  const id = String(giftId ?? '').trim();
+  if (!id) return { ok: false, failReason: 'unknown' };
+  await commitSeasonPassGiftEffect(id, buildWrites);
+  await markSeasonPassGiftUsed(id).catch(() => {});
+  afterCommit?.();
+  return { ok: true };
 }
 
 const syncSeasonCosmeticsBestEffort = (publicDisplayChanged = false): void => {
@@ -116,27 +94,6 @@ export interface ApplySeasonRewardResult {
   /** Выданный кастомный аватар (для превью в модалке). */
   avatarUnlock?: GiftCosmeticUnlock | null;
   failReason?: 'no_streak_gap' | 'network' | 'unknown';
-}
-
-/** XP-банк: формат level_gift_system.GiftXpBankState — тот же ключ, та же семантика. */
-async function creditXpBank(amount: number): Promise<void> {
-  try {
-    const raw = await AsyncStorage.getItem(GIFT_XP_BANK_KEY);
-    const parsed = raw ? JSON.parse(raw) as { remaining?: number; grantedTotal?: number } : {};
-    const remaining = Math.max(0, Math.floor(Number(parsed.remaining) || 0)) + amount;
-    const grantedTotal = Math.max(0, Math.floor(Number(parsed.grantedTotal) || 0)) + amount;
-    await AsyncStorage.setItem(GIFT_XP_BANK_KEY, JSON.stringify({ ...parsed, remaining, grantedTotal, updatedAt: Date.now() }));
-  } catch { /* best effort: следующий грант доложит */ }
-}
-
-async function grantGoldenLesson(): Promise<void> {
-  try {
-    const raw = await AsyncStorage.getItem(SEASON_GOLDEN_LESSON_KEY);
-    const parsed = raw ? JSON.parse(raw) as Partial<SeasonGoldenLessonState> : {};
-    const remaining = Math.max(0, Math.floor(Number(parsed.remaining) || 0)) + 1;
-    const state: SeasonGoldenLessonState = { multiplier: 3, remaining, grantedAtMs: Date.now() };
-    await AsyncStorage.setItem(SEASON_GOLDEN_LESSON_KEY, JSON.stringify(state));
-  } catch { /* best effort */ }
 }
 
 /** Прочитать и атомарно потратить заряд «Золотого урока» — вызывается из xp_manager. */
@@ -167,9 +124,9 @@ export async function peekSeasonGoldenLessonCharges(): Promise<number> {
 }
 
 /**
- * Применить награду. ЛОКАЛЬНЫЕ эффекты — мгновенно (optimistic по построению),
- * СЕРВЕРНЫЕ (plus_days/magnet/ticket) отмечаются pendingServer — их довершает
- * season_pass_server.ts (callable), модалка ждёт с индикатором.
+ * Применить награду локально. Инкрементальные эффекты фиксируются
+ * вместе с durable gift marker под account/storage lock; сервер их не разрешает
+ * и не изменяет.
  */
 export async function applySeasonRewardLocal(
   reward: SeasonReward,
@@ -177,36 +134,89 @@ export async function applySeasonRewardLocal(
 ): Promise<ApplySeasonRewardResult> {
   switch (reward.kind) {
     case 'pearls': {
-      // Optimistic-начисление жемчуга тем же путём, что рулетка: локально сразу,
-      // серверная транзакция seasonClaimReward доначисляет authoritative-баланс.
-      const token = captureAccountGeneration();
-      const stableId = (await getCanonicalUserId()) ?? token.stableId;
-      // Без stableId optimistic пропускаем — серверный seasonClaimReward всё равно
-      // доначислит authoritative-баланс, цифра догонит при синке.
-      if (stableId) {
-        await addShardsLocalOnlyForPendingServerClaim(reward.amount ?? 0, 'season_pass_pearls', token, stableId);
-      }
-      return { ok: true };
+      const giftId = String(idempotencyKey ?? '').trim();
+      const amount = Math.max(0, Math.floor(Number(reward.amount) || 0));
+      if (!giftId || amount <= 0) return { ok: false, failReason: 'unknown' };
+      const eventHash = await Crypto.digestStringAsync(
+        Crypto.CryptoDigestAlgorithm.SHA256,
+        `season-pass-reward:${giftId}`,
+      );
+      const localWrites = prepareSeasonPassGiftUseLocalWrites(giftId);
+      const result = await commitShardCreditOperation({
+        operationId: `season-reward:${eventHash.slice(0, 40)}`,
+        amount,
+        reason: 'season_pass_pearls',
+        grant: {
+          kind: 'season_pass_reward',
+          subjectId: eventHash.slice(0, 40),
+          payload: { giftId, rewardKind: 'pearls', amount },
+        },
+        localWrites,
+      });
+      const ok = result.status === 'applied' || result.status === 'already-applied';
+      if (ok) await markSeasonPassGiftUsed(giftId).catch(() => {});
+      return {
+        ok,
+        ...(ok
+          ? {}
+          : { failReason: 'unknown' as const }),
+      };
     }
     case 'battery':
-      await resetEnergyToMax();
-      return { ok: true };
+      return commitIncrementalSeasonGift(idempotencyKey, async () => {
+        const nowMs = Date.now();
+        return [[ENERGY_STORAGE_KEY, JSON.stringify({
+          current: await getEffectiveMaxEnergyValue(),
+          lastRecoveryTime: nowMs,
+        })]];
+      });
     case 'turbo_regen':
-      await applyTurboRegenOverride();
-      return { ok: true };
+      return commitIncrementalSeasonGift(idempotencyKey, async () => {
+        const base = getEnergyRecoveryIntervalMs();
+        const recoveryMs = Math.max(1000, Math.floor(base / 2));
+        const now = new Date();
+        const expiresAt = Date.UTC(
+          now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0, 0,
+        );
+        return [[BOON_ENERGY_OVERRIDE_KEY, JSON.stringify({ expiresAt, recoveryMs })]];
+      });
     case 'league_boost':
-      await activateLeagueBoost('x2_eod_pass');
-      return { ok: true };
+      return commitIncrementalSeasonGift(idempotencyKey, async () => {
+        const nowMs = Date.now();
+        const now = new Date(nowMs);
+        const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+        return [[LEAGUE_PERSONAL_BOOST_KEY, JSON.stringify({
+          id: 'x2_eod_pass', multiplier: 2, startedAt: nowMs,
+          expiresAt: Math.max(nowMs + 60_000, midnight.getTime()),
+        })]];
+      });
     case 'club_totem': {
-      await grantClubGiftFreeBoostFromLevel();
-      return { ok: true };
+      return commitIncrementalSeasonGift(idempotencyKey, async () => {
+        const current = Math.max(0, Number.parseInt(
+          await AsyncStorage.getItem(CLUB_GIFT_FREE_BOOST_KEY) ?? '', 10,
+        ) || 0);
+        return [[CLUB_GIFT_FREE_BOOST_KEY, String(current + 1)]];
+      });
     }
     case 'golden_lesson':
-      await grantGoldenLesson();
-      return { ok: true };
+      return commitIncrementalSeasonGift(idempotencyKey, async () => {
+        const parsed = parseObject(await AsyncStorage.getItem(SEASON_GOLDEN_LESSON_KEY));
+        const remaining = Math.max(0, Math.floor(Number(parsed.remaining) || 0)) + 1;
+        return [[SEASON_GOLDEN_LESSON_KEY, JSON.stringify({
+          multiplier: 3, remaining, grantedAtMs: Date.now(),
+        })]];
+      });
     case 'xp_bank':
-      await creditXpBank(Math.max(0, reward.amount ?? 0));
-      return { ok: true };
+      return commitIncrementalSeasonGift(idempotencyKey, async () => {
+        const parsed = parseObject(await AsyncStorage.getItem(GIFT_XP_BANK_KEY));
+        const amount = Math.max(0, Math.floor(Number(reward.amount) || 0));
+        return [[GIFT_XP_BANK_KEY, JSON.stringify({
+          ...parsed,
+          remaining: Math.max(0, Math.floor(Number(parsed.remaining) || 0)) + amount,
+          grantedTotal: Math.max(0, Math.floor(Number(parsed.grantedTotal) || 0)) + amount,
+          updatedAt: Date.now(),
+        })]];
+      });
     case 'time_machine': {
       const res = await reviveStreak({ free: true });
       if (res.ok) return { ok: true };
@@ -249,27 +259,63 @@ export async function applySeasonRewardLocal(
       syncSeasonCosmeticsBestEffort(true);
       return { ok: true };
     case 'collection_magnet':
-      await activateCollectionMagnet();
-      return { ok: true };
+      return commitIncrementalSeasonGift(idempotencyKey, async () => {
+        const nowMs = Date.now();
+        const parsed = parseObject(await AsyncStorage.getItem(SEASON_COLLECTION_MAGNET_KEY));
+        const existingExpiry = Math.max(0, Number(parsed.expiresAt) || 0);
+        return [[SEASON_COLLECTION_MAGNET_KEY, JSON.stringify({
+          multiplier: 2,
+          activatedAt: nowMs,
+          expiresAt: Math.max(nowMs, existingExpiry) + DAY_MS,
+        })]];
+      });
     case 'tournament_ticket':
-      await grantTournamentTicket();
-      return { ok: true };
-    case 'plus_days':
-      await grantSeasonPlusDays(reward.amount ?? 1);
-      return { ok: true };
-    case 'friend_shield': {
-      const raw = await AsyncStorage.getItem('chain_shield');
-      let daysLeft = 0;
-      try {
-        daysLeft = Math.max(0, Math.floor(Number((JSON.parse(raw ?? '{}') as { daysLeft?: unknown }).daysLeft) || 0));
-      } catch {
-        // A new local shield replaces a corrupt legacy value.
+      if (!ENABLE_TOURNAMENTS) {
+        // Legacy/offline ticket claims keep their value but cannot resurrect a
+        // retired tournament entry point or create active ticket state.
+        return applySeasonRewardLocal({ kind: 'pearls', amount: 5 }, idempotencyKey);
       }
-      await AsyncStorage.setItem('chain_shield', JSON.stringify({
-        daysLeft: daysLeft + 1,
-        grantedAt: new Date().toISOString().slice(0, 10),
-      }));
-      return { ok: true };
+      return commitIncrementalSeasonGift(idempotencyKey, async () => {
+        const nowMs = Date.now();
+        const parsed = parseObject(await AsyncStorage.getItem(SEASON_TOURNAMENT_TICKET_KEY));
+        return [[SEASON_TOURNAMENT_TICKET_KEY, JSON.stringify({
+          usesLeft: Math.max(0, Math.floor(Number(parsed.usesLeft) || 0)) + 1,
+          expiresAt: Math.max(nowMs, Math.max(0, Number(parsed.expiresAt) || 0)) + 3 * DAY_MS,
+        })]];
+      });
+    case 'plus_days':
+      return commitIncrementalSeasonGift(idempotencyKey, async () => {
+        const token = captureAccountGeneration();
+        const stableId = token.stableId;
+        if (!stableId || !isCurrentAccountGeneration(token, stableId)) {
+          throw new Error('season_plus_identity_not_ready');
+        }
+        const nowMs = Date.now();
+        const existing = await readVipSnapshotForAccount(stableId);
+        if (!isCurrentAccountGeneration(token, stableId)) throw new Error('season_plus_identity_changed');
+        const previousUntil = Math.max(0, Number(existing?.vip_until) || 0);
+        const untilMs = Math.max(nowMs, previousUntil)
+          + Math.max(1, Math.floor(Number(reward.amount) || 1)) * DAY_MS;
+        return prepareVipSnapshotWritesForAccount(stableId, {
+          vip_active: 'true',
+          vip_plan: 'season_pass',
+          vip_from: String(nowMs),
+          vip_until: String(untilMs),
+          vip_admin_override: 'true',
+          vip_admin_grant_at: String(nowMs),
+        });
+      }, () => {
+        emitAppEvent('vip_activated');
+        emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+      });
+    case 'friend_shield': {
+      return commitIncrementalSeasonGift(idempotencyKey, async () => {
+        const parsed = parseObject(await AsyncStorage.getItem(CHAIN_SHIELD_KEY));
+        return [[CHAIN_SHIELD_KEY, JSON.stringify({
+          daysLeft: Math.max(0, Math.floor(Number(parsed.daysLeft) || 0)) + 1,
+          grantedAt: new Date().toISOString().slice(0, 10),
+        })]];
+      });
     }
     case 'choice_3':
       // Выбор делает модалка: выбранный вариант применяется отдельным вызовом.

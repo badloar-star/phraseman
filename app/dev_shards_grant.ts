@@ -25,8 +25,8 @@ import { DebugLogger } from './debug-logger';
 const FUNCTIONS_REGION = 'us-central1';
 
 export type DevShardsGrantResult =
-  /** balance — серверный баланс ПОСЛЕ начисления (он же источник правды). */
-  | { ok: true; balance: number; granted: number }
+  /** Сервер подтвердил внешний факт; личный баланс применяет клиентский журнал. */
+  | { ok: true; granted: number; eventId: string }
   /**
    * disabled — серверный рубильник выключен (штатное состояние прода).
    * failed — сеть/сервер не ответили.
@@ -55,15 +55,16 @@ export async function grantShardsOnServerForDev(amount: number): Promise<DevShar
       httpsCallable: (
         fns: unknown,
         name: string,
-      ) => (data: unknown) => Promise<{ data: { balance?: number; granted?: number } }>;
+      ) => (data: unknown) => Promise<{ data: { granted?: number; eventId?: string } }>;
     };
     const { getApp } = require('@react-native-firebase/app') as { getApp: () => unknown };
     const call = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'devShardsGrant');
-    const result = await call({ amount, opId: newDevGrantOpId() });
+    const eventId = newDevGrantOpId();
+    const result = await call({ amount, opId: eventId });
     return {
       ok: true,
-      balance: Number(result.data?.balance ?? 0),
       granted: Number(result.data?.granted ?? amount),
+      eventId: String(result.data?.eventId ?? eventId),
     };
   } catch (error) {
     const message = String((error as { message?: string })?.message ?? '');

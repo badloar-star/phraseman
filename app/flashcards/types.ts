@@ -49,6 +49,8 @@ export interface Category {
 }
 
 export interface CardItem {
+  /** Время добавления (сохранённые карточки) — лимит-20 считается по нему, не по индексу рендера. */
+  addedAt?: number;
   id: string;
   en: string;
   ru: string;

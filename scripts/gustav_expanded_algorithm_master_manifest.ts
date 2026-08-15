@@ -173,15 +173,6 @@ const EXPANSION_PHASES: ExpansionPhaseConfig[] = [
     readyKey: 'readyForP3P7Contracts',
   },
   {
-    phase: 'P3',
-    title: 'Personal plan content contract',
-    json: 'audits/personal_plan_content_contract_packet.json',
-    md: 'audits/personal_plan_content_contract_packet.md',
-    auditDoc: 'docs/gustav/GUSTAV_ALGORITHM_AUDIT_131.md',
-    script: 'scripts/gustav_personal_plan_content_contract_packet.ts',
-    readyKey: 'readyForP8ReadinessExtension',
-  },
-  {
     phase: 'P4',
     title: 'AI dialog scenario contract',
     json: 'audits/ai_dialog_scenario_contract_packet.json',

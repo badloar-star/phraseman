@@ -7,7 +7,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 //  Один источник правды для модалки. components/ClubResultModal.tsx — re-export.
 // ════════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   View, Text, Modal, Animated, Easing, TouchableOpacity,
   Dimensions, ScrollView, StyleSheet, Pressable,
@@ -17,9 +17,11 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import {
   LeagueResult, LEAGUES, CLUBS, clearPendingResult, GroupMember,
   clubDescPlanned, clubNamePlanned, getLeagueResultZoneSize,
+  orderGroupForResultDisplay,
 } from './league_engine';
 import { isLeagueXpPromotionEnabled, getLeagueXpPromotionThreshold } from './remote_flags';
 import AvatarView from '../components/AvatarView';
@@ -29,6 +31,7 @@ import { getBestAvatarForLevel } from '../constants/avatars';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
 import { monoIcon } from '../constants/monoIcon';
+import { buttonForegroundForBackground, isLightSurface, readableOn } from '../constants/color_contrast';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -41,99 +44,41 @@ const CARD_W = Math.min(W - 24, 420);
 // ─── Палитры исходов ───────────────────────────────────────────────────────
 const PROMO_COLORS  = { primary: '#34C759', accent: '#FFD24A', glow: '#FFD24A' };
 const DEMO_COLORS   = { primary: '#FF453A', accent: '#FF6B6B', glow: '#FF453A' };
-const SHARD_PROMO = ['#FFE7A6', '#34C759', '#7BD389', '#FFFFFF', '#22D3EE', '#A78BFA'];
-const SHARD_DEMO  = ['#FF9E9E', '#FF6B6B', '#7A1A1A'];
 
-// ─── Энергошард ────────────────────────────────────────────────────────────
-// Парящий осколок света вместо бумажного конфетти. При повышении (rise=true)
-// взлетает вверх и тает; при понижении — мягко оседает вниз (сдержанно).
-const ShardPiece = memo(function ShardPiece({
-  color, delay, startX, drift, size, rise,
-}: { color: string; delay: number; startX: number; drift: number; size: number; rise: boolean }) {
-  const p  = useRef(new Animated.Value(0)).current;
-  const startY = rise ? H * 0.62 : H * 0.32;
-  const endY = rise ? -H * 0.18 : H * 0.16;
+// зачем: раньше здесь жили две системы летящих частиц — «энергошарды» (полоски,
+// улетающие вверх на повышении) и поле искр ✦ на всех остальных исходах. Обе
+// убраны по решению владельца 2026-08-13: они перекрывали текст, тянули на себя
+// внимание с результата и обе были сломаны — у шардов из-за `% 1` над целыми
+// слагаемыми все частицы получали ОДИН seed и стартовали из одной точки (та самая
+// «полоска, уходящая вверх»), а координаты искр пересчитывались через Math.random()
+// на каждом рендере, из-за чего они телепортировались. Празднование теперь несут
+// хало вокруг иконки клуба, рост подиума и каскад появления карточки.
 
-  useEffect(() => {
-    const run = Animated.timing(p, {
-      toValue: 1,
-      duration: (rise ? 1300 : 1600) + Math.random() * 500,
-      delay,
-      easing: Easing.out(Easing.quad),
-      useNativeDriver: true,
-    });
-    run.start();
-    return () => run.stop();
-  }, [delay, p, rise]);
+// Порог каскада: строки ниже этого индекса появляются волной, остальные — сразу
+// (их всё равно не видно без прокрутки, а лишние интерполяции стоят кадров).
+const ROW_CASCADE_LIMIT = 8;
 
-  return (
-    <Animated.View
-      pointerEvents="none"
-      style={{
-        position: 'absolute', top: 0, left: startX,
-        width: size * 0.7, height: size,
-        borderRadius: 2,
-        backgroundColor: color,
-        shadowColor: color, shadowOpacity: 0.9, shadowRadius: 6, shadowOffset: { width: 0, height: 0 },
-        opacity: p.interpolate({ inputRange: [0, 0.2, 0.85, 1], outputRange: [0, 1, 0.7, 0] }),
-        transform: [
-          { translateY: p.interpolate({ inputRange: [0, 1], outputRange: [startY, endY] }) },
-          { translateX: p.interpolate({ inputRange: [0, 1], outputRange: [0, drift] }) },
-          { rotate: p.interpolate({ inputRange: [0, 1], outputRange: ['0deg', `${drift > 0 ? 90 : -90}deg`] }) },
-          { scale: p.interpolate({ inputRange: [0, 0.25, 1], outputRange: [0.3, 1, 0.85] }) },
-        ],
-      }}
-    />
-  );
-});
-
-// ─── Лёгкая искра-звёздочка для не-промо состояний ─────────────────────────
-const Sparkle = memo(function Sparkle({
-  active, color, delay, startX, startY,
-}: { active: boolean; color: string; delay: number; startX: number; startY: number }) {
-  const op    = useRef(new Animated.Value(0)).current;
-  const scale = useRef(new Animated.Value(0)).current;
-  const rise  = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    if (!active) return;
-    const loop = Animated.loop(
-      Animated.sequence([
-        Animated.delay(delay),
-        Animated.parallel([
-          Animated.timing(op,    { toValue: 1,    duration: 600,  useNativeDriver: true }),
-          Animated.timing(scale, { toValue: 1,    duration: 600,  useNativeDriver: true }),
-          Animated.timing(rise,  { toValue: -30,  duration: 1800, useNativeDriver: true }),
-        ]),
-        Animated.timing(op,    { toValue: 0,    duration: 800, useNativeDriver: true }),
-        Animated.timing(scale, { toValue: 0.4,  duration: 0,   useNativeDriver: true }),
-        Animated.timing(rise,  { toValue: 0,    duration: 0,   useNativeDriver: true }),
-      ]),
-    );
-    loop.start();
-    return () => loop.stop();
-  }, [active, delay, op, scale, rise]);
-
-  return (
-    <Animated.Text
-      pointerEvents="none"
-      style={{
-        position: 'absolute', left: startX, top: startY,
-        fontSize: 12, color, opacity: op,
-        textShadowColor: color, textShadowRadius: 6,
-        transform: [{ scale }, { translateY: rise }],
-      }}
-    >✦</Animated.Text>
-  );
-});
+/** Длительность общего каскада появления карточки, мс. */
+const INTRO_MS = 640;
 
 // ─── Хало вокруг иконки клуба (вращающийся conic-like glow) ────────────────
-function ClubHalo({ active, color, size, intensity = 1 }: { active: boolean; color: string; size: number; intensity?: number }) {
+function ClubHalo({ active, reduceMotion, color, size, intensity = 1 }: {
+  active: boolean;
+  /** Системное «уменьшить движение»: хало замирает статичным кадром. */
+  reduceMotion?: boolean;
+  color: string;
+  size: number;
+  intensity?: number;
+}) {
   const rot = useRef(new Animated.Value(0)).current;
   const pulse = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    if (!active) return;
+    // Статичный кадр вместо цикла: закрытая модалка и reduce-motion не крутят
+    // хало, но и не гасят его полностью — иконка клуба остаётся в оправе.
+    const freeze = () => { rot.setValue(0); pulse.setValue(0.7); };
+    if (!active) return freeze();
+    if (reduceMotion) return freeze();
     const r = Animated.loop(
       Animated.timing(rot, { toValue: 1, duration: 7000, easing: Easing.linear, useNativeDriver: true }),
     );
@@ -145,7 +90,7 @@ function ClubHalo({ active, color, size, intensity = 1 }: { active: boolean; col
     );
     r.start(); p.start();
     return () => { r.stop(); p.stop(); };
-  }, [active, rot, pulse]);
+  }, [active, reduceMotion, rot, pulse]);
 
   const ringSize  = size * 1.7;
   const ringSize2 = size * 1.35;
@@ -186,14 +131,23 @@ interface Props {
   visible: boolean;
   result:  LeagueResult;
   onClose: () => void;
+  /**
+   * DEV-превью с синтетическим результатом (DEV-центр → «Лига · итоги недели»).
+   *
+   * зачем: обычное закрытие вызывает clearPendingResult(), а он читает НАСТОЯЩИЙ
+   * pending с диска, штампует его как «показанный» и удаляет. Без этого флага
+   * дев-превью съедало бы реальные итоги недели пользователя. В превью закрытие
+   * ничего не пишет в хранилище.
+   */
+  previewMode?: boolean;
 }
 
-export default function LeagueResultModal({ visible, result, onClose }: Props) {
+export default function LeagueResultModal({ visible, result, onClose, previewMode = false }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const isUK = lang === 'uk';
+  const reduceMotion = useReduceMotion();
 
   const prevLeague = LEAGUES[result.prevLeagueId] ?? LEAGUES[0];
   const newLeague  = LEAGUES[result.newLeagueId]  ?? LEAGUES[0];
@@ -203,46 +157,83 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   const isDemo   = result.demoted;
   const isStay   = !isPromo && !isDemo;
 
-  // Цветовая схема под исход
-  const palette = isPromo ? PROMO_COLORS : isDemo ? DEMO_COLORS
+  // ─── Светлая тема ───────────────────────────────────────────────────────
+  // зачем 13.08.2026 (репорт владельца): вся палитра модалки подбиралась под
+  // тёмный фон. На светлой теме зелёный #34C759 давал контраст 2.2:1, серебро
+  // подиума — 1.6:1, а «геройский» блок оставался чёрно-зелёной плитой посреди
+  // белой карточки. Светлость определяем по реальной яркости поверхности, а не
+  // по имени темы: список светлых тем в приложении неполон (businessLight в
+  // него не входит) и назавтра снова про кого-нибудь забудут.
+  const onLight = isLightSurface(t.bgCard);
+  /**
+   * Доводит фирменный цвет до читаемости на светлой карточке, сохраняя оттенок.
+   * В тёмных темах возвращает цвет БЕЗ изменений — прежний вид не трогаем.
+   *
+   * Опорный фон — bgPrimary (тело карточки), а запас берём 6:1, а не 4.5:1.
+   * зачем: этот же цвет ложится ещё и на подложки из самого себя (чип исхода,
+   * моя строка списка, полоса бонуса — все они = цвет с альфой поверх фона).
+   * Считая ровно по AA на чистом фоне, на таких подложках проваливались до
+   * 3.1:1. Запас в 6:1 держит AA во всех трёх местах разом.
+   */
+  const ink = useCallback(
+    (color: string, minRatio = 6) => (onLight ? readableOn(color, t.bgPrimary, minRatio) : color),
+    [onLight, t.bgPrimary],
+  );
+
+  // Цветовая схема под исход. primary несёт текст и иконки → приводим к AA;
+  // glow — только свечение и заливки, оттенок оставляем исходным.
+  const basePalette = isPromo ? PROMO_COLORS : isDemo ? DEMO_COLORS
     : { primary: club.color, accent: club.color, glow: club.color };
+  const palette = useMemo(() => ({
+    primary: ink(basePalette.primary),
+    accent:  ink(basePalette.accent),
+    glow:    basePalette.glow,
+  }), [ink, basePalette.primary, basePalette.accent, basePalette.glow]);
 
-  // ─── Анимации входа ─────────────────────────────────────────────────────
-  const cardScale      = useRef(new Animated.Value(0.8)).current;
+  /**
+   * Цвет вращающегося хало вокруг иконки клуба.
+   *
+   * зачем 13.08.2026 (репорт владельца): при повышении хало красилось в
+   * PROMO_COLORS.glow — жёлтый #FFD24A. На светлой карточке жёлтое кольцо
+   * просто не видно (1.4:1 к фону), да и по смыслу повышение в приложении
+   * зелёное, а не золотое. Берём цвет исхода и целимся в 3:1 — этого хватает
+   * для крупной графики, и оттенок остаётся сочным, а не уходит в почти
+   * чёрный, как было бы с текстовым порогом 6:1.
+   */
+  const haloColor = ink(basePalette.primary, 3);
+
+  // ─── Хореография входа ──────────────────────────────────────────────────
+  // Один общий драйвер 0→1 вместо цепочки из семи Animated.sequence: раньше
+  // блоки ждали полного завершения предыдущего, весь контент доезжал ~1.9 с,
+  // и кнопка «Продолжить» появлялась последней — пользователь смотрел на
+  // недорисованную карточку. Теперь блоки перекрываются окнами интерполяции
+  // внутри одного нативного прохода: последний элемент на месте за ~640 мс,
+  // а анимаций на UI-потоке ровно столько же, сколько было раньше на первый шаг.
+  const intro          = useRef(new Animated.Value(0)).current;
+  const cardScale      = useRef(new Animated.Value(0.92)).current;
   const cardOpacity    = useRef(new Animated.Value(0)).current;
-  const heroIconScale  = useRef(new Animated.Value(0)).current;
-  const heroIconRot    = useRef(new Animated.Value(0)).current;
-  const titleY         = useRef(new Animated.Value(20)).current;
-  const titleOp        = useRef(new Animated.Value(0)).current;
-  const transitionOp   = useRef(new Animated.Value(0)).current;
-  const transitionX    = useRef(new Animated.Value(-20)).current;
-  const rankScale      = useRef(new Animated.Value(0)).current;
-  const rankRot        = useRef(new Animated.Value(0)).current;
-  const podiumOp       = useRef(new Animated.Value(0)).current;
-  const podiumY        = useRef(new Animated.Value(30)).current;
-  const listOp         = useRef(new Animated.Value(0)).current;
+  const heroIconScale  = useRef(new Animated.Value(0.4)).current;
+  const rankScale      = useRef(new Animated.Value(0.5)).current;
   const myRowGlow      = useRef(new Animated.Value(0)).current;
-  const rewardOp       = useRef(new Animated.Value(0)).current;
-  const rewardScale    = useRef(new Animated.Value(0.85)).current;
-  const btnOp          = useRef(new Animated.Value(0)).current;
   const btnShine       = useRef(new Animated.Value(0)).current;
+  /** Прогресс закрытия 0→1: карточка уезжает вниз и гаснет. */
+  const exitProgress   = useRef(new Animated.Value(0)).current;
+  const closingRef     = useRef(false);
 
-  const [showConfetti, setShowConfetti]   = useState(false);
-  const confettiSeed = useRef(Math.random()).current;
+  // Окно каскада: [начало, конец] в долях intro. Возвращает готовый стиль.
+  const introStyle = useCallback((from: number, to: number, shiftY = 14) => ({
+    opacity: intro.interpolate({ inputRange: [from, to], outputRange: [0, 1], extrapolate: 'clamp' as const }),
+    transform: [{
+      translateY: intro.interpolate({
+        inputRange: [from, to], outputRange: [shiftY, 0], extrapolate: 'clamp' as const,
+      }),
+    }],
+  }), [intro]);
 
   useEffect(() => {
     if (!visible) return;
-
-    // Сброс
-    cardScale.setValue(0.86); cardOpacity.setValue(0);
-    heroIconScale.setValue(0); heroIconRot.setValue(0);
-    titleY.setValue(20); titleOp.setValue(0);
-    transitionOp.setValue(0); transitionX.setValue(-20);
-    rankScale.setValue(0); rankRot.setValue(-0.05);
-    podiumOp.setValue(0); podiumY.setValue(30);
-    listOp.setValue(0); myRowGlow.setValue(0);
-    rewardOp.setValue(0); rewardScale.setValue(0.85);
-    btnOp.setValue(0); btnShine.setValue(0);
+    closingRef.current = false;
+    exitProgress.setValue(0);
 
     // Хаптика по исходу — мгновенно
     if (isPromo) hapticSuccess();
@@ -255,94 +246,103 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
       });
     }
 
-    Animated.sequence([
-      // 1. Карточка появляется
-      Animated.parallel([
-        Animated.spring(cardScale,   { toValue: 1, friction: 7, tension: 90, useNativeDriver: true }),
-        Animated.timing(cardOpacity, { toValue: 1, duration: 240, useNativeDriver: true }),
-      ]),
-      // 2. Иконка клуба «вылетает»
-      Animated.parallel([
-        Animated.spring(heroIconScale, { toValue: 1, friction: 5, tension: 110, useNativeDriver: true }),
-        Animated.spring(heroIconRot,   { toValue: 1, friction: 6, tension: 80,  useNativeDriver: true }),
-      ]),
-      // 3. Заголовок и переход
-      Animated.parallel([
-        Animated.timing(titleY,       { toValue: 0, duration: 280, useNativeDriver: true }),
-        Animated.timing(titleOp,      { toValue: 1, duration: 280, useNativeDriver: true }),
-        Animated.timing(transitionOp, { toValue: 1, duration: 320, useNativeDriver: true }),
-        Animated.spring(transitionX,  { toValue: 0, friction: 7, tension: 90,  useNativeDriver: true }),
-      ]),
-      // 4. Место (rank)
-      Animated.parallel([
-        Animated.spring(rankScale, { toValue: 1, friction: 4, tension: 130, useNativeDriver: true }),
-        Animated.spring(rankRot,   { toValue: 0, friction: 5, tension: 120, useNativeDriver: true }),
-      ]),
-      // 5. Подиум
-      Animated.parallel([
-        Animated.timing(podiumOp, { toValue: 1, duration: 280, useNativeDriver: true }),
-        Animated.spring(podiumY,  { toValue: 0, friction: 7, tension: 80, useNativeDriver: true }),
-      ]),
-      // 6. Список группы
-      Animated.timing(listOp, { toValue: 1, duration: 320, useNativeDriver: true }),
-      // 7. Reward + кнопка
-      Animated.parallel([
-        Animated.timing(rewardOp,   { toValue: 1, duration: 260, useNativeDriver: true }),
-        Animated.spring(rewardScale,{ toValue: 1, friction: 6, tension: 90, useNativeDriver: true }),
-        Animated.timing(btnOp,      { toValue: 1, duration: 260, useNativeDriver: true }),
-      ]),
-    ]).start();
+    // Reduce-motion: итоговый кадр без движения. Ставим все значения в конечные
+    // и не запускаем ни одного цикла — требование use_reduce_motion.
+    if (reduceMotion) {
+      intro.setValue(1);
+      cardScale.setValue(1); cardOpacity.setValue(1);
+      heroIconScale.setValue(1); rankScale.setValue(1);
+      myRowGlow.setValue(1); btnShine.setValue(0);
+      return;
+    }
 
-    // Свечение моей строки — пульс
+    intro.setValue(0);
+    cardScale.setValue(0.92); cardOpacity.setValue(0);
+    heroIconScale.setValue(0.4); rankScale.setValue(0.5);
+    myRowGlow.setValue(0); btnShine.setValue(0);
+
+    const entrance = Animated.parallel([
+      // Карточка: короткий подхват без «резинового» перелёта.
+      Animated.spring(cardScale, {
+        toValue: 1, friction: 9, tension: 120, useNativeDriver: true,
+      }),
+      Animated.timing(cardOpacity, {
+        toValue: 1, duration: 180, easing: Easing.out(Easing.quad), useNativeDriver: true,
+      }),
+      // Иконка клуба — мягкий «выдох» наружу, без прежнего рывка с поворотом.
+      Animated.spring(heroIconScale, {
+        toValue: 1, friction: 6, tension: 90, delay: 90, useNativeDriver: true,
+      }),
+      // Число места — акцентный пружинный поп на своей фазе каскада.
+      Animated.spring(rankScale, {
+        toValue: 1, friction: 5, tension: 150, delay: 230, useNativeDriver: true,
+      }),
+      // Общий каскад: заголовок → чип → место → подиум → список → бонус → кнопка.
+      Animated.timing(intro, {
+        toValue: 1, duration: INTRO_MS, easing: Easing.out(Easing.cubic), useNativeDriver: true,
+      }),
+    ]);
+    entrance.start();
+
+    // Моя строка: три подсветки и покой. Бесконечный пульс раньше мигал всё
+    // время, пока открыта модалка — это шум и лишние кадры на ровном месте.
     const myGlowLoop = Animated.loop(
       Animated.sequence([
-        Animated.timing(myRowGlow, { toValue: 1, duration: 1400, useNativeDriver: true }),
-        Animated.timing(myRowGlow, { toValue: 0, duration: 1400, useNativeDriver: true }),
+        Animated.delay(420),
+        Animated.timing(myRowGlow, { toValue: 1, duration: 620, useNativeDriver: true }),
+        Animated.timing(myRowGlow, { toValue: 0.45, duration: 620, useNativeDriver: true }),
       ]),
+      { iterations: 3 },
     );
-    myGlowLoop.start();
+    myGlowLoop.start(({ finished }) => { if (finished) myRowGlow.setValue(1); });
 
-    // Блик на CTA — повторяющаяся волна
+    // Блик на CTA — три прохода, потом кнопка успокаивается.
     const shineLoop = Animated.loop(
       Animated.sequence([
-        Animated.delay(1200),
-        Animated.timing(btnShine, { toValue: 1, duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
-        Animated.timing(btnShine, { toValue: 0, duration: 0,    useNativeDriver: true }),
+        Animated.delay(900),
+        Animated.timing(btnShine, { toValue: 1, duration: 900, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+        Animated.timing(btnShine, { toValue: 0, duration: 0, useNativeDriver: true }),
       ]),
+      { iterations: 3 },
     );
     shineLoop.start();
 
-    // Конфетти
-    let t1: ReturnType<typeof setTimeout> | null = null;
-    let t2: ReturnType<typeof setTimeout> | null = null;
-    if (isPromo || isDemo) {
-      t1 = setTimeout(() => setShowConfetti(true), 350);
-      t2 = setTimeout(() => setShowConfetti(false), isPromo ? 4200 : 2600);
-    }
-
     return () => {
+      entrance.stop();
       myGlowLoop.stop();
       shineLoop.stop();
-      if (t1) clearTimeout(t1);
-      if (t2) clearTimeout(t2);
     };
   }, [
-    visible, isPromo, isDemo,
-    cardScale, cardOpacity, heroIconScale, heroIconRot, titleY, titleOp,
-    transitionOp, transitionX, rankScale, rankRot, podiumOp, podiumY,
-    listOp, myRowGlow, rewardOp, rewardScale, btnOp, btnShine,
+    visible, isPromo, isDemo, reduceMotion,
+    result.prevLeagueId, result.newLeagueId,
+    intro, cardScale, cardOpacity, heroIconScale, rankScale,
+    myRowGlow, btnShine, exitProgress,
   ]);
 
   const handleClose = useCallback(() => {
+    // Повторные тапы во время анимации ухода игнорируем: иначе onClose ушёл бы
+    // дважды и второй вызов пришёлся бы уже на размонтированного хоста.
+    if (closingRef.current) return;
+    closingRef.current = true;
     hapticTap();
+
     // ВАЖНО: сначала onClose (синхронно ставит dismissedLeagueResultRef в home.tsx
     // и setPendingLeagueResult(null)), и только потом — асинхронная очистка
     // AsyncStorage. Если делать наоборот — между clearPendingResult() и
     // onClose() помещается фокус-перезапуск loadData, который регенерит pending,
-    // не видя dismiss-ref → модалка «не закрывается».
-    onClose();
-    void clearPendingResult();
-  }, [onClose]);
+    // не видя dismiss-ref → модалка «не закрывается». Порядок сохранён и здесь:
+    // анимация ухода короткая (150 мс) и идёт ДО пары onClose/clearPendingResult,
+    // фокус за это время не меняется — модалка перекрывает экран.
+    const finish = () => {
+      onClose();
+      if (!previewMode) void clearPendingResult();
+    };
+
+    if (reduceMotion) { finish(); return; }
+    Animated.timing(exitProgress, {
+      toValue: 1, duration: 150, easing: Easing.in(Easing.quad), useNativeDriver: true,
+    }).start(finish);
+  }, [onClose, previewMode, reduceMotion, exitProgress]);
 
   // ─── Тексты ─────────────────────────────────────────────────────────────
   const titleText = triLang(lang, {
@@ -457,12 +457,33 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   pl: 'Dobry wynik, trzymaj tempo!',
 });
 
-  const top3 = result.group.slice(0, 3);
-  const groupRows = result.group.map((member, index) => ({ member, place: index + 1 }));
-  const zoneSize = getLeagueResultZoneSize(result.totalInGroup);
-  const relegationStartRank = result.totalInGroup >= 2 && zoneSize > 0
-    ? result.totalInGroup - zoneSize + 1
-    : result.totalInGroup + 1;
+  // Старый pending-результат мог сохранить total только по живым игрокам,
+  // хотя в его неизменяемом снимке группы уже есть боты. Для таких уже созданных
+  // итогов чиним показ без изменения авторитетного исхода недели.
+  const displayTotalInGroup = Math.max(result.totalInGroup, result.group.length);
+
+  // Список и число «Твоё место» обязаны совпадать. Порядок собираем через общий
+  // помощник движка: он сортирует по очкам и ставит мою строку ровно на
+  // авторитетное серверное место. Делаем это и здесь (а не только при записи
+  // pending), чтобы уже сохранённые на диске результаты из старых версий
+  // приложения тоже показывались согласованно.
+  const displayGroup = useMemo(
+    () => orderGroupForResultDisplay(result.group, result.myRank),
+    [result.group, result.myRank],
+  );
+  const top3 = displayGroup.slice(0, 3);
+  const groupRows = displayGroup.map((member, index) => ({ member, place: index + 1 }));
+  // Моё место для показа берём из той же строки, которую видно в списке.
+  // Если меня в снимке группы нет (редкий сбой) — печатаем серверное число.
+  const myDisplayIndex = displayGroup.findIndex(m => m?.isMe === true);
+  const myDisplayRank = myDisplayIndex >= 0 ? myDisplayIndex + 1 : result.myRank;
+  // Серверный total может быть больше снимка комнаты: тогда честно пишем,
+  // сколько участников не поместилось, вместо молчаливого расхождения чисел.
+  const hiddenMembers = Math.max(0, displayTotalInGroup - displayGroup.length);
+  const zoneSize = getLeagueResultZoneSize(displayTotalInGroup);
+  const relegationStartRank = displayTotalInGroup >= 2 && zoneSize > 0
+    ? displayTotalInGroup - zoneSize + 1
+    : displayTotalInGroup + 1;
   // XP-режим: повышение по набранным очкам, а не по месту. Тогда подпись зоны
   // не должна обещать «повышение с топ-N» (это правило про место) —
   // показываем XP-правило. Иначе текст противоречит исходу «Остаёшься».
@@ -472,42 +493,61 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   const modalPadBottom = Math.max(12, bottomInset + 8);
   const modalMaxHeight = Math.min(H - 24, Math.max(280, H - modalPadTop - modalPadBottom));
 
-  const leagueName = (row: (typeof LEAGUES)[number]) =>
-    triLang(lang, {
-  ru: row.nameRU,
-  uk: row.nameUK,
-  es: row.nameES,
-  "pt-BR": clubNamePlanned(row.id, 'pt-BR' as PlannedInterfaceLang),
-  vi: clubNamePlanned(row.id, 'vi' as PlannedInterfaceLang),
-  id: clubNamePlanned(row.id, 'id' as PlannedInterfaceLang),
-  tr: clubNamePlanned(row.id, 'tr' as PlannedInterfaceLang),
-  pl: clubNamePlanned(row.id, 'pl' as PlannedInterfaceLang),
-});
-
   // ─── Подцвет градиентов ─────────────────────────────────────────────────
+  // На светлой теме «герой» — не тёмная плита, а мягкая подложка в цвет исхода:
+  // тёмный блок посреди белой карточки читался как дыра и резал её пополам.
+  // Последняя остановка градиента = фон карточки под «героем», иначе на стыке
+  // блоков появляется видимая горизонтальная граница.
   const cardGradient: [string, string, string] = isPromo
-    ? ['#0F2818', '#0A1F12', '#06140A']
+    ? (onLight
+      ? ['#E2F2E7', '#EFF7F1', t.bgPrimary]
+      : ['#0F2818', '#0A1F12', '#06140A'])
     : isDemo
-      ? ['#2A0E0C', '#1A0907', '#100404']
+      ? (onLight
+        ? ['#FAE4E3', '#FBEFEE', t.bgPrimary]
+        : ['#2A0E0C', '#1A0907', '#100404'])
       : [t.bgCard, t.bgCard, t.bgPrimary];
 
   const borderGradient: [string, string, string] = isPromo
-    ? ['#FFD24A', '#34C759', '#FFD24A']
+    ? (onLight
+      ? ['#C79A18', '#2E9B54', '#C79A18']
+      : ['#FFD24A', '#34C759', '#FFD24A'])
     : isDemo
-      ? ['#FF453A', '#7A1A1A', '#FF453A']
+      ? (onLight
+        ? ['#C4392F', '#7A1A1A', '#C4392F']
+        : ['#FF453A', '#7A1A1A', '#FF453A'])
       : [palette.primary + 'AA', palette.primary + '55', palette.primary + 'AA'];
 
   const heroGradient: [string, string] = isPromo
-    ? ['rgba(52,199,89,0.22)', 'rgba(52,199,89,0)']
+    ? (onLight
+      ? ['rgba(31,124,69,0.13)', 'rgba(31,124,69,0)']
+      : ['rgba(52,199,89,0.22)', 'rgba(52,199,89,0)'])
     : isDemo
-      ? ['rgba(255,69,58,0.22)', 'rgba(255,69,58,0)']
-      : [club.color + '33', club.color + '00'];
+      ? (onLight
+        ? ['rgba(176,42,36,0.12)', 'rgba(176,42,36,0)']
+        : ['rgba(255,69,58,0.22)', 'rgba(255,69,58,0)'])
+      : [club.color + (onLight ? '26' : '33'), club.color + '00'];
 
-  const ctaGradient: [string, string] = isPromo
-    ? ['#34C759', '#1FA34A']
-    : isDemo
-      ? ['#FF6B6B', '#D93B30']
-      : [club.color, club.color];
+  // Заливка CTA: на светлой теме доводим её до того уровня, при котором белая
+  // надпись держит AA. Иначе «Продолжить» тонуло в светло-зелёной кнопке.
+  const ctaBase = isPromo ? '#34C759' : isDemo ? '#FF6B6B' : club.color;
+  const ctaFill = onLight ? readableOn(ctaBase, '#FFFFFF', 4.5) : ctaBase;
+  const ctaGradient: [string, string] = onLight
+    ? [ctaFill, readableOn(ctaFill, '#FFFFFF', 6.5)]
+    : isPromo
+      ? ['#34C759', '#1FA34A']
+      : isDemo
+        ? ['#FF6B6B', '#D93B30']
+        : [club.color, club.color];
+  // Цвет надписи на кнопке считаем от реальной заливки, а не «всегда белый».
+  const ctaTextColor = onLight ? buttonForegroundForBackground(ctaFill) : '#FFFFFF';
+
+  // Подложки, которые раньше были «белым по прозрачному» — на светлом фоне их
+  // просто не было видно.
+  const scrimColor      = onLight ? 'rgba(23,32,29,0.55)' : 'rgba(0,0,0,0.86)';
+  const closeButtonBg   = onLight ? 'rgba(23,32,29,0.08)' : 'rgba(255,255,255,0.06)';
+  const transitionChipBg = onLight ? 'rgba(23,32,29,0.06)' : 'rgba(0,0,0,0.32)';
+  const motivationBg    = onLight ? t.bgSurface : 'rgba(255,255,255,0.04)';
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose} statusBarTranslucent>
@@ -526,61 +566,32 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
         <Pressable onPress={handleClose} style={StyleSheet.absoluteFill} />
         {/* ─── Фон-затемнение + цветной радиальный отблеск ──────────────── */}
         <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-          <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.86)' }]} />
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: scrimColor }]} />
           <LinearGradient
-            colors={[palette.glow + '33', 'transparent']}
+            colors={[palette.glow + (onLight ? '1F' : '33'), 'transparent']}
             start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 0.7 }}
             style={[StyleSheet.absoluteFill]}
           />
           <LinearGradient
-            colors={['transparent', palette.glow + '14']}
+            colors={['transparent', palette.glow + (onLight ? '0D' : '14')]}
             start={{ x: 0.5, y: 0.5 }} end={{ x: 0.5, y: 1 }}
             style={[StyleSheet.absoluteFill]}
           />
         </View>
 
-        {/* ─── Энергошарды на фоне (без бумажного конфетти) ──────────────── */}
-        {showConfetti && (
-          <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-            {(isPromo ? SHARD_PROMO : SHARD_DEMO).flatMap((color, ci) =>
-              Array.from({ length: isPromo ? 8 : 5 }, (_, i) => {
-                const seed = (ci * 17 + i * 31 + confettiSeed * 1000) % 1;
-                return (
-                  <ShardPiece
-                    key={`c-${ci}-${i}`}
-                    color={color}
-                    delay={i * 80 + ci * 40}
-                    startX={0.12 * W + seed * W * 0.76}
-                    drift={(seed - 0.5) * 120}
-                    size={10 + (i % 3) * 4}
-                    rise={isPromo}
-                  />
-                );
-              }),
-            )}
-          </View>
-        )}
-        {!isPromo && !isDemo && (
-          <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-            {Array.from({ length: 14 }).map((_, i) => (
-              <Sparkle
-                active={visible}
-                key={`s-${i}`}
-                color={club.color}
-                delay={i * 200}
-                startX={Math.random() * W}
-                startY={H * 0.2 + Math.random() * H * 0.6}
-              />
-            ))}
-          </View>
-        )}
-
         {/* ─── Карточка с градиентной обводкой ───────────────────────────── */}
         <View>
           <Animated.View
             style={{
-              opacity: cardOpacity,
-              transform: [{ scale: cardScale }],
+              opacity: Animated.multiply(
+                cardOpacity,
+                exitProgress.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }),
+              ),
+              transform: [
+                { scale: cardScale },
+                { scale: exitProgress.interpolate({ inputRange: [0, 1], outputRange: [1, 0.94] }) },
+                { translateY: exitProgress.interpolate({ inputRange: [0, 1], outputRange: [0, 18] }) },
+              ],
               shadowColor: palette.glow,
               shadowOffset: { width: 0, height: 16 },
               shadowOpacity: 0.45,
@@ -631,17 +642,16 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       position: 'absolute', top: 10, right: 10, zIndex: 4,
                       width: 30, height: 30, borderRadius: 15,
                       alignItems: 'center', justifyContent: 'center',
-                      backgroundColor: 'rgba(255,255,255,0.06)',
+                      backgroundColor: closeButtonBg,
                     }}
                   >
-                    <Ionicons name="close" size={18} color={t.textMuted} />
+                    <Ionicons name="close" size={18} color={onLight ? t.textPrimary : t.textMuted} />
                   </TouchableOpacity>
 
                   {/* Заголовок */}
                   <Animated.Text
                     style={{
-                      opacity: titleOp,
-                      transform: [{ translateY: titleY }],
+                      ...introStyle(0, 0.22, 10),
                       color: t.textMuted,
                       fontSize: f.label,
                       letterSpacing: 2,
@@ -654,19 +664,18 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                   </Animated.Text>
 
                   {/* Иконка клуба + хало */}
-                  <View style={{ width: 140, height: 140, alignItems: 'center', justifyContent: 'center' }}>
-                    <ClubHalo active={visible} color={palette.glow} size={84} intensity={isStay ? 0.7 : 1} />
-                    <Animated.View
-                      style={{
-                        transform: [
-                          { scale: heroIconScale },
-                          { rotate: heroIconRot.interpolate({ inputRange:[0,1], outputRange:['-25deg','0deg'] }) },
-                        ],
-                      }}
-                    >
+                  <View style={{ width: 132, height: 132, alignItems: 'center', justifyContent: 'center' }}>
+                    <ClubHalo
+                      active={visible}
+                      reduceMotion={reduceMotion}
+                      color={haloColor}
+                      size={84}
+                      intensity={isStay ? 0.7 : 1}
+                    />
+                    <Animated.View style={{ transform: [{ scale: heroIconScale }] }}>
                       <Image
                         source={club.imageUri}
-                        style={{ width: 110, height: 110 }}
+                        style={{ width: 104, height: 104 }}
                         contentFit="contain"
                       />
                     </Animated.View>
@@ -675,17 +684,14 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                   {/* Чип исхода */}
                   <Animated.View
                     style={{
-                      opacity: titleOp,
-                      transform: [{ translateY: titleY }],
+                      ...introStyle(0.12, 0.38, 12),
                       flexDirection: 'row',
                       alignItems: 'center',
                       gap: 6,
                       paddingHorizontal: 14,
                       paddingVertical: 8,
                       borderRadius: 999,
-                      backgroundColor: palette.primary + '22',
-                      borderWidth: 0,
-                      borderColor: palette.primary + '55',
+                      backgroundColor: palette.primary + (onLight ? '1A' : '22'),
                       marginTop: 8,
                     }}
                   >
@@ -704,15 +710,14 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                   {(isPromo || isDemo) && (
                     <Animated.View
                       style={{
-                        opacity: transitionOp,
-                        transform: [{ translateX: transitionX }],
+                        ...introStyle(0.2, 0.46, 10),
                         flexDirection: 'row',
                         alignItems: 'center',
                         gap: 8,
                         marginTop: 12,
                         paddingHorizontal: 12, paddingVertical: 6,
                         borderRadius: 12,
-                        backgroundColor: 'rgba(0,0,0,0.32)',
+                        backgroundColor: transitionChipBg,
                       }}
                     >
                       <Image source={prevLeague.imageUri} style={{ width: 18, height: 18, opacity: 0.7 }} contentFit="contain" />
@@ -762,10 +767,10 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                   style={{
                     paddingHorizontal: 18, paddingTop: 14, paddingBottom: 8,
                     alignItems: 'center',
-                    transform: [
-                      { scale: rankScale },
-                      { rotate: rankRot.interpolate({ inputRange:[-1,0], outputRange:['-12deg','0deg'] }) },
-                    ],
+                    opacity: intro.interpolate({
+                      inputRange: [0.24, 0.48], outputRange: [0, 1], extrapolate: 'clamp',
+                    }),
+                    transform: [{ scale: rankScale }],
                   }}
                 >
                   <Text style={{
@@ -793,10 +798,13 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       fontWeight: '900',
                       lineHeight: 70,
                       letterSpacing: -1.5,
-                      textShadowColor: palette.glow + '99',
-                      textShadowRadius: 12,
+                      // Свечение под цифрой на светлом фоне только размывает её.
+                      ...(onLight ? null : {
+                        textShadowColor: palette.glow + '99',
+                        textShadowRadius: 12,
+                      }),
                     }}>
-                      {result.myRank}
+                      {myDisplayRank}
                     </Text>
                     <Text style={{
                       color: t.textMuted,
@@ -804,7 +812,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       fontWeight: '600',
                       marginLeft: 6,
                     }}>
-                      / {result.totalInGroup}
+                      / {displayTotalInGroup}
                     </Text>
                   </View>
 
@@ -820,7 +828,11 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       <Ionicons
                         name={(isPromo ? 'trending-up' : isDemo ? 'trending-down' : 'flag') as any}
                         size={12}
-                        color={isDemo ? monoIcon(themeMode, '#FF6B6B') : isPromo ? monoIcon(themeMode, '#34C759') : t.gold}
+                        color={isDemo
+                          ? monoIcon(themeMode, ink('#FF6B6B', 4.5))
+                          : isPromo
+                            ? monoIcon(themeMode, ink('#34C759', 4.5))
+                            : (onLight ? readableOn(t.gold, t.bgSurface, 4.5) : t.gold)}
                       />
                       <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700' }}>
                         {(() => {
@@ -851,14 +863,14 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                           }
                           if (isDemo) {
                             return triLang(lang, {
-  ru: `Зона понижения: ${relegationStartRank}-${result.totalInGroup}`,
-  uk: `Зона пониження: ${relegationStartRank}-${result.totalInGroup}`,
-  es: `Descenso: ${relegationStartRank}-${result.totalInGroup}`,
-  "pt-BR": `Rebaixamento: ${relegationStartRank}-${result.totalInGroup}`,
-  vi: `Xuống hạng: ${relegationStartRank}-${result.totalInGroup}`,
-  id: `Turun: ${relegationStartRank}-${result.totalInGroup}`,
-  tr: `Düşme: ${relegationStartRank}-${result.totalInGroup}`,
-  pl: `Spadek: ${relegationStartRank}-${result.totalInGroup}`,
+  ru: `Зона понижения: ${relegationStartRank}-${displayTotalInGroup}`,
+  uk: `Зона пониження: ${relegationStartRank}-${displayTotalInGroup}`,
+  es: `Descenso: ${relegationStartRank}-${displayTotalInGroup}`,
+  "pt-BR": `Rebaixamento: ${relegationStartRank}-${displayTotalInGroup}`,
+  vi: `Xuống hạng: ${relegationStartRank}-${displayTotalInGroup}`,
+  id: `Turun: ${relegationStartRank}-${displayTotalInGroup}`,
+  tr: `Düşme: ${relegationStartRank}-${displayTotalInGroup}`,
+  pl: `Spadek: ${relegationStartRank}-${displayTotalInGroup}`,
 });
                           }
                           // isStay: описываем УСЛОВИЕ повышения, а не утверждаем, что юзер повышен.
@@ -892,7 +904,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
 
                 {/* ── PODIUM (top-3) ──────────────────────────────── */}
                 {top3.length === 3 && (
-                  <Animated.View
+                  <View
                     style={{
                       flexDirection: 'row',
                       alignItems: 'flex-end',
@@ -900,18 +912,18 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       gap: 8,
                       paddingHorizontal: 18,
                       marginTop: 8,
-                      opacity: podiumOp,
-                      transform: [{ translateY: podiumY }],
                     }}
                   >
-                    <PodiumColumn member={top3[1]} place={2} themeMode={themeMode} f={f} t={t} lang={lang} />
-                    <PodiumColumn member={top3[0]} place={1} themeMode={themeMode} f={f} t={t} lang={lang} />
-                    <PodiumColumn member={top3[2]} place={3} themeMode={themeMode} f={f} t={t} lang={lang} />
-                  </Animated.View>
+                    {/* Колонны вырастают снизу и по очереди: серебро → золото → бронза.
+                        Раньше весь подиум просто выезжал одним блоком. */}
+                    <PodiumColumn member={top3[1]} place={2} intro={intro} from={0.40} onLight={onLight} themeMode={themeMode} f={f} t={t} lang={lang} />
+                    <PodiumColumn member={top3[0]} place={1} intro={intro} from={0.46} onLight={onLight} themeMode={themeMode} f={f} t={t} lang={lang} />
+                    <PodiumColumn member={top3[2]} place={3} intro={intro} from={0.52} onLight={onLight} themeMode={themeMode} f={f} t={t} lang={lang} />
+                  </View>
                 )}
 
                 {/* ── СПИСОК ГРУППЫ ───────────────────────────────── */}
-                <Animated.View style={{ opacity: listOp, marginTop: 12 }}>
+                <Animated.View style={{ ...introStyle(0.5, 0.72, 10), marginTop: 12 }}>
                   <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
                     paddingHorizontal: 18, marginBottom: 4,
@@ -935,7 +947,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
 })}
                     </Text>
                     <Text style={{ color: t.textGhost, fontSize: f.caption, fontWeight: '600' }}>
-                      {result.totalInGroup} {triLang(lang, {
+                      {displayTotalInGroup} {triLang(lang, {
   ru: 'чел.',
   uk: 'осіб',
   es: 'pers.',
@@ -953,6 +965,9 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                         key={`${member.uid ?? member.botId ?? member.name}-${i}`}
                         member={member}
                         place={place}
+                        index={i}
+                        intro={intro}
+                        onLight={onLight}
                         palette={palette}
                         myRowGlow={myRowGlow}
                         themeMode={themeMode}
@@ -961,6 +976,23 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                         lang={lang}
                       />
                     ))}
+                    {hiddenMembers > 0 && (
+                      <Text style={{
+                        color: t.textGhost, fontSize: f.caption,
+                        textAlign: 'center', paddingVertical: 8,
+                      }}>
+                        {`+${hiddenMembers} `}{triLang(lang, {
+  ru: 'участников',
+  uk: 'учасників',
+  es: 'participantes',
+  "pt-BR": 'participantes',
+  vi: 'người tham gia',
+  id: 'peserta',
+  tr: 'katılımcı',
+  pl: 'uczestników',
+})}
+                      </Text>
+                    )}
                   </View>
                 </Animated.View>
 
@@ -972,17 +1004,18 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       marginTop: 10,
                       borderRadius: 14,
                       overflow: 'hidden',
-                      opacity: rewardOp,
-                      transform: [{ scale: rewardScale }],
+                      ...introStyle(0.62, 0.84, 12),
                     }}
                   >
                     <LinearGradient
-                      colors={[palette.primary + '20', palette.primary + '08']}
+                      colors={onLight
+                        ? [palette.primary + '0F', palette.primary + '06']
+                        : [palette.primary + '20', palette.primary + '08']}
                       start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
                       style={{
                         flexDirection: 'row', alignItems: 'center', gap: 10,
                         paddingHorizontal: 12, paddingVertical: 10,
-                        borderWidth: 0, borderColor: palette.primary + '33', borderRadius: 14,
+                        borderRadius: 14,
                       }}
                     >
                       <View style={{
@@ -1040,10 +1073,8 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       marginTop: 10,
                       borderRadius: 14,
                       paddingHorizontal: 14, paddingVertical: 10,
-                      backgroundColor: 'rgba(255,255,255,0.04)',
-                      borderWidth: 0, borderColor: 'rgba(255,255,255,0.08)',
-                      opacity: rewardOp,
-                      transform: [{ scale: rewardScale }],
+                      backgroundColor: motivationBg,
+                      ...introStyle(0.62, 0.84, 12),
                     }}
                   >
                     <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
@@ -1055,7 +1086,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                 {/* ── CTA ─────────────────────────────────────────── */}
                 </ScrollView>
 
-                <Animated.View style={{ opacity: btnOp, paddingHorizontal: 18, paddingTop: 14, paddingBottom: 20 }}>
+                <Animated.View style={{ ...introStyle(0.7, 0.94, 12), paddingHorizontal: 18, paddingTop: 14, paddingBottom: 20 }}>
                   <TouchableOpacity
                     testID="league-result-continue-button"
                     activeOpacity={0.9}
@@ -1078,7 +1109,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                         style={{ paddingVertical: 16, alignItems: 'center', justifyContent: 'center' }}
                       >
                         <Text style={{
-                          color: '#FFFFFF',
+                          color: ctaTextColor,
                           fontSize: f.bodyLg,
                           fontWeight: '900',
                           letterSpacing: 0.5,
@@ -1139,12 +1170,19 @@ const MEDAL_TOKEN: Record<1 | 2 | 3, { grad: [string, string]; ink: string; ring
 };
 
 /** Круглый металлический жетон места — замена эмодзи-медали. */
-const MedalToken = memo(function MedalToken({ place, size = 22 }: { place: 1 | 2 | 3; size?: number }) {
+const MedalToken = memo(function MedalToken({ place, size = 22, onLight = false }: {
+  place: 1 | 2 | 3;
+  size?: number;
+  /** На светлой карточке белая обводка жетона исчезает — берём тёмную. */
+  onLight?: boolean;
+}) {
   const cfg = MEDAL_TOKEN[place];
   return (
     <View style={{
       width: size, height: size, borderRadius: size / 2, overflow: 'hidden',
-      borderWidth: 1.5, borderColor: cfg.ring, alignItems: 'center', justifyContent: 'center',
+      borderWidth: 1.5,
+      borderColor: onLight ? 'rgba(23,32,29,0.24)' : cfg.ring,
+      alignItems: 'center', justifyContent: 'center',
       shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { width: 0, height: 1 },
     }}>
       <LinearGradient colors={cfg.grad} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={StyleSheet.absoluteFill} />
@@ -1155,10 +1193,16 @@ const MedalToken = memo(function MedalToken({ place, size = 22 }: { place: 1 | 2
 });
 
 const PodiumColumn = memo(function PodiumColumn({
-  member, place, themeMode, t, f, lang,
+  member, place, intro, from, onLight, themeMode, t, f, lang,
 }: {
   member: GroupMember;
   place: 1 | 2 | 3;
+  /** Общий драйвер каскада модалки (0→1). */
+  intro: Animated.Value;
+  /** Точка старта этой колонны на шкале каскада. */
+  from: number;
+  /** Светлая ли карточка — от этого зависят читаемые тона металлов. */
+  onLight: boolean;
   themeMode: string;
   t: any;
   f: any;
@@ -1166,6 +1210,33 @@ const PodiumColumn = memo(function PodiumColumn({
 }) {
   const cfg    = PODIUM_COLORS[place];
   const height = PODIUM_HEIGHTS[place];
+  // Металлы придуманы для тёмного фона: серебро на белом даёт 1.6:1. Для
+  // ТЕКСТА берём затемнённый тон (AA), для САМОЙ КОЛОННЫ — чуть притушенный,
+  // иначе светлая плашка сливается с карточкой.
+  const inkColor = onLight ? readableOn(cfg.primary, t.bgPrimary, 4.5) : cfg.primary;
+  const barColor = onLight ? readableOn(cfg.primary, '#FFFFFF', 2.2) : cfg.primary;
+  const to     = Math.min(from + 0.2, 1);
+  const headStyle = useMemo(() => ({
+    opacity: intro.interpolate({ inputRange: [from, to], outputRange: [0, 1], extrapolate: 'clamp' as const }),
+    transform: [{
+      translateY: intro.interpolate({
+        inputRange: [from, to], outputRange: [10, 0], extrapolate: 'clamp' as const,
+      }),
+    }],
+  }), [intro, from, to]);
+  // Рост колонны снизу вверх. У RN нет transformOrigin, поэтому классический
+  // приём: сдвинуть на половину высоты, масштабировать, вернуть обратно.
+  const growStyle = useMemo(() => ({
+    transform: [
+      { translateY: height / 2 },
+      {
+        scaleY: intro.interpolate({
+          inputRange: [from, to], outputRange: [0.02, 1], extrapolate: 'clamp' as const,
+        }),
+      },
+      { translateY: -height / 2 },
+    ],
+  }), [intro, from, to, height]);
   const xp     = member?.totalXp ?? 0;
   const avatar = member?.avatar ?? String(getBestAvatarForLevel(getLevelFromXP(xp)));
   const effectiveAura = getEffectiveAvatarAuraId(member?.aura, member?.isPremium, member?.isVip);
@@ -1175,7 +1246,7 @@ const PodiumColumn = memo(function PodiumColumn({
   return (
     <View style={{ flex: 1, alignItems: 'center', maxWidth: 110 }}>
       {/* Аватар + медаль */}
-      <View style={{ alignItems: 'center', marginBottom: 6 }}>
+      <Animated.View style={{ ...headStyle, alignItems: 'center', marginBottom: 6 }}>
         <PremiumAvatarHalo
           enabled={usesPremiumAura}
           avatarSize={place === 1 ? 44 : 36}
@@ -1189,27 +1260,29 @@ const PodiumColumn = memo(function PodiumColumn({
           />
         </PremiumAvatarHalo>
         <View style={{ position: 'absolute', top: -8, right: -8 }}>
-          <MedalToken place={place} size={place === 1 ? 24 : 20} />
+          <MedalToken place={place} size={place === 1 ? 24 : 20} onLight={onLight} />
         </View>
-      </View>
+      </Animated.View>
 
       {/* Имя */}
       {/* зачем: убран авто-сжимающий пропс шрифта (запрещённый паттерн, контракт layout
           stability) — имя уже обрезано до 10 символов выше (name = member?.name?.slice(0, 10)),
           так что при f.caption и maxWidth 104 оно и без сжатия помещается в одну строку;
           numberOfLines=1 подстрахует. guard-ok */}
-      <Text
+      <Animated.Text
         numberOfLines={1}
-        style={memberNameStatusStyle(
+        style={[memberNameStatusStyle(
           {
-            color: member?.isMe ? cfg.primary : t.textPrimary,
+            color: member?.isMe ? inkColor : t.textPrimary,
             fontSize: f.caption,
             fontWeight: member?.isMe ? '900' : '700',
             maxWidth: 104,
             textAlign: 'center',
           },
-          { isPremium: !!member?.isPremium, isVip: !!member?.isVip, themeMode },
-        )}
+          // surface: под ником лежит тело карточки — по нему и подбирается
+          // читаемый оттенок золота для Plus/VIP.
+          { isPremium: !!member?.isPremium, isVip: !!member?.isVip, themeMode, surface: t.bgPrimary },
+        ), headStyle]}
       >
         {name}{member?.isMe ? triLang(lang, {
   ru: ' (ты)',
@@ -1221,31 +1294,32 @@ const PodiumColumn = memo(function PodiumColumn({
   tr: ' (sen)',
   pl: ' (ty)',
 }) : ''}
-      </Text>
+      </Animated.Text>
 
       {/* Очки */}
-      <Text style={{ color: cfg.primary, fontSize: f.caption, fontWeight: '800', marginTop: 1 }}>
+      <Animated.Text style={{ ...headStyle, color: inkColor, fontSize: f.caption, fontWeight: '800', marginTop: 1 }}>
         {member?.points ?? 0}
-      </Text>
+      </Animated.Text>
 
       {/* Колонна */}
-      <LinearGradient
-        colors={[cfg.primary, cfg.primary + '88']}
-        start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
-        style={{
-          width: '92%',
-          height,
-          borderTopLeftRadius: 8, borderTopRightRadius: 8,
-          marginTop: 6,
-          alignItems: 'center', justifyContent: 'center',
-          shadowColor: cfg.glow,
-          shadowOffset: { width: 0, height: 4 },
-          shadowOpacity: 0.35,
-          shadowRadius: 6,
-        }}
-      >
-        <Text style={{ color: 'rgba(0,0,0,0.55)', fontSize: 18, fontWeight: '900' }}>{place}</Text>
-      </LinearGradient>
+      <Animated.View style={{ ...growStyle, width: '92%', marginTop: 6 }}>
+        <LinearGradient
+          colors={[barColor, barColor + (onLight ? 'BB' : '88')]}
+          start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
+          style={{
+            width: '100%',
+            height,
+            borderTopLeftRadius: 8, borderTopRightRadius: 8,
+            alignItems: 'center', justifyContent: 'center',
+            shadowColor: cfg.glow,
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.35,
+            shadowRadius: 6,
+          }}
+        >
+          <Text style={{ color: 'rgba(0,0,0,0.55)', fontSize: 18, fontWeight: '900' }}>{place}</Text>
+        </LinearGradient>
+      </Animated.View>
     </View>
   );
 });
@@ -1254,10 +1328,14 @@ const PodiumColumn = memo(function PodiumColumn({
 //  GroupRow — строка участника группы
 // ════════════════════════════════════════════════════════════════════════════
 const GroupRow = memo(function GroupRow({
-  member, place, palette, myRowGlow, themeMode, t, f, lang,
+  member, place, index, intro, onLight, palette, myRowGlow, themeMode, t, f, lang,
 }: {
   member: GroupMember;
   place: number;
+  /** Порядковый номер строки — задаёт задержку в каскаде появления. */
+  index: number;
+  intro: Animated.Value;
+  onLight: boolean;
   palette: { primary: string; accent: string; glow: string };
   myRowGlow: Animated.Value;
   themeMode: string;
@@ -1271,16 +1349,38 @@ const GroupRow = memo(function GroupRow({
   const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   const isTop3 = place <= 3;
   const rowBg  = member.isMe
-    ? palette.primary + '22'
+    ? palette.primary + (onLight ? '1A' : '22')
     : 'transparent';
+  // t.gold в светлой теме (#8B6320) даёт на теле карточки 4.05:1 — чуть ниже AA.
+  // Дотягиваем локально, не трогая токен темы: он используется десятками экранов.
+  const pointsColor = isTop3
+    ? (onLight ? readableOn(t.gold, t.bgPrimary, 4.5) : t.gold)
+    : member.isMe ? palette.primary : t.textMuted;
 
   const glowOpacity = useMemo(
     () => myRowGlow.interpolate({ inputRange: [0, 1], outputRange: [0.35, 0.95] }),
     [myRowGlow],
   );
 
+  // Каскад строк: первые ROW_CASCADE_LIMIT выезжают волной, остальные видны
+  // сразу — ниже сгиба их всё равно не видно, а интерполяции стоят кадров.
+  const rowStyle = useMemo(() => {
+    if (index >= ROW_CASCADE_LIMIT) return null;
+    const from = Math.min(0.54 + index * 0.035, 0.94);
+    const to = Math.min(from + 0.14, 1);
+    return {
+      opacity: intro.interpolate({ inputRange: [from, to], outputRange: [0, 1], extrapolate: 'clamp' as const }),
+      transform: [{
+        translateX: intro.interpolate({
+          inputRange: [from, to], outputRange: [14, 0], extrapolate: 'clamp' as const,
+        }),
+      }],
+    };
+  }, [intro, index]);
+
   return (
-    <View style={{
+    <Animated.View style={{
+      ...(rowStyle ?? {}),
       flexDirection: 'row', alignItems: 'center',
       paddingHorizontal: 10, paddingVertical: 8,
       marginVertical: 2,
@@ -1307,7 +1407,7 @@ const GroupRow = memo(function GroupRow({
       {/* Место */}
       <View style={{ width: 28, alignItems: 'center', marginRight: 6 }}>
         {isTop3 ? (
-          <MedalToken place={place as 1 | 2 | 3} size={22} />
+          <MedalToken place={place as 1 | 2 | 3} size={22} onLight={onLight} />
         ) : (
           <Text style={{
             color: t.textMuted, fontSize: f.body, fontWeight: '700',
@@ -1337,7 +1437,7 @@ const GroupRow = memo(function GroupRow({
             color: member.isMe ? t.textPrimary : t.textPrimary,
             fontWeight: member.isMe ? '800' : '600',
           },
-          { isPremium: !!member.isPremium, isVip: !!member.isVip, themeMode },
+          { isPremium: !!member.isPremium, isVip: !!member.isVip, themeMode, surface: t.bgPrimary },
         )}
       >
         {member.name}{member.isMe ? triLang(lang, {
@@ -1357,16 +1457,16 @@ const GroupRow = memo(function GroupRow({
         <Ionicons
           name="star"
           size={12}
-          color={isTop3 ? t.gold : member.isMe ? palette.primary : t.textMuted}
+          color={pointsColor}
         />
         <Text style={{
-          color: isTop3 ? t.gold : member.isMe ? palette.primary : t.textMuted,
+          color: pointsColor,
           fontSize: f.body,
           fontWeight: '800',
         }}>
           {member.points}
         </Text>
       </View>
-    </View>
+    </Animated.View>
   );
 });

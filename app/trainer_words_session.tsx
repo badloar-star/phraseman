@@ -36,7 +36,6 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import {
   getCachedDueItems,
   getDueItems,
-  getTrainerPremiumItemsForPlanQueue,
   markTrainerResult,
   type TrainerItem,
 } from './trainer_store';
@@ -49,7 +48,6 @@ import {
   type WordSessionCard,
 } from './trainer_practice_hall';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
 // зачем: premium_guard больше не нужен — тренажёр бесплатный, гейт smart_trainer снят.
 import { checkAchievements } from './achievements';
@@ -60,11 +58,21 @@ import TrainerSessionReport from './trainer_session_report';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import { isStudyTargetSourceUiLang } from './study_target_lang_dev';
+// cards-2.1 (§6 SPEC_2_1): ?deck= принимает СПИСОК колод через запятую
+// (`?deck=saved,custom,pack:abc`) — колоды объединяются в одну перемешанную
+// (loadDeckCardsMulti), а источник ошибки берётся с самой карточки (DeckCard.source),
+// чтобы ошибка попала в правильную очередь повторения.
 import {
-  markTrainerPlanTaskCompleted,
-  readTrainerPlanTaskContext,
-  type TrainerPlanTaskRouteParams,
-} from './trainer_plan_task_route';
+  loadDeckCardsMulti,
+  mistakeSourceForDecks,
+  parseDeckParams,
+  type DeckCard,
+  type DeckRef,
+} from './flashcards/deck_sources';
+import { decksCountLabel } from './flashcards/deck_selection';
+import { isValidSessionSize } from './flashcards/mode_prefs';
+import { flashcardContentLang } from './spanish_content_gate';
+import { recordMistake } from './active_recall';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const { width: SCREEN_W } = Dimensions.get('window');
@@ -228,34 +236,58 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode, onSpeakWord }
         {card.shownTranslation}
       </Text>
 
-      {/* Подсказка управления */}
-      <Text style={[styles.cardHint, { color: t.textGhost }]}>
-        {triLang(lang, {
-          ru: 'Свайп или кнопки',
-          uk: 'Свайп або кнопки',
-          es: 'Desliza o usa botones',
-          'pt-BR': 'Deslize ou use botões',
-          vi: 'Vuốt hoặc dùng nút',
-          id: 'Geser atau pakai tombol',
-          tr: 'Kayır veya düğmeleri kullan',
-          pl: 'Przesuń lub użyj przycisków',
-        })}
-      </Text>
+      {/* FIX (владелец, 2026-08-13): подсказку «свайп или кнопки» убрали —
+          способ ответа очевиден из самих кнопок, лишняя строка шумит. */}
 
     </Animated.View>
   );
 }
 
+/**
+ * cards-2.1 (§6): карточка колоды → синтетический TrainerItem, чтобы deck-сессия
+ * переиспользовала тот же рендер и подбор ложного перевода, что и обычная.
+ * В trainer_store такие item'ы не попадают.
+ */
+function deckCardToTrainerItem(c: DeckCard): TrainerItem {
+  return {
+    key: c.en,
+    queue: 'words',
+    translationRu: c.ru || c.translation,
+    translationUk: c.uk || c.ru || c.translation,
+    translationEs: c.es,
+    lessonId: 0,
+    mistakeCount: 0,
+    correctStreak: 0,
+    nextDue: 0,
+    createdAt: Date.now(),
+    archived: false,
+  };
+}
+
 // ── Основной экран ────────────────────────────────────────────────────────────
 export default function TrainerWordsSession() {
   const router = useRouter();
-  const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
+  const params = useLocalSearchParams<{ deck?: string | string[]; size?: string | string[] }>();
   const { theme: t, f, themeMode } = useTheme();
   const accent = statsThemeAccent(themeMode);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
+  /**
+   * cards-2.1 (§6): deck-режим (`?deck=saved,custom,pack:abc` — СПИСОК колод);
+   * пустой список — обычная due-очередь тренера (поведение без ?deck= не меняется).
+   */
+  const deckParamStr = Array.isArray(params.deck) ? params.deck[0] : params.deck;
+  const deckRefs = useMemo<DeckRef[]>(() => parseDeckParams(deckParamStr), [deckParamStr]);
+  const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
+  const sessionSize = useMemo(() => {
+    const raw = Array.isArray(params.size) ? params.size[0] : params.size;
+    const n = raw ? parseInt(raw, 10) : NaN;
+    return isValidSessionSize(n) ? n : WORD_SESSION_LIMIT;
+  }, [params.size]);
+  /** Карточка колоды по ключу — источник ошибки при мультивыборе (§6). */
+  const deckCardByKeyRef = useRef<Map<string, DeckCard>>(new Map());
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
   const { playCorrect } = useCorrectSound();
   const { speakAnswer } = useSpeakAnswer();
@@ -268,7 +300,7 @@ export default function TrainerWordsSession() {
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
 
   const warmDeckRef = useRef<WordSessionCard[] | null>(
-    !trainerGateOpen || params.planTaskId || params.planTrainerTask
+    !trainerGateOpen || deckRefs.length > 0
       ? null
       : getWarmWordSessionDeck(WORD_SESSION_LIMIT, studyTarget, sourceLocale, lang),
   );
@@ -283,25 +315,7 @@ export default function TrainerWordsSession() {
   const [loadError, setLoadError] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
   const allItemsRef = useRef<TrainerItem[]>(warmDeck?.map((card) => card.item) ?? []);
-  const planTrainerCompletionTracked = useRef(false);
   const sessionStartRef = useRef(0);
-  const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
-    mode: params.mode,
-    planDayIndex: params.planDayIndex,
-    planId: params.planId,
-    planInstanceId: params.planInstanceId,
-    planTaskId: params.planTaskId,
-    planTrainerTask: params.planTrainerTask,
-    requiredItems: params.requiredItems,
-  }), [
-    params.mode,
-    params.planDayIndex,
-    params.planId,
-    params.planInstanceId,
-    params.planTaskId,
-    params.planTrainerTask,
-    params.requiredItems,
-  ]);
   // Ref к функции swipeOut текущей карточки — для кнопок
   const swipeOutRef = useRef<((dir: 'right' | 'left') => void) | null>(null);
 
@@ -343,15 +357,27 @@ export default function TrainerWordsSession() {
         }
         if (startedWarm) sessionStartRef.current = Date.now();
         setAccessReady(true);
-        const items = planTrainerContext.taskId
-          ? await getTrainerPremiumItemsForPlanQueue(
-              planTrainerContext.planInstanceId,
-              planTrainerContext.mode,
-              'words',
-              planTrainerContext.requiredItems,
-              studyTarget,
-            )
-          : await getDueItems('words', 20, studyTarget, sourceLocale);
+
+        if (deckRefs.length > 0) {
+          // cards-2.1 (§6): одна или несколько колод вместо trainer_store.
+          // loadDeckCardsMulti уже объединяет, дедуплицирует и перемешивает —
+          // остаётся только срез по размеру сессии из пресета.
+          const pool = await loadDeckCardsMulti(deckRefs, cardContentLang);
+          if (cancelled) return;
+          const sessionCards = pool.slice(0, sessionSize);
+          if (sessionCards.length === 0) { setDone(true); setLoading(false); return; }
+          const byKey = new Map<string, DeckCard>();
+          for (const c of sessionCards) byKey.set(c.en, c);
+          deckCardByKeyRef.current = byKey;
+          const deckItems = sessionCards.map((c) => deckCardToTrainerItem(c));
+          allItemsRef.current = deckItems;
+          sessionStartRef.current = Date.now();
+          setDeck(buildTrainerWordSessionDeck(deckItems, lang));
+          setLoading(false);
+          return;
+        }
+
+        const items = await getDueItems('words', 20, studyTarget, sourceLocale);
         if (cancelled) return;
         allItemsRef.current = items;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
@@ -373,7 +399,7 @@ export default function TrainerWordsSession() {
       }
     })();
     return () => { cancelled = true; };
-  }, [lang, planTrainerContext, router, sourceLocale, studyTarget, trainerGateOpen, reloadKey]);
+  }, [lang, router, sourceLocale, studyTarget, trainerGateOpen, reloadKey, deckRefs, cardContentLang, sessionSize]);
 
   const handleSwipe = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -389,14 +415,25 @@ export default function TrainerWordsSession() {
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
 
-    await markTrainerResult(card.item.key, 'words', answeredCorrectly, studyTarget);
-    const updates: { type: TaskType; increment: number }[] = [];
-    // «Моя практика» продвигает только собственный trainer_words-вызов.
-    // SRS recall_* принадлежит исключительно экрану /review.
+    if (deckRefs.length === 0) {
+      await markTrainerResult(card.item.key, 'words', answeredCorrectly, studyTarget);
+    } else {
+      // Deck-сессия: SRS тренера не трогаем (прогресс сессии локален).
+      // Уникальные ошибочные карточки уходят в очередь повторения; источник берём
+      // с карточки — при «saved + pack» ошибка из пака не уедет в чужую очередь.
+      if (!answeredCorrectly) {
+        const c = deckCardByKeyRef.current.get(card.item.key);
+        if (c) {
+          const fallbackSource = mistakeSourceForDecks(deckRefs);
+          const source = c.source ?? fallbackSource;
+          await recordMistake(c.en, c.ru || c.translation, 0, c.uk, source, c.es, undefined, studyTarget)
+            .catch(() => {});
+        }
+      }
+    }
     if (answeredCorrectly) {
       playCorrect();
       speakAnswer(card.item.key, studyTarget);
-      updates.push({ type: 'trainer_words', increment: 1 });
       checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
     } else if (!energyRef.current.energyUnlimited) {
       // При ОШИБКЕ тратим энергию — та же механика, что в review.tsx/lesson1.tsx.
@@ -405,10 +442,6 @@ export default function TrainerWordsSession() {
       const totalBefore = energyRef.current.energy + energyRef.current.bonusEnergy;
       spendOne().then((success) => {
         if (!success) return;
-        // зачем: аудит нашёл, что дневное задание «потрать энергию» (es1-es4, до 66 XP)
-        // никогда не засчитывалось из этого экрана — lesson1.tsx/review.tsx шлют этот
-        // инкремент, а «Моя практика» — нет. Квест молча не продвигался у части юзеров.
-        updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }], { studyTarget }).catch(() => {});
         setTimeout(() => {
           const totalAfter = energyRef.current.energy + energyRef.current.bonusEnergy;
           if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
@@ -429,8 +462,7 @@ export default function TrainerWordsSession() {
     } else {
       setCurrent(next);
     }
-    if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
-  }, [deck, current, correct, wrong, studyTarget, playCorrect, speakAnswer, spendOne, noEnergyModalOpen]);
+  }, [deck, current, correct, wrong, studyTarget, playCorrect, speakAnswer, spendOne, noEnergyModalOpen, deckRefs]);
 
   const handleButton = useCallback((dir: 'right' | 'left') => {
     if (noEnergyModalOpen) return;
@@ -438,12 +470,6 @@ export default function TrainerWordsSession() {
     // tap убран, иначе складывался с сигналом результата в один сильный удар.
     swipeOutRef.current?.(dir);
   }, [noEnergyModalOpen]);
-
-  useEffect(() => {
-    if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
-    planTrainerCompletionTracked.current = true;
-    void markTrainerPlanTaskCompleted(planTrainerContext, studyTarget);
-  }, [done, planTrainerContext, studyTarget]);
 
   if (loadError) {
     return (
@@ -483,10 +509,8 @@ export default function TrainerWordsSession() {
     // зачем: симметрично фразовой сессии — сначала проверяем остаток СВОИХ
     // слов (лимит пачки WORD_SESSION_LIMIT мог обрезать очередь), и только
     // если слов больше не осталось — предлагаем фразы (включая арену).
-    const moreWordsChain = planTrainerContext.taskId
-      ? []
-      : getCachedDueItems('words', WORD_SESSION_LIMIT, studyTarget, sourceLocale);
-    const phrasesChain = planTrainerContext.taskId || moreWordsChain.length > 0
+    const moreWordsChain = getCachedDueItems('words', WORD_SESSION_LIMIT, studyTarget, sourceLocale);
+    const phrasesChain = moreWordsChain.length > 0
       ? []
       : getCachedPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
     const nextLabel = moreWordsChain.length > 0
@@ -524,7 +548,7 @@ export default function TrainerWordsSession() {
               total={deck.length || correct + wrong}
               accent={accent}
               durationMs={sessionStartRef.current > 0 ? Date.now() - sessionStartRef.current : undefined}
-              onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
+              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
               nextLabel={nextLabel}
               onNext={nextLabel ? () => { hapticTap(); router.replace(nextRoute as any); } : undefined}
@@ -541,7 +565,7 @@ export default function TrainerWordsSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TapScale onPress={() => safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any)} style={{ padding: 4 }}>
+            <TapScale onPress={() => safeRouterBack(router, '/trainer' as any)} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
             <View style={styles.headerRight}>
@@ -616,25 +640,16 @@ export default function TrainerWordsSession() {
               <Ionicons name="checkmark" size={30} color={t.correct} />
             </TouchableOpacity>
           </View>
-          <Text style={[styles.buttonsCaption, { color: t.textGhost }]}>
-            {triLang(lang, {
-              ru: 'неправильно · правильно',
-              uk: 'неправильно · правильно',
-              es: 'incorrecto · correcto',
-              'pt-BR': 'incorreto · correto',
-              vi: 'sai · đúng',
-              id: 'salah · benar',
-              tr: 'yanlış · doğru',
-              pl: 'źle · dobrze',
-            })}
-          </Text>
+          {/* FIX (владелец, 2026-08-13): текстовых подписей «правильно /
+              неправильно» под кнопками нет — только иконки. Смысл кнопок
+              остаётся доступным через accessibilityLabel выше. */}
 
         </ContentWrap>
       </SafeAreaView>
       <NoEnergyModal
         visible={noEnergyModalOpen}
         onClose={() => { energyGateDismissedRef.current = true; setNoEnergyModalOpen(false); }}
-        onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
+        onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, '/trainer' as any); }}
       />
     </ScreenGradient>
   );
@@ -717,20 +732,14 @@ const styles = StyleSheet.create({
   },
   wordEn: { fontWeight: '900', textAlign: 'center' },
   wordRu: { fontWeight: '600', textAlign: 'center', marginTop: 6 },
-  cardHint: {
-    position: 'absolute',
-    bottom: 16,
-    fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 0.6,
-    textTransform: 'uppercase',
-  },
   buttonsRow: {
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 22,
     paddingTop: 6,
-    paddingBottom: 12,
+    // Подпись под кнопками убрана — её нижний отступ переехал сюда,
+    // чтобы ряд не «прилипал» к краю экрана.
+    paddingBottom: 24,
   },
   roundBtn: {
     width: 62,
@@ -738,12 +747,6 @@ const styles = StyleSheet.create({
     borderRadius: 31,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  buttonsCaption: {
-    textAlign: 'center',
-    fontSize: 10,
-    fontWeight: '700',
-    paddingBottom: 12,
   },
   doneContainer: {
     flex: 1,

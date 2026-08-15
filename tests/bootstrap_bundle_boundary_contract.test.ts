@@ -16,7 +16,6 @@ const COURSE_PACK_RUNTIME_FILES = [
 ] as const;
 
 const HEAVY_CONTENT_IMPORT_FRAGMENTS = [
-  'plan_content_',
   'quiz_data',
   'quiz_source_locale_payloads',
   'lesson_data',

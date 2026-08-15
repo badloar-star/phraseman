@@ -4,6 +4,7 @@ import {
   buildAvatarCatalog,
   filterCatalog,
 } from '../app/customization_catalog';
+import { replaceCosmeticSaleOverrides } from '../constants/cosmetic_asset_availability';
 
 const baseContext = {
   activeAvatar: 'custom:custom-gen-41:violet:black',
@@ -16,6 +17,8 @@ const baseContext = {
 };
 
 describe('customization catalog', () => {
+  afterEach(() => replaceCosmeticSaleOverrides({}, 0));
+
   it('never exposes level avatars', () => {
     const items = buildAvatarCatalog({ ownedAvatars: {}, giftedAvatarId: null, activeAvatar: '1' });
     expect(items.every((item) => item.kind === 'custom-avatar')).toBe(true);
@@ -42,14 +45,39 @@ describe('customization catalog', () => {
     expect(item?.availability).toEqual({ kind: 'shards', cost: 90 });
   });
 
+  it('lets the server remove an avatar from sale without taking it from an owner', () => {
+    replaceCosmeticSaleOverrides({ 'avatar:custom-gen-41': false }, 1);
+
+    expect(buildAvatarCatalog({ ownedAvatars: {}, giftedAvatarId: null, activeAvatar: '1' })
+      .some((item) => item.id === 'custom-gen-41')).toBe(false);
+    expect(buildAvatarCatalog({
+      ownedAvatars: { 'custom-gen-41': 'violet:black' },
+      giftedAvatarId: null,
+      activeAvatar: '1',
+    }).find((item) => item.id === 'custom-gen-41')).toMatchObject({
+      isOwned: true,
+      availability: { kind: 'owned' },
+    });
+  });
+
+  it('lets the server return an archived reward avatar to sale', () => {
+    replaceCosmeticSaleOverrides({ 'avatar:custom-gen-01': true }, 2);
+
+    expect(buildAvatarCatalog({ ownedAvatars: {}, giftedAvatarId: null, activeAvatar: '1' })
+      .find((item) => item.id === 'custom-gen-01')).toMatchObject({
+      isOwned: false,
+      availability: { kind: 'shards', cost: 90 },
+    });
+  });
+
   it('prices a purchasable aura at 120 shards', () => {
     const item = buildAuraCatalog(baseContext)
-      .find((candidate) => candidate.id === 'aura-aurora');
+      .find((candidate) => candidate.id === 'aura-ember');
 
     expect(item?.availability).toEqual({ kind: 'shards', cost: 120 });
   });
 
-  it.each(['aura-mint', 'aura-coral'])('restores %s for purchase and owned selection', (id) => {
+  it.each(['aura-ember', 'aura-mint', 'aura-prism'])('keeps %s for purchase and owned selection', (id) => {
     const purchasable = buildAuraCatalog(baseContext)
       .find((candidate) => candidate.id === id);
     const owned = buildAuraCatalog({
@@ -69,10 +97,24 @@ describe('customization catalog', () => {
     });
   });
 
+  it('lets the server return a retired aura to sale and later archive it again', () => {
+    replaceCosmeticSaleOverrides({ 'aura:aura-aurora': true }, 3);
+    expect(buildAuraCatalog(baseContext).find((item) => item.id === 'aura-aurora'))
+      .toMatchObject({ isOwned: false, availability: { kind: 'shards', cost: 120 } });
+
+    replaceCosmeticSaleOverrides({ 'aura:aura-aurora': false }, 4);
+    expect(buildAuraCatalog(baseContext).some((item) => item.id === 'aura-aurora')).toBe(false);
+    expect(buildAuraCatalog({
+      ...baseContext,
+      ownedAuras: { 'aura-aurora': true },
+    }).find((item) => item.id === 'aura-aurora'))
+      .toMatchObject({ isOwned: true, availability: { kind: 'owned' } });
+  });
+
   it.each([
     ['aura-plus', 'plus'],
     ['aura-pro', 'pro'],
-    ['aura-aurora', 'shards'],
+    ['aura-ember', 'shards'],
   ] as const)('classifies %s as %s', (id, expected) => {
     expect(buildAuraCatalog(baseContext).find((item) => item.id === id)?.availability.kind).toBe(expected);
   });
@@ -123,8 +165,8 @@ describe('customization catalog', () => {
   it('mine contains only owned/access-granted items plus none aura', () => {
     const items = buildAuraCatalog({
       ...baseContext,
-      activeAuraId: 'aura-aurora',
-      ownedAuras: { 'aura-aurora': true },
+      activeAuraId: 'aura-ember',
+      ownedAuras: { 'aura-ember': true },
     });
     expect(filterCatalog(items, 'mine').every((item) => item.isOwned || item.id === 'none')).toBe(true);
   });

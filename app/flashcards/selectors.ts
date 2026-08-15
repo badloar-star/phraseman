@@ -165,3 +165,26 @@ const FILTER_ALL_LABELS: Record<Lang, string> = {
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }
+
+/**
+ * E11: нормализация строки поиска — lowercase, ё→е, трим.
+ * Чистая функция (юнит-тест tests/fc_collection_search.test.ts).
+ */
+export function normalizeSearchText(s: string): string {
+  return (s ?? '').toLowerCase().replace(/ё/g, 'е').trim();
+}
+
+/**
+ * E11 (§3.2): поиск по загруженному массиву — substring по en/ru/uk/es.
+ * Пустой/пробельный запрос возвращает исходный массив (та же ссылка — не рвём memo).
+ */
+export function searchCards(cards: CardItem[], query: string): CardItem[] {
+  const list = cards ?? [];
+  const q = normalizeSearchText(query);
+  if (!q) return list;
+  return list.filter((c) =>
+    [c.en, c.ru, c.uk, c.es].some(
+      (field) => !!field && normalizeSearchText(field).includes(q),
+    ),
+  );
+}

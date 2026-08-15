@@ -372,7 +372,7 @@ conversion_events AS (
     *,
     CASE
       WHEN paywall_context IN (
-        'personal_plan', 'generic', 'settings', 'manage', 'level_up',
+        'generic', 'settings', 'manage', 'level_up',
         'streak', 'lesson', 'intro_ended', 'onboarding_plan', 'onboarding',
         'automatic', 'afterwin', 'direct', 'winback', 'referral', 'home'
       ) THEN paywall_context

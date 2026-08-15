@@ -64,7 +64,7 @@ describe('server-owned learning cohort metrics', () => {
     });
   });
 
-  test.each(['lesson_complete', 'dialog_complete', 'exam_complete', 'plan_task_complete'])(
+  test.each(['lesson_complete', 'dialog_complete', 'exam_complete'])(
     'records %s as a trusted learning completion',
     async (eventType) => {
       const prepared = await prepareLearningCompletionMetrics({

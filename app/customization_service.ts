@@ -22,6 +22,10 @@ export interface CustomizationServiceDeps {
     level: number,
     storedAuraSelection: string | null,
   ) => void | Promise<void>;
+  createAccountScope?: () => {
+    isCurrent: () => boolean;
+    runExclusive: <T>(work: () => Promise<T>) => Promise<T | undefined>;
+  };
 }
 
 function snapshotForInput(
@@ -44,31 +48,80 @@ function alreadyApplied(previous: CustomizationSnapshot, input: ApplyCustomizati
     && previous.level === Math.max(1, Math.floor(input.level));
 }
 
+function settleCustomizationBackgroundWork(work: () => void | Promise<void>): Promise<void> {
+  try {
+    return Promise.resolve(work()).then(() => undefined, () => undefined);
+  } catch {
+    return Promise.resolve();
+  }
+}
+
 async function applyCustomizationDraftInternal(
   input: ApplyCustomizationInput,
   deps: CustomizationServiceDeps,
   force: boolean,
 ): Promise<CustomizationSnapshot> {
-  const previous = deps.getCurrentSnapshot();
-  if (!force && alreadyApplied(previous, input)) return previous;
+  const accountScope = deps.createAccountScope?.();
+  const persistOptimisticSelection = async (): Promise<{
+    snapshot: CustomizationSnapshot;
+    changed: boolean;
+  }> => {
+    if (accountScope && !accountScope.isCurrent()) {
+      throw new Error('customization_account_changed');
+    }
+    const previous = deps.getCurrentSnapshot();
+    if (!force && alreadyApplied(previous, input)) {
+      return { snapshot: previous, changed: false };
+    }
 
-  const optimistic = snapshotForInput(previous, input);
-  deps.publishSnapshot(optimistic);
-  try {
-    await deps.storage.multiSet([
-      ['user_avatar', input.avatarValue],
-      ['user_frame', input.frameId],
-      [USER_AVATAR_AURA_KEY, input.storedAuraSelection ?? ''],
-    ]);
-  } catch (error) {
-    deps.publishSnapshot(previous);
-    throw error;
-  }
+    const optimistic = snapshotForInput(previous, input);
+    deps.publishSnapshot(optimistic);
+    try {
+      await deps.storage.multiSet([
+        ['user_avatar', input.avatarValue],
+        ['user_frame', input.frameId],
+        [USER_AVATAR_AURA_KEY, input.storedAuraSelection ?? ''],
+      ]);
+      if (accountScope && !accountScope.isCurrent()) {
+        throw new Error('customization_account_changed');
+      }
+    } catch (error) {
+      // При обычной ошибке диска откатываем оптимистичный кадр. После смены
+      // аккаунта старый snapshot публиковать уже нельзя: он перетрёт состояние
+      // нового владельца.
+      if (!accountScope || accountScope.isCurrent()) deps.publishSnapshot(previous);
+      throw error;
+    }
+    return { snapshot: optimistic, changed: true };
+  };
 
-  await deps.invalidateCaches(input.avatarValue, input.storedAuraSelection);
-  await deps.syncCloud(input.cloudSyncMode ?? 'deferred');
-  await deps.syncPublicProfile(input.avatarValue, input.level, input.storedAuraSelection);
-  return optimistic;
+  // Проверка поколения, чтение текущего снимка, оптимистичная публикация и
+  // локальный commit образуют одну account-транзакцию. Без этой границы смена
+  // аккаунта могла успеть очистить общий snapshot после первой проверки, а
+  // старый экран затем повторно публиковал в него аватар предыдущего владельца.
+  const localResult = accountScope
+    ? await accountScope.runExclusive(persistOptimisticSelection)
+    : await persistOptimisticSelection();
+  if (!localResult) throw new Error('customization_account_changed');
+  if (!localResult.changed) return localResult.snapshot;
+
+  // Local state is already visible and durable. Cache cleanup and both remote
+  // mirrors must never hold the Apply button or the rest of the UI hostage.
+  void Promise.all([
+    settleCustomizationBackgroundWork(() => {
+      if (accountScope && !accountScope.isCurrent()) return;
+      return deps.invalidateCaches(input.avatarValue, input.storedAuraSelection);
+    }),
+    settleCustomizationBackgroundWork(() => {
+      if (accountScope && !accountScope.isCurrent()) return;
+      return deps.syncCloud(input.cloudSyncMode ?? 'deferred');
+    }),
+    settleCustomizationBackgroundWork(() => {
+      if (accountScope && !accountScope.isCurrent()) return;
+      return deps.syncPublicProfile(input.avatarValue, input.level, input.storedAuraSelection);
+    }),
+  ]);
+  return localResult.snapshot;
 }
 
 export async function applyCustomizationDraft(

@@ -2071,6 +2071,25 @@ async function signOutAndWipeForAccountSwitchReserved(
         }
         if (!backedUp || !isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
       }
+      // General cloud sync does not own the Learning V2 completion spool.
+      // Always take one final account-wide snapshot while holding the same
+      // transition lock as local completion writers. This closes both the
+      // "general sync succeeded but completion is still pending" loss and the
+      // getAllKeys→multiGet race immediately before the wipe.
+      try {
+        const backedUp = await saveAccountSwitchEmergencyBackup(
+          'final_account_snapshot_before_switch',
+          switchOwnerStableId,
+        );
+        if (!backedUp) {
+          transitionFailure.backupDetail = 'account_switch_backup_unavailable';
+          return false;
+        }
+      } catch (e: any) {
+        transitionFailure.backupDetail = String(e?.message ?? e).slice(0, 80);
+        return false;
+      }
+      if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
       await beginEntitlementSafeAccountTransition();
       return true;
     }, ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS);
@@ -2207,7 +2226,6 @@ export type DeleteAccountHandoff =
  * повторные попытки удаления.
  */
 export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
-  const isProvablyAnonymousAccount = getAuth()?.currentUser?.isAnonymous === true;
   beginLocalAccountDeletionAttempt();
   let releaseTransitionReservation: () => void;
   try {
@@ -2234,7 +2252,10 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   }
 
   if (!prepared) {
-    if (!isProvablyAnonymousAccount) {
+    // зачем: связанный (почта/Apple) аккаунт нельзя выпускать без замка — тот же
+    // провайдер сразу восстановит данные. Для анонима блокировать нечего, поэтому
+    // ему удаление доводится до конца, как требовал владелец.
+    if (getAuth()?.currentUser?.isAnonymous !== true) {
       releaseTransitionReservation();
       endLocalAccountDeletionAttempt();
       return { ok: false, reason: 'pending_guard_persist_failed' };
@@ -2296,8 +2317,13 @@ type PreparedAccountDeletion = {
    */
   pendingDeleteLock: AccountDeletePendingAuthLock | null;
   pendingDeleteStableId: string | null;
-  requiresDurableServerDeletion: boolean;
   cloudDeleteEnqueueOperation: AccountDeleteEnqueueOperation<AccountDeleteEnqueueAck>;
+  /**
+   * зачем: связанный (почта/Apple) аккаунт обязан дождаться подтверждения сервера,
+   * иначе тот же провайдер войдёт заново и восстановит данные. Аноним такого
+   * ограничения не имеет — ему удаление доводится до конца сразу.
+   */
+  requiresDurableServerDeletion: boolean;
 };
 
 /**
@@ -2346,7 +2372,6 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null>
     () => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),
     null,
   );
-  if (!isProvablyAnonymousAccount && !pendingDeleteLock) return null;
   // зачем: владелец (2026-07-27) — «даже анонимный пользователь должен иметь
   // возможность удалить всё; локальные данные стираются сразу и мгновенный
   // переход на первый экран онбординга». Поэтому локальная очистка живёт ЗДЕСЬ,
@@ -2374,8 +2399,8 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null>
   return {
     pendingDeleteLock,
     pendingDeleteStableId,
-    requiresDurableServerDeletion: !isProvablyAnonymousAccount,
     cloudDeleteEnqueueOperation,
+    requiresDurableServerDeletion: !isProvablyAnonymousAccount,
   };
 }
 
@@ -2386,8 +2411,8 @@ async function finishAccountDeletion(
   const {
     pendingDeleteLock,
     pendingDeleteStableId,
-    requiresDurableServerDeletion,
     cloudDeleteEnqueueOperation,
+    requiresDurableServerDeletion,
   } = prepared;
     let localExitLock = pendingDeleteLock;
     if (pendingDeleteStableId) {
@@ -2455,6 +2480,9 @@ async function finishAccountDeletion(
         return { ok: false, reason: 'account_delete_enqueue_failed' };
       }
     } else {
+      // зачем: для анонима ждём только отправки запроса, а подтверждение сервера
+      // остаётся фоновой работой под замком — медленная сеть не имеет права
+      // держать старый аккаунт открытым.
       void cloudDeleteEnqueueOperation.acknowledgment
         .then((ack) => {
           logAuthEvent('auth_account_delete_enqueued', { status: ack.status });
@@ -2639,13 +2667,6 @@ export async function signOutCurrentProvider(): Promise<void> {
     const { clearCachedLeagueStateSnapshot } = await import('./league_open_cache_policy');
     clearCachedLeagueStateSnapshot();
   } catch { /* ignore */ }
-  // зачем: та же защита для дискового снапшота «Вызовов дня» — он поднимается в память
-  // при старте и синхронно рисует первый кадр, поэтому после выхода его надо убрать,
-  // чтобы следующий вошедший на общем девайсе не увидел чужие задания и прогресс.
-  try {
-    const { clearDailyTasksScreenSnapshotOnDisk } = await import('./daily_tasks_screen_persist');
-    clearDailyTasksScreenSnapshotOnDisk();
-  } catch { /* ignore */ }
   // зачем: снапшот «Моей практики» ключуется только target+языком, без uid, поэтому
   // после выхода его тоже надо стереть — иначе первый кадр покажет чужую статистику.
   try {
@@ -2654,7 +2675,7 @@ export async function signOutCurrentProvider(): Promise<void> {
   } catch { /* ignore */ }
   // зачем: общий снапшот экранов рисует первый кадр синхронно, поэтому после выхода
   // его надо убрать — иначе следующий вошедший на общем девайсе увидит чужие цифры
-  // (та же защита, что у снапшотов «Вызовов дня» и практики выше).
+  // (та же защита, что у снапшота практики выше).
   try {
     const { clearScreenSnapshots } = await import('./screen_snapshot_store');
     clearScreenSnapshots();

@@ -111,6 +111,13 @@ describe('lingman_youtube', () => {
     expect(html).not.toContain(' autoplay;');
   });
 
+  it('enables inline autoplay only for an explicitly opened inline player', () => {
+    const html = buildLingmanEmbedHtml('X7L3Xg3qITo', { autoplay: true });
+
+    expect(html).toContain('autoplay=1');
+    expect(html).toContain('allow="autoplay; accelerometer;');
+  });
+
   it('counts unread videos relative to the last opened latest video', () => {
     const videos = [
       { id: 'latest' },

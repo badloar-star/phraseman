@@ -1,11 +1,10 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { LinearGradient } from '../../components/SafeLinearGradient';
-import PlusBadge from '../../components/PlusBadge';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
-import { DEV_CONTENT_UNLOCK, IS_BETA_TESTER } from '../config';
+import { DEV_CONTENT_UNLOCK } from '../config';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, AppState, Easing, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
+import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import Reanimated, {
   cancelAnimation,
   Easing as REasing,
@@ -13,18 +12,21 @@ import Reanimated, {
   interpolate,
   runOnJS,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withTiming,
+  type SharedValue,
 } from 'react-native-reanimated';
-import type { Theme, ThemeMode } from '../../constants/theme';
-import { glassFill } from '../../components/GlassSurface';
-import { inferExpoSpeechLanguage, type SpeakOpts } from '../../hooks/use-audio';
-import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
+import { getHintFlag, setHintFlag } from './hint_flags';
+import type { Theme } from '../../constants/theme';
+import { inferExpoSpeechLanguage, speechLocaleToShortLabel, type SpeakOpts } from '../../hooks/use-audio';
 import { SOURCE_COLORS } from './constants';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
+import { buildLegacyFlipFaceStyles, useFcCrossfadeFlip } from './PhraseCard';
+import WordStrengthDots from './WordStrengthDots';
+import type { WordStrength } from './word_strength';
 import { OFFICIAL_MODERN_ABBREV_EN_ID } from './bundles/packIds';
 import { CardItem, CategoryId, cardHasDetails, resolveFlashcardBackText, type FlashcardContentLang } from './types';
-import { FLASHCARD_STATUS_COLOR, flashcardStatusA11yLabel, type FlashcardStatus } from './cardStatus';
 
 const MODERN_ABBREV_DEV = `DEV:${OFFICIAL_MODERN_ABBREV_EN_ID}`;
 
@@ -39,7 +41,7 @@ function splitAbbrevMarketplaceEn(
   }
   if (abbrevEn?.trim()) {
     const head = abbrevEn.trim();
-    const rest = en.replace(head, '').replace(/^[\s::—–\-|]+/u, '').trim();
+    const rest = en.replace(head, '').replace(/^[\s:：—–\-|]+/u, '').trim();
     return { head, rest };
   }
   const t = en.trim();
@@ -47,21 +49,21 @@ function splitAbbrevMarketplaceEn(
   if (byDelim.length >= 2) {
     return { head: byDelim[0].trim(), rest: byDelim.slice(1).join(' — ').trim() };
   }
-  const m = t.match(/^([^:]+)[::]\s*(.+)$/s);
+  const m = t.match(/^([^:]+)[:：]\s*(.+)$/s);
   if (m) return { head: m[1].trim(), rest: m[2].trim() };
   return { head: t, rest: '' };
 }
 
 const OPEN_DETAILS_MS = 280;
 const CLOSE_DETAILS_MS = 240;
-/** Split gap + borders after height expand — short timing avoids a one-frame "pop" vs list scroll. */
+/** Split gap + borders after height expand — short timing avoids a one-frame “pop” vs list scroll. */
 const SPLIT_DETAILS_OPEN_MS = 110;
 const DETAILS_H_PAD = 32;
 const OPEN_DETAILS_EASING = REasing.bezier(0.25, 0.1, 0.25, 1);
 const CLOSE_DETAILS_EASING = REasing.bezier(0.4, 0, 0.2, 1);
 /** Final gap between main card and details bubble (smaller than FlatList ItemSeparator) */
 const DETAILS_SPLIT_GAP = 8;
-
+/** Плановые локали: подписи тумблера деталей без ru/uk/es-тернаров. */
 const FLASHCARD_DETAILS_TOGGLE_LABELS: Record<FlashcardContentLang, { collapse: string; expand: string }> = {
   ru: { collapse: 'Скрыть детали', expand: 'Показать детали' },
   uk: { collapse: 'Згорнути деталі', expand: 'Розгорнути деталі' },
@@ -73,6 +75,7 @@ const FLASHCARD_DETAILS_TOGGLE_LABELS: Record<FlashcardContentLang, { collapse: 
   pl: { collapse: 'Ukryj szczegóły', expand: 'Pokaż szczegóły' },
 };
 
+/** Плановые локали: язык озвучки обратной стороны карточки. */
 const FLASHCARD_BACK_SPEECH_BY_LANG: Record<FlashcardContentLang, string> = {
   ru: 'ru-RU',
   uk: 'uk-UA',
@@ -91,24 +94,15 @@ const speechLocaleForFlashcardBack = (lang: FlashcardContentLang): string => {
 type Props = {
   item: CardItem;
   itemIdx: number;
-  /**
-   * Статус изучения для цветной точки (макет B1 `.cdot`).
-   * undefined — точку не рисуем (статусы ещё не загрузились или выключены).
-   */
-  status?: FlashcardStatus;
   lang: FlashcardContentLang;
   activeCat: CategoryId;
-  isPremium: boolean;
   deletingId: string | null;
   longPressedId: string | null;
   t: Theme;
   f: Record<string, number>;
-  themeMode: ThemeMode;
   sourceLabels: Record<string, string>;
   deleteLabel: string;
   voiceLabel: string;
-  premiumExpiredTitle: string;
-  premiumExpiredSubtitle: string;
   cardHeight: number;
   cardStyle: any;
   sourceBadgeStyle: any;
@@ -116,50 +110,54 @@ type Props = {
   getCardFlipAnim: (cardId: string) => Animated.Value;
   getOverlayAnim: (cardId: string) => Animated.Value;
   getDeleteAnim: (cardId: string) => { opacity: Animated.Value; scale: Animated.Value };
-  onOpenPremium: () => void;
   onFlipCard: (cardId: string) => void;
   onOpenDelete: (cardId: string) => void;
   onCloseDelete: () => void;
   onDeleteCard: (item: CardItem, itemIdx: number) => void;
   onSpeak: (text: string, opts?: SpeakOpts) => void;
-  /** Fires when the user starts opening details (resets list "escort" state). */
+  /** Fires when the user starts opening details (resets list “escort” state). */
   onDetailsOpenAnimStarted?: (info: { itemId: string; itemIndex: number }) => void;
   /** Fires when details are fully open (after split spring) so the list can scroll the row into view. */
   onDetailsScrollSettled?: (info: { itemId: string; itemIndex: number }) => void;
-  /** Register the native view of the full row (card + details) for list centering. */
-  setListItemRowRef?: (id: string, el: View | null) => void;
+  /** Полная высота строки (карточка + детали) из onLayout — для escort-скролла списка. */
+  onRowLayout?: (id: string, height: number) => void;
   /** Тема купленого паку з маркету — градієнт і бордер карток. */
   packCardTheme?: {
     borderAccent: string;
     frontGradient: readonly [string, string];
     backGradient: readonly [string, string];
   } | null;
-  /** Активний рядок за snap/viewability; інші в прокрутці легше підсвічуємо (менше плутанини з «сусіднім» peek). */
-  isRowInFocus?: boolean;
+  /**
+   * Фокус-строка списка (индекс из viewability) через SharedValue: смена видимой
+   * карточки анимируется на UI-потоке, без setState-каскада от родителя.
+   */
+  focusedIndexSV?: SharedValue<number>;
   /**
    * Затримка (мс) перед циклом «нуджу» шеврона. Якщо батько одночасно дає entering (FadeInDown),
    * вертикальний вхід рядка + translateY на шевроні зливаються в «глітч» — відклади підказку.
    */
   chevronHintDelayMs?: number;
+  /** E7 (баг 8): «Редактировать» в раскрытых деталях кастомной карточки → flashcards_card_editor. */
+  onEditCard?: ((item: CardItem) => void) | null;
+  editLabel?: string;
+  /** E7: кнопка удаления в деталях — фолбэк свайпа на web (§3.2 плана). */
+  onDeleteFromDetails?: ((item: CardItem, itemIdx: number) => void) | null;
+  /** E13: «сила слова» из SRS (word_strength.ts); null/undefined — точки не рисуем. */
+  strength?: WordStrength | null;
 };
 
 function FlashcardListItemImpl({
   item,
   itemIdx,
-  status,
   lang,
   activeCat,
-  isPremium,
   deletingId,
   longPressedId,
   t,
   f,
-  themeMode,
   sourceLabels,
   deleteLabel,
   voiceLabel,
-  premiumExpiredTitle,
-  premiumExpiredSubtitle,
   cardHeight,
   cardStyle,
   sourceBadgeStyle,
@@ -167,7 +165,6 @@ function FlashcardListItemImpl({
   getCardFlipAnim,
   getOverlayAnim,
   getDeleteAnim,
-  onOpenPremium,
   onFlipCard,
   onOpenDelete,
   onCloseDelete,
@@ -175,10 +172,14 @@ function FlashcardListItemImpl({
   onSpeak,
   onDetailsOpenAnimStarted,
   onDetailsScrollSettled,
-  setListItemRowRef,
+  onRowLayout,
   packCardTheme = null,
-  isRowInFocus = true,
+  focusedIndexSV,
   chevronHintDelayMs = 0,
+  onEditCard = null,
+  editLabel,
+  onDeleteFromDetails = null,
+  strength = null,
 }: Props) {
   const effectiveOs = useEffectivePlatformOS();
   const tr = resolveFlashcardBackText(item, lang);
@@ -186,17 +187,54 @@ function FlashcardListItemImpl({
   const srcLabel = item.source ? sourceLabels[item.source] : null;
   /** Купленные / официальные наборы: `sourceId` = `DEV:<packId>`, без технич. подписи в UI. */
   const isMarketplaceBundleCard = String(item.sourceId ?? '').startsWith('DEV:');
-  const showDevPackCornerBadge = (DEV_CONTENT_UNLOCK || IS_BETA_TESTER) && isMarketplaceBundleCard;
+  const showDevPackCornerBadge = DEV_CONTENT_UNLOCK && isMarketplaceBundleCard;
   const showSourceBadge = !!(srcLabel && !isMarketplaceBundleCard);
   const isModernAbbrevCard = item.sourceId === MODERN_ABBREV_DEV;
   const parsedAbbrevEn = useMemo(
     () => splitAbbrevMarketplaceEn(item.en, item.abbrevEn, item.expansionEn),
     [item.en, item.abbrevEn, item.expansionEn],
   );
-  const isLocked = activeCat === 'saved' && !isPremium && itemIdx >= 20;
+  // E2: позиционного лимита-20 здесь больше нет (баг 10) — заблокированные лимитом
+  // карточки не попадают в data списка; вместо замков одна секция «+N скрыто» в футере.
   /** У «Збережені» кнопка озвучки справа (як раніше); в інших вкладках — зліва, щоб не перекривати фразу. */
-  const savedBadgesOnRight = activeCat === 'saved';
-  const hasDetails = !isModernAbbrevCard && cardHasDetails(item);
+  const voiceSpeakOnRight = activeCat === 'saved';
+  const usePackFace = !!packCardTheme && isMarketplaceBundleCard;
+  /**
+   * Фокус-строка через SharedValue (перф-пакет E2): расфокус peek-строк пака
+   * анимируется на UI-потоке; скролл не дергает setState родителя.
+   *
+   * БЫЛО: `withTiming(...)` вызывался ВНУТРИ `useAnimatedStyle`. Такой стиль
+   * пересчитывается на каждое изменение любого прочитанного SharedValue и на
+   * каждый ре-маунт строки — и каждый пересчёт СТАРТОВАЛ НОВУЮ анимацию от
+   * текущего значения. В режиме, где все карточки полупрозрачные (просмотр
+   * купленного набора), это давало бесконечный перезапуск таймингов на каждой
+   * видимой строке: список лагал, карточки «переключались и возвращались назад»
+   * (репорт владельца).
+   *
+   * СТАЛО: анимация живёт в `useDerivedValue` — она перезапускается ТОЛЬКО когда
+   * реально меняется фокус-индекс, а `useAnimatedStyle` лишь читает готовый
+   * прогресс и интерполирует его. Плюс на слабых устройствах / «уменьшить
+   * движение» / web анимации нет вовсе — сразу конечное значение.
+   */
+  const crossfadeFlip = useFcCrossfadeFlip();
+  const focusMotionOn = usePackFace && !!focusedIndexSV;
+  const focusSV = focusedIndexSV;
+  const focusProgress = useDerivedValue(() => {
+    if (!focusMotionOn || !focusSV) return 1;
+    const focused = focusSV.value === itemIdx ? 1 : 0;
+    if (crossfadeFlip) return focused;
+    return withTiming(focused, { duration: 160 });
+  }, [focusMotionOn, focusSV, itemIdx, crossfadeFlip]);
+  const focusDimStyle = useAnimatedStyle(() => {
+    const p = focusProgress.value;
+    return {
+      opacity: interpolate(p, [0, 1], [0.68, 1], Extrapolation.CLAMP),
+      transform: [{ scale: interpolate(p, [0, 1], [0.985, 1], Extrapolation.CLAMP) }],
+    };
+  });
+  /** E7: ряд действий (редактировать / удалить) в деталях — детали появляются даже без описания. */
+  const hasDetailsActions = !!(onEditCard || onDeleteFromDetails);
+  const hasDetails = !isModernAbbrevCard && (cardHasDetails(item) || hasDetailsActions);
   const { height: winH } = useWindowDimensions();
   /** Backup height if layout measure fails (should be rare) */
   const expandSectionMax = Math.min(Math.round(winH * 0.92), 4000);
@@ -226,28 +264,22 @@ function FlashcardListItemImpl({
   const [expandHeightComplete, setExpandHeightComplete] = useState(false);
   const hintY = useRef(new Animated.Value(0)).current;
   const hintLoopRef = useRef<Animated.CompositeAnimation | null>(null);
-  const isScreenFocused = useIsScreenFocused();
 
   const cAnim = getCardFlipAnim(item.id);
   const flipDrivingAnim = cAnim;
-  /** «Книжковий» фліп по scaleX + різке перемикання opacity в середині (без довгого подвійного напівпрозорого шару). */
-  const cFrontScaleX = flipDrivingAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 0, 0] });
-  const cBackScaleX = flipDrivingAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0, 0, 1] });
-  const cFrontOp = flipDrivingAnim.interpolate({ inputRange: [0, 0.499, 0.501, 1], outputRange: [1, 1, 0, 0] });
-  const cBackOp = flipDrivingAnim.interpolate({ inputRange: [0, 0.499, 0.501, 1], outputRange: [0, 0, 1, 1] });
-  const [showingBack, setShowingBack] = useState(false);
-
-  useEffect(() => {
-    const getValue = (cAnim as unknown as { __getValue?: () => number }).__getValue;
-    if (typeof getValue === 'function') setShowingBack(getValue.call(cAnim) >= 0.5);
-    const id = cAnim.addListener(({ value }) => {
-      setShowingBack((prev) => {
-        const next = value >= 0.5;
-        return prev === next ? prev : next;
-      });
-    });
-    return () => cAnim.removeListener(id);
-  }, [cAnim, item.id]);
+  /**
+   * cards-2.0: настоящий 3D-флип (perspective + rotateY, флип-движок PhraseCard)
+   * вместо scaleX-псевдофлипа. Анимацией по-прежнему владеет родитель (Animated.Value
+   * 0↔1, useNativeDriver) — массовый флип и бейджи/удаление не меняются.
+   * web / reduceMotion / lowPower → кроссфейд; opacity-переключение на 90° —
+   * фолбэк backfaceVisibility для старых Android.
+   */
+  const flipFaces = useMemo(
+    () => buildLegacyFlipFaceStyles(flipDrivingAnim, !crossfadeFlip),
+    [flipDrivingAnim, crossfadeFlip],
+  );
+  const cFrontOp = flipFaces.frontOpacity;
+  const cBackOp = flipFaces.backOpacity;
 
   const cardSplitEdgeStyle = useAnimatedStyle(() => {
     if (!hasDetails) return {};
@@ -431,7 +463,8 @@ function FlashcardListItemImpl({
     setDetailsNatH(0);
   }, [detailsTargetSV, expandSV, item.id, splitSV]);
 
-  // Subtle "nudge down" on chevron = hint to tap and open (only when details exist and panel closed)
+  // Subtle “nudge down” on chevron = hint to tap and open.
+  // E2: не вечный Animated.loop — только первая карточка, 2 цикла, одноразовый флаг fc_hint_flags_v1.
   useEffect(() => {
     if (hintLoopRef.current) {
       hintLoopRef.current.stop();
@@ -439,23 +472,12 @@ function FlashcardListItemImpl({
     }
     hintY.stopAnimation();
     hintY.setValue(0);
-    // Луп-подсказка бежит только на видимом экране (freezeOnBlur:false держит
-    // ушедшие экраны живыми — иначе луп грел бы телефон в фоне).
-    if (!hasDetails || detailsExpanded || !isRowInFocus || !isScreenFocused) return;
+    if (!hasDetails || detailsExpanded || itemIdx !== 0) return;
 
     let cancelled = false;
     let delayTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const stopNudge = () => {
-      if (delayTimer) { clearTimeout(delayTimer); delayTimer = null; }
-      if (hintLoopRef.current) {
-        hintLoopRef.current.stop();
-        hintLoopRef.current = null;
-      }
-      hintY.setValue(0);
-    };
-
-    const runNudge = () => {
+    const startNudge = () => {
       if (cancelled) return;
       const nudge = Animated.loop(
         Animated.sequence([
@@ -463,97 +485,142 @@ function FlashcardListItemImpl({
           Animated.timing(hintY, { toValue: 0, duration: 900, easing: Easing.bezier(0.45, 0, 0.55, 1), useNativeDriver: true }),
           Animated.delay(700),
         ]),
+        { iterations: 2 },
       );
       hintLoopRef.current = nudge;
-      nudge.start();
+      nudge.start(({ finished }) => {
+        if (finished) void setHintFlag('chevron_nudge');
+      });
     };
 
-    const startNudge = () => {
-      if (cancelled) return;
-      stopNudge();
+    void getHintFlag('chevron_nudge').then((seen) => {
+      if (cancelled || seen) return;
       if (chevronHintDelayMs > 0) {
-        delayTimer = setTimeout(runNudge, chevronHintDelayMs);
+        delayTimer = setTimeout(startNudge, chevronHintDelayMs);
       } else {
-        runNudge();
+        startNudge();
       }
-    };
-
-    // Анимируем только на переднем плане — в фоне нет смысла дёргать подсказку.
-    if (AppState.currentState === 'active') startNudge();
-    const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') startNudge();
-      else stopNudge();
     });
 
     return () => {
       cancelled = true;
-      appSub.remove();
-      stopNudge();
+      if (delayTimer) clearTimeout(delayTimer);
+      if (hintLoopRef.current) {
+        hintLoopRef.current.stop();
+        hintLoopRef.current = null;
+      }
     };
-  }, [hasDetails, detailsExpanded, hintY, item.id, chevronHintDelayMs, isRowInFocus, isScreenFocused]);
+  }, [hasDetails, detailsExpanded, hintY, item.id, chevronHintDelayMs, itemIdx]);
 
   const voiceTextFront = isModernAbbrevCard
     ? (parsedAbbrevEn.rest || item.en)
     : item.en;
+  const voiceTextBack = tr;
+
   const frontSpeakLocale = useMemo(
     () => inferExpoSpeechLanguage(voiceTextFront),
     [voiceTextFront],
   );
-  const backSpeakLocale = useMemo(() => speechLocaleForFlashcardBack(lang), [lang]);
+  const detailsToggleLabel = detailsExpanded
+    ? FLASHCARD_DETAILS_TOGGLE_LABELS[lang].collapse
+    : FLASHCARD_DETAILS_TOGGLE_LABELS[lang].expand;
+  const backSpeakLocale = useMemo(
+    () => speechLocaleForFlashcardBack(lang),
+    [voiceTextBack, lang],
+  );
+  const frontLangBadge = speechLocaleToShortLabel(frontSpeakLocale);
+  const backLangBadge = speechLocaleToShortLabel(backSpeakLocale);
+
   const speakFront = useCallback(() => {
     onSpeak(voiceTextFront, { language: frontSpeakLocale });
   }, [frontSpeakLocale, onSpeak, voiceTextFront]);
   const speakBack = useCallback(() => {
-    onSpeak(tr, { language: backSpeakLocale });
-  }, [backSpeakLocale, onSpeak, tr]);
-
-  if (isLocked) {
-    return (
-      <TouchableOpacity
-        activeOpacity={0.85}
-        onPress={onOpenPremium}
-        style={[cardStyle, { position: 'relative', backgroundColor: glassFill(t.bgCard, 0.46), borderColor: glassFill(t.accent, 0.14), justifyContent: 'center', alignItems: 'center', height: cardHeight }]}
-      >
-        <PlusBadge themeMode={themeMode} size="sm" style={{ position: 'absolute', top: 12, right: 12 }} />
-        <Ionicons name="lock-closed" size={32} color={t.textMuted} />
-        <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', marginTop: 12 }}>
-          {premiumExpiredTitle}
-        </Text>
-        <Text style={{ color: t.textGhost, fontSize: f.caption, marginTop: 4, textAlign: 'center', paddingHorizontal: 16 }}>
-          {premiumExpiredSubtitle}
-        </Text>
-      </TouchableOpacity>
-    );
-  }
+    onSpeak(voiceTextBack, { language: backSpeakLocale });
+  }, [backSpeakLocale, onSpeak, voiceTextBack]);
 
   const isLongPressed = longPressedId === item.id;
   const canDeleteThis = !item.isSystem;
   const isDeleting = deletingId === item.id;
-  const usePackFace = !!packCardTheme && isMarketplaceBundleCard;
-  const dimAsPeek = usePackFace && !isRowInFocus;
-  const detailsToggleLabel = detailsExpanded
-    ? FLASHCARD_DETAILS_TOGGLE_LABELS[lang].collapse
-    : FLASHCARD_DETAILS_TOGGLE_LABELS[lang].expand;
-  /** Область під шапкою: EN + IPA вміщаються в кілька рядків, без скролу */
+  /** Область під шапкою: EN + IPA вміщаються за рахунок, без скролу */
   const frontTextMaxH = Math.max(92, cardHeight - 74);
   const overlayOpacity = getOverlayAnim(item.id);
   const delAnim = getDeleteAnim(item.id);
   const overlayBtnScale = overlayOpacity.interpolate({ inputRange: [0, 0.6, 1], outputRange: [0.7, 1.05, 1] });
 
+  /** E7: контент панели деталей + ряд действий — единый для премера и видимой панели (высота меряется с кнопками). */
+  const detailsInner = (
+    <>
+      <FlashcardDetailsBody item={item} lang={lang} t={t} f={f} />
+      {hasDetailsActions && (
+        <View style={{ flexDirection: 'row', gap: 10, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 16 }}>
+          {onEditCard && (
+            <TouchableOpacity
+              testID="fc-details-edit"
+              accessibilityLabel="qa-fc-details-edit"
+              accessible
+              onPress={() => onEditCard(item)}
+              activeOpacity={0.8}
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 7,
+                borderRadius: 12,
+                borderWidth: 1,
+                borderColor: `${t.accent}66`,
+                backgroundColor: `${t.accent}14`,
+                paddingVertical: 11,
+              }}
+            >
+              <Ionicons name="pencil-outline" size={16} color={t.accent} />
+              <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '700' }} numberOfLines={1}>
+                {editLabel}
+              </Text>
+            </TouchableOpacity>
+          )}
+          {onDeleteFromDetails && (
+            <TouchableOpacity
+              testID="fc-details-delete"
+              accessibilityLabel="qa-fc-details-delete"
+              accessible
+              onPress={() => onDeleteFromDetails(item, itemIdx)}
+              activeOpacity={0.8}
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 7,
+                borderRadius: 12,
+                borderWidth: 1,
+                borderColor: `${t.wrong}66`,
+                backgroundColor: `${t.wrong}12`,
+                paddingVertical: 11,
+              }}
+            >
+              <Ionicons name="trash-outline" size={16} color={t.wrong} />
+              <Text style={{ color: t.wrong, fontSize: f.sub, fontWeight: '700' }} numberOfLines={1}>
+                {deleteLabel}
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
+    </>
+  );
+
   return (
     <Animated.View
+      onLayout={(e) => onRowLayout?.(item.id, e.nativeEvent.layout.height)}
       style={{
         width: '100%',
-        opacity: isDeleting ? delAnim.opacity : dimAsPeek ? 0.68 : 1,
-        transform: isDeleting
-          ? [{ scale: delAnim.scale }]
-          : dimAsPeek
-            ? [{ scale: 0.985 }]
-            : [],
+        opacity: isDeleting ? delAnim.opacity : 1,
+        transform: isDeleting ? [{ scale: delAnim.scale }] : [],
       }}
     >
+      <Reanimated.View style={focusDimStyle}>
       <View
-        ref={(el) => setListItemRowRef?.(item.id, el)}
         collapsable={false}
         style={{ position: 'relative' }}
       >
@@ -566,7 +633,7 @@ function FlashcardListItemImpl({
             importantForAccessibility="no-hide-descendants"
           >
             <View onLayout={onPremeasureLayout}>
-              <FlashcardDetailsBody item={item} lang={lang} t={t} f={f} />
+              {detailsInner}
             </View>
           </View>
         )}
@@ -597,7 +664,7 @@ function FlashcardListItemImpl({
             <Animated.View
               style={[
                 cardFaceNativeFlipStyle,
-                { transform: [{ scaleX: cFrontScaleX }], opacity: cFrontOp },
+                flipFaces.front,
               ]}
             >
               <Reanimated.View
@@ -607,7 +674,7 @@ function FlashcardListItemImpl({
                   { overflow: 'hidden' },
                   usePackFace
                     ? { backgroundColor: 'transparent', borderWidth: 0 }
-                    : { backgroundColor: glassFill(t.bgCard, 0.46), borderColor: glassFill(t.accent, 0.14) },
+                    : { backgroundColor: t.bgCard, borderColor: t.border },
                 ]}
               >
               {usePackFace && packCardTheme && (
@@ -617,13 +684,13 @@ function FlashcardListItemImpl({
                   end={{ x: 1, y: 1 }}
                   style={[
                     StyleSheet.absoluteFillObject,
-                    { borderRadius: 20, borderWidth: 0, borderColor: packCardTheme.borderAccent },
+                    { borderRadius: 20, borderWidth: 1, borderColor: packCardTheme.borderAccent },
                   ]}
                 />
               )}
               <Text
                 style={
-                  savedBadgesOnRight
+                  voiceSpeakOnRight
                     ? {
                         position: 'absolute',
                         top: 14,
@@ -646,17 +713,17 @@ function FlashcardListItemImpl({
                       }
                 }
               >
-                EN
+                {frontLangBadge}
               </Text>
               {showDevPackCornerBadge && (
                 <View
                   style={{
                     position: 'absolute',
                     top: 14,
-                    right: savedBadgesOnRight ? 46 : 14,
+                    right: voiceSpeakOnRight ? 46 : 14,
                     borderRadius: 999,
-                    borderWidth: 0,
-                    borderColor: 'transparent',
+                    borderWidth: 1,
+                    borderColor: `${t.accent}77`,
                     backgroundColor: `${t.accent}1F`,
                     paddingHorizontal: 8,
                     paddingVertical: 3,
@@ -669,7 +736,7 @@ function FlashcardListItemImpl({
                 <View
                   style={[
                     sourceBadgeStyle,
-                    savedBadgesOnRight
+                    voiceSpeakOnRight
                       ? { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }
                       : { left: 48, backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` },
                   ]}
@@ -693,13 +760,10 @@ function FlashcardListItemImpl({
                   <>
                     <Text
                       maxFontSizeMultiplier={1.35}
-                      // зачем: adjustsFontSizeToFit запрещён (Performance Bible/владелец) —
-                      // сжатие шрифта на iOS теряло короткие варианты; вместо этого фикс
-                      // базовый размер под 2 строки и разрешаем перенос вместо сжатия.
                       numberOfLines={2}
                       style={{
                         color: t.textPrimary,
-                        fontSize: f.h1,
+                        fontSize: f.h1 + 4,
                         fontWeight: '800',
                         textAlign: 'center',
                         letterSpacing: 0.5,
@@ -729,13 +793,10 @@ function FlashcardListItemImpl({
                   <>
                     <Text
                       maxFontSizeMultiplier={1.35}
-                      // зачем: adjustsFontSizeToFit запрещён (Performance Bible/владелец) —
-                      // сжатие шрифта на iOS теряло короткие варианты; вместо этого фикс
-                      // базовый размер и увеличенный лимит строк дают перенос вместо сжатия.
                       numberOfLines={item.transcription?.trim() ? 4 : 6}
                       style={{
                         color: t.textPrimary,
-                        fontSize: f.h1,
+                        fontSize: f.h1 + 2,
                         fontWeight: '700',
                         textAlign: 'center',
                         width: '100%',
@@ -769,7 +830,7 @@ function FlashcardListItemImpl({
             <Animated.View
               style={[
                 cardFaceNativeFlipStyle,
-                { transform: [{ scaleX: cBackScaleX }], opacity: cBackOp },
+                flipFaces.back,
               ]}
             >
               <Reanimated.View
@@ -779,7 +840,7 @@ function FlashcardListItemImpl({
                   { overflow: 'hidden' },
                   usePackFace
                     ? { backgroundColor: 'transparent', borderWidth: 0 }
-                    : { backgroundColor: glassFill(t.bgSurface, 0.46), borderColor: `${t.accent}80` },
+                    : { backgroundColor: t.bgSurface, borderColor: `${t.accent}80` },
                 ]}
               >
               {usePackFace && packCardTheme && (
@@ -789,14 +850,14 @@ function FlashcardListItemImpl({
                   end={{ x: 1, y: 0 }}
                   style={[
                     StyleSheet.absoluteFillObject,
-                    { borderRadius: 20, borderWidth: 0, borderColor: packCardTheme.borderAccent },
+                    { borderRadius: 20, borderWidth: 1, borderColor: packCardTheme.borderAccent },
                   ]}
                 />
               )}
               <Text
                 maxFontSizeMultiplier={1.35}
                 style={
-                  savedBadgesOnRight
+                  voiceSpeakOnRight
                     ? {
                         position: 'absolute',
                         top: 14,
@@ -819,7 +880,7 @@ function FlashcardListItemImpl({
                       }
                 }
               >
-                {lang.toUpperCase()}
+                {backLangBadge}
               </Text>
               {showDevPackCornerBadge && (
                 <View
@@ -828,8 +889,8 @@ function FlashcardListItemImpl({
                     top: 14,
                     right: 14,
                     borderRadius: 999,
-                    borderWidth: 0,
-                    borderColor: 'transparent',
+                    borderWidth: 1,
+                    borderColor: `${t.accent}77`,
                     backgroundColor: `${t.accent}1F`,
                     paddingHorizontal: 8,
                     paddingVertical: 3,
@@ -838,40 +899,16 @@ function FlashcardListItemImpl({
                   <Text style={{ color: t.accent, fontSize: 10, fontWeight: '800', letterSpacing: 0.4 }}>DEV PACK</Text>
                 </View>
               )}
-              {/* зачем: §0.D — кромка бейджа источника снята, разделение
-                  держит более плотная заливка того же тона (22 → 33). */}
               {showSourceBadge && (
-                <View style={[sourceBadgeStyle, { backgroundColor: `${srcBadgeColor}33`, borderWidth: 0, borderColor: 'transparent' }]}>
+                <View style={[sourceBadgeStyle, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
                   <Text style={[sourceBadgeTextStyle, { color: srcBadgeColor }]}>
                     {srcLabel}
                     {item.sourceId ? ` ${item.sourceId}` : ''}
                   </Text>
                 </View>
               )}
-              {/* зачем (макет B1 `.cdot`): все карточки в списке выглядели
-                  одинаково — нельзя было понять, что освоено, а что
-                  проваливается. Прогресс копился в тренировке и нигде не
-                  показывался. Точка в углу даёт статус боковым зрением.
-                  Цвета — §4.3; статус дублируется меткой для скринридера. */}
-              {status && (
-                <View
-                  pointerEvents="none"
-                  accessible
-                  accessibilityLabel={flashcardStatusA11yLabel(status, lang)}
-                  style={{
-                    position: 'absolute',
-                    top: 10,
-                    right: 10,
-                    width: 8,
-                    height: 8,
-                    borderRadius: 999,
-                    backgroundColor: FLASHCARD_STATUS_COLOR[status],
-                  }}
-                />
-              )}
               <ScrollView
                 style={{ maxHeight: frontTextMaxH, width: '100%' }}
-                decelerationRate="normal"
                 contentContainerStyle={{
                   paddingHorizontal: 2,
                   paddingVertical: 2,
@@ -922,68 +959,108 @@ function FlashcardListItemImpl({
               </Reanimated.View>
             </Animated.View>
           </TouchableOpacity>
+
+          {/* E13: точки силы слова (Weak/Medium/Strong из SRS) — только на лице */}
+          {strength ? (
+            <Animated.View
+              pointerEvents="none"
+              style={{ position: 'absolute', bottom: 12, left: 14, zIndex: 5, opacity: cFrontOp }}
+            >
+              <WordStrengthDots strength={strength} t={t} testID={`fc-strength-${item.id}`} />
+            </Animated.View>
+          ) : null}
+
           <View
-            pointerEvents={showingBack ? 'none' : 'auto'}
             onStartShouldSetResponder={() => true}
             style={
-              savedBadgesOnRight
+              voiceSpeakOnRight
                 ? { position: 'absolute', top: 8, right: 8, zIndex: 5 }
                 : { position: 'absolute', top: 8, left: 8, zIndex: 5 }
             }
           >
-            <Animated.View style={{ opacity: cFrontOp }}>
-              <Pressable
-                onPress={speakFront}
-                accessibilityRole="button"
-                accessibilityLabel={voiceLabel}
-                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                style={({ pressed }) => ({
-                  width: 30,
-                  height: 30,
-                  borderRadius: 15,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: pressed ? `${t.accent}33` : `${t.bgSurface}F0`,
-                  borderWidth: 0,
-                  borderColor: 'transparent',
-                  transform: [{ scale: pressed ? 0.92 : 1 }],
-                })}
-              >
-                <Ionicons name="volume-medium" size={15} color={t.accent} />
-              </Pressable>
-            </Animated.View>
+            {isModernAbbrevCard ? (
+              <>
+                <Animated.View
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: voiceSpeakOnRight ? undefined : 0,
+                    right: voiceSpeakOnRight ? 0 : undefined,
+                    opacity: cFrontOp,
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={speakFront}
+                    accessibilityRole="button"
+                    accessibilityLabel={voiceLabel}
+                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                    style={{
+                      width: 30,
+                      height: 30,
+                      borderRadius: 15,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: `${t.bgSurface}F0`,
+                      borderWidth: 1,
+                      borderColor: t.border,
+                    }}
+                  >
+                    <Ionicons name="volume-medium" size={15} color={t.accent} />
+                  </TouchableOpacity>
+                </Animated.View>
+                <Animated.View
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: voiceSpeakOnRight ? undefined : 0,
+                    right: voiceSpeakOnRight ? 0 : undefined,
+                    opacity: cBackOp,
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={speakBack}
+                    accessibilityRole="button"
+                    accessibilityLabel={voiceLabel}
+                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                    style={{
+                      width: 30,
+                      height: 30,
+                      borderRadius: 15,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: `${t.bgSurface}F0`,
+                      borderWidth: 1,
+                      borderColor: t.border,
+                    }}
+                  >
+                    <Ionicons name="volume-medium" size={15} color={t.accent} />
+                  </TouchableOpacity>
+                </Animated.View>
+              </>
+            ) : (
+              <Animated.View style={{ opacity: cFrontOp }}>
+                <TouchableOpacity
+                  onPress={speakFront}
+                  accessibilityRole="button"
+                  accessibilityLabel={voiceLabel}
+                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: 15,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: `${t.bgSurface}F0`,
+                    borderWidth: 1,
+                    borderColor: t.border,
+                  }}
+                >
+                  <Ionicons name="volume-medium" size={15} color={t.accent} />
+                </TouchableOpacity>
+              </Animated.View>
+            )}
           </View>
-          <View
-            pointerEvents={showingBack ? 'auto' : 'none'}
-            onStartShouldSetResponder={() => true}
-            style={
-              savedBadgesOnRight
-                ? { position: 'absolute', top: 8, right: 8, zIndex: 5 }
-                : { position: 'absolute', top: 8, left: 8, zIndex: 5 }
-            }
-          >
-            <Animated.View style={{ opacity: cBackOp }}>
-              <Pressable
-                onPress={speakBack}
-                accessibilityRole="button"
-                accessibilityLabel={voiceLabel}
-                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                style={({ pressed }) => ({
-                  width: 30,
-                  height: 30,
-                  borderRadius: 15,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: pressed ? `${t.accent}33` : `${t.bgSurface}F0`,
-                  borderWidth: 0,
-                  borderColor: 'transparent',
-                  transform: [{ scale: pressed ? 0.92 : 1 }],
-                })}
-              >
-                <Ionicons name="volume-medium" size={15} color={t.accent} />
-              </Pressable>
-            </Animated.View>
-          </View>
+
           {hasDetails && (
             <View
               onStartShouldSetResponder={() => true}
@@ -1021,11 +1098,11 @@ function FlashcardListItemImpl({
             renderToHardwareTextureAndroid={effectiveOs === 'android'}
             style={[
               {
-                backgroundColor: glassFill(t.bgSurface, 0.46),
-                borderColor: glassFill(t.accent, 0.14),
-                borderLeftWidth: 0,
-                borderRightWidth: 0,
-                borderBottomWidth: 0,
+                backgroundColor: t.bgSurface,
+                borderColor: t.border,
+                borderLeftWidth: 1,
+                borderRightWidth: 1,
+                borderBottomWidth: 1,
                 borderBottomLeftRadius: 20,
                 borderBottomRightRadius: 20,
                 borderTopLeftRadius: 20,
@@ -1047,7 +1124,7 @@ function FlashcardListItemImpl({
               collapsable={false}
             >
               <View onLayout={onVisibleDetailsLayout} collapsable={false}>
-                <FlashcardDetailsBody item={item} lang={lang} t={t} f={f} />
+                {detailsInner}
               </View>
             </View>
           </Reanimated.View>
@@ -1090,6 +1167,7 @@ function FlashcardListItemImpl({
           </TouchableOpacity>
         </Animated.View>
       </View>
+      </Reanimated.View>
     </Animated.View>
   );
 }

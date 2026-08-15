@@ -3,6 +3,7 @@ import {
   buildInternalFollowUpTask,
   type JarvisInternalFollowUpTask,
 } from './jarvis_follow_up_tasks';
+import { hashDecision } from './issue_decision_buttons';
 
 /**
  * Раздел «Планы» — постоянный архив всех находок Джарвиса.
@@ -27,6 +28,8 @@ export type JarvisPlanLifecycleStatus = 'open' | 'resolved' | 'archived';
 export interface JarvisPlan {
   readonly id: string;
   readonly contentHash: string;
+  /** Короткая версия id, запечатанная в Telegram approval token. */
+  readonly approvalDecisionHash?: string;
   readonly department: Department;
   readonly question: string;
   readonly finding: string;
@@ -40,6 +43,11 @@ export interface JarvisPlan {
   readonly confidence: number;
   /** Развёрнутое, понятное описание от LLM-обогатителя. null — ещё не сгенерировано. */
   readonly narrative: string | null;
+  readonly ownerDecision?: {
+    readonly action: 'approve' | 'reject';
+    readonly decidedAtMs: number;
+    readonly source: 'telegram';
+  };
   /** Optional for backward compatibility with plans written before safe follow-ups existed. */
   readonly followUpTask?: JarvisInternalFollowUpTask;
   readonly status: JarvisPlanLifecycleStatus;
@@ -70,6 +78,7 @@ export function buildPlanFromDecision(
   return Object.freeze({
     id: decision.contentHash,
     contentHash: decision.contentHash,
+    approvalDecisionHash: hashDecision(decision),
     department: decision.department,
     question: decision.question,
     finding: decision.finding,
@@ -82,6 +91,7 @@ export function buildPlanFromDecision(
     rollback: decision.rollback,
     confidence: decision.confidence,
     narrative: existing?.narrative ?? null,
+    ...(existing?.ownerDecision ? { ownerDecision: existing.ownerDecision } : {}),
     ...(followUpTask ? { followUpTask } : {}),
     // зачем сохранять статус существующего плана: владелец уже мог отметить
     // его решённым/архивным — повторный прогон крона с идентичной находкой

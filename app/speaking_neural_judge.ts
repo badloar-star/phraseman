@@ -8,8 +8,7 @@
 // офлайн, бесплатно.
 //
 // СТАТУС ВРЕЗКИ: модуль самодостаточен и «выключен», пока в бинаре нет пакета
-// `whisper.rn` (лениво require-ится, как expo-speech-recognition в
-// personal_plan_speech_module). Хвост для активации:
+// `whisper.rn` (лениво require-ится). Хвост для активации:
 //   1) npm i whisper.rn + нативная пересборка (package.json занят auth-сессией);
 //   2) в SpeakingPanel.runControlPass: сначала judgeWithNeuralEngine(uri,target),
 //      при null — существующий контрольный прогон системного движка.
@@ -21,7 +20,7 @@
 
 import { Platform } from 'react-native';
 
-import { scorePlanPronunciationTranscript } from './personal_plan_pronunciation_scoring_client';
+import { scoreSpeechPronunciationTranscript } from './pronunciation_scoring_client';
 import {
   MODEL_EN,
   WHISPER_MODEL_DIRECTORY,
@@ -56,7 +55,7 @@ export const NEURAL_JUDGE_TIMEOUT_MS = 6000;
 export function neuralControlScore(targetText: string, transcript: string): number | null {
   const text = transcript.trim();
   if (!text) return null;
-  return scorePlanPronunciationTranscript({ targetText, transcript: text }).score;
+  return scoreSpeechPronunciationTranscript({ targetText, transcript: text }).score;
 }
 
 type WhisperModule = {

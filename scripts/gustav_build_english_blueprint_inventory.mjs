@@ -85,7 +85,6 @@ const FEATURE_SURFACES = [
     sourcePaths: [
       path.join(ROOT, 'app', 'personal_practice_lesson_router.ts'),
       path.join(ROOT, 'app', 'personal_practice_target_gate.ts'),
-      path.join(ROOT, 'app', 'personal_plan_practice_seeded_gate.ts'),
       path.join(ROOT, 'app', 'trainer_practice_prefetch.ts'),
     ],
     requiredMarkers: ['practice'],

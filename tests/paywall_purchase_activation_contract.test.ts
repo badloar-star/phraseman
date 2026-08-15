@@ -13,7 +13,6 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
     const devPreviewBranch = sharedHook.slice(purchaseStart, packageSelection);
     expect(devPreviewBranch).toContain('showDevPurchasePreviewAlert(lang)');
     expect(devPreviewBranch).not.toContain('dismissPaywallModal(router)');
-    expect(devPreviewBranch).not.toContain('finishPersonalPlanActivationFlow()');
     expect(sharedHook).toContain('Покупка не запускалась');
     expect(sharedHook).toContain('сборке с подключённым магазином');
   });

@@ -21,7 +21,7 @@ const validInput = {
 
 const validBalanceInput = {
   uid: 'stable-user_1',
-  newBalance: 125,
+  delta: 125,
   reason: 'Correct balance after verified support case',
   idempotencyKey: 'admin-balance-1',
   requestId: 'balance-request-1',
@@ -107,21 +107,15 @@ describe('admin grant reward command contract', () => {
     }, fingerprint, 'admin-1')).toThrow(HttpsError);
   });
 
-  it('builds the shard balance, log and projected audit values atomically', () => {
+  it('builds a fixed external delta without reading or projecting personal balance', () => {
     const mutation = buildAdminRewardMutation({ shards: 40 }, 'shards', 25, 1_720_000_000_000);
-    expect(mutation.updates).toMatchObject({
-      shards: 65,
-      shards_updated_op: 'earn',
-      shards_updated_reason: 'admin_grant',
-    });
+    expect(mutation.updates).toEqual({ updatedAt: 1_720_000_000_000 });
     expect(mutation.shardLog).toMatchObject({
       type: 'earn',
       amount: 25,
-      balanceBefore: 40,
-      balanceAfter: 65,
     });
-    expect(mutation.before).toEqual({ shards: 40 });
-    expect(mutation.after).toEqual({ shards: 65 });
+    expect(mutation.before).toEqual({ personalBalance: 'client_owned_not_read' });
+    expect(mutation.after).toEqual({ externalDelta: 25 });
   });
 
   it('preserves the existing fixed-reward semantics', () => {
@@ -198,31 +192,31 @@ describe('admin grant reward command contract', () => {
   });
 });
 
-describe('admin absolute shard balance command contract', () => {
+describe('admin external shard adjustment command contract', () => {
   const module = adminGrantModule as any;
   const source = fs.readFileSync(path.join(__dirname, 'admin_grant.ts'), 'utf8');
   const indexSource = fs.readFileSync(path.join(__dirname, 'index.ts'), 'utf8');
 
-  it('strictly normalizes a bounded absolute balance and fingerprints all material fields', () => {
+  it('strictly normalizes a bounded delta and fingerprints all material fields', () => {
     expect(typeof module.normalizeAdminSetShardBalanceInput).toBe('function');
     expect(typeof module.adminSetShardBalanceFingerprint).toBe('function');
     const input = module.normalizeAdminSetShardBalanceInput(validBalanceInput);
     expect(input).toEqual(validBalanceInput);
     expect(module.adminSetShardBalanceFingerprint(input)).toBe(JSON.stringify({
-      action: 'set_shard_balance',
+      action: 'adjust_shard_balance',
       uid: validBalanceInput.uid,
-      newBalance: validBalanceInput.newBalance,
+      delta: validBalanceInput.delta,
       reason: validBalanceInput.reason,
     }));
-    expect(module.adminSetShardBalanceFingerprint(input)).not.toBe(module.adminSetShardBalanceFingerprint({ ...input, newBalance: 126 }));
+    expect(module.adminSetShardBalanceFingerprint(input)).not.toBe(module.adminSetShardBalanceFingerprint({ ...input, delta: 126 }));
   });
 
   it.each([
     { ...validBalanceInput, uid: '../users' },
-    { ...validBalanceInput, newBalance: '125' },
-    { ...validBalanceInput, newBalance: 1.5 },
-    { ...validBalanceInput, newBalance: -1 },
-    { ...validBalanceInput, newBalance: 1_000_001 },
+    { ...validBalanceInput, delta: '125' },
+    { ...validBalanceInput, delta: 1.5 },
+    { ...validBalanceInput, delta: 0 },
+    { ...validBalanceInput, delta: 1_000_001 },
     { ...validBalanceInput, reason: '' },
     { ...validBalanceInput, requestId: '' },
     { ...validBalanceInput, idempotencyKey: '../reuse' },
@@ -232,31 +226,21 @@ describe('admin absolute shard balance command contract', () => {
   });
 
   it.each([
-    [80, 125, 'earn', 45],
-    [125, 80, 'spend', 45],
-    [80, 80, 'earn', 0],
-  ] as const)('builds an exact atomic %s → %s balance mutation', (beforeBalance, afterBalance, type, amount) => {
+    [45, 'earn', 45],
+    [-45, 'spend', 45],
+  ] as const)('builds an immutable external delta %s', (delta, type, amount) => {
     expect(typeof module.buildAdminShardBalanceMutation).toBe('function');
-    const mutation = module.buildAdminShardBalanceMutation({ shards: beforeBalance }, afterBalance, 1_720_000_000_000);
+    const mutation = module.buildAdminShardBalanceMutation(delta, 1_720_000_000_000);
     expect(mutation).toEqual({
-      updates: {
-        shards: afterBalance,
-        shards_updated_at_ms: 1_720_000_000_000,
-        shards_updated_op: type,
-        shards_updated_reason: 'admin_set_balance',
-        shards_admin_override_at: '2024-07-03T09:46:40.000Z',
-      },
       shardLog: {
         ts: '2024-07-03T09:46:40.000Z',
         type,
         amount,
-        reason: 'admin_set_balance',
-        balanceBefore: beforeBalance,
-        balanceAfter: afterBalance,
+        reason: 'admin_adjust_balance',
       },
-      before: { shards: beforeBalance },
-      after: { shards: afterBalance },
-      delta: afterBalance - beforeBalance,
+      before: { personalBalance: 'client_owned_not_read' },
+      after: { externalDelta: delta },
+      delta,
     });
   });
 
@@ -264,10 +248,10 @@ describe('admin absolute shard balance command contract', () => {
     expect(typeof module.assertAdminShardBalanceReplay).toBe('function');
     const input = module.normalizeAdminSetShardBalanceInput(validBalanceInput);
     const fingerprint = module.adminSetShardBalanceFingerprint(input);
-    expect(() => module.assertAdminShardBalanceReplay({ action: 'set_shard_balance', requestFingerprint: fingerprint, actorUid: 'admin-1' }, fingerprint, 'admin-1')).not.toThrow();
+    expect(() => module.assertAdminShardBalanceReplay({ action: 'adjust_shard_balance', requestFingerprint: fingerprint, actorUid: 'admin-1' }, fingerprint, 'admin-1')).not.toThrow();
     expect(() => module.assertAdminShardBalanceReplay({ action: 'grant_reward', requestFingerprint: fingerprint, actorUid: 'admin-1' }, fingerprint, 'admin-1')).toThrow(HttpsError);
-    expect(() => module.assertAdminShardBalanceReplay({ action: 'set_shard_balance', requestFingerprint: 'other', actorUid: 'admin-1' }, fingerprint, 'admin-1')).toThrow(HttpsError);
-    expect(() => module.assertAdminShardBalanceReplay({ action: 'set_shard_balance', requestFingerprint: fingerprint, actorUid: 'admin-2' }, fingerprint, 'admin-1')).toThrow(HttpsError);
+    expect(() => module.assertAdminShardBalanceReplay({ action: 'adjust_shard_balance', requestFingerprint: 'other', actorUid: 'admin-1' }, fingerprint, 'admin-1')).toThrow(HttpsError);
+    expect(() => module.assertAdminShardBalanceReplay({ action: 'adjust_shard_balance', requestFingerprint: fingerprint, actorUid: 'admin-2' }, fingerprint, 'admin-1')).toThrow(HttpsError);
   });
 
   it('ships a protected canonical transaction without creating a reward inbox row', () => {
@@ -279,7 +263,8 @@ describe('admin absolute shard balance command contract', () => {
     expect(body).toContain('requireRewardWriter(');
     expect(body).toContain('resolveCanonicalAdminAccessTarget(tx, db, input.uid)');
     expect(body).toContain('assertAdminShardBalanceReplay(');
-    expect(body).toContain('tx.update(target.ref, mutation.updates)');
+    expect(body).toContain('appendExternalEconomyEvent(tx, target.ref');
+    expect(body).not.toContain('tx.update(target.ref, mutation.updates)');
     expect(body).toContain("collection('shard_log')");
     expect(body).toContain("entity: { collection: 'users', id: target.uid }");
     expect(body).toContain('uid: target.uid');

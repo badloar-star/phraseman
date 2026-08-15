@@ -4,7 +4,8 @@ import auth from '@react-native-firebase/auth';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {  AppState,
+import {  Animated,
+  AppState,
   Dimensions,
   Keyboard,
   KeyboardAvoidingView,
@@ -27,12 +28,10 @@ import { useTheme } from '../components/ThemeContext';
 import { monoIcon } from '../constants/monoIcon';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
-import { getCommunityUgcPackPaywallTheme } from './flashcards/cardPackPaywallTheme';
 import { flashcardsCommunityPacksAvailableForTarget } from './flashcards_target_gate';
 import {
   COMMUNITY_PACK_CARD_COUNT_MAX,
   COMMUNITY_PACK_CARD_COUNT_MIN,
-  COMMUNITY_PACK_PRICE_SHARDS,
   buildCommunityPackPayloadForCloud,
   validateCommunityPackPayload,
   type CommunityPackSubmissionPayload,
@@ -46,12 +45,22 @@ import {
   saveCommunityPackCreateDraft,
 } from './community_packs/communityPackDraftStorage';
 import UgcPackEditorCardPreview from './community_packs/UgcPackEditorCardPreview';
+import { LinearGradient } from '../components/SafeLinearGradient';
+import { useAccordionChevronStyle } from '../hooks/useAccordionFaqStyle';
+import { configureAccordionLayout } from '../constants/layoutAnimation';
 import {
   UGC_CARD_THEME_DEFAULT_ID,
   UGC_CARD_THEME_IDS,
+  ugcCardChrome,
+  ugcCardThemeAccent,
   ugcCardThemeLabel,
   type UgcCardThemeId,
 } from './community_packs/ugcCardThemePresets';
+import {
+  isLocalAuthorPackId,
+  loadLocalAuthorPacks,
+  saveLocalAuthorPack,
+} from './community_packs/localAuthorPacks';
 import {
   UGC_CARD_BACK_DEFAULT_ID,
   UGC_CARD_BACK_IDS,
@@ -259,7 +268,8 @@ export default function CommunityPackCreateScreen() {
   /** Extra bottom padding so ScrollView can scroll past the keyboard. */
   const [keyboardBottomInset, setKeyboardBottomInset] = useState(0);
   const [clearDraftModalOpen, setClearDraftModalOpen] = useState(false);
-  const [resubmitPackModalOpen, setResubmitPackModalOpen] = useState(false);
+  /** Оформление (цвет карточек, иконка) — необязательное, по умолчанию свёрнуто. */
+  const [decorOpen, setDecorOpen] = useState(false);
 
   const scrollViewRef = useRef<ScrollView>(null);
   const scrollYRef = useRef(0);
@@ -286,21 +296,20 @@ export default function CommunityPackCreateScreen() {
   const selectedCardBackFan = cardBackFanImage(cardBackKey);
   const plannedDraftLocale = plannedCommunitySourceLocale(lang);
 
-  const packVis = useMemo(
-    () => getCommunityUgcPackPaywallTheme(themeKey, { themeMode, isLight: isLightTheme }),
-    [themeKey, themeMode, isLightTheme],
+  /**
+   * Цвет карточек берём напрямую из выбранной палитры: декор paywall-модалки в светлой
+   * теме игнорировал выбор автора, и «Цвет карточек» ни на что не влиял (владелец, 2026-08-13).
+   */
+  const cardChrome = useMemo(
+    () => ugcCardChrome(themeKey, { isLight: isLightTheme, bgCard: t.bgCard, bgSurface: t.bgSurface }),
+    [themeKey, isLightTheme, t.bgCard, t.bgSurface],
   );
-  const cardChrome = useMemo(() => {
-    const c0 = packVis.ctaColors[0];
-    const c1 = packVis.ctaColors[1];
-    const fa = isLightTheme ? '20' : '3E';
-    const ba = isLightTheme ? '18' : '32';
-    return {
-      borderAccent: packVis.borderAccent,
-      frontGradient: [c0 + fa, t.bgCard] as const,
-      backGradient: [c1 + ba, t.bgSurface] as const,
-    };
-  }, [packVis, isLightTheme, t.bgCard, t.bgSurface]);
+  const decorChevron = useAccordionChevronStyle(decorOpen);
+  const toggleDecor = useCallback(() => {
+    Keyboard.dismiss();
+    configureAccordionLayout();
+    setDecorOpen((v) => !v);
+  }, []);
 
   const scrollFocusedInputIntoView = useCallback((inputRef: React.RefObject<TextInput | null>) => {
     const input = inputRef.current;
@@ -361,6 +370,38 @@ export default function CommunityPackCreateScreen() {
     }
     let cancelled = false;
     void (async () => {
+      if (isLocalAuthorPackId(editPackId)) {
+        /** Свой набор с устройства — читаем локально, без облака и модерации. */
+        const local = (await loadLocalAuthorPacks(studyTarget)).find((x) => x.id === editPackId);
+        if (cancelled) return;
+        if (!local) {
+          setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'El pack no está disponible para editar', 'O pack não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
+          return;
+        }
+        setTitle(local.title);
+        setDescription(local.description);
+        const localThemeIdx = UGC_CARD_THEME_IDS.indexOf(local.cardThemeKey as UgcCardThemeId);
+        setThemeIdx(localThemeIdx >= 0 ? localThemeIdx : 0);
+        const localBackIdx = UGC_CARD_BACK_IDS.indexOf(local.cardBackKey as UgcCardBackId);
+        setCardBackIdx(localBackIdx >= 0 ? localBackIdx : 0);
+        setRows(
+          local.cards.map((c) => ({
+            id: c.id,
+            en: c.en,
+            ru: c.ru ?? '',
+            uk: c.uk ?? '',
+            es: c.es,
+            sourceLocales: {
+              'pt-BR': c.sourceLocales?.['pt-BR'],
+              vi: c.sourceLocales?.vi,
+              id: c.sourceLocales?.id,
+              tr: c.sourceLocales?.tr,
+              pl: c.sourceLocales?.pl,
+            },
+          })),
+        );
+        return;
+      }
       const sid = await getCanonicalUserId();
       if (!sid) {
         setLoadErr(L('Нет id', 'Немає id', 'Sin ID', 'Sem ID', 'Không có ID', 'Tanpa ID', 'ID yok', 'Brak ID'));
@@ -441,7 +482,6 @@ export default function CommunityPackCreateScreen() {
       void saveCommunityPackCreateDraft({
         title,
         description,
-        priceShards: COMMUNITY_PACK_PRICE_SHARDS,
         themeIdx,
         cardBackIdx,
         rows,
@@ -482,7 +522,6 @@ export default function CommunityPackCreateScreen() {
         void saveCommunityPackCreateDraft({
           title,
           description,
-          priceShards: COMMUNITY_PACK_PRICE_SHARDS,
           themeIdx,
           cardBackIdx,
           rows,
@@ -627,7 +666,6 @@ export default function CommunityPackCreateScreen() {
         v: 1,
         title,
         description,
-        priceShards: COMMUNITY_PACK_PRICE_SHARDS,
         themeIdx,
         cardBackIdx,
         rows,
@@ -681,7 +719,6 @@ export default function CommunityPackCreateScreen() {
       title: title.trim(),
       description: description.trim(),
       sourceLang: lang,
-      priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       cards,
       cardThemeKey: themeKey,
       cardBackKey,
@@ -689,124 +726,115 @@ export default function CommunityPackCreateScreen() {
     return p;
   }, [title, description, rows, themeKey, cardBackKey, lang, studyTarget]);
 
-  const runSubmit = useCallback(
-    async (updatePackId?: string) => {
-      if (!canUse || !payload) return;
-      const err = validateCommunityPackPayload(payload);
-      if (err) {
-        emitAppEvent('action_toast', actionToastTri('error', communityPackValidationToast(err, payload.cards.length)));
-        return;
-      }
-      const authorStableId = await getCanonicalUserId();
-      if (!authorStableId) {
-        emitAppEvent('action_toast', actionToastTri('error', {
-          ru: 'Нет стабильного id профиля.',
-          uk: 'Немає стабільного id профілю.',
-          es: 'No hay un ID de perfil estable.',
-          'pt-BR': 'Não há um ID de perfil estável.',
-          vi: 'Không có ID hồ sơ ổn định.',
-          id: 'Tidak ada ID profil yang stabil.',
-          tr: 'Sabit profil kimliği yok.',
-          pl: 'Brak stabilnego ID profilu.',
-        }));
-        return;
-      }
-      if (!auth().currentUser) {
+  /**
+   * Публикация в сообщество — фоном и БЕЗ формулировок про проверку/модерацию
+   * (владелец, 2026-08-13). Пользователь уже получил сохранённый набор; попадёт ли
+   * он в общий каталог, решает сервер, и это не должно мешать сохранению.
+   */
+  const publishToCommunityInBackground = useCallback(
+    (submission: CommunityPackSubmissionPayload, authorStableId: string | null, updatePackId?: string) => {
+      if (!canUse || !authorStableId) return;
+      if (validateCommunityPackPayload(submission) !== null) return;
+      void (async () => {
         try {
-          await auth().signInAnonymously();
-        } catch {
-          emitAppEvent('action_toast', actionToastTri('error', {
-            ru: 'Не удалось подтвердить аккаунт. Перезапусти раздел и попробуй снова.',
-            uk: 'Не вдалося підтвердити акаунт. Перезапусти розділ і спробуй ще раз.',
-            es: 'No se pudo confirmar la cuenta. Reabre la sección e inténtalo de nuevo.',
-            'pt-BR': 'Não foi possível confirmar a conta. Reabra a seção e tente novamente.',
-            vi: 'Không thể xác nhận tài khoản. Mở lại mục này rồi thử lại.',
-            id: 'Tidak dapat mengonfirmasi akun. Buka ulang bagian ini lalu coba lagi.',
-            tr: 'Hesap doğrulanamadı. Bölümü yeniden açıp tekrar dene.',
-            pl: 'Nie udało się potwierdzić konta. Otwórz sekcję ponownie i spróbuj jeszcze raz.',
-          }));
-          return;
+          if (!auth().currentUser) await auth().signInAnonymously();
+          await callCommunitySubmitPackForReview({
+            authorStableId,
+            payload: buildCommunityPackPayloadForCloud(submission),
+            ...(updatePackId ? { updatePackId } : {}),
+          });
+        } catch (e: unknown) {
+          if (__DEV__) console.warn('[community_pack_create] publish failed', e);
         }
-      }
+      })();
+    },
+    [canUse],
+  );
+
+  /** Локальная проверка перед сохранением: название, описание и хотя бы одна карточка. */
+  const localSaveError = useCallback((submission: CommunityPackSubmissionPayload): string | null => {
+    if (!submission.title.trim() || !submission.description.trim()) return 'title_or_desc';
+    if (submission.cards.length === 0) return 'no_cards';
+    if (submission.cards.some((c) => !c.en.trim())) return 'card_fields';
+    return null;
+  }, []);
+
+  const onSubmit = useCallback(() => {
+    if (!payload) return;
+    const err = localSaveError(payload);
+    if (err) {
+      emitAppEvent(
+        'action_toast',
+        actionToastTri(
+          'error',
+          err === 'no_cards'
+            ? {
+                ru: 'Добавь хотя бы одну карточку.',
+                uk: 'Додай хоча б одну картку.',
+                es: 'Añade al menos una tarjeta.',
+                'pt-BR': 'Adicione pelo menos um cartão.',
+                vi: 'Thêm ít nhất một thẻ.',
+                id: 'Tambahkan setidaknya satu kartu.',
+                tr: 'En az bir kart ekle.',
+                pl: 'Dodaj przynajmniej jedną kartę.',
+              }
+            : communityPackValidationToast(err, payload.cards.length),
+        ),
+      );
+      return;
+    }
+    void (async () => {
       setBusy(true);
       try {
-        const cloudPayload = buildCommunityPackPayloadForCloud(payload);
-        if (!updatePackId) {
-          emitAppEvent('action_toast', actionToastTri('info', {
-            ru: 'Отправляем набор на проверку...',
-            uk: 'Надсилаємо набір на перевірку...',
-            es: 'Enviando pack para revisión...',
-            'pt-BR': 'Enviando pacote para revisão...',
-            vi: 'Đang gửi bộ thẻ để xét duyệt...',
-            id: 'Mengirim paket untuk ditinjau...',
-            tr: 'Paket incelemeye gönderiliyor...',
-            pl: 'Wysyłamy zestaw do sprawdzenia...',
-          }));
-          safeRouterBack(router, '/flashcards' as any);
-        }
-        await callCommunitySubmitPackForReview({
-          authorStableId,
-          payload: cloudPayload,
-          ...(updatePackId ? { updatePackId } : {}),
-        });
-        if (!updatePackId) {
-          await clearCommunityPackCreateDraft(studyTarget, lang);
+        const authorStableId = await getCanonicalUserId().catch(() => null);
+        const cloudEdit = isEditMode && !isLocalAuthorPackId(editPackId);
+        if (cloudEdit) {
+          /** Опубликованный набор живёт на сервере — сохраняем изменения там же. */
+          if (!auth().currentUser) await auth().signInAnonymously();
+          await callCommunitySubmitPackForReview({
+            authorStableId: authorStableId ?? '',
+            payload: buildCommunityPackPayloadForCloud(payload),
+            updatePackId: editPackId,
+          });
+        } else {
+          await saveLocalAuthorPack(payload, {
+            packId: isEditMode ? editPackId : undefined,
+            authorStableId: authorStableId ?? undefined,
+            studyTarget,
+          });
+          if (!isEditMode) await clearCommunityPackCreateDraft(studyTarget, lang);
+          publishToCommunityInBackground(payload, authorStableId);
         }
         emitAppEvent('action_toast', actionToastTri('success', {
-          ru: updatePackId ? 'Изменения отправлены на проверку.' : 'Набор отправлен на проверку.',
-          uk: updatePackId ? 'Зміни надіслано на перевірку.' : 'Набір надіслано на перевірку.',
-          es: updatePackId
-            ? 'Cambios enviados para revisión.'
-            : 'Pack enviado para revisión.',
-          'pt-BR': updatePackId ? 'Alterações enviadas para revisão.' : 'Pacote enviado para revisão.',
-          vi: updatePackId ? 'Đã gửi thay đổi để xét duyệt.' : 'Đã gửi bộ thẻ để xét duyệt.',
-          id: updatePackId ? 'Perubahan dikirim untuk ditinjau.' : 'Paket dikirim untuk ditinjau.',
-          tr: updatePackId ? 'Değişiklikler incelemeye gönderildi.' : 'Paket incelemeye gönderildi.',
-          pl: updatePackId ? 'Zmiany wysłane do sprawdzenia.' : 'Zestaw wysłany do sprawdzenia.',
+          ru: 'Набор сохранён.',
+          uk: 'Набір збережено.',
+          es: 'Pack guardado.',
+          'pt-BR': 'Pacote salvo.',
+          vi: 'Đã lưu bộ thẻ.',
+          id: 'Paket disimpan.',
+          tr: 'Paket kaydedildi.',
+          pl: 'Zestaw zapisany.',
         }));
-        if (updatePackId) {
-          safeRouterBack(router, '/flashcards' as any);
-        }
+        emitAppEvent('community_pack_added', { packId: editPackId || 'local' });
+        safeRouterBack(router, '/flashcards' as any);
       } catch (e: unknown) {
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as Error).message) : String(e);
         const short = msg.slice(0, 140);
         emitAppEvent('action_toast', actionToastTri('error', {
-          ru: short || 'Ошибка отправки.',
-          uk: short || 'Помилка відправки.',
-          es: short || 'Error al enviar.',
-          'pt-BR': short || 'Erro ao enviar.',
-          vi: short || 'Lỗi khi gửi.',
-          id: short || 'Gagal mengirim.',
-          tr: short || 'Gönderme hatası.',
-          pl: short || 'Błąd wysyłania.',
+          ru: short || 'Не удалось сохранить набор.',
+          uk: short || 'Не вдалося зберегти набір.',
+          es: short || 'No se pudo guardar el pack.',
+          'pt-BR': short || 'Não foi possível salvar o pacote.',
+          vi: short || 'Không thể lưu bộ thẻ.',
+          id: short || 'Gagal menyimpan paket.',
+          tr: short || 'Paket kaydedilemedi.',
+          pl: short || 'Nie udało się zapisać zestawu.',
         }));
       } finally {
         setBusy(false);
       }
-    },
-    [canUse, payload, router, studyTarget, lang],
-  );
-
-  const onSubmit = useCallback(() => {
-    if (!canUse || !payload) return;
-    const err = validateCommunityPackPayload(payload);
-    if (err) {
-      emitAppEvent('action_toast', actionToastTri('error', communityPackValidationToast(err, payload.cards.length)));
-      return;
-    }
-    if (isEditMode) {
-      setResubmitPackModalOpen(true);
-      return;
-    }
-    void runSubmit();
-  }, [canUse, payload, isEditMode, editPackId, runSubmit, lang]);
-
-  const bumpTheme = useCallback((delta: number) => {
-    setThemeIdx((i) => {
-      const n = UGC_CARD_THEME_IDS.length;
-      return (i + delta + n * 10) % n;
-    });
-  }, []);
+    })();
+  }, [payload, localSaveError, isEditMode, editPackId, studyTarget, lang, publishToCommunityInBackground, router]);
 
   const bumpCardBack = useCallback((delta: number) => {
     setCardBackIdx((i) => {
@@ -904,6 +932,7 @@ export default function CommunityPackCreateScreen() {
           <BouncyScrollView
             ref={scrollViewRef}
             style={{ flex: 1 }}
+            nestedScrollEnabled
             decelerationRate="normal"
             keyboardShouldPersistTaps="handled"
             keyboardDismissMode={effectiveOs === 'ios' ? 'interactive' : 'on-drag'}
@@ -916,63 +945,6 @@ export default function CommunityPackCreateScreen() {
           >
             <ContentWrap>
               <View style={styles.formHorizontalInset}>
-              {false && isEditMode && rows.length === 0 ? (
-                <View />
-              ) : null}
-              {!isEditMode && draftHydrated && localDraftLooksMeaningful ? (
-                <TouchableOpacity
-                  onPress={() => {
-                    Keyboard.dismiss();
-                    onClearLocalDraftPrompt();
-                  }}
-                  style={{ alignSelf: 'flex-start', marginBottom: 8 }}
-                >
-                  <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '600', textDecorationLine: 'underline' }}>
-                    {L('Очистить сохранённый черновик', 'Очистити збережений чернетку', 'Borrar borrador guardado', 'Apagar rascunho salvo', 'Xóa bản nháp đã lưu', 'Hapus draf tersimpan', 'Kayıtlı taslağı temizle', 'Wyczyść zapisany szkic')}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
-              <Text
-                style={{
-                  color: t.textSecond,
-                  fontSize: f.sub,
-                  lineHeight: 20,
-                  marginTop: 10,
-                  marginBottom: 14,
-                }}
-              >
-                {L(
-                  'Место для твоего творчества. Если пак пройдёт проверку на адекватность, он попадёт в руки других юзеров. А ты получишь их жемчужины.',
-                  'Місце для твоєї творчості. Якщо пак пройде перевірку на адекватність, він потрапить у руки інших юзерів. А ти отримаєш їх жемчужини.',
-                  'Aquí puedes crear tu pack. Si supera la moderación, otros usuarios podrán usarlo y tú ganarás perlas.',
-                  'Aqui você pode criar seu pack. Se passar pela moderação, outros usuários poderão usá-lo e você ganhará perlas.',
-                  'Đây là nơi bạn tạo bộ thẻ của mình. Nếu vượt qua kiểm duyệt, người dùng khác có thể dùng nó và bạn sẽ nhận được xu.',
-                  'Di sini kamu bisa membuat paketmu. Jika lolos moderasi, pengguna lain bisa memakainya dan kamu akan mendapatkan fragmen.',
-                  'Burada kendi paketini oluşturabilirsin. Moderasyondan geçerse diğer kullanıcılar kullanabilir ve sen jeton kazanırsın.',
-                  'Tutaj możesz stworzyć swój pakiet. Jeśli przejdzie moderację, inni użytkownicy będą mogli z niego korzystać, a ty zdobędziesz monety.',
-                )}
-              </Text>
-              <Text
-                accessibilityRole="text"
-                style={{
-                  color: t.textSecond,
-                  fontSize: f.caption,
-                  lineHeight: 18,
-                  marginBottom: 14,
-                  fontWeight: '600',
-                }}
-              >
-                {L(
-                  'Цена набора для всех: 10 жемчужин. Изменить её нельзя.',
-                  'Ціна набору для всіх: 10 перлин. Її не можна змінити.',
-                  'Precio fijo para todos: 10 perlas. No se puede cambiar.',
-                  'Preço fixo para todos: 10 pérolas. Não pode ser alterado.',
-                  'Giá cố định cho mọi người: 10 ngọc trai. Không thể thay đổi.',
-                  'Harga tetap untuk semua: 10 mutiara. Tidak dapat diubah.',
-                  'Herkes için sabit fiyat: 10 inci. Değiştirilemez.',
-                  'Stała cena dla wszystkich: 10 pereł. Nie można jej zmienić.',
-                )}
-              </Text>
               <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *</Text>
               <TextInput
                 ref={titleInputRef}
@@ -998,106 +970,6 @@ export default function CommunityPackCreateScreen() {
                 multiline
                 style={[fieldInputStyle(t), { minHeight: 88, textAlignVertical: 'top' }]}
               />
-
-              <Text style={labelStyle(t)}>{L('Цвет карточек', 'Колір карток', 'Color de las tarjetas', 'Cor dos cartões', 'Màu thẻ', 'Warna kartu', 'Kart rengi', 'Kolor kart')}</Text>
-              <View style={[styles.stepperPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                <View style={styles.stepperRow}>
-                  <TapScale
-                    onPress={() => {
-                      Keyboard.dismiss();
-                      bumpTheme(-1);
-                    }}
-                    style={styles.stepperHit}
-                  >
-                    <Ionicons name="chevron-back" size={28} color={t.accent} />
-                  </TapScale>
-                  <Text style={[styles.stepperVal, { color: t.textPrimary, fontSize: 15 }]} numberOfLines={1}>
-                    {ugcCardThemeLabel(themeKey, lang)}
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      Keyboard.dismiss();
-                      bumpTheme(1);
-                    }}
-                    style={styles.stepperHit}
-                  >
-                    <Ionicons name="chevron-forward" size={28} color={t.accent} />
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-              <Text style={labelStyle(t)}>{L('Иконка набора', 'Іконка набору', 'Icono del pack', 'Icone do pack', 'Biểu tượng bộ thẻ', 'Ikon paket', 'Paket ikonu', 'Ikona pakietu')}</Text>
-              <View style={[styles.cardBackPickerPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                <View style={styles.cardBackHeroRow}>
-                  <TapScale
-                    onPress={() => {
-                      Keyboard.dismiss();
-                      bumpCardBack(-1);
-                    }}
-                    style={styles.stepperHit}
-                    accessibilityRole="button"
-                  >
-                    <Ionicons name="chevron-back" size={28} color={t.accent} />
-                  </TapScale>
-
-                  <View style={styles.cardBackHero}>
-                    {selectedCardBackFan ? (
-                      <Image source={selectedCardBackFan} style={styles.cardBackHeroImage} contentFit="contain" />
-                    ) : selectedCardBack ? (
-                      <Image source={selectedCardBack} style={styles.cardBackHeroImage} contentFit="contain" />
-                    ) : null}
-                  </View>
-
-                  <TouchableOpacity
-                    onPress={() => {
-                      Keyboard.dismiss();
-                      bumpCardBack(1);
-                    }}
-                    style={styles.stepperHit}
-                    accessibilityRole="button"
-                  >
-                    <Ionicons name="chevron-forward" size={28} color={t.accent} />
-                  </TouchableOpacity>
-                </View>
-
-                <Text style={[styles.cardBackPickerTitle, { color: t.textPrimary }]} numberOfLines={1}>
-                  {ugcCardBackLabel(cardBackKey, lang)}
-                </Text>
-
-                <ScrollView
-                  horizontal
-                  decelerationRate="normal"
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.cardBackThumbRow}
-                  keyboardShouldPersistTaps="handled"
-                >
-                  {UGC_CARD_BACK_IDS.map((id, idx) => {
-                    const selected = id === cardBackKey;
-                    const img = cardBackImage(id);
-                    return (
-                      <TouchableOpacity
-                        key={id}
-                        onPress={() => {
-                          Keyboard.dismiss();
-                          setCardBackIdx(idx);
-                        }}
-                        activeOpacity={0.82}
-                        accessibilityRole="button"
-                        accessibilityState={{ selected }}
-                        style={[
-                          styles.cardBackThumb,
-                          {
-                            borderColor: selected ? t.accent : t.border,
-                            backgroundColor: selected ? t.bgSurface2 : t.bgSurface,
-                          },
-                        ]}
-                      >
-                        {img ? <Image source={img} style={styles.cardBackThumbImage} contentFit="contain" /> : null}
-                      </TouchableOpacity>
-                    );
-                  })}
-                </ScrollView>
-              </View>
 
               <TouchableOpacity
                 onPress={() => {
@@ -1129,33 +1001,31 @@ export default function CommunityPackCreateScreen() {
                       : L('Новая карточка', 'Нова картка', 'Nueva tarjeta', 'Novo cartão', 'Thẻ mới', 'Kartu baru', 'Yeni kart', 'Nowa karta')}
                   </Text>
                   <Text style={[draftLabelStyle(t), { marginTop: 8 }]}>
-                    {L('АНГЛИЙСКАЯ СТОРОНА', 'АНГЛІЙСЬКА СТОРОНА', 'LADO EN INGLÉS', 'LADO EM INGLÊS', 'MẶT TIẾNG ANH', 'SISI BAHASA INGGRIS', 'İNGİLİZCE TARAF', 'STRONA ANGIELSKA')}
+                    {L('Передняя сторона', 'Передня сторона', 'Cara delantera', 'Frente', 'Mặt trước', 'Sisi depan', 'Ön yüz', 'Przednia strona')}
                   </Text>
                   <TextInput
                     ref={draftEnInputRef}
-                    accessibilityLabel={L('Английская сторона карточки', 'Англійська сторона картки', 'Cara en inglés de la tarjeta', 'Face em inglês do cartão', 'Mặt tiếng Anh của thẻ', 'Sisi bahasa Inggris kartu', 'Kartın İngilizce tarafı', 'Angielska strona karty')}
+                    accessibilityLabel={L('Передняя сторона карточки', 'Передня сторона картки', 'Cara delantera de la tarjeta', 'Frente do cartão', 'Mặt trước của thẻ', 'Sisi depan kartu', 'Kartın ön yüzü', 'Przednia strona karty')}
                     {...getTextInputSystemEditMenuProps()}
                     value={draftEn}
                     onChangeText={setDraftEn}
                     onFocus={bindScrollOnFocus(draftEnInputRef)}
-                    placeholder={L('Введи английский текст…', 'Введи англійський текст…', 'Escribe el texto en inglés…', 'Digite o texto em inglês…', 'Nhập nội dung tiếng Anh…', 'Masukkan teks bahasa Inggris…', 'İngilizce metni gir…', 'Wpisz tekst po angielsku…')}
-                    placeholderTextColor={t.textGhost}
                     style={[fieldInputStyle(t), { borderColor: t.accent }]}
                   />
-                  <Text style={draftLabelStyle(t)}>{L('ПЕРЕВОД', 'ПЕРЕКЛАД', 'TRADUCCIÓN', 'TRADUÇÃO', 'BẢN DỊCH', 'TERJEMAHAN', 'ÇEVİRİ', 'TŁUMACZENIE')}</Text>
+                  <Text style={draftLabelStyle(t)}>
+                    {L('Задняя сторона', 'Зворотна сторона', 'Cara trasera', 'Verso', 'Mặt sau', 'Sisi belakang', 'Arka yüz', 'Tylna strona')}
+                  </Text>
                   <TextInput
                     ref={draftTranslationInputRef}
-                    accessibilityLabel={L('Перевод карточки', 'Переклад картки', 'Traducción de la tarjeta', 'Tradução do cartão', 'Bản dịch thẻ', 'Terjemahan kartu', 'Kart çevirisi', 'Tłumaczenie karty')}
+                    accessibilityLabel={L('Задняя сторона карточки', 'Зворотна сторона картки', 'Cara trasera de la tarjeta', 'Verso do cartão', 'Mặt sau của thẻ', 'Sisi belakang kartu', 'Kartın arka yüzü', 'Tylna strona karty')}
                     {...getTextInputSystemEditMenuProps()}
                     value={draftTranslation}
                     onChangeText={setDraftTranslation}
                     onFocus={bindScrollOnFocus(draftTranslationInputRef)}
-                    placeholder={L('Введи перевод…', 'Введи переклад…', 'Escribe la traducción…', 'Digite a tradução…', 'Nhập bản dịch…', 'Masukkan terjemahan…', 'Çeviriyi gir…', 'Wpisz tłumaczenie…')}
-                    placeholderTextColor={t.textGhost}
                     style={fieldInputStyle(t)}
                   />
                   <Text style={draftLabelStyle(t)}>
-                    {L('ОПИСАНИЕ (НЕОБЯЗАТЕЛЬНО)', 'ОПИС (НЕОБОВ\'ЯЗКОВО)', 'DESCRIPCIÓN (OPCIONAL)', 'DESCRIÇÃO (OPCIONAL)', 'MÔ TẢ (KHÔNG BẮT BUỘC)', 'DESKRIPSI (OPSIONAL)', 'AÇIKLAMA (İSTEĞE BAĞLI)', 'OPIS (OPCJONALNIE)')}
+                    {L('Подсказка (необязательно)', 'Підказка (необов\'язково)', 'Nota (opcional)', 'Nota (opcional)', 'Ghi chú (không bắt buộc)', 'Catatan (opsional)', 'Not (isteğe bağlı)', 'Notatka (opcjonalnie)')}
                   </Text>
                   <TextInput
                     ref={draftNoteInputRef}
@@ -1164,17 +1034,6 @@ export default function CommunityPackCreateScreen() {
                     value={draftNote}
                     onChangeText={setDraftNote}
                     onFocus={bindScrollOnFocus(draftNoteInputRef)}
-                    placeholder={L(
-                      'Краткая заметка, контекст или подсказка…',
-                      'Коротка замітка, контекст або підказка…',
-                      'Nota breve, contexto o pista…',
-                      'Nota breve, contexto ou dica…',
-                      'Ghi chú ngắn, ngữ cảnh hoặc gợi ý…',
-                      'Catatan singkat, konteks, atau petunjuk…',
-                      'Kısa not, bağlam veya ipucu…',
-                      'Krótka notatka, kontekst albo podpowiedź…',
-                    )}
-                    placeholderTextColor={t.textGhost}
                     multiline
                     style={[fieldInputStyle(t), { minHeight: 72, textAlignVertical: 'top' }]}
                   />
@@ -1244,38 +1103,229 @@ export default function CommunityPackCreateScreen() {
                 />
               ))}
 
+              {/* Оформление — необязательное, свёрнуто по умолчанию (упрощение экрана 2026-08-13). */}
               <TouchableOpacity
+                testID="ugc-pack-decor-toggle"
+                accessibilityRole="button"
+                accessibilityState={{ expanded: decorOpen }}
+                onPress={toggleDecor}
+                activeOpacity={0.8}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 10,
+                  marginTop: 18,
+                  paddingVertical: 14,
+                  paddingHorizontal: 14,
+                  borderRadius: 14,
+                  backgroundColor: t.bgCard,
+                }}
+              >
+                <Ionicons name="color-palette-outline" size={18} color={t.accent} />
+                <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                  {L('Оформление', 'Оформлення', 'Aspecto', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }} numberOfLines={1}>
+                  {ugcCardThemeLabel(themeKey, lang)}
+                </Text>
+                <Animated.View style={{ transform: [{ rotate: decorChevron.rotate }] }}>
+                  <Ionicons name="chevron-down" size={18} color={t.textMuted} />
+                </Animated.View>
+              </TouchableOpacity>
+
+              {decorOpen ? (
+                <View>
+              <Text style={labelStyle(t)}>{L('Цвет карточек', 'Колір карток', 'Color de las tarjetas', 'Cor dos cartões', 'Màu thẻ', 'Warna kartu', 'Kart rengi', 'Kolor kart')}</Text>
+              {/* Живое превью: цвет виден сразу, в любой теме (владелец, 2026-08-13). */}
+              <LinearGradient
+                colors={[...cardChrome.frontGradient]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{
+                  height: 72,
+                  borderRadius: 16,
+                  borderWidth: 1,
+                  borderColor: cardChrome.borderAccent,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: 8,
+                }}
+              >
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
+                  {title.trim() || L('Ваш набор', 'Ваш набір', 'Tu pack', 'Seu pack', 'Bộ thẻ của bạn', 'Paketmu', 'Paketin', 'Twój pakiet')}
+                </Text>
+              </LinearGradient>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 12 }}>
+                {UGC_CARD_THEME_IDS.map((id, idx) => {
+                  const selected = id === themeKey;
+                  return (
+                    <TouchableOpacity
+                      key={id}
+                      testID={`ugc-pack-color-${id}`}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected }}
+                      accessibilityLabel={ugcCardThemeLabel(id, lang)}
+                      onPress={() => {
+                        Keyboard.dismiss();
+                        setThemeIdx(idx);
+                      }}
+                      activeOpacity={0.85}
+                      style={{
+                        width: 46,
+                        height: 46,
+                        borderRadius: 23,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderWidth: selected ? 2 : 1,
+                        borderColor: selected ? t.accent : t.border,
+                        backgroundColor: t.bgCard,
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: 28,
+                          height: 28,
+                          borderRadius: 14,
+                          backgroundColor: ugcCardThemeAccent(id, { isLight: isLightTheme }),
+                        }}
+                      />
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8 }} numberOfLines={1}>
+                {ugcCardThemeLabel(themeKey, lang)}
+              </Text>
+
+              <Text style={labelStyle(t)}>{L('Иконка набора', 'Іконка набору', 'Icono del pack', 'Icone do pack', 'Biểu tượng bộ thẻ', 'Ikon paket', 'Paket ikonu', 'Ikona pakietu')}</Text>
+              <View style={[styles.cardBackPickerPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+                <View style={styles.cardBackHeroRow}>
+                  <TapScale
+                    onPress={() => {
+                      Keyboard.dismiss();
+                      bumpCardBack(-1);
+                    }}
+                    style={styles.stepperHit}
+                    accessibilityRole="button"
+                  >
+                    <Ionicons name="chevron-back" size={28} color={t.accent} />
+                  </TapScale>
+
+                  <View style={styles.cardBackHero}>
+                    {selectedCardBackFan ? (
+                      <Image
+                        key={`fan-${cardBackKey}`}
+                        source={selectedCardBackFan}
+                        style={styles.cardBackHeroImage}
+                        contentFit="contain"
+                      />
+                    ) : selectedCardBack ? (
+                      <Image
+                        key={`single-${cardBackKey}`}
+                        source={selectedCardBack}
+                        style={styles.cardBackHeroImage}
+                        contentFit="contain"
+                      />
+                    ) : null}
+                  </View>
+
+                  <TouchableOpacity
+                    onPress={() => {
+                      Keyboard.dismiss();
+                      bumpCardBack(1);
+                    }}
+                    style={styles.stepperHit}
+                    accessibilityRole="button"
+                  >
+                    <Ionicons name="chevron-forward" size={28} color={t.accent} />
+                  </TouchableOpacity>
+                </View>
+
+                <Text style={[styles.cardBackPickerTitle, { color: t.textPrimary }]} numberOfLines={1}>
+                  {ugcCardBackLabel(cardBackKey, lang)}
+                </Text>
+
+                <ScrollView
+                  horizontal
+                  nestedScrollEnabled
+                  directionalLockEnabled
+                  decelerationRate="normal"
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.cardBackThumbRow}
+                  keyboardShouldPersistTaps="handled"
+                >
+                  {UGC_CARD_BACK_IDS.map((id, idx) => {
+                    const selected = id === cardBackKey;
+                    const img = cardBackImage(id);
+                    return (
+                      <TouchableOpacity
+                        key={id}
+                        testID={`ugc-pack-back-${id}`}
+                        onPress={() => {
+                          Keyboard.dismiss();
+                          setCardBackIdx(idx);
+                        }}
+                        activeOpacity={0.82}
+                        accessibilityRole="button"
+                        accessibilityState={{ selected }}
+                        accessibilityLabel={ugcCardBackLabel(id, lang)}
+                        style={[
+                          styles.cardBackThumb,
+                          {
+                            borderColor: selected ? t.accent : t.border,
+                            backgroundColor: selected ? t.bgSurface2 : t.bgSurface,
+                          },
+                        ]}
+                      >
+                        {img ? <Image source={img} style={styles.cardBackThumbImage} contentFit="contain" /> : null}
+                      </TouchableOpacity>
+                    );
+                  })}
+                </ScrollView>
+              </View>
+                </View>
+              ) : null}
+
+              <TouchableOpacity
+                testID="ugc-pack-save"
+                accessibilityRole="button"
+                accessibilityLabel={L('Сохранить набор', 'Зберегти набір', 'Guardar el pack', 'Salvar o pacote', 'Lưu bộ thẻ', 'Simpan paket', 'Paketi kaydet', 'Zapisz zestaw')}
                 onPress={() => {
                   Keyboard.dismiss();
                   void onSubmit();
                 }}
-                disabled={busy || (isEditMode && rows.length === 0)}
+                disabled={busy}
+                activeOpacity={0.85}
                 style={{
                   marginTop: 28,
                   paddingHorizontal: 16,
-                  backgroundColor: busy || (isEditMode && rows.length === 0) ? t.border : t.accent,
-                  borderRadius: 14,
-                  paddingVertical: 14,
+                  backgroundColor: busy ? t.border : t.accent,
+                  borderRadius: 16,
+                  paddingVertical: 16,
                   alignItems: 'center',
                 }}
               >
-                {false && busy ? (<View />) : (
-                  <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
-                    {isEditMode
-                      ? L(
-                          'Сохранить и отправить на проверку',
-                          'Зберегти й надіслати на перевірку',
-                          'Guardar y enviar a revisión',
-                          'Salvar e enviar para revisão',
-                          'Lưu và gửi để kiểm duyệt',
-                          'Simpan dan kirim untuk ditinjau',
-                          'Kaydet ve incelemeye gönder',
-                          'Zapisz i wyślij do sprawdzenia',
-                        )
-                      : L('Отправить на проверку', 'Надіслати на перевірку', 'Enviar a revisión', 'Enviar para revisão', 'Gửi để kiểm duyệt', 'Kirim untuk ditinjau', 'İncelemeye gönder', 'Wyślij do sprawdzenia')}
-                  </Text>
-                )}
+                <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body + 1 }}>
+                  {L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
+                </Text>
               </TouchableOpacity>
+
+              {/* Второстепенное действие — внизу экрана, а не в шапке (владелец, 2026-08-13). */}
+              {!isEditMode && draftHydrated && localDraftLooksMeaningful ? (
+                <TouchableOpacity
+                  testID="ugc-pack-clear-draft"
+                  accessibilityRole="button"
+                  onPress={() => {
+                    Keyboard.dismiss();
+                    onClearLocalDraftPrompt();
+                  }}
+                  style={{ alignSelf: 'center', marginTop: 20, paddingVertical: 8, paddingHorizontal: 12 }}
+                >
+                  <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
+                    {L('Очистить черновик', 'Очистити чернетку', 'Borrar borrador', 'Apagar rascunho', 'Xóa bản nháp', 'Hapus draf', 'Taslağı temizle', 'Wyczyść szkic')}
+                  </Text>
+                </TouchableOpacity>
+              ) : null}
               <View style={{ alignItems: 'center', marginTop: 16 }}>
                 <ReportErrorButton
                   screen="community_pack_create"
@@ -1306,27 +1356,6 @@ export default function CommunityPackCreateScreen() {
           onCancel={() => setClearDraftModalOpen(false)}
           onConfirm={performClearLocalDraft}
         />
-        <ThemedConfirmModal
-          visible={resubmitPackModalOpen}
-          title={L('Повторная проверка', 'Повторна перевірка', 'Nueva revisión', 'Nova revisão', 'Kiểm duyệt lại', 'Tinjauan ulang', 'Yeniden inceleme', 'Ponowne sprawdzenie')}
-          message={L(
-            'Набор исчезнет из продажи, пока не завершится проверка. Продолжить?',
-            'Набір зникне з продажу, доки не завершиться перевірка. Продовжити?',
-            'El pack dejará de estar a la venta hasta que termine la revisión. ¿Continuar?',
-            'O pack sairá da venda até a revisão terminar. Continuar?',
-            'Bộ thẻ sẽ tạm ẩn khỏi cửa hàng cho đến khi kiểm duyệt xong. Tiếp tục?',
-            'Paket akan hilang dari penjualan sampai tinjauan selesai. Lanjutkan?',
-            'İnceleme bitene kadar paket satıştan kalkacak. Devam edilsin mi?',
-            'Pakiet zniknie ze sprzedaży do końca sprawdzenia. Kontynuować?',
-          )}
-          cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-          confirmLabel={L('Отправить', 'Надіслати', 'Enviar', 'Enviar', 'Gửi', 'Kirim', 'Gönder', 'Wyślij')}
-          onCancel={() => setResubmitPackModalOpen(false)}
-          onConfirm={() => {
-            setResubmitPackModalOpen(false);
-            void runSubmit(editPackId);
-          }}
-        />
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -1345,10 +1374,10 @@ function labelStyle(t: { textSecond: string }) {
 function draftLabelStyle(t: { textMuted: string }) {
   return {
     color: t.textMuted,
-    fontSize: 11,
-    fontWeight: '800' as const,
-    letterSpacing: 0.6,
-    marginTop: 10,
+    fontSize: 13,
+    fontWeight: '700' as const,
+    letterSpacing: 0.2,
+    marginTop: 12,
     marginBottom: 6,
   };
 }
@@ -1378,20 +1407,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   headerTitle: { flex: 1, textAlign: 'center', fontWeight: '700' },
-  /** Округлая «плашка» вокруг степпера темы карточек. */
-  stepperPanel: {
-    marginTop: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 14,
-    borderRadius: 14,
-    borderWidth: 0,
-  },
-  stepperRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 16,
-  },
   /** Блок полей новой карточки — отдельная плашка с внутренними отступами. */
   draftCardPanel: {
     marginTop: 20,
@@ -1400,7 +1415,6 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   stepperHit: { padding: 8, minWidth: 48, alignItems: 'center' },
-  stepperVal: { fontSize: 22, fontWeight: '800', minWidth: 0, textAlign: 'center' },
   cardBackPickerPanel: {
     marginTop: 8,
     paddingVertical: 12,

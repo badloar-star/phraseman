@@ -9,6 +9,7 @@ import {
   createActivityRegistry,
   type ActivityPolicyCatalogEntry,
 } from "../modules/learning-v2/runtime/activity_registry";
+import { resolveActivityRegistration } from "../modules/learning-v2/runtime/activity_runtime";
 import { UnsupportedActivityError } from "../modules/learning-v2/runtime/unsupported_activity";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 
@@ -70,7 +71,6 @@ const registration = (overrides: Record<string, unknown> = {}) => ({
   policies: refs(),
   capabilities,
   accessibilityFallback: { kind: "deterministic_scripted" as const, label: "Use scripted route" },
-  resolveRenderer: () => ({ render: "choice" }),
   ...overrides,
 });
 
@@ -124,15 +124,18 @@ describe("Learning V2 activity registry", () => {
     })).toThrow("v2_activity_capability_unsupported");
   });
 
-  it("resolves renderer lazily and gives safe unknown-type recovery", () => {
-    const renderer = jest.fn(() => ({ render: "choice" }));
+  it("keeps the React-free registry to activity definitions and gives safe unknown-type recovery", () => {
     const registry = createActivityRegistry({
       policyCatalog: catalog(allPolicies()),
-      registrations: [registration({ resolveRenderer: renderer })],
+      registrations: [registration()],
     });
-    expect(renderer).not.toHaveBeenCalled();
-    expect(registry.resolveRenderer("visual.discovery.v1")).toEqual({ render: "choice" });
-    expect(renderer).toHaveBeenCalledTimes(1);
+    expect(resolveActivityRegistration(registry, "visual.discovery.v1")).toMatchObject({
+      activityTypeKey: "visual.discovery.v1",
+      rendererKey: "choice.visual-discovery.v1",
+    });
+    expect(registry.list()).toHaveLength(1);
+    expect(registry).not.toHaveProperty("resolveRenderer");
+    expect(registry.get("visual.discovery.v1")).not.toHaveProperty("resolveRenderer");
     expect(() => registry.get("unknown.mode")).toThrow(UnsupportedActivityError);
     expect(() => registry.get("unknown.mode")).toThrow("v2_activity_unknown_type");
   });

@@ -51,7 +51,7 @@ import {
 let _groupPtsTimer: ReturnType<typeof setTimeout> | null = null;
 let _pendingGroupPts: number | null = null;
 let _pendingGroupPtsAccountToken: AccountGenerationToken | null = null;
-let _pendingGroupPtsResolvers: Array<() => void> = [];
+let _pendingGroupPtsResolvers: (() => void)[] = [];
 
 function isJestRuntime(): boolean {
   return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
@@ -78,7 +78,6 @@ function callable<TReq, TRes>(name: string) {
 }
 
 const COL_LB = 'leaderboard';
-const GROUP_SIZE = 30;
 const LEAGUE_STATE_V3_KEY = 'league_state_v3';
 const LEAGUE_MEMBER_SYNC_CACHE_KEY = 'league_member_sync_cache_v1';
 const LEAGUE_STARTUP_REG_CACHE_KEY = 'league_startup_registration_cache_v1';
@@ -88,6 +87,10 @@ const DEFAULT_LEAGUE_POINTS_SYNC_MIN_INTERVAL_MS = 15 * 60_000;
 const DEFAULT_LEAGUE_STARTUP_REG_INTERVAL_MS = 24 * 60 * 60_000;
 /** Сколько league_groups максимум читаем на неделю+клуб, чтобы не создавать сольные группы из-за .limit(100) */
 const BROAD_GROUP_QUERY_LIMIT = 500;
+// Зеркало строгого серверного контракта functions/src/league_residents.ts.
+// При < 15 живых сервер обязан материализовать 28 видимых участников.
+const LEAGUE_RESIDENT_FILL_THRESHOLD = 15;
+const LEAGUE_RESIDENT_TARGET_VISIBLE = 28;
 
 type LeagueMemberSyncCache = {
   weekId: string;
@@ -104,6 +107,7 @@ type LeagueStartupRegistrationCache = {
   leagueId: number;
   points: number;
   registeredAt: number;
+  residentFillVerified: boolean;
 };
 
 function countMembersInData(data: any): number {
@@ -112,29 +116,17 @@ function countMembersInData(data: any): number {
   return Object.values(m).filter((member: any) => member?.identityHidden !== true).length;
 }
 
-/**
- * Сколько ЖИВЫХ игроков в комнате — вместимость и «одиночество» считаются
- * только по ним.
- *
- * зачем (аудит 2026-08-04): комнаты дозаполняются синтетическими жителями до
- * 28 участников. Если считать их занятыми местами, ломаются сразу два
- * механизма и оба — в сторону возврата болезни, которую жители лечат:
- *   • findGroupIdWithSpace счёл бы комнату «1 живой + 28 жителей» полной и
- *     отправил следующего человека создавать НОВУЮ комнату-одиночку;
- *   • tryRelocateSoloToSharedGroup сравнивает число участников с 1, чтобы
- *     понять «человек сидит один» — с жителями там 29, и переселение
- *     одиночек к людям перестало бы срабатывать вообще.
- * Живые обязаны собираться вместе; жители лишь заполняют фон.
- * Зеркало серверного countLiveMembers (functions/src/league_residents.ts).
- */
-function countLiveMembersInData(data: any): number {
-  const m = data?.members;
-  if (!m || typeof m !== 'object') return 0;
-  return Object.entries(m).filter(([uid, member]: [string, any]) => (
-    member?.identityHidden !== true
-    && member?.isResident !== true
-    && !String(uid).startsWith('res_')
+function satisfiesLeagueResidentFillContract(members: GroupMember[]): boolean {
+  const visible = members.length;
+  const live = members.filter((member) => (
+    member.isResident !== true && !String(member.uid || '').startsWith('res_')
   )).length;
+  // Не принимать старые переполненные комнаты как «уже исправленные».
+  // Серверный контракт точный: <15 живых => ровно 28 видимых; >=15 => жители
+  // полностью уступают место, значит видимых ровно столько же, сколько живых.
+  return live < LEAGUE_RESIDENT_FILL_THRESHOLD
+    ? visible === LEAGUE_RESIDENT_TARGET_VISIBLE
+    : visible === live;
 }
 
 /** Firestore числа + надёжное сравнение id клуба (избегаем рассинхрона 0 / long / int). */
@@ -221,6 +213,7 @@ async function readLeagueStartupRegistrationCache(): Promise<LeagueStartupRegist
       leagueId: normLeagueIdData(parsed.leagueId, 0),
       points: Math.max(0, Number(parsed.points) || 0),
       registeredAt: Math.max(0, Number(parsed.registeredAt) || 0),
+      residentFillVerified: parsed.residentFillVerified === true,
     };
   } catch {
     return null;
@@ -233,6 +226,7 @@ async function writeLeagueStartupRegistrationCache(weekId: string, leagueId: num
     leagueId: normLeagueIdData(leagueId, 0),
     points: Math.max(0, Math.trunc(points) || 0),
     registeredAt: Date.now(),
+    residentFillVerified: true,
   }));
 }
 
@@ -243,6 +237,10 @@ function shouldSkipLeagueStartupRegistration(
   points: number,
 ): boolean {
   if (!cache?.registeredAt) return false;
+  // Старый кэш мог быть записан после ответа из одного человека и блокировал
+  // повторный server join на сутки. Только проверенная комната имеет право
+  // пропустить фоновую регистрацию.
+  if (!cache.residentFillVerified) return false;
   if (cache.weekId !== weekId || normLeagueIdData(cache.leagueId, 0) !== normLeagueIdData(leagueId, 0)) return false;
   if (Date.now() - cache.registeredAt > leagueStartupRegistrationIntervalMs()) return false;
   return Math.abs(points - cache.points) < leagueSyncMinDelta();
@@ -276,35 +274,6 @@ function shouldSkipLeaguePointsCallable(
   if (now - cache.updatedAt > leagueSyncForceIntervalMs()) return false;
   if (now - cache.updatedAt < leagueSyncMinIntervalMs()) return true;
   return Math.abs(points - cache.points) < leagueSyncMinDelta();
-}
-
-function makeLeagueGroupDocId(weekId: string, leagueId: number, uid: string): string {
-  const safeUid = uid.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 16) || 'user';
-  return `${weekId}_${leagueId}_${Date.now()}_${safeUid}_${Math.random().toString(36).slice(2, 8)}`;
-}
-
-async function removeUserFromLeagueGroupBestEffort(
-  db: any,
-  groupId: string,
-  uid: string,
-): Promise<void> {
-  try {
-    await db.runTransaction(async (t: any) => {
-      const ref = db.collection('league_groups').doc(groupId);
-      const snap = await t.get(ref);
-      if (!snap.exists) return;
-      const data = snap.data() ?? {};
-      const members: Record<string, unknown> = { ...(data.members || {}) };
-      if (members[uid] === undefined) return;
-      delete members[uid];
-      const memberCount = Object.keys(members).length;
-      if (memberCount <= 0) {
-        t.delete(ref);
-        return;
-      }
-      t.set(ref, { members, memberCount }, { merge: true });
-    });
-  } catch {}
 }
 
 /**
@@ -380,199 +349,6 @@ async function findAnyLeagueGroupDocIdForUser(
   return best;
 }
 
-/**
- * Находит id группы с местом: сначала по memberCount (индекс), иначе широкий запрос
- * и выбор по фактическому числу ключей в members (источник истины).
- * Предпочитаем самую «полную» незаполненную группу, чтобы не плодить пустые.
- * excludeGroupId — не предлагать этот документ (при «эвакуации» из сольного league_groups).
- */
-async function findGroupIdWithSpace(
-  db: any,
-  weekId: string,
-  leagueId: number,
-  myUid: string,
-  excludeGroupId?: string | null,
-): Promise<string | null> {
-  const idOk = (docId: string) => !excludeGroupId || docId !== excludeGroupId;
-
-  // 1) Быстрый путь: memberCount < GROUP_SIZE, от большего к меньшему
-  try {
-    const q = await db
-      .collection('league_groups')
-      .where('weekId', '==', weekId)
-      .where('leagueId', '==', leagueId)
-      .where('memberCount', '<', GROUP_SIZE)
-      .orderBy('memberCount', 'desc')
-      .limit(25)
-      .get();
-    for (const doc of q.docs) {
-      if (!idOk(doc.id)) continue;
-      const d = doc.data();
-      if (normLeagueIdData(d.leagueId) !== normLeagueIdData(leagueId)) continue;
-      // Вместимость — по живым: жители мест не занимают (см. countLiveMembersInData).
-      const n = countLiveMembersInData(d);
-      if (n >= GROUP_SIZE) continue;
-      if (d.members?.[myUid]) return doc.id;
-      return doc.id;
-    }
-  } catch (e) {
-    // нет композитного индекса — ниже broad
-    if (__DEV__) console.warn('[firestore_leagues] findGroupIdWithSpace fast path failed (likely no index)', e);
-  }
-
-  // 2) Все группы этой недели и клуба (до лимита), сортировка в JS по числу участников
-  let broad: any;
-  try {
-    broad = await db
-      .collection('league_groups')
-      .where('weekId', '==', weekId)
-      .where('leagueId', '==', leagueId)
-      .limit(BROAD_GROUP_QUERY_LIMIT)
-      .get();
-  } catch (e) {
-    if (__DEV__) console.warn('[firestore_leagues] findGroupIdWithSpace broad weekId+leagueId failed', e);
-    broad = await db
-      .collection('league_groups')
-      .where('weekId', '==', weekId)
-      .limit(BROAD_GROUP_QUERY_LIMIT)
-      .get();
-  }
-
-  const candidates: { id: string; n: number }[] = [];
-  for (const doc of broad.docs) {
-    if (!idOk(doc.id)) continue;
-    const d = doc.data();
-    if (normLeagueIdData(d.leagueId) !== normLeagueIdData(leagueId)) continue;
-    // Вместимость — по живым: иначе комната «1 человек + 28 жителей» считалась
-    // бы полной и следующий игрок плодил бы новую одиночку.
-    const n = countLiveMembersInData(d);
-    if (n >= GROUP_SIZE) continue;
-    if (d.members?.[myUid]) return doc.id;
-    candidates.push({ id: doc.id, n });
-  }
-  candidates.sort((a, b) => b.n - a.n);
-  return candidates[0]?.id ?? null;
-}
-
-/**
- * Сольник по документу league_groups — перенести в другую неполную группу, удалив пустой from.
- * Раньше user с уже сохранённым groupId на эту неделю никогда не выходил на поиск.
- */
-async function tryRelocateSoloToSharedGroup(
-  db: any,
-  weekId: string,
-  leagueId: number,
-  uid: string,
-  fromGroupId: string,
-  memberData: Record<string, unknown>,
-): Promise<string | null> {
-  const gRef = (id: string) => db.collection('league_groups').doc(id);
-  const fromSnap = await gRef(fromGroupId).get();
-  if (!fromSnap.exists) return null;
-  const sData = fromSnap.data() ?? {};
-  // «Сольник» = один ЖИВОЙ в комнате. С жителями всего участников 29, и старое
-  // сравнение с 1 не срабатывало бы никогда — переселение одиночек к людям
-  // умерло бы молча, а живые остались размазаны по разным комнатам.
-  if (countLiveMembersInData(sData) !== 1 || !sData.members?.[uid]) return null;
-
-  const toId = await findGroupIdWithSpace(db, weekId, leagueId, uid, fromGroupId);
-  if (!toId || toId === fromGroupId) return null;
-
-  try {
-    await moveUserBetweenGroups(db, fromGroupId, toId, uid, memberData, weekId, leagueId);
-    return toId;
-  } catch {
-    return null;
-  }
-}
-
-async function moveUserBetweenGroups(
-  db: any,
-  fromId: string,
-  toId: string,
-  uid: string,
-  memberData: Record<string, unknown>,
-  weekId: string,
-  leagueId: number,
-): Promise<void> {
-  if (fromId === toId) throw new Error('relocate');
-  const g = (id: string) => db.collection('league_groups').doc(id);
-  const lb = db.collection(COL_LB).doc(uid);
-  await db.runTransaction(async (t: any) => {
-    const sSnap = await t.get(g(fromId));
-    const tSnap = await t.get(g(toId));
-    if (!sSnap.exists || !tSnap.exists) {
-      throw new Error('relocate');
-    }
-    const sD = sSnap.data() ?? {};
-    const tD = tSnap.data() ?? {};
-    if ((sD.weekId ?? weekId) !== (tD.weekId ?? weekId) || normLeagueIdData(sD.leagueId) !== normLeagueIdData(tD.leagueId)) {
-      throw new Error('relocate');
-    }
-    const sM: Record<string, unknown> = { ...(sD.members || {}) };
-    const tM: Record<string, unknown> = { ...(tD.members || {}) };
-    if (Object.keys(sM).length !== 1 || sM[uid] === undefined) {
-      throw new Error('relocate');
-    }
-    if (tM[uid] !== undefined) {
-      throw new Error('relocate');
-    }
-    if (Object.keys(tM).length >= GROUP_SIZE) {
-      throw new Error('relocate');
-    }
-    tM[uid] = { ...(sM[uid] as object), ...memberData };
-    delete sM[uid];
-    t.set(
-      g(toId),
-      {
-        weekId:      tD.weekId ?? weekId,
-        leagueId:    tD.leagueId ?? leagueId,
-        members:     tM,
-        memberCount: Object.keys(tM).length,
-      },
-      { merge: true },
-    );
-    t.delete(g(fromId));
-    t.set(lb, { groupId: toId, groupWeekId: weekId, leagueId: tD.leagueId ?? leagueId }, { merge: true });
-  });
-}
-
-type AddMemberResult = 'ok' | 'full';
-
-/** Атомарно вступить в группу; при гонке за последний слот вернёт 'full' */
-async function addMemberToLeagueGroup(
-  db: any,
-  groupId: string,
-  uid: string,
-  memberData: Record<string, unknown>,
-): Promise<AddMemberResult> {
-  let out: AddMemberResult = 'ok';
-  await db.runTransaction(async (t: any) => {
-    const ref = db.collection('league_groups').doc(groupId);
-    const snap = await t.get(ref);
-    if (!snap.exists) {
-      out = 'full';
-      return;
-    }
-    const data = snap.data() ?? {};
-    const members: Record<string, unknown> = { ...(data.members || {}) };
-    if (members[uid]) {
-      t.update(ref, { [`members.${uid}`]: memberData, memberCount: Object.keys(members).length });
-      return;
-    }
-    const n = Object.keys(members).length;
-    if (n >= GROUP_SIZE) {
-      out = 'full';
-      return;
-    }
-    t.update(ref, {
-      [`members.${uid}`]: memberData,
-      memberCount: n + 1,
-    });
-  });
-  return out;
-}
-
 // ── Получить или создать группу для пользователя на текущей неделе ───────────
 // Все пользователи регистрируются в league_groups.
 export async function getOrCreateLeagueGroup(
@@ -587,7 +363,10 @@ export async function getOrCreateLeagueGroup(
   const uid = await ensureAnonUser();
   if (!uid) return null;
   await ensureStableAuthLink().catch(() => false);
-  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
+  // App Check здесь best-effort, а не шлагбаум. Серверная функция сама решает,
+  // требуется ли токен. Если клиент ждёт appCheckReady=true, preview/internal
+  // сборки вообще не вызывают сервер и остаются с локальной группой из одного.
+  await initFirebaseAppCheckIfAvailable().catch(() => false);
 
   // Читаем аватар и рамку чтобы сохранить их в данных участника
   const [
@@ -660,10 +439,12 @@ export async function getOrCreateLeagueGroup(
   const cachedSync = await readLeagueMemberSyncCache();
   if (cachedSync && shouldSkipLeagueMemberCallable(cachedSync, weekId, leagueId, profileHash, myWeekPoints)) {
     const cachedMembers = await fetchGroupMembers(db, cachedSync.groupId, uid, myName, myWeekPoints).catch(() => []);
-    if (cachedMembers.length > 0) return cachedMembers;
+    // Не кэшируем нарушение «<15 живых → 28 видимых»: такая комната должна
+    // немедленно попасть в server join и починиться в той же транзакции.
+    if (satisfiesLeagueResidentFillContract(cachedMembers)) return cachedMembers;
   }
 
-  if (appCheckReady) try {
+  try {
     const fn = callable<
       { weekId: string; leagueId: number; stableId?: string; member: Record<string, unknown> },
       { ok: boolean; groupId: string; weekId: string; leagueId: number }
@@ -682,153 +463,43 @@ export async function getOrCreateLeagueGroup(
       return await fetchGroupMembers(db, groupId, uid, myName, myWeekPoints);
     }
   } catch (e) {
-    if (__DEV__) console.warn('[firestore_leagues] leagueJoinOrUpdateGroup failed, falling back', e);
+    if (__DEV__) console.warn('[firestore_leagues] leagueJoinOrUpdateGroup failed, using read-only fallback', e);
   }
 
+  // Без сервера клиент может только показать уже существующую группу. Создание,
+  // переселение и обновление league_groups принадлежат Cloud Function: только она
+  // применяет жителей, авторитетные очки и атомарное правило 15 → 28. Старый
+  // write-fallback обходил это правило (и всё равно блокировался Firestore Rules).
   try {
-    // Проверяем — есть ли у нас уже groupId на эту неделю
     const myDoc = await db.collection(COL_LB).doc(uid).get();
     const myData = myDoc.exists ? myDoc.data() : {};
     const savedGroupId: string | undefined = myData?.groupId;
     const savedWeekId: string | undefined  = myData?.groupWeekId;
-    // Локальное значение с экрана клуба + нормализация из Firebase (int/long)
     const leagueIdForGroup = normLeagueIdData(leagueId, 0);
 
-    // Источник истины — поле `members` в league_groups, а не только leaderboard.groupId
-    // (указатель мог остаться на сольнике после миграции, гонки вступления, ручного правок).
-    let canonicalGid   = await findBestLeagueGroupDocIdForUser(db, weekId, leagueIdForGroup, uid);
-    let effectiveLeagueId = leagueIdForGroup;
+    let canonicalGid = await findBestLeagueGroupDocIdForUser(db, weekId, leagueIdForGroup, uid);
     if (!canonicalGid) {
       const any = await findAnyLeagueGroupDocIdForUser(db, weekId, uid);
-      if (any && any.leagueId === leagueIdForGroup) {
-        canonicalGid = any.id;
-        effectiveLeagueId = any.leagueId;
-      } else if (any) {
-        removeUserFromLeagueGroupBestEffort(db, any.id, uid).catch(() => {});
-      }
+      if (any?.leagueId === leagueIdForGroup) canonicalGid = any.id;
     }
     if (canonicalGid) {
-      if (canonicalGid !== savedGroupId || savedWeekId !== weekId || normLeagueIdData(myData?.leagueId) !== effectiveLeagueId) {
-        await db.collection(COL_LB).doc(uid).set(
-          { groupId: canonicalGid, groupWeekId: weekId, leagueId: effectiveLeagueId },
-          { merge: true },
-        );
-      }
-      const newGroupId = await tryRelocateSoloToSharedGroup(
-        db, weekId, effectiveLeagueId, uid, canonicalGid, memberData,
-      );
-      const effective = newGroupId ?? canonicalGid;
-      await db.collection('league_groups').doc(effective).update({
-        [`members.${uid}`]: memberData,
-      }).catch(() => {});
-      writeLeagueMemberSyncCache({
-        weekId,
-        leagueId: effectiveLeagueId,
-        groupId: effective,
-        memberHash,
-        profileHash,
-        points: myWeekPoints,
-      }).catch(() => {});
-      return await fetchGroupMembers(db, effective, uid, myName, myWeekPoints);
+      const members = await fetchGroupMembers(db, canonicalGid, uid, myName, myWeekPoints);
+      return members.length > 0 ? members : null;
     }
 
-    // Уже в группе на эту неделю — но сначала проверяем что savedGroupId реально валиден.
-    // Раньше слепое доверие к savedGroupId оставляло пользователя в его собственной solo-группе,
-    // если ВЕТКА 1 не нашла его в members ни одной группы (например после удаления/слияния).
     if (savedGroupId && savedWeekId === weekId) {
-      let savedSnap: any = null;
-      try {
-        savedSnap = await db.collection('league_groups').doc(savedGroupId).get();
-      } catch (e) {
-        if (__DEV__) console.warn('[firestore_leagues] read savedGroupId failed', e);
-      }
+      const savedSnap = await db.collection('league_groups').doc(savedGroupId).get();
       const savedData = savedSnap?.exists ? savedSnap.data() ?? {} : null;
-      const savedMembers: Record<string, unknown> = (savedData?.members as Record<string, unknown>) || {};
-      const savedMemberCount = countMembersInData(savedData);
-      const iAmInSaved = !!savedMembers[uid];
-      const savedLeagueMatches = normLeagueIdData(savedData?.leagueId, leagueIdForGroup) === leagueIdForGroup;
-
-      if (savedData && iAmInSaved && savedLeagueMatches) {
-        // Я реально в этой группе. Если она solo — пробуем relocate;
-        // если relocate не помог и группа всё ещё solo, проваливаемся в ВЕТКУ 3 (поиск/создание).
-        let effective: string | null = savedGroupId;
-        if (savedMemberCount <= 1) {
-          const newGroupId = await tryRelocateSoloToSharedGroup(
-            db, weekId, leagueIdForGroup, uid, savedGroupId, memberData,
-          );
-          if (newGroupId) effective = newGroupId;
-          else effective = null; // остался в solo — пусть ВЕТКА 3 попробует найти/создать общую
-        }
-        if (effective) {
-          await db.collection('league_groups').doc(effective).update({
-            [`members.${uid}`]: memberData,
-          }).catch((e: unknown) => {
-            if (__DEV__) console.warn('[firestore_leagues] update members[uid] failed', e);
-          });
-          writeLeagueMemberSyncCache({
-            weekId,
-            leagueId: leagueIdForGroup,
-            groupId: effective,
-            memberHash,
-            profileHash,
-            points: myWeekPoints,
-          }).catch(() => {});
-          return await fetchGroupMembers(db, effective, uid, myName, myWeekPoints);
-        }
-      } else if (savedData && iAmInSaved && !savedLeagueMatches) {
-        removeUserFromLeagueGroupBestEffort(db, savedGroupId, uid).catch(() => {});
-      }
-      // savedGroupId недействителен (не существует / меня там нет / solo без relocate-цели):
-      // обнуляем и идём в ВЕТКУ 3.
-    }
-
-    // Подбор группы: не полагаться на memberCount в случайных N документах (плодились
-    // сольные группы). Ищем по фактическим members, широкий лимит, приоритет — заполнить
-    // самую «полную» незаполненную группу. Вступление — транзакция (последний слот, гонки).
-    let groupId: string | null = null;
-    const maxJoinAttempts = 4;
-    for (let attempt = 0; attempt < maxJoinAttempts; attempt++) {
-      const candidate = await findGroupIdWithSpace(db, weekId, leagueIdForGroup, uid);
-      if (!candidate) break;
-      const res = await addMemberToLeagueGroup(db, candidate, uid, memberData);
-      if (res === 'ok') {
-        groupId = candidate;
-        break;
+      if (
+        savedData?.weekId === weekId
+        && normLeagueIdData(savedData?.leagueId, leagueIdForGroup) === leagueIdForGroup
+        && savedData?.members?.[uid]
+      ) {
+        const members = await fetchGroupMembers(db, savedGroupId, uid, myName, myWeekPoints);
+        return members.length > 0 ? members : null;
       }
     }
-    if (!groupId) {
-      groupId = makeLeagueGroupDocId(weekId, leagueIdForGroup, uid);
-      await db.collection('league_groups').doc(groupId).set({
-        weekId,
-        leagueId: leagueIdForGroup,
-        memberCount: 1,
-        createdAt: Date.now(),
-        members: { [uid]: memberData },
-      });
-      // Сразу же пробуем переместить в общую группу: за время поиска кто-то мог
-      // освободить слот, или появилась группа. Это закрывает гонку
-      // «findGroupIdWithSpace вернул full → создал solo» и сразу нашёл свободную.
-      const relocatedTo = await tryRelocateSoloToSharedGroup(
-        db, weekId, leagueIdForGroup, uid, groupId, memberData,
-      );
-      if (relocatedTo) groupId = relocatedTo;
-    }
-
-    // Сохраняем groupId и leagueId в профиле пользователя
-    await db.collection(COL_LB).doc(uid).set(
-      { groupId, groupWeekId: weekId, leagueId: leagueIdForGroup },
-      { merge: true }
-    );
-
-    writeLeagueMemberSyncCache({
-      weekId,
-      leagueId: leagueIdForGroup,
-      groupId,
-      memberHash,
-      profileHash,
-      points: myWeekPoints,
-    }).catch(() => {});
-    return await fetchGroupMembers(db, groupId, uid, myName, myWeekPoints);
+    return null;
   } catch (e) {
     if (__DEV__) console.warn('[firestore_leagues] getOrCreateLeagueGroup failed', e);
     return null;
@@ -1178,7 +849,7 @@ export async function registerInLeagueGroupSilently(isPremium?: boolean): Promis
     if (shouldSkipLeagueStartupRegistration(cachedRegistration, weekId, leagueId, weekPoints)) return;
 
     const group = await getOrCreateLeagueGroup(weekId, leagueId, name, weekPoints);
-    if (group && group.length > 0) {
+    if (group && satisfiesLeagueResidentFillContract(group)) {
       writeLeagueStartupRegistrationCache(weekId, leagueId, weekPoints).catch(() => {});
     }
     // Первый запуск: пока в multiGet не было league_state_v3, сохраняем снимок группы из облака,
@@ -1234,11 +905,10 @@ function mapLeagueMembersToGroupList(
         profileCardPublicFocus: normalizeProfileCardPublicFocus(m.profileCardPublicFocus),
         streak: m.streak ?? undefined,
         totalXp: m.totalXp ?? undefined,
-        // зачем (аудит 2026-08-04): метка синтетического жителя обязана
-        // доезжать до движка лиг — по ней calculateResult исключает его из
-        // подсчёта ранга и зон перехода, как это делает сервер. Без метки
-        // остаётся только префикс uid, а он мог бы не совпасть при смене
-        // формата и клиент молча разошёлся бы с сервером в итогах недели.
+        // Метка синтетического жителя обязана доезжать до движка лиг:
+        // житель участвует в total, ранге и зонах как видимый соперник, но не
+        // должен становиться получателем награды. Явная метка сохраняет этот
+        // контракт даже при будущей смене формата uid.
         isResident: m.isResident === true || String(key).startsWith('res_'),
         leagueBoostMultiplier: boostLive ? mult : undefined,
         leagueBoostExpiresAt: boostLive ? until : undefined,

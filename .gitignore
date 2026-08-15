@@ -329,7 +329,11 @@ _frames/
 
 # Выжимка контента для генератора турниров — пересобирается на этапе build
 functions/src/generated/tournament_content.json
+functions/src/generated/support_repo_context.json
 
 # Огрызки от упавших правок редактора (*.tsx.tmp.<pid>.<hash>) — мусор,
 # засоряют git status и grep-поиск по проекту.
 *.tmp.[0-9]*.[0-9a-f]*
+
+# Сборка тестов Арены (tools/arena_tests/run.sh)
+.arena-test-build/

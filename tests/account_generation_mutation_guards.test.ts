@@ -12,6 +12,7 @@ const mockEnsureStableAuthLinkForStableIdDetailed = jest.fn(async (stableUid: st
 const mockReplaceShardsBalanceLocal = jest.fn(async () => undefined);
 const mockReplaceShardsBalanceForAccountGeneration = jest.fn(async () => 'applied');
 const mockAddShards = jest.fn(async () => 25);
+const mockCommitConfirmedExternalShardEvent = jest.fn(async () => ({ status: 'applied', balanceAfter: 95 }));
 const mockBumpLifetimeShardsSpent = jest.fn(async () => undefined);
 const mockCheckAchievements = jest.fn(async () => undefined);
 const mockEmitAppEvent = jest.fn();
@@ -30,13 +31,17 @@ jest.mock('../app/cloud_sync', () => ({
 jest.mock('../app/app_check_init', () => ({ initFirebaseAppCheckIfAvailable: jest.fn(async () => undefined) }));
 jest.mock('../app/shards_system', () => ({
   addShards: mockAddShards,
+  commitConfirmedExternalShardEvent: mockCommitConfirmedExternalShardEvent,
   replaceShardsBalanceLocal: mockReplaceShardsBalanceLocal,
   replaceShardsBalanceForAccountGeneration: mockReplaceShardsBalanceForAccountGeneration,
 }));
 jest.mock('../app/lifetime_profile_stats', () => ({ bumpLifetimeShardsSpent: mockBumpLifetimeShardsSpent }));
 jest.mock('../app/achievements', () => ({ checkAchievements: mockCheckAchievements }));
 jest.mock('../app/events', () => ({ emitAppEvent: mockEmitAppEvent }));
-jest.mock('../app/remote_flags', () => ({ isCollectiblesEnabled: jest.fn(() => true) }));
+jest.mock('../app/remote_flags', () => ({
+  isCollectiblesEnabled: jest.fn(() => true),
+  getMaxEnergy: jest.fn(() => 5),
+}));
 jest.mock('../app/xp_manager', () => ({ registerXP: mockRegisterXP }));
 jest.mock('../app/app_health', () => ({ logAppWarning: jest.fn() }));
 jest.mock('../app/premium_guard', () => ({ getVerifiedPremiumStatus: jest.fn(async () => true) }));
@@ -112,8 +117,6 @@ test('late committed friend-gift response from account A resolves authoritativel
     ok: true;
     giftId: 'chain_shield_1';
     costShards: number;
-    senderBalanceAfter: number;
-    shardsUpdatedAtMs: number;
   } }>();
   mockCallableInvoker.mockReturnValueOnce(response.promise);
 
@@ -128,14 +131,11 @@ test('late committed friend-gift response from account A resolves authoritativel
     ok: true,
     giftId: 'chain_shield_1',
     costShards: 5,
-    senderBalanceAfter: 95,
-    shardsUpdatedAtMs: 3_000,
   } });
 
-  await expect(request).resolves.toMatchObject({
-    ok: true,
-    senderBalanceAfter: 95,
-  });
+  const result = await request;
+  expect(result).toMatchObject({ ok: true, costShards: 5 });
+  expect(result).not.toHaveProperty('senderBalanceAfter');
   expect(mockCallableInvoker).toHaveBeenCalledTimes(1);
   expect(mockReplaceShardsBalanceForAccountGeneration).not.toHaveBeenCalled();
   expect(mockReplaceShardsBalanceLocal).not.toHaveBeenCalled();
@@ -228,7 +228,6 @@ test('late collectible response from account A cannot write account B inventory,
     dropped: true,
     card: { id: 'aurora_01', setId: 'aurora', rarity: 'common' },
     bonusShards: 10,
-    shardsBalance: 110,
   } });
 
   await expect(request).resolves.toBeNull();
@@ -385,27 +384,19 @@ test('same active account still completes friend gift and lesson bonus mutations
     ok: true,
     giftId: 'chain_shield_1',
     costShards: 5,
-    senderBalanceAfter: 95,
-    shardsUpdatedAtMs: 3_000,
   } });
 
   await sendFriendGiftWithShards({ friendStableId: 'friend-2', giftId: 'chain_shield_1' });
   const lesson = await grantLessonFirstCompleteBonus({ lessonId: 42, studyTarget: 'fr', lang: 'ru' });
 
-  expect(mockReplaceShardsBalanceForAccountGeneration).toHaveBeenCalledWith(
-    95,
-    expect.objectContaining({ stableId: 'account-a' }),
-    'account-a',
-    expect.objectContaining({ reason: 'friend_gift' }),
-  );
-  expect(mockBumpLifetimeShardsSpent).toHaveBeenCalledWith(
-    5,
-    expect.objectContaining({ stableId: 'account-a', phase: 'active' }),
-  );
+  expect(mockCommitConfirmedExternalShardEvent).toHaveBeenCalledWith(expect.objectContaining({
+    source: 'friend_gift', delta: -5, reason: 'friend_gift',
+  }));
+  expect(mockBumpLifetimeShardsSpent).not.toHaveBeenCalled();
   expect(mockCheckAchievements).toHaveBeenCalledWith(
     { type: 'gift_sent' },
     expect.objectContaining({ stableId: 'account-a', phase: 'active' }),
   );
-  expect(mockAddShards).toHaveBeenCalledWith('lesson_first', { suppressEarnEvent: true });
+  expect(mockAddShards).toHaveBeenCalledWith('lesson_first', expect.objectContaining({ suppressEarnEvent: true }));
   expect(lesson.status).toBe('granted');
 });

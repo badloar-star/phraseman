@@ -31,8 +31,6 @@ const CENTERING = /justifyContent:\s*'center'/;
  */
 const KNOWN_DEBT: readonly string[] = [
   'app/_layout.tsx',
-  'app/flashcards/FlashcardsCategoryHub.tsx',
-  'app/personal_plan_exercise_transition.tsx',
   'app/trainer_words_session.tsx',
   'components/DialogVictoryCelebration.tsx',
   'components/ExplainReportButton.tsx',

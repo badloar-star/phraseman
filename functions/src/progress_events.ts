@@ -16,7 +16,6 @@ export const PROGRESS_EVENT_TYPES = [
   'lesson_complete',
   'dialog_complete',
   'exam_complete',
-  'daily_task_reward',
   'achievement_reward',
   'level_up_bonus',
   'daily_login_bonus',
@@ -28,7 +27,6 @@ export const PROGRESS_EVENT_TYPES = [
   'preposition_drill_perfect',
   'review_answer',
   'diagnostic_test',
-  'plan_task_complete',
   'wager_win',
 ] as const;
 
@@ -136,7 +134,6 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   lesson_complete: 8000,
   dialog_complete: 1000,
   exam_complete: 12000,
-  daily_task_reward: 1000,
   achievement_reward: 5000,
   level_up_bonus: 100,
   daily_login_bonus: 500,
@@ -148,7 +145,6 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   preposition_drill_perfect: 1500,
   review_answer: 150,
   diagnostic_test: 2500,
-  plan_task_complete: 1500,
   wager_win: 20000,
 };
 
@@ -222,7 +218,7 @@ function getProgress(data: FirebaseFirestore.DocumentData | undefined): Progress
   return raw && typeof raw === 'object' && !Array.isArray(raw) ? raw as ProgressMap : {};
 }
 
-function isoDateUtc(date: Date): string {
+export function isoDateUtc(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
 
@@ -333,7 +329,7 @@ export function buildProgressBaseline(
   return baseline;
 }
 
-function progressServerStateFromProgress(progress: ProgressMap, now: Date): ProgressServerState {
+export function progressServerStateFromProgress(progress: ProgressMap, now: Date): ProgressServerState {
   const serverDate = isoDateUtc(now);
   const weekKey = getWeekKey(serverDate);
   const weekStart = getWeekStartIso(serverDate);
@@ -353,7 +349,7 @@ function progressServerStateFromProgress(progress: ProgressMap, now: Date): Prog
   };
 }
 
-function authoritativeProgressPatch(state: ProgressServerState): ProgressMap {
+export function authoritativeProgressPatch(state: ProgressServerState): ProgressMap {
   const patch: ProgressMap = {
     user_total_xp: String(state.totalXp),
     user_level: String(state.level),
@@ -597,7 +593,7 @@ export function isServerOwnedProgressKey(key: string): boolean {
   if (/^level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
   if (/^lesson_progress_v2::fr::.+/.test(key)) return true;
   if (/^level_exams_v2::fr::level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
-  if (/^(?:daily_task|achievement|bonus_chest|wager)_.*(?:claimed|rewarded|at)$/.test(key)) return true;
+  if (/^(?:achievement|bonus_chest|wager)_.*(?:claimed|rewarded|at)$/.test(key)) return true;
   return false;
 }
 

@@ -42,12 +42,13 @@ import { SeasonLifecycleTransitionRepository } from "./content_studio/season_lif
 import { ModeTemplateLifecycleTransitionRepository } from "./content_studio/mode_template_transition_repository";
 import type { EpisodeDraft } from "../../modules/learning-v2/authoring/episode_draft";
 import type { SeasonDraft } from "../../modules/learning-v2/authoring/season_draft";
+import { ENFORCE_APP_CHECK_ADMIN } from "./callable_options";
 
 const callableOptions = {
   region: "us-central1",
-  // Content authoring is an admin mutation surface: fail closed unless an
-  // explicit local/dev override is supplied.
-  enforceAppCheck: process.env.ENFORCE_APP_CHECK_CONTENT_STUDIO !== "false",
+  // Owner invariant: admin App Check remains off unless the dedicated admin
+  // flag is explicitly enabled. Auth role checks still fail closed per call.
+  enforceAppCheck: ENFORCE_APP_CHECK_ADMIN,
 } as const;
 
 const asHttpsError = (error: unknown): HttpsError =>

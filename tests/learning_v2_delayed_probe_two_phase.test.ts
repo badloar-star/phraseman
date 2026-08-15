@@ -22,11 +22,11 @@ describe("Learning V2 delayed probe two-phase protocol", () => {
     let stored: string | null = null;
     const storage = { getItem: async () => stored, setItem: async (_key: string, value: string) => { stored = value; } };
     const outbox = createProgressOutbox(storage, (current) => current.stableId === scope.stableId && current.generation === scope.generation);
-    await outbox.enqueue(scope, "delayed-mutation-1", candidate);
+    const pending = await outbox.enqueue(scope, "delayed-mutation-1", candidate);
     const receipt = adjudicateDelayedCandidate(context, { kind: "timed", window: "inside_pinned_window" });
     expect(receipt.kind).toBe("timing");
-    await outbox.acknowledge(scope, "delayed-mutation-1", "timed_finalized");
-    await expect(outbox.acknowledge(scope, "delayed-mutation-1", "system_non_assessment_finalized")).resolves.toBeUndefined();
+    await expect(outbox.acknowledge(scope, pending, "timed_finalized")).resolves.toBe("recorded");
+    await expect(outbox.acknowledge(scope, pending, "system_non_assessment_finalized")).rejects.toThrow("progress_ack_state_conflict");
     expect((await outbox.list(scope))[0]).toMatchObject({ status: "terminal", terminalStatus: "timed_finalized" });
   });
 

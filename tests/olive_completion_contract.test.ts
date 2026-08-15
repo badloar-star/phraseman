@@ -17,9 +17,6 @@ describe('Olive completion surfaces', () => {
 
   it('keeps the remaining Olive shells explicit and matte', () => {
     for (const file of [
-      'app/daily_tasks_screen.tsx',
-      'app/personal_plan.tsx',
-      'app/personal_plan_stats_screen.tsx',
       'app/lingman_youtube_chrome.ts',
       'app/level_exam.tsx',
     ]) expect(read(file)).toContain("themeMode === 'olive'");

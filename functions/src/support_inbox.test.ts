@@ -6,6 +6,7 @@ import {
   isHumanEmail,
   rawEmailToDoc,
   composeReplyWithSignature,
+  localizedSupportSignature,
   escapeHtml,
   plainToHtmlEmail,
   selectForBatchGenerate,
@@ -145,6 +146,13 @@ describe('isHumanEmail — только письма от живых людей'
     expect(isHumanEmail({ fromEmail: 'notifications@x.com' })).toBe(false);
   });
 
+  test('никогда не отвечает самому support-ящику (защита от mail loop)', () => {
+    expect(classifyEmail({ fromEmail: 'support.phraseman@gmail.com' })).toEqual({
+      category: 'automated',
+      reason: 'own_mailbox',
+    });
+  });
+
   test('Precedence: bulk / Auto-Submitted → false', () => {
     expect(isHumanEmail({ fromEmail: 'a@b.com', headers: { precedence: 'bulk' } })).toBe(false);
     expect(isHumanEmail({ fromEmail: 'a@b.com', headers: { autoSubmitted: 'auto-generated' } })).toBe(false);
@@ -205,6 +213,13 @@ describe('composeReplyWithSignature', () => {
   });
   test('тримит тело', () => {
     expect(composeReplyWithSignature('  Тело  ', 'Sig')).toBe('Тело\n\nSig');
+  });
+  test('локализует известную английскую подпись для русского письма', () => {
+    const signature = 'Thanks so much,\n\nThe Phraseman Team\nJust reply here if you need anything else.';
+    expect(localizedSupportSignature('Здравствуйте! Поможем разобраться.', signature)).toBe(
+      'Команда Phraseman\nПоддержка: Phraseman by Knowly\nСправка: https://knowlyapps.com/help',
+    );
+    expect(localizedSupportSignature('Hello! We can help.', signature)).toBe(signature);
   });
 });
 
@@ -281,8 +296,19 @@ describe('buildReplyPrompt', () => {
   test('содержит тему и тело, обрезает', () => {
     const p = buildReplyPrompt({ subject: 'Тема X', bodyText: 'z'.repeat(BODY_MAX_CHARS + 50) });
     expect(p).toContain('Тема X');
-    expect(p).toContain('Текст письма:');
+    expect(p).toContain('UNTRUSTED CUSTOMER EMAIL');
+    expect(p).toContain('<body>');
+    expect(p).toContain('END UNTRUSTED CUSTOMER EMAIL');
+    expect(p).toContain('[REDACTED_TOKEN]');
     // тело в промпте не длиннее лимита (+ шапка)
     expect(p.length).toBeLessThanOrEqual(BODY_MAX_CHARS + 60);
+  });
+  test('не дублирует процитированную старую переписку в текущем сообщении', () => {
+    const p = buildReplyPrompt({
+      subject: 'Re: Help',
+      bodyText: 'Новая деталь\n\nOn Monday, Support wrote:\n> Старый ответ',
+    });
+    expect(p).toContain('Новая деталь');
+    expect(p).not.toContain('Старый ответ');
   });
 });

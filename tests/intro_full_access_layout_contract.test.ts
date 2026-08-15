@@ -35,12 +35,12 @@ describe('intro full access layout orchestration', () => {
     expect(source).toContain('markIntroFullAccessEndedSeen');
   });
 
-  it('does not use the intro gift to skip the personal-plan onboarding paywall', () => {
+  it('does not use the intro gift to skip the onboarding paywall', () => {
     expect(source).toContain('handleOnboardingIntroFullAccessStart');
     expect(source).toContain('onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}');
     expect(onboardingSource).toContain('onIntroFullAccessStart?: () => Promise<boolean | void> | boolean | void');
-    expect(onboardingSource).toContain('onPersonalPlanPaywallStart');
-    expect(onboardingSource).toContain('queuePendingPersonalPlanActivation');
+    expect(onboardingSource).not.toContain('onPersonalPlanPaywallStart');
+    expect(onboardingSource).not.toContain('queuePendingPersonalPlanActivation');
     expect(onboardingSource).not.toContain('if (hasPremiumAccess || introFullAccessStarted)');
     expect(onboardingSource).not.toContain('introFullAccessStarted');
   });

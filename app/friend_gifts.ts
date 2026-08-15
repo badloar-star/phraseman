@@ -4,11 +4,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
-import { bumpLifetimeShardsSpent } from './lifetime_profile_stats';
-import {
-  replaceShardsBalanceForAccountGeneration,
-  replaceShardsBalanceLocal,
-} from './shards_system';
+import { commitConfirmedExternalShardEvent } from './shards_system';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -140,8 +136,6 @@ export type FriendGiftSendResponse = {
   ok: boolean;
   giftId: FriendGiftId;
   costShards: number;
-  senderBalanceAfter: number;
-  shardsUpdatedAtMs?: number;
   dailyRemaining?: number;
   idempotencyKey?: string;
   idempotentReplay?: boolean;
@@ -240,7 +234,7 @@ function isDefinitiveFriendGiftCallableError(error: unknown): boolean {
     || code.includes('resource-exhausted');
 }
 
-function makeFriendGiftIdempotencyKey(prefix = 'fg'): string {
+export function makeFriendGiftIdempotencyKey(prefix = 'fg'): string {
   const now = Date.now().toString(36);
   const a = Math.random().toString(36).slice(2, 10);
   const b = Math.random().toString(36).slice(2, 10);
@@ -309,6 +303,7 @@ export async function sendFriendGiftWithShards(data: {
   friendStableId: string;
   giftId: FriendGiftId;
   senderDisplayName?: string;
+  idempotencyKey?: string;
 }): Promise<FriendGiftSendResponse> {
   if (!isFriendGiftsCloudEnabled()) {
     throw new Error('friend_gifts_unavailable');
@@ -345,7 +340,11 @@ export async function sendFriendGiftWithShards(data: {
       if (pendingRetryCountForAccount(retryScope) >= FRIEND_GIFT_IN_FLIGHT_MAX) {
         throw new Error('friend_gift_too_many_pending');
       }
-      idempotencyKey = makeFriendGiftIdempotencyKey();
+      const requestedKey = String(data.idempotencyKey ?? '').trim();
+      if (requestedKey && !/^fg_[A-Za-z0-9_:-]{8,76}$/.test(requestedKey)) {
+        throw new Error('friend_gift_idempotency_invalid');
+      }
+      idempotencyKey = requestedKey || makeFriendGiftIdempotencyKey();
       await AsyncStorage.setItem(persistedKey, idempotencyKey);
       if (!isAccountOperationCurrent(accountToken, accountToken.stableId ?? undefined)) {
         throw new Error('friend_gift_identity_changed');
@@ -377,38 +376,38 @@ export async function sendFriendGiftWithShards(data: {
       }),
       'friendSendGift',
     );
-    // From this point the server has authoritatively answered the spend + grant.
+    // From this point the server has confirmed the person-to-person event.
     // Local projections are ancillary: they must neither mutate a newly active
     // account nor turn this committed operation into a caller-visible failure.
-    authoritativeResponse = res.data;
-    if (
-      isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)
-      && Number.isFinite(res.data.senderBalanceAfter)
-    ) {
-      const options = {
-        updatedAtMs: res.data.shardsUpdatedAtMs,
-        op: 'spend' as const,
+    // Treat the callable as an external-fact receipt only. Rebuild the public
+    // shape explicitly so an older backend cannot smuggle retired wallet
+    // projection fields back into client state.
+    authoritativeResponse = {
+      ok: res.data.ok,
+      giftId: res.data.giftId,
+      costShards: res.data.costShards,
+      dailyRemaining: res.data.dailyRemaining,
+      idempotencyKey: res.data.idempotencyKey,
+      idempotentReplay: res.data.idempotentReplay,
+      questStarted: res.data.questStarted,
+      questBlockedReason: res.data.questBlockedReason,
+      quest: res.data.quest,
+    };
+    if (Number.isFinite(res.data.costShards) && res.data.costShards > 0) {
+      const debit = await commitConfirmedExternalShardEvent({
+        source: 'friend_gift',
+        eventId: stableIdempotencyKey,
+        delta: -res.data.costShards,
         reason: 'friend_gift',
-      };
-      if (accountToken.phase === 'active' && accountToken.stableId) {
-        await replaceShardsBalanceForAccountGeneration(
-          res.data.senderBalanceAfter,
-          accountToken,
-          senderStableId,
-          options,
-        ).catch(() => {});
-      } else {
-        await replaceShardsBalanceLocal(res.data.senderBalanceAfter, options).catch(() => {});
+        grant: {
+          kind: 'person_to_person_gift',
+          subjectId: data.giftId,
+          payload: { giftId: data.giftId, targetUid: data.friendStableId },
+        },
+      });
+      if (debit.status !== 'applied' && debit.status !== 'already-applied') {
+        throw new Error('friend_gift_debit_event_failed');
       }
-    }
-    if (
-      isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)
-      && Number.isFinite(res.data.costShards)
-      && res.data.costShards > 0
-    ) {
-      // The server gift is already authoritative at this point. Local counters are
-      // ancillary and must never turn that success into a UI rollback.
-      await bumpLifetimeShardsSpent(res.data.costShards, accountToken).catch(() => {});
     }
     if (isAccountOperationCurrent(accountToken, accountToken.phase === 'active' ? senderStableId : undefined)) {
       const achievements = await import('./achievements').catch(() => null);
@@ -421,7 +420,7 @@ export async function sendFriendGiftWithShards(data: {
     }
     friendGiftSendRetryKeys.delete(retryKey);
     await AsyncStorage.removeItem(persistedKey).catch(() => {});
-    return res.data;
+    return authoritativeResponse;
   }).catch(async (error) => {
     if (authoritativeResponse) {
       // The callable response is the commit boundary. A stale generation or a

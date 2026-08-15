@@ -1,0 +1,165 @@
+import {
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+} from '../app/account_generation';
+import {
+  commitLearningV2CoinExchangeReward,
+  createLearningV2OwnerRepositoryAsyncStorage,
+  parseLearningV2AccountBinding,
+} from '../app/learning_v2_owner_repository_runtime';
+import { materializeServerWalletRewardReceiptCandidate } from '../modules/learning-v2/progress/server_wallet_reward_receipt';
+import { deriveLearningV2EconomicAccountScopeHash } from '../modules/learning-v2/progress/economic_account_scope';
+import { deriveProgressAccountScopeHash } from '../modules/learning-v2/progress/progress_account_scope';
+
+const binding = {
+  schemaVersion: 'learning-v2-account-binding.v2' as const,
+  stableUid: 'stable-user-1',
+  accountGeneration: 4,
+  economicAccountScopeHash: deriveLearningV2EconomicAccountScopeHash('stable-user-1'),
+  progressAccountScopeHash: deriveProgressAccountScopeHash('stable-user-1', 4),
+};
+
+const memoryStorage = () => {
+  const values = new Map<string, string>();
+  return {
+    values,
+    async getItem(key: string) { return values.get(key) ?? null; },
+    async setItem(key: string, value: string) { values.set(key, value); },
+    async removeItem(key: string) { values.delete(key); },
+  };
+};
+
+describe('Learning V2 app Owner Repository runtime', () => {
+  it('strictly parses durable binding and rolls back a stale root CAS', async () => {
+    expect(parseLearningV2AccountBinding(binding)).toEqual(binding);
+    let getterRuns = 0;
+    const hostile = Object.defineProperty({}, 'stableUid', {
+      enumerable: true,
+      get: () => { getterRuns += 1; return binding.stableUid; },
+    });
+    expect(() => parseLearningV2AccountBinding(hostile))
+      .toThrow('learning_v2_account_binding_invalid');
+    expect(getterRuns).toBe(0);
+    expect(() => parseLearningV2AccountBinding({
+      ...binding,
+      progressAccountScopeHash: 'f'.repeat(64),
+    })).toThrow('learning_v2_account_binding_invalid');
+    const token = beginAccountGeneration(binding.stableUid);
+    const memory = memoryStorage();
+    let invalidateOnSet = true;
+    const storage = createLearningV2OwnerRepositoryAsyncStorage(binding, token, {
+      ...memory,
+      async setItem(key, value) {
+        memory.values.set(key, value);
+        if (invalidateOnSet) {
+          invalidateOnSet = false;
+          invalidateAccountGeneration();
+        }
+      },
+    });
+    await expect(storage.compareAndSet(
+      'root',
+      null,
+      'next',
+      { accountScopeHash: binding.economicAccountScopeHash, generation: 4 },
+    )).resolves.toBe('stale_generation');
+    expect(memory.values.has('root')).toBe(false);
+  });
+
+  it('mounts the current account and commits/replays one protected exchange reward', async () => {
+    const token = beginAccountGeneration(binding.stableUid);
+    const memory = memoryStorage();
+    const reward = materializeServerWalletRewardReceiptCandidate({
+      rewardId: 'cx:cx_test_1234',
+      operationId: 'coin-exchange:cx_test_1234',
+      accountScopeHash: binding.economicAccountScopeHash,
+      accountGeneration: binding.accountGeneration,
+      amountSubunits: 2_400_000,
+      operationReason: 'coin_exchange',
+      origin: { kind: 'coin_exchange', tradeId: 'cx:cx_test_1234' },
+    });
+    const dependencies = {
+      storage: createLearningV2OwnerRepositoryAsyncStorage(binding, token, memory),
+      accountToken: token,
+      resolveAccountBinding: async () => binding,
+      resolveRewardReceipt: async () => reward.encoded,
+    };
+    const request = {
+      schemaVersion: 'learning-v2-server-wallet-reward-request.v1' as const,
+      rewardId: reward.receipt.rewardId,
+      rewardFingerprint: reward.receipt.rewardFingerprint,
+    };
+    const applied = await commitLearningV2CoinExchangeReward(request, dependencies);
+    expect(applied.status).toBe('applied');
+    expect(applied.appliedReceipt.amountSubunits).toBe(2_400_000);
+    const writesBeforeReplay = memory.values.size;
+    const replayed = await commitLearningV2CoinExchangeReward(request, dependencies);
+    expect(replayed.status).toBe('replayed');
+    expect(memory.values.size).toBe(writesBeforeReplay);
+  });
+
+  it('keeps one account-global wallet across a server generation rollover', async () => {
+    const memory = memoryStorage();
+    const token4 = beginAccountGeneration(binding.stableUid);
+    const first = materializeServerWalletRewardReceiptCandidate({
+      rewardId: 'cx:rollover-first',
+      operationId: 'coin-exchange:rollover-first',
+      accountScopeHash: binding.economicAccountScopeHash,
+      accountGeneration: 4,
+      amountSubunits: 100_000,
+      operationReason: 'coin_exchange',
+      origin: { kind: 'coin_exchange', tradeId: 'cx:rollover-first' },
+    });
+    const requestFor = (reward: typeof first) => ({
+      schemaVersion: 'learning-v2-server-wallet-reward-request.v1' as const,
+      rewardId: reward.receipt.rewardId,
+      rewardFingerprint: reward.receipt.rewardFingerprint,
+    });
+    await commitLearningV2CoinExchangeReward(requestFor(first), {
+      storage: createLearningV2OwnerRepositoryAsyncStorage(binding, token4, memory),
+      accountToken: token4,
+      resolveAccountBinding: async () => binding,
+      resolveRewardReceipt: async () => first.encoded,
+    });
+
+    invalidateAccountGeneration();
+    const token5 = beginAccountGeneration(binding.stableUid);
+    const binding5 = {
+      ...binding,
+      accountGeneration: 5,
+      progressAccountScopeHash: deriveProgressAccountScopeHash(binding.stableUid, 5),
+    };
+    const second = materializeServerWalletRewardReceiptCandidate({
+      rewardId: 'cx:rollover-second',
+      operationId: 'coin-exchange:rollover-second',
+      accountScopeHash: binding.economicAccountScopeHash,
+      // The protected entitlement was confirmed before the owner-generation
+      // rollover and must remain redeemable afterward.
+      accountGeneration: 4,
+      amountSubunits: 200_000,
+      operationReason: 'coin_exchange',
+      origin: { kind: 'coin_exchange', tradeId: 'cx:rollover-second' },
+    });
+    const applied = await commitLearningV2CoinExchangeReward(requestFor(second), {
+      storage: createLearningV2OwnerRepositoryAsyncStorage(binding5, token5, memory),
+      accountToken: token5,
+      resolveAccountBinding: async () => binding5,
+      resolveRewardReceipt: async () => second.encoded,
+    });
+    expect(applied.status).toBe('applied');
+    expect(applied.snapshot.root.currentGeneration).toBe(5);
+    expect(applied.snapshot.walletState.balanceSubunits).toBe(300_000);
+    expect(applied.snapshot.walletState.revision).toBe(2);
+
+    const writesBeforeOldReplay = memory.values.size;
+    const replayedFirst = await commitLearningV2CoinExchangeReward(requestFor(first), {
+      storage: createLearningV2OwnerRepositoryAsyncStorage(binding5, token5, memory),
+      accountToken: token5,
+      resolveAccountBinding: async () => binding5,
+      resolveRewardReceipt: async () => first.encoded,
+    });
+    expect(replayedFirst.status).toBe('replayed');
+    expect(replayedFirst.appliedReceipt.amountSubunits).toBe(100_000);
+    expect(memory.values.size).toBe(writesBeforeOldReplay);
+  });
+});

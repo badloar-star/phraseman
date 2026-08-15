@@ -20,6 +20,20 @@ const {
 // Фикс: владение строго аддитивно → union вместо перезаписи.
 
 describe('K2 owned/purchased union restore (offline purchases survive cloud-wins)', () => {
+  describe('server-owned lesson unlocks', () => {
+    it('restores but never uploads the exact English unlocked_lessons key', () => {
+      expect(SERVER_OWNED_PROGRESS_KEYS.has('unlocked_lessons')).toBe(true);
+      expect(isServerOwnedProgressKey('unlocked_lessons')).toBe(true);
+      expect(SYNC_KEYS).toContain('unlocked_lessons');
+
+      const outboundPatch = Object.fromEntries(
+        Object.entries({ unlocked_lessons: '[1,2,3]', user_name: 'Ada' })
+          .filter(([key]) => !isServerOwnedProgressKey(key)),
+      );
+      expect(outboundPatch).toEqual({ user_name: 'Ada' });
+    });
+  });
+
   describe('server-owned gift perks restore', () => {
     it('keeps gift perks restoreable while excluding them from every outbound progress patch', () => {
       const localProgress = {

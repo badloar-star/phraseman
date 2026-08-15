@@ -1,10 +1,18 @@
 import {
+  __resetHomeScreenHydrationForTests,
   patchHomeScreenHydration,
   peekHomeScreenHydration,
   rememberHomeScreenHydration,
   resolveHomeProfileVisuals,
   type HomeScreenHydration,
 } from '../app/home_screen_hydration';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  beginInitialAccountGeneration,
+  invalidateAccountGeneration,
+  captureAccountGeneration,
+} from '../app/account_generation';
 
 const base: HomeScreenHydration = {
   userName: 'A', totalXP: 1, streak: 1, displayStreak: 1, weekDone: [], weekPoints: 0,
@@ -13,16 +21,65 @@ const base: HomeScreenHydration = {
   lastLessonProgress: 0, lastLessonScore: '0', homeLeagueChest: null,
 };
 
+beforeEach(() => {
+  __resetAccountGenerationForTests();
+  __resetHomeScreenHydrationForTests();
+});
+
 it('patches the cached home league snapshot after async league refresh', () => {
   rememberHomeScreenHydration(base, 'en');
   patchHomeScreenHydration({ homeLeagueChest: { leagueName: 'Silver', progress: 215_000, goal: 220_000, myContribution: 1, leaderName: 'A', leaderPoints: 1 } }, 'en');
   expect(peekHomeScreenHydration('en')?.homeLeagueChest?.progress).toBe(215_000);
 });
 
+it('keeps an uninitialized boot snapshot only until account adoption', () => {
+  rememberHomeScreenHydration(base, 'en');
+  expect(peekHomeScreenHydration('en')).toMatchObject({ userName: 'A' });
+
+  expect(beginInitialAccountGeneration('account-a')).not.toBeNull();
+  expect(peekHomeScreenHydration('en')).toBeNull();
+});
+
+it('rejects A cache and A patch after transitioning to B', () => {
+  beginAccountGeneration('account-a');
+  rememberHomeScreenHydration({ ...base, userName: 'Account A', lastLessonId: 7 }, 'en');
+  expect(peekHomeScreenHydration('en')).toMatchObject({ userName: 'Account A', lastLessonId: 7 });
+
+  invalidateAccountGeneration();
+  expect(peekHomeScreenHydration('en')).toBeNull();
+  beginAccountGeneration('account-b');
+  patchHomeScreenHydration({ userName: 'Patched by B', lastLessonId: 9 }, 'en');
+  expect(peekHomeScreenHydration('en')).toBeNull();
+
+  rememberHomeScreenHydration({ ...base, userName: 'Account B', lastLessonId: 2 }, 'en');
+  expect(peekHomeScreenHydration('en')).toMatchObject({ userName: 'Account B', lastLessonId: 2 });
+});
+
+it('rejects a snapshot after a new generation even for the same stable id', () => {
+  beginAccountGeneration('account-a');
+  rememberHomeScreenHydration(base, 'en');
+  beginAccountGeneration('account-a');
+  expect(peekHomeScreenHydration('en')).toBeNull();
+});
+
+it('rejects a late Home write captured before an account switch', () => {
+  beginAccountGeneration('account-a');
+  const accountAOperation = captureAccountGeneration();
+  invalidateAccountGeneration();
+  beginAccountGeneration('account-b');
+
+  rememberHomeScreenHydration(
+    { ...base, userName: 'Late Account A', lastLessonId: 12 },
+    'en',
+    accountAOperation,
+  );
+  expect(peekHomeScreenHydration('en')).toBeNull();
+});
+
 it('hydrates first-frame profile visuals from cached home state before async storage', () => {
   const visuals = resolveHomeProfileVisuals({
     hydration: { ...base, totalXP: 50_000, userAvatar: 'custom-avatar', userAvatarAura: 'aura-ember', userFrame: 'gold' },
-    snapshot: { totalXp: 1, avatar: 'wrong-avatar', frame: 'wrong-frame', aura: 'aura-violet' },
+    snapshot: { totalXp: 1, avatar: 'wrong-avatar', frame: 'wrong-frame', aura: 'aura-mint' },
   });
   expect(visuals).toMatchObject({ avatar: 'custom-avatar', frame: 'gold', aura: 'aura-ember' });
 });
@@ -30,9 +87,9 @@ it('hydrates first-frame profile visuals from cached home state before async sto
 it('hydrates first-frame profile visuals from app snapshot when home cache is absent', () => {
   const visuals = resolveHomeProfileVisuals({
     hydration: null,
-    snapshot: { totalXp: 50_000, avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-violet' },
+    snapshot: { totalXp: 50_000, avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-mint' },
   });
-  expect(visuals).toMatchObject({ avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-violet' });
+  expect(visuals).toMatchObject({ avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-mint' });
 });
 
 it('does not treat bootstrap avatar 1 as a real first-frame profile choice for high XP', () => {
@@ -50,6 +107,7 @@ it('applies authoritative cloud stats after local Home hydration has already fin
   expect(shouldApplyHomeSnapshotToStats).toEqual(expect.any(Function));
   expect(shouldApplyHomeSnapshotToStats!(true, 'live', 'live')).toBe(true);
   expect(shouldApplyHomeSnapshotToStats!(true, 'storage', 'storage')).toBe(false);
+  expect(shouldApplyHomeSnapshotToStats!(true, 'local', 'storage')).toBe(true);
 });
 
 it('keeps delayed app snapshot hydration wired to home profile visuals', () => {

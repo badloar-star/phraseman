@@ -20,15 +20,16 @@ export default function AiDialogHome() {
   const activeCount = getPublicDialogScenarios().length;
 
   const header = (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 14,
-        paddingBottom: 8,
-      }}
-    >
+    <View>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingVertical: 12,
+          paddingHorizontal: 14,
+          paddingBottom: 8,
+        }}
+      >
       <TouchableOpacity
         accessibilityRole="button"
         accessibilityLabel="Back"
@@ -53,7 +54,6 @@ export default function AiDialogHome() {
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text
           style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}
-          numberOfLines={1}
         >
           {triLang(lang, {
             ru: 'Диалоги',
@@ -66,7 +66,7 @@ export default function AiDialogHome() {
             pl: 'Dialogi',
           })}
         </Text>
-        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }} numberOfLines={1}>
+        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }}>
           {triLang(lang, {
             ru: `${activeCount} сценариев с Компасом`,
             uk: `${activeCount} сценаріїв із Компасом`,
@@ -79,7 +79,8 @@ export default function AiDialogHome() {
           })}
         </Text>
       </View>
-      <EnergyBar size={30} />
+        <EnergyBar size={30} />
+      </View>
     </View>
   );
 

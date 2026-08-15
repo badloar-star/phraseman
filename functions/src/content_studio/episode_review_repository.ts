@@ -16,7 +16,7 @@ export interface EpisodeReviewReceipt {
 
 export interface EpisodeReviewStore {
   runTransaction<T>(work: (tx: EpisodeReviewStore) => Promise<T>): Promise<T>;
-  readArtifact(ref: ApprovedEpisodeRevision): Promise<{ readonly body: unknown } | undefined>;
+  readArtifact(ref: ApprovedEpisodeRevision): Promise<{ readonly body: unknown; readonly createdBy: string } | undefined>;
   readReceipt(receiptId: string): Promise<EpisodeReviewReceipt | undefined>;
   writeReceipt(receiptId: string, receipt: EpisodeReviewReceipt): Promise<void>;
   readOperation(operationId: string): Promise<{ readonly requestFingerprint: string; readonly receipt: EpisodeReviewReceipt } | undefined>;
@@ -51,6 +51,7 @@ export class EpisodeReviewRepository {
       }
       const artifact = await tx.readArtifact(ref);
       if (!artifact) throw new Error("episode_review_artifact_missing");
+      if (!artifact.createdBy || artifact.createdBy === this.actor.actorId) throw new Error("episode_maker_checker_self_review");
       const semantic = validateEpisodeRevisionArtifactSemantics(artifact.body);
       if (!semantic.ok) throw new Error(`episode_review_semantics_invalid:${semantic.issues[0]?.code ?? "unknown"}`);
       const subject = subjectFor(ref);

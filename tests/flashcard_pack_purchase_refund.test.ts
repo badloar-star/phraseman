@@ -18,38 +18,22 @@ const SRC = fs.readFileSync(
   path.join(__dirname, '..', 'app', 'flashcards', 'cardPackShardPurchase.ts'),
   'utf8',
 );
-const SHARDS = fs.readFileSync(
-  path.join(__dirname, '..', 'app', 'shards_system.ts'),
-  'utf8',
-);
-
-describe('покупка пака за монеты: откат при сбое выдачи', () => {
-  it('addOwnedPackId обёрнут в try/catch — исключение не уходит наверх', () => {
-    const idx = SRC.indexOf('addOwnedPackId(pack.id, studyTarget)');
-    expect(idx).toBeGreaterThan(0);
-    // Перед вызовом должен быть try в пределах пары строк.
-    const before = SRC.slice(Math.max(0, idx - 200), idx);
-    expect(before).toMatch(/try\s*\{/);
+describe('покупка пака за жемчуг: выдача и списание — одна операция', () => {
+  it('передаёт право на пак внутрь composite operation', () => {
+    expect(SRC).toContain('await commitShardCompositeOperation({');
+    expect(SRC).toContain("kind: 'official_card_pack'");
+    expect(SRC).toContain('[flashcardsOwnedPacksKey(studyTarget), JSON.stringify(nextOwned)]');
   });
 
-  it('при сбое выдачи монеты возвращаются', () => {
-    expect(SRC).toContain("addShardsRaw(pack.priceShards, 'card_pack_refund')");
-  });
-
-  it('после возврата баланс на экране обновляется', () => {
-    const refundIdx = SRC.indexOf("'card_pack_refund'");
-    const after = SRC.slice(refundIdx, refundIdx + 700);
-    expect(after).toContain('shards_balance_updated');
-  });
-
-  it('юзеру говорят, что покупка не прошла и деньги вернули', () => {
-    expect(SRC).toContain('Жемчуг возвращён');
-  });
-
-  it('возврат НЕ считается заработком — иначе перк карточки IV+ начислит +5% сверху', () => {
-    const setIdx = SHARDS.indexOf('PROFILE_CARD_PERK_EXCLUDED_REASONS');
-    const block = SHARDS.slice(setIdx, setIdx + 600);
-    expect(block).toContain("'card_pack_refund'");
+  it('не содержит отдельного списания, последующей выдачи или refund-компенсации', () => {
+    const purchase = SRC.slice(
+      SRC.indexOf('export async function purchaseCardPackWithShards'),
+      SRC.indexOf('/**\n * Активувати 48-год ваучер'),
+    );
+    expect(purchase).not.toContain('spendShards');
+    expect(purchase).not.toContain('addOwnedPackId');
+    expect(purchase).not.toContain('card_pack_refund');
+    expect(purchase).toContain('Жемчуг не списан');
   });
 
   it('провал кэша карточек НЕ отменяет покупку — пак уже оплачен и выдан', () => {

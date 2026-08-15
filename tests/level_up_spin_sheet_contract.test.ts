@@ -14,6 +14,13 @@ describe('level-up spin sheet cutover', () => {
     expect(source).not.toContain('onSpin={() => finalizeSpinLevelUp(true)}');
   });
 
+  test('does not repeat the redundant spin-delivery explanation or reserve empty message space', () => {
+    expect(source).toContain("const levelUpMessageText = currentIsSpin\n    ? ''");
+    expect(source).not.toContain('Спин уже добавлен');
+    expect(source).not.toContain('Tu giro ya está listo');
+    expect(modalSource).toContain('{message ? (');
+  });
+
   test('keeps legacy gift modals while spin queue entries bypass legacy gift entitlement', () => {
     expect(source).toContain('<LevelGiftModal');
     expect(source).toContain('<LevelGiftDualModal');

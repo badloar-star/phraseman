@@ -80,7 +80,7 @@ function parseSnapshot(raw: string | null, expectedStableId: string): VipStorage
   }
 }
 
-function snapshotCommitPairs(
+export function prepareVipSnapshotWritesForAccount(
   stableId: string,
   values: VipStorageValues,
   extraPairs: Array<[string, string]> = [],
@@ -111,7 +111,7 @@ export async function writeVipSnapshotForAccount(
   const stableId = normalizeStableId(stableIdValue);
   if (!stableId) throw new Error('vip_snapshot_owner_required');
   const values = normalizeVipValues(valuesValue);
-  await AsyncStorage.multiSet(snapshotCommitPairs(stableId, values));
+  await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, values));
 }
 
 /** Trusted reads never adopt ownerless or foreign legacy mirrors. */
@@ -188,7 +188,7 @@ export async function migrateLegacyVipSnapshotOnce(
       ? String(parsePremiumProgressMs(legacyState.grantAt) || legacyState.grantAt)
       : '',
   });
-  await AsyncStorage.multiSet(snapshotCommitPairs(stableId, normalized));
+  await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, normalized));
   return isCurrentAccountGeneration(generation, stableId);
 }
 

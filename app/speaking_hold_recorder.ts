@@ -21,6 +21,22 @@ import { Platform } from 'react-native';
 
 import { base64ToBytes, pcmChunksToWav, pcmDurationSec, type WavPcmConfig } from './pcm_wav';
 
+type RecordingActivityLease = { release(): void };
+
+// Keep the pure PCM helpers importable in Jest and scripts without loading the
+// native expo-audio package. The literal require is still statically bundled.
+function claimRecordingActivity(stop: () => void): RecordingActivityLease {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const activity = require('../modules/audio/audio_runtime_arbiter') as {
+      claimRecordingAudio?: (stopOwner: () => void) => RecordingActivityLease;
+    };
+    return activity.claimRecordingAudio?.(stop) ?? { release: () => undefined };
+  } catch {
+    return { release: () => undefined };
+  }
+}
+
 /** 16 kHz mono 16-bit PCM — exactly what on-device whisper expects. */
 export const HOLD_PCM_CONFIG: WavPcmConfig = {
   sampleRate: 16000,
@@ -173,6 +189,11 @@ export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecord
   let dataSub: { remove?: () => void } | undefined;
   let settled = false;
   let maxHoldTimer: ReturnType<typeof setTimeout> | null = null;
+  // Native PCM capture bypasses expo-speech, so it must explicitly participate
+  // in the same process-wide session arbitration as the system recognizer.
+  let recordingLease: RecordingActivityLease | null = claimRecordingActivity(() => {
+    try { void native.stop(); } catch { /* recorder was not started or is already gone */ }
+  });
   // stop() may be triggered by release AND by the max-hold timer; share one promise.
   let stopPromise: Promise<string | null> | null = null;
 
@@ -181,6 +202,11 @@ export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecord
       clearTimeout(maxHoldTimer);
       maxHoldTimer = null;
     }
+  };
+
+  const releaseRecordingLease = () => {
+    recordingLease?.release();
+    recordingLease = null;
   };
 
   const teardownNative = () => {
@@ -224,7 +250,11 @@ export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecord
       settled = true;
       clearMaxHold();
       teardownNative();
-      return finalizeToWav();
+      try {
+        return await finalizeToWav();
+      } finally {
+        releaseRecordingLease();
+      }
     })();
     return stopPromise;
   };
@@ -234,6 +264,7 @@ export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecord
     settled = true;
     clearMaxHold();
     teardownNative();
+    releaseRecordingLease();
     // Drop captured audio; nothing to finalize.
     chunks.length = 0;
     stopPromise = Promise.resolve(null);
@@ -278,6 +309,7 @@ export function startHoldRecording(opts?: StartHoldRecordingOptions): HoldRecord
     }, MAX_HOLD_MS);
   } catch {
     teardownNative();
+    releaseRecordingLease();
     return SILENT_STOP;
   }
 

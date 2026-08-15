@@ -3,8 +3,9 @@
 // вынесена для тестов; запись в стор — тонкая обёртка над shards_system.
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { addShardsRaw } from '../shards_system';
-import { getTodayKey } from '../daily_tasks';
+import { commitShardCreditOperation } from '../shards_system';
+import type { ClientShardLocalWrite } from '../economy/client_shard_operation_ledger';
+import { getUtcDayKey } from '../local_date';
 import { utcWeekNumberFromTodayKey } from './boon_engine';
 
 /** Описание разовой награды бонуса. */
@@ -58,7 +59,7 @@ export function pickMysteryReward(roll: number): BoonReward {
 export const COMEBACK_REWARD: BoonReward = { shards: 1 };
 
 /** Текущий week-id (UTC, ISO-неделя-подобный номер) — для недельных claim-ключей. */
-export function currentWeekId(todayKey: string = getTodayKey()): string {
+export function currentWeekId(todayKey: string = getUtcDayKey()): string {
   return `w${utcWeekNumberFromTodayKey(todayKey)}`;
 }
 
@@ -87,11 +88,24 @@ export async function markClaimed(storageKey: string, periodId: string): Promise
   }
 }
 
-/** Начислить осколки награды (через raw, чтобы задать произвольную сумму). */
-export async function grantBoonReward(reward: BoonReward, logReason: string): Promise<void> {
-  if (reward.shards > 0) {
-    await addShardsRaw(reward.shards, logReason, { skipServerAwait: true }).catch(() => 0);
-  }
+/** Атомарно начислить награду вместе с её одноразовыми локальными маркерами. */
+export async function grantBoonReward(
+  reward: BoonReward,
+  logReason: string,
+  periodId: string,
+  localWrites: readonly ClientShardLocalWrite[] = [],
+): Promise<boolean> {
+  if (reward.shards <= 0) return true;
+  const safeReason = logReason.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 32);
+  const safePeriod = periodId.replace(/[^A-Za-z0-9_.-]/g, '_').slice(0, 32);
+  const result = await commitShardCreditOperation({
+    amount: reward.shards,
+    reason: logReason,
+    operationId: `boon:${safeReason}:${safePeriod}`,
+    grant: { kind: 'boon_reward', subjectId: `${safeReason}:${safePeriod}` },
+    localWrites,
+  });
+  return result.status === 'applied' || result.status === 'already-applied';
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

@@ -546,6 +546,8 @@ export type TournamentEntryProvenance = {
   ticketsSpent: number;
   bankContributionGems: number;
   weekId: string;
+  /** One immutable debit/refund identity. Changes only after leave + rejoin. */
+  joinAttemptId?: string;
   /**
    * зачем 2026-08-04 (владелец: Season Pass tournament_ticket — «вход
    * бесплатный для игрока, но в банк добавится 5 жемчужин всё равно»):
@@ -2602,11 +2604,11 @@ export type TaskSelectionParams = {
 /**
  * зачем 2026-08-04: раньше это был жёстко перечисленный список версий
  * (v5..v9), который апдейтили вручную при каждом бампе NEW_TOURNAMENT_POOL_VERSION
- * в tournament_pool_v2_factory.ts. v10 забыли добавить — exposureTag не находился,
+ * в публикации пула. v10 забыли добавить — exposureTag не находился,
  * selectTournamentExposureDeck молча возвращал null для КАЖДОГО режима и раунда,
  * и выбор скатывался в seededShuffle(...).slice(0, count) без учёта
  * excludedTaskIds: раунды одной комнаты могли получить один и тот же taskId.
- * По формату боевого тега (tags() в tournament_pool_v2_factory.ts) сборка
+ * По формату боевого тега сборка
  * автоматически ловит любую версию пула — новый бамп версии больше не может
  * тихо выключить ротацию/дедуп. Экспортирована: tournaments.ts (buildTournamentRounds)
  * держит собственную копию той же проверки для боевого рантайма и раньше страдала
@@ -3143,8 +3145,7 @@ const BOT_AVATAR_GRADIENTS = [
   'royal', 'ruby', 'magma', 'noirgold', 'sakura',
 ] as const;
 const BOT_AVATAR_AURAS = [
-  'aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet',
-  'aura-coral', 'aura-prism', 'aura-lagoon', 'aura-sunset',
+  'aura-ember', 'aura-mint', 'aura-prism',
 ] as const;
 
 /**

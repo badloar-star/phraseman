@@ -11,7 +11,6 @@ export type SpecialTitleId =
   | 'iron_habit'
   | 'no_excuses'
   | 'xp_machine'
-  | 'full_clear'
   | 'public_legend';
 
 export interface SpecialTitleDef {
@@ -27,7 +26,6 @@ export interface SpecialTitleStats {
   totalXP: number;
   streak: number;
   helpfulReportsConfirmed?: number;
-  dailyAllDoneStreak?: number;
   earnedAchievementIds?: ReadonlySet<string>;
 }
 
@@ -62,7 +60,6 @@ export const SPECIAL_TITLES: SpecialTitleDef[] = [
   { id: 'iron_habit', titleEN: 'Iron Habit', unlockText: '365 дней серии', colorLight: '#0F766E', colorDark: '#5EEAD4' },
   { id: 'no_excuses', titleEN: 'No Excuses', unlockText: '365 дней серии без восстановления или заморозки', colorLight: '#1D4ED8', colorDark: '#93C5FD' },
   { id: 'xp_machine', titleEN: 'XP Machine', unlockText: '250 000 XP', colorLight: '#B45309', colorDark: '#FBBF24' },
-  { id: 'full_clear', titleEN: 'Full Clear', unlockText: '100 дней закрывать все daily tasks', colorLight: '#047857', colorDark: '#34D399' },
   { id: 'public_legend', titleEN: 'Public Legend', unlockText: '100 лайков на достижениях', colorLight: '#BE123C', colorDark: '#FDA4AF' },
 ];
 
@@ -91,8 +88,6 @@ export const getEarnedSpecialTitles = (stats: SpecialTitleStats): SpecialTitleDe
         return earnedIds.has('streak_clean_365');
       case 'xp_machine':
         return stats.totalXP >= 250_000;
-      case 'full_clear':
-        return (stats.dailyAllDoneStreak ?? 0) >= 100;
       case 'public_legend':
         return earnedIds.has('social_likes_100');
       default:

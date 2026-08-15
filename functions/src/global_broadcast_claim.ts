@@ -3,6 +3,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { isPremiumAccessActive } from './premium_status';
+import { appendExternalEconomyEvent } from './external_economy_events';
 
 const REGION = 'us-central1';
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -71,21 +72,12 @@ export function buildGlobalBroadcastRewardMutation(
   if (requestedType === 'shards') {
     const amount = int(broadcast.rewardAmount ?? broadcast.shards);
     if (amount < 1 || amount > 1000) throw new HttpsError('failed-precondition', 'broadcast_shard_amount_invalid');
-    const before = int(user.shards);
-    const after = before + amount;
     return {
-      userPatch: {
-        shards: after,
-        shards_updated_at_ms: now,
-        shards_updated_op: 'earn',
-        shards_updated_reason: 'global_broadcast_modal',
-      },
+      userPatch: {},
       response: {
         ok: true,
         rewardType: 'shards',
         rewardAmount: amount,
-        senderBalanceAfter: after,
-        shardsUpdatedAtMs: now,
       },
     };
   }
@@ -187,9 +179,21 @@ export const globalBroadcastClaim = onCall({ region: REGION, enforceAppCheck: EN
     }
     if (Object.keys(mutation.userPatch).length) tx.set(userRef, mutation.userPatch, { merge: true });
     if (String(mutation.response.rewardType) === 'shards') {
+      const amount = int(mutation.response.rewardAmount);
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'global_broadcast',
+        eventId: broadcastId,
+        ownerStableId: stableUid,
+        delta: amount,
+        reason: 'global_broadcast_modal',
+        kind: 'global_broadcast_reward',
+        subjectId: broadcastId,
+        payload: { broadcastId },
+        createdAtMs: now,
+      });
       tx.set(userRef.collection('shard_log').doc(), {
-        ts: new Date(now).toISOString(), type: 'earn', amount: mutation.response.rewardAmount,
-        reason: 'global_broadcast_modal', balanceAfter: mutation.response.senderBalanceAfter, broadcastId,
+        ts: new Date(now).toISOString(), type: 'earn', amount,
+        reason: 'global_broadcast_modal', authority: 'external_event', broadcastId,
       });
     }
     tx.set(claimRef, { source: 'global_broadcast_modal', broadcastId, createdAt: now, response });

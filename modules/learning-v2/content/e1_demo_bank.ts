@@ -7,6 +7,7 @@ import {
   type V2LanguageProfileBody,
 } from './language_profile';
 import { validateV2ContentItem, type V2ContentItem } from './content_item';
+import type { V2SessionActivityBinding } from './session_compiler';
 
 interface DemoSeed {
   readonly suffix: string;
@@ -46,6 +47,7 @@ export const E1_DEMO_CAN_DO_OUTCOME_ID = 'obj-introduce-self';
 
 let cachedProfile: V2LanguageProfileBody | null = null;
 let cachedItems: readonly V2ContentItem[] | null = null;
+let cachedActivityBindings: readonly V2SessionActivityBinding[] | null = null;
 
 export function buildE1DemoProfile(): V2LanguageProfileBody {
   if (cachedProfile) return cachedProfile;
@@ -96,4 +98,17 @@ export function buildE1DemoItems(): readonly V2ContentItem[] {
   });
   cachedItems = Object.freeze(items);
   return cachedItems;
+}
+
+/** Authoring-source activity identities persisted with the E1 demo bank. */
+export function buildE1DemoActivityBindings(): readonly V2SessionActivityBinding[] {
+  if (cachedActivityBindings) return cachedActivityBindings;
+  cachedActivityBindings = Object.freeze(buildE1DemoItems().flatMap((item) =>
+    item.compatibleFamilies.map((family) => Object.freeze({
+      activityId: `activity-${family}-${item.contentItemId}`,
+      family,
+      contentUnitIds: Object.freeze([item.contentItemId]),
+    })),
+  ));
+  return cachedActivityBindings;
 }

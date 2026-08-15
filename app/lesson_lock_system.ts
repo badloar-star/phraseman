@@ -36,6 +36,7 @@ import {
   levelExamKey,
   lingmanExamAvailableKey,
   premiumCourseLevelKey,
+  storedProgressFlagIsTrue,
   unlockedLessonsKey,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
@@ -177,11 +178,11 @@ export const getPremiumCourseLevel = async (studyTarget?: RuntimeStudyTarget): P
     const map = Object.fromEntries(await AsyncStorage.multiGet([...metaKeys, ...lessonKeys]));
 
     let reached: CourseLevel = normalizeCourseLevel(map[premiumLevelKey]) ?? 'A1';
-    if (map[levelExamKey('A1', 'passed', studyTarget)] === '1') reached = maxLevel(reached, 'A2');
-    if (map[levelExamKey('A2', 'passed', studyTarget)] === '1') reached = maxLevel(reached, 'B1');
+    if (storedProgressFlagIsTrue(map[levelExamKey('A1', 'passed', studyTarget)])) reached = maxLevel(reached, 'A2');
+    if (storedProgressFlagIsTrue(map[levelExamKey('A2', 'passed', studyTarget)])) reached = maxLevel(reached, 'B1');
     if (
-      map[levelExamKey('B1', 'passed', studyTarget)] === '1' ||
-      map[levelExamKey('B2', 'passed', studyTarget)] === '1'
+      storedProgressFlagIsTrue(map[levelExamKey('B1', 'passed', studyTarget)]) ||
+      storedProgressFlagIsTrue(map[levelExamKey('B2', 'passed', studyTarget)])
     ) reached = maxLevel(reached, 'B2');
 
     for (const lessonId of safeNumberList(map[unlockedKey])) {
@@ -267,7 +268,7 @@ export const tryUnlockLevelExam = async (
     // Уже было разблокировано ранее?
     const alreadyKey = levelExamKey(foundLevel, 'available', studyTarget);
     const already = await storageGetString(alreadyKey);
-    if (already === '1') return null;
+    if (storedProgressFlagIsTrue(already)) return null;
 
     // Все уроки уровня >= 4.5 по max(best_score, progress) — см. lesson_star_score
     const [from, to] = COURSE_LEVEL_RANGES[foundLevel as CourseLevel];
@@ -307,7 +308,7 @@ export const tryUnlockLingmanExam = async (studyTarget?: RuntimeStudyTarget): Pr
   try {
     const alreadyKey = lingmanExamAvailableKey(studyTarget);
     const already = await storageGetString(alreadyKey);
-    if (already === '1') return false;
+    if (storedProgressFlagIsTrue(already)) return false;
 
     const lessonKeys: string[] = [];
     for (let i = 1; i <= 32; i++) {
@@ -330,7 +331,7 @@ export const tryUnlockLingmanExam = async (studyTarget?: RuntimeStudyTarget): Pr
     // Все 4 зачёта должны быть сданы
     const examKeys = ['A1', 'A2', 'B1', 'B2'].map(lvl => levelExamKey(lvl, 'passed', studyTarget));
     const examPairs = await AsyncStorage.multiGet(examKeys);
-    const allPassed = examPairs.every(([, v]) => v === '1');
+    const allPassed = examPairs.every(([, v]) => storedProgressFlagIsTrue(v));
     if (!allPassed) return false;
 
     await storageSetString(alreadyKey, '1');
@@ -372,9 +373,9 @@ export const recomputeEarnedUnlocks = async (studyTarget?: RuntimeStudyTarget): 
       levelExamKey('B1', 'passed', studyTarget),
     ]);
     const examMap = Object.fromEntries(examPairs);
-    const a1Passed = examMap[levelExamKey('A1', 'passed', studyTarget)] === '1';
-    const a2Passed = examMap[levelExamKey('A2', 'passed', studyTarget)] === '1';
-    const b1Passed = examMap[levelExamKey('B1', 'passed', studyTarget)] === '1';
+    const a1Passed = storedProgressFlagIsTrue(examMap[levelExamKey('A1', 'passed', studyTarget)]);
+    const a2Passed = storedProgressFlagIsTrue(examMap[levelExamKey('A2', 'passed', studyTarget)]);
+    const b1Passed = storedProgressFlagIsTrue(examMap[levelExamKey('B1', 'passed', studyTarget)]);
     const u = new Array(32).fill(false);
     u[0] = true; // урок 1 всегда открыт
     for (let i = 1; i < 32; i++) {
@@ -421,7 +422,7 @@ export const repairLessonUnlocksAfterRestore = async (studyTarget?: RuntimeStudy
   const REPAIR_KEY = lessonUnlockRepairKey(studyTarget);
   try {
     const done = await storageGetString(REPAIR_KEY);
-    if (done === '1') return;
+    if (storedProgressFlagIsTrue(done)) return;
 
     // ── 1. Загружаем состояние ────────────────────────────────────────────────
     const metaKeys = [
@@ -436,9 +437,9 @@ export const repairLessonUnlocksAfterRestore = async (studyTarget?: RuntimeStudy
     const allEntries = await AsyncStorage.multiGet([...metaKeys, ...lessonKeys]);
     const map = Object.fromEntries(allEntries);
 
-    const a1Passed = map[levelExamKey('A1', 'passed', studyTarget)] === '1';
-    const a2Passed = map[levelExamKey('A2', 'passed', studyTarget)] === '1';
-    const b1Passed = map[levelExamKey('B1', 'passed', studyTarget)] === '1';
+    const a1Passed = storedProgressFlagIsTrue(map[levelExamKey('A1', 'passed', studyTarget)]);
+    const a2Passed = storedProgressFlagIsTrue(map[levelExamKey('A2', 'passed', studyTarget)]);
+    const b1Passed = storedProgressFlagIsTrue(map[levelExamKey('B1', 'passed', studyTarget)]);
 
     const scores = Array.from({ length: 32 }, (_, i) =>
       effectiveLessonStarScore(
@@ -508,7 +509,7 @@ export const isLingmanExamAvailable = async (studyTarget?: RuntimeStudyTarget): 
 
     const examKeys = ['A1', 'A2', 'B1', 'B2'].map(lvl => levelExamKey(lvl, 'passed', studyTarget));
     const examPairs = await AsyncStorage.multiGet(examKeys);
-    return examPairs.every(([, v]) => v === '1');
+    return examPairs.every(([, v]) => storedProgressFlagIsTrue(v));
   } catch {
     return false;
   }

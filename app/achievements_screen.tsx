@@ -45,8 +45,6 @@ import {
   comboAchievementCounterKey,
   dailyPhraseAchievementReadCountKey,
   dailyPhraseAchievementSaveCountKey,
-  dailyTasksAchievementAllDoneStreakKey,
-  dailyTasksAchievementNoRerollStreakKey,
   flashcardsAchievementFlipCountKey,
   flashcardsAchievementSavedCountKey,
   flashcardsAchievementViewStreakKey,
@@ -84,8 +82,8 @@ function getAchievementGridMetrics(screenW: number) {
   return { cols, gap: GRID_GAP, shieldOuter, shieldW };
 }
 
-function isVisibleAchievement(_a: Achievement, _stateMap: Map<string, AchievementState>): boolean {
-  return true;
+function isVisibleAchievement(a: Achievement): boolean {
+  return !a.retired;
 }
 
 type AchievementGridMetrics = ReturnType<typeof getAchievementGridMetrics>;
@@ -107,8 +105,6 @@ interface AchievementStats {
   shards: number;
   shardsSpent: number;
   comboBest: number;
-  dailyAllStreak: number;
-  dailyNoRerollStreak: number;
   dailyPhraseReads: number;
   dailyPhraseSaves: number;
   flashcardsSaved: number;
@@ -141,8 +137,6 @@ const emptyAchievementStats = (): AchievementStats => ({
   shards: 0,
   shardsSpent: 0,
   comboBest: 0,
-  dailyAllStreak: 0,
-  dailyNoRerollStreak: 0,
   dailyPhraseReads: 0,
   dailyPhraseSaves: 0,
   flashcardsSaved: 0,
@@ -236,19 +230,11 @@ const readDailyPhraseCounterAcrossTargets = async (
   return String(total);
 };
 
-const readDailyTaskStreakAcrossTargets = async (
-  keyForTarget: (studyTarget: RuntimeStudyTarget) => string,
-): Promise<string> => {
-  const rows = await AsyncStorage.multiGet(ACHIEVEMENT_PROGRESS_TARGETS.map(keyForTarget));
-  const best = rows.reduce((max, [, raw]) => Math.max(max, readJsonStreak(raw)), 0);
-  return String(best);
-};
-
 async function loadAchievementStats(): Promise<AchievementStats> {
   try {
     const [
       streakRaw, loginRaw, xpRaw, recallRaw, trainerRaw, shardsRaw, shardsSpentRaw, comboBestRaw,
-      dailyAllStreakRaw, dailyNoRerollRaw, dailyPhraseReadsRaw, dailyPhraseSavesRaw,
+      dailyPhraseReadsRaw, dailyPhraseSavesRaw,
       flashcardsSavedRaw, flashcardsFlipsRaw, flashcardsViewRaw, energyRefillsRaw,
        leagueTop3Raw, leagueChampionRaw, leagueDiamondWeeksRaw, giftsRaw,
       trainerPerfectRaw, packStorageRows, shareRaw,
@@ -262,8 +248,6 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       AsyncStorage.getItem('shards_balance'),
       AsyncStorage.getItem('achievement_shards_spent_total'),
       readComboBestAcrossTargets(),
-      readDailyTaskStreakAcrossTargets(dailyTasksAchievementAllDoneStreakKey),
-      readDailyTaskStreakAcrossTargets(dailyTasksAchievementNoRerollStreakKey),
       readDailyPhraseCounterAcrossTargets(dailyPhraseAchievementReadCountKey),
       readDailyPhraseCounterAcrossTargets(dailyPhraseAchievementSaveCountKey),
       readFlashcardsCounterAcrossTargets(flashcardsAchievementSavedCountKey),
@@ -385,8 +369,6 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       shards,
       shardsSpent,
       comboBest: parseInt(comboBestRaw || '0') || 0,
-      dailyAllStreak: readJsonStreak(dailyAllStreakRaw),
-      dailyNoRerollStreak: readJsonStreak(dailyNoRerollRaw),
       dailyPhraseReads: parseInt(dailyPhraseReadsRaw || '0') || 0,
       dailyPhraseSaves: parseInt(dailyPhraseSavesRaw || '0') || 0,
       flashcardsSaved: parseInt(flashcardsSavedRaw || '0') || 0,
@@ -453,12 +435,6 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
     const n = parseInt(id.replace('combo_', ''));
     if (!isNaN(n)) return [Math.min(stats.comboBest, n), n];
   }
-  if (id === 'daily_all_3') return [Math.min(stats.dailyAllStreak, 3), 3];
-  if (id === 'daily_all_7') return [Math.min(stats.dailyAllStreak, 7), 7];
-  if (id === 'daily_all_14') return [Math.min(stats.dailyAllStreak, 14), 14];
-  if (id === 'daily_all_30') return [Math.min(stats.dailyAllStreak, 30), 30];
-  if (id === 'daily_no_reroll_7') return [Math.min(stats.dailyNoRerollStreak, 7), 7];
-  if (id === 'daily_no_reroll_30') return [Math.min(stats.dailyNoRerollStreak, 30), 30];
   if (id === 'daily_phrase_read_30') return [Math.min(stats.dailyPhraseReads, 30), 30];
   if (id === 'daily_phrase_save_30') return [Math.min(stats.dailyPhraseSaves, 30), 30];
   if (id === 'daily_phrase_save_100') return [Math.min(stats.dailyPhraseSaves, 100), 100];
@@ -549,11 +525,6 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   combo_20:           'shield',
   combo_50:           'flash',
   combo_100:          'nuclear',
-  daily_task_first:   'checkmark-circle',
-  all_daily:          'albums',
-  daily_all_3:        'calendar',
-  daily_all_7:        'calendar-number',
-  daily_no_reroll:    'checkmark-done-circle',
   daily_phrase_first: 'chatbubble-ellipses',
   daily_phrase_save:  'file-tray-full',
   login_7:            'calendar',
@@ -1407,8 +1378,8 @@ export default function AchievementsScreen() {
   const stateMap = useMemo(() => new Map(states.map(s => [s.id, s])), [states]);
   const showAllAchievements = ENABLE_DEV_TOOLS && devShowAllAchievements;
   const visibleAchievementDefinitions = useMemo(() =>
-    ALL_ACHIEVEMENTS.filter(a => isVisibleAchievement(a, stateMap)),
-  [stateMap]);
+    ALL_ACHIEVEMENTS.filter(isVisibleAchievement),
+  []);
   // зачем: nearestAchievements (питал удалённую секцию «Ближайшие награды») больше не нужен
   const achievementSections = useMemo((): AchievementListSection[] => {
     const sections = CATEGORIES.flatMap(cat => {
@@ -1558,7 +1529,7 @@ export default function AchievementsScreen() {
       </ContentWrap>
 
       {/* Модальное окно */}
-      {selected && isVisibleAchievement(selected, stateMap) && (
+      {selected && isVisibleAchievement(selected) && (
         <AchievementModal
           achievement={selected}
           state={stateMap.get(selected.id)}

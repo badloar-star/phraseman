@@ -13,7 +13,7 @@ type Actor = Readonly<{ actorUid: string; actorEmail: string; role: AdminRole }>
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const PROFILE_FIELDS = ['user_name', 'user_total_xp', 'streak_count'] as const;
-const RESET_TYPES = ['achievements', 'daily_tasks'] as const;
+const RESET_TYPES = ['achievements'] as const;
 const REPORT_ACTIONS = ['warn', 'rename', 'ban', 'status'] as const;
 const MAX_MIGRATION_UIDS = 200;
 
@@ -466,7 +466,7 @@ export const adminResetUserProgress = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, asyn
   const auditRef = db.collection('admin_log').doc();
   const requestFingerprint = fingerprint('reset_user_progress', input);
   const nowMs = Date.now();
-  const field = input.reset === 'achievements' ? 'achievements_state' : 'daily_tasks_progress';
+  const field = 'achievements_state';
   return db.runTransaction(async (tx) => {
     const [operationSnap, userSnap] = await Promise.all([tx.get(operationRef), tx.get(userRef)]);
     if (operationSnap.exists) { const operation = operationSnap.data() ?? {}; assertAdminUserOperationReplay(operation, requestFingerprint, actor.actorUid); return { ...operationResult(operation), replayed: true }; }

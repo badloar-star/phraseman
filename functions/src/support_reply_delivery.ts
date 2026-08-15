@@ -2,7 +2,9 @@ import { createHash } from 'crypto';
 import { HttpsError } from 'firebase-functions/v2/https';
 
 export const SUPPORT_REPLY_SCHEMA_VERSION = 2;
-export const SUPPORT_REPLY_CONFIRMATION_TTL_MS = 15 * 60 * 1000;
+// Telegram review gives the owner three hours. The immutable prepared payload
+// remains valid for one extra hour so the bounded deadline worker can claim it.
+export const SUPPORT_REPLY_CONFIRMATION_TTL_MS = 4 * 60 * 60 * 1000;
 export const SUPPORT_REPLY_TEXT_MAX_CHARS = 20_000;
 
 export type SupportReplyState =
@@ -18,6 +20,7 @@ export interface SupportReplyPayload {
   readonly to: string;
   readonly subject: string;
   readonly inReplyTo: string;
+  readonly references?: string;
   readonly finalText: string;
   readonly signatureRevision: number;
 }
@@ -33,6 +36,13 @@ export interface SupportReplyOperation {
   readonly requestFingerprint: string;
   readonly state: SupportReplyState;
   readonly draftRevision: number;
+  readonly draftOrigin?: 'jarvis' | 'owner_manual';
+  readonly instructionsSchemaVersion?: number;
+  readonly instructionsPromptVersion?: number;
+  readonly instructionsRevision?: number;
+  readonly instructionsFingerprint?: string;
+  readonly conversationId?: string;
+  readonly conversationRevision?: number;
   readonly payloadHash: string;
   readonly payload: SupportReplyPayload;
   readonly outboundMessageId: string;
@@ -108,6 +118,7 @@ function canonicalPayload(payload: SupportReplyPayload): string {
     to: String(payload.to),
     subject: String(payload.subject),
     inReplyTo: String(payload.inReplyTo),
+    ...(payload.references ? { references: String(payload.references) } : {}),
     finalText: String(payload.finalText),
     signatureRevision: Number(payload.signatureRevision),
   });
@@ -125,12 +136,18 @@ export interface SupportReplyBatchChildIdentity {
   readonly operationId: string;
   readonly messageDocId: string;
   readonly payloadHash: string;
+  /** Existing sealed single operation temporarily reserved by this batch. */
+  readonly adopted?: boolean;
+  /** Telegram review to resume if an unconfirmed batch is cancelled. */
+  readonly reviewId?: string;
+  /** Original guarded deadline; restored only while it is still in the future. */
+  readonly resumeAutoSendAtMs?: number | null;
 }
 
 export type SupportReplyBatchState = 'prepared' | 'dispatching' | 'accepted' | 'attention_required' | 'partial' | 'cancelled';
 
-export function isSupportReplyBatchDispatchableState(state: unknown): state is 'prepared' | 'dispatching' | 'attention_required' | 'partial' {
-  return state === 'prepared' || state === 'dispatching' || state === 'attention_required' || state === 'partial';
+export function isSupportReplyBatchDispatchableState(state: unknown): state is 'prepared' | 'dispatching' | 'attention_required' {
+  return state === 'prepared' || state === 'dispatching' || state === 'attention_required';
 }
 
 export function supportReplyBatchId(idempotencyKey: string): string {
@@ -183,6 +200,13 @@ export function buildPreparedSupportReply(input: {
   readonly requestId: string;
   readonly requestFingerprint: string;
   readonly draftRevision: number;
+  readonly draftOrigin?: 'jarvis' | 'owner_manual';
+  readonly instructionsSchemaVersion?: number;
+  readonly instructionsPromptVersion?: number;
+  readonly instructionsRevision?: number;
+  readonly instructionsFingerprint?: string;
+  readonly conversationId?: string;
+  readonly conversationRevision?: number;
   readonly payload: SupportReplyPayload;
   readonly confirmationNonce: string;
   readonly confirmationExpiresAt: string;
@@ -202,6 +226,13 @@ export function buildPreparedSupportReply(input: {
     requestFingerprint: input.requestFingerprint,
     state: input.state ?? 'prepared',
     draftRevision: input.draftRevision,
+    ...(input.draftOrigin ? { draftOrigin: input.draftOrigin } : {}),
+    ...(Number.isInteger(input.instructionsSchemaVersion) ? { instructionsSchemaVersion: input.instructionsSchemaVersion } : {}),
+    ...(Number.isInteger(input.instructionsPromptVersion) ? { instructionsPromptVersion: input.instructionsPromptVersion } : {}),
+    ...(Number.isInteger(input.instructionsRevision) ? { instructionsRevision: input.instructionsRevision } : {}),
+    ...(input.instructionsFingerprint ? { instructionsFingerprint: input.instructionsFingerprint } : {}),
+    ...(input.conversationId ? { conversationId: input.conversationId } : {}),
+    ...(Number.isInteger(input.conversationRevision) ? { conversationRevision: input.conversationRevision } : {}),
     payloadHash: canonicalReplyPayloadHash(frozenPayload),
     payload: frozenPayload,
     outboundMessageId: deterministicSupportMessageId(input.operationId),

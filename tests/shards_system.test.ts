@@ -1,12 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, peekLastKnownShardsBalance, replaceShardsBalanceForAccountGeneration, replaceShardsBalanceLocal, SHARD_REWARDS, spendShards } from '../app/shards_system';
+import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, commitConfirmedExternalShardEvent, commitShardCompositeOperation, commitShardCreditOperation, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, peekLastKnownShardsBalance, replaceShardsBalanceForAccountGeneration, replaceShardsBalanceLocal, SHARD_REWARDS, spendShards } from '../app/shards_system';
 import { __resetAccountGenerationForTests, beginAccountGeneration, captureAccountGeneration, invalidateAccountGeneration, withAccountTransitionLock } from '../app/account_generation';
 import { emitAppEvent } from '../app/events';
+import { bumpLifetimeShardsEarned, bumpLifetimeShardsSpent } from '../app/lifetime_profile_stats';
+import { CLIENT_SHARD_OPERATION_PREFIX } from '../app/economy/client_shard_operation_ledger';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
+jest.mock('../app/stable_id', () => ({
+  getStableId: jest.fn(async () => 'test-owner'),
+}));
 jest.mock('../app/lifetime_profile_stats', () => ({
   bumpLifetimeShardsEarned: jest.fn(async () => {}),
   bumpLifetimeShardsSpent: jest.fn(async () => {}),
@@ -41,6 +46,78 @@ afterEach(() => {
 });
 
 describe('shards_system guards and one-time awards', () => {
+  async function switchAccountAtOperationPublication<T>(start: () => Promise<T>): Promise<T> {
+    let reached!: () => void;
+    let release!: () => void;
+    const operationReached = new Promise<void>((resolve) => { reached = resolve; });
+    const operationRelease = new Promise<void>((resolve) => { release = resolve; });
+    let blocked = false;
+    (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+      if (!blocked && key.startsWith(CLIENT_SHARD_OPERATION_PREFIX)) {
+        blocked = true;
+        reached();
+        await operationRelease;
+      }
+      mockStorage[key] = value;
+    });
+    const pending = start();
+    await operationReached;
+    const transition = withAccountTransitionLock(async () => {
+      beginAccountGeneration('account-b');
+    });
+    release();
+    const result = await pending;
+    await transition;
+    return result;
+  }
+
+  it('does not publish debit post-commit effects into an account switched behind the ledger lock', async () => {
+    mockStorage.shards_balance = '20';
+    const result = await switchAccountAtOperationPublication(() => commitShardCompositeOperation({
+      operationId: 'energy:wrapper:race01',
+      amount: 5,
+      reason: 'buy_energy',
+      grant: { kind: 'energy_refill', subjectId: 'base_energy', payload: { current: 5 } },
+      localWrites: [['energy_state', JSON.stringify({ current: 5, lastRecoveryTime: 1 })]],
+    }));
+    expect(result).toEqual({ status: 'failed', reason: 'stale_account_generation' });
+    expect(peekLastKnownShardsBalance()).toBeNull();
+    expect(bumpLifetimeShardsSpent).not.toHaveBeenCalled();
+    expect(emitAppEvent).not.toHaveBeenCalled();
+  });
+
+  it('does not publish credit post-commit effects into an account switched behind the ledger lock', async () => {
+    mockStorage.shards_balance = '20';
+    const result = await switchAccountAtOperationPublication(() => commitShardCreditOperation({
+      operationId: 'credit:wrapper:race01',
+      amount: 3,
+      reason: 'lesson_reward',
+      grant: { kind: 'lesson_reward', subjectId: 'lesson-1' },
+      localWrites: [['lesson_reward_marker', '1']],
+      showEarnModal: true,
+    }));
+    expect(result).toEqual({ status: 'failed', reason: 'stale_account_generation' });
+    expect(peekLastKnownShardsBalance()).toBeNull();
+    expect(bumpLifetimeShardsEarned).not.toHaveBeenCalled();
+    expect(emitAppEvent).not.toHaveBeenCalled();
+  });
+
+  it('does not publish external-event post-commit effects into a switched account', async () => {
+    mockStorage.shards_balance = '20';
+    const result = await switchAccountAtOperationPublication(() => commitConfirmedExternalShardEvent({
+      expectedOwnerStableId: 'test-owner',
+      source: 'refund',
+      eventId: 'refund-wrapper-race-01',
+      delta: 4,
+      reason: 'refund',
+      grant: { kind: 'refund', subjectId: 'refund-wrapper-race-01' },
+    }));
+    expect(result).toEqual({ status: 'failed', reason: 'stale_account_generation' });
+    expect(peekLastKnownShardsBalance()).toBeNull();
+    expect(bumpLifetimeShardsEarned).not.toHaveBeenCalled();
+    expect(emitAppEvent).not.toHaveBeenCalled();
+  });
+
   it('does not expose account A memory as account B first-frame balance', async () => {
     beginAccountGeneration('account-a');
     mockStorage.shards_balance = '17';
@@ -166,7 +243,7 @@ describe('shards_system guards and one-time awards', () => {
 
   it('excludes store-purchased shards from achievement balance', async () => {
     await expect(addShardsRaw(80, 'shards_store_purchase', { skipServerAwait: true })).resolves.toBe(80);
-    await expect(addShardsRaw(5, 'daily_tasks_all', { skipServerAwait: true })).resolves.toBe(5);
+    await expect(addShardsRaw(5, 'achievement:first_steps', { skipServerAwait: true })).resolves.toBe(5);
 
     await expect(getShardsBalance()).resolves.toBe(85);
     await expect(getShardAchievementEligibleBalance()).resolves.toBe(5);
@@ -242,8 +319,14 @@ describe('shards_system guards and one-time awards', () => {
 
   it('does not keep spent store shards excluded forever', async () => {
     await expect(addShardsRaw(80, 'shards_store_purchase', { skipServerAwait: true })).resolves.toBe(80);
-    await expect(spendShards(80, 'card_pack')).resolves.toBe(true);
-    await expect(addShardsRaw(100, 'daily_tasks_all', { skipServerAwait: true })).resolves.toBe(100);
+    await expect(commitShardCompositeOperation({
+      operationId: 'test:card-pack:spend-80',
+      amount: 80,
+      reason: 'card_pack',
+      grant: { kind: 'official_card_pack', subjectId: 'test-pack', payload: { studyTarget: 'en' } },
+      localWrites: [['test_pack_owned', '1']],
+    })).resolves.toMatchObject({ status: 'applied' });
+    await expect(addShardsRaw(100, 'achievement:first_steps', { skipServerAwait: true })).resolves.toBe(100);
 
     await expect(getShardsBalance()).resolves.toBe(100);
     await expect(getShardAchievementEligibleBalance()).resolves.toBe(100);
@@ -254,7 +337,7 @@ describe('shards_system guards and one-time awards', () => {
     mockStorage.shards_balance_meta_v1 = JSON.stringify({
       updatedAtMs: 2_000,
       op: 'earn',
-      reason: 'daily_tasks_all',
+      reason: 'achievement:first_steps',
     });
 
     await replaceShardsBalanceLocal(30, {
@@ -272,7 +355,7 @@ describe('shards_system guards and one-time awards', () => {
     mockStorage.shards_balance_meta_v1 = JSON.stringify({
       updatedAtMs: 2_000,
       op: 'earn',
-      reason: 'daily_tasks_all',
+      reason: 'achievement:first_steps',
     });
 
     await replaceShardsBalanceLocal(30, {

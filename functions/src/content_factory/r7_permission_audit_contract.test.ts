@@ -12,7 +12,7 @@ const matrix: readonly { action: string; permission: AdminPermission; leastRole:
   { action: 'unit_generate', permission: 'content.draft.write', leastRole: 'content_editor', file: 'content_factory_worker.ts', auditAction: 'content_factory.unit.generate' },
   { action: 'unit_retry', permission: 'content.draft.write', leastRole: 'content_editor', file: 'content_factory_worker.ts', auditAction: 'content_factory.unit.retry' },
   { action: 'pause_resume_cancel', permission: 'content.draft.write', leastRole: 'content_editor', file: 'admin_content_stages.ts', auditAction: 'content_factory.stage.${input.action}', auditFile: 'content_factory/stage_control_repository.ts' },
-  { action: 'approve_reject', permission: 'content.publish', leastRole: 'admin', file: 'admin_content_stages.ts', auditAction: 'content_factory.stage.${input.status}' },
+  { action: 'approve_reject', permission: 'content.review', leastRole: 'content_reviewer', file: 'admin_content_stages.ts', auditAction: 'content_factory.stage.${input.status}' },
   { action: 'review_release', permission: 'content.publish', leastRole: 'admin', file: 'admin_content_release.ts', auditAction: 'content_factory.course_generation.review' },
   { action: 'seal', permission: 'content.publish', leastRole: 'admin', file: 'admin_content_release.ts', auditAction: 'content_factory.course_release.seal' },
   { action: 'activate', permission: 'content.publish', leastRole: 'admin', file: 'language_release.ts', auditAction: 'content_factory.course_release.activate' },
@@ -32,7 +32,7 @@ describe('R7 content factory permission and audit matrix', () => {
     const worker = source(file);
     const auditSource = auditFile ? source(auditFile) : fs.readFileSync(path.join(__dirname, 'generation_audit.ts'), 'utf8');
     const text = `${worker}\n${auditSource}`;
-    expect(text).toContain('enforceAppCheck: ENFORCE_APP_CHECK');
+    expect(text).toContain(file === 'admin_content_stages.ts' ? 'enforceAppCheck: ENFORCE_APP_CHECK_ADMIN' : 'enforceAppCheck: ENFORCE_APP_CHECK');
     expect(text).toContain(permission);
     expect(text).toContain(auditAction);
     for (const field of ['actorUid', 'role', 'entity', 'operationId', 'reason']) expect(text).toContain(field);

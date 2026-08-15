@@ -22,7 +22,6 @@ import { LinearGradient } from './SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { softShadow, noAndroidOutline } from '../constants/androidGlow';
 import { checkAchievements } from '../app/achievements';
-import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import { claimDailyPhrasePulseForDay } from '../app/daily_phrase_pulse';
 import { getLocalDayKey } from '../app/local_date';
 import {
@@ -47,7 +46,6 @@ import {
 import { IDIOMS } from '../app/idioms_data';
 import { trainerThemeIconSource } from '../constants/trainerThemeIcons';
 import AddToFlashcard from './AddToFlashcard';
-import ExplainButton from './ExplainButton';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
@@ -513,7 +511,6 @@ function DailyPhraseCard({
     }
 
     setDetailsVisible(true);
-    updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }], { studyTarget }).catch(() => {});
     checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
   };
 
@@ -801,7 +798,7 @@ function DailyPhraseCard({
               showsVerticalScrollIndicator={false}
             >
               {!questAnswered && (
-                <TonalSurface radius={18} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.questBlock, { borderColor: t.border }]}>
+                <View style={styles.questBlock}>
                   <Text style={[styles.questQuestion, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
                     {triLang(lang, {
                       ru: 'Что это значит?',
@@ -846,7 +843,7 @@ function DailyPhraseCard({
                         </Pressable>
                       ))}
                   </View>
-                </TonalSurface>
+                </View>
               )}
 
               {showQuestExplanation && (
@@ -909,12 +906,6 @@ function DailyPhraseCard({
                     <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
                       {phraseCopy.text}
                     </Text>
-                    <ExplainButton
-                      phraseEn={phrase.english}
-                      phraseMeaning={phraseCopy.meaning || phrase.meaning}
-                      lang={lang}
-                      style={styles.explainButton}
-                    />
                   </TonalSurface>
                 </Animated.View>
               )}
@@ -1204,13 +1195,8 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     width: 4,
   },
-  explainButton: {
-    marginTop: 2,
-  },
   questBlock: {
-    borderRadius: 16,
-    borderWidth: 0,
-    padding: 13,
+    padding: 0,
   },
   questQuestion: {
     fontWeight: '900',

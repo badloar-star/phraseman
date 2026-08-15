@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 import { FlowText } from '../text-integrity/FlowText';
@@ -10,31 +11,50 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { CustomizationAction, CustomizationTab } from '../../app/customization_draft';
 
 import { noAndroidOutline } from '../../constants/androidGlow';
-type Segment<T extends string> = { id: T; label: string };
 
-function Segmented<T extends string>({ items, value, onChange }: { items: Segment<T>[]; value: T; onChange: (value: T) => void }) {
+export function CustomizationTabs({ value, onChange, avatarsLabel, aurasLabel }: {
+  value: CustomizationTab; onChange: (value: CustomizationTab) => void; avatarsLabel: string; aurasLabel: string;
+}) {
   const { theme: t } = useTheme();
+  const tabs: { id: CustomizationTab; label: string; icon: 'person' | 'sparkles'; outlineIcon: 'person-outline' | 'sparkles-outline' }[] = [
+    { id: 'avatars', label: avatarsLabel, icon: 'person', outlineIcon: 'person-outline' },
+    { id: 'auras', label: aurasLabel, icon: 'sparkles', outlineIcon: 'sparkles-outline' },
+  ];
   return (
-    <View style={[styles.segmented, { backgroundColor: t.bgCard }]}>
-      {items.map((item) => {
+    <View style={styles.tabGroup} accessibilityRole="tablist">
+      {tabs.map((item) => {
         const selected = item.id === value;
         return (
-          <TapScale key={item.id} onPress={() => onChange(item.id)} scaleTo={0.97}
-            style={[styles.segment, selected && { backgroundColor: t.bgSurface2, shadowColor: '#000', shadowOpacity: 0.28, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, elevation: 3 }]}
-            accessibilityRole="button"
-            accessibilityState={{ selected }} accessibilityLabel={item.label}>
-            <Text style={{ color: selected ? t.textPrimary : t.textMuted, fontWeight: '800', fontSize: 14 }}>{item.label}</Text>
+          <TapScale
+            key={item.id}
+            testID={`customization-tab-${item.id}`}
+            onPress={() => {
+              if (selected) return;
+              onChange(item.id);
+            }}
+            scaleTo={0.94}
+            style={[
+              styles.iconTab,
+              {
+                backgroundColor: selected ? t.accent : t.bgCard,
+                borderColor: selected ? t.accent : t.border,
+                shadowColor: selected ? t.accent : '#000000',
+              },
+            ]}
+            accessibilityRole="tab"
+            accessibilityState={{ selected }}
+            accessibilityLabel={item.label}
+          >
+            <Ionicons
+              name={selected ? item.icon : item.outlineIcon}
+              size={23}
+              color={selected ? t.correctText : t.textMuted}
+            />
           </TapScale>
         );
       })}
     </View>
   );
-}
-
-export function CustomizationTabs({ value, onChange, avatarsLabel, aurasLabel }: {
-  value: CustomizationTab; onChange: (value: CustomizationTab) => void; avatarsLabel: string; aurasLabel: string;
-}) {
-  return <Segmented items={[{ id: 'avatars', label: avatarsLabel }, { id: 'auras', label: aurasLabel }]} value={value} onChange={onChange} />;
 }
 
 /**
@@ -94,8 +114,20 @@ export function CustomizationActionBar({ action, label, cost, busy, bottomOffset
 }
 
 const styles = StyleSheet.create({
-  segmented: { flexDirection: 'row', borderRadius: 15, padding: 4, gap: 4 },
-  segment: { minHeight: 44, flex: 1, borderRadius: 12, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
+  tabGroup: { alignSelf: 'flex-end', flexDirection: 'row', gap: 10 },
+  iconTab: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowOpacity: 0.18,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 3,
+    ...noAndroidOutline,
+  },
   actionWrap: { position: 'absolute', left: 16, right: 16 },
   action: {
     minHeight: 56, borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',

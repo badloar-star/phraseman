@@ -56,7 +56,7 @@ import SeasonGiftModal from '../components/SeasonGiftModal';
 import SeasonRewardInfoModal, { type SeasonRewardCardStatus } from '../components/SeasonRewardInfoModal';
 import { addSeasonPassGift, loadPendingSeasonPassGiftCount } from './season_pass_gift_inventory';
 import { seasonBuyPassOnServer } from './season_pass_server';
-import { getShardsBalance, loadShardsFromCloud } from './shards_system';
+import { commitShardCompositeOperation, getShardsBalance } from './shards_system';
 import { getVerifiedPremiumAccessStatus } from './premium_guard';
 import { getSeasonPassThemeBackground } from './season_pass_theme_backgrounds';
 import { seasonRewardGradient, seasonRewardOnGradientColor } from '../constants/seasonPassRewardGradients';
@@ -347,25 +347,37 @@ export default function SeasonPassScreen() {
     }
     setBuying(true);
     setBuyConfirmVisible(false);
-    // Optimistic unlock — дорожка открывается сразу, двойной тап отсечён buying.
-    setPassOwned(true);
-    const res = await seasonBuyPassOnServer();
-    if (res?.ok || res?.alreadyOwned) {
-      await AsyncStorage.setItem(PASS_OWNED_KEY, JSON.stringify({ seasonId, purchasedAt: Date.now() })).catch(() => {});
+    const purchase = await commitShardCompositeOperation({
+      operationId: `season-pass:${seasonId}`,
+      amount: SEASON_PASS_PRICE_PEARLS,
+      reason: 'season_pass_purchase',
+      grant: {
+        kind: 'season_pass',
+        subjectId: seasonId,
+        payload: { seasonId },
+      },
+      localWrites: [[PASS_OWNED_KEY, JSON.stringify({ seasonId, purchasedAt: 0 })]],
+    });
+    if (
+      purchase.status === 'applied'
+      || purchase.status === 'already-applied'
+      || purchase.status === 'already-satisfied'
+    ) {
+      setPassOwned(true);
       emitAppEvent('season_pass_plus_changed', undefined);
-      // Сервер списал жемчуг — синхронизируем локальный кэш его балансом.
-      void loadShardsFromCloud().catch(() => {});
+      // Сервер сохраняет факт владения для других устройств; он не решает
+      // баланс и его отказ никогда не откатывает уже выданный пропуск.
+      void seasonBuyPassOnServer().catch(() => null);
     } else {
-      setPassOwned(false); // откат optimistic-разблокировки
-      emitAppEvent('action_toast', actionToastTri(res?.error === 'insufficient_shards' ? 'warning' : 'error', {
-        ru: res?.error === 'insufficient_shards' ? 'Сервер: жемчужин недостаточно' : 'Покупка не прошла — попробуй ещё раз',
-        uk: res?.error === 'insufficient_shards' ? 'Сервер: перлин недостатньо' : 'Покупка не пройшла — спробуй ще раз',
-        es: res?.error === 'insufficient_shards' ? 'Servidor: perlas insuficientes' : 'La compra falló, inténtalo de nuevo',
-        'pt-BR': res?.error === 'insufficient_shards' ? 'Servidor: pérolas insuficientes' : 'A compra falhou, tente novamente',
-        vi: res?.error === 'insufficient_shards' ? 'Máy chủ: không đủ ngọc' : 'Mua thất bại — thử lại',
-        id: res?.error === 'insufficient_shards' ? 'Server: mutiara kurang' : 'Pembelian gagal — coba lagi',
-        tr: res?.error === 'insufficient_shards' ? 'Sunucu: inci yetersiz' : 'Satın alma başarısız — tekrar dene',
-        pl: res?.error === 'insufficient_shards' ? 'Serwer: za mało pereł' : 'Zakup nie powiódł się — spróbuj ponownie',
+      emitAppEvent('action_toast', actionToastTri(purchase.status === 'insufficient' ? 'warning' : 'error', {
+        ru: purchase.status === 'insufficient' ? 'Жемчужин недостаточно' : 'Покупка не прошла — попробуй ещё раз',
+        uk: purchase.status === 'insufficient' ? 'Перлин недостатньо' : 'Покупка не пройшла — спробуй ще раз',
+        es: purchase.status === 'insufficient' ? 'Perlas insuficientes' : 'La compra falló, inténtalo de nuevo',
+        'pt-BR': purchase.status === 'insufficient' ? 'Pérolas insuficientes' : 'A compra falhou, tente novamente',
+        vi: purchase.status === 'insufficient' ? 'Không đủ ngọc' : 'Mua thất bại — thử lại',
+        id: purchase.status === 'insufficient' ? 'Mutiara kurang' : 'Pembelian gagal — coba lagi',
+        tr: purchase.status === 'insufficient' ? 'İnci yetersiz' : 'Satın alma başarısız — tekrar dene',
+        pl: purchase.status === 'insufficient' ? 'Za mało pereł' : 'Zakup nie powiódł się — spróbuj ponownie',
       }));
     }
     setBuying(false);
@@ -380,7 +392,12 @@ export default function SeasonPassScreen() {
     persistClaims(nextClaimed);
     const gift = await addSeasonPassGift(seasonId, level, side, reward.kind, reward.amount);
     refreshPendingGiftCount();
-    setOpenReward({ reward, giftId: gift.id });
+    // Owner-locked rewards (currently the retired tournament ticket) may be
+    // normalized by the inventory. Render exactly what the user can apply.
+    const visibleReward: SeasonReward = gift.kind === reward.kind
+      ? reward
+      : { kind: gift.kind, amount: gift.amount };
+    setOpenReward({ reward: visibleReward, giftId: gift.id });
   }, [claimed, persistClaims, refreshPendingGiftCount, seasonId]);
 
   const renderReward = useCallback((reward: SeasonReward | undefined, side: 'free' | 'pass', reached: boolean, level: number) => {

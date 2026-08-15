@@ -3,11 +3,13 @@ import path from 'path';
 import {
   AVATAR_AURAS,
   getAvatarAuraById,
+  getEffectiveAvatarAuraId,
   normalizeAvatarAuraId,
 } from '../constants/avatar_auras';
+import { buildAuraCatalog } from '../app/customization_catalog';
 import { buildCustomizationSnapshot } from '../app/customization_snapshot';
 
-const RETAINED_AURA_IDS = [
+const ACTIVE_AURA_IDS = [
   'aura-plus',
   'aura-pro',
   'aura-aurora',
@@ -26,6 +28,14 @@ const RETAINED_AURA_IDS = [
   'aura-season-1-secret',
 ] as const;
 
+const RETIRED_FROM_SHOP_AURA_IDS = [
+  'aura-aurora',
+  'aura-violet',
+  'aura-coral',
+  'aura-lagoon',
+  'aura-sunset',
+] as const;
+
 const REMOVED_AURA_IDS = [
   'aura-flame-51',
   'aura-arena-starvortex',
@@ -35,34 +45,47 @@ const REMOVED_AURA_IDS = [
 ] as const;
 
 describe('avatar aura catalog rework', () => {
-  it('keeps the active shop, Nimbus, and five Season 1 reward auras in one catalog', () => {
-    expect(AVATAR_AURAS.map((aura) => aura.id)).toEqual(RETAINED_AURA_IDS);
+  it('keeps active, retired-owned, Nimbus, and Season 1 auras renderable in one catalog', () => {
+    expect(AVATAR_AURAS.map((aura) => aura.id)).toEqual(ACTIVE_AURA_IDS);
     expect(AVATAR_AURAS.some((aura) => aura.unlockLevel !== undefined)).toBe(false);
   });
 
-  it('gives the three new multicolour products distinct restrained palettes', () => {
-    const ids = ['aura-prism', 'aura-lagoon', 'aura-sunset'];
-    const palettes = ids.map((id) => {
-      const aura = getAvatarAuraById(id)!;
-      return [aura.color, aura.color2, aura.color3];
-    });
-
-    expect(palettes.every((palette) => palette.every(Boolean))).toBe(true);
-    expect(new Set(palettes.map((palette) => palette.join('|'))).size).toBe(ids.length);
+  it('keeps the retained Prism multicolour palette complete', () => {
+    const aura = getAvatarAuraById('aura-prism')!;
+    expect([aura.color, aura.color2, aura.color3].every(Boolean)).toBe(true);
   });
 
-  it.each(['aura-mint', 'aura-coral'])('restores %s as an ordinary purchasable aura', (id) => {
+  it.each(['aura-ember', 'aura-mint', 'aura-prism'])('keeps %s as an ordinary purchasable aura', (id) => {
     expect(getAvatarAuraById(id)).toMatchObject({ id });
     expect(getAvatarAuraById(id)?.rewardOnly).not.toBe(true);
     expect(normalizeAvatarAuraId(id)).toBe(id);
   });
 
-  it.each(REMOVED_AURA_IDS)('removes retired aura %s from selection', (id) => {
+  it.each(RETIRED_FROM_SHOP_AURA_IDS)('keeps retired aura %s only for an existing owner', (id) => {
+    expect(getAvatarAuraById(id)).toMatchObject({ id, retiredFromShop: true });
+    expect(normalizeAvatarAuraId(id)).toBe(id);
+    expect(getEffectiveAvatarAuraId(id, false, false, false)).toBe(id);
+
+    const input = {
+      activeAvatar: '1',
+      activeAuraId: null,
+      level: 1,
+      ownedAuras: {},
+      isPremium: false,
+      isVip: false,
+      isPro: false,
+    };
+    expect(buildAuraCatalog(input).some((item) => item.id === id)).toBe(false);
+    expect(buildAuraCatalog({ ...input, ownedAuras: { [id]: true } }).find((item) => item.id === id))
+      .toMatchObject({ id, isOwned: true, availability: { kind: 'owned' } });
+  });
+
+  it.each(REMOVED_AURA_IDS)('removes obsolete aura %s from selection', (id) => {
     expect(getAvatarAuraById(id)).toBeUndefined();
     expect(normalizeAvatarAuraId(id)).toBeUndefined();
   });
 
-  it('preserves legacy ownership records without exposing removed auras', () => {
+  it('preserves retired ownership records and keeps truly removed auras hidden', () => {
     const snapshot = buildCustomizationSnapshot(new Map([
       ['avatar_aura_owned_v1', JSON.stringify({
         'aura-aurora': true,
@@ -74,7 +97,22 @@ describe('avatar aura catalog rework', () => {
       'aura-aurora': true,
       'aura-flame-51': true,
     });
+    expect(AVATAR_AURAS.some((aura) => aura.id === 'aura-aurora')).toBe(true);
     expect(AVATAR_AURAS.some((aura) => aura.id === 'aura-flame-51')).toBe(false);
+  });
+
+  it('excludes retired auras from client-side reward grant paths', () => {
+    const levelGiftSource = fs.readFileSync(path.join(__dirname, '../app/level_gift_system.ts'), 'utf8');
+    const leagueChestSource = fs.readFileSync(path.join(__dirname, '../app/services/league_chest_rewards.ts'), 'utf8');
+    expect(levelGiftSource.match(/!aura\.retiredFromShop/g)).toHaveLength(2);
+    expect(leagueChestSource).toContain('!item.retiredFromShop');
+  });
+
+  it('refreshes server sale availability when customization regains focus', () => {
+    const selectorSource = fs.readFileSync(path.join(__dirname, '../app/avatar_select.tsx'), 'utf8');
+    expect(selectorSource).toContain("import { hydrateCosmeticAssetCatalog } from './cosmetic_asset_archive';");
+    expect(selectorSource).toContain('hydrateCosmeticAssetCatalog(true)');
+    expect(selectorSource).toContain('REVALIDATE_TTL_MS');
   });
 });
 

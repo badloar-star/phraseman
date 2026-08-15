@@ -5,8 +5,8 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink, getCurrentUid } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { setClubGiftFreeBoostCountFromAuthority } from './club_boosts';
-import { replaceShardsBalanceLocal } from './shards_system';
-import { sendFriendActivityLike, fetchTodayActivityLikeState } from './friend_activity_likes';
+import { commitConfirmedExternalShardEvent, getShardsBalance } from './shards_system';
+import { sendFriendActivityLike, fetchActivityLikeState } from './friend_activity_likes';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -277,8 +277,7 @@ export function subscribeToActiveLeagueGroupBoost(
 
 export async function fetchLeagueGroupBoostLikedToday(boost: LeagueGroupBoostState | null): Promise<boolean> {
   if (!boost) return false;
-  const state = await fetchTodayActivityLikeState();
-  return state?.targetUid === boost.buyerUid && state?.eventId === boost.likeEventId;
+  return !!await fetchActivityLikeState(boost.buyerUid, boost.likeEventId);
 }
 
 export async function buyLeagueGroupBoost(): Promise<BuyLeagueGroupBoostResult> {
@@ -297,23 +296,33 @@ export async function buyLeagueGroupBoost(): Promise<BuyLeagueGroupBoostResult> 
       const boost = normalizeBoost(res.data?.boost, res.data?.groupId);
       if (!boost) return { ok: false, reason: 'unknown' };
       await cacheLeagueGroupBoost(boost);
-      const balance = Math.max(0, Math.floor(Number(res.data?.shardsBalance) || 0));
       const usedGiftVoucher = res.data?.usedGiftVoucher === true;
       const clubGiftFreeBoostCountAfter = Number(res.data?.clubGiftFreeBoostCountAfter);
       if (!Number.isFinite(clubGiftFreeBoostCountAfter) || clubGiftFreeBoostCountAfter < 0) {
         throw new Error('club_gift_receipt_missing');
       }
-      await replaceShardsBalanceLocal(balance, {
-        updatedAtMs: res.data?.shardsUpdatedAtMs,
-        op: 'spend',
-        reason: usedGiftVoucher ? 'league_group_boost_gift' : 'league_group_boost',
-      });
+      if (!usedGiftVoucher) {
+        const debit = await commitConfirmedExternalShardEvent({
+          source: 'league_group_boost',
+          eventId: boost.likeEventId,
+          delta: -LEAGUE_GROUP_BOOST_COST_SHARDS,
+          reason: 'league_group_boost',
+          grant: {
+            kind: 'competition_group_boost',
+            subjectId: boost.likeEventId,
+            payload: { groupId: boost.groupId, weekId: boost.weekId, leagueId: boost.leagueId },
+          },
+        });
+        if (debit.status !== 'applied' && debit.status !== 'already-applied') {
+          throw new Error('league_group_boost_debit_failed');
+        }
+      }
       await setClubGiftFreeBoostCountFromAuthority(clubGiftFreeBoostCountAfter);
       if (usedGiftVoucher) {
       // Сервер погасил ваучер — убираем локальный флаг, чтобы cloud_sync не вернул его обратно.
         void usedGiftVoucher;
       }
-      return { ok: true, boost, shardsBalance: balance, usedGiftVoucher };
+      return { ok: true, boost, shardsBalance: await getShardsBalance(), usedGiftVoucher };
     } catch (e: any) {
       const code = String(e?.code || '');
       const message = String(e?.message || '');

@@ -11,6 +11,7 @@ import { useScreen } from '../../hooks/use-screen';
 import ScreenGradient from '../../components/ScreenGradient';
 import TopFadeMask from '../../components/TopFadeMask';
 import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
+import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -19,6 +20,8 @@ import { OLIVE_RICH } from '../../constants/oliveTheme';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import HomeScreen       from './home';
+import DevHubSheetGate from '../../components/dev/DevHubSheetGate';
+import { ENABLE_DEV_TOOLS } from '../config';
 import {
   captureAccountGeneration,
   subscribeAccountGeneration,
@@ -62,7 +65,6 @@ type DeferredTabModule = { default: TabScreenComponent };
 type CancelableTask = { cancel?: () => void };
 
 let deferredLessonsScreen: TabScreenComponent | null = null;
-let deferredTournamentsScreen: TabScreenComponent | null = null;
 let deferredFriendsScreen: TabScreenComponent | null = null;
 let deferredSettingsScreen: TabScreenComponent | null = null;
 
@@ -76,11 +78,6 @@ function loadFriendsScreen(): TabScreenComponent {
   return deferredFriendsScreen;
 }
 
-function loadTournamentsScreen(): TabScreenComponent {
-  deferredTournamentsScreen ??= (require('./tournaments') as DeferredTabModule).default;
-  return deferredTournamentsScreen;
-}
-
 function loadSettingsScreen(): TabScreenComponent {
   deferredSettingsScreen ??= (require('./settings') as DeferredTabModule).default;
   return deferredSettingsScreen;
@@ -89,9 +86,8 @@ function loadSettingsScreen(): TabScreenComponent {
 function loadDeferredTabScreenByIndex(idx: number): TabScreenComponent | null {
   switch (idx) {
     case 1: return loadLessonsScreen();
-    case 2: return loadTournamentsScreen();
-    case 3: return loadFriendsScreen();
-    case 4: return loadSettingsScreen();
+    case 2: return loadFriendsScreen();
+    case 3: return loadSettingsScreen();
     default: return null;
   }
 }
@@ -249,22 +245,20 @@ type TabDef = {
 };
 
 /** Суффиксы основных табов. `/journal` остаётся legacy-якорем вкладки уроков. */
-const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/tournaments', '/friends', '/settings'] as const;
+const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/friends', '/settings'] as const;
 
 const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/home': 0,
   '/journal': 1,
   '/lessons': 1,
-  '/tournaments': 2,
-  '/friends': 3,
-  '/settings': 4,
+  '/friends': 2,
+  '/settings': 3,
 };
 const IDX_TO_TAB_ROUTE: Record<number, string> = {
   0: '/(tabs)/home',
   1: '/(tabs)/lessons',
-  2: '/(tabs)/tournaments',
-  3: '/(tabs)/friends',
-  4: '/(tabs)/settings',
+  2: '/(tabs)/friends',
+  3: '/(tabs)/settings',
 };
 
 function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
@@ -297,7 +291,7 @@ const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 160;
 const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
 const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
 /** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
-const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const;
+const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3] as const;
 // The entire capsule stays visible and only compacts slightly on downward scroll.
 const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
 const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;
@@ -319,9 +313,8 @@ const SEGMENT_TO_TAB_IDX: Record<string, number> = {
   home: 0,
   journal: 1,
   lessons: 1,
-  tournaments: 2,
-  friends: 3,
-  settings: 4,
+  friends: 2,
+  settings: 3,
 };
 
 /**
@@ -372,31 +365,61 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 const TABS: TabDef[] = [
   { key: 'home',        icon: 'home-outline',        active: 'home' },
   { key: 'lessons',     icon: 'book-outline',        active: 'book' },
-  { key: 'tournaments', icon: 'trophy-outline',      active: 'trophy' },
   { key: 'friends',     icon: 'people-outline',      active: 'people' },
   { key: 'settings',    icon: 'settings-outline',    active: 'settings' },
 ];
 
-// Турниры временно скрыты только из клиентской навигации. Логический индекс и
-// маршрут сохраняем: это не сдвигает существующие вкладки и не ломает deeplink.
-const TAB_BAR_TABS = TABS.filter((tab) => tab.key !== 'tournaments').map((tab) => ({
-  ...tab,
-  logicalIdx: TABS.indexOf(tab),
-}));
+/** Центральная кнопка таббара: Арена — полноэкранный push-маршрут, а не свайп-страница.
+ *  logicalIdx = -1 намеренно: у неё нет физической страницы в TabSlider, поэтому
+ *  свайпом в неё попасть нельзя и tab_page_model остаётся неизменной. */
+const ARENA_BAR_ROUTE = '/arena';
+type TabBarEntry = TabDef & { logicalIdx: number; route?: string; center?: boolean };
+
+const TAB_BAR_TABS: TabBarEntry[] = (() => {
+  const pages: TabBarEntry[] = TABS.map((tab, logicalIdx) => ({ ...tab, logicalIdx }));
+  const middle = Math.ceil(pages.length / 2);
+  const arena: TabBarEntry = {
+    key: 'arena',
+    icon: 'shield-half-outline',
+    active: 'shield-half',
+    logicalIdx: -1,
+    route: ARENA_BAR_ROUTE,
+    center: true,
+  };
+  return [...pages.slice(0, middle), arena, ...pages.slice(middle)];
+})();
 
 
-type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: boolean; visualIdx: number; physicalPageIdx: PhysicalPageIndex };
+type TabScaffoldProps = {
+  tabScreens: React.ReactNode[];
+  currentRouteIsTab: boolean;
+  visualIdx: number;
+  physicalPageIdx: PhysicalPageIndex;
+  devHubVisible: boolean;
+  onCloseDevHub: () => void;
+  onOpenDevHub: () => void;
+};
 
 /**
  * Один full-screen ScreenGradient (орбы/градиент) под системным статус-баром + paddingTop по insets
  * (без SafeAreaView сверху — иначе над контентом оставалась «плашка» из bgPrimary).
  */
-function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx }: TabScaffoldProps) {
+function TabScaffold({
+  tabScreens,
+  currentRouteIsTab,
+  visualIdx,
+  physicalPageIdx,
+  devHubVisible,
+  onCloseDevHub,
+  onOpenDevHub,
+}: TabScaffoldProps) {
   const { theme: t, ds, statusBarLight, themeMode } = useTheme();
   const { lang } = useLang();
   const { tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useStableSafeAreaInsets();
+  const tabBarRouter = useRouter();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
+  const [devOverlayVisible, setDevOverlayVisible] = useState(false);
   const topFadeScroll = useTopFadeScroll();
   /** Sage использует собственную акцентную капсулу вместо чужого чёрного scrim.
    * Тёмные состояния иконок держат контраст и в полном, и в компактном таббаре. */
@@ -583,18 +606,12 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
       {/* Затемняющий верхний край: одна маска на все табы, от самого верха экрана
           (вне paddingTop-обёртки), opacity привязан к скроллу активного таба. */}
       <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} />
-      {/* зачем 2026-08-04 (владелец: «фон турниров привести к единому стандарту
-          как у друзей/настроек/главной»): убрана опаковая плашка сейф-зоны,
-          которая была костылём под старый ОПАКОВЫЙ фон tournaments.tsx (тот
-          красил экран плоским P.bg поверх общего ScreenGradient, отсюда и шов
-          над «ТУРНИРЫ» — эта плашка его прятала). Теперь styles.root в
-          tournaments.tsx прозрачный, экран показывает тот же общий градиент/
-          орбы/блум, что и остальные табы — отдельная плашка над сейф-зоной
-          только для индекса 2 создавала бы НОВЫЙ шов на фоне, который иначе
-          везде однородный. */}
       <View
         onLayout={notifyFirstContentReady}
         style={{ flex: 1, paddingTop: insets.top }}
+        pointerEvents={devOverlayVisible ? 'none' : 'auto'}
+        accessibilityElementsHidden={devOverlayVisible}
+        importantForAccessibility={devOverlayVisible ? 'no-hide-descendants' : 'auto'}
       >
         <View style={{ flex: 1, width: '100%', alignSelf: 'stretch', flexDirection: 'column' }}>
           <View style={s.tabContent}>
@@ -650,7 +667,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
 
               {TAB_BAR_TABS.map((tab, barIndex) => {
                 const visuallyFocused = activeBarTabIdx === barIndex;
-                const color = visuallyFocused ? tabIconActive : tabIconMuted;
+                const color = tab.center ? tabIconActive : visuallyFocused ? tabIconActive : tabIconMuted;
                 const iconScale = pressedTabIdx === barIndex
                   ? tabPressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.08] })
                   : 1;
@@ -660,19 +677,25 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                     testID={`tab-${tab.key}`}
                     accessibilityLabel={triLang(lang, { ru: tab.key === 'home' ? 'Главная' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'friends' ? 'Друзья' : 'Настройки', uk: tab.key === 'home' ? 'Головна' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'friends' ? 'Друзі' : 'Налаштування', es: tab.key === 'home' ? 'Inicio' : tab.key === 'lessons' ? 'Lecciones' : tab.key === 'friends' ? 'Amigos' : 'Ajustes', 'pt-BR': tab.key === 'home' ? 'Início' : tab.key === 'lessons' ? 'Lições' : tab.key === 'friends' ? 'Amigos' : 'Configurações', vi: tab.key === 'home' ? 'Trang chủ' : tab.key === 'lessons' ? 'Bài học' : tab.key === 'friends' ? 'Bạn bè' : 'Cài đặt', id: tab.key === 'home' ? 'Beranda' : tab.key === 'lessons' ? 'Pelajaran' : tab.key === 'friends' ? 'Teman' : 'Pengaturan', tr: tab.key === 'home' ? 'Ana sayfa' : tab.key === 'lessons' ? 'Dersler' : tab.key === 'friends' ? 'Arkadaşlar' : 'Ayarlar', pl: tab.key === 'home' ? 'Strona główna' : tab.key === 'lessons' ? 'Lekcje' : tab.key === 'friends' ? 'Znajomi' : 'Ustawienia' })}
                     accessible={true}
-                    accessibilityRole="tab"
-                    accessibilityState={{ selected: visuallyFocused }}
+                    accessibilityRole={tab.center ? 'button' : 'tab'}
+                    accessibilityState={tab.center ? undefined : { selected: visuallyFocused }}
                     style={s.tabBtn}
                     onPressIn={() => beginTabPress(barIndex)}
                     onPressOut={endTabPress}
-                    onPress={() => goToTab(tab.logicalIdx)}
+                    onPress={() => {
+                      if (tab.route) {
+                        tabBarRouter.push(tab.route as never);
+                        return;
+                      }
+                      goToTab(tab.logicalIdx);
+                    }}
                     activeOpacity={1}
                   >
                     {!ENABLE_TAB_HIGHLIGHT_TRAVEL && visuallyFocused ? (
                       <View style={[s.tabActivePill, { backgroundColor: tabActiveBg }]} />
                     ) : null}
                     <Animated.View style={{ transform: [{ scale: iconScale }] }}>
-                      <Ionicons name={visuallyFocused ? tab.active : tab.icon} size={26} color={color} />
+                      <Ionicons name={tab.center || visuallyFocused ? tab.active : tab.icon} size={tab.center ? 29 : 26} color={color} />
                     </Animated.View>
                   </TouchableOpacity>
                 );
@@ -681,6 +704,14 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
           </View>
         </View>
       </View>
+      {ENABLE_DEV_TOOLS ? (
+        <DevHubSheetGate
+          visible={devHubVisible}
+          onClose={onCloseDevHub}
+          onOpen={onOpenDevHub}
+          onSurfaceActiveChange={setDevOverlayVisible}
+        />
+      ) : null}
     </ScreenGradient>
   );
 }
@@ -711,7 +742,7 @@ function scheduleIdleTask(run: () => void, timeoutMs: number): CancelableTask {
   };
 }
 
-export default function TabLayout() {
+function ReleasedTabLayout() {
   const { width: tabPaneWidth } = useScreen();
   const { theme: t } = useTheme();
   const pathname = usePathname();
@@ -729,6 +760,9 @@ export default function TabLayout() {
   const visualIdxRef = useRef(visualIdx);
   visualIdxRef.current = visualIdx;
   const [focusTick, setFocusTick] = useState(0);
+  const [devHubVisible, setDevHubVisible] = useState(false);
+  const openDevHub = useCallback(() => setDevHubVisible(true), []);
+  const closeDevHub = useCallback(() => setDevHubVisible(false), []);
   // Ліниве монтування: слот таба появляется сразу, а тяжелый экран монтируется в idle после первого кадра.
   // Начальный таб всегда в visited/mounted — чтобы первый рендер не был плейсхолдером.
   const [visitedTabs, setVisitedTabs] = useState(() => {
@@ -941,7 +975,7 @@ export default function TabLayout() {
     // (свайп-драг показывает соседнюю панель — она не должна быть пустой).
     const freezeWanted = (logicalIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx) - physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE;
     return [
-      show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen /></TabPane> : placeholder('ph-home'),
+      show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen onOpenDevHub={openDevHub} /></TabPane> : placeholder('ph-home'),
       show(1) ? (
         <LessonsPaneBoundary
           key="lessons"
@@ -950,21 +984,48 @@ export default function TabLayout() {
           isActive={activeIdx === 1 && physicalPageIdx === logicalTabToPhysicalPage(1)}
         />
       ) : placeholder('ph-lessons'),
-      show(2) ? <TabPane key="tournaments" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadTournamentsScreen} /></TabPane> : placeholder('ph-tournaments'),
-      show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
-      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
+      show(2) ? <TabPane key="friends" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
+      show(3) ? <TabPane key="settings" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
     ];
-  }, [activeIdx, mountedTabs, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
+  }, [activeIdx, mountedTabs, openDevHub, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 
   const runtimeOwnerId = physicalPageToRuntimeOwner(physicalPageIdx);
 
   return (
-    <TabProvider activeIdx={activeIdx} runtimeOwnerId={runtimeOwnerId} onTabChange={handleTabChange} onSwipeStart={handleSwipeStart} onSwipeComplete={handleSwipeComplete} focusTick={focusTick}>
+    <TabProvider
+      activeIdx={activeIdx}
+      runtimeOwnerId={runtimeOwnerId}
+      onTabChange={handleTabChange}
+      onSwipeStart={handleSwipeStart}
+      onSwipeComplete={handleSwipeComplete}
+      focusTick={focusTick}
+    >
       <TopFadeScrollProvider>
-        <TabScaffold tabScreens={tabScreens} currentRouteIsTab={currentRouteIsTab} visualIdx={visualIdx} physicalPageIdx={physicalPageIdx} />
+        <TabScaffold
+          tabScreens={tabScreens}
+          currentRouteIsTab={currentRouteIsTab}
+          visualIdx={visualIdx}
+          physicalPageIdx={physicalPageIdx}
+          devHubVisible={devHubVisible}
+          onCloseDevHub={closeDevHub}
+          onOpenDevHub={openDevHub}
+        />
       </TopFadeScrollProvider>
     </TabProvider>
   );
+}
+
+function isDisabledTournamentTabPath(pathnameRaw: string): boolean {
+  const pathname = pathnameRaw.replace(/\/$/, '');
+  return pathname === '/tournaments' || pathname.endsWith('/(tabs)/tournaments');
+}
+
+export default function TabLayout() {
+  const pathname = usePathname();
+  if (isDisabledTournamentTabPath(pathname)) {
+    return <DeferredRedirect href="/(tabs)/home" />;
+  }
+  return <ReleasedTabLayout />;
 }
 
 const s = StyleSheet.create({

@@ -181,6 +181,96 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       hidePack: 'No mostrarme',
     };
   }
+  if (lang === 'pt-BR') {
+    return {
+      cancel: 'Cancelar', buy: 'Abrir', buyShards: 'Comprar pérolas',
+      forShards: (n: number) => `Abrir por ${n} pérolas`,
+      insufficientTitle: 'Pérolas insuficientes',
+      insufficientIntro: 'Recarregue o saldo na loja. O botão abaixo abre os pacotes.',
+      balanceBlockTitle: 'Para este pacote', ctaSub: 'Compra com um toque',
+      shopCtaSub: 'Pacotes de pérolas na loja', voucherKicker: 'Pacote grátis',
+      voucherTitle: 'Usar o presente?',
+      voucherIntro: 'Este pacote será adicionado às suas «Cartas» gratuitamente e para sempre — você não gastará pérolas.',
+      voucherWarn: 'O presente é de uso único: ele desaparecerá logo após a confirmação e não poderá ser recuperado.',
+      voucherCta: 'Usar presente', voucherCtaBusy: '',
+      voucherCtaSub: 'O presente será usado na confirmação', packKindLabel: 'Pacote',
+      metaCards: (n: number) => `${n} cartões`, shortageRemaining: (n: number) => `Faltam ${n} pérolas`,
+      needLabel: 'Necessário', youHaveLabel: 'Você tem', costLabel: 'Custo',
+      shardsUnit: 'pérolas', waitBusy: '', reportPack: '⚐ Denunciar pacote', hidePack: 'Não mostrar novamente',
+    };
+  }
+  if (lang === 'vi') {
+    return {
+      cancel: 'Hủy', buy: 'Mở', buyShards: 'Mua ngọc trai',
+      forShards: (n: number) => `Mở với ${n} ngọc trai`,
+      insufficientTitle: 'Không đủ ngọc trai',
+      insufficientIntro: 'Hãy nạp thêm trong cửa hàng. Nút bên dưới sẽ mở các gói.',
+      balanceBlockTitle: 'Cho gói này', ctaSub: 'Mua chỉ với một chạm',
+      shopCtaSub: 'Gói ngọc trai trong cửa hàng', voucherKicker: 'Gói miễn phí',
+      voucherTitle: 'Dùng quà tặng?',
+      voucherIntro: 'Gói này sẽ được thêm miễn phí vĩnh viễn vào «Thẻ» — bạn không cần dùng ngọc trai.',
+      voucherWarn: 'Quà chỉ dùng một lần: sau khi xác nhận, quà sẽ biến mất và không thể lấy lại.',
+      voucherCta: 'Dùng quà', voucherCtaBusy: '', voucherCtaSub: 'Quà sẽ được dùng sau khi xác nhận',
+      packKindLabel: 'Gói', metaCards: (n: number) => `${n} thẻ`,
+      shortageRemaining: (n: number) => `Còn thiếu ${n} ngọc trai`, needLabel: 'Cần',
+      youHaveLabel: 'Bạn có', costLabel: 'Giá', shardsUnit: 'ngọc trai', waitBusy: '',
+      reportPack: '⚐ Báo cáo gói này', hidePack: 'Không hiển thị lại',
+    };
+  }
+  if (lang === 'id') {
+    return {
+      cancel: 'Batal', buy: 'Buka', buyShards: 'Beli mutiara',
+      forShards: (n: number) => `Buka seharga ${n} mutiara`,
+      insufficientTitle: 'Mutiara tidak cukup',
+      insufficientIntro: 'Isi saldo di toko. Tombol di bawah akan membuka paket.',
+      balanceBlockTitle: 'Untuk paket ini', ctaSub: 'Beli dalam satu ketukan',
+      shopCtaSub: 'Paket mutiara di toko', voucherKicker: 'Paket gratis',
+      voucherTitle: 'Gunakan hadiah?',
+      voucherIntro: 'Paket ini akan ditambahkan ke «Kartu» secara gratis untuk selamanya — kamu tidak perlu memakai mutiara.',
+      voucherWarn: 'Hadiah hanya dapat digunakan sekali: setelah dikonfirmasi, hadiah akan hilang dan tidak bisa dikembalikan.',
+      voucherCta: 'Gunakan hadiah', voucherCtaBusy: '', voucherCtaSub: 'Hadiah akan digunakan setelah konfirmasi',
+      packKindLabel: 'Paket', metaCards: (n: number) => `${n} kartu`,
+      shortageRemaining: (n: number) => `Kurang ${n} mutiara`, needLabel: 'Dibutuhkan',
+      youHaveLabel: 'Kamu punya', costLabel: 'Harga', shardsUnit: 'mutiara', waitBusy: '',
+      reportPack: '⚐ Laporkan paket ini', hidePack: 'Jangan tampilkan lagi',
+    };
+  }
+  if (lang === 'tr') {
+    return {
+      cancel: 'İptal', buy: 'Aç', buyShards: 'İnci satın al',
+      forShards: (n: number) => `${n} inci karşılığında aç`,
+      insufficientTitle: 'Yeterli incin yok',
+      insufficientIntro: 'Mağazadan bakiyeni doldur. Aşağıdaki düğme paketleri açar.',
+      balanceBlockTitle: 'Bu paket için', ctaSub: 'Tek dokunuşla satın al',
+      shopCtaSub: 'Mağazada inci paketleri', voucherKicker: 'Ücretsiz paket',
+      voucherTitle: 'Hediyeyi kullan?',
+      voucherIntro: 'Bu paket «Kartlar»ına ücretsiz olarak kalıcı biçimde eklenecek — inci harcaman gerekmiyor.',
+      voucherWarn: 'Hediye tek kullanımlıktır: onaydan hemen sonra kaybolur ve geri alınamaz.',
+      voucherCta: 'Hediyeyi kullan', voucherCtaBusy: '', voucherCtaSub: 'Hediye onayla birlikte kullanılır',
+      packKindLabel: 'Paket', metaCards: (n: number) => `${n} kart`,
+      shortageRemaining: (n: number) => `${n} inci eksik`, needLabel: 'Gerekli',
+      youHaveLabel: 'Sende', costLabel: 'Fiyat', shardsUnit: 'inci', waitBusy: '',
+      reportPack: '⚐ Paketi bildir', hidePack: 'Bir daha gösterme',
+    };
+  }
+  if (lang === 'pl') {
+    return {
+      cancel: 'Anuluj', buy: 'Otwórz', buyShards: 'Kup perły',
+      forShards: (n: number) => `Otwórz za ${n} pereł`,
+      insufficientTitle: 'Za mało pereł',
+      insufficientIntro: 'Doładuj saldo w sklepie. Przycisk poniżej otworzy pakiety.',
+      balanceBlockTitle: 'Dla tego pakietu', ctaSub: 'Kup jednym dotknięciem',
+      shopCtaSub: 'Pakiety pereł w sklepie', voucherKicker: 'Darmowy pakiet',
+      voucherTitle: 'Użyć prezentu?',
+      voucherIntro: 'Ten pakiet zostanie na zawsze dodany do «Kart» za darmo — nie wydasz pereł.',
+      voucherWarn: 'Prezent jest jednorazowy: zaraz po potwierdzeniu zniknie i nie będzie można go odzyskać.',
+      voucherCta: 'Użyj prezentu', voucherCtaBusy: '', voucherCtaSub: 'Prezent zostanie użyty po potwierdzeniu',
+      packKindLabel: 'Pakiet', metaCards: (n: number) => `${n} kart`,
+      shortageRemaining: (n: number) => `Brakuje ${n} pereł`, needLabel: 'Potrzebujesz',
+      youHaveLabel: 'Masz', costLabel: 'Cena', shardsUnit: 'pereł', waitBusy: '',
+      reportPack: '⚐ Zgłoś pakiet', hidePack: 'Nie pokazuj ponownie',
+    };
+  }
   return {
     cancel: 'Отмена',
     buy: 'Открыть',

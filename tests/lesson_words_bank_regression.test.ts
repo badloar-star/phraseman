@@ -31,7 +31,6 @@ jest.mock('../hooks/use-screen', () => ({ useScreen: () => ({ isSmallScreen: fal
 jest.mock('../hooks/use-haptics', () => ({ hapticError: jest.fn(), hapticTap: jest.fn() }));
 jest.mock('../hooks/use-flashcards', () => ({ loadFlashcards: jest.fn() }));
 jest.mock('../hooks/use-audio', () => ({ useAudio: () => ({ speakAudio: jest.fn(), voiceOut: false, speechRate: 1 }) }));
-jest.mock('../app/daily_tasks', () => ({ updateMultipleTaskProgress: jest.fn() }));
 jest.mock('../app/settings_edu', () => ({ loadSettings: jest.fn() }));
 jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn() }));
 jest.mock('../app/shards_system', () => ({ addShards: jest.fn() }));

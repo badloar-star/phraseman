@@ -9,7 +9,6 @@ const sourceFiles = [
   'app/flashcards/FlashcardsCategoryHub.tsx',
   'app/home_menu_icons.ts',
   'app/image_preload.ts',
-  'app/personal_plan_task_visuals.ts',
   'components/ReferralInviteBannerArt.tsx',
   'constants/boonIconAssets.ts',
   'constants/generatedThemeIconAssets.ts',

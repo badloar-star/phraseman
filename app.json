@@ -16,6 +16,7 @@
       "checkAutomatically": "ON_ERROR_RECOVERY",
       "fallbackToCacheTimeout": 0,
       "assetPatternsToBeBundled": [
+        "assets/audio/learning-v2/lesson1/*.m4a",
         "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf",
         "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf",
         "assets/fonts/*.ttf",
@@ -32,8 +33,6 @@
         "assets/images/achievements/xp_500.webp",
         "assets/images/achievements/combo_3.webp",
         "assets/images/achievements/combo_10.webp",
-        "assets/images/achievements/daily_task_first.webp",
-        "assets/images/achievements/all_daily.webp",
         "assets/images/achievements/daily_phrase_first.webp",
         "assets/images/achievements/login_7.webp",
         "assets/images/achievements/comeback.webp",
@@ -45,7 +44,6 @@
         "assets/images/achievements/energy_refill_first.webp",
         "assets/images/achievements/league_result_first.webp",
         "assets/images/avatars/*",
-        "assets/images/daily_task_icons/**/*",
         "assets/images/energy/*",
         "assets/images/flashcard_backs/*",
         "assets/images/header_glyphs/*",
@@ -101,7 +99,9 @@
         "android.permission.INTERNET",
         "android.permission.RECEIVE_BOOT_COMPLETED",
         "android.permission.VIBRATE",
-        "android.permission.POST_NOTIFICATIONS"
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
       ],
       "blockedPermissions": [
         "com.google.android.gms.permission.AD_ID",
@@ -259,7 +259,9 @@
       "./plugins/withIosFirebaseEarlyConfigure",
       "./plugins/withAndroidDailyPhraseWidget",
       "@bacons/apple-targets",
-      "./plugins/withIosDailyPhraseWidgetAppGroup"
+      "./plugins/withIosDailyPhraseWidgetAppGroup",
+      "./plugins/withIosFirebaseFunctionsSwift63Workaround",
+      "./plugins/withIosFirebaseCrashlyticsUpload"
     ],
     "experiments": {
       "typedRoutes": true,

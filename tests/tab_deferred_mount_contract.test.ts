@@ -22,8 +22,9 @@ describe('tab background pre-mount contract', () => {
     const source = readLayout();
 
     expect(source).toContain('const ENABLE_BACKGROUND_TAB_PREMOUNT = true');
-    // зачем 2026-08-02: таб «Уроки» убран — отложенных вкладок три (турниры, друзья, настройки).
-    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const');
+    // Турниры законсервированы: прогреваются только три выпущенных отложенных
+    // таба — уроки, друзья и настройки. Скрытой физической страницы здесь нет.
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3] as const');
     expect(source).toContain('scheduleIdleTask');
     expect(source).toContain('requestIdleCallback');
     expect(source).toContain("onAppEvent('app_first_content_ready', startPremount)");

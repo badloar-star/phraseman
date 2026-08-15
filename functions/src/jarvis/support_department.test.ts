@@ -36,6 +36,29 @@ describe('Jarvis support department — a person waiting is not a statistic', ()
     expect(run({ waitingCount: 1, oldestWaitingMs: SUPPORT_STALE_MS - HOUR }).decisions).toHaveLength(0);
   });
 
+  test('a legacy-only backlog is not repeated by the scheduled digest', () => {
+    const result = run({
+      waitingCount: 126,
+      oldestWaitingMs: 110 * 24 * HOUR,
+      actionableWaitingCount: 0,
+      oldestActionableWaitingMs: null,
+      legacyWaitingCount: 126,
+    });
+    expect(result.decisions).toHaveLength(0);
+  });
+
+  test('the owner can still inspect the legacy backlog on request', () => {
+    const result = run({
+      waitingCount: 126,
+      oldestWaitingMs: 110 * 24 * HOUR,
+      actionableWaitingCount: 0,
+      oldestActionableWaitingMs: null,
+      legacyWaitingCount: 126,
+    }, 'owner_request');
+    expect(result.decisions).toHaveLength(1);
+    expect(result.decisions[0].finding).toMatch(/126.*(?:legacy|неразмеч)/i);
+  });
+
   test('a pile of fresh letters is reported even when none is old yet', () => {
     const { decisions } = run({ waitingCount: SUPPORT_QUEUE_THRESHOLD, oldestWaitingMs: HOUR });
     expect(decisions).toHaveLength(1);
@@ -68,9 +91,9 @@ describe('Jarvis support department — a person waiting is not a statistic', ()
     expect(serialized).not.toMatch(/bodyText|fromEmail/i);
   });
 
-  test('only observes — it must never propose sending replies automatically', () => {
+  test('only observes automation — the department itself never sends mail', () => {
     const { decisions } = run({ waitingCount: 12, oldestWaitingMs: 100 * HOUR }, 'owner_request');
     expect(decisions[0].mode).toBe('observe');
-    expect(JSON.stringify(decisions[0].options)).not.toMatch(/автоматическ|сам отправ/i);
+    expect(JSON.stringify(decisions[0].options)).not.toMatch(/сам отправ|отправить письмо/i);
   });
 });

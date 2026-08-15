@@ -665,9 +665,9 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       ),
       wrong: {
         leave: tri(
-          'Leave может быть расписанием, но для личного плана здесь естественнее am leaving.',
-          'Leave може бути розкладом, але для особистого плану тут природніше am leaving.',
-          'For a personal plan, use am leaving.',
+          'Leave может быть расписанием, но для личной договорённости здесь естественнее am leaving.',
+          'Leave може бути розкладом, але для особистої домовленості тут природніше am leaving.',
+          'For a personal arrangement, use am leaving.',
         ),
         leaving: tri(
           'Leaving без am неполное. Нужно am leaving.',
@@ -918,9 +918,9 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       ),
       wrong: {
         'She flies now / She flies on Monday': tri(
-          'Flies звучит как расписание или регулярность. Для действия сейчас и личного плана лучше is flying.',
-          'Flies звучить як розклад або регулярність. Для дії зараз і особистого плану краще is flying.',
-          'For now and a personal plan, use is flying.',
+          'Flies звучит как расписание или регулярность. Для действия сейчас и личной договорённости лучше is flying.',
+          'Flies звучить як розклад або регулярність. Для дії зараз і особистої домовленості краще is flying.',
+          'For now and a personal arrangement, use is flying.',
         ),
         'She flying now / She flying on Monday': tri(
           'Flying без is неполное. Нужно she is flying.',
@@ -1002,9 +1002,9 @@ export const FUTURE_PRESENT_CONTINUOUS_ARRANGEMENTS_TRAINING: DiagnosisTraining 
       ),
       wrong: {
         'I work tomorrow, and I meet a friend in the evening.': tri(
-          'Так можно услышать для расписаний, но для личных планов естественнее am working и am meeting.',
-          'Так можна почути для розкладів, але для особистих планів природніше am working і am meeting.',
-          'For personal plans, use am working and am meeting.',
+          'Так можно услышать для расписаний, но для личных договорённостей естественнее am working и am meeting.',
+          'Так можна почути для розкладів, але для особистих домовленостей природніше am working і am meeting.',
+          'For personal arrangements, use am working and am meeting.',
         ),
         'I working tomorrow, and I meeting a friend in the evening.': tri(
           'В обеих частях не хватает am: I am working, I am meeting.',

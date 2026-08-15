@@ -20,21 +20,24 @@
  * Код возврата: 0 — сирот нет (деплой безопасен), 1 — найдены сироты, 2 — гейт не смог проверить.
  */
 
-import { execFileSync } from 'node:child_process';
-import { createRequire } from 'node:module';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { execFileSync } from "node:child_process";
+import { createRequire } from "node:module";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const require = createRequire(import.meta.url);
-const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const PROJECT_ID = 'phraseman-ea0b3';
+const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const PROJECT_ID = "phraseman-ea0b3";
 
 // Сборка основного codebase. main из functions/package.json — lib/functions/src/index.js.
-const BUILT_INDEX = resolve(REPO_ROOT, 'functions/lib/functions/src/index.js');
+const BUILT_INDEX = resolve(REPO_ROOT, "functions/lib/functions/src/index.js");
 // Второй codebase (firebase.json → codebase "english-test"), собирать не нужно — plain JS.
-const ENGLISH_TEST_INDEX = resolve(REPO_ROOT, 'functions-english-test/index.js');
-const LIVE_CACHE = resolve(REPO_ROOT, '.codex-tmp/live-functions-list.json');
+const ENGLISH_TEST_INDEX = resolve(
+  REPO_ROOT,
+  "functions-english-test/index.js",
+);
+const LIVE_CACHE = resolve(REPO_ROOT, ".codex-tmp/live-functions-list.json");
 
 /*
  * Осознанно удалённая функциональность — решение владельца, п.3.2 плана.
@@ -44,10 +47,10 @@ const LIVE_CACHE = resolve(REPO_ROOT, '.codex-tmp/live-functions-list.json');
  */
 const INTENTIONALLY_REMOVED = new Set([
   // leagueChat — удалён коммитом e6351db4e, чаты не восстанавливать
-  'leagueChatAuthorizeRoom',
-  'leagueChatDeleteMessage',
-  'leagueChatReportMessage',
-  'leagueChatSendMessage',
+  "leagueChatAuthorizeRoom",
+  "leagueChatDeleteMessage",
+  "leagueChatReportMessage",
+  "leagueChatSendMessage",
 ]);
 
 /*
@@ -59,7 +62,7 @@ const INTENTIONALLY_REMOVED = new Set([
  * зачем: эти функции написаны в ветке admin-language-factory (отколовшейся
  * 2026-07-10) и выложены на прод частичным деплоем — в основной линии их не было
  * НИКОГДА, это не потеря, а незавершённое слияние. Интерфейса к ним нет нигде:
- * проверено и по старой админке (admin/legacy.html, admin/v2/legacy.html), и по
+ * проверено по единственной живой админке (admin/v2/legacy.html), и по
  * новой admin/v2 — 2 из 94. Звать их некому.
  *
  * Владелец возвращается на СТАРУЮ админку, новая будет удалена, поэтому шаг D
@@ -73,52 +76,112 @@ const INTENTIONALLY_REMOVED = new Set([
  * docs/merge-reports/ORPHANED_FUNCTIONS_RECOVERY_MAP.md.
  */
 const ACCEPTED_UNMERGED = new Set([
-  'adminApplyAlertsConfig', 'adminApplyCommunityMutation', 'adminApplyCompassChange',
-  'adminApplyContentMutation', 'adminApplyLegacyPlusMigration', 'adminApplyManualAccess',
-  'adminApplyMoneyMutation', 'adminApplySafetyModerationMutation', 'adminApplyVipSurveyCampaign',
-  'adminApplyVoiceResearchMutation', 'adminApproveCommunityMutation', 'adminApproveCompassChange',
-  'adminApproveContentMutation', 'adminApproveEmailCampaign', 'adminApproveMoneyMutation',
-  'adminApprovePushCampaign', 'adminApproveSafetyModerationMutation', 'adminCancelEmailCampaign',
-  'adminCancelPushJob', 'adminCreateEmailCampaign', 'adminCreatePushJob',
-  'adminEmailCampaignCreated', 'adminEmailCampaignsCron', 'adminExportAppHealth',
-  'adminExportCacheEntries', 'adminExportEmailContacts', 'adminGenerateProductBrief',
-  'adminGetAlertsWorkspace', 'adminGetAppHealthDetail', 'adminGetCommunityOperationDetail',
-  'adminGetCommunityOperationsWorkspace', 'adminGetCompassWorkspace',
-  'adminGetContentOperationDetail', 'adminGetContentOperationsWorkspace',
-  'adminGetDiagnosticsArchiveDetail', 'adminGetLandingExperimentReport',
-  'adminGetMoneyOperationDetail', 'adminGetMoneyOperationsWorkspace',
-  'adminGetPlusControlWorkspace', 'adminGetSafetyModerationSensitiveDetail',
-  'adminGetSafetyModerationWorkspace', 'adminGetVipSurveyWorkspace',
-  'adminGetVoiceResearchWorkspace', 'adminListAppActivity', 'adminListAppHealth',
-  'adminListBetaTesters', 'adminListCacheEntries', 'adminListDiagnosticsArchive',
-  'adminListEmailCampaigns', 'adminListEmailContacts', 'adminListPushJobs',
-  'adminListSafetyModerationApprovals', 'adminListSafetyModerationHistory',
-  'adminListVipSurveyResponses', 'adminMutateProductItem', 'adminPreviewAlertTest',
-  'adminPreviewAlertsConfig', 'adminPreviewCacheReset', 'adminPreviewCommunityMutation',
-  'adminPreviewCompassChange', 'adminPreviewContentMutation', 'adminPreviewEmailCampaign',
-  'adminPreviewLegacyPlusMigration', 'adminPreviewManualAccess', 'adminPreviewMoneyMutation',
-  'adminPreviewPushAudience', 'adminPreviewSafetyModerationMutation',
-  'adminPreviewVipSurveyCampaign', 'adminPreviewVoiceResearchMutation',
-  'adminPublishContentPack', 'adminQueueAlertTest', 'adminRequestCommunityApproval',
-  'adminRequestCompassApproval', 'adminRequestContentApproval',
-  'adminRequestEmailCampaignApproval', 'adminRequestMoneyApproval', 'adminRequestPushApproval',
-  'adminRequestSafetyModerationApproval', 'adminResetCacheEntry', 'adminResumeCommunityBulk',
-  'adminResumeSafetyModerationBulk', 'adminRollbackContentPack', 'adminUpdateBetaTester',
-  'adminWebsiteInboxList', 'adminWebsiteInboxMarkRead', 'adminYoutubeAnalytics',
-  'agentManagerRecommendCriticalDigest', 'agentOfficeTelegramPublishRecommendation',
-  'getActiveLanguageCatalog', 'getPublishedCourseRelease', 'getPublishedCourseSurfaceBundle',
-  'getPublishedCourseSurfaceEntry', 'getPublishedLessonArtifact',
-  'supportReplyDispatchSweeperCron',
+  "adminApplyAlertsConfig",
+  "adminApplyCommunityMutation",
+  "adminApplyCompassChange",
+  "adminApplyContentMutation",
+  "adminApplyLegacyPlusMigration",
+  "adminApplyManualAccess",
+  "adminApplyMoneyMutation",
+  "adminApplySafetyModerationMutation",
+  "adminApplyVipSurveyCampaign",
+  "adminApplyVoiceResearchMutation",
+  "adminApproveCommunityMutation",
+  "adminApproveCompassChange",
+  "adminApproveContentMutation",
+  "adminApproveEmailCampaign",
+  "adminApproveMoneyMutation",
+  "adminApprovePushCampaign",
+  "adminApproveSafetyModerationMutation",
+  "adminCancelEmailCampaign",
+  "adminCancelPushJob",
+  "adminCreateEmailCampaign",
+  "adminCreatePushJob",
+  "adminEmailCampaignCreated",
+  "adminEmailCampaignsCron",
+  "adminExportAppHealth",
+  "adminExportCacheEntries",
+  "adminExportEmailContacts",
+  "adminGenerateProductBrief",
+  "adminGetAlertsWorkspace",
+  "adminGetAppHealthDetail",
+  "adminGetCommunityOperationDetail",
+  "adminGetCommunityOperationsWorkspace",
+  "adminGetCompassWorkspace",
+  "adminGetContentOperationDetail",
+  "adminGetContentOperationsWorkspace",
+  "adminGetDiagnosticsArchiveDetail",
+  "adminGetLandingExperimentReport",
+  "adminGetMoneyOperationDetail",
+  "adminGetMoneyOperationsWorkspace",
+  "adminGetPlusControlWorkspace",
+  "adminGetSafetyModerationSensitiveDetail",
+  "adminGetSafetyModerationWorkspace",
+  "adminGetVipSurveyWorkspace",
+  "adminGetVoiceResearchWorkspace",
+  "adminListAppActivity",
+  "adminListAppHealth",
+  "adminListBetaTesters",
+  "adminListCacheEntries",
+  "adminListDiagnosticsArchive",
+  "adminListEmailCampaigns",
+  "adminListEmailContacts",
+  "adminListPushJobs",
+  "adminListSafetyModerationApprovals",
+  "adminListSafetyModerationHistory",
+  "adminListVipSurveyResponses",
+  "adminMutateProductItem",
+  "adminPreviewAlertTest",
+  "adminPreviewAlertsConfig",
+  "adminPreviewCacheReset",
+  "adminPreviewCommunityMutation",
+  "adminPreviewCompassChange",
+  "adminPreviewContentMutation",
+  "adminPreviewEmailCampaign",
+  "adminPreviewLegacyPlusMigration",
+  "adminPreviewManualAccess",
+  "adminPreviewMoneyMutation",
+  "adminPreviewPushAudience",
+  "adminPreviewSafetyModerationMutation",
+  "adminPreviewVipSurveyCampaign",
+  "adminPreviewVoiceResearchMutation",
+  "adminPublishContentPack",
+  "adminQueueAlertTest",
+  "adminRequestCommunityApproval",
+  "adminRequestCompassApproval",
+  "adminRequestContentApproval",
+  "adminRequestEmailCampaignApproval",
+  "adminRequestMoneyApproval",
+  "adminRequestPushApproval",
+  "adminRequestSafetyModerationApproval",
+  "adminResetCacheEntry",
+  "adminResumeCommunityBulk",
+  "adminResumeSafetyModerationBulk",
+  "adminRollbackContentPack",
+  "adminUpdateBetaTester",
+  "adminWebsiteInboxList",
+  "adminWebsiteInboxMarkRead",
+  "adminYoutubeAnalytics",
+  "agentManagerRecommendCriticalDigest",
+  "agentOfficeTelegramPublishRecommendation",
+  "getActiveLanguageCatalog",
+  "getPublishedCourseRelease",
+  "getPublishedCourseSurfaceBundle",
+  "getPublishedCourseSurfaceEntry",
+  "getPublishedLessonArtifact",
+  "supportReplyDispatchSweeperCron",
 ]);
 
 const args = new Set(process.argv.slice(2));
-const OFFLINE = args.has('--offline');
-const REFRESH = args.has('--refresh');
-const AS_JSON = args.has('--json');
+const OFFLINE = args.has("--offline");
+const REFRESH = args.has("--refresh");
+const AS_JSON = args.has("--json");
 
 function fail(message) {
   console.error(`\n[functions-gate] ГЕЙТ НЕ СМОГ ПРОВЕРИТЬ: ${message}`);
-  console.error('[functions-gate] Полный деплой функций ЗАПРЕЩЁН, пока проверка не прошла.\n');
+  console.error(
+    "[functions-gate] Полный деплой функций ЗАПРЕЩЁН, пока проверка не прошла.\n",
+  );
   process.exit(2);
 }
 
@@ -132,7 +195,9 @@ function readBuiltExports() {
     // Object.defineProperty и спред tombstone-объектов — регуляркой это не поймать.
     return Object.keys(require(BUILT_INDEX));
   } catch (error) {
-    fail(`сборка не загружается (${error.message}). Пересоберите: cd functions && npm run build`);
+    fail(
+      `сборка не загружается (${error.message}). Пересоберите: cd functions && npm run build`,
+    );
   }
   return [];
 }
@@ -140,7 +205,7 @@ function readBuiltExports() {
 /** Второй codebase — plain JS, читаем exports.X текстом, сборки у него нет. */
 function readEnglishTestExports() {
   if (!existsSync(ENGLISH_TEST_INDEX)) return [];
-  const source = readFileSync(ENGLISH_TEST_INDEX, 'utf8');
+  const source = readFileSync(ENGLISH_TEST_INDEX, "utf8");
   return [...source.matchAll(/^exports\.([A-Za-z0-9_]+)/gm)].map((m) => m[1]);
 }
 
@@ -149,36 +214,57 @@ function readLiveFunctions() {
   if (!OFFLINE) {
     try {
       const raw = execFileSync(
-        'firebase',
-        ['functions:list', '--project', PROJECT_ID, '--json'],
-        { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, timeout: 180_000, shell: true },
+        "firebase",
+        ["functions:list", "--project", PROJECT_ID, "--json"],
+        {
+          encoding: "utf8",
+          maxBuffer: 64 * 1024 * 1024,
+          timeout: 180_000,
+          shell: true,
+        },
       );
       const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed?.result)) throw new Error('неожиданный формат ответа firebase');
+      if (!Array.isArray(parsed?.result))
+        throw new Error("неожиданный формат ответа firebase");
       mkdirSync(dirname(LIVE_CACHE), { recursive: true });
-      writeFileSync(LIVE_CACHE, raw, 'utf8');
-      return { names: parsed.result.map((f) => f.id), source: 'прод (live)', stamp: new Date().toISOString() };
+      writeFileSync(LIVE_CACHE, raw, "utf8");
+      return {
+        names: parsed.result.map((f) => f.id),
+        source: "прод (live)",
+        stamp: new Date().toISOString(),
+      };
     } catch (error) {
-      if (REFRESH) fail(`не удалось получить список из прода: ${error.message}`);
-      console.warn(`[functions-gate] прод недоступен (${error.message.split('\n')[0]}), падаю на кэш`);
+      if (REFRESH)
+        fail(`не удалось получить список из прода: ${error.message}`);
+      console.warn(
+        `[functions-gate] прод недоступен (${error.message.split("\n")[0]}), падаю на кэш`,
+      );
     }
   }
 
   // Кэш: свой свежий, иначе снимок, оставшийся от прошлых сессий.
-  const fallback = resolve(REPO_ROOT, '.codex-tmp/admin2-functions-list.json');
+  const fallback = resolve(REPO_ROOT, ".codex-tmp/admin2-functions-list.json");
   const cachePath = existsSync(LIVE_CACHE) ? LIVE_CACHE : fallback;
   if (!existsSync(cachePath)) {
-    fail('нет ни доступа к проду, ни кэша списка функций');
+    fail("нет ни доступа к проду, ни кэша списка функций");
   }
   try {
     // BOM: снимок от firebase CLI под Windows приходит с ﻿.
-    const parsed = JSON.parse(readFileSync(cachePath, 'utf8').replace(/^﻿/, ''));
-    const stamp = existsSync(cachePath) ? new Date(require('node:fs').statSync(cachePath).mtime).toISOString() : 'неизвестно';
-    return { names: parsed.result.map((f) => f.id), source: `кэш ${cachePath}`, stamp };
+    const parsed = JSON.parse(
+      readFileSync(cachePath, "utf8").replace(/^﻿/, ""),
+    );
+    const stamp = existsSync(cachePath)
+      ? new Date(require("node:fs").statSync(cachePath).mtime).toISOString()
+      : "неизвестно";
+    return {
+      names: parsed.result.map((f) => f.id),
+      source: `кэш ${cachePath}`,
+      stamp,
+    };
   } catch (error) {
     fail(`кэш нечитаем (${error.message})`);
   }
-  return { names: [], source: '', stamp: '' };
+  return { names: [], source: "", stamp: "" };
 }
 
 const builtNames = readBuiltExports();
@@ -187,7 +273,9 @@ const covered = new Set([...builtNames, ...englishTestNames]);
 const live = readLiveFunctions();
 
 const allMissing = live.names.filter((name) => !covered.has(name));
-const intentional = allMissing.filter((name) => INTENTIONALLY_REMOVED.has(name));
+const intentional = allMissing.filter((name) =>
+  INTENTIONALLY_REMOVED.has(name),
+);
 const accepted = allMissing.filter(
   (name) => !INTENTIONALLY_REMOVED.has(name) && ACCEPTED_UNMERGED.has(name),
 );
@@ -198,32 +286,44 @@ const orphans = allMissing.filter(
 );
 
 if (AS_JSON) {
-  console.log(JSON.stringify({
-    liveCount: live.names.length,
-    coveredCount: covered.size,
-    orphanCount: orphans.length,
-    orphans,
-    intentionallyRemoved: intentional,
-    source: live.source,
-  }, null, 2));
+  console.log(
+    JSON.stringify(
+      {
+        liveCount: live.names.length,
+        coveredCount: covered.size,
+        orphanCount: orphans.length,
+        orphans,
+        intentionallyRemoved: intentional,
+        source: live.source,
+      },
+      null,
+      2,
+    ),
+  );
   process.exit(orphans.length === 0 ? 0 : 1);
 }
 
-console.log('\n=== Гейт «экспорты vs прод» ===');
+console.log("\n=== Гейт «экспорты vs прод» ===");
 console.log(`Источник списка живых функций: ${live.source}`);
 console.log(`Живых функций в проде:          ${live.names.length}`);
-console.log(`Покрыто исходниками:            ${covered.size} (основной codebase ${builtNames.length} + english-test ${englishTestNames.length})`);
+console.log(
+  `Покрыто исходниками:            ${covered.size} (основной codebase ${builtNames.length} + english-test ${englishTestNames.length})`,
+);
 console.log(`Осознанно удалено (чаты):       ${intentional.length}`);
-console.log(`Принято как несведённое:        ${accepted.length} (решение владельца 2026-07-25)`);
+console.log(
+  `Принято как несведённое:        ${accepted.length} (решение владельца 2026-07-25)`,
+);
 console.log(`НЕОЖИДАННЫХ сирот:              ${orphans.length}`);
 
 if (orphans.length === 0) {
-  console.log('\n✅ Неожиданных пропаж нет. Полный деплой функций безопасен.');
-  console.log(`   ⚠️  ${accepted.length} несведённых функций останутся на проде как есть.\n`);
+  console.log("\n✅ Неожиданных пропаж нет. Полный деплой функций безопасен.");
+  console.log(
+    `   ⚠️  ${accepted.length} несведённых функций останутся на проде как есть.\n`,
+  );
   process.exit(0);
 }
 
-console.log('\n🔴 НАЙДЕНЫ ЖИВЫЕ ФУНКЦИИ БЕЗ ИСХОДНИКОВ:\n');
+console.log("\n🔴 НАЙДЕНЫ ЖИВЫЕ ФУНКЦИИ БЕЗ ИСХОДНИКОВ:\n");
 for (const name of orphans) console.log(`   ${name}`);
 
 console.log(`

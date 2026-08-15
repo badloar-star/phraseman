@@ -160,7 +160,8 @@ describe('Golden Plan tournament economy contracts', () => {
   it('auto-credits room rewards in finalization and makes legacy claim a replay-safe read', () => {
     const source = readFileSync(resolve(__dirname, 'tournaments.ts'), 'utf8');
     expect(source).toContain('const rewardGems = Math.max(0, Math.trunc(effect.reward.gems));');
-    expect(source).toContain("shards_updated_reason: 'tournament_prize'");
+    expect(source).toContain("source: 'tournament_prize'");
+    expect(source).toContain("kind: 'competition_tournament_prize'");
     expect(source).toMatch(/tx\.create\(rewardRef,[\s\S]*?claimed:\s*true,[\s\S]*?claimedAtMs:\s*nowMs/);
     expect(source).toContain("if (receipt.claimed === true)");
   });

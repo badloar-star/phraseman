@@ -46,26 +46,38 @@ export interface CheckAndReserveBudgetInput {
 }
 
 /**
- * Проверяет, укладывается ли планируемый вызов в оба потолка.
+ * Проверяет и АТОМАРНО резервирует оценку в обоих потолках.
  *
- * зачем "reserve" в имени, хоть это read-only: вызывающий обязан проверить
- * ЭТО перед запросом к OpenAI, а не после — иначе проверка ничего не защищает.
- * Сама денежная резервация (инкремент) происходит отдельно, в
- * recordActualSpend, по факту реального usage из ответа API — оценка нужна
- * только чтобы не начинать вызов, который заведомо пробьёт потолок.
+ * committedUsd намеренно консервативен: резервация не возвращается после
+ * сетевой ошибки. Так параллельные триггеры не могут одновременно увидеть
+ * один и тот же свободный остаток, а повторный шторм не тратит деньги сверх
+ * капа. spentUsd рядом хранит фактический usage для аналитики.
  */
 export async function checkAndReserveBudget(input: CheckAndReserveBudgetInput): Promise<BudgetVerdict> {
   try {
     const ref = input.db.doc(`${JARVIS_LLM_BUDGET_COLLECTION}/${monthKey(input.nowMs)}`);
-    const snap = await ref.get();
-    const data = (snap.exists ? snap.data() : undefined) as Record<string, unknown> | undefined;
-    const spentUsd = typeof data?.spentUsd === 'number' ? data.spentUsd : 0;
-    const dailySpent = (data?.dailySpentUsd as Record<string, number> | undefined) ?? {};
-    const todaySpent = typeof dailySpent[dayKey(input.nowMs)] === 'number' ? dailySpent[dayKey(input.nowMs)] : 0;
+    const day = dayKey(input.nowMs);
+    return await input.db.runTransaction(async (tx) => {
+      const snap = await tx.get(ref);
+      const data = (snap.exists ? snap.data() : undefined) as Record<string, unknown> | undefined;
+      const spentUsd = typeof data?.spentUsd === 'number' ? data.spentUsd : 0;
+      const dailySpent = (data?.dailySpentUsd as Record<string, number> | undefined) ?? {};
+      const committedUsd = typeof data?.committedUsd === 'number' ? data.committedUsd : spentUsd;
+      const dailyCommitted = {
+        ...((data?.dailyCommittedUsd as Record<string, number> | undefined) ?? dailySpent),
+      };
+      const todayCommitted = typeof dailyCommitted[day] === 'number' ? dailyCommitted[day] : 0;
 
-    if (spentUsd + input.estimatedCostUsd > MONTHLY_CAP_USD) return { allowed: false, reason: 'monthly_cap' };
-    if (todaySpent + input.estimatedCostUsd > dailyCapUsd()) return { allowed: false, reason: 'daily_cap' };
-    return { allowed: true };
+      if (committedUsd + input.estimatedCostUsd > MONTHLY_CAP_USD) return { allowed: false as const, reason: 'monthly_cap' as const };
+      if (todayCommitted + input.estimatedCostUsd > dailyCapUsd()) return { allowed: false as const, reason: 'daily_cap' as const };
+      dailyCommitted[day] = todayCommitted + input.estimatedCostUsd;
+      tx.set(ref, {
+        committedUsd: committedUsd + input.estimatedCostUsd,
+        dailyCommittedUsd: dailyCommitted,
+        updatedAtMs: input.nowMs,
+      }, { merge: true });
+      return { allowed: true as const };
+    });
   } catch {
     // Недоступный счётчик — отказ, а не молчаливое разрешение тратить.
     return { allowed: false, reason: 'storage_error' };
@@ -93,6 +105,15 @@ export async function recordActualSpend(input: RecordActualSpendInput): Promise<
     const spentUsd = (typeof data?.spentUsd === 'number' ? data.spentUsd : 0) + input.actualCostUsd;
     const dailySpent = { ...((data?.dailySpentUsd as Record<string, number> | undefined) ?? {}) };
     dailySpent[day] = (typeof dailySpent[day] === 'number' ? dailySpent[day] : 0) + input.actualCostUsd;
-    tx.set(ref, { spentUsd, dailySpentUsd: dailySpent, updatedAtMs: input.nowMs }, { merge: true });
+    const committedUsd = Math.max(typeof data?.committedUsd === 'number' ? data.committedUsd : 0, spentUsd);
+    const dailyCommitted = { ...((data?.dailyCommittedUsd as Record<string, number> | undefined) ?? {}) };
+    dailyCommitted[day] = Math.max(typeof dailyCommitted[day] === 'number' ? dailyCommitted[day] : 0, dailySpent[day]);
+    tx.set(ref, {
+      spentUsd,
+      dailySpentUsd: dailySpent,
+      committedUsd,
+      dailyCommittedUsd: dailyCommitted,
+      updatedAtMs: input.nowMs,
+    }, { merge: true });
   });
 }

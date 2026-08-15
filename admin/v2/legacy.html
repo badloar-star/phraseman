@@ -9601,7 +9601,7 @@
 
     <div class="h-sec">
       <div class="h-sec-title">🎛 Пульт управления <span class="h-sec-badge">ГЛАВНАЯ</span></div>
-      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Самая важная вкладка. Управляешь приложением у всех пользователей сразу — без обновления в сторе. Изменения применяются за секунды.</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Самая важная вкладка. Управляешь приложением у всех пользователей без обновления в сторе. Клиентские настройки применяются при запуске или возврате в приложение и не позднее примерно 5 минут.</div>
       <div class="h-btn-list">
         <div class="h-btn"><div class="h-btn-name">Рубильники фич</div><div class="h-btn-desc">Переключатели ON/OFF для крупных функций. Выключил — функция пропадает у всех пользователей прямо сейчас. Включил — появляется обратно. Покупки и доступы при этом не отзываются.</div></div>
         <div class="h-btn"><div class="h-btn-name">💎 Плюс / Фри</div><div class="h-btn-desc">Решаешь, какие функции платные, а какие бесплатные. Здесь же — сколько раз бесплатный пользователь может воспользоваться платной функцией до пейвола. Изменения живые, без релиза.</div></div>
@@ -9858,7 +9858,7 @@
       <div style="font-size:12.5px;color:#9ca3af;line-height:1.8">
         • <b style="color:#e5e7eb">Поиск по разделам</b> — поле «Search sections» в левой части полоски вкладок. Начни вводить — нужная вкладка подсветится.<br>
         • <b style="color:#e5e7eb">Поиск пользователя</b> — поле «UID or name» в правом углу шапки. Найдёт по любому фрагменту имени или ID.<br>
-        • <b style="color:#e5e7eb">Все изменения — сразу у пользователей</b>. Не нужен релиз, не нужен OTA-апдейт. Изменения применяются за секунды.<br>
+        • <b style="color:#e5e7eb">Клиентским изменениям не нужен релиз</b>. Они применяются при запуске или возврате в приложение и не позднее примерно 5 минут. Серверные ограничения действуют при следующем серверном действии.<br>
         • <b style="color:#e5e7eb">После любого изменения нажимай «💾 Сохранить»</b> — пока не нажал, ничего не сохранилось.<br>
         • <b style="color:#ef4444">Жёсткий блок</b> отключает приложение для ВСЕХ. Не забудь выключить после работ!<br>
         • <b style="color:#e5e7eb">Sign out</b> — кнопка выхода из админки, в правом углу шапки.
@@ -9901,7 +9901,6 @@
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
   <div class="tab" onclick="switchTab('testers')" title="Покажет Telegram-заказы, состояние кода и безопасную ручную активацию. Все изменения проходят серверную проверку и попадают в журнал аудита." data-i18n-es="Pagos Telegram">Телеграм оплаты</div>
   <div class="tab" onclick="location.href='beta_testers.html'" title="Бета-тестеры: список, выдача ауры «Нимб», Plus навсегда, управление энергией" style="background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.4);color:#7dd3fc;font-weight:700">🔵 Бета тестеры</div>
-  <div class="tab" onclick="location.href='full.html'" title="plan_content: server vs bundled, fallback frequency, situations and percents, with dates" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.35);color:#818cf8;font-weight:700">📊 FULL</div>
   <div class="tab" onclick="location.href='site.html'" title="Сайт knowlyapps.com: цены веб-оплаты, заказы Stripe/PayPal, коды активации, воронка /start/" style="background:rgba(232,197,102,0.12);border:1px solid rgba(232,197,102,0.4);color:#e8c566;font-weight:700">🌐 Сайт</div>
   <div class="tab" onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>
   <div class="tab" onclick="switchTab('onboarding-screens')" title="Включение и отключение экранов онбординга без обновления приложения">🧭 Экраны онбординга</div>
@@ -9931,6 +9930,7 @@
   <div class="tab" onclick="switchTab('helpers-board')">🏆 Топ хелперов</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
   <div class="tab" onclick="switchTab('youtube-catalog')" title="Каналы, плейлисты и премьеры YouTube" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.35);color:#fca5a5;font-weight:700">▶ YouTube-каталог</div>
+  <div class="tab" onclick="switchTab('asset-archive')" title="Убрать ассет из продажи или вернуть его без выпуска новой версии приложения">Архив ассетов</div>
   <div class="tab" onclick="switchTab('paywall-ab')">🧪 Paywall A/B</div>
   <div class="tab" onclick="switchTab('v2-generator')" title="Learning V2: генерация юнита E1 — демо-банк, компиляция 12 сессий, QA и артефакт" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.4);color:#a5b4fc;font-weight:700">🧬 V2 Генератор</div>
   <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
@@ -9943,8 +9943,8 @@
   <div class="tab" onclick="switchTab('card-packs')" data-i18n-es="Packs de tarjetas">Card packs</div>
   <div class="tab" onclick="switchTab('daily-phrases')" data-i18n-es="Frases del día">Daily phrases</div>
   <div class="tab" onclick="switchTab('clubs')" data-i18n-es="Ligas">Clubs</div>
-  <!-- зачем: раздел управления режимом «Турниры» — генерация заданий из контента планов,
-       ревью перед публикацией, готовность пула по раундам и включение слотов -->
+  <!-- Раздел управления режимом «Турниры»: генерация ИИ-заданий,
+       ревью перед публикацией, готовность пула по раундам и включение слотов. -->
   <div class="tab" onclick="switchTab('tournaments')" title="Задания турниров: генерация, проверка, публикация, расписание" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">🏆 Турниры</div>
   <div class="tab" onclick="switchTab('referrals')" data-i18n-es="Referidos">Referrals</div>
   <div class="tab" onclick="switchTab('app-health')" data-i18n-es="Salud de la app">App Health</div>
@@ -9984,7 +9984,7 @@
     <div>
       <div class="admin-overview-title">🎛 Пульт управления</div>
       <div class="admin-overview-sub" style="color:#9ca3af;font-size:13px;margin-top:4px">
-        Рычаги, которые меняют приложение у пользователей <b>без релиза и OTA</b>. Изменения подхватываются за секунды.
+        Рычаги, которые меняют приложение у пользователей <b>без релиза и OTA</b>. Клиент обновляется при запуске или возврате и не позднее примерно 5 минут.
       </div>
     </div>
   </section>
@@ -9995,7 +9995,7 @@
   <div class="cp-card">
     <div class="cp-card-title" style="color:#fbbf24">🎛 Рубильники фич</div>
     <div class="cp-card-sub">
-      Аварийное включение/выключение функций <b>без релиза и OTA</b> — изменения подхватываются клиентами за секунды.
+      Аварийное включение/выключение функций <b>без релиза и OTA</b>. Серверные запреты действуют при следующем серверном действии; клиентский интерфейс обновляется при запуске или возврате и не позднее примерно 5 минут.
       Уже начатые покупки/доступы не отзываются.
     </div>
     <div style="margin-top:8px"><span id="cp-toggles-status" class="cp-status-chip">Загрузка…</span></div>
@@ -10046,11 +10046,6 @@
         <label title="Включить или выключить промокоды для всех пользователей" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-promo_codes_enabled" class="cp-toggle" onchange="saveControlPanelBool('promo_codes_enabled', this.checked)" disabled/><span id="cp-bool-label-promo_codes_enabled" class="cp-bool-chip">…</span></label>
       </div>
       <div class="cp-switch-row">
-        <div class="cp-switch-ico">🚪</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Онбординг: новый плановый вход</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Новый первый экран начинается с бренда, кнопки «Начать» и входа для существующего аккаунта. Дальше: язык, цель, уровень, время, mini aha, план, пейвол, имя и согласия.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-onboarding_plan_only_enabled" class="cp-toggle" onchange="saveControlPanelBool('onboarding_plan_only_enabled', this.checked)" disabled/><span id="cp-bool-label-onboarding_plan_only_enabled" class="cp-bool-chip">…</span></label>
-      </div>
-      <div class="cp-switch-row">
         <div class="cp-switch-ico">⏳</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Пейволы: таймеры срочности</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию — на пейволах показывается блок обратного отсчёта «старой цены» (и плашка «цена сохранена»). Выкл → блок срочности скрыт на всех пейволах A/B/C у всех живьём, без релиза.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-paywall_timers_enabled" class="cp-toggle" onchange="saveControlPanelBool('paywall_timers_enabled', this.checked)" disabled/><span id="cp-bool-label-paywall_timers_enabled" class="cp-bool-chip">…</span></label>
@@ -10070,6 +10065,59 @@
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Подарок «3 дня полного доступа» новым</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию — новые пользователи не получают автоматический подарок. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки НЕ отбираются — активные докатывают свои часы.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-intro_full_access_enabled" class="cp-toggle" onchange="saveControlPanelBool('intro_full_access_enabled', this.checked)" disabled/><span id="cp-bool-label-intro_full_access_enabled" class="cp-bool-chip">…</span></label>
       </div>
+    </div>
+  </div>
+
+  <!-- Арена живёт только здесь: admin Hosting публикует admin/v2. Отдельная
+       admin/arena-config.html не является рабочей поверхностью. -->
+  <div class="cp-card" id="cp-arena-card">
+    <div class="cp-card-title" style="color:#fbbf24">Арена</div>
+    <div class="cp-card-sub">
+      Включает режимы Арены без релиза приложения. Изменение доезжает примерно
+      за 15 секунд. Если режим создаёт проблему, выключи его здесь же.
+    </div>
+    <div style="margin-top:8px"><span id="cp-arena-status" class="cp-status-chip">Загрузка…</span></div>
+
+    <div id="cp-arena-flags" style="margin-top:12px;display:flex;flex-direction:column;gap:2px">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico" aria-hidden="true">A</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Арена включена</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Главный выключатель. При выключении режимы ниже не запускаются.</div></div>
+        <label title="Включает или выключает всю Арену для игроков. Изменение появится примерно через 15 секунд; отменить можно здесь же." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-enabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="enabled">…</span></label>
+      </div>
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico" aria-hidden="true">5</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Быстрый матч</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Пять заданий, без рейтинговых очков.</div></div>
+        <label title="Разрешает быстрые матчи. Главный выключатель Арены тоже должен быть включён." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-quickEnabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="quickEnabled">…</span></label>
+      </div>
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico" aria-hidden="true">10</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Рейтинговый матч</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Десять заданий, только живые соперники.</div></div>
+        <label title="Разрешает рейтинговые матчи. Главный выключатель Арены тоже должен быть включён." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-rankedEnabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="rankedEnabled">…</span></label>
+      </div>
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico" aria-hidden="true">2</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Дуэль с другом</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Матч по приглашению, без рейтинга.</div></div>
+        <label title="Разрешает приглашения и дуэли с друзьями. Главный выключатель Арены тоже должен быть включён." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-friendEnabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="friendEnabled">…</span></label>
+      </div>
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico" aria-hidden="true">R</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Награды сезона</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Разрешает получать уже заработанные уровни сезона.</div></div>
+        <label title="Разрешает выдачу сезонных наград. Выключение не отменяет уже выданные награды." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-rewardsEnabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="rewardsEnabled">…</span></label>
+      </div>
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico" aria-hidden="true">S</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Редкие награды</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Разрешает получение и открытие редких наград.</div></div>
+        <label title="Разрешает редкие награды Арены. Выключение не удаляет уже полученный результат." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-spinEnabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="spinEnabled">…</span></label>
+      </div>
+    </div>
+
+    <label for="cp-arena-reason" style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1;margin-top:12px">Причина изменения
+      <input type="text" id="cp-arena-reason" placeholder="Например: включаю быстрые матчи" maxlength="400" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
+      <span style="font-size:11px;color:#6b7280">Причина попадёт в журнал действий. Версию приложения и технические версии вводить не нужно.</span>
+    </label>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">
+      <button type="button" id="cp-arena-save" class="cp-btn" onclick="saveControlPanelArena()" title="Сохранит режимы Арены для всех игроков. Изменение появится примерно через 15 секунд; отменить можно выключением нужного режима на этой же карточке." style="background:#2563eb;border:1px solid #3b82f6;color:#fff;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px" disabled>Сохранить режимы Арены</button>
+      <button type="button" id="cp-arena-reload" class="cp-btn" onclick="loadControlPanelArena()" title="Перечитает текущий конфиг Арены. Ничего не изменит у игроков." style="background:#1f2937;border:1px solid #374151;color:#bfdbfe;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">Перечитать</button>
     </div>
   </div>
 
@@ -10100,7 +10148,7 @@
       Когда <b style="color:#f87171">включено</b> и версия приложения <b>ниже</b> указанной — у пользователя
       полноэкранный блок «обнови приложение» с кнопкой в стор. <b style="color:#fbbf24">Осторожно:</b> при
       пустой версии блок не покажется (защита). Версия в формате <code style="color:#a78bfa">1.2.3</code>.
-      Применяется у всех живьём (onSnapshot), без релиза.
+      Серверное ограничение применяется при следующей проверке; клиентский экран — при запуске или возврате и не позднее примерно 5 минут, без релиза.
     </div>
     <div class="cp-switch-row" style="margin-top:6px">
       <div class="cp-switch-ico" style="background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.2)">🚀</div>
@@ -10302,7 +10350,7 @@
       Для каждого дня недели выбери бонус (или «—нет—»). Можно поставить <b style="color:#f9a8d4">несколько через ротацию</b>
       — тогда бонусы чередуются по неделям (одна суббота — один, следующая — другой). Ниже — общий
       вкл/выкл каждого бонуса и постоянных модификаторов. Пишется в <code style="color:#818cf8">remote_config/app.texts.weekly_boons_config</code>,
-      клиенты подхватывают за секунды.
+      клиенты подхватывают при запуске или возврате и не позднее примерно 5 минут.
     </div>
     <div style="margin-top:8px"><span id="wb-status" class="cp-status-chip">Загрузка…</span></div>
 
@@ -10949,7 +10997,7 @@
     <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">Remote Config</h2>
     <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.55">
       Управление лимитами, экономикой и A/B-сплитами <b>без релиза приложения</b>. Значения пишутся в
-      <code style="color:#818cf8">remote_config/app</code>, клиенты подхватывают их через onSnapshot за секунды.
+      <code style="color:#818cf8">remote_config/app</code>, клиенты применяют кэш при запуске или возврате и обновляют его не позднее примерно 5 минут.
       Пустое поле = значение по умолчанию из приложения. Значения вне диапазона приложение само зажмёт в безопасные границы.
     </p>
   </div>
@@ -10971,7 +11019,7 @@
       Какой канал показывать на экране «Видео» и на кнопке главной. Можно подключить <b>любой</b> канал
       <b>без релиза</b> — приложение само построит ленту, ссылки и подпись. Пусто = встроенный канал
       <b style="color:#e2e8f0">PHRASEMAN</b>. Пишется в <code style="color:#818cf8">remote_config/app.texts</code>,
-      клиенты подхватывают за секунды. Чтобы кнопка вообще появилась — включи «Кнопка «Видео» на главной»
+      клиенты подхватывают при запуске или возврате и не позднее примерно 5 минут. Чтобы кнопка вообще появилась — включи «Кнопка «Видео» на главной»
       в «Пульте».
     </p>
     <div style="display:flex;flex-direction:column;gap:12px">
@@ -11032,6 +11080,40 @@
 </div>
 
 <!-- ══ Опросы за осколки (shard-survey) ══ -->
+<!-- SERVER-BACKED COSMETIC ASSET ARCHIVE -->
+<div id="tab-asset-archive" class="reports-tab" data-admin-category="content">
+  <style>
+    .caa-shell{max-width:1180px;margin:0 auto;color:#e5e7eb}.caa-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}.caa-title{margin:0;font-size:24px;line-height:1.2;color:#f8fafc}.caa-sub{margin:7px 0 0;max-width:760px;color:#9ca3af;font-size:14px;line-height:1.55}.caa-status{min-height:20px;color:#9ca3af;font-size:13px;margin-bottom:12px}.caa-stats{display:grid;grid-template-columns:repeat(3,minmax(140px,1fr));gap:10px;margin-bottom:14px}.caa-stat{background:#131722;border:1px solid #293142;border-radius:8px;padding:12px}.caa-stat b{display:block;font-size:21px;color:#f8fafc}.caa-stat span{font-size:12px;color:#94a3b8}.caa-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#11151f;border:1px solid #293142;border-radius:8px;padding:10px;margin-bottom:12px}.caa-search{min-width:240px;flex:1;background:#0b0f17;border:1px solid #334155;border-radius:7px;color:#f8fafc;padding:10px 12px;font-size:14px}.caa-filter{min-height:44px;border:1px solid #334155;background:#161c28;color:#cbd5e1;border-radius:7px;padding:8px 13px;font-size:13px;cursor:pointer}.caa-filter.is-active{border-color:#60a5fa;color:#dbeafe;background:#172554}.caa-table{border:1px solid #293142;border-radius:8px;overflow:hidden;background:#0f131c}.caa-row{display:grid;grid-template-columns:minmax(260px,1fr) 130px 130px 190px;gap:12px;align-items:center;padding:11px 13px;border-top:1px solid #242c3b}.caa-row:first-child{border-top:0}.caa-row-head{background:#151a25;color:#94a3b8;font-size:12px;font-weight:700}.caa-asset{display:flex;align-items:center;gap:11px;min-width:0}.caa-preview{width:48px;height:48px;flex:0 0 48px;border-radius:8px;background:#090d14;border:1px solid #30394b;display:flex;align-items:center;justify-content:center;overflow:hidden}.caa-preview img{width:100%;height:100%;object-fit:contain}.caa-preview svg{width:24px;height:24px;stroke:#a5b4fc;fill:none;stroke-width:1.8}.caa-name{font-size:14px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.caa-id{font:11px ui-monospace,SFMono-Regular,Consolas,monospace;color:#64748b;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.caa-badge{display:inline-flex;align-items:center;min-height:28px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}.caa-badge-sale{background:#12351f;color:#86efac}.caa-badge-off{background:#3b1d22;color:#fca5a5}.caa-badge-kind{background:#1e293b;color:#cbd5e1}.caa-action{min-height:44px;border-radius:7px;padding:9px 12px;border:1px solid #3b82f6;background:#1d4ed8;color:#fff;font-size:13px;font-weight:750;cursor:pointer;transition:background .18s,border-color .18s}.caa-action:hover{background:#2563eb}.caa-action:focus-visible,.caa-filter:focus-visible,.caa-search:focus-visible{outline:3px solid #38bdf8;outline-offset:2px}.caa-action.caa-remove{background:#2b1720;border-color:#7f1d1d;color:#fecaca}.caa-action.caa-remove:hover{background:#3f1d28}.caa-action:disabled{opacity:.55;cursor:not-allowed}.caa-empty{padding:28px 18px;text-align:center;color:#94a3b8;font-size:14px}.caa-tip{position:relative}.caa-tip::after{content:attr(data-tooltip);position:absolute;right:0;bottom:calc(100% + 8px);width:260px;background:#070a10;border:1px solid #334155;border-radius:7px;color:#e2e8f0;padding:8px 10px;font-size:11px;line-height:1.45;opacity:0;pointer-events:none;transform:translateY(3px);transition:opacity .16s,transform .16s;z-index:20}.caa-tip:hover::after,.caa-tip:focus-visible::after{opacity:1;transform:none}@media(max-width:760px){.caa-head{display:block}.caa-head .caa-action{margin-top:12px}.caa-stats{grid-template-columns:1fr}.caa-row{grid-template-columns:1fr 1fr}.caa-row-head{display:none}.caa-row>div:last-child{grid-column:1/-1}.caa-action{width:100%}}@media(prefers-reduced-motion:reduce){.caa-action,.caa-tip::after{transition:none}}
+  </style>
+  <div class="caa-shell">
+    <header class="caa-head">
+      <div>
+        <h2 class="caa-title">Архив ассетов</h2>
+        <p class="caa-sub">Управляй продажей аур, аватаров и будущих коллекционных ассетов без нового релиза. Снятый с продажи предмет остаётся у прежних владельцев и продолжает загружаться с сервера.</p>
+      </div>
+      <button type="button" class="caa-action caa-tip" onclick="loadCosmeticAssetArchive(true)" data-tooltip="Перечитает серверный каталог. Ничего не изменит для пользователей." aria-label="Обновить архив ассетов">Обновить каталог</button>
+    </header>
+    <div id="caa-status" class="caa-status" role="status" aria-live="polite">Открой раздел, чтобы загрузить каталог.</div>
+    <div class="caa-stats" aria-label="Сводка архива">
+      <div class="caa-stat"><b id="caa-total">—</b><span>всего ассетов</span></div>
+      <div class="caa-stat"><b id="caa-off-sale">—</b><span>не продаются</span></div>
+      <div class="caa-stat"><b id="caa-for-sale">—</b><span>доступны для покупки</span></div>
+    </div>
+    <div class="caa-tools">
+      <input id="caa-search" class="caa-search" type="search" placeholder="Поиск по названию или ID" aria-label="Поиск по архиву ассетов" oninput="renderCosmeticAssetArchive()">
+      <button type="button" class="caa-filter is-active" data-caa-category="all" onclick="setCosmeticAssetCategory('all',this)">Все</button>
+      <button type="button" class="caa-filter" data-caa-category="aura" onclick="setCosmeticAssetCategory('aura',this)">Ауры</button>
+      <button type="button" class="caa-filter" data-caa-category="avatar" onclick="setCosmeticAssetCategory('avatar',this)">Аватары</button>
+      <button type="button" class="caa-filter" data-caa-category="achievement" onclick="setCosmeticAssetCategory('achievement',this)">Достижения</button>
+      <button type="button" class="caa-filter" data-caa-category="other" onclick="setCosmeticAssetCategory('other',this)">Другое</button>
+    </div>
+    <div class="caa-table" role="table" aria-label="Каталог ассетов">
+      <div class="caa-row caa-row-head" role="row"><div>Ассет</div><div>Категория</div><div>Статус</div><div>Действие</div></div>
+      <div id="caa-list"><div class="caa-empty">Каталог ещё не загружен.</div></div>
+    </div>
+  </div>
+</div>
+
 <div id="tab-youtube-catalog" class="reports-tab" data-admin-category="content">
   <style>
     .ytc-shell{max-width:1240px;padding:2px 0 36px;color:#e4e4e7}
@@ -11850,7 +11932,7 @@
     <button onclick="supportPullMail()" style="background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">🔄 Проверить почту</button>
     <button onclick="supportGenerateAll()" style="background:rgba(139,124,255,0.15);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700" title="ИИ-черновики для всех новых писем без ответа (до 25 за раз)">✨ Сгенерировать всем</button>
     <button onclick="supportSendAllDrafts()" style="background:rgba(96,165,250,0.13);border:1px solid rgba(96,165,250,0.4);color:#93c5fd;font-weight:700" title="Отправить все готовые черновики по новым письмам">📤 Отправить все черновики</button>
-    <button id="gsi-archive-all" onclick="supportArchiveAllVisible()" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#9ca3af;font-weight:700" title="Все показанные (по фильтру) письма, кроме архивных → «в архив»">🗄 Архивировать все показанные</button>
+    <button id="gsi-archive-all" type="button" onclick="supportArchiveAllVisible()" style="background:#1f2937;border:1px solid #475569;color:#e2e8f0;font-weight:700;min-height:44px;padding:8px 14px;border-radius:7px;cursor:pointer" title="Архивирует все письма, показанные текущим фильтром. Подготовленные отправки и трёхчасовые таймеры будут отменены. Письма останутся в фильтре «Архив», откуда их можно вернуть.">Архивировать все показанные</button>
     <select id="gsi-filter-status" onchange="renderSupportInbox()">
       <option value="new">Новые</option>
       <option value="answered">Отвеченные</option>
@@ -11860,11 +11942,55 @@
     <button onclick="loadSupportInbox(true)" style="background:#2a2a3a;color:#aaa">↻ Обновить список</button>
     <span class="reports-count" id="gsi-count"></span>
   </div>
+  <section aria-labelledby="gsi-auto-title" style="margin:4px 0 12px;padding:12px 13px;background:#12151d;border:1px solid #273043;border-radius:8px">
+    <div id="gsi-auto-title" style="font-size:14px;font-weight:800;color:#e5e7eb">Автоматические ответы Джарвиса</div>
+    <p style="margin:5px 0 10px;color:#9ca3af;font-size:12.5px;line-height:1.5">Gmail проверяется раз в час. Джарвис готовит ответ по актуальному снимку репозитория и присылает полный текст в Telegram. В режиме автоотправки у вас есть 3 часа: можно отправить сразу, передать правки Джарвису или отредактировать здесь. Без действия отправится только показанная и безопасная версия.</p>
+    <div style="display:flex;align-items:end;gap:10px;flex-wrap:wrap">
+      <label style="display:flex;flex-direction:column;gap:4px;color:#cbd5e1;font-size:12px">Режим
+        <select id="gsi-auto-mode" style="min-width:190px" aria-describedby="gsi-auto-status">
+          <option value="live_guarded">Автоотправка через 3 часа</option>
+          <option value="shadow">Только подтверждение вручную</option>
+          <option value="off">Выключено</option>
+        </select>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:4px;color:#cbd5e1;font-size:12px">Лимит в сутки
+        <input id="gsi-auto-daily-cap" type="number" min="1" max="500" value="100" style="width:110px" />
+      </label>
+      <label style="display:flex;flex-direction:column;gap:4px;color:#cbd5e1;font-size:12px">На один адрес в сутки
+        <input id="gsi-auto-sender-cap" type="number" min="1" max="10" value="3" style="width:140px" />
+      </label>
+      <button type="button" onclick="supportSaveAutomation()" title="Сохранит режим и лимиты на сервере с проверкой ревизии и записью в аудит. Выключить ответы можно здесь же." style="background:#2563eb;border:1px solid #3b82f6;color:#fff;font-weight:700;min-height:40px">Сохранить автоматизацию</button>
+      <span id="gsi-auto-status" role="status" style="font-size:12px;color:#94a3b8"></span>
+    </div>
+  </section>
+  <section aria-labelledby="gsi-instructions-title" style="margin:4px 0 12px;padding:13px;background:#12151d;border:1px solid #2b3b52;border-radius:8px">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap">
+      <div id="gsi-instructions-title" style="font-size:14px;font-weight:800;color:#e5e7eb">Инструктаж Джарвиса</div>
+      <span id="gsi-instructions-status" role="status" aria-live="polite" style="font-size:12px;color:#94a3b8">Загрузка…</span>
+    </div>
+    <p style="margin:5px 0 9px;color:#9ca3af;font-size:12.5px;line-height:1.5">Напишите, как общаться, что предлагать и куда направлять по конкретным вопросам. Можно добавлять только точные HTTPS-ссылки и Telegram-адреса. Перед новым ответом Джарвис применит этот текст, затем отдельно проверит факты по актуальному снимку репозитория. Инструктаж не может отменить правила безопасности или заставить Джарвиса выдумать факт.</p>
+    <label for="gsi-owner-instructions" style="display:block;color:#cbd5e1;font-size:12px;font-weight:700;margin-bottom:5px">Текущие правила общения и маршрутизации</label>
+    <textarea id="gsi-owner-instructions" rows="9" maxlength="8000" aria-describedby="gsi-instructions-help gsi-instructions-count" placeholder="Например:&#10;— Общаемся дружелюбно и коротко.&#10;— Если человек не может купить Premium в России, направляем в @PhrasemanPremiumBot и https://t.me/PhrasemanPremiumBot.&#10;— По вопросам уроков сначала предлагаем обновить приложение и повторить действие." style="box-sizing:border-box;width:100%;min-height:180px;background:#0f1219;border:1px solid #334155;color:#e5e7eb;border-radius:7px;padding:10px 11px;font-size:14px;line-height:1.5;font-family:inherit;resize:vertical;white-space:pre-wrap"></textarea>
+    <div id="gsi-instructions-help" style="margin-top:6px;color:#94a3b8;font-size:12px;line-height:1.45">Изменение действует для новых и пересозданных AI-ответов. Старые неподтверждённые AI-версии станут неактуальными и не отправятся автоматически.</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <span id="gsi-instructions-count" style="font-size:12px;color:#94a3b8">0 / 8000 байт</span>
+      <button id="gsi-instructions-save" type="button" onclick="supportSaveInstructions()" title="Сохранит инструктаж с новой ревизией и записью в аудит. Новые ответы и AI-правки сразу начнут учитывать его; старые неподтверждённые AI-версии не будут отправлены автоматически." style="background:#2563eb;border:1px solid #3b82f6;color:#fff;font-weight:700;min-height:44px;padding:8px 14px;border-radius:7px;cursor:pointer">Сохранить инструктаж</button>
+    </div>
+  </section>
   <div style="margin:4px 0 12px;padding:11px 13px;background:#12151d;border:1px solid #1e2230;border-radius:9px;display:flex;gap:9px;align-items:flex-start;flex-wrap:wrap">
     <span style="font-size:12.5px;color:#9ca3af;font-weight:600;padding-top:7px;flex-shrink:0">✍️ Подпись (добавляется в конец каждого ответа):</span>
     <textarea id="gsi-signature" rows="4" placeholder="напр.&#10;Warm regards,&#10;The Phraseman Team 🦉&#10;Phraseman by Knowly · knowlyapps.com" style="flex:1;min-width:260px;background:#0f1219;border:1px solid #2a2f40;color:#e5e7eb;border-radius:7px;padding:7px 10px;font-size:13px;line-height:1.45;font-family:inherit;resize:vertical;white-space:pre-wrap"></textarea>
     <button onclick="supportSaveSignature()" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 13px;border-radius:7px;cursor:pointer;font-weight:600;font-size:12.5px;flex-shrink:0;align-self:flex-start">Сохранить подпись</button>
   </div>
+  <section aria-labelledby="gsi-prepared-title" style="margin:4px 0 14px;padding:12px 13px;background:#101722;border:1px solid #2b3b52;border-radius:10px">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap">
+      <div id="gsi-prepared-title" style="font-size:14px;font-weight:800;color:#e5e7eb">📨 Подготовленные Джарвисом</div>
+      <span id="gsi-prepared-count" style="font-size:12px;color:#93a4ba">0</span>
+    </div>
+    <p style="margin:4px 0 10px;color:#93a4ba;font-size:12px">Здесь только новые письма с готовым ответом. Текст можно исправить и сохранить — старая Telegram-кнопка погаснет, а новая версия придёт повторно.</p>
+    <div id="gsi-prepared-list"><div class="reports-empty">Подготовленных ответов пока нет.</div></div>
+  </section>
+  <div style="font-size:13px;font-weight:800;color:#cbd5e1;margin:4px 0 9px">Остальные письма</div>
   <div id="gsi-list"><div class="reports-empty">⏳ Загрузка...</div></div>
 </div>
 
@@ -11992,7 +12118,7 @@
   <div style="padding:8px 24px;max-width:1000px">
     <h3 style="color:#a78bfa;font-size:15px;margin:8px 0 6px">Управление</h3>
     <p style="font-size:12px;color:#888;margin-bottom:10px;line-height:1.5">
-      Рубильники пишутся в <code style="color:#818cf8">remote_config/app.bools</code> (клиенты подхватывают за секунды).
+      Рубильники пишутся в <code style="color:#818cf8">remote_config/app.bools</code> (клиенты подхватывают при запуске или возврате и не позднее примерно 5 минут).
       Главный выключатель гасит весь Компас; под-рычаги управляют независимыми крыльями.
     </p>
     <div id="cm-toggles" style="display:flex;flex-direction:column;gap:8px"></div>
@@ -13007,9 +13133,8 @@
 </div>
 
 <!-- TOURNAMENTS TAB -->
-<!-- зачем: владелец управляет режимом «Турниры» отсюда — собрать задания из
-     контента планов, проверить каждое глазами, опубликовать одобренные,
-     увидеть готовность раундов и включить слоты. Публикация только вручную:
+<!-- Владелец управляет режимом «Турниры» отсюда: проверить каждое задание,
+     опубликовать одобренные, увидеть готовность раундов и включить слоты. Публикация только вручную:
      ни одно задание не уходит игрокам без явного «Опубликовать». -->
 <div id="tab-tournaments" class="reports-tab">
   <div style="padding:4px 0 16px;max-width:1080px">
@@ -13022,11 +13147,6 @@
 
   <!-- Готовность режима -->
   <div id="tn-stats" style="margin-bottom:18px"></div>
-
-  <!-- зачем: генератор «из планов» удалён по решению владельца 2026-07-26.
-       Фразы уроков («Hi, I am Anna») не работают как соревновательные вопросы:
-       дистракторы не конкурируют, ответ угадывается без знания языка.
-       Турнирные задания создаются ТОЛЬКО ИИ-генератором ниже. -->
 
   <!-- Шаг 1: ИИ-генератор (единственный источник турнирных заданий) -->
   <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
@@ -13049,7 +13169,7 @@
         <option value="60">до 60 заданий</option>
       </select>
       <button type="button" onclick="tnFillPool(true)" title="Показать, что будет создано — ничего не тратя"
-        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 План</button>
+        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Предпросмотр</button>
       <button type="button" onclick="tnFillPool(false)" title="Создать недостающие задания всех типов"
         style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:9px 20px;border-radius:8px;cursor:pointer;font-weight:800;font-size:14px">🤖 Наполнить пул</button>
       <span id="tn-fill-status" style="font-size:13px;color:#9ca3af"></span>
@@ -13327,7 +13447,7 @@
         Снимите галочку, чтобы экран перестал показываться новым пользователям. Онбординг продолжится
         со следующего включённого шага — ничего не ломается. Пишется в
         <code style="color:#818cf8">remote_config/app.texts.onboarding_enabled_steps_v1</code>,
-        клиенты подхватывают за секунды, без обновления приложения и без OTA.
+        клиенты подхватывают при запуске или возврате и не позднее примерно 5 минут, без обновления приложения и без OTA.
       </div>
     </div>
     <div class="revenue-controls">
@@ -14596,11 +14716,151 @@
     }
     return _fnAdminRefreshYoutubeCatalog;
   }
+  let _fnAdminGetCosmeticAssetArchive = null;
+  function getAdminGetCosmeticAssetArchiveCallable() {
+    if (!_fnAdminGetCosmeticAssetArchive) {
+      _fnAdminGetCosmeticAssetArchive = httpsCallable(functionsUs, 'adminGetCosmeticAssetArchive');
+    }
+    return _fnAdminGetCosmeticAssetArchive;
+  }
+  let _fnAdminSetCosmeticAssetSaleStatus = null;
+  function getAdminSetCosmeticAssetSaleStatusCallable() {
+    if (!_fnAdminSetCosmeticAssetSaleStatus) {
+      _fnAdminSetCosmeticAssetSaleStatus = httpsCallable(functionsUs, 'adminSetCosmeticAssetSaleStatus');
+    }
+    return _fnAdminSetCosmeticAssetSaleStatus;
+  }
   function createAdminCommandId(prefix) {
     const bytes = new Uint8Array(16);
     crypto.getRandomValues(bytes);
     return prefix + '_' + Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
   }
+  window._cosmeticAssetArchiveItems = [];
+  window._cosmeticAssetArchiveCategory = 'all';
+
+  const CAA_CATEGORY_LABELS = {
+    aura: 'Аура', avatar: 'Аватар', achievement: 'Достижение', other: 'Другое',
+  };
+  const CAA_DELIVERY_LABELS = {
+    purchase: 'Покупка', reward: 'Награда', subscription: 'Подписка', legacy: 'Архив',
+  };
+
+  function cosmeticAssetPreviewHtml(item) {
+    if (item.previewUrl) {
+      return `<div class="caa-preview"><img src="${escapeHtml(item.previewUrl)}" alt="Превью ${escapeHtml(item.name || item.id)}" loading="lazy"></div>`;
+    }
+    return '<div class="caa-preview" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="10" stroke-dasharray="4 3"/></svg></div>';
+  }
+
+  window.setCosmeticAssetCategory = function(category, button) {
+    window._cosmeticAssetArchiveCategory = category || 'all';
+    document.querySelectorAll('[data-caa-category]').forEach((node) => node.classList.toggle('is-active', node === button));
+    window.renderCosmeticAssetArchive();
+  };
+
+  window.renderCosmeticAssetArchive = function() {
+    const list = document.getElementById('caa-list');
+    if (!list) return;
+    const allItems = Array.isArray(window._cosmeticAssetArchiveItems) ? window._cosmeticAssetArchiveItems : [];
+    const queryText = String(document.getElementById('caa-search')?.value || '').trim().toLowerCase();
+    const category = window._cosmeticAssetArchiveCategory || 'all';
+    const visible = allItems.filter((item) => {
+      if (category !== 'all' && item.category !== category) return false;
+      if (!queryText) return true;
+      return `${item.name || ''} ${item.id || ''}`.toLowerCase().includes(queryText);
+    });
+
+    document.getElementById('caa-total').textContent = String(allItems.length);
+    document.getElementById('caa-off-sale').textContent = String(allItems.filter((item) => item.saleManaged && !item.forSale).length);
+    document.getElementById('caa-for-sale').textContent = String(allItems.filter((item) => item.saleManaged && item.forSale).length);
+
+    if (!visible.length) {
+      const emptyText = allItems.length
+        ? 'В этой категории ничего не найдено.'
+        : 'Каталог пуст. Категории «Достижения» и «Другое» готовы для будущих ассетов.';
+      list.innerHTML = `<div class="caa-empty">${emptyText}</div>`;
+      return;
+    }
+    list.innerHTML = visible.map((item) => {
+      const safeId = escapeHtml(item.id || '');
+      const safeCategory = escapeHtml(item.category || 'other');
+      const saleManaged = item.saleManaged === true;
+      const nextForSale = !item.forSale;
+      const actionLabel = saleManaged
+        ? (nextForSale ? 'Вернуть в продажу' : 'Снять с продажи')
+        : (item.delivery === 'subscription' ? 'Управляется подпиской' : 'Выдаётся как награда');
+      const tooltip = !saleManaged
+        ? 'Этот предмет не продаётся отдельно: доступ определяется подпиской или наградой.'
+        : nextForSale
+        ? 'Вернёт предмет в магазин после обновления серверного каталога. Прежние владельцы уже имеют доступ.'
+        : 'Скроет предмет от новых покупок. У прежних владельцев предмет останется и продолжит загружаться с сервера.';
+      return `<div class="caa-row" role="row">
+        <div class="caa-asset">${cosmeticAssetPreviewHtml(item)}<div style="min-width:0"><div class="caa-name">${escapeHtml(item.name || item.id)}</div><div class="caa-id">${safeId}</div></div></div>
+        <div><span class="caa-badge caa-badge-kind">${escapeHtml(CAA_CATEGORY_LABELS[item.category] || item.category || 'Другое')} · ${escapeHtml(CAA_DELIVERY_LABELS[item.delivery] || item.delivery || '—')}</span></div>
+        <div><span class="caa-badge ${item.forSale ? 'caa-badge-sale' : 'caa-badge-off'}">${item.forSale ? 'В продаже' : 'Не продаётся'}</span></div>
+        <div><button type="button" class="caa-action caa-tip ${saleManaged && item.forSale ? 'caa-remove' : ''}" data-tooltip="${escapeHtml(tooltip)}" aria-label="${escapeHtml(actionLabel)}: ${safeId}" ${saleManaged ? `onclick="setCosmeticAssetSaleStatus('${safeCategory}','${safeId}',${nextForSale},this)"` : 'disabled'}>${actionLabel}</button></div>
+      </div>`;
+    }).join('');
+  };
+
+  window.loadCosmeticAssetArchive = async function(force) {
+    if (window._cosmeticAssetArchiveLoading) return;
+    if (!force && window._cosmeticAssetArchiveLoaded) return;
+    window._cosmeticAssetArchiveLoading = true;
+    const status = document.getElementById('caa-status');
+    if (status) status.textContent = 'Загружаем серверный каталог…';
+    try {
+      const response = await getAdminGetCosmeticAssetArchiveCallable()({});
+      const items = Array.isArray(response?.data?.items) ? response.data.items : [];
+      window._cosmeticAssetArchiveItems = items;
+      window._cosmeticAssetArchiveLoaded = true;
+      if (status) status.textContent = `Каталог загружен: ${items.length} ассетов. Изображения аватаров находятся на сервере и загружаются лениво.`;
+      window.renderCosmeticAssetArchive();
+    } catch (error) {
+      window._cosmeticAssetArchiveLoaded = false;
+      if (status) status.textContent = 'Не удалось загрузить каталог: ' + (error?.message || 'неизвестная ошибка');
+      showToast('Архив ассетов не загружен', 'err');
+    } finally {
+      window._cosmeticAssetArchiveLoading = false;
+    }
+  };
+
+  window.setCosmeticAssetSaleStatus = async function(category, assetId, forSale, button) {
+    const item = (window._cosmeticAssetArchiveItems || []).find((candidate) => candidate.category === category && candidate.id === assetId);
+    if (!item || button?.disabled) return;
+    const actionLabel = forSale ? 'Вернуть в продажу' : 'Снять с продажи';
+    const confirmed = await showConfirmModal({
+      title: `${actionLabel}: ${escapeHtml(item.name || assetId)}?`,
+      desc: forSale
+        ? 'Предмет снова появится у новых покупателей после обновления серверного каталога. Изменение можно отменить здесь же.'
+        : 'Предмет исчезнет из магазина, но останется у всех прежних владельцев. Изображение продолжит загружаться с сервера.',
+      confirmLabel: actionLabel,
+      danger: !forSale,
+    });
+    if (!confirmed) return;
+    const reason = String(await showInputModal({
+      title: 'Причина изменения',
+      desc: 'Причина обязательна и попадёт в audit log.',
+      multiline: true,
+      confirmLabel: actionLabel,
+    }) || '').trim();
+    if (!reason) return;
+    const requestId = createAdminCommandId('asset_sale_request');
+    const idempotencyKey = createAdminCommandId('asset_sale');
+    if (button) { button.disabled = true; button.textContent = 'Сохраняем…'; }
+    try {
+      const response = await getAdminSetCosmeticAssetSaleStatusCallable()({
+        category, assetId, forSale, reason, requestId, idempotencyKey,
+      });
+      if (!response?.data?.ok) throw new Error('Сервер не подтвердил изменение');
+      item.forSale = response.data.forSale === true;
+      window.renderCosmeticAssetArchive();
+      showToast(item.forSale ? 'Ассет возвращён в продажу' : 'Ассет снят с продажи');
+    } catch (error) {
+      showToast('Статус не изменён: ' + (error?.message || 'неизвестная ошибка'), 'err');
+      window.renderCosmeticAssetArchive();
+    }
+  };
   const _supportCallables = {};
   function supportCallable(name) {
     if (!_supportCallables[name]) _supportCallables[name] = httpsCallable(functionsUs, name);
@@ -14669,7 +14929,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','youtube-catalog','paywall-ab','v2-generator','alerts'];
+  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','youtube-catalog','asset-archive','paywall-ab','v2-generator','alerts'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab);
@@ -15106,7 +15366,6 @@
       settings: u.settings && typeof u.settings === 'object' ? u.settings : {},
       achievements: u.achievements && typeof u.achievements === 'object' ? u.achievements : {},
       leagueState: u.leagueState && typeof u.leagueState === 'object' ? u.leagueState : {},
-      dailyTasks: u.dailyTasks || null,
       placementLevel: u.placementLevel || null,
       platform: u.platform || null,
       appVersion: u.appVersion || null,
@@ -15609,7 +15868,6 @@
       settings: tryJson(p.user_settings, {}),
       achievements: tryJson(p.achievements_state, {}),
       leagueState: tryJson(p.league_state_v3, {}),
-      dailyTasks: tryJson(p.daily_tasks_progress, null),
       placementLevel: p.placement_level || null,
       platform: p.device_platform || null,
       appVersion: p.app_version || null,
@@ -15688,7 +15946,7 @@
         onboarding: !!p.onboarding_done && p.onboarding_done !== '0',
         lessons: tryJson(p.unlocked_lessons, []), flashcards: Array.isArray(tryJson(p.flashcards, [])) ? tryJson(p.flashcards, []).length : 0,
         settings: tryJson(p.user_settings, {}), achievements: tryJson(p.achievements_state, {}),
-        leagueState: tryJson(p.league_state_v3, {}), dailyTasks: tryJson(p.daily_tasks_progress, null),
+        leagueState: tryJson(p.league_state_v3, {}),
         placementLevel: p.placement_level || null, platform: p.device_platform || null,
         appVersion: p.app_version || null, updatedAt: snap.data().updatedAt || 0,
         createdAt: snap.data().created_at || 0, lastActiveAt: snap.data().last_active_at || 0,
@@ -16407,7 +16665,6 @@
         const settings = tryJson(p.user_settings,{});
         const achievements = tryJson(p.achievements_state,{});
         const leagueState = tryJson(p.league_state_v3,{});
-        const dailyTasks = tryJson(p.daily_tasks_progress, null);
         const xp = parseInt(p.user_total_xp)||0;
         return {
           uid: doc.id,
@@ -16429,7 +16686,6 @@
           settings,
           achievements,
           leagueState,
-          dailyTasks,
           placementLevel: p.placement_level||null,
           platform: p.device_platform||null,
           appVersion: p.app_version||null,
@@ -17664,7 +17920,6 @@
     lesson_completed: '✅ Урок завершён',
     streak_7: '🔥 7 дней стрика',
     streak_30: '🔥 30 дней стрика',
-    daily_tasks_all: '📋 Дневные задачи',
     topic_completed: '📚 Тема завершена',
     league_1st: '🥇 1-е место в лиге',
     league_2nd: '🥈 2-е место в лиге',
@@ -17908,19 +18163,19 @@
   window.editShards = async function(uid) {
     const u = window._users.find(x=>x.uid===uid);
     if(!u) return;
-    const val = await showInputModal({ title: `Осколки — ${escapeHtml(u.name)}`, desc: 'Введите новый баланс (целое число от 0 до 1 000 000)', defaultVal: String(u.shards||0) });
+    const val = await showInputModal({ title: `Корректировка жемчуга — ${escapeHtml(u.name)}`, desc: 'Введите изменение от −1 000 000 до +1 000 000. Сервер запишет подтверждённое событие, а приложение применит его к личному балансу.', defaultVal: '' });
     if(val === null) return;
-    const newBalance = Number(String(val).trim());
-    if(!String(val).trim() || !Number.isSafeInteger(newBalance) || newBalance < 0 || newBalance > 1000000) {
-      showToast('Введите целое число от 0 до 1 000 000', 'err');
+    const delta = Number(String(val).trim());
+    if(!String(val).trim() || !Number.isSafeInteger(delta) || delta === 0 || Math.abs(delta) > 1000000) {
+      showToast('Введите ненулевое целое число от −1 000 000 до +1 000 000', 'err');
       return;
     }
     const reason = String(await showInputModal({
-      title: `Причина изменения баланса — ${escapeHtml(u.name)}`,
+      title: `Причина корректировки — ${escapeHtml(u.name)}`,
       desc: 'Обязательная причина будет сохранена в журнале действий администратора.',
       defaultVal: '',
       multiline: true,
-      confirmLabel: 'Изменить баланс',
+      confirmLabel: 'Записать корректировку',
     }) || '').trim();
     if (!reason) return;
     const requestId = createAdminCommandId('shard_balance_request');
@@ -17928,27 +18183,27 @@
     try {
       const response = await getAdminSetShardBalanceCallable()({
         uid,
-        newBalance,
+        delta,
         reason,
         requestId,
         idempotencyKey,
       });
       if (!response || !response.data || response.data.ok !== true) {
-        throw new Error('Сервер не подтвердил изменение баланса');
+        throw new Error('Сервер не подтвердил корректировку');
       }
       const writeUid = response.data.uid;
-      const confirmedBalance = Number(response.data.balance);
-      if (!writeUid || !Number.isSafeInteger(confirmedBalance) || confirmedBalance < 0 || confirmedBalance > 1000000) {
+      const confirmedDelta = Number(response.data.delta);
+      if (!writeUid || !Number.isSafeInteger(confirmedDelta) || confirmedDelta !== delta) {
         throw new Error('Сервер вернул неполный результат изменения баланса');
       }
       const writeUser = _cachedUser(writeUid) || u;
-      writeUser.shards = confirmedBalance;
+      if (Number.isFinite(Number(writeUser.shards))) writeUser.shards = Math.max(0, Number(writeUser.shards) + confirmedDelta);
       openDetail(writeUid);
       renderTable();
-      showToast('💎 Осколки обновлены');
+      showToast(`💎 Корректировка ${confirmedDelta > 0 ? '+' : ''}${confirmedDelta} записана`);
     } catch(e) {
       const message = e && e.message ? e.message : 'неизвестная ошибка';
-      showToast('Баланс не изменён: ' + message, 'err');
+      showToast('Корректировка не записана: ' + message, 'err');
     }
   };
 
@@ -18380,13 +18635,6 @@
       ? `<div class="mult-tags">${mults.map(m=>`<span class="mult-tag ${m.cls}">${m.label}</span>`).join('')}</div><div style="margin-top:8px;font-size:12px;color:#a78bfa;font-weight:700">Итоговый: ×${total.toFixed(2)}</div>`
       : '<span style="color:#555;font-size:12px">нет активных</span>';
 
-    // Daily tasks stats
-    let tasksTotal = 0, tasksDone = 0;
-    if(Array.isArray(u.dailyTasks)) {
-      tasksTotal = u.dailyTasks.length;
-      tasksDone = u.dailyTasks.filter(t => t && t.completed).length;
-    }
-
     // ── Accordion helper: each section collapses; closed by default ──────────
     const acc = (key, head, bodyHtml, opts = {}) => {
       const open = opts.open ? ' open' : '';
@@ -18461,7 +18709,6 @@
         <div class="drow"><span class="k">Очки недели</span><span class="v">${weekPts}</span></div>`)}
       ${acc('gameplay', '⚡ Геймплей и настройки', `
         <div style="margin-bottom:8px">${multsHtml}</div>
-        <div class="drow"><span class="k">Дневные задания</span><span class="v">${tasksTotal ? tasksDone+' / '+tasksTotal : '—'}</span></div>
         <div class="drow"><span class="k">Hard Mode</span><span class="v">${u.settings.hardMode?'<span class="pill pill-red">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Auto Check</span><span class="v">${u.settings.autoCheck?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Voice Out</span><span class="v">${u.settings.voiceOut!==false?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
@@ -18486,7 +18733,6 @@
           <button data-action="merge" data-uid="${u.uid}" style="background:#0e2a2e;border:1px solid #155e75;color:#22d3ee">🔗 Merge с другим UID</button>
           <button data-action="ach-view" data-uid="${u.uid}" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#86efac">🏆 Ачивки</button>
           <button data-action="ach-reset" data-uid="${u.uid}" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5">↺ Сбросить ачивки</button>
-          <button data-action="daily-reset" data-uid="${u.uid}" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5">↺ Сбросить дейлики</button>
           <button data-action="user-analytics" data-uid="${u.uid}" style="background:#0f1f2e;border:1px solid #1e4a6e;color:#38bdf8">📊 Аналитика дней</button>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -18534,7 +18780,6 @@
         if (a === 'merge')        mergeUserPrompt(uid, u2.name);
         if (a === 'ach-view')     viewAchievements(uid, u2.name);
         if (a === 'ach-reset')    resetAchievements(uid, u2.name);
-        if (a === 'daily-reset')  resetDailyTasks(uid, u2.name);
         if (a === 'warn')         warnUserDirect(uid, u2.name);
         if (a === 'ban')          banUser(uid);
         if (a === 'unban')        unbanUser(uid);
@@ -18850,6 +19095,9 @@
     }
     if (tab === 'youtube-catalog' && !window._youtubeCatalogLoaded && typeof window.loadYoutubeCatalogWorkspace === 'function') {
       void window.loadYoutubeCatalogWorkspace(false);
+    }
+    if (tab === 'asset-archive' && !window._cosmeticAssetArchiveLoaded && typeof window.loadCosmeticAssetArchive === 'function') {
+      void window.loadCosmeticAssetArchive(false);
     }
     if (tab === 'overview' && typeof window.renderAdminOverview === 'function') {
       window.renderAdminOverview();
@@ -19504,7 +19752,7 @@
   function an2SourceBucket(context) {
     const c = String(context || '').toLowerCase();
     if (c === 'settings' || c === 'manage') return 'settings';
-    if (c.includes('onboarding') || c === 'personal_plan' || c === 'intro_ended') return 'onboarding';
+    if (c.includes('onboarding') || c === 'intro_ended') return 'onboarding';
     return 'automatic';
   }
   const AN2_METRIC_META = {
@@ -20090,6 +20338,7 @@
     'app-messages': 'Плашки и сообщения',
     'remote-config': 'Remote Config',
     'youtube-catalog': 'YouTube-каталог',
+    'asset-archive': 'Архив ассетов',
     'paywall-ab': 'Paywall A/B',
     'v2-generator': 'V2 Генератор',
     alerts: 'Alerts',
@@ -20187,6 +20436,7 @@
     'ops-log': 'terminal',
     'remote-config': 'sliders',
     'youtube-catalog': 'message',
+    'asset-archive': 'package',
     'paywall-ab': 'flask',
     'v2-generator': 'flask',
     alerts: 'bell',
@@ -20258,6 +20508,7 @@
     'ops-log': 'system',
     'remote-config': 'system',
     'youtube-catalog': 'community',
+    'asset-archive': 'community',
     'paywall-ab': 'revenue',
     'v2-generator': 'community',
     alerts: 'system',
@@ -22618,26 +22869,19 @@
     "AczEhLm6hJioJbqUxnY3": {title:"Пожалуйста, сообщайте только о багах",body:"Пожалуйста, отправляйте через кнопку отчёта только реальные ошибки приложения. Если вы просто ошиблись в ответе или нажали не туда, писать об этом не нужно — так команда быстрее находит настоящие проблемы. Спасибо за понимание.",shards:0,resolution:"user_error",rewardGroup:"neon-report-discipline"},
     "7lRyNxZ59O0XbfyaTVmM": {title:"Спасибо, мы проверили варианты",body:"Спасибо, что сообщили. Мы проверили это задание: слово She есть среди вариантов, а экран дополнительно подставляет правильное слово, если набор загрузился не полностью. В текущей версии ошибку воспроизвести не удалось; если это повторится, пожалуйста, отправьте отчёт прямо с этого экрана ещё раз.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson2-she-option-presence"},
     "hEGotOManqcvLj5hKek0": {title:"Вернули пропавшее слово I",body:"Спасибо, вы нашли ошибку в этой фразе: слово I было в предложении, но отсутствовало среди доступных слов. Мы добавили его, и исправление вступит в силу со следующим обновлением приложения. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"impuls-day36-missing-subject"},
-    "OSSadmJP0m12rDu7zY8b": {title:"Проблему со звуком подтвердили",body:"Спасибо, мы подтвердили проблему: к этому заданию была привязана устаревшая озвучка, поэтому корректный звук не запускался. Мы уже запретили приложению воспроизводить запись, если её текст не совпадает с текущей фразой, и готовим правильную озвучку.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-stale-audio-binding"},
-    "N5WJhdhAV3FbPvWemOiH": {title:"Дякуємо, невідповідність підтверджено",body:"Дякуємо, ви точно описали проблему: теорія дня була про посуд, а після неї відкривалися речення з іншої теми. Ми перевіряємо перехід між теорією маршруту та тренажером, щоб вони використовували один і той самий матеріал. Вам нараховано 1 перлину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"personal-plan-theory-task-alignment-gavan-d8"},
     "thnLe30UbiT4QC8dcRaZ": {title:"Спасибо, объясняем разницу",body:"Спасибо за вопрос. Later today означает «позже сегодня», а late today — «сегодня поздно», ближе к концу дня. В задании нужен именно первый смысл, поэтому ответ с late не засчитывается.",shards:0,resolution:"by_design",rewardGroup:"lesson13-later-vs-late"},
     "WBA37juO2ZG5wyaWPbIo": {title:"Спасибо, проверяем задания на слух",body:"Спасибо, что сообщили. Мы сверили текущий набор урока 30, но без конкретной фразы не смогли определить, где именно расходятся звук и слова. Если это повторится, пожалуйста, отправьте отчёт прямо из самого задания — тогда в нём будет нужная фраза.",shards:0,resolution:"no_issue_details",rewardGroup:"lesson30-listen-build-mismatch-unspecified"},
     "imZlIU2dOYlhTDQ8ehtz": {title:"Виправили озвучення прийнятого варіанта",body:"Дякуємо, ви правильно помітили: everybody та everyone рівнозначні, але після правильної відповіді озвучувався інший варіант. Тепер застосунок читатиме саме той правильний варіант, який показано на екрані. Зміна з’явиться в наступному оновленні застосунку.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
     "l4LbKLwrvSkdzPaCpa4w": {title:"Виправили озвучення прийнятого варіанта",body:"Дякуємо, ви правильно помітили: somebody та someone рівнозначні, але повтор читав не той варіант, який був на екрані. Тепер застосунок озвучуватиме саме показану правильну відповідь. Зміна з’явиться в наступному оновленні застосунку.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
     "tQQVuBESA2CSXjWDcmY2": {title:"Виправили повтор правильної відповіді",body:"Дякуємо, ви правильно помітили: anyone та anybody рівнозначні, але повтор читав інший прийнятий варіант. Тепер озвучення збігатиметься з правильною відповіддю на екрані. Зміна з’явиться в наступному оновленні застосунку.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
     "acPQkpOWTI86Mf8KOkJs": {title:"Виправили повтор правильної відповіді",body:"Дякуємо, ви знайшли помилку: після прийнятого anyone повтор міг озвучити anybody. Тепер застосунок читатиме саме правильний варіант, показаний на екрані. Зміна з’явиться в наступному оновленні застосунку.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
-    "d7PjNbly9huR51j0nZNN": {title:"Проблему со звуком подтвердили",body:"Спасибо, мы подтвердили проблему: у задания сохранилась озвучка от старой версии фразы, поэтому кнопка не давала корректный звук. Мы уже запретили воспроизводить несовпадающие записи и готовим правильную озвучку для задания.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-stale-audio-binding"},
-    "4iso6vyOZnfePFO32oU5": {title:"Несовпадение фразы и озвучки подтверждено",body:"Спасибо, вы точно описали проблему: к заданию была привязана запись из старой версии, поэтому озвученная фраза отсутствовала среди ответов. Мы уже заблокировали такие несовпадающие записи и готовим правильную озвучку.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-stale-audio-binding"},
     "UOxo5sQ2vNBwtkjWZYpX": {title:"Спасибо за идею для урока",body:"Спасибо, вы точно заметили, что с одним предлогом среди вариантов задание получается слишком лёгким. Это не ошибка проверки ответа, но предложение добавить конкурирующие предлоги мы передали на пересмотр урока.",shards:0,resolution:"content_review",rewardGroup:"lesson8-preposition-distractors"},
     "iXB8hzOipdElLLR99EMS": {title:"Исправили распознавание числа 78",body:"Спасибо, вы нашли ошибку в проверке произношения: распознанное число 78 не сопоставлялось с фразой seventy-eight. Мы добавили обработку составных двузначных чисел, и исправление вступит в силу со следующим обновлением приложения. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"pronunciation-compound-number-digits"},
     "yk1n8zhYreS8vm3xPivm": {title:"Проблему с покупкой карточек подтвердили",body:"Спасибо за точное уточнение. Мы подтвердили, что при достаточном балансе нажатие на набор иногда не завершает покупку карточек за жемчужины. Мы разбираемся с обновлением баланса и выдачей набора.",shards:0,resolution:"duplicate",rewardGroup:"flashcard-pack-shard-purchase"},
     "JhrIHG5oAPgWAHbcf7KQ": {title:"Проблему с покупкой карточек подтвердили",body:"Спасибо, что проверили ещё раз после обновления. Проблема с покупкой наборов за жемчужины подтверждена, и мы разбираемся, почему нажатие не завершает выдачу карточек.",shards:0,resolution:"duplicate",rewardGroup:"flashcard-pack-shard-purchase"},
-    "wBbL7btzE7mI4uwgrJWh": {title:"Несовпадение озвучки подтверждено",body:"Спасибо, вы правильно заметили: в этом задании звучала запись от другой фразы, поэтому правильный ответ не соответствовал звуку. Мы уже заблокировали воспроизведение таких устаревших записей и готовим правильную озвучку.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-stale-audio-binding"},
-    "vk6lsDEEzI4Dok9OJWS6": {title:"Проблему с вариантами подтвердили",body:"Спасибо, вы нашли реальную ошибку: озвучка относилась к старой фразе, поэтому среди вариантов не было подходящего ответа. Мы уже запретили приложению проигрывать такую запись и готовим правильную озвучку для задания.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-stale-audio-binding"},
     "sOXRG2snJkntDjdKUlVu": {title:"Нужно чуть больше деталей",body:"Спасибо, что сообщили. По фразе «турниры странно работают» мы не смогли определить, что именно сломалось: вход, подбор соперника, задание, счёт или приз. Если проблема повторится, пожалуйста, отправьте отчёт с экрана, где она видна, и коротко опишите результат.",shards:0,resolution:"no_issue_details",rewardGroup:"tournament-unspecified"},
     "RdzYVLbcmSeVDVtIzEd4": {title:"Проблему з купівлею карток підтверджено",body:"Дякуємо, що повідомили. Ми підтвердили, що купівля наборів за перлини у частини користувачів не завершується, і перевіряємо оновлення балансу та видачу карток.",shards:0,resolution:"duplicate",rewardGroup:"flashcard-pack-shard-purchase"},
     "VAXanKs98uPapIllMCOR": {title:"Спасибо, проверяем сохранение выражений",body:"Спасибо, что подробно описали ситуацию. Мы проверили текущее сохранение карточек, но не смогли воспроизвести ограничение до двух выражений; идею отдельного раздела для идиом тоже записали. Пожалуйста, обновите приложение и, если выражения снова не сохранятся, отправьте отчёт с конкретной карточки.",shards:0,resolution:"not_reproduced",rewardGroup:"daily-phrase-flashcard-save-count"},
-    "AlFjdKO2dAqj2m6E19cP": {title:"Проблему с озвучкой подтвердили",body:"Спасибо, вы помогли найти общую проблему: у ряда заданий на слух сохранились записи от старых версий фраз. Мы уже запретили воспроизводить несовпадающие записи и готовим для них правильную озвучку. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_investigating",rewardGroup:"personal-plan-stale-audio-binding"},
     "kzFKOiXbHEav7l4nakpB": {title:"Пустой экран ежедневных вызовов исправлен",body:"Спасибо, вы нашли ошибку загрузки: из-за гонки обновления экран мог остаться пустым после нажатия. В актуальной версии это исправлено, поэтому, пожалуйста, обновите приложение. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"daily-tasks-loading-race"},
     "JCLGsmbXimrxrx2SLDoS": {title:"Проблему с покупкой карточек подтвердили",body:"Спасибо, вы помогли подтвердить проблему: новые наборы карточек за жемчужины у части пользователей не выдаются после нажатия. Мы разбираемся с покупкой и обновлением баланса. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_investigating",rewardGroup:"flashcard-pack-shard-purchase"},
     "EXzUZlJfVUstcHVDnwyO": {title:"Виправили приклад у теорії уроку 15",body:"Дякуємо, ви знайшли помилку: у блоці найчастіших помилок неправильний і правильний варіанти випадково були однаковими. Ми замінили неправильний варіант на This is my, а правильним залишили This is mine. Зміна з’явиться в наступному оновленні застосунку. Вам нараховано 1 перлину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson15-theory-my-mine"},
@@ -22653,28 +22897,19 @@
     "wYkIlAIS1dCsOdiRBJr8": {title:"Исправили язык перевода в тренажёре",body:"Спасибо, вы верно заметили проблему: в тренажёре вместо русского мог показываться испанский перевод. В актуальной версии это исправлено. У вас была устаревшая версия приложения — пожалуйста, обновите его до актуальной версии. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-source-language"},
     "2w9CzMTFMBzqmCGfYuVh": {title:"Исправили обратную связь в тренажёре",body:"Спасибо, вы помогли заметить важный сценарий в тренажёре. После неверной попытки карточка теперь остаётся на экране с правильной фразой и переводом, а верно решённое задание не должно сразу повторяться. У вас была устаревшая версия приложения — пожалуйста, обновите его до актуальной версии. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-wrong-answer-feedback"},
     "KQ3a5NdHJJCq7cPIgzyL": {title:"Спасибо, мы проверили перевод",body:"Спасибо, что обратили внимание на оттенок значения. В этой фразе enjoy означает «нравится, получаю удовольствие», а love выражает более сильное чувство, поэтому текущий перевод «Мне нравится читать» соответствует заданию.",shards:0,resolution:"by_design",rewardGroup:"lesson22-enjoy-meaning"},
-    "JDbcUxXynyyBiCvsBzk2": {title:"Спасибо, разбираемся со звуком",body:"Спасибо, что подробно описали проблему. Мы подтвердили, что в задании на слух фраза у части пользователей может не воспроизводиться, и сейчас разбираемся с причиной.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-impuls-listening"},
-    "IsA4gslKhWuiIyL9Rb5E": {title:"Спасибо, проблему со звуком подтвердили",body:"Спасибо, что сообщили о неработающей кнопке «Слушать». Проблема подтверждена, команда разбирается с воспроизведением; за находку вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_investigating",rewardGroup:"personal-plan-impuls-listening"},
     "AJytlM5NdHtyQMnZ1OiR": {title:"Спасибо, мы проверили озвучку ответа",body:"Спасибо за сообщение. Мы проверили озвучку после ответа: она запускается, когда в настройках включено произношение, поэтому подтверждённой ошибки в этом задании не нашли.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson-result-audio-setting"},
     "pBOO1fDwVk4th3GnFkpc": {title:"Спасибо, исправили произношение вариантов",body:"Спасибо, вы точно заметили проблему: при выборе варианта могло звучать другое, правильное слово. Теперь приложение произносит именно выбранную форму, поэтому разницу между sang и sung можно услышать; изменение вступит в силу со следующим обновлением приложения, а вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"irregular-selected-form-audio"},
     "2DnpiLpbGscGtxQ1KoQq": {title:"Спасибо, проверяем чувствительность записи",body:"Спасибо, что подробно описали, как работает запись на вашем устройстве. Мы приняли отзыв и продолжаем проверять чувствительность распознавания в разных условиях.",shards:0,resolution:"not_reproduced",rewardGroup:"speaking-microphone-sensitivity"},
     "DAShjpK0W1KEKFraeVl1": {title:"Спасибо, мы проверили эту фразу",body:"Спасибо, что сообщили о несовпадении. В указанном задании сейчас написано и озвучивается «Did anybody see him?», поэтому расхождение между somebody и someone подтвердить не удалось.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson21-anybody-pronunciation"},
     "wMvOxNNxICJCOqZKrRen": {title:"Спасибо, обновление прогресса друзей исправлено",body:"Спасибо, вы помогли найти причину: уровень и цепочка друга могли оставаться устаревшими после повторного открытия вкладки. Теперь приложение заново проверяет прогресс при возвращении на экран; изменение вступит в силу со следующим обновлением приложения, а вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"friends-profile-revalidation"},
-    "rpkfHaBEibfiu146HQSZ": {title:"Спасибо за сообщение о повторении речи",body:"Спасибо, что написали нам. Мы уже разбираемся, почему упражнение на повторение речи иногда не переходит дальше после ответа. Ваше сообщение помогло нам точнее проверить этот сценарий.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-pronunciation"},
-    "532kHSSOjRLPGo69mNQd": {title:"Спасибо за сообщение о поле ответа",body:"Спасибо, что рассказали о проблеме с полем ответа. Мы проверяем, почему в этом задании клавиатура иногда не открывается. Ваше описание помогло нам уточнить условия, при которых это происходит.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-recall"},
-    "bRrwilUdP4e1mTfB849I": {title:"Исправили открытие клавиатуры в плане",body:"Спасибо, что подробно описали проблему. Мы исправили поле ответа в персональном плане: теперь при переходе к заданию оно сразу получает фокус и открывает клавиатуру. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-recall"},
     "F97swPTDukrVzISudYD9": {title:"Исправили зависание после ввода ответа",body:"Спасибо, что сообщили о зависании после ввода ответа. Мы проверили этот сценарий: после отправки ответа поле теперь освобождает фокус и не удерживает экран проверки. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson9-input-freeze"},
     "ADMa6ziN8hgLnckMQnuS": {title:"Исправили состояние кнопки проверки",body:"Спасибо, что обратили наше внимание на кнопку проверки. Теперь она становится доступной только после того, как фраза полностью собрана. Исправление появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-check-button"},
     "wH9Emg3STsLSldVaYDhV": {title:"Исправили пропадающую озвучку результата",body:"Спасибо, что рассказали о пропадающей озвучке. Мы исправили управление аудиоплеером между заданиями, чтобы озвучка результата не прекращалась после нескольких фраз. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson-result-audio"},
-    "HAhW4bPE5GCzYQ7SmRMa": {title:"Исправили переход после записи ответа",body:"Спасибо за подробное описание. Мы нашли состояние, в котором распознавание могло не завершиться и оставить упражнение без перехода дальше. Теперь попытка завершается даже тогда, когда устройство не присылает финальное событие. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-pronunciation"},
-    "dc2I7HPKFAQS7BDA8MAZ": {title:"Спасибо за сообщение о записи ответа",body:"Спасибо, что написали нам. Мы уже проверяем, почему запись ответа иногда не запускается в этом упражнении. Ваше сообщение помогло нам точнее восстановить последовательность действий.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-gavan"},
     "2xF0KadDOkQIIPG976H3": {title:"Исправили фразу о дне рождения",body:"Спасибо, что обратили внимание на формулировку. Мы заменили неестественный вариант фразы о дне рождения на более естественный. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson8-birthday-content"},
     "83gFLkE2IMbWPhon1X4K": {title:"Добавили понятную инструкцию к заданию",body:"Спасибо, что заметили нехватку пояснения. Мы добавили явную инструкцию перед фразой, чтобы сразу было понятно, что нужно сделать. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson-task-instruction"},
     "9jlPHMEmuoegEzPF8gyN": {title:"Проверили варианты Can и May",body:"Спасибо за вопрос. В этом задании Can I ask a question? — корректный и естественный вариант. May I ask a question? тоже возможен, но звучит заметно формальнее, поэтому менять упражнение не требуется.",shards:0,resolution:"by_design",rewardGroup:"english-grammar-choice"},
     "4Z6PiXniwSvniRxOPOBC": {title:"Спасибо за сообщение о формулировке задания",body:"Спасибо, что написали нам о непонятных словах в условии. Мы проверяем формулировку задания и учитываем Ваш комментарий при его доработке.",shards:0,resolution:"duplicate",rewardGroup:"lesson31-phrase31-extra-words"},
-    "xSw4yza4L2itsNxXwXGV": {title:"Спасибо за сообщение о записи ответа",body:"Спасибо, что рассказали о проблеме с записью. Мы проверяем, почему она иногда не запускается в этом упражнении. Ваше описание помогло нам уточнить сценарий.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-gavan"},
     "OfkRERmqyhwo5pP08hfW": {title:"Проверили английскую озвучку карточек",body:"Спасибо, что написали нам. Мы проверили английскую озвучку карточек в текущей версии и не нашли пропущенных аудиофайлов. Если звук снова исчезнет, пожалуйста, укажите карточку и момент, когда это произошло, — это поможет проверить конкретный случай.",shards:0,resolution:"not_reproduced",rewardGroup:"flashcards-audio"},
-    "M94pFbln5gSWOrePqZ1M": {title:"Исправили зависание распознавания ответа",body:"Спасибо, что подробно описали ситуацию. Мы исправили случай, когда распознавание прекращалось без результата и экран оставался в состоянии проверки. Теперь такая попытка корректно завершается, и упражнение можно продолжить. Изменение появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-gavan"},
     "b8mvjjsn3ipk5bgyLVvo": {title:"Исправили заглавную букву на первой плитке",body:"Спасибо, что обратили внимание на первую плитку. Мы исправили лишнюю заглавную букву, и изменение появится в следующем обновлении приложения.",shards:0,resolution:"duplicate",rewardGroup:"trainer-first-tile-capitalization"},
     "9hb6NrZbIGKD34DDpepg": {title:"Исправили перемешивание слов в тренере",body:"Спасибо, что заметили неправильный порядок слов. Теперь плитки перемешиваются перед началом задания и не остаются в готовой последовательности. Исправление появится в следующем обновлении приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"trainer-word-order"},
     "M1PRD3ocoWg1gqWA3GOE": {title:"Уточнили вопрос уровня A1",body:"Спасибо, что обратили внимание на двусмысленность. Мы изменили формулировку вопроса, чтобы у него оставался один понятный смысл. Обновление появится в следующей версии приложения. В благодарность за помощь мы начислили Вам 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"level-exam-ambiguous-question"},
@@ -22742,7 +22977,6 @@
     "lRJJf7C3ogwEYiLNbj8z": {title:"Дякуємо, розбираємось з озвученням",body:"Дякуємо, що помітили і порахували картки — це дуже допомагає. Ми підтвердили, що англійське озвучення спрацьовує не на всіх картках, і зараз шукаємо причину. Нарахували 2 перлини.",shards:2,resolution:"confirmed_investigating",rewardGroup:"flashcards-audio-partial"},
     "xrmM4khbKISZAgnV7VYZ": {title:"Дякуємо, кнопку виправили",body:"Дякуємо, ви маєте рацію — кнопка була підписана російською. Ми переклали її на «Слухати», зміни з'являться з наступним оновленням застосунку. Те, що вона не спрацьовує, ми теж підтвердили і зараз розбираємось. Нарахували 2 перлини.",shards:2,resolution:"confirmed_fixed",rewardGroup:"plan-listen-button-uk"},
     "Oaxaqqek9Ksh7YQsxOrP": {title:"Спасибо, подтвердили проблему с микрофоном",body:"Спасибо за очень точное описание — вы отлично поймали закономерность. Мы подтвердили, что после неудачной попытки следующие записи перестают засчитываться, и сейчас разбираемся. Начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"speech-recognition-stuck"},
-    "YSrcz9sisnbMuzeeWxsC": {title:"Спасибо, разбираемся с маршрутом",body:"Спасибо, что сообщили. Похоже, из-за сбоя экрана день в маршруте сменился раньше времени и прежние фразы пропали. Мы разбираемся с этим — прогресс при этом не теряется, а пройденные фразы вернутся в повторение. За находку начислили 1 жемчужину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"personal-plan-day-skip"},
     "yr2VNNMxKsCQi6e8wTSP": {title:"Спасибо, посмотрим студию",body:"Спасибо, что сообщили. Мы проверим, почему списки аватаров и аур не прокручиваются до конца на вашем экране. Подскажите, пожалуйста, происходит это всегда или только после перехода с другого раздела — так мы быстрее найдём причину.",shards:0,resolution:"not_reproduced",rewardGroup:"studio-scroll"},
     "YrKR0mr2auRTNv6cmJIB": {title:"Спасибо, разбираемся с озвучкой",body:"Спасибо за спокойное и полезное сообщение. Это не задумка: слова someone и somebody равнозначны и оба засчитываются, но озвучка всегда проговаривает основной вариант, а не выбранный вами. Мы разбираемся, как это исправить.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
     "viauG6QXRrAWT8STNGnU": {title:"Спасибо, это та же причина",body:"Спасибо, что показали случай в обратную сторону — это подтверждает нашу догадку. Озвучка всегда читает основной вариант фразы, независимо от того, какой из равнозначных синонимов вы выбрали. Мы разбираемся с этим.",shards:0,resolution:"duplicate",rewardGroup:"lesson21-synonym-audio"},
@@ -22763,9 +22997,20 @@
     "mrE3R0Yor0EcZyQRehDT": {title:"Спасибо, подтвердили несовпадение озвучки",body:"Спасибо, вы подметили верно — и рассуждение совершенно правильное. Somebody и someone равнозначны, поэтому оба ответа засчитываются, но озвучка всегда читает основной вариант фразы, а не выбранный вами. Мы взяли это в работу, а вам начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"lesson21-synonym-audio"},
     "LsQVkpPJ10CaSocibvzb": {title:"Спасибо, мы проверили задание",body:"Спасибо, что написали. Мы проверили это задание — слово hotel среди вариантов есть. Возможно, оно не поместилось на экране: мы как раз работаем над тем, чтобы длинные слова были видны полностью.",shards:0,resolution:"not_reproduced",rewardGroup:"lesson19-missing-hotel"},
     "qiLXHWpMZPmjRyfIlYmi": {title:"Где найти подарочную колоду",body:"Спасибо за вопрос. Откройте раздел «Карточки», затем вкладку «Витрина» — там находятся наборы, которые можно забрать по подарку. 48 часов даются на выбор, а после получения выбранная колода останется у вас.",shards:0,resolution:"by_design",rewardGroup:"flashcards-pack-gift-location"},
+    "dZlDwBjL1Ew6Mcu0nLop": {title:"Порядок слов в вопросе верный",body:"Спасибо, мы проверили эту фразу и набор слов. В вопросе Does he often forget? наречие often ставится перед основным глаголом forget, поэтому текущий порядок верный; вариант rarely меняет смысл предложения.",shards:0,resolution:"by_design",rewardGroup:"lesson5-frequency-adverb-order"},
+    "nLQZOj8uk6dhGCDHFUMG": {title:"У фразі правильний варіант — He",body:"Дякуємо, ми перевірили це завдання. Для «Він носить окуляри» правильна фраза — He wears glasses, а you був відволікаючим варіантом; у звіті збережено саме вибір you wears glasses.",shards:0,resolution:"user_error",rewardGroup:"lesson3-he-wears-glasses"},
+    "XbRAuTpygAqh7mzRjpjB": {title:"Купівлю наборів карток виправлено",body:"Дякуємо, що перевірили покупку ще раз. В актуальній версії ми вже виправили синхронізацію балансу, яка могла блокувати набір навіть за наявності інтернету; у вас версія 1.6.6, тому, будь ласка, оновіть застосунок.",shards:0,resolution:"duplicate",rewardGroup:"flashcard-pack-shard-purchase"},
+    "8hWRTWLasuU0gtKIc1gE": {title:"Купівлю наборів карток виправлено",body:"Дякуємо, ви допомогли знайти проблему синхронізації балансу перед купівлею набору карток. В актуальній версії перевірку виправлено; у вас встановлена версія 1.6.6, тому, будь ласка, оновіть застосунок. Вам нараховано 2 перлини.",shards:2,resolution:"confirmed_fixed",rewardGroup:"flashcard-pack-shard-purchase"},
+    "ln3vcMgzNnMC5pj7srAQ": {title:"Уточнили перевод фразы",body:"Спасибо, вы точно заметили: перевод «Всё в порядке» был слишком свободным для задания с одним ответом. Мы заменили его на более прямое «Никаких проблем нет», чтобы он однозначно подводил к Nothing is wrong; изменение появится в следующем обновлении приложения. Вам начислена 1 жемчужина.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson21-nothing-wrong-translation"},
+    "wXoD0PoyC2lFuWaaVF5R": {title:"В этой фразе нужна форма cooks",body:"Спасибо, мы проверили задание. После she в Present Simple нужна форма cooks, поэтому правильный ответ — She cooks dinner, а She cook dinner не засчитывается.",shards:0,resolution:"user_error",rewardGroup:"lesson3-subject-agreement"},
+    "bdwAV2iBRkWkE0PzGLan": {title:"В этой фразе подлежащее You",body:"Спасибо, мы проверили задание. Русскому «Ты читаешь книги» соответствует You read books, поэтому вариант I read books меняет подлежащее и не засчитывается.",shards:0,resolution:"user_error",rewardGroup:"lesson3-subject-meaning"},
+    "nupzElGoogbGDK5DLSNR": {title:"В этой фразе нужен вариант wrong",body:"Спасибо, мы проверили задание. Are you wrong? означает «Вы неправы?», а вариант right меняет смысл на противоположный, поэтому ошибка была отмечена верно.",shards:0,resolution:"user_error",rewardGroup:"lesson2-opposite-meaning"},
+    "yEYsJ9999FkOadOuSnnn": {title:"В этой фразе нужен вариант afraid",body:"Спасибо, мы проверили задание. «Я не боюсь» переводится как I am not afraid, а I'm not wrong означает «Я не ошибаюсь», поэтому текущая проверка верна.",shards:0,resolution:"user_error",rewardGroup:"lesson2-opposite-meaning"},
+    "bt9JXZ87gTNFAcLRXZT5": {title:"В этой фразе нужен вариант angry",body:"Спасибо, мы проверили задание. «Я не злюсь» переводится как I am not angry, а healthy означает «здоров», поэтому выбранный вариант не подходит по смыслу.",shards:0,resolution:"user_error",rewardGroup:"lesson2-opposite-meaning"},
+    "HLnsVFPCAL8Boray30oL": {title:"Формы глагола take указаны верно",body:"Спасибо, мы проверили задание: формы take — took — taken и правильный вариант для base указан верно. В комментарии вы отметили случайное нажатие, и ошибки в упражнении мы не нашли.",shards:0,resolution:"user_error",rewardGroup:"irregular-verb-take"},
+    "VdmYsQVfhCFYjcxLt5Sb": {title:"Формы глагола eat указаны верно",body:"Спасибо, мы проверили задание: формы eat — ate — eaten и правильный вариант для причастия указан верно. В комментарии вы отметили, что поторопились, и ошибки в упражнении мы не нашли.",shards:0,resolution:"user_error",rewardGroup:"irregular-verb-eat"},
     "UBa0ue0p8dWn4cRVGUY1": {title:"Как открыть список уроков",body:"Спасибо, что написали. Кнопка «Урок» на главной открывает последний начатый урок, а весь список находится за кнопкой с книгой в нижней панели. Нажмите её, чтобы выбрать любой доступный урок.",shards:0,resolution:"by_design",rewardGroup:"home-last-lesson-navigation"},
     "YUpxF78tXuRUQ5h9FRln": {title:"Вопросительный знак вернули",body:"Спасибо за внимательность. Мы исправили отображение правильного ответа: у вопроса «Do they have tickets?» снова будет знак вопроса в конце. Изменение появится в следующем обновлении приложения.",shards:0,resolution:"duplicate",rewardGroup:"lesson-result-terminal-punctuation"},
-    "ZXhpSblichNKlI6cyMPG": {title:"Повторение фраз исправили",body:"Спасибо, вы нашли настоящую ошибку. В повторение фраз прошлого дня могла попасть фраза из текущего дня — мы ограничили задание нужным набором. Исправление появится в следующем обновлении приложения, а вам начислили 1 жемчужину.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-recall-source-day"},
     "cBgMXszdgI4hze4trWQi": {title:"Знак вопроса теперь на месте",body:"Спасибо, что сообщили. Мы вернули вопросительный знак в конец фразы «Is the bank opposite the shop?». Изменение появится в следующем обновлении приложения.",shards:0,resolution:"duplicate",rewardGroup:"lesson-result-terminal-punctuation"},
     "RYfS5eNAnIzCp09a1jEp": {title:"Неоднозначні фрази замінено",body:"Дякуємо, ви мали рацію: фраза «Є питання?» не давала однозначно визначити число. Ми замінили цю пару на «Є проблема?» та «Є проблеми?», де однина й множина відрізняються без додаткового контексту. Зміна з’явиться в наступному оновленні застосунку.",shards:0,resolution:"duplicate",rewardGroup:"lesson9-uk-number-ambiguity"},
     "u10AfjIzqVBDOf8g9ZA6": {title:"Вопросительный знак исправили",body:"Спасибо за внимательность. Мы исправили строку правильного ответа, и фраза «Are the keys in the bag?» снова будет показана со знаком вопроса. Изменение появится в следующем обновлении приложения.",shards:0,resolution:"duplicate",rewardGroup:"lesson-result-terminal-punctuation"},
@@ -23407,7 +23652,6 @@
         settings: tryJson(p.user_settings, {}),
         achievements: tryJson(p.achievements_state, {}),
         leagueState: tryJson(p.league_state_v3, {}),
-        dailyTasks: tryJson(p.daily_tasks_progress, null),
         placementLevel: p.placement_level || null,
         platform: p.device_platform || null,
         appVersion: p.app_version || null,
@@ -24156,7 +24400,6 @@
       const xpBuckets = {'0-500':0,'500-2k':0,'2k-5k':0,'5k-10k':0,'10k+':0};
       const versions = {};
       const onboarding = {'✅ Завершён': 0, '❌ Не завершён': 0};
-      let tasksAllDone=0, tasksSomeDone=0, tasksNoneDone=0;
       users.forEach(u => {
         if(u.xp<500) xpBuckets['0-500']++;
         else if(u.xp<2000) xpBuckets['500-2k']++;
@@ -24166,24 +24409,13 @@
         const v = u.appVersion || '—';
         versions[v] = (versions[v] || 0) + 1;
         if (u.onboarding) onboarding['✅ Завершён']++; else onboarding['❌ Не завершён']++;
-        const arr = Array.isArray(u.dailyTasks) ? u.dailyTasks : [];
-        const done = arr.filter(t => t && t.completed).length;
-        const total = arr.length || 3;
-        if (done === 0) tasksNoneDone++;
-        else if (done >= total) tasksAllDone++;
-        else tasksSomeDone++;
       });
-      const dailyTasksDist = {'Все выполнены': tasksAllDone, 'Частично': tasksSomeDone, 'Не выполнено': tasksNoneDone};
       const platforms = {'📱 iOS': iosTotal, '🤖 Android': andTotal, '❓ Неизвестно': unkPlat};
 
       document.getElementById('analytics-grid').innerHTML = `
         <div class="chart-card">
           <h3>📱 Платформа</h3>
           ${coreBarChart(platforms,Math.max(...Object.values(platforms),1),'#60a5fa')}
-        </div>
-        <div class="chart-card">
-          <h3>✅ Ежедневные задания (сегодня)</h3>
-          ${coreBarChart(dailyTasksDist,Math.max(...Object.values(dailyTasksDist),1),'#4ade80')}
         </div>
         <div class="chart-card">
           <h3>💎 Распределение по XP</h3>
@@ -24554,19 +24786,6 @@
       Object.entries(featureCounts).sort((a,b)=>b[1]-a[1]).slice(0,10)
     );
 
-    // Daily tasks completed today
-    let tasksAllDone=0, tasksSomeDone=0, tasksNoneDone=0;
-    users.forEach(u => {
-      if(!u.dailyTasks) { tasksNoneDone++; return; }
-      const arr = Array.isArray(u.dailyTasks) ? u.dailyTasks : [];
-      const done = arr.filter(t=>t&&t.completed).length;
-      const total = arr.length || 3;
-      if(done===0) tasksNoneDone++;
-      else if(done>=total) tasksAllDone++;
-      else tasksSomeDone++;
-    });
-    const dailyTasksDist = {'Все выполнены': tasksAllDone, 'Частично': tasksSomeDone, 'Не выполнено': tasksNoneDone};
-
     const barChart = (data, maxVal, colors, total) => Object.entries(data).map(([label,val])=>`
       <div class="bar-row">
         <div class="bar-label">${label}</div>
@@ -24654,10 +24873,6 @@
         <h3>🔁 Active Recall — карточек на повторение</h3>
         ${barChart(arBuckets, Math.max(...Object.values(arBuckets)), '#818cf8')}
       </div>
-      <div class="chart-card">
-        <h3>✅ Ежедневные задания (сегодня)</h3>
-        ${barChart(dailyTasksDist, Math.max(...Object.values(dailyTasksDist)), '#4ade80')}
-      </div>
       ${sn > 0 ? `
       <div class="chart-card">
         <h3>🎯 Точность ответов${avgAccuracy!==null?' (avg '+avgAccuracy+'%)':''} <span style="font-size:10px;color:#555">${sn} польз. с данными</span></h3>
@@ -24743,7 +24958,6 @@
     const cards = Array.from(grid.querySelectorAll('.chart-card'));
     const keepCore = [
       '📱 Платформа',
-      '✅ Ежедневные задания',
       '💎 Распределение по XP',
       '🎓 Онбординг',
       '📦 Версии приложения',
@@ -25241,6 +25455,25 @@
 
   // ═══ GMAIL SUPPORT INBOX — входящая почта поддержки + ИИ-ответы ═════════════
   let _supportInboxAll = [];
+  let _supportPendingBatches = [];
+  let _supportAutomationRevision = 0;
+  let _supportAutoPolicyVersion = 0;
+  let _supportInstructionsSchemaVersion = 0;
+  let _supportInstructionsPromptVersion = 0;
+  let _supportInstructionsRevision = 0;
+  let _supportInstructionsFingerprint = '';
+  function supportInstructionByteLength(value) {
+    try { return new TextEncoder().encode(String(value || '')).length; }
+    catch (_) { return unescape(encodeURIComponent(String(value || ''))).length; }
+  }
+  function updateSupportInstructionsCount() {
+    const input = document.getElementById('gsi-owner-instructions');
+    const count = document.getElementById('gsi-instructions-count');
+    if (!input || !count) return;
+    const bytes = supportInstructionByteLength(input.value);
+    count.textContent = `${bytes} / 8000 байт`;
+    count.style.color = bytes > 8000 ? '#f87171' : '#94a3b8';
+  }
   window.loadSupportInbox = async function(force) {
     const list = document.getElementById('gsi-list');
     if (!list) return;
@@ -25248,13 +25481,35 @@
     list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
     try {
       await auth.currentUser?.getIdToken(true).catch(() => null);
-      const [inboxSnap, cfgSnap] = await Promise.all([
-        getDocs(query(collection(db, 'support_inbox'), orderBy('receivedAtMs', 'desc'), limit(500))),
-        getDoc(doc(db, 'admin_config', 'support_inbox')),
-      ]);
-      _supportInboxAll = inboxSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+      const response = await supportCallable('adminSupportList')({ limit: 500 });
+      const supportData = response?.data || {};
+      _supportInboxAll = Array.isArray(supportData.items) ? supportData.items : [];
+      _supportPendingBatches = Array.isArray(supportData.pendingBatches) ? supportData.pendingBatches : [];
       const sigInput = document.getElementById('gsi-signature');
-      if (sigInput && cfgSnap.exists()) sigInput.value = String(cfgSnap.data().signature || '');
+      {
+        const supportConfig = supportData.automation || {};
+        const instructions = supportData.instructions || {};
+        if (sigInput) sigInput.value = String(supportData.signature || '');
+        _supportAutomationRevision = Number(supportConfig.revision || 0);
+        _supportAutoPolicyVersion = Number(supportData.policyVersion || 0);
+        _supportInstructionsSchemaVersion = Number(instructions.schemaVersion || 0);
+        _supportInstructionsPromptVersion = Number(instructions.promptVersion || 0);
+        _supportInstructionsRevision = Number(instructions.revision || 0);
+        _supportInstructionsFingerprint = String(instructions.fingerprint || '');
+        const instructionsInput = document.getElementById('gsi-owner-instructions');
+        if (instructionsInput) instructionsInput.value = String(instructions.text || '');
+        const mode = document.getElementById('gsi-auto-mode');
+        const dailyCap = document.getElementById('gsi-auto-daily-cap');
+        const senderCap = document.getElementById('gsi-auto-sender-cap');
+        if (mode) mode.value = ['off','shadow','live_guarded'].includes(String(supportConfig.mode || '')) ? String(supportConfig.mode) : 'shadow';
+        if (dailyCap) dailyCap.value = String(Number(supportConfig.dailyCap || 100));
+        if (senderCap) senderCap.value = String(Number(supportConfig.perSenderDailyCap || 3));
+        updateSupportInstructionsCount();
+      }
+      const autoStatus = document.getElementById('gsi-auto-status');
+      if (autoStatus) autoStatus.textContent = `Ревизия ${_supportAutomationRevision}`;
+      const instructionsStatus = document.getElementById('gsi-instructions-status');
+      if (instructionsStatus) instructionsStatus.textContent = `Активен · ревизия ${_supportInstructionsRevision}`;
       window._supportInboxLoaded = true;
       renderSupportInbox();
     } catch (e) {
@@ -25263,56 +25518,191 @@
     }
   };
 
+  function selectSupportInboxRows(statusFilter) {
+    const batchReservedMessageIds = new Set(_supportPendingBatches.flatMap((batch) => (
+      ['prepared', 'dispatching', 'attention_required'].includes(String(batch?.state || ''))
+        ? (Array.isArray(batch?.items) ? batch.items.map((item) => String(item?.messageDocId || '')) : [])
+        : []
+    )));
+    const preparedRows = _supportInboxAll.filter(
+      (row) => {
+        const autoState = String(row.autoReply?.state || '');
+        const gateState = String(row.replyGate?.state || '');
+        const gateAllowsPreparation = !['dispatching', 'delivery_unknown'].includes(gateState)
+          && !batchReservedMessageIds.has(String(row.id || ''));
+        const instructionsAreCurrent = Number(row.draftInstructionsSchemaVersion || 0) === _supportInstructionsSchemaVersion
+          && Number(row.draftInstructionsPromptVersion || 0) === _supportInstructionsPromptVersion
+          && Number(row.draftInstructionsRevision || 0) === _supportInstructionsRevision
+          && String(row.draftInstructionsFingerprint || '') === _supportInstructionsFingerprint;
+        const readyState = row.draftOrigin === 'owner_manual' || (
+          row.draftOrigin === 'jarvis'
+          && autoState === 'awaiting_approval'
+          && row.autoReply?.grounded === true
+          && Number(row.draftPolicyVersion || 0) === _supportAutoPolicyVersion
+          && instructionsAreCurrent
+        );
+        return (row.status || 'new') === 'new'
+          && gateAllowsPreparation
+          && readyState
+          && String(row.draftReply || '').trim();
+      },
+    );
+    let rows = _supportInboxAll.filter((row) => (
+      !preparedRows.includes(row)
+      && !batchReservedMessageIds.has(String(row.id || ''))
+    ));
+    if (statusFilter) rows = rows.filter((row) => (row.status || 'new') === statusFilter);
+    return {
+      preparedRows,
+      rows,
+      visibleArchiveTargets: [...preparedRows, ...rows].filter((row) => (row.status || 'new') !== 'archived'),
+    };
+  }
+
   window.renderSupportInbox = function renderSupportInbox() {
     const list = document.getElementById('gsi-list');
+    const preparedList = document.getElementById('gsi-prepared-list');
+    const preparedCount = document.getElementById('gsi-prepared-count');
     const count = document.getElementById('gsi-count');
     if (!list) return;
     const statusFilter = document.getElementById('gsi-filter-status')?.value ?? 'new';
-    let rows = _supportInboxAll.slice();
-    if (statusFilter) rows = rows.filter(r => (r.status || 'new') === statusFilter);
+    const { preparedRows, rows } = selectSupportInboxRows(statusFilter);
     if (count) count.textContent = `${rows.length} / ${_supportInboxAll.length}`;
-    if (!rows.length) {
-      list.innerHTML = '<div class="reports-empty">Писем в этом фильтре нет. Нажми «🔄 Проверить почту», чтобы забрать новые с Gmail.</div>';
-      return;
-    }
+    if (preparedCount) preparedCount.textContent = `${preparedRows.length} готово`;
     const statusPill = (s) => {
       const map = { new:['Новое','#fbbf24','#1a1606'], answered:['Отвечено','#4ade80','#0f1a12'], archived:['Архив','#9ca3af','#161a1f'] };
       const [t,c,bg] = map[s] || map.new;
       return `<span style="font-family:monospace;font-size:10.5px;padding:2px 8px;border-radius:20px;color:${c};background:${bg};border:1px solid ${c}44">${t}</span>`;
     };
+    const autoReplyPill = (value) => {
+      const state = String(value?.state || '');
+      if (!state) return '';
+      const labels = { pending:'Джарвис: очередь', processing:'Джарвис: проверяет', retry:'Джарвис: повтор', awaiting_approval:'Ждёт решения', awaiting_feedback:'Ждёт ваших правок', revising:'Переписывает', accepted:'Джарвис: отправил', attention_required:'Требует внимания', paused:'Автоответы выключены', suppressed:'Только черновик', exhausted:'Лимит/ошибка' };
+      const alert = state === 'attention_required' || state === 'exhausted';
+      const color = alert ? '#fca5a5' : state === 'accepted' ? '#86efac' : '#bfdbfe';
+      const background = alert ? '#2a1217' : state === 'accepted' ? '#102419' : '#111d31';
+      return `<span title="${esc(String(value?.reason || state))}" style="font-size:10.5px;padding:2px 8px;border-radius:20px;color:${color};background:${background};border:1px solid ${color}55">${esc(labels[state] || state)}</span>`;
+    };
     const esc = escapeHtml;
-    list.innerHTML = rows.map(r => {
+    const renderCards = (cards) => cards.map(r => {
       const id = esc(r.id);
       const status = r.status || 'new';
       const when = r.receivedAtMs ? new Date(r.receivedAtMs).toLocaleString('ru-RU') : (r.receivedAt || '—');
       const from = `${esc(r.fromName || '')} <${esc(r.fromEmail || '—')}>`.trim();
       const draft = r.draftReply || '';
+      const autoSendAtMs = Number(r.autoReply?.autoSendAtMs || 0);
+      const deadlineText = autoSendAtMs > 0
+        ? (autoSendAtMs > Date.now()
+          ? `⏱ Автоотправка после ${new Date(autoSendAtMs).toLocaleString('ru-RU')}`
+          : '⏱ Срок истёк — отправка ставится в очередь')
+        : (r.autoReply?.state === 'awaiting_approval' ? 'Ручное подтверждение: автоотправка выключена' : '');
+      const conversationId = String(r.conversationId || '');
+      const conversationSequence = Number(r.conversationSequence || 0);
+      const conversationLabel = conversationId
+        ? `Переписка · сообщение ${conversationSequence || 1}`
+        : 'Отдельное письмо';
+      const gateState = String(r.replyGate?.state || '');
+      const deliveryOperationId = String(r.replyGate?.operationId || '');
+      const deliveryUnknownActions = gateState === 'delivery_unknown' && /^sr_[a-f0-9]{40}$/.test(deliveryOperationId) ? `
+        <div id="gsi-delivery-actions-${id}" role="group" aria-label="Проверка неопределённой доставки" style="margin-top:10px;padding:11px 12px;background:#2a1f0d;border:1px solid #92400e;border-radius:8px">
+          <div style="font-size:13px;font-weight:800;color:#fbbf24">Статус доставки неизвестен</div>
+          <div style="margin-top:4px;font-size:12px;line-height:1.5;color:#fde68a">Проверьте папку «Отправленные» в Gmail. До вашего решения повторная отправка заблокирована.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:9px">
+            <button type="button" onclick="supportResolveReplyDelivery('${id}','${deliveryOperationId}','accepted',this)" title="После проверки папки «Отправленные» отметит письмо доставленным и обращение отвеченным. Новое письмо сейчас не отправляется; повтор останется заблокирован." style="min-height:44px;background:#16321f;border:1px solid #3f7650;color:#bbf7d0;padding:8px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:750">Подтвердить отправку</button>
+            <button type="button" onclick="supportResolveReplyDelivery('${id}','${deliveryOperationId}','verified_not_sent',this)" title="После проверки папки «Отправленные» закроет эту попытку как неотправленную и снова разрешит защищённую отправку черновика. Новое письмо сейчас не отправляется." style="min-height:44px;background:#1f2937;border:1px solid #64748b;color:#e2e8f0;padding:8px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:750">Не отправлено</button>
+          </div>
+        </div>` : '';
       const draftBox = (status !== 'archived') ? `
         <textarea id="gsi-draft-${id}" placeholder="Черновик ответа появится здесь после «Сгенерировать ответ», либо впиши сам…" style="width:100%;min-height:${draft ? '90px' : '54px'};margin-top:10px;background:#0f1219;border:1px solid #2a2f40;color:#e5e7eb;border-radius:8px;padding:9px 11px;font-size:13px;line-height:1.5;resize:vertical">${esc(draft)}</textarea>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
           <button onclick="supportGenerateOne('${id}')" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:600">✨ Сгенерировать ответ</button>
+          ${status === 'new' ? `<button onclick="supportSaveDraft('${id}')" style="background:#16251e;border:1px solid #315941;color:#a7f3d0;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:700" title="Сохранить текст, отменить старую версию и прислать новые кнопки в Telegram">💾 Сохранить правки</button>` : ''}
           ${status === 'new' ? `<button onclick="supportSendOne('${id}')" style="background:rgba(96,165,250,0.14);border:1px solid rgba(96,165,250,0.4);color:#93c5fd;padding:6px 12px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:700">📤 Отправить</button>` : ''}
-        </div>` : '';
+        </div>
+        ${deadlineText ? `<div style="margin-top:7px;font-size:11.5px;color:#93a4ba">${esc(deadlineText)}</div>` : ''}` : '';
       return `<div style="background:#12151d;border:1px solid #1e2230;border-radius:11px;padding:14px 16px;margin-bottom:11px">
         <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline">
           <div style="font-weight:700;color:#e5e7eb;font-size:14.5px">${esc(r.subject || '(без темы)')}</div>
-          <div style="display:flex;gap:8px;align-items:center">${statusPill(status)}<span style="font-size:11px;color:#6b7280">${esc(String(when))}</span></div>
+          <div style="display:flex;gap:8px;align-items:center">${statusPill(status)}${autoReplyPill(r.autoReply)}<span style="font-size:11px;color:#6b7280">${esc(String(when))}</span></div>
         </div>
-        <div style="font-size:12px;color:#9ca3af;margin-top:3px">от ${from}</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:3px">от ${from} · ${esc(conversationLabel)}</div>
         <div style="font-size:13px;color:#cbd5e1;margin-top:9px;white-space:pre-wrap;max-height:160px;overflow:auto;background:#0e1116;border:1px solid #1a1d27;border-radius:7px;padding:9px 11px">${esc((r.bodyText || '').slice(0, 4000)) || '<span style="opacity:.5">(пустое тело)</span>'}</div>
+        ${conversationId ? `<div style="margin-top:8px"><button type="button" onclick="supportToggleConversation('${id}','${esc(conversationId)}',this)" title="Покажет только сообщения этой почтовой переписки и реально отправленные ответы поддержки. Другие пользователи и отдельные обращения сюда не попадут." style="background:none;border:1px solid #334155;color:#bfdbfe;cursor:pointer;font-size:12px;min-height:44px;padding:7px 11px;border-radius:7px">История переписки</button></div><div id="gsi-conversation-${id}" hidden style="margin-top:8px"></div>` : ''}
+        ${deliveryUnknownActions}
         ${draftBox}
         <div style="margin-top:8px">
           ${status !== 'archived'
-            ? `<button onclick="supportSetStatus('${id}','archived')" style="background:none;border:none;color:#6b7280;cursor:pointer;font-size:11.5px;padding:0">🗄 В архив</button>`
-            : `<button onclick="supportSetStatus('${id}','new')" style="background:none;border:none;color:#818cf8;cursor:pointer;font-size:11.5px;padding:0">↩ Вернуть в новые</button>`}
+            ? `<button type="button" onclick="supportSetStatus('${id}','archived',this)" title="Переместит письмо в архив, отменит подготовленную отправку и трёхчасовой таймер. Письмо можно вернуть из фильтра «Архив»." style="background:none;border:1px solid #475569;color:#cbd5e1;cursor:pointer;font-size:12px;min-height:44px;padding:7px 11px;border-radius:7px">В архив</button>`
+            : `<button type="button" onclick="supportSetStatus('${id}','new',this)" title="Вернёт письмо из архива в список новых. Автоматический ответ сам по себе не запустится без новой генерации." style="background:none;border:1px solid #4f46e5;color:#a5b4fc;cursor:pointer;font-size:12px;min-height:44px;padding:7px 11px;border-radius:7px">Вернуть в новые</button>`}
         </div>
       </div>`;
     }).join('');
+    const pendingBatchCards = _supportPendingBatches
+      .filter((batch) => ['prepared', 'dispatching', 'attention_required'].includes(String(batch?.state || '')))
+      .filter((batch) => /^srb_[a-f0-9]{40}$/.test(String(batch?.batchId || '')))
+      .map((batch) => {
+        const batchId = esc(String(batch.batchId));
+        const state = String(batch.state || 'prepared');
+        const stateLabel = {
+          prepared: 'ждёт подтверждения',
+          dispatching: 'отправка прервана',
+          attention_required: 'нужна сверка',
+        }[state] || state;
+        return `<div style="margin-bottom:10px;padding:11px 12px;background:#1b1728;border:1px solid #594a7a;border-radius:8px">
+          <div style="font-size:13px;font-weight:800;color:#ddd6fe">Незавершённый пакет · ${esc(stateLabel)}</div>
+          <div style="margin-top:3px;font-size:12px;line-height:1.45;color:#c4b5fd">Писем: ${Number(batch.count || 0)}. Продолжение использует тот же защищённый manifest и не создаёт повторных списаний или дубликатов.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+            <button type="button" onclick="supportResumeReplyBatch('${batchId}','dispatch',this)" title="Снова покажет полный sealed-предпросмотр и продолжит только ещё не завершённые операции этого пакета." style="min-height:44px;background:#312e81;border:1px solid #6366f1;color:#e0e7ff;padding:7px 11px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:700">Продолжить пакет</button>
+            ${state === 'prepared' ? `<button type="button" onclick="supportResumeReplyBatch('${batchId}','cancel',this)" title="Отменит неподтверждённый пакет и освободит его черновики без отправки писем." style="min-height:44px;background:#1f2937;border:1px solid #64748b;color:#e2e8f0;padding:7px 11px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:700">Отменить пакет</button>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+    if (preparedList) preparedList.innerHTML = pendingBatchCards + (preparedRows.length
+      ? renderCards(preparedRows)
+      : (pendingBatchCards ? '' : '<div class="reports-empty">Подготовленных ответов пока нет.</div>'));
+    list.innerHTML = rows.length
+      ? renderCards(rows)
+      : '<div class="reports-empty">Других писем в этом фильтре нет.</div>';
   };
 
   async function _supportRefreshAfter(action) {
     try { await action(); } finally { await window.loadSupportInbox(true); }
   }
+
+  window.supportToggleConversation = async function(messageId, conversationId, button) {
+    const box = document.getElementById('gsi-conversation-' + messageId);
+    if (!box) return;
+    if (!box.hidden) {
+      box.hidden = true;
+      if (button) button.textContent = 'История переписки';
+      return;
+    }
+    box.hidden = false;
+    box.innerHTML = '<div class="reports-empty">Загружаю переписку…</div>';
+    if (button) { button.disabled = true; button.textContent = 'Загрузка…'; }
+    try {
+      const response = await supportCallable('adminSupportConversation')({ conversationId });
+      const items = Array.isArray(response?.data?.items) ? response.data.items : [];
+      if (!items.length) {
+        box.innerHTML = '<div class="reports-empty">В этой переписке пока нет сохранённых сообщений.</div>';
+      } else {
+        box.innerHTML = items.map((item) => {
+          const when = item.receivedAtMs ? new Date(item.receivedAtMs).toLocaleString('ru-RU') : String(item.receivedAt || '');
+          const customer = `<div style="margin:7px 42px 7px 0;background:#111827;border:1px solid #334155;border-radius:8px;padding:9px 11px"><div style="font-size:11px;color:#93a4ba;margin-bottom:5px">Пользователь · ${escapeHtml(when)}</div><div style="white-space:pre-wrap;color:#e2e8f0;font-size:13px">${escapeHtml(String(item.bodyText || ''))}</div></div>`;
+          const support = String(item.sentReply || '').trim()
+            ? `<div style="margin:7px 0 7px 42px;background:#102419;border:1px solid #315941;border-radius:8px;padding:9px 11px"><div style="font-size:11px;color:#86efac;margin-bottom:5px">Поддержка · ${escapeHtml(String(item.repliedAt || ''))}</div><div style="white-space:pre-wrap;color:#dcfce7;font-size:13px">${escapeHtml(String(item.sentReply || ''))}</div></div>`
+            : '';
+          return customer + support;
+        }).join('');
+      }
+      if (button) button.textContent = 'Скрыть историю';
+    } catch (e) {
+      box.innerHTML = `<div class="reports-empty">Не удалось загрузить переписку: ${escapeHtml(e.message || e.code || String(e))}</div>`;
+      if (button) button.textContent = 'Повторить загрузку';
+    } finally {
+      if (button) button.disabled = false;
+    }
+  };
 
   window.supportPullMail = async function() {
     const list = document.getElementById('gsi-list');
@@ -25332,8 +25722,13 @@
     const ta = document.getElementById('gsi-draft-' + id);
     if (ta) { ta.disabled = true; ta.value = '✨ ИИ пишет ответ…'; }
     try {
-      await supportCallable('adminSupportGenerateReply')({ messageDocId: id });
-      showToast('✅ Черновик готов', 'ok');
+      const res = await supportCallable('adminSupportGenerateReply')({ messageDocId: id });
+      const d = res?.data || {};
+      if (d.attentionRequired) {
+        showToast('⚠️ Готовый ответ не создан: нужна ручная проверка фактов', 'warn');
+      } else {
+        showToast('✅ Черновик готов', 'ok');
+      }
     } catch (e) {
       showToast('Не удалось: ' + (e.message || e.code || e), 'err');
     } finally {
@@ -25346,7 +25741,11 @@
     try {
       const res = await supportCallable('adminSupportGenerateReply')({});
       const d = res?.data || {};
-      showToast(`✅ Сгенерировано: ${d.generated || 0}${d.remaining ? `, осталось: ${d.remaining} (нажми ещё раз)` : ''}`, 'ok');
+      const attention = Number(d.attentionRequired || 0);
+      showToast(
+        `${attention ? '⚠️' : '✅'} Сгенерировано: ${d.generated || 0}${attention ? `, требуют проверки: ${attention}` : ''}${d.remaining ? `, осталось: ${d.remaining}` : ''}`,
+        attention ? 'warn' : 'ok',
+      );
     } catch (e) {
       showToast('Не удалось: ' + (e.message || e.code || e), 'err');
     } finally {
@@ -25403,16 +25802,171 @@
     }
   }
 
+  window.supportResumeReplyBatch = async function(batchId, action, button) {
+    const batch = _supportPendingBatches.find((candidate) => String(candidate?.batchId || '') === String(batchId));
+    const state = String(batch?.state || '');
+    const confirmationNonce = String(batch?.confirmationNonce || '');
+    const manifestHash = String(batch?.manifestHash || '');
+    if (!batch || !['prepared', 'dispatching', 'attention_required'].includes(state)
+      || !/^srb_[a-f0-9]{40}$/.test(String(batchId)) || !confirmationNonce
+      || !/^[a-f0-9]{64}$/.test(manifestHash)) {
+      showToast('Пакет уже изменился или неполон. Обновляю список.', 'warn');
+      await window.loadSupportInbox(true);
+      return;
+    }
+    if (action === 'cancel' && state !== 'prepared') {
+      showToast('Начатый пакет нельзя отменить вслепую — сначала продолжите сверку.', 'warn');
+      return;
+    }
+    const confirmed = action === 'cancel'
+      ? await showConfirmModal({
+        title: 'Отменить неподтверждённый пакет?',
+        desc: 'Ни одно письмо этого неподтверждённого пакета не будет отправлено. Черновики освободятся для новой защищённой подготовки.',
+        confirmLabel: 'Отменить пакет',
+        danger: true,
+      })
+      : await showSupportReplyConfirmation(batch);
+    if (!confirmed) return;
+    const actionBox = button?.closest('div[style*="margin-bottom:10px"]');
+    const actionButtons = actionBox ? Array.from(actionBox.querySelectorAll('button')) : [button].filter(Boolean);
+    const previousLabel = button?.textContent || '';
+    actionButtons.forEach((candidate) => { candidate.disabled = true; });
+    if (button) button.textContent = action === 'cancel' ? 'Отменяю…' : 'Продолжаю…';
+    try {
+      if (action === 'cancel') {
+        await supportCallable('adminSupportCancelReplyBatch')({
+          batchId,
+          confirmationNonce,
+          requestId: supportRequestToken('legacy-support-resume-batch-cancel'),
+        });
+        showToast('Неподтверждённый пакет отменён. Письма не отправлялись.', 'ok');
+      } else {
+        const result = await supportCallable('adminSupportDispatchReplyBatch')({
+          batchId,
+          confirmationNonce,
+          manifestHash,
+          requestId: supportRequestToken('legacy-support-resume-batch-dispatch'),
+        });
+        const data = result?.data || {};
+        showToast(`Пакет продолжен: отправлено ${Number(data.accepted || 0)}, требуют внимания ${Number(data.attention || 0)}, ожидают ${Number(data.pending || 0)}.`, Number(data.attention || 0) ? 'warn' : 'ok');
+      }
+    } catch (e) {
+      showToast('Не удалось обработать пакет: ' + (e.message || e.code || e), 'err');
+    } finally {
+      actionButtons.forEach((candidate) => { candidate.disabled = false; });
+      if (button) button.textContent = previousLabel;
+      await window.loadSupportInbox(true);
+    }
+  };
+
+  window.supportResolveReplyDelivery = async function(id, operationId, resolution, button) {
+    const item = _supportInboxAll.find((candidate) => String(candidate.id) === String(id));
+    const currentOperationId = String(item?.replyGate?.operationId || '');
+    if (String(item?.replyGate?.state || '') !== 'delivery_unknown' || currentOperationId !== String(operationId)) {
+      showToast('Состояние доставки уже изменилось. Обновляю список.', 'warn');
+      await window.loadSupportInbox(true);
+      return;
+    }
+    const accepted = resolution === 'accepted';
+    if (!accepted && resolution !== 'verified_not_sent') {
+      showToast('Неизвестное решение по доставке. Ничего не изменено.', 'err');
+      return;
+    }
+    const confirmed = await showConfirmModal({
+      title: accepted ? 'Подтвердить, что письмо отправлено?' : 'Подтвердить, что письмо не отправлено?',
+      desc: accepted
+        ? 'Используйте это действие только после проверки папки «Отправленные» в Gmail. Обращение будет отмечено отвеченным, а повторная отправка останется заблокированной. Само письмо сейчас не отправляется.'
+        : 'Используйте это действие только после проверки папки «Отправленные» в Gmail. Неопределённая попытка будет закрыта как неотправленная, а черновик снова станет доступен для защищённой отправки. Само письмо сейчас не отправляется.',
+      confirmLabel: accepted ? 'Подтвердить отправку' : 'Отметить как неотправленное',
+      danger: true,
+    });
+    if (!confirmed) {
+      showToast('Решение по доставке не изменено', 'warn');
+      return;
+    }
+    const actionBox = document.getElementById('gsi-delivery-actions-' + id);
+    const actionButtons = actionBox ? Array.from(actionBox.querySelectorAll('button')) : [];
+    const previousLabel = button?.textContent || '';
+    actionButtons.forEach((candidate) => { candidate.disabled = true; });
+    if (button) button.textContent = accepted ? 'Подтверждаю…' : 'Сохраняю…';
+    try {
+      const result = await supportCallable('adminSupportResolveReplyDelivery')({
+        operationId,
+        resolution,
+        requestId: supportRequestToken('legacy-support-resolve-delivery'),
+      });
+      const state = String(result?.data?.state || '');
+      if (state === 'accepted') {
+        showToast('Доставка подтверждена. Письмо отмечено как отправленное; повторной отправки не будет.', 'ok');
+      } else if (state === 'verified_not_sent') {
+        showToast('Письмо отмечено как неотправленное. Черновик снова доступен для защищённой отправки.', 'ok');
+      } else {
+        showToast('Сервер не подтвердил решение по доставке. Проверьте карточку после обновления.', 'warn');
+      }
+    } catch (e) {
+      showToast('Статус доставки не изменён: ' + (e.message || e.code || e), 'err');
+    } finally {
+      actionButtons.forEach((candidate) => { candidate.disabled = false; });
+      if (button) button.textContent = previousLabel;
+      await window.loadSupportInbox(true);
+    }
+  };
+
+  window.supportSaveDraft = async function(id) {
+    const ta = document.getElementById('gsi-draft-' + id);
+    const replyText = ta ? ta.value.trim() : '';
+    if (!replyText) { showToast('Черновик пуст', 'warn'); return; }
+    const item = _supportInboxAll.find((candidate) => String(candidate.id) === String(id));
+    if (ta) ta.disabled = true;
+    try {
+      const result = await supportCallable('adminSupportSaveDraft')({
+        messageDocId: id,
+        replyText,
+        expectedDraftRevision: Number(item?.draftRevision ?? 0),
+        requestId: supportRequestToken('legacy-support-save-draft'),
+      });
+      const reviewState = String(result?.data?.reviewState || '');
+      if (reviewState === 'awaiting_approval') {
+        showToast('Правки сохранены. Новая версия отправлена вам в Telegram', 'ok');
+      } else if (reviewState === 'retry') {
+        showToast('Правки сохранены. Telegram временно недоступен — повтор поставлен в очередь', 'warn');
+      } else if (reviewState === 'attention_required') {
+        showToast('Правки сохранены. Автоотправка заблокирована — проверьте полный текст в админке', 'warn');
+      } else if (reviewState === 'exhausted') {
+        showToast('Правки сохранены. Лимит уведомлений Telegram исчерпан — проверьте ответ в админке', 'warn');
+      } else if (reviewState === 'stale') {
+        showToast('Правки сохранены, но уже появилась более новая версия. Обновляю список', 'warn');
+      } else {
+        showToast('Правки сохранены. Проверьте состояние ответа в админке', 'warn');
+      }
+    } catch (e) {
+      showToast('Не удалось сохранить правки: ' + (e.message || e.code || e), 'err');
+    } finally {
+      if (ta) ta.disabled = false;
+      await window.loadSupportInbox(true);
+    }
+  };
+
   window.supportSendOne = async function(id) {
     const ta = document.getElementById('gsi-draft-' + id);
     const replyText = ta ? ta.value.trim() : '';
     if (!replyText) { showToast('Черновик пуст — сначала сгенерируй или впиши ответ', 'warn'); return; }
     const item = _supportInboxAll.find((candidate) => String(candidate.id) === String(id));
     try {
+      let draftRevision = Number(item?.draftRevision ?? 0);
+      if (replyText !== String(item?.draftReply || '').trim()) {
+        const saved = await supportCallable('adminSupportSaveDraft')({
+          messageDocId: id,
+          replyText,
+          expectedDraftRevision: draftRevision,
+          requestId: supportRequestToken('legacy-support-save-before-send'),
+        });
+        draftRevision = Number(saved?.data?.draftRevision ?? draftRevision + 1);
+      }
       const prepareResult = await supportCallable('adminSupportPrepareReply')({
         messageDocId: id,
         replyText,
-        expectedDraftRevision: Number(item?.draftRevision ?? 0),
+        expectedDraftRevision: draftRevision,
         idempotencyKey: supportRequestToken('legacy-support-prepare'),
         requestId: supportRequestToken('legacy-support-prepare-request'),
       });
@@ -25485,46 +26039,73 @@
     }
   };
 
-  window.supportSetStatus = async function(id, status) {
+  window.supportSetStatus = async function(id, status, button) {
+    const item = _supportInboxAll.find((candidate) => String(candidate.id) === String(id));
+    const previousLabel = button?.textContent || '';
+    if (button) { button.disabled = true; button.textContent = status === 'archived' ? 'Архивирую…' : 'Возвращаю…'; }
     try {
-      await supportCallable('adminSupportSetStatus')({ messageDocId: id, status });
+      if (status === 'archived') {
+        const result = await supportCallable('adminSupportArchiveMessages')({
+          items: [{
+            messageDocId: id,
+            expectedStatus: item?.status || 'new',
+            expectedDraftRevision: Number(item?.draftRevision ?? 0),
+          }],
+          requestId: supportRequestToken('legacy-support-archive-one'),
+        });
+        const data = result?.data || {};
+        if (Number(data.failed || 0) > 0) throw new Error('Сервер не смог архивировать письмо');
+        showToast(Number(data.archived || 0) > 0 ? 'Письмо перемещено в архив' : 'Письмо уже находится в архиве', 'ok');
+      } else {
+        await supportCallable('adminSupportSetStatus')({
+          messageDocId: id, status, requestId: supportRequestToken('legacy-support-restore-one'),
+        });
+        showToast('Письмо возвращено в новые', 'ok');
+      }
     } catch (e) {
-      showToast('Не удалось: ' + (e.message || e.code || e), 'err');
+      showToast('Не удалось изменить статус: ' + (e.message || e.code || e), 'err');
     } finally {
+      if (button) { button.disabled = false; button.textContent = previousLabel; }
       await window.loadSupportInbox(true);
     }
   };
 
   // Массово: все показанные (по фильтру gsi-filter-status) письма со status!=='archived' → 'archived'.
-  // Статус меняется НЕ прямым updateDoc, а серверным callable adminSupportSetStatus (как supportSetStatus),
-  // поэтому writeBatch неприменим — вызываем существующий callable в цикле (требования 5, 26, 27).
+  // Один серверный пакетный callable обрабатывает все видимые письма и возвращает
+  // точный итог. Браузер больше не делает десятки отдельных ненадёжных запросов.
   window.supportArchiveAllVisible = async function() {
     const statusFilter = document.getElementById('gsi-filter-status')?.value ?? 'new';
-    let rows = _supportInboxAll.slice();
-    if (statusFilter) rows = rows.filter(r => (r.status || 'new') === statusFilter);
-    const targets = rows.filter(r => (r.status || 'new') !== 'archived');
+    const targets = selectSupportInboxRows(statusFilter).visibleArchiveTargets;
     if (!targets.length) { showToast('Нечего обрабатывать', 'warn'); return; }
     const ok = await showConfirmModal({
       title: `Архивировать все ${targets.length} показанные письма?`,
-      desc: 'Меняется только статус (archived). Это можно вернуть по одному письму.',
+      desc: 'Письма переместятся в архив. Подготовленные отправки, Telegram-кнопки и трёхчасовые таймеры будут отменены. Уже начатая или неопределённая SMTP-доставка не архивируется и попадёт в итог как ошибка. Вернуть письмо можно из фильтра «Архив».',
       confirmLabel: 'Архивировать',
     });
     if (!ok) return;
     const btn = document.getElementById('gsi-archive-all');
     const prevLabel = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = '⏳ Обрабатываю…'; }
-    const setStatus = supportCallable('adminSupportSetStatus');
-    let okN = 0, errN = 0;
     try {
-      for (const r of targets) {
-        try {
-          await setStatus({ messageDocId: r.id, status: 'archived' });
-          okN++;
-        } catch (e) {
-          errN++;
-        }
+      const result = await supportCallable('adminSupportArchiveMessages')({
+        items: targets.map((row) => ({
+          messageDocId: row.id,
+          expectedStatus: row.status || 'new',
+          expectedDraftRevision: Number(row.draftRevision ?? 0),
+        })),
+        requestId: supportRequestToken('legacy-support-archive-visible'),
+      });
+      const data = result?.data || {};
+      const archived = Number(data.archived || 0);
+      const unchanged = Number(data.unchanged || 0);
+      const failed = Number(data.failed || 0);
+      if (failed > 0) {
+        showToast(`Архивировано: ${archived}. Не удалось: ${failed}. Уже в архиве: ${unchanged}.`, 'warn');
+      } else {
+        showToast(`Архивировано писем: ${archived}${unchanged ? `. Уже в архиве: ${unchanged}` : ''}`, 'ok');
       }
-      showToast(errN ? `✅ Обработано: ${okN}, ошибок: ${errN}` : `✅ Обработано: ${okN}`);
+    } catch (e) {
+      showToast('Не удалось архивировать показанные письма: ' + (e.message || e.code || e), 'err');
     } finally {
       if (btn) { btn.disabled = false; btn.textContent = prevLabel; }
       await window.loadSupportInbox(true);
@@ -25541,6 +26122,71 @@
       showToast('Не удалось сохранить подпись: ' + (e.message || e.code || e), 'err');
     }
   };
+
+  window.supportSaveAutomation = async function() {
+    const mode = String(document.getElementById('gsi-auto-mode')?.value || 'off');
+    const dailyCap = Number(document.getElementById('gsi-auto-daily-cap')?.value || 100);
+    const perSenderDailyCap = Number(document.getElementById('gsi-auto-sender-cap')?.value || 3);
+    const status = document.getElementById('gsi-auto-status');
+    if (!['off','shadow','live_guarded'].includes(mode) || !Number.isInteger(dailyCap) || dailyCap < 1 || dailyCap > 500 || !Number.isInteger(perSenderDailyCap) || perSenderDailyCap < 1 || perSenderDailyCap > 10) {
+      showToast('Проверь режим и лимиты автоматизации', 'err');
+      return;
+    }
+    if (status) status.textContent = 'Сохраняю…';
+    try {
+      const result = await supportCallable('adminSupportSaveAutomation')({
+        mode, dailyCap, perSenderDailyCap, expectedRevision: _supportAutomationRevision,
+        requestId: createAdminCommandId('support_automation'),
+      });
+      _supportAutomationRevision = Number(result?.data?.revision || _supportAutomationRevision + 1);
+      if (status) status.textContent = `${mode === 'live_guarded' ? 'Автоответы включены' : mode === 'shadow' ? 'Только черновики' : 'Выключено'} · ревизия ${_supportAutomationRevision}`;
+      showToast('Настройки автоматизации сохранены', 'ok');
+    } catch (e) {
+      if (status) status.textContent = 'Ошибка сохранения';
+      showToast('Не удалось сохранить автоматизацию: ' + (e.message || e.code || e), 'err');
+      await window.loadSupportInbox(true);
+    }
+  };
+
+  window.supportSaveInstructions = async function() {
+    const input = document.getElementById('gsi-owner-instructions');
+    const status = document.getElementById('gsi-instructions-status');
+    const button = document.getElementById('gsi-instructions-save');
+    const text = String(input?.value || '');
+    const bytes = supportInstructionByteLength(text);
+    if (bytes > 8000) {
+      showToast('Инструктаж длиннее 8000 байт. Сократите текст.', 'err');
+      updateSupportInstructionsCount();
+      return;
+    }
+    if (status) status.textContent = 'Сохраняю…';
+    if (button) button.disabled = true;
+    try {
+      const result = await supportCallable('adminSupportSaveInstructions')({
+        text,
+        expectedRevision: _supportInstructionsRevision,
+        requestId: createAdminCommandId('support_instructions'),
+      });
+      const saved = result?.data?.instructions || {};
+      _supportInstructionsSchemaVersion = Number(saved.schemaVersion || _supportInstructionsSchemaVersion);
+      _supportInstructionsPromptVersion = Number(saved.promptVersion || _supportInstructionsPromptVersion);
+      _supportInstructionsRevision = Number(saved.revision || _supportInstructionsRevision);
+      _supportInstructionsFingerprint = String(saved.fingerprint || _supportInstructionsFingerprint);
+      if (input) input.value = String(saved.text ?? text);
+      if (status) status.textContent = `${result?.data?.unchanged ? 'Без изменений' : 'Сохранён'} · ревизия ${_supportInstructionsRevision}`;
+      updateSupportInstructionsCount();
+      renderSupportInbox();
+      showToast(result?.data?.unchanged ? 'Инструктаж уже актуален' : 'Инструктаж Джарвиса сохранён', 'ok');
+    } catch (e) {
+      if (status) status.textContent = 'Ошибка сохранения';
+      showToast('Не удалось сохранить инструктаж: ' + (e.message || e.code || e), 'err');
+      await window.loadSupportInbox(true);
+    } finally {
+      if (button) button.disabled = false;
+    }
+  };
+
+  document.getElementById('gsi-owner-instructions')?.addEventListener('input', updateSupportInstructionsCount);
 
   window.loadUserReports = async function() {
     window._userReportsLoaded = true;
@@ -27365,7 +28011,6 @@
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
     { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: true },
     { key: 'ideas_enabled', label: 'Раздел «Идеи» (год Плюс за идею)', def: false },
-    { key: 'onboarding_plan_only_enabled', label: 'Онбординг: новый плановый вход включён', def: true },
     { key: 'paywall_timers_enabled', label: 'Пейволы: таймеры срочности (выкл = скрыть у всех)', def: true },
     { key: 'paywall_reviews_enabled', label: 'Пейволы: отзывы «что говорят ученики» (выкл = скрыть у всех)', def: true },
   ];
@@ -28145,7 +28790,7 @@
           'Форма Remote Config: ' + changes.slice(0, 20).join('; '),
         );
       }
-      rcSetStatus(`✅ Сохранено${changes.length ? ' (' + changes.length + ' изм.)' : ''}. Клиенты подхватят за секунды.`, '#4ade80');
+      rcSetStatus(`✅ Сохранено${changes.length ? ' (' + changes.length + ' изм.)' : ''}. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.`, '#4ade80');
       rcLoadHistory(changes.length > 0);
     } catch (e) {
       rcSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
@@ -28165,7 +28810,6 @@
     { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: true, hint: 'Продукт phraseman_premium_lifetime_v1 заведён в RC (2026-06-21). Покажется, когда RevenueCat вернёт пакет.' },
     { key: 'ideas_enabled',            label: 'Раздел «Идеи»',                  def: false, hint: 'Юзер шлёт идею → год Плюс при одобрении (вкладка «Идеи»).' },
     { key: 'promo_codes_enabled',      label: 'Промокоды в настройках',          def: false, hint: 'Sell-switch. Вкл → пункт «Промокоды» виден в настройках и сервер принимает promoCodeRedeem; выкл → скрыто и promo_disabled.' },
-    { key: 'onboarding_plan_only_enabled', label: 'Онбординг: новый плановый вход', def: true, hint: 'Новый порядок: бренд → язык → цель → уровень → время → mini aha → план → пейвол → имя → 16+ и согласия.' },
     { key: 'paywall_timers_enabled',   label: 'Пейволы: таймеры срочности',      def: true,  hint: 'Вкл по умолчанию. Выкл → блок обратного отсчёта «старой цены» (и плашка «цена сохранена») прячется на всех пейволах A/B/C у всех живьём, без релиза.' },
     { key: 'paywall_reviews_enabled',  label: 'Пейволы: отзывы учеников',        def: true,  hint: 'Вкл по умолчанию. Выкл → секция «Что говорят ученики» пропадает на всех пейволах A/B/C у всех живьём, без релиза. Ничего не ломается — блок просто исчезает. Вкл возвращает.' },
     { key: 'video_button_enabled',     label: 'Кнопка «Видео» на главной',       def: true,  hint: 'Вкл по умолчанию. Выкл → иконка-плей с входом на экран видео прячется в шапке главной у всех живьём, без релиза. Какой канал показывать — настраивается в карточке «YouTube-канал» (вкладка Remote Config).' },
@@ -28263,6 +28907,119 @@
     }
   }
 
+  // ── Арена: единственная живая поверхность конфига ──────────────────────
+  // Технические версии и версия приложения намеренно не показываются: их
+  // подставляет серверный договор. Оператор выбирает только режимы и причину.
+  const ARENA_BASE_FLAGS = [
+    'enabled', 'quickEnabled', 'rankedEnabled',
+    'friendEnabled', 'rewardsEnabled', 'spinEnabled',
+  ];
+  window._arenaConfigExpansionFlags = {};
+  let _fnAdminArenaConfigGet = null;
+  let _fnAdminArenaConfigSet = null;
+
+  function arenaConfigCallable(name) {
+    if (name === 'adminArenaConfigGet') {
+      return _fnAdminArenaConfigGet || (_fnAdminArenaConfigGet = httpsCallable(functionsUs, name));
+    }
+    return _fnAdminArenaConfigSet || (_fnAdminArenaConfigSet = httpsCallable(functionsUs, name));
+  }
+
+  function cpArenaStatus(message, color) {
+    window.__cpStatus(document.getElementById('cp-arena-status'), message, color);
+  }
+
+  function cpArenaBusy(busy) {
+    for (const key of ARENA_BASE_FLAGS) {
+      const input = document.getElementById('cp-arena-' + key);
+      if (input) input.disabled = Boolean(busy);
+    }
+    const save = document.getElementById('cp-arena-save');
+    const reload = document.getElementById('cp-arena-reload');
+    if (save) save.disabled = Boolean(busy);
+    if (reload) reload.disabled = Boolean(busy);
+  }
+
+  function cpArenaRenderFlag(key, enabled) {
+    const input = document.getElementById('cp-arena-' + key);
+    const label = document.querySelector('[data-arena-label="' + key + '"]');
+    if (input) {
+      input.checked = enabled === true;
+      input.onchange = function() {
+        cpArenaRenderFlag(key, input.checked === true);
+        cpArenaStatus('Есть несохранённые изменения.');
+      };
+    }
+    if (label) {
+      label.textContent = enabled === true ? 'Вкл' : 'Выкл';
+      label.setAttribute('data-on', enabled === true ? '1' : '0');
+    }
+  }
+
+  function cpArenaPaint(status) {
+    const current = status && typeof status === 'object' ? status : {};
+    const flags = current.flags && typeof current.flags === 'object' ? current.flags : {};
+    for (const key of ARENA_BASE_FLAGS) cpArenaRenderFlag(key, flags[key] === true);
+    window._arenaConfigExpansionFlags = current.expansionFlags && typeof current.expansionFlags === 'object'
+      ? { ...current.expansionFlags }
+      : {};
+    if (current.exists !== true) {
+      cpArenaStatus('Арена не настроена. Выбери режимы и сохрани.', '#f87171');
+    } else if (current.valid !== true) {
+      cpArenaStatus('Конфиг Арены несовместим с сервером. Сначала обнови функции.', '#f87171');
+    } else if (current.liveForPlayers === true) {
+      cpArenaStatus('Арена работает. Изменения доходят примерно за 15 секунд.', '#4ade80');
+    } else {
+      cpArenaStatus('Арена выключена. Конфиг исправен.');
+    }
+  }
+
+  window.loadControlPanelArena = async function() {
+    cpArenaBusy(true);
+    cpArenaStatus('Загрузка…');
+    try {
+      const response = await arenaConfigCallable('adminArenaConfigGet')({});
+      cpArenaPaint(response && response.data ? response.data.status : null);
+    } catch (error) {
+      cpArenaStatus('Не удалось прочитать конфиг Арены: ' + (error && error.message ? error.message : error), '#f87171');
+    } finally {
+      cpArenaBusy(false);
+    }
+  };
+
+  window.saveControlPanelArena = async function() {
+    const reasonInput = document.getElementById('cp-arena-reason');
+    const reason = String(reasonInput && reasonInput.value ? reasonInput.value : '').trim();
+    if (!reason) {
+      cpArenaStatus('Укажи причину изменения — она попадёт в журнал.', '#f87171');
+      if (reasonInput) reasonInput.focus();
+      return;
+    }
+    const flags = {};
+    for (const key of ARENA_BASE_FLAGS) {
+      const input = document.getElementById('cp-arena-' + key);
+      flags[key] = Boolean(input && input.checked);
+    }
+    cpArenaBusy(true);
+    cpArenaStatus('Сохранение…');
+    try {
+      const response = await arenaConfigCallable('adminArenaConfigSet')({
+        reason,
+        flags,
+        // Скрытые флаги расширения не сбрасываем при правке базовых режимов.
+        expansionFlags: { ...window._arenaConfigExpansionFlags },
+        // Поле требует схема, но оператор его не вводит и не видит.
+        minClientVersion: '0.0.0',
+      });
+      cpArenaPaint(response && response.data ? response.data.status : null);
+      if (reasonInput) reasonInput.value = '';
+    } catch (error) {
+      cpArenaStatus('Не удалось сохранить Арену: ' + (error && error.message ? error.message : error), '#f87171');
+    } finally {
+      cpArenaBusy(false);
+    }
+  };
+
   window.loadControlPanel = async function() {
     window._controlPanelLoaded = true;
     cpSetStatus('Загрузка…');
@@ -28291,6 +29048,7 @@
     if (typeof window.loadYoutubeChannel === 'function') void window.loadYoutubeChannel();
     if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
     if (typeof window.loadControlPanelPromoBanner === 'function') void window.loadControlPanelPromoBanner();
+    if (typeof window.loadControlPanelArena === 'function') void window.loadControlPanelArena();
     if (typeof window.loadBusinessTier === 'function') void window.loadBusinessTier(false);
   };
 
@@ -28312,7 +29070,7 @@
         );
       }
       cpRenderToggle(key, !!checked);
-      cpSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      cpSetStatus('✅ Сохранено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false; // пусть Remote Config перечитает
     } catch (e) {
       cpSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
@@ -28948,7 +29706,7 @@
       };
       await window.saveControlPanelTexts(patch);
       ytRenderParsedHint();
-      ytSetStatus(rawId ? '✅ Канал сохранён. Клиенты подхватят за секунды.' : '✅ Сохранено. Канал по умолчанию — PHRASEMAN.', '#4ade80');
+      ytSetStatus(rawId ? '✅ Канал сохранён. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.' : '✅ Сохранено. Канал по умолчанию — PHRASEMAN.', '#4ade80');
     } catch (e) {
       ytSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
     }
@@ -29194,7 +29952,7 @@
       });
       // Rollout пишем отдельно в numbers (пусто → удаление ключа = 100%).
       await window.saveControlPanelNumbers({ force_update_enabled_rollout_pct: rollout });
-      cpForceStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      cpForceStatus('✅ Сохранено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
     } catch (e) {
       cpForceStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
     }
@@ -29253,7 +30011,7 @@
       await window.saveControlPanelBool('manual_update_enabled', willEnable);
       const lbl = document.getElementById('cp-bool-label-manual_update_enabled');
       if (lbl) { lbl.textContent = willEnable ? 'Вкл' : 'Выкл'; lbl.style.color = ''; lbl.setAttribute('data-on', willEnable ? '1' : '0'); }
-      cpForceStatus(willEnable ? '✅ Manual update включен. Клиенты подхватят за секунды.' : '✅ Manual update сохранен и выключен.', '#4ade80');
+      cpForceStatus(willEnable ? '✅ Manual update включен. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.' : '✅ Manual update сохранен и выключен.', '#4ade80');
     } catch (e) {
       cpForceStatus('Ошибка manual update: ' + (e && e.message ? e.message : e), '#f87171');
       const cb = document.getElementById('cp-bool-manual_update_enabled');
@@ -29762,7 +30520,7 @@
         promo_banner_audience: get('cp-promo-banner-audience'),
         promo_banner_platform: get('cp-promo-banner-platform'),
       });
-      cpPromoBannerStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      cpPromoBannerStatus('✅ Сохранено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
     } catch (e) {
       cpPromoBannerStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
     }
@@ -29785,7 +30543,6 @@
     { key: 'gate_smart_trainer_premium',      label: 'Умный тренажёр',                hint: 'Адаптивный микс тренажёра.' },
     { key: 'gate_trainer_modes_premium',      label: 'Тренажёр: дневной лимит',       hint: 'Фри = без дневного лимита сессий тренажёра.' },
     { key: 'gate_diagnosis_training_premium', label: 'Разбор ошибки (тренировки)',    hint: 'Персональные мини-тренировки на ошибках.' },
-    { key: 'gate_personal_plan_premium',      label: 'Личный план (Компас)',          hint: 'Адаптивный план обучения.' },
     { key: 'gate_stats_premium',              label: 'Статистика и инсайты',          hint: 'Теплокарта ошибок, паттерны, перцентили.' },
     { key: 'gate_flashcards_premium',         label: 'Карточки (сверх лимита)',       hint: 'Сохранение карточек сверх бесплатного лимита.' },
     { key: 'gate_themes_premium',             label: 'Темы оформления',               hint: 'Плюс-темы интерфейса.' },
@@ -30030,7 +30787,7 @@
           'Премиум-пульт: ' + changes.slice(0, 12).join('; '),
         );
       }
-      cpPremSetStatus('✅ Сохранено' + (changes.length ? (' (' + changes.length + ' изм.)') : '') + '. Клиенты подхватят за секунды.', '#4ade80');
+      cpPremSetStatus('✅ Сохранено' + (changes.length ? (' (' + changes.length + ' изм.)') : '') + '. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
       // Синхронизируем старые рубильники-дубли (lifetime/ideas и пр.) с общим документом.
       if (typeof window.loadControlPanel === 'function') void window.loadControlPanel();
@@ -30199,7 +30956,7 @@
           'Недельные бонусы: обновлена конфигурация',
         );
       }
-      wbSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      wbSetStatus('✅ Сохранено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
     } catch (e) { wbSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171'); }
   };
@@ -30366,7 +31123,7 @@
       cpMaintRenderToggle('cp-maint-banner', nextBanner);
       cpMaintRenderToggle('cp-maint-block', nextBlock);
       if (!wasBlock && nextBlock) cpMaintSetStatus('⚠️ ЖЁСТКИЙ БЛОК ВКЛЮЧЁН — приложение недоступно у всех.', '#f87171');
-      else cpMaintSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      else cpMaintSetStatus('✅ Сохранено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
     } catch (e) {
       cpMaintSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
@@ -31081,7 +31838,7 @@
     smart_trainer: 'Умный микс', dialog_limit: 'Лимит диалогов', dialog_locked_level: 'Диалог — уровень заблокирован',
     dialog_analysis: 'Разбор диалога', ai_voice_input: 'Голосовой ввод в диалоге', speaking: 'Говорение',
     diagnosis_training: 'Персональная тренировка', mastery: 'Мастерство', stats: 'Статистика', heatmap: 'Карта активности',
-    patterns: 'Паттерны ошибок', percentiles: 'Перцентили', personal_plan: 'Личный план', intro_ended: 'Конец пробного доступа',
+    patterns: 'Паттерны ошибок', percentiles: 'Перцентили', intro_ended: 'Конец пробного доступа',
     level_up: 'Новый уровень', premium_expired: 'Подписка истекла', vip_expired: 'VIP истёк',
     notification_upsell: 'Пуш-уведомление', language_add: 'Второй язык', ai_explain: 'ИИ-объяснение',
     weekly_review: 'Недельный обзор', avatar_aura: 'Аура аватара',
@@ -33394,7 +34151,7 @@
     const tags = revenueTags(row);
     const raw = String(tags.source || tags.context || row.source || '').toLowerCase();
     if (raw.includes('setting') || raw === 'manage') return 'settings';
-    if (raw.includes('onboarding') || raw.includes('personal_plan')) return 'onboarding';
+    if (raw.includes('onboarding')) return 'onboarding';
     return 'automatic';
   }
 
@@ -33713,7 +34470,7 @@
     if (state) state.textContent = next ? 'включено' : 'выключено';
     try {
       await window.saveControlPanelBool(key, next);
-      if (status) status.textContent = next ? 'Включено. Клиенты подхватят за секунды.' : 'Выключено. Клиенты подхватят за секунды.';
+      if (status) status.textContent = next ? 'Включено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.' : 'Выключено. Клиенты подхватят при запуске/возврате или не позднее примерно 5 минут.';
     } catch (e) {
       if (input) input.checked = !next;
       if (state) state.textContent = !next ? 'включено' : 'выключено';
@@ -33760,7 +34517,7 @@
       }
       _onboardingScreensSaved = next;
       const box = document.getElementById('onboarding-screens-preview');
-      if (box) box.innerHTML = '<div style="background:rgba(52,211,153,0.12);border-radius:10px;padding:12px 14px;color:#6ee7b7;font-size:13px">Опубликовано. Клиенты подхватят изменения за секунды.</div>';
+      if (box) box.innerHTML = '<div style="background:rgba(52,211,153,0.12);border-radius:10px;padding:12px 14px;color:#6ee7b7;font-size:13px">Опубликовано. Клиенты подхватят изменения при запуске/возврате или не позднее примерно 5 минут.</div>';
       if (publish) publish.style.display = 'none';
       const off = ONBOARDING_STEP_CATALOG.length - next.length;
       if (status) status.textContent = off > 0 ? `Сейчас отключено экранов: ${off}.` : 'Сейчас показываются все экраны онбординга.';
@@ -35433,10 +36190,9 @@
     }
   };
 
-  // ── ACHIEVEMENTS / DAILY TASKS (read-only view + reset) ──────────────────────
+  // ── ACHIEVEMENTS (read-only view + reset) ────────────────────────────────────
   // Где хранится:
   //   users/{uid}.achievements_state   — JSON-строка AchievementState[] (см. app/achievements.ts)
-  //   users/{uid}.daily_tasks_progress — JSON-строка прогресса за «сегодня» (см. app/cloud_sync.ts)
   // Reset = очищаем поле на сервере; локальный AsyncStorage перезатрётся при следующем pull-sync.
   window.viewAchievements = async function viewAchievements(uid, name) {
     try {
@@ -35447,21 +36203,13 @@
       try { parsed = raw ? JSON.parse(raw) : []; } catch { parsed = []; }
       const unlocked = Array.isArray(parsed) ? parsed.filter(x => x?.unlockedAt).length : 0;
       const total = Array.isArray(parsed) ? parsed.length : 0;
-      const dailyRaw = snap.data()?.daily_tasks_progress || '';
-      let dailyParsed = null;
-      try { dailyParsed = dailyRaw ? JSON.parse(dailyRaw) : null; } catch { dailyParsed = null; }
-      const dailyDone = Array.isArray(dailyParsed)
-        ? dailyParsed.filter(x => x?.done || x?.completed).length
-        : 0;
-      const dailyTotal = Array.isArray(dailyParsed) ? dailyParsed.length : 0;
       const top = Array.isArray(parsed)
         ? parsed.filter(x => x?.unlockedAt).slice(0, 30).map(x => `• ${escapeHtml(x.id)} (${escapeHtml(String(x.unlockedAt).slice(0, 10))})${x.shardClaimed ? '' : ' 💎pending'}`).join('\n')
         : '';
       await showConfirmModal({
         title: `🏆 Прогресс ${name}`,
         desc:
-          `🏆 Achievements: ${unlocked} / ${total} разлочено\n` +
-          `📅 Daily tasks (сегодня): ${dailyDone} / ${dailyTotal} выполнено\n\n` +
+          `🏆 Achievements: ${unlocked} / ${total} разлочено\n\n` +
           (top ? `Последние ${Math.min(30, unlocked)} ачивок:\n${top}\n\n` : '') +
           (raw ? `Размер state: ${raw.length} chars` : 'achievements_state пусто'),
         confirmLabel: 'OK',
@@ -35487,26 +36235,6 @@
       });
       if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || response.data.reset !== 'achievements') throw new Error('Сервер не подтвердил сброс ачивок');
       showToast('🏆 Ачивки очищены');
-    } catch (e) { showToast('Ошибка: ' + e.message, 'err'); }
-  };
-
-  window.resetDailyTasks = async function resetDailyTasks(uid, name) {
-    const ok = await showConfirmModal({
-      title: '↺ Сбросить дейлики?',
-      desc: `Юзер: ${name} (${uid.slice(0, 12)}…)\n\nОчистится users.daily_tasks_progress (только «сегодня»). Завтра дейлики и так пересоздадутся. Используй если юзер словил баг и нужно «дать второй шанс» сегодня.`,
-      confirmLabel: 'Сбросить', danger: true,
-    });
-    if (!ok) return;
-    const reason = String(await showInputModal({ title: 'Причина сброса дейликов', desc: 'Обязательная причина попадёт в защищённый журнал.', defaultVal: '', multiline: true, confirmLabel: 'Сбросить' }) || '').trim();
-    if (!reason) return;
-    try {
-      const response = await getAdminResetUserProgressCallable()({
-        uid, reset: 'daily_tasks', reason,
-        requestId: createAdminCommandId('reset_daily_tasks_request'),
-        idempotencyKey: createAdminCommandId('reset_daily_tasks_operation'),
-      });
-      if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || response.data.reset !== 'daily_tasks') throw new Error('Сервер не подтвердил сброс дейликов');
-      showToast('📅 Дейлики очищены');
     } catch (e) { showToast('Ошибка: ' + e.message, 'err'); }
   };
 
@@ -39472,9 +40200,8 @@
   // ═══════════════════════════════════════════════════════════════════════
   // ТУРНИРЫ — генерация заданий, проверка, публикация, расписание.
   //
-  // зачем: владелец управляет режимом отсюда. Задания собираются из фраз
-  // обучающих планов (серверный tournament_task_factory) и НИКОГДА не
-  // уходят игрокам сами: сначала «На проверке», публикация — только явным
+  // Задания создаются ИИ и НИКОГДА не уходят игрокам сами:
+  // сначала «На проверке», публикация — только явным
   // нажатием. Экономия Firestore: список идёт страницами по 25, статистика
   // считается серверными агрегатами, повторный вход во вкладку не
   // перезапрашивает данные (флаг _tournamentsLoaded).
@@ -39614,9 +40341,7 @@
     // Раздельные пулы: откуда пришёл вопрос.
     const src = task.source === 'ai'
       ? '<span style="background:rgba(139,92,246,0.16);color:#c4b5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">🤖 ИИ</span>'
-      : (task.source === 'plan_content'
-        ? '<span style="background:rgba(96,165,250,0.14);color:#93c5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">📚 Планы</span>'
-        : '');
+      : '';
     // Заметка редактору от ИИ: почему верен ответ и в чём ловушки.
     const meta = task.aiMeta && (task.aiMeta.scenario || task.aiMeta.ruleNote)
       ? `<div style="margin-top:8px;font-size:12px;color:#8b8fa3;line-height:1.5">${task.aiMeta.scenario ? `🎬 ${escapeHtml(task.aiMeta.scenario)} · ` : ''}${escapeHtml(task.aiMeta.ruleNote || '')}</div>`
@@ -39782,16 +40507,6 @@
     }
   };
 
-  // зачем: window.tnGenerate (генератор заданий из фраз обучающих планов)
-  // удалён 2026-07-26 вместе со своим блоком UI — владелец забраковал такие
-  // задания для турниров: фразы уроков не работают как соревновательные
-  // вопросы. Единственный источник теперь — tnAiGenerate ниже.
-
-  // зачем: кнопка удаления пула из планов убрана — владелец уточнил, что
-  // задания должны ОСТАТЬСЯ в базе, просто не использоваться в турнирах.
-  // Неучастие обеспечено на сервере: loadResourcePool берёт только source:'ai'
-  // (tournaments.ts). Неиспользование обратимо, удаление — нет.
-
   window.tnPublishVisible = async function tnPublishVisible() {
     // зачем: только список ревью (#tn-list) — карточки-примеры в панелях
     // генерации тоже несут чекбоксы, и глобальный селектор пытался бы
@@ -39852,10 +40567,7 @@
           На проверке: <strong style="color:#fbbf24">${d.drafts ?? 0}</strong>
         </div>
         ${(() => {
-          // зачем: карточка «Пул из планов» убрана — турниры играют только на
-          // вопросах ИИ, и вечные нули по неучаствующему пулу лишь засоряли
-          // экран. Задания из планов остаются в базе и видны через фильтр
-          // источника в списке ниже.
+          // Турниры играют только на одобренных вопросах ИИ.
           const ai = (d.sources || {}).ai || { total: 0, published: 0, drafts: 0 };
           return `<div style="background:#15151f;border-radius:10px;padding:12px 14px;max-width:360px">
             <div style="font-size:12px;color:#6b7280;margin-bottom:6px">🤖 Вопросы от ИИ</div>

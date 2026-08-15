@@ -94,11 +94,11 @@ const WORK_ORDER_OVERRIDES = {
     gates: ['collectible_content_target_gate', 'pack_manifest_gate', 'admin_pack_status_gate'],
     reasoningLevel: 'deep',
   },
-  daily_phrase_tasks: {
+  daily_phrase: {
     builderId: 'french_daily_phrase_builder',
     requiredSources: ['tv5monde_apprendre', 'le_robert_dictionary'],
-    outputArtifacts: ['fr_daily_phrase_bank.json', 'fr_daily_task_phrase_map.json'],
-    gates: ['daily_phrase_target_gate', 'daily_task_storage_gate', 'no_english_fallback_gate'],
+    outputArtifacts: ['fr_daily_phrase_bank.json'],
+    gates: ['daily_phrase_target_gate', 'no_english_fallback_gate'],
     reasoningLevel: 'deep',
   },
   diagnostics_exams: {
@@ -106,13 +106,6 @@ const WORK_ORDER_OVERRIDES = {
     requiredSources: ['coe_cefr_companion_2020', 'tv5monde_a1', 'tv5monde_a2'],
     outputArtifacts: ['fr_diagnostic_bank.json', 'fr_exam_bank.json', 'fr_level_check_bank.json'],
     gates: ['assessment_level_gate', 'exam_item_source_gate', 'result_feedback_language_gate'],
-    reasoningLevel: 'deep',
-  },
-  personal_plans: {
-    builderId: 'french_personal_plan_builder',
-    requiredSources: ['coe_cefr_companion_2020', 'tv5monde_apprendre', 'alliance_francaise_normandie_levels'],
-    outputArtifacts: ['fr_personal_plan_catalog.json', 'fr_plan_audio_manifest.json'],
-    gates: ['plan_content_target_gate', 'plan_audio_gate', 'plan_progress_storage_gate'],
     reasoningLevel: 'deep',
   },
   audio_tts: {

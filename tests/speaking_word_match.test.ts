@@ -3,7 +3,7 @@ import {
   speakingMatchedFlags,
   speakingTargetTokens,
 } from '../app/speaking_word_match';
-import { scorePlanPronunciationTranscript } from '../app/personal_plan_pronunciation_scoring_client';
+import { scoreSpeechPronunciationTranscript } from '../app/pronunciation_scoring_client';
 
 describe('speaking_word_match', () => {
   describe('normalizeSpokenWord', () => {
@@ -74,7 +74,7 @@ describe('speaking_word_match', () => {
       const flags = speakingMatchedFlags(target, transcript);
       expect(flags.every(Boolean)).toBe(true);
 
-      const scored = scorePlanPronunciationTranscript({ targetText: target, transcript });
+      const scored = scoreSpeechPronunciationTranscript({ targetText: target, transcript });
       expect(scored.passed).toBe(true);
       expect(scored.score).toBeGreaterThanOrEqual(90);
     });
@@ -84,12 +84,12 @@ describe('speaking_word_match', () => {
       const flags = speakingMatchedFlags(target, '');
       expect(flags.some(Boolean)).toBe(false);
 
-      const scored = scorePlanPronunciationTranscript({ targetText: target, transcript: '' });
+      const scored = scoreSpeechPronunciationTranscript({ targetText: target, transcript: '' });
       expect(scored.passed).toBe(false);
     });
 
     it('does not pass when one of two repeated words is omitted', () => {
-      const scored = scorePlanPronunciationTranscript({
+      const scored = scoreSpeechPronunciationTranscript({
         targetText: 'The charger is near the phone',
         transcript: 'The charger is near phone',
       });

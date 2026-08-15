@@ -63,4 +63,84 @@ describe('App Check initialization cost guard', () => {
     expect(native.initializeAppCheck).toHaveBeenCalledTimes(1);
     expect(getToken).toHaveBeenCalledTimes(1);
   });
+
+  it('keeps proactive native auto-refresh disabled across interactive epochs', async () => {
+    const getToken = jest.fn(async () => ({ token: VALID_JWT }));
+    const native = mockNative(getToken);
+    const { initFirebaseAppCheckIfAvailable } = await import('../app/app_check_init');
+    const {
+      beginInteractiveNetworkQuiet,
+      releaseInteractiveNetworkQuiet,
+      waitForInteractiveNetworkQuiet,
+    } = await import('../app/interactive_network_quiet');
+    await expect(initFirebaseAppCheckIfAvailable()).resolves.toBe(true);
+    expect(native.setTokenAutoRefreshEnabled).toHaveBeenLastCalledWith(false);
+    expect(native.setTokenAutoRefreshEnabled).not.toHaveBeenCalledWith(true);
+
+    const quiet = beginInteractiveNetworkQuiet();
+    await waitForInteractiveNetworkQuiet(quiet);
+    expect(native.setTokenAutoRefreshEnabled).toHaveBeenLastCalledWith(false);
+    releaseInteractiveNetworkQuiet(quiet);
+    await Promise.resolve();
+    expect(native.setTokenAutoRefreshEnabled).toHaveBeenLastCalledWith(false);
+    expect(native.setTokenAutoRefreshEnabled).not.toHaveBeenCalledWith(true);
+  });
+
+  it('does not start App Check initialization or token mint while quiet', async () => {
+    const getToken = jest.fn(async () => ({ token: VALID_JWT }));
+    const native = mockNative(getToken);
+    const { initFirebaseAppCheckIfAvailable } = await import('../app/app_check_init');
+    const {
+      beginInteractiveNetworkQuiet,
+      releaseInteractiveNetworkQuiet,
+      waitForInteractiveNetworkQuiet,
+    } = await import('../app/interactive_network_quiet');
+
+    const quiet = beginInteractiveNetworkQuiet();
+    await waitForInteractiveNetworkQuiet(quiet);
+    await expect(initFirebaseAppCheckIfAvailable()).resolves.toBe(false);
+    expect(native.initializeAppCheck).not.toHaveBeenCalled();
+    expect(getToken).not.toHaveBeenCalled();
+
+    releaseInteractiveNetworkQuiet(quiet);
+    await Promise.resolve();
+    await expect(initFirebaseAppCheckIfAvailable({ forceRetry: true })).resolves.toBe(true);
+    expect(native.initializeAppCheck).toHaveBeenCalledTimes(1);
+    expect(getToken).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps quiet pending until an admitted raw native token request actually settles', async () => {
+    jest.useFakeTimers();
+    let resolveToken!: (value: { token: string }) => void;
+    const getToken = jest.fn(() => new Promise<{ token: string }>((resolve) => {
+      resolveToken = resolve;
+    }));
+    mockNative(getToken);
+    const { initFirebaseAppCheckIfAvailable } = await import('../app/app_check_init');
+    const {
+      beginInteractiveNetworkQuiet,
+      interactiveNetworkQuietSnapshot,
+      waitForInteractiveNetworkQuiet,
+    } = await import('../app/interactive_network_quiet');
+
+    const initialization = initFirebaseAppCheckIfAvailable();
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(getToken).toHaveBeenCalledTimes(1);
+    const quiet = beginInteractiveNetworkQuiet();
+    let ready = false;
+    const waiting = waitForInteractiveNetworkQuiet(quiet).then(() => { ready = true; });
+
+    await jest.advanceTimersByTimeAsync(10_000);
+    expect(ready).toBe(false);
+    expect(interactiveNetworkQuietSnapshot()).toMatchObject({
+      phase: 'quiescing', activeNetworkLeases: 1,
+    });
+
+    resolveToken({ token: VALID_JWT });
+    await expect(initialization).resolves.toBe(false);
+    await waiting;
+    expect(ready).toBe(true);
+    jest.useRealTimers();
+  });
 });

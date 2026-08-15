@@ -14,9 +14,18 @@ function fetchResult(overrides: Partial<FetchMoneySourceResult> = {}): FetchMone
   };
 }
 
+function economyFetchers() {
+  return {
+    client_economy_opening: jest.fn(async () => fetchResult({ sourceId: 'client_economy_opening', state: 'empty' })),
+    client_economy_operations: jest.fn(async () => fetchResult({ sourceId: 'client_economy_operations', state: 'empty' })),
+    external_economy_events: jest.fn(async () => fetchResult({ sourceId: 'external_economy_events', state: 'empty' })),
+  };
+}
+
 describe('Jarvis money snapshot — the one seam scheduler and panel share', () => {
   test('fetches both collections and hands them to the department unchanged', async () => {
     const fetchers = {
+      ...economyFetchers(),
       revenuecat_premium_events: jest.fn(async () => fetchResult()),
       paywall_funnel: jest.fn(async () => fetchResult({ sourceId: 'paywall_funnel' })),
     };
@@ -29,6 +38,7 @@ describe('Jarvis money snapshot — the one seam scheduler and panel share', () 
 
   test('one collection throwing degrades to error evidence without aborting the snapshot', async () => {
     const fetchers = {
+      ...economyFetchers(),
       revenuecat_premium_events: jest.fn(async () => { throw new Error('unavailable'); }),
       paywall_funnel: jest.fn(async () => fetchResult({ sourceId: 'paywall_funnel' })),
     };
@@ -39,6 +49,7 @@ describe('Jarvis money snapshot — the one seam scheduler and panel share', () 
 
   test('all collections throwing yields insufficient_evidence even on schedule', async () => {
     const fetchers = {
+      ...economyFetchers(),
       revenuecat_premium_events: jest.fn(async () => { throw new Error('down'); }),
       paywall_funnel: jest.fn(async () => { throw new Error('down'); }),
     };
@@ -54,6 +65,7 @@ describe('Jarvis money snapshot — the one seam scheduler and panel share', () 
     'scheduled snapshot preserves %s error plus %s empty as insufficient_evidence',
     async (failedSource, emptySource) => {
       const fetchers = {
+        ...economyFetchers(),
         revenuecat_premium_events: jest.fn(async () => fetchResult({
           sourceId: 'revenuecat_premium_events',
           state: failedSource === 'revenuecat_premium_events' ? 'error' : 'empty',
@@ -73,6 +85,7 @@ describe('Jarvis money snapshot — the one seam scheduler and panel share', () 
 
   test('owner_request is forwarded with the given question', async () => {
     const fetchers = {
+      ...economyFetchers(),
       revenuecat_premium_events: jest.fn(async () => fetchResult()),
       paywall_funnel: jest.fn(async () => fetchResult({ sourceId: 'paywall_funnel' })),
     };
@@ -84,6 +97,7 @@ describe('Jarvis money snapshot — the one seam scheduler and panel share', () 
     const newPayingRows = Array.from({ length: 20 }, () => ({ eventType: 'INITIAL_PURCHASE', periodType: 'NORMAL' }));
     const refundRows = Array.from({ length: 7 }, () => ({ eventType: 'REFUND', periodType: null }));
     const fetchers = {
+      ...economyFetchers(),
       revenuecat_premium_events: jest.fn(async () => fetchResult({ rows: [...newPayingRows, ...refundRows] })),
       paywall_funnel: jest.fn(async () => fetchResult({ sourceId: 'paywall_funnel' })),
     };

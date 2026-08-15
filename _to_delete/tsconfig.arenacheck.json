@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/arena_expansion.ts",
+    "src/arena_v2.ts",
+    "src/stars_ledger.ts",
+    "src/arena_xp.ts",
+    "src/account_delete.ts"
+  ]
+}

@@ -14,7 +14,6 @@ export const APP_ART_BACKDROP_NAMES = [
   'friends',
   'settings',
   'achievements',
-  'dailyTasks',
   'diagnosticTest',
   'exam',
   'flashcards',
@@ -46,7 +45,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   review: 'lessonPractice',
   diagnostic_test: 'diagnosticTest',
   exam: 'exam',
-  daily_tasks_screen: 'dailyTasks',
   achievements_screen: 'achievements',
   progress_map: 'progressMap',
   flashcards: 'flashcards',
@@ -61,7 +59,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   streak_stats: 'statistics',
   phrase_analytics_screen: 'statistics',
   trainer: 'statistics',
-  trainer_plan_session: 'lessonPractice',
   trainer_words_session: 'lessonPractice',
   trainer_phrases_session: 'lessonPractice',
   problem_coach: 'lessonPractice',
@@ -88,6 +85,7 @@ function readRouteBackdrop(pathname?: string | null): {
   backdropName?: AppArtBackdropName;
 } {
   const normalized = normalizePathname(pathname);
+  const learningV2Backdrop = resolveLearningV2Backdrop(normalized);
   const segments = normalized
     .split('/')
     .map(segment => segment.trim())
@@ -98,8 +96,23 @@ function readRouteBackdrop(pathname?: string | null): {
   return {
     normalized,
     lastSegment,
-    backdropName: APP_ART_ROUTE_BACKDROPS[lastSegment],
+    backdropName: learningV2Backdrop ?? APP_ART_ROUTE_BACKDROPS[lastSegment],
   };
+}
+
+function resolveLearningV2Backdrop(normalized: string): AppArtBackdropName | undefined {
+  if (
+    normalized === '/learning-v2/course' ||
+    normalized.startsWith('/learning-v2/lesson/')
+  ) {
+    return 'lessons';
+  }
+
+  if (normalized.startsWith('/learning-v2/session/')) {
+    return 'lessonPractice';
+  }
+
+  return undefined;
 }
 
 export function assertAppArtBackdropRoute(pathname?: string | null): AppArtBackdropName {

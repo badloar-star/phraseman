@@ -60,10 +60,6 @@ import { useEnergy } from '../components/EnergyContext';
 import { invalidatePremiumCache } from './premium_guard';
 import { resumeLessonAfterPremium } from './paywall_lesson_continuation';
 import {
-  activatePendingPersonalPlanAfterPremium,
-  PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
-} from './personal_plan_activation';
-import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
 } from './account_generation';
@@ -93,7 +89,7 @@ type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; 
  * Во всех остальных точках входа (после урока, энергия, профиль, win-back) Pro
  * остаётся: там пользователь уже вовлечён и разовая покупка уместна.
  */
-const LIFETIME_HIDDEN_SOURCES: ReadonlySet<string> = new Set(['onboarding_plan']);
+const LIFETIME_HIDDEN_SOURCES: ReadonlySet<string> = new Set(['onboarding']);
 
 /** Exit-intent триал-оффер показываем не чаще одного раза на устройство. */
 const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
@@ -402,11 +398,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   }, [context, impression, lifetimeAvailable, source, variant]);
 
   // ── покупка ────────────────────────────────────────────────────────────────
-  const finishPersonalPlanActivationFlow = useCallback(async (
+  const finishOnboardingPaywallFlow = useCallback(async (
     isCurrent: () => boolean = () => true,
   ): Promise<boolean> => {
-    if (!isCurrent()) return false;
-    await activatePendingPersonalPlanAfterPremium();
     if (!isCurrent()) return false;
     invalidatePremiumCache();
     await AsyncStorage.setItem('had_premium_ever', '1').catch(() => {});
@@ -415,29 +409,14 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     if (!(await refillToMax(isCurrent))) return false;
 
     try {
-      const pendingNickname = await AsyncStorage.getItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY);
-      if (pendingNickname === '1') {
-        await AsyncStorage.multiSet([
-          ['onboarding_step', 'name'],
-          [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
-        ]);
-        await AsyncStorage.removeItem('onboarding_done');
-        // Возврат в онбординг на шаг «Имя»: слушатель _layout синхронно поднимает
-        // непрозрачный оверлей. Намеренно НЕ навигируем на «Главную» — иначе кадр с
-        // home + монтаж тяжёлого экрана (см. handleClose ниже).
-        emitAppEvent('personal_plan_onboarding_nickname_ready');
-        return true;
-      }
+      await AsyncStorage.setItem('onboarding_step', 'name');
+      await AsyncStorage.removeItem('onboarding_done');
+      emitAppEvent('onboarding_paywall_completed');
+      return true;
     } catch {
-      // Fall through to the deterministic thank-you route.
+      return false;
     }
-
-    // markNextNavigationAsReplace: the stack top is the paywall. Replace it so
-    // back from the auth prompt host or the plan never returns to paywall.
-    markNextNavigationAsReplace();
-    router.replace('/personal_plan_thank_you' as any);
-    return true;
-  }, [refillToMax, router]);
+  }, [refillToMax]);
 
   const handlePurchase = useCallback(async () => {
     if (operationRef.current) return;
@@ -528,13 +507,11 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           true,
         );
         if (!persisted || !isCommitCurrent()) return false;
-        if (context !== 'personal_plan') {
-          if (!(await refillToMax(isCommitCurrent))) return false;
-          // Разовая покупка Phraseman Pro (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
-          await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
-          if (!isCommitCurrent()) return false;
-          emitAppEvent('premium_activated');
-        }
+        if (!(await refillToMax(isCommitCurrent))) return false;
+        // Разовая покупка Phraseman Pro (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
+        await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
+        if (!isCommitCurrent()) return false;
+        emitAppEvent('premium_activated');
         return isCommitCurrent();
       });
       if (applied.status !== 'ok' || !applied.value) return;
@@ -547,7 +524,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // ставим напоминание за день до списания. Обещание таймлайна = правда.
         void (async () => {
           try {
-            const reminderChoice = context === 'personal_plan' && source === 'onboarding_plan'
+            const reminderChoice = source === 'onboarding'
               ? await AsyncStorage.getItem(ONBOARDING_TRIAL_REMINDER_CHOICE_KEY).catch(() => null)
               : null;
             if (reminderChoice === 'skip') return;
@@ -582,11 +559,11 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           } catch { /* напоминание — best-effort */ }
         })();
       }
-      if (context === 'personal_plan') {
+      if (source === 'onboarding') {
         if (!isOperationAccountCurrent()) return;
         const activated = await commitRevenueCatResultForGeneration(
           operationAccount,
-          (isCommitCurrent) => finishPersonalPlanActivationFlow(isCommitCurrent),
+          (isCommitCurrent) => finishOnboardingPaywallFlow(isCommitCurrent),
         );
         if (activated.status !== 'ok' || !activated.value) return;
         return;
@@ -643,7 +620,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       operationRef.current = null;
       setPurchasing(false);
     }
-  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, refillToMax, finishPersonalPlanActivationFlow, impression, resumeLessonId]);
+  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, refillToMax, finishOnboardingPaywallFlow, impression, resumeLessonId]);
 
   // ── восстановление ─────────────────────────────────────────────────────────
   const handleRestore = useCallback(async () => {
@@ -709,24 +686,22 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             true,
           );
           if (!persisted || !isCommitCurrent()) return false;
-          if (context !== 'personal_plan') {
-            if (!(await refillToMax(isCommitCurrent))) return false;
-            // То же празднование, что при покупке: без него после переустановки
-            // юзер не понимал, что доступ вернулся, и порой оформлял заново.
-            await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium');
-            if (!isCommitCurrent()) return false;
-            emitAppEvent('premium_activated');
-          }
+          if (!(await refillToMax(isCommitCurrent))) return false;
+          // То же празднование, что при покупке: без него после переустановки
+          // юзер не понимал, что доступ вернулся, и порой оформлял заново.
+          await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium');
+          if (!isCommitCurrent()) return false;
+          emitAppEvent('premium_activated');
           return isCommitCurrent();
         });
         if (applied.status !== 'ok' || !applied.value) return;
         void trackEvent('subscription_restored', { context, paywall: variant });
         logPaywallFunnel('restore_completed', { variant, context, plan });
-        if (context === 'personal_plan') {
+        if (source === 'onboarding') {
           if (!isOperationAccountCurrent()) return;
           const activated = await commitRevenueCatResultForGeneration(
             operationAccount,
-            (isCommitCurrent) => finishPersonalPlanActivationFlow(isCommitCurrent),
+            (isCommitCurrent) => finishOnboardingPaywallFlow(isCommitCurrent),
           );
           if (activated.status !== 'ok' || !activated.value) return;
           return;
@@ -785,7 +760,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       operationRef.current = null;
       setRestoring(false);
     }
-  }, [router, restoring, purchasing, context, variant, lang, refillToMax, finishPersonalPlanActivationFlow, resumeLessonId]);
+  }, [router, restoring, purchasing, context, source, variant, lang, refillToMax, finishOnboardingPaywallFlow, resumeLessonId]);
 
   // ── закрытие ───────────────────────────────────────────────────────────────
   // Фактическое закрытие пейвола (после exit-оффера или сразу, если оффер не нужен).
@@ -799,13 +774,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     // онбординг в этой сессии не продолжался. Эмитим тот же ивент, что и успешная
     // покупка плана: _layout слушает его, ставит onboarding_step='name' и снова
     // показывает онбординг-оверлей на шаге имени.
-    if (source === 'onboarding_plan') {
+    if (source === 'onboarding') {
       void (async () => {
         try {
-          await AsyncStorage.multiSet([
-            ['onboarding_step', 'name'],
-            [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
-          ]);
+          await AsyncStorage.setItem('onboarding_step', 'name');
           await AsyncStorage.removeItem('onboarding_done');
         } catch { /* best-effort */ }
         // НЕ навигируем на '/(tabs)/home'. Слушатель в _layout по этому событию
@@ -813,7 +785,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // он перекрывает оставшийся под ним пейвол. Навигация на «Главную» здесь
         // монтировала тяжёлый домашний экран (≈4с «думает») и на кадр показывала
         // «Главную» до подъёма оверлея (мелькание home перед экраном имени).
-        emitAppEvent('personal_plan_onboarding_nickname_ready');
+        emitAppEvent('onboarding_paywall_completed');
       })();
       return;
     }
@@ -838,7 +810,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     // DEV/QA: при форс-триале (_force_trial_ui) показываем на ЛЮБОМ контексте и без
     // «уже видели», чтобы можно было проверять многократно из тест-меню.
     const exitEligible = devForceTrial
-      ? source !== 'onboarding_plan' && (reason === 'close' || reason === 'continue_free') && !!trialDays
+      ? source !== 'onboarding' && (reason === 'close' || reason === 'continue_free') && !!trialDays
       : shouldShowExitTrialOffer({
           context,
           closeReason: reason,
@@ -852,7 +824,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         });
     if (
       !exitOfferShownRef.current &&
-      source !== 'onboarding_plan' &&
+      source !== 'onboarding' &&
       exitEligible
     ) {
       exitOfferShownRef.current = true;

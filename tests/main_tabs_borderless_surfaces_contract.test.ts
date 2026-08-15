@@ -56,7 +56,6 @@ const QUIZZES_TARGET_IDS = [
   'surface:app-tabs-quizzes:basequizlevelcard:2',
   'surface:app-tabs-quizzes:basequizlevelcard:3',
   'surface:app-tabs-quizzes:levelselect:2',
-  'surface:app-tabs-quizzes:personal-plan-quiz-instruction:1',
   'surface:app-tabs-quizzes:quiz-explain-retry-button:1',
   'surface:app-tabs-quizzes:quiz-game-screen:2',
   'surface:app-tabs-quizzes:quiz-level-select-settings:1',

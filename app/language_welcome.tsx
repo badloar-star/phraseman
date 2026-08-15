@@ -4,7 +4,7 @@
 // Открывается из пикера языков в настройках, когда пользователь добавляет язык,
 // который ещё не начинал. Приветствует, задаёт два вопроса (зачем + уровень),
 // сохраняет ответы в профиль языка (language_profile_v1::{target} — сырьё для
-// персонального плана) и активирует язык. Прогресс каждого языка живёт в своём
+// выбранных настроек) и активирует язык. Прогресс каждого языка живёт в своём
 // namespace, поэтому предыдущий язык ничего не теряет.
 //
 // Гейт: фри-аккаунт = 1 язык. Экран страхует пикер — если сюда попали в обход
@@ -109,7 +109,7 @@ type ChoiceOption = {
   asset?: ImageSourcePropType;
 };
 
-/** Те же id, что PersonalPlanSetupGoal в онбординге — план читает их напрямую. */
+/** Те же id, что в CleanOnboarding. */
 const GOAL_OPTIONS: ChoiceOption[] = [
   { id: 'series', ru: 'Понимать кино и сериалы', uk: 'Розуміти кіно й серіали', icon: 'volume-high-outline', asset: require('../assets/images/flow_clean_202607/goal_series.webp') },
   { id: 'everyday', ru: 'Говорить в обычной жизни', uk: 'Говорити в повсякденному житті', icon: 'chatbubble-ellipses-outline', asset: require('../assets/images/flow_clean_202607/goal_everyday.webp') },

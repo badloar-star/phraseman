@@ -29,26 +29,15 @@ describe('paywall navigation and scroll smoothness contract', () => {
     expect(source).toContain("import PaywallB from './paywall_b';");
     expect(source).toContain("import PaywallC from './paywall_c';");
     expect(source).toContain('return renderPaywallRoute(paywallRouteRef.current);');
-    // personal_plan ТОЖЕ рендерит пейвол сразу. Раньше гейт был
-    // `!isPersonalPlanContext && !isManageContext`, и personal_plan висел голым
-    // градиентом всё время сетевой проверки доступа (до 2.5с) — это и была
-    // «пустая страница перед пейволом». Только manage=1 остаётся на подложке,
-    // потому что ведёт на /manage_subscription, а не на пейвол.
+    // Только manage=1 остаётся на подложке, потому что ведёт на
+    // /manage_subscription, а не на пейвол.
     expect(source).toContain('if (!isManageContext)');
-    expect(source).not.toContain('if (!isPersonalPlanContext && !isManageContext)');
   });
 
   it('does not re-navigate to a paywall it already rendered (no unmount/remount flash)', () => {
     const source = readAppFile('premium_modal.tsx');
-    // В personal_plan-эффекте не должно остаться replace на пейвол: пейвол уже
-    // отрисован синхронно, и replace размонтировал бы его ради идентичной копии.
-    const start = source.indexOf('const finished = await maybeFinishAlreadyPremiumPersonalPlan');
-    expect(start).toBe(-1);
-    expect(source).toContain('await maybeFinishAlreadyPremiumPersonalPlan(params, router);');
-    const effectStart = source.indexOf('if (!isPersonalPlanContext) return;');
-    expect(effectStart).toBeGreaterThan(-1);
-    const effectBlock = source.slice(effectStart, source.indexOf('}, [rootNavReady]);', effectStart));
-    expect(effectBlock).not.toContain('replaceToPaywall');
+    expect(source).toContain('if (!isManageContext) return;');
+    expect(source).toMatch(/if \(!isManageContext\)[\s\S]*return renderPaywallRoute\(paywallRouteRef\.current\)/);
   });
 
   it('keeps regular paywalls as native bottom modals', () => {
@@ -59,7 +48,7 @@ describe('paywall navigation and scroll smoothness contract', () => {
     );
   });
 
-  it('keeps the transient premium dispatcher on a paywall-colored backing for personal-plan checks', () => {
+  it('keeps the transient premium dispatcher on a paywall-colored backing', () => {
     const layout = readAppFile('_layout.tsx');
 
     expect(layout).toContain("<Stack.Screen name=\"premium_modal\"");

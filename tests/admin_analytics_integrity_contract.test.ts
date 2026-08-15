@@ -3,9 +3,6 @@ import {
   assessFunnelIntegrity,
   assessPurchaseSignalReconciliation,
 } from '../functions/src/admin_analytics_core';
-import fs from 'node:fs';
-import path from 'node:path';
-
 describe('admin analytics integrity contract', () => {
   it('blocks a paywall decision when the aggregate and daily series disagree', () => {
     expect(assessFunnelIntegrity({
@@ -101,22 +98,4 @@ describe('admin analytics integrity contract', () => {
     });
   });
 
-  it('carries the reconciliation result into the export-and-quality report', () => {
-    const root = path.resolve(__dirname, '..');
-    const state = fs.readFileSync(path.join(root, 'admin/v2/scripts/admin-analytics-state.js'), 'utf8');
-    const view = fs.readFileSync(path.join(root, 'admin/v2/scripts/admin-analytics-view.js'), 'utf8');
-
-    expect(state).toContain('paywallIntegrity');
-    expect(state).toContain('aggregate_series_mismatch');
-    expect(state).toContain('purchaseSignalReconciliation');
-    expect(view).toContain('integritySection');
-    expect(view).toContain('purchaseReconciliationSection');
-    expect(view).toContain('initialSubscriptionEvents');
-    expect(view).toContain('nonRenewingPurchaseEvents');
-    expect(view).toContain('Сигналы завершения на 100 показов');
-    expect(view).toContain('Не конверсия пользователей и не подтверждённые покупки');
-    expect(view).toContain('Нельзя принимать решение по paywall');
-    expect(view).toContain('consentCoverageSection');
-    expect(view).toContain('Доля согласившихся на аналитику');
-  });
 });

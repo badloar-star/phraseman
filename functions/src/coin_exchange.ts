@@ -10,10 +10,9 @@
 //   детерминирован: `${uid}_${idempotencyKey}` → повторный вызов с тем же
 //   ключом возвращает прежний результат, не списывая монеты дважды.
 // - Кошелёк звёзд: users/{uid}.v2_access_stars (+ append-only подколлекция
-//   users/{uid}/v2_star_journal). Монеты = переименованные осколки, баланс —
-//   существующее поле users/{uid}.shards (миграция 1:1), дебет идёт через
-//   ту же транзакцию, что и shardsApplyDelta (здесь — внутренний дебет, без
-//   клиентского каталога earn/spend).
+//   users/{uid}/v2_star_journal). Жемчуг не читается и не меняется сервером:
+//   сервер фиксирует подтверждённый debit как immutable external economy fact,
+//   а личную проекцию применяет клиентский журнал.
 //
 // Manual override: adminSetCoinExchangeRate выставляет currentRate и
 // manualOverride{rate, reason, byUid, at}. Override действует ДО ближайшего
@@ -26,6 +25,7 @@ import * as admin from 'firebase-admin';
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
+import { appendExternalEconomyEvent } from './external_economy_events';
 import { resolveStableUidForAuth } from './auth_identity';
 import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
@@ -57,6 +57,12 @@ import {
   validateExchangeIdempotencyKey,
   type CoinExchangeConfig,
 } from './coin_exchange_core';
+import { deriveLearningV2EconomicAccountScopeHash } from '../../modules/learning-v2/progress/economic_account_scope';
+import {
+  V2_WALLET_REWARD_RECEIPTS_SUBCOLLECTION,
+  materializeCoinExchangeWalletReward,
+  parseCoinExchangeWalletRewardRequest,
+} from './coin_exchange_wallet_reward';
 
 const REGION = 'us-central1';
 
@@ -182,18 +188,25 @@ export const exchangeCoinsForStars = onCall(HOT_CALLABLE_OPTIONS, async (request
     const cfg = normalizeCoinExchangeConfig(exchangeSnap.data());
     const outcome = computeExchangeOutcome({
       existingTrade: tradeSnap.exists ? tradeSnap.data() : null,
-      coinBalance: userSnap.data()?.shards,
+      // Client owns affordability. The server atomically persists only the
+      // requested exchange result and its external debit fact.
+      coinBalance: coins,
       starBalance: userSnap.data()?.[V2_ACCESS_STARS_FIELD],
       coins,
       rate: cfg.currentRate,
     });
 
     if (outcome.kind === 'replay') {
-      return { starsGranted: outcome.starsGranted, rateUsed: outcome.rateUsed };
+      const walletRewardRequest = parseCoinExchangeWalletRewardRequest(
+        tradeSnap.data()?.walletRewardRequest,
+      );
+      return {
+        starsGranted: outcome.starsGranted,
+        rateUsed: outcome.rateUsed,
+        ...(walletRewardRequest ? { walletRewardRequest } : {}),
+      };
     }
-    if (outcome.kind === 'insufficient') {
-      throw new HttpsError('failed-precondition', 'insufficient_coins');
-    }
+    if (outcome.kind === 'insufficient') throw new HttpsError('internal', 'exchange_outcome_invalid');
 
     // Ленивая инициализация документа курса (первый обмен в системе).
     if (!exchangeSnap.exists) {
@@ -205,11 +218,23 @@ export const exchangeCoinsForStars = onCall(HOT_CALLABLE_OPTIONS, async (request
       });
     }
 
+    const storedGeneration = userSnap.data()?.accountGeneration ?? userSnap.data()?.generation;
+    const accountGeneration = Number.isSafeInteger(storedGeneration) && Number(storedGeneration) >= 1
+      ? Number(storedGeneration)
+      : null;
+    const walletReward = accountGeneration === null ? null : materializeCoinExchangeWalletReward({
+      accountScopeHash: deriveLearningV2EconomicAccountScopeHash(uid),
+      accountGeneration,
+      idempotencyKey,
+      starsGranted: outcome.starsGranted,
+    });
+
+    appendExternalEconomyEvent(tx, userRef, {
+      source: 'coin_exchange', eventId: idempotencyKey, ownerStableId: uid,
+      delta: -outcome.coins, reason: 'coin_exchange', kind: 'external_currency_exchange',
+      subjectId: tradeRef.id, payload: { starsGranted: outcome.starsGranted, rateUsed: outcome.rateUsed },
+    });
     tx.set(userRef, {
-      shards: outcome.nextCoinBalance,
-      shards_updated_at_ms: Date.now(),
-      shards_updated_op: 'spend',
-      shards_updated_reason: 'coin_exchange',
       [V2_ACCESS_STARS_FIELD]: outcome.nextStarBalance,
       [V2_ACCESS_STARS_UPDATED_AT_MS_FIELD]: Date.now(),
     }, { merge: true });
@@ -219,6 +244,7 @@ export const exchangeCoinsForStars = onCall(HOT_CALLABLE_OPTIONS, async (request
       delta: outcome.starsGranted,
       balanceAfter: outcome.nextStarBalance,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      ...(walletReward ? { walletRewardRequest: walletReward.request } : {}),
     });
     tx.set(tradeRef, {
       uid,
@@ -227,7 +253,15 @@ export const exchangeCoinsForStars = onCall(HOT_CALLABLE_OPTIONS, async (request
       rate: outcome.rateUsed,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
       idempotencyKey,
+      ...(walletReward ? { walletRewardRequest: walletReward.request } : {}),
     });
+    if (walletReward) {
+      tx.create(
+        userRef.collection(V2_WALLET_REWARD_RECEIPTS_SUBCOLLECTION)
+          .doc(walletReward.request.rewardId),
+        walletReward.protectedReceipt,
+      );
+    }
     tx.set(historyRef, {
       date: todayKey,
       volumeCoins: admin.firestore.FieldValue.increment(outcome.coins),
@@ -235,7 +269,13 @@ export const exchangeCoinsForStars = onCall(HOT_CALLABLE_OPTIONS, async (request
       trades: admin.firestore.FieldValue.increment(1),
     }, { merge: true });
 
-    return { starsGranted: outcome.starsGranted, rateUsed: outcome.rateUsed };
+    return {
+      starsGranted: outcome.starsGranted,
+      rateUsed: outcome.rateUsed,
+      eventId: idempotencyKey,
+      coinsDebited: outcome.coins,
+      ...(walletReward ? { walletRewardRequest: walletReward.request } : {}),
+    };
   });
 });
 

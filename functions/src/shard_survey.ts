@@ -3,14 +3,14 @@
 //
 // Callable-обёртки поверх чистого ядра shard_survey_core.ts. Транзакции и
 // firebase-admin только здесь. Модель повторяет vip_survey.ts (валидация +
-// runTransaction + отдельная коллекция ответов) и daily_tasks_shards.ts
-// (серверная выдача осколков полем `shards` в users/{uid} через Admin SDK,
-// идемпотентность через reward_claims).
+// runTransaction + отдельная коллекция ответов). Награда хранится как immutable
+// external economy fact; личный баланс сервер не читает и не пишет.
 // ════════════════════════════════════════════════════════════════════════════
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { appendExternalEconomyEvent } from './external_economy_events';
 import {
   parseSurveyConfig,
   validateAnswers,
@@ -44,11 +44,6 @@ const SURVEY_SHARD_AMOUNT = 1;
 
 function text(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
-}
-
-function readShardBalance(value: unknown): number {
-  const n = Math.trunc(Number(value));
-  return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
 function responseDocId(surveyId: string, stableUid: string): string {
@@ -189,9 +184,8 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
   const rateRef = db.collection(RATE_COLLECTION).doc(stableUid);
 
   const result = await db.runTransaction(async (tx) => {
-    const [responseSnap, userSnap, claimSnap, statsSnap, rateSnap] = await Promise.all([
+    const [responseSnap, claimSnap, statsSnap, rateSnap] = await Promise.all([
       tx.get(responseRef),
-      tx.get(userRef),
       tx.get(claimRef),
       tx.get(statsRef),
       tx.get(rateRef),
@@ -231,19 +225,14 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
         resubmittedAt: nowIso,
         resubmittedAtMs: nowMs,
       }, { merge: true });
-      const balance = readShardBalance(userSnap.data()?.shards);
-      return { ok: true, alreadyGranted: true, reward: 0, balanceAfter: balance, shardsUpdatedAtMs: null as number | null };
+      return { ok: true, alreadyGranted: true, reward: 0, eventId: surveyId };
     }
 
-    const currentBalance = readShardBalance(userSnap.data()?.shards);
     // Фиксированная выплата (см. SURVEY_SHARD_AMOUNT): config.rewardShards
     // намеренно игнорируется. Повторная отправка сюда не доходит — выше стоит
     // проверка claimSnap.exists в этой же транзакции.
     const reward = SURVEY_SHARD_AMOUNT;
-    const newBalance = currentBalance + reward;
-    const shardsUpdatedAtMs = nowMs;
-
-    // Маркер идемпотентности (как daily_tasks_shards).
+    // Маркер идемпотентности для повторной безопасной отправки.
     tx.set(claimRef, {
       source: 'survey_completed',
       surveyId,
@@ -251,12 +240,20 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    // Осколки + метка последнего опроса (для cooldown в getActive).
+    appendExternalEconomyEvent(tx, userRef, {
+      source: 'shard_survey',
+      eventId: surveyId,
+      ownerStableId: stableUid,
+      delta: reward,
+      reason: 'survey_completed',
+      kind: 'survey_reward',
+      subjectId: surveyId,
+      payload: { surveyId },
+      createdAtMs: nowMs,
+    });
+
+    // Только метка последнего опроса (для cooldown в getActive).
     tx.set(userRef, {
-      shards: newBalance,
-      shards_updated_at_ms: shardsUpdatedAtMs,
-      shards_updated_op: 'earn',
-      shards_updated_reason: 'survey_completed',
       progress: { shard_survey_last_at_ms: nowMs },
     }, { merge: true });
 
@@ -275,7 +272,7 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
     );
     tx.set(statsRef, { surveyId, ...nextStats }, { merge: true });
 
-    return { ok: true, alreadyGranted: false, reward, balanceAfter: newBalance, shardsUpdatedAtMs };
+    return { ok: true, alreadyGranted: false, reward, eventId: surveyId };
   });
 
   return result;

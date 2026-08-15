@@ -35,15 +35,11 @@ type Report = {
     targetLocale: 'fr';
     mode: 'dev_surface_visible_content_fail_closed';
     visibleSurfaceParityReady: boolean;
-    dailyTaskNavigationGuardsReady: boolean;
-    personalPlanNavigationGuardsReady: boolean;
     trainerSessionSelfGatesReady: boolean;
     aiDialogSourceGatesReady: boolean;
     destinationSelfGatesReady: boolean;
     challengeSurfaceGuardsReady: boolean;
     challengeSurfaceProbes: number;
-    dailySurfaceGuardsReady: boolean;
-    dailySurfaceProbes: number;
     arenaSurfaceGuardsReady: boolean;
     arenaSurfaceProbes: number;
     englishFallbackAbsent: boolean;
@@ -164,13 +160,10 @@ function writeMarkdown(filePath: string, report: Report): void {
     `- Run: ${report.runId}`,
     `- Mode: ${report.summary.mode}`,
     `- Visible surface parity ready: ${report.summary.visibleSurfaceParityReady}`,
-    `- Daily task navigation guards ready: ${report.summary.dailyTaskNavigationGuardsReady}`,
-    `- Personal Plan navigation guards ready: ${report.summary.personalPlanNavigationGuardsReady}`,
     `- Trainer session self gates ready: ${report.summary.trainerSessionSelfGatesReady}`,
     `- AI dialog source gates ready: ${report.summary.aiDialogSourceGatesReady}`,
     `- Destination self gates ready: ${report.summary.destinationSelfGatesReady}`,
     `- Challenge surface guards ready/probes: ${report.summary.challengeSurfaceGuardsReady}/${report.summary.challengeSurfaceProbes}`,
-    `- Daily surface guards ready/probes: ${report.summary.dailySurfaceGuardsReady}/${report.summary.dailySurfaceProbes}`,
     `- Arena surface guards ready/probes: ${report.summary.arenaSurfaceGuardsReady}/${report.summary.arenaSurfaceProbes}`,
     `- English fallback absent: ${report.summary.englishFallbackAbsent}`,
     `- Production activation still closed: ${report.summary.productionActivationStillClosed}`,
@@ -204,15 +197,11 @@ function main(): void {
 
   const files = {
     home: path.join(repoRoot, 'app/(tabs)/home.tsx'),
-    dailyTasksModel: path.join(repoRoot, 'app/daily_tasks.ts'),
-    dailyTasksScreen: path.join(repoRoot, 'app/daily_tasks_screen.tsx'),
-    dailyTaskNavigation: path.join(repoRoot, 'app/daily_task_navigation.ts'),
     lessonMenu: path.join(repoRoot, 'app/lesson_menu.tsx'),
     quizzes: path.join(repoRoot, 'app/(tabs)/quizzes.tsx'),
     diagnostic: path.join(repoRoot, 'app/diagnostic_test.tsx'),
     flashcards: path.join(repoRoot, 'app/flashcards.tsx'),
     trainer: path.join(repoRoot, 'app/trainer.tsx'),
-    trainerPlanSession: path.join(repoRoot, 'app/trainer_plan_session.tsx'),
     trainerWordsSession: path.join(repoRoot, 'app/trainer_words_session.tsx'),
     trainerPhrasesSession: path.join(repoRoot, 'app/trainer_phrases_session.tsx'),
     trainerArenaSession: path.join(repoRoot, 'app/trainer_arena_session.tsx'),
@@ -222,7 +211,6 @@ function main(): void {
     aiCompanionSession: path.join(repoRoot, 'app/ai_companion_session.tsx'),
     dialogsTabContent: path.join(repoRoot, 'components/DialogsTabContent.tsx'),
     tests: path.join(repoRoot, 'tests/gustav_french_dev_surface_parity.test.ts'),
-    dailyTasksTargetFilterTests: path.join(repoRoot, 'tests/gustav_french_daily_tasks_target_filter.test.ts'),
   };
 
   const findings: Finding[] = [];
@@ -235,23 +223,9 @@ function main(): void {
   }
 
   probeContains({ probes, findings, repoRoot, filePath: files.home, id: 'home_quizzes_visible', expected: 'Home keeps quizzes quick tile visible for French dev.', pattern: "testID: 'home-quick-quizzes'" });
-  probeContains({ probes, findings, repoRoot, filePath: files.home, id: 'home_daily_visible', expected: 'Home keeps daily task activity tile visible for French dev.', pattern: "key: 'daily'" });
   probeContains({ probes, findings, repoRoot, filePath: files.home, id: 'home_attest_visible', expected: 'Home keeps diagnostic/attestation tile visible for French dev.', pattern: "key: 'attest'" });
   probeAbsent({ probes, findings, repoRoot, filePath: files.home, id: 'home_no_quiz_filter', expected: 'Home must not filter quizzes out for studyTarget=fr.', pattern: "quickItems.filter((item) => item.key !== 'quizzes')" });
   probeAbsent({ probes, findings, repoRoot, filePath: files.home, id: 'home_no_attest_filter', expected: 'Home must not filter attestation out for studyTarget=fr.', pattern: "activityQuickItems.filter((item) => item.key !== 'attest')" });
-
-  probeContains({ probes, findings, repoRoot, filePath: files.dailyTasksModel, id: 'daily_tasks_fr_visible', expected: 'French daily tasks keep the generated English-shaped challenge slots visible.', pattern: 'return tasks;' });
-  probeContains({ probes, findings, repoRoot, filePath: files.dailyTasksModel, id: 'daily_tasks_target_param', expected: 'Daily task model accepts studyTarget and does not fall back to English target.', pattern: 'studyTarget?: RuntimeStudyTarget' });
-
-  for (const [fileKey, filePath] of [['daily_tasks_screen', files.dailyTasksScreen], ['daily_task_navigation', files.dailyTaskNavigation]] as const) {
-    probeContains({ probes, findings, repoRoot, filePath, id: `${fileKey}_vocabulary_gate`, expected: 'Daily task vocabulary/verb destinations must pass through vocabulary source gate.', pattern: 'openVocabularyOrFrenchGate' });
-    probeContains({ probes, findings, repoRoot, filePath, id: `${fileKey}_trainer_gate`, expected: 'Daily task trainer destinations must pass through trainer source gate.', pattern: 'openTrainerOrFrenchGate' });
-    probeContains({ probes, findings, repoRoot, filePath, id: `${fileKey}_flashcards_gate`, expected: 'Daily task flashcard destinations must pass through flashcard source gate.', pattern: 'openFlashcardsOrFrenchGate' });
-    probeContains({ probes, findings, repoRoot, filePath, id: `${fileKey}_daily_phrase_gate`, expected: 'Daily task daily-phrase destinations must pass through daily phrase source gate.', pattern: 'openDailyPhraseOrFrenchGate' });
-    probeContains({ probes, findings, repoRoot, filePath, id: `${fileKey}_theory_gate`, expected: 'Daily task theory destination must check lesson support gate, not just lesson runtime gate.', pattern: "lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId)" });
-    probeAbsent({ probes, findings, repoRoot, filePath, id: `${fileKey}_no_direct_words_route`, expected: 'Daily task words case must not directly push /lesson_words.', pattern: "case 'words_learned':\n                router.push({ pathname: '/lesson_words'" });
-    probeAbsent({ probes, findings, repoRoot, filePath, id: `${fileKey}_no_direct_trainer_route`, expected: 'Daily task recall case must not directly push /trainer.', pattern: "case 'recall_session':\n            case 'recall_answers':\n            case 'recall_perfect':\n                router.push('/trainer')" });
-  }
 
   probeContains({ probes, findings, repoRoot, filePath: files.lessonMenu, id: 'lesson_menu_unavailable_rows', expected: 'Lesson menu rows remain visible with unavailable state for French auxiliary surfaces.', pattern: 'unavailable: frenchAuxiliarySourceGated' });
   probeContains({ probes, findings, repoRoot, filePath: files.lessonMenu, id: 'lesson_menu_preposition_gate', expected: 'Lesson menu preposition row can show a source-gated unavailable row.', pattern: 'unavailable: prepositionSourceGated' });
@@ -259,8 +233,6 @@ function main(): void {
   probeContains({ probes, findings, repoRoot, filePath: files.diagnostic, id: 'diagnostic_self_gate', expected: 'Diagnostic screen has a French unavailable source gate.', pattern: 'FrenchDiagnosticUnavailable' });
   probeContains({ probes, findings, repoRoot, filePath: files.flashcards, id: 'flashcards_self_gate', expected: 'Flashcards hub has a French flashcard source gate.', pattern: 'flashcardsSourceGatedContentAvailableForTarget' });
   probeContains({ probes, findings, repoRoot, filePath: files.trainer, id: 'trainer_self_gate', expected: 'Trainer hub has a French trainer source gate.', pattern: 'trainerSessionContentAvailableForTarget(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.trainerPlanSession, id: 'personal_plan_trainer_redirect_gate', expected: 'Personal Plan trainer redirect must check trainer source gate before reading plan trainer context.', pattern: 'trainerSessionContentAvailableForTarget(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.trainerPlanSession, id: 'personal_plan_trainer_redirect_fallback', expected: 'Personal Plan trainer redirect must fail closed to lessons when French trainer is unavailable.', pattern: "router.replace('/(tabs)/lessons' as any)" });
   for (const [fileKey, filePath] of [
     ['trainer_words_session', files.trainerWordsSession],
     ['trainer_phrases_session', files.trainerPhrasesSession],
@@ -288,21 +260,13 @@ function main(): void {
   probeContains({ probes, findings, repoRoot, filePath: files.dialogsTabContent, id: 'dialogs_tab_content_challenges_visible', expected: 'DialogsTabContent must still build challenge scenario cards while French AI content is source-gated.', pattern: 'getChallengeDialogScenarios().map' });
   probeContains({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quiz_thematic_challenges_visible_while_source_gated', expected: 'French dev quiz themes/challenge categories must remain visible while their starts are blocked by the source gate.', pattern: '() => getAvailableThematicQuizCategories(studyTarget)' });
   probeAbsent({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quiz_no_source_gate_category_hide', expected: 'French source gate must not hide thematic quiz/challenge categories.', pattern: 'sourceGated ? [] : getAvailableThematicQuizCategories(studyTarget)' });
-  probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'parity_test_guarded', expected: 'A narrow Jest contract covers French dev surface visibility and gated daily-task destinations.', pattern: 'keeps French daily-task sections visible but source-gates non-French task destinations before navigation' });
-  probeContains({ probes, findings, repoRoot, filePath: files.dailyTasksTargetFilterTests, id: 'daily_quiz_challenge_visibility_test_guarded', expected: 'A narrow Jest contract proves French keeps every quiz/challenge daily task type visible while source-gating quiz content.', pattern: 'keeps every quiz/challenge daily task type visible for French while quiz content stays source-gated' });
-  probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'personal_plan_test_guarded', expected: 'A narrow Jest contract covers Personal Plan trainer redirect gates.', pattern: 'source-gates Personal Plan trainer redirect before French can enter unfinished trainer sessions' });
+  probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'parity_test_guarded', expected: 'A narrow Jest contract covers visible French dev surfaces while unavailable French content remains source-gated.', pattern: 'keeps active English surfaces visible for French dev while source-gating missing French content' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'trainer_session_test_guarded', expected: 'A narrow Jest contract covers direct trainer session self-gates.', pattern: 'keeps every direct trainer session screen behind the French trainer source gate' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'admin_shortcut_test_guarded', expected: 'A narrow Jest contract covers admin trainer QA shortcut gates.', pattern: 'source-gates admin trainer QA shortcuts before they can deep-link into French trainer sessions' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'ai_dialog_test_guarded', expected: 'A narrow Jest contract covers AI dialog source gates.', pattern: 'source-gates AI dialog routes before French can use English scenarios or prompts' });
 
   const visibleSurfaceParityReady = probes
-    .filter((probe) => probe.id.startsWith('home_') || probe.id.startsWith('lesson_menu_') || probe.id === 'daily_tasks_fr_visible')
-    .every((probe) => probe.passed);
-  const dailyTaskNavigationGuardsReady = probes
-    .filter((probe) => probe.id.startsWith('daily_tasks_screen_') || probe.id.startsWith('daily_task_navigation_'))
-    .every((probe) => probe.passed);
-  const personalPlanNavigationGuardsReady = probes
-    .filter((probe) => probe.id.startsWith('personal_plan_'))
+    .filter((probe) => probe.id.startsWith('home_') || probe.id.startsWith('lesson_menu_'))
     .every((probe) => probe.passed);
   const trainerSessionSelfGatesReady = probes
     .filter((probe) => probe.id.startsWith('trainer_'))
@@ -315,26 +279,9 @@ function main(): void {
     .every((probe) => probe.passed);
   const challengeSurfaceProbeIds = [
     'home_quizzes_visible',
-    'daily_tasks_fr_visible',
-    'daily_quiz_challenge_visibility_test_guarded',
     'quiz_thematic_challenges_visible_while_source_gated',
     'quiz_no_source_gate_category_hide',
     'dialogs_tab_content_challenges_visible',
-  ];
-  const dailySurfaceProbeIds = [
-    'home_daily_visible',
-    'daily_tasks_fr_visible',
-    'daily_tasks_target_param',
-    'daily_tasks_screen_vocabulary_gate',
-    'daily_tasks_screen_trainer_gate',
-    'daily_tasks_screen_flashcards_gate',
-    'daily_tasks_screen_daily_phrase_gate',
-    'daily_tasks_screen_theory_gate',
-    'daily_task_navigation_vocabulary_gate',
-    'daily_task_navigation_trainer_gate',
-    'daily_task_navigation_flashcards_gate',
-    'daily_task_navigation_daily_phrase_gate',
-    'daily_task_navigation_theory_gate',
   ];
   const arenaSurfaceProbeIds = [
     'trainer_arena_session_source_gate',
@@ -344,25 +291,18 @@ function main(): void {
     'admin_no_direct_arena_session_push',
   ];
   const challengeSurfaceProbes = probes.filter((probe) => challengeSurfaceProbeIds.includes(probe.id));
-  const dailySurfaceProbes = probes.filter((probe) => dailySurfaceProbeIds.includes(probe.id));
   const arenaSurfaceProbes = probes.filter((probe) => arenaSurfaceProbeIds.includes(probe.id));
   const challengeSurfaceGuardsReady =
     challengeSurfaceProbes.length === challengeSurfaceProbeIds.length &&
     challengeSurfaceProbes.every((probe) => probe.passed);
-  const dailySurfaceGuardsReady =
-    dailySurfaceProbes.length === dailySurfaceProbeIds.length &&
-    dailySurfaceProbes.every((probe) => probe.passed);
   const arenaSurfaceGuardsReady =
     arenaSurfaceProbes.length === arenaSurfaceProbeIds.length &&
     arenaSurfaceProbes.every((probe) => probe.passed);
   const englishFallbackAbsent = probes
-    .filter((probe) => probe.id.includes('no_direct') || probe.id.includes('no_') || probe.id === 'daily_tasks_target_param')
+    .filter((probe) => probe.id.includes('no_direct') || probe.id.includes('no_'))
     .every((probe) => probe.passed);
   if (!challengeSurfaceGuardsReady) {
     addFinding(findings, 'blocker', 'challenge_surface_guards_not_ready', 'French challenge surfaces must remain visible and source-gated without requiring an extra remote-pack surface.');
-  }
-  if (!dailySurfaceGuardsReady) {
-    addFinding(findings, 'blocker', 'daily_surface_guards_not_ready', 'French daily surfaces must remain visible and route through source gates without English fallback.');
   }
   if (!arenaSurfaceGuardsReady) {
     addFinding(findings, 'blocker', 'arena_surface_guards_not_ready', 'French arena trainer surfaces must self-gate and admin shortcuts must not deep-link around the gate.');
@@ -393,15 +333,11 @@ function main(): void {
       targetLocale: 'fr',
       mode: 'dev_surface_visible_content_fail_closed',
       visibleSurfaceParityReady,
-      dailyTaskNavigationGuardsReady,
-      personalPlanNavigationGuardsReady,
       trainerSessionSelfGatesReady,
       aiDialogSourceGatesReady,
       destinationSelfGatesReady,
       challengeSurfaceGuardsReady,
       challengeSurfaceProbes: challengeSurfaceProbes.length,
-      dailySurfaceGuardsReady,
-      dailySurfaceProbes: dailySurfaceProbes.length,
       arenaSurfaceGuardsReady,
       arenaSurfaceProbes: arenaSurfaceProbes.length,
       englishFallbackAbsent,

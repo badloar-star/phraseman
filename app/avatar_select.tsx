@@ -96,9 +96,10 @@ import {
 import {
   getAppSnapshot,
   patchAppSnapshot,
+  patchAppSnapshotCustomizationSelection,
   useAppSnapshotSelector,
 } from './app_snapshot_store';
-import { getShardsBalance, spendShardsIdempotent } from './shards_system';
+import { commitShardCompositeOperation, getShardsBalance } from './shards_system';
 import { syncToCloud } from './cloud_sync';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { updateMyGroupPoints } from './firestore_leagues';
@@ -106,7 +107,13 @@ import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_gu
 import { parseWeekPointsForWeek } from './hall_of_fame_utils';
 import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
-import { actionToastTri, emitAppEvent } from './events';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
+import { actionToastTri, emitAppEvent, onAppEvent } from './events';
+import { hydrateCosmeticAssetCatalog } from './cosmetic_asset_archive';
 import { CustomizationHero } from '../components/customization/CustomizationHero';
 import {
   CustomizationCatalogCard,
@@ -263,9 +270,12 @@ function syncAvatarDisplayToCloud(mode: 'immediate' | 'deferred'): void {
 }
 
 async function writeProfileAvatarSnapshot(avatar: string, level: number, aura: string | null): Promise<void> {
+  const accountToken = captureAccountGeneration();
+  if (!accountToken.stableId || !isCurrentAccountGeneration(accountToken)) return;
   try {
     const [[, nameRaw], [, xpRaw], [, langRaw], [, weekRaw], [, streakRaw], [, leagueRaw], [, frameRaw]] =
       await AsyncStorage.multiGet(['user_name', 'user_total_xp', 'app_lang', 'week_points_v2', 'streak_count', 'league_state_v3', 'user_frame']);
+    if (!isCurrentAccountGeneration(accountToken)) return;
     const totalXp = parseInt(xpRaw || '0', 10) || 0;
     const weekPoints = parseWeekPointsForWeek(weekRaw);
     let leagueId: number | undefined;
@@ -274,6 +284,7 @@ async function writeProfileAvatarSnapshot(avatar: string, level: number, aura: s
       getVerifiedRealPremiumStatus().catch(() => false),
       getVerifiedVipStatus().catch(() => false),
     ]);
+    if (!isCurrentAccountGeneration(accountToken)) return;
     await syncPublicProfileSnapshot({
       reason: 'display_change',
       name: (nameRaw || '').trim() || `Level ${level}`,
@@ -287,29 +298,37 @@ async function writeProfileAvatarSnapshot(avatar: string, level: number, aura: s
       aura: aura || undefined,
       isPremium: realPremium,
       isVip: vip,
-    });
-    await updateMyGroupPoints(weekPoints);
+    }, accountToken);
+    if (!isCurrentAccountGeneration(accountToken)) return;
+    await updateMyGroupPoints(weekPoints, accountToken);
   } catch {}
 }
 
 async function invalidateAvatarDependentCaches(nextAvatar: string, nextAura: string | null): Promise<void> {
-  try {
-    const leagueRaw = await AsyncStorage.getItem('league_state_v3');
-    if (leagueRaw) {
-      const league = JSON.parse(leagueRaw);
-      if (Array.isArray(league?.group)) {
-        league.group = league.group.map((member: any) => member?.isMe
-          ? { ...member, avatar: nextAvatar, aura: nextAura ?? '' }
-          : member);
-        await AsyncStorage.setItem('league_state_v3', JSON.stringify(league));
+  const accountToken = captureAccountGeneration();
+  if (!accountToken.stableId || !isCurrentAccountGeneration(accountToken)) return;
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken)) return;
+    try {
+      const leagueRaw = await AsyncStorage.getItem('league_state_v3');
+      if (!isCurrentAccountGeneration(accountToken)) return;
+      if (leagueRaw) {
+        const league = JSON.parse(leagueRaw);
+        if (Array.isArray(league?.group)) {
+          league.group = league.group.map((member: any) => member?.isMe
+            ? { ...member, avatar: nextAvatar, aura: nextAura ?? '' }
+            : member);
+          await AsyncStorage.setItem('league_state_v3', JSON.stringify(league));
+        }
       }
-    }
-  } catch {}
-  await AsyncStorage.multiRemove([
-    'global_lb_cache_v4', 'leaderboard_cache_v1', 'arena_top100_snapshot_v8',
-    'arena_top100_remote_at_v1', 'arena_rating_screen_cache_v1', 'club_remote_refresh_at_v2',
-    'friend_profiles_cache_v1', 'friends_tab_swr_v1', 'friends_activity_feed_v2', 'friends_activity_feed_v1',
-  ]).catch(() => {});
+    } catch {}
+    if (!isCurrentAccountGeneration(accountToken)) return;
+    await AsyncStorage.multiRemove([
+      'global_lb_cache_v4', 'leaderboard_cache_v1', 'arena_top100_snapshot_v8',
+      'arena_top100_remote_at_v1', 'arena_rating_screen_cache_v1', 'club_remote_refresh_at_v2',
+      'friend_profiles_cache_v1', 'friends_tab_swr_v1', 'friends_activity_feed_v2', 'friends_activity_feed_v1',
+    ]).catch(() => {});
+  });
 }
 
 async function readFreshCustomizationSnapshot(): Promise<CustomizationSnapshot> {
@@ -370,6 +389,14 @@ export default function AvatarSelect() {
   const [activeTab, setActiveTab] = useState<CustomizationTab>('avatars');
   const [busy, setBusy] = useState(false);
   const [editorAvatar, setEditorAvatar] = useState<CustomAvatarDef | null>(null);
+  const [cosmeticCatalogRevision, setCosmeticCatalogRevision] = useState(0);
+
+  useEffect(() => {
+    const subscription = onAppEvent('cosmetic_asset_catalog_changed', () => {
+      setCosmeticCatalogRevision((current) => current + 1);
+    });
+    return () => subscription.remove();
+  }, []);
   const [editorGradientId, setEditorGradientId] = useState(CUSTOM_AVATAR_GRADIENTS[0].id);
   const [editorLogoColor, setEditorLogoColor] = useState<CustomAvatarLogoColor>('black');
   const [purchaseState, dispatchPurchase] = useReducer(reducePurchaseConfirmation, { pending: null });
@@ -393,7 +420,7 @@ export default function AvatarSelect() {
     setConfirmed(snapshot);
     setPreviewAvatarValue(snapshot.activeAvatar);
     setPreviewStoredAuraSelection(snapshot.storedAuraSelection);
-    patchAppSnapshot({ customization: snapshot });
+    patchAppSnapshotCustomizationSelection(snapshot);
   }, []);
 
   useEffect(() => {
@@ -412,11 +439,16 @@ export default function AvatarSelect() {
     if (Date.now() - lastValidationRef.current < REVALIDATE_TTL_MS) return undefined;
     lastValidationRef.current = Date.now();
     let active = true;
-    void revalidateCustomizationSnapshot(
-      confirmedRef.current,
-      readFreshCustomizationSnapshot,
-      (fresh) => { if (active) publishCustomizationSnapshot(fresh); },
-    ).catch(() => {});
+    void Promise.all([
+      revalidateCustomizationSnapshot(
+        confirmedRef.current,
+        readFreshCustomizationSnapshot,
+        (fresh) => { if (active) publishCustomizationSnapshot(fresh); },
+      ),
+      // Админское включение/снятие с продажи видно при следующем открытии
+      // кастомизации; суточный cache остаётся только офлайн-фолбеком.
+      hydrateCosmeticAssetCatalog(true),
+    ]).catch(() => {});
     return () => { active = false; };
   }, [publishCustomizationSnapshot]));
 
@@ -427,13 +459,23 @@ export default function AvatarSelect() {
     invalidateCaches: invalidateAvatarDependentCaches,
     syncCloud: syncAvatarDisplayToCloud,
     syncPublicProfile: writeProfileAvatarSnapshot,
+    createAccountScope: () => {
+      const accountToken = captureAccountGeneration();
+      return {
+        isCurrent: () => isCurrentAccountGeneration(accountToken),
+        runExclusive: <T,>(work: () => Promise<T>) => withAccountTransitionLock(async () => {
+          if (!isCurrentAccountGeneration(accountToken)) return undefined;
+          return work();
+        }),
+      };
+    },
   }), [publishCustomizationSnapshot]);
 
   const purchaseDeps = useMemo<CustomizationPurchaseDeps>(() => ({
     ...serviceDeps,
     storage: AsyncStorage,
     getAccountScope: async () => (await getCanonicalUserId()) || getStableId(),
-    spendShardsIdempotent,
+    commitShardCompositeOperation,
     validatePurchase: (intent) => validateCustomizationPurchase(intent, {
       snapshot: confirmedRef.current,
       isPremium,
@@ -492,7 +534,8 @@ export default function AvatarSelect() {
     ownedAvatars: confirmed.ownedAvatars,
     giftedAvatarId: confirmed.giftedAvatarId,
     activeAvatar: confirmed.activeAvatar,
-  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar]);
+    catalogRevision: cosmeticCatalogRevision,
+  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar, cosmeticCatalogRevision]);
   const auraItems = useMemo(() => buildAuraCatalog({
     activeAvatar: previewAvatarValue,
     activeAuraId: confirmed.storedAuraSelection,
@@ -501,7 +544,8 @@ export default function AvatarSelect() {
     isPremium,
     isVip,
     isPro,
-  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip, isPro]);
+    catalogRevision: cosmeticCatalogRevision,
+  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip, isPro, cosmeticCatalogRevision]);
   const catalogItems = useMemo<CatalogCardItem[]>(
     () => activeTab === 'avatars' ? [levelTile, ...avatarItems] : auraItems,
     [activeTab, levelTile, avatarItems, auraItems],
@@ -900,7 +944,7 @@ const styles = StyleSheet.create({
   },
   balanceCoin: { width: 17, height: 17 },
   balanceText: { fontSize: 13.5, lineHeight: 18, fontWeight: '800' },
-  controls: { paddingHorizontal: GRID_PAD, paddingTop: 18, paddingBottom: 12 },
+  controls: { paddingHorizontal: GRID_PAD, paddingTop: 12, paddingBottom: 10, alignItems: 'flex-end' },
   row: { paddingHorizontal: GRID_PAD, gap: GRID_GAP, marginBottom: GRID_GAP },
   cell: { flex: 1, maxWidth: `${100 / 3}%` as any },
   bottomScrim: { position: 'absolute', left: 0, right: 0, bottom: 0 },

@@ -10,13 +10,39 @@ import { assertServerScoreResolution, type ServerScoreResolution } from "./serve
 import type { ImmutableEpisodeRevisionArtifact } from "../content_studio/episode_revision_resolver";
 import { prepareProgressTransactionPlan, type ProgressTransactionPlan } from "./progress_event_transaction_plan";
 import { resolvePinnedServerScore, type ModeTemplateArtifactReader, type ScoringPolicyCatalog } from "./server_score_policy_evaluator";
-import { PILOT_SCORING_POLICY_CATALOG } from "./server_score_policy_catalog";
 import { materializeDelayedTerminalEvidence, type DelayedProbeTerminalRecord } from "./delayed_probe_ingestion";
 import { resolveDelayedTerminal } from "../../../modules/learning-v2/contracts/delayed_probe";
 import { validateFailureReceipt, validateTimingReceipt } from "../../../modules/learning-v2/contracts/delayed_receipts";
 import { buildLearningEvidenceTupleKey } from "../../../modules/learning-v2/contracts/evidence";
 import { hashCanonicalBody } from "../../../modules/learning-v2/policies/decision_registry";
 import type { V2DelayedAttemptEventBody } from "../../../modules/learning-v2/contracts/attempt";
+import {
+  createRequiredTaskSettlementCandidate,
+  createRequiredSessionCatalogFromSessionSetV2,
+  parsePublishedRequiredSessionSet,
+  type RequiredSessionCatalogV1,
+} from "../../../modules/learning-v2/contracts/required_session_progress";
+import {
+  createRequiredSessionProgressState,
+  parseRequiredSessionProgressState,
+  reduceRequiredTaskSettlement,
+  type RequiredSessionProgressStateV1,
+} from "../../../modules/learning-v2/progress/required_session_reducer";
+import { deriveLearningV2EconomicAccountScopeHash } from "../../../modules/learning-v2/progress/economic_account_scope";
+import { publishedRequiredSessionSetDocumentId } from "../content_factory/v2_required_session_publication";
+import {
+  publishedRequiredSessionAnswerManifestDocumentId,
+} from "../content_factory/v2_required_session_publication";
+import {
+  isVerifiedRequiredSessionTaskOutcome,
+  parsePublishedRequiredSessionAnswerManifest,
+  requiredSessionTaskAnswerResponseFingerprint,
+  verifyRequiredSessionTaskAnswer,
+  type VerifiedRequiredSessionTaskOutcomeV1,
+} from "./required_session_answer_verifier";
+import { PILOT_SCORING_POLICY_CATALOG } from "./server_score_policy_catalog";
+
+export { publishedRequiredSessionSetDocumentId } from "../content_factory/v2_required_session_publication";
 
 const safe = (value: string): string => value.replace(/[^A-Za-z0-9._-]/g, "_");
 const stableOwner = (stableUid: string): string => {
@@ -41,6 +67,72 @@ const projectionPath = (stableUid: string, accountScopeHash: string, season: str
   `${progressScopeRoot(stableUid, accountScopeHash)}/seasons/${safe(season)}/episodes/${safe(episode)}/slots/${safe(slot)}`;
 const delayedTerminalPath = (stableUid: string, accountScopeHash: string, mutationId: string): string =>
   `users/${stableOwner(stableUid)}/v2_delayed_attempts/${accountScopeHash}__${safe(mutationId)}`;
+const requiredSessionRunDocumentId = (
+  economicAccountScopeHash: string,
+  catalog: RequiredSessionCatalogV1,
+  sessionRunId: string,
+): string => `rsrv1_${hashCanonicalBody({
+  schemaVersion: "learning-v2-required-session-run-document-key.v1",
+  economicAccountScopeHash,
+  courseId: catalog.courseId,
+  studyTarget: catalog.studyTarget,
+  requiredSessionOrdinal: catalog.requiredSessionOrdinal,
+  sessionRunId,
+})}`;
+const requiredSessionTaskDocumentId = (
+  runDocumentId: string,
+  taskOrdinal: number,
+): string => `rstav1_${hashCanonicalBody({
+  schemaVersion: "learning-v2-required-session-task-attempt-document-key.v1",
+  runDocumentId,
+  taskOrdinal,
+})}`;
+
+interface RequiredSessionTaskAttemptStateV1 {
+  readonly schemaVersion: "learning-v2-required-session-task-attempt-state.v1";
+  readonly economicAccountScopeHash: string;
+  readonly accountGeneration: number;
+  readonly sessionRunId: string;
+  readonly taskSlotFingerprint: string;
+  readonly learnerAttempts: number;
+  readonly hintUsed: boolean;
+  readonly terminalCandidateFingerprint: string | null;
+  readonly lastAttemptRef: ProgressEventRequest["attemptRef"] | null;
+}
+
+const parseRequiredSessionTaskAttemptState = (
+  input: unknown,
+  expected: {
+    readonly economicAccountScopeHash: string;
+    readonly accountGeneration: number;
+    readonly sessionRunId: string;
+    readonly taskSlotFingerprint: string;
+  },
+): RequiredSessionTaskAttemptStateV1 => {
+  if (!isRecord(input) || !hasExactKeys(input, [
+    "schemaVersion", "economicAccountScopeHash", "accountGeneration",
+    "sessionRunId", "taskSlotFingerprint", "learnerAttempts", "hintUsed",
+    "terminalCandidateFingerprint", "lastAttemptRef",
+  ]) || input.schemaVersion !== "learning-v2-required-session-task-attempt-state.v1" ||
+    input.economicAccountScopeHash !== expected.economicAccountScopeHash ||
+    input.accountGeneration !== expected.accountGeneration ||
+    input.sessionRunId !== expected.sessionRunId ||
+    input.taskSlotFingerprint !== expected.taskSlotFingerprint ||
+    !Number.isSafeInteger(input.learnerAttempts) || Number(input.learnerAttempts) < 0 ||
+    typeof input.hintUsed !== "boolean" ||
+    (input.terminalCandidateFingerprint !== null &&
+      (typeof input.terminalCandidateFingerprint !== "string" ||
+        !/^[a-f0-9]{64}$/.test(input.terminalCandidateFingerprint))) ||
+    (input.lastAttemptRef !== null && (!isRecord(input.lastAttemptRef) ||
+      !hasExactKeys(input.lastAttemptRef, ["schemaVersion", "opId", "attemptBodyHash"]) ||
+      input.lastAttemptRef.schemaVersion !== "v2-attempt-ref.v1" ||
+      typeof input.lastAttemptRef.opId !== "string" ||
+      typeof input.lastAttemptRef.attemptBodyHash !== "string" ||
+      !/^[a-f0-9]{64}$/.test(input.lastAttemptRef.attemptBodyHash)))) {
+    throw new Error("required_session_attempt_state_invalid");
+  }
+  return input as unknown as RequiredSessionTaskAttemptStateV1;
+};
 
 const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === "object" && value !== null && !Array.isArray(value);
 const hasExactKeys = (value: Record<string, unknown>, keys: readonly string[]): boolean => Object.keys(value).length === keys.length && keys.every((key) => Object.prototype.hasOwnProperty.call(value, key));
@@ -180,12 +272,20 @@ const txStore = (options: FirestoreProgressEventStoreOptions, transaction: Fireb
   let preparedPlan: ProgressTransactionPlan | undefined;
   let projectionExists = false;
   let pinnedEpisode: ImmutableEpisodeRevisionArtifact | undefined;
+  let pinnedRequiredSessionCatalog: RequiredSessionCatalogV1 | undefined;
+  let verifiedRequiredSessionOutcome: VerifiedRequiredSessionTaskOutcomeV1 | undefined;
+  let preparedRequiredSessionWrites: ReadonlyArray<{
+    readonly ref: FirebaseFirestore.DocumentReference;
+    readonly value: FirebaseFirestore.DocumentData;
+    readonly create: boolean;
+  }> | undefined;
   const resolveServerScore = options.resolveServerScore;
   const scoringTemplates = options.scoringTemplates;
-  // The executable catalog is code-owned. Callers may inject a reviewed
-  // catalog for another release, but an omitted catalog must never silently
-  // fall back to client descriptors or an ad-hoc formula.
-  const scoringPolicies = options.scoringPolicies ?? PILOT_SCORING_POLICY_CATALOG;
+  // A policy table only maps an already verified outcome to stars; it cannot
+  // authenticate a client resultCode. Never install the pilot table as a
+  // production default. A caller must inject a trusted scorer/catalog after
+  // its activity-specific server evidence boundary has derived the outcome.
+  const scoringPolicies = options.scoringPolicies;
   const existingEvidenceKeys = new Set<string>();
   const get = async (path: string) => transaction.get(db.doc(path));
   const readStoredProjection = (value: unknown, request: ProgressEventRequest): ProgressProjection => {
@@ -221,26 +321,288 @@ const txStore = (options: FirestoreProgressEventStoreOptions, transaction: Fireb
       );
       const episode = await assertExactImmutableEpisodeRevision(resolver, request.episodeRevisionRef, { get: async (path) => { const snapshot = await get(path); return { exists: snapshot.exists, data: () => snapshot.data() }; } });
       assertResolvedProgressPins(request, season, episode);
+      if (request.requiredSessionTaskRef) {
+        const slot = request.requiredSessionTaskRef;
+        const publicationPath = `content_v2_required_session_sets/${publishedRequiredSessionSetDocumentId(slot.sessionSetId)}`;
+        const publicationSnapshot = await get(publicationPath);
+        if (!publicationSnapshot.exists) throw new Error("required_session_catalog_missing");
+        let publication;
+        try {
+          publication = parsePublishedRequiredSessionSet(publicationSnapshot.data());
+        } catch {
+          throw new Error("required_session_catalog_invalid");
+        }
+        if (
+          publication.courseId !== slot.courseId ||
+          publication.studyTarget !== request.studyTarget ||
+          publication.courseReleaseId !== slot.courseReleaseId ||
+          publication.seasonRevisionId !== request.seasonRevisionId ||
+          publication.episodeRevisionFingerprint !== request.episodeRevisionRef.revisionFingerprint ||
+          publication.episodeContentHash !== request.episodeRevisionRef.contentHash ||
+          publication.sessionSetId !== slot.sessionSetId ||
+          publication.sessionSetHash !== slot.sessionSetHash ||
+          publication.sessionSet.episodeId !== request.episodeRevisionRef.episodeId
+        ) throw new Error("required_session_catalog_mismatch");
+        const catalog = createRequiredSessionCatalogFromSessionSetV2({
+          courseId: publication.courseId,
+          studyTarget: publication.studyTarget,
+          courseReleaseId: publication.courseReleaseId,
+          sessionSetId: publication.sessionSetId,
+          sessionSetHash: publication.sessionSetHash,
+          requiredSessionOrdinal: slot.requiredSessionOrdinal,
+          sessionSet: publication.sessionSet,
+        });
+        const task = catalog.tasks[slot.taskOrdinal - 1];
+        if (
+          catalog.sessionId !== slot.sessionId ||
+          !task ||
+          task.taskOrdinal !== slot.taskOrdinal ||
+          task.taskId !== slot.taskId ||
+          task.activityId !== slot.activityId
+        ) throw new Error("required_session_catalog_mismatch");
+        pinnedRequiredSessionCatalog = catalog;
+        if (request.requiredSessionAnswerResponse) {
+          const answerManifestSnapshot = await get(
+            `content_v2_required_session_answer_manifests/${publishedRequiredSessionAnswerManifestDocumentId(publication.sessionSetId)}`,
+          );
+          if (!answerManifestSnapshot.exists) {
+            throw new Error("required_session_answer_manifest_missing");
+          }
+          const answerManifest = parsePublishedRequiredSessionAnswerManifest(
+            answerManifestSnapshot.data(),
+          );
+          if (
+            answerManifest.courseId !== publication.courseId ||
+            answerManifest.studyTarget !== publication.studyTarget ||
+            answerManifest.courseReleaseId !== publication.courseReleaseId ||
+            answerManifest.seasonRevisionId !== publication.seasonRevisionId ||
+            answerManifest.episodeRevisionFingerprint !== publication.episodeRevisionFingerprint ||
+            answerManifest.episodeContentHash !== publication.episodeContentHash ||
+            answerManifest.sessionSetId !== publication.sessionSetId ||
+            answerManifest.sessionSetHash !== publication.sessionSetHash
+          ) throw new Error("required_session_answer_manifest_mismatch");
+          const matchingKeys = answerManifest.answerKeys.filter((entry) =>
+            entry.taskId === slot.taskId && entry.activityId === slot.activityId);
+          if (matchingKeys.length !== 1) {
+            throw new Error("required_session_answer_key_missing");
+          }
+          const verified = verifyRequiredSessionTaskAnswer({
+            answerKey: matchingKeys[0],
+            response: request.requiredSessionAnswerResponse,
+          });
+          if (!isVerifiedRequiredSessionTaskOutcome(verified) ||
+            verified.resultCode !== request.attemptBody.outcome.resultCode) {
+            throw new Error("required_session_answer_outcome_mismatch");
+          }
+          verifiedRequiredSessionOutcome = verified;
+        } else {
+          // Voice, skip, and technical outcomes require their own trusted
+          // server resolver. Absence of a text answer must never inherit the
+          // pilot result-to-stars table.
+          verifiedRequiredSessionOutcome = undefined;
+        }
+      } else {
+        pinnedRequiredSessionCatalog = undefined;
+        verifiedRequiredSessionOutcome = undefined;
+      }
       pinnedEpisode = episode;
       pinnedRequest = request;
     },
-    resolveServerProjection: (resolveServerScore || (scoringTemplates && scoringPolicies)) ? async (request, materialized) => {
+    resolveServerProjection: (resolveServerScore || scoringTemplates) ? async (request, materialized) => {
       if (!pinnedRequest || !pinnedEpisode) throw new Error("progress_pin_validation_required");
       const projectionRef = db.doc(projectionPath(options.stableUid, serverScopeHash, request.seasonRevisionId, request.episodeRevisionRef.episodeId, request.projection.starSlotId));
       // The callback needs the current best, but must not be allowed to write
       // anything before the normal prepare/write phase.
       const existing = await transaction.get(projectionRef);
       const previousBestStars = existing.exists ? readStoredProjection(existing.data(), request).performanceStars : undefined;
+      const effectivePolicies = verifiedRequiredSessionOutcome
+        ? scoringPolicies ?? PILOT_SCORING_POLICY_CATALOG
+        : scoringPolicies;
+      if (!resolveServerScore && (!scoringTemplates || !effectivePolicies)) return undefined;
       const resolution = resolveServerScore
         ? await resolveServerScore({ request, attemptBody: request.attemptBody, attemptRef: request.attemptRef, evidence: materialized, episodeRevision: pinnedEpisode, previousBestStars })
-        : await resolvePinnedServerScore({ episodeRevision: pinnedEpisode, attemptRef: request.attemptRef, attemptBody: request.attemptBody, activityId: request.projection.activityId, starSlotId: request.projection.starSlotId, progressCompatibilityKey: request.projection.progressCompatibilityKey, evidenceComponentFingerprint: materialized.componentFingerprint, templates: scoringTemplates as ModeTemplateArtifactReader, policies: scoringPolicies as ScoringPolicyCatalog });
+        : await resolvePinnedServerScore({ episodeRevision: pinnedEpisode, attemptRef: request.attemptRef, attemptBody: request.attemptBody, verifiedResultCode: verifiedRequiredSessionOutcome?.resultCode, activityId: request.projection.activityId, starSlotId: request.projection.starSlotId, progressCompatibilityKey: request.projection.progressCompatibilityKey, evidenceComponentFingerprint: materialized.componentFingerprint, templates: scoringTemplates as ModeTemplateArtifactReader, policies: effectivePolicies as ScoringPolicyCatalog });
       if (!resolution) return undefined;
       assertServerScoreResolution(resolution, { attemptRef: request.attemptRef, activityId: request.projection.activityId, starSlotId: request.projection.starSlotId, progressCompatibilityKey: request.projection.progressCompatibilityKey, scoringPolicyRef: resolution.scoringPolicyRef, evidenceComponentFingerprint: materialized.componentFingerprint });
       const projection = deriveProgressProjectionFromServerScore({ previousBestStars: previousBestStars ?? 0, resolution });
       return { projection, resolution };
     } : undefined,
+    applyRequiredSessionAttempt: async (request, resolution) => {
+      const slot = request.requiredSessionTaskRef;
+      const catalog = pinnedRequiredSessionCatalog;
+      if (!pinnedRequest || !slot || !catalog) {
+        throw new Error("required_session_catalog_validation_required");
+      }
+      const economicAccountScopeHash = deriveLearningV2EconomicAccountScopeHash(
+        options.stableUid,
+      );
+      const runDocumentId = requiredSessionRunDocumentId(
+        economicAccountScopeHash,
+        catalog,
+        slot.sessionRunId,
+      );
+      const runRef = db.doc(
+        `users/${stableOwner(options.stableUid)}/v2_required_session_runs/${runDocumentId}`,
+      );
+      const taskRef = db.doc(
+        `users/${stableOwner(options.stableUid)}/v2_required_session_task_attempts/${requiredSessionTaskDocumentId(runDocumentId, slot.taskOrdinal)}`,
+      );
+      const [runSnapshot, taskSnapshot] = await Promise.all([
+        transaction.get(runRef),
+        transaction.get(taskRef),
+      ]);
+      const progressState: RequiredSessionProgressStateV1 = runSnapshot.exists
+        ? parseRequiredSessionProgressState(runSnapshot.data(), catalog)
+        : createRequiredSessionProgressState(catalog, {
+            accountScopeHash: economicAccountScopeHash,
+            accountGeneration: options.accountGeneration,
+            sessionRunId: slot.sessionRunId,
+            runKindClaim: slot.runKindClaim,
+          });
+      const taskSlotFingerprint = hashCanonicalBody(slot);
+      const priorTask = taskSnapshot.exists
+        ? parseRequiredSessionTaskAttemptState(taskSnapshot.data(), {
+            economicAccountScopeHash,
+            accountGeneration: options.accountGeneration,
+            sessionRunId: slot.sessionRunId,
+            taskSlotFingerprint,
+          })
+        : {
+            schemaVersion: "learning-v2-required-session-task-attempt-state.v1" as const,
+            economicAccountScopeHash,
+            accountGeneration: options.accountGeneration,
+            sessionRunId: slot.sessionRunId,
+            taskSlotFingerprint,
+            learnerAttempts: 0,
+            hintUsed: false,
+            terminalCandidateFingerprint: null,
+            lastAttemptRef: null,
+          };
+      if (priorTask.terminalCandidateFingerprint !== null) {
+        throw new Error("required_session_task_already_terminal");
+      }
+      const resultCode = resolution.resultCode;
+      if (resultCode === "INVALID_AUDIO_OR_SYSTEM") {
+        preparedRequiredSessionWrites = [];
+        return;
+      }
+      const completed = resultCode === "CORRECT" || resultCode === "COMPLETED" ||
+        resultCode === "PASS_CONFIDENT";
+      const skipped = resultCode === "SKIPPED";
+      const learnerAttempts = skipped
+        ? priorTask.learnerAttempts
+        : priorTask.learnerAttempts + 1;
+      if (!Number.isSafeInteger(learnerAttempts)) {
+        throw new Error("required_session_attempt_state_invalid");
+      }
+      const hintUsed = priorTask.hintUsed || request.attemptBody.evidence.hintsUsed > 0;
+      if (!completed && !skipped) {
+        preparedRequiredSessionWrites = [{
+          ref: taskRef,
+          create: !taskSnapshot.exists,
+          value: {
+            ...priorTask,
+            learnerAttempts,
+            hintUsed,
+            lastAttemptRef: request.attemptRef,
+          },
+        }];
+        return;
+      }
+      const candidate = createRequiredTaskSettlementCandidate({
+        schemaVersion: "learning-v2-required-task-settlement-candidate-body.v1",
+        candidateAuthority: "untrusted_local",
+        operationId: request.attemptRef.opId,
+        accountScopeHash: economicAccountScopeHash,
+        accountGeneration: options.accountGeneration,
+        courseId: catalog.courseId,
+        studyTarget: catalog.studyTarget,
+        courseReleaseId: catalog.courseReleaseId,
+        sessionSetId: catalog.sessionSetId,
+        sessionSetHash: catalog.sessionSetHash,
+        requiredSessionOrdinal: catalog.requiredSessionOrdinal,
+        sessionId: catalog.sessionId,
+        sessionRunId: slot.sessionRunId,
+        runKindClaim: slot.runKindClaim,
+        taskOrdinal: slot.taskOrdinal,
+        taskId: slot.taskId,
+        activityId: slot.activityId,
+        disposition: skipped ? "skipped" : "completed",
+        learnerAttempts,
+        hintUsed,
+        sourceAttemptRef: learnerAttempts === 0 && !hintUsed
+          ? null
+          : request.attemptRef,
+      });
+      const processedOperations = Object.fromEntries(
+        Object.values(progressState.terminalTasks).map((entry) => [
+          entry.operationId,
+          entry.candidateFingerprint,
+        ]),
+      );
+      const reduction = reduceRequiredTaskSettlement(
+        progressState,
+        candidate,
+        catalog,
+        processedOperations,
+      );
+      const writes: Array<{
+        ref: FirebaseFirestore.DocumentReference;
+        value: FirebaseFirestore.DocumentData;
+        create: boolean;
+      }> = [
+        { ref: runRef, value: reduction.state as unknown as FirebaseFirestore.DocumentData, create: !runSnapshot.exists },
+        {
+          ref: taskRef,
+          create: !taskSnapshot.exists,
+          value: {
+            ...priorTask,
+            learnerAttempts,
+            hintUsed,
+            terminalCandidateFingerprint: candidate.candidateFingerprint,
+            lastAttemptRef: request.attemptRef,
+          },
+        },
+      ];
+      if (reduction.taskSlotsSettledCandidate) {
+        const settled = reduction.taskSlotsSettledCandidate;
+        const settledRef = db.doc(
+          `users/${stableOwner(options.stableUid)}/v2_required_session_settlements/${settled.candidateFingerprint}`,
+        );
+        const settledSnapshot = await transaction.get(settledRef);
+        const value = {
+          schemaVersion: "learning-v2-required-session-settled-projection.v1",
+          accountStableUid: options.stableUid,
+          economicAccountScopeHash,
+          accountGeneration: options.accountGeneration,
+          catalogFingerprint: catalog.catalogFingerprint,
+          candidate: settled,
+          candidateFingerprint: settled.candidateFingerprint,
+        };
+        if (settledSnapshot.exists &&
+          hashCanonicalBody(settledSnapshot.data()) !== hashCanonicalBody(value)) {
+          throw new Error("required_session_settlement_conflict");
+        }
+        if (!settledSnapshot.exists) {
+          writes.push({ ref: settledRef, value, create: true });
+        }
+      }
+      preparedRequiredSessionWrites = writes;
+    },
+    writeRequiredSessionProgress: async () => {
+      if (!preparedRequiredSessionWrites) {
+        throw new Error("required_session_progress_plan_required");
+      }
+      for (const write of preparedRequiredSessionWrites) {
+        if (write.create) transaction.create(write.ref, write.value);
+        else transaction.set(write.ref, write.value, { merge: false });
+      }
+    },
     prepareTransactionPlan: async (request, materialized, projection, trustedScoreResolution) => {
       if (!pinnedRequest) throw new Error("progress_pin_validation_required");
+      if (request.requiredSessionTaskRef && !pinnedRequiredSessionCatalog) {
+        throw new Error("required_session_catalog_validation_required");
+      }
       const projectionRef = db.doc(projectionPath(options.stableUid, serverScopeHash, request.seasonRevisionId, request.episodeRevisionRef.episodeId, projection.starSlotId));
       const projectionSnapshot = await transaction.get(projectionRef);
       projectionExists = projectionSnapshot.exists;
@@ -301,9 +663,15 @@ const txStore = (options: FirestoreProgressEventStoreOptions, transaction: Fireb
       const attemptRef = db.doc(attemptPath(options.stableUid, serverScopeHash, request.seasonRevisionId, request.episodeRevisionRef.episodeId, request.attemptRef.opId));
       const attemptSnapshot = await transaction.get(attemptRef);
       const expectedAttempt: ProgressAttemptRecord = {
-        schemaVersion: "v2-progress-attempt.v2",
+        schemaVersion: "v2-progress-attempt.v3",
         attemptBodyHash: request.attemptRef.attemptBodyHash,
         componentFingerprint: materialized.componentFingerprint,
+        requiredSessionTaskFingerprint: request.requiredSessionTaskRef
+          ? hashCanonicalBody(request.requiredSessionTaskRef)
+          : null,
+        requiredSessionResponseFingerprint: request.requiredSessionAnswerResponse
+          ? requiredSessionTaskAnswerResponseFingerprint(request.requiredSessionAnswerResponse)
+          : null,
         effectiveProjectionFingerprint: operation.effectiveProjectionFingerprint,
         projection: operation.projection,
       };

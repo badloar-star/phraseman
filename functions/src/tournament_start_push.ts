@@ -22,9 +22,17 @@
  * от I/O, поэтому покрывается тестами без сети и Firestore.
  */
 import * as admin from 'firebase-admin';
+import { TOURNAMENTS_RELEASED } from './tournament_release_gate';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const HOUR_MS = 60 * 60 * 1000;
+
+/**
+ * Турниры не входят в текущий пользовательский релиз. Сервер не должен
+ * рекламировать закрытый раздел даже старым клиентам с сохранённым push-токеном.
+ * Вернуть true только вместе с осознанным возвратом клиентских маршрутов.
+ */
+export const TOURNAMENT_START_PUSH_ENABLED = TOURNAMENTS_RELEASED;
 
 /** Один турнирный пуш в сутки на юзера — прямое требование владельца. */
 export const TOURNAMENT_PUSH_COOLDOWN_MS = 20 * HOUR_MS;
@@ -312,6 +320,10 @@ export async function runTournamentStartPush(
   roomId: string,
   now: number = Date.now(),
 ): Promise<TournamentPushSummary> {
+  if (!TOURNAMENT_START_PUSH_ENABLED) {
+    return { scanned: 0, candidates: 0, sent: 0, failedChunks: 0 };
+  }
+
   const db = admin.firestore();
   const PAGE_SIZE = 300;
   const STAMP_BATCH = 400;

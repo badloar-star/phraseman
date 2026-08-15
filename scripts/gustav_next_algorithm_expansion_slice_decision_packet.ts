@@ -285,7 +285,7 @@ function main(): void {
     mode: 'audit-only-translation-generation',
     requiresExplicitAppWriteApproval: false,
     whyThisSlice: [
-      'It is the smallest new app-domain translation surface already modeled by P5: 120 card rows instead of thousands of personal-plan rows.',
+      'It is the smallest new app-domain translation surface already modeled by P5: 120 card rows instead of a much larger lesson corpus.',
       'It is content-only for this slice and does not require target-aware storage, cloud sync, reward state, or production app activation.',
       'It gives the pipeline real new translations next while preserving the user rule: do not touch production app files.',
       'It creates reviewer-ready artifacts first, matching the existing French lesson-row handoff pattern.',
@@ -378,10 +378,6 @@ function main(): void {
     },
     selectedSlice,
     rejectedAlternatives: [
-      {
-        id: 'P11_PERSONAL_PLAN_FRENCH_GENERATION_PACKET',
-        reason: 'Valid but larger: 350 days and 2100 phrases. Do it after the smaller flashcard translation packet proves the app-domain translation handoff.',
-      },
       {
         id: 'P11_AI_DIALOG_FRENCH_GENERATION_PACKET',
         reason: 'Valid but prompt-sensitive. Do it after the simpler content-only flashcard bundle packet.',

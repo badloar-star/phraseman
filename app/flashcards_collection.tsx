@@ -1,122 +1,95 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import TapScale from '../components/TapScale';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CLOUD_SYNC_ENABLED, DEV_CONTENT_UNLOCK, IS_BETA_TESTER, IS_EXPO_GO } from './config';
-import { useEffectivePlatformOS } from './platform_ui_preview';
+/**
+ * cards-2.0 (E11): контейнер коллекции — загрузка данных (useCollectionData),
+ * фильтр/поиск, роутинг режимов «Список / Стопка», delete+undo-пайплайн, модалки.
+ * View-режимы вынесены: CollectionListView (список) и CollectionDeckView (стопка карточек);
+ * шапка — CollectionHeader; хуки данных/удаления/трекинга — useCollectionData.
+ */
+import { CLOUD_SYNC_ENABLED, DEV_CONTENT_UNLOCK, IS_EXPO_GO } from './config';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
-// зачем: Reanimated/FadeInDown остались без потребителей после снятия входного
-// stagger'а со списка карточек — экран обязан открываться статично.
-import { useFeatureAccess } from '../components/PremiumContext';
-import { useAudio } from '../hooks/use-audio';
+import { useSharedValue } from 'react-native-reanimated';
+import { usePremium } from '../components/PremiumContext';
+import { useAudio, type SpeakOpts } from '../hooks/use-audio';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-    Animated,
-    BackHandler,
-    Easing,
-    InteractionManager,
-    Keyboard,
-    KeyboardAvoidingView, Platform,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-    useWindowDimensions,
-    type ViewToken,
+  BackHandler,
+  InteractionManager,
+  Platform,
+  StatusBar,
+  StyleSheet,
+  View,
+  useWindowDimensions,
 } from 'react-native';
-import { FlashList } from '@shopify/flash-list';
-import { FlowText } from '../components/text-integrity/FlowText';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
-import CollectionLimitHeader from '../components/flashcards/CollectionLimitHeader';
-import { loadFlashcardStatuses, type FlashcardStatusMap } from './flashcards/cardStatus';
-import StatusFilterChips from '../components/flashcards/StatusFilterChips';
+import { useScreen } from '../hooks/use-screen';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
-import { glassFill } from '../components/GlassSurface';
-import PlusBadge from '../components/PlusBadge';
-import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
-import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { isLightThemeMode } from '../constants/theme';
-import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
-import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from './flashcards/cardPackPaywallTheme';
-import { Flashcard, loadFlashcards, removeFlashcard, saveFlashcards } from '../hooks/use-flashcards';
-import { updateMultipleTaskProgress } from './daily_tasks';
-import { getTranscription } from './transcription';
 import { actionToastTri, emitAppEvent } from './events';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { CATEGORIES, STR } from './flashcards/constants';
 import { SYSTEM_CARDS } from './flashcards/system-cards';
 import { CardItem, CategoryId } from './flashcards/types';
-import {
-  readCustomCards,
-  readFlashcardsProgress,
-  writeCustomCards,
-  writeFlashcardsProgress,
-} from './flashcards/storage';
-import {
-  applyCardFilter,
-  buildFilterGroups,
-  buildFilterOptions,
-  FilterGroup,
-  getCardsForCategory,
-} from './flashcards/selectors';
-import FlashcardListItem from './flashcards/FlashcardListItem';
+import { writeFlashcardsProgress } from './flashcards/storage';
+// E8: быстрый старт — размер сессии из последнего пресета (fc_mode_prefs_v1)
+import { FC_DEFAULT_SESSION_SIZE, getLastPreset } from './flashcards/mode_prefs';
+import { fcHaptic } from './flashcards/SoundService';
+import { buildFilterGroups, buildFilterOptions, FilterGroup } from './flashcards/selectors';
 import FlashcardsFilterDropdown from './flashcards/FlashcardsFilterDropdown';
+import CollectionHeader from './flashcards/CollectionHeader';
+import CollectionListView, {
+  CollectionEmptyState,
+  UndoDeleteSnackbar,
+} from './flashcards/CollectionListView';
+// Cards 2.1 §5.2: нижний таббар раздела (Тренировка / + / Наборы)
+import FlashcardsTabBar, { FC_TABBAR_HEIGHT, useFcTabBarScroll } from './flashcards/FlashcardsTabBar';
+// §5.3: два входа в набор — «Мои наборы» и каталог сообщества; «назад» ведёт ровно туда
 import {
-  buildMarketplaceOwnedCards,
-  bundledPacksForOwned,
-  consumeDevActivePack,
-  reserveBundledMarketPacks,
-  loadBuiltMarketplaceCardsCache,
-  loadMarketplacePacks,
-  loadAccessiblePackIds,
-  marketOwnedIdsCacheKey,
-  packTitleForInterface,
-  saveBuiltMarketplaceCardsCache,
-  type FlashcardMarketPack,
-} from './flashcards/marketplace';
+  FC_MY_PACKS_ROUTE,
+  FC_PACKS_ROUTE,
+  shouldBypassEmptyCustomCollection,
+} from './flashcards/tabbar_state';
+import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
+import { publishLocalAuthorPack } from './community_packs/publishLocalPack';
+import CollectionDeckView from './flashcards/CollectionDeckView';
+// E13: «сила слова» — точки Weak/Medium/Strong из SRS-данных (§2)
 import {
-  clearStagedNavigationPackId,
-  consumeStagedCommunityPackMarketCards,
-  getStagedNavigationPackId,
-} from './community_packs/staging';
-import { loadCommunityOwnedPackIds } from './community_packs/communityOwnedStorage';
+  loadWordStrengthMap,
+  strengthFor,
+  type WordStrength,
+  type WordStrengthMap,
+} from './flashcards/word_strength';
 import {
-  fetchCommunityPackCards,
-  loadPublishedCommunityMarketPacks,
-} from './community_packs/communityFirestore';
-import { getCanonicalUserId } from './user_id_policy';
+  getCollectionViewMode,
+  setCollectionViewMode,
+  type FcCollectionViewMode,
+} from './flashcards/collection_view_prefs';
+import { isCommunityPacksCloudEnabled } from './community_packs/functionsClient';
 import { flashcardContentLang } from './spanish_content_gate';
-import { checkAchievements } from './achievements';
+// E11: данные/удаление/трекинг/пак-декор вынесены из монолита в хуки
 import {
-  flashcardsDeleteHintSeenKey,
-  storageStudyTarget,
-  type RuntimeStudyTarget,
-} from './target_storage_keys';
-import {
-  flashcardsCommunityPacksAvailableForTarget,
-  flashcardsOfficialPacksAvailableForTarget,
-  flashcardsSystemCardsForTarget,
-} from './flashcards_target_gate';
-import { ensureFrenchRemoteFlashcards, prefetchFrenchRemoteFlashcards } from './french_flashcard_remote_runtime';
-import { safeRouterBack } from './navigation_back';
+  applyPostLoadNavigation,
+  useCollectionData,
+  useCollectionDeletion,
+  useDerivedCollectionCards,
+  useFlashcardViewTracking,
+  usePackBrowseVisual,
+  usePackDeeplinkGuard,
+  type CollectionLoadedInfo,
+} from './flashcards/useCollectionData';
 
-import { noAndroidOutline } from '../constants/androidGlow';
-/** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
-const FLASHCARD_FLIP_DURATION_MS = 280;
-const flashcardFlipEasing = Easing.out(Easing.cubic);
+/** E11 (§3.2): debounce строки поиска. */
+const FC_SEARCH_DEBOUNCE_MS = 200;
 
 function normalizeRouteCategory(cat: string | string[] | undefined): CategoryId | null {
   const raw = Array.isArray(cat) ? cat[0] : cat;
   if (!raw || typeof raw !== 'string') return null;
-  const knownCategory = CATEGORIES.some((c) => c.id === raw);
-  if (!knownCategory) return null;
-  return raw as CategoryId;
+  const known = CATEGORIES.some((c) => c.id === raw);
+  return known ? (raw as CategoryId) : null;
 }
 
 function normalizePackParam(pack: string | string[] | undefined): string | null {
@@ -126,64 +99,9 @@ function normalizePackParam(pack: string | string[] | undefined): string | null 
   return id.length > 0 ? id : null;
 }
 
-// Module-level cache — survives re-renders; warm via `primeFlashcardsCollectionCache` (хаб / root)
-let _savedCardsCacheByTarget: Partial<Record<'en' | 'fr', CardItem[]>> = {};
-let _customCardsCacheByTarget: Partial<Record<'en' | 'fr', CardItem[]>> = {};
-
-function flashcardsCacheTarget(studyTarget?: RuntimeStudyTarget): 'en' | 'fr' {
-  return storageStudyTarget(studyTarget);
-}
-
-// Built once per app session — lazy dynamic import so the ~2 MB lesson data
-// files are NOT loaded at startup (only when a card actually needs migration).
-let _enToUkCache: Map<string, string> | null = null;
-async function getEnToUkMap(): Promise<Map<string, string>> {
-  if (_enToUkCache) return _enToUkCache;
-  const { getLessonData } = await import('./lesson_data_all');
-  _enToUkCache = new Map<string, string>();
-  for (let lessonId = 1; lessonId <= 32; lessonId++) {
-    for (const p of getLessonData(lessonId)) {
-      if (p.english && p.ukrainian && p.ukrainian !== p.russian) {
-        _enToUkCache.set(p.english.trim(), p.ukrainian);
-      }
-    }
-  }
-  return _enToUkCache;
-}
-
-// Types and static dictionaries are moved to app/flashcards/*
-
-const savedToCard = (f: Flashcard): CardItem => ({
-  id: f.id, en: f.en, ru: f.ru, uk: f.uk || f.ru,
-  es: f.es,
-  sourceLocales: {
-    'pt-BR': f.sourceLocales?.['pt-BR'],
-    vi: f.sourceLocales?.vi,
-    id: f.sourceLocales?.id,
-    tr: f.sourceLocales?.tr,
-    pl: f.sourceLocales?.pl,
-  },
-  transcription: f.transcription,
-  categoryId: 'saved', isSystem: false,
-  source: f.source, sourceId: f.sourceId,
-  literalRu: f.literalRu,
-  literalUk: f.literalUk,
-  literalEs: f.literalEs,
-  explanationRu: f.explanationRu,
-  explanationUk: f.explanationUk,
-  explanationEs: f.explanationEs,
-  exampleEn: f.exampleEn,
-  exampleRu: f.exampleRu,
-  exampleUk: f.exampleUk,
-  exampleEs: f.exampleEs,
-  usageNoteRu: f.usageNoteRu,
-  usageNoteUk: f.usageNoteUk,
-  usageNoteEs: f.usageNoteEs,
-  register: f.register,
-  level: f.level,
-});
-
-function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang: Lang): string {
+// ─── Main screen ──────────────────────────────────────────────────────────────
+/** Плановые локали: полное имя категории без ru/uk/es-тернаров. */
+export function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang: Lang): string {
   const labels: Record<Lang, string> = {
     ru: cat.fullLabelRU,
     uk: cat.fullLabelUK,
@@ -197,212 +115,101 @@ function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang: Lang):
   return labels[lang];
 }
 
-function customCardLocalizationForLang(
-  lang: Lang,
-  translatedText: string,
-  existing?: CardItem,
-): { baseRu: string; baseUk: string; baseEs: string; plannedSourceLocales: CardItem['sourceLocales'] } {
-  const sourceLocales = { ...(existing?.sourceLocales ?? {}) };
-  let ru = existing?.ru ?? '';
-  let uk = existing?.uk ?? '';
-  let es = existing?.es ?? '';
+export type FlashcardsCollectionScreenProps = {
+  /**
+   * Cards 2.1 §5.1: экран открыт как КОРЕНЬ раздела «Карточки» (`/flashcards`) —
+   * сразу сохранённые карточки с поиском и фильтром. В этом режиме снизу
+   * закреплён таббар раздела (§5.2), а кнопки «Слушать» / «Тренировать»
+   * не дублируются (их роль берёт левая позиция таббара).
+   */
+  sectionRoot?: boolean;
+};
 
-  switch (lang) {
-    case 'uk':
-      uk = translatedText;
-      break;
-    case 'es':
-      es = translatedText;
-      break;
-    case 'pt-BR':
-      sourceLocales['pt-BR'] = translatedText;
-      break;
-    case 'vi':
-      sourceLocales.vi = translatedText;
-      break;
-    case 'id':
-      sourceLocales.id = translatedText;
-      break;
-    case 'tr':
-      sourceLocales.tr = translatedText;
-      break;
-    case 'pl':
-      sourceLocales.pl = translatedText;
-      break;
-    case 'ru':
-    default:
-      ru = translatedText;
-      break;
-  }
-
-  return { baseRu: ru, baseUk: uk, baseEs: es, plannedSourceLocales: sourceLocales };
-}
-
-/**
- * Прогрів кешу колекції до відкриття екрана: збережені + кастомні з AsyncStorage
- * (і розігрів шляху built-market cache). Не блокує JS — тільки void Promise.
- */
-export function primeFlashcardsCollectionCache(studyTarget?: RuntimeStudyTarget) {
-  const target = flashcardsCacheTarget(studyTarget);
-  void Promise.all([
-    loadFlashcards(target).catch((): Flashcard[] => []),
-    readCustomCards(target).catch(() => null),
-    loadAccessiblePackIds(target).catch((): string[] => []),
-    loadBuiltMarketplaceCardsCache(target).catch((): null => null),
-  ]).then(([saved, rawCustom]) => {
-    _savedCardsCacheByTarget[target] = saved.map(savedToCard);
-    _customCardsCacheByTarget[target] = Array.isArray(rawCustom) ? (rawCustom as CardItem[]) : [];
-  });
-}
-
-/** @deprecated те саме, що primeFlashcardsCollectionCache */
-export function primeCustomFlashcardsCache(studyTarget?: RuntimeStudyTarget) {
-  primeFlashcardsCollectionCache(studyTarget);
-}
-
-/**
- * Викликати синхронно в `router.push` перед відкриттям колекції з `?pack=` —
- * тоді перший кадр уже містить картки з бандла (без порожнього «створити картку»).
- */
-let stagedOwnedPackMarketCards: CardItem[] | null = null;
-let stagedOwnedPackMarketCardsTarget: 'en' | 'fr' | null = null;
-
-export function stageOwnedPackCardsForNavigation(packId: string, studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): boolean {
-  stagedOwnedPackMarketCards = null;
-  stagedOwnedPackMarketCardsTarget = null;
-  if (!flashcardsOfficialPacksAvailableForTarget(studyTarget, sourceLocale)) return false;
-  const packs = bundledPacksForOwned([packId], studyTarget, sourceLocale);
-  if (packs.length === 0) return false;
-  stagedOwnedPackMarketCards = buildMarketplaceOwnedCards(packs, sourceLocale, studyTarget);
-  stagedOwnedPackMarketCardsTarget = storageStudyTarget(studyTarget);
-  return stagedOwnedPackMarketCards.length > 0;
-}
-
-function consumeStagedOwnedPackMarketCards(studyTarget?: RuntimeStudyTarget): CardItem[] | null {
-  if (stagedOwnedPackMarketCardsTarget !== storageStudyTarget(studyTarget)) {
-    stagedOwnedPackMarketCards = null;
-    stagedOwnedPackMarketCardsTarget = null;
-    return null;
-  }
-  const snap = stagedOwnedPackMarketCards;
-  stagedOwnedPackMarketCards = null;
-  stagedOwnedPackMarketCardsTarget = null;
-  return snap;
-}
-
-// ─── Main screen ──────────────────────────────────────────────────────────────
-export default function FlashcardsScreen() {
-  const flashcardsRuntimeActive = useRuntimeActive();
+export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsCollectionScreenProps = {}) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
-  const effectiveOs = useEffectivePlatformOS();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, f, themeMode, statusBarLight, uiScale } = useTheme();
-  // зачем: был мёртвый стаб `= false` — светлые ветки ниже (тема пака, альфа
-  // градиента карточки) никогда не срабатывали, и в «Нефрите» карточка идиомы
-  // оставалась тёмной с нечитаемым текстом. Флаг считаем от реальной темы.
   const isLightTheme = isLightThemeMode(themeMode);
   const { lang } = useLang();
+  /** Компоненты раздела карточек локализованы на ru/uk/es — сужаем интерфейсный язык. */
+
   const { studyTarget } = useStudyTarget();
-  const flashcardsTarget = flashcardsCacheTarget(studyTarget);
-
-  // зачем (макет B1 `.cdot`): статусы изучения для цветных точек в списке.
-  // FIREBASE: читаем только локальный AsyncStorage (тот же ключ, что пишет
-  // свайп-тренировка) — ноль запросов к Firestore. Обновляем на фокусе, чтобы
-  // после тренировки точки были свежими, но не чаще: список не должен
-  // перечитывать хранилище на каждый ре-рендер.
-  const [cardStatuses, setCardStatuses] = useState<FlashcardStatusMap>({});
-
-  // Подписи чипов фильтра по статусу (макет B1 `.fchips`).
-  const statusChipLabels = useMemo(
-    () => ({
-      all: triLang(lang, { ru: 'Все', uk: 'Усі', es: 'Todas', 'pt-BR': 'Todos', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie' }),
-      new: triLang(lang, { ru: 'Новые', uk: 'Нові', es: 'Nuevas', 'pt-BR': 'Novos', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe' }),
-      learning: triLang(lang, { ru: 'Учу', uk: 'Вчу', es: 'Aprendiendo', 'pt-BR': 'Aprendendo', vi: 'Đang học', id: 'Belajar', tr: 'Öğreniyorum', pl: 'Uczę się' }),
-      review: triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Repasar', 'pt-BR': 'Revisar', vi: 'Ôn lại', id: 'Ulangi', tr: 'Tekrar', pl: 'Powtórz' }),
-      mastered: triLang(lang, { ru: 'Освоены', uk: 'Засвоєні', es: 'Dominadas', 'pt-BR': 'Dominados', vi: 'Đã thuộc', id: 'Dikuasai', tr: 'Pekişti', pl: 'Opanowane' }),
-      weak: triLang(lang, { ru: 'Слабые', uk: 'Слабкі', es: 'Difíciles', 'pt-BR': 'Difíceis', vi: 'Còn yếu', id: 'Lemah', tr: 'Zayıf', pl: 'Słabe' }),
-    }),
-    [lang],
-  );
-  useFocusEffect(
-    useCallback(() => {
-      let cancelled = false;
-      void loadFlashcardStatuses(flashcardsTarget).then((map) => {
-        if (!cancelled) setCardStatuses(map);
-      });
-      return () => { cancelled = true; };
-    }, [flashcardsTarget]),
-  );
-  const savedCardsCache = _savedCardsCacheByTarget[flashcardsTarget] ?? null;
-  const customCardsCache = _customCardsCacheByTarget[flashcardsTarget] ?? null;
   const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
-  const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
-  const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
-  const [flashcardPackTick, setFlashcardPackTick] = useState(0);
-  useEffect(() => {
-    if (storageStudyTarget(studyTarget) !== 'fr') return;
-    prefetchFrenchRemoteFlashcards(lang);
-    let cancelled = false;
-    ensureFrenchRemoteFlashcards(lang)
-      .then(() => {
-        if (!cancelled) setFlashcardPackTick((value) => value + 1);
-      })
-      .catch(() => {
-        if (!cancelled) setFlashcardPackTick((value) => value + 1);
-      });
-    return () => { cancelled = true; };
-  }, [lang, studyTarget]);
-  useEffect(() => {
-    if (storageStudyTarget(studyTarget) !== 'fr') return;
-    let cancelled = false;
-    loadMarketplacePacks(studyTarget, lang)
-      .then(() => {
-        if (!cancelled) setFlashcardPackTick((value) => value + 1);
-      })
-      .catch(() => {
-        if (!cancelled) setFlashcardPackTick((value) => value + 1);
-      });
-    return () => { cancelled = true; };
-  }, [lang, studyTarget]);
   const router   = useRouter();
-  const params   = useLocalSearchParams<{ cat?: string; pack?: string; widgetCard?: string }>();
+  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; widgetCard?: string; preview?: string; from?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
   const packDeeplink = useMemo(() => normalizePackParam(params.pack), [params.pack]);
   const routeCatRef = useRef<CategoryId | null>(null);
   routeCatRef.current = routeCat;
   const packRouteRef = useRef<string | null>(null);
   packRouteRef.current = packDeeplink;
-
-  const s        = STR[strLang];
-  const insets   = useStableSafeAreaInsets();
-  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
-  const { height: screenH, width: screenW } = useWindowDimensions();
   /**
-   * Назва набору / категорії в шапці колекції — навмисно менша за звичайний h2 екрана,
-   * щоб довгі UK-рядки (лапки, коми) вміщались без «Влучно, та м'…».
+   * `?preview=1` — набор сообщества открыт ДО добавления себе: карточки видно,
+   * тренировать/слушать/редактировать нельзя, наверху — «Добавить себе» и лайк.
    */
-  const collectionHeaderTitleFontSize = useMemo(() => {
-    const base = f.h3;
-    if (screenW <= 320) return Math.max(13, base - 2);
-    if (screenW < 360) return Math.max(14, base - 1);
-    if (screenW < 400) return Math.max(14, base);
-    return base;
-  }, [f.h3, screenW]);
+  const previewRequested = useMemo(() => {
+    const raw = Array.isArray(params.preview) ? params.preview[0] : params.preview;
+    return raw === '1' && !!packDeeplink;
+  }, [params.preview, packDeeplink]);
+  const previewRequestedRef = useRef(false);
+  previewRequestedRef.current = previewRequested;
+
+  const s        = STR[strLang] ?? STR.ru;
+  const insets   = useStableSafeAreaInsets();
+  /** Ограничение ширины контента на планшетах — как в ContentWrap, но без flex. */
+  const { contentMaxW } = useScreen();
+  const { height: screenH } = useWindowDimensions();
   const { CARD_H, PEEK } = useMemo(() => {
-    const reserved = 200 + insets.top + bottomInset;
+    const reserved = 200 + insets.top + insets.bottom;
     const hAvail = Math.max(220, screenH - reserved);
     /** Компактніша висота картки: раніше max 280px / ~52% екрана було зайвим. × uiScale — узгоджено з темою. */
     const cardH = Math.min(224, Math.max(140, Math.round(hAvail * 0.45 * uiScale)));
     const peek = Math.max(30, Math.round(cardH * 0.19));
     return { CARD_H: cardH, PEEK: peek };
-  }, [screenH, insets.top, bottomInset, uiScale]);
-  const isDevMarketEnabled = DEV_CONTENT_UNLOCK || IS_BETA_TESTER;
-  /** На хаб карток (або pop у стеку), а не на головне меню — зручніше при відкритті з підбірки / набору. */
+  }, [screenH, insets.top, insets.bottom, uiScale]);
+  /**
+   * DEV-«магазин наборов» больше НЕ имеет входа из раздела карточек (решение владельца
+   * 2026-08-13): флаг остался только для восстановления активного DEV-набора при заходе
+   * по прямому роуту и погашен store-предохранителем.
+   */
+  const isDevMarketEnabled = DEV_CONTENT_UNLOCK;
+  /**
+   * Откуда открыт набор: `?from=mine` — «Мои наборы», каталог сообщества —
+   * `?from=community` или режим просмотра (`?preview=1` ставит только каталог).
+   */
+  const packBackOrigin = useMemo((): string | null => {
+    if (!packDeeplink) return null;
+    const raw = Array.isArray(params.from) ? params.from[0] : params.from;
+    if (raw === 'mine') return FC_MY_PACKS_ROUTE;
+    if (raw === 'community' || previewRequested) return FC_PACKS_ROUTE;
+    return null;
+  }, [packDeeplink, params.from, previewRequested]);
+
+  /**
+   * Pop у стеку; фолбек — корінь розділу («Збережені»), а з самого кореня — головне меню
+   * (інакше `replace('/flashcards')` із `/flashcards` замкнуло б екран на собі).
+   *
+   * Набор (замечание владельца, 2026-08-13: «назад» из набора вело на промежуточный
+   * экран): возврат идёт РОВНО туда, откуда набор открыли. `dismissTo` — нативный
+   * POP_TO: он снимает всё, что успело оказаться между каталогом/«Моими наборами»
+   * и набором, поэтому промежуточных остановок не остаётся.
+   */
   const leaveCollection = useCallback(() => {
-    safeRouterBack(router, '/flashcards' as any);
-  }, [router]);
+    const canGoBack = typeof router.canGoBack === 'function' && router.canGoBack();
+    if (packBackOrigin && canGoBack && typeof router.dismissTo === 'function') {
+      try {
+        router.dismissTo(packBackOrigin as any);
+        return;
+      } catch {
+        /* нет такого экрана в стеке — обычный back ниже */
+      }
+    }
+    safeRouterBack(
+      router,
+      (packBackOrigin ?? (sectionRoot ? '/(tabs)/home' : '/flashcards')) as any,
+    );
+  }, [router, sectionRoot, packBackOrigin]);
 
   // ── State ──────────────────────────────────────────────────────────────────
   /** `?pack=` без `cat` — одразу «Власні» (набір), не кадр з «Збережені» до завантаження маркету. */
@@ -426,602 +233,97 @@ export default function FlashcardsScreen() {
   }, [routeCat]);
   const [activeFilter, setActiveFilter]   = useState<string>('all');
   const [filterOpen, setFilterOpen]       = useState(false);
-  const [savedCards, setSavedCards]   = useState<CardItem[]>(savedCardsCache ?? []);
-  const [customCards, setCustomCards] = useState<CardItem[]>(customCardsCache ?? []);
-  const [marketCards, setMarketCards] = useState<CardItem[]>(() => {
-    if (!officialPacksEnabled && !communityPacksEnabled) {
-      consumeStagedCommunityPackMarketCards();
-      stagedOwnedPackMarketCards = null;
-      stagedOwnedPackMarketCardsTarget = null;
-      return [];
-    }
-    const com = communityPacksEnabled ? consumeStagedCommunityPackMarketCards() : null;
-    if (com && com.length > 0) return com;
-    return officialPacksEnabled ? consumeStagedOwnedPackMarketCards(studyTarget) ?? [] : [];
-  });
-  const [marketPackCatalog, setMarketPackCatalog] = useState<FlashcardMarketPack[]>(
-    () => (officialPacksEnabled ? reserveBundledMarketPacks(studyTarget, lang) : []),
-  );
-  /** Список купленных паков из хранилища — для `?pack=` до отрисовки `marketCards` (иначе гонка с кэшем). */
-  const [ownedPackIdList, setOwnedPackIdList] = useState<string[]>([]);
-  /** Куплені UGC-набори (окремий ключ AsyncStorage). */
-  const [communityOwnedIdList, setCommunityOwnedIdList] = useState<string[]>([]);
-  /** `getCanonicalUserId` — доступ автора до свого UGC без «покупки» в `communityOwnedIdList`. */
-  const [accessStableId, setAccessStableId] = useState<string | null>(null);
-  /** `loadAll` завершил цикл; до этого нельзя валидировать `?pack=` по пустому `marketCards`. */
-  const [collectionDataReady, setCollectionDataReady] = useState(false);
-  // «Пульт»: замок коллекции карточек снимается, когда фича переведена в «Фри».
-  const isPremium = useFeatureAccess('flashcards');
-  const [index, setIndex]             = useState(0);
-  const [, setIsFlipped]              = useState(false);
-  const [allFlipped, setAllFlipped]   = useState(false);
-  const cardFlipAnims                 = useRef<Record<string, Animated.Value>>({});
-  const cardFlippedState              = useRef<Record<string, boolean>>({});
-  // Instant paint when session cache exists (re-open); first cold open still waits on AsyncStorage
-  const [loading, setLoading]         = useState(
-    () => savedCardsCache === null && customCardsCache === null,
-  );
-  const [loadError, setLoadError]     = useState(false);
-  const sessionDoneRef                = useRef(false); // achievement fired once per session
-  /** Просмотренные id из словаря flashcards_v1 — для ачивки «все карточки за сессию». */
-  const flashAchievementSeenRef      = useRef<Set<string>>(new Set());
-  const pendingRestoreRef             = useRef<{ cat: CategoryId; idx: number } | null>(null);
-  // Create / Edit mode. Card training lives in /flashcards_swipe.
-  const [mode, setMode]               = useState<'view' | 'create' | 'edit'>('view');
-  const [createStep, setCreateStep]   = useState<'front' | 'back' | 'description'>('front');
-  const [editingId, setEditingId]     = useState<string | null>(null);
-  const [draftEN, setDraftEN]         = useState('');
-  const [draftTR, setDraftTR]         = useState(''); // translation
-  const [draftDescription, setDraftDescription] = useState('');
-
-  // Refs
-  const backInputRef     = useRef<any>(null);
-  const descriptionInputRef = useRef<any>(null);
-  const flatListRef      = useRef<any>(null);
-  /** Native View wrapping FlatList — has measureInWindow (FlatList ref does not). */
-  const listViewportRef  = useRef<View | null>(null);
-  // Tracks last rendered index in scroll listener to fire focusAnim on every card change
-  const scrollIndexRef   = useRef(0);
-  const [scrollViewH, setScrollViewH] = useState(0);
-  /** Задание дня «пролистать карточки»: не дублировать одну и ту же карточку за сессию (скролл + переворот). */
-  const flashcardDailyViewCountedRef = useRef<Set<string>>(new Set());
-  useEffect(() => () => { flashcardDailyViewCountedRef.current.clear(); }, []);
-
-  const registerFlashcardViewed = useCallback((cardIds: string[]) => {
-    const set = flashcardDailyViewCountedRef.current;
-    let n = 0;
-    for (const id of cardIds) {
-      if (!id || set.has(id)) continue;
-      set.add(id);
-      n += 1;
-    }
-    if (n > 0) {
-      updateMultipleTaskProgress(
-        [{ type: 'flashcard_view', increment: n }],
-        { studyTarget },
-      ).catch(() => {});
-      checkAchievements({ type: 'flashcard_viewed', count: n, studyTarget }).catch(() => {});
-    }
-    for (const id of cardIds) {
-      if (id) flashAchievementSeenRef.current.add(id);
-    }
-    if (!sessionDoneRef.current && cardIds.length > 0) {
-      loadFlashcards(studyTarget)
-        .then((all) => {
-          if (all.length === 0) return;
-          const seen = flashAchievementSeenRef.current;
-          if (all.every((c) => seen.has(c.id))) {
-            sessionDoneRef.current = true;
-            checkAchievements({ type: 'flashcards_session', studyTarget }).catch(() => {});
-          }
-        })
-        .catch(() => {});
-    }
-  }, [studyTarget]);
-
-  // Animations
-  const flipAnim    = useRef(new Animated.Value(0)).current;
-  const slideAnim   = useRef(new Animated.Value(0)).current;
-  const createFlipAnim = useRef(new Animated.Value(0)).current;
-  const [savedBtnsVisible] = useState(true);
-  // Long-press delete overlay
-  const [longPressedId, setLongPressedId] = useState<string | null>(null);
-  // Delete hint onboarding
-  const [showDeleteHint, setShowDeleteHint] = useState(false);
-  const deleteHintAnim = useRef(new Animated.Value(0)).current;
-  const deleteHintPulse = useRef(new Animated.Value(1)).current;
-  const deleteHintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const deleteHintPulseLoop = useRef<Animated.CompositeAnimation | null>(null);
-  const overlayAnims = useRef<Record<string, Animated.Value>>({});
-  // Card delete animation
-  const cardDeleteAnims = useRef<Record<string, { opacity: Animated.Value; scale: Animated.Value }>>({});
-  const [deletingId, setDeletingId] = useState<string | null>(null);
-
-  const resetCardFlipState = useCallback(() => {
-    setIsFlipped(false);
-    setAllFlipped(false);
-    flipAnim.setValue(0);
-    Object.values(cardFlipAnims.current ?? {}).forEach((a) => a.setValue(0));
-    cardFlippedState.current = {};
-  }, [flipAnim]);
-
-  /** Власні картки користувача окремо від куплених наборів; куплений набір — лише з `?pack=`. */
-  const collectionCustomCards = useMemo(() => {
-    if (packDeeplink) {
-      return (officialPacksEnabled ? marketCards : []).filter(
-        (c) => c.source === 'lesson' && c.sourceId === `DEV:${packDeeplink}`,
-      );
-    }
-    return customCards ?? [];
-  }, [officialPacksEnabled, packDeeplink, marketCards, customCards]);
-  const systemCardsForTarget = useMemo(
-    () => flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget, lang),
-    [flashcardPackTick, lang, studyTarget],
-  );
-  const cards = useMemo(() => {
-    if (activeCat === 'custom') {
-      return collectionCustomCards;
-    }
-    return getCardsForCategory(activeCat, savedCards, customCards, systemCardsForTarget);
-  }, [activeCat, savedCards, customCards, collectionCustomCards, systemCardsForTarget]);
-  const filteredCards = useMemo(
-    () => applyCardFilter(cards, activeFilter, cardStatuses),
-    [cards, activeFilter, cardStatuses],
-  );
-
-  // Widget deep link: reveal the exact saved/created card once local storage has
-  // hydrated. This preserves the normal collection view and avoids a second,
-  // divergent card-details route.
-  const handledWidgetCardRef = useRef<string | null>(null);
+  // E11: режим просмотра «Список / Стопка» (персист fc_collection_view_v1)
+  const [viewMode, setViewMode] = useState<FcCollectionViewMode>('list');
   useEffect(() => {
-    const raw = Array.isArray(params.widgetCard) ? params.widgetCard[0] : params.widgetCard;
-    if (!raw || handledWidgetCardRef.current === raw || filteredCards.length === 0) return;
-    const cardIndex = filteredCards.findIndex((card) => card.id === raw);
-    if (cardIndex < 0) return;
-    handledWidgetCardRef.current = raw;
-    setIndex(cardIndex);
-    InteractionManager.runAfterInteractions(() => {
-      flatListRef.current?.scrollToIndex?.({ index: cardIndex, animated: false, viewPosition: 0.35 });
+    let mounted = true;
+    getCollectionViewMode().then((m) => { if (mounted) setViewMode(m); });
+    return () => { mounted = false; };
+  }, []);
+
+  const toggleViewMode = useCallback(() => {
+    fcHaptic('tap');
+    setViewMode((prev) => {
+      const next: FcCollectionViewMode = prev === 'list' ? 'deck' : 'list';
+      setCollectionViewMode(next);
+      return next;
     });
-  }, [filteredCards, params.widgetCard]);
-
-  // зачем: чипы считаем по ПОЛНОМУ набору, а не по отфильтрованному — иначе
-  // после выбора «Слабые» остальные чипы исчезли бы и вернуться было бы некуда.
-  const cardIds = useMemo(() => cards.map((c) => c.id), [cards]);
-
-  const viewabilityConfig = useMemo(() => ({ itemVisiblePercentThreshold: 45 }), []);
-  const onViewableItemsChanged = useCallback(({ viewableItems }: { viewableItems: ViewToken[] }) => {
-    const top = viewableItems[0];
-    if (top?.index != null) {
-      scrollIndexRef.current = top.index;
-      setIndex(top.index);
-    }
-    const ids: string[] = [];
-    for (const token of viewableItems) {
-      if (!token.isViewable || token.index == null) continue;
-      const card = filteredCards[token.index];
-      if (card?.id) ids.push(card.id);
-    }
-    registerFlashcardViewed(ids);
-  }, [filteredCards, registerFlashcardViewed]);
-
-  /** Куплені набори (`sourceId` = `DEV:…`) — без CTA «додати свою картку». */
-  const allowAddCustomCard = useMemo(() => {
-    if (packDeeplink) return false;
-    if (activeFilter === 'all') return true;
-    if (activeFilter.startsWith('lesson:')) {
-      const sourceId = activeFilter.slice(7);
-      if (sourceId.startsWith('DEV:')) return false;
-    }
-    return true;
-  }, [packDeeplink, activeFilter]);
-
-  /** Куплений набір з маркету (`?pack=` або фільтр `lesson:DEV:…`) — преміальний декор як у paywall. */
-  const isMarketplacePackBrowse = useMemo(() => {
-    if (packDeeplink) return true;
-    if (activeFilter.startsWith('lesson:')) return activeFilter.slice(7).startsWith('DEV:');
-    return false;
-  }, [packDeeplink, activeFilter]);
-
-  const currentMarketPack = useMemo((): FlashcardMarketPack | null => {
-    if (!isMarketplacePackBrowse) return null;
-    if (packDeeplink) return marketPackCatalog.find((p) => p.id === packDeeplink) ?? null;
-    const sourceId = activeFilter.slice(7);
-    if (sourceId.startsWith('DEV:')) {
-      const packId = sourceId.slice(4);
-      return marketPackCatalog.find((p) => p.id === packId) ?? null;
-    }
-    return null;
-  }, [isMarketplacePackBrowse, packDeeplink, activeFilter, marketPackCatalog]);
-
-  const swipeSourceId = useMemo(() => {
-    if (packDeeplink) {
-      const kind = currentMarketPack?.isCommunityUgc ? 'community' : 'official';
-      return `${kind}:${packDeeplink}`;
-    }
-    if (activeCat === 'custom') return 'custom:all';
-    if (activeCat === 'saved') return 'saved:all';
-    return '';
-  }, [activeCat, currentMarketPack?.isCommunityUgc, packDeeplink]);
-
-  const openSwipeGame = useCallback(() => {
-    if (!isPremium) {
-      router.push({
-        pathname: '/premium_modal',
-        params: { context: 'flashcard_training', source: 'flashcards_collection_training' },
-      } as any);
-      return;
-    }
-    const paramsForSwipe: { source?: string; filter?: string } = {};
-    if (swipeSourceId) paramsForSwipe.source = swipeSourceId;
-    if (swipeSourceId && activeFilter !== 'all') paramsForSwipe.filter = activeFilter;
-    router.push({ pathname: '/flashcards_swipe', params: paramsForSwipe } as any);
-  }, [activeFilter, isPremium, router, swipeSourceId]);
-
-  const openAudioMode = useCallback(() => {
-    if (!isPremium) {
-      router.push({
-        pathname: '/premium_modal',
-        params: { context: 'flashcard_autoplay', source: 'flashcards_collection_audio' },
-      } as any);
-      return;
-    }
-    const paramsForAudio: { source?: string; filter?: string } = {};
-    if (swipeSourceId) paramsForAudio.source = swipeSourceId;
-    if (swipeSourceId && activeFilter !== 'all') paramsForAudio.filter = activeFilter;
-    router.push({ pathname: '/flashcards_audio', params: paramsForAudio } as any);
-  }, [activeFilter, isPremium, router, swipeSourceId]);
-
-  const packPremiumVisual = useMemo(() => {
-    if (!currentMarketPack) return null;
-    if (currentMarketPack.isCommunityUgc && currentMarketPack.ugcCardThemeKey) {
-      return getCommunityUgcPackPaywallTheme(currentMarketPack.ugcCardThemeKey, { themeMode, isLight: isLightTheme });
-    }
-    return getCardPackPaywallTheme(currentMarketPack, { themeMode, isLight: isLightTheme });
-  }, [currentMarketPack, themeMode, isLightTheme]);
-
-  const packCardTheme = useMemo(() => {
-    if (!packPremiumVisual) return undefined;
-    const c0 = packPremiumVisual.ctaColors[0];
-    const c1 = packPremiumVisual.ctaColors[1];
-    const fa = isLightTheme ? '20' : '3E';
-    const ba = isLightTheme ? '18' : '32';
-    return {
-      borderAccent: packPremiumVisual.borderAccent,
-      frontGradient: [c0 + fa, t.bgCard] as [string, string],
-      backGradient: [c1 + ba, t.bgSurface] as [string, string],
-    };
-  }, [packPremiumVisual, isLightTheme, t.bgCard, t.bgSurface]);
-
-  /** Auto-scroll to expanded details: ignore our own scroll; user drag / scroll cancels. */
-  const detailsEscortIgnoreScrollUntilRef = useRef(0);
-  const detailsEscortUserDragRef = useRef(false);
-  const detailsEscortProgrammaticRef = useRef(false);
-  /** Last FlatList content offset (for measure-based "center the row in the list viewport") */
-  const listScrollYRef = useRef(0);
-  /** Map item id → ref to the full row (card + details) for measureInWindow */
-  const listItemRowRefById = useRef<Record<string, View | null>>({});
-  const setListItemRowRef = useCallback((id: string, el: View | null) => {
-    if (el) listItemRowRefById.current[id] = el;
-    else delete listItemRowRefById.current[id];
   }, []);
-  const onDetailsOpenAnimStarted = useCallback(() => {
-    detailsEscortUserDragRef.current = false;
+  const exitDeckToList = useCallback(() => {
+    setViewMode('list');
+    setCollectionViewMode('list');
   }, []);
-  const onDetailsScrollSettled = useCallback(
-    (info: { itemId: string; itemIndex: number }) => {
-      if (detailsEscortUserDragRef.current) {
-        detailsEscortUserDragRef.current = false;
-        return;
-      }
-      const list = flatListRef.current;
-      if (!list || filteredCards.length === 0) return;
-      const byId = filteredCards.findIndex((c) => c.id === info.itemId);
-      const index = byId >= 0 ? byId : Math.min(Math.max(0, info.itemIndex), Math.max(0, filteredCards.length - 1));
-      const backupScrollToIndex = () => {
-        detailsEscortProgrammaticRef.current = true;
-        detailsEscortIgnoreScrollUntilRef.current = Date.now() + 1000;
-        requestAnimationFrame(() => {
-          try {
-            (list as any).scrollToIndex({ index, viewPosition: 0.5, viewOffset: 0, animated: true });
-          } catch {
-            // ignore
-          }
-          setTimeout(() => {
-            detailsEscortProgrammaticRef.current = false;
-          }, 1100);
-        });
-      };
-      const runCenterByMeasure = () => {
-        const row = listItemRowRefById.current[info.itemId];
-        if (!row) {
-          backupScrollToIndex();
-          return;
-        }
-        const viewport = listViewportRef.current;
-        if (!viewport || typeof (viewport as any).measureInWindow !== 'function') {
-          backupScrollToIndex();
-          return;
-        }
-        detailsEscortProgrammaticRef.current = true;
-        detailsEscortIgnoreScrollUntilRef.current = Date.now() + 1000;
-        (row as any).measureInWindow((rx: number, ry: number, _rw: number, rh: number) => {
-          (viewport as any).measureInWindow((lx: number, ly: number, _lw: number, lh: number) => {
-            const rowCenterY = ry + rh / 2;
-            const listCenterY = ly + lh / 2;
-            const delta = rowCenterY - listCenterY;
-            if (Math.abs(delta) < 1.5) {
-              setTimeout(() => {
-                detailsEscortProgrammaticRef.current = false;
-              }, 60);
-              return;
-            }
-            const current = listScrollYRef.current;
-            const next = Math.max(0, current + delta);
-            const useAnim = Math.abs(delta) >= 72;
-            (list as any).scrollToOffset({ offset: next, animated: useAnim });
-            setTimeout(
-              () => {
-                detailsEscortProgrammaticRef.current = false;
-              },
-              useAnim ? 1200 : 80,
-            );
-          });
-        });
-      };
-      // Wait for layout + split gap animation; measureInWindow is reliable (scrollToIndex is not, variable row height)
-      InteractionManager.runAfterInteractions(() => {
-        requestAnimationFrame(() => {
-          setTimeout(runCenterByMeasure, 100);
-        });
+  // E11: поиск (debounce 200мс, по загруженному массиву, все вкладки — §3.2)
+  const [searchInput, setSearchInput] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  useEffect(() => {
+    const tm = setTimeout(() => setSearchQuery(searchInput), FC_SEARCH_DEBOUNCE_MS);
+    return () => clearTimeout(tm);
+  }, [searchInput]);
+
+  const { isPremium } = usePremium();
+  // E13: карта «силы слова» (active_recall_items + trainer_store_v1) — только чтение
+  const [strengthMap, setStrengthMap] = useState<WordStrengthMap | null>(null);
+  useFocusEffect(
+    useCallback(() => {
+      let cancelled = false;
+      void loadWordStrengthMap().then((m) => {
+        if (!cancelled) setStrengthMap(m);
       });
-    },
-    [filteredCards],
-  );
-
-  // ── Load ───────────────────────────────────────────────────────────────────
-  const loadAll = useCallback(async () => {
-    try {
-    const userSid = await getCanonicalUserId().catch(() => null);
-    setAccessStableId(userSid);
-    // Only show loading on first ever open (no cache yet)
-    if (!_savedCardsCacheByTarget[flashcardsTarget] && !_customCardsCacheByTarget[flashcardsTarget]) setLoading(true);
-    const [saved, customParsed, progressParsed, hintSeen, ownedIdsEarly, builtMarketCache, communityOwnedEarly] =
-      await Promise.all([
-      loadFlashcards(studyTarget),
-      readCustomCards(studyTarget),
-      readFlashcardsProgress(studyTarget),
-      AsyncStorage.getItem(flashcardsDeleteHintSeenKey(studyTarget)),
-      officialPacksEnabled ? loadAccessiblePackIds(studyTarget) : Promise.resolve([] as string[]),
-      officialPacksEnabled ? loadBuiltMarketplaceCardsCache(studyTarget, lang).catch((): null => null) : Promise.resolve(null),
-      communityPacksEnabled ? loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []) : Promise.resolve([] as string[]),
-    ]);
-    const custom: CardItem[] = Array.isArray(customParsed) ? (customParsed as CardItem[]) : [];
-    // Швидке відображення: одразу з AsyncStorage, без import lesson data / маркету.
-    const mappedSavedQuick = saved.map(savedToCard);
-    const cacheKeyEarly = marketOwnedIdsCacheKey([...ownedIdsEarly, ...communityOwnedEarly].sort());
-    /**
-     * зачем: раньше UGC-наборы исключались из кэша (`communityOwnedEarly.length === 0`),
-     * потому что хаб гарантированно подкладывал карточки через `await` перед переходом.
-     * Теперь переход мгновенный и staging догоняет фоном, поэтому первый кадр UGC берём
-     * из кэша — ключ `cacheKeyEarly` уже включает community-id, так что подмены наборов нет.
-     */
-    const cacheHit =
-      !!builtMarketCache &&
-      builtMarketCache.ownedKey === cacheKeyEarly &&
-      builtMarketCache.cards.length > 0;
-    if (cacheHit) {
-      setMarketCards(builtMarketCache.cards);
-      setOwnedPackIdList(ownedIdsEarly);
-      setCommunityOwnedIdList(communityOwnedEarly);
-      setMarketPackCatalog(reserveBundledMarketPacks(studyTarget, lang));
-    } else if (ownedIdsEarly.length > 0 || communityOwnedEarly.length > 0) {
-      /** Одразу з бандла — не чекаємо Firestore у `marketPromise`, інакше `?pack=` показує порожній custom. */
-      setOwnedPackIdList(ownedIdsEarly);
-      setCommunityOwnedIdList(communityOwnedEarly);
-      const ownedBundled = bundledPacksForOwned(ownedIdsEarly, studyTarget, lang);
-      if (ownedBundled.length > 0) {
-        setMarketCards(buildMarketplaceOwnedCards(ownedBundled, lang, studyTarget));
-      }
-      setMarketPackCatalog(reserveBundledMarketPacks(studyTarget, lang));
-    } else if (!officialPacksEnabled) {
-      setMarketCards([]);
-      setOwnedPackIdList([]);
-      setCommunityOwnedIdList([]);
-      setMarketPackCatalog([]);
-    }
-    /**
-     * Блокуємо лоадер лише якщо без маркет-кешу користувач побачить порожній список
-     * (тільки куплені паки, немає збережених/своїх). Інакше одразу показуємо картки.
-     */
-    const mustDelayForEmptyMarketOnly =
-      (ownedIdsEarly.length > 0 || communityOwnedEarly.length > 0) &&
-      !cacheHit &&
-      mappedSavedQuick.length === 0 &&
-      custom.length === 0;
-    if (mustDelayForEmptyMarketOnly) setLoading(true);
-    _savedCardsCacheByTarget[flashcardsTarget] = mappedSavedQuick;
-    _customCardsCacheByTarget[flashcardsTarget] = custom;
-    setSavedCards(mappedSavedQuick);
-    setCustomCards(custom);
-    setLoadError(false);
-    if (!mustDelayForEmptyMarketOnly) setLoading(false);
-
-    // Міграція UK / транскрипції (важка) і маркет — паралельно; `setMarketCards` не чекає міграції
-    // (інакше платні картки з\'являються пізніше за «Збережені» / порожній список).
-    const migrationPromise = (async (): Promise<Flashcard[]> => {
-        const hasMissingUk = saved.some((c: Flashcard) => !c.uk || c.uk === c.ru);
-        const hasMissingTr = saved.some((c: Flashcard) => !c.transcription);
-        if (!hasMissingUk && !hasMissingTr) return saved;
-        const enToUk = hasMissingUk ? await getEnToUkMap() : null;
-        let needsSave = false;
-        const migratedLocal = saved.map((card: Flashcard) => {
-          let updated = card;
-          if (enToUk && (!card.uk || card.uk === card.ru)) {
-            const ukTranslation = enToUk.get(card.en.trim());
-            if (ukTranslation && ukTranslation !== card.ru) {
-              needsSave = true;
-              updated = { ...updated, uk: ukTranslation };
-            }
-          }
-          if (!updated.transcription) {
-            const tr = getTranscription(updated.en);
-            if (tr) {
-              needsSave = true;
-              updated = { ...updated, transcription: tr };
-            }
-          }
-          return updated;
-        });
-        if (needsSave) {
-          await saveFlashcards(migratedLocal, studyTarget);
-        }
-        const mappedAfter = migratedLocal.map(savedToCard);
-        _savedCardsCacheByTarget[flashcardsTarget] = mappedAfter;
-        setSavedCards(mappedAfter);
-        return migratedLocal;
-    })();
-
-    const marketPromise = (async () => {
-      if (!officialPacksEnabled) {
-        setOwnedPackIdList([]);
-        setCommunityOwnedIdList([]);
-        setMarketPackCatalog([]);
-        setMarketCards([]);
-        return {
-          ownedIds: [] as string[],
-          marketPacks: [] as FlashcardMarketPack[],
-          communityOwnedIds: [] as string[],
-          communityPublished: [] as FlashcardMarketPack[],
-          activePackId: null as string | null,
-        };
-      }
-      const [ownedIds, marketPacks, communityOwnedIds, communityPublished, activePackIdRaw] = await Promise.all([
-        loadAccessiblePackIds(studyTarget),
-        loadMarketplacePacks(studyTarget, lang),
-        communityPacksEnabled ? loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []) : Promise.resolve([] as string[]),
-        communityPacksEnabled ? loadPublishedCommunityMarketPacks(studyTarget).catch((): FlashcardMarketPack[] => []) : Promise.resolve([] as FlashcardMarketPack[]),
-        isDevMarketEnabled ? consumeDevActivePack(studyTarget) : Promise.resolve(null as string | null),
-      ]);
-      setOwnedPackIdList(ownedIds);
-      setCommunityOwnedIdList(communityOwnedIds);
-      const mergedCatalog: FlashcardMarketPack[] = [...marketPacks];
-      const seenCat = new Set(marketPacks.map((p) => p.id));
-      for (const cp of communityPublished) {
-        if (!seenCat.has(cp.id)) {
-          seenCat.add(cp.id);
-          mergedCatalog.push(cp);
-        }
-      }
-      setMarketPackCatalog(mergedCatalog);
-      const ownedOfficialPacks = marketPacks.filter((pack) => ownedIds.includes(pack.id));
-      const officialBuilt = buildMarketplaceOwnedCards(ownedOfficialPacks, lang, studyTarget);
-      const authorCommunityIds =
-        userSid == null
-          ? []
-          : communityPublished
-              .filter(
-                (p) =>
-                  p.isCommunityUgc &&
-                  p.authorStableId === userSid &&
-                  !communityOwnedIds.includes(p.id),
-              )
-              .map((p) => p.id);
-      const communityIdsToLoad = [...new Set([...communityOwnedIds, ...authorCommunityIds])];
-      const communityCardLists = await Promise.all(
-        communityIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((): CardItem[] => [])),
-      );
-      const builtMarket = [...officialBuilt, ...communityCardLists.flat()];
-      setMarketCards(builtMarket);
-      void saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket, studyTarget, lang);
-      if (mustDelayForEmptyMarketOnly) setLoading(false);
-      return {
-        ownedIds,
-        marketPacks,
-        communityOwnedIds,
-        communityPublished,
-        activePackId: activePackIdRaw as string | null,
+      return () => {
+        cancelled = true;
       };
-    })();
+    }, []),
+  );
+  const strengthForCard = useCallback(
+    (en: string): WordStrength | null => strengthFor(en, strengthMap),
+    [strengthMap],
+  );
+  /** Фокус-строка списка через SharedValue — смена видимой карточки не вызывает setState родителя. */
+  const focusedIndexSV = useSharedValue(0);
+  const indexRef = useRef(0);
+  const pendingRestoreRef = useRef<{ cat: CategoryId; idx: number } | null>(null);
+  const [showDeleteHint, setShowDeleteHint] = useState(false);
+  const { registerFlashcardViewed, trackCardFlip, resetSession } = useFlashcardViewTracking();
 
-    const [migrated, { ownedIds, communityOwnedIds, communityPublished, activePackId: activePackId }] = await Promise.all([
-      migrationPromise,
-      marketPromise,
-    ]);
-    if (!hintSeen && migrated.length > 0) {
-      setShowDeleteHint(true);
-    }
-    const rc = routeCatRef.current;
-    if (isDevMarketEnabled && activePackId && ownedIds.includes(activePackId)) {
-      pendingRestoreRef.current = { cat: 'custom', idx: 0 };
-      setActiveCat('custom');
-      router.setParams({ cat: 'custom' } as any);
-      emitAppEvent(
-        'action_toast',
-        actionToastTri('success', {
-          ru: 'Открыт купленный DEV-набор в карточках.',
-          uk: 'Відкрито придбаний DEV-набір у картках.',
-          es: 'Pack DEV comprado abierto en Tarjetas.',
-          'pt-BR': 'Pack DEV comprado aberto em Cartões.',
-          vi: 'Đã mở pack DEV đã mua trong Thẻ.',
-          id: 'Pack DEV yang dibeli dibuka di Kartu.',
-          tr: 'Satın alınan DEV paketi Kartlar içinde açıldı.',
-          pl: 'Kupiony pakiet DEV otwarto w Kartach.',
-        }),
-      );
-    } else if (!rc && progressParsed) {
-      pendingRestoreRef.current = { cat: progressParsed.cat as CategoryId, idx: progressParsed.idx };
-      setActiveCat(progressParsed.cat as CategoryId);
-    } else if (rc && progressParsed && progressParsed.cat === rc) {
-      pendingRestoreRef.current = { cat: rc, idx: progressParsed.idx };
-    } else {
-      pendingRestoreRef.current = null;
-    }
-    const deepPack = packRouteRef.current;
-    if (deepPack) {
-      const deepMeta = communityPublished.find((p) => p.id === deepPack);
-      const isAuthorOfDeep =
-        !!userSid &&
-        !!deepMeta?.isCommunityUgc &&
-        deepMeta.authorStableId === userSid;
-      if (ownedIds.includes(deepPack) || communityOwnedIds.includes(deepPack) || isAuthorOfDeep) {
-        pendingRestoreRef.current = null;
-        setActiveCat('custom');
-      }
-    }
-    } catch {
-      setLoading(false);
-      setOwnedPackIdList([]);
-      setCommunityOwnedIdList([]);
-      setLoadError(true);
-      emitAppEvent(
-        'action_toast',
-        actionToastTri('error', {
-          ru: 'Карточки не загрузились. Попробуй позже.',
-          uk: 'Не вдалося завантажити картки.',
-          es: 'No se pudieron cargar las tarjetas.',
-          'pt-BR': 'Não foi possível carregar os cartões.',
-          vi: 'Không thể tải thẻ.',
-          id: 'Gagal memuat kartu.',
-          tr: 'Kartlar yüklenemedi.',
-          pl: 'Nie udało się załadować kart.',
-        }),
-      );
-    } finally {
-      setCollectionDataReady(true);
-    }
-  }, [communityPacksEnabled, flashcardsTarget, isDevMarketEnabled, officialPacksEnabled, router, studyTarget]);
+  // ── Data (E11: вынесено в useCollectionData) ───────────────────────────────
+  const onLoaded = useCallback((info: CollectionLoadedInfo) => {
+    applyPostLoadNavigation(info, {
+      isDevMarketEnabled,
+      // Корень раздела всегда открывает «Сохранённые»: восстановление старой
+      // пустой custom-вкладки и создавало удалённый промежуточный экран.
+      routeCat: sectionRoot ? 'saved' : routeCatRef.current,
+      packDeeplink: packRouteRef.current,
+      pendingRestoreRef,
+      setActiveCat,
+      setCustomCatParam: () => router.setParams({ cat: 'custom' } as any),
+      setShowDeleteHint,
+      previewMode: previewRequestedRef.current,
+    });
+  }, [isDevMarketEnabled, router, sectionRoot]);
+
+  const {
+    savedCards, customCards, marketCards, marketPackCatalog, setMarketPackCatalog,
+    ownedPackIdList, communityOwnedIdList, accessStableId,
+    collectionDataReady, loading, loadError, loadAll,
+    updateSavedCards, updateCustomCards,
+  } = useCollectionData({
+    isDevMarketEnabled,
+    onLoaded,
+    previewPackId: previewRequested ? packDeeplink : null,
+    deeplinkPackId: packDeeplink,
+  });
 
   useFocusEffect(
     useCallback(() => {
-      sessionDoneRef.current = false;
-      flashAchievementSeenRef.current.clear();
+      resetSession();
       let cancelled = false;
       const run = () => {
         if (!cancelled) void loadAll();
       };
       /** `?pack=` — без відкладення після анімацій: інакше один-два кадри з порожнім списком. */
-      if (packDeeplink) {
+      if (packDeeplink || Platform.OS === 'web') {
+        /** web: InteractionManager may never flush in headless/browser — run directly. */
         run();
       } else {
         InteractionManager.runAfterInteractions(run);
@@ -1029,66 +331,56 @@ export default function FlashcardsScreen() {
       return () => {
         cancelled = true;
       };
-    }, [loadAll, packDeeplink]),
+    }, [loadAll, packDeeplink, resetSession]),
   );
 
   // Deep link /flashcards_collection?pack=… — доступ: куплено, автор UGC, або картки вже підготовлені в хабі (staging).
-  useEffect(() => {
-    if (!collectionDataReady) return;
-    const pid = packDeeplink;
-    if (!pid) return;
-    const known = marketPackCatalog.some((p) => p.id === pid);
-    if (!known) {
-      router.replace('/flashcards' as any);
-      return;
-    }
-    const packMeta = marketPackCatalog.find((p) => p.id === pid);
-    const isAuthorUgc =
-      !!packMeta?.isCommunityUgc &&
-      !!packMeta.authorStableId &&
-      !!accessStableId &&
-      packMeta.authorStableId === accessStableId;
-    const stagedFromHub = getStagedNavigationPackId() === pid;
-    const owned =
-      ownedPackIdList.includes(pid) ||
-      communityOwnedIdList.includes(pid) ||
-      isAuthorUgc ||
-      stagedFromHub;
-    if (owned) {
-      if (stagedFromHub) clearStagedNavigationPackId();
-    } else {
-      emitAppEvent(
-        'action_toast',
-        actionToastTri('info', {
-          ru: 'Набор ещё не куплен. Его можно открыть за жемчужины в магазине (вкладка с наборами карточек).',
-          uk: 'Набір ще не куплено. Його можна відкрити за перлини в магазині (вкладка з наборами карток).',
-          es: 'Aún no has comprado este pack. Puedes obtenerlo por perlas en la tienda (pestaña de packs de Tarjetas).',
-          'pt-BR': 'Este pack ainda não foi comprado. Você pode abri-lo por pérolas na loja (aba de packs de Cartões).',
-          vi: 'Bạn chưa mua pack này. Bạn có thể mở bằng xu trong cửa hàng (tab pack Thẻ).',
-          id: 'Pack ini belum dibeli. Kamu bisa membukanya dengan koin di toko (tab pack Kartu).',
-          tr: 'Bu paket henüz satın alınmadı. Mağazada jetonlarla açabilirsin (Kart paketleri sekmesi).',
-          pl: 'Ten pakiet nie został jeszcze kupiony. Możesz otworzyć go za monety w sklepie (zakładka pakietów Kart).',
-        }),
-      );
-      router.replace('/flashcards' as any);
-    }
-  }, [
+  usePackDeeplinkGuard({
     collectionDataReady,
     packDeeplink,
     marketPackCatalog,
     ownedPackIdList,
     communityOwnedIdList,
     accessStableId,
-    router,
-  ]);
+    previewMode: previewRequested,
+    /** Нет доступа — возвращаем туда, откуда пришли, а не на «Сохранённые». */
+    onDenied: () => leaveCollection(),
+  });
 
-  // ── Category / pack changes reset position + flips. Data refreshes must not undo a user's flip.
-  useEffect(() => {
-    setIndex(0);
-    resetCardFlipState();
-  }, [activeCat, packDeeplink, resetCardFlipState]);
+  // ── Derived: категория → фильтр → поиск → free-limit (E11: хук) ────────────
+  const { cards, filteredCards, listCards, hiddenByLimitCount } = useDerivedCollectionCards({
+    activeCat, packDeeplink, savedCards, customCards, marketCards,
+    systemCards: SYSTEM_CARDS, activeFilter, searchQuery, isPremium,
+  });
 
-  // ── Data-dependent filter sync. Runs on async card refresh, but intentionally preserves flip state.
+  /** Куплені набори (`sourceId` = `DEV:…`) — без CTA «додати свою картку». */
+  const allowAddCustomCard = useMemo(() => {
+    if (packDeeplink) return false;
+    if (activeFilter.startsWith('lesson:')) {
+      const sourceId = activeFilter.slice(7);
+      if (sourceId.startsWith('DEV:')) return false;
+    }
+    return true;
+  }, [packDeeplink, activeFilter]);
+
+  /** Куплений набір з маркету — преміальний декор як у paywall (E11: хук). */
+  const { currentMarketPack, packPremiumVisual, packCardTheme } = usePackBrowseVisual({
+    packDeeplink,
+    activeFilter,
+    marketPackCatalog,
+    themeMode,
+    isLightTheme,
+    bgCard: t.bgCard,
+    bgSurface: t.bgSurface,
+  });
+
+  // ── Category / data / pack: filter + позиция ───────────────────────────────
+  const persistProgressRef = useRef<(idx: number) => void>(() => {});
+  persistProgressRef.current = (index: number) => {
+    if (loading) return;
+    // Изоляция целей обучения: позиция сохраняется в хранилище текущей цели.
+    writeFlashcardsProgress({ cat: activeCat, idx: index }, studyTarget).catch(() => {});
+  };
   useEffect(() => {
     const packFilter =
       packDeeplink && activeCat === 'custom' ? (`lesson:DEV:${packDeeplink}` as const) : null;
@@ -1100,364 +392,109 @@ export default function FlashcardsScreen() {
     } else {
       setActiveFilter('all');
     }
-  }, [activeCat, cards, packDeeplink]);
-
-  // ── Restore saved scroll index after async cards load without resetting any already-flipped card.
-  useEffect(() => {
     const restore = pendingRestoreRef.current;
-    if (!restore || restore.cat !== activeCat || loading) return;
-    const safeIdx = Math.min(restore.idx, Math.max(0, cards.length - 1));
-    pendingRestoreRef.current = null;
-    setIndex(safeIdx);
-  }, [activeCat, cards.length, loading]);
+    let idx = 0;
+    if (restore && restore.cat === activeCat) {
+      idx = Math.min(restore.idx, Math.max(0, cards.length - 1));
+      pendingRestoreRef.current = null;
+    }
+    indexRef.current = idx;
+    focusedIndexSV.value = idx;
+    persistProgressRef.current(idx);
+  }, [activeCat, cards, packDeeplink, focusedIndexSV]);
 
-  // ── User changed filter: go to first card in filtered list
+  // ── User changed filter/search: go to first card
   useEffect(() => {
-    setIndex(0);
-    setIsFlipped(false);
-    flipAnim.setValue(0);
-  }, [activeFilter, flipAnim]);
+    indexRef.current = 0;
+    focusedIndexSV.value = 0;
+  }, [activeFilter, searchQuery, focusedIndexSV]);
 
-  // ── Persist progress so it survives tab switches ───────────────────────────
-  useEffect(() => {
-    if (loading) return;
-    writeFlashcardsProgress({ cat: activeCat, idx: index }, studyTarget).catch(() => {});
-  }, [index, activeCat, loading, studyTarget]);
+  const onFocusedIndexChanged = useCallback((idx: number) => {
+    indexRef.current = idx;
+    focusedIndexSV.value = idx;
+    persistProgressRef.current(idx);
+  }, [focusedIndexSV]);
 
-  // ── (removed: old single-active-card reset on scroll — each card now has independent flip state) ──
+  /** Смена верхней карточки в «Стопке»: позиция + трекинг просмотра. */
+  const onDeckIndexChanged = useCallback((idx: number, cardId: string) => {
+    onFocusedIndexChanged(idx);
+    registerFlashcardViewed([cardId]);
+  }, [onFocusedIndexChanged, registerFlashcardViewed]);
 
-  const getCardFlipAnim = useCallback((cardId: string) => {
-    if (!cardFlipAnims.current[cardId]) {
-      cardFlipAnims.current[cardId] = new Animated.Value(0);
-    }
-    return cardFlipAnims.current[cardId];
-  }, []);
+  // ── E7/E11: удаление + undo (вынесено в useCollectionDeletion) ─────────────
+  const onIndexClamped = useCallback((idx: number) => {
+    indexRef.current = idx;
+    focusedIndexSV.value = idx;
+  }, [focusedIndexSV]);
+  const { undoEntry, deleteCardById, undoDelete } = useCollectionDeletion({
+    cards, customCards, savedCards, updateCustomCards, updateSavedCards,
+    currentIndexRef: indexRef, onIndexClamped,
+  });
 
-  const getOverlayAnim = useCallback((cardId: string) => {
-    if (!overlayAnims.current[cardId]) {
-      overlayAnims.current[cardId] = new Animated.Value(0);
-    }
-    return overlayAnims.current[cardId];
-  }, []);
-
-  const getDeleteAnim = useCallback((cardId: string) => {
-    if (!cardDeleteAnims.current[cardId]) {
-      cardDeleteAnims.current[cardId] = { opacity: new Animated.Value(1), scale: new Animated.Value(1) };
-    }
-    return cardDeleteAnims.current[cardId];
-  }, []);
-
-  // ── Delete hint onboarding ────────────────────────────────────────────────
-  const dismissDeleteHint = useCallback(() => {
-    if (deleteHintTimer.current) clearTimeout(deleteHintTimer.current);
-    if (deleteHintPulseLoop.current) deleteHintPulseLoop.current.stop();
-    Animated.timing(deleteHintAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start(() => {
-      setShowDeleteHint(false);
-      AsyncStorage.setItem(flashcardsDeleteHintSeenKey(studyTarget), '1');
-    });
-  }, [deleteHintAnim, deleteHintPulseLoop, studyTarget]);
-
-  useEffect(() => {
-    if (!flashcardsRuntimeActive || !showDeleteHint) {
-      deleteHintPulseLoop.current?.stop();
-      deleteHintPulse.setValue(1);
-      return;
-    }
-    // Fade in
-    Animated.timing(deleteHintAnim, { toValue: 1, duration: 350, useNativeDriver: true }).start(() => {
-      // Start pulse loop after fade-in
-      deleteHintPulseLoop.current = Animated.loop(
-        Animated.sequence([
-          Animated.timing(deleteHintPulse, { toValue: 1.025, duration: 700, useNativeDriver: true }),
-          Animated.timing(deleteHintPulse, { toValue: 1,     duration: 700, useNativeDriver: true }),
-        ])
-      );
-      deleteHintPulseLoop.current.start();
-    });
-    // Auto-dismiss after 5s
-    deleteHintTimer.current = setTimeout(() => dismissDeleteHint(), 5000);
-    return () => {
-      if (deleteHintTimer.current) clearTimeout(deleteHintTimer.current);
-      if (deleteHintPulseLoop.current) deleteHintPulseLoop.current.stop();
-    };
-  }, [deleteHintAnim, deleteHintPulse, dismissDeleteHint, flashcardsRuntimeActive, showDeleteHint]);
-
-  // ── Overlay animation ─────────────────────────────────────────────────────
-  const prevLongPressedId = useRef<string | null>(null);
-  useEffect(() => {
-    const prev = prevLongPressedId.current;
-    prevLongPressedId.current = longPressedId;
-
-    // Hide previous overlay
-    if (prev !== null && overlayAnims.current[prev]) {
-      Animated.timing(overlayAnims.current[prev], { toValue: 0, duration: 180, useNativeDriver: true }).start();
-    }
-    // Show new overlay
-    if (longPressedId !== null) {
-      const anim = getOverlayAnim(longPressedId);
-      anim.setValue(0);
-      Animated.spring(anim, { toValue: 1, useNativeDriver: true, friction: 7, tension: 140 }).start();
-    }
-  }, [getOverlayAnim, longPressedId]);
-
-  // ── Unified delete pipeline ────────────────────────────────────────────────
-  const deleteCardById = useCallback(async (cardId: string, backupIdx?: number) => {
-    const target = cards.find((c) => c.id === cardId);
-    if (!target) return;
-    try {
-      if (target.categoryId === 'saved') {
-        await removeFlashcard(target.id, studyTarget);
-        setSavedCards((prev) => prev.filter((c) => c.id !== target.id));
-      } else if (target.categoryId === 'custom') {
-        const updatedCustom = customCards.filter((c) => c.id !== target.id);
-        await writeCustomCards(updatedCustom, studyTarget);
-        setCustomCards(updatedCustom);
-      }
-      const updated = cards.filter((c) => c.id !== target.id);
-      setIndex((prev) => {
-        const base = typeof backupIdx === 'number' ? backupIdx : prev;
-        return Math.max(0, Math.min(base, updated.length - 1));
-      });
-      setIsFlipped(false);
-      flipAnim.setValue(0);
-      // зачем (НАЙДЕНО АУДИТОМ 2026-07-25): тост «Карточка удалена» убран —
-      // он дублировал плашку отмены, которая говорит то же самое И даёт
-      // кнопку «Отменить». Два уведомления об одном действии одновременно
-      // выглядели как сбой. Ошибку удаления по-прежнему показываем тостом:
-      // там плашки отмены не будет.
-    } catch {
-      emitAppEvent(
-        'action_toast',
-        actionToastTri('error', {
-          ru: 'Карточка не удалилась. Попробуй снова.',
-          uk: 'Не вдалося видалити картку.',
-          es: 'No se pudo eliminar la tarjeta.',
-          'pt-BR': 'Não foi possível remover o cartão.',
-          vi: 'Không thể xóa thẻ.',
-          id: 'Gagal menghapus kartu.',
-          tr: 'Kart silinemedi.',
-          pl: 'Nie udało się usunąć karty.',
-        }),
-      );
-    }
-  }, [cards, customCards, flipAnim, studyTarget]);
-
-  // ── Delete with animation ──────────────────────────────────────────────────
-  /**
-   * зачем (макет B1 `.snackx` «Карточка удалена · ↩ Отменить»): удаление было
-   * НЕОБРАТИМЫМ — промахнулся долгим нажатием и карточка исчезла навсегда,
-   * вместе с её прогрессом. Держим последнюю удалённую в памяти и даём вернуть
-   * её одним тапом. 5 секунд: меньше — не успеть заметить, больше — плашка
-   * начинает мешать.
-   */
-  const [undoCard, setUndoCard] = useState<{ card: CardItem; idx: number } | null>(null);
-  const undoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const clearUndo = useCallback(() => {
-    if (undoTimerRef.current) { clearTimeout(undoTimerRef.current); undoTimerRef.current = null; }
-    setUndoCard(null);
-  }, []);
-
-  const restoreDeletedCard = useCallback(async () => {
-    const pending = undoCard;
-    if (!pending) return;
-    clearUndo();
-    try {
-      if (pending.card.categoryId === 'saved') {
-        // зачем (НАЙДЕНО АУДИТОМ 2026-07-25): saveFlashcards ЗАМЕНЯЕТ весь
-        // список, а не добавляет одну карточку. Раньше сюда передавался массив
-        // из одной карточки — нажатие «Отменить» СТИРАЛО ВСЕ остальные
-        // сохранённые карточки юзера. Читаем актуальный список с диска (там
-        // же withWriteLock, гонки с параллельным удалением исключены) и
-        // возвращаем карточку в него.
-        const current = await loadFlashcards(studyTarget);
-        if (!current.some((c) => c.id === pending.card.id)) {
-          await saveFlashcards([pending.card as unknown as Flashcard, ...current], studyTarget);
-        }
-        setSavedCards((prev) => (prev.some((c) => c.id === pending.card.id) ? prev : [pending.card, ...prev]));
-      } else if (pending.card.categoryId === 'custom') {
-        const restored = [pending.card, ...customCards.filter((c) => c.id !== pending.card.id)];
-        await writeCustomCards(restored, studyTarget);
-        setCustomCards(restored);
-      }
-    } catch {
-      // Восстановление не удалось — не роняем экран; карточка просто
-      // останется удалённой, как и было до тапа «Отменить».
-    }
-  }, [clearUndo, customCards, studyTarget, undoCard]);
-
-  // Гасим таймер при уходе с экрана, чтобы не дёргать setState после размонтирования.
-  useEffect(() => () => {
-    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
-  }, []);
-
-  const handleDeleteCard = useCallback(async (item: CardItem, itemIdx: number) => {
-    const anim = getDeleteAnim(item.id);
-    anim.opacity.setValue(1);
-    anim.scale.setValue(1);
-    setDeletingId(item.id);
-    setLongPressedId(null);
-
-    // Flash white → scale up → fade out
-    Animated.sequence([
-      Animated.timing(anim.scale,   { toValue: 1.06, duration: 80,  useNativeDriver: true }),
-      Animated.parallel([
-        Animated.timing(anim.scale,   { toValue: 1.18, duration: 260, useNativeDriver: true }),
-        Animated.timing(anim.opacity, { toValue: 0,    duration: 280, useNativeDriver: true }),
-      ]),
-    ]).start(async () => {
-      await deleteCardById(item.id, itemIdx);
-      setDeletingId(null);
-      // Запоминаем удалённую карточку и запускаем окно отмены.
-      if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
-      setUndoCard({ card: item, idx: itemIdx });
-      undoTimerRef.current = setTimeout(() => setUndoCard(null), 5000);
-    });
-  }, [deleteCardById, getDeleteAnim]);
-
-  const handleFlipCard = useCallback((cardId: string) => {
-    const cardAnim = getCardFlipAnim(cardId);
-    if (!cardAnim) return;
-    const isNowFlipped = cardFlippedState.current[cardId] ?? false;
-    const toValue = isNowFlipped ? 0 : 1;
-    cardFlippedState.current[cardId] = !isNowFlipped;
-    Animated.timing(cardAnim, {
-      toValue,
-      duration: FLASHCARD_FLIP_DURATION_MS,
-      easing: flashcardFlipEasing,
-      useNativeDriver: true,
-    }).start();
-    // Трекинг: только при переворачивании (не возврате). flashcard_view — один раз на карточку за сессию (как при скролле).
-    if (!isNowFlipped) {
-      const set = flashcardDailyViewCountedRef.current;
-      const isNewView = !set.has(cardId);
-      if (isNewView) set.add(cardId);
-      const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [{ type: 'flashcard_flip', increment: 1 }];
-      if (isNewView) updates.push({ type: 'flashcard_view', increment: 1 });
-      updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
-      checkAchievements({ type: 'flashcard_flipped', count: 1, studyTarget }).catch(() => {});
-      if (isNewView) checkAchievements({ type: 'flashcard_viewed', count: 1, studyTarget }).catch(() => {});
-    }
-  }, [getCardFlipAnim, studyTarget]);
-
-  // ── Flip all cards simultaneously ─────────────────────────────────────────
-  const handleFlipAll = useCallback(() => {
-    const toValue = allFlipped ? 0 : 1;
-    const timingCfg = {
-      duration: FLASHCARD_FLIP_DURATION_MS,
-      easing: flashcardFlipEasing,
-      useNativeDriver: true as const,
-    };
-    setAllFlipped(!allFlipped);
-    setIsFlipped(toValue === 1);
-
-    (filteredCards ?? []).forEach((card, i) => {
-      const anim = getCardFlipAnim(card.id);
-      Animated.timing(anim, { toValue, ...timingCfg }).start();
-      if (i === index) Animated.timing(flipAnim, { toValue, ...timingCfg }).start();
-    });
-  }, [allFlipped, filteredCards, flipAnim, getCardFlipAnim, index]);
-
-  // ── Filter options — must be before any early return ─────────────────────
-  // Two-level: group -> items. Used for rendering the dropdown.
+  // ── Filter options ─────────────────────────────────────────────────────────
   const filterGroups: FilterGroup[] = useMemo(
     () => buildFilterGroups(cards, activeCat, strLang),
     [cards, activeCat, strLang],
   );
-
-  // Flat list still needed for "find label by key".
   const filterOptions: { key: string; label: string }[] = useMemo(
     () => buildFilterOptions(filterGroups, strLang),
     [filterGroups, strLang],
   );
 
-  const headerTitle = useMemo(() => {
-    if (packDeeplink && marketPackCatalog.length > 0) {
-      const p = marketPackCatalog.find((x) => x.id === packDeeplink);
-      if (p) return packTitleForInterface(p, lang);
-    }
-    const cat = CATEGORIES.find((c) => c.id === activeCat);
-    const full = cat == null ? undefined : fullCategoryLabelForLang(cat, lang);
-    return full ?? s.title;
-  }, [packDeeplink, marketPackCatalog, lang, activeCat, s.title]);
+  const onCommunityRatingUpdated = useCallback(
+    (avg: number, count: number) => {
+      if (!packDeeplink) return;
+      setMarketPackCatalog((prev) => prev.map((p) => (p.id === packDeeplink ? { ...p, ratingAvg: avg, ratingCount: count } : p)));
+    },
+    [packDeeplink, setMarketPackCatalog],
+  );
 
-  // ── Scroll to card when category switches ─────────────────────────────────
+  // ── Стабилизированные пропсы view ──────────────────────────────────────────
+  const sourceLabels = s.source as Record<string, string>;
+  const voiceLabel = useMemo(
+    () => triLang(lang, { ru: 'Озвучить', uk: 'Озвучити', es: 'Escuchar' }),
+    [lang],
+  );
+  const onSpeakCb = useCallback(
+    (text: string, opts?: SpeakOpts) => speakAudio(text, undefined, opts),
+    [speakAudio],
+  );
+  const openPremiumLimit = useCallback(() => {
+    router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: String(savedCards.length) } } as any);
+  }, [router, savedCards.length]);
+
+  // ── E7: входы в редактор (create/edit) — отдельный экран flashcards_card_editor ──
+  const openCreateEditor = useCallback(() => {
+    router.push({ pathname: '/flashcards_card_editor', params: { create: '1', cat: 'custom' } } as any);
+  }, [router]);
+  /** Легаси-диплинк `?create=1` (старый inline-флоу) → сразу в редактор, один раз. */
+  const consumedCreateParamRef = useRef(false);
   useEffect(() => {
-    if (flatListRef.current) {
-      (flatListRef.current as any).scrollToOffset({ offset: 0, animated: false });
+    const raw = Array.isArray(params.create) ? params.create[0] : params.create;
+    if (raw === '1' && !consumedCreateParamRef.current) {
+      consumedCreateParamRef.current = true;
+      openCreateEditor();
     }
-  }, [activeCat, packDeeplink]);
-
-  const handleSave = async () => {
-    if (!draftTR.trim()) return;
-    Keyboard.dismiss();
-    // ARCHITECTURE RULE: each field stores only its own language.
-    // When editing in UK mode, only `uk` is updated; `ru` is preserved from existing card.
-    // When editing in RU mode, only `ru` is updated; `uk` is preserved from existing card.
-    // When editing in ES mode, only `es` is updated; `ru` / `uk` are preserved.
-    const existing = editingId ? customCards.find(c => c.id === editingId) : undefined;
-    const descTrim = draftDescription.trim();
-    const localizedFields = customCardLocalizationForLang(lang, draftTR.trim(), existing);
-    const newCard = {
-      id: editingId ?? `custom_${Date.now()}`,
-      en: draftEN.trim(),
-      description: descTrim.length > 0 ? descTrim : undefined,
-      categoryId: 'custom',
-      isSystem: false,
-    } as CardItem;
-    newCard.ru = localizedFields.baseRu;
-    newCard.uk = localizedFields.baseUk;
-    newCard.es = localizedFields.baseEs;
-    newCard.sourceLocales = localizedFields.plannedSourceLocales;
-    let updated: CardItem[];
-    if (editingId) {
-      updated = customCards.map(c => c.id === editingId ? newCard : c);
-    } else {
-      updated = [...customCards, newCard];
-    }
-    try {
-      await writeCustomCards(updated, studyTarget);
-      setCustomCards(updated);
-      slideAnim.setValue(0);
-      setActiveCat('custom');
-      router.setParams({ cat: 'custom' } as any);
-      setMode('view');
-      emitAppEvent(
-        'action_toast',
-        actionToastTri('success', {
-          ru: editingId ? 'Карточка обновлена.' : 'Карточка сохранена.',
-          uk: editingId ? 'Картку оновлено.' : 'Картку збережено.',
-          es: editingId ? 'Tarjeta actualizada.' : 'Tarjeta guardada.',
-          'pt-BR': editingId ? 'Cartão atualizado.' : 'Cartão salvo.',
-          vi: editingId ? 'Đã cập nhật thẻ.' : 'Đã lưu thẻ.',
-          id: editingId ? 'Kartu diperbarui.' : 'Kartu disimpan.',
-          tr: editingId ? 'Kart güncellendi.' : 'Kart kaydedildi.',
-          pl: editingId ? 'Karta zaktualizowana.' : 'Karta zapisana.',
-        }),
-      );
-    } catch {
-      emitAppEvent(
-        'action_toast',
-        actionToastTri('error', {
-          ru: 'Карточка не сохранилась. Повтори попытку.',
-          uk: 'Не вдалося зберегти картку.',
-          es: 'No se pudo guardar la tarjeta.',
-          'pt-BR': 'Não foi possível salvar o cartão.',
-          vi: 'Không thể lưu thẻ.',
-          id: 'Gagal menyimpan kartu.',
-          tr: 'Kart kaydedilemedi.',
-          pl: 'Nie udało się zapisać karty.',
-        }),
-      );
-    }
-  };
-
-  const cancelCreate = useCallback(() => {
-    setMode('view');
-    setCreateStep('front');
-    setDraftDescription('');
-    createFlipAnim.setValue(0);
-  }, [createFlipAnim]);
+  }, [params.create, openCreateEditor]);
+  const openEditEditor = useCallback(
+    (item: CardItem) => {
+      router.push({ pathname: '/flashcards_card_editor', params: { id: item.id } } as any);
+    },
+    [router],
+  );
+  const editLabel = useMemo(
+    () => triLang(lang, { ru: 'Редактировать', uk: 'Редагувати', es: 'Editar' }),
+    [lang],
+  );
+  /** Кастомная карточка юзера (не купленный пак): редактируемая. */
+  const isEditableCustomCard = useCallback(
+    (item: CardItem) =>
+      item.categoryId === 'custom' &&
+      !item.isSystem &&
+      !packDeeplink &&
+      !String(item.sourceId ?? '').startsWith('DEV:'),
+    [packDeeplink],
+  );
 
   useEffect(() => {
     if (Platform.OS !== 'android') return;
@@ -1466,818 +503,316 @@ export default function FlashcardsScreen() {
         setFilterOpen(false);
         return true;
       }
-      if (mode === 'create' || mode === 'edit') {
-        cancelCreate();
+      if (viewMode === 'deck') {
+        exitDeckToList();
         return true;
       }
       leaveCollection();
       return true;
     });
     return () => sub.remove();
-  }, [mode, filterOpen, leaveCollection, cancelCreate]);
+  }, [filterOpen, viewMode, exitDeckToList, leaveCollection]);
 
-  // ── Create / Edit mode ────────────────────────────────────────────────────
-  if (mode === 'create' || mode === 'edit') {
-    const canSave = draftEN.trim().length > 0 && draftTR.trim().length > 0;
+  // ── E8: «Тренировать этот набор» — words-сессия тренера с ?deck=… (§3.7) ──
+  /** deckId текущего набора: сохранённые / свои карточки / добавленный набор. */
+  const trainDeckId = useMemo((): string | null => {
+    if (packDeeplink) return `pack:${packDeeplink}`;
+    // Просмотр купленного набора через фильтр (без ?pack=) — тоже тренируем набор
+    if (activeFilter.startsWith('lesson:DEV:')) return `pack:${activeFilter.slice('lesson:DEV:'.length)}`;
+    if (activeCat === 'saved') return 'saved';
+    if (activeCat === 'custom') return 'custom';
+    return null;
+  }, [packDeeplink, activeFilter, activeCat]);
+
+  const startDeckSession = useCallback((mode: 'trainer' | 'listening') => {
+    if (!trainDeckId) return;
+    fcHaptic('tap');
+    void (async () => {
+      // Размер сессии — из последнего пресета (fc_mode_prefs_v1), дефолт 15 (§3.5)
+      const preset = await getLastPreset(mode).catch(() => null);
+      const size = preset?.size ?? FC_DEFAULT_SESSION_SIZE;
+      router.push({
+        pathname: mode === 'trainer' ? '/trainer_words_session' : '/flashcards_listening_session',
+        params: { deck: trainDeckId, size: String(size) },
+      } as any);
+    })();
+  }, [trainDeckId, router]);
+  const startDeckTraining = useCallback(() => startDeckSession('trainer'), [startDeckSession]);
+  const startDeckListening = useCallback(() => startDeckSession('listening'), [startDeckSession]);
+
+  /** Набор уже у пользователя (куплен / добавлен / он его автор). */
+  const packOwnedByMe = useMemo(() => {
+    if (!packDeeplink) return false;
+    if (ownedPackIdList.includes(packDeeplink) || communityOwnedIdList.includes(packDeeplink)) return true;
     return (
-      <ScreenGradient artBackdrop="flashcards">
-      <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]} edges={['left', 'right', 'bottom']}>
-        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
-        <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
-
-          {/* Header */}
-          <View style={[st.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
-            <TouchableOpacity activeOpacity={0.75} onPress={cancelCreate} style={{ width: 40 }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-              <Ionicons name="close" size={26} color={t.textMuted} />
-            </TouchableOpacity>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-              {mode === 'edit' ? s.editCard : s.newCard}
-            </Text>
-            <View style={{ width: 40 }} />
-          </View>
-
-          {/* Form */}
-          <View style={{ paddingHorizontal: 16, paddingTop: 24, gap: 20 }}>
-
-            {/* EN field */}
-            <View style={{ gap: 8 }}>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight:'700', letterSpacing: 1.2, textTransform: 'uppercase' }}>
-                {s.editFront}
-              </Text>
-              <TextInput
-                style={{
-                  backgroundColor: t.bgSurface,
-                  borderWidth: 0,
-                  borderColor: createStep === 'front' ? t.accent : t.border,
-                  borderRadius: 14,
-                  paddingHorizontal: 18, paddingVertical: 16,
-                  color: t.textPrimary, fontSize: f.body + 2, fontWeight:'600',
-                }}
-                placeholder={s.enterEN}
-                placeholderTextColor={t.textGhost}
-                value={draftEN}
-                onChangeText={setDraftEN}
-                autoFocus={mode === 'create'}
-                returnKeyType="next"
-                onSubmitEditing={() => backInputRef.current?.focus()}
-                blurOnSubmit={false}
-                maxLength={80}
-                onFocus={() => setCreateStep('front')}
-              />
-            </View>
-
-            {/* Translation field */}
-            <View style={{ gap: 8 }}>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight:'700', letterSpacing: 1.2, textTransform: 'uppercase' }}>
-                {s.editBack}
-              </Text>
-              <TextInput
-                ref={backInputRef}
-                style={{
-                  backgroundColor: t.bgSurface,
-                  borderWidth: 0,
-                  borderColor: createStep === 'back' ? t.accent : t.border,
-                  borderRadius: 14,
-                  paddingHorizontal: 18, paddingVertical: 16,
-                  color: t.textPrimary, fontSize: f.body + 2, fontWeight:'600',
-                }}
-                placeholder={s.enterRU}
-                placeholderTextColor={t.textGhost}
-                value={draftTR}
-                onChangeText={setDraftTR}
-                returnKeyType="next"
-                onSubmitEditing={() => descriptionInputRef.current?.focus()}
-                blurOnSubmit={false}
-                maxLength={80}
-                onFocus={() => setCreateStep('back')}
-              />
-            </View>
-
-            {/* Optional description */}
-            <View style={{ gap: 8 }}>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight:'700', letterSpacing: 1.2, textTransform: 'uppercase' }}>
-                {s.editDescription}
-              </Text>
-              <TextInput
-                ref={descriptionInputRef}
-                style={{
-                  backgroundColor: t.bgSurface,
-                  borderWidth: 0,
-                  borderColor: createStep === 'description' ? t.accent : t.border,
-                  borderRadius: 14,
-                  paddingHorizontal: 18, paddingVertical: 16,
-                  color: t.textPrimary, fontSize: f.body, fontWeight:'500',
-                }}
-                placeholder={s.enterDescription}
-                placeholderTextColor={t.textGhost}
-                value={draftDescription}
-                onChangeText={setDraftDescription}
-                returnKeyType="done"
-                onSubmitEditing={handleSave}
-                blurOnSubmit
-                maxLength={220}
-                multiline
-                onFocus={() => setCreateStep('description')}
-              />
-            </View>
-
-            {/* Save button */}
-            <TouchableOpacity
-              style={{
-                flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                backgroundColor: canSave ? t.accent : t.bgSurface,
-                borderWidth: 0, borderColor: t.border,
-                borderRadius: 14, paddingVertical: 16, marginTop: 8,
-              }}
-              onPress={handleSave}
-              disabled={!canSave}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="checkmark-circle-outline" size={20} color={canSave ? t.correctText : t.textGhost} style={{ marginRight: 8 }} />
-              <Text style={{ color: canSave ? t.correctText : t.textGhost, fontSize: f.body, fontWeight:'700' }}>
-                {s.save}
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-      </ScreenGradient>
+      !!currentMarketPack?.isCommunityUgc &&
+      !!currentMarketPack.authorStableId &&
+      !!accessStableId &&
+      currentMarketPack.authorStableId === accessStableId
     );
+  }, [packDeeplink, ownedPackIdList, communityOwnedIdList, currentMarketPack, accessStableId]);
+
+  /** Только просмотр: набор открыт из каталога и ещё не добавлен себе. */
+  const previewMode = previewRequested && !packOwnedByMe;
+
+  /**
+   * «Слушать» / «Тренировать» — компактными иконками ВВЕРХУ экрана (замечание
+   * владельца: раньше это были широкие кнопки с текстом внизу). В корне раздела
+   * их роль берёт таббар, в режиме просмотра тренировка недоступна.
+   */
+  const showModeButtons =
+    !sectionRoot && !previewMode && trainDeckId !== null && !loading && filteredCards.length > 0;
+
+  /**
+   * «Сделать публичным»: своя коллекция, которая ещё живёт только на устройстве.
+   * Уже опубликованный / отправленный набор кнопку не показывает.
+   */
+  const [publishBusy, setPublishBusy] = useState(false);
+  /** Заявка уже ушла в этой сессии — второй раз кнопку не показываем. */
+  const [publishSubmitted, setPublishSubmitted] = useState(false);
+  useEffect(() => { setPublishSubmitted(false); }, [packDeeplink]);
+  const showPublishButton =
+    !!packDeeplink &&
+    !previewMode &&
+    !publishSubmitted &&
+    !!currentMarketPack?.isCommunityUgc &&
+    currentMarketPack.listingStatus === 'local_only' &&
+    CLOUD_SYNC_ENABLED &&
+    !IS_EXPO_GO;
+
+  const onPublishPack = useCallback(() => {
+    if (!packDeeplink || publishBusy) return;
+    setPublishBusy(true);
+    void (async () => {
+      const res = await publishLocalAuthorPack(packDeeplink, lang, studyTarget);
+      setPublishBusy(false);
+      if (res === 'submitted') {
+        setPublishSubmitted(true);
+        emitAppEvent('action_toast', actionToastTri('success', {
+          ru: 'Набор отправлен на публикацию.',
+          uk: 'Набір надіслано на публікацію.',
+          es: 'El pack se ha enviado para publicarse.',
+          'pt-BR': 'O pacote foi enviado para publicação.',
+          vi: 'Bộ thẻ đã được gửi để đăng.',
+          id: 'Paket dikirim untuk dipublikasikan.',
+          tr: 'Paket yayınlanmak üzere gönderildi.',
+          pl: 'Zestaw wysłany do publikacji.',
+        }));
+        void loadAll();
+        return;
+      }
+      if (res === 'invalid') {
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Для публикации нужны название, описание и достаточное число карточек.',
+          uk: 'Для публікації потрібні назва, опис і достатня кількість карток.',
+          es: 'Para publicar hacen falta título, descripción y suficientes tarjetas.',
+          'pt-BR': 'Para publicar são necessários título, descrição e cartões suficientes.',
+          vi: 'Để đăng cần có tiêu đề, mô tả và đủ số thẻ.',
+          id: 'Untuk publikasi perlu judul, deskripsi, dan cukup kartu.',
+          tr: 'Yayınlamak için başlık, açıklama ve yeterli kart gerekir.',
+          pl: 'Do publikacji potrzebny jest tytuł, opis i wystarczająca liczba kart.',
+        }));
+        return;
+      }
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось отправить набор на публикацию.',
+        uk: 'Не вдалося надіслати набір на публікацію.',
+        es: 'No se pudo enviar el pack para publicarse.',
+        'pt-BR': 'Não foi possível enviar o pacote para publicação.',
+        vi: 'Không thể gửi bộ thẻ để đăng.',
+        id: 'Gagal mengirim paket untuk dipublikasikan.',
+        tr: 'Paket yayına gönderilemedi.',
+        pl: 'Nie udało się wysłać zestawu do publikacji.',
+      }));
+    })();
+  }, [packDeeplink, publishBusy, lang, studyTarget, loadAll]);
+  /**
+   * Высота таббара раздела — под неё резервируем «хвост» списка (§5.2).
+   * Нижний инсет здесь уже съеден `SafeAreaView` экрана, поэтому таббару передаём 0.
+   */
+  const tabBarReserve = sectionRoot ? FC_TABBAR_HEIGHT + 8 : 0;
+  /** §5.2: капсула таббара сжимается при скролле списка — как на главной. */
+  const tabScroll = useFcTabBarScroll();
+  /** Стопка карточек не скроллится списком — возвращаем капсулу при смене режима. */
+  useEffect(() => {
+    tabScroll.expandNow();
+  }, [viewMode, tabScroll]);
+
+  const searchActive = searchQuery.trim().length > 0;
+  /**
+   * Набор ещё догружается: список пуст не потому, что набор пустой, а потому что
+   * карточки в пути. Заглушка «пусто» в этот момент и читалась как промежуточный
+   * экран перед набором (замечание владельца, 2026-08-13) — не показываем её.
+   */
+  const packCardsPending = !!packDeeplink && !collectionDataReady && filteredCards.length === 0;
+  const isEmpty = !loading && !packCardsPending && filteredCards.length === 0;
+  const bypassEmptyCustomCollection = shouldBypassEmptyCustomCollection({
+    collectionDataReady,
+    activeCat,
+    packDeeplink,
+    customCardCount: customCards.length,
+  });
+  const resolvingEmptyCustomCollection = activeCat === 'custom'
+    && !packDeeplink
+    && customCards.length === 0
+    && !collectionDataReady;
+
+  useEffect(() => {
+    if (!bypassEmptyCustomCollection) return;
+    // Redirect заменяет native route, но без этой метки наш собственный
+    // section-back stack продолжал помнить пустую коллекцию. Закрытие редактора
+    // тогда возвращало сюда и сразу открывало редактор снова.
+    markNextNavigationAsReplace();
+    router.replace({
+      pathname: '/flashcards_card_editor',
+      params: { create: '1', cat: 'custom' },
+    } as any);
+  }, [bypassEmptyCustomCollection, router]);
+
+  // Не показываем удалённый экран даже одним кадром на холодном чтении storage.
+  // После проверки либо монтируется реальная коллекция, либо Redirect в редактор.
+  if (resolvingEmptyCustomCollection) {
+    return <ScreenGradient><View style={st.safe} /></ScreenGradient>;
   }
 
-  // ── Empty state ────────────────────────────────────────────────────────────
-  // зачем: раньше условие смотрело только на filteredCards — и когда фильтр
-  // (в т.ч. новый по статусу) ничего не находил, юзеру показывали онбординг
-  // «Создай первую карточку», хотя карточки у него ЕСТЬ. Теперь настоящий
-  // онбординг — только когда набор пуст целиком; пустой результат фильтра
-  // остаётся в обычном экране со списком, где видны чипы и можно вернуться
-  // к «Все».
-  if (!loading && cards.length === 0) return (
-    <ScreenGradient artBackdrop="flashcards">
-    <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]} edges={['left', 'right', 'bottom']}>
-      <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
-      <ContentWrap>
-        <View style={[st.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
-          <TapScale testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
-            <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-          </TapScale>
-          <Text
-            style={[st.headerTitle, { color: t.textPrimary, fontSize: collectionHeaderTitleFontSize, flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4 }]}
-            numberOfLines={1}
-            maxFontSizeMultiplier={1.2}
-          >
-            {headerTitle}
-          </Text>
-          <View style={{ width: 40 }} />
-        </View>
-        <View style={st.centerState}>
-          <Ionicons name={activeCat === 'custom' ? 'pencil-outline' : 'bookmark-outline'} size={56} color={t.textGhost} />
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight:'700', marginTop: 12 }}>{s.empty}</Text>
-          {loadError && (
-            <TouchableOpacity
-              onPress={loadAll}
-              style={{ marginTop: 16, backgroundColor: t.bgSurface, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 12, borderWidth: 0, borderColor: t.border }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {triLang(lang, {
-                  ru: 'Повторить',
-                  uk: 'Повторити',
-                  es: 'Reintentar',
-                  'pt-BR': 'Tentar novamente',
-                  vi: 'Thử lại',
-                  id: 'Coba lagi',
-                  tr: 'Tekrar dene',
-                  pl: 'Spróbuj ponownie',
-                })}
-              </Text>
-            </TouchableOpacity>
-          )}
-          {activeCat === 'custom' && allowAddCustomCard && (
-            <TouchableOpacity
-              onPress={() => { setDraftEN(''); setDraftTR(''); setDraftDescription(''); setEditingId(null); setCreateStep('front'); createFlipAnim.setValue(0); setMode('create'); }}
-              style={{ marginTop: 24, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 32, paddingVertical: 14 }}
-            >
-              <Text style={{ color: t.correctText, fontWeight:'700', fontSize: f.body }}>
-                {triLang(lang, {
-                  ru: '+ Создать первую карточку',
-                  uk: '+ Створити першу картку',
-                  es: '+ Crear la primera tarjeta',
-                  'pt-BR': '+ Criar o primeiro cartão',
-                  vi: '+ Tạo thẻ đầu tiên',
-                  id: '+ Buat kartu pertama',
-                  tr: '+ İlk kartı oluştur',
-                  pl: '+ Utwórz pierwszą kartę',
-                })}
-              </Text>
-            </TouchableOpacity>
-          )}
-          {activeCat === 'custom' && communityPacksEnabled && CLOUD_SYNC_ENABLED && !IS_EXPO_GO && (
-            <TouchableOpacity
-              onPress={() => router.push('/community_pack_create' as any)}
-              style={{ marginTop: 14, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 12, borderWidth: 0, borderColor: t.accent }}
-            >
-              <Text style={{ color: t.accent, fontWeight: '700', fontSize: f.body }}>
-                {triLang(lang, { ru: '+ Создать набор', uk: '+ Створити набір', es: '+ Crear pack', 'pt-BR': '+ Criar pacote', vi: '+ Tạo bộ thẻ', id: '+ Buat paket', tr: '+ Paket oluştur', pl: '+ Utwórz zestaw' })}
-              </Text>
-            </TouchableOpacity>
-          )}
-        </View>
-      </ContentWrap>
-      {isDevMarketEnabled && (
-        <TouchableOpacity
-              onPress={() => router.push(FLASHCARDS_MARKET_DEV_ROUTE as any)}
-          style={{
-            position: 'absolute',
-            right: 14,
-            bottom: Math.max(bottomInset, 8) + 20,
-            zIndex: 60,
-            borderRadius: 12,
-            borderWidth: 0,
-            borderColor: `${t.accent}66`,
-            backgroundColor: `${t.accent}1F`,
-            paddingHorizontal: 10,
-            paddingVertical: 8,
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 6,
-          }}
-        >
-          <Ionicons name="storefront-outline" size={14} color={t.accent} />
-          <Text style={{ fontSize: f.caption, color: t.accent, fontWeight: '800' }}>DEV MARKET</Text>
-        </TouchableOpacity>
-      )}
-    </SafeAreaView>
-    </ScreenGradient>
-  );
+  if (bypassEmptyCustomCollection) {
+    return <ScreenGradient><View style={st.safe} /></ScreenGradient>;
+  }
 
   return (
-    <ScreenGradient artBackdrop="flashcards">
-    <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]} edges={['left', 'right', 'bottom']}>
+    <ScreenGradient>
+    <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
 
-        {/* Header */}
-        <View style={[st.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
-          <TapScale testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
-            <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-          </TapScale>
-          <Text
-            style={[st.headerTitle, { color: t.textPrimary, fontSize: collectionHeaderTitleFontSize, flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4 }]}
-            numberOfLines={1}
-            maxFontSizeMultiplier={1.2}
-          >
-            {headerTitle}
-          </Text>
-          <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 8, flexShrink: 0 }}>
-            {isDevMarketEnabled && (
-              <TouchableOpacity
-                onPress={() => router.push(FLASHCARDS_MARKET_DEV_ROUTE as any)}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 3,
-                  paddingHorizontal: 8,
-                  paddingVertical: 5,
-                  borderRadius: 10,
-                  borderWidth: 0,
-                  borderColor: `${t.accent}66`,
-                  backgroundColor: `${t.accent}1A`,
-                }}
-              >
-                <Ionicons name="flask-outline" size={12} color={t.accent} />
-                <Text style={{ fontSize: f.caption, color: t.accent, fontWeight: '700' }}>DEV</Text>
-              </TouchableOpacity>
-            )}
-            {savedBtnsVisible && activeCat !== 'custom' && filterOptions.length > 0 && (
-              <View>
-                <View style={{ position: 'relative' }}>
-                  <TouchableOpacity
-                    onPress={() => setFilterOpen(o => !o)}
-                    hitSlop={{ top:8,bottom:8,left:8,right:8 }}
-                    style={{
-                      flexDirection: 'row', alignItems: 'center', gap: 3,
-                      paddingHorizontal: 10, paddingVertical: 5,
-                      borderRadius: 12, borderWidth: 0,
-                      borderColor: activeFilter !== 'all' ? t.accent : t.border,
-                      backgroundColor: activeFilter !== 'all' ? t.accent + '18' : 'transparent',
-                    }}
-                  >
-                    <Ionicons name="filter-outline" size={12} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
-                    <Text style={{ fontSize: f.caption, fontWeight: '600', color: activeFilter !== 'all' ? t.accent : t.textSecond }}>
-                      {activeFilter === 'all'
-                        ? triLang(lang, { ru: 'Фильтр', uk: 'Фільтр', es: 'Filtro', 'pt-BR': 'Filtro', vi: 'Bộ lọc', id: 'Filter', tr: 'Filtre', pl: 'Filtr' })
-                        : (filterOptions.find(o => o.key === activeFilter)?.label ??
-                            triLang(lang, { ru: 'Фильтр', uk: 'Фільтр', es: 'Filtro', 'pt-BR': 'Filtro', vi: 'Bộ lọc', id: 'Filter', tr: 'Filtre', pl: 'Filtr' }))}
-                    </Text>
-                    <Ionicons name={filterOpen ? 'chevron-up' : 'chevron-down'} size={10} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
-                  </TouchableOpacity>
-                </View>
-              </View>
-            )}
-          </View>
-        </View>
-
-        {/* зачем (аудит §2.2, макет B1 `.col-cnt`/`.col-bar`): лимит бесплатных
-            карточек был НЕВИДИМ до упора — юзер спокойно сохранял и внезапно
-            получал стену пейвола на 21-й. Теперь остаток виден заранее, и цвет
-            полосы предупреждает на подходе (жёлтый с 15/20, красный на упоре).
-            Только на вкладке своих карточек — лимит касается именно их. */}
-        {activeCat === 'custom' && (
-          <CollectionLimitHeader saved={savedCards.length} isPremium={isPremium} t={t} />
-        )}
-
-        {/* Плашка отмены удаления (макет B1 `.snackx`). Плавает над списком,
-            чтобы не сдвигать контент — иначе список прыгал бы на каждое
-            удаление. Тап-зона кнопки 44px (§4.6), обводок нет (§0.D). */}
-        {undoCard && (
-          <View
-            pointerEvents="box-none"
-            style={{
-              position: 'absolute',
-              left: 16,
-              right: 16,
-              bottom: Math.max(bottomInset, 12) + 16,
-              zIndex: 50,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 12,
-              paddingLeft: 16,
-              paddingRight: 8,
-              paddingVertical: 8,
-              borderRadius: 16,
-              backgroundColor: t.bgSurface2 ?? t.bgSurface,
-              shadowColor: '#000',
-              shadowOpacity: 0.32,
-              shadowRadius: 14,
-              shadowOffset: { width: 0, height: 6 },
-              ...noAndroidOutline,
-            }}
-          >
-            {/* зачем: text-integrity — текст тоста переносится, снекбар растёт;
-                заодно count сайта в файле возвращается к базлайну (x1). */}
-            <FlowText testID="flashcards-delete-toast-text" provenance="authored" style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
-              {triLang(lang, {
-                ru: 'Карточка удалена',
-                uk: 'Картку видалено',
-                es: 'Tarjeta eliminada',
-                'pt-BR': 'Cartão excluído',
-                vi: 'Đã xoá thẻ',
-                id: 'Kartu dihapus',
-                tr: 'Kart silindi',
-                pl: 'Fiszka usunięta',
-              })}
-            </FlowText>
-            <TouchableOpacity
-              onPress={restoreDeletedCard}
-              activeOpacity={0.8}
-              style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 14, borderRadius: 12 }}
-            >
-              <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
-                ↩ {triLang(lang, {
-                  ru: 'Отменить',
-                  uk: 'Скасувати',
-                  es: 'Deshacer',
-                  'pt-BR': 'Desfazer',
-                  vi: 'Hoàn tác',
-                  id: 'Urungkan',
-                  tr: 'Geri al',
-                  pl: 'Cofnij',
-                })}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
-
-        {/* зачем (макет B1 `.fchips`): отобрать проблемные карточки было
-            невозможно — список шёл одной кучей. Именно слабые надо тренировать
-            первыми, теперь до них один тап. Чип показывается только если такие
-            карточки есть: пустой фильтр — обман, а не выбор. */}
-        <StatusFilterChips
-          activeFilter={activeFilter}
-          onChange={setActiveFilter}
-          cardIds={cardIds}
-          statuses={cardStatuses}
-          labels={statusChipLabels}
+        <CollectionHeader
           t={t}
+          f={f}
+          lang={lang}
+          activeCat={activeCat}
+          packDeeplink={packDeeplink}
+          marketPackCatalog={marketPackCatalog}
+          fallbackTitle={s.title}
+          onBack={leaveCollection}
+          showViewToggle={!isEmpty}
+          viewMode={viewMode}
+          onToggleViewMode={toggleViewMode}
+          filterGroups={filterGroups}
+          filterOptions={filterOptions}
+          activeFilter={activeFilter}
+          filterOpen={filterOpen}
+          onToggleFilterOpen={() => setFilterOpen((o) => !o)}
+          showModeButtons={showModeButtons}
+          onListen={startDeckListening}
+          onTrain={startDeckTraining}
+          showPublish={showPublishButton}
+          publishBusy={publishBusy}
+          onPublish={onPublishPack}
+          /* На экране НАБОРА поиска по карточкам нет (в «Сохранённых» — остаётся). */
+          showSearch={!packDeeplink && !(isEmpty && !searchActive)}
+          searchInput={searchInput}
+          searchActive={searchActive}
+          onSearchInput={setSearchInput}
         />
 
-        {/* зачем: фильтр может не найти ничего (напр. «Слабые», когда все
-            карточки освоены). Раньше это уводило в онбординг «создай первую
-            карточку» — теперь честно говорим, что в этом фильтре пусто, и
-            даём вернуться к «Все» одним тапом, не теряя контекст. */}
-        {!loading && cards.length > 0 && filteredCards.length === 0 && (
-          <View style={{ alignItems: 'center', paddingHorizontal: 32, paddingVertical: 28, gap: 12 }}>
-            <Ionicons name="funnel-outline" size={40} color={t.textGhost} />
-            <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-              {triLang(lang, {
-                ru: 'В этом фильтре пока пусто',
-                uk: 'У цьому фільтрі поки порожньо',
-                es: 'Este filtro está vacío',
-                'pt-BR': 'Este filtro está vazio',
-                vi: 'Bộ lọc này chưa có thẻ',
-                id: 'Filter ini masih kosong',
-                tr: 'Bu filtrede henüz kart yok',
-                pl: 'Ten filtr jest pusty',
-              })}
-            </Text>
-            <TouchableOpacity
-              onPress={() => setActiveFilter('all')}
-              activeOpacity={0.8}
-              style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 22, borderRadius: 999, backgroundColor: `${t.accent}26` }}
-            >
-              <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }}>
-                {statusChipLabels.all}
-              </Text>
-            </TouchableOpacity>
+        {/*
+          Лайк и «Добавить себе» — на самом наборе.
+
+          БАГ «невидимой стены» (замечание владельца): раньше строка была обёрнута
+          в <ContentWrap>, а у него `flex: 1`. Соседом списка он забирал ПОЛОВИНУ
+          высоты экрана прозрачным блоком — карточки уезжали под невидимый слой.
+          Обёртка ниже ограничивает ширину БЕЗ flex, поэтому список получает всю
+          оставшуюся высоту.
+        */}
+        {packDeeplink && currentMarketPack?.isCommunityUgc ? (
+          <View style={[st.socialRow, { maxWidth: contentMaxW }]}>
+            <CommunityPackSocialBar
+              pack={currentMarketPack}
+              lang={strLang}
+              t={t}
+              owned={packOwnedByMe}
+              variant="screen"
+              onAdded={() => { void loadAll(); }}
+            />
           </View>
+        ) : null}
+
+        {isEmpty ? (
+          <ContentWrap>
+            <CollectionEmptyState
+              lang={strLang}
+              t={t}
+              f={f}
+              emptyTitle={s.empty}
+              emptySub={s.emptySub}
+              loadError={loadError}
+              onLeave={leaveCollection}
+              onRetry={loadAll}
+            />
+          </ContentWrap>
+        ) : viewMode === 'deck' ? (
+          <CollectionDeckView
+            cards={listCards}
+            initialIndex={indexRef.current}
+            lang={strLang}
+            cardContentLang={cardContentLang}
+            t={t}
+            f={f}
+            packCardTheme={packCardTheme}
+            onSpeak={onSpeakCb}
+            onIndexChanged={onDeckIndexChanged}
+            onFlipTracked={trackCardFlip}
+            onExitToList={exitDeckToList}
+            strengthForCard={strengthForCard}
+          />
+        ) : (
+          <CollectionListView
+            cards={listCards}
+            hiddenByLimitCount={hiddenByLimitCount}
+            activeCat={activeCat}
+            packDeeplink={packDeeplink}
+            lang={strLang}
+            cardContentLang={cardContentLang}
+            t={t}
+            f={f}
+            sourceLabels={sourceLabels}
+            deleteLabel={s.delete}
+            voiceLabel={voiceLabel}
+            editLabel={editLabel}
+            cardHeight={CARD_H}
+            peek={PEEK}
+            packCardTheme={packCardTheme}
+            packEnterAnimation={!!packPremiumVisual}
+            focusedIndexSV={focusedIndexSV}
+            searchActive={searchActive}
+            showDeleteHint={showDeleteHint}
+            onSetShowDeleteHint={setShowDeleteHint}
+            allowAddCustomCard={allowAddCustomCard && !previewMode}
+            onCreateCard={openCreateEditor}
+            onSpeak={onSpeakCb}
+            onEditCard={openEditEditor}
+            isEditableCustomCard={previewMode ? () => false : isEditableCustomCard}
+            onDeleteCardById={deleteCardById}
+            onOpenPremiumLimit={openPremiumLimit}
+            onScroll={sectionRoot ? tabScroll.onScroll : undefined}
+            onFocusedIndexChanged={onFocusedIndexChanged}
+            onCardsViewed={registerFlashcardViewed}
+            onFlipTracked={trackCardFlip}
+            strengthForCard={strengthForCard}
+            extraBottomPad={tabBarReserve}
+          />
         )}
 
-        {/* Slide wrapper — clips and drives category-switch slide transition */}
-        <View
-          style={{ flex: 1, overflow: 'hidden' }}
-          onStartShouldSetResponder={() => longPressedId !== null}
-          onResponderGrant={() => setLongPressedId(null)}
-        >
-        <Animated.View style={{ flex: 1, transform: [{ translateX: slideAnim }] }}>
-
-        {/* Add card — лише власні картки; не в режимі перегляду купленого паку з маркету */}
-        {activeCat === 'custom' && allowAddCustomCard && (
-          <TouchableOpacity
-            onPress={() => { setDraftEN(''); setDraftTR(''); setDraftDescription(''); setEditingId(null); setCreateStep('front'); createFlipAnim.setValue(0); setMode('create'); }}
-            activeOpacity={0.8}
-            style={{
-              marginHorizontal: 16, marginTop: 10, marginBottom: 4,
-              paddingVertical: 14, paddingHorizontal: 20,
-              borderRadius: 14, backgroundColor: t.accent,
-              flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
-            }}
-          >
-            <Ionicons name="add-circle-outline" size={20} color={t.correctText} />
-            <Text style={{ fontSize: f.body, fontWeight: '700', color: t.correctText }}>
-              {triLang(lang, { ru: 'Добавить карточку', uk: 'Додати картку', es: 'Añadir tarjeta', 'pt-BR': 'Adicionar cartão', vi: 'Thêm thẻ', id: 'Tambah kartu', tr: 'Kart ekle', pl: 'Dodaj kartę' })}
-            </Text>
-          </TouchableOpacity>
-        )}
-
-        {/* зачем: в «Создать мои карточки» (custom) прячем «Тренировать»/«Слушать» —
-            эти режимы уже доступны в других разделах, здесь экран только про создание */}
-        {filteredCards.length > 0 && activeCat !== 'custom' && (
-          <View style={{ flexDirection: 'row', gap: 10, marginHorizontal: 16, marginTop: 10, marginBottom: 4 }}>
-          <TouchableOpacity
-            onPress={openSwipeGame}
-            activeOpacity={0.82}
-            hitSlop={{ top: 6, bottom: 6, left: 4, right: 4 }}
-            style={{
-              flex: 1,
-              minHeight: 48,
-              paddingVertical: 10,
-              paddingHorizontal: 12,
-              borderRadius: 15,
-              borderWidth: 0,
-              borderColor: t.accent,
-              backgroundColor: t.bgCard,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-            }}
-            accessibilityLabel={triLang(lang, {
-              ru: 'Тренироваться с карточками',
-              uk: 'Тренуватися з картками',
-              es: 'Practicar con tarjetas',
-              'pt-BR': 'Praticar com cartões',
-              vi: 'Luyện tập với thẻ',
-              id: 'Berlatih dengan kartu',
-              tr: 'Kartlarla pratik yap',
-              pl: 'Ćwicz z fiszkami',
-            })}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flex: 1, minWidth: 0 }}>
-              <View
-                style={{
-                  width: 20,
-                  height: 20,
-                  borderRadius: 10,
-                  backgroundColor: 'transparent',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Ionicons name="sparkles-outline" size={18} color={t.textSecond} />
-              </View>
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <Text
-                  numberOfLines={1}
-                  style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}
-                >
-                  {triLang(lang, {
-                    ru: 'Тренировать',
-                    uk: 'Тренувати',
-                    es: 'Practicar',
-                    'pt-BR': 'Praticar',
-                    vi: 'Luyện tập',
-                    id: 'Berlatih',
-                    tr: 'Pratik',
-                    pl: 'Ćwicz',
-                  })}
-                </Text>
-              </View>
-              {!isPremium && (
-                <PlusBadge themeMode={themeMode} size="xs" showIcon={false} />
-              )}
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={openAudioMode}
-            activeOpacity={0.82}
-            hitSlop={{ top: 6, bottom: 6, left: 4, right: 4 }}
-            style={{
-              flex: 1,
-              minHeight: 48,
-              paddingVertical: 10,
-              paddingHorizontal: 12,
-              borderRadius: 15,
-              backgroundColor: glassFill(t.bgSurface, 0.46),
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-            }}
-            accessibilityLabel={triLang(lang, {
-              ru: 'Слушать карточки автоматически',
-              uk: 'Слухати картки автоматично',
-              es: 'Escuchar tarjetas automáticamente',
-              'pt-BR': 'Ouvir cartões automaticamente',
-              vi: 'Nghe thẻ tự động',
-              id: 'Dengarkan kartu otomatis',
-              tr: 'Kartları otomatik dinle',
-              pl: 'Słuchaj fiszek automatycznie',
-            })}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flex: 1, minWidth: 0 }}>
-              <View
-                style={{
-                  width: 20,
-                  height: 20,
-                  borderRadius: 10,
-                  backgroundColor: 'transparent',
-                  borderWidth: 0,
-                  borderColor: 'transparent',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Ionicons name="headset-outline" size={18} color={t.textMuted} />
-              </View>
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <Text
-                  numberOfLines={1}
-                  style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}
-                >
-                  {triLang(lang, {
-                    ru: 'Слушать',
-                    uk: 'Слухати',
-                    es: 'Escuchar',
-                    'pt-BR': 'Ouvir',
-                    vi: 'Nghe',
-                    id: 'Dengar',
-                    tr: 'Dinle',
-                    pl: 'Słuchaj',
-                  })}
-                </Text>
-              </View>
-              {!isPremium && (
-                <PlusBadge themeMode={themeMode} size="xs" showIcon={false} />
-              )}
-            </View>
-          </TouchableOpacity>
-          </View>
-        )}
-
-        {/* Flip all — у режимі купленого паку: спокійна друкарська кнопка, без "кислотного" лайму */}
-        {filteredCards.length > 0 &&
-          (packPremiumVisual ? (
-            <TouchableOpacity
-              onPress={handleFlipAll}
-              activeOpacity={0.88}
-              style={{
-                marginHorizontal: 16,
-                marginTop: 6,
-                marginBottom: 4,
-                paddingVertical: 10,
-                paddingHorizontal: 14,
-                borderRadius: 12,
-                borderWidth: 0,
-                borderColor: allFlipped ? packPremiumVisual.borderAccent : `${packPremiumVisual.borderAccent}55`,
-                backgroundColor: t.bgCard,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 7,
-              }}
-            >
-              <Ionicons name="sync-outline" size={16} color={t.textSecond} />
-              <Text style={{ fontSize: 14, fontWeight: '600', color: t.textPrimary }}>
-                {triLang(lang, { ru: 'Развернуть все', uk: 'Розгорнути всі', es: 'Desplegar todas', 'pt-BR': 'Virar todas', vi: 'Lật tất cả', id: 'Balik semua', tr: 'Hepsini çevir', pl: 'Odwróć wszystkie' })}
-              </Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              onPress={handleFlipAll}
-              style={{
-                marginHorizontal: 16, marginTop: 8, marginBottom: 4,
-                paddingVertical: 8, paddingHorizontal: 16,
-                borderRadius: 20, borderWidth: 0,
-                borderColor: allFlipped ? t.accent : t.border,
-                backgroundColor: allFlipped ? t.accent + '18' : 'transparent',
-                flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
-              }}
-            >
-              <Ionicons name="sync-outline" size={15} color={allFlipped ? t.accent : t.textSecond} />
-              <Text style={{ fontSize: 13, fontWeight: '600', color: allFlipped ? t.accent : t.textSecond }}>
-                {triLang(lang, { ru: 'Развернуть все', uk: 'Розгорнути всі', es: 'Desplegar todas', 'pt-BR': 'Virar todas', vi: 'Lật tất cả', id: 'Balik semua', tr: 'Hepsini çevir', pl: 'Odwróć wszystkie' })}
-              </Text>
-            </TouchableOpacity>
-          ))}
-
-        {/* DEV: reset and show hint button */}
-        {IS_EXPO_GO && !showDeleteHint && (
-          <TouchableOpacity
-            onPress={() => {
-              AsyncStorage.removeItem(flashcardsDeleteHintSeenKey(studyTarget));
-              deleteHintAnim.setValue(0);
-              setShowDeleteHint(true);
-            }}
-            style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 0, borderColor: '#FF6B00' }}
-          >
-            <Text style={{ fontSize: 9, color: '#FF6B00', fontWeight: '800' }}>
-              {triLang(lang, { ru: 'DEV: показать подсказку', uk: 'DEV: показати підказку', es: 'DEV: mostrar ayuda', 'pt-BR': 'DEV: mostrar dica', vi: 'DEV: hiện gợi ý', id: 'DEV: tampilkan petunjuk', tr: 'DEV: ipucunu göster', pl: 'DEV: pokaż wskazówkę' })}
-            </Text>
-          </TouchableOpacity>
-        )}
-
-        {/* Delete hint — one-time onboarding tip */}
-        {showDeleteHint && (
-          <Animated.View style={{
-            opacity: deleteHintAnim,
-            transform: [
-              { translateY: deleteHintAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) },
-              { scale: deleteHintPulse },
-            ],
-            marginHorizontal: 16, marginTop: 8, marginBottom: 4,
-            flexDirection: 'row', alignItems: 'center', gap: 10,
-            backgroundColor: t.bgSurface,
-            borderRadius: 12, borderWidth: 0, borderColor: t.border,
-            paddingHorizontal: 14, paddingVertical: 10,
-          }}>
-            <Ionicons name="hand-left-outline" size={18} color={t.textSecond} />
-            <Text style={{ flex: 1, color: t.textSecond, fontSize: f.sub, lineHeight: 18 }}>
-              {triLang(lang, {
-                ru: 'Зажмите карточку чтобы удалить её',
-                uk: 'Затисніть картку, щоб видалити її',
-                es: 'Mantén pulsada la tarjeta para eliminarla',
-                'pt-BR': 'Segure o cartão para excluí-lo',
-                vi: 'Nhấn giữ thẻ để xóa',
-                id: 'Tekan lama kartu untuk menghapusnya',
-                tr: 'Kartı silmek için basılı tut',
-                pl: 'Przytrzymaj kartę, aby ją usunąć',
-              })}
-            </Text>
-            <TouchableOpacity activeOpacity={0.75} onPress={dismissDeleteHint} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-              <Ionicons name="close" size={18} color={t.textMuted} />
-            </TouchableOpacity>
-          </Animated.View>
-        )}
-
-        {/* Card list: virtualized list with snapping */}
-        {(() => {
-          /** Нижний «хвост» — чтобы последнюю картку можно было прокрутить к центру; верх — не centering-padding,
-           * иначе scrollViewH − CARD_H даёт 200+ px пустоты под кнопкою «Розгорнути всі» на старті. */
-          const listPadTop = 12;
-          const listPadBottom = scrollViewH > 0 ? Math.max(12, scrollViewH - CARD_H - 12 - PEEK) : 20;
-          return (
-        <View ref={listViewportRef} collapsable={false} style={{ flex: 1 }} onLayout={(e) => setScrollViewH(e.nativeEvent.layout.height)}>
-        <FlashList
-          ref={flatListRef as any}
-          style={{ flex: 1 }}
-          data={filteredCards}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item, index: itemIdx }) => {
-            const cardEl = (
-              <FlashcardListItem
-                item={item}
-                itemIdx={itemIdx}
-                status={cardStatuses[item.id]}
-                lang={cardContentLang}
-                activeCat={activeCat}
-                isPremium={isPremium}
-                deletingId={deletingId}
-                longPressedId={longPressedId}
-                t={t}
-                f={f}
-                themeMode={themeMode}
-                sourceLabels={s.source as Record<string, string>}
-                deleteLabel={s.delete}
-                voiceLabel={triLang(lang, { ru: 'Озвучить', uk: 'Озвучити', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Odsłuchaj' })}
-                premiumExpiredTitle={triLang(lang, {
-                  ru: 'Плюс истёк',
-                  uk: 'Плюс закінчився',
-                  es: 'Plus caducado',
-                  'pt-BR': 'Plus expirou',
-                  vi: 'Plus đã hết hạn',
-                  id: 'Plus kedaluwarsa',
-                  tr: 'Plus süresi doldu',
-                  pl: 'Plus wygasło',
-                })}
-                premiumExpiredSubtitle={triLang(lang, {
-                  ru: 'Обновите Плюс чтобы увидеть эти карточки',
-                  uk: 'Поновіть Плюс щоб побачити ці картки',
-                  es: 'Renueva Plus para ver estas tarjetas.',
-                  'pt-BR': 'Renove o Plus para ver estes cartões.',
-                  vi: 'Gia hạn Plus để xem các thẻ này.',
-                  id: 'Perpanjang Plus untuk melihat kartu ini.',
-                  tr: 'Bu kartları görmek için Plus’u yenile.',
-                  pl: 'Odnów Plus, aby zobaczyć te karty.',
-                })}
-                cardHeight={CARD_H}
-                cardStyle={st.card}
-                sourceBadgeStyle={st.sourceBadge}
-                sourceBadgeTextStyle={st.sourceBadgeText}
-                getCardFlipAnim={getCardFlipAnim}
-                getOverlayAnim={getOverlayAnim}
-                getDeleteAnim={getDeleteAnim}
-                onOpenPremium={() => router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: String(savedCards.length) } } as any)}
-                onFlipCard={handleFlipCard}
-                onOpenDelete={(cardId) => setLongPressedId(cardId)}
-                onCloseDelete={() => setLongPressedId(null)}
-                onDeleteCard={handleDeleteCard}
-                onSpeak={(text, opts) => speakAudio(text, undefined, opts)}
-                onDetailsOpenAnimStarted={onDetailsOpenAnimStarted}
-                onDetailsScrollSettled={onDetailsScrollSettled}
-                setListItemRowRef={setListItemRowRef}
-                packCardTheme={packCardTheme}
-                isRowInFocus={itemIdx === index}
-                // зачем: задержка была привязана к убранному FadeInDown-stagger'у и
-                // растягивала «шевеление» подсказок по списку. Открытие статично — 0.
-                chevronHintDelayMs={0}
-              />
-            );
-            // зачем: раньше премиум-карточки оборачивались в FadeInDown со stagger'ом
-            // до 24*36мс — список «наползал» снизу при каждом входе в раздел. Владелец
-            // просил открывать статично, поэтому обёртка убрана: карточка сразу на месте.
-            return cardEl;
-          }}
-          ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
-          contentContainerStyle={{ paddingHorizontal: 16, paddingTop: listPadTop, paddingBottom: listPadBottom }}
-          showsVerticalScrollIndicator={false}
-          scrollEventThrottle={16}
-          onViewableItemsChanged={onViewableItemsChanged}
-          viewabilityConfig={viewabilityConfig}
-          onScrollBeginDrag={() => {
-            setLongPressedId(null);
-            detailsEscortProgrammaticRef.current = false;
-            detailsEscortIgnoreScrollUntilRef.current = 0;
-            detailsEscortUserDragRef.current = true;
-          }}
-          onScroll={(e) => {
-            listScrollYRef.current = e.nativeEvent.contentOffset.y;
-            setLongPressedId((prev) => (prev != null ? null : prev));
-            if (Date.now() < detailsEscortIgnoreScrollUntilRef.current) return;
-            if (detailsEscortProgrammaticRef.current) return;
-            detailsEscortUserDragRef.current = true;
-          }}
+      {undoEntry && (
+        <UndoDeleteSnackbar
+          bottomOffset={
+            Math.max(insets.bottom, 8) + 14
+            + (sectionRoot ? FC_TABBAR_HEIGHT : 0)
+          }
+          lang={strLang}
+          t={t}
+          f={f}
+          onUndo={undoDelete}
         />
-        </View>
-          );
-        })()}
-
-        </Animated.View>
-        </View>
-
-      {isDevMarketEnabled && (
-        <TouchableOpacity
-          onPress={() => router.push(FLASHCARDS_MARKET_DEV_ROUTE as any)}
-          style={{
-            position: 'absolute',
-            right: 14,
-            bottom: Math.max(bottomInset, 8) + 20,
-            zIndex: 60,
-            borderRadius: 12,
-            borderWidth: 0,
-            borderColor: `${t.accent}66`,
-            backgroundColor: `${t.accent}1F`,
-            paddingHorizontal: 10,
-            paddingVertical: 8,
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 6,
-          }}
-        >
-          <Ionicons name="storefront-outline" size={14} color={t.accent} />
-          <Text style={{ fontSize: f.caption, color: t.accent, fontWeight: '800' }}>DEV MARKET</Text>
-        </TouchableOpacity>
       )}
 
       <FlashcardsFilterDropdown
@@ -2294,6 +829,11 @@ export default function FlashcardsScreen() {
         }}
       />
 
+      {/* Cards 2.1 §5.2: таббар раздела — только в корне «Карточек» */}
+      {sectionRoot ? (
+        <FlashcardsTabBar lang={lang} t={t} active="cards" bottomInset={0} scroll={tabScroll} />
+      ) : null}
+
     </SafeAreaView>
     </ScreenGradient>
   );
@@ -2301,17 +841,13 @@ export default function FlashcardsScreen() {
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
 const st = StyleSheet.create({
-  safe:         { flex:1 },
-  header:       { flexDirection:'row', alignItems:'center', justifyContent:'space-between', paddingHorizontal:16, paddingTop:12, paddingBottom:8, borderBottomWidth:0.5 },
-  headerTitle:  { fontWeight:'700', letterSpacing:0.2 },
-  progressWrap: { flexDirection:'row', alignItems:'center', marginVertical:8, gap:10 },
-  progressTrack:{ flex:1, height:6, borderRadius:3, overflow:'hidden' },
-  progressFill: { height:'100%', borderRadius:3 },
-  cardArea:     { paddingHorizontal:0, justifyContent:'center', alignItems:'center' },
-  card:         { position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:20, borderWidth:0, padding:22, alignItems:'center', justifyContent:'center' },
-  sourceBadge:  { position:'absolute', top:18, left:18, paddingHorizontal:10, paddingVertical:4, borderRadius:20, borderWidth:0},
-  sourceBadgeText: { fontSize:11, fontWeight:'700', textTransform:'uppercase', letterSpacing:0.6 },
-  swipeHint:    { flexDirection:'row', alignItems:'center', justifyContent:'space-between', paddingHorizontal:32, paddingTop:8, paddingBottom:32 },
-  navBtnPrimary:{ flex:1, height:56, borderRadius:28, alignItems:'center', justifyContent:'center' },
-  centerState:  { flex:1, alignItems:'center', justifyContent:'center', paddingHorizontal:32 },
+  safe: { flex: 1 },
+  /** Ширина как у ContentWrap, но БЕЗ flex — иначе блок съедает высоту списка. */
+  socialRow: {
+    width: '100%',
+    alignSelf: 'center',
+    paddingHorizontal: 16,
+    paddingTop: 10,
+    paddingBottom: 2,
+  },
 });

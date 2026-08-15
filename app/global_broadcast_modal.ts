@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
-import { replaceShardsBalanceLocalWithOutcomeWhileAccountTransitionLocked } from './shards_system';
+import { commitConfirmedExternalShardEvent } from './shards_system';
 import { setClubGiftFreeBoostCountFromAuthority } from './club_boosts';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
@@ -329,17 +329,25 @@ async function applyBroadcastReward(
     case 'none':
       return;
     case 'shards':
-      if (!Number.isFinite(claim.senderBalanceAfter) || !Number.isFinite(claim.shardsUpdatedAtMs)) {
+      if (!Number.isFinite(claim.rewardAmount) || Number(claim.rewardAmount) <= 0) {
         throw new Error('broadcast_shard_receipt_missing');
       }
       if (!accountToken || !stableId) throw new Error('broadcast_identity_missing');
       {
-        const applied = await replaceShardsBalanceLocalWithOutcomeWhileAccountTransitionLocked(claim.senderBalanceAfter!, accountToken, {
-          updatedAtMs: claim.shardsUpdatedAtMs,
-          op: 'earn',
+        const applied = await commitConfirmedExternalShardEvent({
+          source: 'global_broadcast',
+          eventId: payload.id,
+          delta: Number(claim.rewardAmount),
           reason: 'global_broadcast_modal',
+          grant: {
+            kind: 'global_broadcast_reward',
+            subjectId: payload.id,
+            payload: { broadcastId: payload.id },
+          },
         });
-        if (applied !== 'applied' && applied !== 'already-newer') throw new Error('broadcast_identity_changed');
+        if (applied.status !== 'applied' && applied.status !== 'already-applied') {
+          throw new Error('broadcast_identity_changed');
+        }
       }
       return;
     case 'xp_boost_2x_24h':

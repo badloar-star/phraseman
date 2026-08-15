@@ -61,6 +61,14 @@ interface DialogReviewRequest {
   ageBracket?: unknown;
   /** Language being LEARNED (StudyTarget 'en'|'fr'). Absent/unknown ⇒ 'en' (backward compatible). */
   studyTarget?: unknown;
+  /**
+   * 'text' (default, backward compatible) — обычный текстовый ИИ-диалог.
+   * 'voice' (МАКС ПЛАН §6.2) — разбор транскрипта голосового MAX-звонка:
+   * реплики произнесены, а не напечатаны, поэтому промпт разбора мягче к
+   * спонтанной устной речи (filler words, сокращения) и жёстче к грамматике,
+   * которую слышно на слух.
+   */
+  mode?: unknown;
 }
 
 /** Одно исправление: фраза ученика → естественный вариант + короткое пояснение. */
@@ -85,6 +93,13 @@ function asCefr(value: unknown): string {
   return ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].includes(c) ? c : 'A2';
 }
 
+export type DialogReviewMode = 'text' | 'voice';
+
+/** Неизвестное/отсутствующее значение ⇒ 'text' — обратная совместимость со старыми клиентами. */
+export function asReviewMode(value: unknown): DialogReviewMode {
+  return text(value, 8) === 'voice' ? 'voice' : 'text';
+}
+
 function sanitizeReviewHistory(value: unknown): ChatTurn[] {
   if (!Array.isArray(value)) return [];
   const result: ChatTurn[] = [];
@@ -104,10 +119,25 @@ function stripKeyPhraseMarkers(value: string): string {
   return value.replace(/\[\[|\]\]/g, '');
 }
 
-function buildReviewSystemPrompt(cefr: string, learnerLangName: string, goalEn: string, studyTarget: StudyTarget = 'en'): string {
+export function buildReviewSystemPrompt(
+  cefr: string,
+  learnerLangName: string,
+  goalEn: string,
+  studyTarget: StudyTarget = 'en',
+  mode: DialogReviewMode = 'text',
+): string {
   const goalLine = goalEn ? `\nThe scenario goal was: ${goalEn}.` : '';
   const targetName = studyTargetName(studyTarget);
-  return `You are a warm, encouraging ${targetName} tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's ${targetName}.${goalLine}
+  // voice: транскрипт — это ASR-текст произнесённой речи, а не напечатанный текст.
+  // Модели нужно явно сказать не путать эти два жанра ошибок, иначе она либо
+  // придирается к устной речи как к письму (жалуется на "um", отсутствие точек),
+  // либо наоборот тихо прощает реальные грамматические/лексические ошибки,
+  // спрятанные среди естественных заминок разговорной речи.
+  const modeLine =
+    mode === 'voice'
+      ? `\nThis transcript is from a SPOKEN phone call (speech-to-text), not written chat. Do NOT flag spoken-only features as mistakes: filler words ("um", "uh", "like"), false starts the learner self-corrected, informal contractions, or missing punctuation/capitalization — that is just how speech sounds and text-to-speech is transcribed. DO still flag real grammar, word choice, and word order mistakes that a listener would actually notice in speech.`
+      : '';
+  return `You are a warm, encouraging ${targetName} tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's ${targetName}.${goalLine}${modeLine}
 The learner's level is ${cefr}. The learner's native language is ${learnerLangName}.
 
 Review ONLY the learner's lines. Respond with a single JSON object and nothing else:
@@ -200,6 +230,7 @@ export const premiumDialogReview = onCall({
   const learnerLangName = LEARNER_LANG_NAME[interfaceLang] ?? LEARNER_LANG_NAME.ru;
   const goalEn = text(data.goalEn, 200);
   const studyTarget = resolveStudyTarget(data.studyTarget);
+  const mode = asReviewMode(data.mode);
 
   const transcript = history
     .map((t) => `${t.role === 'user' ? 'Learner' : 'Partner'}: ${stripKeyPhraseMarkers(t.content)}`)
@@ -223,7 +254,7 @@ export const premiumDialogReview = onCall({
         // Разбор — аналитическая задача: низкая температура ради точности цитат.
         temperature: 0.3,
         messages: [
-          { role: 'system', content: buildReviewSystemPrompt(cefr, learnerLangName, goalEn, studyTarget) },
+          { role: 'system', content: buildReviewSystemPrompt(cefr, learnerLangName, goalEn, studyTarget, mode) },
           { role: 'user', content: transcript },
         ],
         ...(useJsonFormat ? { response_format: { type: 'json_object' } } : {}),
@@ -264,7 +295,11 @@ export const premiumDialogReview = onCall({
   await db.collection(BILLING_COLLECTION).doc().set({
     uid: stableUid,
     authUid,
+    // 'review' — старое захардкоженное значение поля, использовавшееся ДО
+    // ветки voice: биллинг-дашборды на него уже завязаны, поэтому оставляем
+    // как есть и добавляем настоящий режим отдельным полем reviewMode.
     mode: 'review',
+    reviewMode: mode,
     model: dialogModel,
     cefr,
     scenarioId: text(data.scenarioId, 80) || null,

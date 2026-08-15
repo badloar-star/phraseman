@@ -148,9 +148,7 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
 }
 
 /** Пользовательский выбор для СЕРВЕРНЫХ пушей: false = этот тип не слать. */
-// зачем (2026-08-03): добавлен league — под этой категорией живёт серверный пуш
-// «турнир начинается» (tournament_start_push.ts). Без зеркала сервер слал бы его
-// юзеру, который выключил «Лигу» в разделе уведомлений.
+// `league` covers league-only notifications. Tournament pushes are owner-locked off.
 export type ServerPushPrefs = { streak: boolean; offers: boolean; league: boolean };
 
 /** Локальный кэш последних записанных префов — чтобы не писать в Firestore повторно. */

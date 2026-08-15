@@ -76,11 +76,6 @@ jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/premium_celebration_state', () => ({ markCelebrationPending: jest.fn(async () => {}) }));
 jest.mock('../components/EnergyContext', () => ({ useEnergy: () => ({ reload: jest.fn(async () => {}) }) }));
 jest.mock('../app/premium_guard', () => ({ invalidatePremiumCache: jest.fn() }));
-jest.mock('../app/personal_plan_activation', () => ({
-  activatePendingPersonalPlanAfterPremium: jest.fn(async () => {}),
-  PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY: 'k',
-}));
-
 import { purchaseErrorCategory, storePriceTrim } from '../app/paywall_purchase';
 
 describe('purchaseErrorCategory (analytics privacy)', () => {

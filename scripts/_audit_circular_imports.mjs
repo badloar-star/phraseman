@@ -97,7 +97,7 @@ const componentCycles = uniq.filter(c => c.some(f => f.endsWith('.tsx')));
 console.log(`Total unique cycles: ${uniq.length}`);
 console.log(`Cycles involving a .tsx component file: ${componentCycles.length}\n`);
 
-const recent = new Set(['_layout.tsx','ActivityHeatmap365.tsx','lesson1.tsx','home.tsx','friends.tsx','personal_plan_exercise.tsx','achievements_screen.tsx','flashcards_collection.tsx']);
+const recent = new Set(['_layout.tsx','ActivityHeatmap365.tsx','lesson1.tsx','home.tsx','friends.tsx','achievements_screen.tsx','flashcards_collection.tsx']);
 const scored = componentCycles.map(c => ({
   c,
   hot: c.some(f => recent.has(path.basename(f))),

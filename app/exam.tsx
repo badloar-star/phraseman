@@ -466,7 +466,10 @@ export default function ExamScreen() {
     if (!runtimeActive || Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       const p = phaseBackRef.current;
-      if (p !== 'quiz' && p !== 'review' && p !== 'countdown') return false;
+      if (p !== 'quiz' && p !== 'review' && p !== 'countdown') {
+        safeRouterBack(router, '/lessons_list' as any);
+        return true;
+      }
       Alert.alert(
         t3('Выйти из экзамена?', 'Вийти з іспиту?', '¿Salir del examen?', 'Sair do exame?', 'Thoát bài kiểm tra?', 'Keluar dari ujian?', 'Sınavdan çıkılsın mı?', 'Wyjść z egzaminu?'),
         t3(
@@ -537,6 +540,7 @@ export default function ExamScreen() {
   const countdownRemainingMsRef = useRef(3 * 650);
   const countdownDeadlineRef = useRef(0);
   const examAttemptIdRef = useRef<string>(makeExamAttemptId());
+  const examStartCommitInFlightRef = useRef(false);
   const countdownAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
@@ -622,6 +626,57 @@ export default function ExamScreen() {
     return ()=>{ if(timerRef.current) clearInterval(timerRef.current); };
   },[phase, runtimeActive, playTimerExpired]);
 
+  const commitExamFirstQuestion = React.useCallback(async () => {
+    if (examStartCommitInFlightRef.current) return;
+    examStartCommitInFlightRef.current = true;
+    try {
+      if (!isUnlimited) {
+        if (energy + bonusEnergy < LINGMAN_EXAM_ENERGY) {
+          void trackFeatureBlocked('exam', 'start', 'no_energy', {
+            energy,
+            bonusEnergy,
+            required: LINGMAN_EXAM_ENERGY,
+          }, 'exam');
+          setPhase('intro');
+          setNoEnergy(true);
+          return;
+        }
+        const ok = await spendAmount(LINGMAN_EXAM_ENERGY);
+        if (!ok) {
+          void trackFeatureBlocked('exam', 'start', 'energy_spend_failed', {
+            energy,
+            bonusEnergy,
+            required: LINGMAN_EXAM_ENERGY,
+          }, 'exam');
+          setPhase('intro');
+          setNoEnergy(true);
+          return;
+        }
+      }
+
+      // All content checks and countdown work are already complete. Make the
+      // paid transition the final async step, then expose the first question
+      // immediately so no technical work can consume energy without play.
+      setTotalTimeLeft(TOTAL_EXAM_SECONDS);
+      examDeadlineRef.current = Date.now() + TOTAL_EXAM_SECONDS * 1000;
+      setPhase('quiz');
+      void trackFeatureStart('exam', 'start', { questions: questions.length }, 'exam');
+      soundDirector.request('pm.exam.begin', {
+        scope: 'exam',
+        dedupeKey: examAttemptIdRef.current,
+      });
+    } catch (error) {
+      // spendAmount reports expected storage failures as a boolean. This catch
+      // covers an unexpected exception before the visible quiz transition.
+      setPhase('intro');
+      void trackFeatureError('exam', 'start', error, {
+        attemptId: examAttemptIdRef.current,
+      }, 'exam');
+    } finally {
+      examStartCommitInFlightRef.current = false;
+    }
+  }, [bonusEnergy, energy, isUnlimited, questions.length, spendAmount]);
+
   useEffect(() => {
     if (phase !== 'countdown') {
       if (countdownTimerRef.current) {
@@ -636,10 +691,7 @@ export default function ExamScreen() {
       const remainingMs = Math.max(0, countdownDeadlineRef.current - Date.now());
       countdownRemainingMsRef.current = remainingMs;
       if (remainingMs <= 0) {
-        setPhase('quiz');
-        // зачем: собранный «вдох» на старте первого вопроса — сигнализирует
-        // «началось важное» без давления, один раз на попытку.
-        soundDirector.request('pm.exam.begin', { scope: 'exam' });
+        void commitExamFirstQuestion();
         countdownTimerRef.current = null;
         return;
       }
@@ -655,7 +707,7 @@ export default function ExamScreen() {
         countdownTimerRef.current = null;
       }
     };
-  }, [phase, runtimeActive]);
+  }, [commitExamFirstQuestion, phase, runtimeActive]);
 
   useEffect(() => {
     if (phase !== 'countdown' || !runtimeActive) return;
@@ -712,16 +764,9 @@ export default function ExamScreen() {
     setExamStarting(true);
     try {
       examAttemptIdRef.current = makeExamAttemptId();
-      void trackFeatureStart('exam', 'start', { questions: questions.length }, 'exam');
       if (!isUnlimited) {
         if (energy + bonusEnergy < LINGMAN_EXAM_ENERGY) {
           void trackFeatureBlocked('exam', 'start', 'no_energy', { energy, bonusEnergy, required: LINGMAN_EXAM_ENERGY }, 'exam');
-          setNoEnergy(true);
-          return;
-        }
-        const ok = await spendAmount(LINGMAN_EXAM_ENERGY);
-        if (!ok) {
-          void trackFeatureBlocked('exam', 'start', 'energy_spend_failed', { energy, bonusEnergy, required: LINGMAN_EXAM_ENERGY }, 'exam');
           setNoEnergy(true);
           return;
         }
@@ -729,8 +774,6 @@ export default function ExamScreen() {
       setIdx(0);
       setChoices(Array(questions.length).fill(null));
       setFlagged(Array(questions.length).fill(false));
-      setTotalTimeLeft(TOTAL_EXAM_SECONDS);
-      examDeadlineRef.current = Date.now() + TOTAL_EXAM_SECONDS * 1000;
       countdownRemainingMsRef.current = 3 * 650;
       setPhase('countdown');
     } finally {
@@ -1053,14 +1096,14 @@ export default function ExamScreen() {
         {!isUnlimited && (
           <Text style={{color:sx.muted,fontSize:f.caption,textAlign:'center',marginTop:10}}>
             {t3(
-              `${LINGMAN_EXAM_ENERGY} ⚡ списываются за один старт · Plus — без лимита`,
-              `${LINGMAN_EXAM_ENERGY} ⚡ знімаються за один старт · Plus — без ліміту`,
-              `${LINGMAN_EXAM_ENERGY} ⚡ se descuentan al empezar · Plus — sin límite`,
-              `${LINGMAN_EXAM_ENERGY} ⚡ são descontados ao começar · Plus sem limite`,
-              `Bắt đầu sẽ trừ ${LINGMAN_EXAM_ENERGY} ⚡ · Plus không giới hạn`,
-              `${LINGMAN_EXAM_ENERGY} ⚡ dipakai saat mulai · Plus tanpa batas`,
-              `Başlangıçta ${LINGMAN_EXAM_ENERGY} ⚡ düşülür · Plus sınırsız`,
-              `${LINGMAN_EXAM_ENERGY} ⚡ pobierane przy starcie · Plus bez limitu`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ списываются при открытии первого задания · Plus — без лимита`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ знімаються при відкритті першого завдання · Plus — без ліміту`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ se descuentan al abrir la primera tarea · Plus — sin límite`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ são descontados ao abrir a primeira tarefa · Plus sem limite`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ được trừ khi mở câu đầu tiên · Plus không giới hạn`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ dipakai saat soal pertama dibuka · Plus tanpa batas`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ ilk soru açıldığında düşülür · Plus sınırsız`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ pobierane po otwarciu pierwszego zadania · Plus bez limitu`,
             )}
           </Text>
         )}

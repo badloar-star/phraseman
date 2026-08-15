@@ -108,6 +108,27 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'arena_season_claims', field: 'uid', values: 'both' },
   { collection: 'arena_club_contributions', field: 'arenaUid', values: 'auth' },
   { collection: 'arena_club_contributions', field: 'stableUid', values: 'stable' },
+  // Arena V2 keeps public live state and private answer material in separate
+  // roots. Both identity forms are indexed so account deletion cannot leave a
+  // live opponent, invite, bot blueprint, or settlement ledger behind.
+  { collection: 'arena_v2_profiles', field: 'authUid', values: 'auth' },
+  { collection: 'arena_v2_queue', field: 'stableUid', values: 'stable' },
+  { collection: 'arena_v2_queue', field: 'authUid', values: 'auth' },
+  { collection: 'arena_v2_match_private', field: 'participantStableUids', values: 'stable', op: 'array-contains' },
+  { collection: 'arena_v2_match_private', field: 'participantAuthUids', values: 'auth', op: 'array-contains' },
+  { collection: 'arena_v2_pair_limits', field: 'participantStableUids', values: 'stable', op: 'array-contains' },
+  { collection: 'arena_v2_invites', field: 'fromStableUid', values: 'stable' },
+  { collection: 'arena_v2_invites', field: 'toStableUid', values: 'stable' },
+  { collection: 'arena_v2_invites', field: 'fromAuthUid', values: 'auth' },
+  { collection: 'arena_v2_invites', field: 'toAuthUid', values: 'auth' },
+  // Arena Expansion social roots are shared server-owned documents. Identity
+  // arrays intentionally remain indexed so deletion can discover every edge.
+  { collection: 'arena_v2_ghosts', field: 'participantStableUids', values: 'stable', op: 'array-contains' },
+  { collection: 'arena_v2_ghosts', field: 'participantAuthUids', values: 'auth', op: 'array-contains' },
+  { collection: 'arena_v2_series', field: 'participantStableUids', values: 'stable', op: 'array-contains' },
+  { collection: 'arena_v2_series', field: 'participantAuthUids', values: 'auth', op: 'array-contains' },
+  { collection: 'arena_v2_partnerships', field: 'participantStableUids', values: 'stable', op: 'array-contains' },
+  { collection: 'arena_v2_partnerships', field: 'participantAuthUids', values: 'auth', op: 'array-contains' },
   { collection: 'user_reports', field: 'reportedUid', values: 'both' },
   { collection: 'user_reports', field: 'reporterUid', values: 'both' },
   { collection: 'community_pack_reports', field: 'authorStableId', values: 'stable' },
@@ -165,6 +186,7 @@ const COLLECTION_GROUP_QUERY_SPECS: AccountDeleteCollectionGroupSpec[] = [
   { collectionGroup: 'poll_votes', field: 'userId', values: 'stable' },
   { collectionGroup: 'activity_likes_received', field: 'fromUid', values: 'stable' },
   { collectionGroup: 'friend_activity_like_daily_limits', field: 'targetUid', values: 'stable' },
+  { collectionGroup: 'friend_activity_likes_sent', field: 'targetUid', values: 'stable' },
   { collectionGroup: 'friend_gifts_received', field: 'fromUid', values: 'stable' },
   { collectionGroup: 'friend_gifts_sent', field: 'toUid', values: 'stable' },
   { collectionGroup: 'friend_gift_history', field: 'peerUid', values: 'stable' },
@@ -190,12 +212,33 @@ const DIRECT_DOCUMENT_SPECS: AccountDeleteDirectDocumentSpec[] = [
   { collection: 'arena_profiles', values: 'both' },
   { collection: 'arena_question_history', values: 'both' },
   { collection: 'matchmaking_queue', values: 'both' },
+  { collection: 'arena_v2_profiles', values: 'both' },
+  { collection: 'arena_v2_queue', values: 'both' },
   { collection: 'shard_survey_rate_limits', values: 'both' },
   { collection: 'user_consents', values: 'both' },
   { collection: 'referral_owners', values: 'both' },
   { collection: 'referral_attributions', values: 'both' },
   { collection: 'auth_links', values: 'both' },
 ];
+
+// `users/{stableUid}` is removed through deleteDocTree, which recursively
+// deletes every nested document. Keep this explicit audit list in sync with
+// Arena Expansion so a schema change cannot silently escape deletion review.
+export const ARENA_EXPANSION_USER_SUBCOLLECTIONS = Object.freeze([
+  'arena_v2_daily_attempts',
+  'arena_v2_expansion_runs',
+  'arena_v2_match_labs',
+  'arena_v2_mastery_signatures',
+  'arena_v2_activity_days',
+  'arena_v2_partner_weeks',
+  'arena_v2_star_ledger',
+  'arena_v2_entitlements',
+  'arena_v2_expansion_receipts',
+  // Расписки единого журнала звёзд (владелец 2026-08-12). Коллекция общая для
+  // всего приложения, а не только для Арены, но живёт под тем же документом
+  // игрока и обязана удаляться вместе с ним.
+  'star_operations',
+] as const);
 
 function cleanId(value: unknown): string {
   return String(value ?? '').trim().slice(0, MAX_ID_LEN);
@@ -632,6 +675,43 @@ async function deleteArenaSessionsAndMatchHistory(
   }
 }
 
+/**
+ * Arena V2 deliberately keeps raw identities only in the sealed private root.
+ * Discover matches there first, then remove the public match tree (including
+ * opaque member markers) and the private evidence with the same id.
+ */
+async function deleteArenaV2MatchesForIdentity(
+  db: admin.firestore.Firestore,
+  stableUid: string,
+  authUid: string,
+  ctx: DeleteContext,
+  stats: DeleteStats,
+): Promise<void> {
+  const queries: FirebaseFirestore.Query[] = [];
+  if (stableUid) {
+    queries.push(db.collection('arena_v2_match_private')
+      .where('participantStableUids', 'array-contains', stableUid));
+  }
+  if (authUid) {
+    queries.push(db.collection('arena_v2_match_private')
+      .where('participantAuthUids', 'array-contains', authUid));
+  }
+  for (const query of queries) {
+    for (;;) {
+      stats.queriesRun += 1;
+      const snap = await query.limit(DELETE_BATCH_LIMIT).get();
+      if (snap.empty) break;
+      let scheduled = 0;
+      for (const privateDoc of snap.docs) {
+        if (await deleteDocTree(ctx, db.collection('arena_v2_matches').doc(privateDoc.id))) scheduled += 1;
+        if (await deleteDocTree(ctx, privateDoc.ref)) scheduled += 1;
+      }
+      if (scheduled === 0) break;
+      if (typeof ctx.writer.flush === 'function') await ctx.writer.flush();
+    }
+  }
+}
+
 async function anonymizeActivityLikeStats(
   db: admin.firestore.Firestore,
   stableUid: string,
@@ -841,6 +921,9 @@ export async function executeAccountDeletion(
     });
     await runDeleteStage(ctx, stats, 'arena_sessions_and_match_history', async () => {
       for (const identity of identities) await deleteArenaSessionsAndMatchHistory(db, identity, authUid, ctx, stats);
+    });
+    await runDeleteStage(ctx, stats, 'arena_v2_matches_and_members', async () => {
+      for (const identity of identities) await deleteArenaV2MatchesForIdentity(db, identity, authUid, ctx, stats);
     });
     await runDeleteStage(ctx, stats, 'arena_season_entries', async () => {
       for (const identity of identities) await deleteArenaSeasonEntries(db, identity, authUid, ctx, stats);

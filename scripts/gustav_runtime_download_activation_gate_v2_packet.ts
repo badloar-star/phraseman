@@ -63,7 +63,6 @@ type Report = {
     runtimeActivationPreconditionsContracted: boolean;
     noActiveApprovalArtifacts: boolean;
     coursePackRemoteLoadingEnabled: false;
-    planContentRemoteEnabled: boolean;
     productionStudyTargetFrEnabled: boolean;
     frenchEmbeddedIndexEntries: number;
     embeddedIndexActivationApprovedFalse: number;
@@ -240,7 +239,6 @@ function evaluate(input: {
     input.contract.requiredManifestTransitions.length >= 4 &&
     input.contract.requiredRollbackGuards.length >= 4;
   const coursePackRemoteLoadingEnabled = /COURSE_PACK_REMOTE_LOADING_ENABLED\s*=\s*true/.test(loaderSource);
-  const planContentRemoteEnabled = /PLAN_CONTENT_REMOTE_ENABLED[^=]*=\s*true/.test(loaderSource);
   const productionStudyTargetFrEnabled =
     /export\s+type\s+ProductionStudyTarget\s*=\s*['"]en['"]\s*\|\s*['"]fr['"]/.test(studyTargetSource) ||
     /export\s+const\s+STUDY_TARGETS\s*=\s*\[[^\]]*['"]fr['"]/.test(studyTargetSource);
@@ -305,7 +303,6 @@ function evaluate(input: {
       runtimeActivationPreconditionsContracted,
       noActiveApprovalArtifacts,
       coursePackRemoteLoadingEnabled: false,
-      planContentRemoteEnabled,
       productionStudyTargetFrEnabled,
       frenchEmbeddedIndexEntries,
       embeddedIndexActivationApprovedFalse,

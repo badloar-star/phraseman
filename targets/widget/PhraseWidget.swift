@@ -11,8 +11,9 @@ import AppIntents
 ///   - systemMedium:         + transcription, with a play affordance
 ///   - accessoryRectangular: branded compact lock-screen line (iOS 16+)
 ///
-/// Text never truncates with an ellipsis: the phrase wraps to as many lines as
-/// fit and shrinks via minimumScaleFactor rather than cutting the meaning off.
+/// Text stays inside the family height: line budgets plus minimumScaleFactor
+/// win over an unconstrained intrinsic height, so larger Dynamic Type cannot
+/// push the last line below the widget crop.
 struct PhraseWidgetView: View {
   @Environment(\.widgetFamily) private var family
   let entry: PhraseEntry
@@ -79,15 +80,20 @@ struct PhraseWidgetView: View {
       Text(entry.payload.english)
         .font(.title3.weight(.bold))
         .foregroundStyle(phraseColor)
+        // Daily phrases include long idioms (for example, “Put your money
+        // where your mouth is”). Two lines still ellipsized those phrases in
+        // systemSmall even after the old fixed-height overflow was removed.
+        // Give the phrase the third line and the highest layout priority; the
+        // secondary meaning yields first when Dynamic Type needs more room.
         .lineLimit(3)
-        .minimumScaleFactor(0.6)
-        .fixedSize(horizontal: false, vertical: true)
+        .minimumScaleFactor(0.55)
+        .layoutPriority(2)
       Text(entry.payload.meaning)
         .font(.footnote)
         .foregroundStyle(subColor)
-        .lineLimit(3)
+        .lineLimit(2)
         .minimumScaleFactor(0.8)
-        .fixedSize(horizontal: false, vertical: true)
+        .layoutPriority(1)
       Spacer(minLength: 0)
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -120,15 +126,15 @@ struct PhraseWidgetView: View {
       Text(entry.payload.english)
         .font(.title2.weight(.bold))
         .foregroundStyle(phraseColor)
-        .lineLimit(3)
+        .lineLimit(2)
         .minimumScaleFactor(0.6)
-        .fixedSize(horizontal: false, vertical: true)
+        .layoutPriority(2)
       Text(entry.payload.meaning)
         .font(.subheadline)
         .foregroundStyle(subColor)
-        .lineLimit(3)
+        .lineLimit(2)
         .minimumScaleFactor(0.8)
-        .fixedSize(horizontal: false, vertical: true)
+        .layoutPriority(1)
       if !entry.payload.transcription.isEmpty {
         Text(entry.payload.transcription)
           .font(.caption)
@@ -157,7 +163,7 @@ struct PhraseWidgetView: View {
           .font(.headline)
           .lineLimit(2)
           .minimumScaleFactor(0.7)
-          .fixedSize(horizontal: false, vertical: true)
+          .layoutPriority(1)
       }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
@@ -194,54 +200,57 @@ private func phraseSurface(_ theme: PhraseTheme) -> some View {
   }
 }
 
-struct PhraseWidget: Widget {
-  private let kind = "PhraseWidget"
+private let legacyPhraseWidgetKind = "PhraseWidget"
+private let personalPhraseWidgetKind = "PersonalPhraseWidget"
+private let phraseWidgetFamilies: [WidgetFamily] = [
+  .systemSmall, .systemMedium, .accessoryRectangular,
+]
 
+@ViewBuilder
+private func phraseWidgetEntryView(_ entry: PhraseEntry) -> some View {
+  if #available(iOSApplicationExtension 17.0, *) {
+    PhraseWidgetView(entry: entry)
+      .containerBackground(for: .widget) {
+        phraseSurface(entry.payload.theme)
+          .overlay(
+            RoundedRectangle(cornerRadius: 22, style: .continuous)
+              .strokeBorder(
+                Color(phraseHex: entry.payload.theme.border, fallback: .clear),
+                lineWidth: 1
+              )
+          )
+      }
+  } else {
+    PhraseWidgetView(entry: entry)
+      .padding()
+      .background(phraseSurface(entry.payload.theme))
+  }
+}
+
+@available(iOSApplicationExtension 17.0, *)
+struct PersonalPhraseWidget: Widget {
   var body: some WidgetConfiguration {
-    if #available(iOS 17.0, *) {
-      AppIntentConfiguration(kind: kind, intent: PersonalDeckConfiguration.self, provider: PhraseProvider()) { entry in
-        widgetView(entry)
-      }
-      .configurationDisplayName("Personal deck")
-      .description("A saved or created phrase from your Phraseman deck.")
-      .supportedFamilies(supportedFamilies)
-    } else {
-      StaticConfiguration(kind: kind, provider: LegacyPhraseProvider()) { entry in
-        widgetView(entry)
-      }
-      .configurationDisplayName("Personal deck")
-      .description("Your saved Phraseman phrases.")
-      .supportedFamilies(supportedFamilies)
+    AppIntentConfiguration(
+      kind: personalPhraseWidgetKind,
+      intent: PersonalDeckConfiguration.self,
+      provider: PhraseProvider()
+    ) { entry in
+      phraseWidgetEntryView(entry)
     }
+    .configurationDisplayName("Personal deck")
+    .description("A saved or created phrase from your Phraseman deck.")
+    .supportedFamilies(phraseWidgetFamilies)
   }
+}
 
-  @ViewBuilder
-  private func widgetView(_ entry: PhraseEntry) -> some View {
-    if #available(iOS 17.0, *) {
-      PhraseWidgetView(entry: entry)
-        .containerBackground(for: .widget) {
-          phraseSurface(entry.payload.theme)
-            .overlay(
-              RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .strokeBorder(
-                  Color(phraseHex: entry.payload.theme.border, fallback: .clear),
-                  lineWidth: 1
-                )
-            )
-        }
-    } else {
-      PhraseWidgetView(entry: entry)
-        .padding()
-        .background(phraseSurface(entry.payload.theme))
+struct LegacyPhraseWidget: Widget {
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: legacyPhraseWidgetKind, provider: LegacyPhraseProvider()) { entry in
+      phraseWidgetEntryView(entry)
     }
-  }
-
-  private var supportedFamilies: [WidgetFamily] {
-    if #available(iOS 16.0, *) {
-      return [.systemSmall, .systemMedium, .accessoryRectangular]
-    } else {
-      return [.systemSmall, .systemMedium]
-    }
+    .configurationDisplayName("Personal deck")
+    .description("Your saved Phraseman phrases.")
+    .supportedFamilies(phraseWidgetFamilies)
   }
 }
 
@@ -290,6 +299,9 @@ struct NextPhraseIntent: AppIntent {
 @main
 struct PhraseWidgetBundle: WidgetBundle {
   var body: some Widget {
-    PhraseWidget()
+    LegacyPhraseWidget()
+    if #available(iOSApplicationExtension 17.0, *) {
+      PersonalPhraseWidget()
+    }
   }
 }

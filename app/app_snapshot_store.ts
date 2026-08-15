@@ -43,6 +43,16 @@ export interface AppSnapshotProgress extends AppSnapshotMeta {
   streak: number;
   shards: number;
   studyTarget: string;
+  /**
+   * Единый баланс звёзд (владелец 2026-08-12, D-05/D-06). Приходит из того же
+   * документа игрока, который снапшот и так загружает — ни одного нового
+   * слушателя и ни одного дополнительного чтения.
+   *
+   * Тратимое и заработанное за всё время — РАЗНЫЕ числа: траты не уменьшают
+   * второе, именно оно открывает награды (D-10).
+   */
+  stars?: number;
+  starsEarnedTotal?: number;
 }
 
 export interface AppSnapshotLessons extends AppSnapshotMeta {
@@ -164,6 +174,29 @@ export function patchAppSnapshot(patchOrFn: Patch): void {
   if (!patch || !shallowPatchChanged(snapshot, patch)) return;
   snapshot = { ...snapshot, ...patch };
   emitSnapshotChanged();
+}
+
+/**
+ * Publishes an avatar/aura choice to both customization state and the shared
+ * visible profile in one notification. The profile timestamp always advances,
+ * including on a local-storage rollback, so an older hydration cannot restore
+ * the avatar the user just replaced and a failed write can still restore the
+ * previous choice correctly.
+ */
+export function patchAppSnapshotCustomizationSelection(customization: CustomizationSnapshot): void {
+  patchAppSnapshot((current) => {
+    if (!current.profile) return { customization };
+    return {
+      customization,
+      profile: {
+        ...current.profile,
+        source: 'local',
+        updatedAt: Math.max(Date.now(), customization.updatedAt, current.profile.updatedAt + 1),
+        avatar: customization.activeAvatar,
+        aura: customization.storedAuraSelection || undefined,
+      },
+    };
+  });
 }
 
 const AUTHORITATIVE_TOTAL_XP_MAX = 1_000_000_000;

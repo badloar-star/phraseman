@@ -97,7 +97,7 @@ export default function TournamentReviewScreen() {
     setOpenIndex((prev) => (prev === index ? null : index));
   }, []);
 
-  const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
+  const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
 
   useEffect(() => {
     if (!roomId) { setFailed(true); return; }

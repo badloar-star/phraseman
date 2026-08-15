@@ -6,6 +6,7 @@ import { compileV2RequiredSessions } from '../../../modules/learning-v2/content/
 import {
   buildEnglishProfile,
   buildE1ContentItems,
+  buildActivityBindingsForContentItems,
 } from '../../../tests/support/learning_v2_content_builders';
 
 function buildCompiledE1() {
@@ -14,11 +15,21 @@ function buildCompiledE1() {
     canDoOutcomeId: 'obj-introduce-self',
     profile: buildEnglishProfile(),
     items: buildE1ContentItems(),
+    activityBindings: buildActivityBindingsForContentItems(buildE1ContentItems()),
   });
 }
 
+const qa = (compiled: ReturnType<typeof buildCompiledE1>, optionalPracticeTemplates: Parameters<typeof qaV2EpisodeContent>[4] = []) =>
+  qaV2EpisodeContent(
+    compiled,
+    buildE1ContentItems(),
+    buildEnglishProfile(),
+    buildActivityBindingsForContentItems(buildE1ContentItems()),
+    optionalPracticeTemplates,
+  );
+
 test('passes a well-formed compiled unit', () => {
-  const report = qaV2EpisodeContent(buildCompiledE1(), buildE1ContentItems(), buildEnglishProfile());
+  const report = qa(buildCompiledE1());
   expect(report.ok).toBe(true);
   expect(report.blockingIssues).toEqual([]);
   expect(report.schemaVersion).toBe('v2-episode-content-quality-report.v1');
@@ -35,9 +46,23 @@ test('blocks release when any card loses content or objective traceability', () 
       ? { ...session, cards: session.cards.map((card, cardIndex) => cardIndex === 0 ? { ...card, contentItemId: 'missing' } : card) }
       : session),
   };
-  expect(qaV2EpisodeContent(broken, buildE1ContentItems(), buildEnglishProfile())).toMatchObject({
+  expect(qa(broken)).toMatchObject({
     ok: false,
     blockingIssues: expect.arrayContaining(['compiled_card_content_missing']),
+  });
+});
+
+test('blocks release when a card is rebound to an unapproved activity', () => {
+  const compiled = buildCompiledE1();
+  const broken = {
+    ...compiled,
+    sessions: compiled.sessions.map((session, index) => index === 0
+      ? { ...session, cards: session.cards.map((card, cardIndex) => cardIndex === 0 ? { ...card, activityId: 'activity-forged' } : card) }
+      : session),
+  };
+  expect(qa(broken)).toMatchObject({
+    ok: false,
+    blockingIssues: expect.arrayContaining(['compiled_card_activity_untraceable']),
   });
 });
 
@@ -52,7 +77,7 @@ test('blocks unknown objectives', () => {
       ? { ...session, cards: session.cards.map((card, cardIndex) => cardIndex === 0 ? { ...card, objectiveId: 'obj-alien' } : card) }
       : session),
   };
-  expect(qaV2EpisodeContent(broken, buildE1ContentItems(), buildEnglishProfile())).toMatchObject({
+  expect(qa(broken)).toMatchObject({
     ok: false,
     blockingIssues: expect.arrayContaining(['compiled_card_objective_missing']),
   });
@@ -61,7 +86,7 @@ test('blocks unknown objectives', () => {
 test('blocks session cardinality violations', () => {
   const compiled = buildCompiledE1();
   const eleven = { ...compiled, sessions: compiled.sessions.slice(0, 11) };
-  expect(qaV2EpisodeContent(eleven, buildE1ContentItems(), buildEnglishProfile())).toMatchObject({
+  expect(qa(eleven)).toMatchObject({
     ok: false,
     blockingIssues: expect.arrayContaining(['compiled_session_count_invalid']),
   });
@@ -71,7 +96,7 @@ test('blocks session cardinality violations', () => {
       ? { ...session, cards: session.cards.slice(0, 6) }
       : session),
   };
-  expect(qaV2EpisodeContent(thinCards, buildE1ContentItems(), buildEnglishProfile())).toMatchObject({
+  expect(qa(thinCards)).toMatchObject({
     ok: false,
     blockingIssues: expect.arrayContaining(['compiled_card_count_invalid']),
   });
@@ -85,7 +110,7 @@ test('blocks unsupported families and duplicate prompt ids', () => {
       ? { ...session, cards: session.cards.map((card, cardIndex) => cardIndex === 0 ? { ...card, family: 'branching_scene' as const } : card) }
       : session),
   };
-  expect(qaV2EpisodeContent(unsupported, buildE1ContentItems(), buildEnglishProfile())).toMatchObject({
+  expect(qa(unsupported)).toMatchObject({
     ok: false,
     blockingIssues: expect.arrayContaining(['compiled_family_unsupported']),
   });
@@ -95,7 +120,7 @@ test('blocks unsupported families and duplicate prompt ids', () => {
       ? { ...session, cards: session.cards.map((card, cardIndex) => cardIndex === 1 ? { ...card, promptId: session.cards[0].promptId } : card) }
       : session),
   };
-  expect(qaV2EpisodeContent(duplicatePrompt, buildE1ContentItems(), buildEnglishProfile())).toMatchObject({
+  expect(qa(duplicatePrompt)).toMatchObject({
     ok: false,
     blockingIssues: expect.arrayContaining(['compiled_prompt_duplicate']),
   });
@@ -109,7 +134,7 @@ test('blocks trained prompts inside independent no-support checks', () => {
       ? { ...session, cards: session.cards.map((card, cardIndex) => cardIndex === 0 ? { ...card, promptNovelty: 'trained' as const } : card) }
       : session),
   };
-  expect(qaV2EpisodeContent(trainedInMaster, buildE1ContentItems(), buildEnglishProfile())).toMatchObject({
+  expect(qa(trainedInMaster)).toMatchObject({
     ok: false,
     blockingIssues: expect.arrayContaining(['compiled_trained_prompt_in_independent_check']),
   });
@@ -117,7 +142,7 @@ test('blocks trained prompts inside independent no-support checks', () => {
 
 test('blocks any optional template that could write mastery or block progress', () => {
   const compiled = buildCompiledE1();
-  const report = qaV2EpisodeContent(compiled, buildE1ContentItems(), buildEnglishProfile(), [
+  const report = qa(compiled, [
     {
       slotId: 'optional-ep-01-cheat',
       episodeId: 'ep-01' as never,

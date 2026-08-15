@@ -1,4 +1,8 @@
-import { __accountDeleteTestHooks, executeAccountDeletion } from './account_delete';
+import {
+  ARENA_EXPANSION_USER_SUBCOLLECTIONS,
+  __accountDeleteTestHooks,
+  executeAccountDeletion,
+} from './account_delete';
 
 const {
   accountDeleteQueryPlan,
@@ -125,6 +129,46 @@ describe('accountDelete query plan', () => {
     expect(keys.has('arena_season_claims.uid.==.auth-456')).toBe(true);
   });
 
+  it('covers every Arena V2 public, private, queue and invite identity edge', () => {
+    const queryPlan = accountDeleteQueryPlan('stable-123', 'auth-456');
+    const queryKeys = new Set(queryPlan.map((x) => `${x.collection}.${x.field}.${x.op}.${x.value}`));
+
+    expect(queryKeys.has('arena_v2_profiles.authUid.==.auth-456')).toBe(true);
+    expect(queryKeys.has('arena_v2_queue.stableUid.==.stable-123')).toBe(true);
+    expect(queryKeys.has('arena_v2_queue.authUid.==.auth-456')).toBe(true);
+    expect(queryKeys.has('arena_v2_match_private.participantStableUids.array-contains.stable-123')).toBe(true);
+    expect(queryKeys.has('arena_v2_match_private.participantAuthUids.array-contains.auth-456')).toBe(true);
+    expect(queryKeys.has('arena_v2_pair_limits.participantStableUids.array-contains.stable-123')).toBe(true);
+    expect(queryKeys.has('arena_v2_invites.fromStableUid.==.stable-123')).toBe(true);
+    expect(queryKeys.has('arena_v2_invites.toStableUid.==.stable-123')).toBe(true);
+    expect(queryKeys.has('arena_v2_invites.fromAuthUid.==.auth-456')).toBe(true);
+    expect(queryKeys.has('arena_v2_invites.toAuthUid.==.auth-456')).toBe(true);
+    for (const collection of ['arena_v2_ghosts', 'arena_v2_series', 'arena_v2_partnerships']) {
+      expect(queryKeys.has(`${collection}.participantStableUids.array-contains.stable-123`)).toBe(true);
+      expect(queryKeys.has(`${collection}.participantAuthUids.array-contains.auth-456`)).toBe(true);
+    }
+
+    const directPlan = accountDeleteDirectDocumentPlan('stable-123', 'auth-456');
+    const directKeys = new Set(directPlan.map((x) => `${x.collection}.${x.id}`));
+    expect(directKeys.has('arena_v2_profiles.stable-123')).toBe(true);
+    expect(directKeys.has('arena_v2_queue.stable-123')).toBe(true);
+  });
+
+  it('audits every recursively deleted Arena Expansion user namespace', () => {
+    expect(ARENA_EXPANSION_USER_SUBCOLLECTIONS).toEqual([
+      'arena_v2_daily_attempts',
+      'arena_v2_expansion_runs',
+      'arena_v2_match_labs',
+      'arena_v2_mastery_signatures',
+      'arena_v2_activity_days',
+      'arena_v2_partner_weeks',
+      'arena_v2_star_ledger',
+      'arena_v2_entitlements',
+      'arena_v2_expansion_receipts',
+      'star_operations',
+    ]);
+  });
+
   it('keeps direct Arena question history documents in the account-deletion plan', () => {
     const plan = accountDeleteDirectDocumentPlan('stable-123', 'auth-456');
     const keys = new Set(plan.map((x) => `${x.collection}.${x.id}`));
@@ -155,6 +199,7 @@ describe('accountDelete query plan', () => {
     expect(keys.has('poll_votes.userId.==.stable-123')).toBe(true);
     expect(keys.has('activity_likes_received.fromUid.==.stable-123')).toBe(true);
     expect(keys.has('friend_activity_like_daily_limits.targetUid.==.stable-123')).toBe(true);
+    expect(keys.has('friend_activity_likes_sent.targetUid.==.stable-123')).toBe(true);
     expect(keys.has('friend_gifts_received.fromUid.==.stable-123')).toBe(true);
     expect(keys.has('friend_gifts_sent.toUid.==.stable-123')).toBe(true);
     expect(keys.has('friend_gift_history.peerUid.==.stable-123')).toBe(true);

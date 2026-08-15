@@ -42,6 +42,11 @@ describe('cloud_sync monotonic counter merge (#10 multi-device)', () => {
     // because a streak can legitimately drop and must not be maxed.
     expect(mergeLessonRestoreValue('streak_count', '3', '40')).toBe('3');
   });
+
+  it('never lets a stale public projection revoke a purchased profile level', () => {
+    expect(mergeLessonRestoreValue('profile_card_level', '1', '4')).toBe('4');
+    expect(mergeLessonRestoreValue('profile_card_level', '5', '2')).toBe('5');
+  });
   it('max-merges and clamps the immutable legacy lesson cap', () => {
     const capKey = legacyFreeLessonCapKey('en');
     expect(mergeLessonRestoreValue(capKey, '5', '7')).toBe('7');

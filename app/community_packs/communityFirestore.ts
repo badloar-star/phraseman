@@ -3,7 +3,8 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import type { FlashcardMarketPack, FlashcardPackCategory } from '../flashcards/marketplace';
 import { derivePackCodeName } from '../flashcards/marketplace';
 import type { CardItem } from '../flashcards/types';
-import { COMMUNITY_PACKS_COLLECTION, COMMUNITY_PACK_PRICE_SHARDS } from './schema';
+import { COMMUNITY_PACKS_COLLECTION } from './schema';
+import { comparePacksBySocial, readPackSocialCounts } from './packSocial';
 import { callCommunityFetchPackCardsIfAccessible, isCommunityPacksCloudEnabled } from './functionsClient';
 import { getCanonicalUserId } from '../user_id_policy';
 import { UGC_CARD_THEME_DEFAULT_ID } from './ugcCardThemePresets';
@@ -66,6 +67,7 @@ export function mapCommunityPackDocToMarket(
   const codeNameRaw = String(data.codeName ?? '').trim();
   const cat = (data.category as FlashcardPackCategory) ?? 'slang';
   const authorSid = String(data.authorStableId ?? '').trim();
+  const social = readPackSocialCounts(data);
   return {
     id,
     codeName: codeNameRaw || derivePackCodeName(id),
@@ -87,9 +89,17 @@ export function mapCommunityPackDocToMarket(
     descriptionPl: String(data.descriptionPl ?? ''),
     category: cat,
     cardCount: Math.max(0, num(data.cardCount)),
-    priceShards: COMMUNITY_PACK_PRICE_SHARDS,
+    /** Cards 2.1 §1.2: наборы бесплатны; легаси-поле `priceShards` в документе игнорируем. */
+    priceShards: 0,
+    likesCount: social.likesCount,
+    addedCount: social.addedCount,
     salesCount: Math.max(0, num(data.salesCount)),
-    authorName: authorSid ? authorSid.slice(0, 24) : 'Community',
+    /**
+     * Ник автора резолвится отдельно (`packAuthorNames.ts`): в документе набора
+     * его нет, а раньше сюда клали обрезанный `authorStableId` — и пользователь
+     * видел на экране набора сырой UID вместо ника.
+     */
+    authorName: '',
     authorStableId: authorSid || undefined,
     studyTarget,
     listingStatus: st,
@@ -102,10 +112,15 @@ export function mapCommunityPackDocToMarket(
   };
 }
 
-/** Выше средний балл и при равенстве — больше число оценок; иначе свежее обновление. */
-export function sortCommunityMarketPacksByRating(a: FlashcardMarketPack, b: FlashcardMarketPack): number {
-  return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+/**
+ * Cards 2.1 §2.3: каталог сортируется по лайкам ↓, затем по числу добавлений ↓, затем по свежести.
+ */
+export function sortCommunityMarketPacksBySocial(a: FlashcardMarketPack, b: FlashcardMarketPack): number {
+  return comparePacksBySocial(a, b);
 }
+
+/** @deprecated Cards 2.1 §2.3: сортировка по рейтингу заменена на сортировку по лайкам. */
+export const sortCommunityMarketPacksByRating = sortCommunityMarketPacksBySocial;
 
 export async function loadPublishedCommunityMarketPacks(studyTarget?: RuntimeStudyTarget): Promise<FlashcardMarketPack[]> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return [];
@@ -118,7 +133,7 @@ export async function loadPublishedCommunityMarketPacks(studyTarget?: RuntimeStu
     const list = snap.docs
       .map((d) => mapCommunityPackDocToMarket(d.id, d.data() as Record<string, unknown>, { studyTarget }))
       .filter(Boolean) as FlashcardMarketPack[];
-    list.sort(sortCommunityMarketPacksByRating);
+    list.sort(sortCommunityMarketPacksBySocial);
     return list.slice(0, 40);
   } catch (e) {
     // зачем: вкладка «Сообщество» тихо показывала пустой список без единой
@@ -157,7 +172,6 @@ export type CommunityPackEditorSnapshot = {
   studyTarget: StudyTarget;
   title: string;
   description: string;
-  priceShards: number;
   cardThemeKey: string;
   cardBackKey: string;
   cards: {
@@ -223,7 +237,6 @@ export async function fetchCommunityPackForAuthorEdit(
       studyTarget: docStudyTarget,
       title: String(d.titleRu ?? d.titleUk ?? d.titleEs ?? d.titlePtBr ?? d.titleVi ?? d.titleId ?? d.titleTr ?? d.titlePl ?? '').trim(),
       description: String(d.descriptionRu ?? d.descriptionUk ?? d.descriptionEs ?? d.descriptionPtBr ?? d.descriptionVi ?? d.descriptionId ?? d.descriptionTr ?? d.descriptionPl ?? '').trim(),
-      priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       cardThemeKey: String(d.cardThemeKey ?? UGC_CARD_THEME_DEFAULT_ID).trim() || UGC_CARD_THEME_DEFAULT_ID,
       cardBackKey: normalizeUgcCardBackKey(String(d.cardBackKey ?? '').trim()),
       cards,

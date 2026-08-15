@@ -66,6 +66,10 @@ function namedSecretAssignmentHit(line) {
   // Reject obvious CODE values: function calls, member access, env refs, ternary.
   if (/[()]/.test(value)) return null;            // foo()
   if (value.includes('process.env')) return null; // env ref
+  // TypeScript type annotations such as `readonly token: SomeIntentV2` are
+  // identifiers, not string literals. A lowercase property followed by an
+  // unquoted PascalCase type is safe to reject before entropy checks.
+  if (!quote && /^[a-z_$]/.test(m[1]) && /^[A-Z_$][A-Za-z0-9_$]*$/.test(value)) return null;
   // Unquoted RHS that looks like a JS identifier / member expression (no quotes)
   // is almost always code, not a literal secret — require it to look opaque.
   if (!OPAQUE_LITERAL.test(value)) return null;
@@ -110,6 +114,9 @@ const ALLOWLIST_FILES = new Set([
   // Test fixture: a FAKE service-account private key ('secret-private-key' placeholder)
   // used to exercise the credential-preflight guard. Not a real key.
   'tests/gustav_french_server_remote_credential_preflight_v2_packet.test.ts',
+  // зачем: таблица заведомо опасных строк, которые нормализатор ОБЯЗАН отклонить.
+  // Значения — плоские заглушки вида «префикс + латинский алфавит», не ключи.
+  'functions/src/support_owner_instructions.test.ts',
 ]);
 
 // Files where a Firebase WEB/CLIENT Google API key (AIza…) is public by design
@@ -119,6 +126,9 @@ const ALLOWLIST_FILES = new Set([
 // here) is still caught. This is deliberately narrow: line-content alone is NOT
 // enough to exempt, because any attacker-chosen line could include "apiKey".
 const FIREBASE_CLIENT_CONFIG_FILES = new Set([
+  // зачем: arena-config приехала с Mac с тем же публичным Firebase web-ключом,
+  // что и остальные админ-страницы ниже; сканер её просто ещё не знал.
+  'admin/arena-config.html',
   'admin/index.html',
   'admin/testers.html',
   'admin/beta_testers.html',
@@ -136,6 +146,14 @@ const UPPERCASE_BEARER_PLACEHOLDER = /\b(?:authorization|bearer)\s*[:=]\s*["']?[
 // Hashing avoids embedding the fixture value or broadly exempting secret-like test assignments.
 const ALLOWLISTED_TEST_FIXTURE_VALUE_SHA256 = new Set([
   '1eb0161f6e2c97eb29249ea0c3508c241ce56f37c01295481c6af98b622931e6',
+  // зачем: детерминированные deliveryToken из тестов доставки паков/спинов
+  // (приехали с Mac). Хешируем значения, чтобы не освобождать весь класс
+  // secret-подобных присваиваний в тестах.
+  '4672c7554ad6df359448da87e3b5b8e8fdce8137286c1f96963b33760437e4b7', // deliverytokenbase01
+  '594ebc01e7973a1574e7ffc8a1f078b085eb46faaea44b884de4122db6688292', // deliverytokenbase02
+  '6559c339b3d47b26d6e580924f9146bd61fee0512e504957fb737c9259c48cef', // deliverytokenbase05
+  '4cb197d3cdaed84a397386a19419999782ddb20fea82d511f6e3364e428b1c8b', // deliverytokenprem01
+  '0e4141188680bf32dcd504befc05eb747b20c56e5c90753f1d9c09a6257151d6', // delivery-token-1234
 ]);
 const sha256 = value => createHash('sha256').update(value).digest('hex');
 // Auto-generated maps of PUBLIC Firebase Storage download URLs for bundled

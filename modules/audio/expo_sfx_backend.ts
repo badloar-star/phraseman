@@ -30,15 +30,21 @@ type CacheEntry = {
 };
 
 const DEFAULT_CACHE_SIZE = 6;
+// A broken/native-stalled rewind must never keep the global sound slot busy.
+// Normal rewinds settle well before this; the fallback is only for a Promise
+// that never resolves or rejects on a problematic ExoPlayer instance.
+const SEEK_SETTLE_TIMEOUT_MS = 200;
 
 export class ExpoSfxBackend {
   private readonly cache = new Map<SoundEventId, CacheEntry>();
   private current: {
+    token: number;
     eventId: SoundEventId;
     player: SfxPlayerLike;
     subscription: SubscriptionLike | null;
   } | null = null;
   private useSequence = 0;
+  private playbackSequence = 0;
 
   constructor(
     private readonly createPlayer: PlayerFactory = (source) => createAudioPlayer(source) as unknown as SfxPlayerLike,
@@ -54,8 +60,13 @@ export class ExpoSfxBackend {
     try {
       this.stop();
       const player = this.ensure(eventId, source);
+      const playbackToken = ++this.playbackSequence;
       player.volume = Math.max(0, Math.min(1, volume));
-      void player.seekTo(0);
+      const seekResult = player.seekTo(0);
+      const seekPromise = seekResult && typeof (seekResult as Promise<void>).then === 'function'
+        ? seekResult as Promise<void>
+        : null;
+      let seekSettled = seekPromise === null;
 
       // зачем: play() по ещё не загруженному плееру уходит в тишину — на Android
       // ExoPlayer после createAudioPlayer какое-то время в состоянии загрузки, и
@@ -88,13 +99,14 @@ export class ExpoSfxBackend {
       // повторной попытке play() шанс реально стартовать. Если оно истекло,
       // ENDED принимается как есть, будто предохранителя не было вовсе.
       let sawPlaying = false;
-      const playStartedAtMs = Date.now();
+      let playStartedAtMs = Date.now();
+      let startAttempted = false;
       const RETRY_WINDOW_MS = 400;
       const subscription = player.addListener('playbackStatusUpdate', (status) => {
-        if (this.current?.player !== player) return;
+        if (this.current?.token !== playbackToken || this.current.player !== player) return;
 
         if (status.playing === true) sawPlaying = true;
-        const withinRetryWindow = Date.now() - playStartedAtMs < RETRY_WINDOW_MS;
+        const withinRetryWindow = !startAttempted || Date.now() - playStartedAtMs < RETRY_WINDOW_MS;
 
         // Завершение обрабатываем ВСЕГДА и первым делом: рантайм может не
         // присылать `playing`, и привязка finish к «мы видели старт» подвесила бы
@@ -112,16 +124,58 @@ export class ExpoSfxBackend {
         // ExoPlayer ещё декодировал файл, либо это тот самый ложный ENDED на
         // переиспользуемом плеере). Повторяем ровно один раз по готовности:
         // без этого первый запрос каждого звука всегда немой.
-        if (!retriedAfterLoad && status.isLoaded && status.playing === false) {
+        if (seekSettled && !retriedAfterLoad && status.isLoaded && status.playing === false) {
           retriedAfterLoad = true;
-          try { player.play(); } catch {}
+          try {
+            player.play();
+          } catch {
+            // Android may fail only on the readiness-triggered retry. Swallowing
+            // that exception leaves SoundDirector believing this effect still
+            // owns the global slot, so the next lower-priority sounds appear to
+            // work "through once". Release exactly this playback generation.
+            if (this.current?.token === playbackToken && this.current.player === player) {
+              this.stop();
+              onEnded();
+            }
+          }
         }
       });
-      this.current = { eventId, player, subscription };
+      this.current = { token: playbackToken, eventId, player, subscription };
 
-      // Пробуем сразу: на прогретом плеере (звук уже в кэше) это даёт мгновенный
-      // отклик без ожидания первого статуса.
-      player.play();
+      let seekFallbackTimer: ReturnType<typeof setTimeout> | null = null;
+      let startReleased = false;
+      const startAfterSeek = () => {
+        if (startReleased) return;
+        startReleased = true;
+        if (seekFallbackTimer) {
+          clearTimeout(seekFallbackTimer);
+          seekFallbackTimer = null;
+        }
+        seekSettled = true;
+        // Сравнения только player недостаточно: повтор того же eventId повторно
+        // использует тот же объект. Поздний timeout/Promise прошлого seek тогда
+        // мог запустить уже новый сеанс раньше завершения его собственной перемотки.
+        if (this.current?.token !== playbackToken || this.current.player !== player) return;
+        startAttempted = true;
+        playStartedAtMs = Date.now();
+        try {
+          player.play();
+        } catch {
+          // Async seek completion runs outside the outer play() try/catch.
+          // Release the director slot instead of leaving all later sounds queued.
+          this.stop();
+          onEnded();
+        }
+      };
+      // На переиспользуемом Android-плеере seekTo(0) асинхронно выводит
+      // ExoPlayer из STATE_ENDED. Запуск до завершения seek — точная причина
+      // эффекта «тот же системный звук играет через раз».
+      if (seekPromise) {
+        seekFallbackTimer = setTimeout(startAfterSeek, SEEK_SETTLE_TIMEOUT_MS);
+        void seekPromise.then(startAfterSeek, startAfterSeek);
+      } else {
+        startAfterSeek();
+      }
       return true;
     } catch {
       this.stop();
@@ -174,4 +228,3 @@ export class ExpoSfxBackend {
     this.cache.delete(oldest[0]);
   }
 }
-

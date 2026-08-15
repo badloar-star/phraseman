@@ -9,6 +9,7 @@ import SkeletonBlock from '../components/SkeletonShimmer';
 import YoutubeChannelHeader from '../components/youtube/YoutubeChannelHeader';
 import YoutubeChannelPickerSheet from '../components/youtube/YoutubeChannelPickerSheet';
 import YoutubeChannelTabs, { type YoutubeChannelTab } from '../components/youtube/YoutubeChannelTabs';
+import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
 import YoutubePlaylistRow from '../components/youtube/YoutubePlaylistRow';
 import YoutubePremiereHero from '../components/youtube/YoutubePremiereHero';
 import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
@@ -93,6 +94,7 @@ export default function LingmanVideosScreen() {
   const [loading, setLoading] = useState(!initialCatalog);
   const [refreshing, setRefreshing] = useState(false);
   const [issue, setIssue] = useState<'none' | 'offline' | 'error'>('none');
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
   // RSS remains a rollback fallback while the new atomic catalog rolls out.
   const initialChannel = getActiveYoutubeChannel();
@@ -189,6 +191,7 @@ export default function LingmanVideosScreen() {
     await setYoutubeChannelPreference(nextPreference, token);
     setPreference(nextPreference);
     setPickerVisible(false);
+    setActiveVideoId(null);
     const manifest = catalogRef.current?.manifest;
     if (!manifest) return;
     const channelId = resolvePreferredYoutubeChannel(manifest, studyTarget, nextPreference).channelId;
@@ -214,8 +217,16 @@ export default function LingmanVideosScreen() {
       setCachedSnapshot((current) => current ? { ...current, unreadCount: nextUnread } : current);
       void markLingmanYoutubeCatalogSeen(video.id);
     }
-    router.push({ pathname: '/lingman_video_player', params: { id: video.id, title: video.title, watchUrl: video.watchUrl } } as any);
+    // Ровно один videoId хранится в состоянии: смена id размонтирует прежний
+    // WebView до создания следующего, поэтому параллельного воспроизведения нет.
+    setActiveVideoId(video.id);
   };
+
+  const closeVideo = useCallback(() => setActiveVideoId(null), []);
+  const changeTab = useCallback((nextTab: YoutubeChannelTab) => {
+    setActiveVideoId(null);
+    setTab(nextTab);
+  }, []);
 
   const openPlaylist = (playlistId: string) => router.push({ pathname: '/lingman_playlist', params: { playlistId, channelId: catalog?.channel.id } } as any);
   const remind = async (video: YoutubeVideoSnapshot) => {
@@ -252,14 +263,28 @@ export default function LingmanVideosScreen() {
   };
 
   const videosList = (videos: YoutubeVideoSnapshot[]) => videos.map((video) => (
-    <YoutubeVideoCard key={video.id} video={video} highlighted={video.id === deepLinkedVideoId} onWatch={() => openVideo(video)} onOpenYoutube={() => openExternalUrl(video.watchUrl, video.id)} />
+    <YoutubeVideoCard
+      key={video.id}
+      video={video}
+      highlighted={video.id === deepLinkedVideoId || video.id === activeVideoId}
+      onWatch={() => openVideo(video)}
+      inlinePlayer={video.id === activeVideoId ? (
+        <YoutubeInlinePlayer
+          videoId={video.id}
+          title={video.title}
+          active={screenRuntimeActive}
+          onClose={closeVideo}
+          presentation="preview"
+        />
+      ) : undefined}
+    />
   ));
 
   return (
     <ScreenGradient artBackdrop="home">
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader channel={activeChannel} onBack={() => safeRouterBack(router, '/(tabs)/home' as any)} onOpenChannels={() => setPickerVisible(true)} onOpenYoutube={() => openExternalUrl(activeChannel.url)} />
-        {(catalog || snapshot) && <YoutubeChannelTabs value={tab} onChange={setTab} />}
+        {(catalog || snapshot) && <YoutubeChannelTabs value={tab} onChange={changeTab} />}
         {stale && <View testID="youtube-catalog-stale" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="time-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.stale}</Text></View>}
         {issue === 'offline' && <View testID="youtube-catalog-offline" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="cloud-offline-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.offline}</Text></View>}
         {issue === 'error' && !catalog && !snapshot && <View testID="youtube-catalog-error" style={[styles.notice, styles.errorNotice, { backgroundColor: t.accentBg }]}><View style={styles.errorCopy}><Ionicons name="alert-circle-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.error}</Text></View><TouchableOpacity testID="youtube-catalog-retry" accessibilityRole="button" accessibilityLabel={copy.retry} disabled={refreshing} onPress={() => void loadCatalog(undefined, true)} style={[styles.retryButton, { backgroundColor: t.accent }, refreshing && styles.retryButtonDisabled]}><Text style={styles.retryButtonText}>{copy.retry}</Text></TouchableOpacity></View>}
@@ -280,7 +305,17 @@ export default function LingmanVideosScreen() {
             : <ScrollView testID="youtube-catalog-playlists-empty" contentContainerStyle={styles.empty}><Ionicons name="albums-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text></ScrollView>
         ) : (
           <ScrollView testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.list}>
-            {hero && <YoutubePremiereHero video={hero} onWatch={() => openVideo(hero)} onRemind={() => void remind(hero)} />}
+            {hero ? hero.id === activeVideoId ? (
+              <View style={styles.heroPlayer}>
+                <YoutubeInlinePlayer
+                  videoId={hero.id}
+                  title={hero.title}
+                  active={screenRuntimeActive}
+                  onClose={closeVideo}
+                  presentation="preview"
+                />
+              </View>
+            ) : <YoutubePremiereHero video={hero} onWatch={() => openVideo(hero)} onRemind={() => void remind(hero)} /> : null}
             <Text style={[styles.sectionTitle, { color: t.textPrimary }]}>{copy.recent}</Text>
             {videosList(allVideos.filter((video) => video.id !== hero?.id))}
             {!hero && !allVideos.length && <View testID="lingman-videos-empty" />}
@@ -307,4 +342,5 @@ const styles = StyleSheet.create({
   skeletons: { gap: 12 },
   empty: { minHeight: 300, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28, gap: 12 },
   emptyText: { fontSize: 14, lineHeight: 20, textAlign: 'center', fontWeight: '800' },
+  heroPlayer: { width: '100%', aspectRatio: 16 / 9, borderRadius: 24, overflow: 'hidden', marginBottom: 14, backgroundColor: '#000000' },
 });

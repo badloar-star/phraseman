@@ -25,8 +25,7 @@ import AiTypingBubble from '../components/AiTypingBubble';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
-import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from './audio_playback_mode';
-import { setManagedAudioMode } from './audio_session_coordinator';
+import { useManagedRecordingAudio } from '../hooks/use_managed_recording_audio';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import {
   dialogScenarioNextStepHint,
@@ -80,9 +79,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
 import {
   isSpeechRecognitionAvailable,
-  loadPlanSpeechModule,
+  loadSpeechRecognitionModule,
   requestSpeechPermissionForHold,
-} from './personal_plan_speech_module';
+} from './speech_recognition_module';
 import { isSpeakingEnabled } from './remote_flags';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
@@ -111,13 +110,6 @@ type VoiceInputStatus =
 // Normal completion is event-driven (`end`/`error`). This is only a bounded
 // fallback for OEM recognizers that stop the engine without a terminal event.
 const CONVERSATION_SEND_GRACE_MS = 1200;
-
-// Вернуть аудио-сессию в «громкое воспроизведение» после голосового ввода:
-// без сброса озвучка ответов Компаса и любые mp3 после микрофона играют тихо
-// через разговорный динамик или не играют вовсе.
-function restoreLoudPlaybackMode(): void {
-  void setManagedAudioMode(LOUD_PLAYBACK_AUDIO_MODE).catch(() => undefined);
-}
 
 /**
  * Достаёт имя персонажа из persona-строки для подписи в шапке-мессенджере:
@@ -199,7 +191,11 @@ function AiDialogSession() {
   const dialogAccess = useFeatureAccess('ai_dialog');
   const router = useRouter();
   const { speak, stop: stopSpeaking } = useAudio();
-  const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
+  const speechModule = useMemo(() => (isSpeakingEnabled() ? loadSpeechRecognitionModule() : null), []);
+  const recordingAudio = useManagedRecordingAudio(() => {
+    try { speechModule?.abort(); } catch { /* native capture already gone */ }
+  });
+  const restoreLoudPlaybackMode = recordingAudio.release;
   // зачем: экран диалога не размонтируется при сворачивании приложения, поэтому нужен явный
   // сигнал «ушли в фон» — иначе распознавание речи продолжает слушать микрофон (см. эффект ниже).
   const runtimeActive = useRuntimeActive();
@@ -207,7 +203,8 @@ function AiDialogSession() {
   runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
   const { playTurnReady } = useTurnReadyCue();
-  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
+  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string; maxFallback?: string }>();
+  const maxFallbackRequested = params.maxFallback === '1';
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
 
@@ -271,10 +268,10 @@ function AiDialogSession() {
   // Конец речи определяет ПАЛЕЦ (отпустил), а не OEM-endpointer — это обходит
   // «микрофон Android закрывается сам» и исключает эхо (mic и динамик никогда не
   // открыты одновременно: пока звучит ответ, палец отпущен и запись закрыта).
-  const [conversationMode, setConversationMode] = useState(false);
+  const [conversationMode, setConversationMode] = useState(maxFallbackRequested);
   // Свежее значение флага для колбэков send/распознавания без stale-closure и
   // без пересоздания send при каждом переключении тумблера.
-  const conversationModeRef = useRef(false);
+  const conversationModeRef = useRef(maxFallbackRequested);
   // Invalidates an in-flight permission/model/start sequence when the finger is
   // released or the conversation mode is turned off.
   const voiceInputGenerationRef = useRef(0);
@@ -566,11 +563,7 @@ function AiDialogSession() {
     if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
 
     try {
-      try {
-        await setManagedAudioMode(SPEAKING_RECORDING_AUDIO_MODE);
-      } catch {
-        // expo-speech-recognition may own the native session on some devices.
-      }
+      if (!await recordingAudio.begin()) return;
       if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
       if (!holdPressActiveRef.current) {
         cleanupVoiceInputListeners();
@@ -631,6 +624,8 @@ function AiDialogSession() {
     lang,
     lastErrorMessage,
     playRecordStart,
+    recordingAudio,
+    restoreLoudPlaybackMode,
     router,
     scenario,
     sending,
@@ -660,7 +655,7 @@ function AiDialogSession() {
       }
       restoreLoudPlaybackMode();
     };
-  }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, speechModule]);
+  }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, restoreLoudPlaybackMode, speechModule]);
 
   // зачем: сворачивание приложения НЕ размонтирует экран, поэтому cleanup выше не срабатывает
   // и распознавание продолжало держать микрофон открытым в фоне — большой расход батареи.
@@ -692,7 +687,7 @@ function AiDialogSession() {
     }
     restoreLoudPlaybackMode();
     if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
-  }, [runtimeActive, speechModule, clearRecognizerWatchdog, cleanupVoiceInputListeners, stopSpeaking]);
+  }, [runtimeActive, speechModule, clearRecognizerWatchdog, cleanupVoiceInputListeners, restoreLoudPlaybackMode, stopSpeaking]);
 
   const enterAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -947,6 +942,7 @@ function AiDialogSession() {
     speechModule,
     clearConversationSendTimer,
     cleanupVoiceInputListeners,
+    restoreLoudPlaybackMode,
   ]);
 
   useEffect(() => {
@@ -1581,7 +1577,7 @@ function AiDialogSession() {
             dataId={`ai_dialog_${scenario.id ?? 'unknown'}`}
             dataText={dialogScenarioTitle(scenario, lang)}
             variant="icon-flag"
-            accessibilityLabel="Сообщить об ошибке в диалоге"
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в диалоге', uk: 'Повідомити про помилку в діалозі', es: 'Informar de un error en el diálogo', 'pt-BR': 'Relatar erro no diálogo', vi: 'Báo lỗi trong hội thoại', id: 'Laporkan kesalahan dalam dialog', tr: 'Diyalogdaki hatayı bildir', pl: 'Zgłoś błąd w dialogu' })}
             style={{
               width: 36,
               height: 36,
@@ -1591,6 +1587,37 @@ function AiDialogSession() {
             }}
           />
         </View>
+
+        {maxFallbackRequested && (
+          <View
+            testID="max-voice-fallback-banner"
+            style={{
+              marginHorizontal: 12,
+              marginTop: 8,
+              borderRadius: 12,
+              paddingHorizontal: 12,
+              paddingVertical: 9,
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 8,
+              backgroundColor: t.accentBg,
+            }}
+          >
+            <Ionicons name="radio-outline" size={16} color={t.accent} />
+            <Text style={{ color: t.textSecond, fontSize: f.caption, flex: 1 }}>
+              {triLang(lang, {
+                ru: 'Голосовая линия перегружена — продолжаем в режиме рации. Минуты MAX не тратятся.',
+                uk: 'Голосова лінія перевантажена — продовжуємо в режимі рації. Хвилини MAX не витрачаються.',
+                es: 'La línea de voz está ocupada: seguimos en modo walkie-talkie. No se gastan minutos MAX.',
+                'pt-BR': 'A linha de voz está ocupada: seguimos no modo rádio. Os minutos MAX não são gastos.',
+                vi: 'Đường dây thoại đang bận — tiếp tục ở chế độ bộ đàm. Không dùng phút MAX.',
+                id: 'Jalur suara sibuk — lanjut dalam mode walkie-talkie. Menit MAX tidak terpakai.',
+                tr: 'Ses hattı yoğun — telsiz modunda devam ediyoruz. MAX dakikaları harcanmaz.',
+                pl: 'Linia głosowa jest zajęta — kontynuujemy w trybie krótkofalówki. Minuty MAX nie są zużywane.',
+              })}
+            </Text>
+          </View>
+        )}
 
         <KeyboardAvoidingView
           style={{ flex: 1 }}

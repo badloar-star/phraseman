@@ -15,7 +15,6 @@ type Finding = {
 type DomainCandidate =
   | 'lesson_rows'
   | 'lesson_runtime'
-  | 'personal_plan_content'
   | 'ai_dialog_scenarios'
   | 'flashcard_marketplace_bundles'
   | 'club_rewards_stats_weekly'
@@ -46,7 +45,6 @@ type MarkerCounts = {
   analytics: number;
   SpeakingPanel: number;
   router: number;
-  planContent: number;
   dialog: number;
   flashcard: number;
   collectible: number;
@@ -228,7 +226,6 @@ const MARKER_ORDER: Array<keyof MarkerCounts> = [
   'analytics',
   'SpeakingPanel',
   'router',
-  'planContent',
   'dialog',
   'flashcard',
   'collectible',
@@ -252,7 +249,6 @@ const MARKER_PATTERNS: Array<[keyof MarkerCounts, RegExp]> = [
   ['analytics', /analytics|trackEvent/gi],
   ['SpeakingPanel', /SpeakingPanel|speaking/gi],
   ['router', /\brouter\.(push|replace|back|dismiss|dismissTo)|<Link\b|href=/g],
-  ['planContent', /PlanDay|planContent|PLAN_|plan_content|personal_plan/gi],
   ['dialog', /scenario|dialog|Dialogs/gi],
   ['flashcard', /flashcard|Victoria/gi],
   ['collectible', /collectible|dalli/gi],
@@ -324,7 +320,6 @@ function zeroMarkers(): MarkerCounts {
     analytics: 0,
     SpeakingPanel: 0,
     router: 0,
-    planContent: 0,
     dialog: 0,
     flashcard: 0,
     collectible: 0,
@@ -411,14 +406,6 @@ function classifyDomain(sourcePath: string, text: string, category?: DirtyCatego
       primaryDomain: 'flashcard_marketplace_bundles',
       secondaryDomains: Array.from(secondary),
       reason: 'flashcard bundle or Victoria shared schema path',
-    };
-  }
-  if (low.includes('plan_content') || low.includes('personal_plan')) {
-    if (hasAnyMarker(counts, ['sourceLocale', 'sourceLocales'])) secondary.add('source_locale_ui_copy');
-    return {
-      primaryDomain: 'personal_plan_content',
-      secondaryDomains: Array.from(secondary),
-      reason: 'personal plan content/runtime path',
     };
   }
   if (low.includes('weeklyreview') || low.includes('weekly_review')) {

@@ -59,7 +59,7 @@ describe('borderless surface audit', () => {
       `const styles = { card: { borderWidth: 1 } };`,
     );
     fs.writeFileSync(
-      path.join(appDir, 'personal_plan_dev.tsx'),
+      path.join(appDir, 'feature_dev.tsx'),
       `const styles = { card: { borderWidth: 1 } };`,
     );
     fs.writeFileSync(

@@ -2,7 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import fs from 'fs';
 import path from 'path';
 
-import { beginAccountGeneration } from '../app/account_generation';
+import { beginAccountGeneration, ensureAccountGeneration } from '../app/account_generation';
+import { _resetStableIdCache, setStableId } from '../app/stable_id';
 import { readVipSnapshotForAccount } from '../app/premium_vip_storage';
 import { applySeasonRewardLocal } from '../app/season_reward_apply';
 import {
@@ -14,10 +15,16 @@ import {
 describe('season-pass rewards apply locally', () => {
   beforeEach(async () => {
     await AsyncStorage.clear();
+    _resetStableIdCache();
+    await setStableId('season-offline-account');
+    ensureAccountGeneration('season-offline-account');
   });
 
   test('collection magnet becomes active without a callable response', async () => {
-    const result = await applySeasonRewardLocal({ kind: 'collection_magnet' });
+    const result = await applySeasonRewardLocal(
+      { kind: 'collection_magnet' },
+      'season_1:11:pass',
+    );
 
     expect(result).toEqual({ ok: true });
     const stored = await AsyncStorage.getItem('season_collection_magnet_v1');
@@ -25,18 +32,21 @@ describe('season-pass rewards apply locally', () => {
     expect(JSON.parse(stored!)).toEqual(expect.objectContaining({ multiplier: 2 }));
   });
 
-  test('tournament ticket is stored locally without a callable response', async () => {
-    const result = await applySeasonRewardLocal({ kind: 'tournament_ticket' });
+  test('retired tournament ticket cannot recreate ticket state', async () => {
+    const result = await applySeasonRewardLocal({ kind: 'tournament_ticket' }, 'season_1:17:pass');
 
     expect(result).toEqual({ ok: true });
     const stored = await AsyncStorage.getItem('season_tournament_ticket_v1');
-    expect(JSON.parse(stored!)).toEqual(expect.objectContaining({ usesLeft: 1 }));
+    expect(stored).toBeNull();
   });
 
   test('Plus days create a local entitlement without a callable response', async () => {
     beginAccountGeneration('season-local-account');
 
-    const result = await applySeasonRewardLocal({ kind: 'plus_days', amount: 3 });
+    const result = await applySeasonRewardLocal(
+      { kind: 'plus_days', amount: 3 },
+      'season_1:12:pass',
+    );
 
     expect(result).toEqual({ ok: true });
     await expect(readVipSnapshotForAccount('season-local-account')).resolves.toEqual(expect.objectContaining({
@@ -64,6 +74,9 @@ describe('season-pass rewards apply locally', () => {
       'season_1:11:pass',
       'season_1:12:pass',
     ]);
+    expect(inventory.find((item) => item.id === 'season_1:12:pass')).toEqual(
+      expect.objectContaining({ kind: 'pearls', amount: 5 }),
+    );
   });
 });
 

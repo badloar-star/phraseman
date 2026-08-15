@@ -1,6 +1,20 @@
 {
   "indexes": [
     {
+      "collectionGroup": "friend_activity_like_daily_limits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "targetUid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "eventId",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "level_spin_credits",
       "queryScope": "COLLECTION",
       "fields": [
@@ -519,9 +533,407 @@
           "order": "ASCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "tournamentTasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "poolVersion",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "mode",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "difficulty",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_queue",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "mode",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "joinedAtMs",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_matches",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "terminal",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "stateDeadlineAtMs",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_invites",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "fromStableUid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_ghosts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "participantStableUids",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_ghosts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "fromStableUid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_ghosts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "fromStableUid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "expiresAtMs",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_ghosts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "pairId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_ghosts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "pairId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "expiresAtMs",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_ghosts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "participantStableUids",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "completedAtMs",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_ghosts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "participantStableUids",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "expiresAtMs",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_partnerships",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "participantStableUids",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_partnerships",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "participantStableUids",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "expiresAtMs",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_series",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "pairId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "dayKey",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAtMs",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_series",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "participantStableUids",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_series",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "participantStableUids",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "offerExpiresAtMs",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_spin_credits",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "expiresAtMs",
+          "order": "ASCENDING"
+        }
+      ]
     }
   ],
   "fieldOverrides": [
+    {
+      "collectionGroup": "tournamentTasks",
+      "fieldPath": "arenaPublication",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_match_private",
+      "fieldPath": "tasks",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_match_private",
+      "fieldPath": "answers",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_match_private",
+      "fieldPath": "botPlan",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_match_private",
+      "fieldPath": "speedProgress",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_match_private",
+      "fieldPath": "speedAttempts",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_match_private",
+      "fieldPath": "totals",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_match_private",
+      "fieldPath": "rewardsByStableUid",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_match_private",
+      "fieldPath": "authByStableUid",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_matches",
+      "fieldPath": "currentPublicTask",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_matches",
+      "fieldPath": "closedField",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_matches",
+      "fieldPath": "result",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_daily_private",
+      "fieldPath": "tasks",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_ghosts",
+      "fieldPath": "tasks",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_ghosts",
+      "fieldPath": "hostPlan",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_expansion_runs",
+      "fieldPath": "currentPublicTask",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_expansion_runs",
+      "fieldPath": "tasks",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_expansion_runs",
+      "fieldPath": "answers",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_expansion_runs",
+      "fieldPath": "speedProgress",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_expansion_runs",
+      "fieldPath": "speedAttempts",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_expansion_runs",
+      "fieldPath": "totals",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_match_labs",
+      "fieldPath": "tasks",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_profiles",
+      "fieldPath": "mastery",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "arena_v2_profiles",
+      "fieldPath": "equippedCosmetics",
+      "indexes": []
+    },
     {
       "collectionGroup": "app_message_states",
       "fieldPath": "messageId",
@@ -638,6 +1050,16 @@
     },
     {
       "collectionGroup": "friend_activity_like_daily_limits",
+      "fieldPath": "targetUid",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "friend_activity_likes_sent",
       "fieldPath": "targetUid",
       "indexes": [
         {
@@ -769,6 +1191,26 @@
     {
       "collectionGroup": "taskSecrets",
       "fieldPath": "expireAt",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_members",
+      "fieldPath": "expireAt",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "seats",
+      "fieldPath": "updatedAtMs",
       "indexes": [
         {
           "order": "ASCENDING",

@@ -36,6 +36,7 @@ jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true 
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn(async () => 'u1') }));
+jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'u1') }));
 jest.mock('../app/lifetime_profile_stats', () => ({
   bumpLifetimeShardsEarned: jest.fn(),
   bumpLifetimeShardsSpent: jest.fn(),
@@ -89,7 +90,7 @@ beforeEach(() => {
   });
 });
 
-describe('earn mirrors the authoritative server balance (no stale-cloud collapse)', () => {
+describe('client-authoritative earn cannot collapse to stale cloud balance', () => {
   beforeEach(() => {
     // Локаль: 250 (награда за Арену уже начислена локально), метка свежая.
     mockStorage[STORAGE_KEY] = '250';
@@ -100,9 +101,7 @@ describe('earn mirrors the authoritative server balance (no stale-cloud collapse
     });
   });
 
-  it('server transaction returns 252 (its own 250 + 2) → local mirrors 252, NOT 52', async () => {
-    // Сервер атомарно читает СВОЙ баланс (250 — награда за Арену уже дошла в его
-    // транзакции) и прибавляет 2. Клиент зеркалит результат.
+  it('adds to the local projection without consulting the server balance', async () => {
     applyDeltaResult.mockReturnValue({
       ok: true,
       alreadyApplied: false,
@@ -113,14 +112,10 @@ describe('earn mirrors the authoritative server balance (no stale-cloud collapse
     const gained = await addShardsRaw(2, 'lesson_perfect');
     expect(gained).toBe(2);
     await expect(getShardsBalance()).resolves.toBe(252);
-    // Клиент вызвал callable с величиной 2 и type earn (знак ставит сервер).
-    expect(callable).toHaveBeenCalledWith(
-      expect.objectContaining({ delta: 2, type: 'earn', opId: 'op-earn-abcdef12' }),
-    );
+    expect(callable).not.toHaveBeenCalled();
   });
 
-  it('idempotent replay (alreadyApplied) mirrors the server balance without double-count', async () => {
-    // Повтор с тем же opId: сервер уже применил дельту, возвращает текущий баланс.
+  it('idempotent replay is decided by the local immutable operation id', async () => {
     applyDeltaResult.mockReturnValue({
       ok: true,
       alreadyApplied: true,
@@ -128,9 +123,11 @@ describe('earn mirrors the authoritative server balance (no stale-cloud collapse
       balance: 252,
       shardsUpdatedAtMs: 7_000_000,
     });
-    const gained = await addShardsRaw(2, 'lesson_perfect');
-    expect(gained).toBe(2);
+    const options = { idempotencyKey: 'lesson:perfect:stable-1' };
+    await expect(addShardsRaw(2, 'lesson_perfect', options)).resolves.toBe(2);
+    await expect(addShardsRaw(2, 'lesson_perfect', options)).resolves.toBe(2);
     await expect(getShardsBalance()).resolves.toBe(252);
+    expect(callable).not.toHaveBeenCalled();
   });
 
   it('new economy: catalog gameplay earns are 0 (монеты только покупаются, спека §7)', async () => {
@@ -141,7 +138,10 @@ describe('earn mirrors the authoritative server balance (no stale-cloud collapse
       balance: 250,
       shardsUpdatedAtMs: 7_000_000,
     });
-    const gained = await addShards('lesson_perfect', { suppressEarnEvent: true });
+    const gained = await addShards('lesson_perfect', {
+      eventId: 'lesson:test:perfect',
+      suppressEarnEvent: true,
+    });
     expect(gained).toBe(0);
     await expect(getShardsBalance()).resolves.toBe(250);
     expect(callable).not.toHaveBeenCalled();

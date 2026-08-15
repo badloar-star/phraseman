@@ -1,15 +1,10 @@
 // Разовый бонус осколков за волну релиза. Только для тех, кто **обновил** приложение, не чистая установка.
 // См. app_last_recorded_native_build_id_v1 + getEffectiveLastNativeBuild.
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
-import { RELEASE_WAVE_BONUS_SHARDS, RELEASE_WAVE_BONUS_VERSION, CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { RELEASE_WAVE_BONUS_SHARDS, RELEASE_WAVE_BONUS_VERSION } from './config';
 import { getAppReleaseBuildId } from './app_build_id';
-import { getCanonicalUserId } from './user_id_policy';
-import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
-import { addShardsRaw, getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
-
-const REWARD_CLAIMS_COLLECTION = 'reward_claims';
+import { commitShardCreditOperation } from './shards_system';
 
 /** Ключ AsyncStorage: последняя нативная сборка, которую зафиксировали. */
 export const APP_LAST_RECORDED_NATIVE_BUILD_ID_KEY = 'app_last_recorded_native_build_id_v1';
@@ -81,24 +76,6 @@ export async function isUserUpdaterFromPreviousBuild(
   return last !== null && last < currentBuild;
 }
 
-const logReleaseWaveToShardLog = async (amount: number, balanceAfter: number): Promise<void> => {
-  try {
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
-    const uid = await getCanonicalUserId();
-    if (!uid) return;
-    const db = firestore();
-    await db.collection('users').doc(uid).collection('shard_log').add({
-      type: 'earn',
-      amount,
-      reason: 'release_wave_bonus',
-      balanceAfter,
-      ts: new Date().toISOString(),
-    });
-  } catch (e) {
-    if (__DEV__) console.warn('[release_wave_bonus]', e);
-  }
-};
-
 /**
  * true — показать модалку. Не true → вызывающий всё равно должен держать persist в shouldOffer; здесь
  * false всегда с internal persist, кроме... мы делаем persist внутри для всех false.
@@ -137,31 +114,6 @@ export async function shouldOfferReleaseWaveBonus(): Promise<boolean> {
     return false;
   }
 
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
-    return true;
-  }
-
-  const uid = await getCanonicalUserId();
-  if (!uid) {
-    return true;
-  }
-
-  try {
-    const db = firestore();
-    const ref = db
-      .collection('users')
-      .doc(uid)
-      .collection(REWARD_CLAIMS_COLLECTION)
-      .doc(`release_wave_${wave}`);
-    const snap = await ref.get();
-    if (snap.exists) {
-      await AsyncStorage.setItem(claimKey(wave), '1');
-      await setPersistedNativeBuildId(current);
-      return false;
-    }
-  } catch {
-    // сеть: покажем модалку; при клике сработает транзакция
-  }
   return true;
 }
 
@@ -201,102 +153,22 @@ export async function claimReleaseWaveBonus(): Promise<boolean> {
     return false;
   }
 
-  // addShardsRaw уже берёт withStorageLock — внешний lock здесь даёт взаимоблокировку (не reentrant).
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
-    try {
-      if (await AsyncStorage.getItem(claimKey(wave))) return false;
-      const added = await addShardsRaw(amount, 'release_wave_bonus', {
-        showEarnModal: true,
-        earnModalKey: 'release_wave_bonus',
-      });
-      if (added <= 0) return false;
-      await AsyncStorage.setItem(claimKey(wave), '1');
-      const bal = await getShardsBalance();
-      emitAppEvent('shards_balance_updated', { balance: bal });
-      return true;
-    } catch (e) {
-      DebugLogger.error('release_wave_bonus:claim local', e, 'warning');
-      return false;
-    }
-  }
-
-  const uid = await getCanonicalUserId();
-  if (!uid) {
-    try {
-      if (await AsyncStorage.getItem(claimKey(wave))) return false;
-      const added = await addShardsRaw(amount, 'release_wave_bonus', {
-        showEarnModal: true,
-        earnModalKey: 'release_wave_bonus',
-      });
-      if (added <= 0) return false;
-      await AsyncStorage.setItem(claimKey(wave), '1');
-      const bal = await getShardsBalance();
-      emitAppEvent('shards_balance_updated', { balance: bal });
-      return true;
-    } catch (e) {
-      DebugLogger.error('release_wave_bonus:claim no-uid', e, 'warning');
-      return false;
-    }
-  }
-
-  const localBalance = await getShardsBalance();
-  const db = firestore();
-  const updatedAtMs = Date.now();
-
   try {
-    const newBalance = await db.runTransaction(async (transaction) => {
-      const claimRef = db
-        .collection('users')
-        .doc(uid)
-        .collection(REWARD_CLAIMS_COLLECTION)
-        .doc(`release_wave_${wave}`);
-      const claimSnap = await transaction.get(claimRef);
-      if (claimSnap.exists) {
-        return null as number | null;
-      }
-
-      const userRef = db.collection('users').doc(uid);
-      const userSnap = await transaction.get(userRef);
-      const cloudShards = userSnap.exists ? parseShardBalance(userSnap.data()?.shards) : null;
-      const cloudVal = cloudShards ?? 0;
-      const base = Math.max(localBalance, cloudVal);
-      const next = base + amount;
-
-      transaction.set(claimRef, {
-        source: 'release_wave_bonus',
-        wave,
-        amount,
-        createdAt: firestore.FieldValue.serverTimestamp(),
-      });
-
-      transaction.set(userRef, {
-        shards: next,
-        shards_updated_at_ms: updatedAtMs,
-        shards_updated_op: 'earn',
-        shards_updated_reason: 'release_wave_bonus',
-      }, { merge: true });
-      return next;
-    });
-
-    if (newBalance === null || newBalance === undefined) {
-      await AsyncStorage.setItem(claimKey(wave), '1');
-      return false;
-    }
-
-    await replaceShardsBalanceLocal(newBalance, {
-      updatedAtMs,
-      op: 'earn',
+    const result = await commitShardCreditOperation({
+      operationId: `release-wave:${wave}`,
+      amount,
       reason: 'release_wave_bonus',
+      grant: {
+        kind: 'release_wave_bonus',
+        subjectId: String(wave),
+        payload: { wave, amount },
+      },
+      localWrites: [[claimKey(wave), '1']],
+      showEarnModal: true,
     });
-    await AsyncStorage.setItem(claimKey(wave), '1');
-
-    const currentBalance = await getShardsBalance();
-    await logReleaseWaveToShardLog(amount, currentBalance);
-    emitAppEvent('shards_earned', { amount, reasonKey: 'release_wave_bonus' });
-    emitAppEvent('shards_balance_updated', { balance: currentBalance });
-    return true;
+    return result.status === 'applied';
   } catch (e) {
-    DebugLogger.error('release_wave_bonus:claim tx', e, 'warning');
+    DebugLogger.error('release_wave_bonus:claim', e, 'warning');
     return false;
   }
 }

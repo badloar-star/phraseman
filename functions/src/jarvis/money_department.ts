@@ -2,7 +2,7 @@ import type { AppTier } from './app_tier';
 import { tierThresholdMultiplier } from './app_tier';
 import { buildDecision, type Decision, type DecisionTrigger } from './decision';
 import type { FetchMoneySourceResult } from './money_firestore_fetcher';
-import { aggregateMoneyRows, buildMoneyEvidence } from './money_source_reader';
+import { aggregateMoneyRows, buildMoneyEvidence, diagnosePersonalEconomy } from './money_source_reader';
 
 /**
  * Департамент «Деньги» — второй департамент Джарвиса (решение владельца
@@ -83,12 +83,18 @@ export function runMoneyDepartment(input: RunMoneyDepartmentInput): RunMoneyDepa
 
   const appTier: AppTier = input.appTier ?? 'seed';
   const spike = findRefundSpike(input.fetches, appTier);
+  const economy = diagnosePersonalEconomy(input.fetches);
+  const economyAnomaly = economy.invalidRows > 0
+    || economy.revisionDiscontinuities > 0
+    || economy.balanceDiscontinuities > 0
+    || economy.duplicateExternalFacts > 0;
   const completeEvidence = evidence.length > 0 && evidence.every((item) => item.trustworthy);
 
-  const shouldDecide = input.trigger === 'owner_request' || Boolean(spike) || !completeEvidence;
+  const shouldDecide = input.trigger === 'owner_request' || Boolean(spike) || economyAnomaly || !completeEvidence;
   if (!shouldDecide) return { decisions: [] };
 
-  const finding = buildFindingText(spike, input.fetches, completeEvidence);
+  const economyFinding = `Экономика: ${economy.operationCount} клиентских операций, ${economy.externalEventCount} внешних событий; некорректных строк ${economy.invalidRows}, разрывов ревизии ${economy.revisionDiscontinuities}, разрывов баланса ${economy.balanceDiscontinuities}, повторов внешних фактов ${economy.duplicateExternalFacts}.`;
+  const finding = `${buildFindingText(spike, input.fetches, completeEvidence)} ${economyFinding}`;
   const question = input.question ?? (spike ? 'Растут ли возвраты относительно новых платящих?' : 'Есть ли аномалии в деньгах за последние сутки?');
 
   const decision = buildDecision({
@@ -97,7 +103,9 @@ export function runMoneyDepartment(input: RunMoneyDepartmentInput): RunMoneyDepa
     trigger: input.trigger,
     question,
     finding,
-    hypothesis: spike
+    hypothesis: economyAnomaly
+      ? 'Нарушена непрерывность append-only журнала либо в выборке есть некорректный/повторный экономический факт.'
+      : spike
       ? 'Вероятная причина — проблема с ценой, качеством подписки или недавним изменением paywall.'
       : 'Недостаточно данных для гипотезы.',
     options: spike
@@ -109,7 +117,9 @@ export function runMoneyDepartment(input: RunMoneyDepartmentInput): RunMoneyDepa
         { title: 'Продолжить наблюдение без вмешательства', cost: 0, risk: 'low' },
         { title: 'Запросить у владельца дополнительный контекст', cost: 0, risk: 'low' },
       ],
-    recommendation: spike ? 'Проверить недавние изменения paywall/цены' : 'Продолжить наблюдение без вмешательства',
+    recommendation: economyAnomaly
+      ? 'Проверить владельцев и операции, вошедшие в разрывы экономического журнала'
+      : spike ? 'Проверить недавние изменения paywall/цены' : 'Продолжить наблюдение без вмешательства',
     risk: spike ? 'Возврат вложений на выяснение причины, если скачок окажется шумом' : 'Пропустить начало скачка, если он появится позже',
     cost: spike ? 0 : 0,
     successMetric: spike ? 'Доля возвратов возвращается ниже порога в следующем суточном снапшоте' : 'Отсутствие новых скачков в следующем суточном снапшоте',

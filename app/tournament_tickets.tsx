@@ -3,8 +3,8 @@
 //
 // зачем: билет — не отдельный баланс, а витрина входа (владелец 2026-08-03:
 // «билет стоит 5 жемчужин, 1 билет в неделю можно получить бесплатно»).
-// Число билетов = жемчужины ÷ цена входа + бесплатный недельный вход,
-// оба числа приходят с сервера вместе с банком недели (0 доп. чтений).
+// Число билетов = локальная клиентская проекция жемчужин ÷ серверная цена
+// входа + подтверждённый сервером бесплатный недельный вход.
 //
 // зачем (владелец 2026-08-04): экран переведён на единый стандарт «шторки
 // раздела» приложения — presentation:'modal' (см. app/section_sheet_navigation.ts)
@@ -25,6 +25,7 @@ import { safeRouterBack } from './navigation_back';
 import { Card } from '../components/tournament/tournament_ui';
 import { radius, type, useTournamentPalette, type TournamentPalette } from '../components/tournament/tournament_theme';
 import { loadWeeklyBankInfo, type WeeklyBankInfo } from './tournament_client';
+import { getShardsBalance } from './shards_system';
 import { triLang, type Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 
@@ -42,20 +43,21 @@ export default function TournamentTicketsScreen() {
   // зачем: peek — синхронный первый кадр из кэша loadWeeklyBankInfo (тот же
   // источник, что и лобби), без «сначала пусто, потом появилось».
   const [bank, setBank] = useState<WeeklyBankInfo | null>(() => null);
+  const [gems, setGems] = useState(0);
   useEffect(() => {
     let cancelled = false;
     loadWeeklyBankInfo().then((result) => {
       if (!cancelled) setBank(result);
     }).catch(() => {});
+    void getShardsBalance().then((balance) => { if (!cancelled) setGems(balance); }).catch(() => {});
     return () => { cancelled = true; };
   }, []);
 
   const entryGems = Math.max(1, bank?.entryGems ?? DEFAULT_ENTRY_GEMS);
-  const gems = Math.max(0, bank?.gemBalance ?? 0);
   const freeEntryAvailable = bank?.freeEntryAvailable ?? false;
   const tickets = Math.floor(gems / entryGems) + (freeEntryAvailable ? 1 : 0);
 
-  const close = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
+  const close = useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
 
   const visualTickets = useMemo(
     () => Array.from({ length: Math.min(tickets, 5) }, (_, index) => index),

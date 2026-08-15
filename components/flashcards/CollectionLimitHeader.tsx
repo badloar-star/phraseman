@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
 import { Text, View } from 'react-native';
 import type { Theme } from '../../constants/theme';
+import { useLang } from '../LangContext';
+import { triLang } from '../../constants/i18n';
 
 /**
  * Шапка коллекции: заголовок + счётчик «N / 20» + полоса заполнения
@@ -35,6 +37,7 @@ interface CollectionLimitHeaderProps {
 }
 
 function CollectionLimitHeaderBase({ saved, isPremium, t }: CollectionLimitHeaderProps) {
+  const { lang } = useLang();
   // У Plus лимита нет — не занимаем место и не пугаем счётчиком.
   if (isPremium) return null;
 
@@ -49,7 +52,16 @@ function CollectionLimitHeaderBase({ saved, isPremium, t }: CollectionLimitHeade
           читается однозначно, пояснять словами нечего. */}
       <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 7 }}>
         <Text
-          accessibilityLabel={`Сохранено ${saved} из ${FREE_FLASHCARD_LIMIT}`}
+          accessibilityLabel={triLang(lang, {
+            ru: `Сохранено: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
+            uk: `Збережено: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
+            es: `Guardadas: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
+            'pt-BR': `Salvas: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
+            vi: `Đã lưu: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
+            id: `Tersimpan: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
+            tr: `Kaydedilenler: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
+            pl: `Zapisane: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
+          })}
           style={{
             color: ratio >= 1 ? t.wrong : t.textSecond,
             fontSize: 14,

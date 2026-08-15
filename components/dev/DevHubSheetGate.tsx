@@ -4,6 +4,8 @@ import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from '../../app/config';
 type Props = Readonly<{
   visible: boolean;
   onClose: () => void;
+  onOpen?: () => void;
+  onSurfaceActiveChange?: (active: boolean) => void;
 }>;
 
 export default function DevHubSheetGate(props: Props) {

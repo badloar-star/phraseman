@@ -30,15 +30,24 @@ describe('DuoPressable contract', () => {
     );
   });
 
+  it('starts visual press feedback immediately and before the native haptic bridge', () => {
+    expect(source).toContain('delayPressIn = 0');
+    expect(source).toContain('unstable_pressDelay={delayPressIn}');
+    const pressInBlock = source.slice(source.indexOf('const pressIn = useCallback'), source.indexOf('const pressOut = useCallback'));
+    expect(pressInBlock.indexOf('press.value = withSpring')).toBeLessThan(pressInBlock.indexOf('hapticTap()'));
+  });
+
   it('uses a dark foreground on bright green bottom actions', () => {
     expect(popupSource).toContain("textColor = '#07110A'");
     expect(trainerReportSource).toContain('buttonForegroundForBackground(accent)');
   });
 
-  it('moves both trainer report actions off the old high-opacity TapScale feedback', () => {
+  it('moves every trainer report action off the old high-opacity TapScale feedback', () => {
     expect(trainerReportSource).toContain("import DuoPressable from '../components/DuoPressable'");
     expect(trainerReportSource).not.toContain("import TapScale from '../components/TapScale'");
     expect(trainerReportSource).not.toContain('scaleTo={0.96}');
-    expect(trainerReportSource.match(/<DuoPressable/g)).toHaveLength(2);
+    // The current report has four actions; the old contract still expected the
+    // two-button layout even though master had already expanded it to four.
+    expect(trainerReportSource.match(/<DuoPressable/g)).toHaveLength(4);
   });
 });

@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import fs from 'fs';
 import path from 'path';
+// Cards 2.1 §1.2: цена набора удалена из схемы — в payload'е поля priceShards больше нет.
 import {
-  COMMUNITY_PACK_PRICE_SHARDS,
   buildCommunityPackPayloadForCloud,
   validateCommunityPackPayload,
   type CommunityPackSubmissionPayload,
@@ -32,7 +32,6 @@ function validPayload(studyTarget?: 'en' | 'fr'): CommunityPackSubmissionPayload
     title: 'Creator pack',
     description: 'Community examples',
     sourceLang: 'ru',
-    priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     cards: Array.from({ length: 10 }, (_, i) => ({
       id: `c${i + 1}`,
       en: `Phrase ${i + 1}`,
@@ -45,7 +44,6 @@ function validDraft(title: string): Omit<CommunityPackCreateDraftV1, 'v'> {
   return {
     title,
     description: 'Draft description',
-    priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     themeIdx: 0,
     cardBackIdx: 0,
     rows: [],
@@ -77,7 +75,6 @@ describe('Gustav community pack target gate', () => {
       title: 'Pacote do criador',
       description: 'Exemplos da comunidade',
       sourceLang: 'pt-BR',
-      priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       cards: Array.from({ length: 10 }, (_, i) => ({
         id: `c${i + 1}`,
         en: `Phrase ${i + 1}`,
@@ -145,9 +142,17 @@ describe('Gustav community pack target gate', () => {
     const createSource = fs.readFileSync(path.join(ROOT, 'app', 'community_pack_create.tsx'), 'utf8');
     const firestoreSource = fs.readFileSync(path.join(ROOT, 'app', 'community_packs', 'communityFirestore.ts'), 'utf8');
     const stagingSource = fs.readFileSync(path.join(ROOT, 'app', 'community_packs', 'staging.ts'), 'utf8');
-    const hubSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards.tsx'), 'utf8');
+    /**
+     * Cards 2.1 §5.1/§5.3: хаб-дашборд уехал с `/flashcards` (там теперь сохранённые
+     * карточки) на отдельный экран каталога наборов `/flashcards_packs`.
+     */
+    const hubSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_packs.tsx'), 'utf8');
     const categoryHubSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'FlashcardsCategoryHub.tsx'), 'utf8');
     const collectionSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_collection.tsx'), 'utf8');
+    const collectionDataSource = fs.readFileSync(
+      path.join(ROOT, 'app', 'flashcards', 'useCollectionData.ts'),
+      'utf8',
+    );
     const swipeSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_swipe.tsx'), 'utf8');
     const openingSource = fs.readFileSync(path.join(ROOT, 'app', 'pack_opening.tsx'), 'utf8');
     const functionsSource = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'community_packs.ts'), 'utf8');
@@ -156,7 +161,7 @@ describe('Gustav community pack target gate', () => {
     const alertsSource = fs.readFileSync(path.join(ROOT, 'app', 'community_packs', 'communityModerationAlerts.ts'), 'utf8');
     const reportModalSource = fs.readFileSync(path.join(ROOT, 'components', 'ReportPackModal.tsx'), 'utf8');
     const userReportSource = fs.readFileSync(path.join(ROOT, 'app', 'user_report.ts'), 'utf8');
-    const adminSource = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
+    const adminSource = fs.readFileSync(path.join(ROOT, 'admin', 'legacy.html'), 'utf8');
 
     expect(createSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(createSource).toContain('flashcardsCommunityPacksAvailableForTarget(studyTarget)');
@@ -182,8 +187,12 @@ describe('Gustav community pack target gate', () => {
     expect(hubSource).toContain('loadAuthorCommunityPacksPendingUpdate(sid, studyTarget)');
     expect(hubSource).toContain('fetchCommunityPackMeta(id, studyTarget)');
     expect(categoryHubSource).toContain('stageCommunityPackCardsForNavigation(pack.id, studyTarget)');
-    expect(collectionSource).toContain('loadPublishedCommunityMarketPacks(studyTarget)');
-    expect(collectionSource).toContain('fetchCommunityPackCards(id, studyTarget)');
+    /**
+     * E11: загрузка каталога/карточек уехала из монолита `flashcards_collection.tsx`
+     * в хук данных — контракт проверяем в модуле, который этими вызовами владеет.
+     */
+    expect(collectionDataSource).toContain('loadPublishedCommunityMarketPacks(studyTarget)');
+    expect(collectionDataSource).toContain('fetchCommunityPackCards(id, studyTarget)');
     expect(swipeSource).toContain('loadPublishedCommunityMarketPacks(studyTarget)');
     expect(swipeSource).toContain('fetchCommunityPackCards(pack.id, studyTarget)');
     expect(openingSource).toContain('fetchCommunityPackMeta(packId, studyTarget)');

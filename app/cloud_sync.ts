@@ -11,7 +11,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
-import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks';
+import { getUtcDayKey } from './local_date';
 import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
@@ -22,7 +22,7 @@ import {
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
 } from './intro_full_access_keys';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import { resumePendingDailyTasksAllShardsClaims, resumePendingShardDeltas } from './shards_system';
+import { resumePendingShardDeltas } from './shards_system';
 import { shardDeltaQueueStorageKey } from './shards_delta_queue';
 import { resumePendingReportReplyShardClaims } from './app_messages';
 import { getAuthLinkCacheTtlMs } from './remote_flags';
@@ -56,7 +56,6 @@ import { resetMultiplierBreakdownCache } from './xp_manager';
 // clearCachedLeagueStateSnapshot в league_open_cache_policy.ts (защита от утечки
 // ранга/группы/участников лиги предыдущего аккаунта в club_screen).
 import { clearCachedLeagueStateSnapshot } from './league_open_cache_policy';
-import { clearDailyTasksScreenSnapshotOnDisk } from './daily_tasks_screen_persist';
 import { clearScreenSnapshots } from './screen_snapshot_store';
 import { clearTrainerPracticeSnapshotOnDisk } from './trainer_practice_persist';
 import {
@@ -70,11 +69,13 @@ import {
 } from './exam_best_pct_overlay';
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
 import { XP_LEVEL_RESTORE_250_TO_400_KEY } from './xp_level_restore';
-import { PERSONAL_PLAN_PENDING_ACTIVATION_KEY } from './personal_plan_activation';
-import { COMPLETED_PLAN_TASKS_KEY } from './personal_plan_progress';
-import { PERSONAL_PLAN_STATE_KEY } from './personal_plan_state';
 import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
 import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
+import {
+  canonicalJsonV1,
+  hashCanonicalBody,
+  utf8ByteLengthV1,
+} from '../modules/learning-v2/policies/decision_registry';
 // зачем: экран «Сегодня» удалён (2026-08-03) вместе с lib/today, но ключ его
 // истории остаётся на устройствах прежних версий. Держим его в списке очистки
 // при смене аккаунта — иначе чужие данные переживут выход из аккаунта (тот же
@@ -88,12 +89,7 @@ import {
   communityPackCreateDraftKey,
   dailyPhraseAchievementReadCountKey,
   dailyPhraseAchievementSaveCountKey,
-  dailyTasksAchievementAllDoneStreakKey,
-  dailyTasksAchievementNoRerollStreakKey,
   customFlashcardsKey,
-  dailyTaskLessonVisitedKey,
-  dailyTasksProgressKey,
-  dailyTasksRerollKey,
   diagnosticOpenFlagKey,
   diagnosticLastKey,
   fiftyFiftyUsageKey,
@@ -150,7 +146,6 @@ import {
   retiredCompetitiveModeStorageKeysForWipe,
   resolvedPersonalTrainingsKey,
   shareAchievementCounterKey,
-  targetKey,
   activeRecallAchievementCorrectCountKey,
   trainerAchievementCorrectCountKey,
   trainerAchievementCorrectStreakKey,
@@ -167,21 +162,6 @@ import {
   normalizeLegacyFreeLessonCap,
 } from './legacy_free_lesson_access';
 
-/** Одна строка прогресса по заданию (как TaskProgress в daily_tasks, без лишних импортов). */
-type DailyTaskProgressRow = {
-  taskId: string;
-  current?: number;
-  completed?: boolean;
-  claimed?: boolean;
-};
-
-const taskProgressNum = (v: unknown): number =>
-  typeof v === 'number' && Number.isFinite(v) ? v : 0;
-
-const CLOUD_DAILY_TASKS_PROGRESS_KEY = 'daily_tasks_progress';
-const CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY = 'daily_tasks_progress_day';
-const FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY = targetKey('cloud_sync', 'fr', 'daily_tasks_progress');
-const FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY = targetKey('cloud_sync', 'fr', 'daily_tasks_progress_day');
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
 const FRENCH_SYNC_EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
 const FRENCH_SYNC_PERFECT_MILESTONES = [5, 10, 15, 20, 25, 30] as const;
@@ -204,8 +184,6 @@ export const FRENCH_TARGET_SYNC_KEYS = [
   comboAchievementCounterKey('fr'),
   dailyPhraseAchievementReadCountKey('fr'),
   dailyPhraseAchievementSaveCountKey('fr'),
-  dailyTasksAchievementAllDoneStreakKey('fr'),
-  dailyTasksAchievementNoRerollStreakKey('fr'),
   shareAchievementCounterKey('fr'),
   userStatsKey('fr'),
   statsDailyBreakdownKey('fr'),
@@ -236,9 +214,6 @@ export const FRENCH_TARGET_SYNC_KEYS = [
     resolvedPersonalTrainingsKey('fr', sourceLocale),
     ...DIAGNOSIS_TRAINING_IDS.map((id) => personalPracticeTrainingProgressKey(id, 'fr', sourceLocale)),
   ]),
-  FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
-  FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
-  dailyTasksRerollKey('fr'),
   ...FRENCH_SYNC_LESSON_IDS.flatMap((lessonId) => [
     lessonBestScoreKey(lessonId, 'fr'),
     lessonPassCountKey(lessonId, 'fr'),
@@ -288,69 +263,25 @@ function leagueResultSignature(raw: unknown): string | null {
   }
 }
 
-/**
- * Полное восстановление с облака не должно затирать уже накопленный сегодня локальный прогресс
- * устаревшим daily_tasks_progress (например облако ещё не успело отправить актуальный снимок).
- */
-export function mergeDailyTasksProgressForRestore(localRaw: string | null | undefined, cloudRaw: string): string {
-  let localArr: DailyTaskProgressRow[] = [];
-  let cloudArr: DailyTaskProgressRow[] = [];
-  try {
-    if (localRaw && localRaw.trim()) {
-      const p = JSON.parse(localRaw);
-      if (Array.isArray(p)) localArr = p;
-    }
-  } catch {
-    localArr = [];
-  }
-  try {
-    const p = JSON.parse(cloudRaw);
-    if (Array.isArray(p)) cloudArr = p;
-    else return (localRaw && localRaw.trim()) ? localRaw : cloudRaw;
-  } catch {
-    return (localRaw && localRaw.trim()) ? localRaw : cloudRaw;
-  }
-  if (localArr.length === 0) return cloudRaw;
-  if (cloudArr.length === 0) return localRaw ?? '[]';
-
-  const byId = new Map<string, DailyTaskProgressRow>();
-  for (const row of cloudArr) {
-    if (row && typeof row.taskId === 'string' && row.taskId) {
-      byId.set(row.taskId, {
-        taskId: row.taskId,
-        current: taskProgressNum(row.current),
-        completed: row.completed === true,
-        claimed: row.claimed === true,
-      });
-    }
-  }
-  for (const row of localArr) {
-    if (!row || typeof row.taskId !== 'string' || !row.taskId) continue;
-    const cloud = byId.get(row.taskId);
-    if (!cloud) {
-      byId.set(row.taskId, {
-        taskId: row.taskId,
-        current: taskProgressNum(row.current),
-        completed: row.completed === true,
-        claimed: row.claimed === true,
-      });
-      continue;
-    }
-    byId.set(row.taskId, {
-      ...cloud,
-      taskId: row.taskId,
-      current: Math.max(taskProgressNum(cloud.current), taskProgressNum(row.current)),
-      completed: !!(cloud.completed || row.completed),
-      claimed: !!(cloud.claimed || row.claimed),
-    });
-  }
-  return JSON.stringify([...byId.values()]);
-}
-
 // ── Ключи AsyncStorage которые синхронизируются с облаком ────────────────────
 // Экспорт: тот же набор должен учитываться при сбросе локали после merge аккаунта (auth_provider).
 const SEASON_COSMETICS_SYNC_KEY = 'season_cosmetics_v1';
+/**
+ * cards-2.0 (E4): ключи, которые при restore НЕЛЬЗЯ перетирать облаком (LWW) —
+ * merge локального и облачного значения кастомной стратегией.
+ * Стратегия чистая: (localRaw, cloudRaw) → строка для записи в AsyncStorage.
+ */
+const FC_RESTORE_MERGE_STRATEGIES: Record<
+  string,
+  (localRaw: string | null | undefined, cloudRaw: string) => string
+> = {
+  // Cards 2.1 §3: звёзды раздела карточек удалены — ключей `fc_stars_v1` /
+  // `fc_deck_best_stars_v1` больше нет ни в SYNC_KEYS, ни в merge-стратегиях.
+};
+
 export const SYNC_KEYS = [
+  // cards-2.0: очередь ошибок Тренера переживает переустановку.
+  'trainer_store_v1',
   // ── Идентичность и базовый прогресс ────────────────────────────────────────
   'user_total_xp',
   'user_prev_xp',
@@ -385,7 +316,7 @@ export const SYNC_KEYS = [
   'last_active_date',
   'streak_last_date',
   // ── Мультиязычность: начатые языки + ответы мини-онбординга языка ─────────
-  // (гейт «1 язык фри» и сырьё для персонального плана; см. app/study_languages.ts)
+  // (гейт «1 язык фри»; см. app/study_languages.ts)
   'study_languages_started_v1',
   'language_profile_v1::en',
   'language_profile_v1::fr',
@@ -400,7 +331,6 @@ export const SYNC_KEYS = [
   'achievement_trainer_correct_count',
   'achievement_trainer_correct_streak_v1',
   'achievement_trainer_perfect_session_count',
-  'achievement_all_daily_streak_v1',
   'helpful_error_reports_confirmed_v1',
   'achievement_daily_phrase_read_count',
   'achievement_daily_phrase_save_count',
@@ -430,14 +360,9 @@ export const SYNC_KEYS = [
   // обнуляются и юзер падает на дно таблицы. См. leaderboard backfill в
   // functions/src/sync_leaderboard.ts (читает progress.week_points_v2).
   'week_points_v2',
-  'daily_tasks_progress',
-  'daily_tasks_progress_day',
   'login_bonus_v1',
   /** Опыт по дням (график статистики) — без синка теряется на новом устройстве. */
   'daily_stats',
-  PERSONAL_PLAN_STATE_KEY,
-  COMPLETED_PLAN_TASKS_KEY,
-
   // ── Премиум и его плюшки (без них юзер теряет купленные/активные бенефиты) ─
   'premium_plan',
   'admin_premium_override',
@@ -532,7 +457,6 @@ export const SYNC_KEYS = [
   'phraseman_foreground_daily_ms_v1',
 
   // ── Блок «Весь путь» / метрики статистики (локально накапливаются) ─────────
-  'lifetime_daily_tasks_claimed_v1',
   'shards_lifetime_earned_v1',
   'shards_lifetime_spent_v1',
   /** Посуточные счётчики для графиков «Весь путь» (JSON { дата → метрики }). */
@@ -567,7 +491,7 @@ export const SYNC_KEYS = [
   //    Зеркалим в облако, чтобы переустановка / смена устройства не давала повторно
   //    забрать недельную/разовую награду (анти-фарм переустановкой, аудит P2 #12).
   //    Это лёгкий вариант: маркер «уже забрано» переживает реинсталл. Полную серверную
-  //    идемпотентность (CF reward_claims/{periodId}) делать отдельно — как в daily_tasks.
+  //    идемпотентность (CF reward_claims/{periodId}) делать отдельно.
   'boon_mystery_monday_claimed_v1',
   'boon_comeback_granted_v1',
   'boon_perfect_week_claimed_v1',
@@ -592,18 +516,49 @@ export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string
   return safe;
 }
 
-const LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS = [
+const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
   'personal_plan_attempt_events_v1',
+  'personal_plan_counted_phrases_v1',
   'personal_plan_recovery_applied_actions_v1',
+  'personal_plan_state_v1',
+  'personal_plan_progress_v1',
+  'personal_plan_completed_tasks_v1',
+  'personal_plan_task_progress_v1',
+  'personal_plan_xp_ledger_v1',
+  'personal_plan_onboarding_nickname_pending_v1',
+  'personal_plan_pending_activation_v1',
+  'plan_day_shard_rewards_v1',
 ] as const;
 
-const LEARNING_V2_ACCOUNT_LOCAL_KEY_PREFIXES = [
+const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'personal_plan_day_runtime_v1:',
+  'learning_v2_lesson1_progress:',
+  'learning_v2_progress:',
+  'v2:outbox:v1:',
+  'v2:outbox:v2:',
+  'v2:required-session-local-commit:v1:',
+  'v2:required-session-local-commit:v2:',
+  'v2:required-session-local-commit:v3:',
+  'v2:required-session-local-commit-index:v1:',
+  'v2:required-session-completion-receipt:v1:',
+  'v2:required-session-completion-scheduler:v1:',
+  'learning_v2_owner_repository:v1:',
+  'learning_v2_coin_exchange_outbox:v1:',
+  // Client-authoritative pearl journal and its crash/sync bookkeeping.
+  'client_shard_operation_v1:',
+  'client_shard_ledger_state_v1:',
+  'client_shard_prepared_v1:',
+  'client_shard_grant_receipt_v1:',
+  'client_shard_cloud_synced_v1:',
+  'client_shard_conflict_v1:',
+  'client_shard_semantic_paid_v1:',
+  'external_economy_result_v1:',
+  'external_economy_event_applied_v1:',
 ] as const;
 
 function isLearningV2AccountLocalKey(key: string): boolean {
-  return (LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS as readonly string[]).includes(key)
-    || LEARNING_V2_ACCOUNT_LOCAL_KEY_PREFIXES.some((prefix) => key.startsWith(prefix));
+  return (RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS as readonly string[]).includes(key)
+    || ACCOUNT_LOCAL_KEY_PREFIXES.some((prefix) => key.startsWith(prefix));
 }
 
 async function listAllAccountLocalStorageKeys(): Promise<string[]> {
@@ -621,7 +576,7 @@ async function listAllAccountLocalStorageKeys(): Promise<string[]> {
 
 function learningV2AccountLocalKeysFrom(allKeys: readonly string[]): string[] {
   return Array.from(new Set([
-    ...LEARNING_V2_ACCOUNT_LOCAL_FIXED_KEYS,
+    ...RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS,
     ...allKeys.filter(isLearningV2AccountLocalKey),
   ]));
 }
@@ -639,10 +594,8 @@ async function collectAccountLocalDataKeys(): Promise<string[]> {
   ]));
 }
 
-export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): string[] {
+export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()): string[] {
   const localOnlyTargetKeys = SYNC_STUDY_TARGETS.flatMap((target) => [
-    dailyTasksProgressKey(todayKey, target),
-    dailyTaskLessonVisitedKey(todayKey, target),
     fiftyFiftyUsageKey(todayKey, target),
     lessonBonusHintsKey(todayKey, target),
     diagnosticOpenFlagKey(target),
@@ -671,7 +624,6 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     ...getRuntimeSyncKeys(),
     // Доп. ключи которые синкаются под другими именами или субколлекциями:
     'achievements_v1', // мапится на achievements_state
-    'daily_tasks_progress',
     'shard_survey_done_daykey_v1',
     // Шарды: баланс и служебные (баланс перетянется loadShardsFromCloud,
     // но для нового аккаунта он стартует с 0).
@@ -706,7 +658,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     'install_date',
     'login_bonus_v1',
     'last_opened_lesson',
-    PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
+    ...RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS,
     ...CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
     ...LEVEL_UP_ACCOUNT_LOCAL_KEYS,
     ...LEGACY_TODAY_ACCOUNT_STORAGE_KEYS,
@@ -744,6 +696,70 @@ function buildRestoreSnapshot(
 }
 const STABLE_AUTH_LINK_CACHE_KEY = 'stable_auth_link_cache_v1';
 const ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY = 'account_switch_emergency_backup_latest_v1';
+const ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX = 'account_switch_emergency_backup_page_v1:';
+const ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS = 64;
+const ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES = 512 * 1024;
+const ACCOUNT_SWITCH_BACKUP_MAX_PAGES = 512;
+const ACCOUNT_SWITCH_BACKUP_MAX_PAIRS =
+  ACCOUNT_SWITCH_BACKUP_MAX_PAGES * ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS;
+const ACCOUNT_SWITCH_BACKUP_MAX_TOTAL_UTF8_BYTES = 128 * 1024 * 1024;
+
+type PreviousAccountSwitchBackupIdentity = Readonly<{
+  stableId: string;
+  backupId: string | null;
+}>;
+
+function parsePreviousAccountSwitchBackupIdentity(
+  raw: string,
+): PreviousAccountSwitchBackupIdentity | null {
+  try {
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    if ((parsed.version === 1 || parsed.version === 2) &&
+      typeof parsed.stableId === 'string' && parsed.stableId.length > 0 &&
+      Array.isArray(parsed.pairs)) {
+      return Object.freeze({ stableId: parsed.stableId, backupId: null });
+    }
+    if (parsed.version !== 3 ||
+      parsed.schemaVersion !== 'account-switch-emergency-backup.v3' ||
+      typeof parsed.backupId !== 'string' || !/^[a-z0-9-]{3,80}$/.test(parsed.backupId) ||
+      typeof parsed.stableId !== 'string' || parsed.stableId.length === 0 ||
+      !Number.isSafeInteger(parsed.createdAt) || Number(parsed.createdAt) < 0 ||
+      typeof parsed.reason !== 'string' || parsed.reason.length > 80 ||
+      !Number.isSafeInteger(parsed.pageCount) || Number(parsed.pageCount) < 0 ||
+      Number(parsed.pageCount) > ACCOUNT_SWITCH_BACKUP_MAX_PAGES ||
+      !Number.isSafeInteger(parsed.pairCount) || Number(parsed.pairCount) < 0 ||
+      Number(parsed.pairCount) > ACCOUNT_SWITCH_BACKUP_MAX_PAIRS ||
+      !Number.isSafeInteger(parsed.totalUtf8Bytes) || Number(parsed.totalUtf8Bytes) < 0 ||
+      Number(parsed.totalUtf8Bytes) > ACCOUNT_SWITCH_BACKUP_MAX_TOTAL_UTF8_BYTES ||
+      (parsed.lastPageFingerprint !== null &&
+        (typeof parsed.lastPageFingerprint !== 'string' ||
+          !/^[a-f0-9]{64}$/.test(parsed.lastPageFingerprint))) ||
+      !Number.isSafeInteger(parsed.requiredSessionReceiptCount) ||
+      Number(parsed.requiredSessionReceiptCount) < 0 ||
+      typeof parsed.manifestFingerprint !== 'string' ||
+      !/^[a-f0-9]{64}$/.test(parsed.manifestFingerprint) ||
+      Reflect.ownKeys(parsed).length !== 12) return null;
+    const { manifestFingerprint, ...body } = parsed;
+    if (hashCanonicalBody(body) !== manifestFingerprint || canonicalJsonV1(parsed) !== raw ||
+      (Number(parsed.pageCount) === 0) !== (parsed.lastPageFingerprint === null)) return null;
+    return Object.freeze({ stableId: parsed.stableId, backupId: parsed.backupId });
+  } catch {
+    return null;
+  }
+}
+
+async function readAccountSwitchBackupRowsExactly(
+  keys: readonly string[],
+  errorCode: string,
+): Promise<readonly (readonly [string, string | null])[]> {
+  const rows = await AsyncStorage.multiGet([...keys]);
+  if (rows.length !== keys.length || rows.some((row, index) =>
+    !Array.isArray(row) || row.length !== 2 || row[0] !== keys[index] ||
+    (row[1] !== null && typeof row[1] !== 'string'))) {
+    throw new Error(errorCode);
+  }
+  return rows;
+}
 const DEFAULT_STABLE_AUTH_LINK_CACHE_TTL_MS = 7 * 24 * 60 * 60_000;
 /** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
 const FORCE_SYNC_WAIT_INFLIGHT_MS = 25_000;
@@ -1037,16 +1053,19 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   'streak_count',
   'last_active_date',
   'streak_last_date',
+  // Exact EN unlock key is protected by Firestore Rules and mutated only by
+  // progress_events. Keep it restoreable via SYNC_KEYS, but never include it in
+  // an outbound client patch or the rules reject the whole progress update.
+  'unlocked_lessons',
   'collectibles_owned_v1',
   'collectibles_state_v1',
   'chain_shield',
   'gift_xp_multiplier',
   'club_gift_free_boost_v1',
-  // profile_card_level — публичный престиж-бейдж, поднимает только CF profileCardUpgrade
-  // (Admin SDK). В blocklist firestore.rules (стр.94). Без исключения здесь клиент слал бы
-  // его в исходящий patch после апгрейда → rules отклонят весь set (PERMISSION_DENIED) →
-  // ломается синк XP/streak/прогресса. profile_card_theme/motion/public_focus НЕ сюда —
-  // они клиент-выбираемые и синкаются штатно.
+  // profile_card_level в users.progress — только публичная серверная проекция.
+  // Личный permanent result принадлежит client economy journal: restore берёт max
+  // и никогда не понижает уже купленный уровень. Исключение из outbound patch
+  // не даёт общей синхронизации спорить с отдельным projection callable.
   'profile_card_level',
   'shard_survey_last_at_ms',
 ]);
@@ -1187,6 +1206,7 @@ const LEGACY_FREE_LESSON_MIGRATION_RESTORE_KEYS = new Set<string>([
 // can reset to 0), dates (streak_last_date, *_period_start), and current-state
 // values (gift_xp_multiplier, wager_discount, weekly_xp which resets weekly).
 export const MONOTONIC_COUNTER_RESTORE_KEYS = [
+  'achievement_quiz_total_count',
   'achievement_trainer_correct_count',
   'achievement_trainer_perfect_session_count',
   'achievement_active_recall_correct_count',
@@ -1478,6 +1498,13 @@ function mergeLessonRestoreValue(
   if (isOwnedUnionRestoreKey(key)) {
     return mergeOwnedRestoreValue(cloudValue, localValue);
   }
+  if (key === 'profile_card_level') {
+    return String(Math.max(
+      0,
+      Math.min(5, parseProgressInt(cloudValue)),
+      Math.min(5, parseProgressInt(localValue)),
+    ));
+  }
   const scoped = targetScopedRestoreInfo(key);
   const restoreId = scoped?.id ?? key;
   const isScopedLessonProgress = scoped?.domain === 'lesson_progress';
@@ -1562,10 +1589,7 @@ function mergeCurrentWeekProgressRestoreValue(
 }
 
 async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unknown>): Promise<[string, string][]> {
-  const restorableKeys = FRENCH_TARGET_SYNC_KEYS.filter((key) => (
-    key !== FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY &&
-    key !== FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY
-  ));
+  const restorableKeys = FRENCH_TARGET_SYNC_KEYS;
   const localMap = Object.fromEntries(
     await AsyncStorage.multiGet([...restorableKeys]),
   ) as Record<string, string | null>;
@@ -1576,6 +1600,13 @@ async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unk
     if (val === null || val === undefined) continue;
     const localValue = localMap[key];
     const storageValue = cloudProgressStorageValue(key, val);
+    // cards-2.0 (E4): звёзды/клеймы не LWW — merge в обе стороны.
+    const fcStrategy = FC_RESTORE_MERGE_STRATEGIES[key];
+    if (fcStrategy) {
+      const mergedFc = fcStrategy(localValue, storageValue);
+      if (mergedFc !== localValue) pairs.push([key, mergedFc]);
+      continue;
+    }
     // K2: owned-ключи (fr-scoped паки флешкарт и т.п.) мержим union'ом и в sticky-ветке —
     // покупка на другом девайсе догоняет устройство, локальная офлайн-покупка не теряется.
     if (RESTORE_MERGE_KEY_SET.has(key) || isOwnedUnionRestoreKey(key) || isMonotonicCounterRestoreKey(key)) {
@@ -1612,27 +1643,7 @@ export function deriveLastActiveDateForRestore(cloudData: Record<string, string 
   );
 }
 
-function currentCloudDailyTasksProgress(
-  cloudData: Record<string, string | null>,
-  progressKey: string = CLOUD_DAILY_TASKS_PROGRESS_KEY,
-  dayKeyField: string = CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
-): string | null {
-  const raw = cloudData[progressKey];
-  if (raw === null || raw === undefined || String(raw).trim() === '') return null;
-
-  const dayKey = cloudData[dayKeyField];
-  if (!isDateKey(dayKey)) return null;
-  return dayKey === getTodayKey() ? String(raw) : null;
-}
-
-function removeCloudOnlyDailyTaskSnapshots(data: Record<string, string | null>): void {
-  delete data[CLOUD_DAILY_TASKS_PROGRESS_KEY];
-  delete data[CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY];
-  delete data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY];
-  delete data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY];
-}
-
-function dailyLessonHelperKeysForToday(todayKey: string = getTodayKey()): string[] {
+function dailyLessonHelperKeysForToday(todayKey: string = getUtcDayKey()): string[] {
   return [
     fiftyFiftyUsageKey(todayKey, 'en'),
     fiftyFiftyUsageKey(todayKey, 'fr'),
@@ -1644,21 +1655,8 @@ function dailyLessonHelperKeysForToday(todayKey: string = getTodayKey()): string
   ];
 }
 
-async function addTodayDailyTaskSnapshots(data: Record<string, string | null>): Promise<void> {
-  const todayKey = getTodayKey();
-  const [englishTodayTasks, frenchTodayTasks] = await Promise.all([
-    AsyncStorage.getItem(dailyTasksProgressKey(todayKey, 'en')),
-    AsyncStorage.getItem(dailyTasksProgressKey(todayKey, 'fr')),
-  ]);
-  if (englishTodayTasks) {
-    data[CLOUD_DAILY_TASKS_PROGRESS_KEY] = englishTodayTasks;
-    data[CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY] = todayKey;
-  }
-  if (frenchTodayTasks) {
-    data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY] = frenchTodayTasks;
-    data[FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY] = todayKey;
-  }
-  const dailyLessonHelperKeys = dailyLessonHelperKeysForToday(todayKey);
+async function addTodayLessonHelperSnapshots(data: Record<string, string | null>): Promise<void> {
+  const dailyLessonHelperKeys = dailyLessonHelperKeysForToday();
   const dailyLessonHelperValues = await AsyncStorage.multiGet(dailyLessonHelperKeys);
   for (const [key, value] of dailyLessonHelperValues) {
     if (value !== null && value !== undefined && value !== '') {
@@ -1682,6 +1680,19 @@ const getFirestore = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/firestore').default();
+  } catch {
+    return null;
+  }
+};
+
+const getFunctionsCallable = () => {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getApp } = require('@react-native-firebase/app');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+    return httpsCallable(getFunctions(getApp(), 'us-central1'), 'accountDeleteMine');
   } catch {
     return null;
   }
@@ -1732,11 +1743,14 @@ export async function waitForAnonAuth(timeoutMs = 20_000): Promise<boolean> {
   return false;
 }
 
-export async function ensureAnonUser(): Promise<string | null> {
+export async function ensureAnonUser(
+  options: { cacheOnly?: boolean } = {},
+): Promise<string | null> {
   if (!CLOUD_SYNC_ENABLED) return null;
   if (await isAccountDeleteIdentityQuarantined()) return null;
   // Всегда используем canonical stable ID как ключ users/*
   const stableId = await getCanonicalUserId();
+  if (options.cacheOnly) return getAuth()?.currentUser ? stableId : null;
   await ensureAnonAuthReady();
   return stableId;
 }
@@ -2208,23 +2222,6 @@ async function runSyncNow(): Promise<void> {
   return syncInFlight;
 }
 
-/** Після restore зі snapshot старі taskId у JSON — наступний load підтягує getTodayTasksSafe() і перезаписує ключ. */
-async function reconcileRestoredDayDailyStorageIfNeeded(restoredTargets: Array<'en' | 'fr'> | boolean): Promise<void> {
-  const targets = restoredTargets === true
-    ? ['en' as const]
-    : restoredTargets === false
-      ? []
-      : restoredTargets;
-  if (targets.length === 0) return;
-  try {
-    for (const target of targets) {
-      const studyTarget = target === 'fr' ? 'fr' : undefined;
-      const list = await getTodayTasksSafe(studyTarget);
-      if (list.length > 0) await loadTodayProgress(list, studyTarget);
-    }
-  } catch { /* empty */ }
-}
-
 function safeParseObject(raw: unknown): Record<string, unknown> {
   if (raw && typeof raw === 'object' && !Array.isArray(raw)) return raw as Record<string, unknown>;
   if (typeof raw !== 'string' || !raw.trim()) return {};
@@ -2359,10 +2356,10 @@ async function doSyncToCloud(): Promise<void> {
   const isSyncGenerationCurrent = () => isCurrentAccountGeneration(syncGeneration, uid);
   if (!isSyncGenerationCurrent()) return;
   try {
+    // зачем: облачные мутации выполняем только под подтверждённой каноничной
+    // идентичностью — иначе очередь может дописать чужому аккаунту.
     const authoritativeIdentity = await ensureAuthoritativeIdentityForCloudMutation(uid);
     if (!authoritativeIdentity.ok || authoritativeIdentity.stableUid !== uid || !isSyncGenerationCurrent()) return;
-    await resumePendingDailyTasksAllShardsClaims().catch(() => {});
-    if (!isSyncGenerationCurrent()) return;
     await resumePendingReportReplyShardClaims().catch(() => {});
     if (!isSyncGenerationCurrent()) return;
     // K3: проиграть офлайн-очередь атомарных дельт осколков (идемпотентно по opId).
@@ -2376,10 +2373,6 @@ async function doSyncToCloud(): Promise<void> {
     for (const [key, value] of pairs) {
       data[key] = value;
     }
-    // daily_tasks_progress fields are cloud-only snapshots of date-keyed local rows.
-    // Never upload stale generic local copies after restore; only real
-    // daily_tasks_YYYY-MM-DD / scoped French keys below may populate these cloud fields.
-    removeCloudOnlyDailyTaskSnapshots(data);
     // Маппинг: внутренние ключи → ключи Firestore для аналитики
     const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
     if (!isSyncGenerationCurrent()) return;
@@ -2387,8 +2380,7 @@ async function doSyncToCloud(): Promise<void> {
     if (data['app_lang']) data['lang'] = data['app_lang'];
     if (data['user_frame']) data['user_avatar_frame'] = data['user_frame'];
 
-    // Дополнительно синхронизируем сегодняшние задания под фиксированными cloud keys.
-    await addTodayDailyTaskSnapshots(data);
+    await addTodayLessonHelperSnapshots(data);
     if (!isSyncGenerationCurrent()) return;
 
     // Сравниваем с последним синкнутым снапшотом и отправляем только изменённые поля.
@@ -2666,9 +2658,23 @@ async function applyRestoreFromUserDoc(
     for (const key of stickyKeys) {
       const val = cloudData[key];
       // Используем premiumValuePresent для premium/vip-ключей: пустая строка '' !== null,
-      // но должна трактоваться как «нет данных» — иначе '' затирает локальный активный план.
+      // но должна трактоваться как «нет данных» — иначе '' затирает локальный выбор.
       if (PREMIUM_PROGRESS_KEYS.has(key) ? premiumValuePresent(val) : (val !== null && val !== undefined)) {
         stickyPairs.push([key, cloudProgressStorageValue(key, val)]);
+      }
+    }
+    // cards-2.0 (E4): merge-ключи применяются и в sticky-ветке («локальный XP
+    // выше») — звёзды/клеймы с другого устройства нельзя терять ни в одном
+    // направлении (union claimed / max stars).
+    for (const [fcKey, fcStrategy] of Object.entries(FC_RESTORE_MERGE_STRATEGIES)) {
+      const cloudVal = cloudData[fcKey];
+      if (cloudVal === null || cloudVal === undefined) continue;
+      try {
+        const localVal = await AsyncStorage.getItem(fcKey);
+        const mergedFc = fcStrategy(localVal, String(cloudVal));
+        if (mergedFc !== localVal) stickyPairs.push([fcKey, mergedFc]);
+      } catch {
+        /* fail-soft: ключ останется локальным */
       }
     }
     // Локальный XP ≥ облачного, но ник мог остаться только в облаке (другой девайс / сбой записи).
@@ -2802,29 +2808,6 @@ async function applyRestoreFromUserDoc(
       stickyPairs.push([ADMIN_ENERGY_COMMAND_KEY, String(cloudEnergyCmd)]);
     }
     stickyPairs.push(...await buildFrenchTargetStickyRestorePairs(cloudData));
-    const cloudDaily = currentCloudDailyTasksProgress(cloudData);
-    const restoredDailyTaskTargets: Array<'en' | 'fr'> = [];
-    if (cloudDaily) {
-      const dk = dailyTasksProgressKey(getTodayKey(), 'en');
-      const localDaily = await AsyncStorage.getItem(dk);
-      if (!localDaily) {
-        stickyPairs.push([dk, cloudDaily]);
-        restoredDailyTaskTargets.push('en');
-      }
-    }
-    const cloudFrenchDaily = currentCloudDailyTasksProgress(
-      cloudData,
-      FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
-      FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
-    );
-    if (cloudFrenchDaily) {
-      const dk = dailyTasksProgressKey(getTodayKey(), 'fr');
-      const localDaily = await AsyncStorage.getItem(dk);
-      if (!localDaily) {
-        stickyPairs.push([dk, cloudFrenchDaily]);
-        restoredDailyTaskTargets.push('fr');
-      }
-    }
     for (const key of dailyLessonHelperKeysForToday()) {
       const value = cloudData[key];
       if (value === null || value === undefined) continue;
@@ -2878,8 +2861,6 @@ async function applyRestoreFromUserDoc(
     }
     if (appliedStickyState) {
       if (cloudHasVipEntitlementState) invalidatePremiumCache();
-      await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTaskTargets);
-      assertCurrent();
       await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
       assertCurrent();
       return completeRestore(true);
@@ -2910,10 +2891,6 @@ async function applyRestoreFromUserDoc(
   const currentRestoreWeekId = getUtcIsoWeekId(new Date());
   for (const key of getRuntimeSyncKeys()) {
     if (
-      key === CLOUD_DAILY_TASKS_PROGRESS_KEY ||
-      key === CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY ||
-      key === FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY ||
-      key === FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY ||
       key === 'streak_count' ||
       key === 'last_active_date' ||
       key === 'streak_last_date' ||
@@ -2962,25 +2939,6 @@ async function applyRestoreFromUserDoc(
   if (!cloudData['flashcards_v1'] && cloudData['flashcards']) pairs.push(['flashcards_v1', String(cloudData['flashcards'])]);
   if (cloudData['lang']) pairs.push(['app_lang', cloudData['lang']]);
   if (cloudData['user_avatar_frame']) pairs.push(['user_frame', cloudData['user_avatar_frame']]);
-  const dailyBlob = currentCloudDailyTasksProgress(cloudData);
-  const fullRestoreDailyTargets: Array<'en' | 'fr'> = [];
-  if (dailyBlob != null && dailyBlob !== '') {
-    const dk = dailyTasksProgressKey(getTodayKey(), 'en');
-    const localDailyForMerge = await AsyncStorage.getItem(dk);
-    pairs.push([dk, mergeDailyTasksProgressForRestore(localDailyForMerge, String(dailyBlob))]);
-    fullRestoreDailyTargets.push('en');
-  }
-  const frenchDailyBlob = currentCloudDailyTasksProgress(
-    cloudData,
-    FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
-    FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
-  );
-  if (frenchDailyBlob != null && frenchDailyBlob !== '') {
-    const dk = dailyTasksProgressKey(getTodayKey(), 'fr');
-    const localDailyForMerge = await AsyncStorage.getItem(dk);
-    pairs.push([dk, mergeDailyTasksProgressForRestore(localDailyForMerge, String(frenchDailyBlob))]);
-    fullRestoreDailyTargets.push('fr');
-  }
   for (const key of dailyLessonHelperKeysForToday()) {
     const value = cloudData[key];
     if (value !== null && value !== undefined) {
@@ -3007,10 +2965,6 @@ async function applyRestoreFromUserDoc(
     }
     assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
-  }
-  if (fullRestoreDailyTargets.length > 0) {
-    await reconcileRestoredDayDailyStorageIfNeeded(fullRestoreDailyTargets);
-    assertCurrent();
   }
   assertCurrent();
   await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(() => {});
@@ -3294,12 +3248,11 @@ export async function forceSyncToCloud(): Promise<boolean> {
     const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
     const data: Record<string, string | null> = {};
     for (const [key, value] of pairs) data[key] = value;
-    removeCloudOnlyDailyTaskSnapshots(data);
     const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
     if (achievementsV1) data['achievements_state'] = achievementsV1;
     if (data['app_lang']) data['lang'] = data['app_lang'];
     if (data['user_frame']) data['user_avatar_frame'] = data['user_frame'];
-    await addTodayDailyTaskSnapshots(data);
+    await addTodayLessonHelperSnapshots(data);
     for (const [key, value] of Object.entries({ ...data })) {
       if (!shouldSyncPremiumProgressField(key, value, data)) delete data[key];
       // Premium/VIP-поля клиент в облако не пишет (авторитет — RevenueCat/Admin SDK).
@@ -3365,37 +3318,215 @@ export async function saveAccountSwitchEmergencyBackup(
   if (!stableId || (expectedStableId && stableId !== expectedStableId)) {
     throw new Error('account_switch_backup_identity_unavailable');
   }
+  const previousBackupRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+  // A historical monolithic backup above the V3 parser budget cannot be
+  // silently replaced: it may contain the only copy of offline work. Account
+  // switch remains blocked until an explicit upgrader can preserve it.
+  if (previousBackupRaw !== null &&
+    previousBackupRaw.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+    throw new Error('account_switch_backup_history_upgrade_required');
+  }
+  const previousBackupIdentity = previousBackupRaw === null
+    ? null
+    : parsePreviousAccountSwitchBackupIdentity(previousBackupRaw);
+  if (previousBackupRaw !== null && previousBackupIdentity === null) {
+    throw new Error('account_switch_backup_history_upgrade_required');
+  }
+  if (previousBackupIdentity !== null && previousBackupIdentity.stableId !== stableId) {
+    throw new Error('account_switch_backup_other_owner_pending');
+  }
   const shardQueueKey = shardDeltaQueueStorageKey(stableId);
-  const keys = Array.from(new Set([
+  const keySet = new Set([
     ...await collectAccountLocalDataKeys(),
     shardQueueKey,
-  ]));
-  const pairs = (await AsyncStorage.multiGet(keys)).filter(([, value]) => value != null) as Array<[string, string]>;
-  const queueRaw = pairs.find(([key]) => key === shardQueueKey)?.[1] ?? null;
-  const payload = {
-    version: 2,
-    createdAt: Date.now(),
-    reason: String(reason || 'unknown').slice(0, 80),
-    stableId,
-    pairs,
+  ]);
+  // Reject before the potentially expensive sort. The underlying native
+  // getAllKeys allocation remains a platform boundary, but this function never
+  // creates another unbounded sorted copy or starts a partial backup.
+  if (keySet.size > ACCOUNT_SWITCH_BACKUP_MAX_PAIRS) {
+    throw new Error('account_switch_backup_capacity');
+  }
+  const keys = Array.from(keySet).sort();
+  const createdAt = Date.now();
+  const previousBackupId = previousBackupIdentity?.backupId ?? null;
+  const backupIdBase = `${createdAt.toString(36)}-${Math.random().toString(36).slice(2, 14)}`;
+  let backupId: string | null = null;
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    const candidate = attempt === 0 ? backupIdBase : `${backupIdBase}-${attempt.toString(36)}`;
+    if (candidate === previousBackupId) continue;
+    if (await AsyncStorage.getItem(`${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${candidate}:0`) !== null) {
+      continue;
+    }
+    backupId = candidate;
+    break;
+  }
+  if (backupId === null) throw new Error('account_switch_backup_namespace_conflict');
+  let pageCount = 0;
+  let pairCount = 0;
+  let totalUtf8Bytes = 0;
+  let lastPageFingerprint: string | null = null;
+  let requiredSessionReceiptCount = 0;
+  let queueRaw: string | null = null;
+  const writePage = async (pairs: readonly (readonly [string, string])[]): Promise<void> => {
+    if (pageCount >= ACCOUNT_SWITCH_BACKUP_MAX_PAGES) {
+      throw new Error('account_switch_backup_capacity');
+    }
+    const body = {
+      schemaVersion: 'account-switch-emergency-backup-page.v1' as const,
+      backupId,
+      stableId,
+      pageIndex: pageCount,
+      previousPageFingerprint: lastPageFingerprint,
+      pairs,
+    };
+    const pageFingerprint = hashCanonicalBody(body);
+    const raw = canonicalJsonV1({ ...body, pageFingerprint });
+    if (raw.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES ||
+      utf8ByteLengthV1(raw) > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+      throw new Error('account_switch_backup_value_upgrade_required');
+    }
+    const key = `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${backupId}:${pageCount}`;
+    if (await AsyncStorage.getItem(key) !== null) {
+      throw new Error('account_switch_backup_namespace_conflict');
+    }
+    // Count the attempted page before native I/O so rollback also removes a
+    // silently corrupted/partially written page whose readback fails.
+    pageCount += 1;
+    await AsyncStorage.setItem(key, raw);
+    if (await AsyncStorage.getItem(key) !== raw) {
+      throw new Error('account_switch_backup_verification_failed');
+    }
+    pairCount += pairs.length;
+    lastPageFingerprint = pageFingerprint;
   };
-  const raw = JSON.stringify(payload);
-  const previousBackupRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
   try {
+    for (let offset = 0; offset < keys.length; offset += ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS) {
+      const requestedKeys = keys.slice(offset, offset + ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS);
+      const rows = await readAccountSwitchBackupRowsExactly(
+        requestedKeys,
+        'account_switch_backup_verification_failed',
+      );
+      let pagePairs: [string, string][] = [];
+      for (const [key, value] of rows) {
+        if (value == null) continue;
+        if (key.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES ||
+          value.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+          throw new Error('account_switch_backup_value_upgrade_required');
+        }
+        const pairBytes = utf8ByteLengthV1(key) + utf8ByteLengthV1(value);
+        if (pairBytes > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+          throw new Error('account_switch_backup_value_upgrade_required');
+        }
+        const candidate = [...pagePairs, [key, value] as [string, string]];
+        const candidateBody = {
+          schemaVersion: 'account-switch-emergency-backup-page.v1' as const,
+          backupId,
+          stableId,
+          pageIndex: pageCount,
+          previousPageFingerprint: lastPageFingerprint,
+          pairs: candidate,
+        };
+        const candidateRaw = canonicalJsonV1({
+          ...candidateBody,
+          pageFingerprint: hashCanonicalBody(candidateBody),
+        });
+        if (candidateRaw.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES ||
+          utf8ByteLengthV1(candidateRaw) > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+          if (pagePairs.length === 0) {
+            throw new Error('account_switch_backup_value_upgrade_required');
+          }
+          await writePage(pagePairs);
+          pagePairs = [[key, value]];
+        } else {
+          pagePairs = candidate;
+        }
+        totalUtf8Bytes += pairBytes;
+        if (!Number.isSafeInteger(totalUtf8Bytes) ||
+          totalUtf8Bytes > ACCOUNT_SWITCH_BACKUP_MAX_TOTAL_UTF8_BYTES) {
+          throw new Error('account_switch_backup_capacity');
+        }
+        if (key === shardQueueKey) queueRaw = value;
+        if (key.startsWith('v2:required-session-completion-receipt:v1:')) {
+          requiredSessionReceiptCount += 1;
+        }
+      }
+      if (pagePairs.length > 0) await writePage(pagePairs);
+    }
+    const body = {
+      version: 3 as const,
+      schemaVersion: 'account-switch-emergency-backup.v3' as const,
+      backupId,
+      stableId,
+      createdAt,
+      reason: String(reason || 'unknown').slice(0, 80),
+      pageCount,
+      pairCount,
+      totalUtf8Bytes,
+      lastPageFingerprint,
+      requiredSessionReceiptCount,
+    };
+    const raw = canonicalJsonV1({ ...body, manifestFingerprint: hashCanonicalBody(body) });
     await AsyncStorage.setItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY, raw);
     const verifiedRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
     if (verifiedRaw !== raw) throw new Error('account_switch_backup_verification_failed');
-    const verified = JSON.parse(verifiedRaw) as typeof payload;
-    const verifiedQueueRaw = verified.pairs.find(([key]) => key === shardQueueKey)?.[1] ?? null;
-    if (verified.stableId !== stableId || verifiedQueueRaw !== queueRaw) {
+    const verified = JSON.parse(verifiedRaw) as typeof body & { manifestFingerprint: string };
+    if (verified.stableId !== stableId || verified.pageCount !== pageCount ||
+      verified.pairCount !== pairCount || verified.lastPageFingerprint !== lastPageFingerprint ||
+      hashCanonicalBody(body) !== verified.manifestFingerprint) {
       throw new Error('account_switch_backup_verification_failed');
+    }
+    // The owner-bound shard queue is included in the same verified page set;
+    // retaining the local observation here prevents accidental omission.
+    if (queueRaw !== null && pairCount === 0) {
+      throw new Error('account_switch_backup_verification_failed');
+    }
+    // Root-last publication makes prior pages unreachable. Reclaim them in
+    // bounded chunks after the new root is verified; a cleanup failure never
+    // invalidates the new snapshot and can be retried by later storage GC.
+    if (previousBackupRaw !== null) {
+      try {
+        const previous = JSON.parse(previousBackupRaw) as Record<string, unknown>;
+        if (previous.version === 3 && typeof previous.backupId === 'string' &&
+          /^[a-z0-9-]{3,80}$/.test(previous.backupId) &&
+          Number.isSafeInteger(previous.pageCount) && Number(previous.pageCount) >= 0 &&
+          Number(previous.pageCount) <= ACCOUNT_SWITCH_BACKUP_MAX_PAGES &&
+          previous.backupId !== backupId) {
+          for (let offset = 0; offset < Number(previous.pageCount); offset += 128) {
+            await AsyncStorage.multiRemove(Array.from(
+              { length: Math.min(128, Number(previous.pageCount) - offset) },
+              (_, index) => `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${previous.backupId}:${offset + index}`,
+            ));
+          }
+        }
+      } catch {
+        // New root remains the only authority; orphan cleanup is best-effort.
+      }
     }
   } catch (e) {
     try {
       if (previousBackupRaw == null) {
         await AsyncStorage.removeItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+        if (await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY) !== null) {
+          throw new Error('account_switch_backup_rollback_failed');
+        }
       } else {
         await AsyncStorage.setItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY, previousBackupRaw);
+        if (await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY) !== previousBackupRaw) {
+          throw new Error('account_switch_backup_rollback_failed');
+        }
+      }
+      for (let offset = 0; offset < pageCount; offset += 64) {
+        const chunk = Array.from(
+          { length: Math.min(64, pageCount - offset) },
+          (_, index) => `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${backupId}:${offset + index}`,
+        );
+        await AsyncStorage.multiRemove(chunk);
+        if ((await readAccountSwitchBackupRowsExactly(
+          chunk,
+          'account_switch_backup_rollback_failed',
+        )).some(([, value]) => value != null)) {
+          throw new Error('account_switch_backup_rollback_failed');
+        }
       }
     } catch {
       throw new Error('account_switch_backup_rollback_failed');
@@ -3411,13 +3542,31 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
   const accountKeys = await collectAccountLocalDataKeys();
   // Сохраняем НЕ-аккаунтные настройки устройства:
   const KEEP = new Set<string>(['app_theme', 'app_font_size', 'haptics_tap']);
+  const removeExactly = async (keys: readonly string[]): Promise<void> => {
+    const unique = Array.from(new Set(keys)).filter((key) => !KEEP.has(key));
+    const chunkSize = 128;
+    for (let offset = 0; offset < unique.length; offset += chunkSize) {
+      const chunk = unique.slice(offset, offset + chunkSize);
+      await AsyncStorage.multiRemove(chunk);
+      const residue = (await AsyncStorage.multiGet(chunk))
+        .filter(([, value]) => value != null)
+        .map(([key]) => key);
+      if (residue.length > 0) throw new Error('account_wipe_incomplete');
+    }
+  };
   const toRemove = accountKeys.filter((key) => !KEEP.has(key));
-  await AsyncStorage.multiRemove(toRemove);
+  await removeExactly(toRemove);
   // Generation-bound writers are the primary barrier. This final scan is
   // defense-in-depth for a callback that committed during the first removal.
   const lateLearningV2Keys = (await listLearningV2AccountLocalKeys())
     .filter((key) => !KEEP.has(key));
-  await AsyncStorage.multiRemove(lateLearningV2Keys);
+  await removeExactly(lateLearningV2Keys);
+  const knownAccountKeys = new Set(accountLocalDataKeysForToday());
+  const finalResidue = (await listAllAccountLocalStorageKeys()).filter((key) =>
+    !KEEP.has(key) && (
+      knownAccountKeys.has(key) || isLearningV2AccountLocalKey(key) || isVipSnapshotStorageKey(key)
+    ));
+  if (finalResidue.length > 0) throw new Error('account_wipe_incomplete');
   // Сбрасываем in-memory bookkeeping синка
   lastSuccessfulSyncAt = 0;
   lastActivityStampAt = 0;
@@ -3429,9 +3578,6 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
   // зачем: без этого club_screen мог мгновенно отрендерить ранг/группу лиги
   // предыдущего аккаунта (см. комментарий у clearCachedLeagueStateSnapshot).
   clearCachedLeagueStateSnapshot();
-  // зачем: дисковый снапшот «Вызовов дня» ключуется по аккаунту, но при wipe локальных
-  // данных его надо стереть вместе с остальным — иначе он остаётся мусором на диске.
-  clearDailyTasksScreenSnapshotOnDisk();
   // зачем: ключ снапшота практики содержит только target+язык, БЕЗ uid — без сброса
   // следующий вошедший увидел бы на первом кадре чужую статистику ошибок.
   clearTrainerPracticeSnapshotOnDisk();

@@ -1,28 +1,92 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
-const screenPath = path.join(process.cwd(), 'app', 'learning-v2', 'lesson', '[id].tsx');
-const source = fs.readFileSync(screenPath, 'utf8');
+const screenPath = path.join(
+  process.cwd(),
+  "app",
+  "learning-v2",
+  "lesson",
+  "[id].tsx",
+);
+const source = fs.readFileSync(screenPath, "utf8");
 
-describe('Learning V2 Lesson 1 map screen contract', () => {
-  it('is a separate route and loads real local-first progress without touching legacy economy', () => {
-    expect(source).toContain('createLesson1LocalProgressStore(AsyncStorage');
-    expect(source).toContain('lesson1MapInputFromProgress(state)');
-    expect(source).toContain('buildLesson1LegacyV2SourcePayload()');
+describe("Learning V2 Lesson 1 map screen contract", () => {
+  it("is a separate route and loads real local-first progress without touching legacy economy", () => {
+    expect(source).toMatch(
+      /createLesson1LocalProgressStore\(\s*AsyncStorage\s*,/,
+    );
+    expect(source).toContain("lesson1MapInputFromProgress(state)");
+    expect(source).toContain("buildLessonMapModel({");
+    expect(source).toContain("available: lessonOrdinal === 1");
     expect(source).not.toMatch(/useEnergy|EnergyBar|registerXP|registerShards/);
   });
 
-  it('keeps the mock-08 geometry, semantic actions and reduced-motion guardrails explicit', () => {
-    expect(source).toContain("['understand', 'use', 'master']");
-    expect(source).toContain('height:96');
-    expect(source).toContain('width:40,height:40');
-    expect(source).toContain('useStableSafeAreaInsets');
-    expect(source).toContain('useReducedMotion');
-    expect(source).toContain('AppState.addEventListener');
-    expect(source).toContain('FadeInDown.delay((node.order - 1) * 40).duration(320)');
-    expect(source).toContain('Easing.bezier(.38, .70, .125, 1)');
-    expect(source).toContain('SlideInDown.duration(320)');
-    expect(source).toContain('Открыть словарь урока');
-    expect(source).toContain('Открыть теорию урока');
+  it("keeps a 56-session lesson map, semantic actions and reduced-motion guardrails explicit", () => {
+    expect(source).toMatch(
+      /["']understand["'],\s*["']use["'],\s*["']master["']/,
+    );
+    expect(source).toContain("const PATH_WAVE");
+    expect(source).toMatch(
+      /kind:\s*["']locked_session["']\s*\|\s*["']checkpoint["']/,
+    );
+    expect(source).toContain("LEARNING_V2_LESSON_SESSION_COUNT_V1");
+    expect(source).toContain("buildLessonRoadItems");
+    expect(source).toContain("height: 74");
+    expect(source).toContain("КАРТА УРОКА");
+    expect(source).toContain("Вы поймёте");
+    expect(source).toContain("Вы научитесь");
+    expect(source).not.toContain("Обычно 14–18 шагов · примерно 5–8 минут");
+    expect(source).not.toContain("12 заданий · до 36 звёзд");
+    expect(source).toContain("useTheme()");
+    expect(source).not.toContain("4 сектора · 32 эпизода · уроки и экзамены");
+    expect(source).not.toContain("Тридцать два эпизода");
+    expect(source).not.toContain("СЕКТОР 1 · ЭПИЗОД 1");
+    expect(source).toContain("56 СЕССИЙ");
+    expect(source).toContain("SESSION_ZONE_META");
+    expect(source).toMatch(/width:\s*40,\s*height:\s*40/);
+    expect(source).toContain("useStableSafeAreaInsets");
+    expect(source).toContain("useReducedMotion");
+    expect(source).toContain("AppState.addEventListener");
+    expect(source).toMatch(
+      /FadeInDown\.delay\(\(node\.order - 1\) \* 40\)[\s\S]{0,80}\.duration\(320\)/,
+    );
+    expect(source).toContain("Easing.bezier(0.38, 0.7, 0.125, 1)");
+    expect(source).toContain("<Modal");
+    expect(source).toContain("onRequestClose={onClose}");
+    expect(source).toContain('accessibilityLabel="Закрыть"');
+    expect(source).toContain("Gesture.Pan()");
+    expect(source).toContain("dragY.value > 88 || event.velocityY > 900");
+    expect(source).toMatch(
+      /setSelected\(null\)[\s\S]{0,160}requestAnimationFrame/,
+    );
+    expect(source).toContain('runtimeMode: "direct_v1"');
+    expect(source).toContain("learningV2CourseSessionIdV1(");
+    expect(source).toContain("sessionOrdinal: String(selectedSession.order)");
+    expect(source).not.toContain("id: selectedSession.id");
+    expect(source).not.toContain("Открыть словарь первого эпизода");
+    expect(source).not.toContain("Открыть теорию первого эпизода");
+  });
+
+  it("shows a presentation-only session reward without pretending it is the wallet balance", () => {
+    expect(source).toContain("parseLearningV2SessionResultRouteParams");
+    expect(source).toContain("РЕЗУЛЬТАТ СЕССИИ СОХРАНЁН");
+    expect(source).toContain("Общий баланс обновляется отдельно");
+    expect(source).toContain('accessibilityLiveRegion="polite"');
+    expect(source).toMatch(
+      /systemReducedMotion\s*\?\s*FadeInDown\.duration\(1\)/,
+    );
+  });
+
+  it("hydrates and announces only the authoritative shared star wallet", () => {
+    expect(source).toMatch(
+      /useState\(\s*peekCurrentLearningV2WalletBalance\s*[,)]/,
+    );
+    expect(source).toContain("subscribeLearningV2WalletBalance(refresh)");
+    expect(source).toContain("hydrateCurrentLearningV2WalletBalance()");
+    expect(source).toContain(
+      "walletBalance.balanceSubunits / WALLET_SUBUNITS_PER_STAR",
+    );
+    expect(source).toContain('accessibilityLiveRegion="polite"');
+    expect(source).toContain("Подтверждённый баланс:");
   });
 });

@@ -316,7 +316,7 @@ function MonthSelector({
     <View style={styles.monthSelector}>
       <TouchableOpacity
         accessibilityRole="button"
-        accessibilityLabel="Предыдущий месяц"
+        accessibilityLabel={copy(lang, { ru: 'Предыдущий месяц', uk: 'Попередній місяць', es: 'Mes anterior', 'pt-BR': 'Mês anterior', vi: 'Tháng trước', id: 'Bulan sebelumnya', tr: 'Önceki ay', pl: 'Poprzedni miesiąc', en: 'Previous month' })}
         disabled={!canPrevious}
         onPress={onPrevious}
         style={[styles.iconButton, { opacity: canPrevious ? 1 : 0.28 }]}
@@ -332,7 +332,7 @@ function MonthSelector({
       </FlowText>
       <TouchableOpacity
         accessibilityRole="button"
-        accessibilityLabel="Следующий месяц"
+        accessibilityLabel={copy(lang, { ru: 'Следующий месяц', uk: 'Наступний місяць', es: 'Mes siguiente', 'pt-BR': 'Próximo mês', vi: 'Tháng sau', id: 'Bulan berikutnya', tr: 'Sonraki ay', pl: 'Następny miesiąc', en: 'Next month' })}
         disabled={!canNext}
         onPress={onNext}
         style={[styles.iconButton, { opacity: canNext ? 1 : 0.28 }]}
@@ -425,7 +425,7 @@ function MonthExplorerModal({
         <View style={styles.modalHeader}>
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityLabel="Предыдущий месяц"
+            accessibilityLabel={copy(lang, { ru: 'Предыдущий месяц', uk: 'Попередній місяць', es: 'Mes anterior', 'pt-BR': 'Mês anterior', vi: 'Tháng trước', id: 'Bulan sebelumnya', tr: 'Önceki ay', pl: 'Poprzedni miesiąc', en: 'Previous month' })}
             disabled={currentIndex <= 0}
             onPress={() => currentIndex > 0 && onMonthChange(monthKeys[currentIndex - 1]!)}
             style={[styles.iconButton, { opacity: currentIndex > 0 ? 1 : 0.28 }]}
@@ -441,7 +441,7 @@ function MonthExplorerModal({
           </FlowText>
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityLabel="Следующий месяц"
+            accessibilityLabel={copy(lang, { ru: 'Следующий месяц', uk: 'Наступний місяць', es: 'Mes siguiente', 'pt-BR': 'Próximo mês', vi: 'Tháng sau', id: 'Bulan berikutnya', tr: 'Sonraki ay', pl: 'Następny miesiąc', en: 'Next month' })}
             disabled={currentIndex < 0 || currentIndex >= monthKeys.length - 1}
             onPress={() => currentIndex >= 0 && currentIndex < monthKeys.length - 1 && onMonthChange(monthKeys[currentIndex + 1]!)}
             style={[styles.iconButton, { opacity: currentIndex >= 0 && currentIndex < monthKeys.length - 1 ? 1 : 0.28 }]}
@@ -450,7 +450,7 @@ function MonthExplorerModal({
           </TouchableOpacity>
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityLabel={copy(lang, { ru: 'Закрыть', en: 'Close' })}
+            accessibilityLabel={copy(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij', en: 'Close' })}
             onPress={onClose}
             style={styles.iconButton}
           >
@@ -517,7 +517,7 @@ function MonthExplorerModal({
               testID="activity-365-selected-day"
               style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 14 }}
             >
-              {formatSelectedDay(selectedDay.date, lang)} · {selectedDay.xp} XP · {selectedDay.minutes} мин
+              {formatSelectedDay(selectedDay.date, lang)} · {selectedDay.xp} XP · {selectedDay.minutes} {copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' })}
             </Text>
           ) : null}
         </View>
@@ -566,8 +566,8 @@ function MonthExplorerModal({
             { label: 'XP', left: summaryA.xp, right: summaryB.xp },
             {
               label: copy(lang, { ru: 'Время', uk: 'Час', es: 'Tiempo', 'pt-BR': 'Tempo', vi: 'Thời gian', id: 'Waktu', tr: 'Süre', pl: 'Czas', en: 'Time' }),
-              left: `${summaryA.minutes} мин`,
-              right: `${summaryB.minutes} мин`,
+              left: `${summaryA.minutes} ${copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' })}`,
+              right: `${summaryB.minutes} ${copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' })}`,
             },
           ].map((row) => (
             <View key={row.label} style={styles.comparisonRow}>

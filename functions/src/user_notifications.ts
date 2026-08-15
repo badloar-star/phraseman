@@ -21,10 +21,9 @@ export type UserNotificationType =
   | 'activity_like'
   | 'friend_gift_received'
   | 'friend_gift_thanks'
-  | 'report_reply'
-  // Недельный банк турниров начисляется кроном ночью — без уведомления
-  // игрок не узнал бы о награде.
-  | 'tournament_weekly_bank';
+  | 'arena_partner_invite'
+  | 'arena_partner_nudge'
+  | 'report_reply';
 
 export interface UserNotificationInput {
   type: UserNotificationType;

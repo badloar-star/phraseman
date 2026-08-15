@@ -10,8 +10,8 @@ import type { FetchSupportSourceResult } from './support_firestore_fetcher';
  * ответа одинаково на базе в сто и в сто тысяч. Тир здесь сознательно НЕ
  * смягчает пороги — как в «Платежах» и «Безопасности».
  *
- * Департамент только НАБЛЮДАЕТ. Ответы пишет и отправляет владелец: план прямо
- * запрещает автоматическую отправку писем от его имени.
+ * Департамент только НАБЛЮДАЕТ. Отправкой занимается отдельный guarded
+ * auto-reply контур с kill switch, аудитом и at-most-once SMTP-протоколом.
  */
 
 /** Сутки без ответа — уже стыдно перед написавшим. */
@@ -48,16 +48,21 @@ function humanDuration(ms: number): string {
 
 /** Только времена и количества — ни адресов, ни текстов писем. */
 function buildSupportEvidence(fetch: FetchSupportSourceResult): Evidence {
+  const actionableWaiting = fetch.actionableWaitingCount ?? fetch.waitingCount;
+  const oldestActionableWaitingMs = fetch.oldestActionableWaitingMs !== undefined
+    ? fetch.oldestActionableWaitingMs
+    : fetch.oldestWaitingMs;
   return normalizeEvidence({
     sourceId: 'support_inbox',
     state: fetch.state,
-    count: fetch.waitingCount,
+    count: actionableWaiting,
     truncated: false,
     droppedCount: 0,
     observedAtMs: fetch.observedAtMs,
     digest: JSON.stringify({
-      waiting: fetch.waitingCount,
-      oldestWaitingMs: fetch.oldestWaitingMs,
+      actionableWaiting,
+      oldestActionableWaitingMs,
+      legacyWaiting: fetch.legacyWaitingCount ?? 0,
       answered: fetch.answeredCount,
       medianReplyMs: fetch.medianReplyMs,
     }),
@@ -68,13 +73,20 @@ export function runSupportDepartment(input: RunSupportDepartmentInput): RunSuppo
   const evidence = [buildSupportEvidence(input.fetch)];
   const trustworthy = evidence.some((item) => item.trustworthy);
 
-  const waiting = input.fetch.waitingCount ?? 0;
-  const oldest = input.fetch.oldestWaitingMs ?? 0;
+  const waiting = input.fetch.actionableWaitingCount ?? input.fetch.waitingCount ?? 0;
+  const oldest = input.fetch.oldestActionableWaitingMs !== undefined
+    ? (input.fetch.oldestActionableWaitingMs ?? 0)
+    : (input.fetch.oldestWaitingMs ?? 0);
+  const legacyWaiting = input.fetch.legacyWaitingCount ?? 0;
   const median = input.fetch.medianReplyMs;
 
   const stale = oldest >= SUPPORT_STALE_MS;
   const queue = waiting >= SUPPORT_QUEUE_THRESHOLD;
 
+  // Legacy-хвост не исчезает и не архивируется: он показывается владельцу по
+  // запросу. Но scheduled-дайджест говорит только о письмах, которые triage
+  // подтвердил как человеческие. Иначе неразмеченный spam становится вечной
+  // ежедневной «срочностью».
   const shouldDecide = input.trigger === 'owner_request' || stale || queue || !trustworthy;
   if (!shouldDecide) return { decisions: [] };
 
@@ -88,8 +100,10 @@ export function runSupportDepartment(input: RunSupportDepartmentInput): RunSuppo
       : queue
         ? `${waiting} писем ждут ответа. Пока ни одно не висит дольше суток, но очередь растёт.`
         : waiting > 0
-          ? `${waiting} писем в очереди, самое старое ждёт ${humanDuration(oldest)}. ${medianText.charAt(0).toUpperCase()}${medianText.slice(1)}.`
-          : `Очередь поддержки разобрана, ${medianText}.`;
+          ? `${waiting} актуальных писем в очереди, самое старое ждёт ${humanDuration(oldest)}. ${medianText.charAt(0).toUpperCase()}${medianText.slice(1)}.`
+          : legacyWaiting > 0
+            ? `Проверенная очередь поддержки разобрана. ${legacyWaiting} неразмеченных legacy-писем остаются видимыми для разовой категоризации, но не считаются доказанным SLA-инцидентом.`
+            : `Очередь поддержки разобрана, ${medianText}.`;
 
   const question = input.question ?? (stale
     ? 'Почему письмо висит без ответа больше суток?'
@@ -110,8 +124,8 @@ export function runSupportDepartment(input: RunSupportDepartmentInput): RunSuppo
         : 'Недостаточно данных для гипотезы.',
     options: stale
       ? [
-        { title: 'Ответить самым старым письмам в первую очередь', cost: 0, risk: 'low' },
-        { title: 'Разбирать очередь общим порядком', cost: 0, risk: 'high' },
+        { title: 'Проверить ошибки и лимиты автоматических ответов', cost: 0, risk: 'low' },
+        { title: 'Проверить письма со статусом доставки «неизвестно»', cost: 0, risk: 'low' },
       ]
       : queue
         ? [
@@ -123,7 +137,7 @@ export function runSupportDepartment(input: RunSupportDepartmentInput): RunSuppo
           { title: 'Запросить у владельца дополнительный контекст', cost: 0, risk: 'low' },
         ],
     recommendation: stale
-      ? 'Ответить самым старым письмам в первую очередь'
+      ? 'Проверить ошибки и лимиты автоматических ответов'
       : queue
         ? 'Разобрать очередь и посмотреть, о чём пишут чаще всего'
         : 'Продолжить наблюдение без вмешательства',
@@ -138,7 +152,7 @@ export function runSupportDepartment(input: RunSupportDepartmentInput): RunSuppo
       : queue
         ? `Очередь ниже ${SUPPORT_QUEUE_THRESHOLD} писем в следующем снимке`
         : 'Очередь поддержки остаётся разобранной',
-    rollback: 'Не применимо — департамент только наблюдает, письма пишет и отправляет владелец',
+    rollback: 'Департамент только наблюдает; автоматические ответы выключаются в Gmail Support без изменения данных письма',
     evidence,
     nowMs: input.nowMs,
   });

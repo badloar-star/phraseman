@@ -6,19 +6,17 @@ import {
 describe('global broadcast server reward mutation', () => {
   const now = Date.UTC(2026, 7, 8, 12);
 
-  test('increments shards from authoritative balance atomically', () => {
+  test('returns an external reward fact without mutating a personal balance', () => {
     expect(buildGlobalBroadcastRewardMutation({ rewardType: 'shards', rewardAmount: 30 }, { shards: 12 }, now))
-      .toMatchObject({ userPatch: { shards: 42 }, response: { senderBalanceAfter: 42 } });
+      .toMatchObject({ userPatch: {}, response: { rewardType: 'shards', rewardAmount: 30 } });
   });
 
   test('normalizes legacy shards-only broadcasts the same way as the client', () => {
     const mutation = buildGlobalBroadcastRewardMutation({ shards: 30 }, { shards: 12 }, now);
-    expect(mutation.userPatch).toMatchObject({ shards: 42 });
+    expect(mutation.userPatch).toEqual({});
     expect(mutation.response).toMatchObject({
       rewardType: 'shards',
       rewardAmount: 30,
-      senderBalanceAfter: 42,
-      shardsUpdatedAtMs: now,
     });
   });
 

@@ -20,14 +20,14 @@ import { screenTextOnGradient } from '../constants/theme';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 import { getCanonicalUserId } from './user_id_policy';
-import { replaceShardsBalanceForAccountGeneration, SHARD_REWARDS } from './shards_system';
+import { commitConfirmedExternalShardEvent, SHARD_REWARDS } from './shards_system';
 import { emitAppEvent } from './events';
 import { submitSurvey, type SurveyQuestionClient } from './survey_client';
 import { takePrimedSurvey, clearPrimedSurvey } from './survey_handoff';
-import { markSurveyDailyTaskDone } from './survey_daily_task';
-import { getTodayKey } from './daily_tasks';
-import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest } from './survey_daily_task_cache';
-import { buildServerConfirmedLegacyCompletion } from './survey_daily_challenge_model';
+import { markSurveyOfferDone } from './survey_completion_marker';
+import { getUtcDayKey } from './local_date';
+import { beginSurveyOfferRequest, commitSurveyOfferRequest } from './survey_offer_cache';
+import { buildServerConfirmedLegacyCompletion } from './survey_offer_model';
 import SurveyRewardPanel from '../components/survey/SurveyRewardPanel';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { initialSurveySubmissionState, reduceSurveySubmission, surveyRewardForDisplay, type SurveySubmitErrorKey } from './survey_submission_state';
@@ -39,7 +39,7 @@ export default function SurveyScreen() {
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
-  const directOpenDayKey = useRef(getTodayKey()).current;
+  const directOpenDayKey = useRef(getUtcDayKey()).current;
   const params = useLocalSearchParams<{ surveyId?: string; stableId?: string; dayKey?: string; lang?: string }>();
   const surveyId = String(params.surveyId ?? '');
   const scope = useMemo(() => {
@@ -168,17 +168,27 @@ export default function SurveyScreen() {
         presentAccountChanged(attemptId);
         return;
       }
-      const balanceReconciled = await replaceShardsBalanceForAccountGeneration(res.balanceAfter, accountToken, stableId, {
-        updatedAtMs: res.shardsUpdatedAtMs ?? undefined,
-        op: 'earn',
-        reason: 'survey_completed',
-      });
-      if (!isCurrentAccountGeneration(accountToken, stableId) || balanceReconciled === 'stale-generation') {
+      const rewardApplied = res.reward > 0
+        ? await commitConfirmedExternalShardEvent({
+            source: 'shard_survey',
+            eventId: survey.surveyId,
+            delta: res.reward,
+            reason: 'survey_completed',
+            grant: {
+              kind: 'survey_reward',
+              subjectId: survey.surveyId,
+              payload: { surveyId: survey.surveyId },
+            },
+          })
+        : null;
+      if (!isCurrentAccountGeneration(accountToken, stableId)) {
         presentAccountChanged(attemptId);
         return;
       }
-      if (balanceReconciled === 'failed') throw new Error('balance_reconcile_failed');
-      const markerWritten = await markSurveyDailyTaskDone({ stableId, dayKey: openedDayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
+      if (rewardApplied && rewardApplied.status !== 'applied' && rewardApplied.status !== 'already-applied') {
+        throw new Error('reward_event_apply_failed');
+      }
+      const markerWritten = await markSurveyOfferDone({ stableId, dayKey: openedDayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
       if (!isCurrentAccountGeneration(accountToken, stableId)) {
         presentAccountChanged(attemptId);
         return;
@@ -189,7 +199,7 @@ export default function SurveyScreen() {
         presentAccountChanged(attemptId);
         return;
       }
-      const cacheCommitted = commitSurveyDailyTaskRequest(completedScope, beginSurveyDailyTaskRequest(completedScope), buildServerConfirmedLegacyCompletion(lang));
+      const cacheCommitted = commitSurveyOfferRequest(completedScope, beginSurveyOfferRequest(completedScope), buildServerConfirmedLegacyCompletion(lang));
       if (!cacheCommitted) throw new Error('cache_reconcile_failed');
       if (!mountedRef.current || attemptIdRef.current !== attemptId) return;
       dispatchSubmission({ type: 'submit_succeeded', attemptId, reward: res.reward });

@@ -93,7 +93,15 @@ export type FlashcardMarketPack = {
   descriptionPl?: string;
   category: FlashcardPackCategory;
   cardCount: number;
+  /**
+   * @deprecated Cards 2.1 §1.2: наборы бесплатны. Поле остаётся только для чтения легаси-данных
+   * (бандлы / старые документы Firestore) и не участвует ни в каком платёжном пути.
+   */
   priceShards: number;
+  /** Сколько людей добавило набор себе (Cards 2.1 §2.1). */
+  addedCount?: number;
+  /** Лайки активности набора (Cards 2.1 §2.2). */
+  likesCount?: number;
   salesCount: number;
   authorName: string;
   isOfficial: boolean;
@@ -210,6 +218,20 @@ export function peekWarmOwnedPackIds(studyTarget?: RuntimeStudyTarget): string[]
   return warmOwnedPackIdsByTarget.get(warmOwnedKey(studyTarget)) ?? null;
 }
 
+/**
+ * Последний известный список доступных паков — нужен синхронным путям каталога
+ * (`fallbackBundledMarketPacks`), чтобы официальные наборы не «просачивались»
+ * в выдачу до окончания async-загрузки owned (Cards 2.1 §1.1).
+ */
+export function peekAccessiblePackIds(studyTarget?: RuntimeStudyTarget): string[] {
+  return warmOwnedPackIdsByTarget.get(warmOwnedKey(studyTarget)) ?? [];
+}
+
+/** Только для тестов / логаута: сбросить синхронный снимок доступных паков. */
+export function resetAccessiblePackIdsCache(): void {
+  warmOwnedPackIdsByTarget.clear();
+}
+
 export async function loadOwnedPackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {
   try {
     const ownedKey = flashcardsOwnedPacksKey(studyTarget);
@@ -240,7 +262,13 @@ export async function loadAccessiblePackIds(studyTarget?: RuntimeStudyTarget): P
 }
 
 export async function saveOwnedPackIds(ids: string[], studyTarget?: RuntimeStudyTarget): Promise<void> {
+  primeOwnedPackIdsCache(ids, studyTarget);
   await AsyncStorage.setItem(flashcardsOwnedPacksKey(studyTarget), JSON.stringify(ids));
+}
+
+/** Refresh only the in-memory projection after an atomic economy commit. */
+export function primeOwnedPackIdsCache(ids: readonly string[], studyTarget?: RuntimeStudyTarget): void {
+  warmOwnedPackIdsByTarget.set(warmOwnedKey(studyTarget), [...new Set(ids)]);
 }
 
 export async function addOwnedPackId(id: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
@@ -708,12 +736,49 @@ export const BUNDLED_MARKETPLACE_PACKS: FlashcardMarketPack[] = Array.isArray(bu
   ? bundledRaw.map((p) => victoriaMetaFromPackJson(p))
   : [];
 
-/** Синхронный запасной список (если async-загрузка вернула пусто или упала). */
+/** Официальный набор — по флагу или по id-префиксу `official_` (Cards 2.1 §1.1). */
+export function isOfficialCatalogPack(pack: Pick<FlashcardMarketPack, 'id' | 'isOfficial'>): boolean {
+  return pack.isOfficial === true || String(pack.id).startsWith('official_');
+}
+
+/**
+ * Cards 2.1 §1.1: официальные наборы выведены из каталога. Официальный пак попадает
+ * в выдачу **только если** его id уже есть у пользователя (`loadAccessiblePackIds()`),
+ * чтобы у владельцев набор оставался полностью рабочим. Наборы сообщества не фильтруются.
+ */
+export function filterCatalogPacksByOwnership(
+  packs: FlashcardMarketPack[],
+  accessiblePackIds: Iterable<string>,
+): FlashcardMarketPack[] {
+  const accessible = new Set(accessiblePackIds);
+  return packs.filter((p) => !isOfficialCatalogPack(p) || accessible.has(p.id));
+}
+
+/**
+ * Полный бандл-каталог БЕЗ фильтра владения — для DEV-инструментов, сборки карточек
+ * и экранов «мои наборы», где метаданные нужны независимо от видимости в каталоге.
+ */
 export function reserveBundledMarketPacks(studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): FlashcardMarketPack[] {
   if (storageStudyTarget(studyTarget) === 'fr') {
     return sortPacksByUpdatedAt(getCachedFrenchRemoteMarketplacePacks(sourceLocale));
   }
   return sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]);
+}
+
+/** @see reserveBundledMarketPacks — то же самое, явное имя для DEV-инструментов. */
+export function allBundledMarketPacks(studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): FlashcardMarketPack[] {
+  return reserveBundledMarketPacks(studyTarget, sourceLocale);
+}
+
+/**
+ * Синхронный запасной список для КАТАЛОГА (если async-загрузка вернула пусто или упала):
+ * официальные паки в нём остаются только у владельцев (Cards 2.1 §1.1).
+ */
+export function fallbackBundledMarketPacks(studyTarget?: RuntimeStudyTarget, sourceLocale?: unknown): FlashcardMarketPack[] {
+  return filterCatalogPacksByOwnership(
+    reserveBundledMarketPacks(studyTarget, sourceLocale),
+    peekAccessiblePackIds(studyTarget),
+  );
 }
 
 /**
@@ -740,9 +805,13 @@ function sortPacksByUpdatedAt(packs: FlashcardMarketPack[]): FlashcardMarketPack
   return [...packs].sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
 }
 
-function normalizeMarketplaceResult(merged: FlashcardMarketPack[]): FlashcardMarketPack[] {
+function normalizeMarketplaceResult(
+  merged: FlashcardMarketPack[],
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: unknown,
+): FlashcardMarketPack[] {
   if (merged.length > 0 || BUNDLED_MARKETPLACE_PACKS.length === 0) return merged;
-  return sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]);
+  return fallbackBundledMarketPacks(studyTarget, sourceLocale);
 }
 
 const mapPack = (id: string, data: any): FlashcardMarketPack | null => {
@@ -803,9 +872,15 @@ export async function loadMarketplacePacks(studyTarget?: RuntimeStudyTarget, sou
   }
   if (loadMarketplaceInflight) return loadMarketplaceInflight;
   const p = (async (): Promise<FlashcardMarketPack[]> => {
+    /** Cards 2.1 §1.1: официальные наборы показываем только их владельцам. */
+    const accessible = await loadAccessiblePackIds(studyTarget).catch(() => [] as string[]);
     try {
       if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
-        const reserve = normalizeMarketplaceResult(sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]));
+        const reserve = normalizeMarketplaceResult(
+          filterCatalogPacksByOwnership(sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]), accessible),
+          studyTarget,
+          sourceLocale,
+        );
         warmMarketplacePacks = reserve;
         return reserve;
       }
@@ -821,13 +896,20 @@ export async function loadMarketplacePacks(studyTarget?: RuntimeStudyTarget, sou
         .map((doc: any) => mapPack(doc.id, doc.data()))
         .filter(Boolean) as FlashcardMarketPack[];
       const merged = sortPacksByUpdatedAt(mergeMarketplaceLists(mapped, BUNDLED_MARKETPLACE_PACKS));
-      const result = normalizeMarketplaceResult(filterToBundledCatalog(merged));
+      const result = normalizeMarketplaceResult(
+        filterCatalogPacksByOwnership(filterToBundledCatalog(merged), accessible),
+        studyTarget,
+        sourceLocale,
+      );
       warmMarketplacePacks = result;
       return result;
     } catch {
-      const reserve = normalizeMarketplaceResult(sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]));
-      warmMarketplacePacks ??= reserve;
-      return warmMarketplacePacks;
+      const prev = warmMarketplacePacks;
+      const base = prev && prev.length > 0 ? prev : sortPacksByUpdatedAt([...BUNDLED_MARKETPLACE_PACKS]);
+      /** Даже тёплый кеш обязан пройти фильтр владения — иначе официальный пак «залипает» в каталоге. */
+      const result = filterCatalogPacksByOwnership(base, accessible);
+      warmMarketplacePacks = result;
+      return result;
     }
   })();
   loadMarketplaceInflight = p;

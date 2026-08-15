@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { ACHIEVEMENT_ES } from './achievements_es_locale';
-import { addShardsRaw, getShardsBalance } from './shards_system';
+import { commitShardCreditOperation, getShardsBalance } from './shards_system';
 import { registerXP } from './xp_manager';
 import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
@@ -22,8 +22,6 @@ import {
   achievementLessonPerfectPassesKey,
   dailyPhraseAchievementReadCountKey,
   dailyPhraseAchievementSaveCountKey,
-  dailyTasksAchievementAllDoneStreakKey,
-  dailyTasksAchievementNoRerollStreakKey,
   flashcardsAchievementFlipCountKey,
   flashcardsAchievementSavedCountKey,
   flashcardsAchievementSourceSetKey,
@@ -73,6 +71,8 @@ export interface Achievement {
   descEs?:  string;
   xp:       number;           // XP при первой разблокировке
   secret?:  boolean;          // скрыто, пока не получено
+  /** Retired product achievement: keep only already-earned user history/reward claims. */
+  retired?: boolean;
 }
 
 export interface AchievementState {
@@ -567,69 +567,6 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     id: { name: 'Kesalahan dilarang', description: '500 jawaban benar berturut-turut dalam satu seri.' },
     tr: { name: 'Hata yasak', description: 'Tek bir seride üst üste 500 doğru cevap.' },
     pl: { name: 'Błąd zakazany', description: '500 poprawnych odpowiedzi z rzędu w jednej serii.' },
-  },
-  daily_task_first: {
-    'pt-BR': { name: 'Primeira tarefa', description: 'Conclua uma das tarefas diárias na tela de tarefas.' },
-    vi: { name: 'Nhiệm vụ đầu tiên', description: 'Hoàn thành một nhiệm vụ hằng ngày trên màn hình nhiệm vụ.' },
-    id: { name: 'Tugas pertama', description: 'Selesaikan salah satu tugas harian di layar tugas.' },
-    tr: { name: 'İlk görev', description: 'Görevler ekranındaki günlük görevlerden birini tamamla.' },
-    pl: { name: 'Pierwsze zadanie', description: 'Wykonaj jedno z zadań dziennych na ekranie zadań.' },
-  },
-  all_daily: {
-    'pt-BR': { name: 'Tudo em um dia', description: 'Em um dia do calendário, conclua todas as três tarefas diárias.' },
-    vi: { name: 'Xong hết trong ngày', description: 'Trong một ngày lịch, hoàn thành cả ba nhiệm vụ hằng ngày.' },
-    id: { name: 'Semua dalam sehari', description: 'Dalam satu hari kalender, selesaikan ketiga tugas harian.' },
-    tr: { name: 'Bir günde hepsi', description: 'Bir takvim gününde üç günlük görevin tamamını bitir.' },
-    pl: { name: 'Wszystko w dzień', description: 'W jeden dzień kalendarzowy zamknij wszystkie trzy zadania dzienne.' },
-  },
-  daily_all_3: {
-    'pt-BR': { name: 'Três dias em ordem', description: 'Conclua todas as tarefas diárias por 3 dias seguidos.' },
-    vi: { name: 'Ba ngày gọn gàng', description: 'Hoàn thành tất cả nhiệm vụ hằng ngày trong 3 ngày liên tiếp.' },
-    id: { name: 'Tiga hari rapi', description: 'Selesaikan semua tugas harian selama 3 hari berturut-turut.' },
-    tr: { name: 'Üç gün düzen', description: '3 gün üst üste tüm günlük görevleri tamamla.' },
-    pl: { name: 'Trzy dni porządku', description: 'Przez 3 dni z rzędu zamykaj wszystkie zadania dzienne.' },
-  },
-  daily_all_7: {
-    'pt-BR': { name: 'Semana sem pendências', description: 'Conclua todas as tarefas diárias por 7 dias seguidos.' },
-    vi: { name: 'Tuần không nợ nhiệm vụ', description: 'Hoàn thành tất cả nhiệm vụ hằng ngày trong 7 ngày liên tiếp.' },
-    id: { name: 'Seminggu tanpa sisa', description: 'Selesaikan semua tugas harian selama 7 hari berturut-turut.' },
-    tr: { name: 'Eksiksiz hafta', description: '7 gün üst üste tüm günlük görevleri tamamla.' },
-    pl: { name: 'Tydzień bez zaległości', description: 'Przez 7 dni z rzędu zamykaj wszystkie zadania dzienne.' },
-  },
-  daily_all_14: {
-    'pt-BR': { name: 'Duas semanas em ordem', description: 'Conclua todas as tarefas diárias por 14 dias seguidos.' },
-    vi: { name: 'Hai tuần gọn gàng', description: 'Hoàn thành tất cả nhiệm vụ hằng ngày trong 14 ngày liên tiếp.' },
-    id: { name: 'Dua minggu rapi', description: 'Selesaikan semua tugas harian selama 14 hari berturut-turut.' },
-    tr: { name: 'İki hafta düzen', description: '14 gün üst üste tüm günlük görevleri tamamla.' },
-    pl: { name: 'Dwa tygodnie porządku', description: 'Przez 14 dni z rzędu zamykaj wszystkie zadania dzienne.' },
-  },
-  daily_all_30: {
-    'pt-BR': { name: '30 dias sem pendências', description: 'Conclua todas as tarefas diárias por 30 dias seguidos.' },
-    vi: { name: '30 ngày không nợ nhiệm vụ', description: 'Hoàn thành tất cả nhiệm vụ hằng ngày trong 30 ngày liên tiếp.' },
-    id: { name: '30 hari tanpa sisa', description: 'Selesaikan semua tugas harian selama 30 hari berturut-turut.' },
-    tr: { name: '30 gün eksiksiz', description: '30 gün üst üste tüm günlük görevleri tamamla.' },
-    pl: { name: '30 dni bez zaległości', description: 'Przez 30 dni z rzędu zamykaj wszystkie zadania dzienne.' },
-  },
-  daily_no_reroll: {
-    'pt-BR': { name: 'Sem trocas', description: 'Conclua todas as tarefas do dia sem substituir nenhuma delas.' },
-    vi: { name: 'Không đổi nhiệm vụ', description: 'Hoàn thành tất cả nhiệm vụ trong ngày mà không đổi nhiệm vụ nào.' },
-    id: { name: 'Tanpa ganti', description: 'Selesaikan semua tugas hari ini tanpa mengganti satu pun.' },
-    tr: { name: 'Değiştirmeden', description: 'Günün tüm görevlerini hiçbirini değiştirmeden tamamla.' },
-    pl: { name: 'Bez zamian', description: 'Zamknij wszystkie zadania dnia, nie wymieniając żadnego.' },
-  },
-  daily_no_reroll_7: {
-    'pt-BR': { name: 'Semana sem trocas', description: 'Por 7 dias seguidos, conclua todas as tarefas sem substituições.' },
-    vi: { name: 'Tuần không đổi nhiệm vụ', description: '7 ngày liên tiếp hoàn thành tất cả nhiệm vụ mà không đổi.' },
-    id: { name: 'Seminggu tanpa ganti', description: 'Selama 7 hari berturut-turut, selesaikan semua tugas tanpa mengganti.' },
-    tr: { name: 'Değişimsiz hafta', description: '7 gün üst üste tüm görevleri değiştirmeden tamamla.' },
-    pl: { name: 'Tydzień bez zamian', description: 'Przez 7 dni z rzędu zamykaj wszystkie zadania bez wymian.' },
-  },
-  daily_no_reroll_30: {
-    'pt-BR': { name: 'Sem negociação', description: 'Por 30 dias seguidos, conclua todas as tarefas sem substituições.' },
-    vi: { name: 'Không mặc cả', description: '30 ngày liên tiếp hoàn thành tất cả nhiệm vụ mà không đổi.' },
-    id: { name: 'Tanpa tawar-menawar', description: 'Selama 30 hari berturut-turut, selesaikan semua tugas tanpa mengganti.' },
-    tr: { name: 'Pazarlıksız', description: '30 gün üst üste tüm görevleri değiştirmeden tamamla.' },
-    pl: { name: 'Bez targowania', description: 'Przez 30 dni z rzędu zamykaj wszystkie zadania bez wymian.' },
   },
   daily_phrase_first: {
     'pt-BR': { name: 'Frase do dia', description: 'Abra o cartão da frase do dia e leia a explicação.' },
@@ -1197,31 +1134,33 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     descRu:'100 верных ответов подряд в одной серии.', descUk:'100 вірних відповідей поспіль в одній серії.',
     secret: true,
   },
+  // Legacy Daily Tasks achievements stay in the schema only so an already-earned
+  // badge and its pending shard are not destroyed during product retirement.
+  // There are no writers/unlock events for these definitions anymore.
   {
-    id: 'daily_task_first', icon:'📋', category:'combo', xp:30,
-    nameRu:'Первое задание',    nameUk:'Перше завдання',
-    descRu:'Выполни одно из ежедневных заданий на экране задач.', descUk:'Виконай одне з щоденних завдань на екрані завдань.',
+    id: 'daily_task_first', icon:'📋', category:'combo', xp:30, retired:true,
+    nameRu:'Первое задание', nameUk:'Перше завдання',
+    descRu:'Историческая награда удалённого раздела.', descUk:'Історична нагорода видаленого розділу.',
   },
   {
-    id: 'all_daily', icon:'✅', category:'combo', xp:100,
-    nameRu:'Всё за день',       nameUk:'Усе за день',
-    descRu:'За один календарный день закрой все три ежедневных задания.', descUk:'За один календарний день закрий усі три щоденні завдання.',
+    id: 'all_daily', icon:'✅', category:'combo', xp:100, retired:true,
+    nameRu:'Всё за день', nameUk:'Усе за день',
+    descRu:'Историческая награда удалённого раздела.', descUk:'Історична нагорода видаленого розділу.',
   },
   {
-    id: 'daily_all_3', icon:'📌', category:'combo', xp:140,
+    id: 'daily_all_3', icon:'📌', category:'combo', xp:140, retired:true,
     nameRu:'Три дня порядка', nameUk:'Три дні порядку',
-    descRu:'Три дня подряд закрывай все ежедневные задания.', descUk:'Три дні поспіль закривай усі щоденні завдання.',
+    descRu:'Историческая награда удалённого раздела.', descUk:'Історична нагорода видаленого розділу.',
   },
   {
-    id: 'daily_all_7', icon:'🗓️', category:'combo', xp:350,
+    id: 'daily_all_7', icon:'🗓️', category:'combo', xp:350, retired:true, secret:true,
     nameRu:'Неделя без хвостов', nameUk:'Тиждень без хвостів',
-    descRu:'Семь дней подряд закрывай все ежедневные задания.', descUk:'Сім днів поспіль закривай усі щоденні завдання.',
-    secret: true,
+    descRu:'Историческая награда удалённого раздела.', descUk:'Історична нагорода видаленого розділу.',
   },
   {
-    id: 'daily_no_reroll', icon:'🎯', category:'combo', xp:120,
+    id: 'daily_no_reroll', icon:'🎯', category:'combo', xp:120, retired:true,
     nameRu:'Без замен', nameUk:'Без замін',
-    descRu:'Закрой все задания дня, не заменив ни одно из них.', descUk:'Закрий усі завдання дня, не замінивши жодного з них.',
+    descRu:'Историческая награда удалённого раздела.', descUk:'Історична нагорода видаленого розділу.',
   },
   {
     id: 'daily_phrase_first', icon:'💬', category:'combo', xp:35,
@@ -1580,10 +1519,10 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   { id: 'combo_150', icon:'⚡', category:'combo', xp:800, nameRu:'150 подряд', nameUk:'150 поспіль', descRu:'150 верных ответов подряд в одной серии.', descUk:'150 правильних відповідей поспіль в одній серії.', secret:true },
   { id: 'combo_250', icon:'🧠', category:'combo', xp:1200, nameRu:'Нечеловеческий ритм', nameUk:'Нелюдський ритм', descRu:'250 верных ответов подряд в одной серии.', descUk:'250 правильних відповідей поспіль в одній серії.', secret:true },
   { id: 'combo_500', icon:'☢️', category:'combo', xp:2500, nameRu:'Ошибка запрещена', nameUk:'Помилка заборонена', descRu:'500 верных ответов подряд в одной серии.', descUk:'500 правильних відповідей поспіль в одній серії.', secret:true },
-  { id: 'daily_all_14', icon:'📌', category:'combo', xp:600, nameRu:'Две недели порядка', nameUk:'Два тижні порядку', descRu:'14 дней подряд закрывай все ежедневные задания.', descUk:'14 днів поспіль закривай усі щоденні завдання.', secret:true },
-  { id: 'daily_all_30', icon:'🗓️', category:'combo', xp:1200, nameRu:'30 дней без хвостов', nameUk:'30 днів без хвостів', descRu:'30 дней подряд закрывай все ежедневные задания.', descUk:'30 днів поспіль закривай усі щоденні завдання.', secret:true },
-  { id: 'daily_no_reroll_7', icon:'🎯', category:'combo', xp:450, nameRu:'Неделя без замен', nameUk:'Тиждень без замін', descRu:'7 дней подряд закрой все задания без замен.', descUk:'7 днів поспіль закрий усі завдання без замін.', secret:true },
-  { id: 'daily_no_reroll_30', icon:'🏆', category:'combo', xp:1400, nameRu:'Без торга', nameUk:'Без торгу', descRu:'30 дней подряд закрой все задания без замен.', descUk:'30 днів поспіль закрий усі завдання без замін.', secret:true },
+  { id: 'daily_all_14', icon:'📌', category:'combo', xp:600, nameRu:'Две недели порядка', nameUk:'Два тижні порядку', descRu:'Историческая награда удалённого раздела.', descUk:'Історична нагорода видаленого розділу.', secret:true, retired:true },
+  { id: 'daily_all_30', icon:'🗓️', category:'combo', xp:1200, nameRu:'30 дней без хвостов', nameUk:'30 днів без хвостів', descRu:'Историческая награда удалённого раздела.', descUk:'Історична нагорода видаленого розділу.', secret:true, retired:true },
+  { id: 'daily_no_reroll_7', icon:'🎯', category:'combo', xp:450, nameRu:'Неделя без замен', nameUk:'Тиждень без замін', descRu:'Историческая награда удалённого раздела.', descUk:'Історична нагорода видаленого розділу.', secret:true, retired:true },
+  { id: 'daily_no_reroll_30', icon:'🏆', category:'combo', xp:1400, nameRu:'Без торга', nameUk:'Без торгу', descRu:'Историческая награда удалённого раздела.', descUk:'Історична нагорода видаленого розділу.', secret:true, retired:true },
   { id: 'daily_phrase_read_30', icon:'💬', category:'combo', xp:250, nameRu:'30 фраз дня', nameUk:'30 фраз дня', descRu:'Открой и прочитай 30 фраз дня.', descUk:'Відкрий і прочитай 30 фраз дня.' },
   { id: 'daily_phrase_save_30', icon:'🗂️', category:'combo', xp:350, nameRu:'Фразы в запасе', nameUk:'Фрази в запасі', descRu:'Сохрани 30 фраз дня в карточки.', descUk:'Збережи 30 фраз дня в картки.', secret:true },
   { id: 'daily_phrase_save_100', icon:'🗃️', category:'combo', xp:900, nameRu:'Сто фраз в копилке', nameUk:'Сто фраз у скарбничці', descRu:'Сохрани 100 фраз дня в карточки.', descUk:'Збережи 100 фраз дня в картки.', secret:true },
@@ -1641,8 +1580,6 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
 const STORAGE_KEY = 'achievements_v1';
 /** Одноразовая миграция: сброс shardClaimed у уже открытых (старые версии могли оставить true по ошибке). */
 const SHARD_REOPEN_INTEGRITY_KEY = 'achievements_shard_reopen_mis_migrated_v1';
-
-const ACHIEVEMENT_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr'];
 
 const isTargetAchievement = (id: string): boolean => {
   const achievement = ALL_ACHIEVEMENTS.find(a => a.id === id);
@@ -1713,6 +1650,7 @@ const loadAchievementStatesFromKey = async (
       let addedNew = false;
       for (const a of ALL_ACHIEVEMENTS) {
         if (!ids.has(a.id)) continue;
+        if (a.retired) continue;
         if (!knownIds.has(a.id)) {
           next.push({ id: a.id, unlockedAt: null, notified: false, shardClaimed: true });
           knownIds.add(a.id);
@@ -1742,7 +1680,7 @@ const loadAchievementStatesFromKey = async (
       return next;
     }
     const initial: AchievementState[] = ALL_ACHIEVEMENTS
-      .filter(a => ids.has(a.id))
+      .filter(a => ids.has(a.id) && !a.retired)
       .map(a => ({ id: a.id, unlockedAt: null, notified: false, shardClaimed: true }));
     if (!isCurrentAccountGeneration(accountToken)) return [];
     if (persistMigrations) {
@@ -2349,18 +2287,6 @@ const backfillAchievementsFromLocalState = async (
   if (comboBest >= 250) unlock('combo_250');
   if (comboBest >= 500) unlock('combo_500');
 
-  const dailyAllStreak = await readConsecutiveDayStreakValue(dailyTasksAchievementAllDoneStreakKey(studyTarget));
-  if (!isCurrentAccountGeneration(accountToken)) return;
-  if (dailyAllStreak >= 3) unlock('daily_all_3');
-  if (dailyAllStreak >= 7) unlock('daily_all_7');
-  if (dailyAllStreak >= 14) unlock('daily_all_14');
-  if (dailyAllStreak >= 30) unlock('daily_all_30');
-
-  const noRerollStreak = await readConsecutiveDayStreakValue(dailyTasksAchievementNoRerollStreakKey(studyTarget));
-  if (!isCurrentAccountGeneration(accountToken)) return;
-  if (noRerollStreak >= 7) unlock('daily_no_reroll_7');
-  if (noRerollStreak >= 30) unlock('daily_no_reroll_30');
-
   const phraseReads = await readStoredCounter(dailyPhraseAchievementReadCountKey(studyTarget));
   if (!isCurrentAccountGeneration(accountToken)) return;
   if (phraseReads >= 30) unlock('daily_phrase_read_30');
@@ -2430,7 +2356,6 @@ export type AchievementEvent =
   | { type: 'lesson_complete'; lessonCount: number; wasPerfect?: boolean; perfectCount?: number; lessonId?: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'lesson_perfect_pass'; lessonId: number; passCount: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'combo';          count: number; studyTarget?: RuntimeStudyTarget }
-  | { type: 'daily_task';     allDone?: boolean; noReroll?: boolean; studyTarget?: RuntimeStudyTarget }
   | { type: 'login';          consecutiveDays: number }
   | { type: 'comeback' }
   | { type: 'wager_win' }
@@ -2652,24 +2577,6 @@ export const checkAchievements = async (
         if (event.count >= 150) u('combo_150');
         if (event.count >= 250) u('combo_250');
         if (event.count >= 500) u('combo_500');
-        break;
-      }
-      case 'daily_task': {
-        u('daily_task_first');
-        if (event.allDone) {
-          u('all_daily');
-          const streak = await bumpConsecutiveDayStreak(dailyTasksAchievementAllDoneStreakKey(event.studyTarget), operationToken);
-          if (streak >= 3) u('daily_all_3');
-          if (streak >= 7) u('daily_all_7');
-          if (streak >= 14) u('daily_all_14');
-          if (streak >= 30) u('daily_all_30');
-          if (event.noReroll) {
-            u('daily_no_reroll');
-            const noRerollStreak = await bumpConsecutiveDayStreak(dailyTasksAchievementNoRerollStreakKey(event.studyTarget), operationToken);
-            if (noRerollStreak >= 7) u('daily_no_reroll_7');
-            if (noRerollStreak >= 30) u('daily_no_reroll_30');
-          }
-        }
         break;
       }
       case 'login': {
@@ -3089,25 +2996,22 @@ export const claimAchievementShardReward = async (
   const ACHIEVEMENT_SHARD_PAYOUT = 1 as number;
   if (ACHIEVEMENT_SHARD_PAYOUT <= 0) return true;
 
-  const n = await addShardsRaw(ACHIEVEMENT_SHARD_PAYOUT, `achievement:${achievementId}`, {
-    showEarnModal: false,
-    skipServerAwait: true,
-    accountToken: operationToken,
-    idempotencyKey: payoutOpId,
-  });
-  if (!isCurrentAccountGeneration(operationToken, ownerStableId) || n < 1) return false;
-  if (n >= 1) {
-    const freshStates = await loadAchievementStatesInternal(operationToken, false);
-    if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
-    const freshState = freshStates.find(x => x.id === achievementId);
-    if (!freshState || freshState.unlockedAt === null) return false;
-    freshState.shardClaimed = true;
-    delete pending[achievementId];
-    const finalized = await commitAchievementStoragePairs([
-      ...achievementStatePairs(freshStates),
+  state.shardClaimed = true;
+  delete pending[achievementId];
+  const payout = await commitShardCreditOperation({
+    amount: ACHIEVEMENT_SHARD_PAYOUT,
+    reason: `achievement:${achievementId}`,
+    operationId: payoutOpId,
+    grant: { kind: 'achievement_reward', subjectId: achievementId },
+    localWrites: [
+      ...achievementStatePairs(states),
       [achievementPayoutPendingKey(ownerStableId), JSON.stringify(pending)],
-    ], operationToken);
-    if (!finalized || !isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
+    ],
+  });
+  if (
+    !isCurrentAccountGeneration(operationToken, ownerStableId)
+    || (payout.status !== 'applied' && payout.status !== 'already-applied')
+  ) return false;
     try {
       const balance = await getShardsBalance();
       if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
@@ -3116,8 +3020,6 @@ export const claimAchievementShardReward = async (
       if (__DEV__) console.warn('[achievements]', e);
     }
     return true;
-  }
-  return false;
   }, false);
 };
 

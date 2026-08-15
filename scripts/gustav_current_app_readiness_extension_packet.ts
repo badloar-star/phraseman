@@ -70,7 +70,6 @@ type Report = {
   inputs: {
     p1SurfaceDeltaInventory: string;
     p2DomainRegistryPacket: string;
-    personalPlanContentContractPacket: string;
     aiDialogScenarioContractPacket: string;
     flashcardBundleContractPacket: string;
     dirtySurfaceStateGuardPacket: string;
@@ -127,7 +126,6 @@ type JsonObject = Record<string, unknown>;
 const AUDIT_FILES = {
   p1: 'current_app_surface_delta_inventory.json',
   p2: 'algorithm_domain_registry_packet.json',
-  p3: 'personal_plan_content_contract_packet.json',
   p4: 'ai_dialog_scenario_contract_packet.json',
   p5: 'flashcard_bundle_contract_packet.json',
   p6: 'dirty_surface_state_guard_packet.json',
@@ -365,7 +363,6 @@ function main(): void {
   const artifactPaths = {
     p1: path.join(auditsDir, AUDIT_FILES.p1),
     p2: path.join(auditsDir, AUDIT_FILES.p2),
-    p3: path.join(auditsDir, AUDIT_FILES.p3),
     p4: path.join(auditsDir, AUDIT_FILES.p4),
     p5: path.join(auditsDir, AUDIT_FILES.p5),
     p6: path.join(auditsDir, AUDIT_FILES.p6),
@@ -379,7 +376,6 @@ function main(): void {
   const artifacts = [
     artifactRef(repoRoot, 'p1_surface_delta_inventory', artifactPaths.p1),
     artifactRef(repoRoot, 'p2_domain_registry_packet', artifactPaths.p2),
-    artifactRef(repoRoot, 'p3_personal_plan_content_contract', artifactPaths.p3),
     artifactRef(repoRoot, 'p4_ai_dialog_scenario_contract', artifactPaths.p4),
     artifactRef(repoRoot, 'p5_flashcard_bundle_contract', artifactPaths.p5),
     artifactRef(repoRoot, 'p6_dirty_surface_state_guard', artifactPaths.p6),
@@ -397,7 +393,6 @@ function main(): void {
 
   const p1 = fs.existsSync(artifactPaths.p1) ? readJson<JsonObject>(artifactPaths.p1) : {};
   const p2 = fs.existsSync(artifactPaths.p2) ? readJson<JsonObject>(artifactPaths.p2) : {};
-  const p3 = fs.existsSync(artifactPaths.p3) ? readJson<JsonObject>(artifactPaths.p3) : {};
   const p4 = fs.existsSync(artifactPaths.p4) ? readJson<JsonObject>(artifactPaths.p4) : {};
   const p5 = fs.existsSync(artifactPaths.p5) ? readJson<JsonObject>(artifactPaths.p5) : {};
   const p6 = fs.existsSync(artifactPaths.p6) ? readJson<JsonObject>(artifactPaths.p6) : {};
@@ -408,7 +403,6 @@ function main(): void {
 
   const p1Summary = artifactSummary(p1);
   const p2Summary = artifactSummary(p2);
-  const p3Summary = artifactSummary(p3);
   const p4Summary = artifactSummary(p4);
   const p5Summary = artifactSummary(p5);
   const p6Summary = artifactSummary(p6);
@@ -424,7 +418,6 @@ function main(): void {
 
   const p1Pass = artifactStatus(p1) === 'PASS';
   const p2Pass = artifactStatus(p2) === 'PASS';
-  const p3Pass = artifactStatus(p3) === 'PASS';
   const p4Pass = artifactStatus(p4) === 'PASS';
   const p5Pass = artifactStatus(p5) === 'PASS';
   const p6Pass = artifactStatus(p6) === 'PASS';
@@ -517,38 +510,6 @@ function main(): void {
         `Domains with required evidence: ${n(p2Summary, 'domainsWithRequiredEvidence')}`,
       ],
       'French generation must not mix UI source language with learner study target state.',
-    ),
-    check(
-      'P8-RDY-020',
-      'P3',
-      'personal_plan_content',
-      'Personal plan content contract must pass.',
-      rel(repoRoot, artifactPaths.p3),
-      checkStatus(p3Pass && b(p3Summary, 'readyForP8ReadinessExtension')),
-      ['new-app-domain-generation', 'app-domain-activation', 'production-apply'],
-      'new-app-domain',
-      'production-app',
-      [
-        `Expected plan days: ${n(p3Summary, 'expectedPlanDays')}`,
-        `Aggregate plan days: ${n(p3Summary, 'aggregatePlanDays')}`,
-        `Phrases: ${n(p3Summary, 'phrases')}`,
-      ],
-      'Echo, Gavan, and Impuls must be modeled before new French plan content can be generated.',
-    ),
-    check(
-      'P8-RDY-021',
-      'P3',
-      'personal_plan_content',
-      'French personal-plan generation packet must exist before generating plan translations.',
-      rel(repoRoot, artifactPaths.p3),
-      checkStatus(b(p3Summary, 'readyForFrenchPlanGeneration'), true),
-      ['new-app-domain-generation', 'reviewer-handoff', 'app-domain-activation', 'production-apply'],
-      'new-app-domain',
-      'production-app',
-      [
-        `readyForFrenchPlanGeneration: ${b(p3Summary, 'readyForFrenchPlanGeneration') ? 'true' : 'false'}`,
-      ],
-      'P3 is a contract only; it deliberately does not create French plan rows yet.',
     ),
     check(
       'P8-RDY-030',
@@ -804,18 +765,6 @@ function main(): void {
       ],
     },
     {
-      domain: 'personal_plan_content',
-      sourceArtifact: rel(repoRoot, artifactPaths.p3),
-      contractStatus: checks.find((entry) => entry.id === 'P8-RDY-020')?.currentStatus ?? 'BLOCK',
-      generationStatus: checks.find((entry) => entry.id === 'P8-RDY-021')?.currentStatus ?? 'BLOCK',
-      activationStatus: appDomainActivationStatus,
-      applyStatus: productionApplyStatus,
-      generationBlockedBy: blockedBy(checks.filter((entry) => entry.domain === 'personal_plan_content'), 'new-app-domain-generation'),
-      activationBlockedBy: blockedBy(checks, 'app-domain-activation'),
-      applyBlockedBy: blockedBy(checks, 'production-apply'),
-      notes: ['Contract exists; French plan generation packet does not exist yet.'],
-    },
-    {
       domain: 'ai_dialog_scenarios',
       sourceArtifact: rel(repoRoot, artifactPaths.p4),
       contractStatus: checks.find((entry) => entry.id === 'P8-RDY-030')?.currentStatus ?? 'BLOCK',
@@ -878,7 +827,6 @@ function main(): void {
     inputs: {
       p1SurfaceDeltaInventory: rel(repoRoot, artifactPaths.p1),
       p2DomainRegistryPacket: rel(repoRoot, artifactPaths.p2),
-      personalPlanContentContractPacket: rel(repoRoot, artifactPaths.p3),
       aiDialogScenarioContractPacket: rel(repoRoot, artifactPaths.p4),
       flashcardBundleContractPacket: rel(repoRoot, artifactPaths.p5),
       dirtySurfaceStateGuardPacket: rel(repoRoot, artifactPaths.p6),
@@ -921,13 +869,12 @@ function main(): void {
     generationVsApplyPolicy: [
       'Existing French lesson-row generation/reviewer readiness remains separate from current-app domain readiness.',
       'P8 may recommend readiness checks, but it does not edit `scripts/gustav_readiness_gate.ts`.',
-      'New app-domain French generation requires dedicated generation packets for personal plans, dialogs, flashcard bundles, and collectible text.',
+      'New app-domain French generation requires dedicated generation packets for dialogs, flashcard bundles, and collectible text.',
       'Dirty state surfaces and collectible image assets are activation/apply gates; they do not by themselves generate translations.',
       'Production apply remains blocked until LLM official-source reviewer decisions, apply blocker resolution, clean/approved dirty overlap, and explicit app-write approval exist.',
     ],
     requiredNextArtifacts: [
       'P9 expanded algorithm master manifest indexing P0-P8 plus existing French reviewer artifacts.',
-      'French personal-plan generation packet before creating Echo/Gavan/Impuls French content.',
       'French AI-dialog generation and prompt-safety packet before translating scenario UI/prompt cells.',
       'French flashcard bundle generation packet before translating marketplace bundle content.',
       'French collectible text sidecar contract before activating localized collectible reward text.',

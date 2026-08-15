@@ -1,8 +1,8 @@
 import * as admin from 'firebase-admin';
 import { logger } from 'firebase-functions';
-import { defineSecret } from 'firebase-functions/params';
 import { onRequest } from 'firebase-functions/v2/https';
 import { ADMIN_ALERT_BOT_TOKEN } from '../admin_alerts';
+import { handleSupportTelegramAction, handleSupportTelegramFeedback } from '../support_inbox';
 import {
   buildApprovalAuditEntry,
   JARVIS_APPROVAL_AUDIT_COLLECTION,
@@ -12,11 +12,13 @@ import { consumeApprovalToken } from './approval_store';
 import { handleApprovalCallback, parseOwnerConfig } from './approval_webhook_core';
 import { markRowDecided } from './approval_message_edit';
 import { issueDecisionButtons } from './issue_decision_buttons';
+import { recordPlanOwnerDecision } from './jarvis_plans_store';
 import type { InlineKeyboard } from './telegram_buttons';
 import { sendJarvisDigest } from './telegram_send';
 import type { Decision } from './decision';
 import { buildStatusText, type JarvisCommand } from './commands';
 import { JARVIS_CONTROL_DOC, parseControl } from './control';
+import { JARVIS_TELEGRAM_CONFIG } from './telegram_owner_config';
 
 /**
  * HTTP-точка входа для кнопок Джарвиса в Telegram.
@@ -39,7 +41,7 @@ import { JARVIS_CONTROL_DOC, parseControl } from './control';
  * общего с алертами.
  */
 
-export const JARVIS_TELEGRAM_CONFIG = defineSecret('JARVIS_TELEGRAM_CONFIG');
+export { JARVIS_TELEGRAM_CONFIG } from './telegram_owner_config';
 
 const REGION = 'us-central1';
 
@@ -170,6 +172,8 @@ async function handleCommand(input: HandleCommandInput): Promise<void> {
 export const jarvisTelegramApprovalWebhook = onRequest(
   {
     region: REGION,
+    // Public webhook only authenticates and atomically enqueues. Gmail/OpenAI
+    // secrets belong exclusively to the closed support worker.
     secrets: [JARVIS_TELEGRAM_CONFIG, ADMIN_ALERT_BOT_TOKEN],
     timeoutSeconds: 30,
     memory: '256MiB',
@@ -235,7 +239,8 @@ export const jarvisTelegramApprovalWebhook = onRequest(
       config,
       nowMs,
       consume: async (input) => {
-        const outcome = await consumeApprovalToken({ db, ...input });
+        const supportOutcome = await handleSupportTelegramAction({ db, ...input });
+        const outcome = supportOutcome ?? await consumeApprovalToken({ db, ...input });
         // зачем ловить здесь: только тут известны и департамент, и вердикт.
         // Отказы пишем тоже — попытка нажать чужую кнопку это свидетельство.
         audit = buildApprovalAuditEntry({
@@ -245,6 +250,18 @@ export const jarvisTelegramApprovalWebhook = onRequest(
           outcome: outcome.ok ? 'accepted' : outcome.reason,
           nowMs,
         });
+        if (outcome.ok && !outcome.doc.department.startsWith('support_email:')) {
+          await recordPlanOwnerDecision({
+            db,
+            approvalDecisionHash: outcome.doc.decisionHash,
+            action: outcome.doc.action,
+            nowMs,
+          }).catch((error) => {
+            // Approval audit остаётся источником истины даже если план временно
+            // недоступен; Telegram не должен ретраить уже погашенный токен.
+            logger.warn('jarvis_approval: plan lifecycle update failed', error);
+          });
+        }
         return outcome;
       },
     });
@@ -272,6 +289,22 @@ export const jarvisTelegramApprovalWebhook = onRequest(
         botToken: ADMIN_ALERT_BOT_TOKEN.value(),
         nowMs,
       });
+      res.status(200).send('');
+      return;
+    }
+
+    if (result.ownerText) {
+      const feedback = await handleSupportTelegramFeedback({
+        db, text: result.ownerText,
+        fromTelegramUserId: config.ownerTelegramUserId,
+        fromTelegramChatId: config.ownerTelegramChatId,
+        nowMs,
+      });
+      if (feedback === 'queued') {
+        await sendPlainMessage(ADMIN_ALERT_BOT_TOKEN.value(), config.ownerTelegramChatId, '✏️ Принял правки. Джарвис переписывает ответ и пришлёт новую версию с кнопками.');
+      } else if (feedback === 'expired') {
+        await sendPlainMessage(ADMIN_ALERT_BOT_TOKEN.value(), config.ownerTelegramChatId, 'Сессия правок устарела. Нажмите «Внести правки» у актуальной версии ещё раз.');
+      }
       res.status(200).send('');
       return;
     }

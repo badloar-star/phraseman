@@ -11,10 +11,14 @@ let consentGranted = true;
 let consentHydrated = true;
 let consentDecision = true;
 let consentSubscriber: (() => void) | null = null;
+let netStatus: 'online' | 'offline' | 'unknown' = 'online';
+let netSubscriber: ((online: boolean) => void) | null = null;
 const markLimitShown = jest.fn(async () => undefined);
 
 jest.mock('../app/ai_mistake_explain_client', () => ({
   callExplainMistake: jest.fn(),
+  isMistakeExplainOfflineError: (error: unknown) =>
+    String((error as { message?: unknown })?.message ?? error ?? '').includes('mistake_explain_offline'),
   warmExplainMistake: jest.fn(),
 }));
 
@@ -42,6 +46,14 @@ jest.mock('../app/ai_mistake_explain_limit_session', () => ({
 
 jest.mock('../hooks/use-haptics', () => ({
   hapticTap: jest.fn(),
+}));
+
+jest.mock('../app/net_status', () => ({
+  getNetStatus: () => netStatus,
+  subscribeNetStatus: (listener: (online: boolean) => void) => {
+    netSubscriber = listener;
+    return () => { netSubscriber = null; };
+  },
 }));
 
 jest.mock('../app/mistake_token_resolver', () => ({
@@ -78,6 +90,8 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     consentHydrated = true;
     consentDecision = true;
     consentSubscriber = null;
+    netStatus = 'online';
+    netSubscriber = null;
     __resetAccountGenerationForTests();
     beginAccountGeneration('account-a');
   });
@@ -126,6 +140,52 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     expect(hook.result.current.eli5.state).toBe('ready');
     expect(hook.result.current.eli5.text).toBe('Simple explanation');
     expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not warm, request, or retry an explanation while offline', async () => {
+    netStatus = 'offline';
+    jest.useFakeTimers();
+    const { warmExplainMistake } = await import('../app/ai_mistake_explain_client');
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+
+    await act(async () => { await Promise.resolve(); });
+    await act(async () => { hook.result.current.explain(); });
+    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
+
+    expect(warmExplainMistake).not.toHaveBeenCalled();
+    expect(callExplainMistakeMock).not.toHaveBeenCalled();
+    expect(hook.result.current.aiMistakeState).not.toBe('loading');
+  });
+
+  it('starts the active explanation when connectivity returns', async () => {
+    netStatus = 'offline';
+    callExplainMistakeMock.mockResolvedValue(fullResponse('Back online explanation'));
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+
+    await act(async () => { await Promise.resolve(); });
+    expect(callExplainMistakeMock).not.toHaveBeenCalled();
+
+    await act(async () => {
+      netStatus = 'online';
+      netSubscriber?.(true);
+      await Promise.resolve();
+    });
+
+    await waitFor(() => expect(hook.result.current.aiMistakeState).toBe('ready'));
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not start optional AI work while connectivity is still unknown', async () => {
+    netStatus = 'unknown';
+    const { warmExplainMistake } = await import('../app/ai_mistake_explain_client');
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+
+    await act(async () => { await Promise.resolve(); });
+    await act(async () => { hook.result.current.explain(); });
+
+    expect(warmExplainMistake).not.toHaveBeenCalled();
+    expect(callExplainMistakeMock).not.toHaveBeenCalled();
+    expect(hook.result.current.aiMistakeState).not.toBe('loading');
   });
 
   it('keeps transient failures silent and retries them in the background', async () => {

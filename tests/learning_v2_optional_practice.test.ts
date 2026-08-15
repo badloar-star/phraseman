@@ -1,6 +1,6 @@
 // зачем: опциональная практика — фармилка доступа, но НЕ прогресса: максимум два
 // слота, никогда не блокирует юнит и не пишет mastery. RED фиксирует детерминированный
-// приоритет источников (ошибки → должники → личный план → текущий юнит).
+// приоритет источников (ошибки → должники → текущий юнит).
 import { selectOptionalPracticeSlots } from '../modules/learning-v2/content/optional_practice';
 
 test('shows at most two eligible optional nodes and never blocks the unit', () => {
@@ -10,7 +10,6 @@ test('shows at most two eligible optional nodes and never blocks the unit', () =
     networkAvailable: true,
     dueContentItemIds: ['e1-a'],
     mistakeContentItemIds: ['e1-b'],
-    personalPlanContentItemIds: ['e1-c'],
     capabilities: [
       { capabilityId: 'quick-speak-v1', family: 'quick_spoken_response', requiresMicrophone: true, requiresNetwork: false, expectedSeconds: 75 },
       { capabilityId: 'echo-rhythm-v1', family: 'shadowing_prosody', requiresMicrophone: true, requiresNetwork: false, expectedSeconds: 90 },
@@ -28,7 +27,6 @@ test('omits microphone-only capabilities when speech is unavailable', () => {
     networkAvailable: false,
     dueContentItemIds: [],
     mistakeContentItemIds: [],
-    personalPlanContentItemIds: [],
     capabilities: [{ capabilityId: 'quick-speak-v1', family: 'quick_spoken_response', requiresMicrophone: true, requiresNetwork: false, expectedSeconds: 75 }],
   })).toEqual([]);
 });
@@ -42,7 +40,6 @@ test('prioritises mistake over due and stays deterministic by capabilityId', () 
     networkAvailable: false,
     dueContentItemIds: ['e1-due'],
     mistakeContentItemIds: ['e1-mistake'],
-    personalPlanContentItemIds: [],
     capabilities: [
       { capabilityId: 'zeta-drill-v1', family: 'context_gap_grammar', requiresMicrophone: false, requiresNetwork: false, expectedSeconds: 60 },
       { capabilityId: 'alpha-drill-v1', family: 'phrase_builder', requiresMicrophone: false, requiresNetwork: false, expectedSeconds: 60 },
@@ -67,7 +64,6 @@ test('falls back to current unit when no personalised sources exist', () => {
     networkAvailable: true,
     dueContentItemIds: [],
     mistakeContentItemIds: [],
-    personalPlanContentItemIds: [],
     capabilities: [
       { capabilityId: 'quick-speak-v1', family: 'quick_spoken_response', requiresMicrophone: true, requiresNetwork: false, expectedSeconds: 75 },
     ],

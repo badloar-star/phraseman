@@ -1,5 +1,5 @@
-import React, { memo, useMemo } from 'react';
-import { Animated, Text, View, StyleSheet } from 'react-native';
+import React, { memo, useMemo, useRef } from 'react';
+import { Animated, PanResponder, Text, View, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from './SafeLinearGradient';
 import type { MedalTier } from '../app/medal_utils';
@@ -50,6 +50,8 @@ interface MedalToastProps {
   lang: Lang;
   /** Whether spanish UI is active (lang==='es' & study target spanish) */
   spanishUiActive: boolean;
+  /** Swipe left/right or upward to dismiss immediately. */
+  onDismiss?: () => void;
 }
 
 interface Labels {
@@ -209,11 +211,59 @@ function MedalToast({
   bottom = 120,
   lang,
   spanishUiActive,
+  onDismiss,
 }: MedalToastProps) {
   const labels = useMemo(
     () => pickLabels(tier, promoted, lang, spanishUiActive),
     [tier, promoted, lang, spanishUiActive],
   );
+  const dismissActionLabel = useMemo(() => triLang(spanishUiActive ? 'es' : lang, {
+    ru: 'Закрыть уведомление',
+    uk: 'Закрити сповіщення',
+    es: 'Cerrar aviso',
+    'pt-BR': 'Fechar aviso',
+    vi: 'Đóng thông báo',
+    id: 'Tutup pemberitahuan',
+    tr: 'Bildirimi kapat',
+    pl: 'Zamknij powiadomienie',
+  }), [lang, spanishUiActive]);
+  const drag = useRef(new Animated.ValueXY()).current;
+  const panResponder = useMemo(() => PanResponder.create({
+    onMoveShouldSetPanResponder: (_event, gesture) => (
+      Boolean(onDismiss)
+      && (Math.abs(gesture.dx) > 7 || gesture.dy < -7)
+    ),
+    onPanResponderMove: Animated.event([null, { dx: drag.x, dy: drag.y }], {
+      useNativeDriver: false,
+    }),
+    onPanResponderRelease: (_event, gesture) => {
+      const shouldDismiss = Math.abs(gesture.dx) >= 50
+        || gesture.dy <= -38
+        || Math.abs(gesture.vx) >= 0.65
+        || gesture.vy <= -0.65;
+      if (!shouldDismiss || !onDismiss) {
+        Animated.spring(drag, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
+        return;
+      }
+      Animated.parallel([
+        Animated.timing(drag.x, {
+          toValue: Math.abs(gesture.dx) >= 20 ? (gesture.dx < 0 ? -420 : 420) : 0,
+          duration: 170,
+          useNativeDriver: false,
+        }),
+        Animated.timing(drag.y, {
+          toValue: gesture.dy < 0 ? -140 : gesture.dy,
+          duration: 170,
+          useNativeDriver: false,
+        }),
+      ]).start(({ finished }) => {
+        if (finished) onDismiss();
+      });
+    },
+    onPanResponderTerminate: () => {
+      Animated.spring(drag, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
+    },
+  }), [drag, onDismiss]);
 
   if (tier === 'none') return null;
 
@@ -227,7 +277,7 @@ function MedalToast({
 
   return (
     <Animated.View
-      pointerEvents="none"
+      pointerEvents={onDismiss ? 'box-none' : 'none'}
       style={[
         styles.wrap,
         {
@@ -240,6 +290,18 @@ function MedalToast({
         },
       ]}
     >
+      <Animated.View
+        pointerEvents={onDismiss ? 'auto' : 'none'}
+        {...(onDismiss ? panResponder.panHandlers : {})}
+        accessible={Boolean(onDismiss)}
+        accessibilityRole="alert"
+        accessibilityLabel={`${labels.title}. ${labels.subtitle}`}
+        accessibilityActions={onDismiss ? [{ name: 'dismiss', label: dismissActionLabel }] : undefined}
+        onAccessibilityAction={onDismiss ? (event) => {
+          if (event.nativeEvent.actionName === 'dismiss') onDismiss();
+        } : undefined}
+        style={{ transform: [{ translateX: drag.x }, { translateY: drag.y }] }}
+      >
       {/* зачем: свечение вокруг тоста (halo + aura + цветная тень по акценту медали)
           выбивалось из дизайна — убрано. Плашка отделяется от фона тоном градиента
           и мягкой нейтральной тенью, без цветного ореола. */}
@@ -296,24 +358,22 @@ function MedalToast({
         <View style={styles.textWrap}>
           <Text
             style={[styles.tierLabel, { color: accent }]}
-            numberOfLines={1}
           >
             {tierBadgeText(tier, promoted, lang, spanishUiActive)}
           </Text>
           <Text
             style={[styles.title, { color: visualTheme.titleColor }]}
-            numberOfLines={1}
           >
             {labels.title}
           </Text>
           <Text
             style={[styles.subtitle, { color: visualTheme.subtitleColor }]}
-            numberOfLines={2}
           >
             {labels.subtitle}
           </Text>
         </View>
       </LinearGradient>
+      </Animated.View>
     </Animated.View>
   );
 }

@@ -15,11 +15,7 @@ const mockCallableInvoker: jest.Mock<Promise<any>, any> = jest.fn(async () => ({
 }));
 const mockEnsureAnonUser = jest.fn(async () => 'stable-from-auth');
 const mockEnsureStableAuthLinkForStableId = jest.fn(async () => true);
-const mockReplaceShardsBalanceForAccountGeneration = jest.fn(async (_next, token, stableId) => (
-  token.generation === mockAccountGeneration.generation && stableId === mockAccountGeneration.stableId
-    ? 'applied'
-    : 'stale-generation'
-));
+const mockCommitConfirmedExternalShardEvent = jest.fn(async () => ({ status: 'applied', balanceAfter: 24 }));
 const mockStorageSetItem = jest.fn(async () => undefined);
 const mockStorageGetItem: jest.Mock<Promise<string | null>, [string]> = jest.fn(async (_key: string) => null);
 const mockEnqueueAuthoritativeLevelSpinLevels = jest.fn(async () => undefined);
@@ -55,7 +51,7 @@ jest.mock('../app/app_check_init', () => ({
 }));
 
 jest.mock('../app/shards_system', () => ({
-  replaceShardsBalanceForAccountGeneration: mockReplaceShardsBalanceForAccountGeneration,
+  commitConfirmedExternalShardEvent: mockCommitConfirmedExternalShardEvent,
 }));
 
 jest.mock('../app/level_spin_level_up_queue', () => ({
@@ -98,14 +94,13 @@ test('getActiveFriendQuest prepares stable auth and calls the status function', 
   expect(result.quest.targetXp).toBe(3000);
 });
 
-test('claimFriendQuestReward syncs returned shards and XP locally', async () => {
+test('claimFriendQuestReward applies the confirmed external shard event and XP locally', async () => {
   mockCallableInvoker.mockResolvedValueOnce({
     data: {
       ok: true,
       questId: 'quest_2026-W24_sender_recipient',
       rewardApplied: true,
-      callerShards: 24,
-      shardsUpdatedAtMs: 3_000,
+      rewardShardsApplied: 10,
       callerXp: 5100,
     },
   });
@@ -118,16 +113,9 @@ test('claimFriendQuestReward syncs returned shards and XP locally', async () => 
     questId: 'quest_2026-W24_sender_recipient',
     levelSpinProtocol: 'v1',
   });
-  expect(mockReplaceShardsBalanceForAccountGeneration).toHaveBeenCalledWith(
-    24,
-    expect.objectContaining({ stableId: 'stable-from-auth' }),
-    'stable-from-auth',
-    {
-      updatedAtMs: 3_000,
-      op: 'earn',
-      reason: 'friend_quest_reward',
-    },
-  );
+  expect(mockCommitConfirmedExternalShardEvent).toHaveBeenCalledWith(expect.objectContaining({
+    source: 'friend_quest', eventId: 'quest_2026-W24_sender_recipient', delta: 10,
+  }));
   expect(mockStorageSetItem).toHaveBeenCalledWith('user_total_xp', '5100');
   expect(result.rewardApplied).toBe(true);
 });
@@ -139,8 +127,6 @@ test('claimFriendQuestReward does not lower a higher local XP mirror', async () 
       ok: true,
       questId: 'quest_2026-W24_sender_recipient',
       rewardApplied: true,
-      callerShards: 24,
-      shardsUpdatedAtMs: 3_000,
       callerXp: 5100,
     },
   });
@@ -303,7 +289,6 @@ test('claimFriendQuestReward skips all local writes after an account transition'
       ok: true,
       questId: 'quest_2026-W24_sender_recipient',
       rewardApplied: true,
-      callerShards: 24,
       callerXpBeforeReward: 50,
       rewardXpApplied: 100,
       callerXp: 150,
@@ -311,7 +296,7 @@ test('claimFriendQuestReward skips all local writes after an account transition'
   });
 
   await expect(claim).resolves.toMatchObject({ rewardApplied: true });
-  expect(mockReplaceShardsBalanceForAccountGeneration).not.toHaveBeenCalled();
+  expect(mockCommitConfirmedExternalShardEvent).not.toHaveBeenCalled();
   expect(mockStorageSetItem).not.toHaveBeenCalled();
   expect(mockEnqueueAuthoritativeLevelSpinLevels).not.toHaveBeenCalled();
 });

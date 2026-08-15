@@ -451,7 +451,13 @@ describe('Gustav flashcards target isolation', () => {
 
   it('threads studyTarget through flashcard UI save, collection, and swipe surfaces', () => {
     const addButtonSource = fs.readFileSync(path.join(ROOT, 'components', 'AddToFlashcard.tsx'), 'utf8');
-    const collectionSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_collection.tsx'), 'utf8');
+    // cards-2.0 (E11): загрузка данных коллекции вынесена из монолита
+    // flashcards_collection.tsx в app/flashcards/useCollectionData.ts —
+    // гейты цели обучения проверяем там же, где живут вызовы.
+    const collectionSource =
+      fs.readFileSync(path.join(ROOT, 'app', 'flashcards_collection.tsx'), 'utf8') +
+      '\n' +
+      fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'useCollectionData.ts'), 'utf8');
     const swipeSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_swipe.tsx'), 'utf8');
     const hubSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards.tsx'), 'utf8');
     const marketDevSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_market_dev.tsx'), 'utf8');
@@ -514,7 +520,7 @@ describe('Gustav flashcards target isolation', () => {
     expect(trainingSourcesSource).toContain('flashcardsCommunityPacksAvailableForTarget(studyTarget)');
 
     expect(hubSource).toContain('const { studyTarget } = useStudyTarget()');
-    expect(hubSource).toContain('primeCustomFlashcardsCache(studyTarget)');
+    expect(hubSource).toContain('primeFlashcardsCollectionCache(studyTarget)');
     expect(hubSource).toContain('const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(hubSource).toContain('loadAccessiblePackIds(studyTarget)');
     expect(hubSource).toContain('loadCommunityOwnedPackIds(studyTarget)');

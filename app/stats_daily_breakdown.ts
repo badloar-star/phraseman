@@ -25,8 +25,6 @@ export type StatsDailyMetric =
   | 'words_learned'
   | 'flashcards_saved'
   | 'phrases_learned'
-  | 'daily_tasks_claimed'
-  | 'plan_tasks_completed'
   | 'shards_earned'
   | 'shards_spent';
 
@@ -35,8 +33,6 @@ const METRICS_LIST: StatsDailyMetric[] = [
   'words_learned',
   'flashcards_saved',
   'phrases_learned',
-  'daily_tasks_claimed',
-  'plan_tasks_completed',
   'shards_earned',
   'shards_spent',
 ];
@@ -225,7 +221,6 @@ export type DevLifetimePathRandomSums = {
   wordsLearned: number;
   flashcardsSaved: number;
   phrasesLearned: number;
-  dailyTasksClaimed: number;
   shardsEarned: number;
   shardsSpent: number;
 };
@@ -234,7 +229,6 @@ const ZERO_DEV_SUMS: DevLifetimePathRandomSums = {
   wordsLearned: 0,
   flashcardsSaved: 0,
   phrasesLearned: 0,
-  dailyTasksClaimed: 0,
   shardsEarned: 0,
   shardsSpent: 0,
 };
@@ -256,8 +250,6 @@ export async function devRandomizeLifetimePathDailyMetrics(dayCount: number): Pr
         words_learned: randIntInclusive(0, 45),
         flashcards_saved: randIntInclusive(0, 14),
         phrases_learned: randIntInclusive(0, 60),
-        daily_tasks_claimed: randIntInclusive(0, 5),
-        plan_tasks_completed: randIntInclusive(0, 5),
         shards_earned: randIntInclusive(0, 90),
         shards_spent: randIntInclusive(0, 55),
       };
@@ -265,7 +257,6 @@ export async function devRandomizeLifetimePathDailyMetrics(dayCount: number): Pr
       sums.wordsLearned += row.words_learned ?? 0;
       sums.flashcardsSaved += row.flashcards_saved ?? 0;
       sums.phrasesLearned += row.phrases_learned ?? 0;
-      sums.dailyTasksClaimed += row.daily_tasks_claimed ?? 0;
       sums.shardsEarned += row.shards_earned ?? 0;
       sums.shardsSpent += row.shards_spent ?? 0;
     }

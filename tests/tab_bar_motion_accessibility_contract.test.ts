@@ -7,8 +7,7 @@ describe('tab bar motion and accessibility', () => {
   test('exposes selected tab semantics without delaying navigation', () => {
     expect(source).toContain('accessibilityRole="tab"');
     expect(source).toContain('accessibilityState={{ selected: visuallyFocused }}');
-    // Visible items may skip a logical tab (tournaments is temporarily hidden),
-    // so navigation must use the preserved logical index rather than bar position.
+    // Navigation uses the explicit model index shared with the swipe pager.
     expect(source).toContain('onPress={() => goToTab(tab.logicalIdx)}');
   });
 

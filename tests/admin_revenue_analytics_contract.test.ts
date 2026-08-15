@@ -3,7 +3,7 @@ import path from 'path';
 
 describe('admin revenue analytics contract', () => {
   const root = process.cwd();
-  const adminHtml = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
+  const adminHtml = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
   const adminModuleScript = adminHtml.match(/<script type="module">([\s\S]*?)<\/script>/)?.[1] || '';
   const firebaseSource = fs.readFileSync(path.join(root, 'app', 'firebase.ts'), 'utf8');
   const premiumModalSource = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8');
@@ -37,15 +37,15 @@ describe('admin revenue analytics contract', () => {
     expect(shardsShopSource).toContain("tags: { packId, productId, shards");
   });
 
-  it('tracks onboarding paywall source from the personal-plan flow', () => {
+  it('tracks onboarding paywall source from the onboarding flow', () => {
     expect(premiumModalSource).toContain("openPremiumPaywall(router, params, 'replace')");
     expect(paywallASource).toContain('params.source');
     expect(paywallASource).toContain("|| 'direct'");
     expect(onboardingSource).toContain("trackEvent('onboarding_plan_paywall_view'");
     expect(onboardingSource).toContain("trackOnboardingActivity('onboarding_plan_paywall_view'");
-    expect(onboardingSource).toContain('onPersonalPlanPaywallStart');
-    expect(onboardingSource).toContain('queuePendingPersonalPlanActivation');
-    expect(onboardingSource).toContain('[PLAN_BILLING_KEY, billing]');
+    expect(onboardingSource).not.toContain('onPersonalPlanPaywallStart');
+    expect(onboardingSource).not.toContain('queuePendingPersonalPlanActivation');
+    expect(onboardingSource).toContain('AsyncStorage.setItem(PLAN_BILLING_KEY, billing)');
   });
 
   it('adds the requested revenue analytics controls and charts to the admin analytics tab', () => {

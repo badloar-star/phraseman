@@ -118,6 +118,9 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
       fetchers: {
         revenuecat_premium_events: () => fetchMoneySource({ sourceId: 'revenuecat_premium_events', collection: db.collection('revenuecat_premium_events'), nowMs }),
         paywall_funnel: () => fetchMoneySource({ sourceId: 'paywall_funnel', collection: db.collection('paywall_funnel'), nowMs }),
+        client_economy_opening: () => fetchMoneySource({ sourceId: 'client_economy_opening', collection: db.collectionGroup('client_economy_opening'), nowMs }),
+        client_economy_operations: () => fetchMoneySource({ sourceId: 'client_economy_operations', collection: db.collectionGroup('client_economy_operations'), nowMs }),
+        external_economy_events: () => fetchMoneySource({ sourceId: 'external_economy_events', collection: db.collectionGroup('external_economy_events'), nowMs }),
       },
       trigger: 'owner_request',
       question,
@@ -174,7 +177,11 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
       appTier,
     }),
     runSupport: (appTier) => buildSupportSnapshot({
-      fetchSupport: () => fetchSupportSource({ collection: db.collection('support_inbox'), nowMs }),
+      fetchSupport: () => fetchSupportSource({
+        collection: db.collection('support_inbox'),
+        syncDocument: db.doc('admin_config/support_inbox'),
+        nowMs,
+      }),
       trigger: 'owner_request',
       question,
       nowMs,

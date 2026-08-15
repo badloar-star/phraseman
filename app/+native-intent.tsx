@@ -41,11 +41,33 @@ export function redirectSystemPath({
 
   // Personal-plan developer surfaces can modify local plan state. Store builds
   // must fail closed even when an old/system deep link targets them directly.
-  if (
-    IS_STORE_RELEASE &&
-    /(?:^|\/)personal_plan_(?:runtime_)?dev(?:[/?#]|$)/i.test(raw)
-  ) {
+  if (/(?:^|\/)personal_plan(?:_[^/?#]+)?(?:[/?#]|$)/i.test(raw)) {
     return '/home';
+  }
+
+  // Arena V2 friend-duel links carry a random 128-bit invite id. This check
+  // must precede the generic referral `/invite` matcher below.
+  const arenaInviteMatch = raw.match(
+    /(?:^|\/)arena\/invite\/([A-Za-z0-9_-]{20,200})(?:[/?#]|$)/i,
+  );
+  if (arenaInviteMatch?.[1]) {
+    return `/arena_invite?inviteId=${encodeURIComponent(arenaInviteMatch[1])}`;
+  }
+
+  // Arena Ghost tokens are opaque challenge capabilities. Resolve only a
+  // bounded token into the dedicated disclosure screen; malformed/legacy
+  // Arena links continue into the safe retired-link fallback below.
+  const arenaGhostMatch = raw.match(
+    /(?:^|\/)arena\/ghost\/([A-Za-z0-9_.-]{20,200})(?:[/?#]|$)/i,
+  );
+  if (arenaGhostMatch?.[1]) {
+    return `/arena_ghost_duel?inviteToken=${encodeURIComponent(arenaGhostMatch[1])}`;
+  }
+
+  // Arena V2 снова является живым продуктом. Старый catch-all ниже нужен для
+  // удалённых duel/arena_join/quiz ссылок, но не должен поглощать новый корень.
+  if (/^(?:\/phraseman)?\/arena\/?(?:[?#].*)?$/i.test(raw)) {
+    return '/arena';
   }
 
   // Referral invite links should not route to a non-existent `/invite` screen.
@@ -65,9 +87,8 @@ export function redirectSystemPath({
     return `/home${query}`;
   }
 
-  // Competitive Quiz/Arena surfaces were retired. Old notifications, widgets,
-  // and shared duel links can outlive the routes, so fail closed to Home
-  // instead of handing Expo Router a path that renders an unmatched screen.
+  // Retired competitive routes (кроме нового корня Arena V2). Старые
+  // notifications/widgets/duel links могут жить дольше экранов — fail closed.
   if (/(?:^|\/)phraseman\/(?:duel|arena(?:_join)?|quizzes?|quiz)(?:[/?#]|$)/i.test(raw)
     || /(?:^|\/)(?:duel|arena(?:_join)?|quizzes?|quiz)(?:[/?#]|$)/i.test(raw)) {
     return '/home';

@@ -110,9 +110,9 @@ const FEATURE_DEFINITIONS = [
     priority: 13,
   },
   {
-    id: 'daily_phrase_tasks',
-    label: 'Daily phrase and daily tasks',
-    keywords: ['daily_phrase', 'daily-phrases', 'daily_tasks', 'daily task'],
+    id: 'daily_phrase',
+    label: 'Daily Phrase',
+    keywords: ['daily_phrase', 'daily-phrases', 'daily phrase'],
     missingFamily: 'daily_phrase_bank',
     priority: 14,
   },
@@ -122,13 +122,6 @@ const FEATURE_DEFINITIONS = [
     keywords: ['diagnostic', 'exam', 'level_exam', 'final_exam'],
     missingFamily: 'diagnostics_bank',
     priority: 15,
-  },
-  {
-    id: 'personal_plans',
-    label: 'Personal plans, plan content and audio practice',
-    keywords: ['personal_plan', 'plan_content', 'plan_day', 'listening', 'speaking'],
-    missingFamily: 'personal_plan_french_content',
-    priority: 16,
   },
   {
     id: 'audio_tts',
@@ -212,7 +205,7 @@ function isFrenchEvidence(entry) {
 }
 
 function isEnglishEvidence(entry) {
-  return /\ben\b|english|lesson_data|flashcard|personal_plan|course_pack/.test(entry.lower);
+  return /\ben\b|english|lesson_data|flashcard|course_pack/.test(entry.lower);
 }
 
 function sha256(value) {
@@ -336,9 +329,8 @@ function nextActionFor(featureId) {
     srs_review: 'Prove SRS reads/writes French target content and no English fallback.',
     flashcards: 'Build French flashcard starter packs and French-realities packs.',
     community_card_packs: 'Map collectible/community card product shape to French-specific packs.',
-    daily_phrase_tasks: 'Build French daily phrase bank and daily task target gates.',
+    daily_phrase: 'Build the French Daily Phrase bank and preserve its target gate.',
     diagnostics_exams: 'Build French diagnostic, level-check and exam pools.',
-    personal_plans: 'Build French personal plan content, audio metadata and target-scoped progress.',
     audio_tts: 'Generate OpenAI TTS manifest and missing-audio gate for all voice-required French items.',
     server_course_packs: 'Verify pack manifests, hashes, loader paths, rollback and remote delivery for French.',
     storage_cloud_isolation: 'Run target storage/cloud/cache isolation gates across all French surfaces.',

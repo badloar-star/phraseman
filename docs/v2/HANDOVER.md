@@ -13344,3 +13344,54 @@ Deploy, push, production writes и provider spend не выполнялись.
 4. Quality dashboard (15 измерений) не собран.
 5. Rollback drill не повторён на этом checkout.
 6. Реальный контент E1–E32 отсутствует намеренно — его создаёт владелец.
+
+## 15.162 — S2 coverage matrix и S5 quality dashboard (2026-08-15)
+
+Два gate стадийного пайплайна, которые можно закрыть без deploy. Оба существуют
+в контракте давно, но кода под ними не было — проверял бы их только человек
+глазами, то есть никто.
+
+### S2 — матрица покрытия целей
+
+`modules/learning-v2/content/objective_coverage_matrix_v1.ts` строит требуемую
+контрактом таблицу `lesson objective component × session` по пяти ролям:
+introduction, practice, retrieval, transfer, assessment.
+
+Роль **выводится из назначения взаимодействия**, а не берётся из метки: иначе
+достаточно проставить нужные ярлыки, чтобы покрытие стало «полным». Матрица
+сообщает: отсутствующие роли, проверку раньше введения, проверки главы без
+независимой проверки, главу без извлечения по памяти и цель, размазанную по
+многим сессиям одним типом задания (fake diversity).
+
+Общего балла нет намеренно: один блокер закрывает стадию при любом количестве
+зелёного, а лучший машинный вердикт — `ready_for_human_review`.
+**1 suite / 9 tests PASS.**
+
+### S5 — панель качества
+
+`modules/learning-v2/content/quality_dashboard_v1.ts` собирает свод по
+**настоящему** каталогу reference v3 (CEFR-Q, LESSON-Q, SESSION-Q, PHRASE-Q,
+THEORY-Q, TASK-Q, AUDIO-Q, MEMORY-Q, ASSESS-Q, CONS-Q), а не по выдуманному
+списку, поэтому находку можно проследить до раздела документа. Контрактный
+минимум в 15 измерений проверяется на входе.
+
+Средний балл сознательно понижен в правах: поле называется
+`averageScoreForReferenceOnly` и несёт authority
+`reference_only_never_a_verdict`. Измерение с высоким баллом и нулевыми
+доказательствами поднимается отдельной ошибкой, а не молча тянет среднее вверх.
+Каждая находка кладёт свой объект в список на перепроверку.
+**1 suite / 9 tests PASS.**
+
+### Проверки на этом checkout
+
+- Пакет Learning V2 (harness, RED, coverage, dashboard, session runtime,
+  art backdrop): **6 suites / 53 tests PASS**
+- Регрессия по нетронутому (правила Firestore, retired Personal Plan,
+  borderless audit, telegram admin surface): **4 suites / 139 tests PASS**
+- Jarvis data contract guard: **1 suite / 30 tests PASS**
+
+Панель пайплайна теперь показывает **«Доказано 2 из 10»** (S2, S3); S5 переведён
+в «Реализовано» с честной пометкой, что на живом материале не прогонялся —
+измерения приходят снаружи.
+
+Deploy, push, production writes и provider spend не выполнялись.

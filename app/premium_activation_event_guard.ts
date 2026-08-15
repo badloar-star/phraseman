@@ -5,6 +5,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { getPremiumAccountTransitionEpoch } from './premium_guard';
+import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 
 export type PremiumActivationEventGuard = {
   accountToken: AccountGenerationToken;
@@ -44,8 +45,7 @@ export async function readPremiumActivationDisposition(
     .catch(() => [] as [string, string | null][]);
   if (!guard.isCurrent()) return 'stale';
   const values = Object.fromEntries(entries);
-  const noPremium = values.tester_no_premium === 'true';
+  const noPremium = resolveTesterNoPremiumOverride(values.tester_no_premium, isStoreRelease);
   const noLimits = values.tester_no_limits === 'true';
   return noPremium || (noLimits && isStoreRelease) ? 'reload' : 'activate';
 }
-

@@ -1,0 +1,301 @@
+video|slot|index|english|ipa|russian|kind|topic
+1|1|1|Hello|/həˈloʊ/|Привет|word|greetings
+1|2|2|Hi|/haɪ/|Привет|word|greetings
+1|3|3|Goodbye|/ˌɡʊdˈbaɪ/|До свидания|word|greetings
+1|4|4|Bye|/baɪ/|Пока|word|greetings
+1|5|5|See you|/siː juː/|До встречи|phrase|greetings
+2|1|6|Please|/pliːz/|Пожалуйста|word|politeness
+2|2|7|Thank you|/θæŋk juː/|Спасибо|phrase|politeness
+2|3|8|Thanks|/θæŋks/|Спасибо|word|politeness
+2|4|9|Sorry|/ˈsɑːri/|Извини|word|politeness
+2|5|10|Excuse me|/ɪkˈskjuːz miː/|Извините|phrase|politeness
+3|1|11|Yes|/jes/|Да|word|basic answers
+3|2|12|No|/noʊ/|Нет|word|basic answers
+3|3|13|Okay|/oʊˈkeɪ/|Хорошо|word|basic answers
+3|4|14|Maybe|/ˈmeɪbi/|Может быть|word|basic answers
+3|5|15|I do not know|/aɪ duː nɑːt noʊ/|Я не знаю|phrase|basic answers
+4|1|16|What?|/wʌt/|Что?|word|question words
+4|2|17|Who?|/huː/|Кто?|word|question words
+4|3|18|Where?|/wer/|Где?|word|question words
+4|4|19|When?|/wen/|Когда?|word|question words
+4|5|20|Why?|/waɪ/|Почему?|word|question words
+5|1|21|I|/aɪ/|Я|word|people
+5|2|22|You|/juː/|Ты|word|people
+5|3|23|He|/hiː/|Он|word|people
+5|4|24|She|/ʃiː/|Она|word|people
+5|5|25|We|/wiː/|Мы|word|people
+6|1|26|They|/ðeɪ/|Они|word|people
+6|2|27|It|/ɪt/|Это|word|people
+6|3|28|My|/maɪ/|Мой|word|possessives
+6|4|29|Your|/jʊr/|Твой|word|possessives
+6|5|30|His|/hɪz/|Его|word|possessives
+7|1|31|My name is...|/maɪ neɪm ɪz/|Меня зовут...|phrase|introductions
+7|2|32|What is your name?|/wʌt ɪz jʊr neɪm/|Как тебя зовут?|phrase|introductions
+7|3|33|I am Anna.|/aɪ æm ˈænə/|Я Анна.|phrase|introductions
+7|4|34|Nice to meet you.|/naɪs tə miːt juː/|Приятно познакомиться.|phrase|introductions
+7|5|35|This is my friend.|/ðɪs ɪz maɪ frend/|Это мой друг.|phrase|introductions
+8|1|36|Mother|/ˈmʌðər/|Мама|word|family
+8|2|37|Father|/ˈfɑːðər/|Папа|word|family
+8|3|38|Brother|/ˈbrʌðər/|Брат|word|family
+8|4|39|Sister|/ˈsɪstər/|Сестра|word|family
+8|5|40|Family|/ˈfæməli/|Семья|word|family
+9|1|41|Friend|/frend/|Друг|word|people
+9|2|42|Man|/mæn/|Мужчина|word|people
+9|3|43|Woman|/ˈwʊmən/|Женщина|word|people
+9|4|44|Boy|/bɔɪ/|Мальчик|word|people
+9|5|45|Girl|/ɡɜːrl/|Девочка|word|people
+10|1|46|Book|/bʊk/|Книга|word|things
+10|2|47|Pen|/pen/|Ручка|word|things
+10|3|48|Phone|/foʊn/|Телефон|word|things
+10|4|49|Bag|/bæɡ/|Сумка|word|things
+10|5|50|Key|/kiː/|Ключ|word|things
+11|1|51|House|/haʊs/|Дом|word|home
+11|2|52|Room|/ruːm/|Комната|word|home
+11|3|53|Door|/dɔːr/|Дверь|word|home
+11|4|54|Window|/ˈwɪndoʊ/|Окно|word|home
+11|5|55|Table|/ˈteɪbəl/|Стол|word|home
+12|1|56|Chair|/tʃer/|Стул|word|home
+12|2|57|Bed|/bed/|Кровать|word|home
+12|3|58|Kitchen|/ˈkɪtʃən/|Кухня|word|home
+12|4|59|Bathroom|/ˈbæθruːm/|Ванная|word|home
+12|5|60|Light|/laɪt/|Свет|word|home
+13|1|61|Red|/red/|Красный|word|colors
+13|2|62|Blue|/bluː/|Синий|word|colors
+13|3|63|Green|/ɡriːn/|Зелёный|word|colors
+13|4|64|Black|/blæk/|Чёрный|word|colors
+13|5|65|White|/waɪt/|Белый|word|colors
+14|1|66|Yellow|/ˈjeloʊ/|Жёлтый|word|colors
+14|2|67|Brown|/braʊn/|Коричневый|word|colors
+14|3|68|Orange|/ˈɔːrɪndʒ/|Оранжевый|word|colors
+14|4|69|Pink|/pɪŋk/|Розовый|word|colors
+14|5|70|Gray|/ɡreɪ/|Серый|word|colors
+15|1|71|One|/wʌn/|Один|word|numbers
+15|2|72|Two|/tuː/|Два|word|numbers
+15|3|73|Three|/θriː/|Три|word|numbers
+15|4|74|Four|/fɔːr/|Четыре|word|numbers
+15|5|75|Five|/faɪv/|Пять|word|numbers
+16|1|76|Six|/sɪks/|Шесть|word|numbers
+16|2|77|Seven|/ˈsevən/|Семь|word|numbers
+16|3|78|Eight|/eɪt/|Восемь|word|numbers
+16|4|79|Nine|/naɪn/|Девять|word|numbers
+16|5|80|Ten|/ten/|Десять|word|numbers
+17|1|81|Big|/bɪɡ/|Большой|word|descriptions
+17|2|82|Small|/smɔːl/|Маленький|word|descriptions
+17|3|83|New|/nuː/|Новый|word|descriptions
+17|4|84|Old|/oʊld/|Старый|word|descriptions
+17|5|85|Good|/ɡʊd/|Хороший|word|descriptions
+18|1|86|Bad|/bæd/|Плохой|word|descriptions
+18|2|87|Hot|/hɑːt/|Горячий|word|descriptions
+18|3|88|Cold|/koʊld/|Холодный|word|descriptions
+18|4|89|Easy|/ˈiːzi/|Лёгкий|word|descriptions
+18|5|90|Difficult|/ˈdɪfɪkəlt/|Сложный|word|descriptions
+19|1|91|Go|/ɡoʊ/|Идти|word|actions
+19|2|92|Come|/kʌm/|Приходить|word|actions
+19|3|93|Sit|/sɪt/|Сидеть|word|actions
+19|4|94|Stand|/stænd/|Стоять|word|actions
+19|5|95|Stop|/stɑːp/|Останавливаться|word|actions
+20|1|96|Look|/lʊk/|Смотреть|word|actions
+20|2|97|Listen|/ˈlɪsən/|Слушать|word|actions
+20|3|98|Speak|/spiːk/|Говорить|word|actions
+20|4|99|Read|/riːd/|Читать|word|actions
+20|5|100|Write|/raɪt/|Писать|word|actions
+21|1|101|Eat|/iːt/|Есть|word|actions
+21|2|102|Drink|/drɪŋk/|Пить|word|actions
+21|3|103|Sleep|/sliːp/|Спать|word|actions
+21|4|104|Walk|/wɔːk/|Ходить пешком|word|actions
+21|5|105|Run|/rʌn/|Бегать|word|actions
+22|1|106|Open|/ˈoʊpən/|Открывать|word|actions
+22|2|107|Close|/kloʊz/|Закрывать|word|actions
+22|3|108|Give|/ɡɪv/|Давать|word|actions
+22|4|109|Take|/teɪk/|Брать|word|actions
+22|5|110|Help|/help/|Помогать|word|actions
+23|1|111|Come here.|/kʌm hɪr/|Иди сюда.|phrase|simple commands
+23|2|112|Go there.|/ɡoʊ ðer/|Иди туда.|phrase|simple commands
+23|3|113|Sit down.|/sɪt daʊn/|Садись.|phrase|simple commands
+23|4|114|Stand up.|/stænd ʌp/|Вставай.|phrase|simple commands
+23|5|115|Stop here.|/stɑːp hɪr/|Остановись здесь.|phrase|simple commands
+24|1|116|Look at me.|/lʊk æt miː/|Смотри на меня.|phrase|simple commands
+24|2|117|Listen to me.|/ˈlɪsən tə miː/|Слушай меня.|phrase|simple commands
+24|3|118|Read this.|/riːd ðɪs/|Прочитай это.|phrase|simple commands
+24|4|119|Write it.|/raɪt ɪt/|Напиши это.|phrase|simple commands
+24|5|120|Help me.|/help miː/|Помоги мне.|phrase|simple commands
+25|1|121|Water|/ˈwɔːtər/|Вода|word|food and drink
+25|2|122|Tea|/tiː/|Чай|word|food and drink
+25|3|123|Coffee|/ˈkɔːfi/|Кофе|word|food and drink
+25|4|124|Milk|/mɪlk/|Молоко|word|food and drink
+25|5|125|Juice|/dʒuːs/|Сок|word|food and drink
+26|1|126|Bread|/bred/|Хлеб|word|food and drink
+26|2|127|Cheese|/tʃiːz/|Сыр|word|food and drink
+26|3|128|Egg|/eɡ/|Яйцо|word|food and drink
+26|4|129|Apple|/ˈæpəl/|Яблоко|word|food and drink
+26|5|130|Banana|/bəˈnænə/|Банан|word|food and drink
+27|1|131|I want to eat.|/aɪ wɑːnt tə iːt/|Я хочу есть.|phrase|food and drink
+27|2|132|I want to drink.|/aɪ wɑːnt tə drɪŋk/|Я хочу пить.|phrase|food and drink
+27|3|133|I want water.|/aɪ wɑːnt ˈwɔːtər/|Я хочу воды.|phrase|food and drink
+27|4|134|I like tea.|/aɪ laɪk tiː/|Мне нравится чай.|phrase|food and drink
+27|5|135|No sugar.|/noʊ ˈʃʊɡər/|Без сахара.|phrase|food and drink
+28|1|136|Please sit.|/pliːz sɪt/|Садитесь, пожалуйста.|phrase|cafe
+28|2|137|Here is your tea.|/hɪr ɪz jʊr tiː/|Вот ваш чай.|phrase|cafe
+28|3|138|I want coffee.|/aɪ wɑːnt ˈkɔːfi/|Я хочу кофе.|phrase|cafe
+28|4|139|One more, please.|/wʌn mɔːr pliːz/|Ещё один, пожалуйста.|phrase|cafe
+28|5|140|The bill, please.|/ðə bɪl pliːz/|Счёт, пожалуйста.|phrase|cafe
+29|1|141|Day|/deɪ/|День|word|time
+29|2|142|Night|/naɪt/|Ночь|word|time
+29|3|143|Morning|/ˈmɔːrnɪŋ/|Утро|word|time
+29|4|144|Evening|/ˈiːvnɪŋ/|Вечер|word|time
+29|5|145|Today|/təˈdeɪ/|Сегодня|word|time
+30|1|146|Tomorrow|/təˈmɑːroʊ/|Завтра|word|time
+30|2|147|Yesterday|/ˈjestərdeɪ/|Вчера|word|time
+30|3|148|Now|/naʊ/|Сейчас|word|time
+30|4|149|Later|/ˈleɪtər/|Позже|word|time
+30|5|150|Early|/ˈɜːrli/|Рано|word|time
+31|1|151|Monday|/ˈmʌndeɪ/|Понедельник|word|days
+31|2|152|Tuesday|/ˈtuːzdeɪ/|Вторник|word|days
+31|3|153|Wednesday|/ˈwenzdeɪ/|Среда|word|days
+31|4|154|Thursday|/ˈθɜːrzdeɪ/|Четверг|word|days
+31|5|155|Friday|/ˈfraɪdeɪ/|Пятница|word|days
+32|1|156|Saturday|/ˈsætərdeɪ/|Суббота|word|days
+32|2|157|Sunday|/ˈsʌndeɪ/|Воскресенье|word|days
+32|3|158|Week|/wiːk/|Неделя|word|time
+32|4|159|Month|/mʌnθ/|Месяц|word|time
+32|5|160|Year|/jɪr/|Год|word|time
+33|1|161|Sun|/sʌn/|Солнце|word|weather
+33|2|162|Rain|/reɪn/|Дождь|word|weather
+33|3|163|Snow|/snoʊ/|Снег|word|weather
+33|4|164|Wind|/wɪnd/|Ветер|word|weather
+33|5|165|Cloud|/klaʊd/|Облако|word|weather
+34|1|166|It is sunny.|/ɪt ɪz ˈsʌni/|Солнечно.|phrase|weather
+34|2|167|It is raining.|/ɪt ɪz ˈreɪnɪŋ/|Идёт дождь.|phrase|weather
+34|3|168|It is snowing.|/ɪt ɪz ˈsnoʊɪŋ/|Идёт снег.|phrase|weather
+34|4|169|It is windy.|/ɪt ɪz ˈwɪndi/|Ветрено.|phrase|weather
+34|5|170|It is cold today.|/ɪt ɪz koʊld təˈdeɪ/|Сегодня холодно.|phrase|weather
+35|1|171|Shirt|/ʃɜːrt/|Рубашка|word|clothes
+35|2|172|T-shirt|/ˈtiː ʃɜːrt/|Футболка|word|clothes
+35|3|173|Dress|/dres/|Платье|word|clothes
+35|4|174|Shoe|/ʃuː/|Ботинок|word|clothes
+35|5|175|Hat|/hæt/|Шляпа|word|clothes
+36|1|176|Coat|/koʊt/|Пальто|word|clothes
+36|2|177|Jacket|/ˈdʒækɪt/|Куртка|word|clothes
+36|3|178|Socks|/sɑːks/|Носки|word|clothes
+36|4|179|Jeans|/dʒiːnz/|Джинсы|word|clothes
+36|5|180|Skirt|/skɜːrt/|Юбка|word|clothes
+37|1|181|Head|/hed/|Голова|word|body
+37|2|182|Hand|/hænd/|Рука|word|body
+37|3|183|Leg|/leɡ/|Нога|word|body
+37|4|184|Eye|/aɪ/|Глаз|word|body
+37|5|185|Mouth|/maʊθ/|Рот|word|body
+38|1|186|Nose|/noʊz/|Нос|word|body
+38|2|187|Ear|/ɪr/|Ухо|word|body
+38|3|188|Hair|/her/|Волосы|word|body
+38|4|189|Face|/feɪs/|Лицо|word|body
+38|5|190|Body|/ˈbɑːdi/|Тело|word|body
+39|1|191|Happy|/ˈhæpi/|Счастливый|word|feelings
+39|2|192|Sad|/sæd/|Грустный|word|feelings
+39|3|193|Tired|/ˈtaɪərd/|Уставший|word|feelings
+39|4|194|Angry|/ˈæŋɡri/|Злой|word|feelings
+39|5|195|Afraid|/əˈfreɪd/|Испуганный|word|feelings
+40|1|196|A smile|/ə smaɪl/|Улыбка|phrase|feelings
+40|2|197|Laugh|/læf/|Смеяться|word|feelings
+40|3|198|Cry|/kraɪ/|Плакать|word|feelings
+40|4|199|To love|/tə lʌv/|Любить|phrase|feelings
+40|5|200|To hate|/tə heɪt/|Ненавидеть|phrase|feelings
+41|1|201|Cat|/kæt/|Кошка|word|animals
+41|2|202|Dog|/dɔːɡ/|Собака|word|animals
+41|3|203|Bird|/bɜːrd/|Птица|word|animals
+41|4|204|Fish|/fɪʃ/|Рыба|word|animals
+41|5|205|Animal|/ˈænɪməl/|Животное|word|animals
+42|1|206|School|/skuːl/|Школа|word|places
+42|2|207|Shop|/ʃɑːp/|Магазин|word|places
+42|3|208|Park|/pɑːrk/|Парк|word|places
+42|4|209|Street|/striːt/|Улица|word|places
+42|5|210|Station|/ˈsteɪʃən/|Станция|word|places
+43|1|211|Hospital|/ˈhɑːspɪtəl/|Больница|word|places
+43|2|212|Bank|/bæŋk/|Банк|word|places
+43|3|213|Cafe|/kæˈfeɪ/|Кафе|word|places
+43|4|214|Hotel|/hoʊˈtel/|Отель|word|places
+43|5|215|Airport|/ˈerpɔːrt/|Аэропорт|word|places
+44|1|216|On the left|/ɑːn ðə left/|Слева|phrase|directions
+44|2|217|On the right|/ɑːn ðə raɪt/|Справа|phrase|directions
+44|3|218|Straight ahead|/streɪt əˈhed/|Прямо|phrase|directions
+44|4|219|Here|/hɪr/|Здесь|word|directions
+44|5|220|There|/ðer/|Там|word|directions
+45|1|221|Turn left.|/tɜːrn left/|Поверните налево.|phrase|directions
+45|2|222|Turn right.|/tɜːrn raɪt/|Поверните направо.|phrase|directions
+45|3|223|Go straight.|/ɡoʊ streɪt/|Идите прямо.|phrase|directions
+45|4|224|Where is it?|/wer ɪz ɪt/|Где это?|phrase|directions
+45|5|225|Where am I?|/wer æm aɪ/|Где я?|phrase|directions
+46|1|226|Bus|/bʌs/|Автобус|word|transport
+46|2|227|Train|/treɪn/|Поезд|word|transport
+46|3|228|Car|/kɑːr/|Машина|word|transport
+46|4|229|Taxi|/ˈtæksi/|Такси|word|transport
+46|5|230|Bike|/baɪk/|Велосипед|word|transport
+47|1|231|Ticket|/ˈtɪkɪt/|Билет|word|transport
+47|2|232|Bus stop|/ˈbʌs stɑːp/|Автобусная остановка|phrase|transport
+47|3|233|Map|/mæp/|Карта|word|transport
+47|4|234|Road|/roʊd/|Дорога|word|transport
+47|5|235|Plane|/pleɪn/|Самолёт|word|transport
+48|1|236|I am at home.|/aɪ æm æt hoʊm/|Я дома.|phrase|home
+48|2|237|Open the door.|/ˈoʊpən ðə dɔːr/|Открой дверь.|phrase|home
+48|3|238|Close the window.|/kloʊz ðə ˈwɪndoʊ/|Закрой окно.|phrase|home
+48|4|239|The room is small.|/ðə ruːm ɪz smɔːl/|Комната маленькая.|phrase|home
+48|5|240|The light is on.|/ðə laɪt ɪz ɑːn/|Свет включён.|phrase|home
+49|1|241|Do you speak English?|/duː juː spiːk ˈɪŋɡlɪʃ/|Ты говоришь по-английски?|phrase|language
+49|2|242|I speak a little English.|/aɪ spiːk ə ˈlɪtəl ˈɪŋɡlɪʃ/|Я немного говорю по-английски.|phrase|language
+49|3|243|Please speak slowly.|/pliːz spiːk ˈsloʊli/|Пожалуйста, говорите медленно.|phrase|language
+49|4|244|Say it again.|/seɪ ɪt əˈɡen/|Скажите это ещё раз.|phrase|language
+49|5|245|What does it mean?|/wʌt dʌz ɪt miːn/|Что это значит?|phrase|language
+50|1|246|I understand.|/aɪ ˌʌndərˈstænd/|Я понимаю.|phrase|language
+50|2|247|I do not understand.|/aɪ duː nɑːt ˌʌndərˈstænd/|Я не понимаю.|phrase|language
+50|3|248|Can you help?|/kæn juː help/|Ты можешь помочь?|phrase|language
+50|4|249|Yes, I can.|/jes aɪ kæn/|Да, я могу.|phrase|language
+50|5|250|No, I cannot.|/noʊ aɪ ˈkænɑːt/|Нет, я не могу.|phrase|language
+51|1|251|How much is it?|/haʊ mʌtʃ ɪz ɪt/|Сколько это стоит?|phrase|shopping
+51|2|252|It is cheap.|/ɪt ɪz tʃiːp/|Это дёшево.|phrase|shopping
+51|3|253|It is expensive.|/ɪt ɪz ɪkˈspensɪv/|Это дорого.|phrase|shopping
+51|4|254|I want this.|/aɪ wɑːnt ðɪs/|Я хочу это.|phrase|shopping
+51|5|255|I do not want this.|/aɪ duː nɑːt wɑːnt ðɪs/|Я не хочу этого.|phrase|shopping
+52|1|256|Money|/ˈmʌni/|Деньги|word|shopping
+52|2|257|Cash|/kæʃ/|Наличные|word|shopping
+52|3|258|Card|/kɑːrd/|Карта|word|shopping
+52|4|259|Price|/praɪs/|Цена|word|shopping
+52|5|260|Your change|/jʊr tʃeɪndʒ/|Ваша сдача|phrase|shopping
+53|1|261|Toilet|/ˈtɔɪlət/|Туалет|word|basic needs
+53|2|262|Water, please.|/ˈwɔːtər pliːz/|Воды, пожалуйста.|phrase|basic needs
+53|3|263|I need help.|/aɪ niːd help/|Мне нужна помощь.|phrase|basic needs
+53|4|264|Call a doctor.|/kɔːl ə ˈdɑːktər/|Вызовите врача.|phrase|basic needs
+53|5|265|I feel bad.|/aɪ fiːl bæd/|Мне плохо.|phrase|basic needs
+54|1|266|Doctor|/ˈdɑːktər/|Врач|word|health
+54|2|267|Medicine|/ˈmedɪsən/|Лекарство|word|health
+54|3|268|Pain|/peɪn/|Боль|word|health
+54|4|269|It hurts.|/ɪt hɜːrts/|Болит.|phrase|health
+54|5|270|Call|/kɔːl/|Звонить|word|health
+55|1|271|This|/ðɪs/|Это|word|basic words
+55|2|272|That|/ðæt/|То|word|basic words
+55|3|273|These|/ðiːz/|Эти|word|basic words
+55|4|274|Those|/ðoʊz/|Те|word|basic words
+55|5|275|All|/ɔːl/|Всё|word|basic words
+56|1|276|One more time|/wʌn mɔːr taɪm/|Ещё раз|phrase|basic words
+56|2|277|Very|/ˈveri/|Очень|word|basic words
+56|3|278|A little|/ə ˈlɪtəl/|Немного|phrase|basic words
+56|4|279|Much|/mʌtʃ/|Много|word|basic words
+56|5|280|Only|/ˈoʊnli/|Только|word|basic words
+57|1|281|Message|/ˈmesɪdʒ/|Сообщение|word|phone
+57|2|282|Email|/ˈiːmeɪl/|Электронное письмо|word|phone
+57|3|283|Name|/neɪm/|Имя|word|phone
+57|4|284|Address|/ˈædres/|Адрес|word|phone
+57|5|285|Phone number|/ˈfoʊn ˌnʌmbər/|Номер телефона|phrase|phone
+58|1|286|My phone is here.|/maɪ foʊn ɪz hɪr/|Мой телефон здесь.|phrase|daily life
+58|2|287|This is my bag.|/ðɪs ɪz maɪ bæɡ/|Это моя сумка.|phrase|daily life
+58|3|288|Where is my key?|/wer ɪz maɪ kiː/|Где мой ключ?|phrase|daily life
+58|4|289|I have a question.|/aɪ hæv ə ˈkwestʃən/|У меня есть вопрос.|phrase|daily life
+58|5|290|I need a pen.|/aɪ niːd ə pen/|Мне нужна ручка.|phrase|daily life
+59|1|291|Good morning.|/ɡʊd ˈmɔːrnɪŋ/|Доброе утро.|phrase|greetings
+59|2|292|Good afternoon.|/ɡʊd ˌæftərˈnuːn/|Добрый день.|phrase|greetings
+59|3|293|Good evening.|/ɡʊd ˈiːvnɪŋ/|Добрый вечер.|phrase|greetings
+59|4|294|Good night.|/ɡʊd naɪt/|Спокойной ночи.|phrase|greetings
+59|5|295|Have a nice day.|/hæv ə naɪs deɪ/|Хорошего дня.|phrase|greetings
+60|1|296|See you tomorrow.|/siː juː təˈmɑːroʊ/|До завтра.|phrase|goodbyes
+60|2|297|Take care.|/teɪk ker/|Береги себя.|phrase|goodbyes
+60|3|298|Welcome.|/ˈwelkəm/|Добро пожаловать.|word|goodbyes
+60|4|299|Good luck.|/ɡʊd lʌk/|Удачи.|phrase|goodbyes
+60|5|300|Let's go.|/lets ɡoʊ/|Пойдём.|phrase|goodbyes

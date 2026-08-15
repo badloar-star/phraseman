@@ -85,7 +85,8 @@ button:focus-visible, a:focus-visible, summary:focus-visible {
 .top { display: flex; align-items: center; justify-content: space-between; padding: 20px 0 6px; gap: 12px; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; color: var(--ink); font-size: 17px; flex: none; }
 .brand img { width: 36px; height: 36px; border-radius: 11px; }
-.nav { display: flex; align-items: center; gap: 24px; font-weight: 600; font-size: 14.5px; }
+.nav { display: flex; align-items: center; gap: 18px; font-weight: 600; font-size: 14.5px; }
+.nav a { white-space: nowrap; }
 .nav a:hover { color: var(--ink); }
 .nav .b {
   background: var(--ink); color: #f7edd6; font-weight: 700; padding: 12px 22px;

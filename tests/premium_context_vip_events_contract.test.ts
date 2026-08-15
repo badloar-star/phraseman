@@ -3,6 +3,15 @@ import path from 'path';
 
 describe('PremiumContext VIP event contract', () => {
   const source = fs.readFileSync(path.join(process.cwd(), 'components', 'PremiumContext.tsx'), 'utf8');
+
+  it('keeps the latest VIP state in the premium activation callback', () => {
+    const effectStart = source.indexOf("const sub = onAppEvent('premium_activated'");
+    const effectEnd = source.indexOf('// VIP can be activated', effectStart);
+    const effect = source.slice(effectStart, effectEnd);
+
+    expect(effect).toContain('isVip },');
+    expect(effect).toMatch(/}, \[isVip, reload\]\);/);
+  });
   const activationGuardSource = fs.readFileSync(
     path.join(process.cwd(), 'app', 'premium_activation_event_guard.ts'),
     'utf8',

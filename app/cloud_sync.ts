@@ -39,12 +39,14 @@ import {
   isAccountDeleteIdentityQuarantinedFromKnownState,
 } from './account_delete_quarantine';
 import {
+  beginAccountGeneration,
   beginInitialAccountGeneration,
   captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
   withRestoreApplicationLock,
 } from './account_generation';
+import { setStableId } from './stable_id';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
 import { patchAppSnapshotFromAuthoritativeCloudProgress } from './app_snapshot_store';
 // зачем: сброс кэша множителей XP при смене аккаунта — см. resetMultiplierBreakdownCache
@@ -1770,6 +1772,7 @@ function callable<TReq, TRes>(name: string, options?: CallableOptions) {
 export async function ensureStableAuthLinkForStableIdDetailed(
   stableIdRaw: string,
   metadata?: StableAuthLinkMetadata,
+  options: { requireAuthoritative?: boolean } = {},
 ): Promise<StableAuthLinkEnsureResult> {
   const requestedStableId = String(stableIdRaw || '').trim();
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
@@ -1787,10 +1790,12 @@ export async function ensureStableAuthLinkForStableIdDetailed(
 
   const key = `${stableId}:${authUid}`;
   const hasFreshMetadata = metadata != null && Object.keys(metadata).length > 0;
-  if (!hasFreshMetadata && await readStableAuthLinkCache(key)) {
+  if (!options.requireAuthoritative && !hasFreshMetadata && await readStableAuthLinkCache(key)) {
     return { ok: true, requestedStableId: stableId, stableUid: stableId, authUid, source: 'cache' };
   }
-  const promiseKey = hasFreshMetadata ? `${key}:metadata` : key;
+  const promiseKey = [key, hasFreshMetadata ? 'metadata' : '', options.requireAuthoritative ? 'authoritative' : '']
+    .filter(Boolean)
+    .join(':');
   if (stableAuthLinkPromise && stableAuthLinkKey === promiseKey) return stableAuthLinkPromise;
 
   stableAuthLinkKey = promiseKey;
@@ -2077,6 +2082,74 @@ export function getCurrentUid(): string | null {
   return getAuthUserId();
 }
 
+/**
+ * Atomically abandons account-scoped local state when the server identity anchor
+ * disagrees with the cached stable id. No source-account value may survive into
+ * the authoritative account generation.
+ */
+async function adoptAuthoritativeStableIdentity(
+  localStableIdRaw: string,
+  authoritativeStableIdRaw: string,
+): Promise<boolean> {
+  const localStableId = String(localStableIdRaw || '').trim();
+  const authoritativeStableId = String(authoritativeStableIdRaw || '').trim();
+  if (!localStableId || !authoritativeStableId) return false;
+  if (localStableId === authoritativeStableId) return true;
+
+  const sourceGeneration = captureAccountGeneration();
+  if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) return false;
+
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) return false;
+    await wipeLocalAccountDataUnsafe();
+    if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) return false;
+    await setStableId(authoritativeStableId);
+    beginAccountGeneration(authoritativeStableId);
+    stableAuthLinkPromise = null;
+    stableAuthLinkKey = '';
+    await AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY).catch(() => {});
+    invalidatePremiumCache();
+    return true;
+  });
+}
+
+export type AuthoritativeCloudIdentityResult = {
+  ok: boolean;
+  stableUid: string | null;
+  adopted: boolean;
+};
+
+/**
+ * Mandatory precondition for client-initiated cloud mutation. This deliberately
+ * bypasses the seven-day local auth-link cache: only the server can establish
+ * which stable account the current Firebase credential owns.
+ */
+export async function ensureAuthoritativeIdentityForCloudMutation(
+  stableIdRaw: string,
+): Promise<AuthoritativeCloudIdentityResult> {
+  const localStableId = String(stableIdRaw || '').trim();
+  const stableLink = await ensureStableAuthLinkForStableIdDetailed(
+    localStableId,
+    undefined,
+    { requireAuthoritative: true },
+  );
+  if (!stableLink.ok || !stableLink.stableUid) {
+    return { ok: false, stableUid: stableLink.stableUid, adopted: false };
+  }
+  if (stableLink.stableUid === localStableId) {
+    return { ok: true, stableUid: localStableId, adopted: false };
+  }
+
+  const adopted = await adoptAuthoritativeStableIdentity(localStableId, stableLink.stableUid);
+  if (adopted) {
+    // Hydrate the canonical account only after the source-account wipe and id swap.
+    await restoreAndMigrateFromCloudResult(false).catch(() => failedCloudRestoreAttempt('transport_unavailable'));
+  }
+  // The operation which discovered the mismatch must never continue with its
+  // source-generation payload. A later operation will capture the new generation.
+  return { ok: false, stableUid: stableLink.stableUid, adopted };
+}
+
 // ── Синхронизировать прогресс в облако ───────────────────────────────────────
 // Вызывать после важных событий: завершение урока, изменение XP, streak и т.д.
 export function markCloudSyncPending(): void {
@@ -2286,6 +2359,8 @@ async function doSyncToCloud(): Promise<void> {
   const isSyncGenerationCurrent = () => isCurrentAccountGeneration(syncGeneration, uid);
   if (!isSyncGenerationCurrent()) return;
   try {
+    const authoritativeIdentity = await ensureAuthoritativeIdentityForCloudMutation(uid);
+    if (!authoritativeIdentity.ok || authoritativeIdentity.stableUid !== uid || !isSyncGenerationCurrent()) return;
     await resumePendingDailyTasksAllShardsClaims().catch(() => {});
     if (!isSyncGenerationCurrent()) return;
     await resumePendingReportReplyShardClaims().catch(() => {});
@@ -3096,6 +3171,7 @@ export async function restoreFromCloudDetailed(options: CloudRestoreOptions = {}
 }
 
 export const __cloudSyncTestHooks = {
+  adoptAuthoritativeStableIdentity,
   classifyCloudAccessFailure,
   cloudRestoreFailureForStableLink,
   completedCloudRestoreAttempt,
@@ -3187,6 +3263,10 @@ export async function forceSyncToCloud(): Promise<boolean> {
   if (!db) return false;
   const uid = await ensureAnonUser();
   if (!uid) return false;
+  beginInitialAccountGeneration(uid);
+  const forceGeneration = captureAccountGeneration();
+  const isForceGenerationCurrent = () => isCurrentAccountGeneration(forceGeneration, uid);
+  if (!isForceGenerationCurrent()) return false;
   try {
     pendingSync = true;
     if (syncTimer) {
@@ -3202,6 +3282,11 @@ export async function forceSyncToCloud(): Promise<boolean> {
         if (__DEV__) console.warn('[cloud_sync] forceSyncToCloud: inflight sync timeout');
         return false;
       }
+    }
+    const authoritativeIdentity = await ensureAuthoritativeIdentityForCloudMutation(uid);
+    if (!authoritativeIdentity.ok || authoritativeIdentity.stableUid !== uid || !isForceGenerationCurrent()) {
+      pendingSync = false;
+      return false;
     }
     // doSyncToCloud глотает ошибки внутри, так что обернём напрямую без try-catch фасада:
     // повторим логику записи минимально-инвазивно, ловя ошибки явно.
@@ -3230,6 +3315,10 @@ export async function forceSyncToCloud(): Promise<boolean> {
     const createdAtSynced = await AsyncStorage.getItem(CREATED_AT_SYNC_KEY);
     const shouldSendCreatedAt = !createdAtSynced;
     const firebaseAuthUidRow = getAuthUserId();
+    if (!isForceGenerationCurrent()) {
+      pendingSync = false;
+      return false;
+    }
     await withTimeout(
       docRef.set(
         {

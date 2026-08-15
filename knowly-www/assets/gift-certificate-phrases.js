@@ -160,11 +160,52 @@
     ],
   };
 
+  var englishTexts = {
+    monthly: [
+      'A month of English: small habit, big conversations.',
+      'Thirty-one days to make your English more useful.',
+      'A practical gift for travel, work, and everyday life.',
+      'One month. Hundreds of phrases. No boring textbooks.',
+      'Your next clear English phrase starts here.',
+    ],
+    yearly: [
+      'A whole year to make English your superpower.',
+      'Twelve months. One mission: speak with confidence.',
+      'A great journey starts with one clear phrase.',
+      'A year of English: lasting progress, real conversations.',
+      'A full year has been gifted. Use it for great conversations.',
+    ],
+    lifetime: [
+      'English for life. Big plans deserve it.',
+      'Lifetime access: keep growing your English at your pace.',
+      'One code, a lifetime of useful phrases.',
+      'A gift with no expiry date and plenty of conversations ahead.',
+      'Your path to confident English no longer needs a calendar.',
+    ],
+  };
+
+  function isEnglishLocale() {
+    try {
+      var query = new URLSearchParams(window.location.search).get('lang');
+      if (query === 'en') return true;
+      if (query === 'ru') return false;
+      var stored = window.localStorage.getItem('knowly_site_locale_v1');
+      if (stored === 'en') return true;
+      if (stored === 'ru') return false;
+      return !(window.navigator.languages || [window.navigator.language]).some(function (value) {
+        return String(value).toLowerCase().indexOf('ru') === 0;
+      });
+    } catch (_) {
+      return true;
+    }
+  }
+
   function entriesFor(plan, items) {
+    var english = englishTexts[plan] || [];
     return Object.freeze(items.map(function (text, index) {
       return Object.freeze({
         id: plan + '-' + String(index + 1).padStart(2, '0'),
-        text: text,
+        text: isEnglishLocale() && english.length ? english[index % english.length] : text,
       });
     }));
   }

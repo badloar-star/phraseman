@@ -1,0 +1,603 @@
+ENGLISH - 300
+Hello
+Hi
+Goodbye
+Bye
+See you
+Please
+Thank you
+Thanks
+Sorry
+Excuse me
+Yes
+No
+Okay
+Maybe
+I do not know
+What?
+Who?
+Where?
+When?
+Why?
+I
+You
+He
+She
+We
+They
+It
+My
+Your
+His
+My name is...
+What is your name?
+I am Anna.
+Nice to meet you.
+This is my friend.
+Mother
+Father
+Brother
+Sister
+Family
+Friend
+Man
+Woman
+Boy
+Girl
+Book
+Pen
+Phone
+Bag
+Key
+House
+Room
+Door
+Window
+Table
+Chair
+Bed
+Kitchen
+Bathroom
+Light
+Red
+Blue
+Green
+Black
+White
+Yellow
+Brown
+Orange
+Pink
+Gray
+One
+Two
+Three
+Four
+Five
+Six
+Seven
+Eight
+Nine
+Ten
+Big
+Small
+New
+Old
+Good
+Bad
+Hot
+Cold
+Easy
+Difficult
+Go
+Come
+Sit
+Stand
+Stop
+Look
+Listen
+Speak
+Read
+Write
+Eat
+Drink
+Sleep
+Walk
+Run
+Open
+Close
+Give
+Take
+Help
+Come here.
+Go there.
+Sit down.
+Stand up.
+Stop here.
+Look at me.
+Listen to me.
+Read this.
+Write it.
+Help me.
+Water
+Tea
+Coffee
+Milk
+Juice
+Bread
+Cheese
+Egg
+Apple
+Banana
+I want to eat.
+I want to drink.
+I want water.
+I like tea.
+No sugar.
+Please sit.
+Here is your tea.
+I want coffee.
+One more, please.
+The bill, please.
+Day
+Night
+Morning
+Evening
+Today
+Tomorrow
+Yesterday
+Now
+Later
+Early
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+Sunday
+Week
+Month
+Year
+Sun
+Rain
+Snow
+Wind
+Cloud
+It is sunny.
+It is raining.
+It is snowing.
+It is windy.
+It is cold today.
+Shirt
+T-shirt
+Dress
+Shoe
+Hat
+Coat
+Jacket
+Socks
+Jeans
+Skirt
+Head
+Hand
+Leg
+Eye
+Mouth
+Nose
+Ear
+Hair
+Face
+Body
+Happy
+Sad
+Tired
+Angry
+Afraid
+A smile
+Laugh
+Cry
+To love
+To hate
+Cat
+Dog
+Bird
+Fish
+Animal
+School
+Shop
+Park
+Street
+Station
+Hospital
+Bank
+Cafe
+Hotel
+Airport
+On the left
+On the right
+Straight ahead
+Here
+There
+Turn left.
+Turn right.
+Go straight.
+Where is it?
+Where am I?
+Bus
+Train
+Car
+Taxi
+Bike
+Ticket
+Bus stop
+Map
+Road
+Plane
+I am at home.
+Open the door.
+Close the window.
+The room is small.
+The light is on.
+Do you speak English?
+I speak a little English.
+Please speak slowly.
+Say it again.
+What does it mean?
+I understand.
+I do not understand.
+Can you help?
+Yes, I can.
+No, I cannot.
+How much is it?
+It is cheap.
+It is expensive.
+I want this.
+I do not want this.
+Money
+Cash
+Card
+Price
+Your change
+Toilet
+Water, please.
+I need help.
+Call a doctor.
+I feel bad.
+Doctor
+Medicine
+Pain
+It hurts.
+Call
+This
+That
+These
+Those
+All
+One more time
+Very
+A little
+Much
+Only
+Message
+Email
+Name
+Address
+Phone number
+My phone is here.
+This is my bag.
+Where is my key?
+I have a question.
+I need a pen.
+Good morning.
+Good afternoon.
+Good evening.
+Good night.
+Have a nice day.
+See you tomorrow.
+Take care.
+Welcome.
+Good luck.
+Let's go.
+
+RUSSIAN - 300
+Привет
+Привет
+До свидания
+Пока
+До встречи
+Пожалуйста
+Спасибо
+Спасибо
+Извини
+Извините
+Да
+Нет
+Хорошо
+Может быть
+Я не знаю
+Что?
+Кто?
+Где?
+Когда?
+Почему?
+Я
+Ты
+Он
+Она
+Мы
+Они
+Это
+Мой
+Твой
+Его
+Меня зовут...
+Как тебя зовут?
+Я Анна.
+Приятно познакомиться.
+Это мой друг.
+Мама
+Папа
+Брат
+Сестра
+Семья
+Друг
+Мужчина
+Женщина
+Мальчик
+Девочка
+Книга
+Ручка
+Телефон
+Сумка
+Ключ
+Дом
+Комната
+Дверь
+Окно
+Стол
+Стул
+Кровать
+Кухня
+Ванная
+Свет
+Красный
+Синий
+Зелёный
+Чёрный
+Белый
+Жёлтый
+Коричневый
+Оранжевый
+Розовый
+Серый
+Один
+Два
+Три
+Четыре
+Пять
+Шесть
+Семь
+Восемь
+Девять
+Десять
+Большой
+Маленький
+Новый
+Старый
+Хороший
+Плохой
+Горячий
+Холодный
+Лёгкий
+Сложный
+Идти
+Приходить
+Сидеть
+Стоять
+Останавливаться
+Смотреть
+Слушать
+Говорить
+Читать
+Писать
+Есть
+Пить
+Спать
+Ходить пешком
+Бегать
+Открывать
+Закрывать
+Давать
+Брать
+Помогать
+Иди сюда.
+Иди туда.
+Садись.
+Вставай.
+Остановись здесь.
+Смотри на меня.
+Слушай меня.
+Прочитай это.
+Напиши это.
+Помоги мне.
+Вода
+Чай
+Кофе
+Молоко
+Сок
+Хлеб
+Сыр
+Яйцо
+Яблоко
+Банан
+Я хочу есть.
+Я хочу пить.
+Я хочу воды.
+Мне нравится чай.
+Без сахара.
+Садитесь, пожалуйста.
+Вот ваш чай.
+Я хочу кофе.
+Ещё один, пожалуйста.
+Счёт, пожалуйста.
+День
+Ночь
+Утро
+Вечер
+Сегодня
+Завтра
+Вчера
+Сейчас
+Позже
+Рано
+Понедельник
+Вторник
+Среда
+Четверг
+Пятница
+Суббота
+Воскресенье
+Неделя
+Месяц
+Год
+Солнце
+Дождь
+Снег
+Ветер
+Облако
+Солнечно.
+Идёт дождь.
+Идёт снег.
+Ветрено.
+Сегодня холодно.
+Рубашка
+Футболка
+Платье
+Ботинок
+Шляпа
+Пальто
+Куртка
+Носки
+Джинсы
+Юбка
+Голова
+Рука
+Нога
+Глаз
+Рот
+Нос
+Ухо
+Волосы
+Лицо
+Тело
+Счастливый
+Грустный
+Уставший
+Злой
+Испуганный
+Улыбка
+Смеяться
+Плакать
+Любить
+Ненавидеть
+Кошка
+Собака
+Птица
+Рыба
+Животное
+Школа
+Магазин
+Парк
+Улица
+Станция
+Больница
+Банк
+Кафе
+Отель
+Аэропорт
+Слева
+Справа
+Прямо
+Здесь
+Там
+Поверните налево.
+Поверните направо.
+Идите прямо.
+Где это?
+Где я?
+Автобус
+Поезд
+Машина
+Такси
+Велосипед
+Билет
+Автобусная остановка
+Карта
+Дорога
+Самолёт
+Я дома.
+Открой дверь.
+Закрой окно.
+Комната маленькая.
+Свет включён.
+Ты говоришь по-английски?
+Я немного говорю по-английски.
+Пожалуйста, говорите медленно.
+Скажите это ещё раз.
+Что это значит?
+Я понимаю.
+Я не понимаю.
+Ты можешь помочь?
+Да, я могу.
+Нет, я не могу.
+Сколько это стоит?
+Это дёшево.
+Это дорого.
+Я хочу это.
+Я не хочу этого.
+Деньги
+Наличные
+Карта
+Цена
+Ваша сдача
+Туалет
+Воды, пожалуйста.
+Мне нужна помощь.
+Вызовите врача.
+Мне плохо.
+Врач
+Лекарство
+Боль
+Болит.
+Звонить
+Это
+То
+Эти
+Те
+Всё
+Ещё раз
+Очень
+Немного
+Много
+Только
+Сообщение
+Электронное письмо
+Имя
+Адрес
+Номер телефона
+Мой телефон здесь.
+Это моя сумка.
+Где мой ключ?
+У меня есть вопрос.
+Мне нужна ручка.
+Доброе утро.
+Добрый день.
+Добрый вечер.
+Спокойной ночи.
+Хорошего дня.
+До завтра.
+Береги себя.
+Добро пожаловать.
+Удачи.
+Пойдём.

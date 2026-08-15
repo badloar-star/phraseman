@@ -1,0 +1,300 @@
+Hallo
+Hi
+Auf Wiedersehen
+Tschüss
+Bis bald
+Bitte
+Danke
+Danke
+Entschuldige.
+Entschuldigen Sie.
+Ja
+Nein
+Okay
+Vielleicht
+Ich weiß nicht.
+Was?
+Wer?
+Wo?
+Wann?
+Warum?
+ich
+du
+er
+sie
+wir
+sie
+es
+mein
+dein
+sein
+Ich heiße ...
+Wie heißt du?
+Ich bin Anna.
+Schön, dich kennenzulernen.
+Das ist mein Freund.
+Mutter
+Vater
+Bruder
+Schwester
+Familie
+Freund
+Mann
+Frau
+Junge
+Mädchen
+Buch
+Stift
+Telefon
+Tasche
+Schlüssel
+Haus
+Zimmer
+Tür
+Fenster
+Tisch
+Stuhl
+Bett
+Küche
+Badezimmer
+Licht
+rot
+blau
+grün
+schwarz
+weiß
+gelb
+braun
+orange
+rosa
+grau
+eins
+zwei
+drei
+vier
+fünf
+sechs
+sieben
+acht
+neun
+zehn
+groß
+klein
+neu
+alt
+gut
+schlecht
+heiß
+kalt
+einfach
+schwierig
+gehen
+kommen
+sitzen
+stehen
+anhalten
+schauen
+zuhören
+sprechen
+lesen
+schreiben
+essen
+trinken
+schlafen
+spazieren gehen
+rennen
+öffnen
+schließen
+geben
+nehmen
+helfen
+Komm her.
+Geh dorthin.
+Setz dich hin.
+Steh auf.
+Halt hier.
+Schau mich an.
+Hör mir zu.
+Lies das.
+Schreib es.
+Hilf mir.
+Wasser
+Tee
+Kaffee
+Milch
+Saft
+Brot
+Käse
+Ei
+Apfel
+Banane
+Ich will essen.
+Ich will trinken.
+Ich möchte Wasser.
+Ich mag Tee.
+Kein Zucker.
+Bitte setz dich.
+Hier ist dein Tee.
+Ich möchte Kaffee.
+Noch eins, bitte.
+Die Rechnung, bitte.
+Tag
+Nacht
+Morgen
+Abend
+heute
+morgen
+gestern
+jetzt
+später
+früh
+Montag
+Dienstag
+Mittwoch
+Donnerstag
+Freitag
+Samstag
+Sonntag
+Woche
+Monat
+Jahr
+Sonne
+Regen
+Schnee
+Wind
+Wolke
+Es ist sonnig.
+Es regnet.
+Es schneit.
+Es ist windig.
+Heute ist es kalt.
+Hemd
+T-Shirt
+Kleid
+Schuh
+Hut
+Mantel
+Jacke
+Socken
+Jeans
+Rock
+Kopf
+Hand
+Bein
+Auge
+Mund
+Nase
+Ohr
+Haare
+Gesicht
+Körper
+glücklich
+traurig
+müde
+wütend
+ängstlich
+ein Lächeln
+lachen
+weinen
+lieben
+hassen
+Katze
+Hund
+Vogel
+Fisch
+Tier
+Schule
+Geschäft
+Park
+Straße
+Bahnhof
+Krankenhaus
+Bank
+Café
+Hotel
+Flughafen
+links
+rechts
+geradeaus
+hier
+dort
+Bieg links ab.
+Bieg rechts ab.
+Geh geradeaus.
+Wo ist es?
+Wo bin ich?
+Bus
+Zug
+Auto
+Taxi
+Fahrrad
+Fahrkarte
+Bushaltestelle
+Karte
+Straße
+Flugzeug
+Ich bin zu Hause.
+Öffne die Tür.
+Schließ das Fenster.
+Das Zimmer ist klein.
+Das Licht ist an.
+Sprichst du Englisch?
+Ich spreche ein wenig Englisch.
+Bitte sprich langsam.
+Sag das noch einmal.
+Was bedeutet das?
+Ich verstehe.
+Ich verstehe nicht.
+Kannst du mir helfen?
+Ja, das kann ich.
+Nein, das kann ich nicht.
+Wie viel kostet das?
+Es ist billig.
+Es ist teuer.
+Ich möchte das.
+Ich möchte das nicht.
+Geld
+Bargeld
+Karte
+Preis
+Dein Wechselgeld
+Toilette
+Wasser, bitte.
+Ich brauche Hilfe.
+Ruf einen Arzt.
+Mir geht es schlecht.
+Arzt
+Medizin
+Schmerz
+Es tut weh.
+anrufen
+dies
+das
+diese
+jene
+alle
+noch einmal
+sehr
+ein wenig
+viel
+nur
+Nachricht
+E-Mail
+Name
+Adresse
+Telefonnummer
+Mein Telefon ist hier.
+Das ist meine Tasche.
+Wo ist mein Schlüssel?
+Ich habe eine Frage.
+Ich brauche einen Stift.
+Guten Morgen.
+Guten Tag.
+Guten Abend.
+Gute Nacht.
+Einen schönen Tag noch.
+Bis morgen.
+Pass auf dich auf.
+Willkommen.
+Viel Glück.
+Los geht's.

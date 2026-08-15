@@ -17,8 +17,10 @@ const root = path.resolve(__dirname, '..');
 const surface = path.join(root, 'knowly-www', 'english-level-test');
 
 function loadI18n(): I18nApi {
-  const sandbox: { EnglishTestI18n?: I18nApi } = {};
+  const sandbox: { EnglishTestI18n?: I18nApi; URLSearchParams: typeof URLSearchParams } = { URLSearchParams };
+  const extraLocales = path.join(surface, 'i18n.locales.js');
   const file = path.join(surface, 'i18n.js');
+  vm.runInNewContext(fs.readFileSync(extraLocales, 'utf8'), sandbox, { filename: extraLocales });
   vm.runInNewContext(fs.readFileSync(file, 'utf8'), sandbox, { filename: file });
   if (!sandbox.EnglishTestI18n) throw new Error('EnglishTestI18n was not exported');
   return sandbox.EnglishTestI18n;
@@ -32,22 +34,25 @@ function leafKeys(tree: TranslationTree, prefix = ''): string[] {
 describe('English assessment localization contract', () => {
   const i18n = loadI18n();
 
-  test('ships complete Russian and English interface dictionaries only', () => {
-    expect(Array.from(i18n.UI_LOCALES)).toEqual(['ru', 'en']);
+  test('ships complete dictionaries for all released interface locales', () => {
+    expect(Array.from(i18n.UI_LOCALES)).toEqual(['ru', 'en', 'de', 'es', 'it', 'fr']);
     const englishKeys = leafKeys(i18n.DICTIONARY.en).sort();
     expect(englishKeys.length).toBeGreaterThan(150);
-    expect(leafKeys(i18n.DICTIONARY.ru).sort()).toEqual(englishKeys);
-    expect(Object.keys(i18n.DICTIONARY).sort()).toEqual(['en', 'ru']);
+    for (const locale of i18n.UI_LOCALES) expect(leafKeys(i18n.DICTIONARY[locale]).sort()).toEqual(englishKeys);
+    expect(Object.keys(i18n.DICTIONARY).sort()).toEqual(['de', 'en', 'es', 'fr', 'it', 'ru']);
   });
 
-  test('publishes only the English assessment and rejects stale language links', () => {
-    expect(Array.from(i18n.TEST_LANGUAGES)).toEqual(['en']);
-    expect(Object.keys(i18n.TESTS)).toEqual(['en']);
-    expect(i18n.resolveTestLanguage('?test=fr')).toBe('en');
+  test('publishes every released assessment and rejects unsupported language links', () => {
+    expect(Array.from(i18n.TEST_LANGUAGES)).toEqual(['en', 'de', 'fr', 'it', 'es']);
+    expect(Object.keys(i18n.TESTS)).toEqual(['en', 'de', 'fr', 'it', 'es']);
+    expect(i18n.resolveTestLanguage('?test=fr')).toBe('fr');
     expect(i18n.resolveTestLanguage('?test=en')).toBe('en');
+    expect(i18n.resolveTestLanguage('?test=pl')).toBe('en');
   });
 
   test('uses RU/EN browser locale resolution with an English fallback', () => {
+    expect(i18n.resolveUiLocale({ search: '?lang=ru&ui=en', stored: null, navigatorLanguage: 'en-US' })).toBe('ru');
+    expect(i18n.resolveUiLocale({ search: '?lang=en&ui=ru', stored: null, navigatorLanguage: 'ru-RU' })).toBe('en');
     expect(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'ru-RU' })).toBe('ru');
     expect(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'en-GB' })).toBe('en');
     expect(i18n.resolveUiLocale({ search: '', stored: null, navigatorLanguage: 'de-DE' })).toBe('en');

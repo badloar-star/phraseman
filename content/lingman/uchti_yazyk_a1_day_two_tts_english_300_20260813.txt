@@ -1,0 +1,300 @@
+How are you?
+I'm fine, thanks.
+And you?
+What's new?
+Not much.
+I'm busy.
+I have time.
+I'm ready.
+I'm late.
+I'm early.
+Please wait.
+Wait a minute.
+Just a moment.
+No problem.
+That's fine.
+That's okay.
+Never mind.
+Of course.
+Really?
+I think so.
+I don't think so.
+I agree.
+I don't agree.
+You're right.
+I'm not sure.
+It depends.
+Sounds good.
+Great idea.
+That's interesting.
+I like it.
+I don't like it.
+Me too.
+Not me.
+I need time.
+I'm coming.
+I'm leaving.
+I'm back.
+I'm here.
+Are you there?
+See you soon.
+What happened?
+Are you okay?
+I'm okay.
+Don't worry.
+Be careful.
+Take your time.
+Hurry up.
+Slow down.
+Come with me.
+Stay here.
+Follow me.
+Let's start.
+Let's try.
+Try again.
+Keep going.
+Don't stop.
+It's my turn.
+Your turn.
+Let's check.
+Let's see.
+I have work.
+I'm at work.
+I'm on break.
+I'm tired today.
+I'm hungry.
+I'm thirsty.
+I'm sleepy.
+I'm sick.
+I feel better.
+I feel good.
+I feel cold.
+I feel warm.
+I'm bored.
+I'm excited.
+I'm nervous.
+I'm surprised.
+I'm worried.
+I'm proud.
+I'm lucky.
+I'm okay now.
+Where do you live?
+I live nearby.
+I live alone.
+I live with family.
+I have a job.
+I study here.
+I work here.
+I work from home.
+I'm a student.
+I'm a teacher.
+I'm a beginner.
+I speak slowly.
+I understand English.
+I learn every day.
+I practice at home.
+I use an app.
+I watch videos.
+I read books.
+I write notes.
+I ask questions.
+Can I ask?
+Can you repeat that?
+Can you show me?
+Can you explain?
+Can you help me?
+Please help me.
+I need practice.
+I need a break.
+I need more time.
+I have an idea.
+What is this called?
+How do you say it?
+How do you spell it?
+Can you write it?
+Can you read it?
+Is that correct?
+Is this right?
+What should I say?
+Please correct me.
+I made a mistake.
+I don't remember.
+I remember now.
+I forgot.
+I know this word.
+I need this word.
+What is the answer?
+That's the answer.
+Which one?
+This one.
+That one.
+Can I pay?
+I want to pay.
+Do you take cards?
+Can I use cash?
+Keep the change.
+Here you are.
+Here is my card.
+I need a receipt.
+Is tax included?
+Is service included?
+The menu, please.
+A table for two.
+Is this seat free?
+Can I sit here?
+I have a reservation.
+My order, please.
+I'd like to have breakfast.
+I'd like to have lunch.
+I'd like to have dinner.
+I'd like a coffee.
+Still water, please.
+Sparkling water, please.
+No ice, please.
+No meat, please.
+No cheese, please.
+I'm vegetarian.
+Is it spicy?
+Not too spicy.
+It tastes good.
+I'm full.
+Where is the station?
+Where is the bus stop?
+Where is the airport?
+Where is the hotel?
+Where is the toilet?
+Is it far?
+Is it near?
+How can I get there?
+Which bus?
+Which train?
+What time is it?
+What time does it leave?
+What time does it arrive?
+When is the next bus?
+I need a ticket.
+One ticket, please.
+A return ticket, please.
+To the city center, please.
+Which platform?
+Is this my train?
+Does this bus stop here?
+Please stop here.
+I missed the bus.
+The train is late.
+The flight is delayed.
+I need a taxi.
+Please call a taxi.
+Can you take me there?
+How long does it take?
+I am lost.
+I need a room.
+I have a booking.
+One night, please.
+Two nights, please.
+What is the wifi password?
+Does it have wifi?
+The key, please.
+My room number?
+Is breakfast included?
+I want to check out.
+I need to buy this.
+I'm just looking.
+Can I try it on?
+Do you have this size?
+Do you have another color?
+It's too big.
+It's too small.
+It's too expensive.
+Is there a discount?
+I'll take it.
+I'm looking for...
+Do you sell batteries?
+I need a charger.
+My phone is dead.
+My battery is low.
+I have no signal.
+Can I use your phone?
+I need the internet.
+Send me a message.
+Call me later.
+What's your number?
+Here is my number.
+Please text me.
+I got your message.
+Check your email.
+I sent an email.
+Please send the address.
+I can't hear you.
+I can hear you now.
+The connection is bad.
+I need a doctor.
+I need a pharmacy.
+Is there a pharmacy nearby?
+I have a headache.
+I have a fever.
+I have a cough.
+I have an allergy.
+I need medicine.
+I need an ambulance.
+It's an emergency.
+Are you hurt?
+My leg hurts.
+My head hurts.
+I need to rest.
+I feel dizzy.
+I need water.
+Please stay with me.
+Call the police.
+I lost my wallet.
+My bag is missing.
+I lost my passport.
+I need help now.
+Can you speak slowly?
+Can you say that again?
+I didn't catch that.
+What do you mean?
+I mean this.
+That's not what I mean.
+Let me think.
+Give me a second.
+I have a plan.
+Let's do it.
+Let's go together.
+Maybe later.
+Not today.
+Maybe tomorrow.
+I'm not ready yet.
+I'm almost ready.
+I'm on my way.
+I'm waiting outside.
+Meet me there.
+Meet me at six.
+See you later.
+Have fun.
+Enjoy your meal.
+Good to know.
+That's useful.
+That's enough.
+One more question.
+I have good news.
+I have bad news.
+Congratulations!
+Happy birthday!
+Thank you very much.
+You're welcome.
+Excuse us.
+Please come in.
+Please go ahead.
+After you.
+Be my guest.
+It is raining outside.
+The weather is nice.
+It's very hot.
+It's very cold.
+It is cloudy.
+It's windy outside.
+I love this place.
+This is beautiful.
+Have a safe trip.
+See you next time.

@@ -76,3 +76,18 @@ test('cleanup and a newer event invalidate an older activation guard', async () 
   disposed = true;
   await expect(readPremiumActivationDisposition(cleanupGuard, false)).resolves.toBe('stale');
 });
+
+test('store activation ignores and clears a legacy tester_no_premium flag', async () => {
+  (AsyncStorage.multiGet as jest.Mock).mockResolvedValue([
+    ['tester_no_premium', 'true'],
+    ['tester_no_limits', null],
+  ]);
+  const {
+    capturePremiumActivationEventGuard,
+    readPremiumActivationDisposition,
+  } = await import('../app/premium_activation_event_guard');
+  const guard = capturePremiumActivationEventGuard(1, () => 1, () => false);
+
+  await expect(readPremiumActivationDisposition(guard, true)).resolves.toBe('activate');
+  expect(AsyncStorage.removeItem).toHaveBeenCalledWith('tester_no_premium');
+});

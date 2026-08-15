@@ -36,6 +36,11 @@ import { isFeatureGrantedByWeeklyBoon } from '../app/boons/boon_feature_grants';
 import { getAppSnapshot } from '../app/app_snapshot_store';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
 import {
+  applyPremiumHydrationSignal,
+  subscribePremiumHydrationSignals,
+} from '../app/premium_hydration_signals';
+import { resolveTesterNoPremiumOverride } from '../app/tester_premium_override';
+import {
   projectDevLocalPlusOverride,
   readDevLocalPlusOverride,
   type DevLocalPlusOverride,
@@ -290,7 +295,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       .catch(() => [] as [string, string | null][]);
     if (!isReloadCurrent()) return;
     const testerValues = Object.fromEntries(testerEntries);
-    const noPremiumTester = testerValues.tester_no_premium === 'true';
+    const noPremiumTester = resolveTesterNoPremiumOverride(testerValues.tester_no_premium);
     const noLimitsRaw = testerValues.tester_no_limits;
     const testerNoLimits = !noPremiumTester && noLimitsRaw === 'true' && !IS_STORE_RELEASE;
     const introState = noPremiumTester
@@ -343,6 +348,44 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setAccessResolved(true);
     }
   }, [runReload]);
+
+  useEffect(() => {
+    const subscription = subscribePremiumHydrationSignals((signal) => {
+      applyPremiumHydrationSignal(signal, {
+        invalidateStartup: () => {
+          invalidatePremiumCache();
+          resolvedReloadEpochRef.current = null;
+          reloadRunnerRef.current = null;
+          cloudRefreshRunnerRef.current = null;
+          setAccessResolved(false);
+        },
+        resetForAccountTransition: () => {
+          premiumAccountTransitionActiveRef.current = false;
+          resetPremiumUiForAccountTransition();
+        },
+        invalidateForSnapshot: () => {
+          // Storage hydration can arrive after an early false reload. A new
+          // epoch prevents that stale result from resolving access afterward.
+          premiumReloadEpochRef.current += 1;
+          resolvedReloadEpochRef.current = null;
+          reloadRunnerRef.current = null;
+          cloudRefreshRunnerRef.current = null;
+          invalidatePremiumCache();
+          setAccessResolved(false);
+        },
+        restartListener: () => setPremiumListenerRevision((revision) => revision + 1),
+        reload: () => {
+          void (async () => {
+            if (signal.initial && await forcePremiumActive()) {
+              await AsyncStorage.setItem('premium_active', 'true').catch(() => {});
+            }
+            await reload();
+          })();
+        },
+      });
+    });
+    return () => subscription.remove();
+  }, [reload, resetPremiumUiForAccountTransition]);
 
   useEffect(() => {
     const sub = onAppEvent('dev_local_plus_override_changed', ({ stableId, mode }) => {
@@ -419,19 +462,6 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     });
     return () => sub.remove();
   }, [reloadAfterCloudRefresh, resetPremiumUiForAccountTransition]);
-
-  // Load on mount. При активном dev-FORCE_PREMIUM подтягиваем premium_active,
-  // но НЕ затираем tester_no_premium — иначе кнопка «Снять премиум» в dev
-  // бесполезна (флаг сбрасывался на каждом маунте). forcePremiumActive()
-  // сам уважает tester_no_premium, поэтому при снятом премиуме ничего не пишем.
-  useEffect(() => {
-    void (async () => {
-      if (await forcePremiumActive()) {
-        await AsyncStorage.setItem('premium_active', 'true').catch(() => {});
-      }
-      await reload();
-    })();
-  }, [reload]);
 
   // Live VIP grants/revokes from admin/index.html write users/{uid}.progress.
   // Without this, a user who keeps the app open can stay locked until a later cloud restore.
@@ -701,7 +731,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       activationEventEpoch += 1;
       sub.remove();
     };
-  }, [reload]);
+  }, [isVip, reload]);
 
   // VIP can be activated from the in-app admin panel before the Firestore
   // listener/reload loop has delivered the new local state.

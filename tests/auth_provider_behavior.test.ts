@@ -939,31 +939,29 @@ test('Apple uses the same premium transition boundary when it swaps to a returni
   expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
 });
 
-test('an enqueue failure is logged in the background without blocking local account exit', async () => {
+test('an enqueue rejection keeps a linked deletion quarantined for a later retry', async () => {
   authState.isAnonymous = false;
   enqueueCloudDeletion.mockRejectedValueOnce(new Error('offline'));
   const authProvider = loadAuthProvider();
 
-  const result = await authProvider.deleteAccountAndWipe();
-  await Promise.resolve();
+  const handoff = await authProvider.beginAccountDeletion();
+  expect(handoff.ok).toBe(true);
+  if (!handoff.ok) throw new Error(handoff.reason);
+  const result = await handoff.completion;
 
-  expect(result).toEqual({ ok: true, cloudDeleted: false });
-  expect(authState.calls).toContain('signout');
+  expect(result).toEqual({ ok: false, reason: 'account_delete_enqueue_failed' });
+  expect(authState.calls).not.toContain('signout');
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
-  expect(clearStableId).toHaveBeenCalledTimes(1);
-  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1')).toContain('provider-uid-1');
+  expect(clearStableId).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"prepared"');
   expect(logEvent.mock.calls.some(([name]) => name === 'auth_account_delete_enqueue_failed')).toBe(true);
 });
 
-// зачем: РАНЬШЕ этот тест закреплял обратное — при недоступном SecureStore
-// удаление отменялось с 'pending_guard_persist_failed'. На боевом устройстве
-// владельца (2026-07-27) это и происходило: Keychain не отвечал, через полчаса
-// вылезал алерт «Не удалось безопасно подготовить удаление», аккаунт оставался,
-// на онбординг пользователь не попадал. Владелец потребовал обратного: удаление
-// обязано пройти всегда, в том числе у анонима, локальные данные стираются сразу.
-// Замок теперь best-effort: он блокирует повторный вход по почте/Apple ID, но
-// НЕ имеет права отменять удаление — без него блокировать попросту нечего.
-test('account deletion still wipes locally and succeeds when the durable guard cannot be saved', async () => {
+// A linked account must retain a durable local quarantine before any wipe.
+// Anonymous deletion remains fail-open because it has no provider identity that
+// could immediately re-bind the deleted stable account.
+test('linked account deletion fails before wiping when the durable guard cannot be saved', async () => {
   authState.isAnonymous = false;
   const storage = require('@react-native-async-storage/async-storage');
   const secureStore = require('expo-secure-store');
@@ -975,9 +973,10 @@ test('account deletion still wipes locally and succeeds when the durable guard c
 
   const result = await authProvider.deleteAccountAndWipe();
 
-  expect(result.ok).toBe(true);
-  // Локальные данные снесены несмотря на недоступный замок.
-  expect(wipeLocalAccountData).toHaveBeenCalled();
+  expect(result).toEqual({ ok: false, reason: 'pending_guard_persist_failed' });
+  // No local identity state changes before the required quarantine exists.
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
 });
 
 test('cold restart pending guard blocks before native sign-in, stable id, or auth callables', async () => {
@@ -1322,7 +1321,7 @@ test('pending-delete recovery does not rebind or rotate identity after Firebase 
   expect(clearStableId).not.toHaveBeenCalled();
 });
 
-test('account deletion waits for authenticated dispatch but not the server acknowledgement', async () => {
+test('UI handoff is fast but linked background deletion waits for server acknowledgement', async () => {
   authState.isAnonymous = false;
   let resolveDispatch!: () => void;
   let resolveAcknowledgement!: (value: { ok: true; jobId: string; status: 'queued'; created: true }) => void;
@@ -1333,25 +1332,92 @@ test('account deletion waits for authenticated dispatch but not the server ackno
   startCloudDeletionEnqueue.mockReturnValueOnce({ dispatchSettled, acknowledgment });
   const authProvider = loadAuthProvider();
 
-  const deletion = authProvider.deleteAccountAndWipe();
-  await Promise.resolve();
-  await Promise.resolve();
+  const handoff = await authProvider.beginAccountDeletion();
+  expect(handoff.ok).toBe(true);
+  if (!handoff.ok) throw new Error(handoff.reason);
   expect(authState.calls).not.toContain('signout');
 
   resolveDispatch();
   const result = await Promise.race([
-    deletion,
+    handoff.completion,
     new Promise<'blocked'>((resolve) => setTimeout(() => resolve('blocked'), 100)),
   ]);
 
   expect(startCloudDeletionEnqueue).toHaveBeenCalledWith('local-stable-id');
-  expect(result).toEqual({ ok: true, cloudDeleted: false });
-  expect(authState.calls).toContain('signout');
+  expect(result).toBe('blocked');
+  expect(authState.calls).not.toContain('signout');
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
   expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
 
   resolveAcknowledgement({ ok: true, jobId: 'job-1', status: 'queued', created: true });
-  await Promise.resolve();
+  await expect(handoff.completion).resolves.toEqual({ ok: true, cloudDeleted: false });
+  expect(authState.calls).toContain('signout');
+});
+
+test('cold restart retries a local_cleared linked deletion before allowing recovery', async () => {
+  authState.isAnonymous = false;
+  const now = Date.now();
+  const authProvider = loadAuthProvider({
+    account_delete_pending_auth_v1: JSON.stringify({
+      providerUid: 'provider-uid-1',
+      stableId: 'deleted-stable-id',
+      source: 'local',
+      phase: 'local_cleared',
+      createdAt: now - 1_000,
+      expiresAt: now + 60_000,
+    }),
+  });
+
+  await expect(authProvider.resumePendingAccountDeleteLocalExit()).resolves.toBe(true);
+
+  expect(startCloudDeletionEnqueue).toHaveBeenCalledWith('deleted-stable-id');
+  expect(enqueueCloudDeletion).toHaveBeenCalledWith('deleted-stable-id');
+  expect(authState.calls).toContain('signout');
+});
+
+test('cold restart keeps a local_cleared linked deletion retryable when enqueue is offline', async () => {
+  authState.isAnonymous = false;
+  enqueueCloudDeletion.mockRejectedValueOnce(new Error('offline'));
+  const now = Date.now();
+  const authProvider = loadAuthProvider({
+    account_delete_pending_auth_v1: JSON.stringify({
+      providerUid: 'provider-uid-1',
+      stableId: 'deleted-stable-id',
+      source: 'local',
+      phase: 'local_cleared',
+      createdAt: now - 1_000,
+      expiresAt: now + 60_000,
+    }),
+  });
+
+  await expect(authProvider.resumePendingAccountDeleteLocalExit()).resolves.toBe(false);
+
+  expect(startCloudDeletionEnqueue).toHaveBeenCalledWith('deleted-stable-id');
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"local_cleared"');
+});
+
+test('cold restart completes server_enqueued deletion without enqueueing or signing out fresh anon', async () => {
+  authState.isAnonymous = true;
+  const now = Date.now();
+  const authProvider = loadAuthProvider({
+    account_delete_pending_auth_v1: JSON.stringify({
+      providerUid: 'provider-uid-1',
+      stableId: 'deleted-stable-id',
+      source: 'local',
+      phase: 'server_enqueued',
+      createdAt: now - 1_000,
+      expiresAt: now + 60_000,
+    }),
+  });
+
+  await expect(authProvider.resumePendingAccountDeleteLocalExit()).resolves.toBe(true);
+
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(authState.calls).not.toContain('signout');
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"local_cleared"');
 });
 
 test('account switch holds the clean-recovery exclusion until its async work finishes', async () => {
@@ -1374,22 +1440,22 @@ test('account switch holds the clean-recovery exclusion until its async work fin
 
 test('account deletion holds the clean-recovery exclusion until local exit finishes', async () => {
   authState.isAnonymous = false;
-  let resolveDispatch!: () => void;
+  let resolveAcknowledgement!: (value: { ok: true; jobId: string; status: 'queued'; created: true }) => void;
   startCloudDeletionEnqueue.mockReturnValueOnce({
-    dispatchSettled: new Promise<void>(resolve => { resolveDispatch = resolve; }),
-    acknowledgment: new Promise(() => {}),
+    dispatchSettled: Promise.resolve(),
+    acknowledgment: new Promise(resolve => { resolveAcknowledgement = resolve; }),
   });
   const authProvider = loadAuthProvider();
 
   const deleting = authProvider.deleteAccountAndWipe();
   await waitForCall(startCloudDeletionEnqueue, 'startCloudDeletionEnqueue');
   const switching = authProvider.signOutAndWipeForAccountSwitch();
-  resolveDispatch();
 
   await expect(switching).resolves.toEqual({
     ok: false,
     reason: 'clean_recovery_transition_active',
   });
+  resolveAcknowledgement({ ok: true, jobId: 'job-1', status: 'queued', created: true });
   await deleting;
 });
 

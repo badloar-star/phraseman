@@ -31,7 +31,12 @@ export function customerInfoConfirmsProductAccess(
   if (!expected) return false;
 
   const premium = activeRevenueCatPremiumEntitlement(info);
-  return clean(premium?.productIdentifier) === expected;
+  if (premium) return clean(premium.productIdentifier) === expected;
+
+  const activeSubscriptions = Array.isArray(info?.activeSubscriptions)
+    ? info.activeSubscriptions
+    : [];
+  return activeSubscriptions.some((productId) => clean(productId) === expected);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

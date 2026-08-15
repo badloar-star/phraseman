@@ -9899,7 +9899,7 @@
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
   <div class="tab" onclick="switchTab('ideas')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">💡 Идеи</div>
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
-  <div class="tab" onclick="location.href='testers.html'" data-i18n-es="Pagos Telegram">Телеграм оплаты</div>
+  <div class="tab" onclick="switchTab('testers')" title="Покажет Telegram-заказы, состояние кода и безопасную ручную активацию. Все изменения проходят серверную проверку и попадают в журнал аудита." data-i18n-es="Pagos Telegram">Телеграм оплаты</div>
   <div class="tab" onclick="location.href='beta_testers.html'" title="Бета-тестеры: список, выдача ауры «Нимб», Plus навсегда, управление энергией" style="background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.4);color:#7dd3fc;font-weight:700">🔵 Бета тестеры</div>
   <div class="tab" onclick="location.href='full.html'" title="plan_content: server vs bundled, fallback frequency, situations and percents, with dates" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.35);color:#818cf8;font-weight:700">📊 FULL</div>
   <div class="tab" onclick="location.href='site.html'" title="Сайт knowlyapps.com: цены веб-оплаты, заказы Stripe/PayPal, коды активации, воронка /start/" style="background:rgba(232,197,102,0.12);border:1px solid rgba(232,197,102,0.4);color:#e8c566;font-weight:700">🌐 Сайт</div>
@@ -10826,6 +10826,28 @@
       <button id="pg-next" onclick="changePage(1)"  style="background:#2a2a3a;color:#aaa;padding:6px 14px" data-i18n-es="Sig.">Next</button>
       <span style="margin-left:auto;font-size:12px;color:#555" id="pg-total-info"></span>
     </div>
+  </div>
+</div>
+
+<!-- TELEGRAM PREMIUM ORDERS: canonical guarded activation surface -->
+<div id="tab-testers" class="reports-tab" data-admin-category="money">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+    <div>
+      <h2 style="font-size:24px;color:#f3f4f6;margin-bottom:5px">Телеграм оплаты</h2>
+      <p style="font-size:13px;color:#9ca3af;line-height:1.5;max-width:760px">Проверь заказ, код активации и найденные профили. Ручная выдача доступна только администратору с правом денежных ручных выдач и только для оплаченного заказа без кода; сервер сам сверяет платёж, канонический UID и повторный вызов.</p>
+    </div>
+    <button type="button" onclick="loadTelegramPremiumOrders(true)" title="Перечитает последние Telegram-заказы из Firestore. Ничего не изменит и не запустит активацию." style="min-height:44px">Обновить список</button>
+  </div>
+  <div id="telegram-premium-activation-status" role="status" aria-live="polite" style="min-height:22px;margin-bottom:12px;color:#9ca3af;font-size:13px"></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px;align-items:start">
+    <section aria-label="Последние Telegram-заказы" style="border:1px solid #2a2a36;border-radius:8px;background:#14151a;overflow:hidden">
+      <div style="padding:12px 14px;border-bottom:1px solid #2a2a36;font-weight:750;color:#e5e7eb">Последние заказы</div>
+      <div id="telegram-premium-orders-list" style="max-height:68vh;overflow:auto"><div class="reports-empty">Открой раздел, чтобы загрузить заказы.</div></div>
+    </section>
+    <section aria-label="Проверка получателя" style="border:1px solid #2a2a36;border-radius:8px;background:#14151a;overflow:hidden">
+      <div style="padding:12px 14px;border-bottom:1px solid #2a2a36;font-weight:750;color:#e5e7eb">Заказ и профили</div>
+      <div id="telegram-premium-order-detail" style="padding:14px"><div class="reports-empty">Выбери заказ слева. Профили по нику останутся видны для диагностики, но кодовый заказ нельзя выдать другому профилю.</div></div>
+    </section>
   </div>
 </div>
 
@@ -14204,6 +14226,221 @@
     }
     return _fnAdminGrantAccess;
   }
+  let _fnAdminActivateTelegramPremiumOrder = null;
+  function getAdminActivateTelegramPremiumOrderCallable() {
+    if (!_fnAdminActivateTelegramPremiumOrder) {
+      _fnAdminActivateTelegramPremiumOrder = httpsCallable(functionsUs, 'adminActivateTelegramPremiumOrder');
+    }
+    return _fnAdminActivateTelegramPremiumOrder;
+  }
+
+  let _telegramPremiumOrders = [];
+  let _telegramPremiumSelectedOrderId = '';
+
+  function telegramPremiumStatus(message, tone = 'info') {
+    const el = document.getElementById('telegram-premium-activation-status');
+    if (!el) return;
+    el.textContent = message || '';
+    el.style.color = tone === 'error' ? '#fca5a5' : tone === 'success' ? '#86efac' : '#9ca3af';
+  }
+
+  function telegramPremiumManualActivationAllowed(order) {
+    return Boolean(
+      order
+      && order.status === 'paid_pending_manual_activation'
+      && !String(order.activationCode || '').trim()
+      && ['monthly', 'yearly'].includes(String(order.plan || ''))
+      && String(order.telegramPaymentChargeId || '') === String(order.id || ''),
+    );
+  }
+
+  async function canonicalTelegramPremiumUid(uid) {
+    const cleanUid = String(uid || '').trim();
+    if (!cleanUid) return '';
+    const snap = await getDoc(doc(db, 'users', cleanUid));
+    if (!snap.exists()) return '';
+    const data = snap.data() || {};
+    if (data.identityHidden !== true) return cleanUid;
+    const canonicalUid = String(data.canonicalStableId || '').trim();
+    if (!canonicalUid || canonicalUid === cleanUid) return '';
+    const canonical = await getDoc(doc(db, 'users', canonicalUid));
+    return canonical.exists() && canonical.data()?.identityHidden !== true ? canonicalUid : '';
+  }
+
+  async function telegramPremiumCodeState(order) {
+    const activationCode = String(order?.activationCode || '').trim();
+    if (!activationCode) return { kind: 'manual', activationCode: '', redeemedBy: '', canonicalUid: '' };
+    const promoSnap = await getDoc(doc(db, 'promo_codes', activationCode));
+    const promo = promoSnap.exists() ? (promoSnap.data() || {}) : {};
+    const redeemedBy = String(promo.lastRedeemedBy || '').trim();
+    const hasMarker = Boolean(redeemedBy || Number(promo.usedCount || 0) > 0 || Number(promo.lastRedeemedAtMs || 0) > 0);
+    const canonicalUid = redeemedBy ? await canonicalTelegramPremiumUid(redeemedBy).catch(() => '') : '';
+    return {
+      kind: hasMarker ? (canonicalUid ? 'redeemed' : 'redeemed_ambiguous') : 'code_pending',
+      activationCode,
+      redeemedBy,
+      canonicalUid,
+    };
+  }
+
+  function telegramPremiumUserLabel(docSnap) {
+    const data = docSnap.data() || {};
+    const progress = data.progress && typeof data.progress === 'object' ? data.progress : {};
+    return String(progress.user_name || data.user_name || data.displayName || docSnap.id);
+  }
+
+  async function findTelegramPremiumUserCandidates(nickname) {
+    const clean = String(nickname || '').trim();
+    if (!clean) return [];
+    const seen = new Map();
+    const collect = (snap) => snap.docs.forEach((candidate) => seen.set(candidate.id, candidate));
+    collect(await getDocs(query(collection(db, 'users'), where('progress.user_name', '==', clean), limit(20))));
+    collect(await getDocs(query(collection(db, 'users'), where('user_name', '==', clean), limit(20))));
+    if (!seen.size) {
+      const direct = await getDoc(doc(db, 'users', clean));
+      if (direct.exists()) seen.set(direct.id, direct);
+    }
+    return Array.from(seen.values());
+  }
+
+  function renderTelegramPremiumOrders() {
+    const host = document.getElementById('telegram-premium-orders-list');
+    if (!host) return;
+    if (!_telegramPremiumOrders.length) {
+      host.innerHTML = '<div class="reports-empty">Заказов нет.</div>';
+      return;
+    }
+    host.innerHTML = _telegramPremiumOrders.map((order) => {
+      const selected = order.id === _telegramPremiumSelectedOrderId;
+      const period = order.plan === 'yearly' ? 'год' : 'месяц';
+      const codeLabel = order.activationCode ? 'код' : 'без кода';
+      return `<button type="button" data-telegram-premium-order-id="${escapeHtml(order.id)}" title="Откроет платёжные реквизиты, состояние кода и диагностические совпадения профилей. Ничего не изменит." style="display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #272833;border-radius:0;padding:11px 13px;background:${selected ? '#22242d' : 'transparent'};color:#e5e7eb">
+        <span style="display:block;font-weight:750">${escapeHtml(order.appNickname || 'Без ника')}</span>
+        <span style="display:block;margin-top:3px;font-size:11px;color:#9ca3af">${escapeHtml(period)} · ${escapeHtml(codeLabel)} · ${escapeHtml(order.status || 'без статуса')}</span>
+      </button>`;
+    }).join('');
+    host.querySelectorAll('[data-telegram-premium-order-id]').forEach((button) => {
+      button.addEventListener('click', () => void window.openTelegramPremiumOrder(button.getAttribute('data-telegram-premium-order-id') || ''));
+    });
+  }
+
+  function renderTelegramPremiumCandidates(order, codeState, candidates) {
+    const host = document.getElementById('telegram-premium-order-detail');
+    if (!host) return;
+    const manualAllowed = telegramPremiumManualActivationAllowed(order);
+    const codeMessage = codeState.kind === 'redeemed'
+      ? `<div style="border:1px solid #166534;background:#082815;color:#bbf7d0;border-radius:8px;padding:10px;margin:10px 0"><b>Код уже активирован.</b><br>Канонический получатель: <code>${escapeHtml(codeState.canonicalUid)}</code>. Ручная выдача заблокирована.</div>`
+      : codeState.kind === 'redeemed_ambiguous'
+        ? `<div style="border:1px solid #991b1b;background:#301010;color:#fecaca;border-radius:8px;padding:10px;margin:10px 0"><b>У кода есть отметка погашения, но получателя нельзя безопасно подтвердить.</b><br>Ручная выдача заблокирована. Проверь журнал аудита и данные промокода.</div>`
+        : codeState.kind === 'code_pending'
+          ? `<div style="border:1px solid #92400e;background:#2b1908;color:#fde68a;border-radius:8px;padding:10px;margin:10px 0">Для заказа выпущен код <code>${escapeHtml(codeState.activationCode)}</code>. Доступ выдаётся только погашением кода в приложении. Ручная выдача заблокирована.</div>`
+          : manualAllowed
+            ? '<div style="border:1px solid #1d4ed8;background:#0c1d3d;color:#bfdbfe;border-radius:8px;padding:10px;margin:10px 0">Код не создан. Разрешена одна ручная активация строго оплаченного периода. Повторный вызов идемпотентен.</div>'
+            : '<div style="border:1px solid #991b1b;background:#301010;color:#fecaca;border-radius:8px;padding:10px;margin:10px 0">Состояние или платёжная идентичность не подходят для ручной активации. Ручная выдача заблокирована.</div>';
+
+    const candidateRows = candidates.length ? candidates.map((candidate) => {
+      const data = candidate.data() || {};
+      const progress = data.progress && typeof data.progress === 'object' ? data.progress : {};
+      const xp = Number(progress.user_total_xp || data.user_total_xp || 0) || 0;
+      const platform = String(progress.device_platform || data.device_platform || progress.platform || '—');
+      const vip = progress.vip_active === 'true' && progress.vip_admin_override !== 'false';
+      const activation = manualAllowed
+        ? `<button type="button" class="telegram-premium-activate-btn" data-telegram-premium-uid="${escapeHtml(candidate.id)}" title="Сервер сверит оплату, состояние записи и канонический профиль. Выдаст только оплаченный период, создаст запись аудита и не продлит доступ повторно." style="min-height:44px;margin-top:9px">Активировать оплаченный период</button>`
+        : '';
+      return `<div style="border:1px solid #30313d;border-radius:8px;padding:11px;margin-top:9px">
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><b>${escapeHtml(telegramPremiumUserLabel(candidate))}</b><span style="color:${vip ? '#86efac' : '#9ca3af'}">${vip ? 'Plus активен' : 'Без активного Plus'}</span></div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:4px">UID: <code>${escapeHtml(candidate.id)}</code> · ${escapeHtml(platform)} · ${xp} XP</div>
+        ${activation}
+      </div>`;
+    }).join('') : '<div class="reports-empty" style="margin-top:10px">Профили по нику не найдены. Заказ остаётся виден для диагностики; доступ не изменён.</div>';
+
+    host.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;font-size:12px">
+      <div><span style="color:#9ca3af">Заказ</span><br><code>${escapeHtml(order.id)}</code></div>
+      <div><span style="color:#9ca3af">Payment charge</span><br><code>${escapeHtml(order.telegramPaymentChargeId || '—')}</code></div>
+      <div><span style="color:#9ca3af">Оплаченный период</span><br>${escapeHtml(order.plan || '—')}</div>
+      <div><span style="color:#9ca3af">Статус</span><br>${escapeHtml(order.status || '—')}</div>
+    </div>${codeMessage}<div style="margin-top:13px;font-weight:750;color:#e5e7eb">Профили с ником «${escapeHtml(order.appNickname || '')}»</div>${candidateRows}`;
+    host.querySelectorAll('.telegram-premium-activate-btn').forEach((button) => {
+      button.addEventListener('click', () => void window.activateTelegramPremiumManual(order.id, button.getAttribute('data-telegram-premium-uid') || '', button));
+    });
+  }
+
+  window.loadTelegramPremiumOrders = async function loadTelegramPremiumOrders(force = false) {
+    if (window._telegramPremiumOrdersLoaded && !force) return;
+    const host = document.getElementById('telegram-premium-orders-list');
+    if (host) host.innerHTML = '<div class="reports-empty">Загружаю заказы…</div>';
+    telegramPremiumStatus('Загружаю последние заказы…');
+    try {
+      const snap = await getDocs(query(collection(db, 'telegram_premium_orders'), orderBy('paidAt', 'desc'), limit(100)));
+      _telegramPremiumOrders = snap.docs.map((order) => ({ ...order.data(), id: order.id }));
+      window._telegramPremiumOrdersLoaded = true;
+      renderTelegramPremiumOrders();
+      telegramPremiumStatus(`Загружено заказов: ${_telegramPremiumOrders.length}`);
+      if (_telegramPremiumSelectedOrderId && _telegramPremiumOrders.some((order) => order.id === _telegramPremiumSelectedOrderId)) {
+        await window.openTelegramPremiumOrder(_telegramPremiumSelectedOrderId);
+      }
+    } catch (error) {
+      if (host) host.innerHTML = '<div class="reports-empty" style="color:#fca5a5">Не удалось загрузить заказы.</div>';
+      telegramPremiumStatus(`Ошибка загрузки: ${error && error.message ? error.message : String(error)}`, 'error');
+    }
+  };
+
+  window.openTelegramPremiumOrder = async function openTelegramPremiumOrder(orderId) {
+    const order = _telegramPremiumOrders.find((row) => row.id === orderId);
+    const host = document.getElementById('telegram-premium-order-detail');
+    if (!order || !host) return;
+    _telegramPremiumSelectedOrderId = order.id;
+    renderTelegramPremiumOrders();
+    host.innerHTML = '<div class="reports-empty">Проверяю код и ищу профили…</div>';
+    telegramPremiumStatus('Проверяю получателя без изменения доступа…');
+    try {
+      const [codeState, candidates] = await Promise.all([
+        telegramPremiumCodeState(order),
+        findTelegramPremiumUserCandidates(order.appNickname || ''),
+      ]);
+      renderTelegramPremiumCandidates(order, codeState, candidates);
+      telegramPremiumStatus('Проверка завершена. Изменений не было.');
+    } catch (error) {
+      host.innerHTML = `<div class="reports-empty" style="color:#fca5a5">Ошибка проверки: ${escapeHtml(error && error.message ? error.message : String(error))}</div>`;
+      telegramPremiumStatus(`Ошибка проверки: ${error && error.message ? error.message : String(error)}`, 'error');
+    }
+  };
+
+  window.activateTelegramPremiumManual = async function activateTelegramPremiumManual(orderId, uid, button) {
+    const order = _telegramPremiumOrders.find((row) => row.id === orderId);
+    if (!telegramPremiumManualActivationAllowed(order)) {
+      telegramPremiumStatus('Ошибка активации: ручная выдача заблокирована состоянием заказа.', 'error');
+      return;
+    }
+    const confirmed = window.confirm(`Активировать оплаченный период ${order.plan} для UID ${uid}?\n\nID платежа: ${order.telegramPaymentChargeId}\nЗаказ: ${order.id}\n\nСервер сверит канонический профиль и запишет действие в журнал аудита.`);
+    if (!confirmed) return;
+    const originalText = button?.textContent || 'Активировать оплаченный период';
+    if (button) { button.disabled = true; button.textContent = 'Активирую доступ…'; }
+    telegramPremiumStatus('Активирую доступ…');
+    try {
+      const requestId = `telegram-manual-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+      const response = await getAdminActivateTelegramPremiumOrderCallable()({
+        orderId: order.id,
+        telegramPaymentChargeId: order.telegramPaymentChargeId,
+        requestedUid: uid,
+        expectedPlan: order.plan,
+        requestId,
+      });
+      const result = response.data || {};
+      if (result.outcome === 'already_redeemed') {
+        telegramPremiumStatus(`Код уже активирован каноническим профилем ${result.uid}. Другому профилю доступ не выдавался.`, 'success');
+      } else if (result.replayed) {
+        telegramPremiumStatus(`Заказ уже активирован для ${result.uid}. Повторного продления не было; исходная выдача сохранена в журнале аудита.`, 'success');
+      } else {
+        telegramPremiumStatus(`Доступ активирован для канонического профиля ${result.uid}. Действие записано в журнал аудита.`, 'success');
+      }
+      window._telegramPremiumOrdersLoaded = false;
+      await window.loadTelegramPremiumOrders(true);
+    } catch (error) {
+      telegramPremiumStatus(`Ошибка активации: ${error && error.message ? error.message : String(error)}`, 'error');
+      if (button) { button.disabled = false; button.textContent = originalText; }
+    }
+  };
   let _fnAdminSetShardBalance = null;
   function getAdminSetShardBalanceCallable() {
     if (!_fnAdminSetShardBalance) {
@@ -14435,7 +14672,7 @@
   const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','youtube-catalog','paywall-ab','v2-generator','alerts'];
 
   function isAdminSwitchableTab(tab) {
-    return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
+    return ADMIN_TAB_KEYS.includes(tab);
   }
 
   function isLocalAdminVisualTestMode() {
@@ -18552,10 +18789,6 @@
       tabSearch.value = '';
       applyAdminTabFilter('');
     }
-    if (tab === 'testers') {
-      window.location.href = 'testers.html';
-      return;
-    }
     if (!isAdminSwitchableTab(tab)) tab = ADMIN_DEFAULT_TAB;
     // зачем: счётчик чтений должен относить запросы к тому разделу, который их
     // вызвал — помечаем ДО загрузки данных вкладки (загрузчики зовутся ниже).
@@ -18631,6 +18864,9 @@
       } else if (typeof window.renderUsersSearchState === 'function') {
         window.renderUsersSearchState();
       }
+    }
+    if (tab === 'testers' && typeof window.loadTelegramPremiumOrders === 'function') {
+      void window.loadTelegramPremiumOrders(false);
     }
     if (tab === 'analytics' && typeof window.renderAnalytics === 'function') {
       // Раздел сам подтянет пользователей и уберёт заглушку, если кэша ещё нет.

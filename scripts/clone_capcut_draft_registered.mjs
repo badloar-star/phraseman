@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -90,6 +90,22 @@ function writeJson(filePath, payload) {
   fs.writeFileSync(filePath, `${JSON.stringify(payload)}\n`, 'utf8');
 }
 
+function copyDraftDirectory(sourceDir, targetDir) {
+  // Node's fs.cpSync can fail on long Windows CapCut resource paths after
+  // creating an empty target directory. Robocopy handles those native paths.
+  fs.mkdirSync(targetDir, { recursive: true });
+  const result = spawnSync(
+    'robocopy',
+    [sourceDir, targetDir, '/E', '/COPY:DAT', '/DCOPY:DAT', '/R:1', '/W:1', '/NFL', '/NDL', '/NJH', '/NJS', '/NP'],
+    { encoding: 'utf8' },
+  );
+  if (result.error) die(`Unable to copy CapCut draft: ${result.error.message}`);
+  // Robocopy treats 0..7 as successful outcomes, including copied files.
+  if (result.status === null || result.status > 7) {
+    die(`Robocopy failed with exit code ${result.status}: ${(result.stderr || result.stdout || '').trim()}`);
+  }
+}
+
 function allDraftJsonFiles(draftDir) {
   const files = ['draft_content.json', 'template-2.tmp'].filter((name) => fs.existsSync(path.join(draftDir, name)));
   const timelinesDir = path.join(draftDir, 'Timelines');
@@ -106,10 +122,9 @@ function allDraftJsonFiles(draftDir) {
   return files;
 }
 
-function patchDraftPayload(payload, sourceDir, targetDir) {
-  const nowUs = Date.now() * 1000;
+function patchDraftPayload(payload, sourceDir, targetDir, updateTimeUs) {
   payload.name = TARGET_NAME;
-  payload.update_time = nowUs;
+  payload.update_time = updateTimeUs;
   return walkStrings(payload, (text) =>
     text
       .replaceAll(posix(sourceDir), posix(targetDir))
@@ -193,12 +208,13 @@ function copyAndPatch() {
     fs.rmSync(targetDir, { recursive: true, force: true });
   }
 
-  fs.cpSync(sourceDir, targetDir, { recursive: true, dereference: false });
+  copyDraftDirectory(sourceDir, targetDir);
   const draftId = crypto.randomUUID().toUpperCase();
 
+  const draftUpdateTimeUs = Date.now() * 1000;
   for (const rel of allDraftJsonFiles(targetDir)) {
     const filePath = path.join(targetDir, rel);
-    writeJson(filePath, patchDraftPayload(readJson(filePath), sourceDir, targetDir));
+    writeJson(filePath, patchDraftPayload(readJson(filePath), sourceDir, targetDir, draftUpdateTimeUs));
   }
 
   const draftMetaPath = path.join(targetDir, 'draft_meta_info.json');

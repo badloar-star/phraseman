@@ -19,6 +19,7 @@ import {
   withAccountTransitionLockWithDeadline,
 } from './account_generation';
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
+import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 
 const RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS = 1_500;
 
@@ -233,7 +234,8 @@ export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): P
  * чтобы UI мгновенно показал доступ. При неактивном — только инвалидируем кэш (не
  * снимаем агрессивно: фактическое снятие проходит штатную проверку в premium_guard
  * с grace-окнами, чтобы не отобрать оплаченное из-за гонки). Тестерский kill-switch
- * tester_no_premium уважаем — не воскрешаем премиум.
+ * tester_no_premium уважаем только в dev/preview; store-релиз игнорирует и
+ * best-effort удаляет старый QA-флаг, чтобы не отобрать оплаченный доступ.
  */
 async function applyPushedCustomerInfo(
   info: unknown,
@@ -242,7 +244,7 @@ async function applyPushedCustomerInfo(
   try {
     if (!isCurrent()) return;
     const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
-    if (!isCurrent() || noPremium === 'true') return;
+    if (!isCurrent() || resolveTesterNoPremiumOverride(noPremium)) return;
     const subs = (info as any)?.activeSubscriptions;
     if (revenueCatCustomerInfoHasPremiumAccess(info as any)) {
       const metadata = revenueCatPremiumMetadata(info as any);
@@ -342,7 +344,8 @@ async function _doInit(): Promise<void> {
       if (revenueCatCustomerInfoHasPremiumAccess(info as any)) {
         const scopedVip = await readVipSnapshotForGeneration(initAccount);
         if (!isInitAccountCurrent()) return;
-        // Тестер «Снять премиум» — не перезаписывать локальное «без премиума» флагом из RC
+        // Тестер «Снять премиум» в dev/preview — не перезаписывать локальное
+        // «без премиума» флагом из RC. Store-релиз старый QA-флаг игнорирует.
         const pairs = await AsyncStorage.multiGet([
           'tester_no_premium',
           'admin_premium_override',
@@ -354,7 +357,7 @@ async function _doInit(): Promise<void> {
         const noPremium = pairs.find(p => p[0] === 'tester_no_premium')?.[1];
         const adminOverride = pairs.find(p => p[0] === 'admin_premium_override')?.[1];
         const existingPlan = String(pairs.find(p => p[0] === 'premium_plan')?.[1] ?? '').trim();
-        if (noPremium === 'true') {
+        if (resolveTesterNoPremiumOverride(noPremium)) {
           if (__DEV__) console.log('[RevenueCat] init: skip sync premium_active (tester_no_premium)');
         } else {
           const metadata = revenueCatPremiumMetadata(info as any);

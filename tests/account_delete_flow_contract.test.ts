@@ -25,7 +25,7 @@ describe('account deletion rebuilt flow contract', () => {
     }[];
   };
 
-  it('starts durable enqueue before provider sign-out without blocking local exit on its acknowledgement', () => {
+  it('starts enqueue in the fast phase and requires linked server acknowledgement before sign-out', () => {
     const start = authProvider.indexOf('export async function deleteAccountAndWipe');
     const end = authProvider.indexOf('export async function handleAccountDeletedOnAnotherDevice', start);
     const deleteSource = authProvider.slice(start, end);
@@ -36,18 +36,24 @@ describe('account deletion rebuilt flow contract', () => {
       start,
     );
     const enqueue = authProvider.indexOf('const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(pendingDeleteStableId)', start);
+    const acknowledgement = authProvider.indexOf('await cloudDeleteEnqueueOperation.acknowledgment', enqueue);
+    const persistAcknowledgedPhase = authProvider.indexOf("phase: 'server_enqueued'", acknowledgement);
     const dispatchBarrier = authProvider.indexOf('await cloudDeleteEnqueueOperation.dispatchSettled', enqueue);
     const signOut = authProvider.indexOf('await signOutCurrentProvider()', start);
     // Локальный выход теперь условный: без замка (аноним) доводить нечего —
     // локальные данные уже стёрты в быстрой фазе.
-    const localExit = authProvider.indexOf('const localExitComplete = pendingDeleteLock', signOut);
+    const localExit = authProvider.indexOf('const localExitComplete = localExitLock', signOut);
 
     expect(persistGuard).toBeGreaterThan(start);
     expect(persistGuard).toBeLessThan(enqueue);
+    expect(enqueue).toBeLessThan(acknowledgement);
+    expect(acknowledgement).toBeLessThan(persistAcknowledgedPhase);
+    expect(persistAcknowledgedPhase).toBeLessThan(signOut);
+    expect(acknowledgement).toBeLessThan(signOut);
     expect(enqueue).toBeLessThan(dispatchBarrier);
     expect(dispatchBarrier).toBeLessThan(signOut);
     expect(signOut).toBeLessThan(localExit);
-    expect(deleteSource).not.toContain('await cloudDeleteEnqueueOperation.acknowledgment');
+    expect(deleteSource).toContain('await cloudDeleteEnqueueOperation.acknowledgment');
     expect(deleteSource).toContain('void cloudDeleteEnqueueOperation.acknowledgment');
     expect(deleteSource).toContain("logAuthEvent('auth_account_delete_enqueue_failed'");
   });
@@ -176,9 +182,18 @@ describe('account deletion rebuilt flow contract', () => {
     expect(functionSource).toContain('revokeRefreshTokens(request.auth.uid)');
   });
 
-  it('starts a root cross-device deletion monitor', () => {
-    expect(rootLayoutSource).toContain('startRemoteAccountDeletionMonitor');
-    expect(rootLayoutSource).toContain('handleAccountDeletedOnAnotherDevice');
+  it('starts the native cross-device deletion monitor only after excluding web', () => {
+    const monitorCall = rootLayoutSource.indexOf('startRemoteAccountDeletionMonitor(async () =>');
+    const effectStart = rootLayoutSource.lastIndexOf('useEffect(() =>', monitorCall);
+    const effectEnd = rootLayoutSource.indexOf('const navigationPathSignature', monitorCall);
+    const monitorEffect = rootLayoutSource.slice(effectStart, effectEnd);
+    const webGuard = monitorEffect.indexOf("if (Platform.OS === 'web') return;");
+
+    expect(effectStart).toBeGreaterThan(-1);
+    expect(effectEnd).toBeGreaterThan(monitorCall);
+    expect(webGuard).toBeGreaterThan(-1);
+    expect(webGuard).toBeLessThan(monitorEffect.indexOf('startRemoteAccountDeletionMonitor'));
+    expect(monitorEffect).toContain('handleAccountDeletedOnAnotherDevice');
   });
 
   it('reports verified local exit while durable deletion continues asynchronously', () => {
@@ -295,12 +310,10 @@ describe('account deletion rebuilt flow contract', () => {
     expect(beginSource).toMatch(/alreadyPending[\s\S]*?return \{ ok: true/);
   });
 
-  // зачем: боевой отказ у владельца (2026-07-27) — алерт «Не удалось безопасно
-  // подготовить удаление» ЧЕРЕЗ ПОЛЧАСА, аноним, на онбординг не попал.
-  // Причина: замок в SecureStore не встал (и висел), а код считал это поводом
-  // сохранить аккаунт. Теперь быстрая фаза стирает локальные данные БЕЗУСЛОВНО
-  // и под таймаутом, а замок — best-effort.
-  it('wipes local data in the fast phase and can never refuse deletion', () => {
+  // The SecureStore step is bounded so Keychain cannot freeze the UI. A linked
+  // or unknown identity still requires a verified guard before any local wipe;
+  // only a provably anonymous account may continue without one.
+  it('requires a durable guard for linked or unknown identity before fast local wipe', () => {
     const prepareStart = authProvider.indexOf('async function prepareAccountDeletion');
     const prepareEnd = authProvider.indexOf('/** Фоновая фаза', prepareStart);
     const prepareSource = authProvider.slice(prepareStart, prepareEnd);
@@ -309,18 +322,20 @@ describe('account deletion rebuilt flow contract', () => {
     // сносятся здесь же — иначе онбординг восстановил бы старый шаг.
     expect(prepareSource).toContain('await wipeLocalAccountData()');
     expect(prepareSource).toContain('await AsyncStorage.clear()');
-    // Ни одного раннего return null: отказать эта фаза не имеет права.
-    expect(prepareSource).not.toContain('return null');
+    const guardRequired = prepareSource.indexOf('if (!isProvablyAnonymousAccount && !pendingDeleteLock) return null;');
+    const localWipe = prepareSource.indexOf('await wipeLocalAccountData()');
+    expect(guardRequired).toBeGreaterThan(-1);
+    expect(guardRequired).toBeLessThan(localWipe);
 
     // Локальные шаги ограничены по времени — «полчаса ожидания» невозможны.
     expect(authProvider).toContain('ACCOUNT_DELETE_LOCAL_STEP_TIMEOUT_MS = 1_000');
     expect(prepareSource).toContain('withLocalStepDeadline');
 
-    // Даже если быстрая фаза БРОСИТ, пользователь всё равно уходит на онбординг.
+    // A linked/unknown account fails closed when the required guard is absent.
     const beginStart = authProvider.indexOf('export async function beginAccountDeletion');
     const beginEnd = authProvider.indexOf('export async function deleteAccountAndWipe', beginStart);
     const beginSource = authProvider.slice(beginStart, beginEnd);
-    expect(beginSource).not.toContain("reason: 'pending_guard_persist_failed'");
+    expect(beginSource).toContain("reason: 'pending_guard_persist_failed'");
     expect(beginSource).toMatch(/if \(!prepared\)[\s\S]*?return \{ ok: true/);
 
     // Ключи онбординга дублируются литералами намеренно: вынос в общую константу

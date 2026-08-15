@@ -14,6 +14,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
+import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
 const RC_TIMEOUT_MS = 8000;
@@ -188,7 +189,7 @@ export function __getPremiumAccountWorkIdleWaiterCountForTests(): number {
 export async function forcePremiumActive(): Promise<boolean> {
   if (!FORCE_PREMIUM) return false;
   const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
-  return noPremium !== 'true';
+  return !resolveTesterNoPremiumOverride(noPremium);
 }
 
 /**
@@ -201,7 +202,7 @@ export async function isTesterNoLimitsActive(): Promise<boolean> {
     .catch(() => [] as [string, string | null][]);
   const noPremiumRaw = pairs.find(([key]) => key === 'tester_no_premium')?.[1];
   const noLimitsRaw = pairs.find(([key]) => key === 'tester_no_limits')?.[1];
-  return noPremiumRaw !== 'true' && noLimitsRaw === 'true' && !IS_STORE_RELEASE;
+  return !resolveTesterNoPremiumOverride(noPremiumRaw) && noLimitsRaw === 'true' && !IS_STORE_RELEASE;
 }
 
 /**
@@ -318,9 +319,9 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   const adminExplicitRevoked =
     adminOverride === 'false' && (!plan || plan === 'null' || plan === '');
 
-  // Тестер «Снять премиум» должен срезать только dev-default premium,
+  // Тестер «Снять премиум» в dev/preview должен срезать только dev-default premium,
   // но не VIP-доступ, который считается отдельно.
-  if (noPremium === 'true') return finish(false);
+  if (resolveTesterNoPremiumOverride(noPremium)) return finish(false);
   // Return cached result if still fresh
   if (
     _cachedRealResult !== null
@@ -479,13 +480,13 @@ export async function getVerifiedVipStatus(): Promise<boolean> {
   if (!accountGenerationIsCurrent(generation)) return false;
   const stableId = generation.stableId!;
   const finish = (result: boolean) => cacheVip(result, generation);
-  // Тестер «Снять премиум» (tester_no_premium) — жёсткий kill-switch: должен
+  // Тестер «Снять премиум» (tester_no_premium) — dev/preview kill-switch: должен
   // гасить и VIP, а не только real-премиум. Иначе админ-VIP-грант (или его
   // воскрешение из облака) возвращал доступ, и кнопка «Снять премиум» «не
   // работала». Проверяем ПЕРЕД кэшем, чтобы снятие срабатывало мгновенно.
   const noPremiumVip = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
   if (!accountGenerationIsCurrent(generation)) return false;
-  if (noPremiumVip === 'true') return finish(false);
+  if (resolveTesterNoPremiumOverride(noPremiumVip)) return finish(false);
 
   if (
     _cachedVipResult !== null
@@ -521,14 +522,14 @@ export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
   const generation = captureAccountGeneration();
   if (!accountGenerationIsCurrent(generation)) return false;
   const finish = (result: boolean) => cacheAccess(result, generation);
-  // Тестер «Снять премиум» — единый kill-switch на ВЕСЬ премиум-доступ:
+  // Тестер «Снять премиум» — dev/preview kill-switch на ВЕСЬ премиум-доступ:
   // real + VIP + intro-доступ + воскрешение из облака. Раньше флаг гасил только
   // real, а доступ оставался через VIP/intro (и cloud-refresh тянул его назад),
   // поэтому кнопка «Снять премиум» не снимала. Проверяем самым первым, до кэша
   // и до любого облачного обновления.
   const noPremiumAccess = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
   if (!accountGenerationIsCurrent(generation)) return false;
-  if (noPremiumAccess === 'true') return finish(false);
+  if (resolveTesterNoPremiumOverride(noPremiumAccess)) return finish(false);
 
   if (
     _cachedAccessResult !== null

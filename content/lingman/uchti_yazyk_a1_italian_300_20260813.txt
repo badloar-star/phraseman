@@ -1,0 +1,300 @@
+Ciao
+Ciao
+Arrivederci
+Ciao
+Ci vediamo
+Per favore
+Grazie
+Grazie
+Scusa.
+Mi scusi.
+Sì
+No
+Va bene
+Forse
+Non lo so.
+Cosa?
+Chi?
+Dove?
+Quando?
+Perché?
+io
+tu
+lui
+lei
+noi
+loro
+esso
+mio
+tuo
+suo
+Mi chiamo...
+Come ti chiami?
+Sono Anna.
+Piacere di conoscerti.
+Questo è il mio amico.
+madre
+padre
+fratello
+sorella
+famiglia
+amico
+uomo
+donna
+ragazzo
+ragazza
+libro
+penna
+telefono
+borsa
+chiave
+casa
+stanza
+porta
+finestra
+tavolo
+sedia
+letto
+cucina
+bagno
+luce
+rosso
+blu
+verde
+nero
+bianco
+giallo
+marrone
+arancione
+rosa
+grigio
+uno
+due
+tre
+quattro
+cinque
+sei
+sette
+otto
+nove
+dieci
+grande
+piccolo
+nuovo
+vecchio
+buono
+cattivo
+caldo
+freddo
+facile
+difficile
+andare
+venire
+sedersi
+stare in piedi
+fermarsi
+guardare
+ascoltare
+parlare
+leggere
+scrivere
+mangiare
+bere
+dormire
+camminare
+correre
+aprire
+chiudere
+dare
+prendere
+aiutare
+Vieni qui.
+Vai lì.
+Siediti.
+Alzati.
+Fermati qui.
+Guardami.
+Ascoltami.
+Leggi questo.
+Scrivilo.
+Aiutami.
+acqua
+tè
+caffè
+latte
+succo
+pane
+formaggio
+uovo
+mela
+banana
+Voglio mangiare.
+Voglio bere.
+Voglio dell'acqua.
+Mi piace il tè.
+Senza zucchero.
+Per favore, siediti.
+Ecco il tuo tè.
+Voglio un caffè.
+Un altro, per favore.
+Il conto, per favore.
+giorno
+notte
+mattina
+sera
+oggi
+domani
+ieri
+adesso
+più tardi
+presto
+lunedì
+martedì
+mercoledì
+giovedì
+venerdì
+sabato
+domenica
+settimana
+mese
+anno
+sole
+pioggia
+neve
+vento
+nuvola
+È soleggiato.
+Piove.
+Nevica.
+C'è vento.
+Oggi fa freddo.
+camicia
+maglietta
+vestito
+scarpa
+cappello
+cappotto
+giacca
+calzini
+jeans
+gonna
+testa
+mano
+gamba
+occhio
+bocca
+naso
+orecchio
+capelli
+viso
+corpo
+felice
+triste
+stanco
+arrabbiato
+spaventato
+un sorriso
+ridere
+piangere
+amare
+odiare
+gatto
+cane
+uccello
+pesce
+animale
+scuola
+negozio
+parco
+strada
+stazione
+ospedale
+banca
+caffè
+hotel
+aeroporto
+a sinistra
+a destra
+dritto
+qui
+lì
+Gira a sinistra.
+Gira a destra.
+Vai dritto.
+Dov'è?
+Dove sono?
+autobus
+treno
+auto
+taxi
+bicicletta
+biglietto
+fermata dell'autobus
+mappa
+strada
+aereo
+Sono a casa.
+Apri la porta.
+Chiudi la finestra.
+La stanza è piccola.
+La luce è accesa.
+Parli inglese?
+Parlo un po' d'inglese.
+Per favore, parla lentamente.
+Ripetilo.
+Cosa significa?
+Capisco.
+Non capisco.
+Puoi aiutarmi?
+Sì, posso.
+No, non posso.
+Quanto costa?
+È economico.
+È costoso.
+Voglio questo.
+Non voglio questo.
+denaro
+contanti
+carta
+prezzo
+il tuo resto
+toilette
+Acqua, per favore.
+Ho bisogno di aiuto.
+Chiami un medico.
+Mi sento male.
+medico
+medicina
+dolore
+Fa male.
+chiamare
+questo
+quello
+questi
+quelli
+tutti
+un'altra volta
+molto
+un po'
+molto
+solo
+messaggio
+e-mail
+nome
+indirizzo
+numero di telefono
+Il mio telefono è qui.
+Questa è la mia borsa.
+Dov'è la mia chiave?
+Ho una domanda.
+Ho bisogno di una penna.
+Buongiorno.
+Buon pomeriggio.
+Buonasera.
+Buonanotte.
+Buona giornata.
+Ci vediamo domani.
+Abbi cura di te.
+Benvenuto.
+Buona fortuna.
+Andiamo.

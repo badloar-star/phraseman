@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import TopFadeMask from '../components/TopFadeMask';
-import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Animated, Easing, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -28,6 +28,7 @@ import {
 } from './personal_plan_recommendation';
 import { triLang, type Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
+import { racePersonalPlanSetupBootstrap } from './personal_plan_setup_bootstrap';
 
 type Step = 'goal' | 'level' | 'minutes' | 'result' | 'all';
 
@@ -338,7 +339,7 @@ export default function PersonalPlanSetupScreen() {
     let alive = true;
     (async () => {
       try {
-        const [pending, stored] = await Promise.all([
+        const hydration = Promise.all([
           readPendingPersonalPlanActivation().catch(() => null),
           AsyncStorage.multiGet([
             'onboarding_plan_goal',
@@ -346,6 +347,10 @@ export default function PersonalPlanSetupScreen() {
             'onboarding_plan_minutes',
           ]).catch(() => []),
         ]);
+        const [pending, stored] = await racePersonalPlanSetupBootstrap(
+          hydration,
+          [null, []] as Awaited<typeof hydration>,
+        );
         if (!alive) return;
         const map = new Map(stored);
         const savedGoal = map.get('onboarding_plan_goal');
@@ -713,10 +718,38 @@ export default function PersonalPlanSetupScreen() {
   };
 
   // Античание: пока не резолвилось чтение сохранённых ответов онбординга, не
-  // рисуем шаг 'goal' (или любой другой) — только фон, без контента и прогресс-бара.
-  // Иначе на кадр мелькнёт вопрос 1, прежде чем эффект выше перекинет на 'result'.
+  // рисуем шаг 'goal' (или любой другой). Показываем отдельный доступный loader
+  // с выходом назад; deadline выше гарантирует переход к setup даже при зависшем storage.
   if (!answersReady) {
-    return <View style={[styles.safe, { backgroundColor: screenBg }]} />;
+    const loadingLabel = triLang(lang, {
+      ru: 'Загружаем личный план',
+      uk: 'Завантажуємо особистий план',
+      es: 'Cargando tu plan personal',
+    });
+    return (
+      <View style={[styles.safe, { backgroundColor: screenBg }]}>
+        <LinearGradient colors={t.bgGradient} style={styles.safe}>
+          <View style={[styles.topBar, { paddingTop: insets.top + 10 }]}>
+            <TapScale
+              accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás' })}
+              onPress={() => safeRouterBack(router, exitFallback)}
+              style={[styles.topBarBtn, { backgroundColor: t.bgCard, borderColor: border }]}
+            >
+              <Ionicons name="chevron-back" size={22} color={accent} />
+            </TapScale>
+          </View>
+          <View
+            accessibilityLabel={loadingLabel}
+            accessibilityLiveRegion="polite"
+            accessibilityRole="progressbar"
+            style={styles.loadingState}
+          >
+            <ActivityIndicator size="large" color={accent} />
+            <Text style={[styles.loadingText, { color: text }]}>{loadingLabel}</Text>
+          </View>
+        </LinearGradient>
+      </View>
+    );
   }
 
   return (
@@ -777,6 +810,15 @@ const styles = StyleSheet.create({
   },
   topBarStepText: { fontSize: 13, fontWeight: '900' },
   scroll: { paddingHorizontal: 20, paddingTop: 8, paddingBottom: 40 },
+  loadingState: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 14,
+    paddingHorizontal: 24,
+    paddingBottom: 72,
+  },
+  loadingText: { fontSize: 16, lineHeight: 22, fontWeight: '800', textAlign: 'center' },
 
   stepKicker: { fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.4, marginBottom: 10 },
   stepTitle: { fontSize: 36, lineHeight: 42, fontWeight: '900' },

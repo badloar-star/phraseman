@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed } from './cloud_sync';
+import { ensureAnonUser, ensureAuthoritativeIdentityForCloudMutation } from './cloud_sync';
 import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
@@ -16,8 +16,6 @@ import {
   normalizeProfileCardTheme,
 } from './profile_card_system';
 import { readLifetimeProfileStatsCache } from './lifetime_profile_stats';
-import { parseWeekPointsForWeek } from './hall_of_fame_utils';
-import { isLifetimePlanLocal } from './premium_guard';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -87,6 +85,29 @@ const getFirestore = () => {
     return null;
   }
 };
+
+type ProjectionResponse = {
+  ok: boolean;
+  stableUid: string;
+  isPremium: boolean;
+  isVip: boolean;
+  isLifetime: boolean;
+  progressAuthority: 'server' | 'unavailable';
+};
+
+function publicProfileProjectionCallable() {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getApp } = require('@react-native-firebase/app');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  const typed = httpsCallable as <Req, Res>(instance: unknown, name: string) => (
+    data: Req,
+  ) => Promise<{ data: Res }>;
+  return typed<
+    { stableId: string; reason: PublicProfileReason; profile: Record<string, unknown> },
+    ProjectionResponse
+  >(getFunctions(getApp(), 'us-central1'), 'publicProfileProjectMine');
+}
 
 async function readString(key: string): Promise<string> {
   try {
@@ -177,16 +198,14 @@ async function syncPublicProfileSnapshotUnsafe(
   if (!isCurrent()) return;
   const xpFresh = cache.xpSyncedAt !== undefined && now - cache.xpSyncedAt < PUBLIC_PROFILE_XP_TTL_MS;
   if (input.reason === 'daily_xp' && xpFresh && !ownerState.dirty) return;
-  const [nameRaw, xpRaw, langRaw, avatarRaw, frameRaw, auraRaw, streakRaw, leagueRaw, weekRaw] = await Promise.all([
+  const [nameRaw, xpRaw, langRaw, avatarRaw, frameRaw, auraRaw, leagueRaw] = await Promise.all([
     input.name !== undefined ? Promise.resolve(input.name) : readString('user_name'),
     input.totalXp !== undefined ? Promise.resolve(String(input.totalXp)) : readString('user_total_xp'),
     input.lang !== undefined ? Promise.resolve(input.lang) : readString('app_lang'),
     input.avatar !== undefined ? Promise.resolve(input.avatar ?? '') : readString('user_avatar'),
     input.frame !== undefined ? Promise.resolve(input.frame ?? '') : readString('user_frame'),
     input.aura !== undefined ? Promise.resolve(input.aura ?? '') : readString(USER_AVATAR_AURA_KEY),
-    input.streak !== undefined ? Promise.resolve(String(input.streak ?? 0)) : readString('streak_count'),
     input.leagueId !== undefined ? Promise.resolve(JSON.stringify({ leagueId: input.leagueId ?? 0 })) : readString('league_state_v3'),
-    input.weekPoints !== undefined ? Promise.resolve(String(input.weekPoints)) : readString('week_points_v2'),
   ]);
   if (!isCurrent()) return;
 
@@ -199,7 +218,6 @@ async function syncPublicProfileSnapshotUnsafe(
   const aura = normalizeAvatarAuraId(auraRaw) ?? null;
   const lang = String(langRaw || 'ru').trim() || 'ru';
   const name = String(nameRaw || '').trim();
-  const streak = Math.max(0, readNumber(streakRaw, 0));
   let leagueId = 0;
   try {
     leagueId = Math.max(0, readNumber(JSON.parse(leagueRaw || '{}')?.leagueId, 0));
@@ -221,6 +239,7 @@ async function syncPublicProfileSnapshotUnsafe(
     [PROFILE_CARD_LEGEND_NO_KEY, null],
   ] as [string, string | null][]);
   if (!isCurrent()) return;
+
   const rawProfileLevel = profilePairs[0]?.[1] ?? null;
   const rawTheme = profilePairs[1]?.[1] ?? null;
   const rawMotion = profilePairs[2]?.[1] ?? null;
@@ -233,15 +252,6 @@ async function syncPublicProfileSnapshotUnsafe(
   const profileCardPublicFocus = normalizeProfileCardPublicFocus(rawFocus);
   const legendNoParsed = Math.floor(Number(rawLegendNo));
   const profileCardLegendNo = Number.isFinite(legendNoParsed) && legendNoParsed > 0 ? legendNoParsed : null;
-  const seasonProfileFrameId = (await loadSeasonCosmetics().catch(() => null))?.frames.includes(SEASON1_FRAME_ID)
-    ? SEASON1_FRAME_ID
-    : null;
-  if (!isCurrent()) return;
-
-  // Блоки статистики уровней II+ («Выучено»/«Путь») — денормализуем в публичный
-  // профиль из локального lifetime-кэша, чтобы ЧУЖИЕ карточки могли их показать.
-  // Кэш освежается экраном статистики и модалом собственной карточки; если его ещё
-  // нет — поля не пишем (карточка у других просто не покажет строку, без вранья).
   const lifetimeStats = profileCardLevel >= 2
     ? await readLifetimeProfileStatsCache().catch(() => null)
     : null;
@@ -253,10 +263,16 @@ async function syncPublicProfileSnapshotUnsafe(
         cardAppDays: Math.max(0, Math.floor(lifetimeStats.appDaysUnion)),
         cardLongestStreak: Math.max(0, Math.floor(lifetimeStats.longestStreakDays)),
       }
+    : {};
+  const seasonProfileFrameId = (await loadSeasonCosmetics().catch(() => null))?.frames.includes(SEASON1_FRAME_ID)
+    ? SEASON1_FRAME_ID
     : null;
-  const weekPoints = Math.max(0, Math.trunc(input.weekPoints ?? parseWeekPointsForWeek(weekRaw)));
-  const isPremium = input.isPremium ?? cache.isPremium ?? false;
-  const isVip = input.isVip ?? cache.isVip ?? false;
+  if (!isCurrent()) return;
+
+  // Блоки статистики уровней II+ («Выучено»/«Путь») — денормализуем в публичный
+  // профиль из локального lifetime-кэша, чтобы ЧУЖИЕ карточки могли их показать.
+  // Кэш освежается экраном статистики и модалом собственной карточки; если его ещё
+  // нет — поля не пишем (карточка у других просто не покажет строку, без вранья).
   // Pro-план (разовая «Навсегда») читаем прямо из локального премиум-плана, если
   // вызывающий не передал явно — так все точки вызова (покупка/VIP/деактивация)
   // автоматически денормализуют актуальный флаг без протаскивания его через каждый
@@ -266,11 +282,6 @@ async function syncPublicProfileSnapshotUnsafe(
   // «Pro — навсегда», промокод, бессрочная выдача), там isPremium=false.
   // Раньше гейт стоял только на isPremium и такой человек терял Pro-ауру
   // в чужих профилях. Истёкший доступ по-прежнему плашку не оставляет.
-  const hasPaidOrGrantedAccess = isPremium || isVip;
-  const rawLifetime = input.isLifetime ?? (hasPaidOrGrantedAccess ? await isLifetimePlanLocal().catch(() => cache.isLifetime ?? false) : false);
-  if (!isCurrent()) return;
-  const isLifetime = hasPaidOrGrantedAccess && rawLifetime;
-
   const displayHash = stableStringify({
     name,
     lang,
@@ -278,28 +289,25 @@ async function syncPublicProfileSnapshotUnsafe(
     frame,
     aura,
     leagueId,
-    isPremium,
-    isVip,
-    isLifetime,
     profileCardLevel,
     profileCardTheme,
     profileCardMotion,
     profileCardPublicFocus,
     profileCardLegendNo,
     seasonProfileFrameId,
-    ...(cardStatsPayload ?? {}),
+    ...cardStatsPayload,
   });
 
   if (input.reason === 'daily_xp' && xpFresh && cache.displayHash === displayHash) return;
-  if (input.reason !== 'daily_xp' && cache.displayHash === displayHash && (!input.includesDailyXp || xpFresh)) {
+  if (input.reason === 'display_change' && cache.displayHash === displayHash && (!input.includesDailyXp || xpFresh)) {
     ownerState.dirty = false;
     return;
   }
 
   const stableId = await ensureAnonUser();
   if (!stableId || !isCurrent() || (accountToken?.stableId && accountToken.stableId !== stableId)) return;
-  const stableLink = await ensureStableAuthLinkForStableIdDetailed(stableId);
-  if (!stableLink.ok || stableLink.stableUid !== stableId || !isCurrent()) return;
+  const authoritativeIdentity = await ensureAuthoritativeIdentityForCloudMutation(stableId);
+  if (!authoritativeIdentity.ok || authoritativeIdentity.stableUid !== stableId || !isCurrent()) return;
 
   try {
     const banDoc = await db.collection('banned_users').doc(stableId).get();
@@ -310,45 +318,39 @@ async function syncPublicProfileSnapshotUnsafe(
   // получает новое name, но старый nameLower (напр. name="Дладуд" +
   // nameLower="тлдь") — рассинхрон, из-за которого поиск/индекс не находят юзера.
   // Нормализуем так же, как серверный nameReserve → normalizeName: trim, ≤32, lower.
-  const nameLower = name.slice(0, 32).toLowerCase();
-  const publicPayload = {
-    uid: stableId,
+  const profile = {
     name,
-    nameLower,
     lang,
-    totalXp,
-    level,
-    weekPoints,
     avatar,
     frame,
     aura,
-    streak,
     leagueId,
-    isPremium,
-    isVip,
-    isLifetime,
     profileCardLevel,
     profileCardTheme,
     profileCardMotion,
     profileCardPublicFocus,
     seasonProfileFrameId,
     ...(profileCardLegendNo !== null ? { profileCardLegendNo } : {}),
-    ...(cardStatsPayload ?? {}),
+    ...cardStatsPayload,
     displayHash,
-    updatedAt: now,
-    updatedReason: input.reason,
   };
 
   if (!isCurrent()) return;
-  await db.collection('public_profiles').doc(stableId).set(publicPayload, { merge: true });
+  const projected = await publicProfileProjectionCallable()({
+    stableId,
+    reason: input.reason,
+    profile,
+  });
 
   if (!isCurrent()) return;
+  if (projected.data?.ok !== true || projected.data.stableUid !== stableId) return;
+  const progressProjected = projected.data.progressAuthority === 'server';
   const nextCache = {
     displayHash,
-    isPremium,
-    isVip,
-    isLifetime,
-    xpSyncedAt: input.includesDailyXp ? now : cache.xpSyncedAt,
+    isPremium: projected.data.isPremium,
+    isVip: projected.data.isVip,
+    isLifetime: projected.data.isLifetime,
+    xpSyncedAt: input.includesDailyXp && progressProjected ? now : cache.xpSyncedAt,
   };
   await withAccountTransitionLock(async () => {
     if (!isCurrentAccountGeneration(accountToken)) return;
@@ -356,7 +358,7 @@ async function syncPublicProfileSnapshotUnsafe(
     if (!written || !isCurrentAccountGeneration(accountToken)) return;
     ownerState.cache = nextCache;
     ownerState.cacheLoaded = true;
-    ownerState.dirty = false;
+    ownerState.dirty = input.includesDailyXp && !progressProjected;
   });
 }
 

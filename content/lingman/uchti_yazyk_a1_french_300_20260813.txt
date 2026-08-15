@@ -1,0 +1,300 @@
+Bonjour
+Salut
+Au revoir
+Salut
+À bientôt
+S'il vous plaît
+Merci
+Merci
+Pardon
+Excusez-moi
+Oui
+Non
+D'accord
+Peut-être
+Je ne sais pas
+Quoi ?
+Qui ?
+Où ?
+Quand ?
+Pourquoi ?
+Je
+Tu
+Il
+Elle
+Nous
+Ils
+Ça
+Mon / ma
+Ton / ta
+Son / sa
+Je m'appelle...
+Comment t'appelles-tu ?
+Je suis Anna.
+Enchanté(e).
+Voici mon ami.
+Mère
+Père
+Frère
+Sœur
+Famille
+Ami
+Homme
+Femme
+Garçon
+Fille
+Livre
+Stylo
+Téléphone
+Sac
+Clé
+Maison
+Chambre
+Porte
+Fenêtre
+Table
+Chaise
+Lit
+Cuisine
+Salle de bains
+Lumière
+Rouge
+Bleu
+Vert
+Noir
+Blanc
+Jaune
+Marron
+Orange
+Rose
+Gris
+Un
+Deux
+Trois
+Quatre
+Cinq
+Six
+Sept
+Huit
+Neuf
+Dix
+Grand
+Petit
+Nouveau
+Vieux
+Bon
+Mauvais
+Chaud
+Froid
+Facile
+Difficile
+Aller
+Venir
+S'asseoir
+Se lever
+Arrêter
+Regarder
+Écouter
+Parler
+Lire
+Écrire
+Manger
+Boire
+Dormir
+Marcher
+Courir
+Ouvrir
+Fermer
+Donner
+Prendre
+Aider
+Viens ici.
+Va là-bas.
+Assieds-toi.
+Lève-toi.
+Arrête-toi ici.
+Regarde-moi.
+Écoute-moi.
+Lis ceci.
+Écris-le.
+Aide-moi.
+Eau
+Thé
+Café
+Lait
+Jus
+Pain
+Fromage
+Œuf
+Pomme
+Banane
+Je veux manger.
+Je veux boire.
+Je veux de l'eau.
+J'aime le thé.
+Sans sucre.
+Asseyez-vous, s'il vous plaît.
+Voici votre thé.
+Je veux du café.
+Encore un, s'il vous plaît.
+L'addition, s'il vous plaît.
+Jour
+Nuit
+Matin
+Soir
+Aujourd'hui
+Demain
+Hier
+Maintenant
+Plus tard
+Tôt
+Lundi
+Mardi
+Mercredi
+Jeudi
+Vendredi
+Samedi
+Dimanche
+Semaine
+Mois
+Année
+Soleil
+Pluie
+Neige
+Vent
+Nuage
+Il y a du soleil.
+Il pleut.
+Il neige.
+Il y a du vent.
+Il fait froid aujourd'hui.
+Chemise
+T-shirt
+Robe
+Chaussure
+Chapeau
+Manteau
+Veste
+Chaussettes
+Jean
+Jupe
+Tête
+Main
+Jambe
+Œil
+Bouche
+Nez
+Oreille
+Cheveux
+Visage
+Corps
+Heureux
+Triste
+Fatigué
+En colère
+Effrayé
+Un sourire
+Rire
+Pleurer
+Aimer
+Détester
+Chat
+Chien
+Oiseau
+Poisson
+Animal
+École
+Magasin
+Parc
+Rue
+Gare
+Hôpital
+Banque
+Café
+Hôtel
+Aéroport
+À gauche
+À droite
+Tout droit
+Ici
+Là-bas
+Tournez à gauche.
+Tournez à droite.
+Allez tout droit.
+Où est-ce ?
+Où suis-je ?
+Bus
+Train
+Voiture
+Taxi
+Vélo
+Billet
+Arrêt de bus
+Carte
+Route
+Avion
+Je suis à la maison.
+Ouvrez la porte.
+Fermez la fenêtre.
+La chambre est petite.
+La lumière est allumée.
+Parlez-vous anglais ?
+Je parle un peu anglais.
+Parlez lentement, s'il vous plaît.
+Répétez, s'il vous plaît.
+Qu'est-ce que cela veut dire ?
+Je comprends.
+Je ne comprends pas.
+Pouvez-vous m'aider ?
+Oui, je peux.
+Non, je ne peux pas.
+Combien ça coûte ?
+C'est bon marché.
+C'est cher.
+Je veux ça.
+Je ne veux pas ça.
+Argent
+Espèces
+Carte
+Prix
+Votre monnaie
+Toilettes
+De l'eau, s'il vous plaît.
+J'ai besoin d'aide.
+Appelez un médecin.
+Je me sens mal.
+Médecin
+Médicament
+Douleur
+Ça fait mal.
+Appeler
+Ceci
+Cela
+Ceux-ci
+Ceux-là
+Tout
+Encore une fois
+Très
+Un peu
+Beaucoup
+Seulement
+Message
+E-mail
+Nom
+Adresse
+Numéro de téléphone
+Mon téléphone est ici.
+C'est mon sac.
+Où est ma clé ?
+J'ai une question.
+J'ai besoin d'un stylo.
+Bonjour.
+Bonjour.
+Bonsoir.
+Bonne nuit.
+Bonne journée.
+À demain.
+Prends soin de toi.
+Bienvenue.
+Bonne chance.
+Allons-y.

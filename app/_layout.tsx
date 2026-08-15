@@ -1659,14 +1659,17 @@ function AppContent() {
     void showRemoteAccountDeletionNotice();
   }, [showRemoteAccountDeletionNotice]);
 
-  useEffect(() => startRemoteAccountDeletionMonitor(async () => {
-    if (isLocalAccountDeletionInProgress()) return false;
-    const result = await handleAccountDeletedOnAnotherDevice();
-    if (!result.ok) return false;
-    emitAppEvent('account_deleted');
-    await showRemoteAccountDeletionNotice();
-    return true;
-  }), [showRemoteAccountDeletionNotice]);
+  useEffect(() => {
+    if (Platform.OS === 'web') return;
+    return startRemoteAccountDeletionMonitor(async () => {
+      if (isLocalAccountDeletionInProgress()) return false;
+      const result = await handleAccountDeletedOnAnotherDevice();
+      if (!result.ok) return false;
+      emitAppEvent('account_deleted');
+      await showRemoteAccountDeletionNotice();
+      return true;
+    });
+  }, [showRemoteAccountDeletionNotice]);
   const navigationPathSignature = buildNavigationPathSignature(pathname, globalSearchParams);
   const currentDevUtilityRoute = isDevUtilityRoutePath(pathname) || isDevOnlyRuntimeRoutePath(pathname);
   const effectiveShowOnboarding = showOnboarding && !currentDevUtilityRoute;

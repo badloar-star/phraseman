@@ -103,12 +103,15 @@
 
   function resolveUiLocale(options) {
     const settings = options || {};
+    // The public website selector owns the broad EN/RU preference. The
+    // assessment still exposes its six specialised UI locales through `ui`.
+    const siteLocale = queryValue(settings.search, 'lang');
+    if (siteLocale === 'en' || siteLocale === 'ru') return siteLocale;
     const requested = queryValue(settings.search, 'ui');
     if (isUiLocale(requested)) return requested;
     if (isUiLocale(settings.stored)) return settings.stored;
     const browserLanguage = typeof settings.navigatorLanguage === 'string' ? settings.navigatorLanguage.toLowerCase() : '';
-    const browserLocale = browserLanguage.split('-')[0];
-    return isUiLocale(browserLocale) ? browserLocale : 'en';
+    return browserLanguage.startsWith('ru') ? 'ru' : 'en';
   }
   function resolveTestLanguage(search) { const requested = queryValue(search, 'test'); return isTestLanguage(requested) ? requested : 'en'; }
   function readStoredLocale(storage) {

@@ -78,6 +78,7 @@ import { shouldUsePracticeWarmup } from './streak_stats_practice_balance';
 import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
 import { getReviveOffer, type StreakReviveOffer } from './streak_revive';
+import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { doubleXpMultiplier, earlyBirdMultiplier } from './boons/boon_effects_xp';
 import { noAndroidOutline } from '../constants/androidGlow';
 const CHART_H = 110;
@@ -3180,7 +3181,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         let cancelled = false;
         void AsyncStorage.getItem('tester_no_premium').then((v) => {
             if (!cancelled)
-                setTesterStripsPremium(v === 'true');
+                setTesterStripsPremium(resolveTesterNoPremiumOverride(v));
         }).catch(() => {
             if (!cancelled)
                 setTesterStripsPremium(true);

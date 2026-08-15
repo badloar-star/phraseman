@@ -5,7 +5,26 @@ import {
 } from '../app/account_generation';
 
 const mockPublicProfileSet = jest.fn<Promise<void>, [Record<string, unknown>, { merge: boolean }]>(async () => undefined);
+type ProjectionResponse = {
+  data: {
+    ok: boolean;
+    stableUid: string;
+    isPremium?: boolean;
+    isVip?: boolean;
+    isLifetime?: boolean;
+  };
+};
+
+const mockProjectionCallable = jest.fn<Promise<ProjectionResponse>, [Record<string, unknown>]>(async () => ({
+  data: { ok: true, stableUid: 'account-a', isPremium: false, isVip: false, isLifetime: false },
+}));
 const mockEnsureAnonUser = jest.fn(async () => 'account-a');
+const mockReadLifetimeStats = jest.fn(async () => null as null | {
+  wordsLearned: number;
+  phrasesLearned: number;
+  appDaysUnion: number;
+  longestStreakDays: number;
+});
 
 jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false }));
 jest.mock('@react-native-firebase/firestore', () => ({
@@ -18,12 +37,21 @@ jest.mock('@react-native-firebase/firestore', () => ({
     })),
   })),
 }));
+jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => ({})) }));
+jest.mock('@react-native-firebase/functions', () => ({
+  getFunctions: jest.fn(() => ({})),
+  httpsCallable: jest.fn(() => mockProjectionCallable),
+}));
 jest.mock('../app/cloud_sync', () => ({
   ensureAnonUser: mockEnsureAnonUser,
-  ensureStableAuthLinkForStableIdDetailed: jest.fn(async (stableId: string) => ({ ok: true, stableUid: stableId })),
+  ensureAuthoritativeIdentityForCloudMutation: jest.fn(async (stableId: string) => ({
+    ok: true,
+    stableUid: stableId,
+    adopted: false,
+  })),
 }));
 jest.mock('../app/lifetime_profile_stats', () => ({
-  readLifetimeProfileStatsCache: jest.fn(async () => null),
+  readLifetimeProfileStatsCache: () => mockReadLifetimeStats(),
 }));
 jest.mock('../app/hall_of_fame_utils', () => ({
   parseWeekPointsForWeek: jest.fn(() => 0),
@@ -41,7 +69,11 @@ describe('public profile snapshot hot path', () => {
     storage.__reset?.();
     jest.clearAllMocks();
     mockPublicProfileSet.mockResolvedValue(undefined);
+    mockProjectionCallable.mockResolvedValue({
+      data: { ok: true, stableUid: 'account-a', isPremium: false, isVip: false, isLifetime: false },
+    });
     mockEnsureAnonUser.mockResolvedValue('account-a');
+    mockReadLifetimeStats.mockResolvedValue(null);
     __resetAccountGenerationForTests();
     beginAccountGeneration('account-a');
     const { __publicProfileSnapshotTestHooks } = await import('../app/public_profile_snapshot');
@@ -69,7 +101,7 @@ describe('public profile snapshot hot path', () => {
 
     expect(storage.getItem).toHaveBeenCalledTimes(1);
     expect(storage.multiGet).not.toHaveBeenCalled();
-    expect(mockPublicProfileSet).not.toHaveBeenCalled();
+    expect(mockProjectionCallable).not.toHaveBeenCalled();
   });
 
   it('collapses concurrent daily calls to one write with the latest total XP', async () => {
@@ -80,8 +112,18 @@ describe('public profile snapshot hot path', () => {
       syncPublicProfileSnapshot({ reason: 'daily_xp', name: 'Learner', totalXp: 25 }),
     ]);
 
-    expect(mockPublicProfileSet).toHaveBeenCalledTimes(1);
-    expect(mockPublicProfileSet.mock.calls[0][0]).toMatchObject({ totalXp: 25, updatedReason: 'daily_xp' });
+    expect(mockProjectionCallable).toHaveBeenCalledTimes(1);
+    const request = mockProjectionCallable.mock.calls[0][0] as Record<string, unknown>;
+    expect(request).not.toHaveProperty('totalXp');
+    expect(request).not.toHaveProperty('level');
+    expect(request).not.toHaveProperty('streak');
+    expect(request).not.toHaveProperty('isPremium');
+    expect(request).not.toHaveProperty('isVip');
+    expect(request.profile).not.toHaveProperty('totalXp');
+    expect(request.profile).not.toHaveProperty('level');
+    expect(request.profile).not.toHaveProperty('streak');
+    expect(request.profile).not.toHaveProperty('isPremium');
+    expect(request.profile).not.toHaveProperty('isVip');
   });
 
   it('does not lose display or entitlement priority when a daily call is merged', async () => {
@@ -93,22 +135,47 @@ describe('public profile snapshot hot path', () => {
       syncPublicProfileSnapshot({ reason: 'daily_xp', totalXp: 30 }),
     ]);
 
-    expect(mockPublicProfileSet).toHaveBeenCalledTimes(1);
-    expect(mockPublicProfileSet.mock.calls[0][0]).toMatchObject({
-      name: 'New Name',
-      totalXp: 30,
-      isPremium: true,
-      updatedReason: 'entitlement_change',
+    expect(mockProjectionCallable).toHaveBeenCalledTimes(1);
+    expect(mockProjectionCallable.mock.calls[0][0]).toMatchObject({
+      stableId: 'account-a',
+      reason: 'entitlement_change',
+      profile: expect.objectContaining({ name: 'New Name' }),
     });
+  });
+
+  it('preserves bounded profile-card lifetime stats and league presentation fields', async () => {
+    const { syncPublicProfileSnapshot } = await import('../app/public_profile_snapshot');
+    await AsyncStorage.setItem('profile_card_level', '2');
+    await AsyncStorage.setItem('league_state_v3', JSON.stringify({ leagueId: 7 }));
+    mockReadLifetimeStats.mockResolvedValue({
+      wordsLearned: 321,
+      phrasesLearned: 123,
+      appDaysUnion: 44,
+      longestStreakDays: 15,
+    });
+
+    await syncPublicProfileSnapshot({ reason: 'display_change', name: 'Learner' });
+
+    expect(mockProjectionCallable).toHaveBeenCalledWith(expect.objectContaining({
+      profile: expect.objectContaining({
+        leagueId: 7,
+        cardWordsLearned: 321,
+        cardPhrasesLearned: 123,
+        cardAppDays: 44,
+        cardLongestStreak: 15,
+      }),
+    }));
   });
 
   it('never writes account A cache after account B becomes current', async () => {
     const { __publicProfileSnapshotTestHooks, syncPublicProfileSnapshot } = await import('../app/public_profile_snapshot');
     let release!: () => void;
-    mockPublicProfileSet.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
+    mockProjectionCallable.mockImplementationOnce(() => new Promise<any>((resolve) => {
+      release = () => resolve({ data: { ok: true, stableUid: 'account-a' } });
+    }));
 
     const request = syncPublicProfileSnapshot({ reason: 'display_change', name: 'A', totalXp: 10 });
-    for (let i = 0; i < 30 && mockPublicProfileSet.mock.calls.length === 0; i += 1) await Promise.resolve();
+    for (let i = 0; i < 30 && mockProjectionCallable.mock.calls.length === 0; i += 1) await Promise.resolve();
     beginAccountGeneration('account-b');
     release();
     await request;
@@ -132,13 +199,15 @@ describe('public profile snapshot hot path', () => {
     const cacheKey = __publicProfileSnapshotTestHooks.cacheKey('account-a');
     await AsyncStorage.setItem(cacheKey, JSON.stringify({ xpSyncedAt: Date.now() - PUBLIC_PROFILE_XP_TTL_MS + 60_000 }));
     jest.clearAllMocks();
-    mockPublicProfileSet.mockRejectedValueOnce(new Error('offline')).mockResolvedValueOnce(undefined);
+    mockProjectionCallable
+      .mockRejectedValueOnce(new Error('offline'))
+      .mockResolvedValueOnce({ data: { ok: true, stableUid: 'account-a' } });
 
     await syncPublicProfileSnapshot({ reason: 'display_change', name: 'Retry Me', totalXp: 40 });
     expect(storage.setItem).not.toHaveBeenCalledWith(cacheKey, expect.any(String));
 
     await syncPublicProfileSnapshot({ reason: 'daily_xp', totalXp: 41 });
-    expect(mockPublicProfileSet).toHaveBeenCalledTimes(2);
+    expect(mockProjectionCallable).toHaveBeenCalledTimes(2);
     expect(storage.setItem).toHaveBeenCalledWith(cacheKey, expect.any(String));
   });
 });

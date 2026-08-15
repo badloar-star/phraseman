@@ -31,6 +31,14 @@
       "file": null,
       "steps": [],
       "startTime": 1784012919511
+    },
+    "traj_1786607170815_2ajoy7dy5": {
+      "id": "traj_1786607170815_2ajoy7dy5",
+      "context": "lingman-mixkit: Retrieve the direct Full HD download URL for a free Mixkit stock video without logging in.",
+      "agent": "browser-session",
+      "file": null,
+      "steps": [],
+      "startTime": 1786607170815
     }
   }
 }

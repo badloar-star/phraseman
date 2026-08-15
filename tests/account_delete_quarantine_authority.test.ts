@@ -128,6 +128,17 @@ test('historical v1 mirror without phase migrates as local_cleared', async () =>
   expect(JSON.parse(raw).phase).toBe('local_cleared');
 });
 
+test('server_enqueued is a durable parsed phase distinct from local_cleared', async () => {
+  const secure = require('expo-secure-store');
+  secure.__rows[RECORD_KEY] = JSON.stringify(lock({ phase: 'server_enqueued' }));
+  secure.__rows[ANCHOR_KEY] = JSON.stringify(anchor());
+  const quarantine = require('../app/account_delete_quarantine');
+
+  const raw = await quarantine.readAccountDeletePendingAuthRaw();
+
+  expect(JSON.parse(raw).phase).toBe('server_enqueued');
+});
+
 test('local_cleared blocks only the deleted provider after verified local exit', () => {
   const quarantine = require('../app/account_delete_quarantine');
   const raw = JSON.stringify(lock());

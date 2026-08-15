@@ -94,10 +94,11 @@ describe('telegram testers admin page contract', () => {
   });
 
   it('lets only admin read tester intake records and blocks client writes', () => {
-    expect(rules).toContain('match /telegram_premium_orders/{orderId}');
-    expect(rules).toContain('allow read: if isAdmin();');
-    expect(rules).toContain('allow create, delete: if false;');
-    expect(rules).toContain('allow update: if isAdmin();');
+    const start = rules.indexOf('match /telegram_premium_orders/{orderId}');
+    const body = rules.slice(start, rules.indexOf('\n    }', start) + 6);
+    expect(body).toContain('allow read: if isAdmin();');
+    expect(body).toMatch(/allow (?:create, )?update(?:, delete)?: if false;/);
+    expect(body).not.toContain('allow update: if isAdmin();');
   });
 
   it('does not persist unnecessary Telegram or invoice details in Firestore orders', () => {

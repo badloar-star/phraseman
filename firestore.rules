@@ -267,7 +267,7 @@ service cloud.firestore {
     // newDocHasNoPremiumWrites) проверяли РОВНО один и тот же набор и не рассинхронились.
     function blockedPremiumProgressKeys() {
       return [
-        // Premium/VIP entitlement: only Admin SDK/admin panel may write.
+        // Premium/VIP entitlement: only Admin SDK through Cloud Functions may write.
         'premium_plan',
         'premium_expiry',
         'premium_rc_product_id',
@@ -324,8 +324,7 @@ service cloud.firestore {
     }
 
     function progressHasNoPremiumWrites() {
-      return isAdmin()
-        || !request.resource.data.diff(resource.data).affectedKeys().hasAny(['progress'])
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(['progress'])
         || !request.resource.data.get('progress', {})
               .diff(resource.data.get('progress', {}))
               .affectedKeys().hasAny(blockedPremiumProgressKeys())
@@ -1233,6 +1232,7 @@ service cloud.firestore {
       // Клиент может обновлять свой документ, но не может трогать premium/VIP поля
       // и баланс осколков (shards). Их пишет только Admin SDK через Cloud Functions.
       allow update: if userDocOwnerMatchesAuth(userId)
+        && (isAdmin() || authLinkMapsToUser(userId))
         && accountDeletionNotPending(userId)
         && hasNoServerIdentityWrites()
         && progressHasNoPremiumWrites()
@@ -1240,15 +1240,9 @@ service cloud.firestore {
         && hasNoServerGiftPerkWrites()
         && hasNoProgressAuthorityMarkerWrites()
         && hasNoLevelRewardSpinWrites();
-      allow create: if newUserDocOwnerMatchesAuth(userId)
-        && accountDeletionNotPending(userId)
-        && newDocHasNoServerIdentityWrites()
-        && newDocHasNoPremiumWrites()
-        && newDocHasNoShardWrites()
-        && newDocHasNoServerGiftPerkWrites()
-        && newDocHasNoServerScoreWrites()
-        && newDocHasNoProgressAuthorityMarkerWrites()
-        && newDocHasNoLevelRewardSpinWrites();
+      // authEnsureStableLink bootstraps users/{stableId} and auth_links atomically
+      // with Admin SDK. A client must never recreate a missing/orphaned identity.
+      allow create: if false;
 
       match /community_seller_inbox/{eventId} {
         allow read, write: if false;
@@ -1382,8 +1376,10 @@ service cloud.firestore {
 
     match /public_profiles/{userId} {
       allow read: if request.auth != null;
-      allow create, update: if canonicalUserMatchesAuth(userId);
-      allow delete: if userDocOwnerMatchesAuth(userId);
+      // Server-authoritative projection only. Clients may choose cosmetics via
+      // publicProfileProjectMine, but cannot claim progress or entitlements.
+      allow update: if false;
+      allow create, delete: if false;
     }
 
     // Public aggregate percentile thresholds written by Cloud Functions.
@@ -1928,8 +1924,9 @@ service cloud.firestore {
 
     match /telegram_premium_orders/{orderId} {
       allow read: if isAdmin();
-      allow update: if isAdmin();
-      allow create, delete: if false;
+      // Payment-linked activation is server-authoritative. Even admins must use
+      // adminActivateTelegramPremiumOrder so payment, recipient and audit commit atomically.
+      allow create, update, delete: if false;
     }
 
     // Dead-letter необработанных Telegram-апдейтов (в т.ч. оплат). Пишет ТОЛЬКО

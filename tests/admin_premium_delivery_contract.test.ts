@@ -73,7 +73,7 @@ describe('admin premium delivery contract', () => {
   it('keeps admin grants as VIP access while real Premium stays separate', () => {
     const vipBranch = premiumGuard.indexOf('getVerifiedVipStatus');
     const realBranch = premiumGuard.indexOf('getVerifiedRealPremiumStatus');
-    const noPremiumBranch = premiumGuard.indexOf("noPremium === 'true'");
+    const noPremiumBranch = premiumGuard.indexOf('resolveTesterNoPremiumOverride(noPremium)');
     expect(vipBranch).toBeGreaterThan(-1);
     expect(realBranch).toBeGreaterThan(-1);
     expect(noPremiumBranch).toBeGreaterThan(-1);

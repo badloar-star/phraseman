@@ -623,6 +623,8 @@ export { feedFanoutOnMyEvent, feedPruneCron } from './feed_fanout';
 
 // ── Пачковая выдача публичных профилей друзей (убирает 4-RTT цепочку с клиента) ──
 export { friendsGetProfiles } from './friends_profiles';
+export { publicProfileProjectMine } from './public_profile_projection';
+export { adminActivateTelegramPremiumOrder } from './telegram_premium_admin';
 
 // Authenticated, server-authoritative one-time onboarding access grant.
 export { introFullAccessClaim } from './gift_access';

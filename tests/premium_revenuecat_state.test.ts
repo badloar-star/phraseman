@@ -75,7 +75,9 @@ describe('premium RevenueCat state sync', () => {
           premium: { productIdentifier: 'phraseman_yearly' },
         },
       },
-      activeSubscriptions: ['unrelated_subscription'],
+      // A canonical entitlement is authoritative when present; a different
+      // active subscription must not override its exact product identifier.
+      activeSubscriptions: ['phraseman_monthly'],
     } as any;
 
     expect(customerInfoConfirmsProductAccess(info, 'phraseman_yearly')).toBe(true);

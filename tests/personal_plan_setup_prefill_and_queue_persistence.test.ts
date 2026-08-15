@@ -53,12 +53,14 @@ describe('personal plan setup prefill + pending-queue persistence (3 related fix
     expect(setupSource).toContain("else if (step === 'result') setStep('minutes');");
   });
 
-  it('FIX 3: does not render the goal step before saved-answers read resolves (anti-flicker)', () => {
+  it('FIX 3: renders a bounded loading state before saved-answers read resolves (anti-flicker)', () => {
     expect(setupSource).toContain('const [answersReady, setAnswersReady] = useState(directToPlans);');
     expect(setupSource).toContain('if (!answersReady) {');
     const idx = setupSource.indexOf('if (!answersReady) {');
-    const block = setupSource.slice(idx, idx + 200);
-    expect(block).toContain('return <View style={[styles.safe, { backgroundColor: screenBg }]} />;');
+    const block = setupSource.slice(idx, idx + 1800);
+    expect(block).toContain('ActivityIndicator');
+    expect(block).toContain('safeRouterBack(router, exitFallback)');
+    expect(block).not.toContain('return <View style={[styles.safe, { backgroundColor: screenBg }]} />;');
   });
 
   it('FIX 3: does not weaken the premium gate on activation', () => {

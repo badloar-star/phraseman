@@ -10,7 +10,7 @@ export interface AccountDeletePendingAuthLock {
   providerUid: string;
   stableId: string | null;
   source: 'local' | 'remote';
-  phase: 'prepared' | 'local_cleared';
+  phase: 'prepared' | 'server_enqueued' | 'local_cleared';
   createdAt: number;
   expiresAt: number;
 }
@@ -30,7 +30,7 @@ export type AccountDeletePendingAuthInspection =
   | { status: 'active'; lock: AccountDeletePendingAuthLock };
 
 type SecureStoreModule = typeof import('expo-secure-store');
-type KnownGuardState = 'unknown' | 'none' | 'prepared' | 'local_cleared' | 'malformed';
+type KnownGuardState = 'unknown' | 'none' | 'prepared' | 'server_enqueued' | 'local_cleared' | 'malformed';
 let knownGuardState: KnownGuardState = 'unknown';
 let knownDeletedProviderUid: string | null = null;
 
@@ -71,6 +71,8 @@ export function inspectAccountDeletePendingAuth(
     const hasPhase = Object.prototype.hasOwnProperty.call(parsed, 'phase');
     const phase: AccountDeletePendingAuthLock['phase'] | null = parsed.phase === 'local_cleared'
       ? 'local_cleared'
+      : parsed.phase === 'server_enqueued'
+        ? 'server_enqueued'
       : parsed.phase === 'prepared'
         ? 'prepared'
         : hasPhase
@@ -140,7 +142,11 @@ function inspectSecureLock(
   try {
     const parsed = JSON.parse(raw) as Partial<AccountDeletePendingAuthLock>;
     if (
-      (parsed.phase !== 'prepared' && parsed.phase !== 'local_cleared')
+      (
+        parsed.phase !== 'prepared'
+        && parsed.phase !== 'server_enqueued'
+        && parsed.phase !== 'local_cleared'
+      )
       || typeof parsed.operationId !== 'string'
       || parsed.operationId.trim().length === 0
       || typeof parsed.providerUid !== 'string'
@@ -428,7 +434,7 @@ export function isAccountDeleteIdentityQuarantinedFromKnownState(
   authUser?: { uid?: string | null; isAnonymous?: boolean | null } | null,
 ): boolean {
   if (knownGuardState === 'none') return false;
-  if (knownGuardState === 'local_cleared') {
+  if (knownGuardState === 'server_enqueued' || knownGuardState === 'local_cleared') {
     const currentUid = cleanAccountDeleteLockId(authUser?.uid);
     return !!currentUid
       && authUser?.isAnonymous !== true

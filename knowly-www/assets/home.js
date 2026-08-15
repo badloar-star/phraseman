@@ -257,16 +257,29 @@
     dl.addEventListener('pointerleave', function () { tx = 0; ty = 0; if (!af) af = requestAnimationFrame(loop); });
   })();
 
-  /* ===== Счётчик теста: из кэша тест-лендинга, ноль новых запросов ===== */
+  /* ===== Счётчик теста: только реальные завершения с публичного API. ===== */
   (function testCounter() {
     var el = document.getElementById('testCnt');
     if (!el) return;
-    var value = 124000; /* публичная отправная точка самого теста */
+    var value = 0;
     try {
-      var parsed = JSON.parse(localStorage.getItem('english_test_completed_cache_v1'));
-      if (parsed && Number.isSafeInteger(parsed.value) && parsed.value > value) value = parsed.value;
-    } catch (e) { /* остаёмся на отправной точке */ }
-    el.textContent = String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + '+';
+      var parsed = JSON.parse(localStorage.getItem('english_test_completed_cache_by_language_v1'));
+      if (parsed && parsed.values && Number.isSafeInteger(parsed.values.en)) value = parsed.values.en;
+    } catch (e) { /* кэш необязателен */ }
+    function render(count) {
+      el.textContent = Number.isSafeInteger(count) && count >= 0
+        ? String(count).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + '+'
+        : '—';
+    }
+    render(value);
+    fetch('/api/english-test', { headers: { Accept: 'application/json' }, cache: 'no-store' })
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(function (data) {
+        var completed = data && data.ok && data.completedByLanguage && data.completedByLanguage.en;
+        if (!Number.isSafeInteger(completed) || completed < 0) return;
+        render(completed);
+      })
+      .catch(function () { /* кэшированное значение остаётся видимым */ });
   })();
 
   /* появления секций при скролле */

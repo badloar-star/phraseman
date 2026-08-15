@@ -156,17 +156,22 @@
 
   var root = null;
 
+  function localized(value) {
+    var i18n = window.KnowlySiteI18n;
+    return i18n && typeof i18n.translateValue === 'function' ? i18n.translateValue(value) : value;
+  }
+
   function h(tag, attrs, children) {
     var node = document.createElement(tag);
     Object.keys(attrs || {}).forEach(function (k) {
       if (k === 'class') node.className = attrs[k];
       else if (k === 'html') node.innerHTML = attrs[k];
       else if (k.indexOf('on') === 0) node.addEventListener(k.slice(2), attrs[k]);
-      else node.setAttribute(k, attrs[k]);
+      else node.setAttribute(k, typeof attrs[k] === 'string' ? localized(attrs[k]) : attrs[k]);
     });
     (children || []).forEach(function (c) {
       if (c == null) return;
-      node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+      node.appendChild(typeof c === 'string' ? document.createTextNode(localized(c)) : c);
     });
     return node;
   }
@@ -358,7 +363,7 @@
     function submit() {
       var email = String(emailInput.value || '').trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-        errBox.textContent = 'Похоже, в email опечатка — проверьте адрес.';
+        errBox.textContent = localized('Похоже, в email опечатка — проверьте адрес.');
         errBox.classList.add('show');
         emailInput.focus();
         return;
@@ -434,7 +439,7 @@
       if (b) b.textContent = remotePrices[plan].label;
       if (plan === 'yearly') {
         var small = document.querySelector('[data-price-sub="yearly"]');
-        if (small && remotePrices.yearly.perMonth) small.textContent = '≈ ' + remotePrices.yearly.perMonth + '/мес';
+        if (small && remotePrices.yearly.perMonth) small.textContent = localized('≈ ') + remotePrices.yearly.perMonth + localized('/мес');
       }
     });
   }
@@ -525,12 +530,12 @@
     if (paywallState.busy) return;
     clearError();
     var email = selectedEmail();
-    if (!email) { showError('Укажите email — на него придёт чек и подтверждение активации.'); return; }
+    if (!email) { showError(localized('Укажите email — на него придёт чек и подтверждение активации.')); return; }
     var endpoint = cfg().checkoutEndpoint;
-    if (!endpoint) { showError('Оплата картой пока подключается. Напишите нам через страницу поддержки — активируем вручную.'); return; }
+    if (!endpoint) { showError(localized('Оплата картой пока подключается. Напишите нам через страницу поддержки — активируем вручную.')); return; }
     paywallState.busy = true;
     var btn = document.getElementById('qpay-card-btn');
-    if (btn) { btn.disabled = true; btn.textContent = 'Открываем оплату…'; }
+    if (btn) { btn.disabled = true; btn.textContent = localized('Открываем оплату…'); }
     track('checkout_click');
     fbq('track', 'InitiateCheckout');
     fetch(endpoint, {
@@ -544,8 +549,8 @@
       })
       .catch(function () {
         paywallState.busy = false;
-        if (btn) { btn.disabled = false; btn.textContent = 'Оплатить картой'; }
-        showError('Не получилось открыть оплату. Попробуйте ещё раз или напишите в поддержку.');
+        if (btn) { btn.disabled = false; btn.textContent = localized('Оплатить картой'); }
+        showError(localized('Не получилось открыть оплату. Попробуйте ещё раз или напишите в поддержку.'));
       });
   }
 
@@ -572,7 +577,7 @@
         onClick: function (_data, actions) {
           clearError();
           if (!selectedEmail()) {
-            showError('Укажите email — на него придёт подтверждение активации.');
+            showError(localized('Укажите email — на него придёт подтверждение активации.'));
             return actions.reject();
           }
           track('checkout_click');
@@ -601,7 +606,7 @@
             });
         },
         onError: function () {
-          showError('PayPal не ответил. Попробуйте карту или напишите в поддержку.');
+          showError(localized('PayPal не ответил. Попробуйте карту или напишите в поддержку.'));
         },
       }).render('#paypal-buttons');
     }

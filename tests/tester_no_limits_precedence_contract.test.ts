@@ -13,7 +13,7 @@ describe('tester_no_limits precedence and production fuse', () => {
   test('central helper makes tester_no_premium win and rejects store releases', () => {
     expect(premiumGuard).toContain('export async function isTesterNoLimitsActive');
     expect(premiumGuard).toContain("AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])");
-    expect(premiumGuard).toContain("noPremiumRaw !== 'true'");
+    expect(premiumGuard).toContain('!resolveTesterNoPremiumOverride(noPremiumRaw)');
     expect(premiumGuard).toContain("noLimitsRaw === 'true'");
     expect(premiumGuard).toContain('!IS_STORE_RELEASE');
 

@@ -278,7 +278,7 @@ ${indent}}`,
     expect(identityRuleGuardViolations(mutated)).not.toEqual([]);
   });
 
-  test('users create rejects client identity poisoning, including browser admins', () => {
+  test('users create is server-only and identity guards remain fail-closed', () => {
     const fields = rules.match(/function serverOwnedUserIdentityFields\(\) \{[\s\S]*?\n    \}/);
     const guard = rules.match(/function newDocHasNoServerIdentityWrites\(\) \{[\s\S]*?\n    \}/);
     expect(fields).not.toBeNull();
@@ -288,9 +288,7 @@ ${indent}}`,
     for (const field of SERVER_OWNED_USER_IDENTITY_FIELDS) {
       expect(fields![0]).toContain(`'${field}'`);
     }
-    expect(rules).toMatch(
-      /allow create:\s*if\s+newUserDocOwnerMatchesAuth\(userId\)[\s\S]*?newDocHasNoServerIdentityWrites\(\)/,
-    );
+    expect(rules).toContain('allow create: if false;');
   });
 
   test('users update and delete cannot change or remove server-owned identity', () => {
@@ -320,10 +318,22 @@ ${indent}}`,
     expect(rules).toMatch(/match \/arena_questions\/\{qId\} \{[\s\S]*?allow read:\s*if request\.auth != null;[\s\S]*?allow write:\s*if false;/);
   });
 
+  test('public profile projections are server-owned', () => {
+    const blocks = exactRootMatchBlocks('public_profiles/{userId}');
+    expect(blocks).toHaveLength(1);
+    expect(activeAllowLines(blocks[0])).toEqual([
+      'allow read: if request.auth != null;',
+      'allow update: if false;',
+      'allow create, delete: if false;',
+    ]);
+  });
+
   test('users collection is restricted to owner/admin, including stableId auth mapping', () => {
     expect(rules).toContain('match /users/{userId} {');
     expect(rules).toContain('function userDocOwnerMatchesAuth(userId) {');
     expect(rules).toContain('function newUserDocOwnerMatchesAuth(userId) {');
+    expect(rules).toContain('&& (isAdmin() || authLinkMapsToUser(userId))');
+    expect(rules).toContain('allow create: if false;');
     expect(rules).toContain('function authLinkMapsToUser(userId) {');
     expect(rules).toContain('auth_links/$(request.auth.uid)');
     expect(rules).toContain('data.stable_id == userId');
@@ -331,7 +341,7 @@ ${indent}}`,
     expect(rules).toContain('function accountDeletionNotPending(userId) {');
     expect(rules).toContain('account_deletion_tombstones/$(userId)');
     expect(rules).toMatch(/allow update:[^;]*accountDeletionNotPending\(userId\)/);
-    expect(rules).toMatch(/allow create:[^;]*accountDeletionNotPending\(userId\)/);
+    expect(rules).toContain('allow create: if false;');
     // Read is owner/admin OR the doc does not exist yet (empty read is safe and must
     // not break the 1.5.41 sign-in transaction's tx.get on a brand-new localStableId —
     // see userDocMissing). delete stays strictly owner/admin. update is owner/admin AND
@@ -349,9 +359,7 @@ ${indent}}`,
     // doc. Firestore evaluates a set() on a non-existent doc against `allow create`, so
     // without a premium guard here a tampered client could self-grant VIP on its very first
     // write (resource is null on create → diff impossible → guard checks key presence).
-    expect(rules).toMatch(
-      /allow create:\s*if\s+newUserDocOwnerMatchesAuth\(userId\)\s*&&[\s\S]*?newDocHasNoPremiumWrites\(\)/,
-    );
+    expect(rules).toContain('allow create: if false;');
     expect(rules).toContain('function newDocHasNoPremiumWrites() {');
     // The create guard must inspect the NEW progress map's keys (not a diff — there is no
     // prior resource on create) and reject any blocked premium key.
@@ -555,11 +563,10 @@ ${indent}}`,
       .toContain("'shard_survey_last_at_ms'");
   });
 
-  test('progressHasNoPremiumWrites() preserves the deliberate admin escape hatch', () => {
-    // Admin (custom claim) keeps manual VIP grant/revoke via the web SDK.
-    expect(rules).toMatch(
-      /function progressHasNoPremiumWrites\(\) \{\s*return isAdmin\(\)/,
-    );
+  test('progressHasNoPremiumWrites() denies premium writes from browser admins too', () => {
+    const guard = rules.match(/function progressHasNoPremiumWrites\(\) \{[\s\S]*?\n    \}/)?.[0] ?? '';
+    expect(guard).not.toMatch(/return\s+isAdmin\(\)\s*\|\|/);
+    expect(guard).toContain('.hasAny(blockedPremiumProgressKeys())');
   });
 
   test('users shard_log allows owner read and create only', () => {

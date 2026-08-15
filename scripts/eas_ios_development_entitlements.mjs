@@ -14,15 +14,43 @@ if (profile !== 'development' || (platform && platform !== 'ios')) {
   process.exit(0);
 }
 
+const APP_ATTEST_KEY = 'com.apple.developer.devicecheck.appattest-environment';
 const entitlementsPath = path.join(projectRoot, 'ios', 'Phraseman', 'Phraseman.entitlements');
-const source = fs.readFileSync(entitlementsPath, 'utf8');
-const appAttestEntitlement = /\n\s*<key>com\.apple\.developer\.devicecheck\.appattest-environment<\/key>\s*\n\s*<string>production<\/string>/u;
 
-if (!appAttestEntitlement.test(source)) {
-  throw new Error(
-    '[ios-dev-entitlements] App Attest entitlement changed; review development signing before building',
+// зачем: `ios/` лежит в .gitignore и на CI появляется только после prebuild, а этот
+// pre-install хук выполняется РАНЬШЕ него. Раньше он безусловно читал .entitlements,
+// падал на ENOENT и обрывал всю iOS-сборку (build e1efac7a, 2026-08-15). Поэтому:
+// есть нативная папка — правим её, нет — снимаем App Attest в app.json, из которого
+// prebuild и сгенерирует entitlements. Итог одинаковый, но работает в обоих режимах.
+if (fs.existsSync(entitlementsPath)) {
+  const source = fs.readFileSync(entitlementsPath, 'utf8');
+  const appAttestEntitlement = new RegExp(
+    `\\n\\s*<key>${APP_ATTEST_KEY.replace(/\./gu, '\\.')}</key>\\s*\\n\\s*<string>production</string>`,
+    'u',
   );
-}
 
-fs.writeFileSync(entitlementsPath, source.replace(appAttestEntitlement, ''), 'utf8');
-console.log('[ios-dev-entitlements] removed App Attest from the temporary development build; production remains unchanged');
+  if (!appAttestEntitlement.test(source)) {
+    throw new Error(
+      '[ios-dev-entitlements] App Attest entitlement changed; review development signing before building',
+    );
+  }
+
+  fs.writeFileSync(entitlementsPath, source.replace(appAttestEntitlement, ''), 'utf8');
+  console.log('[ios-dev-entitlements] removed App Attest from the temporary development build; production remains unchanged');
+} else {
+  const appConfigPath = path.join(projectRoot, 'app.json');
+  const appConfig = JSON.parse(fs.readFileSync(appConfigPath, 'utf8'));
+  const entitlements = appConfig?.expo?.ios?.entitlements;
+
+  // Та же защита, что и в нативной ветке: молча пропустить нельзя — если ключ исчез
+  // или сменил значение, подпись development-сборки надо пересматривать осознанно.
+  if (entitlements?.[APP_ATTEST_KEY] !== 'production') {
+    throw new Error(
+      '[ios-dev-entitlements] App Attest entitlement changed; review development signing before building',
+    );
+  }
+
+  delete entitlements[APP_ATTEST_KEY];
+  fs.writeFileSync(appConfigPath, `${JSON.stringify(appConfig, null, 2)}\n`, 'utf8');
+  console.log('[ios-dev-entitlements] removed App Attest from app.json before prebuild; production config in git is unchanged');
+}

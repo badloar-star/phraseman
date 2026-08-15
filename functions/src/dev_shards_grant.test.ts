@@ -65,7 +65,7 @@ describe('железное правило: начисление на ЛЮБОЙ 
     // Клиентский флаг подделывается, серверный — нет. Проверка обязана стоять
     // ДО любой записи баланса.
     const gate = source.indexOf('dev_shards_grant_disabled');
-    const write = source.indexOf('shards: after');
+    const write = source.indexOf('appendExternalEconomyEvent(tx', gate);
     expect(gate).toBeGreaterThan(-1);
     expect(write).toBeGreaterThan(gate);
   });
@@ -76,7 +76,9 @@ describe('железное правило: начисление на ЛЮБОЙ 
     expect(source).toContain('DEV_GRANT_MAX');
   });
 
-  it('баланс пишется транзакцией — гонка двух устройств не теряет жемчужины', () => {
+  it('подтверждённое событие и чек пишутся одной транзакцией', () => {
     expect(source).toContain('db.runTransaction');
+    expect(source).toContain('appendExternalEconomyEvent');
+    expect(source).not.toContain('shards: after');
   });
 });

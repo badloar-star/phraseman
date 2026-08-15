@@ -721,48 +721,29 @@ describe('owner runtime direction contract', () => {
     expect(xpManager).not.toContain('const newXP =');
   });
 
-  it('keeps server shard balance mirrors timestamp-guarded instead of blind client replaces', () => {
-    const shardsSystem = read('app/shards_system.ts');
-    const friendQuests = read('app/friend_quests.ts');
-    const friendGifts = read('app/friend_gifts.ts');
-    const communityPurchase = read('app/community_packs/purchaseCommunityPack.ts');
-    const communityClient = read('app/community_packs/functionsClient.ts');
-    const leagueBoosts = read('app/league_group_boosts.ts');
-    const leagueChestClient = read('app/services/league_chest_rewards.ts');
-    const collectiblesClient = read('app/collectibles/storage.ts');
-
-    expect(shardsSystem).toContain('type ReplaceShardBalanceOptions = {');
-    expect(shardsSystem).toContain('const serverUpdatedAtMs = parseUpdatedAtMs(options?.updatedAtMs)');
-    expect(shardsSystem).toContain("if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return 'already-newer';");
-    expect(shardsSystem).toContain('await persistLocalBalance(n, meta)');
-    expect(shardsSystem).toContain('const mirrorServerShardBalanceLocal = async (');
-    expect(shardsSystem).toContain('const mirrorOutcome = await mirrorServerShardBalanceLocal(');
-    expect(shardsSystem).not.toContain('await persistLocalBalance(cloudApplied.balance, meta)');
-    expect(shardsSystem).not.toContain('setShardsBalanceMemory(cloudApplied.balance)');
-
-    for (const source of [
-      friendQuests,
-      friendGifts,
-      communityPurchase,
-      leagueBoosts,
-      leagueChestClient,
-      collectiblesClient,
+  it('keeps server shard effects as external facts instead of balance mirrors', () => {
+    for (const file of [
+      'functions/src/friend_gifts.ts',
+      'functions/src/community_packs.ts',
+      'functions/src/league_groups.ts',
+      'functions/src/league_chest.ts',
+      'functions/src/collectibles.ts',
     ]) {
-      expect(source).toContain('updatedAtMs:');
+      const source = read(file);
+      expect(source).toContain('appendExternalEconomyEvent');
     }
 
-    expect(communityClient).toContain('shardsUpdatedAtMs?: number');
-    expect(friendQuests).toContain('shardsUpdatedAtMs?: number');
-    expect(friendGifts).toContain('shardsUpdatedAtMs?: number');
-    expect(leagueBoosts).toContain('shardsUpdatedAtMs?: number');
-    expect(leagueChestClient).toContain('shardsUpdatedAtMs?: number');
-    expect(collectiblesClient).toContain('shardsUpdatedAtMs?: number | null');
-
-    expect(read('functions/src/friend_gifts.ts')).toContain('shardsUpdatedAtMs');
-    expect(read('functions/src/community_packs.ts')).toContain('shardsUpdatedAtMs: now');
-    expect(read('functions/src/league_groups.ts')).toContain('shardsUpdatedAtMs: now');
-    expect(read('functions/src/league_chest.ts')).toContain('shardsUpdatedAtMs: shardReward > 0 ? now');
-    expect(read('functions/src/collectibles.ts')).toContain('shardsUpdatedAtMs: decision.bonusShards > 0 ? now : null');
+    for (const file of [
+      'app/friend_gifts.ts',
+      'app/community_packs/purchaseCommunityPack.ts',
+      'app/league_group_boosts.ts',
+      'app/services/league_chest_rewards.ts',
+      'app/collectibles/storage.ts',
+    ]) {
+      const source = read(file);
+      expect(source).not.toContain('replaceShardsBalanceLocal(');
+      expect(source).not.toContain('keepShardsBalanceLocalAtLeast(');
+    }
   });
 
   it('keeps selected server-first economy callables idempotent against duplicate retries', () => {
@@ -892,7 +873,8 @@ describe('owner runtime direction contract', () => {
     expect(collectibles).toContain('seedBase: `collect:${stableUid}:${eventIdRaw}`');
 
     expect(profileCard).toContain('if (expectedLevel !== null && currentLevel > expectedLevel) {');
-    expect(profileCard).toContain('return { ok: true, alreadyApplied: true, level: currentLevel, balance, spent: 0 };');
+    expect(profileCard).toContain('return { ok: true, alreadyApplied: true, level: currentLevel, spent: 0 };');
+    expect(profileCard).not.toContain('balance, spent');
 
     expect(promoCodes).toContain('const redemptionRef = userRef.collection(PROMO_REDEMPTIONS).doc(code);');
     expect(promoCodes).toContain('alreadyRedeemed: redemptionSnap.exists');
@@ -920,38 +902,31 @@ describe('owner runtime direction contract', () => {
     expect(packTrial).toContain('expiresAtOverride');
   });
 
-  it('keeps release-wave shard grants stamped with shard wallet freshness meta', () => {
+  it('keeps release-wave shard grants deterministic and atomic with their marker', () => {
     const source = read('app/release_wave_bonus.ts');
 
-    expect(source).toContain('const updatedAtMs = Date.now()');
-    expect(source).toContain("shards_updated_at_ms: updatedAtMs");
-    expect(source).toContain("shards_updated_op: 'earn'");
-    expect(source).toContain("shards_updated_reason: 'release_wave_bonus'");
-    expect(source).toContain('await replaceShardsBalanceLocal(newBalance, {');
+    expect(source).toContain('commitShardCreditOperation({');
+    expect(source).toContain('operationId: `release-wave:${wave}`');
     expect(source).toContain("reason: 'release_wave_bonus'");
-    expect(source).toContain("await AsyncStorage.setItem(claimKey(wave), '1')");
-    expect(source).not.toContain("['shards_balance', String(newBalance)]");
+    expect(source).toContain("localWrites: [[claimKey(wave), '1']]");
+    expect(source).not.toContain('replaceShardsBalanceLocal(');
+    expect(source).not.toContain("AsyncStorage.setItem(claimKey(wave), '1')");
   });
 
-  it('keeps account merge shard writes stamped so stale local wallets cannot overwrite them', () => {
+  it('never derives an account-merge economy event from legacy server shards', () => {
     const source = read('functions/src/auth_merge.ts');
-
-    // зачем: рефакторинг 3eba05191 переименовал winnerData/update → winner.data/
-    // winnerUpdate и перенёс чтения внутрь транзакции; сама защита (merge = max +
-    // штампы свежести кошелька) не менялась — контракт перепривязан к живым именам.
-    expect(source).toContain('const mergedShards = mergeShards(winner.data.shards, loser.data.shards);');
-    expect(source).toContain('winnerUpdate.shards = mergedShards;');
-    expect(source).toContain('winnerUpdate.shards_updated_at_ms = now;');
-    expect(source).toContain("winnerUpdate.shards_updated_op = 'replace';");
-    expect(source).toContain("winnerUpdate.shards_updated_reason = 'account_merge';");
+    expect(source).not.toContain('mergeShards(winner.data.shards, loser.data.shards)');
+    expect(source).not.toContain("source: 'account_merge'");
+    expect(source).not.toContain('account_merge_balance_import');
   });
 
-  it('keeps level gift shard fallback on the shared shard mirror instead of raw balance writes', () => {
+  it('keeps retired level gift pearls as a hard no-op with no balance bypass', () => {
     const source = read('app/level_gift_system.ts');
 
-    expect(source).toContain("const options = { op: 'earn' as const, reason: 'level_gift_fallback' }");
-    expect(source).toContain('replaceShardsBalanceLocalWhileAccountTransitionLocked(before + safe, accountToken, options)');
-    expect(source).toContain('replaceShardsBalanceLocal(before + safe, options)');
+    expect(source).toContain('public compatibility API as an explicit no-op');
+    expect(source).not.toContain('level_gift_fallback');
+    expect(source).not.toContain('replaceShardsBalanceLocalWhileAccountTransitionLocked');
+    expect(source).not.toContain('replaceShardsBalanceLocal(before + safe');
     expect(source).not.toContain("AsyncStorage.setItem('shards_balance'");
     expect(source).not.toContain('AsyncStorage.setItem("shards_balance"');
   });
@@ -976,9 +951,9 @@ describe('owner runtime direction contract', () => {
     expect(friendsTab.indexOf('setGiftTarget(null);', durableEnqueue)).toBeGreaterThan(durableEnqueue);
     expect(successToast).toBeGreaterThan(durableEnqueue);
     expect(friendsTab).toContain('void queued.completion.then(async (res) =>');
-    expect(friendsTab).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
-    expect(friendsTab).toContain('setGiftBalance(guardedBalance)');
-    expect(friendsTab).not.toContain('setGiftBalance(res.senderBalanceAfter)');
+    expect(friendsTab).toContain('const guardedBalance = await getShardsBalance().catch(() => null);');
+    expect(friendsTab).toContain('if (guardedBalance !== null) setGiftBalance(guardedBalance);');
+    expect(friendsTab).not.toContain('res.senderBalanceAfter');
     expect(friendsTab).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
     expect(friendsTab).not.toContain(['Подожди пару секунд', 'и попробуй снова'].join(' '));
     expect(friendsTab).not.toContain('ActivityIndicator');

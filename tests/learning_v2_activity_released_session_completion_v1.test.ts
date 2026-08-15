@@ -92,7 +92,7 @@ describe("Learning V2 released Activity session completion", () => {
       activityPackageFingerprint: h("c"),
       packageFingerprint: h("d"),
       answerPayload: "absent",
-      completionAuthority: "none_server_revalidation_required",
+      completionAuthority: "completed_session_summary_for_background_storage",
       walletAuthority: "none",
       releaseAuthority: false,
     });
@@ -160,7 +160,7 @@ describe("Learning V2 released Activity session completion", () => {
       accountGeneration: 8,
       packageFingerprint: completion.packageFingerprint,
       taskCompletions: completion.taskCompletions,
-      completionAuthority: "none_server_revalidation_required",
+      completionAuthority: "completed_session_summary_for_background_storage",
       walletAuthority: "none",
       masteryAuthority: "none",
       evidenceAuthority: "none",

@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 
 const source = readFileSync(
-  path.resolve(__dirname, "../admin/legacy.html"),
+  path.resolve(__dirname, "../admin/v2/legacy.html"),
   "utf8",
 );
 
@@ -14,7 +14,7 @@ function editShardsHandler(): string {
   return source.slice(start, end);
 }
 
-describe("live admin absolute shard balance callable contract", () => {
+describe("live admin external shard adjustment callable contract", () => {
   it("caches exactly one protected adminSetShardBalance callable", () => {
     expect(
       source.match(/httpsCallable\(functionsUs, 'adminSetShardBalance'\)/g) ||
@@ -23,11 +23,11 @@ describe("live admin absolute shard balance callable contract", () => {
     expect(source).toContain("function getAdminSetShardBalanceCallable()");
   });
 
-  it("strictly bounds the requested absolute balance and requires a reason", () => {
+  it("strictly bounds the requested delta and requires a reason", () => {
     const body = editShardsHandler();
     expect(body).toContain("Number(String(val).trim())");
-    expect(body).toContain("Number.isSafeInteger(newBalance)");
-    expect(body).toMatch(/newBalance\s*>\s*1000000/);
+    expect(body).toContain("Number.isSafeInteger(delta)");
+    expect(body).toContain("Math.abs(delta) > 1000000");
     expect(body).toContain("const reason = String(await showInputModal({");
     expect(body).toContain(".trim();");
     expect(body).toMatch(/if\s*\(!reason\)/);
@@ -39,7 +39,7 @@ describe("live admin absolute shard balance callable contract", () => {
     expect(body).toContain("createAdminCommandId('shard_balance_operation')");
     expect(body).toContain("await getAdminSetShardBalanceCallable()({");
     expect(body).toContain("uid,");
-    expect(body).toContain("newBalance,");
+    expect(body).toContain("delta,");
     expect(body).toContain("reason,");
     expect(body).toContain("requestId,");
     expect(body).toContain("idempotencyKey,");
@@ -55,7 +55,7 @@ describe("live admin absolute shard balance callable contract", () => {
       acknowledged,
     );
     const balance = body.indexOf(
-      "const confirmedBalance = Number(response.data.balance);",
+      "const confirmedDelta = Number(response.data.delta);",
       acknowledged,
     );
     const cachedUser = body.indexOf(
@@ -63,7 +63,7 @@ describe("live admin absolute shard balance callable contract", () => {
       balance,
     );
     const mutation = body.indexOf(
-      "writeUser.shards = confirmedBalance;",
+      "writeUser.shards = Math.max(0, Number(writeUser.shards) + confirmedDelta);",
       cachedUser,
     );
     const detail = body.indexOf("openDetail(writeUid);", mutation);

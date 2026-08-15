@@ -5,6 +5,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
+import { appendExternalEconomyEvent } from './external_economy_events';
 import {
   type TournamentTask,
   applySpeedMatchAttempt,
@@ -99,7 +100,8 @@ import {
   toArenaPublicTask,
   validateArenaPrivateEnvelope,
 } from './arena_v2_core';
-import { arenaBotDisplayName } from './arena_bot_identity';
+import { arenaBotAvatar, arenaBotDisplayName } from './arena_bot_identity';
+import { arenaConfigProblems } from './arena_config_contract';
 import {
   commitStarOperations,
   prepareStarOperations,
@@ -366,11 +368,23 @@ async function arenaActor(
     configCache = { loadedAtMs: now, data: snap.data() ?? {} };
   }
   const config = configCache.data;
-  if (config.schemaVersion !== 'arena-v2-config.v1'
-    || config.productConfigVersion !== 'arena-v2-product.v1'
-    || config.contentPublication?.poolVersion !== NEW_TOURNAMENT_POOL_VERSION
-    || config.contentPublication?.manifestSha256 !== NEW_TOURNAMENT_POOL_CONTENT_SHA256) {
-    throw new HttpsError('failed-precondition', 'arena_config_incompatible');
+  /**
+   * Проверку конфига делает `arenaConfigProblems` — тот же модуль, которым
+   * админка строит документ и показывает его состояние.
+   *
+   * Здесь раньше стоял свой, отдельно написанный список условий, и он был
+   * КОРОЧЕ: не смотрел ни корень Меркла, ни формат минимальной версии
+   * клиента, ни то, что флаги вообще булевы. Опечатка в `minClientVersion`
+   * (скажем, `1.0.0-beta`) проходила этот гейт и убивала Арену на следующей
+   * строке — каждому игроку прилетало «обнови приложение», хотя обновлять
+   * было нечего. Диагностировать такое по одному коду ошибки невозможно.
+   *
+   * Поэтому проверка одна на всех, и она называет, что именно не так: список
+   * проблем уезжает в текст ошибки и виден в логах и в админке.
+   */
+  const configProblems = arenaConfigProblems(config);
+  if (configProblems.length) {
+    throw new HttpsError('failed-precondition', `arena_config_incompatible:${configProblems.join(',')}`);
   }
   if (!versionAtLeast(request.data?.clientVersion, config.minClientVersion)) {
     throw new HttpsError('failed-precondition', 'arena_client_update_required');
@@ -560,7 +574,15 @@ function makeMatch(input: {
       privateDoc.tasks,
     ).map((plan, index) => [String(index), plan]));
   }
-  const acceptedBy = input.bot ? ['b'] : [];
+  // Бот не открывает приложение и не вызывает MatchAccept. Его место уже
+  // подтверждено самим сервером в момент создания матча, поэтому оно должно
+  // быть принято сразу. Для любого расположения игрока берём реальный seat
+  // бота из envelope, а не предполагаем литерал `b`.
+  const botStableUid = input.bot
+    ? participantStableUids.find((uid) => uid.startsWith('bot_'))
+    : undefined;
+  const botSeat = botStableUid ? privateDoc.seatByStableUid[botStableUid] : undefined;
+  const acceptedBy = botSeat ? [botSeat] : [];
   const publicPlayers = [input.left, input.right].map((player, index) => ({
     uid: index === 0 ? 'a' : 'b',
     name: player.name,
@@ -1458,8 +1480,24 @@ function closeMatchQueues(
 ): void {
   if (match.mode === 'friend') return;
   for (const uid of privateDoc.participantStableUids.filter((value) => !value.startsWith('bot_'))) {
+    const authUid = privateDoc.authByStableUid?.[uid] ?? '';
     tx.set(db.collection(ARENA_V2_COLLECTIONS.queue).doc(uid), {
       status: 'cancelled', closeReason: reason, cancelledAtMs: now, leaseExpiresAt: 0,
+      /**
+       * `authUid` пишется ещё раз нарочно, хотя запись идёт слиянием в
+       * существующий документ.
+       *
+       * По этому полю правила Firestore решают, можно ли игроку читать свою
+       * строку очереди. Слияние с `merge: true` СОЗДАЁТ документ, если его
+       * нет, — и созданный без `authUid` документ становится нечитаемым для
+       * своего же владельца. Чинить это некому: строки очереди нигде не
+       * удаляются, поэтому подписка игрока молча ослепла бы навсегда, во всех
+       * режимах сразу.
+       *
+       * Сейчас документ всегда есть — но цена страховки одно поле, а цена
+       * ошибки такова, что заметить её можно только по жалобе.
+       */
+      ...(authUid ? { authUid } : {}),
     }, { merge: true });
   }
 }
@@ -1809,7 +1847,12 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
       matchId, mode: 'quick', left: playerSnapshot(who.stableUid, who.user, profile),
       right: playerSnapshot(
         botUid,
-        { displayName: arenaBotDisplayName(botSeed, typeof who.user.lang === 'string' ? who.user.lang : undefined) },
+        {
+          displayName: arenaBotDisplayName(botSeed, typeof who.user.lang === 'string' ? who.user.lang : undefined),
+          // Без аватара бот выдавал себя с первого кадра: у живого игрока
+          // картинка есть, у бота была заглушка.
+          avatar: arenaBotAvatar(botSeed, who.user.avatar),
+        },
         { rank: profile.rank, rating: profile.rating },
       ),
       leftAuthUid: who.authUid, privateEnvelope, now, bot: true, botSeed,
@@ -1839,6 +1882,12 @@ export const arenaV2MatchAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
     const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
+    // Повторный accept закрытого матча обязан быть чистым чтением. Иначе
+    // старый экран после возврата мог очистить activeMatchId и очередь уже
+    // НОВОГО матча того же игрока.
+    if (match.terminal === true || match.state === 'settled' || match.state === 'aborted') {
+      return { match, viewerSeat };
+    }
     const pairRef = match.mode === 'ranked' && privateDoc.pairLimitId
       ? db.collection(ARENA_V2_COLLECTIONS.pairLimits).doc(privateDoc.pairLimitId) : null;
     const pairSnap = pairRef ? await tx.get(pairRef) : null;
@@ -2091,6 +2140,11 @@ export const arenaV2SyncMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
     const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
+    // Sync закрытого матча идемпотентен и не трогает профиль/очередь: они уже
+    // могут принадлежать следующему матчу.
+    if (match.terminal === true || match.state === 'settled' || match.state === 'aborted') {
+      return { match, viewerSeat, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid] };
+    }
     const pairRef = match.mode === 'ranked' && privateDoc.pairLimitId && !privateDoc.pairLimitCommitted
       ? db.collection(ARENA_V2_COLLECTIONS.pairLimits).doc(privateDoc.pairLimitId) : null;
     const pairSnap = pairRef ? await tx.get(pairRef) : null;
@@ -2794,9 +2848,10 @@ export const arenaV2SeasonClaim = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
   const seasonRef = db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.seasons).doc(seasonId);
   const claimRef = db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.seasonClaims)
     .doc(`${seasonId}_${level}_${side}`);
+  const userRef = db.collection('users').doc(who.stableUid);
   const output = await db.runTransaction(async (tx) => {
-    const [seasonSnap, claimSnap, userSnap] = await Promise.all([
-      tx.get(seasonRef), tx.get(claimRef), tx.get(db.collection('users').doc(who.stableUid)),
+    const [seasonSnap, claimSnap] = await Promise.all([
+      tx.get(seasonRef), tx.get(claimRef),
     ]);
     if (claimSnap.exists) return claimSnap.data()!;
     const seasonData = seasonSnap.data() ?? {};
@@ -2815,9 +2870,11 @@ export const arenaV2SeasonClaim = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     tx.set(seasonRef, { [field]: claimed, updatedAtMs: now }, { merge: true });
     tx.create(claimRef, claim);
     if (reward.kind === 'shards') {
-      tx.set(db.collection('users').doc(who.stableUid), {
-        shards: Math.max(0, Math.trunc(Number(userSnap.data()?.shards ?? 0))) + reward.amount,
-      }, { merge: true });
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'arena_v2_season', eventId: claimRef.id, ownerStableId: who.stableUid,
+        delta: reward.amount, reason: 'arena_v2_season_reward', kind: 'competition_arena_season_reward',
+        subjectId: claimRef.id, payload: { seasonId, level, side }, createdAtMs: now,
+      });
     } else {
       tx.create(db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.spinCredits)
         .doc(`season_${seasonId}_${level}_${side}`), {
@@ -2845,6 +2902,7 @@ export const arenaV2SpinClaim = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
   const key = String(process.env.ARENA_V2_SPIN_HMAC_KEY ?? '').trim();
   if (!key) throw new HttpsError('failed-precondition', 'arena_spin_key_unavailable');
   const resultRef = db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.spinResults).doc(requestId);
+  const userRef = db.collection('users').doc(who.stableUid);
   const existing = await resultRef.get();
   if (existing.exists) return { ok: true, ...existing.data() };
   const now = nowMs();
@@ -2854,8 +2912,8 @@ export const arenaV2SpinClaim = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     .orderBy('expiresAtMs', 'asc')
     .limit(1);
   const output = await db.runTransaction(async (tx) => {
-    const [resultSnap, availableSnap, userSnap] = await Promise.all([
-      tx.get(resultRef), tx.get(availableQuery), tx.get(db.collection('users').doc(who.stableUid)),
+    const [resultSnap, availableSnap] = await Promise.all([
+      tx.get(resultRef), tx.get(availableQuery),
     ]);
     if (resultSnap.exists) return resultSnap.data()!;
     if (availableSnap.empty) throw new HttpsError('failed-precondition', 'arena_spin_unavailable');
@@ -2871,9 +2929,11 @@ export const arenaV2SpinClaim = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     const result = { receiptId: requestId, creditId: creditRef.id, reward, claimedAtMs: now };
     tx.set(creditRef, { status: 'consumed', consumedAtMs: now, resultId: requestId }, { merge: true });
     tx.create(resultRef, result);
-    tx.set(db.collection('users').doc(who.stableUid), {
-      shards: Math.max(0, Math.trunc(Number(userSnap.data()?.shards ?? 0))) + amount,
-    }, { merge: true });
+    appendExternalEconomyEvent(tx, userRef, {
+      source: 'arena_v2_spin', eventId: requestId, ownerStableId: who.stableUid,
+      delta: amount, reason: 'arena_v2_spin_reward', kind: 'competition_arena_spin_reward',
+      subjectId: creditRef.id, payload: { creditId: creditRef.id }, createdAtMs: now,
+    });
     return result;
   });
   return { ok: true, ...output };

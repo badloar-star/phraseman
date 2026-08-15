@@ -879,8 +879,10 @@ export default function LevelExam() {
         const quizShardKey = `level_exam_quiz_shard_${studyTarget}_${lvl}`;
         const quizShardClaimed = await AsyncStorage.getItem(quizShardKey);
         if (quizShardClaimed !== '1') {
-          const got = await addShards('lesson_quiz_passed').catch(() => 0);
-          if (got > 0) await AsyncStorage.setItem(quizShardKey, '1').catch(() => {});
+          await addShards('lesson_quiz_passed', {
+            eventId: `level-exam:${studyTarget}:${lvl}:first-pass`,
+            localWrites: [[quizShardKey, '1']],
+          }).catch(() => 0);
         }
       }
       if (pct >= 90) awardOneTime('exam_excellent').catch(() => {});

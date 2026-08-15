@@ -1,0 +1,175 @@
+import { triLang, type Lang } from '../constants/i18n';
+
+/**
+ * Нормализация ошибок MAX Voice на границе Firebase/native/OpenAI.
+ *
+ * Firebase Functions заворачивает серверное `HttpsError.message` по-разному
+ * на iOS/Android и между версиями SDK. UI и транспорт не должны зависеть от
+ * строки вида `[functions/failed-precondition] ...`, поэтому здесь выделяем
+ * стабильный машинный reason без показа пользователю сырого исключения.
+ */
+
+const KNOWN_REASONS = [
+  'ai_globally_disabled',
+  'app_check_unavailable',
+  'auth_required',
+  'connection_timeout',
+  'dev_admin_required',
+  'media_failed',
+  'mint_malformed',
+  'native_unavailable',
+  'network_unavailable',
+  'openai_key_missing',
+  'preflight_failed',
+  'reconnect_exhausted',
+  'sdp_exchange_failed',
+  'server_timeout',
+  'service_unavailable',
+  'set_remote_description_failed',
+  'voice_budget_exhausted',
+  'voice_disabled',
+  'voice_max_required',
+  'voice_mint_rate_limited',
+  'voice_provider_failed',
+  'voice_quota_exhausted',
+  'voice_session_active',
+  'voice_trial_paused',
+] as const;
+
+export type MaxVoiceFailureReason = typeof KNOWN_REASONS[number] | string;
+
+function errorText(error: unknown): string {
+  if (typeof error === 'string') return error;
+  if (!error || typeof error !== 'object') return '';
+  const e = error as Record<string, unknown>;
+  return [e.code, e.message, e.details, e.nativeErrorCode]
+    .filter((value): value is string => typeof value === 'string')
+    .join(' ')
+    .toLowerCase();
+}
+
+/** Выделить стабильную причину из FirebaseError/Error/нативного исключения. */
+export function maxVoiceFailureReason(error: unknown, fallback: string): MaxVoiceFailureReason {
+  const raw = errorText(error);
+  for (const reason of KNOWN_REASONS) {
+    if (raw.includes(reason)) return reason;
+  }
+  if (/network-request-failed|not connected|network connection|offline|internet/.test(raw)) {
+    return 'network_unavailable';
+  }
+  if (/deadline-exceeded|timed?\s*out|timeout/.test(raw)) return 'server_timeout';
+  if (/unauthenticated|permission-denied/.test(raw)) return 'auth_required';
+  if (/unavailable|internal/.test(raw)) return 'service_unavailable';
+  return fallback;
+}
+
+/** Ошибка с reason, который транспорт может безопасно передать UI-автомату. */
+export class MaxVoiceStageError extends Error {
+  constructor(readonly reason: MaxVoiceFailureReason, readonly causeValue?: unknown) {
+    super(reason);
+    this.name = 'MaxVoiceStageError';
+  }
+}
+
+/** Конкретное, но безопасное объяснение + действие для экрана отказа. */
+export function maxVoiceFailureMessage(reason: string | null, lang: Lang): string {
+  if (reason === 'voice_disabled' || reason === 'ai_globally_disabled') {
+    return triLang(lang, {
+      ru: 'Голосовая линия сейчас выключена на сервере. Попробуй позже.',
+      uk: 'Голосова лінія зараз вимкнена на сервері. Спробуй пізніше.',
+      es: 'La línea de voz está desactivada en el servidor. Inténtalo más tarde.',
+      'pt-BR': 'A linha de voz está desativada no servidor. Tente mais tarde.',
+      vi: 'Đường dây thoại đang bị tắt trên máy chủ. Hãy thử lại sau.',
+      id: 'Jalur suara sedang dinonaktifkan di server. Coba lagi nanti.',
+      tr: 'Ses hattı sunucuda kapalı. Daha sonra tekrar dene.',
+      pl: 'Linia głosowa jest wyłączona na serwerze. Spróbuj później.',
+    });
+  }
+  if (reason === 'voice_quota_exhausted') {
+    return triLang(lang, {
+      ru: 'Минуты MAX на сегодня закончились. Лимит восстановится автоматически.',
+      uk: 'Хвилини MAX на сьогодні закінчилися. Ліміт відновиться автоматично.',
+      es: 'Se acabaron los minutos MAX de hoy. El límite se renovará automáticamente.',
+      'pt-BR': 'Os minutos MAX de hoje acabaram. O limite será renovado automaticamente.',
+      vi: 'Số phút MAX hôm nay đã hết. Giới hạn sẽ tự động được đặt lại.',
+      id: 'Menit MAX hari ini habis. Batas akan pulih otomatis.',
+      tr: 'Bugünkü MAX dakikaları bitti. Limit otomatik yenilenecek.',
+      pl: 'Dzisiejsze minuty MAX się skończyły. Limit odnowi się automatycznie.',
+    });
+  }
+  if (reason === 'voice_max_required') {
+    return triLang(lang, {
+      ru: 'Для этого звонка нужен доступ MAX или доступный пробный звонок.',
+      uk: 'Для цього дзвінка потрібен доступ MAX або доступний пробний дзвінок.',
+      es: 'Esta llamada requiere acceso MAX o una llamada de prueba disponible.',
+      'pt-BR': 'Esta ligação requer acesso MAX ou uma chamada de teste disponível.',
+      vi: 'Cuộc gọi này cần quyền MAX hoặc một cuộc gọi dùng thử còn hiệu lực.',
+      id: 'Panggilan ini memerlukan akses MAX atau panggilan uji coba yang tersedia.',
+      tr: 'Bu arama için MAX erişimi veya kullanılabilir deneme araması gerekir.',
+      pl: 'Ta rozmowa wymaga dostępu MAX albo dostępnej rozmowy próbnej.',
+    });
+  }
+  if (reason === 'dev_admin_required') {
+    return triLang(lang, {
+      ru: 'DEV-тест MAX разрешён только аккаунту с серверным правом администратора.',
+      uk: 'DEV-тест MAX дозволений лише акаунту із серверним правом адміністратора.',
+      es: 'La prueba DEV de MAX requiere una cuenta con permiso de administrador.',
+      'pt-BR': 'O teste DEV do MAX requer uma conta com permissão de administrador.',
+      vi: 'Bản thử nghiệm DEV của MAX cần tài khoản có quyền quản trị viên.',
+      id: 'Tes DEV MAX memerlukan akun dengan izin administrator.',
+      tr: 'MAX DEV testi için sunucu yönetici yetkili bir hesap gerekir.',
+      pl: 'Test DEV MAX wymaga konta z uprawnieniem administratora.',
+    });
+  }
+  if (reason === 'media_failed') {
+    return triLang(lang, {
+      ru: 'Не удалось запустить микрофон. Проверь разрешение микрофона в настройках iPhone.',
+      uk: 'Не вдалося запустити мікрофон. Перевір дозвіл мікрофона в налаштуваннях iPhone.',
+      es: 'No se pudo iniciar el micrófono. Revisa su permiso en los ajustes del iPhone.',
+      'pt-BR': 'Não foi possível iniciar o microfone. Verifique a permissão nos ajustes do iPhone.',
+      vi: 'Không thể bật micrô. Hãy kiểm tra quyền micrô trong cài đặt iPhone.',
+      id: 'Mikrofon tidak dapat dimulai. Periksa izin mikrofon di pengaturan iPhone.',
+      tr: 'Mikrofon başlatılamadı. iPhone ayarlarından mikrofon iznini kontrol et.',
+      pl: 'Nie udało się uruchomić mikrofonu. Sprawdź uprawnienie w ustawieniach iPhone’a.',
+    });
+  }
+  if (reason === 'native_unavailable') {
+    return triLang(lang, {
+      ru: 'В этой сборке нет нативного WebRTC. Установи новую DEV-сборку.',
+      uk: 'У цій збірці немає нативного WebRTC. Встанови нову DEV-збірку.',
+      es: 'Esta compilación no incluye WebRTC nativo. Instala una nueva compilación DEV.',
+      'pt-BR': 'Esta build não inclui WebRTC nativo. Instale uma nova build DEV.',
+      vi: 'Bản dựng này không có WebRTC gốc. Hãy cài bản DEV mới.',
+      id: 'Build ini tidak memiliki WebRTC native. Instal build DEV baru.',
+      tr: 'Bu derlemede yerel WebRTC yok. Yeni bir DEV derlemesi yükle.',
+      pl: 'Ta kompilacja nie zawiera natywnego WebRTC. Zainstaluj nową kompilację DEV.',
+    });
+  }
+  if (reason === 'voice_budget_exhausted' || reason === 'voice_trial_paused') {
+    return triLang(lang, {
+      ru: 'Линия временно достигла дневного лимита. Повтори звонок позже.',
+      uk: 'Лінія тимчасово досягла денного ліміту. Повтори дзвінок пізніше.',
+      es: 'La línea alcanzó temporalmente su límite diario. Inténtalo más tarde.',
+      'pt-BR': 'A linha atingiu temporariamente o limite diário. Tente mais tarde.',
+      vi: 'Đường dây tạm thời đã đạt giới hạn hằng ngày. Hãy thử lại sau.',
+      id: 'Jalur sementara mencapai batas harian. Coba lagi nanti.',
+      tr: 'Hat geçici olarak günlük limite ulaştı. Daha sonra tekrar dene.',
+      pl: 'Linia tymczasowo osiągnęła dzienny limit. Spróbuj później.',
+    });
+  }
+  return triLang(lang, {
+    ru: 'Связь не установилась. Проверь интернет и повтори звонок — минуты не списаны.',
+    uk: 'Зв’язок не встановився. Перевір інтернет і повтори дзвінок — хвилини не списані.',
+    es: 'No se estableció la conexión. Revisa Internet y vuelve a llamar; no se descontaron minutos.',
+    'pt-BR': 'A conexão não foi estabelecida. Verifique a internet e ligue novamente; nenhum minuto foi descontado.',
+    vi: 'Không thể kết nối. Hãy kiểm tra Internet và gọi lại; số phút chưa bị trừ.',
+    id: 'Koneksi gagal. Periksa internet dan telepon lagi; menit tidak dipotong.',
+    tr: 'Bağlantı kurulamadı. İnterneti kontrol edip tekrar ara; dakika düşülmedi.',
+    pl: 'Nie udało się połączyć. Sprawdź Internet i zadzwoń ponownie; minuty nie zostały odjęte.',
+  });
+}
+
+/* expo-router route shim: файлы в app/ считаются роутами. */
+export default function __RouteShim() {
+  return null;
+}

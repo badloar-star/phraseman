@@ -213,16 +213,15 @@ async function doGrantLessonFirstCompleteBonus(
     // (экран агрегирует batch-тост сам), на retry — стандартное событие.
     const nFirst = await addShards(
       'lesson_first',
-      silent ? undefined : ({ suppressEarnEvent: true } as const),
+      {
+        eventId: `lesson:${studyTarget}:${lessonId}:first-complete`,
+        localWrites: [[guardKey, '1']],
+        suppressEarnEvent: !silent,
+      },
     );
     if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
 
-    const guardCommitted = await withAccountTransitionLock(async () => {
-      if (!isAccountOperationCurrent(accountToken)) return false;
-      await AsyncStorage.setItem(guardKey, '1');
-      return isAccountOperationCurrent(accountToken);
-    });
-    if (!guardCommitted) return { status: 'failed' };
+    if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
     await clearPending(lessonId, studyTarget, accountToken).catch(() => {});
     return {
       status: 'granted',

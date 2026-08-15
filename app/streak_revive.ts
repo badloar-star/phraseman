@@ -13,7 +13,8 @@
 // 1 день стоит 15 осколков, а 100+ дней стоят 100 осколков всего.
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { spendShards } from './shards_system';
+import { commitShardCompositeOperation } from './shards_system';
+import { semanticShardOperationId } from './economy/client_shard_semantic_id';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { withStorageLock } from './storage_mutex';
@@ -172,20 +173,35 @@ export async function reviveStreak(opts?: { free?: boolean }): Promise<ReviveRes
     // дыру БЕСПЛАТНО — подарок уже оплачен уровнем сезона, жемчуг не списываем.
     const cost = opts?.free ? 0 : offer.costShards;
 
-    const spent = cost === 0 ? true : await spendShards(cost, 'streak_revive');
-    if (!spent) return { ok: false, reason: 'insufficient_shards' };
-
     try {
-      await withStorageLock(async () => {
-        await AsyncStorage.multiSet([
+      const raw = await readRaw();
+      if (!raw || raw.used) return { ok: false, reason: 'no_offer' };
+      const writes = [
           ['streak_count', String(offer.lostStreak)],
           ['last_active_date', yesterdayKey()],
-        ]);
-        const raw = await readRaw();
-        if (raw) {
-          await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify({ ...raw, used: true }));
-        }
-      });
+          [STORAGE_KEY, JSON.stringify({ ...raw, used: true })],
+      ] as const;
+      if (cost > 0) {
+        const purchase = await commitShardCompositeOperation({
+          amount: cost,
+          reason: 'streak_revive',
+          operationId: await semanticShardOperationId('streak_revive', String(raw.lostAt)),
+          grant: {
+            kind: 'streak_revive',
+            subjectId: String(raw.lostAt),
+            payload: {
+              restoredStreak: offer.lostStreak,
+              missedDays: offer.missedDays,
+              lastActiveDate: yesterdayKey(),
+            },
+          },
+          localWrites: writes,
+        });
+        if (purchase.status === 'insufficient') return { ok: false, reason: 'insufficient_shards' };
+        if (purchase.status === 'failed') return { ok: false, reason: 'persist_failed' };
+      } else {
+        await withStorageLock(async () => AsyncStorage.multiSet(writes));
+      }
       await recordMissedStreakWeekMarkersEndingYesterday('revive', offer.missedDays).catch(() => {});
       // Цепочка была прервана — активное пари аннулируется (последовательность нарушена)
       await invalidateWagerAfterRevive().catch(() => {});

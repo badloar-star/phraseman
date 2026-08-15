@@ -56,17 +56,17 @@ function completion() {
           localResultClaim:
             index === 11
               ? "skipped_without_evidence"
-              : "locally_provisional_correct_before_completion",
+              : "locally_evaluated_correct_for_interaction",
         }),
       ),
     ),
     answerPayload: "absent",
-    localFeedbackAuthority: "local_provisional_only",
+    localFeedbackAuthority: "local_interaction_verdict_only",
     transportAuthority: "none_local_spool_candidate",
     walletAuthority: "none",
     masteryAuthority: "none",
     evidenceAuthority: "none",
-    completionAuthority: "none_server_revalidation_required",
+    completionAuthority: "completed_session_summary_for_background_storage",
     releaseAuthority: false,
   });
   return Object.freeze({ ...body, completionFingerprint: h(body) });

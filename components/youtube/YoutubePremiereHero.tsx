@@ -125,21 +125,25 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
         } as any) : null,
       ]}
     >
-      <View testID="youtube-premiere-thumbnail" style={styles.thumbnail}>
+      <TouchableOpacity
+        testID="youtube-premiere-thumbnail"
+        accessibilityRole="button"
+        accessibilityLabel={live ? copy.join : video.title}
+        onPress={onWatch}
+        activeOpacity={0.86}
+        style={styles.thumbnail}
+      >
         <Image source={{ uri: video.thumbnailUrl }} style={styles.image} contentFit="cover" />
         {playIntro && <Animated.View testID="youtube-premiere-intro" pointerEvents="none" style={[styles.sweep, ({ animationName: sweepKeyframes, animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`, animationPlayState: runtimeActive ? 'running' : 'paused' } as any)]} />}
         <View style={[styles.badge, { backgroundColor: live ? '#A6FF4D' : t.accentBg }]}>
           <Ionicons name={live ? 'radio' : 'sparkles'} size={14} color={live ? '#071015' : t.accent} />
           <Text style={[styles.badgeText, { color: live ? '#071015' : t.accent }]}>{live ? copy.liveNow : copy.upcoming}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
       <View testID="youtube-premiere-details" style={[styles.details, { backgroundColor: live ? '#101B18' : t.bgCard }]}>
         <Text style={styles.title}>{video.title}</Text>
         {!live && <Text testID="youtube-premiere-countdown" accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel} style={styles.countdown}>{countdown}</Text>}
-        <View style={styles.actions}>
-          <TouchableOpacity testID="youtube-premiere-watch" accessibilityRole="button" accessibilityLabel={live ? copy.join : video.title} onPress={onWatch} style={[styles.primary, { backgroundColor: live ? '#A6FF4D' : t.accent }]}><Ionicons name="play" size={17} color="#071015" /><Text style={styles.primaryText}>{live ? copy.join : video.title}</Text></TouchableOpacity>
-          {!live && <TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={copy.remind} onPress={onRemind} style={styles.remind}><Ionicons name="notifications-outline" size={18} color="#FFFFFF" /><Text style={styles.remindText}>{copy.remind}</Text></TouchableOpacity>}
-        </View>
+        {!live && <View style={styles.actions}><TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={copy.remind} onPress={onRemind} style={styles.remind}><Ionicons name="notifications-outline" size={18} color="#FFFFFF" /><Text style={styles.remindText}>{copy.remind}</Text></TouchableOpacity></View>}
       </View>
     </Animated.View>
   );
@@ -159,8 +163,6 @@ const styles = StyleSheet.create({
   title: { color: '#FFFFFF', marginTop: 11, fontSize: 21, lineHeight: 27, fontWeight: '900' },
   countdown: { color: '#FFFFFF', marginTop: 10, fontSize: 18, fontWeight: '900', letterSpacing: 0.5 },
   actions: { flexDirection: 'row', gap: 9, marginTop: 15 },
-  primary: { minHeight: 48, flex: 1, borderRadius: 15, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7 },
-  primaryText: { color: '#071015', fontSize: 13, fontWeight: '900', flexShrink: 1 },
-  remind: { minHeight: 48, borderRadius: 15, paddingHorizontal: 13, backgroundColor: 'rgba(255,255,255,0.14)', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
+  remind: { minHeight: 48, flex: 1, borderRadius: 15, paddingHorizontal: 13, backgroundColor: 'rgba(255,255,255,0.14)', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
   remindText: { color: '#FFFFFF', fontSize: 12, fontWeight: '900' },
 });

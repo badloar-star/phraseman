@@ -15,6 +15,8 @@ import {
   LEARNING_V2_SESSION_MIN_MINUTES_V1,
   LEARNING_V2_SESSION_TARGET_MINUTES_V1,
   buildLearningV2CourseTopologyV1,
+  learningV2SessionInteractionBudgetV1,
+  type LearningV2SessionInteractionBudgetV1,
 } from "./course_topology_v1";
 
 export const LEARNING_V2_GENERATED_COURSE_PACKAGE_SCHEMA_V2 =
@@ -32,6 +34,7 @@ export type LearningV2GeneratorTopologyBindingV1 = Readonly<{
     target: typeof LEARNING_V2_SESSION_TARGET_MINUTES_V1;
     max: typeof LEARNING_V2_SESSION_MAX_MINUTES_V1;
   }>;
+  interactionBudget: LearningV2SessionInteractionBudgetV1;
 }>;
 
 export type LearningV2GeneratedCoursePackageV2 = Omit<
@@ -58,6 +61,7 @@ export function learningV2GeneratorTopologyBindingV1(): LearningV2GeneratorTopol
       target: LEARNING_V2_SESSION_TARGET_MINUTES_V1,
       max: LEARNING_V2_SESSION_MAX_MINUTES_V1,
     }),
+    interactionBudget: learningV2SessionInteractionBudgetV1(),
   });
 }
 

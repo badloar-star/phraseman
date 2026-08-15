@@ -9,19 +9,11 @@ export function evaluateDeployConfiguration(firebaseConfig) {
     ? firebaseConfig.hosting
     : [firebaseConfig?.hosting].filter(Boolean);
   const adminTarget = hosting.find((entry) => entry?.target === "admin");
-  const ignore = Array.isArray(adminTarget?.ignore) ? adminTarget.ignore : [];
-
-  if (adminTarget?.public !== "admin") {
-    return {
-      ok: false,
-      error: "Firebase admin hosting must publish the root admin directory.",
-    };
-  }
-  if (!ignore.includes("v2/**")) {
+  if (adminTarget?.public !== "admin/v2") {
     return {
       ok: false,
       error:
-        "Firebase admin hosting must exclude the permanently blocked v2 subtree.",
+        "Firebase admin hosting must publish the canonical admin/v2 directory.",
     };
   }
   return { ok: true, error: null };

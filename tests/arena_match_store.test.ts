@@ -1,3 +1,7 @@
+import * as fs from 'fs';
+import * as path from 'path';
+import { arenaText } from '../modules/arena/copy';
+import type { Lang } from '../constants/i18n';
 import {
   ARENA_MATCH_STORE_KEY,
   ARENA_MATCH_STORE_TTL_MS,
@@ -191,12 +195,12 @@ describe('годность снимка', () => {
     expect(arenaStoredMatchUsable(stored, WALL0 + 1_000, 'm1')).toBe(true);
   });
 
-  it('доигранный матч не восстанавливается', () => {
+  it('доигранный матч восстанавливается до долговечной записи отчёта', () => {
     const finished = {
       ...stored,
       state: { ...stored.state, phase: 'finished' } as ArenaLocalMatchState,
     };
-    expect(arenaStoredMatchUsable(finished, WALL0 + 1_000)).toBe(false);
+    expect(arenaStoredMatchUsable(finished, WALL0 + 1_000)).toBe(true);
   });
 });
 
@@ -244,5 +248,54 @@ describe('работа с хранилищем', () => {
     await arenaSaveMatch(store, PLAN, STATE, WALL0 + 5_000);
     expect(Object.keys(store.data).length).toBe(1);
     expect((await arenaLoadMatch(store, WALL0 + 6_000))!.savedAtWallMs).toBe(WALL0 + 5_000);
+  });
+});
+
+
+/**
+ * Снимок матча писался на каждой границе задания — и НИКТО его не читал.
+ * Цена записи платилась, а обещанное свойство «матч переживает перезапуск» не
+ * работало: приложение убили посреди матча, и он начинался заново, с первого
+ * задания и с обнулённым временем.
+ */
+describe('снимок матча действительно восстанавливается', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+
+  it('экран матча читает снимок, а не только пишет его', () => {
+    expect(source).toContain('arenaLoadMatch');
+    expect(source).toContain('restored');
+  });
+
+  /**
+   * Порядок важен: если подставить план до того, как проверка снимка
+   * закончилась, машина начнёт матч с нуля и затрёт восстановленное.
+   */
+  it('план подставляется только после проверки снимка', () => {
+    expect(source).toContain('plan: restoreChecked ? plan : null');
+  });
+});
+
+
+/**
+ * После холодного старта задание, открытое в момент выключения, закрывается
+ * просрочкой — так решает машина матча, и это правильно: начислять звёзды за
+ * время, проведённое вне игры, нельзя. Но игрок видел просто потерянное
+ * задание и не понимал, за что.
+ */
+describe('потерянное задание после перезапуска объясняется', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+  const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[];
+
+  it('экран матча показывает объяснение, когда часы разъехались', () => {
+    expect(source).toContain('match.state.clockSuspect');
+    expect(source).toContain("'clockJumped'");
+    expect(source).toContain("'clockJumpedHint'");
+  });
+
+  it('сказано и что случилось, и что матч продолжается', () => {
+    for (const lang of langs) {
+      expect(arenaText(lang, 'clockJumped').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'clockJumpedHint').length).toBeGreaterThan(0);
+    }
   });
 });

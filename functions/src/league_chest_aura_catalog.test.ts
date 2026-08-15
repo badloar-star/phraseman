@@ -32,13 +32,13 @@ describe('league chest aura rewards', () => {
     expect(source).toContain("b.points - a.points || a.uid.localeCompare(b.uid)");
   });
 
-  it('keeps every valid app aura in the server reward pool', () => {
+  it('keeps every retained ordinary aura in the server reward pool', () => {
     expect(source).toContain(
-      "const AVATAR_AURA_IDS = ['aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet', 'aura-coral'] as const;",
+      "const AVATAR_AURA_IDS = ['aura-ember', 'aura-mint', 'aura-prism'] as const;",
     );
   });
 
-  it.each(['aura-gold'])(
+  it.each(['aura-gold', 'aura-aurora', 'aura-violet', 'aura-coral', 'aura-lagoon', 'aura-sunset'])(
     'does not grant or activate aura %s when it is outside the server reward pool',
     (auraId) => {
       expect(buildRewardProgressPatch({
@@ -55,7 +55,7 @@ describe('league chest aura rewards', () => {
     },
   );
 
-  it.each(['aura-mint', 'aura-coral'])(
+  it.each(['aura-ember', 'aura-mint', 'aura-prism'])(
     'grants and activates valid aura %s',
     (auraId) => {
       const patch = buildRewardProgressPatch({
@@ -73,7 +73,7 @@ describe('league chest aura rewards', () => {
 
   it('preserves legacy ownership while adding and activating a retained reward', () => {
     const patch = buildRewardProgressPatch({
-      drops: [auraDrop('aura-violet')],
+      drops: [auraDrop('aura-prism')],
       user: {
         progress: {
           avatar_aura_owned_v1: JSON.stringify({
@@ -92,9 +92,9 @@ describe('league chest aura rewards', () => {
       'aura-mint': true,
       'aura-coral': true,
       'aura-gold': true,
-      'aura-violet': true,
+      'aura-prism': true,
     });
-    expect(progress.avatar_aura_gift_owned_v1).toBe('aura-violet');
-    expect(progress.user_avatar_aura).toBe('aura-violet');
+    expect(progress.avatar_aura_gift_owned_v1).toBe('aura-prism');
+    expect(progress.user_avatar_aura).toBe('aura-prism');
   });
 });

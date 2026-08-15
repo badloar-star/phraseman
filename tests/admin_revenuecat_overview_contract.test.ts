@@ -4,7 +4,7 @@ import path from "node:path";
 const ROOT = path.resolve(__dirname, "..");
 
 describe("live admin RevenueCat overview contract", () => {
-  const html = fs.readFileSync(path.join(ROOT, "admin/legacy.html"), "utf8");
+  const html = fs.readFileSync(path.join(ROOT, "admin/v2/legacy.html"), "utf8");
   const server = fs.readFileSync(
     path.join(ROOT, "functions/src/admin_revenuecat_overview.ts"),
     "utf8",

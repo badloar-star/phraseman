@@ -64,9 +64,11 @@ describe("admin hosting deploy guard", () => {
         hosting: [
           {
             target: "admin",
-            public: "admin",
-            ignore: ["v2/**"],
+            public: "admin/v2",
+            ignore: [],
             redirects: [
+              { source: "/", destination: "/legacy.html" },
+              { source: "/index.html", destination: "/legacy.html" },
               { source: "/v2", destination: "/legacy.html" },
               { source: "/v2/**", destination: "/legacy.html" },
             ],
@@ -91,9 +93,11 @@ describe("admin hosting deploy guard", () => {
         hosting: [
           {
             target: "admin",
-            public: "admin",
-            ignore: ["v2/**"],
+            public: "admin/v2",
+            ignore: [],
             redirects: [
+              { source: "/", destination: "/legacy.html" },
+              { source: "/index.html", destination: "/legacy.html" },
               { source: "/v2", destination: "/legacy.html" },
               { source: "/v2/**", destination: "/legacy.html" },
             ],
@@ -121,9 +125,11 @@ describe("admin hosting deploy guard", () => {
         hosting: [
           {
             target: "admin",
-            public: "admin",
-            ignore: ["v2/**"],
+            public: "admin/v2",
+            ignore: [],
             redirects: [
+              { source: "/", destination: "/legacy.html" },
+              { source: "/index.html", destination: "/legacy.html" },
               { source: "/v2", destination: "/legacy.html" },
               { source: "/v2/**", destination: "/legacy.html" },
             ],
@@ -143,7 +149,7 @@ describe("admin hosting deploy guard", () => {
   test.each([
     ["wrong env", { linkedReleaseOverride: "true" }],
     ["wrong branch", { branch: "main" }],
-    ["dirty worktree", { statusPorcelain: " M admin/legacy.html" }],
+    ["dirty worktree", { statusPorcelain: " M admin/v2/legacy.html" }],
     [
       "wrong linked root",
       {
@@ -166,9 +172,11 @@ describe("admin hosting deploy guard", () => {
         hosting: [
           {
             target: "admin",
-            public: "admin",
-            ignore: ["v2/**"],
+            public: "admin/v2",
+            ignore: [],
             redirects: [
+              { source: "/", destination: "/legacy.html" },
+              { source: "/index.html", destination: "/legacy.html" },
               { source: "/v2", destination: "/legacy.html" },
               { source: "/v2/**", destination: "/legacy.html" },
             ],
@@ -187,26 +195,7 @@ describe("admin hosting deploy guard", () => {
     expect(result.errors.join("\n")).toContain("primary worktree");
   });
 
-  test("fails closed when Firebase would publish the blocked v2 directory", () => {
-    const root = path.resolve("C:/repo");
-    const result = evaluateGuard({
-      root,
-      gitTopLevel: root,
-      gitCommonDir: path.join(root, ".git"),
-      firebaseConfig: {
-        hosting: [
-          { target: "admin", public: "admin/v2", ignore: [], redirects: [] },
-        ],
-      },
-      liveAdminExists: true,
-      adminEntryExists: true,
-    });
-
-    expect(result.ok).toBe(false);
-    expect(result.errors.join("\n")).toContain("must publish admin");
-  });
-
-  test("fails closed unless the blocked subtree is excluded and redirected away", () => {
+  test("fails closed when Firebase would publish the frozen root copy", () => {
     const root = path.resolve("C:/repo");
     const result = evaluateGuard({
       root,
@@ -222,7 +211,25 @@ describe("admin hosting deploy guard", () => {
     });
 
     expect(result.ok).toBe(false);
-    expect(result.errors.join("\n")).toContain("exclude v2/**");
+    expect(result.errors.join("\n")).toContain("must publish admin/v2");
+  });
+
+  test("fails closed unless all legacy entry routes redirect away", () => {
+    const root = path.resolve("C:/repo");
+    const result = evaluateGuard({
+      root,
+      gitTopLevel: root,
+      gitCommonDir: path.join(root, ".git"),
+      firebaseConfig: {
+        hosting: [
+          { target: "admin", public: "admin/v2", ignore: [], redirects: [] },
+        ],
+      },
+      liveAdminExists: true,
+      adminEntryExists: true,
+    });
+
+    expect(result.ok).toBe(false);
     expect(result.errors.join("\n")).toContain("must redirect to /legacy.html");
   });
 });

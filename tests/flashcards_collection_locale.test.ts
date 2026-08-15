@@ -2,10 +2,15 @@ import fs from 'fs';
 import path from 'path';
 
 import { buildFilterGroups, buildFilterOptions, getCardsForCategory } from '../app/flashcards/selectors';
+import { customCardLocalizationForLang } from '../app/flashcards/custom_card_localization';
 import type { CardItem } from '../app/flashcards/types';
 
 const ROOT = path.resolve(__dirname, '..');
 const COLLECTION_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_collection.tsx'), 'utf8');
+const CUSTOM_LOCALIZATION_SOURCE = fs.readFileSync(
+  path.join(ROOT, 'app', 'flashcards', 'custom_card_localization.ts'),
+  'utf8',
+);
 const SELECTOR_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'selectors.ts'), 'utf8');
 const CONSTANTS_SOURCE = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'constants.ts'), 'utf8');
 const LEGACY_RUNTIME_RE = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
@@ -36,7 +41,7 @@ describe('flashcards collection planned locale runtime labels', () => {
   it('keeps collection and selector runtime free of RU/UK/ES fallback patterns', () => {
     expect(COLLECTION_SOURCE).toContain('const strLang: Lang = lang;');
     expect(COLLECTION_SOURCE).toContain('function fullCategoryLabelForLang');
-    expect(COLLECTION_SOURCE).toContain('function customCardLocalizationForLang');
+    expect(CUSTOM_LOCALIZATION_SOURCE).toContain('function customCardLocalizationForLang');
     expect(COLLECTION_SOURCE).not.toMatch(LEGACY_RUNTIME_RE);
     expect(SELECTOR_SOURCE).not.toMatch(LEGACY_RUNTIME_RE);
     expect(CONSTANTS_SOURCE).not.toMatch(LEGACY_RUNTIME_RE);
@@ -54,6 +59,15 @@ describe('flashcards collection planned locale runtime labels', () => {
     expect(plGroups[0]).toEqual({ groupKey: 'lessons', groupLabel: 'Lekcje', items: [{ key: 'lesson:3', label: 'Lekcja 3' }] });
     expect(plGroups[1]).toEqual({ groupKey: 'other', groupLabel: 'Inne', items: [{ key: 'word', label: 'Słowa' }] });
     expect(buildFilterOptions(plGroups, 'pl')[0]).toEqual({ key: 'all', label: 'Wszystkie' });
+  });
+
+  it('stores a planned-locale custom-card translation without importing the route screen', () => {
+    expect(customCardLocalizationForLang('pl', 'Moje tłumaczenie')).toEqual({
+      baseRu: '',
+      baseUk: '',
+      baseEs: '',
+      plannedSourceLocales: { pl: 'Moje tłumaczenie' },
+    });
   });
 
   it('never reloads retired standalone-quiz cards or source filters', () => {

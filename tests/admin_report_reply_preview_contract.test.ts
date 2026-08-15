@@ -68,13 +68,11 @@ test('the current replies.json batch is published in the admin preview', () => {
   const preparedById = new Map(readPreparedReplies().map((row) => [row.reportId, row]));
 
   const expected = [
-    ['DhK3XcrfjUlJbtwqderO', '18274995-0d6b-4fe5-b92b-078f51ab1c2b', 'confirmed_fixed', 'personal-plan-error-feedback-persistence', 1],
     ['dZlDwBjL1Ew6Mcu0nLop', '665b6a7f-5808-4eb8-ab83-d9d469d229cf', 'by_design', 'lesson5-frequency-adverb-order', 0],
     ['nLQZOj8uk6dhGCDHFUMG', 'df7b4820-8f3c-486e-8570-ac6b66ce6d98', 'user_error', 'lesson3-he-wears-glasses', 0],
     ['XbRAuTpygAqh7mzRjpjB', '2f82b9ec-b0af-4554-a59b-02e6527108d6', 'duplicate', 'flashcard-pack-shard-purchase', 0],
     ['8hWRTWLasuU0gtKIc1gE', '2f82b9ec-b0af-4554-a59b-02e6527108d6', 'confirmed_fixed', 'flashcard-pack-shard-purchase', 2],
     ['ln3vcMgzNnMC5pj7srAQ', 'ff56979a-d65b-490d-8bbe-7d47ede60c28', 'confirmed_fixed', 'lesson21-nothing-wrong-translation', 1],
-    ['aL0EXUQfO9xwogczKrvv', 'a114eacb-184d-43aa-8275-6f21094949db', 'by_design', 'personal-plan-listen-choose-hidden-transcript', 0],
     ['wXoD0PoyC2lFuWaaVF5R', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson3-subject-agreement', 0],
     ['bdwAV2iBRkWkE0PzGLan', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson3-subject-meaning', 0],
     ['nupzElGoogbGDK5DLSNR', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson2-opposite-meaning', 0],

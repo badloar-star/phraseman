@@ -1,11 +1,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type ViewStyle } from 'react-native';
-import { useRouter } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
 import { TournamentBackdrop, type TournamentBackdropVariant } from '../tournament/TournamentBackdrop';
 import { TournamentFxHost, type TournamentFxApi } from '../tournament/TournamentFx';
 import { useTournamentPalette } from '../tournament/tournament_theme';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { navigationFallbackForPath, safeRouterBack } from '../../app/navigation_back';
+import { useArenaChromeInset } from './arena_chrome_inset';
 import { useLang } from '../LangContext';
 import { arenaText } from '../../modules/arena/copy';
 
@@ -32,7 +34,9 @@ export function ArenaScreen({
   const insets = useStableSafeAreaInsets();
   const window = useWindowDimensions();
   const router = useRouter();
+  const pathname = usePathname();
   const { lang } = useLang();
+  const chromeInset = useArenaChromeInset();
   const content = (
     <View style={[styles.content, !scroll ? styles.contentFixed : null]}>
       <View style={styles.header}>
@@ -40,7 +44,7 @@ export function ArenaScreen({
           accessibilityRole="button"
           accessibilityLabel={arenaText(lang, 'back')}
           hitSlop={8}
-          onPress={onBack ?? (() => router.back())}
+          onPress={onBack ?? (() => safeRouterBack(router, navigationFallbackForPath(pathname) as never))}
           style={[styles.back, { backgroundColor: P.elev }]}
         >
           <Ionicons name="chevron-back" size={25} color={P.text} />
@@ -55,16 +59,22 @@ export function ArenaScreen({
     </View>
   );
   return (
-    <View style={[styles.root, { backgroundColor: P.bg, paddingTop: insets.top }]}>
+    <View style={[styles.root, { backgroundColor: P.bg }]}>
       {/*
         Фон Арены идёт под статус-бар целиком — как на главной. Раньше сейф-зона
         закрывалась сплошной заливкой, и сверху шла чёрная полоса: экран
         выглядел обрезанным, а не цельным.
+
+        Отступ сейф-зоны живёт на содержимом, а НЕ на корне. В Yoga (в отличие
+        от вёрстки в браузере) отступы родителя сдвигают и абсолютно
+        позиционированных детей: `paddingTop` на корне утащил бы фон вниз
+        ровно на высоту сейф-зоны — и чёрная полоса вернулась бы на место,
+        только теперь её рисовал бы сам корень.
       */}
       <TournamentBackdrop variant={variant} capSafeTop={false} />
       {scroll ? (
-        <ScrollView contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(24, insets.bottom + 16) }]}>{content}</ScrollView>
-      ) : <View style={[styles.fixed, { paddingBottom: Math.max(16, insets.bottom) }]}>{content}</View>}
+        <ScrollView contentContainerStyle={[styles.scroll, { paddingTop: insets.top, paddingBottom: Math.max(24, insets.bottom + 16) + chromeInset }]}>{content}</ScrollView>
+      ) : <View style={[styles.fixed, { paddingTop: insets.top, paddingBottom: Math.max(16, insets.bottom) + chromeInset }]}>{content}</View>}
       <TournamentFxHost ref={fxRef} width={window.width} height={window.height} />
     </View>
   );
@@ -74,8 +84,14 @@ export function ArenaStat({ label, value, style }: { label: string; value: React
   const P = useTournamentPalette();
   return (
     <View style={[styles.stat, { backgroundColor: P.elev }, style]}>
-      <Text style={[styles.statValue, { color: P.text }]}>{value}</Text>
-      <Text style={[styles.statLabel, { color: P.muted }]}>{label}</Text>
+      {/*
+        Плитка узкая — треть ширины. При системном увеличении шрифта
+        четырёхзначное число вылезало за её край и обрезалось на середине
+        цифры: «1 24». Число важнее размера, поэтому оно ужимается, а подпись
+        ограничена множителем и переносится.
+      */}
+      <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} style={[styles.statValue, { color: P.text }]}>{value}</Text>
+      <Text numberOfLines={3} maxFontSizeMultiplier={1.5} style={[styles.statLabel, { color: P.muted }]}>{label}</Text>
     </View>
   );
 }

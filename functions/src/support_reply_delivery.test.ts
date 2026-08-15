@@ -208,11 +208,11 @@ describe('support reply delivery contract', () => {
     expect(summarizeSupportReplyBatch(['accepted', 'cancelled'])).toEqual({ state: 'partial', accepted: 1, attention: 0, pending: 0, failed: 1 });
   });
 
-  test('cancelled and accepted batches are terminal under a dispatch race', () => {
+  test('accepted, cancelled, and completed partial batches are terminal under a dispatch race', () => {
     expect(isSupportReplyBatchDispatchableState('prepared')).toBe(true);
     expect(isSupportReplyBatchDispatchableState('dispatching')).toBe(true);
     expect(isSupportReplyBatchDispatchableState('attention_required')).toBe(true);
-    expect(isSupportReplyBatchDispatchableState('partial')).toBe(true);
+    expect(isSupportReplyBatchDispatchableState('partial')).toBe(false);
     expect(isSupportReplyBatchDispatchableState('cancelled')).toBe(false);
     expect(isSupportReplyBatchDispatchableState('accepted')).toBe(false);
   });

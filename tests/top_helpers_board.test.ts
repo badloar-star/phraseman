@@ -10,7 +10,7 @@ describe('parseHelperDoc', () => {
       confirmed: 5,
       displayName: 'Аня',
       avatar: '12',
-      aura: 'aura-aurora',
+      aura: 'aura-prism',
       isPremium: true,
       profileCardLevel: 2,
       leagueCrownCount: 3,
@@ -20,7 +20,7 @@ describe('parseHelperDoc', () => {
     expect(row!.confirmed).toBe(5);
     expect(row!.displayName).toBe('Аня');
     expect(row!.avatar).toBe('12');
-    expect(row!.aura).toBe('aura-aurora');
+    expect(row!.aura).toBe('aura-prism');
     expect(row!.isPremium).toBe(true);
     expect(row!.profileCardLevel).toBe(2);
     expect(row!.leagueCrownCount).toBe(3);

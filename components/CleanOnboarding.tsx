@@ -1629,7 +1629,7 @@ function CleanOnboarding({
             </Text>
             {authMode ? null : (
               <FadeUp delay={520}>
-                <Text style={styles.welcomeSubtitle}>{onboardingCopy(lang, { ru: 'Живые фразы · короткие сессии · твой маршрут', uk: 'Живі фрази · короткі сесії · твій маршрут', es: 'Frases reales · sesiones cortas · tu ruta', 'pt-BR': 'Frases reais · sessões curtas · seu caminho', vi: 'Cụm từ thực tế · phiên ngắn · lộ trình của bạn', id: 'Frasa nyata · sesi singkat · jalurmu', tr: 'Canlı ifadeler · kısa oturumlar · rotan', pl: 'Żywe zwroty · krótkie sesje · Twoja ścieżka' })}</Text>
+                <Text style={styles.welcomeSubtitle}>{onboardingCopy(lang, { ru: 'Живые фразы · короткие сессии · заметный прогресс', uk: 'Живі фрази · короткі сесії · помітний прогрес', es: 'Frases reales · sesiones cortas · progreso visible', 'pt-BR': 'Frases reais · sessões curtas · progresso visível', vi: 'Cụm từ thực tế · phiên ngắn · tiến bộ rõ rệt', id: 'Frasa nyata · sesi singkat · kemajuan nyata', tr: 'Canlı ifadeler · kısa oturumlar · gözle görülür ilerleme', pl: 'Żywe zwroty · krótkie sesje · widoczny postęp' })}</Text>
               </FadeUp>
             )}
           </View>
@@ -1865,7 +1865,7 @@ function CleanOnboarding({
   const renderPlusBenefits = () => (
     <ScreenFrame
       step="plusBenefits"
-      title={onboardingCopy(lang, { ru: 'Через 3 месяца по твоему маршруту ты сможешь:', uk: 'За 3 місяці за вашим маршрутом ви зможете:', es: 'En 3 meses, con tu ruta podrás:', 'pt-BR': 'Em 3 meses, com seu caminho você poderá:', vi: 'Sau 3 tháng theo lộ trình này, bạn có thể:', id: 'Dalam 3 bulan dengan rencanamu, kamu akan bisa:', tr: 'Rotanızda 3 ay sonra şunları yapabileceksiniz:', pl: 'Po 3 miesiącach z tą ścieżką będziesz mógł:' })}
+      title={onboardingCopy(lang, { ru: 'Через 3 месяца регулярной практики ты сможешь:', uk: 'За 3 місяці регулярної практики ви зможете:', es: 'Después de 3 meses de práctica regular podrás:', 'pt-BR': 'Após 3 meses de prática regular, você poderá:', vi: 'Sau 3 tháng luyện tập đều đặn, bạn có thể:', id: 'Setelah 3 bulan latihan rutin, kamu akan bisa:', tr: '3 aylık düzenli pratikten sonra şunları yapabileceksiniz:', pl: 'Po 3 miesiącach regularnej praktyki będziesz mógł:' })}
       onBack={back}
       footer={<PrimaryButton label={onboardingCopy(lang, { ru: 'Хочу так', uk: 'Хочу так', es: 'Lo quiero', 'pt-BR': 'Quero isso', vi: 'Tôi muốn vậy', id: 'Saya mau', tr: 'Bunu istiyorum', pl: 'Chcę tak' })} onPress={() => go('startMode')} testID="onboarding-plus-benefits-continue" />}
     >

@@ -119,7 +119,7 @@ const message = [
   "Если владелец действительно разрешил включение — порядок обязателен:",
   "  1) создать reCAPTCHA Enterprise-ключ и зарегистрировать веб-приложение",
   "     в Firebase App Check;",
-  "  2) прописать ключ в admin/legacy.html;",
+  "  2) прописать ключ в admin/v2/legacy.html;",
   "  3) проверить в браузере, что grecaptcha.enterprise.execute() отдаёт токен;",
   "  4) только затем ENFORCE_APP_CHECK_ADMIN=true.",
   "",

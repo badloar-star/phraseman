@@ -4,8 +4,6 @@
  * После §4/§5 плитки режимов с хаба удалены, и шит выбора наборов открывается из
  * нижнего таббара (⚙ / долгий тап на пункте «Тренировка/Слушать/Блиц»). Список
  * наборов раньше собирался инлайном в хабе — здесь он вынесен в отдельный модуль:
- *  • 'weak'      — due-очередь тренера (только у режима «Тренировка», выбирается
- *                  в одиночку, см. deck_selection.SOLO_DECK_ID);
  *  • 'saved'     — все сохранённые карточки (flashcards_v1);
  *  • 'custom'    — мои карточки (custom_flashcards_v2);
  *  • 'pack:<id>' — добавленные наборы, чьи карточки доступны на устройстве.
@@ -16,7 +14,6 @@
  */
 import type { Ionicons } from '@expo/vector-icons';
 import { triLang, type Lang } from '../../constants/i18n';
-import { getTrainerTotalDue } from '../trainer_store';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import type { DeckSheetOption } from './DeckPickerSheet';
 import { loadDeckCards, type DeckRef } from './deck_sources';
@@ -41,16 +38,22 @@ function packTitle(pack: FlashcardMarketPack | undefined, packId: string, lang: 
 }
 
 /**
- * Наборы для шита выбора. `mode` влияет только на присутствие псевдо-набора
- * «Слабые» — у слушания и блица due-очереди тренера нет (E10/E12).
+ * Наборы для шита выбора — одинаковый список у всех трёх режимов.
+ *
+ * FIX (владелец, 2026-08-13): раньше у режима «Тренировка» первой строкой шёл
+ * псевдо-набор «Слабые» — due-очередь тренажёра «Моя практика». «Тренировка»
+ * раздела карточек больше не ведёт в тот тренажёр (это отдельная функция с
+ * главного экрана), поэтому его очереди в списке наборов не место: остаются
+ * только реальные наборы карточек. `mode` сохранён в сигнатуре — от него
+ * зависит текст шита и ключ пресета.
  */
 export async function loadFcDeckOptions(
   mode: FcPresetMode,
   lang: Lang,
 ): Promise<DeckSheetOption[]> {
+  void mode;
   const cl = contentLang(lang);
-  const [weakCount, savedCards, customCards, ownedIds, communityIds] = await Promise.all([
-    mode === 'trainer' ? getTrainerTotalDue().catch(() => 0) : Promise.resolve(0),
+  const [savedCards, customCards, ownedIds, communityIds] = await Promise.all([
     loadDeckCards({ kind: 'saved' }, cl).catch(() => []),
     loadDeckCards({ kind: 'custom' }, cl).catch(() => []),
     loadAccessiblePackIds().catch(() => [] as string[]),
@@ -59,18 +62,13 @@ export async function loadFcDeckOptions(
 
   const out: DeckSheetOption[] = [];
 
-  if (mode === 'trainer') {
-    out.push({
-      deckId: 'weak',
-      title: triLang(lang, { ru: 'Слабые', uk: 'Слабкі', es: 'Difíciles' }),
-      count: weakCount,
-      icon: 'flash-outline' as IconName,
-    });
-  }
-
   out.push({
     deckId: 'saved',
-    title: triLang(lang, { ru: 'Все сохранённые', uk: 'Усі збережені', es: 'Todas las guardadas' }),
+    title: triLang(lang, {
+      ru: 'Все сохранённые', uk: 'Усі збережені', es: 'Todas las guardadas',
+      'pt-BR': 'Todos os salvos', vi: 'Tất cả thẻ đã lưu', id: 'Semua tersimpan',
+      tr: 'Tüm kaydedilenler', pl: 'Wszystkie zapisane',
+    }),
     count: savedCards.length,
     cardIds: savedCards.map((c) => c.id),
     icon: 'bookmark-outline' as IconName,
@@ -78,7 +76,11 @@ export async function loadFcDeckOptions(
 
   out.push({
     deckId: 'custom',
-    title: triLang(lang, { ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas' }),
+    title: triLang(lang, {
+      ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas',
+      'pt-BR': 'Meus cartões', vi: 'Thẻ của tôi', id: 'Kartu saya',
+      tr: 'Kartlarım', pl: 'Moje fiszki',
+    }),
     count: customCards.length,
     cardIds: customCards.map((c) => c.id),
     icon: 'create-outline' as IconName,

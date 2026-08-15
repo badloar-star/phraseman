@@ -894,7 +894,6 @@ export default function LessonComplete() {
         lessonId,
         studyTarget: softUpsellStudyTarget,
       };
-      const suppress = { suppressEarnEvent: true } as const;
       const shardKeys: ShardSource[] = [];
 
       // Бонус первого прохождения (сундук XP + осколки lesson_first).
@@ -945,7 +944,10 @@ export default function LessonComplete() {
       }
       checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId, studyTarget }).catch(() => {});
       if (wasPerfect) {
-        const nP = await addShards('lesson_perfect', suppress);
+        const nP = await addShards('lesson_perfect', {
+          eventId: `lesson:${studyTarget}:${lessonId}:perfect`,
+          suppressEarnEvent: true,
+        });
         if (nP > 0) shardKeys.push('lesson_perfect');
       }
       const activeDays = wasPerfect ? await getReviewActiveDays() : 0;
@@ -963,10 +965,13 @@ export default function LessonComplete() {
           const perfKey = lessonPerfectMilestoneKey(perfectCount, studyTarget);
         const alreadyPerfect = await AsyncStorage.getItem(perfKey);
         if (!alreadyPerfect) {
-          const n5 = await addShards('lessons_5_perfect', suppress);
+          const n5 = await addShards('lessons_5_perfect', {
+            eventId: `perfect-milestone:${studyTarget}:${perfectCount}`,
+            localWrites: [[perfKey, '1']],
+            suppressEarnEvent: true,
+          });
           if (n5 > 0) {
             shardKeys.push('lessons_5_perfect');
-            AsyncStorage.setItem(perfKey, '1').catch(() => {});
           }
         }
       }
@@ -988,10 +993,13 @@ export default function LessonComplete() {
         const topicKey = lessonTopicShardGrantedKey(currentCefr, studyTarget);
         const alreadyTopic = await AsyncStorage.getItem(topicKey);
         if (!alreadyTopic) {
-          const nT = await addShards('topic_completed', suppress);
+          const nT = await addShards('topic_completed', {
+            eventId: `topic:${studyTarget}:${currentCefr}:completed`,
+            localWrites: [[topicKey, '1']],
+            suppressEarnEvent: true,
+          });
           if (nT > 0) {
             shardKeys.push('topic_completed');
-            AsyncStorage.setItem(topicKey, '1').catch(() => {});
           }
         }
       }

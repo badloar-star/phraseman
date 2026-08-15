@@ -1,3 +1,7 @@
+import * as fs from 'fs';
+import * as path from 'path';
+import { arenaText } from '../modules/arena/copy';
+import type { Lang } from '../constants/i18n';
 import {
   arenaParseReviewRow,
   arenaReviewRows,
@@ -205,5 +209,26 @@ describe('список и сводка', () => {
       choiceRow({ taskIndex: 1, correct: true }),
     ]);
     expect(arenaReviewSummary(perfect).retryTaskIndexes).toEqual([]);
+  });
+});
+
+/**
+ * Пустой разбор читался как «ты ничего не отвечал»: экран говорил «Разбор пока
+ * не готов» и замолкал, не объясняя, когда он появится и появится ли. А пишется
+ * он при закрытии матча — то есть чаще всего ждать надо соперника.
+ */
+describe('пустой разбор объясняет себя и не запирает', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_review.tsx'), 'utf8');
+  const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[];
+
+  it('к пустоте добавлено объяснение', () => {
+    expect(source).toContain("'reviewEmptyHint'");
+    for (const lang of langs) {
+      expect(arenaText(lang, 'reviewEmptyHint').length).toBeGreaterThan(0);
+    }
+  });
+
+  it('дорога назад есть и при пустоте, и при отказе', () => {
+    expect(source).toContain("rows.length || view === 'empty' || view === 'error'");
   });
 });

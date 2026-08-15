@@ -466,7 +466,10 @@ export default function ExamScreen() {
     if (!runtimeActive || Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       const p = phaseBackRef.current;
-      if (p !== 'quiz' && p !== 'review' && p !== 'countdown') return false;
+      if (p !== 'quiz' && p !== 'review' && p !== 'countdown') {
+        safeRouterBack(router, '/lessons_list' as any);
+        return true;
+      }
       Alert.alert(
         t3('Выйти из экзамена?', 'Вийти з іспиту?', '¿Salir del examen?', 'Sair do exame?', 'Thoát bài kiểm tra?', 'Keluar dari ujian?', 'Sınavdan çıkılsın mı?', 'Wyjść z egzaminu?'),
         t3(

@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, PixelRatio, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaQuestion } from '../components/arena/ArenaQuestion';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaDisclosureBadge, ArenaProgress, ArenaStateCard, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
+import { arenaExpansionShowsState } from '../modules/arena/expansion_state';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -16,6 +17,23 @@ import { isArenaTaskMode } from '../modules/arena/contract';
 import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
 import { arenaExpansionHome, arenaMatchLabGet } from './arena_client';
 import { trackArenaTelemetry } from './arena_telemetry';
+
+/**
+ * Системный масштаб шрифта — для высоты строки.
+ *
+ * В React Native крупный системный шрифт увеличивает `fontSize`, но `lineHeight`
+ * задан числом и остаётся прежним: строки наезжают друг на друга и обрезаются.
+ * Высота строки умножается на масштаб, поэтому при обычном размере вёрстка та
+ * же, а при увеличении — правильная.
+ *
+ * На главных экранах Арены то же самое делает хук `useArenaFontScale`: он
+ * реагирует на смену настройки на ходу. Здесь взято значение на момент
+ * загрузки модуля — стили лежат в `StyleSheet`, а часть строк рисуется внутри
+ * колбэков списка, где хук вызвать нельзя. Разница видна только если менять
+ * системный шрифт, не выходя из приложения.
+ */
+const FONT_SCALE = PixelRatio.getFontScale();
+
 
 export default function ArenaMatchLabScreen() {
   const router = useRouter();
@@ -51,7 +69,11 @@ export default function ArenaMatchLabScreen() {
     : plan?.review?.turningPoint?.code === 'fast_wrong' ? 'turnFastWrong'
       : plan?.review?.turningPoint?.code === 'missed_streak' ? 'turnMissedStreak' : 'turnComeback';
 
-  if (state !== 'ready' || !plan) return (
+  // Правило «когда содержимое показывать нельзя» одно на все экраны
+  // расширения и живёт в modules/arena/expansion_state.ts. Переписанное
+  // здесь заново, оно рано или поздно разойдётся с остальными: добавится
+  // состояние, а этот экран о нём не узнает и промолчит.
+  if (arenaExpansionShowsState(state) || !plan) return (
     <ArenaScreen title={arenaExpansionText(lang, 'lab')} scroll={false}>
       <View style={styles.center}><ArenaStateNotice state={state} emptyHint="emptyLab" onRetry={load} onBack={() => router.replace('/arena' as never)} /></View>
     </ArenaScreen>
@@ -115,9 +137,9 @@ const styles = StyleSheet.create({
   reviewRow: { gap: 5 },
   row: { flexDirection: 'row', alignItems: 'flex-start', gap: 8 },
   eyebrow: { fontSize: 12, fontWeight: '900', textTransform: 'uppercase' },
-  heading: { fontSize: 20, lineHeight: 26, fontWeight: '900', marginTop: 4 },
-  title: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '900' },
+  heading: { fontSize: 20, lineHeight: 26 * FONT_SCALE, fontWeight: '900', marginTop: 4 },
+  title: { flex: 1, fontSize: 16, lineHeight: 22 * FONT_SCALE, fontWeight: '900' },
   verdict: { fontSize: 12, fontWeight: '900' },
   meta: { fontSize: 12, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  body: { fontSize: 14, lineHeight: 20, fontWeight: '600' },
+  body: { fontSize: 14, lineHeight: 20 * FONT_SCALE, fontWeight: '600' },
 });

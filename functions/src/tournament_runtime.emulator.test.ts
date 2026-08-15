@@ -300,13 +300,21 @@ describe('tournament Firestore emulator runtime', () => {
     }
   });
 
-  it('leaves a paid lobby once and refunds only the frozen recorded contribution', async () => {
+  it('uses distinct debit/refund events for join → leave → rejoin in the same room', async () => {
     const nowMs = Date.now();
     const roomId = 'leave-paid-lobby';
     const stableUid = 'leave-paid-user';
     const authUid = 'leave-paid-auth';
     const roomRef = adminDb.collection('tournamentRooms').doc(roomId);
     await Promise.all([
+      adminDb.collection('tournamentSchedule').doc('config').set({
+        slots: [{ slotId: 'leave-paid', localTime: '12:00', timezone: 'UTC', ticketsRequired: 1, enabled: true }],
+        freeWeeklyEntry: false,
+      }),
+      adminDb.collection('tournamentSchedule').doc('economy').set({
+        entryGems: 3, botEntryGems: 3, weeklyBankRate: 0.2,
+        prizeShares: [0.6, 0.25, 0.15], weeklyShares: [0.6, 0.25, 0.15],
+      }),
       roomRef.set({
         slotId: 'leave-paid', seed: roomId, state: 'lobby', startsAt: nowMs + 60_000,
         stateDeadlineAtMs: nowMs + 60_000,
@@ -314,45 +322,45 @@ describe('tournament Firestore emulator runtime', () => {
           entryGems: 3, botEntryGems: 3, weeklyBankRate: 0.2,
           prizeShares: [0.6, 0.25, 0.15], weeklyShares: [0.6, 0.25, 0.15],
         },
-        potGems: 3,
-        players: [{
-          id: stableUid, name: stableUid, avatar: '🙂', color: '#000', score: 0, streak: 0,
-          entry: { kind: 'ticket', ticketsSpent: 0, bankContributionGems: 3, weekId: '2026-W31' },
-        }],
-        participantAuthUids: [authUid], participantAuthUidsComplete: true,
-        rounds: [], version: 1, createdAtMs: nowMs,
+        potGems: 0, players: [], participantAuthUids: [], participantAuthUidsComplete: true,
+        rounds: [], version: 0, createdAtMs: nowMs,
       }),
       roomRef.collection('taskSecrets').doc('__bot_simulation_v1')
         .set({ kind: 'bot_simulation_v1', expectedBotCount: 0, bots: [] }),
       adminDb.collection('users').doc(stableUid).set({
         firebaseAuthUid: authUid, shards: 3,
-        tournament_last_slot_key: 'leave-paid_2026-07-29',
-        tournament_last_slot_room_id: roomId,
+        // Consume the weekly free-entry marker so both attempts are paid.
+        tournament_free_entry_week_id: tournamentWeekId(nowMs + 60_000),
       }),
       adminDb.collection('auth_links').doc(authUid).set({ stable_id: stableUid }),
-      // A live config change after entry must not change the frozen refund.
-      adminDb.collection('tournamentSchedule').doc('economy').set({ entryGems: 9 }),
     ]);
 
+    await runtime.tournamentJoinTransaction(adminDb, { roomId, stableUid, authUid, nowMs });
+
     const results = await Promise.all([
-      runtime.tournamentLeaveTransaction(adminDb, { roomId, stableUid, authUid, nowMs }),
+      runtime.tournamentLeaveTransaction(adminDb, { roomId, stableUid, authUid, nowMs: nowMs + 1 }),
       runtime.tournamentLeaveTransaction(adminDb, { roomId, stableUid, authUid, nowMs: nowMs + 1 }),
     ]);
     expect(results).toEqual(expect.arrayContaining([
-      expect.objectContaining({ ok: true, alreadyLeft: false, refundedGems: 3, potGems: 0 }),
-      expect.objectContaining({ ok: true, alreadyLeft: true, refundedGems: 3, potGems: 0 }),
+      expect.objectContaining({ ok: true, alreadyLeft: false, refundedGems: 5, potGems: 0 }),
+      expect.objectContaining({ ok: true, alreadyLeft: true, refundedGems: 5, potGems: 0 }),
     ]));
     expect((await roomRef.get()).data()).toMatchObject({
       players: [], participantAuthUids: [], potGems: 0, version: 2,
     });
-    const user = (await adminDb.collection('users').doc(stableUid).get()).data();
-    expect(user?.shards).toBe(6);
-    expect(user).not.toHaveProperty('tournament_last_slot_key');
-    expect(user).not.toHaveProperty('tournament_last_slot_room_id');
-    expect((await adminDb.collection('users').doc(stableUid)
-      .collection('tournament_receipts').doc(`leave_${roomId}`).get()).data()).toMatchObject({
-      kind: 'tournament_lobby_leave_v1', roomId, playerId: stableUid, refundedGems: 3,
-    });
+    await runtime.tournamentJoinTransaction(adminDb, { roomId, stableUid, authUid, nowMs: nowMs + 2 });
+    await expect(runtime.tournamentLeaveTransaction(adminDb, {
+      roomId, stableUid, authUid, nowMs: nowMs + 3,
+    })).resolves.toMatchObject({ alreadyLeft: false, refundedGems: 5 });
+
+    const eventDocs = await adminDb.collection('users').doc(stableUid)
+      .collection('external_economy_events').get();
+    const events = eventDocs.docs.map((snapshot) => snapshot.data());
+    expect(events).toHaveLength(4);
+    expect(events.filter((event) => event.source === 'tournament_entry').map((event) => event.delta)).toEqual([-5, -5]);
+    expect(events.filter((event) => event.source === 'tournament_lobby_leave').map((event) => event.delta)).toEqual([5, 5]);
+    expect(new Set(events.map((event) => event.eventId)).size).toBe(2);
+    expect((await adminDb.collection('users').doc(stableUid).get()).data()?.shards).toBe(3);
   });
 
   it('removes a frozen test-mode entrant without charging or refunding gems', async () => {

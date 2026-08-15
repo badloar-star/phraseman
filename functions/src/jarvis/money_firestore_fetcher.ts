@@ -15,7 +15,7 @@ export const MONEY_LOOKBACK_MS = 24 * 60 * 60 * 1_000;
 
 export interface FetchMoneySourceInput {
   readonly sourceId: MoneyReportCollection;
-  readonly collection: FirebaseFirestore.CollectionReference;
+  readonly collection: FirebaseFirestore.Query;
   readonly nowMs: number;
 }
 
@@ -49,6 +49,43 @@ function packResult(sourceId: MoneyReportCollection, rows: readonly MoneyRawRow[
 
 function errorResult(sourceId: MoneyReportCollection, observedAtMs: number): FetchMoneySourceResult {
   return Object.freeze({ sourceId, state: 'error' as const, truncated: false, droppedCount: 0, rows: Object.freeze([]), observedAtMs });
+}
+
+function number(value: unknown): number | null {
+  return Number.isSafeInteger(value) ? Number(value) : null;
+}
+
+async function fetchPersonalEconomy(input: FetchMoneySourceInput): Promise<FetchMoneySourceResult> {
+  const sinceMs = input.nowMs - MONEY_LOOKBACK_MS;
+  try {
+    const snapshot = await input.collection
+      .where('createdAtMs', '>=', sinceMs)
+      .orderBy('createdAtMs', 'asc')
+      .limit(MAX_MONEY_ROWS_PER_SOURCE + 1)
+      .get();
+    const docs = snapshot.docs;
+    const truncated = docs.length > MAX_MONEY_ROWS_PER_SOURCE;
+    const kept = truncated ? docs.slice(0, MAX_MONEY_ROWS_PER_SOURCE) : docs;
+    const rows = kept.map((snap) => {
+      const data = snap.data() as Record<string, unknown>;
+      return Object.freeze({
+        eventType: input.sourceId === 'external_economy_events' ? text(data.eventId) : null,
+        periodType: null,
+        ownerStableId: text(data.ownerStableId),
+        openingBalance: number(data.openingBalance),
+        direction: text(data.direction),
+        delta: number(data.delta),
+        balanceBefore: number(data.balanceBefore),
+        balanceAfter: number(data.balanceAfter),
+        revision: number(data.revision),
+        source: text(data.source),
+        createdAtMs: number(data.createdAtMs),
+      });
+    });
+    return packResult(input.sourceId, rows, truncated, truncated ? docs.length - MAX_MONEY_ROWS_PER_SOURCE : 0, input.nowMs);
+  } catch {
+    return errorResult(input.sourceId, input.nowMs);
+  }
 }
 
 async function fetchRevenuecatEvents(input: FetchMoneySourceInput): Promise<FetchMoneySourceResult> {
@@ -97,5 +134,7 @@ async function fetchPaywallFunnel(input: FetchMoneySourceInput): Promise<FetchMo
 }
 
 export async function fetchMoneySource(input: FetchMoneySourceInput): Promise<FetchMoneySourceResult> {
-  return input.sourceId === 'paywall_funnel' ? fetchPaywallFunnel(input) : fetchRevenuecatEvents(input);
+  if (input.sourceId === 'paywall_funnel') return fetchPaywallFunnel(input);
+  if (input.sourceId === 'revenuecat_premium_events') return fetchRevenuecatEvents(input);
+  return fetchPersonalEconomy(input);
 }

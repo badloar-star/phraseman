@@ -10,6 +10,10 @@ import {
   type FlashcardsSwipeSessionScope,
   SWIPE_DISTANCE_MAX_PX,
   SWIPE_VELOCITY_THRESHOLD,
+  deckIdForSwipeSource,
+  deckIdsForSwipeSources,
+  swipeSourceIdsForDeckIds,
+  type SwipeSourceLike,
   swipeBadgeFullAtPx,
   swipeCommitDirection,
   swipeDistanceThresholdPx,
@@ -176,5 +180,64 @@ describe('swipe gesture commit', () => {
     expect(full).toBeLessThanOrEqual(Math.round(W * 0.16));
     // и заметно раньше, чем свайп будет засчитан
     expect(full).toBeLessThanOrEqual(swipeDistanceThresholdPx(W));
+  });
+});
+
+/**
+ * FIX владельца (2026-08-13): «Тренировка» в таббаре раздела карточек ведёт в
+ * ЭТОТ свайп-режим, а не в тренажёр «Моя практика». Таббар и DeckPickerSheet
+ * говорят наборами (`saved` / `custom` / `pack:<id>`), экран свайпа — своими
+ * источниками; перевод между ними обязан быть в обе стороны без потерь, иначе
+ * выбранные наборы «не отмечаются» и не запоминаются.
+ */
+describe('наборы ?deck= ↔ источники экрана свайпа (§6)', () => {
+  const sources: SwipeSourceLike[] = [
+    { id: 'saved:all', kind: 'saved' },
+    { id: 'custom:all', kind: 'custom' },
+    { id: 'official:western', kind: 'official' },
+    { id: 'community:abc123', kind: 'community' },
+  ];
+
+  it('каждый источник знает свой набор', () => {
+    expect(sources.map(deckIdForSwipeSource)).toEqual([
+      'saved',
+      'custom',
+      'pack:western',
+      'pack:abc123',
+    ]);
+  });
+
+  it('источник без опознаваемого набора не ломает сопоставление', () => {
+    expect(deckIdForSwipeSource({ id: 'official', kind: 'official' })).toBeNull();
+    expect(deckIdForSwipeSource(null)).toBeNull();
+    expect(deckIdForSwipeSource({ id: 'community:  ', kind: 'community' })).toBeNull();
+  });
+
+  it('мультивыбор из шита отмечает ровно свои источники', () => {
+    expect(swipeSourceIdsForDeckIds(sources, ['custom', 'pack:western'])).toEqual([
+      'custom:all',
+      'official:western',
+    ]);
+    /** Набор, которого на устройстве нет, просто пропускается. */
+    expect(swipeSourceIdsForDeckIds(sources, ['pack:missing'])).toEqual([]);
+    /** Пустой выбор — не «ничего», а «нет предвыбора»: экран решает сам. */
+    expect(swipeSourceIdsForDeckIds(sources, [])).toEqual([]);
+    expect(swipeSourceIdsForDeckIds(null, ['saved'])).toEqual([]);
+  });
+
+  it('обратный перевод даёт то, что запомнится в fc_mode_prefs_v1', () => {
+    expect(deckIdsForSwipeSources(sources)).toEqual([
+      'saved',
+      'custom',
+      'pack:western',
+      'pack:abc123',
+    ]);
+    expect(deckIdsForSwipeSources([])).toEqual([]);
+  });
+
+  it('перевод туда-обратно устойчив (что выбрали — то и отметится)', () => {
+    const picked = ['saved:all', 'community:abc123'];
+    const decks = deckIdsForSwipeSources(sources.filter((s) => picked.includes(s.id)));
+    expect(swipeSourceIdsForDeckIds(sources, decks)).toEqual(picked);
   });
 });

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, PixelRatio, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaProgress, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
@@ -15,6 +15,23 @@ import { ARENA_TASK_MODES } from '../modules/arena/contract';
 import { arenaExpansionHome } from './arena_client';
 import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
 import { trackArenaTelemetry } from './arena_telemetry';
+
+/**
+ * Системный масштаб шрифта — для высоты строки.
+ *
+ * В React Native крупный системный шрифт увеличивает `fontSize`, но `lineHeight`
+ * задан числом и остаётся прежним: строки наезжают друг на друга и обрезаются.
+ * Высота строки умножается на масштаб, поэтому при обычном размере вёрстка та
+ * же, а при увеличении — правильная.
+ *
+ * На главных экранах Арены то же самое делает хук `useArenaFontScale`: он
+ * реагирует на смену настройки на ходу. Здесь взято значение на момент
+ * загрузки модуля — стили лежат в `StyleSheet`, а часть строк рисуется внутри
+ * колбэков списка, где хук вызвать нельзя. Разница видна только если менять
+ * системный шрифт, не выходя из приложения.
+ */
+const FONT_SCALE = PixelRatio.getFontScale();
+
 
 export default function ArenaMasteryMapScreen() {
   const router = useRouter();
@@ -62,7 +79,7 @@ const styles = StyleSheet.create({
   card: { gap: 11 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   copy: { flex: 1 },
-  title: { fontSize: 18, lineHeight: 24, fontWeight: '900' },
+  title: { fontSize: 18, lineHeight: 24 * FONT_SCALE, fontWeight: '900' },
   level: { marginTop: 2, fontSize: 13, fontWeight: '800' },
   score: { fontSize: 30, fontWeight: '900', fontVariant: ['tabular-nums'] },
   meta: { fontSize: 12, fontWeight: '800' },

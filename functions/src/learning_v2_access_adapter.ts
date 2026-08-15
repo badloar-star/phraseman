@@ -33,7 +33,6 @@ export interface V2AccessGateRecord {
 export interface V2AccessAccountRecord {
   readonly stableId: string;
   readonly accountGeneration: number;
-  readonly shards: number;
 }
 
 export interface V2AccessPurchaseReceipt {
@@ -43,7 +42,6 @@ export interface V2AccessPurchaseReceipt {
   readonly gateId: string;
   readonly accessStarsApplied: number;
   readonly shardsSpent: number;
-  readonly balanceAfter: number;
   readonly basis: 'earned_plus_boost';
 }
 
@@ -246,9 +244,6 @@ export async function finalizeV2AccessPurchase(
       throw new Error('access_decision_registry_mismatch');
     }
     if (gate.unlocked) throw new Error('access_gate_already_unlocked');
-    if (!Number.isSafeInteger(account.shards) || account.shards < 0) {
-      throw new Error('access_account_balance_invalid');
-    }
     const quoteValidation = validateAccessQuoteForPurchase(quote, input.request, input.nowMs);
     if (quoteValidation.valid === false) throw new Error(`access_${quoteValidation.reason}`);
     const eligibility = evaluateAccessBoostEligibility(
@@ -271,11 +266,8 @@ export async function finalizeV2AccessPurchase(
     if (eligibility.totalCostShards !== quote.totalCostShards) {
       throw new Error('access_quote_policy_mismatch');
     }
-    if (account.shards < eligibility.totalCostShards) throw new Error('access_insufficient_balance');
-    const balanceAfter = account.shards - eligibility.totalCostShards;
-    if (!Number.isSafeInteger(balanceAfter) || balanceAfter < 0) {
-      throw new Error('access_account_balance_invalid');
-    }
+    // Client composite operation owns affordability/debit; the protected
+    // adapter persists only the gate and receipt.
     const receipt: V2AccessPurchaseReceipt = {
       opId: input.operationId,
       stableId: input.stableId,
@@ -283,10 +275,8 @@ export async function finalizeV2AccessPurchase(
       gateId: input.request.gateId,
       accessStarsApplied: eligibility.accessStarsToApply,
       shardsSpent: eligibility.totalCostShards,
-      balanceAfter,
       basis: 'earned_plus_boost',
     };
-    transaction.update(accountKey(input.stableId), { shards: balanceAfter });
     transaction.update(gateKey(input.stableId, input.request.seasonId, input.request.gateId), {
       purchasedForGate: gate.purchasedForGate + eligibility.accessStarsToApply,
       purchasedForChapter: gate.purchasedForChapter + eligibility.accessStarsToApply,

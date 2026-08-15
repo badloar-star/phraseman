@@ -100,7 +100,7 @@ process.stderr.write(
     "",
     "Порядок включения, если владелец разрешил:",
     "  1) создать reCAPTCHA Enterprise-ключ, зарегистрировать веб-приложение в App Check;",
-    "  2) прописать ключ в admin/legacy.html;",
+    "  2) прописать ключ в admin/v2/legacy.html;",
     "  3) проверить в браузере, что grecaptcha.enterprise.execute() отдаёт токен;",
     "  4) только затем ENFORCE_APP_CHECK_ADMIN=true.",
     "",

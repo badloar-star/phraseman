@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const repoRoot = path.resolve(__dirname, "..");
-const liveAdminPath = path.join(repoRoot, "admin/legacy.html");
+const liveAdminPath = path.join(repoRoot, "admin/v2/legacy.html");
 const liveAdmin = readFileSync(liveAdminPath, "utf8");
 
 const retiredTabs = [
@@ -89,8 +89,7 @@ describe("live admin retired Quiz/Arena surface boundary", () => {
     expect(existsSync(auditPath)).toBe(true);
     const auditSource = readFileSync(auditPath, "utf8");
 
-    expect(auditSource).toContain("path.join(root, 'admin', 'legacy.html')");
-    expect(auditSource).not.toContain(
+    expect(auditSource).toContain(
       "path.join(root, 'admin', 'v2', 'legacy.html')",
     );
   });

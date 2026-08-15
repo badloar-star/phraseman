@@ -17,7 +17,7 @@ describe('shard survey idempotency contract', () => {
 
   test('a repeated claim returns zero reward without updating user balance or stats', () => {
     const repeatedStart = submit.indexOf('if (claimSnap.exists)');
-    const repeatedEnd = submit.indexOf('const currentBalance', repeatedStart);
+    const repeatedEnd = submit.indexOf('// Фиксированная выплата', repeatedStart);
     const repeatedBranch = submit.slice(repeatedStart, repeatedEnd);
 
     expect(repeatedBranch).toContain('alreadyGranted: true, reward: 0');
@@ -27,14 +27,16 @@ describe('shard survey idempotency contract', () => {
     expect(repeatedBranch).not.toContain('incrementStats(');
   });
 
-  test('the first grant updates claim, balance, response and stats in one transaction', () => {
+  test('the first grant atomically appends an external fact, response and stats without a balance write', () => {
     const transactionStart = submit.indexOf('db.runTransaction');
     const transactionEnd = submit.indexOf('\n  return result;', transactionStart);
     const transaction = submit.slice(transactionStart, transactionEnd);
 
     expect(transaction).toContain('tx.set(claimRef');
     expect(transaction).toContain('tx.set(userRef');
-    expect(transaction).toContain('shards: newBalance');
+    expect(transaction).toContain('appendExternalEconomyEvent(tx, userRef');
+    expect(transaction).not.toContain('shards: newBalance');
+    expect(transaction).not.toContain('balanceAfter');
     expect(transaction).toContain('tx.set(responseRef');
     expect(transaction).toContain('incrementStats(');
     expect(transaction).toContain('tx.set(statsRef');

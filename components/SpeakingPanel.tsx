@@ -117,7 +117,7 @@ function deleteRecordingFile(uri: string | null): void {
  *
  * Self-contained: owns mic permission, on-device speech recognition, the live
  * waveform, word-by-word highlighting and scoring. Drop it anywhere (lesson /
- * trainer / personal plan) and it manages its own lifecycle. The host
+ * trainer) and it manages its own lifecycle. The host
  * only supplies the target phrase and is told when the attempt passes.
  *
  * Оценка честная и конкретная (всё локально, без платных серверов):

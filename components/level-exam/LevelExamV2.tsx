@@ -184,8 +184,10 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         }
         const shardKey = `level_exam_quiz_shard_en_${level}`;
         if (await AsyncStorage.getItem(shardKey) !== '1') {
-          const added = await addShards('lesson_quiz_passed').catch(() => 0);
-          if (added > 0) await AsyncStorage.setItem(shardKey, '1');
+          await addShards('lesson_quiz_passed', {
+            eventId: `level-exam:en:${level}:first-pass`,
+            localWrites: [[shardKey, '1']],
+          }).catch(() => 0);
         }
       }
       if (scored.pct >= 90) void awardOneTime('exam_excellent');

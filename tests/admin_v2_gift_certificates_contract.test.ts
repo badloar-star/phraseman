@@ -26,7 +26,7 @@ function extractNamedFunction(source: string, name: string): string {
 }
 
 describe("live admin gift certificates workflow", () => {
-  const live = read("admin/legacy.html");
+  const live = read("admin/v2/legacy.html");
   const server = read("functions/src/web_checkout.ts");
   const functionsIndex = read("functions/src/index.ts");
 

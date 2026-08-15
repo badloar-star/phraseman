@@ -20,7 +20,7 @@ import { screenTextOnGradient } from '../constants/theme';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 import { getCanonicalUserId } from './user_id_policy';
-import { replaceShardsBalanceForAccountGeneration, SHARD_REWARDS } from './shards_system';
+import { commitConfirmedExternalShardEvent, SHARD_REWARDS } from './shards_system';
 import { emitAppEvent } from './events';
 import { submitSurvey, type SurveyQuestionClient } from './survey_client';
 import { takePrimedSurvey, clearPrimedSurvey } from './survey_handoff';
@@ -168,16 +168,26 @@ export default function SurveyScreen() {
         presentAccountChanged(attemptId);
         return;
       }
-      const balanceReconciled = await replaceShardsBalanceForAccountGeneration(res.balanceAfter, accountToken, stableId, {
-        updatedAtMs: res.shardsUpdatedAtMs ?? undefined,
-        op: 'earn',
-        reason: 'survey_completed',
-      });
-      if (!isCurrentAccountGeneration(accountToken, stableId) || balanceReconciled === 'stale-generation') {
+      const rewardApplied = res.reward > 0
+        ? await commitConfirmedExternalShardEvent({
+            source: 'shard_survey',
+            eventId: survey.surveyId,
+            delta: res.reward,
+            reason: 'survey_completed',
+            grant: {
+              kind: 'survey_reward',
+              subjectId: survey.surveyId,
+              payload: { surveyId: survey.surveyId },
+            },
+          })
+        : null;
+      if (!isCurrentAccountGeneration(accountToken, stableId)) {
         presentAccountChanged(attemptId);
         return;
       }
-      if (balanceReconciled === 'failed') throw new Error('balance_reconcile_failed');
+      if (rewardApplied && rewardApplied.status !== 'applied' && rewardApplied.status !== 'already-applied') {
+        throw new Error('reward_event_apply_failed');
+      }
       const markerWritten = await markSurveyOfferDone({ stableId, dayKey: openedDayKey, summary: { surveyId: survey.surveyId, title: survey.title } });
       if (!isCurrentAccountGeneration(accountToken, stableId)) {
         presentAccountChanged(attemptId);

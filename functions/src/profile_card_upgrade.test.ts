@@ -90,6 +90,7 @@ function fakeDb() {
     runTransaction: async <T>(fn: (tx: {
       get: (ref: FakeRef) => Promise<FakeSnap>;
       set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => void;
+      create: (ref: FakeRef, data: DocData) => void;
     }) => Promise<T>): Promise<T> => {
       const writes: Array<() => void> = [];
       const result = await fn({
@@ -98,6 +99,9 @@ function fakeDb() {
           writes.push(() => {
             docs.set(ref.path, opts?.merge ? deepMerge(docs.get(ref.path) ?? {}, data) : { ...data });
           });
+        },
+        create: (ref: FakeRef, data: DocData) => {
+          writes.push(() => docs.set(ref.path, { ...data }));
         },
       });
       writes.forEach((write) => write());
@@ -160,9 +164,10 @@ describe('profileCardUpgrade', () => {
 
     const res = await callUpgrade({ expectedLevel: 0 });
 
-    expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: 1, spent: 200, balance: 50 });
+    expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: 1, spent: 0 });
+    expect(res).not.toHaveProperty('balance');
     const u = docs.get('users/u1') as Record<string, any>;
-    expect(u.shards).toBe(50);
+    expect(u.shards).toBe(250);
     // The badge reads progress.profile_card_level (sync_leaderboard.ts), so the CF must
     // write THERE — not a dead root field that nothing renders from.
     expect(u.progress.profile_card_level).toBe(1);
@@ -176,7 +181,8 @@ describe('profileCardUpgrade', () => {
 
     const res = await callUpgrade({ expectedLevel: 0, stableId: 'stable-1' }, 'auth-1');
 
-    expect(res).toMatchObject({ ok: true, level: 1, spent: 200, balance: 50 });
+    expect(res).toMatchObject({ ok: true, level: 1, spent: 0 });
+    expect(res).not.toHaveProperty('balance');
     expect((docs.get('users/stable-1') as Record<string, any>).progress.profile_card_level).toBe(1);
     expect(docs.get('users/auth-1')).toBeUndefined();
   });
@@ -190,15 +196,16 @@ describe('profileCardUpgrade', () => {
     expect(u.progress).toMatchObject({ profile_card_level: 1, streak_count: '7', user_total_xp: '999' });
   });
 
-  it('refuses to upgrade when shards are insufficient and spends nothing', async () => {
+  it('stores metadata without using server balance as permission', async () => {
     docs.set('users/u1', { shards: 190, progress: { profile_card_level: 0 } });
 
     const res = await callUpgrade({ expectedLevel: 0 });
 
-    expect(res).toMatchObject({ ok: false, reason: 'insufficient', level: 0, balance: 190, cost: 200 });
+    expect(res).toMatchObject({ ok: true, level: 1, spent: 0 });
+    expect(res).not.toHaveProperty('balance');
     const u = docs.get('users/u1') as Record<string, any>;
     expect(u.shards).toBe(190);
-    expect(u.progress.profile_card_level).toBe(0);
+    expect(u.progress.profile_card_level).toBe(1);
   });
 
   it('is idempotent: a duplicate call after the server already advanced does not double-charge', async () => {
@@ -224,7 +231,7 @@ describe('profileCardUpgrade', () => {
     expect(u.progress.profile_card_level).toBe(5);
   });
 
-  it('charges the ladder prices level by level (200/450/800/1400/2400)', async () => {
+  it('stores every ladder level without changing the personal balance', async () => {
     const total = 200 + 450 + 800 + 1400 + 2400;
     docs.set('users/u1', { shards: total, progress: { profile_card_level: 0 } });
 
@@ -237,21 +244,22 @@ describe('profileCardUpgrade', () => {
     ];
     for (const step of expected) {
       const res = await callUpgrade({ expectedLevel: step.level - 1 });
-      expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: step.level, spent: step.spent });
+      expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: step.level, spent: 0 });
     }
     const u = docs.get('users/u1') as Record<string, any>;
-    expect(u.shards).toBe(0);
+    expect(u.shards).toBe(total);
     expect(u.progress.profile_card_level).toBe(5);
   });
 
-  it('refuses a mid-ladder step when shards cover only the previous price', async () => {
+  it('does not inspect a mid-ladder personal balance', async () => {
     // 200 was enough for I, but II costs 450 — no charge, no level bump.
     docs.set('users/u1', { shards: 449, progress: { profile_card_level: 1 } });
 
     const res = await callUpgrade({ expectedLevel: 1 });
 
-    expect(res).toMatchObject({ ok: false, reason: 'insufficient', level: 1, balance: 449, cost: 450 });
-    expect((docs.get('users/u1') as Record<string, any>).progress.profile_card_level).toBe(1);
+    expect(res).toMatchObject({ ok: true, level: 2, spent: 0 });
+    expect(res).not.toHaveProperty('balance');
+    expect((docs.get('users/u1') as Record<string, any>).progress.profile_card_level).toBe(2);
   });
 
   it('assigns sequential Legend numbers from the global counter, once per player', async () => {
@@ -261,8 +269,8 @@ describe('profileCardUpgrade', () => {
     const first = await callUpgrade({ expectedLevel: 4 }, 'u1');
     const second = await callUpgrade({ expectedLevel: 4, stableId: 'u2' }, 'auth-x');
 
-    expect(first).toMatchObject({ ok: true, level: 5, spent: 2400, legendNo: 1 });
-    expect(second).toMatchObject({ ok: true, level: 5, spent: 2400, legendNo: 2 });
+    expect(first).toMatchObject({ ok: true, level: 5, spent: 0, legendNo: 1 });
+    expect(second).toMatchObject({ ok: true, level: 5, spent: 0, legendNo: 2 });
     expect((docs.get('users/u1') as Record<string, any>).progress.profile_card_legend_no).toBe(1);
     expect((docs.get('users/u2') as Record<string, any>).progress.profile_card_legend_no).toBe(2);
     expect((docs.get('stats/profile_card_legends') as Record<string, any>).issued).toBe(2);
@@ -273,19 +281,20 @@ describe('profileCardUpgrade', () => {
 
     const res = await callUpgrade({ expectedLevel: 1 });
 
-    expect(res).toMatchObject({ ok: true, level: 2, spent: 450 });
+    expect(res).toMatchObject({ ok: true, level: 2, spent: 0 });
     expect((res as Record<string, unknown>).legendNo).toBeUndefined();
     expect((docs.get('users/u1') as Record<string, any>).progress.profile_card_legend_no).toBeUndefined();
     expect(docs.get('stats/profile_card_legends')).toBeUndefined();
   });
 
-  it('uses the server cost table, not a client-supplied cost', async () => {
+  it('ignores a client-supplied cost because the server never charges', async () => {
     docs.set('users/u1', { shards: 1000, progress: { profile_card_level: 0 } });
 
     // Even though the client could try to pass a bogus cheap cost, the server uses Pro = 200.
     const res = await callUpgrade({ expectedLevel: 0, cost: 1 });
 
-    expect(res).toMatchObject({ ok: true, level: 1, spent: 200, balance: 800 });
+    expect(res).toMatchObject({ ok: true, level: 1, spent: 0 });
+    expect(res).not.toHaveProperty('balance');
   });
 });
 
@@ -300,16 +309,17 @@ describe('profileCardUpgrade — Фаза 4: «праздник легенды»
     const res = await callUpgrade({ expectedLevel: 4 });
 
     expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: 5, legendNo: 1 });
-    for (const [fid, before, after] of [['f1', 10, 15], ['f2', 0, 5]] as const) {
+    for (const [fid, before] of [['f1', 10], ['f2', 0]] as const) {
       const friend = docs.get(`users/${fid}`) as Record<string, any>;
-      expect(friend.shards).toBe(after);
-      expect(friend.shards_updated_op).toBe('earn');
-      expect(friend.shards_updated_reason).toBe('legend_celebration_gift');
-      expect(Number.isFinite(friend.shards_updated_at_ms)).toBe(true);
+      expect(friend.shards).toBe(before);
+      const external = [...docs.entries()].find(([path, data]) =>
+        path.startsWith(`users/${fid}/external_economy_events/`)
+        && (data as Record<string, unknown>).reason === 'legend_celebration_gift');
+      expect(external).toBeDefined();
       const log = [...docs.entries()].find(([path, data]) =>
         path.startsWith(`users/${fid}/shard_log/`) && (data as Record<string, unknown>).reason === 'legend_celebration_gift');
       expect(log).toBeDefined();
-      expect(log![1]).toMatchObject({ type: 'earn', amount: 5, balanceBefore: before, balanceAfter: after, legendUid: 'u1', legendNo: 1 });
+      expect(log![1]).toMatchObject({ type: 'earn', amount: 5, authority: 'external_event', legendUid: 'u1', legendNo: 1 });
     }
   });
 
@@ -347,7 +357,7 @@ describe('profileCardUpgrade — Фаза 4: «праздник легенды»
 
     const res = await callUpgrade({ expectedLevel: 2 });
 
-    expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: 3, spent: 800 });
+    expect(res).toMatchObject({ ok: true, alreadyApplied: false, level: 3, spent: 0 });
     expect((docs.get('users/f1') as Record<string, any>).shards).toBe(42);
     expect(docs.get('users/u1/my_events/legend_celebration')).toBeUndefined();
   });

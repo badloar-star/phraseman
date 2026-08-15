@@ -51,8 +51,10 @@ export interface RtcPeerConnectionLike {
   getStats(): Promise<unknown>;
   close(): void;
   iceConnectionState?: string;
+  iceGatheringState?: string;
   localDescription?: RtcSessionDescriptionLike | null;
   oniceconnectionstatechange?: (() => void) | null;
+  onicegatheringstatechange?: (() => void) | null;
   ontrack?: ((event: { track: MediaStreamTrackLike; streams?: MediaStreamLike[] }) => void) | null;
 }
 
@@ -61,6 +63,8 @@ export interface InCallManagerLike {
   start(options?: Record<string, unknown>): void;
   stop(): void;
   setSpeakerphoneOn?(on: boolean): void;
+  /** iOS: удерживать громкий динамик после последующих смен AVAudioSession. */
+  setForceSpeakerphoneOn?(on: boolean | null): void;
   setKeepScreenOn?(on: boolean): void;
 }
 
@@ -75,7 +79,7 @@ export interface MaxVoiceNativeModule {
 
 function guardedRequireWebRtc(): Record<string, unknown> | null {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const mod: unknown = require('react-native-webrtc');
     if (mod === null || typeof mod !== 'object') return null;
     return mod as Record<string, unknown>;
@@ -86,7 +90,7 @@ function guardedRequireWebRtc(): Record<string, unknown> | null {
 
 function guardedRequireInCall(): Record<string, unknown> | null {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const mod: unknown = require('react-native-incall-manager');
     if (mod === null || typeof mod !== 'object') return null;
     return mod as Record<string, unknown>;

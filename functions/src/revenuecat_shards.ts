@@ -23,6 +23,8 @@ import {
   ACCOUNT_DELETE_TOMBSTONES,
   accountDeletePermanentDenialId,
 } from './account_delete_job';
+import { appendExternalEconomyEvent } from './external_economy_events';
+import { markRefereeQualified } from './referral';
 
 const REGION = 'us-central1';
 const REVENUECAT_WEBHOOK_AUTH = defineSecret('REVENUECAT_WEBHOOK_AUTH');
@@ -96,6 +98,104 @@ type RevenueCatWebhookBody = {
 };
 
 type RevenueCatEvent = NonNullable<RevenueCatWebhookBody['event']>;
+
+export type ShardRefundLifecycle = Readonly<{
+  status: 'active' | 'refunded';
+  epoch: number;
+  lastEventAtMs: number;
+  lastEventType: 'PURCHASE' | 'REFUND' | 'REFUND_REVERSED';
+  lastEventId: string;
+}>;
+
+export type ShardRefundLifecycleDecision = Readonly<{
+  applyDelta: -1 | 0 | 1;
+  reason: 'refunded' | 'restored' | 'already_refunded' | 'already_active' | 'stale_event' | 'refund_not_found';
+  next: ShardRefundLifecycle;
+}>;
+
+function readShardRefundLifecycle(original: Record<string, unknown>): ShardRefundLifecycle {
+  const explicitStatus = original.shardRefundState === 'refunded' || original.shardRefundState === 'active'
+    ? original.shardRefundState
+    : null;
+  const refundedAt = Math.max(0, Math.trunc(Number(original.refundEventTimestampMs ?? original.refundedAt) || 0));
+  const reversedAt = Math.max(0, Math.trunc(Number(original.refundReversedEventTimestampMs ?? original.refundReversedAt) || 0));
+  const legacyStatus = refundedAt > 0 && refundedAt >= reversedAt ? 'refunded' : 'active';
+  const lastEventAtMs = Math.max(
+    0,
+    Math.trunc(Number(original.shardRefundLastEventAtMs) || 0),
+    refundedAt,
+    reversedAt,
+  );
+  const lastEventType = original.shardRefundLastEventType === 'REFUND'
+    || original.shardRefundLastEventType === 'REFUND_REVERSED'
+    || original.shardRefundLastEventType === 'PURCHASE'
+    ? original.shardRefundLastEventType
+    : refundedAt >= reversedAt && refundedAt > 0
+      ? 'REFUND'
+      : reversedAt > 0
+        ? 'REFUND_REVERSED'
+        : 'PURCHASE';
+  return {
+    status: explicitStatus ?? legacyStatus,
+    epoch: Math.max(0, Math.trunc(Number(original.shardRefundEpoch) || 0)),
+    lastEventAtMs,
+    lastEventType,
+    lastEventId: cleanId(original.shardRefundLastEventId),
+  };
+}
+
+export function reduceShardRefundLifecycle(
+  current: ShardRefundLifecycle,
+  event: Readonly<{ type: 'REFUND' | 'REFUND_REVERSED'; eventId: string; eventTimestampMs: number }>,
+): ShardRefundLifecycleDecision {
+  if (event.eventTimestampMs < current.lastEventAtMs) {
+    return { applyDelta: 0, reason: 'stale_event', next: current };
+  }
+  if (event.type === 'REFUND') {
+    if (current.status === 'refunded') {
+      return { applyDelta: 0, reason: 'already_refunded', next: current };
+    }
+    return {
+      applyDelta: -1,
+      reason: 'refunded',
+      next: {
+        status: 'refunded',
+        epoch: current.epoch + 1,
+        lastEventAtMs: event.eventTimestampMs,
+        lastEventType: event.type,
+        lastEventId: event.eventId,
+      },
+    };
+  }
+  if (current.status === 'active') {
+    return {
+      applyDelta: 0,
+      reason: current.epoch === 0 ? 'refund_not_found' : 'already_active',
+      next: current,
+    };
+  }
+  return {
+    applyDelta: 1,
+    reason: 'restored',
+    next: {
+      status: 'active',
+      epoch: current.epoch,
+      lastEventAtMs: event.eventTimestampMs,
+      lastEventType: event.type,
+      lastEventId: event.eventId,
+    },
+  };
+}
+
+function shardRefundLifecyclePatch(state: ShardRefundLifecycle): Record<string, unknown> {
+  return {
+    shardRefundState: state.status,
+    shardRefundEpoch: state.epoch,
+    shardRefundLastEventAtMs: state.lastEventAtMs,
+    shardRefundLastEventType: state.lastEventType,
+    shardRefundLastEventId: state.lastEventId,
+  };
+}
 
 function cleanId(raw: unknown): string {
   return String(raw ?? '').trim();
@@ -519,7 +619,11 @@ export async function applyVerifiedPremiumSubscriptionEvent(
       }
       if (processedSnap.exists) {
         const replay = receiptReplayDecision(processedSnap.data() ?? {}, canonicalEvent);
-        if (replay === 'duplicate') return { updated: false, reason: 'duplicate' as const };
+        if (replay === 'duplicate') return {
+          updated: false,
+          reason: 'duplicate' as const,
+          uid: cleanId(processedSnap.data()?.uid),
+        };
         tx.set(denialRef, {
           reason: 'event_id_fingerprint_conflict',
           eventId: canonicalEvent.eventId,
@@ -650,7 +754,20 @@ export async function applyVerifiedPremiumSubscriptionEvent(
       };
   });
 
+  await qualifyReferralFromVerifiedPremiumOutcome(db, out);
+
   return { statusCode: 200, body: { ok: true, kind: 'premium', ...out } };
+}
+
+async function qualifyReferralFromVerifiedPremiumOutcome(
+  db: FirebaseFirestore.Firestore,
+  outcome: Readonly<{ uid?: string; active?: boolean; updated: boolean; reason?: string }>,
+  qualify: (db: FirebaseFirestore.Firestore, uid: string) => Promise<unknown> = markRefereeQualified,
+): Promise<boolean> {
+  const uid = cleanId(outcome.uid);
+  if (!uid) return false;
+  await qualify(db, uid);
+  return true;
 }
 
 async function handlePremiumSubscriptionEvent(
@@ -685,6 +802,10 @@ async function handleShardPurchaseEvent(
   // original_transaction_id оригинальной покупки).
   if (eventType === 'REFUND') {
     await handleShardRefundEvent(event, productId, res);
+    return;
+  }
+  if (eventType === 'REFUND_REVERSED') {
+    await handleShardRefundReversedEvent(event, productId, res);
     return;
   }
   if (eventType !== 'NON_RENEWING_PURCHASE') {
@@ -734,7 +855,7 @@ async function handleShardPurchaseEvent(
         };
       }
 
-      const { uid, ref: userRef, snap: userSnap } = match;
+      const { uid, ref: userRef } = match;
       const canonicalDeletionSnapshots = [
         await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(uid)),
         await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(uid)),
@@ -743,8 +864,25 @@ async function handleShardPurchaseEvent(
       if (canonicalDeletionSnapshots.some((snapshot) => snapshot.exists)) {
         return { granted: false, reason: 'account_deletion_pending_or_permanent' as const };
       }
-      const before = parseShards(userSnap.data()?.shards);
-      const after = before + pack.shards;
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'revenuecat_purchase',
+        eventId: transactionId,
+        ownerStableId: uid,
+        delta: pack.shards,
+        reason: 'shards_store_purchase',
+        kind: 'real_money_shard_pack',
+        subjectId: productId,
+        payload: {
+          packId: pack.packId,
+          productId,
+          store: cleanId(event.store),
+          environment: cleanId(event.environment),
+          transactionId: cleanId(event.transaction_id),
+          originalTransactionId: cleanId(event.original_transaction_id),
+          revenueCatEventId: cleanId(event.id),
+        },
+        createdAtMs: eventMs(event.purchased_at_ms) ?? now,
+      });
 
       tx.set(processedRef, {
         uid,
@@ -757,15 +895,12 @@ async function handleShardPurchaseEvent(
         environment: cleanId(event.environment),
         purchasedAtMs: eventMs(event.purchased_at_ms),
         eventTimestampMs: eventMs(event.event_timestamp_ms),
+        ...shardRefundLifecyclePatch({
+          status: 'active', epoch: 0,
+          lastEventAtMs: eventMs(event.purchased_at_ms) ?? eventMs(event.event_timestamp_ms) ?? now,
+          lastEventType: 'PURCHASE', lastEventId: cleanId(event.id) || transactionId,
+        }),
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
-
-      tx.update(userRef, {
-        shards: after,
-        shards_updated_at_ms: now,
-        shards_updated_op: 'earn',
-        shards_updated_reason: 'shards_store_purchase',
-        updatedAt: now,
       });
 
       tx.set(userRef.collection('shard_log').doc(), {
@@ -776,11 +911,10 @@ async function handleShardPurchaseEvent(
         productId,
         packId: pack.packId,
         revenueCatTransactionId: transactionId,
-        balanceBefore: before,
-        balanceAfter: after,
+        authority: 'external_event',
       });
 
-      return { granted: true, balanceAfter: after };
+      return { granted: true, eventId: transactionId };
     });
 
     if (out.retryable) {
@@ -790,6 +924,92 @@ async function handleShardPurchaseEvent(
     res.status(200).json({ ok: true, kind: 'shards', ...out });
   } catch (error) {
     logger.error('revenuecat_shards_webhook_failed', error);
+    res.status(500).send('Internal error');
+  }
+}
+
+async function handleShardRefundReversedEvent(
+  event: RevenueCatEvent,
+  productId: string,
+  res: any,
+): Promise<void> {
+  const originalTxId = cleanId(event.original_transaction_id || event.transaction_id);
+  const eventId = cleanId(event.id);
+  const reversedAtMs = eventMs(event.event_timestamp_ms);
+  if (!originalTxId || !eventId || reversedAtMs === null) {
+    res.status(400).send('Missing immutable REFUND_REVERSED identity');
+    return;
+  }
+  const db = admin.firestore();
+  const reversalRef = db.collection('revenuecat_shard_refund_reversals').doc(eventId);
+  const originalRef = db.collection('revenuecat_shard_transactions').doc(originalTxId);
+  try {
+    const out = await db.runTransaction(async (tx) => {
+      if ((await tx.get(reversalRef)).exists) return { restored: false, reason: 'duplicate' as const };
+      const originalSnap = await tx.get(originalRef);
+      if (!originalSnap.exists) return { restored: false, reason: 'original_not_found' as const, retryable: true };
+      const original = originalSnap.data() ?? {};
+      const lifecycle = reduceShardRefundLifecycle(readShardRefundLifecycle(original), {
+        type: 'REFUND_REVERSED', eventId, eventTimestampMs: reversedAtMs,
+      });
+      if (lifecycle.reason === 'refund_not_found') {
+        return { restored: false, reason: lifecycle.reason, retryable: true };
+      }
+      if (lifecycle.applyDelta === 0) {
+        tx.set(reversalRef, {
+          eventId, originalTransactionId: originalTxId, productId,
+          reason: lifecycle.reason, refundEpoch: lifecycle.next.epoch,
+          eventTimestampMs: reversedAtMs,
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        return { restored: false, reason: lifecycle.reason };
+      }
+      const uid = cleanId(original.uid);
+      const grantedShards = parseShards(original.shards);
+      if (!uid || grantedShards <= 0) return { restored: false, reason: 'invalid_original' as const };
+      const ownerResolution = await resolvePremiumOwnerRef(tx, db, [uid]);
+      if (ownerResolution.status !== 'resolved') {
+        return { restored: false, reason: ownerResolution.reason, retryable: true };
+      }
+      const { uid: canonicalUid, ref: userRef, snap: userSnap } = ownerResolution;
+      if (!userSnap.exists) return { restored: false, reason: 'missing_user_retryable' as const, retryable: true };
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'revenuecat_refund_reversed',
+        eventId,
+        ownerStableId: canonicalUid,
+        delta: grantedShards,
+        reason: 'shards_store_refund_reversed',
+        kind: 'real_money_shard_refund_reversed',
+        subjectId: originalTxId,
+        payload: { productId, originalTransactionId: originalTxId },
+        createdAtMs: reversedAtMs,
+      });
+      tx.set(reversalRef, {
+        eventId,
+        originalTransactionId: originalTxId,
+        productId,
+        uid: canonicalUid,
+        grantedShards,
+        refundEpoch: lifecycle.next.epoch,
+        eventTimestampMs: reversedAtMs,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      tx.update(originalRef, {
+        uid: canonicalUid,
+        refundReversedAt: Date.now(),
+        refundReversedEventTimestampMs: reversedAtMs,
+        ...shardRefundLifecyclePatch(lifecycle.next),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      return { restored: true, reason: 'restored' as const, shards: grantedShards };
+    });
+    if (out.retryable) {
+      res.status(503).json({ ok: false, kind: 'shards_refund_reversed', ...out });
+      return;
+    }
+    res.status(200).json({ ok: true, kind: 'shards_refund_reversed', ...out });
+  } catch (error) {
+    logger.error('revenuecat_shards_refund_reversed_failed', error);
     res.status(500).send('Internal error');
   }
 }
@@ -832,29 +1052,26 @@ async function handleShardRefundEvent(
 
       const originalSnap = await tx.get(originalRef);
       if (!originalSnap.exists) {
-        // Нет оригинала — невозможно знать, сколько списывать. Маркируем рефанд как
-        // обработанный, чтобы повторные доставки не висели, и логируем для аудита.
-        tx.set(refundRef, {
-          eventId,
-          originalTransactionId: originalTxId,
-          productId,
-          reason: 'original_not_found',
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { refunded: false, reason: 'original_not_found' as const };
+        // Webhooks may arrive out of order. Do not create a permanent receipt:
+        // RevenueCat must retry after the original purchase event is stored.
+        return { refunded: false, reason: 'original_not_found' as const, retryable: true };
       }
 
       const original = originalSnap.data() ?? {};
-      const refundedAlready = original.refundedAt != null;
-      if (refundedAlready) {
+      const lifecycle = reduceShardRefundLifecycle(readShardRefundLifecycle(original), {
+        type: 'REFUND', eventId, eventTimestampMs: refundEventTimeMs,
+      });
+      if (lifecycle.applyDelta === 0) {
         tx.set(refundRef, {
           eventId,
           originalTransactionId: originalTxId,
           productId,
-          reason: 'already_refunded',
+          reason: lifecycle.reason,
+          refundEpoch: lifecycle.next.epoch,
+          eventTimestampMs: refundEventTimeMs,
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
-        return { refunded: false, reason: 'already_refunded' as const };
+        return { refunded: false, reason: lifecycle.reason };
       }
 
       const uid = cleanId(original.uid);
@@ -896,12 +1113,17 @@ async function handleShardRefundEvent(
       if (!userSnap.exists) {
         return { refunded: false, reason: 'missing_user_retryable' as const, retryable: true };
       }
-      const before = parseShards(userSnap.data()?.shards);
-      // Clamp на 0 — пользователь мог потратить часть/все осколки до рефанда.
-      // Бухгалтерски корректнее иначе (минус-баланс), но в текущей системе
-      // отрицательные осколки нигде не предусмотрены и поломают UI/гейты.
-      const after = Math.max(0, before - grantedShards);
-      const actuallyDeducted = before - after;
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'revenuecat_refund',
+        eventId,
+        ownerStableId: canonicalUid,
+        delta: -grantedShards,
+        reason: 'shards_store_refund',
+        kind: 'real_money_shard_refund',
+        subjectId: originalTxId,
+        payload: { productId, originalTransactionId: originalTxId },
+        createdAtMs: refundEventTimeMs,
+      });
 
       tx.set(refundRef, {
         eventId,
@@ -910,9 +1132,8 @@ async function handleShardRefundEvent(
         uid: canonicalUid,
         sourceUid: uid,
         grantedShards,
-        balanceBefore: before,
-        balanceAfter: after,
-        actuallyDeducted,
+        requestedDebit: grantedShards,
+        refundEpoch: lifecycle.next.epoch,
         environment: cleanId(event.environment),
         store: cleanId(event.store),
         eventTimestampMs: eventMs(event.event_timestamp_ms),
@@ -922,32 +1143,25 @@ async function handleShardRefundEvent(
       tx.update(originalRef, {
         uid: canonicalUid,
         refundedAt: now,
+        refundEventTimestampMs: refundEventTimeMs,
         refundEventId: eventId,
-        refundedShards: actuallyDeducted,
-      });
-
-      tx.update(userRef, {
-        shards: after,
-        shards_updated_at_ms: now,
-        shards_updated_op: 'spend',
-        shards_updated_reason: 'shards_store_refund',
-        updatedAt: now,
+        refundedShards: grantedShards,
+        ...shardRefundLifecyclePatch(lifecycle.next),
       });
 
       tx.set(userRef.collection('shard_log').doc(), {
         ts: nowIso,
         type: 'spend',
-        amount: actuallyDeducted,
+        amount: grantedShards,
         reason: 'shards_store_refund',
         productId,
         revenueCatOriginalTransactionId: originalTxId,
         revenueCatRefundEventId: eventId,
         grantedShards,
-        balanceBefore: before,
-        balanceAfter: after,
+        authority: 'external_event',
       });
 
-      return { refunded: true, deducted: actuallyDeducted, balanceAfter: after };
+      return { refunded: true, requestedDebit: grantedShards, eventId };
     });
 
     if (out.retryable) {
@@ -1374,4 +1588,6 @@ export const __revenueCatWebhookTestHooks = {
   handleTransferEvent,
   handlePremiumSubscriptionEvent,
   handleShardRefundEvent,
+  handleShardRefundReversedEvent,
+  qualifyReferralFromVerifiedPremiumOutcome,
 };

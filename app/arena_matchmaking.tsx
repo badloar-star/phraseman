@@ -19,18 +19,46 @@ import {
   createArenaRequestId,
   useArenaQueue,
 } from './arena_client';
+import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 
 const quickFallbackRequests = new Set<string>();
+
+/**
+ * React в dev/Strict Mode может смонтировать экран поиска дважды. Если
+ * генерировать id внутри компонента, первый вызов успевает создать очередь с
+ * одним id, а второй получает arena_queue_request_active уже с другим id.
+ * Держим неявный id на уровне модуля до явного завершения очереди; переходы
+ * из интерфейса всё равно передают свой id параметром.
+ */
+const implicitQueueRequestIds = new Map<ArenaQueueMode, string>();
+
+function implicitQueueRequestId(mode: ArenaQueueMode): string {
+  const current = implicitQueueRequestIds.get(mode);
+  if (current) return current;
+  const created = createArenaRequestId('queue');
+  implicitQueueRequestIds.set(mode, created);
+  return created;
+}
+
+function releaseImplicitQueueRequestId(mode: ArenaQueueMode, requestId: string): void {
+  if (implicitQueueRequestIds.get(mode) === requestId) implicitQueueRequestIds.delete(mode);
+}
 
 export default function ArenaMatchmakingScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
+  // Высота строки числом не растёт вместе с системным шрифтом — при
+  // крупном кегле строки наезжали друг на друга. См. use_arena_font_scale.
+  const fontScale = useArenaFontScale();
+  const hintLine = { lineHeight: 20 * fontScale };
+  const failureHintLine = { lineHeight: 19 * fontScale };
   const params = useLocalSearchParams<{ mode?: string; requestId?: string; stableUid?: string }>();
   const mode: ArenaQueueMode = params.mode === 'ranked' ? 'ranked' : 'quick';
   const active = useRuntimeActive();
-  const generatedRequestIdRef = useRef(createArenaRequestId('queue'));
-  const requestId = typeof params.requestId === 'string' && params.requestId ? params.requestId : generatedRequestIdRef.current;
+  const requestId = typeof params.requestId === 'string' && params.requestId
+    ? params.requestId
+    : implicitQueueRequestId(mode);
   const localStartedAtMsRef = useRef(Date.now());
   const now = useVisibleWallClock(active, 1_000);
   const [stableUid, setStableUid] = useState<string | null>(typeof params.stableUid === 'string' ? params.stableUid : null);
@@ -51,6 +79,8 @@ export default function ArenaMatchmakingScreen() {
   const [botDelayMs, setBotDelayMs] = useState<number | null>(null);
   /** Повтор запроса бота, если сервер сказал «ещё рано» (расхождение часов). */
   const [botRetryTick, setBotRetryTick] = useState(0);
+  /** Продление 45-секундной серверной аренды для бота, назначенного позднее. */
+  const [leaseRefreshTick, setLeaseRefreshTick] = useState(0);
   /**
    * Сколько живых игроков ищет сейчас. Приходит попутно с ответом поиска —
    * отдельного запроса ради счётчика нет, иначе это был бы опрос по кругу.
@@ -77,6 +107,7 @@ export default function ArenaMatchmakingScreen() {
     setSwitchingMode(false);
     setBotDelayMs(null);
     setBotRetryTick(0);
+    setLeaseRefreshTick(0);
   }, [requestId]);
 
   // `null` принимается наравне с `undefined`: подписка на очередь отдаёт
@@ -108,9 +139,24 @@ export default function ArenaMatchmakingScreen() {
       cancelled = true;
       if (heartbeat) clearInterval(heartbeat);
     };
-  }, [active, adoptBotSchedule, matchId, mode, requestId, retryTick]);
+  }, [active, adoptBotSchedule, leaseRefreshTick, matchId, mode, requestId, retryTick]);
 
-  useEffect(() => { adoptBotSchedule(queue.value); }, [adoptBotSchedule, queue.value]);
+  useEffect(() => {
+    if (!active || matchId || mode !== 'quick' || botDelayMs === null) return undefined;
+    // botDueAtMs может быть через 55 с, а lease очереди живёт 45 с. Один
+    // FindMatch с тем же requestId перед концом аренды сохраняет joinedAtMs и
+    // назначенный сервером botDueAtMs, только продлевая существующий билет.
+    const refreshAtMs = localStartedAtMsRef.current + Math.min(botDelayMs, 40_000);
+    const timer = setTimeout(() => setLeaseRefreshTick((tick) => tick + 1),
+      Math.max(0, refreshAtMs - Date.now()));
+    return () => clearTimeout(timer);
+  }, [active, botDelayMs, matchId, mode]);
+
+  useEffect(() => {
+    // Firestore сначала может отдать локальный снимок ПРЕДЫДУЩЕЙ очереди.
+    // Его таймер не принадлежит текущему поиску и не должен запускать бота.
+    if (queue.value?.requestId === requestId) adoptBotSchedule(queue.value);
+  }, [adoptBotSchedule, queue.value, requestId]);
 
   useEffect(() => {
     if (!active || matchId || mode !== 'quick' || botDelayMs === null) return undefined;
@@ -135,18 +181,24 @@ export default function ArenaMatchmakingScreen() {
       });
     }, Math.max(0, fireAtMs - Date.now()));
     return () => { cancelled = true; clearTimeout(timer); };
-  }, [active, botDelayMs, botRetryTick, matchId, mode, requestId]);
+  }, [active, botDelayMs, botRetryTick, leaseRefreshTick, matchId, mode, requestId, retryTick]);
 
   useEffect(() => {
-    const next = queue.value?.status === 'matched' ? queue.value.matchId : null;
+    // Кэш Firestore может на один кадр вернуть matched-билет предыдущего
+    // поиска. Переходить можно только по билету с НАШИМ requestId, иначе новый
+    // поиск открывает старый уже завершённый матч и затем сам себя отменяет.
+    const next = queue.value?.requestId === requestId && queue.value.status === 'matched'
+      ? queue.value.matchId
+      : null;
     if (next) setMatchId(next);
-  }, [queue.value]);
+  }, [queue.value, requestId]);
 
   useEffect(() => {
     if (!matchId) return;
     quickFallbackRequests.delete(requestId);
+    releaseImplicitQueueRequestId(mode, requestId);
     router.replace({ pathname: '/arena_match', params: { matchId } } as never);
-  }, [matchId, requestId, router]);
+  }, [matchId, mode, requestId, router]);
 
   /**
    * Отмена поиска. Раньше здесь стоял `.finally(...)`: экран уходил домой
@@ -159,7 +211,10 @@ export default function ArenaMatchmakingScreen() {
     quickFallbackRequests.delete(requestId);
     setCancelFailed(false);
     void arenaV2QueueCancel(requestId)
-      .then(() => router.replace('/arena' as never))
+      .then(() => {
+        releaseImplicitQueueRequestId(mode, requestId);
+        router.replace('/arena' as never);
+      })
       .catch(() => setCancelFailed(true));
   };
 
@@ -169,6 +224,7 @@ export default function ArenaMatchmakingScreen() {
     setError(null);
     try {
       await arenaV2QueueCancel(requestId);
+      releaseImplicitQueueRequestId(mode, requestId);
       const nextRequestId = createArenaRequestId('queue');
       router.replace({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: nextRequestId } } as never);
     } catch (reason) {
@@ -197,7 +253,7 @@ export default function ArenaMatchmakingScreen() {
           <Text accessibilityLiveRegion="polite" style={[styles.searching, { color: P.text }]}>
             {rankedPresentation === 'calm' ? arenaText(lang, 'rankedEmpty') : arenaText(lang, 'searching')}
           </Text>
-          <Text style={[styles.hint, { color: P.muted }]}>
+          <Text style={[styles.hint, hintLine, { color: P.muted }]}>
             {mode === 'ranked' && searchingNow !== null
               ? arenaSearchingCountText(lang, searchingNow)
               : rankedPresentation === 'calm' ? arenaText(lang, 'rankedEmptyHint') : arenaText(lang, 'keepOpen')}
@@ -219,7 +275,7 @@ export default function ArenaMatchmakingScreen() {
               <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
                 {arenaText(lang, 'cancelFailed')}
               </Text>
-              <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'cancelFailedHint')}</Text>
+              <Text style={[styles.failureHint, failureHintLine, { color: P.muted }]}>{arenaText(lang, 'cancelFailedHint')}</Text>
             </View>
           ) : null}
           {searchFailure ? (
@@ -227,7 +283,7 @@ export default function ArenaMatchmakingScreen() {
               <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
                 {arenaText(lang, searchFailure.title)}
               </Text>
-              <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, searchFailure.hint)}</Text>
+              <Text style={[styles.failureHint, failureHintLine, { color: P.muted }]}>{arenaText(lang, searchFailure.hint)}</Text>
               {searchFailure.canRetry ? (
                 <V2Cta onPress={() => { setError(null); setRetryTick((tick) => tick + 1); }}>
                   {arenaText(lang, 'retry')}
@@ -246,11 +302,11 @@ const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: 'center' },
   card: { minHeight: 230, justifyContent: 'center', alignItems: 'center', gap: 14 },
   searching: { fontSize: 22, fontWeight: '900', textAlign: 'center' },
-  hint: { fontSize: 14, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
+  hint: { fontSize: 14, fontWeight: '600', textAlign: 'center' },
   error: { fontSize: 13, fontWeight: '700', textAlign: 'center' },
   failure: { gap: 6, alignSelf: 'stretch' },
   failureTitle: { fontSize: 17, fontWeight: '900', textAlign: 'center' },
-  failureHint: { fontSize: 13, lineHeight: 19, fontWeight: '600', textAlign: 'center' },
+  failureHint: { fontSize: 13, fontWeight: '600', textAlign: 'center' },
   offer: { width: '100%', gap: 10, marginTop: 4 },
   offerTitle: { fontSize: 16, fontWeight: '800', textAlign: 'center' },
 });

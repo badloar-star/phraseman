@@ -42,6 +42,8 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
 const REGION = 'us-central1';
 const OPENAI_CLIENT_SECRETS_URL = 'https://api.openai.com/v1/realtime/client_secrets';
+const OPENAI_MINT_TIMEOUT_MS = 12_000;
+const OPENAI_MINT_ATTEMPTS = 2;
 
 export const VOICE_MINT_RATE_COLLECTION = 'voice_mint_rate_limits';
 const MINT_WINDOW_MS = 60 * 60 * 1000;
@@ -272,6 +274,7 @@ async function resolveVoiceGates(
   authUid: string,
   data: Record<string, unknown>,
   nowMs: number,
+  isAdmin: boolean,
 ): Promise<VoiceGateContext> {
   const db = admin.firestore();
 
@@ -281,7 +284,19 @@ async function resolveVoiceGates(
   }
   // Kill switch №2: собственный гейт голосовых звонков (дефолт ВЫКЛ до запуска).
   const config = await resolveMaxVoiceConfig(db);
-  if (!config.gate_ai_voice_call) {
+  // DEV Hub может тестировать закрытую линию либо с подтверждённым server-side
+  // admin claim, либо с uid из аллоулиста config.devTestUids (свои тестовые
+  // аккаунты без админ-прав). Оба источника серверные: тело запроса говорит
+  // лишь «хочу DEV», а «можно ли» решают токен и админ-док. Чужого uid в списке нет.
+  const devAllowed = isAdmin || config.devTestUids.includes(authUid);
+  const adminDevMode = data.devMode === true && devAllowed;
+  if (data.devMode === true && !devAllowed && !config.gate_ai_voice_call) {
+    // authUid в логе — чтобы своего тестера можно было внести в devTestUids,
+    // не выискивая uid по консоли Firebase Auth.
+    console.warn('max_voice_mint rejected', { reason: 'dev_admin_required', authUid });
+    throw new HttpsError('permission-denied', 'dev_admin_required');
+  }
+  if (!config.gate_ai_voice_call && !adminDevMode) {
     console.warn('max_voice_mint rejected', { reason: 'voice_disabled' });
     throw new HttpsError('failed-precondition', 'voice_disabled');
   }
@@ -293,7 +308,7 @@ async function resolveVoiceGates(
   const quotaSnap = await db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid)).get();
   const quotaData = (quotaSnap.data() ?? {}) as Record<string, unknown>;
 
-  const hasMax = isPremium && config.voiceForPremiumBeta;
+  const hasMax = adminDevMode || (isPremium && config.voiceForPremiumBeta);
   if (hasMax) {
     return { db, authUid, stableUid, config, isPremium, quotaData, access: 'max', trialVariant: null, nowMs };
   }
@@ -384,7 +399,12 @@ export const maxVoicePreflight = onCall({
   }
 
   const nowMs = Date.now();
-  const ctx = await resolveVoiceGates(request.auth.uid, (request.data ?? {}) as Record<string, unknown>, nowMs);
+  const ctx = await resolveVoiceGates(
+    request.auth.uid,
+    (request.data ?? {}) as Record<string, unknown>,
+    nowMs,
+    request.auth.token?.admin === true,
+  );
   const { dayRemainingSec, monthRemainingSec } = estimateQuotaRemaining(ctx.quotaData, ctx.config, nowMs);
   if (Math.min(dayRemainingSec, monthRemainingSec) < 60) {
     console.warn('max_voice_preflight rejected', { reason: 'voice_quota_exhausted', dayRemainingSec, monthRemainingSec });
@@ -417,6 +437,55 @@ export const maxVoicePreflight = onCall({
 interface MintedSecret {
   value: string;
   expiresAt: number;
+  profile: ProviderMintProfile;
+}
+
+type ProviderMintProfile = 'full' | 'compatibility';
+
+function clientSecretBody(args: {
+  config: MaxVoiceConfig;
+  cefr: 'A1' | 'A2' | 'B1' | 'B2';
+  instructions: string;
+}, profile: ProviderMintProfile): string {
+  const core = {
+    type: 'realtime',
+    model: args.config.model,
+    instructions: args.instructions,
+    audio: { output: { voice: args.config.voice } },
+  };
+
+  // Последний аварийный профиль буквально повторяет минимальную конфигурацию
+  // из официального WebRTC quickstart. Если OpenAI изменит валидацию одного из
+  // необязательных advanced-полей, звонок всё равно поднимется на default VAD.
+  const session = profile === 'compatibility' ? core : {
+    ...core,
+    audio: {
+      input: {
+        // Транскрипция входа включена в основном профиле — обучающий цикл.
+        transcription: { model: args.config.transcriptionModel },
+        turn_detection: {
+          type: 'semantic_vad',
+          eagerness: args.config.vadEagerness[args.cefr],
+          create_response: true,
+          interrupt_response: true,
+          // idle_timeout_ms здесь намеренно НЕТ: OpenAI принимает его только
+          // для server_vad, а semantic_vad с этим полем отклоняет весь mint.
+        },
+      },
+      output: { voice: args.config.voice },
+    },
+    max_output_tokens: args.config.maxResponseOutputTokens[args.cefr],
+    truncation: {
+      type: 'retention_ratio',
+      retention_ratio: args.config.truncationRetentionRatio,
+    },
+  };
+
+  return JSON.stringify({
+    // Токен короткоживущий: клиент обязан начать SDP сразу после минта.
+    expires_after: { anchor: 'created_at', seconds: 60 },
+    session,
+  });
 }
 
 /** POST /v1/realtime/client_secrets с полным session-конфигом раздела 4 спеки. */
@@ -427,56 +496,103 @@ async function mintClientSecret(args: {
   cefr: 'A1' | 'A2' | 'B1' | 'B2';
   instructions: string;
 }): Promise<MintedSecret> {
-  const { config } = args;
-  const response = await fetch(OPENAI_CLIENT_SECRETS_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${args.apiKey}`,
-      'Content-Type': 'application/json',
-      'OpenAI-Safety-Identifier': voiceSafetyIdentifier(args.stableUid),
-    },
-    body: JSON.stringify({
-      // Токен короткоживущий: клиент обязан начать SDP сразу после минта.
-      expires_after: { anchor: 'created_at', seconds: 60 },
-      session: {
-        type: 'realtime',
-        model: config.model,
-        instructions: args.instructions,
-        audio: {
-          input: {
-            // Транскрипция входа ВСЕГДА включена — обучающий цикл несокращаем.
-            transcription: { model: config.transcriptionModel },
-            turn_detection: {
-              type: 'semantic_vad',
-              eagerness: config.vadEagerness[args.cefr],
-              create_response: true,
-              interrupt_response: true,
-            },
-          },
-          output: { voice: config.voice },
-        },
-        // В GA Realtime API (session type 'realtime', client_secrets) кап токенов
-        // называется max_output_tokens; max_response_output_tokens — имя из
-        // deprecated-беты. Проверено по официальному SDK openai-node
-        // (RealtimeSessionCreateRequest.max_output_tokens).
-        max_output_tokens: config.maxResponseOutputTokens[args.cefr],
-        truncation: { type: 'retention_ratio', retention_ratio: config.truncationRetentionRatio },
-      },
-    }),
-  });
+  const profiles: ProviderMintProfile[] = ['full', 'compatibility'];
 
-  if (!response.ok) {
-    const detail = await response.text().catch(() => '');
-    console.error('max_voice_mint provider failed', { status: response.status, detail: detail.slice(0, 500) });
-    throw new HttpsError('unavailable', 'voice_provider_failed');
+  for (const profile of profiles) {
+    const body = clientSecretBody(args, profile);
+    for (let attempt = 1; attempt <= OPENAI_MINT_ATTEMPTS; attempt += 1) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), OPENAI_MINT_TIMEOUT_MS);
+      try {
+        const response = await fetch(OPENAI_CLIENT_SECRETS_URL, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${args.apiKey}`,
+            'Content-Type': 'application/json',
+            'OpenAI-Safety-Identifier': voiceSafetyIdentifier(args.stableUid),
+          },
+          body,
+          signal: controller.signal,
+        });
+        if (!response.ok) {
+          const detail = await response.text().catch(() => '');
+          // 400 на полном профиле обычно означает дрейф схемы необязательного
+          // поля. Один раз повторяем официальным минимальным профилем. 401/403,
+          // quota/rate и safety-отказы этим путём никогда не обходятся.
+          if (response.status === 400 && profile === 'full') {
+            console.warn('max_voice_mint full profile rejected; retrying compatibility profile', {
+              status: response.status,
+              detail: detail.slice(0, 500),
+            });
+            break;
+          }
+          const retryable = response.status === 408 || response.status === 429 || response.status >= 500;
+          if (retryable && attempt < OPENAI_MINT_ATTEMPTS) {
+            console.warn('max_voice_mint provider transient failure; retrying', {
+              status: response.status,
+              attempt,
+              profile,
+            });
+            continue;
+          }
+          console.error('max_voice_mint provider failed', {
+            status: response.status,
+            detail: detail.slice(0, 500),
+            profile,
+          });
+          throw new HttpsError('unavailable', 'voice_provider_failed');
+        }
+        const json = (await response.json().catch(() => ({}))) as Record<string, unknown>;
+        const value = text(json.value, 400);
+        if (!value) {
+          console.error('max_voice_mint provider returned no client secret', { profile });
+          throw new HttpsError('unavailable', 'voice_provider_failed');
+        }
+        if (profile === 'compatibility') {
+          console.warn('max_voice_mint recovered with compatibility profile');
+        }
+        return { value, expiresAt: num(json.expires_at), profile };
+      } catch (error) {
+        if (error instanceof HttpsError) throw error;
+        if (attempt >= OPENAI_MINT_ATTEMPTS) {
+          console.error('max_voice_mint provider request failed', {
+            attempt,
+            profile,
+            error: String((error as Error)?.message ?? error).slice(0, 300),
+          });
+          throw new HttpsError('unavailable', 'voice_provider_failed');
+        }
+        console.warn('max_voice_mint provider request failed; retrying', { attempt, profile });
+      } finally {
+        clearTimeout(timeoutId);
+      }
+    }
   }
-  const json = (await response.json().catch(() => ({}))) as Record<string, unknown>;
-  const value = text(json.value, 400);
-  if (!value) {
-    console.error('max_voice_mint provider returned no client secret');
-    throw new HttpsError('unavailable', 'voice_provider_failed');
-  }
-  return { value, expiresAt: num(json.expires_at) };
+  throw new HttpsError('unavailable', 'voice_provider_failed');
+}
+
+export interface MaxVoiceProviderProbeResult {
+  profile: ProviderMintProfile;
+  expiresAt: number;
+}
+
+/**
+ * Control-plane probe: создаёт и сразу забывает client secret,
+ * не открывая Realtime call и не запуская inference. Проверяет живыми данными
+ * API key, доступ к модели, voice ID и текущую схему полного session payload.
+ */
+export async function runMaxVoiceProviderProbe(
+  apiKey: string,
+  config: MaxVoiceConfig,
+): Promise<MaxVoiceProviderProbeResult> {
+  const minted = await mintClientSecret({
+    apiKey,
+    stableUid: 'max-voice-provider-health',
+    config,
+    cefr: 'A1',
+    instructions: 'Wait silently for the learner to speak, then answer briefly in English.',
+  });
+  return { profile: minted.profile, expiresAt: minted.expiresAt };
 }
 
 export const maxVoiceMint = onCall({
@@ -484,6 +600,8 @@ export const maxVoiceMint = onCall({
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
   timeoutSeconds: 30,
   memory: '256MiB',
+  // Голосовой вход не может ждать cold start: один экземпляр всегда тёплый.
+  minInstances: 1,
   maxInstances: 20,
   secrets: [OPENAI_API_KEY],
 }, async (request) => {
@@ -498,7 +616,7 @@ export const maxVoiceMint = onCall({
   const data = (request.data ?? {}) as Record<string, unknown>;
   // Порядок гейтов (тест №11): App Check (опция onCall) → kill switch →
   // подписка/пробник → бюджет → rate limit → резерв → минт.
-  const ctx = await resolveVoiceGates(request.auth.uid, data, nowMs);
+  const ctx = await resolveVoiceGates(request.auth.uid, data, nowMs, request.auth.token?.admin === true);
   const { db, authUid, stableUid, config } = ctx;
 
   const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);

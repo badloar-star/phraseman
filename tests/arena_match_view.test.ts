@@ -41,6 +41,26 @@ import type { Lang } from '../constants/i18n';
 
 const MODES = ['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match'] as const;
 
+describe('инициализация локального матча', () => {
+  test('гидратирует reducer, когда запечатанный план приходит после mount', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'hooks/use_arena_local_match.ts'), 'utf8');
+    expect(source).toContain("type: 'hydrate'");
+    expect(source).toContain('state?.matchId === initial.matchId');
+    expect(source).toContain("dispatch({ type: 'hydrate', state: initial });");
+    expect(source).toContain('state.matchId !== plan.matchId');
+  });
+
+  test('не удаляет финальный снимок до долговечной записи отчёта', () => {
+    const hook = fs.readFileSync(path.join(process.cwd(), 'hooks/use_arena_local_match.ts'), 'utf8');
+    const screen = fs.readFileSync(path.join(process.cwd(), 'app/arena_match.tsx'), 'utf8');
+    expect(hook).not.toContain('void arenaClearMatch(keyValue)');
+    expect(screen.indexOf('const durable = await arenaOutboxEnqueue('))
+      .toBeLessThan(screen.indexOf('const response = await arenaV2MatchFinish('));
+    expect(screen).toContain('if (durable) {');
+    expect(screen).toContain('await arenaClearMatch(AsyncStorage as unknown as ArenaKeyValueStore);');
+  });
+});
+
 const PLAN = arenaParseMatchPlan({
   schemaVersion: 'arena-match-plan.v2',
   rulesVersion: 'arena-stars.v3',
@@ -601,5 +621,88 @@ describe('отмена поиска не притворяется удавшей
       expect(arenaText(lang, 'cancelFailed').length).toBeGreaterThan(0);
       expect(arenaText(lang, 'cancelFailedHint').length).toBeGreaterThan(0);
     }
+  });
+});
+
+
+/**
+ * Молчащий живой канал и пассивный соперник выглядели ОДИНАКОВО: пустое место
+ * рядом с таймером. Игрок читал это как «соперник ничего не делает», спокойно
+ * доигрывал — и получал в конце неожиданное поражение.
+ */
+describe('молчание канала не выдаётся за молчание соперника', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+  const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[];
+
+  it('экран различает отказ канала и отсутствие ходов', () => {
+    expect(source).toContain('const rivalUnseen');
+    expect(source).toContain('live.error');
+    // Оговорка снимается, как только пришёл хоть один ход: канал очевидно жив.
+    expect(source).toContain('Object.keys(match.state.opponentByTask).length === 0');
+  });
+
+  it('сказано, что это связь и что на результат не влияет', () => {
+    for (const lang of langs) {
+      expect(arenaText(lang, 'rivalUnseen').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'rivalUnseenHint').length).toBeGreaterThan(0);
+    }
+  });
+});
+
+/**
+ * Экран матча намеренно не скроллится: таймер и счёт обязаны быть видны всегда.
+ * Но из-за этого длинные варианты ответа просто уезжали за край — нижний
+ * вариант становился НЕНАЖИМАЕМЫМ, то есть задание нельзя было ответить.
+ * Потерянное задание из-за вёрстки — худший вид потери: игрок ничего не сделал
+ * не так.
+ */
+describe('до любого варианта ответа можно дотянуться', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaQuestion.tsx'), 'utf8');
+
+  it('список вариантов прокручивается, если не помещается', () => {
+    expect(source).toContain('<ScrollView');
+    expect(source).toContain('optionsScroll');
+  });
+
+  it('прокрутка занимает только оставшееся место, не выталкивая таймер', () => {
+    expect(source).toContain('optionsScroll: { flexShrink: 1 }');
+  });
+
+  it('один длинный вариант не съедает экран целиком', () => {
+    expect(source).toContain('numberOfLines={3}');
+  });
+
+  it('длинное слово на доске пар не растягивает колонку', () => {
+    expect(source).toContain('numberOfLines={2}');
+  });
+
+  /**
+   * Сборщик перевода: банк слов рос от длинных слов и выдавливал кнопку
+   * отправки за край. Игрок собирал перевод — и не мог его отправить, то есть
+   * терял задание, сделав всё правильно.
+   */
+  it('в сборщике перевода прокручивается банк, а кнопка отправки остаётся', () => {
+    expect(source).toContain('contentContainerStyle={styles.builder}');
+    // Кнопка отправки живёт СНАРУЖИ прокрутки.
+    const scrollEnd = source.lastIndexOf('</ScrollView>');
+    const ctaStart = source.indexOf('<V2Cta', scrollEnd);
+    expect(ctaStart).toBeGreaterThan(scrollEnd);
+  });
+});
+
+/**
+ * Крупный системный шрифт растягивает шапку матча: имя соперника и оговорка
+ * про связь обязаны оставаться в пределах одной-двух строк, иначе шапка
+ * выдавливает само задание.
+ */
+describe('шапка матча не растёт от длинного текста', () => {
+  const screen = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+
+  it('имя соперника — одна строка', () => {
+    expect(screen).toContain('numberOfLines={1}');
+  });
+
+  it('оговорка про связь — не больше двух строк', () => {
+    expect(screen).toContain('numberOfLines={2}');
   });
 });

@@ -1,5 +1,5 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import Ionicons from "@expo/vector-icons/Ionicons";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Pressable,
   ScrollView,
@@ -7,7 +7,7 @@ import {
   Text,
   useWindowDimensions,
   View,
-} from 'react-native';
+} from "react-native";
 import Animated, {
   FadeIn,
   FadeInDown,
@@ -17,166 +17,141 @@ import Animated, {
   useSharedValue,
   withSequence,
   withTiming,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 import {
   SafeAreaView,
   useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+} from "react-native-safe-area-context";
 
-import { useLang } from '../components/LangContext';
-import { LinearGradient } from '../components/SafeLinearGradient';
-import { useStudyTarget } from '../components/StudyTargetContext';
-import { triLang, type Lang } from '../constants/i18n';
-import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
-import type { RequiredSessionTaskCompletionInputV3 } from '../modules/learning-v2/progress/required_session_completion_envelope';
+import { useLang } from "../components/LangContext";
+import { LinearGradient } from "../components/SafeLinearGradient";
+import { useStudyTarget } from "../components/StudyTargetContext";
+import { useTheme } from "../components/ThemeContext";
+import { triLang, type Lang } from "../constants/i18n";
+import { hapticError, hapticSuccess, hapticTap } from "../hooks/use-haptics";
+import type { RequiredSessionTaskCompletionInputV3 } from "../modules/learning-v2/progress/required_session_completion_envelope";
 import type {
   IntroLine,
   IntroTextPart,
   LessonIntroScreen,
-} from './lesson_data_types';
+} from "./lesson_data_types";
 import {
   plainIntroText,
   richIntroLines,
   richSubtitle,
   richTitle,
-} from './lesson_intro_rich';
+} from "./lesson_intro_rich";
 
 type IntroVisual = Readonly<{
-  icon: React.ComponentProps<typeof Ionicons>['name'];
-  accent: string;
-  accentSoft: string;
-  glow: string;
+  icon: React.ComponentProps<typeof Ionicons>["name"];
 }>;
 
 const VISUALS: readonly IntroVisual[] = Object.freeze([
   Object.freeze({
-    icon: 'sparkles-outline',
-    accent: '#72D7FF',
-    accentSoft: '#153344',
-    glow: '#72D7FF2E',
+    icon: "sparkles-outline",
   }),
   Object.freeze({
-    icon: 'git-branch-outline',
-    accent: '#B8A7FF',
-    accentSoft: '#292344',
-    glow: '#9C86FF30',
+    icon: "git-branch-outline",
   }),
   Object.freeze({
-    icon: 'flash-outline',
-    accent: '#CFFF45',
-    accentSoft: '#2C3619',
-    glow: '#CFFF4530',
+    icon: "flash-outline",
   }),
 ]);
 
-const TONE_COLORS: Readonly<
-  Record<NonNullable<IntroTextPart['tone']>, string>
-> = Object.freeze({
-  normal: '#EAF0F6',
-  muted: '#9AA7B5',
-  strong: '#FFFFFF',
-  accent: '#72D7FF',
-  success: '#B9F67C',
-  danger: '#FF9EAD',
-  warning: '#FFD276',
-  formula: '#C8BBFF',
-  code: '#A8E7FF',
-});
-
 const lineText = (line: IntroLine): string =>
-  line.parts?.map((part) => part.text).join('') ?? line.text ?? '';
+  line.parts?.map((part) => part.text).join("") ?? line.text ?? "";
 
 const stringsFor = (lang: Lang) => ({
   close: triLang(lang, {
-    ru: 'Закрыть интро',
-    uk: 'Закрити вступ',
-    es: 'Cerrar introducción',
-    'pt-BR': 'Fechar introdução',
-    vi: 'Đóng phần giới thiệu',
-    id: 'Tutup pengantar',
-    tr: 'Girişi kapat',
-    pl: 'Zamknij wprowadzenie',
+    ru: "Закрыть интро",
+    uk: "Закрити вступ",
+    es: "Cerrar introducción",
+    "pt-BR": "Fechar introdução",
+    vi: "Đóng phần giới thiệu",
+    id: "Tutup pengantar",
+    tr: "Girişi kapat",
+    pl: "Zamknij wprowadzenie",
   }),
   session: triLang(lang, {
-    ru: 'Интро сессии',
-    uk: 'Вступ до сесії',
-    es: 'Introducción de sesión',
-    'pt-BR': 'Introdução da sessão',
-    vi: 'Giới thiệu phiên học',
-    id: 'Pengantar sesi',
-    tr: 'Oturum girişi',
-    pl: 'Wprowadzenie do sesji',
+    ru: "Интро сессии",
+    uk: "Вступ до сесії",
+    es: "Introducción de sesión",
+    "pt-BR": "Introdução da sessão",
+    vi: "Giới thiệu phiên học",
+    id: "Pengantar sesi",
+    tr: "Oturum girişi",
+    pl: "Wprowadzenie do sesji",
   }),
   next: triLang(lang, {
-    ru: 'Дальше',
-    uk: 'Далі',
-    es: 'Continuar',
-    'pt-BR': 'Continuar',
-    vi: 'Tiếp tục',
-    id: 'Lanjut',
-    tr: 'Devam',
-    pl: 'Dalej',
+    ru: "Дальше",
+    uk: "Далі",
+    es: "Continuar",
+    "pt-BR": "Continuar",
+    vi: "Tiếp tục",
+    id: "Lanjut",
+    tr: "Devam",
+    pl: "Dalej",
   }),
   startPractice: triLang(lang, {
-    ru: 'Начать практику',
-    uk: 'Почати практику',
-    es: 'Empezar práctica',
-    'pt-BR': 'Começar prática',
-    vi: 'Bắt đầu luyện tập',
-    id: 'Mulai latihan',
-    tr: 'Pratiğe başla',
-    pl: 'Zacznij ćwiczenie',
+    ru: "Начать практику",
+    uk: "Почати практику",
+    es: "Empezar práctica",
+    "pt-BR": "Começar prática",
+    vi: "Bắt đầu luyện tập",
+    id: "Mulai latihan",
+    tr: "Pratiğe başla",
+    pl: "Zacznij ćwiczenie",
   }),
   answerFirst: triLang(lang, {
-    ru: 'Сначала ответь на вопрос',
-    uk: 'Спочатку дай відповідь',
-    es: 'Responde primero',
-    'pt-BR': 'Responda primeiro',
-    vi: 'Hãy trả lời trước',
-    id: 'Jawab dulu',
-    tr: 'Önce cevapla',
-    pl: 'Najpierw odpowiedz',
+    ru: "Сначала ответь на вопрос",
+    uk: "Спочатку дай відповідь",
+    es: "Responde primero",
+    "pt-BR": "Responda primeiro",
+    vi: "Hãy trả lời trước",
+    id: "Jawab dulu",
+    tr: "Önce cevapla",
+    pl: "Najpierw odpowiedz",
   }),
   correct: triLang(lang, {
-    ru: 'Верно',
-    uk: 'Правильно',
-    es: 'Correcto',
-    'pt-BR': 'Correto',
-    vi: 'Đúng',
-    id: 'Benar',
-    tr: 'Doğru',
-    pl: 'Dobrze',
+    ru: "Верно",
+    uk: "Правильно",
+    es: "Correcto",
+    "pt-BR": "Correto",
+    vi: "Đúng",
+    id: "Benar",
+    tr: "Doğru",
+    pl: "Dobrze",
   }),
   stageLabels: [
     triLang(lang, {
-      ru: 'СМЫСЛ',
-      uk: 'СЕНС',
-      es: 'IDEA',
-      'pt-BR': 'IDEIA',
-      vi: 'Ý NGHĨA',
-      id: 'MAKNA',
-      tr: 'ANLAM',
-      pl: 'SENS',
+      ru: "СМЫСЛ",
+      uk: "СЕНС",
+      es: "IDEA",
+      "pt-BR": "IDEIA",
+      vi: "Ý NGHĨA",
+      id: "MAKNA",
+      tr: "ANLAM",
+      pl: "SENS",
     }),
     triLang(lang, {
-      ru: 'СХЕМА',
-      uk: 'СХЕМА',
-      es: 'ESQUEMA',
-      'pt-BR': 'ESQUEMA',
-      vi: 'CẤU TRÚC',
-      id: 'POLA',
-      tr: 'ŞEMA',
-      pl: 'SCHEMAT',
+      ru: "СХЕМА",
+      uk: "СХЕМА",
+      es: "ESQUEMA",
+      "pt-BR": "ESQUEMA",
+      vi: "CẤU TRÚC",
+      id: "POLA",
+      tr: "ŞEMA",
+      pl: "SCHEMAT",
     }),
     triLang(lang, {
-      ru: 'ПРИМЕНЕНИЕ',
-      uk: 'ЗАСТОСУВАННЯ',
-      es: 'APLICACIÓN',
-      'pt-BR': 'APLICAÇÃO',
-      vi: 'ÁP DỤNG',
-      id: 'PENERAPAN',
-      tr: 'UYGULAMA',
-      pl: 'ZASTOSOWANIE',
+      ru: "ПРИМЕНЕНИЕ",
+      uk: "ЗАСТОСУВАННЯ",
+      es: "APLICACIÓN",
+      "pt-BR": "APLICAÇÃO",
+      vi: "ÁP DỤNG",
+      id: "PENERAPAN",
+      tr: "UYGULAMA",
+      pl: "ZASTOSOWANIE",
     }),
   ] as const,
 });
@@ -184,37 +159,58 @@ const stringsFor = (lang: Lang) => ({
 function RichLine({
   line,
   accent,
-}: Readonly<{ line: IntroLine; accent: string }>) {
-  if (line.type === 'spacer') return <View style={styles.spacer} />;
+  theme,
+}: Readonly<{
+  line: IntroLine;
+  accent: string;
+  theme: ReturnType<typeof useTheme>["theme"];
+}>) {
+  if (line.type === "spacer") return <View style={styles.spacer} />;
   const text = lineText(line).trim();
   if (!text) return null;
 
-  const formula = line.type === 'formula';
-  const danger = line.type === 'wrong';
-  const success = line.type === 'correct';
+  const formula = line.type === "formula";
+  const danger = line.type === "wrong";
+  const success = line.type === "correct";
   const featured =
     formula ||
     danger ||
     success ||
-    line.type === 'tip' ||
-    line.type === 'example';
-  const icon: React.ComponentProps<typeof Ionicons>['name'] = danger
-    ? 'close-circle-outline'
+    line.type === "tip" ||
+    line.type === "example";
+  const icon: React.ComponentProps<typeof Ionicons>["name"] = danger
+    ? "close-circle-outline"
     : success
-      ? 'checkmark-circle-outline'
+      ? "checkmark-circle-outline"
       : formula
-        ? 'code-slash-outline'
-        : line.type === 'tip'
-          ? 'bulb-outline'
-          : 'chatbubble-ellipses-outline';
-  const featureColor = danger ? '#FF9EAD' : success ? '#B9F67C' : accent;
+        ? "code-slash-outline"
+        : line.type === "tip"
+          ? "bulb-outline"
+          : "chatbubble-ellipses-outline";
+  const featureColor = danger ? theme.wrong : success ? theme.correct : accent;
+  const toneColors: Readonly<
+    Record<NonNullable<IntroTextPart["tone"]>, string>
+  > = {
+    normal: featured ? theme.textOnCard : theme.heroTextPrimary,
+    muted: featured ? theme.textMuted : theme.heroTextMuted,
+    strong: featured ? theme.textOnCard : theme.heroTextPrimary,
+    accent,
+    success: theme.correct,
+    danger: theme.wrong,
+    warning: theme.gold,
+    formula: accent,
+    code: accent,
+  };
 
   return (
     <View
       style={[
         styles.line,
         featured && styles.featuredLine,
-        featured && { borderColor: `${featureColor}42` },
+        featured && {
+          borderColor: theme.border,
+          backgroundColor: theme.bgCard,
+        },
       ]}
     >
       {featured && (
@@ -224,19 +220,29 @@ function RichLine({
           <Ionicons name={icon} size={18} color={featureColor} />
         </View>
       )}
-      <Text style={[styles.lineText, formula && styles.formulaText]}>
+      <Text
+        style={[
+          styles.lineText,
+          { color: featured ? theme.textOnCard : theme.heroTextPrimary },
+          formula && styles.formulaText,
+        ]}
+      >
         {line.parts?.length
           ? line.parts.map((part, index) => (
               <Text
                 key={`${part.text}-${index}`}
                 style={{
-                  color: part.tone ? TONE_COLORS[part.tone] : '#EAF0F6',
+                  color: part.tone
+                    ? toneColors[part.tone]
+                    : featured
+                      ? theme.textOnCard
+                      : theme.heroTextPrimary,
                   fontWeight:
-                    part.tone === 'strong' ||
-                    part.tone === 'formula' ||
-                    part.tone === 'code'
-                      ? '900'
-                      : '700',
+                    part.tone === "strong" ||
+                    part.tone === "formula" ||
+                    part.tone === "code"
+                      ? "900"
+                      : "700",
                 }}
               >
                 {part.text}
@@ -253,6 +259,8 @@ export default function LearningV2SessionIntro({
   lessonId,
   sessionOrdinal,
   taskIds,
+  evaluateChoice,
+  resolveSecondWrongExplanation,
   onComplete,
   onBack,
 }: Readonly<{
@@ -260,6 +268,14 @@ export default function LearningV2SessionIntro({
   lessonId: number;
   sessionOrdinal: number;
   taskIds: readonly [string, string, string];
+  evaluateChoice?: (
+    input: Readonly<{
+      interactionId: string;
+      choiceText: string;
+      choiceIndex: number;
+    }>,
+  ) => "correct" | "wrong" | "technical_invalid";
+  resolveSecondWrongExplanation?: (interactionId: string) => string | null;
   onComplete: (
     completions: readonly RequiredSessionTaskCompletionInputV3[],
   ) => void;
@@ -267,6 +283,7 @@ export default function LearningV2SessionIntro({
 }>) {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const { theme: t } = useTheme();
   const { height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const reducedMotion = useReducedMotion();
@@ -290,19 +307,25 @@ export default function LearningV2SessionIntro({
   const safeIndex = Math.min(index, Math.max(0, screens.length - 1));
   const screen = screens[safeIndex];
   const visualIndex =
-    screen?.kind === 'formula'
+    screen?.kind === "formula"
       ? 1
-      : screen?.kind === 'practice'
+      : screen?.kind === "practice"
         ? 2
         : safeIndex % VISUALS.length;
-  const visual = VISUALS[visualIndex] ?? VISUALS[0]!;
+  const visualBase = VISUALS[visualIndex] ?? VISUALS[0]!;
+  const visual = {
+    ...visualBase,
+    accent: [t.accent, t.gold, t.correct][visualIndex] ?? t.accent,
+    accentSoft: [t.accentBg, t.goldBg, t.correctBg][visualIndex] ?? t.accentBg,
+    glow: [t.glow, t.goldBg, t.correctBg][visualIndex] ?? t.glow,
+  };
   const stageLabel = copy.stageLabels[visualIndex] ?? copy.stageLabels[0];
   const title = screen
     ? (richTitle(screen, lang, studyTarget) ?? stageLabel)
-    : '';
+    : "";
   const subtitle = screen
-    ? (richSubtitle(screen, lang, studyTarget) ?? '')
-    : '';
+    ? (richSubtitle(screen, lang, studyTarget) ?? "")
+    : "";
   const localizedLines = screen
     ? richIntroLines(screen, lang, studyTarget)
     : [];
@@ -311,17 +334,21 @@ export default function LearningV2SessionIntro({
       ? localizedLines
       : [
           {
-            type: 'text' as const,
-            text: plainIntroText(screen, lang, studyTarget) ?? '',
+            type: "text" as const,
+            text: plainIntroText(screen, lang, studyTarget) ?? "",
           },
         ]
     : [];
   const isLast = safeIndex === screens.length - 1;
   const compact = height < 720;
   const question = screen?.learningV2EmbeddedQuestion;
-  const questionPrompt = question?.promptByLocale[lang] ?? '';
+  const questionPrompt = question?.promptByLocale[lang] ?? "";
   const questionChoices = question?.choicesByLocale[lang] ?? [];
-  const questionExplanation = question?.explanationByLocale[lang] ?? '';
+  const questionExplanation = question
+    ? (resolveSecondWrongExplanation?.(question.questionId) ??
+      question.explanationByLocale[lang] ??
+      "")
+    : "";
   const answered = selectedCorrectIndex !== null;
   const answerShakeStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: answerShake.value }],
@@ -337,11 +364,23 @@ export default function LearningV2SessionIntro({
 
   const chooseAnswer = (choiceIndex: number) => {
     if (!question || answered) return;
-    if (choiceIndex === question.correctChoiceIndex) {
+    const choiceText = questionChoices[choiceIndex];
+    const verdict = evaluateChoice
+      ? choiceText === undefined
+        ? "technical_invalid"
+        : evaluateChoice({
+            interactionId: question.questionId,
+            choiceText,
+            choiceIndex,
+          })
+      : choiceIndex === question.correctChoiceIndex
+        ? "correct"
+        : "wrong";
+    if (verdict === "correct") {
       const taskId = stableTaskIds[question.taskSlot - 1];
       completionsRef.current.set(taskId, {
         taskId,
-        disposition: 'completed',
+        disposition: "completed",
         learnerAttempts: attempts,
         hintUsed: false,
       });
@@ -383,10 +422,10 @@ export default function LearningV2SessionIntro({
 
   return (
     <LinearGradient
-      colors={['#0B1017', '#111926', '#0A0E15']}
-      style={styles.screen}
+      colors={[t.bgGradient[0], t.bgPrimary, t.bgGradient[1]]}
+      style={[styles.screen, { backgroundColor: t.bgPrimary }]}
     >
-      <SafeAreaView style={styles.safe} edges={['top']}>
+      <SafeAreaView style={styles.safe} edges={["top"]}>
         <View style={styles.header}>
           <Pressable
             accessibilityRole="button"
@@ -396,23 +435,30 @@ export default function LearningV2SessionIntro({
             onPress={onBack}
             style={({ pressed }) => [
               styles.closeButton,
+              { backgroundColor: t.bgCard, borderColor: t.border },
               pressed && styles.pressed,
             ]}
           >
-            <Ionicons name="close" size={22} color="#EAF0F6" />
+            <Ionicons name="close" size={22} color={t.heroTextPrimary} />
           </Pressable>
           <View style={styles.headerCopy}>
-            <Text style={styles.headerEyebrow}>LEARNING V2</Text>
-            <Text style={styles.headerTitle}>
+            <Text style={[styles.headerEyebrow, { color: t.heroTextMuted }]}>
+              LEARNING V2
+            </Text>
+            <Text style={[styles.headerTitle, { color: t.heroTextPrimary }]}>
               {copy.session} {sessionOrdinal}
             </Text>
           </View>
           <View
             accessibilityLabel={`${safeIndex + 1} из ${screens.length}`}
-            style={styles.pageCounter}
+            style={[styles.pageCounter, { backgroundColor: t.bgCard }]}
           >
-            <Text style={styles.pageCounterText}>{safeIndex + 1}</Text>
-            <Text style={styles.pageCounterMuted}>/{screens.length}</Text>
+            <Text style={[styles.pageCounterText, { color: t.textOnCard }]}>
+              {safeIndex + 1}
+            </Text>
+            <Text style={[styles.pageCounterMuted, { color: t.textMuted }]}>
+              /{screens.length}
+            </Text>
           </View>
         </View>
 
@@ -430,6 +476,7 @@ export default function LearningV2SessionIntro({
               key={entry.screenId ?? `${lessonId}-${progressIndex}`}
               style={[
                 styles.progressSegment,
+                { backgroundColor: t.bgSurface2 },
                 progressIndex <= safeIndex && {
                   backgroundColor: visual.accent,
                 },
@@ -479,17 +526,20 @@ export default function LearningV2SessionIntro({
                 <View
                   style={[
                     styles.orbitInner,
-                    { borderColor: `${visual.accent}56` },
+                    {
+                      borderColor: `${visual.accent}56`,
+                      backgroundColor: t.bgPrimary,
+                    },
                   ]}
                 >
                   <LinearGradient
-                    colors={[visual.accent, '#7C8BFF']}
+                    colors={[visual.accent, t.correct]}
                     style={styles.heroIcon}
                   >
                     <Ionicons
                       name={visual.icon}
                       size={compact ? 28 : 34}
-                      color="#07110A"
+                      color={t.correctText}
                     />
                   </LinearGradient>
                 </View>
@@ -506,8 +556,14 @@ export default function LearningV2SessionIntro({
               </View>
             </View>
 
-            <Text style={styles.title}>{title}</Text>
-            {!!subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+            <Text style={[styles.title, { color: t.heroTextPrimary }]}>
+              {title}
+            </Text>
+            {!!subtitle && (
+              <Text style={[styles.subtitle, { color: t.heroTextMuted }]}>
+                {subtitle}
+              </Text>
+            )}
 
             <View style={styles.knowledgePanel}>
               {lines.map((line, lineIndex) => (
@@ -515,12 +571,19 @@ export default function LearningV2SessionIntro({
                   key={`${safeIndex}-${lineIndex}-${lineText(line)}`}
                   line={line}
                   accent={visual.accent}
+                  theme={t}
                 />
               ))}
             </View>
 
             {question && (
-              <Animated.View style={[styles.questionPanel, answerShakeStyle]}>
+              <Animated.View
+                style={[
+                  styles.questionPanel,
+                  { backgroundColor: t.bgCard, borderColor: t.border },
+                  answerShakeStyle,
+                ]}
+              >
                 <View style={styles.questionEyebrowRow}>
                   <View
                     style={[
@@ -537,9 +600,15 @@ export default function LearningV2SessionIntro({
                       {question.taskSlot}
                     </Text>
                   </View>
-                  <Text style={styles.questionEyebrow}>{copy.answerFirst}</Text>
+                  <Text
+                    style={[styles.questionEyebrow, { color: t.textMuted }]}
+                  >
+                    {copy.answerFirst}
+                  </Text>
                 </View>
-                <Text style={styles.questionPrompt}>{questionPrompt}</Text>
+                <Text style={[styles.questionPrompt, { color: t.textOnCard }]}>
+                  {questionPrompt}
+                </Text>
                 <View style={styles.answerList}>
                   {questionChoices.map((choice, choiceIndex) => {
                     const correct = selectedCorrectIndex === choiceIndex;
@@ -555,14 +624,22 @@ export default function LearningV2SessionIntro({
                         onPress={() => chooseAnswer(choiceIndex)}
                         style={({ pressed }) => [
                           styles.answerChoice,
-                          correct && styles.answerChoiceCorrect,
+                          {
+                            backgroundColor: t.bgSurface2,
+                            borderColor: t.border,
+                          },
+                          correct && {
+                            backgroundColor: t.correct,
+                            borderColor: t.correct,
+                          },
                           pressed && !answered && styles.answerChoicePressed,
                         ]}
                       >
                         <Text
                           style={[
                             styles.answerChoiceText,
-                            correct && styles.answerChoiceTextCorrect,
+                            { color: t.textOnCard },
+                            correct && { color: t.correctText },
                           ]}
                         >
                           {choice}
@@ -571,7 +648,7 @@ export default function LearningV2SessionIntro({
                           <Ionicons
                             name="checkmark-circle"
                             size={21}
-                            color="#07110A"
+                            color={t.correctText}
                           />
                         )}
                       </Pressable>
@@ -579,10 +656,14 @@ export default function LearningV2SessionIntro({
                   })}
                 </View>
                 {answered && (
-                  <Text style={styles.correctMessage}>{copy.correct}</Text>
+                  <Text style={[styles.correctMessage, { color: t.correct }]}>
+                    {copy.correct}
+                  </Text>
                 )}
                 {!answered && wrongCount >= 2 && (
-                  <Text style={styles.explanation}>{questionExplanation}</Text>
+                  <Text style={[styles.explanation, { color: t.textMuted }]}>
+                    {questionExplanation}
+                  </Text>
                 )}
               </Animated.View>
             )}
@@ -592,7 +673,11 @@ export default function LearningV2SessionIntro({
         <View
           style={[
             styles.bottomBar,
-            { paddingBottom: Math.max(insets.bottom, 6) },
+            {
+              paddingBottom: Math.max(insets.bottom, 6),
+              backgroundColor: t.bgPrimary,
+              borderTopColor: t.border,
+            },
           ]}
         >
           <Pressable
@@ -604,17 +689,23 @@ export default function LearningV2SessionIntro({
             onPress={advance}
             style={({ pressed }) => [
               styles.cta,
-              !answered && styles.ctaDisabled,
+              { backgroundColor: t.accent },
+              !answered && { backgroundColor: t.bgSurface2 },
               pressed && answered && styles.pressed,
             ]}
           >
-            <Text style={[styles.ctaText, !answered && styles.ctaTextDisabled]}>
+            <Text
+              style={[
+                styles.ctaText,
+                { color: answered ? t.correctText : t.textMuted },
+              ]}
+            >
               {isLast ? copy.startPractice : copy.next}
             </Text>
             <Ionicons
-              name={isLast ? 'play' : 'arrow-forward'}
+              name={isLast ? "play" : "arrow-forward"}
               size={20}
-              color={answered ? '#07110A' : '#66717F'}
+              color={answered ? t.correctText : t.textMuted}
             />
           </Pressable>
         </View>
@@ -624,38 +715,38 @@ export default function LearningV2SessionIntro({
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: '#0B1017' },
-  safe: { flex: 1, overflow: 'hidden' },
+  screen: { flex: 1, backgroundColor: "#0B1017" },
+  safe: { flex: 1, overflow: "hidden" },
   header: {
     minHeight: 62,
     paddingHorizontal: 18,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 12,
   },
   closeButton: {
     width: 46,
     height: 46,
     borderRadius: 17,
-    backgroundColor: '#1A2330',
+    backgroundColor: "#1A2330",
     borderWidth: 1,
-    borderColor: '#2C3949',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderColor: "#2C3949",
+    alignItems: "center",
+    justifyContent: "center",
   },
   headerCopy: { flex: 1 },
   headerEyebrow: {
-    color: '#7E8B9A',
+    color: "#7E8B9A",
     fontSize: 10,
     lineHeight: 14,
-    fontWeight: '900',
+    fontWeight: "900",
     letterSpacing: 1.8,
   },
   headerTitle: {
-    color: '#EDF3F8',
+    color: "#EDF3F8",
     fontSize: 15,
     lineHeight: 21,
-    fontWeight: '900',
+    fontWeight: "900",
     marginTop: 1,
   },
   pageCounter: {
@@ -663,25 +754,25 @@ const styles = StyleSheet.create({
     height: 38,
     paddingHorizontal: 11,
     borderRadius: 15,
-    backgroundColor: '#1A2330',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#1A2330",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  pageCounterText: { color: '#F6F9FB', fontSize: 14, fontWeight: '900' },
-  pageCounterMuted: { color: '#758293', fontSize: 12, fontWeight: '800' },
+  pageCounterText: { color: "#F6F9FB", fontSize: 14, fontWeight: "900" },
+  pageCounterMuted: { color: "#758293", fontSize: 12, fontWeight: "800" },
   progressRow: {
     height: 5,
     marginHorizontal: 18,
     marginTop: 6,
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 6,
   },
   progressSegment: {
     flex: 1,
     height: 5,
     borderRadius: 5,
-    backgroundColor: '#263140',
+    backgroundColor: "#263140",
   },
   slide: { flex: 1, minHeight: 0 },
   scroll: { flex: 1, minHeight: 0 },
@@ -691,13 +782,13 @@ const styles = StyleSheet.create({
     height: 196,
     borderRadius: 32,
     borderWidth: 1,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
   },
   heroCompact: { height: 150 },
   heroGlow: {
-    position: 'absolute',
+    position: "absolute",
     width: 240,
     height: 240,
     borderRadius: 120,
@@ -707,31 +798,31 @@ const styles = StyleSheet.create({
     height: 132,
     borderRadius: 66,
     borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   orbitInner: {
     width: 100,
     height: 100,
     borderRadius: 50,
     borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#0B111A99',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#0B111A99",
   },
   heroIcon: {
     width: 68,
     height: 68,
     borderRadius: 25,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
     shadowOpacity: 0.32,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 9 },
   },
   heroLabel: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 15,
     paddingHorizontal: 12,
     paddingVertical: 7,
@@ -740,36 +831,36 @@ const styles = StyleSheet.create({
   heroLabelText: {
     fontSize: 10,
     lineHeight: 14,
-    fontWeight: '900',
+    fontWeight: "900",
     letterSpacing: 1.6,
   },
   title: {
-    color: '#F7FAFC',
+    color: "#F7FAFC",
     fontSize: 31,
     lineHeight: 37,
-    fontWeight: '900',
+    fontWeight: "900",
     letterSpacing: -0.8,
     marginTop: 24,
   },
   subtitle: {
-    color: '#9DAABA',
+    color: "#9DAABA",
     fontSize: 16,
     lineHeight: 23,
-    fontWeight: '600',
+    fontWeight: "600",
     marginTop: 8,
   },
   knowledgePanel: { marginTop: 20, gap: 10 },
   line: {
     minHeight: 30,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+    flexDirection: "row",
+    alignItems: "flex-start",
     gap: 11,
   },
   featuredLine: {
     minHeight: 58,
     borderRadius: 19,
     borderWidth: 1,
-    backgroundColor: '#151E29',
+    backgroundColor: "#151E29",
     paddingHorizontal: 13,
     paddingVertical: 12,
   },
@@ -777,16 +868,16 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 11,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginTop: 1,
   },
   lineText: {
     flex: 1,
-    color: '#EAF0F6',
+    color: "#EAF0F6",
     fontSize: 16,
     lineHeight: 24,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   formulaText: { fontSize: 17, lineHeight: 25, letterSpacing: 0.1 },
   spacer: { height: 4 },
@@ -794,31 +885,31 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 22,
     borderWidth: 1,
-    borderColor: '#334152',
-    backgroundColor: '#111923',
+    borderColor: "#334152",
+    backgroundColor: "#111923",
     padding: 15,
   },
-  questionEyebrowRow: { flexDirection: 'row', alignItems: 'center', gap: 9 },
+  questionEyebrowRow: { flexDirection: "row", alignItems: "center", gap: 9 },
   questionNumber: {
     width: 28,
     height: 28,
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
-  questionNumberText: { fontSize: 12, fontWeight: '900' },
+  questionNumberText: { fontSize: 12, fontWeight: "900" },
   questionEyebrow: {
-    color: '#9BA9B8',
+    color: "#9BA9B8",
     fontSize: 11,
     lineHeight: 15,
-    fontWeight: '900',
+    fontWeight: "900",
     letterSpacing: 0.7,
   },
   questionPrompt: {
-    color: '#F4F7FA',
+    color: "#F4F7FA",
     fontSize: 17,
     lineHeight: 24,
-    fontWeight: '900',
+    fontWeight: "900",
     marginTop: 13,
   },
   answerList: { marginTop: 13, gap: 9 },
@@ -826,65 +917,65 @@ const styles = StyleSheet.create({
     minHeight: 50,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#354355',
-    backgroundColor: '#1A2430',
+    borderColor: "#354355",
+    backgroundColor: "#1A2430",
     paddingHorizontal: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     gap: 10,
   },
   answerChoicePressed: { opacity: 0.72, transform: [{ scale: 0.99 }] },
-  answerChoiceCorrect: { backgroundColor: '#CFFF45', borderColor: '#CFFF45' },
+  answerChoiceCorrect: { backgroundColor: "#CFFF45", borderColor: "#CFFF45" },
   answerChoiceText: {
     flex: 1,
-    color: '#ECF2F7',
+    color: "#ECF2F7",
     fontSize: 15,
     lineHeight: 21,
-    fontWeight: '800',
+    fontWeight: "800",
   },
-  answerChoiceTextCorrect: { color: '#07110A' },
+  answerChoiceTextCorrect: { color: "#07110A" },
   correctMessage: {
-    color: '#CFFF45',
+    color: "#CFFF45",
     fontSize: 13,
     lineHeight: 19,
-    fontWeight: '900',
+    fontWeight: "900",
     marginTop: 12,
   },
   explanation: {
-    color: '#CBD5DF',
+    color: "#CBD5DF",
     fontSize: 13,
     lineHeight: 19,
-    fontWeight: '700',
+    fontWeight: "700",
     marginTop: 12,
   },
   bottomBar: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     bottom: 0,
     paddingHorizontal: 18,
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: '#202A37',
-    backgroundColor: '#0D131BF2',
+    borderTopColor: "#202A37",
+    backgroundColor: "#0D131BF2",
   },
   cta: {
     minHeight: 58,
     borderRadius: 20,
-    backgroundColor: '#CFFF45',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#CFFF45",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: 10,
   },
-  ctaDisabled: { backgroundColor: '#202A35' },
+  ctaDisabled: { backgroundColor: "#202A35" },
   ctaText: {
-    color: '#07110A',
+    color: "#07110A",
     fontSize: 16,
     lineHeight: 22,
-    fontWeight: '900',
+    fontWeight: "900",
   },
-  ctaTextDisabled: { color: '#66717F' },
+  ctaTextDisabled: { color: "#66717F" },
   pressed: { opacity: 0.8, transform: [{ scale: 0.985 }] },
 });

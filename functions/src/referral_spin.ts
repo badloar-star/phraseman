@@ -22,6 +22,7 @@ import * as admin from 'firebase-admin';
 import * as crypto from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
+import { appendExternalEconomyEvent } from './external_economy_events';
 import {
   assertAuthStableLink,
   resolveReferralRoulettePolicy,
@@ -367,6 +368,19 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
       creditId: selectedCredit.id,
       creditSource: selectedCredit.source,
     });
+    if (prizeKind === 'pearls' && prizePearls > 0) {
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'referral_spin',
+        eventId: spinRequestId,
+        ownerStableId: stableId,
+        delta: prizePearls,
+        reason: 'referral_spin',
+        kind: 'referral_spin_prize',
+        subjectId: spinRequestId,
+        payload: { spinRequestId },
+        createdAtMs: nowMs,
+      });
+    }
 
     console.log(
       JSON.stringify({

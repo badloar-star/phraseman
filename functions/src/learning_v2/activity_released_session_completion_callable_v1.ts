@@ -61,7 +61,7 @@ export interface LearningV2ActivityReleasedCompletionInboxRecordV1 {
   readonly sessionRunId: string;
   readonly completion: LearningV2ActivityReleasedSessionCompletionV1;
   readonly reconciliation: LearningV2ActivityReleasedCompletionReconciliationV1;
-  readonly completionAuthority: "accepted_for_post_session_verification_only";
+  readonly completionAuthority: "accepted_completed_summary_for_storage_only";
   readonly performanceAuthority: "none";
   readonly walletAuthority: "none";
   readonly masteryAuthority: "none";
@@ -78,7 +78,7 @@ export interface LearningV2ActivityReleasedCompletionServerReceiptV1 {
   readonly reconciliationFingerprint: string;
   readonly duplicate: boolean;
   readonly catalogAuthority: "firebase_admin_active_release_12_task_coordinate_match";
-  readonly completionAuthority: "accepted_for_post_session_verification_only";
+  readonly completionAuthority: "accepted_completed_summary_for_storage_only";
   readonly performanceAuthority: "none";
   readonly walletAuthority: "none";
   readonly masteryAuthority: "none";
@@ -162,7 +162,7 @@ function materializeRecord(input: {
     sessionRunId: input.completion.sessionRunId,
     completion: input.completion,
     reconciliation: input.reconciliation,
-    completionAuthority: "accepted_for_post_session_verification_only" as const,
+    completionAuthority: "accepted_completed_summary_for_storage_only" as const,
     performanceAuthority: "none" as const,
     walletAuthority: "none" as const,
     masteryAuthority: "none" as const,
@@ -188,7 +188,7 @@ function receiptFor(
     duplicate,
     catalogAuthority:
       "firebase_admin_active_release_12_task_coordinate_match" as const,
-    completionAuthority: "accepted_for_post_session_verification_only" as const,
+    completionAuthority: "accepted_completed_summary_for_storage_only" as const,
     performanceAuthority: "none" as const,
     walletAuthority: "none" as const,
     masteryAuthority: "none" as const,

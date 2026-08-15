@@ -232,19 +232,19 @@ export const CATEGORIES: Category[] = [
     labelId: 'Buat',
     labelTr: 'Oluştur',
     labelPl: 'Utwórz',
-    fullLabelRU: 'Создать мои карточки',
-    fullLabelUK: 'Створити свої картки',
-    fullLabelES: 'Crear mis tarjetas',
-    fullLabelPtBr: 'Criar meus cartões',
-    fullLabelVi: 'Tạo thẻ của tôi',
-    fullLabelId: 'Buat kartu saya',
-    fullLabelTr: 'Kendi kartlarımı oluştur',
-    fullLabelPl: 'Utwórz moje karty',
+    fullLabelRU: 'Мои карточки',
+    fullLabelUK: 'Мої картки',
+    fullLabelES: 'Mis tarjetas',
+    fullLabelPtBr: 'Meus cartões',
+    fullLabelVi: 'Thẻ của tôi',
+    fullLabelId: 'Kartu saya',
+    fullLabelTr: 'Kartlarım',
+    fullLabelPl: 'Moje karty',
   },
 ];
 
 /** Плитки на экране-хабе карточек: только сохранённые и свои; системные темы — только в данных/фильтрах. */
-export const FLASHCARDS_HUB_CATEGORY_ORDER: CategoryId[] = ['saved', 'custom'];
+export const FLASHCARDS_HUB_CATEGORY_ORDER: CategoryId[] = ['saved'];
 
 export function categoriesForFlashcardsHub(): Category[] {
   const orderedHubItems = FLASHCARDS_HUB_CATEGORY_ORDER.map((id) => CATEGORIES.find((c) => c.id === id)).filter(

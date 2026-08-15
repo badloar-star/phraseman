@@ -564,7 +564,7 @@ export function tournamentAiTaskFrom(item: TournamentAiItem, level: TournamentAi
 
   return {
     taskId: tournamentAiTaskId(item),
-    mode: 'choice',
+    mode: 'guess_phrase',
     isVoice: false,
     difficulty: tournamentAiDifficulty(level, item.difficulty),
     payload: {

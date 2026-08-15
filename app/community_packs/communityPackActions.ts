@@ -7,6 +7,7 @@
  */
 import { emitAppEvent } from '../events';
 import { getCanonicalUserId } from '../user_id_policy';
+import type { RuntimeStudyTarget } from '../target_storage_keys';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
 import { addCommunityOwnedPackId, loadCommunityOwnedPackIds } from './communityOwnedStorage';
 import {
@@ -30,14 +31,23 @@ export type AddPackToLibraryResult =
  */
 export async function addCommunityPackToLibrary(
   pack: Pick<FlashcardMarketPack, 'id' | 'titleRu' | 'titleUk' | 'titleEs' | 'isCommunityUgc'>,
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<AddPackToLibraryResult> {
   if (!pack?.id) return 'unavailable';
   if (!pack.isCommunityUgc) return 'unavailable';
 
-  const owned = await loadCommunityOwnedPackIds();
+  /**
+   * ПРИЧИНА БАГА «лайк не ставится» (владелец, iPhone), часть 2.
+   *
+   * Владение писалось БЕЗ `studyTarget`, то есть всегда в легаси-ключ английской
+   * цели, а читают его все экраны уже по текущей цели (`flashcardsCommunityOwnedPacksKey`).
+   * На не-английской цели набор после «Добавить себе» так и не считался «моим»,
+   * и правило «лайк только после добавления» блокировало лайк НАВСЕГДА.
+   */
+  const owned = await loadCommunityOwnedPackIds(studyTarget);
   if (owned.includes(pack.id)) return 'already_added';
 
-  await addCommunityOwnedPackId(pack.id);
+  await addCommunityOwnedPackId(pack.id, studyTarget);
   void bumpAddedCountOnce(pack.id);
 
   const titleEs = pack.titleEs?.trim() || pack.titleUk?.trim() || pack.titleRu?.trim() || pack.id;
@@ -64,7 +74,12 @@ async function bumpAddedCountOnce(packId: string): Promise<void> {
   }
 }
 
-export type ToggleLikeResult = { liked: boolean; changed: boolean };
+export type ToggleLikeResult = {
+  liked: boolean;
+  changed: boolean;
+  /** Долетела ли запись до Firestore (для точного пересчёта цифры в UI). */
+  synced?: boolean;
+};
 
 /**
  * Лайк активности набора. Локальный флаг переключаем сразу (для оптимистичного UI),
@@ -78,16 +93,23 @@ export async function toggleCommunityPackLike(packId: string): Promise<ToggleLik
   if (!changed) return { liked: wasLiked, changed: false };
 
   emitAppEvent('community_pack_like_changed', { packId, liked: nextLiked });
-  void (async () => {
-    try {
-      const userId = await getCanonicalUserId();
-      if (!userId) return;
-      await setCommunityPackLikeRemote(packId, userId, nextLiked);
-    } catch {
-      /* лайк остаётся локальным до следующей попытки */
+  /**
+   * Серверную запись ЖДЁМ (раньше был «выстрелил и забыл»): вызывающий UI должен
+   * знать, долетел ли лайк, иначе оптимистичная цифра расходится с сервером и при
+   * следующем чтении откатывается. Ошибку наружу не бросаем — лайк уже записан
+   * локально и переживает перезаход.
+   */
+  let synced = false;
+  try {
+    const userId = await getCanonicalUserId();
+    if (userId) {
+      const res = await setCommunityPackLikeRemote(packId, userId, nextLiked);
+      synced = res.changed;
     }
-  })();
-  return { liked: nextLiked, changed: true };
+  } catch {
+    /* лайк остаётся локальным до следующей попытки */
+  }
+  return { liked: nextLiked, changed: true, synced };
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

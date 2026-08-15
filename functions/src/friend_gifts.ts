@@ -4,6 +4,7 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { ensureStableLinkForAuth } from './auth_identity';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { getLevelFromXP } from './xp_levels';
+import { appendExternalEconomyEvent } from './external_economy_events';
 import {
   commitPreparedLevelSpinMinting,
   LEVEL_SPIN_PROTOCOL,
@@ -117,8 +118,6 @@ type FriendGiftTxResult = {
   ok: boolean;
   giftId: FriendGiftId;
   costShards: number;
-  senderBalanceAfter: number;
-  shardsUpdatedAtMs: number;
   dailyRemaining: number;
   questStarted: boolean;
   questBlockedReason: 'active' | 'weekly' | null;
@@ -259,8 +258,6 @@ function replayFriendGiftResult(
     ok: true,
     giftId: gift.id,
     costShards: parseProgressInt(response.costShards) || gift.costShards,
-    senderBalanceAfter: parseProgressInt(response.senderBalanceAfter),
-    shardsUpdatedAtMs: parseProgressInt(response.shardsUpdatedAtMs),
     dailyRemaining: parseProgressInt(response.dailyRemaining),
     questStarted: response.questStarted === true,
     questBlockedReason,
@@ -469,11 +466,6 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       return replayFriendGiftResult(idempotencySnap.data(), idempotencyKey, friendStableId, gift);
     }
 
-    const senderBalanceBefore = parseShards(senderData.shards);
-    if (senderBalanceBefore < gift.costShards) {
-      throw new HttpsError('failed-precondition', 'Not enough shards');
-    }
-    const senderBalanceAfter = senderBalanceBefore - gift.costShards;
     const dailyData = dailyLimitSnap.exists ? dailyLimitSnap.data() ?? {} : {};
     const totalSentToday = parseShards(dailyData.totalSent);
     const recipientsToday = parseJsonObject(dailyData.recipients);
@@ -492,13 +484,17 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       cleanDisplayName(senderProgress.user_name) ||
       'Friend';
 
-    tx.set(senderRef, {
-      shards: senderBalanceAfter,
-      shards_updated_at_ms: now,
-      shards_updated_op: 'spend',
-      shards_updated_reason: `friend_gift:${gift.id}`,
-      updatedAt: now,
-    }, { merge: true });
+    appendExternalEconomyEvent(tx, senderRef, {
+      source: 'friend_gift',
+      eventId: idempotencyKey,
+      ownerStableId: senderStableId,
+      delta: -gift.costShards,
+      reason: 'friend_gift',
+      kind: 'person_to_person_gift',
+      subjectId: gift.id,
+      payload: { giftId: gift.id, targetUid: friendStableId },
+      createdAtMs: now,
+    });
 
     tx.set(recipientRef, buildRecipientGiftPatch(gift.id, recipientSnap.data()), { merge: true });
 
@@ -509,8 +505,7 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       reason: 'friend_gift',
       giftId: gift.id,
       targetUid: friendStableId,
-      balanceBefore: senderBalanceBefore,
-      balanceAfter: senderBalanceAfter,
+      authority: 'external_event',
     });
 
     tx.set(recipientRef.collection('shard_rewards').doc(), {
@@ -712,8 +707,6 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       ok: true,
       giftId: gift.id,
       costShards: gift.costShards,
-      senderBalanceAfter,
-      shardsUpdatedAtMs: now,
       dailyRemaining: Math.max(0, MAX_DAILY_GIFTS_TOTAL - totalSentToday - 1),
       questStarted,
       questBlockedReason,
@@ -759,8 +752,6 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
     ok: result.ok,
     giftId: result.giftId,
     costShards: result.costShards,
-    senderBalanceAfter: result.senderBalanceAfter,
-    shardsUpdatedAtMs: result.shardsUpdatedAtMs,
     dailyRemaining: result.dailyRemaining,
     questStarted: result.questStarted,
     questBlockedReason: result.questBlockedReason,
@@ -991,8 +982,6 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
         questId,
         rewardApplied: false,
         reached: true,
-        callerShards: parseShards(callerData.shards),
-        shardsUpdatedAtMs: parseProgressInt(callerData.shards_updated_at_ms),
         callerXpBeforeReward,
         rewardXpApplied: 0,
         callerXp: getTotalXp(callerData),
@@ -1048,22 +1037,27 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
     const preparedSpinMintByUid = new Map(preparedSpinMints.map(({ uid, prepared }) => [uid, prepared]));
     for (const uid of participantsToReward) {
       const data = userDataByUid[uid] ?? {};
-      const beforeShards = parseShards(data.shards);
       const existingServerState = data.progressServerState && typeof data.progressServerState === 'object'
         ? data.progressServerState as Record<string, unknown>
         : {};
       const beforeXp = Math.max(getTotalXp(data), parseProgressInt(existingServerState.totalXp));
       if (uid === stableId) callerXpBeforeReward = beforeXp;
-      const afterShards = beforeShards + rewardShards;
       const afterXp = beforeXp + rewardXp;
       const preparedSpinMint = preparedSpinMintByUid.get(uid);
       if (!preparedSpinMint) throw new HttpsError('internal', 'friend_quest_spin_mint_missing');
       commitPreparedLevelSpinMinting(tx, preparedSpinMint);
+      appendExternalEconomyEvent(tx, userRefs[uid], {
+        source: 'friend_quest',
+        eventId: questId,
+        ownerStableId: uid,
+        delta: rewardShards,
+        reason: 'friend_quest_reward',
+        kind: 'social_quest_reward',
+        subjectId: questId,
+        payload: { questId },
+        createdAtMs: now,
+      });
       tx.set(userRefs[uid], {
-        shards: afterShards,
-        shards_updated_at_ms: now,
-        shards_updated_op: 'earn',
-        shards_updated_reason: 'friend_quest_reward',
         progress: {
           user_total_xp: String(afterXp),
           level_reward_spin_balance: String(preparedSpinMint.balance),
@@ -1083,8 +1077,7 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
         amount: rewardShards,
         reason: 'friend_quest_reward',
         questId,
-        balanceBefore: beforeShards,
-        balanceAfter: afterShards,
+        authority: 'external_event',
       });
       tx.set(userRefs[uid].collection('my_events').doc(`friend_quest_completed_${questId}`), {
         type: 'friend_quest_completed',
@@ -1102,15 +1095,11 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
         callerXpBeforeReward: beforeXp,
         rewardXpApplied: rewardXp,
         callerXp: afterXp,
-        callerShards: afterShards,
-        shardsUpdatedAtMs: now,
         levelSpinMintedCredits: preparedSpinMint.mintedCredits,
         levelSpinBalance: preparedSpinMint.balance,
       };
       userDataByUid[uid] = {
         ...data,
-        shards: afterShards,
-        shards_updated_at_ms: now,
         progress: { ...getProgress(data), user_total_xp: String(afterXp) },
       };
     }
@@ -1130,8 +1119,7 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
       questId,
       rewardApplied: !callerAlreadyClaimed,
       reached: true,
-      callerShards: parseShards(callerData.shards),
-      shardsUpdatedAtMs: parseProgressInt(callerData.shards_updated_at_ms),
+      rewardShardsApplied: callerAlreadyClaimed ? 0 : rewardShards,
       callerXpBeforeReward,
       rewardXpApplied: callerAlreadyClaimed ? 0 : rewardXp,
       callerXp: getTotalXp(callerData),

@@ -85,6 +85,12 @@ export function buildLearningV2CourseAccordionMapModelV1(
   const rows: LearningV2CourseAccordionRowV1[] = [];
   for (const lesson of topology.lessons) {
     const expanded = lesson.lessonOrdinal === expandedLessonOrdinal;
+    const currentIndex =
+      input.currentSessionId === null
+        ? -1
+        : lesson.sessions.findIndex(
+            (candidate) => candidate.sessionId === input.currentSessionId,
+          );
     rows.push(
       Object.freeze({
         kind: "lesson",
@@ -114,12 +120,7 @@ export function buildLearningV2CourseAccordionMapModelV1(
           ? "current"
           : session.sessionOrdinal === 1 && input.currentSessionId === null
             ? "current"
-            : input.currentSessionId !== null &&
-                lesson.sessions.findIndex(
-                  (candidate) => candidate.sessionId === input.currentSessionId,
-                ) +
-                  2 ===
-                  session.sessionOrdinal
+            : currentIndex >= 0 && currentIndex + 2 === session.sessionOrdinal
               ? "next"
               : "locked";
       rows.push(

@@ -111,9 +111,7 @@ export async function executeV2AccessPurchaseCallable(
     return { ok: true, replayed: result.replayed, receipt: result.receipt };
   } catch (error) {
     const reason = error instanceof Error ? error.message : 'access_purchase_failed';
-    const code = reason.includes('insufficient_balance')
-      ? 'resource-exhausted'
-      : reason.includes('replay_mismatch')
+    const code = reason.includes('replay_mismatch')
         ? 'already-exists'
         : reason.includes('binding') || reason.includes('identity') ||
             reason.includes('account_generation') || reason.includes('account_delete') ||

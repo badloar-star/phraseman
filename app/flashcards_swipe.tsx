@@ -4,7 +4,7 @@ import TapScale from '../components/TapScale';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   BackHandler,
@@ -54,14 +54,23 @@ import {
 } from './flashcards/marketplace';
 import {
   clearFlashcardsSwipeSessionDraft,
+  deckIdsForSwipeSources,
   loadFlashcardsSwipeSessionDraft,
   saveFlashcardsSwipeSessionDraft,
+  swipeSourceIdsForDeckIds,
   type FlashcardsSwipePromptDraft,
   type FlashcardsSwipeSessionDraft,
   type FlashcardsSwipeSessionScope,
   swipeBadgeFullAtPx,
   swipeCommitDirection,
 } from './flashcards_swipe_session';
+import { parseDeckIdList, type FcDeckId } from './flashcards/deck_selection';
+import {
+  FC_DEFAULT_SESSION_SIZE,
+  isValidSessionSize,
+  setLastPreset,
+  type FcSessionSize,
+} from './flashcards/mode_prefs';
 import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
@@ -610,9 +619,22 @@ function buildCachedTrainingSources(
   return next;
 }
 
-function initialSelectionForSources(sources: TrainingSource[], requestedSourceId: string): Set<string> {
+/**
+ * Что отмечено на экране выбора при входе:
+ *  1) точечный `?source=` (заход из конкретного набора) — только он;
+ *  2) `?deck=` из таббара/DeckPickerSheet (мультивыбор, `saved,custom,pack:id`)
+ *     — ровно эти наборы: человек уже выбрал их и ожидает увидеть отмеченными;
+ *  3) иначе — всё, что есть (первый заход, тренируем всю библиотеку).
+ */
+function initialSelectionForSources(
+  sources: TrainingSource[],
+  requestedSourceId: string,
+  requestedDeckIds: readonly FcDeckId[] = [],
+): Set<string> {
   const valid = new Set(sources.map((source) => source.id));
   if (requestedSourceId && valid.has(requestedSourceId)) return new Set([requestedSourceId]);
+  const fromDecks = swipeSourceIdsForDeckIds(sources, requestedDeckIds);
+  if (fromDecks.length > 0) return new Set(fromDecks);
   return valid;
 }
 
@@ -810,6 +832,10 @@ export default function FlashcardsSwipeScreen() {
     source?: string | string[];
     filter?: string | string[];
     owned?: string | string[];
+    /** §6: мультивыбор наборов из таббара/DeckPickerSheet — `saved,custom,pack:id`. */
+    deck?: string | string[];
+    /** Размер сессии из шита (10/15/20). Без параметра тренируем весь выбранный пул. */
+    size?: string | string[];
   }>();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -835,6 +861,17 @@ export default function FlashcardsSwipeScreen() {
     return typeof raw === 'string' ? raw.trim() : '';
   }, [params.filter]);
   const requestedOfficialOwnedIds = useMemo(() => parseRouteIdList(params.owned), [params.owned]);
+  /**
+   * §6 (FIX владельца, 2026-08-13): «Тренировка» приходит сюда из таббара с
+   * последним выбором наборов — предотмечаем ровно его, чтобы повторный запуск
+   * был в один тап, но сам выбор оставался на виду и его можно было изменить.
+   */
+  const requestedDeckIds = useMemo(() => parseDeckIdList(params.deck), [params.deck]);
+  /** Размер сессии из шита; 0 — параметра нет, тренируем весь выбранный пул. */
+  const requestedSessionSize = useMemo<FcSessionSize | 0>(() => {
+    const raw = Number(routeParamString(params.size));
+    return isValidSessionSize(raw) ? raw : 0;
+  }, [params.size]);
   const visibleRequestedOfficialOwnedIds = useMemo(
     () => (officialPacksEnabled ? requestedOfficialOwnedIds : []),
     [officialPacksEnabled, requestedOfficialOwnedIds],
@@ -852,8 +889,8 @@ export default function FlashcardsSwipeScreen() {
     [lang, requestedFilter, requestedSourceId, studyTarget, visibleRequestedOfficialOwnedIds],
   );
   const initialSelectedIds = useMemo(
-    () => initialSelectionForSources(initialSources, requestedSourceId),
-    [initialSources, requestedSourceId],
+    () => initialSelectionForSources(initialSources, requestedSourceId, requestedDeckIds),
+    [initialSources, requestedDeckIds, requestedSourceId],
   );
   const initialSessionInfo = useMemo(
     () => optimisticSessionInfoForSources(initialSources, initialSelectedIds),
@@ -872,6 +909,14 @@ export default function FlashcardsSwipeScreen() {
   const [stats, setStats] = useState<SessionStats>(() => initialStats(0));
   const [sessionInfo, setSessionInfo] = useState<SessionInfo>(() => initialSessionInfo);
   const [settling, setSettling] = useState(false);
+  /**
+   * FIX (владелец, 2026-08-13) «карточка улетает и возвращается»: счётчик
+   * завершённых улётов. Меняется в один батч со сменой очереди, поэтому
+   * обнуление смещения (useLayoutEffect ниже) попадает РОВНО в тот коммит, где
+   * на месте улетевшей карточки уже стоит следующая, — и даже когда карточка
+   * осталась прежней (страховочный таймер улёта).
+   */
+  const [cardEpoch, setCardEpoch] = useState(0);
   // зачем: одноразовая подсказка «как пользоваться экраном» для новых юзеров —
   // репорт «не понимают карточку/аудио/свайп». Схема 1:1 с flashcardsDeleteHintSeenKey
   // из flashcards_collection.tsx (тот же "seen"-флаг в AsyncStorage, тот же UX баннера).
@@ -884,6 +929,13 @@ export default function FlashcardsSwipeScreen() {
   const progressRef = useRef<Record<string, CardProgress>>({});
   const memoryRef = useRef<SwipeMemory>({});
   const settlingRef = useRef(false);
+  /**
+   * Один вопрос — один ответ. Ошибочный ответ больше не блокирует экран улётом
+   * карточки (см. answerCurrent), а `feedback` доезжает только со следующей
+   * перерисовкой — поэтому защита от двойного срабатывания синхронная, на ref.
+   * Id вопроса уникален при каждом создании, сбрасывать значение не нужно.
+   */
+  const answeredPromptIdRef = useRef<string | null>(null);
   // Страховочный таймер settleCard: сбрасывает settling, если Animated-колбэк не выстрелил.
   const settleGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const quickStartDoneRef = useRef(false);
@@ -911,7 +963,17 @@ export default function FlashcardsSwipeScreen() {
   const reduceMotionRef = useRef(reduceMotion);
   useEffect(() => { reduceMotionRef.current = reduceMotion; }, [reduceMotion]);
   const topFadeScrollY = useRef(new Animated.Value(0)).current;
-  const quickStart = false;
+  /**
+   * Быстрый старт (§6): пришли из DeckPickerSheet, наборы уже отмечены человеком
+   * — сессия стартует сама, без второго экрана выбора. Обычный вход в режим
+   * (тап по «Тренировке» в таббаре) флага не несёт: там выбор наборов и есть
+   * первый шаг режима. Повторный показ выбора по ⚙ внутри сессии этот флаг
+   * гасит (`quickStartDoneRef`), поэтому в цикл экран не уходит.
+   */
+  const quickStart = useMemo(
+    () => routeParamString(params.quick).trim() === '1' && requestedDeckIds.length > 0,
+    [params.quick, requestedDeckIds.length],
+  );
   const isCompactFlashcardsTask = false;
 
   const openFlashcardsPlusPaywall = useCallback((source: string) => {
@@ -1626,7 +1688,10 @@ export default function FlashcardsSwipeScreen() {
         const valid = new Set(next.map((source) => source.id));
         if (requestedSourceId && valid.has(requestedSourceId)) return new Set([requestedSourceId]);
         const kept = new Set([...cur].filter((id) => valid.has(id)));
-        return kept.size > 0 ? kept : valid;
+        if (kept.size > 0) return kept;
+        // Кэша наборов не было — предвыбор из `?deck=` делаем на приехавшем списке.
+        const fromDecks = swipeSourceIdsForDeckIds(next, requestedDeckIds);
+        return fromDecks.length > 0 ? new Set(fromDecks) : valid;
       });
     } catch {
       setLoadError(
@@ -1644,7 +1709,7 @@ export default function FlashcardsSwipeScreen() {
     } finally {
       setLoadingSources(false);
     }
-  }, [communityPacksEnabled, lang, officialPacksEnabled, requestedFilter, requestedSourceId, studyTarget, text.custom, text.saved]);
+  }, [communityPacksEnabled, lang, officialPacksEnabled, requestedDeckIds, requestedFilter, requestedSourceId, studyTarget, text.custom, text.saved]);
 
   useEffect(() => {
     void loadSources({ quiet: hasVisibleSourcesRef.current });
@@ -1834,20 +1899,34 @@ export default function FlashcardsSwipeScreen() {
         );
         return;
       }
+      /**
+       * §6: размер сессии из DeckPickerSheet (10/15/20). Карточки уже отсортированы
+       * `smartSortCards`, поэтому берём верхушку очереди — самые нужные сейчас.
+       * Без параметра (прямой заход на экран) поведение прежнее: весь пул.
+       */
+      const sessionCards = requestedSessionSize > 0 ? cards.slice(0, requestedSessionSize) : cards;
+      /**
+       * Запоминаем выбор наборов (`fc_mode_prefs_v1`) — следующий запуск
+       * «Тренировки» из таббара придёт сюда уже с ними отмеченными.
+       */
+      void setLastPreset('trainer', {
+        deckIds: deckIdsForSwipeSources(selectedSources),
+        size: requestedSessionSize === 0 ? FC_DEFAULT_SESSION_SIZE : requestedSessionSize,
+      }).catch(() => {});
       progressRef.current = Object.fromEntries(
-        cards.map((card) => [card.trainingKey, emptyProgress()]),
+        sessionCards.map((card) => [card.trainingKey, emptyProgress()]),
       );
       position.setValue({ x: 0, y: 0 });
       setFeedback(null);
-      setTrainingCards(cards);
-      setQueue(buildPromptQueue(cards));
-      setStats(initialStats(cards.length));
+      setTrainingCards(sessionCards);
+      setQueue(buildPromptQueue(sessionCards));
+      setStats(initialStats(sessionCards.length));
       setSessionInfo(info);
       setPhase('play');
     } finally {
       setStarting(false);
     }
-  }, [buildPromptQueue, buildSessionCards, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, selectedSources, starting, studyTarget]);
+  }, [buildPromptQueue, buildSessionCards, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, requestedSessionSize, selectedSources, starting, studyTarget]);
 
   useEffect(() => {
     if (draftRestoreAttemptedRef.current) return;
@@ -1958,15 +2037,29 @@ export default function FlashcardsSwipeScreen() {
   const progressPct = stats.total > 0 ? Math.min(100, Math.round((stats.mastered / stats.total) * 100)) : 0;
   const currentPrompt = queue[0] ?? null;
 
-  // зачем: СТРАХОВКА от невидимой карточки. На Android страховочный таймер мог
-  // завершить settle раньше нативного fade; запоздавший fade после этого снова
-  // записывал opacity=0 уже новой карточке. Поэтому на каждом стабильном кадре
-  // сначала физически останавливаем прежнюю native-анимацию, затем возвращаем 1.
-  useEffect(() => {
-    if (settling) return;
+  /**
+   * FIX (владелец, 2026-08-13): «когда свайпаешь, она улетает, а затем возвращается».
+   *
+   * Корневая причина: смещение и прозрачность улетевшей карточки обнулялись в
+   * колбэке анимации (`finish()` в settleCard) — то есть ДО того, как React
+   * перерисует очередь. Оба значения нативно-драйвенные: `setValue` долетает до
+   * UI-потока сразу, а коммит с новой карточкой приходит следующим кадром (и
+   * позже — рендер сессии тяжёлый). В этом зазоре СТАРАЯ вьюха возвращалась в
+   * центр экрана с полной непрозрачностью и прежним текстом — это и читалось
+   * как «улетела и вернулась».
+   *
+   * Теперь сброс живёт здесь и выполняется СИНХРОННО в том же коммите, где на
+   * месте улетевшей карточки уже стоит следующая (useLayoutEffect, не обычный
+   * effect: обычный отрабатывает после кадра и зазор остаётся). Останов
+   * native-анимации ПЕРЕД setValue сохранён: если страховочный таймер выиграл
+   * гонку, ещё живой fade иначе снова запишет opacity 0 новой карточке.
+   */
+  useLayoutEffect(() => {
+    position.stopAnimation();
+    position.setValue({ x: 0, y: 0 });
     flyOpacity.stopAnimation();
     flyOpacity.setValue(1);
-  }, [currentPrompt?.id, flyOpacity, settling]);
+  }, [cardEpoch, currentPrompt?.id, flyOpacity, position]);
   const done = phase === 'play' && !currentPrompt && stats.total > 0;
 
   useEffect(() => {
@@ -1986,13 +2079,6 @@ export default function FlashcardsSwipeScreen() {
     });
     void saveFlashcardsSwipeSessionDraft(draft, studyTarget).catch(() => {});
   }, [done, feedback, phase, queue, sessionDraftScope, stats, studyTarget, trainingCards]);
-
-  useEffect(() => {
-    if (!currentPrompt?.id) return;
-    position.stopAnimation(() => {
-      position.setValue({ x: 0, y: 0 });
-    });
-  }, [currentPrompt?.id, position]);
 
   // зачем: показываем подсказку один раз — при первом реальном входе в play-фазу
   // (не на restore черновика посреди сессии, поэтому проверяем currentPrompt, а
@@ -2117,12 +2203,12 @@ export default function FlashcardsSwipeScreen() {
           clearTimeout(settleGuardRef.current);
           settleGuardRef.current = null;
         }
-        position.setValue({ x: 0, y: 0 });
-        // Остановить native fade ДО setValue критично: если guard-таймер выиграл
-        // гонку, ещё живая анимация иначе позже снова перезапишет 1 обратно в 0.
-        flyOpacity.stopAnimation();
-        flyOpacity.setValue(1);
+        // ЗДЕСЬ БЫЛО обнуление position/flyOpacity — ПЕРЕД сменой состояния.
+        // Именно оно возвращало улетевшую карточку в центр на 1–3 кадра
+        // (см. useLayoutEffect выше). Порядок перевёрнут: сначала продвигаем
+        // сессию, а смещение обнуляется уже в коммите новой карточки.
         after();
+        setCardEpoch((n) => n + 1);
         settlingRef.current = false;
         setSettling(false);
       };
@@ -2153,9 +2239,11 @@ export default function FlashcardsSwipeScreen() {
           useNativeDriver: true,
         }),
       ]).start(() => {
-        position.stopAnimation(() => {
-          finish();
-        });
+        // Прежний `position.stopAnimation(cb → finish())` стоил лишнего
+        // раунд-трипа на UI-поток, и всё это время ввод оставался заблокирован
+        // (settlingRef) — «свайп не срабатывает». Синхронизацию значения делает
+        // useLayoutEffect новой карточки, поэтому продвигаемся сразу.
+        finish();
       });
     },
     [flyOpacity, position, width],
@@ -2235,13 +2323,32 @@ export default function FlashcardsSwipeScreen() {
   const answerCurrent = useCallback(
     (saysMatch: boolean) => {
       if (!currentPrompt || feedback || settling || settlingRef.current) return;
+      if (answeredPromptIdRef.current === currentPrompt.id) return;
+      answeredPromptIdRef.current = currentPrompt.id;
       clearCorrectTranslationReminder();
       if (showSwipeHint) dismissSwipeHint();
+      // FIX (владелец, 2026-08-13), вторая половина «улетает и возвращается»:
+      // ошибочный ответ раньше тоже уводил карточку за край экрана, но разбор
+      // (правильный перевод) показывается НА ТОЙ ЖЕ карточке — и она честно
+      // возвращалась в центр. Улетает только отвеченная верно карточка: её
+      // место занимает следующая. Ошибочная остаётся на месте — мягко
+      // возвращается из-под пальца и разворачивается разбором.
+      const correct = saysMatch === currentPrompt.isMatch;
+      if (!correct) {
+        Animated.spring(position, {
+          toValue: { x: 0, y: 0 },
+          friction: 6,
+          tension: 80,
+          useNativeDriver: true,
+        }).start();
+        applyAnswer(currentPrompt, saysMatch);
+        return;
+      }
       // NB: не выставляем settlingRef здесь — settleCard делает `if (settlingRef.current) return`,
       // поэтому преждевременная установка флага заставляла его сразу выйти, и карточка/кнопки «зависали».
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
-    [applyAnswer, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, settleCard, settling, showSwipeHint],
+    [applyAnswer, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, position, settleCard, settling, showSwipeHint],
   );
 
   const revealCurrent = useCallback(() => {
@@ -2996,12 +3103,12 @@ export default function FlashcardsSwipeScreen() {
                     opacity: settling ? 0.65 : 1,
                   },
                 ]}
-                accessibilityLabel={`${text.mismatch}: ${text.mismatchHint}`}
+                accessibilityRole="button"
+                accessibilityLabel={`${text.mismatchAction}. ${text.mismatch}: ${text.mismatchHint}`}
               >
-                <Ionicons name="close" size={22} color={t.wrong} />
-                <View style={styles.answerCopy}>
-                  <Text style={[styles.answerText, { color: t.wrong, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.mismatchAction}</Text>
-                </View>
+                {/* FIX (владелец, 2026-08-13): кнопки ответа — только иконка,
+                    без подписи «Неверно». Смысл держит accessibilityLabel. */}
+                <Ionicons name="close" size={isCompactFlashcardsTask ? 24 : 28} color={t.wrong} />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => answerCurrent(true)}
@@ -3015,12 +3122,11 @@ export default function FlashcardsSwipeScreen() {
                     opacity: settling ? 0.65 : 1,
                   },
                 ]}
-                accessibilityLabel={`${text.match}: ${text.matchHint}`}
+                accessibilityRole="button"
+                accessibilityLabel={`${text.matchAction}. ${text.match}: ${text.matchHint}`}
               >
-                <View style={styles.answerCopy}>
-                  <Text style={[styles.answerText, { color: t.correct, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.matchAction}</Text>
-                </View>
-                <Ionicons name="checkmark" size={22} color={t.correct} />
+                {/* FIX (владелец, 2026-08-13): только иконка, без подписи «Верно». */}
+                <Ionicons name="checkmark" size={isCompactFlashcardsTask ? 24 : 28} color={t.correct} />
               </TouchableOpacity>
             </View>
           </>
@@ -3709,20 +3815,6 @@ const styles = StyleSheet.create({
     minHeight: 50,
     borderRadius: 14,
     paddingHorizontal: 8,
-  },
-  answerText: {
-    fontWeight: '900',
-    textAlign: 'center',
-  },
-  answerCopy: {
-    flex: 1,
-    minWidth: 0,
-    alignItems: 'center',
-  },
-  answerSubText: {
-    marginTop: 1,
-    fontWeight: '800',
-    textAlign: 'center',
   },
   continueButton: {
     minHeight: 56,

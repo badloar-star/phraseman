@@ -29,16 +29,18 @@ describe('boon chest claim guard', () => {
     const perfect = fs.readFileSync(path.join(ROOT, 'components', 'PerfectWeekHost.tsx'), 'utf8');
 
     expect(comeback).toContain('if (grantedRef.current) return;');
-    expect(comeback).toContain('await markComebackGranted(todayKey)');
+    expect(comeback).toContain('[COMEBACK_GRANTED_KEY, todayKey]');
 
     expect(mystery).toContain('if (claimedRef.current || !reward) return;');
-    expect(mystery).toContain('await markClaimed(CLAIM_KEY, week)');
+    expect(mystery).toContain('[[CLAIM_KEY, week]]');
 
     expect(perfect).toContain('if (grantedRef.current) return;');
-    expect(perfect).toContain('await markPerfectWeekClaimed()');
+    expect(perfect).toContain('[[PERFECT_WEEK_CLAIMED_KEY, weekKey]]');
   });
 
   it('grants modal boon shards through the local-first shard path', () => {
-    expect(rewardSource).toContain('addShardsRaw(reward.shards, logReason, { skipServerAwait: true })');
+    expect(rewardSource).toContain('commitShardCreditOperation({');
+    expect(rewardSource).toContain('operationId: `boon:${safeReason}:${safePeriod}`');
+    expect(rewardSource).toContain('localWrites,');
   });
 });

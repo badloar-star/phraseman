@@ -197,9 +197,9 @@ export interface LearningV2EmbeddedIntroQuestion {
   >;
   choicesByLocale: Record<
     "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl",
-    readonly [string, string, string]
+    readonly string[]
   >;
-  correctChoiceIndex: 0 | 1 | 2;
+  correctChoiceIndex: number;
   explanationByLocale: Record<
     "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl",
     string

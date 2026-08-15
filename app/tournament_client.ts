@@ -948,7 +948,7 @@ async function loadTournamentProfileHint(): Promise<{ name: string; avatar: stri
 }
 
 export async function joinTournament(roomId: string) {
-  return callFunction<{ ok: boolean; roomId: string; entryGems?: number; gemsLeft?: number }>(
+  return callFunction<{ ok: boolean; roomId: string; entryGems?: number }>(
     'tournamentJoin',
     { roomId, profile: await loadTournamentProfileHint() },
   );
@@ -1120,8 +1120,8 @@ export async function loadRoundReview(roomId: string) {
  * Дев-режим для этого не используется: у комнаты свой slotId с меткой времени,
  * поэтому лимит один-турнир-на-слот к ней просто не применяется.
  *
- * Жемчужины списывает эта же серверная транзакция — отдельный вызов входа не
- * нужен (иначе комната успевала стартовать, пока игрок читает подтверждение).
+ * Та же серверная транзакция подтверждает вход и публикует immutable debit;
+ * клиентский журнал импортирует его без server wallet projection.
  */
 export async function startTournamentNow() {
   return callFunction<{
@@ -1129,7 +1129,6 @@ export async function startTournamentNow() {
     roomId: string;
     startsAt: number;
     entryGems?: number;
-    gemsLeft?: number;
   }>(
     'tournamentStartNow',
     { profile: await loadTournamentProfileHint() },
@@ -1295,8 +1294,6 @@ export type WeeklyBankInfo = {
   serverNowMs?: number;
   /** Цена входа в жемчужинах (владелец: «билет стоит 5 жемчужин»). */
   entryGems?: number;
-  /** Баланс жемчужин игрока — источник для витрины билетов. */
-  gemBalance?: number;
   /** Бесплатный вход этой недели ещё не использован. */
   freeEntryAvailable?: boolean;
   /**

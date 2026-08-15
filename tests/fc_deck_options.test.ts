@@ -59,14 +59,20 @@ describe('loadFcDeckOptions', () => {
     await upsertCustomCard(customCard('c2'));
   });
 
-  it('у тренера есть псевдо-набор «Слабые», у слушания и блица — нет', async () => {
+  /**
+   * FIX владельца (2026-08-13): «Тренировка» раздела карточек больше не ведёт в
+   * тренажёр «Моя практика», поэтому его due-очереди («Слабые») в списке
+   * НАБОРОВ не место — список одинаковый у всех трёх режимов.
+   */
+  it('due-очереди тренажёра («Слабые») нет ни у одного режима — только реальные наборы', async () => {
     const trainer = await loadFcDeckOptions('trainer', 'ru');
     const listening = await loadFcDeckOptions('listening', 'ru');
     const blitz = await loadFcDeckOptions('blitz', 'ru');
 
-    expect(trainer.map((d) => d.deckId)).toContain('weak');
+    expect(trainer.map((d) => d.deckId)).not.toContain('weak');
     expect(listening.map((d) => d.deckId)).not.toContain('weak');
     expect(blitz.map((d) => d.deckId)).not.toContain('weak');
+    expect(trainer.map((d) => d.deckId)).toEqual(listening.map((d) => d.deckId));
   });
 
   it('сохранённые и свои карточки попадают в список со счётчиком и id', async () => {

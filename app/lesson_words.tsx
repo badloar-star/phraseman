@@ -3004,12 +3004,10 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               // Осколок за завершение раздела слов (единоразово)
               AsyncStorage.getItem(wordsShardGrantKey).then(done => {
                 if (!done) {
-                  addShards('lesson_completed')
-                    .then(n => {
-                      if (n > 0) {
-                        AsyncStorage.setItem(wordsShardGrantKey, '1').catch(() => {});
-                      }
-                    })
+                  addShards('lesson_completed', {
+                    eventId: `words:${studyTarget}:${lessonId}:completed`,
+                    localWrites: [[wordsShardGrantKey, '1']],
+                  })
                     .catch(() => {});
                 }
               }).catch(() => {});

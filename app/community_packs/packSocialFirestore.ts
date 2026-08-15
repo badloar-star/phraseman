@@ -19,6 +19,7 @@ import {
   applyPackLike,
   readPackSocialCounts,
   type PackSocialCounts,
+  type PackSocialMembership,
   type PackSocialMembershipKind,
   type PackSocialTx,
   type PackSocialWriteResult,
@@ -28,6 +29,33 @@ const NOOP_RESULT: PackSocialWriteResult = { changed: false, delta: 0 };
 
 function socialEnabled(): boolean {
   return CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
+}
+
+/**
+ * ПРИЧИНА БАГА «лайк не ставится» (владелец, iPhone).
+ *
+ * `firestore.rules` пускает клиента к `likesCount` и к `pack_likes/{userId}` только
+ * при `request.auth != null`. Анонимный вход поднимается в `cloud_sync` асинхронно и
+ * на холодном старте может ещё не завершиться, а транзакция лайка шла БЕЗ ожидания
+ * авторизации — Firestore отвечал `permission-denied`, ошибка глушилась `catch {}`,
+ * и лайк оставался только в AsyncStorage: цифра откатывалась при следующем чтении.
+ *
+ * Публикация и покупка набора уже давно ждут вход явно
+ * (`publishLocalPack`, `purchaseCommunityPack.ensureFirebaseUserSignedInForCallable`) —
+ * соц-слой теперь делает то же самое.
+ */
+async function ensureSocialAuth(): Promise<boolean> {
+  if (!socialEnabled()) return false;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const auth = require('@react-native-firebase/auth').default;
+    if (typeof auth !== 'function') return false;
+    if (auth().currentUser) return true;
+    await auth().signInAnonymously();
+    return !!auth().currentUser;
+  } catch {
+    return false;
+  }
 }
 
 function subcollectionFor(kind: PackSocialMembershipKind): string {
@@ -79,6 +107,8 @@ export async function setCommunityPackLikeRemote(
   nextLiked: boolean,
 ): Promise<PackSocialWriteResult> {
   if (!socialEnabled() || !packId || !userId) return NOOP_RESULT;
+  /** Без авторизации правила отклонят и счётчик, и `pack_likes` — ждём вход. */
+  if (!(await ensureSocialAuth())) return NOOP_RESULT;
   try {
     return await firestore().runTransaction(async (tx: any) =>
       applyPackLike(firestoreTx(tx), packId, userId, nextLiked),
@@ -97,6 +127,7 @@ export async function registerCommunityPackAddRemote(
   userId: string,
 ): Promise<PackSocialWriteResult> {
   if (!socialEnabled() || !packId || !userId) return NOOP_RESULT;
+  if (!(await ensureSocialAuth())) return NOOP_RESULT;
   try {
     return await firestore().runTransaction(async (tx: any) =>
       applyPackAdd(firestoreTx(tx), packId, userId),
@@ -114,6 +145,40 @@ export async function fetchCommunityPackSocialCounts(packId: string): Promise<Pa
     return readPackSocialCounts(snap?.data() as Record<string, unknown> | undefined);
   } catch {
     return { likesCount: 0, addedCount: 0 };
+  }
+}
+
+/**
+ * Счётчики + «что сервер знает про меня» одним заходом: нужно, чтобы UI мог
+ * отличить «сервер уже посчитал мой лайк» от «моя +1 ещё в пути» и не откатывал
+ * цифру (см. `mergeServerCounts`). `membership: null` — сведений нет (облако
+ * выключено или запрос упал), тогда UI остаётся на оптимистичном минимуме.
+ */
+export type PackSocialServerState = {
+  counts: PackSocialCounts;
+  membership: PackSocialMembership | null;
+};
+
+export async function fetchCommunityPackSocialState(
+  packId: string,
+  userId: string | null,
+): Promise<PackSocialServerState> {
+  const empty: PackSocialServerState = { counts: { likesCount: 0, addedCount: 0 }, membership: null };
+  if (!socialEnabled() || !packId) return empty;
+  try {
+    const [packSnap, likeSnap, addSnap] = await Promise.all([
+      packRef(packId).get(),
+      userId ? membershipRef('like', packId, userId).get() : Promise.resolve(null),
+      userId ? membershipRef('add', packId, userId).get() : Promise.resolve(null),
+    ]);
+    const counts = readPackSocialCounts(packSnap?.data() as Record<string, unknown> | undefined);
+    if (!userId) return { counts, membership: null };
+    return {
+      counts,
+      membership: { liked: !!likeSnap?.exists, added: !!addSnap?.exists },
+    };
+  } catch {
+    return empty;
   }
 }
 

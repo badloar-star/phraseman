@@ -581,12 +581,12 @@ describe('имя игрока в комнате и рейтинге', () => {
       { progress: {
         user_name: 'Correct Nick',
         user_avatar: 'custom:custom-gen-41:aurora:black',
-        user_avatar_aura: 'aura-violet',
+        user_avatar_aura: 'aura-ember',
       } },
     )).toEqual({
       name: 'Correct Nick',
       avatar: 'custom:custom-gen-41:aurora:black',
-      aura: 'aura-violet',
+      aura: 'aura-ember',
     });
   });
 
@@ -635,11 +635,11 @@ describe('имя игрока в комнате и рейтинге', () => {
     expect(resolveTournamentPlayerProfile({}, {}, {}, {
       name: 'Local Correct Nick',
       avatar: 'custom:custom-gen-41:aurora:black',
-      aura: 'aura-violet',
+      aura: 'aura-ember',
     })).toEqual({
       name: 'Local Correct Nick',
       avatar: 'custom:custom-gen-41:aurora:black',
-      aura: 'aura-violet',
+      aura: 'aura-ember',
     });
   });
 
@@ -1319,13 +1319,13 @@ describe('transaction plan semantics', () => {
       ...player('u1', 0),
       name: 'Correct Nick',
       avatar: 'custom:custom-gen-41:aurora:black',
-      aura: 'aura-violet',
+      aura: 'aura-ember',
     }, 'new-auth', 9_000);
     expect(replay.players).toHaveLength(1);
     expect(replay.players[0]).toMatchObject({
       name: 'Correct Nick',
       avatar: 'custom:custom-gen-41:aurora:black',
-      aura: 'aura-violet',
+      aura: 'aura-ember',
     });
     expect(replay.participantAuthUids).toEqual(['old-auth', 'new-auth']);
     expect(replay.version).toBe(joined.version + 1);

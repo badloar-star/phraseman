@@ -40,6 +40,44 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(replaceAt).toBeGreaterThan(newIdAt);
   });
 
+  test('keeps one queue request id across a Strict Mode remount', () => {
+    expect(matchmaking).toContain('implicitQueueRequestIds');
+    expect(matchmaking).toContain('implicitQueueRequestId(mode)');
+    expect(matchmaking).toContain('releaseImplicitQueueRequestId(mode, requestId)');
+    expect(matchmaking).not.toContain("useRef(createArenaRequestId('queue'))");
+  });
+
+  test('renews a long quick-search lease without changing its request id', () => {
+    expect(matchmaking).toContain('const [leaseRefreshTick, setLeaseRefreshTick]');
+    expect(matchmaking).toContain('Math.min(botDelayMs, 40_000)');
+    /**
+     * Проверяется НАЛИЧИЕ зависимостей, а не список целиком.
+     *
+     * Список целиком ломается от любой добавленной зависимости — то есть от
+     * обычной, правильной правки эффекта. Смысл же здесь в другом: продление
+     * аренды обязано перезапускать эффект, а идентификатор запроса обязан в
+     * нём участвовать, чтобы не смениться молча.
+     */
+    for (const deps of matchmaking.match(/\}, \[[^\]]*\]\)/g) ?? []) {
+      if (!deps.includes('leaseRefreshTick')) continue;
+      expect(deps).toContain('requestId');
+      expect(deps).toContain('mode');
+    }
+    expect(matchmaking).toContain('leaseRefreshTick');
+    expect(matchmaking).toContain('botRetryTick');
+  });
+
+  test('does not show an awaiting-rival promise after sync confirms a terminal match', () => {
+    const results = fs.readFileSync(path.join(ROOT, 'app/arena_results.tsx'), 'utf8');
+    expect(results).toContain("setSyncState(String(response.state ?? ''))");
+    expect(results).toContain("syncState !== 'settled' && syncState !== 'aborted'");
+  });
+
+  test('never follows a cached matched ticket from an older search', () => {
+    expect(matchmaking).toContain("queue.value?.requestId === requestId && queue.value.status === 'matched'");
+    expect(matchmaking).toContain('if (queue.value?.requestId === requestId) adoptBotSchedule(queue.value)');
+  });
+
   test('uses presentation thresholds without a new listener or ranked polling loop', () => {
     expect(matchmaking).toContain("rankedPresentation === 'quick_offer'");
     expect(matchmaking).toContain("rankedPresentation === 'calm'");
@@ -132,6 +170,13 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(match).toContain('arenaV2MatchSettle(matchId)');
     expect(match).toContain("BackHandler.addEventListener('hardwareBackPress'");
     expect(match).toContain('onBack={confirmForfeit}');
+  });
+
+  test('keeps an in-flight match plan across a React remount', () => {
+    const match = fs.readFileSync(path.join(ROOT, 'app/arena_match.tsx'), 'utf8');
+    expect(match).toContain('arenaMatchPlanRequests');
+    expect(match).toContain('arenaMatchPlanRequest(matchId)');
+    expect(match).toContain('[active, matchId, plan, planError]');
   });
 
   /** Точный таймер живёт в хуке — единственном месте с эффектами. */

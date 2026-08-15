@@ -14,7 +14,7 @@ import { getUtcDayKey } from '../local_date';
 export const COMEBACK_MIN_MISSED_DAYS = 2;
 
 /** Ключ «возврат уже отмечен сегодня» (идемпотентность за сутки). */
-const COMEBACK_GRANTED_KEY = 'boon_comeback_granted_v1';
+export const COMEBACK_GRANTED_KEY = 'boon_comeback_granted_v1';
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 

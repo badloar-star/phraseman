@@ -87,8 +87,8 @@ export function ArenaDailyGoals({ model }: { model: ArenaDailyGoalsModel }) {
     <Animated.View entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.duration(280)}>
       <V2Card pad={16} style={styles.card}>
         <View style={styles.head}>
-          <Text style={[styles.title, { color: P.text }]}>{arenaText(lang, 'goalsTitle')}</Text>
-          <Text style={[styles.counter, { color: model.allComplete ? P.accent : P.muted }]}>
+          <Text numberOfLines={1} style={[styles.title, { color: P.text }]}>{arenaText(lang, 'goalsTitle')}</Text>
+          <Text numberOfLines={1} style={[styles.counter, { color: model.allComplete ? P.accent : P.muted }]}>
             {model.completedCount} / {model.goals.length}
           </Text>
         </View>
@@ -128,9 +128,11 @@ export function ArenaDailyGoals({ model }: { model: ArenaDailyGoalsModel }) {
 
 const styles = StyleSheet.create({
   card: { gap: 12 },
-  head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  title: { fontSize: 18, fontWeight: '900' },
-  counter: { fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] },
+  // Заголовок уступает счётчику: «2 / 3» — это ответ на вопрос, ради которого
+  // на карточку и смотрят, а заголовок и так понятен по содержимому.
+  head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
+  title: { fontSize: 18, fontWeight: '900', flexShrink: 1 },
+  counter: { fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'], flexShrink: 0 },
   goal: { gap: 6 },
   goalHead: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   goalName: { flex: 1, fontSize: 14, fontWeight: '800' },

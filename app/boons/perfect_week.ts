@@ -18,7 +18,7 @@ import type { BoonReward } from './boon_rewards';
 export const PERFECT_WEEK_REWARD: BoonReward = { shards: 5 };
 
 /** Ключ «приз за неделю X уже выдан» (значение = week_days_week_key). */
-const PERFECT_WEEK_CLAIMED_KEY = 'boon_perfect_week_claimed_v1';
+export const PERFECT_WEEK_CLAIMED_KEY = 'boon_perfect_week_claimed_v1';
 
 /**
  * Календарный день (локальный), в который пользователь ЗАВЕРШИЛ онбординг. Значение —

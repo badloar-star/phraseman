@@ -420,9 +420,9 @@ describe("Firebase cost controls", () => {
 
   it("keeps admin VIP writes canonical so the orphan reconcile trigger can be retired", () => {
     // зачем: admin/index.html сейчас — это редирект-заглушка на /legacy.html,
-    // который hosting раздаёт из admin/legacy.html (единственная рабочая
+    // который hosting раздаёт из admin/v2/legacy.html (единственная рабочая
     // админка, см. CLAUDE.md). Проверяем канонические VIP-записи в живом файле.
-    const adminSource = read("admin/legacy.html");
+    const adminSource = read("admin/v2/legacy.html");
     const accessSource = read("functions/src/admin_access_controls.ts");
 
     expect(adminSource).toContain("getAdminGrantAccessCallable");

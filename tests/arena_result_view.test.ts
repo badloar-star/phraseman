@@ -163,8 +163,13 @@ describe('обрыв связи на экране результата', () => {
     expect(source).toContain("'resultPendingHint'");
   });
 
-  it('пустой экран до ответа честно называет себя загрузкой', () => {
-    expect(source).toContain("!match ?");
+  /**
+   * Раньше здесь стояла надпись «Загрузка». Владелец её запретил: экран
+   * результата и так открывается с игроками и счётом, а слово только
+   * превращает мгновение в ожидание.
+   */
+  it('до ответа экран молчит, а не пишет «Загрузка»', () => {
+    expect(source).not.toContain("arenaText(lang, 'loading')");
   });
 
   it('обе строки переведены на восемь языков', () => {
@@ -197,5 +202,86 @@ describe('неизвестная награда не выдаётся за но�
   it('счёт неизвестного игрока тоже не превращается в ноль', () => {
     const players = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaPlayers.tsx'), 'utf8');
     expect(players).toContain('player ? <V2Counter');
+  });
+});
+
+/**
+ * Ноль как утверждение — третий заход.
+ *
+ * Сначала это была награда за матч («+0» вместо «пока не знаю»), потом счёт
+ * неизвестного игрока. Здесь ещё два места: кошелёк на главном экране и свой
+ * тир в топах. Оба показывали ноль до того, как пришёл ответ, и оба отвечали
+ * на вопрос игрока о НЁМ САМОМ — а значит врали убедительно.
+ */
+describe('ноль не подменяет незнание', () => {
+  const read = (rel: string) => fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8');
+
+  it('кошелёк рисует прочерк, пока баланс неизвестен', () => {
+    const ui = read('components/arena/ArenaExpansionUI.tsx');
+    expect(ui).toContain("balance === null ? '—' : balance");
+    // И хаб действительно передаёт незнание, а не ноль.
+    expect(read('app/arena.tsx')).toContain('expansion ? expansion.wallet.walletStars : null');
+  });
+
+  it('топы не выдают чужой тир за свой', () => {
+    const tops = read('app/arena_tops.tsx');
+    expect(tops).not.toContain("arenaRankView(you?.rating ?? 0)");
+    expect(tops).toContain('you ? (');
+  });
+});
+
+/**
+ * Матч, который сервер ещё не закрыл: свой отчёт ушёл, а соперник не сдал.
+ * Игрок видел экран результата без награды и без единого слова о том, почему
+ * её нет и придёт ли она вообще.
+ */
+describe('ожидание отчёта соперника объясняется', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_results.tsx'), 'utf8');
+  const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[];
+
+  it('экран различает «отчёт не ушёл» и «соперник не сдал»', () => {
+    expect(source).toContain("'reportQueued'");
+    expect(source).toContain("'awaitingRival'");
+    /**
+     * Оговорка показывается только пока матч не закрыт и награды нет.
+     *
+     * Условие проверяется по частям, а не одной строкой целиком: строку
+     * целиком ломает любое ДОБАВЛЕНИЕ проверки в то же условие, даже
+     * правильное. Так и вышло — в условие добавили ещё и состояние
+     * синхронизации, и тест покраснел на здоровой правке. Тест, который
+     * краснеет от улучшений, учит не улучшать.
+     */
+    const awaiting = source.slice(source.indexOf("arenaText(lang, 'awaitingRival')") - 700,
+      source.indexOf("arenaText(lang, 'awaitingRival')"));
+    for (const part of ['!reportPending', '!match.terminal', '!reward']) {
+      expect(awaiting).toContain(part);
+    }
+  });
+
+  it('сказано, что матч закроется сам и награда придёт', () => {
+    for (const lang of langs) {
+      expect(arenaText(lang, 'awaitingRival').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'awaitingRivalHint').length).toBeGreaterThan(0);
+      // Это не то же самое, что «отчёт лежит в очереди»: там ничего не ушло.
+      expect(arenaText(lang, 'awaitingRival')).not.toBe(arenaText(lang, 'reportQueued'));
+    }
+  });
+});
+
+/**
+ * Длинное имя соперника не должно выталкивать счёт за край экрана: во время
+ * матча счёт важнее имени, а обрезанное многоточием имя читается нормально.
+ */
+describe('длинные имена не ломают строку игроков', () => {
+  const read = (rel: string) => fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8');
+
+  it('имя игрока обрезается многоточием', () => {
+    const players = read('components/arena/ArenaPlayers.tsx');
+    expect(players).toContain('numberOfLines={1}');
+    expect(players).toContain('ellipsizeMode="tail"');
+  });
+
+  it('заголовок строки раздела тоже ограничен', () => {
+    expect(read('components/arena/ArenaExpansionUI.tsx')).toContain('numberOfLines={2}');
   });
 });

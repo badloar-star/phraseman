@@ -738,6 +738,8 @@ ${indent}}`,
       "content_v2_season_release_manifests/{docId}",
       "content_v2_unified_course_release_heads/{docId}",
       "content_v2_unified_course_release_roots/{docId}",
+      "content_v2_unified_course_release_heads_v3/{docId}",
+      "content_v2_unified_course_release_roots_v3/{docId}",
       "users/{uid}/v2_required_session_runs/{docId}",
       "users/{uid}/v2_required_session_task_attempts/{docId}",
       "users/{uid}/v2_required_session_settlements/{docId}",
@@ -1473,11 +1475,48 @@ describe("firestore.rules coin exchange (coins → stars, 2026-07-20 plan §6)",
     expect(guardBodies).not.toBeNull();
     expect(guardBodies!.length).toBeGreaterThanOrEqual(2);
     for (const body of guardBodies!) {
+      expect(body).not.toContain("isAdmin()");
+      expect(body).toContain("'shards'");
+      expect(body).toContain("'shards_updated_at_ms'");
       expect(body).toContain("'v2_access_stars'");
       expect(body).toContain("'v2_access_stars_updated_at_ms'");
       expect(body).toContain("'coins_migration_v1'");
       expect(body).toContain("'coins_migration_v1_record'");
     }
+  });
+
+  test("personal shard fields have no browser-admin escape hatch", () => {
+    const updateGuard = rules.match(
+      /function hasNoShardWrites\(\) \{[\s\S]*?\n    \}/,
+    );
+    const createGuard = rules.match(
+      /function newDocHasNoShardWrites\(\) \{[\s\S]*?\n    \}/,
+    );
+    expect(updateGuard).not.toBeNull();
+    expect(createGuard).not.toBeNull();
+    for (const guard of [updateGuard![0], createGuard![0]]) {
+      expect(guard).not.toContain('isAdmin()');
+      for (const field of [
+        'shards', 'shards_updated_at_ms', 'shards_updated_op',
+        'shards_updated_reason', 'shards_admin_override_at',
+      ]) expect(guard).toContain(`'${field}'`);
+    }
+  });
+
+  test("browser admin cannot forge another user's client economy journal", () => {
+    const helper = rules.match(
+      /function personalEconomyOwnerMatchesAuth\(userId\) \{[\s\S]*?\n    \}/,
+    );
+    expect(helper).not.toBeNull();
+    expect(helper![0]).not.toContain('isAdmin()');
+    const economyBlock = rules.slice(
+      rules.indexOf('match /client_economy_operations/{operationId}'),
+      rules.indexOf('match /external_economy_events/{eventId}'),
+    );
+    expect(economyBlock).toContain('allow create: if personalEconomyOwnerMatchesAuth(userId)');
+    expect(economyBlock).toMatch(/allow create: if version == 'v1'\s*&& personalEconomyOwnerMatchesAuth\(userId\)/);
+    expect(economyBlock.match(/allow update: if personalEconomyOwnerMatchesAuth\(userId\)/g)).toHaveLength(2);
+    expect(economyBlock).not.toContain('allow create: if userDocOwnerMatchesAuth(userId)');
   });
 });
 

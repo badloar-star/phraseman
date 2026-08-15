@@ -24,7 +24,7 @@ export const EXCHANGE_HISTORY_COLLECTION = 'economy_exchange_history';
 export const COIN_EXCHANGE_TRADES_COLLECTION = 'coin_exchange_trades';
 export const V2_STAR_JOURNAL_SUBCOLLECTION = 'v2_star_journal';
 
-/** Топ-уровневые поля users/{uid}, которые пишет ТОЛЬКО сервер (как shards). */
+/** Серверные поля отдельного кошелька Learning V2; к личному жемчугу не относятся. */
 export const V2_ACCESS_STARS_FIELD = 'v2_access_stars';
 export const V2_ACCESS_STARS_UPDATED_AT_MS_FIELD = 'v2_access_stars_updated_at_ms';
 

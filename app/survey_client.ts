@@ -36,8 +36,7 @@ export type SubmitSurveyResult = {
   ok: boolean;
   alreadyGranted: boolean;
   reward: number;
-  balanceAfter: number;
-  shardsUpdatedAtMs: number | null;
+  eventId: string;
 };
 
 export function isSurveyCloudEnabled(): boolean {

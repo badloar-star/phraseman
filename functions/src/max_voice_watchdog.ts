@@ -13,6 +13,7 @@
 
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
+import { defineSecret } from 'firebase-functions/params';
 import type { Firestore } from 'firebase-admin/firestore';
 import {
   VOICE_QUOTA_COLLECTION,
@@ -23,11 +24,16 @@ import {
   VOICE_EST_COST_USD_PER_MIN,
   decrementVoiceMintCount,
   refundVoiceBudgetEstimate,
+  runMaxVoiceProviderProbe,
 } from './max_voice_mint';
 import { sanitizeVoiceUsage, writeVoiceBillingRow } from './max_voice_session_end';
 import { resolveMaxVoiceConfig } from './max_voice_config';
 
 const REGION = 'us-central1';
+const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
+
+/** Provider probe cadence: catches contract/key/model drift before user traffic. */
+export const MAX_VOICE_PROVIDER_HEALTH_SCHEDULE = 'every 10 minutes';
 
 /**
  * Свежий heartbeat = сессия ещё жива (например, reconnect-чейн в процессе или
@@ -172,5 +178,73 @@ export const maxVoiceWatchdog = functions.scheduler.onSchedule(
   { schedule: 'every 10 minutes', timeZone: 'UTC', region: REGION, memory: '256MiB', timeoutSeconds: 300 },
   async () => {
     await runMaxVoiceWatchdogOnce(admin.firestore(), Date.now());
+  },
+);
+
+function providerHealthErrorId(nowMs: number): string {
+  // Один app_errors document в час: Telegram/Jarvis получают сигнал, но outage
+  // не создаёт 6 одинаковых критических алертов подряд.
+  return `max_voice_provider_health_${Math.floor(nowMs / 3_600_000)}`;
+}
+
+async function recordProviderHealthFailure(
+  db: Firestore,
+  nowMs: number,
+  message: string,
+): Promise<void> {
+  await db.collection('app_errors').doc(providerHealthErrorId(nowMs)).set({
+    severity: 'critical',
+    feature: 'max_voice',
+    context: 'max_voice_provider_health',
+    errorName: 'MaxVoiceProviderHealthError',
+    message: message.slice(0, 900),
+    fingerprint: 'max_voice_provider_health',
+    platform: 'server',
+    appVersion: 'cloud-functions',
+    createdAtMs: nowMs,
+    createdAt: new Date(nowMs).toISOString(),
+    status: 'new',
+  }, { merge: true });
+}
+
+/**
+ * Живой control-plane probe OpenAI без открытия звонка: client secret сразу
+ * забывается, поэтому ни пользовательской сессии, ни audio inference нет.
+ */
+export const maxVoiceProviderHealth = functions.scheduler.onSchedule(
+  {
+    schedule: MAX_VOICE_PROVIDER_HEALTH_SCHEDULE,
+    timeZone: 'UTC',
+    region: REGION,
+    memory: '256MiB',
+    timeoutSeconds: 30,
+    maxInstances: 1,
+    secrets: [OPENAI_API_KEY],
+  },
+  async () => {
+    const nowMs = Date.now();
+    const db = admin.firestore();
+    const startedAtMs = nowMs;
+    try {
+      const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+      if (!apiKey) throw new Error('openai_key_missing');
+      const config = await resolveMaxVoiceConfig(db);
+      const result = await runMaxVoiceProviderProbe(apiKey, config);
+      const latencyMs = Date.now() - startedAtMs;
+      if (result.profile !== 'full') {
+        const message = `MAX Voice provider accepted only compatibility profile; model=${config.model}; latencyMs=${latencyMs}`;
+        console.error('max_voice_provider_health degraded', { model: config.model, latencyMs });
+        await recordProviderHealthFailure(db, nowMs, message);
+        return;
+      }
+      console.log('max_voice_provider_health ok', { model: config.model, latencyMs });
+    } catch (error) {
+      const message = String((error as Error)?.message ?? error).slice(0, 700);
+      console.error('max_voice_provider_health failed', { message });
+      await recordProviderHealthFailure(db, nowMs, message).catch((writeError) => {
+        console.error('max_voice_provider_health alert write failed', writeError);
+      });
+      throw error;
+    }
   },
 );

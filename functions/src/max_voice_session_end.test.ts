@@ -202,7 +202,7 @@ describe('maxVoiceSessionEnd — settlement', () => {
       authUid: AUTH,
       sessionId: 's1',
       callGroupId: 'root-1', // корень reconnect-чейна, не sessionId
-      model: 'gpt-realtime-mini',
+      model: 'gpt-realtime-2.1-mini',
       seconds: 200,
       // max(аккумулятор heartbeat'ов, финальный отчёт) — по каждому счётчику.
       audioInputTokens: 2100,

@@ -30,6 +30,8 @@ export type ArenaExpansionStateCopy = Readonly<{
   body?: ArenaExpansionCopyKey;
   action: ArenaExpansionStateAction;
   actionLabel?: ArenaExpansionCopyKey;
+  /** Ничего не рисовать вовсе: состояние есть, а показывать его нечем. */
+  silent?: boolean;
 }>;
 
 export type ArenaExpansionStateInput = Readonly<{
@@ -55,11 +57,28 @@ export function arenaExpansionStateCopy(input: ArenaExpansionStateInput): ArenaE
         ? { card: 'expired', title: 'ghostExpired', body: 'ghostExpiredHint', action: 'back', actionLabel: 'continueAction' }
         : { card: 'expired', title: 'expired', body: 'todayNextDay', action: 'back', actionLabel: 'continueAction' };
     case 'empty':
-      // Пустота без объяснения читается как поломка. Кнопки здесь нет: делать
-      // нечего, и ложная кнопка была бы хуже её отсутствия.
-      return { card: 'empty', title: 'empty', ...(input.emptyHint ? { body: input.emptyHint } : {}), action: 'none' };
+      /**
+       * Пустота без объяснения читается как поломка, поэтому причина здесь
+       * обязательна. Кнопка ПОВТОРА была бы ложной — повторять нечего, — а вот
+       * дорога назад нужна: без неё пустой экран остаётся тупиком с одной
+       * системной стрелкой. Это же правило уже действует на разборе матча.
+       */
+      return {
+        card: 'empty',
+        title: 'empty',
+        ...(input.emptyHint ? { body: input.emptyHint } : {}),
+        action: 'back',
+        actionLabel: 'continueAction',
+      };
     case 'loading':
-      return { card: 'loading', title: 'loading', action: 'none' };
+      /**
+       * Загрузка НЕ ПОКАЗЫВАЕТСЯ. Владелец (2026-08-13): «не должно быть
+       * видимой никогда нигде загрузки». Слово «Загрузка…» не сообщает
+       * игроку ничего, чего он не видит сам, зато превращает быстрый экран в
+       * ожидание. Экраны, где данные нужны сразу, рисуются тёплым снимком;
+       * остальные просто молчат эти доли секунды.
+       */
+      return { card: 'loading', title: 'loading', action: 'none', silent: true };
     default:
       return { card: 'ready', title: 'ready', action: 'none' };
   }

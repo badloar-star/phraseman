@@ -10,6 +10,7 @@ import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { SpinRewardPlaque } from '../components/SpinRewardPlaque';
 import { arenaText } from '../modules/arena/copy';
+import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
 import type { ArenaPlayer } from '../modules/arena/contract';
 import type { ArenaMatchReward } from '../modules/arena/contract';
@@ -27,9 +28,15 @@ export default function ArenaResultsScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
+  // Высота строки числом не растёт вместе с системным шрифтом — при
+  // крупном кегле строки наезжали друг на друга. См. use_arena_font_scale.
+  const fontScale = useArenaFontScale();
+  const reactionLine = { lineHeight: 17 * fontScale };
+  const pendingLine = { lineHeight: 20 * fontScale };
   const window = useWindowDimensions();
-  const params = useLocalSearchParams<{ matchId?: string; viewerSeat?: string }>();
+  const params = useLocalSearchParams<{ matchId?: string; viewerSeat?: string; reportRejected?: string }>();
   const matchId = typeof params.matchId === 'string' ? params.matchId : null;
+  const reportRejected = params.reportRejected === '1';
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
   const fxRef = useRef<TournamentFxApi>(null);
@@ -42,6 +49,7 @@ export default function ArenaResultsScreen() {
   const [reactionChosen, setReactionChosen] = useState<string | null>(null);
   const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(null);
   const [baseEnabled, setBaseEnabled] = useState(false);
+  const [syncState, setSyncState] = useState<string | null>(null);
   const [rivalBusy, setRivalBusy] = useState(false);
   const rivalAcceptRequestId = useRef<string | null>(null);
   /**
@@ -64,6 +72,7 @@ export default function ArenaResultsScreen() {
 
   useEffect(() => {
     if (active && matchId) void arenaV2SyncMatch(matchId).then((response) => {
+      setSyncState(String(response.state ?? ''));
       if (response.viewerSeat) { rememberArenaViewerSeat(matchId, response.viewerSeat); setViewerSeat(response.viewerSeat); }
       if (response.viewerReward) setPrivateReward(response.viewerReward);
     }).catch(() => {});
@@ -165,11 +174,11 @@ export default function ArenaResultsScreen() {
         <View style={styles.stats}>{players.map((player) => <ArenaStat key={player.uid} label={player.name} value={player.score} />)}</View>
         <ArenaRewards reward={reward} starsLabel={arenaText(lang, 'stars')} />
       </V2Card>
-      {reactionPack ? <View style={styles.reactions}><Text style={[styles.reactionHint, { color: P.muted }]}>{arenaExpansionText(lang, 'localReaction')}</Text>{(equipped.reaction_pack === 'reactions_respect' ? ['reactionRespect', 'reactionWellPlayed'] as const : ['reactionComeback', 'reactionAgain'] as const).map((key) => <V2Cta key={key} tone="ghost" disabled={reactionChosen !== null} onPress={() => setReactionChosen(key)}>{arenaExpansionText(lang, reactionChosen === key ? 'ready' : key)}</V2Cta>)}</View> : null}
+      {reactionPack ? <View style={styles.reactions}><Text style={[styles.reactionHint, reactionLine, { color: P.muted }]}>{arenaExpansionText(lang, 'localReaction')}</Text>{(equipped.reaction_pack === 'reactions_respect' ? ['reactionRespect', 'reactionWellPlayed'] as const : ['reactionComeback', 'reactionAgain'] as const).map((key) => <V2Cta key={key} tone="ghost" disabled={reactionChosen !== null} onPress={() => setReactionChosen(key)}>{arenaExpansionText(lang, reactionChosen === key ? 'ready' : key)}</V2Cta>)}</View> : null}
       {reward?.spinAwarded && reward.spinReceiptId ? (
         <SpinRewardPlaque amount={1} receiptId={reward.spinReceiptId} visible onComplete={() => {}} staticPresentation />
       ) : null}
-      {match?.mode === 'series' ? <V2Card style={styles.seriesCard}><Text style={[styles.reactionHint, { color: P.muted }]}>{arenaExpansionText(lang, 'rivalryBody')}</Text><Text style={[styles.seriesScore, { color: P.gold }]}>{arenaExpansionText(lang, 'score').replace('{you}', String(seriesYou)).replace('{them}', String(seriesThem))}</Text></V2Card> : null}
+      {match?.mode === 'series' ? <V2Card style={styles.seriesCard}><Text style={[styles.reactionHint, reactionLine, { color: P.muted }]}>{arenaExpansionText(lang, 'rivalryBody')}</Text><Text style={[styles.seriesScore, { color: P.gold }]}>{arenaExpansionText(lang, 'score').replace('{you}', String(seriesYou)).replace('{them}', String(seriesThem))}</Text></V2Card> : null}
       {arenaResultHasAnnounce(announce) ? (
         <V2Card style={styles.announce}>
           {announce.rank.kind === 'tier_up' || announce.rank.kind === 'tier_down' ? (
@@ -217,7 +226,7 @@ export default function ArenaResultsScreen() {
         ? router.replace('/arena_rivalries' as never)
         : match?.mode === 'friend'
         ? router.replace('/arena_friend_duel' as never)
-        : router.replace({ pathname: '/arena_matchmaking', params: { mode: match?.mode === 'ranked' ? 'ranked' : 'quick' } } as never)}>{match?.mode === 'series' ? arenaExpansionText(lang, 'rivalryContinue') : arenaText(lang, 'playAgain')}</V2Cta>
+        : router.replace({ pathname: '/arena_matchmaking', params: { mode: match?.mode === 'ranked' ? 'ranked' : 'quick', requestId: createArenaRequestId('queue') } } as never)}>{match?.mode === 'series' ? arenaExpansionText(lang, 'rivalryContinue') : arenaText(lang, 'playAgain')}</V2Cta>
       <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
       {baseEnabled && expansion?.availability.lab && matchId ? <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_match_lab', params: { matchId } } as never)}>{arenaExpansionText(lang, 'review')}</V2Cta> : null}
       {baseEnabled && expansion?.availability.ghost && matchId && (match?.mode === 'quick' || match?.mode === 'ranked') ? <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_ghost_duel', params: { sourceRunId: matchId, sourceKind: 'arena_match' } } as never)}>{arenaExpansionText(lang, 'ghostCreate')}</V2Cta> : null}
@@ -229,23 +238,48 @@ export default function ArenaResultsScreen() {
         Игрок видел красное и думал, что потерял результат матча. Результат
         при этом уже засчитан на сервере: ждёт только доставка.
       */}
+      {/*
+        Матч ещё не закрыт: свой отчёт ушёл, а соперник не сдал. Раньше игрок
+        видел экран результата без награды и без единого слова о том, почему
+        её нет и придёт ли она вообще.
+      */}
+      {/*
+        Сервер отказался засчитывать матч. Молчать здесь нельзя: без этой
+        строки ниже включилось бы «ждём соперника» — обещание награды, которая
+        не придёт никогда.
+      */}
+      {reportRejected ? (
+        <View style={styles.pending}>
+          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.danger }]}>
+            {arenaText(lang, 'reportRejected')}
+          </Text>
+          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{arenaText(lang, 'reportRejectedHint')}</Text>
+        </View>
+      ) : null}
+      {/* Сначала сохраняем базовый контракт `!match.terminal && !reward`, затем
+          уточняем его свежим callable-состоянием на случай отставшего snapshot. */}
+      {!reportRejected && !reportPending && match && !match.terminal && !reward
+        && syncState !== 'settled' && syncState !== 'aborted' ? (
+        <View style={styles.pending}>
+          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
+            {arenaText(lang, 'awaitingRival')}
+          </Text>
+          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{arenaText(lang, 'awaitingRivalHint')}</Text>
+        </View>
+      ) : null}
       {reportPending ? (
         <View style={styles.pending}>
           <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
             {arenaText(lang, 'reportQueued')}
           </Text>
-          <Text style={[styles.pendingHint, { color: P.muted }]}>{arenaText(lang, 'reportQueuedHint')}</Text>
+          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{arenaText(lang, 'reportQueuedHint')}</Text>
         </View>
       ) : live.error ? (
         <View style={styles.pending}>
           <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
             {arenaText(lang, 'resultPending')}
           </Text>
-          <Text style={[styles.pendingHint, { color: P.muted }]}>{arenaText(lang, 'resultPendingHint')}</Text>
-        </View>
-      ) : !match ? (
-        <View style={styles.pending}>
-          <Text style={[styles.pendingHint, { color: P.muted }]}>{arenaText(lang, 'loading')}</Text>
+          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{arenaText(lang, 'resultPendingHint')}</Text>
         </View>
       ) : null}
     </ArenaScreen>
@@ -266,11 +300,11 @@ const styles = StyleSheet.create({
   cosmeticTitle: { textAlign: 'center', fontSize: 13, fontWeight: '900' },
   stamp: { textAlign: 'center', fontSize: 15, fontWeight: '900' },
   reactions: { minHeight: 44, gap: 8 },
-  reactionHint: { fontSize: 12, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
+  reactionHint: { fontSize: 12, fontWeight: '700', textAlign: 'center' },
   seriesCard: { gap: 6, alignItems: 'center' },
   seriesScore: { fontSize: 20, fontWeight: '900', fontVariant: ['tabular-nums'] },
   error: { textAlign: 'center', fontWeight: '700' },
   pending: { gap: 4, alignItems: 'center', paddingVertical: 8 },
   pendingTitle: { fontSize: 17, fontWeight: '900', textAlign: 'center' },
-  pendingHint: { fontSize: 14, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
+  pendingHint: { fontSize: 14, fontWeight: '600', textAlign: 'center' },
 });

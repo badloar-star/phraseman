@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
@@ -22,6 +23,7 @@ import {
   type DevLocalPlusOverride,
 } from '../../app/dev_plus_controls';
 import { grantLocalDevSpin } from '../../app/local_level_spins';
+import { isMaxVoiceNativeAvailable } from '../../app/max_webrtc_module';
 import { hapticTap } from '../../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -39,6 +41,7 @@ import {
 } from './devToolRegistry';
 import LeagueResultModal from '../../app/LeagueResultModal';
 import { buildLeagueDevSeed, type LeagueDevSeedId } from './leagueDevSeeds';
+import { MOTION_LAB_ROUTE } from '../../constants/devRoutes';
 
 export type DevHubSheetProps = Readonly<{
   visible: boolean;
@@ -114,6 +117,7 @@ function ToolRow({
 }
 
 export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveChange }: DevHubSheetProps) {
+  const router = useRouter();
   const { theme: t, themeMode, f } = useTheme();
   const { hasPremiumAccess, reload } = usePremium();
   const insets = useStableSafeAreaInsets();
@@ -191,20 +195,24 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     return () => { active = false; };
   }, [account.phase, account.stableId, visible]);
 
-  const requestClose = useCallback((preservePreview = false) => {
+  const requestClose = useCallback((preservePreview = false, onClosed?: () => void) => {
     if (closingRef.current) return;
     closingRef.current = true;
     hapticTap();
     if (!preservePreview) setPreview(null);
     if (reduceMotion) {
       onClose();
+      onClosed?.();
       return;
     }
     Animated.parallel([
       Animated.timing(backdropOpacity, { toValue: 0, duration: 160, useNativeDriver: true }),
       Animated.timing(sheetY, { toValue: SHEET_HIDDEN_Y, duration: 240, useNativeDriver: true }),
     ]).start(({ finished }) => {
-      if (finished) onClose();
+      if (finished) {
+        onClose();
+        onClosed?.();
+      }
       else closingRef.current = false;
     });
   }, [backdropOpacity, onClose, reduceMotion, sheetY]);
@@ -335,6 +343,23 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
 
   const handleTool = useCallback((action: DevToolAction) => {
     switch (action) {
+      case 'open-motion-lab':
+        // Лаборатория движения — обычный маршрут. Закрываем native Modal до
+        // смены route, иначе iOS оставит DEV-sheet поверх сцены.
+        requestClose(false, () => router.push(MOTION_LAB_ROUTE as never));
+        return;
+      case 'open-max-voice':
+        if (!isMaxVoiceNativeAvailable()) {
+          setNotice('MAX Voice не встроен в установленную DEV-сборку. Metro обновляет только JavaScript — пересобери и установи приложение на iPhone.');
+          return;
+        }
+        // Полноценный режим, не preview: закрываем native Modal до смены route,
+        // чтобы iOS не оставлял DEV-sheet поверх pre-start экрана звонка.
+        requestClose(false, () => router.push({
+          pathname: '/max_call_prestart',
+          params: { devMode: '1' },
+        } as never));
+        return;
       case 'preview-level-standard':
         openPreview('standard');
         return;
@@ -365,7 +390,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'revoke-plus':
         void applyPlusOverride('removed');
     }
-  }, [applyPlusOverride, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview]);
+  }, [applyPlusOverride, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview, requestClose, router]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const milestone = preview?.type === 'level-up' && preview.variant === 'milestone';

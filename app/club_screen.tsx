@@ -89,7 +89,7 @@ import { safeRouterBack } from './navigation_back';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { oskolokImageForPackShards } from './oskolok';
 import { getLeagueXpPromotionThreshold, isLeagueXpPromotionEnabled } from './remote_flags';
-import { getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
+import { getShardsBalance } from './shards_system';
 import {
   LEAGUE_GROUP_BOOST_COST_SHARDS,
   LEAGUE_GROUP_BOOST_DURATION_MS,
@@ -136,7 +136,7 @@ function buildLeagueChestPreviewRewards(isCrownWinner: boolean): LeagueChestRewa
     { id: 'preview_league_shards', kind: 'shards', rarity: 'common', amount: 24 },
     { id: 'preview_league_energy', kind: 'energy_fast_recovery', rarity: 'rare', recoveryMs: 5 * 60 * 1000 },
     { id: 'preview_league_xp', kind: 'xp_boost', rarity: 'rare', multiplier: 2, uses: 3 },
-    { id: 'preview_league_aura_violet', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-violet' },
+    { id: 'preview_league_aura_prism', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-prism' },
     { id: 'preview_league_avatar', kind: 'custom_avatar', rarity: 'epic', customAvatarId: 'future-league-avatar' },
     { id: 'preview_league_gold_theme', kind: 'gold_theme', rarity: 'legendary' },
   ];
@@ -1154,9 +1154,6 @@ export default function ClubScreen() {
     setGroupBoostLikedToday(false);
     setGroupBoostConfirmVisible(false);
     void cacheLeagueGroupBoost(optimisticBoost);
-    if (!giftVoucher && previousBalance !== null) {
-      void replaceShardsBalanceLocal(Math.max(0, previousBalance - LEAGUE_GROUP_BOOST_COST_SHARDS));
-    }
     setGroupBoostBuying(true);
     try {
       const res = await buyLeagueGroupBoost();
@@ -1176,7 +1173,6 @@ export default function ClubScreen() {
         setActiveGroupBoost(previousBoost);
         setGroupBoostLikeTotal(0);
         void cacheLeagueGroupBoost(previousBoost);
-        if (!giftVoucher && previousBalance !== null) void replaceShardsBalanceLocal(previousBalance);
       }
       if (res.reason === 'active') {
         showLeagueToast(triLang(lang, { ru: 'Буст уже активен. Новый можно купить после таймера.', uk: 'Буст уже активний. Новий можна придбати після завершення таймера.', es: 'El impulso ya está activo. Podrás comprar otro cuando termine el temporizador.', 'pt-BR': 'O impulso já está ativo. Você poderá comprar outro quando o cronômetro terminar.', vi: 'Tăng cường đã hoạt động. Bạn có thể mua lượt mới sau khi hết giờ.', id: 'Boost sudah aktif. Kamu dapat membeli yang baru setelah pengatur waktu berakhir.', tr: 'Güçlendirme zaten etkin. Süre dolduğunda yenisini alabilirsiniz.', pl: 'Wzmocnienie jest już aktywne. Nowe będzie można kupić po zakończeniu odliczania.' }), 'info');

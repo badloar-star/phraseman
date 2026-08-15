@@ -16,14 +16,15 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { safeRouterBack } from './navigation_back';
 import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
 import { loadMaxVoiceNative } from './max_webrtc_module';
+import { maxVoiceFailureMessage, maxVoiceFailureReason } from './max_voice_error';
 
 /**
  * Пре-экран «Позвонить» (спека, раздел 1: max_call_prestart).
  *
  * Зачем отдельный экран: «топливо» (остаток минут дня) живёт ЗДЕСЬ крупно,
  * а не в звонке — во время разговора таймер давит на ученика, до разговора
- * помогает решиться. Здесь же пре-пермишн микрофона: системный диалог до
- * начала звонка, а не в момент, когда собеседник уже «поднял трубку».
+ * помогает решиться. Здесь заранее греется облачный mint; микрофон открывает
+ * только настоящий звонок, чтобы prewarm-трек не гонялся с WebRTC на iPhone.
  *
  * Дешёвый maxVoicePreflight — при входе (квота/гейты без минта); сам минт
  * делает экран звонка: резерв не должен висеть, пока юзер раздумывает.
@@ -72,18 +73,19 @@ export default function MaxCallPrestart() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
-  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string }>();
+  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string }>();
 
   const format: 'scenario' | 'companion' | 'trial' =
     params.format === 'companion' || params.format === 'trial' ? params.format : 'scenario';
   const scenarioId = String(params.scenarioId ?? 'coffee');
+  const devMode = params.devMode === '1';
   const scenario = useMemo(
     () => (format === 'companion' ? undefined : getScenarioById(scenarioId)),
     [format, scenarioId],
   );
 
   const [preflight, setPreflight] = useState<PreflightView | null>(null);
-  const [requesting, setRequesting] = useState(false);
+  const [preflightReason, setPreflightReason] = useState<string | null>(null);
   const mountedRef = useRef(true);
 
   useEffect(() => {
@@ -92,19 +94,31 @@ export default function MaxCallPrestart() {
     void (async () => {
       try {
         await initFirebaseAppCheckIfAvailable();
-        const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'maxVoicePreflight');
-        const res = await fn({ format, scenarioId: format === 'companion' ? undefined : scenarioId });
-        if (mountedRef.current) setPreflight(parsePreflight(res.data, format));
-      } catch {
-        // Сервер недоступен/гейты закрыты: экран живёт от дефолтов, честный
-        // отказ юзер получит на минте — здесь пугать рано.
-        if (mountedRef.current) setPreflight(null);
+        const functions = getFunctions(getApp(), FUNCTIONS_REGION);
+        const fn = httpsCallable(functions, 'maxVoicePreflight');
+        // Греем тот же инстанс минта заранее. На тап кнопки сеть больше не
+        // блокирует навигацию, а production minInstances страхует быстрый тап.
+        void httpsCallable(functions, 'maxVoiceMint')({ warmupPing: true }).catch(() => {});
+        const res = await fn({
+          format,
+          scenarioId: format === 'companion' ? undefined : scenarioId,
+          ...(devMode ? { devMode: true } : {}),
+        });
+        if (mountedRef.current) {
+          setPreflight(parsePreflight(res.data, format));
+          setPreflightReason(null);
+        }
+      } catch (error) {
+        if (mountedRef.current) {
+          setPreflight(null);
+          setPreflightReason(maxVoiceFailureReason(error, 'preflight_failed'));
+        }
       }
     })();
     return () => {
       mountedRef.current = false;
     };
-  }, [format, scenarioId]);
+  }, [devMode, format, scenarioId]);
 
   const capSec = preflight?.capSec ?? DEFAULT_CAP_SEC[format];
   const capMin = Math.max(1, Math.round(capSec / 60));
@@ -130,9 +144,8 @@ export default function MaxCallPrestart() {
         ? dialogScenarioTitle(scenario, lang)
         : '';
 
-  const startCall = async () => {
+  const startCall = () => {
     hapticTap();
-    if (requesting) return;
     const native = loadMaxVoiceNative();
     if (!native) {
       // Гейт должен был скрыть вход, но deeplink обязан деградировать честно.
@@ -160,50 +173,15 @@ export default function MaxCallPrestart() {
       );
       return;
     }
-    setRequesting(true);
-    try {
-      // Пре-пермишн: системный запрос микрофона ДО звонка. Полученный поток
-      // сразу останавливаем — реальный захват делает транспорт на старте.
-      const stream = await native.mediaDevices.getUserMedia({ audio: true });
-      for (const track of stream.getTracks()) {
-        try {
-          track.stop();
-        } catch {}
-      }
-    } catch {
-      if (mountedRef.current) setRequesting(false);
-      Alert.alert(
-        triLang(lang, {
-          ru: 'Нужен микрофон',
-          uk: 'Потрібен мікрофон',
-          es: 'Se necesita el micrófono',
-          'pt-BR': 'O microfone é necessário',
-          vi: 'Cần quyền micro',
-          id: 'Mikrofon diperlukan',
-          tr: 'Mikrofon gerekli',
-          pl: 'Potrzebny jest mikrofon',
-        }),
-        triLang(lang, {
-          ru: 'Разреши доступ к микрофону в настройках, чтобы звонить собеседнику',
-          uk: 'Дозволь доступ до мікрофона в налаштуваннях, щоб дзвонити співрозмовнику',
-          es: 'Permite el acceso al micrófono en ajustes para poder llamar',
-          'pt-BR': 'Permita o acesso ao microfone nos ajustes para poder ligar',
-          vi: 'Cho phép truy cập micro trong cài đặt để gọi điện',
-          id: 'Izinkan akses mikrofon di pengaturan untuk menelepon',
-          tr: 'Arama yapabilmek için ayarlardan mikrofon erişimine izin ver',
-          pl: 'Zezwól na dostęp do mikrofonu w ustawieniach, aby dzwonić',
-        }),
-      );
-      return;
-    }
-    if (!mountedRef.current) return;
-    setRequesting(false);
+    // Первый тап сразу открывает живой разговорный экран. Все серверные гейты
+    // всё равно повторно и атомарно проверяет maxVoiceMint.
     router.replace({
       pathname: '/max_call_session',
       params: {
         format,
         ...(format === 'companion' ? {} : { scenarioId }),
         ...(typeof params.cefr === 'string' && params.cefr !== '' ? { cefr: params.cefr } : {}),
+        ...(devMode ? { devMode: '1' } : {}),
       },
     } as any);
   };
@@ -340,15 +318,67 @@ export default function MaxCallPrestart() {
 
           <View style={{ flex: 1 }} />
 
-          {/* Кнопка «Позвонить» (пре-пермишн микрофона по нажатию) */}
+          {preflightReason ? (
+            <>
+              <View
+                testID="max-call-preflight-error"
+                style={{ backgroundColor: t.wrongBg, borderRadius: 14, padding: 12, marginBottom: 10 }}
+              >
+                <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '700', textAlign: 'center' }}>
+                  {maxVoiceFailureMessage(preflightReason, lang)}
+                </Text>
+                {__DEV__ ? (
+                  <Text style={{ color: t.textMuted, fontSize: f.label, textAlign: 'center', marginTop: 4 }}>
+                    {`MAX: ${preflightReason}`}
+                  </Text>
+                ) : null}
+              </View>
+              {format !== 'companion' ? (
+                <TouchableOpacity
+                  testID="max-preflight-fallback-button"
+                  accessibilityRole="button"
+                  onPress={() => {
+                    hapticTap();
+                    router.replace({
+                      pathname: '/ai_dialog_session',
+                      params: { scenarioId, maxFallback: '1' },
+                    } as any);
+                  }}
+                  style={{
+                    backgroundColor: t.bgSurface,
+                    borderRadius: 14,
+                    paddingVertical: 12,
+                    paddingHorizontal: 18,
+                    marginBottom: 10,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                    {triLang(lang, {
+                      ru: 'Продолжить в режиме рации',
+                      uk: 'Продовжити в режимі рації',
+                      es: 'Continuar en modo walkie-talkie',
+                      'pt-BR': 'Continuar no modo rádio',
+                      vi: 'Tiếp tục ở chế độ bộ đàm',
+                      id: 'Lanjut dalam mode walkie-talkie',
+                      tr: 'Telsiz modunda devam et',
+                      pl: 'Kontynuuj w trybie krótkofalówki',
+                    })}
+                  </Text>
+                </TouchableOpacity>
+              ) : null}
+            </>
+          ) : null}
+
+          {/* Кнопка «Позвонить»: никаких сетевых await и loading-state. */}
           <TouchableOpacity
             testID="max-call-start-button"
             accessibilityRole="button"
-            disabled={requesting || noMinutesLeft}
-            onPress={() => void startCall()}
+            disabled={noMinutesLeft}
+            onPress={startCall}
             style={{
               backgroundColor: noMinutesLeft ? t.bgSurface2 : t.accent,
-              opacity: requesting ? 0.7 : 1,
+              opacity: 1,
               borderRadius: 18,
               paddingVertical: 16,
               marginBottom: 18,

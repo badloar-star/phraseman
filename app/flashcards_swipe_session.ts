@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { normalizeDeckIds, type FcDeckId } from './flashcards/deck_selection';
 import {
   flashcardsSwipeSessionDraftKey,
   type RuntimeStudyTarget,
@@ -256,6 +257,54 @@ export function swipeDistanceThresholdPx(width: number): number {
 export function swipeBadgeFullAtPx(width: number): number {
   const w = Math.max(0, finiteNum(width));
   return Math.max(28, Math.min(70, Math.round(w * BADGE_FULL_RATIO)));
+}
+
+// ── Наборы: общий `?deck=` ↔ источники экрана свайпа ─────────────────────────
+//
+// FIX (владелец, 2026-08-13): «Тренировка» в таббаре раздела «Карточки» — это
+// свайп-режим (этот экран), а не тренажёр «Моя практика». Таббар и
+// DeckPickerSheet говорят на общем языке `FcDeckId` (`saved` / `custom` /
+// `pack:<id>`), а экран свайпа — на своих id источников (`saved:all`,
+// `custom:all`, `official:<id>`, `community:<id>`). Перевод между ними — здесь:
+// чистые функции без RN, покрыты юнит-тестами.
+
+/** Источник экрана свайпа в объёме, нужном для сопоставления с набором. */
+export type SwipeSourceLike = {
+  id: string;
+  kind: 'saved' | 'custom' | 'official' | 'community';
+};
+
+/** `FcDeckId` источника (`null` — источник без опознаваемого набора). */
+export function deckIdForSwipeSource(source: SwipeSourceLike | null | undefined): FcDeckId | null {
+  if (!source) return null;
+  if (source.kind === 'saved') return 'saved';
+  if (source.kind === 'custom') return 'custom';
+  const raw = typeof source.id === 'string' ? source.id : '';
+  const packId = raw.slice(raw.indexOf(':') + 1).trim();
+  return packId && raw.includes(':') ? (`pack:${packId}` as FcDeckId) : null;
+}
+
+/** Отметить в списке источников ровно те, что пришли в `?deck=` (порядок списка). */
+export function swipeSourceIdsForDeckIds(
+  sources: readonly SwipeSourceLike[] | null | undefined,
+  deckIds: readonly FcDeckId[] | null | undefined,
+): string[] {
+  const wanted = new Set(normalizeDeckIds(deckIds ?? []));
+  if (wanted.size === 0 || !sources) return [];
+  const out: string[] = [];
+  for (const source of sources) {
+    const deckId = deckIdForSwipeSource(source);
+    if (deckId && wanted.has(deckId) && !out.includes(source.id)) out.push(source.id);
+  }
+  return out;
+}
+
+/** Обратный перевод — что запомнить в `fc_mode_prefs_v1` после старта сессии. */
+export function deckIdsForSwipeSources(
+  sources: readonly SwipeSourceLike[] | null | undefined,
+): FcDeckId[] {
+  if (!sources) return [];
+  return normalizeDeckIds(sources.map(deckIdForSwipeSource).filter((id): id is FcDeckId => id !== null));
 }
 
 export type SwipeGestureSample = { dx: number; dy: number; vx: number };

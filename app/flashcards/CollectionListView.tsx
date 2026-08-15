@@ -310,11 +310,13 @@ export default function CollectionListView({
     anim.scale.setValue(1);
     setDeletingId(item.id);
     setLongPressedId(null);
-    // Flash white → scale up → fade out
+    // Поджатие → fade out. ВАЖНО: потолок масштаба строго 1 — апскейл вьюхи с
+    // текстом рисует слой в layout-размере и растягивает его, отчего кириллица
+    // выглядит «мыльной/пиксельной» во время анимации (жалоба владельца).
     Animated.sequence([
-      Animated.timing(anim.scale, { toValue: 1.06, duration: 80, useNativeDriver: true }),
+      Animated.timing(anim.scale, { toValue: 1, duration: 80, useNativeDriver: true }),
       Animated.parallel([
-        Animated.timing(anim.scale, { toValue: 1.18, duration: 260, useNativeDriver: true }),
+        Animated.timing(anim.scale, { toValue: 0.9, duration: 260, useNativeDriver: true }),
         Animated.timing(anim.opacity, { toValue: 0, duration: 280, useNativeDriver: true }),
       ]),
     ]).start(async () => {
@@ -749,53 +751,41 @@ export function UndoDeleteSnackbar({
 
 // ── Empty state (вынесен из early-return монолита; хедер остаётся у контейнера) ──
 export function CollectionEmptyState({
-  activeCat,
   lang,
   t,
   f,
   emptyTitle,
   emptySub,
   loadError,
-  allowAddCustomCard,
-  showCreatePackButton,
   onLeave,
   onRetry,
-  onCreateCard,
-  onCreatePack,
 }: {
-  activeCat: CategoryId;
   lang: FlashcardContentLang;
   t: Theme;
   f: Record<string, number>;
   emptyTitle: string;
   emptySub: string;
   loadError: boolean;
-  allowAddCustomCard: boolean;
-  showCreatePackButton: boolean;
   onLeave: () => void;
   onRetry: () => void;
-  onCreateCard: () => void;
-  onCreatePack: () => void;
 }) {
   return (
     <View style={st.centerState}>
-      <Ionicons name={activeCat === 'custom' ? 'pencil-outline' : 'bookmark-outline'} size={56} color={t.textGhost} />
+      <Ionicons name="bookmark-outline" size={56} color={t.textGhost} />
       <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginTop: 12 }}>{emptyTitle}</Text>
       <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 6 }}>{emptySub}</Text>
-      {activeCat !== 'custom' && (
-        <TouchableOpacity
-          onPress={onLeave}
-          style={{ marginTop: 14, paddingHorizontal: 12, paddingVertical: 8 }}
-        >
-          <Text style={{ color: t.textSecond, fontSize: f.sub, textDecorationLine: 'underline' }}>
-            {triLang(lang, {
-              ru: 'К выбору категорий',
-              uk: 'До вибору категорій',
-              es: 'Volver al menú de cartas',
-            })}
-          </Text>
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity
+        onPress={onLeave}
+        style={{ marginTop: 14, paddingHorizontal: 12, paddingVertical: 8 }}
+      >
+        <Text style={{ color: t.textSecond, fontSize: f.sub, textDecorationLine: 'underline' }}>
+          {triLang(lang, {
+            ru: 'К выбору категорий',
+            uk: 'До вибору категорій',
+            es: 'Volver al menú de cartas',
+          })}
+        </Text>
+      </TouchableOpacity>
       {loadError && (
         <TouchableOpacity
           onPress={onRetry}
@@ -807,33 +797,6 @@ export function CollectionEmptyState({
               uk: 'Повторити завантаження',
               es: 'Reintentar la carga',
             })}
-          </Text>
-        </TouchableOpacity>
-      )}
-      {activeCat === 'custom' && allowAddCustomCard && (
-        <TouchableOpacity
-          testID="fc-create-card-empty"
-          accessibilityLabel="qa-fc-create-card"
-          accessible
-          onPress={onCreateCard}
-          style={{ marginTop: 24, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 32, paddingVertical: 14 }}
-        >
-          <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
-            {triLang(lang, {
-              ru: '+ Создать первую карточку',
-              uk: '+ Створити першу картку',
-              es: '+ Crear la primera tarjeta',
-            })}
-          </Text>
-        </TouchableOpacity>
-      )}
-      {activeCat === 'custom' && showCreatePackButton && (
-        <TouchableOpacity
-          onPress={onCreatePack}
-          style={{ marginTop: 14, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 12, borderWidth: 1, borderColor: t.accent }}
-        >
-          <Text style={{ color: t.accent, fontWeight: '700', fontSize: f.body }}>
-            {triLang(lang, { ru: '+ Создать набор', uk: '+ Створити набір', es: '+ Crear pack' })}
           </Text>
         </TouchableOpacity>
       )}

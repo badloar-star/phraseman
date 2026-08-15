@@ -43,6 +43,7 @@ export type CommunityPurchaseResponse = {
   authorNetShards?: number;
   buyerBalanceAfter?: number;
   shardsUpdatedAtMs?: number;
+  purchaseId?: string;
   studyTarget?: 'en' | 'fr';
 };
 

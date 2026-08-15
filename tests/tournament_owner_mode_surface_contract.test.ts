@@ -61,7 +61,7 @@ describe("owner-approved tournament surfaces", () => {
   });
 
   test("the live admin pool exposes exactly the five approved modes", () => {
-    const admin = read("admin/legacy.html");
+    const admin = read("admin/v2/legacy.html");
     const activeStart = admin.indexOf("const TN_ACTIVE_MODE_LABEL =");
     const activeEnd = admin.indexOf("const TN_RETIRED_MODES =", activeStart);
     const foldersStart = admin.indexOf("const TN_FOLDERS =");
@@ -88,7 +88,7 @@ describe("owner-approved tournament surfaces", () => {
   });
 
   test("retired task data remains reviewable without becoming a live mode", () => {
-    const admin = read("admin/legacy.html");
+    const admin = read("admin/v2/legacy.html");
     const retiredStart = admin.indexOf("const TN_RETIRED_MODES =");
     const retiredEnd = admin.indexOf("const tnModeLabel =", retiredStart);
     const retiredModes = admin.slice(retiredStart, retiredEnd);

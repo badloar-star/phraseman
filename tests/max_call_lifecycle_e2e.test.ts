@@ -20,6 +20,7 @@ import {
   toServerEndReason,
   MAX_CALL_HEARTBEAT_MS,
   MAX_CALL_BARGE_IN_MUTE_MS,
+  MAX_CALL_CONNECT_TIMEOUT_MS,
   type MaxCallPhase,
   type MaxCallTranscriptEvent,
   type MaxVoiceMintResponse,
@@ -163,6 +164,7 @@ interface Harness {
 
 interface HarnessOptions {
   mintImpl?: (req: Record<string, unknown>, callIndex: number) => Promise<MaxVoiceMintResponse>;
+  mediaImpl?: (callIndex: number) => Promise<{ getTracks(): FakeTrack[] }>;
   exchangeSdpImpl?: (offer: string, secret: string) => Promise<string>;
   endImpl?: () => Promise<unknown>;
   preflight?: () => Promise<unknown>;
@@ -205,6 +207,7 @@ function createHarness(opts: HarnessOptions = {}): Harness {
   const sfxLog: string[] = [];
   const history: TranscriptTurn[] = [];
   let nowMs = 1_000_000;
+  let mediaCalls = 0;
 
   const native = {
     RTCPeerConnection: function FakePC(this: unknown) {
@@ -214,6 +217,8 @@ function createHarness(opts: HarnessOptions = {}): Harness {
     } as unknown as new (config?: Record<string, unknown>) => FakePeerConnection,
     mediaDevices: {
       async getUserMedia(): Promise<{ getTracks(): FakeTrack[] }> {
+        const callIndex = mediaCalls++;
+        if (opts.mediaImpl) return opts.mediaImpl(callIndex);
         const tracks = [makeTrack()];
         const stream = { tracks, getTracks: () => tracks };
         streams.push(stream);
@@ -575,6 +580,52 @@ describe('E2E: потеря сети', () => {
     await h.client.end();
   });
 
+  it('неоткрывшийся data channel ре-минта имеет таймаут и продолжает от нового sessionId', async () => {
+    const h = createHarness();
+    await bringUpCall(h);
+    h.pc().setIce('failed');
+    h.advance(RECONNECT_GRACE_MS);
+    await flush();
+
+    expect(h.client.sessionId()).toBe('sess_2');
+    expect(h.mintCalls).toHaveLength(2);
+    // Второй канал никогда не открывается — через bounded timeout клиент
+    // обязан не зависнуть, а перенести уже активный резерв sess_2 → sess_3.
+    h.advance(MAX_CALL_CONNECT_TIMEOUT_MS);
+    await flush(24);
+
+    expect(h.mintCalls).toHaveLength(3);
+    expect(h.mintCalls[2].reconnectOf).toBe('sess_2');
+    h.pc().dc.open();
+    expect(h.client.phase()).toBe('active');
+    expect(h.client.sessionId()).toBe('sess_3');
+    await h.client.end();
+  });
+
+  it('сбой микрофона после transferReserve продолжает реконнект от перенесённой сессии', async () => {
+    const h = createHarness({
+      mediaImpl: async (callIndex) => {
+        if (callIndex === 1) throw new Error('ios_audio_session_transition_failed');
+        const tracks = [makeTrack()];
+        const stream = { tracks, getTracks: () => tracks };
+        h.streams.push(stream);
+        return stream;
+      },
+    });
+    await bringUpCall(h);
+    h.pc().setIce('failed');
+    h.advance(RECONNECT_GRACE_MS);
+    await flush(30);
+
+    expect(h.mintCalls).toHaveLength(3);
+    expect(h.mintCalls[1].reconnectOf).toBe('sess_1');
+    expect(h.mintCalls[2].reconnectOf).toBe('sess_2');
+    h.pc().dc.open();
+    expect(h.client.phase()).toBe('active');
+    expect(h.client.sessionId()).toBe('sess_3');
+    await h.client.end();
+  });
+
   it('исчерпание чейна реконнектов честно валит звонок в failed', async () => {
     // Кап auto=1: первый ре-минт разрешён, второй — нет.
     const h = createHarness({
@@ -620,14 +671,17 @@ describe('E2E: сбои на каждом шаге поднятия звонка
     await flush();
 
     expect(h.client.phase()).toBe('failed');
-    expect(h.uiEvents.find((e) => e.type === 'fail')).toMatchObject({ reason: 'mint_or_media_failed' });
+    expect(h.uiEvents.find((e) => e.type === 'fail')).toMatchObject({ reason: 'quota_exhausted' });
     // Сессии не было — серверу нечего закрывать.
     expect(h.endCalls).toHaveLength(0);
     // Но микрофон и PC, созданные параллельно минту, обязаны быть отпущены.
     expect(h.pcs[0].closed).toBe(true);
     expect(h.streams[0].tracks.every((t) => t.stopped)).toBe(true);
-    // Аудиосессию не захватывали — end-ноты быть не должно.
-    expect(h.inCall.started).toBe(0);
+    // VoiceChat-сессия намеренно захватывается ДО getUserMedia, чтобы iOS не
+    // пересобрал AVAudioSession под живым треком. При провале минта она должна
+    // быть симметрично освобождена; end-нота не играет, т.к. active не было.
+    expect(h.inCall.started).toBe(1);
+    expect(h.inCall.stopped).toBe(1);
     expect(h.sfxLog).not.toContain('endCue');
   });
 
@@ -745,7 +799,8 @@ describe('E2E: wrap-up и подсказки', () => {
     await bringUpCall(h);
 
     h.client.sendHintResponse('Give a gentle hint in English.', 120);
-    const resp = h.pc().dc.sentOfType('response.create')[0];
+    const responses = h.pc().dc.sentOfType('response.create');
+    const resp = responses[responses.length - 1];
     expect((resp.response as Record<string, unknown>).instructions).toBe('Give a gentle hint in English.');
     expect((resp.response as Record<string, unknown>).max_output_tokens).toBe(120);
 

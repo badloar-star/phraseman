@@ -26,6 +26,7 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import { fcHaptic } from './flashcards/SoundService';
 import { getVoicesOnce, type FcVoiceLike } from './flashcards/tts_voices';
 import { getVoicePrefs, setEnVoiceId } from './flashcards/voice_prefs';
+import { safeRouterBack } from './navigation_back';
 import {
   applyUserSettingsNow,
   getUserSettingsSnapshot,
@@ -150,8 +151,7 @@ export default function FlashcardsVoicePickerScreen() {
   const leave = useCallback(() => {
     fcHaptic('tap');
     stop();
-    if (typeof router.canGoBack === 'function' && router.canGoBack()) router.back();
-    else router.replace('/settings_edu' as any);
+    safeRouterBack(router, '/settings_edu' as any);
   }, [router, stop]);
 
   const rateLabels: Record<(typeof RATE_PRESETS)[number]['key'], string> = {

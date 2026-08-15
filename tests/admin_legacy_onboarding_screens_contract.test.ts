@@ -6,7 +6,7 @@ import {
   MANDATORY_ONBOARDING_STEP,
 } from "../app/onboarding_flow";
 
-// зачем: владелец пользуется ТОЛЬКО admin/legacy.html (см. CLAUDE.md), а рабочие
+// зачем: владелец пользуется ТОЛЬКО admin/v2/legacy.html (см. AGENTS.md), а рабочие
 // тумблеры экранов онбординга исторически жили в удалённом admin/v2/scripts/admin-core.js
 // и на боевую не попадали. Этот контракт держит раздел живым именно в legacy.html и
 // не даёт списку экранов разъехаться с app/onboarding_flow.ts.

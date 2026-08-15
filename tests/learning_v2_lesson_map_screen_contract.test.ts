@@ -16,24 +16,32 @@ describe("Learning V2 Lesson 1 map screen contract", () => {
       /createLesson1LocalProgressStore\(\s*AsyncStorage\s*,/,
     );
     expect(source).toContain("lesson1MapInputFromProgress(state)");
-    expect(source).toContain("useState(fallbackModel)");
+    expect(source).toContain("buildLessonMapModel({");
+    expect(source).toContain("available: lessonOrdinal === 1");
     expect(source).not.toMatch(/useEnergy|EnergyBar|registerXP|registerShards/);
   });
 
-  it("keeps the long zigzag course, semantic actions and reduced-motion guardrails explicit", () => {
+  it("keeps a 56-session lesson map, semantic actions and reduced-motion guardrails explicit", () => {
     expect(source).toMatch(
       /["']understand["'],\s*["']use["'],\s*["']master["']/,
     );
     expect(source).toContain("const PATH_WAVE");
-    expect(source).toMatch(/kind:\s*["']episode["']\s*\|\s*["']checkpoint["']/);
-    expect(source).toContain("Array.from({ length: 31 }");
+    expect(source).toMatch(
+      /kind:\s*["']locked_session["']\s*\|\s*["']checkpoint["']/,
+    );
+    expect(source).toContain("LEARNING_V2_LESSON_SESSION_COUNT_V1");
+    expect(source).toContain("buildLessonRoadItems");
     expect(source).toContain("height: 74");
-    expect(source).toContain("Путь к свободной речи");
+    expect(source).toContain("КАРТА УРОКА");
+    expect(source).toContain("Вы поймёте");
+    expect(source).toContain("Вы научитесь");
+    expect(source).not.toContain("Обычно 14–18 шагов · примерно 5–8 минут");
+    expect(source).not.toContain("12 заданий · до 36 звёзд");
+    expect(source).toContain("useTheme()");
     expect(source).not.toContain("4 сектора · 32 эпизода · уроки и экзамены");
     expect(source).not.toContain("Тридцать два эпизода");
     expect(source).not.toContain("СЕКТОР 1 · ЭПИЗОД 1");
-    expect(source).toContain("ТЕКУЩАЯ ТЕМА");
-    expect(source).toContain("Знакомство");
+    expect(source).toContain("56 СЕССИЙ");
     expect(source).toContain("SESSION_ZONE_META");
     expect(source).toMatch(/width:\s*40,\s*height:\s*40/);
     expect(source).toContain("useStableSafeAreaInsets");
@@ -48,6 +56,13 @@ describe("Learning V2 Lesson 1 map screen contract", () => {
     expect(source).toContain('accessibilityLabel="Закрыть"');
     expect(source).toContain("Gesture.Pan()");
     expect(source).toContain("dragY.value > 88 || event.velocityY > 900");
+    expect(source).toMatch(
+      /setSelected\(null\)[\s\S]{0,160}requestAnimationFrame/,
+    );
+    expect(source).toContain('runtimeMode: "direct_v1"');
+    expect(source).toContain("learningV2CourseSessionIdV1(");
+    expect(source).toContain("sessionOrdinal: String(selectedSession.order)");
+    expect(source).not.toContain("id: selectedSession.id");
     expect(source).not.toContain("Открыть словарь первого эпизода");
     expect(source).not.toContain("Открыть теорию первого эпизода");
   });

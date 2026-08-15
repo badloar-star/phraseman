@@ -29,6 +29,8 @@ export type CoinExchangeWalletRewardRequest = {
 export type CoinExchangeResult = {
   starsGranted: number;
   rateUsed: number;
+  eventId?: string;
+  coinsDebited?: number;
   walletRewardRequest?: CoinExchangeWalletRewardRequest;
 };
 
@@ -158,6 +160,20 @@ export const exchangeCoinsForStars = async (
     throw new Error('coin_exchange_bad_response');
   }
   const reward = row?.walletRewardRequest as Partial<CoinExchangeWalletRewardRequest> | undefined;
+  const eventId = typeof row?.eventId === 'string' ? row.eventId : idempotencyKey;
+  const coinsDebited = Math.max(0, Math.floor(Number(row?.coinsDebited) || safe));
+  const { commitConfirmedExternalShardEvent } = await import('./shards_system');
+  const debit = await commitConfirmedExternalShardEvent({
+    source: 'coin_exchange', eventId, delta: -coinsDebited, reason: 'coin_exchange',
+    grant: {
+      kind: 'external_currency_exchange',
+      subjectId: idempotencyKey,
+      payload: { starsGranted: Math.floor(starsGranted), rateUsed },
+    },
+  });
+  if (debit.status !== 'applied' && debit.status !== 'already-applied') {
+    throw new Error('coin_exchange_debit_event_failed');
+  }
   const walletRewardRequest = reward?.schemaVersion === 'learning-v2-server-wallet-reward-request.v1'
     && typeof reward.rewardId === 'string'
     && /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/.test(reward.rewardId)
@@ -172,6 +188,8 @@ export const exchangeCoinsForStars = async (
   return {
     starsGranted: Math.floor(starsGranted),
     rateUsed,
+    eventId,
+    coinsDebited,
     ...(walletRewardRequest ? { walletRewardRequest } : {}),
   };
 };

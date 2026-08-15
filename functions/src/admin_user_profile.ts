@@ -175,7 +175,9 @@ export function buildUserProfileSummary(uid: string, user: Row): Row {
     theme: text(progress.app_theme, 40) || null,
     lessonsCompleted: Array.isArray(lessons) ? lessons.length : 0,
     placementLevel: text(progress.placement_level, 40) || null,
-    shards: finiteNumber(user.shards),
+    // Filled from immutable economy journals by adminGetUserProfile. Never
+    // fall back to the retired mutable users.shards projection.
+    shards: null,
     banned: user.banned === true,
     identityHidden: user.identityHidden === true,
     createdAtMs: millis(user.created_at || user.createdAt),
@@ -355,6 +357,47 @@ export const adminSearchUsers = onCall(
 
 interface AdapterResult { rows: Row[]; error?: unknown; degradedReason?: string; }
 
+export function projectPersonalEconomyBalance(
+  openingBalance: unknown,
+  operationRows: readonly Row[],
+  externalRows: readonly Row[],
+): number | null {
+  const opening = Number(openingBalance ?? 0);
+  if (!Number.isSafeInteger(opening) || opening < 0) return null;
+  let balance = opening;
+  for (const row of [...operationRows, ...externalRows]) {
+    const delta = Number(row.delta);
+    if (!Number.isSafeInteger(delta) || delta === 0) return null;
+    balance += delta;
+    if (!Number.isSafeInteger(balance)) return null;
+  }
+  return balance;
+}
+
+async function readPersonalEconomyProjection(
+  db: FirebaseFirestore.Firestore,
+  uid: string,
+): Promise<{ balance: number | null; state: 'ready' | 'empty' | 'error' }> {
+  try {
+    const userRef = db.collection('users').doc(uid);
+    const [openingSnap, operationsSnap, externalSnap] = await Promise.all([
+      userRef.collection('client_economy_opening').doc('v1').get(),
+      userRef.collection('client_economy_operations').get(),
+      userRef.collection('external_economy_events').get(),
+    ]);
+    const balance = projectPersonalEconomyBalance(
+      openingSnap.exists ? openingSnap.data()?.openingBalance : 0,
+      operationsSnap.docs.map((document) => document.data()),
+      externalSnap.docs.map((document) => document.data()),
+    );
+    if (balance === null) return { balance: null, state: 'error' };
+    const count = operationsSnap.size + externalSnap.size + (openingSnap.exists ? 1 : 0);
+    return { balance, state: count > 0 ? 'ready' : 'empty' };
+  } catch {
+    return { balance: null, state: 'error' };
+  }
+}
+
 async function readRecentUserSubcollection(
   db: FirebaseFirestore.Firestore,
   uid: string,
@@ -453,7 +496,7 @@ export const adminGetUserProfile = onCall(
     const canonicalUser = users.get(identity.canonicalUid) ?? requestedUser;
     const uid = identity.canonicalUid;
 
-    const [leaderboardSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, adminRewardHistory, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
+    const [leaderboardSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, adminRewardHistory, ugcBuys, ugcSells, referralsBy, invitedByRead, economyProjection] = await Promise.all([
       db.collection('leaderboard').doc(uid).get().catch(() => null),
       db.collection('banned_users').doc(uid).get().then((snap) => ({ snap, error: null as unknown })).catch((error: unknown) => ({ snap: null, error })),
       db.collection('leaderboard_stats').doc('global').get().catch(() => null),
@@ -467,11 +510,16 @@ export const adminGetUserProfile = onCall(
       readRecentByField(db, 'community_pack_purchases', 'authorStableId', uid),
       readRecentByField(db, 'referral_attributions', 'referrerStableId', uid),
       db.collection('referral_attributions').doc(uid).get().then((snap) => ({ snap, error: null as unknown })).catch((error: unknown) => ({ snap: null, error })),
+      readPersonalEconomyProjection(db, uid),
     ]);
     if (banRead.error || !banRead.snap) throw new HttpsError('unavailable', 'ban_status_unavailable');
     const banSnap = banRead.snap;
 
-    const summary = applyAuthoritativeBan(buildUserProfileSummary(uid, canonicalUser), banSnap?.exists === true);
+    const summary: Row = Object.freeze({
+      ...applyAuthoritativeBan(buildUserProfileSummary(uid, canonicalUser), banSnap?.exists === true),
+      shards: economyProjection.balance,
+      shardsProjectionState: economyProjection.state,
+    });
     const progress = isRecord(canonicalUser.progress) ? canonicalUser.progress : {};
     const learning = Object.freeze({ ...buildLearningSnapshot(progress), lessonsCompleted: summary.lessonsCompleted });
     const directSource = (source: string, snap: FirebaseFirestore.DocumentSnapshot | null, fields: readonly string[]): Row => {

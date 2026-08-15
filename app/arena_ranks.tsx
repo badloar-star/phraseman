@@ -19,7 +19,10 @@ import { useTournamentPalette } from '../components/tournament/tournament_theme'
 import { arenaText } from '../modules/arena/copy';
 import { arenaRankScreen, type ArenaTierRow } from '../modules/arena/rank_view';
 import { arenaTierRewardLadder } from '../modules/arena/tier_rewards';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { arenaKnowsValue, arenaLoadState } from '../modules/arena/load_state';
+import { arenaLoadHomeWarm, arenaPeekHomeWarm, arenaRememberHomeWarm } from '../modules/arena/home_cache';
+import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { arenaV2FriendsBoard, arenaV2Home, type ArenaFriendsBoardRow } from './arena_client';
@@ -129,12 +132,22 @@ function TierRow({ row, index, reduceMotion, rewardItemId, rewardClaimed }: {
   );
 }
 
+const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
+
 export default function ArenaRanksScreen() {
   const { lang } = useLang();
   const P = useTournamentPalette();
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
-  const [home, setHome] = useState<Awaited<ReturnType<typeof arenaV2Home>> | null>(null);
+  /**
+   * Тёплый снимок главного экрана: ранг и очки меняются только после матча,
+   * поэтому показать прошлые честнее, чем писать «Загрузка». Своё значение,
+   * когда придёт, молча заменит снимок.
+   */
+  const warmHome = useMemo(() => arenaPeekHomeWarm(Date.now())?.home ?? null, []);
+  const [home, setHome] = useState<Awaited<ReturnType<typeof arenaV2Home>> | null>(
+    warmHome as Awaited<ReturnType<typeof arenaV2Home>> | null,
+  );
   const profile = home?.profile ?? null;
   const [friends, setFriends] = useState<readonly ArenaFriendsBoardRow[]>([]);
   const [friendsLoaded, setFriendsLoaded] = useState(false);
@@ -149,7 +162,16 @@ export default function ArenaRanksScreen() {
 
   useEffect(() => {
     if (!active) return;
-    void arenaV2Home().then(setHome).catch(() => setHomeFailed(true));
+    void arenaV2Home().then((response) => {
+      setHome(response);
+      setHomeFailed(false);
+      arenaRememberHomeWarm({ home: response, wallNowMs: Date.now(), store: warmStore });
+    }).catch(() => setHomeFailed(true));
+    void arenaLoadHomeWarm(warmStore, Date.now()).then((stored) => {
+      if (stored?.home) {
+        setHome((current) => current ?? (stored.home as Awaited<ReturnType<typeof arenaV2Home>>));
+      }
+    }).catch(() => {});
     // Отдельным вызовом и ровно один раз на открытие: список друзей меняется
     // днями, а не секундами, и опрашивать его по кругу незачем.
     void arenaV2FriendsBoard()
@@ -177,9 +199,14 @@ export default function ArenaRanksScreen() {
     failed: friendsFailed,
     count: Math.max(0, friends.length - 1),
   });
+  /**
+   * Пока ранг неизвестен, заголовок ПУСТОЙ, а не «Загрузка»: слово загрузки
+   * владелец видеть запретил, а выдумывать чужой ранг нельзя тем более.
+   * Обычно сюда и не попадаем — ранг берётся из тёплого снимка.
+   */
   const headline = known
     ? `${arenaText(lang, TIER_COPY[screen.tierIndex])} · ${ROMAN[screen.division]}`
-    : arenaText(lang, homeFailed ? 'loadFailed' : 'loading');
+    : homeFailed ? arenaText(lang, 'loadFailed') : '';
 
   return (
     <ArenaHubChrome
@@ -219,39 +246,44 @@ export default function ArenaRanksScreen() {
       </Animated.View>
 
 
-      <Text style={[styles.section, { color: P.muted }]}>
-        {arenaText(lang, 'rankBest')}: {arenaText(lang, TIER_COPY[screen.seasonBestTierIndex])}
-      </Text>
+      {known ? (
+        <>
+          <Text style={[styles.section, { color: P.muted }]}>
+            {arenaText(lang, 'rankBest')}: {arenaText(lang, TIER_COPY[screen.seasonBestTierIndex])}
+          </Text>
 
-      {screen.tiers.map((row, index) => (
-        <TierRow
-          key={row.tierIndex}
-          row={row}
-          index={index}
-          reduceMotion={reduceMotion}
-          rewardItemId={ladder[row.tierIndex]?.itemId ?? null}
-          rewardClaimed={ladder[row.tierIndex]?.claimed ?? false}
-        />
-      ))}
+          {screen.tiers.map((row, index) => (
+            <TierRow
+              key={row.tierIndex}
+              row={row}
+              index={index}
+              reduceMotion={reduceMotion}
+              rewardItemId={ladder[row.tierIndex]?.itemId ?? null}
+              rewardClaimed={ladder[row.tierIndex]?.claimed ?? false}
+            />
+          ))}
+        </>
+      ) : null}
 
       {/*
-        Четыре состояния вместо двух: раньше при отказе и при отсутствии друзей
-        блок просто исчезал, и игрок не мог отличить «не загрузилось» от «не с
-        кем сравнить».
+        Отказ и «не с кем сравнить» — разные вещи, и раньше блок при обоих
+        просто исчезал. Теперь у каждого своя строка с объяснением.
+
+        А вот загрузка не показывается вовсе: владелец запретил видимую
+        загрузку где бы то ни было. Пока список едет, блока просто нет — он
+        появляется готовым. Показывать «Загрузка» здесь было бы вдвойне
+        плохо: строка живёт доли секунды и дёргает страницу прыжком высоты.
       */}
-      {friendsState !== 'ready' ? (
+      {friendsState === 'failed' || friendsState === 'empty' ? (
         <>
           <Text style={[styles.section, { color: P.muted }]}>{arenaText(lang, 'friendsBoard')}</Text>
           <V2Card pad={12}>
             <Text style={[styles.name, { color: P.text }]}>
-              {arenaText(lang, friendsState === 'failed' ? 'loadFailed'
-                : friendsState === 'empty' ? 'friendsBoardEmpty' : 'loading')}
+              {arenaText(lang, friendsState === 'failed' ? 'loadFailed' : 'friendsBoardEmpty')}
             </Text>
-            {friendsState !== 'loading' ? (
-              <Text style={[styles.meta, { color: P.muted }]}>
-                {arenaText(lang, friendsState === 'failed' ? 'loadFailedHint' : 'friendsBoardEmptyHint')}
-              </Text>
-            ) : null}
+            <Text style={[styles.meta, { color: P.muted }]}>
+              {arenaText(lang, friendsState === 'failed' ? 'loadFailedHint' : 'friendsBoardEmptyHint')}
+            </Text>
           </V2Card>
         </>
       ) : null}

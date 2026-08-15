@@ -10,6 +10,7 @@ describe('multichannel YouTube catalog UI contract', () => {
     'components/youtube/YoutubeChannelHeader.tsx',
     'components/youtube/YoutubeChannelPickerSheet.tsx',
     'components/youtube/YoutubeChannelTabs.tsx',
+    'components/youtube/YoutubeInlinePlayer.tsx',
     'components/youtube/YoutubePremiereHero.tsx',
     'components/youtube/YoutubePlaylistRow.tsx',
     'components/youtube/YoutubeVideoCard.tsx',
@@ -35,6 +36,7 @@ describe('multichannel YouTube catalog UI contract', () => {
   it('replaces the old channel strip with all-channels picker and two stable tabs', () => {
     const source = `${screen()}\n${components()}`;
     expect(source).toContain('testID="youtube-all-channels"');
+    expect(source).not.toContain('youtube-all-channels-legacy');
     expect(source).toContain('testID={`youtube-channel-${channel.id}`}');
     expect(source).toContain("testID={`youtube-tab-${tab}`}");
     expect(source).toContain("(['home', 'playlists'] as const)");
@@ -47,7 +49,7 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(source).not.toContain('featuredPlaylists: triLang');
   });
 
-  it('exposes upcoming/live heroes, countdown, reminder and watch actions accessibly', () => {
+  it('starts premieres from the preview and keeps the reminder action accessible', () => {
     const source = components();
     expect(source).toContain('testID="youtube-premiere-upcoming"');
     expect(source).toContain('testID="youtube-premiere-live"');
@@ -55,19 +57,33 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(source).toContain('testID="youtube-premiere-details"');
     expect(source).toContain('testID="youtube-premiere-countdown"');
     expect(source).toContain('testID="youtube-premiere-remind"');
-    expect(source).toContain('testID="youtube-premiere-watch"');
+    expect(source).not.toContain('testID="youtube-premiere-watch"');
+    expect(source).toMatch(/testID="youtube-premiere-thumbnail"[\s\S]{0,220}onPress=\{onWatch\}/);
     expect(source).toContain('accessibilityLabel={countdownAccessibilityLabel}');
     expect(source).toContain('minHeight: 44');
   });
 
-  it('supports playlist rows/detail/play-all and keeps video playback user initiated', () => {
+  it('supports playlist rows/detail/play-all and keeps one user-initiated inline player', () => {
     const source = `${screen()}\n${components()}\n${read('app/lingman_playlist.tsx')}`;
+    const videoCard = read('components/youtube/YoutubeVideoCard.tsx');
     expect(source).toContain('testID="youtube-playlist-row"');
     expect(source).toContain('testID="youtube-playlist-detail"');
     expect(source).toContain('testID="youtube-playlist-play-all"');
-    expect(source).toContain("pathname: '/lingman_video_player'");
+    expect(source).toContain('YoutubeInlinePlayer');
+    expect(source).toContain('const [activeVideoId, setActiveVideoId]');
+    expect(source).toContain('setActiveVideoId(video.id)');
+    expect(source).toContain('active={screenRuntimeActive}');
+    expect(source).toContain('inlinePlayer={video.id === activeVideoId ? (');
+    expect(source).toContain('presentation="preview"');
+    expect(source).toContain('{inlinePlayer ?? (');
+    expect(videoCard).not.toContain('testID="lingman-video-watch"');
+    expect(videoCard).not.toContain('testID="lingman-video-open-youtube"');
+    expect(videoCard).not.toContain('onOpenYoutube');
+    expect(source).not.toContain('lingman-inline-player-youtube');
+    expect(source).not.toContain("pathname: '/lingman_video_player'");
+    expect(read('app/_layout.tsx')).not.toContain('<Stack.Screen name="lingman_video_player" />');
+    expect(fs.existsSync(path.join(root, 'app/lingman_video_player.tsx'))).toBe(false);
     expect(source).toContain('getTrustedLingmanYoutubeUrl');
-    expect(source).not.toContain('autoplay=1');
     expect(read('app/_layout.tsx')).toContain('<Stack.Screen name="lingman_playlist" />');
   });
 

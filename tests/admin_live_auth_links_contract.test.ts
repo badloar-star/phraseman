@@ -6,7 +6,7 @@ const read = (relativePath: string): string =>
   fs.readFileSync(path.join(root, relativePath), "utf8").replace(/\r\n/g, "\n");
 
 describe("live admin Auth Links diagnostics", () => {
-  const live = read("admin/legacy.html");
+  const live = read("admin/v2/legacy.html");
 
   test("lives only on the Firebase-hosted legacy surface", () => {
     const firebase = JSON.parse(read("firebase.json")) as {
@@ -14,7 +14,7 @@ describe("live admin Auth Links diagnostics", () => {
     };
     expect(
       firebase.hosting?.some(
-        (entry) => entry.target === "admin" && entry.public === "admin",
+        (entry) => entry.target === "admin" && entry.public === "admin/v2",
       ),
     ).toBe(true);
     expect(live).toContain("acc('auth-links', '🔗 Auth Links'");

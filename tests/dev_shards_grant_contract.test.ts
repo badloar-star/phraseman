@@ -55,12 +55,11 @@ describe('железное правило: дев-начисление всег�
     expect(devPurchaseBranch(source)).toContain('grantShardsOnServerForDev(');
   });
 
-  it('локальная запись НЕ заменяет серверную: обе обязаны быть в дев-ветке', () => {
-    // Локальная — ради мгновенного отклика (Optimistic UI), серверная — ради
-    // правды. Убрать серверную «потому что локально и так видно» нельзя.
+  it('подтверждённое событие применяется клиентом без серверного баланса', () => {
     const branchBody = devPurchaseBranch(shop());
-    expect(branchBody).toContain('addShardsRaw(');
     expect(branchBody).toContain('grantShardsOnServerForDev(');
+    expect(branchBody).toContain('commitConfirmedExternalShardEvent({');
+    expect(branchBody).not.toContain('addShardsRaw(');
   });
 
   it('НЕТ требования админ-роли на клиенте — правило говорит «на ЛЮБОЙ аккаунт»', () => {

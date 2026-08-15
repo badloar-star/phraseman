@@ -59,6 +59,8 @@ const SERVER_ONLY_CONTENT_ROOTS = [
   "content_v2_owner_episode_confirmations",
   "content_v2_unified_course_release_heads",
   "content_v2_unified_course_release_roots",
+  "content_v2_unified_course_release_heads_v3",
+  "content_v2_unified_course_release_roots_v3",
   "content_language_profile_versions",
   "content_language_profile_lifecycle",
   "content_speech_profile_versions",

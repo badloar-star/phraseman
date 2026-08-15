@@ -8,6 +8,10 @@ import {
   createMaxCallClient,
   MAX_CALL_BARGE_IN_MUTE_MS,
   MAX_CALL_HEARTBEAT_MS,
+  MAX_CALL_CONNECT_TIMEOUT_MS,
+  MAX_CALL_ICE_GATHER_TIMEOUT_MS,
+  MAX_CALL_START_TIMEOUT_MS,
+  completeLocalOfferSdp,
   type MaxCallDeps,
   type MaxCallTranscriptEvent,
   type MaxVoiceMintResponse,
@@ -54,11 +58,20 @@ function makeHarness(overrides?: Partial<MaxCallDeps>) {
     getStats: jest.fn().mockResolvedValue([]),
     close: jest.fn(),
     iceConnectionState: 'new',
+    iceGatheringState: 'complete',
+    localDescription: { type: 'offer', sdp: 'offer-sdp' },
     oniceconnectionstatechange: null,
+    onicegatheringstatechange: null,
     ontrack: null,
   };
 
-  const inCall = { start: jest.fn(), stop: jest.fn() };
+  const inCall = {
+    start: jest.fn(),
+    stop: jest.fn(),
+    setSpeakerphoneOn: jest.fn(),
+    setForceSpeakerphoneOn: jest.fn(),
+    setKeepScreenOn: jest.fn(),
+  };
   const native: MaxVoiceNativeModule = {
     RTCPeerConnection: function MockPc(this: unknown) {
       return pc;
@@ -135,6 +148,31 @@ afterEach(() => {
 });
 
 describe('happy-path: idle → … → active на моках deps', () => {
+  it('ждёт ICE complete и отправляет обновлённый localDescription SDP', async () => {
+    const h = makeHarness();
+    h.pc.iceGatheringState = 'gathering';
+    h.pc.localDescription = { type: 'offer', sdp: 'offer-without-candidates' };
+    const pending = completeLocalOfferSdp(h.pc, 'offer-fallback');
+
+    h.pc.localDescription = { type: 'offer', sdp: 'offer-with-ice-candidates' };
+    h.pc.iceGatheringState = 'complete';
+    h.pc.onicegatheringstatechange?.();
+
+    await expect(pending).resolves.toBe('offer-with-ice-candidates');
+  });
+
+  it('ICE gathering timeout не оставляет старт вечным', async () => {
+    const h = makeHarness();
+    h.pc.iceGatheringState = 'gathering';
+    h.pc.localDescription = { type: 'offer', sdp: 'best-known-sdp' };
+    const pending = completeLocalOfferSdp(h.pc, 'offer-fallback');
+
+    jest.advanceTimersByTime(MAX_CALL_ICE_GATHER_TIMEOUT_MS);
+
+    await expect(pending).resolves.toBe('best-known-sdp');
+    expect(h.pc.onicegatheringstatechange).toBeNull();
+  });
+
   it('минт и offer идут параллельно, соединение доходит до active', async () => {
     const h = makeHarness();
     const client = await connect(h);
@@ -145,7 +183,42 @@ describe('happy-path: idle → … → active на моках deps', () => {
     expect(h.deps.exchangeSdp).toHaveBeenCalledWith('offer-sdp', 'ephemeral-secret');
     expect(h.pc.setRemoteDescription).toHaveBeenCalledWith({ type: 'answer', sdp: 'answer-sdp' });
     expect(h.inCall.start).toHaveBeenCalledTimes(1);
+    expect(h.inCall.setForceSpeakerphoneOn).toHaveBeenCalledWith(true);
+    expect(h.inCall.setSpeakerphoneOn).toHaveBeenCalledWith(true);
+    expect(h.inCall.setKeepScreenOn).toHaveBeenCalledWith(true);
+    expect(h.inCall.start.mock.invocationCallOrder[0]).toBeLessThan(
+      (h.deps.native.mediaDevices.getUserMedia as jest.Mock).mock.invocationCallOrder[0],
+    );
     expect(h.uiEvents).toContainEqual({ type: 'connected' });
+  });
+
+  it('закрывает заминченную сессию, если data channel не открылся вовремя', async () => {
+    const h = makeHarness();
+    const client = createMaxCallClient(h.deps);
+    await client.start({ format: 'scenario' });
+    expect(client.phase()).toBe('configuring');
+
+    await jest.advanceTimersByTimeAsync(MAX_CALL_CONNECT_TIMEOUT_MS);
+    await flushAsync();
+    expect(client.phase()).toBe('failed');
+    expect(h.uiEvents).toContainEqual({ type: 'fail', reason: 'connection_timeout' });
+    expect(h.deps.end).toHaveBeenCalledWith(expect.objectContaining({
+      sessionId: 'sess-1',
+      endReason: 'dropped',
+    }));
+  });
+
+  it('не висит вечно, когда callable минта не отвечает', async () => {
+    const h = makeHarness({ mint: jest.fn(() => new Promise(() => {})) });
+    const client = createMaxCallClient(h.deps);
+    const start = client.start({ format: 'scenario' });
+    await flushAsync();
+    await jest.advanceTimersByTimeAsync(MAX_CALL_START_TIMEOUT_MS);
+    await start;
+
+    expect(client.phase()).toBe('failed');
+    expect(h.uiEvents).toContainEqual({ type: 'fail', reason: 'server_timeout' });
+    expect(h.pc.close).toHaveBeenCalledTimes(1);
   });
 
   it('события data channel транслируются в MaxCallUiEvent и транскрипт', async () => {
@@ -252,6 +325,8 @@ describe('идемпотентный teardown', () => {
     expect(h.pc.close).toHaveBeenCalledTimes(1);
     expect(h.localTrack.stop).toHaveBeenCalledTimes(1);
     expect(h.inCall.stop).toHaveBeenCalledTimes(1);
+    expect(h.inCall.setForceSpeakerphoneOn.mock.calls).toEqual([[true], [null]]);
+    expect(h.inCall.setKeepScreenOn.mock.calls).toEqual([[true], [false]]);
     expect(h.deps.restoreAudioSession).toHaveBeenCalledTimes(1);
     expect(h.deps.end).toHaveBeenCalledTimes(1);
     expect(h.deps.end).toHaveBeenCalledWith({
@@ -295,6 +370,16 @@ describe('идемпотентный teardown', () => {
     expect(h.inCall.stop).toHaveBeenCalledTimes(1);
   });
 
+  it('сброс мгновенный, даже если maxVoiceSessionEnd никогда не ответит', async () => {
+    const h = makeHarness({ end: jest.fn(() => new Promise(() => {})) });
+    const client = await connect(h);
+
+    await expect(client.end('completed')).resolves.toBeUndefined();
+    expect(client.phase()).toBe('ended');
+    expect(h.inCall.stop).toHaveBeenCalledTimes(1);
+    expect(h.deps.end).toHaveBeenCalledTimes(1);
+  });
+
   it('провал минта → failed, сеттлмент не отправляется (нечего закрывать)', async () => {
     const h = makeHarness({ mint: jest.fn().mockRejectedValue(new Error('quota')) });
     const client = createMaxCallClient(h.deps);
@@ -302,6 +387,70 @@ describe('идемпотентный teardown', () => {
     expect(client.phase()).toBe('failed');
     expect(h.deps.end).not.toHaveBeenCalled();
     expect(h.uiEvents.some((e) => e.type === 'fail')).toBe(true);
+  });
+
+  it('сброс во время минта закрывает поздний серверный резерв ровно один раз', async () => {
+    let resolveMint!: (value: MaxVoiceMintResponse) => void;
+    const mint = jest.fn(() => new Promise<MaxVoiceMintResponse>((resolve) => {
+      resolveMint = resolve;
+    }));
+    const h = makeHarness({ mint });
+    const client = createMaxCallClient(h.deps);
+    const start = client.start({ format: 'scenario' });
+    await flushAsync();
+
+    await client.end('completed');
+    expect(client.phase()).toBe('ended');
+    expect(h.pc.close).toHaveBeenCalledTimes(1);
+    expect(h.localTrack.stop).toHaveBeenCalledTimes(1);
+    expect(h.deps.end).not.toHaveBeenCalled();
+
+    resolveMint(h.mintResponse);
+    await start;
+    await flushAsync();
+
+    expect(h.deps.end).toHaveBeenCalledTimes(1);
+    expect(h.deps.end).toHaveBeenCalledWith({
+      sessionId: 'sess-1',
+      endReason: 'dropped',
+      elapsedSec: 0,
+      usage: ZERO_USAGE,
+    });
+    expect(h.pc.close).toHaveBeenCalledTimes(1);
+    expect(h.localTrack.stop).toHaveBeenCalledTimes(1);
+  });
+
+  it('ошибка сборки offer освобождает частичный PC, channel и микрофон без дублей', async () => {
+    const h = makeHarness();
+    (h.pc.createOffer as jest.Mock).mockRejectedValueOnce(new Error('native_offer_failed'));
+    const client = createMaxCallClient(h.deps);
+
+    await client.start({ format: 'scenario' });
+
+    expect(client.phase()).toBe('failed');
+    expect(h.uiEvents).toContainEqual({ type: 'fail', reason: 'media_failed' });
+    expect(h.dc.close).toHaveBeenCalledTimes(1);
+    expect(h.pc.close).toHaveBeenCalledTimes(1);
+    expect(h.localTrack.stop).toHaveBeenCalledTimes(1);
+    expect(h.inCall.stop).toHaveBeenCalledTimes(1);
+    expect(h.deps.end).toHaveBeenCalledTimes(1);
+  });
+
+  it('mute во время системного открытия микрофона применяется к позднему track', async () => {
+    let resolveStream!: (value: { getTracks(): MediaStreamTrackLike[] }) => void;
+    const h = makeHarness();
+    h.deps.native.mediaDevices.getUserMedia = jest.fn(() => new Promise((resolve) => {
+      resolveStream = resolve;
+    }));
+    const client = createMaxCallClient(h.deps);
+    const start = client.start({ format: 'scenario' });
+
+    client.setMuted(true);
+    resolveStream({ getTracks: () => [h.localTrack] });
+    await start;
+
+    expect(h.localTrack.enabled).toBe(false);
+    await client.end();
   });
 });
 
@@ -316,7 +465,7 @@ describe('barge-in по разделу 4 спеки', () => {
     client.bargeIn();
 
     const sent = h.dc.send.mock.calls.map(([raw]) => (JSON.parse(raw as string) as { type: string }).type);
-    expect(sent).toEqual(['response.cancel', 'output_audio_buffer.clear']);
+    expect(sent.slice(-2)).toEqual(['response.cancel', 'output_audio_buffer.clear']);
     expect(remoteTrack.enabled).toBe(false);
 
     jest.advanceTimersByTime(MAX_CALL_BARGE_IN_MUTE_MS - 1);
@@ -340,10 +489,23 @@ describe('barge-in по разделу 4 спеки', () => {
     client.sendWrapUp();
 
     const sent = h.dc.send.mock.calls.map(([raw]) => JSON.parse(raw as string) as Record<string, unknown>);
-    expect(sent[0]?.type).toBe('conversation.item.create');
-    expect(JSON.stringify(sent[0])).toContain('[WRAP_UP] time to say goodbye');
-    expect(sent[1]?.type).toBe('response.create');
+    const wrapItem = sent.find((event) => event.type === 'conversation.item.create');
+    expect(JSON.stringify(wrapItem)).toContain('[WRAP_UP] time to say goodbye');
+    expect(sent.filter((event) => event.type === 'response.create')).toHaveLength(2); // greeting + wrap-up
     expect(h.uiEvents).toContainEqual({ type: 'wrap_up' });
+  });
+
+  it('после открытия data channel сам запрашивает короткое приветствие', async () => {
+    const h = makeHarness();
+    await connect(h);
+    const sent = h.dc.send.mock.calls.map(([raw]) => JSON.parse(raw as string) as Record<string, unknown>);
+    const greeting = sent.find((event) => event.type === 'response.create');
+    expect(greeting).toMatchObject({
+      type: 'response.create',
+      response: { max_output_tokens: 400 },
+    });
+    expect(JSON.stringify(greeting)).toContain('Begin speaking immediately');
+    expect(JSON.stringify(greeting)).toContain('Never announce turns');
   });
 });
 
@@ -370,6 +532,21 @@ describe('reconnect-чейн (спека §1 max_call_reconnect)', () => {
     (h.pc as { iceConnectionState: string }).iceConnectionState = 'disconnected';
     h.pc.oniceconnectionstatechange?.();
   }
+
+  it('закрытие data channel при живом ICE тоже запускает reconnect', async () => {
+    const h = makeHarness();
+    const client = await connect(h);
+    h.dc.onclose?.();
+
+    expect(client.phase()).toBe('reconnecting');
+    expect(h.uiEvents).toContainEqual({ type: 'reconnect_started' });
+    expect(h.localTrack.enabled).toBe(false);
+
+    await jest.advanceTimersByTimeAsync(RECONNECT_GRACE_MS);
+    await flushAsync();
+    expect(h.deps.mint).toHaveBeenCalledTimes(2);
+    expect(client.phase()).toBe('active');
+  });
 
   it('фаза 1: grace 4с с мьютом локального трека, ICE ожил — ре-минт не нужен', async () => {
     const h = makeHarness();

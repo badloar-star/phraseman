@@ -117,9 +117,13 @@ import { VOICE_EST_COST_USD_PER_MIN, utcDayKey, voiceMintRateDocId } from './max
 import { VOICE_PRICE_TABLE_DATE } from './max_voice_session_end';
 import {
   VOICE_WATCHDOG_HEARTBEAT_GRACE_MS,
+  MAX_VOICE_PROVIDER_HEALTH_SCHEDULE,
+  maxVoiceProviderHealth,
   maxVoiceWatchdog,
   runMaxVoiceWatchdogOnce,
 } from './max_voice_watchdog';
+
+const maxVoiceMintModule = jest.requireActual<typeof import('./max_voice_mint')>('./max_voice_mint');
 
 const NOW = 1_800_000_000_000;
 const AUTH = 'auth-1';
@@ -301,5 +305,59 @@ describe('runMaxVoiceWatchdogOnce', () => {
 describe('scheduled wrapper', () => {
   it('runs every 10 minutes in UTC', () => {
     expect((maxVoiceWatchdog as any).__opts).toMatchObject({ schedule: 'every 10 minutes', timeZone: 'UTC' });
+  });
+
+  it('probes the provider every 10 minutes with one instance and the OpenAI secret', () => {
+    expect(MAX_VOICE_PROVIDER_HEALTH_SCHEDULE).toBe('every 10 minutes');
+    expect((maxVoiceProviderHealth as any).__opts).toMatchObject({
+      schedule: 'every 10 minutes',
+      timeZone: 'UTC',
+      maxInstances: 1,
+      timeoutSeconds: 30,
+      secrets: [expect.any(Object)],
+    });
+  });
+
+  it('keeps a successful full-profile probe out of the critical error stream', async () => {
+    const probe = jest.spyOn(maxVoiceMintModule, 'runMaxVoiceProviderProbe')
+      .mockResolvedValue({ profile: 'full', expiresAt: Math.floor(NOW / 1000) + 60 });
+
+    await (maxVoiceProviderHealth as any)({});
+
+    expect(probe).toHaveBeenCalledWith('sk-test-key', expect.objectContaining({
+      model: 'gpt-realtime-2.1-mini',
+      voice: 'marin',
+    }));
+    expect(Array.from(docs.keys()).filter((pathKey) => pathKey.startsWith('app_errors/'))).toEqual([]);
+  });
+
+  it('records a critical error when only the compatibility profile survives', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(NOW);
+    jest.spyOn(maxVoiceMintModule, 'runMaxVoiceProviderProbe')
+      .mockResolvedValue({ profile: 'compatibility', expiresAt: Math.floor(NOW / 1000) + 60 });
+
+    await (maxVoiceProviderHealth as any)({});
+
+    expect(docs.get(`app_errors/max_voice_provider_health_${Math.floor(NOW / 3_600_000)}`))
+      .toMatchObject({
+        severity: 'critical',
+        feature: 'max_voice',
+        context: 'max_voice_provider_health',
+        status: 'new',
+      });
+  });
+
+  it('records and rethrows a hard provider failure so Scheduler marks the run failed', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(NOW);
+    jest.spyOn(maxVoiceMintModule, 'runMaxVoiceProviderProbe')
+      .mockRejectedValue(new Error('provider_down'));
+
+    await expect((maxVoiceProviderHealth as any)({})).rejects.toThrow('provider_down');
+    expect(docs.get(`app_errors/max_voice_provider_health_${Math.floor(NOW / 3_600_000)}`))
+      .toMatchObject({
+        severity: 'critical',
+        errorName: 'MaxVoiceProviderHealthError',
+        message: 'provider_down',
+      });
   });
 });

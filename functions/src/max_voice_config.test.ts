@@ -47,8 +47,9 @@ describe('clampMaxVoiceConfig', () => {
   });
 
   it('whitelists model and transcription model', () => {
-    expect(clampMaxVoiceConfig({ model: 'gpt-realtime' }).model).toBe('gpt-realtime');
-    expect(clampMaxVoiceConfig({ model: 'gpt-5-realtime-turbo' }).model).toBe('gpt-realtime-mini');
+    expect(clampMaxVoiceConfig({ model: 'gpt-realtime-2.1' }).model).toBe('gpt-realtime-2.1');
+    expect(clampMaxVoiceConfig({ model: 'gpt-realtime-mini' }).model).toBe('gpt-realtime-2.1-mini');
+    expect(clampMaxVoiceConfig({ model: 'gpt-5-realtime-turbo' }).model).toBe('gpt-realtime-2.1-mini');
     expect(clampMaxVoiceConfig({ transcriptionModel: 'made-up' }).transcriptionModel)
       .toBe('gpt-4o-mini-transcribe');
     expect(clampMaxVoiceConfig({ transcriptionModel: 'whisper-1' }).transcriptionModel).toBe('whisper-1');
@@ -108,7 +109,7 @@ describe('clampMaxVoiceConfig', () => {
     expect(cfg.maxResponseOutputTokens.B1).toBe(250);
     expect(cfg.maxResponseOutputTokens.injected).toBe(400);
     expect(cfg.vadEagerness.A1).toBe('high');
-    expect(cfg.vadEagerness.B2).toBe('auto');
+    expect(cfg.vadEagerness.B2).toBe('high');
     expect(cfg.hintDelaySec.A1).toBe(3);
     expect(cfg.hintDelaySec.B2).toBe(60);
   });
@@ -117,6 +118,12 @@ describe('clampMaxVoiceConfig', () => {
     expect(clampMaxVoiceConfig({}).gate_ai_voice_call).toBe(false);
     expect(clampMaxVoiceConfig({ gate_ai_voice_call: 'true' }).gate_ai_voice_call).toBe(true);
     expect(clampMaxVoiceConfig({ gate_ai_voice_call: 'garbage' }).gate_ai_voice_call).toBe(false);
+    expect(clampMaxVoiceConfig({}).devTestUids).toEqual([]);
+    expect(clampMaxVoiceConfig({ devTestUids: 'uid-1' }).devTestUids).toEqual([]);
+    expect(clampMaxVoiceConfig({ devTestUids: [' uid-1 ', 'uid-1', '', 7, null, 'uid-2'] }).devTestUids)
+      .toEqual(['uid-1', 'uid-2']);
+    expect(clampMaxVoiceConfig({ devTestUids: Array.from({ length: 40 }, (_, i) => `uid-${i}`) }).devTestUids)
+      .toHaveLength(20);
     expect(clampMaxVoiceConfig({ trialMode: 'companion' }).trialMode).toBe('companion');
     expect(clampMaxVoiceConfig({ trialMode: 'yolo' }).trialMode).toBe('auto');
     expect(clampMaxVoiceConfig({ pruneMode: 'manual' }).pruneMode).toBe('manual');
@@ -125,6 +132,8 @@ describe('clampMaxVoiceConfig', () => {
     expect(clampMaxVoiceConfig({ degradeMode: 'x' }).degradeMode).toBe('auto');
     expect(clampMaxVoiceConfig({ voice: '  ' }).voice).toBe('marin');
     expect(clampMaxVoiceConfig({ voice: 'cedar' }).voice).toBe('cedar');
+    expect(clampMaxVoiceConfig({ voice: 'onyx' }).voice).toBe('marin');
+    expect(clampMaxVoiceConfig({ voice: 'made-up-voice' }).voice).toBe('marin');
   });
 });
 

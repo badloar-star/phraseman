@@ -40,8 +40,58 @@ export const MAX_CALL_HEARTBEAT_MS = 30_000;
  * делаем; дозвучавшие 200–400мс из jitter-буфера — принятая норма, спека §4).
  */
 export const MAX_CALL_BARGE_IN_MUTE_MS = 300;
-/** Поллинг pc.getStats() для уровней звука (эквалайзер + ореол), спека §1. */
-export const MAX_CALL_STATS_POLL_MS = 100;
+/**
+ * Поллинг pc.getStats() для уровней звука. 4 Гц достаточно для сглаженной
+ * native-анимации и не забивает JS/native bridge на iPhone во время речи.
+ */
+export const MAX_CALL_STATS_POLL_MS = 250;
+/** Верхняя граница ожидания минта/локального offer до контролируемого отказа. */
+export const MAX_CALL_START_TIMEOUT_MS = 35_000;
+/** После answer SDP data channel обязан открыться; вечного connecting не бывает. */
+export const MAX_CALL_CONNECT_TIMEOUT_MS = 20_000;
+/**
+ * React Native WebRTC дописывает ICE-кандидаты в localDescription асинхронно.
+ * Realtime SDP endpoint не предоставляет отдельный trickle-канал, поэтому
+ * коротко ждём complete и отправляем уже обновлённый SDP. Таймаут не даёт
+ * медленному ICE заблокировать общий старт звонка.
+ */
+export const MAX_CALL_ICE_GATHER_TIMEOUT_MS = 2_500;
+
+export async function completeLocalOfferSdp(
+  connection: RtcPeerConnectionLike,
+  initialSdp: string,
+): Promise<string> {
+  const current = (): string => connection.localDescription?.sdp || initialSdp;
+  // Старый нативный модуль/тестовый стаб без этого API: сохраняем совместимость.
+  if (typeof connection.iceGatheringState !== 'string') return current();
+  if (connection.iceGatheringState === 'complete') return current();
+
+  await new Promise<void>((resolve) => {
+    let settled = false;
+    const previous = connection.onicegatheringstatechange ?? null;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    const finish = (): void => {
+      if (settled) return;
+      settled = true;
+      if (timeoutId !== null) clearTimeout(timeoutId);
+      connection.onicegatheringstatechange = previous;
+      resolve();
+    };
+    // Таймер ставим до handler: нативное событие может прийти между двумя
+    // JS-операциями; в обратном порядке оно оставляло бы осиротевший timeout.
+    timeoutId = setTimeout(finish, MAX_CALL_ICE_GATHER_TIMEOUT_MS);
+    connection.onicegatheringstatechange = () => {
+      try { previous?.(); } catch {}
+      if (connection.iceGatheringState === 'complete') finish();
+    };
+    // Состояние могло смениться между первой проверкой и установкой handler.
+    if (connection.iceGatheringState === 'complete') {
+      finish();
+      return;
+    }
+  });
+  return current();
+}
 
 export type MaxCallPhase =
   | 'idle'
@@ -96,6 +146,8 @@ export interface MaxVoiceMintRequest {
   memoryBlock?: string;
   /** Дешёвый счётчик SRS-элементов — ветвление пробника companion/scenario на сервере. */
   srsCount?: number;
+  /** Защищённый тестовый вход из DEV Hub; сервер принимает только admin claim. */
+  devMode?: boolean;
   /** Ре-минт reconnect-чейна: id прежней сессии (перенос остатка резерва). */
   reconnectOf?: string;
   /** Локальная reconnect-summary (шаблонная, без AI) для хвоста инструкций. */
@@ -274,6 +326,8 @@ export interface MaxCallClient {
 
 /** Кап injected-ответов (подсказки/wrap-up) — спека §3 maxResponseOutputTokens. */
 const INJECTED_MAX_TOKENS = 400;
+const INITIAL_GREETING_INSTRUCTIONS =
+  'Begin speaking immediately with one brief warm in-character greeting. Never announce turns or say "your turn". Then pause naturally and listen.';
 
 export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   let phase: MaxCallPhase = 'idle';
@@ -294,6 +348,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   let heartbeatTimer: ReturnType<typeof setInterval> | null = null;
   let statsTimer: ReturnType<typeof setInterval> | null = null;
   let bargeTimer: ReturnType<typeof setTimeout> | null = null;
+  let connectTimer: ReturnType<typeof setTimeout> | null = null;
   let statsInFlight = false;
 
   // Reconnect-чейн (спека §1 max_call_reconnect): исходный запрос — для
@@ -370,13 +425,47 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       .then(() => currentPc.getStats())
       .then((stats) => {
         statsInFlight = false;
-        if (phase === 'active' || phase === 'reconnecting') {
+        // Ответ старого PC может прийти уже после reconnect. Не отдаём его
+        // уровни новой ауре: иначе она выглядит зависшей на прежнем голосе.
+        if (currentPc === pc && (phase === 'active' || phase === 'reconnecting')) {
           deps.onLevels?.(parseAudioLevels(stats));
         }
       })
       .catch(() => {
         statsInFlight = false;
       });
+  }
+
+  /**
+   * WebRTC должен получить уже настроенную voiceChat-аудиосессию. Если
+   * InCallManager запускать после getUserMedia/setRemoteDescription, iOS может
+   * пересобрать AVAudioSession под живым треком: микрофон замирает, а выход
+   * остаётся в тихом разговорном динамике.
+   */
+  function acquireAudioSession(): void {
+    if (inCallStarted) return;
+    try {
+      deps.sfx?.connectCue();
+    } catch {}
+    try {
+      deps.native.InCallManager.start({ media: 'audio' });
+      inCallStarted = true;
+      // media:'audio' по умолчанию выбирает receiver/earpiece. Для тренажёра
+      // нужен слышимый hands-free маршрут на встроенный громкий динамик.
+      try { deps.native.InCallManager.setForceSpeakerphoneOn?.(true); } catch {}
+      try { deps.native.InCallManager.setSpeakerphoneOn?.(true); } catch {}
+      try { deps.native.InCallManager.setKeepScreenOn?.(true); } catch {}
+      try {
+        deps.sfx?.audioSessionAcquired();
+      } catch {}
+    } catch {
+      // start() мог успеть частично перенастроить process-wide AVAudioSession.
+      // stop() + снятие force-флага безопасно возвращают системный маршрут.
+      try { deps.native.InCallManager.setKeepScreenOn?.(false); } catch {}
+      try { deps.native.InCallManager.setForceSpeakerphoneOn?.(null); } catch {}
+      try { deps.native.InCallManager.stop(); } catch {}
+      inCallStarted = false;
+    }
   }
 
   /**
@@ -471,31 +560,95 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
   function activate(): void {
     if (phase !== 'configuring') return;
-    startedAtMs = deps.now();
-    // Сигналы на границах владения аудиосессией (спека §1 max_call_sfx):
-    // connect-чирп играем ДО InCallManager.start() — после него аудио-роутинг
-    // принадлежит звонку, и cue поверх voiceChat-сессии не гарантирован.
-    try {
-      deps.sfx?.connectCue();
-    } catch {}
-    try {
-      deps.native.InCallManager.start({ media: 'audio' });
-      inCallStarted = true;
-      try {
-        deps.sfx?.audioSessionAcquired();
-      } catch {}
-    } catch {
-      inCallStarted = false;
+    if (connectTimer !== null) {
+      clearTimeout(connectTimer);
+      connectTimer = null;
     }
+    startedAtMs = deps.now();
+    // Аудиосессия уже захвачена ДО getUserMedia: activate только переводит
+    // транспорт в live и запускает служебные таймеры.
+    acquireAudioSession();
     heartbeatTimer = setInterval(sendHeartbeat, MAX_CALL_HEARTBEAT_MS);
     if (deps.onLevels) statsTimer = setInterval(pollStats, MAX_CALL_STATS_POLL_MS);
     setPhase('active');
     emitUi({ type: 'connected' });
+    // Realtime не начинает говорить только из-за instructions: первый ответ
+    // нужно запросить явно после открытия data channel.
+    dcSend({
+      type: 'response.create',
+      response: {
+        instructions: INITIAL_GREETING_INSTRUCTIONS,
+        max_output_tokens: INJECTED_MAX_TOKENS,
+      },
+    });
   }
 
   function applyTrackMute(muted: boolean): void {
     for (const track of localStream?.getTracks() ?? []) {
       track.enabled = !muted;
+    }
+  }
+
+  function settleDetachedMint(lateMint: MaxVoiceMintResponse, elapsed = elapsedSec()): void {
+    try {
+      void Promise.resolve(deps.end({
+        sessionId: lateMint.session_id,
+        endReason: 'dropped',
+        elapsedSec: elapsed,
+        usage: { ...usage },
+      })).catch(() => {});
+    } catch {}
+  }
+
+  /**
+   * Создаёт локальный WebRTC transport и сразу публикует каждый ресурс в поля
+   * клиента. Поэтому конкурентный end() может закрыть даже наполовину
+   * собранный PC. Любая ошибка освобождает только ещё принадлежащие helper'у
+   * ресурсы; уже закрытые teardown'ом повторно не трогаются.
+   */
+  async function createLocalOffer(): Promise<{
+    connection: RtcPeerConnectionLike;
+    stream: MediaStreamLike;
+    channel: RtcDataChannelLike;
+    offerSdp: string;
+  }> {
+    const connection = new deps.native.RTCPeerConnection({});
+    let stream: MediaStreamLike | null = null;
+    let channel: RtcDataChannelLike | null = null;
+    pc = connection;
+    wirePeerConnection(connection);
+    try {
+      stream = await deps.native.mediaDevices.getUserMedia({ audio: true });
+      if (isTornDown()) throw new Error('call_ended');
+      localStream = stream;
+      // Тап mute мог прийти, пока системный permission/getUserMedia ещё ждал.
+      // Применяем сохранённую волю юзера к только что появившемуся треку.
+      applyTrackMute(userMuted);
+      for (const track of stream.getTracks()) connection.addTrack(track, stream);
+      channel = connection.createDataChannel('oai-events');
+      dc = channel;
+      const offer = await connection.createOffer({});
+      if (isTornDown()) throw new Error('call_ended');
+      await connection.setLocalDescription(offer);
+      const offerSdp = await completeLocalOfferSdp(connection, offer.sdp);
+      if (isTornDown()) throw new Error('call_ended');
+      return { connection, stream, channel, offerSdp };
+    } catch (error) {
+      if (channel && dc === channel) {
+        try { channel.close(); } catch {}
+        dc = null;
+      }
+      if (stream && localStream === stream) {
+        for (const track of stream.getTracks()) {
+          try { track.stop(); } catch {}
+        }
+        localStream = null;
+      }
+      if (pc === connection) {
+        try { connection.close(); } catch {}
+        pc = null;
+      }
+      throw error;
     }
   }
 
@@ -551,32 +704,41 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         reconnectSummary,
       });
       if (isTornDown()) {
+        // Teardown мог закончиться, пока callable переносил резерв. Старую
+        // сессию он уже закрыл, поэтому новый поздний sessionId сеттлим явно.
+        settleDetachedMint(mintResult);
         reminting = false;
         return;
       }
+      // transferReserve уже сделал НОВУЮ сессию активной на сервере. С этого
+      // момента teardown и следующая попытка обязаны владеть именно ею, даже
+      // если getUserMedia/SDP/remoteDescription ниже упадут.
+      mint = mintResult;
 
       // Новый PC/DC: присваиваем в поля сразу, чтобы конкурирующий end()
       // закрыл их своим teardown'ом, а не оставил висеть.
-      const connection = new deps.native.RTCPeerConnection({});
-      pc = connection;
-      wirePeerConnection(connection);
-      const stream = await deps.native.mediaDevices.getUserMedia({ audio: true });
-      localStream = stream;
-      for (const track of stream.getTracks()) connection.addTrack(track, stream);
-      const channel = connection.createDataChannel('oai-events');
-      dc = channel;
-      const offer = await connection.createOffer({});
-      await connection.setLocalDescription(offer);
-      const answerSdp = await deps.exchangeSdp(offer.sdp, mintResult.value);
+      const local = await createLocalOffer();
+      const { connection, channel } = local;
+      const answerSdp = await deps.exchangeSdp(local.offerSdp, mintResult.value);
       if (isTornDown()) {
         reminting = false;
         return;
       }
       await connection.setRemoteDescription({ type: 'answer', sdp: answerSdp });
-      mint = mintResult;
+      if (isTornDown()) {
+        reminting = false;
+        return;
+      }
       channel.onmessage = (event) => handleDcMessage(event?.data);
+      channel.onclose = () => {
+        if (channel === dc) beginReconnect();
+      };
       const finish = (): void => {
         if (isTornDown() || phase !== 'reconnecting') return;
+        if (connectTimer !== null) {
+          clearTimeout(connectTimer);
+          connectTimer = null;
+        }
         // Снимаем grace-мьют, возвращая ровно то состояние, что просил юзер.
         applyTrackMute(userMuted);
         setPhase('active');
@@ -587,6 +749,14 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       };
       channel.onopen = finish;
       reminting = false;
+      if (connectTimer !== null) clearTimeout(connectTimer);
+      connectTimer = setTimeout(() => {
+        connectTimer = null;
+        if (isTornDown() || phase !== 'reconnecting' || channel !== dc) return;
+        // Новый transport не открылся: следующая попытка продолжает уже от
+        // mintResult.session_id (резерв перенесён туда выше), не от старого id.
+        void doRemint(kind);
+      }, MAX_CALL_CONNECT_TIMEOUT_MS);
       if (channel.readyState === 'open') finish();
     } catch {
       reminting = false;
@@ -609,19 +779,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         // Фаза 1 реконнекта: grace 4с с мьютом локального трека, ничего не
         // рвём — мобильные сети часто восстанавливаются сами. Не ожило —
         // фаза 2 (полный ре-минт) в doRemint.
-        if (phase === 'active') {
-          setPhase('reconnecting');
-          emitUi({ type: 'reconnect_started' });
-          try {
-            deps.sfx?.midCall('reconnect_started');
-          } catch {}
-          applyTrackMute(true);
-          if (graceTimer !== null) clearTimeout(graceTimer);
-          graceTimer = setTimeout(() => {
-            graceTimer = null;
-            void doRemint('auto');
-          }, RECONNECT_GRACE_MS);
-        }
+        beginReconnect();
         return;
       }
       if ((state === 'connected' || state === 'completed') && phase === 'reconnecting') {
@@ -638,6 +796,22 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         } catch {}
       }
     };
+  }
+
+  /** ICE и data channel сходятся в один контролируемый reconnect-путь. */
+  function beginReconnect(): void {
+    if (phase !== 'active') return;
+    setPhase('reconnecting');
+    emitUi({ type: 'reconnect_started' });
+    try {
+      deps.sfx?.midCall('reconnect_started');
+    } catch {}
+    applyTrackMute(true);
+    if (graceTimer !== null) clearTimeout(graceTimer);
+    graceTimer = setTimeout(() => {
+      graceTimer = null;
+      void doRemint('auto');
+    }, RECONNECT_GRACE_MS);
   }
 
   function isTornDown(): boolean {
@@ -667,6 +841,10 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       clearTimeout(graceTimer);
       graceTimer = null;
     }
+    if (connectTimer !== null) {
+      clearTimeout(connectTimer);
+      connectTimer = null;
+    }
     try {
       dc?.close();
     } catch {}
@@ -684,8 +862,16 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     } catch {}
     localStream = null;
     remoteTrack = null;
-    const ownedAudioSession = inCallStarted;
+    const shouldPlayEndCue = inCallStarted && startedAtMs !== null;
     if (inCallStarted) {
+      try {
+        deps.native.InCallManager.setKeepScreenOn?.(false);
+      } catch {}
+      // null возвращает default route policy библиотеки. Без этого process-wide
+      // force-флаг переживает звонок и ломает маршрутизацию следующего аудио.
+      try {
+        deps.native.InCallManager.setForceSpeakerphoneOn?.(null);
+      } catch {}
       try {
         deps.native.InCallManager.stop();
       } catch {}
@@ -694,13 +880,15 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         deps.sfx?.audioSessionReleased();
       } catch {}
     }
+    // Восстановление общей аудиосессии и сетевой settlement не должны держать
+    // кнопку сброса и навигацию. Оба процесса безопасно завершаются в фоне.
     try {
-      await deps.restoreAudioSession?.();
+      void Promise.resolve(deps.restoreAudioSession?.()).catch(() => {});
     } catch {}
     // End-нота ПОСЛЕ InCallManager.stop() (граница владения аудиосессией) и
     // только если звонок реально был активен — провал соединения без «алло»
     // не заслуживает прощальной ноты.
-    if (ownedAudioSession) {
+    if (shouldPlayEndCue) {
       try {
         deps.sfx?.endCue();
       } catch {}
@@ -710,12 +898,14 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     // (до минта серверу нечего закрывать, release резерва делает preflight-слой).
     if (hadSession && mint) {
       try {
-        await deps.end({
+        void Promise.resolve(deps.end({
           sessionId: mint.session_id,
           // Клиентский 'failed' сервер не знает — маппим в 'dropped'.
           endReason: toServerEndReason(reason),
           elapsedSec: finalElapsed,
           usage: { ...usage },
+        })).catch(() => {
+          // Недоотчитавшуюся сессию дожмёт серверный watchdog по heartbeat.
         });
       } catch {
         // Недоотчитавшуюся сессию дожмёт серверный watchdog по heartbeat.
@@ -759,84 +949,91 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     if (isTornDown()) return;
 
     setPhase('minting');
+    // Настраиваем voiceChat + speaker до создания микрофонного трека. Это
+    // устраняет iOS-гонку, при которой звонок подключён, но не слышит юзера.
+    acquireAudioSession();
     // createOffer/ICE gathering — ПАРАЛЛЕЛЬНО с минтом (offer токена не требует,
     // спека §1): пока сервер резервирует квоту, локальный стек уже готов.
-    const offerPromise = (async () => {
-      const connection = new deps.native.RTCPeerConnection({});
-      wirePeerConnection(connection);
-      const stream = await deps.native.mediaDevices.getUserMedia({ audio: true });
-      for (const track of stream.getTracks()) connection.addTrack(track, stream);
-      const channel = connection.createDataChannel('oai-events');
-      const offer = await connection.createOffer({});
-      await connection.setLocalDescription(offer);
-      return { connection, stream, channel, offer };
-    })();
+    const offerPromise = createLocalOffer();
 
-    let mintResult: MaxVoiceMintResponse;
-    let local: Awaited<typeof offerPromise>;
-    try {
-      [local, mintResult] = await Promise.all([offerPromise, deps.mint(req)]);
-    } catch {
-      // Минт или нативный стек упали до соединения: закрываем то, что успело
-      // создаться (offerPromise мог завершиться после reject минта).
-      void offerPromise
-        .then((created) => {
-          try {
-            created.connection.close();
-          } catch {}
-          for (const track of created.stream.getTracks()) {
-            try {
-              track.stop();
-            } catch {}
-          }
-        })
-        .catch(() => {});
-      await fail('mint_or_media_failed');
+    const mintPromise = deps.mint(req);
+    const startResults = Promise.allSettled([offerPromise, mintPromise]);
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    const timeout = new Promise<'timeout'>((resolve) => {
+      timeoutId = setTimeout(() => resolve('timeout'), MAX_CALL_START_TIMEOUT_MS);
+    });
+    const settled = await Promise.race([startResults, timeout]);
+    if (timeoutId !== null) clearTimeout(timeoutId);
+
+    if (settled === 'timeout') {
+      // Оба исходных промиса продолжают жить. Поздний локальный ресурс закрываем,
+      // поздний успешный минт немедленно сеттлим — резерв не ждёт watchdog.
+      // createLocalOffer публикует PC/stream сразу: fail() закрывает готовые
+      // ресурсы, а helper сам дочистит те, что появятся уже после teardown.
+      void offerPromise.catch(() => {});
+      void mintPromise.then((lateMint) => settleDetachedMint(lateMint, 0)).catch(() => {});
+      await fail('server_timeout');
       return;
     }
+
+    const [offerResult, mintResultState] = settled;
     if (isTornDown()) {
-      // end() позвали во время минта: teardown уже прошёл без нативных ссылок —
-      // дозакрываем созданное здесь.
-      try {
-        local.connection.close();
-      } catch {}
-      for (const track of local.stream.getTracks()) {
-        try {
-          track.stop();
-        } catch {}
-      }
+      // end() мог завершиться, пока mint/offer ещё исполнялись. Локальные
+      // ресурсы уже закрыты teardown/helper'ом, но поздний серверный резерв
+      // нужно закрыть явно — основной teardown его ещё не видел.
+      if (mintResultState.status === 'fulfilled') settleDetachedMint(mintResultState.value);
       return;
     }
-
-    pc = local.connection;
-    localStream = local.stream;
-    dc = local.channel;
+    if (offerResult.status === 'rejected' || mintResultState.status === 'rejected') {
+      // Если сервер уже выдал токен/резерв, делаем его видимым teardown до fail.
+      if (mintResultState.status === 'fulfilled') mint = mintResultState.value;
+      const reason = mintResultState.status === 'rejected'
+        ? (/^[a-z0-9_]+$/.test(String((mintResultState.reason as Error)?.message ?? ''))
+            ? String((mintResultState.reason as Error).message)
+            : 'mint_failed')
+        : 'media_failed';
+      await fail(reason);
+      return;
+    }
+    const local = offerResult.value;
+    const mintResult = mintResultState.value;
+    const { connection, channel } = local;
+    // createLocalOffer уже опубликовал PC/DC/stream для безопасного
+    // конкурентного teardown; здесь закрепляем только серверную сессию.
     mint = mintResult;
     // Корень reconnect-чейна — первая сессия: по нему сервер связывает биллинг.
     chain = makeReconnectChain(mintResult.session_id);
-    dc.onmessage = (event) => handleDcMessage(event?.data);
-    dc.onopen = () => activate();
+    channel.onmessage = (event) => handleDcMessage(event?.data);
+    channel.onclose = () => {
+      if (channel === dc) beginReconnect();
+    };
+    channel.onopen = () => activate();
 
     setPhase('connecting');
     let answerSdp: string;
     try {
-      answerSdp = await deps.exchangeSdp(local.offer.sdp, mintResult.value);
-    } catch {
-      await fail('sdp_exchange_failed');
+      answerSdp = await deps.exchangeSdp(local.offerSdp, mintResult.value);
+    } catch (error) {
+      const detail = String((error as Error)?.message ?? '');
+      await fail(detail === 'server_timeout' ? 'server_timeout' : 'sdp_exchange_failed');
       return;
     }
     if (isTornDown()) return;
 
     setPhase('configuring');
     try {
-      await pc.setRemoteDescription({ type: 'answer', sdp: answerSdp });
+      await connection.setRemoteDescription({ type: 'answer', sdp: answerSdp });
     } catch {
       await fail('set_remote_description_failed');
       return;
     }
+    connectTimer = setTimeout(() => {
+      connectTimer = null;
+      if (phase === 'configuring') void fail('connection_timeout');
+    }, MAX_CALL_CONNECT_TIMEOUT_MS);
     // Data channel мог открыться до того, как мы навесили onopen (гонка в
     // нативном стеке) — проверяем готовность явно.
-    if (!isTornDown() && dc && dc.readyState === 'open') activate();
+    if (!isTornDown() && channel === dc && channel.readyState === 'open') activate();
   }
 
   function setMuted(muted: boolean): void {

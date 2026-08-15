@@ -100,7 +100,7 @@ describe('resolveCustomizationAction', () => {
     [null, false, true, false, 'aura-plus'],
     [null, true, false, true, 'aura-pro'],
     ['none', true, true, true, null],
-    ['aura-aurora', true, true, false, 'aura-aurora'],
+    ['aura-ember', true, true, false, 'aura-ember'],
     ['aura-premium', false, false, false, 'aura-plus'],
     ['aura-vip', false, false, false, 'aura-plus'],
     ['aura-pro', false, false, false, 'aura-pro'],

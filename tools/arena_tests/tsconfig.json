@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowJs": false,
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "outDir": "../../.arena-test-build",
+    "rootDir": "../..",
+    "types": ["node"],
+    "noEmitOnError": false,
+    "typeRoots": ["../../node_modules/@types", "../../functions/node_modules/@types"]
+  },
+  "include": [
+    "../../tests/arena_*.test.ts",
+    "../../functions/src/arena_duel_v3.test.ts",
+    "../../functions/src/arena_config_contract.test.ts",
+    "../../functions/src/arena_v2_core.test.ts",
+    "../../functions/src/arena_expansion_core.test.ts",
+    "../../functions/src/arena_speed_progress_codec.test.ts",
+    "../../functions/src/arena_v2_backend_contract.test.ts",
+    "../../functions/src/arena_rival_backend_contract.test.ts",
+    "../../functions/src/arena_xp.test.ts"
+  ]
+}

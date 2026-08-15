@@ -6,7 +6,7 @@ const read = (relativePath: string) =>
   fs.readFileSync(path.join(root, relativePath), "utf8");
 
 describe("live admin web App Check contract", () => {
-  const live = read("admin/legacy.html");
+  const live = read("admin/v2/legacy.html");
   const giftServer = read("functions/src/web_checkout.ts");
 
   test("initializes the registered Enterprise provider before any Firebase service is constructed", () => {

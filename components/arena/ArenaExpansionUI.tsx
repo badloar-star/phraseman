@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useTournamentPalette } from '../tournament/tournament_theme';
+import { useArenaFontScale } from '../../hooks/use_arena_font_scale';
 import { V2Card, V2Cta } from '../tournament/tournament_v2_ui';
 import type { ArenaFeatureState, ArenaHubSection } from '../../modules/arena/expansion_contract';
 import { ARENA_HUB_SECTIONS } from '../../modules/arena/expansion_contract';
@@ -51,19 +52,26 @@ export function ArenaSectionTabs({
   );
 }
 
-export function ArenaWalletButton({ label, balance, onPress, disabled = false }: { label: string; balance: number; onPress: () => void; disabled?: boolean }) {
+/**
+ * Кнопка кошелька.
+ *
+ * `balance` может быть неизвестен: ответа ещё нет. Ноль в этом случае —
+ * утверждение «у тебя пусто», а не отсутствие ответа. Игрок, накопивший
+ * тысячу звёзд, видел ноль и шёл проверять, не списали ли всё.
+ */
+export function ArenaWalletButton({ label, balance, onPress, disabled = false }: { label: string; balance: number | null; onPress: () => void; disabled?: boolean }) {
   const P = useTournamentPalette();
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={`${label}: ${balance}`}
+      accessibilityLabel={`${label}: ${balance === null ? '—' : balance}`}
       accessibilityState={{ disabled }}
       disabled={disabled}
       onPress={onPress}
       style={[styles.walletButton, { backgroundColor: P.gold, opacity: disabled ? 0.55 : 1 }]}
     >
       <Ionicons name="star" size={17} color={P.onGold} />
-      <Text style={[styles.walletValue, { color: P.onGold }]}>{balance}</Text>
+      <Text style={[styles.walletValue, { color: P.onGold }]}>{balance === null ? '—' : balance}</Text>
     </Pressable>
   );
 }
@@ -86,6 +94,7 @@ export function ArenaFeatureRow({
   badge?: string;
 }>) {
   const P = useTournamentPalette();
+  const fontScale = useArenaFontScale();
   const reduceMotion = useReduceMotion();
   const foreground = accent ? P.okInk : disabled ? P.ghost : P.text;
   return (
@@ -102,9 +111,9 @@ export function ArenaFeatureRow({
           <Ionicons name={icon} size={25} color={foreground} />
         </View>
         <View style={styles.featureCopy}>
-          <Text style={[styles.featureTitle, { color: foreground }]}>{title}</Text>
-          {body ? <Text style={[styles.featureBody, { color: accent ? P.okInk : P.muted }]}>{body}</Text> : null}
-          {badge ? <Text style={[styles.featureBadge, { color: accent ? P.okInk : P.gold }]}>{badge}</Text> : null}
+          <Text numberOfLines={2} ellipsizeMode="tail" style={[styles.featureTitle, { color: foreground }]}>{title}</Text>
+          {body ? <Text style={[styles.featureBody, { lineHeight: 18 * fontScale, color: accent ? P.okInk : P.muted }]}>{body}</Text> : null}
+          {badge ? <Text style={[styles.featureBadge, { lineHeight: 17 * fontScale, color: accent ? P.okInk : P.gold }]}>{badge}</Text> : null}
         </View>
         <Ionicons name="chevron-forward" size={22} color={foreground} />
       </Pressable>
@@ -127,10 +136,11 @@ export function ArenaProgress({ value, max, label }: { value: number; max: numbe
 
 export function ArenaDisclosureBadge({ text }: { text: string }) {
   const P = useTournamentPalette();
+  const fontScale = useArenaFontScale();
   return (
     <View style={[styles.disclosure, { backgroundColor: P.goldSoft }]}>
       <Ionicons name="information-circle" size={18} color={P.gold} />
-      <Text style={[styles.disclosureText, { color: P.text }]}>{text}</Text>
+      <Text style={[styles.disclosureText, { lineHeight: 18 * fontScale, color: P.text }]}>{text}</Text>
     </View>
   );
 }
@@ -149,6 +159,7 @@ export function ArenaStateCard({
   onAction?: () => void;
 }>) {
   const P = useTournamentPalette();
+  const fontScale = useArenaFontScale();
   const icon: IconName = state === 'error' ? 'alert-circle'
     : state === 'expired' ? 'time'
       : state === 'unavailable' ? 'lock-closed'
@@ -159,7 +170,7 @@ export function ArenaStateCard({
     <V2Card style={styles.stateCard}>
       <Ionicons name={icon} size={32} color={state === 'error' ? P.danger : P.accent} />
       <Text accessibilityLiveRegion="polite" style={[styles.stateTitle, { color: P.text }]}>{title}</Text>
-      {body ? <Text style={[styles.stateBody, { color: P.muted }]}>{body}</Text> : null}
+      {body ? <Text style={[styles.stateBody, { lineHeight: 20 * fontScale, color: P.muted }]}>{body}</Text> : null}
       {actionLabel && onAction ? <View style={styles.stateAction}><V2Cta onPress={onAction}>{actionLabel}</V2Cta></View> : null}
     </V2Card>
   );
@@ -187,6 +198,8 @@ export function ArenaStateNotice({
 }>) {
   const { lang } = useLang();
   const copy = arenaExpansionStateCopy({ state, ghost, ...(emptyHint ? { emptyHint } : {}) });
+  // Загрузка молчит: слово «Загрузка…» ничего не сообщает, а ожидание рисует.
+  if (copy.silent) return null;
   const action = copy.action === 'retry' ? onRetry : copy.action === 'back' ? onBack : undefined;
   return (
     <ArenaStateCard
@@ -202,7 +215,8 @@ export function ArenaStateNotice({
 
 export function ArenaSectionTitle({ children }: { children: React.ReactNode }) {
   const P = useTournamentPalette();
-  return <Text style={[styles.sectionTitle, { color: P.text }]}>{children}</Text>;
+  const fontScale = useArenaFontScale();
+  return <Text style={[styles.sectionTitle, { lineHeight: 25 * fontScale, color: P.text }]}>{children}</Text>;
 }
 
 const styles = StyleSheet.create({
@@ -215,17 +229,17 @@ const styles = StyleSheet.create({
   featureIcon: { width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   featureCopy: { flex: 1, minWidth: 0 },
   featureTitle: { fontSize: 17, fontWeight: '900' },
-  featureBody: { marginTop: 2, fontSize: 13, lineHeight: 18, fontWeight: '600' },
-  featureBadge: { marginTop: 4, fontSize: 12, lineHeight: 17, fontWeight: '900' },
+  featureBody: { marginTop: 2, fontSize: 13, fontWeight: '600' },
+  featureBadge: { marginTop: 4, fontSize: 12, fontWeight: '900' },
   progressWrap: { gap: 6 },
   progressTrack: { height: 10, borderRadius: 999, overflow: 'hidden' },
   progressFill: { height: '100%', borderRadius: 999 },
   progressText: { alignSelf: 'flex-end', fontSize: 12, fontWeight: '800', fontVariant: ['tabular-nums'] },
   disclosure: { minHeight: 44, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 9, flexDirection: 'row', alignItems: 'center', gap: 8 },
-  disclosureText: { flex: 1, fontSize: 13, lineHeight: 18, fontWeight: '700' },
+  disclosureText: { flex: 1, fontSize: 13, fontWeight: '700' },
   stateCard: { minHeight: 190, alignItems: 'center', justifyContent: 'center', gap: 10 },
   stateTitle: { fontSize: 20, fontWeight: '900', textAlign: 'center' },
-  stateBody: { fontSize: 14, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
+  stateBody: { fontSize: 14, fontWeight: '600', textAlign: 'center' },
   stateAction: { width: '100%', marginTop: 4 },
-  sectionTitle: { marginTop: 2, fontSize: 19, lineHeight: 25, fontWeight: '900' },
+  sectionTitle: { marginTop: 2, fontSize: 19, fontWeight: '900' },
 });

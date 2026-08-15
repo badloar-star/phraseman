@@ -225,12 +225,12 @@ describe('app snapshot store contract', () => {
         source: 'storage',
         updatedAt: 100,
         activeAvatar: 'custom:custom-gen-41:aurora:white',
-        storedAuraSelection: 'aura-aurora',
+        storedAuraSelection: 'aura-ember',
         totalXp: 1250,
         level: 18,
         shards: 77,
         ownedAvatars: { 'custom-gen-41': 'aurora:white' },
-        ownedAuras: { 'aura-aurora': true },
+        ownedAuras: { 'aura-ember': true },
         giftedAvatarId: null,
         giftedAuraId: null,
       },
@@ -275,17 +275,17 @@ describe('app snapshot store contract', () => {
       source: 'local',
       updatedAt: 200,
       activeAvatar: 'custom:custom-gen-41:aurora:white',
-      storedAuraSelection: 'aura-aurora',
+      storedAuraSelection: 'aura-ember',
     });
     expect(getAppSnapshot()).toMatchObject({
       profile: {
         source: 'local',
         avatar: 'custom:custom-gen-41:aurora:white',
-        aura: 'aura-aurora',
+        aura: 'aura-ember',
       },
       customization: {
         activeAvatar: 'custom:custom-gen-41:aurora:white',
-        storedAuraSelection: 'aura-aurora',
+        storedAuraSelection: 'aura-ember',
       },
     });
 

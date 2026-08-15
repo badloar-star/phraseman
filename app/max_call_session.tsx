@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  Alert,
   AppState,
   Modal,
   ScrollView,
@@ -41,6 +40,8 @@ import {
 } from './max_call_client';
 import { createHintTimer, type HintTimer } from './max_call_hint_timer';
 import { createDefaultMaxCallSfx, type MaxCallSfx } from './max_call_sfx';
+import { UI_SFX_AUDIO_MODE } from './audio_playback_mode';
+import { setManagedAudioMode } from './audio_session_coordinator';
 import {
   MAX_CALL_UI_INITIAL,
   reduceMaxCallUi,
@@ -56,8 +57,12 @@ import {
   pillTone,
 } from './max_call_quota_view';
 import { MaxCallHalo, type MaxCallHaloRef } from './max_call_halo';
-import { VoiceEqualizer, type VoiceEqualizerRef } from './voice_equalizer';
 import { setLastMaxCallResult } from './max_voice_review';
+import {
+  MaxVoiceStageError,
+  maxVoiceFailureMessage,
+  maxVoiceFailureReason,
+} from './max_voice_error';
 
 /**
  * Экран MAX-звонка (спека, раздел 6). Экран ТОНКИЙ: вся хореография транспорта
@@ -72,8 +77,9 @@ import { setLastMaxCallResult } from './max_voice_review';
 const FUNCTIONS_REGION = 'us-central1';
 /** SDP-обмен идёт напрямую в OpenAI с ephemeral-токеном минта (спека §4). */
 const REALTIME_CALLS_URL = 'https://api.openai.com/v1/realtime/calls';
+/** Прямой SDP POST не может оставлять экран в вечном connecting. */
+const SDP_HTTP_TIMEOUT_MS = 20_000;
 /** Confirm на «завершить» — только в первые 30с (случайный тап при старте). */
-const END_CONFIRM_WINDOW_MS = 30_000;
 /** Blur/шторка: grace 12с с мьютом, потом честное завершение с сеттлментом. */
 const BLUR_GRACE_MS = 12_000;
 /** Серверные константы дедлайнов (спека §3): [WRAP_UP] за 75с, teardown +20с. */
@@ -106,16 +112,30 @@ function dayRemainingFromLimits(limits: Record<string, unknown> | undefined): nu
 }
 
 async function exchangeSdp(offerSdp: string, clientSecret: string): Promise<string> {
-  const res = await fetch(REALTIME_CALLS_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${clientSecret}`,
-      'Content-Type': 'application/sdp',
-    },
-    body: offerSdp,
-  });
-  if (!res.ok) throw new Error(`sdp_exchange_http_${res.status}`);
-  return await res.text();
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), SDP_HTTP_TIMEOUT_MS);
+  try {
+    const res = await fetch(REALTIME_CALLS_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${clientSecret}`,
+        'Content-Type': 'application/sdp',
+      },
+      body: offerSdp,
+      signal: controller.signal,
+    });
+    const body = await res.text();
+    if (!res.ok) {
+      if (__DEV__) console.warn('[MAX Voice] SDP exchange failed', res.status, body.slice(0, 300));
+      throw new Error(`sdp_exchange_http_${res.status}`);
+    }
+    return body;
+  } catch (error) {
+    if (controller.signal.aborted) throw new Error('server_timeout');
+    throw error;
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
 
 /**
@@ -329,26 +349,19 @@ function haloColorFor(phase: MaxCallUiPhase, t: { accent: string; textMuted: str
 function phaseHint(phase: MaxCallUiPhase, lang: Lang): string {
   switch (phase) {
     case 'connecting':
-      return triLang(lang, {
-        ru: 'Соединяем…',
-        uk: 'З’єднуємо…',
-        es: 'Conectando…',
-        'pt-BR': 'Conectando…',
-        vi: 'Đang kết nối…',
-        id: 'Menghubungkan…',
-        tr: 'Bağlanıyor…',
-        pl: 'Łączenie…',
-      });
+      // Экран уже живой и микрофон захватывается немедленно; техническую
+      // установку WebRTC не выдаём за отдельный пользовательский этап.
+      return '';
     case 'listening':
       return triLang(lang, {
-        ru: 'Твой ход — говори',
-        uk: 'Твій хід — говори',
-        es: 'Tu turno: habla',
-        'pt-BR': 'Sua vez: fale',
-        vi: 'Đến lượt bạn — hãy nói',
-        id: 'Giliranmu — bicaralah',
-        tr: 'Sıra sende — konuş',
-        pl: 'Twoja kolej — mów',
+        ru: 'Слушаю…',
+        uk: 'Слухаю…',
+        es: 'Te escucho…',
+        'pt-BR': 'Estou ouvindo…',
+        vi: 'Đang nghe…',
+        id: 'Mendengarkan…',
+        tr: 'Dinliyorum…',
+        pl: 'Słucham…',
       });
     case 'thinking':
       return triLang(lang, {
@@ -392,12 +405,13 @@ export default function MaxCallSession() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
-  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string }>();
+  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string }>();
 
   const format: MaxVoiceMintRequest['format'] =
     params.format === 'companion' || params.format === 'trial' ? params.format : 'scenario';
   const scenarioId = String(params.scenarioId ?? 'coffee');
   const cefr = typeof params.cefr === 'string' && params.cefr !== '' ? params.cefr : undefined;
+  const devMode = params.devMode === '1';
 
   const scenario = useMemo(
     () => (format === 'companion' ? undefined : getScenarioById(scenarioId)),
@@ -424,7 +438,6 @@ export default function MaxCallSession() {
   const clientRef = useRef<MaxCallClient | null>(null);
   const bufferRef = useRef(createTranscriptBuffer(() => Date.now()));
   const haloRef = useRef<MaxCallHaloRef>(null);
-  const eqRef = useRef<VoiceEqualizerRef>(null);
   // Таймер подсказок создаётся в onCallActivated из limits минта (per-CEFR
   // порог, кэп на сессию); до active — null, подсказки невозможны.
   const hintTimerRef = useRef<HintTimer | null>(null);
@@ -443,10 +456,10 @@ export default function MaxCallSession() {
   const finishedRef = useRef(false);
   const mutedRef = useRef(false);
   mutedRef.current = muted;
-  // Владелец эквалайзера читается из ref в 100мс-поллинге уровней — колбэк
+  // Владелец живой ауры читается из ref в 250мс-поллинге уровней — колбэк
   // onLevels создаётся один раз и не должен зависеть от React-стейта.
-  const eqOwnerRef = useRef(uiState.eqOwner);
-  eqOwnerRef.current = uiState.eqOwner;
+  const haloOwnerRef = useRef(uiState.eqOwner);
+  haloOwnerRef.current = uiState.eqOwner;
 
   // Причина завершения для разбора (устанавливается до end()).
   const endReasonRef = useRef<'completed' | 'capped' | 'dropped' | 'background' | 'failed'>('completed');
@@ -458,6 +471,7 @@ export default function MaxCallSession() {
     if (!native) {
       // OTA поверх бинарника без webrtc: вход должен был быть скрыт гейтом, но
       // прямой deeplink обязан деградировать честно, без краша.
+      if (__DEV__) console.warn('[MAX Voice] native_unavailable: rebuild the iOS development client');
       setUiState((prev) => reduceMaxCallUi(prev, { type: 'fail', reason: 'native_unavailable' }));
       return;
     }
@@ -478,10 +492,15 @@ export default function MaxCallSession() {
       // добавляются к КАЖДОМУ минту, включая reconnect-ре-минты: сервер строит
       // instructions заново и на переносе резерва.
       mint: async (req) => {
-        const extras = await buildMintExtras(format, scenario, cefr);
-        return parseMintResponse(
-          await mintCallable({ ...extras, ...req } as unknown as Record<string, unknown>),
-        );
+        try {
+          const extras = await buildMintExtras(format, scenario, cefr);
+          return parseMintResponse(
+            await mintCallable({ ...extras, ...req } as unknown as Record<string, unknown>),
+          );
+        } catch (error) {
+          if (__DEV__) console.warn('[MAX Voice] mint failed', error);
+          throw new MaxVoiceStageError(maxVoiceFailureReason(error, 'mint_failed'), error);
+        }
       },
       heartbeat: (req) => heartbeatCallable(req as unknown as Record<string, unknown>),
       // Обогащение сеттлмента (спека §2 maxVoiceSessionEnd): секунды речи,
@@ -497,6 +516,9 @@ export default function MaxCallSession() {
           channel: 'realtime',
         } as unknown as Record<string, unknown>),
       exchangeSdp,
+      // InCallManager.stop() освобождает native voiceChat session, после чего
+      // возвращаем общий expo-audio coordinator в обычный UI-режим.
+      restoreAudioSession: () => setManagedAudioMode(UI_SFX_AUDIO_MODE),
       reconnectHistory: () => bufferRef.current.history(),
       sfx: sfxRef.current ?? undefined,
       now: () => Date.now(),
@@ -513,13 +535,11 @@ export default function MaxCallSession() {
         }
       },
       onLevels: (sample) => {
-        // Императивный путь мимо React: ореол кивает на голос юзера, эквалайзер
-        // питается голосом владельца хода. Нет данных → организм idle pulse.
-        haloRef.current?.setMicLevel(sample.mic);
-        const owner = eqOwnerRef.current;
+        // Императивный путь мимо React: единая аура реагирует на того, кто
+        // говорит сейчас — микрофон пользователя или remote-аудио MAX.
+        const owner = haloOwnerRef.current;
         const level = owner === 'ai' ? sample.remote : owner === 'user' ? sample.mic : null;
-        // Уровень статов 0..1 → шкала volumechange (~0..10) модели эквалайзера.
-        if (level !== null) eqRef.current?.setSample(level * 10);
+        haloRef.current?.setMicLevel(level);
       },
       onPhase: (phase) => {
         if (phase === 'active' && startedAtRef.current === null) {
@@ -528,7 +548,12 @@ export default function MaxCallSession() {
       },
     });
     clientRef.current = client;
-    void client.start({ format, scenarioId: format === 'companion' ? undefined : scenarioId, cefr });
+    void client.start({
+      format,
+      scenarioId: format === 'companion' ? undefined : scenarioId,
+      cefr,
+      ...(devMode ? { devMode: true } : {}),
+    });
 
     // Один setState раз в 250мс: дельты копятся в буфере, наружу — снапшот.
     const flushId = setInterval(() => {
@@ -650,7 +675,8 @@ export default function MaxCallSession() {
   }, [uiState.phase]);
 
   // -------------------------------------------------------------------------
-  // Завершение: собрать локальный итог и уйти на разбор (fade — навигацией).
+  // Завершение: локальный teardown не ждёт сеть, поэтому разбор открывается
+  // сразу; settlement maxVoiceSessionEnd продолжает работу в фоне.
   useEffect(() => {
     if (uiState.phase !== 'ended' || finishedRef.current) return;
     finishedRef.current = true;
@@ -665,78 +691,20 @@ export default function MaxCallSession() {
       format,
       scenarioId: format === 'companion' ? undefined : scenarioId,
       cefr,
+      devMode,
       personaName,
       endReason: endReasonRef.current,
       dayRemainingSec:
         dayRemainingBefore === null ? null : Math.max(0, dayRemainingBefore - durationSec),
     });
     router.replace('/max_voice_review' as any);
-  }, [uiState.phase, format, scenarioId, personaName, router]);
+  }, [uiState.phase, format, scenarioId, cefr, devMode, personaName, router]);
 
   // -------------------------------------------------------------------------
   const onEndPress = () => {
     hapticTap();
-    const startedAt = startedAtRef.current;
-    const withinConfirmWindow = startedAt === null || Date.now() - startedAt < END_CONFIRM_WINDOW_MS;
-    const doEnd = () => {
-      endReasonRef.current = 'completed';
-      void clientRef.current?.end('completed');
-    };
-    if (!withinConfirmWindow) {
-      doEnd();
-      return;
-    }
-    Alert.alert(
-      triLang(lang, {
-        ru: 'Завершить звонок?',
-        uk: 'Завершити дзвінок?',
-        es: '¿Terminar la llamada?',
-        'pt-BR': 'Encerrar a ligação?',
-        vi: 'Kết thúc cuộc gọi?',
-        id: 'Akhiri panggilan?',
-        tr: 'Arama sonlandırılsın mı?',
-        pl: 'Zakończyć rozmowę?',
-      }),
-      triLang(lang, {
-        ru: 'Разговор только начался',
-        uk: 'Розмова щойно почалася',
-        es: 'La conversación acaba de empezar',
-        'pt-BR': 'A conversa acabou de começar',
-        vi: 'Cuộc trò chuyện vừa mới bắt đầu',
-        id: 'Percakapan baru saja dimulai',
-        tr: 'Konuşma daha yeni başladı',
-        pl: 'Rozmowa dopiero się zaczęła',
-      }),
-      [
-        {
-          text: triLang(lang, {
-            ru: 'Продолжить',
-            uk: 'Продовжити',
-            es: 'Seguir',
-            'pt-BR': 'Continuar',
-            vi: 'Tiếp tục',
-            id: 'Lanjutkan',
-            tr: 'Devam et',
-            pl: 'Kontynuuj',
-          }),
-          style: 'cancel',
-        },
-        {
-          text: triLang(lang, {
-            ru: 'Завершить',
-            uk: 'Завершити',
-            es: 'Terminar',
-            'pt-BR': 'Encerrar',
-            vi: 'Kết thúc',
-            id: 'Akhiri',
-            tr: 'Bitir',
-            pl: 'Zakończ',
-          }),
-          style: 'destructive',
-          onPress: doEnd,
-        },
-      ],
-    );
+    endReasonRef.current = 'completed';
+    void clientRef.current?.end('completed');
   };
 
   const onMutePress = () => {
@@ -752,8 +720,6 @@ export default function MaxCallSession() {
   const haloColor = haloColorFor(phase, t);
   const breathing = phase === 'connecting' || phase === 'thinking';
   const hint = phaseHint(phase, lang);
-  const eqActive = phase !== 'ended' && phase !== 'failed' && phase !== 'connecting';
-  const eqColor = uiState.eqOwner === 'ai' ? AI_WARM_COLOR : t.accent;
   const lastTwo = turns.slice(-2);
   const minutesWord = triLang(lang, {
     ru: 'мин',
@@ -788,17 +754,13 @@ export default function MaxCallSession() {
             })}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', marginTop: 6 }}>
-            {triLang(lang, {
-              ru: 'Проверь сеть и попробуй ещё раз',
-              uk: 'Перевір мережу і спробуй ще раз',
-              es: 'Revisa tu conexión e inténtalo de nuevo',
-              'pt-BR': 'Verifique a conexão e tente de novo',
-              vi: 'Kiểm tra mạng và thử lại',
-              id: 'Periksa jaringan dan coba lagi',
-              tr: 'Bağlantını kontrol edip tekrar dene',
-              pl: 'Sprawdź sieć i spróbuj ponownie',
-            })}
+            {maxVoiceFailureMessage(uiState.failReason, lang)}
           </Text>
+          {__DEV__ && uiState.failReason ? (
+            <Text style={{ color: t.textMuted, fontSize: f.label, textAlign: 'center', marginTop: 8 }}>
+              {`MAX: ${uiState.failReason}`}
+            </Text>
+          ) : null}
           <TouchableOpacity
             accessibilityRole="button"
             onPress={() => {
@@ -811,6 +773,7 @@ export default function MaxCallSession() {
                   format,
                   ...(format === 'companion' ? {} : { scenarioId }),
                   ...(cefr !== undefined ? { cefr } : {}),
+                  ...(devMode ? { devMode: '1' } : {}),
                 },
               } as any);
             }}
@@ -835,6 +798,39 @@ export default function MaxCallSession() {
               })}
             </Text>
           </TouchableOpacity>
+          {format !== 'companion' ? (
+            <TouchableOpacity
+              testID="max-call-fallback-button"
+              accessibilityRole="button"
+              onPress={() => {
+                hapticTap();
+                router.replace({
+                  pathname: '/ai_dialog_session',
+                  params: { scenarioId, maxFallback: '1' },
+                } as any);
+              }}
+              style={{
+                marginTop: 10,
+                borderRadius: 14,
+                paddingVertical: 12,
+                paddingHorizontal: 18,
+                backgroundColor: t.bgSurface,
+              }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                {triLang(lang, {
+                  ru: 'Продолжить в режиме рации',
+                  uk: 'Продовжити в режимі рації',
+                  es: 'Continuar en modo walkie-talkie',
+                  'pt-BR': 'Continuar no modo rádio',
+                  vi: 'Tiếp tục ở chế độ bộ đàm',
+                  id: 'Lanjut dalam mode walkie-talkie',
+                  tr: 'Telsiz modunda devam et',
+                  pl: 'Kontynuuj w trybie krótkofalówki',
+                })}
+              </Text>
+            </TouchableOpacity>
+          ) : null}
         </SafeAreaView>
       </ScreenGradient>
     );
@@ -906,7 +902,7 @@ export default function MaxCallSession() {
           </View>
         )}
 
-        {/* Сцена: ореол + аватар, эквалайзер под ним. Поверх — ничего. */}
+        {/* Сцена: один живой голосовой круг с многослойной feather-аурой. */}
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <MaxCallHalo ref={haloRef} color={haloColor} breathing={breathing} size={104}>
             <View
@@ -922,15 +918,6 @@ export default function MaxCallSession() {
               <Ionicons name={(scenario?.icon ?? 'chatbubbles-outline') as any} size={44} color={t.accent} />
             </View>
           </MaxCallHalo>
-          <View style={{ marginTop: 22, alignSelf: 'stretch' }}>
-            <VoiceEqualizer
-              ref={eqRef}
-              active={eqActive}
-              color={eqColor}
-              idleColor={t.textGhost}
-              owner={uiState.eqOwner}
-            />
-          </View>
           {hint !== '' && (
             <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 14 }} maxFontSizeMultiplier={1.2}>
               {hint}

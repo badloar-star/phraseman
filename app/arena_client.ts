@@ -8,6 +8,7 @@ import Constants from 'expo-constants';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser } from './cloud_sync';
 import { getInstalledAppVersion } from './app_version';
+import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
 import type {
   ArenaMatch,
   ArenaMatchReward,
@@ -149,6 +150,15 @@ export async function arenaV2QuickBotFallback(requestId: string): Promise<Readon
 }
 
 export const arenaV2MatchAccept = (matchId: string) => callArena<MatchMutationResponse>('arenaV2MatchAccept', { matchId });
+/**
+ * НЕ ВЫЗЫВАЕТСЯ НИ ОДНИМ ЭКРАНОМ, и это осознанно.
+ *
+ * Матч не предлагают — в него входят: игрок уже нажал «Играть» или принял
+ * приглашение друга, поэтому экран матча принимает дуэль сам. Отказаться
+ * можно раньше, на уровне приглашения (`arenaV2InviteDecline`), и позже,
+ * выходом из матча (`arenaV2Forfeit`). Обёртка оставлена ради серверного
+ * договора; если понадобится экран отказа от матча — он уже есть чем.
+ */
 export const arenaV2MatchDecline = (matchId: string) => callArena<MatchMutationResponse>('arenaV2MatchDecline', { matchId });
 export const arenaV2SyncMatch = (matchId: string, expectedVersion?: number) => callArena<MatchMutationResponse>(
   'arenaV2SyncMatch',
@@ -278,6 +288,16 @@ export function arenaMatchReportToWire(
   };
 }
 
+/**
+ * Пошаговая отправка ответов — путь дуэли v2. НИ ОДИН экран его больше не
+ * зовёт: в v3 план матча выдаётся целиком, ответы проверяются на устройстве,
+ * а на сервер уходит один отчёт в конце (три вызова на матч вместо десятков).
+ *
+ * Обёртки оставлены потому, что на сервере эти функции живы ради матчей,
+ * начатых старой сборкой приложения. Удалить их можно будет вместе с
+ * серверными — но не раньше, иначе договор клиента с сервером перестанет
+ * читаться из одного места.
+ */
 export const arenaV2SubmitAnswer = (input: Readonly<{
   matchId: string;
   taskIndex: number;
@@ -340,14 +360,21 @@ export const arenaV2SeasonClaim = (input: Readonly<{
   seasonId?: string;
   level: number;
   side: 'free' | 'plus';
-}>) => callArena<{ ok: true }>('arenaV2SeasonClaim', { ...input });
+}>) => callArena<{ ok: true }>('arenaV2SeasonClaim', { ...input })
+  .then(async (result) => {
+    await refreshShardsBalanceFromCloudAuthoritative().catch(() => null);
+    return result;
+  });
 
 export const arenaV2SpinStatus = () => callArena<Readonly<{ ok: true; spinsAvailable: number }>>('arenaV2SpinStatus');
 export const arenaV2SpinClaim = (requestId: string) => callArena<Readonly<{
   ok: true;
   receiptId: string;
   reward?: Readonly<{ kind: 'shards'; amount: number }>;
-}>>('arenaV2SpinClaim', { requestId });
+}>>('arenaV2SpinClaim', { requestId }).then(async (result) => {
+  await refreshShardsBalanceFromCloudAuthoritative().catch(() => null);
+  return result;
+});
 
 export async function arenaExpansionHome(): Promise<ArenaExpansionHome> {
   const response = await callArena<ArenaExpansionHomeWire>('arenaExpansionHome');

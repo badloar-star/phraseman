@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Арена — конфиг</title>
+  <title>Настройки Арены</title>
   <style>
     :root { --bg:#0b0b10; --fg:#eaeaf2; --fg-dim:#9aa0b0; --acc:#818cf8; --card:#16161f;
             --good:#34d399; --warn:#fbbf24; --bad:#f87171; --line:#27272f; }
@@ -15,84 +15,75 @@
     main { padding:20px; display:grid; gap:16px; max-width:900px; margin:0 auto; }
     section { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
     section h2 { margin:0 0 12px; font-size:12px; font-weight:600; text-transform:uppercase; color:var(--fg-dim); letter-spacing:.05em; }
-    button, input { background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:8px 12px; font:inherit; }
+    button, input { min-height:44px; background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:8px 12px; font:inherit; transition:border-color .2s ease, box-shadow .2s ease; }
     button { cursor:pointer; }
     button:hover:not(:disabled) { border-color:var(--acc); }
     button:disabled { opacity:.5; cursor:not-allowed; }
+    button:focus-visible, input:focus-visible { outline:2px solid #38bdf8; outline-offset:2px; }
     button.primary { background:var(--acc); color:#0b0b10; border-color:var(--acc); font-weight:600; }
     .state { font-size:22px; font-weight:700; }
     .state.good { color:var(--good); } .state.bad { color:var(--bad); } .state.warn { color:var(--warn); }
     .hint { color:var(--fg-dim); font-size:12px; margin-top:6px; }
     .flags { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
     label.flag { display:flex; align-items:center; gap:10px; padding:10px 12px; border:1px solid var(--line); border-radius:8px; cursor:pointer; }
-    label.flag input { width:18px; height:18px; }
+    label.flag input { width:18px; height:18px; min-height:18px; }
+    label.flag:has(input:focus-visible) { outline:2px solid #38bdf8; outline-offset:2px; }
     label.flag .name { font-weight:600; }
     label.flag .why { display:block; color:var(--fg-dim); font-size:11px; font-weight:400; }
     ul.problems { margin:0; padding-left:18px; color:var(--bad); font-size:13px; }
     .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
     .row input[type=text] { flex:1; min-width:220px; }
+    .field-label { display:block; margin-bottom:6px; font-weight:600; }
     .msg { margin-top:10px; font-size:13px; }
     .msg.ok { color:var(--good); } .msg.err { color:var(--bad); }
-    code { background:#0b0b10; padding:1px 5px; border-radius:4px; font-size:12px; color:var(--fg-dim); }
+    @media (max-width:480px) {
+      body { font-size:16px; }
+      main { padding:12px; }
+      section { padding:14px; }
+      .row input[type=text], .row button { width:100%; min-width:0; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Арена — конфиг</h1>
-    <span class="sub">arena_v2_config/current</span>
+    <h1>Настройки Арены</h1>
     <span class="sub" id="who"></span>
   </header>
 
   <main>
     <section>
       <h2>Состояние</h2>
-      <div class="state" id="state">Загрузка…</div>
+      <div class="state" id="state" role="status" aria-live="polite">Загрузка…</div>
       <div class="hint" id="stateHint"></div>
       <ul class="problems" id="problems" style="display:none"></ul>
     </section>
 
     <section>
-      <h2>Что открыто игрокам</h2>
+      <h2>Режимы</h2>
       <div class="flags" id="flags"></div>
     </section>
 
     <section>
-      <h2>Расширение</h2>
+      <h2>Дополнительно</h2>
       <div class="flags" id="expansionFlags"></div>
     </section>
 
     <section>
-      <h2>Минимальная версия приложения</h2>
-      <div class="row">
-        <input type="text" id="minClientVersion" placeholder="0.0.0" />
-      </div>
-      <div class="hint">
-        Пусто или неразборчиво — считается <code>0.0.0</code>, то есть подходит любая сборка.
-        Выдуманное число молча отрезало бы часть игроков.
-      </div>
-    </section>
-
-    <section>
       <h2>Сохранить</h2>
+      <label class="field-label" for="reason">Причина изменения</label>
       <div class="row">
-        <input type="text" id="reason" placeholder="Зачем меняем (обязательно)" />
-        <button class="primary" id="save" disabled>Записать конфиг</button>
+        <input type="text" id="reason" placeholder="Например: включаю быстрые матчи" />
+        <button
+          class="primary"
+          id="save"
+          title="Сохранит выбранные режимы для всех игроков. Изменение появится примерно через 15 секунд. Откатить можно переключателем на этой же странице."
+          disabled
+        >Сохранить</button>
       </div>
       <div class="hint">
-        Конфиг пишется целиком, а не по кусочкам: собранный из нескольких заходов документ —
-        это документ, которого никто не видел целиком, а он решает, работает ли Арена вообще.
-        Изменение доезжает до игроков примерно за <strong>15 секунд</strong> — кеш на бэкенде.
+        Изменение появится в приложении примерно через <strong>15 секунд</strong>.
       </div>
-      <div class="msg" id="msg"></div>
-    </section>
-
-    <section>
-      <h2>Версии содержимого</h2>
-      <div class="hint" id="expected"></div>
-      <div class="hint">
-        Эти значения берёт сборка. Руками их вводить нельзя и не нужно — именно на них
-        конфиг и ломался: опечатка в хеше давала отказ, неотличимый от «документа нет».
-      </div>
+      <div class="msg" id="msg" role="status" aria-live="polite"></div>
     </section>
   </main>
 
@@ -122,10 +113,14 @@
       ['spinEnabled', 'Редкий дроп', 'Случайная награда после матча.'],
     ];
     const EXPANSION = [
-      ['arenaExpansionEnabled', 'Расширение', 'Кошелёк, «Сегодня», соперничества.'],
+      ['arenaExpansionEnabled', 'Расширение (общий)', 'Главный выключатель. При нём выключенном не работает ни один раздел ниже.'],
+      ['arenaTodayEnabled', '«Сегодня»', 'Ежедневный забег. Нужен и общий выключатель, и этот.'],
       ['arenaMatchLabEnabled', 'Лаборатория', 'Повторы заданий. Разбор матча от этого НЕ зависит.'],
       ['arenaMasteryEnabled', 'Карта мастерства', ''],
+      ['arenaGhostEnabled', 'Призрачные дуэли', 'Матч с записью забега друга.'],
+      ['arenaRivalEnabled', 'Соперничества', 'Серии до двух побед. Версия правил подставляется сборкой.'],
       ['arenaPartnerEnabled', 'Напарники', ''],
+      ['arenaStarStoreEnabled', 'Магазин косметики', 'Версия каталога подставляется сборкой.'],
     ];
 
     const PROBLEM_TEXT = {
@@ -173,15 +168,15 @@
       const hint = $('stateHint');
       const problems = $('problems');
       if (!status.exists) {
-        state.textContent = 'Документа нет — Арена не работает';
+        state.textContent = 'Арена не настроена';
         state.className = 'state bad';
-        // Это и есть корневая причина «арена не работает»: бэкенд закрыт по
-        // умолчанию, и без документа каждый вызов падает.
-        hint.textContent = 'Каждый вызов Арены падает с arena_config_missing. Отметьте нужное и запишите конфиг.';
+        // Без документа бэкенд отвечает arena_config_missing.
+        hint.textContent = 'Выберите режимы и нажмите «Сохранить».';
       } else if (!status.valid) {
-        state.textContent = 'Документ есть, но не сходится';
+        state.textContent = 'Настройки требуют обновления';
         state.className = 'state bad';
-        hint.textContent = 'Бэкенд отказывает с arena_config_incompatible. Включённые переключатели при этом ничего не значат.';
+        // Несовместимый документ даёт arena_config_incompatible.
+        hint.textContent = 'Обновите серверные функции Арены.';
       } else if (status.liveForPlayers) {
         state.textContent = 'Арена работает';
         state.className = 'state good';
@@ -206,11 +201,6 @@
 
       renderFlags($('flags'), FLAGS, status.flags);
       renderFlags($('expansionFlags'), EXPANSION, status.expansionFlags);
-      $('minClientVersion').value = status.minClientVersion || '';
-      $('expected').textContent =
-        'Пул: ' + status.expected.poolVersion
-        + ' · манифест: ' + String(status.expected.manifestSha256).slice(0, 16) + '…'
-        + ' · корень: ' + String(status.expected.merkleRootSha256).slice(0, 16) + '…';
       $('save').disabled = false;
     }
 
@@ -241,7 +231,8 @@
           reason,
           flags: collect(FLAGS),
           expansionFlags: collect(EXPANSION),
-          minClientVersion: $('minClientVersion').value.trim(),
+          // Версию приложения администратор не вводит: конфиг подходит любой сборке.
+          minClientVersion: '0.0.0',
         });
         paint(res.data.status);
         const seconds = Math.round((res.data.propagationDelayMs || 0) / 1000);

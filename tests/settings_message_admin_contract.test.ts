@@ -6,7 +6,7 @@ const read = (file: string) =>
 
 describe("settings message admin and vote contracts", () => {
   it("uses the only live admin surface for two independent slots", () => {
-    const admin = read("admin/legacy.html");
+    const admin = read("admin/v2/legacy.html");
     expect(admin).toContain(">Плашки и сообщения</div>");
     expect(admin).toContain('id="settings-message-slots"');
     expect(admin).toContain('data-settings-slot="top"');

@@ -19,6 +19,7 @@ import {
   applyCommunityPacksFilter,
   COMMUNITY_SORTS,
   communityPackMatchesQuery,
+  communitySortIonicon,
   communitySortLabel,
 } from '../app/community_packs/communityCatalogFilter';
 import {
@@ -107,8 +108,24 @@ describe('фильтр каталога наборов сообщества', ()
     expect(applyCommunityPacksFilter(packs, '', 'new').map((p) => p.id)).toEqual(['c', 'a', 'b']);
   });
 
-  it('«Больше карточек» — по размеру набора вниз', () => {
-    expect(applyCommunityPacksFilter(packs, '', 'size').map((p) => p.id)).toEqual(['b', 'c', 'a']);
+  it('фильтров ровно два: «Популярные» и «Новые» («Больше карточек» убран)', () => {
+    expect(COMMUNITY_SORTS).toEqual(['popular', 'new']);
+    expect(read('app', 'community_packs', 'communityCatalogFilter.ts')).not.toMatch(/'size'/);
+    for (const rel of [
+      ['app', 'flashcards', 'FlashcardsCategoryHub.tsx'],
+      ['app', 'flashcards_packs.tsx'],
+    ]) {
+      const src = read(...(rel as string[]));
+      expect(src).not.toMatch(/Больше карточек|Więcej kart|Daha çok kart/);
+    }
+  });
+
+  it('у каждой сортировки есть иконка для круглой кнопки шапки', () => {
+    for (const sort of COMMUNITY_SORTS) {
+      expect(communitySortIonicon(sort, true).length).toBeGreaterThan(0);
+      expect(communitySortIonicon(sort, false)).toContain('-outline');
+      expect(communitySortIonicon(sort, true)).not.toContain('-outline');
+    }
   });
 
   it('поиск и сортировка применяются вместе', () => {
@@ -195,6 +212,56 @@ describe('каталог сообщества: сетка и тексты', () =
     ]) {
       expect(hub).not.toContain(slogan);
     }
+  });
+});
+
+describe('шапка каталога сообщества (замечания владельца, iPhone)', () => {
+  const hub = read('app', 'flashcards', 'FlashcardsCategoryHub.tsx');
+  const screen = read('app', 'flashcards_packs.tsx');
+
+  it('заголовок один и живёт в шапке экрана, справа от стрелки «назад»', () => {
+    expect(screen).toContain('testID="flashcards-packs-title"');
+    expect(screen).toContain("ru: 'Наборы сообщества'");
+    expect(screen).toContain('testID="flashcards-header-back"');
+    /** В теле каталога заголовков больше нет — дубль «Наборы» / «Наборы сообщества» убран. */
+    expect(hub).not.toContain("ru: 'Наборы сообщества'");
+    expect(hub).not.toMatch(/ru: 'Наборы',/);
+  });
+
+  it('строки поиска на экране нет: поле прячется под круглую лупу', () => {
+    expect(hub).not.toContain('TextInput');
+    expect(screen).toContain('testID="flashcards-packs-search-toggle"');
+    expect(screen).toContain('testID="flashcards-packs-search"');
+    expect(screen).toContain('pointerEvents={searchOpen');
+  });
+
+  it('раскрытие поиска анимируется только opacity/transform и уважает reduceMotion', () => {
+    expect(screen).toContain('opacity: searchAnim');
+    expect(screen).toContain('transform: [{ translateX: searchTranslateX }]');
+    expect(screen).toContain('reduceMotion || isLowPowerEffective()');
+    expect(screen).toContain('duration: instant ? 0 : 190');
+    /** Анимация высоты/ширины шапки запрещена — иначе экран «дышит» при раскрытии. */
+    expect(screen).not.toMatch(/Animated\.timing\(\s*headerHeight/);
+  });
+
+  it('фильтры — круглые кнопки того же размера, что и лупа, только иконки', () => {
+    expect(screen).toContain('headerRoundBtn');
+    expect(screen).toContain('width: 36,');
+    expect(screen).toContain('borderRadius: 18,');
+    expect(screen).toContain('communitySortIonicon(key, active)');
+    /** Подписей на кнопках нет, но имя фильтра обязано быть доступно скринридеру. */
+    expect(screen).toContain('accessibilityLabel={communitySortLabel(key, lang)}');
+  });
+
+  it('активный фильтр выделен визуально и в accessibilityState', () => {
+    expect(screen).toContain('accessibilityState={{ selected: active }}');
+    expect(screen).toContain('borderColor: active ? t.accent : t.border');
+  });
+
+  it('каталог получает фильтр готовым из шапки', () => {
+    expect(screen).toContain('communityQuery={communityQuery}');
+    expect(screen).toContain('communitySort={communitySort}');
+    expect(hub).toContain('applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort)');
   });
 });
 

@@ -16,8 +16,13 @@ import {
 } from '../modules/arena/review_view';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { arenaLoadState } from '../modules/arena/load_state';
+import { arenaCachedLoadView, arenaLoadState } from '../modules/arena/load_state';
+import { useArenaFontScale } from '../hooks/use_arena_font_scale';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { arenaLoadWarm, arenaPeekWarm, arenaRememberWarm } from '../modules/arena/warm_cache';
+import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { arenaFetchMatchReview } from './arena_client';
+import { safeRouterBack } from './navigation_back';
 
 /**
  * Разбор матча.
@@ -28,6 +33,20 @@ import { arenaFetchMatchReview } from './arena_client';
  *
  * Считает всё `modules/arena/review_view.ts` — экран только рисует.
  */
+const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
+
+/**
+ * Снимок разбора хранится ВМЕСТЕ с идентификатором матча и берётся только для
+ * него. Без этой проверки игрок открыл бы разбор нового матча и увидел
+ * прошлый — это хуже пустого экрана: цифры выглядят настоящими.
+ */
+function readReviewWarm(value: unknown, matchId: string): readonly unknown[] | null {
+  if (!value || typeof value !== 'object') return null;
+  if ((value as { matchId?: unknown }).matchId !== matchId) return null;
+  const rows = (value as { rows?: unknown }).rows;
+  return Array.isArray(rows) ? rows as readonly unknown[] : null;
+}
+
 export default function ArenaReviewScreen() {
   const router = useRouter();
   const { lang } = useLang();
@@ -36,45 +55,69 @@ export default function ArenaReviewScreen() {
   const reduceMotion = useReduceMotion();
   const params = useLocalSearchParams<{ matchId?: string }>();
   const matchId = typeof params.matchId === 'string' ? params.matchId : '';
-  const [raw, setRaw] = useState<readonly unknown[] | null>(null);
-  const [loaded, setLoaded] = useState(false);
+  const warmRows = useMemo(
+    () => readReviewWarm(arenaPeekWarm('review', Date.now()), matchId),
+    [matchId],
+  );
+  const [raw, setRaw] = useState<readonly unknown[] | null>(warmRows);
+  const [loaded, setLoaded] = useState(warmRows !== null);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     if (!active || !matchId) return;
     void arenaFetchMatchReview(matchId)
-      .then(setRaw)
+      .then((rows) => {
+        setRaw(rows);
+        setFailed(false);
+        arenaRememberWarm({ key: 'review', value: { matchId, rows }, wallNowMs: Date.now(), store: warmStore });
+      })
       .catch(() => setFailed(true))
       .finally(() => setLoaded(true));
+    void arenaLoadWarm(warmStore, 'review', Date.now()).then((stored) => {
+      const rows = readReviewWarm(stored, matchId);
+      if (rows) setRaw((current) => current ?? rows);
+    }).catch(() => {});
   }, [active, matchId]);
 
   const rows = useMemo(() => arenaReviewRows(raw ?? []), [raw]);
   const summary = useMemo(() => arenaReviewSummary(rows), [rows]);
   const state = arenaLoadState({ loaded, failed, count: rows.length });
+  // Разбор привязан к одному матчу и не меняется: снимок для него — не
+  // «устаревшие данные», а ровно те же. Поэтому при неудачном обновлении
+  // показывается разбор, а не ошибка поверх него.
+  const view = arenaCachedLoadView({ state, cachedCount: rows.length, volatile: false });
 
   return (
     <ArenaScreen
       title={arenaText(lang, 'reviewTitle')}
       subtitle={rows.length ? `${summary.correct} / ${summary.total}` : undefined}
       variant="table"
-      onBack={() => router.back()}
+      onBack={() => safeRouterBack(router, '/arena' as never)}
     >
-      {state === 'failed' ? (
+      {view === 'error' ? (
         <>
           <Text style={[styles.empty, { color: P.danger }]}>{arenaText(lang, 'loadFailed')}</Text>
           <Text style={[styles.emptyHint, { color: P.muted }]}>{arenaText(lang, 'loadFailedHint')}</Text>
         </>
-      ) : state === 'loading' ? (
-        <Text style={[styles.empty, { color: P.muted }]}>{arenaText(lang, 'loading')}</Text>
-      ) : state === 'empty' ? (
-        <Text style={[styles.empty, { color: P.muted }]}>{arenaText(lang, 'reviewEmpty')}</Text>
+      ) : view === 'silent' ? (
+        // Слово «Загрузка» владелец видеть запретил: либо снимок, либо ничего.
+        <View />
+      ) : view === 'empty' ? (
+        <>
+          <Text style={[styles.empty, { color: P.muted }]}>{arenaText(lang, 'reviewEmpty')}</Text>
+          {/* Без этой строки пустой разбор читается как «ты ничего не отвечал»:
+              на самом деле он пишется, когда матч закрыт. */}
+          <Text style={[styles.emptyHint, { color: P.muted }]}>{arenaText(lang, 'reviewEmptyHint')}</Text>
+        </>
       ) : null}
 
       {rows.map((row, index) => (
         <ReviewCard key={row.taskId || row.taskIndex} row={row} index={index} reduceMotion={reduceMotion} />
       ))}
 
-      {rows.length ? (
+      {/* Дорога назад есть всегда: пустой разбор без кнопки был тупиком с
+          одной системной стрелкой. */}
+      {rows.length || view === 'empty' || view === 'error' ? (
         <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>
           {arenaText(lang, 'home')}
         </V2Cta>
@@ -89,6 +132,9 @@ function ReviewCard({ row, index, reduceMotion }: {
   reduceMotion: boolean;
 }) {
   const { lang } = useLang();
+  // Высота строки числом не растёт вместе с системным шрифтом — при
+  // крупном кегле строки наезжали друг на друга. См. use_arena_font_scale.
+  const noteLine = { lineHeight: 19 * useArenaFontScale() };
   const P = useTournamentPalette();
 
   const tone = row.verdict === 'correct' ? P.accent
@@ -132,16 +178,16 @@ function ReviewCard({ row, index, reduceMotion }: {
         ) : null}
 
         {row.verdict === 'partial' ? (
-          <Text style={[styles.note, { color: P.gold }]}>{arenaText(lang, 'reviewPartial')}</Text>
+          <Text style={[styles.note, noteLine, { color: P.gold }]}>{arenaText(lang, 'reviewPartial')}</Text>
         ) : null}
 
         {/* Почему выбранный вариант неверен — только про него, не про все. */}
         {row.trapNote ? (
-          <Text style={[styles.note, { color: P.danger }]}>{row.trapNote}</Text>
+          <Text style={[styles.note, noteLine, { color: P.danger }]}>{row.trapNote}</Text>
         ) : null}
 
-        {row.ruleNote ? <Text style={[styles.note, { color: P.text }]}>{row.ruleNote}</Text> : null}
-        {row.example ? <Text style={[styles.example, { color: P.muted }]}>{row.example}</Text> : null}
+        {row.ruleNote ? <Text style={[styles.note, noteLine, { color: P.text }]}>{row.ruleNote}</Text> : null}
+        {row.example ? <Text style={[styles.example, noteLine, { color: P.muted }]}>{row.example}</Text> : null}
       </V2Card>
     </Animated.View>
   );
@@ -155,8 +201,8 @@ const styles = StyleSheet.create({
   line: { gap: 2 },
   label: { fontSize: 12, fontWeight: '700' },
   value: { fontSize: 15, fontWeight: '800' },
-  note: { fontSize: 13, lineHeight: 19, fontWeight: '700' },
-  example: { fontSize: 13, lineHeight: 19, fontWeight: '600', fontStyle: 'italic' },
+  note: { fontSize: 13, fontWeight: '700' },
+  example: { fontSize: 13, fontWeight: '600', fontStyle: 'italic' },
   empty: { marginTop: 28, textAlign: 'center', fontSize: 15, fontWeight: '700' },
   emptyHint: { marginTop: 4, textAlign: 'center', fontSize: 13, fontWeight: '600' },
 });

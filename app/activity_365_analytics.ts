@@ -25,7 +25,6 @@ export type Activity365Day = {
     wordsLearned: number;
     phrasesLearned: number;
     flashcardsSaved: number;
-    planTasksCompleted: number;
   };
 };
 
@@ -90,7 +89,6 @@ type DailyBreakdownRow = Partial<{
   words_learned: number;
   flashcards_saved: number;
   phrases_learned: number;
-  plan_tasks_completed: number;
 }>;
 
 type DailyBreakdownStore = Record<string, DailyBreakdownRow>;
@@ -168,7 +166,8 @@ function findFirstActivityKey(
   for (const [k, v] of Object.entries(statsMap)) consider(k, extractPoints(v) > 0 || (fgDaily[k] ?? 0) >= MIN_ACTIVE_MS);
   for (const [k, ms] of Object.entries(fgDaily)) consider(k, ms >= MIN_ACTIVE_MS);
   for (const [k, row] of Object.entries(breakdown)) {
-    const sum = Object.values(row ?? {}).reduce((acc, val) => acc + Math.max(0, Math.floor(Number(val) || 0)), 0);
+    const metrics = metricsForRow(row);
+    const sum = Object.values(metrics).reduce((acc, val) => acc + val, 0);
     consider(k, sum > 0);
   }
   return best;
@@ -179,14 +178,12 @@ function metricsForRow(row: DailyBreakdownRow | undefined): Activity365Day['metr
   const wordsLearned = n(row?.words_learned);
   const phrasesLearned = n(row?.phrases_learned);
   const flashcardsSaved = n(row?.flashcards_saved);
-  const planTasksCompleted = n(row?.plan_tasks_completed);
   return {
     lessons: n(row?.lessons_completed),
     review: flashcardsSaved,
     wordsLearned,
     phrasesLearned,
     flashcardsSaved,
-    planTasksCompleted,
   };
 }
 
@@ -419,7 +416,6 @@ const EMPTY_ACTIVITY_365_METRICS: Activity365Day['metrics'] = {
   wordsLearned: 0,
   phrasesLearned: 0,
   flashcardsSaved: 0,
-  planTasksCompleted: 0,
 };
 
 export interface ActivityWindowSummary {

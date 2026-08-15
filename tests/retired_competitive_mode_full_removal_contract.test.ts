@@ -225,7 +225,7 @@ describe("retired competitive mode full removal", () => {
       /Вызовы|Виклики|Retos|Desafios|Thử thách|Tantangan|Görevler|Wyzwania/,
     );
 
-    const liveAdmin = read("admin/legacy.html");
+    const liveAdmin = read("admin/v2/legacy.html");
     expect(liveAdmin).not.toMatch(/options:\s*\{[^}]*quizzes:\s*'Квизы'/);
   });
 

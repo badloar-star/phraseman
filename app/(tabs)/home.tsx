@@ -83,7 +83,8 @@ import GoldBevel from '../../components/GoldBevel';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { useEnergy } from '../../components/EnergyContext';
 import { computeAllPercentiles } from '../leaderboard_stats';
-import { getShardsBalance, peekLastKnownShardsBalance, spendShards, onStreakUpdated } from '../shards_system';
+import { getShardsBalance, peekLastKnownShardsBalance, onStreakUpdated } from '../shards_system';
+import { purchaseStreakFreeze } from '../streak_freeze_purchase';
 import { coinIconForBalance } from '../coin_icons';
 import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals, shouldApplyHomeSnapshotToStats } from '../home_screen_hydration';
 import { captureAccountGeneration } from '../account_generation';
@@ -2110,8 +2111,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             setPremiumFreezeUsed(true);
         }
         else {
-            const ok = await spendShards(FREEZE_COST_SHARDS, 'streak_freeze');
-            if (!ok) {
+            const purchase = await purchaseStreakFreeze(FREEZE_COST_SHARDS, today);
+            if (purchase !== 'ok') {
                 await enqueueThemedBlockingInfoAlert(triLang(lang, {
                     ru: 'Недостаточно жемчужин',
                     uk: 'Недостатньо перлин',
@@ -2137,7 +2138,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }
             setShardsBalance(prev => Math.max(0, prev - FREEZE_COST_SHARDS));
         }
-        await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
+        if (freeAvailable) {
+            await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
+        }
         const lastActive = await AsyncStorage.getItem('last_active_date').catch(() => null);
         const frozenDate = lastActive && !isSameLocalOrUtcDay(lastActive) ? addDaysToDateKey(lastActive, 1) : today;
         await recordStreakWeekMarker(frozenDate, 'freeze').catch(() => {});

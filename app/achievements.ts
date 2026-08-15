@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { ACHIEVEMENT_ES } from './achievements_es_locale';
-import { addShardsRaw, getShardsBalance } from './shards_system';
+import { commitShardCreditOperation, getShardsBalance } from './shards_system';
 import { registerXP } from './xp_manager';
 import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
@@ -2996,25 +2996,22 @@ export const claimAchievementShardReward = async (
   const ACHIEVEMENT_SHARD_PAYOUT = 1 as number;
   if (ACHIEVEMENT_SHARD_PAYOUT <= 0) return true;
 
-  const n = await addShardsRaw(ACHIEVEMENT_SHARD_PAYOUT, `achievement:${achievementId}`, {
-    showEarnModal: false,
-    skipServerAwait: true,
-    accountToken: operationToken,
-    idempotencyKey: payoutOpId,
-  });
-  if (!isCurrentAccountGeneration(operationToken, ownerStableId) || n < 1) return false;
-  if (n >= 1) {
-    const freshStates = await loadAchievementStatesInternal(operationToken, false);
-    if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
-    const freshState = freshStates.find(x => x.id === achievementId);
-    if (!freshState || freshState.unlockedAt === null) return false;
-    freshState.shardClaimed = true;
-    delete pending[achievementId];
-    const finalized = await commitAchievementStoragePairs([
-      ...achievementStatePairs(freshStates),
+  state.shardClaimed = true;
+  delete pending[achievementId];
+  const payout = await commitShardCreditOperation({
+    amount: ACHIEVEMENT_SHARD_PAYOUT,
+    reason: `achievement:${achievementId}`,
+    operationId: payoutOpId,
+    grant: { kind: 'achievement_reward', subjectId: achievementId },
+    localWrites: [
+      ...achievementStatePairs(states),
       [achievementPayoutPendingKey(ownerStableId), JSON.stringify(pending)],
-    ], operationToken);
-    if (!finalized || !isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
+    ],
+  });
+  if (
+    !isCurrentAccountGeneration(operationToken, ownerStableId)
+    || (payout.status !== 'applied' && payout.status !== 'already-applied')
+  ) return false;
     try {
       const balance = await getShardsBalance();
       if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
@@ -3023,8 +3020,6 @@ export const claimAchievementShardReward = async (
       if (__DEV__) console.warn('[achievements]', e);
     }
     return true;
-  }
-  return false;
   }, false);
 };
 

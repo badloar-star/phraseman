@@ -22,8 +22,24 @@ export const MAX_VOICE_CONFIG_DOC = 'openai_realtime_voice';
 /** Абсолютный потолок длительности сессии — зашит в код, админ-док его не двигает. */
 export const HARD_MAX_SESSION_SEC = 600;
 
-export const ALLOWED_REALTIME_MODELS = ['gpt-realtime-mini', 'gpt-realtime'] as const;
+// Старые gpt-realtime(-mini) deprecated; закрытый whitelist не позволяет
+// Firestore-конфигу незаметно вернуть режим на снимаемую с поддержки модель.
+export const ALLOWED_REALTIME_MODELS = ['gpt-realtime-2.1-mini', 'gpt-realtime-2.1'] as const;
 export type MaxVoiceModel = typeof ALLOWED_REALTIME_MODELS[number];
+
+/** Только встроенные voice IDs, которые принимает текущий Realtime API. */
+export const ALLOWED_REALTIME_VOICES = [
+  'alloy',
+  'ash',
+  'ballad',
+  'coral',
+  'echo',
+  'sage',
+  'shimmer',
+  'verse',
+  'marin',
+  'cedar',
+] as const;
 
 /** Транскрипция входа ВСЕГДА включена (обучающий цикл — несокращаемая статья себестоимости). */
 export const ALLOWED_TRANSCRIPTION_MODELS = [
@@ -66,6 +82,12 @@ export interface MaxVoiceConfig {
   globalDailyBudgetUsd: number;
   budgetSoftPct: number;
   gate_ai_voice_call: boolean;
+  /**
+   * Аллоулист auth uid для DEV-теста закрытой линии (DEV Hub шлёт devMode).
+   * Только для своих тестовых аккаунтов: сервер по-прежнему не верит телу
+   * запроса, а решает по uid из проверенного токена. Пустой список = закрыто.
+   */
+  devTestUids: string[];
   /** v1: MAX-доступ = обычный премиум (голос идёт бетой внутри Premium). false — только будущий MAX-тариф. */
   voiceForPremiumBeta: boolean;
   degradeMode: VoiceDegradeMode;
@@ -77,7 +99,7 @@ export interface MaxVoiceConfig {
 }
 
 export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
-  model: 'gpt-realtime-mini',
+  model: 'gpt-realtime-2.1-mini',
   voice: 'marin',
   transcriptionModel: 'gpt-4o-mini-transcribe',
   sessionCapSec: { scenario: 300, companion: 480, trial: 180 },
@@ -89,7 +111,9 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   trialSrsThreshold: 15,
   trialMode: 'auto',
   maxResponseOutputTokens: { A1: 120, A2: 160, B1: 220, B2: 300, injected: 400 },
-  vadEagerness: { A1: 'low', A2: 'low', B1: 'auto', B2: 'auto' },
+  // High semantic VAD minimises the dead pause after the learner finishes;
+  // interrupt_response in the mint payload keeps spoken barge-in full duplex.
+  vadEagerness: { A1: 'high', A2: 'high', B1: 'high', B2: 'high' },
   truncationRetentionRatio: 0.8,
   pruneMode: 'retention',
   reinjectEveryTurns: 9,
@@ -107,6 +131,8 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   budgetSoftPct: 0.8,
   // Kill switch: дефолт ВЫКЛ до запуска — включается только явным админ-действием.
   gate_ai_voice_call: false,
+  // Пусто по умолчанию: DEV-линия открывается только явной записью uid в док.
+  devTestUids: [],
   voiceForPremiumBeta: true,
   degradeMode: 'auto',
   // Фолбэк half-duplex не ест обычный Premium-лимит — свой щедрый пул.
@@ -167,6 +193,27 @@ function cefrMap(
 
 const VAD_VALUES: readonly VadEagerness[] = ['low', 'medium', 'high', 'auto'];
 
+/** Потолок аллоулиста DEV-тестеров: список руками, а не «полпроекта в доке». */
+export const MAX_VOICE_DEV_UIDS_MAX = 20;
+const DEV_UID_MAX_LEN = 128;
+
+/**
+ * Нормализация аллоулиста uid: только непустые строки, обрезка по длине,
+ * дедуп, жёсткий потолок количества. Мусор (число, объект, null) отбрасывается.
+ */
+function clampUidList(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  const out: string[] = [];
+  for (const raw of value) {
+    if (typeof raw !== 'string') continue;
+    const uid = raw.trim().slice(0, DEV_UID_MAX_LEN);
+    if (uid === '' || out.includes(uid)) continue;
+    out.push(uid);
+    if (out.length >= MAX_VOICE_DEV_UIDS_MAX) break;
+  }
+  return out;
+}
+
 /**
  * Нормализация + жёсткие клампы КАЖДОГО поля. Любой мусор (не тот тип, вне
  * коридора, отсутствие поля) → дефолт либо ближайшая граница. Никогда не бросает.
@@ -183,11 +230,11 @@ export function clampMaxVoiceConfig(raw: unknown): MaxVoiceConfig {
   const tokenCap = (v: unknown, fallback: number) => clampInt(v, 16, 2000, fallback);
   const hintSec = (v: unknown, fallback: number) => clampInt(v, 3, 60, fallback);
 
-  const voice = String(r.voice ?? '').trim().slice(0, 40);
-
   return {
     model: pickEnum(r.model, ALLOWED_REALTIME_MODELS, d.model),
-    voice: voice || d.voice,
+    // Невалидный/устаревший voice ID из remote config не должен превращать
+    // весь client_secrets request в HTTP 400.
+    voice: pickEnum(r.voice, ALLOWED_REALTIME_VOICES, d.voice),
     transcriptionModel: pickEnum(r.transcriptionModel, ALLOWED_TRANSCRIPTION_MODELS, d.transcriptionModel),
     sessionCapSec: {
       scenario: capSec(caps.scenario, d.sessionCapSec.scenario),
@@ -228,6 +275,7 @@ export function clampMaxVoiceConfig(raw: unknown): MaxVoiceConfig {
     globalDailyBudgetUsd: clampNumber(r.globalDailyBudgetUsd, 0, 100_000, d.globalDailyBudgetUsd),
     budgetSoftPct: clampNumber(r.budgetSoftPct, 0.1, 1, d.budgetSoftPct),
     gate_ai_voice_call: coerceBool(r.gate_ai_voice_call, d.gate_ai_voice_call),
+    devTestUids: clampUidList(r.devTestUids),
     voiceForPremiumBeta: coerceBool(r.voiceForPremiumBeta, d.voiceForPremiumBeta),
     degradeMode: pickEnum(r.degradeMode, ['auto', 'force_fallback', 'off'] as const, d.degradeMode),
     maxFallbackRepliesDaily: clampInt(r.maxFallbackRepliesDaily, 0, 100_000, d.maxFallbackRepliesDaily),

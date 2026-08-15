@@ -4,7 +4,7 @@ import path from "node:path";
 const read = (relativePath: string) =>
   fs.readFileSync(path.join(process.cwd(), relativePath), "utf8");
 const onboarding = read("components/CleanOnboarding.tsx");
-const admin = read("admin/legacy.html");
+const admin = read("admin/v2/legacy.html");
 const functionsIndex = read("functions/src/index.ts");
 
 describe("privacy-safe aggregate onboarding funnel contract", () => {

@@ -1,5 +1,16 @@
 # Phraseman — Claude instructions
 
+## ⛔ АРЕНА: НЕ ОТКАТЫВАТЬ
+
+Файлы Арены (`modules/arena/**`, `components/arena/**`, `app/arena*`,
+`functions/src/arena_*`, `tests/arena_*`, `docs/arena/**`,
+`components/tournament/TournamentBackdrop.tsx`) переписываются по прямому
+заданию владельца. Их **нельзя** откатывать (`git revert`, `git checkout`
+чужой версии) и нельзя перезаписывать из своего буфера. Работа уже дважды
+терялась именно так. Подробности и порядок восстановления — в
+`____АРЕНА_НЕ_ОТКАТЫВАТЬ____.md` в корне.
+
+
 ## ⛔ АДМИНКА: писать ТОЛЬКО в `admin/v2/legacy.html`
 
 Владелец пользуется одной админкой — https://phraseman-ea0b3.web.app/legacy.html#control-panel

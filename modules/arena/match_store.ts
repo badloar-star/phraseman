@@ -116,7 +116,6 @@ export function arenaStoredMatchUsable(
   expectedMatchId?: string,
 ): boolean {
   if (!stored) return false;
-  if (stored.state.phase === 'finished') return false;
   if (expectedMatchId && stored.plan.matchId !== expectedMatchId) return false;
   const ageMs = Math.max(0, nowWallMs - stored.savedAtWallMs);
   return ageMs < ARENA_MATCH_STORE_TTL_MS;

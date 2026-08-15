@@ -53,7 +53,10 @@ test("premium session route uses the real twelve-card compiler without the rejec
   expect(runtime).toContain("LearningV2SessionIntro");
   expect(runtime).not.toContain("../../../app/lesson_intro_screens");
   expect(runtime).toContain("introScreens={[...payload.introScreens]}");
-  expect(runtime).toContain("copy.introCheck(cardIndex + 1)");
+  expect(runtime).toContain(
+    "taskIds={introTaskIds as [string, string, string]}",
+  );
+  expect(runtime).toContain("for (const completion of introCompletions)");
   expect(runtime).toContain("const store = createLesson1LocalProgressStore(");
   expect(runtime).toContain("AsyncStorage,");
   expect(runtime).toContain("createRequiredSessionLocalCommitCoordinator(");
@@ -94,6 +97,10 @@ test("premium session route uses the real twelve-card compiler without the rejec
 
 test("background completion transport stays outside the active session route", () => {
   const runtime = source("app/learning-v2/session/[id].tsx");
+  const scheduler = source(
+    "app/learning_v2_completion_background_scheduler.ts",
+  );
+  const functionsIndex = source("functions/src/index.ts");
   const sync = source("app/learning_v2_required_session_completion_sync.ts");
   expect(runtime).not.toContain("required_session_completion_sync");
   expect(sync).toContain("'submitLearningV2RequiredSessionCompletion'");
@@ -106,6 +113,48 @@ test("background completion transport stays outside the active session route", (
   expect(sync).toContain("withBackgroundNetworkLease('completion.sync'");
   expect(sync).toContain("operationTimeoutMs: null");
   expect(sync).not.toContain("{ timeout: 15_000 }");
+  expect(scheduler).toContain(
+    "attemptPendingLearningV2ActivityReleasedCompletionsV1",
+  );
+  expect(scheduler).not.toContain(
+    "attemptPendingLearningV2ActivityReleasedSubmissionsV2",
+  );
+  expect(functionsIndex).not.toContain(
+    "submitLearningV2ActivityReleasedSessionV2",
+  );
+  expect(functionsIndex).toContain("learningV2CourseActiveCatalogGetV1");
+  const catalogContract = source(
+    "modules/learning-v2/runtime/course_active_catalog_v1.ts",
+  );
+  const catalogCallable = source(
+    "functions/src/content_factory/v2_course_active_catalog_callable_v1.ts",
+  );
+  expect(catalogContract).toContain(
+    "correctnessAuthority: 'local_device_only'",
+  );
+  expect(catalogContract).toContain(
+    "serverAnswerAuthority: 'none_answers_never_transported'",
+  );
+  expect(catalogContract).toContain(
+    "progressWriteAuthority: 'completed_session_summary_only'",
+  );
+  expect(catalogCallable).not.toMatch(
+    /correctResponse|acceptedResponses|evaluatorSidecar|answerText/u,
+  );
+  const directRun = source(
+    "modules/learning-v2/runtime/course_session_device_run_v1.ts",
+  );
+  expect(directRun).toContain('correctnessAuthority: "local_device_only"');
+  expect(directRun).toContain(
+    '"none_answers_never_transported_or_rechecked" as const',
+  );
+  expect(directRun).toContain(
+    '"none_server_must_not_return_correct_or_wrong" as const',
+  );
+  expect(directRun).toContain('answerPayload: "absent" as const');
+  expect(directRun).toContain('perAnswerTransport: "none" as const');
+  expect(directRun).toContain('partialRunPersistence: "none" as const');
+  expect(directRun).not.toMatch(/httpsCallable|fetch\(|firebase|AsyncStorage/u);
 });
 
 test("the twelve-card session is fully local and never waits on a server per answer", () => {
@@ -125,7 +174,9 @@ test("the twelve-card session is fully local and never waits on a server per ans
 
 test("released render drives the full task surface without switching transport mid-run", () => {
   const runtime = source("app/learning-v2/session/[id].tsx");
-  expect(runtime).toContain("setReleasedRuntime(releasedSessionMount.runtime)");
+  expect(runtime).toContain(
+    "setReleasedRuntime(introMatchesCandidate ? candidateRuntime : null)",
+  );
   expect(runtime).toContain("releasedPackageTask?.learner.prompt");
   expect(runtime).toContain("releasedPackageTask.learner.responseOptions");
   expect(runtime).toContain("releasedPackageTask.hintsAllowed > 0");
@@ -134,11 +185,95 @@ test("released render drives the full task surface without switching transport m
   );
   expect(runtime).toContain("let committedReleasedCompletion = false");
   expect(runtime).toContain("if (!committedReleasedCompletion)");
-  expect(runtime).not.toContain("let committedReleasedSubmission = false");
+  expect(runtime).toContain(
+    "Only the completed-session summary is persisted for background",
+  );
+  expect(runtime).not.toContain(
+    "materializeLearningV2ActivityReleasedSessionSubmissionV2",
+  );
+  expect(runtime).not.toContain(
+    "createLearningV2ActivityReleasedSessionSubmissionSpoolV2",
+  );
+  expect(runtime).not.toContain("releasedTaskAttemptsRef");
   expect(runtime).toContain("copy.repeatWithoutGrade");
   expect(runtime).not.toContain(
     "releasedPackageTask?.learner.accessibilityLabel ??\n                  item?.target.text",
   );
+});
+
+test("an interrupted session always remounts from the intro with a new run id", () => {
+  const runtime = source("app/learning-v2/session/[id].tsx");
+  expect(runtime).toContain("const [cardIndex, setCardIndex] = useState(3)");
+  expect(runtime).toContain(
+    "const [introComplete, setIntroComplete] = useState(false)",
+  );
+  expect(runtime).toContain(
+    "const sessionRunIdRef = useRef(Crypto.randomUUID())",
+  );
+  expect(runtime).not.toMatch(
+    /restore.*cardIndex|persist.*cardIndex|resume.*cardIndex/i,
+  );
+});
+
+test("the direct 32x56 player restarts an interrupted run and keeps answer verdicts off the server", () => {
+  const runtime = source("app/learning_v2_direct_session_player_v1.tsx");
+  const lessons = source("app/(tabs)/lessons.tsx");
+  const compatibilityMap = source("app/learning-v2/lesson/[id].tsx");
+  const functionsIndex = source("functions/src/index.ts");
+  const evaluateBody = runtime.slice(
+    runtime.indexOf("const evaluate = useCallback("),
+    runtime.indexOf("const finish = useCallback("),
+  );
+  const finishBody = runtime.slice(
+    runtime.indexOf("const finish = useCallback("),
+    runtime.indexOf("const advance = useCallback("),
+  );
+
+  expect(evaluateBody).toContain(
+    "evaluateLearningV2CourseSessionDeviceInteractionV1(",
+  );
+  expect(evaluateBody).not.toMatch(
+    /await|httpsCallable|fetch\(|firebase|AsyncStorage/u,
+  );
+  expect(finishBody).toContain(
+    "materializeLearningV2CourseSessionCompletedSummaryV1({",
+  );
+  expect(finishBody).toContain(
+    "createLearningV2CourseSessionCompletedSpoolV1(AsyncStorage).append(",
+  );
+  expect(runtime).toContain('AppState.addEventListener("change"');
+  expect(runtime).toContain('nextState === "background"');
+  expect(runtime).toContain("interruptedWhileBackgroundedRef.current = true");
+  expect(runtime).toContain("completionsRef.current.clear()");
+  expect(runtime).toContain("sessionRunIdRef.current = Crypto.randomUUID()");
+  expect(runtime).toContain("setIntroDone(false)");
+  expect(runtime).toContain("setPracticeIndex(0)");
+  expect(runtime).toContain("key={sessionRunIdRef.current}");
+  expect(runtime).not.toMatch(/restore.*practiceIndex|resume.*practiceIndex/iu);
+  expect(runtime).toContain("prepareCurrentLearningV2CourseSessionV3({");
+  expect(runtime).toContain(
+    "resolveLearningV2CourseSessionReadyMaterialV3(handle)",
+  );
+  expect(runtime).toContain("if (!readyHandle || !run || !runSummary");
+  expect(runtime).toContain(
+    "resolveLearningV2CourseSessionSelectableAudioV1({",
+  );
+  expect(runtime).toContain(
+    "resolveLearningV2CourseSessionFullPhraseAudioV1({",
+  );
+  expect(runtime).toContain("playSelectableAudio(option.responseId)");
+  expect(runtime).not.toContain("loadCurrentLearningV2CourseReleasedSessionV2");
+  expect(lessons).toContain('runtimeMode: "direct_v1"');
+  expect(compatibilityMap).toContain('runtimeMode: "direct_v1"');
+  expect(compatibilityMap).toContain("learningV2CourseSessionIdV1(");
+  expect(runtime).not.toMatch(
+    /activity_released_session_submission|server_active_release_answer_sequence/u,
+  );
+  expect(functionsIndex).not.toContain(
+    "submitLearningV2ActivityReleasedSessionV2",
+  );
+  expect(functionsIndex).toContain("learningV2CourseReleasedSessionGetV3");
+  expect(functionsIndex).not.toContain("server_active_release_answer_sequence");
 });
 
 test("the real session exposes an accessible zero-star skip without transport work", () => {

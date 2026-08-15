@@ -78,4 +78,15 @@ describe("Learning V2 owner-current course accordion map model v1", () => {
       }),
     ).toThrow("learning_v2_course_accordion_progress_invalid");
   });
+
+  test("does not mark another lesson next when current progress belongs to lesson one", () => {
+    const model = buildLearningV2CourseAccordionMapModelV1({
+      expandedLessonOrdinal: 2,
+      completedSessionIds: [],
+      currentSessionId: learningV2CourseSessionIdV1(1, 1),
+    });
+    expect(
+      sessions(model.rows).every((session) => session.state === "locked"),
+    ).toBe(true);
+  });
 });

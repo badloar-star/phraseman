@@ -70,7 +70,30 @@ describe("Learning V2 whole-course generator contract v2", () => {
       chaptersPerLesson: 7,
       sessionsPerChapter: 8,
       durationMinutes: { min: 5, target: 7, max: 8 },
+      interactionBudget: {
+        countingUnit: "planned_primary_learning_interactions",
+        standard: { min: 14, target: 16, max: 18 },
+        rapid: { min: 18, target: 20, max: 22 },
+        voiceHeavy: { min: 10, target: 12, max: 14 },
+        absoluteMax: 22,
+      },
     });
+  });
+
+  test("rejects a return to a fixed twelve-task generator budget", () => {
+    const coursePackage = validPackage();
+    expect(() =>
+      validateLearningV2GeneratedCoursePackageV2({
+        ...coursePackage,
+        topology: {
+          ...coursePackage.topology,
+          interactionBudget: {
+            ...coursePackage.topology.interactionBudget,
+            standard: { min: 12, target: 12, max: 12 } as never,
+          },
+        },
+      }),
+    ).toThrow("learning_v2_generator_course_v2_topology_invalid");
   });
 
   test("rejects the old 12-session topology", () => {

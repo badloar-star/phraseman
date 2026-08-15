@@ -58,7 +58,6 @@ describe('perf freeze contract', () => {
   it('keeps heavy thematic quiz packs behind the lazy registry seam', () => {
     // Мегабайтные паки вопросов грузятся ТОЛЬКО через quiz_thematic_registry
     // (ленивый require) — это же шов для будущей серверной доставки контента.
-    // Аналогичная граница для plan_content_* — tests/plan_content_pack_boundary_contract.test.ts.
     const dirs = ['app', 'components', 'hooks'];
     const files = dirs.flatMap((d) => walk(path.join(ROOT, d)));
     const offenders: string[] = [];

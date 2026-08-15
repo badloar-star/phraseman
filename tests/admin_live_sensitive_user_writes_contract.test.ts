@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 
 const source = readFileSync(
-  path.resolve(__dirname, "../admin/legacy.html"),
+  path.resolve(__dirname, "../admin/v2/legacy.html"),
   "utf8",
 );
 

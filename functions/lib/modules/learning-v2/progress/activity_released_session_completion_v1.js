@@ -99,7 +99,7 @@ function parseTask(value, expectedSlot) {
         fail();
     const learnerAttempts = safeInt(value.learnerAttempts, disposition === "completed" ? 1 : 0, 99);
     const localResultClaim = disposition === "completed"
-        ? "locally_provisional_correct_before_completion"
+        ? "locally_evaluated_correct_for_interaction"
         : "skipped_without_evidence";
     if (value.slot !== expectedSlot ||
         typeof value.hintUsed !== "boolean" ||
@@ -172,7 +172,7 @@ function materializeLearningV2ActivityReleasedSessionCompletionV1(input) {
             learnerAttempts: result.learnerAttempts,
             hintUsed: result.hintUsed,
             localResultClaim: result.disposition === "completed"
-                ? "locally_provisional_correct_before_completion"
+                ? "locally_evaluated_correct_for_interaction"
                 : "skipped_without_evidence",
         });
     }));
@@ -196,12 +196,12 @@ function materializeLearningV2ActivityReleasedSessionCompletionV1(input) {
         sessionOrdinal: safeInt(summary.sessionOrdinal, 1, 12),
         taskCompletions,
         answerPayload: "absent",
-        localFeedbackAuthority: "local_provisional_only",
+        localFeedbackAuthority: "local_interaction_verdict_only",
         transportAuthority: "none_local_spool_candidate",
         walletAuthority: "none",
         masteryAuthority: "none",
         evidenceAuthority: "none",
-        completionAuthority: "none_server_revalidation_required",
+        completionAuthority: "completed_session_summary_for_background_storage",
         releaseAuthority: false,
     });
     const completion = freeze({
@@ -221,12 +221,13 @@ function parseLearningV2ActivityReleasedSessionCompletionV1(input) {
         !Array.isArray(input.taskCompletions) ||
         input.taskCompletions.length !== 12 ||
         input.answerPayload !== "absent" ||
-        input.localFeedbackAuthority !== "local_provisional_only" ||
+        input.localFeedbackAuthority !== "local_interaction_verdict_only" ||
         input.transportAuthority !== "none_local_spool_candidate" ||
         input.walletAuthority !== "none" ||
         input.masteryAuthority !== "none" ||
         input.evidenceAuthority !== "none" ||
-        input.completionAuthority !== "none_server_revalidation_required" ||
+        input.completionAuthority !==
+            "completed_session_summary_for_background_storage" ||
         input.releaseAuthority !== false)
         fail();
     const taskCompletions = Object.freeze(input.taskCompletions.map((candidate, index) => parseTask(candidate, index + 1)));
@@ -253,12 +254,12 @@ function parseLearningV2ActivityReleasedSessionCompletionV1(input) {
         sessionOrdinal: safeInt(input.sessionOrdinal, 1, 12),
         taskCompletions,
         answerPayload: "absent",
-        localFeedbackAuthority: "local_provisional_only",
+        localFeedbackAuthority: "local_interaction_verdict_only",
         transportAuthority: "none_local_spool_candidate",
         walletAuthority: "none",
         masteryAuthority: "none",
         evidenceAuthority: "none",
-        completionAuthority: "none_server_revalidation_required",
+        completionAuthority: "completed_session_summary_for_background_storage",
         releaseAuthority: false,
     });
     const completionFingerprint = hash(input.completionFingerprint);

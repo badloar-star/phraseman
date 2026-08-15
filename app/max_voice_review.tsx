@@ -10,7 +10,6 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
-import { safeRouterBack } from './navigation_back';
 import type { TranscriptTurn } from './max_call_transcript';
 import { computeVoiceCallMetrics } from './max_voice_metrics';
 import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
@@ -40,6 +39,8 @@ export interface MaxCallResult {
   scenarioId?: string;
   /** CEFR звонка — прокидывается в «Позвонить ещё раз», чтобы не терять уровень. */
   cefr?: string;
+  /** Сохраняет защищённый admin DEV-контекст для «Позвонить ещё раз». */
+  devMode?: boolean;
   personaName: string;
   endReason: 'completed' | 'capped' | 'dropped' | 'background' | 'failed';
   /** Остаток дневных секунд MAX после звонка; null — сервер не сообщил. */
@@ -156,7 +157,9 @@ export default function MaxVoiceReview() {
 
   const goBack = () => {
     hapticTap();
-    safeRouterBack(router, '/ai_dialog_home' as any);
+    // Review — терминальный экран звонка. История может всё ещё содержать
+    // max_call_session в состоянии connecting, поэтому назад только replace.
+    router.replace('/ai_dialog_home' as any);
   };
 
   const callAgain = () => {
@@ -169,6 +172,7 @@ export default function MaxVoiceReview() {
       params.format = result.format;
       if (result.scenarioId) params.scenarioId = result.scenarioId;
       if (result.cefr) params.cefr = result.cefr;
+      if (result.devMode) params.devMode = '1';
     }
     router.replace({ pathname: '/max_call_prestart', params } as any);
   };

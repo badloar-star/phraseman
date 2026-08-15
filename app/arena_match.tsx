@@ -5,8 +5,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Animated, { FadeIn, FadeInDown, SlideInRight, ZoomIn } from 'react-native-reanimated';
 
 import { arenaTaskRenderable } from '../modules/arena/task_adapter';
+import { arenaClearMatch, arenaLoadMatch } from '../modules/arena/match_store';
+import type { ArenaLocalMatchState } from '../modules/arena/match_machine';
 import { arenaOutboxClassify } from '../modules/arena/result_outbox';
-import { arenaOutboxEnqueue } from '../modules/arena/outbox_storage';
+import { arenaOutboxEnqueue, arenaOutboxRemove } from '../modules/arena/outbox_storage';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import { useLang } from '../components/LangContext';
@@ -39,6 +41,7 @@ import {
   arenaParseLiveSeat,
 } from '../modules/arena/live_channel';
 import { arenaMonotonicNowMs } from '../modules/arena/monotonic';
+import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { arenaCosmeticDefinition } from '../modules/arena/arena_cosmetics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -57,6 +60,35 @@ import {
 } from './arena_client';
 
 /**
+ * Входной план уже запечатан сервером и идемпотентен. React может снять
+ * первый экземпляр экрана, пока callable находится в полёте (особенно после
+ * перехода matchmaking → match), и тогда успешный ответ терялся: сервер уже
+ * отмечал duelVersion=3, а новый экран бесконечно показывал ожидание.
+ * Один promise на matchId позволяет следующему экземпляру забрать тот же
+ * успешный ответ без второго сетевого запроса.
+ */
+const arenaMatchPlanRequests = new Map<string, ReturnType<typeof arenaV2MatchPlan>>();
+
+function arenaMatchPlanRequest(matchId: string): ReturnType<typeof arenaV2MatchPlan> {
+  const current = arenaMatchPlanRequests.get(matchId);
+  if (current) return current;
+  const request = arenaV2MatchPlan(matchId).then((result) => {
+    if (!result) arenaMatchPlanRequests.delete(matchId);
+    return result;
+  }).catch((error) => {
+    arenaMatchPlanRequests.delete(matchId);
+    throw error;
+  });
+  arenaMatchPlanRequests.set(matchId, request);
+  // Матчей за один живой процесс немного, но кэш всё равно ограничен.
+  if (arenaMatchPlanRequests.size > 8) {
+    const oldest = arenaMatchPlanRequests.keys().next().value;
+    if (oldest && oldest !== matchId) arenaMatchPlanRequests.delete(oldest);
+  }
+  return request;
+}
+
+/**
  * Экран матча Арены.
  *
  * Сеть здесь трогается ТРИ раза за весь матч: план при входе, отчёт в конце и
@@ -71,6 +103,12 @@ export default function ArenaMatchScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
+  // Высота строки числом не растёт вместе с системным шрифтом: при крупном
+  // кегле объяснения наезжали строка на строку. См. use_arena_font_scale.
+  const fontScale = useArenaFontScale();
+  const titleLine = { lineHeight: 26 * fontScale };
+  const hintLine = { lineHeight: 20 * fontScale };
+  const bigHintLine = { lineHeight: 21 * fontScale };
   const params = useLocalSearchParams<{ matchId?: string }>();
   const matchId = typeof params.matchId === 'string' ? params.matchId : null;
   const active = useRuntimeActive();
@@ -131,7 +169,7 @@ export default function ArenaMatchScreen() {
             timer = setTimeout(attempt, ARENA_ACCEPT_RETRY_MS);
             return;
           }
-          return arenaV2MatchPlan(matchId).then((planned) => {
+          return arenaMatchPlanRequest(matchId).then((planned) => {
             if (!alive) return;
             // Разбор закрытый: не сошёлся целиком — матч не начинаем вовсе.
             if (!planned) { setPlanError(true); return; }
@@ -151,7 +189,7 @@ export default function ArenaMatchScreen() {
       alive = false;
       if (timer !== null) clearTimeout(timer);
     };
-  }, [matchId, plan, planError]);
+  }, [active, matchId, plan, planError]);
 
   /* ---- живой прогресс соперника ---- */
   const live = useArenaOpponentLive(matchId, plan?.opponent.seat ?? null, active && Boolean(plan));
@@ -169,7 +207,38 @@ export default function ArenaMatchScreen() {
     [plan, liveSeat],
   );
 
-  const match = useArenaLocalMatch({ plan, opponentTicks });
+  /**
+   * Снимок матча с диска.
+   *
+   * Он писался на каждой границе задания — и НИКТО его не читал. То есть цена
+   * записи платилась, а обещанное свойство «матч переживает перезапуск» не
+   * работало: приложение убили посреди матча — и он начинался заново, с
+   * первого задания и с обнулённым временем.
+   *
+   * Восстанавливаем только снимок ЭТОГО матча и только пока он не доигран —
+   * это проверяет сам модуль хранения.
+   */
+  const [restored, setRestored] = useState<ArenaLocalMatchState | null>(null);
+  const [restoreChecked, setRestoreChecked] = useState(false);
+  useEffect(() => {
+    if (!matchId) { setRestoreChecked(true); return; }
+    let alive = true;
+    void arenaLoadMatch(AsyncStorage as unknown as ArenaKeyValueStore, Date.now(), matchId)
+      .then((stored) => { if (alive && stored) setRestored(stored.state); })
+      .catch(() => {})
+      .finally(() => { if (alive) setRestoreChecked(true); });
+    return () => { alive = false; };
+  }, [matchId]);
+
+  /**
+   * План подставляется в машину только когда проверка снимка закончилась:
+   * иначе матч успел бы начаться с нуля и затереть восстановленное состояние.
+   */
+  const match = useArenaLocalMatch({
+    plan: restoreChecked ? plan : null,
+    restored,
+    opponentTicks,
+  });
 
   /* ---- публикация своего хода: одна запись на задание, не больше ---- */
   const publishedRef = useRef<number[]>([]);
@@ -199,10 +268,33 @@ export default function ArenaMatchScreen() {
   /* ---- отчёт: тоже один запрос ---- */
   useEffect(() => {
     if (!matchId || !plan || !match?.report || sent) return;
+    // Сохраняем суженное значение до async-границы: объект `match` живёт в
+    // React-состоянии и TypeScript справедливо не переносит его narrowing
+    // внутрь отложенной функции.
+    const report = match.report;
     setSent(true);
-    const wire = arenaMatchReportToWire(match.report, plan.rulesVersion);
-    void arenaV2MatchFinish({ matchId, report: wire })
-      .then((response) => {
+    void (async () => {
+      // Сначала durable intent, потом сеть. Если процесс погибнет в любой
+      // точке ниже, либо outbox уже содержит отчёт, либо финальный снимок всё
+      // ещё восстановит тот же отчёт с тем же matchId.
+      const durable = await arenaOutboxEnqueue(
+        AsyncStorage as unknown as ArenaKeyValueStore,
+        report as ArenaMatchReport,
+        Date.now(),
+        plan.rulesVersion,
+      );
+      if (durable) {
+        await arenaClearMatch(AsyncStorage as unknown as ArenaKeyValueStore);
+      }
+
+      let rejected = false;
+      try {
+        const response = await arenaV2MatchFinish({
+          matchId,
+          report: arenaMatchReportToWire(report, plan.rulesVersion),
+        });
+        await arenaOutboxRemove(AsyncStorage as unknown as ArenaKeyValueStore, matchId);
+        await arenaClearMatch(AsyncStorage as unknown as ArenaKeyValueStore);
         // Соперник ещё не сдался: спрашиваем РОВНО ОДИН раз, когда истечёт
         // окно ожидания. Опрос по кругу здесь запрещён — он и есть тот самый
         // хартбит, от которого растёт счёт за базу.
@@ -210,27 +302,24 @@ export default function ArenaMatchScreen() {
           const waitMs = Math.max(0, response.settleProbeAtMs - Date.now());
           setTimeout(() => { void arenaV2MatchSettle(matchId).catch(() => {}); }, waitMs);
         }
-      })
-      .catch(async (reason) => {
-        /**
-         * Отчёт не ушёл. Раньше здесь стоял комментарий про очередь отправки —
-         * но очередь была написана и НИ К ЧЕМУ НЕ ПОДКЛЮЧЕНА, поэтому отчёт
-         * пропадал навсегда: матч, доигранный в метро, стоил игроку звёзд,
-         * очков ранга и самого факта игры. Теперь он ложится в очередь.
-         */
+      } catch (reason) {
         const failure = arenaOutboxClassify(reason);
         // Отказ по существу дослать нельзя: сервер не примет его и завтра.
-        if (failure === 'rejected') return;
-        await arenaOutboxEnqueue(
-          AsyncStorage as unknown as ArenaKeyValueStore,
-          match.report as ArenaMatchReport,
-          Date.now(),
-          plan.rulesVersion,
-        );
-      })
-      .finally(() => {
-        router.replace({ pathname: '/arena_results', params: { matchId } } as never);
-      });
+        if (failure === 'rejected') {
+          rejected = true;
+          await arenaOutboxRemove(AsyncStorage as unknown as ArenaKeyValueStore, matchId);
+          await arenaClearMatch(AsyncStorage as unknown as ArenaKeyValueStore);
+        }
+        // При временном отказе durable outbox уже владеет отчётом. Если даже
+        // его записать не удалось, финальный снимок намеренно остаётся на
+        // диске и при следующем входе создаст тот же отчёт заново.
+      } finally {
+        router.replace({
+          pathname: '/arena_results',
+          params: rejected ? { matchId, reportRejected: '1' } : { matchId },
+        } as never);
+      }
+    })();
   }, [matchId, match?.report, plan, router, sent]);
 
   /* ---- выход ---- */
@@ -370,10 +459,10 @@ export default function ArenaMatchScreen() {
     return (
       <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
         <View style={styles.center}>
-          <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
+          <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, titleLine, { color: P.text }]}>
             {arenaText(lang, failure.title)}
           </Text>
-          <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, failure.hint)}</Text>
+          <Text style={[styles.failureHint, hintLine, { color: P.muted }]}>{arenaText(lang, failure.hint)}</Text>
           {failure.canRetry ? (
             <V2Cta onPress={() => { setEntryFailure(null); setPlanError(false); }}>
               {arenaText(lang, 'retry')}
@@ -394,10 +483,10 @@ export default function ArenaMatchScreen() {
     return (
       <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
         <View style={styles.center}>
-          <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
+          <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, titleLine, { color: P.text }]}>
             {arenaText(lang, 'waiting')}
           </Text>
-          <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'waitingHint')}</Text>
+          <Text style={[styles.failureHint, hintLine, { color: P.muted }]}>{arenaText(lang, 'waitingHint')}</Text>
         </View>
       </ArenaScreen>
     );
@@ -428,6 +517,16 @@ export default function ArenaMatchScreen() {
   }
 
   const opponentAnswered = hud.opponent.kind === 'answered';
+  /**
+   * Живой канал соперника молчит из-за СВЯЗИ, а не потому, что соперник ничего
+   * не делает. Без этой оговорки игрок читает пустое место как «соперник
+   * пассивен», спокойно доигрывает — и получает в конце неожиданное поражение.
+   *
+   * Показывается только пока от соперника не пришло НИ ОДНОГО хода: как только
+   * ход появился (из канала или из плана), канал очевидно работает.
+   */
+  const rivalUnseen = Boolean(live.error)
+    && Object.keys(match.state.opponentByTask).length === 0;
   return (
     <ArenaScreen
       title={arenaText(lang, 'title')}
@@ -456,9 +555,27 @@ export default function ArenaMatchScreen() {
             <View style={styles.hudSide}>
               <ArenaComboMeter streak={hud.combo.streak} bonusLabel={`+1★`} size="compact" />
               {/* Индикатор соперника. Владелец: загорается СРАЗУ, как тот ответил. */}
+              {rivalUnseen ? (
+                <Text
+                  numberOfLines={2}
+                  ellipsizeMode="tail"
+                  style={[styles.rival, { color: P.muted }]}
+                  accessibilityLiveRegion="polite"
+                >
+                  {arenaText(lang, 'rivalUnseen')}
+                </Text>
+              ) : null}
               {opponentAnswered ? (
                 <Animated.View entering={FadeIn.duration(140)}>
-                  <Text style={[styles.rival, { color: P.gold }]} accessibilityLiveRegion="polite">
+                  {/* Имя соперника плюс отметка ответа: при крупном системном
+                      шрифте это обязано остаться одной строкой, иначе шапка
+                      растёт и выдавливает само задание. */}
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    style={[styles.rival, { color: P.gold }]}
+                    accessibilityLiveRegion="polite"
+                  >
                     {plan.opponent.name || arenaText(lang, 'opponent')} · {arenaText(lang, 'submit')}
                   </Text>
                 </Animated.View>
@@ -472,6 +589,20 @@ export default function ArenaMatchScreen() {
             закрывать такое задание как сломанное и играть дальше — просто
             никто ей об этом не сообщал.
           */}
+          {/*
+            Матч восстановлен после холодного старта: задание, открытое в тот
+            момент, закрылось просрочкой. Раньше игрок просто видел потерянное
+            задание и не понимал, за что.
+          */}
+          {match.state.clockSuspect ? (
+            <View style={styles.clockNote}>
+              <Text accessibilityLiveRegion="polite" style={[styles.failureHint, hintLine, { color: P.muted }]}>
+                {arenaText(lang, 'clockJumped')}
+              </Text>
+              <Text style={[styles.failureHint, hintLine, { color: P.muted }]}>{arenaText(lang, 'clockJumpedHint')}</Text>
+            </View>
+          ) : null}
+
           {taskRenderable ? (
             <ArenaQuestion
               task={arenaPlanTaskToPublic(hud.task)}
@@ -482,10 +613,10 @@ export default function ArenaMatchScreen() {
             />
           ) : (
             <View style={styles.center}>
-              <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
+              <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, titleLine, { color: P.text }]}>
                 {arenaText(lang, 'taskBroken')}
               </Text>
-              <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'taskBrokenHint')}</Text>
+              <Text style={[styles.failureHint, hintLine, { color: P.muted }]}>{arenaText(lang, 'taskBrokenHint')}</Text>
             </View>
           )}
 
@@ -512,7 +643,9 @@ export default function ArenaMatchScreen() {
         <View style={styles.center}>
           <V2Card style={styles.doneCard}>
             <Text style={[styles.big, { color: P.text }]}>{hud.matchStars}★</Text>
-            <Text style={[styles.hint, { color: P.muted }]}>{arenaText(lang, 'loading')}</Text>
+            {/* Матч доигран, идёт отправка итога. «Загрузка» здесь неправда:
+                считать уже нечего, счёт на экране. */}
+            <Text style={[styles.hint, bigHintLine, { color: P.muted }]}>{arenaText(lang, 'sendingResult')}</Text>
           </V2Card>
         </View>
       )}
@@ -522,8 +655,10 @@ export default function ArenaMatchScreen() {
 
 const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: 'center', gap: 12 },
-  failureTitle: { fontSize: 20, lineHeight: 26, fontWeight: '900', textAlign: 'center' },
-  failureHint: { fontSize: 14, lineHeight: 20, fontWeight: '600', textAlign: 'center' },
+  // Высота строк задаётся на месте: она умножается на системный масштаб.
+  failureTitle: { fontSize: 20, fontWeight: '900', textAlign: 'center' },
+  failureHint: { fontSize: 14, fontWeight: '600', textAlign: 'center' },
+  clockNote: { gap: 2, paddingHorizontal: 8 },
   intro: { flex: 1 },
   question: { flex: 1, justifyContent: 'center', gap: 10 },
   hudRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
@@ -535,5 +670,5 @@ const styles = StyleSheet.create({
   awardLine: { fontSize: 12, fontWeight: '700' },
   doneCard: { gap: 10, alignItems: 'center' },
   big: { fontSize: 34, fontWeight: '900', textAlign: 'center' },
-  hint: { fontSize: 15, lineHeight: 21, fontWeight: '600', textAlign: 'center' },
+  hint: { fontSize: 15, fontWeight: '600', textAlign: 'center' },
 });

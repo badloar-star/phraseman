@@ -520,7 +520,7 @@ describe('Gustav flashcards target isolation', () => {
     expect(trainingSourcesSource).toContain('flashcardsCommunityPacksAvailableForTarget(studyTarget)');
 
     expect(hubSource).toContain('const { studyTarget } = useStudyTarget()');
-    expect(hubSource).toContain('primeCustomFlashcardsCache(studyTarget)');
+    expect(hubSource).toContain('primeFlashcardsCollectionCache(studyTarget)');
     expect(hubSource).toContain('const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(hubSource).toContain('loadAccessiblePackIds(studyTarget)');
     expect(hubSource).toContain('loadCommunityOwnedPackIds(studyTarget)');

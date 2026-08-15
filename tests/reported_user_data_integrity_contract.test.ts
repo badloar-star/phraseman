@@ -106,7 +106,7 @@ describe("reported user data integrity", () => {
   });
 
   it("keeps every published public draft free of internal diagnostics", () => {
-    // зачем: единственная живая админка — admin/legacy.html (AGENTS.md);
+    // зачем: единственная живая админка — admin/v2/legacy.html (AGENTS.md);
     // admin/index.html — заморозили как редирект-заглушку, PREPARED_REPORT_REPLIES там больше нет.
     const adminHtml = fs.readFileSync(
       path.join(__dirname, "..", "admin", "legacy.html"),

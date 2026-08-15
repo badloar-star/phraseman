@@ -3,7 +3,7 @@ import path from "path";
 
 describe("admin premium grant contract", () => {
   // зачем: тест читал admin/index.html — ЗАМОРОЖЕННУЮ админку (CLAUDE.md: рабочая
-  // одна — admin/legacy.html, её и публикует hosting). Весь проверяемый
+  // одна — admin/v2/legacy.html, её и публикует hosting). Весь проверяемый
   // функционал (switchTab('vip'), repairAdminGrantPremiumCompat, VIP-поля) живёт
   // именно там, а в index.html его нет вовсе — тест падал на семи проверках,
   // сверяя контракт с файлом, который не попадает на боевую.

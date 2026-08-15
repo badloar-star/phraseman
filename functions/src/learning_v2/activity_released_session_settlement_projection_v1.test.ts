@@ -19,7 +19,7 @@ function fixture() {
         localResultClaim:
           index === 10
             ? ("skipped_without_evidence" as const)
-            : ("locally_provisional_correct_before_completion" as const),
+            : ("locally_evaluated_correct_for_interaction" as const),
       }),
     ),
   );

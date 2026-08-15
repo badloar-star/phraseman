@@ -1,4 +1,4 @@
-export const SUPPORT_COMMUNICATION_BIBLE_VERSION = 1;
+export const SUPPORT_COMMUNICATION_BIBLE_VERSION = 2;
 
 export type SupportHumanVoiceViolation =
   | 'internal_process_language'
@@ -48,12 +48,18 @@ export function findSupportHumanVoiceViolations(
   return Object.freeze([...new Set(violations)]);
 }
 
+/**
+ * A holding reply is the safe fallback voice: it answers the customer without
+ * asserting any product fact, so it never needs repository grounding. It still
+ * has to pass every human-voice rule below before it may reach a customer.
+ */
 export function supportReplyIsCustomerReady(input: {
   readonly reply: unknown;
   readonly issue?: unknown;
   readonly grounded: boolean;
   readonly ownerManual?: boolean;
+  readonly holding?: boolean;
 }): boolean {
-  if (!input.ownerManual && !input.grounded) return false;
+  if (!input.ownerManual && !input.holding && !input.grounded) return false;
   return findSupportHumanVoiceViolations(input.reply, input.issue).length === 0;
 }

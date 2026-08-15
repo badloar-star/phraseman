@@ -45,7 +45,7 @@ describe('admin revenue analytics contract', () => {
     expect(onboardingSource).toContain("trackOnboardingActivity('onboarding_plan_paywall_view'");
     expect(onboardingSource).not.toContain('onPersonalPlanPaywallStart');
     expect(onboardingSource).not.toContain('queuePendingPersonalPlanActivation');
-    expect(onboardingSource).toContain('[PLAN_BILLING_KEY, billing]');
+    expect(onboardingSource).toContain('AsyncStorage.setItem(PLAN_BILLING_KEY, billing)');
   });
 
   it('adds the requested revenue analytics controls and charts to the admin analytics tab', () => {

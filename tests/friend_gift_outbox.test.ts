@@ -29,7 +29,6 @@ const receipt = {
   ok: true,
   giftId: 'chain_shield_1' as const,
   costShards: 8,
-  senderBalanceAfter: 92,
 };
 
 beforeEach(() => {

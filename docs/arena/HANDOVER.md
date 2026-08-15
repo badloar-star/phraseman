@@ -1,11 +1,15 @@
 # Арена — технический handover
 
-Статус на 2026-08-13: **код готов локально, деплой не выполнялся.**
+Статус на 2026-08-14: **базовый production-бэкенд развёрнут и включён;
+расширение выключено. Клиентские исправления релизного аудита ждут следующую
+сборку приложения.**
 
 Это описание текущего состояния кода, а не планов. Клиент, сервер, правила
 доступа, индексы, админская страница конфига и тесты лежат в checkout.
-Production-конфиг не создавался, Functions/Firestore/приложение не
-разворачивались, проверок на живых устройствах не было.
+Production-конфиг существует: шесть базовых флагов включены, восемь флагов
+расширения выключены. Нужные Functions активны и привязаны к трём секретам,
+индексы опубликованы, правила и рабочая админка развёрнуты. Полный
+интерактивный прогон новой клиентской сборки остаётся релизным шагом.
 
 **Матч переписан на дуэль v3** (план + отчёт вместо пошаговых вызовов).
 Пошаговая машина v2 сохранена и обслуживает Today и Ghost; матчи v3 помечены
@@ -23,7 +27,7 @@ Production-конфиг не создавался, Functions/Firestore/прил�
 | Награды за тир | `modules/arena/tier_rewards.ts` + `functions/src/arena_tier_rewards.ts` |
 | Машина матча на устройстве | `modules/arena/match_machine.ts`, `modules/arena/match_store.ts`, `hooks/use_arena_local_match.ts` |
 | Разбор плана и живой канал | `modules/arena/duel_plan.ts`, `modules/arena/live_channel.ts` |
-| Конфиг и админка | `functions/src/arena_config_contract.ts`, `functions/src/admin_arena_config.ts`, `admin/arena-config.html` |
+| Конфиг и админка | `functions/src/arena_config_contract.ts`, `functions/src/admin_arena_config.ts`, `admin/v2/legacy.html` (`#control-panel`) |
 | Pure product/core | `functions/src/arena_v2_core.ts`, `functions/src/arena_expansion_core.ts` |
 | Callables/scheduler | `functions/src/arena_v2.ts`, `functions/src/arena_expansion.ts`, export в `functions/src/index.ts` |
 | Client transport/listeners | `app/arena_client.ts` |
@@ -502,9 +506,22 @@ social-safety QA до rollout.
 
 ## 12. Фактические результаты тестов
 
-Прогон на 2026-08-13: **33 набора, 640 утверждений, все зелёные.** Из них 29
-клиентских и 4 серверных чистых набора Арены. Срез типов Арены
-(`npx tsc -p tsconfig.arena.json --noEmit`) и типы Functions чисты.
+Прогон на 2026-08-13 (вечер): **44 набора, 833 утверждения, все зелёные.**
+Срез типов Арены (`npx tsc -p tsconfig.arena.json --noEmit`) и типы Functions
+чисты.
+
+Быстрый способ — одна команда из корня, без jest:
+
+```bash
+bash tools/arena_tests/run.sh
+```
+
+Она компилирует наборы Арены во временную папку и прогоняет их крошечным
+прогонщиком (`tools/arena_tests/`). В конце печатает строку вида
+`SUITES=44 ASSERTIONS=833 FAILED_SUITES=0`. Подробности — в
+`tools/arena_tests/README.md`.
+
+Полный прогон через jest (медленнее, но это привычный инструмент):
 
 ```bash
 npx tsc -p tsconfig.arena.json --noEmit
@@ -596,8 +613,10 @@ cd functions && npx jest --runInBand \
 3. `firebase deploy --only functions` — новое: `arenaV2MatchPlan`,
    `arenaV2MatchFinish`, `arenaV2MatchSettle`, `arenaV2FriendsBoard`,
    `adminArenaConfigGet`, `adminArenaConfigSet`.
-4. `firebase deploy --only hosting:admin` — страница `admin/arena-config.html`.
-5. Открыть эту страницу, поставить переключатели, указать причину, записать.
+4. `firebase deploy --only hosting:admin` — рабочая админка
+   `admin/v2/legacy.html`.
+5. Открыть `legacy.html#control-panel`, карточку «Арена», поставить
+   переключатели, указать причину и записать.
 
 **Шаг 5 обязателен и ничем не заменяется.** Без документа
 `arena_v2_config/current` бэкенд Арены отказывает во всём — это и есть ответ на

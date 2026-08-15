@@ -13,7 +13,7 @@ import {
   OFFICIAL_PHRASAL_VERBS_EN_ID,
 } from '../app/flashcards/bundles/packIds';
 import { BUNDLED_MARKETPLACE_PACKS } from '../app/flashcards/marketplace';
-import { packTileImageForPack } from '../app/flashcards/packMarketplaceIcons';
+import { packTileArtRevision, packTileImageForPack } from '../app/flashcards/packMarketplaceIcons';
 // Cards 2.1 §1.2: цена набора удалена из схемы — в payload'е поля priceShards больше нет.
 import {
   buildCommunityPackPayloadForCloud,
@@ -74,6 +74,42 @@ describe('community pack card backs', () => {
     expect(pack?.ugcCardBackKey).toBe('community_29_rainbow_foil');
     expect(packTileImageForPack(pack!)).toBeDefined();
     expect(normalizeUgcCardBackKey('missing')).toBe(UGC_CARD_BACK_DEFAULT_ID);
+  });
+
+  it('invalidates a cached pack tile when the author changes its card back', () => {
+    const base = {
+      id: 'local_pack_1',
+      isCommunityUgc: true,
+      ugcCardBackKey: UGC_CARD_BACK_DEFAULT_ID,
+    };
+
+    expect(packTileArtRevision(base)).not.toBe(
+      packTileArtRevision({ ...base, ugcCardBackKey: 'community_29_rainbow_foil' }),
+    );
+  });
+
+  it('uses the art revision in both community pack list caches', () => {
+    const root = path.join(__dirname, '..', 'app');
+    const catalog = fs.readFileSync(path.join(root, 'flashcards_packs.tsx'), 'utf8');
+    const mine = fs.readFileSync(path.join(root, 'flashcards_my_packs.tsx'), 'utf8');
+
+    expect(catalog).toMatch(/computeMarketFp[\s\S]*packTileArtRevision\(p\)/);
+    expect(mine).toMatch(/function sameGroup[\s\S]*packTileArtRevision\(p\)[\s\S]*packTileArtRevision\(next\)/);
+  });
+
+  it('round-trips every selectable card back through payload and marketplace mapping', () => {
+    for (const id of UGC_CARD_BACK_IDS) {
+      expect(buildCommunityPackPayloadForCloud(validPayload(id))).toMatchObject({ cardBackKey: id });
+      const pack = mapCommunityPackDocToMarket(`pack_${id}`, {
+        listingStatus: 'published',
+        titleRu: id,
+        cardBackKey: id,
+        cardCount: 10,
+        updatedAt: 1,
+      });
+      expect(pack?.ugcCardBackKey).toBe(id);
+      expect(packTileImageForPack(pack!)).toBeDefined();
+    }
   });
 
   it('keeps the newest official pack backs wired for marketplace tiles', () => {

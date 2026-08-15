@@ -25,12 +25,16 @@ import {
   arenaTodaySync,
   createArenaRequestId,
 } from './arena_client';
+import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 
 export default function ArenaTodayScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ runId?: string; runKind?: string }>();
   const { lang } = useLang();
   const P = useTournamentPalette();
+  // Высота строки числом не растёт вместе с системным шрифтом — при
+  // крупном кегле строки наезжали друг на друга. См. use_arena_font_scale.
+  const bodyLine = { lineHeight: 21 * useArenaFontScale() };
   const active = useRuntimeActive();
   const now = useVisibleWallClock(active, 1_000);
   const reduceMotion = useReduceMotion();
@@ -140,7 +144,9 @@ export default function ArenaTodayScreen() {
       .catch(() => { setSubmitting(false); return false; });
   };
 
-  if (status === 'loading') return <ArenaScreen title={screenTitle}>{ghostRun ? <ArenaDisclosureBadge text={arenaExpansionText(lang, 'ghostDisclosure')} /> : null}<ArenaStateCard state="loading" title={arenaExpansionText(lang, 'loading')} /></ArenaScreen>;
+  // Загрузка не показывается: пустой экран доли секунды честнее слова,
+  // которое игрок и так видит по отсутствию содержимого.
+  if (status === 'loading') return <ArenaScreen title={screenTitle}>{ghostRun ? <ArenaDisclosureBadge text={arenaExpansionText(lang, 'ghostDisclosure')} /> : null}</ArenaScreen>;
   if (status === 'unavailable' || status === 'expired' || status === 'error') {
     /**
      * Три разные причины — три разных объяснения, и все они выбираются одной
@@ -171,7 +177,7 @@ export default function ArenaTodayScreen() {
   );
   if (!match) return (
     <ArenaScreen title={screenTitle} subtitle={arenaExpansionText(lang, 'todayBody')}>
-      <V2Card style={styles.startCard}><ArenaProgress value={0} max={10} label={arenaExpansionText(lang, 'todayTitle')} /><Text style={[styles.body, { color: P.muted }]}>{arenaExpansionText(lang, 'todayBody')}</Text><V2Cta disabled={submitting} onPress={start}>{arenaExpansionText(lang, 'todayStart')}</V2Cta></V2Card>
+      <V2Card style={styles.startCard}><ArenaProgress value={0} max={10} label={arenaExpansionText(lang, 'todayTitle')} /><Text style={[styles.body, bodyLine, { color: P.muted }]}>{arenaExpansionText(lang, 'todayBody')}</Text><V2Cta disabled={submitting} onPress={start}>{arenaExpansionText(lang, 'todayStart')}</V2Cta></V2Card>
     </ArenaScreen>
   );
 
@@ -186,14 +192,14 @@ export default function ArenaTodayScreen() {
           <ArenaQuestion task={match.currentPublicTask} locked={submitting || match.state !== 'task_active'} verdict={verdict} submitLabel={arenaText(lang, 'submit')} onSubmit={submit} onSpeedAttempt={speedAttempt} />
           {submitting && !verdict ? <Text style={[styles.server, { color: P.muted }]}>{arenaText(lang, 'serverCheck')}</Text> : null}
         </Animated.View>
-      ) : <View style={styles.center}><Text style={[styles.body, { color: P.muted }]}>{arenaText(lang, 'waiting')}</Text></View>}
+      ) : <View style={styles.center}><Text style={[styles.body, bodyLine, { color: P.muted }]}>{arenaText(lang, 'waiting')}</Text></View>}
     </ArenaScreen>
   );
 }
 
 const styles = StyleSheet.create({
   startCard: { gap: 16 },
-  body: { fontSize: 15, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
+  body: { fontSize: 15, fontWeight: '700', textAlign: 'center' },
   question: { flex: 1, justifyContent: 'center', gap: 8 },
   center: { flex: 1, justifyContent: 'center' },
   timer: { fontSize: 22, fontWeight: '900', textAlign: 'center', fontVariant: ['tabular-nums'] },

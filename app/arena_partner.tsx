@@ -1,8 +1,12 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { PixelRatio, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { arenaLoadWarm, arenaPeekWarm, arenaRememberWarm } from '../modules/arena/warm_cache';
+import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useLang } from '../components/LangContext';
 import { ArenaProgress, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
+import { arenaExpansionShowsState } from '../modules/arena/expansion_state';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
@@ -16,13 +20,38 @@ import { arenaExpansionHome, arenaPartnerAccept, arenaPartnerClaimSpotlight, are
 import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
 import { trackArenaTelemetry } from './arena_telemetry';
 
+/**
+ * Системный масштаб шрифта — для высоты строки.
+ *
+ * В React Native крупный системный шрифт увеличивает `fontSize`, но `lineHeight`
+ * задан числом и остаётся прежним: строки наезжают друг на друга и обрезаются.
+ * Высота строки умножается на масштаб, поэтому при обычном размере вёрстка та
+ * же, а при увеличении — правильная.
+ *
+ * На главных экранах Арены то же самое делает хук `useArenaFontScale`: он
+ * реагирует на смену настройки на ходу. Здесь взято значение на момент
+ * загрузки модуля — стили лежат в `StyleSheet`, а часть строк рисуется внутри
+ * колбэков списка, где хук вызвать нельзя. Разница видна только если менять
+ * системный шрифт, не выходя из приложения.
+ */
+const FONT_SCALE = PixelRatio.getFontScale();
+
+
+const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
+
+/** Снимок партнёрств: список меняется днями, а не секундами. */
+function readPartnerWarm(value: unknown): readonly ArenaPartnerSummary[] | null {
+  return Array.isArray(value) ? value as readonly ArenaPartnerSummary[] : null;
+}
+
 export default function ArenaPartnerScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
   const active = useRuntimeActive();
   const [state, setState] = useState<'loading' | 'ready' | 'empty' | 'unavailable' | 'error'>('loading');
-  const [partners, setPartners] = useState<readonly ArenaPartnerSummary[]>([]);
+  const warmPartners = useMemo(() => readPartnerWarm(arenaPeekWarm('partner', Date.now())), []);
+  const [partners, setPartners] = useState<readonly ArenaPartnerSummary[]>(warmPartners ?? []);
   const [friends, setFriends] = useState<FriendsTabWarmSnapshot | null>(() => peekFriendsTabSwrWarm());
   const [selectedFriend, setSelectedFriend] = useState('');
   const [busy, setBusy] = useState(false);
@@ -30,16 +59,29 @@ export default function ArenaPartnerScreen() {
   const ids = useRef(new Map<string, string>());
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent('partner', 'hub')); }, []);
   const load = useCallback(() => {
-    setState('loading');
+    // Снимок уже нарисован — не мигаем пустотой поверх готового списка.
+    setState((current) => (current === 'ready' ? current : 'loading'));
     void arenaExpansionHome().then((home) => {
       if (!home.availability.partner) { setState('unavailable'); return; }
       setPartners(home.partners);
+      arenaRememberWarm({ key: 'partner', value: home.partners, wallNowMs: Date.now(), store: warmStore });
       setNudgesEnabled(home.partnerPreferences.nudgesEnabled);
       setState(home.partners.length ? 'ready' : 'empty');
     }).catch(() => setState('error'));
     void startFriendsTabSwrPrime().then(() => setFriends(peekFriendsTabSwrWarm())).catch(() => {});
   }, []);
   useEffect(() => { if (active) load(); }, [active, load]);
+  useEffect(() => {
+    if (partners.length) return;
+    let alive = true;
+    void arenaLoadWarm(warmStore, 'partner', Date.now()).then((stored) => {
+      const parsed = readPartnerWarm(stored);
+      if (alive && parsed) setPartners((current) => (current.length ? current : parsed));
+    }).catch(() => {});
+    return () => { alive = false; };
+    // Только на открытии: дальше данные приходят по сети.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const run = (key: string, action: (requestId: string) => Promise<Readonly<{ ok: true; partner: ArenaPartnerSummary }>>) => {
     const requestId = ids.current.get(key) ?? createArenaRequestId('partner');
@@ -75,7 +117,7 @@ export default function ArenaPartnerScreen() {
   return (
     <ArenaHubChrome>
     <ArenaScreen title={arenaExpansionText(lang, 'partner')} subtitle={arenaExpansionText(lang, 'partnerBody')}>
-      {state === 'loading' || state === 'unavailable' || state === 'error' || state === 'empty' ? <ArenaStateNotice state={state} emptyHint="emptyPartner" onRetry={load} onBack={() => router.replace('/arena' as never)} /> : null}
+      {arenaExpansionShowsState(state) ? <ArenaStateNotice state={state} emptyHint="emptyPartner" onRetry={load} onBack={() => router.replace('/arena' as never)} /> : null}
       {state === 'empty' || state === 'ready' ? <V2Card style={styles.card}>
         <Text style={[styles.title, { color: P.text }]}>{arenaExpansionText(lang, 'nudgePreferences')}</Text>
         <Text style={[styles.body, { color: P.muted }]}>{arenaExpansionText(lang, 'nudgeQuietHours')}</Text>
@@ -105,8 +147,8 @@ export default function ArenaPartnerScreen() {
 
 const styles = StyleSheet.create({
   card: { gap: 12 },
-  title: { fontSize: 20, lineHeight: 26, fontWeight: '900' },
-  body: { fontSize: 14, lineHeight: 20, fontWeight: '700' },
+  title: { fontSize: 20, lineHeight: 26 * FONT_SCALE, fontWeight: '900' },
+  body: { fontSize: 14, lineHeight: 20 * FONT_SCALE, fontWeight: '700' },
   friends: { gap: 8 },
   friend: { minHeight: 48, borderRadius: 15, paddingHorizontal: 13, justifyContent: 'center' },
   friendText: { fontSize: 15, fontWeight: '800' },

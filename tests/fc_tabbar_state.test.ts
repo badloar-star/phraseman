@@ -10,11 +10,13 @@ import {
   FC_CREATE_OPTIONS,
   FC_PACKS_ROUTE,
   FC_PLUS_ROTATION_DEG,
+  FC_TRAIN_ROUTE,
   FC_TABBAR_SCRIM_OPACITY,
   FC_TABBAR_STAGGER_MS,
   FC_TRAIN_OPTIONS,
   fcPlusRotationDeg,
   fcTabMenuItemDelay,
+  fcTabChromeAction,
   fcTabScrimOpacity,
   fcTrainOptionPresetMode,
   isFcTabMenuKindOpen,
@@ -23,6 +25,11 @@ import {
   type FcTabMenu,
 } from '../app/flashcards/tabbar_state';
 import type { FcModePreset } from '../app/flashcards/mode_prefs';
+import {
+  TAB_SCROLL_COLLAPSE_TRIGGER_Y,
+  TAB_SCROLL_DIRECTION_EPSILON,
+  TAB_SCROLL_EXPAND_TRIGGER_Y,
+} from '../app/flashcards/pill_tabbar_chrome';
 
 const preset = (deckIds: FcModePreset['deckIds'], size: FcModePreset['size'] = 15): FcModePreset => ({
   deckId: deckIds[0],
@@ -98,9 +105,21 @@ describe('стаггер появления кнопок (§5.2)', () => {
 });
 
 describe('маршруты пунктов «Тренировка» (§5.2)', () => {
-  it('без пресета: тренер — due-очередь, слушание — сохранённые, блиц — дефолт', () => {
+  /**
+   * FIX владельца (2026-08-13): «Тренировка» раздела карточек — это НЕ тренажёр
+   * «Моя практика» (`/trainer_words_session`, повторение ошибок и SRS-очередь),
+   * а свайп-режим «правильно / неправильно» с выбором наборов.
+   */
+  it('«Тренировка» ведёт в свайп-режим карточек, а не в тренажёр «Моя практика»', () => {
+    expect(FC_TRAIN_ROUTE).toBe('/flashcards_swipe');
+    expect(buildFcTrainRoute('train', null).pathname).toBe('/flashcards_swipe');
+    expect(buildFcTrainRoute('train', preset(['saved'])).pathname).toBe('/flashcards_swipe');
+    expect(buildFcTrainRoute('train', null).pathname).not.toBe('/trainer_words_session');
+  });
+
+  it('без пресета: тренировка — все наборы, слушание — сохранённые, блиц — дефолт', () => {
     expect(buildFcTrainRoute('train', null)).toEqual({
-      pathname: '/trainer_words_session',
+      pathname: FC_TRAIN_ROUTE,
       params: { size: '15' },
     });
     expect(buildFcTrainRoute('listen', null)).toEqual({
@@ -113,7 +132,7 @@ describe('маршруты пунктов «Тренировка» (§5.2)', () 
     });
   });
 
-  it('пресет «слабые» не передаётся параметром: тренер идёт в due-очередь, слушание — в сохранённые', () => {
+  it('пресет «слабые» не передаётся параметром: тренировка берёт весь пул, слушание — сохранённые', () => {
     const weak = preset(['weak'], 20);
     expect(buildFcTrainRoute('train', weak).params).toEqual({ size: '20' });
     expect(buildFcTrainRoute('listen', weak).params).toEqual({ deck: 'saved', size: '20' });
@@ -123,7 +142,7 @@ describe('маршруты пунктов «Тренировка» (§5.2)', () 
   it('мультивыбор колод (§6) уезжает в `?deck=` списком через запятую', () => {
     const multi = preset(['saved', 'custom', 'pack:abc'], 10);
     expect(buildFcTrainRoute('train', multi)).toEqual({
-      pathname: '/trainer_words_session',
+      pathname: FC_TRAIN_ROUTE,
       params: { size: '10', deck: 'saved,custom,pack:abc' },
     });
     expect(buildFcTrainRoute('listen', multi).params.deck).toBe('saved,custom,pack:abc');
@@ -155,5 +174,43 @@ describe('маршруты группы «+» и правой позиции', (
   it('вход в раздел — сохранённые карточки, правая позиция — каталог наборов (§5.1/§5.3)', () => {
     expect(FC_CARDS_ROUTE).toBe('/flashcards');
     expect(FC_PACKS_ROUTE).toBe('/flashcards_packs');
+  });
+});
+
+describe('сворачивание капсулы при скролле (как на главной)', () => {
+  const E = TAB_SCROLL_DIRECTION_EPSILON;
+
+  it('у верхней кромки списка капсула всегда раскрыта — мгновенно', () => {
+    expect(fcTabChromeAction(0, 400)).toBe('expand_now');
+    expect(fcTabChromeAction(TAB_SCROLL_EXPAND_TRIGGER_Y, 0)).toBe('expand_now');
+    // отрицательный офсет (bounce на iOS) — тоже верх списка
+    expect(fcTabChromeAction(-80, 0)).toBe('expand_now');
+  });
+
+  it('уверенное движение вниз ниже порога — сворачиваем', () => {
+    const y = TAB_SCROLL_COLLAPSE_TRIGGER_Y + 10;
+    expect(fcTabChromeAction(y, y - E)).toBe('collapse');
+  });
+
+  it('между порогами раскрытия и сворачивания вниз ничего не происходит', () => {
+    const y = TAB_SCROLL_COLLAPSE_TRIGGER_Y - 1;
+    expect(y).toBeGreaterThan(TAB_SCROLL_EXPAND_TRIGGER_Y);
+    expect(fcTabChromeAction(y, y - E)).toBe('keep');
+  });
+
+  it('движение вверх возвращает капсулу на любой глубине', () => {
+    expect(fcTabChromeAction(900, 900 + E)).toBe('expand');
+    expect(fcTabChromeAction(TAB_SCROLL_COLLAPSE_TRIGGER_Y + 1, TAB_SCROLL_COLLAPSE_TRIGGER_Y + 1 + E)).toBe('expand');
+  });
+
+  it('микро-дрожание пальца не переключает состояние', () => {
+    const y = 300;
+    expect(fcTabChromeAction(y + (E - 1), y)).toBe('keep');
+    expect(fcTabChromeAction(y - (E - 1), y)).toBe('keep');
+  });
+
+  it('мусорные значения не ломают расчёт', () => {
+    expect(fcTabChromeAction(Number.NaN, 300)).toBe('expand_now');
+    expect(fcTabChromeAction(500, Number.NaN)).toBe('collapse');
   });
 });

@@ -2918,9 +2918,9 @@ export default function FriendsTabScreen() {
       });
       void queued.completion.then(async (res) => {
         if (!isCurrentAccountGeneration(giftAccountToken)) return;
-        const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);
+        const guardedBalance = await getShardsBalance().catch(() => null);
         if (!isCurrentAccountGeneration(giftAccountToken)) return;
-        setGiftBalance(guardedBalance);
+        if (guardedBalance !== null) setGiftBalance(guardedBalance);
         if (res.questStarted && res.quest) {
           const quest = res.quest as FriendQuest;
           setActiveFriendQuest(quest);

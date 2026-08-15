@@ -5,10 +5,8 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 
-const LIVE_ADMIN = path.join("admin", "legacy.html");
-const ADMIN_ENTRY = path.join("admin", "index.html");
-const ADMIN_PUBLIC_DIR = "admin";
-const FORBIDDEN_ADMIN_SUBTREE_GLOB = "v2/**";
+const LIVE_ADMIN = path.join("admin", "v2", "legacy.html");
+const ADMIN_PUBLIC_DIR = "admin/v2";
 const LINKED_RELEASE_OVERRIDE = "1";
 const LINKED_RELEASE_BRANCH = "codex/admin-analytics-current";
 const LINKED_RELEASE_ROOT = "C:/Users/badlo/.codex/worktrees/d920/phraseman";
@@ -54,30 +52,20 @@ export function evaluateAdminHostingWorkspace(input) {
       `Firebase hosting target admin must publish ${ADMIN_PUBLIC_DIR}.`,
     );
   }
-  const ignore = Array.isArray(adminTarget?.ignore) ? adminTarget.ignore : [];
-  if (!ignore.includes(FORBIDDEN_ADMIN_SUBTREE_GLOB)) {
-    errors.push(
-      `Firebase hosting target admin must exclude ${FORBIDDEN_ADMIN_SUBTREE_GLOB}.`,
-    );
-  }
   const redirects = Array.isArray(adminTarget?.redirects)
     ? adminTarget.redirects
     : [];
-  for (const source of ["/v2", "/v2/**"]) {
+  for (const source of ["/", "/index.html", "/v2", "/v2/**"]) {
     const redirect = redirects.find((entry) => entry?.source === source);
     if (redirect?.destination !== "/legacy.html") {
       errors.push(
-        `Forbidden admin route ${source} must redirect to /legacy.html.`,
+        `Admin route ${source} must redirect to /legacy.html.`,
       );
     }
   }
   if (!input.liveAdminExists) {
     errors.push(`Live admin source is missing: ${LIVE_ADMIN}.`);
   }
-  if (!input.adminEntryExists) {
-    errors.push(`Admin root entry is missing: ${ADMIN_ENTRY}.`);
-  }
-
   return { ok: errors.length === 0, errors };
 }
 
@@ -106,7 +94,6 @@ function runCli() {
       linkedReleaseOverride: process.env.PHRASEMAN_ALLOW_LINKED_ADMIN_RELEASE,
       firebaseConfig,
       liveAdminExists: fs.existsSync(path.join(root, LIVE_ADMIN)),
-      adminEntryExists: fs.existsSync(path.join(root, ADMIN_ENTRY)),
     });
   } catch (error) {
     result = {
@@ -124,7 +111,7 @@ function runCli() {
     return;
   }
   console.log(
-    `[admin-hosting-guard] OK: primary worktree, ${ADMIN_PUBLIC_DIR} -> ${LIVE_ADMIN}; ${FORBIDDEN_ADMIN_SUBTREE_GLOB} excluded`,
+    `[admin-hosting-guard] OK: primary worktree, ${ADMIN_PUBLIC_DIR} -> ${LIVE_ADMIN}; legacy redirects verified`,
   );
 }
 

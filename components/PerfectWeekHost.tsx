@@ -7,6 +7,7 @@
  * видимость через useOverlayVisible('perfectWeekReward', …).
  */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { useOverlayVisible } from './OverlayArbiter';
@@ -16,7 +17,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { grantBoonReward } from '../app/boons/boon_rewards';
 import {
   checkPerfectWeekEligible,
-  markPerfectWeekClaimed,
+  PERFECT_WEEK_CLAIMED_KEY,
   PERFECT_WEEK_REWARD,
 } from '../app/boons/perfect_week';
 import { getThemedShardIcon } from '../constants/levelGiftRewardIcons';
@@ -41,8 +42,8 @@ export default function PerfectWeekHost() {
   const visible = useOverlayVisible('perfectWeekReward', wantShow);
 
   // Начислить награду и ПОМЕТИТЬ неделю забранной — единожды (in-memory гард). Порядок
-  // важен: сначала фиксируем claimed (анти-повтор), потом начисляем осколки (best-effort).
-  // Если grant упадёт — повторного показа всё равно не будет, награда не задвоится.
+  // Маркер claimed и награда входят в одну composite-операцию: повтор безопасен,
+  // а падение не оставляет ни сиротского маркера, ни сиротского начисления.
   const claim = useCallback(async (): Promise<void> => {
     if (!isBoonModifierActive('perfect_week')) {
       setWantShow(false);
@@ -50,12 +51,18 @@ export default function PerfectWeekHost() {
     }
     if (grantedRef.current) return;
     grantedRef.current = true;
-    await markPerfectWeekClaimed();
+    const weekKey = await AsyncStorage.getItem('week_days_week_key');
+    if (!weekKey) return;
     if (!isBoonModifierActive('perfect_week')) {
       setWantShow(false);
       return;
     }
-    await grantBoonReward(PERFECT_WEEK_REWARD, 'boon_perfect_week');
+    await grantBoonReward(
+      PERFECT_WEEK_REWARD,
+      'boon_perfect_week',
+      weekKey,
+      [[PERFECT_WEEK_CLAIMED_KEY, weekKey]],
+    );
   }, []);
 
   useEffect(() => {

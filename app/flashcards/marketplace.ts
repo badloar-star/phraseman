@@ -262,8 +262,13 @@ export async function loadAccessiblePackIds(studyTarget?: RuntimeStudyTarget): P
 }
 
 export async function saveOwnedPackIds(ids: string[], studyTarget?: RuntimeStudyTarget): Promise<void> {
-  warmOwnedPackIdsByTarget.set(warmOwnedKey(studyTarget), [...new Set(ids)]);
+  primeOwnedPackIdsCache(ids, studyTarget);
   await AsyncStorage.setItem(flashcardsOwnedPacksKey(studyTarget), JSON.stringify(ids));
+}
+
+/** Refresh only the in-memory projection after an atomic economy commit. */
+export function primeOwnedPackIdsCache(ids: readonly string[], studyTarget?: RuntimeStudyTarget): void {
+  warmOwnedPackIdsByTarget.set(warmOwnedKey(studyTarget), [...new Set(ids)]);
 }
 
 export async function addOwnedPackId(id: string, studyTarget?: RuntimeStudyTarget): Promise<void> {

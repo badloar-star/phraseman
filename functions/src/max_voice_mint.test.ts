@@ -113,7 +113,7 @@ import {
 
 let currentConfig: MaxVoiceConfig = clampMaxVoiceConfig({ gate_ai_voice_call: true });
 
-type CallableRequest = { auth?: { uid: string }; data: DocData };
+type CallableRequest = { auth?: { uid: string; token?: DocData }; data: DocData };
 const mint = mintRaw as unknown as (request: CallableRequest) => Promise<DocData>;
 const preflight = preflightRaw as unknown as (request: CallableRequest) => Promise<DocData>;
 
@@ -140,6 +140,10 @@ function okProvider() {
 
 async function callMint(data: DocData = {}, auth: string | null = AUTH) {
   return mint({ auth: auth ? { uid: auth } : undefined, data });
+}
+
+async function callAdminMint(data: DocData = {}) {
+  return mint({ auth: { uid: AUTH, token: { admin: true } }, data });
 }
 
 function liveSession(overrides: DocData = {}) {
@@ -198,6 +202,33 @@ describe('gate order (App Check → kill switch → subscription → quota → m
 
   it('rejects unauthenticated callers', async () => {
     await expect(callMint({}, null)).rejects.toMatchObject({ code: 'unauthenticated', message: 'auth_required' });
+  });
+
+  it('allows the closed line only for DEV Hub callers with a verified admin claim', async () => {
+    setConfig({ gate_ai_voice_call: false });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+
+    await expect(callMint({ devMode: true })).rejects.toMatchObject({ message: 'dev_admin_required' });
+    await expect(callAdminMint({ devMode: true })).resolves.toMatchObject({
+      ok: true,
+      value: 'ek_test_123',
+    });
+  });
+
+  it('opens the closed line for a uid on the devTestUids allowlist (no admin claim)', async () => {
+    setConfig({ gate_ai_voice_call: false, devTestUids: [AUTH] });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+
+    await expect(callMint({ devMode: true })).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
+  });
+
+  it('keeps the closed line shut for uids outside the allowlist', async () => {
+    setConfig({ gate_ai_voice_call: false, devTestUids: ['someone-else'] });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+
+    await expect(callMint({ devMode: true })).rejects.toMatchObject({ message: 'dev_admin_required' });
+    // Без devMode аллоулист не открывает ничего: обычный вызов упирается в kill switch.
+    await expect(callMint()).rejects.toMatchObject({ message: 'voice_disabled' });
   });
 
   it('fires gates strictly in order: kill switches → subscription → quota → mint', async () => {
@@ -455,6 +486,61 @@ describe('mint response contract — both key spellings + limits', () => {
 });
 
 describe('server-pinned session config (section 4)', () => {
+  it('retries one transient OpenAI mint failure without double-reserving quota', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    fetchMock
+      .mockResolvedValueOnce({ ok: false, status: 503, text: async () => 'temporary' })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ value: 'ek_retry_ok', expires_at: 1_800_000_060 }),
+      });
+
+    await expect(callMint({ format: 'scenario' })).resolves.toMatchObject({ value: 'ek_retry_ok' });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(docs.get(QUOTA_PATH)).toMatchObject({ activeSessionId: expect.any(String) });
+    expect(docs.get(RATE_PATH)).toMatchObject({ count: 1 });
+  });
+
+  it('falls back to the official minimal profile when an advanced field is rejected', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    fetchMock
+      .mockResolvedValueOnce({
+        ok: false,
+        status: 400,
+        text: async () => JSON.stringify({
+          error: {
+            code: 'unknown_parameter',
+            param: 'session.audio.input.turn_detection.future_field',
+          },
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ value: 'ek_compat_ok', expires_at: 1_800_000_060 }),
+      });
+
+    await expect(callMint({ cefr: 'A2' })).resolves.toMatchObject({ value: 'ek_compat_ok' });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+
+    const primary = JSON.parse(fetchMock.mock.calls[0][1].body);
+    const compatibility = JSON.parse(fetchMock.mock.calls[1][1].body);
+    expect(primary.session.audio.input.turn_detection.type).toBe('semantic_vad');
+    expect(primary.session.max_output_tokens).toBe(160);
+    expect(compatibility).toMatchObject({
+      expires_after: { anchor: 'created_at', seconds: 60 },
+      session: {
+        type: 'realtime',
+        model: 'gpt-realtime-2.1-mini',
+        audio: { output: { voice: 'marin' } },
+      },
+    });
+    expect(compatibility.session.audio.input).toBeUndefined();
+    expect(compatibility.session.max_output_tokens).toBeUndefined();
+    expect(compatibility.session.truncation).toBeUndefined();
+    // Один пользовательский mint: ни резерв, ни rate slot не дублируются.
+    expect(docs.get(RATE_PATH)).toMatchObject({ count: 1 });
+  });
+
   it('sends the full realtime session config; the client controls none of it', async () => {
     mockResolvePremium.mockResolvedValue(true as never);
     const res = await callMint({
@@ -479,7 +565,7 @@ describe('server-pinned session config (section 4)', () => {
     expect(body.expires_after).toEqual({ anchor: 'created_at', seconds: 60 });
     expect(body.session).toMatchObject({
       type: 'realtime',
-      model: 'gpt-realtime-mini',
+      model: 'gpt-realtime-2.1-mini',
       // GA-имя поля (client_secrets, session type 'realtime') — max_output_tokens;
       // max_response_output_tokens было в deprecated-бете.
       max_output_tokens: 120, // A1
@@ -489,10 +575,13 @@ describe('server-pinned session config (section 4)', () => {
     expect(body.session.audio.input.transcription).toEqual({ model: 'gpt-4o-mini-transcribe' });
     expect(body.session.audio.input.turn_detection).toEqual({
       type: 'semantic_vad',
-      eagerness: 'low', // A1
+      eagerness: 'high', // A1: минимальная задержка после окончания речи
       create_response: true,
       interrupt_response: true,
     });
+    // OpenAI поддерживает idle_timeout_ms только в server_vad. Это поле в
+    // semantic_vad превращает весь client_secrets request в HTTP 400.
+    expect(body.session.audio.input.turn_detection.idle_timeout_ms).toBeUndefined();
     expect(body.session.audio.output).toEqual({ voice: 'marin' });
 
     // Контракт ответа клиенту.
@@ -556,5 +645,23 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
     setConfig({ gate_ai_voice_call: false });
     await expect(preflight({ auth: { uid: AUTH }, data: {} }))
       .rejects.toMatchObject({ message: 'voice_disabled' });
+  });
+
+  it('lets an authenticated admin preflight the closed line from DEV Hub only', async () => {
+    setConfig({ gate_ai_voice_call: false });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+
+    await expect(preflight({ auth: { uid: AUTH }, data: { devMode: true } }))
+      .rejects.toMatchObject({ message: 'dev_admin_required' });
+    await expect(preflight({ auth: { uid: AUTH, token: { admin: true } }, data: { devMode: true } }))
+      .resolves.toMatchObject({ ok: true, allowed: true, access: 'max' });
+  });
+
+  it('lets a devTestUids account preflight the closed line without an admin claim', async () => {
+    setConfig({ gate_ai_voice_call: false, devTestUids: [AUTH] });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+
+    await expect(preflight({ auth: { uid: AUTH }, data: { devMode: true } }))
+      .resolves.toMatchObject({ ok: true, allowed: true, access: 'max' });
   });
 });

@@ -9,8 +9,8 @@
   "hosting": [
     {
       "target": "admin",
-      "public": "admin",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "v2/**"],
+      "public": "admin/v2",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "redirects": [
         { "source": "/", "destination": "/legacy.html", "type": 301 },
         { "source": "/index.html", "destination": "/legacy.html", "type": 301 },
@@ -136,7 +136,11 @@
     {
       "source": "functions",
       "codebase": "default",
-      "runtime": "nodejs22"
+      "runtime": "nodejs22",
+      "predeploy": [
+        "npm --prefix functions run build",
+        "node scripts/functions_runtime_parity_gate.mjs"
+      ]
     },
     {
       "source": "functions-english-test",

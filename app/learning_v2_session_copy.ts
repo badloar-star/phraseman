@@ -2,7 +2,9 @@ import type { Lang } from "../constants/i18n";
 
 type SessionCopy = Readonly<{
   modes: Readonly<Record<string, string>>;
+  preparing: string;
   unavailable: string;
+  retry: string;
   close: string;
   introCheck: (question: number) => string;
   independent: string;
@@ -86,7 +88,9 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
       context_gap_grammar: "Точная грамматика",
       scripted_repeat_compare: "Повтори и сравни",
     },
+    preparing: "Подготавливаем занятие и локальное аудио…",
     unavailable: "Сессия недоступна",
+    retry: "Повторить",
     close: "Закрыть сессию",
     introCheck: (n) => `Проверка интро · вопрос ${n} из 3`,
     independent: "Самостоятельно",
@@ -421,7 +425,25 @@ function makeCopy(
       context_gap_grammar: labels[5],
       scripted_repeat_compare: labels[6],
     },
+    preparing: phrase(
+      "Готуємо заняття й локальне аудіо…",
+      "Preparando la sesión y el audio local…",
+      "Preparando a sessão e o áudio local…",
+      "Đang chuẩn bị bài học và âm thanh trên máy…",
+      "Menyiapkan sesi dan audio lokal…",
+      "Ders ve yerel ses hazırlanıyor…",
+      "Przygotowujemy sesję i nagrania lokalne…",
+    ),
     unavailable: base.unavailable,
+    retry: phrase(
+      "Повторити",
+      "Reintentar",
+      "Tentar novamente",
+      "Thử lại",
+      "Coba lagi",
+      "Tekrar dene",
+      "Spróbuj ponownie",
+    ),
     close: base.close,
     introCheck: (n) =>
       phrase(

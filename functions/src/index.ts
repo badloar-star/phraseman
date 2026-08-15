@@ -164,7 +164,10 @@ const {
   maxVoiceSessionEnd,
 } = require("./max_voice_session_end");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { maxVoiceWatchdog } = require("./max_voice_watchdog");
+const {
+  maxVoiceWatchdog,
+  maxVoiceProviderHealth,
+} = require("./max_voice_watchdog");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require("./weekly_review");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -326,6 +329,7 @@ exports.maxVoiceMint = maxVoiceMint;
 exports.maxVoiceHeartbeat = maxVoiceHeartbeat;
 exports.maxVoiceSessionEnd = maxVoiceSessionEnd;
 exports.maxVoiceWatchdog = maxVoiceWatchdog;
+exports.maxVoiceProviderHealth = maxVoiceProviderHealth;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
@@ -588,8 +592,11 @@ export { syncFriendActivityMirrorCron } from "./friend_activity_mirror";
 // enforced in the callable module; no private repository handle is serialized.
 export { learningV2ActivityAuxiliarySessionGetV1 } from "./content_factory/v2_activity_auxiliary_session_callable_v1";
 export { learningV2ActivityReleasedSessionGetV1 } from "./content_factory/v2_activity_released_session_callable_v1";
+export { learningV2CourseReleasedSessionGetV2 } from "./content_factory/v2_course_released_session_callable_v2";
+export { learningV2CourseReleasedSessionGetV3 } from "./content_factory/v2_course_released_session_callable_v3";
+export { learningV2CourseActiveCatalogGetV1 } from "./content_factory/v2_course_active_catalog_callable_v1";
 export { submitLearningV2ActivityReleasedCompletionV1 } from "./learning_v2/activity_released_session_completion_callable_v1";
-export { submitLearningV2ActivityReleasedSessionV2 } from "./learning_v2/activity_released_session_submission_callable_v2";
+export { submitLearningV2CourseSessionCompletedV1 } from "./learning_v2/course_session_completed_summary_callable_v1";
 
 // ── Деактивация истёкшего премиума/VIP по сроку (бессрочное не трогает) ───────
 export { premiumExpiryCron } from "./premium_expiry_cron";
@@ -987,6 +994,14 @@ export {
 // Learning V2 delayed evidence: server-classified, idempotent receipt finalization.
 export { finalizeLearningV2DelayedCandidate } from "./learning_v2_delayed_callable";
 export { finalizeLearningV2AccessPurchase } from "./learning_v2_access_production_callable";
+
+// Server-backed cosmetic inventory: client availability manifest plus guarded
+// admin controls for removing an item from sale or returning it without a release.
+export {
+  cosmeticAssetCatalogGet,
+  adminGetCosmeticAssetArchive,
+  adminSetCosmeticAssetSaleStatus,
+} from "./cosmetic_asset_archive";
 
 // ── Рулетка Plus (спин-кредиты → дни VIP) и claim qualified-приглашений в прокруты ──
 export { referralSpin } from "./referral_spin";

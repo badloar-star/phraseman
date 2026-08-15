@@ -61,20 +61,22 @@ export type AvatarAuraDef = {
    * за осколки. На экране выбора показывается без цены, тап не ведёт к покупке.
    */
   rewardOnly?: boolean;
+  /** Снята с продажи, но остаётся доступна прежним владельцам. */
+  retiredFromShop?: boolean;
   effect?: AvatarAuraEffect;
 };
 
 export const AVATAR_AURAS: AvatarAuraDef[] = [
   { id: PLUS_AVATAR_AURA_ID, nameRu: 'Plus', nameUk: 'Plus', nameEs: 'Plus', namePtBr: 'Plus', nameVi: 'Plus', nameId: 'Plus', nameTr: 'Plus', namePl: 'Plus', color: '#D4A72C', color2: '#FFF1B8', color3: '#9A6414', softColor: 'rgba(212,167,44,0.28)', premiumOnly: true },
   { id: PRO_AVATAR_AURA_ID, nameRu: 'Pro', nameUk: 'Pro', nameEs: 'Pro', namePtBr: 'Pro', nameVi: 'Pro', nameId: 'Pro', nameTr: 'Pro', namePl: 'Pro', color: '#2563A8', color2: '#D7ECFF', color3: '#12396B', softColor: 'rgba(37,99,168,0.28)', premiumOnly: true, proOnly: true, material: 'satin' },
-  { id: 'aura-aurora', nameRu: 'Аврора', nameUk: 'Аврора', nameEs: 'Aurora', namePtBr: 'Aurora', nameVi: 'Cực quang', nameId: 'Aurora', nameTr: 'Aurora', namePl: 'Aurora', color: '#22D3EE', color2: '#C4B5FD', color3: '#0EA5E9', softColor: 'rgba(34,211,238,0.22)' },
+  { id: 'aura-aurora', nameRu: 'Аврора', nameUk: 'Аврора', nameEs: 'Aurora', namePtBr: 'Aurora', nameVi: 'Cực quang', nameId: 'Aurora', nameTr: 'Aurora', namePl: 'Aurora', color: '#22D3EE', color2: '#C4B5FD', color3: '#0EA5E9', softColor: 'rgba(34,211,238,0.22)', retiredFromShop: true },
   { id: 'aura-ember', nameRu: 'Искра', nameUk: 'Іскра', nameEs: 'Brasa', namePtBr: 'Brasa', nameVi: 'Than hồng', nameId: 'Bara', nameTr: 'Kor', namePl: 'Żar', color: '#FB7185', color2: '#FDBA74', color3: '#E11D48', softColor: 'rgba(251,113,133,0.22)' },
   { id: 'aura-mint', nameRu: 'Мята', nameUk: 'Мʼята', nameEs: 'Menta', namePtBr: 'Menta', nameVi: 'Bạc hà', nameId: 'Mint', nameTr: 'Nane', namePl: 'Mięta', color: '#34D399', color2: '#A7F3D0', color3: '#0D9488', softColor: 'rgba(52,211,153,0.22)' },
-  { id: 'aura-violet', nameRu: 'Виолет', nameUk: 'Віолет', nameEs: 'Violeta', namePtBr: 'Violeta', nameVi: 'Tím', nameId: 'Violet', nameTr: 'Mor', namePl: 'Fiolet', color: '#A78BFA', color2: '#E9D5FF', color3: '#7C3AED', softColor: 'rgba(167,139,250,0.22)' },
-  { id: 'aura-coral', nameRu: 'Коралл', nameUk: 'Корал', nameEs: 'Coral', namePtBr: 'Coral', nameVi: 'San hô', nameId: 'Koral', nameTr: 'Mercan', namePl: 'Koral', color: '#FB7185', color2: '#FED7AA', color3: '#EA580C', softColor: 'rgba(251,113,133,0.22)' },
+  { id: 'aura-violet', nameRu: 'Виолет', nameUk: 'Віолет', nameEs: 'Violeta', namePtBr: 'Violeta', nameVi: 'Tím', nameId: 'Violet', nameTr: 'Mor', namePl: 'Fiolet', color: '#A78BFA', color2: '#E9D5FF', color3: '#7C3AED', softColor: 'rgba(167,139,250,0.22)', retiredFromShop: true },
+  { id: 'aura-coral', nameRu: 'Коралл', nameUk: 'Корал', nameEs: 'Coral', namePtBr: 'Coral', nameVi: 'San hô', nameId: 'Koral', nameTr: 'Mercan', namePl: 'Koral', color: '#FB7185', color2: '#FED7AA', color3: '#EA580C', softColor: 'rgba(251,113,133,0.22)', retiredFromShop: true },
   { id: 'aura-prism', nameRu: 'Призма', nameUk: 'Призма', nameEs: 'Prisma', namePtBr: 'Prisma', nameVi: 'Lăng kính', nameId: 'Prisma', nameTr: 'Prizma', namePl: 'Pryzmat', color: '#22D3EE', color2: '#A78BFA', color3: '#F9A8D4', softColor: 'rgba(34,211,238,0.22)' },
-  { id: 'aura-lagoon', nameRu: 'Лагуна', nameUk: 'Лагуна', nameEs: 'Laguna', namePtBr: 'Lagoa', nameVi: 'Đầm phá', nameId: 'Laguna', nameTr: 'Lagün', namePl: 'Laguna', color: '#2DD4BF', color2: '#60A5FA', color3: '#FDE68A', softColor: 'rgba(45,212,191,0.22)' },
-  { id: 'aura-sunset', nameRu: 'Закат', nameUk: 'Захід', nameEs: 'Ocaso', namePtBr: 'Pôr do sol', nameVi: 'Hoàng hôn', nameId: 'Senja', nameTr: 'Gün batımı', namePl: 'Zachód', color: '#FB7185', color2: '#FDBA74', color3: '#818CF8', softColor: 'rgba(251,113,133,0.22)' },
+  { id: 'aura-lagoon', nameRu: 'Лагуна', nameUk: 'Лагуна', nameEs: 'Laguna', namePtBr: 'Lagoa', nameVi: 'Đầm phá', nameId: 'Laguna', nameTr: 'Lagün', namePl: 'Laguna', color: '#2DD4BF', color2: '#60A5FA', color3: '#FDE68A', softColor: 'rgba(45,212,191,0.22)', retiredFromShop: true },
+  { id: 'aura-sunset', nameRu: 'Закат', nameUk: 'Захід', nameEs: 'Ocaso', namePtBr: 'Pôr do sol', nameVi: 'Hoàng hôn', nameId: 'Senja', nameTr: 'Gün batımı', namePl: 'Zachód', color: '#FB7185', color2: '#FDBA74', color3: '#818CF8', softColor: 'rgba(251,113,133,0.22)', retiredFromShop: true },
   { id: BETA_NIMBUS_AURA_ID, nameRu: 'Нимб', nameUk: 'Німб', nameEs: 'Nimbo', namePtBr: 'Nimbo', nameVi: 'Hào quang', nameId: 'Nimbus', nameTr: 'Hâle', namePl: 'Nimb', color: '#38BDF8', color2: '#7DD3FC', color3: '#E0F2FE', softColor: 'rgba(56,189,248,0.30)', rewardOnly: true, effect: 'nimbus' },
   { id: SEASON_AVATAR_AURA_IDS[0], nameRu: 'Пульс I', nameUk: 'Пульс I', nameEs: 'Pulso I', namePtBr: 'Pulso I', nameVi: 'Nhịp I', nameId: 'Denyut I', nameTr: 'Nabız I', namePl: 'Puls I', color: '#22D3EE', color2: '#67E8F9', color3: '#0EA5E9', softColor: 'rgba(34,211,238,0.24)', rewardOnly: true },
   { id: SEASON_AVATAR_AURA_IDS[1], nameRu: 'Поток II', nameUk: 'Потік II', nameEs: 'Flujo II', namePtBr: 'Fluxo II', nameVi: 'Dòng chảy II', nameId: 'Arus II', nameTr: 'Akış II', namePl: 'Przepływ II', color: '#6366F1', color2: '#22D3EE', color3: '#4338CA', softColor: 'rgba(99,102,241,0.24)', rewardOnly: true },

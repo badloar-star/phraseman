@@ -2,6 +2,8 @@
 
 > **Обязательный входной контракт:** перед продолжением любой стадии полностью
 > прочитать [GENERATOR_DELIVERY_CONTRACT.md](./GENERATOR_DELIVERY_CONTRACT.md).
+> Для любого generated content/repair также полностью прочитать
+> [QUALITY_REFERENCE_GENERATED_CURRICULUM_V3.md](./QUALITY_REFERENCE_GENERATED_CURRICULUM_V3.md).
 > Следующая стадия не начинается до полного гейта текущей, а общая формулировка
 > «генератор готов» запрещена до выполнения его полного Definition of Done.
 
@@ -17,6 +19,8 @@ security, privacy, accessibility или performance contracts.
 `LEARNING_V2_FULL_OWNER_HANDOVER_2026-08-02.md`; фактический readiness-срез и
 RN map spec от 2026-08-02; `LEARNING_V2_MASTER_WORK_PLAN.md` от 2026-07-29;
 полный аудит/журнал 360 решений от 2026-07-28; revision от 2026-07-26;
+[Quality Reference v3](./QUALITY_REFERENCE_GENERATED_CURRICULUM_V3.md) как
+обязательный эталон качества сгенерированного материала (не topology);
 [README](./README.md), [HANDOVER](./HANDOVER.md), документы `00`–`08`,
 исполняемый E1 compiler plan от 2026-07-22; затем контрактные тесты и
 фактический код в `modules/learning-v2/` и `functions/src/learning_v2/`.
@@ -37,6 +41,9 @@ map, семь RN mode screens, device proof или rollout.
 
 - основной курс содержит ровно 32 урока;
 - каждый урок содержит 56 сессий по 5–8 минут (целевое среднее 7);
+- сессия не имеет жёсткого `taskCount:12`: стандартный бюджет 14–18 основных
+  взаимодействий (цель 16), быстрый 18–22 (цель 20), voice/listening/dialogue-
+  heavy 10–14 (цель 12); retries и объяснение второй ошибки идут сверх базы;
 - сессии сгруппированы в 7 глав по 8;
 - 8/16/24/32/40/48 — проверки главы, 56 — итоговый экзамен урока;
 - реальный контент всех 32 уроков создаёт только владелец через генератор;
@@ -44,8 +51,10 @@ map, семь RN mode screens, device proof или rollout.
   блокируют Definition of Done основного генератора. Возможный будущий Personal
   Plan создаётся отдельной новой специализацией второй очереди.
 
-Старый neutral E1 `12 sessions × 12 tasks` остаётся совместимым проверочным
-foundation. Миграция выполняется только аддитивными versioned-контрактами:
+Старый neutral E1 `12 sessions × 12 tasks` остаётся только совместимым
+проверочным foundation и не задаёт новую продуктовую кардинальность. Новый
+release identity связывает все 56 сессий напрямую, без технической разбивки
+`12+12+12+12+8`. Миграция выполняется только аддитивными versioned-контрактами:
 сначала topology → generator → map/runtime → release/readback. До завершения
 этой цепочки запрещено называть старый 12-сессионный пакет полным уроком нового
 курса.
@@ -525,6 +534,33 @@ content/release issue не остаётся. Production deploy — отдель�
 
 ## Текущий следующий шаг после 15.148
 
+Owner-current inline map уже подключена через общий LessonsTab: 32 обычные
+карточки уроков, inline-раскрытие 56 сессий под выбранной карточкой, только одна
+карта открыта одновременно, active-theme colors, FlatList и reduced-motion.
+Compatibility bridge переносит фактический local progress существующих 12
+нейтральных сессий и возвращает пользователя в тот же раскрытый урок после
+ceremony. Это проверяемый runtime fixture, а не реальный контент E1–E32.
+
+Direct released-session package/readback foundation для сессий 1..56 уже
+реализован: exact lesson/session coordinates, адаптивный interaction budget,
+три intro-вопроса без дублирования, четыре раздельных child pins и bounded
+generation/hash/size/content-type readback. Public package/readback остаётся
+integrity-only без active-release authority. Следующий незакрытый runtime шаг —
+server-private publisher + unified active-release join и app client/cache для
+этого прямого пакета. До него сессии 13..56 и уроки 2..32 должны оставаться
+видимыми, но закрытыми. После него нужны физические iOS/Android
+screenshot/navigation, offline-restart, microphone, accessibility и
+reduced-motion проверки; реальный контент создаёт и утверждает только владелец.
+
+Неизменяемая runtime-граница direct 32×56: сервер никогда не получает ответы и
+не вычисляет `correct/wrong`. Локальный evaluator на устройстве завершает весь
+feedback синхронно; серверу в фоне разрешено принять только полностью
+завершённый answer-free summary. Частичное состояние сессии не сохраняется:
+выход с экрана или переход приложения в `background` аннулирует прогон, а
+следующий вход/возврат начинается с первой intro-страницы и нового run ID.
+Краткий `inactive` от системного permission sheet микрофона отдельно не
+считается обрывом.
+
 Корневой owner-редактор теперь умеет показывать и локально проверять полный
 нейтральный пакет `интро → 12 сессий → 144 задания`, но тестовый fixture
 физически отделён от production и не отправляется на сервер. Реальные E1–E32
@@ -557,3 +593,34 @@ iOS/Android offline/restart/microphone/accessibility/reduced-motion/rollback
 матрице. Нейтральные тестовые сессии и интро создаёт Codex исключительно для
 проверки генератора; содержательные решения реального курса не входят в его
 роль.
+
+Обновление 2026-08-14: базовый direct package, обязательный audio child,
+56-session lesson audio-index, composite text+audio root/head v3, его
+generation-pinned immutable repository и server-private learner-safe
+session+audio loader реализованы. Текст и аудио теперь активируются/откатываются
+одним CAS; отсутствие любого audio-index блокирует активацию до active head.
+Authenticated callable v3 также реализован и остаётся intentionally unexported
+до полного подключения плеера. App parser/cache v3 и локальная предварительная
+загрузка выбранных MP3 уже связаны opaque readiness handle: intro разрешено
+открывать только после полного text+audio readiness. Direct player уже
+переключён на этот v3 handle; full phrase и каждый selectable word/chip
+воспроизводятся из локального `file://` cache с одним voice index на
+interaction. Callable v3 экспортирован как доставка learner-safe material и не
+имеет answer/verdict transport. Следующий runtime шаг — физическая iOS/Android
+матрица cold/LKG/background-restart/rapid-tap/hold-to-talk/accessibility и
+проверка фоновой отправки только полностью завершённого answer-free summary.
+Сервер не участвует в ответах: в активной сессии нет per-answer transport,
+`correct/wrong` выдаёт только device evaluator, а в фоне сохраняется только
+answer-free summary полностью завершённой сессии.
+
+Полная подписанная iOS Debug-сборка composite v3 пути прошла на выделенном
+чистом iPhone 17 Pro Simulator (`BUILD SUCCEEDED`, строгая codesign-проверка
+GREEN). Она прошла SecureStore/account-security startup. С локальным QA-only
+флагом завершённого онбординга физически подтверждены V2 lesson list, inline-
+раскрытие одной карты, learning-outcome модал и переход `Начать` на session
+screen. Без deploy экран честно остановился на `Сессия недоступна`: neutral v3
+package ещё не опубликован. Следующий gate — тот же signed smoke с опубликованным
+neutral QA package для cold/LKG/background restart, rapid tap, hold-to-talk,
+VoiceOver/TalkBack и reduced motion. Серверный completion receipt остаётся
+только подтверждением фонового сохранения и не может менять локальный progress
+или возвращать verdict.

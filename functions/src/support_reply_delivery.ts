@@ -136,12 +136,18 @@ export interface SupportReplyBatchChildIdentity {
   readonly operationId: string;
   readonly messageDocId: string;
   readonly payloadHash: string;
+  /** Existing sealed single operation temporarily reserved by this batch. */
+  readonly adopted?: boolean;
+  /** Telegram review to resume if an unconfirmed batch is cancelled. */
+  readonly reviewId?: string;
+  /** Original guarded deadline; restored only while it is still in the future. */
+  readonly resumeAutoSendAtMs?: number | null;
 }
 
 export type SupportReplyBatchState = 'prepared' | 'dispatching' | 'accepted' | 'attention_required' | 'partial' | 'cancelled';
 
-export function isSupportReplyBatchDispatchableState(state: unknown): state is 'prepared' | 'dispatching' | 'attention_required' | 'partial' {
-  return state === 'prepared' || state === 'dispatching' || state === 'attention_required' || state === 'partial';
+export function isSupportReplyBatchDispatchableState(state: unknown): state is 'prepared' | 'dispatching' | 'attention_required' {
+  return state === 'prepared' || state === 'dispatching' || state === 'attention_required';
 }
 
 export function supportReplyBatchId(idempotencyKey: string): string {

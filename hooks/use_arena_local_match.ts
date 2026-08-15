@@ -15,7 +15,7 @@ import { arenaLocalNextBoundaryMs, arenaLocalPhase, type ArenaLocalPhase } from 
 import { arenaMonotonicEpochId, arenaMonotonicNowMs } from '../modules/arena/monotonic';
 import { arenaAnswerIsCorrect, arenaPairIsCorrect, type ArenaAnswerCheckTask } from '../modules/arena/answer_check';
 import { arenaMachinePlan, type ArenaMatchPlanWire, type ArenaPlanTaskWire } from '../modules/arena/duel_plan';
-import { arenaClearMatch, arenaSaveMatch, type ArenaKeyValueStore } from '../modules/arena/match_store';
+import { arenaSaveMatch, type ArenaKeyValueStore } from '../modules/arena/match_store';
 import { arenaPendingOpponentTicks } from '../modules/arena/live_channel';
 
 /**
@@ -55,6 +55,10 @@ export type ArenaLocalMatchApi = ArenaLocalMatchFrame & Readonly<{
 }>;
 
 type Dispatchable = ArenaLocalEvent;
+type ReducerEvent = Dispatchable | Readonly<{
+  type: 'hydrate';
+  state: ArenaLocalMatchState;
+}>;
 
 function reducerFor(plan: ArenaMatchPlanWire) {
   const machinePlan = arenaMachinePlan(plan);
@@ -107,8 +111,16 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
 
   const reduce = useMemo(() => (plan ? reducerFor(plan) : null), [plan]);
   const [state, dispatch] = useReducer(
-    (current: ArenaLocalMatchState | null, event: Dispatchable) =>
-      (current && reduce ? reduce(current, event) : current),
+    (current: ArenaLocalMatchState | null, event: ReducerEvent) => {
+      // Экран монтируется до ответа arenaV2MatchPlan, поэтому первый initial
+      // закономерно равен null. useReducer не применяет новый initial при
+      // следующем рендере: без явной гидратации корректный серверный план
+      // приходил, но локальный матч так и оставался null навсегда.
+      if (event.type === 'hydrate') {
+        return current?.matchId === event.state.matchId ? current : event.state;
+      }
+      return current && reduce ? reduce(current, event) : current;
+    },
     initial,
   );
   const [report, setReport] = useState<ArenaMatchReport | null>(null);
@@ -118,6 +130,21 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const savedPhaseRef = useRef<string>('');
   const reportedRef = useRef(false);
+  const deliveredTicksRef = useRef<number[]>([]);
+
+  useEffect(() => {
+    if (initial === null || state?.matchId === initial.matchId) return;
+    dispatch({ type: 'hydrate', state: initial });
+  }, [initial, state]);
+
+  /* ---- новый matchId не наследует защёлки предыдущего матча ---- */
+  useEffect(() => {
+    if (!plan) return;
+    deliveredTicksRef.current = [];
+    savedPhaseRef.current = '';
+    reportedRef.current = false;
+    setReport(null);
+  }, [plan?.matchId]);
 
   /* ---- точный таймер на границу фазы ---- */
   useEffect(() => {
@@ -125,7 +152,7 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
-    if (!state || state.phase === 'finished') return;
+    if (!state || (plan && state.matchId !== plan.matchId) || state.phase === 'finished') return;
     const remaining = arenaLocalNextBoundaryMs(state, arenaMonotonicNowMs());
     if (remaining === null) return;
     // Ноль означает «граница уже позади»: ставим на следующий кадр, а не
@@ -143,7 +170,7 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
     // Перевзвод на любое изменение состояния безопасен и намеренен: остаток
     // считается заново от `phaseStartedAtMonoMs + phaseBudgetMs`, поэтому
     // накопления ошибки не бывает, сколько бы раз таймер ни переставили.
-  }, [state]);
+  }, [plan, state]);
 
   /* ---- возврат из фона ---- */
   useEffect(() => {
@@ -163,9 +190,8 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
   }, []);
 
   /* ---- ходы соперника ---- */
-  const deliveredTicksRef = useRef<number[]>([]);
   useEffect(() => {
-    if (!opponentTicks?.length) return;
+    if (!plan || state?.matchId !== plan.matchId || !opponentTicks?.length) return;
     // Скармливаем ТОЛЬКО новое. Машина и сама игнорирует повторный ход по тому
     // же заданию, но лишнее событие означает лишнюю перерисовку в разгар матча.
     const pending = arenaPendingOpponentTicks(opponentTicks, deliveredTicksRef.current);
@@ -175,11 +201,11 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
       deliveredTicksRef.current.push(tick.taskIndex);
       dispatch({ type: 'opponent_answered', monoNowMs, tick });
     }
-  }, [opponentTicks]);
+  }, [opponentTicks, plan, state?.matchId]);
 
   /* ---- снимок на каждой границе задания, а не на каждом кадре ---- */
   useEffect(() => {
-    if (!plan || !state) return;
+    if (!plan || !state || state.matchId !== plan.matchId) return;
     const key = `${state.phase}:${state.taskIndex}`;
     if (key === savedPhaseRef.current) return;
     savedPhaseRef.current = key;
@@ -188,22 +214,24 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
 
   /* ---- отчёт ровно один раз ---- */
   useEffect(() => {
-    if (!plan || !state || state.phase !== 'finished' || reportedRef.current) return;
+    if (!plan || !state || state.matchId !== plan.matchId
+      || state.phase !== 'finished' || reportedRef.current) return;
     reportedRef.current = true;
     setReport(arenaLocalMatchReport(arenaMachinePlan(plan), state));
-    // Снимок больше не нужен: матч доигран, дальше его судьбу решает очередь
-    // отправки, а не хранилище матча.
-    void arenaClearMatch(keyValue);
-  }, [plan, state, keyValue]);
+    // Финальный снимок НЕ удаляем здесь. Сначала экран обязан записать отчёт
+    // в долговечный outbox либо получить подтверждение сервера. Иначе убийство
+    // приложения между последним заданием и записью очереди теряло весь матч.
+  }, [plan, state]);
 
   const task = useMemo(
-    () => (plan && state && state.phase !== 'finished' ? plan.tasks[state.taskIndex] ?? null : null),
+    () => (plan && state && state.matchId === plan.matchId && state.phase !== 'finished'
+      ? plan.tasks[state.taskIndex] ?? null : null),
     [plan, state],
   );
 
   const answer = useCallback((value: unknown): boolean => {
     const current = stateRef.current;
-    if (!plan || !current || current.phase !== 'answer') return false;
+    if (!plan || !current || current.matchId !== plan.matchId || current.phase !== 'answer') return false;
     const planTask = plan.tasks[current.taskIndex];
     if (!planTask) return false;
     // Вердикт считается ЗДЕСЬ и возвращается вызывающему сразу же: экран красит
@@ -216,7 +244,7 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
 
   const tapPair = useCallback((pairIndex: number, selectedIndex: number): boolean => {
     const current = stateRef.current;
-    if (!plan || !current || current.phase !== 'answer') return false;
+    if (!plan || !current || current.matchId !== plan.matchId || current.phase !== 'answer') return false;
     const planTask = plan.tasks[current.taskIndex];
     if (!planTask) return false;
     const correct = arenaPairIsCorrect(plan.matchId, checkTask(planTask), pairIndex, selectedIndex);
@@ -243,6 +271,6 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
     [state],
   );
 
-  if (!state || !phase) return null;
+  if (!plan || !state || state.matchId !== plan.matchId || !phase) return null;
   return { state, phase, task, report, answer, tapPair, reportBroken, abandon };
 }

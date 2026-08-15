@@ -1,9 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getApp } from '@react-native-firebase/app';
+import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { emitAppEvent } from './events';
-import { forceSyncShardsToCloud, getShardsBalance, spendShards } from './shards_system';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-
-const FUNCTIONS_REGION = 'us-central1';
+import { commitShardCompositeOperation, getShardsBalance } from './shards_system';
+import { semanticShardOperationId } from './economy/client_shard_semantic_id';
+import { getStableId } from './stable_id';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 
 export const PROFILE_CARD_LEVEL_KEY = 'profile_card_level';
 export const PROFILE_CARD_THEME_KEY = 'profile_card_theme';
@@ -53,8 +59,7 @@ export type ProfileCardTheme = 'classic' | 'steel' | 'teal' | 'azure' | 'crimson
 export type ProfileCardMotion = 'none';
 export type ProfileCardPublicFocus = 'balanced';
 
-/** Стоимость ПЕРЕХОДА на уровень N. Зеркало серверной PROFILE_CARD_LEVEL_COST
- * (functions/src/profile_card_upgrade.ts) — источник истины по списанию там. */
+/** Стоимость перехода на уровень N. Клиент — источник истины по личной покупке. */
 export const PROFILE_CARD_LEVEL_COSTS: Record<Exclude<ProfileCardLevel, 0>, number> = {
   1: PROFILE_CARD_UPGRADE_COST,
   2: 450,
@@ -489,105 +494,82 @@ async function applyProfileCardLevelLocally(next: ProfileCardLevel): Promise<voi
   ]);
 }
 
-type ProfileCardUpgradeCloudResult =
-  | { ok: true; alreadyApplied: boolean; level: number; balance: number; spent: number; legendNo?: number }
-  | { ok: false; reason: 'max' | 'insufficient'; level: number; balance: number; cost?: number };
-
-async function upgradeProfileCardLevelOnCloud(
-  expectedLevel: ProfileCardLevel,
-): Promise<ProfileCardUpgradeCloudResult | 'cloud_disabled' | 'cloud_error'> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return 'cloud_disabled';
-  try {
-    const { getCanonicalUserId } = require('./user_id_policy');
-    const stableId = await getCanonicalUserId();
-    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
-    const { getApp } = require('@react-native-firebase/app');
-    const callCf = httpsCallable(
-      getFunctions(getApp(), FUNCTIONS_REGION),
-      'profileCardUpgrade',
-    ) as (data: { expectedLevel: number; stableId?: string }) => Promise<{ data: ProfileCardUpgradeCloudResult }>;
-    const res = await callCf({ expectedLevel, ...(stableId ? { stableId } : {}) });
-    if (!res?.data) return 'cloud_error';
-    return res.data;
-  } catch {
-    return 'cloud_error';
-  }
-}
-
-async function reconcileShardsToCloudBeforeUpgrade(): Promise<void> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
-  try {
-    await forceSyncShardsToCloud();
-  } catch { /* best-effort; upgrade still validates server-side */ }
-}
-
 function emitProfileCardUpgraded(balance: number): void {
   emitAppEvent('shards_balance_updated', { balance, op: 'spend', reason: 'profile_card_upgrade' });
   emitAppEvent('xp_changed');
-}
-
-async function persistLegendNoLocally(legendNo: unknown): Promise<void> {
-  const n = Math.floor(Number(legendNo));
-  if (!Number.isFinite(n) || n <= 0) return;
-  try {
-    await AsyncStorage.setItem(PROFILE_CARD_LEGEND_NO_KEY, String(n));
-  } catch { /* mirror only; cloud (users/{uid}.progress) is authoritative */ }
 }
 
 export async function upgradeProfileCardLevel(): Promise<
   | { ok: true; level: ProfileCardLevel; balance: number; legendNo?: number }
   | { ok: false; reason: 'max' | 'insufficient' | 'spend_failed' | 'cloud_error'; need?: number; balance?: number }
 > {
+  const operationToken = captureAccountGeneration();
+  const operationOwnerStableId = operationToken.stableId;
+  const isOperationCurrent = (): boolean => Boolean(
+    operationOwnerStableId
+    && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
+  );
+  if (!isOperationCurrent()) return { ok: false, reason: 'spend_failed' };
   const current = await getProfileCardLevel();
+  if (!isOperationCurrent()) return { ok: false, reason: 'spend_failed' };
   const next = getNextProfileCardLevel(current);
   if (next === null) return { ok: false, reason: 'max' };
 
   const def = getProfileCardLevelDef(next);
-  await reconcileShardsToCloudBeforeUpgrade();
-
-  const cloud = await upgradeProfileCardLevelOnCloud(current);
-
-  if (cloud === 'cloud_error') {
-    return { ok: false, reason: 'cloud_error' };
-  }
-
-  if (cloud !== 'cloud_disabled') {
-    if (cloud.ok === true) {
-      const grantedLevel = normalizeProfileCardLevel(cloud.level);
-      try {
-        await applyProfileCardLevelLocally(grantedLevel);
-      } catch { /* mirror only; cloud is authoritative */ }
-      if (cloud.legendNo !== undefined) {
-        await persistLegendNoLocally(cloud.legendNo);
-      }
-      emitProfileCardUpgraded(cloud.balance);
+  const theme = themeForProfileCardLevel(next);
+  const purchase = await commitShardCompositeOperation({
+    amount: def.cost,
+    reason: 'profile_card_upgrade',
+    operationId: await semanticShardOperationId('profile_card_level', String(next)),
+    grant: {
+      kind: 'profile_card_level',
+      subjectId: String(next),
+      payload: { previousLevel: current, level: next, theme },
+    },
+    localWrites: [
+      [PROFILE_CARD_LEVEL_KEY, String(next)],
+      [PROFILE_CARD_THEME_KEY, theme],
+      [PROFILE_CARD_MOTION_KEY, 'none'],
+      [PROFILE_CARD_PUBLIC_FOCUS_KEY, 'balanced'],
+    ],
+  });
+  return withAccountTransitionLock(async () => {
+    if (!isOperationCurrent()) return { ok: false, reason: 'spend_failed' } as const;
+    if (purchase.status === 'insufficient') {
       return {
-        ok: true,
-        level: grantedLevel,
-        balance: cloud.balance,
-        ...(cloud.legendNo !== undefined ? { legendNo: cloud.legendNo } : {}),
-      };
+        ok: false,
+        reason: 'insufficient',
+        need: Math.max(0, def.cost - purchase.balance),
+        balance: purchase.balance,
+      } as const;
     }
-    if (cloud.ok === false) {
-      if (cloud.reason === 'max') return { ok: false, reason: 'max' };
-      const cost = cloud.cost ?? def.cost;
-      return { ok: false, reason: 'insufficient', need: Math.max(0, cost - cloud.balance), balance: cloud.balance };
+    if (purchase.status === 'failed') {
+      return { ok: false, reason: 'spend_failed', balance: await getShardsBalance() } as const;
     }
-    return { ok: false, reason: 'cloud_error' };
-  }
-
-  const balance = await getShardsBalance();
-  if (balance < def.cost) {
-    return { ok: false, reason: 'insufficient', need: def.cost - balance, balance };
-  }
-
-  const ok = await spendShards(def.cost, 'profile_card_upgrade');
-  if (!ok) return { ok: false, reason: 'spend_failed', balance };
-
-  await applyProfileCardLevelLocally(next);
-  const updatedBalance = await getShardsBalance();
-  emitProfileCardUpgraded(updatedBalance);
-  return { ok: true, level: next, balance: updatedBalance };
+    emitProfileCardUpgraded(purchase.balanceAfter);
+    // Public profile metadata is a projection only. Failure must never revoke
+    // the locally durable level or refund/rewrite the personal balance.
+    void (async () => {
+      try {
+        if (!isOperationCurrent()) return;
+        const stableId = await getStableId();
+        if (stableId !== operationOwnerStableId || !isOperationCurrent()) return;
+        const call = httpsCallable<
+          { stableId: string; expectedLevel: number },
+          { ok: boolean; level?: number; legendNo?: number }
+        >(getFunctions(getApp(), 'us-central1'), 'profileCardUpgrade');
+        const response = await call({ stableId, expectedLevel: current });
+        if (!isOperationCurrent()) return;
+        if (response.data.legendNo && next === 5) {
+          await AsyncStorage.setItem(PROFILE_CARD_LEGEND_NO_KEY, String(response.data.legendNo));
+          emitAppEvent('xp_changed');
+        }
+      } catch {
+        // Best-effort storage projection; a later idempotent call can repair it.
+      }
+    })();
+    return { ok: true, level: next, balance: purchase.balanceAfter } as const;
+  });
 }
 
 const PROFILE_CARD_ROMANS: Record<ProfileCardLevel, string> = {

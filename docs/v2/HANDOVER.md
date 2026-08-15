@@ -12541,3 +12541,707 @@ immutable foundation и не переименовывается задним ч�
 Миграция дальше выполняется аддитивно: topology → generator → accordion map →
 runtime/release/readback. Deploy, push, provider call, production mutation и
 `admin/v2` access не выполнялись.
+
+## 15.151 — Theme-aware accordion course map + neutral progress bridge (2026-08-13)
+
+Добавлен реальный learner route `app/learning-v2/course.tsx`. Основная V2-вкладка
+теперь открывает список из 32 компактных карточек уроков; нажатие раскрывает
+56-сессионную карту прямо между соседними карточками, поэтому остальные уроки
+сдвигаются вниз без отдельного промежуточного меню. Одновременно раскрыт только
+один урок. Длинный список использует `FlatList`, системное reduced motion,
+стабильные safe-area отступы и активные theme tokens; на ярком accent сохранён
+обязательный тёмный foreground.
+
+Карта отображает семь глав и точные роли проверок/transfer/final exam из
+owner-current topology. Она не выдумывает содержание E1–E32: уроки 2–32 и
+сессии 13–56 первого урока остаются видимыми, но закрыты до owner generation и
+release. Существующие 12 нейтральных сессий первого урока доступны только как
+fixture для проверки генератора/runtime.
+
+Добавлен compatibility-only progress bridge: старые 12 local session IDs
+проецируются в canonical coordinates `lesson-01:session:01..12`, crash journal
+восстанавливается перед чтением, account-generation fence сохранён. Запуск из
+новой карты передаёт `returnToCourse=1`; закрытие и ceremony возвращают в
+accordion route, где прогресс перечитывается и открывается следующая нейтральная
+сессия. Старый маршрут Lesson-1 остаётся рабочим для старых входов и не удалён.
+
+Свежие доказательства: topology/generator/accordion/progress/handoff surface
+**6 suites / 31 tests PASS**, 0 snapshots; targeted ESLint 0 errors;
+Prettier/diff-check clean. Jest напечатал известное предупреждение force-exit
+об открытых handles после PASS — это не падение suite. Физическая iOS/Android
+visual/accessibility QA ещё не выполнена; real reference evidence и owner UI
+approval не подделывались. Deploy, push, provider call, production mutation и
+`admin/v2` access не выполнялись.
+
+Следующий безопасный шаг: released-session/runtime identity должна перейти с
+нейтрального 12-session compatibility slice на owner-current координаты и
+сохранить additive readback. После этого можно выполнять device screenshot /
+navigation / offline-restart QA новой accordion-карты без разблокирования
+неподтверждённого контента.
+
+## 15.152 — Одна inline-карта и модалка с учебным результатом (2026-08-13)
+
+Владелец окончательно уточнил навигацию: на первом экране остаются 32 обычные
+карточки уроков, но нажатие не открывает отдельный экран карты. Карта из 56
+сессий раскрывается прямо под выбранной карточкой; повторное нажатие её
+схлопывает, а открытие другого урока автоматически заменяет предыдущую карту.
+Внешний `FlatList` остаётся единственным владельцем прокрутки — вложенного
+прокручиваемого списка нет.
+
+Inline-карта использует активные theme tokens, семь глав и точные роли
+checkpoint/final exam. Плашка запуска сессии больше не показывает внутреннюю
+метрику количества шагов или приблизительное время. Она описывает конкретный
+учебный результат: что ученик поймёт, чему научится или что сможет сделать.
+Нажатие «Начать» сначала закрывает модалку, затем на следующем кадре открывает
+сессионное интро. Три проверочных вопроса остаются встроенными внизу трёх intro
+pages; отдельными заданиями после интро они не дублируются.
+
+Обновлён owner-current interaction budget: стандартная сессия содержит 14–18
+основных взаимодействий (цель 16), быстрая 18–22 (цель 20), voice/listening/
+dialogue-heavy 10–14 (цель 12), абсолютный максимум 22. Повторы после ошибки и
+объяснение второй ошибки не входят в базовый счётчик; завершение определяется
+длительностью и покрытием objective, а не числом карточек. Новый прямой release
+index связывает ровно 56 content-addressed session packages без скрытой
+группировки 12+12+12+12+8.
+
+Узкие проверки topology/generator/release-index/inline-map/map-model/surface:
+**7 suites / 35 tests PASS**, 0 snapshots. Targeted ESLint: 0 errors (остались
+только прежние warnings в большом legacy lessons/map файле), Prettier и
+`git diff --check` clean. Физическая iOS/Android visual/navigation QA ещё не
+выполнена; reference evidence и owner approval не подделывались. Deploy, push,
+provider call, production mutation и `admin/v2` access не выполнялись.
+
+## 15.153 — Прямой session package/readback для координат 32×56 (2026-08-13)
+
+Закрыт следующий pure/runtime foundation после inline-карты. Новый canonical
+`learning-v2-course-session-release-package.v1` принадлежит точной координате
+`lesson-01..32:session:01..56` и связывается с соответствующей строкой
+56-session lesson release index по package fingerprint, raw SHA-256 и byteSize.
+Скрытых episode/package groups по 12 в новой identity нет.
+
+Пакет содержит локализованный учебный результат для модалки, один из трёх
+адаптивных профилей (`standard`, `rapid`, `voice_heavy`), точное число основных
+взаимодействий и их IDs. Первые три взаимодействия принадлежат трём intro pages;
+практика начинается с ordinal 4, поэтому intro-вопросы нельзя повторно показать
+как отдельные задания. Бюджеты 14–18 / 18–22 / 10–14 проверяются по выбранному
+профилю; retries и объяснение второй ошибки остаются вне базового счётчика.
+
+Четыре child-артефакта разделены на `intro`, `learner`, `evaluator` и
+`auxiliary`, имеют content-addressed пути, generation/hash/size/content-type
+pins и индивидуальные caps. Bounded readback использует concurrency 2 и выдаёт
+learner material только для intro/learner/auxiliary. Сырой evaluator child не
+попадает в learner projection. Все публичные package/readback authorities
+остаются `none`/integrity-only; active release, wallet, mastery и evidence они
+не создают.
+
+Модал старта больше не повторяет техническое `Сессия N`: заголовок сообщает
+`Что вы поймёте`, `Чему научитесь` или `Что сможете делать`, а основной текст
+содержит конкретный учебный результат. Нажатие `Начать` сначала закрывает
+модал и только на следующем кадре открывает intro.
+
+Проверки: UI + direct package **2 suites / 15 tests PASS**; direct readback
+**1 suite / 7 tests PASS**; targeted standalone TypeScript для
+package+readback+tests PASS; targeted ESLint/Prettier/`git diff --check` PASS.
+Jest завершает эти узкие запуски с существующим предупреждением про open
+handles после фактического PASS; это не падение теста. Deploy, push, provider
+call, production mutation и `admin/v2` access не выполнялись.
+
+Следующий шаг: server-private immutable publisher/readback должен выдать
+приватный active-release join для прямого пакета, после чего app loader сможет
+безопасно открыть owner-сессии 13..56. До этого они остаются видимыми, но
+закрытыми; реальный контент E1–E32 по-прежнему создаёт только владелец.
+
+## 15.154 — Локальный verdict, restart с начала и семантика результата (2026-08-13)
+
+Владелец зафиксировал окончательную runtime-границу: правильность ответа
+определяется только локальной evaluator capsule на устройстве. Активный экран
+больше не собирает и не кладёт в фоновую очередь тексты ответов или выбранные
+варианты. Старый server answer-sequence callable снят с Functions index и из
+активного background scheduler. Сервер получает только сводку полностью
+завершённой сессии и не возвращает `correct/wrong`, не раскрывает правильный
+ответ и не может изменить уже показанный локальный verdict.
+
+Контракт completed-session summary переименован честно: локальный результат
+имеет authority только текущего interaction, а completion предназначен только
+для фонового хранения завершённой сводки. Это не mastery/evidence и не release
+authority. Незавершённые ответы и позиция внутри сессии не сохраняются: новый
+mount всегда создаёт новый `sessionRunId`, показывает первый intro-экран и
+начинает run заново. Долговечно переживает restart только уже завершённая
+сессия и её фоновая доставка.
+
+В release package и 56-session lesson index добавлен точный тип учебного
+результата `understand | learn | can_do`. Он определяет заголовок модала:
+`Что вы поймёте`, `Чему научитесь` или `Что сможете делать`. Индекс карты и
+пакет сессии обязаны содержать одинаковый тип и одинаковый локализованный
+текст; рассогласование отклоняется до learner projection.
+
+Свежие доказательства: UI/runtime/background sync **5 suites / 41 tests PASS**;
+completion contract/sync **5 focused suites PASS**; direct lesson index/package/
+readback **3 suites / 22 tests PASS**; server release joins **3 suites / 15 tests
+PASS**; server completion callable/projection **2 focused suites PASS**.
+Targeted ESLint clean. Deploy, push, provider call, production mutation и
+`admin/v2` access не выполнялись.
+
+Следующий безопасный шаг: learner-safe active course catalog должен прочитать
+активный root и 32 generation-pinned lesson indexes, вернуть только названия,
+can-do и 56 outcome rows каждого урока и затем заменить нейтральные fallback
+тексты inline-карты. Реальный контент E1–E32 остаётся исключительно работой
+владельца.
+
+## 15.155 — Активный learner-safe каталог карты курса (2026-08-13)
+
+Закрыт следующий runtime seam карты. Новый canonical catalog читает активный
+V2 release и generation-pinned lesson index каждого опубликованного урока,
+проверяет точные object generation, SHA-256, byte size, content type, lesson
+coordinate, index fingerprint и ordered aggregate. Наружу проецируется только
+выбранная локаль: название урока, `can-do`, тип учебной цели и локализованный
+learning outcome каждой из 56 прямых сессий. Ответы, accepted responses, salts,
+evaluator sidecar и object paths в каталог не входят.
+
+Callable требует Firebase Auth + App Check, стабильную account identity и
+прохождение rollout cohort. App-клиент держит bounded account-scoped LKG только
+для доступности. Кэш не создаёт release/correctness authority. Контракт явно
+фиксирует `correctnessAuthority:local_device_only`,
+`serverAnswerAuthority:none_answers_never_transported`, фоновую запись только
+completed-session summary и restart незавершённого run с первого intro.
+
+Экран Learning V2 теперь заменяет нейтральные заголовки карточек названиями из
+активного каталога, а модал выбранной сессии показывает её точный опубликованный
+outcome с заголовком `Что вы поймёте` / `Чему научитесь` / `Что сможете делать`.
+При отсутствии активного каталога сохраняется безопасная нейтральная геометрия;
+продакшн-контент не выдумывается. `Начать` по-прежнему сначала закрывает модал,
+затем на следующем кадре открывает intro.
+
+Свежие доказательства: catalog pure/app/UI **5 suites / 26 tests PASS**;
+server catalog adapter+callable **2 suites / 7 tests PASS**; repository-wide
+Learning V2 import/live guard **1 suite / 14 tests PASS**. Targeted ESLint,
+Prettier и `git diff --check` clean. Deploy, push, provider call, production
+mutation и `admin/v2` access не выполнялись.
+
+Следующий шаг: переключить сам session screen со старого 12-task neutral/runtime
+fallback на новый direct 56-session learner package. До этого каталог и модал
+уже читают активные данные, но фактическое прохождение owner-сессий 13..56 ещё
+не подключено. Реальные E1–E32 создаёт только владелец; Codex поставляет
+генератор, контракты, neutral fixtures, QA и release tooling.
+
+## 15.156 — Единое device-run ядро прямой сессии (2026-08-13)
+
+Добавлен исполняемый локальный seam для нового прямого пакета сессии. Он
+принимает только canonical intro, learner, evaluator-capsule и auxiliary
+children одной и той же `lesson-01..32:session:01..56`, требует точное
+совпадение полного ordered interaction set и связывает family/input mode с
+соответствующим локальным evaluator kind. Caller-created копия child, подмена
+сессии или перестановка evaluator/auxiliary rows отклоняется до начала занятия.
+
+Правильность принадлежит только этому device-run. API оценки синхронный и не
+имеет transport callback: он возвращает локальный provisional verdict из
+device capsule. В summary явно записано
+`serverAnswerAuthority:none_answers_never_transported_or_rechecked`.
+Формирование completed summary разрешено только после наличия результата для
+каждого intro и practice interaction. Summary содержит только disposition,
+число попыток и факт подсказки; `answerPayload:absent`,
+`perAnswerTransport:none`, server evaluation authority none. Он не содержит
+текст ответа, response id, correct/wrong result code, accepted responses,
+transcript или evaluator payload.
+
+Незавершённый run не имеет сериализатора, checkpoint или resume API. Контракт
+фиксирует `partialRunPersistence:none` и
+`restart_from_first_intro_with_new_run_id`: новый mount всегда начинает с
+первого intro. Сохранять в фоне можно только уже полностью сформированный
+completed summary.
+
+Свежие доказательства: direct device-run **1 suite / 3 tests PASS**; targeted
+ESLint и Prettier clean. Первая ошибочная broad-команда также подняла
+несвязанные существующие сбои Firestore rules baseline и отсутствующего Gustav
+ledger; эти файлы не изменялись, тесты ничего не переписывали, после чего был
+выполнен точный `--runTestsByPath`. Deploy, push, production mutation, provider
+call и `admin/v2` access не выполнялись.
+
+Следующий шаг: подать это ядро в фактический session screen, перевести его intro
+на learner-safe questions без открытого `correctChoiceIndex`, затем добавить
+новый answer-free completed-summary spool для прямых 56 сессий. Старый 12-card
+fallback сохраняется только до завершения совместимого UI-перехода.
+
+### 15.156a — Intro UI готов к локальному evaluator
+
+Общий экран трёх intro-страниц теперь имеет отдельный callback
+`evaluateChoice`: active direct package передаёт туда interaction id и выбранный
+текст, а UI не читает правильный индекс. Второй неправильный ответ получает
+локализованное объяснение из exact auxiliary row этого interaction. Первый
+неправильный ответ по-прежнему только прозрачно встряхивает вариант, не выбирает
+его и не рисует красную рамку. Для старого нейтрального fallback прежний
+`correctChoiceIndex` сохранён как временная совместимость, поэтому существующая
+функциональность не удалена.
+
+Новый pure adapter строит знакомую rich intro view-модель из device-run, но не
+содержит accepted/correct answer и не имеет сети/Storage. Отдельный focused
+gate: device-run + intro design/adapter + active-session authority **4 suites /
+15 tests PASS**; targeted ESLint и diff-check clean. Старый skip UI test отдельно
+показал устаревшее ожидание возврата в `/learning-v2/lesson/[id]`, хотя текущий
+inline-flow возвращает в `/learning-v2/course`; это навигационный test debt, не
+ошибка локального evaluator пакета.
+
+## 15.157 — Сервер только хранит завершённый итог (2026-08-13)
+
+Закрыта подтверждённая владельцем граница: сервер не получает ответы, не
+проверяет их повторно и никогда не сообщает приложению `correct` или `wrong`.
+Новый callable принимает только canonical полностью завершённый direct-session
+summary. В нём есть coordinate сессии, ordered interaction IDs, число попыток,
+факт подсказки и `completed|skipped`; выбранного текста, choice token,
+транскрипта, правильного ответа, evaluator capsule или result code нет.
+
+Callable требует Firebase Auth и App Check, повторно проверяет текущую account
+generation и идемпотентно создаёт account-scoped inbox record. Его квитанция
+содержит `answerPayload:absent` и
+`serverEvaluationAuthority:none_server_must_not_return_correct_or_wrong`; полей
+answer/verdict/correct/wrong у квитанции нет. Запись не создаёт wallet,
+mastery, evidence или release authority.
+
+На устройстве добавлен crash-safe bounded spool. Итог сначала сохраняется
+локально и завершает пользовательский экран без ожидания сети. Общий quiet
+background scheduler отправляет очередь только вне интерактивной сессии,
+удаляет строку после точной hash-bound квитанции и сохраняет её при offline,
+transport error или подменённой квитанции. Partial run в spool не попадает:
+если приложение закрыто или сессия оборвана, следующий запуск создаёт новый
+run ID и начинает с первой страницы intro.
+
+Свежие доказательства: device-run + spool + direct background sync **3 suites /
+7 tests PASS**; общий background scheduler **1 suite / 21 tests PASS**;
+server storage-only callable **1 suite / 2 tests PASS**. Targeted ESLint,
+Prettier и scoped `git diff --check` clean. Deploy, push, production mutation,
+provider call и `admin/v2` access не выполнялись.
+
+Следующий шаг: подключить direct device-run к фактическому экрану сессии и
+сформировать summary только после прохождения всех intro/practice interactions.
+
+## 15.158 — Ответы только на устройстве; оборванная сессия начинается заново (2026-08-13)
+
+Владелец уточнил окончательную runtime-модель. Сервер полностью исключён из
+проверки заданий: каждое нажатие, сбор фразы и распознанный текст оцениваются
+синхронно локальным evaluator capsule на устройстве. Экран не вызывает сеть и
+не ждёт сервер во время ответа. Серверная функция существует только как
+фоновое хранилище уже полностью завершённого answer-free summary и её квитанция
+не содержит и не может вернуть `correct`, `wrong`, ответ или verdict.
+
+Direct session player теперь применяет тот же fail-closed restart на уровне
+экрана. Частичный прогон не записывается ни в AsyncStorage, ни в Firestore. При
+закрытии экрана новый mount естественно создаёт новый `sessionRunId`; если
+приложение реально ушло в `background`, текущий прогон помечается оборванным.
+При возврате очищаются все intro/practice completions и попытки, создаётся
+новый run ID и снова показывается первая intro-страница. Частичного resume нет.
+Короткий `inactive` от системного запроса микрофона не считается обрывом, иначе
+первое использование обязательного hold-to-talk само уничтожало бы сессию.
+
+После последнего interaction устройство сначала формирует canonical summary
+без ответов, кладёт его в bounded фоновую очередь и отдельно продвигает
+локальный указатель карты 32×56. Ни один из этих шагов не меняет локальный
+вердикт ответа и не даёт серверу права разблокировать занятие.
+
+Закрыт также навигационный обход: не только новая inline-карта, но и сохранённый
+совместимый route отдельной карты теперь передаёт `runtimeMode:direct_v1` и
+точные direct coordinates `lessonOrdinal/sessionOrdinal`. Поэтому ни один
+действующий вход с карты не открывает старый submission flow с серверной
+проверкой. Старые модули оставлены как невключённая совместимость, но callable
+серверной проверки ответов не экспортируется из Functions index.
+
+### 15.158a — Hold-to-talk на каждом задании остаётся локальным
+
+Direct auxiliary contract теперь требует `voice.available:true` вместе с
+`tapToRecordAllowed:true` и `holdToTalkAllowed:true` для каждого intro/practice
+interaction; генератор не может выпустить отдельное задание без голосового
+действия. Фактический direct player показывает одну компактную кнопку
+микрофона на каждом practice-экране. Удержание начинает распознавание, отпускание
+останавливает его; статус, ошибки разрешения и отсутствие локального
+распознавателя показываются рядом без блокировки остальных способов ответа.
+
+Распознавание принудительно требует on-device engine. Captured audio не
+сохраняется (`persistRecording:false`), не загружается и при blur/background
+native recognizer немедленно abort-ится без auto-resume. Транскрипт существует
+только в state текущего interaction и уничтожается после ошибки, перехода,
+перезапуска или размонтирования. Он не входит в completed summary.
+
+Голосовой текст преобразуется локально в точный тип ответа: scripted speech —
+`transcript`, сборка — `text`, single choice — ID единственного видимого
+варианта с совпадающим нормализованным текстом. Это преобразование не читает
+accepted response и не обращается к серверу; затем тот же локальный evaluator
+выдаёт provisional verdict.
+
+Свежие доказательства: client child/device-run/voice-response/hold lifecycle и
+direct runtime **5 suites / 23 tests PASS**; targeted TypeScript без ошибок,
+ESLint/Prettier/diff-check clean. Реальная проверка native recognizer на iOS и
+Android device ещё остаётся отдельным device-ready gate.
+
+### 15.158b — Save сохраняет learner-safe фразу локально
+
+Direct auxiliary save больше не является непрозрачным `savablePhraseRef`.
+Каждый interaction обязан содержать exact learner-safe projection:
+`targetLanguage`, `targetText`, переводы для всех восьми interface locales,
+`sourceTextFingerprint` и content-addressed `savablePhraseRef`. Materializer
+вычисляет оба fingerprints из точных данных; parser отклоняет подмену фразы,
+перевода, языка или hash. Device-run дополнительно требует, чтобы язык каждой
+save-проекции совпадал с target language открытой сессии.
+
+Компактная кнопка Save присутствует на каждом practice-экране и становится
+доступной после локального завершения текущего interaction. Она напрямую пишет
+карточку в существующую account-safe пользовательскую коллекцию с target-scoped
+storage key; серверного callable или post-terminal fetch нет. ID/sourceId
+включают язык и content hash, поэтому replay возвращает `duplicate`, а один и
+тот же текст разных изучаемых языков не склеивается. UI показывает локальные
+состояния `сохранено`, `уже есть` или `не удалось`.
+
+Сохраняемый текст является отдельной learner-safe release-декларацией, а не
+извлечённым правильным ответом evaluator. Поэтому наличие Save не раскрывает
+accepted response и не расширяет серверную authority.
+
+Свежие доказательства: direct save/client/device/spool/voice/runtime **7 suites /
+26 tests PASS** и server released-session adapter **1 suite / 6 tests PASS**;
+targeted TypeScript, ESLint, Prettier и diff-check clean.
+
+## 15.159 — Одна inline-карта и полностью тематизированное intro (2026-08-14)
+
+Фактический Learning V2 surface подтверждён в owner-виде: первый экран повторно
+использует обычные карточки уроков. Тап по карточке не открывает отдельный экран
+карты — 56 сессий выбранного урока раскрываются прямо под ней. Состояние хранит
+только один `lessonOrdinal`: открытие следующего урока автоматически схлопывает
+предыдущий, повторный тап схлопывает текущий. Route `/learning-v2/course`
+показывает тот же inline surface, поэтому возврат из занятия не приводит в
+старое отдельное меню.
+
+Модал сессии показывает только конкретный учебный результат: что ученик
+поймёт, чему научится или что сможет сделать. Технической оценки длительности и
+количества шагов в нём нет. Нажатие `Начать` сначала синхронно скрывает модал и
+лишь на следующем animation frame открывает занятие, поэтому модал не остаётся
+над intro. Есть явное вторичное действие `Не сейчас` и системный
+`onRequestClose`.
+
+Inline-карта, direct runner и теперь все три intro-экрана используют активные
+theme tokens. Фон, карточки, текст, прогресс, варианты, объяснение и CTA
+перекрашиваются вместе с темой приложения; текст на заполненном accent/correct
+берётся из `correctText`. Первая ошибка в intro по-прежнему только встряхивает
+вариант без красной рамки и выбора; со второй ошибки показывается локальное
+approved explanation.
+
+Свежие доказательства: inline-map/modal/intro/direct-runtime **6 suites / 25
+tests PASS**; повторный итоговый focused gate **4 suites / 22 tests PASS**;
+targeted ESLint без ошибок, Prettier и scoped `git diff --check` clean. Старые
+предупреждения недостижимого legacy chapter renderer не удалялись, потому что
+удаление существующего кода не входит в этот пакет. Deploy, push, production
+mutation, provider call и `admin/v2` access не выполнялись.
+
+Следующий безопасный шаг: связать learner-safe audio target каждого видимого
+слова с локальным tap-to-play и правилом одного выбранного голоса на всё
+задание. Это не меняет окончательную границу сервера: ни ответы, ни локальные
+вердикты никогда не отправляются и не перепроверяются; фон сохраняет только
+полностью завершённый answer-free summary.
+
+## 15.160 — Direct 32×56 audio child: один голос на фразу и каждый word/chip (2026-08-14)
+
+Добавлен отдельный canonical learner-safe audio child для прямого session
+package. Он привязан к точному `courseSessionId` и branded learner child, а
+каждый озвучиваемый chip — к реально видимым `responseId` и hash его текста.
+Подмена текста, audio target, порядка word, Storage pin или learner fingerprint
+отклоняется до runtime. Correct/accepted answer, evaluator payload, transcript,
+provider request и server verdict отсутствуют по exact schema.
+
+Каждая audio coordinate обязана иметь ровно четыре generation-pinned MP3
+варианта в фиксированном порядке `ash/onyx/nova/coral`. Для interaction один
+voice index выбирается локально при входе по детерминированному shuffled cycle;
+та же строка варианта используется для полной фразы и всех её word/chip taps.
+Повторный тап не выбирает новый голос. В контракте зафиксированы
+`serverRequestPerPlayback:false` и `remoteTtsFallbackDuringSession:false`:
+во время ответа проигрыватель использует только уже подготовленный локальный
+файл.
+
+Этот пакет закрывает pure identity/selection boundary, но ещё не добавляет
+новый шестой child pin в уже выпущенный `course-session-release-package.v1`.
+Следующий аддитивный шаг обязан выпустить package/readback v2 с audio child,
+generation/hash/size readback и подать его в существующий local MP3 player;
+старую v1-схему задним числом не меняем.
+
+Свежие доказательства: direct audio child + learner child **2 suites / 10 tests
+PASS**; targeted ESLint, Prettier и scoped `git diff --check` clean. Provider
+call, audio generation, deploy, push, production mutation и `admin/v2` access
+не выполнялись.
+
+### 15.160a — Generation-pinned local audio readback
+
+К audio child добавлен отдельный bounded readback handle. До появления
+playback-доступа он проверяет для каждого выбранного MP3 exact object
+generation, content hash, byte size, content type и локальный `file://` URI.
+Чтение ограничено concurrency 4; после успешного readback resolver возвращает
+только локальный файл полной фразы или конкретного видимого chip для заранее
+выбранного voice index. Сетевого callback в playback resolver нет.
+
+Проверка correct/wrong не импортируется и не вызывается этим слоем. Summary
+явно содержит `answerPayload:absent`, `correctnessAuthority:none`, нулевые
+wallet/mastery/evidence/release authorities и
+`serverRequestPerPlayback:false`.
+
+Свежий объединённый gate audio child/readback/learner child: **3 suites / 12
+tests PASS**; targeted ESLint и Prettier clean. Сам package v2 и app join с
+active release остаются следующим шагом; этот pure readback не выдаёт release
+authority и сам по себе не включает озвучку в production UI.
+
+### 15.160b — Аддитивное audio release extension без переписывания package v1
+
+Чтобы не менять пять child pins и fingerprint уже выпущенного
+`course-session-release-package.v1`, введён отдельный content-addressed
+`learning-v2-course-session-audio-release-extension.v1`. Он exact-связывает
+release/lesson/session, fingerprint базового package и его child set,
+learnerFingerprint, audioFingerprint и generation/hash/size/content-type pin
+audio child. Object path выводится только из этих coordinates и hashes.
+
+Extension не является active-release доказательством: repository/storage/
+runtime/publication authorities остаются `none`, release false. Подмена base
+package, learner, audio pin или authority literal отклоняется. Старые сессии
+продолжают читать базовый v1; новая озвучка включается только после отдельного
+active-release join этого extension.
+
+Свежий combined audio gate: **4 suites / 14 tests PASS**. Следующий шаг —
+server-private publisher/readback этого extension и learner-safe app cache;
+ответы и correct/wrong по-прежнему не входят ни в extension, ни в серверный
+flow.
+
+### 15.160c — Lesson audio index и единый text+audio release root
+
+Для каждого опубликованного урока введён canonical audio-index с ровно 56
+строками. Каждая строка exact-связывает базовый session package, learner child,
+audio child и content-addressed audio extension. Индекс не допускает пропуск,
+перестановку или подмену сессии и фиксирует один и тот же набор из четырёх
+голосов для всей координаты взаимодействия.
+
+Над прежним text-only release root добавлен аддитивный root v3. Он содержит
+точный pin базового root и audio-index каждого опубликованного урока. Для
+`full_course` разрешена только полная модель `32 × 56`; активация или rollback
+переключает один composite head, поэтому текст и аудио не могут оказаться из
+разных релизов. Head parser дополнительно fail-closed проверяет environment,
+канонические language tags, schema literal, safe revision и WeakSet-бренд
+предыдущего состояния.
+
+Authority не расширена: root/head сами по себе не публикуют контент и явно
+содержат `serverAnswerAuthority:none_answers_never_transported_or_rechecked`.
+Серверная роль в этом слое — только immutable доставка опубликованных файлов;
+она не участвует в прохождении или проверке ответа.
+
+### 15.160d — Generation-pinned repository и атомарный rollback v3
+
+Новый server-private repository перед любой активацией сначала перечитывает
+base root и каждый lesson audio-index по точным object path, generation,
+SHA-256, byte size и content type. Отсутствующий или подменённый audio-index
+останавливает операцию до записи active head. После immutable persistence root
+перечитывается холодно, затем один Firestore CAS переключает composite head;
+точный replay не делает новых записей.
+
+Cold `readActive` снова проверяет root, base root и все audio-indexes. Приватный
+handle хранит только проверенный composite material; его копия не проходит
+predicate. Две новые Firestore-коллекции v3 добавлены в server-owned catch-all
+исключение и имеют явный `allow read, write: if false`, поэтому browser admin
+не может подделать release head/root record.
+
+Свежие доказательства: v3 root/head + repository + repository-wide import guard
+**3 suites / 20 tests PASS**; exact Learning V2 Firestore deny gate **1 PASS**;
+targeted TypeScript и ESLint clean. Полный общий `firestore_rules_security`
+остался красным на 26 уже существующих несвязанных auth/support/index
+ожиданиях; это не скрыто и не выдаётся за общий rules PASS. Deploy, push,
+production mutation, provider call и `admin/v2` access не выполнялись.
+
+Следующий шаг: из приватного v3 active handle загрузить одну базовую session
+projection вместе с её exact audio extension/audio child, вернуть learner-safe
+descriptor в приложение и до входа в занятие положить все нужные MP3 в
+локальный hash-verified cache. Во время самого занятия сеть и серверная проверка
+ответов по-прежнему запрещены.
+
+### 15.160e — Единая learner-safe text+audio projection из active root v3
+
+Добавлен server-private адаптер чтения одной активной сессии из composite root
+v3. Он повторно использует тот же exact base-package/readback, который выдаёт
+только intro, learner child, локальную evaluator capsule и auxiliary child,
+после чего отдельно присоединяет audio extension и audio child по точным
+release/lesson/session/package/child-set/learner fingerprints. Оба аудио-объекта
+перечитываются по generation, SHA-256, byte size, content type и
+content-addressed path; копия приватного active handle и metadata drift
+отклоняются до использования bytes.
+
+Выдача не содержит evaluator sidecar и не содержит переданного пользователем
+ответа. В summary дословно закреплены `correctnessAuthority:local_device_only`,
+`serverAnswerAuthority:none_answers_never_transported_or_rechecked`,
+`answerPayload:absent`, `completionAuthority:none` и `releaseAuthority:false`.
+Таким образом, этот server-private слой только доставляет неизменяемый учебный
+материал; правильность/ошибка остаётся локальным решением устройства.
+
+Свежий focused gate base-v2 + composite-v3 adapter + repository import guard:
+**3 suites / 23 tests PASS**; targeted TypeScript, ESLint и Prettier clean.
+Следующий шаг — тонкий authenticated callable v3 и app cache, который до старта
+сессии проверит canonical text children и скачает нужные MP3 в локальные файлы.
+Сам playback и цикл ответа не должны иметь сетевого callback.
+
+### 15.160f — Authenticated learner delivery callable v3 без answer transport
+
+Поверх server-private projection добавлен отдельный callable v3. Его request
+имеет только release coordinates, language coordinates и lesson/session
+ordinals; неизвестное поле, в том числе попытка передать `answer`, отклоняется
+как invalid argument. Callable требует Firebase Auth и App Check, проверяет
+stable account/rollout и exact active composite root, а затем возвращает пять
+canonical learner raws: intro, learner, local evaluator capsule, auxiliary и
+audio child.
+
+Evaluator sidecar, correctResponse, acceptedResponses, user answer и server
+result code в response отсутствуют. Exact response contract фиксирует
+`answerPayload:absent`, `correctnessAuthority:local_device_only`,
+`serverAnswerAuthority:none_answers_never_transported_or_rechecked`,
+`serverRequestPerPlayback:false`, нулевые wallet/mastery/evidence/completion
+authority и `releaseAuthority:false`. Подмена audio fingerprint или learner
+binding приводит к fail-closed `data-loss`.
+
+Callable пока намеренно не экспортирован из live Functions index: сначала
+нужно закончить app parser, persistent session cache и generation/hash-verified
+MP3 prefetch, чтобы не открыть частично подключённый runtime путь. Старый v2
+endpoint не удалён.
+
+Свежий combined adapter/callable/import gate: **4 suites / 22 tests PASS**;
+targeted TypeScript, ESLint, Prettier и diff-check clean. Следующий шаг — app
+client v3 и локальный audio cache, затем атомарное переключение direct player
+на полностью подготовленный offline material.
+
+### 15.160g — Direct-session MP3 preload до старта занятия
+
+Добавлен app-side preload для нового course-session audio child. На вход он
+принимает только branded learner/audio children и новый `sessionRunId`. Для
+каждого interaction голос выбирается локальным shuffled round-robin по реальному
+interaction ordinal; затем ровно этот voice variant используется для полной
+фразы и каждого word/chip внутри interaction.
+
+До выдачи opaque preload handle все выбранные MP3 проходят account-generation
+fence, authenticated Firebase Auth + App Check transport, bounded concurrency
+4, exact byte-size/SHA-256 проверку и сохранение в локальный content-hash cache.
+Resolver возвращает только `file://` URI; сетевого callback в tap/playback path
+нет. Переход между аккаунтами немедленно инвалидирует handle и in-flight peek.
+
+Summary фиксирует `all_selected_mp3_verified_before_session_start`,
+`answerPathTransport:none_local_file_only`,
+`serverRequestPerPlayback:false`, `correctnessAuthority:none` и нулевые
+wallet/mastery/evidence/release authorities. Общий authenticated transport
+расширен только структурным минимальным типом MP3 pin; токены и URLs по-прежнему
+не сохраняются и не возвращаются.
+
+Свежий app gate transport + direct preload: **2 suites / 4 tests PASS**;
+repository-wide import/live guard: **1 suite / 14 tests PASS**; targeted
+TypeScript, ESLint и Prettier clean. Следующий шаг — persistent canonical
+response cache v3, который свяжет callable response с этим preload handle и
+только после полного text+audio readiness откроет intro.
+
+### 15.160h — Persistent learner cache v3 и окончательная граница server-answer
+
+Добавлен app client v3 для composite text+audio release. Он принимает только
+координаты курса и сессии, а request schema физически не содержит ответа,
+выбранного варианта, transcript, попытки или позиции в занятии. Response
+fail-closed требует `answerPayload:absent`, `correctnessAuthority:local_device_only`
+и `serverAnswerAuthority:none_answers_never_transported_or_rechecked`; любое
+лишнее поле, включая `answer`, отклоняется.
+
+Локально и с ограничением 6 записей / 40 MiB кэшируются только canonical
+опубликованные intro/learner/capsule/auxiliary/audio материалы. Ни
+`sessionRunId`, ни intro/practice index, ни выбранные ответы, ни частичный
+прогресс в этот кэш не входят. LKG используется только для доступности при
+временной сети и не применяется после permission/data-loss/failed-precondition.
+
+Новый opaque readiness handle появляется лишь после одновременной готовности
+canonical text children и всех выбранных hash-verified MP3. Он привязан к
+новому `sessionRunId`. Обрыв активного run никогда не превращается в resume:
+direct player очищает локальные completions/attempt state, генерирует новый run
+ID и возвращает пользователя на первую страницу интро. На сервер в фоне может
+уйти только answer-free summary уже полностью завершённой сессии; сервер не
+возвращает и не подтверждает `correct/wrong`.
+
+Свежий focused runtime/client/audio gate: **4 suites / 16 tests PASS**;
+repository-wide canonical import/live guard: **1 suite / 14 tests PASS**;
+targeted ESLint и diff-check clean. Изолированный `tsc` нового клиента не
+показал ошибок этого файла, но общий импортный граф сохраняет существующие
+несвязанные ошибки flashcards/reward/Reanimated, поэтому общий TypeScript gate
+не выдаётся за зелёный.
+
+Следующий шаг — атомарно переключить direct player с text-only client v2 на
+готовый v3 readiness handle, добавить локальное tap-to-play для phrase и каждого
+word/chip и только после этого экспортировать callable v3 в live Functions
+index. До этого новый endpoint остаётся intentionally unexported.
+
+### 15.160i — Direct player на v3 readiness и локальный tap-to-play
+
+Фактический direct player переключён с text-only клиента v2 на composite v3.
+Экран не создаёт device run и не открывает intro, пока opaque readiness handle
+не подтвердил одновременно canonical intro/learner/capsule/auxiliary bytes и
+все выбранные hash-verified MP3. На время подготовки остаётся стабильная
+геометрия экрана с active-theme skeleton, доступной кнопкой закрытия и
+локализованным статусом вместо пустого экрана или скачка layout.
+
+Для каждого practice interaction доступен локальный full-phrase playback, если
+он объявлен audio child. Tap по single-choice варианту или word/chip немедленно
+воспроизводит соответствующий заранее скачанный `file://` объект. Preload
+выбирает voice index один раз на interaction/run, поэтому полная фраза и все
+слова внутри задания говорят одним голосом. Playback проходит через общий
+spoken-audio arbiter, останавливает конфликтующий hold-to-talk и не выполняет
+network request.
+
+При реальном background interruption player останавливает звук, очищает
+completions/attempt state, меняет run ID, инвалидирует старый readiness material
+и заново проходит text+audio preparation. Возврат всегда ведёт на intro page 1;
+resume practice index отсутствует.
+
+Callable v3 теперь экспортирован из Functions index только как доставка
+learner-safe опубликованного material. Его request не содержит answer fields,
+response требует `answerPayload:absent`, а verdict остаётся исключительно в
+синхронном device evaluator. Старые функции отправки answer sequence не
+возвращены.
+
+Свежий app runtime/client/preload gate: **3 suites / 14 tests PASS**; callable
+v3 + repository-wide import/live guard: **2 suites / 16 tests PASS**. Targeted
+ESLint не нашёл ошибок в изменённых app/contract файлах; Functions index имеет
+только 102 ранее существовавших warning на legacy require/import style, новых
+errors нет. Prettier и diff-check clean. Deploy, push и production mutation не
+выполнялись.
+
+Следующий шаг — физический iOS/Android smoke нового v3 пути: первый cold load,
+LKG offline reopen, background restart, rapid repeated chip taps, spoken-audio
+arbitration с hold-to-talk, VoiceOver/TalkBack и reduced-motion. После этого
+нужен app-side completion scheduler smoke: на сервер уходит только полностью
+завершённый answer-free summary.
+
+### 15.160j — Owner lock: сервер вне цикла ответа и первая полная iOS-сборка
+
+Владелец повторно и окончательно зафиксировал runtime-правило: сервер полностью
+исключён из вычисления результата ответа. Во время задания устройство само
+выдаёт feedback и разрешает переход дальше. Ни response id, ни текст/голосовой
+transcript, ни `correct/wrong`, ни evaluator result на сервер не отправляются.
+Фоновый callable принимает только summary уже полностью завершённой сессии и
+возвращает лишь техническое подтверждение сохранения/дубликата; этот receipt не
+может изменить локальный progress, разблокировать задание или показать verdict.
+
+Любой настоящий переход приложения в `background` до завершения аннулирует
+частичный run. Позиция, ответы и попытки незавершённой сессии не сохраняются;
+после возвращения создаётся новый `sessionRunId`, заново готовятся text+audio
+bytes и открывается первая intro-страница. Краткий системный `inactive` при
+permission sheet по-прежнему не считается обрывом.
+
+После диагностической unsigned-сборки выполнена полноценная подписанная Debug-
+сборка на выделенный `Phraseman-LV2-Clean-Smoke` iPhone 17 Pro Simulator:
+`BUILD SUCCEEDED`, `codesign --verify --deep --strict` GREEN. Подписанная сборка
+прошла SecureStore/account-security startup и загрузила настоящее приложение.
+QA-only значение `onboarding_done=1` было поставлено только в локальном
+AsyncStorage этого выделенного симулятора; исходники, сервер и данные
+пользователей не менялись.
+
+Физически подтверждено: вкладка V2 открывается в активной теме; карточка урока
+раскрывает карту внутри текущего списка и сдвигает следующие карточки вниз;
+одновременно открыта только одна карта. Первая session node открывает модал с
+конкретным результатом обучения (`Что вы поймёте`), имеет действие `Не сейчас`,
+а `Начать` закрывает модал и переходит на экран занятия. Занятие ожидаемо
+остановилось на fail-closed `Сессия недоступна`, поскольку learner-safe v3
+session package не публиковался и deploy запрещён этим packet. Это подтверждает
+UI/navigation и отсутствие fallback-данных, но не заменяет последующую матрицу
+на реально опубликованном neutral QA package: cold/LKG/background restart,
+rapid tap, hold-to-talk, VoiceOver/TalkBack и reduced motion.
+
+Во время smoke dev-лог выявил отсутствующие route-art mappings. Реестр исправлен:
+`/learning-v2/course` и lesson routes используют тематический backdrop `lessons`,
+а динамические session routes — `lessonPractice`, вместо молчаливого fallback на
+home art. Focused backdrop contract: 1 suite / 8 tests PASS.

@@ -40,7 +40,6 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from "../../../app/account_generation";
-import { safeRouterBack } from "../../../app/navigation_back";
 import {
   ensureLearningV2CompletionBackgroundSchedulerInstalled,
   enterLearningV2InteractiveSurface,
@@ -63,6 +62,7 @@ import {
 import { getStableId } from "../../../app/stable_id";
 import { useStableSafeAreaInsets } from "../../../app/stable_safe_area_metrics";
 import LearningV2SessionIntro from "../../../app/learning_v2_session_intro";
+import LearningV2DirectSessionPlayerV1 from "../../../app/learning_v2_direct_session_player_v1";
 import {
   parseLearningV2ActivityAuxiliaryRouteScopeV1,
   useLearningV2ActivityAuxiliarySessionV1,
@@ -90,8 +90,6 @@ import {
 } from "../../../modules/learning-v2/progress/progress_account_scope";
 import { materializeLearningV2ActivityReleasedSessionCompletionV1 } from "../../../modules/learning-v2/progress/activity_released_session_completion_v1";
 import { createLearningV2ActivityReleasedSessionCompletionSpoolV1 } from "../../../modules/learning-v2/progress/activity_released_session_completion_spool_v1";
-import { materializeLearningV2ActivityReleasedSessionSubmissionV2 } from "../../../modules/learning-v2/progress/activity_released_session_submission_v2";
-import { createLearningV2ActivityReleasedSessionSubmissionSpoolV2 } from "../../../modules/learning-v2/progress/activity_released_session_submission_spool_v2";
 import {
   materializeRequiredSessionCompletionEnvelope,
   type RequiredSessionTaskCompletionInputV3,
@@ -104,7 +102,6 @@ import {
   getLearningV2ActivityReleasedSessionTaskV1,
   type LearningV2ActivityReleasedSessionRuntimeHandleV1,
 } from "../../../modules/learning-v2/runtime/activity_released_session_package_v1";
-import type { V2LocalEvaluatorResponseV1 } from "../../../modules/learning-v2/runtime/local_evaluator_capsule_v1";
 
 const SESSION_IDS = ["understand", "use", "master"].flatMap((zone) =>
   [1, 2, 3, 4].map((index) => `lesson-1-${zone}-${index}`),
@@ -185,7 +182,7 @@ const first = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
 const LOCAL_AUDIO_START_WATCHDOG_MS = 2_000;
 
-export default function LearningV2SessionScreen() {
+function LearningV2LegacySessionScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const { height: windowHeight } = useWindowDimensions();
@@ -280,9 +277,6 @@ export default function LearningV2SessionScreen() {
   const sessionRunIdRef = useRef(Crypto.randomUUID());
   const taskCompletionsRef = useRef(
     new Map<string, RequiredSessionTaskCompletionInputV3>(),
-  );
-  const releasedTaskAttemptsRef = useRef(
-    new Map<string, V2LocalEvaluatorResponseV1[]>(),
   );
   const awardedCardIdsRef = useRef(new Set<string>());
   const sessionStarsRef = useRef(0);
@@ -516,7 +510,6 @@ export default function LearningV2SessionScreen() {
   useEffect(() => {
     if (!session || ordinal < 1) return;
     taskCompletionsRef.current.clear();
-    releasedTaskAttemptsRef.current.clear();
     void withAccountTransitionLock(async () => {
       const stableId = await getStableId();
       const token = ensureAccountGeneration(stableId);
@@ -867,17 +860,8 @@ export default function LearningV2SessionScreen() {
             },
           })
         : null;
-    if (releasedEvaluatorTask && releasedVerdict) {
-      const prior =
-        releasedTaskAttemptsRef.current.get(releasedEvaluatorTask.taskId) ?? [];
-      releasedTaskAttemptsRef.current.set(releasedEvaluatorTask.taskId, [
-        ...prior,
-        Object.freeze({
-          kind: releasedEvaluatorTask.evaluatorInputKind,
-          value: releasedEvaluatorValue,
-        }),
-      ]);
-    }
+    // Feedback is final for the active interaction on this device. Answers are
+    // never sent to a server for a second correct/wrong decision.
     const answerCorrect = releasedVerdict
       ? releasedVerdict.resultCode === "provisional_correct"
       : normalize(answer) === normalize(correctAnswer);
@@ -989,35 +973,15 @@ export default function LearningV2SessionScreen() {
                   hintUsed: candidate!.hintUsed,
                 })),
               });
-            try {
-              const releasedSubmission =
-                materializeLearningV2ActivityReleasedSessionSubmissionV2({
-                  runtime: releasedRuntime,
-                  completion: releasedCompletion,
-                  taskAnswers: releasedTasks.map((releasedTask) => ({
-                    taskId: releasedTask.taskId,
-                    attempts:
-                      releasedTaskAttemptsRef.current.get(
-                        releasedTask.taskId,
-                      ) ?? [],
-                  })),
-                });
-              await createLearningV2ActivityReleasedSessionSubmissionSpoolV2(
-                AsyncStorage,
-                (candidate) =>
-                  isCurrentAccountGeneration(token, candidate.stableId),
-              ).append(releasedScope, releasedSubmission);
-              committedReleasedCompletion = true;
-            } catch {
-              // Transitional render packages may not yet expose exact evaluator
-              // attempts. Preserve completion safely, but never invent answers.
-              await createLearningV2ActivityReleasedSessionCompletionSpoolV1(
-                AsyncStorage,
-                (candidate) =>
-                  isCurrentAccountGeneration(token, candidate.stableId),
-              ).append(releasedScope, releasedCompletion);
-              committedReleasedCompletion = true;
-            }
+            // Only the completed-session summary is persisted for background
+            // synchronization. Per-answer values and correctness decisions stay
+            // on the device and are not part of the server transport.
+            await createLearningV2ActivityReleasedSessionCompletionSpoolV1(
+              AsyncStorage,
+              (candidate) =>
+                isCurrentAccountGeneration(token, candidate.stableId),
+            ).append(releasedScope, releasedCompletion);
+            committedReleasedCompletion = true;
           }
         }
         if (!committedReleasedCompletion) {
@@ -1135,7 +1099,7 @@ export default function LearningV2SessionScreen() {
   }
   const closeSession = () => {
     stopAudioAttempt();
-    safeRouterBack(router, "/learning-v2/lesson/1");
+    router.replace("/learning-v2/course");
   };
   if (!introComplete && session && ordinal > 0) {
     return (
@@ -1144,7 +1108,7 @@ export default function LearningV2SessionScreen() {
         lessonId={payload.lessonId}
         sessionOrdinal={ordinal}
         taskIds={introTaskIds as [string, string, string]}
-        onBack={() => safeRouterBack(router)}
+        onBack={() => router.replace("/learning-v2/course")}
         onComplete={(introCompletions) => {
           for (const completion of introCompletions) {
             taskCompletionsRef.current.set(completion.taskId, completion);
@@ -1805,14 +1769,11 @@ export default function LearningV2SessionScreen() {
                 onPressIn={() => void hapticTap()}
                 onPress={() =>
                   router.replace({
-                    pathname: "/learning-v2/lesson/[id]",
-                    params: {
-                      id: "1",
-                      ...buildLearningV2SessionResultRouteParams({
-                        localSessionId: sessionId,
-                        provisionalStars: completionStars,
-                      }),
-                    },
+                    pathname: "/learning-v2/course",
+                    params: buildLearningV2SessionResultRouteParams({
+                      localSessionId: sessionId,
+                      provisionalStars: completionStars,
+                    }),
                   } as never)
                 }
                 style={({ pressed }) => [
@@ -1829,6 +1790,15 @@ export default function LearningV2SessionScreen() {
       )}
     </LinearGradient>
   );
+}
+
+export default function LearningV2SessionScreen() {
+  const params = useLocalSearchParams<{
+    runtimeMode?: string | string[];
+  }>();
+  if (first(params.runtimeMode) === "direct_v1")
+    return <LearningV2DirectSessionPlayerV1 />;
+  return <LearningV2LegacySessionScreen />;
 }
 
 const styles = StyleSheet.create({

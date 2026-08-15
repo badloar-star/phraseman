@@ -40,7 +40,7 @@ import {
  * Shared orchestration for the AI mistake breakdown (inline `AiMistakeCard`) and
  * the «Объяснить проще» ELI5 modal (`MistakeEli5Modal`).
  *
- * Extracted from lesson1.tsx so BOTH lessons and personal-plan exercises drive
+ * Extracted from lesson1.tsx so every lesson surface drives
  * the exact same behaviour: inline breakdown auto-loads on a wrong answer, the
  * footer button opens a simpler explanation, both hit the cached `explainMistake`
  * Cloud Function. The pure UI components + client + server cache are reused as-is.

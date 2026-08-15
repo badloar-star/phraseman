@@ -3,6 +3,14 @@ import {
   NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256,
   NEW_TOURNAMENT_POOL_VERSION,
 } from './tournament_pool_publication';
+import { ARENA_EXPANSION_CATALOG_VERSION } from './arena_expansion_core';
+
+/**
+ * Версия правил соперничеств. Сервер держит её отдельным полем конфига и
+ * закрывается, если оно не совпадает: иначе старое приложение доигрывало бы
+ * серию по правилам, которых уже нет.
+ */
+export const ARENA_RIVAL_RUNTIME_VERSION = 'arena-rival.v1';
 
 /**
  * Договор документа `arena_v2_config/current`.
@@ -36,11 +44,24 @@ export const ARENA_CONFIG_FLAGS = [
 export type ArenaConfigFlag = typeof ARENA_CONFIG_FLAGS[number];
 
 /** Переключатели расширения. Разбор матча к ним больше НЕ относится. */
+/**
+ * Переключатели расширения — ВСЕ, какие смотрит сервер.
+ *
+ * Их было четыре из семи. Остальные три («Сегодня», призрачные дуэли,
+ * соперничества) и магазин сервер проверял, а админка про них не знала — и
+ * включить их можно было только руками в консоли Firestore. Владелец (D-01)
+ * такой способ работы запретил: страница конфига обязана уметь всё, что умеет
+ * сервер, иначе она создаёт ложное чувство, что раздел выключён «по замыслу».
+ */
 export const ARENA_CONFIG_EXPANSION_FLAGS = [
   'arenaExpansionEnabled',
+  'arenaTodayEnabled',
   'arenaMatchLabEnabled',
   'arenaMasteryEnabled',
+  'arenaGhostEnabled',
+  'arenaRivalEnabled',
   'arenaPartnerEnabled',
+  'arenaStarStoreEnabled',
 ] as const;
 
 export type ArenaConfigExpansionFlag = typeof ARENA_CONFIG_EXPANSION_FLAGS[number];
@@ -54,6 +75,9 @@ export type ArenaConfigDoc = Readonly<{
     manifestSha256: string;
     merkleRootSha256: string;
   }>;
+  /** Точные версии, без которых магазин и соперничества закрыты. */
+  arenaCosmeticCatalogVersion: string;
+  arenaRivalRuntimeVersion: string;
 }> & Readonly<Record<ArenaConfigFlag, boolean>>
   & Partial<Readonly<Record<ArenaConfigExpansionFlag, boolean>>>;
 
@@ -101,7 +125,8 @@ export function arenaConfigIsValid(raw: unknown): boolean {
 
 /**
  * Собирает документ из того немногого, что администратор действительно
- * выбирает: переключатели и минимальная версия клиента.
+ * выбирает: переключатели. Минимальная версия — внутреннее поле договора;
+ * рабочая админка его не показывает и оставляет `0.0.0`.
  *
  * Версии схемы и хеши содержимого администратор НЕ вводит руками — они берутся
  * из сборки. Ровно на них ломался конфиг: опечатка в шестидесятизначном хеше
@@ -133,6 +158,16 @@ export function arenaBuildConfigDoc(input: Readonly<{
       manifestSha256: NEW_TOURNAMENT_POOL_CONTENT_SHA256,
       merkleRootSha256: NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256,
     },
+    /**
+     * Версии подставляет сборка, а не администратор.
+     *
+     * Без них магазин и соперничества остаются закрытыми даже при включённом
+     * флаге — и выглядит это как «флаг не работает». Руками их вводить нельзя
+     * по той же причине, по которой нельзя вводить хеши: опечатка даёт отказ,
+     * неотличимый от отсутствия документа.
+     */
+    arenaCosmeticCatalogVersion: ARENA_EXPANSION_CATALOG_VERSION,
+    arenaRivalRuntimeVersion: ARENA_RIVAL_RUNTIME_VERSION,
     ...flags,
     ...expansion,
   } as ArenaConfigDoc;

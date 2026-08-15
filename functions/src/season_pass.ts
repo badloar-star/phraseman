@@ -1,9 +1,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // season_pass.ts — серверная сторона Season Pass. Клиент: app/season_pass_server.ts.
-// Владелец, 2026-08-03: «сервер тоже решай вопрос чтобы работало» — жемчуг,
-// дни Plus и владение платной дорожкой пишет ТОЛЬКО сервер (Firestore rules
-// hasNoShardWrites/progressHasNoPremiumWrites запрещают клиенту эти поля
-// напрямую — тот же транзакционный паттерн, что referral_spin.ts).
+// Сервер сохраняет claim-маркер и выдаёт только серверный entitlement Plus.
+// Обычный Season-жемчуг принадлежит клиентскому ledger: этот callable не
+// создаёт balance projection и не возвращает серверный баланс.
 //
 // Идемпотентность: users/{uid}/reward_claims/season_{seasonId}_{level}_{side}
 // для клеймов, season_pass_owned/{seasonId} для покупки — повторный вызов с
@@ -14,43 +13,27 @@ import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { vipUntilFromProgress, stackVipUntilMs } from './referral';
-import { REFERRAL_SPIN_PRIZE_PEARLS } from './referral_spin_logic';
 import { assertTournamentsReleased } from './tournament_release_gate';
 
 const REWARD_CLAIMS_COLLECTION = 'reward_claims';
 const SEASON_ID_RE = /^\d{4}-Q[1-4]$/;
-const SEASON_PASS_PRICE_PEARLS = 350;
+const SEASON_PASS_PRICE_PEARLS = 250;
 
-// Зеркало app/season_pass_track_config.ts — сервер не импортирует клиентский
-// конфиг (другой бандл), но проверяет ту же раскладку, чтобы клиент не мог
-// заявить произвольный level/kind/amount и получить чужую награду.
-//
-// зачем 2026-08-04 (владелец: «жемчужины для фри — первый 2, второй 4 и так
-// далее»): бесплатная линия (3/9/21/31/43/55) была одинаковой — 2 везде.
-// Смена ТОЛЬКО в клиентском season_pass_track_config.ts без этого зеркала
-// была бы багом «клиент показывает 4/8/16/32/64, сервер всё равно платит 2»
-// — эта таблица и есть источник РЕАЛЬНОГО начисления, клиентский конфиг лишь
-// рисует витрину.
+// Compatibility mirror for rollout diagnostics only. It is not consulted by
+// seasonClaimReward and is never an authority for the personal pearl wallet.
 export const PEARLS_BY_LEVEL: Readonly<Record<number, number>> = {
-  3: 2, 5: 15, 9: 4, 14: 20, 21: 8, 23: 20, 31: 16, 32: 25, 41: 25, 43: 32,
-  49: 25, 55: 64, 57: 40,
+  3: 2, 5: 15, 9: 4, 14: 20, 17: 5, 21: 8, 23: 20, 31: 16, 32: 25, 37: 5,
+  41: 25, 43: 32, 49: 25, 53: 5, 55: 64, 57: 40,
 };
 const PLUS_DAYS_BY_LEVEL: Readonly<Record<number, number>> = { 12: 3, 33: 7 };
-
-function readShardBalance(value: unknown): number {
-  const n = Math.trunc(Number(value));
-  return Number.isFinite(n) && n >= 0 ? n : 0;
-}
 
 function isValidSeasonId(v: unknown): v is string {
   return typeof v === 'string' && SEASON_ID_RE.test(v);
 }
 
 /**
- * seasonClaimReward — фиксирует клейм уровня. Выдаёт СЕРВЕРНУЮ часть награды
- * (жемчуг напрямую, дни Plus стаком к vip_until); локальные эффекты (батарея,
- * буст лиги и т.п.) клиент уже применил через season_reward_apply.ts — здесь
- * их нечего проверять на сервере, это не деньги и не premium-время.
+ * seasonClaimReward — compatibility claim marker plus the server-only Plus
+ * entitlement. Ordinary pearls and other local effects are client-owned.
  */
 export const seasonClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
@@ -74,7 +57,6 @@ export const seasonClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
       return {
         ok: true,
         alreadyClaimed: true,
-        shardsBalance: readShardBalance(userSnap.data()?.shards),
         vipUntilMs: typeof data.vipUntilMs === 'number' ? data.vipUntilMs : undefined,
       };
     }
@@ -83,23 +65,19 @@ export const seasonClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
     const isProLifetime = String((progress as { premium_plan?: unknown }).premium_plan ?? '')
       .trim().toLowerCase() === 'lifetime';
 
-    let shardsDelta = 0;
     let vipUntilMs: number | undefined;
     const patch: Record<string, unknown> = {};
 
     if (kind === 'pearls') {
-      // Только если level реально несёт жемчуг по утверждённой раскладке —
-      // защита от произвольного amount с клиента.
-      const expected = PEARLS_BY_LEVEL[lvl];
-      if (expected !== undefined) shardsDelta = expected;
-      else if (Number.isFinite(Number(amount))) shardsDelta = Math.max(0, Math.min(50, Math.trunc(Number(amount))));
+      // Ordinary Season Pass pearls are client-owned. This legacy callable may
+      // record the claim for compatibility, but never creates a wallet fact.
+      void amount;
     } else if (kind === 'plus_days') {
       const days = PLUS_DAYS_BY_LEVEL[lvl];
       if (days) {
         if (isProLifetime) {
-          // Pro не тратит дни Plus (уже безлимит) — курс из рулетки (референс
-          // REFERRAL_SPIN_PRIZE_PEARLS: 3д→25, 7д→70; здесь фикс по дизайну §5).
-          shardsDelta = days === 7 ? 70 : days === 3 ? 25 : Math.max(...REFERRAL_SPIN_PRIZE_PEARLS.slice(0, 1));
+          // Pro already has permanent access. The server must not convert an
+          // ordinary Season reward into a server-authored pearl balance fact.
         } else {
           const currentUntil = vipUntilFromProgress(progress);
           vipUntilMs = stackVipUntilMs(currentUntil, Date.now(), days);
@@ -113,26 +91,13 @@ export const seasonClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
       }
     }
 
-    const currentBalance = readShardBalance(userSnap.data()?.shards);
-    const newBalance = shardsDelta > 0 ? currentBalance + shardsDelta : currentBalance;
-
     tx.set(claimRef, { /* guard-ok: НОВЫЙ маркер-документ в подколлекции (claimSnap.exists проверен строкой выше, транзакция коммитится атомарно при выходе из колбэка — не «запись без await») — merge не нужен */
-      seasonId, level: lvl, side, kind, shardsDelta, vipUntilMs: vipUntilMs ?? null,
+      seasonId, level: lvl, side, kind, vipUntilMs: vipUntilMs ?? null,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
-    if (shardsDelta > 0 || Object.keys(patch).length > 0) {
-      tx.set(userRef, {
-        ...(shardsDelta > 0 ? {
-          shards: newBalance,
-          shards_updated_at_ms: Date.now(),
-          shards_updated_op: 'earn',
-          shards_updated_reason: 'season_pass_reward',
-        } : {}),
-        ...patch,
-      }, { merge: true });
-    }
+    if (Object.keys(patch).length > 0) tx.set(userRef, patch, { merge: true });
 
-    return { ok: true, alreadyClaimed: false, shardsBalance: newBalance, vipUntilMs };
+    return { ok: true, alreadyClaimed: false, vipUntilMs };
   });
 });
 
@@ -280,25 +245,13 @@ export const seasonBuyPass = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const ownedRef = userRef.collection('season_pass_owned').doc(seasonId);
 
   return db.runTransaction(async (tx) => {
-    const [ownedSnap, userSnap] = await Promise.all([tx.get(ownedRef), tx.get(userRef)]);
+    const ownedSnap = await tx.get(ownedRef);
     if (ownedSnap.exists) {
-      return { ok: true, alreadyOwned: true, shardsBalance: readShardBalance(userSnap.data()?.shards) };
+      return { ok: true, alreadyOwned: true };
     }
-
-    const currentBalance = readShardBalance(userSnap.data()?.shards);
-    if (currentBalance < SEASON_PASS_PRICE_PEARLS) {
-      return { ok: false, error: 'insufficient_shards', shardsBalance: currentBalance };
-    }
-    const newBalance = currentBalance - SEASON_PASS_PRICE_PEARLS;
 
     tx.set(ownedRef, { /* guard-ok: НОВЫЙ маркер-документ владения (ownedSnap.exists проверен строкой выше) — merge не нужен, та же логика что claimRef в seasonClaimReward */ purchasedAt: admin.firestore.FieldValue.serverTimestamp(), priceShards: SEASON_PASS_PRICE_PEARLS });
-    tx.set(userRef, {
-      shards: newBalance,
-      shards_updated_at_ms: Date.now(),
-      shards_updated_op: 'spend',
-      shards_updated_reason: 'season_pass_purchase',
-    }, { merge: true });
 
-    return { ok: true, alreadyOwned: false, shardsBalance: newBalance };
+    return { ok: true, alreadyOwned: false };
   });
 });

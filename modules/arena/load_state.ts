@@ -49,3 +49,38 @@ export function arenaShowsData(state: ArenaLoadState): boolean {
 export function arenaKnowsValue(input: Readonly<{ loaded: boolean; failed: boolean }>): boolean {
   return input.loaded && !input.failed;
 }
+
+/**
+ * Что показать экрану, у которого УЖЕ есть сохранённый снимок.
+ *
+ * Без этого правила выходила прямая ложь: обновление не удалось, экран честно
+ * писал сверху «Не удалось загрузить» — и тут же под этой надписью рисовал
+ * список из снимка. Игрок читал ошибку над настоящим содержимым и не понимал,
+ * чему верить.
+ *
+ * Разница между экранами — в том, портится ли содержимое со временем.
+ * Разбор матча привязан к одному matchId и не меняется никогда: снимок для
+ * него не «устаревший», а точно такой же. История матчей меняется: показать
+ * её молча значит выдать вчерашнее за сегодняшнее, поэтому там нужна тихая
+ * оговорка — но именно оговорка, а не ошибка вместо данных.
+ */
+export type ArenaCachedLoadView = 'data' | 'data_stale' | 'error' | 'empty' | 'silent';
+
+export function arenaCachedLoadView(input: Readonly<{
+  state: ArenaLoadState;
+  /** Сколько строк уже есть из снимка. */
+  cachedCount: number;
+  /** Портится ли содержимое со временем. */
+  volatile: boolean;
+}>): ArenaCachedLoadView {
+  const cached = Math.max(0, Math.trunc(Number(input.cachedCount) || 0)) > 0;
+  if (arenaShowsData(input.state)) return 'data';
+  if (input.state === 'failed') {
+    if (!cached) return 'error';
+    return input.volatile ? 'data_stale' : 'data';
+  }
+  // Загрузка со снимком — это не загрузка: содержимое уже на экране. Владелец
+  // запретил видимую загрузку, поэтому здесь никогда не появляется слово.
+  if (input.state === 'loading') return cached ? 'data' : 'silent';
+  return cached ? 'data' : 'empty';
+}

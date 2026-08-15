@@ -48,6 +48,7 @@ import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSh
 import { loadFcDeckOptions } from './flashcards/deck_options';
 import SessionResultScreen from './flashcards/SessionResultScreen';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
+import { safeRouterBack } from './navigation_back';
 import { deckRefKey, loadDeckCardsMulti, parseDeckParams, type DeckRef } from './flashcards/deck_sources';
 import { isValidSessionSize, FC_DEFAULT_SESSION_SIZE, getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mode_prefs';
 import { deckRouteParam, decksCountLabel, SOLO_DECK_ID } from './flashcards/deck_selection';
@@ -431,7 +432,7 @@ export default function FlashcardsListeningSession() {
 
   const leave = useCallback(() => {
     fcHaptic('tap');
-    router.back();
+    safeRouterBack(router, '/flashcards' as any);
   }, [router]);
 
   /**
@@ -501,16 +502,26 @@ export default function FlashcardsListeningSession() {
   const startWithPreset = useCallback(
     (preset: FcModePreset) => {
       setDeckPickerOpen(false);
-      // «Слабые» — due-очередь тренера, для аудио бессмысленна; фолбэк — сохранённые.
+      // «Слабые» — due-очередь тренажёра «Моя практика», к наборам не относится.
       const decks = presetDeckIds(preset).filter((d) => d !== SOLO_DECK_ID);
       const deck = deckRouteParam(decks) || 'saved';
+      /**
+       * Выбор не изменился — новый `?deck=` совпал бы со старым, экран бы не
+       * перезапустился и остался бы стоять на паузе, в которую его поставило
+       * открытие шита («нажал „Начать слушание“, а тишина»). Просто продолжаем.
+       */
+      if (parseDeckParams(deck).map(deckRefKey).join(',') === deckKey && preset.size === sessionSize) {
+        machineRef.current?.send({ type: 'RESUME' });
+        setPhase('playing');
+        return;
+      }
       machineRef.current?.send({ type: 'STOP' });
       router.replace({
         pathname: '/flashcards_listening_session',
         params: { deck, size: String(preset.size) },
       } as never);
     },
-    [router],
+    [deckKey, router, sessionSize],
   );
 
   const deckPickerSheet = (
@@ -533,9 +544,18 @@ export default function FlashcardsListeningSession() {
     // cards-2.1: несколько наборов — «2 набора», один — как раньше
     if (deckRefs.length > 1) return decksCountLabel(lang, deckRefs.length);
     const deckRef = deckRefs[0]!;
-    if (deckRef.kind === 'custom') return triLang(lang, { ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas' });
-    if (deckRef.kind === 'pack') return triLang(lang, { ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas' });
-    return triLang(lang, { ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas' });
+    if (deckRef.kind === 'custom') return triLang(lang, {
+      ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
+      vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje fiszki',
+    });
+    if (deckRef.kind === 'pack') return triLang(lang, {
+      ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
+      vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw fiszek',
+    });
+    return triLang(lang, {
+      ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas', 'pt-BR': 'Salvos',
+      vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane',
+    });
   }, [deckRefs, lang]);
 
   // ── Рендер ─────────────────────────────────────────────────────────────────
@@ -574,7 +594,10 @@ export default function FlashcardsListeningSession() {
                 <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
               </TouchableOpacity>
               <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Слушание', uk: 'Слухання', es: 'Escucha' })}
+                {triLang(lang, {
+                  ru: 'Слушание', uk: 'Слухання', es: 'Escucha', 'pt-BR': 'Escuta',
+                  vi: 'Nghe', id: 'Menyimak', tr: 'Dinleme', pl: 'Słuchanie',
+                })}
               </Text>
               <View style={{ width: 32 }} />
             </View>
@@ -630,6 +653,11 @@ export default function FlashcardsListeningSession() {
             ru: 'нет голоса — читаем текстом',
             uk: 'немає голосу — читаємо текстом',
             es: 'sin voz: solo texto',
+            'pt-BR': 'sem voz — apenas texto',
+            vi: 'không có giọng — chỉ văn bản',
+            id: 'tanpa suara — hanya teks',
+            tr: 'ses yok — yalnızca metin',
+            pl: 'brak głosu — tylko tekst',
           })}
         </Text>
       </View>
@@ -646,7 +674,10 @@ export default function FlashcardsListeningSession() {
             </TouchableOpacity>
             <View style={{ alignItems: 'center' }}>
               <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Слушание', uk: 'Слухання', es: 'Escucha' })}
+                {triLang(lang, {
+                  ru: 'Слушание', uk: 'Слухання', es: 'Escucha', 'pt-BR': 'Escuta',
+                  vi: 'Nghe', id: 'Menyimak', tr: 'Dinleme', pl: 'Słuchanie',
+                })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption }} numberOfLines={1}>
                 {deckTitle}
@@ -750,13 +781,22 @@ export default function FlashcardsListeningSession() {
             <View style={styles.listenedRow}>
               <Ionicons name="headset-outline" size={13} color={t.textMuted} />
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }} testID="fc-listen-count">
-                {triLang(lang, { ru: 'Прослушано', uk: 'Прослухано', es: 'Escuchadas' })}: {listened}
+                {triLang(lang, {
+                  ru: 'Прослушано', uk: 'Прослухано', es: 'Escuchadas', 'pt-BR': 'Ouvidas',
+                  vi: 'Đã nghe', id: 'Didengarkan', tr: 'Dinlenen', pl: 'Odsłuchane',
+                })}: {listened}
               </Text>
             </View>
           </View>
 
-          {/* Режим озвучки (§7.2): ОДНА кнопка + выпадающий список вместо 4 чипов */}
-          <View style={styles.orderRow}>
+          {/*
+            Пауза «подумать» + повтор подборки. Слева — компактная КРУГЛАЯ
+            кнопка режима озвучки: FIX (владелец, 2026-08-13) — раньше это была
+            широкая плашка с текстом в отдельной строке над настройками, она
+            съедала высоту плеера. Список вариантов раскрывается по тапу
+            (та же всплывашка раздела: пружина + стаггер строк).
+          */}
+          <View style={styles.settingsRow}>
             <ListeningModePicker
               value={order}
               onChange={onPickOrder}
@@ -765,10 +805,6 @@ export default function FlashcardsListeningSession() {
               f={f}
               accent={ACCENT}
             />
-          </View>
-
-          {/* Пауза «подумать» + повтор подборки */}
-          <View style={styles.settingsRow}>
             <View style={[styles.pauseStepper, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
               <TouchableOpacity
                 onPress={() => onStepPause(-1)}
@@ -780,10 +816,21 @@ export default function FlashcardsListeningSession() {
               </TouchableOpacity>
               <View style={{ alignItems: 'center', minWidth: 74 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>
-                  {pauseSec}{triLang(lang, { ru: 'с', uk: 'с', es: 's' })}
+                  {pauseSec}{triLang(lang, {
+                    ru: 'с', uk: 'с', es: 's', 'pt-BR': 's', vi: 'g', id: 'd', tr: 'sn', pl: 's',
+                  })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption - 1 }}>
-                  {triLang(lang, { ru: 'пауза', uk: 'пауза', es: 'pausa' })}
+                  {triLang(lang, {
+                    ru: 'пауза',
+                    uk: 'пауза',
+                    es: 'pausa',
+                    'pt-BR': 'pausa',
+                    vi: 'tạm dừng',
+                    id: 'jeda',
+                    tr: 'duraklat',
+                    pl: 'pauza',
+                  })}
                 </Text>
               </View>
               <TouchableOpacity
@@ -811,7 +858,16 @@ export default function FlashcardsListeningSession() {
             >
               <Ionicons name="repeat" size={18} color={loop ? ACCENT : t.textMuted} />
               <Text style={{ color: loop ? ACCENT : t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Повтор', uk: 'Повтор', es: 'Repetir' })}
+                {triLang(lang, {
+                  ru: 'Повтор',
+                  uk: 'Повтор',
+                  es: 'Repetir',
+                  'pt-BR': 'Repetir',
+                  vi: 'Lặp lại',
+                  id: 'Ulangi',
+                  tr: 'Tekrar',
+                  pl: 'Powtórz',
+                })}
               </Text>
             </TouchableOpacity>
           </View>
@@ -897,17 +953,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 16,
   },
-  orderRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingHorizontal: 16,
-    marginTop: 4,
-  },
   settingsRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 12,
+    // space-between: круглая кнопка режима прижата ВЛЕВО, повтор — вправо,
+    // степпер паузы посередине. Раньше ряд был центрирован без кнопки режима.
+    justifyContent: 'space-between',
+    gap: 10,
     marginTop: 14,
     paddingHorizontal: 16,
   },

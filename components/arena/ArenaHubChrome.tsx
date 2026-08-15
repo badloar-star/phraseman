@@ -4,10 +4,11 @@ import { usePathname, useRouter } from 'expo-router';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useTournamentPalette } from '../tournament/tournament_theme';
 
+import { ArenaChromeInsetContext } from './arena_chrome_inset';
 import { ArenaTabBar, type ArenaTabDef, type ArenaTabKey } from './ArenaTabBar';
 import { ArenaModeSheet, type ArenaModeKey, type ArenaModeOption } from './ArenaModeSheet';
 import { useLang } from '../LangContext';
-import { arenaV2Home } from '../../app/arena_client';
+import { arenaV2Home, createArenaRequestId } from '../../app/arena_client';
 import { arenaText } from '../../modules/arena/copy';
 import {
   ARENA_HUB_ROUTES,
@@ -97,6 +98,12 @@ export function ArenaHubChrome({
       key: choice.key,
       icon: icons[choice.key],
       ...copy[choice.key],
+      // Погашенная строка объясняет ПРИЧИНУ вместо обычного описания: иначе
+      // это кнопка без реакции — игрок жмёт, ничего не происходит, и он
+      // решает, что сломалось приложение.
+      ...(choice.reason === 'ok' ? {} : {
+        body: arenaText(lang, choice.reason === 'arena_off' ? 'modeArenaOff' : 'modeOff'),
+      }),
       accent: choice.key === 'quick',
       // Отключённый режим гасится, а не прячется: спрятанный выглядит как
       // отсутствующая возможность, и игрок про него не узнаёт вовсе.
@@ -126,7 +133,13 @@ export function ArenaHubChrome({
       } as never);
       return;
     }
-    if (action.kind === 'blocked') return;
+    /**
+     * Выключенная Арена — не повод молчать. Раньше нажатие на центральную
+     * кнопку просто НИЧЕГО не делало: игрок жал, ничего не происходило, и
+     * это выглядело как поломка приложения. Теперь выпадающий список всё
+     * равно открывается — и каждая строка в нём объясняет, почему сейчас
+     * нельзя.
+     */
     setSheetOpen(true);
   }, [resolvedMatchId, resolvedQueue, resolvedAvailability?.enabled, router]);
 
@@ -135,7 +148,12 @@ export function ArenaHubChrome({
     const choice = arenaModeChoices(resolvedAvailability).find((row) => row.key === key);
     if (!choice || !choice.enabled) return;
     router.push((choice.params
-      ? { pathname: choice.route, params: choice.params }
+      ? {
+        pathname: choice.route,
+        params: choice.route === '/arena_matchmaking'
+          ? { ...choice.params, requestId: createArenaRequestId('queue') }
+          : choice.params,
+      }
       : choice.route) as never);
   }, [resolvedAvailability, router]);
 
@@ -147,10 +165,15 @@ export function ArenaHubChrome({
     */
     <View style={[styles.root, { backgroundColor: P.bg }]}>
       {/* Место под таббар: он лежит поверх содержимого, и без этого отступа
-          последние строки длинного списка закрыты полосой. */}
-      <View style={[styles.body, { paddingBottom: arenaHubBodyPaddingBottom(insets.bottom) }]}>
-        {children}
-      </View>
+          последние строки длинного списка закрыты полосой. Отступ идёт
+          содержимому через контекст, а не этому контейнеру: иначе экран вместе
+          со своим фоном кончался бы над таббаром, и вокруг плавающей пилюли
+          оставалась полоса ровной заливки вместо арта. */}
+      <ArenaChromeInsetContext.Provider value={arenaHubBodyPaddingBottom(insets.bottom)}>
+        <View style={styles.body}>
+          {children}
+        </View>
+      </ArenaChromeInsetContext.Provider>
       <ArenaTabBar
         tabs={tabs}
         active={activeTab}

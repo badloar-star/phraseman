@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -10,6 +10,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import { useTournamentPalette } from '../tournament/tournament_theme';
+import { useArenaFontScale } from '../../hooks/use_arena_font_scale';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -51,6 +52,9 @@ function ModeRow({
   onPress: () => void;
 }) {
   const P = useTournamentPalette();
+  // Высота строки числом не растёт вместе с системным шрифтом — при
+  // крупном кегле строки наезжали друг на друга. См. use_arena_font_scale.
+  const bodyLine = { lineHeight: 18 * useArenaFontScale() };
   const enter = useSharedValue(0);
   const press = useSharedValue(0);
 
@@ -95,10 +99,10 @@ function ModeRow({
         </View>
         <View style={styles.copy}>
           <Text style={[styles.title, { color: P.text }]}>{option.title}</Text>
-          <Text style={[styles.body, { color: P.muted }]}>{option.body}</Text>
+          <Text style={[styles.body, bodyLine, { color: P.muted }]}>{option.body}</Text>
         </View>
         <View style={[styles.badge, { backgroundColor: P.elev }]}>
-          <Text style={[styles.badgeText, { color: P.muted }]}>{option.badge}</Text>
+          <Text numberOfLines={1} maxFontSizeMultiplier={1.4} style={[styles.badgeText, { color: P.muted }]}>{option.badge}</Text>
         </View>
       </Pressable>
     </Animated.View>
@@ -151,12 +155,21 @@ function ArenaModeSheetBase({
           style={[
             styles.sheet,
             sheetStyle,
-            { backgroundColor: P.bg, paddingBottom: Math.max(18, insets.bottom + 10) },
+            {
+              backgroundColor: P.bg,
+              paddingBottom: Math.max(18, insets.bottom + 10),
+              // Потолок высоты и прокрутка списка: при крупном системном
+              // шрифте четыре-пять режимов с описаниями перерастали экран, и
+              // лист уезжал ВВЕРХ за верхний край — заголовок и первые режимы
+              // становились недоступны совсем. Ручка и заголовок остаются
+              // снаружи прокрутки, чтобы шторка читалась как шторка.
+              maxHeight: height * 0.86,
+            },
           ]}
         >
           <View style={[styles.grabber, { backgroundColor: P.elev2 }]} />
           <Text style={[styles.sheetTitle, { color: P.text }]}>{title}</Text>
-          <View style={styles.list}>
+          <ScrollView style={styles.listScroll} contentContainerStyle={styles.list}>
             {options.map((option, index) => (
               <ModeRow
                 key={option.key}
@@ -167,7 +180,7 @@ function ArenaModeSheetBase({
                 onPress={() => onSelect(option.key)}
               />
             ))}
-          </View>
+          </ScrollView>
         </Animated.View>
       </View>
     </Modal>
@@ -180,6 +193,11 @@ const styles = StyleSheet.create({
   root: { flex: 1, justifyContent: 'flex-end' },
   backdrop: { backgroundColor: '#000' },
   sheet: {
+    // Тот же потолок ширины, что у содержимого экранов: на планшете шторка во
+    // всю ширину выглядит чужой рядом с колонкой карточек.
+    alignSelf: 'center',
+    width: '100%',
+    maxWidth: 620,
     borderTopLeftRadius: 26,
     borderTopRightRadius: 26,
     paddingHorizontal: 16,
@@ -188,7 +206,8 @@ const styles = StyleSheet.create({
   },
   grabber: { alignSelf: 'center', width: 42, height: 4, borderRadius: 2 },
   sheetTitle: { fontSize: 20, fontWeight: '900', letterSpacing: -0.3 },
-  list: { gap: 10 },
+  listScroll: { flexShrink: 1 },
+  list: { gap: 10, paddingBottom: 2 },
   row: {
     minHeight: 76,
     borderRadius: 20,
@@ -201,7 +220,7 @@ const styles = StyleSheet.create({
   iconPlate: { width: 46, height: 46, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
   copy: { flex: 1, minWidth: 0 },
   title: { fontSize: 16.5, fontWeight: '900' },
-  body: { marginTop: 2, fontSize: 13, lineHeight: 18, fontWeight: '600' },
+  body: { marginTop: 2, fontSize: 13, fontWeight: '600' },
   badge: { minHeight: 26, borderRadius: 999, paddingHorizontal: 10, justifyContent: 'center' },
   badgeText: { fontSize: 11.5, fontWeight: '800' },
 });

@@ -14,7 +14,7 @@ import { useOverlayVisible } from './OverlayArbiter';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from '../app/events';
 import { getUtcDayKey } from '../app/local_date';
-import { checkComebackEligible, markComebackGranted } from '../app/boons/comeback';
+import { checkComebackEligible, COMEBACK_GRANTED_KEY } from '../app/boons/comeback';
 import { COMEBACK_REWARD, grantBoonReward } from '../app/boons/boon_rewards';
 import { isStreakFreezeActiveToday, parseStreakFreeze } from '../app/streak_freeze';
 import { getThemedShardIcon } from '../constants/levelGiftRewardIcons';
@@ -59,17 +59,25 @@ export default function ComebackBoonHost() {
     const todayKey = getUtcDayKey();
     // Бесплатная заморозка серии на сегодня + осколки. Не перетираем уже активную
     // заморозку (платную) — если сегодня уже защищён, оставляем как есть.
+    let freezeWrite: readonly [string, string] | null = null;
     try {
       const existing = parseStreakFreeze(await AsyncStorage.getItem('streak_freeze'));
       if (!isStreakFreezeActiveToday(existing, todayKey)) {
-        await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: todayKey }));
-        emitAppEvent('streak_freeze_updated', { active: true });
+        freezeWrite = ['streak_freeze', JSON.stringify({ active: true, date: todayKey })];
       }
     } catch {
       // best-effort
     }
-    await grantBoonReward(COMEBACK_REWARD, 'boon_comeback');
-    await markComebackGranted(todayKey);
+    const granted = await grantBoonReward(
+      COMEBACK_REWARD,
+      'boon_comeback',
+      todayKey,
+      [
+        [COMEBACK_GRANTED_KEY, todayKey],
+        ...(freezeWrite ? [freezeWrite] : []),
+      ],
+    );
+    if (granted && freezeWrite) emitAppEvent('streak_freeze_updated', { active: true });
   };
 
   if (!visible) return null;

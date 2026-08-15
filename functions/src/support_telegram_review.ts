@@ -12,6 +12,7 @@ export const SUPPORT_TELEGRAM_JOB_LEASE_MS = 10 * 60 * 1_000;
 const TOKEN_DEPARTMENT_PREFIX = 'support_email';
 
 export type SupportTelegramReviewState =
+  | 'notifying'
   | 'awaiting_approval'
   | 'awaiting_feedback'
   | 'revising'
@@ -34,15 +35,19 @@ export interface SupportTelegramReviewDoc {
   readonly confirmationNonce?: string;
   readonly knowledgeFingerprint?: string;
   readonly policyVersion?: number;
+  readonly automationRevision?: number;
   readonly draftOrigin?: 'jarvis' | 'owner_manual';
   readonly instructionsSchemaVersion?: number;
   readonly instructionsPromptVersion?: number;
   readonly instructionsRevision?: number;
   readonly instructionsFingerprint?: string;
   readonly notificationAtMs?: number;
+  readonly notificationLeaseId?: string | null;
+  readonly notificationLeaseExpiresAtMs?: number | null;
   readonly autoSendAtMs?: number | null;
   readonly telegramPreviewSafe?: boolean;
   readonly customerReady?: boolean;
+  readonly holding?: boolean;
   readonly conversationId?: string;
   readonly conversationRevision?: number;
   readonly lastErrorCode?: string;
@@ -61,6 +66,7 @@ export interface SupportTelegramJobDoc {
   readonly leaseExpiresAtMs?: number;
   readonly feedback?: string;
   readonly source?: 'telegram' | 'auto_deadline';
+  readonly automationRevision?: number;
 }
 
 export function supportTelegramJobLeaseOwns(
@@ -109,12 +115,43 @@ function escapeTelegramHtml(value: unknown): string {
 const TELEGRAM_SAFE_FINAL_TEXT_MAX = 2_900;
 const TELEGRAM_SENSITIVE = /(?:\b(?:\d[ -]*?){13,19}\b|\b\d{4,8}\b|\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b|(?:api[_ -]?key|password|парол|код подтверждения|verification code|bearer)\s*[:=]\s*\S+)/i;
 
+export function buildSupportAttentionRequiredNotice(reason: unknown): string {
+  const code = String(reason ?? '');
+  if (code === 'telegram_preview_unsafe') {
+    return [
+      '🔒 <b>Ответ готов, но Telegram-предпросмотр заблокирован</b>',
+      '',
+      'Полная версия сохранена в админке, но её нельзя безопасно показать или отправить кнопкой в Telegram.',
+      'Автоотправка отключена. Проверьте полный текст и отправьте его вручную из Gmail Support Inbox.',
+    ].join('\n');
+  }
+  let explanation = 'Для ответа не хватает подтверждённых фактов или требуется решение владельца.';
+  if (/^guarded_(?:billing|account)$/.test(code)) {
+    explanation = 'Нужно проверить данные конкретной покупки, подписки или аккаунта. Джарвис не создаёт догадки вместо такой проверки.';
+  } else if (/^guarded_(?:legal|privacy|safety|security)$/.test(code)) {
+    explanation = 'Обращение относится к чувствительной теме и требует решения владельца.';
+  } else if (/^conversation_(?:sender_mismatch|ambiguous_parent)$/.test(code)) {
+    explanation = 'Нужно вручную проверить отправителя и цепочку переписки.';
+  } else if (/^(?:auto_repair_exhausted_|untrusted_snapshot_|insufficient_evidence)/.test(code)) {
+    explanation = 'Автоматическая доработка не смогла получить подтверждённый ответ, прошедший проверку.';
+  }
+  return [
+    '⚠️ <b>Обращение требует решения</b>',
+    '',
+    explanation,
+    'Готового ответа нет. Кнопка отправки и автоотправка не создавались.',
+    '',
+    '<i>Откройте админку → Gmail Support Inbox и проверьте само обращение.</i>',
+  ].join('\n');
+}
+
 export function buildSupportTelegramReviewPreview(input: {
   readonly finalText: string;
   readonly draftRevision: number;
   readonly revised?: boolean;
   readonly customerReady?: boolean;
   readonly customerIssue?: string;
+  readonly holding?: boolean;
 }): { readonly text: string; readonly approvable: boolean; readonly violations: readonly string[] } {
   const finalText = String(input.finalText ?? '').trim();
   const violations = findSupportHumanVoiceViolations(finalText, input.customerIssue ?? '');
@@ -123,8 +160,10 @@ export function buildSupportTelegramReviewPreview(input: {
     && finalText.length <= TELEGRAM_SAFE_FINAL_TEXT_MAX
     && !TELEGRAM_SENSITIVE.test(finalText)
     && violations.length === 0;
-  const title = input.revised ? '✏️ <b>Исправленная версия ответа</b>' : '📬 <b>Ответ Джарвиса готов</b>';
   if (!approvable) {
+    const title = input.customerReady === false
+      ? '⚠️ <b>Ответ не готов</b>'
+      : '🔒 <b>Ответ требует проверки в админке</b>';
     return Object.freeze({
       approvable: false,
       violations,
@@ -132,19 +171,27 @@ export function buildSupportTelegramReviewPreview(input: {
         title,
         '',
         input.customerReady === false
-          ? '⛔ Ответ не прошёл проверку фактов и человеческого качества. Автоотправка и кнопка отправки отключены.'
+          ? '⛔ Готового ответа нет: обязательные проверки не пройдены. Автоотправка и кнопка отправки отключены.'
           : '🔒 Полный текст содержит чувствительные данные, внутренние формулировки или слишком длинный для безопасного предпросмотра.',
-        'Откройте раздел «Gmail Support Inbox» в админке и перепишите ответ перед отправкой.',
+        input.customerReady === false
+          ? 'Готового ответа и кнопки отправки нет. Откройте «Gmail Support Inbox» и проверьте само обращение.'
+          : 'Откройте «Gmail Support Inbox» и проверьте полный текст перед отправкой.',
         '',
-        `<i>Версия ${input.draftRevision}. Автоотправка для этой версии отключена.</i>`,
+        `<i>Черновик версии ${input.draftRevision} заблокирован. Автоотправка отключена.</i>`,
       ].join('\n'),
     });
   }
+  const title = input.holding
+    ? '🕓 <b>Промежуточный ответ Джарвиса</b>'
+    : input.revised ? '✏️ <b>Исправленная версия ответа</b>' : '📬 <b>Ответ Джарвиса готов</b>';
   return Object.freeze({
     approvable: true,
     violations,
     text: [
       title,
+      ...(input.holding
+        ? ['', 'Подтверждённого ответа по существу не нашлось, поэтому клиент получит честный промежуточный ответ — без выдуманных фактов. Обращение останется у вас в «Gmail Support Inbox» для полноценного ответа.']
+        : []),
       '',
       '<b>Полный текст письма вместе с подписью:</b>',
       escapeTelegramHtml(finalText),

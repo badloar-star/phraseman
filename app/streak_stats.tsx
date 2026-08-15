@@ -36,7 +36,8 @@ import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
-import { getShardsBalance, spendShards } from './shards_system';
+import { getShardsBalance } from './shards_system';
+import { purchaseStreakFreeze } from './streak_freeze_purchase';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getStatsCache, hydrateStatsCacheFromStorage, refreshStatsCache, type StatsCachedDay, type StatsCachedTimeDay, type StatsPreloadData, } from './statsCache';
 import { emitAppEvent, onAppEvent } from './events';
@@ -3731,14 +3732,16 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             setPremiumFreezeUsed(true);
         }
         else {
-            const ok = await spendShards(FREEZE_COST_SHARDS, 'streak_freeze');
-            if (!ok) {
+            const purchase = await purchaseStreakFreeze(FREEZE_COST_SHARDS, today);
+            if (purchase !== 'ok') {
                 setFreezeNeedShardsModal(true);
                 return;
             }
             setShardsBalance(prev => Math.max(0, prev - FREEZE_COST_SHARDS));
         }
-        await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
+        if (free) {
+            await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
+        }
         setFreezeActive(true);
         emitAppEvent('streak_freeze_updated', { active: true });
         setStreakAtRisk(false);

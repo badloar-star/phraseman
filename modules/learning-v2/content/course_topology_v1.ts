@@ -15,6 +15,16 @@ export const LEARNING_V2_CHAPTER_SESSION_COUNT_V1 = 8 as const;
 export const LEARNING_V2_SESSION_MIN_MINUTES_V1 = 5 as const;
 export const LEARNING_V2_SESSION_TARGET_MINUTES_V1 = 7 as const;
 export const LEARNING_V2_SESSION_MAX_MINUTES_V1 = 8 as const;
+export const LEARNING_V2_SESSION_STANDARD_INTERACTION_MIN_V1 = 14 as const;
+export const LEARNING_V2_SESSION_STANDARD_INTERACTION_TARGET_V1 = 16 as const;
+export const LEARNING_V2_SESSION_STANDARD_INTERACTION_MAX_V1 = 18 as const;
+export const LEARNING_V2_SESSION_RAPID_INTERACTION_MIN_V1 = 18 as const;
+export const LEARNING_V2_SESSION_RAPID_INTERACTION_TARGET_V1 = 20 as const;
+export const LEARNING_V2_SESSION_RAPID_INTERACTION_MAX_V1 = 22 as const;
+export const LEARNING_V2_SESSION_VOICE_INTERACTION_MIN_V1 = 10 as const;
+export const LEARNING_V2_SESSION_VOICE_INTERACTION_TARGET_V1 = 12 as const;
+export const LEARNING_V2_SESSION_VOICE_INTERACTION_MAX_V1 = 14 as const;
+export const LEARNING_V2_SESSION_INTERACTION_ABSOLUTE_MAX_V1 = 22 as const;
 export const LEARNING_V2_COURSE_SESSION_COUNT_V1 = 1_792 as const;
 export const LEARNING_V2_COURSE_TARGET_MINUTES_V1 = 12_544 as const;
 
@@ -40,6 +50,17 @@ export type LearningV2CourseSessionTopologyV1 = Readonly<{
     target: typeof LEARNING_V2_SESSION_TARGET_MINUTES_V1;
     max: typeof LEARNING_V2_SESSION_MAX_MINUTES_V1;
   }>;
+  interactionBudget: LearningV2SessionInteractionBudgetV1;
+}>;
+
+export type LearningV2SessionInteractionBudgetV1 = Readonly<{
+  countingUnit: "planned_primary_learning_interactions";
+  standard: Readonly<{ min: 14; target: 16; max: 18 }>;
+  rapid: Readonly<{ min: 18; target: 20; max: 22 }>;
+  voiceHeavy: Readonly<{ min: 10; target: 12; max: 14 }>;
+  absoluteMax: 22;
+  completionPolicy: "duration_and_objective_coverage_not_raw_count";
+  remediationPolicy: "retries_and_second_error_explanation_outside_base_count";
 }>;
 
 export type LearningV2CourseLessonTopologyV1 = Readonly<{
@@ -141,6 +162,32 @@ function buildSession(
       target: LEARNING_V2_SESSION_TARGET_MINUTES_V1,
       max: LEARNING_V2_SESSION_MAX_MINUTES_V1,
     }),
+    interactionBudget: learningV2SessionInteractionBudgetV1(),
+  });
+}
+
+export function learningV2SessionInteractionBudgetV1(): LearningV2SessionInteractionBudgetV1 {
+  return Object.freeze({
+    countingUnit: "planned_primary_learning_interactions" as const,
+    standard: Object.freeze({
+      min: LEARNING_V2_SESSION_STANDARD_INTERACTION_MIN_V1,
+      target: LEARNING_V2_SESSION_STANDARD_INTERACTION_TARGET_V1,
+      max: LEARNING_V2_SESSION_STANDARD_INTERACTION_MAX_V1,
+    }),
+    rapid: Object.freeze({
+      min: LEARNING_V2_SESSION_RAPID_INTERACTION_MIN_V1,
+      target: LEARNING_V2_SESSION_RAPID_INTERACTION_TARGET_V1,
+      max: LEARNING_V2_SESSION_RAPID_INTERACTION_MAX_V1,
+    }),
+    voiceHeavy: Object.freeze({
+      min: LEARNING_V2_SESSION_VOICE_INTERACTION_MIN_V1,
+      target: LEARNING_V2_SESSION_VOICE_INTERACTION_TARGET_V1,
+      max: LEARNING_V2_SESSION_VOICE_INTERACTION_MAX_V1,
+    }),
+    absoluteMax: LEARNING_V2_SESSION_INTERACTION_ABSOLUTE_MAX_V1,
+    completionPolicy: "duration_and_objective_coverage_not_raw_count" as const,
+    remediationPolicy:
+      "retries_and_second_error_explanation_outside_base_count" as const,
   });
 }
 

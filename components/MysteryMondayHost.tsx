@@ -140,13 +140,17 @@ export default function MysteryMondayHost() {
       setReward(null);
       return;
     }
-    await markClaimed(CLAIM_KEY, week);
     if (!isPrimaryBoonActive('mystery_monday')) {
       setWantShow(false);
       setReward(null);
       return;
     }
-    await grantBoonReward(reward, 'boon_mystery_monday');
+    await grantBoonReward(
+      reward,
+      'boon_mystery_monday',
+      week,
+      [[CLAIM_KEY, week]],
+    );
     // Плашка «Сундук недели» в статистике должна сразу сменить текст на «уже открыт».
     emitAppEvent('mystery_chest_claimed');
   };

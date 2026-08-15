@@ -1655,26 +1655,6 @@ export async function markMessageIdsAnimated(ids: string[]): Promise<void> {
   }
 }
 
-/**
- * Report-reply shard claims are local-first: the UI can mark the reward claimed and
- * credit the local wallet before the callable confirms/deduplicates the remote doc.
- * Confirmation may raise the local wallet, but never lowers an optimistic balance.
- */
-async function reconcileReportReplyClaimBalance(
-  serverBalance: number,
-  accountToken: AccountGenerationToken,
-  ownerUid: string,
-): Promise<void> {
-  const safeBalance = Math.max(0, Math.floor(Number(serverBalance) || 0));
-  const { keepShardsBalanceLocalAtLeast } = require('./shards_system') as typeof import('./shards_system');
-  await keepShardsBalanceLocalAtLeast(
-    safeBalance,
-    'report_reply_claim',
-    accountToken,
-    ownerUid,
-  ).catch(() => {});
-}
-
 function isAlreadyClaimedReportReplyError(error: unknown): boolean {
   const code = String((error as { code?: unknown })?.code ?? '');
   const message = String((error as { message?: unknown })?.message ?? '');
@@ -1687,6 +1667,9 @@ async function claimReportReplyShardsForAccount(
   accountToken: AccountGenerationToken,
   ownerUid: string,
 ): Promise<{ amount: number; balance: number }> {
+  // Compatibility option is intentionally ignored. The callable confirms the
+  // claim document only; the client-owned external-event operation projects it.
+  void options;
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) throw new Error('cloud_disabled');
   const clean = String(messageId ?? '').trim();
   if (!clean) throw new Error('message_id_required');
@@ -1716,14 +1699,7 @@ async function claimReportReplyShardsForAccount(
     throw new Error('report_reply_claim_account_changed');
   }
   const amount = Math.max(0, Math.floor(Number((res?.data as any)?.amount) || 0));
-  const balance = Math.max(0, Math.floor(Number((res?.data as any)?.balance) || 0));
-
-  // Keep local optimistic rewards: server confirmation may raise local balance, never lower it here.
-  if (options.reconcileLocalBalance !== false) {
-    await reconcileReportReplyClaimBalance(balance, accountToken, ownerUid);
-  }
-
-  return { amount, balance };
+  return { amount, balance: 0 };
 }
 
 export async function acknowledgePersonalAdminMessageModal(
@@ -1788,14 +1764,22 @@ export async function claimReportReplyShardsOptimistically(
   if (!isCurrentAccountGeneration(accountToken, ownerUid)) return false;
   emitAppEvent('app_messages_local_changed');
   if (queued) {
-    const { addShardsLocalOnlyForPendingServerClaim } = require('./shards_system') as typeof import('./shards_system');
-    const credited = await addShardsLocalOnlyForPendingServerClaim(
-      safeAmount,
-      'report_reply_claim',
-      accountToken,
-      ownerUid,
-    ).catch(() => 0);
-    if (credited !== safeAmount || !isCurrentAccountGeneration(accountToken, ownerUid)) return false;
+    const { commitConfirmedExternalShardEvent } = require('./shards_system') as typeof import('./shards_system');
+    const credited = await commitConfirmedExternalShardEvent({
+      source: 'report_reply',
+      eventId: clean,
+      delta: safeAmount,
+      reason: 'report_reply_coin_claim',
+      grant: {
+        kind: 'confirmed_report_reward',
+        subjectId: clean,
+        payload: { messageId: clean },
+      },
+    });
+    if (
+      (credited.status !== 'applied' && credited.status !== 'already-applied')
+      || !isCurrentAccountGeneration(accountToken, ownerUid)
+    ) return false;
   }
   void resumePendingReportReplyShardClaims();
   return true;
@@ -1842,7 +1826,6 @@ export async function resumePendingReportReplyShardClaims(): Promise<{ resolved:
         pending += 1;
         continue;
       }
-      await reconcileReportReplyClaimBalance(result.balance, accountToken, ownerUid);
       resolved += 1;
     } catch (error) {
       if (isAlreadyClaimedReportReplyError(error)) {

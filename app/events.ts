@@ -40,6 +40,8 @@ export type AppEventMap = {
   app_messages_local_changed: undefined;
   /** Remote Config обновился (admin → Firestore) — перечитать зависящие от флагов экраны/A-B. */
   remote_config_changed: undefined;
+  /** Серверный каталог продажи косметики обновлён; экраны перечитывают доступность. */
+  cosmetic_asset_catalog_changed: undefined;
   /** «Сундук недели» (mystery_monday) забран — плашка TodaysBoonStrip должна сразу сменить текст на «уже открыт». */
   mystery_chest_claimed: undefined;
   /**

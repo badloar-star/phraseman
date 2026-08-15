@@ -2,6 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { arenaLoadWarm, arenaPeekWarm, arenaRememberWarm } from '../modules/arena/warm_cache';
+import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
@@ -9,7 +12,7 @@ import { V2Card } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { arenaText } from '../modules/arena/copy';
 import { ARENA_TIER_KEYS, arenaRankView } from '../modules/arena/rank_engine';
-import { arenaLoadState } from '../modules/arena/load_state';
+import { arenaCachedLoadView, arenaLoadState } from '../modules/arena/load_state';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import {
@@ -31,23 +34,59 @@ const TIER_COPY = [
  * место игрока ему ничего не говорит. Здесь друзья, которых он знает, и
  * собственный процентиль.
  */
+const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
+
+type ArenaTopsWarm = Readonly<{ rows: readonly ArenaFriendsBoardRow[]; percentile: number | null }>;
+
+function readTopsWarm(value: unknown): ArenaTopsWarm | null {
+  if (!value || typeof value !== 'object') return null;
+  const rows = (value as { rows?: unknown }).rows;
+  if (!Array.isArray(rows)) return null;
+  const percentile = (value as { percentile?: unknown }).percentile;
+  return {
+    rows: rows as readonly ArenaFriendsBoardRow[],
+    percentile: typeof percentile === 'number' ? percentile : null,
+  };
+}
+
 export default function ArenaTopsScreen() {
   const { lang } = useLang();
   const P = useTournamentPalette();
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
-  const [rows, setRows] = useState<readonly ArenaFriendsBoardRow[]>([]);
-  const [percentile, setPercentile] = useState<number | null>(null);
+  /**
+   * Первый кадр — прошлой таблицей, а не словом «Загрузка»: места друзей за
+   * ночь не переписываются, и вчерашняя таблица честнее пустого экрана.
+   */
+  const warm = useMemo(() => readTopsWarm(arenaPeekWarm('tops', Date.now())), []);
+  const [rows, setRows] = useState<readonly ArenaFriendsBoardRow[]>(warm?.rows ?? []);
+  const [percentile, setPercentile] = useState<number | null>(warm?.percentile ?? null);
   const [home, setHome] = useState<ArenaHomeResponse | null>(null);
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(Boolean(warm));
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     if (!active) return;
     void arenaV2FriendsBoard()
-      .then((board) => { setRows(board.rows); setPercentile(board.percentileAbove); })
+      .then((board) => {
+        setRows(board.rows);
+        setPercentile(board.percentileAbove);
+        setFailed(false);
+        arenaRememberWarm({
+          key: 'tops',
+          value: { rows: board.rows, percentile: board.percentileAbove },
+          wallNowMs: Date.now(),
+          store: warmStore,
+        });
+      })
       .catch(() => setFailed(true))
       .finally(() => setLoaded(true));
+    void arenaLoadWarm(warmStore, 'tops', Date.now()).then((stored) => {
+      const parsed = readTopsWarm(stored);
+      if (!parsed) return;
+      setRows((current) => (current.length ? current : parsed.rows));
+      setPercentile((current) => (current === null ? parsed.percentile : current));
+    }).catch(() => {});
     void arenaV2Home().then(setHome).catch(() => {});
   }, [active]);
 
@@ -55,6 +94,10 @@ export default function ArenaTopsScreen() {
   // Своя строка в таблице есть всегда, поэтому «есть с кем сравнивать» — это
   // больше одной строки, а не больше нуля.
   const state = arenaLoadState({ loaded, failed, count: Math.max(0, rows.length - 1) });
+  // Таблица меняется, поэтому сохранённая показывается с тихой оговоркой —
+  // но ВМЕСТО ошибки, а не поверх неё: раньше сверху краснело «Не удалось
+  // загрузить», а прямо под ним шла полная таблица из снимка.
+  const boardView = arenaCachedLoadView({ state, cachedCount: rows.length, volatile: true });
 
   return (
     <ArenaHubChrome
@@ -65,9 +108,16 @@ export default function ArenaTopsScreen() {
       <ArenaScreen title={arenaText(lang, 'topsTab')} variant="table">
         <Animated.View entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.duration(280)}>
           <V2Card pad={16} style={styles.head}>
-            <Text style={[styles.headline, { color: P.text }]}>
-              {arenaText(lang, TIER_COPY[arenaRankView(you?.rating ?? 0).tierIndex])}
-            </Text>
+            {/*
+              Свой тир показывается ТОЛЬКО когда своя строка пришла. Раньше
+              вместо неё подставлялся ноль очков, то есть игрок видел чужую
+              бронзу как свой тир — ту же ложь уже чинили на экране рангов.
+            */}
+            {you ? (
+              <Text style={[styles.headline, { color: P.text }]}>
+                {arenaText(lang, TIER_COPY[arenaRankView(you.rating).tierIndex])}
+              </Text>
+            ) : null}
             {/* Процентиль — только когда сравнивать есть с кем. */}
             {percentile !== null ? (
               <Text style={[styles.meta, { color: P.accent }]}>
@@ -81,14 +131,20 @@ export default function ArenaTopsScreen() {
 
         <Text style={[styles.section, { color: P.muted }]}>{arenaText(lang, 'friendsBoard')}</Text>
 
-        {state === 'failed' ? (
+        {boardView === 'error' ? (
           <>
             <Text style={[styles.empty, { color: P.danger }]}>{arenaText(lang, 'loadFailed')}</Text>
             <Text style={[styles.emptyHint, { color: P.muted }]}>{arenaText(lang, 'loadFailedHint')}</Text>
           </>
-        ) : state === 'loading' ? (
-          <Text style={[styles.empty, { color: P.muted }]}>{arenaText(lang, 'loading')}</Text>
-        ) : state === 'empty' ? (
+        ) : boardView === 'data_stale' ? (
+          <>
+            <Text style={[styles.empty, { color: P.muted }]}>{arenaText(lang, 'refreshFailed')}</Text>
+            <Text style={[styles.emptyHint, { color: P.muted }]}>{arenaText(lang, 'refreshFailedHint')}</Text>
+          </>
+        ) : boardView === 'silent' ? (
+          // Слово «Загрузка» владелец видеть запретил: либо снимок, либо ничего.
+          <View />
+        ) : boardView === 'empty' ? (
           <Text style={[styles.empty, { color: P.muted }]}>{arenaText(lang, 'noFriends')}</Text>
         ) : null}
 

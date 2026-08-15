@@ -63,5 +63,12 @@ export const FC_SWIPE = {
 /** Пауза между SFX и TTS (правило очереди §5: SFX → 120мс → TTS, никогда одновременно) */
 export const FC_SFX_TTS_GAP_MS = 120;
 
+/**
+ * Пик scale-пульса флипа. Строго < 1: апскейл текстового слоя на iOS даёт
+ * «мыльный/пиксельный» текст (растр рисуется в layout-размере и растягивается).
+ * Пульс поджимает карточку вниз и возвращает в 1 — вверх не уходит НИКОГДА.
+ */
+export const FC_FLIP_PULSE_MIN = 0.965;
+
 /** Perspective для 3D-флипа — ПЕРВЫМ элементом transform */
 export const FC_FLIP_PERSPECTIVE = 1200;

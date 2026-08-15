@@ -56,6 +56,8 @@ import {
   clearStagedNavigationPackId,
   consumeStagedCommunityPackMarketCards,
   getStagedNavigationPackId,
+  peekStagedCommunityPackCards,
+  stagedCommunityPackCardsPromise,
 } from '../community_packs/staging';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import { ugcCardChrome } from '../community_packs/ugcCardThemePresets';
@@ -160,6 +162,8 @@ export function useCollectionData(opts: {
   onLoaded: (info: CollectionLoadedInfo) => void;
   /** `?pack=…&preview=1` — набор сообщества, который смотрят ДО добавления себе. */
   previewPackId?: string | null;
+  /** `?pack=` — открытый набор: его карточки уже готовит staging до навигации. */
+  deeplinkPackId?: string | null;
 }) {
   const { isDevMarketEnabled } = opts;
   // Изоляция целей обучения: все чтения/записи коллекции идут в хранилище
@@ -438,6 +442,37 @@ export function useCollectionData(opts: {
     }
   }, [isDevMarketEnabled]);
 
+  /**
+   * `?pack=` из «Моих наборов» / каталога: карточки набора уже поехали в
+   * `stageCommunityPackCardsForNavigation` ДО `router.push`. Подхватываем ИМЕННО
+   * этот запрос, а не ждём конца общего `loadAll` (маркет + каталог сообщества +
+   * авторские наборы): иначе набор несколько секунд стоит пустым и пользователь
+   * видит промежуточную заглушку вместо набора (владелец, 2026-08-13).
+   */
+  const deeplinkPackId = opts.deeplinkPackId ?? null;
+  useEffect(() => {
+    if (!deeplinkPackId || !communityPacksEnabled) return;
+    const sourceId = `DEV:${deeplinkPackId}`;
+    const apply = (cards: CardItem[]) => {
+      if (cards.length === 0) return;
+      setMarketCards((prev) => (prev.some((c) => c.sourceId === sourceId) ? prev : [...prev, ...cards]));
+    };
+    const memo = peekStagedCommunityPackCards(deeplinkPackId);
+    if (memo) {
+      apply(memo);
+      return;
+    }
+    const pending = stagedCommunityPackCardsPromise(deeplinkPackId);
+    if (!pending) return;
+    let cancelled = false;
+    void pending.then((cards) => {
+      if (!cancelled) apply(cards);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [communityPacksEnabled, deeplinkPackId]);
+
   return {
     savedCards,
     customCards,
@@ -472,11 +507,26 @@ export function applyPostLoadNavigation(
     previewMode?: boolean;
   },
 ): void {
-  const { ownedIds, communityOwnedIds, communityPublished, activePackId, progress, userSid } = info;
+  const { ownedIds, activePackId, progress } = info;
   if (!info.hintSeen && info.savedCount > 0) {
     ctx.setShowDeleteHint(true);
   }
   const rc = ctx.routeCat;
+  /**
+   * `?pack=` — это экран НАБОРА, и он главнее всего остального.
+   *
+   * зачем (владелец, 2026-08-13 — «набор открывается через промежуточное окно»):
+   * раньше вкладку набора включали только при ПОДТВЕРЖДЁННОМ владении из этой же
+   * загрузки, а до того успевала сработать ветка восстановления позиции
+   * (`!rc && progress`) — экран набора после загрузки прыгал на «Сохранённые».
+   * Пользователь видел промежуточный экран вместо карточек набора. Доступ к
+   * набору проверяет `usePackDeeplinkGuard`, здесь решается только вкладка.
+   */
+  if (ctx.packDeeplink) {
+    ctx.pendingRestoreRef.current = null;
+    ctx.setActiveCat('custom');
+    return;
+  }
   if (ctx.isDevMarketEnabled && activePackId && ownedIds.includes(activePackId)) {
     ctx.pendingRestoreRef.current = { cat: 'custom', idx: 0 };
     ctx.setActiveCat('custom');
@@ -496,23 +546,6 @@ export function applyPostLoadNavigation(
     ctx.pendingRestoreRef.current = { cat: rc, idx: progress.idx };
   } else {
     ctx.pendingRestoreRef.current = null;
-  }
-  const deepPack = ctx.packDeeplink;
-  if (deepPack) {
-    const deepMeta = communityPublished.find((p) => p.id === deepPack);
-    const isAuthorOfDeep =
-      !!userSid &&
-      !!deepMeta?.isCommunityUgc &&
-      deepMeta.authorStableId === userSid;
-    if (
-      ctx.previewMode ||
-      ownedIds.includes(deepPack) ||
-      communityOwnedIds.includes(deepPack) ||
-      isAuthorOfDeep
-    ) {
-      ctx.pendingRestoreRef.current = null;
-      ctx.setActiveCat('custom');
-    }
   }
 }
 

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, PixelRatio, StyleSheet, Text, View } from 'react-native';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen, ArenaStat } from '../components/arena/ArenaScreen';
 import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
@@ -9,6 +9,23 @@ import { StarGlyph } from '../components/tournament/TournamentFx';
 import { arenaText } from '../modules/arena/copy';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { arenaV2Home, arenaV2SeasonClaim, type ArenaHomeResponse } from './arena_client';
+
+/**
+ * Системный масштаб шрифта — для высоты строки.
+ *
+ * В React Native крупный системный шрифт увеличивает `fontSize`, но `lineHeight`
+ * задан числом и остаётся прежним: строки наезжают друг на друга и обрезаются.
+ * Высота строки умножается на масштаб, поэтому при обычном размере вёрстка та
+ * же, а при увеличении — правильная.
+ *
+ * На главных экранах Арены то же самое делает хук `useArenaFontScale`: он
+ * реагирует на смену настройки на ходу. Здесь взято значение на момент
+ * загрузки модуля — стили лежат в `StyleSheet`, а часть строк рисуется внутри
+ * колбэков списка, где хук вызвать нельзя. Разница видна только если менять
+ * системный шрифт, не выходя из приложения.
+ */
+const FONT_SCALE = PixelRatio.getFontScale();
+
 
 function rewardLabel(lang: Parameters<typeof arenaText>[0], reward: { kind: 'shards' | 'spin_credit'; amount: number }): string {
   return arenaText(lang, reward.kind === 'spin_credit' ? 'rewardSpin' : 'rewardPearls')
@@ -37,6 +54,8 @@ export default function ArenaSeasonPassScreen() {
   return (
     <ArenaHubChrome>
     <ArenaScreen title={arenaText(lang, 'season')} variant="season" scroll={false}>
+      {/* Загрузка не показывается: слово «Загрузка…» владелец видеть
+          запретил, а уровни приезжают той же секундой. */}
       <FlatList
         data={home?.season.levels ?? []}
         keyExtractor={(level) => String(level.level)}
@@ -45,7 +64,15 @@ export default function ArenaSeasonPassScreen() {
         windowSize={7}
         contentContainerStyle={styles.list}
         ListHeaderComponent={<View style={styles.stats}><ArenaStat label={arenaText(lang, 'stars')} value={home?.season.stars ?? '—'} /><ArenaStat label={arenaText(lang, 'season')} value={home?.season.level ?? '—'} /></View>}
-        ListEmptyComponent={<Text style={[styles.loading, { color: P.muted }]}>{arenaText(lang, 'loading')}</Text>}
+        // Пока ответа нет — молчим (загрузку показывать нельзя). А вот если
+        // ответ пришёл и уровней в нём нет, пустой экран читается как поломка:
+        // объясняем и обещаем, что звёзды не пропадут.
+        ListEmptyComponent={home ? (
+          <View style={styles.failure}>
+            <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>{arenaText(lang, 'seasonEmpty')}</Text>
+            <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'seasonEmptyHint')}</Text>
+          </View>
+        ) : <View />}
         ListFooterComponent={claimError ? (
           <View style={styles.failure}>
             <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>{arenaText(lang, 'claimFailed')}</Text>
@@ -90,5 +117,5 @@ const styles = StyleSheet.create({
   loading: { textAlign: 'center', fontWeight: '700' },
   failure: { gap: 4, paddingVertical: 8 },
   failureTitle: { fontSize: 16, fontWeight: '900', textAlign: 'center' },
-  failureHint: { fontSize: 13, lineHeight: 19, fontWeight: '600', textAlign: 'center' },
+  failureHint: { fontSize: 13, lineHeight: 19 * FONT_SCALE, fontWeight: '600', textAlign: 'center' },
 });

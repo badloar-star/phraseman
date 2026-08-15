@@ -52,7 +52,8 @@ import { useTheme } from '../../components/ThemeContext';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import DeckPickerSheet, { type DeckSheetOption } from './DeckPickerSheet';
 import { loadFcDeckOptions } from './deck_options';
-import { loadDeckCardsMulti, type DeckRef } from './deck_sources';
+import { type DeckRef } from './deck_sources';
+import { countAvailableFcCards } from './deck_options';
 import { isLowPowerEffective } from './low_power';
 import { getLastPreset, type FcModePreset } from './mode_prefs';
 import { useFcReduceMotion } from './PhraseCard';
@@ -110,6 +111,10 @@ import {
 /** Высота панели без нижнего инсета — контейнеры резервируют её под контент. */
 export const FC_TABBAR_HEIGHT = 62;
 
+/** Кривая сворачивания капсулы — та же, что у таббара главной (`Easing.out(Easing.cubic)`).
+ *  Считается один раз на модуль: воркету достаётся готовая функция. */
+const TAB_SCROLL_EASING = Easing.out(Easing.cubic);
+
 const SPRING_OPEN = { damping: 15, stiffness: 240, mass: 0.55 } as const;
 const SPRING_CLOSE = { damping: 20, stiffness: 300, mass: 0.5 } as const;
 const TIMING_MS = 140;
@@ -120,7 +125,6 @@ type BarSlot = (typeof BAR_SLOTS)[number];
 const CENTER_SLOT: BarSlot = 'create';
 
 /** Пул блица по умолчанию — «все сохранённые + мои карточки» (как в сессии блица). */
-const BLITZ_DEFAULT_DECKS: readonly DeckRef[] = [{ kind: 'saved' }, { kind: 'custom' }];
 /** Счёт карточек переживает перемонтирование таббара: пункт не мигает при переходах. */
 let blitzPoolCountCache: number | null = null;
 
@@ -194,7 +198,7 @@ export function useFcTabBarScroll(): FcTabBarScroll {
     collapsed.value = target;
     chrome.value = withTiming(target, {
       duration: target === 1 ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
-      easing: Easing.out(Easing.cubic),
+      easing: TAB_SCROLL_EASING,
     });
   }, [chrome, collapsed, enabled, lastY, toggledAt]);
 
@@ -231,9 +235,11 @@ type MenuItemProps = {
   simple: boolean;
   accent?: boolean;
   onPress: () => void;
-  /** §6: выбор наборов перед стартом — ⚙ справа + долгий тап по строке. */
+  /** §6: выбор наборов перед стартом — кнопка справа + долгий тап по строке. */
   onSetup?: () => void;
   setupTestID?: string;
+  /** Подпись кнопки выбора наборов («Выбрать наборы») — озвучка и подсказка. */
+  setupLabel?: string;
 };
 
 /**
@@ -253,6 +259,7 @@ function TabMenuItem({
   onPress,
   onSetup,
   setupTestID,
+  setupLabel,
 }: MenuItemProps) {
   const p = useSharedValue(0);
 
@@ -308,6 +315,7 @@ function TabMenuItem({
           onPress={onPress}
           onLongPress={onSetup}
           delayLongPress={onSetup ? 420 : undefined}
+          accessibilityHint={onSetup ? setupLabel : undefined}
           style={({ pressed }) => ({
             flexDirection: 'row',
             alignItems: 'center',
@@ -340,25 +348,32 @@ function TabMenuItem({
         </Pressable>
 
         {onSetup ? (
-          /* §6: мультивыбор наборов — быстрый старт идёт мимо шита, ⚙ открывает выбор. */
+          /*
+           * §6: мультивыбор наборов — быстрый старт идёт мимо шита, эта кнопка
+           * открывает выбор. FIX (владелец, 2026-08-13): «выбор наборов доступен
+           * не везде и не очевиден» — серая ⚙ читалась как «настройки чего-то»,
+           * а долгий тап невидим вовсе. Тот же значок наборов, что и у кнопки
+           * выбора внутри режимов, и акцентный тон: путь к выбору виден сразу.
+           */
           <Pressable
             testID={setupTestID}
             accessibilityRole="button"
             accessibilityLabel={setupTestID ? `qa-${setupTestID}` : undefined}
+            accessibilityHint={setupLabel}
             accessible
             onPress={onSetup}
             hitSlop={{ top: 10, bottom: 10, left: 8, right: 10 }}
             style={({ pressed }) => ({
-              width: 28,
-              height: 28,
-              borderRadius: 10,
+              width: 30,
+              height: 30,
+              borderRadius: 11,
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: `${t.textMuted}1A`,
+              backgroundColor: `${t.accent}1F`,
               opacity: pressed ? 0.7 : 1,
             })}
           >
-            <Ionicons name="options-outline" size={15} color={t.textMuted} />
+            <Ionicons name="albums-outline" size={16} color={t.accent} />
           </Pressable>
         ) : null}
       </View>
@@ -450,11 +465,14 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
   const refreshBlitzPoolCount = useCallback(() => {
     let cancelled = false;
     void (async () => {
-      const contentLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
-      const cards = await loadDeckCardsMulti([...BLITZ_DEFAULT_DECKS], contentLang).catch(() => null);
-      if (cancelled || !cards) return;
-      blitzPoolCountCache = cards.length;
-      setBlitzPoolCount(cards.length);
+      // FIX (владелец, 2026-08-13): считали только «сохранённые + мои карточки»,
+      // поэтому у человека с карточками ТОЛЬКО в добавленных наборах пункт
+      // «Блиц» не появлялся вовсе. Считаем ВСЕ доступные источники — ровно тот
+      // же пул, что берёт сама сессия блица по умолчанию (loadAllFcDeckRefs).
+      const count = await countAvailableFcCards(lang).catch(() => null);
+      if (cancelled || count === null) return;
+      blitzPoolCountCache = count;
+      setBlitzPoolCount(count);
     })();
     return () => {
       cancelled = true;
@@ -558,7 +576,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
       const option = pickerOption;
       setPickerOption(null);
       if (!option) return;
-      const target = buildFcTrainRoute(option, preset);
+      const target = buildFcTrainRoute(option, preset, { fromPicker: true });
       router.push({ pathname: target.pathname, params: target.params } as any);
     },
     [pickerOption, router],
@@ -607,6 +625,12 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
       create: triLang(lang, {
         ru: 'Создать', uk: 'Створити', es: 'Crear',
         'pt-BR': 'Criar', vi: 'Tạo', id: 'Buat', tr: 'Oluştur', pl: 'Utwórz',
+      }),
+      /** §6: одна и та же подпись у кнопки выбора наборов во всех трёх режимах. */
+      pickDecks: triLang(lang, {
+        ru: 'Выбрать наборы', uk: 'Обрати набори', es: 'Elegir packs',
+        'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih set kartu',
+        tr: 'Setleri seç', pl: 'Wybierz zestawy',
       }),
     }),
     [lang],
@@ -751,6 +775,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
                 onPress={() => onTrainOption(option)}
                 onSetup={() => onTrainOptionSetup(option)}
                 setupTestID={`fc-tabbar-train-option-${option}-setup`}
+                setupLabel={labels.pickDecks}
               />
             ))}
           </View>
@@ -809,80 +834,80 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
           pointerEvents="box-none"
           style={[styles.pillDock, { bottom: pillBottom }, scrollChromeStyle]}
         >
-        <Animated.View
-          style={[
-            styles.pill,
-            TAB_PILL_SHADOW,
-            {
-              width: pillW,
-              height: tabBarHeight,
-              borderRadius: tabBarHeight / 2,
-              shadowColor: t.shadowDark,
-              transform: [{ scale: pillPressScale }],
-            },
-          ]}
-        >
-          <View pointerEvents="none" style={[styles.pillFill, { backgroundColor: pillBackground }]} />
-
           <Animated.View
-            pointerEvents="none"
             style={[
-              styles.activePill,
+              styles.pill,
+              TAB_PILL_SHADOW,
               {
-                top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
-                left: tabHighlightInset(),
-                backgroundColor: activePillBg,
-                opacity: Animated.multiply(highlightOpacity, activePillPressOpacity),
-                transform: [
-                  {
-                    translateX: highlightAnim.interpolate({
-                      inputRange: BAR_SLOTS.map((_, index) => index),
-                      outputRange: BAR_SLOTS.map((_, index) => tabHighlightOffset(index)),
-                      extrapolate: 'clamp',
-                    }),
-                  },
-                  { scale: activePillPressScale },
-                ],
+                width: pillW,
+                height: tabBarHeight,
+                borderRadius: tabBarHeight / 2,
+                shadowColor: t.shadowDark,
+                transform: [{ scale: pillPressScale }],
               },
             ]}
-          />
+          >
+            <View pointerEvents="none" style={[styles.pillFill, { backgroundColor: pillBackground }]} />
 
-          {BAR_SLOTS.map((slot) => {
-            const isCenter = slot === CENTER_SLOT;
-            const focused = activeSlot === slot;
-            const color = isCenter ? iconActive : focused ? iconActive : iconMuted;
-            const iconScale = pressedSlot === slot
-              ? pressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_ICON_PRESS_SCALE] })
-              : 1;
-            const icon = (
-              <Ionicons
-                name={slotMeta[slot].icon}
-                size={isCenter ? TAB_CENTER_ICON_SIZE : TAB_ICON_SIZE}
-                color={color}
-              />
-            );
-            return (
-              <TouchableOpacity
-                key={slot}
-                testID={slotMeta[slot].testID}
-                accessibilityLabel={`qa-${slotMeta[slot].testID}`}
-                accessible
-                accessibilityRole="button"
-                accessibilityState={{ expanded: menu === slot }}
-                accessibilityHint={slotMeta[slot].label}
-                style={styles.slot}
-                onPressIn={() => beginSlotPress(slot)}
-                onPressOut={endSlotPress}
-                onPress={slotMeta[slot].onPress}
-                activeOpacity={1}
-              >
-                <Animated.View style={{ transform: [{ scale: iconScale }] }}>
-                  {isCenter ? <Reanimated.View style={plusStyle}>{icon}</Reanimated.View> : icon}
-                </Animated.View>
-              </TouchableOpacity>
-            );
-          })}
-        </Animated.View>
+            <Animated.View
+              pointerEvents="none"
+              style={[
+                styles.activePill,
+                {
+                  top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
+                  left: tabHighlightInset(),
+                  backgroundColor: activePillBg,
+                  opacity: Animated.multiply(highlightOpacity, activePillPressOpacity),
+                  transform: [
+                    {
+                      translateX: highlightAnim.interpolate({
+                        inputRange: BAR_SLOTS.map((_, index) => index),
+                        outputRange: BAR_SLOTS.map((_, index) => tabHighlightOffset(index)),
+                        extrapolate: 'clamp',
+                      }),
+                    },
+                    { scale: activePillPressScale },
+                  ],
+                },
+              ]}
+            />
+
+            {BAR_SLOTS.map((slot) => {
+              const isCenter = slot === CENTER_SLOT;
+              const focused = activeSlot === slot;
+              const color = isCenter ? iconActive : focused ? iconActive : iconMuted;
+              const iconScale = pressedSlot === slot
+                ? pressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_ICON_PRESS_SCALE] })
+                : 1;
+              const icon = (
+                <Ionicons
+                  name={slotMeta[slot].icon}
+                  size={isCenter ? TAB_CENTER_ICON_SIZE : TAB_ICON_SIZE}
+                  color={color}
+                />
+              );
+              return (
+                <TouchableOpacity
+                  key={slot}
+                  testID={slotMeta[slot].testID}
+                  accessibilityLabel={`qa-${slotMeta[slot].testID}`}
+                  accessible
+                  accessibilityRole="button"
+                  accessibilityState={{ expanded: menu === slot }}
+                  accessibilityHint={slotMeta[slot].label}
+                  style={styles.slot}
+                  onPressIn={() => beginSlotPress(slot)}
+                  onPressOut={endSlotPress}
+                  onPress={slotMeta[slot].onPress}
+                  activeOpacity={1}
+                >
+                  <Animated.View style={{ transform: [{ scale: iconScale }] }}>
+                    {isCenter ? <Reanimated.View style={plusStyle}>{icon}</Reanimated.View> : icon}
+                  </Animated.View>
+                </TouchableOpacity>
+              );
+            })}
+          </Animated.View>
         </Reanimated.View>
       </View>
 

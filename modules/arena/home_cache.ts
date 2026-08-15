@@ -29,9 +29,32 @@ export const ARENA_HOME_CACHE_TTL_MS = 24 * 60 * 60 * 1_000;
 export type ArenaHomeWarm = Readonly<{
   schemaVersion: typeof ARENA_HOME_CACHE_SCHEMA;
   savedAtWallMs: number;
+  /** Сутки UTC, в которые снят снимок: по ним отсекаются дневные счётчики. */
+  savedDayKey: string;
   home: Readonly<Record<string, unknown>> | null;
   expansion: Readonly<Record<string, unknown>> | null;
 }>;
+
+/** Ключ суток UTC. Тот же вид, что и на сервере: `YYYY-MM-DD`. */
+export function arenaWarmDayKey(wallMs: number): string {
+  return new Date(Math.max(0, Math.trunc(wallMs))).toISOString().slice(0, 10);
+}
+
+/**
+ * Счётчики, которые верны только внутри своих суток. Показать вчерашние как
+ * сегодняшние — значит соврать игроку, что он уже сыграл три матча и закрыл
+ * половину дневных целей.
+ */
+const DAILY_PROFILE_FIELDS = ['dailyMatches', 'dailyWins', 'dailyFirstAnswers'] as const;
+
+function stripDailyCounters(home: Record<string, unknown> | null): Record<string, unknown> | null {
+  if (!home) return null;
+  const profile = home.profile;
+  if (!isRecord(profile)) return home;
+  const nextProfile: Record<string, unknown> = { ...profile };
+  for (const field of DAILY_PROFILE_FIELDS) delete nextProfile[field];
+  return { ...home, profile: nextProfile };
+}
 
 let warm: ArenaHomeWarm | null = null;
 
@@ -60,10 +83,16 @@ export function arenaHomeWarmUsable(value: unknown, wallNowMs: number): ArenaHom
   // Снимок из будущего означает переведённые часы: доверять ему нельзя.
   if (savedAtWallMs > wallNowMs + 60_000) return null;
   if (wallNowMs - savedAtWallMs > ARENA_HOME_CACHE_TTL_MS) return null;
+  const savedDayKey = typeof value.savedDayKey === 'string' ? value.savedDayKey : '';
+  const sameDay = savedDayKey === arenaWarmDayKey(wallNowMs);
+  const home = isRecord(value.home) ? value.home : null;
   return {
     schemaVersion: ARENA_HOME_CACHE_SCHEMA,
     savedAtWallMs: Math.trunc(savedAtWallMs),
-    home: isRecord(value.home) ? value.home : null,
+    savedDayKey,
+    // Сутки сменились — дневные счётчики выбрасываются, остальное остаётся:
+    // ранг и звёзды за ночь не портятся, а «сыграно сегодня» портится.
+    home: sameDay ? home : stripDailyCounters(home),
     expansion: isRecord(value.expansion) ? value.expansion : null,
   };
 }
@@ -82,6 +111,7 @@ export function arenaRememberHomeWarm(input: Readonly<{
   const next: ArenaHomeWarm = {
     schemaVersion: ARENA_HOME_CACHE_SCHEMA,
     savedAtWallMs: Math.trunc(input.wallNowMs),
+    savedDayKey: arenaWarmDayKey(input.wallNowMs),
     home: input.home === undefined ? warm?.home ?? null : arenaHomeWarmSanitize(input.home),
     expansion: input.expansion === undefined
       ? warm?.expansion ?? null

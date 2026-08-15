@@ -112,7 +112,7 @@ describe("Learning V2 released completion callable", () => {
       duplicate: false,
       catalogAuthority:
         "firebase_admin_active_release_12_task_coordinate_match",
-      completionAuthority: "accepted_for_post_session_verification_only",
+      completionAuthority: "accepted_completed_summary_for_storage_only",
       performanceAuthority: "none",
       walletAuthority: "none",
       masteryAuthority: "none",

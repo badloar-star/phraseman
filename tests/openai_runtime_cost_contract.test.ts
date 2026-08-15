@@ -220,7 +220,7 @@ describe("OpenAI runtime cost controls", () => {
   });
 
   test("the unified admin has a read-only OpenAI budget dashboard backed by billing collections", () => {
-    const adminHtml = read("admin/legacy.html");
+    const adminHtml = read("admin/v2/legacy.html");
     const budgetFn = read("functions/src/openai_budget_dashboard.ts");
 
     expect(adminHtml).toContain('id="tab-openai-budget"');

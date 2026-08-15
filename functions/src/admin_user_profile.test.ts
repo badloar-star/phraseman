@@ -8,6 +8,7 @@ import {
   applySearchBanState,
   isSafeDocumentId,
   projectAdminRow,
+  projectPersonalEconomyBalance,
   parseUserProfileRequest,
   parseUserSearchRequest,
   resolveCanonicalStableId,
@@ -16,6 +17,11 @@ import {
 import * as adminUserProfileModule from './admin_user_profile';
 
 describe('admin user profile read contracts', () => {
+  it('projects pearls from immutable journals and never accepts malformed deltas', () => {
+    expect(projectPersonalEconomyBalance(10, [{ delta: -3 }], [{ delta: 5 }])).toBe(12);
+    expect(projectPersonalEconomyBalance(10, [{ delta: 0 }], [])).toBeNull();
+    expect(projectPersonalEconomyBalance('legacy', [], [])).toBeNull();
+  });
   it('queries community sales by the authoritative receipt author field', () => {
     const source = fs.readFileSync(path.join(__dirname, 'admin_user_profile.ts'), 'utf8');
     expect(source).toContain("readRecentByField(db, 'community_pack_purchases', 'authorStableId', uid)");
@@ -84,7 +90,7 @@ describe('admin user profile read contracts', () => {
 
     expect(summary).toMatchObject({
       uid: 'stable-1', name: 'Alice', xp: 1250, streak: 9, premiumPlan: 'annual',
-      language: 'ru', appVersion: '2.4.0', platform: 'ios', lessonsCompleted: 3, shards: 45,
+      language: 'ru', appVersion: '2.4.0', platform: 'ios', lessonsCompleted: 3, shards: null,
       auth: { provider: 'google', email: 'Alice@example.com' },
     });
     expect(JSON.stringify(summary)).not.toContain('ExponentPushToken');

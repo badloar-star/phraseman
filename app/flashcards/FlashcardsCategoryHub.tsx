@@ -6,11 +6,14 @@
  *   • «Мои наборы» — уже добавленные наборы (открываются как набор карточек);
  *   • «Наборы сообщества» — сетка компактных плиток ПО 3 В РЯД: иконка, название,
  *     лайки и счётчик добавлений. Плитка открывается ДО добавления — в режиме
- *     просмотра (`preview=1`), где и живут «Добавить себе» и лайк;
- *   • фильтр каталога: поиск по названию + сортировка «Популярные / Новые /
- *     Больше карточек» (замечания владельца после теста на iPhone).
+ *     просмотра (`preview=1`), где и живут «Добавить себе» и лайк.
  *
  * Чего здесь БОЛЬШЕ НЕТ (по спеке):
+ *   • заголовка «Наборы» и подзаголовка секции «Наборы сообщества» — дубль убран,
+ *     единственный заголовок живёт в ШАПКЕ экрана (`flashcards_packs.tsx`);
+ *   • строки поиска и кнопок сортировки — они переехали в шапку экрана
+ *     (лупа + две круглые кнопки фильтров); сюда приходят уже готовые
+ *     `communityQuery` / `communitySort` (замечания владельца после iPhone);
  *   • чипа баланса осколков в шапке и любых цен/paywall (§1.2, §1.3);
  *   • hero-CTA и входа «Тренировка» из раздела (§4) — режимы живут в таббаре (§5.2);
  *   • секции «Режимы практики» и витрины официальных наборов (§1.1);
@@ -28,7 +31,6 @@ import {
   Pressable,
   Platform,
   Text,
-  TextInput,
   TouchableOpacity,
   useWindowDimensions,
   View,
@@ -48,7 +50,7 @@ import { FC_SPRING, FC_TIMING, fcStaggerDelay } from '../../constants/flashcards
 import { packHubCodeName, packTitleForInterface, packCategoryIonIcon, type FlashcardMarketPack } from './marketplace';
 import { isLowPowerEffective } from './low_power';
 
-import { stageOwnedPackCardsForNavigation } from '../flashcards_collection';
+import { stageOwnedPackCardsForNavigation } from './useCollectionData';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
 import { onAppEvent } from '../events';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
@@ -56,8 +58,6 @@ import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { topLikedPackIds } from '../community_packs/packSocial';
 import {
   applyCommunityPacksFilter,
-  COMMUNITY_SORTS,
-  communitySortLabel,
   type CommunityPacksSort,
 } from '../community_packs/communityCatalogFilter';
 import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons';
@@ -88,6 +88,10 @@ type Props = {
   themeMode: ThemeMode;
   /** Изоляция целей обучения: черновики/скрытые наборы/staging читаются по текущей цели. */
   studyTarget?: RuntimeStudyTarget;
+  /** Поиск по названию — состояние живёт в шапке экрана (лупа). */
+  communityQuery?: string;
+  /** Сортировка каталога — круглые кнопки фильтров в шапке экрана. */
+  communitySort?: CommunityPacksSort;
 };
 
 const COLS = 3;
@@ -319,6 +323,8 @@ export default function FlashcardsCategoryHub({
   hubAuthorStableId = null,
   themeMode,
   studyTarget,
+  communityQuery = '',
+  communitySort = 'popular',
 }: Props) {
   const router = useRouter();
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -331,9 +337,6 @@ export default function FlashcardsCategoryHub({
    * как свои (плитка становится открываемой), сервер/сторедж догоняют по `onMarketRefresh`.
    */
   const [locallyAddedPackIds, setLocallyAddedPackIds] = useState<Set<string>>(() => new Set());
-  /** Фильтр каталога сообщества: поиск по названию + сортировка. */
-  const [communityQuery, setCommunityQuery] = useState('');
-  const [communitySort, setCommunitySort] = useState<CommunityPacksSort>('popular');
 
   const lowPower = isLowPowerEffective();
   /** Каскад входа выключаем при reduceMotion / lowPower (декоративная ветка §8). */
@@ -375,7 +378,6 @@ export default function FlashcardsCategoryHub({
    * рендерятся на обычной поверхности, поэтому берём цвета прямо из темы.
    */
   const isGradientSurface = false;
-  const hubLabelPrimary = t.textPrimary;
   const hubLabelMuted = t.textMuted;
   const hubLabelAccent = t.accent;
 
@@ -390,6 +392,7 @@ export default function FlashcardsCategoryHub({
   );
 
   /** «Мои наборы»: добавленные официальные (легаси-владение) + свои/добавленные UGC. */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- секция убрана намеренно
   const mineOwnedPacks = useMemo(() => {
     const catalogOwnedOrdered = marketPacks.filter((p) => ownedPackIds.includes(p.id));
     const catalogIds = new Set(marketPacks.map((p) => p.id));
@@ -439,7 +442,9 @@ export default function FlashcardsCategoryHub({
       /** КРИТИЧНО: staging СИНХРОННО перед router.push — первый кадр коллекции уже с карточками. */
       stageOwnedPackCardsForNavigation(pack.id);
     }
-    router.push({ pathname: '/flashcards_collection', params: { pack: pack.id } } as any);
+    // `from` нужен, чтобы «назад» из набора вернул РОВНО в каталог сообщества
+    // одним POP_TO, без остановки на промежуточных экранах (см. fc_pack_open_back_contract).
+    router.push({ pathname: '/flashcards_collection', params: { pack: pack.id, from: 'community' } } as any);
   };
 
   /**
@@ -486,14 +491,6 @@ export default function FlashcardsCategoryHub({
 
   // ── Общие стили секций ─────────────────────────────────────────────────────
   const hubBarW = winW - H_PAD * 2;
-  const sectionHeaderStyle = {
-    fontSize: 12,
-    fontWeight: '800' as const,
-    letterSpacing: 0.8,
-    textTransform: 'uppercase' as const,
-    color: hubLabelMuted,
-    marginBottom: 10,
-  };
   const sectionGapStyle = { marginBottom: 22 } as const;
 
   const packCodeLabelStyle = {
@@ -545,6 +542,7 @@ export default function FlashcardsCategoryHub({
   };
 
   /** Плитка «Мои наборы» — открывает набор карточек. */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const renderOwnedPackTile = (pack: FlashcardMarketPack) => {
     const displayTitle = packTitleForInterface(pack, lang);
     const hubCode = packHubCodeName(pack);
@@ -745,133 +743,21 @@ export default function FlashcardsCategoryHub({
     );
   };
 
-  /** Компактный фильтр каталога: поиск по названию + сортировка. */
-  const renderCommunityFilter = () => (
-    <View style={{ width: hubBarW, marginBottom: 12, gap: 8 }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 8,
-          paddingHorizontal: 12,
-          height: 42,
-          borderRadius: 14,
-          borderWidth: 1,
-          borderColor: communityQuery.trim().length > 0 ? `${t.accent}88` : t.border,
-          backgroundColor: t.bgSurface,
-        }}
-      >
-        <Ionicons name="search-outline" size={16} color={communityQuery.trim().length > 0 ? t.accent : t.textMuted} />
-        <TextInput
-          testID="flashcards-packs-search"
-          accessibilityLabel="qa-flashcards-packs-search"
-          value={communityQuery}
-          onChangeText={setCommunityQuery}
-          placeholder={triLang(lang, {
-            ru: 'Поиск набора', uk: 'Пошук набору', es: 'Buscar pack',
-            'pt-BR': 'Buscar pacote', vi: 'Tìm bộ thẻ', id: 'Cari paket', tr: 'Paket ara', pl: 'Szukaj zestawu',
-          })}
-          placeholderTextColor={t.textMuted}
-          autoCorrect={false}
-          autoCapitalize="none"
-          returnKeyType="search"
-          maxFontSizeMultiplier={1.2}
-          style={{
-            flex: 1,
-            height: 40,
-            paddingVertical: 0,
-            includeFontPadding: false,
-            textAlignVertical: 'center',
-            color: t.textPrimary,
-            fontSize: 14,
-          }}
-        />
-        {communityQuery.length > 0 ? (
-          <TouchableOpacity
-            testID="flashcards-packs-search-clear"
-            onPress={() => setCommunityQuery('')}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          >
-            <Ionicons name="close-circle" size={16} color={t.textMuted} />
-          </TouchableOpacity>
-        ) : null}
-      </View>
-
-      <View style={{ flexDirection: 'row', gap: 8 }}>
-        {COMMUNITY_SORTS.map((key) => {
-          const active = communitySort === key;
-          return (
-            <TouchableOpacity
-              key={key}
-              testID={`flashcards-packs-sort-${key}`}
-              accessibilityLabel={`qa-flashcards-packs-sort-${key}`}
-              accessible
-              onPress={() => {
-                void hapticTap();
-                setCommunitySort(key);
-              }}
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                paddingVertical: 8,
-                paddingHorizontal: 6,
-                borderRadius: 12,
-                borderWidth: 1,
-                borderColor: active ? t.accent : t.border,
-                backgroundColor: active ? `${t.accent}18` : 'transparent',
-              }}
-            >
-              <Text
-                style={{ fontSize: 11, fontWeight: '800', color: active ? t.accent : t.textSecond }}
-                numberOfLines={1}
-              >
-                {communitySortLabel(key, lang)}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    </View>
-  );
-
   return (
     <View style={{ paddingHorizontal: H_PAD }}>
-      {/* ── 1. Заголовок каталога (без чипа осколков — §1.3) ── */}
-      <Reanimated.View {...enterProps(0)} style={sectionGapStyle}>
-        {/* Рекламные подписи-слоганы с экрана убраны (владелец, после теста на iPhone). */}
-        <Text style={{ color: hubLabelPrimary, fontSize: 26, fontWeight: '800', letterSpacing: 0.2 }}>
-          {triLang(lang, {
-            ru: 'Наборы', uk: 'Набори', es: 'Packs',
-            'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy',
-          })}
-        </Text>
-      </Reanimated.View>
+      {/* ── 1. Заголовок экрана переехал в ШАПКУ (`flashcards_packs.tsx`):
+           раньше здесь был крупный «Наборы», а ниже — секция «Наборы сообщества»,
+           то есть два заголовка об одном и том же (замечание владельца). ── */}
 
-      {/* ── 2. «Мои наборы» ── */}
-      {mineOwnedPacks.length > 0 ? (
-        <Reanimated.View {...enterProps(1)} style={sectionGapStyle}>
-          <Text style={sectionHeaderStyle}>
-            {triLang(lang, {
-              ru: 'Мои наборы', uk: 'Мої набори', es: 'Mis packs',
-              'pt-BR': 'Meus pacotes', vi: 'Bộ thẻ của tôi', id: 'Paket saya', tr: 'Paketlerim', pl: 'Moje zestawy',
-            })}
-          </Text>
-          <View style={{ width: hubBarW, flexDirection: 'row', flexWrap: 'wrap', gap: GAP, justifyContent: 'flex-start' }}>
-            {mineOwnedPacks.map(renderOwnedPackTile)}
-          </View>
-        </Reanimated.View>
-      ) : null}
+      {/* ── 2. «Мои наборы» живут на отдельном экране `/flashcards_my_packs`
+           (таббар → «Наборы» → «Мои наборы»). Здесь только каталог сообщества —
+           это два разных раздела, а не один смешанный список. ── */}
 
       {/* ── 3. Каталог сообщества ── */}
       {cloudCommunityEnabled ? (
         <Reanimated.View {...enterProps(2)} style={sectionGapStyle}>
-          <Text style={sectionHeaderStyle}>
-            {triLang(lang, {
-              ru: 'Наборы сообщества', uk: 'Набори спільноти', es: 'Packs de la comunidad',
-              'pt-BR': 'Pacotes da comunidade', vi: 'Bộ thẻ cộng đồng', id: 'Paket komunitas',
-              tr: 'Topluluk paketleri', pl: 'Zestawy społeczności',
-            })}
-          </Text>
+          {/* Подзаголовок «Наборы сообщества» убран: он дублировал заголовок экрана
+              и теперь стоит в шапке, справа от стрелки «назад». */}
           {hasUnfinishedPackDraft ? (
             <TouchableOpacity
               testID="flashcards-packs-continue-draft"
@@ -906,7 +792,6 @@ export default function FlashcardsCategoryHub({
               </Text>
             </TouchableOpacity>
           ) : null}
-          {catalogCommunityPacks.length > 0 ? renderCommunityFilter() : null}
           {visibleCommunityPacks.length === 0 ? (
             <Text style={{ color: hubLabelMuted, fontSize: 13, marginBottom: 8 }}>
               {catalogCommunityPacks.length === 0

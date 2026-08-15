@@ -52,8 +52,8 @@
 **Один док `admin_runtime_config/openai_realtime_voice`** (все — с клампами в коде):
 
 ```
-model: 'gpt-realtime-mini'            // whitelist: gpt-realtime-mini | gpt-realtime
-voice: 'marin'
+model: 'gpt-realtime-2.1-mini'        // whitelist: gpt-realtime-2.1-mini | gpt-realtime-2.1
+voice: 'marin'                         // whitelist актуальных built-in Realtime voices
 transcriptionModel: 'gpt-4o-mini-transcribe'   // ВСЕГДА включена, несокращаемо
 sessionCapSec: { scenario: 300, companion: 480, trial: 180 }   // hardMaxSessionSec=600 в коде
 graceTailSec: 20                      // резерв = cap + 20
@@ -92,7 +92,7 @@ POST /v1/realtime/client_secrets
   "expires_after": { "anchor": "created_at", "seconds": 60 },
   "session": {
     "type": "realtime",
-    "model": "gpt-realtime-mini",
+    "model": "gpt-realtime-2.1-mini",
     "instructions": "<buildVoiceInstructions(...)>",   // порядок блоков — раздел 7
     "audio": {
       "input": {
@@ -106,7 +106,7 @@ POST /v1/realtime/client_secrets
       },
       "output": { "voice": "<voice>" }
     },
-    "max_response_output_tokens": <по CEFR: 120/160/220/300>,
+    "max_output_tokens": <по CEFR: 120/160/220/300>,
     "truncation": { "type": "retention_ratio", "retention_ratio": 0.8 }
   }
 }
@@ -261,6 +261,6 @@ Never give medical, legal, or financial advice; deflect warmly in character.
 15. `max_voice_prompt.test.ts` — байт-в-байт стабильность статичного префикса при смене memory/summary (кэш-контракт); порядок блоков; отсутствие `[[...]]`/JSON-конверта; дословное включение safety-блоков; реминдер-формат.
 16. `premium_dialog_review_voice.test.ts` — voice-ветка промпта; валидация расширенного JSON и деградация до базового; звёзды/XP не зависят от расширенных полей; safety-скан транскрипта.
 
-**Спайк до фиксации экономики (План 0, не тесты):** удержание темпа A1 на gpt-realtime-mini; фактический эффект `retention_ratio` на `cached_tokens`; cue поверх voiceChat-сессии на обеих платформах; WER дешёвой транскрипции на RU/UK-акценте; QA «длинная фраза ИИ на громкой связи» на 3–4 бюджетных Android (эхо → ложный barge-in).
+**Спайк до фиксации экономики (План 0, не тесты):** удержание темпа A1 на gpt-realtime-2.1-mini; фактический эффект `retention_ratio` на `cached_tokens`; cue поверх voiceChat-сессии на обеих платформах; WER дешёвой транскрипции на RU/UK-акценте; QA «длинная фраза ИИ на громкой связи» на 3–4 бюджетных Android (эхо → ложный barge-in).
 
 Ключевые пути репо: клиент `/root/phraseman/app/`, сервер `/root/phraseman/functions/src/`, тесты `/root/phraseman/tests/` (клиент) и рядом с функциями (сервер); переиспользуемые модули: `app/voice_equalizer_model.ts`, `app/voice_equalizer.tsx`, `app/audio_session_coordinator.ts`, `app/personal_plan_speech_module.ts`, `app/ai_companion_memory.ts`, `app/ai_dialog_scenarios.ts`, `app/ai_dialog_briefing.tsx`, `app/xp_manager.ts`, `functions/src/premium_dialog.ts`, `functions/src/premium_dialog_review.ts`, `functions/src/openai_dialog_model_config.ts`, `functions/src/admin_alerts.ts`.

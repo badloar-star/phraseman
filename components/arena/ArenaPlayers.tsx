@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import AvatarView from '../AvatarView';
 import { V2Counter } from '../tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../tournament/tournament_theme';
@@ -11,11 +11,20 @@ function Player({ player, active, animateScore }: { player?: ArenaPlayer; active
   const P = useTournamentPalette();
   const reduceMotion = useReduceMotion();
   const shownScore = useCountUp(player?.score ?? 0, reduceMotion || !animateScore);
+  /**
+   * На узком экране в одну строку не помещаются два аватара, два имени, счёт
+   * и «VS»: имени оставалось несколько букв до многоточия. Аватар отдаёт ему
+   * десять точек — узнаётся он и меньшим, а имя соперника читать надо.
+   */
+  const { width } = useWindowDimensions();
+  const avatarSize = width < 360 ? 34 : 44;
   return (
     <View style={styles.player}>
-      <AvatarView avatar={player?.avatar} auraId={player?.aura} size={44} animateAura={false} ownerActive={active} />
+      <AvatarView avatar={player?.avatar} auraId={player?.aura} size={avatarSize} animateAura={false} ownerActive={active} />
       <View style={styles.copy}>
-        <Text style={[styles.name, { color: P.text }]}>{player?.name ?? '—'}</Text>
+        {/* Длинное имя обязано обрезаться многоточием, а не выталкивать счёт
+            за край: во время матча счёт важнее имени. */}
+        <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.name, { color: P.text }]}>{player?.name ?? '—'}</Text>
       </View>
       {/* Про игрока, которого ещё нет, счёт неизвестен. Ноль здесь — это
           утверждение, а не отсутствие данных. */}

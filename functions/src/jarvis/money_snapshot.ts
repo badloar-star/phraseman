@@ -15,6 +15,9 @@ export type MoneyFetcher = () => Promise<FetchMoneySourceResult>;
 export interface MoneyFetcherMap {
   readonly revenuecat_premium_events: MoneyFetcher;
   readonly paywall_funnel: MoneyFetcher;
+  readonly client_economy_opening: MoneyFetcher;
+  readonly client_economy_operations: MoneyFetcher;
+  readonly external_economy_events: MoneyFetcher;
 }
 
 export interface BuildMoneySnapshotInput {
@@ -30,7 +33,10 @@ export interface MoneySnapshot {
   readonly decisions: readonly Decision[];
 }
 
-const COLLECTIONS: readonly MoneyReportCollection[] = ['revenuecat_premium_events', 'paywall_funnel'];
+const COLLECTIONS: readonly MoneyReportCollection[] = [
+  'revenuecat_premium_events', 'paywall_funnel', 'client_economy_opening',
+  'client_economy_operations', 'external_economy_events',
+];
 
 function failClosedFetch(sourceId: MoneyReportCollection, observedAtMs: number): FetchMoneySourceResult {
   return Object.freeze({ sourceId, state: 'error' as const, truncated: false, droppedCount: 0, rows: Object.freeze([]), observedAtMs });

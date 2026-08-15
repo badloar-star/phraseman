@@ -5,6 +5,11 @@ const source = readFileSync(path.join(__dirname, 'arena_v2.ts'), 'utf8');
 const core = readFileSync(path.join(__dirname, 'arena_v2_core.ts'), 'utf8');
 
 describe('Arena V2 backend source contract', () => {
+  it('marks a server-created bot seat accepted at match creation', () => {
+    expect(source).toContain("participantStableUids.find((uid) => uid.startsWith('bot_'))");
+    expect(source).toContain('const acceptedBy = botSeat ? [botSeat] : [];');
+  });
+
   it('exports the complete isolated callable surface', () => {
     for (const name of [
       'arenaV2Home', 'arenaV2FindMatch', 'arenaV2QueueCancel', 'arenaV2QuickBotFallback',
@@ -56,7 +61,19 @@ describe('Arena V2 backend source contract', () => {
   it('uses stable auth, release gates, HMAC pair/invite/spin inputs and exactly-once receipts', () => {
     expect(source).toContain('resolveStableUidForAuth');
     expect(source).toContain("collection(ARENA_V2_COLLECTIONS.config).doc('current')");
-    expect(source).toContain('config.contentPublication?.manifestSha256 !== NEW_TOURNAMENT_POOL_CONTENT_SHA256');
+    /**
+     * Публикацию содержимого проверяет единый валидатор конфига — тот же
+     * модуль, которым админка строит документ и показывает его состояние.
+     *
+     * Раньше здесь стоял свой, отдельно написанный список условий, и он был
+     * КОРОЧЕ: не смотрел ни корень Меркла, ни формат минимальной версии
+     * клиента, ни то, что флаги вообще булевы. Два разных списка на один
+     * договор — это ошибка, ждущая своего часа, поэтому список остался один.
+     */
+    expect(source).toContain('arenaConfigProblems(config)');
+    const contract = readFileSync(path.join(__dirname, 'arena_config_contract.ts'), 'utf8');
+    expect(contract).toContain('NEW_TOURNAMENT_POOL_CONTENT_SHA256');
+    expect(contract).toContain('NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256');
     expect(source).toContain('request.data?.clientVersion, config.minClientVersion');
     expect(source).toContain("arenaActor(request, 'home', true)");
     expect(source).toContain('availability: {');
@@ -72,6 +89,14 @@ describe('Arena V2 backend source contract', () => {
     expect(source).not.toContain('randomInt(');
   });
 
+  it('publishes season and spin pearls as deterministic external facts only', () => {
+    expect(source).toContain("source: 'arena_v2_season'");
+    expect(source).toContain("source: 'arena_v2_spin'");
+    expect(source).toContain('appendExternalEconomyEvent(tx, userRef');
+    expect(source).not.toMatch(/(?:user|userSnap\.data\(\))\.shards\b/);
+    expect(source).not.toMatch(/\bshards\s*:/);
+  });
+
   it('keeps ranked human-only, strict range, pair reservations and server settlement guards', () => {
     expect(core).toContain("return mode === 'ranked' ? 1 : 3");
     // Публичный opponentKind теперь всегда 'human' (бот не раскрывается),
@@ -85,6 +110,16 @@ describe('Arena V2 backend source contract', () => {
     expect(source).toContain('pairLimitCommitted');
     expect(source).toContain('if (possibleProfile.activeMatchId || !arenaRanksCompatible');
     expect(source).toContain('!arenaAcceptanceOpen(now, Number(match.stateDeadlineAtMs))');
+  });
+
+  it('does not let a closed old match clear the next match queue', () => {
+    const terminalGuard = "if (match.terminal === true || match.state === 'settled' || match.state === 'aborted')";
+    const accept = source.slice(source.indexOf('export const arenaV2MatchAccept ='), source.indexOf('export const arenaV2MatchDecline ='));
+    const sync = source.slice(source.indexOf('export const arenaV2SyncMatch ='), source.indexOf('/* ══════════════════════ Дуэль v3'));
+    expect(accept).toContain(terminalGuard);
+    expect(sync).toContain(terminalGuard);
+    expect(accept.indexOf(terminalGuard)).toBeLessThan(accept.indexOf('closeMatchQueues('));
+    expect(sync.indexOf(terminalGuard)).toBeLessThan(sync.indexOf('closeMatchQueues('));
   });
 
   it('keeps pity across 63-day season boundaries in the Arena profile', () => {

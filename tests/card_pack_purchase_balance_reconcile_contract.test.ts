@@ -37,15 +37,15 @@ describe('card-pack pearl balance reconciliation', () => {
       '/**\n * Активувати 48-год ваучер',
     );
 
-    expect(purchase).toContain('await reconcileShardsBeforePurchase()');
-    expect(purchase).toContain('await spendShardsIdempotent(');
-    expect(purchase).toContain('newShardOpId()');
-    expect(purchase).toContain("spendResult === 'insufficient'");
+    expect(purchase).toContain('await commitShardCompositeOperation({');
+    expect(purchase).toContain("await semanticShardOperationId(\n      'official_card_pack'");
+    expect(purchase).toContain("purchase.status === 'insufficient'");
     expect(purchase).not.toContain("if (balance < pack.priceShards) return 'insufficient';");
-    expect(purchase).toContain("return 'wallet_sync_pending';");
+    expect(purchase).not.toContain('reconcileShardsBeforePurchase');
+    expect(purchase).not.toContain('spendShardsIdempotent');
   });
 
-  it('replays community pending deltas and reconciles server insufficient without pushing local state upward', () => {
+  it('never lets a community server error overwrite the client-owned balance', () => {
     const source = read('app/community_packs/purchaseCommunityPack.ts');
     const purchase = slice(
       source,
@@ -56,7 +56,8 @@ describe('card-pack pearl balance reconciliation', () => {
     expect(purchase).toContain('await reconcileShardsBeforePurchase()');
     expect(purchase).toContain('await callCommunityPurchasePack({');
     expect(purchase).toContain('isInsufficientCommunityPurchaseError(e)');
-    expect(purchase).toContain('refreshShardsBalanceFromCloudAuthoritative()');
+    expect(purchase).toContain('await getShardsBalance()');
+    expect(purchase).not.toContain('refreshShardsBalanceFromCloudAuthoritative()');
     expect(purchase).not.toContain('loadShardsFromCloud');
   });
 
@@ -66,9 +67,9 @@ describe('card-pack pearl balance reconciliation', () => {
 
     expect(open).toContain("const mode: 'voucher' | 'confirm'");
     expect(open).not.toContain('balance < pack.priceShards');
-    expect(source).toContain('displayedBalance: number');
-    expect(source).toContain('balance={paywall.displayedBalance}');
-    expect(source).toContain("mode: 'insufficient', displayedBalance: freshBalance");
-    expect(source).toContain("r === 'wallet_sync_pending'");
+    expect(source).toContain('balance={balance}');
+    expect(source).toContain("r === 'insufficient'");
+    expect(source).toContain("{ ...prev, mode: 'insufficient' }");
+    expect(source).not.toContain("r === 'wallet_sync_pending'");
   });
 });

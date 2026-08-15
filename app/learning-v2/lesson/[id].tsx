@@ -42,6 +42,7 @@ import Animated, {
 import { getStableId } from "../../../app/stable_id";
 import { useLang } from "../../../components/LangContext";
 import { useStudyTarget } from "../../../components/StudyTargetContext";
+import { useTheme } from "../../../components/ThemeContext";
 import {
   ensureLearningV2CompletionBackgroundSchedulerInstalled,
   enterLearningV2InteractiveSurface,
@@ -84,77 +85,25 @@ import { warmLesson1SessionRuntime } from "../../../modules/learning-v2/runtime/
 import { preloadCurrentLearningV2ActivityAudioSessionV1 } from "../../../app/learning_v2_activity_audio_preload_v1";
 import { preloadCurrentLearningV2ActivityReleasedSessionV1 } from "../../../app/learning_v2_activity_released_session_client_v1";
 import { parseLearningV2ActivityAuxiliaryRouteScopeV1 } from "../../../app/use_learning_v2_activity_auxiliary_session_v1";
+import { lessonNamesForStudyTarget } from "../../../app/lesson_titles_for_study_target";
+import {
+  LEARNING_V2_COURSE_LESSON_COUNT_V1,
+  LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
+  LEARNING_V2_LESSON_SESSION_COUNT_V1,
+  learningV2CourseSessionIdV1,
+  learningV2CourseSessionRoleV1,
+} from "../../../modules/learning-v2/content/course_topology_v1";
 
 const SESSION_IDS = ["understand", "use", "master"].flatMap((zone) =>
   [1, 2, 3, 4].map((index) => `lesson-1-${zone}-${index}`),
 );
-const fallbackModel = buildLessonMapModel({
-  lessonId: 1,
-  completedSessionIds: [],
-  currentSessionId: SESSION_IDS[0],
-});
-
-const EPISODE_TITLES = Object.freeze([
-  "Знакомство",
-  "Who’s this? What’s that?",
-  "My people, my things",
-  "What I like and want",
-  "My ordinary day",
-  "When and how often?",
-  "Can you help me?",
-  "First day here",
-  "My home and neighborhood",
-  "At the shop",
-  "What’s happening now?",
-  "Yesterday: where and what",
-  "My weekend story",
-  "I don’t feel well",
-  "Let’s make a plan",
-  "Weekend with a friend",
-  "At the station or airport",
-  "Checking in",
-  "A meal that works for me",
-  "Which one is better?",
-  "Have you ever…?",
-  "Rules and permission",
-  "Keep the conversation going",
-  "Travel day goes wrong",
-  "My work or study day",
-  "What happened while…?",
-  "Solve a service problem",
-  "If this happens…",
-  "The person or place I mean",
-  "Messages and what people said",
-  "My story and next step",
-  "One independent day",
-] as const);
-
-const COURSE_CHAPTERS = Object.freeze([
-  {
-    ordinal: 1,
-    title: "Я могу начать разговор",
-    subtitle: "Знакомство, люди, желания и первые просьбы",
-    accent: "#6FD6FF",
-  },
-  {
-    ordinal: 2,
-    title: "Моя повседневная жизнь",
-    subtitle: "Дом, покупки, планы и события",
-    accent: "#A78BFA",
-  },
-  {
-    ordinal: 3,
-    title: "Я справляюсь в поездке",
-    subtitle: "Транспорт, отель, еда и живое общение",
-    accent: "#F8C65C",
-  },
-  {
-    ordinal: 4,
-    title: "Я говорю самостоятельно",
-    subtitle: "Работа, истории, проблемы и решения",
-    accent: "#8EE65A",
-  },
-] as const);
+const LESSON_CHAPTERS = Object.freeze(
+  Array.from({ length: LEARNING_V2_LESSON_CHAPTER_COUNT_V1 }, (_, index) => ({
+    ordinal: index + 1,
+    title: `Глава ${index + 1}`,
+    subtitle: `Сессии ${index * 8 + 1}–${(index + 1) * 8}`,
+  })),
+);
 
 const SESSION_ZONE_META = Object.freeze({
   understand: { label: "ПОНЯТЬ", icon: "sparkles" },
@@ -198,66 +147,86 @@ function mapDecorationAt(
   return null;
 }
 
-type CourseRoadNode = Readonly<{
-  kind: "episode" | "checkpoint";
+type LockedSessionRoadNode = Readonly<{
+  kind: "locked_session" | "checkpoint";
   id: string;
   ordinal: number;
   chapterOrdinal: number;
   title: string;
   xOffset: number;
-  accent: string;
 }>;
 
 type CourseRoadItem =
-  | Readonly<{ kind: "zone"; id: string; title: string }>
   | Readonly<{ kind: "session"; id: string; node: LessonMapNode }>
   | Readonly<{
       kind: "chapter";
       id: string;
-      chapter: (typeof COURSE_CHAPTERS)[number];
+      chapter: (typeof LESSON_CHAPTERS)[number];
     }>
-  | CourseRoadNode;
+  | LockedSessionRoadNode;
 
-const FUTURE_COURSE_ROAD = Object.freeze(
-  Array.from({ length: 31 }, (_, index): CourseRoadItem => {
-    const ordinal = index + 2;
-    const chapterOrdinal = Math.ceil(ordinal / 8);
-    const chapter = COURSE_CHAPTERS[chapterOrdinal - 1];
-    const checkpoint = ordinal % 8 === 0;
-    return Object.freeze({
-      kind: checkpoint ? "checkpoint" : "episode",
-      id: `episode-${ordinal}`,
-      ordinal,
-      chapterOrdinal,
-      title: EPISODE_TITLES[ordinal - 1],
-      xOffset: [-68, -18, 68, 20][ordinal % 4],
-      accent: chapter.accent,
-    } satisfies CourseRoadNode);
-  }),
-);
-
-function buildCourseRoadItems(
+function buildLessonRoadItems(
   model: ReturnType<typeof buildLessonMapModel>,
+  lessonOrdinal: number,
 ): readonly CourseRoadItem[] {
+  const liveNodes = new Map(
+    model.zones.flatMap((zone) => zone.nodes).map((node) => [node.order, node]),
+  );
   const items: CourseRoadItem[] = [];
-  for (const zone of model.zones) {
-    items.push({ kind: "zone", id: `zone-${zone.id}`, title: zone.title });
-    for (const node of zone.nodes)
-      items.push({ kind: "session", id: node.id, node });
-  }
-  for (const item of FUTURE_COURSE_ROAD) {
-    if (item.kind !== "episode" && item.kind !== "checkpoint") continue;
-    if (item.ordinal === 9 || item.ordinal === 17 || item.ordinal === 25) {
-      const chapter = COURSE_CHAPTERS[item.chapterOrdinal - 1];
+  for (
+    let ordinal = 1;
+    ordinal <= LEARNING_V2_LESSON_SESSION_COUNT_V1;
+    ordinal += 1
+  ) {
+    const chapterOrdinal = Math.ceil(ordinal / 8);
+    const chapter = LESSON_CHAPTERS[chapterOrdinal - 1];
+    if ((ordinal - 1) % 8 === 0) {
       items.push({
         kind: "chapter",
-        id: `chapter-${item.chapterOrdinal}`,
+        id: `lesson-${lessonOrdinal}-chapter-${chapterOrdinal}`,
         chapter,
       });
     }
-    items.push(item);
+    const liveNode = liveNodes.get(ordinal);
+    if (liveNode) {
+      items.push({ kind: "session", id: liveNode.id, node: liveNode });
+      continue;
+    }
+    const role = learningV2CourseSessionRoleV1(ordinal);
+    const checkpoint = role === "chapter_checkpoint" || role === "final_exam";
+    items.push(
+      Object.freeze({
+        kind: checkpoint ? "checkpoint" : "locked_session",
+        id: `lesson-${lessonOrdinal}-session-${ordinal}`,
+        ordinal,
+        chapterOrdinal,
+        title:
+          role === "final_exam"
+            ? "Итоговый экзамен"
+            : role === "chapter_checkpoint"
+              ? "Проверка главы"
+              : `Сессия ${ordinal}`,
+        xOffset: [-68, -18, 68, 20][ordinal % 4],
+      } satisfies LockedSessionRoadNode),
+    );
   }
   return Object.freeze(items);
+}
+
+function sessionOutcomeText(sessionOrdinal: number): string {
+  if (sessionOrdinal <= 4) {
+    return "Вы поймёте, как am, is и are превращают отдельные слова в законченную фразу.";
+  }
+  if (sessionOrdinal <= 8) {
+    return "Вы научитесь самостоятельно собирать простые фразы с глаголом to be.";
+  }
+  return "Вы сможете без подсказки применять am, is и are в коротком разговоре.";
+}
+
+function sessionOutcomeTitle(sessionOrdinal: number): string {
+  if (sessionOrdinal <= 4) return "Что вы поймёте";
+  if (sessionOrdinal <= 8) return "Чему научитесь";
+  return "Что сможете делать";
 }
 
 function Node({
@@ -265,11 +234,13 @@ function Node({
   pathIndex,
   decoration,
   onPress,
+  theme,
 }: {
   node: LessonMapNode;
   pathIndex: number;
   decoration: ReturnType<typeof mapDecorationAt>;
   onPress: (node: LessonMapNode) => void;
+  theme: ReturnType<typeof useTheme>["theme"];
 }) {
   const reducedMotion = useReducedMotion();
   const halo = useSharedValue(node.state === "current" ? 0.7 : 0);
@@ -360,7 +331,12 @@ function Node({
             pointerEvents="none"
             style={[
               styles.halo,
-              { width: size, height: size, borderRadius: size / 2 },
+              {
+                width: size,
+                height: size,
+                borderRadius: size / 2,
+                backgroundColor: theme.accent,
+              },
               haloStyle,
             ]}
           />
@@ -378,18 +354,32 @@ function Node({
             styles.node,
             { width: size, height: size, borderRadius: size / 2 },
             styles[`node_${node.state}`],
+            node.state === "current" && {
+              backgroundColor: theme.accent,
+              borderColor: theme.borderHighlight,
+            },
+            node.state === "completed" && {
+              backgroundColor: theme.correct,
+              borderColor: theme.borderHighlight,
+            },
+            (node.state === "locked" || node.state === "next") && {
+              backgroundColor: theme.bgSurface2,
+              borderColor: theme.border,
+            },
             pressed && !locked && styles.nodePressed,
           ]}
         >
           {locked ? (
-            <Ionicons name="lock-closed" size={20} color="#777D88" />
+            <Ionicons name="lock-closed" size={20} color={theme.textMuted} />
           ) : node.state === "completed" ? (
-            <Ionicons name="checkmark" size={28} color="#07110A" />
+            <Ionicons name="checkmark" size={28} color={theme.correctText} />
           ) : (
             <Ionicons
               name={node.state === "current" ? "star" : zoneMeta.icon}
               size={node.state === "current" ? 34 : 25}
-              color={node.state === "current" ? "#17120A" : "#F7F9FB"}
+              color={
+                node.state === "current" ? theme.correctText : theme.textPrimary
+              }
             />
           )}
           {!locked && node.state !== "completed" && (
@@ -402,7 +392,9 @@ function Node({
               <Text
                 style={[
                   styles.nodeOrderText,
+                  { color: theme.textPrimary },
                   node.state === "current" && styles.nodeOrderTextCurrent,
+                  node.state === "current" && { color: theme.correctText },
                 ]}
               >
                 {node.order}
@@ -420,11 +412,13 @@ function FutureCourseNode({
   pathIndex,
   decoration,
   onPress,
+  theme,
 }: {
-  node: CourseRoadNode;
+  node: LockedSessionRoadNode;
   pathIndex: number;
   decoration: ReturnType<typeof mapDecorationAt>;
-  onPress: (node: CourseRoadNode) => void;
+  onPress: (node: LockedSessionRoadNode) => void;
+  theme: ReturnType<typeof useTheme>["theme"];
 }) {
   const isCheckpoint = node.kind === "checkpoint";
   const xOffset = pathOffsetAt(pathIndex);
@@ -447,7 +441,7 @@ function FutureCourseNode({
       )}
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel={`${isCheckpoint ? "Проверка" : "Тема"}: ${node.title}, пока закрыта`}
+        accessibilityLabel={`${isCheckpoint ? "Проверка" : "Сессия"}: ${node.title}, пока закрыта`}
         accessibilityHint="Сначала завершите предыдущие шаги"
         onPress={() => onPress(node)}
         style={({ pressed }) => [
@@ -459,13 +453,16 @@ function FutureCourseNode({
         <View
           style={[
             isCheckpoint ? styles.examNode : styles.episodeNode,
-            { borderColor: `${node.accent}70` },
+            {
+              backgroundColor: theme.bgSurface2,
+              borderColor: theme.border,
+            },
           ]}
         >
           <Ionicons
             name={isCheckpoint ? "trophy" : episodeIcon}
             size={isCheckpoint ? 29 : 24}
-            color={isCheckpoint ? node.accent : "#7D8794"}
+            color={isCheckpoint ? theme.gold : theme.textMuted}
           />
           {!isCheckpoint && (
             <View style={styles.episodeNumberBadge}>
@@ -482,10 +479,12 @@ function FutureCourseNode({
                 : styles.futureNodeLabelRight,
             ]}
           >
-            <Text style={[styles.futureNodeEyebrow, { color: node.accent }]}>
+            <Text style={[styles.futureNodeEyebrow, { color: theme.accent }]}>
               {isCheckpoint ? "ПРОВЕРКА" : "СЛЕДУЮЩАЯ ТЕМА"}
             </Text>
-            <Text style={styles.futureNodeTitle}>{node.title}</Text>
+            <Text style={[styles.futureNodeTitle, { color: theme.textMuted }]}>
+              {node.title}
+            </Text>
           </View>
         )}
       </Pressable>
@@ -504,6 +503,7 @@ function LessonMapSheet({
   bottomInset: number;
   children: React.ReactNode;
 }>) {
+  const { theme: t } = useTheme();
   const { height: viewportHeight } = useWindowDimensions();
   const dragY = useSharedValue(0);
   useEffect(() => {
@@ -568,11 +568,16 @@ function LessonMapSheet({
               accessibilityViewIsModal
               style={[
                 styles.sheet,
-                { paddingBottom: bottomInset + 18 },
+                {
+                  paddingBottom: bottomInset + 18,
+                  backgroundColor: t.bgCard,
+                },
                 animatedSheet,
               ]}
             >
-              <View style={styles.grabber} />
+              <View
+                style={[styles.grabber, { backgroundColor: t.textGhost }]}
+              />
               <Pressable
                 accessibilityRole="button"
                 accessibilityLabel="Закрыть"
@@ -580,10 +585,11 @@ function LessonMapSheet({
                 onPress={onClose}
                 style={({ pressed }) => [
                   styles.sheetClose,
+                  { backgroundColor: t.bgSurface2 },
                   pressed && styles.nodePressed,
                 ]}
               >
-                <Ionicons name="close" size={23} color="#D9E2EC" />
+                <Ionicons name="close" size={23} color={t.textPrimary} />
               </Pressable>
               {children}
             </Animated.View>
@@ -608,6 +614,17 @@ export default function LearningV2LessonMap() {
   const { id } = params;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const { theme: t, f } = useTheme();
+  const parsedLessonOrdinal = Math.trunc(Number(id ?? 1));
+  const lessonOrdinal = Number.isFinite(parsedLessonOrdinal)
+    ? Math.max(
+        1,
+        Math.min(LEARNING_V2_COURSE_LESSON_COUNT_V1, parsedLessonOrdinal),
+      )
+    : 1;
+  const lessonTitle =
+    lessonNamesForStudyTarget(lang, studyTarget)[lessonOrdinal - 1] ??
+    `Урок ${lessonOrdinal}`;
   const auxiliaryScope = useMemo(
     () =>
       parseLearningV2ActivityAuxiliaryRouteScopeV1({
@@ -622,9 +639,16 @@ export default function LearningV2LessonMap() {
     ],
   );
   const systemReducedMotion = useReducedMotion();
-  const [model, setModel] = useState(fallbackModel);
+  const [model, setModel] = useState(() =>
+    buildLessonMapModel({
+      lessonId: lessonOrdinal,
+      completedSessionIds: [],
+      currentSessionId: lessonOrdinal === 1 ? SESSION_IDS[0] : undefined,
+      available: lessonOrdinal === 1,
+    }),
+  );
   const [selected, setSelected] = useState<
-    LessonMapNode | CourseRoadNode | null
+    LessonMapNode | LockedSessionRoadNode | null
   >(null);
   const [localRecoveryReady, setLocalRecoveryReady] = useState(false);
   const [localRecoveryOutcome, setLocalRecoveryOutcome] = useState<
@@ -649,14 +673,17 @@ export default function LearningV2LessonMap() {
       ? parsed
       : null;
   }, [params.resultSessionId, params.resultStars]);
-  const roadItems = useMemo(() => buildCourseRoadItems(model), [model]);
+  const roadItems = useMemo(
+    () => buildLessonRoadItems(model, lessonOrdinal),
+    [lessonOrdinal, model],
+  );
   const pathIndexByItemId = useMemo(() => {
     const indexById = new Map<string, number>();
     let pathIndex = 0;
     for (const item of roadItems) {
       if (
         item.kind === "session" ||
-        item.kind === "episode" ||
+        item.kind === "locked_session" ||
         item.kind === "checkpoint"
       ) {
         indexById.set(item.id, pathIndex);
@@ -720,16 +747,25 @@ export default function LearningV2LessonMap() {
     }).catch(() => undefined);
   }, [auxiliaryScope, isMapFocused, lang, model, studyTarget]);
   useEffect(() => {
-    if (id && id !== "1") return;
+    if (lessonOrdinal !== 1) return;
     const task = InteractionManager.runAfterInteractions(
       warmLesson1SessionRuntime,
     );
     return () => task.cancel();
-  }, [id]);
+  }, [lessonOrdinal]);
   useEffect(() => {
-    if ((id && id !== "1") || !isMapFocused) {
+    if (lessonOrdinal !== 1 || !isMapFocused) {
       setLocalRecoveryReady(false);
       setLocalRecoveryOutcome("pending");
+      if (lessonOrdinal !== 1) {
+        setModel(
+          buildLessonMapModel({
+            lessonId: lessonOrdinal,
+            completedSessionIds: [],
+            available: false,
+          }),
+        );
+      }
       return;
     }
     setLocalRecoveryReady(false);
@@ -780,10 +816,10 @@ export default function LearningV2LessonMap() {
     return () => {
       cancelled = true;
     };
-  }, [id, isMapFocused]);
+  }, [isMapFocused, lessonOrdinal]);
   useEffect(() => {
     if (
-      (id && id !== "1") ||
+      lessonOrdinal !== 1 ||
       !isMapFocused ||
       !localRecoveryReady ||
       localRecoveryOutcome === "pending"
@@ -822,7 +858,7 @@ export default function LearningV2LessonMap() {
         }),
       );
     };
-  }, [id, isMapFocused, localRecoveryOutcome, localRecoveryReady]);
+  }, [isMapFocused, lessonOrdinal, localRecoveryOutcome, localRecoveryReady]);
   useEffect(() => () => cancelPreparedLearningV2SessionNetworkIntent(), []);
   const completeCount = model.zones
     .flatMap((zone) => zone.nodes)
@@ -851,7 +887,7 @@ export default function LearningV2LessonMap() {
     prepareLearningV2SessionNetworkIntent(node.id);
     setSelected(node);
   };
-  const selectCourseNode = (node: CourseRoadNode) => {
+  const selectCourseNode = (node: LockedSessionRoadNode) => {
     navigationLatchRef.current = false;
     cancelPreparedLearningV2SessionNetworkIntent();
     setSelected(node);
@@ -870,7 +906,7 @@ export default function LearningV2LessonMap() {
       ? selected
       : null;
   return (
-    <View style={styles.screen}>
+    <View style={[styles.screen, { backgroundColor: t.bgPrimary }]}>
       <FlatList
         data={roadItems}
         keyExtractor={(item) => item.id}
@@ -887,10 +923,10 @@ export default function LearningV2LessonMap() {
                 accessibilityRole="button"
                 accessibilityLabel="Назад"
                 hitSlop={10}
-                onPress={() => safeRouterBack(router, "/lessons_list")}
-                style={styles.headerButton}
+                onPress={() => safeRouterBack(router, "/learning-v2/course")}
+                style={[styles.headerButton, { backgroundColor: t.bgCard }]}
               >
-                <Ionicons name="chevron-back" size={24} color="#F4F6F8" />
+                <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
               </Pressable>
               <Animated.View
                 accessibilityRole="text"
@@ -900,16 +936,35 @@ export default function LearningV2LessonMap() {
                     ? "Подтверждённый баланс звёзд ещё не создан"
                     : `Подтверждённый баланс: ${walletStarsLabel} звёзд`
                 }
-                style={[styles.wallet, walletPulseStyle]}
+                style={[
+                  styles.wallet,
+                  { backgroundColor: t.bgCard },
+                  walletPulseStyle,
+                ]}
               >
-                <Ionicons name="star" size={16} color="#F5C84C" />
-                <Text style={styles.walletText}>{walletStarsLabel}</Text>
+                <Ionicons name="star" size={16} color={t.gold} />
+                <Text style={[styles.walletText, { color: t.textPrimary }]}>
+                  {walletStarsLabel}
+                </Text>
               </Animated.View>
             </View>
             <View style={styles.courseIdentity}>
               <View style={styles.courseIdentityCopy}>
-                <Text style={styles.eyebrow}>АНГЛИЙСКИЙ · A1</Text>
-                <Text style={styles.title}>Путь к свободной речи</Text>
+                <Text style={[styles.eyebrow, { color: t.textMuted }]}>
+                  УРОК {lessonOrdinal} · 56 СЕССИЙ
+                </Text>
+                <Text
+                  style={[
+                    styles.title,
+                    {
+                      color: t.textPrimary,
+                      fontSize: f.h1,
+                      lineHeight: f.h1 + 5,
+                    },
+                  ]}
+                >
+                  {lessonTitle}
+                </Text>
               </View>
             </View>
             {returnReward && (
@@ -922,11 +977,14 @@ export default function LearningV2LessonMap() {
                 accessible
                 accessibilityLabel={`Результат сессии сохранён. ${returnReward.provisionalStars} из ${returnReward.maxStars} звёзд качества. Общий баланс обновляется отдельно.`}
                 accessibilityLiveRegion="polite"
-                style={styles.returnReward}
+                style={[
+                  styles.returnReward,
+                  { backgroundColor: t.bgCard, borderColor: t.border },
+                ]}
               >
                 <View
                   importantForAccessibility="no-hide-descendants"
-                  style={styles.returnRewardIcon}
+                  style={[styles.returnRewardIcon, { backgroundColor: t.gold }]}
                 >
                   <Ionicons
                     name={
@@ -935,18 +993,24 @@ export default function LearningV2LessonMap() {
                         : "star-outline"
                     }
                     size={25}
-                    color="#07110A"
+                    color={t.textOnGold}
                   />
                 </View>
                 <View style={styles.returnRewardCopy}>
-                  <Text style={styles.returnRewardEyebrow}>
+                  <Text
+                    style={[styles.returnRewardEyebrow, { color: t.textMuted }]}
+                  >
                     РЕЗУЛЬТАТ СЕССИИ СОХРАНЁН
                   </Text>
-                  <Text style={styles.returnRewardTitle}>
+                  <Text
+                    style={[styles.returnRewardTitle, { color: t.textPrimary }]}
+                  >
                     {returnReward.provisionalStars} из {returnReward.maxStars}{" "}
                     звёзд качества
                   </Text>
-                  <Text style={styles.returnRewardNote}>
+                  <Text
+                    style={[styles.returnRewardNote, { color: t.textMuted }]}
+                  >
                     Общий баланс обновляется отдельно
                   </Text>
                 </View>
@@ -955,37 +1019,51 @@ export default function LearningV2LessonMap() {
             <View
               style={[
                 styles.chapterCard,
-                { borderColor: `${COURSE_CHAPTERS[0].accent}66` },
+                { backgroundColor: t.bgCard, borderColor: t.border },
               ]}
             >
               <View style={styles.chapterTopline}>
-                <Text
+                <Text style={[styles.chapterEyebrow, { color: t.accent }]}>
+                  КАРТА УРОКА
+                </Text>
+                <View
                   style={[
-                    styles.chapterEyebrow,
-                    { color: COURSE_CHAPTERS[0].accent },
+                    styles.chapterProgressPill,
+                    { backgroundColor: t.bgSurface },
                   ]}
                 >
-                  ТЕКУЩАЯ ТЕМА
-                </Text>
-                <View style={styles.chapterProgressPill}>
-                  <Ionicons name="star" size={12} color="#F5C84C" />
-                  <Text style={styles.chapterProgressText}>
-                    {completeCount}/12
+                  <Ionicons name="star" size={12} color={t.gold} />
+                  <Text
+                    style={[
+                      styles.chapterProgressText,
+                      { color: t.textPrimary },
+                    ]}
+                  >
+                    {completeCount}/{LEARNING_V2_LESSON_SESSION_COUNT_V1}
                   </Text>
                 </View>
               </View>
-              <Text style={styles.chapterTitle}>Знакомство</Text>
-              <Text style={styles.chapterSubtitle}>
-                Представься и начни простой разговор
+              <Text style={[styles.chapterTitle, { color: t.textPrimary }]}>
+                Урок {lessonOrdinal}
+              </Text>
+              <Text style={[styles.chapterSubtitle, { color: t.textMuted }]}>
+                {LEARNING_V2_LESSON_CHAPTER_COUNT_V1} глав ·{" "}
+                {LEARNING_V2_LESSON_SESSION_COUNT_V1} сессий
               </Text>
               <View
-                accessibilityLabel={`Пройдено ${completeCount} из 12`}
-                style={styles.progressTrack}
+                accessibilityLabel={`Пройдено ${completeCount} из ${LEARNING_V2_LESSON_SESSION_COUNT_V1}`}
+                style={[
+                  styles.progressTrack,
+                  { backgroundColor: t.bgSurface2 },
+                ]}
               >
                 <View
                   style={[
                     styles.progressFill,
-                    { width: `${Math.round((completeCount / 12) * 100)}%` },
+                    { backgroundColor: t.accent },
+                    {
+                      width: `${Math.round((completeCount / LEARNING_V2_LESSON_SESSION_COUNT_V1) * 100)}%`,
+                    },
                   ]}
                 />
               </View>
@@ -993,8 +1071,6 @@ export default function LearningV2LessonMap() {
           </>
         }
         renderItem={({ item }) => {
-          if (item.kind === "zone")
-            return <Text style={styles.zone}>{item.title}</Text>;
           if (item.kind === "session") {
             const pathIndex = pathIndexByItemId.get(item.id) ?? 0;
             return (
@@ -1003,6 +1079,7 @@ export default function LearningV2LessonMap() {
                 pathIndex={pathIndex}
                 decoration={mapDecorationAt(pathIndex)}
                 onPress={selectNode}
+                theme={t}
               />
             );
           }
@@ -1012,11 +1089,13 @@ export default function LearningV2LessonMap() {
                 style={[
                   styles.chapterCard,
                   styles.futureChapterCard,
-                  { borderColor: `${item.chapter.accent}55` },
+                  { backgroundColor: t.bgCard, borderColor: t.border },
                 ]}
               >
-                <Text style={styles.chapterTitle}>{item.chapter.title}</Text>
-                <Text style={styles.chapterSubtitle}>
+                <Text style={[styles.chapterTitle, { color: t.textPrimary }]}>
+                  {item.chapter.title}
+                </Text>
+                <Text style={[styles.chapterSubtitle, { color: t.textMuted }]}>
                   {item.chapter.subtitle}
                 </Text>
               </View>
@@ -1028,6 +1107,7 @@ export default function LearningV2LessonMap() {
               pathIndex={pathIndex}
               decoration={mapDecorationAt(pathIndex)}
               onPress={selectCourseNode}
+              theme={t}
             />
           );
         }}
@@ -1039,28 +1119,27 @@ export default function LearningV2LessonMap() {
       >
         {selectedCourseNode ? (
           <>
-            <Text style={styles.sheetTitle}>
+            <Text style={[styles.sheetTitle, { color: t.textPrimary }]}>
               {selectedCourseNode.kind === "checkpoint"
                 ? "Проверка"
-                : "Тема пока закрыта"}
+                : `Сессия ${selectedCourseNode.ordinal}`}
             </Text>
-            <Text style={styles.sheetText}>
-              {selectedCourseNode.title}. Сначала завершите предыдущий шаг
-              маршрута.
+            <Text style={[styles.sheetText, { color: t.textMuted }]}>
+              {selectedCourseNode.title}. Сначала завершите предыдущую сессию.
             </Text>
           </>
         ) : selectedSession ? (
           <>
-            <Text style={styles.sheetTitle}>
-              Сессия {selectedSession.order}
+            <Text style={[styles.sheetTitle, { color: t.textPrimary }]}>
+              {sessionOutcomeTitle(selectedSession.order)}
             </Text>
-            <Text style={styles.sheetText}>
+            <Text style={[styles.sheetText, { color: t.textMuted }]}>
               {selectedSession.state === "locked" ||
               selectedSession.state === "next"
                 ? "Сначала спокойно заверши предыдущую сессию."
                 : selectedSession.state === "completed"
                   ? "Сессия пройдена. Можно улучшить результат и собрать больше звёзд."
-                  : "12 заданий · до 36 звёзд"}
+                  : sessionOutcomeText(selectedSession.order)}
             </Text>
           </>
         ) : null}
@@ -1074,24 +1153,32 @@ export default function LearningV2LessonMap() {
             ) {
               if (navigationLatchRef.current) return;
               navigationLatchRef.current = true;
+              setSelected(null);
               try {
-                router.push({
-                  pathname: "/learning-v2/session/[id]",
-                  params: {
-                    id: selectedSession.id,
-                    runKind:
-                      selectedSession.state === "completed"
-                        ? "repeat"
-                        : "initial",
-                    ...(auxiliaryScope
-                      ? {
-                          releaseEnvironment: auxiliaryScope.environment,
-                          releaseSeasonId: auxiliaryScope.seasonId,
-                          releaseEpisodeId: auxiliaryScope.episodeId,
-                        }
-                      : {}),
-                  },
-                } as never);
+                requestAnimationFrame(() => {
+                  router.push({
+                    pathname: "/learning-v2/session/[id]",
+                    params: {
+                      id: learningV2CourseSessionIdV1(
+                        lessonOrdinal,
+                        selectedSession.order,
+                      ),
+                      runtimeMode: "direct_v1",
+                      lessonOrdinal: String(lessonOrdinal),
+                      sessionOrdinal: String(selectedSession.order),
+                      runKind:
+                        selectedSession.state === "completed"
+                          ? "repeat"
+                          : "initial",
+                      ...(auxiliaryScope
+                        ? {
+                            releaseEnvironment: auxiliaryScope.environment,
+                            releaseSeasonId: auxiliaryScope.seasonId,
+                          }
+                        : {}),
+                    },
+                  } as never);
+                });
               } catch (error) {
                 navigationLatchRef.current = false;
                 cancelPreparedLearningV2SessionNetworkIntent(
@@ -1103,9 +1190,9 @@ export default function LearningV2LessonMap() {
             }
             dismissSheet();
           }}
-          style={styles.sheetCta}
+          style={[styles.sheetCta, { backgroundColor: t.accent }]}
         >
-          <Text style={styles.sheetCtaText}>
+          <Text style={[styles.sheetCtaText, { color: t.correctText }]}>
             {selectedSession?.state === "current"
               ? "Начать"
               : selectedSession?.state === "completed"

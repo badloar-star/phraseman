@@ -15,7 +15,7 @@ import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import { redirectSystemPath } from './+native-intent';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, AppState, Easing, InteractionManager, LogBox, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, BackHandler, Easing, InteractionManager, LogBox, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -175,7 +175,13 @@ import { OverlayArbiterProvider, useOverlayVisible } from '../components/Overlay
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
 import { ProductAnalyticsRuntimeObserver } from './product_analytics_runtime_observer';
-import { markNextNavigationAsReplace, rememberNavigationPath } from './navigation_back';
+import {
+  markNextNavigationAsReplace,
+  navigationFallbackForPath,
+  rememberNavigationPath,
+  safeRouterBack,
+  shouldHandleGlobalHardwareBack,
+} from './navigation_back';
 import {
   cancelScheduledAnimatedStateUpdates,
   scheduleTrackedAnimatedStateUpdate,
@@ -1583,6 +1589,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [globalBroadcastModal, setGlobalBroadcastModal] = useState<GlobalBroadcastModalPayload | null>(null);
   const [personalAdminMessage, setPersonalAdminMessage] = useState<AppMessageWithState | null>(null);
   const [accountGeneration, setAccountGeneration] = useState(() => captureAccountGeneration());
+  const [, setCosmeticCatalogRevision] = useState(0);
   const [appIsActive, setAppIsActive] = useState(AppState.currentState === 'active');
   const [leagueBonusAvailable, setLeagueBonusAvailable] = useState<LeagueBonusAvailability | null>(null);
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
@@ -1671,6 +1678,18 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, []);
 
   useEffect(() => {
+    const subscription = onAppEvent('cosmetic_asset_catalog_changed', () => {
+      // Availability lives in a tiny module registry; one root render refreshes
+      // every mounted profile/catalog without per-avatar subscriptions.
+      setCosmeticCatalogRevision((current) => current + 1);
+    });
+    void import('./cosmetic_asset_archive')
+      .then(({ hydrateCosmeticAssetCatalog }) => hydrateCosmeticAssetCatalog())
+      .catch(() => {});
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
     const subscription = subscribeAccountGeneration((token) => {
       setAccountGeneration(token);
       setPersonalAdminMessage(null);
@@ -1743,6 +1762,37 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     rememberNavigationPath(navigationPathSignature);
   }, [navigationPathSignature]);
+
+  // Android hardware Back must obey the same section boundary as every visible
+  // back button. Screens with a richer local contract (confirm forfeit, close an
+  // inner sheet, persist a lesson) are excluded by shouldHandleGlobalHardwareBack.
+  useEffect(() => {
+    if (
+      Platform.OS !== 'android'
+      || !ready
+      || effectiveShowOnboarding
+      || isBanned
+      || startupSecurityBlocked
+      || currentDevUtilityRoute
+      || !shouldHandleGlobalHardwareBack(navigationPathSignature ?? pathname)
+    ) return;
+
+    const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+      const currentPath = navigationPathSignature ?? pathname;
+      safeRouterBack(router, navigationFallbackForPath(currentPath));
+      return true;
+    });
+    return () => subscription.remove();
+  }, [
+    currentDevUtilityRoute,
+    effectiveShowOnboarding,
+    isBanned,
+    navigationPathSignature,
+    pathname,
+    ready,
+    router,
+    startupSecurityBlocked,
+  ]);
 
   useEffect(() => {
     const sub = Linking.addEventListener('url', ({ url }) => {
@@ -2454,7 +2504,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       });
       InteractionManager.runAfterInteractions(() => {
         void import('./flashcards_swipe').catch(() => {});
-        import('./flashcards_collection')
+        import('./flashcards/useCollectionData')
           .then((m) => m.primeFlashcardsCollectionCache())
           .catch(() => {});
       });
@@ -3194,7 +3244,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       {/* Cards 2.1 §5.3: каталог наборов сообщества — правая позиция таббара раздела */}
       <Stack.Screen name="flashcards_packs" />
       {/* Cards 2.1 §5.3: «Мои наборы» — второй раздел всплывашки «Наборы» */}
-      <Stack.Screen name="flashcards/my_packs" />
+      <Stack.Screen name="flashcards_my_packs" />
       <Stack.Screen name="flashcards_audio" />
       <Stack.Screen name="flashcards_collection" />
       <Stack.Screen name="flashcards_swipe" />
@@ -3216,7 +3266,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="terms_screen" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="lingman_videos" />
       <Stack.Screen name="lingman_playlist" />
-      <Stack.Screen name="lingman_video_player" />
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_words_session" />
       <Stack.Screen name="flashcards_listening_session" />

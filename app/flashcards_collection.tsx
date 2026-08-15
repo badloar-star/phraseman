@@ -30,6 +30,7 @@ import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { isLightThemeMode } from '../constants/theme';
 import { actionToastTri, emitAppEvent } from './events';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { CATEGORIES, STR } from './flashcards/constants';
 import { SYSTEM_CARDS } from './flashcards/system-cards';
 import { CardItem, CategoryId } from './flashcards/types';
@@ -46,6 +47,12 @@ import CollectionListView, {
 } from './flashcards/CollectionListView';
 // Cards 2.1 §5.2: нижний таббар раздела (Тренировка / + / Наборы)
 import FlashcardsTabBar, { FC_TABBAR_HEIGHT, useFcTabBarScroll } from './flashcards/FlashcardsTabBar';
+// §5.3: два входа в набор — «Мои наборы» и каталог сообщества; «назад» ведёт ровно туда
+import {
+  FC_MY_PACKS_ROUTE,
+  FC_PACKS_ROUTE,
+  shouldBypassEmptyCustomCollection,
+} from './flashcards/tabbar_state';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
 import { publishLocalAuthorPack } from './community_packs/publishLocalPack';
 import CollectionDeckView from './flashcards/CollectionDeckView';
@@ -73,14 +80,6 @@ import {
   usePackBrowseVisual,
   usePackDeeplinkGuard,
   type CollectionLoadedInfo,
-} from './flashcards/useCollectionData';
-
-// Реэкспорт prime/stage — внешние вызовы (хаб, root, flashcards.tsx) не трогаем
-export {
-  primeFlashcardsCollectionCache,
-  stageOwnedPackCardsForNavigation,
-  /** @deprecated те саме, що primeFlashcardsCollectionCache */
-  primeFlashcardsCollectionCache as primeCustomFlashcardsCache,
 } from './flashcards/useCollectionData';
 
 /** E11 (§3.2): debounce строки поиска. */
@@ -116,51 +115,6 @@ export function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang:
   return labels[lang];
 }
 
-/**
- * Плановые локали: куда класть перевод своей карточки. ru/uk/es — базовые поля,
- * остальные языки — в sourceLocales (иначе перевод терялся у 5 новых локалей).
- */
-export function customCardLocalizationForLang(
-  lang: Lang,
-  translatedText: string,
-  existing?: CardItem,
-): { baseRu: string; baseUk: string; baseEs: string; plannedSourceLocales: CardItem['sourceLocales'] } {
-  const sourceLocales = { ...(existing?.sourceLocales ?? {}) };
-  let ru = existing?.ru ?? '';
-  let uk = existing?.uk ?? '';
-  let es = existing?.es ?? '';
-
-  switch (lang) {
-    case 'uk':
-      uk = translatedText;
-      break;
-    case 'es':
-      es = translatedText;
-      break;
-    case 'pt-BR':
-      sourceLocales['pt-BR'] = translatedText;
-      break;
-    case 'vi':
-      sourceLocales.vi = translatedText;
-      break;
-    case 'id':
-      sourceLocales.id = translatedText;
-      break;
-    case 'tr':
-      sourceLocales.tr = translatedText;
-      break;
-    case 'pl':
-      sourceLocales.pl = translatedText;
-      break;
-    case 'ru':
-    default:
-      ru = translatedText;
-      break;
-  }
-
-  return { baseRu: ru, baseUk: uk, baseEs: es, plannedSourceLocales: sourceLocales };
-}
-
 export type FlashcardsCollectionScreenProps = {
   /**
    * Cards 2.1 §5.1: экран открыт как КОРЕНЬ раздела «Карточки» (`/flashcards`) —
@@ -183,7 +137,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const router   = useRouter();
-  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; widgetCard?: string; preview?: string }>();
+  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; widgetCard?: string; preview?: string; from?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
   const packDeeplink = useMemo(() => normalizePackParam(params.pack), [params.pack]);
   const routeCatRef = useRef<CategoryId | null>(null);
@@ -221,16 +175,41 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
    */
   const isDevMarketEnabled = DEV_CONTENT_UNLOCK;
   /**
+   * Откуда открыт набор: `?from=mine` — «Мои наборы», каталог сообщества —
+   * `?from=community` или режим просмотра (`?preview=1` ставит только каталог).
+   */
+  const packBackOrigin = useMemo((): string | null => {
+    if (!packDeeplink) return null;
+    const raw = Array.isArray(params.from) ? params.from[0] : params.from;
+    if (raw === 'mine') return FC_MY_PACKS_ROUTE;
+    if (raw === 'community' || previewRequested) return FC_PACKS_ROUTE;
+    return null;
+  }, [packDeeplink, params.from, previewRequested]);
+
+  /**
    * Pop у стеку; фолбек — корінь розділу («Збережені»), а з самого кореня — головне меню
    * (інакше `replace('/flashcards')` із `/flashcards` замкнуло б екран на собі).
+   *
+   * Набор (замечание владельца, 2026-08-13: «назад» из набора вело на промежуточный
+   * экран): возврат идёт РОВНО туда, откуда набор открыли. `dismissTo` — нативный
+   * POP_TO: он снимает всё, что успело оказаться между каталогом/«Моими наборами»
+   * и набором, поэтому промежуточных остановок не остаётся.
    */
   const leaveCollection = useCallback(() => {
-    if (typeof router.canGoBack === 'function' && router.canGoBack()) {
-      router.back();
-    } else {
-      router.replace((sectionRoot ? '/(tabs)/home' : '/flashcards') as any);
+    const canGoBack = typeof router.canGoBack === 'function' && router.canGoBack();
+    if (packBackOrigin && canGoBack && typeof router.dismissTo === 'function') {
+      try {
+        router.dismissTo(packBackOrigin as any);
+        return;
+      } catch {
+        /* нет такого экрана в стеке — обычный back ниже */
+      }
     }
-  }, [router, sectionRoot]);
+    safeRouterBack(
+      router,
+      (packBackOrigin ?? (sectionRoot ? '/(tabs)/home' : '/flashcards')) as any,
+    );
+  }, [router, sectionRoot, packBackOrigin]);
 
   // ── State ──────────────────────────────────────────────────────────────────
   /** `?pack=` без `cat` — одразу «Власні» (набір), не кадр з «Збережені» до завантаження маркету. */
@@ -311,7 +290,9 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   const onLoaded = useCallback((info: CollectionLoadedInfo) => {
     applyPostLoadNavigation(info, {
       isDevMarketEnabled,
-      routeCat: routeCatRef.current,
+      // Корень раздела всегда открывает «Сохранённые»: восстановление старой
+      // пустой custom-вкладки и создавало удалённый промежуточный экран.
+      routeCat: sectionRoot ? 'saved' : routeCatRef.current,
       packDeeplink: packRouteRef.current,
       pendingRestoreRef,
       setActiveCat,
@@ -319,7 +300,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
       setShowDeleteHint,
       previewMode: previewRequestedRef.current,
     });
-  }, [isDevMarketEnabled, router]);
+  }, [isDevMarketEnabled, router, sectionRoot]);
 
   const {
     savedCards, customCards, marketCards, marketPackCatalog, setMarketPackCatalog,
@@ -330,6 +311,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     isDevMarketEnabled,
     onLoaded,
     previewPackId: previewRequested ? packDeeplink : null,
+    deeplinkPackId: packDeeplink,
   });
 
   useFocusEffect(
@@ -361,7 +343,8 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     communityOwnedIdList,
     accessStableId,
     previewMode: previewRequested,
-    onDenied: () => router.replace('/flashcards' as any),
+    /** Нет доступа — возвращаем туда, откуда пришли, а не на «Сохранённые». */
+    onDenied: () => leaveCollection(),
   });
 
   // ── Derived: категория → фильтр → поиск → free-limit (E11: хук) ────────────
@@ -656,7 +639,45 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   }, [viewMode, tabScroll]);
 
   const searchActive = searchQuery.trim().length > 0;
-  const isEmpty = !loading && filteredCards.length === 0;
+  /**
+   * Набор ещё догружается: список пуст не потому, что набор пустой, а потому что
+   * карточки в пути. Заглушка «пусто» в этот момент и читалась как промежуточный
+   * экран перед набором (замечание владельца, 2026-08-13) — не показываем её.
+   */
+  const packCardsPending = !!packDeeplink && !collectionDataReady && filteredCards.length === 0;
+  const isEmpty = !loading && !packCardsPending && filteredCards.length === 0;
+  const bypassEmptyCustomCollection = shouldBypassEmptyCustomCollection({
+    collectionDataReady,
+    activeCat,
+    packDeeplink,
+    customCardCount: customCards.length,
+  });
+  const resolvingEmptyCustomCollection = activeCat === 'custom'
+    && !packDeeplink
+    && customCards.length === 0
+    && !collectionDataReady;
+
+  useEffect(() => {
+    if (!bypassEmptyCustomCollection) return;
+    // Redirect заменяет native route, но без этой метки наш собственный
+    // section-back stack продолжал помнить пустую коллекцию. Закрытие редактора
+    // тогда возвращало сюда и сразу открывало редактор снова.
+    markNextNavigationAsReplace();
+    router.replace({
+      pathname: '/flashcards_card_editor',
+      params: { create: '1', cat: 'custom' },
+    } as any);
+  }, [bypassEmptyCustomCollection, router]);
+
+  // Не показываем удалённый экран даже одним кадром на холодном чтении storage.
+  // После проверки либо монтируется реальная коллекция, либо Redirect в редактор.
+  if (resolvingEmptyCustomCollection) {
+    return <ScreenGradient><View style={st.safe} /></ScreenGradient>;
+  }
+
+  if (bypassEmptyCustomCollection) {
+    return <ScreenGradient><View style={st.safe} /></ScreenGradient>;
+  }
 
   return (
     <ScreenGradient>
@@ -718,19 +739,14 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
         {isEmpty ? (
           <ContentWrap>
             <CollectionEmptyState
-              activeCat={activeCat}
               lang={strLang}
               t={t}
               f={f}
               emptyTitle={s.empty}
               emptySub={s.emptySub}
               loadError={loadError}
-              allowAddCustomCard={allowAddCustomCard}
-              showCreatePackButton={CLOUD_SYNC_ENABLED && !IS_EXPO_GO}
               onLeave={leaveCollection}
               onRetry={loadAll}
-              onCreateCard={openCreateEditor}
-              onCreatePack={() => router.push('/community_pack_create' as any)}
             />
           </ContentWrap>
         ) : viewMode === 'deck' ? (

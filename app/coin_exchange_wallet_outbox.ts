@@ -39,11 +39,15 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
 const validResult = (value: unknown): value is CoinExchangeResult => {
   if (!isRecord(value) ||
-    ![2, 3].includes(Object.keys(value).length) ||
-    Object.keys(value).some((key) => !['starsGranted', 'rateUsed', 'walletRewardRequest'].includes(key)) ||
+    ![2, 3, 4, 5].includes(Object.keys(value).length) ||
+    Object.keys(value).some((key) => ![
+      'starsGranted', 'rateUsed', 'eventId', 'coinsDebited', 'walletRewardRequest',
+    ].includes(key)) ||
     !Number.isSafeInteger(value.starsGranted) ||
     Number(value.starsGranted) < 0 || !Number.isFinite(value.rateUsed) ||
     Number(value.rateUsed) <= 0) return false;
+  if (value.eventId !== undefined && (typeof value.eventId !== 'string' || !/^[A-Za-z0-9_:-]{8,80}$/.test(value.eventId))) return false;
+  if (value.coinsDebited !== undefined && (!Number.isSafeInteger(value.coinsDebited) || Number(value.coinsDebited) <= 0)) return false;
   if (value.walletRewardRequest === undefined) return true;
   const request = value.walletRewardRequest;
   return isRecord(request) &&

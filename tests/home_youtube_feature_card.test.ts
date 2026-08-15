@@ -61,9 +61,10 @@ describe('home YouTube feature card', () => {
     expect(isHomeYoutubeCatalogFresh(null, 1_000_000)).toBe(false);
   });
 
-  test('uses the atomic catalog, respects runtime/remote control, and never embeds a Home WebView', () => {
+  test('uses the atomic catalog and mounts one inline player only after a Home tap', () => {
     const root = path.join(__dirname, '..');
     const card = readFileSync(path.join(root, 'components/home/HomeYoutubeFeatureCard.tsx'), 'utf8');
+    const sharedCard = readFileSync(path.join(root, 'components/youtube/YoutubeVideoCard.tsx'), 'utf8');
     const home = readFileSync(path.join(root, 'app/(tabs)/home.tsx'), 'utf8');
 
     expect(home).toContain('<HomeYoutubeFeatureCard ownerActive={homeRuntimeActive} studyTarget={studyTarget} />');
@@ -74,8 +75,17 @@ describe('home YouTube feature card', () => {
     expect(card).toContain('peekYoutubeCatalogScreenSnapshot');
     expect(card).toContain('if (!ownerActive || !enabled || !renderScope) return;');
     expect(card).toContain('isVideoButtonEnabled');
-    expect(card).toContain('accessibilityRole="button"');
-    expect(card).toContain("pathname: '/lingman_video_player'");
+    expect(card).toContain('<YoutubeVideoCard');
+    expect(sharedCard).toContain('accessibilityRole="button"');
+    expect(card).toContain('YoutubeInlinePlayer');
+    expect(card).toContain('const [activeVideoId, setActiveVideoId]');
+    expect(card).toContain('setActiveVideoId(video.id)');
+    expect(card).toContain('ownerActive && activeVideoId === video.id');
+    expect(card).toContain('presentation="preview"');
+    expect(sharedCard).not.toContain('testID="lingman-video-watch"');
+    expect(sharedCard).not.toContain('testID="lingman-video-open-youtube"');
+    expect(sharedCard).not.toContain('onOpenYoutube');
+    expect(card).not.toContain("pathname: '/lingman_video_player'");
     expect(card).not.toContain('WebView');
     expect(card).not.toContain('setInterval');
     expect(card).not.toContain('revalidateYoutubeChannelCatalog');

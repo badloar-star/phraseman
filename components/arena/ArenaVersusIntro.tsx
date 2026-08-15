@@ -113,6 +113,11 @@ function ArenaVersusIntroBase({
     return () => { timers.forEach(clearTimeout); };
   }, [digitScale, flash, left, onDone, playSound, reduceMotion, right, vs]);
 
+  // Узкий экран (320 pt) не вмещает две колонки по 108 pt плюс плашку VS:
+  // ряд не переносится и не сжимается, крайние аватары просто уезжали за
+  // край. Поэтому колонки тянутся, а аватар уменьшается вместе с ними.
+  const narrow = width < 350;
+  const avatarSize = narrow ? 62 : 78;
   const travel = Math.min(190, width * 0.45);
   const leftStyle = useAnimatedStyle(() => ({
     opacity: left.value,
@@ -136,8 +141,8 @@ function ArenaVersusIntroBase({
     <View style={styles.root} accessibilityLiveRegion="polite">
       <View style={styles.players}>
         <Animated.View style={[styles.player, leftStyle]}>
-          <AvatarView avatar={you?.avatar} auraId={you?.aura} size={78} animateAura={false} ownerActive />
-          <Text numberOfLines={1} style={[styles.name, { color: P.text }]}>{you?.name ?? '—'}</Text>
+          <AvatarView avatar={you?.avatar} auraId={you?.aura} size={avatarSize} animateAura={false} ownerActive />
+          <Text numberOfLines={1} maxFontSizeMultiplier={1.4} style={[styles.name, { color: P.text }]}>{you?.name ?? '—'}</Text>
         </Animated.View>
 
         <Animated.View style={[styles.vsPlate, vsStyle, { backgroundColor: P.accent }]}>
@@ -145,16 +150,16 @@ function ArenaVersusIntroBase({
         </Animated.View>
 
         <Animated.View style={[styles.player, rightStyle]}>
-          <AvatarView avatar={opponent?.avatar} auraId={opponent?.aura} size={78} animateAura={false} ownerActive />
-          <Text numberOfLines={1} style={[styles.name, { color: P.text }]}>{opponent?.name ?? '—'}</Text>
+          <AvatarView avatar={opponent?.avatar} auraId={opponent?.aura} size={avatarSize} animateAura={false} ownerActive />
+          <Text numberOfLines={1} maxFontSizeMultiplier={1.4} style={[styles.name, { color: P.text }]}>{opponent?.name ?? '—'}</Text>
         </Animated.View>
       </View>
 
       <View style={styles.stage}>
         {digit !== null ? (
-          <Animated.Text style={[styles.digit, digitStyle, { color: P.text }]}>{digit}</Animated.Text>
+          <Animated.Text allowFontScaling={false} style={[styles.digit, digitStyle, { color: P.text }]}>{digit}</Animated.Text>
         ) : null}
-        {go ? <Text style={[styles.go, { color: P.accent }]}>{goLabel}</Text> : null}
+        {go ? <Text allowFontScaling={false} numberOfLines={1} adjustsFontSizeToFit style={[styles.go, { color: P.accent }]}>{goLabel}</Text> : null}
       </View>
 
       <Animated.View
@@ -169,8 +174,8 @@ export const ArenaVersusIntro = memo(ArenaVersusIntroBase);
 
 const styles = StyleSheet.create({
   root: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 30 },
-  players: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 14 },
-  player: { alignItems: 'center', gap: 8, width: 108 },
+  players: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 14, alignSelf: 'stretch', paddingHorizontal: 12 },
+  player: { alignItems: 'center', gap: 8, flex: 1, maxWidth: 108 },
   name: { fontSize: 14, fontWeight: '800' },
   vsPlate: { width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center' },
   vsText: { fontSize: 15, fontWeight: '900' },

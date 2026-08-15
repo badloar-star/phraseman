@@ -546,6 +546,8 @@ export type TournamentEntryProvenance = {
   ticketsSpent: number;
   bankContributionGems: number;
   weekId: string;
+  /** One immutable debit/refund identity. Changes only after leave + rejoin. */
+  joinAttemptId?: string;
   /**
    * зачем 2026-08-04 (владелец: Season Pass tournament_ticket — «вход
    * бесплатный для игрока, но в банк добавится 5 жемчужин всё равно»):
@@ -3143,8 +3145,7 @@ const BOT_AVATAR_GRADIENTS = [
   'royal', 'ruby', 'magma', 'noirgold', 'sakura',
 ] as const;
 const BOT_AVATAR_AURAS = [
-  'aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet',
-  'aura-coral', 'aura-prism', 'aura-lagoon', 'aura-sunset',
+  'aura-ember', 'aura-mint', 'aura-prism',
 ] as const;
 
 /**

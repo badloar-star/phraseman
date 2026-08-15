@@ -244,6 +244,7 @@ it('removes fixed and wildcard personal-plan replay state without clearing devic
     `v2:required-session-completion-scheduler:v1:${'a'.repeat(64)}`,
     'learning_v2_owner_repository:v1:account-a:root',
     'learning_v2_coin_exchange_outbox:v1:account-a:g1:exchange-1',
+    'client_shard_semantic_paid_v1:account-a:profile_card_level:1',
   ];
   const deviceKeys = ['app_theme', 'app_font_size', 'haptics_tap'];
 

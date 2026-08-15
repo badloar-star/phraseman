@@ -389,12 +389,10 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
       const key = lessonIrregularShardsGrantedKey(lessonId ?? 0, studyTarget);
       void AsyncStorage.getItem(key).then(done => {
         if (!done) {
-          void addShards('lesson_completed')
-            .then(n => {
-              if (n > 0) {
-                void AsyncStorage.setItem(key, '1');
-              }
-            })
+          void addShards('lesson_completed', {
+            eventId: `irregular:${studyTarget}:${lessonId ?? 0}:completed`,
+            localWrites: [[key, '1']],
+          })
             .catch(() => {});
         }
       }).catch(() => {});

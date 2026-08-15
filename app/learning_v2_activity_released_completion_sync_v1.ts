@@ -45,7 +45,7 @@ type ServerReceipt = Readonly<{
   reconciliationFingerprint: string;
   duplicate: boolean;
   catalogAuthority: "firebase_admin_active_release_12_task_coordinate_match";
-  completionAuthority: "accepted_for_post_session_verification_only";
+  completionAuthority: "accepted_completed_summary_for_storage_only";
   performanceAuthority: "none";
   walletAuthority: "none";
   masteryAuthority: "none";
@@ -84,7 +84,7 @@ function parseReceipt(
     receipt.catalogAuthority !==
       "firebase_admin_active_release_12_task_coordinate_match" ||
     receipt.completionAuthority !==
-      "accepted_for_post_session_verification_only" ||
+      "accepted_completed_summary_for_storage_only" ||
     receipt.performanceAuthority !== "none" ||
     receipt.walletAuthority !== "none" ||
     receipt.masteryAuthority !== "none" ||

@@ -34,6 +34,11 @@ export interface LearningV2ActivityAudioTransportHandleV1 {
   readonly __opaqueLearningV2ActivityAudioTransportHandleV1: unique symbol;
 }
 
+export type LearningV2AudioTransportFileV1 = Pick<
+  LearningV2ActivityAudioRuntimeEntryV1,
+  "objectPath" | "contentHash" | "byteSize" | "contentType"
+>;
+
 const transportHandles = new WeakSet<object>();
 const transportCredentials = new WeakMap<object, CredentialPair>();
 const transportAccounts = new WeakMap<object, AccountGenerationToken>();
@@ -126,7 +131,7 @@ async function credentials(
   }
 }
 
-function exactEntry(entry: LearningV2ActivityAudioRuntimeEntryV1): void {
+function exactEntry(entry: LearningV2AudioTransportFileV1): void {
   if (
     !entry ||
     typeof entry !== "object" ||
@@ -184,7 +189,7 @@ async function readExactBytes(
 }
 
 export async function downloadLearningV2ActivityAudioBytesV1(input: {
-  readonly entry: LearningV2ActivityAudioRuntimeEntryV1;
+  readonly entry: LearningV2AudioTransportFileV1;
   readonly transport: LearningV2ActivityAudioTransportHandleV1;
 }): Promise<Uint8Array> {
   if (

@@ -25,7 +25,6 @@ export type StatsDailyMetric =
   | 'words_learned'
   | 'flashcards_saved'
   | 'phrases_learned'
-  | 'plan_tasks_completed'
   | 'shards_earned'
   | 'shards_spent';
 
@@ -34,7 +33,6 @@ const METRICS_LIST: StatsDailyMetric[] = [
   'words_learned',
   'flashcards_saved',
   'phrases_learned',
-  'plan_tasks_completed',
   'shards_earned',
   'shards_spent',
 ];
@@ -252,7 +250,6 @@ export async function devRandomizeLifetimePathDailyMetrics(dayCount: number): Pr
         words_learned: randIntInclusive(0, 45),
         flashcards_saved: randIntInclusive(0, 14),
         phrases_learned: randIntInclusive(0, 60),
-        plan_tasks_completed: randIntInclusive(0, 5),
         shards_earned: randIntInclusive(0, 90),
         shards_spent: randIntInclusive(0, 55),
       };

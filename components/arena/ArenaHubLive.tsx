@@ -62,10 +62,22 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
       <Animated.View entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.duration(280)}>
         <V2Card pad={16} style={styles.card}>
           <View style={styles.rankHead}>
-            <Text style={[styles.rankName, { color: P.text }]}>
+            {/*
+              Название ранга и число RP стоят в одной строке. Раньше ни одно из
+              них не сжималось: длинное название («Бриллиант · III» при крупном
+              системном шрифте) выдавливало RP за правый край, и игрок терял
+              как раз то число, ради которого сюда смотрит. Название уступает
+              первым — оно и так читается по значку и цвету.
+            */}
+            <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.75}
+              style={[styles.rankName, { color: P.text }]}
+            >
               {arenaText(lang, TIER_COPY[model.rank.tierIndex])} · {ROMAN[model.rank.division]}
             </Text>
-            <Text style={[styles.rp, { color: P.muted }]}>{model.rank.rp}</Text>
+            <Text numberOfLines={1} style={[styles.rp, { color: P.muted }]}>{model.rank.rp}</Text>
           </View>
           {model.rank.top ? (
             <Text style={[styles.meta, { color: P.gold }]}>{arenaText(lang, 'rankTop')}</Text>
@@ -115,11 +127,11 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
             <Text style={[styles.label, { color: P.muted }]}>{arenaText(lang, 'hubNearYou')}</Text>
             {model.friends.map((row) => (
               <View key={row.stableUid} style={styles.friendRow}>
-                <Text style={[styles.place, { color: P.muted }]}>{row.place}</Text>
-                <Text style={[styles.value, { color: row.you ? P.accent : P.text, flex: 1 }]}>
+                <Text numberOfLines={1} maxFontSizeMultiplier={1.4} style={[styles.place, { color: P.muted }]}>{row.place}</Text>
+                <Text numberOfLines={1} style={[styles.value, { color: row.you ? P.accent : P.text, flex: 1 }]}>
                   {row.you ? arenaText(lang, 'you') : arenaText(lang, TIER_COPY[Math.min(7, Math.floor(row.rating / 300))])}
                 </Text>
-                <Text style={[styles.value, { color: P.text }]}>{row.rating}</Text>
+                <Text numberOfLines={1} style={[styles.value, { color: P.text }]}>{row.rating}</Text>
               </View>
             ))}
           </V2Card>
@@ -145,9 +157,9 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
 const styles = StyleSheet.create({
   card: { gap: 8 },
   rowCard: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  rankHead: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' },
-  rankName: { fontSize: 22, fontWeight: '900' },
-  rp: { fontSize: 15, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  rankHead: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: 10 },
+  rankName: { fontSize: 22, fontWeight: '900', flexShrink: 1 },
+  rp: { fontSize: 15, fontWeight: '800', fontVariant: ['tabular-nums'], flexShrink: 0 },
   track: { height: 10, borderRadius: 6, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: 6 },
   meta: { fontSize: 13, fontWeight: '700' },
@@ -158,5 +170,5 @@ const styles = StyleSheet.create({
   value: { fontSize: 15, fontWeight: '800' },
   streak: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   friendRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  place: { width: 22, fontSize: 13, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  place: { minWidth: 22, fontSize: 13, fontWeight: '800', fontVariant: ['tabular-nums'] },
 });

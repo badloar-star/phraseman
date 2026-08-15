@@ -50,7 +50,7 @@ import { ENABLE_DEV_TOOLS } from './config';
 import GoldBevel from '../components/GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../constants/oliveTheme';
-import { addShardsRaw, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
+import { commitConfirmedExternalShardEvent, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance, wasConfirmedExternalShardEventApplied } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import { safeRouterBack } from './navigation_back';
 import {
@@ -1221,10 +1221,6 @@ export default function ShardsShopScreen() {
           // при «500» на экране. Правило закреплено контрактным тестом
           // tests/dev_shards_grant_contract.test.ts.
           //
-          // Порядок важен: локальная запись идёт ПЕРВОЙ и мгновенно двигает
-          // баланс на экране (Optimistic UI), сервер догоняет следом и
-          // становится источником правды через refreshBalance() ниже.
-          await addShardsRaw(shards, 'shards_store_purchase', { skipServerAwait: true });
           const serverGrant = await grantShardsOnServerForDev(shards);
           if (!serverGrant.ok) {
             // Честно говорим, что на сервере жемчужин НЕ прибавилось: иначе
@@ -1235,14 +1231,27 @@ export default function ShardsShopScreen() {
               : 'сервер не ответил';
             emitAppEvent('action_toast', {
               type: 'error',
-              messageRu: `DEV: локально +${shards}, но НА СЕРВЕРЕ НЕТ (${tail}). Турнир не увидит эти жемчужины.`,
-              messageUk: `DEV: локально +${shards}, але НА СЕРВЕРІ НЕМАЄ (${tail}).`,
-              messageEs: `DEV: +${shards} local, pero NO en el servidor (${tail}).`,
-              messagePtBr: `DEV: +${shards} local, mas NÃO no servidor (${tail}).`,
-              messageVi: `DEV: +${shards} cục bộ, nhưng KHÔNG có trên máy chủ (${tail}).`,
-              messageId: `DEV: +${shards} lokal, tetapi TIDAK di server (${tail}).`,
-              messageTr: `DEV: yerel +${shards}, ancak SUNUCUDA YOK (${tail}).`,
-              messagePl: `DEV: lokalnie +${shards}, ale NIE na serwerze (${tail}).`,
+              messageRu: `DEV: начисление не подтверждено (${tail}); баланс не менялся.`,
+              messageUk: `DEV: нарахування не підтверджено (${tail}); баланс не змінено.`,
+              messageEs: `DEV: concesión no confirmada (${tail}); el saldo no cambió.`,
+              messagePtBr: `DEV: concessão não confirmada (${tail}); o saldo não mudou.`,
+              messageVi: `DEV: khoản cấp chưa được xác nhận (${tail}); số dư không đổi.`,
+              messageId: `DEV: pemberian belum dikonfirmasi (${tail}); saldo tidak berubah.`,
+              messageTr: `DEV: ödül doğrulanmadı (${tail}); bakiye değişmedi.`,
+              messagePl: `DEV: przyznanie niepotwierdzone (${tail}); saldo bez zmian.`,
+            });
+            return;
+          } else {
+            await commitConfirmedExternalShardEvent({
+              source: 'admin_dev_grant',
+              eventId: serverGrant.eventId,
+              delta: serverGrant.granted,
+              reason: 'dev_grant',
+              grant: {
+                kind: 'admin_dev_shards',
+                subjectId: serverGrant.eventId,
+                payload: { amount: serverGrant.granted },
+              },
             });
           }
           void trackShardPackPurchase(packId).catch(() => {});
@@ -1317,8 +1326,9 @@ export default function ShardsShopScreen() {
         // дотянет осколки. Без этого деньги списывались, а осколки молча терялись.
         const storeTransactionId = (purchaseResult as { transaction?: { transactionIdentifier?: string } } | undefined)
           ?.transaction?.transactionIdentifier?.trim() || null;
+        const shardGrantJournalId = Crypto.randomUUID();
         const journalResult = await recordPendingShardGrant(operationAccount, {
-          journalId: Crypto.randomUUID(),
+          journalId: shardGrantJournalId,
           storeTransactionId: storeTransactionId,
           productId,
           expectedShards: shards,
@@ -1326,6 +1336,48 @@ export default function ShardsShopScreen() {
           createdAtMs: Date.now(),
         }).catch(() => ({ status: 'storage_unavailable' as const }));
         if (!isOperationCurrent() || journalResult.status === 'stale') return;
+        // A successful SDK callback proves StoreKit/Play completed, but it does
+        // not expose a production-verifiable environment. Credit only the
+        // immutable RevenueCat webhook event; sandbox purchases stay harmless.
+        let confirmedPurchase: { status: 'applied'; balanceAfter: number } | null = null;
+        if (storeTransactionId) {
+          for (let attempt = 0; attempt < 4 && !confirmedPurchase; attempt += 1) {
+            await loadShardsFromCloud(isOperationCurrent).catch(() => {});
+            if (!isOperationCurrent()) return;
+            if (await wasConfirmedExternalShardEventApplied(
+              operationAccount.stableId!,
+              'revenuecat_purchase',
+              storeTransactionId,
+            )) {
+              confirmedPurchase = { status: 'applied', balanceAfter: await getShardsBalance() };
+              break;
+            }
+            await new Promise((resolve) => setTimeout(resolve, attempt === 0 ? 1200 : 2500));
+          }
+        }
+        if (!isOperationCurrent()) return;
+        if (confirmedPurchase?.status === 'applied') {
+          if (journalResult.status === 'recorded') {
+            await clearPendingShardGrant(operationAccount, journalResult.journalId).catch(() => false);
+          }
+          await clearPendingShardRecoveryNeeded(operationAccount).catch(() => false);
+          if (!isOperationCurrent()) return;
+          setBalance(confirmedPurchase.balanceAfter);
+          logShardsPurchased(productId, shards);
+          void trackShardPackPurchase(packId).catch(() => {});
+          emitAppEvent('action_toast', {
+            type: 'success',
+            messageRu: `Готово: +${shards} ${ruKnowledgeShardsAfterNumber(shards)}`,
+            messageUk: `Готово: +${shards} ${ukKnowledgeShardsAfterNumber(shards)}`,
+            messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
+            messagePtBr: `Pronto: +${shards} perlas`,
+            messageVi: `Xong: +${shards} mảnh`,
+            messageId: `Selesai: +${shards} shard`,
+            messageTr: `Tamam: +${shards} parça`,
+            messagePl: `Gotowe: +${shards} monet`,
+          });
+          return;
+        }
         if (journalResult.status !== 'recorded') {
           await markPendingShardRecoveryNeeded(operationAccount).catch(() => false);
           if (!isOperationCurrent()) return;

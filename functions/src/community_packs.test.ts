@@ -381,9 +381,12 @@ describe('community pack callable ownership', () => {
       buyerDisplayName: 'Mallory',
     })).resolves.toBeDefined();
 
-    // Осколки жертвы не тронуты — списание ушло с аккаунта атакующего.
+    // Личные балансы не тронуты: сервер добавил внешний debit-факт атакующему.
     expect(mockDocs.get('users/victim')?.shards).toBe(200);
-    expect(mockDocs.get('users/attacker')?.shards).toBeLessThan(200);
+    expect(mockDocs.get('users/attacker')?.shards).toBe(200);
+    expect([...mockDocs.entries()].some(([key, value]) =>
+      key.startsWith('users/attacker/external_economy_events/') && value.delta === -10
+    )).toBe(true);
     // Покупка записана на атакующего, доступа к паку у жертвы не появилось.
     expect(mockDocs.get('community_pack_purchases/attacker__pack-1')).toBeDefined();
     expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toBeUndefined();
@@ -396,8 +399,6 @@ describe('community pack callable ownership', () => {
       alreadyOwned: boolean;
       priceShards: number;
       authorNetShards: number;
-      buyerBalanceAfter: number;
-      shardsUpdatedAtMs: number;
     }>('communityPurchasePack', {
       buyerStableId: 'victim',
       packId: 'pack-1',
@@ -409,12 +410,9 @@ describe('community pack callable ownership', () => {
       alreadyOwned: false,
       priceShards: 10,
       authorNetShards: 9,
-      buyerBalanceAfter: 190,
     });
-    expect(result.shardsUpdatedAtMs).toBeGreaterThan(0);
-    expect(mockDocs.get('users/victim')?.shards).toBe(190);
-    expect(200 - Number(mockDocs.get('users/victim')?.shards)).toBe(10);
-    expect(mockDocs.get('users/author')?.shards).toBe(9);
+    expect(mockDocs.get('users/victim')?.shards).toBe(200);
+    expect(mockDocs.get('users/author')?.shards).toBe(0);
     expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toMatchObject({
       buyerStableId: 'victim',
       packId: 'pack-1',
@@ -429,8 +427,7 @@ describe('community pack callable ownership', () => {
     expect(buyerLedger).toMatchObject({
       type: 'spend',
       amount: 10,
-      balanceBefore: 200,
-      balanceAfter: 190,
+      authority: 'external_event',
     });
     const authorLedger = Array.from(mockDocs.entries())
       .find(([path, row]) => path.startsWith('users/author/shard_log/') && row.reason === 'community_pack_sale')?.[1];
@@ -439,8 +436,7 @@ describe('community pack callable ownership', () => {
       amount: 9,
       grossAmount: 10,
       platformFeeShards: 1,
-      balanceBefore: 0,
-      balanceAfter: 9,
+      authority: 'external_event',
     });
     expect(mockDocs.get('users/author/community_seller_inbox/victim__pack-1')).toMatchObject({
       type: 'pack_sold',
@@ -481,7 +477,12 @@ describe('community pack callable ownership', () => {
     });
 
     expect(result).toMatchObject({ purchaseId: 'victim__pack-1', buyerStableId: 'victim', amountShards: 10 });
-    expect(mockDocs.get('users/victim')?.shards).toBe(210);
+    expect(mockDocs.get('users/victim')?.shards).toBe(200);
+    expect([...mockDocs.entries()].some(([key, value]) =>
+      key.startsWith('users/victim/external_economy_events/')
+      && value.delta === 10
+      && value.reason === 'admin_community_pack_refund'
+    )).toBe(true);
     expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toMatchObject({
       status: 'refunded',
       refundedAmountShards: 10,
@@ -491,7 +492,7 @@ describe('community pack callable ownership', () => {
     });
     const refundLedger = Array.from(mockDocs.entries())
       .find(([path, row]) => path.startsWith('users/victim/shard_log/') && row.reason === 'admin_community_pack_refund')?.[1];
-    expect(refundLedger).toMatchObject({ type: 'earn', amount: 10, balanceBefore: 200, balanceAfter: 210 });
+    expect(refundLedger).toMatchObject({ type: 'earn', amount: 10, authority: 'external_event' });
     const audit = Array.from(mockDocs.entries())
       .find(([path, row]) => path.startsWith('admin_log/') && row.action === 'community_pack_purchase.refund')?.[1];
     expect(audit).toMatchObject({ actorUid: 'auth-admin', reason: 'support-approved' });
@@ -499,7 +500,7 @@ describe('community pack callable ownership', () => {
       auth: { uid: 'auth-admin', token: { admin: true, email: 'admin@example.com' } },
       data: { purchaseId: 'victim__pack-1', reason: 'replay' },
     })).rejects.toMatchObject({ code: 'failed-precondition', message: 'purchase_already_refunded' });
-    expect(mockDocs.get('users/victim')?.shards).toBe(210);
+    expect(mockDocs.get('users/victim')?.shards).toBe(200);
   });
 
   test('admin refund rejects replay, gift receipts, missing receipts, and non-completed receipts without minting shards', async () => {

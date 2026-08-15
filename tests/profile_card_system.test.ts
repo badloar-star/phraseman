@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from '../app/events';
-import { getShardsBalance, spendShards } from '../app/shards_system';
+import { commitShardCompositeOperation, getShardsBalance } from '../app/shards_system';
 import {
   PROFILE_CARD_LEVEL_KEY,
   PROFILE_CARD_MOTION_KEY,
@@ -13,12 +13,13 @@ import {
   normalizeProfileCardLevel,
   upgradeProfileCardLevel,
 } from '../app/profile_card_system';
+import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/shards_system', () => ({
   getShardsBalance: jest.fn(),
-  spendShards: jest.fn(),
+  commitShardCompositeOperation: jest.fn(),
   forceSyncShardsToCloud: jest.fn(async () => {}),
 }));
 jest.mock('../app/config', () => ({
@@ -27,13 +28,18 @@ jest.mock('../app/config', () => ({
 }));
 
 const mockGetShardsBalance = getShardsBalance as jest.MockedFunction<typeof getShardsBalance>;
-const mockSpendShards = spendShards as jest.MockedFunction<typeof spendShards>;
+const mockCommit = commitShardCompositeOperation as jest.MockedFunction<typeof commitShardCompositeOperation>;
 
 beforeEach(async () => {
   jest.clearAllMocks();
   await AsyncStorage.clear();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('profile-owner');
   mockGetShardsBalance.mockResolvedValue(0);
-  mockSpendShards.mockResolvedValue(true);
+  mockCommit.mockImplementation(async (input) => {
+    await AsyncStorage.multiSet(input.localWrites as [string, string][]);
+    return { status: 'applied', balanceBefore: input.amount, balanceAfter: 0 } as any;
+  });
 });
 
 describe('profile_card_system', () => {
@@ -66,6 +72,7 @@ describe('profile_card_system', () => {
 
   it('returns needed shards without spending when balance is too low', async () => {
     mockGetShardsBalance.mockResolvedValue(20);
+    mockCommit.mockResolvedValue({ status: 'insufficient', balance: 20 });
 
     await expect(upgradeProfileCardLevel()).resolves.toEqual({
       ok: false,
@@ -73,7 +80,10 @@ describe('profile_card_system', () => {
       need: PROFILE_CARD_UPGRADE_COST - 20,
       balance: 20,
     });
-    expect(mockSpendShards).not.toHaveBeenCalled();
+    expect(mockCommit).toHaveBeenCalledWith(expect.objectContaining({
+      amount: PROFILE_CARD_UPGRADE_COST,
+      reason: 'profile_card_upgrade',
+    }));
   });
 
   it('spends 200 shards and upgrades the base card to Phraseman Pro', async () => {
@@ -84,7 +94,10 @@ describe('profile_card_system', () => {
       level: 1,
       balance: 0,
     });
-    expect(mockSpendShards).toHaveBeenCalledWith(PROFILE_CARD_UPGRADE_COST, 'profile_card_upgrade');
+    expect(mockCommit).toHaveBeenCalledWith(expect.objectContaining({
+      amount: PROFILE_CARD_UPGRADE_COST,
+      grant: expect.objectContaining({ kind: 'profile_card_level', subjectId: '1' }),
+    }));
     await expect(AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY)).resolves.toBe('1');
     await expect(AsyncStorage.getItem(PROFILE_CARD_THEME_KEY)).resolves.toBe('steel');
     await expect(AsyncStorage.getItem(PROFILE_CARD_MOTION_KEY)).resolves.toBe('none');
@@ -101,7 +114,7 @@ describe('profile_card_system', () => {
       level: 2,
       balance: 0,
     });
-    expect(mockSpendShards).toHaveBeenCalledWith(PROFILE_CARD_LEVEL_COSTS[2], 'profile_card_upgrade');
+    expect(mockCommit).toHaveBeenCalledWith(expect.objectContaining({ amount: PROFILE_CARD_LEVEL_COSTS[2] }));
     await expect(AsyncStorage.getItem(PROFILE_CARD_THEME_KEY)).resolves.toBe('teal');
   });
 
@@ -109,6 +122,6 @@ describe('profile_card_system', () => {
     await AsyncStorage.setItem(PROFILE_CARD_LEVEL_KEY, '5');
 
     await expect(upgradeProfileCardLevel()).resolves.toEqual({ ok: false, reason: 'max' });
-    expect(mockSpendShards).not.toHaveBeenCalled();
+    expect(mockCommit).not.toHaveBeenCalled();
   });
 });

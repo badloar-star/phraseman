@@ -3,9 +3,8 @@ import auth from '@react-native-firebase/auth';
 import { actionToastTri, emitAppEvent } from '../events';
 import { getCanonicalUserId } from '../user_id_policy';
 import {
+  commitConfirmedExternalShardEvent,
   getShardsBalance,
-  refreshShardsBalanceFromCloudAuthoritative,
-  replaceShardsBalanceLocal,
 } from '../shards_system';
 import {
   emitShardPurchaseSyncPendingToast,
@@ -214,17 +213,20 @@ export async function purchaseCommunityPackWithShards(
       await addCommunityOwnedPackId(pack.id, studyTarget);
       return 'already_owned';
     }
-    if (typeof res.buyerBalanceAfter === 'number') {
-      await replaceShardsBalanceLocal(res.buyerBalanceAfter, {
-        updatedAtMs: res.shardsUpdatedAtMs,
-        op: 'spend',
-        reason: 'community_pack_purchase',
-      });
-    } else {
-      const { getShardsBalance } = await import('../shards_system');
-      await replaceShardsBalanceLocal(await getShardsBalance());
-    }
     await addCommunityOwnedPackId(pack.id, studyTarget);
+    const purchaseId = res.purchaseId || `${buyerStableId}__${pack.id}`;
+    const debit = await commitConfirmedExternalShardEvent({
+      source: 'community_pack_purchase',
+      eventId: purchaseId,
+      delta: -COMMUNITY_PACK_PRICE_SHARDS,
+      reason: 'community_pack_purchase',
+      grant: {
+        kind: 'person_to_person_pack_purchase',
+        subjectId: pack.id,
+        payload: { packId: pack.id, studyTarget: storageStudyTarget(studyTarget) },
+      },
+    });
+    if (debit.status !== 'applied' && debit.status !== 'already-applied') return 'spend_failed';
     void trackCardPackAcquiredAchievement(studyTarget);
     void trackExternalShardSpendAchievement(COMMUNITY_PACK_PRICE_SHARDS);
     const titleEs =
@@ -250,12 +252,9 @@ export async function purchaseCommunityPackWithShards(
     return 'ok';
   } catch (e: unknown) {
     if (isInsufficientCommunityPurchaseError(e)) {
-      // После server insufficient не используем обычный restore: он способен
-      // протолкнуть свежую локальную метку вверх. Forced server read только
-      // зеркалирует авторитетный кошелёк на устройство.
-      const authoritativeBalance = await refreshShardsBalanceFromCloudAuthoritative();
-      const freshBalance = authoritativeBalance
-        ?? await getShardsBalance().catch(() => reconciliation.balance);
+      // Сервер больше не является источником личного баланса и не вправе
+      // откатывать уже подтверждённую локальную проекцию.
+      const freshBalance = await getShardsBalance().catch(() => reconciliation.balance);
       emitAppEvent('shards_balance_updated', { balance: freshBalance });
       return 'insufficient';
     }

@@ -31,6 +31,7 @@ import {
 } from './tournament_economy';
 import { parseActiveTournamentTicket } from './tournaments';
 import { assertTournamentsReleased, TOURNAMENTS_RELEASED } from './tournament_release_gate';
+import { appendExternalEconomyEvent } from './external_economy_events';
 
 const REGION = 'us-central1';
 const TOURNAMENT_SCHEDULE_COLLECTION = 'tournamentSchedule';
@@ -112,8 +113,8 @@ export async function payoutWeeklyBank(
 
   // Транзакция: банк помечается выплаченным ровно один раз. Если крон
   // сработает повторно (или параллельно), второй проход увидит paidOutAtMs.
-  // guard-ok: ВСЁ ниже — внутри транзакции, баланс меняется только через
-  // FieldValue.increment, документ банка помечается paidOutAtMs один раз.
+  // guard-ok: ВСЁ ниже — внутри транзакции; immutable reward events и отметка
+  // paidOutAtMs коммитятся атомарно, без server wallet projection.
   // Гонка двух запусков невозможна: второй увидит отметку и выйдет.
   const applied = await db.runTransaction(async (tx) => {
     const fresh = await tx.get(bankRef);
@@ -122,12 +123,11 @@ export async function payoutWeeklyBank(
     for (const payout of payouts) {
       if (payout.gems <= 0) continue;
       const userRef = db.collection('users').doc(payout.uid);
-      tx.set(userRef, {
-        shards: admin.firestore.FieldValue.increment(payout.gems),
-        shards_updated_at_ms: nowMs,
-        shards_updated_op: 'earn',
-        shards_updated_reason: 'tournament_weekly_bank',
-      }, { merge: true });
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'tournament_weekly_bank', eventId: weekId, ownerStableId: payout.uid,
+        delta: payout.gems, reason: 'tournament_weekly_bank', kind: 'competition_weekly_bank_reward',
+        subjectId: weekId, payload: { weekId, place: payout.place }, createdAtMs: nowMs,
+      });
       // guard-ok: лог — НОВЫЙ документ с детерминированным id по неделе;
       // merge не нужен, повторная запись затрёт саму себя, а не создаст
       // вторую строку. Тот же приём, что у призов турнира.
@@ -293,7 +293,6 @@ export const tournamentWeeklyBankInfo = onCall(
     );
     const economy = normalizeTournamentEconomy(economySnap.data());
     const userData = userSnap.data() || {};
-    const gemBalance = Math.max(0, readInt(userData.shards, 0));
     const freeEntryAvailable = String(userData.tournament_free_entry_week_id ?? '') !== currentWeek;
     // зачем 2026-08-04 (владелец: Season Pass tournament_ticket — «появится
     // ассет в разделе турнир в правом углу»): та же userSnap, что и
@@ -324,7 +323,6 @@ export const tournamentWeeklyBankInfo = onCall(
       serverNowMs: nowMs,
       /** Цена входа (владелец: «билет стоит 5 жемчужин») — экран билетов считает от неё. */
       entryGems: economy.entryGems,
-      gemBalance,
       freeEntryAvailable,
       seasonTicketAvailable,
       lastWeek: {

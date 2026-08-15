@@ -47,20 +47,13 @@
 | [Admin UI Bible](design/ADMIN_UI_BIBLE.md) | Обязателен перед изменением `admin/v2/legacy.html` |
 | [Language factory master plan](superpowers/plans/2026-07-10-admin-control-plane-language-factory-master-plan.md) | Исторический большой план фабрики языков |
 | [Language factory design](superpowers/specs/2026-07-10-admin-control-plane-language-factory-design.md) | Дизайн фабрики |
-| [Content agents specification](content-agents-spec.md) | Контракт content agents |
 | [Admin content-factory canary rollout](runbooks/admin-content-factory-canary-rollout.md) | Безопасный выпуск content factory |
 | [Admin foundation transfer manifest](v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md) | База переноса admin/V2 |
-| [Plan generator audit](plan-generator-audit.md) | Состояние генератора планов |
-| [Plan generator improvement plan](plan-generator-improvement-plan.md) | План улучшения генератора планов |
 
-## 4. Личные планы, теория и сохранённое
+## 4. Теория и контент
 
 | Документ | Для чего нужен |
 |---|---|
-| [Personal-plan UI design audit](personal-plan-ui-design-audit.md) | Существующий дизайн и UX личного плана |
-| [Personal-plans human content review checklist](personal-plans-human-content-review-checklist.md) | Проверка качества контента плана |
-| [Personal-plan redesign](../PLAN_REDESIGN_PERSONAL_PLAN.md) | Исторический план переделки |
-| [Plan arcs overview](plan_arcs/ARCS_V2_OVERVIEW.md) | Арки планов |
 | [Theory audit](../THEORY_AUDIT_2026-06-21.md) | Аудит теории |
 | [Content audit](../CONTENT_AUDIT_2026-06-08.md) | Общий аудит контента |
 

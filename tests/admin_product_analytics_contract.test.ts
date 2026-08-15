@@ -6,7 +6,7 @@ const read = (file: string) => fs.readFileSync(path.join(ROOT, file), "utf8");
 
 describe("live legacy admin product analytics contract", () => {
   it("keeps product analytics inside the existing Analytics tab", () => {
-    const html = read("admin/legacy.html");
+    const html = read("admin/v2/legacy.html");
     for (const id of [
       "product-analytics-panel",
       "product-analytics-screens",
@@ -62,7 +62,7 @@ describe("live legacy admin product analytics contract", () => {
   });
 
   it("discloses consent coverage instead of presenting the sample as all users", () => {
-    const html = read("admin/legacy.html");
+    const html = read("admin/v2/legacy.html");
     expect(html).toContain(
       "только по событиям пользователей, разрешивших аналитику",
     );

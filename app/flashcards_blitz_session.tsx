@@ -16,6 +16,13 @@
 //
 // Финал (таймер 0 / жизни 0) → SessionResultScreen (верно/ошибок/точность
 // + счёт). XP блиц не даёт (безлимитный режим).
+//
+// FIX (владелец, 2026-08-13):
+//  • «что даёт счёт?» — личный рекорд (flashcards/blitz_record.ts): побил
+//    прошлый лучший — «Новый рекорд!», иначе видно счёт и лучший результат.
+//    Никакой новой валюты, наград и звёзд в разделе не заводится.
+//  • выбор наборов доступен ИЗ САМОГО режима (кнопка в шапке → DeckPickerSheet,
+//    как в слушании), а не только из таббара раздела.
 // Чистая логика (очки/комбо/жизни/вопрос) — flashcards/blitz_logic.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -40,6 +47,8 @@ import { triLang } from '../constants/i18n';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import SessionResultScreen from './flashcards/SessionResultScreen';
+import { useFcReduceMotion } from './flashcards/PhraseCard';
+import { isLowPowerEffective } from './flashcards/low_power';
 import { comboSfxForStreak, fcHaptic, playSfx } from './flashcards/SoundService';
 import {
   BLITZ_ADVANCE_OK_MS,
@@ -53,9 +62,13 @@ import {
   type BlitzQuestion,
   type BlitzState,
 } from './flashcards/blitz_logic';
-import { loadDeckCardsMulti, parseDeckParams, type DeckCard, type DeckRef } from './flashcards/deck_sources';
-import { decksCountLabel } from './flashcards/deck_selection';
-import { loadAllFcDeckRefs } from './flashcards/deck_options';
+import { deckRefKey, loadDeckCardsMulti, parseDeckParams, type DeckCard, type DeckRef } from './flashcards/deck_sources';
+import { deckRouteParam, decksCountLabel, SOLO_DECK_ID } from './flashcards/deck_selection';
+import { loadAllFcDeckRefs, loadFcDeckOptions } from './flashcards/deck_options';
+import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSheet';
+import { getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mode_prefs';
+import { commitBlitzScore, getBlitzBest } from './flashcards/blitz_record';
+import { safeRouterBack } from './navigation_back';
 import { summarizeSession, type SessionAnswerEvent, type SessionOutcomeSummary } from './flashcards/session_queue';
 
 /** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050 / listening #9C6ADE). */
@@ -66,7 +79,13 @@ const BAD = '#E05050';
 const DANGER_SEC = 10;
 
 type BtnState = 'idle' | 'correct' | 'wrong';
-type ResultState = { summary: SessionOutcomeSummary; score: number };
+/** Итог раунда + личный рекорд (§ «что даёт счёт»): `best` — лучший ПОСЛЕ раунда. */
+type ResultState = {
+  summary: SessionOutcomeSummary;
+  score: number;
+  best: number;
+  isRecord: boolean;
+};
 
 // Fisher-Yates (паттерн trainer_words_session)
 function shuffleArr<T>(a: readonly T[]): T[] {
@@ -102,6 +121,10 @@ export default function FlashcardsBlitzSession() {
   const [timeLeft, setTimeLeft] = useState(BLITZ_DURATION_SEC);
   const [lastGain, setLastGain] = useState(0);
   const [result, setResult] = useState<ResultState | null>(null);
+  /** §6: выбор наборов прямо из блица — тот же шит, что у тренировки и слушания. */
+  const [deckPickerOpen, setDeckPickerOpen] = useState(false);
+  const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
+  const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);
 
   const queueRef = useRef<DeckCard[]>([]);
   const qIdxRef = useRef(0);
@@ -112,6 +135,20 @@ export default function FlashcardsBlitzSession() {
   const finishingRef = useRef(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const timersRef = useRef<Array<ReturnType<typeof setTimeout>>>([]);
+  /**
+   * Лучший результат до текущего раунда. Читаем один раз на входе, чтобы финал
+   * знал ответ мгновенно и подпись результата не «моргала» задним числом.
+   */
+  const bestRef = useRef(0);
+
+  /**
+   * «Уменьшить движение» / слабое устройство: микро-пульсы счёта и комбо
+   * выключаются целиком (значения просто встают в 1), таймер-полоса и логика
+   * не трогаются — они несут информацию, а не декор.
+   */
+  const simpleMotion = useFcReduceMotion() || isLowPowerEffective();
+  const simpleMotionRef = useRef(simpleMotion);
+  simpleMotionRef.current = simpleMotion;
 
   // Reanimated: таймер-полоса (scaleX, origin слева), бейдж комбо, очки, сердечки
   const progress = useSharedValue(1);
@@ -136,6 +173,17 @@ export default function FlashcardsBlitzSession() {
     }
     timersRef.current.forEach(clearTimeout);
     timersRef.current = [];
+  }, []);
+
+  // Личный рекорд: одно чтение на маунт, дальше — только запись при финале.
+  useEffect(() => {
+    let cancelled = false;
+    void getBlitzBest().then((best) => {
+      if (!cancelled) bestRef.current = best;
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // ── Загрузка пула: ?deck= или дефолт «все сохранённые + мои карточки» ──────
@@ -175,8 +223,7 @@ export default function FlashcardsBlitzSession() {
   useEffect(() => {
     if (loading || canStartBlitz(pool.length) || bouncedRef.current) return;
     bouncedRef.current = true;
-    if (router.canGoBack()) router.back();
-    else router.replace('/flashcards' as never);
+    safeRouterBack(router, '/flashcards' as never);
   }, [loading, pool.length, router]);
 
   // ── Финал: таймер 0 или жизни 0 → результат ───────────────────────────────
@@ -187,7 +234,26 @@ export default function FlashcardsBlitzSession() {
     cancelAnimation(progress);
     const summary = summarizeSession(eventsRef.current);
     const score = blitzRef.current.score;
-    setResult({ summary, score });
+    /**
+     * Смысл счёта — личный рекорд. Сравниваем с уже прочитанным `bestRef`
+     * (мгновенно, без ожидания диска), а запись идёт своей очередью и её
+     * результат уточняет карточку итога, если рекорд успели обновить в
+     * параллельном раунде.
+     */
+    const previousBest = bestRef.current;
+    const isRecord = score > 0 && score > previousBest;
+    if (isRecord) bestRef.current = score;
+    setResult({ summary, score, best: isRecord ? score : previousBest, isRecord });
+    void commitBlitzScore(score)
+      .then((outcome) => {
+        bestRef.current = outcome.best;
+        setResult((cur) =>
+          cur && cur.score === outcome.score
+            ? { ...cur, best: outcome.best, isRecord: outcome.isRecord }
+            : cur,
+        );
+      })
+      .catch(() => {});
   }, [clearRoundTimers, progress]);
 
   // ── Старт/рестарт раунда: перемешка, таймер-полоса, первый вопрос ─────────
@@ -285,17 +351,25 @@ export default function FlashcardsBlitzSession() {
           fcHaptic('correct');
         }
         setLastGain(gained);
-        // Бейдж комбо пружинит на каждый верный в серии; на пороге — сильнее
+        // Бейдж комбо «клюёт» на каждый верный в серии; на пороге — сильнее.
+        // Пики строго ≤ 1 (см. FC_TEXT_SAFE_PULSE): раньше комбо и счёт
+        // разгонялись до 1.45/1.15, и текст внутри них апскейлился — на iPhone
+        // цифры и кириллица становились «мыльными». Критически задемпфированные
+        // пружины (dampingRatio: 1) не перелетают цель, поэтому 1 — потолок.
         if (state.streak >= 3) {
-          comboScale.value = withSequence(
-            withSpring(comboHit != null ? 1.45 : 1.18, { damping: 9, stiffness: 420 }),
-            withSpring(1, { damping: 14, stiffness: 320 }),
-          );
+          comboScale.value = simpleMotionRef.current
+            ? 1
+            : withSequence(
+                withTiming(comboHit != null ? 0.74 : 0.88, { duration: 90 }),
+                withSpring(1, { duration: 340, dampingRatio: 1 }),
+              );
         }
-        scoreScale.value = withSequence(
-          withSpring(1.15, { damping: 10, stiffness: 460 }),
-          withSpring(1, { damping: 15, stiffness: 340 }),
-        );
+        scoreScale.value = simpleMotionRef.current
+          ? 1
+          : withSequence(
+              withTiming(0.86, { duration: 80 }),
+              withSpring(1, { duration: 320, dampingRatio: 1 }),
+            );
         gainAnim.value = 0;
         gainAnim.value = withTiming(1, { duration: 650, easing: Easing.out(Easing.cubic) });
       } else {
@@ -324,7 +398,7 @@ export default function FlashcardsBlitzSession() {
 
   const leave = useCallback(() => {
     fcHaptic('tap');
-    router.back();
+    safeRouterBack(router, '/flashcards' as never);
   }, [router]);
 
   /** «Ещё разок!» — драйвер сессий/день (§3.9): мгновенный рестарт раунда. */
@@ -333,16 +407,131 @@ export default function FlashcardsBlitzSession() {
     setRoundId((r) => r + 1);
   }, []);
 
+  // ── §6: выбор наборов ПРЯМО ИЗ БЛИЦА (FIX владельца, 2026-08-13) ──────────
+  //
+  // Раньше отметить наборы для блица можно было только из таббара раздела
+  // (⚙ на пункте меню) — внутри режима путь к выбору отсутствовал. Теперь
+  // кнопка в шапке открывает тот же DeckPickerSheet, что у тренировки и
+  // слушания: мультивыбор, счётчик выбранного, сохранение в fc_mode_prefs_v1.
+  /** Список наборов грузим только при открытии шита — вход в блиц не платит. */
+  useEffect(() => {
+    if (!deckPickerOpen) return;
+    let cancelled = false;
+    void (async () => {
+      const [decks, preset] = await Promise.all([
+        loadFcDeckOptions('blitz', lang).catch(() => [] as DeckSheetOption[]),
+        getLastPreset('blitz').catch(() => null),
+      ]);
+      if (cancelled) return;
+      setDeckOptions(decks);
+      setDeckPreset(preset);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [deckPickerOpen, lang]);
+
+  /**
+   * Блиц — режим на время, «поставить на паузу и вернуться» тут нечестно:
+   * секунды под открытым шитом всё равно утекли бы. Поэтому раунд честно
+   * останавливается, а закрытие шита без выбора начинает его заново.
+   */
+  const openDeckPicker = useCallback(() => {
+    fcHaptic('tap');
+    finishingRef.current = true;
+    clearRoundTimers();
+    cancelAnimation(progress);
+    setDeckPickerOpen(true);
+  }, [clearRoundTimers, progress]);
+
+  const closeDeckPicker = useCallback(() => {
+    setDeckPickerOpen(false);
+    restart();
+  }, [restart]);
+
+  /**
+   * Старт с выбранными наборами: тот же экран с новым `?deck=` (replace, чтобы
+   * «назад» не возвращал в раунд со старым набором). Пресет уже сохранён шитом
+   * (`setLastPreset('blitz', …)`), поэтому следующий запуск придёт с ним сам.
+   */
+  const startWithPreset = useCallback(
+    (preset: FcModePreset) => {
+      setDeckPickerOpen(false);
+      // «Слабые» — due-очередь тренажёра «Моя практика», к наборам не относится.
+      const deck = deckRouteParam(presetDeckIds(preset).filter((d) => d !== SOLO_DECK_ID));
+      /**
+       * Выбор не изменился — `?deck=` совпал бы со старым, экран бы не
+       * перезапустился и остался бы с остановленным раундом. Тогда просто
+       * начинаем раунд заново, без навигации.
+       */
+      const sameDecks =
+        parseDeckParams(deck).map(deckRefKey).join(',') === deckRefs.map(deckRefKey).join(',');
+      if (sameDecks) {
+        restart();
+        return;
+      }
+      router.replace({
+        pathname: '/flashcards_blitz_session',
+        params: deck ? { deck } : {},
+      } as never);
+    },
+    [deckRefs, restart, router],
+  );
+
+  const deckPickerSheet = (
+    <DeckPickerSheet
+      visible={deckPickerOpen}
+      onClose={closeDeckPicker}
+      onStart={startWithPreset}
+      decks={deckOptions}
+      initialPreset={deckPreset}
+      lang={lang}
+      t={t}
+      f={f}
+      reduceMotion={simpleMotion}
+      mode="blitz"
+    />
+  );
+
+  /** Подпись кнопки выбора наборов — во все восемь локалей. */
+  const pickDecksLabel = useMemo(
+    () =>
+      triLang(lang, {
+        ru: 'Выбрать наборы',
+        uk: 'Обрати набори',
+        es: 'Elegir packs',
+        'pt-BR': 'Escolher pacotes',
+        vi: 'Chọn bộ thẻ',
+        id: 'Pilih set kartu',
+        tr: 'Setleri seç',
+        pl: 'Wybierz zestawy',
+      }),
+    [lang],
+  );
+
   const deckTitle = useMemo(() => {
-    if (deckRefs.length === 0) return triLang(lang, { ru: 'Все карточки', uk: 'Усі картки', es: 'Todas las tarjetas' });
+    if (deckRefs.length === 0) return triLang(lang, {
+      ru: 'Все карточки', uk: 'Усі картки', es: 'Todas las tarjetas',
+      'pt-BR': 'Todos os cartões', vi: 'Tất cả thẻ', id: 'Semua kartu',
+      tr: 'Tüm kartlar', pl: 'Wszystkie fiszki',
+    });
     if (deckRefs.length > 1) {
       /** cards-2.1 (§6): форма слова по числу — «2 набора», а не «2 наборов». */
       return decksCountLabel(lang, deckRefs.length);
     }
     const deckRef = deckRefs[0]!;
-    if (deckRef.kind === 'custom') return triLang(lang, { ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas' });
-    if (deckRef.kind === 'pack') return triLang(lang, { ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas' });
-    return triLang(lang, { ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas' });
+    if (deckRef.kind === 'custom') return triLang(lang, {
+      ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
+      vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje fiszki',
+    });
+    if (deckRef.kind === 'pack') return triLang(lang, {
+      ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
+      vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw fiszek',
+    });
+    return triLang(lang, {
+      ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas', 'pt-BR': 'Salvos',
+      vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane',
+    });
   }, [deckRefs, lang]);
 
   // ── Рендер ─────────────────────────────────────────────────────────────────
@@ -364,12 +553,38 @@ export default function FlashcardsBlitzSession() {
         xpGained={0}
         learnLeft={0}
         onRetryWrong={restart}
-        retryLabel={triLang(lang, { ru: 'Ещё разок!', uk: 'Ще разок!', es: '¡Otra vez!' })}
-        scoreText={triLang(lang, {
-          ru: `Счёт: ${result.score}`,
-          uk: `Рахунок: ${result.score}`,
-          es: `Puntos: ${result.score}`,
+        retryLabel={triLang(lang, {
+          ru: 'Ещё разок!', uk: 'Ще разок!', es: '¡Otra vez!', 'pt-BR': 'Mais uma!',
+          vi: 'Chơi lại!', id: 'Sekali lagi!', tr: 'Bir daha!', pl: 'Jeszcze raz!',
         })}
+        scoreText={
+          /**
+           * Смысл счёта — личный рекорд (FIX владельца, 2026-08-13):
+           * побил прошлый лучший → «Новый рекорд! N», иначе → «Счёт: N ·
+           * рекорд: M». Ни наград, ни валюты, ни звёзд.
+           */
+          result.isRecord
+            ? triLang(lang, {
+                ru: `Новый рекорд! ${result.score}`,
+                uk: `Новий рекорд! ${result.score}`,
+                es: `¡Nuevo récord! ${result.score}`,
+                'pt-BR': `Novo recorde! ${result.score}`,
+                vi: `Kỷ lục mới! ${result.score}`,
+                id: `Rekor baru! ${result.score}`,
+                tr: `Yeni rekor! ${result.score}`,
+                pl: `Nowy rekord! ${result.score}`,
+              })
+            : triLang(lang, {
+                ru: `Счёт: ${result.score} · рекорд: ${result.best}`,
+                uk: `Рахунок: ${result.score} · рекорд: ${result.best}`,
+                es: `Puntos: ${result.score} · récord: ${result.best}`,
+                'pt-BR': `Pontos: ${result.score} · recorde: ${result.best}`,
+                vi: `Điểm: ${result.score} · kỷ lục: ${result.best}`,
+                id: `Skor: ${result.score} · rekor: ${result.best}`,
+                tr: `Puan: ${result.score} · rekor: ${result.best}`,
+                pl: `Wynik: ${result.score} · rekord: ${result.best}`,
+              })
+        }
         onDone={leave}
         accentColor={ACCENT}
         testID="fc-blitz-result"
@@ -426,22 +641,40 @@ export default function FlashcardsBlitzSession() {
             </TouchableOpacity>
             <View style={{ alignItems: 'center' }}>
               <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Блиц', uk: 'Бліц', es: 'Blitz' })}
+                {triLang(lang, {
+                  ru: 'Блиц', uk: 'Бліц', es: 'Blitz', 'pt-BR': 'Blitz',
+                  vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
+                })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption }} numberOfLines={1}>
                 {deckTitle}
               </Text>
             </View>
-            <Reanimated.View style={[styles.livesRow, heartsStyle]} testID="fc-blitz-lives">
-              {Array.from({ length: BLITZ_LIVES }, (_, i) => (
-                <Ionicons
-                  key={i}
-                  name={i < blitz.lives ? 'heart' : 'heart-outline'}
-                  size={18}
-                  color={i < blitz.lives ? BAD : t.textGhost}
-                />
-              ))}
-            </Reanimated.View>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <Reanimated.View style={[styles.livesRow, heartsStyle]} testID="fc-blitz-lives">
+                {Array.from({ length: BLITZ_LIVES }, (_, i) => (
+                  <Ionicons
+                    key={i}
+                    name={i < blitz.lives ? 'heart' : 'heart-outline'}
+                    size={18}
+                    color={i < blitz.lives ? BAD : t.textGhost}
+                  />
+                ))}
+              </Reanimated.View>
+              {/* §6: выбор и отметка наборов — мультивыбор, как в тренировке и слушании */}
+              <TouchableOpacity
+                testID="fc-blitz-pick-decks"
+                accessibilityLabel="qa-fc-blitz-pick-decks"
+                accessible
+                accessibilityRole="button"
+                accessibilityHint={pickDecksLabel}
+                onPress={openDeckPicker}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                style={{ padding: 4 }}
+              >
+                <Ionicons name="albums-outline" size={20} color={t.textMuted} />
+              </TouchableOpacity>
+            </View>
           </View>
 
           {/* Таймер-полоса: Reanimated scaleX от 1 к 0, origin слева (принцип 3) */}
@@ -539,6 +772,7 @@ export default function FlashcardsBlitzSession() {
             </View>
           </View>
         </ContentWrap>
+        {deckPickerSheet}
       </SafeAreaView>
     </ScreenGradient>
   );

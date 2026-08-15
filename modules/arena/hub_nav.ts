@@ -53,10 +53,19 @@ export type ArenaModeAvailability = Readonly<{
   friendEnabled: boolean;
 }>;
 
+/**
+ * Почему режим недоступен. Погашенная строка без причины — это кнопка без
+ * реакции: игрок жмёт, ничего не происходит, и он решает, что приложение
+ * сломалось. Причин ровно две, и они требуют разных слов.
+ */
+export type ArenaModeBlockReason = 'ok' | 'arena_off' | 'mode_off';
+
 export type ArenaModeChoice = Readonly<{
   key: ArenaHubMode;
   /** Нажимаема ли строка. Отключённая показывается, но не ведёт никуда. */
   enabled: boolean;
+  /** Что сказать про погашенную строку. */
+  reason: ArenaModeBlockReason;
   /** Куда идти, если нажали. */
   route: string;
   params?: Readonly<Record<string, string>>;
@@ -71,22 +80,34 @@ export type ArenaModeChoice = Readonly<{
  */
 export function arenaModeChoices(availability: ArenaModeAvailability | null | undefined): readonly ArenaModeChoice[] {
   const base = availability?.enabled === true;
+  const reason = (modeOn: boolean): ArenaModeBlockReason => {
+    // Вся Арена выключена — это другое сообщение, чем «этот режим выключен»:
+    // в первом случае ждать нечего вовсе, во втором работают остальные.
+    if (!base) return 'arena_off';
+    return modeOn ? 'ok' : 'mode_off';
+  };
+  const quickOn = availability?.quickEnabled === true;
+  const rankedOn = availability?.rankedEnabled === true;
+  const friendOn = availability?.friendEnabled === true;
   return [
     {
       key: 'quick',
-      enabled: base && availability?.quickEnabled === true,
+      enabled: base && quickOn,
+      reason: reason(quickOn),
       route: '/arena_matchmaking',
       params: { mode: 'quick' },
     },
     {
       key: 'ranked',
-      enabled: base && availability?.rankedEnabled === true,
+      enabled: base && rankedOn,
+      reason: reason(rankedOn),
       route: '/arena_matchmaking',
       params: { mode: 'ranked' },
     },
     {
       key: 'friend',
-      enabled: base && availability?.friendEnabled === true,
+      enabled: base && friendOn,
+      reason: reason(friendOn),
       route: '/arena_friend_duel',
     },
   ];

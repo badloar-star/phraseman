@@ -6,7 +6,7 @@ const read = (file: string) => fs.readFileSync(path.join(ROOT, file), "utf8");
 
 describe("live legacy admin subscription lifecycle contract", () => {
   it("mounts server-truth lifecycle analytics without a new top-level tab", () => {
-    const html = read("admin/legacy.html");
+    const html = read("admin/v2/legacy.html");
     expect(html).toContain('id="subscription-analytics-panel"');
     expect(html).toContain("scripts/pages/subscription-analytics.js");
     expect(html).not.toContain("'subscription-analytics','openai-budget'");
@@ -48,7 +48,7 @@ describe("live legacy admin subscription lifecycle contract", () => {
 
   it("uses an admin callable rather than direct Firestore reads", () => {
     const module = read("admin/v2/scripts/pages/subscription-analytics.js");
-    const html = read("admin/legacy.html");
+    const html = read("admin/v2/legacy.html");
     expect(module).toContain("window.callAdminSubscriptionAnalytics");
     expect(module).not.toContain("getDocs(");
     expect(html).toContain(

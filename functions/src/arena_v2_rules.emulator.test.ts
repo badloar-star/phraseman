@@ -118,7 +118,7 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
   it('lets a player write only into their own live seat and never into the opponent seat', async () => {
     const seatDoc = (db: ReturnType<ReturnType<typeof environment.authenticatedContext>['firestore']>, seatId: string) =>
       doc(db, `arena_v2_match_live/match-1/seats/${seatId}`);
-    const payload = { schemaVersion: 'arena-live.v1', ticks: [], updatedAtMs: 1 };
+    const payload = { schemaVersion: 'arena-live.v1', ticks: [], finished: false, updatedAtMs: 1 };
 
     const playerA = environment.authenticatedContext('auth-a').firestore();
     const playerB = environment.authenticatedContext('auth-b').firestore();
@@ -144,14 +144,23 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
     const seat = doc(playerA, 'arena_v2_match_live/match-1/seats/a');
     // Без метки времени уборка не найдёт брошенный канал, и он останется
     // навсегда — то есть будет оплачиваться вечно.
-    await assertFails(setDoc(seat, { schemaVersion: 'arena-live.v1', ticks: [] }));
+    await assertFails(setDoc(seat, { schemaVersion: 'arena-live.v1', ticks: [], finished: false }));
     // Чужая схема и переполненный список — тоже отказ: канал живёт ровно
     // столько, сколько матч, и раздувать его нечем.
-    await assertFails(setDoc(seat, { schemaVersion: 'forged.v1', ticks: [], updatedAtMs: 1 }));
+    await assertFails(setDoc(seat, { schemaVersion: 'forged.v1', ticks: [], finished: false, updatedAtMs: 1 }));
     await assertFails(setDoc(seat, {
       schemaVersion: 'arena-live.v1',
       ticks: Array.from({ length: 11 }, (_, index) => ({ taskIndex: index })),
+      finished: false,
       updatedAtMs: 1,
+    }));
+    // Никаких ответов, uid и других случайных данных в публичном канале.
+    await assertFails(setDoc(seat, {
+      schemaVersion: 'arena-live.v1',
+      ticks: [],
+      finished: false,
+      updatedAtMs: 1,
+      answer: 'secret',
     }));
   });
 

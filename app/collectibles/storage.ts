@@ -6,10 +6,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { isCollectiblesEnabled } from '../remote_flags';
-import {
-  replaceShardsBalanceForAccountGeneration,
-  replaceShardsBalanceLocal,
-} from '../shards_system';
+import { commitConfirmedExternalShardEvent } from '../shards_system';
 import { emitAppEvent } from '../events';
 import {
   captureAccountGeneration,
@@ -51,8 +48,6 @@ type ClaimResponse = {
   setCompleted?: boolean;
   secretCardId?: string | null;
   bonusShards?: number;
-  shardsBalance?: number | null;
-  shardsUpdatedAtMs?: number | null;
 };
 
 function parseOwnedMap(raw: unknown): CollectiblesOwnedMap {
@@ -302,9 +297,6 @@ export async function maybeRollCollectibleDrop(
     const res = await fn({ eventId });
     if (!isAccountOperationCurrent(accountToken)) return null;
     const data = res?.data ?? {};
-    // Повторный вызов того же события: сервер вернёт тот же дроп, но модалку
-    // второй раз не показываем — выдача уже применена локально в первый раз.
-    if (data.alreadyClaimed) return null;
     if (!data.ok || !data.dropped || !data.card?.id) return null;
     const found = findCollectibleCard(String(data.card.id));
     const rarity = (found && found.kind === 'card' ? found.card.rarity : data.card.rarity) as CollectibleRarity;
@@ -316,24 +308,43 @@ export async function maybeRollCollectibleDrop(
       secretCardId: data.secretCardId ? String(data.secretCardId) : null,
       bonusShards: Math.max(0, Math.floor(Number(data.bonusShards) || 0)),
     };
+    // A replay may be the first client callback after the server transaction:
+    // the app could have crashed before projecting its immutable bonus event.
+    // Repair/verify that deterministic event, but do not show the drop twice.
+    if (data.alreadyClaimed) {
+      if (outcome.bonusShards > 0) {
+        const credited = await commitConfirmedExternalShardEvent({
+          expectedOwnerStableId: accountToken.stableId!,
+          source: 'collectibles',
+          eventId,
+          delta: outcome.bonusShards,
+          reason: 'collectible_set_bonus',
+          grant: {
+            kind: 'collectible_set_bonus',
+            subjectId: outcome.setId,
+            payload: { cardId: outcome.cardId, setId: outcome.setId },
+          },
+        });
+        if (credited.status !== 'applied' && credited.status !== 'already-applied') return null;
+      }
+      return null;
+    }
     if (!await applyDropLocally(outcome, accountToken)) return null;
     if (!isAccountOperationCurrent(accountToken)) return null;
-    if (outcome.bonusShards > 0 && typeof data.shardsBalance === 'number') {
-      const options = {
-        updatedAtMs: data.shardsUpdatedAtMs,
-        op: 'earn' as const,
+    if (outcome.bonusShards > 0) {
+      const credited = await commitConfirmedExternalShardEvent({
+        expectedOwnerStableId: accountToken.stableId!,
+        source: 'collectibles',
+        eventId,
+        delta: outcome.bonusShards,
         reason: 'collectible_set_bonus',
-      };
-      if (accountToken.phase === 'active' && accountToken.stableId) {
-        await replaceShardsBalanceForAccountGeneration(
-          data.shardsBalance,
-          accountToken,
-          accountToken.stableId,
-          options,
-        ).catch(() => 'failed' as const);
-      } else {
-        await replaceShardsBalanceLocal(data.shardsBalance, options).catch(() => {});
-      }
+        grant: {
+          kind: 'collectible_set_bonus',
+          subjectId: outcome.setId,
+          payload: { cardId: outcome.cardId, setId: outcome.setId },
+        },
+      });
+      if (credited.status !== 'applied' && credited.status !== 'already-applied') return null;
     }
     if (!isAccountOperationCurrent(accountToken)) return null;
     return outcome;

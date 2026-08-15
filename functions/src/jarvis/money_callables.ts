@@ -54,6 +54,9 @@ function firestoreFetchers(): MoneyFetcherMap {
   return {
     revenuecat_premium_events: () => fetchMoneySource({ sourceId: 'revenuecat_premium_events', collection: db.collection('revenuecat_premium_events'), nowMs }),
     paywall_funnel: () => fetchMoneySource({ sourceId: 'paywall_funnel', collection: db.collection('paywall_funnel'), nowMs }),
+    client_economy_opening: () => fetchMoneySource({ sourceId: 'client_economy_opening', collection: db.collectionGroup('client_economy_opening'), nowMs }),
+    client_economy_operations: () => fetchMoneySource({ sourceId: 'client_economy_operations', collection: db.collectionGroup('client_economy_operations'), nowMs }),
+    external_economy_events: () => fetchMoneySource({ sourceId: 'external_economy_events', collection: db.collectionGroup('external_economy_events'), nowMs }),
   };
 }
 

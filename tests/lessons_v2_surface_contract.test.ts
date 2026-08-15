@@ -11,16 +11,23 @@ const exists = (rel: string) => fs.existsSync(path.join(process.cwd(), rel));
 const lessonsSource = read("app/(tabs)/lessons.tsx");
 const labSource = read("components/learning-v2-lab/LearningV2ModesLab.tsx");
 const mapSource = read("app/learning-v2/lesson/[id].tsx");
+const sessionSource = read("app/learning-v2/session/[id].tsx");
 
-describe("lessons V2 — прямой вход в длинную карту курса", () => {
-  test("V2 открывает карту сразу, без промежуточной страницы Урок 1", () => {
+describe("lessons V2 — одна карта раскрывается прямо под плашкой урока", () => {
+  test("V2 переиспользует обычные LessonCard и раскрывает только выбранный урок", () => {
     expect(lessonsSource).toMatch(/ENABLE_DEV_TOOLS/);
-    expect(lessonsSource).toMatch(/useState<\s*'lessons'\s*\|\s*'dialogs'/);
-    expect(lessonsSource).toMatch(/label="V2"/);
-    expect(lessonsSource).toContain(
-      "router.push('/learning-v2/lesson/1' as any)",
+    expect(lessonsSource).toMatch(
+      /useState<\s*["']lessons["']\s*\|\s*["']dialogs["']\s*\|\s*["']v2["']/,
     );
-    expect(lessonsSource).not.toContain("setPage('v2')");
+    expect(lessonsSource).toMatch(/label="V2"/);
+    expect(lessonsSource).toMatch(/setPage\(["']v2["']\)/);
+    expect(lessonsSource).toMatch(/learningV2=\{page\s*===\s*["']v2["']\}/);
+    expect(lessonsSource).toContain("buildLearningV2CourseAccordionMapModelV1");
+    expect(lessonsSource).toContain("expandedLearningV2Lesson");
+    expect(lessonsSource).toContain("LearningV2InlineMap");
+    expect(lessonsSource).toMatch(
+      /current\s*===\s*lessonOrdinal\s*\?\s*null\s*:\s*lessonOrdinal/,
+    );
     expect(lessonsSource).not.toContain("<LearningV2ModesLab");
   });
 
@@ -52,42 +59,28 @@ describe("lessons V2 — прямой вход в длинную карту ку
     expect(lessonsSource).not.toMatch(/import LearningV2ModesLab/);
   });
 
-  test("карта показывает весь сезон зигзагом и виртуализирует длинный путь", () => {
-    expect(mapSource).toContain("АНГЛИЙСКИЙ · A1");
-    expect(mapSource).not.toContain(
-      "4 сектора · 32 эпизода · уроки и экзамены",
+  test("course route показывает те же плашки и 56 inline-сессий выбранного урока", () => {
+    const courseSource = read("app/learning-v2/course.tsx");
+    expect(courseSource).toContain(
+      'import LessonsTab from "../(tabs)/lessons"',
     );
-    expect(mapSource).toContain("Array.from({ length: 31 }");
-    expect(mapSource).toMatch(/["']One independent day["']/);
-    expect(mapSource).toContain("COURSE_CHAPTERS");
-    expect(mapSource).toContain("<FlatList");
-    expect(mapSource).not.toMatch(
-      /sessionConnector|futureConnector|connectorStyle/,
+    expect(courseSource).toContain(
+      '<LessonsTab presentation="push" initialPage="v2" />',
     );
-    expect(mapSource).toContain("PATH_WAVE");
-    expect(mapSource).toContain("height: 74");
-    expect(mapSource).toContain("Путь к свободной речи");
-    expect(mapSource).not.toContain("СЕКТОР 1 · ЭПИЗОД 1");
-    expect(mapSource).toContain("ТЕКУЩАЯ ТЕМА");
-    expect(mapSource).toContain("Знакомство");
-    expect(mapSource).toContain("SESSION_ZONE_META");
-    expect(mapSource).toContain("EPISODE_ICONS");
-    expect(mapSource).toContain("mapDecorationAt");
-    expect(
-      exists("assets/images/learning_v2_map/phraseman-map-guide-v1.webp"),
-    ).toBe(true);
-    expect(
-      exists("assets/images/learning_v2_map/phraseman-map-chest-v1.webp"),
-    ).toBe(true);
-    expect(
-      exists("assets/images/learning_v2_map/phraseman-map-sign-v1.webp"),
-    ).toBe(true);
-    expect(
-      exists("assets/images/learning_v2_map/phraseman-map-exam-v1.webp"),
-    ).toBe(true);
-    expect(mapSource).toMatch(
-      /kind:\s*checkpoint\s*\?\s*["']checkpoint["']\s*:\s*["']episode["']/,
-    );
-    expect(mapSource).not.toContain("<ScrollView");
+    expect(sessionSource).toContain('pathname: "/learning-v2/course"');
+    expect(mapSource).toContain("buildLessonMapModel");
+    expect(mapSource).toContain("buildLessonRoadItems");
+    expect(mapSource).toContain("LEARNING_V2_LESSON_SESSION_COUNT_V1");
+    expect(mapSource).toContain("КАРТА УРОКА");
+    expect(mapSource).toContain("Вы научитесь");
+    expect(mapSource).toContain("useTheme()");
+    expect(mapSource).not.toContain("Путь к свободной речи");
+    expect(lessonsSource).toContain("Вы поймёте");
+    expect(lessonsSource).toContain("Что вы поймёте");
+    expect(lessonsSource).toContain("Чему научитесь");
+    expect(lessonsSource).toContain("Что сможете делать");
+    expect(lessonsSource).not.toContain("Обычно 14–18 шагов");
+    expect(lessonsSource).toContain("setSelectedLearningV2Session(null)");
+    expect(lessonsSource).toContain("requestAnimationFrame(() =>");
   });
 });

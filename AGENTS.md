@@ -1,5 +1,53 @@
 # Project Rules
 
+## ⛔ Economy Constitution — client authority, no orphan debits (owner, 2026-08-13)
+
+This is a permanent architecture boundary for every current and future economy
+feature.
+
+- Personal progress and ordinary pearl spending are client-authoritative.
+- The server may persist the append-only client operation journal, but it must
+  never reject an ordinary client operation because of its own balance view,
+  recalculate the client result, lower the client balance, or revoke an already
+  granted result.
+- A debit is legal only as one durable composite operation containing its exact
+  grant/entitlement. Standalone `debit`, `spendShards`, `FieldValue.increment(-N)`
+  or "spend first, grant later" flows are forbidden.
+- Every operation has one stable idempotency key. A retry returns/replays the
+  same receipt and cannot charge twice.
+- Balance is a projection of immutable operations. A timestamp/LWW snapshot is
+  never allowed to overwrite a newer local operation.
+- Network failure affects synchronization only. It must not roll back a
+  committed local result or turn it into a user-visible loss.
+- Real-money purchases/refunds, transfers between people, marketplace
+  settlements, admin commands and competitive outcomes are isolated external
+  confirmed events. They may be verified by the server, but still must be
+  immutable/idempotent and atomically bind every debit to its transfer,
+  entitlement or result.
+- Direct writes to `users/{uid}.shards` are forbidden everywhere, including
+  Arena and Tournament. External adapters must append an immutable economy
+  event and must never introduce a personal-balance writer or derive an event
+  amount from that legacy field.
+- Any economy schema/collection/field change must update Firestore Rules and
+  the Jarvis data-contract audit in the same change, following the Jarvis rule
+  below.
+
+The canonical detailed contract is `docs/economy/ECONOMY_CONSTITUTION.md`.
+Contract tests must fail when a new standalone debit, direct balance writer or
+server-authoritative ordinary-spend path appears. Fix the implementation; never
+weaken or delete the guard to make CI green.
+
+## ⛔ АРЕНА: НЕ ОТКАТЫВАТЬ
+
+Файлы Арены (`modules/arena/**`, `components/arena/**`, `app/arena*`,
+`functions/src/arena_*`, `tests/arena_*`, `docs/arena/**`,
+`components/tournament/TournamentBackdrop.tsx`) переписываются по прямому
+заданию владельца. Их **нельзя** откатывать (`git revert`, `git checkout`
+чужой версии) и нельзя перезаписывать из своего буфера. Работа уже дважды
+терялась именно так. Подробности и порядок восстановления — в
+`____АРЕНА_НЕ_ОТКАТЫВАТЬ____.md` в корне.
+
+
 ## Workspace And Branch Safety
 
 - The owner cancelled the obsolete fixed Windows checkout and fixed release-branch restriction on 2026-08-10.

@@ -19,6 +19,7 @@ import {
   ArenaWalletButton,
 } from '../components/arena/ArenaExpansionUI';
 import { arenaText } from '../modules/arena/copy';
+import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
 import { coerceArenaHubSection, type ArenaExpansionHome } from '../modules/arena/expansion_contract';
 import { arenaExpansionHome, arenaFetchMatchHistory, arenaFlushOutbox, arenaOutboxBlockedByUpdate, arenaV2FriendsBoard, arenaV2Home, arenaV2SpinClaim, createArenaRequestId, type ArenaFriendsBoardRow, type ArenaHomeResponse } from './arena_client';
@@ -40,6 +41,11 @@ export default function ArenaHubScreen() {
   const params = useLocalSearchParams<{ section?: string }>();
   const { lang } = useLang();
   const P = useTournamentPalette();
+  // Высота строки числом не растёт вместе с системным шрифтом — при
+  // крупном кегле строки наезжали друг на друга. См. use_arena_font_scale.
+  const fontScale = useArenaFontScale();
+  const todayTitleLine = { lineHeight: 28 * fontScale };
+  const todayBodyLine = { lineHeight: 20 * fontScale };
   const active = useRuntimeActive();
   const section = coerceArenaHubSection(params.section);
   /**
@@ -185,8 +191,8 @@ export default function ArenaHubScreen() {
         <V2Card style={styles.todayCard}>
           <View style={styles.todayHead}>
             <View style={styles.todayCopy}>
-              <Text style={[styles.todayTitle, { color: P.text }]}>{arenaExpansionText(lang, 'todayTitle')}</Text>
-              <Text style={[styles.todayBody, { color: P.muted }]}>{arenaExpansionText(lang, 'todayBody')}</Text>
+              <Text style={[styles.todayTitle, todayTitleLine, { color: P.text }]}>{arenaExpansionText(lang, 'todayTitle')}</Text>
+              <Text style={[styles.todayBody, todayBodyLine, { color: P.muted }]}>{arenaExpansionText(lang, 'todayBody')}</Text>
             </View>
             <View style={[styles.todayNumber, { backgroundColor: P.elev2 }]}>
               <Text style={[styles.todayNumberText, { color: P.text }]}>10</Text>
@@ -201,7 +207,7 @@ export default function ArenaHubScreen() {
         </V2Card>
       ) : null}
       <ArenaSectionTitle>{arenaExpansionText(lang, 'play')}</ArenaSectionTitle>
-      <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick' } } as never)} />
+      <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
       {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => { setSpinBusy(true); void arenaV2SpinClaim(spinRequestIdRef.current).then(() => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); }).finally(() => setSpinBusy(false)); }} /> : null}
     </>
   );
@@ -209,8 +215,8 @@ export default function ArenaHubScreen() {
   const playContent = (
     <>
       <ArenaSectionTitle>{arenaExpansionText(lang, 'playTitle')}</ArenaSectionTitle>
-      <ArenaFeatureRow accent icon="flash" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick' } } as never)} />
-      <ArenaFeatureRow icon="trophy" title={arenaText(lang, 'ranked')} body={arenaText(lang, 'rankedHint')} disabled={!baseEnabled || !home?.availability.rankedEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'ranked' } } as never)} />
+      <ArenaFeatureRow accent icon="flash" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
+      <ArenaFeatureRow icon="trophy" title={arenaText(lang, 'ranked')} body={arenaText(lang, 'rankedHint')} disabled={!baseEnabled || !home?.availability.rankedEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'ranked', requestId: createArenaRequestId('queue') } } as never)} />
       <ArenaFeatureRow icon="people" title={arenaText(lang, 'friend')} body={arenaText(lang, 'friendHint')} disabled={!baseEnabled || !home?.availability.friendEnabled} onPress={() => router.push('/arena_friend_duel' as never)} />
       <ArenaFeatureRow icon="flask" title={arenaExpansionText(lang, 'lab')} body={arenaExpansionText(lang, 'labBody')} disabled={!baseEnabled || !expansion?.availability.lab} onPress={() => router.push('/arena_match_lab' as never)} />
       <ArenaFeatureRow icon="recording" title={arenaExpansionText(lang, 'ghost')} body={arenaExpansionText(lang, 'ghostDisclosure')} disabled={!baseEnabled || !expansion?.availability.ghost} badge={arenaExpansionText(lang, 'recordingBadge')} onPress={() => router.push('/arena_ghost_duel' as never)} />
@@ -243,7 +249,7 @@ export default function ArenaHubScreen() {
       title={arenaText(lang, 'title')}
       subtitle={home?.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home?.profile.rank ?? 0) + 1}`}
       onBack={() => router.replace('/(tabs)/home' as never)}
-      headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion?.wallet.walletStars ?? 0} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
+      headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion ? expansion.wallet.walletStars : null} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
     >
       <ArenaSectionTabs selected={section} labels={labels} onSelect={(next) => router.setParams({ section: next })} />
       {/*
@@ -274,8 +280,8 @@ const styles = StyleSheet.create({
   todayCard: { gap: 16 },
   todayHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   todayCopy: { flex: 1 },
-  todayTitle: { fontSize: 22, lineHeight: 28, fontWeight: '900' },
-  todayBody: { marginTop: 3, fontSize: 14, lineHeight: 20, fontWeight: '600' },
+  todayTitle: { fontSize: 22, fontWeight: '900' },
+  todayBody: { marginTop: 3, fontSize: 14, fontWeight: '600' },
   todayNumber: { width: 52, height: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   todayNumberText: { fontSize: 22, fontWeight: '900' },
   complete: { minHeight: 44, textAlign: 'center', textAlignVertical: 'center', fontSize: 17, fontWeight: '900' },

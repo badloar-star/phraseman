@@ -171,8 +171,9 @@ function DeckRow({ deck, index, active, onToggle, simple, t, f }: DeckRowProps) 
           <Ionicons name={deck.icon} size={18} color={active ? t.accent : t.textMuted} />
         </View>
         <Text
-          style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: active ? '800' : '600' }}
-          numberOfLines={1}
+          style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: f.body, fontWeight: active ? '800' : '600' }}
+          numberOfLines={2}
+          maxFontSizeMultiplier={1.6}
         >
           {deck.title}
         </Text>
@@ -367,7 +368,11 @@ export default function DeckPickerSheet({
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
               {mode === 'listening'
-                ? triLang(lang, { ru: 'Что слушаем?', uk: 'Що слухаємо?', es: '¿Qué escuchamos?' })
+                ? triLang(lang, {
+                    ru: 'Что слушаем?', uk: 'Що слухаємо?', es: '¿Qué escuchamos?',
+                    'pt-BR': 'O que vamos ouvir?', vi: 'Nghe gì?', id: 'Dengar apa?',
+                    tr: 'Ne dinliyoruz?', pl: 'Czego słuchamy?',
+                  })
                 : mode === 'blitz'
                   ? triLang(lang, {
                       ru: 'Что в блице?',
@@ -379,7 +384,16 @@ export default function DeckPickerSheet({
                       tr: 'Blitz’te ne olsun?',
                       pl: 'Co w blitzu?',
                     })
-                  : triLang(lang, { ru: 'Что тренируем?', uk: 'Що тренуємо?', es: '¿Qué entrenamos?' })}
+                  : triLang(lang, {
+                      ru: 'Что тренируем?',
+                      uk: 'Що тренуємо?',
+                      es: '¿Qué entrenamos?',
+                      'pt-BR': 'O que vamos treinar?',
+                      vi: 'Luyện gì?',
+                      id: 'Latih apa?',
+                      tr: 'Ne çalışalım?',
+                      pl: 'Co trenujemy?',
+                    })}
             </Text>
             <Pressable
               testID="fc-deck-sheet-close"
@@ -458,7 +472,16 @@ export default function DeckPickerSheet({
                 marginBottom: 8,
               }}
             >
-              {triLang(lang, { ru: 'Карточек в сессии', uk: 'Карток у сесії', es: 'Tarjetas por sesión' })}
+              {triLang(lang, {
+                ru: 'Карточек в сессии',
+                uk: 'Карток у сесії',
+                es: 'Tarjetas por sesión',
+                'pt-BR': 'Cartões por sessão',
+                vi: 'Số thẻ mỗi phiên',
+                id: 'Kartu per sesi',
+                tr: 'Oturum başına kart',
+                pl: 'Fiszek na sesję',
+              })}
             </Text>
             )}
             {mode === 'blitz' ? null : (
@@ -521,10 +544,22 @@ export default function DeckPickerSheet({
               }}
             >
               {mode === 'listening'
-                ? triLang(lang, { ru: 'Начать слушание', uk: 'Почати слухання', es: 'Empezar a escuchar' })
+                ? triLang(lang, {
+                    ru: 'Начать слушание', uk: 'Почати слухання', es: 'Empezar a escuchar',
+                    'pt-BR': 'Começar a ouvir', vi: 'Bắt đầu nghe', id: 'Mulai mendengar',
+                    tr: 'Dinlemeye başla', pl: 'Zacznij słuchać',
+                  })
                 : mode === 'blitz'
-                  ? triLang(lang, { ru: 'В блиц!', uk: 'У бліц!', es: '¡Al blitz!' })
-                  : triLang(lang, { ru: 'Начать тренировку', uk: 'Почати тренування', es: 'Empezar' })}
+                  ? triLang(lang, {
+                      ru: 'В блиц!', uk: 'У бліц!', es: '¡Al blitz!',
+                      'pt-BR': 'Ao blitz!', vi: 'Vào blitz!', id: 'Mulai blitz!',
+                      tr: 'Blitz’e!', pl: 'Do blitza!',
+                    })
+                  : triLang(lang, {
+                      ru: 'Начать тренировку', uk: 'Почати тренування', es: 'Empezar',
+                      'pt-BR': 'Começar o treino', vi: 'Bắt đầu luyện tập',
+                      id: 'Mulai latihan', tr: 'Alıştırmaya başla', pl: 'Zacznij trening',
+                    })}
             </Text>
           </Pressable>
         </Reanimated.View>

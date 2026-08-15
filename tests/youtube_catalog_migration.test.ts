@@ -6,7 +6,7 @@ const read = (relative: string) =>
   fs.readFileSync(path.join(root, relative), "utf8");
 
 describe("YouTube catalog migration and rollback bridge", () => {
-  const legacyAdmin = read("admin/legacy.html");
+  const legacyAdmin = read("admin/v2/legacy.html");
   const mobileScreen = read("app/lingman_videos.tsx");
 
   it("bootstraps the first draft from legacy remote-config values without deleting them", () => {

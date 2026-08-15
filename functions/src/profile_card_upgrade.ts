@@ -6,11 +6,9 @@
 // клиентом без серверной сверки траты осколков → подделанный клиент мог выставить
 // себе уровень, не потратив ничего, и красоваться в чужих лидербордах.
 //
-// Эта callable — единственный доверенный путь поднять уровень: атомарно проверяет
-// серверный баланс осколков, списывает РОВНО стоимость следующего уровня (таблица
-// цен живёт на сервере, клиент её не диктует) и инкрементит авторитетный
-// users/{uid}.progress.profile_card_level. Баланс осколков и так серверо-авторитетен
-// (users/{uid}.shards под транзакцией), поэтому переиспользуем тот же документ.
+// Эта callable хранит публичную проекцию уровня. Личную покупку и её атомарный
+// результат фиксирует клиент; сервер не проверяет, не списывает и не откатывает
+// персональный баланс.
 //
 // Идемпотентность по уровню: вход содержит expectedLevel (текущий уровень глазами
 // клиента). Если серверный уровень уже >= expectedLevel+1, апгрейд уже случился —
@@ -25,6 +23,7 @@ import * as admin from 'firebase-admin';
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { appendExternalEconomyEvent } from './external_economy_events';
 
 const PROFILE_CARD_MAX_LEVEL = 5;
 const PROFILE_CARD_LEGEND_LEVEL = 5;
@@ -36,9 +35,8 @@ const LEGEND_FRIEND_GIFT_REASON = 'legend_celebration_gift';
 
 /**
  * «Праздник легенды»: после СВЕЖЕЙ выдачи уровня V каждому другу +5 💠 и анонс
- * в ленту друзей. Начисление — теми же маркерами, что остальная серверная логика
- * осколков (shards + shards_updated_* + shard_log), чтобы клиенты друзей штатно
- * подтянули баланс через loadShardsFromCloud. Анонс — стабильным doc id
+ * в ленту друзей. Начисление — immutable external economy event, который клиенты
+ * друзей применяют через общий журнал. Анонс — стабильным doc id
  * 'legend_celebration' в users/{uid}/my_events (повторная запись перезаписывает тот
  * же документ — дублей в ленте нет); тип 'achievement' лента уже рендерит на всех
  * 8 языках («{имя} получил достижение 👑 «Легенда №N»») без правок клиента.
@@ -60,23 +58,18 @@ async function celebrateNewLegend(
       try {
         const friendRef = db.collection('users').doc(friendUid);
         await db.runTransaction(async (tx) => {
-          const snap = await tx.get(friendRef);
-          const before = readShardBalance(snap.data()?.shards);
-          const after = before + LEGEND_FRIEND_GIFT_SHARDS;
-          tx.set(friendRef, {
-            shards: after,
-            shards_updated_at_ms: nowMs,
-            shards_updated_op: 'earn',
-            shards_updated_reason: LEGEND_FRIEND_GIFT_REASON,
-            updatedAt: nowMs,
-          }, { merge: true });
+          appendExternalEconomyEvent(tx, friendRef, {
+            source: 'legend_celebration', eventId: `${uid}:${legendNo}:${friendUid}`,
+            ownerStableId: friendUid, delta: LEGEND_FRIEND_GIFT_SHARDS,
+            reason: LEGEND_FRIEND_GIFT_REASON, kind: 'social_legend_gift',
+            subjectId: uid, payload: { legendUid: uid, legendNo }, createdAtMs: nowMs,
+          });
           tx.set(friendRef.collection('shard_log').doc(), {
             ts: nowIso,
             type: 'earn',
             amount: LEGEND_FRIEND_GIFT_SHARDS,
             reason: LEGEND_FRIEND_GIFT_REASON,
-            balanceBefore: before,
-            balanceAfter: after,
+            authority: 'external_event',
             legendUid: uid,
             legendNo,
           });
@@ -99,25 +92,6 @@ async function celebrateNewLegend(
   }
 }
 
-/**
- * Стоимость ПЕРЕХОДА на уровень N (индекс = целевой уровень). Должна совпадать с
- * клиентской таблицей PROFILE_CARD_LEVEL_COSTS в app/profile_card_system.ts
- * (парность держит tests/profile_card_upgrade_dev_gate.test.ts). Источник
- * истины по списанию — здесь, на сервере.
- */
-const PROFILE_CARD_LEVEL_COST: Record<number, number> = {
-  1: 200,
-  2: 450,
-  3: 800,
-  4: 1400,
-  5: 2400,
-};
-
-function readShardBalance(value: unknown): number {
-  const n = Math.trunc(Number(value));
-  return Number.isFinite(n) && n >= 0 ? n : 0;
-}
-
 function readCardLevel(value: unknown): number {
   const n = Math.trunc(Number(value));
   if (!Number.isFinite(n)) return 0;
@@ -130,8 +104,8 @@ function readLegendNo(value: unknown): number | null {
 }
 
 type UpgradeResult =
-  | { ok: true; alreadyApplied: boolean; level: number; balance: number; spent: number; legendNo?: number }
-  | { ok: false; reason: 'max' | 'insufficient'; level: number; balance: number; cost?: number };
+  | { ok: true; alreadyApplied: boolean; level: number; spent: 0; legendNo?: number }
+  | { ok: false; reason: 'max'; level: number };
 
 /**
  * Callable: поднять уровень карточки профиля на +1 за осколки.
@@ -165,26 +139,20 @@ export const profileCardUpgrade = onCall(HOT_CALLABLE_OPTIONS, async (request) =
     // (and Firestore rules block clients from writing it, leaving this CF the only path).
     const progress = (data.progress ?? {}) as Record<string, unknown>;
     const currentLevel = readCardLevel(progress.profile_card_level);
-    const balance = readShardBalance(data.shards);
     const storedLegendNo = readLegendNo(progress.profile_card_legend_no);
 
     // Идемпотентность: клиент думал, что на expectedLevel, но сервер уже выше —
     // значит апгрейд уже применён (повторный/гонка). Не списываем второй раз.
     // (Номер легенды при таком повторе доедет штатным restore из users.progress.)
     if (expectedLevel !== null && currentLevel > expectedLevel) {
-      return { ok: true, alreadyApplied: true, level: currentLevel, balance, spent: 0 };
+      return { ok: true, alreadyApplied: true, level: currentLevel, spent: 0 };
     }
 
     if (currentLevel >= PROFILE_CARD_MAX_LEVEL) {
-      return { ok: false, reason: 'max', level: currentLevel, balance };
+      return { ok: false, reason: 'max', level: currentLevel };
     }
 
     const nextLevel = currentLevel + 1;
-    const cost = PROFILE_CARD_LEVEL_COST[nextLevel] ?? Number.MAX_SAFE_INTEGER;
-    if (balance < cost) {
-      return { ok: false, reason: 'insufficient', level: currentLevel, balance, cost };
-    }
-
     // «Легенда»: порядковый номер из глобального счётчика. Читаем ДО первой записи —
     // Firestore-транзакция требует все чтения раньше записей.
     let legendNo: number | null = storedLegendNo;
@@ -195,14 +163,9 @@ export const profileCardUpgrade = onCall(HOT_CALLABLE_OPTIONS, async (request) =
       tx.set(legendCounterRef, { issued: legendNo, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
     }
 
-    const newBalance = balance - cost;
     tx.set(
       userRef,
       {
-        shards: newBalance,
-        shards_updated_at_ms: Date.now(),
-        shards_updated_op: 'spend',
-        shards_updated_reason: 'profile_card_upgrade',
         // Nested under progress so sync_leaderboard mirrors it to the public badge.
         // { merge: true } deep-merges nested objects, so sibling progress keys are kept.
         progress: {
@@ -217,7 +180,7 @@ export const profileCardUpgrade = onCall(HOT_CALLABLE_OPTIONS, async (request) =
     );
 
     return {
-      ok: true, alreadyApplied: false, level: nextLevel, balance: newBalance, spent: cost,
+      ok: true, alreadyApplied: false, level: nextLevel, spent: 0,
       ...(nextLevel === PROFILE_CARD_LEGEND_LEVEL && legendNo !== null ? { legendNo } : {}),
     };
   });

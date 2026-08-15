@@ -203,7 +203,8 @@ function AiDialogSession() {
   runtimeActiveRef.current = runtimeActive;
   const { playRecordStart } = useRecordStartCue();
   const { playTurnReady } = useTurnReadyCue();
-  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
+  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string; maxFallback?: string }>();
+  const maxFallbackRequested = params.maxFallback === '1';
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
 
@@ -267,10 +268,10 @@ function AiDialogSession() {
   // Конец речи определяет ПАЛЕЦ (отпустил), а не OEM-endpointer — это обходит
   // «микрофон Android закрывается сам» и исключает эхо (mic и динамик никогда не
   // открыты одновременно: пока звучит ответ, палец отпущен и запись закрыта).
-  const [conversationMode, setConversationMode] = useState(false);
+  const [conversationMode, setConversationMode] = useState(maxFallbackRequested);
   // Свежее значение флага для колбэков send/распознавания без stale-closure и
   // без пересоздания send при каждом переключении тумблера.
-  const conversationModeRef = useRef(false);
+  const conversationModeRef = useRef(maxFallbackRequested);
   // Invalidates an in-flight permission/model/start sequence when the finger is
   // released or the conversation mode is turned off.
   const voiceInputGenerationRef = useRef(0);
@@ -1586,6 +1587,37 @@ function AiDialogSession() {
             }}
           />
         </View>
+
+        {maxFallbackRequested && (
+          <View
+            testID="max-voice-fallback-banner"
+            style={{
+              marginHorizontal: 12,
+              marginTop: 8,
+              borderRadius: 12,
+              paddingHorizontal: 12,
+              paddingVertical: 9,
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 8,
+              backgroundColor: t.accentBg,
+            }}
+          >
+            <Ionicons name="radio-outline" size={16} color={t.accent} />
+            <Text style={{ color: t.textSecond, fontSize: f.caption, flex: 1 }}>
+              {triLang(lang, {
+                ru: 'Голосовая линия перегружена — продолжаем в режиме рации. Минуты MAX не тратятся.',
+                uk: 'Голосова лінія перевантажена — продовжуємо в режимі рації. Хвилини MAX не витрачаються.',
+                es: 'La línea de voz está ocupada: seguimos en modo walkie-talkie. No se gastan minutos MAX.',
+                'pt-BR': 'A linha de voz está ocupada: seguimos no modo rádio. Os minutos MAX não são gastos.',
+                vi: 'Đường dây thoại đang bận — tiếp tục ở chế độ bộ đàm. Không dùng phút MAX.',
+                id: 'Jalur suara sibuk — lanjut dalam mode walkie-talkie. Menit MAX tidak terpakai.',
+                tr: 'Ses hattı yoğun — telsiz modunda devam ediyoruz. MAX dakikaları harcanmaz.',
+                pl: 'Linia głosowa jest zajęta — kontynuujemy w trybie krótkofalówki. Minuty MAX nie są zużywane.',
+              })}
+            </Text>
+          </View>
+        )}
 
         <KeyboardAvoidingView
           style={{ flex: 1 }}

@@ -68,6 +68,9 @@ describe('Jarvis money source reader — honest evidence state', () => {
   });
 });
 
-test('the two money collections match the ones the plan approved', () => {
-  expect(MONEY_REPORT_COLLECTIONS).toEqual(['revenuecat_premium_events', 'paywall_funnel']);
+test('money sources include both revenue signals and the read-only personal economy journal', () => {
+  expect(MONEY_REPORT_COLLECTIONS).toEqual([
+    'revenuecat_premium_events', 'paywall_funnel', 'client_economy_opening',
+    'client_economy_operations', 'external_economy_events',
+  ]);
 });

@@ -35,9 +35,9 @@ export const VOICE_BILLING_COLLECTION = 'voice_call_billing';
  * Дата прайс-листа, по которому посчитан estCostUsd, — пишется в каждую
  * billing-запись, чтобы дневная сверка с Usage API знала, чем считали.
  */
-export const VOICE_PRICE_TABLE_DATE = '2026-08-01';
+export const VOICE_PRICE_TABLE_DATE = '2026-08-13';
 
-/** $/1M токенов gpt-realtime-mini + $/мин транскрипции входа (явная строка модели). */
+/** $/1M токенов gpt-realtime-2.1-mini + $/мин транскрипции входа. */
 export const VOICE_PRICES = {
   audioInputPerM: 10,
   audioOutputPerM: 20,

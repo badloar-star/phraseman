@@ -1,7 +1,7 @@
 // Single source of truth for how Phraseman starts on-device speech recognition
 // in the speaking ("Устно") / pronunciation modes.
 //
-// Why centralize: three call sites (SpeakingPanel, the personal-plan recorder,
+// Why centralize: all speech-recognition call sites
 // and the dev spike screen) each used to call ExpoSpeechRecognitionModule.start()
 // with slightly different, under-tuned options. The accuracy of recognizing a
 // KNOWN target English phrase depends almost entirely on these options:

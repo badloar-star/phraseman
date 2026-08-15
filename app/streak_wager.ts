@@ -16,7 +16,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { registerXP } from './xp_manager';
 import { getVerifiedPremiumStatus } from './premium_guard';
-import { spendShards, addShardsRaw } from './shards_system';
+import { commitShardCompositeOperation, addShardsRaw } from './shards_system';
+import { semanticShardOperationId } from './economy/client_shard_semantic_id';
 import { trackActivity } from './app_activity';
 import { emitAppEvent } from './events';
 
@@ -204,41 +205,6 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       toSpend = Math.max(1, Math.floor(tier.betShards * 0.75));
     }
 
-    const spent = await spendShards(toSpend, 'wager_bet');
-    if (!spent) {
-      await trackActivity('streak_wager:place_blocked', {
-        feature: 'streak_wager',
-        screen: 'streak_stats',
-        result: 'blocked',
-        tags: { reason: 'insufficient_shards_or_spend_failed', tierIdx, toSpend, hasDisc, premiumFree: false },
-      });
-      logWagerHealth('streak_wager:spend_failed', new Error('spendShards returned false'), {
-        currentStreak,
-        tierIdx,
-        toSpend,
-        hasDisc,
-        premiumFree: false,
-      });
-      return false;
-    }
-    if (legacyPremiumFreeToken === '1') {
-      await AsyncStorage.multiRemove([PREM_WAGER_TOKEN_KEY, PREM_WAGER_MONTH_KEY]);
-    }
-    if (hasGiftDisc && !isPremium) {
-      // Подарочную скидку расходуем только когда она реально понадобилась:
-      // у Plus скидка постоянная — подарок остаётся до конца подписки.
-      const parsedUses = Number.parseInt(discountUsesRaw ?? '', 10);
-      const remainingUses = Math.max(Number.isFinite(parsedUses) ? parsedUses : 0, 1) - 1;
-      if (remainingUses > 0) {
-        await AsyncStorage.setItem(WAGER_DISCOUNT_USES_KEY, String(remainingUses));
-      } else {
-        await Promise.all([
-          AsyncStorage.removeItem(WAGER_DISCOUNT_KEY),
-          AsyncStorage.removeItem(WAGER_DISCOUNT_USES_KEY),
-        ]);
-      }
-    }
-
     const wager: WagerState = {
       active:        true,
       startDate:     today(),
@@ -252,7 +218,49 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       lastChecked:   today(),
       result:        'pending',
     };
-    await saveWager(wager);
+    const purchaseWrites: Array<readonly [string, string]> = [[KEY, JSON.stringify(wager)]];
+    if (legacyPremiumFreeToken === '1') {
+      purchaseWrites.push([PREM_WAGER_TOKEN_KEY, '0'], [PREM_WAGER_MONTH_KEY, '0']);
+    }
+    if (hasGiftDisc && !isPremium) {
+      const parsedUses = Number.parseInt(discountUsesRaw ?? '', 10);
+      const remainingUses = Math.max(Number.isFinite(parsedUses) ? parsedUses : 0, 1) - 1;
+      purchaseWrites.push(
+        [WAGER_DISCOUNT_KEY, remainingUses > 0 ? '0.25' : '0'],
+        [WAGER_DISCOUNT_USES_KEY, String(remainingUses)],
+      );
+    }
+    const purchase = await commitShardCompositeOperation({
+      amount: toSpend,
+      reason: 'wager_bet',
+      operationId: await semanticShardOperationId('streak_wager', wager.startDate),
+      grant: {
+        kind: 'streak_wager',
+        subjectId: `${wager.startDate}:${tier.tierIdx}`,
+        payload: {
+          wager,
+          consumeLegacyPremiumToken: legacyPremiumFreeToken === '1',
+          consumeGiftDiscount: hasGiftDisc && !isPremium,
+        },
+      },
+      localWrites: purchaseWrites,
+    });
+    if (purchase.status === 'insufficient' || purchase.status === 'failed') {
+      await trackActivity('streak_wager:place_blocked', {
+        feature: 'streak_wager',
+        screen: 'streak_stats',
+        result: 'blocked',
+        tags: { reason: 'insufficient_shards_or_spend_failed', tierIdx, toSpend, hasDisc, premiumFree: false },
+      });
+      logWagerHealth('streak_wager:spend_failed', new Error(`composite purchase ${purchase.status}`), {
+        currentStreak,
+        tierIdx,
+        toSpend,
+        hasDisc,
+        premiumFree: false,
+      });
+      return false;
+    }
     await trackActivity('streak_wager:place_success', {
       feature: 'streak_wager',
       screen: 'streak_stats',
@@ -318,11 +326,14 @@ export const checkWagerProgress = async (
       if (Math.max(0, Math.round(xpResult.finalDelta || 0)) <= 0) {
         throw new Error('wager_win_xp_not_confirmed');
       }
+      const wonWager = { ...wager, active: false, result: 'won' as const, daysKept, lastChecked: t };
       await addShardsRaw(wager.rewardShards, 'streak_wager_win', {
+        idempotencyKey: `wager:${wager.startDate}:${wager.tierIdx}:${wager.daysRequired}:win`,
+        localWrites: [[KEY, JSON.stringify(wonWager)]],
         showEarnModal: true,
         earnModalKey: 'streak_wager_win',
       });
-      await saveWager({ ...wager, active: false, result: 'won', daysKept, lastChecked: t });
+      if (wager.rewardShards <= 0) await saveWager(wonWager);
       return 'won';
     }
 

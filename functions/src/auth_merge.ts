@@ -338,7 +338,7 @@ export function mergeUserProgress(
   return out;
 }
 
-/** Shards balance lives at users/{uid}.shards (top-level). Merge = max (no dup farming). */
+/** Forensic helper for legacy tests/read-only migrations. Never used to mutate economy. */
 export function mergeShards(winner: unknown, loser: unknown): number | undefined {
   const wn = asCleanInt(winner);
   const ln = asCleanInt(loser);
@@ -591,7 +591,6 @@ async function mergeStableAccountsTransactionally(
         && revenueCatProjectionStrength(mergedProgress) >= revenueCatProjectionStrength(canonicalAggregate.progressPatch))
       ? canonicalAggregate.progressPatch
       : mergedProgress;
-    const mergedShards = mergeShards(winner.data.shards, loser.data.shards);
     const winnerUpdate: Record<string, unknown> = {
       progress: reconciledMergedProgress,
       levelSpinMergePending: true,
@@ -600,12 +599,6 @@ async function mergeStableAccountsTransactionally(
       identityMergedAt: now,
       anon_merge_claim: admin.firestore.FieldValue.delete(),
     };
-    if (mergedShards !== undefined) {
-      winnerUpdate.shards = mergedShards;
-      winnerUpdate.shards_updated_at_ms = now;
-      winnerUpdate.shards_updated_op = 'replace';
-      winnerUpdate.shards_updated_reason = 'account_merge';
-    }
     for (const lineage of canonicalLineages.values()) {
       tx.set(lineage.targetRef, { ...lineage.state, ownerUid: winner.stableId, updatedAt: now }, { merge: false });
       for (const obsoleteRef of lineage.obsoleteRefs) tx.delete(obsoleteRef);

@@ -68,6 +68,24 @@ describe("Learning V2 owner-current course topology v1", () => {
     });
   });
 
+  test("uses an adaptive interaction budget instead of a fixed 12-task session", () => {
+    const budget =
+      buildLearningV2CourseTopologyV1().lessons[0].sessions[0]
+        .interactionBudget;
+
+    expect(budget).toEqual({
+      countingUnit: "planned_primary_learning_interactions",
+      standard: { min: 14, target: 16, max: 18 },
+      rapid: { min: 18, target: 20, max: 22 },
+      voiceHeavy: { min: 10, target: 12, max: 14 },
+      absoluteMax: 22,
+      completionPolicy: "duration_and_objective_coverage_not_raw_count",
+      remediationPolicy:
+        "retries_and_second_error_explanation_outside_base_count",
+    });
+    expect(JSON.stringify(budget)).not.toContain('"taskCount":12');
+  });
+
   test("uses stable coordinates and rejects values outside the canonical topology", () => {
     expect(learningV2CourseLessonIdV1(1)).toBe("lesson-01");
     expect(learningV2CourseLessonIdV1(32)).toBe("lesson-32");

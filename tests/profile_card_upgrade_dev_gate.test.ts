@@ -44,11 +44,8 @@ describe('profile card has one personal entry surface', () => {
 });
 
 /**
- * The shard cost of each card level lives in TWO places: the client table
- * PROFILE_CARD_LEVEL_COSTS (app/profile_card_system.ts) drives what the user is shown, and
- * the server table PROFILE_CARD_LEVEL_COST (functions/src/profile_card_upgrade.ts) is what
- * actually gets charged. If they desync, the client promises one price and the server
- * charges another. This parity check fails loudly on the next one-sided reprice.
+ * The shard cost lives only in the client-owned composite-operation path.
+ * The server stores public metadata and must never become a second charge authority.
  */
 describe('profile card cost parity (client to Cloud Function)', () => {
   function parseCostTable(src: string, tableName: string): Record<number, number> {
@@ -71,12 +68,12 @@ describe('profile card cost parity (client to Cloud Function)', () => {
     'utf8',
   );
 
-  it('charges the same price on both sides for every ladder level', () => {
+  it('keeps every price on the client and forbids server charging', () => {
     const client = parseCostTable(clientSrc, 'PROFILE_CARD_LEVEL_COSTS');
-    const server = parseCostTable(serverSrc, 'PROFILE_CARD_LEVEL_COST');
     expect(Object.keys(client).sort()).toEqual(['1', '2', '3', '4', '5']);
-    expect(server).toEqual(client);
     expect(client).toEqual({ 1: 200, 2: 450, 3: 800, 4: 1400, 5: 2400 });
+    expect(serverSrc).not.toContain('PROFILE_CARD_LEVEL_COST');
+    expect(serverSrc).not.toMatch(/FieldValue\.increment\s*\(\s*-/);
   });
 
   it('client and server agree on the max level', () => {

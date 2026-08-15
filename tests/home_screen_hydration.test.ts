@@ -79,7 +79,7 @@ it('rejects a late Home write captured before an account switch', () => {
 it('hydrates first-frame profile visuals from cached home state before async storage', () => {
   const visuals = resolveHomeProfileVisuals({
     hydration: { ...base, totalXP: 50_000, userAvatar: 'custom-avatar', userAvatarAura: 'aura-ember', userFrame: 'gold' },
-    snapshot: { totalXp: 1, avatar: 'wrong-avatar', frame: 'wrong-frame', aura: 'aura-violet' },
+    snapshot: { totalXp: 1, avatar: 'wrong-avatar', frame: 'wrong-frame', aura: 'aura-mint' },
   });
   expect(visuals).toMatchObject({ avatar: 'custom-avatar', frame: 'gold', aura: 'aura-ember' });
 });
@@ -87,9 +87,9 @@ it('hydrates first-frame profile visuals from cached home state before async sto
 it('hydrates first-frame profile visuals from app snapshot when home cache is absent', () => {
   const visuals = resolveHomeProfileVisuals({
     hydration: null,
-    snapshot: { totalXp: 50_000, avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-violet' },
+    snapshot: { totalXp: 50_000, avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-mint' },
   });
-  expect(visuals).toMatchObject({ avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-violet' });
+  expect(visuals).toMatchObject({ avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-mint' });
 });
 
 it('does not treat bootstrap avatar 1 as a real first-frame profile choice for high XP', () => {

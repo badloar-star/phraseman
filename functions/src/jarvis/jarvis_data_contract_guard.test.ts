@@ -166,6 +166,29 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
   },
 ];
 
+const ISOLATED_COLLECTION_CONTRACTS = [
+  {
+    collection: 'client_economy_operations',
+    writer: 'app/economy/client_shard_operation_sync.ts',
+    authority: 'client append-only persistence; read-only Jarvis money diagnostics',
+  },
+  {
+    collection: 'client_economy_opening',
+    writer: 'app/economy/client_shard_operation_sync.ts',
+    authority: 'immutable one-time legacy opening snapshot; read-only Jarvis money diagnostics',
+  },
+  {
+    collection: 'external_economy_events',
+    writer: 'functions Admin SDK external-event writers',
+    authority: 'server append-only external facts; read-only Jarvis money diagnostics',
+  },
+  {
+    collection: 'cosmetic_asset_archive_overrides',
+    writer: 'functions Admin SDK cosmetic asset archive controls',
+    authority: 'server-managed sale availability; not a Jarvis business projection',
+  },
+] as const;
+
 describe('Jarvis data contract — silence must never replace a broken source', () => {
   test('the real safety_flags writer and Jarvis share one explicit age taxonomy contract', () => {
     const { SAFETY_FLAG_WRITER_AGE_CONTRACT } = require('../ai_safety') as typeof import('../ai_safety');
@@ -229,6 +252,26 @@ describe('Jarvis data contract — silence must never replace a broken source', 
       expect(verdict).toBe('ok');
     }
   });
+
+  test.each(ISOLATED_COLLECTION_CONTRACTS)(
+    'economy schema "$collection" is explicit and cannot silently become a Jarvis metric',
+    ({ collection, writer, authority }) => {
+      const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+      const jarvisDir = path.join(functionsSrc, 'jarvis');
+      const jarvisReaders = fs.readdirSync(jarvisDir)
+        .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+        .map((file) => fs.readFileSync(path.join(jarvisDir, file), 'utf8'))
+        .join('\n');
+      const writerExists = writer.startsWith('app/')
+        ? fs.existsSync(path.join(root, writer))
+        : true;
+
+      expect(writerExists).toBe(true);
+      expect(rules).toContain(`/${collection}/`);
+      expect(jarvisReaders).not.toContain(`collection('${collection}')`);
+      expect(authority.length).toBeGreaterThan(20);
+    },
+  );
 
   test('каждый департамент подключён к общему своду — иначе он невидим владельцу', () => {
     // зачем: департамент можно написать и забыть подключить. Тогда он есть в

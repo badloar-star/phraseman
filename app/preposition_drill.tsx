@@ -276,8 +276,10 @@ export default function PrepositionDrillScreen() {
           perfectAwardedRef.current = false;
           return;
         }
-        await addShards('preposition_drill_perfect').catch(() => {});
-        await AsyncStorage.setItem(key, '1').catch(() => {});
+        await addShards('preposition_drill_perfect', {
+          eventId: `preposition:${studyTarget}:${lessonId}:perfect`,
+          localWrites: [[key, '1']],
+        }).catch(() => {});
       } catch {
         perfectAwardedRef.current = false;
       }

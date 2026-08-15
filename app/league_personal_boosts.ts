@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { spendShards } from './shards_system';
+import { commitShardCompositeOperation } from './shards_system';
 
 export type LeaguePersonalBoostId = 'x2_30m' | 'x2_1h' | 'x2_2h' | 'x3_15m' | 'x2_eod_pass';
 
@@ -83,12 +83,30 @@ export const buyAndActivateLeagueBoost = async (
 
   const active = await loadActiveLeagueBoost();
   if (active) return { ok: false, reason: 'already_active' };
-
-  const spent = await spendShards(def.costShards, 'league_boost');
-  if (!spent) return { ok: false, reason: 'not_enough_shards' };
-
-  const created = await activateLeagueBoost(id);
-  if (!created) return { ok: false, reason: 'storage_error' };
+  if (def.costShards <= 0) {
+    const freeCreated = await activateLeagueBoost(id);
+    if (!freeCreated) return { ok: false, reason: 'storage_error' };
+    void import('./firestore_leagues')
+      .then((m) => m.syncMyLeagueMemberBoostToCloud())
+      .catch(() => {});
+    return { ok: true };
+  }
+  const now = Date.now();
+  const durationMs = id === 'x2_eod_pass' ? msUntilLocalMidnight(now) : def.durationMs;
+  const created: LeaguePersonalBoostState = {
+    id: def.id,
+    multiplier: def.multiplier,
+    startedAt: now,
+    expiresAt: now + durationMs,
+  };
+  const purchase = await commitShardCompositeOperation({
+    amount: def.costShards,
+    reason: 'league_boost',
+    grant: { kind: 'personal_league_boost', subjectId: id, payload: created },
+    localWrites: [[LEAGUE_PERSONAL_BOOST_KEY, JSON.stringify(created)]],
+  });
+  if (purchase.status === 'insufficient') return { ok: false, reason: 'not_enough_shards' };
+  if (purchase.status === 'failed') return { ok: false, reason: 'storage_error' };
   void import('./firestore_leagues')
     .then((m) => m.syncMyLeagueMemberBoostToCloud())
     .catch(() => {});

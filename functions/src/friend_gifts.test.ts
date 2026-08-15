@@ -209,7 +209,9 @@ test('friendSendGift returns immediately after commit without awaiting Expo tran
   global.fetch = fetchMock as typeof fetch;
   try {
     const result = await sendGift();
-    expect(result).toMatchObject({ ok: true, senderBalanceAfter: 92 });
+    expect(result).toMatchObject({ ok: true, costShards: 8 });
+    expect(result).not.toHaveProperty('senderBalanceAfter');
+    expect(result).not.toHaveProperty('shardsUpdatedAtMs');
     expect(result).not.toHaveProperty('notificationTransport');
     expect(fetchMock).toHaveBeenCalledTimes(1);
   } finally {
@@ -223,7 +225,6 @@ test('friendSendGift starts one weekly friend quest after a successful gift', as
   expect(result).toMatchObject({
     ok: true,
     giftId: 'chain_shield_1',
-    shardsUpdatedAtMs: new Date('2026-06-12T10:00:00.000Z').getTime(),
     questStarted: true,
     quest: {
       participantUids: ['sender', 'recipient'],
@@ -256,10 +257,11 @@ test('friendSendGift repairs stale anonymous auth ownership before spending shar
 
   const result = await sendGift();
 
-  expect(result).toMatchObject({ ok: true, senderBalanceAfter: 92 });
+  expect(result).toMatchObject({ ok: true, costShards: 8 });
+  expect(result).not.toHaveProperty('senderBalanceAfter');
   expect(docs.get('users/sender')).toMatchObject({
     firebaseAuthUid: 'auth-sender',
-    shards: 92,
+    shards: 100,
   });
   expect(docs.get('auth_links/auth-sender')).toMatchObject({
     stable_id: 'sender',
@@ -272,16 +274,16 @@ test('friendSendGift replays the same idempotency key without a second spend or 
 
   expect(first).toMatchObject({
     ok: true,
-    senderBalanceAfter: 92,
     idempotencyKey: 'fg_test_1234567890',
   });
   expect(second).toMatchObject({
     ok: true,
-    senderBalanceAfter: 92,
     idempotencyKey: 'fg_test_1234567890',
     idempotentReplay: true,
   });
-  expect(docs.get('users/sender')).toMatchObject({ shards: 92 });
+  expect(first).not.toHaveProperty('senderBalanceAfter');
+  expect(second).not.toHaveProperty('senderBalanceAfter');
+  expect(docs.get('users/sender')).toMatchObject({ shards: 100 });
   expect(docs.get('users/sender/friend_gift_daily_limits/2026-06-12')).toMatchObject({
     totalSent: 1,
     recipients: { recipient: 1 },
@@ -300,7 +302,7 @@ test('friendSendGift rejects reusing an idempotency key for a different gift', a
     code: 'already-exists',
     message: 'Idempotency key already used for another friend gift',
   });
-  expect(docs.get('users/sender')).toMatchObject({ shards: 92 });
+  expect(docs.get('users/sender')).toMatchObject({ shards: 100 });
 });
 
 test('friendThankGift replays the same idempotency key without a second thanks event', async () => {
@@ -450,8 +452,6 @@ test('friendClaimQuestReward grants only the authenticated participant and repla
     ok: true,
     questId,
     rewardApplied: true,
-    callerShards: 14,
-    shardsUpdatedAtMs: new Date('2026-06-12T10:00:00.000Z').getTime(),
     callerXpBeforeReward: 4100,
     rewardXpApplied: 1000,
     callerXp: 5100,
@@ -462,14 +462,12 @@ test('friendClaimQuestReward grants only the authenticated participant and repla
     ok: true,
     questId,
     rewardApplied: false,
-    callerShards: 14,
-    shardsUpdatedAtMs: new Date('2026-06-12T10:00:00.000Z').getTime(),
     rewardXpApplied: 0,
     callerXp: 5100,
     levelSpinMintedCredits: [{ id: 'level_spin_v1_005', level: 5, kind: 'milestone' }],
     levelSpinBalance: 1,
   });
-  expect(docs.get('users/sender')).toMatchObject({ shards: 14, progress: { user_total_xp: '5100' } });
+  expect(docs.get('users/sender')).toMatchObject({ shards: 4, progress: { user_total_xp: '5100' } });
   expect(docs.get('users/recipient')).toMatchObject({ shards: 9, progress: { user_total_xp: '4100' } });
   expect(docs.get('users/sender/level_spin_credits/level_spin_v1_005')).toMatchObject({
     level: 5,
@@ -499,11 +497,13 @@ test('friendClaimQuestReward grants only the authenticated participant and repla
   });
   expect(recipient).toMatchObject({
     rewardApplied: true,
-    callerShards: 19,
     callerXp: 5100,
     levelSpinMintedCredits: [],
     levelSpinBalance: 0,
   });
+  expect(first).not.toHaveProperty('callerShards');
+  expect(second).not.toHaveProperty('callerShards');
+  expect(recipient).not.toHaveProperty('callerShards');
   expect(docs.get(`friend_quests/${questId}`)).toMatchObject({
     status: 'completed',
     rewardClaimedByUid: { sender: true, recipient: true },

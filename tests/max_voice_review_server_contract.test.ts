@@ -61,4 +61,34 @@ describe('MAX Voice review server wiring', () => {
     expect(server).toContain("const mode = asReviewMode(data.mode);");
     expect(server).toContain('buildReviewSystemPrompt(cefr, learnerLangName, goalEn, studyTarget, mode)');
   });
+
+  it('back leaves the terminal call flow instead of reviving stale connecting screen', () => {
+    expect(screen).toContain("router.replace('/ai_dialog_home' as any)");
+    expect(screen).not.toContain('safeRouterBack');
+  });
+
+  it('hangup is one-tap and does not wait for an early-call confirmation', () => {
+    const session = read('app/max_call_session.tsx');
+    const handler = session.slice(session.indexOf('const onEndPress'), session.indexOf('const onMutePress'));
+    expect(handler).toContain("clientRef.current?.end('completed')");
+    expect(handler).not.toContain('Alert.alert');
+    expect(session).not.toContain('END_CONFIRM_WINDOW_MS');
+  });
+
+  it('opens call immediately with a reactive feather orb and no equalizer/loading label', () => {
+    const prestart = read('app/max_call_prestart.tsx');
+    const session = read('app/max_call_session.tsx');
+    const halo = read('app/max_call_halo.tsx');
+    const handler = prestart.slice(prestart.indexOf('const startCall'), prestart.indexOf('return ('));
+
+    expect(handler).not.toContain('await ');
+    expect(handler).not.toContain('setRequesting');
+    expect(prestart).toContain("'maxVoiceMint')({ warmupPing: true })");
+    expect(session).not.toContain('VoiceEqualizer');
+    expect(session).not.toContain('Соединяем…');
+    expect(session).toContain('haloRef.current?.setMicLevel(level)');
+    expect(halo).toContain('const FEATHER_LAYERS = [');
+    expect(halo).toContain('useSharedValue(1)');
+    expect(halo).toContain('useReduceMotion()');
+  });
 });

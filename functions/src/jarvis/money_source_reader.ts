@@ -10,12 +10,27 @@ import { normalizeEvidence, type Evidence, type EvidenceState } from './decision
  * productId и любые другие поля сюда не попадают — только счётчики.
  */
 
-export const MONEY_REPORT_COLLECTIONS = ['revenuecat_premium_events', 'paywall_funnel'] as const;
+export const MONEY_REPORT_COLLECTIONS = [
+  'revenuecat_premium_events',
+  'paywall_funnel',
+  'client_economy_opening',
+  'client_economy_operations',
+  'external_economy_events',
+] as const;
 export type MoneyReportCollection = typeof MONEY_REPORT_COLLECTIONS[number];
 
 export interface MoneyRawRow {
   readonly eventType: string | null;
   readonly periodType: string | null;
+  readonly ownerStableId?: string | null;
+  readonly openingBalance?: number | null;
+  readonly direction?: string | null;
+  readonly delta?: number | null;
+  readonly balanceBefore?: number | null;
+  readonly balanceAfter?: number | null;
+  readonly revision?: number | null;
+  readonly source?: string | null;
+  readonly createdAtMs?: number | null;
 }
 
 export interface MoneyAggregate {
@@ -24,6 +39,18 @@ export interface MoneyAggregate {
   readonly renewals: number;
   readonly refunds: number;
   readonly trials: number;
+}
+
+export interface PersonalEconomyDiagnostics {
+  readonly openingOwners: number;
+  readonly operationCount: number;
+  readonly externalEventCount: number;
+  readonly invalidRows: number;
+  readonly revisionDiscontinuities: number;
+  readonly balanceDiscontinuities: number;
+  readonly duplicateExternalFacts: number;
+  readonly netClientDelta: number;
+  readonly netExternalDelta: number;
 }
 
 export interface MoneySourceFetchResult {
@@ -57,6 +84,64 @@ export function aggregateMoneyRows(rows: readonly MoneyRawRow[]): MoneyAggregate
     else if (event === 'INITIAL_PURCHASE' && period === 'TRIAL') trials += 1;
   }
   return Object.freeze({ totalCount: rows.length, newPaying, renewals, refunds, trials });
+}
+
+export function diagnosePersonalEconomy(
+  fetches: readonly MoneySourceFetchResult[],
+): PersonalEconomyDiagnostics {
+  const openings = fetches.find((fetch) => fetch.sourceId === 'client_economy_opening')?.rows ?? [];
+  const operations = fetches.find((fetch) => fetch.sourceId === 'client_economy_operations')?.rows ?? [];
+  const external = fetches.find((fetch) => fetch.sourceId === 'external_economy_events')?.rows ?? [];
+  let invalidRows = 0;
+  let revisionDiscontinuities = 0;
+  let balanceDiscontinuities = 0;
+  const lastByOwner = new Map<string, { revision: number; balanceAfter: number }>();
+  let netClientDelta = 0;
+  for (const row of operations) {
+    const owner = row.ownerStableId ?? '';
+    const revision = Number((row as MoneyRawRow & { revision?: unknown }).revision);
+    const delta = Number(row.delta);
+    const before = Number(row.balanceBefore);
+    const after = Number(row.balanceAfter);
+    if (!owner || !Number.isSafeInteger(revision) || revision <= 0 || !Number.isSafeInteger(delta)
+      || !Number.isSafeInteger(before) || !Number.isSafeInteger(after) || before + delta !== after) {
+      invalidRows += 1;
+      continue;
+    }
+    const previous = lastByOwner.get(owner);
+    if (previous && revision !== previous.revision + 1) revisionDiscontinuities += 1;
+    if (previous && before !== previous.balanceAfter) balanceDiscontinuities += 1;
+    lastByOwner.set(owner, { revision, balanceAfter: after });
+    netClientDelta += delta;
+  }
+  const externalKeys = new Set<string>();
+  let duplicateExternalFacts = 0;
+  let netExternalDelta = 0;
+  for (const row of external) {
+    const owner = row.ownerStableId ?? '';
+    const source = row.source ?? '';
+    const eventId = row.eventType ?? '';
+    const delta = Number(row.delta);
+    if (!owner || !source || !eventId || !Number.isSafeInteger(delta) || delta === 0) {
+      invalidRows += 1;
+      continue;
+    }
+    const key = `${owner}:${source}:${eventId}`;
+    if (externalKeys.has(key)) duplicateExternalFacts += 1;
+    externalKeys.add(key);
+    netExternalDelta += delta;
+  }
+  return Object.freeze({
+    openingOwners: new Set(openings.map((row) => row.ownerStableId).filter(Boolean)).size,
+    operationCount: operations.length,
+    externalEventCount: external.length,
+    invalidRows,
+    revisionDiscontinuities,
+    balanceDiscontinuities,
+    duplicateExternalFacts,
+    netClientDelta,
+    netExternalDelta,
+  });
 }
 
 export function buildMoneyEvidence(fetch: MoneySourceFetchResult): Evidence {

@@ -314,8 +314,6 @@ export default function CollectionDeckView({
     () => [cards[index + 1] ?? null, cards[index + 2] ?? null],
     [cards, index],
   );
-  const mountedCount = 1 * (card ? 1 : 0) + underCards.filter(Boolean).length;
-
   const cardMinHeight = Math.min(440, Math.max(240, Math.round((screenH - insets.top - insets.bottom) * 0.44)));
 
   const handleFlip = useCallback(
@@ -450,11 +448,6 @@ export default function CollectionDeckView({
             {index + 1}/{total}
           </Text>
         </View>
-        {__DEV__ && (
-          <Text style={{ color: t.textGhost, fontSize: 9 }} testID="fc-deck-mounted">
-            mounted {mountedCount}/3
-          </Text>
-        )}
         <Pressable
           testID="fc-deck-exit"
           accessibilityRole="button"

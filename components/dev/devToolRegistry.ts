@@ -1,4 +1,6 @@
 export type DevToolAction =
+  | 'open-max-voice'
+  | 'open-motion-lab'
   | 'preview-level-standard'
   | 'preview-level-milestone'
   | 'preview-lesson-results'
@@ -11,6 +13,7 @@ export type DevToolAction =
   | 'revoke-plus';
 
 export type DevToolIcon =
+  | 'call-outline'
   | 'flash-outline'
   | 'sparkles-outline'
   | 'trophy-outline'
@@ -23,7 +26,8 @@ export type DevToolIcon =
   | 'trending-up-outline'
   | 'trending-down-outline'
   | 'shield-checkmark-outline'
-  | 'bug-outline';
+  | 'bug-outline'
+  | 'color-wand-outline';
 
 export type DevTool = Readonly<{
   id: string;
@@ -41,12 +45,50 @@ export type DevToolSection = Readonly<{
   id: string;
   order: number;
   title: string;
-  icon: 'sparkles-outline' | 'key-outline' | 'trophy-outline';
+  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline';
   testID: string;
   tools: readonly DevTool[];
 }>;
 
 export const DEV_TOOL_SECTIONS = [
+  {
+    id: 'motion-lab',
+    order: 1,
+    title: 'Движение · лаборатория',
+    icon: 'sparkles-outline',
+    testID: 'dev-hub-section-motion-lab',
+    tools: [
+      {
+        id: 'motion-lab',
+        order: 10,
+        title: 'Лаборатория движения',
+        detail: 'Три направления × 13 поверхностей: модалки, тосты, состояния. Замедление до 0,25×. Ничего не применяется к боевым экранам.',
+        actionLabel: 'Открыть',
+        action: 'open-motion-lab',
+        icon: 'color-wand-outline',
+        testID: 'dev-open-motion-lab',
+      },
+    ],
+  },
+  {
+    id: 'full-modes',
+    order: 5,
+    title: 'Режимы · полный запуск',
+    icon: 'call-outline',
+    testID: 'dev-hub-section-full-modes',
+    tools: [
+      {
+        id: 'max-voice',
+        order: 10,
+        title: 'MAX Voice',
+        detail: 'Полный путь: подготовка, живой WebRTC-звонок и разбор разговора.',
+        actionLabel: 'Открыть',
+        action: 'open-max-voice',
+        icon: 'call-outline',
+        testID: 'dev-open-max-voice',
+      },
+    ],
+  },
   {
     id: 'level-previews',
     order: 10,

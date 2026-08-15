@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import Animated, {
   Easing,
   cancelAnimation,
-  interpolateColor,
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
@@ -17,19 +16,17 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
  * Ореол экрана MAX-звонка (спека, раздел 6).
  *
  * Зачем так: сцена звонка — единственное место, куда юзер смотрит 5–8 минут
- * подряд на слабом Android, поэтому здесь запрещено всё тяжёлое: никаких
- * svg/блюров/теней/анимаций layout-свойств. Только два концентрических View
- * с borderRadius и Reanimated-анимации transform:scale + цвет — они целиком
- * живут на UI-потоке, ноль setState в кадре.
+ * подряд на слабом Android. Feather строится настоящими полупрозрачными
+ * концентрическими слоями разной плотности, без тяжёлого blur: Reanimated
+ * меняет только transform/opacity на UI-потоке, ноль setState в кадре.
  *
  * Три механики:
  *  1) «дыхание» scale 1→1.04/1200мс — оживляет сцену в connecting/thinking;
- *  2) цвет состояния — interpolateColor ТОЛЬКО на переходах (200–250мс),
- *     между переходами цвет статичен и не жуёт кадры;
- *  3) «кивки»-пульсы от уровня микрофона — визуальный бэкченнел вместо
+ *  2) пять alpha-ступеней создают мягкий feather без GPU-blur;
+ *  3) пульсы от уровня текущего голоса — визуальный бэкченнел вместо
  *     аудио-поддакиваний ИИ (вербальные бэкченнелы в v1 запрещены): уровень
- *     приходит императивно через ref-колбэк setMicLevel из 100мс-поллинга
- *     статов, НЕ через setState/props — иначе 10 рендеров экрана в секунду.
+ *     приходит императивно через ref-колбэк setMicLevel из 250мс-поллинга
+ *     статов, НЕ через setState/props — иначе экран рендерился бы от звука.
  *
  * useReduceMotion гасит дыхание и пульсы (укачивающие циклы), оставляя
  * статичные цвета состояния — доступность важнее красоты.
@@ -37,8 +34,8 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 export type MaxCallHaloRef = {
   /**
-   * Императивная подача уровня микрофона (0..1 или null="нет данных").
-   * Зовётся из поллинга pc.getStats() каждые ~100мс — поэтому ref-колбэк,
+   * Императивная подача уровня текущего аудио (0..1 или null="нет данных").
+   * Зовётся из поллинга pc.getStats() каждые ~250мс — поэтому ref-колбэк,
    * а не prop: экран не должен ре-рендериться от каждого тика уровня.
    */
   setMicLevel: (level: number | null) => void;
@@ -55,13 +52,22 @@ type MaxCallHaloProps = {
   children?: React.ReactNode;
 };
 
-/** Насколько «кивок» может раздуть кольцо при максимальной громкости речи. */
-const MIC_PULSE_MAX = 0.06;
+/** Насколько голос может раздуть ауру при максимальной громкости речи. */
+const MIC_PULSE_MAX = 0.18;
 /** Дыхание: амплитуда и период из спеки (1→1.04 за 1200мс в одну сторону). */
 const BREATH_SCALE = 1.04;
 const BREATH_HALF_MS = 1200;
-/** Смена цвета состояния: один withTiming на переход (200–250мс по спеке). */
-const COLOR_TRANSITION_MS = 240;
+/**
+ * Ступени настоящего feather: снаружи почти прозрачный широкий свет, к ядру
+ * плотность растёт. Перекрытие alpha-слоёв даёт мягкий край без bitmap blur.
+ */
+const FEATHER_LAYERS = [
+  { scale: 1.0, opacity: 0.025 },
+  { scale: 0.86, opacity: 0.04 },
+  { scale: 0.72, opacity: 0.065 },
+  { scale: 0.6, opacity: 0.1 },
+  { scale: 0.5, opacity: 0.16 },
+] as const;
 
 function clamp01(v: number): number {
   'worklet';
@@ -80,11 +86,6 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
 
   const breath = useSharedValue(1);
   const micPulse = useSharedValue(1);
-  // Пара цветов + прогресс: interpolateColor гоняется только пока progress
-  // едет 0→1 на переходе состояния; в покое style стабилен.
-  const fromColor = useSharedValue(color);
-  const toColor = useSharedValue(color);
-  const colorProgress = useSharedValue(1);
 
   // Дыхание: бесконечный цикл только когда фаза этого просит и motion разрешён.
   useEffect(() => {
@@ -106,24 +107,6 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
     };
   }, [breathing, reduceMotion, breath]);
 
-  // Цвет состояния: interpolateColor ТОЛЬКО на переходе — прошлый целевой цвет
-  // становится исходным, прогресс перезапускается. Reduce motion не блокирует
-  // смену цвета (это информация, не движение) — просто без анимации.
-  useEffect(() => {
-    if (toColor.value === color) return;
-    if (reduceMotionRef.current) {
-      fromColor.value = color;
-      toColor.value = color;
-      colorProgress.value = 1;
-      return;
-    }
-    fromColor.value = toColor.value;
-    toColor.value = color;
-    cancelAnimation(colorProgress);
-    colorProgress.value = 0;
-    colorProgress.value = withTiming(1, { duration: COLOR_TRANSITION_MS });
-  }, [color, fromColor, toColor, colorProgress]);
-
   useImperativeHandle(
     ref,
     () => ({
@@ -133,49 +116,26 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
           micPulse.value = withTiming(1, { duration: 160 });
           return;
         }
-        // Кивок пропорционален энергии речи; 120мс — быстрее следующего тика
-        // поллинга (100мс с джиттером), кольцо «дышит голосом», не дребезжит.
-        micPulse.value = withTiming(1 + clamp01(level) * MIC_PULSE_MAX, { duration: 120 });
+        // Атака быстрее, чем спад: голос ощущается живым, но аура не дребезжит.
+        const target = 1 + clamp01(level) * MIC_PULSE_MAX;
+        micPulse.value = withTiming(target, {
+          duration: target > micPulse.value ? 110 : 260,
+          easing: Easing.out(Easing.quad),
+        });
       },
     }),
     [micPulse],
   );
 
-  // Внешнее кольцо ходит всей амплитудой, внутреннее — 60% (глубина без блюра).
-  // Transform и цвет — РАЗНЫЕ useAnimatedStyle: worklet перевычисляется только
-  // когда меняются его shared values, поэтому кадры дыхания/кивков (breath,
-  // micPulse) гоняют лишь дешёвый scale, а interpolateColor (парсинг строк
-  // цвета) исполняется только пока colorProgress едет 0→1 на переходе
-  // состояния (200–250мс) — не 60 раз в секунду всю жизнь сцены.
+  // Вся feather-группа ходит одним transform: один worklet на пять слоёв.
   const outerTransformStyle = useAnimatedStyle(() => ({
     transform: [{ scale: breath.value * micPulse.value }],
   }));
-  const innerTransformStyle = useAnimatedStyle(() => {
+  const coreTransformStyle = useAnimatedStyle(() => {
     const raw = breath.value * micPulse.value;
-    return {
-      transform: [{ scale: 1 + (raw - 1) * 0.6 }],
-    };
+    return { transform: [{ scale: 1 + (raw - 1) * 0.22 }] };
   });
-  // По одному цветовому worklet'у на кольцо (общий style-объект между двумя
-  // Animated.View Reanimated не разделяет надёжно), оба зависят ТОЛЬКО от
-  // colorProgress/fromColor/toColor.
-  const outerColorStyle = useAnimatedStyle(() => ({
-    backgroundColor: interpolateColor(
-      colorProgress.value,
-      [0, 1],
-      [fromColor.value, toColor.value],
-    ),
-  }));
-  const innerColorStyle = useAnimatedStyle(() => ({
-    backgroundColor: interpolateColor(
-      colorProgress.value,
-      [0, 1],
-      [fromColor.value, toColor.value],
-    ),
-  }));
-
-  const outerSize = Math.round(size * 1.55);
-  const innerSize = Math.round(size * 1.24);
+  const outerSize = Math.round(size * 2.05);
 
   return (
     <View
@@ -190,31 +150,30 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
     >
       <Animated.View
         style={[
-          {
-            position: 'absolute',
-            width: outerSize,
-            height: outerSize,
-            borderRadius: outerSize / 2,
-            opacity: 0.16,
-          },
+          { position: 'absolute', width: outerSize, height: outerSize },
           outerTransformStyle,
-          outerColorStyle,
         ]}
-      />
-      <Animated.View
-        style={[
-          {
-            position: 'absolute',
-            width: innerSize,
-            height: innerSize,
-            borderRadius: innerSize / 2,
-            opacity: 0.3,
-          },
-          innerTransformStyle,
-          innerColorStyle,
-        ]}
-      />
-      {children}
+      >
+        {FEATHER_LAYERS.map((layer, index) => {
+          const layerSize = Math.round(outerSize * layer.scale);
+          return (
+            <View
+              key={`feather-${index}`}
+              style={{
+                position: 'absolute',
+                left: (outerSize - layerSize) / 2,
+                top: (outerSize - layerSize) / 2,
+                width: layerSize,
+                height: layerSize,
+                borderRadius: layerSize / 2,
+                backgroundColor: color,
+                opacity: layer.opacity,
+              }}
+            />
+          );
+        })}
+      </Animated.View>
+      <Animated.View style={coreTransformStyle}>{children}</Animated.View>
     </View>
   );
 });

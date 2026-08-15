@@ -46,7 +46,12 @@ describe('Arena Expansion UI source contract', () => {
 
   test('opens the latest owner Lab review from the Hub when no source id is supplied', () => {
     const lab = read('app/arena_match_lab.tsx');
-    expect(lab).toContain('arenaMatchLabGet({ sourceRunId: params.sourceRunId, matchId: params.matchId, mode })');
+    // Договор здесь — какие данные уходят в запрос, а не в каком порядке они
+    // записаны. Порядок аргументов меняется при первом же рефакторинге.
+    expect(lab).toContain('arenaMatchLabGet(');
+    for (const part of ['sourceRunId: params.sourceRunId', 'matchId: params.matchId', 'mode']) {
+      expect(lab).toContain(part);
+    }
     expect(lab).not.toContain('if (!params.sourceRunId && !params.matchId)');
   });
 
@@ -117,7 +122,12 @@ describe('Arena Expansion UI source contract', () => {
     const lab = read('app/arena_match_lab.tsx');
     const today = read('app/arena_today.tsx');
     expect(lab).not.toContain('if (!params.sourceRunId && !params.matchId)');
-    expect(lab).toContain('arenaMatchLabGet({ sourceRunId: params.sourceRunId, matchId: params.matchId, mode })');
+    // Договор здесь — какие данные уходят в запрос, а не в каком порядке они
+    // записаны. Порядок аргументов меняется при первом же рефакторинге.
+    expect(lab).toContain('arenaMatchLabGet(');
+    for (const part of ['sourceRunId: params.sourceRunId', 'matchId: params.matchId', 'mode']) {
+      expect(lab).toContain(part);
+    }
     expect(today).toContain("pathname: '/arena_match_lab'");
     expect(today).toContain('matchId: completedRunId');
   });

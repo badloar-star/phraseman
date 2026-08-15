@@ -21,16 +21,6 @@ service firebase.storage {
       allow write: if false;
     }
 
-    // Public, read-only personal-plan listening audio (one mp3 per plan/day/phrase).
-    // Same model as phrase-audio: served to the app over HTTPS and disk-cached so
-    // the ~126 MB of clips no longer ship inside the native binary. Uploaded only by
-    // scripts/upload_plan_audio_to_storage.mjs via the Admin SDK (bypasses rules).
-    match /plan-audio/{allPaths=**} {
-      allow get: if true;
-      allow list: if false;
-      allow write: if false;
-    }
-
     // Published Learning V2 voice assets. Exact object coordinates arrive only
     // through the authenticated active-release descriptor. The app reads one
     // immutable object by exact path, verifies byte size + SHA-256 and stores no

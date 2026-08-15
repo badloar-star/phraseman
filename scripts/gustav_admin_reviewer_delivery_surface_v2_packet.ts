@@ -222,7 +222,7 @@ const SOURCE_LOCALES = ["ru", "uk"] as const;
 const SOURCE_FILES = {
   adminUiBible: "docs/design/ADMIN_UI_BIBLE.md",
   adminIndex: "admin/index.html",
-  liveAdmin: "admin/legacy.html",
+  liveAdmin: "admin/v2/legacy.html",
   adminV2Dir: "admin/v2",
   adminPersonalTrainings: "admin/personal-trainings.js",
   adminExtraSurfaceFiles: [

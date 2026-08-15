@@ -64,3 +64,35 @@ export function arenaBotAvatarKey(seed: string, avatars: readonly string[]): str
   if (!avatars.length) return undefined;
   return pick(avatars, unitFromSeed(seed, 'avatar'));
 }
+
+/**
+ * Аватар соперника-бота.
+ *
+ * Без него бот выдавал себя с первого кадра. Аватары в игре — это номер в
+ * наборе, строкой; у живого игрока он почти всегда есть, а боту не ставили
+ * никакого. `AvatarView` без номера рисует заглушку — и в заставке «соперник
+ * найден» одна из двух картинок всегда оказывалась пустой. Догадаться, какая
+ * из них бот, мог кто угодно после второго матча, а владелец потребовал
+ * обратного.
+ *
+ * Номер берётся ИЗ ОКНА самого игрока и не выше его собственного: набор
+ * аватаров на сервере не продублирован, и выдумывать номер, которого может не
+ * оказаться в сборке клиента, нельзя — заглушка вернулась бы. Окно снизу
+ * (десять шагов) даёт разнообразие, не делая соперника подозрительно похожим.
+ *
+ * Детерминирован по seed матча: аватар не меняется при переподключении.
+ */
+const ARENA_BOT_AVATAR_FALLBACK_MAX = 12;
+const ARENA_BOT_AVATAR_WINDOW = 10;
+
+export function arenaBotAvatar(seed: string, viewerAvatar?: unknown): string {
+  const raw = typeof viewerAvatar === 'string' && /^\d+$/.test(viewerAvatar)
+    ? Math.trunc(Number(viewerAvatar))
+    : 0;
+  // Верхняя граница — аватар самого игрока: он заведомо есть в его сборке.
+  const top = raw >= 1 ? raw : ARENA_BOT_AVATAR_FALLBACK_MAX;
+  const bottom = Math.max(1, top - ARENA_BOT_AVATAR_WINDOW);
+  const band: string[] = [];
+  for (let index = bottom; index <= top; index += 1) band.push(String(index));
+  return arenaBotAvatarKey(seed, band) ?? '1';
+}

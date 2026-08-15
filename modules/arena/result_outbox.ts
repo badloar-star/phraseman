@@ -69,11 +69,35 @@ export function arenaOutboxClassify(error: unknown): ArenaOutboxFailure {
     || text.includes('failed to fetch') || text.includes('timeout') || text.includes('econn')) {
     return 'offline';
   }
-  if (text.includes('deadline-exceeded') || text.includes('internal') || text.includes('resource-exhausted')
-    || text.includes('aborted') || text.includes('app check') || text.includes('appcheck')) {
-    return 'transient';
+  // Отказ по существу — только там, где сервер сказал «нет» осознанно и
+  // скажет то же самое завтра. Список закрытый и перечислен поимённо.
+  if (text.includes('arena_match_missing') || text.includes('arena_report_conflict')
+    || text.includes('arena_report_plan_mismatch') || text.includes('arena_report_match_mismatch')
+    || text.includes('arena_report_seat_mismatch') || text.includes('arena_report_too_large')
+    || text.includes('arena_match_aborted') || text.includes('arena_match_not_accepted')
+    || text.includes('permission-denied') || text.includes('invalid-argument')
+    || text.includes('failed-precondition') || text.includes('already-exists')) {
+    return 'rejected';
   }
-  return 'rejected';
+
+  /**
+   * Всё непонятное досылается, а не выбрасывается.
+   *
+   * Раньше здесь стоял `return 'rejected'`, и любая ошибка без знакомой
+   * подстроки означала «отчёт удалить навсегда». В этот список молча попадали
+   * `cancelled` (приложение свернули посреди вызова), `unauthenticated`
+   * (токен обновлялся), `unknown` (сам Firebase не разобрался) и —
+   * самое обидное — `not-found`, то есть «функция ещё не задеплоена».
+   * Каждый такой случай стоил игроку сыгранного матча, и он никак не мог об
+   * этом узнать.
+   *
+   * Досылать безопасно: сервер хранит отчёт по `reportId` и на повтор
+   * возвращает уже сохранённый результат, ничего не начисляя дважды. Цена
+   * ошибки в эту сторону — один лишний вызов; в ту — потерянный матч.
+   * Бесконечности тоже нет: отступы растут, а через `ARENA_OUTBOX_TTL_MS`
+   * запись истекает сама.
+   */
+  return 'transient';
 }
 
 export function arenaOutboxNextAttemptAtMs(

@@ -163,15 +163,34 @@ function presetSize(preset: FcModePreset | null | undefined): number {
 }
 
 /**
+ * Маршрут «Тренировки» раздела «Карточки» (FIX владельца, 2026-08-13).
+ *
+ * БЫЛО: пункт вёл в `/trainer_words_session` — это тренажёр «Моя практика»
+ * (повторение ошибок и SRS-очередь), отдельная функция с главного экрана.
+ * СТАЛО: «Тренировка» — самостоятельный режим раздела карточек: выбор наборов
+ * → свайп «правильно / неправильно» (свайп вправо/влево + кнопки-дублёры),
+ * то есть экран `flashcards_swipe`. Экран сам показывает выбор наборов, а
+ * `?deck=`/`?size=` лишь предотмечают в нём последний выбор человека.
+ */
+export const FC_TRAIN_ROUTE = '/flashcards_swipe';
+
+/**
  * Маршрут пункта списка «Тренировка» (§5.2). Пресет быстрого старта —
  * `fc_mode_prefs_v1`; без пресета каждый режим стартует со своего дефолта:
- *  • «Тренировка» — due-очередь тренера (без `?deck=`);
+ *  • «Тренировка» — все доступные наборы (экран свайпа отметит их сам);
  *  • «Слушать»    — все сохранённые (`deck=saved`, 'weak' для аудио бессмысленна);
  *  • «Блиц»       — смешанный пул по умолчанию (без `?deck=`).
  */
 export function buildFcTrainRoute(
   option: FcTrainOption,
   preset: FcModePreset | null | undefined,
+  /**
+   * Выбор наборов только что сделан в DeckPickerSheet. Тогда «Тренировка»
+   * стартует сразу (`quick=1`): спрашивать наборы второй раз, уже своим
+   * экраном выбора, — издевательство. Обычный тап по пункту меню флага не
+   * ставит: там экран выбора и есть заявленный вход в режим.
+   */
+  opts?: { fromPicker?: boolean },
 ): FcTabRouteTarget {
   const decks = realDecks(preset);
   const deckParam = deckRouteParam(decks);
@@ -190,7 +209,8 @@ export function buildFcTrainRoute(
   }
   const params: Record<string, string> = { size: String(presetSize(preset)) };
   if (deckParam) params.deck = deckParam;
-  return { pathname: '/trainer_words_session', params };
+  if (opts?.fromPicker && deckParam) params.quick = '1';
+  return { pathname: FC_TRAIN_ROUTE, params };
 }
 
 /** Режим `mode_prefs`, из которого читается пресет быстрого старта пункта. */
@@ -206,10 +226,27 @@ export function buildFcCreateRoute(option: FcCreateOption): FcTabRouteTarget {
   return { pathname: '/flashcards_card_editor', params: { create: '1', cat: 'custom' } };
 }
 
+/**
+ * The old empty custom collection was only an extra tap between the Cards
+ * section and the editor. Existing authored cards still use the collection;
+ * a genuinely empty custom route goes straight to creation.
+ */
+export function shouldBypassEmptyCustomCollection(input: {
+  collectionDataReady: boolean;
+  activeCat: string;
+  packDeeplink: string | null;
+  customCardCount: number;
+}): boolean {
+  return input.collectionDataReady
+    && input.activeCat === 'custom'
+    && !input.packDeeplink
+    && input.customCardCount === 0;
+}
+
 /** Правая позиция таббара — каталог наборов сообщества (§5.3). */
 export const FC_PACKS_ROUTE = '/flashcards_packs';
 /** Свои и добавленные наборы — отдельный раздел, не смешан с каталогом. */
-export const FC_MY_PACKS_ROUTE = '/flashcards/my_packs';
+export const FC_MY_PACKS_ROUTE = '/flashcards_my_packs';
 
 /** Маршрут пункта группы «Наборы». */
 export function buildFcPacksRoute(option: FcPacksOption): FcTabRouteTarget {

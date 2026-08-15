@@ -352,6 +352,9 @@ function makeDbStub(
       const path = pathFor(name, id);
       versions.set(path, (versions.get(path) ?? 0) + 1);
     },
+    collection: (child: string) => ({
+      doc: (childId: string) => docApi(`${name}/${id}/${child}`, childId),
+    }),
   });
 
   // ref carries a functional handle (set/delete) so query-result .ref works in repoint logic.
@@ -467,6 +470,10 @@ function makeDbStub(
             return ref.get();
           },
           set: (ref: { set: (d: DocData) => Promise<void> }, data: DocData) => {
+            hasWritten = true;
+            writes.push(() => ref.set(data));
+          },
+          create: (ref: { set: (d: DocData) => Promise<void> }, data: DocData) => {
             hasWritten = true;
             writes.push(() => ref.set(data));
           },
@@ -876,10 +883,8 @@ describe('mergeStableAccounts', () => {
     const winner = store.users['stable-tablet']!;
     expect((winner.progress as DocData).user_total_xp).toBe('6812');
     expect((winner.progress as DocData).streak_count).toBe('9'); // best-of
-    expect(winner.shards).toBe(1325); // max
-    expect(winner.shards_updated_at_ms).toBe(NOW);
-    expect(winner.shards_updated_op).toBe('replace');
-    expect(winner.shards_updated_reason).toBe('account_merge');
+    expect(winner.shards).toBe(491); // immutable legacy opening remains untouched
+    expect(store['users/stable-tablet/external_economy_events']).toBeUndefined();
     expect(winner.firebaseAuthUid).toBe('google-1');
 
     const loser = store.users['stable-phone']!;
@@ -1448,8 +1453,6 @@ describe('mergeStableAccounts', () => {
     const winner = store.users['stable-mine']!;
     expect((winner.progress as DocData).streak_count).toBe('7'); // absorbed from anon
     expect(winner.shards).toBe(100); // max(100,40)
-    expect(winner.shards_updated_at_ms).toBe(NOW);
-    expect(winner.shards_updated_reason).toBe('account_merge');
     expect(store.users['stable-anon']!.identityHidden).toBe(true);
   });
 

@@ -869,13 +869,12 @@ function main(): void {
     generationVsApplyPolicy: [
       'Existing French lesson-row generation/reviewer readiness remains separate from current-app domain readiness.',
       'P8 may recommend readiness checks, but it does not edit `scripts/gustav_readiness_gate.ts`.',
-      'New app-domain French generation requires dedicated generation packets for personal plans, dialogs, flashcard bundles, and collectible text.',
+      'New app-domain French generation requires dedicated generation packets for dialogs, flashcard bundles, and collectible text.',
       'Dirty state surfaces and collectible image assets are activation/apply gates; they do not by themselves generate translations.',
       'Production apply remains blocked until LLM official-source reviewer decisions, apply blocker resolution, clean/approved dirty overlap, and explicit app-write approval exist.',
     ],
     requiredNextArtifacts: [
       'P9 expanded algorithm master manifest indexing P0-P8 plus existing French reviewer artifacts.',
-      'French personal-plan generation packet before creating Echo/Gavan/Impuls French content.',
       'French AI-dialog generation and prompt-safety packet before translating scenario UI/prompt cells.',
       'French flashcard bundle generation packet before translating marketplace bundle content.',
       'French collectible text sidecar contract before activating localized collectible reward text.',

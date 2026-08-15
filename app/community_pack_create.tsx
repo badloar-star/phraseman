@@ -932,6 +932,7 @@ export default function CommunityPackCreateScreen() {
           <BouncyScrollView
             ref={scrollViewRef}
             style={{ flex: 1 }}
+            nestedScrollEnabled
             decelerationRate="normal"
             keyboardShouldPersistTaps="handled"
             keyboardDismissMode={effectiveOs === 'ios' ? 'interactive' : 'on-drag'}
@@ -1009,8 +1010,6 @@ export default function CommunityPackCreateScreen() {
                     value={draftEn}
                     onChangeText={setDraftEn}
                     onFocus={bindScrollOnFocus(draftEnInputRef)}
-                    placeholder={L('Текст передней стороны…', 'Текст передньої сторони…', 'Texto de la cara delantera…', 'Texto da frente…', 'Nội dung mặt trước…', 'Teks sisi depan…', 'Ön yüz metni…', 'Tekst przedniej strony…')}
-                    placeholderTextColor={t.textGhost}
                     style={[fieldInputStyle(t), { borderColor: t.accent }]}
                   />
                   <Text style={draftLabelStyle(t)}>
@@ -1023,8 +1022,6 @@ export default function CommunityPackCreateScreen() {
                     value={draftTranslation}
                     onChangeText={setDraftTranslation}
                     onFocus={bindScrollOnFocus(draftTranslationInputRef)}
-                    placeholder={L('Текст задней стороны…', 'Текст зворотної сторони…', 'Texto de la cara trasera…', 'Texto do verso…', 'Nội dung mặt sau…', 'Teks sisi belakang…', 'Arka yüz metni…', 'Tekst tylnej strony…')}
-                    placeholderTextColor={t.textGhost}
                     style={fieldInputStyle(t)}
                   />
                   <Text style={draftLabelStyle(t)}>
@@ -1037,17 +1034,6 @@ export default function CommunityPackCreateScreen() {
                     value={draftNote}
                     onChangeText={setDraftNote}
                     onFocus={bindScrollOnFocus(draftNoteInputRef)}
-                    placeholder={L(
-                      'Краткая заметка, контекст или подсказка…',
-                      'Коротка замітка, контекст або підказка…',
-                      'Nota breve, contexto o pista…',
-                      'Nota breve, contexto ou dica…',
-                      'Ghi chú ngắn, ngữ cảnh hoặc gợi ý…',
-                      'Catatan singkat, konteks, atau petunjuk…',
-                      'Kısa not, bağlam veya ipucu…',
-                      'Krótka notatka, kontekst albo podpowiedź…',
-                    )}
-                    placeholderTextColor={t.textGhost}
                     multiline
                     style={[fieldInputStyle(t), { minHeight: 72, textAlignVertical: 'top' }]}
                   />
@@ -1227,9 +1213,19 @@ export default function CommunityPackCreateScreen() {
 
                   <View style={styles.cardBackHero}>
                     {selectedCardBackFan ? (
-                      <Image source={selectedCardBackFan} style={styles.cardBackHeroImage} contentFit="contain" />
+                      <Image
+                        key={`fan-${cardBackKey}`}
+                        source={selectedCardBackFan}
+                        style={styles.cardBackHeroImage}
+                        contentFit="contain"
+                      />
                     ) : selectedCardBack ? (
-                      <Image source={selectedCardBack} style={styles.cardBackHeroImage} contentFit="contain" />
+                      <Image
+                        key={`single-${cardBackKey}`}
+                        source={selectedCardBack}
+                        style={styles.cardBackHeroImage}
+                        contentFit="contain"
+                      />
                     ) : null}
                   </View>
 
@@ -1251,6 +1247,8 @@ export default function CommunityPackCreateScreen() {
 
                 <ScrollView
                   horizontal
+                  nestedScrollEnabled
+                  directionalLockEnabled
                   decelerationRate="normal"
                   showsHorizontalScrollIndicator={false}
                   contentContainerStyle={styles.cardBackThumbRow}
@@ -1262,6 +1260,7 @@ export default function CommunityPackCreateScreen() {
                     return (
                       <TouchableOpacity
                         key={id}
+                        testID={`ugc-pack-back-${id}`}
                         onPress={() => {
                           Keyboard.dismiss();
                           setCardBackIdx(idx);
@@ -1269,6 +1268,7 @@ export default function CommunityPackCreateScreen() {
                         activeOpacity={0.82}
                         accessibilityRole="button"
                         accessibilityState={{ selected }}
+                        accessibilityLabel={ugcCardBackLabel(id, lang)}
                         style={[
                           styles.cardBackThumb,
                           {

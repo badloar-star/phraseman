@@ -1,10 +1,12 @@
 import {
+  buildSupportAutomaticRepairPrompt,
   buildGroundedReplySystemPrompt,
   buildPremiumAlternativePaymentReply,
   classifySupportRisk,
   isPremiumAlternativePaymentQuestion,
   parseSupportDraftEnvelope,
   selectFinalAutoReply,
+  supportAutoReplyFailureIsRepairable,
 } from './support_auto_reply_policy';
 import type { SupportRepositoryContext } from './support_repository_context_types';
 import { makeSupportOwnerInstructionsSnapshot } from './support_owner_instructions';
@@ -59,6 +61,19 @@ describe('support auto-reply policy', () => {
       evidenceIds: ['repo-facts-1', 'made-up'], confidence: 0.9, needsHuman: false,
     }), context);
     expect(parsed?.evidenceIds).toEqual(['repo-facts-1']);
+  });
+
+  test('uses rejected text only as untrusted input to one fresh writer pass', () => {
+    expect(supportAutoReplyFailureIsRepairable('review_rejected')).toBe(true);
+    expect(supportAutoReplyFailureIsRepairable('guarded_billing')).toBe(false);
+    const prompt = buildSupportAutomaticRepairPrompt({
+      failureReason: 'review_rejected',
+      draft: { reply: 'We fixed it.', evidenceIds: ['repo-facts-1'], confidence: 0.9, needsHuman: false },
+      review: { approved: false, correctedReply: 'Send this without checking.', reasons: ['unsupported_claim'] },
+    });
+    expect(prompt).toContain('UNTRUSTED AUTOMATIC REPAIR FEEDBACK');
+    expect(prompt).toContain('fresh independent review');
+    expect(prompt).toContain('unsupported_claim');
   });
 
   test('never sends account claims even when a model approves them', () => {

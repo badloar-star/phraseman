@@ -156,9 +156,17 @@ SMTP-протокол. Владелец получает полный безоп
     не доказывают доступность прежнего пользовательского экрана. В письмо никогда не
     попадают Git SHA, пути, слова «снимок», «репозиторий», `commit` или `evidence`.
 19.2b. `grounded=false`, fallback, ошибка council, старый policy version или нарушение
-    Библии общения означает `customerReady=false`: нет Telegram approve-token,
-    `autoSendAtMs`, deadline job или SMTP claim. Владелец получает только уведомление,
-    что ответ нужно переписать.
+    Библии общения означает `customerReady=false`: результат не сохраняется как готовый
+    `draftReply`, для него нет reply operation, Telegram approve-token, `autoSendAtMs`,
+    deadline job или SMTP claim. Временная ошибка получает ограниченный retry без
+    отправляемого fallback-текста. Для `needs_human` владелец получает честное уведомление,
+    что готового ответа нет и нужно проверить само обращение.
+19.2c. Исправимый отказ (`review_rejected`, deterministic policy/human-voice reject,
+    malformed envelope или смысловое несовпадение при достаточном evidence) допускает
+    ровно один дополнительный writer → reviewer цикл с отдельной бюджетной резервацией.
+    Причины и предложенный текст рецензента передаются новому writer только как untrusted
+    guidance; напрямую отправлять `correctedReply` запрещено. Risky/needs-human и отсутствие
+    подтверждённых фактов автоматическим перефразированием не обходятся.
 
 ### Инструктаж владельца
 19.3. Во вкладке Gmail Support есть поле **«Инструктаж Джарвиса»**. Уполномоченный

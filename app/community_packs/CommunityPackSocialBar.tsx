@@ -17,7 +17,9 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Text, TouchableOpacity, View } from 'react-native';
 import type { Theme } from '../../constants/theme';
 import { triLang, type Lang } from '../../constants/i18n';
-import { actionToastTri, emitAppEvent } from '../events';
+import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
+import { useStudyTarget } from '../../components/StudyTargetContext';
+import { getCanonicalUserId } from '../user_id_policy';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
 import { addCommunityPackToLibrary, toggleCommunityPackLike } from './communityPackActions';
 import {
@@ -26,7 +28,7 @@ import {
   toggleLikeOptimistic,
   type PackSocialSnapshot,
 } from './packSocial';
-import { fetchCommunityPackSocialCounts } from './packSocialFirestore';
+import { fetchCommunityPackSocialState } from './packSocialFirestore';
 import { isCommunityPackLikedLocally } from './packSocialStorage';
 
 export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen';
@@ -59,6 +61,9 @@ export default function CommunityPackSocialBar({
   const isTile = mode === 'tile';
   const isScreen = mode === 'screen';
 
+  /** Изоляция целей обучения: «Добавить себе» пишет владение по ТЕКУЩЕЙ цели. */
+  const { studyTarget } = useStudyTarget();
+
   const [snapshot, setSnapshot] = useState<PackSocialSnapshot>(() => ({
     likesCount: pack.likesCount ?? 0,
     addedCount: pack.addedCount ?? 0,
@@ -66,25 +71,61 @@ export default function CommunityPackSocialBar({
     added: owned,
   }));
 
+  /**
+   * Счётчик локальных действий пользователя (лайк / добавление).
+   *
+   * ПРИЧИНА БАГА «лайк не ставится», часть 3: фоновое чтение ниже перезаписывало
+   * снимок значением, прочитанным ДО нажатия (AsyncStorage и Firestore отвечают
+   * позже, чем пользователь жмёт), — сердце гасло, а цифра откатывалась. Теперь
+   * результат чтения применяется только если за время запроса не было нажатий.
+   */
+  const opSeqRef = useRef(0);
+
   useEffect(() => {
     let cancelled = false;
+    const seqAtStart = opSeqRef.current;
     void (async () => {
-      const [liked, counts] = await Promise.all([
+      /**
+       * Членство (`pack_likes/{userId}`, `pack_adds/{userId}`) читаем только там, где
+       * можно лайкнуть, — на экране набора. Плиткам каталога это лишние 2 чтения
+       * Firestore КАЖДАЯ: их снимок обновляет событие `community_pack_like_changed`.
+       */
+      const userId = isTile ? null : await getCanonicalUserId().catch(() => null);
+      const [liked, state] = await Promise.all([
         isCommunityPackLikedLocally(pack.id).catch(() => false),
-        fetchCommunityPackSocialCounts(pack.id).catch(() => ({ likesCount: 0, addedCount: 0 })),
+        fetchCommunityPackSocialState(pack.id, userId).catch(() => ({
+          counts: { likesCount: 0, addedCount: 0 },
+          membership: null,
+        })),
       ]);
-      if (cancelled) return;
+      if (cancelled || opSeqRef.current !== seqAtStart) return;
       setSnapshot((prev) =>
-        mergeServerCounts({ ...prev, liked, added: prev.added || owned }, {
-          likesCount: Math.max(counts.likesCount, pack.likesCount ?? 0),
-          addedCount: Math.max(counts.addedCount, pack.addedCount ?? 0),
-        }),
+        state.membership
+          ? mergeServerCounts({ ...prev, liked, added: prev.added || owned }, state.counts, state.membership)
+          : mergeServerCounts({ ...prev, liked, added: prev.added || owned }, {
+              likesCount: Math.max(state.counts.likesCount, pack.likesCount ?? 0),
+              addedCount: Math.max(state.counts.addedCount, pack.addedCount ?? 0),
+            }),
       );
     })();
     return () => {
       cancelled = true;
     };
-  }, [pack.id, pack.likesCount, pack.addedCount, owned]);
+  }, [pack.id, pack.likesCount, pack.addedCount, owned, isTile]);
+
+  /**
+   * Лайк ставится на экране набора, а плитка каталога живёт своим снимком —
+   * без этого счётчик на плитке «отставал» до полного перезахода в раздел.
+   * Идемпотентно: если состояние уже совпало, снимок не трогаем (никаких циклов).
+   */
+  useEffect(() => {
+    const sub = onAppEvent('community_pack_like_changed', (e) => {
+      if (e.packId !== pack.id) return;
+      opSeqRef.current += 1;
+      setSnapshot((prev) => (prev.liked === e.liked ? prev : toggleLikeOptimistic(prev)));
+    });
+    return () => sub.remove();
+  }, [pack.id]);
 
   const isAdded = owned || snapshot.added;
 
@@ -121,17 +162,28 @@ export default function CommunityPackSocialBar({
     }
     runLikePop();
     /** Оптимистично: цифра меняется сразу, сервер догоняет. */
+    const expectedLiked = !snapshot.liked;
+    opSeqRef.current += 1;
     setSnapshot((prev) => toggleLikeOptimistic(prev));
-    void toggleCommunityPackLike(pack.id);
-  }, [isAdded, likeLockedToast, runLikePop, pack.id]);
+    void (async () => {
+      const res = await toggleCommunityPackLike(pack.id);
+      /**
+       * Сверяемся с фактическим состоянием на устройстве: если параллельное нажатие
+       * увело его в другую сторону, приводим цифру к правде, а не оставляем расхождение.
+       */
+      if (res.liked === expectedLiked) return;
+      setSnapshot((prev) => (prev.liked === res.liked ? prev : toggleLikeOptimistic(prev)));
+    })();
+  }, [isAdded, likeLockedToast, runLikePop, pack.id, snapshot.liked]);
 
   const onAddPress = useCallback(() => {
+    opSeqRef.current += 1;
     setSnapshot((prev) => addToLibraryOptimistic(prev));
     void (async () => {
-      const res = await addCommunityPackToLibrary(pack);
-      if (res === 'added') onAdded?.(pack.id);
+      const res = await addCommunityPackToLibrary(pack, studyTarget);
+      if (res === 'added' || res === 'already_added') onAdded?.(pack.id);
     })();
-  }, [pack, onAdded]);
+  }, [pack, onAdded, studyTarget]);
 
   const addedLabel = triLang(lang, {
     ru: 'добавили', uk: 'додали', es: 'lo añadieron',

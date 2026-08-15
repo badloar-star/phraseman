@@ -9,12 +9,12 @@ function readProjectFile(relativePath: string): string {
 
 describe('lingman YouTube quality gate', () => {
   const catalogSource = () => readProjectFile('app/lingman_videos.tsx');
-  const playerSource = () => readProjectFile('app/lingman_video_player.tsx');
+  const inlinePlayerSource = () => readProjectFile('components/youtube/YoutubeInlinePlayer.tsx');
   const buttonSource = () => readProjectFile('components/LingmanVideosButton.tsx');
   const dataSource = () => readProjectFile('app/lingman_youtube.ts');
 
   it('uses theme-native chrome instead of hardcoded YouTube red in app surfaces', () => {
-    const combined = [catalogSource(), playerSource(), buttonSource()].join('\n');
+    const combined = [catalogSource(), inlinePlayerSource(), buttonSource()].join('\n');
 
     expect(combined).not.toMatch(/#E11D48|#EF4444/);
     expect(combined).toContain('getLingmanYoutubeChrome');
@@ -48,8 +48,8 @@ describe('lingman YouTube quality gate', () => {
   });
 
   it('hardens player and external YouTube navigation', () => {
-    const combined = [catalogSource(), playerSource(), dataSource()].join('\n');
-    const player = playerSource();
+    const combined = [catalogSource(), inlinePlayerSource(), dataSource()].join('\n');
+    const player = inlinePlayerSource();
 
     expect(combined).toContain('getTrustedLingmanYoutubeUrl');
     expect(player).toContain('originWhitelist={LINGMAN_WEBVIEW_ORIGIN_WHITELIST}');
@@ -63,6 +63,8 @@ describe('lingman YouTube quality gate', () => {
     expect(player).toContain('shouldKeepLingmanPlayerNavigationInApp');
     expect(player).toContain('testID="lingman-player-webview"');
     expect(player).toContain('testID="lingman-player-error"');
+    expect(player).not.toContain('lingman-inline-player-youtube');
+    expect(player).not.toContain('Linking.openURL');
   });
 
   it('connects the catalog to the PHRASEMAN English YouTube channel', () => {
@@ -96,7 +98,7 @@ describe('lingman YouTube quality gate', () => {
 
   it('uses the wired vector icon path without shipping dead per-theme YouTube art', () => {
     const assetDir = path.join(root, 'assets/images/lingman');
-    const combined = [catalogSource(), playerSource(), buttonSource()].join('\n');
+    const combined = [catalogSource(), inlinePlayerSource(), buttonSource()].join('\n');
     expect(combined).toContain("import Ionicons from '@expo/vector-icons/Ionicons'");
     for (const assetName of ['youtube-dark.webp', 'youtube-gold.webp', 'youtube-minimalDark.webp']) {
       expect(combined).not.toContain(assetName);

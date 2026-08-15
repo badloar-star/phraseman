@@ -1,4 +1,4 @@
-import { customCardLocalizationForLang } from './flashcards_collection';
+import { customCardLocalizationForLang } from './flashcards/custom_card_localization';
 // cards-2.0 (E7): отдельный экран create/edit кастомной карточки.
 // Роуты: /flashcards_card_editor?create=1&cat=custom — создание;
 //        /flashcards_card_editor?id=<cardId>        — редактирование (закрывает баг 8).
@@ -30,6 +30,7 @@ import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { actionToastTri, emitAppEvent } from './events';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { useAudio } from '../hooks/use-audio';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { getTranscription } from './transcription';
@@ -259,7 +260,7 @@ export default function FlashcardsCardEditorScreen() {
               es: 'No se encontró la tarjeta.',
             }),
           );
-          router.back();
+          safeRouterBack(router, '/flashcards' as any);
         }
       })
       .catch(() => {
@@ -270,12 +271,23 @@ export default function FlashcardsCardEditorScreen() {
 
   const leaveEditor = useCallback(() => {
     Keyboard.dismiss();
-    if (typeof router.canGoBack === 'function' && router.canGoBack()) {
-      router.back();
-    } else {
-      router.replace({ pathname: '/flashcards_collection', params: { cat: 'custom' } } as any);
+    const fallback = isEdit
+      ? { pathname: '/flashcards_collection', params: { cat: 'custom' } }
+      : '/flashcards';
+    safeRouterBack(router, fallback as any);
+  }, [isEdit, router]);
+
+  const leaveEditorAfterSave = useCallback(() => {
+    Keyboard.dismiss();
+    if (isEdit) {
+      leaveEditor();
+      return;
     }
-  }, [router]);
+    // После первой карточки коллекция уже не пустая: показываем результат, но
+    // заменяем редактор, чтобы Back не возвращал пользователя в сохранённую форму.
+    markNextNavigationAsReplace();
+    router.replace({ pathname: '/flashcards_collection', params: { cat: 'custom' } } as any);
+  }, [isEdit, leaveEditor, router]);
 
   // ── Валидация ──────────────────────────────────────────────────────────────
   const enOk = draftEN.trim().length > 0;
@@ -336,7 +348,7 @@ export default function FlashcardsCardEditorScreen() {
           es: isEdit ? 'Tarjeta actualizada.' : 'Tarjeta guardada.',
         }),
       );
-      leaveEditor();
+      leaveEditorAfterSave();
     } catch {
       setSaving(false);
       emitAppEvent(
@@ -356,7 +368,7 @@ export default function FlashcardsCardEditorScreen() {
     isEdit,
     hasOtherLangTranslation,
     lang,
-    leaveEditor,
+    leaveEditorAfterSave,
     loadingCard,
     saving,
   ]);
@@ -449,8 +461,6 @@ export default function FlashcardsCardEditorScreen() {
                     testID="fc-editor-en"
                     accessibilityLabel="qa-fc-editor-en"
                     style={[inputBaseStyle(focusedField === 'front'), { fontSize: f.body + 2, fontWeight: '600' }]}
-                    placeholder={s.enterEN}
-                    placeholderTextColor={t.textGhost}
                     value={draftEN}
                     onChangeText={setDraftEN}
                     autoFocus
@@ -517,8 +527,6 @@ export default function FlashcardsCardEditorScreen() {
                     testID="fc-editor-tr"
                     accessibilityLabel="qa-fc-editor-tr"
                     style={[inputBaseStyle(focusedField === 'back'), { fontSize: f.body + 2, fontWeight: '600' }]}
-                    placeholder={s.enterRU}
-                    placeholderTextColor={t.textGhost}
                     value={draftTR}
                     onChangeText={setDraftTR}
                     returnKeyType={descriptionOpen ? 'next' : 'done'}
@@ -574,8 +582,6 @@ export default function FlashcardsCardEditorScreen() {
                       inputBaseStyle(focusedField === 'description'),
                       { fontSize: f.body, fontWeight: '500', minHeight: 88, textAlignVertical: 'top' },
                     ]}
-                    placeholder={s.enterDescription}
-                    placeholderTextColor={t.textGhost}
                     value={draftDescription}
                     onChangeText={setDraftDescription}
                     returnKeyType="done"

@@ -8,6 +8,7 @@ import {
   arenaPeekHomeWarm,
   arenaRememberHomeWarm,
   arenaResetHomeWarm,
+  arenaWarmDayKey,
 } from '../modules/arena/home_cache';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 
@@ -48,6 +49,43 @@ describe('тёплый снимок главного экрана', () => {
       activeQueue: { status: 'waiting' },
     });
     expect(clean).toEqual({ profile: { rating: 700 } });
+  });
+
+  /**
+   * Самая опасная часть снимка: дневные счётчики. Вчерашние «сыграно 3» и
+   * «побед 2» под сегодняшней датой — это ложь про сегодняшний день, и она
+   * закрывает игроку дневные цели, которых он не выполнял.
+   */
+  it('дневные счётчики за прошлые сутки выбрасываются, остальное остаётся', () => {
+    const day1 = Date.UTC(2026, 7, 12, 20, 0);
+    const day2 = Date.UTC(2026, 7, 13, 9, 0);
+    const stored = {
+      schemaVersion: 'arena-home-warm.v1',
+      savedAtWallMs: day1,
+      savedDayKey: arenaWarmDayKey(day1),
+      home: { profile: { rating: 700, dailyMatches: 3, dailyWins: 2, dailyFirstAnswers: 9 } },
+      expansion: null,
+    };
+    const sameDay = arenaHomeWarmUsable(stored, day1 + 60_000);
+    expect((sameDay?.home as { profile: Record<string, unknown> }).profile.dailyMatches).toBe(3);
+
+    const nextDay = arenaHomeWarmUsable(stored, day2);
+    const profile = (nextDay?.home as { profile: Record<string, unknown> }).profile;
+    // Ранг за ночь не портится, а «сыграно сегодня» — портится.
+    expect(profile.rating).toBe(700);
+    expect(profile.dailyMatches).toBeUndefined();
+    expect(profile.dailyWins).toBeUndefined();
+    expect(profile.dailyFirstAnswers).toBeUndefined();
+  });
+
+  it('снимок без ключа суток считается вчерашним', () => {
+    const parsed = arenaHomeWarmUsable({
+      schemaVersion: 'arena-home-warm.v1',
+      savedAtWallMs: 1_000,
+      home: { profile: { rating: 500, dailyMatches: 4 } },
+      expansion: null,
+    }, 2_000);
+    expect((parsed?.home as { profile: Record<string, unknown> }).profile.dailyMatches).toBeUndefined();
   });
 
   it('снимок старше суток не показывается', () => {

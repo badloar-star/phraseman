@@ -33,7 +33,7 @@ export type LearningV2ActivityReleasedTaskCompletionV1 = Readonly<{
   learnerAttempts: number;
   hintUsed: boolean;
   localResultClaim:
-    | "locally_provisional_correct_before_completion"
+    | "locally_evaluated_correct_for_interaction"
     | "skipped_without_evidence";
 }>;
 
@@ -57,12 +57,12 @@ export interface LearningV2ActivityReleasedSessionCompletionV1 {
   readonly sessionOrdinal: number;
   readonly taskCompletions: readonly LearningV2ActivityReleasedTaskCompletionV1[];
   readonly answerPayload: "absent";
-  readonly localFeedbackAuthority: "local_provisional_only";
+  readonly localFeedbackAuthority: "local_interaction_verdict_only";
   readonly transportAuthority: "none_local_spool_candidate";
   readonly walletAuthority: "none";
   readonly masteryAuthority: "none";
   readonly evidenceAuthority: "none";
-  readonly completionAuthority: "none_server_revalidation_required";
+  readonly completionAuthority: "completed_session_summary_for_background_storage";
   readonly releaseAuthority: false;
   readonly completionFingerprint: string;
 }
@@ -178,7 +178,7 @@ function parseTask(
   );
   const localResultClaim =
     disposition === "completed"
-      ? "locally_provisional_correct_before_completion"
+      ? "locally_evaluated_correct_for_interaction"
       : "skipped_without_evidence";
   if (
     value.slot !== expectedSlot ||
@@ -278,7 +278,7 @@ export function materializeLearningV2ActivityReleasedSessionCompletionV1(input: 
         hintUsed: result.hintUsed,
         localResultClaim:
           result.disposition === "completed"
-            ? ("locally_provisional_correct_before_completion" as const)
+            ? ("locally_evaluated_correct_for_interaction" as const)
             : ("skipped_without_evidence" as const),
       });
     }),
@@ -307,12 +307,13 @@ export function materializeLearningV2ActivityReleasedSessionCompletionV1(input: 
     sessionOrdinal: safeInt(summary.sessionOrdinal, 1, 12),
     taskCompletions,
     answerPayload: "absent" as const,
-    localFeedbackAuthority: "local_provisional_only" as const,
+    localFeedbackAuthority: "local_interaction_verdict_only" as const,
     transportAuthority: "none_local_spool_candidate" as const,
     walletAuthority: "none" as const,
     masteryAuthority: "none" as const,
     evidenceAuthority: "none" as const,
-    completionAuthority: "none_server_revalidation_required" as const,
+    completionAuthority:
+      "completed_session_summary_for_background_storage" as const,
     releaseAuthority: false as const,
   });
   const completion = freeze({
@@ -335,12 +336,13 @@ export function parseLearningV2ActivityReleasedSessionCompletionV1(
     !Array.isArray(input.taskCompletions) ||
     input.taskCompletions.length !== 12 ||
     input.answerPayload !== "absent" ||
-    input.localFeedbackAuthority !== "local_provisional_only" ||
+    input.localFeedbackAuthority !== "local_interaction_verdict_only" ||
     input.transportAuthority !== "none_local_spool_candidate" ||
     input.walletAuthority !== "none" ||
     input.masteryAuthority !== "none" ||
     input.evidenceAuthority !== "none" ||
-    input.completionAuthority !== "none_server_revalidation_required" ||
+    input.completionAuthority !==
+      "completed_session_summary_for_background_storage" ||
     input.releaseAuthority !== false
   )
     fail();
@@ -378,12 +380,13 @@ export function parseLearningV2ActivityReleasedSessionCompletionV1(
     sessionOrdinal: safeInt(input.sessionOrdinal, 1, 12),
     taskCompletions,
     answerPayload: "absent" as const,
-    localFeedbackAuthority: "local_provisional_only" as const,
+    localFeedbackAuthority: "local_interaction_verdict_only" as const,
     transportAuthority: "none_local_spool_candidate" as const,
     walletAuthority: "none" as const,
     masteryAuthority: "none" as const,
     evidenceAuthority: "none" as const,
-    completionAuthority: "none_server_revalidation_required" as const,
+    completionAuthority:
+      "completed_session_summary_for_background_storage" as const,
     releaseAuthority: false as const,
   });
   const completionFingerprint = hash(input.completionFingerprint);

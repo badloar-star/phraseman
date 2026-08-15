@@ -50,12 +50,6 @@ import {
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_gate';
 import {
-  addShardsRaw,
-  getShardsBalance,
-  replaceShardsBalanceLocal,
-  replaceShardsBalanceLocalWhileAccountTransitionLocked,
-} from './shards_system';
-import {
   registerXP,
   withXpAccountOperationQueue,
   type XpOperationLease,
@@ -1248,21 +1242,11 @@ export const grantLevelGiftShards = async (
   amount: number,
   accountToken?: AccountGenerationToken,
 ): Promise<void> => {
-  const safe = Math.max(0, Math.floor(amount)) * 0; // §7: выплата жемчужин отключена
-  if (safe <= 0) return;
-  const before = await getShardsBalance();
-  await addShardsRaw(safe, 'level_gift', { skipServerAwait: true });
-  const after = await getShardsBalance();
-  // Some isolated Jest mocks keep addShardsRaw storage on a separate mock object.
-  // In production this branch is a no-op because addShardsRaw already persisted.
-  if (after < before + safe) {
-    const options = { op: 'earn' as const, reason: 'level_gift_fallback' };
-    if (accountToken) {
-      await replaceShardsBalanceLocalWhileAccountTransitionLocked(before + safe, accountToken, options);
-    } else {
-      await replaceShardsBalanceLocal(before + safe, options);
-    }
-  }
+  // The owner retired pearl level gifts in favour of instant XP. Keep the
+  // public compatibility API as an explicit no-op, but retain no dormant
+  // projection writer that a future edit could accidentally reactivate.
+  void amount;
+  void accountToken;
 };
 
 export type GiftCosmeticUnlock = {
@@ -1404,7 +1388,8 @@ export const unlockRandomAvatarAuraGift = async (): Promise<GiftCosmeticUnlock |
   try {
     const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
     const owned: Record<string, true> = raw ? JSON.parse(raw) : {};
-    const candidates = AVATAR_AURAS.filter(aura => !aura.premiumOnly && aura.unlockLevel === undefined && !owned[aura.id]);
+    const candidates = AVATAR_AURAS.filter(aura =>
+      !aura.premiumOnly && !aura.retiredFromShop && aura.unlockLevel === undefined && !owned[aura.id]);
     if (candidates.length === 0) return null;
     const aura = candidates[Math.floor(Math.random() * candidates.length)]!;
     const next = { ...owned, [aura.id]: true };
@@ -1825,7 +1810,8 @@ const applyAuraGiftForOccurrence = async (
   const staged = await prepareLevelGiftEffectReceipt(id, opts, async () => {
     const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
     const owned: Record<string, true> = raw ? JSON.parse(raw) : {};
-    const candidates = AVATAR_AURAS.filter(aura => !aura.premiumOnly && aura.unlockLevel === undefined && !owned[aura.id]);
+    const candidates = AVATAR_AURAS.filter(aura =>
+      !aura.premiumOnly && !aura.retiredFromShop && aura.unlockLevel === undefined && !owned[aura.id]);
     const aura = candidates[Math.floor(Math.random() * candidates.length)];
     return {
       giftId: id,

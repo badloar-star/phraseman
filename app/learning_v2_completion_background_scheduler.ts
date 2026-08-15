@@ -10,7 +10,7 @@ import {
   type RequiredSessionCompletionSyncAttempt,
 } from "./learning_v2_required_session_completion_sync";
 import { attemptPendingLearningV2ActivityReleasedCompletionsV1 } from "./learning_v2_activity_released_completion_sync_v1";
-import { attemptPendingLearningV2ActivityReleasedSubmissionsV2 } from "./learning_v2_activity_released_submission_sync_v2";
+import { attemptPendingLearningV2CourseSessionCompletedV1 } from "./learning_v2_course_session_completed_sync_v1";
 import {
   attemptLearningV2CompletionCredentialAdmission,
   type LearningV2CompletionCredentialAdmission,
@@ -469,19 +469,17 @@ const scheduler = createLearningV2CompletionBackgroundScheduler({
   flush: async () => {
     const legacy = await attemptPendingRequiredSessionCompletions();
     if (legacy.disposition !== "drained") return legacy;
-    const submissions =
-      await attemptPendingLearningV2ActivityReleasedSubmissionsV2();
-    if (submissions.disposition !== "drained") {
-      return Object.freeze({
-        processed: legacy.processed + submissions.processed,
-        disposition: submissions.disposition,
-      });
-    }
     const released =
       await attemptPendingLearningV2ActivityReleasedCompletionsV1();
+    if (released.disposition !== "drained")
+      return Object.freeze({
+        processed: legacy.processed + released.processed,
+        disposition: released.disposition,
+      });
+    const direct = await attemptPendingLearningV2CourseSessionCompletedV1();
     return Object.freeze({
-      processed: legacy.processed + submissions.processed + released.processed,
-      disposition: released.disposition,
+      processed: legacy.processed + released.processed + direct.processed,
+      disposition: direct.disposition,
     });
   },
   admitCredentials: attemptLearningV2CompletionCredentialAdmission,

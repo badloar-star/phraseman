@@ -156,7 +156,7 @@ describe('tournament Reddit bot names', () => {
       seedVersion: 'tournament-bots-v2-reddit-20260801',
       name: REDDIT_BOT_NAMES[index],
       avatarEmoji: '🦊',
-      avatarAura: 'aura-aurora',
+      avatarAura: 'aura-ember',
       color: '#47C870',
       winRate: 0.5,
       rank: 'silver',

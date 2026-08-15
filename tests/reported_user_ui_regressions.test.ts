@@ -91,17 +91,36 @@ describe('reported user UI regressions', () => {
   });
 
   it('cannot leave the next swipe card transparent after the Android settle watchdog wins', () => {
+    // ИСТОРИЯ (владелец, 2026-08-13). Раньше этот тест держал порядок
+    // «вернуть opacity/смещение → after()» внутри finish(). Именно он и давал
+    // вторую жалобу — «карточка улетает, а затем возвращается»: значения
+    // нативно-драйвенные, их сброс долетал до UI-потока сразу, а следующая
+    // карточка приезжала только следующим коммитом React, и в этом зазоре
+    // старая вьюха успевала показаться в центре экрана.
+    // Защита от НЕВИДИМОЙ карточки (запоздавший fade после победы страховочного
+    // таймера) не ослаблена, а переехала: она живёт в useLayoutEffect, который
+    // отрабатывает уже в коммите новой карточки и по-прежнему ГАСИТ живую
+    // анимацию перед восстановлением значения.
     const finishStart = flashcardsSwipeSource.indexOf('const finish = () => {');
     const finishEnd = flashcardsSwipeSource.indexOf('// зачем: A-39', finishStart);
     const finish = flashcardsSwipeSource.slice(finishStart, finishEnd);
-    const stop = finish.indexOf('flyOpacity.stopAnimation();');
-    const restore = finish.indexOf('flyOpacity.setValue(1);');
-    const advance = finish.indexOf('after();');
 
     expect(finishStart).toBeGreaterThanOrEqual(0);
+    expect(finish).toContain('after();');
+    /** Ни одно нативное значение карточки не трогается до смены состояния. */
+    expect(finish).not.toContain('flyOpacity.setValue');
+    expect(finish).not.toContain('position.setValue');
+
+    const effectStart = flashcardsSwipeSource.indexOf('useLayoutEffect(() => {');
+    const effect = flashcardsSwipeSource.slice(
+      effectStart,
+      flashcardsSwipeSource.indexOf('}, [', effectStart),
+    );
+    const stop = effect.indexOf('flyOpacity.stopAnimation();');
+    const restore = effect.indexOf('flyOpacity.setValue(1);');
+
+    expect(effectStart).toBeGreaterThanOrEqual(0);
     expect(stop).toBeGreaterThanOrEqual(0);
     expect(restore).toBeGreaterThan(stop);
-    expect(advance).toBeGreaterThan(restore);
-    expect(flashcardsSwipeSource).toContain('if (settling) return;\n    flyOpacity.stopAnimation();\n    flyOpacity.setValue(1);');
   });
 });

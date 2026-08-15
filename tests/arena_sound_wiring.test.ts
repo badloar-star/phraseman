@@ -19,6 +19,8 @@ const SOURCES = [
   'app/arena_match.tsx',
   'app/arena_matchmaking.tsx',
   'app/arena_results.tsx',
+  'components/arena/ArenaQuestion.tsx',
+  'components/arena/ArenaTimerRing.tsx',
   'components/arena/ArenaVersusIntro.tsx',
   'components/arena/ArenaDailyGoals.tsx',
   'hooks/use_arena_sound.ts',
@@ -31,11 +33,6 @@ const NOT_WIRED_YET: readonly ArenaSoundKey[] = [
   // Фон поиска — зацикленная подложка; включать её до появления файла нечем,
   // а пустой цикл в директоре смысла не имеет.
   'searchLoop',
-  // Тик таймера последних секунд рисует кольцо, а не экран матча: звук
-  // привязывается там же, когда файл появится.
-  'timerTick',
-  // Нажатие варианта озвучивает общий компонент вопроса, а не Арена.
-  'optionTap',
 ];
 
 describe('вызовы идут через каталог', () => {

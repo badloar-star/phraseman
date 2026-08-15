@@ -41,17 +41,50 @@ describe('отказ загрузки — не «недоступно»', () => 
     expect(arenaExpansionStateCopy({ state: 'expired', ghost: true }).body).toBe('ghostExpiredHint');
   });
 
-  /** Ложная кнопка хуже её отсутствия: в пустоте нажимать нечего. */
-  it('пустота объясняется, но кнопки не выдумывает', () => {
+  /**
+   * Повторять в пустоте нечего — ложной кнопки повтора быть не должно. Но
+   * дорога назад нужна: без неё пустой экран остаётся тупиком с одной
+   * системной стрелкой.
+   */
+  it('пустота объясняется, повтора не выдумывает, но выход даёт', () => {
     const copy = arenaExpansionStateCopy({ state: 'empty', emptyHint: 'emptyLab' });
     expect(copy.body).toBe('emptyLab');
-    expect(copy.action).toBe('none');
+    expect(copy.action).toBe('back');
+    expect(copy.action).not.toBe('retry');
     expect(arenaExpansionStateCopy({ state: 'empty' }).body).toBeUndefined();
   });
 
   it('загрузка и готовность действий не предлагают', () => {
     expect(arenaExpansionStateCopy({ state: 'loading' }).action).toBe('none');
     expect(arenaExpansionStateCopy({ state: 'ready' }).action).toBe('none');
+  });
+
+  /**
+   * Владелец (2026-08-13): «не должно быть видимой никогда нигде загрузки».
+   * Слово «Загрузка…» не сообщает игроку ничего, чего он не видит сам, зато
+   * превращает быстрый экран в ожидание.
+   */
+  it('загрузка вообще ничего не рисует', () => {
+    expect(arenaExpansionStateCopy({ state: 'loading' }).silent).toBe(true);
+    for (const state of ['error', 'unavailable', 'expired', 'empty', 'ready'] as const) {
+      expect(arenaExpansionStateCopy({ state }).silent).toBeUndefined();
+    }
+  });
+
+  it('общая карточка возвращает пустоту на загрузке', () => {
+    const ui = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaExpansionUI.tsx'), 'utf8');
+    expect(ui).toContain('if (copy.silent) return null');
+  });
+
+  it('ни один экран расширения не пишет слово «Загрузка»', () => {
+    for (const screen of [
+      'app/arena_today.tsx', 'app/arena_partner.tsx', 'app/arena_rivalries.tsx',
+      'app/arena_ghost_duel.tsx', 'app/arena_star_wallet.tsx', 'app/arena_mastery_map.tsx',
+      'app/arena_match_lab.tsx',
+    ]) {
+      const source = fs.readFileSync(path.resolve(__dirname, '..', screen), 'utf8');
+      expect(source).not.toContain("arenaExpansionText(lang, 'loading')");
+    }
   });
 
   it('каждое состояние отказа переведено на все восемь языков', () => {
@@ -206,6 +239,51 @@ describe('магазин отвечает за свои действия отд�
     for (const lang of LANGS) {
       expect(arenaExpansionText(lang, 'purchaseFailed')).not.toBe(arenaExpansionText(lang, 'loadFailed'));
       expect(arenaExpansionText(lang, 'purchaseFailedHint')).not.toBe(arenaExpansionText(lang, 'loadFailedHint'));
+    }
+  });
+});
+
+/**
+ * Отказ от приглашения уходил домой ЧЕРЕЗ `finally` — то есть и тогда, когда
+ * отказ не дошёл. Гость был уверен, что отказался, а хозяин продолжал ждать
+ * ответа, которого уже никто не пришлёт.
+ */
+describe('отказ от приглашения не притворяется отправленным', () => {
+  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_invite.tsx'), 'utf8');
+
+  it('домой уходим только после успешного отказа', () => {
+    expect(source).not.toContain("arenaV2InviteDecline(inviteId.trim()).finally(() => router.replace('/arena' as never))");
+    expect(source).toContain('declineFailed');
+  });
+
+  it('сказано, что видит друг и что приглашение истечёт само', () => {
+    for (const lang of LANGS) {
+      expect(arenaText(lang, 'declineFailed').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'declineFailedHint').length).toBeGreaterThan(0);
+    }
+  });
+});
+
+/**
+ * Пустой пропуск сезона и пустые экраны расширения: выход обязан быть всегда.
+ * Раньше пустота показывала объяснение и не давала ни одной кнопки — оставалась
+ * одна системная стрелка, а на части устройств и её не видно.
+ */
+describe('из пустоты есть выход', () => {
+  const read = (rel: string) => fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8');
+
+  it('пропуск сезона объясняет пустой список, но только после ответа сервера', () => {
+    const source = read('app/arena_season_pass.tsx');
+    expect(source).toContain("'seasonEmpty'");
+    expect(source).toContain("'seasonEmptyHint'");
+    // До ответа — молчание, а не надпись: загрузку показывать нельзя.
+    expect(source).toContain('ListEmptyComponent={home ? (');
+  });
+
+  it('обещание про звёзды переведено на все языки', () => {
+    for (const lang of LANGS) {
+      expect(arenaText(lang, 'seasonEmpty').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'seasonEmptyHint').length).toBeGreaterThan(0);
     }
   });
 });

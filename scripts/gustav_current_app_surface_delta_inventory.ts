@@ -45,7 +45,6 @@ type MarkerCounts = {
   analytics: number;
   SpeakingPanel: number;
   router: number;
-  planContent: number;
   dialog: number;
   flashcard: number;
   collectible: number;
@@ -227,7 +226,6 @@ const MARKER_ORDER: Array<keyof MarkerCounts> = [
   'analytics',
   'SpeakingPanel',
   'router',
-  'planContent',
   'dialog',
   'flashcard',
   'collectible',
@@ -322,7 +320,6 @@ function zeroMarkers(): MarkerCounts {
     analytics: 0,
     SpeakingPanel: 0,
     router: 0,
-    planContent: 0,
     dialog: 0,
     flashcard: 0,
     collectible: 0,

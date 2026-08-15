@@ -2,10 +2,19 @@
  * cards-2.1 (§7.2 SPEC_2_1): выбор режима озвучки «Слушания» — ОДНА кнопка
  * вместо четырёх чипов (EN→RU / RU→EN / EN×2 / только EN).
  *
- * Кнопка показывает текущий режим; тап — выпадающий список всех вариантов с
- * отметкой выбранного. Анимация: пружина контейнера + стаггер строк от ОДНОГО
- * общего драйвера `progress` (одна анимация вместо N) — только transform/opacity,
- * всё на UI-потоке Reanimated (§8).
+ * FIX (владелец, 2026-08-13, тест на iPhone):
+ *  - кнопка была широкой плашкой с текстом и занимала целую строку плеера;
+ *    стала КОМПАКТНОЙ КРУГЛОЙ кнопкой (иконка текущего режима + мини-шеврон),
+ *    которая живёт слева в ряду настроек;
+ *  - список обрезался многоточием: подписи стояли под `numberOfLines={1}` в
+ *    контейнере шириной 248px, и длинные локали (pl/tr/pt-BR) уезжали в «…».
+ *    Теперь ширина считается от экрана (до LIST_MAX_W), подпись переносится на
+ *    две строки, подсказка — на три, внутренние отступы уменьшены.
+ *
+ * Кнопка показывает текущий режим иконкой; тап — выпадающий список всех
+ * вариантов с отметкой выбранного. Анимация: пружина контейнера + стаггер строк
+ * от ОДНОГО общего драйвера `progress` (одна анимация вместо N) — только
+ * transform/opacity, всё на UI-потоке Reanimated (§8).
  *
  * Закрытие: тап по варианту, тап по фону, системная «назад» (Modal.onRequestClose).
  * Список рендерится в Modal и позиционируется по замеру кнопки: если кнопка в
@@ -18,6 +27,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Modal,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   useWindowDimensions,
@@ -32,7 +42,7 @@ import Reanimated, {
   type SharedValue,
 } from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
-import { triLang, type Lang } from '../../constants/i18n';
+import type { Lang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
 import { FC_TIMING } from '../../constants/flashcards_motion';
 import { fcHaptic } from './SoundService';
@@ -41,6 +51,7 @@ import { useFcReduceMotion } from './PhraseCard';
 import type { ListeningOrder } from './listening_machine';
 import {
   listeningModeOptions,
+  listeningModeTitle,
   selectListeningMode,
   type ListeningModeOption,
 } from './listening_mode_options';
@@ -60,9 +71,17 @@ export type ListeningModePickerProps = {
 
 const LIST_SPRING = { damping: 20, stiffness: 260, mass: 0.85 } as const;
 const CHEVRON_SPRING = { damping: 18, stiffness: 300, mass: 0.7 } as const;
-const LIST_MIN_W = 248;
+/**
+ * Ширина списка. Было 248 при `numberOfLines={1}` — на польском/турецком и при
+ * увеличенном системном шрифте подписи резались многоточием. Теперь список
+ * тянется по экрану до LIST_MAX_W, а текст переносится (см. ModeRow).
+ */
+const LIST_MIN_W = 260;
+const LIST_MAX_W = 380;
 const LIST_MARGIN = 12;
 const ANCHOR_GAP = 10;
+/** Диаметр круглой кнопки — не меньше системного минимума касания (44pt). */
+const BTN_SIZE = 46;
 /** Смещение строки на входе, px (в сторону кнопки). */
 const ROW_SHIFT = 14;
 /** Доля прогресса, «съедаемая» стаггером, — дальше все строки едут вместе. */
@@ -114,14 +133,24 @@ function ModeRow({ option, index, selected, progress, stagger, dir, t, f, accent
         <View style={[styles.rowIcon, { backgroundColor: selected ? `${accent}2E` : t.bgSurface2 }]}>
           <Ionicons name={option.icon as any} size={16} color={selected ? accent : t.textMuted} />
         </View>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, minWidth: 0 }}>
+          {/*
+            numberOfLines НЕТ намеренно: подпись обязана читаться целиком на
+            самой длинной локали и при увеличенном системном шрифте — лучше
+            перенос на вторую строку, чем «…». maxFontSizeMultiplier держит
+            верхнюю границу, чтобы список не вырастал на весь экран.
+          */}
           <Text
-            numberOfLines={1}
+            maxFontSizeMultiplier={1.6}
             style={{ color: selected ? accent : t.textPrimary, fontSize: f.sub, fontWeight: selected ? '800' : '700' }}
           >
             {option.label}
           </Text>
-          <Text numberOfLines={2} style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }}>
+          <Text
+            numberOfLines={4}
+            maxFontSizeMultiplier={1.6}
+            style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }}
+          >
             {option.hint}
           </Text>
         </View>
@@ -146,6 +175,7 @@ export default function ListeningModePicker({
   const simpleMotion = reduceMotion || isLowPowerEffective();
 
   const options = useMemo(() => listeningModeOptions(lang), [lang]);
+  const modeTitle = useMemo(() => listeningModeTitle(lang), [lang]);
   const current = useMemo(
     () => options.find((o) => o.id === value) ?? options[0]!,
     [options, value],
@@ -207,10 +237,14 @@ export default function ListeningModePicker({
   );
 
   // ── Геометрия списка ──────────────────────────────────────────────────────
-  const listW = Math.min(
-    Math.max(LIST_MIN_W, anchor?.w ?? LIST_MIN_W),
-    Math.max(LIST_MIN_W, winW - LIST_MARGIN * 2),
-  );
+  /**
+   * Ширина списка больше НЕ привязана к ширине кнопки: круглая кнопка — 46px,
+   * от неё список получался бы уже минимума и снова резал подписи. Берём
+   * максимум доступного (экран минус поля), но не шире LIST_MAX_W — и никогда
+   * не выходим за экран даже на узких устройствах.
+   */
+  const listAvailW = Math.max(LIST_MIN_W, winW - LIST_MARGIN * 2);
+  const listW = Math.min(LIST_MAX_W, listAvailW);
   const openUp = anchor ? anchor.y + anchor.h / 2 > winH * 0.5 : true;
   const left = anchor
     ? Math.min(Math.max(LIST_MARGIN, anchor.x + anchor.w / 2 - listW / 2), Math.max(LIST_MARGIN, winW - listW - LIST_MARGIN))
@@ -242,8 +276,12 @@ export default function ListeningModePicker({
           accessible
           accessibilityRole="button"
           accessibilityState={{ expanded: mounted, disabled: !!disabled }}
+          /* Круглая кнопка без текста: смысл несут hint + value для скринридера. */
+          accessibilityHint={modeTitle}
+          accessibilityValue={{ text: current.label }}
           disabled={disabled}
           onPress={open}
+          hitSlop={8}
           style={({ pressed }) => [
             styles.btn,
             {
@@ -253,21 +291,10 @@ export default function ListeningModePicker({
             },
           ]}
         >
-          <Ionicons name={current.icon as any} size={16} color={accent} />
-          <View style={{ flexShrink: 1 }}>
-            <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '600' }} numberOfLines={1}>
-              {triLang(lang, { ru: 'Режим озвучки', uk: 'Режим озвучення', es: 'Modo de voz' })}
-            </Text>
-            <Text
-              testID="fc-listen-mode-button-label"
-              style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}
-              numberOfLines={1}
-            >
-              {current.label}
-            </Text>
-          </View>
-          <Reanimated.View style={chevronStyle}>
-            <Ionicons name="chevron-up" size={18} color={t.textMuted} />
+          <Ionicons name={current.icon as any} size={20} color={accent} />
+          {/* Мини-шеврон в углу: единственный намёк, что кнопка что-то раскрывает. */}
+          <Reanimated.View style={[styles.btnChevron, chevronStyle]} pointerEvents="none">
+            <Ionicons name="chevron-up" size={11} color={mounted ? accent : t.textMuted} />
           </Reanimated.View>
         </Pressable>
       </View>
@@ -296,27 +323,55 @@ export default function ListeningModePicker({
             {
               left,
               width: listW,
+              // При огромном системном шрифте четыре двухстрочных пункта могут
+              // не поместиться — тогда список скроллится, а не режет текст.
+              maxHeight: Math.max(220, winH * 0.62),
               backgroundColor: t.bgCard,
               borderColor: t.border,
             },
             listStyle,
           ]}
         >
-          {options.map((o, i) => (
-            <ModeRow
-              key={o.id}
-              option={o}
-              index={openUp ? options.length - 1 - i : i}
-              selected={o.id === value}
-              progress={progress}
-              stagger={!simpleMotion}
-              dir={openUp ? 1 : -1}
-              t={t}
-              f={f}
-              accent={accent}
-              onPick={pick}
-            />
-          ))}
+          {/*
+            Заголовок списка: раньше «Режим озвучки» жил на широкой кнопке.
+            Кнопка стала круглой — подпись переехала сюда, чтобы смысл не
+            потерялся. Без numberOfLines: длинные локали должны читаться.
+          */}
+          <Text
+            testID="fc-listen-mode-button-label"
+            maxFontSizeMultiplier={1.6}
+            style={{
+              color: t.textMuted,
+              fontSize: f.caption,
+              fontWeight: '700',
+              paddingHorizontal: 10,
+              paddingTop: 4,
+              paddingBottom: 6,
+            }}
+          >
+            {modeTitle}
+          </Text>
+          <ScrollView
+            bounces={false}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+          >
+            {options.map((o, i) => (
+              <ModeRow
+                key={o.id}
+                option={o}
+                index={openUp ? options.length - 1 - i : i}
+                selected={o.id === value}
+                progress={progress}
+                stagger={!simpleMotion}
+                dir={openUp ? 1 : -1}
+                t={t}
+                f={f}
+                accent={accent}
+                onPick={pick}
+              />
+            ))}
+          </ScrollView>
         </Reanimated.View>
       </Modal>
     </>
@@ -324,23 +379,33 @@ export default function ListeningModePicker({
 }
 
 const styles = StyleSheet.create({
+  /**
+   * Горизонтальную позицию задаёт родительский ряд (в плеере — space-between,
+   * т.е. кнопка оказывается крайней СЛЕВА). Здесь только поперечная ось:
+   * 'center' = кнопка по вертикали вровень со степпером паузы, а не по верху.
+   */
   btnWrap: { alignSelf: 'center' },
   btn: {
-    flexDirection: 'row',
+    width: BTN_SIZE,
+    height: BTN_SIZE,
+    borderRadius: BTN_SIZE / 2,
     alignItems: 'center',
-    gap: 10,
-    borderRadius: 16,
+    justifyContent: 'center',
     borderWidth: 1.5,
-    paddingHorizontal: 16,
-    paddingVertical: 9,
-    minWidth: 200,
+  },
+  btnChevron: {
+    position: 'absolute',
+    right: 5,
+    bottom: 4,
   },
   list: {
     position: 'absolute',
     borderRadius: 18,
     borderWidth: 1,
-    paddingVertical: 6,
-    paddingHorizontal: 6,
+    // Отступы ужаты (было 6/6): каждый пиксель контейнера — пиксель под текст,
+    // из-за которого подписи и уходили в многоточие.
+    paddingVertical: 5,
+    paddingHorizontal: 4,
     shadowColor: '#000',
     shadowOpacity: 0.32,
     shadowRadius: 18,
@@ -350,9 +415,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 9,
     borderRadius: 13,
-    paddingHorizontal: 10,
+    paddingHorizontal: 8,
     paddingVertical: 9,
   },
   rowIcon: {

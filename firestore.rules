@@ -25,7 +25,7 @@ service cloud.firestore {
         || collection == 'content_decision_registries'
         || collection == 'content_factory_stages'
         || collection == 'content_v2_owner_episode_confirmations'
-        || collection.matches('content_v2_unified_course_release_(heads|roots)')
+        || collection.matches('content_v2_unified_course_release_(heads|roots)(_v3)?')
         || collection.matches('content_language_profile_.*')
         || collection.matches('content_(speech|voice_generation)_profile_.*')
         || collection == 'content_v2_repository_auth'
@@ -82,6 +82,19 @@ service cloud.firestore {
 
     function userDocOwnerMatchesAuth(userId) {
       return isAdmin() || isOwner(userId) || stableUserMatchesAuth(userId) || authLinkMapsToUser(userId);
+    }
+
+    // Personal-economy journal writes are device persistence, not an admin
+    // capability. An admin-claim token may write only when it is also the
+    // canonical owner of this exact user document.
+    function personalEconomyOwnerMatchesAuth(userId) {
+      return isOwner(userId) || stableUserMatchesAuth(userId) || authLinkMapsToUser(userId);
+    }
+
+    function personalEconomyAccountActive(userId) {
+      return request.auth != null
+        && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
+        && !exists(/databases/$(database)/documents/account_deletion_tombstones/$(userId));
     }
 
     // Документа users/{userId} ещё нет в базе. Чтение НЕсуществующего дока ничего
@@ -151,16 +164,13 @@ service cloud.firestore {
       return resource.data.get('progressServerAuthoritative', false) == true;
     }
 
-    // Осколки (shards) пишутся только Admin SDK через Cloud Functions.
-    // Клиент НЕ должен менять баланс напрямую — обход возможен через updateDoc({shards: N}).
-    // Admin SDK игнорирует эти правила, поэтому блокировка не затрагивает CF-логику.
-    // K3 (аудит 2026-07-04): единая точка записи баланса — callable shardsApplyDelta
-    // (runTransaction + идемпотентность по opId). Прежний клиентский read-modify-write
-    // был нетранзакционным (TOCTOU) и вдобавок падал на этом правиле — теперь earn/spend
-    // проходят через сервер, а это правило гарантирует, что клиент не пишет shards в обход.
+    // Личный shard-баланс принадлежит клиентскому журналу. Ни обычный клиент,
+    // ни browser-admin credential не может менять legacy projection в users/*.
+    // Админка и соревнования подтверждают только immutable external events через
+    // audited Cloud Functions; Admin SDK bypass правил не является разрешением
+    // возвращать server-authoritative wallet writes.
     function hasNoShardWrites() {
-      return isAdmin()
-        || !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny([
           'shards',
           'shards_updated_at_ms',
           'shards_updated_op',
@@ -183,14 +193,12 @@ service cloud.firestore {
     // diff невозможен — проверяем НАЛИЧИЕ топ-уровневых shard-полей в самом новом
     // документе. Закрывает дыру: allow create не звал hasNoShardWrites, и кастомный
     // клиент мог при ПЕРВОМ создании users/{id} вписать shards:99999 себе.
-    // Баланс осколков пишет ТОЛЬКО Admin SDK (CF) в обход rules; легальный клиент
-    // НИКОГДА не шлёт топ-уровневое поле shards в cloud_sync (не в исходящем patch).
+    // Легальный клиент и browser-admin никогда не создают legacy shard projection.
     // Perk-поля (gift_xp_multiplier/chain_shield/arena_extra_plays_today) сюда НЕ
     // включены намеренно: они клиент-владеемые, синкаются легально из AsyncStorage
     // (см. cloud_sync.ts SYNC_KEYS) — блокировка сломала бы первый легальный синк.
     function newDocHasNoShardWrites() {
-      return isAdmin()
-        || !request.resource.data.keys().hasAny([
+      return !request.resource.data.keys().hasAny([
           'shards',
           'shards_updated_at_ms',
           'shards_updated_op',
@@ -1272,8 +1280,8 @@ service cloud.firestore {
       // userDocMissing выше). delete остаётся строго для владельца/админа.
       allow read: if userDocOwnerMatchesAuth(userId) || userDocMissing(userId);
       allow delete: if userDocOwnerMatchesAuth(userId) && userDocHasNoServerIdentity();
-      // Клиент может обновлять свой документ, но не может трогать premium/VIP поля
-      // и баланс осколков (shards). Их пишет только Admin SDK через Cloud Functions.
+      // Клиент может обновлять свой документ, но personal shard projection закрыт
+      // даже для browser-admin; audited callables append external facts instead.
       allow update: if userDocOwnerMatchesAuth(userId)
         && accountDeletionNotPending(userId)
         && hasNoServerIdentityWrites()
@@ -1325,6 +1333,98 @@ service cloud.firestore {
       match /shard_log/{logId} {
         allow read, create: if userDocOwnerMatchesAuth(userId);
         allow update, delete: if false;
+      }
+
+      // Personal economy is client-authoritative. The client publishes one
+      // immutable composite operation only after its exact local result is
+      // durable. Firestore stores the journal; it never approves a spend and
+      // never writes a balance back to the device.
+      match /client_economy_operations/{operationId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create: if personalEconomyOwnerMatchesAuth(userId)
+          && personalEconomyAccountActive(userId)
+          && request.resource.data.keys().hasAll([
+            'schemaVersion', 'operationId', 'ownerStableId', 'authority', 'direction',
+            'amount', 'delta', 'revision', 'balanceBefore', 'balanceAfter',
+            'reason', 'grant', 'createdAtMs', 'requestFingerprint'
+          ])
+          && request.resource.data.keys().hasOnly([
+            'schemaVersion', 'operationId', 'ownerStableId', 'authority', 'direction',
+            'amount', 'delta', 'revision', 'balanceBefore', 'balanceAfter',
+            'reason', 'grant', 'createdAtMs', 'requestFingerprint'
+          ])
+          && request.resource.data.schemaVersion == 'client-shard-operation.v1'
+          && request.resource.data.operationId == operationId
+          && request.resource.data.ownerStableId == userId
+          && request.resource.data.authority == 'client'
+          && operationId.matches('^[A-Za-z0-9_:-]{8,80}$')
+          && request.resource.data.direction in ['debit', 'credit']
+          && request.resource.data.amount is int
+          && request.resource.data.amount > 0
+          && request.resource.data.delta is int
+          && (
+            (request.resource.data.direction == 'debit'
+              && request.resource.data.delta == -request.resource.data.amount)
+            || (request.resource.data.direction == 'credit'
+              && request.resource.data.delta == request.resource.data.amount)
+          )
+          && request.resource.data.revision is int
+          && request.resource.data.revision > 0
+          && request.resource.data.balanceBefore is int
+          && request.resource.data.balanceAfter is int
+          && request.resource.data.balanceAfter
+            == request.resource.data.balanceBefore + request.resource.data.delta
+          && request.resource.data.reason is string
+          && request.resource.data.reason.size() > 0
+          && request.resource.data.reason.size() <= 64
+          && request.resource.data.grant is map
+          && request.resource.data.grant.keys().hasAll(['kind', 'subjectId'])
+          && request.resource.data.grant.keys().hasOnly(['kind', 'subjectId', 'payload'])
+          && request.resource.data.grant.kind is string
+          && request.resource.data.grant.kind.size() > 0
+          && request.resource.data.grant.kind.size() <= 160
+          && request.resource.data.grant.subjectId is string
+          && request.resource.data.grant.subjectId.size() > 0
+          && request.resource.data.grant.subjectId.size() <= 160
+          && request.resource.data.createdAtMs is int
+          && request.resource.data.createdAtMs > 0
+          && request.resource.data.requestFingerprint is string
+          && request.resource.data.requestFingerprint.matches('^[a-f0-9]{64}$');
+        // An exact retry is idempotent. Any changed byte is rejected forever.
+        allow update: if personalEconomyOwnerMatchesAuth(userId)
+          && request.resource.data == resource.data;
+        allow delete: if false;
+      }
+
+      // One immutable legacy snapshot anchors the union of device journals.
+      match /client_economy_opening/{version} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create: if version == 'v1'
+          && personalEconomyOwnerMatchesAuth(userId)
+          && personalEconomyAccountActive(userId)
+          && request.resource.data.keys().hasAll([
+            'schemaVersion', 'ownerStableId', 'openingBalance', 'createdAtMs'
+          ])
+          && request.resource.data.keys().hasOnly([
+            'schemaVersion', 'ownerStableId', 'openingBalance', 'createdAtMs'
+          ])
+          && request.resource.data.schemaVersion == 'client-economy-opening.v1'
+          && request.resource.data.ownerStableId == userId
+          && request.resource.data.openingBalance is int
+          && request.resource.data.openingBalance >= 0
+          && request.resource.data.createdAtMs is int
+          && request.resource.data.createdAtMs > 0;
+        allow update: if personalEconomyOwnerMatchesAuth(userId)
+          && request.resource.data == resource.data;
+        allow delete: if false;
+      }
+
+      // Payments/refunds, person-to-person transfers, admin awards and
+      // competitions are isolated external facts. Only trusted backend code
+      // may append them; clients can inspect but can never forge or mutate.
+      match /external_economy_events/{eventId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create, update, delete: if false;
       }
 
       match /reward_claims/{claimId} {
@@ -2408,6 +2508,12 @@ service cloud.firestore {
     match /admin_command_operations/{document=**} {
       allow read, write: if false;
     }
+    // Availability overrides for the server-backed cosmetic archive. Clients
+    // receive a validated compact manifest through a callable; writes are
+    // guarded, idempotent and audited by the admin callable only.
+    match /cosmetic_asset_archive_overrides/{document=**} {
+      allow read, write: if false;
+    }
     // Выключатель Джарвиса: admin видит режим в панели, меняет только сервер
     // (через callable с проверкой прав) — иначе режим правился бы из консоли
     // браузера в обход журнала.
@@ -2800,6 +2906,12 @@ service cloud.firestore {
     match /content_v2_unified_course_release_roots/{docId} {
       allow read, write: if false;
     }
+    match /content_v2_unified_course_release_heads_v3/{docId} {
+      allow read, write: if false;
+    }
+    match /content_v2_unified_course_release_roots_v3/{docId} {
+      allow read, write: if false;
+    }
     // Authenticated repository evidence is Firebase-Admin-only. These roots
     // are reserved before the adapter is wired so no browser credential can
     // forge a published profile, a repository claim, or a durable stage pin.
@@ -3098,6 +3210,10 @@ service cloud.firestore {
       allow create, update: if request.auth != null
         && (seatId == 'a' || seatId == 'b')
         && get(/databases/$(database)/documents/arena_v2_matches/$(matchId)/arena_v2_members/$(request.auth.uid)).data.seatId == seatId
+        // Канал не принимает произвольные поля. В частности, ответ или
+        // идентификатор игрока нельзя случайно опубликовать сопернику даже
+        // при регрессии клиента.
+        && request.resource.data.keys().hasOnly(['schemaVersion', 'ticks', 'finished', 'updatedAtMs'])
         && request.resource.data.schemaVersion == 'arena-live.v1'
         && request.resource.data.ticks is list
         // Потолок на размер: канал живёт ровно столько, сколько матч, и
@@ -3105,6 +3221,7 @@ service cloud.firestore {
         && request.resource.data.ticks.size() <= 10
         // Метка времени обязательна: по ней почасовая уборка находит
         // протухшие каналы. Без неё документ остался бы навсегда.
+        && request.resource.data.finished is bool
         && request.resource.data.updatedAtMs is number;
       allow delete: if false;
     }

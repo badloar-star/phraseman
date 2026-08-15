@@ -68,16 +68,46 @@ export function addToLibraryOptimistic(snapshot: PackSocialSnapshot): PackSocial
   return { ...snapshot, added: true, addedCount: snapshot.addedCount + 1 };
 }
 
-/** Слить серверные счётчики в локальное состояние, сохранив уже применённые оптимистичные флаги. */
+/**
+ * Что сервер знает про ТЕКУЩЕГО пользователя: есть ли документы
+ * `pack_likes/{userId}` и `pack_adds/{userId}`. Передаётся только когда чтение
+ * реально удалось (облако включено и запрос не упал) — иначе `undefined`.
+ */
+export type PackSocialMembership = {
+  liked: boolean;
+  added: boolean;
+};
+
+/**
+ * Слить серверные счётчики в локальное состояние, сохранив уже применённые оптимистичные флаги.
+ *
+ * ПОЧЕМУ ТРЕТИЙ АРГУМЕНТ (баг владельца «лайк не ставится»): без сведений о членстве
+ * приходилось брать `max(server, 1)`, и локальная «+1» пользователя ТЕРЯЛАСЬ — цифра
+ * откатывалась к серверной, как только экран перечитывал каталог. Зная, видит ли сервер
+ * лайк этого пользователя, считаем точно: серверный счётчик + ещё не долетевшая дельта.
+ * Локальный флаг остаётся источником правды для «моего» лайка до синхронизации.
+ */
 export function mergeServerCounts(
   local: PackSocialSnapshot,
   server: PackSocialCounts,
+  membership?: PackSocialMembership,
 ): PackSocialSnapshot {
+  if (!membership) {
+    return {
+      liked: local.liked,
+      added: local.added,
+      likesCount: Math.max(server.likesCount, local.liked ? 1 : 0),
+      addedCount: Math.max(server.addedCount, local.added ? 1 : 0),
+    };
+  }
+  /** Ещё не долетевшая до сервера дельта текущего пользователя: +1 / -1 / 0. */
+  const likeDelta = (local.liked ? 1 : 0) - (membership.liked ? 1 : 0);
+  const addDelta = local.added && !membership.added ? 1 : 0;
   return {
     liked: local.liked,
     added: local.added,
-    likesCount: Math.max(server.likesCount, local.liked ? 1 : 0),
-    addedCount: Math.max(server.addedCount, local.added ? 1 : 0),
+    likesCount: Math.max(0, server.likesCount + likeDelta),
+    addedCount: Math.max(0, server.addedCount + addDelta),
   };
 }
 

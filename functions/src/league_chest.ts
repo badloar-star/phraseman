@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { appendExternalEconomyEvent } from './external_economy_events';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { isResidentMember } from './league_residents';
@@ -38,7 +39,7 @@ const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
 const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
 const CUSTOM_AVATAR_OWNED_KEY = 'custom_avatar_owned_v1';
 const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
-const AVATAR_AURA_IDS = ['aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet', 'aura-coral'] as const;
+const AVATAR_AURA_IDS = ['aura-ember', 'aura-mint', 'aura-prism'] as const;
 const CUSTOM_AVATAR_DROP_IDS = Array.from(
   { length: 30 },
   (_, index) => `custom-gen-${String(index + 1).padStart(2, '0')}`,
@@ -206,10 +207,7 @@ function isLeagueChestAuraId(value: unknown): value is typeof AVATAR_AURA_IDS[nu
 
 function buildClaimedRewardResponse(params: {
   claim: FirebaseFirestore.DocumentData | undefined;
-  user: FirebaseFirestore.DocumentData | undefined;
 }): {
-  balance: number;
-  shardsUpdatedAtMs: number;
   rewards?: {
     drops: RewardDrop[];
     shards?: number;
@@ -223,7 +221,7 @@ function buildClaimedRewardResponse(params: {
   };
   claimedAtMs: number;
 } {
-  const { claim, user } = params;
+  const { claim } = params;
   const drops = Array.isArray(claim?.rewards) ? claim?.rewards as RewardDrop[] : [];
   const expiresAt = Math.max(0, readInt(claim?.expiresAt, 0));
   const rewardPayload = drops.length > 0 && expiresAt > 0
@@ -240,8 +238,6 @@ function buildClaimedRewardResponse(params: {
     }
     : undefined;
   return {
-    balance: Math.max(0, readInt(user?.shards, 0)),
-    shardsUpdatedAtMs: Math.max(0, readInt(user?.shards_updated_at_ms, 0)),
     rewards: rewardPayload,
     claimedAtMs: Math.max(0, readInt(claim?.createdAt, 0)),
   };
@@ -456,7 +452,6 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
         : null;
       const existing = buildClaimedRewardResponse({
         claim,
-        user: userSnap.data() || {},
       });
       return { ok: true, claimed: true, alreadyClaimed: true, crown: replayCrown, ...existing };
     }
@@ -575,8 +570,6 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
       isCrownWinner,
     });
     const shardReward = sumShardDrops(rewardDrops);
-    const beforeShards = Math.max(0, readInt(user.shards, 0));
-    const afterShards = beforeShards + shardReward;
     const xpBoost = rewardDrops.find((drop) => drop.kind === 'xp_boost');
     const energyBoost = rewardDrops.find((drop) => drop.kind === 'energy_fast_recovery');
     const streakShieldCount = rewardDrops
@@ -588,12 +581,17 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
       ...buildRewardProgressPatch({ drops: rewardDrops, user, now, expiresAt }),
       updatedAt: now,
     };
-    if (shardReward > 0) {
-      userPatch.shards = afterShards;
-      userPatch.shards_updated_at_ms = now;
-      userPatch.shards_updated_op = 'earn';
-      userPatch.shards_updated_reason = 'league_chest';
-    }
+    if (shardReward > 0) appendExternalEconomyEvent(tx, userRef, {
+      source: 'league_chest',
+      eventId: claimRef.id,
+      ownerStableId: stableUid,
+      delta: shardReward,
+      reason: 'league_chest',
+      kind: 'competition_chest_reward',
+      subjectId: claimRef.id,
+      payload: { claimEffectId: claimRef.id },
+      createdAtMs: now,
+    });
 
     tx.set(claimRef, {
       uid: stableUid,
@@ -632,8 +630,7 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
         type: 'earn',
         amount: shardReward,
         reason: 'league_chest',
-        balanceBefore: beforeShards,
-        balanceAfter: afterShards,
+        authority: 'external_event',
         weekId,
         groupId,
       });
@@ -643,8 +640,6 @@ export const leagueChestClaim = onCall({ region: REGION, enforceAppCheck: ENFORC
       ok: true,
       claimed: true,
       crown,
-      balance: afterShards,
-      shardsUpdatedAtMs: shardReward > 0 ? now : readInt(user.shards_updated_at_ms, 0),
       claimedAtMs: now,
       rewards: {
         drops: rewardDrops,

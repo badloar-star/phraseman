@@ -6,20 +6,26 @@ import {
   replaceShardsBalanceLocal,
 } from '../app/shards_system';
 
-const mockGetServerDoc = jest.fn();
+const syncConfirmedExternalShardEventsFromCloud = jest.fn(async () => ({
+  applied: 0,
+  skipped: 0,
+  invalid: 0,
+}));
+const firestoreCollection = jest.fn(() => {
+  throw new Error('legacy users.shards reconciliation is forbidden');
+});
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn(async () => 'wallet-owner') }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
+jest.mock('../app/economy/external_shard_event_sync', () => ({
+  syncConfirmedExternalShardEventsFromCloud,
+}));
 jest.mock('@react-native-firebase/firestore', () => ({
   __esModule: true,
-  default: jest.fn(() => ({
-    collection: jest.fn(() => ({
-      doc: jest.fn(() => ({ get: mockGetServerDoc })),
-    })),
-  })),
+  default: jest.fn(() => ({ collection: firestoreCollection })),
 }));
 
 const storage: Record<string, string> = {};
@@ -38,49 +44,32 @@ beforeEach(() => {
   beginAccountGeneration('wallet-owner');
 });
 
-describe('authoritative tournament wallet reconciliation', () => {
-  it('uses the newer document version when deployed leave has a stale shard version', async () => {
-    await replaceShardsBalanceLocal(5, { updatedAtMs: 150, op: 'spend', reason: 'tournament_entry_server' });
-    mockGetServerDoc.mockResolvedValue({
-      data: () => ({ shards: 8, shards_updated_at_ms: 100, updatedAt: 200 }),
+describe('competition wallet external-event refresh', () => {
+  it('imports immutable competition events and returns the client projection', async () => {
+    await replaceShardsBalanceLocal(5, {
+      updatedAtMs: 150,
+      op: 'spend',
+      reason: 'competition_external_event',
     });
 
-    await expect(refreshShardsBalanceFromCloudAuthoritative()).resolves.toBe(8);
-    await expect(getShardsBalance()).resolves.toBe(8);
-    expect(JSON.parse(storage.shards_balance_meta_v1)).toMatchObject({
-      updatedAtMs: 200,
-      reason: 'tournament_server_reconcile',
-    });
+    await expect(refreshShardsBalanceFromCloudAuthoritative()).resolves.toBe(5);
+    await expect(getShardsBalance()).resolves.toBe(5);
+    expect(syncConfirmedExternalShardEventsFromCloud).toHaveBeenCalledTimes(1);
+    expect(firestoreCollection).not.toHaveBeenCalled();
   });
 
-  it('keeps the dedicated shard version when it is newer', async () => {
-    mockGetServerDoc.mockResolvedValue({
-      data: () => ({ shards: 7, shards_updated_at_ms: 300, updatedAt: 200 }),
+  it('never installs a legacy users.shards snapshot over newer local history', async () => {
+    await replaceShardsBalanceLocal(11, {
+      updatedAtMs: 400,
+      op: 'earn',
+      reason: 'newer_local',
     });
 
-    await expect(refreshShardsBalanceFromCloudAuthoritative()).resolves.toBe(7);
-    expect(JSON.parse(storage.shards_balance_meta_v1).updatedAtMs).toBe(300);
-  });
-
-  it('refuses an older authoritative snapshot when the local wallet is newer', async () => {
-    await replaceShardsBalanceLocal(11, { updatedAtMs: 400, op: 'earn', reason: 'newer_local' });
-    mockGetServerDoc.mockResolvedValue({
-      data: () => ({ shards: 2, shards_updated_at_ms: 300, updatedAt: 200 }),
-    });
-
-    await expect(refreshShardsBalanceFromCloudAuthoritative()).resolves.toBeNull();
-    await expect(getShardsBalance()).resolves.toBe(11);
+    await expect(refreshShardsBalanceFromCloudAuthoritative()).resolves.toBe(11);
     expect(JSON.parse(storage.shards_balance_meta_v1)).toMatchObject({
       updatedAtMs: 400,
       reason: 'newer_local',
     });
-  });
-
-  it('refuses an unversioned snapshot instead of inventing authority', async () => {
-    await replaceShardsBalanceLocal(11, { updatedAtMs: 400, op: 'earn', reason: 'newer_local' });
-    mockGetServerDoc.mockResolvedValue({ data: () => ({ shards: 2 }) });
-
-    await expect(refreshShardsBalanceFromCloudAuthoritative()).resolves.toBeNull();
-    await expect(getShardsBalance()).resolves.toBe(11);
+    expect(firestoreCollection).not.toHaveBeenCalled();
   });
 });

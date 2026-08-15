@@ -38,7 +38,17 @@ describe('классификация отказа', () => {
     [new Error('App Check token refresh failed'), 'transient'],
     [new Error('arena_client_update_required'), 'gated'],
     [{ code: 'invalid-argument' }, 'rejected'],
-    [null, 'rejected'],
+    [new Error('arena_report_conflict'), 'rejected'],
+    [new Error('arena_match_missing'), 'rejected'],
+    // Ниже — то, что раньше молча выбрасывалось как «отказ по существу».
+    // Каждый случай означает «непонятно, что произошло», а не «сервер сказал
+    // нет»: сворачивание приложения, обновление токена, неразобранная ошибка
+    // самого Firebase и — до деплоя — отсутствующая функция.
+    [{ code: 'cancelled' }, 'transient'],
+    [{ code: 'unauthenticated' }, 'transient'],
+    [{ code: 'unknown' }, 'transient'],
+    [{ code: 'not-found' }, 'transient'],
+    [null, 'transient'],
   ])('относит %j к классу %s', (error, expected) => {
     expect(arenaOutboxClassify(error)).toBe(expected);
   });

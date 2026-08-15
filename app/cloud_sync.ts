@@ -542,6 +542,16 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'v2:required-session-completion-scheduler:v1:',
   'learning_v2_owner_repository:v1:',
   'learning_v2_coin_exchange_outbox:v1:',
+  // Client-authoritative pearl journal and its crash/sync bookkeeping.
+  'client_shard_operation_v1:',
+  'client_shard_ledger_state_v1:',
+  'client_shard_prepared_v1:',
+  'client_shard_grant_receipt_v1:',
+  'client_shard_cloud_synced_v1:',
+  'client_shard_conflict_v1:',
+  'client_shard_semantic_paid_v1:',
+  'external_economy_result_v1:',
+  'external_economy_event_applied_v1:',
 ] as const;
 
 function isLearningV2AccountLocalKey(key: string): boolean {
@@ -1050,11 +1060,10 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   'chain_shield',
   'gift_xp_multiplier',
   'club_gift_free_boost_v1',
-  // profile_card_level — публичный престиж-бейдж, поднимает только CF profileCardUpgrade
-  // (Admin SDK). В blocklist firestore.rules (стр.94). Без исключения здесь клиент слал бы
-  // его в исходящий patch после апгрейда → rules отклонят весь set (PERMISSION_DENIED) →
-  // ломается синк XP/streak/прогресса. profile_card_theme/motion/public_focus НЕ сюда —
-  // они клиент-выбираемые и синкаются штатно.
+  // profile_card_level в users.progress — только публичная серверная проекция.
+  // Личный permanent result принадлежит client economy journal: restore берёт max
+  // и никогда не понижает уже купленный уровень. Исключение из outbound patch
+  // не даёт общей синхронизации спорить с отдельным projection callable.
   'profile_card_level',
   'shard_survey_last_at_ms',
 ]);
@@ -1195,6 +1204,7 @@ const LEGACY_FREE_LESSON_MIGRATION_RESTORE_KEYS = new Set<string>([
 // can reset to 0), dates (streak_last_date, *_period_start), and current-state
 // values (gift_xp_multiplier, wager_discount, weekly_xp which resets weekly).
 export const MONOTONIC_COUNTER_RESTORE_KEYS = [
+  'achievement_quiz_total_count',
   'achievement_trainer_correct_count',
   'achievement_trainer_perfect_session_count',
   'achievement_active_recall_correct_count',
@@ -1485,6 +1495,13 @@ function mergeLessonRestoreValue(
   // K2: владение (покупки/выдачи) строго аддитивно — union вместо перезаписи облаком.
   if (isOwnedUnionRestoreKey(key)) {
     return mergeOwnedRestoreValue(cloudValue, localValue);
+  }
+  if (key === 'profile_card_level') {
+    return String(Math.max(
+      0,
+      Math.min(5, parseProgressInt(cloudValue)),
+      Math.min(5, parseProgressInt(localValue)),
+    ));
   }
   const scoped = targetScopedRestoreInfo(key);
   const restoreId = scoped?.id ?? key;

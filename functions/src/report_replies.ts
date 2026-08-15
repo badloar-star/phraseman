@@ -25,6 +25,7 @@ import { openAiChat } from './explain/explain_provider';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { getLevelFromXP } from './xp_levels';
 import { hasClaimedPermission, type AdminPermission } from './admin/permissions';
+import { appendExternalEconomyEvent } from './external_economy_events';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -389,12 +390,13 @@ export const adminReplyToReport = onCall(
 );
 
 /**
- * claimReportReward — юзер жмёт «Забрать осколки» в уведомлении-ответе.
+ * claimReportReward — юзер жмёт «Забрать награду» в уведомлении-ответе.
  *
  * data: { messageId: string }
  *
- * Транзакция: проверить своё сообщение (kind report_reply, shards>0, !claimed) →
- * claimed:true + users.shards += shards + shard_log. Повторный вызов — 'already-exists'.
+ * Транзакция: проверить своё сообщение (kind report_reply, reward>0, !claimed) →
+ * claimed:true + immutable external economy fact + audit log. Личный баланс
+ * сервер не читает и не пишет. Повторный вызов — 'already-exists'.
  */
 export const claimReportReward = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
@@ -412,9 +414,8 @@ export const claimReportReward = onCall(
     const nowIso = new Date(nowMs).toISOString();
 
     return db.runTransaction(async (tx) => {
-      const [messageSnap, userSnap, notificationSnap] = await Promise.all([
+      const [messageSnap, notificationSnap] = await Promise.all([
         tx.get(messageRef),
-        tx.get(userRef),
         tx.get(notificationRef),
       ]);
       if (!messageSnap.exists) throw new HttpsError('not-found', 'message not found');
@@ -424,9 +425,6 @@ export const claimReportReward = onCall(
       if (amount <= 0) throw new HttpsError('failed-precondition', 'nothing to claim');
       if (message.claimed === true) throw new HttpsError('already-exists', 'already claimed');
 
-      const before = Number(userSnap.data()?.shards) || 0;
-      const after = before + amount;
-
       tx.update(messageRef, { claimed: true, claimedAtMs: nowMs });
       if (notificationSnap.exists) {
         tx.update(notificationRef, {
@@ -435,13 +433,17 @@ export const claimReportReward = onCall(
           updatedAt: nowMs,
         });
       }
-      tx.set(userRef, {
-        shards: after,
-        shards_updated_at_ms: nowMs,
-        shards_updated_op: 'earn',
-        shards_updated_reason: 'report_reply_coin_claim',
-        updatedAt: nowMs,
-      }, { merge: true });
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'report_reply',
+        eventId: messageId,
+        ownerStableId: stableUid,
+        delta: amount,
+        reason: 'report_reply_coin_claim',
+        kind: 'confirmed_report_reward',
+        subjectId: messageId,
+        payload: { messageId },
+        createdAtMs: nowMs,
+      });
 
       const shardLogRef = userRef.collection('shard_log').doc();
       tx.set(shardLogRef, {
@@ -449,12 +451,11 @@ export const claimReportReward = onCall(
         type: 'earn',
         amount,
         reason: 'report_reply_coin_claim',
-        balanceBefore: before,
-        balanceAfter: after,
+        authority: 'external_event',
         messageId,
       });
 
-      return { ok: true, amount, balance: after };
+      return { ok: true, amount, eventId: messageId };
     });
   },
 );

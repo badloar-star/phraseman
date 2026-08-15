@@ -2,6 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { arenaLoadWarm, arenaPeekWarm, arenaRememberWarm } from '../modules/arena/warm_cache';
+import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
@@ -9,7 +12,7 @@ import { V2Card } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { arenaText } from '../modules/arena/copy';
 import { arenaHistoryRows, arenaHistorySummary } from '../modules/arena/history_view';
-import { arenaLoadState } from '../modules/arena/load_state';
+import { arenaCachedLoadView, arenaLoadState } from '../modules/arena/load_state';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { arenaFetchMatchHistory, arenaV2Home, type ArenaHomeResponse } from './arena_client';
@@ -21,14 +24,24 @@ import { arenaFetchMatchHistory, arenaV2Home, type ArenaHomeResponse } from './a
  * держать на них живой слушатель значит платить за уведомления, которых не
  * будет.
  */
+const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
+
 export default function ArenaHistoryScreen() {
   const { lang } = useLang();
   const P = useTournamentPalette();
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
-  const [raw, setRaw] = useState<readonly unknown[]>([]);
+  /**
+   * Первый кадр — прошлым снимком, а не пустотой и не словом «Загрузка»:
+   * сыгранные матчи задним числом не меняются, поэтому вчерашний список это
+   * просто вчерашний список.
+   */
+  const warmRows = useMemo(() => arenaPeekWarm('history', Date.now()), []);
+  const [raw, setRaw] = useState<readonly unknown[]>(
+    Array.isArray(warmRows) ? warmRows as readonly unknown[] : [],
+  );
   const [home, setHome] = useState<ArenaHomeResponse | null>(null);
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(Array.isArray(warmRows));
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -36,15 +49,25 @@ export default function ArenaHistoryScreen() {
     // Отказ и пустой ответ — РАЗНЫЕ вещи: «матчей нет» игрок примет за правду
     // о себе, а это была неудачная загрузка.
     void arenaFetchMatchHistory()
-      .then(setRaw)
+      .then((rows) => {
+        setRaw(rows);
+        setFailed(false);
+        arenaRememberWarm({ key: 'history', value: rows, wallNowMs: Date.now(), store: warmStore });
+      })
+      // Отказ поверх уже показанного снимка экран не рушит: строки остаются,
+      // а отказ отмечается только если показывать больше нечего.
       .catch(() => setFailed(true))
       .finally(() => setLoaded(true));
+    void arenaLoadWarm(warmStore, 'history', Date.now()).then((stored) => {
+      if (Array.isArray(stored)) setRaw((current) => (current.length ? current : stored as readonly unknown[]));
+    }).catch(() => {});
     void arenaV2Home().then(setHome).catch(() => {});
   }, [active]);
 
   const rows = useMemo(() => arenaHistoryRows(raw), [raw]);
   const summary = useMemo(() => arenaHistorySummary(rows), [rows]);
   const state = arenaLoadState({ loaded, failed, count: rows.length });
+  const view = arenaCachedLoadView({ state, cachedCount: rows.length, volatile: true });
 
   return (
     <ArenaHubChrome
@@ -74,14 +97,27 @@ export default function ArenaHistoryScreen() {
           </V2Card>
         </Animated.View>
 
-        {state === 'failed' ? (
+        {/*
+          История меняется со временем, поэтому сохранённый список показывается
+          с тихой оговоркой, а не молча: иначе вчерашние матчи читались бы как
+          сегодняшние. Но оговорка идёт ВМЕСТО ошибки, а не поверх содержимого —
+          раньше здесь краснело «Не удалось загрузить», а прямо под ним шёл
+          полный список из снимка.
+        */}
+        {view === 'error' ? (
           <>
             <Text style={[styles.empty, { color: P.danger }]}>{arenaText(lang, 'loadFailed')}</Text>
             <Text style={[styles.emptyHint, { color: P.muted }]}>{arenaText(lang, 'loadFailedHint')}</Text>
           </>
-        ) : state === 'loading' ? (
-          <Text style={[styles.empty, { color: P.muted }]}>{arenaText(lang, 'loading')}</Text>
-        ) : state === 'empty' ? (
+        ) : view === 'data_stale' ? (
+          <>
+            <Text style={[styles.empty, { color: P.muted }]}>{arenaText(lang, 'refreshFailed')}</Text>
+            <Text style={[styles.emptyHint, { color: P.muted }]}>{arenaText(lang, 'refreshFailedHint')}</Text>
+          </>
+        ) : view === 'silent' ? (
+          // Слово «Загрузка» владелец видеть запретил: либо снимок, либо ничего.
+          <View />
+        ) : view === 'empty' ? (
           <Text style={[styles.empty, { color: P.muted }]}>{arenaText(lang, 'historyEmpty')}</Text>
         ) : null}
 

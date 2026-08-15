@@ -92,8 +92,16 @@ function SideTab({
           color={focused ? P.accent : P.muted}
         />
       </Animated.View>
+      {/*
+        Высота таббара фиксирована (это плавающая пилюля со скруглением в
+        половину высоты), поэтому подпись не может расти сколько угодно: при
+        системном шрифте в двойном размере строка вместе со значком
+        перерастала полосу и обрезалась. Множитель ограничен — подпись всё
+        равно заметно крупнее обычной, а геометрия пилюли цела.
+      */}
       <Animated.Text
         numberOfLines={1}
+        maxFontSizeMultiplier={1.3}
         style={[styles.sideLabel, labelStyle, { color: focused ? P.accent : P.muted }]}
       >
         {tab.label}
@@ -164,7 +172,7 @@ function CenterMatchButton({
           <Ionicons name="flash" size={27} color={P.accentText} />
         </Pressable>
       </Animated.View>
-      <Text numberOfLines={1} style={[styles.centerLabel, { color: P.accent }]}>{label}</Text>
+      <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[styles.centerLabel, { color: P.accent }]}>{label}</Text>
     </View>
   );
 }
@@ -230,9 +238,25 @@ function ArenaTabBarBase({
 export const ArenaTabBar = memo(ArenaTabBarBase);
 
 const styles = StyleSheet.create({
-  wrap: { position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 30 },
+  wrap: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 30,
+    paddingHorizontal: 14,
+  },
+  /**
+   * Потолок ширины — как у содержимого экрана (620 pt минус его поля).
+   *
+   * На планшете без него полоса растягивалась во всю ширину, а карточки над
+   * ней оставались колонкой посередине: две разные сетки на одном экране.
+   * На телефоне потолок не достаётся никогда, поэтому там ничего не меняется.
+  */
   bar: {
-    marginHorizontal: 14,
+    alignSelf: 'center',
+    width: '100%',
+    maxWidth: 584,
     height: BAR_HEIGHT,
     borderRadius: BAR_HEIGHT / 2,
     flexDirection: 'row',

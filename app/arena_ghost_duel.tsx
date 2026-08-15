@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, Share, StyleSheet, Text, TextInput, View } from 'react-native';
+import { PixelRatio, Pressable, Share, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
@@ -14,6 +14,23 @@ import { arenaExpansionHome, arenaGhostAccept, arenaGhostCreate, arenaGhostDecli
 import { peekFriendsTabSwrWarm, startFriendsTabSwrPrime, type FriendsTabWarmSnapshot } from './friends_tab_swr_warm';
 import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
 import { trackArenaTelemetry } from './arena_telemetry';
+
+/**
+ * Системный масштаб шрифта — для высоты строки.
+ *
+ * В React Native крупный системный шрифт увеличивает `fontSize`, но `lineHeight`
+ * задан числом и остаётся прежним: строки наезжают друг на друга и обрезаются.
+ * Высота строки умножается на масштаб, поэтому при обычном размере вёрстка та
+ * же, а при увеличении — правильная.
+ *
+ * На главных экранах Арены то же самое делает хук `useArenaFontScale`: он
+ * реагирует на смену настройки на ходу. Здесь взято значение на момент
+ * загрузки модуля — стили лежат в `StyleSheet`, а часть строк рисуется внутри
+ * колбэков списка, где хук вызвать нельзя. Разница видна только если менять
+ * системный шрифт, не выходя из приложения.
+ */
+const FONT_SCALE = PixelRatio.getFontScale();
+
 
 export default function ArenaGhostDuelScreen() {
   const router = useRouter();
@@ -93,7 +110,7 @@ export default function ArenaGhostDuelScreen() {
 
 const styles = StyleSheet.create({
   card: { gap: 12 },
-  title: { fontSize: 18, lineHeight: 24, fontWeight: '900' },
+  title: { fontSize: 18, lineHeight: 24 * FONT_SCALE, fontWeight: '900' },
   input: { minHeight: 48, borderRadius: 15, paddingHorizontal: 13, fontSize: 16, fontWeight: '700' },
   code: { minHeight: 48, borderRadius: 15, padding: 12, fontSize: 13, fontWeight: '700' },
   friends: { gap: 8 },

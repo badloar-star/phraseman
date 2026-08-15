@@ -6,12 +6,8 @@
 // сервер». Закреплено тестами (tests/dev_shards_grant_contract.test.ts и
 // functions/src/dev_shards_grant.test.ts) — менять нельзя без решения владельца.
 //
-// Зачем понадобилось: дев-кнопка магазина писала баланс ТОЛЬКО в телефон.
-// Серверная запись идёт через shardsApplyDelta, а тот сверяет причину с
-// каталогом shard_reward_catalog — каталог намеренно обнулён и причины
-// 'shards_store_purchase' в нём нет. Сервер отклонял начисление, серверный
-// баланс не менялся, и турнир (он читает users/{uid}.shards) честно отвечал
-// not_enough_gems при «500 жемчужинах» на экране.
+// Дев-кнопка создаёт подтверждённый immutable external economy fact. Сервер
+// не читает и не пишет личный баланс; турнир также не использует legacy shards.
 //
 // Почему НЕ adminGrantReward: она требует claim admin: true, а его в проекте
 // никто не выдаёт (setCustomUserClaims не вызывается нигде). Требовать claim
@@ -28,6 +24,7 @@ import * as admin from 'firebase-admin';
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { appendExternalEconomyEvent } from './external_economy_events';
 
 /** Потолок одной операции — защита от опечатки «500000» в дев-панели. */
 const DEV_GRANT_MAX = 100000;
@@ -36,11 +33,6 @@ const REMOTE_CONFIG_COLLECTION = 'remote_config';
 const REMOTE_CONFIG_DOC = 'app';
 /** Рубильник владельца. Отсутствует или не 1 → функция мертва. */
 const DEV_GRANT_FLAG = 'dev_shards_grant_enabled';
-
-function readBalance(value: unknown): number {
-  const parsed = Math.trunc(Number(value));
-  return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
-}
 
 /**
  * Рубильник: включено ли дев-начисление на этом проекте.
@@ -57,16 +49,16 @@ export function isDevShardsGrantEnabled(remoteConfig: unknown): boolean {
 }
 
 /**
- * Дев-начисление жемчужин: пишет СЕРВЕРНЫЙ баланс напрямую, минуя каталог
- * начислений. Работает для ЛЮБОГО авторизованного аккаунта — по правилу
+ * Дев-начисление жемчужин: сервер подтверждает неизменяемое внешнее событие,
+ * но не вычисляет и не пишет личный баланс. Работает для ЛЮБОГО аккаунта — по правилу
  * владельца, — но только пока включён серверный рубильник.
  *
  * Идемпотентность: по opId. Повтор с тем же opId (сетевой ретрай) не удвоит
  * начисление; новое нажатие дев-кнопки шлёт новый opId и начисляет снова —
  * это осознанно, дев-кнопка обязана работать сколько угодно раз.
  *
- * Стоимость: одна транзакция на нажатие (чтение конфига + чтение юзера +
- * чтение чека + запись). В проде путь мёртв — рубильник выключен.
+ * Стоимость: одна транзакция на нажатие (чтение конфига + чтение чека +
+ * запись external fact). В проде путь мёртв — рубильник выключен.
  */
 export const devShardsGrant = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
@@ -87,7 +79,7 @@ export const devShardsGrant = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
     throw new HttpsError('permission-denied', 'dev_shards_grant_disabled');
   }
 
-  // Тот же документ, под которым живёт баланс игрока (и который читает турнир).
+  // Сервер хранит подтверждённый факт; баланс применяет клиентский журнал.
   const stableUid = await resolveStableUidForAuth(db, request.auth.uid, undefined, {
     repairLinks: false,
     requireKnownIdentity: true,
@@ -97,33 +89,32 @@ export const devShardsGrant = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const nowMs = Date.now();
 
   return db.runTransaction(async (tx) => {
-    const [userSnap, receiptSnap] = await tx.getAll(userRef, receiptRef);
+    const receiptSnap = await tx.get(receiptRef);
     if (receiptSnap.exists) {
       // Идемпотентный повтор: возвращаем прежний результат, не начисляя снова.
       return {
         ok: true,
         alreadyApplied: true,
-        balance: readBalance(userSnap.data()?.shards),
-        granted: 0,
+        granted: Number(receiptSnap.data()?.amount ?? rawAmount),
+        eventId: opId,
       };
     }
-    const before = readBalance(userSnap.data()?.shards);
-    const after = before + rawAmount;
-
-    tx.set(userRef, {
-      shards: after,
-      shards_updated_at_ms: nowMs,
-      shards_updated_op: 'earn',
-      shards_updated_reason: 'dev_grant',
-      updatedAt: nowMs,
-    }, { merge: true });
+    appendExternalEconomyEvent(tx, userRef, {
+      source: 'admin_dev_grant',
+      eventId: opId,
+      ownerStableId: stableUid,
+      delta: rawAmount,
+      reason: 'dev_grant',
+      kind: 'admin_dev_shards',
+      subjectId: opId,
+      payload: { authUid: request.auth?.uid ?? null },
+      createdAtMs: nowMs,
+    });
 
     // Чек делает операцию идемпотентной и оставляет след: что, кому, когда.
     tx.create(receiptRef, {
       opId,
       amount: rawAmount,
-      balanceBefore: before,
-      balanceAfter: after,
       authUid: request.auth?.uid ?? null,
       createdAtMs: nowMs,
     });
@@ -133,10 +124,9 @@ export const devShardsGrant = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       type: 'earn',
       amount: rawAmount,
       reason: 'dev_grant',
-      balanceBefore: before,
-      balanceAfter: after,
+      authority: 'external_event',
     });
 
-    return { ok: true, alreadyApplied: false, balance: after, granted: rawAmount };
+    return { ok: true, alreadyApplied: false, granted: rawAmount, eventId: opId };
   });
 });

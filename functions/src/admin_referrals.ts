@@ -18,6 +18,7 @@ import {
   requireAdminAppCheck,
 } from './callable_options';
 import { createAuditRecord } from './admin/audit_contract';
+import { appendExternalEconomyEvent } from './external_economy_events';
 import { hasPermission, roleFromAdminToken } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import {
@@ -493,11 +494,6 @@ function normalizeAdminReferralRevokeInput(data: unknown): AdminReferralRevokeIn
   return Object.freeze({ refereeStableId, reason, requestId, idempotencyKey });
 }
 
-function finiteShardBalance(data: FirebaseFirestore.DocumentData | undefined): number {
-  const value = data?.shards;
-  return typeof value === 'number' && Number.isFinite(value) ? Math.max(0, value) : 0;
-}
-
 function storedOperationResult(data: FirebaseFirestore.DocumentData | undefined): Record<string, unknown> {
   const result = data?.result;
   return result && typeof result === 'object' && !Array.isArray(result)
@@ -692,50 +688,31 @@ export const adminRevokeReferralAttribution = onCall(ADMIN_SENSITIVE_WRITE_OPTIO
       rewardOutcome = 'legacy_reward_retained';
       retainedReward = true;
     } else if (classification.rewardMode === 'legacy_shards') {
-      const refereeBefore = finiteShardBalance(refereeUserSnapshot?.data());
-      const referrerBefore = finiteShardBalance(referrerUserSnapshot?.data());
       const sameUser = referrerStableId === refereeStableId;
-      refereeShardsReversed = refereeUserSnapshot?.exists
-        ? Math.min(refereeBefore, classification.refereeShardBonus)
-        : 0;
-      referrerShardsReversed = referrerUserSnapshot?.exists
-        ? Math.min(
-          sameUser ? Math.max(0, refereeBefore - refereeShardsReversed) : referrerBefore,
-          classification.referrerShardBonus,
-        )
-        : 0;
+      // The attribution receipt, not a stale server balance projection, fixes
+      // the reversal amount. Client debt is allowed and repaid by later credit.
+      refereeShardsReversed = classification.refereeShardBonus;
+      referrerShardsReversed = classification.referrerShardBonus;
 
       const refereeRef = db.collection(USERS).doc(refereeStableId);
-      if (sameUser) {
-        const totalReversed = refereeShardsReversed + referrerShardsReversed;
-        if (totalReversed > 0) {
-          tx.update(refereeRef, {
-            shards: Math.max(0, refereeBefore - totalReversed),
-            updatedAt: nowMs,
-          });
-        }
-      } else {
-        if (refereeShardsReversed > 0) {
-          tx.update(refereeRef, {
-            shards: Math.max(0, refereeBefore - refereeShardsReversed),
-            updatedAt: nowMs,
-          });
-        }
-        if (referrerShardsReversed > 0 && referrerRef) {
-          tx.update(referrerRef, {
-            shards: Math.max(0, referrerBefore - referrerShardsReversed),
-            updatedAt: nowMs,
-          });
-        }
-      }
+      const totalRefereeDebit = refereeShardsReversed + (sameUser ? referrerShardsReversed : 0);
+      if (totalRefereeDebit > 0) appendExternalEconomyEvent(tx, refereeRef, {
+        source: 'admin_referral_revoke', eventId: `${operationRef.id}:referee`, ownerStableId: refereeStableId,
+        delta: -totalRefereeDebit, reason: 'admin_referral_revoke', kind: 'admin_referral_reversal',
+        subjectId: operationRef.id, payload: { role: 'referee' }, createdAtMs: nowMs,
+      });
+      if (!sameUser && referrerShardsReversed > 0 && referrerRef) appendExternalEconomyEvent(tx, referrerRef, {
+        source: 'admin_referral_revoke', eventId: `${operationRef.id}:referrer`, ownerStableId: referrerStableId,
+        delta: -referrerShardsReversed, reason: 'admin_referral_revoke', kind: 'admin_referral_reversal',
+        subjectId: operationRef.id, payload: { role: 'referrer' }, createdAtMs: nowMs,
+      });
       if (refereeShardsReversed > 0) {
         tx.create(refereeRef.collection('shard_log').doc(`${operationRef.id}_referee`), {
           ts: nowIso,
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
           type: 'spend',
-          amount: -refereeShardsReversed,
+          amount: refereeShardsReversed,
           reason: 'admin_referral_revoke',
-          balanceAfter: Math.max(0, refereeBefore - refereeShardsReversed - (sameUser ? referrerShardsReversed : 0)),
           actorUid,
           targetUid: refereeStableId,
           attributionId: refereeStableId,
@@ -747,11 +724,8 @@ export const adminRevokeReferralAttribution = onCall(ADMIN_SENSITIVE_WRITE_OPTIO
           ts: nowIso,
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
           type: 'spend',
-          amount: -referrerShardsReversed,
+          amount: referrerShardsReversed,
           reason: 'admin_referral_revoke',
-          balanceAfter: sameUser
-            ? Math.max(0, refereeBefore - refereeShardsReversed - referrerShardsReversed)
-            : Math.max(0, referrerBefore - referrerShardsReversed),
           actorUid,
           targetUid: referrerStableId,
           attributionId: refereeStableId,
@@ -761,9 +735,7 @@ export const adminRevokeReferralAttribution = onCall(ADMIN_SENSITIVE_WRITE_OPTIO
       const requestedShardReversal = classification.refereeShardBonus
         + classification.referrerShardBonus;
       const actualShardReversal = refereeShardsReversed + referrerShardsReversed;
-      rewardOutcome = actualShardReversal < requestedShardReversal
-        ? 'legacy_shards_partially_reversed'
-        : 'legacy_shards_reversed';
+      rewardOutcome = 'legacy_shards_reversed';
       retainedReward = actualShardReversal < requestedShardReversal;
     }
 

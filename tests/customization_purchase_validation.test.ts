@@ -5,6 +5,7 @@ import {
 } from '../app/customization_purchase_validation';
 import type { CustomizationPurchaseIntent } from '../app/customization_purchase_intent';
 import type { CustomizationSnapshot } from '../app/customization_snapshot';
+import { replaceCosmeticSaleOverrides } from '../constants/cosmetic_asset_availability';
 
 const snapshot: CustomizationSnapshot = {
   source: 'storage', updatedAt: 1, activeAvatar: '18', storedAuraSelection: null,
@@ -20,7 +21,7 @@ function intent(overrides: Partial<CustomizationPurchaseIntent> = {}): Customiza
     phase: 'prepared',
     createdAt: 1,
     target: 'aura',
-    itemId: 'aura-aurora',
+    itemId: 'aura-ember',
     cost: 120,
     spendReason: 'avatar_aura',
     mode: 'buy-only',
@@ -32,12 +33,14 @@ function intent(overrides: Partial<CustomizationPurchaseIntent> = {}): Customiza
 const noPlus = { snapshot, isPremium: false, isVip: false };
 
 describe('customization purchase validation', () => {
+  afterEach(() => replaceCosmeticSaleOverrides({}, 0));
+
   it('accepts the current shard aura product and rejects a forged price', () => {
     expect(validateCustomizationPurchase(intent(), noPlus)).toBe(true);
     expect(validateCustomizationPurchase(intent({ cost: 1 }), noPlus)).toBe(false);
   });
 
-  it.each(['aura-mint', 'aura-coral'])('accepts restored shard aura %s at the catalog price', (itemId) => {
+  it.each(['aura-mint', 'aura-prism'])('accepts retained shard aura %s at the catalog price', (itemId) => {
     expect(validateCustomizationPurchase(intent({ itemId }), noPlus)).toBe(true);
     expect(validateCustomizationPurchase(intent({ itemId, cost: 119 }), noPlus)).toBe(false);
   });
@@ -46,8 +49,23 @@ describe('customization purchase validation', () => {
     'aura-flame-51',
     'aura-season',
     'aura-premium',
+    'aura-aurora',
+    'aura-violet',
+    'aura-coral',
+    'aura-lagoon',
+    'aura-sunset',
   ])('rejects removed or non-purchasable aura %s', (itemId) => {
     expect(validateCustomizationPurchase(intent({ itemId }), noPlus)).toBe(false);
+  });
+
+  it('accepts only the sale status currently delivered by the server catalog', () => {
+    replaceCosmeticSaleOverrides({
+      'aura:aura-aurora': true,
+      'aura:aura-ember': false,
+    }, 5);
+
+    expect(validateCustomizationPurchase(intent({ itemId: 'aura-aurora' }), noPlus)).toBe(true);
+    expect(validateCustomizationPurchase(intent({ itemId: 'aura-ember' }), noPlus)).toBe(false);
   });
 
   it('rejects an unowned gift-only avatar target', () => {

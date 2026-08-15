@@ -1,5 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { arenaText } from '../modules/arena/copy';
+import type { Lang } from '../constants/i18n';
 import {
   ARENA_HUB_ROUTES,
   ARENA_HUB_TABS,
@@ -244,5 +246,75 @@ describe('какие экраны живут под таббаром', () => {
     const chrome = read('components/arena/ArenaHubChrome.tsx');
     expect(chrome).toContain('arenaV2Home()');
     expect(chrome).toContain('if (availability) return;');
+  });
+});
+
+
+/**
+ * Погашенный режим без причины — это кнопка без реакции: игрок жмёт, ничего
+ * не происходит, и он решает, что сломалось приложение. Причин ровно две, и
+ * они требуют разных слов: выключена вся Арена — ждать нечего вовсе; выключен
+ * один режим — остальные работают.
+ */
+describe('почему режим недоступен', () => {
+  const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[];
+
+  it('вся Арена выключена — так и сказано, про каждый режим', () => {
+    const choices = arenaModeChoices({
+      enabled: false, quickEnabled: true, rankedEnabled: true, friendEnabled: true,
+    });
+    for (const choice of choices) {
+      expect(choice.enabled).toBe(false);
+      expect(choice.reason).toBe('arena_off');
+    }
+  });
+
+  it('выключен один режим — остальные остаются доступными и без причины', () => {
+    const choices = arenaModeChoices({
+      enabled: true, quickEnabled: true, rankedEnabled: false, friendEnabled: true,
+    });
+    const byKey = Object.fromEntries(choices.map((row) => [row.key, row]));
+    expect(byKey.ranked.enabled).toBe(false);
+    expect(byKey.ranked.reason).toBe('mode_off');
+    expect(byKey.quick.enabled).toBe(true);
+    expect(byKey.quick.reason).toBe('ok');
+  });
+
+  it('обе причины переведены и звучат по-разному', () => {
+    for (const lang of langs) {
+      expect(arenaText(lang, 'modeArenaOff').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'modeOff').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'modeArenaOff')).not.toBe(arenaText(lang, 'modeOff'));
+    }
+  });
+
+  it('выпадающий список действительно подставляет причину вместо описания', () => {
+    const source = fs.readFileSync(
+      path.resolve(__dirname, '..', 'components/arena/ArenaHubChrome.tsx'), 'utf8',
+    );
+    expect(source).toContain("choice.reason === 'arena_off' ? 'modeArenaOff' : 'modeOff'");
+  });
+});
+
+
+/**
+ * Центральная кнопка «Начать матч» при выключенной Арене раньше не делала
+ * НИЧЕГО: игрок жал, ничего не происходило, и это выглядело как поломка
+ * приложения. Теперь список режимов открывается всё равно — и каждая строка в
+ * нём называет причину.
+ */
+describe('кнопка матча не молчит при выключенной Арене', () => {
+  it('решение о кнопке по-прежнему различает «занят» и «нельзя»', () => {
+    expect(arenaMatchButtonAction({ enabled: false }).kind).toBe('blocked');
+    expect(arenaMatchButtonAction({ enabled: true }).kind).toBe('choose_mode');
+    // Незаконченный матч важнее любого запрета: туда и ведём.
+    expect(arenaMatchButtonAction({ enabled: false, activeMatchId: 'm1' }).kind).toBe('resume_match');
+  });
+
+  it('экран открывает список даже на «нельзя», а не проглатывает нажатие', () => {
+    const source = fs.readFileSync(
+      path.resolve(__dirname, '..', 'components/arena/ArenaHubChrome.tsx'), 'utf8',
+    );
+    expect(source).not.toContain("if (action.kind === 'blocked') return;");
   });
 });

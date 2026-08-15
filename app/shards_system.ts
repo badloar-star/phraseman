@@ -3,6 +3,7 @@
 // Хранение: AsyncStorage 'shards_balance' + Firestore /users/{uid}/shards
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
 import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
@@ -28,6 +29,16 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { SHARD_SPEND_OP_LEDGER_KEY } from '../constants/customization_storage_keys';
+import {
+  commitClientShardOperation,
+  hasClientShardLedgerState,
+  initializeClientShardLedgerOpeningBalance,
+  readStoredClientShardOperation,
+  recoverPreparedClientShardOperation,
+  type ClientShardGrant,
+  type ClientShardLocalWrite,
+  type CommitClientShardOperationResult,
+} from './economy/client_shard_operation_ledger';
 
 export type ShardSpendReason =
   | 'buy_energy'     // −N осколков, N = число слотов энергии (max 5–6)
@@ -40,6 +51,7 @@ export type ShardSpendReason =
   | 'avatar_aura'
   | 'custom_avatar_restyle'
   | 'profile_card_upgrade'
+  | 'season_pass_purchase'
   | 'lesson_replay';     // legacy reason; lesson replay no longer spends shards
 
 export type ShardSource =
@@ -315,45 +327,16 @@ export const getShardsBalance = async (): Promise<number> => {
   }
 };
 
-/**
- * Explicit server read for competitive mutations whose callable response was
- * delayed or retried. Unlike getShardsBalance(), this never treats the local
- * AsyncStorage snapshot as authoritative.
- */
+/** Compatibility entry point for competition screens. It imports immutable
+ * external facts; it never reads or installs users.shards as a projection. */
 export const refreshShardsBalanceFromCloudAuthoritative = async (): Promise<number | null> => {
   try {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-    return await withAccountTransitionLock(async () => {
-      // Keep the forced read and local commit in one account mutation lane.
-      // A purchase/gift cannot commit locally between them and then be
-      // overwritten by this older snapshot.
-      const accountToken = captureAccountGeneration();
-      const stableId = await getCanonicalUserId();
-      if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return null;
-      const snapshot = await firestore()
-        .collection('users')
-        .doc(stableId)
-        .get({ source: 'server' });
-      if (!isCurrentAccountGeneration(accountToken, stableId)) return null;
-      const data = snapshot.data?.() ?? {};
-      const balance = parseShardBalance(data.shards);
-      if (balance === null) return null;
-      const shardUpdatedAtMs = parseUpdatedAtMs(data.shards_updated_at_ms);
-      // Deployed join/leave stamp the whole user document but predate the
-      // dedicated shard version field. Use the newer of both server versions;
-      // preferring an old shard field would incorrectly discard a refund.
-      const documentUpdatedAtMs = parseUpdatedAtMs(data.updatedAt);
-      const serverUpdatedAtMs = Math.max(shardUpdatedAtMs ?? 0, documentUpdatedAtMs ?? 0);
-      if (serverUpdatedAtMs <= 0) return null;
-      const outcome = await replaceShardsBalanceLocalWithOutcomeUnlocked(balance, {
-        // Never invent a fresh timestamp for a possibly stale snapshot: a
-        // later purchase/gift response must remain able to win by version.
-        updatedAtMs: serverUpdatedAtMs,
-        op: 'replace',
-        reason: 'tournament_server_reconcile',
-      }, accountToken);
-      return outcome === 'applied' ? balance : null;
-    });
+    const { syncConfirmedExternalShardEventsFromCloud } = await import(
+      './economy/external_shard_event_sync'
+    );
+    await syncConfirmedExternalShardEventsFromCloud();
+    return getShardsBalance();
   } catch {
     return null;
   }
@@ -619,7 +602,13 @@ const logShardTransaction = async (
   }
 };
 
-export type AddShardOpts = { suppressEarnEvent?: boolean };
+export type AddShardOpts = Readonly<{
+  /** Stable identity of this concrete reward occurrence. Required forever. */
+  eventId: string;
+  /** Claim/result writes committed before the immutable credit operation. */
+  localWrites?: readonly ClientShardLocalWrite[];
+  suppressEarnEvent?: boolean;
+}>;
 
 // Сколько ждём ответа Firestore при списании/начислении осколков, прежде чем
 // считать облако недоступным. В регионах с заблокированным Firebase транзакция
@@ -810,8 +799,12 @@ const readShardEarnOpLedger = async (): Promise<string[]> => {
 const appendShardEarnOp = (ledger: readonly string[], opId: string): string[] =>
   [...ledger.filter((value) => value !== opId), opId].slice(-SHARD_EARN_OP_LEDGER_LIMIT);
 
+// Functions rather than compile-time constants keep the retired forensic body
+// type-checkable while guaranteeing the new runtime boundary.
+const clientEconomyConstitutionEnabled = (): boolean => true;
+
 // ── Добавить осколки ───────────────────────────────────────────────────────
-export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promise<number> => {
+export const addShards = async (source: ShardSource, opts: AddShardOpts): Promise<number> => {
   const accountToken = captureAccountGeneration();
   const ownerStableId = accountToken.stableId;
   const isCurrent = (): boolean => Boolean(
@@ -819,6 +812,8 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
   );
   try {
     if (!isCurrent()) return 0;
+    const eventId = String(opts?.eventId ?? '').trim();
+    if (!eventId || eventId.length > 512) return 0;
     const amount = SHARD_REWARDS[source];
     if (!Number.isFinite(amount) || amount <= 0) return 0;
     // Фаза 2: +5% осколков за карточку IV+ — единая точка каталожного заработка;
@@ -826,6 +821,29 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
     const perkM = await readProfileCardShardMultiplier();
     const perkBonus = profileCardShardBonus(amount, perkM);
     const totalAmount = amount + perkBonus;
+    if (clientEconomyConstitutionEnabled()) {
+      const eventHash = await Crypto.digestStringAsync(
+        Crypto.CryptoDigestAlgorithm.SHA256,
+        `${source}:${eventId}`,
+      );
+      const clientResult = await commitShardCreditOperation({
+      operationId: `reward:${eventHash.slice(0, 40)}`,
+      amount: totalAmount,
+      reason: source,
+      grant: {
+        kind: 'ordinary_personal_reward',
+        subjectId: source,
+        payload: { baseAmount: amount, perkBonus, eventId },
+      },
+      localWrites: opts.localWrites,
+      showEarnModal: !opts?.suppressEarnEvent,
+    });
+      return clientResult.status === 'applied' || clientResult.status === 'already-applied'
+        ? totalAmount
+        : 0;
+    }
+
+    /* istanbul ignore next -- retired server-authority implementation kept only for migration archaeology */
     const localBase = await getShardsBalance();
     if (!isCurrent()) return 0;
     const localBaseMeta = await readBalanceMeta();
@@ -997,6 +1015,8 @@ export type AddShardsRawOptions = {
   skipServerAwait?: boolean;
   /** Stable 8-80 char operation id. Retries confirm success without applying the earn twice. */
   idempotencyKey?: string;
+  /** Result/claim writes committed before the immutable credit. */
+  localWrites?: readonly ClientShardLocalWrite[];
 };
 
 // ── Добавить произвольное количество осколков ─────────────────────────────
@@ -1020,6 +1040,25 @@ export const addShardsRaw = async (
     const perkM = PROFILE_CARD_PERK_EXCLUDED_REASONS.has(logReason) ? 1 : await readProfileCardShardMultiplier();
     const perkBonus = profileCardShardBonus(amount, perkM);
     const totalAmount = amount + perkBonus;
+    if (clientEconomyConstitutionEnabled()) {
+      const clientResult = await commitShardCreditOperation({
+      operationId: idempotencyKey ?? newShardOpId(),
+      amount: totalAmount,
+      reason: String(logReason || 'raw').slice(0, 64),
+      grant: {
+        kind: 'ordinary_personal_reward',
+        subjectId: String(logReason || 'raw').replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 160) || 'raw',
+        payload: { baseAmount: amount, perkBonus },
+      },
+      localWrites: options?.localWrites,
+      showEarnModal: options?.showEarnModal,
+    });
+      return clientResult.status === 'applied' || clientResult.status === 'already-applied'
+        ? totalAmount
+        : 0;
+    }
+
+    /* istanbul ignore next -- retired server-authority implementation kept only for migration archaeology */
     if (options?.skipServerAwait) {
       const opId = idempotencyKey ?? newShardOpId();
       const meta = localWriteStamp('earn', logReason);
@@ -1173,11 +1212,257 @@ export const addShardsRaw = async (
   }
 };
 
-const trackShardsSpentAchievement = (amount: number): void => {
+const trackShardsSpentAchievement = (
+  amount: number,
+  accountToken?: AccountGenerationToken,
+): void => {
   void import('./achievements')
-    .then(({ checkAchievements }) => checkAchievements({ type: 'shards_spent', amount }))
+    .then(({ checkAchievements }) => checkAchievements({ type: 'shards_spent', amount }, accountToken))
     .catch(() => {});
 };
+
+export type CommitShardCompositeOperationInput = Readonly<{
+  amount: number;
+  reason: ShardSpendReason;
+  operationId?: string;
+  grant: ClientShardGrant;
+  localWrites: readonly ClientShardLocalWrite[];
+}>;
+
+export { semanticShardOperationId } from './economy/client_shard_semantic_id';
+
+/**
+ * Canonical path for ordinary personal purchases.
+ *
+ * The exact user result is persisted before the immutable debit operation.
+ * Network/cloud work is deliberately absent from this decision path: the
+ * server may later store the operation, but cannot approve, reject, reconcile,
+ * or roll back the user's local result.
+ */
+export async function commitShardCompositeOperation(
+  input: CommitShardCompositeOperationInput,
+): Promise<CommitClientShardOperationResult> {
+  const operationToken = captureAccountGeneration();
+  const operationOwnerStableId = operationToken.stableId;
+  const isOperationCurrent = (): boolean => Boolean(
+    operationOwnerStableId
+    && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
+  );
+  if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
+  const recovered = await recoverPreparedClientShardOperation();
+  if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
+  if (recovered?.status === 'failed') return recovered;
+  const operationId = input.operationId?.trim() || newShardOpId();
+  const result = await commitClientShardOperation({
+    expectedOwnerStableId: operationOwnerStableId!,
+    operationId,
+    direction: 'debit',
+    amount: input.amount,
+    reason: input.reason,
+    grant: input.grant,
+    localWrites: input.localWrites,
+    semanticResult: true,
+  });
+  if (
+    result.status !== 'applied'
+    && result.status !== 'already-applied'
+    && result.status !== 'already-satisfied'
+  ) return result;
+  return withAccountTransitionLock(async () => {
+    if (
+      !isOperationCurrent()
+      || (result.status !== 'already-satisfied' && result.operation.ownerStableId !== operationOwnerStableId)
+    ) {
+      return { status: 'failed', reason: 'stale_account_generation' };
+    }
+    setShardsBalanceMemory(Math.max(0, result.balanceAfter), operationToken);
+    if (result.status === 'applied') {
+      await consumeStorePurchasedShardsOnSpend(input.amount);
+      if (!isOperationCurrent()) {
+        return { status: 'failed', reason: 'stale_account_generation' };
+      }
+      void bumpLifetimeShardsSpent(input.amount, operationToken);
+      logShardTransaction(
+        'spend',
+        input.amount,
+        input.reason,
+        result.balanceAfter,
+        result.balanceBefore,
+        operationToken,
+      );
+      trackShardsSpentAchievement(input.amount, operationToken);
+    }
+    await emitShardsBalanceUpdated(Math.max(0, result.balanceAfter), {
+      updatedAtMs: Date.now(),
+      op: 'spend',
+      reason: input.reason,
+    });
+    void import('./economy/client_shard_operation_sync')
+      .then(({ syncClientShardOperationJournalToCloud }) => syncClientShardOperationJournalToCloud())
+      .catch(() => {});
+    return result;
+  });
+}
+
+export type CommitShardCreditOperationInput = Readonly<{
+  amount: number;
+  reason: string;
+  operationId: string;
+  grant: ClientShardGrant;
+  localWrites?: readonly ClientShardLocalWrite[];
+  showEarnModal?: boolean;
+}>;
+
+/** Client-authoritative ordinary reward. External events use another ledger. */
+export async function commitShardCreditOperation(
+  input: CommitShardCreditOperationInput,
+): Promise<CommitClientShardOperationResult> {
+  const operationToken = captureAccountGeneration();
+  const operationOwnerStableId = operationToken.stableId;
+  const isOperationCurrent = (): boolean => Boolean(
+    operationOwnerStableId
+    && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
+  );
+  if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
+  const recovered = await recoverPreparedClientShardOperation();
+  if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
+  if (recovered?.status === 'failed') return recovered;
+  const result = await commitClientShardOperation({
+    expectedOwnerStableId: operationOwnerStableId!,
+    operationId: input.operationId,
+    direction: 'credit',
+    amount: input.amount,
+    reason: input.reason,
+    grant: input.grant,
+    localWrites: input.localWrites ?? [],
+    semanticResult: true,
+  });
+  if (result.status !== 'applied' && result.status !== 'already-applied') return result;
+  return withAccountTransitionLock(async () => {
+    if (!isOperationCurrent() || result.operation.ownerStableId !== operationOwnerStableId) {
+      return { status: 'failed', reason: 'stale_account_generation' };
+    }
+    setShardsBalanceMemory(Math.max(0, result.balanceAfter), operationToken);
+    if (result.status === 'applied') {
+      if (PROFILE_CARD_PERK_EXCLUDED_REASONS.has(input.reason) && input.reason === 'shards_store_purchase') {
+        await bumpStorePurchasedShardsTotal(input.amount);
+      }
+      void bumpLifetimeShardsEarned(input.amount, operationToken);
+      logShardTransaction(
+        'earn',
+        input.amount,
+        input.reason,
+        result.balanceAfter,
+        result.balanceBefore,
+        operationToken,
+      );
+      if (input.showEarnModal) {
+        emitAppEvent('shards_earned', { amount: input.amount, reasonKey: input.reason });
+      }
+    }
+    await emitShardsBalanceUpdated(Math.max(0, result.balanceAfter), {
+      updatedAtMs: Date.now(),
+      op: 'earn',
+      reason: input.reason,
+    });
+    void import('./economy/client_shard_operation_sync')
+      .then(({ syncClientShardOperationJournalToCloud }) => syncClientShardOperationJournalToCloud())
+      .catch(() => {});
+    return result;
+  });
+}
+
+export type ConfirmedExternalShardEventInput = Readonly<{
+  expectedOwnerStableId?: string;
+  source: string;
+  eventId: string;
+  delta: number;
+  reason: string;
+  grant: ClientShardGrant;
+  localWrites?: readonly ClientShardLocalWrite[];
+}>;
+
+export async function confirmedExternalShardOperationId(source: string, eventId: string): Promise<string> {
+  const safeSource = source.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 18) || 'external';
+  const eventHash = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    `${source}:${eventId}`,
+  );
+  return `external:${safeSource}:${eventHash.slice(0, 40)}`;
+}
+
+export async function wasConfirmedExternalShardEventApplied(
+  ownerStableId: string,
+  source: string,
+  eventId: string,
+): Promise<boolean> {
+  const operationId = await confirmedExternalShardOperationId(source, eventId);
+  return (await readStoredClientShardOperation(ownerStableId, operationId))?.authority === 'external';
+}
+
+/** Apply a payment/transfer/competition fact without making its server a balance authority. */
+export async function commitConfirmedExternalShardEvent(
+  input: ConfirmedExternalShardEventInput,
+): Promise<CommitClientShardOperationResult> {
+  if (!Number.isSafeInteger(input.delta) || input.delta === 0) {
+    return { status: 'failed', reason: 'invalid_external_delta' };
+  }
+  const operationToken = captureAccountGeneration();
+  const operationOwnerStableId = operationToken.stableId;
+  const isOperationCurrent = (): boolean => Boolean(
+    operationOwnerStableId
+    && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
+  );
+  if (
+    !isOperationCurrent()
+    || (input.expectedOwnerStableId !== undefined && input.expectedOwnerStableId !== operationOwnerStableId)
+  ) return { status: 'failed', reason: 'stale_account_generation' };
+  const operationId = await confirmedExternalShardOperationId(input.source, input.eventId);
+  const source = input.source.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 18) || 'external';
+  const eventHash = operationId.slice(operationId.lastIndexOf(':') + 1);
+  const result = await commitClientShardOperation({
+    expectedOwnerStableId: operationOwnerStableId!,
+    authority: 'external',
+    operationId,
+    direction: input.delta > 0 ? 'credit' : 'debit',
+    amount: Math.abs(input.delta),
+    reason: input.reason,
+    grant: input.grant,
+    localWrites: input.localWrites ?? (
+      input.delta < 0
+        ? [[`external_economy_result_v1:${source}:${eventHash.slice(0, 40)}`, JSON.stringify({
+            eventId: input.eventId,
+            grant: input.grant,
+          })]]
+        : []
+    ),
+  });
+  if (result.status !== 'applied' && result.status !== 'already-applied') return result;
+  return withAccountTransitionLock(async () => {
+    if (!isOperationCurrent() || result.operation.ownerStableId !== operationOwnerStableId) {
+      return { status: 'failed', reason: 'stale_account_generation' };
+    }
+    setShardsBalanceMemory(Math.max(0, result.balanceAfter), operationToken);
+    if (result.status === 'applied') {
+      if (input.delta > 0) void bumpLifetimeShardsEarned(input.delta, operationToken);
+      else void bumpLifetimeShardsSpent(Math.abs(input.delta), operationToken);
+      logShardTransaction(
+        input.delta > 0 ? 'earn' : 'spend',
+        Math.abs(input.delta),
+        input.reason,
+        result.balanceAfter,
+        result.balanceBefore,
+        operationToken,
+      );
+    }
+    await emitShardsBalanceUpdated(Math.max(0, result.balanceAfter), {
+      updatedAtMs: Date.now(),
+      op: input.delta > 0 ? 'earn' : 'spend',
+      reason: input.reason,
+    });
+    return result;
+  });
+}
 
 export type IdempotentShardSpendResult =
   | 'applied'
@@ -1191,6 +1476,14 @@ export const spendShardsIdempotent = async (
   opId: string,
   options?: SpendShardsOptions,
 ): Promise<IdempotentShardSpendResult> => {
+  // Retired by the Economy Constitution. Keeping a non-mutating symbol for
+  // binary/source compatibility makes accidental legacy calls fail safely;
+  // every real purchase must use commitShardCompositeOperation instead.
+  if (clientEconomyConstitutionEnabled()) {
+    void amount; void reason; void opId; void options;
+    return 'failed';
+  }
+  /* istanbul ignore next -- unreachable legacy implementation retained only during migration */
   const accountToken = captureAccountGeneration();
   const ownerStableId = accountToken.stableId;
   const isCurrent = (): boolean => Boolean(
@@ -1453,31 +1746,29 @@ export const awardOneTimeVariable = async (
   if (!eventKey || !Number.isFinite(amt) || amt <= 0) {
     return { awarded: 0, balance: null, alreadyClaimed: false };
   }
-  const accountToken = captureAccountGeneration();
   try {
-    const result = await withStorageLock(async () => {
-      const events = await getOneTimeEvents();
-      if (events.has(eventKey)) {
-        return { awarded: 0, balance: null as number | null, alreadyClaimed: true };
-      }
-      const current = await getShardsBalance();
-      const next = current + amt;
-      events.add(eventKey);
-      await AsyncStorage.multiSet([
-        [STORAGE_KEY, String(next)],
-        [ONE_TIME_KEY, JSON.stringify([...events])],
-      ]);
-      return { awarded: amt, balance: next, alreadyClaimed: false };
+    const events = await getOneTimeEvents();
+    if (events.has(eventKey)) return { awarded: 0, balance: null, alreadyClaimed: true };
+    const eventHash = await Crypto.digestStringAsync(
+      Crypto.CryptoDigestAlgorithm.SHA256,
+      `${source}:${eventKey}`,
+    );
+    events.add(eventKey);
+    const result = await commitShardCreditOperation({
+      operationId: `one-time:${eventHash.slice(0, 40)}`,
+      amount: amt,
+      reason: source,
+      grant: { kind: 'one_time_reward', subjectId: eventHash.slice(0, 40), payload: { eventKey } },
+      localWrites: [[ONE_TIME_KEY, JSON.stringify([...events])]],
     });
-    if (result.awarded > 0 && result.balance !== null) {
-      setShardsBalanceMemory(result.balance, accountToken);
-      void bumpLifetimeShardsEarned(amt, accountToken);
-      // fire-and-forget: клейм сундука не должен ждать сеть (skipServerAwait-паттерн)
-      void syncShardsToCloud(result.balance);
-      void logShardTransaction('earn', amt, `${source}:${eventKey}`, result.balance);
-      emitAppEvent('shards_balance_updated', { balance: result.balance });
+    if (result.status !== 'applied' && result.status !== 'already-applied') {
+      return { awarded: 0, balance: null, alreadyClaimed: false };
     }
-    return result;
+    return {
+      awarded: result.status === 'applied' ? amt : 0,
+      balance: Math.max(0, result.balanceAfter),
+      alreadyClaimed: result.status === 'already-applied',
+    };
   } catch (error) {
     DebugLogger.error('shards_system.ts:awardOneTimeVariable', error, 'warning');
     return { awarded: 0, balance: null, alreadyClaimed: false };
@@ -1528,6 +1819,24 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
   if (!isCurrent()) return 0;
   const perkBonus = profileCardShardBonus(amount, perkM);
   const totalAmount = amount + perkBonus;
+  if (clientEconomyConstitutionEnabled()) {
+    const events = await getOneTimeEvents();
+    if (events.has(source)) return 0;
+    events.add(source);
+    const result = await commitShardCreditOperation({
+      operationId: `one-time:${source}`,
+      amount: totalAmount,
+      reason: source,
+      grant: {
+        kind: 'one_time_reward',
+        subjectId: source,
+        payload: { baseAmount: amount, perkBonus },
+      },
+      localWrites: [[ONE_TIME_KEY, JSON.stringify([...events])]],
+      showEarnModal: true,
+    });
+    return result.status === 'applied' ? totalAmount : 0;
+  }
   try {
     const existingEvents = await getOneTimeEvents();
     if (!isCurrent()) return 0;
@@ -1663,52 +1972,20 @@ export const claimReferralSpinPearls = async (
   const requestId = String(spinRequestId ?? '').trim();
   if (!isCurrent() || safeAmount <= 0 || requestId.length < 8 || requestId.length > 128) return 0;
   try {
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return 0;
-    const uid = await getCanonicalUserId();
-    if (!isCurrent() || uid !== ownerStableId) return 0;
-    const localBalance = await getShardsBalance();
-    if (!isCurrent()) return 0;
-    const db = firestore();
-    const updatedAtMs = Date.now();
-    const claimId = `referral_spin_${requestId}`;
-    const newBalance = await db.runTransaction(async (transaction) => {
-      if (!isCurrent()) return null as number | null;
-      const userRef = db.collection('users').doc(uid); // guard-ok: doc-get, не коллекция
-      const claimRef = userRef.collection(REWARD_CLAIMS_COLLECTION).doc(claimId); // guard-ok: doc-get
-      const claimSnap = await transaction.get(claimRef);
-      if (!isCurrent() || claimSnap.exists) return null as number | null;
-
-      const userSnap = await transaction.get(userRef);
-      if (!isCurrent()) return null as number | null;
-      const cloudShards = userSnap.exists ? parseShardBalance(userSnap.data()?.shards) : null;
-      const base = Math.max(localBalance, cloudShards ?? 0);
-      const next = base + safeAmount;
-
-      // guard-ok: новый выделенный claim-doc (create-семантика, как в awardOneTime);
-      // запись коммитится вместе с транзакцией, которую await'ит runTransaction.
-      transaction.set(claimRef, {
-        source: 'referral_spin',
-        amount: safeAmount,
-        spinRequestId: requestId,
-        createdAt: firestore.FieldValue.serverTimestamp(),
-      });
-      transaction.set(userRef, {
-        shards: next,
-        shards_updated_at_ms: updatedAtMs,
-        shards_updated_op: 'earn',
-        shards_updated_reason: 'referral_spin',
-      }, { merge: true });
-      return next;
+    const result = await commitConfirmedExternalShardEvent({
+      expectedOwnerStableId: ownerStableId,
+      source: 'referral_spin',
+      eventId: requestId,
+      delta: safeAmount,
+      reason: 'referral_spin',
+      grant: {
+        kind: 'referral_spin_prize',
+        subjectId: requestId,
+        payload: { spinRequestId: requestId },
+      },
     });
-
-    if (!isCurrent() || newBalance === null || newBalance === undefined) return 0;
-    const meta: ShardBalanceMeta = { updatedAtMs, op: 'earn', reason: 'referral_spin' };
-    const mirrorOutcome = await mirrorServerShardBalanceLocal(newBalance, meta, accountToken, ownerStableId!);
-    if (!isCurrent() || (mirrorOutcome !== 'applied' && mirrorOutcome !== 'already-newer')) return 0;
-    void bumpLifetimeShardsEarned(safeAmount, accountToken);
-    logShardTransaction('earn', safeAmount, 'referral_spin', newBalance, newBalance - safeAmount, accountToken);
-    emitAppEvent('shards_earned', { amount: safeAmount, reasonKey: 'referral_spin' });
-    return safeAmount;
+    if (!isCurrent()) return 0;
+    return result.status === 'applied' ? safeAmount : 0;
   } catch (e) {
     if (__DEV__) console.warn('[shards_system] claimReferralSpinPearls', e);
     return 0;
@@ -1720,11 +1997,17 @@ export const onStreakUpdated = async (
   streak: number,
 ): Promise<{ amount: number; reasonKey: 'streak_7' | 'streak_30' | null }> => {
   if (streak > 0 && streak % 30 === 0) {
-    const t = await addShards('streak_30', { suppressEarnEvent: true });
+    const t = await addShards('streak_30', {
+      eventId: `streak:${streak}`,
+      suppressEarnEvent: true,
+    });
     return { amount: t, reasonKey: t > 0 ? 'streak_30' : null };
   }
   if (streak > 0 && streak % 7 === 0) {
-    const t = await addShards('streak_7', { suppressEarnEvent: true });
+    const t = await addShards('streak_7', {
+      eventId: `streak:${streak}`,
+      suppressEarnEvent: true,
+    });
     return { amount: t, reasonKey: t > 0 ? 'streak_7' : null };
   }
   return { amount: 0, reasonKey: null };
@@ -1794,13 +2077,10 @@ const syncShardsToCloud = async (
 export const forceSyncShardsToCloud = async (): Promise<void> => {
   try {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
-    // Шаг 1: подтянуть серверные начисления (если есть), мержит безопасно.
-    await loadShardsFromCloud();
-    // Шаг 2: записать актуальный локальный баланс с реальной меткой времени —
-    // guard внутри syncShardsToCloud сам не пропустит запись, если облако новее.
-    const balance = await getShardsBalance();
-    const meta = (await readBalanceMeta()) ?? localWriteStamp('replace', 'pre_action_reconcile');
-    await syncShardsToCloud(balance, meta);
+    const { syncClientShardOperationJournalToCloud } = await import(
+      './economy/client_shard_operation_sync'
+    );
+    await syncClientShardOperationJournalToCloud();
   } catch (e) {
     if (__DEV__) console.warn('[shards_system] forceSyncShardsToCloud', e);
   }
@@ -1887,6 +2167,15 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
       const queue = await readShardDeltaQueue(ownerStableId);
       queueLength = queue.length;
       if (!isCurrent()) return { resolved: 0, pending: queue.length };
+      if (clientEconomyConstitutionEnabled()) {
+        // Retired server-authoritative rows were already applied locally.
+        // A retry or cloud balance read could only overwrite valid user state.
+        if (queue.length === 0) return { resolved: 0, pending: 0 };
+        const removed = await removeShardDeltas(ownerStableId, queue.map((entry) => entry.opId));
+        return removed
+          ? { resolved: queue.length, pending: 0 }
+          : { resolved: 0, pending: queue.length };
+      }
       // зачем: незавершённых покупок быть не должно. Раньше досылка целиком
       // глохла при любом карантине — а карантин относится к ДРУГОМУ, отдельно
       // отложенному хранилищу и никак не делает записи текущей очереди
@@ -2068,18 +2357,82 @@ export const preparePendingShardDeltasForAccountSwitch = async (): Promise<{
 };
 
 // ── Загрузить осколки из облака (при первом входе / смене устройства) ─────
-export const loadShardsFromCloud = async (isCurrent: () => boolean = () => true): Promise<void> => {
+export const loadShardsFromCloud = async (isCallerCurrent: () => boolean = () => true): Promise<void> => {
   const accountToken = captureAccountGeneration();
+  let expectedOwnerStableId = '';
+  const isCurrent = (): boolean => isCallerCurrent()
+    && (!expectedOwnerStableId
+      || (accountToken.stableId === expectedOwnerStableId
+        && isCurrentAccountGeneration(accountToken, expectedOwnerStableId)));
   try {
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
     const uid = await getCanonicalUserId();
+    expectedOwnerStableId = String(uid ?? '').trim();
     if (!isCurrent()) return;
     if (!uid) return;
+    const recovered = await recoverPreparedClientShardOperation();
+    if (!isCurrent() || recovered?.status === 'failed') return;
+    if (await hasClientShardLedgerState(uid)) {
+      // Once migrated, neither a cloud timestamp nor a server balance may
+      // overwrite the client journal projection. Cloud is storage only.
+      await import('./economy/external_shard_event_sync')
+        .then(({ syncConfirmedExternalShardEventsFromCloud }) => syncConfirmedExternalShardEventsFromCloud())
+        .catch(() => {});
+      if (!isCurrent()) return;
+      const local = await getShardsBalance();
+      if (!isCurrent()) return;
+      setShardsBalanceMemory(local, accountToken);
+      void import('./economy/client_shard_operation_sync')
+        .then(({ syncClientShardOperationJournalToCloud }) => syncClientShardOperationJournalToCloud())
+        .catch(() => {});
+      return;
+    }
+    if (clientEconomyConstitutionEnabled()) {
+      let openingOverride: number | undefined;
+      if (!IS_EXPO_GO && CLOUD_SYNC_ENABLED) {
+        const db = firestore();
+        const [legacySnap, openingSnap] = await Promise.all([
+          db.collection('users').doc(uid).get().catch(() => null),
+          db.collection('users').doc(uid).collection('client_economy_opening').doc('v1').get().catch(() => null),
+        ]);
+        if (!isCurrent()) return;
+        const immutableOpening = openingSnap?.exists
+          ? parseShardBalance(openingSnap.data?.()?.openingBalance)
+          : null;
+        const legacyStoredCandidate = legacySnap?.exists
+          ? parseShardBalance(legacySnap.data?.()?.shards)
+          : null;
+        const localCandidate = await getShardsBalance();
+        if (!isCurrent()) return;
+        // One-way migration only: Firestore is passive storage. The client
+        // chooses the user-favouring opening and freezes it in journal v1.
+        openingOverride = immutableOpening
+          ?? Math.max(localCandidate, legacyStoredCandidate ?? 0);
+      }
+      await initializeClientShardLedgerOpeningBalance(openingOverride, uid);
+      if (!isCurrent()) return;
+      await import('./economy/external_shard_event_sync')
+        .then(({ syncConfirmedExternalShardEventsFromCloud }) => syncConfirmedExternalShardEventsFromCloud())
+        .catch(() => {});
+      void import('./economy/client_shard_operation_sync')
+        .then(({ syncClientShardOperationJournalToCloud }) => syncClientShardOperationJournalToCloud())
+        .catch(() => {});
+      return;
+    }
+    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+      await initializeClientShardLedgerOpeningBalance(undefined, uid);
+      return;
+    }
     const db = firestore();
-    const snap = await db.collection('users').doc(uid).get();
+    const [snap, openingSnap] = await Promise.all([
+      db.collection('users').doc(uid).get(),
+      db.collection('users').doc(uid).collection('client_economy_opening').doc('v1').get(),
+    ]);
     if (!isCurrent()) return;
     const data = snap.data?.() ?? {};
-    const cloudRaw = data.shards;
+    const openingData = openingSnap.exists ? openingSnap.data?.() : undefined;
+    const cloudRaw = Number.isSafeInteger(openingData?.openingBalance)
+      ? openingData?.openingBalance
+      : data.shards;
     const cloudShards = parseShardBalance(cloudRaw);
     if (cloudShards === null) return;
     const cloudUpdatedAt = parseUpdatedAtMs(data.shards_updated_at_ms);
@@ -2200,6 +2553,13 @@ export const loadShardsFromCloud = async (isCurrent: () => boolean = () => true)
       if (!isCurrent()) return;
       await emitShardsBalanceUpdated(b, appliedMeta);
     }
+    await initializeClientShardLedgerOpeningBalance(undefined, uid);
+    void import('./economy/client_shard_operation_sync')
+      .then(({ syncClientShardOperationJournalToCloud }) => syncClientShardOperationJournalToCloud())
+      .catch(() => {});
+    await import('./economy/external_shard_event_sync')
+      .then(({ syncConfirmedExternalShardEventsFromCloud }) => syncConfirmedExternalShardEventsFromCloud())
+      .catch(() => {});
   } catch (e) {
     if (__DEV__) console.warn('[shards_system]', e);
   }

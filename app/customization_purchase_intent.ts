@@ -6,10 +6,11 @@ import {
 } from '../constants/customization_storage_keys';
 import type {
   ShardSpendReason,
-  IdempotentShardSpendResult,
-  SpendShardsOptions,
+  CommitShardCompositeOperationInput,
 } from './shards_system';
+import type { CommitClientShardOperationResult } from './economy/client_shard_operation_ledger';
 import { newShardOpId } from './shards_delta_queue';
+import { semanticShardOperationId } from './economy/client_shard_semantic_id';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -44,12 +45,9 @@ export type CustomizationPurchaseIntent = PurchaseCustomizationInput & {
 export interface CustomizationPurchaseDeps extends Omit<CustomizationServiceDeps, 'storage'> {
   storage: Pick<typeof AsyncStorage, 'multiSet' | 'multiRemove' | 'getItem'>;
   getAccountScope: () => Promise<string>;
-  spendShardsIdempotent: (
-    amount: number,
-    reason: ShardSpendReason,
-    opId: string,
-    options?: SpendShardsOptions,
-  ) => Promise<IdempotentShardSpendResult>;
+  commitShardCompositeOperation: (
+    input: CommitShardCompositeOperationInput,
+  ) => Promise<CommitClientShardOperationResult>;
   onOwnershipGranted: (
     target: 'avatar' | 'aura',
     itemId: string,
@@ -87,7 +85,9 @@ export async function prepareCustomizationPurchase(
     ...input,
     v: 1,
     accountScope,
-    opId: newShardOpId(),
+    opId: input.spendReason === 'custom_avatar_restyle'
+      ? newShardOpId()
+      : await semanticShardOperationId(`${input.target}_initial`, input.itemId),
     phase: 'prepared',
     createdAt: Date.now(),
   };
@@ -154,15 +154,30 @@ export async function resumeCustomizationPurchase(
   }
   let current = intent;
   if (current.phase === 'prepared') {
-    const spend = await deps.spendShardsIdempotent(
-      current.cost,
-      current.spendReason,
-      current.opId,
-      { requireCloudReceiptForLocalLedger: true },
-    );
-    if (spend === 'insufficient') throw new Error('insufficient_shards');
-    if (spend === 'failed') throw new Error('shard_spend_failed');
-    current = { ...current, phase: 'charged' };
+    const ownedKey = current.target === 'avatar' ? CUSTOM_AVATAR_OWNED_KEY : AVATAR_AURA_OWNED_KEY;
+    const currentOwned = parseOwnedMap(await deps.storage.getItem(ownedKey));
+    const granted: CustomizationPurchaseIntent = { ...current, phase: 'granted' };
+    const purchase = await deps.commitShardCompositeOperation({
+      amount: current.cost,
+      reason: current.spendReason,
+      operationId: current.opId,
+      grant: {
+        kind: current.target === 'avatar'
+          ? (current.spendReason === 'custom_avatar_restyle' ? 'custom_avatar_restyle' : 'custom_avatar')
+          : 'avatar_aura',
+        subjectId: current.itemId,
+        payload: { ownedValue: current.ownedValue },
+      },
+      localWrites: [
+        [ownedKey, JSON.stringify({ ...currentOwned, [current.itemId]: current.ownedValue })],
+        [CUSTOMIZATION_PURCHASE_INTENT_KEY, JSON.stringify(granted)],
+      ],
+    });
+    if (purchase.status === 'insufficient') throw new Error('insufficient_shards');
+    if (purchase.status === 'failed') throw new Error('shard_spend_failed');
+    await assertCurrentAccount();
+    current = granted;
+    await deps.onOwnershipGranted(current.target, current.itemId, current.ownedValue);
   }
   return withAccountTransitionLock(async () => {
     await assertCurrentAccount();

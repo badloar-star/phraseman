@@ -99,7 +99,7 @@ import {
   patchAppSnapshotCustomizationSelection,
   useAppSnapshotSelector,
 } from './app_snapshot_store';
-import { getShardsBalance, spendShardsIdempotent } from './shards_system';
+import { commitShardCompositeOperation, getShardsBalance } from './shards_system';
 import { syncToCloud } from './cloud_sync';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { updateMyGroupPoints } from './firestore_leagues';
@@ -112,7 +112,8 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from './account_generation';
-import { actionToastTri, emitAppEvent } from './events';
+import { actionToastTri, emitAppEvent, onAppEvent } from './events';
+import { hydrateCosmeticAssetCatalog } from './cosmetic_asset_archive';
 import { CustomizationHero } from '../components/customization/CustomizationHero';
 import {
   CustomizationCatalogCard,
@@ -388,6 +389,14 @@ export default function AvatarSelect() {
   const [activeTab, setActiveTab] = useState<CustomizationTab>('avatars');
   const [busy, setBusy] = useState(false);
   const [editorAvatar, setEditorAvatar] = useState<CustomAvatarDef | null>(null);
+  const [cosmeticCatalogRevision, setCosmeticCatalogRevision] = useState(0);
+
+  useEffect(() => {
+    const subscription = onAppEvent('cosmetic_asset_catalog_changed', () => {
+      setCosmeticCatalogRevision((current) => current + 1);
+    });
+    return () => subscription.remove();
+  }, []);
   const [editorGradientId, setEditorGradientId] = useState(CUSTOM_AVATAR_GRADIENTS[0].id);
   const [editorLogoColor, setEditorLogoColor] = useState<CustomAvatarLogoColor>('black');
   const [purchaseState, dispatchPurchase] = useReducer(reducePurchaseConfirmation, { pending: null });
@@ -430,11 +439,16 @@ export default function AvatarSelect() {
     if (Date.now() - lastValidationRef.current < REVALIDATE_TTL_MS) return undefined;
     lastValidationRef.current = Date.now();
     let active = true;
-    void revalidateCustomizationSnapshot(
-      confirmedRef.current,
-      readFreshCustomizationSnapshot,
-      (fresh) => { if (active) publishCustomizationSnapshot(fresh); },
-    ).catch(() => {});
+    void Promise.all([
+      revalidateCustomizationSnapshot(
+        confirmedRef.current,
+        readFreshCustomizationSnapshot,
+        (fresh) => { if (active) publishCustomizationSnapshot(fresh); },
+      ),
+      // Админское включение/снятие с продажи видно при следующем открытии
+      // кастомизации; суточный cache остаётся только офлайн-фолбеком.
+      hydrateCosmeticAssetCatalog(true),
+    ]).catch(() => {});
     return () => { active = false; };
   }, [publishCustomizationSnapshot]));
 
@@ -461,7 +475,7 @@ export default function AvatarSelect() {
     ...serviceDeps,
     storage: AsyncStorage,
     getAccountScope: async () => (await getCanonicalUserId()) || getStableId(),
-    spendShardsIdempotent,
+    commitShardCompositeOperation,
     validatePurchase: (intent) => validateCustomizationPurchase(intent, {
       snapshot: confirmedRef.current,
       isPremium,
@@ -520,7 +534,8 @@ export default function AvatarSelect() {
     ownedAvatars: confirmed.ownedAvatars,
     giftedAvatarId: confirmed.giftedAvatarId,
     activeAvatar: confirmed.activeAvatar,
-  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar]);
+    catalogRevision: cosmeticCatalogRevision,
+  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar, cosmeticCatalogRevision]);
   const auraItems = useMemo(() => buildAuraCatalog({
     activeAvatar: previewAvatarValue,
     activeAuraId: confirmed.storedAuraSelection,
@@ -529,7 +544,8 @@ export default function AvatarSelect() {
     isPremium,
     isVip,
     isPro,
-  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip, isPro]);
+    catalogRevision: cosmeticCatalogRevision,
+  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip, isPro, cosmeticCatalogRevision]);
   const catalogItems = useMemo<CatalogCardItem[]>(
     () => activeTab === 'avatars' ? [levelTile, ...avatarItems] : auraItems,
     [activeTab, levelTile, avatarItems, auraItems],
@@ -928,7 +944,7 @@ const styles = StyleSheet.create({
   },
   balanceCoin: { width: 17, height: 17 },
   balanceText: { fontSize: 13.5, lineHeight: 18, fontWeight: '800' },
-  controls: { paddingHorizontal: GRID_PAD, paddingTop: 18, paddingBottom: 12 },
+  controls: { paddingHorizontal: GRID_PAD, paddingTop: 12, paddingBottom: 10, alignItems: 'flex-end' },
   row: { paddingHorizontal: GRID_PAD, gap: GRID_GAP, marginBottom: GRID_GAP },
   cell: { flex: 1, maxWidth: `${100 / 3}%` as any },
   bottomScrim: { position: 'absolute', left: 0, right: 0, bottom: 0 },

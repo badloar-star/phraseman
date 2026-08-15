@@ -1,12 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getEffectiveWagerStake, loadWager, placeWager } from '../app/streak_wager';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
-import { spendShards } from '../app/shards_system';
+import { commitShardCompositeOperation } from '../app/shards_system';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/premium_guard', () => ({ getVerifiedPremiumStatus: jest.fn().mockResolvedValue(false) }));
 jest.mock('../app/shards_system', () => ({
-  spendShards: jest.fn().mockResolvedValue(true),
+  commitShardCompositeOperation: jest.fn(),
   addShardsRaw: jest.fn().mockResolvedValue(undefined),
 }));
 jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn().mockResolvedValue({ finalDelta: 0 }) }));
@@ -19,7 +19,12 @@ beforeEach(() => {
   jest.clearAllMocks();
   Object.keys(mockStorage).forEach(k => delete mockStorage[k]);
   (getVerifiedPremiumStatus as jest.Mock).mockResolvedValue(false);
-  (spendShards as jest.Mock).mockResolvedValue(true);
+  (commitShardCompositeOperation as jest.Mock).mockImplementation(async (input) => {
+    input.localWrites.forEach(([key, value]: readonly [string, string]) => {
+      mockStorage[key] = value;
+    });
+    return { status: 'applied', balanceBefore: 10, balanceAfter: 10 - input.amount };
+  });
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) =>
     Promise.resolve(mockStorage[k] ?? null),
   );
@@ -73,8 +78,11 @@ describe('streak_wager effective stake', () => {
 
     await expect(placeWager(12, 3)).resolves.toBe(true);
 
-    expect(spendShards).toHaveBeenCalledWith(3, 'wager_bet');
-    expect(mockStorage.wager_discount).toBeUndefined();
+    expect(commitShardCompositeOperation).toHaveBeenCalledWith(expect.objectContaining({
+      amount: 3,
+      reason: 'wager_bet',
+    }));
+    expect(mockStorage.wager_discount).toBe('0');
     expect(JSON.parse(mockStorage.streak_wager_v2)).toEqual(expect.objectContaining({
       active: true,
       tierIdx: 3,
@@ -93,22 +101,25 @@ describe('streak_wager effective stake', () => {
 
     delete mockStorage.streak_wager_v2;
     await expect(placeWager(12, 3)).resolves.toBe(true);
-    expect(mockStorage.wager_discount).toBeUndefined();
-    expect(mockStorage.wager_discount_uses_v1).toBeUndefined();
+    expect(mockStorage.wager_discount).toBe('0');
+    expect(mockStorage.wager_discount_uses_v1).toBe('0');
 
     delete mockStorage.streak_wager_v2;
     mockStorage.wager_discount = '0.25';
     await expect(placeWager(12, 3)).resolves.toBe(true);
-    expect(mockStorage.wager_discount).toBeUndefined();
+    expect(mockStorage.wager_discount).toBe('0');
   });
 
   it('keeps the gift discount when shard spending fails', async () => {
     mockStorage.wager_discount = '0.25';
-    (spendShards as jest.Mock).mockResolvedValue(false);
+    (commitShardCompositeOperation as jest.Mock).mockResolvedValue({ status: 'failed', reason: 'disk_full' });
 
     await expect(placeWager(12, 3)).resolves.toBe(false);
 
-    expect(spendShards).toHaveBeenCalledWith(3, 'wager_bet');
+    expect(commitShardCompositeOperation).toHaveBeenCalledWith(expect.objectContaining({
+      amount: 3,
+      reason: 'wager_bet',
+    }));
     expect(mockStorage.wager_discount).toBe('0.25');
     expect(mockStorage.streak_wager_v2).toBeUndefined();
   });
@@ -121,7 +132,10 @@ describe('streak_wager effective stake', () => {
     await expect(placeWager(12, 3)).resolves.toBe(true);
 
     // Премиум-токен больше не делает ставку бесплатной — списываем со скидкой 25%.
-    expect(spendShards).toHaveBeenCalledWith(3, 'wager_bet');
+    expect(commitShardCompositeOperation).toHaveBeenCalledWith(expect.objectContaining({
+      amount: 3,
+      reason: 'wager_bet',
+    }));
     expect(JSON.parse(mockStorage.streak_wager_v2)).toEqual(expect.objectContaining({
       active: true,
       tierIdx: 3,
@@ -149,7 +163,7 @@ describe('streak_wager effective stake', () => {
 
     const w = await loadWager();
 
-    expect(spendShards).not.toHaveBeenCalled();
+    expect(commitShardCompositeOperation).not.toHaveBeenCalled();
     expect(w?.betShards).toBe(0);
     // Маркер не перезаписан чтением.
     expect(JSON.parse(mockStorage.streak_wager_v2).betShards).toBe(0);

@@ -9,7 +9,7 @@ const read = (relativePath: string) =>
 describe("league XP promotion remote mode contract", () => {
   it("keeps the remote config switch and threshold editable without an app deploy", () => {
     const flagsSource = read("app/remote_flags.ts");
-    const liveAdmin = read("admin/legacy.html");
+    const liveAdmin = read("admin/v2/legacy.html");
 
     // App-side source of truth: defaults, clamp and getters bound to remote keys.
     expect(flagsSource).toContain("league_xp_promotion_enabled: false");

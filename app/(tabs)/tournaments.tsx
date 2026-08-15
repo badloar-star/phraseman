@@ -707,9 +707,9 @@ function TournamentsScreen() {
   const closeConfirm = useCallback(() => setConfirmVisible(false), []);
 
   /**
-   * Вход: жемчужины списывает СЕРВЕР, клиент только просит.
-   * Optimistic UI: баланс падает СРАЗУ, при ошибке — откат и причина текстом.
-   * Двойной тап отсекается флагом joining, иначе спишется дважды.
+   * Вход: сервер подтверждает участие и публикует immutable debit-факт;
+   * личный баланс проецируется клиентским журналом. Optimistic UI показывает
+   * ожидаемый debit сразу, а после ответа импортирует подтверждённый event.
    */
   const enterLobby = useCallback(async () => {
     // Комната нужна только для входа по расписанию: мгновенный турнир сервер
@@ -719,7 +719,7 @@ function TournamentsScreen() {
     const balanceBefore = coins;
     const entryGeneration = entryGenerationRef.current + 1;
     entryGenerationRef.current = entryGeneration;
-    setCoins((current) => Math.max(0, current - effectiveEntryGems)); // guard-ok: optimistic display mirrors the server-owned test/scheduled price
+    setCoins((current) => Math.max(0, current - effectiveEntryGems)); // optimistic display only; durable debit arrives as an external event
     let entryKey = '';
     entryKey = beginTournamentEntryTransition(() => {
       // Callback старого входа не имеет права откатывать баланс нового.
@@ -743,7 +743,7 @@ function TournamentsScreen() {
       // комната успевала бы стартовать, пока открыта шторка подтверждения).
       const result = (instantEntry
         ? await startTournamentNow()
-        : await joinTournament(joinRoomId as string)) as { gemsLeft?: number; roomId?: string } | undefined;
+        : await joinTournament(joinRoomId as string)) as { roomId?: string } | undefined;
       const ownsEntry = activeEntryKeyRef.current === entryKey;
       const transitionState = settleTournamentEntryTransition(entryKey);
       if (!ownsEntry || transitionState === 'cancelled' || transitionState === 'missing') {
@@ -751,12 +751,8 @@ function TournamentsScreen() {
         return;
       }
       activeEntryKeyRef.current = null;
-      if (typeof result?.gemsLeft === 'number') {
-        const serverBalance = Math.max(0, result.gemsLeft);
-        setCoins(serverBalance); // guard-ok: согласование с серверным балансом
-      }
-      // Persist only a versioned server snapshot. Stamping callable gemsLeft
-      // with a fast device clock could suppress a later valid server refund.
+      // Pull the immutable tournament entry fact; server responses never carry
+      // or install a personal wallet projection.
       deferredBalanceRefreshRef.current = true;
       reconcileDeferredBalance();
       // зачем 2026-07-27 (владелец: один турнир на окно): помечаем окно как
@@ -816,9 +812,7 @@ function TournamentsScreen() {
           void rememberPlayedWindow(playedWindow);
         }
       }
-      setJoinError(code.includes('not_enough_gems')
-        ? L({ ru: 'Не хватает жемчужин', uk: 'Недостатньо перлин', es: 'No tienes suficientes perlas', 'pt-BR': 'Você não tem pérolas suficientes', vi: 'Không đủ ngọc trai', id: 'Mutiara tidak cukup', tr: 'Yeterli inciniz yok', pl: 'Za mało pereł' })
-        : code.includes('tournament_testing_disabled')
+      setJoinError(code.includes('tournament_testing_disabled')
           ? L({ ru: 'Тестовый режим завершён. Следующий турнир — по расписанию.', uk: 'Тестовий режим завершено. Наступний турнір — за розкладом.', es: 'El modo de prueba ha terminado. El próximo torneo será según el horario.', 'pt-BR': 'O modo de teste terminou. O próximo torneio será no horário programado.', vi: 'Chế độ thử nghiệm đã kết thúc. Giải đấu tiếp theo sẽ diễn ra theo lịch.', id: 'Mode uji telah berakhir. Turnamen berikutnya sesuai jadwal.', tr: 'Test modu sona erdi. Sonraki turnuva programa göre yapılacak.', pl: 'Tryb testowy dobiegł końca. Następny turniej odbędzie się zgodnie z harmonogramem.' })
         : code.includes('tournament_config_disabled')
           ? L({ ru: 'Расписание турниров выключено. Включите тестовый режим в админке.', uk: 'Розклад турнірів вимкнено. Увімкніть тестовий режим в адмінпанелі.', es: 'El calendario de torneos está desactivado. Activa el modo de prueba en el panel de administración.', 'pt-BR': 'A programação de torneios está desativada. Ative o modo de teste no painel administrativo.', vi: 'Lịch giải đấu đang tắt. Hãy bật chế độ thử nghiệm trong bảng quản trị.', id: 'Jadwal turnamen dinonaktifkan. Aktifkan mode uji di panel admin.', tr: 'Turnuva takvimi kapalı. Yönetici panelinden test modunu açın.', pl: 'Harmonogram turniejów jest wyłączony. Włącz tryb testowy w panelu administratora.' })

@@ -898,6 +898,56 @@ describe("pure canonical V2 generation plan", () => {
       "./v2_unified_course_release_v1",
       "node:crypto",
     ]);
+    expect(importSpecifiers("v2_unified_course_release_v3.ts")).toEqual([
+      "../../../modules/learning-v2/content/course_topology_v1",
+      "../../../modules/learning-v2/contracts/language_tag_v1",
+      "../../../modules/learning-v2/contracts/voice_playback_policy_v1",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/course_lesson_audio_release_index_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_unified_course_release_repository_v2",
+      "./v2_unified_course_release_v2",
+    ]);
+    expect(
+      importSpecifiers("v2_unified_course_release_repository_v3.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/contracts/language_tag_v1",
+      "../../../modules/learning-v2/policies/decision_registry",
+      "../../../modules/learning-v2/runtime/course_lesson_audio_release_index_v1",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_unified_course_release_repository_v2",
+      "./v2_unified_course_release_v2",
+      "./v2_unified_course_release_v3",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers("v2_course_released_session_adapter_v3.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/content/course_topology_v1",
+      "../../../modules/learning-v2/runtime/course_session_audio_child_v1",
+      "../../../modules/learning-v2/runtime/course_session_audio_release_extension_v1",
+      "./v2_course_released_session_adapter_v2",
+      "./v2_firebase_admin_repository_io_v1",
+      "./v2_firebase_repository_persistence_v1",
+      "./v2_unified_course_release_repository_v3",
+      "node:crypto",
+    ]);
+    expect(
+      importSpecifiers("v2_course_released_session_callable_v3.ts"),
+    ).toEqual([
+      "../../../modules/learning-v2/content/course_topology_v1",
+      "../../../modules/learning-v2/content/release_rollout_v1",
+      "../../../modules/learning-v2/runtime/course_session_audio_child_v1",
+      "../../../modules/learning-v2/runtime/course_session_client_children_v1",
+      "../../../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1",
+      "../auth_identity",
+      "./v2_course_released_session_adapter_v3",
+      "./v2_course_released_session_callable_v2",
+      "./v2_unified_course_release_repository_v3",
+      "firebase-admin",
+      "firebase-functions/v2/https",
+    ]);
     const repositoryRoot = path.resolve(root, "../../..");
     const activityCatalogV2 = path.join(
       repositoryRoot,
@@ -1066,6 +1116,14 @@ describe("pure canonical V2 generation plan", () => {
     const activityAudioPreloadV1 = path.join(
       repositoryRoot,
       "app/learning_v2_activity_audio_preload_v1.ts",
+    );
+    const courseSessionAudioPreloadV1 = path.join(
+      repositoryRoot,
+      "app/learning_v2_course_session_audio_preload_v1.ts",
+    );
+    const courseReleasedSessionClientV3 = path.join(
+      repositoryRoot,
+      "app/learning_v2_course_released_session_client_v3.ts",
     );
     const activityAudioSessionHookV1 = path.join(
       repositoryRoot,
@@ -2118,6 +2176,17 @@ describe("pure canonical V2 generation plan", () => {
         "v2_unified_course_release_leaf_readback_v1.ts",
         "v2_firebase_unified_course_release_activation_adapter_v1.ts",
         "v2_unified_course_release_repository_v1.ts",
+        "v2_activity_learner_core_release_pointer_v2.ts",
+        "v2_unified_course_release_v2.ts",
+        "v2_unified_course_release_repository_v2.ts",
+        "v2_unified_course_release_v3.ts",
+        "v2_unified_course_release_repository_v3.ts",
+        "v2_course_released_session_adapter_v2.ts",
+        "v2_course_released_session_adapter_v3.ts",
+        "v2_course_released_session_callable_v2.ts",
+        "v2_course_released_session_callable_v3.ts",
+        "v2_course_active_catalog_adapter_v1.ts",
+        "v2_course_active_catalog_callable_v1.ts",
         "v2_session_package_recovery_decision_v1.ts",
         ...b2InternalFiles,
       ]
@@ -2165,6 +2234,30 @@ describe("pure canonical V2 generation plan", () => {
           canonicalRealPath(
             path.join(
               repositoryRoot,
+              "modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1.ts",
+            ),
+          ),
+          canonicalRealPath(
+            path.join(
+              repositoryRoot,
+              "modules/learning-v2/runtime/course_active_catalog_v1.ts",
+            ),
+          ),
+          canonicalRealPath(
+            path.join(
+              repositoryRoot,
+              "app/learning_v2_course_released_session_client_v2.ts",
+            ),
+          ),
+          canonicalRealPath(
+            path.join(
+              repositoryRoot,
+              "app/learning_v2_active_course_catalog_client_v1.ts",
+            ),
+          ),
+          canonicalRealPath(
+            path.join(
+              repositoryRoot,
               "modules/learning-v2/runtime/activity_learner_core_release_index_v2.ts",
             ),
           ),
@@ -2172,6 +2265,8 @@ describe("pure canonical V2 generation plan", () => {
           canonicalRealPath(activitySessionAudioPlanV1),
           canonicalRealPath(activityAudioTransportV1),
           canonicalRealPath(activityAudioPreloadV1),
+          canonicalRealPath(courseSessionAudioPreloadV1),
+          canonicalRealPath(courseReleasedSessionClientV3),
           canonicalRealPath(activityAudioSessionHookV1),
           canonicalRealPath(activityLocalAudioPlaybackHookV1),
           canonicalRealPath(activityActionSessionV1),
@@ -2197,6 +2292,18 @@ describe("pure canonical V2 generation plan", () => {
           canonicalRealPath(path.resolve(root, "../index.ts")),
         ]),
     );
+    for (const activeDirectRuntime of [
+      "modules/learning-v2/runtime/course_session_audio_child_v1.ts",
+      "modules/learning-v2/runtime/course_session_device_run_v1.ts",
+      "modules/learning-v2/runtime/course_session_voice_response_v1.ts",
+      "app/learning_v2_course_session_audio_preload_v1.ts",
+      "app/learning_v2_course_released_session_client_v3.ts",
+      "app/learning_v2_direct_session_player_v1.tsx",
+    ]) {
+      allowedCanonicalConsumers.add(
+        canonicalRealPath(path.join(repositoryRoot, activeDirectRuntime)),
+      );
+    }
     const functionsSourceRoot = path.join(root, "..");
     const canonicalTargets = new Set(
       [
@@ -2218,6 +2325,17 @@ describe("pure canonical V2 generation plan", () => {
         "v2_unified_course_release_leaf_readback_v1.ts",
         "v2_firebase_unified_course_release_activation_adapter_v1.ts",
         "v2_unified_course_release_repository_v1.ts",
+        "v2_activity_learner_core_release_pointer_v2.ts",
+        "v2_unified_course_release_v2.ts",
+        "v2_unified_course_release_repository_v2.ts",
+        "v2_unified_course_release_v3.ts",
+        "v2_unified_course_release_repository_v3.ts",
+        "v2_course_released_session_adapter_v2.ts",
+        "v2_course_released_session_adapter_v3.ts",
+        "v2_course_released_session_callable_v2.ts",
+        "v2_course_released_session_callable_v3.ts",
+        "v2_course_active_catalog_adapter_v1.ts",
+        "v2_course_active_catalog_callable_v1.ts",
         "v2_generation_workspace_contract.ts",
         "v2_generation_workspace_contract_v2.ts",
         "v2_repository_capability_observation_v1.ts",
@@ -2358,6 +2476,8 @@ describe("pure canonical V2 generation plan", () => {
     canonicalTargets.add(canonicalRealPath(activitySessionAudioPlanV1));
     canonicalTargets.add(canonicalRealPath(activityAudioTransportV1));
     canonicalTargets.add(canonicalRealPath(activityAudioPreloadV1));
+    canonicalTargets.add(canonicalRealPath(courseSessionAudioPreloadV1));
+    canonicalTargets.add(canonicalRealPath(courseReleasedSessionClientV3));
     canonicalTargets.add(canonicalRealPath(activityAudioSessionHookV1));
     canonicalTargets.add(canonicalRealPath(activityLocalAudioPlaybackHookV1));
     canonicalTargets.add(canonicalRealPath(activityActionSessionV1));
@@ -2444,6 +2564,12 @@ describe("pure canonical V2 generation plan", () => {
                 "./content_factory/v2_owner_episode_confirmation_adapter_v1" ||
               specifier ===
                 "./content_factory/v2_activity_released_session_callable_v1" ||
+              specifier ===
+                "./content_factory/v2_course_released_session_callable_v2" ||
+              specifier ===
+                "./content_factory/v2_course_released_session_callable_v3" ||
+              specifier ===
+                "./content_factory/v2_course_active_catalog_callable_v1" ||
               specifier ===
                 "./learning_v2/activity_released_session_completion_callable_v1" ||
               specifier ===
@@ -2544,6 +2670,10 @@ describe("pure canonical V2 generation plan", () => {
               source.includes("activity_session_audio_plan_v1") ||
               source.includes("learning_v2_activity_audio_transport_v1") ||
               source.includes("learning_v2_activity_audio_preload_v1") ||
+              source.includes("learning_v2_course_session_audio_preload_v1") ||
+              source.includes(
+                "learning_v2_course_released_session_client_v3",
+              ) ||
               source.includes("use_learning_v2_activity_audio_session_v1") ||
               source.includes(
                 "use_learning_v2_activity_local_audio_playback_v1",
@@ -2648,6 +2778,8 @@ describe("pure canonical V2 generation plan", () => {
                 "v2_firebase_unified_course_release_activation_adapter_v1",
               ) ||
               source.includes("v2_unified_course_release_repository_v1") ||
+              source.includes("v2_unified_course_release_v3") ||
+              source.includes("v2_unified_course_release_repository_v3") ||
               source.includes("v2_session_package_recovery_decision_v1")
             );
           }
@@ -2755,6 +2887,10 @@ describe("pure canonical V2 generation plan", () => {
             specifier.includes("activity_session_audio_plan_v1") ||
             specifier.includes("learning_v2_activity_audio_transport_v1") ||
             specifier.includes("learning_v2_activity_audio_preload_v1") ||
+            specifier.includes("learning_v2_course_session_audio_preload_v1") ||
+            specifier.includes(
+              "learning_v2_course_released_session_client_v3",
+            ) ||
             specifier.includes("use_learning_v2_activity_audio_session_v1") ||
             specifier.includes(
               "use_learning_v2_activity_local_audio_playback_v1",
@@ -2865,6 +3001,8 @@ describe("pure canonical V2 generation plan", () => {
               "v2_firebase_unified_course_release_activation_adapter_v1",
             ) ||
             specifier.includes("v2_unified_course_release_repository_v1") ||
+            specifier.includes("v2_unified_course_release_v3") ||
+            specifier.includes("v2_unified_course_release_repository_v3") ||
             specifier.includes("v2_session_package_recovery_decision_v1")
           );
         });

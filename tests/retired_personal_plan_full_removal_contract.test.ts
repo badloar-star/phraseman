@@ -20,8 +20,8 @@ function listFiles(relativeRoot: string): string[] {
   return files;
 }
 
-const OWNED_PATH = /(?:^|\/)(?:personal_plan|plan_content|plan_audio|plan_day|trainer_plan)(?:[^/]*)/i;
-const ACTIVE_IDENTIFIER = /personal_plan|PersonalPlan|PERSONAL_PLAN|plan_content|PlanContent|trainer_plan/;
+const OWNED_PATH = /(?:^|\/)(?:personal[-_]?plan|plan[-_]?(?:content|audio|day|lesson|art)|trainer[-_]?plan|ob_plan_ready)(?:[^/]*)/i;
+const ACTIVE_IDENTIFIER = /personal[-_]?plan|PersonalPlan|PERSONAL_PLAN|plan_content|PlanContent|trainer_plan\b|TRAINER_PLAN\b|plan_tasks_completed|planTasksCompleted|plan_lesson_gate|ob_plan_ready/;
 const RETIRED_STORAGE_ALLOWLIST = new Set([
   'app/+native-intent.tsx',
   'app/cloud_sync.ts',
@@ -31,7 +31,7 @@ describe('retired Personal Plan and Route full removal', () => {
   test('removes every owned source, generator, test fixture, and bundled asset path', () => {
     const roots = [
       'app', 'components', 'constants', 'hooks', 'modules',
-      'functions/src', 'functions/scripts', 'scripts',
+      'functions/src', 'functions/scripts', 'scripts', 'tools',
       'assets/audio', 'assets/images',
     ];
     const owned = roots.flatMap(listFiles).filter((file) => OWNED_PATH.test(file));
@@ -39,7 +39,7 @@ describe('retired Personal Plan and Route full removal', () => {
   });
 
   test('leaves no active runtime identifier outside legacy-link and account-wipe cleanup seams', () => {
-    const roots = ['app', 'components', 'constants', 'hooks', 'modules', 'functions/src'];
+    const roots = ['app', 'components', 'constants', 'hooks', 'modules', 'functions/src', 'scripts', 'tools'];
     const offenders = roots
       .flatMap(listFiles)
       .filter((file) => /\.(?:ts|tsx|js|jsx)$/.test(file))
@@ -55,13 +55,17 @@ describe('retired Personal Plan and Route full removal', () => {
     const featureGates = read('app/feature_gates.ts');
     const remoteFlags = read('app/remote_flags.ts');
     const paywallProof = read('components/paywall/PaywallProofCards.tsx');
+    const onboarding = read('components/CleanOnboarding.tsx');
+    const activityAnalytics = read('app/activity_365_analytics.ts');
     const admin = read('admin/v2/legacy.html');
 
     expect(lessons).not.toMatch(/Маршрут|personal_plan|plan_content/i);
     expect(layout).not.toMatch(/name=["']personal_plan|name=["']trainer_plan/i);
     expect(featureGates).not.toMatch(/personal_plan|plan_content/i);
     expect(remoteFlags).not.toMatch(/personal_plan|plan_content|onboarding_plan_only_enabled/i);
-    expect(admin).not.toContain('onboarding_plan_only_enabled');
+    expect(admin).not.toMatch(/onboarding_plan_only_enabled|personal[-_]plan|plan_tasks_completed/i);
+    expect(onboarding).not.toMatch(/твой маршрут|по твоему маршруту|personal[-_]plan/i);
+    expect(activityAnalytics).not.toMatch(/plan_tasks_completed|planTasksCompleted/i);
     expect(paywallProof).not.toMatch(/личный план|особистий план|plan personal|plano pessoal|kế hoạch cá nhân|rencana pribadi|kişisel plan|plan osobisty/i);
   });
 

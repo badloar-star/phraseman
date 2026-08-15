@@ -50,10 +50,12 @@ describe('DEV center bottom sheet', () => {
     const sheet = fs.existsSync(sheetPath) ? read('components/dev/DevHubSheet.tsx') : '';
 
     expect(registry).toContain('DEV_TOOL_SECTIONS');
+    expect(registry).toContain("id: 'full-modes'");
     expect(registry).toContain("id: 'level-previews'");
     expect(registry).toContain("id: 'league'");
     expect(registry).toContain("id: 'subscription'");
     expect(registry).toContain("action: 'preview-level-standard'");
+    expect(registry).toContain("action: 'open-max-voice'");
     expect(registry).toContain("action: 'preview-level-milestone'");
     expect(registry).toContain("action: 'preview-lesson-results'");
     expect(registry).toContain("action: 'preview-spin-reward'");
@@ -71,19 +73,34 @@ describe('DEV center bottom sheet', () => {
     jest.resetModules();
     const { getOrderedDevToolSections } = require('../components/dev/devToolRegistry');
     const ordered = getOrderedDevToolSections();
-    expect(ordered.map((section: { id: string }) => section.id)).toEqual(['level-previews', 'league', 'subscription']);
-    expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(ordered.map((section: { id: string }) => section.id)).toEqual(['full-modes', 'level-previews', 'league', 'subscription']);
+    expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual(['max-voice']);
+    expect(ordered[1].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'level-standard',
       'level-milestone',
       'lesson-results',
       'spin-reward',
     ]);
-    expect(ordered[1].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(ordered[2].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'league-promoted',
       'league-demoted',
       'league-stay',
       'league-rank-mismatch',
     ]);
+  });
+
+  test('opens the complete MAX Voice flow after dismissing the native DEV sheet', () => {
+    const registry = read('components/dev/devToolRegistry.ts');
+    const sheet = read('components/dev/DevHubSheet.tsx');
+
+    expect(registry).toContain("testID: 'dev-open-max-voice'");
+    expect(registry).toContain('Полный путь: подготовка, живой WebRTC-звонок и разбор разговора.');
+    expect(sheet).toContain("case 'open-max-voice':");
+    expect(sheet).toContain('if (!isMaxVoiceNativeAvailable())');
+    expect(sheet).toContain('Metro обновляет только JavaScript');
+    expect(sheet).toContain("pathname: '/max_call_prestart'");
+    expect(sheet).toContain("params: { devMode: '1' }");
+    expect(sheet).toContain('onClosed?.();');
   });
 
   test('previews weekly league outcomes without touching the real pending result', () => {

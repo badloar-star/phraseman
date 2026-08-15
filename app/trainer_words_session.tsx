@@ -236,19 +236,8 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode, onSpeakWord }
         {card.shownTranslation}
       </Text>
 
-      {/* Подсказка управления */}
-      <Text style={[styles.cardHint, { color: t.textGhost }]}>
-        {triLang(lang, {
-          ru: 'Свайп или кнопки',
-          uk: 'Свайп або кнопки',
-          es: 'Desliza o usa botones',
-          'pt-BR': 'Deslize ou use botões',
-          vi: 'Vuốt hoặc dùng nút',
-          id: 'Geser atau pakai tombol',
-          tr: 'Kayır veya düğmeleri kullan',
-          pl: 'Przesuń lub użyj przycisków',
-        })}
-      </Text>
+      {/* FIX (владелец, 2026-08-13): подсказку «свайп или кнопки» убрали —
+          способ ответа очевиден из самих кнопок, лишняя строка шумит. */}
 
     </Animated.View>
   );
@@ -651,18 +640,9 @@ export default function TrainerWordsSession() {
               <Ionicons name="checkmark" size={30} color={t.correct} />
             </TouchableOpacity>
           </View>
-          <Text style={[styles.buttonsCaption, { color: t.textGhost }]}>
-            {triLang(lang, {
-              ru: 'неправильно · правильно',
-              uk: 'неправильно · правильно',
-              es: 'incorrecto · correcto',
-              'pt-BR': 'incorreto · correto',
-              vi: 'sai · đúng',
-              id: 'salah · benar',
-              tr: 'yanlış · doğru',
-              pl: 'źle · dobrze',
-            })}
-          </Text>
+          {/* FIX (владелец, 2026-08-13): текстовых подписей «правильно /
+              неправильно» под кнопками нет — только иконки. Смысл кнопок
+              остаётся доступным через accessibilityLabel выше. */}
 
         </ContentWrap>
       </SafeAreaView>
@@ -752,20 +732,14 @@ const styles = StyleSheet.create({
   },
   wordEn: { fontWeight: '900', textAlign: 'center' },
   wordRu: { fontWeight: '600', textAlign: 'center', marginTop: 6 },
-  cardHint: {
-    position: 'absolute',
-    bottom: 16,
-    fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 0.6,
-    textTransform: 'uppercase',
-  },
   buttonsRow: {
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 22,
     paddingTop: 6,
-    paddingBottom: 12,
+    // Подпись под кнопками убрана — её нижний отступ переехал сюда,
+    // чтобы ряд не «прилипал» к краю экрана.
+    paddingBottom: 24,
   },
   roundBtn: {
     width: 62,
@@ -773,12 +747,6 @@ const styles = StyleSheet.create({
     borderRadius: 31,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  buttonsCaption: {
-    textAlign: 'center',
-    fontSize: 10,
-    fontWeight: '700',
-    paddingBottom: 12,
   },
   doneContainer: {
     flex: 1,

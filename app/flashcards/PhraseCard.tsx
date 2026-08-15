@@ -43,6 +43,7 @@ import { Ionicons } from '@expo/vector-icons';
 import type { Theme } from '../../constants/theme';
 import {
   FC_FLIP_PERSPECTIVE,
+  FC_FLIP_PULSE_MIN,
   FC_SPRING,
   FC_SWIPE,
   FC_TIMING,
@@ -230,9 +231,17 @@ function PhraseCardImpl({
         flip.value = withTiming(target, { duration: FC_TIMING.fast });
       } else {
         flip.value = withSpring(target, FC_SPRING.flip);
-        // параллельный scale-пульс 1→1.04→1 (§3.3)
+        /**
+         * Параллельный scale-пульс флипа. Было 1→1.04→1 — карточка на пике
+         * УВЕЛИЧИВАЛАСЬ, а слой с текстом на iOS растрируется в своём
+         * layout-размере: апскейл 4% давал «мыльную/пиксельную» кириллицу
+         * (репорт владельца после теста на iPhone). Стало «поджатие»
+         * 1→0.965→1 — масштаб НИКОГДА не превышает 1, растр только
+         * уменьшается (даунскейл сглаживается), текст остаётся чётким.
+         * Жест тот же по силе, только знак другой.
+         */
         pulse.value = withSequence(
-          withTiming(1.04, { duration: 120 }),
+          withTiming(FC_FLIP_PULSE_MIN, { duration: 120 }),
           withTiming(1, { duration: 180 }),
         );
       }
@@ -686,12 +695,17 @@ function PhraseCardImpl({
     <View style={{ width: '100%' }}>
       {mode === 'grade' && !isWeb ? <GestureDetector gesture={pan}>{card}</GestureDetector> : card}
       {mode === 'grade' && (
-        // Кнопки-дублёры: единственный способ оценки на web + доступность/одноручный режим
+        /*
+         * Кнопки-дублёры: единственный способ оценки на web + доступность /
+         * одноручный режим. FIX (владелец, 2026-08-13): подписей «знаю/учу» на
+         * кнопках нет — только иконка. Смысл читает скринридер из
+         * accessibilityLabel (локализованная подпись, не «✓»/«✕»).
+         */
         <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 20, marginTop: 14 }}>
           <Pressable
             onPress={() => handleGrade('learn')}
             accessibilityRole="button"
-            accessibilityLabel={gradeLabels?.learn ?? '✕'}
+            accessibilityLabel={gradeLabels?.learn ?? swipeLabels.learn}
             testID={testID ? `${testID}-grade-learn` : 'fc-grade-learn'}
             style={({ pressed: p }) => ({
               flexDirection: 'row',
@@ -707,14 +721,11 @@ function PhraseCardImpl({
             })}
           >
             <Ionicons name="close" size={20} color={t.wrong} />
-            {gradeLabels?.learn ? (
-              <Text style={{ color: t.wrong, fontSize: f.body ?? 15, fontWeight: '700' }}>{gradeLabels.learn}</Text>
-            ) : null}
           </Pressable>
           <Pressable
             onPress={() => handleGrade('know')}
             accessibilityRole="button"
-            accessibilityLabel={gradeLabels?.know ?? '✓'}
+            accessibilityLabel={gradeLabels?.know ?? swipeLabels.know}
             testID={testID ? `${testID}-grade-know` : 'fc-grade-know'}
             style={({ pressed: p }) => ({
               flexDirection: 'row',
@@ -730,9 +741,6 @@ function PhraseCardImpl({
             })}
           >
             <Ionicons name="checkmark" size={20} color={t.correct} />
-            {gradeLabels?.know ? (
-              <Text style={{ color: t.correct, fontSize: f.body ?? 15, fontWeight: '700' }}>{gradeLabels.know}</Text>
-            ) : null}
           </Pressable>
         </View>
       )}

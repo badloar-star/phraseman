@@ -14,6 +14,7 @@ import Animated, {
 import Svg, { Circle } from 'react-native-svg';
 import { useTournamentPalette } from '../tournament/tournament_theme';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { useArenaSound } from '../../hooks/use_arena_sound';
 
 /**
  * Кольцо таймера ответа.
@@ -49,6 +50,7 @@ function ArenaTimerRingBase({
 }) {
   const P = useTournamentPalette();
   const reduceMotion = useReduceMotion();
+  const playSound = useArenaSound();
   const radius = (size - stroke) / 2;
   const circumference = useMemo(() => 2 * Math.PI * radius, [radius]);
 
@@ -86,6 +88,41 @@ function ArenaTimerRingBase({
     }, untilAlarmMs);
     return () => { clearTimeout(timer); cancelAnimation(alarm); };
   }, [alarm, paused, reduceMotion, remaining]);
+
+  /**
+   * Тик последних секунд.
+   *
+   * Звук отдельным эффектом, а не внутри пульса, нарочно: пульс выключается
+   * при «уменьшить движение», а звук к движению отношения не имеет — глушить
+   * его вместе с анимацией значило бы отнимать у человека ещё и подсказку.
+   *
+   * Каденция — раз в секунду, ровно та, под которую в каталоге задана пауза
+   * между повторами (700 мс). Тиков ровно столько, сколько секунд в тревожной
+   * фазе: бесконечный интервал пережил бы конец задания.
+   */
+  useEffect(() => {
+    if (paused || remaining <= 0) return;
+    const untilAlarmMs = Math.max(0, remaining - ALARM_AT_MS);
+    const limit = Math.ceil(Math.min(ALARM_AT_MS, remaining) / 1_000);
+    let played = 0;
+    let interval: ReturnType<typeof setInterval> | null = null;
+    const start = setTimeout(() => {
+      playSound('timerTick');
+      played += 1;
+      interval = setInterval(() => {
+        if (played >= limit) {
+          if (interval) clearInterval(interval);
+          return;
+        }
+        played += 1;
+        playSound('timerTick');
+      }, 1_000);
+    }, untilAlarmMs);
+    return () => {
+      clearTimeout(start);
+      if (interval) clearInterval(interval);
+    };
+  }, [paused, playSound, remaining]);
 
   const ringProps = useAnimatedProps(() => ({
     strokeDashoffset: circumference * (1 - progress.value),

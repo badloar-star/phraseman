@@ -1,6 +1,7 @@
 import { buildApprovalToken } from './jarvis/approval_token';
 import {
   buildSupportTelegramReviewPreview,
+  buildSupportAttentionRequiredNotice,
   formatSupportTelegramReview,
   parseSupportReviewApprovalToken,
   supportDraftHash,
@@ -51,17 +52,40 @@ describe('support Telegram review contract', () => {
   });
 
   test('never offers approval or auto-send for an ungrounded or internal reply', () => {
-    expect(buildSupportTelegramReviewPreview({
+    const internal = buildSupportTelegramReviewPreview({
       finalText: 'В доступном снимке продукта не нашлось достаточно надёжных фактов.',
       draftRevision: 5,
       customerReady: false,
       customerIssue: 'Куда делся Компас?',
-    })).toMatchObject({ approvable: false, violations: expect.arrayContaining(['internal_process_language']) });
-    expect(buildSupportTelegramReviewPreview({
+    });
+    expect(internal).toMatchObject({ approvable: false, violations: expect.arrayContaining(['internal_process_language']) });
+    expect(internal.text).not.toContain('Ответ Джарвиса готов');
+    expect(internal.text).not.toContain('Исправленная версия ответа');
+    const ungrounded = buildSupportTelegramReviewPreview({
       finalText: 'Здравствуйте! Здесь нужна ручная проверка.',
       draftRevision: 5,
       customerReady: false,
-    })).toMatchObject({ approvable: false });
+    });
+    expect(ungrounded).toMatchObject({ approvable: false });
+    expect(ungrounded.text).toContain('Ответ не готов');
+    expect(ungrounded.text).not.toContain('перепишите ответ');
+  });
+
+  test('attention notice never claims that Jarvis prepared a ready reply', () => {
+    const text = buildSupportAttentionRequiredNotice('guarded_billing');
+    expect(text).toContain('Обращение требует решения');
+    expect(text).toContain('покупки, подписки или аккаунта');
+    expect(text).toContain('Готового ответа нет');
+    expect(text).not.toContain('Ответ Джарвиса готов');
+    expect(text).not.toContain('перепишите');
+  });
+
+  test('a Telegram-unsafe preview distinguishes a ready admin draft from a failed answer', () => {
+    const text = buildSupportAttentionRequiredNotice('telegram_preview_unsafe');
+    expect(text).toContain('Ответ готов');
+    expect(text).toContain('Полная версия сохранена в админке');
+    expect(text).toContain('Автоотправка отключена');
+    expect(text).not.toContain('Готового ответа нет');
   });
 
   test('a stale worker cannot settle a job after a newer lease reclaims it', () => {

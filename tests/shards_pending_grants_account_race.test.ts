@@ -2,14 +2,25 @@ const storage = new Map<string, string>();
 const mockGetItem = jest.fn(async (key: string) => storage.get(key) ?? null);
 const mockSetItem = jest.fn(async (key: string, value: string) => { storage.set(key, value); });
 const mockRemoveItem = jest.fn(async (key: string) => { storage.delete(key); });
+const mockMultiGet = jest.fn(async (keys: string[]) => keys.map((key) => [key, storage.get(key) ?? null]));
+const mockMultiSet = jest.fn(async (entries: [string, string][]) => {
+  entries.forEach(([key, value]) => storage.set(key, value));
+});
 const emitAppEvent = jest.fn();
 const loadShardsFromCloud = jest.fn<Promise<void>, [(() => boolean)?]>(async () => {});
 const getShardsBalance = jest.fn(async () => 100);
 const getAppUserID = jest.fn(async () => 'stable-A');
+const listConfirmedRevenueCatPurchaseEventsFromCloud = jest.fn(async () => [] as Array<Record<string, unknown>>);
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   __esModule: true,
-  default: { getItem: mockGetItem, setItem: mockSetItem, removeItem: mockRemoveItem },
+  default: {
+    getItem: mockGetItem,
+    setItem: mockSetItem,
+    removeItem: mockRemoveItem,
+    multiGet: mockMultiGet,
+    multiSet: mockMultiSet,
+  },
 }));
 jest.mock('../app/storage_mutex', () => ({ withStorageLock: (work: () => Promise<unknown>) => work() }));
 jest.mock('../app/shards_system', () => ({
@@ -20,6 +31,9 @@ jest.mock('../app/shards_system', () => ({
 jest.mock('../app/events', () => ({ emitAppEvent }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('react-native-purchases', () => ({ __esModule: true, default: { getAppUserID } }));
+jest.mock('../app/economy/external_shard_event_sync', () => ({
+  listConfirmedRevenueCatPurchaseEventsFromCloud,
+}));
 
 const grant = {
   journalId: 'journal-A',
@@ -43,6 +57,11 @@ describe('pending shard grants v2 account ownership', () => {
     mockGetItem.mockImplementation(async (key: string) => storage.get(key) ?? null);
     mockSetItem.mockImplementation(async (key: string, value: string) => { storage.set(key, value); });
     mockRemoveItem.mockImplementation(async (key: string) => { storage.delete(key); });
+    mockMultiGet.mockImplementation(async (keys: string[]) => keys.map((key) => [key, storage.get(key) ?? null]));
+    mockMultiSet.mockImplementation(async (entries: [string, string][]) => {
+      entries.forEach(([key, value]) => storage.set(key, value));
+    });
+    listConfirmedRevenueCatPurchaseEventsFromCloud.mockResolvedValue([]);
     getShardsBalance.mockResolvedValue(100);
     const accounts = await import('../app/account_generation');
     accounts.__resetAccountGenerationForTests();
@@ -130,6 +149,15 @@ describe('pending shard grants v2 account ownership', () => {
     const pending = await import('../app/shards_pending_grants');
     const tokenA = accounts.captureAccountGeneration();
     storage.set('pending_shard_grants_v2:stable-A', envelope('stable-A'));
+    listConfirmedRevenueCatPurchaseEventsFromCloud.mockResolvedValueOnce([{
+      eventId: 'rc-event-A',
+      source: 'revenuecat_purchase',
+      kind: 'real_money_shard_pack',
+      delta: 100,
+      subjectId: 'shards_100',
+      createdAtMs: grant.createdAtMs,
+      payload: { transactionId: 'store-tx-A' },
+    }]);
     let release!: () => void;
     loadShardsFromCloud.mockImplementationOnce(async () => new Promise<void>((resolve) => { release = resolve; }));
 
@@ -141,7 +169,38 @@ describe('pending shard grants v2 account ownership', () => {
     await Promise.all([first, second]);
 
     expect(emitAppEvent.mock.calls.filter(([name]) => name === 'action_toast')).toHaveLength(1);
-    expect(storage.has('pending_shard_grants_v2:stable-A')).toBe(false);
+    expect(JSON.parse(storage.get('pending_shard_grants_v2:stable-A') ?? '{}')).toMatchObject({ grants: [] });
+  });
+
+  it('persists consumed RevenueCat correlation so a later purchase cannot reuse the old event', async () => {
+    const accounts = await import('../app/account_generation');
+    const pending = await import('../app/shards_pending_grants');
+    const tokenA = accounts.captureAccountGeneration();
+    const event = {
+      eventId: 'rc-event-A',
+      source: 'revenuecat_purchase',
+      kind: 'real_money_shard_pack',
+      delta: 100,
+      subjectId: 'shards_100',
+      createdAtMs: grant.createdAtMs,
+      payload: { transactionId: 'store-tx-A' },
+    };
+    storage.set('pending_shard_grants_v2:stable-A', envelope('stable-A'));
+    listConfirmedRevenueCatPurchaseEventsFromCloud.mockResolvedValue([event]);
+
+    await pending.resumePendingShardGrants(tokenA);
+    await pending.recordPendingShardGrant(tokenA, {
+      ...grant,
+      journalId: 'journal-B',
+      storeTransactionId: null,
+      createdAtMs: grant.createdAtMs + 1,
+    });
+    await pending.resumePendingShardGrants(tokenA);
+
+    await expect(pending.listPendingShardGrants(tokenA)).resolves.toEqual([
+      expect.objectContaining({ journalId: 'journal-B' }),
+    ]);
+    expect(emitAppEvent.mock.calls.filter(([name]) => name === 'action_toast')).toHaveLength(1);
   });
 
   it('leaves a verified delete marker on failure, retries for A, and B cannot process it', async () => {

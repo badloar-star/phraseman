@@ -33,6 +33,15 @@ export const LEARNING_V2_BEGINNER_MAX_WORDS_V1 = 8 as const;
 const GENDER_CODED_RU =
   /\bя\s+(?:готов|уверен|занят|устал|рад|должен|свободен|болен|женат|согласен)\b|\bя\s+\S*(?<!ла)л\b/iu;
 
+/**
+ * зачем: избегая мужского рода, легко свалиться в женский — «я готовила»,
+ * «я звонила», «я была». Дефект ровно такой же, только страдает мужчина.
+ * Поймано на черновике уроков 11–12, где ВЕСЬ урок был написан от женского
+ * лица. Проверяем обе стороны, иначе гейт лечит одно и создаёт другое.
+ */
+const FEMININE_CODED_RU =
+  /\bя\s+(?:готова|уверена|занята|устала|рада|должна|свободна|больна|замужем|согласна|была)\b|\bя\s+\S*ла\b/iu;
+
 export type LearningV2BankPhraseV1 = Readonly<{
   id: string;
   /** Целевой язык (английский или испанский). */
@@ -215,6 +224,15 @@ export function buildLearningV2PhraseBankV1(
           severity: "warning" as const,
           code: "gender_coded_translation",
           message: `Перевод «${phrase.ru}» звучит от лица мужчины — женщине придётся менять окончание.`,
+        }),
+      );
+    } else if (FEMININE_CODED_RU.test(phrase.ru)) {
+      issues.push(
+        Object.freeze({
+          phraseId: phrase.id,
+          severity: "warning" as const,
+          code: "gender_coded_translation_feminine",
+          message: `Перевод «${phrase.ru}» звучит от лица женщины — мужчине придётся менять окончание.`,
         }),
       );
     }

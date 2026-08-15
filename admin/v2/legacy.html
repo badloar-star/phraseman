@@ -4913,6 +4913,11 @@
     #tab-control-panel .cp-status-chip[data-type="success"] { color:#86efac !important; border-color:rgba(34,197,94,.35); background:rgba(34,197,94,.08); }
     #tab-control-panel .cp-status-chip[data-type="error"]   { color:#fca5a5 !important; border-color:rgba(248,113,113,.35); background:rgba(248,113,113,.08); }
     #tab-control-panel .cp-status-chip[data-type="loading"] { color:#93c5fd !important; border-color:rgba(96,165,250,.3);  background:rgba(96,165,250,.08); }
+    /* зачем отдельный тон (владелец 2026-08-15): «Принято, проверяем» — это
+       не успех и не архив, а ожидание результата. Серым он слился бы с
+       архивом, зелёным соврал бы, что уже сработало. */
+    #tab-control-panel .cp-status-chip[data-type="warn"]::before { content: "⏱"; }
+    #tab-control-panel .cp-status-chip[data-type="warn"]    { color:#fcd34d !important; border-color:rgba(252,211,77,.3);  background:rgba(252,211,77,.08); }
 
     /* — Джарвис: лента плашек-этапов (владелец, 2026-08-02) —
        Каждая плашка появляется только когда для неё реально стартует работа,
@@ -28291,6 +28296,29 @@
     return 'Открыто';
   }
 
+  /**
+   * Строка о судьбе принятого совета.
+   *
+   * зачем молчать, когда судить нечего: строка «результат неизвестен» на
+   * каждой карточке — это шум, из-за которого перестают читать карточки целиком.
+   */
+  function jarvisPlanOutcomeLine(plan) {
+    if (plan.status === 'vanished') {
+      return '<div style="color:#94a3b8;font-size:12.5px;margin-bottom:6px">Проблема перестала наблюдаться — закрыто без вмешательства.</div>';
+    }
+    if (plan.status === 'accepted') {
+      return '<div style="color:#fcd34d;font-size:12.5px;margin-bottom:6px">Принято. Через неделю проверю, ушла ли проблема.</div>';
+    }
+    const verdict = plan.outcome && plan.outcome.verdict;
+    if (verdict === 'worked') {
+      return '<div style="color:#86efac;font-size:12.5px;margin-bottom:6px">Проверено: после согласия проблема ушла.</div>';
+    }
+    if (verdict === 'did_not_work') {
+      return '<div style="color:#fca5a5;font-size:12.5px;margin-bottom:6px">Проверено: проблема осталась — совет не помог.</div>';
+    }
+    return '';
+  }
+
   function jarvisPlanStatusChipType(status) {
     if (status === 'resolved') return 'success';
     if (status === 'accepted') return 'warn';
@@ -28316,6 +28344,10 @@
         '<div style="color:#fca5a5;font-size:12.5px;margin-bottom:6px"><b>Риск:</b> ' + escapeHtml(plan.risk) + '</div>' +
         '<div style="color:#a1a1aa;font-size:12.5px;margin-bottom:6px"><b>Как понять, что помогло:</b> ' + escapeHtml(plan.successMetric) + '</div>' +
         '<div style="color:#a1a1aa;font-size:12.5px;margin-bottom:6px"><b>Откат:</b> ' + escapeHtml(plan.rollback) + '</div>' +
+        // зачем показывать вердикт (владелец 2026-08-15, «не учится»): это
+        // единственный честный факт о пользе Джарвиса — сработал совет или нет.
+        // Раньше результат не проверялся вовсе, и показывать было нечего.
+        jarvisPlanOutcomeLine(plan) +
         (plan.narrative ? '<div style="margin-top:8px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.03);color:#e2e8f0;font-size:12.5px;line-height:1.55">' + escapeHtml(plan.narrative) + '</div>' : '') +
         '<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px">' +
           '<button type="button" class="cp-btn" onclick="copyOneJarvisPlan(\'' + plan.id + '\')" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:12px">📋 Скопировать</button>' +

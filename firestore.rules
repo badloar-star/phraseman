@@ -2538,6 +2538,17 @@ service cloud.firestore {
     match /jarvis_plans/{document=**} {
       allow read, write: if false;
     }
+    // Действия Джарвиса и их исходящий буфер. Пишет и читает только сервер.
+    // зачем закрыто наглухо: в jarvis_actions лежит право изменить чужой
+    // документ, а в буфере — текст, который однажды уйдёт наружу. Доступ из
+    // браузера не нужен ни в одном сценарии: владелец работает через
+    // admin-callable, которые проверяют роль сами.
+    match /jarvis_actions/{document=**} {
+      allow read, write: if false;
+    }
+    match /jarvis_github_outbox/{document=**} {
+      allow read, write: if false;
+    }
     match /agent_observation_receipts/{document=**} {
       allow read, write: if false;
     }

@@ -13,6 +13,8 @@ import { reserveEnrichmentSlot, recordEnrichmentResult } from './llm_enrichment_
 import { upsertPlan, closeVanishedPlans, reviewAcceptedPlans } from './jarvis_plans_store';
 import { decisionTopicKey } from './decision_topic';
 import { countDegradedSources } from './data_health_snapshot';
+import { proposeActions, applyApprovedActions } from './jarvis_actions_store';
+import { proposeActionsForDecisions } from './jarvis_action_proposals';
 import { parseJarvisFollowUpTasksFlag } from './jarvis_follow_up_tasks';
 import type { Decision } from './decision';
 import { buildTelegramDigest, selectTelegramDecisions } from './telegram_digest';
@@ -367,6 +369,29 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
       return { worked: 0, didNotWork: 0 };
     });
 
+  // зачем предлагать, а не делать (владелец 2026-08-15, «говорит, а не
+  // делает»): между решением модели и изменением мира стоят две преграды —
+  // проверка кодом и согласие владельца. Здесь только первая половина:
+  // действия кладутся в буфер и ждут кнопки «принять» в Telegram.
+  const proposedActions = await proposeActions({
+    db,
+    proposals: proposeActionsForDecisions({ decisions, nowMs }),
+    nowMs,
+  }).catch((error: unknown) => {
+    logger.warn('jarvis_daily_departments: action proposal failed', error);
+    return [];
+  });
+
+  // зачем применять здесь, а не сразу при нажатии кнопки: вебхук обязан
+  // ответить Telegram за секунды, а запись в чужие коллекции может тормозить.
+  // Одобренное вчера применяется следующим прогоном — задержка приемлема,
+  // потому что все разрешённые действия обратимы и не срочны.
+  const appliedActions = await applyApprovedActions({ db, nowMs })
+    .catch((error: unknown) => {
+      logger.warn('jarvis_daily_departments: action apply failed', error);
+      return 0;
+    });
+
   // зачем молчать, когда всё чисто: ежедневное «всё хорошо» приучает не
   // читать сообщения, и настоящая находка потеряется среди них. Пишем только
   // когда есть что сказать — либо находка, либо недоступный департамент.
@@ -435,6 +460,10 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     // собственной пользе — сколько принятых советов реально закрыли проблему.
     outcomeWorked: outcome.worked,
     outcomeDidNotWork: outcome.didNotWork,
+    // зачем логировать: единственный способ увидеть, что Джарвис перешёл от
+    // разговоров к делу — сколько действий предложено и сколько применено.
+    actionsProposed: proposedActions.length,
+    actionsApplied: appliedActions,
     // зачем логировать причину: «сообщение не пришло» без объяснения — это
     // час разбирательства. Здесь сразу видно: тихие часы, режим или пусто.
     mode: control.mode,

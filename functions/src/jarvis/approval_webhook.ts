@@ -13,6 +13,7 @@ import { handleApprovalCallback, parseOwnerConfig } from './approval_webhook_cor
 import { markRowDecided } from './approval_message_edit';
 import { issueDecisionButtons } from './issue_decision_buttons';
 import { recordPlanOwnerDecision } from './jarvis_plans_store';
+import { approveActionsForDecision } from './jarvis_actions_store';
 import type { InlineKeyboard } from './telegram_buttons';
 import { sendJarvisDigest } from './telegram_send';
 import type { Decision } from './decision';
@@ -255,6 +256,19 @@ export const jarvisTelegramApprovalWebhook = onRequest(
           nowMs,
         });
         if (outcome.ok && !outcome.doc.department.startsWith('support_email:')) {
+          // зачем без отдельной кнопки: владелец уже сказал «да» этой находке.
+          // Спрашивать второй раз «точно поставить пометку?» — лишний тап и та
+          // самая усталость от подтверждений, из-за которой жмут «ок» не глядя.
+          // Необратимого среди разрешённых действий нет, цена ошибки — клик отката.
+          if (outcome.doc.action === 'approve') {
+            await approveActionsForDecision({
+              db,
+              sourceDecisionHash: outcome.doc.decisionHash,
+              nowMs,
+            }).catch((error: unknown) => {
+              logger.warn('jarvis_approval: action approval failed', error);
+            });
+          }
           await recordPlanOwnerDecision({
             db,
             approvalDecisionHash: outcome.doc.decisionHash,

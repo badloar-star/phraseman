@@ -1,5 +1,13 @@
-export const ARENA_RANKED_QUICK_OFFER_MS = 30_000;
-export const ARENA_RANKED_CALM_STATE_MS = 90_000;
+/**
+ * зачем: 30 секунд — слишком рано. Живой соперник в рейтинге появляется не
+ * мгновенно, а предложение уйти в быстрый матч на полминуте выглядит как
+ * «здесь никого нет, не жди» и уводит людей из рейтинга ровно тогда, когда
+ * очередь только набирается. Владелец (2026-08-16): предлагать через минуту,
+ * поиск при этом НЕ прерывать — он продолжается фоном, и если живой встанет
+ * в очередь, сервер сведёт с ним (см. arenaV2OnQueueWrite).
+ */
+export const ARENA_RANKED_QUICK_OFFER_MS = 60_000;
+export const ARENA_RANKED_CALM_STATE_MS = 150_000;
 
 export type ArenaRankedWaitPresentation = 'searching' | 'quick_offer' | 'calm';
 

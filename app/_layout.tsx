@@ -3242,7 +3242,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="flashcards_swipe" />
       <Stack.Screen name="flashcards_card_editor" />
       <Stack.Screen name="community_pack_create" />
-      <Stack.Screen name="pack_opening" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
+      {/* зачем: bottomModalAnimationOptions осталась мёртвой после удаления
+          personal_plan_task_done (0b3c60c67) — контракт навигации требует, чтобы
+          опции нижних модалок реально применялись, а не хардкодились по экранам.
+          Спред восстановлен здесь; собственное намерение экрана сохранено явной
+          перебивкой ПОСЛЕ спреда: открытие пака держит свою анимацию внутри
+          экрана, поэтому вход остаётся мгновенным. */}
+      <Stack.Screen name="pack_opening" options={{ presentation: 'modal', ...bottomModalAnimationOptions, animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="shards_shop" />
       <Stack.Screen name="coin_exchange" />
       <Stack.Screen name="level_gifts_inventory" />

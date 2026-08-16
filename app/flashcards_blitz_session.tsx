@@ -43,6 +43,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { triLang } from '../constants/i18n';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -535,11 +536,64 @@ export default function FlashcardsBlitzSession() {
   }, [deckRefs, lang]);
 
   // ── Рендер ─────────────────────────────────────────────────────────────────
+  /**
+   * зачем (владелец, 2026-08-16, «прыжки страниц»): раньше здесь во весь экран
+   * центрировалось «…», а потом СКАЧКОМ появлялся весь блиц — шапка, полоса
+   * таймера, счёт, вопрос, 4 кнопки. Performance Bible требует обратного:
+   * первый кадр = финальная геометрия. Держим ту же раскладку и подменяем только
+   * содержимое скелетонами тех же размеров (questionBox 110, optionBtn ~50).
+   */
   if (loading) {
     return (
       <ScreenGradient>
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: t.textMuted }}>…</Text>
+        <SafeAreaView style={{ flex: 1 }}>
+          <ContentWrap>
+            <View style={styles.headerRow}>
+              <View style={{ padding: 4 }}>
+                <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+              </View>
+              <View style={{ alignItems: 'center', gap: 4 }}>
+                <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
+                  {triLang(lang, {
+                    ru: 'Блиц', uk: 'Бліц', es: 'Blitz', 'pt-BR': 'Blitz',
+                    vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
+                  })}
+                </Text>
+                <SkeletonBlock width={120} height={f.caption} />
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                <View style={styles.livesRow}>
+                  {Array.from({ length: BLITZ_LIVES }, (_, i) => (
+                    <Ionicons key={i} name="heart" size={18} color={BAD} />
+                  ))}
+                </View>
+                <View style={{ padding: 4 }}>
+                  <Ionicons name="albums-outline" size={20} color={t.textMuted} />
+                </View>
+              </View>
+            </View>
+
+            <View style={[styles.timerTrack, { backgroundColor: `${ACCENT}22` }]} />
+
+            <View style={styles.scoreRow}>
+              <View style={{ minWidth: 90 }}>
+                <SkeletonBlock width={44} height={f.h2} />
+              </View>
+              <SkeletonBlock width={62} height={f.h2} />
+              <View style={{ minWidth: 90 }} />
+            </View>
+
+            <View style={{ flex: 1, paddingHorizontal: 16, gap: 14, justifyContent: 'center' }}>
+              <View style={[styles.questionBox, { backgroundColor: t.bgCard }]}>
+                <SkeletonBlock width="70%" height={(f.h1 ?? 24) + 2} />
+              </View>
+              <View style={{ gap: 10 }}>
+                {Array.from({ length: 4 }, (_, i) => (
+                  <SkeletonBlock key={i} width="100%" height={50} borderRadius={14} />
+                ))}
+              </View>
+            </View>
+          </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
     );
@@ -720,7 +774,7 @@ export default function FlashcardsBlitzSession() {
               {blitz.streak >= 3 ? (
                 <Reanimated.View
                   testID="fc-blitz-combo"
-                  style={[styles.comboBadge, { backgroundColor: `${ACCENT}1F`, borderColor: ACCENT }, comboStyle]}
+                  style={[styles.comboBadge, { backgroundColor: `${ACCENT}2E` }, comboStyle]}
                 >
                   <Ionicons name="flame" size={15} color={ACCENT} />
                   <Text style={{ color: ACCENT, fontSize: f.sub, fontWeight: '900' }}>×{blitz.streak}</Text>
@@ -731,7 +785,7 @@ export default function FlashcardsBlitzSession() {
 
           {/* Вопрос + 4 варианта */}
           <View style={{ flex: 1, paddingHorizontal: 16, gap: 14, justifyContent: 'center' }}>
-            <View style={[styles.questionBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+            <View style={[styles.questionBox, { backgroundColor: t.bgCard }]}>
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginBottom: 6 }}>
                 {triLang(lang, { ru: 'Выбери перевод', uk: 'Обери переклад', es: 'Elige la traducción' })}
               </Text>
@@ -747,11 +801,12 @@ export default function FlashcardsBlitzSession() {
             <View style={{ gap: 10 }}>
               {(question?.options ?? []).map((opt, i) => {
                 const state = btnStates[i];
+                // зачем: без рамки состояние держится ТОЛЬКО заливкой, поэтому
+                // ответ подсвечиваем плотнее (33 вместо 22) — читается так же ясно.
                 let bg = t.bgCard;
-                let bc = t.border;
                 let tc = t.textPrimary;
-                if (state === 'correct') { bg = `${OK}22`; bc = OK; tc = OK; }
-                if (state === 'wrong') { bg = `${BAD}22`; bc = BAD; tc = BAD; }
+                if (state === 'correct') { bg = `${OK}33`; tc = OK; }
+                if (state === 'wrong') { bg = `${BAD}33`; tc = BAD; }
                 return (
                   <TouchableOpacity
                     key={`${qIdxRef.current}_${i}`}
@@ -761,7 +816,7 @@ export default function FlashcardsBlitzSession() {
                     onPress={() => pick(i)}
                     disabled={locked}
                     activeOpacity={0.75}
-                    style={[styles.optionBtn, { backgroundColor: bg, borderColor: bc }]}
+                    style={[styles.optionBtn, { backgroundColor: bg }]}
                   >
                     <Text numberOfLines={2} style={[styles.optionText, { color: tc, fontSize: f.body }]}>
                       {opt}
@@ -803,18 +858,22 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   gainFloat: { position: 'absolute', top: -4, left: 2 },
+  /**
+   * зачем (правило владельца «НИКОГДА контейнеры с обводкой»): блок вопроса,
+   * кнопки ответов и бейдж комбо раньше были обведены рамкой. Состояние
+   * «верно/неверно» и так читается заливкой (`${OK}22` / `${BAD}22`) и цветом
+   * текста — рамка ничего не добавляла. Разделяем тоном, как в коллекции.
+   */
   comboBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
     borderRadius: 999,
-    borderWidth: 1.5,
     paddingHorizontal: 10,
     paddingVertical: 4,
   },
   questionBox: {
     borderRadius: 18,
-    borderWidth: StyleSheet.hairlineWidth,
     paddingVertical: 22,
     paddingHorizontal: 20,
     alignItems: 'center',
@@ -824,7 +883,6 @@ const styles = StyleSheet.create({
   questionText: { fontWeight: '800', textAlign: 'center' },
   optionBtn: {
     borderRadius: 14,
-    borderWidth: 1.5,
     paddingVertical: 14,
     paddingHorizontal: 16,
     alignItems: 'center',

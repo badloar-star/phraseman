@@ -39,6 +39,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { triLang } from '../constants/i18n';
 import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
 import { flashcardContentLang } from './spanish_content_gate';
@@ -559,11 +560,53 @@ export default function FlashcardsListeningSession() {
   }, [deckRefs, lang]);
 
   // ── Рендер ─────────────────────────────────────────────────────────────────
+  /**
+   * зачем (владелец, 2026-08-16, «прыжки страниц»): раньше здесь во весь экран
+   * центрировалось «…», а затем СКАЧКОМ появлялся весь плеер. Performance Bible
+   * требует «первый кадр = финальная геометрия»: держим шапку, прогресс-бар,
+   * место карточки (CARD_MIN_H) и ряд транспорта, подменяя только содержимое.
+   */
   if (loading) {
     return (
       <ScreenGradient>
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: t.textMuted }}>…</Text>
+        <SafeAreaView style={{ flex: 1 }}>
+          <ContentWrap>
+            <View style={styles.headerRow}>
+              <View style={{ padding: 4 }}>
+                <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+              </View>
+              <View style={{ alignItems: 'center', gap: 4 }}>
+                <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
+                  {triLang(lang, {
+                    ru: 'Слушание', uk: 'Слухання', es: 'Escucha', 'pt-BR': 'Escuta',
+                    vi: 'Nghe', id: 'Menyimak', tr: 'Dinleme', pl: 'Słuchanie',
+                  })}
+                </Text>
+                <SkeletonBlock width={120} height={f.caption} />
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                <SkeletonBlock width={44} height={f.caption} />
+                <View style={{ padding: 4 }}>
+                  <Ionicons name="albums-outline" size={20} color={t.textMuted} />
+                </View>
+                <View style={{ padding: 4 }}>
+                  <Ionicons name="settings-outline" size={20} color={t.textMuted} />
+                </View>
+              </View>
+            </View>
+
+            <View style={[styles.progressTrack, { backgroundColor: t.bgSurface }]} />
+
+            <View style={styles.cardArea}>
+              <SkeletonBlock width="100%" height={CARD_MIN_H} borderRadius={24} />
+            </View>
+
+            <View style={styles.transportRow}>
+              <SkeletonBlock width={54} height={54} borderRadius={27} />
+              <SkeletonBlock width={68} height={68} borderRadius={34} />
+              <SkeletonBlock width={54} height={54} borderRadius={27} />
+            </View>
+          </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
     );
@@ -646,7 +689,7 @@ export default function FlashcardsListeningSession() {
   const card = cards[Math.min(cardIndex, cards.length - 1)]!;
   const noVoiceBadge = (side: ListeningSide) =>
     noVoiceSide === side ? (
-      <View style={[styles.noVoicePill, { backgroundColor: `${t.wrong}1A`, borderColor: `${t.wrong}66` }]}>
+      <View style={[styles.noVoicePill, { backgroundColor: `${t.wrong}26` }]}>
         <Ionicons name="volume-mute-outline" size={13} color={t.wrong} />
         <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '700' }}>
           {triLang(lang, {
@@ -805,7 +848,7 @@ export default function FlashcardsListeningSession() {
               f={f}
               accent={ACCENT}
             />
-            <View style={[styles.pauseStepper, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
+            <View style={[styles.pauseStepper, { backgroundColor: t.bgSurface }]}>
               <TouchableOpacity
                 onPress={() => onStepPause(-1)}
                 hitSlop={8}
@@ -850,10 +893,9 @@ export default function FlashcardsListeningSession() {
               accessible
               style={[
                 styles.loopBtn,
-                {
-                  borderColor: loop ? ACCENT : t.border,
-                  backgroundColor: loop ? `${ACCENT}1F` : t.bgSurface,
-                },
+                // зачем: без рамки «включено» держится заливкой (плотнее, 33) —
+                // правило владельца «контейнеры без обводки».
+                { backgroundColor: loop ? `${ACCENT}33` : t.bgSurface },
               ]}
             >
               <Ionicons name="repeat" size={18} color={loop ? ACCENT : t.textMuted} />
@@ -879,7 +921,7 @@ export default function FlashcardsListeningSession() {
               testID="fc-listen-prev"
               accessibilityLabel="qa-fc-listen-prev"
               accessible
-              style={[styles.sideBtn, { borderColor: t.border, backgroundColor: t.bgSurface }]}
+              style={[styles.sideBtn, { backgroundColor: t.bgSurface }]}
             >
               <Ionicons name="play-skip-back" size={22} color={t.textPrimary} />
             </TouchableOpacity>
@@ -902,7 +944,7 @@ export default function FlashcardsListeningSession() {
               testID="fc-listen-next"
               accessibilityLabel="qa-fc-listen-next"
               accessible
-              style={[styles.sideBtn, { borderColor: t.border, backgroundColor: t.bgSurface }]}
+              style={[styles.sideBtn, { backgroundColor: t.bgSurface }]}
             >
               <Ionicons name="play-skip-forward" size={22} color={t.textPrimary} />
             </TouchableOpacity>
@@ -937,7 +979,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 5,
     borderRadius: 999,
-    borderWidth: 1,
     paddingHorizontal: 10,
     paddingVertical: 4,
   },
@@ -967,7 +1008,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 14,
-    borderWidth: 1,
     paddingHorizontal: 6,
     paddingVertical: 6,
   },
@@ -983,7 +1023,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
     borderRadius: 14,
-    borderWidth: 1.5,
     paddingHorizontal: 14,
     paddingVertical: 12,
   },
@@ -999,7 +1038,6 @@ const styles = StyleSheet.create({
     width: 54,
     height: 54,
     borderRadius: 27,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

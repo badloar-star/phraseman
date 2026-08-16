@@ -63,6 +63,14 @@ type Props = {
   onExitToList: () => void;
   /** E13: «сила слова» по EN карточки (word_strength.strengthFor); null — без точек. */
   strengthForCard?: ((en: string) => WordStrength | null) | null;
+  /**
+   * Резерв под плавающую капсулу таббара раздела (FC_TABBAR_HEIGHT + зазор).
+   *
+   * зачем: таббар рисуется `position:absolute` ПОВЕРХ экрана, поэтому кнопки ‹ ›
+   * внизу «Стопки» уходили под него. У списка такой резерв был (`extraBottomPad`),
+   * у стопки — нет, и в корне раздела капсула перекрывала перелистывание.
+   */
+  extraBottomPad?: number;
 };
 
 export default function CollectionDeckView({
@@ -78,6 +86,7 @@ export default function CollectionDeckView({
   onFlipTracked,
   onExitToList,
   strengthForCard = null,
+  extraBottomPad = 0,
 }: Props) {
   const insets = useStableSafeAreaInsets();
   const { width: screenW, height: screenH } = useWindowDimensions();
@@ -528,7 +537,7 @@ export default function CollectionDeckView({
           alignItems: 'center',
           justifyContent: 'center',
           gap: 26,
-          paddingBottom: Math.max(insets.bottom, 8) + 12,
+          paddingBottom: Math.max(insets.bottom, 8) + 12 + extraBottomPad,
         }}
       >
         <Pressable

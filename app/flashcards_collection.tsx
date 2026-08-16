@@ -803,6 +803,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             onFlipTracked={trackCardFlip}
             onExitToList={exitDeckToList}
             strengthForCard={strengthForCard}
+            extraBottomPad={tabBarReserve}
           />
         ) : (
           <CollectionListView

@@ -265,11 +265,11 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
       features: ['copula_be', 'first_person_singular', 'adjective_predicate'],
     },
     {
-      id: 'e01-s01-i-am-tired',
-      english: 'I am tired',
-      russian: 'Я устал',
+      id: 'e01-s01-i-am-cold',
+      english: 'I am cold',
+      russian: 'Мне холодно',
       explanation:
-        'Одна из самых частых фраз о состоянии. В английском устаёшь «быть уставшим»: I am tired, а не «я устал» через действие. Работает и для мужчины, и для женщины — форма не меняется.',
+        'Обратите внимание на разницу: по-русски «мне холодно», по-английски «я холодный». Англичанин делает себя подлежащим, а не тем, кому холодно.',
       words: [
         {
           correct: 'I',
@@ -278,110 +278,7 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
             {
               value: 'me',
               reasonCode: 'object_pronoun_as_subject',
-              why: 'Подлежащее — I, не me.',
-            },
-            {
-              value: 'my',
-              reasonCode: 'possessive_as_subject',
-              why: 'My — принадлежность, не деятель.',
-            },
-            {
-              value: 'am',
-              reasonCode: 'verb_as_subject',
-              why: 'С глагола утверждение не начинают.',
-            },
-            {
-              value: 'i',
-              reasonCode: 'capitalization_invalid',
-              why: 'Всегда заглавная I.',
-            },
-            {
-              value: 'mine',
-              reasonCode: 'possessive_as_subject',
-              why: 'Mine не обозначает человека.',
-            },
-          ],
-        },
-        {
-          correct: 'am',
-          category: 'to-be',
-          distractors: [
-            {
-              value: 'is',
-              reasonCode: 'agreement_person_mismatch',
-              why: 'Is — только к he, she, it.',
-            },
-            {
-              value: 'are',
-              reasonCode: 'agreement_person_mismatch',
-              why: 'Are — к you, we, they.',
-            },
-            {
-              value: 'was',
-              reasonCode: 'tense_mismatch',
-              why: 'Was — про прошлое. Устал сейчас — am.',
-            },
-            {
-              value: 'be',
-              reasonCode: 'infinitive_not_finite',
-              why: 'Нужна личная форма, а не be.',
-            },
-            {
-              value: 'feel',
-              reasonCode: 'wrong_verb_choice',
-              why: 'Feel tired тоже говорят, но здесь тренируем связку am.',
-            },
-          ],
-        },
-        {
-          correct: 'tired',
-          category: 'adjective',
-          distractors: [
-            {
-              value: 'tire',
-              reasonCode: 'wrong_word_class',
-              why: 'Tire — «шина» или «утомлять». Признак — tired.',
-            },
-            {
-              value: 'tried',
-              reasonCode: 'letter_order_confusion',
-              why: 'Tried — «пробовал». Буквы те же, порядок другой.',
-            },
-            {
-              value: 'tiring',
-              reasonCode: 'participle_direction_wrong',
-              why: 'Tiring — «утомительный», о том, что утомляет других. Устал сам — tired.',
-            },
-            {
-              value: 'tiredly',
-              reasonCode: 'wrong_word_class',
-              why: 'Наречие. После am ставят признак, а не наречие.',
-            },
-            {
-              value: 'tender',
-              reasonCode: 'meaning_mismatch',
-              why: 'Tender — «нежный», совсем другое значение.',
-            },
-          ],
-        },
-      ],
-      features: ['copula_be', 'first_person_singular', 'state_adjective'],
-    },
-    {
-      id: 'e01-s01-i-am-ok',
-      english: 'I am OK',
-      russian: 'Я в порядке',
-      explanation:
-        'Так отвечают, когда спрашивают, всё ли хорошо. Короткий honest-ответ, живее книжного «I am fine, thank you». OK пишут заглавными или okay — оба варианта нормальны.',
-      words: [
-        {
-          correct: 'I',
-          category: 'pronoun',
-          distractors: [
-            {
-              value: 'me',
-              reasonCode: 'object_pronoun_as_subject',
-              why: 'Только I может быть подлежащим.',
+              why: 'Соблазн сказать «мне» велик, но подлежащее — I.',
             },
             {
               value: 'my',
@@ -391,17 +288,17 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
             {
               value: 'i',
               reasonCode: 'capitalization_invalid',
-              why: 'Пишется заглавной.',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не называет человека.',
             },
             {
               value: 'am',
               reasonCode: 'verb_as_subject',
-              why: 'Это глагол, не подлежащее.',
-            },
-            {
-              value: 'we',
-              reasonCode: 'person_mismatch',
-              why: 'We — «мы», речь об одном человеке.',
+              why: 'Am — глагол-связка, а на этом месте нужно слово-подлежащее.',
             },
           ],
         },
@@ -412,58 +309,58 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
             {
               value: 'is',
               reasonCode: 'agreement_person_mismatch',
-              why: 'К I не ставят is.',
+              why: 'Is — для he, she, it.',
             },
             {
               value: 'are',
               reasonCode: 'agreement_person_mismatch',
-              why: 'Are — не для I.',
+              why: 'Are — для you, we, they.',
             },
             {
               value: 'be',
               reasonCode: 'infinitive_not_finite',
-              why: 'Be — начальная форма.',
-            },
-            {
-              value: 'am not',
-              reasonCode: 'polarity_inverted',
-              why: 'Это отрицание — «я не в порядке». Смысл противоположный.',
+              why: 'Нужна личная форма.',
             },
             {
               value: 'was',
               reasonCode: 'tense_mismatch',
-              why: 'Was — «был», а речь про сейчас.',
+              why: 'Was — про прошлое.',
+            },
+            {
+              value: 'feel',
+              reasonCode: 'wrong_verb_choice',
+              why: 'Здесь тренируем связку am.',
             },
           ],
         },
         {
-          correct: 'OK',
+          correct: 'cold',
           category: 'adjective',
           distractors: [
             {
-              value: 'okey',
-              reasonCode: 'spelling_invalid',
-              why: 'Такого написания нет: OK или okay.',
+              value: 'cool',
+              reasonCode: 'meaning_mismatch',
+              why: 'Cool — «прохладный» или «классный».',
             },
             {
-              value: 'ok?',
-              reasonCode: 'punctuation_changes_intent',
-              why: 'Со знаком вопроса это уже вопрос, а не ответ.',
+              value: 'called',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Called — «названный».',
             },
             {
-              value: 'good',
-              reasonCode: 'not_target_word',
-              why: 'I am good тоже говорят, но здесь тренируем OK.',
+              value: 'colder',
+              reasonCode: 'wrong_word_form',
+              why: 'Colder — «холоднее», нужно сравнение.',
             },
             {
-              value: 'okays',
+              value: 'coldly',
               reasonCode: 'wrong_word_class',
-              why: 'Признак не получает окончание множественного числа.',
+              why: 'Наречие «холодно» о манере.',
             },
             {
-              value: 'oky',
-              reasonCode: 'spelling_invalid',
-              why: 'Ошибка в написании.',
+              value: 'gold',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Gold — «золото».',
             },
           ],
         },
@@ -610,11 +507,11 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
       ],
     },
     {
-      id: 'e01-s01-i-am-happy',
-      english: 'I am happy',
-      russian: 'Я рад',
+      id: 'e01-s01-i-am-tired',
+      english: 'I am tired',
+      russian: 'Я устал',
       explanation:
-        'Ещё один признак после «I am». Форма слова не зависит от того, мужчина говорит или женщина, — в английском признаки не меняются по родам.',
+        'Одна из самых частых фраз о состоянии. В английском устаёшь «быть уставшим»: I am tired, а не «я устал» через действие. Работает и для мужчины, и для женщины — форма не меняется.',
       words: [
         {
           correct: 'I',
@@ -623,27 +520,27 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
             {
               value: 'me',
               reasonCode: 'object_pronoun_as_subject',
-              why: 'Подлежащее — только I.',
+              why: 'Подлежащее — I, не me.',
             },
             {
               value: 'my',
               reasonCode: 'possessive_as_subject',
-              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
-            },
-            {
-              value: 'i',
-              reasonCode: 'capitalization_invalid',
-              why: 'Пишется заглавной.',
+              why: 'My — принадлежность, не деятель.',
             },
             {
               value: 'am',
               reasonCode: 'verb_as_subject',
-              why: 'Am — глагол-связка, а на этом месте нужно слово-подлежащее.',
+              why: 'С глагола утверждение не начинают.',
             },
             {
-              value: 'he',
-              reasonCode: 'person_mismatch',
-              why: 'He — «он», а речь о себе.',
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Всегда заглавная I.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не обозначает человека.',
             },
           ],
         },
@@ -654,58 +551,58 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
             {
               value: 'is',
               reasonCode: 'agreement_person_mismatch',
-              why: 'Is ставят к he, she, it. Рядом с I всегда только am.',
+              why: 'Is — только к he, she, it.',
             },
             {
               value: 'are',
               reasonCode: 'agreement_person_mismatch',
-              why: 'Are — не для I.',
-            },
-            {
-              value: 'be',
-              reasonCode: 'infinitive_not_finite',
-              why: 'Нужна личная форма.',
-            },
-            {
-              value: 'have',
-              reasonCode: 'wrong_auxiliary',
-              why: 'Радость выражают через быть, а не иметь.',
+              why: 'Are — к you, we, they.',
             },
             {
               value: 'was',
               reasonCode: 'tense_mismatch',
-              why: 'Was — про прошлое.',
+              why: 'Was — про прошлое. Устал сейчас — am.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Нужна личная форма, а не be.',
+            },
+            {
+              value: 'feel',
+              reasonCode: 'wrong_verb_choice',
+              why: 'Feel tired тоже говорят, но здесь тренируем связку am.',
             },
           ],
         },
         {
-          correct: 'happy',
+          correct: 'tired',
           category: 'adjective',
           distractors: [
             {
-              value: 'happily',
+              value: 'tire',
               reasonCode: 'wrong_word_class',
-              why: 'Наречие «счастливо». После am — признак.',
+              why: 'Tire — «шина» или «утомлять». Признак — tired.',
             },
             {
-              value: 'happiness',
+              value: 'tried',
+              reasonCode: 'letter_order_confusion',
+              why: 'Tried — «пробовал». Буквы те же, порядок другой.',
+            },
+            {
+              value: 'tiring',
+              reasonCode: 'participle_direction_wrong',
+              why: 'Tiring — «утомительный», о том, что утомляет других. Устал сам — tired.',
+            },
+            {
+              value: 'tiredly',
               reasonCode: 'wrong_word_class',
-              why: 'Существительное «счастье».',
+              why: 'Наречие. После am ставят признак, а не наречие.',
             },
             {
-              value: 'hapy',
-              reasonCode: 'spelling_invalid',
-              why: 'Пропущена буква: happy.',
-            },
-            {
-              value: 'happier',
-              reasonCode: 'wrong_word_form',
-              why: 'Happier — «счастливее», нужно сравнение с чем-то.',
-            },
-            {
-              value: 'hungry',
+              value: 'tender',
               reasonCode: 'meaning_mismatch',
-              why: 'Hungry — «голодный».',
+              why: 'Tender — «нежный», совсем другое значение.',
             },
           ],
         },
@@ -809,315 +706,6 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
               value: 'happy',
               reasonCode: 'meaning_mismatch',
               why: 'Happy — «рад», другое состояние.',
-            },
-          ],
-        },
-      ],
-      features: ['copula_be', 'first_person_singular', 'state_adjective'],
-    },
-    {
-      id: 'e01-s01-i-am-late',
-      english: 'I am late',
-      russian: 'Я опаздываю',
-      explanation:
-        'Ещё одно состояние через связку. По-русски мы говорим действием — «опаздываю», по-английски признаком: «я есть поздний». Так предупреждают, что задерживаешься.',
-      words: [
-        {
-          correct: 'I',
-          category: 'pronoun',
-          distractors: [
-            {
-              value: 'me',
-              reasonCode: 'object_pronoun_as_subject',
-              why: 'Подлежащее — I.',
-            },
-            {
-              value: 'my',
-              reasonCode: 'possessive_as_subject',
-              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
-            },
-            {
-              value: 'i',
-              reasonCode: 'capitalization_invalid',
-              why: 'Английское «я» всегда пишется заглавной буквой — I.',
-            },
-            {
-              value: 'am',
-              reasonCode: 'verb_as_subject',
-              why: 'Глагол не бывает подлежащим.',
-            },
-            {
-              value: 'we',
-              reasonCode: 'person_mismatch',
-              why: 'We — «мы», речь об одном.',
-            },
-          ],
-        },
-        {
-          correct: 'am',
-          category: 'to-be',
-          distractors: [
-            {
-              value: 'is',
-              reasonCode: 'agreement_person_mismatch',
-              why: 'Is ставят к he, she, it. Рядом с I всегда только am.',
-            },
-            {
-              value: 'are',
-              reasonCode: 'agreement_person_mismatch',
-              why: 'Are — не для I.',
-            },
-            {
-              value: 'be',
-              reasonCode: 'infinitive_not_finite',
-              why: 'Нужна личная форма.',
-            },
-            {
-              value: 'was',
-              reasonCode: 'tense_mismatch',
-              why: 'Was — прошедшее время «был», а здесь речь про сейчас.',
-            },
-            {
-              value: 'have',
-              reasonCode: 'wrong_auxiliary',
-              why: 'Состояние выражают через быть.',
-            },
-          ],
-        },
-        {
-          correct: 'late',
-          category: 'adjective',
-          distractors: [
-            {
-              value: 'later',
-              reasonCode: 'wrong_word_form',
-              why: 'Later — «позже», сравнение.',
-            },
-            {
-              value: 'lately',
-              reasonCode: 'wrong_word_class',
-              why: 'Lately — «в последнее время».',
-            },
-            {
-              value: 'latest',
-              reasonCode: 'wrong_word_form',
-              why: 'Latest — «самый последний».',
-            },
-            {
-              value: 'let',
-              reasonCode: 'near_homophone_confusion',
-              why: 'Let — «позволить».',
-            },
-            {
-              value: 'light',
-              reasonCode: 'meaning_mismatch',
-              why: 'Light — «свет», «лёгкий».',
-            },
-          ],
-        },
-      ],
-      features: ['copula_be', 'first_person_singular', 'state_adjective'],
-    },
-    {
-      id: 'e01-s01-i-am-cold',
-      english: 'I am cold',
-      russian: 'Мне холодно',
-      explanation:
-        'Обратите внимание на разницу: по-русски «мне холодно», по-английски «я холодный». Англичанин делает себя подлежащим, а не тем, кому холодно.',
-      words: [
-        {
-          correct: 'I',
-          category: 'pronoun',
-          distractors: [
-            {
-              value: 'me',
-              reasonCode: 'object_pronoun_as_subject',
-              why: 'Соблазн сказать «мне» велик, но подлежащее — I.',
-            },
-            {
-              value: 'my',
-              reasonCode: 'possessive_as_subject',
-              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
-            },
-            {
-              value: 'i',
-              reasonCode: 'capitalization_invalid',
-              why: 'Английское «я» всегда пишется заглавной буквой — I.',
-            },
-            {
-              value: 'mine',
-              reasonCode: 'possessive_as_subject',
-              why: 'Mine не называет человека.',
-            },
-            {
-              value: 'am',
-              reasonCode: 'verb_as_subject',
-              why: 'Am — глагол-связка, а на этом месте нужно слово-подлежащее.',
-            },
-          ],
-        },
-        {
-          correct: 'am',
-          category: 'to-be',
-          distractors: [
-            {
-              value: 'is',
-              reasonCode: 'agreement_person_mismatch',
-              why: 'Is — для he, she, it.',
-            },
-            {
-              value: 'are',
-              reasonCode: 'agreement_person_mismatch',
-              why: 'Are — для you, we, they.',
-            },
-            {
-              value: 'be',
-              reasonCode: 'infinitive_not_finite',
-              why: 'Нужна личная форма.',
-            },
-            {
-              value: 'was',
-              reasonCode: 'tense_mismatch',
-              why: 'Was — про прошлое.',
-            },
-            {
-              value: 'feel',
-              reasonCode: 'wrong_verb_choice',
-              why: 'Здесь тренируем связку am.',
-            },
-          ],
-        },
-        {
-          correct: 'cold',
-          category: 'adjective',
-          distractors: [
-            {
-              value: 'cool',
-              reasonCode: 'meaning_mismatch',
-              why: 'Cool — «прохладный» или «классный».',
-            },
-            {
-              value: 'called',
-              reasonCode: 'near_homophone_confusion',
-              why: 'Called — «названный».',
-            },
-            {
-              value: 'colder',
-              reasonCode: 'wrong_word_form',
-              why: 'Colder — «холоднее», нужно сравнение.',
-            },
-            {
-              value: 'coldly',
-              reasonCode: 'wrong_word_class',
-              why: 'Наречие «холодно» о манере.',
-            },
-            {
-              value: 'gold',
-              reasonCode: 'near_homophone_confusion',
-              why: 'Gold — «золото».',
-            },
-          ],
-        },
-      ],
-      features: ['copula_be', 'first_person_singular', 'state_adjective'],
-    },
-    {
-      id: 'e01-s01-i-am-busy',
-      english: 'I am busy',
-      russian: 'Я занят',
-      explanation:
-        'Вежливый способ сказать, что сейчас не получится поговорить. Форма одна и для мужчины, и для женщины.',
-      words: [
-        {
-          correct: 'I',
-          category: 'pronoun',
-          distractors: [
-            {
-              value: 'me',
-              reasonCode: 'object_pronoun_as_subject',
-              why: 'Подлежащее — I.',
-            },
-            {
-              value: 'my',
-              reasonCode: 'possessive_as_subject',
-              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
-            },
-            {
-              value: 'i',
-              reasonCode: 'capitalization_invalid',
-              why: 'Английское «я» всегда пишется заглавной буквой — I.',
-            },
-            {
-              value: 'am',
-              reasonCode: 'verb_as_subject',
-              why: 'Am — глагол-связка, а на этом месте нужно слово-подлежащее.',
-            },
-            {
-              value: 'he',
-              reasonCode: 'person_mismatch',
-              why: 'He — «он», а мы говорим о себе, поэтому нужно I.',
-            },
-          ],
-        },
-        {
-          correct: 'am',
-          category: 'to-be',
-          distractors: [
-            {
-              value: 'is',
-              reasonCode: 'agreement_person_mismatch',
-              why: 'Is ставят к he, she, it. Рядом с I всегда только am.',
-            },
-            {
-              value: 'are',
-              reasonCode: 'agreement_person_mismatch',
-              why: 'Are — не для I.',
-            },
-            {
-              value: 'be',
-              reasonCode: 'infinitive_not_finite',
-              why: 'Нужна личная форма.',
-            },
-            {
-              value: 'do',
-              reasonCode: 'wrong_auxiliary',
-              why: 'Do с признаком не ставят.',
-            },
-            {
-              value: 'was',
-              reasonCode: 'tense_mismatch',
-              why: 'Was — прошедшее время «был», а здесь речь про сейчас.',
-            },
-          ],
-        },
-        {
-          correct: 'busy',
-          category: 'adjective',
-          distractors: [
-            {
-              value: 'bussy',
-              reasonCode: 'spelling_invalid',
-              why: 'Лишняя буква s: правильно пишется busy, с одной s.',
-            },
-            {
-              value: 'business',
-              reasonCode: 'wrong_word_class',
-              why: 'Business — «дело», существительное.',
-            },
-            {
-              value: 'busily',
-              reasonCode: 'wrong_word_class',
-              why: 'Busily — наречие «деловито». После am ставят признак.',
-            },
-            {
-              value: 'buzy',
-              reasonCode: 'spelling_invalid',
-              why: 'Пишется через s: busy.',
-            },
-            {
-              value: 'bored',
-              reasonCode: 'meaning_mismatch',
-              why: 'Bored — «скучающий», почти противоположное.',
             },
           ],
         },
@@ -1264,6 +852,212 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
       ],
     },
     {
+      id: 'e01-s01-i-am-ok',
+      english: 'I am OK',
+      russian: 'Я в порядке',
+      explanation:
+        'Так отвечают, когда спрашивают, всё ли хорошо. Короткий honest-ответ, живее книжного «I am fine, thank you». OK пишут заглавными или okay — оба варианта нормальны.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Только I может быть подлежащим.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Пишется заглавной.',
+            },
+            {
+              value: 'am',
+              reasonCode: 'verb_as_subject',
+              why: 'Это глагол, не подлежащее.',
+            },
+            {
+              value: 'we',
+              reasonCode: 'person_mismatch',
+              why: 'We — «мы», речь об одном человеке.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'К I не ставят is.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — не для I.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Be — начальная форма.',
+            },
+            {
+              value: 'am not',
+              reasonCode: 'polarity_inverted',
+              why: 'Это отрицание — «я не в порядке». Смысл противоположный.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — «был», а речь про сейчас.',
+            },
+          ],
+        },
+        {
+          correct: 'OK',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'okey',
+              reasonCode: 'spelling_invalid',
+              why: 'Такого написания нет: OK или okay.',
+            },
+            {
+              value: 'ok?',
+              reasonCode: 'punctuation_changes_intent',
+              why: 'Со знаком вопроса это уже вопрос, а не ответ.',
+            },
+            {
+              value: 'good',
+              reasonCode: 'not_target_word',
+              why: 'I am good тоже говорят, но здесь тренируем OK.',
+            },
+            {
+              value: 'okays',
+              reasonCode: 'wrong_word_class',
+              why: 'Признак не получает окончание множественного числа.',
+            },
+            {
+              value: 'oky',
+              reasonCode: 'spelling_invalid',
+              why: 'Ошибка в написании.',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'state_adjective'],
+    },
+    {
+      id: 'e01-s01-i-am-happy',
+      english: 'I am happy',
+      russian: 'Я рад',
+      explanation:
+        'Ещё один признак после «I am». Форма слова не зависит от того, мужчина говорит или женщина, — в английском признаки не меняются по родам.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Подлежащее — только I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Пишется заглавной.',
+            },
+            {
+              value: 'am',
+              reasonCode: 'verb_as_subject',
+              why: 'Am — глагол-связка, а на этом месте нужно слово-подлежащее.',
+            },
+            {
+              value: 'he',
+              reasonCode: 'person_mismatch',
+              why: 'He — «он», а речь о себе.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is ставят к he, she, it. Рядом с I всегда только am.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — не для I.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Нужна личная форма.',
+            },
+            {
+              value: 'have',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Радость выражают через быть, а не иметь.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — про прошлое.',
+            },
+          ],
+        },
+        {
+          correct: 'happy',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'happily',
+              reasonCode: 'wrong_word_class',
+              why: 'Наречие «счастливо». После am — признак.',
+            },
+            {
+              value: 'happiness',
+              reasonCode: 'wrong_word_class',
+              why: 'Существительное «счастье».',
+            },
+            {
+              value: 'hapy',
+              reasonCode: 'spelling_invalid',
+              why: 'Пропущена буква: happy.',
+            },
+            {
+              value: 'happier',
+              reasonCode: 'wrong_word_form',
+              why: 'Happier — «счастливее», нужно сравнение с чем-то.',
+            },
+            {
+              value: 'hungry',
+              reasonCode: 'meaning_mismatch',
+              why: 'Hungry — «голодный».',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'state_adjective'],
+    },
+    {
       id: 'e01-s01-i-am-not-ready',
       english: 'I am not ready',
       russian: 'Я не готов',
@@ -1401,5 +1195,211 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
         'negation_not',
         'state_adjective',
       ],
+    },
+    {
+      id: 'e01-s01-i-am-late',
+      english: 'I am late',
+      russian: 'Я опаздываю',
+      explanation:
+        'Ещё одно состояние через связку. По-русски мы говорим действием — «опаздываю», по-английски признаком: «я есть поздний». Так предупреждают, что задерживаешься.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Подлежащее — I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'am',
+              reasonCode: 'verb_as_subject',
+              why: 'Глагол не бывает подлежащим.',
+            },
+            {
+              value: 'we',
+              reasonCode: 'person_mismatch',
+              why: 'We — «мы», речь об одном.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is ставят к he, she, it. Рядом с I всегда только am.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — не для I.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Нужна личная форма.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — прошедшее время «был», а здесь речь про сейчас.',
+            },
+            {
+              value: 'have',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Состояние выражают через быть.',
+            },
+          ],
+        },
+        {
+          correct: 'late',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'later',
+              reasonCode: 'wrong_word_form',
+              why: 'Later — «позже», сравнение.',
+            },
+            {
+              value: 'lately',
+              reasonCode: 'wrong_word_class',
+              why: 'Lately — «в последнее время».',
+            },
+            {
+              value: 'latest',
+              reasonCode: 'wrong_word_form',
+              why: 'Latest — «самый последний».',
+            },
+            {
+              value: 'let',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Let — «позволить».',
+            },
+            {
+              value: 'light',
+              reasonCode: 'meaning_mismatch',
+              why: 'Light — «свет», «лёгкий».',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'state_adjective'],
+    },
+    {
+      id: 'e01-s01-i-am-busy',
+      english: 'I am busy',
+      russian: 'Я занят',
+      explanation:
+        'Вежливый способ сказать, что сейчас не получится поговорить. Форма одна и для мужчины, и для женщины.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Подлежащее — I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'am',
+              reasonCode: 'verb_as_subject',
+              why: 'Am — глагол-связка, а на этом месте нужно слово-подлежащее.',
+            },
+            {
+              value: 'he',
+              reasonCode: 'person_mismatch',
+              why: 'He — «он», а мы говорим о себе, поэтому нужно I.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is ставят к he, she, it. Рядом с I всегда только am.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — не для I.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Нужна личная форма.',
+            },
+            {
+              value: 'do',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Do с признаком не ставят.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — прошедшее время «был», а здесь речь про сейчас.',
+            },
+          ],
+        },
+        {
+          correct: 'busy',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'bussy',
+              reasonCode: 'spelling_invalid',
+              why: 'Лишняя буква s: правильно пишется busy, с одной s.',
+            },
+            {
+              value: 'business',
+              reasonCode: 'wrong_word_class',
+              why: 'Business — «дело», существительное.',
+            },
+            {
+              value: 'busily',
+              reasonCode: 'wrong_word_class',
+              why: 'Busily — наречие «деловито». После am ставят признак.',
+            },
+            {
+              value: 'buzy',
+              reasonCode: 'spelling_invalid',
+              why: 'Пишется через s: busy.',
+            },
+            {
+              value: 'bored',
+              reasonCode: 'meaning_mismatch',
+              why: 'Bored — «скучающий», почти противоположное.',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'state_adjective'],
     },
   ]);

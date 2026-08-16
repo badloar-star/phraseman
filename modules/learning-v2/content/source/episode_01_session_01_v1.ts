@@ -99,9 +99,9 @@ export const EPISODE_01_SESSION_01_SOURCE = {
         es: 'La negación: not justo después de am',
       },
       body: {
-        ru: 'Чтобы сказать «не», добавьте not сразу после am: I am not sure. Частицу do здесь ставить нельзя — она нужна другим глаголам. «I don’t sure» звучит для носителя как грубая ошибка, потому что sure — это признак, а не действие.',
-        uk: 'Щоб сказати «не», додайте not одразу після am: I am not sure. Частку do тут ставити не можна — вона потрібна іншим дієсловам.',
-        es: 'Para negar, pon not justo después de am: I am not sure. No uses do: «I don’t sure» es un error claro, porque sure no es un verbo.',
+        ru: 'Чтобы сказать «не», добавьте not сразу после am: I am not sure. Частицу do здесь ставить нельзя — «I don’t sure» звучит как грубая ошибка, потому что sure это признак, а не действие. И ещё одно, важное: по-русски мы часто говорим без «я» — «мне холодно», «мне скучно». В английском так нельзя, там всегда есть тот, кто. Получается «я холодный»: I am cold. Итоговая формула урока простая: I am + слово, а с «не» — I am not + слово. Подставьте любое известное вам слово-признак, и фраза будет правильной.',
+        uk: 'Щоб сказати «не», додайте not одразу після am: I am not sure. Частку do тут ставити не можна. І ще важливе: українською ми кажемо «мені холодно», без «я». В англійській завжди є той, хто: I am cold. Формула уроку: I am + слово, із запереченням — I am not + слово.',
+        es: 'Para negar, pon not justo después de am: I am not sure. No uses do: «I don’t sure» es un error claro. Y algo importante: en español decimos «tengo frío», con otro verbo. En inglés siempre eres tú: I am cold. La fórmula del curso: I am + palabra, y en negativo I am not + palabra.',
       },
       question: {
         prompt: {

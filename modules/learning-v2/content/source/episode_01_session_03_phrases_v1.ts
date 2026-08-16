@@ -6,107 +6,107 @@ import type { EpisodeSourcePhrase } from './episode_01_source_v1';
 export const EPISODE_01_SESSION_03_PHRASES: readonly EpisodeSourcePhrase[] =
   Object.freeze([
     {
-      id: 'e01-s03-you-are-here',
-      english: 'You are here',
-      russian: 'Ты здесь',
+      id: 'e01-s03-am-i-ready',
+      english: 'Am I ready?',
+      russian: 'Я готов?',
       explanation:
-        'Та же схема, но про собеседника. К слову you связка меняется на are — это единственное отличие от знакомого I am.',
+        'Вопрос о себе — правило перестановки работает и здесь: было I am ready, стало Am I ready? Спрашивают так, когда проверяют себя вслух.',
       words: [
         {
-          correct: 'You',
-          category: 'pronoun',
-          distractors: [
-            {
-              value: 'you',
-              reasonCode: 'capitalization_invalid',
-              why: 'В начале предложения слово пишут с заглавной буквы.',
-            },
-            {
-              value: 'Your',
-              reasonCode: 'possessive_as_subject',
-              why: 'Your — «твой», это принадлежность, а не сам человек.',
-            },
-            {
-              value: 'Yours',
-              reasonCode: 'possessive_as_subject',
-              why: 'Yours заменяет предмет, а не подлежащее.',
-            },
-            {
-              value: 'I',
-              reasonCode: 'person_mismatch',
-              why: 'I — «я», а речь о собеседнике.',
-            },
-            {
-              value: 'U',
-              reasonCode: 'chat_abbreviation',
-              why: 'Так пишут только в быстрых сообщениях.',
-            },
-          ],
-        },
-        {
-          correct: 'are',
+          correct: 'Am',
           category: 'to-be',
           distractors: [
             {
-              value: 'am',
+              value: 'Are',
               reasonCode: 'agreement_person_mismatch',
-              why: 'Am идёт только к I. К you — are.',
+              why: 'Are — к you, а вопрос здесь о себе.',
             },
             {
-              value: 'is',
+              value: 'Is',
               reasonCode: 'agreement_person_mismatch',
-              why: 'Is идёт к he, she, it, но не к you.',
+              why: 'Is — к he, she, it.',
             },
             {
-              value: 'be',
+              value: 'Do',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Со связкой do не ставят никогда.',
+            },
+            {
+              value: 'Be',
               reasonCode: 'infinitive_not_finite',
-              why: 'Be — начальная форма, нужна личная: are.',
+              why: 'Be — начальная форма, вопрос так не строят.',
             },
             {
-              value: 'were',
+              value: 'Was',
               reasonCode: 'tense_mismatch',
-              why: 'Were — прошедшее «был», а речь про сейчас.',
-            },
-            {
-              value: 'ar',
-              reasonCode: 'spelling_invalid',
-              why: 'Пропущена буква e: правильно are.',
+              why: 'Was — прошедшее «был», а речь про сейчас.',
             },
           ],
         },
         {
-          correct: 'here',
-          category: 'adverb',
+          correct: 'I',
+          category: 'pronoun',
           distractors: [
             {
-              value: 'hear',
-              reasonCode: 'homophone_confusion',
-              why: 'Звучит одинаково, но hear — «слышать».',
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Me — форма дополнения, подлежащее всегда I.',
             },
             {
-              value: 'there',
-              reasonCode: 'deixis_opposite',
-              why: 'There — «там», противоположное место.',
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой.',
             },
             {
-              value: 'her',
-              reasonCode: 'wrong_word_class',
-              why: 'Her — «её», места не обозначает.',
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность.',
             },
             {
-              value: 'where',
-              reasonCode: 'question_word_in_statement',
-              why: 'Where — вопросительное «где».',
+              value: 'you',
+              reasonCode: 'person_mismatch',
+              why: 'Вопрос о себе, значит I.',
             },
             {
-              value: 'hair',
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine человека не называет.',
+            },
+          ],
+        },
+        {
+          correct: 'ready',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'read',
               reasonCode: 'near_homophone_confusion',
-              why: 'Hair — «волосы».',
+              why: 'Read — «читать», похоже на письме.',
+            },
+            {
+              value: 'already',
+              reasonCode: 'wrong_word_class',
+              why: 'Already — «уже», это про время.',
+            },
+            {
+              value: 'readily',
+              reasonCode: 'wrong_word_class',
+              why: 'Наречие «охотно», а нужен признак.',
+            },
+            {
+              value: 'red',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Red — «красный».',
+            },
+            {
+              value: 'reader',
+              reasonCode: 'wrong_word_class',
+              why: 'Reader — «читатель», существительное.',
             },
           ],
         },
       ],
-      features: ['copula_be', 'second_person', 'adverb_place'],
+      features: ['copula_be', 'first_person_singular', 'question_inversion'],
     },
     {
       id: 'e01-s03-you-are-ready',
@@ -216,7 +216,7 @@ export const EPISODE_01_SESSION_03_PHRASES: readonly EpisodeSourcePhrase[] =
       english: 'Are you ready?',
       russian: 'Ты готов?',
       explanation:
-        'Первый вопрос. Чтобы спросить, слова просто меняются местами: was «You are», стало «Are you». Больше ничего добавлять не нужно.',
+        'Тот же вопрос, но собеседнику. Слова просто меняются местами: было «You are», стало «Are you». Больше ничего добавлять не нужно.',
       words: [
         {
           correct: 'Are',

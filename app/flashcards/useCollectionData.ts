@@ -279,8 +279,31 @@ export function useCollectionData(opts: {
   /** `getCanonicalUserId` — доступ автора до свого UGC без «покупки» в `communityOwnedIdList`. */
   const [accessStableId, setAccessStableId] = useState<string | null>(null);
   /** `loadAll` завершил цикл; до этого нельзя валидировать `?pack=` по пустому `marketCards`. */
-  const [collectionDataReady, setCollectionDataReady] = useState(false);
-  // Instant paint when session cache exists (re-open); first cold open still waits on AsyncStorage
+  /**
+   * FIX (владелец, 2026-08-16) «прыгает даже если список был пустой»:
+   * collectionDataReady стартовал с false ВСЕГДА, в том числе на повторном
+   * входе с уже прогретым кэшем. Пустой набор из-за этого кадр держался в
+   * состоянии «ещё грузится» (packCardsPending), а потом рывком становился
+   * пустым. Кэш есть — решение известно синхронно, ждать нечего.
+   */
+  const [collectionDataReady, setCollectionDataReady] = useState(
+    () => {
+      // КРИТИЧНО: при открытом `?pack=` готовность по-прежнему ЗАСЛУЖИВАЕТСЯ
+      // загрузкой. Этот флаг валидирует набор по marketPackCatalog (см. хук
+      // доступа ниже), и ранний true на непрогретом каталоге дал бы набору
+      // ложный отказ 'unknown'. Мгновенная готовность — только для списка
+      // сохранённых/своих карточек, где кэш и есть весь ответ.
+      if (opts.deeplinkPackId) return false;
+      return _savedCardsCache !== null || _customCardsCache !== null;
+    },
+  );
+  /**
+   * Instant paint when session cache exists (re-open); first cold open still waits on AsyncStorage.
+   *
+   * NB: кэш ПУСТОГО списка — это `[]`, а не `null`. Сравнение именно с null и
+   * держит здесь пустую коллекцию: она уже прочитана, показывать загрузку
+   * второй раз незачем.
+   */
   const [loading, setLoading] = useState(
     () => _savedCardsCache === null && _customCardsCache === null,
   );

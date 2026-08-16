@@ -885,7 +885,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
         visible={learnedBurst !== null}
         title={verbLearnedDoneTitle(lang)}
         subtitle={learnedBurst ? verbFormsSubtitle(learnedBurst.base, learnedBurst.past, learnedBurst.pp) : undefined}
-        heroEmoji="⚡"
+        heroIcon="flash"
         celebrateSound="medal"
         autoHideMs={1600}
         onDone={() => setLearnedBurst(null)}

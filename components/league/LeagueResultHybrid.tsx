@@ -6,9 +6,13 @@
 //
 //  Хореография — точная копия сцен L1/L2/L3 из .motion-mockups/phraseman-hybrid.html:
 //  стеклянная колонна пути со ступенями, светящийся порог топ-7 / черта вылета,
-//  камеи-соперники, мой медальон едет по пути со световым хвостом и ПРОБИВАЕТ
-//  порог ударом Чекана при повышении (L1); спокойный якорь-щит при «остался»
-//  (L2); мягкий спуск на бронзовую платформу при вылете (L3).
+//  клубные эмблемы (club.imageUri) в арке перехода лиг, мой медальон едет по
+//  пути со световым хвостом и ПРОБИВАЕТ порог ударом Чекана при повышении (L1);
+//  спокойный якорь-щит при «остался» (L2); мягкий спуск на бронзовую платформу
+//  при вылете (L3). ПОЛНОТА (владелец, 2026-08-16): колонна пути хостит подиум
+//  топ-3 (аватары + PremiumAvatarHalo) и полный список группы с моей строкой,
+//  а не бутафорные камеи с одной буквой — макет был тоньше настоящей модалки,
+//  здесь показываем всю информацию classic внутри хореографии рельсы.
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
@@ -38,6 +42,7 @@ import {
 import { clubNamePlanned } from '../../app/league_engine';
 import AvatarView from '../AvatarView';
 import PremiumAvatarHalo from '../PremiumAvatarHalo';
+import { memberNameStatusStyle } from '../premiumMemberStyles';
 import { getBestAvatarForLevel } from '../../constants/avatars';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../../constants/avatar_auras';
 import { getLevelFromXP } from '../../constants/theme';
@@ -53,35 +58,71 @@ const CARD_W = Math.min(W - 24, 420);
 
 const AnimatedText = Reanimated.createAnimatedComponent(Text);
 
-// ─── Медальон-жетон соперника на колонне пути ──────────────────────────────
-const NODE_H = 38;
+// ─── Медальные жетоны мест (золото/серебро/бронза) — тот же язык, что и classic ──
+const MEDAL_TOKEN: Record<1 | 2 | 3, { grad: [string, string]; ink: string; ring: string }> = {
+  1: { grad: ['#FFE89A', '#E0A124'], ink: '#5A3C06', ring: '#FFF1CC' },
+  2: { grad: ['#EAEEF3', '#A9B2BD'], ink: '#3A4150', ring: '#FFFFFF' },
+  3: { grad: ['#F0C29A', '#B4774A'], ink: '#4A2D14', ring: '#FBE0CC' },
+};
 
-interface PathNode {
+// зачем: раньше кольцо жетона рисовалось обводкой (borderWidth/borderColor) —
+// запрет владельца на обводки контейнеров. Разделяем от фона тоном: внешняя
+// подложка на 2px больше самого жетона, залита цветом кольца, и тень несёт
+// объём — эффект тот же (металлический ободок), приёма-нарушителя нет.
+const MedalToken = memo(function MedalToken({ place, size = 20, onLight = false }: {
+  place: 1 | 2 | 3;
+  size?: number;
+  onLight?: boolean;
+}) {
+  const cfg = MEDAL_TOKEN[place];
+  const ringColor = onLight ? 'rgba(23,32,29,0.24)' : cfg.ring;
+  const ringPad = 1.5;
+  const outer = size + ringPad * 2;
+  return (
+    <View style={{
+      width: outer, height: outer, borderRadius: outer / 2,
+      backgroundColor: ringColor,
+      alignItems: 'center', justifyContent: 'center',
+      shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { width: 0, height: 1 },
+    }}>
+      <View style={{ width: size, height: size, borderRadius: size / 2, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}>
+        <LinearGradient colors={cfg.grad} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={StyleSheet.absoluteFill} />
+        <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '45%', backgroundColor: 'rgba(255,255,255,0.35)' }} />
+        <Text style={{ color: cfg.ink, fontSize: size * 0.55, fontWeight: '900' }}>{place}</Text>
+      </View>
+    </View>
+  );
+});
+
+// ─── Строка соперника/меня на колонне пути (заменяет бутафорные камеи) ─────
+const NODE_H = 40;
+
+interface PathRow {
   key: string;
-  name: string;
-  points: number;
+  member: GroupMember;
+  place: number;
   /** Позиция по высоте колонны, 0..1 (0 = верх/топ-1). */
   t: number;
 }
 
-/** Строит до 4 репрезентативных камей-соперников вокруг моей позиции на пути. */
-function buildPathNodes(group: GroupMember[], myIndex: number): PathNode[] {
+/** До 5 репрезентативных строк вокруг моей позиции — полные (аватар+очки), не инициалы. */
+function buildPathRows(group: GroupMember[], myIndex: number, totalInGroup: number): PathRow[] {
   if (group.length === 0) return [];
   const total = group.length;
   const pick = new Set<number>();
   pick.add(0);
-  pick.add(Math.max(0, Math.min(total - 1, Math.round(total * 0.22))));
-  pick.add(Math.max(0, Math.min(total - 1, Math.round(total * 0.55))));
+  if (total > 1) pick.add(1);
+  pick.add(Math.max(0, Math.min(total - 1, Math.round(total * 0.34))));
+  pick.add(Math.max(0, Math.min(total - 1, Math.round(total * 0.62))));
   pick.add(Math.max(0, Math.min(total - 1, total - 2)));
-  pick.delete(myIndex);
-  const indices = Array.from(pick).filter(i => i >= 0 && i < total).sort((a, b) => a - b).slice(0, 4);
+  const indices = Array.from(pick).filter(i => i >= 0 && i < total && i !== myIndex).sort((a, b) => a - b).slice(0, 5);
   return indices.map((i) => {
     const m = group[i];
     return {
       key: m.uid ?? m.botId ?? `${m.name}-${i}`,
-      name: (m.name ?? '—').slice(0, 10),
-      points: m.points ?? 0,
-      t: total <= 1 ? 0.5 : i / (total - 1),
+      member: m,
+      place: i + 1,
+      t: totalInGroup <= 1 ? 0.5 : i / (totalInGroup - 1),
     };
   });
 }
@@ -105,6 +146,7 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   const prevLeague = LEAGUES[result.prevLeagueId] ?? LEAGUES[0];
   const newLeague  = LEAGUES[result.newLeagueId]  ?? LEAGUES[0];
   const club       = CLUBS[result.newLeagueId]    ?? CLUBS[0];
+  const prevClub   = CLUBS[result.prevLeagueId]   ?? CLUBS[0];
 
   const isPromo = result.promoted;
   const isDemo  = result.demoted;
@@ -131,9 +173,10 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   const relegationStartRank = totalInGroup >= 2 && zoneSize > 0
     ? totalInGroup - zoneSize + 1 : totalInGroup + 1;
 
-  const pathNodes = useMemo(
-    () => buildPathNodes(displayGroup, myIndex),
-    [displayGroup, myIndex],
+  const top3 = displayGroup.slice(0, 3);
+  const pathRows = useMemo(
+    () => buildPathRows(displayGroup, myIndex, totalInGroup),
+    [displayGroup, myIndex, totalInGroup],
   );
 
   // Позиция медальона на колонне (0 сверху..1 снизу), от текущего/итогового места.
@@ -152,6 +195,11 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   // ─── Драйверы (Reanimated) ────────────────────────────────────────────
   const sceneOpacity = useSharedValue(0);
   const outLabelOpacity = useSharedValue(0);
+  const arcOldOpacity = useSharedValue(1);
+  const beamScaleX = useSharedValue(0);
+  const arcNewOpacity = useSharedValue(0.35);
+  const arcNewScale = useSharedValue(0.86);
+  const podiumOpacity = useSharedValue(0);
   const midOpacity = useSharedValue(0);
   const medallionOpacity = useSharedValue(0);
   const medallionT = useSharedValue(startT);
@@ -175,6 +223,10 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
     if (reduceMotion) {
       sceneOpacity.value = 1;
       outLabelOpacity.value = 1;
+      arcOldOpacity.value = 0.45;
+      beamScaleX.value = 1;
+      arcNewOpacity.value = 1; arcNewScale.value = 1;
+      podiumOpacity.value = 1;
       midOpacity.value = 1;
       medallionOpacity.value = 1;
       medallionT.value = endT;
@@ -194,6 +246,10 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
     // Сброс к начальному кадру на каждое открытие.
     sceneOpacity.value = 0;
     outLabelOpacity.value = 0;
+    arcOldOpacity.value = 1;
+    beamScaleX.value = 0;
+    arcNewOpacity.value = 0.35; arcNewScale.value = 0.86;
+    podiumOpacity.value = 0;
     midOpacity.value = 0;
     medallionOpacity.value = 0;
     medallionT.value = startT;
@@ -220,7 +276,18 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
     // Атмосфера появляется первой (закон: свет рождает форму).
     sceneOpacity.value = withTiming(1, { duration: 320, easing: Easing.out(Easing.quad) });
     outLabelOpacity.value = withDelay(200, withTiming(1, { duration: LUM.resolveMs }));
+
+    // Арка перехода лиг (только повышение/вылет): старый герб гаснет, луч
+    // растёт, новый герб проявляется и садится микро-пружиной — 1:1 с L1 макета.
+    if (isPromo || isDemo) {
+      arcOldOpacity.value = withDelay(260, withTiming(0.45, { duration: 700, easing: Easing.inOut(Easing.quad) }));
+      beamScaleX.value = withDelay(260, withTiming(1, { duration: 520, easing: Easing.out(Easing.cubic) }));
+      arcNewOpacity.value = withDelay(700, withTiming(1, { duration: 260, easing: Easing.out(Easing.quad) }));
+      arcNewScale.value = withDelay(760, withSpring(1, CHK.squash));
+    }
+
     midOpacity.value = withDelay(isPromo ? 460 : isDemo ? 420 : 340, withTiming(1, { duration: 380 }));
+    podiumOpacity.value = withDelay(isPromo ? 560 : isDemo ? 520 : 440, withTiming(1, { duration: 340 }));
 
     const medallionDelay = isPromo ? 1000 : isDemo ? 860 : 820;
     medallionOpacity.value = withDelay(medallionDelay, withTiming(1, { duration: 240 }));
@@ -301,6 +368,8 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
 
     return () => {
       cancelAnimation(sceneOpacity); cancelAnimation(outLabelOpacity); cancelAnimation(midOpacity);
+      cancelAnimation(arcOldOpacity); cancelAnimation(beamScaleX); cancelAnimation(arcNewOpacity); cancelAnimation(arcNewScale);
+      cancelAnimation(podiumOpacity);
       cancelAnimation(medallionOpacity); cancelAnimation(medallionT); cancelAnimation(medallionSquashY);
       cancelAnimation(trailOpacity); cancelAnimation(trailScaleY); cancelAnimation(thresholdFlash);
       cancelAnimation(anchorOpacity); cancelAnimation(anchorY); cancelAnimation(plateOpacity);
@@ -315,6 +384,13 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   // ─── Стили ──────────────────────────────────────────────────────────────
   const sceneStyle = useAnimatedStyle(() => ({ opacity: sceneOpacity.value }));
   const outLabelStyle = useAnimatedStyle(() => ({ opacity: outLabelOpacity.value }));
+  const arcOldStyle = useAnimatedStyle(() => ({ opacity: arcOldOpacity.value }));
+  const beamStyle = useAnimatedStyle(() => ({ transform: [{ scaleX: beamScaleX.value }] }));
+  const arcNewStyle = useAnimatedStyle(() => ({ opacity: arcNewOpacity.value, transform: [{ scale: arcNewScale.value }] }));
+  const podiumStyle = useAnimatedStyle(() => ({
+    opacity: podiumOpacity.value,
+    transform: [{ translateY: (1 - podiumOpacity.value) * 10 }],
+  }));
   const midStyle = useAnimatedStyle(() => ({ opacity: midOpacity.value }));
 
   const MID_H = 300; // логическая высота колонны для расчёта смещений (View измеряется реально ниже)
@@ -371,16 +447,13 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
 
   const outcomeText = isPromo
     ? triLang(lang, {
-        ru: `Серебряная лига`, uk: `Срібна ліга`, es: `Liga de plata`, "pt-BR": `Liga de prata`,
-        vi: `Giải bạc`, id: `Liga perak`, tr: `Gümüş lig`, pl: `Srebrna liga`,
-      }).replace('Серебряная лига', triLang(lang, {
         ru: newLeague.nameRU, uk: newLeague.nameUK, es: newLeague.nameES,
         "pt-BR": clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang),
         vi: clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang),
         id: clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang),
         tr: clubNamePlanned(newLeague.id, 'tr' as PlannedInterfaceLang),
         pl: clubNamePlanned(newLeague.id, 'pl' as PlannedInterfaceLang),
-      }))
+      })
     : isDemo
       ? triLang(lang, {
           ru: newLeague.nameRU, uk: newLeague.nameUK, es: newLeague.nameES,
@@ -456,6 +529,10 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   });
 
   const meLabel = triLang(lang, { ru: 'М', uk: 'Я', es: 'Y', "pt-BR": 'E', vi: 'T', id: 'S', tr: 'B', pl: 'J' });
+  const youSuffix = triLang(lang, {
+    ru: ' (ты)', uk: ' (ти)', es: ' (tú)', "pt-BR": ' (você)',
+    vi: ' (bạn)', id: ' (kamu)', tr: ' (sen)', pl: ' (ty)',
+  });
 
   return (
     <Reanimated.View style={[styles.scene, sceneStyle, { backgroundColor: t.bgPrimary }]}>
@@ -477,17 +554,32 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
           {outcomeText}
         </Reanimated.Text>
 
-        {/* Арка лиг: только на смену лиги (повышение/вылет). Обе эмблемы — чисто
-            декоративный акцент рядом со стрелкой; смысл перехода уже несёт
-            outcomeText выше (текст экрана), поэтому accessible={false}. */}
+        {/* Арка клубов: старый герб гаснет → луч растёт → новый герб проявляется
+            с микро-пружиной (CHK.squash). Клубные эмблемы club.imageUri — та же
+            графика, что в classic, не эмодзи-заглушки. */}
         {(isPromo || isDemo) && (
           <View style={styles.arcRow}>
-            <Image accessible={false} source={prevLeague.imageUri} style={{ width: 34, height: 34, opacity: 0.5 }} contentFit="contain" />
-            <Ionicons name={isPromo ? 'arrow-forward' : 'arrow-back'} size={16} color={glowColor} />
-            <Image accessible={false} source={newLeague.imageUri} style={{ width: 34, height: 34 }} contentFit="contain" />
+            <Reanimated.View style={arcOldStyle}>
+              <Image accessible={false} source={prevClub.imageUri} style={{ width: 40, height: 40 }} contentFit="contain" />
+            </Reanimated.View>
+            <View style={[styles.beamTrack, { backgroundColor: t.bgSurface2 }]}>
+              <Reanimated.View style={[styles.beamFill, beamStyle, { backgroundColor: glowColor }]} />
+            </View>
+            <Reanimated.View style={arcNewStyle}>
+              <Image accessible={false} source={club.imageUri} style={{ width: 40, height: 40 }} contentFit="contain" />
+            </Reanimated.View>
           </View>
         )}
       </View>
+
+      {/* ── Подиум топ-3 (полнота classic: аватары + PremiumAvatarHalo) ── */}
+      {top3.length === 3 && (
+        <Reanimated.View style={[styles.podiumRow, podiumStyle]}>
+          <PodiumSeat member={top3[1]} place={2} onLight={onLight} themeMode={themeMode} t={t} f={f} lang={lang} youSuffix={youSuffix} />
+          <PodiumSeat member={top3[0]} place={1} onLight={onLight} themeMode={themeMode} t={t} f={f} lang={lang} youSuffix={youSuffix} />
+          <PodiumSeat member={top3[2]} place={3} onLight={onLight} themeMode={themeMode} t={t} f={f} lang={lang} youSuffix={youSuffix} />
+        </Reanimated.View>
+      )}
 
       {/* ── Середина: колонна пути ── */}
       <Reanimated.View
@@ -517,19 +609,9 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
           {thresholdLabel}
         </Text>
 
-        {/* Камеи-соперники */}
-        {pathNodes.map((node) => (
-          <View key={node.key} style={[styles.node, { top: `${node.t * 100}%`, backgroundColor: t.bgSurface }]}>
-            <View style={[styles.nodeDot, { backgroundColor: t.bgSurface2 }]}>
-              <Text style={{ color: t.textPrimary, fontSize: 11, fontWeight: '700' }}>{node.name.charAt(0).toUpperCase()}</Text>
-            </View>
-            <Text numberOfLines={1} style={{ flex: 1, color: t.textPrimary, fontSize: f.caption, fontWeight: '700', marginLeft: 8 }}>
-              {node.name}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption, fontVariant: ['tabular-nums'] }}>
-              {node.points} XP
-            </Text>
-          </View>
+        {/* Строки соперников — полные (аватар + имя + очки), не инициалы */}
+        {pathRows.map((row) => (
+          <PathMemberRow key={row.key} row={row} onLight={onLight} themeMode={themeMode} t={t} f={f} />
         ))}
 
         {/* Световой хвост медальона (только повышение) */}
@@ -603,6 +685,94 @@ function LeagueResultHybrid({ visible, result, reduceMotion }: Props) {
   );
 }
 
+// ════════════════════════════════════════════════════════════════════════════
+//  PodiumSeat — компактная колонка топ-3 над колонной пути (та же полнота,
+//  что в classic PodiumColumn: аватар + PremiumAvatarHalo + медаль + очки),
+//  но без отдельного каскада — уже несёт podiumOpacity родителя.
+// ════════════════════════════════════════════════════════════════════════════
+const PodiumSeat = memo(function PodiumSeat({ member, place, onLight, themeMode, t, f, lang, youSuffix }: {
+  member: GroupMember;
+  place: 1 | 2 | 3;
+  onLight: boolean;
+  themeMode: string;
+  t: any;
+  f: any;
+  lang: Lang;
+  youSuffix: string;
+}) {
+  const xp = member?.totalXp ?? 0;
+  const avatar = member?.avatar ?? String(getBestAvatarForLevel(getLevelFromXP(xp)));
+  const effectiveAura = getEffectiveAvatarAuraId(member?.aura, member?.isPremium, member?.isVip);
+  const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
+  const name = (member?.name ?? '—').slice(0, 10);
+  const size = place === 1 ? 42 : 34;
+  const nameColor = member?.isMe ? (onLight ? readableOn(t.gold, t.bgPrimary, 4.5) : t.gold) : t.textPrimary;
+
+  return (
+    <View style={styles.podiumSeat}>
+      <View style={{ alignItems: 'center' }}>
+        <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={size} maskColor={t.bgPrimary}>
+          <AvatarView avatar={avatar} totalXP={xp} size={size} auraId={usesPremiumAura ? undefined : effectiveAura} />
+        </PremiumAvatarHalo>
+        <View style={{ position: 'absolute', top: -6, right: -6 }}>
+          <MedalToken place={place} size={place === 1 ? 20 : 17} onLight={onLight} />
+        </View>
+      </View>
+      <Text
+        numberOfLines={1}
+        style={memberNameStatusStyle(
+          { color: nameColor, fontSize: f.caption, fontWeight: member?.isMe ? '900' : '700', maxWidth: 92, textAlign: 'center', marginTop: 5 },
+          { isPremium: !!member?.isPremium, isVip: !!member?.isVip, themeMode, surface: t.bgPrimary },
+        )}
+      >
+        {name}{member?.isMe ? youSuffix : ''}
+      </Text>
+      {/* guard-ok: очки — второе ЗНАЧЕНИЕ под именем (как в classic PodiumColumn), не расшифровка имени */}
+      <Text style={[styles.podiumPoints, { color: t.textMuted }]}>
+        {member?.points ?? 0} XP
+      </Text>
+    </View>
+  );
+});
+
+// ════════════════════════════════════════════════════════════════════════════
+//  PathMemberRow — строка соперника на стеклянной колонне пути: реальный
+//  аватар вместо буквы-инициала, полное имя и очки — как в classic GroupRow.
+// ════════════════════════════════════════════════════════════════════════════
+const PathMemberRow = memo(function PathMemberRow({ row, onLight, themeMode, t, f }: {
+  row: PathRow;
+  onLight: boolean;
+  themeMode: string;
+  t: any;
+  f: any;
+}) {
+  const { member, t: rowPosT } = row;
+  const xp = member.totalXp ?? 0;
+  const avatar = member.avatar ?? String(getBestAvatarForLevel(getLevelFromXP(xp)));
+  const effectiveAura = getEffectiveAvatarAuraId(member.aura, member.isPremium, member.isVip);
+  const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
+  const isTop3 = row.place <= 3;
+
+  return (
+    <View style={[styles.node, { top: `${rowPosT * 100}%`, backgroundColor: t.bgSurface }]}>
+      <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={24} maskColor={t.bgSurface}>
+        <AvatarView avatar={avatar} totalXP={xp} size={24} auraId={usesPremiumAura ? undefined : effectiveAura} />
+      </PremiumAvatarHalo>
+      {isTop3 && (
+        <View style={{ marginLeft: -8, marginTop: -14 }}>
+          <MedalToken place={row.place as 1 | 2 | 3} size={14} onLight={onLight} />
+        </View>
+      )}
+      <Text numberOfLines={1} style={{ flex: 1, color: t.textPrimary, fontSize: f.caption, fontWeight: '700', marginLeft: 8 }}>
+        {member.name}
+      </Text>
+      <Text style={{ color: t.textMuted, fontSize: f.caption, fontVariant: ['tabular-nums'] }}>
+        {member.points} XP
+      </Text>
+    </View>
+  );
+});
+
 const RewardChip = memo(function RewardChip({ icon, color, title, sub, t, f, wide }: {
   icon: any; color: string; title: string; sub: string; t: any; f: any; wide?: boolean;
 }) {
@@ -628,7 +798,12 @@ const styles = StyleSheet.create({
   },
   top: { paddingTop: 18, paddingHorizontal: 16, alignItems: 'center' },
   arcRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
-  mid: { flex: 1, marginTop: 14, marginHorizontal: 16, minHeight: 220 },
+  beamTrack: { width: 44, height: 3, borderRadius: 2, overflow: 'hidden' },
+  beamFill: { width: '100%', height: '100%', borderRadius: 2, transformOrigin: 'left' as any },
+  podiumRow: { flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', gap: 6, paddingHorizontal: 16, marginTop: 10 },
+  podiumSeat: { alignItems: 'center', width: 84 },
+  podiumPoints: { fontSize: 10, fontWeight: '700', marginTop: 1 },
+  mid: { flex: 1, marginTop: 12, marginHorizontal: 16, minHeight: 220 },
   path: { position: 'absolute', left: 0, top: 0, bottom: 0, width: 56, borderRadius: 28 },
   step: { position: 'absolute', left: 12, width: 32, height: 1.5, borderRadius: 1 },
   threshold: { position: 'absolute', left: 4, width: 64, height: 3, borderRadius: 2 },
@@ -641,7 +816,6 @@ const styles = StyleSheet.create({
     position: 'absolute', left: 76, right: 0, height: NODE_H,
     flexDirection: 'row', alignItems: 'center', borderRadius: 12, paddingHorizontal: 10,
   },
-  nodeDot: { width: 22, height: 22, borderRadius: 8, alignItems: 'center', justifyContent: 'center' },
   trail: { position: 'absolute', left: 20, width: 24, borderRadius: 12, opacity: 0.5 },
   medallionWrap: { position: 'absolute', left: 0, flexDirection: 'row', alignItems: 'center', height: NODE_H },
   medallion: {

@@ -41,6 +41,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../constants/i18n';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { hapticMediumImpact, hapticSuccess } from '../hooks/use-haptics';
+import DialogVictoryCelebrationHybrid from './DialogVictoryCelebrationHybrid';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -192,6 +193,12 @@ export type DialogVictoryCelebrationProps = {
   moodIcon?: keyof typeof Ionicons.glyphMap;
   /** CTA «К диалогам». */
   onDone: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (владелец, 2026-08-16) живёт РЯДОМ со
+   * старой версией под флагом. Боевой дефолт — 'classic', ничего не меняется
+   * без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 export function DialogVictoryCelebration({
@@ -203,7 +210,38 @@ export function DialogVictoryCelebration({
   heroIcon = 'ribbon',
   moodIcon = 'happy',
   onDone,
+  motionVariant = 'classic',
 }: DialogVictoryCelebrationProps) {
+  if (motionVariant === 'hybrid') {
+    return (
+      <DialogVictoryCelebrationHybrid
+        lang={lang}
+        xp={xp}
+        replies={replies}
+        goalsMet={goalsMet}
+        goalsTotal={goalsTotal}
+        heroIcon={heroIcon}
+        moodIcon={moodIcon}
+        onDone={onDone}
+      />
+    );
+  }
+  return <DialogVictoryCelebrationClassic {...{ lang, xp, replies, goalsMet, goalsTotal, heroIcon, moodIcon, onDone }} />;
+}
+
+function DialogVictoryCelebrationClassic({
+  lang,
+  xp,
+  replies,
+  goalsMet,
+  goalsTotal,
+  heroIcon,
+  moodIcon,
+  onDone,
+}: Omit<DialogVictoryCelebrationProps, 'motionVariant'> & {
+  heroIcon: keyof typeof Ionicons.glyphMap;
+  moodIcon: keyof typeof Ionicons.glyphMap;
+}) {
   const insets = useStableSafeAreaInsets();
   const { width } = useWindowDimensions();
   const [xpDisplay, setXpDisplay] = useState(0);

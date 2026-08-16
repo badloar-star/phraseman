@@ -20,6 +20,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Svg, { Defs, LinearGradient as SvgLinearGradient, Rect, Stop } from 'react-native-svg';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { LeagueChestRewardDrop, LeagueChestRewardRarity } from '../../app/services/league_chest_rewards';
 import { isActiveLeagueChestReward } from '../../app/services/league_chest_rewards';
@@ -348,12 +349,30 @@ function LeagueChestSlitOpen({
             </View>
           </Animated.View>
 
-          {/* Сундук-силуэт в темноте + щель света, раскрывающаяся поперёк него. */}
+          {/* Сундук-силуэт в темноте + щель света, раскрывающаяся поперёк него.
+              зачем: владелец забраковал первую версию — «жёлтая полоса на плоском
+              фоне (дёшево)». Макет требует затухающий по краям градиент (.sl-slit:
+              transparent→кремовый→белое ядро→кремовый→transparent) плюс отдельный
+              слой глоу под ним — щель светится, а не просто закрашена цветом. */}
           <View style={styles.chestZone}>
             <Animated.View style={[styles.chestSilhouette, chestStyle]}>
               <Ionicons name="cube" size={64} color="#2A2208" />
             </Animated.View>
-            <Animated.View pointerEvents="none" style={[styles.slit, { backgroundColor: t.gold }, slitStyle]} />
+            <Animated.View pointerEvents="none" style={[styles.slitGlow, { backgroundColor: t.gold }, slitStyle]} />
+            <Animated.View pointerEvents="none" style={[styles.slit, slitStyle]}>
+              <Svg width="100%" height="100%" style={StyleSheet.absoluteFill}>
+                <Defs>
+                  <SvgLinearGradient id="chestSlitBeam" x1="0" y1="0" x2="1" y2="0">
+                    <Stop offset="0" stopColor={t.gold} stopOpacity="0" />
+                    <Stop offset="0.28" stopColor="#FFF6D8" stopOpacity="0.9" />
+                    <Stop offset="0.5" stopColor="#FFFDF3" stopOpacity="1" />
+                    <Stop offset="0.72" stopColor="#FFF6D8" stopOpacity="0.9" />
+                    <Stop offset="1" stopColor={t.gold} stopOpacity="0" />
+                  </SvgLinearGradient>
+                </Defs>
+                <Rect x="0" y="0" width="100%" height="100%" fill="url(#chestSlitBeam)" />
+              </Svg>
+            </Animated.View>
           </View>
 
           <ScrollView
@@ -470,7 +489,19 @@ const styles = StyleSheet.create({
     left: '18%',
     right: '18%',
     height: 3,
+    overflow: 'visible',
+  },
+  slitGlow: {
+    position: 'absolute',
+    left: '24%',
+    right: '24%',
+    height: 3,
     borderRadius: 2,
+    opacity: 0.55,
+    shadowColor: '#F8D982',
+    shadowOpacity: 0.9,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 0 },
   },
   fanScroll: {
     marginTop: 22,

@@ -24,6 +24,13 @@
 
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, DeviceEventEmitter, Easing, Text, TouchableOpacity, View } from 'react-native';
+import Reanimated, {
+  cancelAnimation,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { CLOUD_SYNC_ENABLED } from '../app/config';
@@ -37,6 +44,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
+import { LUM } from '../constants/motionHybrid';
 import { LinearGradient } from './SafeLinearGradient';
 import PremiumCard from './PremiumCard';
 import RegistrationPromptModal from './RegistrationPromptModal';
@@ -77,15 +85,38 @@ async function shouldShow(isCurrent: () => boolean): Promise<boolean> {
 
 interface SaveProgressBannerProps {
   ownerActive?: boolean;
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-function SaveProgressBanner({ ownerActive = true }: SaveProgressBannerProps) {
+function SaveProgressBanner({ ownerActive = true, motionVariant = 'classic' }: SaveProgressBannerProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const isHybrid = motionVariant === 'hybrid';
 
   const [visible, setVisible] = useState(false);
   const [authModalVisible, setAuthModalVisible] = useState(false);
   const enterAnim = useRef(new Animated.Value(0)).current;
+  // зачем: гибрид «Световод» (закон Motion DNA) — вход из света БЕЗ отскока
+  // (LUM.settle), в отличие от боевой пружины enterAnim с перелётом scale/icon.
+  // Независимый sharedValue, боевой путь остаётся нетронутым (тот же приём,
+  // что MedalToast/OfflineBanner).
+  const hybridOpacity = useSharedValue(0);
+  const hybridY = useSharedValue(14);
+  useEffect(() => {
+    if (!isHybrid || !visible) return;
+    hybridOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    hybridY.value = withSpring(0, LUM.settle);
+    return () => {
+      cancelAnimation(hybridOpacity);
+      cancelAnimation(hybridY);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isHybrid, visible]);
+  const hybridEntryStyle = useAnimatedStyle(() => ({
+    opacity: hybridOpacity.value,
+    transform: [{ translateY: hybridY.value }],
+  }));
   const ownerActiveRef = useRef(ownerActive);
   const visibleRef = useRef(visible);
   const dirtyRef = useRef(false);
@@ -190,6 +221,14 @@ function SaveProgressBanner({ ownerActive = true }: SaveProgressBannerProps) {
   }, []);
 
   useEffect(() => {
+    if (isHybrid) {
+      // Гибрид анимирует opacity/translateY сам на Reanimated (hybridOpacity/
+      // hybridY выше). enterAnim здесь используется только как СТАТИЧНЫЙ
+      // источник для icon scale/glow интерполяций ниже — фиксируем на «конце»
+      // сразу, без таймлайна, чтобы не задваивать вход.
+      enterAnim.setValue(1);
+      return;
+    }
     if (!visible) {
       enterAnim.setValue(0);
       return;
@@ -201,7 +240,7 @@ function SaveProgressBanner({ ownerActive = true }: SaveProgressBannerProps) {
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();
-  }, [enterAnim, visible]);
+  }, [enterAnim, isHybrid, visible]);
 
   const handleDismiss = useCallback(async () => {
     hapticTap();
@@ -228,14 +267,20 @@ function SaveProgressBanner({ ownerActive = true }: SaveProgressBannerProps) {
   const iconScale = enterAnim.interpolate({ inputRange: [0, 0.72, 1], outputRange: [0.82, 1.08, 1] });
   const iconGlowOpacity = enterAnim.interpolate({ inputRange: [0, 1], outputRange: [0, 0.62] });
 
+  // зачем: гибрид рендерит вход через Reanimated.View (LUM.settle, без
+  // отскока scale) — боевой путь остаётся на Animated.Value с прежней
+  // пружиной enterAnim (перелёт scale/translateY).
+  const EntryView = isHybrid ? Reanimated.View : Animated.View;
+  const entryStyle = isHybrid
+    ? hybridEntryStyle
+    : {
+        opacity: enterAnim,
+        transform: [{ translateY: bannerTranslateY }, { scale: bannerScale }],
+      };
+
   return (
     <>
-      <Animated.View
-        style={{
-          opacity: enterAnim,
-          transform: [{ translateY: bannerTranslateY }, { scale: bannerScale }],
-        }}
-      >
+      <EntryView style={entryStyle}>
       <PremiumCard
         testID="save-progress-banner"
         level={2}
@@ -418,7 +463,7 @@ function SaveProgressBanner({ ownerActive = true }: SaveProgressBannerProps) {
         </View>
 
       </PremiumCard>
-      </Animated.View>
+      </EntryView>
 
       <RegistrationPromptModal
         visible={authModalVisible}

@@ -48,6 +48,9 @@ import {
   updateLocalNameReferences,
 } from '../../app/nickname_change_helpers';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
+import HybridAlertShell, { CascadeItem } from '../modal_fx/HybridAlertShell';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { LUM } from '../../constants/motionHybrid';
 
 const NAME_AVAILABILITY_DEBOUNCE_MS = 600;
 const NAME_AVAILABILITY_CACHE_LIMIT = 12;
@@ -64,6 +67,8 @@ interface NicknameEditModalProps {
   onRollback: (oldName: string) => void;
   /** Некритичная инлайн-плашка у родителя (null — скрыть). */
   onNotice: (text: string | null) => void;
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 export default function NicknameEditModal({
@@ -73,9 +78,12 @@ export default function NicknameEditModal({
   onOptimisticApply,
   onRollback,
   onNotice,
+  motionVariant = 'classic',
 }: NicknameEditModalProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const reduceMotion = useReduceMotion();
+  const isHybrid = motionVariant === 'hybrid';
   const L = (
     ru: string, uk: string, es: string, ptBr: string,
     vi: string, id: string, tr: string, pl: string,
@@ -313,6 +321,144 @@ export default function NicknameEditModal({
       ? t.wrong
       : t.textMuted;
 
+  const panelContent = (
+    <View
+      style={{
+        width: isHybrid ? '100%' : '80%',
+        minWidth: 280,
+        backgroundColor: t.bgCard,
+        borderRadius: 16,
+        padding: 24,
+      }}
+    >
+      <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
+        <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '600', marginBottom: 16 }}>
+          {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
+        </Text>
+      </CascadeItem>
+      <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
+        <TextInput
+          testID="nickname-input"
+          accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
+          style={{
+            // Поле отделено тоном (bgPrimary на bgCard), без обводки — правило владельца.
+            backgroundColor: t.bgPrimary,
+            color: t.textPrimary,
+            fontSize: f.h2,
+            padding: 14,
+            borderRadius: 10,
+            marginBottom: 8,
+          }}
+          value={newName}
+          onChangeText={setNewName}
+          placeholder={L('Введи имя...', 'Введіть ім\'я...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
+          placeholderTextColor={t.textGhost}
+          editable={!saving}
+          autoFocus={!isHybrid}
+          maxLength={20}
+          returnKeyType="done"
+          onSubmitEditing={() => { if (!saveDisabled) void saveName(); }}
+          blurOnSubmit
+        />
+        <View
+          style={{ minHeight: 20, marginBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 6 }}
+        >
+          {availabilityStatus === 'checking' ? (
+            <ActivityIndicator size="small" color={availabilityColor} />
+          ) : availabilityStatus === 'available' ? (
+            <Ionicons name="checkmark-circle-outline" size={16} color={availabilityColor} />
+          ) : availabilityStatus === 'taken' ? (
+            <Ionicons name="close-circle-outline" size={16} color={availabilityColor} />
+          ) : availabilityStatus === 'error' ? (
+            <Ionicons name="cloud-offline-outline" size={16} color={availabilityColor} />
+          ) : null}
+          {availabilityMessage ? (
+            <Text
+              testID="nickname-availability"
+              accessibilityLiveRegion="polite"
+              style={{ color: availabilityColor, fontSize: f.caption, fontWeight: '600', flexShrink: 1 }}
+            >
+              {availabilityMessage}
+            </Text>
+          ) : null}
+        </View>
+      </CascadeItem>
+      <CascadeItem delay={isHybrid ? LUM.ladder[2] + 192 : 0} reduceMotion={!isHybrid || reduceMotion}>
+        <View style={{ flexDirection: 'row', gap: 12 }}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            disabled={saving}
+            style={{
+              flex: 1,
+              padding: 12,
+              borderRadius: 10,
+              alignItems: 'center',
+              backgroundColor: t.bgSurface,
+              opacity: saving ? 0.6 : 1,
+            }}
+            onPress={() => { if (saving) return; doHaptic(); close(); }}
+          >
+            {/* зачем: text-integrity — лейбл переносится, кнопка растёт по паддингам. */}
+            <FlowText testID="nickname-cancel-label" provenance="authored" style={{ color: t.textMuted, fontSize: f.body }}>
+              {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+            </FlowText>
+          </TouchableOpacity>
+          <TouchableOpacity
+            testID="nickname-save"
+            activeOpacity={0.8}
+            disabled={saveDisabled}
+            accessibilityState={{ disabled: saveDisabled }}
+            style={{
+              flex: 1,
+              padding: 12,
+              borderRadius: 10,
+              backgroundColor: t.accent,
+              alignItems: 'center',
+              minHeight: 48,
+              justifyContent: 'center',
+              opacity: saveDisabled ? 0.72 : 1,
+            }}
+            onPress={() => { if (saveDisabled) return; doHaptic(); void saveName(); }}
+          >
+            <View style={{ minHeight: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, maxWidth: '100%' }}>
+              {saving ? (
+                <ActivityIndicator size="small" color={t.correctText} />
+              ) : null}
+              {/* Статично уменьшенный кегль вместо динамического сжатия шрифта
+                  (запрещённый паттерн): длинные переводы («Kaydediliyor»,
+                  «Zapisywanie») влезают рядом с индикатором, guard-ok.
+                  text-integrity: без усечения — крайний случай переносится,
+                  кнопка растёт по minHeight. */}
+              <FlowText
+                testID="nickname-save-label"
+                provenance="authored"
+                style={{ color: t.correctText, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
+              >
+                {saving
+                  ? L('Сохраняем', 'Зберігаємо', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
+                  : L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
+              </FlowText>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </CascadeItem>
+    </View>
+  );
+
+  if (isHybrid) {
+    return (
+      <HybridAlertShell
+        visible={visible}
+        onRequestClose={close}
+        shadowColor="#000000"
+        backdropColor="rgba(0,0,0,0.7)"
+        testID="nickname-edit-modal-hybrid"
+      >
+        {panelContent}
+      </HybridAlertShell>
+    );
+  }
+
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={close}>
       <Pressable
@@ -320,121 +466,7 @@ export default function NicknameEditModal({
         onPress={close}
       >
         <Pressable onPress={(e) => e.stopPropagation()}>
-          <View
-            style={{
-              width: '80%',
-              minWidth: 280,
-              backgroundColor: t.bgCard,
-              borderRadius: 16,
-              padding: 24,
-            }}
-          >
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '600', marginBottom: 16 }}>
-              {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
-            </Text>
-            <TextInput
-              testID="nickname-input"
-              accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
-              style={{
-                // Поле отделено тоном (bgPrimary на bgCard), без обводки — правило владельца.
-                backgroundColor: t.bgPrimary,
-                color: t.textPrimary,
-                fontSize: f.h2,
-                padding: 14,
-                borderRadius: 10,
-                marginBottom: 8,
-              }}
-              value={newName}
-              onChangeText={setNewName}
-              placeholder={L('Введи имя...', 'Введіть ім\'я...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
-              placeholderTextColor={t.textGhost}
-              editable={!saving}
-              autoFocus
-              maxLength={20}
-              returnKeyType="done"
-              onSubmitEditing={() => { if (!saveDisabled) void saveName(); }}
-              blurOnSubmit
-            />
-            <View
-              style={{ minHeight: 20, marginBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 6 }}
-            >
-              {availabilityStatus === 'checking' ? (
-                <ActivityIndicator size="small" color={availabilityColor} />
-              ) : availabilityStatus === 'available' ? (
-                <Ionicons name="checkmark-circle-outline" size={16} color={availabilityColor} />
-              ) : availabilityStatus === 'taken' ? (
-                <Ionicons name="close-circle-outline" size={16} color={availabilityColor} />
-              ) : availabilityStatus === 'error' ? (
-                <Ionicons name="cloud-offline-outline" size={16} color={availabilityColor} />
-              ) : null}
-              {availabilityMessage ? (
-                <Text
-                  testID="nickname-availability"
-                  accessibilityLiveRegion="polite"
-                  style={{ color: availabilityColor, fontSize: f.caption, fontWeight: '600', flexShrink: 1 }}
-                >
-                  {availabilityMessage}
-                </Text>
-              ) : null}
-            </View>
-            <View style={{ flexDirection: 'row', gap: 12 }}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                disabled={saving}
-                style={{
-                  flex: 1,
-                  padding: 12,
-                  borderRadius: 10,
-                  alignItems: 'center',
-                  backgroundColor: t.bgSurface,
-                  opacity: saving ? 0.6 : 1,
-                }}
-                onPress={() => { if (saving) return; doHaptic(); close(); }}
-              >
-                {/* зачем: text-integrity — лейбл переносится, кнопка растёт по паддингам. */}
-                <FlowText testID="nickname-cancel-label" provenance="authored" style={{ color: t.textMuted, fontSize: f.body }}>
-                  {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-                </FlowText>
-              </TouchableOpacity>
-              <TouchableOpacity
-                testID="nickname-save"
-                activeOpacity={0.8}
-                disabled={saveDisabled}
-                accessibilityState={{ disabled: saveDisabled }}
-                style={{
-                  flex: 1,
-                  padding: 12,
-                  borderRadius: 10,
-                  backgroundColor: t.accent,
-                  alignItems: 'center',
-                  minHeight: 48,
-                  justifyContent: 'center',
-                  opacity: saveDisabled ? 0.72 : 1,
-                }}
-                onPress={() => { if (saveDisabled) return; doHaptic(); void saveName(); }}
-              >
-                <View style={{ minHeight: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, maxWidth: '100%' }}>
-                  {saving ? (
-                    <ActivityIndicator size="small" color={t.correctText} />
-                  ) : null}
-                  {/* Статично уменьшенный кегль вместо динамического сжатия шрифта
-                      (запрещённый паттерн): длинные переводы («Kaydediliyor»,
-                      «Zapisywanie») влезают рядом с индикатором, guard-ok.
-                      text-integrity: без усечения — крайний случай переносится,
-                      кнопка растёт по minHeight. */}
-                  <FlowText
-                    testID="nickname-save-label"
-                    provenance="authored"
-                    style={{ color: t.correctText, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
-                  >
-                    {saving
-                      ? L('Сохраняем', 'Зберігаємо', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
-                      : L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
-                  </FlowText>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
+          {panelContent}
         </Pressable>
       </Pressable>
     </Modal>

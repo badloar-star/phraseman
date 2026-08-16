@@ -623,7 +623,7 @@ export default function LessonHelp() {
       visible={chapterBurstShown}
       title={theoryChapterDoneTitle(lang)}
       subtitle={theoryChapterDoneSubtitle(lang)}
-      heroEmoji="📖"
+      heroIcon="book"
       celebrateSound="chord"
       onDone={() => setChapterBurstShown(false)}
     />

@@ -25,6 +25,15 @@ export const SECTION: ShowcaseSection = {
       kind: 'render',
       render: () => React.createElement(OfflineBanner, { lang: 'ru' }),
     },
+    // зачем: гибрид «Световод» рядом с боевым видом — motionVariant:'hybrid'
+    // включает Reanimated-путь внутри реального OfflineBanner.
+    {
+      id: 'banner-offline-hybrid',
+      title: cs('banner_offline_hybrid_title'),
+      detail: cs('banner_offline_detail'),
+      kind: 'render',
+      render: () => React.createElement(OfflineBanner, { lang: 'ru', motionVariant: 'hybrid' }),
+    },
     {
       id: 'banner-promo',
       title: cs('banner_promo_title'),
@@ -36,6 +45,13 @@ export const SECTION: ShowcaseSection = {
       render: () => React.createElement(PromoBanner),
     },
     {
+      id: 'banner-promo-hybrid',
+      title: cs('banner_promo_hybrid_title'),
+      detail: cs('banner_promo_detail'),
+      kind: 'render',
+      render: () => React.createElement(PromoBanner, { motionVariant: 'hybrid' }),
+    },
+    {
       id: 'banner-save-progress',
       title: cs('banner_save_progress_title'),
       // зачем: shouldShow() читает реальные AsyncStorage/auth — условия
@@ -44,6 +60,13 @@ export const SECTION: ShowcaseSection = {
       detail: cs('banner_save_progress_detail'),
       kind: 'render',
       render: () => React.createElement(SaveProgressBanner, { ownerActive: true }),
+    },
+    {
+      id: 'banner-save-progress-hybrid',
+      title: cs('banner_save_progress_hybrid_title'),
+      detail: cs('banner_save_progress_detail'),
+      kind: 'render',
+      render: () => React.createElement(SaveProgressBanner, { ownerActive: true, motionVariant: 'hybrid' }),
     },
     {
       id: 'banner-rank-change',
@@ -57,6 +80,21 @@ export const SECTION: ShowcaseSection = {
         lang: 'ru',
         duration: 0,
         onClose,
+      }),
+    },
+    {
+      id: 'banner-rank-change-hybrid',
+      title: cs('banner_rank_change_hybrid_title'),
+      detail: cs('arena_rank_change_banner_detail'),
+      kind: 'render',
+      render: ({ onClose }) => React.createElement(RankChangeBanner, {
+        delta: 3,
+        passedName: cs('arena_demo_opponent_name'),
+        lostToName: null,
+        lang: 'ru',
+        duration: 0,
+        onClose,
+        motionVariant: 'hybrid',
       }),
     },
     {

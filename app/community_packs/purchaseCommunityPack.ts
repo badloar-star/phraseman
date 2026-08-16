@@ -209,11 +209,12 @@ export async function purchaseCommunityPackWithShards(
       studyTarget: storageStudyTarget(studyTarget),
       buyerDisplayName,
     });
+    const title = { titleRu: pack.titleRu, titleUk: pack.titleUk, titleEs: pack.titleEs };
     if (res.alreadyOwned) {
-      await addCommunityOwnedPackId(pack.id, studyTarget);
+      await addCommunityOwnedPackId(pack.id, studyTarget, title);
       return 'already_owned';
     }
-    await addCommunityOwnedPackId(pack.id, studyTarget);
+    await addCommunityOwnedPackId(pack.id, studyTarget, title);
     const purchaseId = res.purchaseId || `${buyerStableId}__${pack.id}`;
     const debit = await commitConfirmedExternalShardEvent({
       source: 'community_pack_purchase',
@@ -318,7 +319,9 @@ export async function redeemCommunityPackGiftVoucher(
     await bindPackGiftVoucherSelection(trial.localVoucherId, {
       packId: pack.id, packType: 'community', studyTarget: storageStudyTarget(studyTarget), confirmedAt: Date.now(),
     });
-    await addCommunityOwnedPackId(pack.id, studyTarget);
+    await addCommunityOwnedPackId(pack.id, studyTarget, {
+      titleRu: pack.titleRu, titleUk: pack.titleUk, titleEs: pack.titleEs,
+    });
     await consumePackGiftTrial(trial.localVoucherId);
     void trackCardPackAcquiredAchievement(studyTarget);
     const titleEs = pack.titleEs.trim() || pack.titleUk.trim() || pack.titleRu.trim() || pack.id;

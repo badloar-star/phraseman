@@ -1,6 +1,13 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Linking, PanResponder, Platform, Pressable, Text, View } from 'react-native';
+import { Animated, Easing, Linking, PanResponder, Platform, Pressable, Text, View } from 'react-native';
+import Reanimated, {
+  cancelAnimation,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useLang } from './LangContext';
@@ -10,6 +17,7 @@ import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
 import { animateNextLayoutTransition } from '../app/smooth_layout';
+import { LUM, TOAST } from '../constants/motionHybrid';
 import {
   getPromoBannerAudience,
   getPromoBannerCampaignId,
@@ -76,12 +84,38 @@ async function readState(lang: string, nowMs: number, isPremium: boolean): Promi
   };
 }
 
-export default function PromoBanner() {
+interface PromoBannerProps {
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
+}
+
+export default function PromoBanner({ motionVariant = 'classic' }: PromoBannerProps = {}) {
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
   const { themeMode } = useTheme();
   const insets = useStableSafeAreaInsets();
+  const isHybrid = motionVariant === 'hybrid';
   const translateX = useRef(new Animated.Value(0)).current;
+  // зачем: гибрид «Световод» (закон Motion DNA) — вход сверху из света
+  // (opacity + y -12→0, LUM.settle, без отскока). Свайп-смахивание остаётся
+  // на классическом translateX (Animated.Value), т.к. это ГОРИЗОНТАЛЬНЫЙ жест,
+  // а не вертикальный вход — трогать его не нужно, макет говорит только про вход/выход.
+  const hybridOpacity = useSharedValue(0);
+  const hybridY = useSharedValue(-12);
+  useEffect(() => {
+    if (!isHybrid) return;
+    hybridOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    hybridY.value = withSpring(0, LUM.settle);
+    return () => {
+      cancelAnimation(hybridOpacity);
+      cancelAnimation(hybridY);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isHybrid]);
+  const hybridEntryStyle = useAnimatedStyle(() => ({
+    opacity: hybridOpacity.value,
+    transform: [{ translateY: hybridY.value }],
+  }));
   const [state, setState] = useState<PromoState>({
     visible: false,
     text: '',
@@ -132,9 +166,10 @@ export default function PromoBanner() {
 
   const dismiss = useCallback(() => {
     if (state.dismissalKey) void markCampaignDismissed(state.dismissalKey);
+    // Выход короче входа (закон №15): TOAST.exitMs в гибриде вместо 180мс classic.
     Animated.timing(translateX, {
       toValue: 420,
-      duration: 180,
+      duration: isHybrid ? TOAST.exitMs : 180,
       useNativeDriver: true,
     }).start(() => {
       translateX.setValue(0);
@@ -144,7 +179,7 @@ export default function PromoBanner() {
       lastVisibleRef.current = false;
       setState((prev) => ({ ...prev, visible: false }));
     });
-  }, [state.dismissalKey, translateX]);
+  }, [isHybrid, state.dismissalKey, translateX]);
 
   const panResponder = useMemo(() => PanResponder.create({
     onMoveShouldSetPanResponder: (_, gesture) => Math.abs(gesture.dx) > 14 && Math.abs(gesture.dx) > Math.abs(gesture.dy),
@@ -188,7 +223,10 @@ export default function PromoBanner() {
     </Text>
   );
 
-  return (
+  // зачем: гибрид оборачивает боевую карточку (со свайпом на Animated.Value) в
+  // отдельный Reanimated.View, который управляет ТОЛЬКО входом из света —
+  // два независимых слоя transform не конфликтуют (закон: не задваивать анимацию).
+  const banner = (
     <Animated.View
       {...panResponder.panHandlers}
       style={{
@@ -252,4 +290,9 @@ export default function PromoBanner() {
       </View>
     </Animated.View>
   );
+
+  if (isHybrid) {
+    return <Reanimated.View style={hybridEntryStyle}>{banner}</Reanimated.View>;
+  }
+  return banner;
 }

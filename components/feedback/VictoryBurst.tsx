@@ -22,6 +22,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import fk, { type MilestoneKind } from '../../app/feedback/feedback_kit';
 import ConfettiBurst from './ConfettiBurst';
@@ -40,8 +41,8 @@ export interface VictoryBurstProps {
   autoHideMs?: number;
   /** Какой финальный звук/веху сыграть на появление. */
   celebrateSound?: Extract<MilestoneKind, 'medal' | 'chord'>;
-  /** Эмодзи-герой по центру карточки. */
-  heroEmoji?: string;
+  /** Иконка-герой по центру карточки (Ionicons). зачем: эмодзи в UI запрещены владельцем. */
+  heroIcon?: keyof typeof Ionicons.glyphMap;
   /**
    * Число частиц конфетти (усиление для «перфект»-финалов). Дефолт 60;
    * ConfettiBurst сам капит на ≤120 и делит на слабых устройствах (Perf Bible).
@@ -57,7 +58,7 @@ export function VictoryBurst({
   onDone,
   autoHideMs = 2200,
   celebrateSound = 'medal',
-  heroEmoji = '🎉',
+  heroIcon = 'sparkles',
   confettiCount = 60,
 }: VictoryBurstProps) {
   const { theme: t } = useTheme();
@@ -121,7 +122,7 @@ export function VictoryBurst({
           cardStyle,
         ]}
       >
-        <Text style={styles.hero}>{heroEmoji}</Text>
+        <Ionicons name={heroIcon} size={56} color={t.accent} style={styles.hero} />
         <Text style={[styles.title, { color: t.textPrimary }]} numberOfLines={2}>
           {title}
         </Text>
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     maxWidth: 380,
     width: '100%',
   },
-  hero: { fontSize: 60, textAlign: 'center' },
+  hero: { textAlign: 'center' },
   title: { fontSize: 24, fontWeight: '900', textAlign: 'center', marginTop: 8, letterSpacing: 0.2 },
   subtitle: { fontSize: 15, fontWeight: '600', textAlign: 'center', marginTop: 6, lineHeight: 21 },
   statsRow: { flexDirection: 'row', gap: 10, marginTop: 20 },

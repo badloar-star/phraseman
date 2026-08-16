@@ -9,7 +9,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useTheme } from './ThemeContext';
-import { hapticTap } from '../hooks/use-haptics';
+import { hapticTap, hapticWarning } from '../hooks/use-haptics';
 import GoldBevel from './GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../constants/oliveTheme';
@@ -153,50 +153,31 @@ function ThemedConfirmModal({
     [dragY, onCancel],
   );
 
-  return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
-      {/* Тап по затемнённому фону = отмена. На iOS нет аппаратной кнопки «назад»,
-          так что тап-снаружи — привычный способ закрыть диалог одним касанием.
-          Тап по самой карточке НЕ закрывает (Pressable ниже гасит всплытие). */}
-      <Pressable
-        onPress={() => {
-          hapticTap();
-          onCancel();
-        }}
-        accessibilityLabel={cancelLabel}
+  const panelContent = (
+    <Reanimated.View style={isHybrid ? shakeStyle : undefined}>
+      <LinearGradient
+        testID={testIDPrefix ? `${testIDPrefix}-modal` : undefined}
+        colors={modalColors}
+        locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+        start={isGoldTheme ? { x: 0, y: 0 } : undefined}
+        end={isGoldTheme ? { x: 1, y: 1 } : undefined}
         style={{
-          flex: 1,
-          backgroundColor: dim,
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 24,
+          borderRadius: modalRadius,
+          padding: 22,
+          width: '100%',
+          borderWidth: 0,
+          borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
+          overflow: 'hidden',
+          ...(isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(3) : {}),
         }}
       >
-        <Animated.View
-          {...panResponder.panHandlers}
-          style={{ width: '100%', maxWidth: 360, transform: [{ translateY: dragY }] }}
-        >
-        <Pressable onPress={(e) => e.stopPropagation()} style={{ width: '100%' }}>
-        <LinearGradient
-          testID={testIDPrefix ? `${testIDPrefix}-modal` : undefined}
-          colors={modalColors}
-          locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-          start={isGoldTheme ? { x: 0, y: 0 } : undefined}
-          end={isGoldTheme ? { x: 1, y: 1 } : undefined}
-          style={{
-            borderRadius: modalRadius,
-            padding: 22,
-            width: '100%',
-            borderWidth: 0,
-            borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
-            overflow: 'hidden',
-            ...(isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(3) : {}),
-          }}
-        >
-          {isGoldTheme && <GoldBevel radius={16} intensity="strong" />}
+        {isGoldTheme && <GoldBevel radius={16} intensity="strong" />}
+        <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 10, zIndex: 10 }}>
             {title}
           </Text>
+        </CascadeItem>
+        <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
           {messageNode ? (
             <View style={{ zIndex: 10, marginBottom: 22 }}>{messageNode}</View>
           ) : (
@@ -212,13 +193,20 @@ function ThemedConfirmModal({
               {message}
             </Text>
           )}
-          {/* Единый стандарт: primary (confirm) на всю ширину сверху, отмена —
-              центрированная текстовая кнопка под ней. */}
+        </CascadeItem>
+        {/* Единый стандарт: primary (confirm) на всю ширину сверху, отмена —
+            центрированная текстовая кнопка под ней. */}
+        <CascadeItem delay={isHybrid ? LUM.ladder[2] + 192 : 0} reduceMotion={!isHybrid || reduceMotion}>
           <View style={{ flexDirection: 'column', gap: 4, zIndex: 10 }}>
             <TouchableOpacity
               testID={testIDPrefix ? `${testIDPrefix}-confirm` : undefined}
               onPress={() => {
-                hapticTap();
+                if (isHybrid && destructive) {
+                  hapticWarning();
+                  runDangerShake();
+                } else {
+                  hapticTap();
+                }
                 onConfirm();
               }}
               style={{
@@ -274,7 +262,53 @@ function ThemedConfirmModal({
               </Text>
             </TouchableOpacity>
           </View>
-        </LinearGradient>
+        </CascadeItem>
+      </LinearGradient>
+    </Reanimated.View>
+  );
+
+  // зачем: гибрид переиспользует общий шелл семьи (свет без отскока, единый
+  // бэкдроп/закрытие) — свайп-вниз здесь не переносим, у шелла уже есть тап по
+  // бэкдропу и аппаратное «назад»; свайп остаётся только в classic (без него
+  // тестировать регресс на живых экранах владелец не просил).
+  if (isHybrid) {
+    return (
+      <HybridAlertShell
+        visible={visible}
+        onRequestClose={onCancel}
+        shadowColor={isGoldTheme ? GOLD_RICH.hairlineStrong : isOliveTheme ? undefined : '#000000'}
+        testID={testIDPrefix ? `${testIDPrefix}-modal-hybrid` : 'themed-confirm-modal-hybrid'}
+      >
+        {panelContent}
+      </HybridAlertShell>
+    );
+  }
+
+  return (
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
+      {/* Тап по затемнённому фону = отмена. На iOS нет аппаратной кнопки «назад»,
+          так что тап-снаружи — привычный способ закрыть диалог одним касанием.
+          Тап по самой карточке НЕ закрывает (Pressable ниже гасит всплытие). */}
+      <Pressable
+        onPress={() => {
+          hapticTap();
+          onCancel();
+        }}
+        accessibilityLabel={cancelLabel}
+        style={{
+          flex: 1,
+          backgroundColor: dim,
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: 24,
+        }}
+      >
+        <Animated.View
+          {...panResponder.panHandlers}
+          style={{ width: '100%', maxWidth: 360, transform: [{ translateY: dragY }] }}
+        >
+        <Pressable onPress={(e) => e.stopPropagation()} style={{ width: '100%' }}>
+          {panelContent}
         </Pressable>
         </Animated.View>
       </Pressable>

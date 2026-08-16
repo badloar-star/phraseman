@@ -530,6 +530,11 @@ export function flashcardsCommunityOwnedPacksKey(studyTarget?: RuntimeStudyTarge
   return scopedOrLegacyKey('community_owned_pack_ids_v1', 'flashcards', studyTarget);
 }
 
+/** Заголовки community-паков рядом с их id — см. `communityOwnedStorage.ts`. */
+export function flashcardsCommunityOwnedPackTitlesKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('community_owned_pack_titles_v1', 'flashcards', studyTarget);
+}
+
 export function flashcardsLocalAuthorPacksKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('community_local_author_packs_v1', 'flashcards', studyTarget);
 }

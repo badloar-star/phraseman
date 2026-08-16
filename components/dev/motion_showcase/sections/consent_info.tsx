@@ -38,6 +38,21 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'ai-dialog-consent-hybrid',
+      title: cs('ai_dialog_consent_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <AiDialogConsentModal
+          visible={visible}
+          lang={DEMO_LANG}
+          onAccept={onClose}
+          onDecline={onClose}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'ai-explain-consent',
       title: cs('ai_explain_consent_title'),
       detail: cs('real_component'),
@@ -52,6 +67,21 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'ai-explain-consent-hybrid',
+      title: cs('ai_explain_consent_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <AiExplainConsentModal
+          visible={visible}
+          lang={DEMO_LANG}
+          onAccept={onClose}
+          onDecline={onClose}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'notification-permission',
       title: cs('notification_permission_title'),
       detail: cs('notification_permission_detail'),
@@ -62,6 +92,21 @@ export const SECTION: ShowcaseSection = {
           lang={DEMO_LANG}
           onConfirm={onClose}
           onCancel={onClose}
+        />
+      ),
+    },
+    {
+      id: 'notification-permission-hybrid',
+      title: cs('notification_permission_hybrid_title'),
+      detail: cs('notification_permission_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <NotificationPermissionModal
+          visible={visible}
+          lang={DEMO_LANG}
+          onConfirm={onClose}
+          onCancel={onClose}
+          motionVariant="hybrid"
         />
       ),
     },

@@ -217,6 +217,22 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'celebrations-referral-friend-reward-hybrid',
+      title: cs('celebrations_referral_friend_reward_hybrid_title'),
+      detail: cs('celebrations_referral_friend_reward_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <ReferralFriendRewardModal
+          data={visible ? { name: cs('celebrations_referral_friend_name') } : null}
+          onClose={onClose}
+          title={cs('celebrations_referral_friend_reward_modal_title')}
+          subtitle={cs('celebrations_referral_friend_reward_modal_subtitle')}
+          ctaLabel={cs('celebrations_referral_friend_reward_cta')}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'celebrations-loyalty-gift',
       title: cs('celebrations_loyalty_gift_title'),
       kind: 'note',
@@ -239,6 +255,25 @@ export const SECTION: ShowcaseSection = {
           goalsTotal={3}
           heroIcon="ribbon"
           moodIcon="happy"
+          onDone={onClose}
+        />
+      ),
+    },
+    {
+      id: 'celebrations-dialog-victory-hybrid',
+      title: cs('celebrations_dialog_victory_hybrid_title'),
+      detail: cs('celebrations_dialog_victory_detail'),
+      kind: 'render',
+      render: ({ onClose }) => (
+        <DialogVictoryCelebration
+          lang="ru"
+          xp={120}
+          replies={8}
+          goalsMet={3}
+          goalsTotal={3}
+          heroIcon="ribbon"
+          moodIcon="happy"
+          motionVariant="hybrid"
           onDone={onClose}
         />
       ),

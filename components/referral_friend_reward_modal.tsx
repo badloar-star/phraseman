@@ -20,6 +20,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useTheme } from './ThemeContext';
+import ReferralFriendRewardHybrid from './celebration/ReferralFriendRewardHybrid';
 
 export interface FriendRewardCelebrationData {
   name: string;
@@ -31,9 +32,15 @@ interface Props {
   title: string;
   subtitle: string;
   ctaLabel: string;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена M3 «Сундук-награда») живёт РЯДОМ со старой версией под флагом.
+   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-export default function ReferralFriendRewardModal({ data, onClose, title, subtitle, ctaLabel }: Props) {
+export default function ReferralFriendRewardModal({ data, onClose, title, subtitle, ctaLabel, motionVariant = 'classic' }: Props) {
   const { theme: t, f, ds } = useTheme();
   const scale = useSharedValue(0.88);
   const opacity = useSharedValue(0);
@@ -54,6 +61,18 @@ export default function ReferralFriendRewardModal({ data, onClose, title, subtit
   }));
 
   if (!data) return null;
+
+  if (motionVariant === 'hybrid') {
+    return (
+      <ReferralFriendRewardHybrid
+        visible={!!data}
+        title={title}
+        subtitle={subtitle}
+        ctaLabel={ctaLabel}
+        onClose={onClose}
+      />
+    );
+  }
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={onClose} statusBarTranslucent>

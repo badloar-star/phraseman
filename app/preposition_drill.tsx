@@ -833,7 +833,7 @@ export default function PrepositionDrillScreen() {
                 visible={victoryShown}
                 title={prepDrillDoneTitle(lang)}
                 subtitle={prepDrillDoneSubtitle(lang, correctCount, total)}
-                heroEmoji={perfectRun ? '🏆' : '🎯'}
+                heroIcon={perfectRun ? 'trophy' : 'flag'}
                 celebrateSound={perfectRun ? 'chord' : 'medal'}
                 confettiCount={perfectRun ? 120 : 60}
                 onDone={() => setVictoryShown(false)}

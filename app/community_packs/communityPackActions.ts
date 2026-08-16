@@ -47,7 +47,9 @@ export async function addCommunityPackToLibrary(
   const owned = await loadCommunityOwnedPackIds(studyTarget);
   if (owned.includes(pack.id)) return 'already_added';
 
-  await addCommunityOwnedPackId(pack.id, studyTarget);
+  await addCommunityOwnedPackId(pack.id, studyTarget, {
+    titleRu: pack.titleRu, titleUk: pack.titleUk, titleEs: pack.titleEs,
+  });
   void bumpAddedCountOnce(pack.id);
 
   const titleEs = pack.titleEs?.trim() || pack.titleUk?.trim() || pack.titleRu?.trim() || pack.id;

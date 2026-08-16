@@ -7,7 +7,7 @@
 // LeagueBonusAvailableModal.motionVariant='hybrid' — боевой путь не тронут.
 import React, { memo, useEffect } from 'react';
 import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Svg, { Circle } from 'react-native-svg';
+import Svg, { Circle, Defs, Ellipse, RadialGradient, Stop } from 'react-native-svg';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -268,15 +268,37 @@ function LeagueBonusBeaconOrb({
               </Svg>
               <WeekTicks bg={t.bgCard} />
             </Animated.View>
-            <View style={[styles.core, { backgroundColor: modalTheme.eyebrow }]}>
-              <Ionicons name="gift" size={30} color="#5A3E0A" />
+            {/* зачем: владелец забраковал плоский орб («так себе») — макет требует
+                стеклянный корпус (радиальный блик светлого пятна на золоте, тёмная
+                кромка) + отдельный блик-полумесяц сверху (.ob-core/.ob-core::before). */}
+            <View style={styles.core}>
+              <Svg width={ORB_SIZE - 30} height={ORB_SIZE - 30} style={StyleSheet.absoluteFill}>
+                <Defs>
+                  <RadialGradient id="orbCoreBody" cx="34%" cy="26%" r="80%">
+                    <Stop offset="0" stopColor="#FEF6DA" />
+                    <Stop offset="0.52" stopColor={modalTheme.eyebrow} />
+                    {/* зачем: тёмная кромка сферы — берём последний стоп рамки (самый
+                        тёмный тон её градиента), отдельного поля в палитре заводить не стали. */}
+                    <Stop offset="1" stopColor={modalTheme.frame[2]} />
+                  </RadialGradient>
+                  <RadialGradient id="orbCoreBlik" cx="50%" cy="50%" r="50%">
+                    <Stop offset="0" stopColor="#FFFFFF" stopOpacity="0.75" />
+                    <Stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+                  </RadialGradient>
+                </Defs>
+                <Circle cx={(ORB_SIZE - 30) / 2} cy={(ORB_SIZE - 30) / 2} r={(ORB_SIZE - 30) / 2} fill="url(#orbCoreBody)" />
+                <Ellipse cx={(ORB_SIZE - 30) * 0.37} cy={(ORB_SIZE - 30) * 0.25} rx={(ORB_SIZE - 30) * 0.21} ry={(ORB_SIZE - 30) * 0.15} fill="url(#orbCoreBlik)" />
+              </Svg>
+              <Ionicons name="gift" size={30} color="#5A3E0A" style={styles.coreIcon} />
             </View>
             <Animated.Text style={[styles.dayLabel, { color: modalTheme.eyebrow }, dayStyle]}>
               {dayLabelFor(lang, days)}
             </Animated.Text>
           </Animated.View>
 
-          {/* Панель выходит из света орба. */}
+          {/* Панель выходит из света орба: глоу над карточкой (.ob-panel::before
+              в макете) — визуальная нить, которая связывает панель со светом орба,
+              без него панель «отрывается» от сцены и выглядит как обычная карточка. */}
           <Animated.View
             style={[
               styles.panel,
@@ -288,6 +310,7 @@ function LeagueBonusBeaconOrb({
               panelStyle,
             ]}
           >
+            <View pointerEvents="none" style={[styles.panelGlow, { backgroundColor: modalTheme.halo }]} />
             <Text style={[styles.panelTitle, { color: t.textPrimary, fontSize: Math.max(17, f.h2) }]}>
               {isCrownWinner ? copyFor('crown', lang) : copyFor('ready', lang)}
             </Text>
@@ -381,6 +404,18 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
+    shadowColor: '#000000',
+    shadowOpacity: 0.4,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 10 },
+  },
+  coreIcon: {
+    // зачем: свет-блик и радиальный градиент рисуются в SVG под иконкой; сама
+    // иконка держит небольшую тень, иначе тонет в светлом пятне блика.
+    textShadowColor: 'rgba(0,0,0,0.35)',
+    textShadowRadius: 3,
+    textShadowOffset: { width: 0, height: 1 },
   },
   dayLabel: {
     position: 'absolute',
@@ -400,6 +435,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.28,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 10 },
+  },
+  panelGlow: {
+    position: 'absolute',
+    left: '16%',
+    right: '16%',
+    top: -30,
+    height: 60,
+    borderRadius: 30,
+    opacity: 0.4,
   },
   panelTitle: {
     fontWeight: '700',

@@ -6,6 +6,9 @@ import { submitUserReport } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from '../app/events';
+import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { LUM } from '../constants/motionHybrid';
 
 interface Props {
   visible: boolean;
@@ -14,10 +17,14 @@ interface Props {
   screen: 'leaderboard' | 'profile';
   lang: Lang;
   onClose: () => void;
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose }: Props) {
+function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, motionVariant = 'classic' }: Props) {
   const { theme: t, themeMode, f } = useTheme();
+  const reduceMotion = useReduceMotion();
+  const isHybrid = motionVariant === 'hybrid';
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -109,6 +116,100 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
     }
   };
 
+  const panelContent = (
+    <View style={{
+      backgroundColor: t.bgCard,
+      borderRadius: 16,
+      padding: 24,
+      width: '100%',
+      maxWidth: 320,
+      borderWidth: 0,
+      borderColor: t.border,
+      alignItems: 'center',
+      overflow: 'hidden',
+    }}>
+      <Ionicons name="flag-outline" size={28} color={t.wrong} style={{ marginBottom: 12 }} />
+
+      {done ? (
+        <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '700' }}>
+          {tx.sent}
+        </Text>
+      ) : (
+        <>
+          <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
+            {/* зачем: text-integrity — заголовок и ник переносятся, карточка
+                растёт; ник — пользовательский контент (provenance user). */}
+            <FlowText
+              testID="report-user-title"
+              provenance="authored"
+              style={{
+                color: t.textPrimary,
+                fontSize: f.h3,
+                fontWeight: '700',
+                marginBottom: 6,
+                textAlign: 'center',
+                alignSelf: 'stretch',
+              }}
+            >
+              {tx.title}
+            </FlowText>
+            <FlowText testID="report-user-name" provenance="user" style={{ color: t.textSecond, fontSize: f.body, marginBottom: 20, textAlign: 'center' }}>
+              {reportedName}
+            </FlowText>
+          </CascadeItem>
+          <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
+            <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>
+              <TouchableOpacity
+                onPress={() => {
+                  hapticTap();
+                  handleClose();
+                }}
+                style={{
+                  flex: 1, paddingVertical: 11, borderRadius: 10,
+                  backgroundColor: t.bgPrimary,
+                  borderWidth: 0,
+                  borderColor: t.border,
+                  overflow: 'hidden',
+                }}
+              >
+                <Text style={{ color: t.textSecond, textAlign: 'center', fontSize: f.body }}>
+                  {tx.cancel}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleSend}
+                disabled={loading}
+                style={{ flex: 1, paddingVertical: 11, borderRadius: 10, backgroundColor: t.accent, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}
+              >
+                {false && loading ? <View />
+                  : <Text style={{ color: t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
+                      {tx.send}
+                    </Text>
+                }
+              </TouchableOpacity>
+            </View>
+          </CascadeItem>
+        </>
+      )}
+    </View>
+  );
+
+  if (isHybrid) {
+    return (
+      <HybridAlertShell
+        visible={visible}
+        onRequestClose={handleClose}
+        shadowColor="#000000"
+        backdropColor="rgba(0,0,0,0.53)"
+        testID="report-user-modal-hybrid"
+      >
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+          {panelContent}
+        </KeyboardAvoidingView>
+      </HybridAlertShell>
+    );
+  }
+
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose}>
       <KeyboardAvoidingView
@@ -140,77 +241,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
         }}
       >
         <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 320, alignItems: 'stretch' }}>
-          <View style={{
-            backgroundColor: t.bgCard,
-            borderRadius: 16,
-            padding: 24,
-            width: '100%',
-            maxWidth: 320,
-            borderWidth: 0,
-            borderColor: t.border,
-            alignItems: 'center',
-            overflow: 'hidden',
-          }}>
-            <Text style={{ fontSize: 32, marginBottom: 12 }}>🚩</Text>
-
-            {done ? (
-              <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '700' }}>
-                {tx.sent}
-              </Text>
-            ) : (
-              <>
-                {/* зачем: text-integrity — заголовок и ник переносятся, карточка
-                    растёт; ник — пользовательский контент (provenance user). */}
-                <FlowText
-                  testID="report-user-title"
-                  provenance="authored"
-                  style={{
-                    color: t.textPrimary,
-                    fontSize: f.h3,
-                    fontWeight: '700',
-                    marginBottom: 6,
-                    textAlign: 'center',
-                    alignSelf: 'stretch',
-                  }}
-                >
-                  {tx.title}
-                </FlowText>
-                <FlowText testID="report-user-name" provenance="user" style={{ color: t.textSecond, fontSize: f.body, marginBottom: 20, textAlign: 'center' }}>
-                  {reportedName}
-                </FlowText>
-                <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      hapticTap();
-                      handleClose();
-                    }}
-                    style={{
-                      flex: 1, paddingVertical: 11, borderRadius: 10,
-                      backgroundColor: t.bgPrimary,
-                      borderWidth: 0,
-                      borderColor: t.border,
-                      overflow: 'hidden',
-                    }}
-                  >
-                    <Text style={{ color: t.textSecond, textAlign: 'center', fontSize: f.body }}>
-                      {tx.cancel}
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={handleSend}
-                    disabled={loading}
-                    style={{ flex: 1, paddingVertical: 11, borderRadius: 10, backgroundColor: t.accent, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}
-                  >
-                    {false && loading ? <View />
-                      : <Text style={{ color: t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
-                          {tx.send}
-                        </Text>
-                    }
-                  </TouchableOpacity>
-                </View>
-              </>
-            )}
-          </View>
+          {panelContent}
         </TouchableOpacity>
       </TouchableOpacity>
         </ScrollView>

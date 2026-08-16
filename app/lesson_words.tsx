@@ -3204,7 +3204,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         visible={victoryShown}
         title={wordsSessionDoneTitle(lang)}
         subtitle={wordsSessionDoneSubtitle(lang, learnedCnt, words.length)}
-        heroEmoji="📚"
+        heroIcon="library"
         celebrateSound="medal"
         onDone={() => setVictoryShown(false)}
       />

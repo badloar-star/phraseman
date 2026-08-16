@@ -2345,18 +2345,11 @@ service cloud.firestore {
     match /quiz_explanations/{quizHash} {
       allow read, write: if false;
     }
-    match /quiz_explain_billing/{docId} {
-      allow read: if false;
-      allow write: if false;
-    }
-
-    // Компас: кэш тёплого комментария дня. Публично читается только готовый
-    // серверный результат; клиентские записи запрещены, удаление доступно админу.
-    match /compass_briefings/{hash} {
-      allow read: if true;
-      allow create, update: if false;
-      allow delete: if isAdmin();
-    }
+    // зачем удалены правила quiz_explain_billing и compass_briefings
+    // (аудит 2026-08-16): обе функции снесены, кода нет нигде. У
+    // compass_briefings при этом стояло `allow read: if true` — коллекция
+    // без владельца оставалась открытой на чтение кому угодно.
+    // Правила удалены, коллекции закрываются общим deny в конце файла.
 
     // Исторический биллинг голосовой части Компаса остаётся закрытым.
     match /compass_billing/{docId} {
@@ -2366,18 +2359,6 @@ service cloud.firestore {
 
     // Compass why-now AI is callable-only. Cache is account-scoped on the server;
     // rate, budget, and billing records must never be readable or writable by apps.
-    match /compass_why_cache/{docId} {
-      allow read, write: if false;
-    }
-    match /compass_why_rate_limits/{docId} {
-      allow read, write: if false;
-    }
-    match /compass_why_daily_budget/{docId} {
-      allow read, write: if false;
-    }
-    match /compass_why_billing/{docId} {
-      allow read, write: if false;
-    }
 
     // Внутренние CF-only коллекции фичи: бюджет/лимиты/биллинг. Всё пишет и читает только
     // сервер (Admin SDK). НЕ через isAdmin(): эти коллекции НЕ открыты admin-панели
@@ -2395,20 +2376,9 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // Произношение (scorePronunciationAttempt): лимиты/квоты/бюджет — только сервер (Admin SDK).
-    // Защищают OpenAI-кошелёк: часовой rate-limit, дневная квота на юзера, глобальный потолок.
-    match /pronunciation_score_rate_limits/{docId} {
-      allow read: if false;
-      allow write: if false;
-    }
-    match /pronunciation_score_daily_quota/{docId} {
-      allow read: if false;
-      allow write: if false;
-    }
-    match /pronunciation_global_budget/{docId} {
-      allow read: if false;
-      allow write: if false;
-    }
+    // зачем удалены правила произношения (аудит 2026-08-16): функция
+    // scorePronunciationAttempt снесена, её лимиты и квоты больше никем не
+    // читаются и не пишутся. Коллекции закрываются общим deny в конце файла.
 
     // Жалобы «Непонятно объяснили»: ПИШЕТ только CF submitExplainReport (Admin SDK), а
     // админ-панель ЧИТАЕТ и разбирает их (раздел «Непонятно объяснили») — паттерн user_reports.
@@ -2436,27 +2406,6 @@ service cloud.firestore {
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Agent Office is a server-owned control ledger. Canonical records are
     // reachable only through role-checked Cloud Functions using Admin SDK.
-    match /agent_cases/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_recommendations/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_approvals/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_tasks/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_audit_events/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_office_control/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_telegram_tokens/{document=**} {
-      allow read, write: if false;
-    }
     // Одноразовые approval-токены Джарвиса. Полностью закрыты браузеру:
     // документ содержит хеш nonce, и даже чтение помогло бы подбору.
     match /jarvis_approval_tokens/{document=**} {
@@ -2547,45 +2496,6 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /jarvis_github_outbox/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_observation_receipts/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_agents/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_tasks/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_task_events/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_approvals/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_execution_jobs/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_inbox_links/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_telegram_tokens/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_telegram_publication_receipts/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_local_runner_pairings/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_local_runner_capabilities/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_local_runner_leases/{document=**} {
-      allow read, write: if false;
-    }
-    match /agent_manager_support_draft_operations/{document=**} {
       allow read, write: if false;
     }
 
@@ -2796,12 +2706,6 @@ service cloud.firestore {
     // Learning V2 Content Studio authoring state is callable/Admin-SDK only.
     // Firestore allow expressions are OR-combined across overlapping matches,
     // so these exact deny blocks rely on the final catch-all also being deny-only.
-    match /content_mode_templates/{docId} {
-      allow read, write: if false;
-    }
-    match /content_mode_template_draft_revisions/{docId} {
-      allow read, write: if false;
-    }
     match /content_mode_template_versions/{docId} {
       allow read, write: if false;
     }
@@ -2847,12 +2751,6 @@ service cloud.firestore {
     match /content_episode_lifecycle_operations/{docId} {
       allow read, write: if false;
     }
-    match /content_studio_review_queue/{docId} {
-      allow read, write: if false;
-    }
-    match /content_studio_localization_units/{docId} {
-      allow read, write: if false;
-    }
     match /content_studio_review_receipts/{docId} {
       allow read, write: if false;
     }
@@ -2884,15 +2782,6 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /content_studio_gate_operations/{docId} {
-      allow read, write: if false;
-    }
-    match /content_studio_waivers/{docId} {
-      allow read, write: if false;
-    }
-    match /content_studio_preview_sessions/{docId} {
-      allow read, write: if false;
-    }
-    match /content_studio_preview_receipts/{docId} {
       allow read, write: if false;
     }
     match /content_app_support_manifests/{docId} {

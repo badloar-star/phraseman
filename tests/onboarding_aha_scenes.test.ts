@@ -68,9 +68,11 @@ describe('resolveAhaScenario: маппинг цели -> сценарий', () =
     ['words', 'everyday'],
     ['mind', 'self'],
     ['work', 'work'],
-    [null, 'self'],
-    ['unknown', 'self'],
-    [undefined, 'self'],
+    // Онбординг больше не спрашивает цель: без неё всегда играет витринная
+    // сцена «кафе» (travel) — решение владельца, 2026-08-16.
+    [null, 'travel'],
+    ['unknown', 'travel'],
+    [undefined, 'travel'],
   ];
 
   it.each(cases)('%s -> %s', (goal, expectedId) => {

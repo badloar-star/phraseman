@@ -112,7 +112,7 @@ describe('personal plan premium activation contract', () => {
     expect(onboarding).toContain('export type CleanOnboardingStep =');
     // Минимальный флоу (владелец, 2026-08-16): анкета плана удалена, вместо неё
     // promise/trialReminder; язык (language+level) — отключаемый блок каталога.
-    for (const step of ['level', 'promise', 'notifications', 'trialReminder', 'onboardingPaywall', 'name']) {
+    for (const step of ['level', 'aha', 'notifications', 'trialReminder', 'onboardingPaywall', 'name']) {
       expect(onboarding).toContain(`'${step}'`);
     }
     expect(onboarding).not.toContain("'miniAha'");

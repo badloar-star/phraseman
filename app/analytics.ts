@@ -121,7 +121,6 @@ export type AnalyticsEvent =
   | 'onboarding_continue_free'    // «Продолжить без плана»
   | 'onboarding_promo_redeemed'   // промокод активирован из меню пейвола (props.kind)
   | 'onboarding_referral_applied' // код друга применён из меню пейвола (props.already)
-  | 'onboarding_newsletter_optin' // решение по рассылке на финальном шаге (props.optin)
   | 'intro_full_access_started'   // активирован 72ч полный доступ
   | 'intro_welcome_shown'
   | 'intro_welcome_cta'

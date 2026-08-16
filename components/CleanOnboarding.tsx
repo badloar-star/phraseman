@@ -114,14 +114,13 @@ export type CleanOnboardingStep =
   | 'welcome'
   | 'language'
   | 'level'
-  | 'promise'
   | 'aha'
   | 'notifications'
   | 'trialReminder'
   | 'onboardingPaywall'
   | 'name';
 
-export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_minimal_wow_flow_2026_08_16';
+export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_minimal_wow_flow_2026_08_16b';
 const ONBOARDING_AUTH_UI_TIMEOUT_MS = 45_000;
 
 async function withOnboardingAuthUiDeadline<T>(task: Promise<T>): Promise<T> {
@@ -143,13 +142,12 @@ async function withOnboardingAuthUiDeadline<T>(task: Promise<T>): Promise<T> {
 const SHOW_ONBOARDING_LANGUAGE_STEP = false;
 // Минимальный флоу (владелец, 2026-08-16): анкета про построение плана удалена
 // вместе с планами. Порядок: welcome (вход + согласие строкой) → блок языка
-// (language+level, выключен, пока язык один) → promise (вау-обещание) → АХ-сцена
-// (живая ценность) → уведомления → честное «предупредим до конца пробного» →
-// пейвол → возраст/согласия.
+// (language+level, выключен, пока язык один) → АХ-сцена (одна продуманная
+// демонстрация: сборка фразы + голос — вау-момент) → уведомления → честное
+// «предупредим до конца пробного» → пейвол → возраст/согласия.
 export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'welcome',
   ...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : []),
-  'promise',
   'aha',
   'notifications',
   'trialReminder',
@@ -171,9 +169,6 @@ const PLAN_LEVEL_KEY = 'onboarding_plan_level';
 const PLAN_BILLING_KEY = 'onboarding_plan_billing';
 const LEGAL_ACCEPTED_KEY = 'onboarding_terms_privacy_accepted_v1';
 const ANALYTICS_HELP_KEY = 'onboarding_analytics_help_v1';
-// Подписка на письма: галочка стоит заранее (решение владельца, 2026-08-16 —
-// риск Planet49/GDPR для EU озвучен и принят), снимается тапом по ВСЕЙ строке.
-const NEWSLETTER_OPTIN_KEY = 'onboarding_newsletter_optin_v1';
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 type LevelChoice = 'a0' | 'a1' | 'a2' | 'b1' | 'b2';
 type AgeAnswer = 'yes' | 'no' | null;
@@ -200,7 +195,7 @@ const LEVEL_OPTIONS: Option<LevelChoice>[] = [
 
 function normalizedStoredStep(value: string | null): CleanOnboardingStep | null {
   if (value === 'start') return 'welcome';
-  if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'promise';
+  if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'aha';
   if ((CLEAN_ONBOARDING_ORDER as readonly string[]).includes(value ?? '')) return value as CleanOnboardingStep;
   return null;
 }
@@ -820,144 +815,6 @@ function NotificationMock() {
     </View>
   );
 }
-function PlusBenefitRow({
-  icon,
-  title,
-  body,
-  asset,
-  tone = 'dark',
-  index = 0,
-}: {
-  icon: IoniconName;
-  title: string;
-  body?: string;
-  asset?: ImageSourcePropType;
-  tone?: 'dark' | 'light';
-  index?: number;
-}) {
-  const isLight = tone === 'light';
-  // Каскад: строка подъезжает + галочка «ставится» с лёгким overshoot.
-  const anim = useRef(new Animated.Value(0)).current;
-  const check = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    const delay = 120 + index * 220;
-    const a = Animated.sequence([
-      Animated.delay(delay),
-      Animated.parallel([
-        Animated.timing(anim, { toValue: 1, duration: 300, useNativeDriver: true }),
-        Animated.spring(check, { toValue: 1, friction: 5, tension: 120, useNativeDriver: true }),
-      ]),
-    ]);
-    a.start();
-    return () => a.stop();
-  }, [anim, check, index]);
-  const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [16, 0] });
-  return (
-    <Animated.View
-      style={[
-        styles.plusBenefitRow,
-        isLight && styles.plusBenefitRowLight,
-        { opacity: anim, transform: [{ translateY }] },
-      ]}
-    >
-      <View style={[styles.plusBenefitIcon, isLight && styles.plusBenefitIconLight]}>
-        {asset ? (
-          <Image source={asset} style={styles.plusBenefitAsset} resizeMode="contain" />
-        ) : (
-          <Ionicons name={icon} size={24} color="#07111F" />
-        )}
-      </View>
-      <View style={styles.plusBenefitCopy}>
-        <Text style={[styles.plusBenefitTitle, isLight && styles.plusBenefitTitleLight]}>{title}</Text>
-        {body ? <Text style={styles.plusBenefitBody}>{body}</Text> : null}
-      </View>
-      <Animated.View style={{ transform: [{ scale: check }] }}>
-        <Ionicons name="checkmark-circle" size={24} color="#7DE0A6" />
-      </Animated.View>
-    </Animated.View>
-  );
-}
-
-// Вау-график для экрана promise: две траектории — «повторяешь с Phraseman»
-// (растёт) и «просто учишь и забываешь» (сползает вниз). SVG-пути статичны
-// (native driver с Path не дружит), а «рисование» кривой делает шторка цвета
-// карточки, уезжающая вправо на native driver — кривая проявляется слева
-// направо без единого кадра на JS-потоке.
-function PromiseChart() {
-  const [revealWidth, setRevealWidth] = useState(0);
-  const reveal = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    const a = Animated.sequence([
-      Animated.delay(240),
-      Animated.timing(reveal, { toValue: 1, duration: 900, useNativeDriver: true }),
-    ]);
-    a.start();
-    return () => a.stop();
-  }, [reveal]);
-  const translateX = reveal.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, revealWidth || 1],
-  });
-  return (
-    <View
-      style={styles.promiseChartCard}
-      onLayout={(event) => setRevealWidth(event.nativeEvent.layout.width)}
-    >
-      <Svg width="100%" height={190} viewBox="0 0 320 190" preserveAspectRatio="none">
-        <Defs>
-          <SvgLinearGradient id="promiseUpStroke" x1="0" y1="0" x2="1" y2="0">
-            <Stop offset="0" stopColor="#6FE3AC" />
-            <Stop offset="1" stopColor="#3ECF8E" />
-          </SvgLinearGradient>
-          <SvgLinearGradient id="promiseUpFill" x1="0" y1="0" x2="0" y2="1">
-            <Stop offset="0" stopColor="#3ECF8E" stopOpacity="0.28" />
-            <Stop offset="1" stopColor="#3ECF8E" stopOpacity="0" />
-          </SvgLinearGradient>
-        </Defs>
-        {/* Заливка под растущей кривой */}
-        <Path
-          d="M12 158 C 96 150, 160 118, 210 78 C 244 51, 276 32, 306 22 L 306 178 L 12 178 Z"
-          fill="url(#promiseUpFill)"
-        />
-        {/* «Без повторения»: быстро вниз */}
-        <Path
-          d="M12 120 C 80 152, 150 166, 306 172"
-          stroke="#8B93A9"
-          strokeOpacity={0.55}
-          strokeWidth={4}
-          strokeLinecap="round"
-          strokeDasharray="1 9"
-          fill="none"
-        />
-        {/* «С Phraseman»: вверх */}
-        <Path
-          d="M12 158 C 96 150, 160 118, 210 78 C 244 51, 276 32, 306 22"
-          stroke="url(#promiseUpStroke)"
-          strokeWidth={5}
-          strokeLinecap="round"
-          fill="none"
-        />
-        <Circle cx={306} cy={22} r={7} fill="#3ECF8E" />
-        <Circle cx={306} cy={22} r={12} fill="#3ECF8E" fillOpacity={0.22} />
-      </Svg>
-      <Animated.View
-        pointerEvents="none"
-        style={[styles.promiseReveal, { transform: [{ translateX }] }]}
-      />
-      <View style={styles.promiseBadgeUp}>
-        <Ionicons name="sparkles" size={13} color="#07111F" />
-        <Text style={styles.promiseBadgeUpText}>Повторяешь с Phraseman</Text>
-      </View>
-      <View style={styles.promiseBadgeDown}>
-        <Text style={styles.promiseBadgeDownText}>Учишь и забываешь</Text>
-      </View>
-    </View>
-  );
-}
-
-// Строка таймлайна пробного периода (экран trialReminder): каскадное появление
-// как у PlusBenefitRow — те же длительности, тот же native driver. Одна строка,
-// без подтекстов (владелец, 2026-08-16).
 function TrialTimelineRow({
   icon,
   title,
@@ -1126,9 +983,6 @@ function CleanOnboarding({
   const [paywallBusy, setPaywallBusy] = useState(false);
   const [ageAnswer, setAgeAnswer] = useState<AgeAnswer>(null);
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
-  // Галочка писем стоит заранее (решение владельца, 2026-08-16); снимается тапом
-  // по всей строке — целиться в кружок не нужно.
-  const [newsletterOptIn, setNewsletterOptIn] = useState(true);
   const [legalError, setLegalError] = useState<string | null>(null);
   // Меню «···» на пейволе и шит ввода кода (промокод / код друга).
   const [paywallMenuOpen, setPaywallMenuOpen] = useState(false);
@@ -1592,11 +1446,9 @@ function CleanOnboarding({
         // нельзя дойти, не нажав «Начать» под строкой согласия.
         [LEGAL_ACCEPTED_KEY, '1'],
         [ANALYTICS_HELP_KEY, analyticsAllowed ? '1' : '0'],
-        [NEWSLETTER_OPTIN_KEY, newsletterOptIn ? '1' : '0'],
         [DONE_KEY, '1'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       ]);
-      trackOnboarding('onboarding_newsletter_optin', { optin: newsletterOptIn });
       // зачем: онбординг спрашивает только «есть ли 16» (self-attestation), а не год
       // рождения. Раньше здесь синтезировался фиктивный год (текущий − 16) и уезжал в
       // Firestore как персональные данные — бесполезный (у всех одинаковый) и лишний
@@ -1639,7 +1491,6 @@ function CleanOnboarding({
     ageAnswer,
     analyticsAllowed,
     lang,
-    newsletterOptIn,
     onDone,
     selectedLevel,
     studyTarget,
@@ -1785,7 +1636,7 @@ function CleanOnboarding({
       step="level"
       title={level ? reactionForLevel(level, studyTarget) : `Сколько ${targetLabel(studyTarget)} ты уже знаешь?`}
       onBack={back}
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('promise')} disabled={!level} testID="onboarding-level-continue" />}
+      footer={<PrimaryButton label="Продолжить" onPress={() => go('aha')} disabled={!level} testID="onboarding-level-continue" />}
     >
       <View style={styles.optionList}>
         {LEVEL_OPTIONS.map((item) => (
@@ -1797,25 +1648,6 @@ function CleanOnboarding({
             onPress={() => chooseLevel(item.id)}
           />
         ))}
-      </View>
-    </ScreenFrame>
-  );
-
-  // Вау-экран вместо анкеты (владелец, 2026-08-16): без вопросов показываем,
-  // ПОЧЕМУ здесь язык точно получится — кривая «с повторением / без» + два
-  // конкретных механизма. Продающий момент до демонстрации и цен.
-  const renderPromise = () => (
-    <ScreenFrame
-      step="promise"
-      title="Ты заговоришь. Это устроено так."
-      plainTitle
-      onBack={back}
-      footer={<PrimaryButton label="Показать на живой фразе" onPress={() => go('aha')} testID="onboarding-promise-continue" />}
-    >
-      <PromiseChart />
-      <View style={styles.promiseFactList}>
-        <PlusBenefitRow index={0} icon="repeat-outline" title="Каждая фраза возвращается" />
-        <PlusBenefitRow index={1} icon="time-outline" title="Хватает пары минут в день" />
       </View>
     </ScreenFrame>
   );
@@ -2112,27 +1944,8 @@ function CleanOnboarding({
         />
       )}
     >
-      <View style={styles.ageButtons}>
-        <Pressable
-          testID="onboarding-age-yes"
-          onPressIn={() => { void hapticTap(); }}
-          onPress={() => { setAgeAnswer('yes'); setLegalError(null); }}
-          style={({ pressed }) => [styles.ageButton, ageAnswer === 'yes' && styles.ageButtonSelected, pressed && styles.pressed]}
-        >
-          <Text style={styles.ageButtonText}>Мне есть {MIN_FULL_ACCESS_AGE}</Text>
-        </Pressable>
-        <Pressable
-          testID="onboarding-age-no"
-          onPressIn={() => { void hapticTap(); }}
-          onPress={() => {
-            setAgeAnswer('no');
-            setLegalError(`Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.`);
-          }}
-          style={({ pressed }) => [styles.ageButton, ageAnswer === 'no' && styles.ageButtonSelected, pressed && styles.pressed]}
-        >
-          <Text style={styles.ageButtonText}>Мне нет {MIN_FULL_ACCESS_AGE}</Text>
-        </Pressable>
-      </View>
+      {/* Порядок по решению владельца (2026-08-16): сначала добровольный выбор
+          аналитики, ниже — обязательный вопрос возраста. */}
       <Text style={styles.consentSectionLabel}>ТВОЙ ВЫБОР</Text>
       <Pressable
         testID="onboarding-analytics-checkbox"
@@ -2152,26 +1965,30 @@ function CleanOnboarding({
           <View style={[styles.consentSwitchThumb, analyticsAllowed && styles.consentSwitchThumbOn]} />
         </View>
       </Pressable>
-      {/* Вся строка — одна кнопка: снять галочку можно тапом по тексту, а не
-          прицельно по кружку (владелец, 2026-08-16). */}
-      <Pressable
-        testID="onboarding-newsletter-row"
-        onPressIn={() => { void hapticTap(); }}
-        onPress={() => setNewsletterOptIn((value) => !value)}
-        style={[styles.consentDecisionRow, newsletterOptIn && styles.consentDecisionRowSelected]}
-        accessibilityRole="switch"
-        accessibilityState={{ checked: newsletterOptIn }}
-      >
-        <View style={styles.consentDecisionIcon}>
-          <Ionicons name="mail-outline" size={22} color="#B9C8FF" />
-        </View>
-        <View style={styles.consentDecisionCopy}>
-          <Text style={styles.consentDecisionTitle}>Фраза недели на почту</Text>
-        </View>
-        <View style={[styles.consentCheck, newsletterOptIn && styles.consentCheckSelected]}>
-          {newsletterOptIn ? <Ionicons name="checkmark" size={20} color="#07111F" /> : null}
-        </View>
-      </Pressable>
+      {/* Возраст — вопросом с «Да/Нет» (владелец, 2026-08-16): короче и честнее,
+          чем две длинные кнопки-утверждения. */}
+      <Text style={styles.ageQuestion}>{`Тебе есть ${MIN_FULL_ACCESS_AGE}?`}</Text>
+      <View style={styles.ageButtons}>
+        <Pressable
+          testID="onboarding-age-yes"
+          onPressIn={() => { void hapticTap(); }}
+          onPress={() => { setAgeAnswer('yes'); setLegalError(null); }}
+          style={({ pressed }) => [styles.ageButton, ageAnswer === 'yes' && styles.ageButtonSelected, pressed && styles.pressed]}
+        >
+          <Text style={styles.ageButtonText}>Да</Text>
+        </Pressable>
+        <Pressable
+          testID="onboarding-age-no"
+          onPressIn={() => { void hapticTap(); }}
+          onPress={() => {
+            setAgeAnswer('no');
+            setLegalError(`Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.`);
+          }}
+          style={({ pressed }) => [styles.ageButton, ageAnswer === 'no' && styles.ageButtonSelected, pressed && styles.pressed]}
+        >
+          <Text style={styles.ageButtonText}>Нет</Text>
+        </Pressable>
+      </View>
       {/* Согласие с условиями дано на welcome (sign-in-wrap над кнопкой «Начать»);
           здесь остаются только ссылки — правила всегда под рукой. */}
       <View style={styles.consentLegalLinks}>
@@ -2188,7 +2005,6 @@ function CleanOnboarding({
       case 'welcome': return renderWelcome();
       case 'language': return renderLanguage();
       case 'level': return renderLevel();
-      case 'promise': return renderPromise();
       case 'aha': return renderAha();
       case 'notifications': return renderNotifications();
       case 'trialReminder': return renderTrialReminder();
@@ -3575,6 +3391,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 6,
   },
+  ageQuestion: {
+    color: '#F2F5FF',
+    fontSize: 19,
+    lineHeight: 25,
+    fontWeight: '800',
+    textAlign: 'center',
+    marginTop: 22,
+    marginBottom: 12,
+  },
   errorText: {
     color: '#FF9AAE',
     fontSize: 15,
@@ -3595,63 +3420,6 @@ const styles = StyleSheet.create({
   welcomeLegalLink: {
     color: '#B9C8FF',
     textDecorationLine: 'underline',
-  },
-  // ── promise: вау-график «повторяешь / забываешь» ───────────────────────────
-  promiseChartCard: {
-    backgroundColor: 'rgba(18, 24, 46, 0.72)',
-    borderRadius: 24,
-    borderWidth: 1,
-    borderColor: 'rgba(133, 156, 255, 0.16)',
-    paddingVertical: 18,
-    paddingHorizontal: 10,
-    marginBottom: 18,
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  // Шторка «рисования» кривой: цвет карточки, уезжает вправо на native driver.
-  promiseReveal: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 10,
-    right: 10,
-    backgroundColor: '#121A2E',
-    borderRadius: 18,
-  },
-  promiseBadgeUp: {
-    position: 'absolute',
-    top: 24,
-    left: 22,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    backgroundColor: '#7DE0A6',
-    borderRadius: 999,
-    paddingHorizontal: 11,
-    paddingVertical: 6,
-    ...softShadow({ color: '#0A1A12', radius: 8, opacity: 0.35, offsetY: 3, backgroundColor: '#7DE0A6' }),
-  },
-  promiseBadgeUpText: {
-    color: '#07111F',
-    fontSize: 13,
-    fontWeight: '800',
-  },
-  promiseBadgeDown: {
-    position: 'absolute',
-    bottom: 30,
-    right: 22,
-    backgroundColor: 'rgba(139, 147, 169, 0.22)',
-    borderRadius: 999,
-    paddingHorizontal: 11,
-    paddingVertical: 6,
-  },
-  promiseBadgeDownText: {
-    color: '#A9B2C8',
-    fontSize: 13,
-    fontWeight: '700',
-  },
-  promiseFactList: {
-    gap: 12,
   },
   // ── trialReminder: пуш-мокап + таймлайн честного триала ────────────────────
   trialPushCard: {

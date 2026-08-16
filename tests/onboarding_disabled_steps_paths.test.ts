@@ -74,7 +74,7 @@ describe('Onboarding survives disabling any screens', () => {
   });
 
   it('keeps the back button on enabled screens only', () => {
-    const order = orderFor(['promise', 'notifications', 'trialReminder']);
+    const order = orderFor(['aha', 'notifications', 'trialReminder']);
     for (const step of order) {
       const back = resolveOnboardingStep(order, step, 'backward');
       expect(order).toContain(back);
@@ -97,7 +97,7 @@ describe('Onboarding survives disabling any screens', () => {
   });
 
   it('reports honest progress numbers for a shortened flow', () => {
-    const order = orderFor(['promise', 'aha']);
+    const order = orderFor(['aha', 'notifications']);
     const { total } = getOnboardingProgress(order, MANDATORY_ONBOARDING_STEP);
     const last = getOnboardingProgress(order, MANDATORY_ONBOARDING_STEP).progress;
     expect(last).toBe(total); // финальный шаг = «N из N», без «5 из 12»

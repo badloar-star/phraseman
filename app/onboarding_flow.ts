@@ -2,7 +2,6 @@ export type OnboardingStepId =
   | 'welcome'
   | 'language'
   | 'level'
-  | 'promise'
   | 'aha'
   | 'notifications'
   | 'trialReminder'
@@ -29,8 +28,9 @@ export const ONBOARDING_ENABLED_STEPS_TEXT_KEY = 'onboarding_enabled_steps_v1';
 
 // Минимальный флоу (владелец, 2026-08-16): анкета про построение плана удалена
 // вместе с планами; язык — отдельным отключаемым блоком (language+level), пока
-// не добавлены языки; вместо вопросов — «promise» (вау-обещание результата) и
-// «trialReminder» (честное «предупредим до конца пробного» перед ценами).
+// не добавлены языки; вау-момент — ОДНА продуманная АХ-демонстрация (сборка
+// фразы + голос), затем «trialReminder» (честное «предупредим до конца
+// пробного») перед ценами.
 export const ONBOARDING_STEP_CATALOG: readonly {
   id: OnboardingStepId;
   label: string;
@@ -40,8 +40,7 @@ export const ONBOARDING_STEP_CATALOG: readonly {
   { id: 'welcome', label: 'Приветствие', description: 'Первый экран знакомства и вход.' },
   { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка (выключен, пока язык один).' },
   { id: 'level', label: 'Уровень', description: 'Уровень выбранного языка (блок языка).' },
-  { id: 'promise', label: 'Обещание результата', description: 'Вау-экран «ты точно заговоришь».' },
-  { id: 'aha', label: 'Демонстрация', description: 'Практическая демонстрация обучения.' },
+  { id: 'aha', label: 'Демонстрация', description: 'Сборка фразы с голосом — вау-момент.' },
   { id: 'notifications', label: 'Уведомления', description: 'Предложение включить уведомления.' },
   { id: 'trialReminder', label: 'Напоминание о пробном', description: 'Обещание предупредить до конца пробного.' },
   { id: 'onboardingPaywall', label: 'Предложение подписки', description: 'Экран покупки.' },

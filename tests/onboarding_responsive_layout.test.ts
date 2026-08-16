@@ -34,7 +34,8 @@ describe('clean onboarding responsive layout contract', () => {
     expect(source).not.toContain('testID="onboarding-legal-checkbox"');
     expect(source).toContain('Продолжая, ты принимаешь');
     expect(source).toContain('testID="onboarding-analytics-checkbox"');
-    expect(source).toContain('testID="onboarding-newsletter-row"');
+    // Рассылки нет в принципе — строка подписки удалена (владелец, 2026-08-16).
+    expect(source).not.toContain('testID="onboarding-newsletter-row"');
     // Онбординг спрашивает только «есть ли 16» — значит и записывать он должен ровно
     // этот факт. Синтетический год рождения (текущий − 16) уезжал в Firestore как
     // персональные данные: у всех одинаковый, бесполезный, лишний по GDPR ст. 5(1)(c).

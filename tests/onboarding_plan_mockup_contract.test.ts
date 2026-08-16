@@ -6,13 +6,14 @@ const source = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.ts
 const wrapper = fs.readFileSync(path.join(root, 'components', 'onboarding.tsx'), 'utf8');
 
 // Контракт утверждённого минимального флоу (владелец, 2026-08-16): анкета про
-// построение плана удалена вместе с планами; вместо вопросов — вау-обещание
-// (promise), честный триал (trialReminder) и пересобранный пейвол с кодами.
+// построение плана удалена вместе с планами; вау-момент — одна витринная
+// АХ-демонстрация (сборка фразы + голос), затем честный триал (trialReminder)
+// и пересобранный пейвол с кодами.
 describe('clean minimal wow onboarding contract', () => {
   it('uses CleanOnboarding as the only active onboarding implementation', () => {
     expect(wrapper).toContain("export { default } from './CleanOnboarding'");
     expect(source).toContain('CLEAN_ONBOARDING_FLOW_VERSION');
-    expect(source).toContain("'clean_minimal_wow_flow_2026_08_16'");
+    expect(source).toContain("'clean_minimal_wow_flow_2026_08_16b'");
     expect(source).toContain('normalizedStoredStep');
     expect(source).toContain("if (value === 'start') return 'welcome'");
   });
@@ -20,7 +21,6 @@ describe('clean minimal wow onboarding contract', () => {
   it('keeps the approved minimal order without the removed plan questionnaire', () => {
     const expectedOrder = [
       "'welcome'",
-      "'promise'",
       "'aha'",
       "'notifications'",
       "'trialReminder'",
@@ -37,21 +37,22 @@ describe('clean minimal wow onboarding contract', () => {
     expect(source).not.toContain("'plusBenefits'");
     expect(source).not.toContain("'startMode'");
     expect(source).not.toContain("'planComparison'");
+    // Экран-график удалён (владелец, 2026-08-16): вау-момент — сама АХ-сцена.
+    expect(source).not.toContain("'promise'");
 
     // Блок языка выключен локально, но остаётся отключаемым экраном каталога.
     expect(source).toContain('const SHOW_ONBOARDING_LANGUAGE_STEP = false');
     expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : [])");
-    expect(source).toContain("if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'promise'");
+    expect(source).toContain("if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'aha'");
   });
 
-  it('sells without a questionnaire: promise chart, aha scene, honest trial timeline', () => {
+  it('sells without a questionnaire: one showcase aha scene, honest trial timeline', () => {
     [
-      'const renderPromise',
-      'function PromiseChart',
-      'Повторяешь с Phraseman',
-      'testID="onboarding-promise-continue"',
+      'const renderAha',
+      '<AhaScene',
       'const renderTrialReminder',
       'function TrialTimelineRow',
+      'function AnimatedPushCard',
       'testID="onboarding-trial-reminder-continue"',
       'Сейчас ничего не спишем',
       'continueFromTrialReminder',
@@ -90,17 +91,26 @@ describe('clean minimal wow onboarding contract', () => {
     expect(source).toContain('[PLAN_BILLING_KEY, billing]');
   });
 
-  it('finishes with age attestation, analytics choice, pre-checked newsletter row, and auto nickname', () => {
+  it('finishes with analytics choice above and a yes/no age question below', () => {
     [
+      'testID="onboarding-analytics-checkbox"',
       'testID="onboarding-age-yes"',
       'testID="onboarding-age-no"',
-      'testID="onboarding-analytics-checkbox"',
-      'testID="onboarding-newsletter-row"',
-      'useState(true)',
-      'NEWSLETTER_OPTIN_KEY',
-      "trackOnboarding('onboarding_newsletter_optin'",
       "go('name')",
     ].forEach((text) => expect(source).toContain(text));
+
+    // Аналитика ВЫШЕ вопроса возраста (владелец, 2026-08-16); возраст — вопрос
+    // «Тебе есть N?» с короткими «Да/Нет», не две кнопки-утверждения.
+    expect(source.indexOf('testID="onboarding-analytics-checkbox"'))
+      .toBeLessThan(source.indexOf('testID="onboarding-age-yes"'));
+    expect(source).toContain('Тебе есть ${MIN_FULL_ACCESS_AGE}?');
+    expect(source).not.toContain('Мне есть');
+    expect(source).not.toContain('Мне нет');
+
+    // Рассылки нет в принципе (владелец, 2026-08-16) — не спрашиваем.
+    expect(source).not.toContain('onboarding-newsletter-row');
+    expect(source).not.toContain('NEWSLETTER_OPTIN_KEY');
+    expect(source).not.toContain('Фраза недели');
 
     // Обязательная галочка условий заменена sign-in-wrap строкой на welcome.
     expect(source).not.toContain('testID="onboarding-legal-checkbox"');

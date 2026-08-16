@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
+import { ArenaSearchPulse } from '../components/arena/ArenaSearchPulse';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { arenaSearchingCountText, arenaText } from '../modules/arena/copy';
@@ -313,7 +314,11 @@ export default function ArenaMatchmakingScreen() {
     <ArenaScreen title={title} subtitle={arenaText(lang, 'searching')} variant="lobby" scroll={false} onBack={cancel}>
       <View style={styles.center}>
         <V2Card style={styles.card}>
-          {rankedPresentation !== 'calm' ? <ActivityIndicator size="large" color={P.accent} /> : null}
+          {/* зачем: системный спиннер одинаков во всех приложениях мира и на
+              длинном ожидании начинает раздражать — у вращения нет ни начала,
+              ни конца. Волна по сетке живёт циклами, глаз отдыхает на паузе.
+              Владелец выбрал этот вариант из пяти (2026-08-16). */}
+          {rankedPresentation !== 'calm' ? <ArenaSearchPulse /> : null}
           <Text accessibilityLiveRegion="polite" style={[styles.searching, { color: P.text }]}>
             {rankedPresentation === 'calm' ? arenaText(lang, 'rankedEmpty') : arenaText(lang, 'searching')}
           </Text>

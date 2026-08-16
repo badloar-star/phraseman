@@ -817,7 +817,13 @@ function ReleasedTabLayout() {
       scheduled.cancel?.();
       scheduledMountsRef.current.delete(idx);
     }
-    if (idx !== 0 && !prewarmDeferredTabScreen(idx)) return;
+    // зачем: прогрев — ОПТИМИЗАЦИЯ, а не условие показа. Раньше неудача прогрева
+    // прерывала монтирование: mountedTabs не пополнялся, shouldLoad оставался
+    // false, и таб навсегда застревал на пустом плейсхолдере (ни шапки, ни
+    // списка — только фон и таббар). Прямой тап обязан смонтировать таб всегда;
+    // если модуль реально сломан, пусть падает на рендере и это видно, а не
+    // маскируется пустым экраном.
+    if (idx !== 0) prewarmDeferredTabScreen(idx);
     setVisitedTabs((prev) => addVisitedTab(prev, idx));
     setMountedTabs((prev) => addVisitedTab(prev, idx));
   }, []);

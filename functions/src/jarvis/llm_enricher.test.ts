@@ -242,4 +242,35 @@ describe('enrichDecisionsWithNarrative', () => {
       expect(prompt).toMatch(/правил|знан/i);
     });
   });
+
+  describe('процедура расследования в промпте', () => {
+    // зачем (аудит 2026-08-16): без записанных шагов модель свободно бродит
+    // по данным и находит первое похожее на причину. Похожее на причину и
+    // причина — разные вещи, а уверенность в ответе одинаковая.
+
+    async function capturePromptFor(finding: string): Promise<string> {
+      let captured = '';
+      const generateNarrative = jest.fn(async (prompt: { system: string; user: string }) => {
+        captured = `${prompt.system}\n${prompt.user}`;
+        return { text: 'x', promptTokens: 1, completionTokens: 1 };
+      });
+      await enrichDecisionsWithNarrative(
+        { decisions: [makeDecision({ finding } as never)] },
+        makeDeps({ generateNarrative: generateNarrative as never }),
+      );
+      return captured;
+    }
+
+    test('подходящая процедура попадает в промпт', async () => {
+      const prompt = await capturePromptFor('Департамент вернул ноль, данных нет');
+      expect(prompt).toMatch(/источник|деплой/i);
+    });
+
+    test('к незнакомому симптому процедура не подгоняется', async () => {
+      // зачем: неподходящая процедура уводит расследование в сторону —
+      // это хуже, чем её отсутствие.
+      const prompt = await capturePromptFor('Пользователям не нравится цвет кнопки');
+      expect(prompt).not.toMatch(/Порядок проверки/i);
+    });
+  });
 });

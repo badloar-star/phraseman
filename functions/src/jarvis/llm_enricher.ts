@@ -8,6 +8,7 @@ import {
   renderKnowledge,
   selectKnowledgeForDepartment,
 } from './business_knowledge';
+import { findPlaybook, renderPlaybook } from './playbooks';
 
 /**
  * LLM-обогатитель Джарвиса — короткий PM-план ПОВЕРХ готовых фактов.
@@ -100,6 +101,23 @@ function knowledgeBlock(department: string): string | null {
     + `нарушать их нельзя, ссылаться на них как на причину происходящего тоже):\n${text}`;
 }
 
+/**
+ * Порядок проверки для этого типа поломки.
+ *
+ * зачем по симптому из находки, а не по департаменту: одна и та же поломка
+ * («вернулись нули») случается в разных департаментах по одной причине,
+ * а в одном департаменте бывают разные поломки.
+ *
+ * зачем молчать при незнакомом симптоме: выдать неподходящую процедуру
+ * хуже, чем не выдать никакой — она уводит расследование в сторону с тем
+ * же видом уверенности.
+ */
+function playbookBlock(finding: string): string | null {
+  const playbook = findPlaybook(finding);
+  if (!playbook) return null;
+  return `Порядок проверки для этого случая (иди по шагам, не перескакивай):\n${renderPlaybook(playbook)}`;
+}
+
 function buildPrompt(
   decision: Decision,
   businessContext?: JarvisPmBusinessContext,
@@ -135,6 +153,10 @@ function buildPrompt(
     // советует уже отвергнутое: ужесточить возвраты, нанять человека,
     // прислать ежедневную сводку.
     knowledgeBlock(decision.department),
+    // зачем процедура (аудит 2026-08-16): без записанных шагов модель
+    // свободно бродит по данным и выдаёт первое похожее на причину.
+    // Похожее на причину и причина — разные вещи, а уверенность одинаковая.
+    playbookBlock(decision.finding),
   ].filter((line): line is string => line !== null).join('\n');
 
   return { system, user };

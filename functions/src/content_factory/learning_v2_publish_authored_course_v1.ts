@@ -34,6 +34,7 @@ import {
   authoredLearningV2SessionShards,
 } from "../../../modules/learning-v2/content/source/authored_sessions_v1";
 import { buildSessionChildBodiesFromShard } from "../../../modules/learning-v2/content/source/session_package_from_shard_v1";
+import { buildLearningV2CourseTopologyV1 } from "../../../modules/learning-v2/content/course_topology_v1";
 
 // зачем: тот же регион, что у остальных функций Learning V2 и у админки —
 // admin/v2/legacy.html поднимает getFunctions(app, 'us-central1'). В другом
@@ -298,6 +299,15 @@ export const adminPublishAuthoredLearningV2Course = onCall(
     // rootDir: ".." в своём tsconfig, поэтому реестр написанных сессий берётся
     // напрямую, без дублирования контента на две стороны.
     const shards = authoredLearningV2SessionShards();
+    // зачем: шард нумерует сессии по-своему (session-episode-01-01), а индекс
+    // релиза сверяет их с топологией курса (lesson-01:session:01) и отвергает
+    // весь урок при расхождении. Источник правды для публикации — топология,
+    // поэтому идентификатор берём оттуда, а не из шарда.
+    const topologyLesson = buildLearningV2CourseTopologyV1().lessons[
+      input.lessonOrdinal - 1
+    ];
+    if (!topologyLesson)
+      throw new HttpsError("invalid-argument", "publish_lesson_not_in_topology");
     const sessions = shards.map((shard) => {
       const children = buildSessionChildBodiesFromShard(
         shard,
@@ -305,7 +315,8 @@ export const adminPublishAuthoredLearningV2Course = onCall(
       );
       return {
         sessionOrdinal: shard.requiredSessionOrdinal,
-        courseSessionId: shard.sessionId,
+        courseSessionId:
+          topologyLesson.sessions[shard.requiredSessionOrdinal - 1]!.sessionId,
         // Первая сессия знакомит, дальше учит: это влияет на подпись в списке.
         learningOutcomeKind:
           shard.requiredSessionOrdinal === 1

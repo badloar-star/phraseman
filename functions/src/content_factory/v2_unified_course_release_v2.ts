@@ -437,9 +437,16 @@ function buildRoot(input: {
   if (
     input.lessons.length !== expectedCount ||
     !["lab", "staging", "production"].includes(input.environment) ||
+    // зачем: боевой релиз принимал ТОЛЬКО полный курс из 32 уроков, поэтому
+    // готовый первый урок невозможно было выложить — приложение отвечало
+    // «Сессия недоступна / NOT FOUND». Владелец разрешил неполный курс
+    // (2026-08-16, повторно), чтобы проверять уроки по мере написания.
+    //
+    // Ослабление узкое: contentClass в проде по-прежнему обязан быть
+    // production_candidate, а vertical_slice — начинаться с первого урока
+    // (проверка ниже). Полный сезон по-прежнему требует ровно 32 урока.
     (input.environment === "production" &&
-      (input.releaseScope !== "full_course" ||
-        input.contentClass !== "production_candidate")) ||
+      input.contentClass !== "production_candidate") ||
     (input.environment !== "production" &&
       input.contentClass !== "neutral_test_fixture") ||
     (input.releaseScope === "vertical_slice" &&

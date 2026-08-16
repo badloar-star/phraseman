@@ -507,7 +507,17 @@ function fallbackForSection(section: NavigationSection | null): string {
   switch (section) {
     case 'lessons': return '/lessons_list';
     case 'practice': return '/trainer';
-    case 'flashcards': return '/flashcards';
+    /**
+     * FIX (владелец, 2026-08-16): разделы карточек были зациклены сами на себя.
+     * `/flashcards` — не хаб над ними, а СОСЕД по нижнему таббару карточек
+     * (сохранённые карточки / наборы / мои наборы — три позиции одного уровня).
+     * Отправляя «назад» на /flashcards, мы возвращали человека в тот же раздел,
+     * из которого он выходил, и выйти к главной становилось нечем.
+     *
+     * Порядок владельца: набор → «Мои наборы» → ГЛАВНАЯ. Экран сохранённых
+     * карточек в цепочку выхода не входит.
+     */
+    case 'flashcards': return HOME_BACK_FALLBACK;
     case 'dialogs': return '/(tabs)/lessons';
     case 'lingman': return '/lingman_videos';
     case 'arena': return '/arena';

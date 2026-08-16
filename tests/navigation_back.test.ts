@@ -219,7 +219,12 @@ describe('safeRouterBack', () => {
     expect(navigation.navigationFallbackForPath('/arena_history')).toBe('/(tabs)/home');
     expect(navigation.navigationFallbackForPath('/arena_review?matchId=m-1')).toBe('/arena');
     expect(navigation.navigationFallbackForPath('/flashcards')).toBe('/(tabs)/home');
-    expect(navigation.navigationFallbackForPath('/flashcards_packs')).toBe('/flashcards');
+    // FIX (владелец, 2026-08-16): раньше здесь ждали '/flashcards', и это ожидание
+    // кодировало сам баг — разделы карточек были зациклены сами на себя. Экран
+    // сохранённых карточек не хаб над каталогом наборов, а его СОСЕД по нижнему
+    // таббару, поэтому выход из каталога ведёт наружу раздела, а не вбок в него.
+    expect(navigation.navigationFallbackForPath('/flashcards_packs')).toBe('/(tabs)/home');
+    expect(navigation.navigationFallbackForPath('/flashcards_my_packs')).toBe('/(tabs)/home');
   });
 
   // Регрессия: выход из теории/любого экрана урока должен вернуть на меню ИМЕННО

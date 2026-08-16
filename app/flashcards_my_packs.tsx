@@ -55,6 +55,7 @@ import {
   packCategoryIonIcon,
   packHubCodeName,
   packTitleForInterface,
+  peekAccessiblePackIds,
   peekWarmMarketplacePacks,
   type FlashcardMarketPack,
 } from './flashcards/marketplace';
@@ -66,6 +67,7 @@ import {
 import { FC_PACKS_ROUTE } from './flashcards/tabbar_state';
 import { stageOwnedPackCardsForNavigation } from './flashcards/useCollectionData';
 import { getCanonicalUserId } from './user_id_policy';
+import { type RuntimeStudyTarget } from './target_storage_keys';
 
 const COLS = 3;
 const GAP = 10;
@@ -79,6 +81,49 @@ type MyPacksGroups = {
 };
 
 const EMPTY_GROUPS: MyPacksGroups = { added: [], created: [] };
+
+/**
+ * Разложить наборы по двум разделам. Вынесено из loadMine, чтобы синхронная
+ * гидратация первого кадра и асинхронное дочитывание собирали список ОДИНАКОВО:
+ * иначе первый кадр и следующий за ним разошлись бы, и это читалось бы как
+ * «контент прыгает».
+ */
+function groupPacks(
+  packs: readonly (FlashcardMarketPack | null | undefined)[],
+  isMine: (pack: FlashcardMarketPack) => boolean,
+): MyPacksGroups {
+  const added: FlashcardMarketPack[] = [];
+  const created: FlashcardMarketPack[] = [];
+  const seen = new Set<string>();
+  for (const pack of packs) {
+    if (!pack || seen.has(pack.id)) continue;
+    seen.add(pack.id);
+    (isMine(pack) ? created : added).push(pack);
+  }
+  return { added, created };
+}
+
+/**
+ * FIX (владелец, 2026-08-16) «при открытии разделов всё обновляется несколько
+ * раз, мелькают промежуточные экраны»: состояние стартовало с EMPTY_GROUPS, и
+ * экран ВСЕГДА показывал пустоту, пока не доедет await. Человек видел пустой
+ * экран → список, а при возврате — ещё и старое содержимое на кадр.
+ *
+ * Собираем первый кадр СИНХРОННО из уже прогретых кэшей (owned id + каталог
+ * читаются из памяти, без AsyncStorage и без сети). Ничего не прогрето —
+ * честно отдаём пусто, как раньше. Сеть/диск лишь дочитывают недостающее.
+ */
+function peekMyPacksGroups(studyTarget?: RuntimeStudyTarget): MyPacksGroups {
+  const catalog = peekWarmMarketplacePacks(studyTarget);
+  if (!catalog) return EMPTY_GROUPS;
+  const ownedIds = peekAccessiblePackIds(studyTarget);
+  if (ownedIds.length === 0) return EMPTY_GROUPS;
+  const catalogById = new Map(catalog.map((p) => [p.id, p]));
+  // Автора на синхронном пути не знаем (getCanonicalUserId асинхронный), поэтому
+  // UGC до дочитывания считаем «добавленным». Раздел «Созданные мной» доедет со
+  // следующим кадром и лишь дополнит список — плитки на месте уже сейчас.
+  return groupPacks(ownedIds.map((id) => catalogById.get(id)), () => false);
+}
 
 function sameGroup(a: FlashcardMarketPack[], b: FlashcardMarketPack[]): boolean {
   return a.length === b.length && a.every((p, i) => {
@@ -97,7 +142,8 @@ export default function FlashcardsMyPacksScreen() {
   /** §5.2: капсула таббара сжимается при скролле — как на главной. */
   const tabScroll = useFcTabBarScroll();
 
-  const [groups, setGroups] = useState<MyPacksGroups>(EMPTY_GROUPS);
+  // Первый кадр — из прогретых кэшей, без ожидания диска и сети (см. peekMyPacksGroups).
+  const [groups, setGroups] = useState<MyPacksGroups>(() => peekMyPacksGroups(studyTarget));
 
   const contentLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -124,32 +170,34 @@ export default function FlashcardsMyPacksScreen() {
     const authoredLocal = mergeLocalAuthorPacks(catalog, localAuthored, studyTarget);
     const authoredLocalIds = new Set(authoredLocal.map((p) => p.id));
 
-    const added: FlashcardMarketPack[] = [];
-    const created: FlashcardMarketPack[] = [];
-    const seen = new Set<string>();
     /** Мой набор — созданный на этом аккаунте (локальный черновик или опубликованный мной UGC). */
     const isMine = (pack: FlashcardMarketPack): boolean =>
       authoredLocalIds.has(pack.id) ||
       (!!pack.isCommunityUgc && !!pack.authorStableId && !!myStableId && pack.authorStableId === myStableId);
-    const push = (pack: FlashcardMarketPack | null | undefined) => {
-      if (!pack || seen.has(pack.id)) return;
-      seen.add(pack.id);
-      (isMine(pack) ? created : added).push(pack);
-    };
 
-    for (const id of ownedIds) push(catalogById.get(id));
-    for (const pack of authoredLocal) push(pack);
-
+    /** Порядок тот же, что и был: владение → свои локальные → добавленные из сообщества. */
+    const known = new Set([
+      ...ownedIds,
+      ...authoredLocal.map((p) => p.id),
+      ...communityOwnedIds.filter((id) => catalogById.has(id)),
+    ]);
     /** Наборы сообщества, добавленные себе: метаданные из каталога, иначе точечно из облака. */
-    const missing = communityOwnedIds.filter((id) => !seen.has(id) && !catalogById.has(id));
-    for (const id of communityOwnedIds) push(catalogById.get(id));
-    if (missing.length > 0) {
-      const metas = await Promise.all(
-        missing.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(() => null)),
-      );
-      for (const meta of metas) push(meta);
-    }
-    return { added, created };
+    const missing = communityOwnedIds.filter((id) => !known.has(id) && !catalogById.has(id));
+    const metas = missing.length > 0
+      ? await Promise.all(missing.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(() => null)))
+      : [];
+
+    // Один сборщик на оба пути (см. groupPacks) — синхронный первый кадр и это
+    // дочитывание раскладывают наборы одинаково, поэтому список не перестраивается.
+    return groupPacks(
+      [
+        ...ownedIds.map((id) => catalogById.get(id)),
+        ...authoredLocal,
+        ...communityOwnedIds.map((id) => catalogById.get(id)),
+        ...metas,
+      ],
+      isMine,
+    );
   }, [cloudCommunityEnabled, studyTarget]);
 
   useFocusEffect(
@@ -167,8 +215,11 @@ export default function FlashcardsMyPacksScreen() {
     }, [loadMine]),
   );
 
+  // зачем (владелец, 2026-08-16): фолбек '/flashcards' уводил в СОСЕДНЮЮ позицию
+  // того же таббара карточек, а не наружу — раздел замыкался сам на себя и выйти
+  // было невозможно. Порядок владельца: набор → «Мои наборы» → главная.
   const leave = useCallback(() => {
-    safeRouterBack(router, '/flashcards' as any);
+    safeRouterBack(router, '/(tabs)/home' as any);
   }, [router]);
 
   React.useEffect(() => {

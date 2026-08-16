@@ -194,8 +194,10 @@ export default function FlashcardsPacksScreen() {
   );
 
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
+  // зачем (владелец, 2026-08-16): фолбек '/flashcards' уводил в СОСЕДНЮЮ позицию
+  // того же таббара карточек, а не наружу — раздел замыкался сам на себя.
   const leavePacks = useCallback(() => {
-    safeRouterBack(router, '/flashcards' as any);
+    safeRouterBack(router, '/(tabs)/home' as any);
   }, [router]);
 
   /** Throttle Firestore-запросов: повторный focus не должен пересохранять list при беглом переключении. */

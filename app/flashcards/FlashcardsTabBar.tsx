@@ -49,6 +49,7 @@ import type { Theme } from '../../constants/theme';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScreen } from '../../hooks/use-screen';
 import { useTheme } from '../../components/ThemeContext';
+import { markNextNavigationAsReplace } from '../navigation_back';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import DeckPickerSheet, { type DeckSheetOption } from './DeckPickerSheet';
 import { loadFcDeckOptions } from './deck_options';
@@ -498,10 +499,22 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
 
   const trainOptions = useMemo(() => visibleFcTrainOptions(blitzPoolCount), [blitzPoolCount]);
 
+  /**
+   * FIX (владелец, 2026-08-16) «разделы карточек зациклены, выйти невозможно»:
+   * таббар делал push, поэтому каждый тап клал ЕЩЁ один экран карточек в стек.
+   * «Мои наборы» → «Наборы сообщества» → «Мои наборы» давали стек из трёх
+   * экранов одного раздела, и «назад» ходил по ним кругами вместо выхода.
+   *
+   * Таббар — это ТАБ, а не переход вглубь: смена позиции ЗАМЕНЯЕТ текущий экран
+   * раздела. Стек не растёт, «назад» из любого раздела карточек ведёт наружу.
+   * markNextNavigationAsReplace держит историю navigation_back в согласии с
+   * реальным стеком роутера — иначе она копила бы записи о снятых экранах.
+   */
   const go = useCallback(
     (target: { pathname: string; params: Record<string, string> }) => {
       close();
-      router.push({ pathname: target.pathname, params: target.params } as any);
+      markNextNavigationAsReplace();
+      router.replace({ pathname: target.pathname, params: target.params } as any);
     },
     [close, router],
   );
@@ -531,13 +544,17 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     (option: FcPacksOption) => {
       void hapticTap();
       const target = buildFcPacksRoute(option);
-      close();
       const alreadyHere =
         (option === 'mine' && active === 'mine') || (option === 'community' && active === 'packs');
-      if (alreadyHere) return;
-      router.push({ pathname: target.pathname, params: target.params } as any);
+      if (alreadyHere) {
+        close();
+        return;
+      }
+      // Оба раздела наборов — соседи по таббару, а не вложенные экраны: переход
+      // между ними заменяет экран (см. go), иначе они копятся в стеке.
+      go(target);
     },
-    [active, close, router],
+    [active, close, go],
   );
 
   /**

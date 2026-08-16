@@ -205,11 +205,12 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
         /* нет такого экрана в стеке — обычный back ниже */
       }
     }
-    safeRouterBack(
-      router,
-      (packBackOrigin ?? (sectionRoot ? '/(tabs)/home' : '/flashcards')) as any,
-    );
-  }, [router, sectionRoot, packBackOrigin]);
+    // зачем (владелец, 2026-08-16): фолбек '/flashcards' замыкал раздел на себя —
+    // «назад» уводил в соседнюю позицию того же таббара, и выйти было нельзя.
+    // Знаем, откуда пришли (packBackOrigin) — идём туда; не знаем — наружу, на
+    // главную. sectionRoot больше не различаем: у обоих случаев выход один.
+    safeRouterBack(router, (packBackOrigin ?? '/(tabs)/home') as any);
+  }, [router, packBackOrigin]);
 
   // ── State ──────────────────────────────────────────────────────────────────
   /** `?pack=` без `cat` — одразу «Власні» (набір), не кадр з «Збережені» до завантаження маркету. */

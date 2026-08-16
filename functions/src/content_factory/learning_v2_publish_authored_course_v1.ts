@@ -29,6 +29,11 @@ import {
   materializeLearningV2CourseLessonReleaseIndexV1,
   LEARNING_V2_COURSE_SESSION_RELEASE_PACKAGE_SCHEMA_V1,
 } from "../../../modules/learning-v2/runtime/course_lesson_release_index_v1";
+import {
+  AUTHORED_EPISODE_01_SESSIONS,
+  authoredLearningV2SessionShards,
+} from "../../../modules/learning-v2/content/source/authored_sessions_v1";
+import { buildSessionChildBodiesFromShard } from "../../../modules/learning-v2/content/source/session_package_from_shard_v1";
 
 const REGION = "europe-west1";
 const ENFORCE_APP_CHECK = false;
@@ -286,13 +291,42 @@ export const adminPublishAuthoredLearningV2Course = onCall(
     )
       throw new HttpsError("permission-denied", "Admin owner only");
     const input = parseRequest(request.data);
-    throw new HttpsError(
-      "unimplemented",
-      // зачем: заглушка честная. Функция принимает запрос и проверяет права,
-      // но источник сессий ещё не подключён — авторский контент лежит в слое
-      // приложения, а функции его не видят. Следующий шаг: перенести реестр
-      // сессий в общий модуль, доступный обеим сторонам.
-      `publish_source_not_wired:${input.environment}:${input.lessonOrdinal}`,
-    );
+    // зачем: заглушка снята — источник подключён. Функции видят modules/ через
+    // rootDir: ".." в своём tsconfig, поэтому реестр написанных сессий берётся
+    // напрямую, без дублирования контента на две стороны.
+    const shards = authoredLearningV2SessionShards();
+    const sessions = shards.map((shard) => {
+      const children = buildSessionChildBodiesFromShard(
+        shard,
+        input.learnerSourceLocale,
+      );
+      return {
+        sessionOrdinal: shard.requiredSessionOrdinal,
+        courseSessionId: shard.sessionId,
+        // Первая сессия знакомит, дальше учит: это влияет на подпись в списке.
+        learningOutcomeKind:
+          shard.requiredSessionOrdinal === 1
+            ? ("understand" as const)
+            : ("learn" as const),
+        learningOutcomeByLocale: shard.intro
+          .learningGoalByLocale as unknown as Readonly<
+          Record<string, string>
+        >,
+        packageBody: children,
+      };
+    });
+    const first = AUTHORED_EPISODE_01_SESSIONS[0];
+    if (!first)
+      throw new HttpsError("failed-precondition", "publish_no_sessions_authored");
+    const result = await publishAuthoredLearningV2Course(input, {
+      sessions,
+      titleByLocale: first.title as unknown as Readonly<Record<string, string>>,
+      canDoByLocale: first.summary as unknown as Readonly<
+        Record<string, string>
+      >,
+      bucket: admin.storage().bucket(),
+      actorUid: request.auth.uid,
+    });
+    return { ok: true, ...result };
   },
 );

@@ -820,6 +820,10 @@ export {
   adminRejectLearningV2CourseWave,
   LEARNING_V2_COURSE_SHARD_OPENAI_API_KEY,
 } from "./content_factory/learning_v2_course_shard_background";
+// зачем: без экспорта функции просто нет на сервере. Именно её отсутствие
+// давало head_missing и «Сессия недоступна / NOT FOUND» — публиковать курс
+// было нечем.
+export { adminPublishAuthoredLearningV2Course } from "./content_factory/learning_v2_publish_authored_course_v1";
 export {
   adminGetContentFactoryJobDetail,
   adminGetContentFactoryUnitPreview,

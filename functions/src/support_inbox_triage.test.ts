@@ -1033,13 +1033,24 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
   });
 
-  // зачем: неразрешённая личность отправителя — единственный случай, где
-  // молчание безопаснее ответа: промежуточный ответ ушёл бы не тому человеку.
-  test('retry cron never re-opens a message blocked by an unresolved conversation identity', async () => {
+  // зачем это поведение поменялось (владелец, 2026-08-16: "он обязан
+  // готовить ВСЕГДА человеческий ответ и информировать меня, без
+  // исключений"): раньше unresolved conversation identity был единственным
+  // случаем, оставленным в attention_required навсегда — Telegram показывал
+  // пустоту вместо текста. Теперь этот backlog переоткрывается точно так же,
+  // как guarded-темы выше: holding-текст готовится, автоотправка при этом
+  // остаётся выключена (это проверяется отдельно, юнит-тестами preview и
+  // autoSendEligible в support_telegram_review.test.ts).
+  test('retry cron re-opens a message blocked by an unresolved conversation identity, with a prepared holding reply', async () => {
+    store.set('admin_config/support_inbox', {
+      autoReplyMode: 'live_guarded', autoReplyRevision: 2, autoReplyDailyCap: 20,
+      autoReplyPerSenderDailyCap: 3, signature: 'Phraseman Support', signatureRevision: 1,
+    });
     store.set('support_inbox/m-stuck-mismatch', {
       status: 'new', triageState: 'kept', mailCategory: 'human',
       fromEmail: 'client@example.com', messageId: '<stuck-mismatch@example.test>',
       subject: 'Practice', bodyText: 'How do I practise?',
+      conversationResolution: 'sender_mismatch',
       autoReply: {
         state: 'attention_required', attempts: 3, grounded: false,
         reason: 'conversation_sender_mismatch', policyVersion: 5, autoSendAtMs: null,
@@ -1050,10 +1061,14 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     await runSupportAutoReplyRetryCron(Date.now());
 
     expect(store.get('support_inbox/m-stuck-mismatch')?.autoReply).toMatchObject({
-      state: 'attention_required', reason: 'conversation_sender_mismatch',
+      state: 'awaiting_approval', holding: true, reason: 'conversation_sender_mismatch',
     });
-    expect(store.get('support_inbox/m-stuck-mismatch')?.draftReply).toBeUndefined();
-    expect(mockSendJarvisDigest).not.toHaveBeenCalled();
+    expect(String(store.get('support_inbox/m-stuck-mismatch')?.draftReply ?? '')).toContain('the right person');
+    const review = [...store.entries()].find(([path]) => path.startsWith('support_telegram_reviews/'))?.[1];
+    // Автоотправка не назначена — только владелец может решить отправить,
+    // проверив цепочку переписки вручную.
+    expect(review?.autoSendAtMs ?? null).toBeNull();
+    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
   });
 
   test('retry cron spends no council budget when a message has no authoritative conversation head', async () => {

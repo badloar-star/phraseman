@@ -99,4 +99,61 @@ describe('support Telegram review contract', () => {
     expect(supportTelegramJobLeaseOwns(reclaimed, 'worker-b')).toBe(true);
     expect(supportTelegramJobLeaseOwns({ ...reclaimed, state: 'accepted' }, 'worker-b')).toBe(false);
   });
+
+  // зачем (владелец, 2026-08-16: "он обязан готовить ВСЕГДА человеческий
+  // ответ и информировать меня, что написал"): раньше unresolved conversation
+  // identity был единственным случаем полной тишины — approvable: false с
+  // пустым текстом. Preview обязан всегда показать подготовленный текст,
+  // при этом явно предупредить, что автоотправки не будет.
+  describe('unresolved conversation identity always shows the owner a prepared draft', () => {
+    test('is approvable — the owner can still press "send" after checking the thread', () => {
+      const preview = buildSupportTelegramReviewPreview({
+        finalText: 'Здравствуйте! Прежде чем ответить по существу, команда вручную проверит цепочку переписки.',
+        draftRevision: 3,
+        customerReady: true,
+        holding: true,
+        identityUnresolved: true,
+      });
+      expect(preview.approvable).toBe(true);
+    });
+
+    test('shows the full drafted text, not a blocked-response placeholder', () => {
+      const preview = buildSupportTelegramReviewPreview({
+        finalText: 'Здравствуйте! Прежде чем ответить по существу, команда вручную проверит цепочку переписки.',
+        draftRevision: 3,
+        customerReady: true,
+        holding: true,
+        identityUnresolved: true,
+      });
+      expect(preview.text).toContain('Прежде чем ответить по существу');
+      expect(preview.text).not.toContain('Готового ответа нет');
+      expect(preview.text).not.toContain('Ответ не готов');
+    });
+
+    test('explicitly warns that auto-send will not fire', () => {
+      const preview = buildSupportTelegramReviewPreview({
+        finalText: 'Здравствуйте! Прежде чем ответить по существу, команда вручную проверит цепочку переписки.',
+        draftRevision: 3,
+        customerReady: true,
+        holding: true,
+        identityUnresolved: true,
+      });
+      expect(preview.text).toMatch(/не подтверждена|другого отправителя/iu);
+      expect(preview.text).toMatch(/автоматической отправки.{0,20}не будет/iu);
+    });
+
+    test('reads differently from an ordinary holding-topic preview', () => {
+      // зачем: обычный промежуточный ответ безопасен для авто-отправки,
+      // этот — нет. Владелец должен видеть разницу с первого взгляда.
+      const identity = buildSupportTelegramReviewPreview({
+        finalText: 'Здравствуйте! Здесь нужна ручная проверка.',
+        draftRevision: 3, customerReady: true, holding: true, identityUnresolved: true,
+      });
+      const billing = buildSupportTelegramReviewPreview({
+        finalText: 'Здравствуйте! Здесь нужна ручная проверка.',
+        draftRevision: 3, customerReady: true, holding: true,
+      });
+      expect(identity.text).not.toBe(billing.text);
+    });
+  });
 });

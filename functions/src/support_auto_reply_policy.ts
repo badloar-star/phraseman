@@ -39,18 +39,21 @@ export function supportAutoReplyFailureIsRepairable(reason: unknown): boolean {
 }
 
 /**
- * Silence is the worst support answer. When the council cannot produce a
- * grounded reply we still owe the customer the safe holding reply, which
- * asserts no product fact and only promises a manual look.
+ * зачем (владелец, 2026-08-16: "он обязан готовить ВСЕГДА человеческий
+ * ответ, без исключений"): раньше unresolved conversation identity был
+ * единственным случаем полной тишины — ни текста в Telegram, ни информации
+ * о проблеме владельцу. Теперь holding-текст готовится всегда; единственное,
+ * что остаётся закрытым для этой причины — АВТОМАТИЧЕСКАЯ отправка клиенту,
+ * потому что ответить не тому человеку хуже, чем задержать ответ. Владелец
+ * видит явное предупреждение и решает сам, нажимая «Отправить сейчас».
  *
- * The single exception is an unresolved conversation identity: replying to the
- * wrong person leaks one customer's thread to another, which is strictly worse
- * than a delayed answer. Those stay owner-only.
+ * Единая точка правды: используется и при построении Telegram-текста, и
+ * при решении об авто-отправке — так они не могут разойтись.
  */
-const HOLDING_REPLY_FORBIDDEN_REASON = /^conversation_(?:sender_mismatch|ambiguous_parent)$/;
+const IDENTITY_UNRESOLVED_REASON = /^conversation_(?:sender_mismatch|ambiguous_parent)$/;
 
-export function supportReasonAllowsHoldingReply(reason: unknown): boolean {
-  return !HOLDING_REPLY_FORBIDDEN_REASON.test(String(reason ?? ''));
+export function supportReasonHasUnresolvedIdentity(reason: unknown): boolean {
+  return IDENTITY_UNRESOLVED_REASON.test(String(reason ?? ''));
 }
 
 /**
@@ -137,6 +140,25 @@ export function buildPremiumAlternativePaymentReply(input: unknown): string {
     return '¡Hola! Si no puedes comprar Premium en la tienda de aplicaciones o necesitas otra forma de pago, usa el bot de Telegram @PhrasemanPremiumBot: https://t.me/PhrasemanPremiumBot. El bot te mostrará las opciones disponibles. No envíes datos de tarjeta, contraseñas ni códigos de acceso por correo.';
   }
   return 'Hello! If you cannot buy Premium through the app store or need another payment method, use the Telegram bot @PhrasemanPremiumBot: https://t.me/PhrasemanPremiumBot. The bot will show the available payment options. Do not send card details, passwords, or sign-in codes by email.';
+}
+
+/**
+ * зачем отдельная функция, а не ещё один SupportRisk: неподтверждённая
+ * личность отправителя — это не тема письма, а сомнение в том, кому вообще
+ * отвечаем. Владелец получает этот текст ТОЛЬКО в админке/Telegram для
+ * ручной проверки — сам он никогда не уходит клиенту автоматически
+ * (см. autoSendEligible в support_inbox.ts), поэтому в нём можно прямо
+ * назвать причину, не боясь запутать или напугать чужого человека.
+ */
+export function buildUnresolvedIdentityHoldingReply(input: unknown): string {
+  const lang = detectSupportLanguage(input);
+  if (lang === 'ru') {
+    return 'Здравствуйте! Прежде чем ответить по существу, команда вручную проверит цепочку переписки, чтобы точно не отправить ответ не тому человеку. Мы вернёмся с ответом в этом письме.';
+  }
+  if (lang === 'es') {
+    return '¡Hola! Antes de responder, el equipo revisará manualmente el hilo de correos para asegurarse de responder a la persona correcta. Volveremos con una respuesta en este mismo correo.';
+  }
+  return 'Hello! Before replying, the team will manually check the email thread to make sure we are answering the right person. We will get back to you in this same email.';
 }
 
 export function buildSafeHoldingReply(input: unknown, risk: SupportRisk): string {

@@ -2,11 +2,14 @@ import {
   buildSupportAutomaticRepairPrompt,
   buildGroundedReplySystemPrompt,
   buildPremiumAlternativePaymentReply,
+  buildSafeHoldingReply,
+  buildUnresolvedIdentityHoldingReply,
   classifySupportRisk,
   isPremiumAlternativePaymentQuestion,
   parseSupportDraftEnvelope,
   selectFinalAutoReply,
   supportAutoReplyFailureIsRepairable,
+  supportReasonHasUnresolvedIdentity,
 } from './support_auto_reply_policy';
 import type { SupportRepositoryContext } from './support_repository_context_types';
 import { makeSupportOwnerInstructionsSnapshot } from './support_owner_instructions';
@@ -137,5 +140,53 @@ describe('support auto-reply policy', () => {
       review: { approved: true, correctedReply: '', reasons: [] },
     });
     expect(selected).toMatchObject({ grounded: false, reason: 'untrusted_snapshot_fingerprint_mismatch' });
+  });
+
+  // зачем (владелец, 2026-08-16): раньше "личность отправителя не
+  // подтверждена" была единственным случаем, когда Джарвис никак не отвечал
+  // клиенту и не сообщал владельцу — вкладка Telegram показывала пустоту.
+  // Проверяем, что причина распознаётся и что для неё есть непустой текст,
+  // который не выглядит как обычный holding-ответ по теме (billing/account).
+  describe('unresolved conversation identity never leaves the owner without a prepared reply', () => {
+    test.each([
+      'conversation_sender_mismatch',
+      'conversation_ambiguous_parent',
+    ])('recognizes %s as an unresolved-identity reason', (reason) => {
+      expect(supportReasonHasUnresolvedIdentity(reason)).toBe(true);
+    });
+
+    test.each([
+      'guarded_billing',
+      'guarded_account',
+      'model_unavailable',
+      'auto_repair_budget_daily_cap',
+      '',
+      undefined,
+      null,
+    ])('does not misclassify unrelated reasons like %s', (reason) => {
+      expect(supportReasonHasUnresolvedIdentity(reason)).toBe(false);
+    });
+
+    test('produces a non-empty reply for every supported language', () => {
+      expect(buildUnresolvedIdentityHoldingReply('Проблема с приложением').trim().length).toBeGreaterThan(0);
+      expect(buildUnresolvedIdentityHoldingReply('The app is broken').trim().length).toBeGreaterThan(0);
+      expect(buildUnresolvedIdentityHoldingReply('¿Cómo uso la aplicación?').trim().length).toBeGreaterThan(0);
+    });
+
+    test('never claims the case was already checked or resolved', () => {
+      // зачем: как и обычный holding-ответ, он не должен утверждать факты о
+      // продукте или аккаунте — команда ещё не проверяла цепочку переписки.
+      const reply = buildUnresolvedIdentityHoldingReply('Проблема с приложением');
+      expect(reply).not.toMatch(/мы (?:проверили|вернули|исправили)/iu);
+    });
+
+    test('reads differently from a generic billing holding reply', () => {
+      // зачем: если бы функция просто делегировала в buildSafeHoldingReply,
+      // владелец не смог бы отличить "тема требует ручной проверки" от
+      // "мы не уверены, кому вообще отвечаем" — а это разные ситуации.
+      const identity = buildUnresolvedIdentityHoldingReply('Проблема с приложением');
+      const billing = buildSafeHoldingReply('Проблема с приложением', 'billing');
+      expect(identity).not.toBe(billing);
+    });
   });
 });

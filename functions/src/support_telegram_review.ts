@@ -145,6 +145,10 @@ export function buildSupportAttentionRequiredNotice(reason: unknown): string {
   ].join('\n');
 }
 
+/** зачем отдельный флаг, а не парсить reason из текста: строка reason
+ * (`conversation_sender_mismatch`/`conversation_ambiguous_parent`) — внутренний
+ * код, а не то, на что должна опираться разметка UI. Явный булев параметр
+ * не рассинхронизируется, если формат reason когда-нибудь поменяется. */
 export function buildSupportTelegramReviewPreview(input: {
   readonly finalText: string;
   readonly draftRevision: number;
@@ -152,6 +156,7 @@ export function buildSupportTelegramReviewPreview(input: {
   readonly customerReady?: boolean;
   readonly customerIssue?: string;
   readonly holding?: boolean;
+  readonly identityUnresolved?: boolean;
 }): { readonly text: string; readonly approvable: boolean; readonly violations: readonly string[] } {
   const finalText = String(input.finalText ?? '').trim();
   const violations = findSupportHumanVoiceViolations(finalText, input.customerIssue ?? '');
@@ -181,17 +186,27 @@ export function buildSupportTelegramReviewPreview(input: {
       ].join('\n'),
     });
   }
-  const title = input.holding
-    ? '🕓 <b>Промежуточный ответ Джарвиса</b>'
-    : input.revised ? '✏️ <b>Исправленная версия ответа</b>' : '📬 <b>Ответ Джарвиса готов</b>';
+  const title = input.identityUnresolved
+    ? '🕵️ <b>Личность отправителя не подтверждена</b>'
+    : input.holding
+      ? '🕓 <b>Промежуточный ответ Джарвиса</b>'
+      : input.revised ? '✏️ <b>Исправленная версия ответа</b>' : '📬 <b>Ответ Джарвиса готов</b>';
   return Object.freeze({
     approvable: true,
     violations,
     text: [
       title,
-      ...(input.holding
-        ? ['', 'Подтверждённого ответа по существу не нашлось, поэтому клиент получит честный промежуточный ответ — без выдуманных фактов. Обращение останется у вас в «Gmail Support Inbox» для полноценного ответа.']
-        : []),
+      // зачем этот блок первым и отдельным от обычного holding-абзаца
+      // (владелец, 2026-08-16: "он обязан готовить ВСЕГДА человеческий
+      // ответ"): раньше это был единственный случай полной тишины в
+      // Telegram. Теперь текст готов и виден, но здесь — в отличие от
+      // обычного промежуточного ответа — автоотправка НЕ включится сама:
+      // письмо может уйти не тому человеку, если нажать кнопку не проверив.
+      ...(input.identityUnresolved
+        ? ['', '⚠️ Это письмо ссылается на переписку от другого отправителя, поэтому Джарвис не уверен, кому отвечает. Проверьте цепочку в «Gmail Support Inbox», прежде чем нажимать «Отправить сейчас» — автоматической отправки для этого письма не будет.']
+        : input.holding
+          ? ['', 'Подтверждённого ответа по существу не нашлось, поэтому клиент получит честный промежуточный ответ — без выдуманных фактов. Обращение останется у вас в «Gmail Support Inbox» для полноценного ответа.']
+          : []),
       '',
       '<b>Полный текст письма вместе с подписью:</b>',
       escapeTelegramHtml(finalText),

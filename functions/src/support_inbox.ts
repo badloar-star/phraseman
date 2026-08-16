@@ -88,7 +88,8 @@ import {
   buildGroundedReplySystemPrompt,
   buildPremiumAlternativePaymentReply,
   buildSafeHoldingReply,
-  supportReasonAllowsHoldingReply,
+  buildUnresolvedIdentityHoldingReply,
+  supportReasonHasUnresolvedIdentity,
   buildSupportReviewPrompt,
   classifySupportRisk,
   detectSupportLanguage,
@@ -2499,8 +2500,10 @@ async function buildCouncilReviewedSupportReply(input: {
   });
   // No customer is left without an answer: when grounding fails we fall back to
   // the safe holding reply rather than dropping the thread into a silent queue.
+  // зачем attention() остаётся отдельным именем (2026-08-16): единственный
+  // оставшийся вызов — model_unavailable, инфраструктурная причина, а не
+  // содержательный отказ. Все причины, доходящие сюда, получают holding.
   const holdingOrAttention = (reason: string): SupportCouncilOutcome => {
-    if (!supportReasonAllowsHoldingReply(reason)) return attention(reason);
     return Object.freeze({
       kind: 'holding', grounded: false, reason,
       reply: buildSafeHoldingReply(issue, issueRisk),
@@ -2508,7 +2511,17 @@ async function buildCouncilReviewedSupportReply(input: {
     });
   };
   if (input.doc.conversationResolution === 'sender_mismatch' || input.doc.conversationResolution === 'ambiguous_parent') {
-    return attention(`conversation_${input.doc.conversationResolution}`);
+    // зачем holding, а не attention (2026-08-16, владелец: "он обязан
+    // готовить ВСЕГДА человеческий ответ, без исключений"): раньше это было
+    // единственным случаем полной тишины в Telegram — ни текста, ни
+    // информации о проблеме. Автоотправка клиенту всё равно исключена
+    // отдельно (см. autoSendEligible ниже) — риск, что промежуточный ответ
+    // уйдёт не тому человеку, закрыт там, а не молчанием здесь.
+    return Object.freeze({
+      kind: 'holding', grounded: false, reason: `conversation_${input.doc.conversationResolution}`,
+      reply: buildUnresolvedIdentityHoldingReply(issue),
+      knowledgeFingerprint: repositoryContext.sourceFingerprint,
+    });
   }
   if (isPremiumAlternativePaymentQuestion(issue)) {
     return {
@@ -2785,6 +2798,7 @@ async function prepareSupportTelegramReview(input: {
       customerReady,
       customerIssue,
       holding: input.holding === true,
+      identityUnresolved: supportReasonHasUnresolvedIdentity(input.reason),
     });
     const notificationLeaseId = randomUUID();
     const notificationLeaseExpiresAtMs = input.nowMs + SUPPORT_TELEGRAM_JOB_LEASE_MS;
@@ -3046,7 +3060,15 @@ async function prepareSupportTelegramReview(input: {
       // A holding reply makes no product claim, so repository trust is
       // irrelevant to it — it must still auto-send, otherwise the customer is
       // left waiting exactly in the cases where grounding already failed.
-      const autoSendEligible = input.holding === true
+      //
+      // зачем исключение по input.reason (2026-08-16): для conversation_*
+      // holding=true теперь ставится намеренно, чтобы владелец ВСЕГДА видел
+      // подготовленный текст в Telegram — но здесь личность отправителя не
+      // подтверждена, и автоматическая отправка ушла бы, возможно, не тому
+      // человеку. Это единственный holding-случай без авто-отправки; решение
+      // остаётся за владельцем, который явно увидит предупреждение в тексте.
+      const identityUnresolved = supportReasonHasUnresolvedIdentity(input.reason);
+      const autoSendEligible = (input.holding === true && !identityUnresolved)
         || (input.grounded === true && repositoryTrust.trustworthy && !repositoryTrust.dirty);
       const autoSendAtMs = String(configSnap.data()?.autoReplyMode ?? 'off') === 'live_guarded'
         && autoSendEligible
@@ -3282,9 +3304,11 @@ async function generateSaveAndDispatchAutoReply(input: {
 
 /**
  * Messages parked in attention_required were never re-queued by anything, so a
- * single blocked draft meant permanent silence for that customer. Now that
- * every non-identity failure still yields a holding reply, re-open that backlog
- * once — but only when the policy that blocked it is no longer the current one.
+ * single blocked draft meant permanent silence for that customer. Every
+ * failure reason — including a previously-unresolved conversation identity —
+ * now yields at least a holding reply (2026-08-16: the owner requires a
+ * prepared human reply with no exceptions), so re-open that backlog once,
+ * but only when the policy that blocked it is no longer the current one.
  */
 async function reopenSupportAttentionRequiredForNewPolicy(input: {
   db: FirebaseFirestore.Firestore;
@@ -3299,7 +3323,6 @@ async function reopenSupportAttentionRequiredForNewPolicy(input: {
     if (doc.status !== 'new' || doc.autoReply?.state !== 'attention_required') return false;
     if (doc.replyGate?.state === 'prepared') return false;
     if (Number(doc.autoReply?.policyVersion ?? 0) >= SUPPORT_AUTO_POLICY_VERSION) return false;
-    if (!supportReasonAllowsHoldingReply(doc.autoReply?.reason)) return false;
     tx.set(ref, {
       autoReply: {
         ...(doc.autoReply ?? {}),
@@ -3598,17 +3621,27 @@ async function buildCouncilReviewedSupportRevision(input: {
     knowledgeFingerprint: context.sourceFingerprint,
     ownerInstructions,
   });
-  const holdingOrAttention = (reason: string): SupportCouncilRevisionOutcome => {
-    if (!supportReasonAllowsHoldingReply(reason)) return attention(reason);
+  // зачем без проверки reason здесь (2026-08-16): единственная причина, ради
+  // которой holding когда-либо запрещался (conversation identity), теперь
+  // обрабатывается отдельно, до вызова этой функции. Всё, что доходит сюда,
+  // получает holding безусловно; attention() остаётся только для
+  // инфраструктурных отказов (нет бюджета на повторную попытку — см. ниже).
+  const holdingOrAttention = (reason: string): SupportCouncilRevisionOutcome => Object.freeze({
+    kind: 'holding', grounded: false, reason,
+    reply: buildSafeHoldingReply(issue, risk),
+    knowledgeFingerprint: context.sourceFingerprint,
+    ownerInstructions,
+  });
+  if (input.doc.conversationResolution === 'sender_mismatch' || input.doc.conversationResolution === 'ambiguous_parent') {
+    // зачем holding, а не attention: см. комментарий на первичной обработке
+    // выше — то же правило, симметрично, для случая правки уже показанного
+    // черновика.
     return Object.freeze({
-      kind: 'holding', grounded: false, reason,
-      reply: buildSafeHoldingReply(issue, risk),
+      kind: 'holding', grounded: false, reason: `conversation_${input.doc.conversationResolution}`,
+      reply: buildUnresolvedIdentityHoldingReply(issue),
       knowledgeFingerprint: context.sourceFingerprint,
       ownerInstructions,
     });
-  };
-  if (input.doc.conversationResolution === 'sender_mismatch' || input.doc.conversationResolution === 'ambiguous_parent') {
-    return attention(`conversation_${input.doc.conversationResolution}`);
   }
   if (risk !== 'safe') return holdingOrAttention(`guarded_${risk}`);
   const conversationHistory = await renderHistoryForSupportDoc(input.db, input.doc);

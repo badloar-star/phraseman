@@ -224,10 +224,11 @@ function targetAfterLevel(currentLevel: CurrentLevel): TargetLevel {
   return 'c1';
 }
 
-// Киллер-фичи Plus для пейвола — из боевой копирайт-выкладки (paywall_copy.ts →
-// CONTEXT_BENEFITS). Слово «ИИ» в приложении не используем — «разговорная
-// практика» вместо «диалоги с ИИ».
-const PAYWALL_BENEFITS: { icon: IoniconName; title: string }[] = [
+// Пейвол показывает оригинальную таблицу FREE/PLUS двумя колонками (владелец,
+// 2026-08-16) — набор из боевой копирайт-выкладки (paywall_copy.ts →
+// CONTEXT_BENEFITS) БЕЗ «Персонального плана»: планы удалены из приложения.
+// Слово «ИИ» не используем — «разговорная практика» вместо «диалоги с ИИ».
+const PAYWALL_COMPARISON_BENEFITS: { icon: IoniconName; title: string }[] = [
   { icon: 'flash-outline', title: 'Безлимит энергии' },
   { icon: 'mic-outline', title: 'Практика произношения' },
   { icon: 'chatbubbles-outline', title: 'Разговорная практика' },
@@ -788,9 +789,20 @@ function ScreenFrame({
 
 function NotificationMock() {
   const isIos = Platform.OS === 'ios';
+  // Мокап системного диалога «оживает» как настоящий: pop-in с пружиной.
+  const anim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const a = Animated.sequence([
+      Animated.delay(300),
+      Animated.spring(anim, { toValue: 1, friction: 6, tension: 90, useNativeDriver: true }),
+    ]);
+    a.start();
+    return () => a.stop();
+  }, [anim]);
+  const scale = anim.interpolate({ inputRange: [0, 1], outputRange: [0.88, 1] });
   return (
     <View style={styles.notificationMockWrap}>
-      <View style={styles.notificationMock}>
+      <Animated.View style={[styles.notificationMock, { opacity: anim, transform: [{ scale }] }]}>
         <Text style={styles.notificationMockTitle}>
           {isIos ? 'Приложение хочет отправлять уведомления' : 'Разрешить уведомления?'}
         </Text>
@@ -803,7 +815,7 @@ function NotificationMock() {
           <Text style={styles.notificationMockMuted}>{isIos ? 'Не разрешать' : 'Не сейчас'}</Text>
           <Text style={styles.notificationMockAllow}>Разрешить</Text>
         </View>
-      </View>
+      </Animated.View>
       <Ionicons name="arrow-up" size={42} color="#86B7FF" style={styles.notificationArrow} />
     </View>
   );
@@ -867,11 +879,30 @@ function PlusBenefitRow({
 }
 
 // Вау-график для экрана promise: две траектории — «повторяешь с Phraseman»
-// (растёт) и «просто учишь и забываешь» (сползает вниз). Рисуем на SVG без
-// анимации путей (native driver с Path не дружит); появление даёт FadeUp кадра.
+// (растёт) и «просто учишь и забываешь» (сползает вниз). SVG-пути статичны
+// (native driver с Path не дружит), а «рисование» кривой делает шторка цвета
+// карточки, уезжающая вправо на native driver — кривая проявляется слева
+// направо без единого кадра на JS-потоке.
 function PromiseChart() {
+  const [revealWidth, setRevealWidth] = useState(0);
+  const reveal = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const a = Animated.sequence([
+      Animated.delay(240),
+      Animated.timing(reveal, { toValue: 1, duration: 900, useNativeDriver: true }),
+    ]);
+    a.start();
+    return () => a.stop();
+  }, [reveal]);
+  const translateX = reveal.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, revealWidth || 1],
+  });
   return (
-    <View style={styles.promiseChartCard}>
+    <View
+      style={styles.promiseChartCard}
+      onLayout={(event) => setRevealWidth(event.nativeEvent.layout.width)}
+    >
       <Svg width="100%" height={190} viewBox="0 0 320 190" preserveAspectRatio="none">
         <Defs>
           <SvgLinearGradient id="promiseUpStroke" x1="0" y1="0" x2="1" y2="0">
@@ -909,6 +940,10 @@ function PromiseChart() {
         <Circle cx={306} cy={22} r={7} fill="#3ECF8E" />
         <Circle cx={306} cy={22} r={12} fill="#3ECF8E" fillOpacity={0.22} />
       </Svg>
+      <Animated.View
+        pointerEvents="none"
+        style={[styles.promiseReveal, { transform: [{ translateX }] }]}
+      />
       <View style={styles.promiseBadgeUp}>
         <Ionicons name="sparkles" size={13} color="#07111F" />
         <Text style={styles.promiseBadgeUpText}>Повторяешь с Phraseman</Text>
@@ -921,16 +956,15 @@ function PromiseChart() {
 }
 
 // Строка таймлайна пробного периода (экран trialReminder): каскадное появление
-// как у PlusBenefitRow — те же длительности, тот же native driver.
+// как у PlusBenefitRow — те же длительности, тот же native driver. Одна строка,
+// без подтекстов (владелец, 2026-08-16).
 function TrialTimelineRow({
   icon,
   title,
-  body,
   index = 0,
 }: {
   icon: IoniconName;
   title: string;
-  body: string;
   index?: number;
 }) {
   const anim = useRef(new Animated.Value(0)).current;
@@ -948,9 +982,70 @@ function TrialTimelineRow({
       <View style={styles.trialTimelineIcon}>
         <Ionicons name={icon} size={19} color="#B9C8FF" />
       </View>
-      <View style={styles.trialTimelineCopy}>
-        <Text style={styles.trialTimelineTitle}>{title}</Text>
-        <Text style={styles.trialTimelineBody}>{body}</Text>
+      <Text style={styles.trialTimelineTitle}>{title}</Text>
+    </Animated.View>
+  );
+}
+
+// Пуш «как настоящий»: карточка въезжает сверху с лёгким пружинным доводом —
+// ровно так уведомление садится на локскрин. Конечная анимация, native driver.
+function AnimatedPushCard({ children }: { children: React.ReactNode }) {
+  const anim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const a = Animated.sequence([
+      Animated.delay(260),
+      Animated.spring(anim, { toValue: 1, friction: 7, tension: 70, useNativeDriver: true }),
+    ]);
+    a.start();
+    return () => a.stop();
+  }, [anim]);
+  const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [-42, 0] });
+  return (
+    <Animated.View style={[styles.trialPushCard, { opacity: anim, transform: [{ translateY }] }]}>
+      {children}
+    </Animated.View>
+  );
+}
+
+// Строка таблицы FREE/PLUS на пейволе: у Free — прочерк, у Plus — галочка,
+// которая «ставится» с overshoot; строки подъезжают каскадом (native driver).
+function PlanComparisonRow({
+  icon,
+  title,
+  index = 0,
+}: {
+  icon: IoniconName;
+  title: string;
+  index?: number;
+}) {
+  const anim = useRef(new Animated.Value(0)).current;
+  const check = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const delay = 140 + index * 160;
+    const a = Animated.sequence([
+      Animated.delay(delay),
+      Animated.parallel([
+        Animated.timing(anim, { toValue: 1, duration: 300, useNativeDriver: true }),
+        Animated.spring(check, { toValue: 1, friction: 5, tension: 120, delay: 140, useNativeDriver: true }),
+      ]),
+    ]);
+    a.start();
+    return () => a.stop();
+  }, [anim, check, index]);
+  const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
+  return (
+    <Animated.View style={[styles.cmpRow, { opacity: anim, transform: [{ translateY }] }]}>
+      <View style={styles.cmpLabelCell}>
+        <Ionicons name={icon} size={20} color="#5B67D8" style={styles.cmpIcon} />
+        <Text style={styles.cmpLabel}>{title}</Text>
+      </View>
+      <View style={styles.cmpCell}>
+        <View style={styles.cmpDash} />
+      </View>
+      <View style={styles.cmpCell}>
+        <Animated.View style={[styles.cmpCheckWrap, { transform: [{ scale: check }] }]}>
+          <Ionicons name="checkmark" size={16} color="#22B07D" />
+        </Animated.View>
       </View>
     </Animated.View>
   );
@@ -1585,11 +1680,8 @@ function CleanOnboarding({
                 ? (unknownAccountEmail !== null ? 'Начнём с чистого листа' : 'Вернём твой прогресс')
                 : 'От первых слов до свободной речи.'}
             </Text>
-            {authMode ? null : (
-              <FadeUp delay={520}>
-                <Text style={styles.welcomeSubtitle}>Живые фразы · короткие сессии · твой маршрут</Text>
-              </FadeUp>
-            )}
+            {/* Подтекст под заголовком убран (владелец, 2026-08-16): без «доп
+                текстов» — заголовок несёт обещание сам. */}
           </View>
 
           {authMode && unknownAccountEmail !== null ? (
@@ -1722,18 +1814,8 @@ function CleanOnboarding({
     >
       <PromiseChart />
       <View style={styles.promiseFactList}>
-        <PlusBenefitRow
-          index={0}
-          icon="repeat-outline"
-          title="Каждая фраза возвращается"
-          body="Мы напоминаем её ровно в тот момент, когда она начинает забываться."
-        />
-        <PlusBenefitRow
-          index={1}
-          icon="time-outline"
-          title="Хватает пары минут в день"
-          body="Сессии короткие, поэтому их реально держать неделя за неделей."
-        />
+        <PlusBenefitRow index={0} icon="repeat-outline" title="Каждая фраза возвращается" />
+        <PlusBenefitRow index={1} icon="time-outline" title="Хватает пары минут в день" />
       </View>
     </ScreenFrame>
   );
@@ -1798,7 +1880,7 @@ function CleanOnboarding({
         </>
       )}
     >
-      <View style={styles.trialPushCard}>
+      <AnimatedPushCard>
         <View style={styles.trialPushIcon}>
           <Ionicons name="notifications" size={19} color="#FFFFFF" />
         </View>
@@ -1807,26 +1889,11 @@ function CleanOnboarding({
           <Text style={styles.trialPushBody}>Напомним за 2 дня — успеешь отменить, если не подойдёт.</Text>
         </View>
         <Text style={styles.trialPushWhen}>день 5</Text>
-      </View>
+      </AnimatedPushCard>
       <View style={styles.trialTimeline}>
-        <TrialTimelineRow
-          index={0}
-          icon="lock-open-outline"
-          title="Сегодня"
-          body="Полный доступ ко всем тренировкам — сразу."
-        />
-        <TrialTimelineRow
-          index={1}
-          icon="notifications-outline"
-          title="День 5"
-          body="Пуш-напоминание, что пробный скоро закончится."
-        />
-        <TrialTimelineRow
-          index={2}
-          icon="card-outline"
-          title="День 7"
-          body="Начнётся подписка. Отменить можно в любой момент."
-        />
+        <TrialTimelineRow index={0} icon="lock-open-outline" title="Сегодня — полный доступ сразу" />
+        <TrialTimelineRow index={1} icon="notifications-outline" title="День 5 — напомним пушем" />
+        <TrialTimelineRow index={2} icon="card-outline" title="День 7 — подписка, отмена в любой момент" />
       </View>
     </ScreenFrame>
   );
@@ -1900,14 +1967,16 @@ function CleanOnboarding({
           </>
         }
       >
-        <View style={styles.paywallBenefitList}>
-          {PAYWALL_BENEFITS.map((item) => (
-            <View key={item.title} style={styles.paywallBenefitRow}>
-              <View style={styles.paywallBenefitIcon}>
-                <Ionicons name={item.icon} size={17} color="#3E62FF" />
-              </View>
-              <Text style={styles.paywallBenefitTitle}>{item.title}</Text>
-            </View>
+        {/* Оригинальная таблица выгод двумя колонками FREE/PLUS (владелец,
+            2026-08-16) — видно, что именно добавится к бесплатному. */}
+        <View style={styles.cmpHeaderRow}>
+          <View style={styles.cmpLabelCell} />
+          <Text style={styles.cmpHeaderFree}>FREE</Text>
+          <Text style={styles.cmpHeaderPlus}>PLUS</Text>
+        </View>
+        <View style={styles.cmpList}>
+          {PAYWALL_COMPARISON_BENEFITS.map((item, index) => (
+            <PlanComparisonRow key={item.title} index={index} icon={item.icon} title={item.title} />
           ))}
         </View>
         <View style={styles.paywallPlanList}>
@@ -1983,11 +2052,6 @@ function CleanOnboarding({
             <Pressable style={styles.codeScrim} onPress={() => { if (!codeBusy) setCodeSheet(null); }} accessibilityLabel="Закрыть ввод кода">
               <Pressable style={styles.codeCard} onPress={() => {}}>
                 <Text style={styles.codeTitle}>{codeSheet === 'promo' ? 'Промокод' : 'Код от друга'}</Text>
-                <Text style={styles.codeHint}>
-                  {codeSheet === 'promo'
-                    ? 'Если у тебя есть код на скидку или доступ — введи его до оплаты.'
-                    : 'Код друга даёт бонус вам обоим.'}
-                </Text>
                 <TextInput
                   testID="onboarding-code-input"
                   style={styles.codeInput}
@@ -2083,7 +2147,6 @@ function CleanOnboarding({
         </View>
         <View style={styles.consentDecisionCopy}>
           <Text style={styles.consentDecisionTitle}>Анонимная аналитика</Text>
-          <Text style={styles.consentDecisionHint}>Помогает улучшать приложение</Text>
         </View>
         <View style={[styles.consentSwitch, analyticsAllowed && styles.consentSwitchOn]}>
           <View style={[styles.consentSwitchThumb, analyticsAllowed && styles.consentSwitchThumbOn]} />
@@ -2104,7 +2167,6 @@ function CleanOnboarding({
         </View>
         <View style={styles.consentDecisionCopy}>
           <Text style={styles.consentDecisionTitle}>Фраза недели на почту</Text>
-          <Text style={styles.consentDecisionHint}>Одно письмо в неделю, отписка в один клик</Text>
         </View>
         <View style={[styles.consentCheck, newsletterOptIn && styles.consentCheckSelected]}>
           {newsletterOptIn ? <Ionicons name="checkmark" size={20} color="#07111F" /> : null}
@@ -3545,6 +3607,16 @@ const styles = StyleSheet.create({
     marginBottom: 18,
     position: 'relative',
     overflow: 'hidden',
+  },
+  // Шторка «рисования» кривой: цвет карточки, уезжает вправо на native driver.
+  promiseReveal: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 10,
+    right: 10,
+    backgroundColor: '#121A2E',
+    borderRadius: 18,
   },
   promiseBadgeUp: {
     position: 'absolute',

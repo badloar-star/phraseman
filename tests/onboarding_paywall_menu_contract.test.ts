@@ -56,4 +56,16 @@ describe('onboarding paywall header and codes menu contract', () => {
     expect(paywall).toContain('KNOWLY_LEGAL_PRIVACY_URL');
     expect(paywall).toContain('testID="onboarding-paywall-continue-free"');
   });
+
+  it('sells the original FREE/PLUS comparison without the removed personal plan', () => {
+    const paywall = source.slice(
+      source.indexOf('const renderOnboardingPaywall'),
+      source.indexOf('const renderName'),
+    );
+    expect(paywall).toContain('PAYWALL_COMPARISON_BENEFITS');
+    expect(paywall).toContain('>FREE<');
+    expect(paywall).toContain('>PLUS<');
+    // Планы удалены из приложения — обещать «Персональный план» нельзя нигде.
+    expect(source).not.toContain('Персональный план');
+  });
 });

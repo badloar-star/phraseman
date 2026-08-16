@@ -74,7 +74,10 @@ describe('clean minimal wow onboarding contract', () => {
       'testID="onboarding-paywall-plan-lifetime"',
       'testID="onboarding-paywall-continue"',
       'testID="onboarding-paywall-continue-free"',
-      'PAYWALL_BENEFITS',
+      'PAYWALL_COMPARISON_BENEFITS',
+      '>FREE<',
+      '>PLUS<',
+      'PlanComparisonRow',
       'usePaywallPurchase',
       'Продолжить бесплатно',
     ].forEach((text) => expect(source).toContain(text));

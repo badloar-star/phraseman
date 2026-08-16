@@ -69,17 +69,7 @@ import {
   ONBOARDING_REQUESTED_STUDY_TARGET_KEY,
   prefetchAndRecordStudyTargetServerPack,
 } from '../app/study_target_server_prefetch';
-/**
- * Ключ «после покупки вернуть пользователя в онбординг на шаг Имя».
- *
- * зачем 16.08.2026: константа приезжала из app/personal_plan_activation, но этот
- * модуль удалён вместе с выводом Personal Plan из проекта — новый онбординг
- * писался, когда он ещё существовал. Восстанавливать модуль ради одной строки
- * нельзя: Personal Plan выведен намеренно. Значение сохранено ДОСЛОВНО, потому
- * что этот же ключ литералом перечислен в app/cloud_sync.ts (список «не
- * синхронизировать в облако») — разойдись они, флаг начал бы утекать в облако.
- */
-const PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY = 'personal_plan_onboarding_nickname_pending_v1';
+import { PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY } from '../app/personal_plan_activation';
 import {
   addDays,
   estimateDaysToTarget,
@@ -1655,10 +1645,9 @@ function CleanOnboarding({
     trackOnboarding('onboarding_plan_billing_select', { plan: next });
   }, [selectBillingPlan]);
 
-  // Личные учебные планы удалены из приложения вместе со своим модулем, поэтому
-  // pending-nickname ключ больше никто не читает — возврат в онбординг на шаг
-  // «Имя» после покупки делает событие onboarding_paywall_completed. Запись
-  // оставлена совместимостью (подробнее — у вызова покупки ниже).
+  // Личные учебные планы удалены из приложения, но pending-nickname ключ жив:
+  // его читает finishPersonalPlanActivationFlow после успешной покупки и
+  // возвращает пользователя В ОНБОРДИНГ на шаг «Имя» (а не на «спасибо»-экран).
   const queuePostPurchaseReturn = useCallback(async (billing: PaywallPlan = selectedBillingPlan) => {
     await AsyncStorage.multiSet([
       [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
@@ -1688,20 +1677,14 @@ function CleanOnboarding({
     if (paywallBusy || paywallPurchasing) return;
     setPaywallBusy(true);
     try {
-      // Ставим pending-возврат ДО покупки.
-      //
-      // зачем 16.08.2026: раньше ключ читал finishPersonalPlanActivationFlow,
-      // но модуль personal_plan_activation удалён вместе с Personal Plan.
-      // Возврат на шаг «Имя» теперь делает событие onboarding_paywall_completed
-      // (app/paywall_purchase.ts → слушатель в app/_layout.tsx), поэтому флоу
-      // рабочий, а сама запись ключа осталась совместимостью — её никто не
-      // читает. Не удаляю здесь: ключ перечислен в списке «не синхронизировать»
-      // в app/cloud_sync.ts, чистка — отдельной задачей.
+      // Ставим pending-возврат ДО покупки: после успеха хук вызывает
+      // finishPersonalPlanActivationFlow, который читает pending-nickname ключ
+      // и возвращает в онбординг на шаг «Имя».
       await queuePostPurchaseReturn(selectedBillingPlan);
       trackOnboardingPlanTrialCta({ plan: selectedBillingPlan });
       // Реальная покупка выбранного тарифа. Хук сам обрабатывает отмену
       // (userCancelled — тихо остаёмся на шаге), ошибку (свой Alert) и
-      // навигацию при успехе (onboarding_paywall_completed → шаг «Имя»).
+      // навигацию при успехе (finishPersonalPlanActivationFlow → шаг «Имя»).
       await paywallHandlePurchase();
     } finally {
       setPaywallBusy(false);

@@ -10,7 +10,7 @@ html,body{margin:0;padding:0}
 body{background:var(--pg-bg);color:var(--pg-text);font-family:"Inter",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.5}
 a{color:var(--pg-accent)}
 .wrap{max-width:1140px;margin:0 auto;padding:0 20px}
-header.hero{padding:64px 0 36px}
+header.pagehero{padding:64px 0 36px}
 .eyebrow{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--pg-muted);margin-bottom:10px}
 h1{font-size:44px;line-height:1.08;margin:0 0 14px;letter-spacing:-.02em;text-wrap:balance;font-weight:700}
 h1 small{display:block;font-size:20px;color:var(--pg-muted);font-weight:400;margin-top:10px;letter-spacing:0}
@@ -168,11 +168,11 @@ ol.tight li,ul.tight li{margin:0 0 6px}
 .phone.small .modal{width:270px}
 .layer.open .modal{transform:translate(-50%,-50%) scale(1)}
 .modal .glass{position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent);opacity:.68;pointer-events:none}
-.hero{width:96px;height:96px;border-radius:50%;margin:4px auto 10px;display:flex;align-items:center;justify-content:center;position:relative;background:var(--accentBg)}
-.hero svg{width:52px;height:52px;color:var(--accent);position:relative;z-index:1}
-.hero .bloom{position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(closest-side,var(--glow),transparent 72%)}
-.hero.gold{background:var(--goldBg)}.hero.gold svg{color:var(--gold)}
-.layer.open .hero{animation:strike .7s cubic-bezier(.2,1.6,.4,1) .35s both}
+.phone .hero{width:96px;height:96px;border-radius:50%;margin:4px auto 10px;display:flex;align-items:center;justify-content:center;position:relative;background:var(--accentBg)}
+.phone .hero svg{width:52px;height:52px;color:var(--accent);position:relative;z-index:1}
+.phone .hero .bloom{position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(closest-side,var(--glow),transparent 72%)}
+.phone .hero.gold{background:var(--goldBg)}.phone .hero.gold svg{color:var(--gold)}
+.layer.open .phone .hero,.phone .layer.open .hero{animation:strike .7s cubic-bezier(.2,1.6,.4,1) .35s both}
 @keyframes strike{0%{transform:scale(1)}30%{transform:scale(1.18,.86)}55%{transform:scale(.94,1.08) translateY(-6px)}100%{transform:scale(1) translateY(0)}}
 .layer.open .ladder>*{opacity:0;transform:translateY(8px);animation:ladder .38s cubic-bezier(.2,.8,.2,1) forwards}
 .ladder>*:nth-child(1){animation-delay:0ms}.ladder>*:nth-child(2){animation-delay:74ms}.ladder>*:nth-child(3){animation-delay:172ms}.ladder>*:nth-child(4){animation-delay:306ms}.ladder>*:nth-child(5){animation-delay:478ms}.ladder>*:nth-child(6){animation-delay:688ms}
@@ -264,7 +264,7 @@ ol.tight li,ul.tight li{margin:0 0 6px}
 </svg>
 
 <div class="wrap">
-<header class="hero">
+<header class="pagehero">
   <div class="eyebrow">Phraseman · вкладка «Друзья» · концепт и макеты · 16.08.2026</div>
   <h1>«Вместе»: друзья, с которыми есть смысл заниматься каждый день<small>Три вещи на том, что уже есть в приложении — опыт, звёзды, цепь, сундук и пуш. Ни одной новой валюты. Один экран. Причина звать друзей — не приз, а игра с ними.</small></h1>
   <div class="callout mt12"><b>Суть в одну строку.</b> С каждым другом растёт <b>уровень дружбы</b> — за дни, когда занимались оба (даёт бонус к опыту обоим). Все друзья вместе наполняют твой <b>сундук недели</b> своим опытом. Если друг ещё не занимался — его можно <b>позвать</b> одним тапом (пуш от твоего имени). Всё это живёт на вкладке «Друзья»; Главная не меняется.</div>

@@ -1,41 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" data-i18n-page="guide-speaking-barrier">
+<html lang="ru" data-i18n-page="guide">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>The language barrier: why you understand English but do not speak it</title>
-  <link rel="stylesheet" href="/assets/site-i18n.css?v=20260813-1" />
-  <script src="/assets/site-i18n.locales.js?v=20260813-1" defer></script>
-  <script src="/assets/site-i18n.js?v=20260813-1" defer></script>
-  <meta
-    name="description"
-    content="Do you understand English but cannot start speaking? We unpack the language barrier: where it comes from, why school taught you to stay silent, and five steps that remove the block."
-  />
-  <link rel="canonical" href="https://knowlyapps.com/guides/speaking-barrier/" />
+  <title>Языковой барьер: почему вы понимаете английский, но не говорите</title>
+  <meta name="description" content="Откуда берётся ступор при разговоре, почему «просто начните говорить» не работает и пять шагов-ступенек, которые снимают блок." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://knowlyapps.com/guides/speaking-barrier/" />
-  <meta property="og:title" content="The language barrier: why you understand English but do not speak it" />
-  <meta
-    property="og:description"
-    content="Where the barrier comes from and five steps that remove it — without “just start speaking.”"
-  />
+  <meta property="og:title" content="Языковой барьер: почему вы понимаете, но не говорите" />
+  <meta property="og:description" content="Откуда берётся ступор и пять шагов, которые снимают блок." />
   <meta property="og:image" content="https://knowlyapps.com/assets/og-banner.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://knowlyapps.com/assets/og-banner.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="/assets/phraseman-icon-128.png" />
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="/assets/phraseman.css?v=wow5" />
-  <link rel="stylesheet" href="/assets/theme.css?v=wow4" />
-  <script src="/assets/theme.js?v=2"></script>
-  <script src="/assets/site-config.js?v=6764800879" defer></script>
-  <script src="/assets/stats.js?v=3" defer></script>
+  <link rel="canonical" href="https://knowlyapps.com/guides/speaking-barrier/" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -85,28 +62,85 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/assets/site-background.css?v=20260729-1" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="/assets/phraseman-icon-128.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/ds.css?v=20260816-1" />
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') document.documentElement.setAttribute('data-theme', stored);
+      } catch (e) { /* приватный режим */ }
+    })();
+  </script>
+  <style>
+    /* Статья: узкая читаемая колонка, крупный текст, без украшений */
+    .legal-document { max-width: 44em; margin: 0 auto; }
+    .legal-document h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; letter-spacing: -.03em; margin-bottom: 14px; }
+    .legal-document h2 { font-size: clamp(19px, 2.6vw, 25px); font-weight: 800; letter-spacing: -.02em; margin: 36px 0 12px; }
+    .legal-document h3 { font-size: 17px; font-weight: 700; margin: 26px 0 8px; }
+    .legal-document p, .legal-document li { color: var(--text-muted); font-size: 16px; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+    .legal-document ul, .legal-document ol { padding-left: 24px; margin-bottom: 18px; }
+    .legal-document ul li { list-style: disc; }
+    .legal-document ol li { list-style: decimal; }
+    .legal-document a { color: var(--accent-text); font-weight: 600; }
+    .legal-document strong, .legal-document b { color: var(--text); }
+    .legal-document .meta { font-size: 13.5px; color: var(--text-dim); padding-bottom: 20px; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .legal-document table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14.5px; }
+    .legal-document th, .legal-document td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+    .legal-document th { color: var(--text); font-weight: 700; }
+    .legal-document td { color: var(--text-muted); }
+    .legal-document blockquote { margin: 0 0 16px; padding: 14px 18px; background: var(--surface); border-radius: var(--radius); }
+    .legal-document blockquote p:last-child { margin-bottom: 0; }
+    /* Врезка-призыв в конце статьи */
+    .guide-cta { max-width: 44em; margin: 44px auto 0; text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px 26px; }
+    .guide-cta h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .guide-cta p { color: var(--text-muted); font-size: 14.5px; margin-bottom: 18px; }
+  </style>
+  <script src="/assets/site-config.js?v=6764800879" defer></script>
+  <script src="/assets/stats.js?v=3" defer></script>
+  <script src="/assets/ds.js?v=20260816-1" defer></script>
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-1" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-2" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-3" aria-hidden="true"></div>
 
-  <div class="shell">
-    <header class="topbar">
-      <a class="brand" href="/" aria-label="Phraseman">
-        <img src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
-        <span><b>Phraseman</b><small>Живой английский</small></span>
-      </a>
-      <nav class="nav" aria-label="Навигация">
-        <a href="/">О приложении</a>
-        <a href="/guides/">Гайды</a>
-        <a href="/download/">Скачать</a>
-      </nav>
-      <span data-i18n-switcher></span>
-  </header>
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="Phraseman">
+      <img class="logo-mark" src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
+      <span class="logo-word"><span class="lw-a">phrase</span><span class="lw-b">man</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Разделы сайта">
+      <a href="/#inside">Что внутри</a>
+      <a href="/english-level-test/">Тест уровня</a>
+      <a href="/guides/">Все гайды</a>
+      <a href="/gift/">Подарить</a>
+      <a href="/contact/">Поддержка</a>
+    </nav>
+    <div class="nav-right">
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Переключить тему">
+        <span class="icon-wrap">
+          <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        </span>
+      </button>
+      <a class="btn btn-primary btn-header" href="/download/">Скачать</a>
+      <button class="menu-toggle icon-btn" type="button" aria-label="Меню" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-    <main class="article">
-      <article class="legal-document">
-        <h1>Языковой барьер: почему вы понимаете английский, но не говорите</h1>
+<main class="section-pad wrap">
+  <div class="legal-document">
+<h1>Языковой барьер: почему вы понимаете английский, но не говорите</h1>
         <p class="meta">Обновлено 2 июля 2026 · Команда Knowly · Чтение ~6 минут</p>
 
         <p>Знакомая ситуация: сериал без перевода — пожалуйста, статью прочитать — легко.
@@ -189,23 +223,27 @@
         <p>Акцент — не ошибка, а особенность. Важна понятность: ударения и ключевые звуки.
           Разбор — в гайде <a href="/guides/how-to-improve-english-pronunciation/">как улучшить
           произношение</a>.</p>
-      </article>
-    </main>
-
-    <footer class="footer">
-      <a class="brand" href="/" style="gap:10px">
-        <img src="/assets/phraseman-icon-128.png" alt="" style="width:30px;height:30px;border-radius:8px" loading="lazy" />
-        <span><b style="font-size:14px">Phraseman</b><small style="letter-spacing:.18em">by Knowly</small></span>
-      </a>
-      <nav class="flinks" aria-label="Ссылки">
-        <a href="/">О приложении</a>
-        <a href="/guides/">Гайды</a>
-        <a href="/contact/">Поддержка</a>
-        <a href="/legal/privacy/">Конфиденциальность</a>
-        <a href="/legal/terms/">Условия</a>
-      </nav>
-      <p>© 2026 Knowly · Phraseman — учите английский живыми фразами.</p>
-    </footer>
   </div>
+
+  <aside class="guide-cta">
+    <h2>Готовая система вместо самостоятельной сборки</h2>
+    <p>10 000+ живых фраз, озвучка и повторения по расписанию. Первый урок открывается сразу, без регистрации.</p>
+    <a class="btn btn-primary" href="/download/">Скачать Phraseman бесплатно</a>
+  </aside>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap footer-row">
+    <p>&copy; 2026 Knowly &middot; Phraseman</p>
+    <nav class="footer-links" aria-label="Ссылки">
+      <a href="/">О приложении</a>
+      <a href="/guides/">Гайды</a>
+      <a href="/download/">Скачать</a>
+      <a href="/contact/">Поддержка</a>
+      <a href="/legal/privacy/">Конфиденциальность</a>
+      <a href="/legal/terms/">Условия</a>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>

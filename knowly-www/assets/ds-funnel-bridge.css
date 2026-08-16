@@ -1,0 +1,114 @@
+/* Мост совместимости для воронки /start/ и /premium/ (редизайн 2026-08-16).
+
+   зачем: квиз и пейвол целиком рисует start.js (840 строк) — разметки в HTML
+   почти нет, а вся вёрстка опирается на 12 старых токенов из phraseman.css.
+   Переписывать генератор ради цвета — риск уронить оплату, поэтому вместо
+   этого старые имена токенов переопределяются через новые. Пейвол получает
+   новую палитру и обе темы, а логика оплаты остаётся нетронутой.
+
+   Подключать ПОСЛЕ ds.css и ПОСЛЕ start.css. */
+
+:root {
+  --line: var(--border);
+  --line-strong: var(--border-hi);
+  --muted: var(--text-muted);
+  --muted-2: var(--text-dim);
+  --serif: var(--font-heading);
+
+  /* Главный акцент воронки — синий из макета, а не прежнее золото:
+     кнопка «оплатить» обязана совпадать по цвету с кнопками всего сайта. */
+  --gold: var(--accent-2);
+  --gold-grad: linear-gradient(135deg, var(--accent-1), var(--accent-2) 55%, var(--accent-3));
+  --gold-deep: var(--accent-text);
+  --gold-ink: var(--accent-ink);
+  --ink: var(--text);
+  --body: var(--text-muted);
+  --soft: var(--text-dim);
+  --tint: var(--surface-2);
+  --tint-2: var(--surface-2);
+  --pill: var(--radius-full);
+  --shadow: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+}
+
+/* Фон старой сцены отключён: новый фон рисует ds.css на body.
+   зачем: два слоя фона накладывались и давали грязный тон в тёмной теме. */
+.bg { display: none !important; }
+
+/* Оболочка воронки под новую сетку */
+.shell.quiz-shell { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+.quiz-root { padding-bottom: 56px; }
+
+/* Панели квиза — карточки в стиле макета */
+.quiz-root .panel,
+.quiz-root .card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Полоса прогресса квиза */
+.quiz-progress { background: var(--surface-2); border-radius: var(--radius-full); overflow: hidden; }
+.quiz-progress-fill { background: linear-gradient(135deg, var(--accent-1), var(--accent-3)); }
+
+/* Подвал воронки */
+.footer.quiz-footer { border-top: 1px solid var(--border); padding: 26px 0; margin-top: 40px; }
+.footer.quiz-footer p { color: var(--text-dim); font-size: 13px; }
+.footer.quiz-footer a { color: var(--text-muted); }
+.footer.quiz-footer a:hover { color: var(--accent-text); }
+
+/* Старый переключатель темы из theme.js на этих страницах не нужен —
+   его заменяет общий переключатель в шапке. */
+.theme-toggle { display: none !important; }
+
+/* ── Компоненты, которые генерирует start.js ──────────────────────────────
+   зачем: их стили жили в phraseman.css, который на новых страницах больше не
+   подключён (2239 строк старой темы ради трёх классов). Поэтому нужные
+   классы описаны здесь заново — уже в новой палитре. Без этого блока главная
+   кнопка оплаты рендерилась серой: класс есть, а правила нет. */
+
+.quiz-root h1 {
+  margin: 0 0 20px;
+  font-size: clamp(28px, 5vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.03em;
+  font-weight: 800;
+  color: var(--text);
+  text-wrap: balance;
+}
+.quiz-root h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 800; letter-spacing: -.02em; color: var(--text); }
+.quiz-root .sub { color: var(--text-muted); font-size: 16px; max-width: 34em; }
+
+.kicker {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent-text); margin: 0 0 22px;
+}
+.kicker::before { content: ""; width: 26px; height: 1px; background: var(--accent-2); }
+
+/* зачем: плотный цвет вместо градиентного текста — в макете градиентного
+   текста нет, и сплошной цвет заметно читаемее на обеих темах */
+.gold-accent { color: var(--accent-text); font-weight: 800; }
+
+.btn-gold {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 14px 22px;
+  border-radius: var(--radius-full); border: none; cursor: pointer;
+  font: inherit; font-weight: 800; font-size: 15px;
+  color: var(--accent-ink);
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2) 55%, var(--accent-3));
+  box-shadow: 0 10px 24px -8px rgba(var(--accent-rgb), .55), inset 0 1px 0 rgba(255, 255, 255, .4);
+  transition: box-shadow .2s ease, transform .2s cubic-bezier(.2, .8, .2, 1), filter .18s;
+}
+.btn-gold:hover { box-shadow: 0 16px 32px -10px rgba(var(--accent-rgb), .65), inset 0 1px 0 rgba(255, 255, 255, .5); }
+.btn-gold:active { transform: scale(.97); }
+.btn-gold:disabled { opacity: .6; cursor: default; }
+
+/* Вторичная кнопка и ссылки внутри воронки */
+.quiz-root .btn-ghost, .quiz-root .btn-secondary {
+  background: transparent; border: 1px solid var(--border); color: var(--text);
+  border-radius: var(--radius-full); padding: 12px 20px; font-weight: 700; cursor: pointer;
+}
+.quiz-root .btn-ghost:hover, .quiz-root .btn-secondary:hover { border-color: var(--accent-2); color: var(--accent-text); }
+.quiz-root a { color: var(--accent-text); }

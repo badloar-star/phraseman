@@ -1,0 +1,90 @@
+/* Тест уровня — мост к общей дизайн-системе сайта (редизайн 2026-08-16).
+
+   зачем: владелец 2026-07-25 требовал, чтобы раздел теста «не отличался от
+   дизайна сайта вообще». После смены палитры сайта на синюю тест остался бы
+   единственной золотой страницей. Здесь переопределяются только цветовые
+   токены styles.css — движок теста, i18n и генератор сертификатов не
+   затронуты (их ломать нельзя: сертификаты работают и их выдают людям).
+
+   Подключать ПОСЛЕ styles.css. */
+
+:root {
+  --bg: #F5F8FC;
+  --card: #FFFFFF;
+  --text: #161C2C;
+  --text-secondary: #5B6478;
+  --muted: #64708A;
+  --accent: #4C7DFF;
+  --accent-hover: #2E56D9;
+  --accent-light: #3B63E0;
+  --on-accent: #FFFFFF;
+  --border: rgba(20, 26, 42, .10);
+  --radius: 16px;
+  --shadow: 0 10px 26px rgba(20, 26, 42, .08), 0 1px 2px rgba(20, 26, 42, .06);
+}
+
+/* Тёмная тема — по явному выбору в шапке сайта (ключ localStorage 'theme'
+   ставит data-theme на <html>) и по системной настройке. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0A0B10;
+  --card: #14161F;
+  --text: #F3EFE7;
+  --text-secondary: #9CA0B4;
+  --muted: #858BA0;
+  --accent: #5B7CFA;
+  --accent-hover: #3A4FD1;
+  --accent-light: #9DB4FF;
+  --on-accent: #F5F7FF;
+  --border: rgba(243, 239, 231, .10);
+  --shadow: 0 10px 26px rgba(0, 0, 0, .4), 0 1px 2px rgba(0, 0, 0, .35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='dark']):not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #0A0B10;
+    --card: #14161F;
+    --text: #F3EFE7;
+    --text-secondary: #9CA0B4;
+    --muted: #858BA0;
+    --accent: #5B7CFA;
+    --accent-hover: #3A4FD1;
+    --accent-light: #9DB4FF;
+    --on-accent: #F5F7FF;
+    --border: rgba(243, 239, 231, .10);
+    --shadow: 0 10px 26px rgba(0, 0, 0, .4), 0 1px 2px rgba(0, 0, 0, .35);
+  }
+}
+
+/* Тот же шрифт, что на остальном сайте */
+html, body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Та же заливка фона, что и на остальных страницах */
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 65% 50% at 12% 100%, rgba(76, 125, 255, .28), transparent 70%),
+    radial-gradient(ellipse 60% 42% at 90% 100%, rgba(76, 125, 255, .26), transparent 70%),
+    radial-gradient(ellipse 70% 38% at 50% 0%, rgba(76, 125, 255, .18), transparent 72%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+:root[data-theme='dark'] body,
+:root:not([data-theme='light']) body {
+  background-image:
+    radial-gradient(ellipse 65% 50% at 12% 100%, rgba(91, 124, 250, .16), transparent 70%),
+    radial-gradient(ellipse 60% 42% at 90% 100%, rgba(91, 124, 250, .14), transparent 70%),
+    radial-gradient(ellipse 70% 38% at 50% 0%, rgba(91, 124, 250, .10), transparent 72%);
+}
+:root[data-theme='light'] body {
+  background-image:
+    radial-gradient(ellipse 65% 50% at 12% 100%, rgba(76, 125, 255, .28), transparent 70%),
+    radial-gradient(ellipse 60% 42% at 90% 100%, rgba(76, 125, 255, .26), transparent 70%),
+    radial-gradient(ellipse 70% 38% at 50% 0%, rgba(76, 125, 255, .18), transparent 72%);
+}
+
+/* зачем: сертификат рисуется по СВОИМ пяти темам (gold / midnight / emerald /
+   rose / royal) и печатается людям — его палитру не трогаем вообще. */

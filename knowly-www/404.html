@@ -1,68 +1,114 @@
 <!DOCTYPE html>
-<html lang="en" data-i18n-page="not-found">
+<html lang="ru" data-i18n-page="notfound">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Page not found — Phraseman</title>
-  <link rel="stylesheet" href="/assets/site-i18n.css?v=20260813-1" />
-  <script src="/assets/site-i18n.locales.js?v=20260813-1" defer></script>
-  <script src="/assets/site-i18n.js?v=20260813-1" defer></script>
+  <title>Страница не найдена — Phraseman</title>
+  <meta name="description" content="Такой страницы нет. Вернитесь на главную Phraseman или скачайте приложение — 10 000+ живых английских фраз." />
   <meta name="robots" content="noindex" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="/assets/phraseman-icon-128.png" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="/assets/phraseman.css?v=wow5" />
-  <link rel="stylesheet" href="/assets/theme.css?v=wow4" />
-  <script src="/assets/theme.js?v=1"></script>
-  <link rel="stylesheet" href="/assets/site-background.css?v=20260729-1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/ds.css?v=20260816-1" />
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') document.documentElement.setAttribute('data-theme', stored);
+      } catch (e) { /* приватный режим */ }
+    })();
+  </script>
+  <style>
+    .notfound { min-height: 66vh; display: grid; place-items: center; text-align: center; }
+    .notfound .code {
+      font-size: clamp(64px, 14vw, 128px); font-weight: 800; line-height: 1;
+      letter-spacing: -.05em; margin-bottom: 8px;
+      /* Плотный акцентный цвет, не градиентный текст — цифра должна читаться */
+      color: var(--accent-2); opacity: .9;
+    }
+    .notfound h1 { font-size: clamp(20px, 3.4vw, 28px); font-weight: 800; margin-bottom: 10px; }
+    .notfound p { color: var(--text-muted); max-width: 28em; margin: 0 auto 26px; }
+    .notfound .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  </style>
+  <script src="/assets/site-config.js?v=6764800879" defer></script>
+  <script src="/assets/stats.js?v=3" defer></script>
+  <script src="/assets/ds.js?v=20260816-1" defer></script>
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-1" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-2" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-3" aria-hidden="true"></div>
 
-  <div class="shell">
-    <header class="topbar">
-      <a class="brand" href="/" aria-label="Phraseman">
-        <img src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
-        <span><b>Phraseman</b><small>Живой английский</small></span>
-      </a>
-      <nav class="nav" aria-label="Навигация">
-        <a href="/">О приложении</a>
-        <a href="/download/">Скачать</a>
-        <a href="/contact/">Поддержка</a>
-      </nav>
-      <span data-i18n-switcher></span>
-  </header>
-
-    <main>
-      <section class="notfound">
-        <p class="code">404</p>
-        <h1 style="font-size:clamp(1.5rem,3.5vw,2.2rem);margin:0 0 12px">Такой страницы нет</h1>
-        <p>Зато есть 10&nbsp;000+ живых английских фраз. Начните с главной —
-          или сразу скачайте приложение.</p>
-        <div class="actions" style="justify-content:center">
-          <a class="store-badge" href="/" style="min-height:54px"><span><b style="font-size:15px">На главную</b></span></a>
-          <a class="store-badge" href="/download/" style="min-height:54px;border-color:rgba(232,197,102,.5)"><span><b style="font-size:15px;color:#f3dfa3">Скачать Phraseman</b></span></a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <a class="brand" href="/" style="gap:10px">
-        <img src="/assets/phraseman-icon-128.png" alt="" style="width:30px;height:30px;border-radius:8px" loading="lazy" />
-        <span><b style="font-size:14px">Phraseman</b><small style="letter-spacing:.18em">by Knowly</small></span>
-      </a>
-      <nav class="flinks" aria-label="Ссылки">
-        <a href="/">О приложении</a>
-        <a href="/download/">Скачать</a>
-        <a href="/contact/">Поддержка</a>
-      </nav>
-      <p>© 2026 Knowly · Phraseman</p>
-    </footer>
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="Phraseman">
+      <img class="logo-mark" src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
+      <span class="logo-word"><span class="lw-a">phrase</span><span class="lw-b">man</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Разделы сайта">
+      <a href="/#inside" data-i18n="nav.inside">Что внутри</a>
+      <a href="/english-level-test/" data-i18n="nav.level">Тест уровня</a>
+      <a href="/guides/" data-i18n="nav.guides">Гайды</a>
+      <a href="/gift/" data-i18n="nav.gift">Подарить</a>
+      <a href="/contact/" data-i18n="nav.support">Поддержка</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle" data-active="ru">
+        <span class="lang-thumb" aria-hidden="true"></span>
+        <button data-lang-btn="ru" class="active" type="button">RU</button>
+        <button data-lang-btn="en" type="button">EN</button>
+      </div>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Переключить тему">
+        <span class="icon-wrap">
+          <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        </span>
+      </button>
+      <button class="menu-toggle icon-btn" type="button" aria-label="Меню" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
   </div>
+</header>
+
+<main class="notfound wrap">
+  <div>
+    <p class="code" aria-hidden="true">404</p>
+    <h1 data-i18n="nf.title">Такой страницы нет</h1>
+    <p data-i18n="nf.text">Зато есть 10&nbsp;000+ живых английских фраз. Начните с главной — или сразу скачайте приложение.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/" data-i18n="nf.home">На главную</a>
+      <a class="btn btn-outline" href="/download/" data-i18n="nf.download">Скачать Phraseman</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap footer-row">
+    <p>© 2026 Knowly · Phraseman</p>
+    <nav class="footer-links" aria-label="Ссылки">
+      <a href="/" data-i18n="footer.about">О приложении</a>
+      <a href="/download/" data-i18n="nf.download">Скачать</a>
+      <a href="/contact/" data-i18n="nav.support">Поддержка</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+window.I18N = {
+  ru: {},
+  en: {
+    'nav.inside': "What's inside", 'nav.level': 'Level test', 'nav.guides': 'Guides',
+    'nav.gift': 'Give a gift', 'nav.support': 'Support',
+    'nf.title': 'That page does not exist',
+    'nf.text': 'But 10,000+ living English phrases do. Start from the home page — or download the app right away.',
+    'nf.home': 'Go home', 'nf.download': 'Download Phraseman',
+    'footer.about': 'About the app'
+  }
+};
+</script>
 </body>
 </html>

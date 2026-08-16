@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" data-i18n-page="home">
+<html lang="ru" data-i18n-page="home">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Phraseman — understand spoken English and speak with confidence. Download for iPhone and Android</title>
-  <link rel="stylesheet" href="/assets/site-i18n.css?v=20260813-1" />
-  <script src="/assets/site-i18n.locales.js?v=20260813-1" defer></script>
-  <script src="/assets/site-i18n.js?v=20260813-1" defer></script>
+  <title>Phraseman — понимайте английский на слух и говорите увереннее. Скачать для iPhone и Android</title>
   <meta
     name="description"
-    content="10,000+ ready-to-use English phrases from real life: listen, repeat aloud, and make speaking automatic. 15 minutes a day. Free for iPhone and Android."
+    content="10 000+ готовых английских фраз из реальной жизни: слушайте, повторяйте вслух и доводите речь до автоматизма. 15 минут в день. Бесплатно для iPhone и Android."
   />
   <link rel="canonical" href="https://knowlyapps.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://knowlyapps.com/" />
-  <meta property="og:title" content="Phraseman — understand spoken English and speak with confidence" />
+  <meta property="og:title" content="Phraseman — понимайте английский на слух и говорите увереннее" />
   <meta
     property="og:description"
-    content="10,000+ ready-to-use phrases from real life, pronunciation practice, and 15 minutes a day. Free for iPhone and Android."
+    content="10 000+ готовых фраз из реальной жизни, тренировка произношения и 15 минут в день. Бесплатно для iPhone и Android."
   />
   <meta property="og:image" content="https://knowlyapps.com/assets/og-banner.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -29,13 +26,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="/assets/home.css?v=8" />
+  <link rel="stylesheet" href="/assets/ds.css?v=20260816-1" />
+  <!-- зачем: тема применяется ДО первой отрисовки, иначе тёмная страница
+       моргает белым на старте (класс бага «вспышка светлой темы») -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', stored);
+        }
+      } catch (e) { /* приватный режим */ }
+    })();
+  </script>
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=3" defer></script>
-  <script src="/assets/home.js?v=6" defer></script>
+  <script src="/assets/ds.js?v=20260816-1" defer></script>
+  <script src="/assets/home-live.js?v=20260816-1" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -89,198 +99,344 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="/assets/site-background.css?v=20260729-1" />
 </head>
 <body>
-<div class="grain" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-1" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-2" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-3" aria-hidden="true"></div>
 
-<div class="stage" id="stage">
-  <div class="aurora-css" aria-hidden="true"></div>
-  <canvas id="gl" aria-hidden="true"></canvas>
-  <div class="wrap">
-    <header>
-      <div class="top">
-        <a class="brand" href="/" aria-label="Phraseman"><img src="/assets/phraseman-icon-128.png" alt="" width="36" height="36" decoding="async" />Phraseman</a>
-        <nav class="nav" aria-label="Навигация">
-          <a href="#inside">Что внутри</a>
-          <a href="#reviews">Отзывы</a>
-          <a href="/english-level-test/">Тест уровня</a>
-          <a href="/start/">Подобрать план</a>
-          <a href="/gift/">Подарить</a>
-          <a href="/guides/">Гайды</a>
-          <a href="#faq">Вопросы</a>
-          <a class="b" href="/download/" id="navDl">Скачать</a>
-        </nav>
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="Phraseman">
+      <img class="logo-mark" src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
+      <span class="logo-word"><span class="lw-a">phrase</span><span class="lw-b">man</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Разделы сайта">
+      <a href="#inside" data-i18n="nav.inside">Что внутри</a>
+      <a href="#reviews" data-i18n="nav.reviews">Отзывы</a>
+      <a href="/english-level-test/" data-i18n="nav.level">Тест уровня</a>
+      <a href="/start/" data-i18n="nav.plan">Подобрать план</a>
+      <a href="/guides/" data-i18n="nav.guides">Гайды</a>
+      <a href="/gift/" data-i18n="nav.gift">Подарить</a>
+      <a href="#faq" data-i18n="nav.faq">Вопросы</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle" data-active="ru">
+        <span class="lang-thumb" aria-hidden="true"></span>
+        <button data-lang-btn="ru" class="active" type="button">RU</button>
+        <button data-lang-btn="en" type="button">EN</button>
       </div>
-      <!-- зачем: владелец 2026-07-26 — на телефоне только то, что влезает в одну
-           строку: три раздела-страницы; якоря убраны, до них доскролливают -->
-      <nav class="nav-chips" aria-label="Разделы">
-        <a href="/english-level-test/">Тест уровня</a>
-        <a href="/gift/">Подарить</a>
-        <a href="/guides/">Гайды</a>
-      </nav>
-      <span data-i18n-switcher></span>
-  </header>
-
-    <section class="hero" aria-labelledby="pm-title">
-      <h1 id="pm-title" data-split>Понимайте английский на слух и говорите увереннее</h1>
-      <p class="sub blur-in">10 000+ готовых фраз из реальной жизни: слушайте, повторяйте вслух и доводите речь до автоматизма. 15 минут в день.</p>
-      <div class="cta-zone blur-in">
-        <span class="dl" id="dl">
-          <button class="btn" id="dlBtn" type="button" aria-label="Скачать Phraseman бесплатно"><span>Начать мой первый урок</span></button>
-          <span class="pop" id="pop" role="menu" aria-label="Выбор магазина">
-            <a class="store" data-store="ios" href="https://apps.apple.com/app/id6764800879" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z"/></svg>
-              <span class="s-name">App Store<small>для iPhone и iPad</small></span>
-            </a>
-            <a class="store" data-store="android" href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.62 2.33c-.38.4-.62 1.02-.62 1.82v15.7c0 .8.24 1.42.63 1.82l.06.05 8.8-9.62v-.2L3.68 2.28l-.06.05Zm11.8 6.55-2.93 3.02v.2l2.93 3.02.06-.03 3.48-2c1-.56 1-1.5 0-2.07l-3.48-2.02-.06-.12Zm.06 6.21-2.99-3.09-8.87 9.67c.6.64 1.58.72 2.7.08l9.16-6.66Zm0-6.18L6.32 2.25c-1.12-.64-2.1-.56-2.7.08l8.87 9.67 2.99-3.09Z"/></svg>
-              <span class="s-name">Google Play<small>для Android</small></span>
-            </a>
-            <span class="qr">
-              <img src="/assets/qr-download.svg" alt="QR-код: скачать Phraseman" width="66" height="66" loading="lazy" />
-              <span>С телефона? Наведите камеру, и откроется нужный магазин.</span>
-            </span>
-          </span>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Переключить тему">
+        <span class="icon-wrap">
+          <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
         </span>
-        <span class="fear">Бесплатно · без карты · без регистрации</span>
-      </div>
-    </section>
+      </button>
+      <a class="btn btn-primary btn-header" href="/download/" data-i18n="nav.download">Скачать</a>
+      <button class="menu-toggle icon-btn" type="button" aria-label="Меню" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
   </div>
-</div>
+</header>
 
-<div class="wrap">
-  <main>
-    <section class="reveal" id="inside">
-      <h2 class="h2">Узнаёте себя?</h2>
-      <ul class="you">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="#b8860f" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#f7de8b" stroke="none"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg>Понимаете многое, а сказать вслух не получается.</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="#b8860f" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#f7de8b" stroke="none"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg>Учили английский в школе, но почти всё забылось.</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="#b8860f" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#f7de8b" stroke="none"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg>Начинали Duolingo и бросали через неделю.</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="#b8860f" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#f7de8b" stroke="none"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg>Устали учить отдельные слова без результата.</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="#b8860f" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#f7de8b" stroke="none"/><path d="M8 12.5l2.7 2.7L16.5 9"/></svg>Впереди поездка, работа или переезд, и нужен разговорный.</li>
-      </ul>
-      <p class="close-line">Phraseman сделан для этого. Это не курс грамматики, а тренажёр готовых фраз, которые вы сможете сказать уже сегодня.</p>
-    </section>
-
-    <section class="reveal" style="padding-top:0" aria-labelledby="demo-title">
-      <div class="demo-sec">
-        <h2 class="h2" id="demo-title">Попробуйте прямо здесь</h2>
-        <p class="lead">Так устроена каждая тренировка: услышали фразу, повторили вслух и поняли, почему носители говорят именно так.</p>
-        <div class="demo" id="demo">
-          <div class="glare" id="glare"></div>
-          <p class="en" id="dEn">Could I get a coffee, please?</p>
-          <p class="ru" id="dRu">Можно мне кофе, пожалуйста?</p>
-          <div class="why" id="dWhy"></div>
-          <div class="acts">
-            <button class="icon-btn" id="dPlay" type="button" aria-label="Озвучить фразу"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
-            <button class="chip" id="dExplain" type="button">Объяснить просто</button>
-            <button class="chip next" id="dNext" type="button">Ещё →</button>
-          </div>
+<section class="hero wrap">
+  <span class="eyebrow reveal" data-i18n="hero.eyebrow">10 000+ готовых фраз</span>
+  <h1 class="hero-title reveal reveal-1" data-i18n="hero.title">Понимайте английский на слух и говорите увереннее</h1>
+  <p class="hero-sub reveal reveal-2" data-i18n="hero.sub">Слушайте, повторяйте вслух и доводите речь до автоматизма. 15 минут в день.</p>
+  <div class="hero-cta reveal reveal-3">
+    <div class="store-trigger">
+      <button class="btn btn-primary js-store-toggle" type="button" aria-expanded="false" aria-controls="store-menu-hero" data-i18n="hero.cta">Начать мой первый урок</button>
+      <div class="store-menu" id="store-menu-hero">
+        <div class="store-row">
+          <a class="store-btn" data-store="ios" href="https://apps.apple.com/app/id6764800879" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z"/></svg>
+            App Store
+          </a>
+          <a class="store-btn" data-store="android" href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.62 2.33c-.38.4-.62 1.02-.62 1.82v15.7c0 .8.24 1.42.63 1.82l.06.05 8.8-9.62v-.2L3.68 2.28l-.06.05Zm11.8 6.55-2.93 3.02v.2l2.93 3.02.06-.03 3.48-2c1-.56 1-1.5 0-2.07l-3.48-2.02-.06-.12Zm.06 6.21-2.99-3.09-8.87 9.67c.6.64 1.58.72 2.7.08l9.16-6.66Zm0-6.18L6.32 2.25c-1.12-.64-2.1-.56-2.7.08l8.87 9.67 2.99-3.09Z"/></svg>
+            Google Play
+          </a>
         </div>
-        <div class="cta-rep"><button class="btn js-cta" type="button"><span>Начать мой первый урок</span></button></div>
-      </div>
-    </section>
-
-    <section class="reveal" style="padding-top:0">
-      <h2 class="h2">Что будет, если заниматься 15 минут в день</h2>
-      <div class="path">
-        <div><b>Недели 1–2</b><h3>Фразы узнаются на слух</h3><p>Первые сотни фраз начинают узнаваться на слух. Появляется привычка заниматься.</p></div>
-        <div><b>Недели 3–6</b><h3>Фразы для ваших ситуаций</h3><p>Появляются готовые фразы для ваших ситуаций: заказать, спросить дорогу, ответить коллеге.</p></div>
-        <div><b>Месяц 3 и дальше</b><h3>Речь без ступора</h3><p>Речь без ступора в знакомых темах: нужные фразы вспоминаются сами.</p></div>
-      </div>
-      <p class="honest">Обещаний «свободный английский за месяц» здесь нет. Так не бывает.</p>
-    </section>
-
-    <section class="reveal" style="padding-top:0" id="reviews">
-      <h2 class="h2">Что говорят те, кто уже занимается</h2>
-      <div class="quotes">
-        <article class="quote"><div class="stars" aria-label="Оценка 5 из 5">★★★★★</div><p>«Учишь не изолированные слова, а целые фразы, которые реально используют носители. Алгоритм подсовывает забывающиеся фразы ровно вовремя. За месяц заметно улучшилось понимание на слух.»</p><footer>Zinnur Yusupov · Google Play</footer></article>
-        <article class="quote"><div class="stars" aria-label="Оценка 5 из 5">★★★★★</div><p>«Быстро освежает в памяти забытое со школьных лет. Объяснения понятные, лаконичные, много практики.»</p><footer>Sveta Melnikova · Google Play</footer></article>
-        <article class="quote"><div class="stars" aria-label="Оценка 5 из 5">★★★★★</div><p>«Давно искала удобный способ подтянуть английский без скучной зубрёжки. Короткие уроки, озвучка и постоянное повторение помогают действительно запоминать.»</p><footer>iren_novak · App Store</footer></article>
-        <article class="quote"><div class="stars" aria-label="Оценка 5 из 5">★★★★★</div><p>«Использую каждый день. Приучила себя уделять время английскому на ежедневной основе.»</p><footer>Анастасия Шалимова · Google Play</footer></article>
-        <article class="quote"><div class="stars" aria-label="Оценка 5 из 5">★★★★★</div><p>«У меня практически нулевой уровень. На каждом этапе урока разъяснения и мини-рассказ, так легко запоминается. Хочется продолжать.»</p><footer>Наташа · Google Play</footer></article>
-      </div>
-      <p class="all-reviews"><a href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer">Читать все отзывы в Google Play →</a></p>
-    </section>
-
-    <section class="reveal" style="padding-top:0" id="faq">
-      <h2 class="h2">Честные ответы до того, как вы скачаете</h2>
-      <div class="faq">
-        <details open>
-          <summary>Что бесплатно, а что нет?</summary>
-          <p>Первые уроки, фразы дня и лиги бесплатны навсегда. Полный курс и все темы открывает Premium. В бесплатной версии карту не спрашиваем вообще, скрытых списаний нет.</p>
-        </details>
-        <details>
-          <summary>Я в России, оплата картой не проходит.</summary>
-          <p>Premium оформляется через Telegram Stars картой российского банка, без VPN. <a href="/russia/" style="color:var(--gold-deep);font-weight:600">Пошаговая инструкция →</a></p>
-        </details>
-        <details>
-          <summary>Потеряю прогресс при смене телефона?</summary>
-          <p>Нет. Прогресс привязан к аккаунту и восстанавливается на новом устройстве.</p>
-        </details>
-        <details>
-          <summary>У меня нулевой уровень, мне поздно начинать?</summary>
-          <p>Планы начинаются с самых основ, каждое правило объясняется простыми словами на примерах из жизни.</p>
-        </details>
-        <details>
-          <summary>Мой голос кто-то слушает?</summary>
-          <p>Нет. Произношение распознаётся прямо на телефоне, запись никуда не отправляется.</p>
-        </details>
-        <details>
-          <summary>А если что-то не работает?</summary>
-          <p>Поддержка отвечает на каждый отзыв в сторах и на почту, обновления выходят почти каждую неделю. <a href="/contact/" style="color:var(--gold-deep);font-weight:600">Написать нам →</a></p>
-        </details>
-      </div>
-      <p class="risk">Начните бесплатно. Не подойдёт — просто удалите: карта не привязана.</p>
-    </section>
-
-    <section class="reveal" style="padding-top:0" aria-labelledby="test-title">
-      <div class="test-bridge">
-        <div>
-          <h2 class="h2" id="test-title">Не уверены, с чего начать?</h2>
-          <p class="lead">Пройдите бесплатный тест уровня: 12–20 адаптивных вопросов и именной сертификат за 5–7 минут. <b class="cnt" id="testCnt">—</b> тестов уже пройдено.</p>
+        <div class="qr-block">
+          <img src="/assets/qr-download.svg" alt="QR-код: скачать Phraseman" width="50" height="50" loading="lazy" />
+          <p data-i18n="hero.qr">С телефона? Наведите камеру на код.</p>
         </div>
-        <a class="btn btn-ink" style="flex:none" href="/english-level-test/">Пройти тест уровня</a>
-      </div>
-    </section>
-
-    <!-- зачем: владелец 2026-07-26 — раздел подарков должен быть виден с главной -->
-    <section class="reveal" style="padding-top:0" aria-labelledby="gift-title">
-      <div class="test-bridge gift-bridge">
-        <div>
-          <h2 class="h2" id="gift-title">Подарите живой английский</h2>
-          <p class="lead">Месяц или год Phraseman Plus, либо Pro навсегда. Именной сертификат с кодом придёт на почту за минуту.</p>
-        </div>
-        <a class="btn" style="flex:none" href="/gift/">Выбрать подарок</a>
-      </div>
-    </section>
-
-    <div class="final reveal">
-      <h2>Скажите первую фразу уже сегодня</h2>
-      <p>Установка занимает меньше минуты. Первый урок открывается сразу, без регистрации.</p>
-      <div class="cta-zone">
-        <button class="btn btn-ink js-cta" type="button"><span>Начать мой первый урок</span></button>
-        <span class="fear">Бесплатно · без карты · без регистрации</span>
       </div>
     </div>
-  </main>
+    <span class="fine-print" data-i18n="hero.fine">Бесплатно · без карты · без регистрации</span>
+  </div>
+</section>
 
-  <footer class="footer">
-    <span>© 2026 Knowly · Phraseman</span>
-    <nav aria-label="Ссылки">
-      <a href="/download/">Скачать</a>
-      <a href="/english-level-test/">Тест уровня</a>
-      <a href="/guides/">Гайды</a>
-      <a href="/premium/">Premium</a>
-      <a href="/gift/">Подарить</a>
-      <a href="/contact/">Поддержка</a>
-      <a href="/legal/privacy/">Конфиденциальность</a>
-      <a href="/legal/terms/">Условия</a>
-      <a href="/legal/data-deletion/">Удаление данных</a>
+<section class="section-pad wrap" id="inside">
+  <div class="approach-grid">
+    <div class="approach-col">
+      <h2 class="reveal" data-i18n="pain.title">Узнаёте себя?</h2>
+      <div class="pain-list">
+        <div class="pain-item reveal"><span class="mark">✕</span><span data-i18n="pain.1">Понимаете многое, а сказать вслух не получается.</span></div>
+        <div class="pain-item reveal reveal-1"><span class="mark">✕</span><span data-i18n="pain.2">Учили английский в школе, но почти всё забылось.</span></div>
+        <div class="pain-item reveal reveal-2"><span class="mark">✕</span><span data-i18n="pain.3">Начинали Duolingo и бросали через неделю.</span></div>
+        <div class="pain-item reveal reveal-3"><span class="mark">✕</span><span data-i18n="pain.4">Устали учить отдельные слова без результата.</span></div>
+        <div class="pain-item reveal reveal-4"><span class="mark">✕</span><span data-i18n="pain.5">Впереди поездка, работа или переезд, и нужен разговорный.</span></div>
+      </div>
+    </div>
+    <div class="approach-col">
+      <h2 class="reveal" data-i18n="timeline.title">Что будет, если заниматься 15 минут в день</h2>
+      <div class="timeline-rail">
+        <div class="tl-row reveal">
+          <div class="tl-tag" data-i18n="timeline.1.tag">Недели 1–2</div>
+          <h3 data-i18n="timeline.1.title">Фразы узнаются на слух</h3>
+          <p data-i18n="timeline.1.text">Первые сотни фраз начинают узнаваться на слух. Появляется привычка заниматься.</p>
+        </div>
+        <div class="tl-row reveal reveal-1">
+          <div class="tl-tag" data-i18n="timeline.2.tag">Недели 3–6</div>
+          <h3 data-i18n="timeline.2.title">Фразы для ваших ситуаций</h3>
+          <p data-i18n="timeline.2.text">Появляются готовые фразы: заказать, спросить дорогу, ответить коллеге.</p>
+        </div>
+        <div class="tl-row reveal reveal-2">
+          <div class="tl-tag" data-i18n="timeline.3.tag">Месяц 3 и дальше</div>
+          <h3 data-i18n="timeline.3.title">Речь без ступора</h3>
+          <p data-i18n="timeline.3.text">Речь без ступора в знакомых темах: нужные фразы вспоминаются сами.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="pain-note reveal" data-i18n="pain.note">Phraseman сделан для этого: тренажёр готовых фраз, которые вы скажете уже сегодня. Обещаний «свободный английский за месяц» здесь нет — так не бывает.</p>
+</section>
+
+<section class="section-pad wrap" id="reviews">
+  <div class="section-head">
+    <h2 class="reveal" data-i18n="reviews.title">Что говорят те, кто уже занимается</h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="stars" aria-label="Оценка 5 из 5">★★★★★</div>
+      <p data-i18n="reviews.1">«Учишь не изолированные слова, а целые фразы, которые реально используют носители. За месяц заметно улучшилось понимание на слух.»</p>
+      <div class="review-author">Zinnur Yusupov · Google Play</div>
+    </div>
+    <div class="review-card reveal reveal-1">
+      <div class="stars" aria-label="Оценка 5 из 5">★★★★★</div>
+      <p data-i18n="reviews.2">«Быстро освежает в памяти забытое со школьных лет. Объяснения понятные, лаконичные, много практики.»</p>
+      <div class="review-author">Sveta Melnikova · Google Play</div>
+    </div>
+    <div class="review-card reveal reveal-2">
+      <div class="stars" aria-label="Оценка 5 из 5">★★★★★</div>
+      <p data-i18n="reviews.3">«Удобный способ подтянуть английский без скучной зубрёжки. Короткие уроки, озвучка и повторение помогают запоминать.»</p>
+      <div class="review-author">iren_novak · App Store</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars" aria-label="Оценка 5 из 5">★★★★★</div>
+      <p data-i18n="reviews.4">«Использую каждый день. Приучила себя уделять время английскому на ежедневной основе.»</p>
+      <div class="review-author">Анастасия Шалимова · Google Play</div>
+    </div>
+    <div class="review-card reveal reveal-1">
+      <div class="stars" aria-label="Оценка 5 из 5">★★★★★</div>
+      <p data-i18n="reviews.5">«У меня практически нулевой уровень. На каждом этапе — разъяснения и мини-рассказ, легко запоминается.»</p>
+      <div class="review-author">Наташа · Google Play</div>
+    </div>
+  </div>
+  <a class="reviews-more" href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer" data-i18n="reviews.more">Читать все отзывы в Google Play →</a>
+</section>
+
+<section class="section-pad section-alt wrap" id="faq">
+  <div class="section-head">
+    <h2 class="reveal" data-i18n="faq.title">Честные ответы до того, как вы скачаете</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item open reveal">
+      <button class="faq-q" type="button"><span data-i18n="faq.1.q">Что бесплатно, а что нет?</span><span class="plus" aria-hidden="true">+</span></button>
+      <div class="faq-a"><p data-i18n="faq.1.a">Первые уроки, фразы дня и лиги бесплатны навсегда. Полный курс открывает Premium. Карту не спрашиваем, скрытых списаний нет.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" type="button"><span data-i18n="faq.2.q">Я в России, оплата картой не проходит.</span><span class="plus" aria-hidden="true">+</span></button>
+      <div class="faq-a"><p data-i18n="faq.2.a">Premium оформляется через Telegram Stars картой российского банка, без VPN. <a href="/russia/">Пошаговая инструкция →</a></p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" type="button"><span data-i18n="faq.3.q">Потеряю прогресс при смене телефона?</span><span class="plus" aria-hidden="true">+</span></button>
+      <div class="faq-a"><p data-i18n="faq.3.a">Нет. Прогресс привязан к аккаунту и восстанавливается на новом устройстве.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" type="button"><span data-i18n="faq.4.q">У меня нулевой уровень, мне поздно начинать?</span><span class="plus" aria-hidden="true">+</span></button>
+      <div class="faq-a"><p data-i18n="faq.4.a">Планы начинаются с самых основ, каждое правило объясняется простыми словами на примерах.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" type="button"><span data-i18n="faq.5.q">Мой голос кто-то слушает?</span><span class="plus" aria-hidden="true">+</span></button>
+      <div class="faq-a"><p data-i18n="faq.5.a">Нет. Произношение распознаётся прямо на телефоне, запись никуда не отправляется.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" type="button"><span data-i18n="faq.6.q">А если что-то не работает?</span><span class="plus" aria-hidden="true">+</span></button>
+      <div class="faq-a"><p data-i18n="faq.6.a">Поддержка отвечает на каждый отзыв и на почту, обновления выходят почти каждую неделю. <a href="/contact/">Написать нам →</a></p></div>
+    </div>
+  </div>
+  <p class="faq-note reveal" data-i18n="faq.risk">Начните бесплатно. Не подойдёт — просто удалите: карта не привязана.</p>
+</section>
+
+<section class="section-pad wrap" id="level-test">
+  <div class="section-head">
+    <span class="eyebrow reveal" data-i18n="lv.badge">Бесплатная диагностика · 5–7 минут</span>
+    <h2 class="reveal reveal-1" data-i18n="lv.title">Определите уровень английского</h2>
+    <p class="reveal reveal-2" data-i18n="lv.sub">Ответьте на вопросы и получите ориентировочный уровень по шкале CEFR.</p>
+  </div>
+
+  <div class="level-card reveal reveal-3">
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;" data-i18n="lv.which">Какой язык проверяем?</p>
+    <div class="level-langs">
+      <a class="active" href="/english-level-test/">English</a>
+      <a href="/english-level-test/?lang=de">Deutsch</a>
+      <a href="/english-level-test/?lang=fr">Français</a>
+      <a href="/english-level-test/?lang=it">Italiano</a>
+      <a href="/english-level-test/?lang=es">Español</a>
+    </div>
+    <div class="level-stats">
+      <div><b>12–20</b><span data-i18n="lv.stat1">адаптивных вопроса</span></div>
+      <div><b>45<span aria-hidden="true">с</span></b><span data-i18n="lv.stat2">на вопрос</span></div>
+      <!-- зачем: живое число завершённых тестов с публичного API, не витрина.
+           Начальное «—» заменяется кэшем мгновенно, потом уточняется сетью. -->
+      <div><b class="cnt" id="testCnt">—</b><span data-i18n="lv.stat3">уже прошли тест</span></div>
+    </div>
+    <a class="btn btn-primary" href="/english-level-test/" style="width:100%;" data-i18n="lv.cta">Начать тест</a>
+    <p class="fine-print" style="margin-top:14px;" data-i18n="lv.consent">Начиная тест, вы соглашаетесь с обработкой ответов для расчёта результата.</p>
+  </div>
+
+  <div class="level-steps">
+    <div class="step reveal">
+      <div class="num">1</div>
+      <h4 data-i18n="lv.s1.h">Ответьте на вопросы</h4>
+      <p data-i18n="lv.s1.p">12–20 адаптивных текстовых вопросов.</p>
+    </div>
+    <div class="step reveal reveal-1">
+      <div class="num">2</div>
+      <h4 data-i18n="lv.s2.h">Получите уровень</h4>
+      <p data-i18n="lv.s2.p">Текстовая оценка по шкале CEFR.</p>
+    </div>
+    <div class="step reveal reveal-2">
+      <div class="num">3</div>
+      <h4 data-i18n="lv.s3.h">Скачайте сертификат</h4>
+      <p data-i18n="lv.s3.p">Именной сертификат с результатом.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad wrap">
+  <div class="banner reveal">
+    <span class="badge" data-i18n="gift.badge">Сертификат приходит за минуту</span>
+    <h2 data-i18n="gift.title">Подарите живой английский</h2>
+    <p data-i18n="gift.text">Месяц или год Phraseman Plus, либо Pro навсегда. Именной сертификат с кодом придёт на почту.</p>
+    <a class="btn btn-primary" href="/gift/" data-i18n="gift.cta">Выбрать подарок</a>
+  </div>
+</section>
+
+<section class="final-cta wrap">
+  <h2 class="reveal" data-i18n="final.title">Скажите первую фразу уже сегодня</h2>
+  <p class="reveal reveal-1" data-i18n="final.text">Установка занимает меньше минуты. Без регистрации.</p>
+  <div class="reveal reveal-2 store-trigger">
+    <button class="btn btn-primary js-store-toggle" type="button" aria-expanded="false" aria-controls="store-menu-final" data-i18n="hero.cta">Начать мой первый урок</button>
+    <div class="store-menu" id="store-menu-final">
+      <div class="store-row">
+        <a class="store-btn" data-store="ios" href="https://apps.apple.com/app/id6764800879" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z"/></svg>
+          App Store
+        </a>
+        <a class="store-btn" data-store="android" href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.62 2.33c-.38.4-.62 1.02-.62 1.82v15.7c0 .8.24 1.42.63 1.82l.06.05 8.8-9.62v-.2L3.68 2.28l-.06.05Zm11.8 6.55-2.93 3.02v.2l2.93 3.02.06-.03 3.48-2c1-.56 1-1.5 0-2.07l-3.48-2.02-.06-.12Zm.06 6.21-2.99-3.09-8.87 9.67c.6.64 1.58.72 2.7.08l9.16-6.66Zm0-6.18L6.32 2.25c-1.12-.64-2.1-.56-2.7.08l8.87 9.67 2.99-3.09Z"/></svg>
+          Google Play
+        </a>
+      </div>
+      <div class="qr-block">
+        <img src="/assets/qr-download.svg" alt="QR-код: скачать Phraseman" width="50" height="50" loading="lazy" />
+        <p data-i18n="hero.qr">С телефона? Наведите камеру на код.</p>
+      </div>
+    </div>
+  </div>
+  <p class="fine-print" style="margin-top:16px;" data-i18n="hero.fine">Бесплатно · без карты · без регистрации</p>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap footer-row">
+    <p>© 2026 Knowly · Phraseman</p>
+    <nav class="footer-links" aria-label="Ссылки">
+      <a href="/download/" data-i18n="nav.download">Скачать</a>
+      <a href="/english-level-test/" data-i18n="nav.level">Тест уровня</a>
+      <a href="/guides/" data-i18n="nav.guides">Гайды</a>
+      <a href="/premium/" data-i18n="footer.premium">Premium</a>
+      <a href="/gift/" data-i18n="nav.gift">Подарить</a>
+      <a href="/contact/" data-i18n="footer.support">Поддержка</a>
+      <a href="/legal/privacy/" data-i18n="footer.privacy">Конфиденциальность</a>
+      <a href="/legal/terms/" data-i18n="footer.terms">Условия</a>
+      <a href="/legal/data-deletion/" data-i18n="footer.deletion">Удаление данных</a>
     </nav>
-  </footer>
-</div>
+  </div>
+</footer>
 
+<script>
+/* Русский собирается из разметки автоматически (ru: {} специально пустой). */
+window.I18N = {
+  ru: {},
+  en: {
+    'nav.inside': "What's inside", 'nav.reviews': 'Reviews', 'nav.level': 'Level test',
+    'nav.plan': 'Find a plan', 'nav.guides': 'Guides', 'nav.gift': 'Give a gift',
+    'nav.faq': 'Questions', 'nav.download': 'Download',
+    'hero.eyebrow': '10,000+ ready-to-use phrases',
+    'hero.title': 'Understand spoken English and speak with confidence',
+    'hero.sub': 'Listen, repeat aloud, and make speaking automatic. 15 minutes a day.',
+    'hero.cta': 'Start my first lesson',
+    'hero.fine': 'Free · no card · no sign-up',
+    'hero.qr': 'On your phone? Point your camera at the code.',
+    'pain.title': 'Does this sound like you?',
+    'pain.1': 'You understand a lot, but cannot say it out loud.',
+    'pain.2': 'You learned English at school, but have forgotten almost all of it.',
+    'pain.3': 'You started Duolingo and gave up after a week.',
+    'pain.4': 'You are tired of learning isolated words without results.',
+    'pain.5': 'You have a trip, work, or a move ahead, and need practical conversation skills.',
+    'pain.note': 'Phraseman is made for that: practice with ready-to-use phrases you can say today. There are no promises of "fluent in a month" — that is not how it works.',
+    'timeline.title': 'What happens when you practise 15 minutes a day',
+    'timeline.1.tag': 'Weeks 1–2', 'timeline.1.title': 'Phrases become recognisable by ear',
+    'timeline.1.text': 'You begin to recognise your first hundreds of phrases by ear. Studying becomes a habit.',
+    'timeline.2.tag': 'Weeks 3–6', 'timeline.2.title': 'Phrases for your situations',
+    'timeline.2.text': 'Ready-to-use phrases for your situations: ordering, asking for directions, replying to a colleague.',
+    'timeline.3.tag': 'Month 3 and beyond', 'timeline.3.title': 'Speaking without freezing up',
+    'timeline.3.text': 'You can speak without freezing up in familiar topics: the phrases you need come to mind on their own.',
+    'reviews.title': 'What people who already practise say',
+    'reviews.1': '"You learn not isolated words but complete phrases that native speakers really use. My listening comprehension noticeably improved in a month."',
+    'reviews.2': '"It quickly refreshes what I had forgotten since school. The explanations are clear and concise, with plenty of practice."',
+    'reviews.3': '"A convenient way to improve my English without boring cramming. Short lessons, audio, and constant review genuinely help things stick."',
+    'reviews.4': '"I use it every day. It has helped me make time for English a daily habit."',
+    'reviews.5': '"My level is almost zero. Every stage has explanations and a short story, so it\'s easy to remember."',
+    'reviews.more': 'Read all reviews on Google Play →',
+    'faq.title': 'Straight answers before you download',
+    'faq.1.q': 'What is free and what is not?',
+    'faq.1.a': 'The first lessons, daily phrases, and leagues are free forever. Premium unlocks the full course. No card in the free version, no hidden charges.',
+    'faq.2.q': 'I am in Russia and my card payment is not going through.',
+    'faq.2.a': 'Premium can be purchased with Telegram Stars using a Russian bank card, with no VPN needed. <a href="/russia/">Step-by-step guide →</a>',
+    'faq.3.q': 'Will I lose my progress when I change phones?',
+    'faq.3.a': 'No. Your progress is tied to your account and is restored on a new device.',
+    'faq.4.q': 'My level is zero — is it too late to start?',
+    'faq.4.a': 'Plans start with the very basics, every rule explained in plain language with real-life examples.',
+    'faq.5.q': 'Does anyone listen to my voice?',
+    'faq.5.a': 'No. Pronunciation is recognised right on your phone; no recording is sent anywhere.',
+    'faq.6.q': 'What if something does not work?',
+    'faq.6.a': 'Support responds to every store review and email; updates are released almost every week. <a href="/contact/">Contact us →</a>',
+    'faq.risk': 'Start free. Not for you — just delete it: no card is attached.',
+    'lv.badge': 'Free assessment · 5–7 minutes',
+    'lv.title': 'Find your English level',
+    'lv.sub': 'Answer questions and receive an estimated CEFR level.',
+    'lv.which': 'Which language are you testing?',
+    'lv.stat1': 'adaptive questions', 'lv.stat2': 'per question', 'lv.stat3': 'already tested',
+    'lv.cta': 'Start test',
+    'lv.consent': 'By starting, you agree that your answers are processed to calculate your result.',
+    'lv.s1.h': 'Answer questions', 'lv.s1.p': '12–20 adaptive text questions.',
+    'lv.s2.h': 'Get your level', 'lv.s2.p': 'A preliminary text-based CEFR estimate.',
+    'lv.s3.h': 'Download a certificate', 'lv.s3.p': 'A named certificate with your result.',
+    'gift.badge': 'The certificate arrives within a minute',
+    'gift.title': 'Give the gift of real English',
+    'gift.text': 'One month or one year of Phraseman Plus, or Pro for life. A personalised certificate with a code arrives by email.',
+    'gift.cta': 'Choose a gift',
+    'final.title': 'Say your first phrase today',
+    'final.text': 'Installation takes less than a minute. No sign-up.',
+    'footer.premium': 'Premium', 'footer.support': 'Support',
+    'footer.privacy': 'Privacy', 'footer.terms': 'Terms', 'footer.deletion': 'Data deletion'
+  }
+};
+</script>
 </body>
 </html>

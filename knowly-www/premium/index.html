@@ -1,65 +1,90 @@
 <!DOCTYPE html>
-<html lang="en" data-i18n-page="premium">
+<html lang="ru" data-i18n-page="premium">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Phraseman Premium — every plan, no limits. Pay in a minute</title>
-  <link rel="stylesheet" href="/assets/site-i18n.css?v=20260813-1" />
-  <script src="/assets/site-i18n.locales.js?v=20260813-1" defer></script>
-  <script src="/assets/site-i18n.js?v=20260813-1" defer></script>
+  <title>Phraseman Premium — все планы без ограничений. Оплата за минуту</title>
   <meta
     name="description"
-    content="Unlock all of Phraseman: every plan and topic, no energy limits, and AI conversations with mistake reviews. Pay by card or PayPal and activate by code in a minute. 7-day guarantee."
+    content="Откройте весь Phraseman: все планы и темы, без лимитов энергии, разговоры с ИИ и разбор ошибок. Оплата картой или PayPal, активация кодом за минуту. Гарантия 7 дней."
   />
   <link rel="canonical" href="https://knowlyapps.com/premium/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://knowlyapps.com/premium/" />
-  <meta property="og:title" content="Phraseman Premium — every plan, no limits" />
-  <meta property="og:description" content="Pay in a minute and activate with a code. 7-day guarantee — if it is not for you, we will refund you." />
+  <meta property="og:title" content="Phraseman Premium — все планы без ограничений" />
+  <meta property="og:description" content="Оплатите за минуту и активируйте кодом. Гарантия 7 дней — не подойдёт, вернём деньги." />
   <meta property="og:image" content="https://knowlyapps.com/assets/og-banner.png" />
   <meta name="robots" content="index, follow" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="/assets/phraseman-icon-128.png" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="/assets/phraseman.css?v=wow5" />
-  <link rel="stylesheet" href="/assets/theme.css?v=wow4" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/ds.css?v=20260816-1" />
   <link rel="stylesheet" href="/assets/start.css?v=3" />
-  <script src="/assets/theme.js?v=1"></script>
+  <!-- зачем: мост подключается ПОСЛЕ start.css — переопределяет её старые
+       токены на новую палитру, не трогая генератор пейвола и оплаты -->
+  <link rel="stylesheet" href="/assets/ds-funnel-bridge.css?v=20260816-1" />
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') document.documentElement.setAttribute('data-theme', stored);
+      } catch (e) { /* приватный режим */ }
+    })();
+  </script>
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=3" defer></script>
+  <script src="/assets/ds.js?v=20260816-1" defer></script>
   <script src="/assets/start.js?v=3" defer></script>
-  <link rel="stylesheet" href="/assets/site-background.css?v=20260729-1" />
 </head>
 <body data-quiz-mode="paywall">
-  <div class="bg" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-1" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-2" aria-hidden="true"></div>
+<div class="bg-spot bg-spot-3" aria-hidden="true"></div>
 
-  <div class="shell quiz-shell">
-    <header class="topbar quiz-topbar">
-      <a class="brand" href="/" aria-label="Phraseman">
-        <img src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
-        <span><b>Phraseman</b><small>Живой английский</small></span>
-      </a>
-      <span data-i18n-switcher></span>
-  </header>
-
-    <main id="quiz-root" class="quiz-root" aria-live="polite">
-      <noscript>
-        <div class="panel" style="margin-top:40px">
-          <h1>Нужен JavaScript</h1>
-          <p>Чтобы оплатить Premium, включите JavaScript — или напишите в
-            <a href="/contact/">поддержку</a>: поможем с оплатой вручную.</p>
-        </div>
-      </noscript>
-    </main>
-
-    <footer class="footer quiz-footer">
-      <p>© 2026 Knowly · <a href="/legal/privacy/">Конфиденциальность</a> · <a href="/legal/terms/">Условия</a> · <a href="/contact/">Поддержка</a></p>
-    </footer>
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="Phraseman">
+      <img class="logo-mark" src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
+      <span class="logo-word"><span class="lw-a">phrase</span><span class="lw-b">man</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Разделы сайта">
+      <a href="/#inside">Что внутри</a>
+      <a href="/english-level-test/">Тест уровня</a>
+      <a href="/gift/">Подарить</a>
+      <a href="/russia/">Оплата из России</a>
+      <a href="/contact/">Поддержка</a>
+    </nav>
+    <div class="nav-right">
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Переключить тему">
+        <span class="icon-wrap">
+          <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        </span>
+      </button>
+      <button class="menu-toggle icon-btn" type="button" aria-label="Меню" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
   </div>
+</header>
+
+<div class="shell quiz-shell">
+  <main id="quiz-root" class="quiz-root" aria-live="polite">
+    <noscript>
+      <div class="panel" style="margin-top:40px;padding:28px">
+        <h1 style="font-size:22px;font-weight:800;margin-bottom:10px">Нужен JavaScript</h1>
+        <p style="color:var(--text-muted)">Чтобы оплатить Premium, включите JavaScript — или напишите в
+          <a href="/contact/" style="color:var(--accent-text);font-weight:600">поддержку</a>: поможем с оплатой вручную.</p>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="footer quiz-footer">
+    <p>© 2026 Knowly · <a href="/legal/privacy/">Конфиденциальность</a> · <a href="/legal/terms/">Условия</a> · <a href="/contact/">Поддержка</a></p>
+  </footer>
+</div>
 </body>
 </html>

@@ -7,8 +7,19 @@
   <meta name="description" content="Discover your language level and get a personal result. Take 12–20 adaptive text questions and receive an estimated CEFR level." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css?v=20260803-1" />
+  <!-- зачем: мост к общей палитре сайта — подключается ПОСЛЕ styles.css и
+       переопределяет только цвета; движок теста и сертификаты не тронуты -->
+  <link rel="stylesheet" href="./theme-bridge.css?v=20260816-1" />
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') document.documentElement.setAttribute('data-theme', stored);
+      } catch (e) { /* приватный режим */ }
+    })();
+  </script>
   <meta property="og:title" content="English Level Test — Phraseman" />
   <meta property="og:description" content="Discover your language level with a free adaptive text assessment. A1–C2." />
   <meta property="og:type" content="website" />
@@ -16,7 +27,9 @@
   <meta property="og:image" content="https://knowlyapps.com/english-level-test/og-card.svg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://knowlyapps.com/english-level-test/" />
-  <link rel="stylesheet" href="/assets/site-background.css?v=20260729-1" />
+  <!-- зачем: старый site-background.css убран — он рисовал золотую «аврору»
+       поверх новой синей заливки, и в тёмной теме давал грязный тон -->
+
 </head>
 <body>
   <main id="app" role="main" aria-live="polite"></main>

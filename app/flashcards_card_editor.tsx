@@ -11,7 +11,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  ActivityIndicator,
   Keyboard,
   KeyboardAvoidingView,
   ScrollView,
@@ -26,6 +25,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import SkeletonBlock from '../components/SkeletonShimmer';
+import { animateNextLayoutTransition } from './smooth_layout';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { useEffectivePlatformOS } from './platform_ui_preview';
@@ -163,6 +164,8 @@ export default function FlashcardsCardEditorScreen() {
   useEffect(() => {
     const en = draftEN.trim();
     if (!en) {
+      // Уход подсказок из потока — так же плавно, как их появление.
+      animateNextLayoutTransition();
       setAssistTranscription('');
       setAssistSuggestion(null);
       setDuplicateOfEn(null);
@@ -170,6 +173,14 @@ export default function FlashcardsCardEditorScreen() {
     }
     let cancelled = false;
     const timer = setTimeout(() => {
+      /**
+       * зачем (владелец, 2026-08-16, «прыжки страниц»): транскрипция, плашка
+       * дубликата и подсказка перевода ВСТАВЛЯЮТСЯ В ПОТОК между полями —
+       * без этого поле перевода и кнопка сохранения телепортировались вниз
+       * прямо во время набора текста. Правило Layout stability: вставки в
+       * поток идут через animateNextLayoutTransition.
+       */
+      animateNextLayoutTransition();
       // Автотранскрипция (app/transcription.ts) — мгновенно, без сети
       setAssistTranscription(getTranscription(en));
       // Дубликат: существующая карточка с таким EN (кроме редактируемой)
@@ -418,9 +429,22 @@ export default function FlashcardsCardEditorScreen() {
               <View style={{ width: 40 }} />
             </View>
 
+            {/*
+              * зачем (владелец, 2026-08-16, «прыжки страниц»): раньше на время
+              * чтения карточки вся форма подменялась спиннером по центру, и
+              * поля появлялись скачком. Держим ту же раскладку — два подписанных
+              * поля (высота = paddingV 16*2 + строка) и кнопку сохранения.
+              */}
             {loadingCard ? (
-              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <ActivityIndicator color={t.accent} />
+              <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 24, gap: 20 }}>
+                <View style={{ gap: 8 }}>
+                  <Text style={fieldLabelStyle}>{s.editFront}</Text>
+                  <SkeletonBlock width="100%" height={f.body + 2 + 32} borderRadius={16} />
+                </View>
+                <View style={{ gap: 8 }}>
+                  <Text style={fieldLabelStyle}>{s.editBack}</Text>
+                  <SkeletonBlock width="100%" height={f.body + 2 + 32} borderRadius={16} />
+                </View>
               </View>
             ) : (
               <ScrollView
@@ -602,6 +626,9 @@ export default function FlashcardsCardEditorScreen() {
                     accessible
                     activeOpacity={0.8}
                     onPress={() => {
+                      // Поле заметки (minHeight 88) вставляется в поток и толкает
+                      // кнопку сохранения — сдвигаем плавно, а не рывком.
+                      animateNextLayoutTransition();
                       setDescriptionOpen(true);
                       requestAnimationFrame(() => descriptionInputRef.current?.focus());
                     }}

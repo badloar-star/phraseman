@@ -14,11 +14,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { useAudio } from '../hooks/use-audio';
@@ -283,9 +284,24 @@ export default function FlashcardsVoicePickerScreen() {
             <View style={{ width: 28 }} />
           </View>
 
+          {/*
+            * зачем (владелец, 2026-08-16, «прыжки страниц»): системный список
+            * голосов (getVoicesOnce) отвечает не мгновенно, и весь экран
+            * подменялся спиннером, а потом список запрыгивал целиком. Держим
+            * геометрию: чипы скорости + строки голосов той же высоты (~62).
+            */}
           {loading ? (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <ActivityIndicator color={t.accent} />
+            <View style={{ flex: 1, paddingHorizontal: 16, gap: 10, paddingTop: 4 }}>
+              <SkeletonBlock width={140} height={f.caption} />
+              <View style={{ flexDirection: 'row', gap: 8 }}>
+                {Array.from({ length: 3 }, (_, i) => (
+                  <SkeletonBlock key={i} width={92} height={38} borderRadius={12} />
+                ))}
+              </View>
+              <SkeletonBlock width={110} height={f.caption} style={{ marginTop: 12 }} />
+              {Array.from({ length: 5 }, (_, i) => (
+                <SkeletonBlock key={i} width="100%" height={62} borderRadius={16} />
+              ))}
             </View>
           ) : (
             <ScrollView

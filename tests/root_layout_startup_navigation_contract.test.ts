@@ -9,14 +9,13 @@ describe('root layout startup navigation contract', () => {
   it('mounts the root stack on first render and keeps startup states as overlays', () => {
     expect(source).not.toMatch(/if\s*\(!ready\)\s*\{\s*return\s*\(/);
     expect(source).not.toMatch(/if\s*\(isBanned\)\s*\{\s*return\s*\(/);
-    expect(source).toContain('const startupSplashVisible = !startupSecurityBlocked');
-    expect(source).toContain('&& (!ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady))');
+    expect(source).toContain('const startupSplashVisible = !fontsReady || !ready');
+    expect(source).toContain('|| (!effectiveShowOnboarding && !isBanned && !firstContentReady)');
     expect(source).toContain('const FIRST_CONTENT_READY_FALLBACK_MS = 900;');
     expect(source).toContain('setTimeout(() => setFirstContentReady(true), FIRST_CONTENT_READY_FALLBACK_MS)');
-    expect(source).toContain('{startupSecurityBlocked && (');
     expect(source.indexOf('<Stack')).toBeGreaterThan(-1);
     expect(source.indexOf('<Stack')).toBeLessThan(
-      source.indexOf('<StartupSplashHold visible={startupSplashVisible} />'),
+      source.indexOf('<StartupSplashHold visible={startupSplashVisible}'),
     );
   });
 

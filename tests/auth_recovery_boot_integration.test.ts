@@ -92,31 +92,42 @@ describe('auth recovery pre-cloud boot integration', () => {
     expect(layout).toContain('runHeavyInitRef.current = requestHeavyInit;');
   });
 
-  it('replaces the endless splash with a fail-closed recovery screen when protected storage is unavailable', () => {
+  // Владелец, 2026-08-16: «ни один юзер никогда не должен увидеть такого».
+  // Экран-стена «Нужна безопасная проверка» держал приложение закрытым, когда
+  // дочистка удалённого аккаунта не проходила. Но она не проходит и по
+  // будничным причинам — нет сети (метро!), Firebase не поднялся за 2.5 с,
+  // enqueue не достучался. Вход НЕ блокируется больше никогда.
+  it('never blocks entry when the pending-delete cleanup cannot finish', () => {
     const deleteRecoveryStart = bootstrapRegion.indexOf('const pendingDeleteRecovered');
     const recoveryGateStart = bootstrapRegion.indexOf('authRecoveryBootAbort = new AbortController()', deleteRecoveryStart);
     const deleteRecovery = bootstrapRegion.slice(deleteRecoveryStart, recoveryGateStart);
 
-    expect(deleteRecovery).toContain('setStartupSecurityBlocked(true);');
+    // Провал дочистки больше не поднимает никакого блокирующего состояния...
+    expect(deleteRecovery).not.toContain('setStartupSecurityBlocked');
+    // ...и не прерывает загрузку — старт продолжается обычным путём.
+    expect(deleteRecovery).not.toMatch(/\n\s*return;\s*\n/);
+
+    // Но сама дочистка сохранена: конечный бэкофф в фоне, без горячего цикла.
     expect(deleteRecovery).toContain('accountDeleteRecoveryRetryTimer = setTimeout');
     expect(deleteRecovery).toContain('AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS[accountDeleteRecoveryRetryAttempt]');
     expect(deleteRecovery).toContain('accountDeleteRecoveryRetryAttempt += 1;');
     expect(deleteRecovery).not.toMatch(/accountDeleteRecoveryRetryTimer\s*=\s*setTimeout[\s\S]*?},\s*1_500\)/);
-    expect(deleteRecovery).toContain('setStartupSecurityBlocked(false);');
-    expect(layout).toContain('retryStartupSecurityCheckRef.current = () => {');
-    expect(layout).toContain('{startupSecurityBlocked && (');
-    expect(layout).toContain('accessibilityViewIsModal');
-    expect(layout).toContain('accessibilityLiveRegion="assertive"');
-    expect(layout).toContain('Приложение остаётся закрытым, чтобы не показать данные другого пользователя.');
-    expect(layout).toContain('color: \'#07110A\'');
-    expect(layout).toContain('minHeight: 48');
   });
 
-  it('does not expose normal overlays or the animated splash beneath the security blocker', () => {
-    expect(layout).toContain('ready && !startupSecurityBlocked && !effectiveShowOnboarding');
-    expect(layout).toContain('const startupSplashVisible = !startupSecurityBlocked');
-    expect(layout).toContain('const nativeSplashCanHide = startupSecurityBlocked');
-    expect(layout).toContain('retryStartupSecurityCheckRef.current = null;');
+  it('keeps no trace of the removed security-blocker screen', () => {
+    // Ни состояния, ни ретрая, ни разметки, ни текста — иначе экран вернётся.
+    expect(layout).not.toContain('startupSecurityBlocked');
+    expect(layout).not.toContain('retryStartupSecurityCheckRef');
+    // Заголовок экрана — только как ru-строка в разметке. Упоминание в
+    // комментарии «зачем» разрешено: оно объясняет, почему экрана больше нет.
+    expect(layout).not.toContain("ru: 'Нужна безопасная проверка'");
+    expect(layout).not.toContain('Приложение остаётся закрытым, чтобы не показать данные другого пользователя.');
+  });
+
+  it('shows the normal splash and overlays instead of a blocker', () => {
+    expect(layout).toContain('const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned');
+    expect(layout).toContain('const startupSplashVisible = !fontsReady || !ready');
+    expect(layout).toContain('const nativeSplashCanHide = fontsReady && ready');
   });
 
   it('uses a finite backoff budget that AppState and in-flight timer races cannot reset', () => {

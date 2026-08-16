@@ -40,8 +40,7 @@ describe('bootstrap locale contract', () => {
   it('does not add language or pack readiness to the native splash gate', () => {
     const layout = fs.readFileSync(path.join(ROOT, 'app', '_layout.tsx'), 'utf8');
     const match = layout.match(/const nativeSplashCanHide = ([^;]+);/);
-    expect(match?.[1]).toContain('startupSecurityBlocked');
-    expect(match?.[1]).toContain('ready && (effectiveShowOnboarding || isBanned || firstContentReady)');
+    expect(match?.[1]).toContain('(effectiveShowOnboarding || isBanned || firstContentReady)');
     expect(match?.[1]).not.toMatch(/lang|pack|manifest|download|network|hydrate/i);
   });
 

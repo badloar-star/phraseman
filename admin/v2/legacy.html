@@ -17331,7 +17331,7 @@
         <td>${premiumCellHtml(u)}</td>
         <td><div class="users-compact-cell">
           <div class="users-compact-email">${authCellHtml(u)}</div>
-          <div class="users-compact-line"><span style="font-size:13px;letter-spacing:2px">${settingsBits.join('')||'—'}</span><span style="color:#34d399;font-weight:700;background:#0f2a1a;padding:2px 8px;border-radius:6px;font-size:13px">💎 ${toSafeNumber(u.shards, 0)}</span></div>
+          <div class="users-compact-line"><span style="font-size:13px;letter-spacing:2px">${settingsBits.join('')||'—'}</span><span title="Справочная цифра из старого поля users.shards — сервер его больше не ведёт. Точный баланс виден в карточке пользователя." style="color:#8a8f98;font-weight:700;background:#191b1f;padding:2px 8px;border-radius:6px;font-size:13px">💎 ${toSafeNumber(u.shards, 0)}<span style="font-size:10px;opacity:.75;margin-left:4px">≈</span></span></div>
           <div class="users-compact-muted">${fdate(u.updatedAt)}</div>
         </div></td>
       </tr>`;
@@ -18181,13 +18181,38 @@
     return { mults, total };
   }
 
+  // зачем (инцидент 2026-08-16): в карточке светилось поле users.shards —
+  // устаревшая витрина, которую сервер больше не ведёт (см. функцию
+  // shards_apply_delta.ts: «сервер не читает и не пишет users.shards»).
+  // У покупателя с оплаченными 92 жемчужинами карточка показывала 0, и по ней
+  // нельзя было понять, дошли деньги или нет. Настоящий баланс = сумма
+  // подтверждённых фактов в external_economy_events, ровно её и считает
+  // приложение. Читаем ту же коллекцию, чтобы админка не врала.
+  async function loadShardsRealBalance(uid) {
+    const box = document.getElementById('shards-real-balance');
+    if (!box) return;
+    try {
+      const snap = await getDocs(collection(db, 'users', uid, 'external_economy_events'));
+      let total = 0;
+      snap.docs.forEach((d) => { total += toSafeNumber((d.data() || {}).delta, 0); });
+      // Баланс не уходит в минус: рефанд может создать долг, UI держим на нуле —
+      // тот же принцип, что в кошельке приложения.
+      box.textContent = `${Math.max(0, total)} 💎`;
+      box.title = `Сумма подтверждённых начислений и списаний (${snap.size} событий)`;
+    } catch {
+      box.textContent = '— 💎';
+      box.title = 'Не удалось прочитать события кошелька';
+    }
+  }
+
   function shardsSection(u) {
     // Render placeholder; real data loaded async via loadShardLog()
     setTimeout(() => loadShardLog(u.uid), 0);
+    setTimeout(() => loadShardsRealBalance(u.uid), 0);
     return `<div class="dsec" id="shards-log-section">
       <h3>💎 Осколки знаний</h3>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-        <span style="font-size:24px;font-weight:800;color:#34d399">${toSafeNumber(u.shards, 0)} 💎</span>
+        <span id="shards-real-balance" style="font-size:24px;font-weight:800;color:#34d399">⏳</span>
         <span style="font-size:11px;color:#555">Изменить: кнопка ниже в разделе управления</span>
       </div>
       <div id="shards-log-content"><div style="color:#555;font-size:12px">⏳ Загрузка истории...</div></div>

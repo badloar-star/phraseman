@@ -467,6 +467,13 @@ const RU = {
     'BillingIssueToastHost сам решает показывать ли тост: живой запрос Purchases.getCustomerInfo() + кулдаун 3 дня в AsyncStorage — без реальной подписки в грейс-периоде показать нечего, используй пункт «Тост: предупреждение» для превью визуала',
   admin_msg_title: 'Личное сообщение (демо)',
   admin_msg_body: 'Это витрина движения — реальный компонент PersonalAdminMessageModal с демо-текстом.',
+
+  // ── press_icons_tabbar / TabBarHybridPreview ──
+  tab_home: 'Дом',
+  tab_lessons: 'Уроки',
+  tab_arena: 'Вызовы',
+  tab_friends: 'Друзья',
+  tab_more: 'Ещё',
 };
 
 type Key = keyof typeof RU;

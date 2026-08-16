@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { cs } from '../dev/motion_showcase/showcase_copy';
 
 // ─── Таббар · «жидкое золото» — ЖИВАЯ превью-копия для витрины движения ───
 // зачем: макет-эталон .motion-mockups/phraseman-hybrid.html, сцена B5
@@ -21,12 +22,15 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 //    иконка отвечает pop .9→1 пружиной по приземлению капли;
 //  - волна соседей: кивок 2.5px, шаг 55мс по пути пролёта от текущей к целевой вкладке;
 //  - подпись — ТОЛЬКО у активной вкладки, высота зарезервирована заранее (layout stability).
+// зачем: подписи вкладок через cs() из showcase_copy.ts — сторож i18n
+// (scripts/scan_untranslated_ui.mjs) требует, чтобы русские литералы лежали
+// в словаре переводов, а не голыми строками в шарде витрины.
 const TAB_DEFS = [
-  { key: 'home', icon: 'home-outline' as const, active: 'home' as const, label: 'Дом' },
-  { key: 'lessons', icon: 'book-outline' as const, active: 'book' as const, label: 'Уроки' },
-  { key: 'arena', icon: 'flash-outline' as const, active: 'flash' as const, label: 'Вызовы' },
-  { key: 'friends', icon: 'people-outline' as const, active: 'people' as const, label: 'Друзья' },
-  { key: 'settings', icon: 'settings-outline' as const, active: 'settings' as const, label: 'Ещё' },
+  { key: 'home', icon: 'home-outline' as const, active: 'home' as const, label: cs('tab_home') },
+  { key: 'lessons', icon: 'book-outline' as const, active: 'book' as const, label: cs('tab_lessons') },
+  { key: 'arena', icon: 'flash-outline' as const, active: 'flash' as const, label: cs('tab_arena') },
+  { key: 'friends', icon: 'people-outline' as const, active: 'people' as const, label: cs('tab_friends') },
+  { key: 'settings', icon: 'settings-outline' as const, active: 'settings' as const, label: cs('tab_more') },
 ] as const;
 
 const BAR_HEIGHT = 64;

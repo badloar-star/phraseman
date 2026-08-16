@@ -32,6 +32,7 @@ import { soundDirector } from '../../modules/audio/sound_director';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { noAndroidOutline } from '../../constants/androidGlow';
+import { leagueBonusBeaconCopy, leagueBonusBeaconDayLabel } from './league_bonus_beacon_copy';
 
 const LEAGUE_CROWN_ICON = require('../../assets/images/league/league_crown.webp');
 
@@ -76,43 +77,11 @@ function WeekTicks({ bg }: { bg: string }) {
   );
 }
 
-// зачем: строки RU/UK/... как в остальных модалках лиги — сторож i18n доволен
-// (литералы внутри триязычного словаря, не голые строки в JSX).
-const COPY: Record<'crown' | 'ready' | 'expires' | 'close', Record<string, string>> = {
-  close: {
-    ru: 'Закрыть окно бонуса', uk: 'Закрити вікно бонусу', es: 'Cerrar ventana de bono', 'pt-BR': 'Fechar janela do bônus',
-    vi: 'Đóng cửa sổ thưởng', id: 'Tutup jendela bonus', tr: 'Bonus penceresini kapat', pl: 'Zamknij okno bonusu',
-  },
-  crown: {
-    ru: 'Корона уже ждёт', uk: 'Корона вже чекає', es: 'La corona te espera', 'pt-BR': 'A coroa já está esperando',
-    vi: 'Vương miện đang chờ bạn', id: 'Mahkota sudah menunggu', tr: 'Taç seni bekliyor', pl: 'Korona już czeka',
-  },
-  ready: {
-    ru: 'Бонус лиги готов', uk: 'Бонус ліги готовий', es: 'Bono de liga listo', 'pt-BR': 'Bônus da liga pronto',
-    vi: 'Thưởng giải đấu đã sẵn sàng', id: 'Bonus liga siap', tr: 'Lig bonusu hazır', pl: 'Bonus ligi gotowy',
-  },
-  expires: {
-    ru: 'Сундук ждёт в лиге · сгорит в воскресенье', uk: 'Скриня чекає в лізі · згорить у неділю',
-    es: 'El cofre espera en la liga · caduca el domingo', 'pt-BR': 'O baú espera na liga · expira no domingo',
-    vi: 'Rương đang chờ trong giải đấu · hết hạn vào Chủ nhật', id: 'Peti menunggu di liga · berakhir hari Minggu',
-    tr: 'Sandık ligde bekliyor · pazar günü sona eriyor', pl: 'Skrzynia czeka w lidze · wygasa w niedzielę',
-  },
-};
-
-const DAY_LABEL: Record<string, string> = {
-  ru: 'День {d} из 7', uk: 'День {d} із 7', es: 'Día {d} de 7', 'pt-BR': 'Dia {d} de 7',
-  vi: 'Ngày {d}/7', id: 'Hari {d} dari 7', tr: '7 günden {d}.', pl: 'Dzień {d} z 7',
-};
-
-function copyFor(kind: 'crown' | 'ready' | 'expires' | 'close', lang: string): string {
-  const row = COPY[kind];
-  return row[lang] ?? row.ru;
-}
-
-function dayLabelFor(lang: string, days: number): string {
-  const template = DAY_LABEL[lang] ?? DAY_LABEL.ru;
-  return template.replace('{d}', String(days));
-}
+// зачем: словарь вынесен в league_bonus_beacon_copy.ts — сторож i18n
+// (scripts/scan_untranslated_ui.mjs) требует форму const RU/UK/... рядом,
+// а не один объект на ключ со всеми языками на соседних строках.
+const copyFor = leagueBonusBeaconCopy;
+const dayLabelFor = leagueBonusBeaconDayLabel;
 
 function LeagueBonusBeaconOrb({
   visible,

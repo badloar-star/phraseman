@@ -29,6 +29,7 @@ import { themedToastChrome } from '../constants/themedToastChrome';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { soundDirector } from '../modules/audio/sound_director';
 import type { SoundEventId } from '../modules/audio/sound_events';
+import { actionToastToneLabel } from './action_toast_copy';
 
 type ToastPayload = {
   type: ToastType;
@@ -75,71 +76,11 @@ type ToastTone = {
 };
 
 const TOAST_TONES: Record<ToastType, ToastTone> = {
-  success: {
-    icon: 'checkmark-circle',
-    label: {
-      ru: 'Готово',
-      uk: 'Готово',
-      es: 'Listo',
-      'pt-BR': 'Pronto',
-      vi: 'Xong',
-      id: 'Selesai',
-      tr: 'Tamam',
-      pl: 'Gotowe',
-    },
-  },
-  error: {
-    icon: 'alert-circle',
-    label: {
-      ru: 'Что-то пошло не так',
-      uk: 'Щось пішло не так',
-      es: 'Algo salió mal',
-      'pt-BR': 'Algo deu errado',
-      vi: 'Có lỗi xảy ra',
-      id: 'Ada yang salah',
-      tr: 'Bir şeyler ters gitti',
-      pl: 'Błąd',
-    },
-  },
-  info: {
-    icon: 'information-circle',
-    label: {
-      ru: 'Инфо',
-      uk: 'Інфо',
-      es: 'Info',
-      'pt-BR': 'Info',
-      vi: 'Tin',
-      id: 'Info',
-      tr: 'Bilgi',
-      pl: 'Info',
-    },
-  },
-  warning: {
-    icon: 'warning',
-    label: {
-      ru: 'Внимание',
-      uk: 'Увага',
-      es: 'Atención',
-      'pt-BR': 'Atenção',
-      vi: 'Chú ý',
-      id: 'Perhatian',
-      tr: 'Dikkat',
-      pl: 'Uwaga',
-    },
-  },
-  reward: {
-    icon: 'gift',
-    label: {
-      ru: 'Награда',
-      uk: 'Нагорода',
-      es: 'Premio',
-      'pt-BR': 'Prêmio',
-      vi: 'Phần thưởng',
-      id: 'Hadiah',
-      tr: 'Ödül',
-      pl: 'Nagroda',
-    },
-  },
+  success: { icon: 'checkmark-circle', label: actionToastToneLabel('success') },
+  error: { icon: 'alert-circle', label: actionToastToneLabel('error') },
+  info: { icon: 'information-circle', label: actionToastToneLabel('info') },
+  warning: { icon: 'warning', label: actionToastToneLabel('warning') },
+  reward: { icon: 'gift', label: actionToastToneLabel('reward') },
 };
 
 /**

@@ -6,7 +6,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { hapticTap } from '../hooks/use-haptics';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
-import { triLang, type Lang } from '../constants/i18n';
+import { triLang } from '../constants/i18n';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 
 type Props = {
@@ -24,7 +24,6 @@ type Props = {
 function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVariant = 'classic' }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const L = (copy: Record<Lang, string>) => triLang(lang, copy);
   const insets = useStableSafeAreaInsets();
   const [closing, setClosing] = useState(false);
   const text = message ? pickAppMessageText(message, lang) : null;
@@ -40,7 +39,7 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
 
   const titleSlot = (
     <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
-      {text?.title || L({ ru: 'Сообщение', uk: 'Повідомлення', es: 'Mensaje', 'pt-BR': 'Mensagem', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesaj', pl: 'Wiadomość' })}
+      {text?.title || triLang(lang, { ru: 'Сообщение', uk: 'Повідомлення', es: 'Mensaje', 'pt-BR': 'Mensagem', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesaj', pl: 'Wiadomość' })}
     </Text>
   );
 
@@ -53,12 +52,12 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
   const ctaSlot = (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={L({ ru: 'Закрыть сообщение', uk: 'Закрити повідомлення', es: 'Cerrar mensaje', 'pt-BR': 'Fechar mensagem', vi: 'Đóng tin nhắn', id: 'Tutup pesan', tr: 'Mesajı kapat', pl: 'Zamknij wiadomość' })}
+      accessibilityLabel={triLang(lang, { ru: 'Закрыть сообщение', uk: 'Закрити повідомлення', es: 'Cerrar mensaje', 'pt-BR': 'Fechar mensagem', vi: 'Đóng tin nhắn', id: 'Tutup pesan', tr: 'Mesajı kapat', pl: 'Zamknij wiadomość' })}
       disabled={closing}
       onPress={() => { void close(); }}
       style={({ pressed }) => [styles.button, { backgroundColor: t.accent, opacity: pressed || closing ? 0.82 : 1 }]}
     >
-      <Text style={[styles.buttonText, { color: t.correctText, fontSize: f.bodyLg }]}>{L({ ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}</Text>
+      <Text style={[styles.buttonText, { color: t.correctText, fontSize: f.bodyLg }]}>{triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}</Text>
     </Pressable>
   );
 

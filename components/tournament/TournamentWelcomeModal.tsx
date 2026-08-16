@@ -31,7 +31,7 @@ import { V2Cta } from './tournament_v2_ui';
 import { METAL, radius, useTournamentPalette } from './tournament_theme';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { useLang } from '../LangContext';
-import { triLang, type Lang } from '../../constants/i18n';
+import { triLang } from '../../constants/i18n';
 import FullscreenHybridEntrance from '../feedback/FullscreenHybridEntrance';
 
 type Props = {
@@ -90,7 +90,6 @@ const DriftStar = memo(function DriftStar({
 export const TournamentWelcomeModal = memo(function TournamentWelcomeModal({ visible, onClose, motionVariant = 'classic' }: Props) {
   const P = useTournamentPalette();
   const { lang } = useLang();
-  const L = (copy: Record<Lang, string>) => triLang(lang, copy);
   const reduceMotion = useReducedMotion();
   const isHybrid = motionVariant === 'hybrid';
   const cardScale = useSharedValue(reduceMotion ? 1 : 0.86);
@@ -131,7 +130,7 @@ export const TournamentWelcomeModal = memo(function TournamentWelcomeModal({ vis
       provenance="authored"
       style={[styles.title, { color: P.text }]}
     >
-      {L({ ru: 'Турниры', uk: 'Турніри', es: 'Torneos', 'pt-BR': 'Torneios', vi: 'Giải đấu', id: 'Turnamen', tr: 'Turnuvalar', pl: 'Turnieje' })}
+      {triLang(lang, { ru: 'Турниры', uk: 'Турніри', es: 'Torneos', 'pt-BR': 'Torneios', vi: 'Giải đấu', id: 'Turnamen', tr: 'Turnuvalar', pl: 'Turnieje' })}
     </FlowText>
   );
 
@@ -145,7 +144,7 @@ export const TournamentWelcomeModal = memo(function TournamentWelcomeModal({ vis
       provenance="authored"
       style={[styles.body, { color: P.muted }]}
     >
-      {L({
+      {triLang(lang, {
         ru: 'Добро пожаловать туда, где не только вы стараетесь. 16 игроков, 4 раунда, и никто не будет ждать, пока вы вспомните нужное слово — соперники отвечают прямо сейчас. Звучит жёстко, но на деле это самый живой способ проверить себя.\n\nПризовое место в соревновании приносит жемчужины. А само участие — очки в пропуск сезона, отдельную дорожку с 60 подарками, которая копится тихонько, пока вы просто соревнуетесь время от времени.',
         uk: 'Ласкаво просимо туди, де стараєтеся не лише ви. 16 гравців, 4 раунди, і ніхто не чекатиме, поки ви згадаєте потрібне слово — суперники відповідають просто зараз. Звучить жорстко, але це найживіший спосіб перевірити себе.\n\nПризове місце приносить перлини. А участь — очки до сезонного пропуску, окремої доріжки з 60 подарунками, яка поступово накопичується, поки ви час від часу змагаєтесь.',
         es: 'Te damos la bienvenida a un lugar donde no eres la única persona que se esfuerza. Hay 16 jugadores y 4 rondas; nadie esperará mientras recuerdas la palabra correcta: los rivales responden ahora mismo. Suena intenso, pero es la forma más viva de ponerte a prueba.\n\nUn puesto premiado te da perlas. Y participar suma puntos para el pase de temporada, una ruta aparte con 60 regalos que avanza mientras compites de vez en cuando.',
@@ -160,14 +159,14 @@ export const TournamentWelcomeModal = memo(function TournamentWelcomeModal({ vis
 
   const actionsSlot = (
     <View style={styles.actions}>
-      <V2Cta tone="gold" onPress={onClose}>{L({ ru: 'Понятно, погнали', uk: 'Зрозуміло, почнімо', es: 'Entendido, vamos', 'pt-BR': 'Entendi, vamos lá', vi: 'Đã hiểu, bắt đầu thôi', id: 'Mengerti, ayo mulai', tr: 'Anladım, başlayalım', pl: 'Rozumiem, zaczынajmy' })}</V2Cta>
+      <V2Cta tone="gold" onPress={onClose}>{triLang(lang, { ru: 'Понятно, погнали', uk: 'Зрозуміло, почнімо', es: 'Entendido, vamos', 'pt-BR': 'Entendi, vamos lá', vi: 'Đã hiểu, bắt đầu thôi', id: 'Mengerti, ayo mulai', tr: 'Anladım, başlayalım', pl: 'Rozumiem, zaczынajmy' })}</V2Cta>
     </View>
   );
 
   return (
     <Modal visible={visible} transparent animationType={isHybrid ? 'none' : 'fade'} onRequestClose={onClose}>
       <View style={styles.backdrop}>
-        <Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityLabel={L({ ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} />
+        <Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} />
         <Animated.View style={[styles.card, cardStyle]}>
           <LinearGradient
             colors={[P.surfaceGradA, P.surfaceGradB]}

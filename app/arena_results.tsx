@@ -189,7 +189,11 @@ export default function ArenaResultsScreen() {
       starsSaved={announce.starsEarned}
       reduceMotion={reduceMotion}
       onDone={() => setRankSceneDismissed(true)}
-      onRevenge={() => setRankSceneDismissed(true)}
+      // зачем: «Реванш» ведёт в очередь на матч (тот же путь, что «Ещё матч»), а не просто прячет сцену
+      onRevenge={() => {
+        setRankSceneDismissed(true);
+        router.replace({ pathname: '/arena_matchmaking', params: { mode: match?.mode === 'ranked' ? 'ranked' : 'quick', requestId: createArenaRequestId('queue') } } as never);
+      }}
     />
   ) : null;
 

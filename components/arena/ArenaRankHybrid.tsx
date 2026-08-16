@@ -35,6 +35,7 @@ import Reanimated, {
   type SharedValue,
 } from 'react-native-reanimated';
 import { LinearGradient } from '../SafeLinearGradient';
+import DuoPressable from '../DuoPressable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTournamentPalette } from '../tournament/tournament_theme';
 import { ARENA_TIER_KEYS, type ArenaTierKey } from '../../modules/arena/rank_engine';
@@ -551,14 +552,16 @@ function ArenaTierDownHybridImpl({ tierIndex, starsSaved, reduceMotion, onDone, 
           <RewardRow icon="return-up-forward" color={P.accent} title={arenaText(lang, 'tierDownRevengeTitle')} sub={arenaText(lang, 'tierDownRevengeSub')} P={P} />
         </Reanimated.View>
         <Reanimated.View style={ctaStyle}>
-          <View
-            accessible
-            accessibilityRole="button"
-            onTouchEnd={onRevenge}
+          {/* зачем: CTA — настоящая клавиша с кромкой и хаптикой (стандарт отклика
+              владельца), а не голый View с onTouchEnd без отклика */}
+          <DuoPressable
+            onPress={onRevenge}
+            edgeColor={P.card}
+            edgeHeight={4}
             style={[styles.cta, styles.ctaQuiet, { backgroundColor: P.elev }]}
           >
             <Text style={[styles.ctaText, { color: P.text }]}>{arenaText(lang, 'tierDownCta')}</Text>
-          </View>
+          </DuoPressable>
         </Reanimated.View>
       </Reanimated.View>
     </View>

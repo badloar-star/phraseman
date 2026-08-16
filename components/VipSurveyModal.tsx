@@ -2,6 +2,7 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
+  Easing,
   Keyboard,
   KeyboardAvoidingView,
   Modal,
@@ -15,6 +16,14 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import Reanimated, {
+  cancelAnimation,
+  useAnimatedStyle,
+  useSharedValue,
+  useReducedMotion,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import { LinearGradient } from './SafeLinearGradient';
 import DuoPressable from './DuoPressable';
 import PressableHybrid from './PressableHybrid';
@@ -23,6 +32,7 @@ import { useTheme } from './ThemeContext';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
+import { LUM } from '../constants/motionHybrid';
 import { submitVipSurveyFromApp, type SubmitVipSurveyResponse } from '../app/vip_survey';
 import {
   isVipSurveyComplete,
@@ -36,9 +46,17 @@ type Props = {
   messageId: string;
   onClose: () => void;
   onCompleted: (result: SubmitVipSurveyResponse) => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (владелец, 2026-08-16). Форма с
+   * клавиатурой — каскад содержимого НЕ делаем (риск для фокуса/раскладки).
+   * 'hybrid' добавляет ТОЛЬКО мягкое появление панели из света (opacity
+   * LUM.resolveMs + scale 1.03→1 LUM.settle, без отскока). KeyboardAvoidingView,
+   * фокус инпутов и вся логика опроса не меняются. Default 'classic'.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
-function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
+function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVariant = 'classic' }: Props) {
   const { lang } = useLang();
   const { f, isDark } = useTheme();
   const insets = useStableSafeAreaInsets();
@@ -61,6 +79,34 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
   const panelKeyboardMaxHeight = keyboardVisible
     ? Math.max(320, windowHeight - keyboardHeight - insets.top - bottomInset - 22)
     : undefined;
+  const isHybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReducedMotion();
+
+  // зачем: гибрид «Световод» — панель появляется из света (opacity + scale
+  // 1.03→1, settle без отскока). ТОЛЬКО вход панели целиком: каскад
+  // содержимого, KeyboardAvoidingView и фокус инпутов не трогаются.
+  const hybridOpacity = useSharedValue(0);
+  const hybridScale = useSharedValue(1.03);
+  useEffect(() => {
+    if (!isHybrid || !visible) return;
+    if (reduceMotion) {
+      hybridOpacity.value = 1;
+      hybridScale.value = 1;
+      return;
+    }
+    hybridOpacity.value = 0;
+    hybridScale.value = 1.03;
+    hybridOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    hybridScale.value = withSpring(1, LUM.settle);
+    return () => {
+      cancelAnimation(hybridOpacity);
+      cancelAnimation(hybridScale);
+    };
+  }, [isHybrid, visible, reduceMotion, hybridOpacity, hybridScale]);
+  const hybridPanelStyle = useAnimatedStyle(() => ({
+    opacity: hybridOpacity.value,
+    transform: [{ scale: hybridScale.value }],
+  }));
 
   const clearCommentScrollTimers = () => {
     scrollTimersRef.current.forEach((timer) => clearTimeout(timer));
@@ -337,6 +383,10 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
         ]}
       >
         <View style={StyleSheet.absoluteFill} />
+        {/* зачем: LinearGradient — не Reanimated-компонент, animated style на
+            неё напрямую не подействует; оборачиваем ТОЛЬКО в hybrid-режиме,
+            classic-путь остаётся тем же деревом без обёртки. */}
+        <Reanimated.View style={isHybrid ? hybridPanelStyle : undefined}>
         <LinearGradient
           colors={isDark ? ['#182131', '#0F172A'] : ['#FFFFFF', '#F1F5F9']}
           start={{ x: 0, y: 0 }}
@@ -515,6 +565,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
             </>
           )}
         </LinearGradient>
+        </Reanimated.View>
       </KeyboardAvoidingView>
     </Modal>
   );

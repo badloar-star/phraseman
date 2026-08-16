@@ -64,6 +64,11 @@ const RU = {
   delete_account_confirm_title: 'Подтверждение удаления аккаунта',
   delete_account_confirm_note:
     'Кнопка «Удалить» вызывает beginAccountDeletion() напрямую внутри компонента (не через пропсы) — тап реально начал бы необратимое удаление. Показывать живьём нельзя.',
+  delete_account_confirm_hybrid_title: 'Подтверждение удаления аккаунта · гибрид',
+  review_prompt_modal_title: 'Просьба об отзыве в App Store',
+  review_prompt_modal_hybrid_title: 'Просьба об отзыве в App Store · гибрид',
+  review_prompt_modal_note:
+    'При монтировании сразу пишет markReviewPrompted() в AsyncStorage (счётчик показов/дата последнего показа реального промпта) — живой показ засорил бы боевую частоту отзывов. Показывать живьём нельзя.',
 
   // ── arena_rewards ──
   arena_rewards_section_title: 'Арена · ранги и итоги',

@@ -74,6 +74,13 @@ import {
   normalizeRecoveryCodeInput,
   normalizeRecoveryEmailInput,
 } from './auth_recovery_modal_model';
+// зачем: гибрид «Световод + Чекан» (владелец, 2026-08-16) — bloom-подложка над
+// шитом и вторичная кнопка «Позже» через общий пресс-стандарт. Существующий
+// GestureDetector/PanResponder (drag-to-dismiss) и вся auth-логика НЕ трогаются —
+// добавка только рядом, под prop motionVariant (default 'classic').
+import { LinearGradient } from './SafeLinearGradient';
+import PressableHybrid from './PressableHybrid';
+import { LUM } from '../constants/motionHybrid';
 
 const SIGN_IN_SLOW_THRESHOLD_MS = 45_000;
 
@@ -145,6 +152,14 @@ interface Props {
   subtitle?: string;
   onClose: () => void;
   onSignedIn?: (result: SignInResult) => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» живёт РЯДОМ со старым видом под флагом —
+   * боевой дефолт 'classic' не меняется без явного включения владельцем.
+   * 'hybrid' добавляет bloom-подложку над шитом (свет загорается первым) и
+   * переводит вторичную кнопку «Позже» на PressableHybrid; drag-to-dismiss,
+   * каскад появления и вся auth-логика — без изменений в обоих режимах.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 function RegistrationPromptModal({
@@ -154,6 +169,7 @@ function RegistrationPromptModal({
   subtitle,
   onClose,
   onSignedIn,
+  motionVariant = 'classic',
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const insets = useStableSafeAreaInsets();
@@ -1285,6 +1301,17 @@ function RegistrationPromptModal({
               sheetStyle,
             ]}
           >
+          {motionVariant === 'hybrid' && (
+            // Bloom: свет загорается ПЕРВЫМ над шитом (закон базы «Световод»,
+            // LUM.bloomMs) — чисто декоративный слой, не влияет на разметку.
+            <LinearGradient
+              colors={[`${t.accent}1F`, 'transparent']}
+              start={{ x: 0.5, y: 0 }}
+              end={{ x: 0.5, y: 0.5 }}
+              style={styles.hybridSheetGlow}
+              pointerEvents="none"
+            />
+          )}
           <View style={styles.grabberZone}>
             <View style={[styles.grabber, { backgroundColor: t.border }]} />
           </View>
@@ -1878,19 +1905,38 @@ function RegistrationPromptModal({
           </Animated.View>
 
           <Animated.View style={[styles.footerCol, rise5]}>
-            <Pressable
-              onPress={dismissSheet}
-              disabled={(loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed}
-              accessibilityRole="button"
-              accessibilityLabel={labelLaterAccessibility}
-              accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
-              style={[styles.laterButton, { opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
-              testID="auth-prompt-later"
-            >
-              <Text style={[styles.laterText, { color: t.textMuted, fontSize: f.body }]}>
-                {labelLater}
-              </Text>
-            </Pressable>
+            {motionVariant === 'hybrid' ? (
+              // Вторичное действие — единый пресс-стандарт PressableHybrid
+              // (variant secondary: PRESS.scale.secondary, без перелёта на
+              // возврате — закон «удар/вес только у героя кульминации»).
+              <PressableHybrid
+                onPress={dismissSheet}
+                disabled={(loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed}
+                accessibilityLabel={labelLaterAccessibility}
+                accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
+                variant="secondary"
+                style={[styles.laterButton, { opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                testID="auth-prompt-later"
+              >
+                <Text style={[styles.laterText, { color: t.textMuted, fontSize: f.body }]}>
+                  {labelLater}
+                </Text>
+              </PressableHybrid>
+            ) : (
+              <Pressable
+                onPress={dismissSheet}
+                disabled={(loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed}
+                accessibilityRole="button"
+                accessibilityLabel={labelLaterAccessibility}
+                accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
+                style={[styles.laterButton, { opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                testID="auth-prompt-later"
+              >
+                <Text style={[styles.laterText, { color: t.textMuted, fontSize: f.body }]}>
+                  {labelLater}
+                </Text>
+              </Pressable>
+            )}
             <View style={styles.legalLinks}>
               <Pressable onPress={() => Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL)} hitSlop={8}>
                 <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption, lineHeight: captionLineHeight }]}>{triLang(lang, { ru: 'Политика конфиденциальности', uk: 'Політика конфіденційності', es: 'Política de privacidad', 'pt-BR': 'Política de privacidade', vi: 'Chính sách quyền riêng tư', id: 'Kebijakan privasi', tr: 'Gizlilik Politikası', pl: 'Polityka prywatności' })}</Text>
@@ -1928,6 +1974,13 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 24,
     borderTopWidth: 1,
     overflow: 'hidden',
+  },
+  hybridSheetGlow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 160,
   },
   grabberZone: {
     paddingTop: 10,

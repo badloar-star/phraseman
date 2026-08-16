@@ -14,6 +14,10 @@ import { View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FlowText } from './text-integrity/FlowText';
 import TapScale from './TapScale';
+// зачем (2026-08-16, motionVariant='hybrid'): единый пресс-стандарт гибрида
+// «Световод + Чекан» (constants/motionHybrid.ts → PRESS) для крестика/аксессуара
+// вместо TapScale. Дефолт остаётся 'classic' — вид не меняется без явного флага.
+import PressableHybrid from './PressableHybrid';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
@@ -35,6 +39,8 @@ interface SectionSheetHeaderProps {
   /** Hairline-линия снизу (односторонний разделитель разрешён стилем владельца). */
   showDivider?: boolean;
   closeTestID?: string;
+  /** Гибрид «Световод + Чекан» для крестика (PressableHybrid variant="icon"). Дефолт — боевой 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 export default function SectionSheetHeader({
@@ -43,6 +49,7 @@ export default function SectionSheetHeader({
   accessory,
   showDivider = true,
   closeTestID,
+  motionVariant = 'classic',
 }: SectionSheetHeaderProps) {
   const { theme: t } = useTheme();
   const { lang } = useLang();
@@ -99,28 +106,46 @@ export default function SectionSheetHeader({
         }}
       >
         {accessory}
-        <TapScale
-          accessibilityRole="button"
-          accessibilityLabel={closeLabel}
-          testID={closeTestID}
-          onPress={onClose}
-          style={{
-            width: 40,
-            height: 40,
-            borderRadius: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: t.bgSurface,
-            shadowColor: '#000',
-            shadowOpacity: 0.24,
-            shadowRadius: 8,
-            shadowOffset: { width: 0, height: 3 },
-            ...noAndroidOutline,
-          }}
-        >
-          <Ionicons name="close" size={20} color={t.textPrimary} />
-        </TapScale>
+        {motionVariant === 'hybrid' ? (
+          <PressableHybrid
+            accessibilityRole="button"
+            accessibilityLabel={closeLabel}
+            testID={closeTestID}
+            variant="icon"
+            onPress={onClose}
+            style={closeBtnStyle(t)}
+          >
+            <Ionicons name="close" size={20} color={t.textPrimary} />
+          </PressableHybrid>
+        ) : (
+          <TapScale
+            accessibilityRole="button"
+            accessibilityLabel={closeLabel}
+            testID={closeTestID}
+            onPress={onClose}
+            style={closeBtnStyle(t)}
+          >
+            <Ionicons name="close" size={20} color={t.textPrimary} />
+          </TapScale>
+        )}
       </View>
     </View>
   );
+}
+
+/** Одинаковая геометрия крестика в classic/hybrid — меняется только прессабл-примитив. */
+function closeBtnStyle(t: ReturnType<typeof useTheme>['theme']) {
+  return {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center' as const,
+    justifyContent: 'center' as const,
+    backgroundColor: t.bgSurface,
+    shadowColor: '#000',
+    shadowOpacity: 0.24,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
+    ...noAndroidOutline,
+  };
 }

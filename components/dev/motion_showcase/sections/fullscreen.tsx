@@ -141,6 +141,21 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'vip_survey_modal_hybrid',
+      title: cs('vip_survey_modal_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <VipSurveyModal
+          visible={visible}
+          messageId="showcase-demo-vip-survey-hybrid"
+          onClose={onClose}
+          onCompleted={onClose}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'vip_survey_review_prompt_modal',
       title: cs('vip_survey_review_prompt_modal_title'),
       detail: cs('real_component'),

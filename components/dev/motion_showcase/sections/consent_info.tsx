@@ -12,11 +12,69 @@ import AiDialogConsentModal from '../../../AiDialogConsentModal';
 import AiExplainConsentModal from '../../../AiExplainConsentModal';
 import NotificationPermissionModal from '../../../NotificationPermissionModal';
 import MistakeEli5Modal from '../../../MistakeEli5Modal';
+import OnboardingWelcomeSheet from '../../../OnboardingWelcomeSheet';
+import YoutubeChannelPickerSheet from '../../../youtube/YoutubeChannelPickerSheet';
+import DeckPickerSheet from '../../../../app/flashcards/DeckPickerSheet';
+import SectionSheetHeader from '../../../SectionSheetHeader';
+import { useTheme } from '../../../ThemeContext';
 import { cs } from '../showcase_copy';
 
 const DEMO_LANG = 'ru' as Lang;
 
 const DEMO_MISTAKE_TEXT = cs('consent_mistake_demo_text');
+
+/** Демо-манифест для YoutubeChannelPickerSheet — один канал, без сети. */
+const DEMO_YOUTUBE_MANIFEST = {
+  schemaVersion: 1 as const,
+  activeVersion: 'showcase-demo',
+  generatedAt: new Date().toISOString(),
+  sourceRefreshedAt: new Date().toISOString(),
+  defaultChannelId: 'demo-channel',
+  localeDefaults: {},
+  channels: [
+    {
+      id: 'demo-channel',
+      displayName: cs('youtube_channel_picker_sheet_demo_channel'),
+      languageTags: ['ru'],
+      order: 0,
+    },
+  ],
+};
+
+/** Демо-наборы для DeckPickerSheet — безопасные deckId ('saved'/'custom'), онбординг ничего не начисляет. */
+const DEMO_FC_DECKS = [
+  { deckId: 'saved' as const, title: cs('fc_deck_picker_sheet_demo_saved'), count: 12, icon: 'bookmark' as const },
+  { deckId: 'custom' as const, title: cs('fc_deck_picker_sheet_demo_custom'), count: 8, icon: 'layers' as const },
+];
+
+/** SectionSheetHeader сам не рендерит подложку/крестик-фон — оборачиваем в лёгкий фон для превью. */
+function SectionSheetHeaderPreview({ hybrid }: { hybrid: boolean }) {
+  return (
+    <SectionSheetHeader
+      title={cs('section_sheet_header_demo_title')}
+      onClose={() => {}}
+      showDivider
+      motionVariant={hybrid ? 'hybrid' : 'classic'}
+    />
+  );
+}
+
+/** DeckPickerSheet ждёт t/f из useTheme() — витрина использует реальную тему, не заглушку. */
+function DeckPickerSheetPreview({ visible, onClose, hybrid }: { visible: boolean; onClose: () => void; hybrid: boolean }) {
+  const { theme: t, f } = useTheme();
+  return (
+    <DeckPickerSheet
+      visible={visible}
+      onClose={onClose}
+      onStart={() => onClose()}
+      decks={DEMO_FC_DECKS}
+      lang={DEMO_LANG}
+      t={t}
+      f={f}
+      motionVariant={hybrid ? 'hybrid' : 'classic'}
+    />
+  );
+}
 
 export const SECTION: ShowcaseSection = {
   id: 'consent_info',
@@ -131,6 +189,96 @@ export const SECTION: ShowcaseSection = {
       title: cs('explain_sheet_title'),
       kind: 'note',
       note: cs('explain_sheet_note'),
+    },
+    {
+      id: 'onboarding-welcome-sheet',
+      title: cs('onboarding_welcome_sheet_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <OnboardingWelcomeSheet
+          visible={visible}
+          userName={cs('onboarding_welcome_sheet_demo_name')}
+          onClose={onClose}
+        />
+      ),
+    },
+    {
+      id: 'onboarding-welcome-sheet-hybrid',
+      title: cs('onboarding_welcome_sheet_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <OnboardingWelcomeSheet
+          visible={visible}
+          userName={cs('onboarding_welcome_sheet_demo_name')}
+          onClose={onClose}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
+      id: 'youtube-channel-picker-sheet',
+      title: cs('youtube_channel_picker_sheet_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <YoutubeChannelPickerSheet
+          visible={visible}
+          manifest={DEMO_YOUTUBE_MANIFEST}
+          preference={{ mode: 'auto' }}
+          onSelect={() => {}}
+          onClose={onClose}
+        />
+      ),
+    },
+    {
+      id: 'youtube-channel-picker-sheet-hybrid',
+      title: cs('youtube_channel_picker_sheet_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <YoutubeChannelPickerSheet
+          visible={visible}
+          manifest={DEMO_YOUTUBE_MANIFEST}
+          preference={{ mode: 'auto' }}
+          onSelect={() => {}}
+          onClose={onClose}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
+      id: 'fc-deck-picker-sheet',
+      title: cs('fc_deck_picker_sheet_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <DeckPickerSheetPreview visible={visible} onClose={onClose} hybrid={false} />
+      ),
+    },
+    {
+      id: 'fc-deck-picker-sheet-hybrid',
+      title: cs('fc_deck_picker_sheet_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <DeckPickerSheetPreview visible={visible} onClose={onClose} hybrid />
+      ),
+    },
+    {
+      id: 'section-sheet-header',
+      title: cs('section_sheet_header_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: () => <SectionSheetHeaderPreview hybrid={false} />,
+    },
+    {
+      id: 'section-sheet-header-hybrid',
+      title: cs('section_sheet_header_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: () => <SectionSheetHeaderPreview hybrid />,
     },
   ],
 };

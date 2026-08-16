@@ -89,7 +89,7 @@ interface PromoBannerProps {
   motionVariant?: 'classic' | 'hybrid';
 }
 
-export default function PromoBanner({ motionVariant = 'classic' }: PromoBannerProps = {}) {
+export default function PromoBanner({ motionVariant = 'classic' }: PromoBannerProps) {
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
   const { themeMode } = useTheme();

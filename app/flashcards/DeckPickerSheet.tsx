@@ -32,6 +32,13 @@ import type { Theme } from '../../constants/theme';
 import { FC_TIMING, fcStaggerDelay } from '../../constants/flashcards_motion';
 import { fcHaptic } from './SoundService';
 import { isLowPowerEffective } from './low_power';
+// зачем (2026-08-16, motionVariant='hybrid'): гибрид «Световод + Чекан» — тот же
+// контент шита (наборы/размер/CTA) поднимается каркасом HybridSheetShell вместо
+// самодельного Modal+backdrop+Reanimated.View. Минимальная вставка по правилу
+// владельца: существующий 'classic' JSX не тронут, hybrid-ветка — отдельный
+// early return чуть ниже, использующий те же state/handlers.
+import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
+import PressableHybrid from '../../components/PressableHybrid';
 import {
   deckSelectionLabel,
   summarizeDeckSelection,
@@ -77,6 +84,8 @@ type Props = {
   reduceMotion?: boolean;
   /** E10: чей пресет сохраняем и какой CTA показываем (дефолт — тренер). */
   mode?: FcPresetMode;
+  /** Гибрид «Световод + Чекан» (HybridSheetShell вместо самодельного Modal). Дефолт — боевой 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 const SHEET_SPRING = { damping: 22, stiffness: 260, mass: 0.9 } as const;
@@ -213,6 +222,7 @@ export default function DeckPickerSheet({
   f,
   reduceMotion = false,
   mode = 'trainer',
+  motionVariant = 'classic',
 }: Props) {
   const insets = useStableSafeAreaInsets();
   const { height: winH, width: winW } = useWindowDimensions();
@@ -314,6 +324,192 @@ export default function DeckPickerSheet({
   }, [canStart, deckIds, size, onStart, mode]);
 
   if (!mounted) return null;
+
+  const sheetHeading = mode === 'listening'
+    ? triLang(lang, {
+        ru: 'Что слушаем?', uk: 'Що слухаємо?', es: '¿Qué escuchamos?',
+        'pt-BR': 'O que vamos ouvir?', vi: 'Nghe gì?', id: 'Dengar apa?',
+        tr: 'Ne dinliyoruz?', pl: 'Czego słuchamy?',
+      })
+    : mode === 'blitz'
+      ? triLang(lang, {
+          ru: 'Что в блице?',
+          uk: 'Що в бліці?',
+          es: '¿Qué entra en el blitz?',
+          'pt-BR': 'O que entra no blitz?',
+          vi: 'Blitz gồm những gì?',
+          id: 'Apa isi blitz?',
+          tr: 'Blitz’te ne olsun?',
+          pl: 'Co w blitzu?',
+        })
+      : triLang(lang, {
+          ru: 'Что тренируем?',
+          uk: 'Що тренуємо?',
+          es: '¿Qué entrenamos?',
+          'pt-BR': 'O que vamos treinar?',
+          vi: 'Luyện gì?',
+          id: 'Latih apa?',
+          tr: 'Ne çalışalım?',
+          pl: 'Co trenujemy?',
+        });
+
+  const startLabel = mode === 'listening'
+    ? triLang(lang, {
+        ru: 'Начать слушание', uk: 'Почати слухання', es: 'Empezar a escuchar',
+        'pt-BR': 'Começar a ouvir', vi: 'Bắt đầu nghe', id: 'Mulai mendengar',
+        tr: 'Dinlemeye başla', pl: 'Zacznij słuchać',
+      })
+    : mode === 'blitz'
+      ? triLang(lang, {
+          ru: 'В блиц!', uk: 'У бліц!', es: '¡Al blitz!',
+          'pt-BR': 'Ao blitz!', vi: 'Vào blitz!', id: 'Mulai blitz!',
+          tr: 'Blitz’e!', pl: 'Do blitza!',
+        })
+      : triLang(lang, {
+          ru: 'Начать тренировку', uk: 'Почати тренування', es: 'Empezar',
+          'pt-BR': 'Começar o treino', vi: 'Bắt đầu luyện tập',
+          id: 'Mulai latihan', tr: 'Alıştırmaya başla', pl: 'Zacznij trening',
+        });
+
+  const closeLabel = triLang(lang, {
+    ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar',
+    vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
+  });
+
+  const summaryLabel = summary.deckCount > 0
+    ? deckSelectionLabel(lang, summary)
+    : triLang(lang, {
+        ru: 'Отметьте один или несколько наборов',
+        uk: 'Позначте один або кілька наборів',
+        es: 'Marca uno o varios packs',
+        'pt-BR': 'Marque um ou mais pacotes',
+        vi: 'Chọn một hoặc nhiều bộ thẻ',
+        id: 'Tandai satu atau beberapa set',
+        tr: 'Bir veya birkaç set işaretle',
+        pl: 'Zaznacz jeden lub kilka zestawów',
+      });
+
+  const cardsInSessionLabel = triLang(lang, {
+    ru: 'Карточек в сессии',
+    uk: 'Карток у сесії',
+    es: 'Tarjetas por sesión',
+    'pt-BR': 'Cartões por sessão',
+    vi: 'Số thẻ mỗi phiên',
+    id: 'Kartu per sesi',
+    tr: 'Oturum başına kart',
+    pl: 'Fiszek na sesję',
+  });
+
+  // зачем: гибрид «Световод + Чекан» — тот же контент (заголовок/наборы/размер/
+  // CTA), но каркас HybridSheetShell (подъём из света без отскока, drag-to-dismiss
+  // встроен) вместо самодельного Modal+backdrop+Reanimated.View выше. 'classic'
+  // ниже не тронут — минимальная вставка по правилу владельца.
+  if (motionVariant === 'hybrid') {
+    return (
+      <HybridSheetShell visible={visible} onClose={onClose} closeLabel={closeLabel} testID="fc-deck-sheet">
+        <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', marginBottom: 4 }}>
+          {sheetHeading}
+        </Text>
+
+        <Text
+          testID="fc-deck-selection-summary"
+          accessibilityLabel="qa-fc-deck-selection-summary"
+          accessible
+          style={{
+            color: summary.deckCount > 0 ? t.accent : t.textMuted,
+            fontSize: f.caption,
+            fontWeight: '700',
+            marginBottom: 12,
+          }}
+        >
+          {summaryLabel}
+        </Text>
+
+        <ScrollView style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
+          <View style={{ gap: 8 }}>
+            {decks.map((d, i) => (
+              <DeckRow
+                key={d.deckId}
+                deck={d}
+                index={i}
+                active={selectedIds.has(d.deckId)}
+                onToggle={toggleDeck}
+                simple={simpleMotion}
+                t={t}
+                f={f}
+              />
+            ))}
+          </View>
+
+          {mode === 'blitz' ? null : (
+            <Text
+              style={{
+                color: t.textMuted,
+                fontSize: f.caption,
+                fontWeight: '700',
+                letterSpacing: 0.8,
+                textTransform: 'uppercase',
+                marginTop: 16,
+                marginBottom: 8,
+              }}
+            >
+              {cardsInSessionLabel}
+            </Text>
+          )}
+          {mode === 'blitz' ? null : (
+            <View style={{ flexDirection: 'row', gap: 8 }}>
+              {FC_SESSION_SIZES.map((n) => {
+                const active = n === size;
+                return (
+                  <PressableHybrid
+                    key={n}
+                    testID={`fc-deck-size-${n}`}
+                    accessibilityLabel={`qa-fc-deck-size-${n}`}
+                    variant="chip"
+                    onPress={() => setSize(n)}
+                    style={{
+                      flex: 1,
+                      borderRadius: 14,
+                      backgroundColor: active ? `${t.accent}14` : t.bgSurface,
+                    }}
+                    contentStyle={{ paddingVertical: 10, alignItems: 'center' }}
+                  >
+                    <Text style={{ color: active ? t.accent : t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                      {n}
+                    </Text>
+                  </PressableHybrid>
+                );
+              })}
+            </View>
+          )}
+        </ScrollView>
+
+        <PressableHybrid
+          testID="fc-deck-start"
+          accessibilityLabel="qa-fc-deck-start"
+          variant="primary"
+          disabled={!canStart}
+          onPress={handleStart}
+          style={{
+            marginTop: 16,
+            borderRadius: 16,
+            backgroundColor: canStart ? t.accent : t.bgSurface,
+          }}
+          contentStyle={{ paddingVertical: 15, alignItems: 'center' }}
+        >
+          <Text
+            style={{
+              color: canStart ? t.correctText : t.textGhost,
+              fontSize: f.body,
+              fontWeight: '700',
+            }}
+          >
+            {startLabel}
+          </Text>
+        </PressableHybrid>
+      </HybridSheetShell>
+    );
+  }
 
   return (
     <Modal visible transparent animationType="none" onRequestClose={onClose} statusBarTranslucent>

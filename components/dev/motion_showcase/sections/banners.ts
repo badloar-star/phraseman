@@ -42,7 +42,7 @@ export const SECTION: ShowcaseSection = {
       // моков. Если акция сейчас выключена/дисмиссена — баннер честно пуст.
       detail: cs('banner_promo_detail'),
       kind: 'render',
-      render: () => React.createElement(PromoBanner),
+      render: () => React.createElement(PromoBanner, {}),
     },
     {
       id: 'banner-promo-hybrid',
@@ -103,6 +103,13 @@ export const SECTION: ShowcaseSection = {
       detail: cs('banner_referral_invite_art_detail'),
       kind: 'render',
       render: () => React.createElement(ReferralInviteBannerArt),
+    },
+    {
+      id: 'banner-referral-invite-art-hybrid',
+      title: cs('banner_referral_invite_art_hybrid_title'),
+      detail: cs('banner_referral_invite_art_detail'),
+      kind: 'render',
+      render: () => React.createElement(ReferralInviteBannerArt, { motionVariant: 'hybrid' }),
     },
   ],
 };

@@ -2092,19 +2092,15 @@ service cloud.firestore {
       allow delete: if request.auth != null && request.auth.uid == readerAuthUid;
     }
 
-    // Friend activity feed: users/{stableUid}/my_events/{eventId}.
+    // users/{stableUid}/my_events/{eventId} — серверные события-якоря для лайков
+    // (сегодня: буст лиговой группы, league_groups.ts). Лента активности друзей удалена
+    // 2026-08-16; коллекция и правило остаются ради этих якорей и старых документов.
     // Readable by: the owner, an admin, or a confirmed friend (via friend_auth_edges above).
     match /users/{userId}/my_events/{eventId} {
       allow read: if canonicalUserMatchesAuth(userId)
         || isAdmin()
         || (request.auth != null
             && exists(/databases/$(database)/documents/users/$(userId)/friend_auth_edges/$(request.auth.uid)));
-      allow create, update, delete: if isAdmin();
-    }
-
-    // Fan-out лента активности (пишет ТОЛЬКО сервер, feed_fanout.ts; Admin SDK rules обходит).
-    match /users/{userId}/feed/{eventId} {
-      allow read: if canonicalUserMatchesAuth(userId) || isAdmin();
       allow create, update, delete: if isAdmin();
     }
 
@@ -2343,6 +2339,17 @@ service cloud.firestore {
     // Исторический кэш и биллинг удалённого Quiz остаются полностью закрытыми.
     // Retired-данные доступны только Admin SDK для обязательной серверной очистки.
     match /quiz_explanations/{quizHash} {
+      allow read, write: if false;
+    }
+
+    // Образцы живого голоса владельца: пары «письмо клиента → ответ
+    // владельца», на которых учится поддержка (2026-08-16).
+    //
+    // зачем полный deny, а не isAdmin(): внутри лежит переписка с
+    // конкретными людьми — тексты их обращений и ответы про их случаи.
+    // Читает и пишет только сервер через Admin SDK; браузерной админке
+    // это не нужно, а держать чужую переписку доступной панели незачем.
+    match /support_owner_style_examples/{docId} {
       allow read, write: if false;
     }
     // зачем эти правила ВЕРНУЛИ (аудит 2026-08-16, вторая итерация):

@@ -52,6 +52,13 @@ import {
   type SupportConversationTurn,
 } from './support_conversation_memory';
 import {
+  isUsableOwnerStyleExample,
+  renderOwnerStyleExamples,
+  selectOwnerStyleExamples,
+  stripQuotedTail,
+  type OwnerStyleExample,
+} from './support_owner_style';
+import {
   makeSupportOwnerInstructionsSnapshot,
   parseSupportOwnerInstructions,
   renderSupportOwnerInstructions,
@@ -788,12 +795,16 @@ async function generateGroundedDraftForDoc(
   const context = retrieveSupportRepositoryContext(issue);
   const conversationHistory = await renderHistoryForSupportDoc(db, doc);
   const repairPrompt = repair ? `\n\n${buildSupportAutomaticRepairPrompt(repair)}` : '';
+  // зачем образцы голоса владельца (2026-08-16): без них модель пишет
+  // корректно, но безлико. Живые ответы владельца по близкой теме дают ей
+  // тон, длину и манеру — то, чего не выведешь из исходного кода продукта.
+  const styleBlock = await renderOwnerStyleForIssue(db, issue);
   const result = await openAiChat({
     apiKey,
     model,
     messages: [
       { role: 'system', content: buildGroundedReplySystemPrompt(context) },
-      { role: 'user', content: `${renderSupportRepositoryContext(context)}\n\n${renderSupportOwnerInstructions(ownerInstructions)}\n\n${conversationHistory ? `${conversationHistory}\n\n` : ''}${buildReplyPrompt(doc)}${repairPrompt}` },
+      { role: 'user', content: `${renderSupportRepositoryContext(context)}\n\n${renderSupportOwnerInstructions(ownerInstructions)}\n\n${styleBlock ? `${styleBlock}\n\n` : ''}${conversationHistory ? `${conversationHistory}\n\n` : ''}${buildReplyPrompt(doc)}${repairPrompt}` },
     ],
     maxTokens: 800,
     temperature: 0.2,
@@ -1039,6 +1050,16 @@ interface SentReplyHeaders {
   readonly inReplyTo?: string;
   readonly references?: string[];
   readonly sourceUid: number;
+  /**
+   * Текст ответа владельца, очищенный от процитированной ветки.
+   *
+   * зачем (владелец, 2026-08-16: «он обязан учиться на имейлах, которые я
+   * отправлял лично»): раньше мы брали из письма только заголовки и текст
+   * выбрасывали. Именно этот текст — единственный источник живого голоса,
+   * которого Джарвису не хватало: на проде из 234 писем он не дал ни одного
+   * настоящего ответа, только заглушку «команда посмотрит вручную».
+   */
+  readonly bodyText?: string;
 }
 
 /**
@@ -1105,11 +1126,13 @@ async function fetchOwnerSentRepliesViaImap(
           const messageId = String(parsed.messageId || '');
           const inReplyTo = normalizeSupportMessageId(parsed.inReplyTo || headerGet('in-reply-to'));
           const references = normalizeSupportMessageIdList(parsed.references || headerGet('references'));
+          const bodyText = stripQuotedTail(parsed.text || '');
           out.push({
             messageId,
             ...(inReplyTo ? { inReplyTo } : {}),
             ...(references.length ? { references } : {}),
             sourceUid: Number(msg.uid),
+            ...(bodyText ? { bodyText } : {}),
           });
         } catch (e) {
           console.warn('support_inbox: sent-folder parse failed for uid', { uid: msg.uid, errorCode: supportAutoErrorCode(e) });
@@ -1133,6 +1156,8 @@ async function fetchOwnerSentRepliesViaImap(
 export async function runSupportOwnerReplyDetection(appPassword: string): Promise<{
   scanned: number;
   closed: number;
+  /** Сколько ответов владельца сохранено как образец голоса. */
+  learned: number;
 }> {
   const db = admin.firestore();
   const [configCollection, configDocId] = SUPPORT_CONFIG_DOC.split('/');
@@ -1145,6 +1170,7 @@ export async function runSupportOwnerReplyDetection(appPassword: string): Promis
   const fetched = await fetchOwnerSentRepliesViaImap(appPassword, checkpointUid, storedUidValidity);
 
   let closed = 0;
+  let learned = 0;
   for (const reply of fetched.replies) {
     const candidates = candidateOpenThreadDocIdsForOwnerReply(reply);
     for (const candidateId of candidates) {
@@ -1153,7 +1179,13 @@ export async function runSupportOwnerReplyDetection(appPassword: string): Promis
       // References того же письма указывают на более старых предков той же
       // цепочки, которые к этому моменту почти наверняка уже не 'new'.
       const didClose = await closeOpenThreadForOwnerReply(db, candidateId);
-      if (didClose) { closed += 1; break; }
+      if (didClose) { closed += 1; }
+      // зачем учиться ДО проверки didClose (владелец, 2026-08-16): ответ
+      // владельца ценен как образец голоса независимо от того, был ли тред
+      // ещё открыт. Он мог ответить на письмо, уже закрытое вручную или
+      // отвеченное раньше — манера в нём та же самая.
+      if (await rememberOwnerStyleExample(db, candidateId, reply.bodyText)) learned += 1;
+      if (didClose) break;
     }
   }
 
@@ -1163,7 +1195,101 @@ export async function runSupportOwnerReplyDetection(appPassword: string): Promis
     imapSentSyncedAt: new Date().toISOString(),
   }, { merge: true });
 
-  return { scanned: fetched.replies.length, closed };
+  return { scanned: fetched.replies.length, closed, learned };
+}
+
+/** Коллекция образцов голоса владельца. Пишет только сервер. */
+export const SUPPORT_OWNER_STYLE_COLLECTION = 'support_owner_style_examples';
+
+/**
+ * Кэш образцов на тёплый инстанс.
+ *
+ * зачем (правило проекта — Firebase-экономия): за один прогон крона Джарвис
+ * пишет ответы на пачку писем. Без кэша каждое письмо тянуло бы одну и ту же
+ * выборку образцов заново. Владелец отвечает вручную считанные разы в день,
+ * поэтому получасовой TTL не грозит устареванием.
+ */
+let ownerStyleCache: { readonly examples: readonly OwnerStyleExample[]; readonly atMs: number } | null = null;
+const OWNER_STYLE_CACHE_TTL_MS = 30 * 60 * 1_000;
+
+/** Сбрасывает кэш образцов — только для тестов. */
+export function __resetOwnerStyleCacheForTests(): void {
+  ownerStyleCache = null;
+}
+
+/**
+ * Собирает блок образцов голоса, близких по теме к письму.
+ *
+ * зачем ограничение и сортировка по свежести на стороне запроса: выборка
+ * идёт с limit, а не всей коллекцией — иначе через год это был бы полный
+ * скан на каждый прогон.
+ */
+async function renderOwnerStyleForIssue(
+  db: FirebaseFirestore.Firestore,
+  issue: string,
+): Promise<string> {
+  try {
+    if (!ownerStyleCache || Date.now() - ownerStyleCache.atMs > OWNER_STYLE_CACHE_TTL_MS) {
+      const snap = await db.collection(SUPPORT_OWNER_STYLE_COLLECTION)
+        .orderBy('savedAtMs', 'desc')
+        .limit(OWNER_STYLE_KEEP_LIMIT)
+        .get();
+      ownerStyleCache = {
+        atMs: Date.now(),
+        examples: snap.docs.map((d) => {
+          const data = d.data() as Record<string, unknown>;
+          return {
+            question: String(data.question ?? ''),
+            answer: String(data.answer ?? ''),
+            savedAtMs: Number(data.savedAtMs ?? 0),
+          };
+        }),
+      };
+    }
+    return renderOwnerStyleExamples(selectOwnerStyleExamples(ownerStyleCache.examples, issue));
+  } catch (error) {
+    // зачем глушить: отсутствие образцов ухудшает тон, но не должно
+    // мешать ответить вовсе.
+    console.warn('support_inbox: owner style read failed', { errorCode: supportAutoErrorCode(error) });
+    return '';
+  }
+}
+
+/** Сколько образцов держим. Больше не нужно: в промпт идут единицы. */
+const OWNER_STYLE_KEEP_LIMIT = 60;
+
+/**
+ * Сохраняет пару «письмо клиента → ответ владельца» как образец голоса.
+ *
+ * зачем ключ по messageDocId: тот же тред при повторной обработке перезапишет
+ * свой же образец, а не создаст дубль. Идемпотентно при повторных прогонах
+ * крона (а он гоняет с overlap по UID и вполне может увидеть письмо дважды).
+ */
+async function rememberOwnerStyleExample(
+  db: FirebaseFirestore.Firestore,
+  messageDocId: string,
+  ownerReply: string | undefined,
+): Promise<boolean> {
+  const answer = String(ownerReply ?? '').trim();
+  if (!answer) return false;
+  try {
+    const messageSnap = await db.collection(INBOX_COLLECTION).doc(messageDocId).get();
+    if (!messageSnap.exists) return false;
+    const message = messageSnap.data() as SupportInboxDoc;
+    const question = `${message.subject ?? ''}\n${message.bodyText ?? ''}`.trim();
+    if (!isUsableOwnerStyleExample({ question, answer })) return false;
+    await db.collection(SUPPORT_OWNER_STYLE_COLLECTION).doc(messageDocId).set({
+      question: question.slice(0, 2_000),
+      answer: answer.slice(0, 2_000),
+      savedAtMs: Date.now(),
+    }, { merge: true });
+    return true;
+  } catch (error) {
+    // зачем глушить: обучение — приятный побочный эффект обхода почты, а не
+    // его задача. Упасть здесь значило бы сорвать закрытие тредов.
+    console.warn('support_inbox: owner style capture failed', { errorCode: supportAutoErrorCode(error) });
+    return false;
+  }
 }
 
 /**

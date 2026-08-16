@@ -17,6 +17,7 @@ describe('clean onboarding study-target and order contract', () => {
     [
       "'welcome'",
       "'privacy'",
+      "'source'",
       "'promise'",
       "'notifications'",
       "'trialReminder'",
@@ -44,9 +45,10 @@ describe('clean onboarding study-target and order contract', () => {
   });
 
   it('defaults to English while the language block is hidden and keeps the toggleable screens', () => {
-    // Вопрос «откуда узнал» и анкета плана удалены (владелец, 2026-08-16):
-    // английский фиксируется на welcome, а блок языка ждёт вторых языков.
-    expect(source).not.toContain('DISCOVERY_OPTIONS');
+    // Анкета плана удалена; «откуда узнал» владелец вернул (2026-08-16).
+    // Английский фиксируется на welcome, блок языка ждёт вторых языков.
+    expect(source).toContain('DISCOVERY_OPTIONS');
+    expect(source).toContain('onboarding_source_select');
     expect(source).not.toContain('GOAL_OPTIONS');
     expect(source).not.toContain('MINUTE_OPTIONS');
     expect(source).toContain('ensureEnglishStudyTarget');

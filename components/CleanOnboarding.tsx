@@ -88,6 +88,13 @@ import {
 import { noAndroidOutline } from '../constants/androidGlow';
 const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 const ONBOARDING_ASSETS = {
+  sourceTiktok: require('../assets/images/flow_clean_202607/source_tiktok.webp'),
+  sourceStore: require('../assets/images/flow_clean_202607/source_store.webp'),
+  sourceSocial: require('../assets/images/flow_clean_202607/source_social.webp'),
+  sourceYoutube: require('../assets/images/flow_clean_202607/source_youtube.webp'),
+  sourceGoogle: require('../assets/images/flow_clean_202607/source_google.webp'),
+  sourceFriends: require('../assets/images/flow_clean_202607/source_friends.webp'),
+  sourceOther: require('../assets/images/flow_clean_202607/source_other.webp'),
   languageEn: require('../assets/images/language_flags/language_en.webp'),
   languageFr: require('../assets/images/language_flags/language_fr_dev.webp'),
   levelA0: require('../assets/images/flow_clean_202607/level_a0.webp'),
@@ -113,6 +120,7 @@ export type OnboardingProps = {
 export type CleanOnboardingStep =
   | 'welcome'
   | 'privacy'
+  | 'source'
   | 'language'
   | 'level'
   | 'promise'
@@ -122,7 +130,7 @@ export type CleanOnboardingStep =
   | 'improve'
   | 'name';
 
-export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_minimal_wow_flow_2026_08_16c';
+export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_minimal_wow_flow_2026_08_16d';
 const ONBOARDING_AUTH_UI_TIMEOUT_MS = 45_000;
 
 async function withOnboardingAuthUiDeadline<T>(task: Promise<T>): Promise<T> {
@@ -151,6 +159,7 @@ const SHOW_ONBOARDING_LANGUAGE_STEP = false;
 export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'welcome',
   'privacy',
+  'source',
   ...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : []),
   'promise',
   'notifications',
@@ -170,11 +179,13 @@ export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
 const FLOW_VERSION_KEY = 'onboarding_flow_version_v1';
 const STEP_KEY = 'onboarding_step';
 const DONE_KEY = 'onboarding_done';
+const DISCOVERY_SOURCE_KEY = 'onboarding_discovery_source';
 const PLAN_LEVEL_KEY = 'onboarding_plan_level';
 const PLAN_BILLING_KEY = 'onboarding_plan_billing';
 const LEGAL_ACCEPTED_KEY = 'onboarding_terms_privacy_accepted_v1';
 const ANALYTICS_HELP_KEY = 'onboarding_analytics_help_v1';
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
+type DiscoverySource = 'tiktok' | 'store' | 'social' | 'youtube' | 'google' | 'friends' | 'other';
 type LevelChoice = 'a0' | 'a1' | 'a2' | 'b1' | 'b2';
 type AgeAnswer = 'yes' | 'no' | null;
 
@@ -184,6 +195,16 @@ type Option<T extends string | number> = {
   icon: IoniconName;
   asset?: ImageSourcePropType;
 };
+
+const DISCOVERY_OPTIONS: Option<DiscoverySource>[] = [
+  { id: 'tiktok', title: 'TikTok', icon: 'musical-notes-outline', asset: ONBOARDING_ASSETS.sourceTiktok },
+  { id: 'store', title: 'App Store / Google Play', icon: 'storefront-outline', asset: ONBOARDING_ASSETS.sourceStore },
+  { id: 'social', title: 'Instagram / Facebook', icon: 'camera-outline', asset: ONBOARDING_ASSETS.sourceSocial },
+  { id: 'youtube', title: 'YouTube', icon: 'logo-youtube', asset: ONBOARDING_ASSETS.sourceYoutube },
+  { id: 'google', title: 'Google Search', icon: 'search-outline', asset: ONBOARDING_ASSETS.sourceGoogle },
+  { id: 'friends', title: 'Друзья', icon: 'people-outline', asset: ONBOARDING_ASSETS.sourceFriends },
+  { id: 'other', title: 'Другое', icon: 'ellipsis-horizontal-circle-outline', asset: ONBOARDING_ASSETS.sourceOther },
+];
 
 const LANGUAGE_OPTIONS: Array<Option<StudyTarget> & { code: string; native: string }> = [
   { id: 'en', code: 'EN', native: 'Английский', title: 'Английский', icon: 'chatbubbles-outline', asset: ONBOARDING_ASSETS.languageEn },
@@ -258,7 +279,7 @@ function trackOnboardingActivity(action: string, tags?: OnboardingAnalyticsTags)
       screen: 'onboarding',
       result: 'info',
       tags,
-      writeToFirestore: false,
+      writeToFirestore: action === 'onboarding_source_select',
     }))
     .catch(() => {});
 }
@@ -1255,6 +1276,7 @@ function CleanOnboarding({
   const [unknownAccountEmail, setUnknownAccountEmail] = useState<string | null>(null);
   const [googleAvailable, setGoogleAvailable] = useState(false);
   const [appleAvailable, setAppleAvailable] = useState(false);
+  const [source, setSource] = useState<DiscoverySource | null>(null);
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const [level, setLevel] = useState<LevelChoice | null>(null);
   const [notificationBusy, setNotificationBusy] = useState(false);
@@ -1399,7 +1421,7 @@ function CleanOnboarding({
       setRestored(true);
       return () => { active = false; };
     }
-    AsyncStorage.multiGet([FLOW_VERSION_KEY, STEP_KEY, ONBOARDING_REQUESTED_STUDY_TARGET_KEY, PLAN_LEVEL_KEY])
+    AsyncStorage.multiGet([FLOW_VERSION_KEY, STEP_KEY, ONBOARDING_REQUESTED_STUDY_TARGET_KEY, PLAN_LEVEL_KEY, DISCOVERY_SOURCE_KEY])
       .then((rows) => {
         if (!active) return;
         const map = new Map(rows);
@@ -1407,6 +1429,8 @@ function CleanOnboarding({
         if (savedTarget === 'en' || savedTarget === 'fr') setStudyTarget(savedTarget);
         const savedLevel = map.get(PLAN_LEVEL_KEY);
         if (LEVEL_OPTIONS.some((item) => item.id === savedLevel)) setLevel(savedLevel as LevelChoice);
+        const savedSource = map.get(DISCOVERY_SOURCE_KEY);
+        if (DISCOVERY_OPTIONS.some((item) => item.id === savedSource)) setSource(savedSource as DiscoverySource);
         const savedStep = normalizedStoredStep(map.get(STEP_KEY) ?? null);
         const savedVersion = map.get(FLOW_VERSION_KEY);
         if (savedVersion === CLEAN_ONBOARDING_FLOW_VERSION && savedStep) {
@@ -1515,7 +1539,7 @@ function CleanOnboarding({
       }
       if (result.result === 'created_new') {
         // Новый аккаунт уже привязан к провайдеру — просто продолжаем путь.
-        go('promise');
+        go('source');
         return;
       }
       await AsyncStorage.multiSet([
@@ -1559,6 +1583,17 @@ function CleanOnboarding({
       void prefetchAndRecordStudyTargetServerPack('fr', lang).catch(() => {});
     }
   }, [lang]);
+
+  const chooseSource = useCallback((next: DiscoverySource) => {
+    setSource(next);
+    void AsyncStorage.multiSet([
+      [DISCOVERY_SOURCE_KEY, next],
+      ['onboarding_source', next],
+    ]).catch(() => {});
+    trackOnboarding('onboarding_source_select', { source: next });
+    // Просим 'language': при выключенном блоке языка resolve уведёт на promise.
+    go('language');
+  }, [go]);
 
   const chooseLevel = useCallback((next: LevelChoice) => {
     setLevel(next);
@@ -1769,6 +1804,12 @@ function CleanOnboarding({
       await confirmAdultAgeAttestation().catch(() => null);
       if (analyticsAllowed) {
         await setAnalyticsConsent('granted').catch(() => null);
+        if (source) {
+          trackOnboarding('onboarding_source_select', {
+            source,
+            consented: true,
+          });
+        }
         trackOnboarding('onboarding_complete', {
           level: selectedLevel,
           target: studyTarget,
@@ -1806,6 +1847,7 @@ function CleanOnboarding({
     lang,
     onDone,
     selectedLevel,
+    source,
     studyTarget,
     welcomeSheetEnabled,
   ]);
@@ -1897,6 +1939,13 @@ function CleanOnboarding({
             </View>
           ) : (
             <View style={styles.welcomeButtons}>
+              {/* Согласие — на первом экране, вплотную к «Начать» (владелец). */}
+              <Text style={styles.welcomeLegalNote}>
+                Продолжая, ты принимаешь{' '}
+                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
+                {' '}и{' '}
+                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Политику конфиденциальности</Text>.
+              </Text>
               <PrimaryButton
                 label="Начать"
                 onPress={() => {
@@ -1926,12 +1975,6 @@ function CleanOnboarding({
       onBack={back}
       footer={(
         <>
-          <Text style={styles.welcomeLegalNote}>
-            Продолжая, ты принимаешь{' '}
-            <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
-            {' '}и{' '}
-            <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Политику конфиденциальности</Text>.
-          </Text>
           {appleAvailable ? (
             <AppleSignInButton
               label="Продолжить с Apple"
@@ -1950,12 +1993,32 @@ function CleanOnboarding({
             />
           ) : null}
           {authError ? <Text style={styles.errorText}>{authError}</Text> : null}
-          <SecondaryButton label="Позже" onPress={() => go('language')} testID="onboarding-privacy-later" />
+          <SecondaryButton label="Позже" onPress={() => go('source')} testID="onboarding-privacy-later" />
         </>
       )}
     >
       <Text style={styles.privacySubtitle}>Мы ничего не продаём и никому не передаём.</Text>
       <PrivacyVault />
+    </ScreenFrame>
+  );
+
+  const renderSource = () => (
+    <ScreenFrame
+      step="source"
+      title="Как ты узнал о нас?"
+      onBack={back}
+    >
+      <View style={styles.optionList}>
+        {DISCOVERY_OPTIONS.map((item) => (
+          <OptionCard
+            key={item.id}
+            option={item}
+            selected={source === item.id}
+            testID={`onboarding-source-${item.id}`}
+            onPress={() => chooseSource(item.id)}
+          />
+        ))}
+      </View>
     </ScreenFrame>
   );
 
@@ -2394,6 +2457,7 @@ function CleanOnboarding({
     switch (which) {
       case 'welcome': return renderWelcome();
       case 'privacy': return renderPrivacy();
+      case 'source': return renderSource();
       case 'language': return renderLanguage();
       case 'level': return renderLevel();
       case 'promise': return renderPromise();

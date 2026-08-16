@@ -1,6 +1,7 @@
 export type OnboardingStepId =
   | 'welcome'
   | 'privacy'
+  | 'source'
   | 'language'
   | 'level'
   | 'promise'
@@ -42,6 +43,7 @@ export const ONBOARDING_STEP_CATALOG: readonly {
 }[] = [
   { id: 'welcome', label: 'Приветствие', description: 'Первый экран знакомства и вход.' },
   { id: 'privacy', label: 'Приватность и вход', description: 'Экран-сейф: предложение входа, данные не передаются.' },
+  { id: 'source', label: 'Источник', description: 'Откуда пользователь узнал о приложении.' },
   { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка (выключен, пока язык один).' },
   { id: 'level', label: 'Уровень', description: 'Уровень выбранного языка (блок языка).' },
   { id: 'promise', label: 'Обещание результата', description: 'Анимированный прогресс + кнопка «Попробовать» (живая сцена).' },

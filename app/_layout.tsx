@@ -2985,6 +2985,19 @@ function AppContent() {
   }, [lang]);
 
   // После закрытия онбординга и монтирования Stack — переходим на нужный экран
+  // DEV-центр: «Пройти онбординг» — боевой оверлей с первого экрана. Ключи
+  // (done/step/version) уже сброшены в DevHubSheet до эмита; профиль и прогресс
+  // не трогаются — по завершении onDone отработает как обычно.
+  useEffect(() => {
+    const sub = onAppEvent('dev_onboarding_restart', () => {
+      onboardingDoneHandledRef.current = false;
+      setOnboardingPaywallActive(false);
+      setOnboardingStartAtName(false);
+      setShow(true);
+    });
+    return () => sub.remove();
+  }, []);
+
   useEffect(() => {
     const sub = onAppEvent('personal_plan_onboarding_nickname_ready', () => {
       onboardingDoneHandledRef.current = false;

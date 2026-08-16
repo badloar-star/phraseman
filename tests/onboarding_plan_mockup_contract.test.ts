@@ -13,7 +13,7 @@ describe('clean minimal wow onboarding contract', () => {
   it('uses CleanOnboarding as the only active onboarding implementation', () => {
     expect(wrapper).toContain("export { default } from './CleanOnboarding'");
     expect(source).toContain('CLEAN_ONBOARDING_FLOW_VERSION');
-    expect(source).toContain("'clean_minimal_wow_flow_2026_08_16c'");
+    expect(source).toContain("'clean_minimal_wow_flow_2026_08_16d'");
     expect(source).toContain('normalizedStoredStep');
     expect(source).toContain("if (value === 'start') return 'welcome'");
   });
@@ -22,6 +22,7 @@ describe('clean minimal wow onboarding contract', () => {
     const expectedOrder = [
       "'welcome'",
       "'privacy'",
+      "'source'",
       "'promise'",
       "'notifications'",
       "'trialReminder'",
@@ -30,9 +31,10 @@ describe('clean minimal wow onboarding contract', () => {
     ];
     expectedOrder.forEach((step) => expect(source).toContain(step));
 
-    // Вопросы анкеты плана удалены: источник, цель, минуты, выбор старта,
-    // сравнение планов и «обещание 3 месяцев» больше не существуют как шаги.
-    expect(source).not.toContain("'source'");
+    // Вопросы анкеты плана удалены: цель, минуты, выбор старта, сравнение
+    // планов и «обещание 3 месяцев» больше не существуют как шаги. «Источник»
+    // владелец вернул (2026-08-16): маркетинговая атрибуция обязана жить.
+    expect(source).toContain("testID={`onboarding-source-${item.id}`}");
     expect(source).not.toContain("'goal'");
     expect(source).not.toContain("'minutes'");
     expect(source).not.toContain("'plusBenefits'");

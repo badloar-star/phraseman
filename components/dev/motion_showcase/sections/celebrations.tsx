@@ -29,7 +29,10 @@ import { cs } from '../showcase_copy';
 const DEMO_F2P_GIFT: GiftDef = {
   id: 'xp_50',
   rarity: 'common',
-  icon: '✨',
+  // зачем: владелец запретил эмодзи в UI — витринные демо-данные тоже
+  // рендерятся в реальных компонентах, значок заменён на пустую строку
+  // (иконка тут декоративный fallback, не текст).
+  icon: '',
   weight: 7,
   titleRU: 'Опыт +50', titleUK: 'Досвід +50', titleES: 'XP +50',
   descRU: 'Небольшая прибавка к опыту.', descUK: 'Невеликий приріст досвіду.', descES: 'Un pequeño impulso de XP.',
@@ -38,7 +41,7 @@ const DEMO_F2P_GIFT: GiftDef = {
 const DEMO_PREM_GIFT: GiftDef = {
   id: 'xp_2x_48h',
   rarity: 'epic',
-  icon: '🚀',
+  icon: '',
   weight: 3,
   titleRU: 'XP ×2 на 48ч', titleUK: 'XP ×2 на 48г', titleES: 'XP ×2 por 48h',
   descRU: 'Двойной опыт двое суток.', descUK: 'Подвійний досвід дві доби.', descES: 'XP doble durante dos días.',
@@ -74,6 +77,24 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'celebrations-level-gift-hybrid',
+      title: cs('celebrations_level_gift_hybrid_title'),
+      detail: cs('celebrations_level_gift_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <LevelGiftModal
+          visible={visible}
+          level={7}
+          userName={cs('celebrations_demo_user_name')}
+          lang="ru"
+          deliveryMode="inventory"
+          preRolledGift={DEMO_F2P_GIFT}
+          motionVariant="hybrid"
+          onClose={() => onClose()}
+        />
+      ),
+    },
+    {
       id: 'celebrations-level-gift-dual',
       title: cs('celebrations_level_gift_dual_title'),
       detail: cs('celebrations_level_gift_dual_detail'),
@@ -86,6 +107,24 @@ export const SECTION: ShowcaseSection = {
           lang="ru"
           deliveryMode="inventory"
           preRolledPair={DEMO_PAIR}
+          onClose={() => onClose()}
+        />
+      ),
+    },
+    {
+      id: 'celebrations-level-gift-dual-hybrid',
+      title: cs('celebrations_level_gift_dual_hybrid_title'),
+      detail: cs('celebrations_level_gift_dual_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <LevelGiftDualModal
+          visible={visible}
+          level={12}
+          userName={cs('celebrations_demo_user_name')}
+          lang="ru"
+          deliveryMode="inventory"
+          preRolledPair={DEMO_PAIR}
+          motionVariant="hybrid"
           onClose={() => onClose()}
         />
       ),
@@ -111,6 +150,27 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'celebrations-boon-chest-hybrid',
+      title: cs('celebrations_boon_chest_hybrid_title'),
+      detail: cs('celebrations_boon_chest_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <BoonChestModal
+          visible={visible}
+          rarity="epic"
+          rewardIcon={getLevelGiftRewardIcon('shards_10', 'dark')}
+          title={cs('celebrations_boon_chest_modal_title')}
+          rewardLine={cs('celebrations_boon_chest_reward_line')}
+          tapHint={cs('celebrations_boon_chest_tap_hint')}
+          claimCta={cs('celebrations_boon_chest_claim_cta')}
+          closeLabel={cs('celebrations_boon_chest_close_label')}
+          onClaim={() => {}}
+          onClose={onClose}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'celebrations-boon-activated',
       title: cs('celebrations_boon_activated_title'),
       detail: cs('celebrations_boon_activated_detail'),
@@ -120,12 +180,30 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'celebrations-boon-activated-hybrid',
+      title: cs('celebrations_boon_activated_hybrid_title'),
+      detail: cs('celebrations_boon_activated_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <BoonActivatedModal visible={visible} boon="double_xp" onClose={onClose} motionVariant="hybrid" />
+      ),
+    },
+    {
       id: 'celebrations-weekly-boon-detail',
       title: cs('celebrations_weekly_boon_detail_title'),
       detail: cs('celebrations_weekly_boon_detail_detail'),
       kind: 'render',
       render: ({ visible, onClose }) => (
         <WeeklyBoonDetailModal visible={visible} boon="mystery_monday" claimed={false} onClose={onClose} />
+      ),
+    },
+    {
+      id: 'celebrations-weekly-boon-detail-hybrid',
+      title: cs('celebrations_weekly_boon_detail_hybrid_title'),
+      detail: cs('celebrations_weekly_boon_detail_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <WeeklyBoonDetailModal visible={visible} boon="mystery_monday" claimed={false} onClose={onClose} motionVariant="hybrid" />
       ),
     },
     {
@@ -144,6 +222,22 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'celebrations-season-gift-hybrid',
+      title: cs('celebrations_season_gift_hybrid_title'),
+      detail: cs('celebrations_season_gift_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <SeasonGiftModal
+          visible={visible}
+          reward={DEMO_SEASON_REWARD}
+          giftId={null}
+          userName={cs('celebrations_demo_user_name')}
+          onClose={onClose}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'celebrations-season-reward-info',
       title: cs('celebrations_season_reward_info_title'),
       detail: cs('celebrations_season_reward_info_detail'),
@@ -158,6 +252,25 @@ export const SECTION: ShowcaseSection = {
           onClose={onClose}
           onClaim={() => {}}
           onNeedPass={() => {}}
+        />
+      ),
+    },
+    {
+      id: 'celebrations-season-reward-info-hybrid',
+      title: cs('celebrations_season_reward_info_hybrid_title'),
+      detail: cs('celebrations_season_reward_info_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <SeasonRewardInfoModal
+          visible={visible}
+          reward={DEMO_SEASON_REWARD}
+          level={9}
+          side="pass"
+          status="claimable"
+          onClose={onClose}
+          onClaim={() => {}}
+          onNeedPass={() => {}}
+          motionVariant="hybrid"
         />
       ),
     },
@@ -181,6 +294,26 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'celebrations-collectible-drop-hybrid',
+      title: cs('celebrations_collectible_drop_hybrid_title'),
+      detail: cs('celebrations_collectible_drop_detail'),
+      kind: 'render',
+      render: ({ onClose }) => (
+        <CollectibleDropModal
+          outcome={{
+            cardId: 'animals_01',
+            setId: 'set01_animals',
+            rarity: 'common',
+            setCompleted: false,
+            secretCardId: null,
+            bonusShards: 0,
+          }}
+          onClose={onClose}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'celebrations-roulette-win-modal',
       title: cs('celebrations_roulette_win_modal_title'),
       detail: cs('celebrations_roulette_win_modal_detail'),
@@ -189,6 +322,19 @@ export const SECTION: ShowcaseSection = {
         <RouletteWinModal
           data={visible ? { prizeIndex: 0, prizeDays: 3, vipUntil: Date.now() + 3 * 86400000 } : null}
           onClose={onClose}
+        />
+      ),
+    },
+    {
+      id: 'celebrations-roulette-win-modal-hybrid',
+      title: cs('celebrations_roulette_win_modal_hybrid_title'),
+      detail: cs('celebrations_roulette_win_modal_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <RouletteWinModal
+          data={visible ? { prizeIndex: 0, prizeDays: 3, vipUntil: Date.now() + 3 * 86400000 } : null}
+          onClose={onClose}
+          motionVariant="hybrid"
         />
       ),
     },

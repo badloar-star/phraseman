@@ -20,6 +20,10 @@ import { useModalBackdropFade } from '../hooks/useModalBackdropFade';
 import { getBoonCopy, getMysteryChestClaimedDetail } from '../app/boons/boon_copy';
 import type { BoonId } from '../app/boons/boon_types';
 import { weeklyBoonIconSource } from '../constants/boonIconAssets';
+import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import DuoPressable from './DuoPressable';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { LUM } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 interface WeeklyBoonDetailModalProps {
@@ -29,12 +33,20 @@ interface WeeklyBoonDetailModalProps {
   /** «Сундук недели» уже забран — показываем текст «уже открыт», а не «открой и забери». */
   claimed?: boolean;
   onClose: () => void;
+  /**
+   * зачем: гибрид «Световод» (макет .motion-mockups/phraseman-hybrid.html,
+   * семья «Алерты и формы») — информационная модалка без удара-кульминации:
+   * вход из света + каскад строк. Боевой дефолт — 'classic'.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose }: WeeklyBoonDetailModalProps) {
+function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose, motionVariant = 'classic' }: WeeklyBoonDetailModalProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const isClassic = motionVariant === 'classic';
   const backdropOpacity = useModalBackdropFade(visible);
+  const reduceMotion = useReduceMotion();
 
   // Появление карточки (пружина) + парение/«дыхание» иконки бонуса.
   const entrance = useRef(new Animated.Value(0)).current;
@@ -42,7 +54,7 @@ function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose }: Week
   const floatLoop = useRef<Animated.CompositeAnimation | null>(null);
 
   useEffect(() => {
-    if (!visible) {
+    if (!visible || !isClassic) {
       floatLoop.current?.stop();
       return;
     }
@@ -58,7 +70,7 @@ function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose }: Week
     );
     floatLoop.current.start();
     return () => { floatLoop.current?.stop(); };
-  }, [visible, entrance, iconFloat]);
+  }, [visible, isClassic, entrance, iconFloat]);
 
   const handleClose = () => {
     hapticTap();
@@ -84,6 +96,64 @@ function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose }: Week
     tr: 'Anladım',
     pl: 'Jasne',
   });
+
+  if (motionVariant === 'hybrid') {
+    return (
+      <HybridAlertShell visible={visible} onRequestClose={handleClose} shadowColor={t.accent} testID="weekly-boon-detail-hybrid-backdrop">
+        <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border, borderWidth: 0 }]}>
+          <CascadeItem delay={LUM.ladder[1]} reduceMotion={reduceMotion}>
+            <View style={styles.iconRow}>
+              <View style={styles.iconFrame}>
+                <View pointerEvents="none" style={styles.iconGlow}>
+                  <LinearGradient
+                    colors={[`${t.accent}66`, `${t.accent}00`]}
+                    start={{ x: 0.5, y: 0.5 }}
+                    end={{ x: 1, y: 1 }}
+                    style={StyleSheet.absoluteFill}
+                  />
+                </View>
+                <Image source={iconSource} resizeMode="contain" style={styles.iconImage} />
+              </View>
+            </View>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
+            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{copy.title}</Text>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
+            <ScrollView
+              style={styles.bodyScroll}
+              contentContainerStyle={{ paddingBottom: 4 }}
+              showsVerticalScrollIndicator={false}
+              bounces={false}
+            >
+              {paragraphs.map((paragraph, i) => (
+                <Text
+                  key={i}
+                  style={[styles.paragraph, { color: t.textSecond, fontSize: f.body, marginTop: i === 0 ? 0 : 12 }]}
+                >
+                  {paragraph}
+                </Text>
+              ))}
+            </ScrollView>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[4]} reduceMotion={reduceMotion}>
+            <DuoPressable
+              testID="weekly-boon-detail-hybrid-close"
+              onPress={handleClose}
+              edgeColor={t.bgSurface2}
+              edgeHeight={4}
+              style={[styles.closeBtn, { backgroundColor: t.accent, marginTop: 0 }]}
+            >
+              <Text style={[styles.closeBtnText, { color: t.correctText, fontSize: f.body }]}>{closeLabel}</Text>
+            </DuoPressable>
+          </CascadeItem>
+        </View>
+      </HybridAlertShell>
+    );
+  }
 
   const cardScale = entrance.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
   const cardY = entrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });

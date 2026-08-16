@@ -29,6 +29,11 @@ import { pearlIconForTheme } from '../app/coin_icons';
 import { SEASON_AURA_STAGE_NAMES, seasonAuraStageIndex, type SeasonReward } from '../app/season_pass_track_config';
 import { seasonPassStarsToUnlockLevel } from '../app/season_pass_model';
 import { SEASON_MODAL_COPY, renderSeasonRewardArt, type Tri } from './SeasonGiftModal';
+import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import DuoPressable from './DuoPressable';
+import PressableHybrid from './PressableHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { LUM } from '../constants/motionHybrid';
 
 export type SeasonRewardCardStatus = 'claimable' | 'claimed' | 'locked' | 'upcoming';
 
@@ -57,11 +62,18 @@ interface Props {
   onClaim: (reward: SeasonReward, level: number, side: 'free' | 'pass') => void;
   /** Вызывается когда status === 'locked' и юзер нажал «Нужен пропуск». */
   onNeedPass: () => void;
+  /**
+   * зачем: гибрид «Световод» (макет .motion-mockups/phraseman-hybrid.html,
+   * семья «Алерты и формы») — просмотровая модалка без удара-кульминации:
+   * вход из света + каскад строк. Боевой дефолт — 'classic'.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-export default function SeasonRewardInfoModal({ visible, reward, level, side, status, onClose, onClaim, onNeedPass }: Props) {
+export default function SeasonRewardInfoModal({ visible, reward, level, side, status, onClose, onClaim, onNeedPass, motionVariant = 'classic' }: Props) {
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
+  const reduceMotion = useReduceMotion();
   const pearlIcon = pearlIconForTheme(themeMode);
 
   const art = useMemo(
@@ -80,6 +92,119 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
     onClose();
   };
   const onDismiss = () => { hapticTap(); onClose(); };
+
+  const titleText = reward.kind === 'aura_stage'
+    ? `${SEASON_AURA_STAGE_NAMES[lang][seasonAuraStageIndex(reward.amount)]} ${['I', 'II', 'III', 'IV'][seasonAuraStageIndex(reward.amount)]}`
+    : triLang(lang, copy.title);
+  const descText = triLang(lang, status === 'claimed' ? copy.desc : (PREVIEW_DESC[reward.kind] ?? copy.desc));
+
+  if (motionVariant === 'hybrid') {
+    return (
+      <HybridAlertShell visible={visible} onRequestClose={onDismiss} shadowColor={t.gold} testID="season-reward-info-hybrid-backdrop">
+        <View style={{ width: '100%', borderRadius: 26, backgroundColor: t.bgCard, padding: 24, alignItems: 'center', gap: 14 }}>
+          <CascadeItem delay={LUM.ladder[1]} reduceMotion={reduceMotion}>
+            <View style={{ minHeight: 116, alignItems: 'center', justifyContent: 'center' }}>{art}</View>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
+            <Text style={{ color: t.textPrimary, fontSize: 19, fontWeight: '700', textAlign: 'center' }}>{titleText}</Text>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
+            <Text style={{ color: t.textSecond, fontSize: 14, fontWeight: '400', textAlign: 'center', lineHeight: 20 }}>{descText}</Text>
+          </CascadeItem>
+
+          {status === 'claimed' && (
+            <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                <Ionicons name="checkmark-circle" size={16} color={t.gold} />
+                <Text style={{ color: t.gold, fontSize: 13, fontWeight: '700' }}>
+                  {triLang(lang, {
+                    ru: 'Уже забрано', uk: 'Вже забрано', es: 'Ya reclamado', 'pt-BR': 'Já resgatado',
+                    vi: 'Đã nhận', id: 'Sudah diambil', tr: 'Zaten alındı', pl: 'Już odebrane',
+                  })}
+                </Text>
+              </View>
+            </CascadeItem>
+          )}
+
+          {status === 'upcoming' && (
+            <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                <Ionicons name="star" size={14} color={t.textMuted} />
+                {/* guard-ok: самостоятельный статус-индикатор доступности («сколько
+                    ещё нужно накопить»), не подпись-расшифровка под заголовком —
+                    тот же паттерн, что и «Уже забрано» строкой выше; классика
+                    несёт идентичный guard-ok на этой же фразе. */}
+                <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '700' }}>
+                  {triLang(lang, {
+                    ru: `Нужно накопить ${starsToUnlock} звёзд`, uk: `Потрібно назбирати ${starsToUnlock} зірок`, es: `Necesitas ${starsToUnlock} estrellas`,
+                    'pt-BR': `Precisa juntar ${starsToUnlock} estrelas`, vi: `Cần tích ${starsToUnlock} sao`, id: `Perlu kumpulkan ${starsToUnlock} bintang`,
+                    tr: `${starsToUnlock} yıldız toplaman gerekiyor`, pl: `Potrzebujesz ${starsToUnlock} gwiazd`,
+                  })}
+                </Text>
+              </View>
+            </CascadeItem>
+          )}
+
+          <CascadeItem delay={LUM.ladder[4]} reduceMotion={reduceMotion}>
+            {status === 'claimable' ? (
+              <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>
+                <PressableHybrid
+                  testID="season-reward-info-later"
+                  onPress={onDismiss}
+                  variant="secondary"
+                  style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}
+                >
+                  <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700' }}>
+                    {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
+                  </Text>
+                </PressableHybrid>
+                <DuoPressable
+                  testID="season-reward-info-claim"
+                  onPress={onPrimaryAction}
+                  edgeColor={t.bgSurface2}
+                  edgeHeight={4}
+                  style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}
+                >
+                  <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '700' }}>
+                    {triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' })}
+                  </Text>
+                </DuoPressable>
+              </View>
+            ) : status === 'locked' ? (
+              <DuoPressable
+                testID="season-reward-info-need-pass"
+                onPress={onPrimaryAction}
+                edgeColor={t.bgSurface2}
+                edgeHeight={4}
+                style={{ width: '100%', borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}
+              >
+                <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '700' }}>
+                  {triLang(lang, {
+                    ru: 'Нужен пропуск', uk: 'Потрібна перепустка', es: 'Necesitas el pase', 'pt-BR': 'Precisa do passe',
+                    vi: 'Cần vé mùa', id: 'Butuh pass', tr: 'Bilet gerekli', pl: 'Potrzebna przepustka',
+                  })}
+                </Text>
+              </DuoPressable>
+            ) : (
+              <DuoPressable
+                testID="season-reward-info-close"
+                onPress={onDismiss}
+                edgeColor={t.bgSurface2}
+                edgeHeight={4}
+                style={{ width: '100%', borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}
+              >
+                <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700' }}>
+                  {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
+                </Text>
+              </DuoPressable>
+            )}
+          </CascadeItem>
+        </View>
+      </HybridAlertShell>
+    );
+  }
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onDismiss}>
@@ -132,11 +257,14 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                   давно считается в звёздах (seasonPassStarsToUnlockLevel), эта
                   подсказка была последним местом, где ещё жил абстрактный
                   уровень вместо реальной цены. */}
+              {/* зачем: владелец запретил эмодзи в UI (в т.ч. внутри переведённых
+                  строк) — звезда была декоративным суффиксом ⭐, убрана во всех
+                  8 языках, смысл фразы («нужно накопить N звёзд») не изменился. */}
               <Text /* guard-ok: самостоятельный статус-индикатор доступности («сколько ещё нужно»), не подпись-расшифровка под заголовком модалки — тот же паттерн, что и блок «Уже забрано» чуть выше */ style={{ color: t.textMuted, fontSize: 13, fontWeight: '700' }}>
                 {triLang(lang, {
-                  ru: `Нужно накопить ${starsToUnlock} ⭐`, uk: `Потрібно назбирати ${starsToUnlock} ⭐`, es: `Necesitas ${starsToUnlock} ⭐`,
-                  'pt-BR': `Precisa juntar ${starsToUnlock} ⭐`, vi: `Cần tích ${starsToUnlock} ⭐`, id: `Perlu kumpulkan ${starsToUnlock} ⭐`,
-                  tr: `${starsToUnlock} ⭐ toplaman gerekiyor`, pl: `Potrzebujesz ${starsToUnlock} ⭐`,
+                  ru: `Нужно накопить ${starsToUnlock} звёзд`, uk: `Потрібно назбирати ${starsToUnlock} зірок`, es: `Necesitas ${starsToUnlock} estrellas`,
+                  'pt-BR': `Precisa juntar ${starsToUnlock} estrelas`, vi: `Cần tích ${starsToUnlock} sao`, id: `Perlu kumpulkan ${starsToUnlock} bintang`,
+                  tr: `${starsToUnlock} yıldız toplaman gerekiyor`, pl: `Potrzebujesz ${starsToUnlock} gwiazd`,
                 })}
               </Text>
             </View>

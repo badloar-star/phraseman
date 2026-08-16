@@ -34,6 +34,9 @@ import { subscribeToFriends, type FriendEntry } from '../app/firestore_friend_re
 import { FlowText } from './text-integrity/FlowText';
 import { leaguePublicName } from '../app/league_public_name';
 import SeasonAuraRing from './SeasonAuraRing';
+import HybridAlertShell from './modal_fx/HybridAlertShell';
+import RewardImpactRings from './celebration/RewardImpactRings';
+import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
 
 const STATUS_KINDS: ReadonlySet<SeasonReward['kind']> = new Set([
   'frame', 'aura_stage', 'aura_secret', 'nick_color', 'custom_avatar', 'card_pack', 'season_finale', 'plus_days',
@@ -257,16 +260,31 @@ interface Props {
   /** Ник юзера для превью финала (экран передаёт из своего стейта). */
   userName?: string | null;
   onClose: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена M3 «Сундук-награда») — герой (жемчужина/иконка награды) получает удар
+   * ТОЛЬКО в фазе done (награда реально получена). Все 7 фаз (offer/choice/
+   * friendPick/applying/done/noGap/serverError) и их контент — БЕЗ ИЗМЕНЕНИЙ,
+   * меняется только оболочка/вход. Боевой дефолт — 'classic'.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-export default function SeasonGiftModal({ visible, reward, giftId, userName, onClose }: Props) {
+export default function SeasonGiftModal({ visible, reward, giftId, userName, onClose, motionVariant = 'classic' }: Props) {
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
+  const isHybrid = motionVariant === 'hybrid';
   const [phase, setPhase] = useState<Phase>('offer');
   const [avatarLabel, setAvatarLabel] = useState<string | null>(null);
   const [friends, setFriends] = useState<FriendEntry[]>([]);
   const [sentToName, setSentToName] = useState<string | null>(null);
   const pearlIcon = pearlIconForTheme(themeMode);
+  const impact = useRewardImpactHybrid({
+    visible: isHybrid && visible && phase === 'done',
+    rarity: 'rare',
+    impactSoundId: 'pm.reward.chest_open',
+    scope: 'season-gift-hybrid',
+  });
 
   // Сброс фазы на каждое новое открытие; статусные применяются СРАЗУ при
   // открытии (постоянная награда — «Позже» для неё бессмысленно).
@@ -354,12 +372,23 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
   if (!reward) return null;
   const copy = SEASON_MODAL_COPY[reward.kind];
 
-  return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={onLater}>
-      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 }}>
-        <View style={{ width: '100%', maxWidth: 370, borderRadius: 26, backgroundColor: t.bgCard, padding: 24, alignItems: 'center', gap: 14 }}>
+  // зачем: тело карточки (все 7 фаз, весь контент) ОДНО и то же в classic и
+  // hybrid — расходится только оболочка (Modal+fade vs HybridAlertShell) и
+  // герой-арт (в hybrid художник получает удар RewardImpactRings в фазе done).
+  // Так гибрид не может незаметно разойтись с classic по информации.
+  const panelBody = (
+    <View style={{ width: '100%', maxWidth: 370, borderRadius: 26, backgroundColor: t.bgCard, padding: 24, alignItems: 'center', gap: 14 }}>
 
           <View style={{ minHeight: 116, alignItems: 'center', justifyContent: 'center' }}>
+            {isHybrid && (
+              <RewardImpactRings
+                show={impact.showRings}
+                dustCount={impact.dustCount}
+                color={t.gold}
+                ring0Style={impact.styles.ring0}
+                ring1Style={impact.styles.ring1}
+              />
+            )}
             {phase === 'applying' ? <ActivityIndicator size="large" color={t.gold} /> : art}
           </View>
 
@@ -562,7 +591,21 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
             </View>
           )}
 
-        </View>
+    </View>
+  );
+
+  if (isHybrid) {
+    return (
+      <HybridAlertShell visible={visible} onRequestClose={onLater} shadowColor={t.gold} testID="season-gift-hybrid-backdrop" backdropColor="rgba(0,0,0,0.62)">
+        {panelBody}
+      </HybridAlertShell>
+    );
+  }
+
+  return (
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={onLater}>
+      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 }}>
+        {panelBody}
       </View>
     </Modal>
   );

@@ -30,6 +30,8 @@ import { useEnergy } from './EnergyContext';
 import { useTheme, type Fonts } from './ThemeContext';
 import type { Theme, ThemeMode } from '../constants/theme';
 import { GiftOpenBurst, animTierF2p, animTierPrem, type GiftAnimTier } from './GiftOpenEffects';
+import RewardImpactRings from './celebration/RewardImpactRings';
+import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
 import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
@@ -224,12 +226,20 @@ interface Props {
   /** open = show both chests; apply = apply an already revealed inventory pair. */
   presentationMode?: 'open' | 'apply';
   studyTarget?:      RuntimeStudyTarget;
+  /**
+   * зачем: владелец (2026-08-16) — GiftOpenBurst статичен по прошлой просьбе
+   * (без частиц/движения). В hybrid каждый из двух мини-сундуков получает
+   * СВОЙ единственный удар героя-награды (RewardImpactRings) в момент, когда
+   * его открыли — chest/opening-хореография (Animated ниже) НЕ трогается.
+   * Боевой дефолт — 'classic'.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 /** pair: сундуки + мини-раскрытие (только названия); full: описания + «Получить всё» */
 type Phase = 'pair' | 'full';
 
-function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair, deliveryMode = 'claim', presentationMode = 'open', studyTarget }: Props) {
+function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair, deliveryMode = 'claim', presentationMode = 'open', studyTarget, motionVariant = 'classic' }: Props) {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const { energy, maxEnergy, reload: reloadEnergy } = useEnergy();
@@ -874,6 +884,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                         gift={f2pGift}
                         themeMode={themeMode}
                         burstTier={animTierF2p(f2pGift.rarity)}
+                        motionVariant={motionVariant}
+                        impactScope="level-gift-dual-hybrid-f2p"
                       />
                     ) : (
                       <TouchableOpacity
@@ -913,6 +925,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                         gift={premGift}
                         themeMode={themeMode}
                         burstTier={animTierPrem()}
+                        motionVariant={motionVariant}
+                        impactScope="level-gift-dual-hybrid-prem"
                       />
                     ) : (
                       <TouchableOpacity
@@ -1123,12 +1137,22 @@ export default memo(LevelGiftDualModal);
  * влёт. Название/бейдж рисует слот — так сцена обоих сундуков занимает
  * одинаковую высоту (симметрия слотов).
  */
-function MiniRewardPeekStage({ gift, themeMode, burstTier }: {
+function MiniRewardPeekStage({ gift, themeMode, burstTier, motionVariant = 'classic', impactScope }: {
   gift:        GiftDef;
   themeMode:   ThemeMode;
   burstTier:   GiftAnimTier;
+  /** зачем: единственный удар героя (RewardImpactRings) — только в hybrid, chest-анимация ниже не трогается. */
+  motionVariant?: 'classic' | 'hybrid';
+  impactScope?: string;
 }) {
   const entry = useRef(new Animated.Value(0)).current;
+  const isHybrid = motionVariant === 'hybrid';
+  const impact = useRewardImpactHybrid({
+    visible: isHybrid,
+    rarity: gift.rarity,
+    impactSoundId: 'pm.reward.chest_open',
+    scope: impactScope ?? 'level-gift-dual-hybrid',
+  });
 
   useEffect(() => {
     entry.setValue(0);
@@ -1148,6 +1172,15 @@ function MiniRewardPeekStage({ gift, themeMode, burstTier }: {
   return (
     <Animated.View style={{ width: MINI_REWARD_STAGE_SIZE, height: MINI_REWARD_STAGE_SIZE, alignItems: 'center', justifyContent: 'center', opacity: entry, transform: [{ translateY: entryY }, { scale: entryScale }] }}>
       <GiftOpenBurst key={`${gift.id}-${burstTier}`} tier={burstTier} size={MINI_REWARD_STAGE_SIZE} />
+      {isHybrid && (
+        <RewardImpactRings
+          show={impact.showRings}
+          dustCount={impact.dustCount}
+          color={paletteForRarity(gift.rarity).accent}
+          ring0Style={impact.styles.ring0}
+          ring1Style={impact.styles.ring1}
+        />
+      )}
       <Image
         source={getLevelGiftRewardIcon(gift.id, themeMode)}
         style={{

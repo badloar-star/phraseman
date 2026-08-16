@@ -57,6 +57,8 @@ import {
   type AccountGenerationToken,
 } from '../app/account_generation';
 import { isCurrentLevelGiftOpening } from '../app/level_gift_opening_guard';
+import RewardImpactRings from './celebration/RewardImpactRings';
+import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 export {
@@ -96,6 +98,14 @@ interface Props {
   /** Explicitly validated device-owned Spin occurrence; absent means server-authoritative. */
   deviceLocalSpin?: true;
   studyTarget?: RuntimeStudyTarget;
+  /**
+   * зачем: владелец (2026-08-16) — GiftOpenBurst сейчас статичное свечение без
+   * движения (по прошлой просьбе убрать конфетти/лучи). В hybrid добавляем
+   * ЕДИНСТВЕННЫЙ удар героя-награды (RewardImpactRings — кольца+пыль по
+   * редкости) поверх реального момента reveal, БЕЗ изменения chest/opening
+   * логики, claim-потока и бизнес-состояния. Боевой дефолт — 'classic'.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 type Phase = 'box' | 'opening' | 'reveal';
@@ -184,11 +194,13 @@ function LevelGiftModal({
   occurrenceId,
   deviceLocalSpin,
   studyTarget,
+  motionVariant = 'classic',
 }: Props) {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const { energy, maxEnergy, reload: reloadEnergy } = useEnergy();
   const storesOnly = deliveryMode === 'inventory';
+  const isHybrid = motionVariant === 'hybrid';
 
   const [phase, setPhase] = useState<Phase>('box');
   const [gift, setGift]   = useState<GiftDef | null>(null);
@@ -196,6 +208,17 @@ function LevelGiftModal({
   const [energyBoostAlreadyActive, setEnergyBoostAlreadyActive] = useState(false);
   const [choiceBusy, setChoiceBusy] = useState(false);
   const [appliedResult, setAppliedResult] = useState<ApplyGiftResult | null>(null);
+
+  // зачем: добавка ЕДИНСТВЕННОГО удара героя-награды в hybrid (закон владельца
+  // «удар только у героя кульминации») — вызывается безусловно (Rules of
+  // Hooks), сам эффект гейтится visible/gift/phase внутри опции visible ниже.
+  // Chest/opening-хореография (Animated ниже) НЕ трогается вовсе.
+  const impact = useRewardImpactHybrid({
+    visible: isHybrid && visible && phase === 'reveal' && !!gift,
+    rarity: gift?.rarity ?? 'common',
+    impactSoundId: 'pm.reward.chest_open',
+    scope: 'level-gift-hybrid',
+  });
 
   const floatAnim  = useRef(new Animated.Value(0)).current;
   const rockAnim   = useRef(new Animated.Value(0)).current;
@@ -790,6 +813,15 @@ function LevelGiftModal({
               {/* Награда: объёмные эффекты по редкости + парящая иконка-«орб» */}
               <View style={{ width: LEVEL_GIFT_STAGE_SIZE, height: LEVEL_GIFT_STAGE_SIZE, alignItems: 'center', justifyContent: 'center', marginBottom: 4 }}>
                 {gift && <GiftOpenBurst key={`${gift.id}-${rarity}-single`} tier={animTierF2p(rarity)} size={LEVEL_GIFT_STAGE_SIZE} />}
+                {isHybrid && gift && (
+                  <RewardImpactRings
+                    show={impact.showRings}
+                    dustCount={impact.dustCount}
+                    color={rarityAccent}
+                    ring0Style={impact.styles.ring0}
+                    ring1Style={impact.styles.ring1}
+                  />
+                )}
                 {gift && (
                   <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbEnterScale }, { scale: orbPulseScale }], zIndex: 2 }}>
                     <Image
@@ -892,7 +924,8 @@ function LevelGiftModal({
                   {energyBoostAlreadyActive ? (
                     <>
                       <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
-                        🔄 {triLang(lang, { ru: 'Буст заменён', uk: 'Буст замінено', es: 'Bono reemplazado', 'pt-BR': 'Bônus substituído', vi: 'Đã thay boost', id: 'Boost diganti', tr: 'Güçlendirme değiştirildi', pl: 'Bonus zastąpiony' })}
+                        {/* зачем: владелец запретил эмодзи в UI — префикс 🔄 убран, текст не менялся. */}
+                        {triLang(lang, { ru: 'Буст заменён', uk: 'Буст замінено', es: 'Bono reemplazado', 'pt-BR': 'Bônus substituído', vi: 'Đã thay boost', id: 'Boost diganti', tr: 'Güçlendirme değiştirildi', pl: 'Bonus zastąpiony' })}
                       </Text>
                       <Text style={{ color: monoIcon(themeMode, '#92400E', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                         {triLang(lang, {
@@ -910,7 +943,8 @@ function LevelGiftModal({
                   ) : (
                     <>
                       <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
-                        ⚡ {triLang(lang, { ru: 'Действует до полуночи', uk: 'Діє до опівночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Vale até meia-noite', vi: 'Có hiệu lực đến nửa đêm', id: 'Berlaku sampai tengah malam', tr: 'Gece yarısına kadar geçerli', pl: 'Działa do północy' })}
+                        {/* зачем: владелец запретил эмодзи в UI — префикс ⚡ убран, текст не менялся. */}
+                        {triLang(lang, { ru: 'Действует до полуночи', uk: 'Діє до опівночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Vale até meia-noite', vi: 'Có hiệu lực đến nửa đêm', id: 'Berlaku sampai tengah malam', tr: 'Gece yarısına kadar geçerli', pl: 'Działa do północy' })}
                       </Text>
                       <Text style={{ color: monoIcon(themeMode, '#92400E', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                         {triLang(lang, {
@@ -943,7 +977,8 @@ function LevelGiftModal({
                   alignItems: 'center',
                 }}>
                   <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
-                    🔄 {triLang(lang, { ru: 'Буст обновлён', uk: 'Буст оновлено', es: 'Bono actualizado', 'pt-BR': 'Bônus atualizado', vi: 'Boost đã cập nhật', id: 'Boost diperbarui', tr: 'Güçlendirme güncellendi', pl: 'Bonus zaktualizowany' })}
+                    {/* зачем: владелец запретил эмодзи в UI — префикс 🔄 убран, текст не менялся. */}
+                    {triLang(lang, { ru: 'Буст обновлён', uk: 'Буст оновлено', es: 'Bono actualizado', 'pt-BR': 'Bônus atualizado', vi: 'Boost đã cập nhật', id: 'Boost diperbarui', tr: 'Güçlendirme güncellendi', pl: 'Bonus zaktualizowany' })}
                   </Text>
                   <Text style={{ color: monoIcon(themeMode, '#92400E', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                     {triLang(lang, {

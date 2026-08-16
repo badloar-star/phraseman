@@ -25,6 +25,11 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { ROULETTE_PRIZES, roulettePearlsLabel, roulettePrizeLabel } from '../app/roulette_prizes';
+import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import DuoPressable from './DuoPressable';
+import RewardImpactRings from './celebration/RewardImpactRings';
+import { useRewardImpactHybrid, type RewardImpactRarity } from './celebration/use_reward_impact_hybrid';
+import { LUM } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 export interface RouletteWinData {
@@ -40,6 +45,24 @@ export interface RouletteWinData {
 interface Props {
   data: RouletteWinData | null;
   onClose: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена M3 «Сундук-награда») — редкость приза (по весу в ROULETTE_PRIZES)
+   * должна визуально отличаться: common тихая база, rare/epic/legendary — сильнее
+   * bloom + единственный удар у приза. Боевой дефолт — 'classic'.
+   */
+  motionVariant?: 'classic' | 'hybrid';
+}
+
+/**
+ * Редкость приза рулетки по индексу — зеркалит вес ROULETTE_PRIZES (0/1 частые
+ * призы = common, 2 = rare, 3 = epic, 4/5 редчайшие = legendary).
+ */
+function rouletteRarity(prizeIndex: number): RewardImpactRarity {
+  if (prizeIndex <= 1) return 'common';
+  if (prizeIndex === 2) return 'rare';
+  if (prizeIndex === 3) return 'epic';
+  return 'legendary';
 }
 
 const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
@@ -55,17 +78,26 @@ const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
 
 // Локализованное имя приза («1 месяц», не «30 дн.») — канон в roulette_prizes.ts.
 
-export default function RouletteWinModal({ data, onClose }: Props) {
+export default function RouletteWinModal({ data, onClose, motionVariant = 'classic' }: Props) {
   const { theme: t, f, ds } = useTheme();
   const { lang } = useLang();
+  const isHybrid = motionVariant === 'hybrid';
   const reduceMotion = useReducedMotion();
   const scale = useSharedValue(0.85);
   const opacity = useSharedValue(0);
   const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
     triLang(lang as Lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
+  const rarity = rouletteRarity(data?.prizeIndex ?? 0);
+  const impact = useRewardImpactHybrid({
+    visible: isHybrid && !!data,
+    rarity,
+    impactSoundId: 'pm.reward.chest_open',
+    scope: 'roulette-win-hybrid',
+  });
+
   useEffect(() => {
-    if (!data) return;
+    if (!data || isHybrid) return;
     if (reduceMotion) {
       scale.value = 1;
       opacity.value = 1;
@@ -76,7 +108,7 @@ export default function RouletteWinModal({ data, onClose }: Props) {
     scale.value = withSpring(1, { damping: 13, stiffness: 160 });
     opacity.value = withTiming(1, { duration: 220 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, reduceMotion]);
+  }, [data, isHybrid, reduceMotion]);
 
   const cardAnim = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
@@ -93,6 +125,87 @@ export default function RouletteWinModal({ data, onClose }: Props) {
   const heroLine = isPearls
     ? `+${roulettePearlsLabel(data.prizePearls ?? 0, lang as Lang)}`
     : `+${roulettePrizeLabel(data.prizeDays, lang as Lang)} Plus`;
+  const winTitleText = L('Поздравляем!', 'Вітаємо!', '¡Felicidades!', 'Parabéns!', 'Chúc mừng!', 'Selamat!', 'Tebrikler!', 'Gratulacje!');
+  const winSubPearlsText = L('Жемчужины уже на балансе', 'Перлини вже на балансі', 'Las perlas ya están en tu saldo', 'As pérolas já estão no seu saldo', 'Ngọc trai đã vào số dư của bạn', 'Mutiara sudah masuk saldomu', 'İnciler bakiyene eklendi', 'Perły są już na twoim saldzie');
+  const winSubPlusPrefix = L('Твой Plus теперь до', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do');
+  const doneLabel = L('Готово', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe');
+
+  if (isHybrid) {
+    return (
+      <HybridAlertShell visible onRequestClose={onClose} shadowColor="#000000" testID="roulette-win-hybrid-backdrop">
+        <View style={[styles.card, { backgroundColor: t.bgCard, shadowColor: '#000000' }]}>
+          <View style={styles.prizeImageWrap}>
+            <RewardImpactRings
+              show={impact.showRings}
+              dustCount={impact.dustCount}
+              color={t.accent}
+              ring0Style={impact.styles.ring0}
+              ring1Style={impact.styles.ring1}
+            />
+            <Image
+              source={prize.image}
+              style={styles.prizeImage}
+              contentFit="cover"
+              cachePolicy="memory-disk"
+              accessible={false}
+            />
+          </View>
+
+          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
+            <Text
+              maxFontSizeMultiplier={1.2}
+              style={[styles.winTitle, { color: t.textPrimary, fontSize: f.h2 ?? 22, fontFamily: ds.fontFamily }]}
+            >
+              {winTitleText}
+            </Text>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
+            <Text
+              maxFontSizeMultiplier={1.2}
+              style={[styles.winDays, { color: t.accent, fontSize: (f.numLg ?? 28) + 2, fontFamily: ds.fontFamily }]}
+            >
+              {heroLine}
+            </Text>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
+            <Text
+              maxFontSizeMultiplier={1.2}
+              style={[styles.winSub, { color: t.textMuted, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily }]}
+            >
+              {isPearls ? winSubPearlsText : (
+                <>
+                  {winSubPlusPrefix}
+                  {' '}
+                  <Text maxFontSizeMultiplier={1.2} style={{ color: t.textPrimary, fontWeight: '700' }}>{vipDate}</Text>
+                  {' · '}
+                  <Text maxFontSizeMultiplier={1.2} style={{ color: t.accent, fontWeight: '700' }}>{daysShort}</Text>
+                </>
+              )}
+            </Text>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[4]} reduceMotion={reduceMotion}>
+            <DuoPressable
+              testID="roulette-win-claim-hybrid"
+              onPress={onClose}
+              edgeColor={t.bgSurface2}
+              edgeHeight={4}
+              style={[styles.claimBtn, { backgroundColor: t.accent, height: ds.buttonHeight, marginTop: 20 }]}
+            >
+              <Text
+                maxFontSizeMultiplier={1.2}
+                style={[styles.claimBtnText, { color: t.correctText, fontSize: f.bodyLg ?? 16, fontFamily: ds.fontFamily }]}
+              >
+                {doneLabel}
+              </Text>
+            </DuoPressable>
+          </CascadeItem>
+        </View>
+      </HybridAlertShell>
+    );
+  }
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={onClose} statusBarTranslucent navigationBarTranslucent>

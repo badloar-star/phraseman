@@ -21,6 +21,8 @@ import { GiftBox3D, paletteForRarity } from './level_gift_box';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
 import { RewardModalLiquidGlass } from './RewardModalBackdrop';
 import { soundDirector } from '../modules/audio/sound_director';
+import BoonChestHybrid from './celebration/BoonChestHybrid';
+import type { RewardImpactRarity } from './celebration/use_reward_impact_hybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const STAGE_SIZE = 150;
@@ -52,6 +54,17 @@ export interface BoonChestModalProps {
   onClaim: () => void;
   /** Отпустить слот арбитра (закрыть). */
   onClose: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена M3 «Сундук-награда») живёт РЯДОМ со старой версией под флагом.
+   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
+}
+
+/** Редкость сундука шире словаря удара (нет legendary) — сводим common/rare/epic 1:1. */
+function toImpactRarity(rarity: BoonChestRarity): RewardImpactRarity {
+  return rarity;
 }
 
 export default function BoonChestModal({
@@ -65,9 +78,11 @@ export default function BoonChestModal({
   closeLabel,
   onClaim,
   onClose,
+  motionVariant = 'classic',
 }: BoonChestModalProps) {
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
+  const isClassic = motionVariant === 'classic';
   const [phase, setPhase] = useState<Phase>('box');
 
   const modalEntrance = useRef(new Animated.Value(0)).current;
@@ -86,8 +101,10 @@ export default function BoonChestModal({
   const orbHoverLoop = useRef<Animated.CompositeAnimation | null>(null);
 
   // Появление карточки + парение сундука, когда слот выдан.
+  // зачем: в hybrid-варианте всю анимацию ведёт BoonChestHybrid — классический
+  // Animated-цикл гасим сразу, чтобы не тратить кадры на невидимый рендер.
   useEffect(() => {
-    if (!visible) {
+    if (!visible || !isClassic) {
       idleLoop.current?.stop();
       orbHoverLoop.current?.stop();
       return;
@@ -125,7 +142,7 @@ export default function BoonChestModal({
       idleLoop.current?.stop();
       orbHoverLoop.current?.stop();
     };
-  }, [visible, modalEntrance, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, fadeReveal, orbRise, orbPulse]);
+  }, [visible, isClassic, modalEntrance, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, fadeReveal, orbRise, orbPulse]);
 
   const handleTap = () => {
     if (phase !== 'box') return;
@@ -208,6 +225,23 @@ export default function BoonChestModal({
   });
 
   if (!visible) return null;
+
+  if (motionVariant === 'hybrid') {
+    return (
+      <BoonChestHybrid
+        visible={visible}
+        rarity={toImpactRarity(rarity)}
+        rewardIcon={rewardIcon}
+        title={title}
+        rewardLine={rewardLine}
+        tapHint={tapHint}
+        claimCta={claimCta}
+        closeLabel={closeLabel}
+        onClaim={onClaim}
+        onClose={onClose}
+      />
+    );
+  }
 
   const palette = paletteForRarity(rarity);
   const accent = palette.accent;

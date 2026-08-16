@@ -21,7 +21,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { CHK, LUM } from '../constants/motionHybrid';
+import { CHK, LUM, SUITE } from '../constants/motionHybrid';
 import { isLowEndDevice } from '../hooks/device_perf_tier';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { fk } from '../app/feedback/feedback_kit';
@@ -65,7 +65,7 @@ function RewardRow({ icon, label, value, color, surface, delayMs, reduceMotion, 
     return {
       opacity: withDelay(delayMs, withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) })),
       transform: [
-        { translateY: withDelay(delayMs, withSpring(0, { mass: 0.7, damping: 14, stiffness: 160 })) },
+        { translateY: withDelay(delayMs, withSpring(0, SUITE.text)) },
       ],
     };
   }, [delayMs, reduceMotion]);
@@ -245,11 +245,11 @@ export default function LevelUpThresholdModalHybrid({
 
       // ── каскад Чекана [62,146,262,410] для текста и наград, шаг наград 84 ──
       textOpacity.value = withDelay(80, withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) }));
-      textY.value = withDelay(80, withSpring(0, { mass: 0.7, damping: 14, stiffness: 160 }));
+      textY.value = withDelay(80, withSpring(0, SUITE.text));
       rowsOpacity.value = withDelay(CHK.ladder[3], withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) }));
-      rowsY.value = withDelay(CHK.ladder[3], withSpring(0, { mass: 0.7, damping: 14, stiffness: 160 }));
+      rowsY.value = withDelay(CHK.ladder[3], withSpring(0, SUITE.text));
       ctaOpacity.value = withDelay(CHK.ladder[4] + 90, withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) }));
-      ctaY.value = withDelay(CHK.ladder[4] + 90, withSpring(0, { mass: 0.7, damping: 14, stiffness: 160 }));
+      ctaY.value = withDelay(CHK.ladder[4] + 90, withSpring(0, SUITE.text));
       if (milestone) {
         milestoneFlareOpacity.value = withDelay(60, withTiming(1, { duration: 420, easing: Easing.out(Easing.cubic) }));
         milestoneFlareScale.value = withDelay(60, withSpring(1, LUM.settle));

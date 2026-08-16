@@ -1,7 +1,7 @@
 {
   "schemaVersion": "gustav-storage-key-inventory-v1",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "generatedAt": "2026-08-16T08:39:51.658Z",
+  "generatedAt": "2026-08-16T09:18:05.630Z",
   "status": "HOLD",
   "inventoryKind": "automated_heuristic",
   "command": {
@@ -37501,7 +37501,7 @@
     {
       "key": "onboarding_flow_version_v1",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 169,
+      "line": 170,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37516,7 +37516,7 @@
     {
       "key": "onboarding_step",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 170,
+      "line": 171,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37531,7 +37531,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 171,
+      "line": 172,
       "operation": "constant",
       "cloudSyncKey": true,
       "scope": "global",
@@ -37545,21 +37545,6 @@
     },
     {
       "key": "onboarding_plan_level",
-      "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 172,
-      "operation": "constant",
-      "cloudSyncKey": false,
-      "scope": "global",
-      "learningState": false,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "medium",
-      "notes": [
-        "Product/global state by heuristic; verify if task content depends on study target."
-      ]
-    },
-    {
-      "key": "onboarding_plan_billing",
       "sourcePath": "components/CleanOnboarding.tsx",
       "line": 173,
       "operation": "constant",
@@ -37574,7 +37559,7 @@
       ]
     },
     {
-      "key": "onboarding_terms_privacy_accepted_v1",
+      "key": "onboarding_plan_billing",
       "sourcePath": "components/CleanOnboarding.tsx",
       "line": 174,
       "operation": "constant",
@@ -37589,7 +37574,7 @@
       ]
     },
     {
-      "key": "onboarding_analytics_help_v1",
+      "key": "onboarding_terms_privacy_accepted_v1",
       "sourcePath": "components/CleanOnboarding.tsx",
       "line": 175,
       "operation": "constant",
@@ -37604,9 +37589,24 @@
       ]
     },
     {
+      "key": "onboarding_analytics_help_v1",
+      "sourcePath": "components/CleanOnboarding.tsx",
+      "line": 176,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "global",
+      "learningState": false,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "medium",
+      "notes": [
+        "Product/global state by heuristic; verify if task content depends on study target."
+      ]
+    },
+    {
       "key": "onboarding_flow_version_v1",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1213,
+      "line": 1313,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37621,7 +37621,7 @@
     {
       "key": "onboarding_step",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1213,
+      "line": 1313,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37636,7 +37636,7 @@
     {
       "key": "onboarding_flow_version_v1",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1302,
+      "line": 1402,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37651,7 +37651,7 @@
     {
       "key": "onboarding_plan_level",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1302,
+      "line": 1402,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37666,7 +37666,7 @@
     {
       "key": "onboarding_step",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1302,
+      "line": 1402,
       "operation": "multiGet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37681,7 +37681,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1370,
+      "line": 1470,
       "operation": "multiSet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -37696,7 +37696,7 @@
     {
       "key": "onboarding_flow_version_v1",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1370,
+      "line": 1470,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37711,7 +37711,7 @@
     {
       "key": "onboarding_step",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1374,
+      "line": 1474,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37726,7 +37726,7 @@
     {
       "key": "onboarding_done",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1421,
+      "line": 1521,
       "operation": "multiSet",
       "cloudSyncKey": true,
       "scope": "global",
@@ -37741,7 +37741,7 @@
     {
       "key": "onboarding_flow_version_v1",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1421,
+      "line": 1521,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37756,7 +37756,7 @@
     {
       "key": "onboarding_step",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1425,
+      "line": 1525,
       "operation": "remove",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37771,7 +37771,7 @@
     {
       "key": "study_target_v1",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1436,
+      "line": 1536,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37786,7 +37786,7 @@
     {
       "key": "study_target_v1",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1449,
+      "line": 1549,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37801,7 +37801,7 @@
     {
       "key": "onboarding_plan_level",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1465,
+      "line": 1565,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37816,7 +37816,7 @@
     {
       "key": "onboarding_plan_billing",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1510,
+      "line": 1610,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37831,7 +37831,7 @@
     {
       "key": "onboarding_plan_billing",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1518,
+      "line": 1618,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37846,7 +37846,7 @@
     {
       "key": "user_profile",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1655,
+      "line": 1755,
       "operation": "multiSet",
       "cloudSyncKey": false,
       "scope": "global",
@@ -37861,7 +37861,7 @@
     {
       "key": "onboarding_step",
       "sourcePath": "components/CleanOnboarding.tsx",
-      "line": 1697,
+      "line": 1797,
       "operation": "multiRemove",
       "cloudSyncKey": false,
       "scope": "global",

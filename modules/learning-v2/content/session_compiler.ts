@@ -1,8 +1,11 @@
-// зачем: владелец утвердил формат юнита 12×12 заданий в зонах understand/use/master
-// с угасанием подсказок. Компилятор ДЕТЕРМИНИРОВАННЫЙ (версионная таблица, без random):
-// один и тот же банк контента всегда даёт байт-в-байт одинаковые сессии — иначе нельзя
-// ни кэшировать по hash, ни воспроизводить баги. Ошибки — только броском, ничего молча.
+// зачем: урок — это 56 сессий по 12 заданий (владелец, 2026-08-16) в зонах
+// understand/use/master с угасанием подсказок. Раньше здесь стояло 12×12, и
+// генератор обрезал урок вчетверо; число сессий теперь берётся из топологии.
+// Компилятор ДЕТЕРМИНИРОВАННЫЙ (версионная таблица, без random): один и тот же
+// банк контента всегда даёт байт-в-байт одинаковые сессии — иначе нельзя ни
+// кэшировать по hash, ни воспроизводить баги. Ошибки — только броском.
 import { V2_ACTIVITY_FAMILIES, type V2ActivityFamily } from '../contracts/activity';
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from './course_topology_v1';
 import type { LearningSupportLevel } from '../contracts/episode';
 import type {
   V2RequiredSessionDefinitionV2,
@@ -50,9 +53,28 @@ interface SessionPolicyEntry {
   readonly families: readonly V2ActivityFamily[];
 }
 
-// зачем: версионная таблица из утверждённого плана — менять только новой версией,
-// иначе перегенерация юнитов молча изменит уже выданные ученикам сессии.
-export const REQUIRED_SESSION_POLICY_V1: readonly SessionPolicyEntry[] = Object.freeze([
+// зачем: таблица задаёт ЧИСЛО СЕССИЙ в уроке (индекс = requiredSessionOrdinal-1).
+// До 2026-08-16 в ней было 12 записей, и генератор молча обрезал урок на 12-й
+// сессии, хотя топология курса (course_topology_v1.ts) объявляет 56: семь глав
+// по восемь. Владелец потребовал привести валидатор к 56 — контент не должен
+// подгоняться под заниженный шлюз. Первые 12 записей НЕ ТРОГАТЬ: по ним уже
+// собран контент эпизода 1, изменение молча переписало бы выданные сессии.
+//
+// Дальше идёт та же кривая поддержки, повторённая по главам: внутри каждой главы
+// из восьми сессий ученик проходит путь от опоры на образец до работы без неё.
+const CHAPTER_SUPPORT_CURVE_V1: readonly SessionPolicyEntry[] = Object.freeze([
+  { zone: 'understand', support: 'model', families: ['listen_choose', 'speed_match', 'phrase_builder'] },
+  { zone: 'understand', support: 'full_text', families: ['listen_choose', 'sound_contrast', 'phrase_builder'] },
+  { zone: 'understand', support: 'partial_cue', families: ['speed_match', 'phrase_builder', 'context_gap_grammar'] },
+  { zone: 'use', support: 'partial_cue', families: ['phrase_builder', 'context_gap_grammar', 'listen_build_dictation'] },
+  { zone: 'use', support: 'partial_cue', families: ['listen_build_dictation', 'phrase_builder', 'scripted_repeat_compare'] },
+  { zone: 'use', support: 'visual_only', families: ['context_gap_grammar', 'listen_choose', 'speed_match'] },
+  { zone: 'master', support: 'visual_only', families: ['speed_match', 'listen_build_dictation', 'context_gap_grammar'] },
+  // Восьмая сессия главы — граница чекпоинта: поддержки нет совсем.
+  { zone: 'master', support: 'none', families: ['scripted_repeat_compare', 'phrase_builder', 'listen_build_dictation'] },
+] as const);
+
+const LEGACY_FIRST_TWELVE_V1: readonly SessionPolicyEntry[] = Object.freeze([
   { zone: 'understand', support: 'model', families: ['listen_choose', 'speed_match', 'phrase_builder'] },
   { zone: 'understand', support: 'full_text', families: ['listen_choose', 'sound_contrast', 'phrase_builder'] },
   { zone: 'understand', support: 'full_text', families: ['speed_match', 'phrase_builder', 'context_gap_grammar'] },
@@ -66,6 +88,18 @@ export const REQUIRED_SESSION_POLICY_V1: readonly SessionPolicyEntry[] = Object.
   { zone: 'master', support: 'none', families: ['scripted_repeat_compare', 'context_gap_grammar', 'speed_match'] },
   { zone: 'master', support: 'none', families: ['phrase_builder', 'listen_choose', 'listen_build_dictation'] },
 ] as const);
+
+export const REQUIRED_SESSION_POLICY_V1: readonly SessionPolicyEntry[] =
+  Object.freeze([
+    ...LEGACY_FIRST_TWELVE_V1,
+    ...Array.from(
+      { length: LEARNING_V2_LESSON_SESSION_COUNT_V1 - LEGACY_FIRST_TWELVE_V1.length },
+      (_unused, index) =>
+        CHAPTER_SUPPORT_CURVE_V1[
+          (LEGACY_FIRST_TWELVE_V1.length + index) % CHAPTER_SUPPORT_CURVE_V1.length
+        ],
+    ),
+  ]);
 
 // зачем: profile может поддерживать исторические или экспериментальные режимы,
 // но обязательная V2-сессия не имеет права молча подставить их как fallback.

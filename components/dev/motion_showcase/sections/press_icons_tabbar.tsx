@@ -16,6 +16,8 @@ import EnergyIcon from '../../../EnergyIcon';
 import PressableHybrid, { type PressableHybridVariant } from '../../../PressableHybrid';
 import TabBarHybridPreview from '../../../tabbar/TabBarHybridPreview';
 import LiveStreakFlame from '../../../icons/LiveStreakFlame';
+import { getDevTabBarMotionVariant, setDevTabBarMotionVariant } from '../../../../hooks/dev_motion_variant';
+import { emitAppEvent, actionToastTri } from '../../../../app/events';
 import DuoPressable from '../../../DuoPressable';
 import CircularProgress from '../../../CircularProgress';
 import GradientProgressBar from '../../../GradientProgressBar';
@@ -451,6 +453,22 @@ export const SECTION: ShowcaseSection = {
       render: ({ visible, onClose }) => <IconsLivePreviewMemo visible={visible} onClose={onClose} />,
     },
     // ── Живая панель: таббар «жидкое золото» (гибрид) ──
+    {
+      // зачем: владелец требует гибрид В РЕАЛЬНОМ таббаре — этот пункт переключает
+      // характер движения настоящего таббара внизу (капсула «жидкое золото»,
+      // bloom активной иконки). Default 'classic', в стор-сборке недоступно.
+      id: 'tabbar-hybrid-real-toggle',
+      title: cs('tabbar_real_toggle_title'),
+      detail: cs('tabbar_real_toggle_detail'),
+      kind: 'event',
+      fire: () => {
+        const next = getDevTabBarMotionVariant() === 'hybrid' ? 'classic' : 'hybrid';
+        setDevTabBarMotionVariant(next);
+        emitAppEvent('action_toast', actionToastTri('info', next === 'hybrid'
+          ? { ru: 'Таббар: гибрид включён', uk: 'Таббар: гібрид увімкнено', es: 'Barra: híbrido activado', 'pt-BR': 'Barra: híbrido ativado', vi: 'Thanh tab: bật hybrid', id: 'Bilah tab: hybrid aktif', tr: 'Sekme çubuğu: hibrit açık', pl: 'Pasek: hybryda włączona' }
+          : { ru: 'Таббар: обычный вид', uk: 'Таббар: звичайний вигляд', es: 'Barra: vista clásica', 'pt-BR': 'Barra: visual clássico', vi: 'Thanh tab: kiểu thường', id: 'Bilah tab: tampilan biasa', tr: 'Sekme çubuğu: klasik', pl: 'Pasek: zwykły widok' }));
+      },
+    },
     {
       id: 'tabbar-hybrid-live-preview',
       title: cs('tabbar_hybrid_preview_title'),

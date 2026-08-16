@@ -16,6 +16,10 @@ import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { HOME_ENTRANCE } from '../../constants/motion';
+// зачем: гибрид таббара («жидкое золото») живёт в реальном таббаре под dev-флагом —
+// владелец требует видеть его на месте, а не в превью; default 'classic'.
+import { useDevTabBarMotionVariant } from '../../hooks/dev_motion_variant';
+import { TABBAR_HYBRID } from '../../constants/motionHybrid';
 import { OLIVE_RICH } from '../../constants/oliveTheme';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -448,6 +452,8 @@ function TabScaffold({
   const topFadeScroll = useTopFadeScroll();
   /** Sage использует собственную акцентную капсулу вместо чужого чёрного scrim.
    * Тёмные состояния иконок держат контраст и в полном, и в компактном таббаре. */
+  const tabMotionVariant = useDevTabBarMotionVariant();
+  const isTabHybrid = tabMotionVariant === 'hybrid';
   const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';
   const isOliveTheme = themeMode === 'olive';
   const tabPillBackground = isSagePorcelainTabChrome ? t.accent : isOliveTheme ? OLIVE_RICH.panel : TAB_UNDERLAY_DIM_BG;
@@ -462,6 +468,9 @@ function TabScaffold({
   const [tabPillWidth, setTabPillWidth] = useState(0);
   const tabHighlightAnim = useRef(new Animated.Value(activeIdx)).current;
   const tabPressAnim = useRef(new Animated.Value(0)).current;
+  // зачем (гибрид): bloom под активной иконкой — зажигается при смене вкладки
+  // (закон Световода: сначала источник света, потом форма) и оседает.
+  const tabBloomAnim = useRef(new Animated.Value(0)).current;
   const tabScrollProgress = useRef(new Animated.Value(0)).current;
   const tabScrollCollapsedRef = useRef(false);
   const tabScrollLastYRef = useRef(0);
@@ -480,11 +489,25 @@ function TabScaffold({
     }
     Animated.spring(tabHighlightAnim, {
       toValue: activeBarTabIdx,
-      speed: 18,
-      bounciness: 4,
+      // зачем: в гибриде капсула течёт как жидкий металл — тяжёлая пружина без
+      // дрожи (числа из словаря гибрида); classic оставлен 1:1.
+      ...(isTabHybrid
+        ? { stiffness: TABBAR_HYBRID.capsule.stiffness, damping: TABBAR_HYBRID.capsule.damping, mass: TABBAR_HYBRID.capsule.mass }
+        : { speed: 18, bounciness: 4 }),
       useNativeDriver: true,
     }).start();
-  }, [activeBarTabIdx, tabHighlightAnim]);
+  }, [activeBarTabIdx, tabHighlightAnim, isTabHybrid]);
+
+  useEffect(() => {
+    if (!isTabHybrid || activeBarTabIdx < 0) { tabBloomAnim.setValue(0); return; }
+    tabBloomAnim.setValue(0);
+    const anim = Animated.sequence([
+      Animated.timing(tabBloomAnim, { toValue: 1, duration: TABBAR_HYBRID.bloomMs, useNativeDriver: true }),
+      Animated.timing(tabBloomAnim, { toValue: 0.55, duration: TABBAR_HYBRID.rimMs, useNativeDriver: true }),
+    ]);
+    anim.start();
+    return () => anim.stop();
+  }, [activeBarTabIdx, isTabHybrid, tabBloomAnim]);
 
   const endTabPress = useCallback(() => {
     if (!ENABLE_TAB_PRESS_LIFT) {
@@ -511,11 +534,12 @@ function TabScaffold({
     tabPressAnim.stopAnimation();
     Animated.spring(tabPressAnim, {
       toValue: 1,
-      speed: 34,
-      bounciness: 6,
+      ...(isTabHybrid
+        ? { stiffness: TABBAR_HYBRID.press.stiffness, damping: TABBAR_HYBRID.press.damping, mass: TABBAR_HYBRID.press.mass }
+        : { speed: 34, bounciness: 6 }),
       useNativeDriver: true,
     }).start();
-  }, [tabPressAnim]);
+  }, [tabPressAnim, isTabHybrid]);
 
   const tabPillPressScale = tabPressAnim.interpolate({
     inputRange: [0, 1],
@@ -718,6 +742,19 @@ function TabScaffold({
                   >
                     {!ENABLE_TAB_HIGHLIGHT_TRAVEL && visuallyFocused ? (
                       <View style={[s.tabActivePill, { backgroundColor: tabActiveBg }]} />
+                    ) : null}
+                    {isTabHybrid && visuallyFocused && !tab.center ? (
+                      <Animated.View
+                        pointerEvents="none"
+                        style={[
+                          s.tabBloom,
+                          {
+                            backgroundColor: tabIconActive,
+                            opacity: tabBloomAnim.interpolate({ inputRange: [0, 1], outputRange: [0, 0.32] }),
+                            transform: [{ scale: tabBloomAnim.interpolate({ inputRange: [0, 1], outputRange: [0.6, TABBAR_HYBRID.bloomScale] }) }],
+                          },
+                        ]}
+                      />
                     ) : null}
                     <Animated.View style={{ transform: [{ scale: iconScale }] }}>
                       <Ionicons name={tab.center || visuallyFocused ? tab.active : tab.icon} size={tab.center ? 29 : 26} color={color} />
@@ -1137,6 +1174,12 @@ const s = StyleSheet.create({
     alignSelf: 'stretch',
     position: 'relative',
     zIndex: 10,
+  },
+  tabBloom: {
+    position: 'absolute',
+    width: 26,
+    height: 26,
+    borderRadius: 13,
   },
   tabActivePill: {
     position: 'absolute',

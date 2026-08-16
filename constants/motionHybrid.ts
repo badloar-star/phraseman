@@ -65,3 +65,16 @@ export const TOAST = {
   errorShakePx: [6, -5, 3, -2, 0] as const,
   errorShakeStepMs: 60,
 } as const;
+
+/** Таббар «жидкое золото»: капсула течёт тяжёлой пружиной без дрожи, пресс глубже. */
+export const TABBAR_HYBRID = {
+  /** Капсула активной вкладки (legacy Animated.spring принимает stiffness/damping/mass). */
+  capsule: { stiffness: 190, damping: 22, mass: 1.1 },
+  /** Вдавливание иконки при нажатии. */
+  press: { stiffness: 260, damping: 18, mass: 0.7 },
+  /** Bloom активной иконки: масштаб свечения и длительность зажигания. */
+  bloomScale: 1.9,
+  bloomMs: LUM.bloomMs,
+  /** Перелив по кромке капсулы после переключения. */
+  rimMs: LUM.rimMs,
+} as const;

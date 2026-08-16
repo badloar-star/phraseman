@@ -504,6 +504,8 @@ const RU = {
   billing_issue_toast_host_note:
     'BillingIssueToastHost сам решает показывать ли тост: живой запрос Purchases.getCustomerInfo() + кулдаун 3 дня в AsyncStorage — без реальной подписки в грейс-периоде показать нечего, используй пункт «Тост: предупреждение» для превью визуала',
   admin_msg_title: 'Личное сообщение (демо)',
+  tabbar_real_toggle_title: 'Таббар · гибрид в реальном таббаре (вкл/выкл)',
+  tabbar_real_toggle_detail: 'переключает настоящий таббар внизу: капсула «жидкое золото», bloom иконки',
   admin_msg_body: 'Это витрина движения — реальный компонент PersonalAdminMessageModal с демо-текстом.',
 
   // ── press_icons_tabbar / TabBarHybridPreview ──

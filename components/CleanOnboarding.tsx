@@ -63,6 +63,7 @@ import {
   type OnboardingStepId,
 } from '../app/onboarding_flow';
 import { markOnboardingWelcomePending } from '../app/onboarding_welcome_state';
+import { animateNextLayoutTransition } from '../app/smooth_layout';
 import { recordOnboardingFunnelCompletion, recordOnboardingFunnelStart } from '../app/onboarding_funnel';
 import {
   ONBOARDING_REQUESTED_STUDY_TARGET_KEY,
@@ -911,6 +912,67 @@ function PrivacyVault() {
   );
 }
 
+// Тапабельный факт на экране прогресса (владелец, 2026-08-16): по тапу под
+// заголовком раскрывается серое пояснение. Вставка в поток — строго через
+// animateNextLayoutTransition (Performance Bible → Layout Stability), шеврон
+// доворачивается на native driver. Появление карточки — каскад, как у
+// TrialTimelineRow.
+function PromiseFact({
+  icon,
+  title,
+  detail,
+  index = 0,
+}: {
+  icon: IoniconName;
+  title: string;
+  detail: string;
+  index?: number;
+}) {
+  const [open, setOpen] = useState(false);
+  const enter = useRef(new Animated.Value(0)).current;
+  const chevron = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const a = Animated.sequence([
+      Animated.delay(500 + index * 180),
+      Animated.timing(enter, { toValue: 1, duration: 280, useNativeDriver: true }),
+    ]);
+    a.start();
+    return () => a.stop();
+  }, [enter, index]);
+  useEffect(() => {
+    const a = Animated.timing(chevron, { toValue: open ? 1 : 0, duration: 200, useNativeDriver: true });
+    a.start();
+    return () => a.stop();
+  }, [chevron, open]);
+  const translateY = enter.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
+  const rotate = chevron.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '180deg'] });
+  return (
+    <Animated.View style={{ opacity: enter, transform: [{ translateY }] }}>
+      <Pressable
+        onPressIn={() => { void hapticTap(); }}
+        onPress={() => {
+          animateNextLayoutTransition();
+          setOpen((value) => !value);
+        }}
+        style={({ pressed }) => [styles.promiseFact, pressed && styles.pressed]}
+        accessibilityRole="button"
+        accessibilityState={{ expanded: open }}
+      >
+        <View style={styles.promiseFactHead}>
+          <View style={styles.promiseFactIcon}>
+            <Ionicons name={icon} size={19} color="#B9C8FF" />
+          </View>
+          <Text style={styles.promiseFactTitle}>{title}</Text>
+          <Animated.View style={{ transform: [{ rotate }] }}>
+            <Ionicons name="chevron-down" size={19} color="#8C97B8" />
+          </Animated.View>
+        </View>
+        {open ? <Text style={styles.promiseFactDetail}>{detail}</Text> : null}
+      </Pressable>
+    </Animated.View>
+  );
+}
+
 // Экран прогресса (владелец: «анимированный, осмысленный»): две траектории —
 // «повторяешь с Phraseman» (растёт) и «просто учишь и забываешь» (сползает).
 // SVG-пути статичны (native driver с Path не дружит), «рисование» делает
@@ -918,19 +980,53 @@ function PrivacyVault() {
 // проявляется слева направо без единого кадра на JS-потоке. Смысл держат
 // вехи времени под осью: неделя → месяц → 3 месяца.
 function PromiseChart() {
+  const isFocused = useIsScreenFocused();
   const [revealWidth, setRevealWidth] = useState(0);
   const reveal = useRef(new Animated.Value(0)).current;
+  const badgeUp = useRef(new Animated.Value(0)).current;
+  const badgeDown = useRef(new Animated.Value(0)).current;
+  const pulse = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     const a = Animated.sequence([
       Animated.delay(240),
       Animated.timing(reveal, { toValue: 1, duration: 1100, useNativeDriver: true }),
     ]);
     a.start();
-    return () => a.stop();
-  }, [reveal]);
+    const up = Animated.sequence([
+      Animated.delay(1150),
+      Animated.spring(badgeUp, { toValue: 1, friction: 6, tension: 90, useNativeDriver: true }),
+    ]);
+    up.start();
+    const down = Animated.sequence([
+      Animated.delay(620),
+      Animated.spring(badgeDown, { toValue: 1, friction: 6, tension: 90, useNativeDriver: true }),
+    ]);
+    down.start();
+    return () => { a.stop(); up.stop(); down.stop(); };
+  }, [badgeDown, badgeUp, reveal]);
+  // Пульс живой точки: конечный ping-pong с рекурсией под гейтом фокуса
+  // (Performance Bible: никаких свободных бесконечных лупов).
+  useEffect(() => {
+    if (!isFocused) return;
+    let alive = true;
+    const beat = () => {
+      if (!alive) return;
+      pulse.setValue(0);
+      Animated.timing(pulse, { toValue: 1, duration: 1400, useNativeDriver: true })
+        .start(({ finished }) => { if (finished) beat(); });
+    };
+    const timer = setTimeout(beat, 1350);
+    return () => { alive = false; clearTimeout(timer); pulse.stopAnimation(); };
+  }, [isFocused, pulse]);
   const translateX = reveal.interpolate({
     inputRange: [0, 1],
     outputRange: [0, revealWidth || 1],
+  });
+  const pulseScale = pulse.interpolate({ inputRange: [0, 1], outputRange: [0.6, 2.1] });
+  const pulseOpacity = pulse.interpolate({ inputRange: [0, 0.15, 1], outputRange: [0, 0.55, 0] });
+  const badgePop = (value: Animated.Value) => ({
+    opacity: value,
+    transform: [{ scale: value.interpolate({ inputRange: [0, 1], outputRange: [0.7, 1] }) }],
   });
   return (
     <View
@@ -975,15 +1071,19 @@ function PromiseChart() {
         pointerEvents="none"
         style={[styles.promiseReveal, { transform: [{ translateX }] }]}
       />
-      {/* Подписи прижаты к своим кривым: зелёная растёт к правому верху,
-          серая сползает от левого края — читается без легенды. */}
-      <View style={styles.promiseBadgeUp}>
+      {/* Живая точка на конце растущей кривой: пульс-кольцо на native driver. */}
+      <Animated.View
+        pointerEvents="none"
+        style={[styles.promisePulse, { opacity: pulseOpacity, transform: [{ scale: pulseScale }] }]}
+      />
+      {/* Подписи прижаты к своим кривым и въезжают пружиной после «рисования». */}
+      <Animated.View style={[styles.promiseBadgeUp, badgePop(badgeUp)]}>
         <Ionicons name="sparkles" size={13} color="#07111F" />
         <Text style={styles.promiseBadgeUpText}>С Phraseman</Text>
-      </View>
-      <View style={styles.promiseBadgeDown}>
+      </Animated.View>
+      <Animated.View style={[styles.promiseBadgeDown, badgePop(badgeDown)]}>
         <Text style={styles.promiseBadgeDownText}>Без повторения</Text>
-      </View>
+      </Animated.View>
       <View style={styles.promiseAxisRow}>
         <Text style={styles.promiseAxisLabel}>неделя</Text>
         <Text style={styles.promiseAxisLabel}>месяц</Text>
@@ -1911,9 +2011,21 @@ function CleanOnboarding({
       footer={<PrimaryButton label="Продолжить" onPress={() => go('notifications')} testID="onboarding-promise-continue" />}
     >
       <PromiseChart />
+      {/* Тексты — по Библии Phraseman: облегчение вместо мечты, трансформация
+          вместо механики. По тапу раскрывается пояснение (владелец, 2026-08-16). */}
       <View style={styles.promiseFactList}>
-        <TrialTimelineRow index={0} icon="repeat-outline" title="Каждая фраза возвращается" />
-        <TrialTimelineRow index={1} icon="time-outline" title="Хватает пары минут в день" />
+        <PromiseFact
+          index={0}
+          icon="repeat-outline"
+          title="Не вспоминай с нуля"
+          detail="Фраза возвращается ровно в момент, когда мозг почти её отпустил. Повторил за секунду — и она твоя. Так устроена память, и Phraseman подстраивается под неё."
+        />
+        <PromiseFact
+          index={1}
+          icon="time-outline"
+          title="Пары минут в день хватает"
+          detail="Один раунд — пока ждёшь кофе. Короткие заходы каждый день двигают речь сильнее, чем час раз в неделю: кривая выше — это они."
+        />
       </View>
     </ScreenFrame>
   );
@@ -3257,6 +3369,49 @@ const styles = StyleSheet.create({
     color: '#A9B2C8',
     fontSize: 13,
     fontWeight: '700',
+  },
+  promisePulse: {
+    position: 'absolute',
+    top: 24,
+    right: 16,
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    backgroundColor: '#3ECF8E',
+  },
+  promiseFact: {
+    backgroundColor: 'rgba(18, 24, 46, 0.72)',
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: 'rgba(133, 156, 255, 0.14)',
+    paddingHorizontal: 14,
+    paddingVertical: 13,
+  },
+  promiseFactHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  promiseFactIcon: {
+    width: 38,
+    height: 38,
+    borderRadius: 12,
+    backgroundColor: 'rgba(133, 156, 255, 0.14)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  promiseFactTitle: {
+    flex: 1,
+    color: '#F2F5FF',
+    fontSize: 15.5,
+    fontWeight: '800',
+  },
+  promiseFactDetail: {
+    color: '#A9B4D8',
+    fontSize: 13.5,
+    lineHeight: 20,
+    marginTop: 10,
+    marginLeft: 50,
   },
   promiseAxisRow: {
     flexDirection: 'row',

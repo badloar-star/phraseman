@@ -81,6 +81,8 @@ export default function ArenaMatchmakingScreen() {
   const [botRetryTick, setBotRetryTick] = useState(0);
   /** Продление 45-секундной серверной аренды для бота, назначенного позднее. */
   const [leaseRefreshTick, setLeaseRefreshTick] = useState(0);
+  /** Осечки сети подряд. Ref, а не state: считать их — не повод перерисовывать. */
+  const transientFailuresRef = useRef(0);
   /**
    * Сколько живых игроков ищет сейчас. Приходит попутно с ответом поиска —
    * отдельного запроса ради счётчика нет, иначе это был бы опрос по кругу.
@@ -132,7 +134,25 @@ export default function ArenaMatchmakingScreen() {
         playSound('opponentFound');
         setMatchId(result.matchId);
       }
-    }).catch((reason) => { if (!cancelled) setError(arenaEntryFailure(reason)); });
+      // Успех — счётчик осечек обнуляется: связь снова есть.
+      transientFailuresRef.current = 0;
+    }).catch((reason) => {
+      if (cancelled) return;
+      const failure = arenaEntryFailure(reason);
+      // зачем: раньше ЛЮБАЯ осечка мгновенно рисовала «Поиск соперника
+      // прервался» — ровно то, что владелец увидел на экране при живом
+      // сервере. Сеть на телефоне моргает постоянно, а сверка идёт раз в
+      // 15 секунд, и одна неудачная попытка ничего не значит: место в
+      // очереди живёт 45 секунд и переживает две пропущенные сверки.
+      // Молчим до трёх подряд, дальше говорим честно.
+      //
+      // Отказы по существу (раздел выключен, нужна новая сборка, активный
+      // матч) не «моргание сети» — их показываем сразу, повтор их не лечит.
+      const transient = failure === 'offline' || failure === 'transient';
+      if (!transient) { setError(failure); return; }
+      transientFailuresRef.current += 1;
+      if (transientFailuresRef.current >= 3) setError(failure);
+    });
     void reconcile();
     /**
      * зачем: раньше сверка по расписанию была только в рейтинге, а быстрый матч

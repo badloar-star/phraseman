@@ -34,6 +34,11 @@ import NicknameEditModal from '../../../account/NicknameEditModal';
 import CertificateNameModal from '../../../CertificateNameModal';
 import { cs } from '../showcase_copy';
 
+// зачем: ReviewPromptModal.rate/close no-op здесь — визуально идентично боевому,
+// но getReviewVariant() только ЧИТАЕТ вариант (безопасно), а вот markReviewPrompted()
+// в useEffect ПИШЕТ в AsyncStorage счётчик показов/дату — поэтому карточка ниже
+// всё равно 'note' (см. правило владельца в шапке файла), а не живой рендер.
+
 export const SECTION: ShowcaseSection = {
   id: 'alerts_forms',
   order: 35,
@@ -357,6 +362,24 @@ export const SECTION: ShowcaseSection = {
       title: cs('delete_account_confirm_title'),
       kind: 'note',
       note: cs('delete_account_confirm_note'),
+    },
+    {
+      id: 'delete_account_confirm_modal_hybrid',
+      title: cs('delete_account_confirm_hybrid_title'),
+      kind: 'note',
+      note: cs('delete_account_confirm_note'),
+    },
+    {
+      id: 'review_prompt_modal',
+      title: cs('review_prompt_modal_title'),
+      kind: 'note',
+      note: cs('review_prompt_modal_note'),
+    },
+    {
+      id: 'review_prompt_modal_hybrid',
+      title: cs('review_prompt_modal_hybrid_title'),
+      kind: 'note',
+      note: cs('review_prompt_modal_note'),
     },
   ],
 };

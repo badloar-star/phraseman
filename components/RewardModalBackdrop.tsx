@@ -1,12 +1,30 @@
 import { LinearGradient } from './SafeLinearGradient';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
+import Reanimated, { cancelAnimation, Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import type { Theme, ThemeMode } from '../constants/theme';
 import { OLIVE_GRADIENTS, OLIVE_RICH } from '../constants/oliveTheme';
+import { isLightSurface } from '../constants/color_contrast';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { LUM } from '../constants/motionHybrid';
 
 type RewardModalBackdropProps = {
   themeMode: ThemeMode;
   intensity?: 'regular' | 'strong';
+  /**
+   * dev-only/опционально: если задан — бэкдроп сам играет вход/выход opacity
+   * (LUM.resolveMs/exitMs, «Световод») вместо статичного рендера. Не задан
+   * (все 8 текущих потребителей) → поведение НЕ меняется, компонент рисуется
+   * как раньше без анимации — родитель (нативный Modal fade / свой Reanimated)
+   * уже отвечает за переход, дублировать его нельзя.
+   */
+  visible?: boolean;
+  /**
+   * зачем: 'hybrid' — затемнение входит/уходит по LUM.resolveMs/exitMs (нужен
+   * `visible`); 'classic' (default) — статичный бэкдроп, как у всех текущих
+   * потребителей. Единообразие с контрактом движения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 type RewardModalPanelBackdropProps = RewardModalBackdropProps & {
@@ -19,9 +37,30 @@ type RewardModalLiquidGlassProps = {
   intensity?: 'regular' | 'strong';
 };
 
-export function RewardModalBackdrop({ themeMode, intensity = 'regular' }: RewardModalBackdropProps) {
+export function RewardModalBackdrop({ themeMode, intensity = 'regular', visible, motionVariant = 'classic' }: RewardModalBackdropProps) {
+  const reduceMotion = useReduceMotion();
+  // зачем: fade — при явном hybrid или когда вызывающий ведёт visible (обратная совместимость)
+  const animated = motionVariant === 'hybrid' || visible !== undefined;
+  const fade = useSharedValue(animated && !visible ? 0 : 1);
+
+  useEffect(() => {
+    if (!animated) return;
+    if (reduceMotion) {
+      fade.value = visible ? 1 : 0;
+      return;
+    }
+    fade.value = withTiming(visible ? 1 : 0, {
+      duration: visible ? LUM.resolveMs : LUM.exitMs,
+      easing: visible ? Easing.out(Easing.cubic) : Easing.in(Easing.cubic),
+    });
+    return () => cancelAnimation(fade);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animated, visible, reduceMotion]);
+
+  const fadeStyle = useAnimatedStyle(() => (animated ? { opacity: fade.value } : { opacity: 1 }));
+
   return (
-    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, fadeStyle]}>
       <LinearGradient
         pointerEvents="none"
         colors={rewardModalBackdropGradientColors(themeMode)}
@@ -34,7 +73,7 @@ export function RewardModalBackdrop({ themeMode, intensity = 'regular' }: Reward
         locations={[0, 0.52, 1]}
         style={StyleSheet.absoluteFill}
       />
-    </View>
+    </Reanimated.View>
   );
 }
 
@@ -394,11 +433,16 @@ export function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, s
 
 export function rewardModalScrimColors(themeMode: ThemeMode, intensity: 'regular' | 'strong'): [string, string, string] {
   const strong = intensity === 'strong';
+  // зачем: раньше светлая ветка была прибита к единственному имени темы
+  // ('sagePorcelain') — ровно класс бага из isLightSurface (список светлых
+  // тем неполон, новая светлая тема завтра снова забудется). Проверяем
+  // РЕАЛЬНУЮ светлость панели этой темы (rewardModalPanelGradientColors[0]),
+  // а не имя — тон затемнения подбирается по факту, не по switch-энумерации.
+  if (isLightSurface(rewardModalPanelGradientColors(themeMode)[0])) {
+    const opacity = strong ? '0.38' : '0.26';
+    return [`rgba(23,32,29,${opacity})`, `rgba(23,32,29,${opacity})`, `rgba(23,32,29,${opacity})`];
+  }
   switch (themeMode) {
-    case 'sagePorcelain': {
-      const opacity = strong ? '0.38' : '0.26';
-      return [`rgba(23,32,29,${opacity})`, `rgba(23,32,29,${opacity})`, `rgba(23,32,29,${opacity})`];
-    }
     case 'gold':
       return strong
         ? ['rgba(0,0,0,0.42)', 'rgba(0,0,0,0.50)', 'rgba(0,0,0,0.70)']

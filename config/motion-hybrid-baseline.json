@@ -1,8 +1,5 @@
 {
-  "legacyModalFiles": [
-    "app/flashcards/CardPackShardPaywallModal.tsx",
-    "components/RewardModalBackdrop.tsx"
-  ],
+  "legacyModalFiles": [],
   "updatedAt": "2026-08-16",
   "note": "Храповик: список может только уменьшаться. Новые модалки/тосты обязаны идти через гибрид (motionVariant/шеллы)."
 }

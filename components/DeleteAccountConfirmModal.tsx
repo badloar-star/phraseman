@@ -11,20 +11,36 @@ import {
   Keyboard,
   type GestureResponderEvent,
 } from 'react-native';
+import Reanimated, {
+  cancelAnimation,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
-import { hapticTap as doHaptic } from '../hooks/use-haptics';
+import { hapticTap as doHaptic, hapticWarning } from '../hooks/use-haptics';
 import { beginAccountDeletion } from '../app/auth_provider';
 import { enqueueThemedBlockingInfoAlert } from '../app/themed_blocking_alert_queue';
 import { router } from 'expo-router';
 import { emitAppEvent } from '../app/events';
 import { markAccountDeletedNoticePending } from '../app/account_deleted_notice';
 import { soundDirector } from '../modules/audio/sound_director';
+import HybridAlertShell from './modal_fx/HybridAlertShell';
+import DuoPressable from './DuoPressable';
+import PressableHybrid from './PressableHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { TOAST } from '../constants/motionHybrid';
 
 type Props = {
   visible: boolean;
   onRequestClose: () => void;
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'.
+   * зачем: логика удаления (beginAccountDeletion и весь handleConfirmDelete) не тронута —
+   * проп меняет только визуальную оболочку и CTA-компоненты. */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 type DeleteAccountCopy = {
@@ -43,9 +59,33 @@ const ACCOUNT_DELETE_DISMISS_SETTLE_MS = 360;
 /**
  * Единое окно подтверждения удаления аккаунта (Настройки, FAQ и т.д.).
  */
-function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
+function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'classic' }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const isHybrid = motionVariant === 'hybrid';
+  const reduceMotion = useReduceMotion();
+  // зачем: приглушённый тон CTA «Удалить» + одна дрожь на подтверждении —
+  // деструктивный паттерн из ThemedConfirmModal (destructive), но здесь кнопка
+  // недоступна пока слово не совпало, поэтому дрожь играет только на реальном
+  // подтверждении (handleConfirmDelete), не на каждом тапе по disabled-кнопке.
+  const shakeX = useSharedValue(0);
+  useEffect(() => {
+    return () => cancelAnimation(shakeX);
+  }, [shakeX]);
+  const shakeStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: shakeX.value }],
+  }));
+  const runDangerShake = useCallback(() => {
+    if (!isHybrid || reduceMotion) return;
+    const [a, b, c, d, e] = TOAST.errorShakePx;
+    shakeX.value = withSequence(
+      withTiming(a, { duration: TOAST.errorShakeStepMs }),
+      withTiming(b, { duration: TOAST.errorShakeStepMs }),
+      withTiming(c, { duration: TOAST.errorShakeStepMs }),
+      withTiming(d, { duration: TOAST.errorShakeStepMs }),
+      withTiming(e, { duration: TOAST.errorShakeStepMs }),
+    );
+  }, [isHybrid, reduceMotion, shakeX]);
   const L = useCallback((copy: DeleteAccountCopy) => triLang(lang, {
     ru: copy.ru,
     uk: copy.uk,
@@ -138,7 +178,12 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
   const handleConfirmDelete = useCallback(async () => {
     if (deleteInFlightRef.current || deleting || !deleteConfirmMatches) return;
     deleteInFlightRef.current = true;
-    doHaptic();
+    if (isHybrid) {
+      void hapticWarning();
+      runDangerShake();
+    } else {
+      doHaptic();
+    }
     setDeleting(true);
     try {
       // зачем: ждём ТОЛЬКО быструю фазу — запись замка в SecureStore. После неё
@@ -242,7 +287,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
     } finally {
       setDeleting(false);
     }
-  }, [L, deleteConfirmMatches, deleting, onRequestClose, showInfoAlert]);
+  }, [L, deleteConfirmMatches, deleting, isHybrid, onRequestClose, runDangerShake, showInfoAlert]);
 
   const handleCancel = useCallback(() => {
     if (deleting) return;
@@ -250,15 +295,17 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
     onRequestClose();
   }, [deleting, onRequestClose]);
 
-  return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={() => {
-      if (!deleting) onRequestClose();
-    }}>
+  // зачем: HybridAlertShell не несёт KeyboardAvoidingView/ScrollView — панель
+  // (форма ввода слова подтверждения) остаётся идентичной classic, меняется
+  // только оболочка (Modal→HybridAlertShell) и CTA-компоненты внизу; сама
+  // логика удаления выше не тронута ни в одной ветке.
+  const panel = (
+    <Reanimated.View style={isHybrid ? shakeStyle : undefined}>
       <KeyboardAvoidingView
-        style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
+        style={isHybrid ? undefined : { flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <View style={{ width: '88%', maxWidth: 420, maxHeight: '90%', backgroundColor: t.bgCard, borderRadius: 16, overflow: 'hidden', borderWidth: 0, borderColor: 'transparent' }}>
+        <View style={{ width: isHybrid ? '100%' : '88%', maxWidth: 420, maxHeight: '90%', backgroundColor: t.bgCard, borderRadius: 16, overflow: 'hidden', borderWidth: 0, borderColor: 'transparent' }}>
           <ScrollView
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
@@ -451,96 +498,179 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
           <View
             style={{ flexDirection: 'row', gap: 12, paddingHorizontal: 24, paddingTop: 12, paddingBottom: 24, borderTopWidth: 1, borderTopColor: t.border, backgroundColor: 'transparent' }}
           >
-            <Pressable
-              testID="delete-account-cancel"
-              disabled={deleting}
-              hitSlop={8}
-              style={({ pressed }) => ({
-                flex: 1,
-                padding: 12,
-                borderRadius: 10,
-                borderWidth: 0,
-                borderColor: t.border,
-                alignItems: 'center',
-                backgroundColor: 'transparent',
-                overflow: 'hidden',
-                opacity: deleting ? 0.45 : pressed ? 0.75 : 1,
-              })}
-              onPress={handleCancel}
-            >
-              <Text style={{ color: t.textMuted, fontSize: f.body }}>{L({
-                ru: 'Отмена',
-                uk: 'Скасувати',
-                es: 'Cancelar',
-                'pt-BR': 'Cancelar',
-                vi: 'Hủy',
-                id: 'Batal',
-                tr: 'Vazgeç',
-                pl: 'Anuluj',
-              })}</Text>
-            </Pressable>
-            <Pressable
-              testID="delete-account-confirm"
-              hitSlop={8}
-              accessibilityRole="button"
-              accessibilityLabel={L({
-                ru: 'Удалить',
-                uk: 'Видалити',
-                es: 'Eliminar',
-                'pt-BR': 'Excluir',
-                vi: 'Xóa',
-                id: 'Hapus',
-                tr: 'Sil',
-                pl: 'Usuń',
-              })}
-              // зачем: здесь висело ПЯТЬ обработчиков разом — onStartShouldSetResponder
-              // + onResponderRelease + onTouchEnd + onPress + onPressIn. Responder-пара
-              // забирала касание у Pressable, поэтому onPress мог не сработать вовсе,
-              // а onPressIn/onTouchEnd дублировали запуск. Оставляем ОДИН onPress:
-              // повторный вход всё равно закрыт deleteInFlightRef.
-              disabled={!deleteConfirmMatches || deleting}
-              style={({ pressed }) => ({
-                flex: 1,
-                padding: 12,
-                borderRadius: 10,
-                alignItems: 'center',
-                backgroundColor: deleteConfirmMatches ? t.wrong : t.bgSurface,
-                borderWidth: 0,
-                borderColor: 'transparent',
-                overflow: 'hidden',
-                opacity: deleting ? 0.78 : deleteConfirmMatches ? (pressed ? 0.82 : 1) : 0.35,
-              })}
-              onPress={handleConfirmDelete}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
-                  {deleting
-                    ? L({
-                        ru: 'Удаляем...',
-                        uk: 'Видаляємо...',
-                        es: 'Eliminando...',
-                        'pt-BR': 'Excluindo...',
-                        vi: 'Đang xóa...',
-                        id: 'Menghapus...',
-                        tr: 'Siliniyor...',
-                        pl: 'Usuwamy...',
-                      })
-                    : L({
-                        ru: 'Удалить',
-                        uk: 'Видалити',
-                        es: 'Eliminar',
-                        'pt-BR': 'Excluir',
-                        vi: 'Xóa',
-                        id: 'Hapus',
-                        tr: 'Sil',
-                        pl: 'Usuń',
-                      })}
-                </Text>
-              </View>
-            </Pressable>
+            {isHybrid ? (
+              <PressableHybrid
+                testID="delete-account-cancel"
+                disabled={deleting}
+                hitSlop={8}
+                variant="secondary"
+                style={{ flex: 1 }}
+                contentStyle={{ padding: 12, borderRadius: 10, alignItems: 'center', backgroundColor: 'transparent' }}
+                onPress={handleCancel}
+              >
+                <Text style={{ color: t.textMuted, fontSize: f.body }}>{L({
+                  ru: 'Отмена',
+                  uk: 'Скасувати',
+                  es: 'Cancelar',
+                  'pt-BR': 'Cancelar',
+                  vi: 'Hủy',
+                  id: 'Batal',
+                  tr: 'Vazgeç',
+                  pl: 'Anuluj',
+                })}</Text>
+              </PressableHybrid>
+            ) : (
+              <Pressable
+                testID="delete-account-cancel"
+                disabled={deleting}
+                hitSlop={8}
+                style={({ pressed }) => ({
+                  flex: 1,
+                  padding: 12,
+                  borderRadius: 10,
+                  borderWidth: 0,
+                  borderColor: t.border,
+                  alignItems: 'center',
+                  backgroundColor: 'transparent',
+                  overflow: 'hidden',
+                  opacity: deleting ? 0.45 : pressed ? 0.75 : 1,
+                })}
+                onPress={handleCancel}
+              >
+                <Text style={{ color: t.textMuted, fontSize: f.body }}>{L({
+                  ru: 'Отмена',
+                  uk: 'Скасувати',
+                  es: 'Cancelar',
+                  'pt-BR': 'Cancelar',
+                  vi: 'Hủy',
+                  id: 'Batal',
+                  tr: 'Vazgeç',
+                  pl: 'Anuluj',
+                })}</Text>
+              </Pressable>
+            )}
+            {isHybrid ? (
+              // зачем: приглушённый тон (не яркий t.wrong, а нейтральная поверхность
+              // с красным текстом) — деструктивный паттерн ThemedConfirmModal
+              // (destructive), удар/вес переносится на дрожь при подтверждении,
+              // а не на кричащий цвет кнопки.
+              <DuoPressable
+                testID="delete-account-confirm"
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel={L({
+                  ru: 'Удалить', uk: 'Видалити', es: 'Eliminar', 'pt-BR': 'Excluir',
+                  vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń',
+                })}
+                disabled={!deleteConfirmMatches || deleting}
+                withHaptic={false}
+                edgeColor={deleteConfirmMatches ? `${t.wrong}55` : undefined}
+                edgeHeight={5}
+                wrapStyle={{ flex: 1 }}
+                style={{
+                  minHeight: undefined,
+                  paddingVertical: 12,
+                  borderRadius: 10,
+                  backgroundColor: deleteConfirmMatches ? `${t.wrong}26` : t.bgSurface,
+                  opacity: deleting ? 0.78 : deleteConfirmMatches ? 1 : 0.35,
+                }}
+                onPress={handleConfirmDelete}
+              >
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                  <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
+                    {deleting
+                      ? L({ ru: 'Удаляем...', uk: 'Видаляємо...', es: 'Eliminando...', 'pt-BR': 'Excluindo...', vi: 'Đang xóa...', id: 'Menghapus...', tr: 'Siliniyor...', pl: 'Usuwamy...' })
+                      : L({ ru: 'Удалить', uk: 'Видалити', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
+                  </Text>
+                </View>
+              </DuoPressable>
+            ) : (
+              <Pressable
+                testID="delete-account-confirm"
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel={L({
+                  ru: 'Удалить',
+                  uk: 'Видалити',
+                  es: 'Eliminar',
+                  'pt-BR': 'Excluir',
+                  vi: 'Xóa',
+                  id: 'Hapus',
+                  tr: 'Sil',
+                  pl: 'Usuń',
+                })}
+                // зачем: здесь висело ПЯТЬ обработчиков разом — onStartShouldSetResponder
+                // + onResponderRelease + onTouchEnd + onPress + onPressIn. Responder-пара
+                // забирала касание у Pressable, поэтому onPress мог не сработать вовсе,
+                // а onPressIn/onTouchEnd дублировали запуск. Оставляем ОДИН onPress:
+                // повторный вход всё равно закрыт deleteInFlightRef.
+                disabled={!deleteConfirmMatches || deleting}
+                style={({ pressed }) => ({
+                  flex: 1,
+                  padding: 12,
+                  borderRadius: 10,
+                  alignItems: 'center',
+                  backgroundColor: deleteConfirmMatches ? t.wrong : t.bgSurface,
+                  borderWidth: 0,
+                  borderColor: 'transparent',
+                  overflow: 'hidden',
+                  opacity: deleting ? 0.78 : deleteConfirmMatches ? (pressed ? 0.82 : 1) : 0.35,
+                })}
+                onPress={handleConfirmDelete}
+              >
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                  <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
+                    {deleting
+                      ? L({
+                          ru: 'Удаляем...',
+                          uk: 'Видаляємо...',
+                          es: 'Eliminando...',
+                          'pt-BR': 'Excluindo...',
+                          vi: 'Đang xóa...',
+                          id: 'Menghapus...',
+                          tr: 'Siliniyor...',
+                          pl: 'Usuwamy...',
+                        })
+                      : L({
+                          ru: 'Удалить',
+                          uk: 'Видалити',
+                          es: 'Eliminar',
+                          'pt-BR': 'Excluir',
+                          vi: 'Xóa',
+                          id: 'Hapus',
+                          tr: 'Sil',
+                          pl: 'Usuń',
+                        })}
+                  </Text>
+                </View>
+              </Pressable>
+            )}
           </View>
         </View>
       </KeyboardAvoidingView>
+    </Reanimated.View>
+  );
+
+  if (isHybrid) {
+    return (
+      <HybridAlertShell
+        visible={visible}
+        onRequestClose={() => {
+          if (!deleting) onRequestClose();
+        }}
+        shadowColor="#000000"
+        testID="delete-account-modal-hybrid"
+      >
+        {panel}
+      </HybridAlertShell>
+    );
+  }
+
+  return (
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={() => {
+      if (!deleting) onRequestClose();
+    }}>
+      {panel}
     </Modal>
   );
 }

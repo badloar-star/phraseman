@@ -56,11 +56,20 @@ import {
 import { getCardPackPaywallTheme } from './cardPackPaywallTheme';
 import { packTileImageForPack } from './packMarketplaceIcons';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
+import DuoPressable from '../../components/DuoPressable';
+import PressableHybrid from '../../components/PressableHybrid';
 
 export type CardPackPaywallMode = 'confirm' | 'insufficient' | 'voucher';
 
 type Props = {
   visible: boolean;
+  /**
+   * зачем: у этого шита никогда не было «классической» версии — он изначально
+   * построен как гибрид «Световод» (Reanimated, settle без отскока, клавиши
+   * DuoPressable/PressableHybrid). Проп существует для единообразия контракта
+   * движения (tests/motion_hybrid_contract) и всегда 'hybrid'.
+   */
+  motionVariant?: 'hybrid';
   mode: CardPackPaywallMode;
   pack: FlashcardMarketPack;
   balance: number;
@@ -970,32 +979,18 @@ export default function CardPackShardPaywallModal({
                                 ctaGlowStyle,
                               ]}
                             />
-                            <Pressable
+                            <DuoPressable
                               onPress={() => {
                                 if (purchasing) return;
                                 void hapticMediumImpact();
                                 onGoToShards();
                               }}
                               disabled={purchasing}
-                              style={({ pressed }) => ({
-                                borderRadius: 16,
-                                overflow: 'hidden',
-                                opacity: pressed ? 0.92 : 1,
-                                transform: pressed ? [{ scale: 0.99 }] : [],
-                              })}
+                              withHaptic={false}
+                              gradientColors={paywallVisual.goShopCta}
+                              style={{ minHeight: undefined, paddingVertical: 16, borderRadius: 16 }}
                             >
-                              <LinearGradient
-                                colors={[...paywallVisual.goShopCta]}
-                                start={{ x: 0, y: 0 }}
-                                end={{ x: 1, y: 1 }}
-                                style={{
-                                  paddingVertical: 16,
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  flexDirection: 'row',
-                                  gap: 10,
-                                }}
-                              >
+                              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
                                 <Image
                                   source={shardPriceImg}
                                   style={{ width: 26, height: 26 }}
@@ -1004,12 +999,18 @@ export default function CardPackShardPaywallModal({
                                 <Text style={{ color: paywallVisual.goShopForeground, fontSize: f.bodyLg, fontWeight: '900' }}>
                                   {str.buyShards}
                                 </Text>
-                              </LinearGradient>
-                            </Pressable>
+                              </View>
+                            </DuoPressable>
                           </View>
-                          <Pressable onPress={handleClose} hitSlop={8} style={{ marginTop: 8, paddingVertical: 8, alignItems: 'center' }}>
+                          <PressableHybrid
+                            onPress={handleClose}
+                            hitSlop={8}
+                            variant="secondary"
+                            withHaptic={false}
+                            contentStyle={{ marginTop: 8, paddingVertical: 8, alignItems: 'center' }}
+                          >
                             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{str.cancel}</Text>
-                          </Pressable>
+                          </PressableHybrid>
                         </>
                       ) : mode === 'voucher' ? (
                         <>
@@ -1023,32 +1024,18 @@ export default function CardPackShardPaywallModal({
                                 ctaGlowStyle,
                               ]}
                             />
-                            <Pressable
+                            <DuoPressable
                               onPress={() => {
                                 if (purchasing) return;
                                 void hapticMediumImpact();
                                 void onConfirmPurchase();
                               }}
                               disabled={purchasing}
-                              style={({ pressed }) => ({
-                                borderRadius: 16,
-                                overflow: 'hidden',
-                                opacity: purchasing ? 0.85 : pressed ? 0.94 : 1,
-                                transform: pressed ? [{ scale: 0.99 }] : [],
-                              })}
+                              withHaptic={false}
+                              gradientColors={[t.gold, `${t.gold}DD`]}
+                              style={{ minHeight: undefined, paddingVertical: 16, borderRadius: 16, opacity: purchasing ? 0.85 : 1 }}
                             >
-                              <LinearGradient
-                                colors={[t.gold, `${t.gold}DD`]}
-                                start={{ x: 0, y: 0 }}
-                                end={{ x: 1, y: 0 }}
-                                style={{
-                                  paddingVertical: 16,
-                                  flexDirection: 'row',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  gap: 10,
-                                }}
-                              >
+                              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
                                 {purchasing ? (
                                   <ActivityIndicator size="small" color={t.bgPrimary} />
                                 ) : (
@@ -1057,8 +1044,8 @@ export default function CardPackShardPaywallModal({
                                 <Text style={{ color: t.bgPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
                                   {str.voucherCta}
                                 </Text>
-                              </LinearGradient>
-                            </Pressable>
+                              </View>
+                            </DuoPressable>
                           </View>
                           <Text
                             style={{
@@ -1071,9 +1058,15 @@ export default function CardPackShardPaywallModal({
                           >
                             {str.voucherCtaSub}
                           </Text>
-                          <Pressable onPress={handleClose} hitSlop={8} style={{ marginTop: 4, paddingVertical: 8, alignItems: 'center' }}>
+                          <PressableHybrid
+                            onPress={handleClose}
+                            hitSlop={8}
+                            variant="secondary"
+                            withHaptic={false}
+                            contentStyle={{ marginTop: 4, paddingVertical: 8, alignItems: 'center' }}
+                          >
                             <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>{str.cancel}</Text>
-                          </Pressable>
+                          </PressableHybrid>
                         </>
                       ) : (
                         <>
@@ -1087,32 +1080,19 @@ export default function CardPackShardPaywallModal({
                                 ctaGlowStyle,
                               ]}
                             />
-                            <Pressable
+                            <DuoPressable
                               onPress={() => {
                                 if (purchasing) return;
                                 void hapticMediumImpact();
                                 void onConfirmPurchase();
                               }}
                               disabled={purchasing}
-                              style={({ pressed }) => ({
-                                borderRadius: 16,
-                                overflow: 'hidden',
-                                opacity: purchasing ? 0.85 : pressed ? 0.94 : 1,
-                                transform: pressed ? [{ scale: 0.99 }] : [],
-                              })}
+                              withHaptic={false}
+                              gradientColors={paywallVisual.ctaColors}
+                              gradientEnd={{ x: 1, y: 0 }}
+                              style={{ minHeight: undefined, paddingVertical: 16, borderRadius: 16, opacity: purchasing ? 0.85 : 1 }}
                             >
-                              <LinearGradient
-                                colors={[...paywallVisual.ctaColors]}
-                                start={{ x: 0, y: 0 }}
-                                end={{ x: 1, y: 0 }}
-                                style={{
-                                  paddingVertical: 16,
-                                  flexDirection: 'row',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  gap: 10,
-                                }}
-                              >
+                              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
                                 {purchasing ? (
                                   <ActivityIndicator size="small" color={paywallVisual.ctaForeground} />
                                 ) : (
@@ -1121,12 +1101,18 @@ export default function CardPackShardPaywallModal({
                                 <Text style={{ color: paywallVisual.ctaForeground, fontSize: f.bodyLg, fontWeight: '900' }}>
                                   {str.forShards(pack.priceShards)}
                                 </Text>
-                              </LinearGradient>
-                            </Pressable>
+                              </View>
+                            </DuoPressable>
                           </View>
-                          <Pressable onPress={handleClose} hitSlop={8} style={{ marginTop: 8, paddingVertical: 8, alignItems: 'center' }}>
+                          <PressableHybrid
+                            onPress={handleClose}
+                            hitSlop={8}
+                            variant="secondary"
+                            withHaptic={false}
+                            contentStyle={{ marginTop: 8, paddingVertical: 8, alignItems: 'center' }}
+                          >
                             <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>{str.cancel}</Text>
-                          </Pressable>
+                          </PressableHybrid>
                         </>
                       )}
 

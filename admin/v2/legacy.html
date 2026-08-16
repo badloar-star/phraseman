@@ -11090,11 +11090,29 @@
 <!-- SERVER-BACKED COSMETIC ASSET ARCHIVE -->
 <div id="tab-asset-archive" class="reports-tab" data-admin-category="content">
   <style>
-    .caa-shell{max-width:1180px;margin:0 auto;color:#e5e7eb}.caa-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}.caa-title{margin:0;font-size:24px;line-height:1.2;color:#f8fafc}.caa-sub{margin:7px 0 0;max-width:760px;color:#9ca3af;font-size:14px;line-height:1.55}.caa-status{min-height:20px;color:#9ca3af;font-size:13px;margin-bottom:12px}.caa-stats{display:grid;grid-template-columns:repeat(3,minmax(140px,1fr));gap:10px;margin-bottom:14px}.caa-stat{background:#131722;border:1px solid #293142;border-radius:8px;padding:12px}.caa-stat b{display:block;font-size:21px;color:#f8fafc}.caa-stat span{font-size:12px;color:#94a3b8}.caa-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#11151f;border:1px solid #293142;border-radius:8px;padding:10px;margin-bottom:12px}.caa-search{min-width:240px;flex:1;background:#0b0f17;border:1px solid #334155;border-radius:7px;color:#f8fafc;padding:10px 12px;font-size:14px}.caa-filter{min-height:44px;border:1px solid #334155;background:#161c28;color:#cbd5e1;border-radius:7px;padding:8px 13px;font-size:13px;cursor:pointer}.caa-filter.is-active{border-color:#60a5fa;color:#dbeafe;background:#172554}.caa-table{border:1px solid #293142;border-radius:8px;overflow:hidden;background:#0f131c}.caa-row{display:grid;grid-template-columns:minmax(260px,1fr) 130px 130px 190px;gap:12px;align-items:center;padding:11px 13px;border-top:1px solid #242c3b}.caa-row:first-child{border-top:0}.caa-row-head{background:#151a25;color:#94a3b8;font-size:12px;font-weight:700}.caa-asset{display:flex;align-items:center;gap:11px;min-width:0}.caa-preview{width:48px;height:48px;flex:0 0 48px;border-radius:8px;background:#090d14;border:1px solid #30394b;display:flex;align-items:center;justify-content:center;overflow:hidden}.caa-preview img{width:100%;height:100%;object-fit:contain}.caa-preview svg{width:24px;height:24px;stroke:#a5b4fc;fill:none;stroke-width:1.8}.caa-name{font-size:14px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.caa-id{font:11px ui-monospace,SFMono-Regular,Consolas,monospace;color:#64748b;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.caa-badge{display:inline-flex;align-items:center;min-height:28px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}.caa-badge-sale{background:#12351f;color:#86efac}.caa-badge-off{background:#3b1d22;color:#fca5a5}.caa-badge-kind{background:#1e293b;color:#cbd5e1}.caa-action{min-height:44px;border-radius:7px;padding:9px 12px;border:1px solid #3b82f6;background:#1d4ed8;color:#fff;font-size:13px;font-weight:750;cursor:pointer;transition:background .18s,border-color .18s}.caa-action:hover{background:#2563eb}.caa-action:focus-visible,.caa-filter:focus-visible,.caa-search:focus-visible{outline:3px solid #38bdf8;outline-offset:2px}.caa-action.caa-remove{background:#2b1720;border-color:#7f1d1d;color:#fecaca}.caa-action.caa-remove:hover{background:#3f1d28}.caa-action:disabled{opacity:.55;cursor:not-allowed}.caa-empty{padding:28px 18px;text-align:center;color:#94a3b8;font-size:14px}.caa-tip{position:relative}.caa-tip::after{content:attr(data-tooltip);position:absolute;right:0;bottom:calc(100% + 8px);width:260px;background:#070a10;border:1px solid #334155;border-radius:7px;color:#e2e8f0;padding:8px 10px;font-size:11px;line-height:1.45;opacity:0;pointer-events:none;transform:translateY(3px);transition:opacity .16s,transform .16s;z-index:20}.caa-tip:hover::after,.caa-tip:focus-visible::after{opacity:1;transform:none}@media(max-width:760px){.caa-head{display:block}.caa-head .caa-action{margin-top:12px}.caa-stats{grid-template-columns:1fr}.caa-row{grid-template-columns:1fr 1fr}.caa-row-head{display:none}.caa-row>div:last-child{grid-column:1/-1}.caa-action{width:100%}}@media(prefers-reduced-motion:reduce){.caa-action,.caa-tip::after{transition:none}}
+    /* зачем 2026-08-16 (владелец, со скриншотом: «тексты куда-то вылазят за рамки»):
+       шапка была flex без min-width:0 у текстовой колонки. Как только рядом
+       вставала кнопка, колонка сжималась до ширины самого длинного слова, и
+       описание уезжало узким столбиком поверх карточек статистики. min-width:0
+       + flex:1 удерживают текст в своих границах при любой ширине окна. */
+    .caa-shell{max-width:1180px;margin:0 auto;color:#e5e7eb}.caa-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}.caa-head-copy{flex:1 1 auto;min-width:0}.caa-head .caa-action{flex:0 0 auto}.caa-title{margin:0;font-size:24px;line-height:1.2;color:#f8fafc;overflow-wrap:anywhere}.caa-sub{margin:7px 0 0;max-width:760px;color:#9ca3af;font-size:14px;line-height:1.55;overflow-wrap:anywhere}.caa-status{min-height:20px;color:#9ca3af;font-size:13px;margin-bottom:12px}.caa-stats{display:grid;grid-template-columns:repeat(3,minmax(140px,1fr));gap:10px;margin-bottom:14px}.caa-stat{background:#131722;border:1px solid #293142;border-radius:8px;padding:12px}.caa-stat b{display:block;font-size:21px;color:#f8fafc}.caa-stat span{font-size:12px;color:#94a3b8}.caa-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#11151f;border:1px solid #293142;border-radius:8px;padding:10px;margin-bottom:12px}.caa-search{min-width:240px;flex:1;background:#0b0f17;border:1px solid #334155;border-radius:7px;color:#f8fafc;padding:10px 12px;font-size:14px}.caa-filter{min-height:44px;border:1px solid #334155;background:#161c28;color:#cbd5e1;border-radius:7px;padding:8px 13px;font-size:13px;cursor:pointer}.caa-filter.is-active{border-color:#60a5fa;color:#dbeafe;background:#172554}.caa-table{border:1px solid #293142;border-radius:8px;overflow:hidden;background:#0f131c}.caa-row{display:grid;grid-template-columns:minmax(260px,1fr) 130px 130px 190px;gap:12px;align-items:center;padding:11px 13px;border-top:1px solid #242c3b}.caa-row:first-child{border-top:0}.caa-row-head{background:#151a25;color:#94a3b8;font-size:12px;font-weight:700}.caa-asset{display:flex;align-items:center;gap:11px;min-width:0}.caa-preview{width:56px;height:56px;flex:0 0 56px;border-radius:10px;background:#090d14;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}.caa-preview img{width:100%;height:100%;object-fit:contain}.caa-preview svg{width:24px;height:24px;stroke:#a5b4fc;fill:none;stroke-width:1.8}
+    /* зачем 2026-08-16 (владелец: «каждый ассет должен показываться в точности
+       как в приложении»): ауру нельзя показать картинкой — в приложении это
+       кольцо вокруг аватара (components/AvatarAura.tsx). Повторяем ту же
+       конструкцию: мягкое свечение → градиентное кольцо → тёмная сердцевина
+       размером с аватар. Пропорции взяты оттуда же: кольцо = size + 8. */
+    .caa-aura{position:relative;width:46px;height:46px;display:flex;align-items:center;justify-content:center}
+    .caa-aura-glow{position:absolute;inset:-5px;border-radius:50%;opacity:.5}
+    .caa-aura-ring{position:absolute;inset:0;border-radius:50%;opacity:.62}
+    .caa-aura-core{position:relative;width:34px;height:34px;border-radius:50%;background:#0b1018;display:flex;align-items:center;justify-content:center}
+    .caa-aura-core span{font-size:11px;font-weight:800;color:#64748b;letter-spacing:.02em}
+    /* Сезонная аура — три реальных слоя ассета, как в SeasonAuraRing. */
+    .caa-aura-layer{position:absolute;inset:-3px;background-repeat:no-repeat;background-position:center;background-size:contain}
+    .caa-aura-layer-flow{opacity:.85}.caa-aura-layer-particles{opacity:.7}.caa-name{font-size:14px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.caa-id{font:11px ui-monospace,SFMono-Regular,Consolas,monospace;color:#64748b;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.caa-badge{display:inline-flex;align-items:center;min-height:28px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}.caa-badge-sale{background:#12351f;color:#86efac}.caa-badge-off{background:#3b1d22;color:#fca5a5}.caa-badge-kind{background:#1e293b;color:#cbd5e1}.caa-action{min-height:44px;border-radius:7px;padding:9px 12px;border:1px solid #3b82f6;background:#1d4ed8;color:#fff;font-size:13px;font-weight:750;cursor:pointer;transition:background .18s,border-color .18s}.caa-action:hover{background:#2563eb}.caa-action:focus-visible,.caa-filter:focus-visible,.caa-search:focus-visible{outline:3px solid #38bdf8;outline-offset:2px}.caa-action.caa-remove{background:#2b1720;border-color:#7f1d1d;color:#fecaca}.caa-action.caa-remove:hover{background:#3f1d28}.caa-action:disabled{opacity:.55;cursor:not-allowed}.caa-empty{padding:28px 18px;text-align:center;color:#94a3b8;font-size:14px}.caa-tip{position:relative}.caa-tip::after{content:attr(data-tooltip);position:absolute;right:0;bottom:calc(100% + 8px);width:260px;background:#070a10;border:1px solid #334155;border-radius:7px;color:#e2e8f0;padding:8px 10px;font-size:11px;line-height:1.45;opacity:0;pointer-events:none;transform:translateY(3px);transition:opacity .16s,transform .16s;z-index:20}.caa-tip:hover::after,.caa-tip:focus-visible::after{opacity:1;transform:none}@media(max-width:760px){.caa-head{display:block}.caa-head .caa-action{margin-top:12px}.caa-stats{grid-template-columns:1fr}.caa-row{grid-template-columns:1fr 1fr}.caa-row-head{display:none}.caa-row>div:last-child{grid-column:1/-1}.caa-action{width:100%}}@media(prefers-reduced-motion:reduce){.caa-action,.caa-tip::after{transition:none}}
   </style>
   <div class="caa-shell">
     <header class="caa-head">
-      <div>
+      <div class="caa-head-copy">
         <h2 class="caa-title">Архив ассетов</h2>
         <p class="caa-sub">Управляй продажей аур, аватаров и будущих коллекционных ассетов без нового релиза. Снятый с продажи предмет остаётся у прежних владельцев и продолжает загружаться с сервера.</p>
       </div>
@@ -14946,9 +14964,54 @@
     purchase: 'Покупка', reward: 'Награда', subscription: 'Подписка', legacy: 'Архив',
   };
 
+  /**
+   * зачем 2026-08-16 (владелец: «каждый ассет должен показываться в точности
+   * 100% как в приложении»): раньше все 16 аур рисовались одной SVG-заглушкой —
+   * владелец снимал их с продажи вслепую, не видя, какой предмет убирает.
+   * Теперь каждый вид ассета рисуется своим способом, ровно как в приложении:
+   *   image       — аватар, картинка с хостинга (как в app/avatar_select);
+   *   aura-ring   — градиентное кольцо вокруг аватара (components/AvatarAura);
+   *   aura-layers — три слоя сезонного ассета (components/SeasonAuraRing).
+   * Анимацию намеренно не повторяем: в списке из 78 строк 16 крутящихся колец
+   * жгли бы процессор без пользы для решения «снять / вернуть в продажу».
+   */
+  function cosmeticAuraRingHtml(item) {
+    const palette = item.palette || {};
+    const base = palette.color || '#64748b';
+    const bright = palette.color2 || base;
+    const deep = palette.color3 || base;
+    const soft = palette.softColor || base;
+    // Satin (Pro) в приложении — пологий линейный перелив deep→color→bright→…,
+    // остальные ауры — диагональный градиент soft→color→bright→deep. См.
+    // satinColors/haloColors и их locations в components/AvatarAura.tsx.
+    const ring = palette.material === 'satin'
+      ? `linear-gradient(100deg, ${deep} 0%, ${base} 28%, ${bright} 50%, ${base} 72%, ${deep} 100%)`
+      : `linear-gradient(135deg, ${soft} 0%, ${base} 34%, ${bright} 68%, ${deep} 100%)`;
+    return `<div class="caa-preview"><div class="caa-aura">
+      <div class="caa-aura-glow" style="background:${base}"></div>
+      <div class="caa-aura-ring" style="background:${ring}"></div>
+      <div class="caa-aura-core"><span>${escapeHtml((item.name || '?').slice(0, 2))}</span></div>
+    </div></div>`;
+  }
+
+  function cosmeticSeasonAuraHtml(item) {
+    const layers = item.layers || {};
+    const layer = (url, cls) => (url
+      ? `<div class="caa-aura-layer ${cls}" style="background-image:url('${escapeHtml(url)}')"></div>`
+      : '');
+    return `<div class="caa-preview"><div class="caa-aura">
+      ${layer(layers.baseUrl, 'caa-aura-layer-base')}
+      ${layer(layers.flowUrl, 'caa-aura-layer-flow')}
+      ${layer(layers.particlesUrl, 'caa-aura-layer-particles')}
+      <div class="caa-aura-core"><span>${escapeHtml((item.name || '?').slice(0, 2))}</span></div>
+    </div></div>`;
+  }
+
   function cosmeticAssetPreviewHtml(item) {
+    if (item.render === 'aura-layers' && item.layers) return cosmeticSeasonAuraHtml(item);
+    if (item.render === 'aura-ring' && item.palette) return cosmeticAuraRingHtml(item);
     if (item.previewUrl) {
-      return `<div class="caa-preview"><img src="${escapeHtml(item.previewUrl)}" alt="Превью ${escapeHtml(item.name || item.id)}" loading="lazy"></div>`;
+      return `<div class="caa-preview"><img src="${escapeHtml(item.previewUrl)}" alt="Превью ${escapeHtml(item.name || item.id)}" loading="lazy" decoding="async"></div>`;
     }
     return '<div class="caa-preview" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="10" stroke-dasharray="4 3"/></svg></div>';
   }

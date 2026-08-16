@@ -16,6 +16,8 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
+import DuoPressable from './DuoPressable';
+import PressableHybrid from './PressableHybrid';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -298,22 +300,26 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
   };
 
   const renderPrimaryButton = (insideScroll = false) => (
-    <Pressable
-      testID="vip-survey-primary"
-      disabled={busy || !canGoNext}
-      accessibilityRole="button"
-      onPress={handlePrimaryPressRelease}
-      onTouchStart={inputControlVisible ? handlePrimaryTouchStart : undefined}
-      style={[
-        styles.primaryButton,
-        insideScroll && styles.primaryButtonInScroll,
-        { opacity: busy || !canGoNext ? 0.55 : 1, backgroundColor: accent.strong },
-      ]}
-    >
-      <Text style={styles.primaryButtonText}>
-        {busy ? copy.saving : isCompleteStep ? copy.finish : copy.next}
-      </Text>
-    </Pressable>
+    // зачем: главный CTA — настоящая клавиша с кромкой (стандарт отклика
+    // владельца); onTouchStart-хак для инпута сохранён через wrapStyle-обёртку
+    <View onTouchStart={inputControlVisible ? handlePrimaryTouchStart : undefined}>
+      <DuoPressable
+        testID="vip-survey-primary"
+        disabled={busy || !canGoNext}
+        onPress={handlePrimaryPressRelease}
+        edgeColor={accent.tint}
+        edgeHeight={6}
+        style={[
+          styles.primaryButton,
+          insideScroll && styles.primaryButtonInScroll,
+          { opacity: busy || !canGoNext ? 0.55 : 1, backgroundColor: accent.strong },
+        ]}
+      >
+        <Text style={styles.primaryButtonText}>
+          {busy ? copy.saving : isCompleteStep ? copy.finish : copy.next}
+        </Text>
+      </DuoPressable>
+    </View>
   );
 
   return (
@@ -380,16 +386,15 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
           ) : (
             <>
           <View style={styles.header}>
-            <TouchableOpacity
+            <PressableHybrid
+              variant="icon"
               disabled={step <= 0 || busy}
-              activeOpacity={0.75}
-              accessibilityRole="button"
               accessibilityLabel={copy.back}
               onPress={goBack}
-              style={[styles.roundButton, { opacity: step <= 0 ? 0.35 : 1, backgroundColor: chrome.card, borderColor: chrome.border }]}
+              style={[styles.roundButton, { opacity: step <= 0 ? 0.35 : 1, backgroundColor: chrome.card }]}
             >
               <Ionicons name="chevron-back" size={21} color={chrome.text} />
-            </TouchableOpacity>
+            </PressableHybrid>
             <View style={styles.progressWrap}>
               <Text style={[styles.progressText, { color: chrome.muted }]}>
                 {Math.min(step + 1, VIP_SURVEY_QUESTIONS.length + 1)} / {VIP_SURVEY_QUESTIONS.length + 1}

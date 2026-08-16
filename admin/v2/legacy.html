@@ -17331,12 +17331,53 @@
         <td>${premiumCellHtml(u)}</td>
         <td><div class="users-compact-cell">
           <div class="users-compact-email">${authCellHtml(u)}</div>
-          <div class="users-compact-line"><span style="font-size:13px;letter-spacing:2px">${settingsBits.join('')||'—'}</span><span title="Справочная цифра из старого поля users.shards — сервер его больше не ведёт. Точный баланс виден в карточке пользователя." style="color:#8a8f98;font-weight:700;background:#191b1f;padding:2px 8px;border-radius:6px;font-size:13px">💎 ${toSafeNumber(u.shards, 0)}<span style="font-size:10px;opacity:.75;margin-left:4px">≈</span></span></div>
+          <div class="users-compact-line"><span style="font-size:13px;letter-spacing:2px">${settingsBits.join('')||'—'}</span><span data-shard-balance-uid="${u.uid}" title="Точный баланс: сумма подтверждённых событий кошелька" style="color:#34d399;font-weight:700;background:#0f2a1a;padding:2px 8px;border-radius:6px;font-size:13px">💎 <span style="opacity:.55">…</span></span></div>
           <div class="users-compact-muted">${fdate(u.updatedAt)}</div>
         </div></td>
       </tr>`;
     }).join('');
+    fillVisibleShardBalances(pageUsers);
   };
+
+  // зачем (инцидент 2026-08-16): в списке светилось поле users.shards — старая
+  // витрина, которую сервер больше не ведёт. У покупателя с оплаченными
+  // жемчужинами стоял 0, и владелец не мог понять, дошли деньги или нет.
+  // Считаем настоящий баланс по external_economy_events — той же коллекции,
+  // по которой его считает приложение.
+  //
+  // Firebase-экономия: читаем ТОЛЬКО видимую страницу (25–50 строк, не весь
+  // список в 10k), результат кэшируем на сессию, параллелим пачками по 8 —
+  // иначе открытие вкладки превратилось бы в тысячи чтений.
+  window._shardBalanceCache = window._shardBalanceCache || {};
+  async function fillVisibleShardBalances(pageUsers) {
+    const paint = (uid, value, hint) => {
+      document.querySelectorAll(`[data-shard-balance-uid="${CSS.escape(uid)}"]`).forEach((el) => {
+        el.innerHTML = `💎 ${escapeHtml(String(value))}`;
+        if (hint) el.title = hint;
+      });
+    };
+    const pending = [];
+    for (const u of pageUsers || []) {
+      const cached = window._shardBalanceCache[u.uid];
+      if (cached !== undefined) { paint(u.uid, cached); continue; }
+      pending.push(u.uid);
+    }
+    for (let i = 0; i < pending.length; i += 8) {
+      await Promise.all(pending.slice(i, i + 8).map(async (uid) => {
+        try {
+          const snap = await getDocs(collection(db, 'users', uid, 'external_economy_events'));
+          let total = 0;
+          snap.docs.forEach((d) => { total += toSafeNumber((d.data() || {}).delta, 0); });
+          // Долг после рефанда не показываем минусом — как и кошелёк в приложении.
+          const value = Math.max(0, total);
+          window._shardBalanceCache[uid] = value;
+          paint(uid, value, `Сумма подтверждённых событий кошелька (${snap.size})`);
+        } catch {
+          paint(uid, '—', 'Не удалось прочитать события кошелька');
+        }
+      }));
+    }
+  }
 
   window.changePage = function(delta) {
     window._currentPage = (window._currentPage || 0) + delta;

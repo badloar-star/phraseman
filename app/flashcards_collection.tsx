@@ -75,6 +75,7 @@ import {
   applyPostLoadNavigation,
   useCollectionData,
   useCollectionDeletion,
+  primeFlashcardsCollectionCache,
   useDerivedCollectionCards,
   useFlashcardViewTracking,
   usePackBrowseVisual,
@@ -333,6 +334,21 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     previewPackId: previewRequested ? packDeeplink : null,
     deeplinkPackId: packDeeplink,
   });
+
+  /**
+   * зачем (владелец, 2026-08-16): «все разделы должны быть уже загружены, когда
+   * открываем карточки». Корень раздела греет общий кэш подразделов — тогда
+   * «Мои наборы» / «Наборы сообщества» открываются готовыми, а не рисуют сначала
+   * пустое состояние. Прогрев идёт мимо первого кадра (после интеракций) и
+   * кэшируется в модуле, поэтому вход в раздел за него не платит.
+   */
+  useEffect(() => {
+    if (!sectionRoot) return;
+    const task = InteractionManager.runAfterInteractions(() => {
+      primeFlashcardsCollectionCache(studyTarget);
+    });
+    return () => task.cancel();
+  }, [sectionRoot, studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
@@ -757,16 +773,16 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
 
         {isEmpty ? (
           <ContentWrap>
-            {/* зачем: ЕДИНСТВЕННОЕ пустое состояние экрана. Раньше их было два —
-                своё у списка и это; на входе они показывались друг за другом и
-                читались как моргание. Поиск без результата — тот же блок, только
-                с другой подписью, а не отдельная заглушка. */}
+            {/* зачем (владелец, 2026-08-16): ОДНО состояние, без вариантов.
+                Раньше подпись переключалась «Ничего не найдено» ↔ «Нет карточек»
+                в зависимости от поиска — два разных текста в одном месте читались
+                как смена состояний. «Ничего не найдено» удалено полностью. */}
             <CollectionEmptyState
               lang={strLang}
               t={t}
               f={f}
-              emptyTitle={searchActive ? s.nothingFound : s.empty}
-              emptySub={searchActive ? '' : s.emptySub}
+              emptyTitle={s.empty}
+              emptySub={s.emptySub}
               searchActive={searchActive}
               loadError={loadError}
               onLeave={openCommunityPacks}

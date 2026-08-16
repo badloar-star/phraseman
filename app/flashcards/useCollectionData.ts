@@ -160,6 +160,15 @@ export function primeFlashcardsCollectionCache(studyTarget?: RuntimeStudyTarget)
     readCustomCards(studyTarget).catch(() => null),
     loadAccessiblePackIds(studyTarget).catch((): string[] => []),
     loadBuiltMarketplaceCardsCache().catch((): null => null),
+    /**
+     * зачем (владелец, 2026-08-16, «все разделы должны быть уже загружены, когда
+     * открываем карточки»): без каталога наборов экран «Мои наборы» стартовал
+     * пустым — его синхронная гидратация (peekMyPacksGroups) читает именно
+     * warmMarketplacePacks. Греем здесь же: раздел один, и его подразделы должны
+     * открываться готовыми, а не досоздаваться по одному.
+     * Результат кэшируется в модуле marketplace, повторных чтений не будет.
+     */
+    loadMarketplacePacks(studyTarget).catch((): FlashcardMarketPack[] => []),
   ]).then(([saved, rawCustom]) => {
     _savedCardsCache = saved.map(savedToCard);
     _customCardsCache = Array.isArray(rawCustom) ? (rawCustom as CardItem[]) : [];

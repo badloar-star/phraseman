@@ -119,7 +119,7 @@ export const DEV_TOOL_SECTIONS = [
   },
   {
     id: 'onboarding-tools',
-    order: 30,
+    order: 5,
     title: 'Онбординг',
     icon: 'rocket-outline',
     testID: 'dev-section-onboarding',

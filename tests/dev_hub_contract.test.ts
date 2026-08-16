@@ -64,7 +64,7 @@ describe('DEV center bottom sheet', () => {
     jest.resetModules();
     const { getOrderedDevToolSections } = require('../components/dev/devToolRegistry');
     const ordered = getOrderedDevToolSections();
-    expect(ordered.map((section: { id: string }) => section.id)).toEqual(['level-previews', 'subscription', 'onboarding-tools']);
+    expect(ordered.map((section: { id: string }) => section.id)).toEqual(['onboarding-tools', 'level-previews', 'subscription']);
     expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'level-standard',
       'level-milestone',

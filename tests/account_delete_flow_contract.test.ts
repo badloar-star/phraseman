@@ -435,4 +435,24 @@ describe('account deletion rebuilt flow contract', () => {
       expect(override?.indexes).toContainEqual({ order: 'ASCENDING', queryScope: 'COLLECTION_GROUP' });
     }
   });
+
+  /**
+   * Инцидент 2026-08-16: замок удаления в Keychain было НЕЧЕМ снять.
+   * clearAccountDeletePendingAuthLock() существовала, но не вызывалась
+   * ниоткуда, а ветка «local_cleared + анонимный пользователь» возвращала
+   * false навсегда. Замок переживает переустановку приложения, поэтому
+   * человек, удаливший аккаунт, оставался заперт даже после сноса — для
+   * App Store это блокер (повторная регистрация невозможна).
+   */
+  it('releases the local deletion lock once the local exit is finished', () => {
+    expect(accountDeleteQuarantineSource).toContain('export async function clearAccountDeletePendingAuthLock');
+    // Функция обязана иметь живого вызывающего: без этого замок неснимаем.
+    expect(authProvider).toContain('await clearAccountDeletePendingAuthLock()');
+    // Тупиковая ветка не должна вернуться: локальный выход доделан —
+    // выпускаем человека, а не запираем.
+    const deadEnd = /phase === 'local_cleared'[\s\S]{0,120}isAnonymous === true\)\s*\{\s*return false;/;
+    expect(authProvider).not.toMatch(deadEnd);
+    // Даже если снять замок не удалось — не запираем молча.
+    expect(authProvider).toContain('auth_account_delete_lock_release_failed');
+  });
 });

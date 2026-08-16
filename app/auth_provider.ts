@@ -53,6 +53,7 @@ import type { AccountDeleteEnqueueOperation } from './account_delete_enqueue';
 import {
   ACCOUNT_DELETE_PENDING_AUTH_TTL_MS,
   cleanAccountDeleteLockId,
+  clearAccountDeletePendingAuthLock,
   createAccountDeleteOperationId,
   inspectAccountDeletePendingAuth,
   isAccountDeleteGuardNoLockSeenError,

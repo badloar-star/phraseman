@@ -76,6 +76,39 @@ import { getCanonicalUserId } from '../user_id_policy';
 let _savedCardsCache: CardItem[] | null = null;
 let _customCardsCache: CardItem[] | null = null;
 
+/**
+ * Тот же набор карточек? Сравниваем по id и полям, которые реально видно в
+ * списке. Нужно, чтобы повторный вход в раздел не подменял state новым массивом
+ * с идентичным содержимым: новая ссылка перерисовывала бы весь список зря
+ * (репорт владельца «при открытии раздела карточек прыгают состояния»).
+ * Полное глубокое сравнение здесь дороже самой перерисовки, поэтому его нет.
+ */
+/** Тот же список id? Тот же смысл, что и у sameCardList, но для owned-паков. */
+function sameIdList(a: readonly string[], b: readonly string[]): boolean {
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i += 1) if (a[i] !== b[i]) return false;
+  return true;
+}
+
+function sameCardList(a: readonly CardItem[], b: readonly CardItem[]): boolean {
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i += 1) {
+    const x = a[i]!;
+    const y = b[i]!;
+    if (
+      x.id !== y.id
+      || x.en !== y.en
+      || x.ru !== y.ru
+      || x.uk !== y.uk
+      || x.es !== y.es
+      || x.transcription !== y.transcription
+    ) return false;
+  }
+  return true;
+}
+
 // Built once per app session — lazy dynamic import so the ~2 MB lesson data
 // files are NOT loaded at startup (only when a card actually needs migration).
 let _enToUkCache: Map<string, string> | null = null;
@@ -196,6 +229,32 @@ export function useCollectionData(opts: {
   const previewPackIdRef = useRef<string | null>(opts.previewPackId ?? null);
   previewPackIdRef.current = opts.previewPackId ?? null;
 
+  /**
+   * FIX (владелец, 2026-08-16) «при открытии раздела карточек прыгают состояния»:
+   * loadAll зовётся из useFocusEffect при КАЖДОМ входе, в том числе когда данные
+   * уже в кэше и не изменились. Он раздавал новые массивы (`saved.map(savedToCard)`
+   * создаёт новые объекты каждый раз), новая ссылка меняла state, и весь список
+   * перерисовывался заново — это и читалось как прыжок при входе.
+   *
+   * Сеттер ниже сравнивает по составу и оставляет ПРЕЖНЮЮ ссылку, когда набор
+   * карточек тот же. Тогда повторный вход не даёт ни одной лишней перерисовки.
+   * Сравниваем по id и полям, которые видно в списке: полное глубокое сравнение
+   * на каждый фокус дороже самой перерисовки.
+   */
+  const setCardsIfChanged = useCallback(
+    (setter: React.Dispatch<React.SetStateAction<CardItem[]>>, next: CardItem[]) => {
+      setter((prev) => (sameCardList(prev, next) ? prev : next));
+    },
+    [],
+  );
+  /** То же для owned-списков: они пишутся 6 раз за один вход, почти всегда тем же составом. */
+  const setIdsIfChanged = useCallback(
+    (setter: React.Dispatch<React.SetStateAction<string[]>>, next: string[]) => {
+      setter((prev) => (sameIdList(prev, next) ? prev : next));
+    },
+    [],
+  );
+
   const [savedCards, setSavedCards] = useState<CardItem[]>(_savedCardsCache ?? []);
   const [customCards, setCustomCards] = useState<CardItem[]>(_customCardsCache ?? []);
   const [marketCards, setMarketCards] = useState<CardItem[]>(() => {
@@ -275,17 +334,17 @@ export function useCollectionData(opts: {
         builtMarketCache.ownedKey === cacheKeyEarly &&
         builtMarketCache.cards.length > 0;
       if (cacheHit) {
-        setMarketCards(builtMarketCache.cards);
-        setOwnedPackIdList(ownedIdsEarly);
-        setCommunityOwnedIdList(communityOwnedEarly);
+        setCardsIfChanged(setMarketCards, builtMarketCache.cards);
+        setIdsIfChanged(setOwnedPackIdList, ownedIdsEarly);
+        setIdsIfChanged(setCommunityOwnedIdList, communityOwnedEarly);
         setMarketPackCatalog(reserveBundledMarketPacks());
       } else if (ownedIdsEarly.length > 0 || communityOwnedEarly.length > 0) {
         /** Одразу з бандла — не чекаємо Firestore у `marketPromise`, інакше `?pack=` показує порожній custom. */
-        setOwnedPackIdList(ownedIdsEarly);
-        setCommunityOwnedIdList(communityOwnedEarly);
+        setIdsIfChanged(setOwnedPackIdList, ownedIdsEarly);
+        setIdsIfChanged(setCommunityOwnedIdList, communityOwnedEarly);
         const ownedBundled = bundledPacksForOwned(ownedIdsEarly);
         if (ownedBundled.length > 0) {
-          setMarketCards(buildMarketplaceOwnedCards(ownedBundled));
+          setCardsIfChanged(setMarketCards, buildMarketplaceOwnedCards(ownedBundled));
         }
         setMarketPackCatalog(reserveBundledMarketPacks());
       }
@@ -301,8 +360,10 @@ export function useCollectionData(opts: {
       if (mustDelayForEmptyMarketOnly) setLoading(true);
       _savedCardsCache = mappedSavedQuick;
       _customCardsCache = custom;
-      setSavedCards(mappedSavedQuick);
-      setCustomCards(custom);
+      // Повторный вход с тем же содержимым не должен менять ссылку (см. sameCardList),
+      // иначе список перерисовывается целиком и это видно как прыжок.
+      setCardsIfChanged(setSavedCards, mappedSavedQuick);
+      setCardsIfChanged(setCustomCards, custom);
       setLoadError(false);
       if (!mustDelayForEmptyMarketOnly) setLoading(false);
 
@@ -337,7 +398,9 @@ export function useCollectionData(opts: {
         }
         const mappedAfter = migratedLocal.map(savedToCard);
         _savedCardsCache = mappedAfter;
-        setSavedCards(mappedAfter);
+        // Миграция чаще всего ничего не меняет (уже мигрированные карточки) —
+        // тогда список не должен дёргаться повторной отрисовкой.
+        setCardsIfChanged(setSavedCards, mappedAfter);
         return migratedLocal;
       })();
 
@@ -356,8 +419,8 @@ export function useCollectionData(opts: {
         const localAuthoredCards = localAuthored
           .filter((p) => localAuthoredIds.includes(p.id))
           .flatMap(localAuthorPackCardItems);
-        setOwnedPackIdList(ownedIds);
-        setCommunityOwnedIdList([...communityOwnedIds, ...localAuthoredIds]);
+        setIdsIfChanged(setOwnedPackIdList, ownedIds);
+        setIdsIfChanged(setCommunityOwnedIdList, [...communityOwnedIds, ...localAuthoredIds]);
         const mergedCatalog: FlashcardMarketPack[] = [...marketPacks];
         const seenCat = new Set(marketPacks.map((p) => p.id));
         for (const cp of communityPublished) {
@@ -395,7 +458,9 @@ export function useCollectionData(opts: {
           Promise.all(previewIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((): CardItem[] => []))),
         ]);
         const builtMarket = [...officialBuilt, ...communityCardLists.flat()];
-        setMarketCards([...builtMarket, ...previewCardLists.flat(), ...localAuthoredCards]);
+        // Финальный состав маркета почти всегда совпадает с тем, что уже показано
+        // из кэша — тогда перерисовки быть не должно (см. sameCardList).
+        setCardsIfChanged(setMarketCards, [...builtMarket, ...previewCardLists.flat(), ...localAuthoredCards]);
         /**
          * Локальные наборы в кэш не пишем: они меняются на устройстве и всегда читаются заново.
          * Просматриваемый (ещё не добавленный) набор в кэш «моих» тоже не попадает.

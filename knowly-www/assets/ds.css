@@ -119,10 +119,10 @@
    106.25% (17px): все кегли заданы в rem и растут пропорционально, вёрстка
    не ломается. Настройка размера шрифта в браузере при этом продолжает
    работать — в отличие от жёстких пикселей. */
-/* зачем: слои во всю ширину экрана (аврора, подсветка секций) считаются от
-   100vw, куда входит и полоса прокрутки — без этого страница уезжала вправо.
-   Гасим на корне: так работает во всех браузерах, включая Safari. */
-html { scroll-behavior: smooth; font-size: 106.25%; overflow-x: hidden; max-width: 100%; }
+/* зачем: overflow-x:hidden держим ТОЛЬКО на body. На html вместе с
+   max-width он ломал вертикальную прокрутку в мобильном режиме — страница
+   не листалась и анимация появления не могла сработать. */
+html { scroll-behavior: smooth; font-size: 106.25%; }
 body {
   background-color: var(--bg);
   background-image:
@@ -138,7 +138,9 @@ body {
   line-height: 1.6;
   /* зачем: слои во всю ширину экрана (аврора, подсветка секций) считаются от
      100vw, куда входит и полоса прокрутки — без этого появлялся лишний
-     горизонтальный сдвиг страницы вправо. Было и на старом сайте. */
+     горизонтальный сдвиг страницы вправо. clip (не hidden): он режет
+     выступы, но НЕ превращает body в скролл-контейнер — вертикальная
+     прокрутка и липкая шапка работают как обычно. hidden — запасной. */
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   transition: background-color .25s ease, color .25s ease;
@@ -187,8 +189,14 @@ header.site-head {
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
-.nav { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 20px; }
-.nav-links { display: flex; gap: 28px; align-items: center; }
+/* зачем: аудит 2026-08-16 — на 1024px шапка вылезала за край на 26px:
+   меню с шестью пунктами + кнопки справа не помещались, а min-width flex-
+   элементов по умолчанию auto не даёт им сжаться. Разрешаем сжатие, зазоры
+   меню — от ширины экрана. */
+.nav { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 16px; min-width: 0; }
+.nav-links { display: flex; gap: clamp(14px, 2vw, 28px); align-items: center; min-width: 0; flex-shrink: 1; }
+.nav-right { flex-shrink: 0; }
+.logo { flex-shrink: 0; }
 .nav-links a { font-size: 0.9062rem; color: var(--text-muted); transition: color .15s; white-space: nowrap; }
 .nav-links a:hover { color: var(--accent-text); }
 .nav-right { display: flex; align-items: center; gap: 10px; }
@@ -265,9 +273,13 @@ header.site-head {
   color: var(--accent-ink);
   box-shadow: 0 8px 20px -8px rgba(var(--accent-rgb), .5);
 }
+/* зачем: владелец 2026-08-16 — «при нажатии кнопка увеличивается». Размер не
+   менялся, но при наведении фон осветлялся до --accent-1 и тень росла — из-за
+   этого кнопка читалась как раздувшаяся. Наведение теперь лишь чуть
+   подсвечивает, геометрия и вес пятна остаются прежними. */
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  box-shadow: 0 12px 26px -10px rgba(var(--accent-rgb), .6);
+  filter: brightness(1.06);
+  box-shadow: 0 10px 22px -8px rgba(var(--accent-rgb), .55);
 }
 .btn-primary[disabled] { opacity: .6; cursor: progress; }
 .btn-header { padding: 11px 21px; font-size: 0.9rem; }
@@ -279,10 +291,15 @@ header.site-head {
 /* ============ Появление при скролле ============ */
 /* зачем: контент виден по умолчанию, .reveal включается скриптом только когда
    JS жив — иначе при отключённом JS или в поисковом рендере страница пустая */
+/* зачем: владелец 2026-08-16 — «верни анимацию появления блоков при скролле».
+   Блок всплывает снизу вверх (не сверху, как в макете): при прокрутке вниз
+   это читается естественно — контент «поднимается навстречу». Сдвиг 24px
+   заметен, но не мельтешит. */
 .js .reveal {
   opacity: 0;
-  transform: translateY(-18px);
-  transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1);
+  transform: translateY(24px);
+  transition: opacity .65s cubic-bezier(.2, .7, .2, 1), transform .65s cubic-bezier(.2, .7, .2, 1);
+  will-change: opacity, transform;
 }
 /* зачем: владелец 2026-08-16 — меню магазинов раздвигало страницу и текст
    лез поверх него. Причина: любой transform создаёт новый контекст
@@ -308,16 +325,17 @@ header.site-head {
 }
 
 /* Аврора за первым экраном.
-   зачем: владелец 2026-08-16 — «убери полупрозрачные рамки по бокам». Их
-   давал overflow:hidden: он обрезал размытые блики ровно по краям блока, и
-   на тёмном фоне получались чёткие вертикальные грани. Обрезки больше нет,
-   а сам слой растянут во всю ширину экрана — свечение уходит в фон плавно,
-   без единой видимой кромки. Горизонтальную прокрутку держит body. */
+   зачем: аудит 2026-08-16 — любой расчёт ширины через vw давал горизонтальную
+   прокрутку на планшетах и ПК. Слой прибит к окну (fixed) — он всегда ровно
+   с экран, никаких кромок и лишней ширины; закреплён в верхней части, чтобы
+   светить именно за первым экраном. Ниже по странице растворяется маской. */
 .aurora {
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 50%; width: 100vw; margin-left: -50vw;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100vh; height: 100dvh;
   z-index: -1; pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
 }
 .aurora::before, .aurora::after {
   content: ""; position: absolute; width: 72vmax; height: 72vmax; border-radius: 50%;
@@ -394,7 +412,16 @@ header.site-head {
 }
 
 /* ============ Хиро ============ */
-.hero { padding: 64px 0 48px; text-align: center; }
+/* зачем: владелец 2026-08-16 — «при открытии видно только первый экран, всё
+   ниже появляется со скроллом». Хиро занимает всю высоту окна за вычетом
+   шапки, содержимое центрировано по вертикали. dvh учитывает адресную строку
+   на телефоне; svh — запасной вариант, чтобы не прыгало при скрытии панели. */
+.hero {
+  min-height: calc(100svh - 70px);
+  min-height: calc(100dvh - 70px);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 40px 0 56px; text-align: center;
+}
 .eyebrow {
   display: inline-block; font-size: 0.7812rem; font-weight: 700; color: var(--accent-text);
   background: rgba(var(--accent-rgb), .14); border: 1px solid rgba(var(--accent-rgb), .35);
@@ -462,7 +489,7 @@ h1.hero-title {
 .section-alt { background: none; }
 .section-alt::before {
   content: ""; position: absolute; z-index: -1; pointer-events: none;
-  top: 0; bottom: 0; left: 50%; width: 100vw; margin-left: -50vw;
+  inset: 0;
   background: linear-gradient(180deg, transparent, rgba(var(--accent-rgb), .05) 45%, transparent);
 }
 
@@ -651,7 +678,10 @@ footer.site-foot { border-top: 1px solid var(--border); padding: 26px 0; }
 .prose td { color: var(--text-muted); }
 
 /* ============ Адаптив ============ */
-@media (max-width: 900px) {
+/* зачем: аудит 2026-08-16 — на 1024px шесть пунктов меню плюс кнопки не
+   помещались в строку и вылезали за край. Меню уходит в бургер уже с 1060px;
+   перестройка сеток остаётся с 900px, как задумано. */
+@media (max-width: 1060px) {
   .nav-links {
     position: fixed; top: 70px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border);
     flex-direction: column; align-items: flex-start; padding: 18px 24px; gap: 16px;
@@ -660,6 +690,8 @@ footer.site-foot { border-top: 1px solid var(--border); padding: 26px 0; }
   }
   .nav-links.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
   .menu-toggle { display: flex; }
+}
+@media (max-width: 900px) {
   .approach-grid { grid-template-columns: 1fr; gap: 40px; }
   .reviews-grid { grid-template-columns: 1fr 1fr; }
   .guides-grid { grid-template-columns: 1fr; }
@@ -670,7 +702,9 @@ footer.site-foot { border-top: 1px solid var(--border); padding: 26px 0; }
 }
 /* Планшеты и широкие телефоны */
 @media (max-width: 700px) {
-  .wrap { padding: 0 18px; }
+  /* зачем: владелец 2026-08-16 — «на телефоне всё упирается в края».
+     20px по бокам — комфортный воздух, как в системных приложениях. */
+  .wrap { padding: 0 20px; }
   .nav { height: 62px; gap: 10px; }
   .nav-links { top: 62px; }
   /* зачем: владелец 2026-08-16 — «иконка и текст Phraseman упирается в
@@ -689,7 +723,7 @@ footer.site-foot { border-top: 1px solid var(--border); padding: 26px 0; }
 /* Телефоны */
 @media (max-width: 560px) {
   .reviews-grid { grid-template-columns: 1fr; }
-  .hero { padding: 44px 0 40px; }
+  .hero { min-height: calc(100svh - 62px); min-height: calc(100dvh - 62px); padding: 28px 0 40px; }
   .section-pad { padding: 48px 0; }
   .store-menu { width: min(288px, calc(100vw - 36px)); }
 
@@ -719,7 +753,7 @@ footer.site-foot { border-top: 1px solid var(--border); padding: 26px 0; }
 
 /* Узкие телефоны (iPhone SE, 360px и меньше) */
 @media (max-width: 380px) {
-  .wrap { padding: 0 14px; }
+  .wrap { padding: 0 16px; }
   .btn-header { padding: 8px 12px; font-size: 0.78rem; }
   .lang-toggle button { padding: 5px 7px; }
   .nav-right { gap: 5px; }

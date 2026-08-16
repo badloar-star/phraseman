@@ -854,11 +854,29 @@ async function handleShardPurchaseEvent(
 
       const match = await resolvePremiumOwnerRef(tx, db, candidates);
       if (match.status !== 'resolved') {
-        return {
-          granted: false,
-          reason: match.reason,
-          retryable: match.status === 'missing',
-        };
+        // зачем: инцидент 2026-08-16 — оплачен пакет «80 + 12 бонусных», не
+        // начислено ничего, владелец узнал из письма покупателя. При исходе
+        // 'ambiguous' ветка отдавала 200 OK: RevenueCat считал доставку
+        // успешной и больше НИКОГДА не повторял событие — деньги списаны,
+        // жемчужин нет, следов нет. И 'missing', и 'ambiguous' означают лишь
+        // «пока не знаем, кому начислить» (аккаунт ещё не долетел, личности
+        // не слиты), а не «начислять некому». Оба — retry, как в премиум-ветке.
+        tx.set(
+          db.collection('revenuecat_shard_denials').doc(transactionId),
+          {
+            reason: match.reason,
+            productId,
+            packId: pack.packId,
+            shards: pack.shards,
+            candidates,
+            ...(match.status === 'ambiguous' ? { ownerUids: match.ownerUids } : {}),
+            eventId: cleanId(event.id),
+            eventTimestampMs: eventMs(event.event_timestamp_ms),
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+          },
+          { merge: true },
+        );
+        return { granted: false, reason: match.reason, retryable: true };
       }
 
       const { uid, ref: userRef } = match;
@@ -1616,6 +1634,11 @@ export const __revenueCatWebhookTestHooks = {
   revenueCatLifecycleReasonFields,
   handleTransferEvent,
   handlePremiumSubscriptionEvent,
+  // зачем в хуки (2026-08-16): ветка покупки жемчужин проверялась ЧТЕНИЕМ
+  // ИСХОДНИКА — такой тест зелёный, даже если логика сломана. Для оплаченной
+  // покупки этого мало: инцидент как раз в том, что деньги списаны, а
+  // начисления нет. Нужна проверка поведения, а не текста.
+  handleShardPurchaseEvent,
   handleShardRefundEvent,
   handleShardRefundReversedEvent,
   qualifyReferralFromVerifiedPremiumOutcome,

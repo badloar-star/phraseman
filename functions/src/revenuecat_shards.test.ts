@@ -418,6 +418,31 @@ describe('RevenueCat premium lineage transaction contract', () => {
   });
 });
 
+describe('RevenueCat shard purchase never silently drops paid pearls', () => {
+  const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
+  const shardHandler = source.slice(
+    source.indexOf('async function handleShardPurchaseEvent'),
+    source.indexOf('async function handleShardRefundReversedEvent'),
+  );
+
+  // зачем: инцидент 2026-08-16 — покупатель оплатил пакет «80 + 12 бонусных»
+  // и не получил ничего. Владелец разбирался по письму от самого покупателя.
+  // Причина: при неразрешённом владельце ветка отвечала RevenueCat 200 OK,
+  // провайдер считал доставку успешной и НИКОГДА не повторял событие. Деньги
+  // списаны, жемчужин нет, следов в Firestore нет. Ровно такую же ситуацию
+  // премиум-ветка уже обрабатывает правильно — пишет denial-квитанцию.
+  it('retries every unresolved owner outcome instead of answering 200 OK', () => {
+    // 'missing' и 'ambiguous' одинаково означают «мы пока не знаем, кому
+    // начислить» — оба обязаны попасть под retry, иначе оплата теряется.
+    expect(shardHandler).not.toContain("retryable: match.status === 'missing'");
+    expect(shardHandler).toContain("retryable: true");
+  });
+
+  it('leaves a denial receipt so an unresolved paid purchase is visible to the owner', () => {
+    expect(shardHandler).toContain("revenuecat_shard_denials");
+  });
+});
+
 describe('RevenueCat shard refund durable identity', () => {
   it('rejects missing immutable event identity/time instead of using a Date.now idempotency key', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
@@ -555,6 +580,109 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
       await __revenueCatWebhookTestHooks.handleTransferEvent(event, 'TRANSFER', res);
       expect(res.body).toMatchObject({ ok: true, moved: false, reason: 'duplicate' });
       expect(store.users['stable-2'].progress.premium_plan).toBeUndefined(); // untouched
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+});
+
+describe('Оплаченные жемчужины при неизвестном владельце — поведение, а не текст', () => {
+  // зачем этот блок отдельно от проверок исходника выше (2026-08-16): те
+  // тесты читают ТЕКСТ функции и остаются зелёными, даже если логика
+  // сломана. Для оплаченной покупки этого мало — инцидент как раз в том,
+  // что деньги списаны, а начисления нет и следов нет.
+
+  function setup() {
+    const admin = require('firebase-admin');
+    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
+    const writes: Array<{ collection: string; id: string; data: any }> = [];
+    const ref = (collection: string, id: string) => ({
+      collection,
+      id,
+      // Никого не находим: ни пользователя, ни маркеров удаления —
+      // это и есть «владелец не разрешён».
+      get: async () => ({ exists: false, data: () => undefined }),
+    });
+    const db: any = {
+      collection: (collection: string) => ({
+        doc: (id: string) => ref(collection, id),
+        where: () => ({ limit: () => ({ get: async () => ({ empty: true, docs: [] }) }) }),
+      }),
+      runTransaction: async (work: (tx: any) => Promise<unknown>) => work({
+        get: (documentRef: any) => documentRef.get(),
+        set: (documentRef: any, data: any) => writes.push({
+          collection: documentRef.collection, id: documentRef.id, data,
+        }),
+      }),
+      getAll: async () => [],
+    };
+    const realFieldValue = admin.firestore.FieldValue;
+    const fsMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+    fsMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    const res: any = { statusCode: 0, body: null };
+    res.status = (code: number) => { res.statusCode = code; return res; };
+    res.json = (body: any) => { res.body = body; return res; };
+    res.send = (body: any) => { res.body = body; return res; };
+    return { admin, writes, res };
+  }
+
+  const EVENT = {
+    id: 'evt-shards-unresolved',
+    type: 'NON_RENEWING_PURCHASE',
+    app_id: 'app.phraseman',
+    environment: 'PRODUCTION',
+    store: 'APP_STORE',
+    transaction_id: 'tx-unresolved',
+    original_transaction_id: 'tx-unresolved',
+    product_id: 'shards_pack_80',
+    event_timestamp_ms: 3_000_000,
+    purchased_at_ms: 3_000_000,
+    app_user_id: '$RCAnonymousID:nobody',
+  } as any;
+
+  const PACK = { packId: 'pack_80', shards: 80 };
+
+  it('отвечает 503, чтобы провайдер повторил, а не считал доставку успешной', async () => {
+    // зачем именно 503: на 200 OK RevenueCat закрывает событие НАВСЕГДА.
+    // Оплата остаётся у нас, жемчужины — нигде.
+    const { admin, res } = setup();
+    try {
+      await __revenueCatWebhookTestHooks.handleShardPurchaseEvent(
+        EVENT, 'NON_RENEWING_PURCHASE', 'shards_pack_80', PACK, res,
+      );
+      expect(res.statusCode).toBe(503);
+      expect(res.body).toMatchObject({ ok: false, granted: false });
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+
+  it('оставляет квитанцию, чтобы потерянная оплата была видна владельцу', async () => {
+    // зачем: без записи инцидент виден только из письма покупателя —
+    // ровно так владелец о нём и узнал.
+    const { admin, writes, res } = setup();
+    try {
+      await __revenueCatWebhookTestHooks.handleShardPurchaseEvent(
+        EVENT, 'NON_RENEWING_PURCHASE', 'shards_pack_80', PACK, res,
+      );
+      const denial = writes.find((w) => w.collection === 'revenuecat_shard_denials');
+      expect(denial).toBeDefined();
+      expect(denial!.data).toMatchObject({ shards: 80, packId: 'pack_80' });
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+
+  it('никому не начисляет жемчужины, пока владелец не известен', async () => {
+    // зачем: «начислить хоть кому-нибудь» хуже потери — это выдача денег
+    // постороннему человеку.
+    const { admin, writes, res } = setup();
+    try {
+      await __revenueCatWebhookTestHooks.handleShardPurchaseEvent(
+        EVENT, 'NON_RENEWING_PURCHASE', 'shards_pack_80', PACK, res,
+      );
+      expect(writes.some((w) => w.collection === 'external_economy_events')).toBe(false);
     } finally {
       (admin.firestore as jest.Mock).mockRestore();
     }

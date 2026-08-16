@@ -14,19 +14,20 @@ import { ArenaRewards } from '../../../arena/ArenaRewards';
 import { ArenaPlayers } from '../../../arena/ArenaPlayers';
 import { ArenaTimerRing } from '../../../arena/ArenaTimerRing';
 import type { ArenaPlayer } from '../../../../modules/arena/contract';
+import { cs } from '../showcase_copy';
 
 // зачем: демо-игроки для рендера ArenaPlayers/ArenaVersusIntro — статичные
 // данные, ничего не читают из сети и не пишут в прогресс/деньги.
 const DEMO_YOU: ArenaPlayer = {
   uid: 'demo-you',
-  name: 'Ты',
+  name: cs('arena_demo_you_name'),
   rank: 1,
   score: 4,
   correct: 4,
 };
 const DEMO_OPPONENT: ArenaPlayer = {
   uid: 'demo-opponent',
-  name: 'Алекс',
+  name: cs('arena_demo_opponent_name'),
   rank: 2,
   score: 3,
   correct: 3,
@@ -35,16 +36,16 @@ const DEMO_OPPONENT: ArenaPlayer = {
 export const SECTION: ShowcaseSection = {
   id: 'arena_rewards',
   order: 25,
-  title: 'Арена · ранги и итоги',
+  title: cs('arena_rewards_section_title'),
   items: [
     {
       id: 'arena-rank-change-banner',
-      title: 'Баннер смены ранга',
-      detail: 'реальный компонент — демо-данные, подъём на 3 позиции',
+      title: cs('arena_rank_change_banner_title'),
+      detail: cs('arena_rank_change_banner_detail'),
       kind: 'render',
       render: ({ onClose }) => React.createElement(RankChangeBanner, {
         delta: 3,
-        passedName: 'Алекс',
+        passedName: cs('arena_demo_opponent_name'),
         lostToName: null,
         lang: 'ru',
         duration: 0,
@@ -53,22 +54,22 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'arena-versus-intro',
-      title: 'Старт матча: соперник → 3-2-1 → GO',
-      detail: 'реальный компонент — демо-игроки, звук/хаптик реальные',
+      title: cs('arena_versus_intro_title'),
+      detail: cs('arena_versus_intro_detail'),
       kind: 'render',
       render: ({ onClose }) => React.createElement(ArenaVersusIntro, {
         you: DEMO_YOU,
         opponent: DEMO_OPPONENT,
-        goLabel: 'СТАРТ',
+        goLabel: cs('arena_versus_go_label'),
         onDone: onClose,
       }),
     },
     {
       id: 'arena-star-flight',
-      title: 'Полёт звёзд в кошелёк',
+      title: cs('arena_star_flight_title'),
       // зачем: from/to — условные точки на экране витрины (не завязаны на
       // реальный счётчик звёзд), сама траектория и приземления настоящие.
-      detail: 'реальный компонент — демо-траектория, 5 звёзд',
+      detail: cs('arena_star_flight_detail'),
       kind: 'render',
       render: ({ onClose }) => React.createElement(ArenaStarFlight, {
         amount: 5,
@@ -79,30 +80,30 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'arena-rewards-known',
-      title: 'Награда за матч (известна)',
-      detail: 'реальный компонент — демо-награда +12 звёзд, рейтинг +18',
+      title: cs('arena_rewards_known_title'),
+      detail: cs('arena_rewards_known_detail'),
       kind: 'render',
       render: () => React.createElement(ArenaRewards, {
         reward: { starsEarned: 12, ratingDelta: 18 },
-        starsLabel: 'звёзд за матч',
+        starsLabel: cs('arena_stars_label'),
       }),
     },
     {
       id: 'arena-rewards-pending',
-      title: 'Награда за матч (ещё не пришла)',
+      title: cs('arena_rewards_pending_title'),
       // зачем: reward=undefined — честное «пока не знаю», а не «+0»; ровно
       // то состояние, которое чинил ArenaRewards (см. комментарий в файле).
-      detail: 'реальный компонент — состояние «отчёт в очереди»',
+      detail: cs('arena_rewards_pending_detail'),
       kind: 'render',
       render: () => React.createElement(ArenaRewards, {
         reward: undefined,
-        starsLabel: 'звёзд за матч',
+        starsLabel: cs('arena_stars_label'),
       }),
     },
     {
       id: 'arena-players-row',
-      title: 'Счёт матча (ты vs соперник)',
-      detail: 'реальный компонент — демо-счёт 4:3',
+      title: cs('arena_players_row_title'),
+      detail: cs('arena_players_row_detail'),
       kind: 'render',
       render: () => React.createElement(ArenaPlayers, {
         players: [DEMO_YOU, DEMO_OPPONENT],
@@ -112,8 +113,8 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'arena-timer-ring',
-      title: 'Кольцо таймера ответа',
-      detail: 'реальный компонент — демо-длительность 12с, тик и тревога настоящие',
+      title: cs('arena_timer_ring_title'),
+      detail: cs('arena_timer_ring_detail'),
       kind: 'render',
       render: ({ onClose }) => React.createElement(ArenaTimerRing, {
         durationMs: 12_000,
@@ -122,14 +123,14 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'arena-results-screen',
-      title: 'Экран итогов матча',
+      title: cs('arena_results_screen_title'),
       // зачем: /arena_results читает matchId из useLocalSearchParams и живой
       // матч через useArenaMatch(matchId) — без реального завершённого
       // матча на сервере экран навсегда останется в состоянии загрузки
       // (нет ветки graceful-empty на отсутствующий matchId). Безопасного
       // демо-запуска без реальных серверных данных матча нет.
       kind: 'note',
-      note: 'нет безопасного демо: экран требует реальный matchId завершённого матча с сервера',
+      note: cs('arena_results_screen_note'),
     },
   ],
 };

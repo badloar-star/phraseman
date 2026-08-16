@@ -334,6 +334,36 @@ header.site-head {
   .grain { opacity: .22; }
 }
 
+/* Искры, разлетающиеся из точки нажатия (возвращено со старого сайта).
+   зачем: владелец 2026-08-16 — «верни анимации кликов». Восемь коротких
+   штрихов разлетаются от курсора и гаснут за полсекунды. Рисуются внутри
+   кнопки, поэтому ей нужен overflow:hidden — он уже задан ради блика. */
+.spark {
+  position: absolute; left: 0; top: 0;
+  width: 3px; height: 14px; border-radius: 2px;
+  background: #fff; pointer-events: none; z-index: 9;
+}
+/* Искры рисуются внутри кнопки, поэтому ей нужны точка отсчёта и обрезка */
+.btn, .btn-gold, .tg-btn { position: relative; overflow: hidden; }
+/* На светлой теме белые искры не видны на белой кнопке-контуре */
+.btn-outline .spark { background: var(--accent-2); }
+
+/* Отклик нажатия: элемент слегка «проседает» под пальцем/курсором */
+.btn:active { transform: scale(.97); }
+.icon-btn:active { transform: scale(.9); }
+.store-btn:active, .store-card:active { transform: scale(.985); }
+.nav-links a:active, .footer-links a:active { opacity: .65; }
+.faq-q:active { opacity: .8; }
+.gift-option:active { transform: scale(.985); }
+.level-langs button:active { transform: scale(.94); }
+.guide-card:active { transform: scale(.995); }
+/* Мгновенный отклик без задержки подсветки на тач-экранах */
+.btn, .icon-btn, .store-btn, .store-card, .gift-option,
+.level-langs button, .faq-q, .guide-card {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
 /* Блик, пробегающий по главной кнопке */
 @media (prefers-reduced-motion: no-preference) {
   .btn-primary { overflow: hidden; }

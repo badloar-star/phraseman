@@ -206,6 +206,65 @@
     }, 2500);
   })();
 
+  /* ============ Искры по клику (возвращено со старого сайта) ============
+     зачем: владелец 2026-08-16 — «верни анимации кликов». Восемь штрихов
+     разлетаются из точки нажатия и гаснут за полсекунды. Работает на всех
+     главных кнопках сайта; при системной настройке «меньше движения» и на
+     клавиатурных нажатиях (нет координат) эффект молчит. */
+  (function sparks() {
+    if (reduceMotion) return;
+    if (typeof Element.prototype.animate !== 'function') return; /* старые браузеры */
+
+    var COUNT = 8;
+    var DISTANCE = 46;
+    var DURATION = 520;
+
+    function burst(event, btn) {
+      if (!event.clientX && !event.clientY) return; /* нажали с клавиатуры */
+      var rect = btn.getBoundingClientRect();
+      var x = event.clientX - rect.left;
+      var y = event.clientY - rect.top;
+
+      for (var k = 0; k < COUNT; k++) {
+        var spark = document.createElement('i');
+        spark.className = 'spark';
+        spark.setAttribute('aria-hidden', 'true');
+        btn.appendChild(spark);
+
+        var angle = (k / COUNT) * Math.PI * 2;
+        var deg = (angle * 180) / Math.PI + 90;
+        spark.animate(
+          [
+            { transform: 'translate(' + x + 'px,' + y + 'px) rotate(' + deg + 'deg)', opacity: 1 },
+            {
+              transform: 'translate(' + (x + Math.cos(angle) * DISTANCE) + 'px,'
+                + (y + Math.sin(angle) * DISTANCE) + 'px) rotate(' + deg + 'deg) scaleY(.3)',
+              opacity: 0,
+            },
+          ],
+          { duration: DURATION, easing: 'cubic-bezier(.23,1,.32,1)' },
+        );
+        /* Убираем узел, как только анимация доиграла — иначе кнопка
+           обрастает мусором при частых нажатиях. */
+        (function (el) {
+          setTimeout(function () { el.remove(); }, DURATION + 20);
+        })(spark);
+      }
+    }
+
+    /* Делегирование: ловим клики по всем кнопкам разом, включая те, что
+       появились позже (кнопки языка, элементы квиза).
+       зачем: слушаем на ФАЗЕ ПОГРУЖЕНИЯ (true) — обработчик меню магазинов
+       вызывает stopPropagation(), и на всплытии клик до документа уже не
+       доходил, поэтому искры не появлялись. */
+    document.addEventListener('click', function (e) {
+      if (!e.target || !e.target.closest) return;
+      var btn = e.target.closest('.btn-primary, .btn-gold, .js-store-toggle, .tg-btn, .btn-outline');
+      if (!btn) return;
+      burst(e, btn);
+    }, true);
+  })();
+
   /* ============ FAQ-аккордеон ============ */
   (function faq() {
     var questions = document.querySelectorAll('.faq-q');

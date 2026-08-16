@@ -37,7 +37,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { getDeviceBootstrapLocale, triLang, type Lang } from '../constants/i18n';
 import AccountDeletedNotice from './AccountDeletedNotice';
 import { consumeAccountDeletedNotice } from '../app/account_deleted_notice';
-import { softShadow } from '../constants/androidGlow';
+import { noAndroidOutline, softShadow } from '../constants/androidGlow';
 import { ENABLE_DEV_STUDY_TARGET_LANG, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 // зачем: онбординг подтверждает только факт «есть ли 16» (self-attestation), года
 // рождения не спрашиваем — поэтому импортируем attestation-API, а не запись года.
@@ -85,7 +85,6 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 
-import { noAndroidOutline } from '../constants/androidGlow';
 const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 const ONBOARDING_ASSETS = {
   sourceTiktok: require('../assets/images/flow_clean_202607/source_tiktok.webp'),
@@ -206,7 +205,7 @@ const DISCOVERY_OPTIONS: Option<DiscoverySource>[] = [
   { id: 'other', title: 'Другое', icon: 'ellipsis-horizontal-circle-outline', asset: ONBOARDING_ASSETS.sourceOther },
 ];
 
-const LANGUAGE_OPTIONS: Array<Option<StudyTarget> & { code: string; native: string }> = [
+const LANGUAGE_OPTIONS: (Option<StudyTarget> & { code: string; native: string })[] = [
   { id: 'en', code: 'EN', native: 'Английский', title: 'Английский', icon: 'chatbubbles-outline', asset: ONBOARDING_ASSETS.languageEn },
   { id: 'fr', code: 'FR', native: 'Французский', title: 'Французский', icon: 'cafe-outline', asset: ONBOARDING_ASSETS.languageFr },
 ];

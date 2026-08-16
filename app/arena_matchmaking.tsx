@@ -176,12 +176,21 @@ export default function ArenaMatchmakingScreen() {
     const fireAtMs = localStartedAtMsRef.current + botDelayMs + botRetryTick * 2_000;
     const timer = setTimeout(() => {
       quickFallbackRequests.add(requestId);
+      // зачем: пометка снималась только в catch. Если вызов зависал (сеть
+      // моргнула при возврате из фона) и экран перемонтировался, проверка
+      // выше блокировала повтор НАВСЕГДА — бот не приходил вовсе, а человек
+      // смотрел на вечный поиск. Страховка снимает пометку, если ответа нет
+      // дольше десяти секунд: повторный вызов сервер отобьёт как дубликат,
+      // а вот молчание не лечится ничем.
+      const unstick = setTimeout(() => quickFallbackRequests.delete(requestId), 10_000);
       void arenaV2QuickBotFallback(requestId).then((result) => {
+        clearTimeout(unstick);
         if (!cancelled) setMatchId(result.matchId);
       }).catch((reason) => {
         // Сервер — единственный владелец момента входа бота. Если наши локальные
         // часы забежали вперёд, он отвечает arena_quick_bot_too_early: снимаем
         // блокировку и пробуем ещё раз чуть позже, а не бросаем поиск навсегда.
+        clearTimeout(unstick);
         quickFallbackRequests.delete(requestId);
         if (cancelled) return;
         if (String(reason).includes('arena_quick_bot_too_early')) {

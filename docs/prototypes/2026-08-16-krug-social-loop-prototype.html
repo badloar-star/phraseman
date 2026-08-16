@@ -394,8 +394,7 @@ button>svg,.ghost svg{width:18px;height:18px;flex:0 0 auto}
               <div class="wallet"><span class="pill xp" id="pill-xp"><svg><use href="#i-flash"/></svg><span class="num" id="xp-num">0</span> XP</span><span class="pill star" id="pill-star"><svg><use href="#i-star"/></svg><span class="num" id="star-num">0</span></span></div>
             </div>
             <div id="home-lesson"></div>
-            <div id="home-krug"></div>
-            <div id="home-inbox"></div>
+            <div class="card tone"><h3>Главная — без изменений</h3><p>Соцпетля «Круг» целиком живёт во вкладке Друзья. Сюда ничего не добавляем; на вкладке Друзья загорается точка, когда что-то ждёт ответа.</p></div>
           </div>
         </section>
 
@@ -624,15 +623,7 @@ function renderHome(){
   $('#home-lesson').innerHTML = S.lessonDone
     ? `<div class="card accent"><div class="row spread"><div><div class="eyebrow">Сегодня</div><h3>Урок пройден</h3><p>+${fmt(S.todayXp)} XP сегодня${S.multUntil?` · множитель ×${S.xpMult} активен`:''}</p></div>${svg('i-checkc').replace('<svg','<svg style="width:34px;height:34px;color:var(--correct)"')}</div></div>`
     : `<div class="card accent"><div class="eyebrow">Сегодня</div><h3>Урок 12 · Как заказать кофе</h3><p>5 минут — и цепь цела. +${REW.lessonXp} XP · +${REW.lessonStars} ★ · +1 огонёк</p><button class="key mt12" onclick="startLesson()">${svg('i-play')}Пройти урок</button></div>`;
-  const help=helpList();
-  const first = inboxItems()[0];
-  $('#home-krug').innerHTML = `<div class="card"><div class="row spread"><div class="eyebrow">Круг сегодня</div><button class="ghost sm" onclick="go('friends')">Открыть</button></div>
-    <div class="fire"><div class="flame ${fc?'':'cold'}">${flameSvg()}</div><div class="grow"><div class="row spread"><span class="bigno">${fc}<span class="muted" style="font-size:16px"> / ${S.friends.length}</span></span><span class="tag ${tier?'acc':''}">${tier?['','×1.5 XP · 30 мин','×2 XP · 60 мин','+2 ★ сверху'][tier]:'до ×1.5 — '+(3-fc)+' друг'+(3-fc===1?'':'а')}</span></div>
-    <div class="logs">${S.friends.map((f,i)=>`<i class="${i<fc?'on':''} ${[2,4,7].includes(i)?'mark':''}"></i>`).join('')}</div><div class="thresholds"><span>друзей занимались</span><span>3 · 5 · 8</span></div></div></div>
-    ${tier&&S.lessonDone&&S.fireClaimed<tier?`<button class="key sm mt12" onclick="claimFire()">${svg('i-flame')}Забрать огонь</button>`:tier&&!S.lessonDone?`<p class="hint-line">Огонь горит — пройди свой урок, чтобы забрать множитель.</p>`:''}
-    ${help.length?`<div class="mt12 row" style="gap:8px"><span class="tag warn">${svg('i-alert')}Нужна помощь</span><span class="muted" style="font-size:13px">${help.map(f=>f.name).join(', ')} — цепь под угрозой</span></div>`:''}
-  </div>`;
-  $('#home-inbox').innerHTML = first? `<div class="sect">Требует ответа</div>`+inboxCard(first, true) : '';
+  // зачем: владелец — Главную не трогаем, Круг только во вкладке Друзья
 }
 function flameSvg(){ return `<svg viewBox="0 0 56 64"><path class="f1" fill="var(--flame)" d="M28 62C16 62 8 53 8 42c0-9 6-15 10-20 1 4 3 7 6 8-1-9 2-19 10-27 1 9 5 13 9 18 4 5 6 10 6 16 0 14-9 25-21 25z"/><path class="f2" fill="var(--ember)" opacity=".9" d="M28 58c-6 0-10-4-10-9 0-4 2-6 4-9 1 3 3 5 5 6-1-4-1-8 2-12 1 4 3 6 5 8s3 4 3 7c0 5-4 9-9 9z"/></svg>`; }
 
@@ -744,7 +735,7 @@ function finishLesson(){
     // quest progress
     Object.values(S.quests).forEach(q=>{ if(q.status==='active') q.mine+=gained; });
     // referral mentor bonus etc.
-    afterAnyChange(); go('home');
+    afterAnyChange(); go(S.plankIn&&Object.values(S.plankIn).some(p=>p.status==='open'&&S.todayXp>p.bar)?'friends':'home');
   }});
 }
 function afterAnyChange(){ render(); }
@@ -773,8 +764,8 @@ function friendDoesLesson(fid, {viaNudge=false, wasSilent=false, silentToast=fal
   Object.values(S.quests).forEach(q=>{ if(q.fid===fid&&q.status==='active') q.theirs+=140; });
   const wasHelp = f.streak>=7 && S.phase>=2 && S.help[fid];
   if(viaNudge){ const bonus = wasSilent?{xp:REW.nudgeMe, stars:REW.nudgeSilentStar}:{xp:REW.nudgeMe}; grant(bonus); toast('reward',`${f.name} ${g(f,'откликнулся и прошёл','откликнулась и прошла')} урок — тебе +${REW.nudgeMe} XP${wasSilent?' и +1 ★ за возвращение':''}`); push(f.name,'Спасибо, что позвал! Урок пройден 🙌',()=>{go('friends');}); if(f.streak>=7&&S.phase>=2){ grant({xp:REW.rescue}); S.thanksPending.push(fid); toast('reward',`${f.name}: цепь спасена — +${REW.rescue} XP`,'Спасатель'); } }
-  else if(!silentToast){ push(f.name,g(f,'прошёл','прошла')+' урок — твой огонь +1',()=>go('home')); }
-  const fc=fireCount(); if(fireTier(fc) && fireTier(fc)>S.fireClaimed && S.lessonDone) toast('reward',`Огонь ${fc}/${S.friends.length} — множитель доступен на Главной`);
+  else if(!silentToast){ push(f.name,g(f,'прошёл','прошла')+' урок — твой огонь +1',()=>go('friends')); }
+  const fc=fireCount(); if(fireTier(fc) && fireTier(fc)>S.fireClaimed && S.lessonDone) toast('reward',`Огонь ${fc}/${S.friends.length} — множитель доступен в Круге`);
   // chain today
   render();
 }
@@ -799,11 +790,11 @@ function openFriend(fid){ const f=F(fid); const chain=S.chains[fid], pact=S.pact
     </ul>${f.mentee?`<div class="card tone mt12"><div class="row"><span class="tag gold">${svg('i-mentor')}Наставник</span></div><h3 class="mt8">${f.name} пришла по твоему коду</h3><p>День ${f.menteeDay} из 7. Дойдёт до 3-го дня — тебе +${REW.mentor3} XP, до 7-го — +${REW.mentor7star} ★. Первые 2 недели один зов в день — бесплатно.</p></div>`:''}`); }
 
 function openPlank(fid){ const f=F(fid);
-  openSheet(`<h2>Поставить планку · ${f.name}</h2><p>Твой день — <b style="color:var(--text)">${S.todayXp} XP</b>. Планка висит у ${f.name} на Главной до полуночи. Возьмёт — ей +${REW.plankTakenThem} XP, тебе +${REW.plankTakenMe}. Не возьмёт — тебе +${REW.plankHeld} XP, ей ничего.</p>
+  openSheet(`<h2>Поставить планку · ${f.name}</h2><p>Твой день — <b style="color:var(--text)">${S.todayXp} XP</b>. Планка висит у ${f.name} в Круге до полуночи. Возьмёт — ей +${REW.plankTakenThem} XP, тебе +${REW.plankTakenMe}. Не возьмёт — тебе +${REW.plankHeld} XP, ей ничего.</p>
     <div class="row mt12" style="justify-content:center;gap:16px">${me('lg')}<span class="bigno" style="color:var(--accent)">${S.todayXp}</span><span class="tag acc">${svg('i-bar')}XP</span>${avatar(f,'lg')}</div>
     <button class="key mt16" onclick="setPlank('${fid}')">${svg('i-bar')}Поставить · 1 огонёк</button><button class="ghost mt8" onclick="closeSheet()">Позже</button>`); }
 function setPlank(fid){ if(!useEmber()) return; const f=F(fid); S.plankOut[fid]={bar:S.todayXp,status:'open'}; closeSheet(); render();
-  toast('success',`Планка ${S.todayXp} XP поставлена — ${f.name} увидит её на Главной`); push('Отправлено · '+f.name,`Ты: «${S.todayXp} XP сегодня. Побьёшь?»`,null);
+  toast('success',`Планка ${S.todayXp} XP поставлена — ${f.name} увидит её в Круге`); push('Отправлено · '+f.name,`Ты: «${S.todayXp} XP сегодня. Побьёшь?»`,null);
   setTimeout(()=>{ const p=S.plankOut[fid]; if(!p||p.status!=='open') return; const took=Math.random()<0.6; p.status=took?'taken':'held';
     if(took){ f.todayDone=true; grant({xp:REW.plankTakenMe}); S.feed.unshift(ev(fid,'plank_taken',`${g(f,'взял','взяла')} твою планку — ${p.bar+40} XP`)); push(f.name,`${g(f,'взял','взяла')} планку: ${p.bar+40} XP 💪 Тебе +${REW.plankTakenMe} XP`,()=>go('friends')); toast('reward',`${f.name} ${g(f,'взял','взяла')} планку — тебе +${REW.plankTakenMe} XP`); }
     else { grant({xp:REW.plankHeld}); toast('reward',`Планка устояла — +${REW.plankHeld} XP`); }
@@ -859,7 +850,7 @@ function openSim(){ openSheet(`<h2>Симуляция</h2><p>День ${S.day} �
     <button onclick="closeSheet();simThanks()">Друг говорит спасибо</button><button onclick="closeSheet();simNetError()">Ошибка сети на действии</button>
     <button class="wide" onclick="closeSheet();simPactMiss()">Партнёр по уговору пропустил день (сорвался)</button>
   </div>`); }
-function nextPhase(){ if(S.phase<3){ S.phase++; if(S.phase===2){ S.friends.forEach(f=>{ if(!f.todayDone&&f.streak>=7) S.help[f.id]=true; }); const h=helpList(); if(h.length) toast('warning',`Вечер: у ${h.map(f=>f.name).join(', ')} цепь под угрозой — загляни в Круг`); if(!S.lessonDone) push('Марина', Object.keys(S.chains).length?'Я уже прошла — твоя очередь, связка ждёт 🔗':'Урок сегодня будешь? У меня огонь 3/5',()=>go('home')); } render(); } else nextDay(); }
+function nextPhase(){ if(S.phase<3){ S.phase++; if(S.phase===2){ S.friends.forEach(f=>{ if(!f.todayDone&&f.streak>=7) S.help[f.id]=true; }); const h=helpList(); if(h.length) toast('warning',`Вечер: у ${h.map(f=>f.name).join(', ')} цепь под угрозой — загляни в Круг`); if(!S.lessonDone) push('Марина', Object.keys(S.chains).length?'Я уже прошла — твоя очередь, связка ждёт 🔗':'Урок сегодня будешь? У меня огонь 3/5',()=>go('friends')); } render(); } else nextDay(); }
 function nextDay(){
   // resolve chains
   Object.entries(S.chains).forEach(([id,c])=>{ const f=F(id); if(S.lessonDone&&f.todayDone){ c.days++; c.countedToday=false; if(c.days===3){ grant({xp:REW.chain3}); setTimeout(()=>celebrate({icon:'i-chain',tone:'',title:'Связка · 3 дня',sub:`Вы с ${f.name} держите цепь вместе`,rewards:[{k:'xp',t:'+'+REW.chain3+' XP обоим'}],cta:'Дальше'}),300); }
@@ -883,8 +874,8 @@ function nextDay(){
 }
 function simFriendLesson(id){ friendDoesLesson(id); }
 function simAllLessons(){ let n=0; S.friends.forEach(f=>{ if(!f.todayDone&&n<3){ n++; setTimeout(()=>friendDoesLesson(f.id,{silentToast:n>1}), n*600); } }); }
-function simPlankIn(){ S.plankIn['s']={bar:S.todayXp+180,status:'open'}; push('Сергей',`${S.todayXp+180} XP сегодня. Побьёшь?`,()=>go('home')); render(); }
-function simNudgeIn(){ if(S.lessonDone){ toast('info','Ты уже занимался — Марина не будет звать'); return; } S.nudgeIn='m'; push('Марина','зовёт: 5 минут — и цепь цела',()=>go('home')); render(); }
+function simPlankIn(){ S.plankIn['s']={bar:S.todayXp+180,status:'open'}; push('Сергей',`${S.todayXp+180} XP сегодня. Побьёшь?`,()=>go('friends')); render(); }
+function simNudgeIn(){ if(S.lessonDone){ toast('info','Ты уже занимался — Марина не будет звать'); return; } S.nudgeIn='m'; push('Марина','зовёт: 5 минут — и цепь цела',()=>go('friends')); render(); }
 function simPactIn(){ if(S.pacts['i']){ toast('info','С Игорем уже есть уговор'); return; } S.pacts['i']={fid:'i',stake:3,status:'pending',from:'them',days:[]}; push('Игорь','предлагает уговор: 7 дней вместе, ставка 3 ★',()=>go('friends')); render(); }
 function simThanks(){ if(!S.thanksPending.includes('d')) S.thanksPending.push('d'); push('Дмитрий','Спасибо, что вытащил! 🙏',()=>go('friends')); render(); }
 function simNetError(){ toast('error','Не удалось позвать — нет сети. Огонёк вернули'); S.embers=Math.min(3,S.embers+1); renderWallet(); }

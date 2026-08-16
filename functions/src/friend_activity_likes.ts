@@ -268,14 +268,6 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       }, now),
     );
 
-    // Read-your-write for the person who tapped: the fan-out trigger updates every
-    // friend's copy asynchronously, but this viewer must never reload a stale zero.
-    if (!isProfileLike) {
-      tx.set(senderRef.collection('feed').doc(eventId), {
-        activityLikeCount: eventLikeCount,
-      }, { merge: true });
-    }
-
     if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {
       tx.set(db.collection('league_groups').doc(leagueGroupId), {
         groupBoost: {
@@ -393,12 +385,6 @@ export const friendUnlikeActivity = onCall({ region: REGION, enforceAppCheck: EN
     if (legacyDate) {
       tx.delete(targetRef.collection('activity_likes_received').doc(`${legacyDate}_${senderStableId}_${eventId}`));
       tx.delete(userNotificationRef(db, targetStableId, `like_${legacyDate}_${senderStableId}_${eventId}`));
-    }
-
-    if (!isProfileLike) {
-      tx.set(senderRef.collection('feed').doc(eventId), {
-        activityLikeCount: eventLikeCount,
-      }, { merge: true });
     }
 
     if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {

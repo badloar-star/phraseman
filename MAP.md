@@ -254,8 +254,8 @@ Friends / gifts:
 
 - `app/friends_screen.tsx`
 - `app/firestore_friends.ts`
-- `app/firestore_friend_activity.ts`
 - `app/firestore_friend_requests.ts`
+- `app/friend_activity_likes.ts` — «дай пять» (профильный лайк) в строке друга и карточке игрока; лента активности друзей удалена 2026-08-16
 - `app/friend_gifts.ts`
 - `app/friend_quests.ts`
 - `functions/src/friend_codes.ts`

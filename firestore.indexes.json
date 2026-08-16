@@ -1159,16 +1159,6 @@
       ]
     },
     {
-      "collectionGroup": "feed",
-      "fieldPath": "expiresAt",
-      "indexes": [
-        {
-          "order": "ASCENDING",
-          "queryScope": "COLLECTION_GROUP"
-        }
-      ]
-    },
-    {
       "collectionGroup": "referral_spins",
       "fieldPath": "creditId",
       "indexes": [

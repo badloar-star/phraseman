@@ -15,7 +15,7 @@ const REGION = 'us-central1';
 
 /**
  * Отправляет один Expo push. Best-effort: ошибки глотаем — получатель всё равно
- * увидит подарок при следующем открытии приложения (через my_events / badge).
+ * увидит подарок при следующем открытии приложения (inbox friend_gifts_received + центр уведомлений).
  * Тот же транспорт, что в matchmaking.ts (exp.host/--/api/v2/push/send).
  */
 export type FriendGiftPushTransport = 'sent' | 'failed' | 'timeout' | 'skipped';
@@ -550,47 +550,6 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_
       seen: false,
     });
 
-    tx.set(senderRef.collection('my_events').doc(`friend_gift_sent_${sentGiftRef.id}`), {
-      type: 'friend_gift_sent',
-      uid: senderStableId,
-      ts: now,
-      payload: {
-        giftId: gift.id,
-        giftLabel: gift.labelRu,
-        giftLabelRu: gift.labelRu,
-        giftLabelUk: gift.labelUk,
-        giftLabelEs: gift.labelEs,
-        giftLabelPtBr: gift.labelPtBr,
-        giftLabelVi: gift.labelVi,
-        giftLabelId: gift.labelId,
-        giftLabelTr: gift.labelTr,
-        giftLabelPl: gift.labelPl,
-        costShards: gift.costShards,
-        targetUid: friendStableId,
-      },
-    });
-
-    tx.set(recipientRef.collection('my_events').doc(`friend_gift_received_${sentGiftRef.id}`), {
-      type: 'friend_gift_received',
-      uid: friendStableId,
-      ts: now,
-      payload: {
-        giftId: gift.id,
-        giftLabel: gift.labelRu,
-        giftLabelRu: gift.labelRu,
-        giftLabelUk: gift.labelUk,
-        giftLabelEs: gift.labelEs,
-        giftLabelPtBr: gift.labelPtBr,
-        giftLabelVi: gift.labelVi,
-        giftLabelId: gift.labelId,
-        giftLabelTr: gift.labelTr,
-        giftLabelPl: gift.labelPl,
-        costShards: gift.costShards,
-        fromUid: senderStableId,
-        fromName: senderName,
-      },
-    });
-
     // Центр событий: «X отправил вам подарок».
     tx.set(userNotificationRef(db, friendStableId, `gift_${sentGiftRef.id}`), buildUserNotification({
       type: 'friend_gift_received',
@@ -1079,12 +1038,6 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
         questId,
         authority: 'external_event',
       });
-      tx.set(userRefs[uid].collection('my_events').doc(`friend_quest_completed_${questId}`), {
-        type: 'friend_quest_completed',
-        uid,
-        ts: now,
-        payload: { questId, rewardShards, rewardXp },
-      });
       tx.set(userRefs[uid].collection('friend_quest_meta').doc('current'), {
         questId,
         status: 'completed',
@@ -1196,21 +1149,6 @@ export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE
       cleanDisplayName(senderSnap.data()?.displayName) ||
       cleanDisplayName(senderProgress.user_name) ||
       'Friend';
-
-    const eventRef = idempotencyKey
-      ? friendRef.collection('my_events').doc(`friend_gift_thanks_${senderStableId}_${idempotencyKey}`)
-      : friendRef.collection('my_events').doc(`friend_gift_thanks_${senderStableId}_${now}`);
-    tx.set(eventRef, {
-      type: 'friend_gift_thanks',
-      uid: friendStableId,
-      ts: now,
-      payload: {
-        giftId: gift.id,
-        giftLabel: gift.labelRu,
-        fromUid: senderStableId,
-        fromName: senderName,
-      },
-    });
 
     // Центр событий: «X поблагодарил за подарок».
     tx.set(

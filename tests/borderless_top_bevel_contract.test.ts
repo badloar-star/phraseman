@@ -46,11 +46,12 @@ describe('borderless top bevel contract', () => {
   it('keeps friend list cards tonal while preserving semantic activity signals', () => {
     const friends = readSource('app/(tabs)/friends.tsx');
 
+    // Лента активности (с её «вехами» на верхнем бевеле) удалена 2026-08-16 —
+    // проверяем строки друзей, заявки, квест-модалки и карточку квеста.
     expectNoDecorativeTopBevel(sliceBetween(friends, 'function FriendRow', 'function RequestRow'));
-    expectNoDecorativeTopBevel(sliceBetween(friends, 'function RequestRow', 'type ActivityFeedSection'));
-    expectNoDecorativeTopBevel(sliceBetween(friends, 'testID="friends-activity-digest"', 'activityDigestText'));
+    expectNoDecorativeTopBevel(sliceBetween(friends, 'function RequestRow', '// ── Friend quest modals'));
+    expectNoDecorativeTopBevel(sliceBetween(friends, '// ── Friend quest modals', '// ── Add Friend Modal'));
     expectNoDecorativeTopBevel(sliceBetween(friends, 'testID="friend-quest-card"', '<FriendQuestStartedModal'));
-    expect(friends).toContain("...(isMilestone ? { borderTopWidth: 1, borderTopColor: color + '55' } : null)");
   });
 
   it('keeps diagnostic, referral, and drill panels tonal', () => {

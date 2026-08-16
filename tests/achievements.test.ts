@@ -15,10 +15,6 @@ jest.mock('../app/storage_mutex', () => ({
   withStorageLock: jest.fn(async (fn: () => unknown) => fn()),
 }));
 
-jest.mock('../app/firestore_friend_activity', () => ({
-  writeFriendEvent: jest.fn(async () => {}),
-}));
-
 jest.mock('../app/shards_system', () => ({
   addShardsRaw: jest.fn(async (amount: number) => amount),
   getShardsBalance: jest.fn(async () => 0),

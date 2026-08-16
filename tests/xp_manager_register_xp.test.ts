@@ -66,9 +66,6 @@ jest.mock('../constants/custom_avatars', () => ({
   isCustomAvatarValue: jest.fn(() => false),
 }));
 
-jest.mock('../app/firestore_friend_activity', () => ({
-  writeFriendEvent: jest.fn(async () => {}),
-}));
 
 jest.mock('../constants/titles', () => ({
   getTitleString: jest.fn(() => 'Explorer'),
@@ -584,9 +581,7 @@ describe('registerXP', () => {
     expect(enqueueLevelSpinLevelUps).toHaveBeenCalledWith(1, 2);
     expect(emitAppEvent).toHaveBeenCalledWith('energy_reload');
     expect(emitAppEvent).toHaveBeenCalledWith('xp_changed');
-    const { writeFriendEvent } = await import('../app/firestore_friend_activity');
     const { checkAchievements } = await import('../app/achievements');
-    expect(writeFriendEvent).toHaveBeenCalledWith('level_up', { level: 2 });
     expect(checkAchievements).toHaveBeenCalledWith(
       { type: 'level_reached', level: 2 },
       expect.objectContaining({ stableId: 'test-account', phase: 'active' }),

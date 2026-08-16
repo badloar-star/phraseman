@@ -608,7 +608,6 @@ export {
   communityMarkSellerInboxSeen,
 } from "./community_packs";
 
-export { syncFriendActivityMirrorCron } from "./friend_activity_mirror";
 
 // Learning V2 learner-safe active-session descriptor. Auth + App Check are
 // enforced in the callable module; no private repository handle is serialized.
@@ -1032,7 +1031,6 @@ export { referralClaimSpin } from "./referral_claim_spin";
 export { referralDevGrantSpin } from "./referral_dev_grant";
 
 // ── Fan-out ленты активности друзей (users/{uid}/my_events → users/{friendUid}/feed) ──
-export { feedFanoutOnMyEvent, feedPruneCron } from "./feed_fanout";
 
 // ── Пачковая выдача публичных профилей друзей (убирает 4-RTT цепочку с клиента) ──
 export { friendsGetProfiles } from "./friends_profiles";

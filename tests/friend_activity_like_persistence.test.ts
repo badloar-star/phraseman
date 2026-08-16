@@ -6,7 +6,6 @@ import {
   activityLikeStateKey,
   PROFILE_LIKE_EVENT_ID,
 } from '../app/friend_activity_likes';
-import { friendActivityGiftCopy } from '../app/friend_activity_gift_copy';
 
 describe('persistent friend activity likes', () => {
   test('uses the same deterministic per-target/per-event identity as the server', async () => {
@@ -22,17 +21,6 @@ describe('persistent friend activity likes', () => {
     expect(activityLikeStateKey(targetUid)).toBe(`${targetUid}\0${PROFILE_LIKE_EVENT_ID}`);
   });
 
-  test('describes an outgoing gift from the viewer perspective', () => {
-    expect(friendActivityGiftCopy({
-      type: 'friend_gift_received',
-      friendName: 'Наталка',
-      giftLabel: 'Щит цепочки',
-      viewerUid: 'me',
-      payload: { fromUid: 'me' },
-      lang: 'ru',
-    })).toBe('Вы отправили подарок: Щит цепочки → Наталка');
-  });
-
   test('restores every liked post and contains no global daily-limit rollback', () => {
     const root = join(__dirname, '..');
     const friends = readFileSync(join(root, 'app/(tabs)/friends.tsx'), 'utf8');
@@ -40,9 +28,12 @@ describe('persistent friend activity likes', () => {
     const server = readFileSync(join(root, 'functions/src/friend_activity_likes.ts'), 'utf8');
     const synthetic = readFileSync(join(root, 'app/synthetic_activity_likes.ts'), 'utf8');
 
+    // Лента активности удалена (2026-08-16): «дай пять» живёт в строке друга и
+    // восстанавливается из тех же persistent-лайков одним запросом.
     expect(friends).toContain('fetchActivityLikeStates()');
-    expect(friends).toContain('new Set(likeStates.map(state => activityLikeStateKey');
-    expect(friends).toContain('setLikedActivityKeys(current => new Set(current).add(eventKey))');
+    expect(friends).toContain('state.eventId === PROFILE_LIKE_EVENT_ID');
+    expect(friends).toContain("onAppEvent('profile_like_changed'");
+    expect(friends).not.toContain('friend_activity_like_daily_limits');
     expect(profile).toContain('fetchActivityLikeState(uid)');
     expect(profile).not.toContain('resource-exhausted');
     expect(server).toContain("collection('friend_activity_likes_sent').doc(recordId)");

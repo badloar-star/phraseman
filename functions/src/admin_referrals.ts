@@ -1367,7 +1367,7 @@ export const adminReferralHealth = onCall(CALLABLE_BASE, async (request) => {
   checks.push({
     id: 'functions_deployed',
     status: 'ok',
-    detail: 'adminReferralHealth отвечает; referralSpin/referralClaimSpin/feed_fanout деплоятся тем же пакетом (проверка CI — TODO)',
+    detail: 'adminReferralHealth отвечает; referralSpin/referralClaimSpin деплоятся тем же пакетом (проверка CI — TODO)',
   });
 
   // 2. Весы валидны (мягкий парсер → если дефолт вместо конфига, значит мусор/отсутствует).
@@ -1516,27 +1516,8 @@ export const adminReferralHealth = onCall(CALLABLE_BASE, async (request) => {
       || ledgerAvailableSnap.size > HEALTH_SAMPLE_USERS,
   };
 
-  // 6. Отставание feed: последнее событие my_events vs последняя feed-копия (по выборке).
-  let feedLagMinutes = -1;
-  try {
-    const [latestEvent, latestFeed] = await Promise.all([
-      db.collectionGroup('my_events').orderBy('ts', 'desc').limit(1).get(),
-      db.collectionGroup('feed').orderBy('ts', 'desc').limit(1).get(),
-    ]);
-    const eTs = Number((latestEvent.docs[0]?.data() as { ts?: unknown } | undefined)?.ts ?? 0);
-    const fTs = Number((latestFeed.docs[0]?.data() as { ts?: unknown } | undefined)?.ts ?? 0);
-    if (eTs > 0 && fTs > 0) feedLagMinutes = Math.max(0, Math.round((eTs - fTs) / 60000));
-  } catch {
-    /* индексы collectionGroup могут отсутствовать до backfill — тогда warn ниже */
-  }
-  checks.push({
-    id: 'feed_lag',
-    status: feedLagMinutes < 0 ? 'warn' : feedLagMinutes < 5 ? 'ok' : 'warn',
-    detail:
-      feedLagMinutes < 0
-        ? 'Не удалось оценить (нет данных/индекса collectionGroup) — проверить после backfill'
-        : `Отставание fan-out ≈ ${feedLagMinutes} мин (порог 5 мин)`,
-  });
+  // 6. (удалено 2026-08-16) Проверка отставания fan-out ленты друзей — лента и
+  //    её конвейер удалены вместе с разделом «Активность».
 
   const worst: HealthStatus = checks.some((c) => c.status === 'fail')
     ? 'fail'

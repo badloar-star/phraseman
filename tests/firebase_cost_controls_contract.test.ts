@@ -249,40 +249,29 @@ describe("Firebase cost controls", () => {
     expect(profileCardSource).not.toContain("syncToCloud({ deferMs:");
   });
 
-  it("updates percentile stats daily and keeps full-scan friend/premium cron cadence modest", () => {
+  it("updates percentile stats daily and keeps full-scan premium cron cadence modest", () => {
     const indexSource = read("functions/src/index.ts");
-    const friendActivitySource = read(
-      "functions/src/friend_activity_mirror.ts",
-    );
     const premiumExpirySource = read("functions/src/premium_expiry_cron.ts");
-    const friendsFeedSource = read("app/firestore_friend_activity.ts");
-    const friendsScreenSource = read("app/(tabs)/friends.tsx");
 
     expect(indexSource).toContain("schedule: '0 3 * * *'");
-    expect(indexSource).toContain("syncFriendActivityMirrorCron");
-    expect(friendActivitySource).toContain("schedule: 'every 12 hours'");
     expect(premiumExpirySource).toContain("schedule: 'every 12 hours'");
-    expect(friendsFeedSource).toContain(
-      "const CACHE_TTL_MS = 6 * 60 * 60 * 1000",
-    );
-    expect(friendsScreenSource).toContain(
-      "useEffect(() => { void load(false); }, [load]);",
-    );
   });
 
-  it("prunes the friend feed with a bounded window instead of reading the whole subcollection", () => {
-    // зачем: pruneOldEvents вызывается из appendFriendEvent, то есть ВНУТРИ полного
-    // постраничного обхода всех пользователей (крон каждые 12ч). Безлимитный
-    // `.orderBy('ts','desc').get()` читал всю подколлекцию my_events целиком ради
-    // удаления хвоста за пределами 15 свежих — лишние чтения умножались на размер базы.
-    const friendActivitySource = read(
-      "functions/src/friend_activity_mirror.ts",
-    );
-    expect(friendActivitySource).toContain(".offset(MAX_EVENTS_PER_FRIEND)");
-    expect(friendActivitySource).toContain(".limit(PRUNE_BATCH_LIMIT)");
-    expect(friendActivitySource).not.toMatch(
-      /\.orderBy\('ts', 'desc'\)\s*\.get\(\)/,
-    );
+  it("keeps the friends activity feed pipeline retired (no full-scan mirror cron, no fan-out)", () => {
+    // зачем (владелец, 2026-08-16): лента активности друзей удалена. Её крон-зеркало
+    // читало ВСЕХ пользователей каждые 12ч (≈9k чтений/сутки) ради 0–2 событий на всю
+    // базу, а fan-out множил записи на число друзей. Сторож не даёт конвейеру вернуться
+    // незаметно: ни экспорта крона, ни fan-out-триггера, ни клиентской ленты.
+    const indexSource = read("functions/src/index.ts");
+    const friendsScreenSource = read("app/(tabs)/friends.tsx");
+    expect(indexSource).not.toContain("syncFriendActivityMirrorCron");
+    expect(indexSource).not.toContain("feedFanoutOnMyEvent");
+    expect(indexSource).not.toContain("feed_fanout");
+    expect(friendsScreenSource).not.toContain("fetchFriendsActivityFeed");
+    expect(friendsScreenSource).not.toContain("collection('my_events')");
+    // «Дай пять» в строке друга читает мои лайки ОДНИМ запросом, не по другу на каждого.
+    expect(friendsScreenSource).toContain("fetchActivityLikeStates()");
+    expect(friendsScreenSource).not.toContain("friendUids.map(async uid =>");
   });
 
   it("does not let native App Check mint placeholder tokens before a real provider is configured", () => {

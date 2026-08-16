@@ -50,6 +50,20 @@ function renderSpinRewardModal({ visible, onClose }: { visible: boolean; onClose
   });
 }
 
+function renderSpinRewardModalHybrid({ visible, onClose }: { visible: boolean; onClose: () => void }) {
+  return React.createElement(LevelSpinRewardModal, {
+    visible,
+    gift: DEMO_GIFT,
+    giftId: DEMO_GIFT.id,
+    lang: 'ru',
+    isPremium: false,
+    requestId: 'motion-showcase-spin-reward-hybrid',
+    onClaim: onClose,
+    onClose,
+    motionVariant: 'hybrid',
+  });
+}
+
 function renderSpinPlaque({ visible, onClose }: { visible: boolean; onClose: () => void }) {
   if (!visible) return null;
   return React.createElement(SpinRewardPlaque, {

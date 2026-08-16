@@ -2,12 +2,15 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
+import { triLang } from '../constants/i18n';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { ArenaDailyGoals } from '../components/arena/ArenaDailyGoals';
 import { ArenaHubLive } from '../components/arena/ArenaHubLive';
+import { ArenaHubSkeleton } from '../components/arena/ArenaHubSkeleton';
+import SkeletonSwap from '../components/feedback/SkeletonSwap';
 import { arenaHubModel } from '../modules/arena/hub_view';
 import {
   ArenaFeatureRow,
@@ -33,6 +36,9 @@ import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { arenaFeatureOpenEvent } from '../modules/arena/telemetry';
 import { trackArenaTelemetry } from './arena_telemetry';
+import { useFeatureIntro } from '../hooks/use_feature_intro';
+import FeatureIntroModal from '../components/FeatureIntroModal';
+import { featureIntroById } from './feature_intro_registry';
 
 const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
 
@@ -142,6 +148,15 @@ export default function ArenaHubScreen() {
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent('hub', 'direct')); }, []);
 
   /**
+   * Обучающая модалка «Что такое Арена» — первый вход на экран (владелец,
+   * 2026-08-16: «люди не находят фичи»). Показывается один раз на аккаунт
+   * (AsyncStorage-флаг per generation, см. app/feature_intro_registry.ts),
+   * через 600мс после фокуса — не мешает первому кадру осесть.
+   */
+  const arenaIntro = useFeatureIntro('arena_first_visit');
+  const arenaIntroDef = featureIntroById('arena_first_visit');
+
+  /**
    * Досылка застрявших отчётов. Хаб — то место, куда игрок приходит сам, и
    * отдельного расписания для этого нет намеренно: фоновый опрос стоил бы
    * денег за базу каждый день у каждого игрока.
@@ -164,6 +179,14 @@ export default function ArenaHubScreen() {
     growth: arenaExpansionText(lang, 'growth'),
     together: arenaExpansionText(lang, 'together'),
   }), [lang]);
+
+  /**
+   * Скелетон показывается ТОЛЬКО когда нет вообще ничего: ни тёплого снимка
+   * (память), ни диск-кэша, ни ответа сети. Если warm-снимок есть — экран
+   * сразу рисует контент из него, скелетон не мигает ни на кадр (владелец:
+   * «видимой загрузки не должно быть нигде», где снимок есть).
+   */
+  const hubLoading = !home && !expansion && !warm;
 
   const activeQueue = home?.activeQueue?.status === 'waiting' ? home.activeQueue : null;
   const activeRun = expansion?.activeRun;
@@ -311,8 +334,23 @@ export default function ArenaHubScreen() {
           а он даже не узнает почему. */}
       {reportBlocked ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'reportBlocked')} body={arenaText(lang, 'reportBlockedHint')} /> : null}
       {home && !home.availability.enabled ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'maintenance')} body={arenaText(lang, 'maintenanceHint')} /> : null}
-      {section === 'today' ? todayContent : section === 'play' ? playContent : section === 'growth' ? growthContent : togetherContent}
+      <SkeletonSwap loading={hubLoading} skeleton={<ArenaHubSkeleton palette={P} />}>
+        {section === 'today' ? todayContent : section === 'play' ? playContent : section === 'growth' ? growthContent : togetherContent}
+      </SkeletonSwap>
     </ArenaScreen>
+    {arenaIntroDef ? (
+      <FeatureIntroModal
+        visible={arenaIntro.visible}
+        icon={arenaIntroDef.icon}
+        title={arenaIntroDef.title(lang)}
+        body={arenaIntroDef.body(lang)}
+        ctaLabel={arenaIntroDef.ctaLabel(lang)}
+        laterLabel={arenaText(lang, 'later')}
+        onDone={() => arenaIntro.dismiss(true)}
+        onLater={() => arenaIntro.dismiss(false)}
+        testIdPrefix="arena-intro"
+      />
+    ) : null}
     </ArenaHubChrome>
   );
 }

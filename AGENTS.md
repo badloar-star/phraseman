@@ -258,6 +258,40 @@ App Check; (2) прописать ключ в `admin/v2/legacy.html`; (3) убе
 - Account switch/reset flows must use `signOutAndWipeForAccountSwitch()` rather than composing `signOutCurrentProvider()`, `clearStableId()`, and `ensureAnonUser()` manually; otherwise old account data can leak into a new account.
 - When touching this area, run the narrow guards: `tests/auth_provider_stable_link.test.ts`, `tests/account_delete_flow_contract.test.ts`, `tests/firestore_rules_security.test.ts`, `tests/stable_id.test.ts`, and `tests/auth_identity_anon_relink.test.ts`.
 
+## Motion Hybrid — правила-дефолты для ЛЮБОЙ новой поверхности (владелец, 2026-08-16)
+
+Направление движения утверждено: **«Световод + Чекан»** — база из света и глубины
+(без отскока), удар и вес — только у героя кульминации наград. Это стандарт для всех
+новых модалок, тостов, шитов, баннеров, празднований и кнопок; правила сторожит
+`tests/motion_hybrid_contract.test.ts` (baseline `config/motion-hybrid-baseline.json`
+может только уменьшаться).
+
+1. **Числа движения — только из `constants/motionHybrid.ts`** (LUM/CHK/PRESS/SUITE/
+   TOAST/TABBAR_HYBRID). Магические пружины и тайминги в компонентах запрещены.
+2. **Новая модалка/шит/тост** — через общие шеллы `components/modal_fx/HybridAlertShell`,
+   `HybridSheetShell`, `components/feedback/FullscreenHybridEntrance` или с prop
+   `motionVariant` (существующие поверхности: `'classic'` по умолчанию, `'hybrid'` —
+   редизайн; переключение по умолчанию — только словом владельца).
+3. **Кульминация награды** — один удар героя через `components/celebration/RewardImpactRings`
+   + `use_reward_impact_hybrid` (squash 260/5, отдача 6px 180/6, ≤12 частиц, на
+   `isLowEndDevice` → 0). Свита — settle 150/22, без отскока. Лестницы каскада
+   неравномерные. Выход короче входа (`LUM.exitMs`).
+4. **Кнопки — только клавиши.** Главные CTA — `components/DuoPressable` с кромкой
+   (`edgeHeight` 4–6: лицо едет вниз на высоту кромки, подошва стоит; хаптика встроена).
+   Вторичные/иконки/чипы/карточки — `components/PressableHybrid` (variant). Голые
+   `Pressable`/`TouchableOpacity` с `opacity: pressed` у действий — брак.
+5. **Никаких эмодзи в UI** (в т.ч. префиксы внутри переведённых строк) — только Ionicons
+   и иконки проекта. Никаких `borderWidth`/`borderColor` у контейнеров (односторонний
+   разделитель допустим). Никаких подписей-расшифровок мелким шрифтом. `fontWeight` только
+   `'400'`/`'700'`. Цвета — только токены темы `t.*`.
+6. **Reduce Motion = один финальный кадр**, `cancelAnimation` на unmount, только
+   transform/opacity, циклы под гардом фокуса/AppState; счётчики —
+   `AnimatedTextInput` + `useAnimatedProps`.
+7. **Витрина** DEV Hub «Движение · все поверхности» (`/motion_showcase`): каждая новая
+   поверхность добавляется пунктом в свой шард `components/dev/motion_showcase/sections/*`
+   (реальный компонент с безопасными демо-пропсами: пустые колбэки, ничего не
+   начислять; подписи через `cs()` из `showcase_copy.ts`).
+
 ## Tests Are Read-Only Guards
 
 - Tests must report failures; they must not rewrite app source, tests, configs, assets, generated source, storage contracts, or snapshots as part of a normal test run.

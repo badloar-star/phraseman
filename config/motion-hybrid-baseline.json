@@ -1,0 +1,30 @@
+{
+  "legacyModalFiles": [
+    "app/flashcards/CardPackShardPaywallModal.tsx",
+    "app/flashcards/DeckPickerSheet.tsx",
+    "components/AchievementToast.tsx",
+    "components/BillingIssueToastHost.tsx",
+    "components/CoachToast.tsx",
+    "components/DeleteAccountConfirmModal.tsx",
+    "components/ExamResultPreviewAdminModal.tsx",
+    "components/NoEnergyModal.tsx",
+    "components/OnboardingWelcomeSheet.tsx",
+    "components/PlayerProfileModal.tsx",
+    "components/ReferralInviteBannerArt.tsx",
+    "components/RegistrationPromptModal.tsx",
+    "components/ReviewPromptModal.tsx",
+    "components/RewardModalBackdrop.tsx",
+    "components/SectionSheetHeader.tsx",
+    "components/StreakReviveModal.tsx",
+    "components/StreakRiskToastHost.tsx",
+    "components/VipCelebrationModal.tsx",
+    "components/VipSurveyModal.tsx",
+    "components/VipSurveyReviewPromptModal.tsx",
+    "components/arena/ArenaModeSheet.tsx",
+    "components/customization/AvatarEditorSheet.tsx",
+    "components/customization/CustomizationPurchaseConfirmModal.tsx",
+    "components/youtube/YoutubeChannelPickerSheet.tsx"
+  ],
+  "updatedAt": "2026-08-16",
+  "note": "Храповик: список может только уменьшаться. Новые модалки/тосты обязаны идти через гибрид (motionVariant/шеллы)."
+}

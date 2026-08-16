@@ -16,6 +16,7 @@ import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { arenaText } from '../modules/arena/copy';
 import { arenaRankScreen, type ArenaTierRow } from '../modules/arena/rank_view';
 import { arenaTierRewardLadder } from '../modules/arena/tier_rewards';
@@ -263,6 +264,27 @@ export default function ArenaRanksScreen() {
             />
           ))}
         </>
+      ) : !homeFailed ? (
+        /*
+         * зачем: без тёплого снимка (первый запуск, память ещё пуста) ранг
+         * неизвестен ДО ответа сервера, и лестница тиров просто исчезала —
+         * пустое место без объяснения. Заглушки той же геометрии, что и
+         * TierRow (V2Card pad=14, minHeight 66): приход данных не двигает
+         * вёрстку. Обычно сюда не попадаем — ранг берётся из warm-снимка.
+         */
+        <View testID="arena-ranks-tier-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+          {/* guard-ok: список заглушек фиксированной длины (8 тиров), не сортируется
+              и в него ничего не вставляется — переиспользовать по индексу безопасно. */}
+          {Array.from({ length: 8 }, (_, i) => (
+            <View key={i} style={[styles.row, styles.tierSkeletonRow, { backgroundColor: P.card }]}>
+              <SkeletonBlock width={44} height={44} borderRadius={15} baseColor={P.chipEdge} highlightColor={P.chipHi} />
+              <View style={styles.copy}>
+                <SkeletonBlock width="46%" height={14} borderRadius={7} baseColor={P.chipEdge} highlightColor={P.chipHi} />
+                <SkeletonBlock width="30%" height={11} borderRadius={6} baseColor={P.chipEdge} highlightColor={P.chipHi} style={styles.tierSkeletonMeta} />
+              </View>
+            </View>
+          ))}
+        </View>
       ) : null}
 
       {/*
@@ -333,4 +355,7 @@ const styles = StyleSheet.create({
   name: { fontSize: 16, fontWeight: '800' },
   meta: { fontSize: 13, fontWeight: '700' },
   reward: { fontSize: 14, fontWeight: '900', fontVariant: ['tabular-nums'] },
+  // зачем: скелетон списка тиров = финальная геометрия строки (Performance Bible)
+  tierSkeletonRow: { alignItems: 'center' },
+  tierSkeletonMeta: { marginTop: 6 },
 });

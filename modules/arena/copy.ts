@@ -14,6 +14,7 @@ const C = {
   searching: ['Ищем соперника', 'Шукаємо суперника', 'Buscando rival', 'Buscando adversário', 'Đang tìm đối thủ', 'Mencari lawan', 'Rakip aranıyor', 'Szukamy rywala'],
   keepOpen: ['Можно свернуть — поиск продолжится после возврата', 'Можна згорнути — пошук продовжиться після повернення', 'Puedes salir; se reanudará al volver', 'Você pode sair; a busca volta ao retornar', 'Bạn có thể rời đi; tìm kiếm tiếp tục khi quay lại', 'Boleh keluar; pencarian lanjut saat kembali', 'Çıkabilirsin; dönünce arama sürer', 'Możesz wyjść; wyszukiwanie wznowi się po powrocie'],
   cancel: ['Отменить', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj'],
+  later: ['Позже', 'Пізніше', 'Más tarde', 'Mais tarde', 'Để sau', 'Nanti', 'Sonra', 'Później'],
   accept: ['Принять дуэль', 'Прийняти дуель', 'Aceptar duelo', 'Aceitar duelo', 'Chấp nhận', 'Terima duel', 'Düelloyu kabul et', 'Przyjmij pojedynek'],
   decline: ['Отказаться', 'Відмовитися', 'Rechazar', 'Recusar', 'Từ chối', 'Tolak', 'Reddet', 'Odrzuć'],
   opponent: ['Соперник', 'Суперник', 'Rival', 'Adversário', 'Đối thủ', 'Lawan', 'Rakip', 'Rywal'],

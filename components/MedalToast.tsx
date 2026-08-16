@@ -377,20 +377,16 @@ function MedalToast({
           pointerEvents="none"
         />
 
-        <View
-          style={[
-            styles.medalSlot,
-            {
-              backgroundColor: visualTheme.medalPlateBg,
-              borderColor: visualTheme.medalPlateBorder,
-            },
-          ]}
-        >
-          <Image
-            source={MEDAL_IMAGES[tier]}
-            style={styles.medalImage}
-            contentFit="contain"
-          />
+        {/* зачем: правило владельца — без обводок; кольцо рисуем тоном:
+            внешний слой = цвет бывшей кромки, внутренний = плашка */}
+        <View style={[styles.medalSlot, { backgroundColor: visualTheme.medalPlateBorder }]}>
+          <View style={[styles.medalSlotInner, { backgroundColor: visualTheme.medalPlateBg }]}>
+            <Image
+              source={MEDAL_IMAGES[tier]}
+              style={styles.medalImage}
+              contentFit="contain"
+            />
+          </View>
         </View>
 
         <View style={styles.textWrap}>
@@ -483,7 +479,13 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 32,
-    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  medalSlotInner: {
+    width: 62,
+    height: 62,
+    borderRadius: 31,
     alignItems: 'center',
     justifyContent: 'center',
   },

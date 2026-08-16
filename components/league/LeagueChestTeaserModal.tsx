@@ -183,7 +183,8 @@ function LeagueChestTeaserModalComponent({ visible, lang, palette, remainingXp, 
                 key={`${rarity}-${index}`}
                 entering={reduceMotion ? undefined : FadeInDown.delay(160 + index * 80).duration(320).springify()}
               >
-                <Animated.View style={[styles.box, { borderColor: RARITY_RIM[rarity], transform: [{ translateY: bob }] }]}>
+                {/* зачем: без обводок — кромка редкости тоном (внешний слой = цвет редкости) */}
+                <Animated.View style={[styles.box, { backgroundColor: RARITY_RIM[rarity], transform: [{ translateY: bob }] }]}>
                   <View style={[styles.boxInner, { backgroundColor: palette.elevated }]}>
                     <Ionicons name="gift" size={26} color="rgba(255,255,255,0.14)" />
                     <Text style={[styles.question, { color: RARITY_RIM[rarity] }]}>?</Text>
@@ -248,12 +249,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 3,
   },
-  title: { fontSize: 22, fontWeight: '900', letterSpacing: -0.2, textAlign: 'center' },
+  title: { fontSize: 22, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center' },
   subtitle: { fontSize: 12.5, fontWeight: '700', textAlign: 'center', marginTop: 6, lineHeight: 18, maxWidth: 290 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 12, marginTop: 20 },
-  box: { width: 74, height: 74, borderRadius: 18, borderWidth: 2, padding: 3, position: 'relative' },
+  box: { width: 74, height: 74, borderRadius: 18, padding: 2, position: 'relative' },
   boxInner: { flex: 1, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  question: { position: 'absolute', fontSize: 30, fontWeight: '900', textShadowColor: 'rgba(0,0,0,0.6)', textShadowRadius: 4, textShadowOffset: { width: 0, height: 1 } },
+  question: { position: 'absolute', fontSize: 30, fontWeight: '700', textShadowColor: 'rgba(0,0,0,0.6)', textShadowRadius: 4, textShadowOffset: { width: 0, height: 1 } },
   rarityDot: { position: 'absolute', top: -4, right: -4, width: 12, height: 12, borderRadius: 6 },
   claimBtn: {
     marginTop: 22,
@@ -266,6 +267,6 @@ const styles = StyleSheet.create({
     gap: 8,
     alignSelf: 'stretch',
   },
-  claimText: { fontSize: 16, fontWeight: '900' },
-  remaining: { marginTop: 20, fontSize: 13, fontWeight: '800', textAlign: 'center' },
+  claimText: { fontSize: 16, fontWeight: '700' },
+  remaining: { marginTop: 20, fontSize: 13, fontWeight: '700', textAlign: 'center' },
 });

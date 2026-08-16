@@ -476,12 +476,15 @@ function LeagueChestOpenModal({
                 </Text>
 
                 <Animated.View style={{ alignItems: 'center', transform: [{ translateY: crownFloat }] }}>
-                  <View style={[styles.crownHalo, { borderColor: modalTheme.crestBorder, backgroundColor: modalTheme.crestBg }]}>
+                  {/* зачем: без обводок — кольцо тоном (внешний слой цвета кромки, внутренний фон герба) */}
+                  <View style={[styles.crownHalo, { backgroundColor: modalTheme.crestBorder }]}>
+                  <View style={[styles.crownHaloInner, { backgroundColor: modalTheme.crestBg }]}>
                     {isCrownWinner ? (
                       <Image source={LEAGUE_CROWN_ICON} contentFit="contain" style={styles.crownImage} />
                     ) : (
                       <Image source={leagueBonusGiftImage} contentFit="contain" style={styles.leagueGiftImage} />
                     )}
+                  </View>
                   </View>
                 </Animated.View>
 
@@ -639,10 +642,16 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 75,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 12,
+  },
+  crownHaloInner: {
+    width: 148,
+    height: 148,
+    borderRadius: 74,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   crownImage: {
     width: 92,

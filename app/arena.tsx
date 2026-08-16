@@ -36,6 +36,26 @@ import { trackArenaTelemetry } from './arena_telemetry';
 
 const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
 
+/**
+ * Код отказа вызова Арены в пригодном для показа виде.
+ *
+ * зачем: сервер называет причину словами (`arena_disabled`,
+ * `arena_client_update_required`, `account_delete_pending`,
+ * `arena_config_incompatible:...`), но экран показывал одну и ту же карточку
+ * на любой отказ, а сама ошибка нигде не сохранялась. Диагностика сводилась к
+ * гаданию. Достаём код и показываем его человеку — короткой строкой, не
+ * стеной текста.
+ */
+function arenaErrorCode(e: unknown): string {
+  const raw = e as { code?: unknown; message?: unknown } | null | undefined;
+  const message = typeof raw?.message === 'string' ? raw.message : '';
+  const code = typeof raw?.code === 'string' ? raw.code : '';
+  // Firebase кладёт полезное в message, а в code — транспортный уровень
+  // ('functions/failed-precondition'), который ни о чём не говорит.
+  const useful = message || code;
+  return useful ? useful.slice(0, 80) : 'unknown';
+}
+
 export default function ArenaHubScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ section?: string }>();
@@ -61,6 +81,7 @@ export default function ArenaHubScreen() {
     (warm?.expansion ?? null) as ArenaExpansionHome | null,
   );
   const [baseError, setBaseError] = useState(false);
+  const [baseErrorCode, setBaseErrorCode] = useState<string | null>(null);
   const [expansionError, setExpansionError] = useState(false);
   const spinRequestIdRef = useRef(createArenaRequestId('spin'));
   const [spinBusy, setSpinBusy] = useState(false);
@@ -69,15 +90,29 @@ export default function ArenaHubScreen() {
 
   const load = useCallback(() => {
     setBaseError(false);
+    setBaseErrorCode(null);
     setExpansionError(false);
     void arenaV2Home().then((response) => {
       setHome(response);
       arenaRememberHomeWarm({ home: response, wallNowMs: Date.now(), store: warmStore });
-    }).catch(() => setBaseError(true));
+    }).catch((e: unknown) => {
+      // зачем: отказ проглатывался молча — экран рисовал «Арена не включена
+      // на сервере» на ЛЮБУЮ ошибку, и настоящую причину нельзя было узнать
+      // ни с телефона, ни из логов. 2026-08-16 на поиск ушёл целый день, а
+      // причиной оказался гейт версии, потом помеченный на удаление аккаунт.
+      // Код ошибки нужен и в консоли Metro, и на самом экране.
+      const code = arenaErrorCode(e);
+      setBaseErrorCode(code);
+      setBaseError(true);
+      if (__DEV__) console.warn('[arena] arenaV2Home failed:', code, e);
+    });
     void arenaExpansionHome().then((response) => {
       setExpansion(response);
       arenaRememberHomeWarm({ expansion: response, wallNowMs: Date.now(), store: warmStore });
-    }).catch(() => setExpansionError(true));
+    }).catch((e: unknown) => {
+      setExpansionError(true);
+      if (__DEV__) console.warn('[arena] arenaExpansionHome failed:', arenaErrorCode(e), e);
+    });
     // Оба — разовые чтения при открытии. Прошедшие матчи не меняются, список
     // друзей меняется днями: держать на них подписку значит платить за
     // уведомления, которых не будет.
@@ -262,7 +297,13 @@ export default function ArenaHubScreen() {
         <ArenaStateCard
           state="unavailable"
           title={arenaText(lang, 'arenaNotDeployed')}
-          body={arenaText(lang, 'arenaNotDeployedHint')}
+          // зачем: раньше здесь всегда стояло «дело за серверной частью» —
+          // единственная догадка, выданная за факт. Она увела диагностику
+          // на целый день, пока сервер был полностью исправен. Показываем
+          // то, что сервер действительно ответил.
+          body={baseErrorCode
+            ? `${arenaText(lang, 'arenaNotDeployedHint')}\n\n${baseErrorCode}`
+            : arenaText(lang, 'arenaNotDeployedHint')}
         />
       ) : null}
       {/* Отчёт, застрявший из-за старой сборки, повторами не спасти: игроку

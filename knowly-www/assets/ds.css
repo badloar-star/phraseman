@@ -464,8 +464,17 @@ footer.site-foot { border-top: 1px solid var(--border); padding: 26px 0; }
 /* ============ Тест уровня ============ */
 .level-card { max-width: 560px; margin: 50px auto 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 34px; text-align: center; }
 .level-langs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 18px 0 26px; }
-.level-langs span, .level-langs a { padding: 7px 14px; border-radius: var(--radius-full); border: 1px solid var(--border); font-size: 0.8125rem; color: var(--text-muted); }
-.level-langs span.active, .level-langs a.active { border-color: var(--accent-2); color: var(--accent-text); font-weight: 700; }
+.level-langs span, .level-langs a, .level-langs button {
+  padding: 8px 16px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: transparent;
+  font: inherit; font-size: 0.875rem; color: var(--text-muted); cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.level-langs button:hover { border-color: var(--border-hi); color: var(--text); }
+.level-langs span.active, .level-langs a.active, .level-langs button.active {
+  border-color: var(--accent-2); color: var(--accent-text); font-weight: 700;
+  background: rgba(var(--accent-rgb), .10);
+}
 .level-stats { display: flex; justify-content: center; gap: 28px; margin: 26px 0; color: var(--text-dim); font-size: 0.8125rem; }
 .level-stats b { display: block; color: var(--text); font-size: 1.125rem; }
 .level-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 760px; margin: 56px auto 0; }

@@ -279,21 +279,24 @@
 
   <div class="level-card reveal reveal-3">
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;" data-i18n="lv.which">Какой язык проверяем?</p>
-    <div class="level-langs">
-      <a class="active" href="/english-level-test/">English</a>
-      <a href="/english-level-test/?lang=de">Deutsch</a>
-      <a href="/english-level-test/?lang=fr">Français</a>
-      <a href="/english-level-test/?lang=it">Italiano</a>
-      <a href="/english-level-test/?lang=es">Español</a>
+    <!-- зачем: владелец 2026-08-16 — выбор языка должен переключаться ПРЯМО
+         ЗДЕСЬ, а кнопка вести на уже выбранный тест. Раньше каждая ссылка
+         сразу уводила на страницу, выбрать на месте было нельзя. -->
+    <div class="level-langs" role="radiogroup" aria-label="Какой язык проверяем">
+      <button type="button" class="active" data-test-lang="en" role="radio" aria-checked="true">English</button>
+      <button type="button" data-test-lang="de" role="radio" aria-checked="false">Deutsch</button>
+      <button type="button" data-test-lang="fr" role="radio" aria-checked="false">Français</button>
+      <button type="button" data-test-lang="it" role="radio" aria-checked="false">Italiano</button>
+      <button type="button" data-test-lang="es" role="radio" aria-checked="false">Español</button>
     </div>
     <div class="level-stats">
       <div><b>12–20</b><span data-i18n="lv.stat1">адаптивных вопроса</span></div>
       <div><b>45<span aria-hidden="true">с</span></b><span data-i18n="lv.stat2">на вопрос</span></div>
       <!-- зачем: живое число завершённых тестов с публичного API, не витрина.
-           Начальное «—» заменяется кэшем мгновенно, потом уточняется сетью. -->
+           Показывает счёт ВЫБРАННОГО языка и переключается вместе с ним. -->
       <div><b class="cnt" id="testCnt">—</b><span data-i18n="lv.stat3">уже прошли тест</span></div>
     </div>
-    <a class="btn btn-primary" href="/english-level-test/" style="width:100%;" data-i18n="lv.cta">Начать тест</a>
+    <a class="btn btn-primary" id="startTestBtn" href="/english-level-test/" style="width:100%;" data-i18n="lv.cta">Начать тест</a>
     <p class="fine-print" style="margin-top:14px;" data-i18n="lv.consent">Начиная тест, вы соглашаетесь с обработкой ответов для расчёта результата.</p>
   </div>
 

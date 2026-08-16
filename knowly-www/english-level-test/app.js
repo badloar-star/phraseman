@@ -850,7 +850,7 @@
     return `
       <div class="elt-ui-locale-control" data-ui-locale-menu>
         <button type="button" class="elt-ui-locale-trigger" data-ui-locale-trigger aria-haspopup="listbox" aria-expanded="false" aria-label="${copy('aria.localeToggle')}" title="${copy('aria.localeToggle')}">
-          <span class="elt-ui-locale-flag"><img src="./assets/flags/${uiLocale}.webp" alt="" width="22" height="22" /></span>
+          <span class="elt-ui-locale-flag"><img src="./assets/flags-svg/${uiLocale}.svg" alt="" width="22" height="22" /></span>
           <span class="elt-ui-locale-code">${currentMeta.shortLabel}</span>
           <svg class="elt-ui-locale-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
@@ -860,7 +860,7 @@
             const active = locale === uiLocale;
             return `
               <li class="elt-ui-locale-option${active ? ' elt-ui-locale-option--active' : ''}" data-ui-locale-option="${locale}" role="option" aria-selected="${active}">
-                <span class="elt-ui-locale-flag"><img src="./assets/flags/${locale}.webp" alt="" width="22" height="22" /></span>
+                <span class="elt-ui-locale-flag"><img src="./assets/flags-svg/${locale}.svg" alt="" width="22" height="22" /></span>
                 <span>${meta.label}</span>
               </li>
             `;
@@ -952,16 +952,16 @@
         ${brandHeader()}
 
         <section class="elt-hero" aria-labelledby="elt-hero-title">
-          <p class="elt-kicker">${copy('landing.eyebrow')}</p>
+          <!-- зачем: владелец 2026-08-16 убрал плашку «Бесплатная диагностика»
+               и подзаголовок про CEFR — заголовок говорит сам за себя -->
           <h1 id="elt-hero-title">${copy('landing.title', { language: selectedLandingLanguageName() })}</h1>
-          <p class="elt-lead">${copy('landing.subtitle')}</p>
 
           <section class="elt-language-selector" aria-label="${copy('aria.testSelector')}">
             <p class="elt-language-selector-title">${copy('languageSelector.testLanguage')}</p>
             <div class="elt-language-options" role="group" aria-label="${copy('aria.testSelector')}">
               ${EnglishTestI18n.TEST_LANGUAGES.map((code) => `
                 <button class="elt-language-option${code === selectedTestLanguage ? ' elt-language-option--active' : ''}" type="button" data-test-language="${code}" aria-pressed="${code === selectedTestLanguage}">
-                  <span class="elt-language-flag"><img src="./assets/flags/${code}.webp" alt="" width="56" height="56" /></span>
+                  <span class="elt-language-flag"><img src="./assets/flags-svg/${code}.svg" alt="" width="56" height="56" /></span>
                   <span class="elt-language-name">${EnglishTestI18n.TESTS[code].nativeLabel}</span>
                 </button>
               `).join('')}
@@ -974,7 +974,6 @@
           </div>
 
           <button class="elt-btn elt-btn-primary elt-btn-hero" data-magnet id="startBtn">${copy('landing.start')}</button>
-          <p class="elt-timer-note">${copy('landing.timerNote')}</p>
 
           <label class="elt-consent">
             <input type="checkbox" id="consentCheckbox"${consent ? ' checked' : ''} />
@@ -982,29 +981,10 @@
           </label>
         </section>
 
-        <section class="elt-steps" aria-label="${copy('landing.howItWorksLabel')}">
-          <div class="elt-step">
-            <div class="elt-step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-            </div>
-            <h3>${copy('landing.step1Title')}</h3>
-            <p>${copy('landing.step1Body')}</p>
-          </div>
-          <div class="elt-step">
-            <div class="elt-step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-            </div>
-            <h3>${copy('landing.step2Title')}</h3>
-            <p>${copy('landing.step2Body')}</p>
-          </div>
-          <div class="elt-step">
-            <div class="elt-step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg>
-            </div>
-            <h3>${copy('landing.step3Title')}</h3>
-            <p>${copy('landing.step3Body')}</p>
-          </div>
-        </section>
+        <!-- зачем: владелец 2026-08-16 удалил блок из трёх карточек
+             («Ответьте на вопросы» / «Получите уровень» / «Скачайте
+             сертификат») — экран и так понятен, карточки только удлиняли
+             страницу до кнопки. -->
 
         <section class="elt-preview" aria-label="${copy('landing.certificatePreviewLabel')}">
           <div class="elt-preview-card">

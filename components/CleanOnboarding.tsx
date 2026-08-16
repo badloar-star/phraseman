@@ -118,6 +118,7 @@ export type CleanOnboardingStep =
   | 'notifications'
   | 'trialReminder'
   | 'onboardingPaywall'
+  | 'improve'
   | 'name';
 
 export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_minimal_wow_flow_2026_08_16b';
@@ -152,6 +153,7 @@ export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'notifications',
   'trialReminder',
   'onboardingPaywall',
+  'improve',
   'name',
 ];
 
@@ -980,6 +982,9 @@ function CleanOnboarding({
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const [level, setLevel] = useState<LevelChoice | null>(null);
   const [notificationBusy, setNotificationBusy] = useState(false);
+  // Полная АХ-сцена (звук + караоке) открывается ПО КНОПКЕ с экрана-приглашения
+  // (владелец, 2026-08-16): демонстрация необязательна, «Дальше» ведёт мимо.
+  const [ahaSceneOpen, setAhaSceneOpen] = useState(false);
   const [paywallBusy, setPaywallBusy] = useState(false);
   const [ageAnswer, setAgeAnswer] = useState<AgeAnswer>(null);
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
@@ -1370,7 +1375,7 @@ function CleanOnboarding({
               : `Готово! Полный доступ на ${Math.max(1, res.rewardDays ?? 1)} дн. активирован.`,
           });
           // Доступ уже выдан — цены больше не нужны, ведём к финальному шагу.
-          setTimeout(() => { setCodeSheet(null); go('name'); }, 900);
+          setTimeout(() => { setCodeSheet(null); go('improve'); }, 900);
           return;
         }
         const text = res.status === 'not_found' ? 'Такого кода нет. Проверь опечатки.'
@@ -1652,16 +1657,54 @@ function CleanOnboarding({
     </ScreenFrame>
   );
 
-  // АХ-сцена: полноэкранная (свой SafeArea и скип), вне ScreenFrame-хрома.
-  // Скип и завершение ведут в одну точку — уведомления просят ПОСЛЕ победы.
-  const renderAha = () => (
-    <AhaScene
-      goal={undefined}
-      lang={lang === 'uk' || lang === 'es' ? lang : 'ru'}
-      onDone={() => go('notifications')}
-      onSkip={() => go('notifications')}
-    />
-  );
+  // Демонстрация необязательна: лёгкое приглашение с ОТДЕЛЬНОЙ кнопкой
+  // (владелец, 2026-08-16). Сама сцена — полная оригинальная AhaScene со
+  // звуком, караоке и анимациями; полноэкранная, вне ScreenFrame-хрома.
+  const renderAha = () => {
+    if (ahaSceneOpen) {
+      return (
+        <AhaScene
+          goal={undefined}
+          lang={lang === 'uk' || lang === 'es' ? lang : 'ru'}
+          onDone={() => { setAhaSceneOpen(false); go('notifications'); }}
+          onSkip={() => { setAhaSceneOpen(false); go('notifications'); }}
+        />
+      );
+    }
+    return (
+      <ScreenFrame
+        step="aha"
+        title="Услышь — и ответь, как в жизни"
+        plainTitle
+        onBack={back}
+        footer={(
+          <>
+            <PrimaryButton
+              label="Показать живую сцену"
+              onPress={() => setAhaSceneOpen(true)}
+              testID="onboarding-aha-open"
+            />
+            <SecondaryButton
+              label="Дальше"
+              onPress={() => go('notifications')}
+              testID="onboarding-aha-continue"
+            />
+          </>
+        )}
+      >
+        <View style={styles.ahaInviteCard}>
+          <View style={styles.ahaInviteIcon}>
+            <Ionicons name="volume-high" size={26} color="#B9C8FF" />
+          </View>
+          <Text style={styles.ahaInviteQuote}>“What can I get you?”</Text>
+          <View style={styles.ahaInviteMicRow}>
+            <Ionicons name="mic" size={18} color="#7DE0A6" />
+            <Text style={styles.ahaInviteAnswer}>Соберёшь ответ и услышишь его голосом</Text>
+          </View>
+        </View>
+      </ScreenFrame>
+    );
+  };
 
   const renderNotifications = () => (
     <ScreenFrame
@@ -1745,7 +1788,7 @@ function CleanOnboarding({
         title="Открой полный доступ Phraseman Plus"
         // Крестик СЛЕВА (владелец, 2026-08-16, паттерн Bevel): закрыть цены =
         // продолжить бесплатно, то есть уйти на финальный обязательный шаг.
-        onClose={() => go('name')}
+        onClose={() => go('improve')}
         headerRight={(
           <Pressable
             testID="onboarding-paywall-menu"
@@ -1784,7 +1827,7 @@ function CleanOnboarding({
               <Pressable
                 testID="onboarding-paywall-continue-free"
                 onPressIn={() => { void hapticTap(); }}
-                onPress={() => go('name')}
+                onPress={() => go('improve')}
                 accessibilityRole="button"
               >
                 <Text style={styles.paywallFooterLink}>Продолжить бесплатно</Text>
@@ -1926,6 +1969,25 @@ function CleanOnboarding({
     );
   };
 
+  // Экран-объяснение перед согласиями (паттерн Bevel «Help us improve»):
+  // человеческим языком — зачем галочка аналитики и вопрос возраста на
+  // следующем шаге. Отдельно от действий, чтобы финал остался коротким.
+  const renderImprove = () => (
+    <ScreenFrame
+      step="improve"
+      title="Помоги сделать Phraseman лучше"
+      plainTitle
+      onBack={back}
+      footer={<PrimaryButton label="Продолжить" onPress={() => go('name')} testID="onboarding-improve-continue" />}
+    >
+      <View style={styles.improveList}>
+        <TrialTimelineRow index={0} icon="stats-chart-outline" title="Анонимная аналитика — только цифры" />
+        <TrialTimelineRow index={1} icon="shield-checkmark-outline" title="Личное не уходит никуда и никогда" />
+        <TrialTimelineRow index={2} icon="person-outline" title="Спросим возраст — так велят правила" />
+      </View>
+    </ScreenFrame>
+  );
+
   const renderName = () => (
     <ScreenFrame
       step="name"
@@ -1944,9 +2006,9 @@ function CleanOnboarding({
         />
       )}
     >
-      {/* Порядок по решению владельца (2026-08-16): сначала добровольный выбор
-          аналитики, ниже — обязательный вопрос возраста. */}
-      <Text style={styles.consentSectionLabel}>ТВОЙ ВЫБОР</Text>
+      {/* Порядок по решению владельца (2026-08-16): сначала добровольная галочка
+          аналитики, ниже — обязательный вопрос возраста. Объяснение — экраном
+          раньше (improve), поэтому здесь только действия, без меток. */}
       <Pressable
         testID="onboarding-analytics-checkbox"
         onPressIn={() => { void hapticTap(); }}
@@ -2009,12 +2071,13 @@ function CleanOnboarding({
       case 'notifications': return renderNotifications();
       case 'trialReminder': return renderTrialReminder();
       case 'onboardingPaywall': return renderOnboardingPaywall();
+      case 'improve': return renderImprove();
       case 'name': return renderName();
       default: return renderWelcome();
     }
   };
 
-  const bare = displayStep === 'welcome' || displayStep === 'aha';
+  const bare = displayStep === 'welcome' || (displayStep === 'aha' && ahaSceneOpen);
 
   return (
     <OnboardingOrderContext.Provider value={enabledOrder}>
@@ -3390,6 +3453,47 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
     marginBottom: 6,
+  },
+  improveList: {
+    gap: 12,
+    marginTop: 10,
+  },
+  ahaInviteCard: {
+    alignItems: 'center',
+    backgroundColor: 'rgba(18, 24, 46, 0.72)',
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(133, 156, 255, 0.16)',
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+    marginTop: 12,
+    gap: 14,
+  },
+  ahaInviteIcon: {
+    width: 58,
+    height: 58,
+    borderRadius: 20,
+    backgroundColor: 'rgba(133, 156, 255, 0.14)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  ahaInviteQuote: {
+    color: '#F2F5FF',
+    fontSize: 23,
+    lineHeight: 29,
+    fontWeight: '800',
+    letterSpacing: -0.3,
+    textAlign: 'center',
+  },
+  ahaInviteMicRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 7,
+  },
+  ahaInviteAnswer: {
+    color: '#A9B4D8',
+    fontSize: 14.5,
+    fontWeight: '600',
   },
   ageQuestion: {
     color: '#F2F5FF',

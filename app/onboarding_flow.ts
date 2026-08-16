@@ -6,6 +6,7 @@ export type OnboardingStepId =
   | 'notifications'
   | 'trialReminder'
   | 'onboardingPaywall'
+  | 'improve'
   | 'name';
 
 export type OnboardingFlowDirection = 'forward' | 'backward' | 'current-or-forward';
@@ -44,6 +45,7 @@ export const ONBOARDING_STEP_CATALOG: readonly {
   { id: 'notifications', label: 'Уведомления', description: 'Предложение включить уведомления.' },
   { id: 'trialReminder', label: 'Напоминание о пробном', description: 'Обещание предупредить до конца пробного.' },
   { id: 'onboardingPaywall', label: 'Предложение подписки', description: 'Экран покупки.' },
+  { id: 'improve', label: 'Помоги улучшить', description: 'Объяснение перед согласиями: аналитика и возраст.' },
   {
     id: 'name',
     label: 'Имя и согласия',

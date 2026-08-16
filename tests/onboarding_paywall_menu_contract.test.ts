@@ -9,13 +9,13 @@ const promoEntry = fs.readFileSync(path.join(root, 'app', 'promo_code_entry.tsx'
 // Bevel): закрытие крестиком СЛЕВА (= бесплатный путь), меню «···» СПРАВА с
 // промокодом, кодом друга и восстановлением, оплата и юртексты — внизу.
 describe('onboarding paywall header and codes menu contract', () => {
-  it('closes with a left cross that routes to the free mandatory step', () => {
+  it('closes with a left cross that routes to the free path (improve → final)', () => {
     const paywall = source.slice(
       source.indexOf('const renderOnboardingPaywall'),
-      source.indexOf('const renderName'),
+      source.indexOf('const renderImprove'),
     );
     expect(source).toContain("testID={onClose ? 'onboarding-paywall-close' : 'onboarding-back'}");
-    expect(paywall).toContain("onClose={() => go('name')}");
+    expect(paywall).toContain("onClose={() => go('improve')}");
     // Прежний back-шеврон на пейволе не рисуем: у экрана цен один выход —
     // закрыть (или купить); истории «назад к триал-обещанию» нет.
     expect(paywall).not.toContain('onBack={back}');
@@ -42,13 +42,13 @@ describe('onboarding paywall header and codes menu contract', () => {
     expect(source).toContain("await import('../app/referral_bootstrap')");
     expect(source).toContain('applyManualReferralCode');
     // Успешный промокод делает цены ненужными — уводим на финальный шаг.
-    expect(source).toContain("setTimeout(() => { setCodeSheet(null); go('name'); }, 900)");
+    expect(source).toContain("setTimeout(() => { setCodeSheet(null); go('improve'); }, 900)");
   });
 
   it('keeps payment reassurance and legal texts at the bottom of the paywall', () => {
     const paywall = source.slice(
       source.indexOf('const renderOnboardingPaywall'),
-      source.indexOf('const renderName'),
+      source.indexOf('const renderImprove'),
     );
     expect(paywall).toContain('Сейчас ничего не спишем — напомним до конца пробного');
     expect(paywall).toContain('Отмена в любой момент в настройках магазина.');
@@ -60,7 +60,7 @@ describe('onboarding paywall header and codes menu contract', () => {
   it('sells the original FREE/PLUS comparison without the removed personal plan', () => {
     const paywall = source.slice(
       source.indexOf('const renderOnboardingPaywall'),
-      source.indexOf('const renderName'),
+      source.indexOf('const renderImprove'),
     );
     expect(paywall).toContain('PAYWALL_COMPARISON_BENEFITS');
     expect(paywall).toContain('>FREE<');

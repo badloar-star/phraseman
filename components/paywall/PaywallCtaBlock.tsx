@@ -6,42 +6,15 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
 import {
-  View, Text, StyleSheet, ActivityIndicator, Linking,
+  View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Linking,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import DuoPressable from '../DuoPressable';
-import PressableHybrid from '../PressableHybrid';
+import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
 import { PaywallCtaShine } from './PaywallMotion';
 import { noAndroidOutline } from '../../constants/androidGlow';
-
-// зачем: DuoPressable требует непрозрачный edgeColor (кромка-«подошва» клавиши),
-// а ctaShadow части тем (midnight/ember/aurora/volt) намеренно 'transparent' —
-// они использовались только как shadowColor, не как заливка. Тёмная кромка
-// клавиши считается прямо из ctaBg темы, а не изобретается заново.
-function isOpaqueHex(color: string): boolean {
-  return /^#[0-9a-fA-F]{6}$/.test(color);
-}
-
-function darkenHex(hex: string, amount: number): string {
-  const n = parseInt(hex.slice(1), 16);
-  const r = Math.max(0, Math.round(((n >> 16) & 255) * (1 - amount)));
-  const g = Math.max(0, Math.round(((n >> 8) & 255) * (1 - amount)));
-  const b = Math.max(0, Math.round((n & 255) * (1 - amount)));
-  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
-}
-
-/** Тёмный тон акцента CTA для кромки DuoPressable: ctaShadow, если это
- *  непрозрачный hex темы; иначе — ctaBg, затемнённый на 28%. Экспортируется —
- *  тот же тон нужен sticky-CTA (paywallShared.tsx), не дублируем логику. */
-export function resolveCtaEdgeColor(chrome: PaywallChrome): string {
-  const { ctaShadow, ctaBg } = chrome.tc;
-  if (isOpaqueHex(ctaShadow)) return ctaShadow;
-  if (isOpaqueHex(ctaBg)) return darkenHex(ctaBg, 0.28);
-  return 'rgba(0,0,0,0.32)';
-}
 
 interface Props {
   lang: Lang;
@@ -103,32 +76,35 @@ export default function PaywallCtaBlock({
   lang, chrome, label, subLine, disabled, busy, onPress, onRestore, restoring, onContinueFree, hideFooter, trustHasTrial, isOnboarding,
 }: Props) {
   const { tc, textMuted } = chrome;
-  // зачем: владелец — главная CTA пейвола обязана быть клавишей с кромкой
-  // (вдавливается, а не тускнеет), как весь остальной прод. edgeColor считается
-  // из токенов темы (ctaShadow/ctaBg), никаких новых цветов не вводим.
-  const ctaEdgeColor = resolveCtaEdgeColor(chrome);
 
   return (
     <View>
-      <DuoPressable
+      <TouchableOpacity
+        activeOpacity={0.84}
         onPress={onPress}
         disabled={disabled}
-        edgeColor={ctaEdgeColor}
-        edgeHeight={6}
-        gradientColors={isOnboarding ? ['#D7E0FF', '#8FA0FF', '#A95BFF'] : undefined}
         style={[S.cta, {
           backgroundColor: isOnboarding ? '#8FA0FF' : tc.ctaBg,
           shadowColor: tc.ctaShadow,
           opacity: disabled && !busy ? 0.5 : 1,
         }]}
       >
+        {isOnboarding ? (
+          <LinearGradient
+            colors={['#D7E0FF', '#8FA0FF', '#A95BFF']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={StyleSheet.absoluteFill}
+            pointerEvents="none"
+          />
+        ) : null}
         {/* Блик-полоса раз в ~5.6с (гейтится фокусом/AppState/reduce-motion);
             лежит ПОД текстом — поздние siblings рисуются поверх. */}
         <PaywallCtaShine />
         {busy
           ? <ActivityIndicator color={tc.ctaText} />
           : <Text style={[S.ctaText, { color: tc.ctaText }]} numberOfLines={1}>{label}</Text>}
-      </DuoPressable>
+      </TouchableOpacity>
 
       <Text style={[S.subLine, { color: textMuted }]} numberOfLines={3}>{subLine}</Text>
 
@@ -139,9 +115,7 @@ export default function PaywallCtaBlock({
 
       {hideFooter ? null : (
       <View style={S.footer}>
-        <PressableHybrid
-          variant="chip"
-          style={S.footerLinkPress}
+        <TouchableOpacity
           onPress={onRestore}
           disabled={restoring || busy}
           accessibilityState={{ disabled: restoring || busy, busy: restoring }}
@@ -160,13 +134,9 @@ export default function PaywallCtaBlock({
                   pl: 'Przywróć',
                 })}
               </Text>}
-        </PressableHybrid>
+        </TouchableOpacity>
         <Text style={[S.footerDot, { color: textMuted }]}>·</Text>
-        <PressableHybrid
-          variant="chip"
-          style={S.footerLinkPress}
-          onPress={() => Linking.openURL('https://phraseman.app/terms').catch(() => {})}
-        >
+        <TouchableOpacity onPress={() => Linking.openURL('https://phraseman.app/terms').catch(() => {})}>
           <Text style={[S.footerLink, { color: textMuted }]}>
             {triLang(lang, {
               ru: 'Условия',
@@ -179,13 +149,9 @@ export default function PaywallCtaBlock({
               pl: 'Warunki',
             })}
           </Text>
-        </PressableHybrid>
+        </TouchableOpacity>
         <Text style={[S.footerDot, { color: textMuted }]}>·</Text>
-        <PressableHybrid
-          variant="chip"
-          style={S.footerLinkPress}
-          onPress={() => Linking.openURL('https://phraseman.app/privacy').catch(() => {})}
-        >
+        <TouchableOpacity onPress={() => Linking.openURL('https://phraseman.app/privacy').catch(() => {})}>
           <Text style={[S.footerLink, { color: textMuted }]}>
             {triLang(lang, {
               ru: 'Конфиденциальность',
@@ -198,12 +164,12 @@ export default function PaywallCtaBlock({
               pl: 'Prywatność',
             })}
           </Text>
-        </PressableHybrid>
+        </TouchableOpacity>
       </View>
       )}
 
       {!hideFooter && onContinueFree && (
-        <PressableHybrid variant="secondary" style={S.ghost} onPress={onContinueFree}>
+        <TouchableOpacity onPress={onContinueFree} style={S.ghost}>
           <Text style={[S.ghostText, { color: textMuted }]}>
             {triLang(lang, {
               ru: 'Продолжить бесплатно',
@@ -216,7 +182,7 @@ export default function PaywallCtaBlock({
               pl: 'Kontynuuj za darmo',
             })}
           </Text>
-        </PressableHybrid>
+        </TouchableOpacity>
       )}
     </View>
   );
@@ -233,10 +199,7 @@ const S = StyleSheet.create({
   ctaText: { fontSize: 19, fontWeight: '900', letterSpacing: 0, paddingHorizontal: 14 },
   subLine: { textAlign: 'center', fontSize: 13, lineHeight: 17.5, marginTop: 10, fontVariant: ['tabular-nums'] },
   footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 9, marginTop: 12 },
-  // зачем: PressableHybrid по умолчанию alignSelf:'stretch' (растягивает на всю
-  // ширину строки-контейнера) — ссылки футера должны остаться inline-шириной.
-  footerLinkPress: { alignSelf: 'auto' },
-  footerLink: { fontSize: 12.5, opacity: 0.72 }, // guard-ok: самостоятельная ссылка (Восстановить/Условия/Конфиденциальность), не подпись под заголовком
+  footerLink: { fontSize: 12.5, opacity: 0.72 },
   footerLinkDisabled: { opacity: 0.35 },
   footerDot: { fontSize: 12.5, opacity: 0.42 },
   ghost: { alignSelf: 'center', marginTop: 10, paddingVertical: 6, paddingHorizontal: 10 },

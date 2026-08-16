@@ -8,7 +8,7 @@
 // Pro, если lifetime доступен) — выбор меняет p.selectPlan. Дефолт — годовой.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, Stack } from 'expo-router';
 import * as Crypto from 'expo-crypto';
@@ -35,7 +35,6 @@ import {
   usePaywallScreenStackOptions, PaywallStickyBar, useStickyCta,
 } from '../components/paywall/paywallShared';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
-import PressableHybrid from '../components/PressableHybrid';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
 import { PaywallEntrance, PaywallBadgePop } from '../components/paywall/PaywallMotion';
@@ -244,13 +243,11 @@ export default function PaywallE() {
 
             {/* Store compliance: выбор плана доступен, просто не на первом плане. */}
             <PaywallEntrance index={5}>
-              <PressableHybrid
-                variant="chip"
+              <TouchableOpacity
                 accessibilityRole="button"
                 accessibilityState={{ expanded: showAltPlans }}
-                onPress={() => setShowAltPlans((v) => !v)}
+                onPress={() => { hapticTap(); setShowAltPlans((v) => !v); }}
                 style={S.altToggle}
-                contentStyle={S.altToggleContent}
                 hitSlop={8}
               >
                 <Text style={[S.altToggleText, { color: chrome.textMuted }]}>
@@ -260,16 +257,15 @@ export default function PaywallE() {
                   })}
                 </Text>
                 <Ionicons name={showAltPlans ? 'chevron-up' : 'chevron-down'} size={16} color={chrome.textMuted} />
-              </PressableHybrid>
+              </TouchableOpacity>
             </PaywallEntrance>
             {showAltPlans && (
               <PaywallEntrance index={0} style={S.altList}>
                 {altPlans.map((alt) => {
                   const sel = p.selected === alt.plan;
                   return (
-                    <PressableHybrid
+                    <TouchableOpacity
                       key={alt.plan}
-                      variant="card"
                       accessibilityRole="radio"
                       accessibilityLabel={`${alt.name} ${alt.priceLabel}`.trim()}
                       accessibilityState={{ selected: sel, disabled: p.purchasing }}
@@ -279,7 +275,6 @@ export default function PaywallE() {
                         borderColor: sel ? tc.selectedCardBorder : chrome.cardBorder,
                         backgroundColor: sel ? chrome.cardBgStrong : chrome.cardBg,
                       }]}
-                      contentStyle={S.altRowContent}
                     >
                       <Ionicons
                         name={sel ? 'checkmark-circle' : 'ellipse-outline'}
@@ -288,7 +283,7 @@ export default function PaywallE() {
                       />
                       <Text style={[S.altName, { color: sel ? chrome.textPrimary : chrome.textMuted }]}>{alt.name}</Text>
                       <Text style={[S.altPrice, { color: chrome.textMuted }]} numberOfLines={1}>{alt.priceLabel}</Text>
-                    </PressableHybrid>
+                    </TouchableOpacity>
                   );
                 })}
               </PaywallEntrance>
@@ -383,18 +378,16 @@ const S = StyleSheet.create({
   ctaWrap: { marginTop: 17 },
   altToggle: {
     marginTop: 12, alignSelf: 'center',
+    flexDirection: 'row', alignItems: 'center', gap: 6,
     paddingVertical: 6, paddingHorizontal: 10,
   },
-  // зачем: PressableHybrid кладёт children в свой Animated.View (contentStyle) —
-  // строчная раскладка (текст + шеврон) переезжает туда же.
-  altToggleContent: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   altToggleText: { fontSize: 13.5, fontWeight: '700' },
   altList: { gap: 8, marginTop: 6 },
   altRow: {
+    flexDirection: 'row', alignItems: 'center', gap: 10,
     borderRadius: 12, borderWidth: 1,
     paddingHorizontal: 14, paddingVertical: 10,
   },
-  altRowContent: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   altName: { flex: 1, fontSize: 14, fontWeight: '700' },
   altPrice: { fontSize: 13, fontWeight: '600', fontVariant: ['tabular-nums'] },
   spacer: { flex: 1, minHeight: 10 },

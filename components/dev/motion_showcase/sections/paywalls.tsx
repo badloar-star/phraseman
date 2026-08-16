@@ -145,37 +145,7 @@ export const SECTION: ShowcaseSection = {
       kind: 'render',
       render: ({ visible, onClose }) => <VipCelebrationModal visible={visible} onClose={onClose} />,
     },
-    {
-      id: 'premium_celebration_plus_hybrid',
-      title: cs('premium_celebration_plus_hybrid_title'),
-      detail: cs('real_modal'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <PremiumCelebrationHybrid visible={visible} onClose={onClose} variant="premium" />
-      ),
-    },
-    {
-      id: 'premium_celebration_pro_hybrid',
-      title: cs('premium_celebration_pro_hybrid_title'),
-      detail: cs('real_modal'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <PremiumCelebrationHybrid visible={visible} onClose={onClose} variant="pro" />
-      ),
-    },
-    {
-      // зачем: VipCelebrationModal — тонкая обёртка над PremiumCelebrationModal
-      // (variant="vip"); гибрид уже полностью реализован в PremiumCelebrationHybrid,
-      // не хватало только витринного пункта для паритета с plus/pro.
-      id: 'vip_celebration_hybrid',
-      title: cs('vip_celebration_hybrid_title'),
-      detail: cs('real_modal'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <PremiumCelebrationHybrid visible={visible} onClose={onClose} variant="vip" />
-      ),
-    },
-    {
+{
       id: 'no_energy_modal',
       title: cs('no_energy_modal_title'),
       detail: cs('real_modal'),

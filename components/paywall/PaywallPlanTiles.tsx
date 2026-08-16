@@ -7,10 +7,9 @@
 // Списываемая сумма года (billed amount) показывается крупно — Apple 3.1.2(c).
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import PressableHybrid from '../PressableHybrid';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
 import { PaywallBadgePop } from './PaywallMotion';
@@ -125,12 +124,12 @@ export default function PaywallPlanTiles({
       {tiles.map((tile) => {
         const sel = selected === tile.plan;
         return (
-          <PressableHybrid
+          <TouchableOpacity
             key={tile.plan}
-            variant="card"
             accessibilityRole="radio"
             accessibilityLabel={`${tile.name} ${tile.price}`.trim()}
             accessibilityState={{ selected: sel, disabled: !!disabled }}
+            activeOpacity={0.72}
             disabled={disabled}
             onPress={() => onSelect(tile.plan)}
             style={[
@@ -171,7 +170,7 @@ export default function PaywallPlanTiles({
             {tile.sub ? (
               <Text style={[S.sub, { color: textMuted }]}>{tile.sub}</Text>
             ) : null}
-          </PressableHybrid>
+          </TouchableOpacity>
         );
       })}
     </View>

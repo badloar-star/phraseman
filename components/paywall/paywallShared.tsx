@@ -5,7 +5,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import {
-  View, Text, Platform, StyleSheet, Animated, Easing,
+  View, Text, Platform, StyleSheet, TouchableOpacity, Animated, Easing,
   type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent,
   type ViewStyle, type StyleProp,
 } from 'react-native';
@@ -25,9 +25,6 @@ import { isLightThemeMode, SAGE_PORCELAIN, type ThemeMode } from '../../constant
 import { compassIconSource } from '../../constants/weeklyCompassIcons';
 import { PaywallIdleFloat } from './PaywallMotion';
 import { noAndroidOutline } from '../../constants/androidGlow';
-import DuoPressable from '../DuoPressable';
-import PressableHybrid from '../PressableHybrid';
-import { resolveCtaEdgeColor } from './PaywallCtaBlock';
 
 // ── фоновые градиенты активных A/B/C paywall-экранов; незнакомая тема → dark ──
 function screenBgTuple(themeMode: string): [string, string, string] {
@@ -363,11 +360,11 @@ export function PaywallPriceRetry({ lang, chrome, onRetry }: {
           pl: 'Nie udało się załadować cen ze sklepu. Sprawdź internet i spróbuj ponownie.',
         })}
       </Text>
-      <PressableHybrid
-        variant="secondary"
+      <TouchableOpacity
         testID="data-paywall-price-retry"
         onPress={onRetry}
         style={[S.priceRetryBtn, { backgroundColor: chrome.tc.ctaBg }]}
+        activeOpacity={0.82}
       >
         <Text style={[S.priceRetryBtnText, { color: chrome.tc.ctaText }]}>
           {triLang(lang, {
@@ -381,7 +378,7 @@ export function PaywallPriceRetry({ lang, chrome, onRetry }: {
             pl: 'Spróbuj ponownie',
           })}
         </Text>
-      </PressableHybrid>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -393,14 +390,13 @@ export function PaywallCloseButton({ onPress, chrome, style }: {
   style?: object;
 }) {
   return (
-    <PressableHybrid
-      variant="icon"
+    <TouchableOpacity
       onPress={onPress}
       style={[S.closeBtn, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }, style]}
       hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
     >
       <Ionicons name="close" size={18} color={chrome.textMuted} />
-    </PressableHybrid>
+    </TouchableOpacity>
   );
 }
 
@@ -481,16 +477,18 @@ export function PaywallStickyBar({
         <Text style={[S.stickyTitle, { color: chrome.textPrimary }]} numberOfLines={1}>{title}</Text>
         <Text style={[S.stickySub, { color: chrome.textMuted }]} numberOfLines={2}>{sub}</Text>
       </View>
-      <DuoPressable
-        onPress={onPress}
-        edgeColor={resolveCtaEdgeColor(chrome)}
-        edgeHeight={5}
-        gradientColors={chrome.themeMode === 'midnight' ? ['#D7E0FF', '#8FA0FF', '#A95BFF'] : undefined}
-        style={[S.stickyBtn, { backgroundColor: tc.ctaBg }]}
-        wrapStyle={S.stickyBtnWrap}
-      >
+      <TouchableOpacity activeOpacity={0.84} onPress={onPress} style={[S.stickyBtn, { backgroundColor: tc.ctaBg }]}>
+        {chrome.themeMode === 'midnight' ? (
+          <LinearGradient
+            colors={['#D7E0FF', '#8FA0FF', '#A95BFF']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={StyleSheet.absoluteFill}
+            pointerEvents="none"
+          />
+        ) : null}
         <Text style={[S.stickyBtnText, { color: tc.ctaText }]}>{button}</Text>
-      </DuoPressable>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -579,10 +577,7 @@ const S = StyleSheet.create({
     borderRadius: 16, borderWidth: 0,
   },
   priceRetryText: { fontSize: 15.5, lineHeight: 22, textAlign: 'center' },
-  // зачем: PressableHybrid по умолчанию alignSelf:'stretch' — кнопка ретрая
-  // должна остаться fit-content по центру бокса, как раньше (TouchableOpacity
-  // без explicit alignSelf наследовал alignItems:'center' родителя).
-  priceRetryBtn: { alignSelf: 'center', paddingVertical: 12, paddingHorizontal: 30, borderRadius: 14 },
+  priceRetryBtn: { paddingVertical: 12, paddingHorizontal: 30, borderRadius: 14 },
   priceRetryBtnText: { fontSize: 16.5, fontWeight: '900' },
   tagWrap: { gap: 8, marginTop: 14, alignSelf: 'stretch' },
   tagChip: {
@@ -636,8 +631,5 @@ const S = StyleSheet.create({
   stickyTitle: { fontSize: 14, fontWeight: '900' },
   stickySub: { fontSize: 12, marginTop: 2, fontVariant: ['tabular-nums'] },
   stickyBtn: { borderRadius: 15, paddingVertical: 12, paddingHorizontal: 19, overflow: 'hidden' },
-  // зачем: DuoPressable-обёртка в строке sticky-бара не должна тянуться на всю
-  // ширину строки — сохраняем прежнюю intrinsic-ширину кнопки (fit-content).
-  stickyBtnWrap: { alignSelf: 'stretch', flexShrink: 0 },
   stickyBtnText: { fontSize: 14.5, fontWeight: '900' },
 });

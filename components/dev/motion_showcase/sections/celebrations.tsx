@@ -325,20 +325,7 @@ export const SECTION: ShowcaseSection = {
         />
       ),
     },
-    {
-      id: 'celebrations-roulette-win-modal-hybrid',
-      title: cs('celebrations_roulette_win_modal_hybrid_title'),
-      detail: cs('celebrations_roulette_win_modal_detail'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <RouletteWinModal
-          data={visible ? { prizeIndex: 0, prizeDays: 3, vipUntil: Date.now() + 3 * 86400000 } : null}
-          onClose={onClose}
-          motionVariant="hybrid"
-        />
-      ),
-    },
-    {
+{
       id: 'celebrations-roulette-win-celebration',
       title: cs('celebrations_roulette_win_celebration_title'),
       detail: cs('celebrations_roulette_win_celebration_detail'),

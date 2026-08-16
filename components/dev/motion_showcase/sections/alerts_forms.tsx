@@ -271,25 +271,7 @@ export const SECTION: ShowcaseSection = {
         />
       ),
     },
-    {
-      id: 'report_pack_modal_hybrid',
-      title: cs('report_pack_hybrid_title'),
-      detail: cs('report_user_detail'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <ReportPackModal
-          visible={visible}
-          packId="dev-showcase-ghost-pack"
-          packTitle={cs('report_pack_demo_title')}
-          authorStableId={null}
-          lang="ru"
-          onClose={onClose}
-          onPackHiddenOnDevice={() => {}}
-          motionVariant="hybrid"
-        />
-      ),
-    },
-    {
+{
       id: 'nickname_edit_modal',
       title: cs('nickname_edit_title'),
       detail: cs('real_component'),

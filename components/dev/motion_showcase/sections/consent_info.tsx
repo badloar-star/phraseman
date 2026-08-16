@@ -232,23 +232,7 @@ export const SECTION: ShowcaseSection = {
         />
       ),
     },
-    {
-      id: 'youtube-channel-picker-sheet-hybrid',
-      title: cs('youtube_channel_picker_sheet_hybrid_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <YoutubeChannelPickerSheet
-          visible={visible}
-          manifest={DEMO_YOUTUBE_MANIFEST}
-          preference={{ mode: 'auto' }}
-          onSelect={() => {}}
-          onClose={onClose}
-          motionVariant="hybrid"
-        />
-      ),
-    },
-    {
+{
       id: 'fc-deck-picker-sheet',
       title: cs('fc_deck_picker_sheet_title'),
       detail: cs('real_component'),
@@ -273,12 +257,5 @@ export const SECTION: ShowcaseSection = {
       kind: 'render',
       render: () => <SectionSheetHeaderPreview hybrid={false} />,
     },
-    {
-      id: 'section-sheet-header-hybrid',
-      title: cs('section_sheet_header_hybrid_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: () => <SectionSheetHeaderPreview hybrid />,
-    },
-  ],
+],
 };

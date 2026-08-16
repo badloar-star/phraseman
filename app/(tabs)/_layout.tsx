@@ -878,7 +878,7 @@ function ReleasedTabLayout() {
       const physical = logicalTabToPhysicalPage(fromRouter);
       if (physicalPageIdxRef.current !== physical) setPhysicalPageIdx(physical);
     }
-  }, [pathname, scheduleMount, segments]);
+  }, [mountNow, pathname, segments]);
 
   useFocusEffect(useCallback(() => { setFocusTick(tick => tick + 1); }, []));
 

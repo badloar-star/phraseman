@@ -134,10 +134,21 @@ export default function ArenaMatchmakingScreen() {
       }
     }).catch((reason) => { if (!cancelled) setError(arenaEntryFailure(reason)); });
     void reconcile();
-    const heartbeat = mode === 'ranked' ? setInterval(() => { void reconcile(); }, ARENA_RANKED_HEARTBEAT_MS) : null;
+    /**
+     * зачем: раньше сверка по расписанию была только в рейтинге, а быстрый матч
+     * держался на одном клиентском таймере бота. Стоило свернуть приложение —
+     * таймер замирал, и поиск умирал молча, хотя экран обещал «можно свернуть».
+     * Теперь оба режима переспрашивают сервер: живой соперник, вставший в
+     * очередь позже, подхватывается без перезахода, а в быстром та же сверка
+     * добирает бота, если локальный таймер не сработал.
+     *
+     * Цена: один вызов раз в ARENA_RANKED_HEARTBEAT_MS и только на ВИДИМОМ
+     * экране поиска (эффект завязан на active). Фонового опроса нет.
+     */
+    const heartbeat = setInterval(() => { void reconcile(); }, ARENA_RANKED_HEARTBEAT_MS);
     return () => {
       cancelled = true;
-      if (heartbeat) clearInterval(heartbeat);
+      clearInterval(heartbeat);
     };
   }, [active, adoptBotSchedule, leaseRefreshTick, matchId, mode, requestId, retryTick]);
 

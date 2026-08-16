@@ -222,12 +222,15 @@ describe('Arena V2 pure product contract', () => {
     expect(new Set(quick.map((entry) => entry.mode)).size).toBe(5);
   });
 
-  it('assigns the bot entry moment inside eight to fifty-five seconds, biased to the start', () => {
+  // Владелец 2026-08-16 сузил окно с 8–55 до 8–15 секунд: на пустой Арене
+  // полминуты ожидания читались как зависший экран, а живой соперник за это
+  // время всё равно почти не появлялся.
+  it('assigns the bot entry moment inside eight to fifteen seconds, biased to the start', () => {
     expect(arenaQuickBotDelayMs(0)).toBe(8_000);
-    expect(arenaQuickBotDelayMs(1)).toBe(55_000);
+    expect(arenaQuickBotDelayMs(1)).toBe(15_000);
     const median = arenaQuickBotDelayMs(0.5);
-    expect(median).toBeGreaterThan(20_000);
-    expect(median).toBeLessThan(27_000);
+    expect(median).toBeGreaterThan(9_000);
+    expect(median).toBeLessThan(13_000);
     expect(arenaQuickBotDelayMs(Number.NaN)).toBe(median);
   });
 

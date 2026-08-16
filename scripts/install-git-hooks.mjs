@@ -56,6 +56,14 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Ratchet: no new hardcoded Russian UI strings (see scripts/scan_untranslated_ui.mjs).
+# The same "screen showed Russian text in every language" bug was fixed 14 times
+# screen by screen; the count may only go down, never up. Runs in ~0.3s.
+node scripts/scan_untranslated_ui.mjs
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 exit 0
 `;
 

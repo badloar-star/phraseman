@@ -96,8 +96,12 @@ function prewarmDeferredTabScreen(idx: number): boolean {
   try {
     loadDeferredTabScreenByIndex(idx);
     return true;
-  } catch {
-    /* Route-level render will surface real module errors when the user opens that tab. */
+  } catch (error) {
+    // зачем: раньше ошибка глоталась молча и вкладка навсегда оставалась пустой —
+    // ни экрана, ни причины. Прогрев остаётся необязательным (вызывающий его код
+    // больше не считает неудачу запретом на показ), но сама ошибка обязана быть
+    // видна в логах, иначе следующий такой баг снова будут искать вслепую.
+    if (__DEV__) console.warn(`[tabs] prewarm failed for tab ${idx}:`, error);
     return false;
   }
 }
@@ -834,7 +838,13 @@ function ReleasedTabLayout() {
     const task = scheduleIdleTask(() => {
       scheduledMountsRef.current.delete(idx);
       if (AppState.currentState !== 'active') return;
-      if (idx !== 0 && !prewarmDeferredTabScreen(idx)) return;
+      // зачем: та же мина, что была в mountNow — прогрев стоял УСЛОВИЕМ премаунта.
+      // Аудит показал: это главный путь при старте (BACKGROUND_TAB_PREMOUNT_ORDER),
+      // и он срабатывает раньше тапа. Одна неудача require — mountedTabs не
+      // пополняется, а запись о задаче уже стёрта строкой выше: повторной попытки
+      // не будет никогда, вкладка навсегда остаётся пустым плейсхолдером.
+      // Прогрев — оптимизация, а не разрешение показать экран.
+      if (idx !== 0) prewarmDeferredTabScreen(idx);
       requestAnimationFrame(() => {
         if (AppState.currentState !== 'active') return;
         setVisitedTabs((prev) => addVisitedTab(prev, idx));

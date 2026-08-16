@@ -25,9 +25,9 @@ describe('configurable onboarding flow', () => {
   );
 
   it('ignores unknown ids and restores canonical order', () => {
-    expect(parseEnabledOnboardingSteps('["aha","future","welcome"]')).toEqual([
+    expect(parseEnabledOnboardingSteps('["promise","future","welcome"]')).toEqual([
       'welcome',
-      'aha',
+      'promise',
       'name',
     ]);
   });
@@ -48,14 +48,14 @@ describe('configurable onboarding flow', () => {
   });
 
   it('skips adjacent disabled steps in both directions', () => {
-    const order = resolveEnabledOnboardingOrder(['welcome', 'aha', 'name'], false);
-    expect(resolveOnboardingStep(order, 'welcome', 'forward')).toBe('aha');
-    expect(resolveOnboardingStep(order, 'name', 'backward')).toBe('aha');
+    const order = resolveEnabledOnboardingOrder(['welcome', 'promise', 'name'], false);
+    expect(resolveOnboardingStep(order, 'welcome', 'forward')).toBe('promise');
+    expect(resolveOnboardingStep(order, 'name', 'backward')).toBe('promise');
   });
 
   it('resolves a disabled restored step to the nearest following step', () => {
     const order = resolveEnabledOnboardingOrder(['welcome', 'notifications', 'name'], false);
-    expect(resolveOnboardingStep(order, 'aha', 'current-or-forward')).toBe('notifications');
+    expect(resolveOnboardingStep(order, 'promise', 'current-or-forward')).toBe('notifications');
   });
 
   it.each([
@@ -91,7 +91,7 @@ describe('configurable onboarding flow', () => {
   });
 
   it('calculates progress from enabled visible progress steps', () => {
-    expect(getOnboardingProgress(['welcome', 'notifications', 'aha', 'name'], 'notifications')).toEqual({ progress: 1, total: 2 });
+    expect(getOnboardingProgress(['welcome', 'privacy', 'notifications', 'name'], 'notifications')).toEqual({ progress: 1, total: 2 });
     expect(getOnboardingProgress(['name'], 'name')).toEqual({ progress: 1, total: 1 });
   });
 

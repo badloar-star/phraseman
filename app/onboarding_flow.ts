@@ -1,8 +1,9 @@
 export type OnboardingStepId =
   | 'welcome'
+  | 'privacy'
   | 'language'
   | 'level'
-  | 'aha'
+  | 'promise'
   | 'notifications'
   | 'trialReminder'
   | 'onboardingPaywall'
@@ -29,9 +30,10 @@ export const ONBOARDING_ENABLED_STEPS_TEXT_KEY = 'onboarding_enabled_steps_v1';
 
 // Минимальный флоу (владелец, 2026-08-16): анкета про построение плана удалена
 // вместе с планами; язык — отдельным отключаемым блоком (language+level), пока
-// не добавлены языки; вау-момент — ОДНА продуманная АХ-демонстрация (сборка
-// фразы + голос), затем «trialReminder» (честное «предупредим до конца
-// пробного») перед ценами.
+// не добавлены языки. «privacy» — экран-сейф в духе Bevel (предложение входа),
+// «promise» — обязательный анимированный экран прогресса с кнопкой
+// «Попробовать» (полная АХ-сцена открывается ПО КНОПКЕ, отдельного шага у неё
+// нет), затем «trialReminder» перед ценами и «improve» перед согласиями.
 export const ONBOARDING_STEP_CATALOG: readonly {
   id: OnboardingStepId;
   label: string;
@@ -39,9 +41,10 @@ export const ONBOARDING_STEP_CATALOG: readonly {
   mandatory?: boolean;
 }[] = [
   { id: 'welcome', label: 'Приветствие', description: 'Первый экран знакомства и вход.' },
+  { id: 'privacy', label: 'Приватность и вход', description: 'Экран-сейф: предложение входа, данные не передаются.' },
   { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка (выключен, пока язык один).' },
   { id: 'level', label: 'Уровень', description: 'Уровень выбранного языка (блок языка).' },
-  { id: 'aha', label: 'Демонстрация', description: 'Сборка фразы с голосом — вау-момент.' },
+  { id: 'promise', label: 'Обещание результата', description: 'Анимированный прогресс + кнопка «Попробовать» (живая сцена).' },
   { id: 'notifications', label: 'Уведомления', description: 'Предложение включить уведомления.' },
   { id: 'trialReminder', label: 'Напоминание о пробном', description: 'Обещание предупредить до конца пробного.' },
   { id: 'onboardingPaywall', label: 'Предложение подписки', description: 'Экран покупки.' },
@@ -133,7 +136,7 @@ export function getOnboardingProgress(
   enabledOrder: readonly OnboardingStepId[],
   step: OnboardingStepId,
 ): { progress: number; total: number } {
-  const progressOrder: readonly OnboardingStepId[] = enabledOrder.filter((id) => id !== 'welcome' && id !== 'aha');
+  const progressOrder: readonly OnboardingStepId[] = enabledOrder.filter((id) => id !== 'welcome' && id !== 'privacy');
   return { progress: Math.max(0, progressOrder.indexOf(step) + 1), total: Math.max(1, progressOrder.length) };
 }
 

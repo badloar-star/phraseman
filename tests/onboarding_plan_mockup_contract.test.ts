@@ -13,7 +13,7 @@ describe('clean minimal wow onboarding contract', () => {
   it('uses CleanOnboarding as the only active onboarding implementation', () => {
     expect(wrapper).toContain("export { default } from './CleanOnboarding'");
     expect(source).toContain('CLEAN_ONBOARDING_FLOW_VERSION');
-    expect(source).toContain("'clean_minimal_wow_flow_2026_08_16b'");
+    expect(source).toContain("'clean_minimal_wow_flow_2026_08_16c'");
     expect(source).toContain('normalizedStoredStep');
     expect(source).toContain("if (value === 'start') return 'welcome'");
   });
@@ -21,7 +21,8 @@ describe('clean minimal wow onboarding contract', () => {
   it('keeps the approved minimal order without the removed plan questionnaire', () => {
     const expectedOrder = [
       "'welcome'",
-      "'aha'",
+      "'privacy'",
+      "'promise'",
       "'notifications'",
       "'trialReminder'",
       "'onboardingPaywall'",
@@ -37,18 +38,31 @@ describe('clean minimal wow onboarding contract', () => {
     expect(source).not.toContain("'plusBenefits'");
     expect(source).not.toContain("'startMode'");
     expect(source).not.toContain("'planComparison'");
-    // Экран-график удалён (владелец, 2026-08-16): вау-момент — сама АХ-сцена.
-    expect(source).not.toContain("'promise'");
+    // Отдельного шага у сцены нет: полная AhaScene открывается ПО КНОПКЕ
+    // «Попробовать» с обязательного экрана promise (владелец, 2026-08-16).
+    // 'aha' живёт только в миграции сохранённого шага — не в типе и не в порядке.
+    const typeAndOrderBlock = source.slice(
+      source.indexOf('export type CleanOnboardingStep'),
+      source.indexOf('function normalizedStoredStep'),
+    );
+    expect(typeAndOrderBlock).not.toContain("'aha'");
+    expect(source).toContain("if (value === 'aha') return 'promise'");
 
     // Блок языка выключен локально, но остаётся отключаемым экраном каталога.
     expect(source).toContain('const SHOW_ONBOARDING_LANGUAGE_STEP = false');
     expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : [])");
-    expect(source).toContain("if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'aha'");
+    expect(source).toContain("if (value === 'aha') return 'promise'");
+    expect(source).toContain("if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'promise'");
   });
 
-  it('sells without a questionnaire: one showcase aha scene, honest trial timeline', () => {
+  it('sells without a questionnaire: progress promise with optional live scene, honest trial timeline', () => {
     [
-      'const renderAha',
+      'const renderPrivacy',
+      'function PrivacyVault',
+      'const renderPromise',
+      'function PromiseChart',
+      'testID="onboarding-promise-continue"',
+      'testID="onboarding-promise-try"',
       '<AhaScene',
       'const renderTrialReminder',
       'function TrialTimelineRow',

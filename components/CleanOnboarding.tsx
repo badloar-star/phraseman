@@ -112,16 +112,17 @@ export type OnboardingProps = {
 
 export type CleanOnboardingStep =
   | 'welcome'
+  | 'privacy'
   | 'language'
   | 'level'
-  | 'aha'
+  | 'promise'
   | 'notifications'
   | 'trialReminder'
   | 'onboardingPaywall'
   | 'improve'
   | 'name';
 
-export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_minimal_wow_flow_2026_08_16b';
+export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_minimal_wow_flow_2026_08_16c';
 const ONBOARDING_AUTH_UI_TIMEOUT_MS = 45_000;
 
 async function withOnboardingAuthUiDeadline<T>(task: Promise<T>): Promise<T> {
@@ -142,14 +143,16 @@ async function withOnboardingAuthUiDeadline<T>(task: Promise<T>): Promise<T> {
 }
 const SHOW_ONBOARDING_LANGUAGE_STEP = false;
 // Минимальный флоу (владелец, 2026-08-16): анкета про построение плана удалена
-// вместе с планами. Порядок: welcome (вход + согласие строкой) → блок языка
-// (language+level, выключен, пока язык один) → АХ-сцена (одна продуманная
-// демонстрация: сборка фразы + голос — вау-момент) → уведомления → честное
-// «предупредим до конца пробного» → пейвол → возраст/согласия.
+// вместе с планами. Порядок: welcome → privacy (сейф: вход и «данные не
+// передаются», согласие строкой) → блок языка (выключен, пока язык один) →
+// promise (обязательный анимированный прогресс; полная АХ-сцена — ПО КНОПКЕ
+// «Попробовать», отдельного шага у неё нет) → уведомления → честное
+// «предупредим до конца пробного» → пейвол → improve → возраст/согласия.
 export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'welcome',
+  'privacy',
   ...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : []),
-  'aha',
+  'promise',
   'notifications',
   'trialReminder',
   'onboardingPaywall',
@@ -197,7 +200,8 @@ const LEVEL_OPTIONS: Option<LevelChoice>[] = [
 
 function normalizedStoredStep(value: string | null): CleanOnboardingStep | null {
   if (value === 'start') return 'welcome';
-  if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'aha';
+  if (value === 'aha') return 'promise';
+  if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'promise';
   if ((CLEAN_ONBOARDING_ORDER as readonly string[]).includes(value ?? '')) return value as CleanOnboardingStep;
   return null;
 }
@@ -817,6 +821,163 @@ function NotificationMock() {
     </View>
   );
 }
+// Иллюстрация improve-экрана (Bevel, кадр 5): сердце в центре, вокруг —
+// плашки с лайком, звездой и людьми на пунктирных связях. Появление — мягкий
+// pop каскадом (конечная анимация, native driver).
+function ImproveConstellation() {
+  const anims = useRef([0, 1, 2, 3].map(() => new Animated.Value(0))).current;
+  useEffect(() => {
+    const seq = anims.map((value, index) => Animated.sequence([
+      Animated.delay(140 + index * 130),
+      Animated.spring(value, { toValue: 1, friction: 6, tension: 90, useNativeDriver: true }),
+    ]));
+    const a = Animated.parallel(seq);
+    a.start();
+    return () => a.stop();
+  }, [anims]);
+  const pop = (index: number) => ({
+    opacity: anims[index],
+    transform: [{ scale: anims[index].interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }) }],
+  });
+  return (
+    <View style={styles.improveArt}>
+      <View style={[styles.improveLink, styles.improveLinkLeft]} />
+      <View style={[styles.improveLink, styles.improveLinkTop]} />
+      <View style={[styles.improveLink, styles.improveLinkRight]} />
+      <Animated.View style={[styles.improveHeart, pop(0)]}>
+        <Ionicons name="heart" size={54} color="#8FA0E8" />
+      </Animated.View>
+      <Animated.View style={[styles.improveSatellite, styles.improveSatelliteTop, pop(1)]}>
+        <Ionicons name="thumbs-up" size={22} color="#8C97B8" />
+      </Animated.View>
+      <Animated.View style={[styles.improveSatellite, styles.improveSatelliteLeft, pop(2)]}>
+        <Ionicons name="star" size={22} color="#8C97B8" />
+      </Animated.View>
+      <Animated.View style={[styles.improveSatellite, styles.improveSatelliteRight, pop(3)]}>
+        <Ionicons name="people" size={22} color="#8C97B8" />
+      </Animated.View>
+    </View>
+  );
+}
+
+// Сейф для privacy-экрана (Bevel, кадр 2): скруглённый корпус, наборный диск,
+// петли. Живёт мягким «дыханием» масштаба (конечный ping-pong под гейтом
+// фокуса — Performance Bible) и медленным поворотом диска на native driver.
+function PrivacyVault() {
+  const isFocused = useIsScreenFocused();
+  const breathe = useRef(new Animated.Value(0)).current;
+  const dial = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (!isFocused) return;
+    let alive = true;
+    const loop = (toValue: number) => {
+      if (!alive) return;
+      Animated.timing(breathe, { toValue, duration: 2200, useNativeDriver: true })
+        .start(({ finished }) => { if (finished) loop(toValue === 1 ? 0 : 1); });
+    };
+    loop(1);
+    const spin = Animated.timing(dial, { toValue: 1, duration: 1600, delay: 350, useNativeDriver: true });
+    spin.start();
+    return () => { alive = false; breathe.stopAnimation(); spin.stop(); };
+  }, [breathe, dial, isFocused]);
+  const scale = breathe.interpolate({ inputRange: [0, 1], outputRange: [1, 1.03] });
+  const rotate = dial.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '150deg'] });
+  return (
+    <View style={styles.vaultWrap}>
+      <Animated.View style={[styles.vaultBody, { transform: [{ scale }] }]}>
+        <View style={styles.vaultHinge} />
+        <View style={[styles.vaultHinge, styles.vaultHingeBottom]} />
+        <View style={styles.vaultDialRing}>
+          <Animated.View style={[styles.vaultDial, { transform: [{ rotate }] }]}>
+            <View style={styles.vaultDialMark} />
+          </Animated.View>
+        </View>
+        <View style={styles.vaultPointer} />
+      </Animated.View>
+    </View>
+  );
+}
+
+// Экран прогресса (владелец: «анимированный, осмысленный»): две траектории —
+// «повторяешь с Phraseman» (растёт) и «просто учишь и забываешь» (сползает).
+// SVG-пути статичны (native driver с Path не дружит), «рисование» делает
+// шторка цвета карточки, уезжающая вправо на native driver — кривая
+// проявляется слева направо без единого кадра на JS-потоке. Смысл держат
+// вехи времени под осью: неделя → месяц → 3 месяца.
+function PromiseChart() {
+  const [revealWidth, setRevealWidth] = useState(0);
+  const reveal = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    const a = Animated.sequence([
+      Animated.delay(240),
+      Animated.timing(reveal, { toValue: 1, duration: 1100, useNativeDriver: true }),
+    ]);
+    a.start();
+    return () => a.stop();
+  }, [reveal]);
+  const translateX = reveal.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, revealWidth || 1],
+  });
+  return (
+    <View
+      style={styles.promiseChartCard}
+      onLayout={(event) => setRevealWidth(event.nativeEvent.layout.width)}
+    >
+      <Svg width="100%" height={190} viewBox="0 0 320 190" preserveAspectRatio="none">
+        <Defs>
+          <SvgLinearGradient id="promiseUpStroke" x1="0" y1="0" x2="1" y2="0">
+            <Stop offset="0" stopColor="#6FE3AC" />
+            <Stop offset="1" stopColor="#3ECF8E" />
+          </SvgLinearGradient>
+          <SvgLinearGradient id="promiseUpFill" x1="0" y1="0" x2="0" y2="1">
+            <Stop offset="0" stopColor="#3ECF8E" stopOpacity="0.28" />
+            <Stop offset="1" stopColor="#3ECF8E" stopOpacity="0" />
+          </SvgLinearGradient>
+        </Defs>
+        <Path
+          d="M12 158 C 96 150, 160 118, 210 78 C 244 51, 276 32, 306 22 L 306 178 L 12 178 Z"
+          fill="url(#promiseUpFill)"
+        />
+        <Path
+          d="M12 120 C 80 152, 150 166, 306 172"
+          stroke="#8B93A9"
+          strokeOpacity={0.55}
+          strokeWidth={4}
+          strokeLinecap="round"
+          strokeDasharray="1 9"
+          fill="none"
+        />
+        <Path
+          d="M12 158 C 96 150, 160 118, 210 78 C 244 51, 276 32, 306 22"
+          stroke="url(#promiseUpStroke)"
+          strokeWidth={5}
+          strokeLinecap="round"
+          fill="none"
+        />
+        <Circle cx={306} cy={22} r={7} fill="#3ECF8E" />
+        <Circle cx={306} cy={22} r={12} fill="#3ECF8E" fillOpacity={0.22} />
+      </Svg>
+      <Animated.View
+        pointerEvents="none"
+        style={[styles.promiseReveal, { transform: [{ translateX }] }]}
+      />
+      <View style={styles.promiseBadgeUp}>
+        <Ionicons name="sparkles" size={13} color="#07111F" />
+        <Text style={styles.promiseBadgeUpText}>Повторяешь с Phraseman</Text>
+      </View>
+      <View style={styles.promiseBadgeDown}>
+        <Text style={styles.promiseBadgeDownText}>Учишь и забываешь</Text>
+      </View>
+      <View style={styles.promiseAxisRow}>
+        <Text style={styles.promiseAxisLabel}>неделя</Text>
+        <Text style={styles.promiseAxisLabel}>месяц</Text>
+        <Text style={styles.promiseAxisLabel}>3 месяца</Text>
+      </View>
+    </View>
+  );
+}
+
 function TrialTimelineRow({
   icon,
   title,
@@ -982,8 +1143,8 @@ function CleanOnboarding({
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const [level, setLevel] = useState<LevelChoice | null>(null);
   const [notificationBusy, setNotificationBusy] = useState(false);
-  // Полная АХ-сцена (звук + караоке) открывается ПО КНОПКЕ с экрана-приглашения
-  // (владелец, 2026-08-16): демонстрация необязательна, «Дальше» ведёт мимо.
+  // Полная АХ-сцена (звук + караоке + «зажми и говори») — ПО КНОПКЕ
+  // «Попробовать» с экрана promise (владелец, 2026-08-16): оверлей, не шаг.
   const [ahaSceneOpen, setAhaSceneOpen] = useState(false);
   const [paywallBusy, setPaywallBusy] = useState(false);
   const [ageAnswer, setAgeAnswer] = useState<AgeAnswer>(null);
@@ -1222,6 +1383,41 @@ function CleanOnboarding({
     // ближайший включённый шаг (promise).
     go('language');
   }, [go]);
+
+  // Вход с экрана-сейфа (паттерн Bevel): для нового пользователя привязка
+  // провайдера происходит здесь же (signInWithProvider создаёт/привязывает),
+  // после чего идём дальше по онбордингу; найденный существующий аккаунт
+  // завершает онбординг сразу (прогресс уже есть).
+  const authFromPrivacy = useCallback(async (provider: AuthProviderId) => {
+    if (authLoading) return;
+    setAuthLoading(provider);
+    setAuthError(null);
+    try {
+      const result = await withOnboardingAuthUiDeadline(signInWithProvider(provider));
+      if (result.result === 'cancelled') return;
+      if (result.result === 'error') {
+        setAuthError(result.error.includes('user-disabled')
+          ? 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.'
+          : 'Не получилось войти. Попробуй ещё раз.');
+        return;
+      }
+      if (result.result === 'created_new') {
+        // Новый аккаунт уже привязан к провайдеру — просто продолжаем путь.
+        go('promise');
+        return;
+      }
+      await AsyncStorage.multiSet([
+        [DONE_KEY, '1'],
+        [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
+      ]).catch(() => {});
+      await AsyncStorage.removeItem(STEP_KEY).catch(() => {});
+      onDone();
+    } catch {
+      setAuthError('Не получилось войти. Попробуй ещё раз.');
+    } finally {
+      setAuthLoading(null);
+    }
+  }, [authLoading, go, onDone]);
 
   const ensureEnglishStudyTarget = useCallback(async () => {
     setStudyTarget('en');
@@ -1589,22 +1785,13 @@ function CleanOnboarding({
             </View>
           ) : (
             <View style={styles.welcomeButtons}>
-              {/* зачем: sign-in-wrap вместо обязательной галочки на последнем шаге
-                  (владелец, 2026-08-16). Согласие заметно и стоит ВПЛОТНУЮ к кнопке —
-                  это юридически сильная форма, а флоу короче на один клик. */}
-              <Text style={styles.welcomeLegalNote}>
-                Продолжая, ты принимаешь{' '}
-                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
-                {' '}и{' '}
-                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Политику конфиденциальности</Text>.
-              </Text>
               <PrimaryButton
                 label="Начать"
                 onPress={() => {
                   // Английский — единственный язык, пока блок выбора выключен:
                   // фиксируем таргет здесь (раньше это делал экран источника).
                   if (!SHOW_ONBOARDING_LANGUAGE_STEP) void ensureEnglishStudyTarget();
-                  go('language');
+                  go('privacy');
                 }}
                 testID="onboarding-start"
               />
@@ -1614,6 +1801,50 @@ function CleanOnboarding({
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
+  );
+
+  // Экран-сейф (Bevel «Privacy by design», кадр 2): обещание приватности,
+  // сейф-иллюстрация, строка условий вплотную к кнопкам входа (sign-in-wrap —
+  // юридическое согласие живёт здесь), вход с Apple/Google, «Позже» — мимо.
+  const renderPrivacy = () => (
+    <ScreenFrame
+      step="privacy"
+      title="Приватность по умолчанию"
+      plainTitle
+      onBack={back}
+      footer={(
+        <>
+          <Text style={styles.welcomeLegalNote}>
+            Продолжая, ты принимаешь{' '}
+            <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
+            {' '}и{' '}
+            <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Политику конфиденциальности</Text>.
+          </Text>
+          {appleAvailable ? (
+            <AppleSignInButton
+              label="Продолжить с Apple"
+              loading={authLoading === 'apple'}
+              disabled={!!authLoading}
+              onPress={() => { void authFromPrivacy('apple'); }}
+            />
+          ) : null}
+          {googleAvailable ? (
+            <GoogleSignInButton
+              label="Продолжить с Google"
+              variant="dark"
+              loading={authLoading === 'google'}
+              disabled={!!authLoading}
+              onPress={() => { void authFromPrivacy('google'); }}
+            />
+          ) : null}
+          {authError ? <Text style={styles.errorText}>{authError}</Text> : null}
+          <SecondaryButton label="Позже" onPress={() => go('language')} testID="onboarding-privacy-later" />
+        </>
+      )}
+    >
+      <Text style={styles.privacySubtitle}>Мы никогда не продаём и не передаём твои данные.</Text>
+      <PrivacyVault />
+    </ScreenFrame>
   );
 
   const renderLanguage = () => (
@@ -1641,7 +1872,7 @@ function CleanOnboarding({
       step="level"
       title={level ? reactionForLevel(level, studyTarget) : `Сколько ${targetLabel(studyTarget)} ты уже знаешь?`}
       onBack={back}
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('aha')} disabled={!level} testID="onboarding-level-continue" />}
+      footer={<PrimaryButton label="Продолжить" onPress={() => go('promise')} disabled={!level} testID="onboarding-level-continue" />}
     >
       <View style={styles.optionList}>
         {LEVEL_OPTIONS.map((item) => (
@@ -1657,50 +1888,42 @@ function CleanOnboarding({
     </ScreenFrame>
   );
 
-  // Демонстрация необязательна: лёгкое приглашение с ОТДЕЛЬНОЙ кнопкой
-  // (владелец, 2026-08-16). Сама сцена — полная оригинальная AhaScene со
-  // звуком, караоке и анимациями; полноэкранная, вне ScreenFrame-хрома.
-  const renderAha = () => {
+  // Обязательный экран прогресса (владелец, 2026-08-16): анимированный график
+  // с вехами времени и ОТДЕЛЬНОЙ кнопкой «Попробовать» — она открывает полную
+  // оригинальную АХ-сцену (звук, караоке, «зажми и говори») оверлеем; шага у
+  // сцены нет, «Продолжить» идёт дальше без неё.
+  const renderPromise = () => {
     if (ahaSceneOpen) {
       return (
         <AhaScene
           goal={undefined}
           lang={lang === 'uk' || lang === 'es' ? lang : 'ru'}
-          onDone={() => { setAhaSceneOpen(false); go('notifications'); }}
-          onSkip={() => { setAhaSceneOpen(false); go('notifications'); }}
+          onDone={() => setAhaSceneOpen(false)}
+          onSkip={() => setAhaSceneOpen(false)}
         />
       );
     }
     return (
       <ScreenFrame
-        step="aha"
-        title="Услышь — и ответь, как в жизни"
+        step="promise"
+        title="Ты заговоришь. Это устроено так."
         plainTitle
         onBack={back}
         footer={(
           <>
-            <PrimaryButton
-              label="Показать живую сцену"
-              onPress={() => setAhaSceneOpen(true)}
-              testID="onboarding-aha-open"
-            />
+            <PrimaryButton label="Продолжить" onPress={() => go('notifications')} testID="onboarding-promise-continue" />
             <SecondaryButton
-              label="Дальше"
-              onPress={() => go('notifications')}
-              testID="onboarding-aha-continue"
+              label="Попробовать на живой фразе"
+              onPress={() => setAhaSceneOpen(true)}
+              testID="onboarding-promise-try"
             />
           </>
         )}
       >
-        <View style={styles.ahaInviteCard}>
-          <View style={styles.ahaInviteIcon}>
-            <Ionicons name="volume-high" size={26} color="#B9C8FF" />
-          </View>
-          <Text style={styles.ahaInviteQuote}>“What can I get you?”</Text>
-          <View style={styles.ahaInviteMicRow}>
-            <Ionicons name="mic" size={18} color="#7DE0A6" />
-            <Text style={styles.ahaInviteAnswer}>Соберёшь ответ и услышишь его голосом</Text>
-          </View>
+        <PromiseChart />
+        <View style={styles.promiseFactList}>
+          <TrialTimelineRow index={0} icon="repeat-outline" title="Каждая фраза возвращается" />
+          <TrialTimelineRow index={1} icon="time-outline" title="Хватает пары минут в день" />
         </View>
       </ScreenFrame>
     );
@@ -1969,22 +2192,23 @@ function CleanOnboarding({
     );
   };
 
-  // Экран-объяснение перед согласиями (паттерн Bevel «Help us improve»):
-  // человеческим языком — зачем галочка аналитики и вопрос возраста на
-  // следующем шаге. Отдельно от действий, чтобы финал остался коротким.
+  // Экран-объяснение перед согласиями — композиция Bevel «Help us improve»
+  // (кадр 5) один в один: пустой верх, иллюстрация в центре (сердце + иконки
+  // на пунктирных связях), заголовок ПОД ней, абзац, одна кнопка. Здесь же
+  // упоминание возраста — следующий шаг не станет сюрпризом.
   const renderImprove = () => (
     <ScreenFrame
       step="improve"
-      title="Помоги сделать Phraseman лучше"
-      plainTitle
       onBack={back}
+      center
       footer={<PrimaryButton label="Продолжить" onPress={() => go('name')} testID="onboarding-improve-continue" />}
     >
-      <View style={styles.improveList}>
-        <TrialTimelineRow index={0} icon="stats-chart-outline" title="Анонимная аналитика — только цифры" />
-        <TrialTimelineRow index={1} icon="shield-checkmark-outline" title="Личное не уходит никуда и никогда" />
-        <TrialTimelineRow index={2} icon="person-outline" title="Спросим возраст — так велят правила" />
-      </View>
+      <ImproveConstellation />
+      <Text style={styles.improveTitle}>Помоги сделать Phraseman лучше</Text>
+      <Text style={styles.improveBody}>
+        Поделись анонимной статистикой, чтобы Phraseman добрался до большего числа людей.
+        Личные данные и твой прогресс никогда не передаются. Дальше спросим согласие и возраст.
+      </Text>
     </ScreenFrame>
   );
 
@@ -2065,9 +2289,10 @@ function CleanOnboarding({
   const renderStep = (which: CleanOnboardingStep): React.ReactNode => {
     switch (which) {
       case 'welcome': return renderWelcome();
+      case 'privacy': return renderPrivacy();
       case 'language': return renderLanguage();
       case 'level': return renderLevel();
-      case 'aha': return renderAha();
+      case 'promise': return renderPromise();
       case 'notifications': return renderNotifications();
       case 'trialReminder': return renderTrialReminder();
       case 'onboardingPaywall': return renderOnboardingPaywall();
@@ -2077,7 +2302,7 @@ function CleanOnboarding({
     }
   };
 
-  const bare = displayStep === 'welcome' || (displayStep === 'aha' && ahaSceneOpen);
+  const bare = displayStep === 'welcome' || (displayStep === 'promise' && ahaSceneOpen);
 
   return (
     <OnboardingOrderContext.Provider value={enabledOrder}>
@@ -3454,46 +3679,227 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 6,
   },
-  improveList: {
-    gap: 12,
-    marginTop: 10,
+  privacySubtitle: {
+    color: '#A9B4D8',
+    fontSize: 15.5,
+    lineHeight: 22,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginTop: 2,
   },
-  ahaInviteCard: {
+  vaultWrap: {
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 34,
+  },
+  vaultBody: {
+    width: 218,
+    height: 218,
+    borderRadius: 52,
+    backgroundColor: 'rgba(24, 31, 56, 0.92)',
+    borderWidth: 1,
+    borderColor: 'rgba(133, 156, 255, 0.22)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...softShadow({ color: '#05070F', radius: 16, opacity: 0.5, offsetY: 12, backgroundColor: 'rgba(24, 31, 56, 0.92)' }),
+  },
+  vaultHinge: {
+    position: 'absolute',
+    right: 14,
+    top: 46,
+    width: 10,
+    height: 34,
+    borderRadius: 5,
+    backgroundColor: 'rgba(133, 156, 255, 0.30)',
+  },
+  vaultHingeBottom: {
+    top: undefined,
+    bottom: 46,
+  },
+  vaultDialRing: {
+    width: 118,
+    height: 118,
+    borderRadius: 59,
+    borderWidth: 10,
+    borderColor: 'rgba(133, 156, 255, 0.20)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  vaultDial: {
+    width: 78,
+    height: 78,
+    borderRadius: 39,
+    backgroundColor: 'rgba(133, 156, 255, 0.16)',
+    borderWidth: 1.5,
+    borderColor: 'rgba(185, 200, 255, 0.5)',
+    alignItems: 'center',
+  },
+  vaultDialMark: {
+    width: 5,
+    height: 18,
+    borderRadius: 3,
+    marginTop: 7,
+    backgroundColor: '#B9C8FF',
+  },
+  vaultPointer: {
+    position: 'absolute',
+    top: 34,
+    width: 0,
+    height: 0,
+    borderLeftWidth: 7,
+    borderRightWidth: 7,
+    borderTopWidth: 10,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderTopColor: '#F0B429',
+  },
+  improveArt: {
+    width: 250,
+    height: 210,
+    alignSelf: 'center',
+    marginBottom: 26,
+  },
+  improveHeart: {
+    position: 'absolute',
+    left: 89,
+    top: 74,
+    width: 72,
+    height: 72,
+    borderRadius: 24,
+    backgroundColor: 'rgba(143, 160, 232, 0.14)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  improveSatellite: {
+    position: 'absolute',
+    width: 52,
+    height: 52,
+    borderRadius: 17,
+    backgroundColor: 'rgba(24, 31, 56, 0.92)',
+    borderWidth: 1,
+    borderColor: 'rgba(133, 156, 255, 0.22)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  improveSatelliteTop: {
+    left: 99,
+    top: 0,
+  },
+  improveSatelliteLeft: {
+    left: 8,
+    bottom: 22,
+  },
+  improveSatelliteRight: {
+    right: 8,
+    bottom: 14,
+  },
+  improveLink: {
+    position: 'absolute',
+    borderStyle: 'dashed',
+    borderColor: 'rgba(133, 156, 255, 0.35)',
+    borderTopWidth: 1.5,
+    width: 74,
+  },
+  improveLinkTop: {
+    left: 118,
+    top: 62,
+    transform: [{ rotate: '90deg' }],
+    width: 26,
+  },
+  improveLinkLeft: {
+    left: 44,
+    top: 138,
+    transform: [{ rotate: '-28deg' }],
+  },
+  improveLinkRight: {
+    right: 40,
+    top: 134,
+    transform: [{ rotate: '24deg' }],
+  },
+  improveTitle: {
+    color: '#F2F5FF',
+    fontSize: 26,
+    lineHeight: 32,
+    fontWeight: '800',
+    letterSpacing: -0.4,
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  improveBody: {
+    color: '#A9B4D8',
+    fontSize: 15.5,
+    lineHeight: 23,
+    textAlign: 'center',
+    paddingHorizontal: 6,
+  },
+  promiseChartCard: {
     backgroundColor: 'rgba(18, 24, 46, 0.72)',
     borderRadius: 24,
     borderWidth: 1,
     borderColor: 'rgba(133, 156, 255, 0.16)',
-    paddingVertical: 30,
-    paddingHorizontal: 20,
-    marginTop: 12,
-    gap: 14,
+    paddingVertical: 18,
+    paddingHorizontal: 10,
+    marginBottom: 18,
+    position: 'relative',
+    overflow: 'hidden',
   },
-  ahaInviteIcon: {
-    width: 58,
-    height: 58,
-    borderRadius: 20,
-    backgroundColor: 'rgba(133, 156, 255, 0.14)',
-    alignItems: 'center',
-    justifyContent: 'center',
+  promiseReveal: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 10,
+    right: 10,
+    backgroundColor: '#121A2E',
+    borderRadius: 18,
   },
-  ahaInviteQuote: {
-    color: '#F2F5FF',
-    fontSize: 23,
-    lineHeight: 29,
-    fontWeight: '800',
-    letterSpacing: -0.3,
-    textAlign: 'center',
-  },
-  ahaInviteMicRow: {
+  promiseBadgeUp: {
+    position: 'absolute',
+    top: 24,
+    left: 22,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 7,
+    gap: 6,
+    backgroundColor: '#7DE0A6',
+    borderRadius: 999,
+    paddingHorizontal: 11,
+    paddingVertical: 6,
+    ...softShadow({ color: '#0A1A12', radius: 8, opacity: 0.35, offsetY: 3, backgroundColor: '#7DE0A6' }),
   },
-  ahaInviteAnswer: {
-    color: '#A9B4D8',
-    fontSize: 14.5,
-    fontWeight: '600',
+  promiseBadgeUpText: {
+    color: '#07111F',
+    fontSize: 13,
+    fontWeight: '800',
+  },
+  promiseBadgeDown: {
+    position: 'absolute',
+    bottom: 56,
+    right: 22,
+    backgroundColor: 'rgba(139, 147, 169, 0.22)',
+    borderRadius: 999,
+    paddingHorizontal: 11,
+    paddingVertical: 6,
+  },
+  promiseBadgeDownText: {
+    color: '#A9B2C8',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  promiseAxisRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingTop: 8,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: 'rgba(133, 156, 255, 0.22)',
+    marginTop: 4,
+  },
+  promiseAxisLabel: {
+    color: '#8C97B8',
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  promiseFactList: {
+    gap: 12,
   },
   ageQuestion: {
     color: '#F2F5FF',

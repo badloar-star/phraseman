@@ -16,7 +16,8 @@ describe('clean onboarding study-target and order contract', () => {
   it('uses the approved minimal screen order with the aha scene', () => {
     [
       "'welcome'",
-      "'aha'",
+      "'privacy'",
+      "'promise'",
       "'notifications'",
       "'trialReminder'",
       "'onboardingPaywall'",
@@ -53,7 +54,7 @@ describe('clean onboarding study-target and order contract', () => {
     expect(source).toContain('LANGUAGE_OPTIONS');
     expect(source).toContain('testID="onboarding-language-continue"');
     expect(source).toContain('LEVEL_OPTIONS');
-    expect(source).toContain("go('aha')");
+    expect(source).toContain("go('promise')");
   });
 
   it('persists requested English/French target without old onboarding image assets', () => {

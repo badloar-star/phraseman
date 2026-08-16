@@ -1,6 +1,6 @@
 export type DevToolAction =
   | 'open-max-voice'
-  | 'open-motion-lab'
+  | 'open-motion-showcase'
   | 'preview-level-standard'
   | 'preview-level-milestone'
   | 'preview-lesson-results'
@@ -51,22 +51,24 @@ export type DevToolSection = Readonly<{
 }>;
 
 export const DEV_TOOL_SECTIONS = [
+  // зачем 16.08.2026: старая Motion Lab (бутафорные сцены) удалена по решению
+  // владельца; витрина открывает РЕАЛЬНЫЕ экраны/модалки/тосты по подразделам.
   {
-    id: 'motion-lab',
+    id: 'motion-showcase',
     order: 1,
-    title: 'Движение · лаборатория',
+    title: 'Движение · все поверхности',
     icon: 'sparkles-outline',
-    testID: 'dev-hub-section-motion-lab',
+    testID: 'dev-hub-section-motion-showcase',
     tools: [
       {
-        id: 'motion-lab',
+        id: 'motion-showcase',
         order: 10,
-        title: 'Лаборатория движения',
-        detail: 'Три направления × 13 поверхностей: модалки, тосты, состояния. Замедление до 0,25×. Ничего не применяется к боевым экранам.',
+        title: 'Витрина движения',
+        detail: 'Все модалки, тосты и экраны по подразделам. Каждый пункт запускает настоящую поверхность приложения.',
         actionLabel: 'Открыть',
-        action: 'open-motion-lab',
+        action: 'open-motion-showcase',
         icon: 'color-wand-outline',
-        testID: 'dev-open-motion-lab',
+        testID: 'dev-open-motion-showcase',
       },
     ],
   },

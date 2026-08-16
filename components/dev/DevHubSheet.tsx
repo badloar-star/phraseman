@@ -41,7 +41,7 @@ import {
 } from './devToolRegistry';
 import LeagueResultModal from '../../app/LeagueResultModal';
 import { buildLeagueDevSeed, type LeagueDevSeedId } from './leagueDevSeeds';
-import { MOTION_LAB_ROUTE } from '../../constants/devRoutes';
+import { MOTION_SHOWCASE_ROUTE } from '../../constants/devRoutes';
 
 export type DevHubSheetProps = Readonly<{
   visible: boolean;
@@ -343,10 +343,10 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
 
   const handleTool = useCallback((action: DevToolAction) => {
     switch (action) {
-      case 'open-motion-lab':
-        // Лаборатория движения — обычный маршрут. Закрываем native Modal до
+      case 'open-motion-showcase':
+        // Витрина движения — обычный маршрут. Закрываем native Modal до
         // смены route, иначе iOS оставит DEV-sheet поверх сцены.
-        requestClose(false, () => router.push(MOTION_LAB_ROUTE as never));
+        requestClose(false, () => router.push(MOTION_SHOWCASE_ROUTE as never));
         return;
       case 'open-max-voice':
         if (!isMaxVoiceNativeAvailable()) {

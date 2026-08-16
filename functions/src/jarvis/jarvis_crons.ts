@@ -231,8 +231,26 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   // назвать часть, из-за которой изменился итог. Одно чтение с лимитом 1;
   // те же три числа уже собирает суточный крон истории, второй запрос
   // к событиям RevenueCat удвоил бы чтения ради посчитанного.
+  // зачем сверять dayKey (аудит 2026-08-16): readRecentHistory отдаёт САМУЮ
+  // СВЕЖУЮ точку, а не строго вчерашнюю. Департаменты идут в 06:00, история
+  // пишется в 07:00 — но при повторном/ручном запуске ПОСЛЕ 07:00 свежайшей
+  // окажется точка за сегодня, и департамент сравнил бы день сам с собой
+  // (дельта ноль → разбор молча исчезает). А если суточный крон пропустил
+  // день, «вчера» тихо превратилось бы в позавчера. Тихий сдвиг ровно того
+  // класса, против которого написана процедура silent-zero.
+  const expectedYesterdayKey = new Date(nowMs - 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
   const yesterdayPoint = await readRecentHistory({ db, limit: 1 })
-    .then((points) => points[0] ?? null)
+    .then((points) => {
+      const point = points[0] ?? null;
+      if (!point) return null;
+      if (point.dayKey !== expectedYesterdayKey) {
+        logger.warn('jarvis_daily_departments: history point is not yesterday, skipping breakdown', {
+          expected: expectedYesterdayKey, got: point.dayKey,
+        });
+        return null;
+      }
+      return point;
+    })
     .catch((error: unknown) => {
       logger.warn('jarvis_daily_departments: history read failed', error);
       return null;

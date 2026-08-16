@@ -65,7 +65,9 @@ describe('DEV center bottom sheet', () => {
     const { getOrderedDevToolSections } = require('../components/dev/devToolRegistry');
     const ordered = getOrderedDevToolSections();
     expect(ordered.map((section: { id: string }) => section.id)).toEqual(['onboarding-tools', 'level-previews', 'subscription']);
-    expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    // Секция онбординга поднята первой (владелец, 2026-08-16): кнопку искали.
+    expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual(['onboarding-run']);
+    expect(ordered[1].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'level-standard',
       'level-milestone',
       'lesson-results',

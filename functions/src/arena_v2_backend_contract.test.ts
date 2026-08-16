@@ -1,8 +1,15 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-const source = readFileSync(path.join(__dirname, 'arena_v2.ts'), 'utf8');
-const core = readFileSync(path.join(__dirname, 'arena_v2_core.ts'), 'utf8');
+// зачем: сторож режет исходник по многострочным маякам ('privateDoc,\n  };').
+// На Windows файл лежит с CRLF, маяк не находится, indexOf возвращает -1 и
+// slice молча захватывает весь остаток файла — проверка приватности начинает
+// падать на коде, который её не нарушает. Нормализуем переводы строк при
+// чтении: содержимое то же, стиль переносов на договор не влияет.
+const readSource = (file: string): string => readFileSync(path.join(__dirname, file), 'utf8').replace(/\r\n/g, '\n');
+
+const source = readSource('arena_v2.ts');
+const core = readSource('arena_v2_core.ts');
 
 describe('Arena V2 backend source contract', () => {
   it('marks a server-created bot seat accepted at match creation', () => {

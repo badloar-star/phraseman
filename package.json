@@ -72,6 +72,8 @@
     "i18n:check": "node scripts/scan_untranslated_ui.mjs",
     "i18n:report": "node scripts/scan_untranslated_ui.mjs --report",
     "i18n:baseline": "node scripts/scan_untranslated_ui.mjs --update",
+    "workload": "node scripts/workload_check.mjs",
+    "workload:full": "node scripts/workload_check.mjs --full",
     "update:gate": "node scripts/update_release_gate.mjs --full",
     "prepare": "node scripts/install-git-hooks.mjs",
     "scan:secrets": "node scripts/scan_secrets.mjs",

@@ -24,6 +24,7 @@ import {
   accountDeletePermanentDenialId,
 } from './account_delete_job';
 import { appendExternalEconomyEvent } from './external_economy_events';
+import { recordPaymentWebhookFailure } from './payment_webhook_alert';
 import { markRefereeQualified } from './referral';
 
 const REGION = 'us-central1';
@@ -785,6 +786,11 @@ async function handlePremiumSubscriptionEvent(
     res.status(outcome.statusCode).json(outcome.body);
   } catch (error) {
     logger.error('revenuecat_premium_lineage_webhook_failed', error);
+    await recordPaymentWebhookFailure(admin.firestore(), {
+      hook: 'premium_lineage',
+      message: String(error),
+      nowMs: Date.now(),
+    });
     res.status(500).send('Internal error');
   }
 }
@@ -924,6 +930,14 @@ async function handleShardPurchaseEvent(
     res.status(200).json({ ok: true, kind: 'shards', ...out });
   } catch (error) {
     logger.error('revenuecat_shards_webhook_failed', error);
+    // зачем ещё и алерт: в логи никто не смотрит по расписанию. Человек
+    // заплатил, начисление упало — владелец узнавал об этом от самого
+    // пользователя, часы спустя. Это деньги, а не диагностика.
+    await recordPaymentWebhookFailure(admin.firestore(), {
+      hook: 'shards',
+      message: String(error),
+      nowMs: Date.now(),
+    });
     res.status(500).send('Internal error');
   }
 }
@@ -1010,6 +1024,11 @@ async function handleShardRefundReversedEvent(
     res.status(200).json({ ok: true, kind: 'shards_refund_reversed', ...out });
   } catch (error) {
     logger.error('revenuecat_shards_refund_reversed_failed', error);
+    await recordPaymentWebhookFailure(admin.firestore(), {
+      hook: 'refund_reversed',
+      message: String(error),
+      nowMs: Date.now(),
+    });
     res.status(500).send('Internal error');
   }
 }
@@ -1171,6 +1190,11 @@ async function handleShardRefundEvent(
     res.status(200).json({ ok: true, kind: 'shards_refund', ...out });
   } catch (error) {
     logger.error('revenuecat_shards_refund_webhook_failed', error);
+    await recordPaymentWebhookFailure(admin.firestore(), {
+      hook: 'refund',
+      message: String(error),
+      nowMs: Date.now(),
+    });
     res.status(500).send('Internal error');
   }
 }
@@ -1515,6 +1539,11 @@ async function handleTransferEvent(event: RevenueCatEvent, eventType: string, re
     res.status(200).json({ ok: true, kind: 'transfer', ...out });
   } catch (error) {
     logger.error('revenuecat_transfer_webhook_failed', error);
+    await recordPaymentWebhookFailure(admin.firestore(), {
+      hook: 'transfer',
+      message: String(error),
+      nowMs: Date.now(),
+    });
     res.status(500).send('Internal error');
   }
 }

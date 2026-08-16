@@ -30,7 +30,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { LinearGradient } from './SafeLinearGradient';
 import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
-import { AhaScene } from './onboarding_aha';
 import TypewriterText from './onboarding_aha/TypewriterText';
 import { hapticTap } from '../hooks/use-haptics';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
@@ -860,9 +859,10 @@ function ImproveConstellation() {
   );
 }
 
-// Сейф для privacy-экрана (Bevel, кадр 2): скруглённый корпус, наборный диск,
-// петли. Живёт мягким «дыханием» масштаба (конечный ping-pong под гейтом
-// фокуса — Performance Bible) и медленным поворотом диска на native driver.
+// Сейф privacy-экрана — в точности по референсу Bevel (кадр 2): светлый
+// неоморфный корпус с мягкими тенями, наборное кольцо с рисками, диск с
+// бликом, петли справа, янтарный указатель сверху. Живёт мягким «дыханием»
+// (конечный ping-pong под гейтом фокуса) и поворотом диска — native driver.
 function PrivacyVault() {
   const isFocused = useIsScreenFocused();
   const breathe = useRef(new Animated.Value(0)).current;
@@ -872,27 +872,40 @@ function PrivacyVault() {
     let alive = true;
     const loop = (toValue: number) => {
       if (!alive) return;
-      Animated.timing(breathe, { toValue, duration: 2200, useNativeDriver: true })
+      Animated.timing(breathe, { toValue, duration: 2400, useNativeDriver: true })
         .start(({ finished }) => { if (finished) loop(toValue === 1 ? 0 : 1); });
     };
     loop(1);
-    const spin = Animated.timing(dial, { toValue: 1, duration: 1600, delay: 350, useNativeDriver: true });
+    const spin = Animated.timing(dial, { toValue: 1, duration: 1700, delay: 400, useNativeDriver: true });
     spin.start();
     return () => { alive = false; breathe.stopAnimation(); spin.stop(); };
   }, [breathe, dial, isFocused]);
-  const scale = breathe.interpolate({ inputRange: [0, 1], outputRange: [1, 1.03] });
+  const scale = breathe.interpolate({ inputRange: [0, 1], outputRange: [1, 1.025] });
   const rotate = dial.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '150deg'] });
+  // 12 рисок наборного кольца, как у референса.
+  const ticks = Array.from({ length: 12 }, (_, index) => index * 30);
   return (
     <View style={styles.vaultWrap}>
-      <Animated.View style={[styles.vaultBody, { transform: [{ scale }] }]}>
-        <View style={styles.vaultHinge} />
-        <View style={[styles.vaultHinge, styles.vaultHingeBottom]} />
-        <View style={styles.vaultDialRing}>
-          <Animated.View style={[styles.vaultDial, { transform: [{ rotate }] }]}>
-            <View style={styles.vaultDialMark} />
-          </Animated.View>
-        </View>
-        <View style={styles.vaultPointer} />
+      <Animated.View style={{ transform: [{ scale }] }}>
+        <LinearGradient colors={['#FBFCFE', '#E9EDF4', '#DDE2EC']} start={{ x: 0.2, y: 0 }} end={{ x: 0.8, y: 1 }} style={styles.vaultBody}>
+          <View style={styles.vaultBodyInnerEdge} />
+          <View style={styles.vaultHinge} />
+          <View style={[styles.vaultHinge, styles.vaultHingeBottom]} />
+          <View style={styles.vaultPointer} />
+          <View style={styles.vaultRing}>
+            {ticks.map((deg) => (
+              <View key={deg} style={[styles.vaultTickHolder, { transform: [{ rotate: `${deg}deg` }] }]}>
+                <View style={styles.vaultTick} />
+              </View>
+            ))}
+            <Animated.View style={{ transform: [{ rotate }] }}>
+              <LinearGradient colors={['#FFFFFF', '#E7EBF2']} start={{ x: 0.3, y: 0 }} end={{ x: 0.7, y: 1 }} style={styles.vaultDial}>
+                <View style={styles.vaultDialMark} />
+              </LinearGradient>
+            </Animated.View>
+            <Ionicons name="sparkles" size={15} color="#FFFFFF" style={styles.vaultSparkle} />
+          </View>
+        </LinearGradient>
       </Animated.View>
     </View>
   );
@@ -962,12 +975,14 @@ function PromiseChart() {
         pointerEvents="none"
         style={[styles.promiseReveal, { transform: [{ translateX }] }]}
       />
+      {/* Подписи прижаты к своим кривым: зелёная растёт к правому верху,
+          серая сползает от левого края — читается без легенды. */}
       <View style={styles.promiseBadgeUp}>
         <Ionicons name="sparkles" size={13} color="#07111F" />
-        <Text style={styles.promiseBadgeUpText}>Повторяешь с Phraseman</Text>
+        <Text style={styles.promiseBadgeUpText}>С Phraseman</Text>
       </View>
       <View style={styles.promiseBadgeDown}>
-        <Text style={styles.promiseBadgeDownText}>Учишь и забываешь</Text>
+        <Text style={styles.promiseBadgeDownText}>Без повторения</Text>
       </View>
       <View style={styles.promiseAxisRow}>
         <Text style={styles.promiseAxisLabel}>неделя</Text>
@@ -1143,9 +1158,6 @@ function CleanOnboarding({
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const [level, setLevel] = useState<LevelChoice | null>(null);
   const [notificationBusy, setNotificationBusy] = useState(false);
-  // Полная АХ-сцена (звук + караоке + «зажми и говори») — ПО КНОПКЕ
-  // «Попробовать» с экрана promise (владелец, 2026-08-16): оверлей, не шаг.
-  const [ahaSceneOpen, setAhaSceneOpen] = useState(false);
   const [paywallBusy, setPaywallBusy] = useState(false);
   const [ageAnswer, setAgeAnswer] = useState<AgeAnswer>(null);
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
@@ -1809,7 +1821,7 @@ function CleanOnboarding({
   const renderPrivacy = () => (
     <ScreenFrame
       step="privacy"
-      title="Приватность по умолчанию"
+      title="Твои данные — только твои"
       plainTitle
       onBack={back}
       footer={(
@@ -1842,7 +1854,7 @@ function CleanOnboarding({
         </>
       )}
     >
-      <Text style={styles.privacySubtitle}>Мы никогда не продаём и не передаём твои данные.</Text>
+      <Text style={styles.privacySubtitle}>Мы ничего не продаём и никому не передаём.</Text>
       <PrivacyVault />
     </ScreenFrame>
   );
@@ -1889,45 +1901,22 @@ function CleanOnboarding({
   );
 
   // Обязательный экран прогресса (владелец, 2026-08-16): анимированный график
-  // с вехами времени и ОТДЕЛЬНОЙ кнопкой «Попробовать» — она открывает полную
-  // оригинальную АХ-сцену (звук, караоке, «зажми и говори») оверлеем; шага у
-  // сцены нет, «Продолжить» идёт дальше без неё.
-  const renderPromise = () => {
-    if (ahaSceneOpen) {
-      return (
-        <AhaScene
-          goal={undefined}
-          lang={lang === 'uk' || lang === 'es' ? lang : 'ru'}
-          onDone={() => setAhaSceneOpen(false)}
-          onSkip={() => setAhaSceneOpen(false)}
-        />
-      );
-    }
-    return (
-      <ScreenFrame
-        step="promise"
-        title="Ты заговоришь. Это устроено так."
-        plainTitle
-        onBack={back}
-        footer={(
-          <>
-            <PrimaryButton label="Продолжить" onPress={() => go('notifications')} testID="onboarding-promise-continue" />
-            <SecondaryButton
-              label="Попробовать на живой фразе"
-              onPress={() => setAhaSceneOpen(true)}
-              testID="onboarding-promise-try"
-            />
-          </>
-        )}
-      >
-        <PromiseChart />
-        <View style={styles.promiseFactList}>
-          <TrialTimelineRow index={0} icon="repeat-outline" title="Каждая фраза возвращается" />
-          <TrialTimelineRow index={1} icon="time-outline" title="Хватает пары минут в день" />
-        </View>
-      </ScreenFrame>
-    );
-  };
+  // с вехами времени. Демонстрационной кнопки здесь нет — владелец убрал.
+  const renderPromise = () => (
+    <ScreenFrame
+      step="promise"
+      title="Ты заговоришь. Это устроено так."
+      plainTitle
+      onBack={back}
+      footer={<PrimaryButton label="Продолжить" onPress={() => go('notifications')} testID="onboarding-promise-continue" />}
+    >
+      <PromiseChart />
+      <View style={styles.promiseFactList}>
+        <TrialTimelineRow index={0} icon="repeat-outline" title="Каждая фраза возвращается" />
+        <TrialTimelineRow index={1} icon="time-outline" title="Хватает пары минут в день" />
+      </View>
+    </ScreenFrame>
+  );
 
   const renderNotifications = () => (
     <ScreenFrame
@@ -2194,8 +2183,7 @@ function CleanOnboarding({
 
   // Экран-объяснение перед согласиями — композиция Bevel «Help us improve»
   // (кадр 5) один в один: пустой верх, иллюстрация в центре (сердце + иконки
-  // на пунктирных связях), заголовок ПОД ней, абзац, одна кнопка. Здесь же
-  // упоминание возраста — следующий шаг не станет сюрпризом.
+  // на пунктирных связях), заголовок ПОД ней, абзац, одна кнопка.
   const renderImprove = () => (
     <ScreenFrame
       step="improve"
@@ -2206,8 +2194,9 @@ function CleanOnboarding({
       <ImproveConstellation />
       <Text style={styles.improveTitle}>Помоги сделать Phraseman лучше</Text>
       <Text style={styles.improveBody}>
-        Поделись анонимной статистикой, чтобы Phraseman добрался до большего числа людей.
-        Личные данные и твой прогресс никогда не передаются. Дальше спросим согласие и возраст.
+        Мы видим только цифры: где урок даётся легко, а где все спотыкаются.
+        Ни имени, ни голоса, ни переписки — ничего личного.
+        Эти цифры делают Phraseman лучше для всех.
       </Text>
     </ScreenFrame>
   );
@@ -2231,8 +2220,7 @@ function CleanOnboarding({
       )}
     >
       {/* Порядок по решению владельца (2026-08-16): сначала добровольная галочка
-          аналитики, ниже — обязательный вопрос возраста. Объяснение — экраном
-          раньше (improve), поэтому здесь только действия, без меток. */}
+          аналитики, ниже — обязательный вопрос возраста с коротким «почему». */}
       <Pressable
         testID="onboarding-analytics-checkbox"
         onPressIn={() => { void hapticTap(); }}
@@ -2245,7 +2233,7 @@ function CleanOnboarding({
           <Ionicons name="stats-chart-outline" size={22} color="#B9C8FF" />
         </View>
         <View style={styles.consentDecisionCopy}>
-          <Text style={styles.consentDecisionTitle}>Анонимная аналитика</Text>
+          <Text style={styles.consentDecisionTitle}>Делиться анонимной статистикой</Text>
         </View>
         <View style={[styles.consentSwitch, analyticsAllowed && styles.consentSwitchOn]}>
           <View style={[styles.consentSwitchThumb, analyticsAllowed && styles.consentSwitchThumbOn]} />
@@ -2253,6 +2241,10 @@ function CleanOnboarding({
       </Pressable>
       {/* Возраст — вопросом с «Да/Нет» (владелец, 2026-08-16): короче и честнее,
           чем две длинные кнопки-утверждения. */}
+      {/* Почему спрашиваем возраст — по-людски, до самого вопроса. */}
+      <Text style={styles.ageIntro}>
+        {`Закон особенно бережёт данные тех, кому нет ${MIN_FULL_ACCESS_AGE}, — поэтому Phraseman для тех, кто старше. Спросим прямо:`}
+      </Text>
       <Text style={styles.ageQuestion}>{`Тебе есть ${MIN_FULL_ACCESS_AGE}?`}</Text>
       <View style={styles.ageButtons}>
         <Pressable
@@ -2302,7 +2294,7 @@ function CleanOnboarding({
     }
   };
 
-  const bare = displayStep === 'welcome' || (displayStep === 'promise' && ahaSceneOpen);
+  const bare = displayStep === 'welcome';
 
   return (
     <OnboardingOrderContext.Provider value={enabledOrder}>
@@ -3690,60 +3682,41 @@ const styles = StyleSheet.create({
   vaultWrap: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 34,
+    paddingVertical: 30,
   },
   vaultBody: {
-    width: 218,
-    height: 218,
-    borderRadius: 52,
-    backgroundColor: 'rgba(24, 31, 56, 0.92)',
-    borderWidth: 1,
-    borderColor: 'rgba(133, 156, 255, 0.22)',
+    width: 224,
+    height: 224,
+    borderRadius: 56,
     alignItems: 'center',
     justifyContent: 'center',
-    ...softShadow({ color: '#05070F', radius: 16, opacity: 0.5, offsetY: 12, backgroundColor: 'rgba(24, 31, 56, 0.92)' }),
+    ...softShadow({ color: '#05070F', radius: 16, opacity: 0.55, offsetY: 14, backgroundColor: '#E9EDF4' }),
+  },
+  vaultBodyInnerEdge: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 56,
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.85)',
+    margin: 7,
   },
   vaultHinge: {
     position: 'absolute',
-    right: 14,
-    top: 46,
-    width: 10,
+    right: 13,
+    top: 52,
+    width: 9,
     height: 34,
     borderRadius: 5,
-    backgroundColor: 'rgba(133, 156, 255, 0.30)',
+    backgroundColor: '#CBD2DE',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.7)',
   },
   vaultHingeBottom: {
     top: undefined,
-    bottom: 46,
-  },
-  vaultDialRing: {
-    width: 118,
-    height: 118,
-    borderRadius: 59,
-    borderWidth: 10,
-    borderColor: 'rgba(133, 156, 255, 0.20)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  vaultDial: {
-    width: 78,
-    height: 78,
-    borderRadius: 39,
-    backgroundColor: 'rgba(133, 156, 255, 0.16)',
-    borderWidth: 1.5,
-    borderColor: 'rgba(185, 200, 255, 0.5)',
-    alignItems: 'center',
-  },
-  vaultDialMark: {
-    width: 5,
-    height: 18,
-    borderRadius: 3,
-    marginTop: 7,
-    backgroundColor: '#B9C8FF',
+    bottom: 52,
   },
   vaultPointer: {
     position: 'absolute',
-    top: 34,
+    top: 40,
     width: 0,
     height: 0,
     borderLeftWidth: 7,
@@ -3752,6 +3725,47 @@ const styles = StyleSheet.create({
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
     borderTopColor: '#F0B429',
+  },
+  vaultRing: {
+    width: 122,
+    height: 122,
+    borderRadius: 61,
+    backgroundColor: '#E2E6EE',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...softShadow({ color: '#8A93A5', radius: 6, opacity: 0.35, offsetY: 3, backgroundColor: '#E2E6EE' }),
+  },
+  vaultTickHolder: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+  },
+  vaultTick: {
+    width: 2.5,
+    height: 9,
+    marginTop: 4,
+    borderRadius: 2,
+    backgroundColor: '#B9C0CE',
+  },
+  vaultDial: {
+    width: 74,
+    height: 74,
+    borderRadius: 37,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.9)',
+    ...softShadow({ color: '#7C8494', radius: 5, opacity: 0.4, offsetY: 3, backgroundColor: '#F2F4F9' }),
+  },
+  vaultDialMark: {
+    width: 5,
+    height: 17,
+    borderRadius: 3,
+    marginTop: 7,
+    backgroundColor: '#9AA3B4',
+  },
+  vaultSparkle: {
+    position: 'absolute',
+    top: 16,
+    right: 18,
   },
   improveArt: {
     width: 250,
@@ -3854,8 +3868,8 @@ const styles = StyleSheet.create({
   },
   promiseBadgeUp: {
     position: 'absolute',
-    top: 24,
-    left: 22,
+    top: 12,
+    right: 16,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
@@ -3872,8 +3886,8 @@ const styles = StyleSheet.create({
   },
   promiseBadgeDown: {
     position: 'absolute',
-    bottom: 56,
-    right: 22,
+    top: 86,
+    left: 16,
     backgroundColor: 'rgba(139, 147, 169, 0.22)',
     borderRadius: 999,
     paddingHorizontal: 11,
@@ -3901,13 +3915,21 @@ const styles = StyleSheet.create({
   promiseFactList: {
     gap: 12,
   },
+  ageIntro: {
+    color: '#A9B4D8',
+    fontSize: 14.5,
+    lineHeight: 21,
+    textAlign: 'center',
+    marginTop: 24,
+    paddingHorizontal: 4,
+  },
   ageQuestion: {
     color: '#F2F5FF',
     fontSize: 19,
     lineHeight: 25,
     fontWeight: '800',
     textAlign: 'center',
-    marginTop: 22,
+    marginTop: 10,
     marginBottom: 12,
   },
   errorText: {

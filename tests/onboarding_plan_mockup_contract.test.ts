@@ -55,15 +55,13 @@ describe('clean minimal wow onboarding contract', () => {
     expect(source).toContain("if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'promise'");
   });
 
-  it('sells without a questionnaire: progress promise with optional live scene, honest trial timeline', () => {
+  it('sells without a questionnaire: progress promise chart, honest trial timeline', () => {
     [
       'const renderPrivacy',
       'function PrivacyVault',
       'const renderPromise',
       'function PromiseChart',
       'testID="onboarding-promise-continue"',
-      'testID="onboarding-promise-try"',
-      '<AhaScene',
       'const renderTrialReminder',
       'function TrialTimelineRow',
       'function AnimatedPushCard',

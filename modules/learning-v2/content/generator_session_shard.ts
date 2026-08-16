@@ -18,6 +18,7 @@ import {
   type LearningV2GeneratedSessionIntro,
 } from './generator_session_contract';
 import { REQUIRED_SESSION_POLICY_V1 } from './session_compiler';
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from './course_topology_v1';
 
 export const LEARNING_V2_SESSION_CARD_PURPOSES = Object.freeze([
   'intro_check',
@@ -230,7 +231,7 @@ function assertExpected(
     expected.episodeOrdinal > 32 ||
     !Number.isSafeInteger(expected.requiredSessionOrdinal) ||
     expected.requiredSessionOrdinal < 1 ||
-    expected.requiredSessionOrdinal > 12 ||
+    expected.requiredSessionOrdinal > LEARNING_V2_LESSON_SESSION_COUNT_V1 ||
     !HASH_RE.test(expected.generationInputFingerprint)
   ) {
     throw new Error('learning_v2_session_shard_expected_invalid');

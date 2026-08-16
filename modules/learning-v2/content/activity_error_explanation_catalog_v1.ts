@@ -9,6 +9,7 @@ import {
   hashCanonicalBody,
   utf8ByteLengthV1,
 } from "../policies/decision_registry";
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from './course_topology_v1';
 
 export const LEARNING_V2_ACTIVITY_ERROR_EXPLANATION_CATALOG_SCHEMA_V1 =
   "learning-v2-activity-error-explanation-catalog.v1" as const;
@@ -325,7 +326,7 @@ function parseEntry(
   if (
     !Number.isSafeInteger(value.sessionOrdinal) ||
     Number(value.sessionOrdinal) < 1 ||
-    Number(value.sessionOrdinal) > 12
+    Number(value.sessionOrdinal) > LEARNING_V2_LESSON_SESSION_COUNT_V1
   )
     fail("learning_v2_error_explanation_session_invalid");
   const taskId = exactId(

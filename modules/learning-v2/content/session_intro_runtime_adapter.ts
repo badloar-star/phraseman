@@ -14,6 +14,7 @@ import type {
   LearningV2InterfaceLocale,
   LearningV2Localized,
 } from './generator_course_contract';
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from './course_topology_v1';
 
 const KIND_TO_LINE = Object.freeze({
   concept: 'text',
@@ -92,7 +93,7 @@ export function adaptLearningV2GeneratedSessionIntroToLessonScreens(
     input.lessonId > 10_000 ||
     !Number.isSafeInteger(input.sessionOrdinal) ||
     input.sessionOrdinal < 1 ||
-    input.sessionOrdinal > 12
+    input.sessionOrdinal > LEARNING_V2_LESSON_SESSION_COUNT_V1
   ) {
     throw new Error('learning_v2_session_intro_coordinate_invalid');
   }

@@ -17,6 +17,8 @@ import {
   INACTIVE_MAX_DAYS,
   STREAK_AT_RISK_MIN,
   REENGAGE_COOLDOWN_DAYS,
+  MAX_PUSHES_PER_RUN,
+  capCandidates,
   type ReEngageUser,
   type ReEngageCandidate,
 } from './re_engage_push';
@@ -273,5 +275,43 @@ describe('проекция полей в скане users', () => {
     for (const field of read) {
       expect(projection).toContain(`'${field}'`);
     }
+  });
+});
+
+describe('потолок рассылки за один прогон', () => {
+  // зачем (аудит 2026-08-15): cooldown защищает КОНКРЕТНОГО человека от
+  // повторного пуша, но общего потолка на прогон не было — цикл шёл по всей
+  // коллекции users. Ошибка в условиях отбора означала бы веерную рассылку
+  // всей базе за один заход, без единого подтверждения человеком.
+  // Это класс инцидента Funko/itch.io: автоматика без потолка ломает громко.
+  test('константа потолка существует и разумна', () => {
+    expect(MAX_PUSHES_PER_RUN).toBeGreaterThan(0);
+    // Достаточно для нормального дня и мало для катастрофы.
+    expect(MAX_PUSHES_PER_RUN).toBeLessThanOrEqual(5_000);
+  });
+
+  test('лишние кандидаты отбрасываются, а не отправляются', () => {
+    const many = Array.from({ length: MAX_PUSHES_PER_RUN + 250 }, (_, i) => ({
+      uid: `u${i}`,
+      token: `ExponentPushToken[${i}]`,
+      reason: 'inactive_return' as const,
+      lang: 'ru',
+      userName: '',
+      streakCount: 0,
+    }));
+    const capped = capCandidates(many);
+    expect(capped.length).toBe(MAX_PUSHES_PER_RUN);
+  });
+
+  test('когда кандидатов меньше потолка — не трогаем никого', () => {
+    const few = Array.from({ length: 5 }, (_, i) => ({
+      uid: `u${i}`,
+      token: `ExponentPushToken[${i}]`,
+      reason: 'streak_at_risk' as const,
+      lang: 'ru',
+      userName: '',
+      streakCount: 3,
+    }));
+    expect(capCandidates(few).length).toBe(5);
   });
 });

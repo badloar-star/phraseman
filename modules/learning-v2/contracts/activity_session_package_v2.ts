@@ -6,6 +6,7 @@ import {
   canonicalJsonV1,
   utf8ByteLengthV1,
 } from "../policies/decision_registry";
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../content/course_topology_v1';
 
 export const V2_REQUIRED_SESSION_TASK_PURPOSES_V2 = Object.freeze([
   "intro_comprehension_check",
@@ -251,7 +252,7 @@ export const v2ActivitySessionIdV2 = (
     !ID_PATTERN.test(episodeId) ||
     !Number.isSafeInteger(sessionOrdinal) ||
     sessionOrdinal < 1 ||
-    sessionOrdinal > 12
+    sessionOrdinal > LEARNING_V2_LESSON_SESSION_COUNT_V1
   ) {
     fail("canonical session identity is invalid");
   }
@@ -450,7 +451,7 @@ export const parseV2ActivitySessionPackageV2 = (
         if (
           !Number.isSafeInteger(reviewSource.sourceSessionOrdinal) ||
           Number(reviewSource.sourceSessionOrdinal) < 1 ||
-          Number(reviewSource.sourceSessionOrdinal) > 12
+          Number(reviewSource.sourceSessionOrdinal) > LEARNING_V2_LESSON_SESSION_COUNT_V1
         )
           fail("review sourceSessionOrdinal is invalid");
         const reviewedTask =

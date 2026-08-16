@@ -32,6 +32,26 @@ export const REENGAGE_COOLDOWN_DAYS = 2;
 export const INACTIVE_EXTENDED_MIN_DAYS = 15;
 export const INACTIVE_EXTENDED_MAX_DAYS = 30;
 
+/**
+ * Потолок отправок за ОДИН прогон крона.
+ *
+ * зачем (аудит 2026-08-15): cooldown защищает конкретного человека от
+ * повторного пуша, но общего потолка не было — цикл сканирования идёт по
+ * всей коллекции users. Ошибка в условиях отбора (например, поле
+ * `last_active_at` переименовали, и все выглядят неактивными) означала бы
+ * веерную рассылку всей базе за один заход, без единого подтверждения.
+ *
+ * зачем именно отсечка, а не остановка прогона: если кандидатов вдруг стало
+ * слишком много, правильнее отправить безопасную порцию и оставить след в
+ * логах, чем не отправить ничего — настоящие «стрик под угрозой» ждать
+ * до завтра не могут.
+ *
+ * Число выбрано так, чтобы покрывать нормальный день с запасом и при этом
+ * делать катастрофу невозможной: массовая рассылка упрётся в потолок,
+ * а не в терпение пользователей.
+ */
+export const MAX_PUSHES_PER_RUN = 2_000;
+
 export type ReEngageReason = 'streak_at_risk' | 'inactive_return' | 'inactive_long';
 
 export interface ReEngageUser {
@@ -189,6 +209,25 @@ export function selectReEngageCandidates(users: ReEngageUser[], now: number): Re
     });
   }
   return out;
+}
+
+/**
+ * Отсекает всё сверх потолка прогона.
+ *
+ * зачем сортировать перед отсечкой: если кандидатов больше потолка, обрезать
+ * надо не случайных, а наименее срочных. «Стрик под угрозой» ждать до завтра
+ * не может — серия сгорит сегодня; вернуть ушедшего можно и на день позже.
+ */
+export function capCandidates(candidates: ReEngageCandidate[]): ReEngageCandidate[] {
+  if (candidates.length <= MAX_PUSHES_PER_RUN) return candidates;
+  const priority: Record<ReEngageReason, number> = {
+    streak_at_risk: 0,
+    inactive_return: 1,
+    inactive_long: 2,
+  };
+  return [...candidates]
+    .sort((a, b) => priority[a.reason] - priority[b.reason])
+    .slice(0, MAX_PUSHES_PER_RUN);
 }
 
 // ── Локализованные тексты ──────────────────────────────────────────────────────
@@ -425,11 +464,26 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
     return { scanned, candidates: 0, sent: 0, failedChunks: 0, ticketCount: 0 };
   }
 
+  // зачем потолок здесь (аудит 2026-08-15): выше цикл идёт по ВСЕЙ коллекции
+  // users. Cooldown защищает конкретного человека, но от веерной рассылки при
+  // ошибке в условиях отбора не защищает ничто. Отсечка делает катастрофу
+  // невозможной: массовая рассылка упрётся в число, а не в терпение людей.
+  const capped = capCandidates(allCandidates);
+  if (capped.length < allCandidates.length) {
+    // зачем громко: столько кандидатов за прогон — это повод проверить
+    // условия отбора, а не поднять потолок.
+    console.warn(
+      `re_engage_push: сработал потолок — кандидатов ${allCandidates.length}, `
+      + `отправлено ${MAX_PUSHES_PER_RUN}, отброшено ${allCandidates.length - capped.length}. `
+      + 'Проверь условия отбора: столько людей одновременно — это подозрительно.',
+    );
+  }
+
   // 2) Отправка push чанками по 100.
   // Отслеживаем uid и ticket-ids успешных отправок:
   // uid → для stamping cooldown, ticketIds → для последующей проверки receipts.
-  const messages = allCandidates.map(buildExpoPushMessage);
-  const candidateChunks = chunkMessages(allCandidates, 100);
+  const messages = capped.map(buildExpoPushMessage);
+  const candidateChunks = chunkMessages(capped, 100);
   const messageChunks = chunkMessages(messages, 100);
   let sent = 0;
   let failedChunks = 0;

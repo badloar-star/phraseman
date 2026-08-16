@@ -1,15 +1,11 @@
 export type OnboardingStepId =
   | 'welcome'
-  | 'source'
   | 'language'
   | 'level'
-  | 'goal'
-  | 'minutes'
+  | 'promise'
   | 'aha'
   | 'notifications'
-  | 'plusBenefits'
-  | 'startMode'
-  | 'planComparison'
+  | 'trialReminder'
   | 'onboardingPaywall'
   | 'name';
 
@@ -31,23 +27,23 @@ export type OnboardingTransitionEffects = {
 export const MANDATORY_ONBOARDING_STEP: OnboardingStepId = 'name';
 export const ONBOARDING_ENABLED_STEPS_TEXT_KEY = 'onboarding_enabled_steps_v1';
 
+// Минимальный флоу (владелец, 2026-08-16): анкета про построение плана удалена
+// вместе с планами; язык — отдельным отключаемым блоком (language+level), пока
+// не добавлены языки; вместо вопросов — «promise» (вау-обещание результата) и
+// «trialReminder» (честное «предупредим до конца пробного» перед ценами).
 export const ONBOARDING_STEP_CATALOG: readonly {
   id: OnboardingStepId;
   label: string;
   description: string;
   mandatory?: boolean;
 }[] = [
-  { id: 'welcome', label: 'Приветствие', description: 'Первый экран знакомства.' },
-  { id: 'source', label: 'Источник', description: 'Откуда пользователь узнал о приложении.' },
-  { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка.' },
-  { id: 'level', label: 'Уровень', description: 'Текущий уровень языка.' },
-  { id: 'goal', label: 'Цель', description: 'Цель обучения.' },
-  { id: 'minutes', label: 'Время занятий', description: 'Ежедневный темп.' },
+  { id: 'welcome', label: 'Приветствие', description: 'Первый экран знакомства и вход.' },
+  { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка (выключен, пока язык один).' },
+  { id: 'level', label: 'Уровень', description: 'Уровень выбранного языка (блок языка).' },
+  { id: 'promise', label: 'Обещание результата', description: 'Вау-экран «ты точно заговоришь».' },
   { id: 'aha', label: 'Демонстрация', description: 'Практическая демонстрация обучения.' },
   { id: 'notifications', label: 'Уведомления', description: 'Предложение включить уведомления.' },
-  { id: 'plusBenefits', label: 'Преимущества Plus', description: 'Обзор преимуществ подписки.' },
-  { id: 'startMode', label: 'Режим старта', description: 'Выбор способа начать обучение.' },
-  { id: 'planComparison', label: 'Сравнение планов', description: 'Сравнение вариантов доступа.' },
+  { id: 'trialReminder', label: 'Напоминание о пробном', description: 'Обещание предупредить до конца пробного.' },
   { id: 'onboardingPaywall', label: 'Предложение подписки', description: 'Экран покупки.' },
   {
     id: 'name',
@@ -85,7 +81,12 @@ export function resolveEnabledOnboardingOrder(
 ): OnboardingStepId[] {
   const enabled = new Set(remotelyEnabled);
   enabled.add(MANDATORY_ONBOARDING_STEP);
-  if (!showLanguageStep) enabled.delete('language');
+  // Блок языка целиком (выбор + уровень): продукт ещё не добавил вторые языки,
+  // поэтому локальный рубильник глушит оба экрана независимо от админки.
+  if (!showLanguageStep) {
+    enabled.delete('language');
+    enabled.delete('level');
+  }
   return ALL_STEP_IDS.filter((id) => enabled.has(id));
 }
 

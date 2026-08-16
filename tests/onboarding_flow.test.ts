@@ -25,45 +25,49 @@ describe('configurable onboarding flow', () => {
   );
 
   it('ignores unknown ids and restores canonical order', () => {
-    expect(parseEnabledOnboardingSteps('["goal","future","welcome"]')).toEqual([
+    expect(parseEnabledOnboardingSteps('["promise","future","welcome"]')).toEqual([
       'welcome',
-      'goal',
+      'promise',
       'name',
     ]);
   });
 
   it('applies local product availability after remote config', () => {
-    expect(resolveEnabledOnboardingOrder(['welcome', 'language', 'name'], false)).toEqual([
+    // Блок языка (language + level) глушится локальным рубильником целиком,
+    // даже если админка оставила его включённым.
+    expect(resolveEnabledOnboardingOrder(['welcome', 'language', 'level', 'name'], false)).toEqual([
       'welcome',
+      'name',
+    ]);
+    expect(resolveEnabledOnboardingOrder(['welcome', 'language', 'level', 'name'], true)).toEqual([
+      'welcome',
+      'language',
+      'level',
       'name',
     ]);
   });
 
   it('skips adjacent disabled steps in both directions', () => {
-    const order = resolveEnabledOnboardingOrder(['welcome', 'goal', 'name'], false);
-    expect(resolveOnboardingStep(order, 'welcome', 'forward')).toBe('goal');
-    expect(resolveOnboardingStep(order, 'name', 'backward')).toBe('goal');
+    const order = resolveEnabledOnboardingOrder(['welcome', 'promise', 'name'], false);
+    expect(resolveOnboardingStep(order, 'welcome', 'forward')).toBe('promise');
+    expect(resolveOnboardingStep(order, 'name', 'backward')).toBe('promise');
   });
 
   it('resolves a disabled restored step to the nearest following step', () => {
-    const order = resolveEnabledOnboardingOrder(['welcome', 'minutes', 'name'], false);
-    expect(resolveOnboardingStep(order, 'goal', 'current-or-forward')).toBe('minutes');
+    const order = resolveEnabledOnboardingOrder(['welcome', 'notifications', 'name'], false);
+    expect(resolveOnboardingStep(order, 'promise', 'current-or-forward')).toBe('notifications');
   });
 
   it.each([
     [[], 'name', false],
-    [['startMode'], 'startMode', false],
-    [['planComparison'], 'planComparison', false],
+    [['trialReminder'], 'trialReminder', false],
     [['onboardingPaywall'], 'onboardingPaywall', true],
-    [['startMode', 'planComparison'], 'startMode', false],
-    [['startMode', 'onboardingPaywall'], 'startMode', false],
-    [['planComparison', 'onboardingPaywall'], 'planComparison', false],
-    [['startMode', 'planComparison', 'onboardingPaywall'], 'startMode', false],
+    [['trialReminder', 'onboardingPaywall'], 'trialReminder', false],
   ] as Array<[OnboardingStepId[], OnboardingStepId, boolean]>) (
     'chooses destination and paywall effects for enabled tail %p',
     (tail, destination, paywallEffects) => {
-      const order = resolveEnabledOnboardingOrder(['plusBenefits', ...tail, 'name'], false);
-      const decision = decideOnboardingTransition(order, 'plusBenefits');
+      const order = resolveEnabledOnboardingOrder(['notifications', ...tail, 'name'], false);
+      const decision = decideOnboardingTransition(order, 'notifications');
       expect(decision).toEqual({
         destination,
         preparePaywall: paywallEffects,
@@ -73,12 +77,12 @@ describe('configurable onboarding flow', () => {
     },
   );
 
-  it('prepares paywall when plan comparison is skipped after start mode', () => {
+  it('prepares paywall when the trial reminder screen is skipped', () => {
     const order = resolveEnabledOnboardingOrder(
-      ['startMode', 'onboardingPaywall', 'name'],
+      ['notifications', 'onboardingPaywall', 'name'],
       false,
     );
-    expect(decideOnboardingTransition(order, 'startMode')).toEqual({
+    expect(decideOnboardingTransition(order, 'notifications')).toEqual({
       destination: 'onboardingPaywall',
       preparePaywall: true,
       createPendingPlan: true,
@@ -87,7 +91,7 @@ describe('configurable onboarding flow', () => {
   });
 
   it('calculates progress from enabled visible progress steps', () => {
-    expect(getOnboardingProgress(['welcome', 'goal', 'aha', 'name'], 'goal')).toEqual({ progress: 1, total: 2 });
+    expect(getOnboardingProgress(['welcome', 'promise', 'aha', 'name'], 'promise')).toEqual({ progress: 1, total: 2 });
     expect(getOnboardingProgress(['name'], 'name')).toEqual({ progress: 1, total: 1 });
   });
 
@@ -100,7 +104,7 @@ describe('configurable onboarding flow', () => {
       trackPaywallView: jest.fn(),
     };
     const busy = { current: false };
-    const decision = decideOnboardingTransition(['startMode', 'onboardingPaywall', 'name'], 'startMode');
+    const decision = decideOnboardingTransition(['trialReminder', 'onboardingPaywall', 'name'], 'trialReminder');
     const first = runOnboardingTransitionEffects(decision, busy, effects);
     const second = runOnboardingTransitionEffects(decision, busy, effects);
     release();

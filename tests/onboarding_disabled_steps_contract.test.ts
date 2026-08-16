@@ -15,8 +15,8 @@ describe('CleanOnboarding disabled step integration', () => {
   });
 
   it('decides paywall side effects from the actual destination', () => {
-    expect(source).toContain("decideOnboardingTransition(enabledOrder, 'startMode')");
-    expect(source).toContain("decideOnboardingTransition(enabledOrder, 'planComparison')");
-    expect(source.match(/runOnboardingTransitionEffects\(decision/g)).toHaveLength(2);
+    // Единственный переход к ценам — с экрана «предупредим до конца пробного».
+    expect(source).toContain("decideOnboardingTransition(enabledOrder, 'trialReminder')");
+    expect(source.match(/runOnboardingTransitionEffects\(decision/g)).toHaveLength(1);
   });
 });

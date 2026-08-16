@@ -11,16 +11,19 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Linking,
+  Modal,
   Platform,
   Pressable,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   View,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
+import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Path, Stop } from 'react-native-svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -66,20 +69,11 @@ import {
   ONBOARDING_REQUESTED_STUDY_TARGET_KEY,
   prefetchAndRecordStudyTargetServerPack,
 } from '../app/study_target_server_prefetch';
-import {
-  PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
-  queuePendingPersonalPlanActivation,
-} from '../app/personal_plan_activation';
-import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_plan_catalog';
-import {
-  resolvePersonalPlanForGoal,
-  type PersonalPlanSetupGoal,
-} from '../app/personal_plan_recommendation';
+import { PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY } from '../app/personal_plan_activation';
 import {
   addDays,
   estimateDaysToTarget,
   type CurrentLevel,
-  type LearningGoal,
   type MinutesPerDay,
   type TargetLevel,
   type UserProfile,
@@ -94,13 +88,6 @@ import {
 import { noAndroidOutline } from '../constants/androidGlow';
 const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 const ONBOARDING_ASSETS = {
-  sourceTiktok: require('../assets/images/flow_clean_202607/source_tiktok.webp'),
-  sourceStore: require('../assets/images/flow_clean_202607/source_store.webp'),
-  sourceSocial: require('../assets/images/flow_clean_202607/source_social.webp'),
-  sourceYoutube: require('../assets/images/flow_clean_202607/source_youtube.webp'),
-  sourceGoogle: require('../assets/images/flow_clean_202607/source_google.webp'),
-  sourceFriends: require('../assets/images/flow_clean_202607/source_friends.webp'),
-  sourceOther: require('../assets/images/flow_clean_202607/source_other.webp'),
   languageEn: require('../assets/images/language_flags/language_en.webp'),
   languageFr: require('../assets/images/language_flags/language_fr_dev.webp'),
   levelA0: require('../assets/images/flow_clean_202607/level_a0.webp'),
@@ -108,24 +95,7 @@ const ONBOARDING_ASSETS = {
   levelA2: require('../assets/images/flow_clean_202607/level_a2.webp'),
   levelB1: require('../assets/images/flow_clean_202607/level_b1.webp'),
   levelB2: require('../assets/images/flow_clean_202607/level_b2.webp'),
-  goalSeries: require('../assets/images/flow_clean_202607/goal_series.webp'),
-  goalEveryday: require('../assets/images/flow_clean_202607/goal_everyday.webp'),
-  goalTravel: require('../assets/images/flow_clean_202607/goal_travel.webp'),
-  goalWords: require('../assets/images/flow_clean_202607/goal_words.webp'),
-  goalMind: require('../assets/images/flow_clean_202607/goal_mind.webp'),
-  minutes5: require('../assets/images/flow_clean_202607/minutes_5.webp'),
-  minutes10: require('../assets/images/flow_clean_202607/minutes_10.webp'),
-  minutes15: require('../assets/images/flow_clean_202607/minutes_15.webp'),
-  minutes20: require('../assets/images/flow_clean_202607/minutes_20.webp'),
-  introCompass: require('../assets/images/flow_clean_202607/intro_compass.webp'),
   notifications: require('../assets/images/flow_clean_202607/notifications.webp'),
-  planResult: require('../assets/images/flow_clean_202607/plan_result.webp'),
-  startPlus: require('../assets/images/flow_clean_202607/start_plus.webp'),
-  startFree: require('../assets/images/flow_clean_202607/start_free.webp'),
-  benefitPlan: require('../assets/images/flow_clean_202607/benefit_plan.webp'),
-  benefitSpeech: require('../assets/images/flow_clean_202607/benefit_speech.webp'),
-  benefitRepeat: require('../assets/images/flow_clean_202607/benefit_repeat.webp'),
-  benefitFlow: require('../assets/images/flow_clean_202607/benefit_flow.webp'),
   paywallYearly: require('../assets/images/flow_clean_202607/paywall_yearly.webp'),
   paywallMonthly: require('../assets/images/flow_clean_202607/paywall_monthly.webp'),
   paywallLifetime: require('../assets/images/flow_clean_202607/paywall_lifetime.webp'),
@@ -142,20 +112,16 @@ export type OnboardingProps = {
 
 export type CleanOnboardingStep =
   | 'welcome'
-  | 'source'
   | 'language'
   | 'level'
-  | 'goal'
-  | 'minutes'
+  | 'promise'
   | 'aha'
   | 'notifications'
-  | 'plusBenefits'
-  | 'startMode'
-  | 'planComparison'
+  | 'trialReminder'
   | 'onboardingPaywall'
   | 'name';
 
-export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_midnight_aha_flow_2026_07_02b';
+export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_minimal_wow_flow_2026_08_16';
 const ONBOARDING_AUTH_UI_TIMEOUT_MS = 45_000;
 
 async function withOnboardingAuthUiDeadline<T>(task: Promise<T>): Promise<T> {
@@ -175,20 +141,18 @@ async function withOnboardingAuthUiDeadline<T>(task: Promise<T>): Promise<T> {
   }
 }
 const SHOW_ONBOARDING_LANGUAGE_STEP = false;
-// Порядок: короткая анкета → АХ-сцена (ценность) → уведомления ПОСЛЕ победы →
-// обещание 3 месяцев (всем) → выбор старта → пейвол → имя/согласия.
+// Минимальный флоу (владелец, 2026-08-16): анкета про построение плана удалена
+// вместе с планами. Порядок: welcome (вход + согласие строкой) → блок языка
+// (language+level, выключен, пока язык один) → promise (вау-обещание) → АХ-сцена
+// (живая ценность) → уведомления → честное «предупредим до конца пробного» →
+// пейвол → возраст/согласия.
 export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'welcome',
-  'source',
-  ...(SHOW_ONBOARDING_LANGUAGE_STEP ? ['language' as const] : []),
-  'level',
-  'goal',
-  'minutes',
+  ...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : []),
+  'promise',
   'aha',
   'notifications',
-  'plusBenefits',
-  'startMode',
-  'planComparison',
+  'trialReminder',
   'onboardingPaywall',
   'name',
 ];
@@ -203,15 +167,14 @@ export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
 const FLOW_VERSION_KEY = 'onboarding_flow_version_v1';
 const STEP_KEY = 'onboarding_step';
 const DONE_KEY = 'onboarding_done';
-const DISCOVERY_SOURCE_KEY = 'onboarding_discovery_source';
-const PLAN_GOAL_KEY = 'onboarding_plan_goal';
 const PLAN_LEVEL_KEY = 'onboarding_plan_level';
-const PLAN_MINUTES_KEY = 'onboarding_plan_minutes';
 const PLAN_BILLING_KEY = 'onboarding_plan_billing';
 const LEGAL_ACCEPTED_KEY = 'onboarding_terms_privacy_accepted_v1';
 const ANALYTICS_HELP_KEY = 'onboarding_analytics_help_v1';
+// Подписка на письма: галочка стоит заранее (решение владельца, 2026-08-16 —
+// риск Planet49/GDPR для EU озвучен и принят), снимается тапом по ВСЕЙ строке.
+const NEWSLETTER_OPTIN_KEY = 'onboarding_newsletter_optin_v1';
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
-type DiscoverySource = 'tiktok' | 'store' | 'social' | 'youtube' | 'google' | 'friends' | 'other';
 type LevelChoice = 'a0' | 'a1' | 'a2' | 'b1' | 'b2';
 type AgeAnswer = 'yes' | 'no' | null;
 
@@ -221,16 +184,6 @@ type Option<T extends string | number> = {
   icon: IoniconName;
   asset?: ImageSourcePropType;
 };
-
-const DISCOVERY_OPTIONS: Option<DiscoverySource>[] = [
-  { id: 'tiktok', title: 'TikTok', icon: 'musical-notes-outline', asset: ONBOARDING_ASSETS.sourceTiktok },
-  { id: 'store', title: 'App Store / Google Play', icon: 'storefront-outline', asset: ONBOARDING_ASSETS.sourceStore },
-  { id: 'social', title: 'Instagram / Facebook', icon: 'camera-outline', asset: ONBOARDING_ASSETS.sourceSocial },
-  { id: 'youtube', title: 'YouTube', icon: 'logo-youtube', asset: ONBOARDING_ASSETS.sourceYoutube },
-  { id: 'google', title: 'Google Search', icon: 'search-outline', asset: ONBOARDING_ASSETS.sourceGoogle },
-  { id: 'friends', title: 'Друзья', icon: 'people-outline', asset: ONBOARDING_ASSETS.sourceFriends },
-  { id: 'other', title: 'Другое', icon: 'ellipsis-horizontal-circle-outline', asset: ONBOARDING_ASSETS.sourceOther },
-];
 
 const LANGUAGE_OPTIONS: Array<Option<StudyTarget> & { code: string; native: string }> = [
   { id: 'en', code: 'EN', native: 'Английский', title: 'Английский', icon: 'chatbubbles-outline', asset: ONBOARDING_ASSETS.languageEn },
@@ -245,23 +198,9 @@ const LEVEL_OPTIONS: Option<LevelChoice>[] = [
   { id: 'b2', title: 'Обсуждаю почти всё', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelB2 },
 ];
 
-const GOAL_OPTIONS: Option<PersonalPlanSetupGoal>[] = [
-  { id: 'series', title: 'Понимать кино и сериалы', icon: 'volume-high-outline', asset: ONBOARDING_ASSETS.goalSeries },
-  { id: 'everyday', title: 'Говорить в обычной жизни', icon: 'chatbubble-ellipses-outline', asset: ONBOARDING_ASSETS.goalEveryday },
-  { id: 'travel', title: 'Путешествовать', icon: 'airplane-outline', asset: ONBOARDING_ASSETS.goalTravel },
-  { id: 'words', title: 'Нужные фразы каждый день', icon: 'cube-outline', asset: ONBOARDING_ASSETS.goalWords },
-  { id: 'mind', title: 'Учиться для себя', icon: 'school-outline', asset: ONBOARDING_ASSETS.goalMind },
-];
-
-const MINUTE_OPTIONS: Array<Option<PlanMinutesChoice> & { tone: string }> = [
-  { id: 5, title: '5 минут в день', tone: 'без давления', icon: 'leaf-outline', asset: ONBOARDING_ASSETS.minutes5 },
-  { id: 10, title: '10 минут в день', tone: 'лучший ритм', icon: 'time-outline', asset: ONBOARDING_ASSETS.minutes10 },
-  { id: 15, title: '15 минут в день', tone: 'быстрее прогресс', icon: 'flash-outline', asset: ONBOARDING_ASSETS.minutes15 },
-  { id: 20, title: '20 минут в день', tone: 'глубже практика', icon: 'rocket-outline', asset: ONBOARDING_ASSETS.minutes20 },
-];
 function normalizedStoredStep(value: string | null): CleanOnboardingStep | null {
   if (value === 'start') return 'welcome';
-  if (!SHOW_ONBOARDING_LANGUAGE_STEP && value === 'language') return 'level';
+  if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'promise';
   if ((CLEAN_ONBOARDING_ORDER as readonly string[]).includes(value ?? '')) return value as CleanOnboardingStep;
   return null;
 }
@@ -278,19 +217,6 @@ function levelToCurrentLevel(level: LevelChoice): CurrentLevel {
   return 'b2';
 }
 
-function minutesToProfileMinutes(minutes: PlanMinutesChoice): MinutesPerDay {
-  if (minutes === 5) return 5;
-  if (minutes === 10 || minutes === 15) return 15;
-  return 30;
-}
-
-function goalToLearningGoal(goal: PersonalPlanSetupGoal): LearningGoal {
-  if (goal === 'travel') return 'tourism';
-  if (goal === 'series' || goal === 'everyday') return 'hobby';
-  if (goal === 'words') return 'work';
-  return 'hobby';
-}
-
 function targetAfterLevel(currentLevel: CurrentLevel): TargetLevel {
   if (currentLevel === 'a1') return 'a2';
   if (currentLevel === 'a2') return 'b1';
@@ -298,32 +224,14 @@ function targetAfterLevel(currentLevel: CurrentLevel): TargetLevel {
   return 'c1';
 }
 
-// Обещание на 3 месяца — конкретные умения, без числовых клеймов (юр. безопасно).
-const PLUS_THREE_MONTH_PROMISES = [
-  {
-    title: 'Сказать нужную фразу вовремя',
-    body: 'Кафе, дорога, встреча или короткий ответ — слова придут сами.',
-  },
-  {
-    title: 'Понять ответ без паники',
-    body: 'Сначала смысл, потом звук и повтор — речь перестанет быть шумом.',
-  },
-  {
-    title: 'Возвращаться каждый день без борьбы',
-    body: 'Короткая сессия, которую реально держать неделя за неделей.',
-  },
-] as const;
-
-// Экран сравнения Free vs Plus (planComparison). Реальные киллер-фичи Plus из боевой
-// копирайт-выкладки пейвола (paywall_copy.ts → CONTEXT_BENEFITS). У Free — прочерк
-// (эти фичи только в Plus), у Plus — галочка, появляется каскадом сверху вниз.
-// Слово «ИИ» в приложении не используем — «разговорная практика» вместо «диалоги с ИИ».
-const PLAN_COMPARISON_BENEFITS: { icon: IoniconName; title: string }[] = [
+// Киллер-фичи Plus для пейвола — из боевой копирайт-выкладки (paywall_copy.ts →
+// CONTEXT_BENEFITS). Слово «ИИ» в приложении не используем — «разговорная
+// практика» вместо «диалоги с ИИ».
+const PAYWALL_BENEFITS: { icon: IoniconName; title: string }[] = [
   { icon: 'flash-outline', title: 'Безлимит энергии' },
   { icon: 'mic-outline', title: 'Практика произношения' },
   { icon: 'chatbubbles-outline', title: 'Разговорная практика' },
   { icon: 'bulb-outline', title: 'Разбор ошибок' },
-  { icon: 'map-outline', title: 'Персональный план' },
   { icon: 'locate-outline', title: 'Тренер слабых мест' },
   { icon: 'stats-chart-outline', title: 'Аналитика 365 дней' },
 ];
@@ -335,29 +243,10 @@ function reactionForLevel(level: LevelChoice, target: StudyTarget): string {
     case 'a1': return 'Хорошо. Соберём короткие фразы и первые ответы на те случаи, которые часто нужны сразу.';
     case 'a2': return 'Понятная точка: говорить уже можно, просто нужны готовые связки для живой речи.';
     case 'b1': return 'Отлично, пойдём не в правила, а в скорость, слух и более естественные ответы.';
-    case 'b2': return 'Тут важны не азы, а точность и темп. План будет держать взрослую сложность.';
+    case 'b2': return 'Тут важны не азы, а точность и темп. Держим взрослую сложность.';
   }
 }
 
-function reactionForGoal(goal: PersonalPlanSetupGoal): string {
-  switch (goal) {
-    case 'series': return 'Тогда первый маршрут будет про живую реплику на слух, а не про список слов.';
-    case 'everyday': return 'Берём обычные ситуации: услышал мысль, ответил коротко, продолжил разговор.';
-    case 'travel': return 'Соберём маршрут, где фразы сразу работают в дороге, отеле и кафе.';
-    case 'words': return 'Будем брать нужные фразы дня и быстро возвращать их в речь.';
-    case 'mind': return 'Сделаем спокойный план: коротко, понятно, без ощущения «я опять отстал».';
-  }
-}
-
-function planNameForGoal(goal: PersonalPlanSetupGoal): string {
-  switch (goal) {
-    case 'series': return 'Реплика';
-    case 'everyday': return 'Диалог';
-    case 'travel': return 'Маршрут';
-    case 'words': return 'Фразы дня';
-    case 'mind': return 'Ритм';
-  }
-}
 type OnboardingAnalyticsTags = Record<string, string | number | boolean | null>;
 
 function trackOnboardingActivity(action: string, tags?: OnboardingAnalyticsTags) {
@@ -367,7 +256,7 @@ function trackOnboardingActivity(action: string, tags?: OnboardingAnalyticsTags)
       screen: 'onboarding',
       result: 'info',
       tags,
-      writeToFirestore: action === 'onboarding_source_select',
+      writeToFirestore: false,
     }))
     .catch(() => {});
 }
@@ -462,7 +351,21 @@ let lastProgressFraction = 0;
 
 const OnboardingOrderContext = React.createContext<readonly OnboardingStepId[]>(CLEAN_ONBOARDING_ORDER);
 
-function ProgressHeader({ step, onBack, light = false }: { step: CleanOnboardingStep; onBack?: () => void; light?: boolean }) {
+function ProgressHeader({
+  step,
+  onBack,
+  onClose,
+  headerRight,
+  light = false,
+}: {
+  step: CleanOnboardingStep;
+  onBack?: () => void;
+  /** Крестик СЛЕВА вместо шеврона (пейвол): закрыть = уйти на бесплатный путь. */
+  onClose?: () => void;
+  /** Слот справа от полоски прогресса (меню «···» на пейволе). */
+  headerRight?: React.ReactNode;
+  light?: boolean;
+}) {
   const enabledOrder = React.useContext(OnboardingOrderContext);
   const { progress, total } = getOnboardingProgress(enabledOrder, step);
   const fraction = Math.max(0, Math.min(1, progress / total));
@@ -485,19 +388,20 @@ function ProgressHeader({ step, onBack, light = false }: { step: CleanOnboarding
     inputRange: [0, 1],
     outputRange: [-(trackWidth || 1), 0],
   });
+  const leftHandler = onClose ?? onBack;
   return (
     <View style={styles.progressHeader}>
       <Pressable
-        testID="onboarding-back"
+        testID={onClose ? 'onboarding-paywall-close' : 'onboarding-back'}
         onPressIn={() => { void hapticTap(); }}
-        onPress={onBack}
-        disabled={!onBack}
-        style={({ pressed }) => [styles.backButton, pressed && styles.pressed, !onBack && styles.hidden]}
+        onPress={leftHandler}
+        disabled={!leftHandler}
+        style={({ pressed }) => [styles.backButton, pressed && styles.pressed, !leftHandler && styles.hidden]}
         hitSlop={10}
         accessibilityRole="button"
-        accessibilityLabel="Назад"
+        accessibilityLabel={onClose ? 'Закрыть' : 'Назад'}
       >
-        <Ionicons name="chevron-back" size={30} color={light ? '#1F2A44' : '#DCE4FF'} />
+        <Ionicons name={onClose ? 'close' : 'chevron-back'} size={onClose ? 26 : 30} color={light ? '#1F2A44' : '#DCE4FF'} />
       </Pressable>
       <View
         style={[styles.progressTrack, light && styles.progressTrackLight]}
@@ -513,6 +417,7 @@ function ProgressHeader({ step, onBack, light = false }: { step: CleanOnboarding
           />
         </Animated.View>
       </View>
+      {headerRight}
     </View>
   );
 }
@@ -820,6 +725,8 @@ function ScreenFrame({
   children,
   footer,
   onBack,
+  onClose,
+  headerRight,
   center,
   light,
   plainTitle,
@@ -829,6 +736,8 @@ function ScreenFrame({
   children: React.ReactNode;
   footer?: React.ReactNode;
   onBack?: () => void;
+  onClose?: () => void;
+  headerRight?: React.ReactNode;
   center?: boolean;
   light?: boolean;
   plainTitle?: boolean;
@@ -839,7 +748,7 @@ function ScreenFrame({
   return (
     <SafeAreaView style={[styles.safe, light && styles.safeLight]} edges={['top', 'bottom']}>
       <StatusBar barStyle={light ? 'dark-content' : 'light-content'} />
-      <ProgressHeader step={step} onBack={onBack} light={light} />
+      <ProgressHeader step={step} onBack={onBack} onClose={onClose} headerRight={headerRight} light={light} />
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.keyboard}>
         <ScrollView
           testID={`onboarding-${step}-screen`}
@@ -957,46 +866,91 @@ function PlusBenefitRow({
   );
 }
 
-// Строка экрана сравнения Free/Plus: слева иконка+название, две колонки FREE/PLUS.
-// У Free — прочерк, у Plus — галочка, которая «ставится» с лёгким overshoot; вся
-// строка подъезжает снизу. Каскад задаётся index (как в PlusBenefitRow).
-function PlanComparisonRow({
+// Вау-график для экрана promise: две траектории — «повторяешь с Phraseman»
+// (растёт) и «просто учишь и забываешь» (сползает вниз). Рисуем на SVG без
+// анимации путей (native driver с Path не дружит); появление даёт FadeUp кадра.
+function PromiseChart() {
+  return (
+    <View style={styles.promiseChartCard}>
+      <Svg width="100%" height={190} viewBox="0 0 320 190" preserveAspectRatio="none">
+        <Defs>
+          <SvgLinearGradient id="promiseUpStroke" x1="0" y1="0" x2="1" y2="0">
+            <Stop offset="0" stopColor="#6FE3AC" />
+            <Stop offset="1" stopColor="#3ECF8E" />
+          </SvgLinearGradient>
+          <SvgLinearGradient id="promiseUpFill" x1="0" y1="0" x2="0" y2="1">
+            <Stop offset="0" stopColor="#3ECF8E" stopOpacity="0.28" />
+            <Stop offset="1" stopColor="#3ECF8E" stopOpacity="0" />
+          </SvgLinearGradient>
+        </Defs>
+        {/* Заливка под растущей кривой */}
+        <Path
+          d="M12 158 C 96 150, 160 118, 210 78 C 244 51, 276 32, 306 22 L 306 178 L 12 178 Z"
+          fill="url(#promiseUpFill)"
+        />
+        {/* «Без повторения»: быстро вниз */}
+        <Path
+          d="M12 120 C 80 152, 150 166, 306 172"
+          stroke="#8B93A9"
+          strokeOpacity={0.55}
+          strokeWidth={4}
+          strokeLinecap="round"
+          strokeDasharray="1 9"
+          fill="none"
+        />
+        {/* «С Phraseman»: вверх */}
+        <Path
+          d="M12 158 C 96 150, 160 118, 210 78 C 244 51, 276 32, 306 22"
+          stroke="url(#promiseUpStroke)"
+          strokeWidth={5}
+          strokeLinecap="round"
+          fill="none"
+        />
+        <Circle cx={306} cy={22} r={7} fill="#3ECF8E" />
+        <Circle cx={306} cy={22} r={12} fill="#3ECF8E" fillOpacity={0.22} />
+      </Svg>
+      <View style={styles.promiseBadgeUp}>
+        <Ionicons name="sparkles" size={13} color="#07111F" />
+        <Text style={styles.promiseBadgeUpText}>Повторяешь с Phraseman</Text>
+      </View>
+      <View style={styles.promiseBadgeDown}>
+        <Text style={styles.promiseBadgeDownText}>Учишь и забываешь</Text>
+      </View>
+    </View>
+  );
+}
+
+// Строка таймлайна пробного периода (экран trialReminder): каскадное появление
+// как у PlusBenefitRow — те же длительности, тот же native driver.
+function TrialTimelineRow({
   icon,
   title,
+  body,
   index = 0,
 }: {
   icon: IoniconName;
   title: string;
+  body: string;
   index?: number;
 }) {
   const anim = useRef(new Animated.Value(0)).current;
-  const check = useRef(new Animated.Value(0)).current;
   useEffect(() => {
-    const delay = 140 + index * 220;
     const a = Animated.sequence([
-      Animated.delay(delay),
-      Animated.parallel([
-        Animated.timing(anim, { toValue: 1, duration: 300, useNativeDriver: true }),
-        Animated.spring(check, { toValue: 1, friction: 5, tension: 120, delay: 140, useNativeDriver: true }),
-      ]),
+      Animated.delay(120 + index * 180),
+      Animated.timing(anim, { toValue: 1, duration: 280, useNativeDriver: true }),
     ]);
     a.start();
     return () => a.stop();
-  }, [anim, check, index]);
+  }, [anim, index]);
   const translateY = anim.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
   return (
-    <Animated.View style={[styles.cmpRow, { opacity: anim, transform: [{ translateY }] }]}>
-      <View style={styles.cmpLabelCell}>
-        <Ionicons name={icon} size={20} color="#5B67D8" style={styles.cmpIcon} />
-        <Text style={styles.cmpLabel}>{title}</Text>
+    <Animated.View style={[styles.trialTimelineRow, { opacity: anim, transform: [{ translateY }] }]}>
+      <View style={styles.trialTimelineIcon}>
+        <Ionicons name={icon} size={19} color="#B9C8FF" />
       </View>
-      <View style={styles.cmpCell}>
-        <View style={styles.cmpDash} />
-      </View>
-      <View style={styles.cmpCell}>
-        <Animated.View style={[styles.cmpCheckWrap, { transform: [{ scale: check }] }]}>
-          <Ionicons name="checkmark" size={16} color="#22B07D" />
-        </Animated.View>
+      <View style={styles.trialTimelineCopy}>
+        <Text style={styles.trialTimelineTitle}>{title}</Text>
+        <Text style={styles.trialTimelineBody}>{body}</Text>
       </View>
     </Animated.View>
   );
@@ -1071,18 +1025,22 @@ function CleanOnboarding({
   const [unknownAccountEmail, setUnknownAccountEmail] = useState<string | null>(null);
   const [googleAvailable, setGoogleAvailable] = useState(false);
   const [appleAvailable, setAppleAvailable] = useState(false);
-  const [source, setSource] = useState<DiscoverySource | null>(null);
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const [level, setLevel] = useState<LevelChoice | null>(null);
-  const [goal, setGoal] = useState<PersonalPlanSetupGoal | null>(null);
-  const [minutes, setMinutes] = useState<PlanMinutesChoice | null>(null);
-  const [plusSelected, setPlusSelected] = useState(true);
   const [notificationBusy, setNotificationBusy] = useState(false);
   const [paywallBusy, setPaywallBusy] = useState(false);
   const [ageAnswer, setAgeAnswer] = useState<AgeAnswer>(null);
-  const [legalAccepted, setLegalAccepted] = useState(false);
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
+  // Галочка писем стоит заранее (решение владельца, 2026-08-16); снимается тапом
+  // по всей строке — целиться в кружок не нужно.
+  const [newsletterOptIn, setNewsletterOptIn] = useState(true);
   const [legalError, setLegalError] = useState<string | null>(null);
+  // Меню «···» на пейволе и шит ввода кода (промокод / код друга).
+  const [paywallMenuOpen, setPaywallMenuOpen] = useState(false);
+  const [codeSheet, setCodeSheet] = useState<'promo' | 'referral' | null>(null);
+  const [codeValue, setCodeValue] = useState('');
+  const [codeBusy, setCodeBusy] = useState(false);
+  const [codeFeedback, setCodeFeedback] = useState<{ ok: boolean; text: string } | null>(null);
   const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(getEnabledOnboardingSteps);
   // зачем: оба рубильника читаются как обычные kill-switch'и и обновляются по
   // тому же событию remote_config_changed, что и список экранов — владелец
@@ -1094,10 +1052,7 @@ function CleanOnboarding({
   const finishingRef = useRef(false);
   const paywallTransitionBusyRef = useRef(false);
 
-  const selectedGoal = goal ?? 'everyday';
-  const selectedMinutes = minutes ?? 10;
   const selectedLevel = level ?? 'a2';
-  const planId = useMemo<PersonalPlanId>(() => resolvePersonalPlanForGoal(selectedGoal), [selectedGoal]);
   const {
     selected: selectedBillingPlan,
     selectPlan: selectBillingPlan,
@@ -1217,20 +1172,14 @@ function CleanOnboarding({
       setRestored(true);
       return () => { active = false; };
     }
-    AsyncStorage.multiGet([FLOW_VERSION_KEY, STEP_KEY, ONBOARDING_REQUESTED_STUDY_TARGET_KEY, PLAN_GOAL_KEY, PLAN_LEVEL_KEY, PLAN_MINUTES_KEY, DISCOVERY_SOURCE_KEY])
+    AsyncStorage.multiGet([FLOW_VERSION_KEY, STEP_KEY, ONBOARDING_REQUESTED_STUDY_TARGET_KEY, PLAN_LEVEL_KEY])
       .then((rows) => {
         if (!active) return;
         const map = new Map(rows);
         const savedTarget = SHOW_ONBOARDING_LANGUAGE_STEP ? map.get(ONBOARDING_REQUESTED_STUDY_TARGET_KEY) : 'en';
         if (savedTarget === 'en' || savedTarget === 'fr') setStudyTarget(savedTarget);
-        const savedGoal = map.get(PLAN_GOAL_KEY);
-        if (GOAL_OPTIONS.some((item) => item.id === savedGoal)) setGoal(savedGoal as PersonalPlanSetupGoal);
         const savedLevel = map.get(PLAN_LEVEL_KEY);
         if (LEVEL_OPTIONS.some((item) => item.id === savedLevel)) setLevel(savedLevel as LevelChoice);
-        const savedMinutes = Number(map.get(PLAN_MINUTES_KEY));
-        if (savedMinutes === 5 || savedMinutes === 10 || savedMinutes === 15 || savedMinutes === 20) setMinutes(savedMinutes);
-        const savedSource = map.get(DISCOVERY_SOURCE_KEY);
-        if (DISCOVERY_OPTIONS.some((item) => item.id === savedSource)) setSource(savedSource as DiscoverySource);
         const savedStep = normalizedStoredStep(map.get(STEP_KEY) ?? null);
         const savedVersion = map.get(FLOW_VERSION_KEY);
         if (savedVersion === CLEAN_ONBOARDING_FLOW_VERSION && savedStep) {
@@ -1315,7 +1264,9 @@ function CleanOnboarding({
     setUnknownAccountEmail(null);
     setAuthMode(false);
     setAuthError(null);
-    go('source');
+    // Просим 'language': при выключенном блоке языка resolve сам уведёт на
+    // ближайший включённый шаг (promise).
+    go('language');
   }, [go]);
 
   const ensureEnglishStudyTarget = useCallback(async () => {
@@ -1330,21 +1281,6 @@ function CleanOnboarding({
       emitDevStudyTargetChanged();
     }
   }, [lang]);
-
-  const chooseSource = useCallback((next: DiscoverySource) => {
-    setSource(next);
-    void AsyncStorage.multiSet([
-      [DISCOVERY_SOURCE_KEY, next],
-      ['onboarding_source', next],
-    ]).catch(() => {});
-    trackOnboarding('onboarding_source_select', { source: next });
-    if (SHOW_ONBOARDING_LANGUAGE_STEP) {
-      go('language');
-      return;
-    }
-    void ensureEnglishStudyTarget();
-    go('level');
-  }, [ensureEnglishStudyTarget, go]);
 
   const chooseStudyTarget = useCallback(async (target: StudyTarget) => {
     setStudyTarget(target);
@@ -1368,20 +1304,8 @@ function CleanOnboarding({
     trackOnboarding('onboarding_plan_level_select', { level: next });
   }, []);
 
-  const chooseGoal = useCallback((next: PersonalPlanSetupGoal) => {
-    setGoal(next);
-    void AsyncStorage.setItem(PLAN_GOAL_KEY, next).catch(() => {});
-    trackOnboarding('onboarding_plan_goal_select', { goal: next });
-  }, []);
-
-  const chooseMinutes = useCallback((next: PlanMinutesChoice) => {
-    setMinutes(next);
-    void AsyncStorage.setItem(PLAN_MINUTES_KEY, String(next)).catch(() => {});
-    trackOnboarding('onboarding_plan_minutes_select', { minutes: next });
-  }, []);
-
   const continueAfterNotificationDialog = useCallback(() => {
-    InteractionManager.runAfterInteractions(() => go('plusBenefits'));
+    InteractionManager.runAfterInteractions(() => go('trialReminder'));
   }, [go]);
 
   const requestPracticeNotification = useCallback(async () => {
@@ -1393,7 +1317,7 @@ function CleanOnboarding({
       );
       if (granted) {
         await scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
-        go('plusBenefits');
+        go('trialReminder');
         return;
       }
       if (blocked) {
@@ -1406,14 +1330,14 @@ function CleanOnboarding({
               text: 'Открыть настройки',
               onPress: () => {
                 Linking.openSettings().catch(() => {});
-                go('plusBenefits');
+                go('trialReminder');
               },
             },
           ],
         );
         return;
       }
-      go('plusBenefits');
+      go('trialReminder');
     } finally {
       setNotificationBusy(false);
     }
@@ -1425,67 +1349,43 @@ function CleanOnboarding({
     trackOnboarding('onboarding_plan_billing_select', { plan: next });
   }, [selectBillingPlan]);
 
-  const queueSelectedPlan = useCallback(async (billing: PaywallPlan = selectedBillingPlan) => {
-    await queuePendingPersonalPlanActivation({
-      planId,
-      minutesPerDay: selectedMinutes,
-      source: 'onboarding',
-    });
+  // Личные учебные планы удалены из приложения, но pending-nickname ключ жив:
+  // его читает finishPersonalPlanActivationFlow после успешной покупки и
+  // возвращает пользователя В ОНБОРДИНГ на шаг «Имя» (а не на «спасибо»-экран).
+  const queuePostPurchaseReturn = useCallback(async (billing: PaywallPlan = selectedBillingPlan) => {
     await AsyncStorage.multiSet([
       [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
       [PLAN_BILLING_KEY, billing],
     ]);
-  }, [planId, selectedBillingPlan, selectedMinutes]);
+  }, [selectedBillingPlan]);
 
-  // Выбор Free → сразу к имени. Выбор Plus → сначала лёгкий экран сравнения выгод
-  // (planComparison), и только с него — к ценам. Подготовку плана и трекинг пейвола
-  // делаем на переходе «сравнение → цены» (continueFromPlanComparison), а не здесь,
-  // чтобы экран сравнения открывался мгновенно, без busy-состояния.
-  const openPaywallOrName = useCallback(async () => {
+  // Переход «предупредим до конца пробного» → цены. Эффекты пейвола (pending-
+  // возврат + трекинг) выполняются ровно один раз на переходе к экрану цен.
+  const continueFromTrialReminder = useCallback(async () => {
     if (paywallBusy || paywallTransitionBusyRef.current) return;
-    if (!plusSelected) {
-      go('name');
-      return;
-    }
-    const decision = decideOnboardingTransition(enabledOrder, 'startMode');
     setPaywallBusy(true);
     try {
+      const decision = decideOnboardingTransition(enabledOrder, 'trialReminder');
       await runOnboardingTransitionEffects(decision, paywallTransitionBusyRef, {
-        createPendingPlan: () => queueSelectedPlan('yearly'),
-        preparePaywall: () => trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: 'yearly' }),
-        trackPaywallView: () => trackOnboardingPlanPaywallView({ planId, minutes: selectedMinutes, plan: 'yearly' }),
+        createPendingPlan: () => queuePostPurchaseReturn('yearly'),
+        preparePaywall: () => trackOnboardingPlanTrialCta({ plan: 'yearly' }),
+        trackPaywallView: () => trackOnboardingPlanPaywallView({ plan: 'yearly' }),
       });
       go(decision.destination);
     } finally {
       setPaywallBusy(false);
     }
-  }, [enabledOrder, go, paywallBusy, planId, plusSelected, queueSelectedPlan, selectedMinutes]);
-
-  const continueFromPlanComparison = useCallback(async () => {
-    if (paywallBusy || paywallTransitionBusyRef.current) return;
-    setPaywallBusy(true);
-    try {
-      const decision = decideOnboardingTransition(enabledOrder, 'planComparison');
-      await runOnboardingTransitionEffects(decision, paywallTransitionBusyRef, {
-        createPendingPlan: () => queueSelectedPlan('yearly'),
-        preparePaywall: () => trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: 'yearly' }),
-        trackPaywallView: () => trackOnboardingPlanPaywallView({ planId, minutes: selectedMinutes, plan: 'yearly' }),
-      });
-      go(decision.destination);
-    } finally {
-      setPaywallBusy(false);
-    }
-  }, [enabledOrder, go, paywallBusy, planId, queueSelectedPlan, selectedMinutes]);
+  }, [enabledOrder, go, paywallBusy, queuePostPurchaseReturn]);
 
   const continueFromOnboardingPaywall = useCallback(async () => {
     if (paywallBusy || paywallPurchasing) return;
     setPaywallBusy(true);
     try {
-      // Ставим план в очередь активации ДО покупки: после успеха хук вызывает
+      // Ставим pending-возврат ДО покупки: после успеха хук вызывает
       // finishPersonalPlanActivationFlow, который читает pending-nickname ключ
-      // (его выставляет queueSelectedPlan) и возвращает в онбординг на шаг «Имя».
-      await queueSelectedPlan(selectedBillingPlan);
-      trackOnboardingPlanTrialCta({ planId, minutes: selectedMinutes, plan: selectedBillingPlan });
+      // и возвращает в онбординг на шаг «Имя».
+      await queuePostPurchaseReturn(selectedBillingPlan);
+      trackOnboardingPlanTrialCta({ plan: selectedBillingPlan });
       // Реальная покупка выбранного тарифа. Хук сам обрабатывает отмену
       // (userCancelled — тихо остаёмся на шаге), ошибку (свой Alert) и
       // навигацию при успехе (finishPersonalPlanActivationFlow → шаг «Имя»).
@@ -1493,7 +1393,69 @@ function CleanOnboarding({
     } finally {
       setPaywallBusy(false);
     }
-  }, [paywallBusy, paywallHandlePurchase, paywallPurchasing, planId, queueSelectedPlan, selectedBillingPlan, selectedMinutes]);
+  }, [paywallBusy, paywallHandlePurchase, paywallPurchasing, queuePostPurchaseReturn, selectedBillingPlan]);
+
+  // ── меню «···» на пейволе: промокод / код друга / восстановить ─────────────
+  const openCodeSheet = useCallback((kind: 'promo' | 'referral') => {
+    setPaywallMenuOpen(false);
+    setCodeValue('');
+    setCodeFeedback(null);
+    setCodeSheet(kind);
+  }, []);
+
+  const submitCode = useCallback(async () => {
+    const raw = codeValue.trim();
+    if (!raw || codeBusy) return;
+    setCodeBusy(true);
+    setCodeFeedback(null);
+    try {
+      if (codeSheet === 'promo') {
+        const { redeemPromoCodeWithPersist } = await import('../app/promo_code_entry');
+        const res = await redeemPromoCodeWithPersist(raw);
+        if (res.status === 'redeemed') {
+          trackOnboarding('onboarding_promo_redeemed', { kind: res.rewardKind ?? 'days' });
+          setCodeFeedback({
+            ok: true,
+            text: res.rewardKind === 'lifetime'
+              ? 'Готово! Полный доступ активирован навсегда.'
+              : `Готово! Полный доступ на ${Math.max(1, res.rewardDays ?? 1)} дн. активирован.`,
+          });
+          // Доступ уже выдан — цены больше не нужны, ведём к финальному шагу.
+          setTimeout(() => { setCodeSheet(null); go('name'); }, 900);
+          return;
+        }
+        const text = res.status === 'not_found' ? 'Такого кода нет. Проверь опечатки.'
+          : res.status === 'expired' ? 'Срок действия кода истёк.'
+          : res.status === 'limit_reached' ? 'Лимит активаций этого кода исчерпан.'
+          : res.status === 'already_redeemed' ? 'Этот код уже активирован на твоём аккаунте.'
+          : res.status === 'bad_code' ? 'Код выглядит неверно: 3–32 латинских символа или цифр.'
+          : res.status === 'promo_disabled' || res.status === 'disabled' ? 'Промокоды сейчас выключены. Попробуй позже.'
+          : 'Не получилось активировать. Проверь сеть и попробуй ещё раз.';
+        setCodeFeedback({ ok: false, text });
+        return;
+      }
+      const { applyManualReferralCode } = await import('../app/referral_bootstrap');
+      const status = await applyManualReferralCode(raw);
+      if (status === 'applied' || status === 'already') {
+        trackOnboarding('onboarding_referral_applied', { already: status === 'already' });
+        setCodeFeedback({
+          ok: true,
+          text: status === 'applied' ? 'Код друга принят!' : 'Этот аккаунт уже привязан к другу.',
+        });
+        setTimeout(() => setCodeSheet(null), 900);
+        return;
+      }
+      const text = status === 'invalid' ? 'Код выглядит неверно. Проверь опечатки.'
+        : status === 'unknown_code' ? 'Такого кода нет. Проверь опечатки.'
+        : status === 'self' ? 'Это твой собственный код — он не сработает.'
+        : status === 'too_old' ? 'Код друга работает только для новых аккаунтов.'
+        : status === 'disabled' ? 'Приглашения сейчас выключены. Попробуй позже.'
+        : 'Не получилось применить код. Проверь сеть и попробуй ещё раз.';
+      setCodeFeedback({ ok: false, text });
+    } finally {
+      setCodeBusy(false);
+    }
+  }, [codeBusy, codeSheet, codeValue, go]);
 
   const finish = useCallback(async () => {
     if (finishingRef.current) return;
@@ -1506,21 +1468,18 @@ function CleanOnboarding({
       );
       return;
     }
-    if (!legalAccepted) {
-      setLegalError('Нужно принять условия и политику конфиденциальности.');
-      return;
-    }
-
     finishingRef.current = true;
     try {
       const currentLevel = levelToCurrentLevel(selectedLevel);
-      const profileMinutes = minutesToProfileMinutes(selectedMinutes);
+      // Анкета плана удалена вместе с планами (владелец, 2026-08-16): профиль
+      // получает спокойные дефолты, человек поменяет их в настройках.
+      const profileMinutes: MinutesPerDay = 15;
       const targetLevel = targetAfterLevel(currentLevel);
       const estimatedDays = estimateDaysToTarget(currentLevel, targetLevel, profileMinutes);
       const targetDate = addDays(new Date(), estimatedDays || 30);
       const profile: UserProfile = {
         name: '',
-        learningGoal: goalToLearningGoal(selectedGoal),
+        learningGoal: 'hobby',
         minutesPerDay: profileMinutes,
         currentLevel,
         targetLevel,
@@ -1534,11 +1493,15 @@ function CleanOnboarding({
       await AsyncStorage.multiSet([
         ['user_profile', JSON.stringify(profile)],
         [GENERATED_NICKNAME_PENDING_KEY, JSON.stringify({ createdAt: Date.now() })],
+        // Согласие с условиями дано на welcome (sign-in-wrap): до этого шага
+        // нельзя дойти, не нажав «Начать» под строкой согласия.
         [LEGAL_ACCEPTED_KEY, '1'],
         [ANALYTICS_HELP_KEY, analyticsAllowed ? '1' : '0'],
+        [NEWSLETTER_OPTIN_KEY, newsletterOptIn ? '1' : '0'],
         [DONE_KEY, '1'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       ]);
+      trackOnboarding('onboarding_newsletter_optin', { optin: newsletterOptIn });
       // зачем: онбординг спрашивает только «есть ли 16» (self-attestation), а не год
       // рождения. Раньше здесь синтезировался фиктивный год (текущий − 16) и уезжал в
       // Firestore как персональные данные — бесполезный (у всех одинаковый) и лишний
@@ -1546,18 +1509,9 @@ function CleanOnboarding({
       await confirmAdultAgeAttestation().catch(() => null);
       if (analyticsAllowed) {
         await setAnalyticsConsent('granted').catch(() => null);
-        if (source) {
-          trackOnboarding('onboarding_source_select', {
-            source,
-            consented: true,
-          });
-        }
         trackOnboarding('onboarding_complete', {
-          goal: selectedGoal,
           level: selectedLevel,
-          minutes: selectedMinutes,
           target: studyTarget,
-          plusSelected,
         });
       } else {
         await setAnalyticsConsent('denied').catch(() => null);
@@ -1590,13 +1544,9 @@ function CleanOnboarding({
     ageAnswer,
     analyticsAllowed,
     lang,
-    legalAccepted,
+    newsletterOptIn,
     onDone,
-    plusSelected,
-    selectedGoal,
     selectedLevel,
-    selectedMinutes,
-    source,
     studyTarget,
     welcomeSheetEnabled,
   ]);
@@ -1691,33 +1641,31 @@ function CleanOnboarding({
             </View>
           ) : (
             <View style={styles.welcomeButtons}>
-              <PrimaryButton label="Начать" onPress={() => go('source')} testID="onboarding-start" />
+              {/* зачем: sign-in-wrap вместо обязательной галочки на последнем шаге
+                  (владелец, 2026-08-16). Согласие заметно и стоит ВПЛОТНУЮ к кнопке —
+                  это юридически сильная форма, а флоу короче на один клик. */}
+              <Text style={styles.welcomeLegalNote}>
+                Продолжая, ты принимаешь{' '}
+                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
+                {' '}и{' '}
+                <Text style={styles.welcomeLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Политику конфиденциальности</Text>.
+              </Text>
+              <PrimaryButton
+                label="Начать"
+                onPress={() => {
+                  // Английский — единственный язык, пока блок выбора выключен:
+                  // фиксируем таргет здесь (раньше это делал экран источника).
+                  if (!SHOW_ONBOARDING_LANGUAGE_STEP) void ensureEnglishStudyTarget();
+                  go('language');
+                }}
+                testID="onboarding-start"
+              />
               <SecondaryButton label="У меня уже есть аккаунт" onPress={() => setAuthMode(true)} testID="onboarding-existing-account" />
             </View>
           )}
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
-  );
-
-  const renderSource = () => (
-    <ScreenFrame
-      step="source"
-      title="Как ты узнал о нас?"
-      onBack={back}
-    >
-      <View style={styles.optionList}>
-        {DISCOVERY_OPTIONS.map((item) => (
-          <OptionCard
-            key={item.id}
-            option={item}
-            selected={source === item.id}
-            testID={`onboarding-source-${item.id}`}
-            onPress={() => chooseSource(item.id)}
-          />
-        ))}
-      </View>
-    </ScreenFrame>
   );
 
   const renderLanguage = () => (
@@ -1745,7 +1693,7 @@ function CleanOnboarding({
       step="level"
       title={level ? reactionForLevel(level, studyTarget) : `Сколько ${targetLabel(studyTarget)} ты уже знаешь?`}
       onBack={back}
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('goal')} disabled={!level} testID="onboarding-level-continue" />}
+      footer={<PrimaryButton label="Продолжить" onPress={() => go('promise')} disabled={!level} testID="onboarding-level-continue" />}
     >
       <View style={styles.optionList}>
         {LEVEL_OPTIONS.map((item) => (
@@ -1761,44 +1709,31 @@ function CleanOnboarding({
     </ScreenFrame>
   );
 
-  const renderGoal = () => (
+  // Вау-экран вместо анкеты (владелец, 2026-08-16): без вопросов показываем,
+  // ПОЧЕМУ здесь язык точно получится — кривая «с повторением / без» + два
+  // конкретных механизма. Продающий момент до демонстрации и цен.
+  const renderPromise = () => (
     <ScreenFrame
-      step="goal"
-      title={goal ? reactionForGoal(goal) : `Зачем тебе ${targetLabel(studyTarget, 'accusative')}?`}
+      step="promise"
+      title="Ты заговоришь. Это устроено так."
+      plainTitle
       onBack={back}
-      footer={<PrimaryButton label="Продолжить" onPress={() => go('minutes')} disabled={!goal} testID="onboarding-goal-continue" />}
+      footer={<PrimaryButton label="Показать на живой фразе" onPress={() => go('aha')} testID="onboarding-promise-continue" />}
     >
-      <View style={styles.optionList}>
-        {GOAL_OPTIONS.map((item) => (
-          <OptionCard
-            key={item.id}
-            option={item}
-            selected={goal === item.id}
-            testID={`onboarding-goal-${item.id}`}
-            onPress={() => chooseGoal(item.id)}
-          />
-        ))}
-      </View>
-    </ScreenFrame>
-  );
-
-  const renderMinutes = () => (
-    <ScreenFrame
-      step="minutes"
-      title="Сколько времени в день?"
-      onBack={back}
-      footer={<PrimaryButton label="К плану" onPress={() => go('aha')} disabled={!minutes} testID="onboarding-minutes-continue" />}
-    >
-      <View style={styles.optionList}>
-        {MINUTE_OPTIONS.map((item) => (
-          <OptionCard
-            key={item.id}
-            option={item}
-            selected={minutes === item.id}
-            testID={`onboarding-minutes-${item.id}`}
-            onPress={() => chooseMinutes(item.id)}
-          />
-        ))}
+      <PromiseChart />
+      <View style={styles.promiseFactList}>
+        <PlusBenefitRow
+          index={0}
+          icon="repeat-outline"
+          title="Каждая фраза возвращается"
+          body="Мы напоминаем её ровно в тот момент, когда она начинает забываться."
+        />
+        <PlusBenefitRow
+          index={1}
+          icon="time-outline"
+          title="Хватает пары минут в день"
+          body="Сессии короткие, поэтому их реально держать неделя за неделей."
+        />
       </View>
     </ScreenFrame>
   );
@@ -1807,7 +1742,7 @@ function CleanOnboarding({
   // Скип и завершение ведут в одну точку — уведомления просят ПОСЛЕ победы.
   const renderAha = () => (
     <AhaScene
-      goal={goal ?? undefined}
+      goal={undefined}
       lang={lang === 'uk' || lang === 'es' ? lang : 'ru'}
       onDone={() => go('notifications')}
       onSkip={() => go('notifications')}
@@ -1825,7 +1760,7 @@ function CleanOnboarding({
           <Pressable
             testID="onboarding-notifications-skip"
             onPressIn={() => { void hapticTap(); }}
-            onPress={() => go('plusBenefits')}
+            onPress={() => go('trialReminder')}
             style={styles.textButton}
             accessibilityRole="button"
           >
@@ -1839,80 +1774,59 @@ function CleanOnboarding({
     </ScreenFrame>
   );
 
-  const renderStartMode = () => (
+  // Честность до цен (паттерн Bevel): обещаем пуш ДО конца пробного и прямо
+  // говорим «сейчас ничего не спишем». Снимает главный страх триала — «забуду
+  // отменить» — до того, как человек увидит цену.
+  const renderTrialReminder = () => (
     <ScreenFrame
-      step="startMode"
-      title="Как хочешь начать?"
-      onBack={back}
-      footer={<PrimaryButton label="Продолжить" onPress={openPaywallOrName} loading={paywallBusy} testID="onboarding-start-mode-continue" />}
-    >
-      <View style={styles.optionList}>
-        <Pressable
-          testID="onboarding-start-mode-plus"
-          onPressIn={() => { void hapticTap(); }}
-          onPress={() => setPlusSelected(true)}
-          style={({ pressed }) => [styles.modeCard, plusSelected && styles.modeCardSelected, pressed && styles.pressed]}
-        >
-          <Image source={ONBOARDING_ASSETS.startPlus} style={styles.modeAsset} resizeMode="contain" />
-          <View style={styles.recommendedBadge}><Text style={styles.recommendedText}>Рекомендую</Text></View>
-          <Text style={styles.modeTitle}>Phraseman Plus</Text>
-        </Pressable>
-        <Pressable
-          testID="onboarding-start-mode-free"
-          onPressIn={() => { void hapticTap(); }}
-          onPress={() => setPlusSelected(false)}
-          style={({ pressed }) => [styles.modeCard, !plusSelected && styles.modeCardSelected, pressed && styles.pressed]}
-        >
-          <Image source={ONBOARDING_ASSETS.startFree} style={styles.modeAsset} resizeMode="contain" />
-          <Text style={styles.modeTitle}>Начать бесплатно</Text>
-        </Pressable>
-      </View>
-    </ScreenFrame>
-  );
-
-  const renderPlusBenefits = () => (
-    <ScreenFrame
-      step="plusBenefits"
-      title="Через 3 месяца по твоему маршруту ты сможешь:"
-      onBack={back}
-      footer={<PrimaryButton label="Хочу так" onPress={() => go('startMode')} testID="onboarding-plus-benefits-continue" />}
-    >
-      <View style={styles.plusBenefitList}>
-        {PLUS_THREE_MONTH_PROMISES.map((item, index) => (
-          <PlusBenefitRow
-            key={item.title}
-            index={index}
-            icon={index === 0 ? 'chatbubble-ellipses-outline' : index === 1 ? 'volume-high-outline' : 'refresh-outline'}
-            title={item.title}
-            body={item.body}
-            asset={index === 0 ? ONBOARDING_ASSETS.benefitPlan : index === 1 ? ONBOARDING_ASSETS.benefitSpeech : ONBOARDING_ASSETS.benefitRepeat}
-          />
-        ))}
-      </View>
-    </ScreenFrame>
-  );
-
-  // Экран сравнения выгод Free/Plus между выбором «Plus» и ценами. Светлый, с
-  // анимированными галочками по очереди. Реальные киллер-фичи из пейвола.
-  const renderPlanComparison = () => (
-    <ScreenFrame
-      step="planComparison"
-      title="С Plus открыто всё"
-      onBack={back}
-      light
+      step="trialReminder"
+      title="Сначала — неделя бесплатно"
       plainTitle
-      footer={<PrimaryButton label="Хочу так" onPress={() => void continueFromPlanComparison()} loading={paywallBusy} testID="onboarding-plan-comparison-continue" />}
+      onBack={back}
+      footer={(
+        <>
+          <PrimaryButton
+            label="Продолжить"
+            onPress={() => void continueFromTrialReminder()}
+            loading={paywallBusy}
+            testID="onboarding-trial-reminder-continue"
+          />
+          <View style={styles.trialReassureRow}>
+            <Ionicons name="checkmark-circle" size={17} color="#7BE0B0" />
+            <Text style={styles.trialReassureText}>Сейчас ничего не спишем</Text>
+          </View>
+        </>
+      )}
     >
-      <Text style={styles.cmpSubtitle}>Вот что добавится к бесплатному</Text>
-      <View style={styles.cmpHeaderRow}>
-        <View style={styles.cmpLabelCell} />
-        <Text style={styles.cmpHeaderFree}>FREE</Text>
-        <Text style={styles.cmpHeaderPlus}>PLUS</Text>
+      <View style={styles.trialPushCard}>
+        <View style={styles.trialPushIcon}>
+          <Ionicons name="notifications" size={19} color="#FFFFFF" />
+        </View>
+        <View style={styles.trialPushCopy}>
+          <Text style={styles.trialPushTitle}>Пробный период заканчивается</Text>
+          <Text style={styles.trialPushBody}>Напомним за 2 дня — успеешь отменить, если не подойдёт.</Text>
+        </View>
+        <Text style={styles.trialPushWhen}>день 5</Text>
       </View>
-      <View style={styles.cmpList}>
-        {PLAN_COMPARISON_BENEFITS.map((item, index) => (
-          <PlanComparisonRow key={item.title} index={index} icon={item.icon} title={item.title} />
-        ))}
+      <View style={styles.trialTimeline}>
+        <TrialTimelineRow
+          index={0}
+          icon="lock-open-outline"
+          title="Сегодня"
+          body="Полный доступ ко всем тренировкам — сразу."
+        />
+        <TrialTimelineRow
+          index={1}
+          icon="notifications-outline"
+          title="День 5"
+          body="Пуш-напоминание, что пробный скоро закончится."
+        />
+        <TrialTimelineRow
+          index={2}
+          icon="card-outline"
+          title="День 7"
+          body="Начнётся подписка. Отменить можно в любой момент."
+        />
       </View>
     </ScreenFrame>
   );
@@ -1930,7 +1844,22 @@ function CleanOnboarding({
       <ScreenFrame
         step="onboardingPaywall"
         title="Открой полный доступ Phraseman Plus"
-        onBack={back}
+        // Крестик СЛЕВА (владелец, 2026-08-16, паттерн Bevel): закрыть цены =
+        // продолжить бесплатно, то есть уйти на финальный обязательный шаг.
+        onClose={() => go('name')}
+        headerRight={(
+          <Pressable
+            testID="onboarding-paywall-menu"
+            onPressIn={() => { void hapticTap(); }}
+            onPress={() => setPaywallMenuOpen(true)}
+            style={({ pressed }) => [styles.paywallMenuButton, pressed && styles.pressed]}
+            hitSlop={10}
+            accessibilityRole="button"
+            accessibilityLabel="Ещё: промокод, код друга, восстановить покупку"
+          >
+            <Ionicons name="ellipsis-horizontal" size={22} color="#1F2A44" />
+          </Pressable>
+        )}
         light
         plainTitle
         footer={
@@ -1946,17 +1875,13 @@ function CleanOnboarding({
               testID="onboarding-paywall-continue"
               flat
             />
+            {/* Внизу — оплата и тексты (владелец): «не спишем сейчас», бесплатный
+                путь и юридические ссылки вплотную к кнопке покупки. */}
+            <View style={styles.trialReassureRow}>
+              <Ionicons name="checkmark-circle" size={16} color="#1E9E6A" />
+              <Text style={styles.paywallReassureText}>Сейчас ничего не спишем — напомним до конца пробного</Text>
+            </View>
             <View style={styles.paywallFooterLinks}>
-              <Pressable
-                testID="onboarding-paywall-restore"
-                onPressIn={() => { void hapticTap(); }}
-                onPress={() => { void handleRestore(); }}
-                disabled={paywallRestoring}
-                accessibilityRole="button"
-              >
-                <Text style={styles.paywallFooterLink}>{paywallRestoring ? 'Восстанавливаем...' : 'Восстановить'}</Text>
-              </Pressable>
-              <Text style={styles.paywallFooterDot}>·</Text>
               <Pressable
                 testID="onboarding-paywall-continue-free"
                 onPressIn={() => { void hapticTap(); }}
@@ -1966,9 +1891,25 @@ function CleanOnboarding({
                 <Text style={styles.paywallFooterLink}>Продолжить бесплатно</Text>
               </Pressable>
             </View>
+            <Text style={styles.paywallLegalNote}>
+              Отмена в любой момент в настройках магазина.{' '}
+              <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
+              {' '}·{' '}
+              <Text style={styles.paywallLegalLink} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Конфиденциальность</Text>
+            </Text>
           </>
         }
       >
+        <View style={styles.paywallBenefitList}>
+          {PAYWALL_BENEFITS.map((item) => (
+            <View key={item.title} style={styles.paywallBenefitRow}>
+              <View style={styles.paywallBenefitIcon}>
+                <Ionicons name={item.icon} size={17} color="#3E62FF" />
+              </View>
+              <Text style={styles.paywallBenefitTitle}>{item.title}</Text>
+            </View>
+          ))}
+        </View>
         <View style={styles.paywallPlanList}>
           <PaywallPlanCard
             plan="yearly"
@@ -2001,6 +1942,90 @@ function CleanOnboarding({
             testID="onboarding-paywall-plan-lifetime"
           />
         </View>
+        {paywallMenuOpen ? (
+          <Modal transparent animationType="fade" visible onRequestClose={() => setPaywallMenuOpen(false)}>
+            <Pressable style={styles.menuScrim} onPress={() => setPaywallMenuOpen(false)} accessibilityLabel="Закрыть меню">
+              <View style={styles.paywallMenuCard}>
+                <Pressable
+                  testID="onboarding-paywall-menu-promo"
+                  style={({ pressed }) => [styles.paywallMenuItem, pressed && styles.pressed]}
+                  onPress={() => openCodeSheet('promo')}
+                  accessibilityRole="button"
+                >
+                  <Ionicons name="pricetag-outline" size={19} color="#1F2A44" />
+                  <Text style={styles.paywallMenuItemText}>Ввести промокод</Text>
+                </Pressable>
+                <Pressable
+                  testID="onboarding-paywall-menu-referral"
+                  style={({ pressed }) => [styles.paywallMenuItem, pressed && styles.pressed]}
+                  onPress={() => openCodeSheet('referral')}
+                  accessibilityRole="button"
+                >
+                  <Ionicons name="gift-outline" size={19} color="#1F2A44" />
+                  <Text style={styles.paywallMenuItemText}>Код от друга</Text>
+                </Pressable>
+                <Pressable
+                  testID="onboarding-paywall-restore"
+                  style={({ pressed }) => [styles.paywallMenuItem, styles.paywallMenuItemLast, pressed && styles.pressed]}
+                  onPress={() => { setPaywallMenuOpen(false); void handleRestore(); }}
+                  disabled={paywallRestoring}
+                  accessibilityRole="button"
+                >
+                  <Ionicons name="refresh-outline" size={19} color="#1F2A44" />
+                  <Text style={styles.paywallMenuItemText}>{paywallRestoring ? 'Восстанавливаем...' : 'Восстановить покупку'}</Text>
+                </Pressable>
+              </View>
+            </Pressable>
+          </Modal>
+        ) : null}
+        {codeSheet ? (
+          <Modal transparent animationType="fade" visible onRequestClose={() => setCodeSheet(null)}>
+            <Pressable style={styles.codeScrim} onPress={() => { if (!codeBusy) setCodeSheet(null); }} accessibilityLabel="Закрыть ввод кода">
+              <Pressable style={styles.codeCard} onPress={() => {}}>
+                <Text style={styles.codeTitle}>{codeSheet === 'promo' ? 'Промокод' : 'Код от друга'}</Text>
+                <Text style={styles.codeHint}>
+                  {codeSheet === 'promo'
+                    ? 'Если у тебя есть код на скидку или доступ — введи его до оплаты.'
+                    : 'Код друга даёт бонус вам обоим.'}
+                </Text>
+                <TextInput
+                  testID="onboarding-code-input"
+                  style={styles.codeInput}
+                  value={codeValue}
+                  onChangeText={(next) => { setCodeValue(next); setCodeFeedback(null); }}
+                  autoCapitalize="characters"
+                  autoCorrect={false}
+                  autoFocus
+                  placeholder={codeSheet === 'promo' ? 'PHRASE20' : 'КОД ДРУГА'}
+                  placeholderTextColor="#98A3BD"
+                  editable={!codeBusy}
+                  onSubmitEditing={() => { void submitCode(); }}
+                  returnKeyType="done"
+                />
+                {codeFeedback ? (
+                  <Text style={[styles.codeFeedback, codeFeedback.ok ? styles.codeFeedbackOk : styles.codeFeedbackError]}>
+                    {codeFeedback.text}
+                  </Text>
+                ) : null}
+                <PrimaryButton
+                  label="Применить"
+                  onPress={() => { void submitCode(); }}
+                  loading={codeBusy}
+                  disabled={!codeValue.trim()}
+                  testID="onboarding-code-submit"
+                  flat
+                />
+                <Pressable
+                  onPress={() => { if (!codeBusy) setCodeSheet(null); }}
+                  style={styles.codeCancel}
+                  accessibilityRole="button"
+                >
+                  <Text style={styles.codeCancelText}>Отмена</Text>
+                </Pressable>
+              </Pressable>
+            </Pressable>
+          </Modal>
+        ) : null}
       </ScreenFrame>
     );
   };
@@ -2018,7 +2043,7 @@ function CleanOnboarding({
             Keyboard.dismiss();
             void finish();
           }}
-          disabled={ageAnswer !== 'yes' || !legalAccepted}
+          disabled={ageAnswer !== 'yes'}
           testID="onboarding-finish"
         />
       )}
@@ -2064,31 +2089,34 @@ function CleanOnboarding({
           <View style={[styles.consentSwitchThumb, analyticsAllowed && styles.consentSwitchThumbOn]} />
         </View>
       </Pressable>
+      {/* Вся строка — одна кнопка: снять галочку можно тапом по тексту, а не
+          прицельно по кружку (владелец, 2026-08-16). */}
       <Pressable
-        testID="onboarding-legal-checkbox"
+        testID="onboarding-newsletter-row"
         onPressIn={() => { void hapticTap(); }}
-        onPress={() => { setLegalAccepted((value) => !value); setLegalError(null); }}
-        style={[styles.consentDecisionRow, legalAccepted && styles.consentDecisionRowSelected]}
-        accessibilityRole="checkbox"
-        accessibilityState={{ checked: legalAccepted }}
+        onPress={() => setNewsletterOptIn((value) => !value)}
+        style={[styles.consentDecisionRow, newsletterOptIn && styles.consentDecisionRowSelected]}
+        accessibilityRole="switch"
+        accessibilityState={{ checked: newsletterOptIn }}
       >
         <View style={styles.consentDecisionIcon}>
-          <Ionicons name="document-text-outline" size={23} color="#B9C8FF" />
+          <Ionicons name="mail-outline" size={22} color="#B9C8FF" />
         </View>
         <View style={styles.consentDecisionCopy}>
-          <Text style={styles.consentDecisionTitle}>Принимаю правила</Text>
-          <Text style={styles.consentDecisionHint}>Условия и конфиденциальность</Text>
+          <Text style={styles.consentDecisionTitle}>Фраза недели на почту</Text>
+          <Text style={styles.consentDecisionHint}>Одно письмо в неделю, отписка в один клик</Text>
         </View>
-        <View style={[styles.consentCheck, legalAccepted && styles.consentCheckSelected]}>
-          {legalAccepted ? <Ionicons name="checkmark" size={20} color="#07111F" /> : null}
+        <View style={[styles.consentCheck, newsletterOptIn && styles.consentCheckSelected]}>
+          {newsletterOptIn ? <Ionicons name="checkmark" size={20} color="#07111F" /> : null}
         </View>
       </Pressable>
+      {/* Согласие с условиями дано на welcome (sign-in-wrap над кнопкой «Начать»);
+          здесь остаются только ссылки — правила всегда под рукой. */}
       <View style={styles.consentLegalLinks}>
         <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>Условия</Text>
         <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Конфиденциальность</Text>
       </View>
       {legalError ? <Text style={styles.errorText}>{legalError}</Text> : null}
-      <Text style={styles.consentNameHint}>Имя создадим автоматически — изменить можно позже</Text>
     </ScreenFrame>
   );
   // Welcome (свои анимации) и aha (полноэкранная сцена со своими переходами)
@@ -2096,16 +2124,12 @@ function CleanOnboarding({
   const renderStep = (which: CleanOnboardingStep): React.ReactNode => {
     switch (which) {
       case 'welcome': return renderWelcome();
-      case 'source': return renderSource();
       case 'language': return renderLanguage();
       case 'level': return renderLevel();
-      case 'goal': return renderGoal();
-      case 'minutes': return renderMinutes();
+      case 'promise': return renderPromise();
       case 'aha': return renderAha();
       case 'notifications': return renderNotifications();
-      case 'startMode': return renderStartMode();
-      case 'plusBenefits': return renderPlusBenefits();
-      case 'planComparison': return renderPlanComparison();
+      case 'trialReminder': return renderTrialReminder();
       case 'onboardingPaywall': return renderOnboardingPaywall();
       case 'name': return renderName();
       default: return renderWelcome();
@@ -3496,6 +3520,298 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     textAlign: 'center',
     marginTop: 10,
+  },
+  // ── welcome: sign-in-wrap согласие над кнопкой «Начать» ────────────────────
+  welcomeLegalNote: {
+    color: '#8C9AC4',
+    fontSize: 13,
+    lineHeight: 19,
+    textAlign: 'center',
+    marginBottom: 12,
+    paddingHorizontal: 8,
+  },
+  welcomeLegalLink: {
+    color: '#B9C8FF',
+    textDecorationLine: 'underline',
+  },
+  // ── promise: вау-график «повторяешь / забываешь» ───────────────────────────
+  promiseChartCard: {
+    backgroundColor: 'rgba(18, 24, 46, 0.72)',
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(133, 156, 255, 0.16)',
+    paddingVertical: 18,
+    paddingHorizontal: 10,
+    marginBottom: 18,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  promiseBadgeUp: {
+    position: 'absolute',
+    top: 24,
+    left: 22,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    backgroundColor: '#7DE0A6',
+    borderRadius: 999,
+    paddingHorizontal: 11,
+    paddingVertical: 6,
+    ...softShadow({ color: '#0A1A12', radius: 8, opacity: 0.35, offsetY: 3, backgroundColor: '#7DE0A6' }),
+  },
+  promiseBadgeUpText: {
+    color: '#07111F',
+    fontSize: 13,
+    fontWeight: '800',
+  },
+  promiseBadgeDown: {
+    position: 'absolute',
+    bottom: 30,
+    right: 22,
+    backgroundColor: 'rgba(139, 147, 169, 0.22)',
+    borderRadius: 999,
+    paddingHorizontal: 11,
+    paddingVertical: 6,
+  },
+  promiseBadgeDownText: {
+    color: '#A9B2C8',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  promiseFactList: {
+    gap: 12,
+  },
+  // ── trialReminder: пуш-мокап + таймлайн честного триала ────────────────────
+  trialPushCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    backgroundColor: 'rgba(233, 239, 255, 0.96)',
+    borderRadius: 18,
+    paddingHorizontal: 14,
+    paddingVertical: 13,
+    marginBottom: 20,
+    ...softShadow({ color: '#0A1224', radius: 12, opacity: 0.3, offsetY: 5, backgroundColor: 'rgba(233, 239, 255, 0.96)' }),
+  },
+  trialPushIcon: {
+    width: 38,
+    height: 38,
+    borderRadius: 10,
+    backgroundColor: '#17191F',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  trialPushCopy: {
+    flex: 1,
+  },
+  trialPushTitle: {
+    color: '#0C111B',
+    fontSize: 14.5,
+    fontWeight: '800',
+  },
+  trialPushBody: {
+    color: '#3A4150',
+    fontSize: 13,
+    lineHeight: 18,
+    marginTop: 2,
+  },
+  trialPushWhen: {
+    color: '#8A91A1',
+    fontSize: 12,
+    fontWeight: '600',
+    alignSelf: 'flex-start',
+  },
+  trialTimeline: {
+    gap: 12,
+  },
+  trialTimelineRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+    backgroundColor: 'rgba(18, 24, 46, 0.72)',
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: 'rgba(133, 156, 255, 0.14)',
+    paddingHorizontal: 14,
+    paddingVertical: 13,
+  },
+  trialTimelineIcon: {
+    width: 38,
+    height: 38,
+    borderRadius: 12,
+    backgroundColor: 'rgba(133, 156, 255, 0.14)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  trialTimelineCopy: {
+    flex: 1,
+  },
+  trialTimelineTitle: {
+    color: '#F2F5FF',
+    fontSize: 15.5,
+    fontWeight: '800',
+  },
+  trialTimelineBody: {
+    color: '#A9B4D8',
+    fontSize: 13.5,
+    lineHeight: 19,
+    marginTop: 2,
+  },
+  trialReassureRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    marginTop: 10,
+  },
+  trialReassureText: {
+    color: '#7BE0B0',
+    fontSize: 13.5,
+    fontWeight: '700',
+  },
+  // ── paywall: выгоды над тарифами + низ с текстами ──────────────────────────
+  paywallBenefitList: {
+    gap: 9,
+    marginBottom: 16,
+  },
+  paywallBenefitRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  paywallBenefitIcon: {
+    width: 30,
+    height: 30,
+    borderRadius: 9,
+    backgroundColor: 'rgba(62, 98, 255, 0.10)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paywallBenefitTitle: {
+    color: '#1F2A44',
+    fontSize: 14.5,
+    fontWeight: '700',
+  },
+  paywallReassureText: {
+    color: '#1E9E6A',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  paywallLegalNote: {
+    color: '#8A93AC',
+    fontSize: 11.5,
+    lineHeight: 16,
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  paywallLegalLink: {
+    color: '#5B67D8',
+    textDecorationLine: 'underline',
+  },
+  // ── paywall: кнопка «···» и меню кодов ─────────────────────────────────────
+  paywallMenuButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginLeft: 10,
+    backgroundColor: 'rgba(31, 42, 68, 0.08)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  menuScrim: {
+    flex: 1,
+    backgroundColor: 'rgba(7, 11, 24, 0.42)',
+    alignItems: 'flex-end',
+    paddingTop: 96,
+    paddingRight: 18,
+  },
+  paywallMenuCard: {
+    minWidth: 236,
+    backgroundColor: '#FCFDFF',
+    borderRadius: 16,
+    paddingVertical: 4,
+    ...softShadow({ color: '#070B18', radius: 16, opacity: 0.32, offsetY: 8, backgroundColor: '#FCFDFF' }),
+  },
+  paywallMenuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 11,
+    paddingHorizontal: 16,
+    paddingVertical: 13,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'rgba(31, 42, 68, 0.10)',
+  },
+  paywallMenuItemLast: {
+    borderBottomWidth: 0,
+  },
+  paywallMenuItemText: {
+    color: '#1F2A44',
+    fontSize: 15.5,
+    fontWeight: '600',
+  },
+  codeScrim: {
+    flex: 1,
+    backgroundColor: 'rgba(7, 11, 24, 0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 26,
+  },
+  codeCard: {
+    alignSelf: 'stretch',
+    backgroundColor: '#FCFDFF',
+    borderRadius: 22,
+    paddingHorizontal: 18,
+    paddingVertical: 20,
+    ...softShadow({ color: '#070B18', radius: 16, opacity: 0.32, offsetY: 8, backgroundColor: '#FCFDFF' }),
+  },
+  codeTitle: {
+    color: '#0C111B',
+    fontSize: 19,
+    fontWeight: '800',
+    marginBottom: 5,
+  },
+  codeHint: {
+    color: '#5A6478',
+    fontSize: 13.5,
+    lineHeight: 19,
+    marginBottom: 14,
+  },
+  codeInput: {
+    borderWidth: 1.5,
+    borderColor: '#D9DFEE',
+    borderRadius: 13,
+    backgroundColor: '#F5F7FC',
+    color: '#0C111B',
+    fontSize: 17,
+    fontWeight: '700',
+    letterSpacing: 2,
+    textAlign: 'center',
+    paddingHorizontal: 14,
+    paddingVertical: 13,
+    marginBottom: 12,
+  },
+  codeFeedback: {
+    fontSize: 13.5,
+    lineHeight: 19,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  codeFeedbackOk: {
+    color: '#1E9E6A',
+  },
+  codeFeedbackError: {
+    color: '#D34B6A',
+  },
+  codeCancel: {
+    alignItems: 'center',
+    paddingVertical: 10,
+    marginTop: 2,
+  },
+  codeCancelText: {
+    color: '#8A93AC',
+    fontSize: 15,
+    fontWeight: '600',
   },
 });
 

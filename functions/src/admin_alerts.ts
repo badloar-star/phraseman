@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { defineSecret } from 'firebase-functions/params';
 import { onDocumentCreated, onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { buildSerialRefunderAlert, isSerialRefunder } from './serial_refunder';
 
 /**
  * Admin Telegram alerts.
@@ -21,7 +22,11 @@ const ALERTS_DOC = 'admin_config/alerts';
 
 export const ADMIN_ALERT_BOT_TOKEN = defineSecret('ADMIN_ALERT_BOT_TOKEN');
 
-type AlertType = 'userReport' | 'criticalError' | 'contentReportDigest' | 'cancelRefundSpike' | 'safetyFlag' | 'authFailureSpike';
+// зачем serialRefunder отдельным типом от cancelRefundSpike: тот про всплеск
+// за час у разных людей, этот — про одного человека с повторяющимися
+// возвратами. Один выключатель на оба означал бы, что глуша шум всплесков,
+// владелец молча теряет и сигнал о закономерности.
+type AlertType = 'userReport' | 'criticalError' | 'contentReportDigest' | 'cancelRefundSpike' | 'safetyFlag' | 'authFailureSpike' | 'serialRefunder';
 
 interface AlertsConfig {
   enabled?: boolean;
@@ -374,8 +379,54 @@ export const adminAlertOnUgcRefund = onDocumentWritten(
     const becameRefunded = before.status !== 'refunded' && after.status === 'refunded';
     if (!becameRefunded) return;
     await recordSpikeEvent('Рефанды UGC');
+    await alertIfSerialRefunder(after);
   },
 );
+
+/**
+ * Сигнал о серийном возвращателе.
+ *
+ * зачем отдельно от recordSpikeEvent выше: тот ловит ВСПЛЕСК за час — много
+ * возвратов от разных людей сразу. Один человек с двумя возвратами за месяцы
+ * всплеска не создаёт, и существующий алерт его не видит. Админка таких уже
+ * помечает (фильтр «только серийные»), но молча — владелец узнаёт, только
+ * если сам зайдёт и посмотрит.
+ *
+ * зачем .count(), а не выборка документов: нужно ОДНО число, и агрегация
+ * тарифицируется как одно чтение независимо от размера коллекции.
+ */
+async function alertIfSerialRefunder(purchase: Record<string, unknown>): Promise<void> {
+  const buyerId = String(purchase.buyerStableId ?? purchase.buyerUid ?? '').trim();
+  if (!buyerId) return;
+
+  try {
+    const cfg = await readAlertsConfig();
+    if (!alertTypeEnabled(cfg, 'serialRefunder')) return;
+
+    // guard-ok (limit): .count() возвращает одно число и тарифицируется как
+    // одно чтение — limit() к агрегации неприменим и не нужен.
+    const snapshot = await db()
+      .collection('community_pack_purchases')
+      .where('buyerStableId', '==', buyerId)
+      .where('status', '==', 'refunded')
+      .count()
+      .get();
+
+    const refundCount = Number(snapshot.data().count ?? 0);
+    if (!isSerialRefunder(refundCount)) return;
+
+    const ok = await sendTelegramAlert(
+      ADMIN_ALERT_BOT_TOKEN.value(),
+      buildSerialRefunderAlert({ refundCount }),
+      cfg,
+    );
+    if (ok) await markSent('serialRefunder');
+  } catch (error) {
+    // зачем глушить: это сигнальный путь поверх уже обработанного возврата.
+    // Упасть здесь значило бы уронить обработку самого возврата.
+    console.warn('admin_alerts: serial refunder check failed', error);
+  }
+}
 
 // ── 4б. Spike in auth sign-in failures (app_errors, feature=auth) ────────────
 // Продакшн-инцидент 2026-07: после переустановки юзеры не могли войти в свой

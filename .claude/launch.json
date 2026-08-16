@@ -4,31 +4,60 @@
     {
       "name": "paywall-main",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-p", "3458", "C:/appsprojects/phraseman/.claude/paywall-preview"],
+      "runtimeArgs": [
+        "serve",
+        "-p",
+        "3458",
+        "C:/appsprojects/phraseman/.claude/paywall-preview"
+      ],
       "port": 3458
     },
     {
       "name": "paywall_preview",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-p", "3457", "C:/appsprojects/phraseman", "--no-clipboard"],
+      "runtimeArgs": [
+        "serve",
+        "-p",
+        "3457",
+        "C:/appsprojects/phraseman",
+        "--no-clipboard"
+      ],
       "port": 3457
     },
     {
       "name": "knowly-www",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8841", "--directory", "C:/appsprojects/phraseman/knowly-www"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8841",
+        "--directory",
+        "C:/appsprojects/phraseman/knowly-www"
+      ],
       "port": 8841
     },
     {
       "name": "admin-preview",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8842", "--directory", "C:/appsprojects/phraseman/admin"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8842",
+        "--directory",
+        "C:/appsprojects/phraseman/admin"
+      ],
       "port": 8842
     },
     {
       "name": "sound-motion",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8843", "--directory", "C:/appsprojects/phraseman"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8843",
+        "--directory",
+        "C:/appsprojects/phraseman"
+      ],
       "port": 8843
     },
     {
@@ -39,8 +68,26 @@
     {
       "name": "theme-mockup",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8844", "--directory", "C:/Temp/claude/C--appsprojects-phraseman/f8eb5882-888d-4e29-9814-f79cf23ad9ad/scratchpad"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8844",
+        "--directory",
+        "C:/Temp/claude/C--appsprojects-phraseman/f8eb5882-888d-4e29-9814-f79cf23ad9ad/scratchpad"
+      ],
       "port": 8844
+    },
+    {
+      "name": "krug-prototype",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8845",
+        "--directory",
+        "C:/appsprojects/phraseman/docs/prototypes"
+      ],
+      "port": 8845
     }
   ]
 }

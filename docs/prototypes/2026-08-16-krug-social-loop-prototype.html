@@ -1,0 +1,895 @@
+<meta charset="utf-8">
+<title>Круг · прототип соцпетли</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* ───────── ground (viewer page) — three-state theme ───────── */
+:root{
+  --pg-bg:#E4E7E1; --pg-text:#17201D; --pg-muted:#52605A; --pg-card:#FCFDF9; --pg-accent:#315F50;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --pg-bg:#0B0D14; --pg-text:#EDEFF7; --pg-muted:#A9AECB; --pg-card:#151A31; --pg-accent:#8FA0FF; }
+}
+:root[data-theme="dark"]{ --pg-bg:#0B0D14; --pg-text:#EDEFF7; --pg-muted:#A9AECB; --pg-card:#151A31; --pg-accent:#8FA0FF; }
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--pg-bg);color:var(--pg-text);font-family:"Inter",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+button{font-family:inherit}
+button>svg,.ghost svg{width:18px;height:18px;flex:0 0 auto}
+.page{display:flex;flex-direction:column;align-items:center;gap:18px;padding:28px 16px 40px}
+.page-head{max-width:920px;width:100%;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:baseline;justify-content:space-between}
+.page-head h1{font-size:20px;font-weight:700;margin:0;letter-spacing:-.01em}
+.page-head p{margin:0;color:var(--pg-muted);font-size:14px;max-width:62ch}
+.pg-controls{display:flex;gap:8px;flex-wrap:wrap}
+.pg-controls button{background:var(--pg-card);color:var(--pg-text);border:0;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.pg-controls button[aria-pressed="true"]{background:var(--pg-accent);color:#fff}
+.stage{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;justify-content:center;width:100%;max-width:1100px}
+.legend{width:300px;background:var(--pg-card);border-radius:20px;padding:18px 18px 12px;font-size:13px;line-height:1.5;color:var(--pg-text);box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.legend h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px;color:var(--pg-muted)}
+.legend ol{margin:0 0 12px;padding-left:18px}
+.legend li{margin:0 0 6px}
+.legend li b{font-weight:700}
+.legend .hint{color:var(--pg-muted);font-size:12px}
+
+/* ───────── phone skins ───────── */
+.phone{
+  --bg:#DCE1D8; --bg2:#E7EAE2; --bg3:#D2D9CC; --card:#FCFDF9; --surface:#E1E5DC; --surface2:#D1D9D1;
+  --text:#17201D; --text2:#3C5A50; --muted:#52605A; --ghost:#4E5D55;
+  --accent:#315F50; --accentBg:#D9E9E1; --onAccent:#FFFFFF; --btnEdge:#264A3F;
+  --correct:#2F6F4F; --correctBg:#DCEADF; --wrong:#A8464D; --wrongBg:#F2DFE0;
+  --gold:#8B6320; --goldBg:#EEE5D1; --onGold:#FFFFFF; --border:#CFD6CE;
+  --shadow:rgba(35,50,43,.14); --glow:rgba(49,95,80,.10); --tabbar:#315F50; --tabIcon:rgba(255,255,255,.62); --tabIconActive:#315F50; --tabPill:#FCFDF9;
+  --flame:#D8752A; --ember:#E28A3C; --star:#B98A2C; --starBg:#F1E7CF; --xp:#3C5A50;
+  --cta1:#4C7C6C; --cta2:#315F50; --cta3:#264A3F;
+  --modalScrim:rgba(0,0,0,.6);
+  width:390px;height:844px;border-radius:52px;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--bg2),var(--bg3));color:var(--text);
+  box-shadow:0 30px 80px rgba(0,0,0,.35),0 0 0 10px #101214,0 0 0 12px #2a2d31;
+  font-size:14px;line-height:1.35;flex:0 0 auto;
+}
+.phone[data-skin="midnight"]{
+  --bg:#010102; --bg2:#080B17; --bg3:#010102; --card:#0D101E; --surface:#151A31; --surface2:#202641;
+  --text:#FFFFFF; --text2:#B79CFF; --muted:#A9AECB; --ghost:#6E7390;
+  --accent:#8FA0FF; --accentBg:rgba(143,160,255,.18); --onAccent:#0D1030; --btnEdge:#39448F;
+  --correct:#5FE0B0; --correctBg:rgba(95,224,176,.16); --wrong:#FF6E8A; --wrongBg:rgba(255,110,138,.16);
+  --gold:#FFD27A; --goldBg:rgba(255,210,122,.16); --onGold:#1F1604; --border:rgba(143,160,255,.17);
+  --shadow:rgba(0,0,0,.6); --glow:rgba(91,124,255,.38); --tabbar:rgba(0,0,0,.95); --tabIcon:rgba(255,255,255,.55); --tabIconActive:#0D1030; --tabPill:#8FA0FF;
+  --flame:#FF9500; --ember:#FFB03D; --star:#FFD27A; --starBg:rgba(255,210,122,.16); --xp:#B79CFF;
+  --cta1:#C9D2FF; --cta2:#8FA0FF; --cta3:#6E7FF5;
+  --modalScrim:rgba(0,0,0,.72);
+}
+.phone[data-skin="midnight"]::before{content:"";position:absolute;inset:auto -40% -30% -40%;height:60%;background:radial-gradient(closest-side,rgba(91,124,255,.32),transparent 70%),radial-gradient(closest-side at 70% 80%,rgba(169,91,255,.28),transparent 70%);pointer-events:none;z-index:0}
+.phone[data-skin="midnight"] .avatar{box-shadow:0 0 0 2px rgba(143,160,255,.25)}
+
+/* status bar */
+.status{position:absolute;top:0;left:0;right:0;height:54px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 30px 8px;font-size:15px;font-weight:700;z-index:5;pointer-events:none}
+.status .isl{position:absolute;left:50%;top:12px;width:120px;height:34px;transform:translateX(-50%);background:#0b0c0e;border-radius:20px}
+.status .r{display:flex;gap:6px;align-items:center;font-size:12px;font-weight:700}
+.status .r i{display:inline-block;width:22px;height:11px;border-radius:3px;background:currentColor;position:relative}
+.status .r i::after{content:"";position:absolute;right:-3px;top:3px;width:2px;height:5px;background:currentColor;border-radius:1px}
+
+/* screens */
+.screens{position:absolute;inset:0;z-index:1}
+.screen{position:absolute;inset:0;overflow:hidden;display:none;flex-direction:column;padding-top:54px}
+.screen.active{display:flex}
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;padding:8px 20px 130px;scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:6px 0 10px}
+.hdr h1{font-size:22px;font-weight:700;margin:0;letter-spacing:-.01em}
+.hdr .sub{font-size:13px;color:var(--muted);margin-top:2px}
+.wallet{display:flex;gap:8px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px 0 8px;border-radius:12px;font-weight:700;font-size:14px;background:var(--surface);color:var(--text);white-space:nowrap}
+.pill.star{background:var(--starBg);color:var(--star)}
+.pill.xp{background:var(--accentBg);color:var(--accent)}
+.pill.ember{background:var(--surface);color:var(--ember)}
+.pill svg{width:16px;height:16px;flex:0 0 auto}
+.pill .num{font-variant-numeric:tabular-nums}
+.pill.bump{animation:bump .42s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
+
+/* cards */
+.card{background:var(--card);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 8px 24px var(--shadow);position:relative;overflow:hidden}
+.card.tone{background:color-mix(in srgb,var(--surface) 70%,transparent);box-shadow:none}
+.card.accent{background:linear-gradient(135deg,var(--accentBg),var(--card) 70%)}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px}
+.card h3{font-size:16px;font-weight:700;margin:0 0 4px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.row{display:flex;align-items:center;gap:12px}
+.spread{justify-content:space-between}
+.grow{flex:1;min-width:0}
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
+.muted{color:var(--muted)}
+.strong{font-weight:700}
+.sect{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:18px 0 10px}
+.chiprow{display:flex;gap:8px;flex-wrap:wrap}
+.chip{height:32px;padding:0 12px;border-radius:12px;background:var(--surface);color:var(--text);font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px;border:0;cursor:pointer;transition:transform .09s}
+.chip:active{transform:scale(.95)}
+.chip.on{background:var(--accent);color:var(--onAccent)}
+.chip svg{width:14px;height:14px}
+
+/* buttons: "настоящая клавиша" */
+.key{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 20px;border:0;border-radius:16px;font-size:16px;font-weight:700;color:var(--onAccent);background:linear-gradient(180deg,var(--cta1),var(--cta2) 55%,var(--cta3));box-shadow:0 6px 0 var(--btnEdge);cursor:pointer;transform:translateY(0);transition:transform .09s ease-out,box-shadow .09s ease-out;user-select:none;width:100%}
+.key:active{transform:translateY(6px);box-shadow:0 0 0 var(--btnEdge)}
+.key.sm{height:44px;font-size:14px;padding:0 16px;border-radius:14px;box-shadow:0 4px 0 var(--btnEdge)}
+.key.sm:active{transform:translateY(4px);box-shadow:0 0 0 var(--btnEdge)}
+.key[disabled]{opacity:.5;pointer-events:none}
+.key svg{width:18px;height:18px}
+.ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 16px;border:0;border-radius:16px;font-size:15px;font-weight:700;background:transparent;color:var(--accent);cursor:pointer;transition:transform .09s,opacity .09s;width:100%}
+.ghost:active{transform:scale(.97);opacity:.8}
+.ghost.tone{background:var(--surface)}
+.ghost.sm{height:40px;font-size:14px;width:auto;padding:0 14px;border-radius:14px}
+.ghost[disabled]{opacity:.45;pointer-events:none}
+.iconbtn{width:44px;height:44px;border-radius:14px;border:0;background:transparent;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);cursor:pointer;transition:transform .09s,opacity .09s;flex:0 0 auto}
+.iconbtn:active{transform:scale(.88);opacity:.6}
+.iconbtn svg{width:20px;height:20px}
+.iconbtn.tone{background:var(--surface)}
+.iconbtn.pulse{animation:pulseBtn 1.8s ease-in-out infinite}
+@keyframes pulseBtn{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.actions{display:flex;gap:8px;margin-top:12px}
+.actions .key,.actions .ghost{width:auto;flex:1}
+
+/* avatars */
+.avatar{width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px;flex:0 0 auto;position:relative;background:linear-gradient(145deg,var(--a1,#5b8f7b),var(--a2,#2f5c4b))}
+.avatar.lg{width:60px;height:60px;font-size:22px}
+.avatar.xl{width:76px;height:76px;font-size:28px}
+.avatar.sm{width:32px;height:32px;font-size:12px}
+.avatar.me{--a1:#7a6a4a;--a2:#4a3d22}
+.avatar .lvl{position:absolute;right:-4px;bottom:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--gold);color:var(--onGold);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.avatar.dim{filter:saturate(.35);opacity:.72}
+.avatar .zz{position:absolute;left:-6px;top:-8px;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.06em;animation:zz 2.4s ease-in-out infinite}
+@keyframes zz{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(-3px);opacity:1}}
+.avatar .risk{position:absolute;left:-4px;top:-4px;width:18px;height:18px;border-radius:50%;background:var(--wrong);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+
+/* friend rows */
+.frow{display:flex;align-items:center;gap:12px;background:color-mix(in srgb,var(--card) 60%,transparent);border-radius:16px;padding:12px 12px 12px 14px;margin-bottom:10px;position:relative}
+.phone[data-skin="midnight"] .frow{background:rgba(13,16,30,.72)}
+.frow .rank{width:14px;font-weight:700;color:var(--muted);font-size:13px;text-align:center}
+.frow .name{font-weight:700;font-size:15px;display:flex;align-items:center;gap:6px}
+.frow .meta{display:flex;align-items:center;gap:10px;margin-top:4px;font-size:13px;color:var(--muted)}
+.frow .meta b{color:var(--accent);font-weight:700}
+.frow .meta .st{color:var(--flame);font-weight:700;display:inline-flex;align-items:center;gap:3px}
+.frow .meta svg{width:13px;height:13px}
+.xpbar{height:3px;border-radius:2px;background:rgba(127,127,127,.18);margin-top:6px;overflow:hidden;width:150px}
+.xpbar i{display:block;height:100%;background:var(--text2);border-radius:2px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.frow .acts{display:flex;gap:2px}
+.tag{display:inline-flex;align-items:center;gap:4px;height:22px;padding:0 8px;border-radius:8px;font-size:11px;font-weight:700;background:var(--surface);color:var(--muted)}
+.tag.ok{background:var(--correctBg);color:var(--correct)}
+.tag.warn{background:var(--wrongBg);color:var(--wrong)}
+.tag.acc{background:var(--accentBg);color:var(--accent)}
+.tag.gold{background:var(--goldBg);color:var(--gold)}
+.tag svg{width:11px;height:11px}
+.crown{color:var(--gold)}
+.crown svg{width:14px;height:14px}
+
+/* segmented tabs */
+.seg{display:flex;background:var(--surface);border-radius:14px;padding:3px;margin-bottom:12px;position:relative}
+.seg button{flex:1;height:36px;border:0;background:transparent;border-radius:11px;font-weight:700;font-size:14px;color:var(--muted);cursor:pointer;position:relative;z-index:1;transition:color .2s}
+.seg button.on{color:var(--text)}
+.seg .ind{position:absolute;top:3px;bottom:3px;left:3px;width:calc((100% - 6px)/3);background:var(--card);border-radius:11px;box-shadow:0 2px 8px var(--shadow);transition:transform .32s cubic-bezier(.32,.72,0,1)}
+.seg .badge{position:absolute;top:2px;right:8px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--wrong);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:2}
+
+/* fire */
+.fire{display:flex;align-items:center;gap:14px}
+.fire .flame{width:56px;height:64px;position:relative;flex:0 0 auto}
+.fire .flame svg{width:100%;height:100%;overflow:visible}
+.fire .flame .f1{transform-origin:50% 100%;animation:flick 1.6s ease-in-out infinite}
+.fire .flame .f2{transform-origin:50% 100%;animation:flick 1.3s ease-in-out infinite reverse}
+.fire .flame.cold .f1,.fire .flame.cold .f2{animation:none;opacity:.35;filter:grayscale(1)}
+@keyframes flick{0%,100%{transform:scaleY(1) scaleX(1)}50%{transform:scaleY(1.06) scaleX(.96)}}
+.logs{display:flex;gap:6px;margin-top:8px}
+.logs i{height:8px;flex:1;border-radius:4px;background:rgba(127,127,127,.18);position:relative;overflow:hidden}
+.logs i.on{background:var(--ember)}
+.logs i.on::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-100%);animation:sheen 2.4s ease-in-out infinite}
+@keyframes sheen{to{transform:translateX(100%)}}
+.logs i.mark{box-shadow:inset 0 0 0 2px var(--accent)}
+.thresholds{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px;font-weight:700}
+
+/* chain */
+.chain{display:flex;align-items:center;gap:6px}
+.chain .links{flex:1;display:flex;gap:3px;align-items:center;height:16px}
+.chain .links i{flex:1;height:8px;border-radius:4px;background:rgba(127,127,127,.18);position:relative}
+.chain .links i.on{background:var(--flame)}
+.chain .links i.today{background:var(--flame);animation:linkIn .5s cubic-bezier(.2,.9,.3,1.3) both}
+@keyframes linkIn{from{transform:scaleX(.2);opacity:0}to{transform:scaleX(1);opacity:1}}
+.chain .links i.risk{background:var(--wrongBg);box-shadow:inset 0 0 0 2px var(--wrong)}
+.bigno{font-size:28px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.midno{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* progress */
+.prog{height:8px;border-radius:4px;background:rgba(127,127,127,.18);overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);border-radius:4px;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.prog.gold i{background:var(--gold)}
+.dual{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.dual .lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:700;margin-bottom:4px}
+
+/* feed */
+.ev{display:flex;gap:12px;background:color-mix(in srgb,var(--card) 60%,transparent);border-radius:16px;padding:12px;margin-bottom:10px}
+.phone[data-skin="midnight"] .ev{background:rgba(13,16,30,.72)}
+.ev .t{font-size:14px}
+.ev .t b{font-weight:700}
+.ev .when{font-size:12px;color:var(--muted);margin-top:2px}
+.reacts{display:flex;gap:6px;margin-top:8px;align-items:center;flex-wrap:wrap}
+.react{height:30px;padding:0 10px;border-radius:10px;background:var(--surface);border:0;font-size:13px;font-weight:700;color:var(--text);display:inline-flex;align-items:center;gap:5px;cursor:pointer;transition:transform .12s}
+.react:active{transform:scale(.92)}
+.react.on{background:var(--accentBg);color:var(--accent)}
+.react.pop{animation:reactPop .42s cubic-bezier(.2,.9,.3,1.4)}
+@keyframes reactPop{0%{transform:scale(1)}40%{transform:scale(1.25)}100%{transform:scale(1)}}
+.cta-inline{margin-left:auto}
+
+/* tab bar */
+.tabbar{position:absolute;left:20px;right:20px;bottom:22px;height:66px;border-radius:33px;background:var(--tabbar);box-shadow:0 8px 16px rgba(0,0,0,.28);display:flex;align-items:center;justify-content:space-around;padding:0 10px;z-index:6}
+.tabbar .pillbg{position:absolute;top:15px;left:0;width:48px;height:36px;border-radius:18px;background:var(--tabPill);transition:transform .38s cubic-bezier(.34,1.3,.4,1);opacity:.96}
+.tab{position:relative;z-index:1;width:48px;height:48px;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--tabIcon);cursor:pointer;transition:transform .12s;padding:0}
+.tab:active{transform:scale(1.08)}
+.tab svg{width:26px;height:26px}
+.tab.on{color:var(--tabIconActive)}
+.tab.center svg{width:29px;height:29px}
+.tab .dot{position:absolute;top:8px;right:8px;width:9px;height:9px;border-radius:50%;background:#FF6E8A;box-shadow:0 0 0 2px var(--tabbar)}
+
+/* layers: sheets, modals, toasts, push */
+.layer{position:absolute;inset:0;z-index:20;display:none}
+.layer.open{display:block}
+.scrim{position:absolute;inset:0;background:var(--modalScrim);opacity:0;transition:opacity .2s}
+.layer.open .scrim{opacity:1}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--card);border-radius:24px 24px 0 0;padding:10px 20px 34px;transform:translateY(320px);transition:transform .38s cubic-bezier(.32,.72,0,1);max-height:78%;overflow-y:auto;scrollbar-width:none;box-shadow:0 -10px 34px rgba(0,0,0,.25)}
+.layer.open .sheet{transform:translateY(0)}
+.grab{width:38px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 14px}
+.sheet h2,.modal h2{font-size:18px;font-weight:700;margin:0 0 6px;text-wrap:balance}
+.sheet p,.modal p{margin:0 0 6px;color:var(--muted);font-size:14px}
+.modal{position:absolute;left:50%;top:50%;width:326px;transform:translate(-50%,-50%) scale(.92);opacity:0;background:var(--card);border-radius:30px;padding:24px 22px 22px;box-shadow:0 20px 34px rgba(0,0,0,.42);transition:transform .42s cubic-bezier(.2,1.1,.3,1),opacity .28s ease-out;text-align:center;overflow:hidden}
+.phone[data-skin="midnight"] .modal{background:linear-gradient(180deg,#151A31,#0D101E)}
+.layer.open .modal{transform:translate(-50%,-50%) scale(1);opacity:1}
+.modal .glass{position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent);opacity:.68;pointer-events:none}
+.modal .x{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:16px;background:rgba(3,5,10,.42);color:#fff;border:0;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700}
+.hero{width:104px;height:104px;border-radius:50%;margin:6px auto 12px;display:flex;align-items:center;justify-content:center;position:relative;background:var(--accentBg)}
+.hero svg{width:56px;height:56px;color:var(--accent);position:relative;z-index:1}
+.hero .bloom{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(closest-side,var(--glow),transparent 72%);opacity:0;animation:bloomIn .42s ease-out forwards}
+@keyframes bloomIn{to{opacity:1}}
+.hero.gold{background:var(--goldBg)}.hero.gold svg{color:var(--gold)}
+.hero.flame{background:color-mix(in srgb,var(--ember) 18%,transparent)}.hero.flame svg{color:var(--flame)}
+.hero.strike{animation:strike .7s cubic-bezier(.2,1.6,.4,1) .35s both}
+@keyframes strike{0%{transform:scale(1)}30%{transform:scale(1.18,.86)}55%{transform:scale(.94,1.08) translateY(-6px)}100%{transform:scale(1) translateY(0)}}
+.ladder>*{opacity:0;transform:translateY(8px);animation:ladder .38s cubic-bezier(.2,.8,.2,1) forwards}
+.ladder>*:nth-child(1){animation-delay:0ms}.ladder>*:nth-child(2){animation-delay:74ms}.ladder>*:nth-child(3){animation-delay:172ms}.ladder>*:nth-child(4){animation-delay:306ms}.ladder>*:nth-child(5){animation-delay:478ms}.ladder>*:nth-child(6){animation-delay:688ms}
+@keyframes ladder{to{opacity:1;transform:translateY(0)}}
+.rewards{display:flex;justify-content:center;gap:10px;margin:8px 0 14px;flex-wrap:wrap}
+.rw{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border-radius:12px;font-weight:700;font-size:15px;background:var(--surface);color:var(--text)}
+.rw.xp{background:var(--accentBg);color:var(--accent)}.rw.star{background:var(--starBg);color:var(--star)}.rw.gold{background:var(--goldBg);color:var(--gold)}
+.rw svg{width:16px;height:16px}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.confetti i{position:absolute;left:50%;top:38%;width:6px;height:10px;border-radius:2px;opacity:0;animation:conf 1.4s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes conf{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot))}}
+.stake{display:flex;gap:8px;justify-content:center;margin:12px 0}
+.stake button{width:56px;height:44px;border-radius:14px;border:0;background:var(--surface);font-weight:700;font-size:15px;color:var(--text);cursor:pointer}
+.stake button.on{background:var(--starBg);color:var(--star);box-shadow:inset 0 0 0 2px var(--star)}
+.pair{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 12px}
+.pair .lnk{width:54px;height:8px;border-radius:4px;background:var(--flame);position:relative;overflow:hidden}
+.pair .lnk::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:translateX(-100%);animation:sheen 1.8s ease-in-out infinite}
+.pair .lnk.off{background:rgba(127,127,127,.18)}.pair .lnk.off::after{display:none}
+.list-plain{list-style:none;margin:0;padding:0}
+.list-plain li{display:flex;align-items:center;gap:10px;padding:10px 0;font-size:14px}
+.list-plain li+li{box-shadow:inset 0 1px 0 var(--border)}
+.list-plain svg{width:18px;height:18px;color:var(--accent);flex:0 0 auto}
+
+/* toasts */
+.toasts{position:absolute;left:16px;right:16px;bottom:100px;z-index:30;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{display:flex;align-items:center;gap:12px;min-height:66px;padding:12px 16px 12px 0;border-radius:16px;background:var(--card);box-shadow:0 10px 30px rgba(0,0,0,.28);opacity:0;transform:translateY(-14px);animation:toastIn .38s cubic-bezier(.2,.8,.2,1) forwards;pointer-events:auto;overflow:hidden;position:relative}
+.phone[data-skin="midnight"] .toast{background:#151A31}
+.toast.out{animation:toastOut .26s ease-in forwards}
+@keyframes toastIn{to{opacity:1;transform:translateY(0)}}
+@keyframes toastOut{to{opacity:0;transform:translateY(10px)}}
+.toast .rail{width:3px;align-self:stretch;border-radius:2px;background:var(--accent);margin-left:0}
+.toast.success .rail{background:var(--correct)}.toast.error .rail{background:var(--wrong)}.toast.reward .rail{background:var(--gold)}.toast.warning .rail{background:var(--flame)}
+.toast .ic{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--accentBg);color:var(--accent);flex:0 0 auto}
+.toast.success .ic{background:var(--correctBg);color:var(--correct)}.toast.error .ic{background:var(--wrongBg);color:var(--wrong)}.toast.reward .ic{background:var(--goldBg);color:var(--gold)}.toast.warning .ic{background:color-mix(in srgb,var(--flame) 16%,transparent);color:var(--flame)}
+.toast .ic svg{width:20px;height:20px}
+.toast .tt{font-size:14px;line-height:1.3}
+.toast .tt small{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:2px}
+.toast.error{animation:toastIn .38s cubic-bezier(.2,.8,.2,1) forwards,shake .3s .34s ease-out}
+@keyframes shake{0%{transform:translateX(0)}20%{transform:translateX(6px)}40%{transform:translateX(-5px)}60%{transform:translateX(3px)}80%{transform:translateX(-2px)}100%{transform:translateX(0)}}
+.toast.reward .ic{animation:icPulse .5s .3s ease-in-out}
+@keyframes icPulse{50%{transform:scale(1.14)}}
+
+/* push banner (lock-screen style) */
+.push{position:absolute;left:12px;right:12px;top:8px;z-index:40;background:rgba(250,250,252,.96);color:#111;border-radius:22px;padding:12px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 12px 30px rgba(0,0,0,.35);transform:translateY(-140px);transition:transform .45s cubic-bezier(.32,.72,0,1);cursor:pointer;backdrop-filter:blur(10px)}
+.push.show{transform:translateY(0)}
+.push .app{width:38px;height:38px;border-radius:10px;background:linear-gradient(145deg,#4C7C6C,#264A3F);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex:0 0 auto}
+.push .from{font-size:13px;font-weight:700;display:flex;justify-content:space-between}
+.push .from span{color:#6b6b70;font-weight:400;font-size:12px}
+.push .body{font-size:13px;color:#222;margin-top:1px}
+
+/* dev / simulation panel */
+.simbtn{position:absolute;right:20px;bottom:100px;z-index:8;height:40px;padding:0 14px;border-radius:14px;border:0;background:var(--card);color:var(--text);font-weight:700;font-size:13px;box-shadow:0 8px 20px var(--shadow);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.simbtn svg{width:16px;height:16px;color:var(--accent)}
+.simgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.simgrid button{height:44px;border-radius:14px;border:0;background:var(--surface);color:var(--text);font-weight:700;font-size:13px;cursor:pointer;padding:0 10px;text-align:left}
+.simgrid button:active{transform:scale(.97)}
+.simgrid button.wide{grid-column:1/-1}
+.simgrid button.acc{background:var(--accentBg);color:var(--accent)}
+
+/* lesson mini flow */
+.lesson-q{font-size:20px;font-weight:700;margin:20px 0 6px;text-wrap:balance}
+.opts{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.opt{height:52px;border-radius:16px;border:0;background:var(--card);color:var(--text);font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 var(--surface2);transition:transform .09s,box-shadow .09s;text-align:left;padding:0 18px}
+.opt:active{transform:translateY(4px);box-shadow:0 0 0 var(--surface2)}
+.opt.good{background:var(--correctBg);color:var(--correct);box-shadow:0 4px 0 color-mix(in srgb,var(--correct) 40%,transparent)}
+.opt.bad{background:var(--wrongBg);color:var(--wrong);animation:shake .3s ease-out}
+.lesson-top{display:flex;align-items:center;gap:12px;padding:6px 0 4px}
+.lesson-top .prog{flex:1}
+
+/* settings */
+.setrow{display:flex;align-items:center;justify-content:space-between;padding:14px 0;font-size:15px;font-weight:700}
+.setrow+.setrow{box-shadow:inset 0 1px 0 var(--border)}
+.switch{width:50px;height:30px;border-radius:15px;background:var(--surface2);position:relative;border:0;cursor:pointer;transition:background .2s;flex:0 0 auto}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:12px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:transform .22s cubic-bezier(.2,.9,.3,1.2)}
+.switch.on{background:var(--accent)}.switch.on::after{transform:translateX(20px)}
+
+.empty{padding:26px 10px;text-align:center;color:var(--muted)}
+.empty b{display:block;color:var(--text);font-size:16px;margin-bottom:4px}
+.day-strip{display:flex;gap:6px;margin-top:10px}
+.day-strip i{flex:1;height:26px;border-radius:8px;background:rgba(127,127,127,.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);font-style:normal}
+.day-strip i.both{background:var(--correctBg);color:var(--correct)}
+.day-strip i.half{background:var(--goldBg);color:var(--gold)}
+.day-strip i.miss{background:var(--wrongBg);color:var(--wrong)}
+.day-strip i.now{box-shadow:inset 0 0 0 2px var(--accent)}
+.hint-line{font-size:12px;color:var(--muted);margin-top:8px}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+@media (max-width:1000px){.legend{width:390px}}
+</style>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 1 6.5 18H20M8 7h8"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" d="M9 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm7-.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 20c.6-3.4 3.3-5.5 6.5-5.5s5.9 2.1 6.5 5.5zm13.5-3.8c1.9.2 4.5 1.2 5.5 3.8"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm7.4-2.1.9-1.4-1.6-2.8-1.6.4a6.7 6.7 0 0 0-1.6-.9L15 7h-3.2l-.5 1.7c-.6.2-1.1.5-1.6.9L8.1 9.2 6.5 12l1.2 1.4c-.1.6-.1 1.2 0 1.8L6.5 16.6l1.6 2.8 1.6-.4c.5.4 1 .7 1.6.9l.5 1.7H15l.5-1.7c.6-.2 1.1-.5 1.6-.9l1.6.4 1.6-2.8-.9-1.4"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M12 2.5 4.5 5.5v6c0 5 3.3 8.3 7.5 10 4.2-1.7 7.5-5 7.5-10v-6z"/><path fill="currentColor" d="M12 2.5v19c4.2-1.7 7.5-5 7.5-10v-6z" opacity=".55"/></symbol>
+  <symbol id="i-flash" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22c-4.4 0-7-3-7-6.6 0-3.1 2-5.2 3.4-6.9.4 1.4 1.2 2.4 2.3 2.7C10.4 8 11 4.5 14 2c.3 3.1 1.6 4.4 3 6 1.6 1.8 2 3.4 2 5.4C19 19 16.4 22 12 22zm0-2.2c1.9 0 3.2-1.4 3.2-3.1 0-1.4-.8-2.2-1.7-3.3-.4 1-1 1.7-1.9 2-.2-1-.4-2-.2-3.3-1.5 1.5-2.6 3-2.6 4.6 0 1.7 1.3 3.1 3.2 3.1z"/></symbol>
+  <symbol id="i-chain" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M4 11h16v10H4zM3 7h18v4H3zM12 7v14M12 7c-2.5 0-4.5-1.2-4.5-2.7S9 2 10 2.5s2 2.5 2 4.5zm0 0c2.5 0 4.5-1.2 4.5-2.7S15 2 14 2.5s-2 2.5-2 4.5z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-checkc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m8 12.3 2.8 2.7L16 9.5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 7.5v5.5"/><circle cx="12" cy="16.5" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 11v5.5"/><circle cx="12" cy="7.8" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round" d="M8 12V5.5a1.5 1.5 0 0 1 3 0V11m0-6.5v-1a1.5 1.5 0 0 1 3 0V11m0-5.5a1.5 1.5 0 0 1 3 0V12m0-3.5a1.5 1.5 0 0 1 3 0v6c0 4-2.5 7-6.5 7-2.6 0-4.4-1.2-5.6-3.2L5 14.5a1.6 1.6 0 0 1 2.6-1.9L8 13"/></symbol>
+  <symbol id="i-bar" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" d="M4 20h16M6 20V9m6 11V4m6 16v-8"/></symbol>
+  <symbol id="i-hands" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round" d="M3 12l4-4 4 3-1.5 1.5L12 15l3.5-3.5 5.5 5.5-2 2-4-4M12 15l-3 3-2.5-2.5M7 8 4.5 5.5M17 8l2.5-2.5"/></symbol>
+  <symbol id="i-chest" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M3 10a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v10H3zM3 12h18M12 10v5"/><circle cx="12" cy="13" r="1.4" fill="currentColor"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l10-6.5z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m14.5 5.5-6.5 6.5 6.5 6.5"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path fill="currentColor" d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/></symbol>
+  <symbol id="i-sleep" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 8h6l-6 8h6M14 4h5l-5 6h5"/></symbol>
+  <symbol id="i-mentor" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M12 3 2 8l10 5 10-5zM6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5M22 8v6"/></symbol>
+</svg>
+
+<div class="page">
+  <div class="page-head">
+    <div>
+      <h1>«Круг» — кликабельный прототип соцпетли друзей</h1>
+      <p>Всё живое: копи урок, трать огоньки на друзей, крути время суток, заставляй друзей отвечать. Валюта — опыт и звёзды. Тема, кнопки-клавиши, модалки, тосты и празднования — по стандартам приложения.</p>
+    </div>
+    <div class="pg-controls" role="group" aria-label="Тема телефона">
+      <button id="skin-sage" aria-pressed="true" onclick="setSkin('sage')">Sage Porcelain</button>
+      <button id="skin-mid" aria-pressed="false" onclick="setSkin('midnight')">Midnight</button>
+      <button onclick="resetAll()">Сбросить</button>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="phone" id="phone" data-skin="sage">
+      <div class="status"><span id="clock">20:40</span><i class="isl"></i><span class="r">5G <i></i></span></div>
+
+      <div class="screens">
+        <!-- HOME -->
+        <section class="screen active" id="s-home">
+          <div class="scroll">
+            <div class="hdr">
+              <div><h1>Главная</h1><div class="sub" id="home-sub">Сегодня, вечер</div></div>
+              <div class="wallet"><span class="pill xp" id="pill-xp"><svg><use href="#i-flash"/></svg><span class="num" id="xp-num">0</span> XP</span><span class="pill star" id="pill-star"><svg><use href="#i-star"/></svg><span class="num" id="star-num">0</span></span></div>
+            </div>
+            <div id="home-lesson"></div>
+            <div id="home-krug"></div>
+            <div id="home-inbox"></div>
+          </div>
+        </section>
+
+        <!-- LESSONS (stub with mini lesson) -->
+        <section class="screen" id="s-lessons">
+          <div class="scroll">
+            <div class="hdr"><div><h1>Уроки</h1><div class="sub">Урок 12 · Как заказать кофе</div></div></div>
+            <div id="lesson-body"></div>
+          </div>
+        </section>
+
+        <!-- ARENA stub -->
+        <section class="screen" id="s-arena">
+          <div class="scroll"><div class="hdr"><div><h1>Арена</h1><div class="sub">Заглушка — не часть прототипа</div></div></div>
+            <div class="empty"><b>Здесь арена как сейчас</b>Соцпетля «Круг» живёт на вкладке Друзья и на Главной.</div></div>
+        </section>
+
+        <!-- FRIENDS / KRUG -->
+        <section class="screen" id="s-friends">
+          <div class="scroll" id="friends-scroll">
+            <div class="hdr">
+              <div><h1>Круг</h1><div class="sub" id="krug-sub">6 друзей</div></div>
+              <div class="wallet"><button class="pill ember" onclick="openEmberInfo()" title="Огоньки"><svg><use href="#i-flame"/></svg><span class="num" id="ember-num">0</span>/3</button><button class="iconbtn" onclick="openHow()" aria-label="Как это работает"><svg><use href="#i-info"/></svg></button></div>
+            </div>
+            <div class="seg" id="seg">
+              <div class="ind" id="seg-ind"></div>
+              <button class="on" onclick="setKrugTab(0)">Сегодня<span class="badge" id="badge-today" style="display:none">0</span></button>
+              <button onclick="setKrugTab(1)">Связки</button>
+              <button onclick="setKrugTab(2)">Лента</button>
+            </div>
+            <div id="krug-today"></div>
+            <div id="krug-chains" style="display:none"></div>
+            <div id="krug-feed" style="display:none"></div>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="screen" id="s-settings">
+          <div class="scroll">
+            <div class="hdr"><div><h1>Уведомления</h1><div class="sub">Категории пушей</div></div></div>
+            <div class="card" id="settings-card"></div>
+            <div class="card tone"><h3>Тихие часы</h3><p>Друзья не разбудят тебя ночью — с 22:00 до 09:00 их пуши ждут утра.</p></div>
+          </div>
+        </section>
+      </div>
+
+      <button class="simbtn" onclick="openSim()"><svg><use href="#i-clock"/></svg>Симуляция</button>
+
+      <nav class="tabbar" id="tabbar">
+        <div class="pillbg" id="tabpill"></div>
+        <button class="tab on" data-i="0" onclick="go('home')" aria-label="Главная"><svg><use href="#i-home"/></svg></button>
+        <button class="tab" data-i="1" onclick="go('lessons')" aria-label="Уроки"><svg><use href="#i-book"/></svg></button>
+        <button class="tab center" data-i="2" onclick="go('arena')" aria-label="Арена"><svg><use href="#i-shield"/></svg></button>
+        <button class="tab" data-i="3" onclick="go('friends')" aria-label="Друзья"><svg><use href="#i-people"/></svg><span class="dot" id="tab-dot" style="display:none"></span></button>
+        <button class="tab" data-i="4" onclick="go('settings')" aria-label="Настройки"><svg><use href="#i-settings"/></svg></button>
+      </nav>
+
+      <!-- layers -->
+      <div class="layer" id="sheet-layer"><div class="scrim" onclick="closeSheet()"></div><div class="sheet" id="sheet"></div></div>
+      <div class="layer" id="modal-layer"><div class="scrim" onclick="closeModalIfSoft()"></div><div class="modal" id="modal"></div></div>
+      <div class="toasts" id="toasts"></div>
+      <div class="push" id="push" onclick="pushTap()"><div class="app">P</div><div class="grow"><div class="from"><span id="push-from">Марина</span><span>сейчас</span></div><div class="body" id="push-body"></div></div></div>
+    </div>
+
+    <aside class="legend">
+      <h2>Что нажимать</h2>
+      <ol>
+        <li><b>Уроки → Пройти урок</b>: +XP, +звёзды, +1 огонёк. Урок «зажигает» огонь у друзей и открывает планки/призы.</li>
+        <li><b>Круг → Сегодня</b>: всё, что требует ответа, и всё, что ты можешь сделать другу: разбудить, поставить планку, предложить уговор/связку, подстраховать вечером.</li>
+        <li><b>Симуляция</b> (кнопка на телефоне): перемотать время суток и день, заставить друзей заниматься/отвечать/ставить тебе планку.</li>
+        <li><b>Лента</b>: отклики с наградой и кнопка «Догнать».</li>
+        <li><b>Настройки</b>: категория пушей «Друзья» — выключишь, друзья не будят.</li>
+      </ol>
+      <h2>Награды (только опыт и звёзды)</h2>
+      <ol>
+        <li>Урок +120 XP · +8 ★ · +1 огонёк</li>
+        <li>Огонь 3/5/8 друзей → ×1.5 · ×2 XP · +2 ★</li>
+        <li>Разбудить: ответил — тебе +30 XP (после тишины 3+ дней +1 ★), ему +50 XP</li>
+        <li>Связка: 3 дня +100 XP · 7 дней +300 XP +3 ★ · 30 дней аура</li>
+        <li>Подстраховать: щит 5 ★; вернулся — тебе +80 XP, «спасибо» +20</li>
+        <li>Планка: взял — ему +60, тебе +20; устояла — тебе +40</li>
+        <li>Уговор: ставка 3 ★ · 7 дней · оба сдержали — +5 ★ +1000 XP</li>
+        <li>Пара-задание: 2000 XP за неделю → сундук +500 XP +5 ★ + фрагмент рамки</li>
+        <li>Отклик: первые 5 в день по +5 XP тебе, +10 адресату</li>
+        <li>Наставник: подопечный день 3 → +100 XP, день 7 → +3 ★</li>
+      </ol>
+      <p class="hint">Аватары — плейсхолдеры (в приложении — иллюстрированные аватары уровня). Шрифт — системный, вместо Inter.</p>
+    </aside>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════ STATE ═══════════════════ */
+const PHASES = [['morning','утро','08:10'],['day','день','13:25'],['evening','вечер','20:40'],['night','ночь','23:30']];
+const REW = { lessonXp:120, lessonStars:8, nudgeMe:30, nudgeThem:50, nudgeSilentStar:1, chain3:100, chain7xp:300, chain7star:3, shieldCost:5, rescue:80, thanks:20, plankTakenThem:60, plankTakenMe:20, plankHeld:40, pactStake:3, pactWinStar:5, pactWinXp:1000, questTarget:2000, questXp:500, questStar:5, reactMe:5, reactThem:10, mentor3:100, mentor7star:3 };
+const FRIENDS0 = () => ([
+  {id:'m', name:'Марина', g:'f', ini:'М', a1:'#7C5CBF', a2:'#4A2F8A', level:14, streak:43, weeklyXp:1240, todayDone:false, silent:0, league:true, tz:0, mentee:false},
+  {id:'i', name:'Игорь', g:'m', ini:'И', a1:'#3E7CB1', a2:'#22507A', level:9, streak:12, weeklyXp:860, todayDone:true, silent:0, league:false, tz:0, mentee:false},
+  {id:'o', name:'Оля', g:'f', ini:'О', a1:'#C0704E', a2:'#8A4A2F', level:2, streak:2, weeklyXp:210, todayDone:false, silent:0, league:false, tz:0, mentee:true, menteeDay:2},
+  {id:'s', name:'Сергей', g:'m', ini:'С', a1:'#3E9A7A', a2:'#236A52', level:21, streak:88, weeklyXp:2100, todayDone:true, silent:0, league:true, tz:0, mentee:false},
+  {id:'a', name:'Анна', g:'f', ini:'А', a1:'#B85C7A', a2:'#7A3550', level:6, streak:0, weeklyXp:40, todayDone:false, silent:4, league:false, tz:0, mentee:false},
+  {id:'d', name:'Дмитрий', g:'m', ini:'Д', a1:'#8A8A3E', a2:'#5C5C22', level:11, streak:7, weeklyXp:530, todayDone:false, silent:0, league:false, tz:0, mentee:false},
+]);
+let S;
+function fresh(){
+  S = { xp:12480, stars:37, embers:1, phase:2, day:1, lessonDone:false, todayXp:0, xpMult:1, multUntil:null, fireClaimed:0, reactsToday:0,
+    pushFriends:true, krugTab:0, screen:'home', friends:FRIENDS0(),
+    chains:{ i:{days:5, since:1} }, pacts:{}, quests:{}, plankOut:{}, plankIn:{ i:{bar:280, status:'open'} }, nudgedOut:{}, nudgeIn:null, shields:{}, help:{}, feed:[], seen:{}, thanksPending:[], history:{},
+    lesson:null };
+  S.feed = [
+    ev('s','level_up','поднял уровень до 21',{cta:'Поздравить'}),
+    ev('i','lesson','прошёл урок 12 · Как заказать кофе',{cta:'Догнать'}),
+    ev('m','streak','держит цепь 43 дня'),
+    ev('d','plank_taken','взял планку Сергея — 310 XP'),
+  ];
+  S.feed[0].ts='2 ч назад'; S.feed[1].ts='4 ч назад'; S.feed[2].ts='вчера'; S.feed[3].ts='вчера';
+}
+let evId=0;
+function ev(fid,type,text,extra={}){ return Object.assign({id:'e'+(++evId), fid, type, text, ts:'только что', react:null, count: type==='level_up'?3:type==='streak'?5:1}, extra); }
+const F = id => S.friends.find(f=>f.id===id);
+const g = (f,m,fem) => f.g==='f'?fem:m;
+const phase = () => PHASES[S.phase][0];
+const isQuiet = () => S.phase===3;
+const fmt = n => n.toLocaleString('ru-RU');
+
+/* ═══════════════════ HELPERS ═══════════════════ */
+const $ = s => document.querySelector(s);
+const svg = id => `<svg><use href="#${id}"/></svg>`;
+function avatar(f,cls=''){ return `<span class="avatar ${cls}" style="--a1:${f.a1};--a2:${f.a2}">${f.ini}<span class="lvl">${f.level}</span>${!f.todayDone&&f.silent>=3?'<span class="zz">z z</span>':''}${(!f.todayDone&&f.streak>=7&&S.phase>=2&&!S.shields[f.id])?'<span class="risk">!</span>':''}</span>`; }
+function me(cls=''){ return `<span class="avatar me ${cls}">Т<span class="lvl">17</span></span>`; }
+function countUp(el, from, to, ms=520){
+  const start = performance.now();
+  const step = t => { const p=Math.min(1,(t-start)/ms); const e=1-Math.pow(1-p,3); el.textContent = fmt(Math.round(from+(to-from)*e)); if(p<1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+function grant({xp=0, stars=0}){
+  if(xp){ const eff = Math.round(xp*(S.multUntil?S.xpMult:1)); const from=S.xp; S.xp+=eff; S.todayXp+=eff; countUp($('#xp-num'), from, S.xp); bump('#pill-xp'); }
+  if(stars){ const from=S.stars; S.stars+=stars; countUp($('#star-num'), from, S.stars); bump('#pill-star'); }
+  renderWallet();
+}
+function spendStars(n){ if(S.stars<n) return false; const from=S.stars; S.stars-=n; countUp($('#star-num'),from,S.stars); bump('#pill-star'); return true; }
+function bump(sel){ const el=$(sel); if(!el) return; el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+function renderWallet(){ $('#xp-num').textContent=fmt(S.xp); $('#star-num').textContent=fmt(S.stars); $('#ember-num').textContent=S.embers; }
+function useEmber(){ if(S.embers<=0){ toast('error','Огоньки кончились — пройди урок, и появится новый'); return false; } S.embers--; renderWallet(); bump('#ember-num'); return true; }
+
+/* toasts */
+const TOAST_ICON = {success:'i-checkc', error:'i-alert', info:'i-info', warning:'i-flame', reward:'i-gift'};
+const TOAST_LABEL = {success:'Готово', error:'Ошибка', info:'Круг', warning:'Внимание', reward:'Награда'};
+let lastToast={t:'',at:0};
+function toast(kind, text, label){
+  const now=Date.now(); if(lastToast.t===text && now-lastToast.at<1600) return; lastToast={t:text,at:now};
+  const host=$('#toasts'); while(host.children.length>=2) host.firstChild.remove();
+  const el=document.createElement('div'); el.className='toast '+kind;
+  el.innerHTML=`<span class="rail"></span><span class="ic">${svg(TOAST_ICON[kind])}</span><div class="tt"><small>${label||TOAST_LABEL[kind]}</small>${text}</div>`;
+  host.appendChild(el);
+  setTimeout(()=>{ el.classList.add('out'); setTimeout(()=>el.remove(),260); }, 3200);
+}
+/* push banner */
+let pushTimer=null, pushTarget=null;
+function push(from, body, target){
+  if(!S.pushFriends){ toast('info','Пуш от друга не пришёл — категория «Друзья» выключена'); return; }
+  if(isQuiet()){ toast('info','Тихие часы: пуш от «'+from+'» дождётся утра'); return; }
+  $('#push-from').textContent=from; $('#push-body').textContent=body; pushTarget=target||null;
+  const p=$('#push'); p.classList.add('show'); clearTimeout(pushTimer); pushTimer=setTimeout(()=>p.classList.remove('show'),3800);
+}
+function pushTap(){ $('#push').classList.remove('show'); if(pushTarget){ pushTarget(); } }
+
+/* sheets & modals */
+function openSheet(html){ $('#sheet').innerHTML='<div class="grab"></div>'+html; $('#sheet-layer').classList.add('open'); }
+function closeSheet(){ $('#sheet-layer').classList.remove('open'); }
+let modalSoft=true;
+function openModal(html,{soft=true}={}){ modalSoft=soft; $('#modal').innerHTML=html; $('#modal-layer').classList.add('open'); }
+function closeModal(){ $('#modal-layer').classList.remove('open'); }
+function closeModalIfSoft(){ if(modalSoft) closeModal(); }
+function confetti(host){
+  const c=document.createElement('div'); c.className='confetti';
+  const cols=['#5FE0B0','#8FA0FF','#FFD27A','#FF9500','#B79CFF','#3E9A7A'];
+  for(let i=0;i<26;i++){ const a=Math.random()*Math.PI*2, r=90+Math.random()*120; const s=document.createElement('i'); s.style.background=cols[i%cols.length]; s.style.setProperty('--dx',Math.cos(a)*r+'px'); s.style.setProperty('--dy',(Math.sin(a)*r+70)+'px'); s.style.setProperty('--rot',(Math.random()*540-270)+'deg'); s.style.animationDelay=(Math.random()*120)+'ms'; c.appendChild(s); }
+  host.appendChild(c); setTimeout(()=>c.remove(),1600);
+}
+function celebrate({icon='i-star', tone='gold', title, sub, rewards=[], cta='Забрать', onClaim, strike=true}){
+  const rw = rewards.map(r=>`<span class="rw ${r.k}">${svg(r.k==='xp'?'i-flash':r.k==='star'?'i-star':'i-gift')}${r.t}</span>`).join('');
+  openModal(`<div class="glass"></div><div class="hero ${tone} ${strike?'strike':''}"><span class="bloom"></span>${svg(icon)}</div>
+    <div class="ladder"><h2>${title}</h2><p>${sub||''}</p><div class="rewards">${rw}</div><button class="key" id="cel-cta">${cta}</button></div>`,{soft:false});
+  if(strike) setTimeout(()=>confetti($('#modal')), 380);
+  $('#cel-cta').onclick=()=>{ closeModal(); onClaim&&onClaim(); };
+}
+
+/* ═══════════════════ NAV ═══════════════════ */
+const TABS=['home','lessons','arena','friends','settings'];
+function go(name){
+  S.screen=name; document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); $('#s-'+name).classList.add('active');
+  const i=TABS.indexOf(name); document.querySelectorAll('.tab').forEach((t,k)=>t.classList.toggle('on',k===i));
+  const tabs=[...document.querySelectorAll('.tab')]; const bar=$('#tabbar'); const rect=tabs[i].getBoundingClientRect(), br=bar.getBoundingClientRect(); $('#tabpill').style.transform=`translateX(${rect.left-br.left+ (rect.width-48)/2}px)`;
+  if(name==='friends'){ S.seen.today=true; }
+  render();
+}
+function setKrugTab(i){ S.krugTab=i; document.querySelectorAll('#seg button').forEach((b,k)=>b.classList.toggle('on',k===i)); $('#seg-ind').style.transform=`translateX(${i*100}%)`; ['#krug-today','#krug-chains','#krug-feed'].forEach((s,k)=>$(s).style.display=k===i?'block':'none'); }
+function setSkin(sk){ $('#phone').dataset.skin=sk; $('#skin-sage').setAttribute('aria-pressed',sk==='sage'); $('#skin-mid').setAttribute('aria-pressed',sk==='midnight'); }
+function resetAll(){ fresh(); go('home'); setKrugTab(0); toast('info','Прототип сброшен'); }
+
+/* ═══════════════════ DERIVED ═══════════════════ */
+const fireCount = () => S.friends.filter(f=>f.todayDone).length;
+const fireTier = n => n>=8?3:n>=5?2:n>=3?1:0;
+const helpList = () => S.friends.filter(f=>!f.todayDone && f.streak>=7 && S.phase>=2 && !S.shields[f.id]);
+function inboxItems(){
+  const items=[];
+  Object.entries(S.plankIn).forEach(([fid,p])=>{ if(p.status==='open') items.push({k:'plankIn',fid}); });
+  if(S.nudgeIn && !S.lessonDone) items.push({k:'nudgeIn',fid:S.nudgeIn});
+  Object.entries(S.pacts).forEach(([fid,p])=>{ if(p.status==='active'||p.status==='pending') items.push({k:'pact',fid}); });
+  Object.entries(S.quests).forEach(([fid,q])=>{ if(q.status==='active') items.push({k:'quest',fid}); });
+  S.thanksPending.forEach(fid=>items.push({k:'thanks',fid}));
+  return items;
+}
+function needsAnswer(){ return inboxItems().filter(i=>i.k==='plankIn'||i.k==='nudgeIn'||i.k==='thanks'||(i.k==='pact'&&S.pacts[i.fid].status==='pending')).length; }
+
+/* ═══════════════════ RENDER ═══════════════════ */
+function render(){
+  renderWallet();
+  const ph=PHASES[S.phase]; $('#clock').textContent=ph[2]; $('#home-sub').textContent=`День ${S.day} · ${ph[1]}`;
+  const n=needsAnswer(); $('#tab-dot').style.display=n?'block':'none'; const b=$('#badge-today'); b.style.display=n?'flex':'none'; b.textContent=n;
+  renderHome(); renderKrug(); renderLesson(); renderSettings();
+}
+function renderHome(){
+  const fc=fireCount(), tier=fireTier(fc);
+  $('#home-lesson').innerHTML = S.lessonDone
+    ? `<div class="card accent"><div class="row spread"><div><div class="eyebrow">Сегодня</div><h3>Урок пройден</h3><p>+${fmt(S.todayXp)} XP сегодня${S.multUntil?` · множитель ×${S.xpMult} активен`:''}</p></div>${svg('i-checkc').replace('<svg','<svg style="width:34px;height:34px;color:var(--correct)"')}</div></div>`
+    : `<div class="card accent"><div class="eyebrow">Сегодня</div><h3>Урок 12 · Как заказать кофе</h3><p>5 минут — и цепь цела. +${REW.lessonXp} XP · +${REW.lessonStars} ★ · +1 огонёк</p><button class="key mt12" onclick="startLesson()">${svg('i-play')}Пройти урок</button></div>`;
+  const help=helpList();
+  const first = inboxItems()[0];
+  $('#home-krug').innerHTML = `<div class="card"><div class="row spread"><div class="eyebrow">Круг сегодня</div><button class="ghost sm" onclick="go('friends')">Открыть</button></div>
+    <div class="fire"><div class="flame ${fc?'':'cold'}">${flameSvg()}</div><div class="grow"><div class="row spread"><span class="bigno">${fc}<span class="muted" style="font-size:16px"> / ${S.friends.length}</span></span><span class="tag ${tier?'acc':''}">${tier?['','×1.5 XP · 30 мин','×2 XP · 60 мин','+2 ★ сверху'][tier]:'до ×1.5 — '+(3-fc)+' друг'+(3-fc===1?'':'а')}</span></div>
+    <div class="logs">${S.friends.map((f,i)=>`<i class="${i<fc?'on':''} ${[2,4,7].includes(i)?'mark':''}"></i>`).join('')}</div><div class="thresholds"><span>друзей занимались</span><span>3 · 5 · 8</span></div></div></div>
+    ${tier&&S.lessonDone&&S.fireClaimed<tier?`<button class="key sm mt12" onclick="claimFire()">${svg('i-flame')}Забрать огонь</button>`:tier&&!S.lessonDone?`<p class="hint-line">Огонь горит — пройди свой урок, чтобы забрать множитель.</p>`:''}
+    ${help.length?`<div class="mt12 row" style="gap:8px"><span class="tag warn">${svg('i-alert')}Нужна помощь</span><span class="muted" style="font-size:13px">${help.map(f=>f.name).join(', ')} — цепь под угрозой</span></div>`:''}
+  </div>`;
+  $('#home-inbox').innerHTML = first? `<div class="sect">Требует ответа</div>`+inboxCard(first, true) : '';
+}
+function flameSvg(){ return `<svg viewBox="0 0 56 64"><path class="f1" fill="var(--flame)" d="M28 62C16 62 8 53 8 42c0-9 6-15 10-20 1 4 3 7 6 8-1-9 2-19 10-27 1 9 5 13 9 18 4 5 6 10 6 16 0 14-9 25-21 25z"/><path class="f2" fill="var(--ember)" opacity=".9" d="M28 58c-6 0-10-4-10-9 0-4 2-6 4-9 1 3 3 5 5 6-1-4-1-8 2-12 1 4 3 6 5 8s3 4 3 7c0 5-4 9-9 9z"/></svg>`; }
+
+function inboxCard(it, compact=false){
+  const f=F(it.fid);
+  if(it.k==='plankIn'){ const p=S.plankIn[it.fid]; const beat=S.todayXp>p.bar;
+    return `<div class="card"><div class="row"><span class="tag acc">${svg('i-bar')}Планка</span><span class="muted" style="font-size:12px">до полуночи</span></div>
+      <div class="row mt12">${avatar(f)}<div class="grow"><h3>${f.name}: ${p.bar} XP сегодня. Побьёшь?</h3><p>Твой день: <b class="strong" style="color:var(--text)">${S.todayXp} XP</b>${beat?' — планка взята!':' · осталось '+(p.bar-S.todayXp+1)}</p></div></div>
+      <div class="actions">${beat?`<button class="key sm" onclick="takePlank('${f.id}')">${svg('i-check')}Забрать +${REW.plankTakenThem} XP</button>`:`<button class="key sm" onclick="startLesson()">${svg('i-play')}${S.lessonDone?'Ещё урок':'Принять вызов'}</button>`}<button class="ghost sm" onclick="declinePlank('${f.id}')">Пропустить</button></div></div>`; }
+  if(it.k==='nudgeIn'){ return `<div class="card"><div class="row"><span class="tag acc">${svg('i-bell')}Зовёт</span><span class="muted" style="font-size:12px">24 ч на ответ</span></div>
+      <div class="row mt12">${avatar(f)}<div class="grow"><h3>${f.name} зовёт: 5 минут — и цепь цела</h3><p>Ответишь уроком — тебе +${REW.nudgeThem} XP, ${f.name} +${REW.nudgeMe} XP</p></div></div>
+      <div class="actions"><button class="key sm" onclick="startLesson()">${svg('i-play')}Пройти урок</button></div></div>`; }
+  if(it.k==='pact'){ const p=S.pacts[it.fid];
+    if(p.status==='pending' && p.from==='them') return `<div class="card"><div class="row"><span class="tag gold">${svg('i-hands')}Уговор</span></div><div class="row mt12">${avatar(f)}<div class="grow"><h3>${f.name} предлагает уговор на 7 дней</h3><p>Ставка ${p.stake} ★ с каждого. Оба сдержали — +${REW.pactWinStar} ★ и +${fmt(REW.pactWinXp)} XP каждому.</p></div></div><div class="actions"><button class="key sm" onclick="acceptPact('${f.id}')">Принять · ${p.stake} ★</button><button class="ghost sm" onclick="declinePact('${f.id}')">Не сейчас</button></div></div>`;
+    if(p.status==='pending') return `<div class="card tone"><div class="row">${avatar(f,'sm')}<div class="grow"><b>Уговор ждёт ответа ${f.name}</b><p>Ставка ${p.stake} ★ уже отложена</p></div><span class="tag">ждём</span></div></div>`;
+    const days=p.days; const myDone=S.lessonDone, theirDone=f.todayDone;
+    return `<div class="card"><div class="row spread"><span class="tag gold">${svg('i-hands')}Уговор с ${f.name}</span><span class="tag ${myDone&&theirDone?'ok':'warn'}">день ${days.length+1} / 7</span></div>
+      <div class="day-strip">${[...Array(7)].map((_,i)=>{ const d=days[i]; const cls=d? (d.both?'both':d.miss?'miss':'half') : (i===days.length?'now':''); return `<i class="${cls}">${i+1}</i>`;}).join('')}</div>
+      <p class="hint-line">${myDone&&theirDone?'Сегодня оба сходили ✓':!myDone&&!theirDone?'Оба ещё не ходили — кто первый?':myDone?f.name+g(f,' ещё не занимался',' ещё не занималась')+' — можно подтолкнуть':'Твой ход — '+f.name+g(f,' уже позанимался',' уже позанималась')}</p>
+      ${!compact&&myDone&&!theirDone?`<div class="actions"><button class="ghost sm tone" onclick="nudge('${f.id}',true)">${svg('i-bell')}Подтолкнуть</button></div>`:''}</div>`; }
+  if(it.k==='quest'){ const q=S.quests[it.fid]; const done=q.mine>=REW.questTarget&&q.theirs>=REW.questTarget;
+    return `<div class="card"><div class="row spread"><span class="tag acc">${svg('i-chest')}Пара-задание</span><span class="muted" style="font-size:12px">до воскресенья</span></div>
+      <h3 class="mt8">${fmt(REW.questTarget)} XP каждому за неделю</h3>
+      <div class="dual"><div><div class="lbl"><span>Ты</span><span>${fmt(Math.min(q.mine,REW.questTarget))} / ${fmt(REW.questTarget)}</span></div><div class="prog"><i style="width:${Math.min(100,q.mine/REW.questTarget*100)}%"></i></div></div>
+      <div><div class="lbl"><span>${f.name}</span><span>${fmt(Math.min(q.theirs,REW.questTarget))} / ${fmt(REW.questTarget)}</span></div><div class="prog"><i style="width:${Math.min(100,q.theirs/REW.questTarget*100)}%"></i></div></div></div>
+      <div class="actions">${done?`<button class="key sm" onclick="claimQuest('${f.id}')">${svg('i-chest')}Открыть сундук</button>`:`<button class="ghost sm tone" onclick="nudge('${f.id}',true)">${svg('i-bell')}Подтолкнуть</button>`}</div></div>`; }
+  if(it.k==='thanks'){ return `<div class="card tone"><div class="row">${avatar(f)}<div class="grow"><b>${f.name} ${g(f,'вернулся','вернулась')} благодаря тебе</b><p>Скажи «спасибо» — это ещё +${REW.thanks} XP тебе за спасённую цепь</p></div><button class="ghost sm" onclick="sayThanks('${f.id}')">${svg('i-hand')}Спасибо</button></div></div>`; }
+  return '';
+}
+
+function renderKrug(){
+  $('#krug-sub').textContent=`${S.friends.length} друзей · ${fireCount()} занимались сегодня`;
+  const items=inboxItems(); const help=helpList();
+  const fc=fireCount(), tier=fireTier(fc);
+  let html='';
+  html+=`<div class="card"><div class="row spread"><div class="eyebrow" style="margin:0">Общий огонь</div><span class="tag ${tier?'acc':''}">${fc} из ${S.friends.length}</span></div>
+    <div class="fire mt8"><div class="flame ${fc?'':'cold'}">${flameSvg()}</div><div class="grow"><p>${tier?['','Горит: ×1.5 XP на 30 мин','Горит сильно: ×2 XP на час','Полыхает: +2 ★ сверху'][tier]:'Ещё '+(3-fc)+' — и загорится ×1.5 XP'}</p><div class="logs">${S.friends.map((f,i)=>`<i class="${i<fc?'on':''} ${[2,4,7].includes(i)?'mark':''}"></i>`).join('')}</div><div class="thresholds"><span>3</span><span>5</span><span>8</span></div></div></div>
+    ${tier&&S.lessonDone&&S.fireClaimed<tier?`<button class="key sm mt12" onclick="claimFire()">${svg('i-flame')}Забрать огонь</button>`:''}${tier&&!S.lessonDone?`<p class="hint-line">Пройди свой урок — и множитель твой.</p>`:''}</div>`;
+  if(items.length){ html+=`<div class="sect">Требует ответа</div>`+items.map(i=>inboxCard(i)).join(''); }
+  if(help.length){ html+=`<div class="sect">Нужна помощь</div>`+help.map(f=>`<div class="card"><div class="row">${avatar(f)}<div class="grow"><h3>${f.name} · цепь ${f.streak} дн.</h3><p>Ещё не ${g(f,'занимался','занималась')} сегодня — до полуночи ${S.phase===3?'меньше часа':'3 часа'}</p></div></div>
+      <div class="actions"><button class="key sm" onclick="nudge('${f.id}')" ${S.nudgedOut[f.id]?'disabled':''}>${svg('i-bell')}${S.nudgedOut[f.id]?'Позвал ✓':'Позвать · 1 огонёк'}</button><button class="ghost sm tone" onclick="openShield('${f.id}')">${svg('i-shield')}Щит · ${REW.shieldCost} ★</button></div></div>`).join(''); }
+  html+=`<div class="sect">Друзья</div>`+S.friends.map((f,i)=>friendRow(f,i)).join('');
+  html+=`<div class="empty" style="padding-top:8px"><span class="muted" style="font-size:13px">Учиться вместе веселее — <b style="color:var(--accent)">пригласить друга</b></span></div>`;
+  $('#krug-today').innerHTML=html;
+
+  /* chains */
+  const chainIds=Object.keys(S.chains);
+  let ch='';
+  chainIds.forEach(id=>{ const f=F(id), c=S.chains[id]; const risk=S.phase>=2&&(!S.lessonDone||!f.todayDone); const both=S.lessonDone&&f.todayDone;
+    ch+=`<div class="card"><div class="row spread"><div class="eyebrow" style="margin:0">Связка с ${f.name}</div>${c.days>=7?`<span class="tag gold">${svg('i-crown')}Звено</span>`:''}</div>
+      <div class="pair mt8">${me('lg')}<div class="chain grow"><div class="links">${[...Array(7)].map((_,k)=>`<i class="${k<Math.min(7,c.days)?'on':''} ${both&&k===Math.min(6,c.days)?'today':''} ${risk&&!both&&k===Math.min(6,c.days)?'risk':''}"></i>`).join('')}</div></div>${avatar(f,'lg')}</div>
+      <div class="row spread"><span class="bigno">${c.days}<span class="muted" style="font-size:14px"> дн.</span></span><span class="tag ${both?'ok':risk?'warn':''}">${both?'сегодня оба ✓':risk?(S.lessonDone?f.name+g(f,' ещё не занимался',' ещё не занималась'):'твой ход'):'день не начат'}</span></div>
+      <p class="hint-line">До вехи ${c.days<3?3:c.days<7?7:30}: ${c.days<3?3-c.days:c.days<7?7-c.days:30-c.days} дн. — ${c.days<3?'+'+REW.chain3+' XP обоим':c.days<7?'+'+REW.chain7xp+' XP, +'+REW.chain7star+' ★ и рамка «Звено»':'аура связки'}</p>
+      ${risk&&!both&&S.lessonDone?`<div class="actions"><button class="key sm" onclick="nudge('${id}')" ${S.nudgedOut[id]?'disabled':''}>${svg('i-bell')}${S.nudgedOut[id]?'Позвал ✓':'Позвать · 1 огонёк'}</button><button class="ghost sm tone" onclick="openShield('${id}')">${svg('i-shield')}Щит · ${REW.shieldCost} ★</button></div>`:''}</div>`; });
+  const free = S.friends.filter(f=>!S.chains[f.id]);
+  ch+= chainIds.length<3 ? `<div class="sect">Начать связку</div><p class="muted" style="font-size:13px;margin:0 0 10px">До 3 связок. День засчитан, когда урок прошли оба. Личная заморозка связку не спасает — только щит от партнёра.</p>`+free.slice(0,3).map(f=>`<div class="frow"><span class="rank"></span>${avatar(f)}<div class="grow"><div class="name">${f.name}</div><div class="meta"><span class="st">${svg('i-flame')}${f.streak}</span><span>Lv ${f.level}</span></div></div><button class="ghost sm" onclick="proposeChain('${f.id}')">${svg('i-chain')}Предложить</button></div>`).join('') : `<p class="muted" style="font-size:13px">Все 3 связки заняты.</p>`;
+  $('#krug-chains').innerHTML=ch;
+
+  /* feed */
+  $('#krug-feed').innerHTML = `<p class="muted" style="font-size:13px;margin:0 0 10px">Отклик — это не просто лайк: первые 5 в день дают тебе +${REW.reactMe} XP, адресату +${REW.reactThem} XP. Сегодня: ${S.reactsToday}/5</p>`+S.feed.map(e=>{ const f=F(e.fid); const emo={clap:'👏',fire:'🔥',gem:'💎'};
+    return `<div class="ev">${avatar(f)}<div class="grow"><div class="t"><b>${f.name}</b> ${e.text}</div><div class="when">${e.ts}</div>
+      <div class="reacts">${['clap','fire','gem'].map(r=>`<button class="react ${e.react===r?'on':''}" onclick="react('${e.id}','${r}',this)">${emo[r]}${e.react===r?' <span>'+(e.count+1)+'</span>':e.count&&r==='clap'?' <span>'+e.count+'</span>':''}</button>`).join('')}
+      ${e.cta?`<button class="ghost sm cta-inline" onclick="feedCta('${e.id}')">${e.cta}</button>`:''}</div></div></div>`; }).join('');
+}
+function friendRow(f,i){
+  const chain=S.chains[f.id], pact=S.pacts[f.id], quest=S.quests[f.id], plank=S.plankOut[f.id];
+  const tags=[ f.todayDone?`<span class="tag ok">${svg('i-check')}сегодня</span>`:f.silent>=3?`<span class="tag warn">${svg('i-sleep')}${f.silent} дн. тишины</span>`:`<span class="tag">ещё не ${g(f,'занимался','занималась')}</span>`,
+    f.mentee?`<span class="tag gold">${svg('i-mentor')}${g(f,'подопечный','подопечная')} · день ${f.menteeDay}</span>`:'', chain?`<span class="tag acc">${svg('i-chain')}связка ${chain.days}</span>`:'', plank?`<span class="tag acc">${svg('i-bar')}планка ${plank.bar}${plank.status==='taken'?' — взята':plank.status==='held'?' — устояла':''}</span>`:'', S.shields[f.id]?`<span class="tag ok">${svg('i-shield')}щит</span>`:'' ].filter(Boolean).join('');
+  return `<div class="frow"><span class="rank">${i+1}</span>${avatar(f, f.todayDone?'':'dim')}<div class="grow"><div class="name">${f.league?`<span class="crown">${svg('i-crown')}</span>`:''}${f.name}</div>
+    <div class="meta"><b>${svg('i-flash')} +${fmt(f.weeklyXp)}</b><span class="st">${svg('i-flame')}${f.streak}</span><span>Lv ${f.level}</span></div><div class="xpbar"><i style="width:${(f.level*4.3)%100}%"></i></div>
+    <div class="chiprow mt8" style="gap:6px">${tags}</div></div>
+    <div class="acts">${!f.todayDone?`<button class="iconbtn ${S.nudgedOut[f.id]?'':'pulse'}" title="Разбудить" onclick="nudge('${f.id}')" ${S.nudgedOut[f.id]?'disabled':''}>${svg(S.nudgedOut[f.id]?'i-check':'i-bell')}</button>`:''}<button class="iconbtn" title="Ещё" onclick="openFriend('${f.id}')">${svg('i-info')}</button></div></div>`;
+}
+function renderSettings(){
+  $('#settings-card').innerHTML = [['Цепь','streak',true],['Друзья','friends',S.pushFriends],['Лига','league',true],['Подарки','gifts',true],['Энергия','energy',false]].map(([n,k,on])=>`<div class="setrow"><span>${n}${k==='friends'?' <span class="tag acc" style="margin-left:6px">новая</span>':''}</span><button class="switch ${on?'on':''}" onclick="${k==='friends'?'togglePush()':''}" aria-pressed="${on}"></button></div>`).join('');
+}
+function togglePush(){ S.pushFriends=!S.pushFriends; renderSettings(); toast(S.pushFriends?'success':'info', S.pushFriends?'Друзья снова могут разбудить тебя':'Пуши от друзей выключены — их зовы останутся в Круге'); }
+
+/* ═══════════════════ LESSON ═══════════════════ */
+const QUESTIONS=[{q:'Как сказать «Мне, пожалуйста, капучино»?',o:['I want cappuccino.','A cappuccino, please.','Give cappuccino.'],a:1},{q:'«Можно счёт?»',o:['Can I have the bill, please?','Give me money.','Where is bill?'],a:0},{q:'«Без сахара, пожалуйста»',o:['Not sugar please.','No sugar, please.','Sugar no.'],a:1}];
+function startLesson(){ S.lesson={i:0, correct:0, wrong:0}; go('lessons'); }
+function renderLesson(){
+  const box=$('#lesson-body');
+  if(!S.lesson){ box.innerHTML=`<div class="card accent"><div class="eyebrow">Урок 12</div><h3>Как заказать кофе</h3><p>3 задания · ~2 минуты · +${REW.lessonXp} XP · +${REW.lessonStars} ★ · +1 огонёк</p><button class="key mt12" onclick="startLesson()">${svg('i-play')}${S.lessonDone?'Пройти ещё раз':'Пройти урок'}</button></div>${S.lessonDone?`<div class="card tone"><h3>Сегодня уже пройдено</h3><p>Повтор даст XP и звёзды за качество, но огонёк — только раз в день.</p></div>`:''}`; return; }
+  const L=S.lesson; if(L.i>=QUESTIONS.length){ box.innerHTML=''; return; }
+  const q=QUESTIONS[L.i];
+  box.innerHTML=`<div class="lesson-top"><button class="iconbtn" onclick="S.lesson=null;render()">${svg('i-back')}</button><div class="prog"><i style="width:${L.i/QUESTIONS.length*100}%"></i></div><span class="tag gold">${svg('i-star')}${L.correct*3}</span></div>
+    <div class="lesson-q">${q.q}</div><div class="opts">${q.o.map((o,k)=>`<button class="opt" onclick="answer(${k},this)">${o}</button>`).join('')}</div>`;
+}
+function answer(k,el){
+  const L=S.lesson, q=QUESTIONS[L.i];
+  if(k===q.a){ el.classList.add('good'); L.correct++; setTimeout(()=>{ L.i++; if(L.i>=QUESTIONS.length) finishLesson(); else renderLesson(); }, 520); }
+  else { el.classList.add('bad'); L.wrong++; setTimeout(()=>el.classList.remove('bad'),400); }
+}
+function finishLesson(){
+  const first=!S.lessonDone; S.lesson=null; S.lessonDone=true; if(first){ S.embers=Math.min(3,S.embers+1); }
+  const stars=first?REW.lessonStars:Math.max(1,REW.lessonStars-4);
+  const before=S.todayXp; grant({xp:REW.lessonXp, stars});
+  const gained=S.todayXp-before;
+  const extra=[]; if(first) extra.push({k:'gold',t:'+1 огонёк'});
+  const nudgedBy=S.nudgeIn; const nudgeBonus=nudgedBy&&first;
+  celebrate({icon:'i-checkc', tone:'', title:'Урок пройден', sub:first?`Твой урок зажёг огонь у ${S.friends.length} друзей`:'Повтор засчитан', rewards:[{k:'xp',t:'+'+fmt(gained)+' XP'},{k:'star',t:'+'+stars+' ★'},...extra], cta:'Отлично', onClaim:()=>{
+    if(nudgeBonus){ const f=F(nudgedBy); S.nudgeIn=null; grant({xp:REW.nudgeThem}); toast('reward',`Ты откликнулся на зов ${f.name}: +${REW.nudgeThem} XP тебе, +${REW.nudgeMe} XP — ${f.name}`); }
+    // chains: today's link
+    Object.entries(S.chains).forEach(([id,c])=>{ const f=F(id); if(f.todayDone && !c.countedToday){ c.countedToday=true; } });
+    // pact my done
+    // planks in: check
+    Object.entries(S.plankIn).forEach(([fid,p])=>{ if(p.status==='open' && S.todayXp>p.bar){ toast('success',`Планка ${F(fid).name} взята — забери награду в Круге`); } });
+    // quest progress
+    Object.values(S.quests).forEach(q=>{ if(q.status==='active') q.mine+=gained; });
+    // referral mentor bonus etc.
+    afterAnyChange(); go('home');
+  }});
+}
+function afterAnyChange(){ render(); }
+
+/* ═══════════════════ MECHANICS ═══════════════════ */
+function claimFire(){
+  const tier=fireTier(fireCount()); if(!tier||!S.lessonDone) return;
+  S.fireClaimed=tier;
+  if(tier===3){ grant({stars:2}); }
+  S.xpMult = tier>=2?2:1.5; S.multUntil = true;
+  celebrate({icon:'i-flame', tone:'flame', title: tier===3?'Огонь полыхает':tier===2?'Огонь горит сильно':'Огонь горит', sub:`${fireCount()} друзей занимались сегодня — это их вклад в твой день`, rewards:[{k:'xp',t:`×${S.xpMult} XP на ${tier>=2?'60':'30'} мин`},...(tier===3?[{k:'star',t:'+2 ★'}]:[])], cta:'Забрать', onClaim:()=>{ toast('reward',`Множитель ×${S.xpMult} активен — следующие уроки дороже`); render(); }});
+}
+function nudge(fid, inQuest=false){
+  const f=F(fid); if(S.nudgedOut[fid]) return;
+  if(!inQuest && !useEmber()) return;
+  S.nudgedOut[fid]=true; render(); // optimistic
+  toast('success',`Позвал ${f.name} — пуш ушёл от твоего имени${f.silent>=3?'. Вернётся — тебе +1 ★':''}`);
+  push('Отправлено · '+f.name, `Ты: «5 минут — и цепь цела». Ответ придёт в Круг`, null);
+  // simulated response 5–7 s later
+  const wasSilent=f.silent>=3;
+  setTimeout(()=>{ if(!S.nudgedOut[fid]) return; friendDoesLesson(fid, {viaNudge:true, wasSilent}); }, 5200+Math.random()*1800);
+}
+function friendDoesLesson(fid, {viaNudge=false, wasSilent=false, silentToast=false}={}){
+  const f=F(fid); if(f.todayDone) return; f.todayDone=true; f.silent=0; f.weeklyXp+=140;
+  S.feed.unshift(ev(fid,'lesson',g(f,'прошёл','прошла')+' урок только что',{cta:S.lessonDone?null:'Догнать'}));
+  Object.values(S.quests).forEach(q=>{ if(q.fid===fid&&q.status==='active') q.theirs+=140; });
+  const wasHelp = f.streak>=7 && S.phase>=2 && S.help[fid];
+  if(viaNudge){ const bonus = wasSilent?{xp:REW.nudgeMe, stars:REW.nudgeSilentStar}:{xp:REW.nudgeMe}; grant(bonus); toast('reward',`${f.name} ${g(f,'откликнулся и прошёл','откликнулась и прошла')} урок — тебе +${REW.nudgeMe} XP${wasSilent?' и +1 ★ за возвращение':''}`); push(f.name,'Спасибо, что позвал! Урок пройден 🙌',()=>{go('friends');}); if(f.streak>=7&&S.phase>=2){ grant({xp:REW.rescue}); S.thanksPending.push(fid); toast('reward',`${f.name}: цепь спасена — +${REW.rescue} XP`,'Спасатель'); } }
+  else if(!silentToast){ push(f.name,g(f,'прошёл','прошла')+' урок — твой огонь +1',()=>go('home')); }
+  const fc=fireCount(); if(fireTier(fc) && fireTier(fc)>S.fireClaimed && S.lessonDone) toast('reward',`Огонь ${fc}/${S.friends.length} — множитель доступен на Главной`);
+  // chain today
+  render();
+}
+function openShield(fid){ const f=F(fid);
+  openSheet(`<h2>Накрыть щитом · ${f.name}</h2><p>Цепь ${f.streak} дн. переживёт сегодняшний пропуск. Ты тратишь ${REW.shieldCost} ★, ${f.name} получит щит сразу и увидит, кто ${g(f,'его','её')} выручил.</p>
+    <div class="pair">${me('lg')}<span class="lnk"></span><span class="hero" style="width:56px;height:56px;margin:0">${svg('i-shield').replace('<svg','<svg style="width:28px;height:28px"')}</span><span class="lnk"></span>${avatar(f,'lg')}</div>
+    <button class="key" onclick="giveShield('${fid}')">${svg('i-shield')}Накрыть щитом · ${REW.shieldCost} ★</button><button class="ghost mt8" onclick="closeSheet()">Позже</button>`); }
+function giveShield(fid){ const f=F(fid); if(!spendStars(REW.shieldCost)){ toast('error',`Не хватает звёзд — нужно ${REW.shieldCost} ★`); return; }
+  S.shields[fid]=true; closeSheet(); render(); toast('success',`Щит на цепи ${f.name} — до полуночи ${g(f,'ему','ей')} ничего не грозит`);
+  setTimeout(()=>{ push(f.name,'Спасибо за щит! Завтра точно приду 💚',null); S.thanksPending.push(fid); render(); }, 3500); }
+function sayThanks(fid){ S.thanksPending=S.thanksPending.filter(x=>x!==fid); grant({xp:REW.thanks}); toast('reward',`+${REW.thanks} XP — ${F(fid).name} ${g(F(fid),'сказал','сказала')} спасибо`); render(); }
+
+function openFriend(fid){ const f=F(fid); const chain=S.chains[fid], pact=S.pacts[fid], quest=S.quests[fid], plank=S.plankOut[fid];
+  openSheet(`<div class="row">${avatar(f,'xl')}<div class="grow"><h2 style="margin:0">${f.league?`<span class="crown">${svg('i-crown')}</span> `:''}${f.name}</h2><div class="muted" style="font-size:13px">Lv ${f.level} · цепь ${f.streak} · +${fmt(f.weeklyXp)} XP за неделю</div><div class="chiprow mt8">${f.todayDone?'<span class="tag ok">'+g(f,'занимался','занималась')+' сегодня</span>':'<span class="tag">ещё не '+g(f,'занимался','занималась')+'</span>'}${f.mentee?'<span class="tag gold">подопечная</span>':''}</div></div></div>
+    <ul class="list-plain mt12">
+      <li>${svg('i-bell')}<span class="grow"><b>Разбудить</b> — 1 огонёк, ответ уроком платит обоим</span><button class="ghost sm" onclick="closeSheet();nudge('${fid}')" ${f.todayDone||S.nudgedOut[fid]?'disabled':''}>${S.nudgedOut[fid]?'Позвал ✓':f.todayDone?g(f,'уже занимался','уже занималась'):'Позвать'}</button></li>
+      <li>${svg('i-bar')}<span class="grow"><b>Планка</b> — твой результат дня как вызов до его полуночи</span><button class="ghost sm" onclick="openPlank('${fid}')" ${!S.lessonDone||plank?'disabled':''}>${plank?'Стоит':S.lessonDone?'Поставить':'сначала урок'}</button></li>
+      <li>${svg('i-chain')}<span class="grow"><b>Связка</b> — общая цепь: день идёт, когда занимались оба</span><button class="ghost sm" onclick="closeSheet();proposeChain('${fid}')" ${chain?'disabled':''}>${chain?chain.days+' дн.':'Предложить'}</button></li>
+      <li>${svg('i-hands')}<span class="grow"><b>Уговор</b> — 7 дней подряд оба, ставка ${REW.pactStake} ★</span><button class="ghost sm" onclick="openPact('${fid}')" ${pact?'disabled':''}>${pact?(pact.status==='pending'?'ждём':'идёт'):'Предложить'}</button></li>
+      <li>${svg('i-chest')}<span class="grow"><b>Пара-задание</b> — ${fmt(REW.questTarget)} XP каждому за неделю → сундук</span><button class="ghost sm" onclick="startQuest('${fid}')" ${quest?'disabled':''}>${quest?'идёт':'Начать'}</button></li>
+      <li>${svg('i-shield')}<span class="grow"><b>Щит цепи</b> — ${REW.shieldCost} ★, спасает её сегодняшний день</span><button class="ghost sm" onclick="closeSheet();openShield('${fid}')" ${f.todayDone||S.shields[fid]?'disabled':''}>${S.shields[fid]?'стоит':'Накрыть'}</button></li>
+    </ul>${f.mentee?`<div class="card tone mt12"><div class="row"><span class="tag gold">${svg('i-mentor')}Наставник</span></div><h3 class="mt8">${f.name} пришла по твоему коду</h3><p>День ${f.menteeDay} из 7. Дойдёт до 3-го дня — тебе +${REW.mentor3} XP, до 7-го — +${REW.mentor7star} ★. Первые 2 недели один зов в день — бесплатно.</p></div>`:''}`); }
+
+function openPlank(fid){ const f=F(fid);
+  openSheet(`<h2>Поставить планку · ${f.name}</h2><p>Твой день — <b style="color:var(--text)">${S.todayXp} XP</b>. Планка висит у ${f.name} на Главной до полуночи. Возьмёт — ей +${REW.plankTakenThem} XP, тебе +${REW.plankTakenMe}. Не возьмёт — тебе +${REW.plankHeld} XP, ей ничего.</p>
+    <div class="row mt12" style="justify-content:center;gap:16px">${me('lg')}<span class="bigno" style="color:var(--accent)">${S.todayXp}</span><span class="tag acc">${svg('i-bar')}XP</span>${avatar(f,'lg')}</div>
+    <button class="key mt16" onclick="setPlank('${fid}')">${svg('i-bar')}Поставить · 1 огонёк</button><button class="ghost mt8" onclick="closeSheet()">Позже</button>`); }
+function setPlank(fid){ if(!useEmber()) return; const f=F(fid); S.plankOut[fid]={bar:S.todayXp,status:'open'}; closeSheet(); render();
+  toast('success',`Планка ${S.todayXp} XP поставлена — ${f.name} увидит её на Главной`); push('Отправлено · '+f.name,`Ты: «${S.todayXp} XP сегодня. Побьёшь?»`,null);
+  setTimeout(()=>{ const p=S.plankOut[fid]; if(!p||p.status!=='open') return; const took=Math.random()<0.6; p.status=took?'taken':'held';
+    if(took){ f.todayDone=true; grant({xp:REW.plankTakenMe}); S.feed.unshift(ev(fid,'plank_taken',`${g(f,'взял','взяла')} твою планку — ${p.bar+40} XP`)); push(f.name,`${g(f,'взял','взяла')} планку: ${p.bar+40} XP 💪 Тебе +${REW.plankTakenMe} XP`,()=>go('friends')); toast('reward',`${f.name} ${g(f,'взял','взяла')} планку — тебе +${REW.plankTakenMe} XP`); }
+    else { grant({xp:REW.plankHeld}); toast('reward',`Планка устояла — +${REW.plankHeld} XP`); }
+    render(); }, 7000); }
+function takePlank(fid){ const p=S.plankIn[fid]; if(!p||S.todayXp<=p.bar) return; p.status='taken'; grant({xp:REW.plankTakenThem}); const f=F(fid);
+  celebrate({icon:'i-bar', tone:'', title:'Планка взята', sub:`${f.name}: ${p.bar} XP · ты: ${S.todayXp} XP`, rewards:[{k:'xp',t:'+'+REW.plankTakenThem+' XP'},{k:'gold',t:'+'+REW.plankTakenMe+' XP — '+f.name}], cta:'Класс', onClaim:()=>{ S.feed.unshift(ev(fid,'plank_mine',`планка ${p.bar} XP взята тобой`)); render(); }}); }
+function declinePlank(fid){ S.plankIn[fid].status='declined'; render(); toast('info','Планка пропущена — без штрафа'); }
+
+function proposeChain(fid){ const f=F(fid); if(Object.keys(S.chains).length>=3){ toast('error','Уже 3 связки — это максимум'); return; }
+  openModal(`<div class="glass"></div><div class="hero"><span class="bloom"></span>${svg('i-chain')}</div><h2>Связка с ${f.name}</h2><p>Общая цепь: день идёт, когда урок прошли оба. Вехи 3 · 7 · 30 дней — опыт, звёзды и рамка «Звено».</p>
+    <div class="pair">${me('lg')}<span class="lnk off"></span>${avatar(f,'lg')}</div><button class="key" onclick="sendChain('${fid}')">${svg('i-chain')}Предложить</button><button class="ghost mt8" onclick="closeModal()">Позже</button>`); }
+function sendChain(fid){ const f=F(fid); closeModal(); toast('success',`Предложение ушло ${f.name}`); push('Отправлено · '+f.name,'Ты: «Давай держать связку?»',null);
+  setTimeout(()=>{ S.chains[fid]={days:0,since:S.day}; push(f.name,g(f,'Согласен','Согласна')+'! Держим связку 🔗',()=>{go('friends');setKrugTab(1);}); toast('success',`${f.name} ${g(f,'принял','приняла')} связку — сегодня первый день`); render(); }, 3200); }
+
+function openPact(fid){ const f=F(fid); let stake=REW.pactStake;
+  openSheet(`<h2>Уговор с ${f.name}</h2><p>7 дней подряд оба проходим урок. Ставка звёздами с каждого. Оба сдержали — ставка назад + ${REW.pactWinStar} ★ и ${fmt(REW.pactWinXp)} XP. Один сорвался — сдержавший забирает свою ставку и +3 ★.</p>
+    <div class="stake" id="stake">${[3,5,10].map(v=>`<button class="${v===3?'on':''}" onclick="pickStake(${v},this)">${v} ★</button>`).join('')}</div>
+    <div class="day-strip">${[...Array(7)].map((_,i)=>`<i class="${i===0?'now':''}">${i+1}</i>`).join('')}</div>
+    <button class="key mt16" id="pact-btn" onclick="sendPact('${fid}')">${svg('i-hands')}Предложить · <span id="stake-v">3</span> ★</button><button class="ghost mt8" onclick="closeSheet()">Позже</button>`); }
+let pickedStake=3;
+function pickStake(v,el){ pickedStake=v; document.querySelectorAll('#stake button').forEach(b=>b.classList.toggle('on',b===el)); $('#stake-v').textContent=v; }
+function sendPact(fid){ const f=F(fid); if(!spendStars(pickedStake)){ toast('error',`Не хватает звёзд для ставки ${pickedStake} ★`); return; } S.pacts[fid]={fid,stake:pickedStake,status:'pending',from:'me',days:[]}; closeSheet(); render(); toast('success',`Уговор предложен — ${pickedStake} ★ отложены`);
+  setTimeout(()=>{ const p=S.pacts[fid]; if(!p||p.status!=='pending') return; p.status='active'; push(f.name,`Уговор принят: 7 дней вместе, ставка ${p.stake} ★ ✋`,()=>go('friends')); toast('success',`${f.name} ${g(f,'принял','приняла')} уговор — день 1 начался`); render(); }, 3400); }
+function acceptPact(fid){ const p=S.pacts[fid]; if(!spendStars(p.stake)){ toast('error',`Не хватает звёзд для ставки ${p.stake} ★`); return; } p.status='active'; render(); toast('success','Уговор принят — день 1 из 7'); }
+function declinePact(fid){ delete S.pacts[fid]; render(); toast('info','Уговор отклонён'); }
+
+function startQuest(fid){ const f=F(fid); closeSheet(); S.quests[fid]={fid,mine:S.todayXp,theirs:f.todayDone?140:0,status:'active'};
+  openModal(`<div class="glass"></div><div class="hero"><span class="bloom"></span>${svg('i-chest')}</div><h2>Пара-задание начато</h2><p>Вы с ${f.name}: по ${fmt(REW.questTarget)} XP до воскресенья. Внутри задания «подтолкнуть» друга можно раз в день без огонька.</p><div class="pair">${me('lg')}<span class="lnk"></span>${avatar(f,'lg')}</div><button class="key" onclick="closeModal()">Поехали</button>`); render(); }
+function claimQuest(fid){ const f=F(fid); S.quests[fid].status='done'; grant({xp:REW.questXp, stars:REW.questStar});
+  celebrate({icon:'i-chest', tone:'gold', title:'Сундук пары открыт', sub:`Вы с ${f.name} сделали это вместе`, rewards:[{k:'xp',t:'+'+REW.questXp+' XP'},{k:'star',t:'+'+REW.questStar+' ★'},{k:'gold',t:'фрагмент рамки «Круг» 1/6'}], cta:'Забрать', onClaim:()=>render()}); }
+
+function react(eid, r, el){ const e=S.feed.find(x=>x.id===eid); const f=F(e.fid);
+  if(e.react===r){ e.react=null; render(); return; }
+  const first=!e.react; e.react=r; el.classList.add('pop'); if(first && S.reactsToday<5){ S.reactsToday++; grant({xp:REW.reactMe}); toast('reward',`Отклик — тебе +${REW.reactMe} XP, ${f.name} +${REW.reactThem} XP (${S.reactsToday}/5 сегодня)`); } else if(first){ toast('info',`Отклик отправлен — дневные +XP за отклики закончились`); }
+  setTimeout(render,420); }
+function feedCta(eid){ const e=S.feed.find(x=>x.id===eid); if(e.cta==='Догнать'){ startLesson(); } else { e.cta=null; grant({xp:REW.reactMe}); toast('reward',`Поздравил ${F(e.fid).name} — +${REW.reactMe} XP`); render(); } }
+
+/* info sheets */
+function openEmberInfo(){ openSheet(`<h2>Огоньки</h2><p>Топливо для действий над друзьями. +1 за пройденный урок, в запасе не больше 3. Не покупаются и не дарятся: хочешь играть в друзей — занимайся сам.</p>
+  <ul class="list-plain"><li>${svg('i-bell')}<span class="grow"><b>Разбудить</b> — 1 огонёк</span></li><li>${svg('i-bar')}<span class="grow"><b>Планка</b> — 1 огонёк</span></li><li>${svg('i-shield')}<span class="grow"><b>Позвать в «Нужна помощь»</b> — 1 огонёк (щит — звёзды)</span></li><li>${svg('i-hand')}<span class="grow"><b>Отклик, связка, уговор, пара-задание</b> — бесплатно</span></li></ul>
+  <p class="hint-line">Сейчас: ${S.embers} из 3.</p><button class="key mt12" onclick="closeSheet()">Понятно</button>`); }
+function openHow(){ openSheet(`<h2>Как устроен Круг</h2><p>Действие над другом оставляет у него след на 24 часа. Он отвечает — выигрывают оба. Никаких штрафов, только упущенная выгода.</p>
+  <ul class="list-plain"><li>${svg('i-flame')}<span class="grow"><b>Общий огонь</b> — каждый друг с уроком сегодня греет твой множитель</span></li><li>${svg('i-bell')}<span class="grow"><b>Разбудить</b> — пуш от твоего имени, ответ уроком платит обоим</span></li><li>${svg('i-chain')}<span class="grow"><b>Связка</b> — общая цепь с вехами</span></li><li>${svg('i-shield')}<span class="grow"><b>Подстраховать</b> — вечером видно, чья цепь горит</span></li><li>${svg('i-bar')}<span class="grow"><b>Планка</b> — твой день как вызов</span></li><li>${svg('i-hands')}<span class="grow"><b>Уговор</b> — 7 дней вдвоём на ставку</span></li><li>${svg('i-chest')}<span class="grow"><b>Пара-задание</b> — недельная цель на двоих</span></li><li>${svg('i-hand')}<span class="grow"><b>Отклик</b> — реакция, которая даёт XP обоим</span></li><li>${svg('i-mentor')}<span class="grow"><b>Наставник</b> — приглашённый друг растёт, тебе платят за его вехи</span></li></ul>
+  <button class="key mt12" onclick="closeSheet()">Понятно</button>`); }
+
+/* ═══════════════════ SIMULATION ═══════════════════ */
+function openSim(){ openSheet(`<h2>Симуляция</h2><p>День ${S.day} · ${PHASES[S.phase][1]} · пройден урок: ${S.lessonDone?'да':'нет'} · огоньки ${S.embers}/3</p>
+  <div class="simgrid">
+    <button class="acc" onclick="closeSheet();nextPhase()">${svg('i-clock')} Дальше по дню →</button><button class="acc" onclick="closeSheet();nextDay()">Следующий день →</button>
+    <button onclick="closeSheet();simFriendLesson('m')">Марина прошла урок</button><button onclick="closeSheet();simFriendLesson('o')">Оля (подопечная) прошла</button>
+    <button onclick="closeSheet();simAllLessons()">Ещё 3 друга прошли</button><button onclick="closeSheet();simPlankIn()">Сергей ставит мне планку</button>
+    <button onclick="closeSheet();simNudgeIn()">Марина зовёт меня</button><button onclick="closeSheet();simPactIn()">Игорь предлагает уговор</button>
+    <button onclick="closeSheet();simThanks()">Друг говорит спасибо</button><button onclick="closeSheet();simNetError()">Ошибка сети на действии</button>
+    <button class="wide" onclick="closeSheet();simPactMiss()">Партнёр по уговору пропустил день (сорвался)</button>
+  </div>`); }
+function nextPhase(){ if(S.phase<3){ S.phase++; if(S.phase===2){ S.friends.forEach(f=>{ if(!f.todayDone&&f.streak>=7) S.help[f.id]=true; }); const h=helpList(); if(h.length) toast('warning',`Вечер: у ${h.map(f=>f.name).join(', ')} цепь под угрозой — загляни в Круг`); if(!S.lessonDone) push('Марина', Object.keys(S.chains).length?'Я уже прошла — твоя очередь, связка ждёт 🔗':'Урок сегодня будешь? У меня огонь 3/5',()=>go('home')); } render(); } else nextDay(); }
+function nextDay(){
+  // resolve chains
+  Object.entries(S.chains).forEach(([id,c])=>{ const f=F(id); if(S.lessonDone&&f.todayDone){ c.days++; c.countedToday=false; if(c.days===3){ grant({xp:REW.chain3}); setTimeout(()=>celebrate({icon:'i-chain',tone:'',title:'Связка · 3 дня',sub:`Вы с ${f.name} держите цепь вместе`,rewards:[{k:'xp',t:'+'+REW.chain3+' XP обоим'}],cta:'Дальше'}),300); }
+      if(c.days===7){ grant({xp:REW.chain7xp,stars:REW.chain7star}); setTimeout(()=>celebrate({icon:'i-crown',tone:'gold',title:'Связка · 7 дней',sub:`Рамка «Звено» — у обоих`,rewards:[{k:'xp',t:'+'+REW.chain7xp+' XP'},{k:'star',t:'+'+REW.chain7star+' ★'},{k:'gold',t:'рамка «Звено»'}],cta:'Забрать'}),300); } }
+    else if(!S.shields[id]&&!(S.lessonDone&&f.todayDone)){ if(c.days>0){ toast('warning',`Связка с ${f.name} прервалась на ${c.days} дн. — начнём заново`); } c.days=0; } });
+  // pacts
+  Object.entries(S.pacts).forEach(([id,p])=>{ if(p.status!=='active') return; const f=F(id); const both=S.lessonDone&&f.todayDone; p.days.push({both, miss:!S.lessonDone||!f.todayDone, me:S.lessonDone, them:f.todayDone});
+    if(!both){ p.status='fail'; if(S.lessonDone){ grant({stars:p.stake+3}); toast('reward',`${f.name} ${g(f,'сорвал','сорвала')} уговор — тебе ставка назад и +3 ★`); } else { toast('warning',`Ты сорвал уговор с ${f.name} — ставка ${p.stake} ★ ушла`); } }
+    else if(p.days.length>=7){ p.status='done'; grant({stars:p.stake+REW.pactWinStar, xp:REW.pactWinXp}); setTimeout(()=>celebrate({icon:'i-hands',tone:'gold',title:'Уговор сдержан',sub:`7 дней подряд вдвоём с ${f.name}`,rewards:[{k:'star',t:'+'+(p.stake+REW.pactWinStar)+' ★'},{k:'xp',t:'+'+fmt(REW.pactWinXp)+' XP'}],cta:'Забрать'}),300); } });
+  // planks expire
+  Object.values(S.plankIn).forEach(p=>{ if(p.status==='open') p.status='expired'; });
+  Object.entries(S.plankOut).forEach(([id,p])=>{ if(p.status==='open'){ p.status='held'; grant({xp:REW.plankHeld}); toast('reward',`Планка для ${F(id).name} устояла — +${REW.plankHeld} XP`); } });
+  // mentee
+  S.friends.forEach(f=>{ if(f.mentee&&f.todayDone){ f.menteeDay++; if(f.menteeDay===3){ grant({xp:REW.mentor3}); toast('reward',`Оля дошла до 3-го дня — тебе +${REW.mentor3} XP`,'Наставник'); } if(f.menteeDay===7){ grant({stars:REW.mentor7star}); toast('reward',`Оля — 7 дней! Тебе +${REW.mentor7star} ★`,'Наставник'); } } if(f.mentee&&!f.todayDone) f.menteeDay=Math.max(1,f.menteeDay); });
+  // reset day
+  S.day++; S.phase=0; S.lessonDone=false; S.todayXp=0; S.xpMult=1; S.multUntil=null; S.fireClaimed=0; S.reactsToday=0; S.nudgedOut={}; S.shields={}; S.help={}; S.plankOut={}; S.nudgeIn=null; S.thanksPending=[];
+  S.friends.forEach(f=>{ if(!f.todayDone) f.silent++; else f.streak++; f.todayDone=false; }); F('m').todayDone=true; F('s').todayDone=true;
+  Object.values(S.plankIn).forEach(p=>{}); S.plankIn={};
+  S.feed.forEach(e=>{ if(e.ts==='только что') e.ts='вчера'; });
+  render(); toast('info',`День ${S.day} · утро. Марина и Сергей уже позанимались`);
+}
+function simFriendLesson(id){ friendDoesLesson(id); }
+function simAllLessons(){ let n=0; S.friends.forEach(f=>{ if(!f.todayDone&&n<3){ n++; setTimeout(()=>friendDoesLesson(f.id,{silentToast:n>1}), n*600); } }); }
+function simPlankIn(){ S.plankIn['s']={bar:S.todayXp+180,status:'open'}; push('Сергей',`${S.todayXp+180} XP сегодня. Побьёшь?`,()=>go('home')); render(); }
+function simNudgeIn(){ if(S.lessonDone){ toast('info','Ты уже занимался — Марина не будет звать'); return; } S.nudgeIn='m'; push('Марина','зовёт: 5 минут — и цепь цела',()=>go('home')); render(); }
+function simPactIn(){ if(S.pacts['i']){ toast('info','С Игорем уже есть уговор'); return; } S.pacts['i']={fid:'i',stake:3,status:'pending',from:'them',days:[]}; push('Игорь','предлагает уговор: 7 дней вместе, ставка 3 ★',()=>go('friends')); render(); }
+function simThanks(){ if(!S.thanksPending.includes('d')) S.thanksPending.push('d'); push('Дмитрий','Спасибо, что вытащил! 🙏',()=>go('friends')); render(); }
+function simNetError(){ toast('error','Не удалось позвать — нет сети. Огонёк вернули'); S.embers=Math.min(3,S.embers+1); renderWallet(); }
+function simPactMiss(){ const id=Object.keys(S.pacts).find(k=>S.pacts[k].status==='active'); if(!id){ toast('info','Активного уговора нет'); return; } const f=F(id); f.todayDone=false; S.lessonDone=true; nextDay(); }
+
+/* ═══════════════════ BOOT ═══════════════════ */
+fresh(); render(); go('home'); setKrugTab(0);
+</script>

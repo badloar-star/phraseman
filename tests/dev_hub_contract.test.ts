@@ -50,10 +50,14 @@ describe('DEV center bottom sheet', () => {
     const sheet = fs.existsSync(sheetPath) ? read('components/dev/DevHubSheet.tsx') : '';
 
     expect(registry).toContain('DEV_TOOL_SECTIONS');
+    expect(registry).toContain("id: 'onboarding-tools'");
+    expect(registry).toContain("id: 'motion-showcase'");
     expect(registry).toContain("id: 'full-modes'");
     expect(registry).toContain("id: 'level-previews'");
     expect(registry).toContain("id: 'league'");
     expect(registry).toContain("id: 'subscription'");
+    expect(registry).toContain("action: 'run-onboarding'");
+    expect(registry).toContain("action: 'open-motion-showcase'");
     expect(registry).toContain("action: 'preview-level-standard'");
     expect(registry).toContain("action: 'open-max-voice'");
     expect(registry).toContain("action: 'preview-level-milestone'");
@@ -73,20 +77,55 @@ describe('DEV center bottom sheet', () => {
     jest.resetModules();
     const { getOrderedDevToolSections } = require('../components/dev/devToolRegistry');
     const ordered = getOrderedDevToolSections();
-    expect(ordered.map((section: { id: string }) => section.id)).toEqual(['full-modes', 'level-previews', 'league', 'subscription']);
-    expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual(['max-voice']);
-    expect(ordered[1].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    // «Онбординг» обязан быть ПЕРВЫМ: владелец не нашёл кнопку, пока она была внизу.
+    expect(ordered.map((section: { id: string }) => section.id)).toEqual([
+      'onboarding-tools',
+      'motion-showcase',
+      'full-modes',
+      'level-previews',
+      'league',
+      'subscription',
+    ]);
+    expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual(['onboarding-run']);
+    expect(ordered[1].tools.map((tool: { id: string }) => tool.id)).toEqual(['motion-showcase']);
+    expect(ordered[2].tools.map((tool: { id: string }) => tool.id)).toEqual(['max-voice']);
+    expect(ordered[3].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'level-standard',
       'level-milestone',
       'lesson-results',
       'spin-reward',
     ]);
-    expect(ordered[2].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(ordered[4].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'league-promoted',
       'league-demoted',
       'league-stay',
       'league-rank-mismatch',
     ]);
+  });
+
+  test('restarts the real onboarding overlay without touching profile or progress', () => {
+    const registry = read('components/dev/devToolRegistry.ts');
+    const sheet = read('components/dev/DevHubSheet.tsx');
+    const events = read('app/events.ts');
+    const layout = read('app/_layout.tsx');
+
+    expect(registry).toContain("testID: 'dev-onboarding-run'");
+    expect(registry).toContain("action: 'run-onboarding'");
+
+    // Сбрасываются ТОЛЬКО ключи прохождения — ни профиля, ни прогресса, ни согласий.
+    expect(sheet).toContain("case 'run-onboarding':");
+    expect(sheet).toContain('AsyncStorage.multiRemove([');
+    expect(sheet).toContain("'onboarding_done',");
+    expect(sheet).toContain("'onboarding_step',");
+    expect(sheet).toContain("'onboarding_flow_version_v1',");
+    expect(sheet).not.toMatch(/AsyncStorage\.clear\(|multiRemove\(\[[^\]]*user_name/);
+    // Эмит после закрытия native Modal, иначе DEV-шит остаётся поверх первого экрана.
+    expect(sheet).toContain("requestClose(false, () => emitAppEvent('dev_onboarding_restart'))");
+
+    expect(events).toContain('dev_onboarding_restart: undefined;');
+    expect(layout).toContain("onAppEvent('dev_onboarding_restart'");
+    expect(layout).toContain('onboardingDoneHandledRef.current = false;');
+    expect(layout).toContain('setOnboardingStartAtName(false);');
   });
 
   test('opens the complete MAX Voice flow after dismissing the native DEV sheet', () => {

@@ -125,6 +125,8 @@ export type AppEventMap = {
    */
   onboarding_completed: undefined;
   onboarding_paywall_completed: undefined;
+  /** DEV-центр: перезапустить боевой онбординг с первого экрана. */
+  dev_onboarding_restart: undefined;
   /** Первый пользовательский экран уже смонтирован: можно скрывать нативный splash без пустого промежутка. */
   app_first_content_ready: undefined;
   /**

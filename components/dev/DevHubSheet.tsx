@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -22,6 +23,7 @@ import {
   setDevLocalPlusOverride,
   type DevLocalPlusOverride,
 } from '../../app/dev_plus_controls';
+import { emitAppEvent } from '../../app/events';
 import { grantLocalDevSpin } from '../../app/local_level_spins';
 import { isMaxVoiceNativeAvailable } from '../../app/max_webrtc_module';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -341,8 +343,28 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     }
   }, [account, busy, reload]);
 
+  // «Пройти онбординг»: боевой оверлей с первого экрана. Сбрасываем ТОЛЬКО
+  // ключи прохождения (done/step/version) — профиль, прогресс и согласия не
+  // трогаются; завершение отработает обычным handleOnboardingDone.
+  //
+  // зачем: событие эмитим ИЗ onClosed, то есть после того как native Modal
+  // DEV-центра действительно снят. Иначе оверлей онбординга поднимается под
+  // ещё живым Modal — на iOS это даёт кадр, в котором виден DEV-шит поверх
+  // первого экрана (та же беда, что чинили в open-max-voice).
+  const runOnboardingPreview = useCallback(async () => {
+    await AsyncStorage.multiRemove([
+      'onboarding_done',
+      'onboarding_step',
+      'onboarding_flow_version_v1',
+    ]).catch(() => {});
+    requestClose(false, () => emitAppEvent('dev_onboarding_restart'));
+  }, [requestClose]);
+
   const handleTool = useCallback((action: DevToolAction) => {
     switch (action) {
+      case 'run-onboarding':
+        void runOnboardingPreview();
+        return;
       case 'open-motion-showcase':
         // Витрина движения — обычный маршрут. Закрываем native Modal до
         // смены route, иначе iOS оставит DEV-sheet поверх сцены.
@@ -390,7 +412,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'revoke-plus':
         void applyPlusOverride('removed');
     }
-  }, [applyPlusOverride, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview, requestClose, router]);
+  }, [applyPlusOverride, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview, requestClose, router, runOnboardingPreview]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const milestone = preview?.type === 'level-up' && preview.variant === 'milestone';

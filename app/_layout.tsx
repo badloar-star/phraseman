@@ -3004,6 +3004,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     return true;
   }, [lang]);
 
+  // DEV-центр: «Пройти онбординг» — боевой оверлей с первого экрана. Ключи
+  // прохождения сброшены в DevHubSheet до эмита; профиль и прогресс не трогаются.
+  // зачем: снимаем гард onboardingDoneHandledRef, иначе повторный запуск в той
+  // же сессии не вызовет handleOnboardingDone и оверлей не закроется по «Готово».
+  useEffect(() => {
+    const sub = onAppEvent('dev_onboarding_restart', () => {
+      onboardingDoneHandledRef.current = false;
+      setOnboardingPaywallActive(false);
+      setOnboardingStartAtName(false);
+      setShow(true);
+    });
+    return () => sub.remove();
+  }, []);
+
   // После закрытия онбординга и монтирования Stack — переходим на нужный экран
   useEffect(() => {
     const sub = onAppEvent('onboarding_paywall_completed', () => {

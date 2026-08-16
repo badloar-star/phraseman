@@ -1,4 +1,5 @@
 export type DevToolAction =
+  | 'run-onboarding'
   | 'open-max-voice'
   | 'open-motion-showcase'
   | 'preview-level-standard'
@@ -27,6 +28,7 @@ export type DevToolIcon =
   | 'trending-down-outline'
   | 'shield-checkmark-outline'
   | 'bug-outline'
+  | 'rocket-outline'
   | 'color-wand-outline';
 
 export type DevTool = Readonly<{
@@ -45,17 +47,39 @@ export type DevToolSection = Readonly<{
   id: string;
   order: number;
   title: string;
-  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline';
+  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline';
   testID: string;
   tools: readonly DevTool[];
 }>;
 
 export const DEV_TOOL_SECTIONS = [
+  // зачем 16.08.2026: владелец не нашёл кнопку запуска онбординга, когда она
+  // стояла внизу списка. Секция объявлена ПЕРВОЙ в массиве и с минимальным
+  // order — так её видно сразу, а локальные секции остаются ниже без правок.
+  {
+    id: 'onboarding-tools',
+    order: 1,
+    title: 'Онбординг',
+    icon: 'rocket-outline',
+    testID: 'dev-section-onboarding',
+    tools: [
+      {
+        id: 'onboarding-run',
+        order: 10,
+        title: 'Пройти онбординг',
+        detail: 'Боевой флоу с первого экрана: ключи прохождения сбрасываются, профиль и прогресс не трогаются.',
+        actionLabel: 'Запустить',
+        action: 'run-onboarding',
+        icon: 'rocket-outline',
+        testID: 'dev-onboarding-run',
+      },
+    ],
+  },
   // зачем 16.08.2026: старая Motion Lab (бутафорные сцены) удалена по решению
   // владельца; витрина открывает РЕАЛЬНЫЕ экраны/модалки/тосты по подразделам.
   {
     id: 'motion-showcase',
-    order: 1,
+    order: 2,
     title: 'Движение · все поверхности',
     icon: 'sparkles-outline',
     testID: 'dev-hub-section-motion-showcase',

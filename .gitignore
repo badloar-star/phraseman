@@ -337,3 +337,6 @@ functions/src/generated/support_repo_context.json
 
 # Сборка тестов Арены (tools/arena_tests/run.sh)
 .arena-test-build/
+
+# Временный бриф контент-конвейера (scripts/content_pipeline_brief.mjs)
+.content-brief.md

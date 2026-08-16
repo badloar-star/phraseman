@@ -734,7 +734,7 @@ function HighFiveButton({
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
       accessibilityState={{ selected: liked }}
-      style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
+      style={{ width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}
     >
       <Reanimated.View style={heartStyle}>
         <Ionicons name={liked ? 'heart' : 'heart-outline'} size={18} color={liked ? HIGH_FIVE_COLOR : mutedColor} />
@@ -778,9 +778,9 @@ function FriendRow({
         onPress={onPress}
         accessibilityRole="button"
         accessibilityLabel={triLang(lang as any, { ru: `Открыть профиль ${profile.name}`, uk: `Відкрити профіль ${profile.name}`, es: `Abrir perfil de ${profile.name}`, 'pt-BR': `Abrir perfil de ${profile.name}`, vi: `Mở hồ sơ ${profile.name}`, id: `Buka profil ${profile.name}`, tr: `${profile.name} profilini aç`, pl: `Otwórz profil ${profile.name}` })}
-        style={{ flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', gap: 12 }}
+        style={{ flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', gap: 10 }}
       >
-        <Text style={{ minWidth: 28, fontSize: f.body, fontWeight: '800', color: rankColor, textAlign: 'center' }}>
+        <Text style={{ minWidth: 24, fontSize: f.body, fontWeight: '800', color: rankColor, textAlign: 'center' }}>
           {rank}
         </Text>
         <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={FRIEND_ROW_AVATAR_SIZE} maskColor={chrome.mask} animateShimmer={false}>
@@ -801,7 +801,7 @@ function FriendRow({
           <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
         </View>
       </TouchableOpacity>
-      <View style={{ alignItems: 'flex-end', justifyContent: 'center', gap: 8, flexShrink: 0, marginLeft: 12 }}>
+      <View style={{ alignItems: 'flex-end', justifyContent: 'center', gap: 8, flexShrink: 0, marginLeft: 10 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
           {/* Живой пульс недели: видно, кто реально занимается прямо сейчас. */}
           {profile.weeklyXp > 0 && (
@@ -817,7 +817,7 @@ function FriendRow({
             </View>
           )}
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
           <HighFiveButton
             testID={`friend-high-five-${profile.uid}`}
             liked={highFived}

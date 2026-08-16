@@ -2717,9 +2717,16 @@ export default function LessonsTab({
                       : "attestation"
               }
               initialNumToRender={12}
-              windowSize={5}
+              windowSize={7}
               maxToRenderPerBatch={8}
-              removeClippedSubviews={true}
+              // зачем: раздел «Уроки» открывался ПУСТЫМ. Список живёт внутри
+              // BouncyWrap — Animated.View с постоянным translateY. При
+              // removeClippedSubviews RN меряет видимую область по родителю со
+              // сдвигом, считает все строки «за экраном» и вырезает их: шапка
+              // есть, уроков нет, и они появляются только когда скролл сдвинет
+              // окно. Это единственное место в проекте, где обрезка стояла
+              // безусловно (везде — false или только Android). Экономия здесь
+              // мнимая: 36 строк с фиксированной высотой держит windowSize.
               ListFooterComponent={
                 <>
                   <View

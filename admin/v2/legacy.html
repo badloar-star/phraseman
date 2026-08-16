@@ -34796,20 +34796,22 @@
   // клиент строит путь, фильтруя этот же каталог, поэтому список здесь = список там.
   const ONBOARDING_ENABLED_STEPS_KEY = 'onboarding_enabled_steps_v1';
   const ONBOARDING_MANDATORY_STEP = 'name';
+  // [id, подпись, что это за экран, выключен ли рубильником в коде]
+  // Четвёртый флаг — честность: клиент глушит блок языка независимо от галочки
+  // (SHOW_ONBOARDING_LANGUAGE_STEP = false в CleanOnboarding.tsx). Без пометки
+  // владелец включил бы экран и не понял, почему на устройстве ничего не изменилось.
   const ONBOARDING_STEP_CATALOG = [
-    ['welcome', 'Приветствие'],
-    ['source', 'Источник'],
-    ['language', 'Язык'],
-    ['level', 'Уровень'],
-    ['goal', 'Цель'],
-    ['minutes', 'Время занятий'],
-    ['aha', 'Демонстрация'],
-    ['notifications', 'Уведомления'],
-    ['plusBenefits', 'Преимущества Plus'],
-    ['startMode', 'Режим старта'],
-    ['planComparison', 'Сравнение планов'],
-    ['onboardingPaywall', 'Предложение подписки'],
-    ['name', 'Имя и согласия'],
+    ['welcome', 'Приветствие', 'Логотип, обещание и вход для тех, кто уже с нами. Здесь же строка про Условия.'],
+    ['privacy', 'Приватность и вход', 'Экран-сейф: «Твои данные — только твои», вход через Apple или Google, «Позже».'],
+    ['source', 'Источник', 'Откуда узнал о нас. Ответы попадают в раздел «Откуда узнали».'],
+    ['language', 'Язык', 'Выбор изучаемого языка.', 'lang'],
+    ['level', 'Уровень', 'Насколько хорошо уже говорит.', 'lang'],
+    ['promise', 'Обещание результата', 'График роста «с повторением / без» и два раскрывающихся факта.'],
+    ['notifications', 'Уведомления', 'Просьба разрешить напоминания, с макетом пуша.'],
+    ['trialReminder', 'Напоминание о пробном', 'Честный триал: «предупредим до конца» и «сейчас ничего не спишем».'],
+    ['onboardingPaywall', 'Предложение подписки', 'Цены: колонки FREE/PLUS, крестик слева, «···» с промокодом и кодом друга.'],
+    ['improve', 'Помоги улучшить', 'Зачем нужна анонимная статистика — перед экраном согласий.'],
+    ['name', 'Имя и согласия', 'Галочка статистики и вопрос про возраст. Имя создаётся автоматически.'],
   ];
   const ONBOARDING_STEP_LABELS = Object.fromEntries(ONBOARDING_STEP_CATALOG);
   let _onboardingScreensLoaded = false;
@@ -34850,16 +34852,34 @@
     const list = document.getElementById('onboarding-screens-list');
     if (!list) return;
     const on = new Set(enabled);
-    list.innerHTML = ONBOARDING_STEP_CATALOG.map(([id, label]) => {
+    let position = 0;
+    list.innerHTML = ONBOARDING_STEP_CATALOG.map(([id, label, hint, forced]) => {
       // зачем: экран «Имя и согласия» собирает возраст и юридические согласия —
       // без него сборка согласий ломается и это риск отказа в ревью сторов.
       // Поэтому он всегда включён и недоступен для выключения.
       const mandatory = id === ONBOARDING_MANDATORY_STEP;
       const checked = mandatory || on.has(id);
-      return `<label style="display:flex;align-items:center;gap:12px;padding:11px 14px;margin-bottom:6px;border-radius:10px;background:${checked ? 'rgba(79,70,229,0.14)' : '#12141c'};cursor:${mandatory ? 'not-allowed' : 'pointer'};opacity:${mandatory ? '.75' : '1'}">
-        <input type="checkbox" id="onb-step-${id}" ${checked ? 'checked' : ''} ${mandatory ? 'disabled' : ''} onchange="onboardingScreensDirty()" style="width:17px;height:17px;flex:none;accent-color:#6366f1">
-        <span style="flex:1;color:#e2e8f0;font-weight:600;font-size:14px">${escapeHtml(label)}</span>
-        ${mandatory ? '<span style="font-size:11px;color:#fbbf24;font-weight:700;letter-spacing:.4px">ОБЯЗАТЕЛЬНЫЙ</span>' : ''}
+      // Рубильник в коде сильнее галочки: показываем это прямо, а не делаем вид,
+      // что экран включится. Такие шаги не нумеруем — их в живом флоу нет.
+      const codeOff = forced === 'lang';
+      const live = checked && !codeOff;
+      if (live) position += 1;
+      const badge = codeOff
+        ? '<span style="font-size:10.5px;color:#f59e0b;font-weight:700;letter-spacing:.4px;white-space:nowrap">ВЫКЛЮЧЕН В КОДЕ</span>'
+        : mandatory
+          ? '<span style="font-size:10.5px;color:#fbbf24;font-weight:700;letter-spacing:.4px;white-space:nowrap">ОБЯЗАТЕЛЬНЫЙ</span>'
+          : '';
+      // Галочка у выключенного в коде экрана остаётся рабочей: конфиг можно
+      // подготовить заранее, к моменту появления вторых языков. «Нельзя» —
+      // только у обязательного шага.
+      return `<label style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;margin-bottom:6px;border-radius:10px;background:${live ? 'rgba(79,70,229,0.14)' : '#12141c'};cursor:${mandatory ? 'not-allowed' : 'pointer'};opacity:${mandatory || codeOff ? '.72' : '1'}">
+        <input type="checkbox" id="onb-step-${id}" ${checked ? 'checked' : ''} ${mandatory ? 'disabled' : ''} onchange="onboardingScreensDirty()" style="width:17px;height:17px;flex:none;margin-top:2px;accent-color:#6366f1">
+        <span style="flex:none;width:22px;margin-top:1px;color:${live ? '#a5b4fc' : '#4b5563'};font-weight:700;font-size:12px;font-variant-numeric:tabular-nums">${live ? position : '—'}</span>
+        <span style="flex:1;min-width:0">
+          <span style="display:block;color:#e2e8f0;font-weight:600;font-size:14px">${escapeHtml(label)}</span>
+          <span style="display:block;color:#7b8494;font-size:12px;line-height:1.45;margin-top:2px">${escapeHtml(hint || '')}</span>
+        </span>
+        ${badge}
       </label>`;
     }).join('');
   }

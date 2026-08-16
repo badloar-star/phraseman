@@ -261,8 +261,49 @@ export function parseSupportReviewEnvelope(raw: unknown): SupportReviewEnvelope 
   return Object.freeze({ approved: parsed.approved, correctedReply, reasons: Object.freeze(reasons) });
 }
 
-const FORBIDDEN_ASSERTIONS = /\b(?:we (?:have )?(?:checked|verified|fixed|refunded|restored|deleted)|access (?:is|has been) (?:open|restored)|refund (?:was|has been) issued|мы (?:проверили|исправили|вернули|удалили)|доступ (?:уже )?(?:открыт|восстановлен)|возврат (?:оформлен|выполнен))\b/iu;
+/**
+ * Ложные утверждения о выполненных действиях — самое опасное, что может
+ * написать поддержка: «мы вернули деньги», когда ничего не возвращали.
+ *
+ * зачем убраны \b вокруг всей группы (найдено тестом 2026-08-16): в
+ * JavaScript \b определяет границу слова только для латиницы. Из-за
+ * внешних \b вся русская половина запрета НЕ РАБОТАЛА — фраза «Мы
+ * проверили и вернули вам деньги.» свободно проходила проверку. Дефект
+ * существовал до текущей правки и молча отключал защиту для русских
+ * писем, то есть для большей части реальной переписки.
+ *
+ * Латинские варианты сохраняют свои границы через (?:^|\W) и \b внутри.
+ */
+const FORBIDDEN_ASSERTIONS = /(?:\b(?:we (?:have )?(?:checked|verified|fixed|refunded|restored|deleted)|access (?:is|has been) (?:open|restored)|refund (?:was|has been) issued)\b|мы (?:проверили|исправили|вернули|удалили)|доступ (?:уже )?(?:открыт|восстановлен)|возврат (?:оформлен|выполнен))/iu;
 const INTERNAL_LEAK = /(?:functions\/src|(?:app|components|constants)\/[\w./-]+\.tsx?|\.tsx?:\d+|sourceFingerprint|repository commit|OPENAI_API_KEY|GMAIL_SUPPORT_APP_PASSWORD|\b[a-f0-9]{40,64}\b)/iu;
+
+/**
+ * Утверждает ли ответ что-либо о продукте.
+ *
+ * зачем (владелец, 2026-08-16: «мне надо чтобы Джарвис по-людски отвечал»):
+ * измерено на проде — из 234 писем НОЛЬ настоящих ответов. Причина в том,
+ * что ответ отвергается без ссылки на исходный код. Но на «спасибо»,
+ * «планируете немецкий?» и «можно ли офлайн?» доказательства в коде
+ * отсутствуют ПО ПРИРОДЕ вопроса — прогон показал ровно ноль найденных
+ * фрагментов. Такие письма были обречены на заглушку навсегда.
+ *
+ * зачем через концепты, а не «короткий ответ = безопасный»: длина ничего
+ * не говорит о риске. Концепты — тот же механизм, которым система уже
+ * ищет доказательства, поэтому «ответ ни о чём из продукта» определяется
+ * тем же словарём, а не вторым, который разойдётся с первым.
+ *
+ * Осторожность намеренная: обещание, срок и утверждение о работе функции
+ * запрещены здесь всегда — именно ими модель врёт убедительнее всего.
+ */
+const PRODUCT_PROMISE = /(?:\b(?:will be added|coming soon|we (?:will|plan to)|in the next (?:update|release))\b|(?:добав(?:им|ится|лено)|скоро|планиру(?:ем|ется)|в следующ(?:ем|ей) (?:обновлени|верси)|уже работает|исправ(?:им|лено))|(?:pr[oó]ximamente|lo a[ñn]adiremos))/iu;
+
+export function replyMakesNoProductClaim(reply: unknown): boolean {
+  const text = String(reply ?? '').trim();
+  if (!text) return false;
+  // Обещания и сроки — всегда факт о продукте, даже без концептов.
+  if (PRODUCT_PROMISE.test(text)) return false;
+  return extractSupportConcepts(text).length === 0;
+}
 
 export function selectFinalAutoReply(input: {
   readonly issue: string;
@@ -275,7 +316,19 @@ export function selectFinalAutoReply(input: {
   const holding = buildSafeHoldingReply(input.issue, input.risk);
   if (!input.context.trustworthy) return Object.freeze({ reply: holding, grounded: false, reason: `untrusted_snapshot_${input.context.trustReason}` });
   if (input.risk !== 'safe') return Object.freeze({ reply: holding, grounded: false, reason: `guarded_${input.risk}` });
-  if (!input.draft || input.draft.needsHuman || input.draft.confidence < 0.7 || input.draft.evidenceIds.length === 0) {
+  if (!input.draft || input.draft.needsHuman || input.draft.confidence < 0.7) {
+    return Object.freeze({ reply: holding, grounded: false, reason: 'insufficient_evidence' });
+  }
+  // зачем отдельный путь без доказательств (2026-08-16): «спасибо»,
+  // «планируете немецкий?», «можно офлайн?» не содержат ни одного концепта
+  // продукта — доказательству в коде взяться неоткуда. Раньше такие письма
+  // всегда получали заглушку «команда посмотрит вручную», и владелец
+  // отвечал на них вручную сам. Пропускаем ТОЛЬКО когда ни вопрос, ни ответ
+  // ничего о продукте не утверждают: тогда врать попросту не о чем.
+  const noClaimExchange = input.context.queryConcepts.length === 0
+    && input.draft.evidenceIds.length === 0
+    && replyMakesNoProductClaim(input.draft.reply);
+  if (input.draft.evidenceIds.length === 0 && !noClaimExchange) {
     return Object.freeze({ reply: holding, grounded: false, reason: 'insufficient_evidence' });
   }
   if (!input.review?.approved) return Object.freeze({ reply: holding, grounded: false, reason: 'review_rejected' });
@@ -288,6 +341,14 @@ export function selectFinalAutoReply(input: {
   }
   if (input.ownerInstructions && !replyUsesOnlyApprovedDestinations(candidate, input.ownerInstructions, input.issue)) {
     return Object.freeze({ reply: holding, grounded: false, reason: 'unapproved_link' });
+  }
+  // зачем ранний выход (2026-08-16): семантическая сверка ниже требует
+  // совпадения концептов вопроса, доказательств и ответа. Для письма без
+  // единого концепта («спасибо») она обречена дать semantic_mismatch, хотя
+  // сверять там нечего — ни одного утверждения о продукте не прозвучало.
+  // Проверки выше (запрет обещаний, утечек и «мы проверили») уже пройдены.
+  if (noClaimExchange) {
+    return Object.freeze({ reply: candidate, grounded: true, reason: 'no_product_claim' });
   }
   const cited = input.context.evidence.filter((item) => input.draft!.evidenceIds.includes(item.evidenceId));
   const issueConcepts = input.context.queryConcepts;

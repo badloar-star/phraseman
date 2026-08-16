@@ -10,6 +10,7 @@ import {
   selectFinalAutoReply,
   supportAutoReplyFailureIsRepairable,
   supportReasonHasUnresolvedIdentity,
+  replyMakesNoProductClaim,
 } from './support_auto_reply_policy';
 import type { SupportRepositoryContext } from './support_repository_context_types';
 import { makeSupportOwnerInstructionsSnapshot } from './support_owner_instructions';
@@ -187,6 +188,124 @@ describe('support auto-reply policy', () => {
       const identity = buildUnresolvedIdentityHoldingReply('Проблема с приложением');
       const billing = buildSafeHoldingReply('Проблема с приложением', 'billing');
       expect(identity).not.toBe(billing);
+    });
+  });
+});
+
+// зачем этот блок (владелец, 2026-08-16: «мне надо чтобы Джарвис по-людски
+// отвечал на имейлы»): измерено на проде — из 234 писем НОЛЬ настоящих
+// ответов, потому что ответ без ссылки на исходный код всегда отвергался.
+// На «спасибо» и «планируете немецкий?» доказательствам взяться неоткуда,
+// и такие письма были обречены на заглушку навсегда. Правка пропускает их,
+// но ТОЛЬКО когда ни вопрос, ни ответ ничего о продукте не утверждают.
+// Тесты ниже держат эту границу: они охраняют ослабление защиты.
+describe('Ответ без утверждений о продукте', () => {
+  const NO_EVIDENCE_CONTEXT: SupportRepositoryContext = {
+    ...context, queryConcepts: [], evidence: [],
+  };
+
+  function decide(reply: string, ctx: SupportRepositoryContext = NO_EVIDENCE_CONTEXT) {
+    return selectFinalAutoReply({
+      issue: 'Спасибо\nПросто хотел сказать спасибо, приложение супер!',
+      risk: 'safe',
+      context: ctx,
+      draft: { reply, evidenceIds: [], confidence: 0.9, needsHuman: false },
+      review: { approved: true, correctedReply: '', reasons: [] },
+    });
+  }
+
+  describe('распознавание утверждений', () => {
+    test('тёплая благодарность утверждением не является', () => {
+      expect(replyMakesNoProductClaim('Спасибо большое за тёплые слова! Очень приятно это слышать.')).toBe(true);
+    });
+
+    test('обещание добавить функцию — это утверждение', () => {
+      // зачем: обещание и срок — то, чем модель врёт убедительнее всего.
+      // Даже без единого концепта продукта такой текст пропускать нельзя.
+      expect(replyMakesNoProductClaim('Немецкий обязательно добавим в следующем обновлении!')).toBe(false);
+      expect(replyMakesNoProductClaim('We will add German soon.')).toBe(false);
+    });
+
+    test('утверждение о работе функции ловится через концепты', () => {
+      expect(replyMakesNoProductClaim('Звук включается в настройках упражнений.')).toBe(false);
+    });
+
+    test('пустой ответ утверждением не считается, но и не проходит', () => {
+      expect(replyMakesNoProductClaim('')).toBe(false);
+    });
+  });
+
+  describe('сквозное решение', () => {
+    test('на «спасибо» Джарвис наконец отвечает сам, без заглушки', () => {
+      const out = decide('Спасибо большое за тёплые слова! Очень приятно это слышать.');
+      expect(out).toMatchObject({ grounded: true, reason: 'no_product_claim' });
+      expect(out.reply).toContain('Спасибо');
+    });
+
+    test('обещание про немецкий по-прежнему уходит в заглушку', () => {
+      const out = decide('Немецкий обязательно добавим в следующем обновлении!');
+      expect(out.grounded).toBe(false);
+    });
+
+    test('если вопрос ПРО продукт — доказательства всё ещё обязательны', () => {
+      // зачем: послабление не должно протекать на письма про функции.
+      // Вопрос с концептами обязан идти прежним, строгим путём.
+      const out = selectFinalAutoReply({
+        issue: 'Звук\nГде включить звук в упражнениях?',
+        risk: 'safe',
+        context: { ...context, queryConcepts: ['audio'], evidence: [] },
+        draft: { reply: 'Посмотрите в настройках.', evidenceIds: [], confidence: 0.9, needsHuman: false },
+        review: { approved: true, correctedReply: '', reasons: [] },
+      });
+      expect(out).toMatchObject({ grounded: false, reason: 'insufficient_evidence' });
+    });
+
+    test('деньги остаются под защитой даже без единого концепта', () => {
+      const out = selectFinalAutoReply({
+        issue: 'Возврат\nВерните деньги за подписку.',
+        risk: 'billing',
+        context: NO_EVIDENCE_CONTEXT,
+        draft: { reply: 'Конечно, сейчас всё решим.', evidenceIds: [], confidence: 0.9, needsHuman: false },
+        review: { approved: true, correctedReply: '', reasons: [] },
+      });
+      expect(out).toMatchObject({ grounded: false, reason: 'guarded_billing' });
+    });
+
+    // зачем эти четыре случая (найдено тестом 2026-08-16): в JavaScript \b
+    // не работает с кириллицей, и из-за внешних \b вся РУССКАЯ половина
+    // запрета на ложные утверждения молча не срабатывала. «Мы вернули вам
+    // деньги» проходило свободно — то есть защита была выключена ровно для
+    // той части переписки, которой больше всего. Дефект был в проекте до
+    // этой правки; тесты держат его закрытым.
+    test.each([
+      'Мы проверили и вернули вам деньги.',
+      'Мы исправили эту ошибку.',
+      'Доступ уже открыт, попробуйте войти.',
+      'Возврат оформлен, ожидайте зачисления.',
+    ])('ложное утверждение о выполненном действии не проходит: %s', (reply) => {
+      expect(decide(reply).grounded).toBe(false);
+    });
+
+    test('английские ложные утверждения тоже по-прежнему ловятся', () => {
+      expect(decide('We have refunded your payment.').grounded).toBe(false);
+    });
+
+    test('низкая уверенность модели закрывает путь', () => {
+      const out = selectFinalAutoReply({
+        issue: 'Спасибо\nСпасибо!',
+        risk: 'safe',
+        context: NO_EVIDENCE_CONTEXT,
+        draft: { reply: 'Спасибо вам за тёплые слова, очень приятно!', evidenceIds: [], confidence: 0.3, needsHuman: false },
+        review: { approved: true, correctedReply: '', reasons: [] },
+      });
+      expect(out).toMatchObject({ grounded: false, reason: 'insufficient_evidence' });
+    });
+
+    test('непроверенный снимок продукта закрывает путь', () => {
+      const out = decide('Спасибо за тёплые слова!', {
+        ...NO_EVIDENCE_CONTEXT, trustworthy: false, trustReason: 'fingerprint_mismatch',
+      });
+      expect(out.grounded).toBe(false);
     });
   });
 });

@@ -1,4 +1,9 @@
-import { classifySupportRisk, buildSafeHoldingReply, isPremiumAlternativePaymentQuestion } from './support_auto_reply_policy';
+import {
+  classifySupportRisk,
+  buildSafeHoldingReply,
+  isPremiumAlternativePaymentQuestion,
+  selectFinalAutoReply,
+} from './support_auto_reply_policy';
 import { findSupportHumanVoiceViolations } from './support_communication_bible';
 
 /**
@@ -118,6 +123,33 @@ describe('Симулятор: как Джарвис отвечает живым 
       + `\n\nдоходит до живого ответа: ${selfAnswered} из ${LETTERS.length}, блокируется: ${blocked}\n`);
 
     expect(LETTERS.length).toBeGreaterThan(0);
+  });
+
+  // зачем этот тест (2026-08-16): классификатор пропускал письма к живой
+  // генерации, но следом их рубил гейт доказательств — на «спасибо» и
+  // «планируете немецкий?» доказательств в коде нет по природе вопроса.
+  // Итог был: ноль настоящих ответов на проде. Проверяем СКВОЗНОЙ путь.
+  test('болтовня без утверждений о продукте доходит до настоящего ответа', () => {
+    const chatty = [
+      ['Спасибо', 'Спасибо большое за тёплые слова! Очень приятно это слышать.'],
+      ['Пожелание', 'Спасибо за идею — передал её команде, такие пожелания мы собираем.'],
+    ] as const;
+
+    for (const [subject, reply] of chatty) {
+      const out = selectFinalAutoReply({
+        issue: `${subject}\nтекст письма без упоминания функций`,
+        risk: 'safe',
+        context: {
+          generatedAt: '2026-08-16T00:00:00.000Z', commit: 'a'.repeat(40), dirty: false,
+          appVersion: '1.6.7', appBuild: '112', sourceFingerprint: 'f'.repeat(64),
+          trustworthy: true, trustReason: 'verified_build_snapshot',
+          queryConcepts: [], evidence: [],
+        },
+        draft: { reply, evidenceIds: [], confidence: 0.9, needsHuman: false },
+        review: { approved: true, correctedReply: '', reasons: [] },
+      });
+      expect(out).toMatchObject({ grounded: true, reason: 'no_product_claim' });
+    }
   });
 
   test('простые человеческие вопросы НЕ должны упираться в заглушку', () => {

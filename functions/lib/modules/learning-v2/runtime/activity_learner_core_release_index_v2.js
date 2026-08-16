@@ -6,6 +6,7 @@ exports.materializeLearningV2ActivityLearnerCoreReleaseIndexV2 = materializeLear
 exports.parseLearningV2ActivityLearnerCoreReleaseIndexV2 = parseLearningV2ActivityLearnerCoreReleaseIndexV2;
 exports.encodeLearningV2ActivityLearnerCoreReleaseIndexV2 = encodeLearningV2ActivityLearnerCoreReleaseIndexV2;
 exports.isLearningV2ActivityLearnerCoreReleaseIndexV2 = isLearningV2ActivityLearnerCoreReleaseIndexV2;
+const course_topology_v1_1 = require("../content/course_topology_v1");
 const decision_registry_1 = require("../policies/decision_registry");
 const activity_learner_core_release_index_v1_1 = require("./activity_learner_core_release_index_v1");
 const activity_session_intro_projection_v1_1 = require("./activity_session_intro_projection_v1");
@@ -60,6 +61,18 @@ const handles = new WeakSet();
 function fail() {
     throw new Error("learning_v2_activity_learner_core_release_index_v2_invalid");
 }
+/**
+ * Урок может быть неполным, но не может быть пустым или длиннее плана.
+ *
+ * зачем: владелец должен видеть на телефоне то, что уже написано, иначе урок
+ * невозможно проверить до последней сессии. Верхнюю границу оставляем — она
+ * ловит рассинхрон с картой курса.
+ */
+function isAllowedSessionCount(count) {
+    return (Number.isSafeInteger(count) &&
+        Number(count) >= 1 &&
+        Number(count) <= course_topology_v1_1.LEARNING_V2_LESSON_SESSION_COUNT_V1);
+}
 function record(value) {
     return (typeof value === "object" &&
         value !== null &&
@@ -85,7 +98,7 @@ function hash(value) {
 function learningV2ActivitySessionIntroObjectPathV1(input) {
     if (!Number.isSafeInteger(input.sessionOrdinal) ||
         input.sessionOrdinal < 1 ||
-        input.sessionOrdinal > 12)
+        input.sessionOrdinal > course_topology_v1_1.LEARNING_V2_LESSON_SESSION_COUNT_V1)
         fail();
     return `${exports.LEARNING_V2_ACTIVITY_SESSION_INTRO_OBJECT_PREFIX_V1}/${(0, decision_registry_1.sha256Utf8)(id(input.stageId))}/sessions/${String(input.sessionOrdinal).padStart(2, "0")}/${hash(input.projectionFingerprint)}/${hash(input.rawHash)}.json`;
 }
@@ -185,10 +198,23 @@ function parseValue(value) {
         exports.LEARNING_V2_ACTIVITY_LEARNER_CORE_RELEASE_INDEX_SCHEMA_V2 ||
         typeof value.coreIndexV1Raw !== "string" ||
         !Array.isArray(value.intros) ||
-        value.intros.length !== 12 ||
-        value.sessionCount !== 12 ||
-        value.introQuestionCount !== 36 ||
-        value.objectCount !== 36)
+        // зачем: число сессий было зашито литералом 12, и урок из 56 сессий рантайм
+        // отвергал молча — владелец видел «Сессия недоступна». Плюс требование
+        // «ровно столько» означало, что урок нельзя открыть, пока не написана
+        // последняя сессия, и тестировать было нечего.
+        //
+        // Владелец (2026-08-16): «РАЗРЕШАТЬ, как мне тестировать». Поэтому урок
+        // теперь может быть неполным — от одной сессии до полных 56. Дырка внутри
+        // по-прежнему запрещена: сессии обязаны идти подряд с первой, иначе человек
+        // упрётся в стену посреди урока. За непрерывностью следит проверка
+        // sessionOrdinal ниже.
+        !isAllowedSessionCount(value.intros.length) ||
+        value.sessionCount !== value.intros.length ||
+        // Три вопроса на сессию — по одному внизу каждой страницы интро.
+        value.introQuestionCount !==
+            value.intros.length * course_topology_v1_1.LEARNING_V2_INTRO_PAGES_PER_SESSION ||
+        value.objectCount !==
+            value.intros.length * course_topology_v1_1.LEARNING_V2_INTRO_PAGES_PER_SESSION)
         fail();
     const core = (0, activity_learner_core_release_index_v1_1.parseLearningV2ActivityLearnerCoreReleaseIndexV1)(value.coreIndexV1Raw);
     if (value.coreIndexV1Fingerprint !== core.indexFingerprint)
@@ -204,9 +230,9 @@ function parseValue(value) {
         introProjectionSetFingerprint: hash(value.introProjectionSetFingerprint),
         ownerConfirmationFingerprint: hash(value.ownerConfirmationFingerprint),
         intros,
-        sessionCount: 12,
-        introQuestionCount: 36,
-        objectCount: 36,
+        sessionCount: intros.length,
+        introQuestionCount: intros.length * course_topology_v1_1.LEARNING_V2_INTRO_PAGES_PER_SESSION,
+        objectCount: intros.length * course_topology_v1_1.LEARNING_V2_INTRO_PAGES_PER_SESSION,
         introReleaseBinding: "exact_owner_confirmed_projection_to_render_session",
         repositoryOriginAuthority: "none_server_readback_required",
         storageAuthority: "none_server_readback_required",
@@ -241,7 +267,7 @@ function parseValue(value) {
 }
 function materializeLearningV2ActivityLearnerCoreReleaseIndexV2(input) {
     if (!(0, activity_learner_core_release_index_v1_1.isLearningV2ActivityLearnerCoreReleaseIndexV1)(input.coreIndexV1) ||
-        input.sessions.length !== 12)
+        !isAllowedSessionCount(input.sessions.length))
         fail();
     const intros = input.sessions.map((session, index) => {
         const ordinal = index + 1;
@@ -290,9 +316,9 @@ function materializeLearningV2ActivityLearnerCoreReleaseIndexV2(input) {
         introProjectionSetFingerprint: hash(input.introProjectionSetFingerprint),
         ownerConfirmationFingerprint: hash(input.ownerConfirmationFingerprint),
         intros,
-        sessionCount: 12,
-        introQuestionCount: 36,
-        objectCount: 36,
+        sessionCount: intros.length,
+        introQuestionCount: intros.length * course_topology_v1_1.LEARNING_V2_INTRO_PAGES_PER_SESSION,
+        objectCount: intros.length * course_topology_v1_1.LEARNING_V2_INTRO_PAGES_PER_SESSION,
         introReleaseBinding: "exact_owner_confirmed_projection_to_render_session",
         repositoryOriginAuthority: "none_server_readback_required",
         storageAuthority: "none_server_readback_required",

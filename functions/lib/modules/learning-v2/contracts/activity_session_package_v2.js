@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.V2_ACTIVITY_SESSION_PACKAGE_AUTHORITY_V2 = exports.encodeV2ActivitySessionPackageV2 = exports.isV2ActivitySessionPackageV2 = exports.parseV2ActivitySessionPackageV2 = exports.v2ActivitySessionIdV2 = exports.V2_REQUIRED_SESSION_TASK_SLOT_POLICY_V2 = exports.V2_ACTIVITY_SESSION_PACKAGE_SCHEMA_V2 = exports.V2_REQUIRED_SESSION_TASK_PURPOSES_V2 = void 0;
 const activity_catalog_v2_1 = require("./activity_catalog_v2");
 const decision_registry_1 = require("../policies/decision_registry");
+const course_topology_v1_1 = require("../content/course_topology_v1");
 exports.V2_REQUIRED_SESSION_TASK_PURPOSES_V2 = Object.freeze([
     "intro_comprehension_check",
     "intro_comprehension_check",
@@ -135,7 +136,7 @@ const v2ActivitySessionIdV2 = (episodeId, sessionOrdinal) => {
     if (!ID_PATTERN.test(episodeId) ||
         !Number.isSafeInteger(sessionOrdinal) ||
         sessionOrdinal < 1 ||
-        sessionOrdinal > 12) {
+        sessionOrdinal > course_topology_v1_1.LEARNING_V2_LESSON_SESSION_COUNT_V1) {
         fail("canonical session identity is invalid");
     }
     return `${episodeId}:session:${String(sessionOrdinal).padStart(2, "0")}`;
@@ -272,7 +273,7 @@ const parseV2ActivitySessionPackageV2 = (rawCanonical) => {
                 const reviewOfTaskId = id(reviewSource.reviewOfTaskId, "reviewOfTaskId");
                 if (!Number.isSafeInteger(reviewSource.sourceSessionOrdinal) ||
                     Number(reviewSource.sourceSessionOrdinal) < 1 ||
-                    Number(reviewSource.sourceSessionOrdinal) > 12)
+                    Number(reviewSource.sourceSessionOrdinal) > course_topology_v1_1.LEARNING_V2_LESSON_SESSION_COUNT_V1)
                     fail("review sourceSessionOrdinal is invalid");
                 const reviewedTask = tasksById.get(reviewOfTaskId) ??
                     fail("review source task is missing");

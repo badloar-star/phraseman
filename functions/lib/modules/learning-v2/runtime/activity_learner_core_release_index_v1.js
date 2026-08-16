@@ -6,6 +6,7 @@ exports.parseLearningV2ActivityLearnerCoreReleaseIndexV1 = parseLearningV2Activi
 exports.encodeLearningV2ActivityLearnerCoreReleaseIndexV1 = encodeLearningV2ActivityLearnerCoreReleaseIndexV1;
 exports.isLearningV2ActivityLearnerCoreReleaseIndexV1 = isLearningV2ActivityLearnerCoreReleaseIndexV1;
 const release_manifest_1 = require("../content/release_manifest");
+const course_topology_v1_1 = require("../content/course_topology_v1");
 const decision_registry_1 = require("../policies/decision_registry");
 exports.LEARNING_V2_ACTIVITY_LEARNER_CORE_RELEASE_INDEX_SCHEMA_V1 = "learning-v2-activity-learner-core-release-index.v1";
 exports.LEARNING_V2_ACTIVITY_LEARNER_CORE_RELEASE_INDEX_MAX_BYTES_V1 = 128 * 1024;
@@ -105,6 +106,19 @@ const CAPSULE_KEYS = Object.freeze([
 ]);
 function fail() {
     throw new Error("learning_v2_activity_learner_core_release_index_invalid");
+}
+/**
+ * Урок может быть неполным, но не пустым и не длиннее плана.
+ *
+ * зачем: число сессий было зашито литералом 12, из-за чего урок нельзя было
+ * открыть, пока не написана последняя сессия — владелец видел «Сессия
+ * недоступна» и не мог ничего проверить. Решение владельца (2026-08-16):
+ * разрешить неполный урок. Непрерывность нумерации проверяется отдельно.
+ */
+function isAllowedSessionCount(count) {
+    return (Number.isSafeInteger(count) &&
+        Number(count) >= 1 &&
+        Number(count) <= course_topology_v1_1.LEARNING_V2_LESSON_SESSION_COUNT_V1);
 }
 function record(value) {
     return (typeof value === "object" &&
@@ -322,13 +336,14 @@ function parseValue(value) {
         !Number.isSafeInteger(value.lessonId) ||
         Number(value.lessonId) < 1 ||
         !Array.isArray(value.sessions) ||
-        value.sessions.length !== 12 ||
-        value.sessionCount !== 12 ||
-        value.objectCount !== 24)
+        !isAllowedSessionCount(value.sessions.length) ||
+        value.sessionCount !== value.sessions.length ||
+        // Два объекта на сессию: render и capsule.
+        value.objectCount !== value.sessions.length * 2)
         fail();
     const stageId = id(value.stageId);
     const sessions = Object.freeze(value.sessions.map((session, index) => parseSession(session, stageId, index + 1)));
-    if (new Set(sessions.map((session) => session.sessionId)).size !== 12)
+    if (new Set(sessions.map((session) => session.sessionId)).size !== sessions.length)
         fail();
     const body = {
         schemaVersion: exports.LEARNING_V2_ACTIVITY_LEARNER_CORE_RELEASE_INDEX_SCHEMA_V1,
@@ -348,8 +363,8 @@ function parseValue(value) {
         childReadbackAggregateFingerprint: hash(value.childReadbackAggregateFingerprint),
         storageReadbackFingerprint: hash(value.storageReadbackFingerprint),
         sessions,
-        sessionCount: 12,
-        objectCount: 24,
+        sessionCount: sessions.length,
+        objectCount: sessions.length * 2,
         releaseIdentityEvidence: "validated_published_view_structure_only",
         validatorEvidence: "opaque_validator_material_projected_structurally",
         repositoryOriginAuthority: "none_server_readback_required",
@@ -388,7 +403,7 @@ function materializeLearningV2ActivityLearnerCoreReleaseIndexV1(input) {
     const episodeId = id(input.episodeId);
     const stageId = id(input.stageId);
     const lessonUnits = release.body.lessonUnits.filter((unit) => unit.episodeId === episodeId);
-    if (lessonUnits.length !== 1 || input.sessions.length !== 12)
+    if (lessonUnits.length !== 1 || !isAllowedSessionCount(input.sessions.length))
         fail();
     const sessions = Object.freeze(input.sessions.map((session, index) => sessionFromMaterial(session, stageId, episodeId, release.pointer.studyTarget, index + 1)));
     const body = {
@@ -409,8 +424,8 @@ function materializeLearningV2ActivityLearnerCoreReleaseIndexV1(input) {
         childReadbackAggregateFingerprint: hash(input.childReadbackAggregateFingerprint),
         storageReadbackFingerprint: hash(input.storageReadbackFingerprint),
         sessions,
-        sessionCount: 12,
-        objectCount: 24,
+        sessionCount: sessions.length,
+        objectCount: sessions.length * 2,
         releaseIdentityEvidence: "validated_published_view_structure_only",
         validatorEvidence: "opaque_validator_material_projected_structurally",
         repositoryOriginAuthority: "none_server_readback_required",

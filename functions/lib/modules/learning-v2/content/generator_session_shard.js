@@ -9,6 +9,7 @@ const content_item_1 = require("./content_item");
 const generator_course_contract_1 = require("./generator_course_contract");
 const generator_session_contract_1 = require("./generator_session_contract");
 const session_compiler_1 = require("./session_compiler");
+const course_topology_v1_1 = require("./course_topology_v1");
 exports.LEARNING_V2_SESSION_CARD_PURPOSES = Object.freeze([
     'intro_check',
     'intro_check',
@@ -138,7 +139,7 @@ function assertExpected(expected) {
         expected.episodeOrdinal > 32 ||
         !Number.isSafeInteger(expected.requiredSessionOrdinal) ||
         expected.requiredSessionOrdinal < 1 ||
-        expected.requiredSessionOrdinal > 12 ||
+        expected.requiredSessionOrdinal > course_topology_v1_1.LEARNING_V2_LESSON_SESSION_COUNT_V1 ||
         !HASH_RE.test(expected.generationInputFingerprint)) {
         throw new Error('learning_v2_session_shard_expected_invalid');
     }

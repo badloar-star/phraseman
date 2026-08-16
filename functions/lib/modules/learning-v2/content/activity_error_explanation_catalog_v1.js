@@ -11,6 +11,7 @@ exports.resolveLearningV2ActivityErrorExplanationV1 = resolveLearningV2ActivityE
 const generator_course_contract_1 = require("./generator_course_contract");
 const activity_catalog_v2_1 = require("../contracts/activity_catalog_v2");
 const decision_registry_1 = require("../policies/decision_registry");
+const course_topology_v1_1 = require("./course_topology_v1");
 exports.LEARNING_V2_ACTIVITY_ERROR_EXPLANATION_CATALOG_SCHEMA_V1 = "learning-v2-activity-error-explanation-catalog.v1";
 exports.LEARNING_V2_ACTIVITY_ERROR_EXPLANATION_LEARNER_SCHEMA_V1 = "learning-v2-activity-error-explanation-learner.v1";
 exports.LEARNING_V2_ACTIVITY_ERROR_EXPLANATION_COUNT_V1 = 144;
@@ -198,7 +199,7 @@ function parseEntry(value, episodeId) {
     const sessionId = exactId(value.sessionId, "learning_v2_error_explanation_entry_invalid");
     if (!Number.isSafeInteger(value.sessionOrdinal) ||
         Number(value.sessionOrdinal) < 1 ||
-        Number(value.sessionOrdinal) > 12)
+        Number(value.sessionOrdinal) > course_topology_v1_1.LEARNING_V2_LESSON_SESSION_COUNT_V1)
         fail("learning_v2_error_explanation_session_invalid");
     const taskId = exactId(value.taskId, "learning_v2_error_explanation_entry_invalid");
     const activityId = exactId(value.activityId, "learning_v2_error_explanation_entry_invalid");

@@ -7,6 +7,7 @@ exports.encodeLearningV2ActivitySessionIntroProjectionV1 = encodeLearningV2Activ
 exports.isLearningV2ActivitySessionIntroProjectionV1 = isLearningV2ActivitySessionIntroProjectionV1;
 const decision_registry_1 = require("../policies/decision_registry");
 const language_tag_v1_1 = require("../contracts/language_tag_v1");
+const course_topology_v1_1 = require("../content/course_topology_v1");
 exports.LEARNING_V2_ACTIVITY_SESSION_INTRO_PROJECTION_SCHEMA_V1 = "learning-v2-activity-session-intro-projection.v1";
 exports.LEARNING_V2_ACTIVITY_SESSION_INTRO_PROJECTION_MAX_BYTES_V1 = 64 * 1024;
 const HASH_RE = /^[a-f0-9]{64}$/u;
@@ -118,7 +119,10 @@ function parseValue(value) {
         !["production_candidate", "neutral_test_fixture"].includes(String(value.contentClass)) ||
         !Number.isSafeInteger(value.sessionOrdinal) ||
         Number(value.sessionOrdinal) < 1 ||
-        Number(value.sessionOrdinal) > 12 ||
+        // зачем: верхняя граница была литералом 12, и сессия 13 и дальше не
+        // проходила проверку — урок из 56 сессий рантайм отвергал молча. Берём
+        // число из топологии, чтобы граница шла за планом курса.
+        Number(value.sessionOrdinal) > course_topology_v1_1.LEARNING_V2_LESSON_SESSION_COUNT_V1 ||
         !Array.isArray(value.pages) ||
         value.pages.length !== 3 ||
         value.pageCount !== 3 ||

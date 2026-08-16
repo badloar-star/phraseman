@@ -11506,6 +11506,22 @@
     <div id="v2g-artifact" style="color:#9ca3af;font-size:13px">Артефакта пока нет — выполни шаги 1 и 2.</div>
     <div id="v2g-sessions" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px"></div>
   </div>
+
+  <!-- ПУБЛИКАЦИЯ. зачем: до этой кнопки написанный курс физически не доходил до
+       телефона — указателя релиза в базе не было, приложение отвечало NOT FOUND.
+       Здесь заканчивается путь: написал → проверил → выложил. -->
+  <div style="background:#111827;border-radius:14px;padding:18px;margin-top:14px">
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px">
+      <div style="font-weight:800;color:#e5e7eb;font-size:15px">Публикация урока</div>
+      <div style="color:#6b7280;font-size:12px">Выкладывает написанные сессии на сервер — после этого урок открывается в приложении</div>
+    </div>
+    <div id="v2g-publish-status" style="color:#9ca3af;font-size:13px;margin-bottom:14px;min-height:20px">Нажмите «Проверить», чтобы увидеть, что сейчас опубликовано.</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button type="button" onclick="v2gPublishCheck()" title="Только читает: покажет, есть ли опубликованный курс. Ничего не меняет." style="background:#1f2937;color:#93c5fd;border:none;padding:9px 14px;border-radius:9px;cursor:pointer;font-weight:600;min-height:44px">Проверить</button>
+      <button type="button" id="v2g-publish-btn" onclick="v2gPublish()" title="Соберёт написанные сессии и выложит их на сервер. Повторное нажатие с тем же содержимым не создаёт второй релиз." style="background:#065f46;color:#a7f3d0;border:none;padding:9px 16px;border-radius:9px;cursor:pointer;font-weight:700;min-height:44px">Опубликовать урок 1</button>
+    </div>
+    <div style="color:#6b7280;font-size:12px;margin-top:12px;line-height:1.5">Урок пока без озвучки — фразы показываются текстом. Аудио добавится отдельно, когда вы его одобрите.</div>
+  </div>
 </div>
 
 <div id="tab-alerts" class="reports-tab">
@@ -14302,6 +14318,73 @@
     }
   };
   window.v2gRefresh = function() { void window.loadV2Generator(true); };
+
+  // ── Публикация урока ─────────────────────────────────────────────────────
+  // зачем: до этой кнопки написанный курс не доходил до телефона. Указателя
+  // релиза в базе не было, сервер отвечал head_missing, приложение показывало
+  // «Сессия недоступна / NOT FOUND». Здесь путь заканчивается.
+  const _v2gPublishLocator = {
+    environment: 'production',
+    seasonId: 'learning-v2',
+    targetLanguage: 'en',
+    studyTarget: 'en',
+    learnerSourceLocale: 'ru',
+    lessonOrdinal: 1,
+  };
+
+  window.v2gPublishCheck = async function() {
+    const box = _v2gEl('v2g-publish-status');
+    if (box) box.innerHTML = _v2gChip('Проверяю…', '#fbbf24');
+    try {
+      const read = httpsCallable(functionsUs, 'learningV2CourseActiveCatalogGetV1');
+      const result = await read({
+        environment: _v2gPublishLocator.environment,
+        targetLanguage: _v2gPublishLocator.targetLanguage,
+        studyTarget: _v2gPublishLocator.studyTarget,
+        learnerSourceLocale: _v2gPublishLocator.learnerSourceLocale,
+        interfaceLocale: _v2gPublishLocator.learnerSourceLocale,
+        seasonId: _v2gPublishLocator.seasonId,
+      });
+      const data = (result && result.data) ? result.data : {};
+      if (box) box.innerHTML = _v2gChip('Курс опубликован', '#34d399')
+        + ' <span style="color:#6b7280">отпечаток ' + String(data.activeRootFingerprint || '').slice(0, 12) + '…</span>';
+    } catch (error) {
+      // Отсутствие релиза — это НЕ поломка, это честное «ещё не публиковали».
+      const message = (error && error.message) || '';
+      const missing = /not[- ]?found|head_missing|unavailable/i.test(message);
+      if (box) box.innerHTML = missing
+        ? _v2gChip('Курс ещё не опубликован', '#fbbf24') + ' <span style="color:#6b7280">приложение покажет «Сессия недоступна», пока не нажмёте «Опубликовать»</span>'
+        : _v2gChip('Ошибка', '#f87171') + ' <span style="color:#6b7280">' + message + '</span>';
+    }
+  };
+
+  window.v2gPublish = async function() {
+    if (_v2gState.running) return; // защита от двойного клика
+    // Публикация пишет в боевую базу — спрашиваем прямо, без сюрпризов.
+    if (!window.confirm('Выложить урок 1 на сервер? После этого он откроется в приложении.')) return;
+    _v2gState.running = true;
+    const button = _v2gEl('v2g-publish-btn');
+    const box = _v2gEl('v2g-publish-status');
+    if (button) { button.disabled = true; button.style.opacity = '0.6'; }
+    if (box) box.innerHTML = _v2gChip('Публикую…', '#fbbf24') + ' <span style="color:#6b7280">собираю файлы и загружаю</span>';
+    try {
+      const publish = httpsCallable(functionsUs, 'adminPublishAuthoredLearningV2Course');
+      const result = await publish({
+        ..._v2gPublishLocator,
+        reason: 'Публикация написанных сессий из админки',
+      });
+      const data = (result && result.data) ? result.data : {};
+      if (box) box.innerHTML = _v2gChip('Опубликовано', '#34d399')
+        + ' ' + _v2gChip((data.sessionCount || 0) + ' сессий', '#818cf8')
+        + ' <span style="color:#6b7280">откройте урок в приложении</span>';
+    } catch (error) {
+      if (box) box.innerHTML = _v2gChip('Не опубликовано', '#f87171')
+        + ' <span style="color:#6b7280">' + ((error && error.message) || 'публикация не прошла') + '</span>';
+    } finally {
+      _v2gState.running = false;
+      if (button) { button.disabled = false; button.style.opacity = '1'; }
+    }
+  };
 
   // ── Пайплайн генератора урока ────────────────────────────────────────────
   // зачем: владелец решил (2026-08-15), что генератор — это подробный пайплайн

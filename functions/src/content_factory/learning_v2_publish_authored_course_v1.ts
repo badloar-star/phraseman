@@ -35,7 +35,10 @@ import {
 } from "../../../modules/learning-v2/content/source/authored_sessions_v1";
 import { buildSessionChildBodiesFromShard } from "../../../modules/learning-v2/content/source/session_package_from_shard_v1";
 
-const REGION = "europe-west1";
+// зачем: тот же регион, что у остальных функций Learning V2 и у админки —
+// admin/v2/legacy.html поднимает getFunctions(app, 'us-central1'). В другом
+// регионе кнопка искала бы функцию не там и получала «не найдено».
+const REGION = "us-central1";
 const ENFORCE_APP_CHECK = false;
 
 export type LearningV2PublishAuthoredCourseRequestV1 = Readonly<{

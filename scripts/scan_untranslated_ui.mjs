@@ -22,6 +22,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -170,6 +171,26 @@ function readBaseline() {
   return JSON.parse(fs.readFileSync(BASELINE, 'utf8'));
 }
 
+/**
+ * Файлы, которые реально уходят в этот коммит.
+ *
+ * зачем (2026-08-16): сторож блокировал коммит за строку, добавленную
+ * ПАРАЛЛЕЛЬНОЙ сессией в чужой файл. Дерево общее, и наказывать за чужую
+ * работу — верный способ приучить обходить сторожа через --no-verify,
+ * после чего он перестаёт защищать вообще.
+ */
+function stagedUiFiles() {
+  try {
+    const out = execFileSync('git', ['diff', '--cached', '--name-only', '--diff-filter=ACMR'], {
+      cwd: ROOT,
+      encoding: 'utf8',
+    });
+    return new Set(out.split('\n').map((line) => line.trim()).filter((line) => line.endsWith('.tsx')));
+  } catch {
+    return null;
+  }
+}
+
 const args = new Set(process.argv.slice(2));
 const findings = scan();
 const total = findings.reduce((sum, f) => sum + f.count, 0);
@@ -210,10 +231,30 @@ if (!baseline) {
 }
 
 if (total > baseline.total) {
+  // зачем разделять свой и чужой рост: дерево общее, параллельные сессии
+  // пишут в него одновременно. Блокировать коммит за чужую строку — верный
+  // способ приучить обходить сторожа, после чего он не защищает вообще.
+  const staged = args.has('--staged') ? stagedUiFiles() : null;
+  const mine = staged
+    ? findings.filter((f) => staged.has(f.file))
+    : findings;
+
+  if (staged && mine.length === 0) {
+    console.log(`Непереведённых стало больше (${total} против ${baseline.total}),`);
+    console.log('но ни один из этих файлов не в твоём коммите — пропускаю.');
+    console.log('Кто-то работает в этом же дереве параллельно.');
+    process.exit(0);
+  }
+
   console.error(`ОТКАЗ: непереведённых строк стало больше — ${total}, было ${baseline.total}.`);
   console.error('');
   console.error('Русский текст в UI виден ВСЕМ не-русскоязычным пользователям.');
   console.error('Оберни новые строки в triLang, а не двигай базу вверх.');
+  if (staged && mine.length > 0) {
+    console.error('');
+    console.error('В твоём коммите:');
+    for (const f of mine.slice(0, 5)) console.error(`  ${f.file} — ${f.count}`);
+  }
   console.error('');
   console.error('Где именно: node scripts/scan_untranslated_ui.mjs --report');
   process.exit(1);

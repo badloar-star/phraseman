@@ -78,6 +78,7 @@
     "content:viral": "node scripts/content_pipeline_brief.mjs viral",
     "content:lingman": "node scripts/content_pipeline_brief.mjs lingman",
     "content:mason": "node scripts/content_pipeline_brief.mjs mason",
+    "content:review": "node scripts/content_review_brief.mjs",
     "update:gate": "node scripts/update_release_gate.mjs --full",
     "prepare": "node scripts/install-git-hooks.mjs",
     "scan:secrets": "node scripts/scan_secrets.mjs",

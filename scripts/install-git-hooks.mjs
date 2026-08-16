@@ -56,6 +56,14 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Owner lock: the admin login must keep working (see scripts/guard_admin_login.mjs).
+# 2026-08-16 the owner was locked out of his own admin: the claim was wiped AND the
+# deny branch called signOut(auth), which burned the saved session on every load.
+node scripts/guard_admin_login.mjs
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 # Ratchet: no new hardcoded Russian UI strings (see scripts/scan_untranslated_ui.mjs).
 # The same "screen showed Russian text in every language" bug was fixed 14 times
 # screen by screen; the count may only go down, never up. Runs in ~0.3s.

@@ -8,10 +8,9 @@
  *     ЭТОМ бинарнике — OTA поверх старого билда не должна показать кнопку,
  *     которая упадёт на первом же нажатии.
  *
- * Ключ пока не заведён в RemoteBoolKey (remote_flags.ts правится параллельной
- * серверной сессией) — читаем его защищённо через getRemoteBool с кастом: пока
- * ключа нет, значение undefined → работает дефолт ВЫКЛ; после слияния каст
- * можно убрать без смены сигнатур (тот же приём, что в ai_dialog_flags).
+ * Ключ читается защищённо через getRemoteBool с кастом: пока его нет в «Пульте»,
+ * значение undefined → работает дефолт ВКЛ (линия открыта), а не «выключено».
+ * Каст можно убрать без смены сигнатур (тот же приём, что в ai_dialog_flags).
  */
 
 import { getRemoteBool, type RemoteBoolKey } from './remote_flags';
@@ -34,7 +33,7 @@ function envOverride(): boolean | undefined {
   return raw === 'true' || raw === '1';
 }
 
-/** Включён ли kill switch `gate_ai_voice_call` (env → remote → дефолт ВЫКЛ). */
+/** Включён ли kill switch `gate_ai_voice_call` (env → remote → дефолт ВКЛ). */
 export function isMaxVoiceCallEnabled(): boolean {
   const env = envOverride();
   if (env !== undefined) return env;

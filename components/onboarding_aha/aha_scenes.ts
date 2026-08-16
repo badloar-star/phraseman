@@ -28,9 +28,9 @@ export const AHA_SCENARIOS: Record<AhaScenarioId, AhaScenario> = {
   travel: {
     id: 'travel',
     setting: {
-      ru: 'Ты в кафе в Лиссабоне. Бариста спрашивает:',
-      uk: 'Ти в кав’ярні в Лісабоні. Бариста питає:',
-      es: 'Estás en una cafetería de Lisboa. El barista pregunta:',
+      ru: 'Ты в кафе. Бариста спрашивает:',
+      uk: 'Ти в кав’ярні. Бариста питає:',
+      es: 'Estás en una cafetería. El barista pregunta:',
     },
     hear: {
       text: 'What can I get you?',
@@ -275,7 +275,12 @@ export const AHA_SCENARIOS: Record<AhaScenarioId, AhaScenario> = {
   },
 };
 
-/** Цель из CleanOnboarding → сценарий сцены. */
+/** Цель из CleanOnboarding → сценарий сцены.
+ *  Анкета цели удалена (владелец, 2026-08-16): онбординг всегда играет ОДНУ
+ *  витринную сцену — «кафе» (travel). Она самая демонстрирующая: контекст
+ *  считывается с одной строки, ответ строится по переносимой формуле
+ *  «Can I get…», а не повторяет услышанное. Маппинг целей сохранён для
+ *  возможных входов сцены за пределами онбординга. */
 export function resolveAhaScenario(goal: AhaGoalInput | null | undefined): AhaScenario {
   switch (goal) {
     case 'travel':
@@ -289,8 +294,9 @@ export function resolveAhaScenario(goal: AhaGoalInput | null | undefined): AhaSc
     case 'work':
       return AHA_SCENARIOS.work;
     case 'mind':
-    default:
       return AHA_SCENARIOS.self;
+    default:
+      return AHA_SCENARIOS.travel;
   }
 }
 

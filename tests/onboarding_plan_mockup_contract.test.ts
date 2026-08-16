@@ -5,67 +5,136 @@ const root = process.cwd();
 const source = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8');
 const wrapper = fs.readFileSync(path.join(root, 'components', 'onboarding.tsx'), 'utf8');
 
-describe('clean midnight onboarding contract', () => {
+// Контракт утверждённого минимального флоу (владелец, 2026-08-16): анкета про
+// построение плана удалена вместе с планами; вау-момент — одна витринная
+// АХ-демонстрация (сборка фразы + голос), затем честный триал (trialReminder)
+// и пересобранный пейвол с кодами.
+describe('clean minimal wow onboarding contract', () => {
   it('uses CleanOnboarding as the only active onboarding implementation', () => {
     expect(wrapper).toContain("export { default } from './CleanOnboarding'");
     expect(source).toContain('CLEAN_ONBOARDING_FLOW_VERSION');
-    expect(source).toContain("'clean_midnight_aha_flow_2026_07_02b'");
+    expect(source).toContain("'clean_minimal_wow_flow_2026_08_16d'");
     expect(source).toContain('normalizedStoredStep');
     expect(source).toContain("if (value === 'start') return 'welcome'");
   });
 
-  it('keeps the approved order without old task, trial reminder, or separate age screens', () => {
+  it('keeps the approved minimal order without the removed plan questionnaire', () => {
     const expectedOrder = [
       "'welcome'",
+      "'privacy'",
       "'source'",
-      "'level'",
-      "'goal'",
-      "'minutes'",
-      "'aha'",
+      "'promise'",
       "'notifications'",
-      "'plusBenefits'",
-      "'startMode'",
+      "'trialReminder'",
       "'onboardingPaywall'",
       "'name'",
     ];
-
     expectedOrder.forEach((step) => expect(source).toContain(step));
-    // Экран-филлер «intro» удалён — welcome ведёт прямо к вопросам.
-    expect(source).not.toContain("'intro'");
+
+    // Вопросы анкеты плана удалены: цель, минуты, выбор старта, сравнение
+    // планов и «обещание 3 месяцев» больше не существуют как шаги. «Источник»
+    // владелец вернул (2026-08-16): маркетинговая атрибуция обязана жить.
+    expect(source).toContain("testID={`onboarding-source-${item.id}`}");
+    expect(source).not.toContain("'goal'");
+    expect(source).not.toContain("'minutes'");
+    expect(source).not.toContain("'plusBenefits'");
+    expect(source).not.toContain("'startMode'");
+    expect(source).not.toContain("'planComparison'");
+    // Отдельного шага у сцены нет: полная AhaScene открывается ПО КНОПКЕ
+    // «Попробовать» с обязательного экрана promise (владелец, 2026-08-16).
+    // 'aha' живёт только в миграции сохранённого шага — не в типе и не в порядке.
+    const typeAndOrderBlock = source.slice(
+      source.indexOf('export type CleanOnboardingStep'),
+      source.indexOf('function normalizedStoredStep'),
+    );
+    expect(typeAndOrderBlock).not.toContain("'aha'");
+    expect(source).toContain("if (value === 'aha') return 'promise'");
+
+    // Блок языка выключен локально, но остаётся отключаемым экраном каталога.
     expect(source).toContain('const SHOW_ONBOARDING_LANGUAGE_STEP = false');
-    expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? ['language' as const] : [])");
-    expect(source).toContain("if (!SHOW_ONBOARDING_LANGUAGE_STEP && value === 'language') return 'level'");
-    expect(source).not.toContain("'miniAha'");
-    expect(source).not.toContain("'trialReminder'");
-    expect(source).not.toContain("'ageConsent'");
-    expect(source).not.toContain("'promise'");
-    expect(source).not.toContain("'planResult'");
+    expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : [])");
+    expect(source).toContain("if (value === 'aha') return 'promise'");
+    expect(source).toContain("if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'promise'");
   });
 
-  it('keeps monetization inside onboarding and finishes with age, analytics, legal consent, and an automatic nickname', () => {
+  it('sells without a questionnaire: progress promise chart, honest trial timeline', () => {
     [
-      'testID="onboarding-start-mode-plus"',
-      'testID="onboarding-start-mode-free"',
-      'testID="onboarding-plus-benefits-continue"',
+      'const renderPrivacy',
+      'function PrivacyVault',
+      'const renderPromise',
+      'function PromiseChart',
+      'testID="onboarding-promise-continue"',
+      'const renderTrialReminder',
+      'function TrialTimelineRow',
+      'function AnimatedPushCard',
+      'testID="onboarding-trial-reminder-continue"',
+      'Сейчас ничего не спишем',
+      'continueFromTrialReminder',
+      "decideOnboardingTransition(enabledOrder, 'trialReminder')",
+    ].forEach((text) => expect(source).toContain(text));
+  });
+
+  it('keeps the rebuilt paywall: close on the left, codes menu on the right, texts at the bottom', () => {
+    [
+      'testID="onboarding-paywall-menu"',
+      'testID="onboarding-paywall-menu-promo"',
+      'testID="onboarding-paywall-menu-referral"',
+      'testID="onboarding-paywall-restore"',
+      'testID="onboarding-code-input"',
+      'testID="onboarding-code-submit"',
+      'redeemPromoCodeWithPersist',
+      'applyManualReferralCode',
       'testID="onboarding-paywall-plan-yearly"',
       'testID="onboarding-paywall-plan-monthly"',
       'testID="onboarding-paywall-plan-lifetime"',
       'testID="onboarding-paywall-continue"',
-      'queuePendingPersonalPlanActivation',
-      'PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY',
+      'testID="onboarding-paywall-continue-free"',
+      'PAYWALL_COMPARISON_BENEFITS',
+      '>FREE<',
+      '>PLUS<',
+      'PlanComparisonRow',
       'usePaywallPurchase',
-      "go('name')",
-      'testID="onboarding-age-yes"',
-      'testID="onboarding-analytics-checkbox"',
-      'testID="onboarding-legal-checkbox"',
+      'Продолжить бесплатно',
     ].forEach((text) => expect(source).toContain(text));
+
+    // Личные планы удалены: постановка плана в очередь исчезла, но возврат в
+    // онбординг после покупки (pending-nickname ключ) обязан жить.
+    expect(source).not.toContain('queuePendingPersonalPlanActivation');
+    expect(source).toContain('PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY');
+    expect(source).toContain('queuePostPurchaseReturn');
+    expect(source).toContain('[PLAN_BILLING_KEY, billing]');
+  });
+
+  it('finishes with analytics choice above and a yes/no age question below', () => {
+    [
+      'testID="onboarding-analytics-checkbox"',
+      'testID="onboarding-age-yes"',
+      'testID="onboarding-age-no"',
+      "go('name')",
+    ].forEach((text) => expect(source).toContain(text));
+
+    // Аналитика ВЫШЕ вопроса возраста (владелец, 2026-08-16); возраст — вопрос
+    // «Тебе есть N?» с короткими «Да/Нет», не две кнопки-утверждения.
+    expect(source.indexOf('testID="onboarding-analytics-checkbox"'))
+      .toBeLessThan(source.indexOf('testID="onboarding-age-yes"'));
+    expect(source).toContain('Тебе есть ${MIN_FULL_ACCESS_AGE}?');
+    expect(source).not.toContain('Мне есть');
+    expect(source).not.toContain('Мне нет');
+
+    // Рассылки нет в принципе (владелец, 2026-08-16) — не спрашиваем.
+    expect(source).not.toContain('onboarding-newsletter-row');
+    expect(source).not.toContain('NEWSLETTER_OPTIN_KEY');
+    expect(source).not.toContain('Фраза недели');
+
+    // Обязательная галочка условий заменена sign-in-wrap строкой на welcome.
+    expect(source).not.toContain('testID="onboarding-legal-checkbox"');
+    expect(source).toContain('Продолжая, ты принимаешь');
+    expect(source).toContain("[LEGAL_ACCEPTED_KEY, '1']");
+
     expect(source).not.toContain('testID="onboarding-name-input"');
     expect(source).toContain('resumePendingGeneratedNickname');
     expect(source).toContain('GENERATED_NICKNAME_PENDING_KEY');
-    expect(source).not.toContain('Подтверди два пункта — и начинаем');
     expect(source).not.toContain('Имя создадим автоматически — изменить можно позже');
-    expect(source).not.toContain('Не удалось создать уникальное имя');
-    expect(source).not.toContain('loading={finishBusy}');
     expect(source.indexOf('onDone();')).toBeLessThan(source.indexOf('resumePendingGeneratedNickname()'));
 
     expect(source).toContain('Phraseman Plus');
@@ -74,10 +143,6 @@ describe('clean midnight onboarding contract', () => {
     expect(source).toContain('trackOnboardingPlanPaywallView');
     expect(source).toContain("trackEvent('onboarding_plan_paywall_view'");
     expect(source).toContain("trackEvent('onboarding_plan_trial_cta'");
-    expect(source).toContain("writeToFirestore: action === 'onboarding_source_select'");
-    expect(source).toContain("consented: true");
-    expect(source).toContain('[PLAN_BILLING_KEY, billing]');
-    expect(source).not.toContain('const paywallOpened = await onPersonalPlanPaywallStart?.();');
   });
 
   it('uses the midnight liquid visual system without legacy onboarding assets', () => {
@@ -100,24 +165,5 @@ describe('clean midnight onboarding contract', () => {
       'planPicker',
       'planDetails',
     ].forEach((text) => expect(source).not.toContain(text));
-  });
-
-  it('removes auxiliary copy, mini task screens, and trial reminder choice from onboarding', () => {
-    [
-      'subtitle?:',
-      'renderMiniAha',
-      'miniAhaForGoal',
-      'onboarding-miniAha-screen',
-      'onboarding-mini-choice-correct',
-      'onboarding-trialReminder-screen',
-      'TRIAL_REMINDER_CHOICE_KEY',
-      'chooseTrialReminder',
-      'onboarding-ageConsent-screen',
-    ].forEach((text) => expect(source).not.toContain(text));
-
-    expect(source).toContain('NotificationMock');
-    expect(source).toContain('requestNotificationPermission');
-    expect(source).toContain('scheduleDailyReminder');
-    expect(source).not.toContain('scheduleTrialEndReminder');
   });
 });

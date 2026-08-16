@@ -74,7 +74,7 @@ describe('Onboarding survives disabling any screens', () => {
   });
 
   it('keeps the back button on enabled screens only', () => {
-    const order = orderFor(['source', 'level', 'minutes']);
+    const order = orderFor(['promise', 'notifications', 'trialReminder']);
     for (const step of order) {
       const back = resolveOnboardingStep(order, step, 'backward');
       expect(order).toContain(back);
@@ -82,7 +82,7 @@ describe('Onboarding survives disabling any screens', () => {
   });
 
   it('still triggers paywall side effects when the screens before it are off', () => {
-    const order = orderFor(['startMode', 'planComparison']);
+    const order = orderFor(['trialReminder']);
     // Экран оплаты включён, значит переход к нему обязан готовить paywall.
     const anchor = resolveOnboardingStep(order, 'onboardingPaywall', 'backward');
     expect(decideOnboardingTransition(order, anchor).destination).toBe('onboardingPaywall');
@@ -97,7 +97,7 @@ describe('Onboarding survives disabling any screens', () => {
   });
 
   it('reports honest progress numbers for a shortened flow', () => {
-    const order = orderFor(['goal', 'minutes', 'aha']);
+    const order = orderFor(['promise', 'notifications']);
     const { total } = getOnboardingProgress(order, MANDATORY_ONBOARDING_STEP);
     const last = getOnboardingProgress(order, MANDATORY_ONBOARDING_STEP).progress;
     expect(last).toBe(total); // финальный шаг = «N из N», без «5 из 12»

@@ -22,6 +22,8 @@ export type AppEventMap = {
   vip_activated: undefined;
   vip_deactivated: undefined;
   dev_local_plus_override_changed: { stableId: string; mode: 'granted' | 'removed' };
+  /** DEV-центр: перезапустить боевой онбординг с первого экрана (ключи уже сброшены). */
+  dev_onboarding_restart: undefined;
   premium_access_changed: { active: boolean; source: 'premium' | 'vip' | 'none' };
   intro_full_access_changed: undefined;
   /** Приветствие-«знакомство» (компас-слайды) закрыто юзером — можно показывать подарок 3 дня. */

@@ -9,7 +9,8 @@ describe('clean onboarding copy contract', () => {
 
     expect(source).toContain('targetLabel(studyTarget');
     expect(source).toContain('reactionForLevel(level, studyTarget)');
-    expect(source).toContain('reactionForGoal(goal)');
+    // Экран цели удалён вместе с планами (2026-08-16) — реакция осталась только у уровня.
+    expect(source).not.toContain('reactionForGoal');
     expect(source).toContain("id: 'en'");
     expect(source).toContain("id: 'fr'");
     expect(source).not.toContain('localizedChoiceTitle');

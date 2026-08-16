@@ -4,7 +4,8 @@ export type DevToolAction =
   | 'preview-lesson-results'
   | 'preview-spin-reward'
   | 'grant-plus'
-  | 'revoke-plus';
+  | 'revoke-plus'
+  | 'run-onboarding';
 
 export type DevToolIcon =
   | 'flash-outline'
@@ -12,7 +13,8 @@ export type DevToolIcon =
   | 'trophy-outline'
   | 'sync-outline'
   | 'add-circle-outline'
-  | 'remove-circle-outline';
+  | 'remove-circle-outline'
+  | 'rocket-outline';
 
 export type DevTool = Readonly<{
   id: string;
@@ -30,7 +32,7 @@ export type DevToolSection = Readonly<{
   id: string;
   order: number;
   title: string;
-  icon: 'sparkles-outline' | 'key-outline';
+  icon: 'sparkles-outline' | 'key-outline' | 'rocket-outline';
   testID: string;
   tools: readonly DevTool[];
 }>;
@@ -112,6 +114,25 @@ export const DEV_TOOL_SECTIONS = [
         icon: 'remove-circle-outline',
         testID: 'dev-plus-remove',
         tone: 'danger',
+      },
+    ],
+  },
+  {
+    id: 'onboarding-tools',
+    order: 5,
+    title: 'Онбординг',
+    icon: 'rocket-outline',
+    testID: 'dev-section-onboarding',
+    tools: [
+      {
+        id: 'onboarding-run',
+        order: 10,
+        title: 'Пройти онбординг',
+        detail: 'Боевой флоу с первого экрана: ключи прохождения сбрасываются, профиль и прогресс не трогаются.',
+        actionLabel: 'Запустить',
+        action: 'run-onboarding',
+        icon: 'rocket-outline',
+        testID: 'dev-onboarding-run',
       },
     ],
   },

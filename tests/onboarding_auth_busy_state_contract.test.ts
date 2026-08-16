@@ -22,8 +22,8 @@ describe('clean onboarding auth placement contract', () => {
   it('keeps existing-account sign-in only inside the branded welcome screen', () => {
     const src = read('components/CleanOnboarding.tsx');
     const welcomeIdx = src.indexOf('const renderWelcome = () =>');
-    // Граница блока welcome — следующий экран флоу (источник трафика).
-    const nextIdx = src.indexOf('const renderSource = () =>');
+    // Граница блока welcome — следующий рендер флоу (блок языка).
+    const nextIdx = src.indexOf('const renderLanguage = () =>');
     const welcomeBlock = src.slice(welcomeIdx, nextIdx);
 
     expect(welcomeIdx).toBeGreaterThan(-1);

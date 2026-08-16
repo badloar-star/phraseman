@@ -110,13 +110,13 @@ describe('personal plan premium activation contract', () => {
     const layout = readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
 
     expect(onboarding).toContain('export type CleanOnboardingStep =');
-    for (const step of ['goal', 'level', 'minutes', 'notifications', 'startMode', 'plusBenefits', 'onboardingPaywall', 'name']) {
+    // Минимальный флоу (владелец, 2026-08-16): анкета плана удалена, вместо неё
+    // promise/trialReminder; язык (language+level) — отключаемый блок каталога.
+    for (const step of ['level', 'aha', 'notifications', 'trialReminder', 'onboardingPaywall', 'name']) {
       expect(onboarding).toContain(`'${step}'`);
     }
     expect(onboarding).not.toContain("'miniAha'");
-    expect(onboarding).not.toContain("'trialReminder'");
     expect(onboarding).not.toContain("'ageConsent'");
-    expect(onboarding).not.toContain("'promise'");
     expect(onboarding).not.toContain("'planResult'");
     expect(onboarding).not.toContain("if (step === 'planEntry')");
     expect(onboarding).not.toContain('onboarding-plan-entry-screen');
@@ -124,9 +124,10 @@ describe('personal plan premium activation contract', () => {
     expect(onboarding).not.toContain("'planPaywall'");
     expect(onboarding).not.toContain("'planPicker'");
     expect(onboarding).not.toContain("'planDetails'");
-    expect(onboarding).toContain('resolvePersonalPlanForGoal');
-    expect(onboarding).toContain('selectedMinutes');
-    expect(onboarding).toContain('queuePendingPersonalPlanActivation');
+    // Планы удалены: очередь активации из онбординга исчезла, а pending-ключ
+    // возврата после покупки остался — он ведёт человека назад на шаг «Имя».
+    expect(onboarding).not.toContain('resolvePersonalPlanForGoal');
+    expect(onboarding).not.toContain('queuePendingPersonalPlanActivation');
     expect(onboarding).toContain('PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY');
     // CTA Ð¿ÐµÐ¹Ð²Ð¾Ð»Ð° Ð”ÐžÐ›Ð–Ð•Ð Ð´ÐµÐ»Ð°Ñ‚ÑŒ Ñ€ÐµÐ°Ð»ÑŒÐ½ÑƒÑŽ Ð¿Ð¾ÐºÑƒÐ¿ÐºÑƒ, Ð° Ð½Ðµ Ð¿Ð¾Ð´Ð¼ÐµÐ½ÑÑ‚ÑŒ ÐµÑ‘ ÑÑ‚Ð°Ñ€Ñ‚Ð¾Ð¼ intro-Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð°.
     // Ð Ð°Ð½ÑŒÑˆÐµ Ð²ÐµÑ‚ÐºÐ° `if (hasPremiumAccess || introFullAccessStarted)` Ð²ÑÐµÐ³Ð´Ð° ÑÑ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°Ð»Ð°
@@ -137,16 +138,12 @@ describe('personal plan premium activation contract', () => {
     expect(onboarding).not.toContain('if (paywallOpened === false) {');
     expect(onboarding).toContain('usePaywallPurchase');
     expect(onboarding).toContain("source: 'onboarding_plan'");
-    expect(onboarding).toContain("source: 'onboarding'");
     expect(onboarding).toContain('onPersonalPlanPaywallStart');
     expect(onboarding).toContain('[PLAN_BILLING_KEY, billing]');
     expect(onboarding).not.toContain('Составить план под мою цель');
     expect(onboarding).not.toContain('Просто посмотреть приложение');
-    expect(onboarding).toContain('testID="onboarding-plus-benefits-continue"');
+    expect(onboarding).toContain('testID="onboarding-trial-reminder-continue"');
     expect(onboarding).not.toContain("onPress={() => go('planPaywall')}");
-    expect(onboarding).not.toContain("planId: 'gavan',\n        minutesPerDay,");
-    expect(onboarding).toContain('planId,');
-    expect(onboarding).toContain('minutesPerDay: selectedMinutes');
     expect(onboarding).toContain("go('name')");
     expect(layout).toContain('handleOnboardingPersonalPlanPaywall');
     expect(layout).toContain("pathname: '/premium_modal'");
@@ -175,7 +172,7 @@ describe('personal plan premium activation contract', () => {
 
     expect(onboarding).toContain('const [paywallBusy, setPaywallBusy] = useState(false)');
     expect(onboarding).not.toContain('onPersonalPlanPaywallStart?.()');
-    expect(onboarding).toContain('queueSelectedPlan');
+    expect(onboarding).toContain('queuePostPurchaseReturn');
     expect(onboarding).toContain('paywallRestoring');
     expect(onboarding).not.toContain('styles.planPaywallTrustItemDisabled');
   });

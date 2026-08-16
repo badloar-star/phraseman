@@ -1,16 +1,14 @@
 export type OnboardingStepId =
   | 'welcome'
+  | 'privacy'
   | 'source'
   | 'language'
   | 'level'
-  | 'goal'
-  | 'minutes'
-  | 'aha'
+  | 'promise'
   | 'notifications'
-  | 'plusBenefits'
-  | 'startMode'
-  | 'planComparison'
+  | 'trialReminder'
   | 'onboardingPaywall'
+  | 'improve'
   | 'name';
 
 export type OnboardingFlowDirection = 'forward' | 'backward' | 'current-or-forward';
@@ -31,24 +29,28 @@ export type OnboardingTransitionEffects = {
 export const MANDATORY_ONBOARDING_STEP: OnboardingStepId = 'name';
 export const ONBOARDING_ENABLED_STEPS_TEXT_KEY = 'onboarding_enabled_steps_v1';
 
+// Минимальный флоу (владелец, 2026-08-16): анкета про построение плана удалена
+// вместе с планами; язык — отдельным отключаемым блоком (language+level), пока
+// не добавлены языки. «privacy» — экран-сейф в духе Bevel (предложение входа),
+// «promise» — обязательный анимированный экран прогресса с кнопкой
+// «Попробовать» (полная АХ-сцена открывается ПО КНОПКЕ, отдельного шага у неё
+// нет), затем «trialReminder» перед ценами и «improve» перед согласиями.
 export const ONBOARDING_STEP_CATALOG: readonly {
   id: OnboardingStepId;
   label: string;
   description: string;
   mandatory?: boolean;
 }[] = [
-  { id: 'welcome', label: 'Приветствие', description: 'Первый экран знакомства.' },
+  { id: 'welcome', label: 'Приветствие', description: 'Первый экран знакомства и вход.' },
+  { id: 'privacy', label: 'Приватность и вход', description: 'Экран-сейф: предложение входа, данные не передаются.' },
   { id: 'source', label: 'Источник', description: 'Откуда пользователь узнал о приложении.' },
-  { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка.' },
-  { id: 'level', label: 'Уровень', description: 'Текущий уровень языка.' },
-  { id: 'goal', label: 'Цель', description: 'Цель обучения.' },
-  { id: 'minutes', label: 'Время занятий', description: 'Ежедневный темп.' },
-  { id: 'aha', label: 'Демонстрация', description: 'Практическая демонстрация обучения.' },
+  { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка (выключен, пока язык один).' },
+  { id: 'level', label: 'Уровень', description: 'Уровень выбранного языка (блок языка).' },
+  { id: 'promise', label: 'Обещание результата', description: 'Анимированный прогресс + кнопка «Попробовать» (живая сцена).' },
   { id: 'notifications', label: 'Уведомления', description: 'Предложение включить уведомления.' },
-  { id: 'plusBenefits', label: 'Преимущества Plus', description: 'Обзор преимуществ подписки.' },
-  { id: 'startMode', label: 'Режим старта', description: 'Выбор способа начать обучение.' },
-  { id: 'planComparison', label: 'Сравнение планов', description: 'Сравнение вариантов доступа.' },
+  { id: 'trialReminder', label: 'Напоминание о пробном', description: 'Обещание предупредить до конца пробного.' },
   { id: 'onboardingPaywall', label: 'Предложение подписки', description: 'Экран покупки.' },
+  { id: 'improve', label: 'Помоги улучшить', description: 'Объяснение перед согласиями: аналитика и возраст.' },
   {
     id: 'name',
     label: 'Имя и согласия',
@@ -85,7 +87,12 @@ export function resolveEnabledOnboardingOrder(
 ): OnboardingStepId[] {
   const enabled = new Set(remotelyEnabled);
   enabled.add(MANDATORY_ONBOARDING_STEP);
-  if (!showLanguageStep) enabled.delete('language');
+  // Блок языка целиком (выбор + уровень): продукт ещё не добавил вторые языки,
+  // поэтому локальный рубильник глушит оба экрана независимо от админки.
+  if (!showLanguageStep) {
+    enabled.delete('language');
+    enabled.delete('level');
+  }
   return ALL_STEP_IDS.filter((id) => enabled.has(id));
 }
 
@@ -131,7 +138,7 @@ export function getOnboardingProgress(
   enabledOrder: readonly OnboardingStepId[],
   step: OnboardingStepId,
 ): { progress: number; total: number } {
-  const progressOrder: readonly OnboardingStepId[] = enabledOrder.filter((id) => id !== 'welcome' && id !== 'aha');
+  const progressOrder: readonly OnboardingStepId[] = enabledOrder.filter((id) => id !== 'welcome' && id !== 'privacy');
   return { progress: Math.max(0, progressOrder.indexOf(step) + 1), total: Math.max(1, progressOrder.length) };
 }
 

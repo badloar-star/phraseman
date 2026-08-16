@@ -13,23 +13,21 @@ describe('clean onboarding study-target and order contract', () => {
     expect(wrapperSource).not.toContain("require('../assets/images/onboarding");
   });
 
-  it('uses the approved English-only screen order with the aha scene', () => {
+  it('uses the approved minimal screen order with the aha scene', () => {
     [
       "'welcome'",
+      "'privacy'",
       "'source'",
-      "'level'",
-      "'goal'",
-      "'minutes'",
-      "'aha'",
+      "'promise'",
       "'notifications'",
-      "'plusBenefits'",
-      "'startMode'",
+      "'trialReminder'",
+      "'onboardingPaywall'",
       "'name'",
     ].forEach((step) => expect(source).toContain(step));
 
     expect(source).toContain('CLEAN_ONBOARDING_ORDER');
     expect(source).toContain('const SHOW_ONBOARDING_LANGUAGE_STEP = false');
-    expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? ['language' as const] : [])");
+    expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : [])");
     expect(source).not.toContain("'streak'");
     expect(source).not.toContain("'auth'");
     expect(source).not.toContain("'studyTarget'");
@@ -46,17 +44,19 @@ describe('clean onboarding study-target and order contract', () => {
     expect(source).toContain('signInWithProvider(provider)');
   });
 
-  it('captures source, defaults to English while language screen is hidden, then asks level/goal/minutes', () => {
+  it('defaults to English while the language block is hidden and keeps the toggleable screens', () => {
+    // Анкета плана удалена; «откуда узнал» владелец вернул (2026-08-16).
+    // Английский фиксируется на welcome, блок языка ждёт вторых языков.
     expect(source).toContain('DISCOVERY_OPTIONS');
     expect(source).toContain('onboarding_source_select');
+    expect(source).not.toContain('GOAL_OPTIONS');
+    expect(source).not.toContain('MINUTE_OPTIONS');
     expect(source).toContain('ensureEnglishStudyTarget');
-    expect(source).toContain("go('level')");
-    expect(source).toContain("if (SHOW_ONBOARDING_LANGUAGE_STEP)");
+    expect(source).toContain('if (!SHOW_ONBOARDING_LANGUAGE_STEP) void ensureEnglishStudyTarget();');
     expect(source).toContain('LANGUAGE_OPTIONS');
     expect(source).toContain('testID="onboarding-language-continue"');
     expect(source).toContain('LEVEL_OPTIONS');
-    expect(source).toContain('GOAL_OPTIONS');
-    expect(source).toContain('MINUTE_OPTIONS');
+    expect(source).toContain("go('promise')");
   });
 
   it('persists requested English/French target without old onboarding image assets', () => {
@@ -73,11 +73,14 @@ describe('clean onboarding study-target and order contract', () => {
     expect(source).not.toContain('ONBOARDING_STUDY_TARGET_ICONS');
   });
 
-  it('keeps final legal as one terms/privacy checkbox plus optional analytics', () => {
+  it('keeps final step as analytics choice plus a yes/no age question', () => {
     expect(source).toContain('testID="onboarding-age-yes"');
     expect(source).toContain('testID="onboarding-age-no"');
-    expect(source).toContain('testID="onboarding-legal-checkbox"');
+    // Согласие с условиями — sign-in-wrap строкой на welcome, не галочкой в финале.
+    expect(source).not.toContain('testID="onboarding-legal-checkbox"');
     expect(source).toContain('testID="onboarding-analytics-checkbox"');
+    // Рассылки нет в принципе (владелец, 2026-08-16).
+    expect(source).not.toContain('testID="onboarding-newsletter-row"');
     expect(source).toContain('KNOWLY_LEGAL_TERMS_URL');
     expect(source).toContain('KNOWLY_LEGAL_PRIVACY_URL');
     expect(source).not.toContain('YearWheel');

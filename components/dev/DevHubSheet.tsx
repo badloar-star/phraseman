@@ -23,6 +23,8 @@ import {
 import { grantLocalDevSpin } from '../../app/local_level_spins';
 import { hapticTap } from '../../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { emitAppEvent } from '../../app/events';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import LevelUpThresholdModal, { type LevelUpPreviewVariant } from '../LevelUpThresholdModal';
@@ -287,6 +289,19 @@ export default function DevHubSheet({ visible, onClose }: DevHubSheetProps) {
     }
   }, [account, busy, reload]);
 
+  // «Пройти онбординг»: боевой оверлей с первого экрана. Сбрасываем ТОЛЬКО
+  // ключи прохождения (done/step/version) — профиль, прогресс и согласия не
+  // трогаются; завершение отработает обычным handleOnboardingDone.
+  const runOnboardingPreview = useCallback(async () => {
+    await AsyncStorage.multiRemove([
+      'onboarding_done',
+      'onboarding_step',
+      'onboarding_flow_version_v1',
+    ]).catch(() => {});
+    requestClose();
+    emitAppEvent('dev_onboarding_restart');
+  }, [requestClose]);
+
   const handleTool = useCallback((action: DevToolAction) => {
     switch (action) {
       case 'preview-level-standard':
@@ -306,8 +321,11 @@ export default function DevHubSheet({ visible, onClose }: DevHubSheetProps) {
         return;
       case 'revoke-plus':
         void applyPlusOverride('removed');
+        return;
+      case 'run-onboarding':
+        void runOnboardingPreview();
     }
-  }, [applyPlusOverride, openLessonResultsPreview, openPreview, openSpinRewardPreview]);
+  }, [applyPlusOverride, openLessonResultsPreview, openPreview, openSpinRewardPreview, runOnboardingPreview]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const milestone = preview?.type === 'level-up' && preview.variant === 'milestone';

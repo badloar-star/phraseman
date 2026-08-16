@@ -119,6 +119,8 @@ export type AnalyticsEvent =
   | 'onboarding_plan_paywall_view'
   | 'onboarding_plan_trial_cta'   // нажата CTA триала/подписки в онбординге
   | 'onboarding_continue_free'    // «Продолжить без плана»
+  | 'onboarding_promo_redeemed'   // промокод активирован из меню пейвола (props.kind)
+  | 'onboarding_referral_applied' // код друга применён из меню пейвола (props.already)
   | 'intro_full_access_started'   // активирован 72ч полный доступ
   | 'intro_welcome_shown'
   | 'intro_welcome_cta'

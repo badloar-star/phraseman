@@ -30,8 +30,13 @@ describe('empty custom cards route bypass', () => {
   it('redirects directly to the editor and removes the intermediate UI copy', () => {
     const collection = read('app', 'flashcards_collection.tsx');
     const emptyState = read('app', 'flashcards', 'CollectionListView.tsx');
-    expect(collection).toContain('if (bypassEmptyCustomCollection)');
-    expect(collection).toContain('if (resolvingEmptyCustomCollection)');
+    // Пустая custom-коллекция, которая через кадр уедет в редактор, не должна
+    // рисовать НИЧЕГО. Раньше здесь ждали ещё и `resolvingEmptyCustomCollection`
+    // с пустым градиентом во весь экран — этот экран-заглушка мелькал при входе
+    // в раздел (репорт владельца 2026-08-16) и удалён. Сторожим суть: ветка есть
+    // и возвращает null, а не промежуточный UI.
+    expect(collection).toMatch(/if \(bypassEmptyCustomCollection\) \{\s*return null;/);
+    expect(collection).not.toContain('resolvingEmptyCustomCollection');
     expect(collection).toContain("pathname: '/flashcards_card_editor'");
     expect(collection).toMatch(/markNextNavigationAsReplace\(\);\s*router\.replace\(\{/);
     expect(collection).not.toContain('import { Redirect,');

@@ -779,6 +779,9 @@ export function CollectionEmptyState({
       ) : null}
       {/* зачем: при пустом поиске «К выбору категорий» — ложный выход: человек
           хочет очистить запрос, а не покинуть раздел. Ссылку тут не показываем. */}
+      {/* зачем (владелец, 2026-08-16): «К выбору категорий» вела наружу раздела —
+          из пустой коллекции человека выбрасывало на главную. Из пустого раздела
+          нужен путь ТУДА, ГДЕ БЕРУТ КАРТОЧКИ, — в наборы сообщества. */}
       {searchActive ? null : (
       <TouchableOpacity
         onPress={onLeave}
@@ -786,9 +789,9 @@ export function CollectionEmptyState({
       >
         <Text style={{ color: t.textSecond, fontSize: f.sub, textDecorationLine: 'underline' }}>
           {triLang(lang, {
-            ru: 'К выбору категорий',
-            uk: 'До вибору категорій',
-            es: 'Volver al menú de cartas',
+            ru: 'Наборы сообщества',
+            uk: 'Набори спільноти',
+            es: 'Packs de la comunidad',
           })}
         </Text>
       </TouchableOpacity>

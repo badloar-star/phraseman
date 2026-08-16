@@ -220,6 +220,17 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     safeRouterBack(router, backTarget as any);
   }, [router, packBackOrigin, packDeeplink]);
 
+  /**
+   * зачем (владелец, 2026-08-16): из ПУСТОЙ коллекции нужен путь туда, где берут
+   * карточки, — в наборы сообщества. Раньше эта кнопка звала leaveCollection и
+   * выбрасывала на главную. Это соседняя позиция таббара карточек, поэтому
+   * replace: стек раздела не должен расти (см. FlashcardsTabBar.go).
+   */
+  const openCommunityPacks = useCallback(() => {
+    markNextNavigationAsReplace();
+    router.replace(FC_PACKS_ROUTE as any);
+  }, [router]);
+
   // ── State ──────────────────────────────────────────────────────────────────
   /** `?pack=` без `cat` — одразу «Власні» (набір), не кадр з «Збережені» до завантаження маркету. */
   const [activeCat, setActiveCat] = useState<CategoryId>(() => {
@@ -661,11 +672,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     packDeeplink,
     customCardCount: customCards.length,
   });
-  const resolvingEmptyCustomCollection = activeCat === 'custom'
-    && !packDeeplink
-    && customCards.length === 0
-    && !collectionDataReady;
-
   useEffect(() => {
     if (!bypassEmptyCustomCollection) return;
     // Redirect заменяет native route, но без этой метки наш собственный
@@ -678,14 +684,18 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     } as any);
   }, [bypassEmptyCustomCollection, router]);
 
-  // Не показываем удалённый экран даже одним кадром на холодном чтении storage.
-  // После проверки либо монтируется реальная коллекция, либо Redirect в редактор.
-  if (resolvingEmptyCustomCollection) {
-    return <ScreenGradient><View style={st.safe} /></ScreenGradient>;
-  }
-
+  /**
+   * зачем (владелец, 2026-08-16, «убери лишние экраны, чтобы ничего не прыгало»):
+   * раньше здесь рисовался ПУСТОЙ ГРАДИЕНТ во весь экран — он и мелькал кадром
+   * при входе. Возвращаем `null`: пустая custom-коллекция, которая через кадр
+   * уедет в редактор (эффект выше), не рисует ВООБЩЕ НИЧЕГО. Предыдущий экран
+   * остаётся на месте до самого перехода — глазу мелькать нечем.
+   *
+   * Совсем убрать эту ветку нельзя: без неё на кадр смонтируется настоящая
+   * пустая коллекция — то есть ровно тот лишний экран, который просили убрать.
+   */
   if (bypassEmptyCustomCollection) {
-    return <ScreenGradient><View style={st.safe} /></ScreenGradient>;
+    return null;
   }
 
   return (
@@ -759,7 +769,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
               emptySub={searchActive ? '' : s.emptySub}
               searchActive={searchActive}
               loadError={loadError}
-              onLeave={leaveCollection}
+              onLeave={openCommunityPacks}
               onRetry={loadAll}
             />
           </ContentWrap>

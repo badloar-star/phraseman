@@ -206,40 +206,6 @@
     }, 2500);
   })();
 
-  /* ============ Магнитная главная кнопка ============ */
-  (function magnetic() {
-    if (reduceMotion) return;
-    if (window.matchMedia('(hover: none)').matches) return; /* не на тач-экранах */
-    var STRENGTH = 0.35;
-    var MAX = 14;
-    document.querySelectorAll('.btn-primary').forEach(function (btn) {
-      var frame = null;
-      var tx = 0;
-      var ty = 0;
-      function paint() {
-        frame = null;
-        btn.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) scale(1.07)';
-      }
-      btn.style.transition = 'transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .2s ease';
-      btn.addEventListener('pointermove', function (e) {
-        if (e.pointerType === 'touch') return;
-        var rect = btn.getBoundingClientRect();
-        var dx = e.clientX - (rect.left + rect.width / 2);
-        var dy = e.clientY - (rect.top + rect.height / 2);
-        tx = Math.max(-MAX, Math.min(MAX, dx * STRENGTH));
-        ty = Math.max(-MAX, Math.min(MAX, dy * STRENGTH));
-        /* зачем: запись transform только в кадре анимации — на слабых машинах
-           pointermove летит чаще 60 Гц и без throttle кнопка «дрожит» */
-        if (!frame) frame = requestAnimationFrame(paint);
-      });
-      btn.addEventListener('pointerleave', function () {
-        if (frame) { cancelAnimationFrame(frame); frame = null; }
-        tx = 0; ty = 0;
-        btn.style.transform = 'translate(0, 0) scale(1)';
-      });
-    });
-  })();
-
   /* ============ FAQ-аккордеон ============ */
   (function faq() {
     var questions = document.querySelectorAll('.faq-q');

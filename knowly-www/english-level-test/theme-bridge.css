@@ -86,5 +86,32 @@ body {
     radial-gradient(ellipse 70% 38% at 50% 0%, rgba(76, 125, 255, .18), transparent 72%);
 }
 
+/* ── Флаги языков ─────────────────────────────────────────────────────────
+   зачем: владелец 2026-08-16 — «иконки криво, с какими-то подкладками».
+   В styles.css у флагов зашиты ЗОЛОТЫЕ тени rgba(120,90,20) и rgba(232,161,60):
+   на тёмном фоне они читались как грязная подложка вокруг каждой иконки.
+   Меняем на нейтральную тень и синее кольцо выбранного языка. */
+:root { --flag-shadow: rgba(0, 0, 0, .18); }
+.elt-language-flag {
+  box-shadow: 0 4px 12px var(--flag-shadow);
+}
+.elt-language-option:hover {
+  background: rgba(var(--accent-rgb, 76, 125, 255), .09);
+}
+/* Кольцо — только у выбранного языка */
+.elt-language-option--active .elt-language-flag {
+  box-shadow: 0 0 0 2.5px var(--card), 0 0 0 4.5px var(--accent), 0 6px 16px var(--flag-shadow);
+}
+/* зачем: раньше здесь стояли селекторы вида
+   `:root:not([data-theme='light']) .elt-language-flag` — по специфичности они
+   били базовое правило и кольцо выбора получали ВСЕ пять флагов сразу.
+   Тень в тёмной теме задаётся через переменную, без дублей селекторов. */
+:root[data-theme='dark'] { --flag-shadow: rgba(0, 0, 0, .45); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) { --flag-shadow: rgba(0, 0, 0, .45); }
+}
+/* Тот же приём для маленьких флажков переключателя языка интерфейса */
+.elt-ui-locale-flag { box-shadow: none; }
+
 /* зачем: сертификат рисуется по СВОИМ пяти темам (gold / midnight / emerald /
    rose / royal) и печатается людям — его палитру не трогаем вообще. */

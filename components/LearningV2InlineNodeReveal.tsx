@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Reanimated, {
-  Easing,
   cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
@@ -52,9 +51,30 @@ export default function LearningV2InlineNodeReveal({
     // Ступенька каскада ограничена сверху: последний узел длинного урока
     // не должен ждать заметно дольше первого.
     const delay = Math.min(index * REVEAL_STEP_MS, REVEAL_MAX_DELAY_MS);
+    const total = delay + REVEAL_DURATION_MS;
+    // зачем: `withDelay` здесь недоступен (сторож вкладки запрещает отложенные
+    // анимации, см. шапку файла), поэтому пауза вшита в САМУ кривую: первые
+    // `delay/total` кривой держат значение на нуле, дальше идёт обычный
+    // ease-out. Это настоящий ступенчатый старт — узлы трогаются с места по
+    // очереди. Наивное «просто удлинить duration» каскада НЕ даёт: все узлы
+    // стартуют одновременно и лишь едут с разной скоростью.
+    const hold = delay / total;
     progress.value = withTiming(1, {
-      duration: REVEAL_DURATION_MS + delay,
-      easing: Easing.bezier(0.22, 1, 0.36, 1),
+      duration: total,
+      // 'worklet' обязателен: easing исполняется на UI-потоке. Без директивы
+      // замыкание осталось бы JS-функцией, и анимация уехала бы на JS-поток —
+      // ровно та задержка, ради устранения которой всё и делалось.
+      //
+      // Кривая посчитана здесь же, а не через Easing.bezier(...).factory():
+      // фабрика — объект с JS-потока, захватывать его в worklet нельзя.
+      // Захватываются только числа (hold), что worklet-безопасно.
+      // out-cubic — тот же характер, что у остальных входов приложения.
+      easing: (t: number) => {
+        'worklet';
+        if (t <= hold) return 0;
+        const p = (t - hold) / (1 - hold);
+        return 1 - Math.pow(1 - p, 3);
+      },
     });
     return () => cancelAnimation(progress);
   }, [index, progress, reduceMotion]);

@@ -207,25 +207,11 @@ export default function LevelUpThresholdModalHybrid({
     cardOpacity.value = withDelay(LUM.ladder[1], withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) }));
     cardScale.value = withDelay(LUM.ladder[1], withSpring(1, LUM.settle));
 
-    // ── фаза 2: замах медали (CHK.anticipMs) → падение (CHK.fallMs, bezier) → УДАР ──
-    const impactDelay = LUM.ladder[2] + 140;
-    badgeOpacity.value = withDelay(impactDelay, withTiming(1, { duration: 110, easing: Easing.linear }));
-    badgeY.value = withDelay(
-      impactDelay,
-      withSequence(
-        withTiming(-176, { duration: CHK.anticipMs, easing: Easing.inOut(Easing.ease) }),
-        withTiming(0, { duration: CHK.fallMs, easing: Easing.bezier(...CHK.fallBezier) }, (finished) => {
-          if (finished) runOnJS(handleImpact)();
-        }),
-      ),
-    );
-    badgeScale.value = withDelay(
-      impactDelay,
-      withSequence(
-        withTiming(1.42, { duration: 0 }),
-        withTiming(1, { duration: CHK.anticipMs + CHK.fallMs, easing: Easing.bezier(...CHK.fallBezier) }),
-      ),
-    );
+    // зачем: краш «hybrid уровня вылетает» — handleImpact был worklet'ом, но
+    // вызывался через runOnJS (для JS-функций), а внутри читал ref.current на
+    // UI-треде. Теперь: сам удар (shared values) — прямо в worklet-колбэке
+    // анимации, а JS-побочка (звук/хаптика) — обычная функция через runOnJS.
+    const fireImpactJs = () => { onImpactRef.current(); };
 
     function handleImpact() {
       'worklet';
@@ -241,7 +227,7 @@ export default function LevelUpThresholdModalHybrid({
         ring1Scale.value = withDelay(90, withTiming(4.2, { duration: 920, easing: Easing.out(Easing.cubic) }));
         ring1Opacity.value = withDelay(90, withTiming(0, { duration: 920, easing: Easing.linear }));
       }
-      runOnJS(onImpactRef.current)();
+      runOnJS(fireImpactJs)();
 
       // ── каскад Чекана [62,146,262,410] для текста и наград, шаг наград 84 ──
       textOpacity.value = withDelay(80, withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) }));
@@ -255,6 +241,28 @@ export default function LevelUpThresholdModalHybrid({
         milestoneFlareScale.value = withDelay(60, withSpring(1, LUM.settle));
       }
     }
+
+    // ── фаза 2: замах медали (CHK.anticipMs) → падение (CHK.fallMs, bezier) → УДАР ──
+    const impactDelay = LUM.ladder[2] + 140;
+    badgeOpacity.value = withDelay(impactDelay, withTiming(1, { duration: 110, easing: Easing.linear }));
+    badgeY.value = withDelay(
+      impactDelay,
+      withSequence(
+        withTiming(-176, { duration: CHK.anticipMs, easing: Easing.inOut(Easing.ease) }),
+        withTiming(0, { duration: CHK.fallMs, easing: Easing.bezier(...CHK.fallBezier) }, (finished) => {
+          'worklet';
+          if (finished) handleImpact();
+        }),
+      ),
+    );
+    badgeScale.value = withDelay(
+      impactDelay,
+      withSequence(
+        withTiming(1.42, { duration: 0 }),
+        withTiming(1, { duration: CHK.anticipMs + CHK.fallMs, easing: Easing.bezier(...CHK.fallBezier) }),
+      ),
+    );
+
 
     return () => {
       cancelAnimation(backdropOpacity);
@@ -391,7 +399,7 @@ export default function LevelUpThresholdModalHybrid({
       animationType="none"
       statusBarTranslucent
       onShow={onShow}
-      onRequestClose={() => {}}
+      onRequestClose={onContinue}
     >
       <Pressable
         accessibilityViewIsModal

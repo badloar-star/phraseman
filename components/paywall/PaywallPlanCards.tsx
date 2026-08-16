@@ -5,10 +5,11 @@
 // SAVE-бейджи +64–72% в кейсах RevenueCat. Никаких выдуманных зачёркиваний.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { View, Text, TouchableOpacity, Pressable, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { LinearGradient } from '../SafeLinearGradient';
+import PressableHybrid from '../PressableHybrid';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
 import { PaywallBadgePop } from './PaywallMotion';
@@ -107,11 +108,11 @@ export default function PaywallPlanCards({
       cardBg,
     ] as [string, string, string];
     return (
-      <TouchableOpacity
+      <PressableHybrid
+        variant="card"
         accessibilityRole="radio"
         accessibilityLabel={`${name} ${price}`.trim()}
         accessibilityState={{ selected: sel, disabled: !!disabled }}
-        activeOpacity={0.72}
         disabled={disabled}
         onPress={() => onSelect(plan)}
         style={[S.card, {
@@ -159,7 +160,7 @@ export default function PaywallPlanCards({
           {!hidePerMonth && <Text style={[S.per, { color: textMuted }]}>{perMonthLabel}</Text>}
         </View>
         {sub ? <Text style={[S.sub, { color: textMuted }]}>{sub}</Text> : null}
-      </TouchableOpacity>
+      </PressableHybrid>
     );
   };
 
@@ -285,7 +286,8 @@ export default function PaywallPlanCards({
         null,
       )}
       {lifetimeAvailable && (
-        <Pressable
+        <PressableHybrid
+          variant="secondary"
           accessibilityRole="button"
           accessibilityLabel={lifetimeOfferTitle}
           accessibilityHint={lifetimeOfferSubtitle}
@@ -293,11 +295,8 @@ export default function PaywallPlanCards({
           disabled={disabled}
           hitSlop={4}
           onPress={toggleLifetimeOffer}
-          style={({ pressed }) => [
-            S.offerToggle,
-            { backgroundColor: cardBg },
-            pressed && !disabled ? S.offerTogglePressed : null,
-          ]}
+          style={[S.offerToggle, { backgroundColor: cardBg }]}
+          contentStyle={S.offerToggleContent}
         >
           <View style={S.offerToggleCopy}>
             <Text style={[S.offerToggleTitle, { color: textPrimary }]}>{lifetimeOfferTitle}</Text>
@@ -308,7 +307,7 @@ export default function PaywallPlanCards({
             size={20}
             color={textMuted}
           />
-        </Pressable>
+        </PressableHybrid>
       )}
       {lifetimeAvailable && lifetimeOfferExpanded && renderCard(
         'lifetime',
@@ -358,12 +357,17 @@ const S = StyleSheet.create({
     borderRadius: 14,
     paddingHorizontal: 16,
     paddingVertical: 9,
+    overflow: 'hidden',
+  },
+  // зачем: PressableHybrid кладёт children в свой Animated.View (contentStyle) —
+  // строчная раскладка (иконка справа от текста) переезжает туда же, наружный
+  // style несёт только геометрию/фон самой кнопки.
+  offerToggleContent: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 12,
   },
-  offerTogglePressed: { opacity: 0.72 },
   offerToggleCopy: { flex: 1, minWidth: 0 },
   offerToggleTitle: { fontSize: 14.5, lineHeight: 19, fontWeight: '800' },
   offerToggleSubtitle: { marginTop: 2, fontSize: 12.5, lineHeight: 17, fontWeight: '600' },

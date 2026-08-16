@@ -84,12 +84,42 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'intro_full_access_welcome_hybrid',
+      title: cs('intro_full_access_welcome_hybrid_title'),
+      detail: cs('real_modal'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <IntroFullAccessModal
+          visible={visible}
+          variant="welcome"
+          onPrimaryPress={onClose}
+          onSecondaryPress={onClose}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'intro_full_access_ended',
       title: cs('intro_full_access_ended_title'),
       detail: cs('real_modal'),
       kind: 'render',
       render: ({ visible, onClose }) => (
         <IntroFullAccessModal visible={visible} variant="ended" onPrimaryPress={onClose} onSecondaryPress={onClose} />
+      ),
+    },
+    {
+      id: 'intro_full_access_ended_hybrid',
+      title: cs('intro_full_access_ended_hybrid_title'),
+      detail: cs('real_modal'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <IntroFullAccessModal
+          visible={visible}
+          variant="ended"
+          onPrimaryPress={onClose}
+          onSecondaryPress={onClose}
+          motionVariant="hybrid"
+        />
       ),
     },
     {

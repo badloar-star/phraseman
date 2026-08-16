@@ -16,12 +16,19 @@ import {
   rewardModalPrimaryButtonText,
   rewardModalSoftSurface,
 } from './RewardModalBackdrop';
+import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import DuoPressable from './DuoPressable';
+import PressableHybrid from './PressableHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { LUM } from '../constants/motionHybrid';
 
 type Props = {
   visible: boolean;
   variant: 'welcome' | 'ended';
   onPrimaryPress: () => void;
   onSecondaryPress?: () => void;
+  /** default 'classic' — боевое поведение не меняется, пока не передан явно. */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 const COPY = {
@@ -123,11 +130,13 @@ const COPY = {
   },
 };
 
-function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPress }: Props) {
+function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPress, motionVariant = 'classic' }: Props) {
   const { lang } = useLang();
   const { theme, themeMode } = useTheme();
   const copy = COPY[lang as keyof typeof COPY] ?? COPY.ru;
   const isWelcome = variant === 'welcome';
+  const reduceMotion = useReduceMotion();
+  const hybrid = motionVariant === 'hybrid';
 
   // Воронка: показ модалок intro — раньше не трекались. `intro_ended` — главный
   // момент конверсии (конец 72ч полного доступа), важно видеть его отдельно.
@@ -146,6 +155,98 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
   const lightPanel = isLightThemeMode(themeMode);
   const textPrimary = lightPanel ? theme.textPrimary : '#FFFFFF';
   const textSecondary = lightPanel ? 'rgba(23,32,29,0.72)' : 'rgba(255,255,255,0.78)';
+
+  const handlePrimaryPress = () => {
+    void import('../app/analytics').then(({ trackEvent }) =>
+      trackEvent(isWelcome ? 'intro_welcome_cta' : 'intro_ended_cta', {}),
+    );
+    onPrimaryPress();
+  };
+  const handleSecondaryPress = () => {
+    void import('../app/analytics').then(({ trackEvent }) => trackEvent('intro_ended_dismiss', {}));
+    onSecondaryPress?.();
+  };
+
+  // зачем: главная CTA офферных модалок — клавиша с кромкой (владелец, стандарт
+  // «кнопки вдавливаются, а не тускнеют»), тёмный тон кромки — акцент темы.
+  const primaryEdgeColor = accent;
+
+  if (hybrid) {
+    // Гибрид «Световод»: панель выходит из света (HybridAlertShell — общий шелл
+    // семьи алертов/оффер-модалок), контент — каскад по LUM.ladder, герой (корона/
+    // значок) settle БЕЗ отскока. hapticSuccess НЕ нужен — это оффер, не награда.
+    return (
+      <HybridAlertShell
+        visible={visible}
+        onRequestClose={onSecondaryPress ?? onPrimaryPress}
+        shadowColor="#000000"
+        backdropColor="rgba(0,0,0,0.72)"
+        testID={isWelcome ? 'intro-full-access-welcome-backdrop' : 'intro-full-access-ended-backdrop'}
+      >
+        <ScrollView
+          style={styles.hybridScroll}
+          contentContainerStyle={styles.hybridScrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" opacity={0.72} />
+          <LinearGradient
+            pointerEvents="none"
+            colors={rewardModalPanelColors(themeMode, theme)}
+            style={StyleSheet.absoluteFill}
+          />
+          <View style={styles.content}>
+            <CascadeItem delay={LUM.ladder[1]} reduceMotion={reduceMotion}>
+              <View style={[styles.iconWrap, { backgroundColor: softSurface, borderColor: border }]}>
+                <Ionicons name={isWelcome ? 'sparkles' : 'shield-checkmark'} size={28} color={accent} />
+              </View>
+            </CascadeItem>
+            <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
+              <Text style={[styles.eyebrow, { color: accent }]}>{isWelcome ? copy.welcomeEyebrow : copy.endedEyebrow}</Text>
+            </CascadeItem>
+            <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
+              <Text style={[styles.title, { color: textPrimary }]}>{isWelcome ? copy.welcomeTitle : copy.endedTitle}</Text>
+            </CascadeItem>
+            <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
+              <Text style={[styles.body, { color: textSecondary }]}>{isWelcome ? copy.welcomeBody : copy.endedBody}</Text>
+            </CascadeItem>
+
+            <CascadeItem delay={LUM.ladder[4]} reduceMotion={reduceMotion}>
+              <DuoPressable
+                testID={isWelcome ? 'intro-full-access-welcome-primary' : 'intro-full-access-ended-primary'}
+                onPress={handlePrimaryPress}
+                edgeColor={primaryEdgeColor}
+                edgeHeight={6}
+                gradientColors={rewardModalPrimaryButtonColors(themeMode)}
+                style={styles.primaryGradient}
+                wrapStyle={styles.primaryButtonWrap}
+              >
+                <Text style={[styles.primaryText, { color: rewardModalPrimaryButtonText(themeMode) }]}>
+                  {isWelcome ? copy.welcomeCta : copy.endedPrimary}
+                </Text>
+              </DuoPressable>
+            </CascadeItem>
+
+            {isWelcome ? (
+              <CascadeItem delay={LUM.ladder[5]} reduceMotion={reduceMotion}>
+                <Text style={[styles.footer, { color: textSecondary }]}>{copy.welcomeFooter}</Text>
+              </CascadeItem>
+            ) : (
+              <CascadeItem delay={LUM.ladder[5]} reduceMotion={reduceMotion}>
+                <PressableHybrid
+                  testID="intro-full-access-ended-secondary"
+                  variant="secondary"
+                  onPress={handleSecondaryPress}
+                  style={styles.secondaryButton}
+                >
+                  <Text style={[styles.secondaryText, { color: textSecondary }]}>{copy.endedSecondary}</Text>
+                </PressableHybrid>
+              </CascadeItem>
+            )}
+          </View>
+        </ScrollView>
+      </HybridAlertShell>
+    );
+  }
 
   return (
     <Modal
@@ -184,12 +285,7 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
               <Pressable
                 testID={isWelcome ? 'intro-full-access-welcome-primary' : 'intro-full-access-ended-primary'}
                 accessibilityRole="button"
-                onPress={() => {
-                  void import('../app/analytics').then(({ trackEvent }) =>
-                    trackEvent(isWelcome ? 'intro_welcome_cta' : 'intro_ended_cta', {}),
-                  );
-                  onPrimaryPress();
-                }}
+                onPress={handlePrimaryPress}
                 style={styles.primaryButton}
               >
                 <LinearGradient
@@ -210,10 +306,7 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
                 <Pressable
                   testID="intro-full-access-ended-secondary"
                   accessibilityRole="button"
-                  onPress={() => {
-                    void import('../app/analytics').then(({ trackEvent }) => trackEvent('intro_ended_dismiss', {}));
-                    onSecondaryPress?.();
-                  }}
+                  onPress={handleSecondaryPress}
                   style={styles.secondaryButton}
                 >
                   <Text style={[styles.secondaryText, { color: textSecondary }]}>{copy.endedSecondary}</Text>
@@ -252,8 +345,19 @@ const styles = StyleSheet.create({
     maxWidth: 440,
     alignSelf: 'center',
     borderRadius: 28,
-    borderWidth: 0,
+    borderWidth: 0, // guard-ok: borderColor у вызова инертен (borderWidth 0) — тон/фон несут разделение, не обводка
     overflow: 'hidden',
+  },
+  // зачем: HybridAlertShell даёт панель без встроенного скролла (maxWidth 360,
+  // без ScrollView) — контент этой офферной модалки на низких экранах длиннее,
+  // поэтому оборачиваем children в свой ScrollView внутри шелла (тот же паттерн
+  // прокрутки, что и в classic-ветке). Радиус НЕ дублируем — шелл уже клипует
+  // панель на 16 (styles.panel в HybridAlertShell), это и есть видимый угол.
+  hybridScroll: {
+    overflow: 'hidden',
+  },
+  hybridScrollContent: {
+    flexGrow: 1,
   },
   content: {
     padding: 22,
@@ -292,8 +396,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginTop: 4,
   },
+  // зачем: DuoPressable(wrapStyle) — обёртка гибрид-CTA; повторяет геометрию
+  // primaryButton (marginTop 4), плюс резерв места под кромку задаёт сам DuoPressable.
+  primaryButtonWrap: {
+    marginTop: 4,
+  },
   primaryGradient: {
     minHeight: 56,
+    borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,

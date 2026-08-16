@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/ds.css?v=20260816-1" />
+  <link rel="stylesheet" href="/assets/ds.css?v=20260816-3" />
   <script>
     (function () {
       try {
@@ -45,7 +45,14 @@
       --cert-gold: #b8860f;
       position: sticky;
       top: 90px;
-      min-height: 360px;
+      /* зачем: владелец 2026-08-16 — «сертификат стал квадратным, был
+         прямоугольным». Арты gift-certificates/*.webp имеют размер
+         1536×1024, то есть 3:2. Прежний min-height:360px вытягивал блок в
+         квадрат, и `cover` срезал арт по бокам. Держим ровно 3:2 —
+         сертификат виден целиком, как в письме получателю. */
+      aspect-ratio: 3 / 2;
+      display: flex;
+      flex-direction: column;
       background-color: #f5efe3;
       background-image: var(--cert-art);
       background-position: center;
@@ -97,8 +104,9 @@
     .cert-head b { display: block; font-size: 22px; font-weight: 900; color: #201c12; margin-top: 4px; }
     .cert-body {
       position: relative; z-index: 2;
-      margin: 0 22px 22px;
-      padding: 22px 24px 20px;
+      /* Панель занимает низ карточки и не растягивает её сверх 3:2 */
+      margin: auto 22px 22px;
+      padding: 20px 24px 18px;
       background: var(--cert-panel);
       border: 1px solid var(--cert-panel-border);
       border-radius: 18px;
@@ -123,20 +131,24 @@
     @media (prefers-reduced-motion: reduce) { .cert::after { animation: none; opacity: 0; } }
     @media (max-width: 900px) { .cert { position: static; } }
     @media (max-width: 480px) {
-      .cert { min-height: 0; border-radius: 20px; }
+      /* На узком экране пропорция 3:2 оставляет мало места под текст —
+         отпускаем высоту, арт остаётся фоном сверху. */
+      .cert { aspect-ratio: auto; border-radius: 20px; }
       .cert-head { padding: 20px 18px 15px; }
-      .cert-body { margin: 0 14px 14px; padding: 20px 18px 18px; }
+      .cert-body { margin: 0 14px 14px; padding: 18px 18px 16px; }
+      .cert-catchphrase { min-height: 0; margin-top: 12px; }
     }
   </style>
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=3" defer></script>
-  <script src="/assets/ds.js?v=20260816-1" defer></script>
+  <script src="/assets/ds.js?v=20260816-3" defer></script>
   <!-- зачем: БЕЗ defer — фразы для сертификата нужны синхронно, до того как
        нижний скрипт нарисует первый предпросмотр; с defer строка оставалась
        пустой до первого клика по плану -->
   <script src="/assets/gift-certificate-phrases.js?v=20260729-1"></script>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 <div class="bg-spot bg-spot-1" aria-hidden="true"></div>
 <div class="bg-spot bg-spot-2" aria-hidden="true"></div>
 <div class="bg-spot bg-spot-3" aria-hidden="true"></div>
@@ -148,7 +160,6 @@
       <span class="logo-word"><span class="lw-a">phrase</span><span class="lw-b">man</span></span>
     </a>
     <nav class="nav-links" aria-label="Разделы сайта">
-      <a href="/#inside" data-i18n="nav.inside">Что внутри</a>
       <a href="/#reviews" data-i18n="nav.reviews">Отзывы</a>
       <a href="/english-level-test/" data-i18n="nav.level">Тест уровня</a>
       <a href="/guides/" data-i18n="nav.guides">Гайды</a>
@@ -297,7 +308,7 @@
 window.I18N = {
   ru: {},
   en: {
-    'nav.inside': "What's inside", 'nav.reviews': 'Reviews', 'nav.level': 'Level test',
+    'nav.reviews': 'Reviews', 'nav.level': 'Level test',
     'nav.support': 'Support', 'nav.download': 'Download',
     'gf.title': 'Give the gift of real English',
     'gf.sub': 'Choose a gift and pay in a minute: a personalised certificate with a code arrives by email.',

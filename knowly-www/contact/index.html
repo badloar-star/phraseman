@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Поддержка Phraseman — напишите нам</title>
-  <meta name="description" content="Вопрос, проблема или идея по Phraseman? Напишите в поддержку — отвечаем в течение 1–2 дней." />
+  <meta name="description" content="Вопрос, проблема или идея по Phraseman? Напишите в поддержку — прочитаем каждое обращение." />
   <link rel="canonical" href="https://knowlyapps.com/contact/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://knowlyapps.com/contact/" />
   <meta property="og:title" content="Поддержка Phraseman" />
-  <meta property="og:description" content="Напишите нам — отвечаем в течение 1–2 дней." />
+  <meta property="og:description" content="Напишите нам — прочитаем каждое обращение." />
   <meta property="og:image" content="https://knowlyapps.com/assets/og-banner.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="128x128" href="/assets/phraseman-icon-128.png" />
@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/ds.css?v=20260816-1" />
+  <link rel="stylesheet" href="/assets/ds.css?v=20260816-3" />
   <script>
     (function () {
       try {
@@ -28,9 +28,10 @@
   </script>
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=3" defer></script>
-  <script src="/assets/ds.js?v=20260816-1" defer></script>
+  <script src="/assets/ds.js?v=20260816-3" defer></script>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 <div class="bg-spot bg-spot-1" aria-hidden="true"></div>
 <div class="bg-spot bg-spot-2" aria-hidden="true"></div>
 <div class="bg-spot bg-spot-3" aria-hidden="true"></div>
@@ -42,7 +43,6 @@
       <span class="logo-word"><span class="lw-a">phrase</span><span class="lw-b">man</span></span>
     </a>
     <nav class="nav-links" aria-label="Разделы сайта">
-      <a href="/#inside" data-i18n="nav.inside">Что внутри</a>
       <a href="/english-level-test/" data-i18n="nav.level">Тест уровня</a>
       <a href="/guides/" data-i18n="nav.guides">Гайды</a>
       <a href="/gift/" data-i18n="nav.gift">Подарить</a>
@@ -70,7 +70,9 @@
 
 <section class="page-hero wrap">
   <h1 class="reveal" data-i18n="c.title">Напишите нам</h1>
-  <p class="reveal reveal-1" data-i18n="c.sub">Вопрос, проблема или идея — отвечаем в течение 1–2 дней. Можно и напрямую: <a href="mailto:support.phraseman@gmail.com" style="color:var(--accent-text);font-weight:600">support.phraseman@gmail.com</a></p>
+  <!-- зачем: владелец 2026-08-16 убрал обещание «отвечаем в течение 1–2 дней»
+       из подзаголовка — срок не гарантируем, лишнее обязательство -->
+  <p class="reveal reveal-1" data-i18n="c.sub">Вопрос, проблема или идея. Можно и напрямую: <a href="mailto:support.phraseman@gmail.com" style="color:var(--accent-text);font-weight:600">support.phraseman@gmail.com</a></p>
 </section>
 
 <section class="section-pad wrap">
@@ -124,10 +126,10 @@
 window.I18N = {
   ru: {},
   en: {
-    'nav.inside': "What's inside", 'nav.level': 'Level test', 'nav.guides': 'Guides',
+    'nav.level': 'Level test', 'nav.guides': 'Guides',
     'nav.gift': 'Give a gift', 'nav.russia': 'Paying from Russia', 'nav.download': 'Download',
     'c.title': 'Contact us',
-    'c.sub': 'A question, a problem, or an idea — we reply within 1–2 days. Or write directly: <a href="mailto:support.phraseman@gmail.com" style="color:var(--accent-text);font-weight:600">support.phraseman@gmail.com</a>',
+    'c.sub': 'A question, a problem, or an idea. Or write directly: <a href="mailto:support.phraseman@gmail.com" style="color:var(--accent-text);font-weight:600">support.phraseman@gmail.com</a>',
     'c.name': 'Name (optional)', 'c.email': 'Email for our reply *', 'c.topic': 'Topic',
     'c.topic.support': 'Support', 'c.topic.feedback': 'Feedback', 'c.topic.legal': 'Legal question', 'c.topic.other': 'Other',
     'c.msg': 'Message *', 'c.msg.ph': 'Describe your question or idea (at least 10 characters)',
@@ -199,8 +201,8 @@ window.I18N = {
         try { json = await res.json(); } catch (_) { /* тело может быть пустым */ }
         if (!res.ok) throw new Error(json.error || 'Ошибка сервера (' + res.status + ')');
         say('ok',
-          'Спасибо! Сообщение принято — ответим в течение 1–2 дней.',
-          'Thank you! Your message was received — we reply within 1–2 days.');
+          'Спасибо! Сообщение принято — мы его прочитаем и ответим.',
+          'Thank you! Your message was received — we will read it and reply.');
         form.reset();
       } catch (err) {
         say('err',

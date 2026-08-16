@@ -35,6 +35,31 @@ describe('support auto-reply policy', () => {
     ['How do lessons work?', 'safe'],
   ])('classifies %s as %s', (text, expected) => expect(classifySupportRisk(text)).toBe(expected));
 
+  // зачем этот блок (прогон 25 писем, 2026-08-16): карта поведения показала
+  // две настоящие дыры — «Какие мои данные вы храните?» и «Моему сыну 9 лет»
+  // классифицировались как безопасные и уходили модели. Обе темы имеют
+  // отдельные требования закона и сторов, выдумка там недопустима.
+  test.each([
+    ['Какие мои данные вы храните и передаёте ли третьим лицам?', 'privacy'],
+    ['Моему сыну 9 лет, можно ли ему заниматься?', 'safety'],
+    ['My daughter is 8 years old, is the app suitable?', 'safety'],
+    ['What data do you keep about me?', 'privacy'],
+  ])('после прогона 25 писем: %s → %s', (text, expected) => {
+    expect(classifySupportRisk(text)).toBe(expected);
+  });
+
+  // зачем (поймано тем же прогоном): расширяя шаблон, я написал «son» без
+  // границы слова — и «How do lessons work?» стало детской темой, потому
+  // что «son» сидит внутри «lessons». Половина писем про уроки уехала бы
+  // в ручную проверку. Тест держит границу.
+  test.each([
+    'How do lessons work?',
+    'My lesson progress is confusing',
+    'Can I skip a lesson?',
+  ])('обычный вопрос про уроки НЕ становится детской темой: %s', (text) => {
+    expect(classifySupportRisk(text)).toBe('safe');
+  });
+
   test.each([
     'Не могу купить Premium в России — оплата недоступна',
     'Какие ещё есть способы оплаты?',

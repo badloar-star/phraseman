@@ -90,9 +90,24 @@ export function buildSupportAutomaticRepairPrompt(input: {
 
 const RISK_PATTERNS: ReadonlyArray<readonly [Exclude<SupportRisk, 'safe'>, RegExp]> = [
   ['security', /(?:hack|hacked|security|password|credential|token|phishing|взлом|парол|токен|безопасност)/iu],
-  ['safety', /(?:child|minor|abuse|harass|suicide|self[- ]?harm|реб[её]н|несовершеннолет|насили|домог|угрож|суицид)/iu],
+  // зачем расширено (прогон 25 писем, 2026-08-16): «Моему сыну 9 лет,
+  // можно ли ему заниматься?» классифицировалось как безопасное — в
+  // шаблоне было «ребён», но не было «сын», «дочь» и указания возраста.
+  // Вопросы про детей уходят в ручную проверку намеренно: это тема с
+  // отдельными требованиями сторов и закона, тут выдумка недопустима.
+  // зачем \b у латинских слов (поймано тестом 2026-08-16): без границы
+  // «son» совпадал внутри «les-son-s», и любой вопрос «How do lessons
+  // work?» уезжал в ручную проверку как детская тема. Русские слова идут
+  // без \b намеренно — в JavaScript граница слова не работает с кириллицей
+  // (тот же класс дефекта, что был найден в запрете ложных утверждений).
+  ['safety', /(?:\b(?:child|children|kid|kids|son|daughter|minor|teen)\b|\b\d{1,2}\s*(?:years?\s*old|y\.?o\.?)\b|abuse|harass|suicide|self[- ]?harm|реб[её]н|\bсын|\bдоч(?:ь|ери|ка)|\bвнук|подросток|несовершеннолет|\d{1,2}\s*(?:лет|года|годиков)|насили|домог|угрож|суицид)/iu],
   ['legal', /(?:legal|lawyer|court|gdpr|lawsuit|юрист|суд|закон|претензи)/iu],
-  ['privacy', /(?:privacy|personal data|delete my data|data request|конфиденциаль|персональн.{0,12}данн|удал.{0,16}данн)/iu],
+  // зачем расширено (тот же прогон): «Какие мои данные вы храните и
+  // передаёте ли третьим лицам?» проходило как безопасное — шаблон ждал
+  // «персональные данные» или «удалить данные», а простое «мои данные»
+  // не ловил. Ответ про хранение и передачу данных — юридически значимое
+  // утверждение, его нельзя отдавать модели без проверки человеком.
+  ['privacy', /(?:privacy|personal data|delete my data|data request|my data|data (?:about|on) me|(?:keep|store|collect|share|process).{0,24}\bdata\b|\bdata\b.{0,24}(?:keep|store|collect|share|process)|third part(?:y|ies)|конфиденциаль|персональн.{0,12}данн|удал.{0,16}данн|(?:мои|моих|каки[ех]).{0,12}данн|хран.{0,16}данн|треть.{0,4}лиц)/iu],
   ['billing', /(?:refund|chargeback|charged|payment|purchase|subscription|invoice|возврат|списал|оплат|покуп|подписк|чек)/iu],
   ['account', /(?:account|sign[ -]?in|log[ -]?in|apple id|google account|access|аккаунт|войти|вход|доступ|уч[её]тн)/iu],
 ];

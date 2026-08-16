@@ -477,6 +477,9 @@ h1.hero-title {
 .qr-block { display: flex; align-items: center; gap: 12px; padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--border); }
 .qr-block img { width: 50px; height: 50px; flex: none; border-radius: 8px; background: #fff; padding: 3px; }
 .qr-block p { font-size: 0.75rem; color: var(--text-dim); }
+/* зачем: как во вчерашней версии — на сенсорных экранах QR и подпись
+   «с телефона наведите камеру» бессмысленны, человек уже на телефоне */
+@media (hover: none) and (pointer: coarse) { .qr-block { display: none !important; } }
 
 /* ============ Секции ============ */
 .section-pad { padding: 52px 0; }
@@ -720,8 +723,48 @@ footer.site-foot { border-top: 1px solid var(--border); padding: 26px 0; }
   .nav-right { gap: 7px; }
 }
 
+/* ============ Тач-экраны: никакого «залипшего» наведения ============
+   зачем: владелец 2026-08-16 — «кнопка на телефоне при нажатии растягивается
+   и стягивается назад». Причина: на тач-экране после тапа :hover ЗАЛИПАЕТ —
+   палец «наводит» курсор и не убирает его. Кнопка сжималась по :active,
+   отпускалась в hover-состояние (другая тень и подсветка), а потом сбрасывала
+   его — это и читалось как «растянулась и стянулась».
+   Все hover-эффекты действуют только там, где есть настоящий курсор. */
+@media (hover: none) {
+  .btn-primary:hover { filter: none; box-shadow: 0 8px 20px -8px rgba(var(--accent-rgb), .5); }
+  .btn-gold:hover { background: linear-gradient(135deg, var(--accent-2), var(--accent-3)); box-shadow: 0 8px 20px -8px rgba(var(--accent-rgb), .5); }
+  .icon-btn:hover { border-color: var(--border); color: var(--text); transform: none; filter: none; }
+  .lang-toggle button:hover { transform: none; filter: none; }
+  .store-btn:hover { border-color: var(--border); color: var(--text-muted); transform: none; filter: none; }
+  .store-card:hover { border-color: var(--border); transform: none; filter: none; }
+  .guide-card:hover { border-color: var(--border); transform: none; }
+  .gift-option:hover { transform: none; filter: none; }
+  .level-langs button:hover { border-color: var(--border); color: var(--text-muted); }
+  .faq-q:hover { filter: none; }
+  .nav-links a:hover, .footer-links a:hover, .reviews-more:hover { color: inherit; }
+  .tg-btn:hover { box-shadow: 0 10px 24px -8px rgba(34, 158, 217, .6); }
+  /* Нажатие остаётся: короткое, одинаковое, без «отскока» в наведение.
+     Переход укорочен до 90мс — палец уже убран, а кнопка ещё «доезжала»
+     полные 200мс, из-за чего движение читалось как растягивание. */
+  .btn, .btn-gold, .icon-btn, .store-btn, .store-card,
+  .gift-option, .level-langs button, .guide-card {
+    transition: transform .09s ease-out, box-shadow .12s ease, background-color .12s ease, border-color .12s ease, color .12s ease;
+  }
+  .btn:active, .btn-primary:active, .btn-gold:active { transform: scale(.97); }
+}
+
 /* Телефоны */
 @media (max-width: 560px) {
+  /* зачем: владелец 2026-08-16 — «на телефонах нет отступов по краям, тексты
+     и карточки без воздуха». Страхуемся дважды: .wrap даёт поля, и сверх того
+     каждой секции и шапке принудительно ставим 20px по бокам через
+     padding-inline с !important — чтобы ни одно правило и ни один кэш не
+     смогли их отнять. */
+  .wrap, section.wrap, main.wrap, .hero.wrap, .page-hero.wrap,
+  header.site-head .wrap, footer.site-foot .wrap {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
   .reviews-grid { grid-template-columns: 1fr; }
   .hero { min-height: calc(100svh - 62px); min-height: calc(100dvh - 62px); padding: 28px 0 40px; }
   .section-pad { padding: 48px 0; }

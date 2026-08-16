@@ -2195,7 +2195,7 @@ function CleanOnboarding({
       <Text style={styles.improveTitle}>Помоги сделать Phraseman лучше</Text>
       <Text style={styles.improveBody}>
         Мы видим только цифры: где урок даётся легко, а где все спотыкаются.
-        Ни имени, ни голоса, ни переписки — ничего личного.
+        Ни имени, ни голоса — ничего личного.
         Эти цифры делают Phraseman лучше для всех.
       </Text>
     </ScreenFrame>
@@ -2241,9 +2241,9 @@ function CleanOnboarding({
       </Pressable>
       {/* Возраст — вопросом с «Да/Нет» (владелец, 2026-08-16): короче и честнее,
           чем две длинные кнопки-утверждения. */}
-      {/* Почему спрашиваем возраст — по-людски, до самого вопроса. */}
+      {/* Коротко и прямо (владелец, 2026-08-16): без ссылок на закон. */}
       <Text style={styles.ageIntro}>
-        {`Закон особенно бережёт данные тех, кому нет ${MIN_FULL_ACCESS_AGE}, — поэтому Phraseman для тех, кто старше. Спросим прямо:`}
+        {`Phraseman — для тех, кому уже есть ${MIN_FULL_ACCESS_AGE}.`}
       </Text>
       <Text style={styles.ageQuestion}>{`Тебе есть ${MIN_FULL_ACCESS_AGE}?`}</Text>
       <View style={styles.ageButtons}>

@@ -201,6 +201,11 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [readyHandle, setReadyHandle] =
     useState<LearningV2CourseSessionReadyHandleV3 | null>(null);
   const [loadFailed, setLoadFailed] = useState(false);
+  // зачем: причина падения загрузки, видимая только в дев-сборке — без неё
+  // экран «Сессия недоступна» не отличает нет сети от нет релиза.
+  const [loadFailureReason, setLoadFailureReason] = useState<string | null>(
+    null,
+  );
   const [loadRevision, setLoadRevision] = useState(0);
   const [introDone, setIntroDone] = useState(false);
   const [practiceIndex, setPracticeIndex] = useState(0);
@@ -273,8 +278,18 @@ export default function LearningV2DirectSessionPlayerV1() {
           setReadyHandle(handle);
         }
       })
-      .catch(() => {
-        if (!cancelled) setLoadFailed(true);
+      .catch((error: unknown) => {
+        // зачем: раньше причина падения выбрасывалась целиком, экран показывал
+        // только «Сессия недоступна», и понять, что сломалось — сеть, релиз или
+        // аудио — было нельзя ни владельцу, ни разработчику. Диагностику
+        // показываем только в дев-сборке: боевому пользователю имя ошибки
+        // ничего не говорит и только пугает.
+        if (cancelled) return;
+        setLoadFailed(true);
+        if (__DEV__)
+          setLoadFailureReason(
+            error instanceof Error ? error.message : String(error),
+          );
       });
     return () => {
       cancelled = true;
@@ -614,6 +629,14 @@ export default function LearningV2DirectSessionPlayerV1() {
         <Text style={[styles.errorText, { color: t.textPrimary }]}>
           {copy.unavailable}
         </Text>
+        {__DEV__ && loadFailureReason ? (
+          <Text
+            selectable
+            style={[styles.devFailureReason, { color: t.textMuted }]}
+          >
+            {loadFailureReason}
+          </Text>
+        ) : null}
         <Pressable
           accessibilityRole="button"
           onPress={() => setLoadRevision((value) => value + 1)}
@@ -1189,6 +1212,14 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontWeight: "800",
     textAlign: "center",
+  },
+  // зачем: техническая причина падения, видна только в дев-сборке. Тоном тише
+  // заголовка и выделяется пальцем, чтобы можно было скопировать в отчёт.
+  devFailureReason: {
+    fontSize: 13,
+    lineHeight: 18,
+    textAlign: "center",
+    paddingHorizontal: 12,
   },
   retry: {
     minHeight: 48,

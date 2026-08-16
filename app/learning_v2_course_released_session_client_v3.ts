@@ -815,6 +815,17 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
     });
     if (!isLearningV2CourseSessionAudioPreloadHandleV1(audio)) fail();
     const audioSummary = getLearningV2CourseSessionAudioPreloadSummaryV1(audio);
+    // зачем: сессия отказывалась открываться, если не скачался хотя бы один
+    // mp3 — экран висел на «Подготавливаем занятие и локальное аудио», а потом
+    // показывал «Сессия недоступна». Озвучка курса ещё не сделана по решению
+    // владельца, поэтому это требование делало проверку урока невозможной:
+    // владелец не мог открыть НИ ОДНО занятие на телефоне.
+    //
+    // В дев-сборке полнота аудио больше не блокирует старт: фраза показывается
+    // текстом, а озвучка догоняет, когда появится. В боевой сборке требование
+    // остаётся как было — там урок без звука выпускать нельзя.
+    const audioComplete =
+      audioSummary.localFileCount === audioSummary.selectedFileCount;
     if (
       audioSummary.courseSessionId !== result.material.courseSessionId ||
       audioSummary.sessionRunId !== input.sessionRunId ||
@@ -822,7 +833,7 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
         result.material.learnerChild.learnerFingerprint ||
       audioSummary.audioFingerprint !==
         result.material.audioChild.audioFingerprint ||
-      audioSummary.localFileCount !== audioSummary.selectedFileCount
+      (!audioComplete && !__DEV__)
     )
       fail();
     const body = {

@@ -1,25 +1,98 @@
 {
   "schemaVersion": "gustav-run-validator-report-v0",
-  "generatedAt": "2026-08-08T15:06:40.641Z",
+  "generatedAt": "2026-08-16T08:41:06.082Z",
   "command": {
     "argv": [
-      "C:\\Program Files\\nodejs\\node.exe",
-      "C:\\appsprojects\\phraseman\\scripts\\gustav_validate_run.ts",
+      "/opt/node22/bin/node",
+      "/home/user/phraseman/scripts/gustav_validate_run.ts",
       "--run",
       "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
     ],
-    "cwd": "C:\\appsprojects\\phraseman",
-    "nodeVersion": "v24.14.0"
+    "cwd": "/home/user/phraseman",
+    "nodeVersion": "v22.22.2"
   },
-  "runDir": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1",
+  "runDir": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "status": "PASS",
+  "status": "BLOCK",
   "summary": {
     "checks": 27132,
-    "blockers": 0,
+    "blockers": 12,
     "warnings": 0
   },
-  "findings": [],
+  "findings": [
+    {
+      "severity": "blocker",
+      "code": "required_dir_missing_curriculum",
+      "message": "Missing required path: /home/user/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/curriculum",
+      "artifact": "/home/user/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/curriculum"
+    },
+    {
+      "severity": "blocker",
+      "code": "required_dir_missing_generated",
+      "message": "Missing required path: /home/user/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/generated",
+      "artifact": "/home/user/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/generated"
+    },
+    {
+      "severity": "blocker",
+      "code": "produced_artifact_not_found",
+      "message": "Produced artifact does not exist: docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_import_contract_probe/compile.log",
+      "artifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_import_contract_probe/compile.log"
+    },
+    {
+      "severity": "blocker",
+      "code": "produced_artifact_not_found",
+      "message": "Produced artifact does not exist: docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/compile.log",
+      "artifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/compile.log"
+    },
+    {
+      "severity": "blocker",
+      "code": "produced_artifact_not_found",
+      "message": "Produced artifact does not exist: docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/runtime.log",
+      "artifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/apply_plan/p1a_implementation_blueprint/runtime.log"
+    },
+    {
+      "severity": "blocker",
+      "code": "produced_artifact_not_found",
+      "message": "Produced artifact does not exist: docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation/compile.log",
+      "artifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation/compile.log"
+    },
+    {
+      "severity": "blocker",
+      "code": "produced_artifact_not_found",
+      "message": "Produced artifact does not exist: docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation/runtime.log",
+      "artifact": "docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation/runtime.log"
+    },
+    {
+      "severity": "blocker",
+      "code": "p1a_import_contract_compile_log_missing",
+      "message": "P1A compile probe log is missing.",
+      "artifact": "/home/user/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_import_contract_audit.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "p1a_blueprint_compile_log_missing",
+      "message": "P1A blueprint compile log is missing.",
+      "artifact": "/home/user/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_implementation_blueprint_audit.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "p1a_blueprint_runtime_log_missing",
+      "message": "P1A blueprint runtime log is missing.",
+      "artifact": "/home/user/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_implementation_blueprint_audit.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "p1a_transaction_simulation_compile_log_missing",
+      "message": "P1A transaction simulation compile log is missing.",
+      "artifact": "/home/user/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation_audit.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "p1a_transaction_simulation_runtime_log_missing",
+      "message": "P1A transaction simulation runtime log is missing.",
+      "artifact": "/home/user/phraseman/docs/gustav/runs/2026-05-19_fr_inventory_v0a1/audits/p1a_transaction_simulation_audit.json"
+    }
+  ],
   "notes": [
     "This validator checks run structure and safety gates only.",
     "A PASS here does not approve French generation.",

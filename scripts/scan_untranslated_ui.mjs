@@ -191,6 +191,40 @@ function stagedUiFiles() {
   }
 }
 
+/**
+ * Непереведённые строки, добавленные ИМЕННО ЭТИМ коммитом.
+ *
+ * зачем (2026-08-16, владелец): проверки по именам файлов мало. Файл может
+ * годами тащить чужой долг — и тогда сторож блокировал любую правку этого
+ * файла, даже ту, что строки только УДАЛЯЕТ. На удалении экрана-стены
+ * «Нужна безопасная проверка» диф был −168/+20 и ноль новых русских строк,
+ * а сторож всё равно отказывал: _layout.tsx числился среди должников.
+ *
+ * Считаем по «+»-строкам стейджа тем же детектором, что и полное сканирование.
+ * Чужой долг в том же файле больше не наказывает; новая непереведённая
+ * строка ловится ровно как раньше.
+ */
+function addedUntranslatedLines() {
+  try {
+    const out = execFileSync('git', ['diff', '--cached', '--unified=0', '--diff-filter=ACMR', '--', '*.tsx'], {
+      cwd: ROOT,
+      encoding: 'utf8',
+    });
+    const hits = [];
+    for (const line of out.split('\n')) {
+      // Только добавленные строки; «+++ b/file» — заголовок, не содержимое.
+      if (!line.startsWith('+') || line.startsWith('+++')) continue;
+      const added = line.slice(1);
+      if (PAIRED_TRANSLATION.test(added)) continue;
+      const found = added.match(CYRILLIC_LITERAL);
+      if (found) hits.push(...found);
+    }
+    return hits;
+  } catch {
+    return null;
+  }
+}
+
 const args = new Set(process.argv.slice(2));
 const findings = scan();
 const total = findings.reduce((sum, f) => sum + f.count, 0);
@@ -244,6 +278,18 @@ if (total > baseline.total) {
     console.log('но ни один из этих файлов не в твоём коммите — пропускаю.');
     console.log('Кто-то работает в этом же дереве параллельно.');
     process.exit(0);
+  }
+
+  // Файл в коммите есть, но что именно ты в него добавил? Если ни одной новой
+  // непереведённой строки — долг чужой, наказывать не за что.
+  if (staged && mine.length > 0) {
+    const added = addedUntranslatedLines();
+    if (added !== null && added.length === 0) {
+      console.log(`Непереведённых стало больше (${total} против ${baseline.total}),`);
+      console.log('но твой диф не добавил ни одной непереведённой строки — пропускаю.');
+      console.log(`Чужой долг в этих файлах: ${mine.map((f) => f.file).join(', ')}.`);
+      process.exit(0);
+    }
   }
 
   console.error(`ОТКАЗ: непереведённых строк стало больше — ${total}, было ${baseline.total}.`);

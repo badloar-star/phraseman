@@ -1594,12 +1594,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [leagueBonusAvailable, setLeagueBonusAvailable] = useState<LeagueBonusAvailability | null>(null);
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
   const [startupAuthRecoveryVisible, setStartupAuthRecoveryVisible] = useState(false);
-  // Fail closed when protected account storage cannot be read. The former
-  // behavior left the animated splash visible forever while the already-mounted
-  // app tree remained underneath it. This explicit state keeps data covered,
-  // explains the problem, and gives the learner a bounded manual retry.
-  const [startupSecurityBlocked, setStartupSecurityBlocked] = useState(false);
-  const retryStartupSecurityCheckRef = useRef<(() => void) | null>(null);
   const startupAuthRecoveryOfferedRef = useRef(false);
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
   const { setLang, lang } = useLang();
@@ -1775,7 +1769,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       || !ready
       || effectiveShowOnboarding
       || isBanned
-      || startupSecurityBlocked
       || currentDevUtilityRoute
       || !shouldHandleGlobalHardwareBack(navigationPathSignature ?? pathname)
     ) return;
@@ -1794,7 +1787,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     pathname,
     ready,
     router,
-    startupSecurityBlocked,
   ]);
 
   useEffect(() => {
@@ -1868,8 +1860,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     };
   }, []);
 
-  const nativeSplashCanHide = startupSecurityBlocked
-    || (fontsReady && ready && (effectiveShowOnboarding || isBanned || firstContentReady));
+  const nativeSplashCanHide = fontsReady && ready
+    && (effectiveShowOnboarding || isBanned || firstContentReady);
   useEffect(() => {
     if (!nativeSplashCanHide) return;
     void SplashScreen.hideAsync();
@@ -2530,11 +2522,18 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const pendingDeleteRecovered = await resumePendingAccountDeleteLocalExit();
       if (effectDisposed) return;
       if (!pendingDeleteRecovered) {
-        setStartupSecurityBlocked(true);
-        // Protected storage may remain unavailable for a long time (for
-        // example a malformed simulator signature). A hot 1.5 s loop repeatedly
-        // hit Keychain and kept a blocked app consuming CPU. Spend a finite
-        // retry budget with backoff; the visible button always remains usable.
+        // зачем: владелец — «ни один юзер никогда не должен увидеть такого».
+        // Раньше здесь поднимался экран «Нужна безопасная проверка» и держал
+        // приложение закрытым. Но дочистка проваливается и по совершенно
+        // будничным причинам — нет сети (метро, самолёт), Firebase не поднялся
+        // за 2.5 с, enqueue не достучался до сервера. Держать человека снаружи
+        // из-за отсутствия сети недопустимо: локальные данные удалённого
+        // аккаунта уже стёрты, показывать нечего.
+        //
+        // Поэтому вход НЕ блокируется никогда. Замок остаётся в хранилище и
+        // продолжает делать свою настоящую работу — не пускает старый
+        // провайдер обратно в удалённый аккаунт (signInWithProvider →
+        // handleAccountDeletePendingAuth). Дочистку повторяем в фоне.
         const retryDelayMs = AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS[accountDeleteRecoveryRetryAttempt];
         if (retryDelayMs !== undefined && accountDeleteRecoveryRetryTimer === null) {
           accountDeleteRecoveryRetryAttempt += 1;
@@ -2543,10 +2542,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             void bootstrap();
           }, retryDelayMs);
         }
-        return;
+        // Падаем дальше в обычный старт — без return и без экрана-стены.
+      } else {
+        accountDeleteRecoveryRetryAttempt = 0;
       }
-      accountDeleteRecoveryRetryAttempt = 0;
-      setStartupSecurityBlocked(false);
       authRecoveryBootAbort = new AbortController();
       const recoveryAbort = authRecoveryBootAbort;
       const recoveryGate = await runAuthRecoveryBootGate({
@@ -2752,13 +2751,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     };
 
     runHeavyInitRef.current = requestHeavyInit;
-    retryStartupSecurityCheckRef.current = () => {
-      if (accountDeleteRecoveryRetryTimer) {
-        clearTimeout(accountDeleteRecoveryRetryTimer);
-        accountDeleteRecoveryRetryTimer = null;
-      }
-      void bootstrap();
-    };
     bootstrap();
 
     // Event-driven flush: слушаем событие от achievements.ts вместо polling каждые 4с.
@@ -2796,7 +2788,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       if (safetyTimer) clearTimeout(safetyTimer);
       if (accountDeleteRecoveryRetryTimer) clearTimeout(accountDeleteRecoveryRetryTimer);
       runHeavyInitRef.current = null;
-      retryStartupSecurityCheckRef.current = null;
       sub.remove();
       subShards.remove();
       subDelete.remove();
@@ -3100,10 +3091,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   // Expo Router requires the root layout to mount a navigator on the first
   // render. Startup, onboarding, and blocked-account states cover it as overlays.
-  const appOverlaysEnabled = ready && !startupSecurityBlocked && !effectiveShowOnboarding && !isBanned
+  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned
     && !tournamentInterruptionProtected;
-  const startupSplashVisible = !startupSecurityBlocked
-    && (!fontsReady || !ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady));
+  const startupSplashVisible = !fontsReady || !ready
+    || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
   // «Чёрный кадр» между экранами: при 'none' native-stack мгновенно меняет контейнер до того,
   // как JS дорендерил новый экран, и в зазоре виден голый contentStyle (bgPrimary, почти
   // чёрный) — на тёмных экранах это читается как вспышка темноты.
@@ -3466,77 +3457,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
     <StartupSplashHold visible={startupSplashVisible} canHideNativeSplash={fontsReady} />
 
-    {startupSecurityBlocked && (
-      <View
-        accessibilityRole="alert"
-        accessibilityViewIsModal
-        accessibilityLiveRegion="assertive"
-        importantForAccessibility="yes"
-        style={styles.startupSecurityBlockedRoot}
-      >
-        <View style={styles.startupSecurityBlockedCard}>
-          <View style={styles.startupSecurityBlockedIcon}>
-            <Ionicons name="shield-checkmark-outline" size={30} color="#07110A" />
-          </View>
-          <Text style={styles.startupSecurityBlockedTitle}>
-            {triLang(lang, {
-              ru: 'Нужна безопасная проверка',
-              uk: 'Потрібна безпечна перевірка',
-              es: 'Se necesita una comprobación segura',
-              'pt-BR': 'É necessária uma verificação segura',
-              vi: 'Cần kiểm tra an toàn',
-              id: 'Pemeriksaan aman diperlukan',
-              tr: 'Güvenli kontrol gerekli',
-              pl: 'Wymagana jest bezpieczna kontrola',
-            })}
-          </Text>
-          <Text style={styles.startupSecurityBlockedBody}>
-            {triLang(lang, {
-              ru: 'Не удалось проверить защищённые данные аккаунта. Приложение остаётся закрытым, чтобы не показать данные другого пользователя. Ничего не удалено.',
-              uk: 'Не вдалося перевірити захищені дані облікового запису. Застосунок залишається закритим, щоб не показати дані іншого користувача. Нічого не видалено.',
-              es: 'No se pudieron comprobar los datos protegidos de la cuenta. La aplicación permanece cerrada para no mostrar datos de otro usuario. No se ha eliminado nada.',
-              'pt-BR': 'Não foi possível verificar os dados protegidos da conta. O aplicativo permanece fechado para não mostrar dados de outro usuário. Nada foi excluído.',
-              vi: 'Không thể kiểm tra dữ liệu tài khoản được bảo vệ. Ứng dụng vẫn khóa để không hiển thị dữ liệu của người dùng khác. Không có gì bị xóa.',
-              id: 'Data akun yang dilindungi belum dapat diperiksa. Aplikasi tetap terkunci agar data pengguna lain tidak ditampilkan. Tidak ada yang dihapus.',
-              tr: 'Korunan hesap verileri doğrulanamadı. Başka bir kullanıcının verilerini göstermemek için uygulama kapalı kalır. Hiçbir şey silinmedi.',
-              pl: 'Nie udało się sprawdzić chronionych danych konta. Aplikacja pozostaje zamknięta, aby nie pokazać danych innego użytkownika. Niczego nie usunięto.',
-            })}
-          </Text>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={triLang(lang, {
-              ru: 'Повторить безопасную проверку',
-              uk: 'Повторити безпечну перевірку',
-              es: 'Repetir la comprobación segura',
-              'pt-BR': 'Repetir a verificação segura',
-              vi: 'Thử kiểm tra an toàn lại',
-              id: 'Ulangi pemeriksaan aman',
-              tr: 'Güvenli kontrolü yeniden dene',
-              pl: 'Ponów bezpieczną kontrolę',
-            })}
-            onPress={() => retryStartupSecurityCheckRef.current?.()}
-            style={({ pressed }) => [
-              styles.startupSecurityBlockedCta,
-              pressed && styles.startupSecurityBlockedCtaPressed,
-            ]}
-          >
-            <Text style={styles.startupSecurityBlockedCtaText}>
-              {triLang(lang, {
-                ru: 'Проверить снова',
-                uk: 'Перевірити ще раз',
-                es: 'Comprobar de nuevo',
-                'pt-BR': 'Verificar novamente',
-                vi: 'Kiểm tra lại',
-                id: 'Periksa lagi',
-                tr: 'Tekrar kontrol et',
-                pl: 'Sprawdź ponownie',
-              })}
-            </Text>
-          </Pressable>
-        </View>
-      </View>
-    )}
-
     {/* Force-update — поверх обслуживания: если версия устарела, ничего не доступно. */}
     <ForceUpdateGate />
 
@@ -3564,74 +3484,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.2,
     color: 'rgb(174,170,161)',
     fontFamily: APP_FONT_FAMILY,
-  },
-  startupSecurityBlockedRoot: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 10000,
-    elevation: 10000,
-    backgroundColor: STARTUP_SPLASH_BG,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 24,
-    paddingVertical: 32,
-  },
-  startupSecurityBlockedCard: {
-    width: '100%',
-    maxWidth: 420,
-    padding: 22,
-    borderRadius: 24,
-    borderWidth: 1,
-    borderColor: 'rgba(216,255,79,0.22)',
-    backgroundColor: '#171A1D',
-    alignItems: 'center',
-  },
-  startupSecurityBlockedIcon: {
-    width: 58,
-    height: 58,
-    borderRadius: 18,
-    backgroundColor: '#D8FF4F',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 18,
-  },
-  startupSecurityBlockedTitle: {
-    color: '#F7F9FB',
-    fontFamily: APP_FONT_FAMILY,
-    fontSize: 22,
-    lineHeight: 28,
-    fontWeight: '800',
-    textAlign: 'center',
-  },
-  startupSecurityBlockedBody: {
-    marginTop: 10,
-    color: '#B8BEC6',
-    fontFamily: APP_FONT_FAMILY,
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: '500',
-    textAlign: 'center',
-  },
-  startupSecurityBlockedCta: {
-    width: '100%',
-    minHeight: 48,
-    marginTop: 22,
-    borderRadius: 16,
-    backgroundColor: '#D8FF4F',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 18,
-    paddingVertical: 12,
-  },
-  startupSecurityBlockedCtaPressed: {
-    opacity: 0.84,
-  },
-  startupSecurityBlockedCtaText: {
-    color: '#07110A',
-    fontFamily: APP_FONT_FAMILY,
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: '800',
-    textAlign: 'center',
   },
   appFullScreenOverlay: {
     ...StyleSheet.absoluteFillObject,

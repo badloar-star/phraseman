@@ -68,7 +68,7 @@ describe("episode 1 session map", () => {
   it("mixes session kinds instead of shipping phrases only", () => {
     const kinds = new Set(EPISODE_01_SESSION_MAP_V1.map((entry) => entry.kind));
     for (const required of [
-      "vocabulary",
+      "words_then_phrases",
       "phrases",
       "irregular_verbs",
       "prepositions",
@@ -81,6 +81,23 @@ describe("episode 1 session map", () => {
       EPISODE_01_SESSION_MAP_V1.filter((entry) => entry.kind === "phrases")
         .length / EPISODE_01_SESSION_MAP_V1.length;
     expect(phraseShare).toBeLessThan(0.6);
+  });
+
+  // зачем: владелец забраковал отдельные словарные сессии — «будет скучно, если
+  // целая сессия будет учить одному неправильному глаголу», и попросил давать
+  // слова СРАЗУ с фразами из них. Гейт держит это решение.
+  it("never ships a session that only drills words", () => {
+    for (const entry of EPISODE_01_SESSION_MAP_V1)
+      expect(entry.kind as string).not.toBe("vocabulary");
+    // Смешанных сессий должно быть больше, чем чисто фразовых: именно они несут
+    // новую лексику вместе с её применением.
+    const mixed = EPISODE_01_SESSION_MAP_V1.filter(
+      (entry) => entry.kind === "words_then_phrases",
+    ).length;
+    const phraseOnly = EPISODE_01_SESSION_MAP_V1.filter(
+      (entry) => entry.kind === "phrases",
+    ).length;
+    expect(mixed).toBeGreaterThan(phraseOnly);
   });
 
   it("gives every session kind a task family set", () => {

@@ -37,6 +37,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../constants/i18n';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { hapticMediumImpact, hapticSuccess } from '../hooks/use-haptics';
@@ -73,7 +74,6 @@ const STAGE = {
 } as const;
 
 const CONFETTI_COUNT = 26;
-const RAY_COUNT = 10;
 // Конечные повторы: салют живёт секунды, вечные циклы не нужны
 // (и не требуют гардов focus/AppState по perf_freeze_contract).
 const FLOAT_REPEATS = 8;
@@ -137,34 +137,6 @@ function ConfettiPiece({ index }: { index: number }) {
   );
 }
 
-// ── Луч света за героем ───────────────────────────────────────────────────────
-function LightRay({ index }: { index: number }) {
-  const grow = useSharedValue(0);
-  const rotation = (360 / RAY_COUNT) * index;
-
-  useEffect(() => {
-    grow.value = withDelay(
-      STAGE.HERO,
-      withTiming(1, { duration: 600, easing: REasing.out(REasing.quad) }),
-    );
-    return () => cancelAnimation(grow);
-  }, [grow]);
-
-  const style = useAnimatedStyle(() => ({
-    opacity: interpolate(grow.value, [0, 1], [0, 0.5]),
-    transform: [
-      { rotate: `${rotation}deg` },
-      { scaleY: interpolate(grow.value, [0, 1], [0.2, 1]) },
-    ],
-  }));
-
-  return (
-    <Animated.View
-      pointerEvents="none"
-      style={[styles.ray, style]}
-    />
-  );
-}
 
 // ── Карточка метрики (реплики / цели / настроение) ────────────────────────────
 function MetricCard({
@@ -174,7 +146,7 @@ function MetricCard({
   label,
 }: {
   index: number;
-  icon: string;
+  icon: keyof typeof Ionicons.glyphMap;
   value: string;
   label: string;
 }) {
@@ -198,7 +170,8 @@ function MetricCard({
 
   return (
     <Animated.View style={[styles.metricCard, style]}>
-      <Text style={styles.metricIcon}>{icon}</Text>
+      {/* зачем: владелец запретил эмодзи в UI — иконки из набора приложения */}
+      <Ionicons name={icon} size={22} color={PALETTE.gold} style={styles.metricIcon} />
       <Text style={styles.metricValue}>{value}</Text>
       <Text style={styles.metricLabel}>{label}</Text>
     </Animated.View>
@@ -213,10 +186,10 @@ export type DialogVictoryCelebrationProps = {
   replies: number;
   goalsMet: number;
   goalsTotal: number;
-  /** Эмодзи-герой салюта. */
-  heroEmoji?: string;
-  /** Финальное настроение собеседника (эмодзи в карточке метрики). */
-  moodEmoji?: string;
+  /** Иконка-герой салюта (Ionicons). зачем: эмодзи в UI запрещены владельцем. */
+  heroIcon?: keyof typeof Ionicons.glyphMap;
+  /** Иконка настроения собеседника в карточке метрики (Ionicons). */
+  moodIcon?: keyof typeof Ionicons.glyphMap;
   /** CTA «К диалогам». */
   onDone: () => void;
 };
@@ -227,8 +200,8 @@ export function DialogVictoryCelebration({
   replies,
   goalsMet,
   goalsTotal,
-  heroEmoji = '🎉',
-  moodEmoji = '😊',
+  heroIcon = 'ribbon',
+  moodIcon = 'happy',
   onDone,
 }: DialogVictoryCelebrationProps) {
   const insets = useStableSafeAreaInsets();
@@ -360,7 +333,6 @@ export function DialogVictoryCelebration({
     opacity: interpolate(shimmer.value, [0, 0.5, 1], [0, 0.5, 0]),
   }));
 
-  const rays = useMemo(() => Array.from({ length: RAY_COUNT }, (_, i) => i), []);
   const confetti = useMemo(() => Array.from({ length: CONFETTI_COUNT }, (_, i) => i), []);
 
   const title = triLang(lang, {
@@ -417,11 +389,7 @@ export function DialogVictoryCelebration({
           />
         </Animated.View>
 
-        <View style={styles.rayLayer} pointerEvents="none">
-          {rays.map((i) => (
-            <LightRay key={`ray-${i}`} index={i} />
-          ))}
-        </View>
+        {/* зачем: веер лучей («звезда») убран по замечанию владельца — кульминацию несут кольцо целей и конфетти */}
 
         {/* кольцо целей + герой */}
         <View style={{ width: RING_SIZE, height: RING_SIZE, alignItems: 'center', justifyContent: 'center' }}>
@@ -455,7 +423,7 @@ export function DialogVictoryCelebration({
           </View>
 
           <Animated.View style={heroStyle}>
-            <Text style={styles.hero}>{heroEmoji}</Text>
+            <Ionicons name={heroIcon} size={78} color={PALETTE.gold} />
           </Animated.View>
         </View>
 
@@ -473,7 +441,7 @@ export function DialogVictoryCelebration({
         <View style={styles.metricsRow}>
           <MetricCard
             index={0}
-            icon="💬"
+            icon="chatbubble-ellipses"
             value={String(replies)}
             label={triLang(lang, {
               ru: 'Реплик',
@@ -488,7 +456,7 @@ export function DialogVictoryCelebration({
           />
           <MetricCard
             index={1}
-            icon="🎯"
+            icon="flag"
             value={goalsTotal > 0 ? `${goalsMet}/${goalsTotal}` : '—'}
             label={triLang(lang, {
               ru: 'Цели',
@@ -503,7 +471,7 @@ export function DialogVictoryCelebration({
           />
           <MetricCard
             index={2}
-            icon={moodEmoji}
+            icon={moodIcon}
             value={triLang(lang, {
               ru: 'Доволен',
               uk: 'Задоволений',
@@ -574,16 +542,7 @@ const styles = StyleSheet.create({
     top: '16%',
     overflow: 'hidden',
   },
-  rayLayer: { position: 'absolute', alignItems: 'center', justifyContent: 'center', top: '4%' },
-  ray: {
-    position: 'absolute',
-    width: 14,
-    height: 220,
-    borderRadius: 7,
-    backgroundColor: PALETTE.glow,
-  },
   confettiLayer: { position: 'absolute', alignItems: 'center', justifyContent: 'center' },
-  hero: { fontSize: 86, textAlign: 'center' },
   title: { color: PALETTE.text, fontSize: 28, fontWeight: '900', marginTop: 24, letterSpacing: 0.3 },
   subtitle: { color: PALETTE.textDim, fontSize: 15, marginTop: 7, textAlign: 'center' },
   xpRow: { flexDirection: 'row', alignItems: 'flex-end', marginTop: 18 },
@@ -600,7 +559,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: PALETTE.cardBorder,
   },
-  metricIcon: { fontSize: 22 },
+  metricIcon: { marginBottom: 2 },
   metricValue: { color: PALETTE.text, fontSize: 16, fontWeight: '900', marginTop: 6 },
   metricLabel: { color: PALETTE.textDim, fontSize: 12, marginTop: 3 },
   bottom: { paddingHorizontal: 24, alignItems: 'center' },

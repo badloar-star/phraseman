@@ -237,8 +237,8 @@ export const SECTION: ShowcaseSection = {
           replies={8}
           goalsMet={3}
           goalsTotal={3}
-          heroEmoji="🎉"
-          moodEmoji="😊"
+          heroIcon="ribbon"
+          moodIcon="happy"
           onDone={onClose}
         />
       ),

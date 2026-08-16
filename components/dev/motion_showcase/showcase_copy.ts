@@ -8,6 +8,7 @@
 const RU = {
   // ── общие переиспользуемые детали ──
   back: 'Назад',
+  close: 'Закрыть',
   real_screen: 'реальный экран',
   real_component: 'реальный компонент',
   real_modal: 'реальная модалка',
@@ -88,10 +89,10 @@ const RU = {
 
   // ── celebrations ──
   celebrations_section_title: 'Празднования и сундуки',
-  celebrations_level_gift_title: 'Подарок за уровень — открытие сундука',
+  celebrations_level_gift_title: 'Сундук после повышения уровня (цепочка _layout, один подарок)',
   celebrations_level_gift_detail:
     'реальный компонент — демо-подарок (common), применение отключено (deliveryMode=inventory)',
-  celebrations_level_gift_dual_title: 'Два подарка за уровень (Plus)',
+  celebrations_level_gift_dual_title: 'Сундук после повышения уровня (цепочка _layout, пара для Plus)',
   celebrations_level_gift_dual_detail: 'реальный компонент — демо-пара F2P+премиум, deliveryMode=inventory',
   celebrations_demo_user_name: 'Демо',
   celebrations_boon_chest_title: 'Сундук бонуса (Понедельник тайны и т.п.)',

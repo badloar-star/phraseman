@@ -11,6 +11,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { safeRouterBack } from './navigation_back';
 import TapScale from '../components/TapScale';
 import { hapticTap } from '../hooks/use-haptics';
 import { getShowcaseSections } from '../components/dev/motion_showcase';
@@ -46,7 +47,7 @@ export default function MotionShowcaseScreen() {
     <View style={[styles.root, { backgroundColor: t.bgPrimary }]}>
       <ScreenGradient />
       <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
-        <TapScale onPress={() => router.back()} accessibilityLabel={cs('back')}>
+        <TapScale onPress={() => safeRouterBack(router, '/(tabs)/settings' as never)} accessibilityLabel={cs('back')}>
           <View style={[styles.back, { backgroundColor: t.bgSurface }]}>
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </View>
@@ -113,8 +114,38 @@ export default function MotionShowcaseScreen() {
           </View>
         ))}
       </ScrollView>
-      {active?.render ? active.render({ visible: true, onClose: closeActive }) : null}
+      {active?.render ? (
+        // зачем: у части реальных модалок закрытие ведёт в навигацию/сеть,
+        // а в витрине их надо просто снять. Каждой даём один и тот же onClose,
+        // а сверху — страховочную кнопку «закрыть», чтобы ни одна поверхность
+        // не оставила витрину без выхода (замечание владельца).
+        <ShowcaseOverlayFrame key={active.id} onClose={closeActive}>
+          {active.render({ visible: true, onClose: closeActive })}
+        </ShowcaseOverlayFrame>
+      ) : null}
     </View>
+  );
+}
+
+function ShowcaseOverlayFrame({ children, onClose }: { children: React.ReactNode; onClose: () => void }) {
+  const { theme: t } = useTheme();
+  const insets = useStableSafeAreaInsets();
+  return (
+    <>
+      {children}
+      <View pointerEvents="box-none" style={[StyleSheet.absoluteFill, { zIndex: 9999, elevation: 9999 }]}>
+        <TapScale onPress={onClose} accessibilityLabel={cs('close')}>
+          <View
+            style={[
+              styles.escape,
+              { top: insets.top + 10, backgroundColor: t.bgSurface, shadowColor: '#000000' },
+            ]}
+          >
+            <Ionicons name="close" size={18} color={t.textPrimary} />
+          </View>
+        </TapScale>
+      </View>
+    </>
   );
 }
 
@@ -156,4 +187,17 @@ const styles = StyleSheet.create({
   rowText: { flex: 1, minWidth: 0 },
   rowTitle: { fontWeight: '700' },
   rowDetail: { marginTop: 2 },
+  escape: {
+    position: 'absolute',
+    right: 14,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 6,
+  },
 });

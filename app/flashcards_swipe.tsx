@@ -956,6 +956,22 @@ export default function FlashcardsSwipeScreen() {
   // зачем: A-39 — карта при улёте растворяется (opacity 1→0 за 400мс).
   // Отдельное значение от position, потому что затухание короче сдвига.
   const flyOpacity = useRef(new Animated.Value(1)).current;
+  /**
+   * FIX (владелец, 2026-08-16) «нижняя карточка поднимается, но текст прыгает».
+   *
+   * Подложка (cardBack) — ПУСТОЙ прямоугольник без текста, и это намеренно.
+   * Она не «становится» следующей карточкой: верхняя вьюха пересоздаётся по
+   * key={currentPrompt.id}, то есть новая карточка ВСЕГДА монтируется заново.
+   * Раньше подложка стояла неподвижно, а новая карточка возникала в центре в
+   * тот же кадр — глаз читал это как «низ поднялся, а текст моргнул».
+   *
+   * Теперь подложка честно доезжает до позы верхней карточки (scale 0.96→1,
+   * translateY 14→0, opacity 0.55→1) ровно за время улёта. К моменту подмены
+   * она пиксель-в-пиксель совпадает с местом, где появится новая карточка, —
+   * поэтому подмена не видна. Текста на подложке нет специально: именно
+   * появление текста на движущейся вьюхе и давало моргание.
+   */
+  const riseAnim = useRef(new Animated.Value(0)).current;
   // зачем: A-55 — «Уменьшение движения» гасит размашистый полёт. Держим в ref,
   // а не в state: settleCard — useCallback, и лишняя зависимость пересоздавала
   // бы PanResponder на каждую смену настройки (жест бы срывался).
@@ -2059,7 +2075,12 @@ export default function FlashcardsSwipeScreen() {
     position.setValue({ x: 0, y: 0 });
     flyOpacity.stopAnimation();
     flyOpacity.setValue(1);
-  }, [cardEpoch, currentPrompt?.id, flyOpacity, position]);
+    // зачем: подложка возвращается «под колоду» в ТОМ ЖЕ коммите, где наверху уже
+    // стоит новая карточка. Отдельным эффектом (после кадра) было бы видно, как
+    // поднявшаяся подложка отскакивает вниз поверх новой карточки.
+    riseAnim.stopAnimation();
+    riseAnim.setValue(0);
+  }, [cardEpoch, currentPrompt?.id, flyOpacity, position, riseAnim]);
   const done = phase === 'play' && !currentPrompt && stats.total > 0;
 
   useEffect(() => {
@@ -2238,6 +2259,16 @@ export default function FlashcardsSwipeScreen() {
           easing: Easing.in(Easing.ease),
           useNativeDriver: true,
         }),
+        // зачем: подложка поднимается на место верхней карточки РОВНО за время
+        // улёта — к моменту подмены она уже в финальной позе, поэтому появление
+        // новой карточки не читается как скачок. Easing.out: движение
+        // притормаживает у цели, как в нативных колодах.
+        Animated.timing(riseAnim, {
+          toValue: 1,
+          duration: flyMs,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        }),
       ]).start(() => {
         // Прежний `position.stopAnimation(cb → finish())` стоил лишнего
         // раунд-трипа на UI-поток, и всё это время ввод оставался заблокирован
@@ -2246,7 +2277,7 @@ export default function FlashcardsSwipeScreen() {
         finish();
       });
     },
-    [flyOpacity, position, width],
+    [flyOpacity, position, riseAnim, width],
   );
 
   // Гасим страховочный таймер settleCard при размонтировании, чтобы не дёргать
@@ -2904,13 +2935,36 @@ export default function FlashcardsSwipeScreen() {
 
         <View style={[styles.cardStage, isCompactFlashcardsTask && styles.compactCardStage]}>
           {queue[1] ? (
-            <View
+            <Animated.View
               style={[
                 styles.cardBack,
                 {
                   width: cardWidth,
                   minHeight: cardHeight,
                   backgroundColor: t.bgSurface2,
+                },
+                {
+                  // зачем: поза подложки больше не статична — на улёте она доезжает
+                  // до позы верхней карточки (scale 1, translateY 0, opacity 1), и
+                  // подмена карточки происходит уже за совпавшей геометрией.
+                  opacity: riseAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0.55, 1],
+                  }),
+                  transform: [
+                    {
+                      scale: riseAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0.96, 1],
+                      }),
+                    },
+                    {
+                      translateY: riseAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [14, 0],
+                      }),
+                    },
+                  ],
                 },
               ]}
             />
@@ -3600,8 +3654,9 @@ const styles = StyleSheet.create({
   cardBack: {
     position: 'absolute',
     borderRadius: 24,
-    transform: [{ scale: 0.96 }, { translateY: 14 }],
-    opacity: 0.55,
+    // зачем: поза (scale/translateY/opacity) задаётся анимированно в рендере —
+    // подложка поднимается на место верхней карточки за время её улёта. Статика
+    // здесь конфликтовала бы с анимированным transform и гасила подъём.
   },
   trainingCard: {
     borderRadius: 24,

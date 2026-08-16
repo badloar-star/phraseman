@@ -332,20 +332,16 @@ export default function CollectionDeckView({
     if (backText) onSpeak(backText, { language: inferExpoSpeechLanguage(backText, cardContentLang) });
   }, [backText, cardContentLang, onSpeak]);
 
-  if (!card) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 32 }}>
-        <Ionicons name="albums-outline" size={40} color={t.textGhost} />
-        <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
-          {triLang(lang, {
-            ru: 'Ничего не найдено',
-            uk: 'Нічого не знайдено',
-            es: 'No se encontró nada',
-          })}
-        </Text>
-      </View>
-    );
-  }
+  /**
+   * FIX (владелец, 2026-08-16) «сначала Ничего не найдено, потом Нет карточек»:
+   * ЗДЕСЬ БЫЛА ВТОРАЯ ЗАГЛУШКА — «Ничего не найдено» с иконкой стопки. При входе
+   * карточки ещё не подъехали, стопка рисовала её, а следом экран показывал уже
+   * своё «Нет карточек». Два разных пустых экрана подряд и читались как прыжок.
+   *
+   * Пустое состояние у экрана ОДНО — CollectionEmptyState в flashcards_collection.
+   * Здесь не рисуем ничего: пока карточки в пути, стопка просто пуста.
+   */
+  if (!card) return null;
 
   const shadow = {
     shadowColor: '#000',

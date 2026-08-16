@@ -9,6 +9,7 @@ import {
   MAX_CALL_BARGE_IN_MUTE_MS,
   MAX_CALL_HEARTBEAT_MS,
   MAX_CALL_CONNECT_TIMEOUT_MS,
+  MAX_CALL_GREETING_HOLD_MAX_MS,
   MAX_CALL_ICE_GATHER_TIMEOUT_MS,
   MAX_CALL_START_TIMEOUT_MS,
   completeLocalOfferSdp,
@@ -280,13 +281,21 @@ describe('happy-path: idle → … → active на моках deps', () => {
 });
 
 describe('heartbeat 30с на fake timers', () => {
-  it('тикает каждые 30с с elapsed и usage-токенами', async () => {
+  it('первый heartbeat уходит СРАЗУ на активации («алло», elapsed 0), дальше — каждые 30с', async () => {
     const h = makeHarness();
     await connect(h);
 
-    expect(h.deps.heartbeat).not.toHaveBeenCalled();
-    jest.advanceTimersByTime(MAX_CALL_HEARTBEAT_MS);
+    // зачем: сервер считает секунды разговора от первого heartbeat (activatedAtMs),
+    // чтобы заранее сделанный минт (premint на пре-экране) не списывал раздумья.
     expect(h.deps.heartbeat).toHaveBeenCalledTimes(1);
+    expect(h.deps.heartbeat).toHaveBeenLastCalledWith({
+      sessionId: 'sess-1',
+      elapsedSec: 0,
+      usage: ZERO_USAGE,
+    });
+
+    jest.advanceTimersByTime(MAX_CALL_HEARTBEAT_MS);
+    expect(h.deps.heartbeat).toHaveBeenCalledTimes(2);
     expect(h.deps.heartbeat).toHaveBeenLastCalledWith({
       sessionId: 'sess-1',
       elapsedSec: 30,
@@ -295,7 +304,7 @@ describe('heartbeat 30с на fake timers', () => {
 
     dcMessage(h, usageDone({ audio_tokens: 40, text_tokens: 15 }, { audio_tokens: 25 }));
     jest.advanceTimersByTime(MAX_CALL_HEARTBEAT_MS);
-    expect(h.deps.heartbeat).toHaveBeenCalledTimes(2);
+    expect(h.deps.heartbeat).toHaveBeenCalledTimes(3);
     expect(h.deps.heartbeat).toHaveBeenLastCalledWith({
       sessionId: 'sess-1',
       elapsedSec: 60,
@@ -358,8 +367,9 @@ describe('идемпотентный teardown', () => {
     const h = makeHarness();
     const client = await connect(h);
     await client.end();
+    const afterEnd = (h.deps.heartbeat as jest.Mock).mock.calls.length; // только «алло»-heartbeat
     jest.advanceTimersByTime(MAX_CALL_HEARTBEAT_MS * 4);
-    expect(h.deps.heartbeat).not.toHaveBeenCalled();
+    expect(h.deps.heartbeat).toHaveBeenCalledTimes(afterEnd);
   });
 
   it('падение deps.end не мешает дойти до ended (дожмёт watchdog)', async () => {
@@ -474,6 +484,60 @@ describe('barge-in по разделу 4 спеки', () => {
     expect(remoteTrack.enabled).toBe(true);
   });
 
+  // зачем: владелец 2026-08-16 — ИИ при старте «начинает говорить много реплик,
+  // обрывает их сама и снова говорит». Пока звучит приветствие, микрофон закрыт:
+  // шум/эхо/«алло?» не рвут приветствие через interrupt_response.
+  it('удерживает микрофон закрытым, пока приветствие не договорено И не доиграно', async () => {
+    const h = makeHarness();
+    await connect(h);
+    expect(h.localTrack.enabled).toBe(false); // hold с момента активации
+
+    dcMessage(h, { type: 'response.created' });
+    dcMessage(h, { type: 'output_audio_buffer.started' });
+    dcMessage(h, usageDone({ audio_tokens: 10 }, { audio_tokens: 80 })); // response.done
+    expect(h.localTrack.enabled).toBe(false); // аудио ещё доигрывает из буфера
+    dcMessage(h, { type: 'output_audio_buffer.stopped' });
+    expect(h.localTrack.enabled).toBe(true); // приветствие отзвучало — микрофон открыт
+  });
+
+  it('снимает удержание, если аудио доиграло раньше response.done или приветствие без аудио', async () => {
+    const h = makeHarness();
+    await connect(h);
+    dcMessage(h, { type: 'output_audio_buffer.started' });
+    dcMessage(h, { type: 'output_audio_buffer.stopped' });
+    expect(h.localTrack.enabled).toBe(false);
+    dcMessage(h, usageDone({}, {}));
+    expect(h.localTrack.enabled).toBe(true);
+
+    const h2 = makeHarness();
+    await connect(h2);
+    dcMessage(h2, usageDone({}, {})); // пустой/отменённый response — аудио не было
+    expect(h2.localTrack.enabled).toBe(true);
+  });
+
+  it('страховочный таймер снимает удержание без серверных событий; явный unmute юзера — тоже', async () => {
+    const h = makeHarness();
+    await connect(h);
+    expect(h.localTrack.enabled).toBe(false);
+    jest.advanceTimersByTime(MAX_CALL_GREETING_HOLD_MAX_MS);
+    expect(h.localTrack.enabled).toBe(true);
+
+    const h2 = makeHarness();
+    const client2 = await connect(h2);
+    client2.setMuted(false); // юзер хочет говорить — его воля важнее удержания
+    expect(h2.localTrack.enabled).toBe(true);
+  });
+
+  it('мьют юзера во время приветствия остаётся мьютом и после его окончания', async () => {
+    const h = makeHarness();
+    const client = await connect(h);
+    client.setMuted(true);
+    dcMessage(h, usageDone({}, {}));
+    expect(h.localTrack.enabled).toBe(false);
+    client.setMuted(false);
+    expect(h.localTrack.enabled).toBe(true);
+  });
+
   it('mute глушит локальный трек, unmute возвращает', async () => {
     const h = makeHarness();
     const client = await connect(h);
@@ -502,7 +566,7 @@ describe('barge-in по разделу 4 спеки', () => {
     const greeting = sent.find((event) => event.type === 'response.create');
     expect(greeting).toMatchObject({
       type: 'response.create',
-      response: { max_output_tokens: 400 },
+      response: { max_output_tokens: 600 },
     });
     expect(JSON.stringify(greeting)).toContain('Begin speaking immediately');
     expect(JSON.stringify(greeting)).toContain('Never announce turns');

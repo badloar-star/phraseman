@@ -8,8 +8,16 @@
 // Клиенту в деньгах не верим: все переходы — транзакции Firestore.
 //
 // Поля дока: resetAtMs, monthResetAtMs, dailyUsedSec, monthlyUsedSec,
-// trialUsedAtMs, activeSessionId, sessionStartedAtMs, reservedSec, expiresAtMs,
-// lastHeartbeatMs, reconnectChain{rootId, count, gapSecTotal}.
+// trialUsedAtMs, activeSessionId, sessionStartedAtMs, activatedAtMs, reservedSec,
+// expiresAtMs, lastHeartbeatMs, reconnectChain{rootId, count, gapSecTotal}.
+//
+// Два штампа времени сессии:
+//   sessionStartedAtMs — момент МИНТА (резерв выдан);
+//   activatedAtMs      — момент, когда звонок реально ожил (первый heartbeat).
+// зачем: владелец 2026-08-16 хочет мгновенное соединение — клиент минтит заранее
+// на пре-экране, и между минтом и «алло» может пройти до пары минут раздумий.
+// Секунды разговора считаются от activatedAtMs, чтобы простой на пре-экране не
+// списывался как разговор; без activatedAtMs (старый клиент) — от минта, как раньше.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { createHash } from 'crypto';
@@ -27,6 +35,32 @@ export const MIN_VOICE_RESERVE_SEC = 60;
  * закрывает всё, что старше cap+120с.
  */
 export const VOICE_RESERVE_EXPIRY_GRACE_SEC = 120;
+
+/**
+ * Живая сессия шлёт heartbeat каждые ~30с. Если по активной сессии тишина дольше
+ * этого окна — она мертва (kill app, брошенный pre-mint без звонка), и СВЕЖИЙ минт
+ * того же ученика её вытесняет (дозакрывает по последнему heartbeat), а не
+ * упирается в voice_session_active на 7 минут. Два ПАРАЛЛЕЛЬНЫХ живых звонка
+ * по-прежнему невозможны: у живого heartbeat всегда свежее окна.
+ */
+export const VOICE_DEAD_SESSION_SILENCE_MS = 75_000;
+
+/**
+ * Начало часов разговора: момент активации (первый heartbeat), а до неё —
+ * момент минта. Единственный источник для settle/watchdog/transfer.
+ */
+export function voiceSessionClockStartMs(data: Record<string, unknown>): number {
+  const activated = num(data.activatedAtMs);
+  return activated > 0 ? activated : num(data.sessionStartedAtMs);
+}
+
+/** Пустой аккумулятор usage — свежий резерв стирает хвост прошлой сессии. */
+export const VOICE_USAGE_ZERO = {
+  audioInputTokens: 0,
+  audioOutputTokens: 0,
+  cachedTokens: 0,
+  textTokens: 0,
+} as const;
 
 // Локальная копия docId из premium_dialog.ts (там она не экспортируется —
 // намеренно не трогаем чужой модуль, но формат ID обязан совпадать по паттерну).
@@ -125,12 +159,17 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
     const prevReserved = Math.max(0, Math.floor(num(data.reservedSec)));
     let staleRefundedSec = 0;
     if (activeSessionId && prevReserved > 0) {
-      if (num(data.expiresAtMs) > now) {
+      const lastHeartbeatMs = num(data.lastHeartbeatMs, num(data.sessionStartedAtMs));
+      const heartbeatFresh = now - lastHeartbeatMs <= VOICE_DEAD_SESSION_SILENCE_MS;
+      // Живая = резерв не истёк И heartbeat свежий. Истёкшая ИЛИ замолчавшая
+      // дольше окна — мертва и вытесняется (см. VOICE_DEAD_SESSION_SILENCE_MS).
+      if (num(data.expiresAtMs) > now && heartbeatFresh) {
         console.warn('max_voice_quota reserve rejected', { reason: 'voice_session_active' });
         throw new HttpsError('failed-precondition', 'voice_session_active');
       }
       // Сессия умерла молча: списываем по последнему heartbeat, хвост возвращаем.
-      const startedAt = num(data.sessionStartedAtMs);
+      // Часы — от активации (pre-mint без звонка = 0 прожитых секунд).
+      const startedAt = voiceSessionClockStartMs(data);
       const hbElapsedSec = startedAt > 0
         ? Math.max(0, Math.ceil((num(data.lastHeartbeatMs, startedAt) - startedAt) / 1000))
         : prevReserved;
@@ -165,9 +204,16 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
       monthlyUsedSec: win.monthlyUsedSec + reservedSec,
       activeSessionId: args.sessionId,
       sessionStartedAtMs: now,
+      // Активацию поставит первый heartbeat; до него часы разговора не идут.
+      activatedAtMs: 0,
       reservedSec,
       expiresAtMs: now + (reservedSec + VOICE_RESERVE_EXPIRY_GRACE_SEC) * 1000,
       lastHeartbeatMs: now,
+      // Свежий минт стирает usage прошлой сессии: settle берёт max(heartbeat,
+      // отчёт клиента), и без сброса токены прошлого звонка «переезжали» в
+      // billing нового (найдено по одинаковым usage у соседних строк 2026-08-16).
+      usageTotals: { ...VOICE_USAGE_ZERO },
+      lastHeartbeatElapsedSec: 0,
       // Свежий минт = новый корень чейна реконнектов.
       reconnectChain: { rootId: args.sessionId, count: 0, gapSecTotal: 0 },
       updatedAtMs: now,
@@ -342,7 +388,9 @@ export async function transferReserve(db: Firestore, args: VoiceTransferArgs): P
       throw new HttpsError('failed-precondition', 'voice_reconnect_chain_exhausted');
     }
 
-    const startedAt = num(data.sessionStartedAtMs, now);
+    // Часы разговора — от активации (см. voiceSessionClockStartMs): простой
+    // pre-mint на пре-экране не должен списываться при переносе остатка.
+    const startedAt = voiceSessionClockStartMs(data) || now;
     const wallElapsedSec = Math.max(0, Math.ceil((now - startedAt) / 1000));
     const elapsedSec = Math.max(Math.max(0, Math.ceil(num(args.heartbeatElapsedSec))), wallElapsedSec);
     // Бесплатный gap — ТОЛЬКО подтверждённый обрыв, не «время без heartbeat»:
@@ -371,6 +419,9 @@ export async function transferReserve(db: Firestore, args: VoiceTransferArgs): P
     tx.set(ref, {
       activeSessionId: args.newSessionId,
       sessionStartedAtMs: now,
+      // Реконнект оживает за секунды: новая сессия активна с момента переноса
+      // (первый heartbeat нового транспорта её не «сдвинет»).
+      activatedAtMs: now,
       // Списанная часть остаётся списанной (была зарезервирована при минте);
       // day/month счётчики не трогаем — финальный settle новой сессии вернёт хвост.
       reservedSec: remainingSec,

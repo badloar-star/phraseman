@@ -227,6 +227,38 @@ describe('maxVoiceSessionEnd — settlement', () => {
     expect(docs.get(BUDGET_PATH)!.estUsd).toBeCloseTo(1 - (120 / 60) * VOICE_EST_COST_USD_PER_MIN, 10);
   });
 
+  it('bills from the ACTIVATION clock when the call was pre-minted and idled before hello', async () => {
+    // Минт 260с назад, «алло» (первый heartbeat) 200с назад: разговор = 200с, не 260.
+    liveQuota({ sessionStartedAtMs: NOW - 260_000, activatedAtMs: NOW - 200_000 });
+    const res = await sessionEnd({ auth: { uid: AUTH }, data: END_DATA });
+    expect(res.chargedSec).toBe(200);
+    expect(res.refundedSec).toBe(120);
+  });
+
+  it('a never-activated session (abandoned premint) released with elapsed 0 is charged nothing', async () => {
+    // Минт 60с назад, ни одного heartbeat: юзер ушёл с пре-экрана, клиент шлёт release.
+    liveQuota({ sessionStartedAtMs: NOW - 60_000, activatedAtMs: 0, lastHeartbeatMs: NOW - 60_000 });
+    const res = await sessionEnd({
+      auth: { uid: AUTH },
+      data: { ...END_DATA, elapsedSec: 0, clientSpeechSec: 0, repliesCount: 0, transcriptWordCount: 0, endReason: 'dropped',
+        usage: { audioInputTokens: 0, audioOutputTokens: 0, cachedTokens: 0, textTokens: 0 } },
+    });
+    expect(res.chargedSec).toBe(0);
+    expect(res.refundedSec).toBe(320); // весь резерв назад
+    expect(docs.get(QUOTA_PATH)).toMatchObject({ activeSessionId: null, reservedSec: 0 });
+  });
+
+  it('a never-activated session from an old client is charged by its own seconds, capped by the wall', async () => {
+    liveQuota({ sessionStartedAtMs: NOW - 25_000, activatedAtMs: 0, lastHeartbeatMs: NOW - 25_000 });
+    const res = await sessionEnd({ auth: { uid: AUTH }, data: { ...END_DATA, elapsedSec: 20 } });
+    expect(res.chargedSec).toBe(20);
+    const res2 = await (async () => {
+      liveQuota({ sessionStartedAtMs: NOW - 25_000, activatedAtMs: 0, lastHeartbeatMs: NOW - 25_000 });
+      return sessionEnd({ auth: { uid: AUTH }, data: { ...END_DATA, elapsedSec: 999 } });
+    })();
+    expect(res2.chargedSec).toBe(25); // не больше стены
+  });
+
   it('the client cannot inflate seconds: server wall clock wins', async () => {
     liveQuota();
     const res = await sessionEnd({ auth: { uid: AUTH }, data: { ...END_DATA, elapsedSec: 99_999 } });
@@ -414,6 +446,28 @@ describe('maxVoiceHeartbeat — liveness + usage accumulator in the quota doc', 
       lastHeartbeatElapsedSec: 30,
       usageTotals: { audioInputTokens: 100, audioOutputTokens: 200 },
     });
+  });
+
+  // зачем: pre-mint на пре-экране — первый heartbeat («алло», elapsedSec 0)
+  // ставит activatedAtMs; часы разговора идут от него, а не от минта.
+  it('the first heartbeat stamps activatedAtMs (bounded by the mint time) and later ones keep it', async () => {
+    liveQuota({ activatedAtMs: 0, sessionStartedAtMs: NOW - 120_000, lastHeartbeatMs: NOW - 120_000 });
+
+    await heartbeat({ auth: { uid: AUTH }, data: { sessionId: 's1', elapsedSec: 0 } });
+    expect(docs.get(QUOTA_PATH)!.activatedAtMs).toBe(NOW); // «алло» — сейчас, 120с раздумий не в счёт
+
+    await heartbeat({ auth: { uid: AUTH }, data: { sessionId: 's1', elapsedSec: 30 } });
+    expect(docs.get(QUOTA_PATH)!.activatedAtMs).toBe(NOW); // повторный не сдвигает
+  });
+
+  it('an old client whose first heartbeat arrives at 30s is dated back by its elapsed, never before the mint', async () => {
+    liveQuota({ activatedAtMs: 0, sessionStartedAtMs: NOW - 40_000, lastHeartbeatMs: NOW - 40_000 });
+    await heartbeat({ auth: { uid: AUTH }, data: { sessionId: 's1', elapsedSec: 30 } });
+    expect(docs.get(QUOTA_PATH)!.activatedAtMs).toBe(NOW - 30_000);
+
+    liveQuota({ activatedAtMs: 0, sessionStartedAtMs: NOW - 10_000, lastHeartbeatMs: NOW - 10_000 });
+    await heartbeat({ auth: { uid: AUTH }, data: { sessionId: 's1', elapsedSec: 999 } });
+    expect(docs.get(QUOTA_PATH)!.activatedAtMs).toBe(NOW - 10_000); // не раньше минта
   });
 
   it('does not resurrect foreign or settled sessions', async () => {

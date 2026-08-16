@@ -79,11 +79,18 @@ describe('MAX Voice review server wiring', () => {
     const prestart = read('app/max_call_prestart.tsx');
     const session = read('app/max_call_session.tsx');
     const halo = read('app/max_call_halo.tsx');
-    const handler = prestart.slice(prestart.indexOf('const startCall'), prestart.indexOf('return ('));
+    const startAt = prestart.indexOf('const startCall');
+    const handler = prestart.slice(startAt, prestart.indexOf('return (', startAt));
 
     expect(handler).not.toContain('await ');
     expect(handler).not.toContain('setRequesting');
-    expect(prestart).toContain("'maxVoiceMint')({ warmupPing: true })");
+    // зачем: владелец 2026-08-16 — соединение мгновенное. Настоящий минт
+    // стартует ЗАРАНЕЕ на пре-экране (заготовка), тап только передаёт её
+    // экрану звонка (handoff) — никакого warmup-пинга и ожидания сети на тапе.
+    expect(prestart).toContain('beginPremint(');
+    expect(handler).toContain('markPremintHandoff(key)');
+    expect(prestart).not.toContain('warmupPing');
+    expect(session).toContain('claimPremint(key)');
     expect(session).not.toContain('VoiceEqualizer');
     expect(session).not.toContain('Соединяем…');
     expect(session).toContain('haloRef.current?.setMicLevel(level)');

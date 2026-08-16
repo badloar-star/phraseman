@@ -54,8 +54,23 @@ export const MAX_CALL_CONNECT_TIMEOUT_MS = 20_000;
  * Realtime SDP endpoint не предоставляет отдельный trickle-канал, поэтому
  * коротко ждём complete и отправляем уже обновлённый SDP. Таймаут не даёт
  * медленному ICE заблокировать общий старт звонка.
+ * зачем: 1000мс, а не 2500 — владелец 2026-08-16: соединение должно быть
+ * мгновенным. Без STUN/TURN host-кандидаты собираются за десятки мс, а Realtime
+ * поднимает соединение и по offer без кандидатов (официальный quickstart шлёт
+ * SDP сразу после createOffer). Ожидание — только вежливая страховка, и когда
+ * минт уже готов заранее (premint), именно оно становилось критическим путём.
  */
-export const MAX_CALL_ICE_GATHER_TIMEOUT_MS = 2_500;
+export const MAX_CALL_ICE_GATHER_TIMEOUT_MS = 1_000;
+/**
+ * Пока ИИ здоровается, локальный микрофон закрыт (track.enabled=false → в
+ * канал идёт тишина). зачем: владелец 2026-08-16 — «при старте начинает
+ * говорить много реплик, обрывает их сама и снова говорит»: шум комнаты /
+ * остаток эха с громкой связи / «алло?» ученика в первые секунды срабатывали
+ * как speech_started и рвали приветствие через interrupt_response, а VAD тут
+ * же создавал новый ответ. Приветствие теперь звучит целиком; страховочный
+ * таймер снимает удержание даже если серверные события не пришли.
+ */
+export const MAX_CALL_GREETING_HOLD_MAX_MS = 20_000;
 
 export async function completeLocalOfferSdp(
   connection: RtcPeerConnectionLike,
@@ -324,8 +339,13 @@ export interface MaxCallClient {
   end(reason?: MaxCallEndReason): Promise<void>;
 }
 
-/** Кап injected-ответов (подсказки/wrap-up) — спека §3 maxResponseOutputTokens. */
-const INJECTED_MAX_TOKENS = 400;
+/**
+ * Кап injected-ответов (приветствие/подсказки/wrap-up). max_output_tokens в
+ * Realtime считает АУДИО-токены (~20 на секунду речи): 400 = 20с, и прощание в
+ * два хода рвалось на полуслове (владелец 2026-08-16: «не договаривает до
+ * конца»). 600 = 30с — предохранитель, а не длина: краткость держит промпт.
+ */
+export const INJECTED_MAX_TOKENS = 600;
 const INITIAL_GREETING_INSTRUCTIONS =
   'Begin speaking immediately with one brief warm in-character greeting. Never announce turns or say "your turn". Then pause naturally and listen.';
 
@@ -360,6 +380,16 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   // Мьют, который ПРОСИЛ юзер: grace-мьют реконнекта не должен «размьючивать»
   // человека, замьютившегося кнопкой, после восстановления линии.
   let userMuted = false;
+
+  // Удержание микрофона на приветствие (см. MAX_CALL_GREETING_HOLD_MAX_MS):
+  // снимается, когда приветственный response ДОГОВОРЁН и его аудио ДОИГРАНО
+  // (response.done + output_audio_buffer.stopped в любом порядке), либо по
+  // страховочному таймеру, либо явным unmute юзера / реконнектом.
+  let greetingHold = false;
+  let greetingResponseDone = false;
+  let greetingAudioStarted = false;
+  let greetingAudioStopped = false;
+  let greetingTimer: ReturnType<typeof setTimeout> | null = null;
 
   // Идемпотентность teardown: один закэшированный промис на всю жизнь клиента.
   let endPromise: Promise<void> | null = null;
@@ -517,16 +547,25 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         emitUi({ type: 'response_created' });
         return;
       case 'output_audio_buffer.started':
+        if (greetingHold) greetingAudioStarted = true;
         emitUi({ type: 'audio_out_started' });
         return;
       case 'output_audio_buffer.stopped':
+        noteGreetingAudioStopped();
         emitUi({ type: 'audio_out_stopped' });
         return;
       case 'output_audio_buffer.cleared':
+        noteGreetingAudioStopped();
         emitUi({ type: 'audio_out_cleared' });
         return;
       case 'response.done':
         accumulateUsage(message);
+        if (greetingHold) {
+          greetingResponseDone = true;
+          // Приветствие без аудио (пустой/отменённый response) или аудио уже
+          // доиграло — держать микрофон закрытым больше незачем.
+          if (!greetingAudioStarted || greetingAudioStopped) releaseGreetingHold();
+        }
         emitUi({ type: 'response_done' });
         return;
       // Транскрипт ИИ: оба имени события (версии Realtime API расходятся).
@@ -558,6 +597,46 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     }
   }
 
+  function applyTrackMute(muted: boolean): void {
+    for (const track of localStream?.getTracks() ?? []) {
+      track.enabled = !muted;
+    }
+  }
+
+  /** Микрофон закрыт, если этого хочет юзер ИЛИ пока звучит приветствие. */
+  function applyEffectiveMute(): void {
+    applyTrackMute(userMuted || greetingHold);
+  }
+
+  function releaseGreetingHold(applyMute = true): void {
+    if (!greetingHold) return;
+    greetingHold = false;
+    if (greetingTimer !== null) {
+      clearTimeout(greetingTimer);
+      greetingTimer = null;
+    }
+    if (applyMute) applyEffectiveMute();
+  }
+
+  function noteGreetingAudioStopped(): void {
+    if (!greetingHold) return;
+    greetingAudioStopped = true;
+    if (greetingResponseDone) releaseGreetingHold();
+  }
+
+  function beginGreetingHold(): void {
+    greetingHold = true;
+    greetingResponseDone = false;
+    greetingAudioStarted = false;
+    greetingAudioStopped = false;
+    applyEffectiveMute();
+    if (greetingTimer !== null) clearTimeout(greetingTimer);
+    greetingTimer = setTimeout(() => {
+      greetingTimer = null;
+      releaseGreetingHold();
+    }, MAX_CALL_GREETING_HOLD_MAX_MS);
+  }
+
   function activate(): void {
     if (phase !== 'configuring') return;
     if (connectTimer !== null) {
@@ -572,6 +651,13 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     if (deps.onLevels) statsTimer = setInterval(pollStats, MAX_CALL_STATS_POLL_MS);
     setPhase('active');
     emitUi({ type: 'connected' });
+    // Первый heartbeat — СРАЗУ («алло», elapsed 0). зачем: минт может быть
+    // сделан заранее на пре-экране (premint), и сервер считает секунды разговора
+    // от первого heartbeat (activatedAtMs), а не от минта — иначе раздумья
+    // перед тапом списывались бы как разговор. Фоновый вызов, UI не ждёт.
+    sendHeartbeat();
+    // Микрофон закрыт на время приветствия — см. MAX_CALL_GREETING_HOLD_MAX_MS.
+    beginGreetingHold();
     // Realtime не начинает говорить только из-за instructions: первый ответ
     // нужно запросить явно после открытия data channel.
     dcSend({
@@ -581,12 +667,6 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         max_output_tokens: INJECTED_MAX_TOKENS,
       },
     });
-  }
-
-  function applyTrackMute(muted: boolean): void {
-    for (const track of localStream?.getTracks() ?? []) {
-      track.enabled = !muted;
-    }
   }
 
   function settleDetachedMint(lateMint: MaxVoiceMintResponse, elapsed = elapsedSec()): void {
@@ -623,7 +703,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       localStream = stream;
       // Тап mute мог прийти, пока системный permission/getUserMedia ещё ждал.
       // Применяем сохранённую волю юзера к только что появившемуся треку.
-      applyTrackMute(userMuted);
+      applyEffectiveMute();
       for (const track of stream.getTracks()) connection.addTrack(track, stream);
       channel = connection.createDataChannel('oai-events');
       dc = channel;
@@ -740,7 +820,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
           connectTimer = null;
         }
         // Снимаем grace-мьют, возвращая ровно то состояние, что просил юзер.
-        applyTrackMute(userMuted);
+        applyEffectiveMute();
         setPhase('active');
         emitUi({ type: 'reconnected' });
         try {
@@ -788,7 +868,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
           clearTimeout(graceTimer);
           graceTimer = null;
         }
-        applyTrackMute(userMuted);
+        applyEffectiveMute();
         setPhase('active');
         emitUi({ type: 'reconnected' });
         try {
@@ -806,6 +886,9 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     try {
       deps.sfx?.midCall('reconnect_started');
     } catch {}
+    // Обрыв во время приветствия: удержание больше не имеет смысла (после
+    // реконнекта ИИ не здоровается заново), grace-мьют — единственный мьют.
+    releaseGreetingHold(false);
     applyTrackMute(true);
     if (graceTimer !== null) clearTimeout(graceTimer);
     graceTimer = setTimeout(() => {
@@ -845,6 +928,11 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       clearTimeout(connectTimer);
       connectTimer = null;
     }
+    if (greetingTimer !== null) {
+      clearTimeout(greetingTimer);
+      greetingTimer = null;
+    }
+    greetingHold = false;
     try {
       dc?.close();
     } catch {}
@@ -1038,7 +1126,9 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
   function setMuted(muted: boolean): void {
     userMuted = muted; // grace-мьют реконнекта временный, воля юзера — здесь
-    applyTrackMute(muted);
+    // Явный unmute во время приветствия — воля юзера говорить: снимаем удержание.
+    if (!muted) releaseGreetingHold(false);
+    applyEffectiveMute();
   }
 
   function bargeIn(): void {

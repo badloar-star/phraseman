@@ -8,7 +8,8 @@
 // maxVoiceSessionEnd: серверный сеттлмент min(факт, резерв) через
 // settleVoiceSession, billing-запись voice_call_billing со всеми полями и
 // серверный расчёт XP. Клиентским секундам в деньгах не верим: факт считается
-// от серверного sessionStartedAtMs; клиентские цифры — только вниз и в фрод-лог.
+// от серверных часов разговора (activatedAtMs — первый heartbeat, иначе
+// sessionStartedAtMs); клиентские цифры — только вниз и в фрод-лог.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
@@ -22,6 +23,7 @@ import {
   VOICE_QUOTA_COLLECTION,
   settleVoiceSession,
   voiceQuotaDocId,
+  voiceSessionClockStartMs,
 } from './max_voice_quota';
 import { VOICE_EST_COST_USD_PER_MIN, refundVoiceBudgetEstimate, utcDayKey } from './max_voice_mint';
 
@@ -287,7 +289,16 @@ export async function recordVoiceHeartbeatUsage(db: Firestore, args: VoiceHeartb
       return false;
     }
     const prev = sanitizeVoiceUsage(data.usageTotals);
+    // Первый heartbeat = активация звонка: клиент шлёт его сразу после «алло»
+    // (elapsedSec 0). Часы разговора стартуют отсюда, а не от минта — простой
+    // pre-mint на пре-экране не списывается. Клиентский elapsed сдвигает старт
+    // только НАЗАД в пределах [минт, now] (старый клиент, шлющий первый
+    // heartbeat через 30с, честно учитывается), вперёд сдвинуть нельзя.
+    const activatedAtMs = num(data.activatedAtMs) > 0
+      ? num(data.activatedAtMs)
+      : Math.min(now, Math.max(num(data.sessionStartedAtMs, now), now - nonNegInt(args.elapsedSec) * 1000));
     tx.set(ref, {
+      activatedAtMs,
       lastHeartbeatMs: now,
       lastHeartbeatElapsedSec: Math.max(nonNegInt(data.lastHeartbeatElapsedSec), nonNegInt(args.elapsedSec)),
       usageTotals: {
@@ -360,11 +371,24 @@ export const maxVoiceSessionEnd = onCall({
   // (callGroupId) живут именно там. После settle они уже стёрты.
   const quotaSnap = await db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid)).get();
   const quotaData = (quotaSnap.data() ?? {}) as Record<string, unknown>;
-  const startedAtMs = num(quotaData.sessionStartedAtMs);
+  // Часы разговора: activatedAtMs (первый heartbeat), без него — минт.
+  const startedAtMs = voiceSessionClockStartMs(quotaData);
+  // «Не активирована» = ни activatedAtMs, ни единого heartbeat после минта
+  // (док, заведённый до этой версии сервера, с heartbeat'ами — активна по-старому).
+  const mintedAtMs = num(quotaData.sessionStartedAtMs);
+  const activated = num(quotaData.activatedAtMs) > 0
+    || num(quotaData.lastHeartbeatMs, mintedAtMs) > mintedAtMs;
   const clientElapsedSec = nonNegInt(data.elapsedSec);
+  const ownActive = startedAtMs > 0 && text(quotaData.activeSessionId, 80) === sessionId;
+  const wallElapsedSec = ownActive ? Math.max(0, Math.ceil((nowMs - startedAtMs) / 1000)) : 0;
   // Факт — серверные часы (клиент не может ни раздуть XP, ни ужать списание).
-  const serverElapsedSec = startedAtMs > 0 && text(quotaData.activeSessionId, 80) === sessionId
-    ? Math.max(0, Math.ceil((nowMs - startedAtMs) / 1000))
+  // Сессия без активации («алло» не было: брошенная заготовка минта с
+  // пре-экрана, провал SDP) — часы от минта врут; берём min(стена, клиент):
+  // release заготовки шлёт 0 и платит 0, старый клиент короткого звонка
+  // (первый heartbeat через 30с ещё не дошёл) списывается по своим секундам,
+  // но не больше стены.
+  const serverElapsedSec = ownActive
+    ? (activated ? wallElapsedSec : Math.min(wallElapsedSec, clientElapsedSec))
     : clientElapsedSec;
   if (Math.abs(serverElapsedSec - clientElapsedSec) > 30) {
     // Не фрод сам по себе (сон процесса, kill app) — но сигнал в аналитику.

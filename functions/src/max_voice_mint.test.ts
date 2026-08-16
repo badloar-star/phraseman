@@ -524,9 +524,10 @@ describe('server-pinned session config (section 4)', () => {
     const primary = JSON.parse(fetchMock.mock.calls[0][1].body);
     const compatibility = JSON.parse(fetchMock.mock.calls[1][1].body);
     expect(primary.session.audio.input.turn_detection.type).toBe('semantic_vad');
-    expect(primary.session.max_output_tokens).toBe(160);
+    expect(primary.session.max_output_tokens).toBe(600); // A2: ~30с речи (аудио-токены ≈20/с)
+    expect(primary.session.audio.input.noise_reduction).toEqual({ type: 'far_field' });
     expect(compatibility).toMatchObject({
-      expires_after: { anchor: 'created_at', seconds: 60 },
+      expires_after: { anchor: 'created_at', seconds: 120 },
       session: {
         type: 'realtime',
         model: 'gpt-realtime-2.1-mini',
@@ -561,20 +562,24 @@ describe('server-pinned session config (section 4)', () => {
     expect(init.headers['OpenAI-Safety-Identifier']).toMatch(/^[0-9a-f]{16}$/);
 
     const body = lastFetchBody();
-    expect(body.expires_after).toEqual({ anchor: 'created_at', seconds: 60 });
+    expect(body.expires_after).toEqual({ anchor: 'created_at', seconds: 120 });
     expect(body.session).toMatchObject({
       type: 'realtime',
       model: 'gpt-realtime-2.1-mini',
       // GA-имя поля (client_secrets, session type 'realtime') — max_output_tokens;
       // max_response_output_tokens было в deprecated-бете.
-      max_output_tokens: 120, // A1
+      // зачем: max_output_tokens считает аудио-токены (~20/с) — 120 обрезало реплику
+      // на 6-й секунде; 500 = ~25с речи, краткость держит промпт, не кап.
+      max_output_tokens: 500, // A1
       truncation: { type: 'retention_ratio', retention_ratio: 0.8 },
     });
     expect(body.session.max_response_output_tokens).toBeUndefined();
     expect(body.session.audio.input.transcription).toEqual({ model: 'gpt-4o-mini-transcribe' });
+    // Фильтр громкой связи ДО VAD: остаток эха не должен рвать ответ ИИ.
+    expect(body.session.audio.input.noise_reduction).toEqual({ type: 'far_field' });
     expect(body.session.audio.input.turn_detection).toEqual({
       type: 'semantic_vad',
-      eagerness: 'high', // A1: минимальная задержка после окончания речи
+      eagerness: 'low', // A1: терпеливая VAD — новичок думает с паузами, ответ не рвётся
       create_response: true,
       interrupt_response: true,
     });

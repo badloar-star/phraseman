@@ -107,9 +107,9 @@ describe('clampMaxVoiceConfig', () => {
     expect(cfg.maxResponseOutputTokens.A1).toBe(2000);
     expect(cfg.maxResponseOutputTokens.A2).toBe(MAX_VOICE_CONFIG_DEFAULTS.maxResponseOutputTokens.A2);
     expect(cfg.maxResponseOutputTokens.B1).toBe(250);
-    expect(cfg.maxResponseOutputTokens.injected).toBe(400);
+    expect(cfg.maxResponseOutputTokens.injected).toBe(800);
     expect(cfg.vadEagerness.A1).toBe('high');
-    expect(cfg.vadEagerness.B2).toBe('high');
+    expect(cfg.vadEagerness.B2).toBe('medium'); // дефолт B2 — medium (мусор → дефолт)
     expect(cfg.hintDelaySec.A1).toBe(3);
     expect(cfg.hintDelaySec.B2).toBe(60);
   });

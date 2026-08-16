@@ -44,6 +44,8 @@ const REGION = 'us-central1';
 const OPENAI_CLIENT_SECRETS_URL = 'https://api.openai.com/v1/realtime/client_secrets';
 const OPENAI_MINT_TIMEOUT_MS = 12_000;
 const OPENAI_MINT_ATTEMPTS = 2;
+/** TTL ephemeral client secret (только для SDP-обмена); клиентский premint читает expires_at. */
+export const CLIENT_SECRET_TTL_SEC = 120;
 
 export const VOICE_MINT_RATE_COLLECTION = 'voice_mint_rate_limits';
 const MINT_WINDOW_MS = 60 * 60 * 1000;
@@ -278,12 +280,21 @@ async function resolveVoiceGates(
 ): Promise<VoiceGateContext> {
   const db = admin.firestore();
 
+  // зачем: владелец 2026-08-16 — соединение должно быть мгновенным. Три чтения
+  // не зависят друг от друга, поэтому идут ПАРАЛЛЕЛЬНО (−2 сетевых круга на
+  // минте); ПОРЯДОК проверки гейтов при этом прежний (тест №11): рубильник ИИ →
+  // гейт звонков → подписка/квота.
+  const [globallyDisabled, config, stableUid] = await Promise.all([
+    aiGloballyDisabled(db),
+    resolveMaxVoiceConfig(db),
+    resolveStableUidForAuth(db, authUid),
+  ]);
+
   // Kill switch №1: глобальный рубильник всего ИИ.
-  if (await aiGloballyDisabled(db)) {
+  if (globallyDisabled) {
     throw new HttpsError('failed-precondition', 'ai_globally_disabled');
   }
-  // Kill switch №2: собственный гейт голосовых звонков (дефолт ВЫКЛ до запуска).
-  const config = await resolveMaxVoiceConfig(db);
+  // Kill switch №2: собственный гейт голосовых звонков.
   // зачем: владелец 2026-08-16 — «звонок должен работать всегда без исключений,
   // единственным гейтом будет пейвол». До релиза линия открыта всем: снят и
   // прежний DEV-аллоулист (админ-claim + devTestUids), и «выключено по умолчанию».
@@ -296,11 +307,12 @@ async function resolveVoiceGates(
     throw new HttpsError('failed-precondition', 'voice_disabled');
   }
 
-  const stableUid = await resolveStableUidForAuth(db, authUid);
   // Подписку резолвит сервер — телу запроса не верим (паттерн premium_dialog).
-  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
-
-  const quotaSnap = await db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid)).get();
+  // Подписка и док квоты — независимые чтения, тоже параллельно.
+  const [isPremium, quotaSnap] = await Promise.all([
+    resolvePremiumAccess(db, stableUid, Date.now(), authUid),
+    db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid)).get(),
+  ]);
   const quotaData = (quotaSnap.data() ?? {}) as Record<string, unknown>;
 
   // зачем: владелец 2026-08-16 — до релиза подписка звонок НЕ гейтит («единственный
@@ -443,6 +455,12 @@ function clientSecretBody(args: {
       input: {
         // Транскрипция входа включена в основном профиле — обучающий цикл.
         transcription: { model: args.config.transcriptionModel },
+        // зачем: владелец 2026-08-16 — ИИ обрывала себя и говорила заново много
+        // раз подряд. Клиент играет через громкую связь (setForceSpeakerphoneOn),
+        // и остаток эха/шум комнаты доходил до VAD как «речь ученика» →
+        // interrupt_response рвал ответ. far_field — фильтр для громкой связи,
+        // он чистит буфер ДО VAD и модели (меньше ложных срабатываний).
+        noise_reduction: { type: 'far_field' },
         turn_detection: {
           type: 'semantic_vad',
           eagerness: args.config.vadEagerness[args.cefr],
@@ -462,8 +480,11 @@ function clientSecretBody(args: {
   };
 
   return JSON.stringify({
-    // Токен короткоживущий: клиент обязан начать SDP сразу после минта.
-    expires_after: { anchor: 'created_at', seconds: 60 },
+    // Токен короткоживущий: он годен только для SDP-обмена. 120с (а не 60):
+    // зачем — владелец 2026-08-16 хочет мгновенное соединение, поэтому клиент
+    // минтит заранее на пре-экране (max_call_premint) и тратит токен на тапе
+    // «Позвонить»; окно должно переживать паузу человека перед тапом.
+    expires_after: { anchor: 'created_at', seconds: CLIENT_SECRET_TTL_SEC },
     session,
   });
 }
@@ -594,6 +615,10 @@ export const maxVoiceMint = onCall({
 
   const nowMs = Date.now();
   const data = (request.data ?? {}) as Record<string, unknown>;
+  // Чтение дневного бюджета не зависит от гейтов и никогда не бросает —
+  // стартуем параллельно с ними (латентность минта), а ПРОВЕРЯЕМ после,
+  // чтобы порядок отказов остался прежним.
+  const budgetSpentPromise = readVoiceBudgetSpentUsd(admin.firestore(), nowMs);
   // Порядок гейтов (тест №11): App Check (опция onCall) → kill switch →
   // подписка/пробник → бюджет → rate limit → резерв → минт.
   const ctx = await resolveVoiceGates(request.auth.uid, data, nowMs, request.auth.token?.admin === true);
@@ -611,7 +636,7 @@ export const maxVoiceMint = onCall({
   const reconnectOf = text(data.reconnectOf, 80);
 
   // Бюджетная лестница ДО расходования rate-слота и резервов — только для свежих минтов.
-  const spentUsd = await readVoiceBudgetSpentUsd(db, nowMs);
+  const spentUsd = await budgetSpentPromise;
   const tier = voiceBudgetTier(spentUsd, config);
   if (tier === 'exhausted' && !reconnectOf) {
     // ≥100%: новые realtime-сессии не стартуем — клиент уходит в half-duplex-фолбэк.

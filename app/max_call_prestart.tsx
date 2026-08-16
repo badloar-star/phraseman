@@ -3,8 +3,6 @@ import { Alert, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getApp } from '@react-native-firebase/app';
-import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
@@ -12,25 +10,38 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { safeRouterBack } from './navigation_back';
 import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
 import { loadMaxVoiceNative } from './max_webrtc_module';
 import { maxVoiceFailureMessage, maxVoiceFailureReason } from './max_voice_error';
+import {
+  initialMintRequest,
+  performMaxVoiceMint,
+  releaseUnusedMint,
+  type MaxCallParams,
+} from './max_call_mint_request';
+import {
+  abandonPremint,
+  beginPremint,
+  markPremintHandoff,
+  premintKey,
+} from './max_call_premint';
 
 /**
  * Пре-экран «Позвонить» (спека, раздел 1: max_call_prestart).
  *
  * Зачем отдельный экран: «топливо» (остаток минут дня) живёт ЗДЕСЬ крупно,
  * а не в звонке — во время разговора таймер давит на ученика, до разговора
- * помогает решиться. Здесь заранее греется облачный mint; микрофон открывает
- * только настоящий звонок, чтобы prewarm-трек не гонялся с WebRTC на iPhone.
+ * помогает решиться. Микрофон открывает только настоящий звонок, чтобы
+ * prewarm-трек не гонялся с WebRTC на iPhone.
  *
- * Дешёвый maxVoicePreflight — при входе (квота/гейты без минта); сам минт
- * делает экран звонка: резерв не должен висеть, пока юзер раздумывает.
+ * зачем premint: владелец 2026-08-16 — «при нажатии на кнопку надо, чтобы
+ * сразу работало». Настоящий maxVoiceMint стартует ЗДЕСЬ при входе (он же
+ * отдаёт остаток дня и кап для карточки — отдельный preflight больше не
+ * нужен); тап «Позвонить» открывает экран звонка, который забирает готовую
+ * заготовку и сразу шлёт SDP. Ушёл без звонка — резерв отпускается сразу
+ * (release), а секунды разговора сервер считает от «алло», не от минта.
  */
-
-const FUNCTIONS_REGION = 'us-central1';
 
 /** Дефолтные капы форматов (спека §3 sessionCapSec) до ответа preflight. */
 const DEFAULT_CAP_SEC: Record<'scenario' | 'companion' | 'trial', number> = {
@@ -38,8 +49,12 @@ const DEFAULT_CAP_SEC: Record<'scenario' | 'companion' | 'trial', number> = {
   companion: 480,
   trial: 180,
 };
-/** Дневной пул по умолчанию (спека §3 dailyVoiceSecMax) — до ответа сервера. */
-const DEFAULT_DAY_SEC = 900;
+/**
+ * Дневной пул по умолчанию — до ответа сервера. Совпадает с серверным дефолтом
+ * dailyVoiceSecMax (лимиты сняты владельцем 2026-08-16: 4ч/день), чтобы цифра
+ * на карточке не «прыгала» 15 → 240, когда доезжает минт.
+ */
+const DEFAULT_DAY_SEC = 14_400;
 
 function finiteOrNull(value: unknown): number | null {
   return typeof value === 'number' && Number.isFinite(value) ? value : null;
@@ -52,11 +67,24 @@ interface PreflightView {
 }
 
 /**
- * Защитный разбор ответа maxVoicePreflight: сервер пишется параллельной
- * сессией, поэтому читаем оба стиля ключей и не падаем на недостающих полях —
- * до ответа/при ошибке работаем от дефолтов спеки.
+ * limits минта отдают остаток дня УЖЕ за вычетом резерва этого звонка; на
+ * карточке «минут на сегодня» показываем остаток ДО звонка (как раньше делал
+ * preflight) — иначе цифра занижена на длину ещё не состоявшегося разговора.
  */
-function parsePreflight(data: unknown, format: 'scenario' | 'companion' | 'trial'): PreflightView {
+export function limitsBeforeReserve(limits: Record<string, unknown> | undefined): Record<string, unknown> {
+  if (!limits) return {};
+  const day = finiteOrNull(limits.dayRemainingSec);
+  const reserved = finiteOrNull(limits.reservedSec);
+  if (day === null || reserved === null) return limits;
+  return { ...limits, dayRemainingSec: day + reserved };
+}
+
+/**
+ * Защитный разбор limits ответа минта (раньше — preflight): читаем оба стиля
+ * ключей и не падаем на недостающих полях — до ответа/при ошибке работаем от
+ * дефолтов спеки.
+ */
+export function parsePreflight(data: unknown, format: 'scenario' | 'companion' | 'trial'): PreflightView {
   const d = (data !== null && typeof data === 'object' ? data : {}) as Record<string, unknown>;
   const limits =
     d.limits !== null && typeof d.limits === 'object' ? (d.limits as Record<string, unknown>) : d;
@@ -84,41 +112,46 @@ export default function MaxCallPrestart() {
     [format, scenarioId],
   );
 
+  const cefr = typeof params.cefr === 'string' && params.cefr !== '' ? params.cefr : undefined;
+  const callParams: MaxCallParams = useMemo(
+    () => ({ format, scenarioId, cefr, devMode }),
+    [format, scenarioId, cefr, devMode],
+  );
+  const key = premintKey(callParams);
+
   const [preflight, setPreflight] = useState<PreflightView | null>(null);
   const [preflightReason, setPreflightReason] = useState<string | null>(null);
   const mountedRef = useRef(true);
 
   useEffect(() => {
     mountedRef.current = true;
-    // Дешёвый preflight без минта: остаток дня + кап формата для карточки.
-    void (async () => {
-      try {
-        await initFirebaseAppCheckIfAvailable();
-        const functions = getFunctions(getApp(), FUNCTIONS_REGION);
-        const fn = httpsCallable(functions, 'maxVoicePreflight');
-        // Греем тот же инстанс минта заранее. На тап кнопки сеть больше не
-        // блокирует навигацию, а production minInstances страхует быстрый тап.
-        void httpsCallable(functions, 'maxVoiceMint')({ warmupPing: true }).catch(() => {});
-        const res = await fn({
-          format,
-          scenarioId: format === 'companion' ? undefined : scenarioId,
-          ...(devMode ? { devMode: true } : {}),
-        });
-        if (mountedRef.current) {
-          setPreflight(parsePreflight(res.data, format));
-          setPreflightReason(null);
-        }
-      } catch (error) {
-        if (mountedRef.current) {
-          setPreflight(null);
-          setPreflightReason(maxVoiceFailureReason(error, 'preflight_failed'));
-        }
-      }
-    })();
+    // Заготовка минта стартует сразу при входе (см. шапку файла): её же limits
+    // питают карточку остатка минут — второй сетевой круг (preflight) не нужен.
+    const entry = beginPremint(
+      key,
+      () => performMaxVoiceMint(callParams, initialMintRequest(callParams)),
+      Date.now(),
+      releaseUnusedMint,
+    );
+    entry.promise.then(
+      (mint) => {
+        if (!mountedRef.current) return;
+        setPreflight(parsePreflight({ limits: limitsBeforeReserve(mint.limits) }, format));
+        setPreflightReason(null);
+      },
+      (error) => {
+        if (!mountedRef.current) return;
+        setPreflight(null);
+        setPreflightReason(maxVoiceFailureReason(error, 'preflight_failed'));
+      },
+    );
     return () => {
       mountedRef.current = false;
+      // Ушёл с пре-экрана без звонка (назад/смена параметров) — резерв назад.
+      // После тапа «Позвонить» заготовка уже помечена handoff — это no-op.
+      abandonPremint(key, releaseUnusedMint);
     };
-  }, [devMode, format, scenarioId]);
+  }, [key, callParams, format]);
 
   const capSec = preflight?.capSec ?? DEFAULT_CAP_SEC[format];
   const capMin = Math.max(1, Math.round(capSec / 60));
@@ -173,14 +206,16 @@ export default function MaxCallPrestart() {
       );
       return;
     }
-    // Первый тап сразу открывает живой разговорный экран. Все серверные гейты
-    // всё равно повторно и атомарно проверяет maxVoiceMint.
+    // Заготовку заберёт экран звонка — cleanup этого экрана её не отпустит.
+    markPremintHandoff(key);
+    // Первый тап сразу открывает живой разговорный экран: никакого ожидания
+    // сети — минт либо уже готов, либо дозреет параллельно с offer.
     router.replace({
       pathname: '/max_call_session',
       params: {
         format,
         ...(format === 'companion' ? {} : { scenarioId }),
-        ...(typeof params.cefr === 'string' && params.cefr !== '' ? { cefr: params.cefr } : {}),
+        ...(cefr !== undefined ? { cefr } : {}),
         ...(devMode ? { devMode: '1' } : {}),
       },
     } as any);

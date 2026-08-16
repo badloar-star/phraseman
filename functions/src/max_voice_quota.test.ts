@@ -2,6 +2,7 @@ import {
   MIN_VOICE_RESERVE_SEC,
   VOICE_CONFIRMED_GAP_WINDOW_SEC,
   VOICE_RESERVE_EXPIRY_GRACE_SEC,
+  VOICE_DEAD_SESSION_SILENCE_MS,
   recordVoiceHeartbeat,
   releaseVoiceReservation,
   reserveVoiceSeconds,
@@ -143,6 +144,60 @@ describe('reserveVoiceSeconds', () => {
     await expect(reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW }))
       .rejects.toMatchObject({ code: 'failed-precondition', message: 'voice_session_active' });
     expect(JSON.stringify(state.data)).toBe(before);
+  });
+
+  // зачем: pre-mint на пре-экране (мгновенное соединение) — брошенный или убитый
+  // звонок не должен блокировать следующий на 7 минут: тишина в heartbeat
+  // дольше окна = мёртвая сессия, свежий минт её вытесняет.
+  it('supersedes an active session that has been silent longer than the dead-session window', async () => {
+    const { db, state } = makeDb(liveDoc({
+      activeSessionId: 'abandoned-premint',
+      sessionStartedAtMs: NOW - 90_000,
+      activatedAtMs: 0,
+      lastHeartbeatMs: NOW - 90_000, // ни одного heartbeat: pre-mint без звонка
+      expiresAtMs: NOW + 300_000, // резерв формально ещё жив
+    }));
+
+    const result = await reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW });
+
+    expect(result.reservedSec).toBe(320);
+    expect(result.staleRefundedSec).toBe(320); // прожито 0с — весь резерв назад
+    expect(state.data).toMatchObject({ activeSessionId: 's2', dailyUsedSec: 320 });
+    expect(VOICE_DEAD_SESSION_SILENCE_MS).toBe(75_000);
+  });
+
+  it('still rejects while the other session heartbeats within the window (no parallel calls)', async () => {
+    const { db } = makeDb(liveDoc({ lastHeartbeatMs: NOW - 70_000, expiresAtMs: NOW + 300_000 }));
+    await expect(reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW }))
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'voice_session_active' });
+  });
+
+  it('a fresh reserve wipes the previous usage accumulator and activation clock', async () => {
+    const { db, state } = makeDb(liveDoc({
+      activeSessionId: null, reservedSec: 0,
+      usageTotals: { audioInputTokens: 700, audioOutputTokens: 700, cachedTokens: 1, textTokens: 2 },
+      lastHeartbeatElapsedSec: 89,
+      activatedAtMs: NOW - 500_000,
+    }));
+    await reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW });
+    expect(state.data).toMatchObject({
+      activatedAtMs: 0,
+      lastHeartbeatElapsedSec: 0,
+      usageTotals: { audioInputTokens: 0, audioOutputTokens: 0, cachedTokens: 0, textTokens: 0 },
+    });
+  });
+
+  it('counts a silently-dead session by its ACTIVATION clock, not the mint clock', async () => {
+    const { db, state } = makeDb(liveDoc({
+      activeSessionId: 'dead',
+      expiresAtMs: NOW - 1000,
+      sessionStartedAtMs: NOW - 700_000, // минт
+      activatedAtMs: NOW - 600_000, // «алло» через 100с раздумий на пре-экране
+      lastHeartbeatMs: NOW - 500_000, // прожито 100с от активации (а не 200 от минта)
+    }));
+    const result = await reserveVoiceSeconds(db, { ...LIMITS, sessionId: 's2', nowMs: NOW });
+    expect(result.staleRefundedSec).toBe(220); // 320 − 100
+    expect(state.data!.dailyUsedSec).toBe(320 - 220 + 320);
   });
 
   it('closes an expired silent session by last heartbeat and refunds its tail', async () => {
@@ -362,6 +417,21 @@ describe('transferReserve', () => {
 
     // consumed = 50 − 12 = 38 → остаток 282.
     expect(result.reservedSec).toBe(282);
+  });
+
+  it('measures wall elapsed from the ACTIVATION clock and stamps the new session as activated', async () => {
+    const { db, state } = makeDb(liveDoc({
+      sessionStartedAtMs: NOW - 200_000, // минт 200с назад…
+      activatedAtMs: NOW - 100_000, // …но звонок ожил 100с назад (pre-mint + раздумья)
+      lastHeartbeatMs: NOW - 5_000,
+    }));
+    const result = await transferReserve(db, {
+      authUid: AUTH, stableUid: STABLE, prevSessionId: 's1', newSessionId: 's2',
+      heartbeatElapsedSec: 95, nowMs: NOW,
+    });
+    // elapsed = max(95, 100) = 100, подтверждённый gap 5с бесплатен → 320 − 95 = 225.
+    expect(result.reservedSec).toBe(225);
+    expect(state.data).toMatchObject({ activeSessionId: 's2', activatedAtMs: NOW, sessionStartedAtMs: NOW });
   });
 
   it('rejects a transfer from a session that is not the active one', async () => {

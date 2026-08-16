@@ -21,6 +21,7 @@ import {
   MAX_CALL_HEARTBEAT_MS,
   MAX_CALL_BARGE_IN_MUTE_MS,
   MAX_CALL_CONNECT_TIMEOUT_MS,
+  INJECTED_MAX_TOKENS,
   type MaxCallPhase,
   type MaxCallTranscriptEvent,
   type MaxVoiceMintResponse,
@@ -386,13 +387,15 @@ describe('E2E: полный успешный звонок от старта до
       textTokens: 20, // 12 input + 8 output
     });
 
-    // Heartbeat ушёл ровно по расписанию и с накопленным usage.
+    // Heartbeat: первый — сразу на «алло» (elapsed 0, серверные часы разговора
+    // стартуют от него), затем ровно по расписанию и с накопленным usage.
     h.advance(MAX_CALL_HEARTBEAT_MS);
     await Promise.resolve();
-    expect(h.heartbeats).toHaveLength(1);
-    expect(h.heartbeats[0].sessionId).toBe('sess_1');
-    expect(h.heartbeats[0].elapsedSec).toBe(30);
-    expect(h.heartbeats[0].usage.audioInputTokens).toBe(400);
+    expect(h.heartbeats).toHaveLength(2);
+    expect(h.heartbeats[0]).toMatchObject({ sessionId: 'sess_1', elapsedSec: 0 });
+    expect(h.heartbeats[1].sessionId).toBe('sess_1');
+    expect(h.heartbeats[1].elapsedSec).toBe(30);
+    expect(h.heartbeats[1].usage.audioInputTokens).toBe(400);
 
     // Завершение по кнопке.
     await h.client.end('completed');
@@ -788,7 +791,9 @@ describe('E2E: wrap-up и подсказки', () => {
     expect(JSON.stringify(item)).toContain('[WRAP_UP] Time to wrap up.');
 
     const resp = dc.sentOfType('response.create')[0];
-    expect((resp.response as Record<string, unknown>).max_output_tokens).toBe(400);
+    // 600 аудио-токенов ≈ 30с: прощание в два хода не рвётся (было 400 = 20с).
+    expect((resp.response as Record<string, unknown>).max_output_tokens).toBe(INJECTED_MAX_TOKENS);
+    expect(INJECTED_MAX_TOKENS).toBe(600);
     expect(uiTypes(h)).toContain('wrap_up');
 
     await h.client.end();

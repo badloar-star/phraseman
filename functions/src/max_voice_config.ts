@@ -113,10 +113,19 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   trialRefreshDays: 30,
   trialSrsThreshold: 15,
   trialMode: 'auto',
-  maxResponseOutputTokens: { A1: 120, A2: 160, B1: 220, B2: 300, injected: 400 },
-  // High semantic VAD minimises the dead pause after the learner finishes;
-  // interrupt_response in the mint payload keeps spoken barge-in full duplex.
-  vadEagerness: { A1: 'high', A2: 'high', B1: 'high', B2: 'high' },
+  // зачем: владелец 2026-08-16 — «она очень часто не договаривает до конца,
+  // будто обрывается». max_output_tokens в Realtime считает АУДИО-токены
+  // (~20 токенов на секунду речи): прежние 120/160 обрезали реплику на 6–8-й
+  // секунде посреди слова. Кап — только предохранитель от монолога, краткость
+  // держит промпт; поэтому 25–50 с речи, а не 6–8. injected (приветствие,
+  // подсказка, прощание) — 40 с: прощание в два хода не должно рваться.
+  maxResponseOutputTokens: { A1: 500, A2: 600, B1: 800, B2: 1000, injected: 800 },
+  // зачем: владелец 2026-08-16 — ИИ «начинает говорить, обрывает сама и снова
+  // говорит». При eagerness=high semantic VAD считал паузу ученика концом
+  // реплики, отвечал, ученик продолжал — ответ рвался, и так по кругу.
+  // Новичкам (A1/A2) нужна терпеливая VAD (low), B1/B2 — medium; interrupt_response
+  // в минте по-прежнему держит живой barge-in голосом.
+  vadEagerness: { A1: 'low', A2: 'low', B1: 'medium', B2: 'medium' },
   truncationRetentionRatio: 0.8,
   pruneMode: 'retention',
   reinjectEveryTurns: 9,

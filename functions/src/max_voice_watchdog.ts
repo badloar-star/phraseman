@@ -19,6 +19,7 @@ import {
   VOICE_QUOTA_COLLECTION,
   releaseVoiceReservation,
   settleVoiceSession,
+  voiceSessionClockStartMs,
 } from './max_voice_quota';
 import {
   VOICE_EST_COST_USD_PER_MIN,
@@ -92,7 +93,9 @@ export async function runMaxVoiceWatchdogOnce(db: Firestore, nowMs: number = Dat
       const stableUid = str(data.stableUid);
       if (reservedSec <= 0 || !sessionId || !authUid || !stableUid) continue;
 
-      const startedAtMs = num(data.sessionStartedAtMs);
+      // Часы разговора — от активации (первый heartbeat); pre-mint без звонка
+      // так и остаётся «ни одной прожитой секунды» → briefing_abandoned ниже.
+      const startedAtMs = voiceSessionClockStartMs(data);
       const lastHeartbeatMs = num(data.lastHeartbeatMs, startedAtMs);
       if (nowMs - lastHeartbeatMs <= VOICE_WATCHDOG_HEARTBEAT_GRACE_MS) {
         stats.skippedAlive += 1;

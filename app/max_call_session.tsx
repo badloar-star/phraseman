@@ -10,8 +10,6 @@ import {
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getApp } from '@react-native-firebase/app';
-import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
@@ -19,25 +17,30 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import {
-  getScenarioById,
-  dialogScenarioTitle,
-  scenarioObjectives,
-  scenarioTemperament,
-  type DialogScenario,
-} from './ai_dialog_scenarios';
-import { buildCompanionMemory } from './ai_companion_memory';
-import type { DialogMemory } from './ai_dialog_client';
-import { getTrainerCounts } from './trainer_store';
+import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
 import { loadMaxVoiceNative } from './max_webrtc_module';
 import {
   createMaxCallClient,
-  parseMintResponse,
   sessionEndEnrichment,
   type MaxCallClient,
   type MaxVoiceMintRequest,
+  type MaxVoiceMintResponse,
 } from './max_call_client';
+import {
+  extractPersonaName,
+  maxVoiceCallable,
+  performMaxVoiceMint,
+  releaseUnusedMint,
+  type MaxCallParams,
+} from './max_call_mint_request';
+import {
+  abandonPremint,
+  claimPremint,
+  enqueueRelease,
+  isPremintUsable,
+  mintAfterRelease,
+  premintKey,
+} from './max_call_premint';
 import { createHintTimer, type HintTimer } from './max_call_hint_timer';
 import { createDefaultMaxCallSfx, type MaxCallSfx } from './max_call_sfx';
 import { UI_SFX_AUDIO_MODE } from './audio_playback_mode';
@@ -58,11 +61,7 @@ import {
 } from './max_call_quota_view';
 import { MaxCallHalo, type MaxCallHaloRef } from './max_call_halo';
 import { setLastMaxCallResult } from './max_voice_review';
-import {
-  MaxVoiceStageError,
-  maxVoiceFailureMessage,
-  maxVoiceFailureReason,
-} from './max_voice_error';
+import { maxVoiceFailureMessage } from './max_voice_error';
 
 /**
  * Экран MAX-звонка (спека, раздел 6). Экран ТОНКИЙ: вся хореография транспорта
@@ -74,7 +73,6 @@ import {
  * СВОИМ интервалом, чтобы её секундный тик не ре-рендерил сцену.
  */
 
-const FUNCTIONS_REGION = 'us-central1';
 /** SDP-обмен идёт напрямую в OpenAI с ephemeral-токеном минта (спека §4). */
 const REALTIME_CALLS_URL = 'https://api.openai.com/v1/realtime/calls';
 /** Прямой SDP POST не может оставлять экран в вечном connecting. */
@@ -82,27 +80,16 @@ const SDP_HTTP_TIMEOUT_MS = 20_000;
 /** Confirm на «завершить» — только в первые 30с (случайный тап при старте). */
 /** Blur/шторка: grace 12с с мьютом, потом честное завершение с сеттлментом. */
 const BLUR_GRACE_MS = 12_000;
+/** Баннер обрыва — только если реконнект длится дольше этого (секундные блики молчат). */
+const RECONNECT_BANNER_DELAY_MS = 1_500;
 /** Серверные константы дедлайнов (спека §3): [WRAP_UP] за 75с, teardown +20с. */
 const WRAP_UP_LEAD_SEC = 75;
 const GRACE_TAIL_SEC = 20;
 /** Тёплый тон голоса ИИ — един для ореола и баров эквалайзера. */
 const AI_WARM_COLOR = '#F2A45C';
 
-// ---------------------------------------------------------------------------
-// Callable-обвязка. Живёт в файле экрана, а не в client: транспортная машина
-// получает эти функции инжекцией (deps) и остаётся тестируемой без firebase.
-
-function maxVoiceCallable<TRes>(name: string): (req: Record<string, unknown>) => Promise<TRes> {
-  return async (req) => {
-    await initFirebaseAppCheckIfAvailable();
-    const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name);
-    const res = await fn(req);
-    return res.data as TRes;
-  };
-}
-
-// Разбор ответа минта живёт в max_call_client (чистый модуль, jest-контракт):
-// принимает оба написания ключей (session_id|sessionId и т.д.), см. C-контракт.
+// Callable-обвязка и сборка промпт-полей минта — в max_call_mint_request
+// (общие с пре-экраном: заготовка минта собирается ТЕМ ЖЕ кодом).
 
 /** Остаток дневных секунд из limits минта (сервер — единственный источник). */
 function dayRemainingFromLimits(limits: Record<string, unknown> | undefined): number | null {
@@ -136,93 +123,6 @@ async function exchangeSdp(offerSdp: string, clientSecret: string): Promise<stri
   } finally {
     clearTimeout(timeoutId);
   }
-}
-
-/**
- * Имя персонажа из persona-строки (копия приёма ai_dialog_session: там функция
- * не экспортируется, а тянуть 2800-строчный экран ради регэкспа — дороже).
- */
-function extractPersonaName(persona?: string): string {
-  if (!persona) return '';
-  const match = persona.match(/your name is\s+((?:(?:Mr|Mrs|Ms|Dr|Prof)\.\s+)?[^.,]+)/i);
-  return match ? match[1].trim() : '';
-}
-
-// ---------------------------------------------------------------------------
-// Сборка промпт-полей запроса минта (спека §7): сервер строит instructions из
-// personaName/personaRole/scenarioBlock/memoryBlock, которые обязан прислать
-// клиент — контент сценариев живёт в бандле (ai_dialog_scenarios), сервер по
-// scenarioId ничего не резолвит. Формат блока — как ai_dialog_session собирает
-// для premiumDialogSend (role/setting/persona/goalEn/objectives/temperament),
-// только связным текстом: без [[...]]-маркеров и JSON-конверта mood.
-
-/** Текстовый SCENARIO_BLOCK по формату раздела 7 спеки. */
-function buildScenarioBlock(scenario: DialogScenario): string {
-  const lines: string[] = ['SCENARIO'];
-  lines.push(`You are ${scenario.role}.`);
-  lines.push(`Setting: ${scenario.setting}.`);
-  if (scenario.persona) lines.push(`Persona: ${scenario.persona}`);
-  const temperament = scenarioTemperament(scenario);
-  lines.push(`Temperament: ${temperament.patience} patience, ${temperament.warmth} warmth.`);
-  lines.push(`Goal of the conversation: ${scenario.goalEn}.`);
-  const objectives = scenarioObjectives(scenario);
-  if (objectives.length > 0) {
-    lines.push(
-      `The learner should accomplish: ${objectives.map((o) => o.en || o.id).join('; ')}.`,
-    );
-  }
-  lines.push('Drive toward the goal in 5-8 exchanges.');
-  return lines.join('\n');
-}
-
-/** COMPANION-память → текстовый блок «WHAT YOU REMEMBER ABOUT THIS LEARNER». */
-function formatMemoryBlock(memory: DialogMemory): string {
-  const lines: string[] = ['WHAT YOU REMEMBER ABOUT THIS LEARNER'];
-  if (memory.profile) lines.push(memory.profile);
-  if (memory.weakWords && memory.weakWords.length > 0) {
-    // Слабые слова вплетаются в вопросы (замкнутый SRS-цикл, спека §8).
-    lines.push(`Words to weave naturally into your questions: ${memory.weakWords.join(', ')}.`);
-  }
-  if (memory.summary) lines.push(memory.summary);
-  return lines.join('\n');
-}
-
-/**
- * Промпт-поля минта по формату звонка. Никогда не бросает: минт без памяти /
- * без srsCount хуже минта без звонка — сервер деградирует к дефолтам сам.
- */
-async function buildMintExtras(
-  format: MaxVoiceMintRequest['format'],
-  scenario: DialogScenario | undefined,
-  cefr: string | undefined,
-): Promise<Partial<MaxVoiceMintRequest>> {
-  const extras: Partial<MaxVoiceMintRequest> = {};
-  if (scenario) {
-    extras.scenarioBlock = buildScenarioBlock(scenario);
-    const name = extractPersonaName(scenario.persona);
-    if (name !== '') extras.personaName = name;
-    extras.personaRole = scenario.role;
-  }
-  if (format === 'companion') {
-    extras.personaName = 'Alex';
-    extras.personaRole = 'a friendly conversation partner who knows the learner';
-    try {
-      extras.memoryBlock = formatMemoryBlock(await buildCompanionMemory(cefr ?? 'A2'));
-    } catch {
-      // Память недоступна (чистый профиль/сбой стора) — компаньон без памяти.
-    }
-  }
-  if (format === 'trial') {
-    // Ветвление пробника companion/scenario делает сервер по SRS≥порога:
-    // шлём дешёвый локальный счётчик SRS-элементов (getTrainerCounts — кэш).
-    try {
-      const counts = await getTrainerCounts();
-      extras.srsCount = Object.values(counts).reduce((sum, n) => sum + Math.max(0, n), 0);
-    } catch {
-      // Счётчик не доехал — сервер применит scenario-ветку по умолчанию.
-    }
-  }
-  return extras;
 }
 
 // ---------------------------------------------------------------------------
@@ -434,6 +334,12 @@ export default function MaxCallSession() {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [muted, setMuted] = useState(false);
   const [hardAtMs, setHardAtMs] = useState<number | null>(null);
+  // зачем: владелец 2026-08-16 — «посреди разговора появилось "обрыв", потом
+  // продолжилось». ICE на мобильной сети роняет 'disconnected' и на секундные
+  // провалы, которые тут же проходят; баннер «Восстанавливаем связь…» на такой
+  // блик — лишняя тревога (FaceTime молчит про короткие провалы). Показываем
+  // его, только если реконнект длится дольше RECONNECT_BANNER_DELAY_MS.
+  const [reconnectShown, setReconnectShown] = useState(false);
 
   const clientRef = useRef<MaxCallClient | null>(null);
   const bufferRef = useRef(createTranscriptBuffer(() => Date.now()));
@@ -472,13 +378,35 @@ export default function MaxCallSession() {
       // OTA поверх бинарника без webrtc: вход должен был быть скрыт гейтом, но
       // прямой deeplink обязан деградировать честно, без краша.
       if (__DEV__) console.warn('[MAX Voice] native_unavailable: rebuild the iOS development client');
+      // Заготовку пре-экрана никто не заберёт — вернуть резерв серверу.
+      abandonPremint(premintKey({ format, scenarioId, cefr, devMode }), releaseUnusedMint);
       setUiState((prev) => reduceMaxCallUi(prev, { type: 'fail', reason: 'native_unavailable' }));
       return;
     }
 
-    const mintCallable = maxVoiceCallable<unknown>('maxVoiceMint');
     const heartbeatCallable = maxVoiceCallable<unknown>('maxVoiceHeartbeat');
     const endCallable = maxVoiceCallable<unknown>('maxVoiceSessionEnd');
+    const callParams: MaxCallParams = { format, scenarioId, cefr, devMode };
+    const key = premintKey(callParams);
+
+    // зачем: владелец 2026-08-16 — соединение должно быть мгновенным. Пре-экран
+    // уже запустил минт (max_call_premint); здесь мы его ЗАБИРАЕМ, а свежий
+    // минт делаем только если заготовки нет (deeplink, ретрай), она протухла
+    // (токен на исходе) или упала. Протухшую сначала отпускаем на сервере,
+    // иначе свежий резерв упрётся в voice_session_active.
+    const mintFirst = async (req: MaxVoiceMintRequest): Promise<MaxVoiceMintResponse> => {
+      const entry = claimPremint(key);
+      if (entry) {
+        try {
+          const ready = await entry.promise;
+          if (isPremintUsable(ready, entry.createdAtMs, Date.now())) return ready;
+          enqueueRelease(() => releaseUnusedMint(ready));
+        } catch {
+          // Заготовка упала — одна честная попытка свежего минта ниже.
+        }
+      }
+      return mintAfterRelease(() => performMaxVoiceMint(callParams, req));
+    };
 
     // Секунды речи с учётом незакрытого сегмента: end может прилететь прямо
     // во время реплики юзера, и её хвост не должен теряться из XP-заявки.
@@ -491,17 +419,7 @@ export default function MaxCallSession() {
       // Промпт-поля (personaName/personaRole/scenarioBlock/memoryBlock/srsCount)
       // добавляются к КАЖДОМУ минту, включая reconnect-ре-минты: сервер строит
       // instructions заново и на переносе резерва.
-      mint: async (req) => {
-        try {
-          const extras = await buildMintExtras(format, scenario, cefr);
-          return parseMintResponse(
-            await mintCallable({ ...extras, ...req } as unknown as Record<string, unknown>),
-          );
-        } catch (error) {
-          if (__DEV__) console.warn('[MAX Voice] mint failed', error);
-          throw new MaxVoiceStageError(maxVoiceFailureReason(error, 'mint_failed'), error);
-        }
-      },
+      mint: (req) => (req.reconnectOf ? performMaxVoiceMint(callParams, req) : mintFirst(req)),
       heartbeat: (req) => heartbeatCallable(req as unknown as Record<string, unknown>),
       // Обогащение сеттлмента (спека §2 maxVoiceSessionEnd): секунды речи,
       // реплики/слова из истории транскрипта, cefr/scenarioId/канал — всё это
@@ -717,9 +635,22 @@ export default function MaxCallSession() {
   };
 
   const phase = uiState.phase;
-  const haloColor = haloColorFor(phase, t);
-  const breathing = phase === 'connecting' || phase === 'thinking';
-  const hint = phaseHint(phase, lang);
+  useEffect(() => {
+    if (phase !== 'reconnecting') {
+      setReconnectShown(false);
+      return;
+    }
+    const id = setTimeout(() => setReconnectShown(true), RECONNECT_BANNER_DELAY_MS);
+    return () => clearTimeout(id);
+  }, [phase]);
+  // Секундный блик сети внешне ничем не отличается от «думает»: сцена не
+  // сереет, подпись под ореолом не меняется; баннер — только затянувшийся обрыв.
+  const visiblePhase: MaxCallUiPhase =
+    phase === 'reconnecting' && !reconnectShown ? 'thinking' : phase;
+  const haloColor = haloColorFor(visiblePhase, t);
+  const breathing = visiblePhase === 'connecting' || visiblePhase === 'thinking';
+  // В reconnecting подпись под ореолом не дублирует баннер сверху.
+  const hint = visiblePhase === 'reconnecting' ? '' : phaseHint(visiblePhase, lang);
   const lastTwo = turns.slice(-2);
   const minutesWord = triLang(lang, {
     ru: 'мин',
@@ -881,8 +812,8 @@ export default function MaxCallSession() {
           />
         </View>
 
-        {/* Reconnect-баннер */}
-        {phase === 'reconnecting' && (
+        {/* Reconnect-баннер: только затянувшийся обрыв (см. reconnectShown) */}
+        {phase === 'reconnecting' && reconnectShown && (
           <View
             style={{
               marginHorizontal: 14,

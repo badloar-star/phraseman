@@ -102,6 +102,7 @@ const RU = {
   banner_rank_change_title: 'Смена ранга (в клубах)',
   banner_rank_change_hybrid_title: 'Смена ранга (в клубах) · гибрид',
   banner_referral_invite_art_title: 'Арт приглашения друга',
+  banner_referral_invite_art_hybrid_title: 'Арт приглашения друга · гибрид',
   banner_referral_invite_art_detail: 'реальный компонент — картинка под текущую тему',
 
   // ── celebrations ──
@@ -176,6 +177,21 @@ const RU = {
   explain_sheet_note:
     'ExplainSheet сам стартует сетевой запрос (useExplainRequest → CF explainPhrase) при visible=true — безопасного демо-превью без реального вызова нет',
 
+  // ── consent_info: гибридные шиты общего каркаса (HybridSheetShell) ──
+  onboarding_welcome_sheet_title: 'Шторка: приветствие после онбординга',
+  onboarding_welcome_sheet_hybrid_title: 'Шторка: приветствие после онбординга · гибрид',
+  onboarding_welcome_sheet_demo_name: 'Показ',
+  youtube_channel_picker_sheet_title: 'Шторка: выбор канала YouTube',
+  youtube_channel_picker_sheet_hybrid_title: 'Шторка: выбор канала YouTube · гибрид',
+  youtube_channel_picker_sheet_demo_channel: 'Демо-канал',
+  fc_deck_picker_sheet_title: 'Шторка: выбор набора карточек',
+  fc_deck_picker_sheet_hybrid_title: 'Шторка: выбор набора карточек · гибрид',
+  fc_deck_picker_sheet_demo_saved: 'Сохранённые',
+  fc_deck_picker_sheet_demo_custom: 'Мой набор',
+  section_sheet_header_title: 'Шапка шторки раздела (крестик)',
+  section_sheet_header_hybrid_title: 'Шапка шторки раздела (крестик) · гибрид',
+  section_sheet_header_demo_title: 'Демо-раздел',
+
   // ── fullscreen ──
   fullscreen_section_title: 'Полноэкранные (обновления, инбокс)',
   update_modal_title: 'Обновление приложения',
@@ -187,6 +203,7 @@ const RU = {
   personal_admin_message_modal_title: 'Личное сообщение от команды',
   personal_admin_message_modal_detail: 'реальный компонент, демо-текст',
   vip_survey_modal_title: 'Опрос для Plus (VIP-survey)',
+  vip_survey_modal_hybrid_title: 'Опрос для Plus (VIP-survey) · гибрид',
   vip_survey_review_prompt_modal_title: 'Просьба об отзыве после Plus',
   app_messages_inbox_title: 'Инбокс сообщений (кнопка + панель)',
   app_messages_inbox_detail: 'реальный компонент, режим standalone',
@@ -259,6 +276,7 @@ const RU = {
   premium_modal_title: 'Пейвол-диспетчер (premium_modal)',
   premium_celebration_title: 'Празднование покупки Premium',
   vip_celebration_title: 'Празднование покупки VIP/Pro',
+  vip_celebration_hybrid_title: 'Празднование VIP · гибрид',
   premium_celebration_plus_hybrid_title: 'Празднование Plus · гибрид',
   premium_celebration_pro_hybrid_title: 'Pro · гибрид',
   no_energy_modal_title: 'Нет энергии',
@@ -506,9 +524,13 @@ const RU = {
   achievement_toast_title: 'Тост: достижение разблокировано',
   achievement_toast_note:
     'AchievementToast читает очередь из AchievementContext (showAchievement), которую заполняет только реальная проверка достижений в _layout.tsx — событие achievement_unlocked лишь просит другие экраны перечитать список, тост не поднимает; безопасного ручного триггера без выдачи настоящего достижения нет',
+  achievement_toast_hybrid_title: 'Тост: достижение разблокировано · гибрид',
+  achievement_toast_hybrid_note:
+    'AchievementToast принимает motionVariant (default classic): гибрид добавляет bloom-подложку и микро-пульс иконки (SUITE.pulse) поверх боевой анимации входа, ничего в drag-to-dismiss не меняя — тот же запрет ручного триггера без реального достижения, что и у классики выше',
   medal_toast_title: 'Тост: медаль урока (золото)',
   medal_toast_hybrid_title: 'Тост: медаль урока (золото) · гибрид',
   coach_toast_title: 'Тост: коуч (разбор слабого места)',
+  coach_toast_hybrid_title: 'Тост: коуч (разбор слабого места) · гибрид',
   coach_toast_demo_category_label: 'неправильные глаголы',
   coach_toast_demo_focus_go: 'go — went',
   coach_toast_demo_focus_see: 'see — saw',

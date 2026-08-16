@@ -2,6 +2,7 @@ import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { Animated, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from './TapScale';
+import PressableHybrid from './PressableHybrid';
 import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -9,6 +10,7 @@ import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { type WordCategory } from '../app/phrase_analytics';
 import { useOverlayVisible } from './OverlayArbiter';
+import { LUM } from '../constants/motionHybrid';
 import {
   cancelScheduledAnimatedStateUpdates,
   scheduleTrackedAnimatedStateUpdate,
@@ -42,6 +44,8 @@ interface CoachToastProps {
   microLabelPl?: string;
   diagnosisEvidenceCount?: number;
   onDismiss: () => void;
+  /** dev-only: витрина движения запускает гибрид рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 const AUTO_DISMISS_MS = 8000;
@@ -71,11 +75,13 @@ function CoachToast({
   microLabelPl,
   diagnosisEvidenceCount,
   onDismiss,
+  motionVariant = 'classic',
 }: CoachToastProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
   const overlayVisible = useOverlayVisible('coachToast', true);
+  const hybrid = motionVariant === 'hybrid';
   const slideAnim = useRef(new Animated.Value(120)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
@@ -93,13 +99,19 @@ function CoachToast({
 
   const dismiss = useCallback(() => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
-    Animated.parallel([
-      Animated.timing(slideAnim, { toValue: 120, duration: 220, useNativeDriver: true }),
-      Animated.timing(opacityAnim, { toValue: 0, duration: 200, useNativeDriver: true }),
-    ]).start(() => {
+    // Гибрид: закон №15 — выход всегда короче входа (LUM.exitMs), без смещения
+    // по Y (свет гаснет на месте, а не «падает» вниз). Classic — старое поведение.
+    Animated.parallel(
+      hybrid
+        ? [Animated.timing(opacityAnim, { toValue: 0, duration: LUM.exitMs, useNativeDriver: true })]
+        : [
+            Animated.timing(slideAnim, { toValue: 120, duration: 220, useNativeDriver: true }),
+            Animated.timing(opacityAnim, { toValue: 0, duration: 200, useNativeDriver: true }),
+          ],
+    ).start(() => {
       scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, onDismiss);
     });
-  }, [opacityAnim, onDismiss, slideAnim]);
+  }, [hybrid, opacityAnim, onDismiss, slideAnim]);
 
   useEffect(() => () => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
@@ -107,14 +119,22 @@ function CoachToast({
 
   useEffect(() => {
     if (!overlayVisible) return;
-    Animated.parallel([
-      Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, tension: 80, friction: 10 }),
-      Animated.timing(opacityAnim, { toValue: 1, duration: 250, useNativeDriver: true }),
-    ]).start();
+    // Гибрид «Световод»: форма выходит из света (opacity, LUM.resolveMs) и садится
+    // БЕЗ отскока (LUM.settle) — без начальной y=120 подложки классики.
+    if (hybrid) {
+      slideAnim.setValue(0);
+      opacityAnim.setValue(0);
+      Animated.timing(opacityAnim, { toValue: 1, duration: LUM.resolveMs, useNativeDriver: true }).start();
+    } else {
+      Animated.parallel([
+        Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, tension: 80, friction: 10 }),
+        Animated.timing(opacityAnim, { toValue: 1, duration: 250, useNativeDriver: true }),
+      ]).start();
+    }
 
     const timer = setTimeout(dismiss, AUTO_DISMISS_MS);
     return () => clearTimeout(timer);
-  }, [dismiss, opacityAnim, overlayVisible, slideAnim]);
+  }, [dismiss, hybrid, opacityAnim, overlayVisible, slideAnim]);
 
   const handleStart = () => {
     hapticTap();
@@ -245,25 +265,48 @@ function CoachToast({
         </View>
 
         <View style={styles.actions}>
-          <TouchableOpacity
-            onPress={handleStart}
-            style={[styles.startBtn, { backgroundColor: t.accent }]}
-            activeOpacity={0.85}
-          >
-            <Text style={[styles.startBtnText, { color: t.correctText, fontSize: f.label }]}>
-              {triLang(lang, {
-                ru: 'Объяснить',
-                uk: 'Пояснити',
-                es: 'Explicar',
-                'pt-BR': 'Explicar',
-                vi: 'Giải thích',
-                id: 'Jelaskan',
-                tr: 'Açıkla',
-                pl: 'Wyjaśnij',
-              })}
-            </Text>
-            <Ionicons name="arrow-forward" size={16} color={t.correctText} />
-          </TouchableOpacity>
+          {hybrid ? (
+            <PressableHybrid
+              onPress={handleStart}
+              variant="primary"
+              style={styles.startBtnWrap}
+              contentStyle={[styles.startBtn, { backgroundColor: t.accent }]}
+            >
+              <Text style={[styles.startBtnText, { color: t.correctText, fontSize: f.label }]}>
+                {triLang(lang, {
+                  ru: 'Объяснить',
+                  uk: 'Пояснити',
+                  es: 'Explicar',
+                  'pt-BR': 'Explicar',
+                  vi: 'Giải thích',
+                  id: 'Jelaskan',
+                  tr: 'Açıkla',
+                  pl: 'Wyjaśnij',
+                })}
+              </Text>
+              <Ionicons name="arrow-forward" size={16} color={t.correctText} />
+            </PressableHybrid>
+          ) : (
+            <TouchableOpacity
+              onPress={handleStart}
+              style={[styles.startBtn, { backgroundColor: t.accent }]}
+              activeOpacity={0.85}
+            >
+              <Text style={[styles.startBtnText, { color: t.correctText, fontSize: f.label }]}>
+                {triLang(lang, {
+                  ru: 'Объяснить',
+                  uk: 'Пояснити',
+                  es: 'Explicar',
+                  'pt-BR': 'Explicar',
+                  vi: 'Giải thích',
+                  id: 'Jelaskan',
+                  tr: 'Açıkla',
+                  pl: 'Wyjaśnij',
+                })}
+              </Text>
+              <Ionicons name="arrow-forward" size={16} color={t.correctText} />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </Animated.View>
@@ -339,6 +382,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
+  startBtnWrap: {
+    alignSelf: 'flex-end',
+  },
   startBtn: {
     minHeight: 38,
     borderRadius: 12,
@@ -346,6 +392,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: 6,
   },
   startBtnText: {

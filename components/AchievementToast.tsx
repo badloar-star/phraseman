@@ -2,6 +2,16 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import {
   View, Text, Animated, TouchableOpacity, StyleSheet, Modal, Pressable, Dimensions, PanResponder, Share,
 } from 'react-native';
+import Reanimated, {
+  cancelAnimation,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSequence,
+  withSpring,
+  withTiming,
+  Easing as ReanimatedEasing,
+} from 'react-native-reanimated';
 import { router } from 'expo-router';
 import { LinearGradient } from './SafeLinearGradient';
 import TapScale from './TapScale';
@@ -20,6 +30,7 @@ import { buildAchievementShareMessage } from '../app/achievement_share';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
+import { LUM, SUITE } from '../constants/motionHybrid';
 import { triLang } from '../constants/i18n';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { useOverlayVisible } from './OverlayArbiter';
@@ -47,13 +58,23 @@ const TOAST_VECTOR_ICON_SIZE = 38;
  * Тост-баннер в нижней части экрана.
  * Монтируется один раз в корне приложения (_layout.tsx), поверх всего.
  * Работает с очередью из AchievementContext.
+ *
+ * зачем: motionVariant — dev-only проп (default 'classic'), витрина движения
+ * рендерит гибрид рядом с боевым видом. Гибрид НЕ трогает боевую логику
+ * drag-to-dismiss/PanResponder (владелец запретил переписывать рабочее) —
+ * это отдельный Reanimated-слой поверх карточки: bloom-подложка из света
+ * (LUM) + микро-пульс иконки (SUITE.pulse), синхронизированные с моментом
+ * появления карточки.
  */
-function AchievementToast() {
+function AchievementToast({ motionVariant = 'classic' }: { motionVariant?: 'classic' | 'hybrid' }) {
   const { currentToast, dismissCurrent } = useAchievement();
   const { theme: t, f, isDark, themeMode } = useTheme();
   const { lang } = useLang();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const toastOverlayVisible = useOverlayVisible('achievementToast', currentToast != null);
+  const hybrid = motionVariant === 'hybrid';
+  const bloom = useSharedValue(0);
+  const iconPulse = useSharedValue(1);
 
   const translateY    = useRef(new Animated.Value(160)).current;
   const swipeDy       = useRef(new Animated.Value(0)).current;
@@ -231,6 +252,22 @@ function AchievementToast() {
         ]).start();
       });
 
+      // Гибрид: bloom-подложка загорается следом за карточкой, потом иконка
+      // получает микро-пульс (SUITE.pulse) — «удар» кульминации, но лёгкий
+      // (это не единственный герой награды, тот случай — RewardImpactRings).
+      if (hybrid) {
+        bloom.value = 0;
+        iconPulse.value = 1;
+        bloom.value = withDelay(LUM.resolveMs * 0.4, withTiming(1, { duration: 260, easing: ReanimatedEasing.out(ReanimatedEasing.cubic) }));
+        iconPulse.value = withDelay(
+          LUM.resolveMs + 40,
+          withSequence(
+            withSpring(1.14, SUITE.pulse),
+            withSpring(1, SUITE.pulse),
+          ),
+        );
+      }
+
       // Автодисмисс
       timerRef.current = setTimeout(() => {
         animateOutRef.current();
@@ -244,8 +281,15 @@ function AchievementToast() {
         rafInRef.current = null;
       }
       cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+      cancelAnimation(bloom);
+      cancelAnimation(iconPulse);
     };
-  }, [currentToast, toastOverlayVisible, translateY, opacity, scale, swipeDx, swipeDy, dismissCurrent]);
+  }, [currentToast, toastOverlayVisible, translateY, opacity, scale, swipeDx, swipeDy, dismissCurrent, hybrid, bloom, iconPulse]);
+
+  // Гибрид: bloom-подложка (opacity 0→~0.5) и микро-пульс иконки — тот же
+  // приём, что и в ActionToastHybridCard (components/ActionToast.tsx).
+  const bloomStyle = useAnimatedStyle(() => ({ opacity: bloom.value * 0.5 }));
+  const iconPulseStyle = useAnimatedStyle(() => ({ transform: [{ scale: iconPulse.value }] }));
 
   const animateOut = (forceDismiss = false) => {
     Animated.parallel([
@@ -417,8 +461,14 @@ function AchievementToast() {
             },
           ]}
         >
+          {hybrid && (
+            <Reanimated.View
+              pointerEvents="none"
+              style={[StyleSheet.absoluteFillObject, { backgroundColor: color + '22' }, bloomStyle]}
+            />
+          )}
           {/* Иконка */}
-          <View style={[s.iconWrap, { backgroundColor: color + '22', borderColor: color + '55' }]}>
+          <Reanimated.View style={[s.iconWrap, { backgroundColor: color + '22', borderColor: color + '55' }, hybrid && iconPulseStyle]}>
             {toastImageSource && !toastImageFailed
               ? (
                 <ExpoImage
@@ -432,7 +482,7 @@ function AchievementToast() {
               )
               : <Ionicons name={iconName} size={TOAST_VECTOR_ICON_SIZE} color={color} />
             }
-          </View>
+          </Reanimated.View>
 
           {/* Текст */}
           <View style={s.textWrap}>

@@ -44,7 +44,7 @@ function MedalToastDemo({ onClose, motionVariant = 'classic' }: { onClose: () =>
   );
 }
 
-function CoachToastDemo({ onClose }: { onClose: () => void }) {
+function CoachToastDemo({ onClose, motionVariant = 'classic' }: { onClose: () => void; motionVariant?: 'classic' | 'hybrid' }) {
   return (
     <CoachToast
       category="verb"
@@ -60,6 +60,7 @@ function CoachToastDemo({ onClose }: { onClose: () => void }) {
       weaknessScore={78}
       focusWords={['go — went', 'see — saw']}
       onDismiss={onClose}
+      motionVariant={motionVariant}
     />
   );
 }
@@ -160,6 +161,12 @@ export const SECTION: ShowcaseSection = {
       note: cs('achievement_toast_note'),
     },
     {
+      id: 'achievement-toast-hybrid',
+      title: cs('achievement_toast_hybrid_title'),
+      kind: 'note',
+      note: cs('achievement_toast_hybrid_note'),
+    },
+    {
       id: 'medal-toast',
       title: cs('medal_toast_title'),
       detail: cs('real_component'),
@@ -179,6 +186,13 @@ export const SECTION: ShowcaseSection = {
       detail: cs('real_component'),
       kind: 'render',
       render: ({ visible, onClose }) => (visible ? <CoachToastDemo onClose={onClose} /> : null),
+    },
+    {
+      id: 'coach-toast-hybrid',
+      title: cs('coach_toast_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (visible ? <CoachToastDemo onClose={onClose} motionVariant="hybrid" /> : null),
     },
     {
       id: 'in-game-toast',

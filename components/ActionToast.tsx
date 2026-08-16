@@ -15,7 +15,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import { onAppEvent } from '../app/events';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
-import { hapticError, hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
+import { hapticError, hapticWarning, hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { LUM, SUITE, TOAST } from '../constants/motionHybrid';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
@@ -242,7 +242,9 @@ function ActionToast() {
     // зачем: предупреждение ощущается как ошибка (что-то требует внимания),
     // но не является ею — берём тот же «жёсткий» отклик, что и error, чтобы
     // тост про сгорающую цепочку не проходил мимо как обычная инфо-плашка.
-    if (payload.type === 'error' || payload.type === 'warning') hapticError();
+    // зачем: предупреждение — не ошибка пользователя; тон хаптики мягче
+    if (payload.type === 'error') hapticError();
+    else if (payload.type === 'warning') hapticWarning();
     else if (payload.type === 'success' || payload.type === 'reward') hapticSuccess();
     else hapticSoftImpact();
   };

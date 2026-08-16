@@ -70,16 +70,23 @@ export default function BillingIssueToastHost() {
 
       // зачем: это предупреждение, а не ошибка — доступ ещё работает (грейс-период),
       // сломаться может позже. Тип 'error' звучал как «уже всё пропало».
-      emitAppEvent('action_toast', actionToastTri('warning', {
-        ru: '💳 Проблема с оплатой подписки — обнови способ оплаты, чтобы не потерять Plus',
-        uk: '💳 Проблема з оплатою підписки — онови спосіб оплати, щоб не втратити Plus',
-        es: '💳 Problema con el pago de tu suscripción — actualiza el método para no perder Plus',
-        'pt-BR': '💳 Problema no pagamento da assinatura — atualize a forma de pagamento para não perder o Plus',
-        vi: '💳 Sự cố thanh toán gói đăng ký — cập nhật phương thức để không mất Plus',
-        id: '💳 Masalah pembayaran langganan — perbarui metode agar tidak kehilangan Plus',
-        tr: '💳 Abonelik ödemesinde sorun var — Plus’u kaybetmemek için ödeme yöntemini güncelle',
-        pl: '💳 Problem z płatnością subskrypcji — zaktualizuj metodę, by nie stracić Plus',
-      }));
+      // motionVariant:'hybrid' — тост-вид «Световод»: вход/выход из света на
+      // ActionToastHybridCard (components/ActionToast.tsx), закон №15 (выход
+      // короче входа). Условия показа (grace-период/кулдоун 3 дня/привязка к
+      // инциденту) не менялись.
+      emitAppEvent('action_toast', {
+        ...actionToastTri('warning', {
+          ru: '💳 Проблема с оплатой подписки — обнови способ оплаты, чтобы не потерять Plus',
+          uk: '💳 Проблема з оплатою підписки — онови спосіб оплати, щоб не втратити Plus',
+          es: '💳 Problema con el pago de tu suscripción — actualiza el método para no perder Plus',
+          'pt-BR': '💳 Problema no pagamento da assinatura — atualize a forma de pagamento para não perder o Plus',
+          vi: '💳 Sự cố thanh toán gói đăng ký — cập nhật phương thức để không mất Plus',
+          id: '💳 Masalah pembayaran langganan — perbarui metode agar tidak kehilangan Plus',
+          tr: '💳 Abonelik ödemesinde sorun var — Plus’u kaybetmemek için ödeme yöntemini güncelle',
+          pl: '💳 Problem z płatnością subskrypcji — zaktualizuj metodę, by nie stracić Plus',
+        }),
+        motionVariant: 'hybrid',
+      });
     } catch {
       /* ignore — optional enhancement */
     } finally {

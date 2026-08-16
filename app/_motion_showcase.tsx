@@ -4,14 +4,15 @@
 // экран/модалку/тост (не бутафорию). Реестр шардирован по семьям:
 // components/dev/motion_showcase/sections/*.ts — каждый шард пополняется
 // независимо, конфликтов между сессиями нет.
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { safeRouterBack } from './navigation_back';
+import { rememberNavigationPath, safeRouterBack } from './navigation_back';
+import { MOTION_SHOWCASE_ROUTE } from '../constants/devRoutes';
 import TapScale from '../components/TapScale';
 import { hapticTap } from '../hooks/use-haptics';
 import { getShowcaseSections } from '../components/dev/motion_showcase';
@@ -26,9 +27,20 @@ export default function MotionShowcaseScreen() {
   /** Смонтированный render-пункт (реальная модалка с демо-пропсами). */
   const [active, setActive] = useState<ShowcaseItem | null>(null);
 
+  // зачем: витрину часто открывают напрямую (deep link из DEV-инструментов,
+  // автопрогон), и тогда журнал навигации пуст — экраны, запущенные пунктами
+  // kind:'route', при «назад» не находят кандидата и ВЫХОДЯТ ИЗ ПРИЛОЖЕНИЯ на
+  // рабочий стол (найдено смоук-прогоном 2026-08-16). Регистрируем витрину
+  // как точку возврата до того, как из неё куда-то уйдут.
+  useEffect(() => {
+    rememberNavigationPath(MOTION_SHOWCASE_ROUTE);
+  }, []);
+
   const launch = useCallback((item: ShowcaseItem) => {
     hapticTap();
     if (item.kind === 'route' && item.route) {
+      // журнал должен знать текущую точку, иначе «назад» из экрана уводит мимо
+      rememberNavigationPath(MOTION_SHOWCASE_ROUTE);
       router.push(item.route as never);
       return;
     }

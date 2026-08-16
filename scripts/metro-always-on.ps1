@@ -76,11 +76,21 @@ function Get-LanIp {
 # metro-url.txt порт 8085 ДО старта, Metro не поднимался, а Metro другой сессии
 # жил на 8081. Телефон читал 8085, стучался в мёртвый порт — и ни одна правка
 # не доезжала, хотя бандлинг шёл непрерывно.
-function Test-PortAlive([int]$p) {
+# зачем: .Content у Invoke-WebRequest на этой версии PowerShell приходит
+# МАССИВОМ БАЙТОВ, а не строкой — сравнение с текстом всегда давало false.
+# Из-за этого проверка «жив ли Metro» молча не срабатывала: скрипт считал
+# живой сервер мёртвым. Приводим к строке явно, независимо от типа.
+function Get-MetroStatusText([int]$p) {
   try {
     $r = Invoke-WebRequest -Uri ("http://127.0.0.1:{0}/status" -f $p) -TimeoutSec 3 -UseBasicParsing -ErrorAction Stop
-    return ($r.Content -match 'packager-status:running')
-  } catch { return $false }
+    $c = $r.Content
+    if ($c -is [byte[]]) { return [System.Text.Encoding]::UTF8.GetString($c) }
+    return [string]$c
+  } catch { return "" }
+}
+
+function Test-PortAlive([int]$p) {
+  return ((Get-MetroStatusText $p) -match 'packager-status:running')
 }
 
 function Test-PortListening([int]$p) {
@@ -219,12 +229,16 @@ try {
       Remove-Item -LiteralPath $UrlFile -ErrorAction SilentlyContinue
       # Отдельным процессом, а не Start-Job: Job не выполняется, когда окно
       # запущено без интерактивной сессии (проверено — Metro жил, файл не писался).
+      # .Content может прийти массивом байтов — приводим к строке явно,
+      # иначе проверка никогда не совпадёт и адрес не запишется вовсе.
       $waiterCode = @"
 for (`$i = 0; `$i -lt 150; `$i++) {
   Start-Sleep -Seconds 2
   try {
     `$r = Invoke-WebRequest -Uri 'http://127.0.0.1:$Port/status' -TimeoutSec 3 -UseBasicParsing -ErrorAction Stop
-    if (`$r.Content -match 'packager-status:running') {
+    `$c = `$r.Content
+    if (`$c -is [byte[]]) { `$c = [System.Text.Encoding]::UTF8.GetString(`$c) }
+    if ([string]`$c -match 'packager-status:running') {
       Set-Content -LiteralPath '$UrlFile' -Encoding UTF8 -Value '$url'
       exit 0
     }

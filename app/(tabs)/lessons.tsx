@@ -71,6 +71,7 @@ import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS } from "../config";
 import { hapticTap } from "../../hooks/use-haptics";
 import { useTabContentBottomPad } from "../../hooks/use-tab-content-bottom-pad";
 import { useRuntimeActive } from "../../hooks/use_runtime_active";
+import LearningV2InlineNodeReveal from "../../components/LearningV2InlineNodeReveal";
 import { getExamMedalTier, getEarnedDots } from "../medal_utils";
 import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
@@ -99,6 +100,7 @@ import {
 } from "../lessons_tab_state";
 import { getHomeMenuImages } from "../home_menu_icons";
 import { useStableSafeAreaInsets } from "../stable_safe_area_metrics";
+import { animateNextLayoutTransition } from "../smooth_layout";
 import { peekCurrentExamBestPct } from "../exam_best_pct_overlay";
 import { noAndroidOutline } from "../../constants/androidGlow";
 import {
@@ -670,7 +672,27 @@ const LessonCard = React.memo(function LessonCard({
   // остальные темы получают тёмный текст лишь когда прогресс-фон под ним
   // гарантированно светлый (100%, см. useFilledMetaText выше).
   const useDarkMetaText = isSagePorcelainCard || useFilledMetaText;
+  // зачем: карточка раскрывалась «телепортом» — на тап не было НИКАКОГО отклика
+  // (scaleAnim приходит null), экран просто подменялся. Отклик живёт на
+  // UI-потоке (Reanimated): палец получает реакцию в том же кадре, до любой
+  // навигации и до чтения диска, поэтому задержки не добавляет ни на грамм.
+  // Утопление намеренно мягкое (0.975) — это большая карточка, а не иконка;
+  // резкий TapScale-масштаб для мелких элементов здесь смотрелся бы дёшево.
+  const pressProgress = useSharedValue(0);
+  const pressStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: 1 - pressProgress.value * 0.025 }],
+  }));
+  const onCardPressIn = useCallback(() => {
+    pressProgress.value = withTiming(1, {
+      duration: 110,
+      easing: Easing.out(Easing.quad),
+    });
+  }, [pressProgress]);
+  const onCardPressOut = useCallback(() => {
+    pressProgress.value = withSpring(0, { damping: 18, stiffness: 260 });
+  }, [pressProgress]);
   return (
+    <Reanimated.View style={pressStyle}>
     <Animated.View
       style={{
         marginTop: 5,
@@ -720,6 +742,8 @@ const LessonCard = React.memo(function LessonCard({
           learningV2 ? { expanded: learningV2Expanded } : undefined
         }
         activeOpacity={0.82}
+        onPressIn={onCardPressIn}
+        onPressOut={onCardPressOut}
         onPress={() => {
           hapticTap();
           if (learningV2) {
@@ -1035,6 +1059,7 @@ const LessonCard = React.memo(function LessonCard({
         </View>
       </TouchableOpacity>
     </Animated.View>
+    </Reanimated.View>
   );
 });
 
@@ -1132,6 +1157,18 @@ function LearningV2InlineMap({
     state: LearningV2AccordionSessionStateV1,
   ) => void;
 }>) {
+  // зачем: каскад считается по ВИДИМЫМ узлам (заголовки глав тоже в потоке),
+  // иначе индексы прыгали бы и «волна» раскрытия шла рвано.
+  const revealIndexById = useMemo(() => {
+    const map = new Map<string, number>();
+    let visible = 0;
+    for (const row of rows) {
+      if (row.kind === "lesson") continue;
+      map.set(row.id, visible);
+      visible += 1;
+    }
+    return map;
+  }, [rows]);
   return (
     <View
       testID={`learning-v2-inline-map-${lessonOrdinal}`}
@@ -1191,13 +1228,10 @@ function LearningV2InlineMap({
         ];
         const nodeSize = checkpoint ? 64 : current ? 66 : 54;
         return (
-          <View
+          <LearningV2InlineNodeReveal
             key={row.id}
-            style={{
-              height: checkpoint ? 104 : 82,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            index={revealIndexById.get(row.id) ?? 0}
+            height={checkpoint ? 104 : 82}
           >
             <TouchableOpacity
               accessibilityRole="button"
@@ -1307,7 +1341,7 @@ function LearningV2InlineMap({
                 </Text>
               </View>
             ) : null}
-          </View>
+          </LearningV2InlineNodeReveal>
         );
       })}
     </View>
@@ -1768,9 +1802,17 @@ export default function LessonsTab({
     completedSessionIds: readonly string[];
     currentSessionId: string | null;
   }>({ completedSessionIds: [], currentSessionId: "lesson-01:session:01" });
+  // зачем: V2 — не отдельный экран, а страница ЭТОЙ же вкладки, и раньше обе
+  // загрузки (прогресс + каталог) гейтились `page !== "v2"`. То есть чтение диска
+  // стартовало ТОЛЬКО после тапа по «V2» — человек всегда ждал первый заход.
+  // Теперь данные прогреваются, пока он ещё смотрит на список уроков: к моменту
+  // тапа состояние уже в памяти и страница открывается первым же кадром.
+  // Стоимость нулевая для Firebase (локальный AsyncStorage + кэш каталога) и
+  // разовая по диску — оба загрузчика дедуплицируются собственными кэшами.
+  const learningV2WarmupEnabled = ENABLE_DEV_TOOLS || page === "v2";
   useFocusEffect(
     useCallback(() => {
-      if (page !== "v2") return undefined;
+      if (!learningV2WarmupEnabled) return undefined;
       let cancelled = false;
       void withAccountTransitionLock(async () => {
         const stableId = await getStableId();
@@ -1794,11 +1836,11 @@ export default function LessonsTab({
       return () => {
         cancelled = true;
       };
-    }, [page]),
+    }, [learningV2WarmupEnabled]),
   );
   useFocusEffect(
     useCallback(() => {
-      if (page !== "v2") return undefined;
+      if (!learningV2WarmupEnabled) return undefined;
       let cancelled = false;
       const stableId = peekStableId();
       const cached = stableId
@@ -1822,7 +1864,7 @@ export default function LessonsTab({
       return () => {
         cancelled = true;
       };
-    }, [learningV2CatalogLocator, page]),
+    }, [learningV2CatalogLocator, learningV2WarmupEnabled]),
   );
   const learningV2Accordion = useMemo(
     () =>
@@ -1837,6 +1879,11 @@ export default function LessonsTab({
     [expandedLearningV2Lesson, learningV2Progress],
   );
   const toggleLearningV2Lesson = useCallback((lessonOrdinal: number) => {
+    // зачем: карта сессий вставляется/убирается ПРЯМО В ПОТОКЕ списка — без этого
+    // соседние карточки телепортировались вниз одним кадром. Переход планируется
+    // ДО setState (контракт animateNextLayoutTransition) и стоит 0 мс ожидания:
+    // сдвиг соседей едет плавно, а сами узлы каскадом доводит Reanimated.
+    animateNextLayoutTransition(240);
     setExpandedLearningV2Lesson((current) =>
       current === lessonOrdinal ? null : lessonOrdinal,
     );

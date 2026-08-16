@@ -175,14 +175,8 @@ function LessonsPaneBoundary({
       try {
         const previous = previousTokenRef.current;
         previousTokenRef.current = next;
-        // зачем: временная диагностика гонки privacy.phase (аудит 2026-08-16) —
-        // удалить после подтверждения причины на реальном устройстве.
-        if (__DEV__) {
-          console.log('[tabs][lessons-privacy] reconcile', {
-            prevPhase: previous.phase, prevGen: previous.generation, prevStableId: previous.stableId,
-            nextPhase: next.phase, nextGen: next.generation, nextStableId: next.stableId,
-          });
-        }
+        // зачем: диагностика гонки privacy.phase снята — причина найдена и
+        // закрыта (крышка держала холодный старт, см. coverLessons ниже).
         // зачем: первое «усыновление» владельца (uninitialized → active) — это НЕ
         // смена аккаунта, новую эпоху заводить нельзя (иначе крышка закрылась бы
         // поверх уже показанного списка). Но записать фазу обязаны: без этого
@@ -231,8 +225,20 @@ function LessonsPaneBoundary({
   if (privacy.phase === 'active' && !privacy.failClosed) {
     activatedEpochRef.current = privacy.epoch;
   }
+  // зачем (аудит скорости): крышка закрывала вкладку и на ХОЛОДНОМ СТАРТЕ, пока
+  // phase === 'uninitialized'. Владелец видел это как «Уроки открываются долго»:
+  // экран уже смонтирован и синхронно гидратирован снимком, но поверх лежала
+  // глухая заливка, пока stable_id асинхронно читался из SecureStore.
+  //
+  // Приватность при этом НЕ ослаблена. Крышка нужна против показа данных ЧУЖОГО
+  // аккаунта, а такой риск существует только при переходе между аккаунтами —
+  // это фаза 'transitioning' (invalidateAccountGeneration) и рост epoch; оба
+  // случая закрыты ниже по-прежнему. В 'uninitialized' чужих данных физически
+  // нет: и lessons_tab_state, и сессионный кэш списка заштампованы поколением и
+  // при первом старте пусты, поэтому показывать под крышкой нечего — там ровно
+  // тот же фон. fail-closed на ошибке подписки тоже сохранён.
   const coverLessons = privacy.failClosed
-    || privacy.phase !== 'active'
+    || privacy.phase === 'transitioning'
     || activatedEpochRef.current < privacy.epoch;
 
   return (

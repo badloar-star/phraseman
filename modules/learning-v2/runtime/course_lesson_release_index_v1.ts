@@ -66,7 +66,7 @@ export type LearningV2CourseLessonReleaseIndexV1 = Readonly<{
   ownerLessonFingerprint: string;
   ownerConfirmationFingerprint: string;
   sessions: readonly LearningV2CourseLessonReleaseSessionV1[];
-  sessionCount: typeof LEARNING_V2_LESSON_SESSION_COUNT_V1;
+  sessionCount: number;
   chapterCount: typeof LEARNING_V2_LESSON_CHAPTER_COUNT_V1;
   sessionSetFingerprint: string;
   sessionIdentityModel: "direct_56_no_hidden_grouping";
@@ -363,10 +363,14 @@ function validate(value: unknown): LearningV2CourseLessonReleaseIndexV1 {
   )
     fail();
   const lesson = topology.lessons[Number(value.lessonOrdinal) - 1];
+  // зачем: неполный урок разрешён владельцем — публикация не должна ждать
+  // последней из 56 сессий. Дырка в середине остаётся ошибкой: сессии идут
+  // подряд с первой, идентификаторы сверяются с топологией ниже.
   if (
     !lesson ||
     !Array.isArray(value.sessions) ||
-    value.sessions.length !== lesson.sessionCount
+    value.sessions.length < 1 ||
+    value.sessions.length > lesson.sessionCount
   )
     fail();
   const sessions = value.sessions.map((session, index) =>
@@ -385,7 +389,10 @@ function validate(value: unknown): LearningV2CourseLessonReleaseIndexV1 {
     ownerLessonFingerprint: exactHash(value.ownerLessonFingerprint),
     ownerConfirmationFingerprint: exactHash(value.ownerConfirmationFingerprint),
     sessions: Object.freeze(sessions),
-    sessionCount: LEARNING_V2_LESSON_SESSION_COUNT_V1,
+    // зачем: считаем по факту, а не константой полного урока — иначе индекс
+    // объявлял бы 56 сессий там, где их написано меньше, и приложение искало
+    // бы пакеты, которых нет.
+    sessionCount: sessions.length,
     chapterCount: LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
     sessionSetFingerprint,
     sessionIdentityModel: "direct_56_no_hidden_grouping" as const,
@@ -446,8 +453,21 @@ export function materializeLearningV2CourseLessonReleaseIndexV1(
 ): LearningV2CourseLessonReleaseIndexV1 {
   const topology = COURSE_TOPOLOGY_V1;
   const lesson = topology.lessons[input.lessonOrdinal - 1];
-  if (!lesson || input.sessions.length !== lesson.sessionCount) fail();
-  const sessions = lesson.sessions.map((expected, index) => {
+  // зачем: индекс требовал РОВНО 56 сессий, поэтому урок нельзя было
+  // опубликовать, пока не написана последняя — владелец видел «Сессия
+  // недоступна / NOT FOUND» и не мог проверить ни одного занятия. Решение
+  // владельца (2026-08-16, повторно): неполный урок разрешён.
+  //
+  // Ослабление узкое: сессии по-прежнему обязаны идти подряд с первой и
+  // совпадать с топологией по идентификаторам — дырка в середине означала бы,
+  // что человек упрётся в стену посреди урока. Пустой урок остаётся ошибкой.
+  if (
+    !lesson ||
+    input.sessions.length < 1 ||
+    input.sessions.length > lesson.sessionCount
+  )
+    fail();
+  const sessions = lesson.sessions.slice(0, input.sessions.length).map((expected, index) => {
     const source = input.sessions[index];
     if (
       !source ||
@@ -495,7 +515,10 @@ export function materializeLearningV2CourseLessonReleaseIndexV1(
     ownerLessonFingerprint: input.ownerLessonFingerprint,
     ownerConfirmationFingerprint: input.ownerConfirmationFingerprint,
     sessions: Object.freeze(sessions),
-    sessionCount: LEARNING_V2_LESSON_SESSION_COUNT_V1,
+    // зачем: считаем по факту, а не константой полного урока — иначе индекс
+    // объявлял бы 56 сессий там, где их написано меньше, и приложение искало
+    // бы пакеты, которых нет.
+    sessionCount: sessions.length,
     chapterCount: LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
     sessionSetFingerprint: hashCanonicalBody(sessions),
     sessionIdentityModel: "direct_56_no_hidden_grouping" as const,

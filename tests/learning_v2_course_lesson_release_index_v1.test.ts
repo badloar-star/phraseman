@@ -120,9 +120,19 @@ describe("Learning V2 56-session lesson release index v1", () => {
         ownerConfirmationFingerprint: sha256Utf8("owner-confirmation-1"),
         sessions,
       });
-    expect(() => materialize(base.slice(0, 55))).toThrow(
+    // зачем: раньше неполный урок отвергался, и курс нельзя было опубликовать,
+    // пока не написана 56-я сессия — владелец видел «Сессия недоступна / NOT
+    // FOUND» и не мог проверить ничего. Решение владельца: неполный урок
+    // разрешён, публикация идёт по мере написания.
+    const partial = materialize(base.slice(0, 55));
+    expect(partial.sessionCount).toBe(55);
+    expect(partial.sessions).toHaveLength(55);
+    // Пустой урок остаётся ошибкой: публиковать нечего.
+    expect(() => materialize([])).toThrow(
       "learning_v2_course_lesson_release_index_invalid",
     );
+    // Порядок по-прежнему жёсткий: перестановка сессий ломает индекс, иначе
+    // человек упрётся в стену посреди урока.
     expect(() => materialize([base[1]!, base[0]!, ...base.slice(2)])).toThrow(
       "learning_v2_course_lesson_release_index_invalid",
     );

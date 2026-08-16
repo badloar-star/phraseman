@@ -282,9 +282,18 @@ export default function FlashcardsBlitzSession() {
       easing: Easing.linear,
     });
 
+    /**
+     * зачем (владелец, 2026-08-16, «прыжки/дёрганье»): тик остаётся частым —
+     * он ловит конец раунда без задержки. Но setState теперь только когда
+     * СЕКУНДА реально сменилась: раньше 5 обновлений в секунду перерисовывали
+     * весь экран (вопрос, 4 кнопки, шапка) ради текста, который меняется раз
+     * в секунду, и на слабом Android это читалось как дрожание.
+     * Полоса таймера не затронута — она и так едет на UI-потоке (progress).
+     */
     intervalRef.current = setInterval(() => {
       const rem = endAtRef.current - Date.now();
-      setTimeLeft(Math.max(0, Math.ceil(rem / 1000)));
+      const sec = Math.max(0, Math.ceil(rem / 1000));
+      setTimeLeft((cur) => (cur === sec ? cur : sec));
       if (rem <= 0) finish();
     }, 200);
 

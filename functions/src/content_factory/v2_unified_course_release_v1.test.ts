@@ -101,6 +101,88 @@ describe("unified Learning V2 course release", () => {
     expect(parsed.rootFingerprint).toBe(root.rootFingerprint);
   });
 
+  // зачем: до 2026-08-16 боевой релиз принимал только полный сезон из 32
+  // уроков, и готовый первый урок невозможно было показать на телефоне —
+  // раздел оставался пустым. Владелец решил разрешить частичный прод.
+  //
+  // Правило сняли, но сторожа у него не было вообще: тест прошёл, не заметив
+  // изменения. Эти проверки закрепляют и новое разрешение, и то, что осталось
+  // запрещённым, чтобы следующая правка контракта была осознанной.
+  it("lets production ship a single finished lesson without the whole season", () => {
+    const root = materializeV2UnifiedCourseReleaseRootV1({
+      environment: "production",
+      releaseId: "release-slice",
+      activeManifestHash: hash("release-slice-manifest"),
+      planFingerprint: hash("plan"),
+      courseContractFingerprint: hash("course"),
+      seasonId: "season-1",
+      targetLanguage: "en-US",
+      studyTarget: "en",
+      learnerSourceLocale: "ru",
+      interfaceLocales: ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"],
+      contentClass: "production_candidate",
+      releaseScope: "vertical_slice",
+      rollout: {
+        revision: 1,
+        state: "live",
+        percent: 100,
+        cohortSaltVersion: 1,
+        allowlistCohortIds: [],
+        excludeCohortIds: [],
+      },
+      episodes: [episode(1)],
+    });
+    expect(root.episodeCount).toBe(1);
+    expect(root.releaseScope).toBe("vertical_slice");
+  });
+
+  it("still refuses a season that claims to be full but is not", () => {
+    const base = {
+      environment: "production" as const,
+      releaseId: "release-partial",
+      activeManifestHash: hash("release-partial-manifest"),
+      planFingerprint: hash("plan"),
+      courseContractFingerprint: hash("course"),
+      seasonId: "season-1",
+      targetLanguage: "en-US",
+      studyTarget: "en",
+      learnerSourceLocale: "ru",
+      interfaceLocales: ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"],
+      contentClass: "production_candidate" as const,
+      rollout: {
+        revision: 1,
+        state: "live" as const,
+        percent: 100 as const,
+        cohortSaltVersion: 1,
+        allowlistCohortIds: [],
+        excludeCohortIds: [],
+      },
+    };
+    // Заявлен полный сезон, а уроков меньше — приложение показало бы дыры.
+    expect(() =>
+      materializeV2UnifiedCourseReleaseRootV1({
+        ...base,
+        releaseScope: "full_season",
+        episodes: Array.from({ length: 8 }, (_, index) => episode(index + 1)),
+      }),
+    ).toThrow("scope_invalid");
+    // Vertical slice — это ровно один урок, не два и не ноль.
+    expect(() =>
+      materializeV2UnifiedCourseReleaseRootV1({
+        ...base,
+        releaseScope: "vertical_slice",
+        episodes: [],
+      }),
+    ).toThrow("scope_invalid");
+    expect(() =>
+      materializeV2UnifiedCourseReleaseRootV1({
+        ...base,
+        releaseScope: "vertical_slice",
+        episodes: [episode(1), episode(2)],
+      }),
+    ).toThrow("scope_invalid");
+  });
+
   it("rejects missing episodes, episode drift, noncanonical bytes and production fixtures", () => {
     const input = {
       environment: "production" as const,

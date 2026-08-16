@@ -392,6 +392,16 @@ export function materializeV2UnifiedCourseReleaseRootV1(input: {
   >[];
 }): V2UnifiedCourseReleaseRootV1 {
   if (!record(input)) fail();
+  // зачем: раньше боевой релиз принимал ТОЛЬКО полный сезон из 32 уроков, и
+  // курс невозможно было показать, пока не готов последний урок. Владелец
+  // (2026-08-16) решил разрешить частичный прод: «ослабить контракт», чтобы
+  // видеть готовые уроки на телефоне сразу, а не через 31 урок.
+  //
+  // Ослабление узкое. Vertical slice по-прежнему ровно один урок — это его
+  // определение. Полный сезон по-прежнему ровно 32. Изменилось одно: прод
+  // теперь принимает и vertical slice, а не только full_season. Пустой релиз
+  // и заявка «полный сезон» с неполным списком остаются ошибкой — иначе
+  // приложение показало бы дыры в середине курса.
   const expectedCount = input.releaseScope === "full_season" ? 32 : 1;
   if (
     !Array.isArray(input.episodes) ||
@@ -399,8 +409,7 @@ export function materializeV2UnifiedCourseReleaseRootV1(input: {
     !["lab", "staging", "production"].includes(input.environment) ||
     !["vertical_slice", "full_season"].includes(input.releaseScope) ||
     (input.environment === "production" &&
-      (input.releaseScope !== "full_season" ||
-        input.contentClass !== "production_candidate")) ||
+      input.contentClass !== "production_candidate") ||
     (input.environment !== "production" &&
       input.contentClass !== "neutral_test_fixture")
   )

@@ -270,7 +270,7 @@ function CoachToast({
               onPress={handleStart}
               variant="primary"
               style={styles.startBtnWrap}
-              contentStyle={[styles.startBtn, { backgroundColor: t.accent }]}
+              contentStyle={[styles.startBtn, styles.startBtnContent, { backgroundColor: t.accent }]}
             >
               <Text style={[styles.startBtnText, { color: t.correctText, fontSize: f.label }]}>
                 {triLang(lang, {
@@ -383,7 +383,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   startBtnWrap: {
+    // зачем: PressableHybrid по умолчанию тянется (alignSelf stretch + width 100%),
+    // из-за чего кнопка «Объяснить» уезжала на всю ширину строки вместо компактной
+    // справа — владелец отметил это как съехавшую кнопку. Возвращаем размер по
+    // содержимому и прижимаем вправо, как в classic-ветке.
     alignSelf: 'flex-end',
+    flexGrow: 0,
+    flexShrink: 0,
   },
   startBtn: {
     minHeight: 38,
@@ -394,6 +400,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 6,
+  },
+  startBtnContent: {
+    // зачем: внутренний слой PressableHybrid по умолчанию width:'100%';
+    // для компактной кнопки тоста ширину задаёт содержимое.
+    width: 'auto',
+    alignSelf: 'flex-end',
   },
   startBtnText: {
     fontWeight: '800',

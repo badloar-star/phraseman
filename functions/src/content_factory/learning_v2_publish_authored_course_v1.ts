@@ -149,7 +149,19 @@ export async function publishAuthoredLearningV2Course(
       }),
     )
     .digest("hex");
-  const releaseId = `authored-${input.lessonOrdinal}-${contentFingerprint.slice(0, 24)}`;
+  // зачем: releaseId выводился только из содержимого сессий, но корень релиза
+  // зависит ещё и от отпечатков загруженных объектов — а те меняются между
+  // попытками (у каждой загрузки своя generation в Storage). Получалось: ключ
+  // тот же, запись другая, хранилище честно отвечало release_id_reuse_conflict
+  // и публикация не проходила НИКОГДА после первой неудачи.
+  //
+  // Добавляем отпечаток попытки. Идемпотентность при этом сохраняется там, где
+  // она нужна: повторная публикация того же контента создаёт новый релиз, но
+  // указатель просто переезжает на него, а старые объекты остаются нетронутыми.
+  const attemptFingerprint = createHash("sha256")
+    .update(`${contentFingerprint}\n${deps.actorUid}\n${input.reason}`)
+    .digest("hex");
+  const releaseId = `authored-${input.lessonOrdinal}-${attemptFingerprint.slice(0, 24)}`;
 
   // 1. Пакет каждой сессии уезжает в Storage и возвращает своё закрепление.
   const sessionInputs = [];
@@ -264,10 +276,31 @@ export async function publishAuthoredLearningV2Course(
 
   // 5. Указатель в Firestore — то, чего не хватало и из-за чего был NOT FOUND.
   const repository = createFirebaseAdminV2UnifiedCourseReleaseRepositoryV2();
+  // зачем: указатель защищён номером версии — так две одновременные публикации
+  // не затирают друг друга. Жёсткий ноль работал только для самой первой
+  // публикации; после неё каждая следующая падала с head_conflict. Читаем
+  // текущую версию и продолжаем с неё.
+  let expectedRevision = 0;
+  try {
+    const active = await repository.readActive({
+      environment: input.environment,
+      seasonId: input.seasonId,
+      targetLanguage: input.targetLanguage,
+      studyTarget: input.studyTarget,
+      learnerSourceLocale: input.learnerSourceLocale,
+    } as never);
+    expectedRevision = Number(
+      (active as { head?: { operationRevision?: number } }).head
+        ?.operationRevision ?? 0,
+    );
+  } catch {
+    // Указателя ещё нет — это первая публикация, версия нулевая.
+    expectedRevision = 0;
+  }
   const advanced = await repository.persistAndAdvance({
     target: root,
     action: "activate",
-    expectedRevision: 0,
+    expectedRevision,
     operationId: createHash("sha256")
       .update(`${releaseId}\n${deps.actorUid}`)
       .digest("hex"),
@@ -337,17 +370,36 @@ export const adminPublishAuthoredLearningV2Course = onCall(
     // три (ru, uk, es). Разворачиваем тем же способом, что и шард: недостающие
     // помечаются как непереведённые, а не подменяются русским молча. Без этого
     // публикация падала на проверке заголовка.
-    const result = await publishAuthoredLearningV2Course(input, {
-      sessions,
-      titleByLocale: expandLocalized(first.title) as unknown as Readonly<
-        Record<string, string>
-      >,
-      canDoByLocale: expandLocalized(first.summary) as unknown as Readonly<
-        Record<string, string>
-      >,
-      bucket: admin.storage().bucket(),
-      actorUid: request.auth.uid,
-    });
-    return { ok: true, ...result };
+    // зачем: раньше любая внутренняя ошибка уходила клиенту как глухая 500, а
+    // причина оставалась только в логах Google — владелец видел «не
+    // опубликовано» без объяснений, и диагностика превращалась в угадайку.
+    // Теперь причина возвращается на экран: публикация вызывается вручную
+    // владельцем, тайны в имени сломавшейся проверки нет.
+    try {
+      const result = await publishAuthoredLearningV2Course(input, {
+        sessions,
+        titleByLocale: expandLocalized(first.title) as unknown as Readonly<
+          Record<string, string>
+        >,
+        canDoByLocale: expandLocalized(first.summary) as unknown as Readonly<
+          Record<string, string>
+        >,
+        bucket: admin.storage().bucket(),
+        actorUid: request.auth.uid,
+      });
+      return { ok: true, ...result };
+    } catch (error) {
+      if (error instanceof HttpsError) throw error;
+      const message =
+        error instanceof Error ? error.message : String(error);
+      const where =
+        error instanceof Error && error.stack
+          ? error.stack.split("\n").slice(1, 3).join(" | ")
+          : "";
+      throw new HttpsError(
+        "internal",
+        `publish_failed: ${message}${where ? ` @ ${where}` : ""}`,
+      );
+    }
   },
 );

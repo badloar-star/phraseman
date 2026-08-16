@@ -618,7 +618,19 @@ footer.site-foot { border-top: 1px solid var(--border); padding: 26px 0; }
 .gift-terms a { color: var(--accent-text); font-weight: 700; }
 .gift-err { color: #d33a3a; font-size: 0.8125rem; font-weight: 600; min-height: 1.2em; margin-bottom: 8px; }
 :root[data-theme='dark'] .gift-err { color: #ff8080; }
-#paypal-buttons { min-height: 44px; margin-top: 10px; }
+/* зачем: владелец 2026-08-16 — вокруг кнопки PayPal белая рамка. Кнопку
+   рисует iframe самого PayPal: он прямоугольный и с белым фоном, поэтому по
+   краям торчали светлые уголки. Обрезаем контейнер по той же скруглённой
+   форме, что и у кнопки «Оплатить картой», — рамка исчезает, сама кнопка
+   PayPal не трогается (её содержимое живёт в чужом iframe). */
+#paypal-buttons {
+  min-height: 44px;
+  margin-top: 10px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  isolation: isolate;
+}
+#paypal-buttons iframe { border-radius: var(--radius-full); }
 
 .faq-mini { max-width: 960px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .faq-mini .item { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }

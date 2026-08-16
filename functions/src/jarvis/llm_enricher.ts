@@ -3,6 +3,11 @@ import {
   formatJarvisPmBusinessContext,
   type JarvisPmBusinessContext,
 } from './pm_business_context';
+import {
+  readBusinessKnowledge,
+  renderKnowledge,
+  selectKnowledgeForDepartment,
+} from './business_knowledge';
 
 /**
  * LLM-обогатитель Джарвиса — короткий PM-план ПОВЕРХ готовых фактов.
@@ -75,6 +80,26 @@ const DEPARTMENT_LABEL: Record<string, string> = {
  * evidence-записей туда не попадает вовсе — LLM не должен даже видеть имя
  * источника, которому нельзя верить, не то что опираться на его число.
  */
+/**
+ * Правила бизнеса для этого департамента.
+ *
+ * зачем в промпт: модель, знающая только цифры, уверенно предлагает уже
+ * отвергнутое — ужесточить возвраты, нанять человека, слать ежедневную
+ * сводку. Запрет, записанный человеком, дешевле любого разбирательства
+ * с плохим советом постфактум.
+ *
+ * зачем помечать как правила: модель не должна путать «так устроен бизнес»
+ * с «так было вчера», иначе начнёт приписывать правилам причинность.
+ */
+function knowledgeBlock(department: string): string | null {
+  const files = selectKnowledgeForDepartment(readBusinessKnowledge(), department);
+  if (files.length === 0) return null;
+  const text = renderKnowledge(files);
+  if (!text) return null;
+  return 'Правила и знание о бизнесе (это НЕ данные дня, а постоянные ограничения — '
+    + `нарушать их нельзя, ссылаться на них как на причину происходящего тоже):\n${text}`;
+}
+
 function buildPrompt(
   decision: Decision,
   businessContext?: JarvisPmBusinessContext,
@@ -104,6 +129,12 @@ function buildPrompt(
     businessContext
       ? `Контекст бизнеса Phraseman (используй для приоритета, но не приписывай ему причинность):\n${formatJarvisPmBusinessContext(businessContext)}`
       : null,
+    // зачем знание отдельно от контекста (аудит 2026-08-16): контекст выше —
+    // это ЧИСЛА за последние дни, они меняются. Здесь — ПРАВИЛА бизнеса,
+    // которые верны независимо от сегодняшних цифр. Без них модель уверенно
+    // советует уже отвергнутое: ужесточить возвраты, нанять человека,
+    // прислать ежедневную сводку.
+    knowledgeBlock(decision.department),
   ].filter((line): line is string => line !== null).join('\n');
 
   return { system, user };

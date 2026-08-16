@@ -28,3 +28,27 @@ for (const file of fs.readdirSync(from)) {
   copied += 1;
 }
 console.log(`[assets] скопировано файлов: ${copied}`);
+
+/*
+ * Знание о бизнесе для Джарвиса — те же грабли, что с JSON выше.
+ *
+ * зачем: tsc переносит только .ts→.js, а knowledge/*.md остались бы на
+ * машине разработчика. В облаке департамент прочитал бы пустую папку и
+ * молча работал бы без контекста — то есть ровно тот тихий отказ, против
+ * которого написано правило проекта «молчаливая ложь опаснее поломки».
+ */
+const knowledgeFrom = path.resolve(__dirname, '..', 'src', 'jarvis', 'knowledge');
+const knowledgeTo = path.resolve(__dirname, '..', 'lib', 'functions', 'src', 'jarvis', 'knowledge');
+
+if (fs.existsSync(knowledgeFrom)) {
+  fs.mkdirSync(knowledgeTo, { recursive: true });
+  let knowledgeCopied = 0;
+  for (const file of fs.readdirSync(knowledgeFrom)) {
+    if (!file.endsWith('.md')) continue;
+    fs.copyFileSync(path.join(knowledgeFrom, file), path.join(knowledgeTo, file));
+    knowledgeCopied += 1;
+  }
+  console.log(`[assets] знание Джарвиса: ${knowledgeCopied} файлов`);
+} else {
+  console.warn('[assets] src/jarvis/knowledge отсутствует — пропускаю');
+}

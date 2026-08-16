@@ -206,4 +206,40 @@ describe('enrichDecisionsWithNarrative', () => {
     expect(checkBudget).not.toHaveBeenCalled();
     expect(generateNarrative).not.toHaveBeenCalled();
   });
+
+  describe('знание о бизнесе в промпте', () => {
+    // зачем (аудит 2026-08-16): модель знала только числа и потому могла
+    // уверенно советовать отвергнутое — например ужесточить возвраты.
+    // Запреты из файлов знания должны доходить до неё до генерации.
+
+    async function capturePrompt(department: string): Promise<string> {
+      let captured = '';
+      const generateNarrative = jest.fn(async (prompt: { system: string; user: string }) => {
+        captured = `${prompt.system}\n${prompt.user}`;
+        return { text: 'x', promptTokens: 1, completionTokens: 1 };
+      });
+      await enrichDecisionsWithNarrative(
+        { decisions: [makeDecision({ department } as never)] },
+        makeDeps({ generateNarrative: generateNarrative as never }),
+      );
+      return captured;
+    }
+
+    test('запреты департамента доходят до модели', async () => {
+      const prompt = await capturePrompt('money');
+      expect(prompt).toMatch(/ужесточать условия возврата/i);
+    });
+
+    test('общие правила продукта доходят до любого департамента', async () => {
+      const prompt = await capturePrompt('quality');
+      expect(prompt).toMatch(/нанимать людей|ежедневные сводки/i);
+    });
+
+    test('знание помечено как правила, а не как факты дня', async () => {
+      // зачем: модель не должна путать «так устроен бизнес» с «так было
+      // вчера» — иначе начнёт приписывать правилам причинность.
+      const prompt = await capturePrompt('money');
+      expect(prompt).toMatch(/правил|знан/i);
+    });
+  });
 });

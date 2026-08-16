@@ -29,10 +29,16 @@ import Animated, {
 } from "react-native-reanimated";
 
 import ReportErrorButton from "../components/ReportErrorButton";
+import SaveToCardsButton from "../components/SaveToCardsButton";
 import { useLang } from "../components/LangContext";
 import { useStudyTarget } from "../components/StudyTargetContext";
 import { useTheme } from "../components/ThemeContext";
 import { hapticError, hapticSuccess, hapticTap } from "../hooks/use-haptics";
+import {
+  markCardSaved,
+  readSavedCardsFirstRun,
+  shouldPulseSaveButton,
+} from "./saved_cards_first_run";
 import { useLearningV2LocalHoldToTalkV1 } from "../hooks/use_learning_v2_local_hold_to_talk_v1";
 import { useManagedSpokenAudioPlayer } from "../hooks/use_managed_spoken_audio_player";
 import { createLearningV2CourseLocalProgressStoreV1 } from "../modules/learning-v2/progress/course_local_progress_v1";
@@ -207,6 +213,11 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [transcript, setTranscript] = useState("");
   const [savingPhrase, setSavingPhrase] = useState(false);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  // зачем: кнопка сохранения зовёт вниманием, пока человек ни разу ею не
+  // пользовался. Читаем один раз при входе в сессию — это локальный флаг,
+  // ни одного обращения к сети.
+  const [savePulse, setSavePulse] = useState(false);
+  const [savedThisCard, setSavedThisCard] = useState(false);
   const [finishing, setFinishing] = useState(false);
   const interruptedWhileBackgroundedRef = useRef(false);
   const finishingRef = useRef(false);
@@ -363,7 +374,22 @@ export default function LearningV2DirectSessionPlayerV1() {
     setTranscript("");
     setSavingPhrase(false);
     setSaveMessage(null);
+    // зачем: отметка «сохранено» относится к конкретной карточке, а не к сессии —
+    // на следующей кнопка снова должна быть готова к нажатию.
+    setSavedThisCard(false);
   }, [managedAudio]);
+
+  // зачем: пульс зовёт только того, кто ещё ни разу ничего не сохранял. Читаем
+  // локальный флаг один раз при входе в сессию, без обращений к сети.
+  useEffect(() => {
+    let cancelled = false;
+    void readSavedCardsFirstRun().then((state) => {
+      if (!cancelled) setSavePulse(shouldPulseSaveButton(state));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const restartInterruptedRun = useCallback(() => {
     managedAudio.stop();
@@ -488,22 +514,36 @@ export default function LearningV2DirectSessionPlayerV1() {
     resetInteraction();
   }, [finish, practiceIndex, resetInteraction, result, runSummary]);
 
+  // зачем: раньше сохранение было заблокировано до правильного ответа, и человек
+  // не мог отложить как раз то слово, которого не знает. Владелец потребовал
+  // кнопку на каждой фразе, поэтому проверка на result здесь снята.
   const savePhrase = useCallback(async () => {
-    if (!auxiliary || result !== "correct" || savingPhrase) return;
+    if (!auxiliary || savingPhrase || savedThisCard) return;
+    // Optimistic UI: карточка помечается сохранённой сразу, до ответа хранилища.
+    setSavedThisCard(true);
     setSavingPhrase(true);
     const outcome = await saveLearningV2CourseSessionPhraseToCardsV1({
       save: auxiliary.save,
       interfaceLocale: lang,
     });
-    setSaveMessage(
-      outcome === "added"
-        ? copy.saveAdded
-        : outcome === "duplicate"
-          ? copy.saveDuplicate
-          : copy.saveFailed,
-    );
+    if (outcome === "failed") {
+      // Откат: возвращаем кнопку в исходное состояние и говорим почему.
+      setSavedThisCard(false);
+      setSaveMessage(copy.saveFailed);
+      setSavingPhrase(false);
+      return;
+    }
+    if (outcome === "duplicate") {
+      setSaveMessage(copy.saveDuplicate);
+      setSavingPhrase(false);
+      return;
+    }
+    const { wasFirstEver } = await markCardSaved();
+    // Самое первое сохранение объясняет, куда делась карточка; дальше — коротко.
+    setSaveMessage(wasFirstEver ? copy.saveFirstEver : copy.saveAdded);
+    if (wasFirstEver) setSavePulse(false);
     setSavingPhrase(false);
-  }, [auxiliary, copy, lang, result, savingPhrase]);
+  }, [auxiliary, copy, lang, savedThisCard, savingPhrase]);
 
   if (!locator || !lessonOrdinal || !sessionOrdinal) {
     return (
@@ -546,7 +586,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               accessibilityLiveRegion="polite"
               style={[
                 styles.preparingCard,
-                { backgroundColor: t.bgCard, borderColor: t.border },
+                { backgroundColor: t.bgCard },
               ]}
             >
               <ActivityIndicator color={t.accent} size="small" />
@@ -752,7 +792,6 @@ export default function LearningV2DirectSessionPlayerV1() {
                 styles.audioButton,
                 {
                   backgroundColor: t.bgSurface2,
-                  borderColor: t.border,
                   opacity: pressed ? 0.72 : 1,
                 },
               ]}
@@ -786,9 +825,14 @@ export default function LearningV2DirectSessionPlayerV1() {
                   style={({ pressed }) => [
                     styles.answer,
                     {
-                      backgroundColor: selected ? t.bgSurface2 : t.bgCard,
-                      borderColor:
-                        result === "correct" && selected ? t.correct : t.border,
+                      // зачем: владелец запретил обводки контейнеров — верный
+                      // ответ теперь виден заливкой, а не рамкой вокруг.
+                      backgroundColor:
+                        result === "correct" && selected
+                          ? t.correctBg
+                          : selected
+                            ? t.bgSurface2
+                            : t.bgCard,
                       opacity: pressed ? 0.78 : 1,
                     },
                   ]}
@@ -805,7 +849,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               <View
                 style={[
                   styles.assembled,
-                  { backgroundColor: t.bgCard, borderColor: t.border },
+                  { backgroundColor: t.bgCard },
                 ]}
               >
                 <Text
@@ -839,7 +883,6 @@ export default function LearningV2DirectSessionPlayerV1() {
                         styles.chip,
                         {
                           backgroundColor: t.bgCard,
-                          borderColor: t.border,
                           opacity: used ? 0.3 : pressed ? 0.72 : 1,
                         },
                       ]}
@@ -873,10 +916,9 @@ export default function LearningV2DirectSessionPlayerV1() {
               style={[
                 styles.speechBox,
                 {
+                  // Слушание уже читается по заливке — рамка была лишней.
                   backgroundColor:
                     localVoice.status === "listening" ? t.accentBg : t.bgCard,
-                  borderColor:
-                    localVoice.status === "listening" ? t.accent : t.border,
                 },
               ]}
             >
@@ -908,7 +950,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             accessibilityLiveRegion="polite"
             style={[
               styles.explanation,
-              { backgroundColor: t.bgSurface2, borderColor: t.border },
+              { backgroundColor: t.bgSurface2 },
             ]}
           >
             <Ionicons name="bulb-outline" size={20} color={t.accent} />
@@ -919,45 +961,21 @@ export default function LearningV2DirectSessionPlayerV1() {
         )}
 
         <View style={styles.actionRow}>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={copy.savePhrase}
-            accessibilityState={{
-              disabled: result !== "correct",
-              busy: savingPhrase,
+          <SaveToCardsButton
+            label={copy.savePhrase}
+            savedLabel={copy.saveAdded}
+            saved={savedThisCard}
+            pulse={savePulse}
+            disabled={!auxiliary}
+            onSave={() => void savePhrase()}
+            colors={{
+              surface: t.bgCard,
+              text: t.textPrimary,
+              muted: t.textMuted,
+              accent: t.accent,
             }}
-            disabled={result !== "correct" || savingPhrase}
-            onPress={() => void savePhrase()}
-            style={({ pressed }) => [
-              styles.compactAction,
-              {
-                backgroundColor: t.bgCard,
-                borderColor: t.border,
-                opacity:
-                  result !== "correct"
-                    ? 0.45
-                    : pressed || savingPhrase
-                      ? 0.72
-                      : 1,
-              },
-            ]}
-          >
-            <Ionicons
-              name={
-                saveMessage === copy.saveAdded ? "bookmark" : "bookmark-outline"
-              }
-              size={20}
-              color={result === "correct" ? t.textPrimary : t.textMuted}
-            />
-            <Text
-              style={[
-                styles.compactActionText,
-                { color: result === "correct" ? t.textPrimary : t.textMuted },
-              ]}
-            >
-              {copy.savePhrase}
-            </Text>
-          </Pressable>
+            testID="learning-v2-save-phrase"
+          />
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={
@@ -986,8 +1004,6 @@ export default function LearningV2DirectSessionPlayerV1() {
               {
                 backgroundColor:
                   localVoice.status === "listening" ? t.accent : t.bgCard,
-                borderColor:
-                  localVoice.status === "listening" ? t.accent : t.border,
                 opacity:
                   auxiliary.voice.available !== true
                     ? 0.45
@@ -1029,7 +1045,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             accessibilityLiveRegion="polite"
             style={[
               styles.voiceTranscript,
-              { backgroundColor: t.bgSurface2, borderColor: t.border },
+              { backgroundColor: t.bgSurface2 },
             ]}
           >
             <Ionicons name="mic" size={18} color={t.accent} />
@@ -1072,7 +1088,6 @@ export default function LearningV2DirectSessionPlayerV1() {
           {
             paddingBottom: insets.bottom + 12,
             backgroundColor: t.bgPrimary,
-            borderColor: t.border,
           },
         ]}
       >
@@ -1110,7 +1125,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               }}
               style={({ pressed }) => [
                 styles.skip,
-                { borderColor: t.border, opacity: pressed ? 0.72 : 1 },
+                { opacity: pressed ? 0.72 : 1 },
               ]}
             >
               <Text style={[styles.skipText, { color: t.textMuted }]}>
@@ -1186,7 +1201,6 @@ const styles = StyleSheet.create({
   preparingContent: { paddingHorizontal: 20, paddingTop: 24, gap: 18 },
   preparingCard: {
     minHeight: 76,
-    borderWidth: 1,
     borderRadius: 20,
     paddingHorizontal: 18,
     flexDirection: "row",
@@ -1238,7 +1252,6 @@ const styles = StyleSheet.create({
   audioButton: {
     width: 48,
     height: 48,
-    borderWidth: 1,
     borderRadius: 16,
     alignItems: "center",
     justifyContent: "center",
@@ -1246,7 +1259,6 @@ const styles = StyleSheet.create({
   answers: { marginTop: 24, gap: 12 },
   answer: {
     minHeight: 58,
-    borderWidth: 1.5,
     borderRadius: 18,
     paddingHorizontal: 18,
     paddingVertical: 15,
@@ -1255,7 +1267,6 @@ const styles = StyleSheet.create({
   answerText: { fontSize: 16, lineHeight: 23, fontWeight: "800" },
   assembled: {
     minHeight: 76,
-    borderWidth: 1,
     borderRadius: 19,
     paddingHorizontal: 17,
     paddingVertical: 18,
@@ -1265,7 +1276,6 @@ const styles = StyleSheet.create({
   chips: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
   chip: {
     minHeight: 48,
-    borderWidth: 1,
     borderRadius: 15,
     paddingHorizontal: 15,
     justifyContent: "center",
@@ -1282,7 +1292,6 @@ const styles = StyleSheet.create({
   undoText: { fontSize: 14, fontWeight: "800" },
   speechBox: {
     minHeight: 190,
-    borderWidth: 1,
     borderRadius: 22,
     padding: 22,
     alignItems: "center",
@@ -1310,7 +1319,6 @@ const styles = StyleSheet.create({
   },
   explanation: {
     marginTop: 18,
-    borderWidth: 1,
     borderRadius: 18,
     padding: 15,
     flexDirection: "row",
@@ -1321,7 +1329,6 @@ const styles = StyleSheet.create({
   actionRow: { marginTop: 22, flexDirection: "row" },
   compactAction: {
     minHeight: 48,
-    borderWidth: 1,
     borderRadius: 16,
     paddingHorizontal: 14,
     flexDirection: "row",
@@ -1332,7 +1339,6 @@ const styles = StyleSheet.create({
   voiceTranscript: {
     minHeight: 48,
     marginTop: 12,
-    borderWidth: 1,
     borderRadius: 16,
     paddingHorizontal: 14,
     paddingVertical: 11,
@@ -1373,7 +1379,6 @@ const styles = StyleSheet.create({
   primaryText: { fontSize: 16, fontWeight: "900" },
   skip: {
     minHeight: 54,
-    borderWidth: 1,
     borderRadius: 18,
     alignItems: "center",
     justifyContent: "center",

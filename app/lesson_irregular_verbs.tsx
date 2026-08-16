@@ -210,27 +210,17 @@ function verbTenseCaptions(lang: Lang): {
   participle: string;
   future: (base: string) => string;
 } {
-  if (lang === 'uk') {
-    return {
-      present: 'теперішнє',
-      pastT: 'минуле',
-      participle: 'дієприкметник',
-      future: (base) => `майбутнє: will ${base}`,
-    };
-  }
-  if (lang === 'es') {
-    return {
-      present: 'presente',
-      pastT: 'pasado',
-      participle: 'participio',
-      future: (base) => `futuro: will ${base}`,
-    };
-  }
+  // зачем: единый переводчик проекта вместо if-лестницы (сторож i18n +
+  // недостающие 5 языков раньше молча откатывались на русский).
+  const present = triLang(lang, { ru: 'настоящее', uk: 'теперішнє', es: 'presente', 'pt-BR': 'presente', vi: 'hiện tại', id: 'sekarang', tr: 'şimdiki', pl: 'teraźniejszy' });
+  const pastT = triLang(lang, { ru: 'прошлое', uk: 'минуле', es: 'pasado', 'pt-BR': 'passado', vi: 'quá khứ', id: 'lampau', tr: 'geçmiş', pl: 'przeszły' });
+  const participle = triLang(lang, { ru: 'причастие', uk: 'дієприкметник', es: 'participio', 'pt-BR': 'particípio', vi: 'phân từ', id: 'partisip', tr: 'ortaç', pl: 'imiesłów' });
+  const futureWord = triLang(lang, { ru: 'будущее', uk: 'майбутнє', es: 'futuro', 'pt-BR': 'futuro', vi: 'tương lai', id: 'masa depan', tr: 'gelecek', pl: 'przyszły' });
   return {
-    present: 'настоящее',
-    pastT: 'прошлое',
-    participle: 'причастие',
-    future: (base) => `будущее: will ${base}`,
+    present,
+    pastT,
+    participle,
+    future: (base) => `${futureWord}: will ${base}`,
   };
 }
 

@@ -34,10 +34,13 @@ import { LUM, TOAST } from '../constants/motionHybrid';
 import { hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { triLang, type Lang } from '../constants/i18n';
 const AUTO_HIDE_MS = 10_000;
 
+// зачем: единый переводчик проекта (учитывает включённые языки), а не свой
+// мини-словарь; проп lang приходит строкой из старого контракта — приводим.
 const L = (lang: string, map: Record<string, string>): string =>
-  map[lang] ?? map.ru ?? Object.values(map)[0] ?? '';
+  triLang(lang as Lang, map as unknown as Record<Lang, string>);
 
 /**
  * зачем: гибрид «Световод» (макет .motion-mockups/phraseman-hybrid.html,

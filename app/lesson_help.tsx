@@ -557,7 +557,7 @@ export default function LessonHelp() {
         <ReportErrorButton
           screen="theory"
           dataId={`theory_lesson_${lessonId}`}
-          dataText={`Теория урока ${lessonId}`}
+          dataText={`theory_lesson_${lessonId}`} // зачем: служебная метка для репорта, не UI
           style={{ alignSelf: 'flex-end', marginTop: 16 }}
         />
 

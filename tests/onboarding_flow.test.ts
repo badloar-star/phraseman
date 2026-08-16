@@ -25,67 +25,80 @@ describe('configurable onboarding flow', () => {
   );
 
   it('ignores unknown ids and restores canonical order', () => {
-    expect(parseEnabledOnboardingSteps('["goal","future","welcome"]')).toEqual([
+    expect(parseEnabledOnboardingSteps('["promise","future","welcome"]')).toEqual([
       'welcome',
-      'goal',
+      'promise',
       'name',
     ]);
   });
 
   it('applies local product availability after remote config', () => {
-    expect(resolveEnabledOnboardingOrder(['welcome', 'language', 'name'], false)).toEqual([
+    // Рубильник глушит ВЕСЬ языковой блок — и выбор языка, и уровень.
+    expect(resolveEnabledOnboardingOrder(['welcome', 'language', 'level', 'name'], false)).toEqual([
       'welcome',
+      'name',
+    ]);
+    expect(resolveEnabledOnboardingOrder(['welcome', 'language', 'level', 'name'], true)).toEqual([
+      'welcome',
+      'language',
+      'level',
       'name',
     ]);
   });
 
   it('skips adjacent disabled steps in both directions', () => {
-    const order = resolveEnabledOnboardingOrder(['welcome', 'goal', 'name'], false);
-    expect(resolveOnboardingStep(order, 'welcome', 'forward')).toBe('goal');
-    expect(resolveOnboardingStep(order, 'name', 'backward')).toBe('goal');
+    const order = resolveEnabledOnboardingOrder(['welcome', 'promise', 'name'], false);
+    expect(resolveOnboardingStep(order, 'welcome', 'forward')).toBe('promise');
+    expect(resolveOnboardingStep(order, 'name', 'backward')).toBe('promise');
   });
 
   it('resolves a disabled restored step to the nearest following step', () => {
-    const order = resolveEnabledOnboardingOrder(['welcome', 'minutes', 'name'], false);
-    expect(resolveOnboardingStep(order, 'goal', 'current-or-forward')).toBe('minutes');
+    // 'source' выключен, якорь на него → отдаём ближайший следующий живой шаг.
+    const order = resolveEnabledOnboardingOrder(['welcome', 'promise', 'name'], false);
+    expect(resolveOnboardingStep(order, 'source', 'current-or-forward')).toBe('promise');
   });
 
+  // Эффекты пейвола (подготовка, pending-план, трекинг показа) обязаны сработать
+  // РОВНО тогда, когда следующий шаг — сам пейвол, и ни на шаг раньше.
   it.each([
     [[], 'name', false],
-    [['startMode'], 'startMode', false],
-    [['planComparison'], 'planComparison', false],
+    [['trialReminder'], 'trialReminder', false],
+    [['improve'], 'improve', false],
     [['onboardingPaywall'], 'onboardingPaywall', true],
-    [['startMode', 'planComparison'], 'startMode', false],
-    [['startMode', 'onboardingPaywall'], 'startMode', false],
-    [['planComparison', 'onboardingPaywall'], 'planComparison', false],
-    [['startMode', 'planComparison', 'onboardingPaywall'], 'startMode', false],
+    [['trialReminder', 'onboardingPaywall'], 'trialReminder', false],
+    [['onboardingPaywall', 'improve'], 'onboardingPaywall', true],
+    [['trialReminder', 'onboardingPaywall', 'improve'], 'trialReminder', false],
   ] as Array<[OnboardingStepId[], OnboardingStepId, boolean]>) (
     'chooses destination and paywall effects for enabled tail %p',
     (tail, destination, paywallEffects) => {
-      const order = resolveEnabledOnboardingOrder(['plusBenefits', ...tail, 'name'], false);
-      const decision = decideOnboardingTransition(order, 'plusBenefits');
+      const order = resolveEnabledOnboardingOrder(['notifications', ...tail, 'name'], false);
+      const decision = decideOnboardingTransition(order, 'notifications');
       expect(decision).toEqual({
         destination,
         preparePaywall: paywallEffects,
+        createPendingPlan: paywallEffects,
         trackPaywallView: paywallEffects,
       });
     },
   );
 
-  it('prepares paywall when plan comparison is skipped after start mode', () => {
+  it('prepares paywall when the trial reminder leads straight into prices', () => {
     const order = resolveEnabledOnboardingOrder(
-      ['startMode', 'onboardingPaywall', 'name'],
+      ['trialReminder', 'onboardingPaywall', 'name'],
       false,
     );
-    expect(decideOnboardingTransition(order, 'startMode')).toEqual({
+    expect(decideOnboardingTransition(order, 'trialReminder')).toEqual({
       destination: 'onboardingPaywall',
       preparePaywall: true,
+      createPendingPlan: true,
       trackPaywallView: true,
     });
   });
 
   it('calculates progress from enabled visible progress steps', () => {
-    expect(getOnboardingProgress(['welcome', 'goal', 'aha', 'name'], 'goal')).toEqual({ progress: 1, total: 2 });
+    // welcome и privacy не считаются шагами прогресса.
+    expect(getOnboardingProgress(['welcome', 'privacy', 'promise', 'name'], 'promise'))
+      .toEqual({ progress: 1, total: 2 });
     expect(getOnboardingProgress(['name'], 'name')).toEqual({ progress: 1, total: 1 });
   });
 
@@ -94,15 +107,17 @@ describe('configurable onboarding flow', () => {
     const gate = new Promise<void>((resolve) => { release = resolve; });
     const effects = {
       preparePaywall: jest.fn(() => gate),
+      createPendingPlan: jest.fn(),
       trackPaywallView: jest.fn(),
     };
     const busy = { current: false };
-    const decision = decideOnboardingTransition(['startMode', 'onboardingPaywall', 'name'], 'startMode');
+    const decision = decideOnboardingTransition(['trialReminder', 'onboardingPaywall', 'name'], 'trialReminder');
     const first = runOnboardingTransitionEffects(decision, busy, effects);
     const second = runOnboardingTransitionEffects(decision, busy, effects);
     release();
     await Promise.all([first, second]);
     expect(effects.preparePaywall).toHaveBeenCalledTimes(1);
+    expect(effects.createPendingPlan).toHaveBeenCalledTimes(1);
     expect(effects.trackPaywallView).toHaveBeenCalledTimes(1);
   });
 });

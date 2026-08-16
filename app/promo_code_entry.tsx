@@ -162,6 +162,35 @@ async function persistRedeemedPromoAccess(params: {
   return grantAt;
 }
 
+// зачем: пейвол онбординга (меню «···») активирует промокод без навигации на этот
+// экран — онбординг рисуется оверлеем ПОВЕРХ стека, и router.push открыл бы экран
+// под ним. Поэтому весь боевой redeem-путь (анонимный вход → generation-гейт →
+// сервер → запись VIP-снапшота → события) доступен одной функцией.
+export async function redeemPromoCodeWithPersist(rawCode: string): Promise<{
+  status: PromoRedeemStatus;
+  rewardDays?: number;
+  rewardKind?: 'days' | 'lifetime';
+}> {
+  const stableId = await ensureAnonUser();
+  const generation = captureAccountGeneration();
+  if (!stableId || !isCurrentAccountGeneration(generation, stableId)) return { status: 'error' };
+  const res = await redeemPromoCode(rawCode);
+  if (!isCurrentAccountGeneration(generation, stableId)) return { status: 'error' };
+  if (res.status === 'redeemed') {
+    await persistRedeemedPromoAccess({
+      code: normalizePromoCodeInput(rawCode),
+      rewardKind: res.rewardKind,
+      vipUntilMs: res.vipUntilMs,
+      grantAtMs: res.grantAtMs,
+      generation,
+    });
+    invalidatePremiumCache();
+    emitAppEvent('vip_activated');
+    emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+  }
+  return { status: res.status, rewardDays: res.rewardDays, rewardKind: res.rewardKind };
+}
+
 export default function PromoCodeEntryScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
@@ -235,8 +264,8 @@ export default function PromoCodeEntryScreen() {
     setCelebrationVisible(false);
     setCelebrationMarker(null);
     if (marker) void consumeVipCelebration(marker);
-    safeRouterBack(router, closeFallback as any);
-  }, [celebrationMarker, closeFallback, router]);
+    safeRouterBack(router, '/(tabs)/settings' as any);
+  }, [celebrationMarker, router]);
 
   return (
     <ScreenGradient artBackdrop="friends">

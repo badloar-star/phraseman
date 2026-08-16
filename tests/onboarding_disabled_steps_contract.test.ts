@@ -15,8 +15,12 @@ describe('CleanOnboarding disabled step integration', () => {
   });
 
   it('decides paywall side effects from the actual destination', () => {
-    expect(source).toContain("decideOnboardingTransition(enabledOrder, 'startMode')");
-    expect(source).toContain("decideOnboardingTransition(enabledOrder, 'planComparison')");
-    expect(source.match(/runOnboardingTransitionEffects\(decision/g)).toHaveLength(2);
+    // Минимальный флоу (2026-08-16): к ценам ведёт один переход — с экрана
+    // «предупредим до конца пробного». Эффекты пейвола не должны дублироваться,
+    // поэтому вызов ровно один; появится второй вход — тест обязан упасть.
+    expect(source).toContain("decideOnboardingTransition(enabledOrder, 'trialReminder')");
+    expect(source.match(/runOnboardingTransitionEffects\(decision/g)).toHaveLength(1);
+    // Решение берётся из decision, а не из захардкоженного шага.
+    expect(source).toContain('go(decision.destination)');
   });
 });

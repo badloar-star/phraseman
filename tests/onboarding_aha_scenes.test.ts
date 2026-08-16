@@ -68,9 +68,11 @@ describe('resolveAhaScenario: маппинг цели -> сценарий', () =
     ['words', 'everyday'],
     ['mind', 'self'],
     ['work', 'work'],
-    [null, 'self'],
-    ['unknown', 'self'],
-    [undefined, 'self'],
+    // Анкета цели удалена (владелец, 2026-08-16): без явной цели играем витринную
+    // сцену «кафе» — она лучше всего показывает перенос формулы, а не повтор.
+    [null, 'travel'],
+    ['unknown', 'travel'],
+    [undefined, 'travel'],
   ];
 
   it.each(cases)('%s -> %s', (goal, expectedId) => {

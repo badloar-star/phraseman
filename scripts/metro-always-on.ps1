@@ -72,15 +72,57 @@ function Get-LanIp {
     Select-Object -First 1 -ExpandProperty IPAddress
 }
 
-# ── 1. Освободить свой порт (только свой, чужие сессии не трогаем) ──
-Say "Освобождаю порт $Port (чужие порты не трогаю)..."
-try {
-  $owners = (Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue).OwningProcess |
-    Select-Object -Unique
-  foreach ($op in $owners) {
-    try { Stop-Process -Id $op -Force -ErrorAction SilentlyContinue } catch {}
+# зачем: кто на самом деле слушает порт. Инцидент 2026-08-16: watchdog писал в
+# metro-url.txt порт 8085 ДО старта, Metro не поднимался, а Metro другой сессии
+# жил на 8081. Телефон читал 8085, стучался в мёртвый порт — и ни одна правка
+# не доезжала, хотя бандлинг шёл непрерывно.
+function Test-PortAlive([int]$p) {
+  try {
+    $r = Invoke-WebRequest -Uri ("http://127.0.0.1:{0}/status" -f $p) -TimeoutSec 3 -UseBasicParsing -ErrorAction Stop
+    return ($r.Content -match 'packager-status:running')
+  } catch { return $false }
+}
+
+function Test-PortListening([int]$p) {
+  return [bool](Get-NetTCPConnection -LocalPort $p -State Listen -ErrorAction SilentlyContinue)
+}
+
+# ── 1. Порт: сначала УВИДЕТЬ, что там, потом решать ──
+# зачем: раньше порт освобождался вслепую — Stop-Process на любого, кто его занял.
+# Если это был рабочий Metro соседней сессии, мы его убивали; если убить не
+# удавалось, свой Metro падал мгновенно, а в metro-url.txt уже лежал адрес
+# несуществующего сервера. Теперь: живой ЧУЖОЙ Metro не трогаем, а честно
+# переезжаем на свободный порт — телефон получит именно тот адрес, где сервер есть.
+if (Test-PortAlive $Port) {
+  Say "На порту $Port уже работает Metro этого проекта — переиспользую его, убивать не буду."
+  Say "Если нужен именно свежий старт, закрой тот Metro и запусти снова."
+} elseif (Test-PortListening $Port) {
+  Say "Порт $Port занят процессом, который не отвечает как Metro. Освобождаю только его."
+  try {
+    $owners = (Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue).OwningProcess |
+      Select-Object -Unique
+    foreach ($op in $owners) {
+      try { Stop-Process -Id $op -Force -ErrorAction SilentlyContinue } catch {}
+    }
+  } catch {}
+  Start-Sleep -Seconds 1
+}
+
+# Порт всё ещё занят (не смогли освободить) → берём следующий свободный.
+# Молча падать здесь нельзя: именно так и появлялся адрес мёртвого порта.
+if (Test-PortListening $Port) {
+  $fallback = $null
+  foreach ($candidate in ($Port + 1)..($Port + 20)) {
+    if (-not (Test-PortListening $candidate)) { $fallback = $candidate; break }
   }
-} catch {}
+  if ($fallback) {
+    Say "Порт $Port освободить не удалось. Перехожу на свободный порт $fallback."
+    $Port = $fallback
+  } else {
+    Say "ОШИБКА: ни один порт из диапазона $Port..$($Port + 20) не свободен. Перезагрузи компьютер или закрой лишние Metro."
+    exit 1
+  }
+}
 
 # зачем: старый protected-metro-phone.ps1 мог остаться крутиться в фоне и бесконечно
 # драться за тот же порт — гасим именно его, чтобы watchdog'и не воевали друг с другом.
@@ -148,6 +190,7 @@ try {
 # ── 6. Watchdog ──
 $attempt = 0
 $fastFailStreak = 0
+$confirmJob = $null
 try {
   while ($true) {
     $attempt++
@@ -167,7 +210,31 @@ try {
       $env:REACT_NATIVE_PACKAGER_HOSTNAME = $lanIp
       $expoArgs += "--lan"
       $url = "http://{0}:{1}" -f $lanIp, $Port
-      Set-Content -LiteralPath $UrlFile -Encoding UTF8 -Value $url
+
+      # зачем: адрес в metro-url.txt пишем ТОЛЬКО после того, как сервер реально
+      # ответил — раньше он писался до старта, и после неудачного запуска в файле
+      # оставался адрес мёртвого порта. Телефон читал его и молча стучался в
+      # никуда: бандлинг шёл, правки не доезжали, причина была невидима.
+      # Пока подтверждения нет — файла нет вовсе; пустое место честнее лжи.
+      Remove-Item -LiteralPath $UrlFile -ErrorAction SilentlyContinue
+      # Отдельным процессом, а не Start-Job: Job не выполняется, когда окно
+      # запущено без интерактивной сессии (проверено — Metro жил, файл не писался).
+      $waiterCode = @"
+for (`$i = 0; `$i -lt 150; `$i++) {
+  Start-Sleep -Seconds 2
+  try {
+    `$r = Invoke-WebRequest -Uri 'http://127.0.0.1:$Port/status' -TimeoutSec 3 -UseBasicParsing -ErrorAction Stop
+    if (`$r.Content -match 'packager-status:running') {
+      Set-Content -LiteralPath '$UrlFile' -Encoding UTF8 -Value '$url'
+      exit 0
+    }
+  } catch {}
+}
+"@
+      $confirmJob = Start-Process -FilePath "powershell.exe" `
+        -ArgumentList "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", $waiterCode `
+        -WindowStyle Hidden -PassThru
+
       Write-Host ""
       Write-Host "  ==================================================" -ForegroundColor Green
       Write-Host "   НА iPhone (Enter URL manually):" -ForegroundColor Green
@@ -190,13 +257,31 @@ try {
     & node $localExpoCli @expoArgs
     $ranFor = (Get-Date) - $startedAt
 
+    # зачем: Metro умер — значит адрес в файле больше ни на что не указывает.
+    # Оставить его = снова отправить телефон в мёртвый порт. Стираем сразу.
+    if ($confirmJob) {
+      try { Stop-Process -Id $confirmJob.Id -Force -ErrorAction SilentlyContinue } catch {}
+      $confirmJob = $null
+    }
+    Remove-Item -LiteralPath $UrlFile -ErrorAction SilentlyContinue
+
     if ($ranFor.TotalSeconds -lt 10) {
       # зачем: мгновенный выход = ошибка конфига/порта, а не случайный краш. Без этого
       # тормоза watchdog уходил в шторм (в логе старого скрипта — 1363 попытки подряд).
       $fastFailStreak++
       if ($fastFailStreak -ge 3) {
         Say "Metro падает сразу 3 раза подряд — это ошибка настройки, а не случайный сбой."
-        Say "Прочитай ошибку выше. Нажми любую клавишу чтобы попробовать снова, или закрой окно."
+        # зачем: раньше сюда писалась только эта фраза, а сам текст ошибки терялся —
+        # окно закрывали, и в логе оставалось «ошибка настройки» без причины.
+        # Проверяем самое частое и называем это словами.
+        if (Test-PortListening $Port) {
+          Say "ПРИЧИНА: порт $Port занят другим процессом. Закрой лишний Metro или запусти: npm run metro -- -Port $($Port + 1)"
+        } elseif (-not (Get-LanIp)) {
+          Say "ПРИЧИНА: нет рабочего Wi-Fi адреса (только 169.254.*). Переподключись к Wi-Fi."
+        } else {
+          Say "ПРИЧИНА не распознана — прочитай текст ошибки Metro выше в этом окне."
+        }
+        Say "Нажми любую клавишу чтобы попробовать снова, или закрой окно."
         [void][System.Console]::ReadKey($true)
         $fastFailStreak = 0
       } else {
@@ -211,6 +296,13 @@ try {
     }
   }
 } finally {
+  # зачем: окно закрыли — сервера больше нет, адрес обязан исчезнуть вместе с ним.
+  # Именно переживший процесс адрес и отправлял телефон в мёртвый порт.
+  if ($confirmJob) {
+    try { Stop-Process -Id $confirmJob.Id -Force -ErrorAction SilentlyContinue } catch {}
+  }
+  Remove-Item -LiteralPath $UrlFile -ErrorAction SilentlyContinue
+
   # зачем: снять запрет на сон, иначе ноутбук перестанет засыпать и после закрытия окна.
   try {
     Start-Process -FilePath "powercfg.exe" `

@@ -45,6 +45,34 @@ export function decideYoutubeSearchBudget(input: {
   };
 }
 
+const SHORTS_MARKER_RE = /(?:^|\s)#shorts?\b/i;
+/** Ролики короче этого — Shorts, даже без хештега в описании. */
+const SHORTS_MAX_SECONDS = 180;
+
+/** ISO-8601 длительность YouTube (PT1H2M3S) в секундах; мусор → null. */
+export function parseYoutubeDurationSeconds(duration: string | undefined): number | null {
+  if (!duration) return null;
+  const match = duration.match(/^P(?:(\d+)D)?T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  if (!match) return null;
+  const [, days, hours, minutes, seconds] = match;
+  if (!days && !hours && !minutes && !seconds) return null;
+  return Number(days ?? 0) * 86_400 + Number(hours ?? 0) * 3_600 + Number(minutes ?? 0) * 60 + Number(seconds ?? 0);
+}
+
+/**
+ * Shorts определяем по длительности, а хештег оставляем запасным признаком.
+ * зачем: раньше признаком был только `#shorts` в тексте, поэтому короткий ролик
+ * без хештега проходил как полноценный, а длинный урок с хештегом — отсеивался.
+ * Длительность приходит тем же запросом videos, лишней квоты это не стоит.
+ */
+export function isYoutubeShortSource(
+  source: Pick<YoutubeVideoSource, 'title' | 'description' | 'duration'>,
+): boolean {
+  const seconds = parseYoutubeDurationSeconds(source.duration);
+  if (seconds != null) return seconds <= SHORTS_MAX_SECONDS;
+  return SHORTS_MARKER_RE.test(`${source.title}\n${source.description}`);
+}
+
 export function mergeYoutubeVideoSources(input: {
   channelId: string;
   nowMs: number;
@@ -59,7 +87,7 @@ export function mergeYoutubeVideoSources(input: {
 }): YoutubeVideoSnapshot[] {
   const sourceById = new Map<string, YoutubeVideoSource>();
   for (const source of input.sources) {
-    if (!sourceById.has(source.id) && !/(?:^|\s)#shorts?\b/i.test(`${source.title}\n${source.description}`)) {
+    if (!sourceById.has(source.id) && !isYoutubeShortSource(source)) {
       sourceById.set(source.id, source);
     }
   }

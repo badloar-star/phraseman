@@ -73,7 +73,11 @@ describe('home YouTube feature card', () => {
     expect(card).toContain('const manifest = await fetchYoutubeCatalogManifest();');
     expect(card).not.toContain('warm?.manifest ?? await fetchYoutubeCatalogManifest()');
     expect(card).toContain('peekYoutubeCatalogScreenSnapshot');
-    expect(card).toContain('if (!ownerActive || !enabled || !renderScope) return;');
+    // Каталог YouTube общий для всех, поэтому карточка грузится и до опознания
+    // пользователя: гейта по renderScope здесь быть не должно (владелец:
+    // «должны отображаться в любом сценарии»).
+    expect(card).toContain('if (!ownerActive || !enabled) return;');
+    expect(card).not.toContain('if (!ownerActive || !enabled || !renderScope) return;');
     expect(card).toContain('isVideoButtonEnabled');
     expect(card).toContain('<YoutubeVideoCard');
     expect(sharedCard).toContain('accessibilityRole="button"');

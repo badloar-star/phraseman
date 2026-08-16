@@ -93,6 +93,23 @@ describe('YouTube catalog mobile client', () => {
     expect(source.list).not.toHaveBeenCalled();
   });
 
+  // Владелец: видео должны отображаться в ЛЮБОМ сценарии — с авторизацией и без.
+  // Раньше неопознанная личность отменяла загрузку и экран оставался пустым.
+  it('loads the shared catalog before the account is identified', async () => {
+    __resetAccountGenerationForTests();
+    const token = captureAccountGeneration();
+    expect(token.phase).toBe('uninitialized');
+
+    const commit = jest.fn();
+    const result = await revalidateYoutubeChannelCatalog({
+      channelId: 'english', token, reader: reader(), previous: null, commit,
+    });
+
+    expect(result?.channel.id).toBe('english');
+    expect(result?.videos.length).toBeGreaterThan(0);
+    expect(commit).toHaveBeenCalledTimes(1);
+  });
+
   it('does not commit a late response after account generation changes', async () => {
     beginAccountGeneration('alice');
     const token = captureAccountGeneration();

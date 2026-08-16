@@ -1,6 +1,11 @@
 export const YOUTUBE_CATALOG_LIMITS = Object.freeze({
   channels: 24,
   videosPerChannel: 100,
+  // зачем: канал может состоять почти целиком из Shorts (итальянский — 209 из 211).
+  // Раньше окно в 100 загрузок целиком забивалось короткими роликами, и два
+  // полноценных урока, лежащие глубже, не попадали в каталог вообще. Сканируем
+  // шире, чем показываем: лишние отсеиваются по длительности до среза.
+  uploadsScanPerChannel: 400,
   playlistsPerChannel: 50,
   playlistItems: 500,
   playlistPageSize: 50,

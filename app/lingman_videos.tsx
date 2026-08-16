@@ -20,7 +20,7 @@ import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import type { YoutubeChannelSnapshot, YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
-import { captureAccountGeneration } from './account_generation';
+import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import { safeRouterBack } from './navigation_back';
 import {
@@ -150,10 +150,14 @@ export default function LingmanVideosScreen() {
     }
   }, [renderAccountScope]);
 
+  // зачем: каталог YouTube — публичный контент, одинаковый для всех. Он обязан
+  // показываться в любом сценарии: и до авторизации, и после. Раньше загрузка
+  // отменялась, пока личность не активна, и экран навсегда оставался пустым.
   const loadCatalog = useCallback(async (requestedChannelId?: string, refresh = false) => {
     if (!screenRuntimeActiveRef.current) return;
     const token = captureAccountGeneration();
-    if (accountScopeKey(token) !== renderAccountScope) return;
+    const tokenScope = accountScopeKey(token);
+    if (tokenScope && renderAccountScope && tokenScope !== renderAccountScope) return;
     if (refresh) setRefreshing(true); else if (!catalogRef.current) setLoading(true);
     try {
       const manifest = catalogRef.current?.manifest ?? await fetchYoutubeCatalogManifest();
@@ -175,7 +179,10 @@ export default function LingmanVideosScreen() {
       setIssue(catalogRef.current ? 'offline' : 'error');
       if (!catalogRef.current) await loadLegacyFallback().catch(() => {});
     } finally {
-      if (accountScopeKey(captureAccountGeneration()) === renderAccountScope) {
+      // Скелетоны обязаны сняться и тогда, когда личность активировалась прямо
+      // во время загрузки: иначе экран навсегда застывал бы на заглушках.
+      const settledScope = accountScopeKey(captureAccountGeneration());
+      if (!renderAccountScope || settledScope === renderAccountScope) {
         setLoading(false); setRefreshing(false);
       }
     }
@@ -185,6 +192,16 @@ export default function LingmanVideosScreen() {
     if (!screenRuntimeActive) return;
     void loadCatalog();
   }, [loadCatalog, screenRuntimeActive]);
+
+  // зачем: экран мог открыться раньше, чем приложение опознало пользователя.
+  // Каталог грузится и без этого, но после активации личности перезапрашиваем —
+  // теперь снапшот ляжет в аккаунт-скоупный кэш и переживёт следующий заход.
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration(() => {
+      if (screenRuntimeActiveRef.current) void loadCatalog();
+    });
+    return () => subscription.remove();
+  }, [loadCatalog]);
 
   const selectPreference = async (nextPreference: YoutubeChannelPreference) => {
     const token = captureAccountGeneration();

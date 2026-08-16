@@ -207,6 +207,20 @@ export async function fetchYoutubeHomeFeatureCatalog(
   return fetchYoutubeHomeFeatureWithReader(channelId, await createFirestoreReader(), knownManifest);
 }
 
+/**
+ * Каталог YouTube — общий публичный контент, а не данные аккаунта: одни и те же
+ * ролики видят все. Поэтому загрузка НЕ гейтится готовностью личности — иначе
+ * экран, открытый раньше, чем приложение опознало пользователя, навсегда
+ * оставался пустым (владелец: «должны отображаться в любом сценарии»).
+ * Личность решает только одно: писать ли снапшот в аккаунт-скоупный кэш.
+ */
+/** Личность СМЕНИЛАСЬ на другую (alice → bob), а не «ещё не была готова». */
+function accountSwitchedAway(token: AccountGenerationToken): boolean {
+  // Токен, снятый до опознания пользователя, ничей — он не «устаревает».
+  if (token.phase !== 'active') return false;
+  return !isCurrentAccountGeneration(token);
+}
+
 export async function revalidateYoutubeChannelCatalog(options: {
   channelId: string;
   token: AccountGenerationToken;
@@ -214,11 +228,14 @@ export async function revalidateYoutubeChannelCatalog(options: {
   previous: YoutubeCatalogScreenSnapshot | null;
   commit: (snapshot: YoutubeCatalogScreenSnapshot) => void;
 }): Promise<YoutubeCatalogScreenSnapshot | null> {
-  if (!isCurrentAccountGeneration(options.token)) return null;
+  if (accountSwitchedAway(options.token)) return null;
   const reader = options.reader ?? await createFirestoreReader();
   const catalog = await fetchYoutubeChannelCatalogWithReader(options.channelId, reader);
-  if (!isCurrentAccountGeneration(options.token)) return null;
+  // Поздний ответ не должен дорисовывать каталог поверх ЧУЖОГО аккаунта.
+  if (accountSwitchedAway(options.token)) return null;
   const snapshot = buildYoutubeScreenSnapshot(catalog);
+  // Кэш остаётся аккаунт-скоупным: rememberYoutubeCatalogScreenSnapshot сам
+  // промолчит, пока личность не активна, — чужой снапшот в чужой скоуп не ляжет.
   rememberYoutubeCatalogScreenSnapshot(options.token, snapshot);
   if (!catalogSnapshotsEqual(options.previous, snapshot)) options.commit(snapshot);
   return snapshot;

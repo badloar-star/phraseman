@@ -49,7 +49,12 @@ function HomeYoutubeFeatureCard({ ownerActive, studyTarget }: HomeYoutubeFeature
     scope: string | null;
     value: YoutubeCatalogScreenSnapshot | null;
   }>(() => ({ scope: renderScope, value: initialSnapshot }));
-  const snapshot = snapshotState.scope === renderScope ? snapshotState.value : null;
+  // Снапшот, загруженный ДО опознания пользователя, имеет scope=null. Он общий
+  // и остаётся верным после авторизации, поэтому не выбрасываем его — иначе
+  // карточка мигала бы: появилась до входа и исчезла сразу после.
+  const snapshot = snapshotState.scope === renderScope || snapshotState.scope === null
+    ? snapshotState.value
+    : null;
   const [enabled, setEnabled] = useState(() => isVideoButtonEnabled());
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
@@ -65,15 +70,18 @@ function HomeYoutubeFeatureCard({ ownerActive, studyTarget }: HomeYoutubeFeature
     if (!ownerActive) setActiveVideoId(null);
   }, [ownerActive]);
 
+  // зачем: каталог YouTube общий для всех, поэтому карточка грузится и до того,
+  // как приложение опознало пользователя. Раньше при неготовой личности
+  // renderScope был null и эффект выходил сразу — карточка не появлялась вовсе.
   useEffect(() => {
-    if (!ownerActive || !enabled || !renderScope) return;
+    if (!ownerActive || !enabled) return;
     let cancelled = false;
     const token = captureAccountGeneration();
-    if (accountScopeKey(token) !== renderScope) return;
+    if (renderScope && accountScopeKey(token) !== renderScope) return;
 
     const warm = newerSnapshot(
       peekYoutubeCatalogScreenSnapshot(token),
-      memorySnapshotByScope.get(renderScope) ?? null,
+      renderScope ? memorySnapshotByScope.get(renderScope) ?? null : null,
     );
     setSnapshotState({ scope: renderScope, value: warm });
 
@@ -95,7 +103,12 @@ function HomeYoutubeFeatureCard({ ownerActive, studyTarget }: HomeYoutubeFeature
         const manifest = await fetchYoutubeCatalogManifest();
         const resolution = resolvePreferredYoutubeChannel(manifest, studyTarget, preference);
         const feature = await fetchYoutubeHomeFeatureCatalog(resolution.channelId, manifest);
-        if (!cancelled && accountScopeKey(captureAccountGeneration()) === renderScope) {
+        // Личность может активироваться прямо во время загрузки. Публичный
+        // каталог от этого не меняется, поэтому результат отбрасываем только
+        // при смене АККАУНТА, а не при переходе «ещё не опознан → опознан».
+        const settledScope = accountScopeKey(captureAccountGeneration());
+        const scopeChanged = renderScope != null && settledScope !== renderScope;
+        if (!cancelled && !scopeChanged) {
           const next: YoutubeCatalogScreenSnapshot = {
             version: feature.version,
             manifest: feature.manifest,
@@ -107,7 +120,7 @@ function HomeYoutubeFeatureCard({ ownerActive, studyTarget }: HomeYoutubeFeature
               : {}),
             fetchedAt: feature.fetchedAt,
           };
-          memorySnapshotByScope.set(renderScope, next);
+          if (settledScope) memorySnapshotByScope.set(settledScope, next);
           setSnapshotState({ scope: renderScope, value: next });
         }
       } catch {

@@ -17,6 +17,7 @@ import { hasPermission, roleFromAdminToken } from './admin/permissions';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
 import {
   decideYoutubeSearchBudget,
+  isYoutubeShortSource,
   mergeYoutubeVideoSources,
   nextYoutubeSyncIntervalMs,
 } from './youtube_catalog_core';
@@ -193,15 +194,25 @@ async function buildYoutubeSnapshot(input: {
   for (const configChannel of enabledChannels) {
     const channelSource = await input.gateway.getChannel(configChannel.youtubeChannelId);
     const [uploadIds, playlistSources, upcomingIds, liveIds] = await Promise.all([
-      input.gateway.getUploadVideoIds(channelSource.uploadsPlaylistId, YOUTUBE_CATALOG_LIMITS.videosPerChannel),
+      input.gateway.getUploadVideoIds(channelSource.uploadsPlaylistId, YOUTUBE_CATALOG_LIMITS.uploadsScanPerChannel),
       input.gateway.getPlaylists(channelSource.id, YOUTUBE_CATALOG_LIMITS.playlistsPerChannel),
       discoveryIds.has(configChannel.id) ? input.gateway.searchEvents(channelSource.id, 'upcoming') : Promise.resolve([]),
       discoveryIds.has(configChannel.id) ? input.gateway.searchEvents(channelSource.id, 'live') : Promise.resolve([]),
     ]);
     const pinnedIds = configChannel.pinnedVideos?.map((video) => video.id) ?? [];
-    const videoIds = [...new Set([...liveIds, ...upcomingIds, ...pinnedIds, ...uploadIds])]
+    // зачем: Shorts должны отсеиваться ДО среза до videosPerChannel. Иначе канал,
+    // где короткие ролики идут сплошняком (итальянский), тратит всё окно на них
+    // и полноценные видео не доезжают до каталога. Событиям и пинам срез не
+    // грозит — они всегда идут первыми и их единицы.
+    const keptIds = [...new Set([...liveIds, ...upcomingIds, ...pinnedIds])];
+    const scannedSources = await input.gateway.getVideos(
+      [...new Set([...keptIds, ...uploadIds])].slice(0, YOUTUBE_CATALOG_LIMITS.uploadsScanPerChannel),
+    );
+    const alwaysKept = new Set(keptIds);
+    const videoSources = scannedSources
+      .filter((source) => alwaysKept.has(source.id) || !isYoutubeShortSource(source))
       .slice(0, YOUTUBE_CATALOG_LIMITS.videosPerChannel);
-    const videoSources = await input.gateway.getVideos(videoIds);
+    const videoIds = videoSources.map((source) => source.id);
     let videos = mergeYoutubeVideoSources({
       channelId: configChannel.id,
       nowMs: input.nowMs,

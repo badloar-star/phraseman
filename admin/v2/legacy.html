@@ -15082,6 +15082,31 @@
     return _fnAdminEmailContactsBackfill;
   }
 
+  // ╔══════════════════════════════════════════════════════════════════════════╗
+  // ║  ⛔  ВХОД ВЛАДЕЛЬЦА — НЕ ЛОМАТЬ. НИКОГДА. НИКОМУ.                        ║
+  // ║                                                                          ║
+  // ║  badloar@gmail.com — владелец админки, он входит ВСЕГДА.                 ║
+  // ║  Его уже дважды запирали снаружи собственной админки (2026-08-16).       ║
+  // ║                                                                          ║
+  // ║  «Не пускает в админку» → СНАЧАЛА проверь custom claim admin,            ║
+  // ║  а НЕ правь этот код. Симптом почти всегда = пропавший claim.            ║
+  // ║  Порядок: ____ВХОД_В_АДМИНКУ_НЕ_ЛОМАТЬ____.md в корне репозитория.       ║
+  // ║                                                                          ║
+  // ║  НЕЛЬЗЯ убирать:                                                         ║
+  // ║    tr.claims.admin !== true   — сама проверка прав                       ║
+  // ║    getIdTokenResult(true)     — перевыпуск токена под свежий claim       ║
+  // ║    browserLocalPersistence    — сохранение сессии = автовход             ║
+  // ║    getRedirectResult(auth)    — вход с телефона                          ║
+  // ║                                                                          ║
+  // ║  🚫 ГЛАВНОЕ: никакого signOut в блоке отказа по claim.                   ║
+  // ║  Firebase держит сессию в IndexedDB. Пока claim был стёрт, каждый        ║
+  // ║  заход сносил сохранённую сессию — автовход выгорал сам, и после         ║
+  // ║  возврата claim восстанавливать было уже нечего.                         ║
+  // ║                                                                          ║
+  // ║  Стережёт: scripts/guard_admin_login.mjs (pre-commit, блокирует коммит)  ║
+  // ║            tests/admin_owner_access_contract.test.ts                     ║
+  // ║  Сработал сторож — чини вход, а не обходи сторожа.                       ║
+  // ╚══════════════════════════════════════════════════════════════════════════╝
   // ── Auth: email + custom claim admin (set via scripts/set_admin_claim.mjs) ─────
   const adminLoginEl = document.getElementById('admin-login');
   const adminAppEl = document.getElementById('admin-app');

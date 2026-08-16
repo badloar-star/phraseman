@@ -5,7 +5,7 @@ import { useTheme } from '../ThemeContext';
 import { GOLD_GRADIENTS, GOLD_RICH, goldShadow } from '../../constants/goldTheme';
 import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../../constants/oliveTheme';
 import GoldBevel from '../GoldBevel';
-import PressableScale from '../PressableScale';
+import DuoPressable from '../DuoPressable';
 
 type PrimaryButtonProps = {
   label: string;
@@ -15,6 +15,11 @@ type PrimaryButtonProps = {
   style?: ViewStyle;
 };
 
+// зачем: владелец 2026-08-16 — GoldBevel рисовал фальшивую «подошву» градиентом
+// ВНУТРИ лица, а физика нажатия (PressableScale) сжимала весь блок целиком —
+// кромка ужималась вместе с лицом и читалась как второй слой под кнопкой.
+// Перевели на DuoPressable: настоящая статичная подошва ниже лица + лицо едет
+// вниз на edgeHeight, GoldBevel остаётся чисто декоративным бликом на лице.
 function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButtonProps) {
   const { theme: t, f, ds, themeMode } = useTheme();
   const isDisabled = !!disabled || !!loading;
@@ -27,15 +32,22 @@ function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButt
     ? (isOliveTheme ? OLIVE_RICH.piano : t.textOnGold)
     : t.correctText;
   const radius = ds.radius.lg;
+  const edgeColor = isDisabled
+    ? t.shadowDark
+    : isGoldTheme
+    ? GOLD_RICH.bronzeDark
+    : isOliveTheme
+    ? OLIVE_RICH.piano
+    : t.shadowDark;
 
   return (
-    <PressableScale
+    <DuoPressable
       onPress={onPress}
       disabled={isDisabled}
-      busy={loading}
-      variant="primary"
-      style={styles.pressable}
-      contentStyle={[
+      edgeColor={edgeColor}
+      edgeHeight={5}
+      wrapStyle={styles.pressable}
+      style={[
         styles.button,
         isGoldTheme && !isDisabled ? goldShadow(2) : isOliveTheme && !isDisabled ? oliveShadow(2) : ds.shadow.soft,
         {
@@ -63,7 +75,7 @@ function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButt
       )}
       {isGoldTheme && !isDisabled && <GoldBevel radius={ds.radius.lg} intensity="strong" />}
       <Text style={{ color: foreground, fontSize: f.bodyLg, fontWeight: hasLuxuryGradient ? '800' : '700' }}>{label}</Text>
-    </PressableScale>
+    </DuoPressable>
   );
 }
 

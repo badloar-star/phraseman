@@ -8,6 +8,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { hapticTap } from '../../hooks/use-haptics';
 import type { LeagueChestRewardRarity } from '../../app/services/league_chest_rewards';
 import type { LeagueHubPalette } from './leagueHubPalette';
+import LeagueChestScanTeaser from './LeagueChestScanTeaser';
 
 /**
  * Модал-тизер «Что внутри?»: чёрные силуэты наград со знаками вопроса
@@ -25,6 +26,14 @@ interface LeagueChestTeaserModalProps {
   rarities: LeagueChestRewardRarity[];
   onClaim: () => void;
   onClose: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена «Тизер · скан сундука») живёт РЯДОМ со старой версией под флагом.
+   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
+  /** Гибрид: мс до вскрытия сундука для тикающего таймера. Дефолт 2 дня 14 часов (правдоподобная демка). */
+  opensAtMs?: number;
 }
 
 const RARITY_RIM: Record<LeagueChestRewardRarity, string> = {
@@ -75,14 +84,18 @@ function closeLabel(lang: Lang): string {
   return triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
 }
 
-function LeagueChestTeaserModalComponent({ visible, lang, palette, remainingXp, canClaim, rarities, onClaim, onClose }: LeagueChestTeaserModalProps) {
+function LeagueChestTeaserModalComponent({ visible, lang, palette, remainingXp, canClaim, rarities, onClaim, onClose, motionVariant = 'classic', opensAtMs }: LeagueChestTeaserModalProps) {
   const reduceMotion = useReduceMotion();
   const backdrop = useRef(new Animated.Value(0)).current;
   const raySpin = useRef(new Animated.Value(0)).current;
   const bob = useRef(new Animated.Value(0)).current;
 
+  // зачем: цикл лучей/покачивания — только у классики; в гибриде своя
+  // хореография живёт в LeagueChestScanTeaser, параллель бессмысленна.
+  const isClassic = motionVariant === 'classic';
+
   useEffect(() => {
-    if (!visible) return;
+    if (!visible || !isClassic) return;
     backdrop.setValue(0);
     Animated.timing(backdrop, { toValue: 1, duration: 240, useNativeDriver: true }).start();
     if (reduceMotion) return;
@@ -102,9 +115,21 @@ function LeagueChestTeaserModalComponent({ visible, lang, palette, remainingXp, 
       spinLoop.stop();
       bobLoop.stop();
     };
-  }, [visible, reduceMotion, backdrop, raySpin, bob]);
+  }, [visible, isClassic, reduceMotion, backdrop, raySpin, bob]);
 
   if (!visible) return null;
+
+  if (motionVariant === 'hybrid') {
+    return (
+      <LeagueChestScanTeaser
+        visible={visible}
+        lang={lang}
+        palette={palette}
+        opensAtMs={opensAtMs ?? Date.now() + (2 * 24 + 14) * 3_600_000}
+        onClose={onClose}
+      />
+    );
+  }
 
   const rayRotate = raySpin.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '360deg'] });
   const backdropOpacity = backdrop.interpolate({ inputRange: [0, 1], outputRange: [0, 0.72] });

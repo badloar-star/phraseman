@@ -44,6 +44,7 @@ import { triLang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import AuroraBackground from './premium_celebration/AuroraBackground';
+import PremiumCelebrationHybrid from './premium_celebration/PremiumCelebrationHybrid';
 import {
   CELEBRATION_FEATURES,
   CELEBRATION_PALETTES,
@@ -56,6 +57,14 @@ interface PremiumCelebrationModalProps {
   visible: boolean;
   onClose: () => void;
   variant?: CelebrationVariant;
+  /**
+   * зачем: гибрид «Световод + Чекан» («созвездие фич», макет-эталон сцена P1
+   * в .motion-mockups/phraseman-hybrid.html) живёт РЯДОМ со старой лентой под
+   * флагом — боевой дефолт 'classic' не меняется без явного включения.
+   * 'hybrid' рендерит PremiumCelebrationHybrid — свой reanimated-движок,
+   * список фич по тиру/CTA/двухступенчатый выход (skip→close) сохранены.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 const ROW_HEIGHT = 70;            // высота строки + gap (для расчёта скролла)
@@ -158,7 +167,18 @@ function FeatureRow({ feature, lang, lit, palette, f, reduceMotion }: {
   );
 }
 
-function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: PremiumCelebrationModalProps) {
+function PremiumCelebrationModal({ visible, onClose, variant = 'premium', motionVariant = 'classic' }: PremiumCelebrationModalProps) {
+  // зачем: гибрид — отдельный компонент со своим reanimated-движком; classic-хуки
+  // ниже ещё не примонтированы под 'hybrid', ранний return безопасен (тот же
+  // паттерн, что LevelUpThresholdModal/LeagueResultModal).
+  if (motionVariant === 'hybrid') {
+    return <PremiumCelebrationHybrid visible={visible} onClose={onClose} variant={variant} />;
+  }
+
+  return <PremiumCelebrationModalClassic visible={visible} onClose={onClose} variant={variant} />;
+}
+
+function PremiumCelebrationModalClassic({ visible, onClose, variant = 'premium' }: Omit<PremiumCelebrationModalProps, 'motionVariant'>) {
   const { width: winW, height: winH } = useWindowDimensions();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);

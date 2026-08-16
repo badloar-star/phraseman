@@ -1,5 +1,15 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
+import Reanimated, {
+  Easing,
+  cancelAnimation,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSequence,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import { onAppEvent } from '../app/events';
@@ -7,6 +17,7 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticError, hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
+import { LUM, SUITE, TOAST } from '../constants/motionHybrid';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { useOverlayVisible } from './OverlayArbiter';
 import {
@@ -22,6 +33,8 @@ import type { SoundEventId } from '../modules/audio/sound_events';
 type ToastPayload = {
   type: ToastType;
   soundEventId?: SoundEventId;
+  /** dev-only: витрина движения запускает гибрид рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
   messageRu: string;
   messageUk?: string;
   /** ES (UI en español). Si falta y `lang === "es"`, se usa un texto breve según `type`. */
@@ -129,6 +142,121 @@ const TOAST_TONES: Record<ToastType, ToastTone> = {
   },
 };
 
+/**
+ * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+ * сцена T1/T2 «Тосты»). Вход из света — opacity+y на пружине LUM.settle, без
+ * отскока. Ошибка — единственная дрожь TOAST.errorShakePx на жёсткой пружине
+ * TOAST.errorSpring (закон Motion DNA: дрожь уместна только здесь). Награда —
+ * bloom-подложка + микро-пульс иконки SUITE.pulse. Выход всегда короче входа
+ * (LUM.exitMs < LUM.resolveMs). Полный cancelAnimation на unmount.
+ */
+function ActionToastHybridCard({
+  type,
+  toneLabel,
+  message,
+  icon,
+  chrome,
+}: {
+  type: ToastType;
+  toneLabel: string;
+  message: string;
+  icon: keyof typeof Ionicons.glyphMap;
+  chrome: ReturnType<typeof themedToastChrome>;
+}) {
+  const opacity = useSharedValue(0);
+  const y = useSharedValue(-14);
+  const x = useSharedValue(0);
+  const bloom = useSharedValue(0);
+  const iconScale = useSharedValue(1);
+
+  useEffect(() => {
+    opacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    if (type === 'error' || type === 'warning') {
+      y.value = withSpring(0, TOAST.errorSpring);
+      x.value = withDelay(
+        LUM.resolveMs - 40,
+        withSequence(
+          ...TOAST.errorShakePx.map((v) => withTiming(v, { duration: TOAST.errorShakeStepMs, easing: Easing.linear })),
+        ),
+      );
+    } else {
+      y.value = withSpring(0, LUM.settle);
+    }
+    if (type === 'reward') {
+      bloom.value = withDelay(LUM.resolveMs * 0.4, withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) }));
+      iconScale.value = withDelay(
+        LUM.resolveMs + 40,
+        withSequence(
+          withSpring(1.14, SUITE.pulse),
+          withSpring(1, SUITE.pulse),
+        ),
+      );
+    }
+    return () => {
+      cancelAnimation(opacity);
+      cancelAnimation(y);
+      cancelAnimation(x);
+      cancelAnimation(bloom);
+      cancelAnimation(iconScale);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type]);
+
+  const cardStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+    transform: [{ translateY: y.value }, { translateX: x.value }],
+  }));
+  const bloomStyle = useAnimatedStyle(() => ({ opacity: bloom.value * 0.5 }));
+  const iconStyle = useAnimatedStyle(() => ({ transform: [{ scale: iconScale.value }] }));
+
+  return (
+    <Reanimated.View style={cardStyle}>
+      <LinearGradient
+        colors={chrome.cardColors}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={[
+          styles.toast,
+          {
+            borderColor: chrome.border,
+            borderRadius: chrome.radius,
+            shadowColor: chrome.shadowColor,
+          },
+        ]}
+      >
+        {type === 'reward' && (
+          <Reanimated.View
+            pointerEvents="none"
+            style={[
+              StyleSheet.absoluteFillObject,
+              { backgroundColor: chrome.accentSoft, borderRadius: chrome.radius },
+              bloomStyle,
+            ]}
+          />
+        )}
+        <View style={[styles.accentRail, { backgroundColor: chrome.accent }]} />
+        <Reanimated.View
+          style={[
+            styles.iconBadge,
+            { backgroundColor: chrome.accentSoft, borderColor: chrome.border },
+            iconStyle,
+          ]}
+        >
+          <Ionicons name={icon} size={21} color={chrome.accent} />
+        </Reanimated.View>
+        <View style={styles.copy}>
+          <Text style={[styles.label, { color: chrome.accent }]} numberOfLines={1}>
+            {toneLabel}
+          </Text>
+          <Text style={[styles.message, { color: chrome.title }]} numberOfLines={3}>
+            {message}
+          </Text>
+        </View>
+      </LinearGradient>
+    </Reanimated.View>
+  );
+}
+
 const AUTO_DISMISS_MS = 3200;
 /** Не копить длинный хвост из разных тостов после спама. */
 const MAX_QUEUE = 2;
@@ -191,32 +319,34 @@ function ActionToast() {
       queueIfBusy: true,
       rateLimit: { maxStarts: 4, windowMs: 1000 },
     });
+    const hybrid = payload.motionVariant === 'hybrid';
     // Reset animated values before mounting the Animated.View. On Fabric, doing
     // setValue immediately after setToast can trip the React insertion-effect
     // update warning while native animated props are being attached.
-    y.setValue(120);
-    opacity.setValue(0);
+    // Гибрид: вход/выход рисует ActionToastHybridCard на Reanimated — хост
+    // остаётся статичным (opacity 1, без translateY), чтобы не задваивать анимацию.
+    y.setValue(hybrid ? 0 : 120);
+    opacity.setValue(hybrid ? 1 : 0);
     setToast(payload);
-    /** Откладываем старт на следующий кадр: даём Fabric закоммитить
-     *  Animated.View, иначе connectAnimatedNodeToView падает. */
-    rafIn.current = requestAnimationFrame(() => {
-      rafIn.current = null;
-      Animated.parallel([
-        Animated.spring(y, {
-          toValue: 0,
-          useNativeDriver: true,
-          tension: MOTION_SPRING.toast.tension,
-          friction: MOTION_SPRING.toast.friction,
-        }),
-        Animated.timing(opacity, { toValue: 1, duration: MOTION_DURATION.normal, useNativeDriver: true }),
-      ]).start();
-    });
+    if (!hybrid) {
+      /** Откладываем старт на следующий кадр: даём Fabric закоммитить
+       *  Animated.View, иначе connectAnimatedNodeToView падает. */
+      rafIn.current = requestAnimationFrame(() => {
+        rafIn.current = null;
+        Animated.parallel([
+          Animated.spring(y, {
+            toValue: 0,
+            useNativeDriver: true,
+            tension: MOTION_SPRING.toast.tension,
+            friction: MOTION_SPRING.toast.friction,
+          }),
+          Animated.timing(opacity, { toValue: 1, duration: MOTION_DURATION.normal, useNativeDriver: true }),
+        ]).start();
+      });
+    }
     runHaptics(payload);
     timer.current = setTimeout(() => {
-      Animated.parallel([
-        Animated.timing(y, { toValue: 120, duration: MOTION_DURATION.normal, useNativeDriver: true }),
-        Animated.timing(opacity, { toValue: 0, duration: MOTION_DURATION.fast, useNativeDriver: true }),
-      ]).start(() => {
+      const finishDismiss = () => {
         scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
           setToast(null);
           const dismissedKey = showingKeyRef.current;
@@ -242,7 +372,16 @@ function ActionToast() {
             setOverlayWanted(false);
           }
         });
-      });
+      };
+      if (hybrid) {
+        // Выход короче входа (закон №15): TOAST.exitMs вместо MOTION_DURATION.normal.
+        Animated.timing(opacity, { toValue: 0, duration: TOAST.exitMs, useNativeDriver: true }).start(finishDismiss);
+      } else {
+        Animated.parallel([
+          Animated.timing(y, { toValue: 120, duration: MOTION_DURATION.normal, useNativeDriver: true }),
+          Animated.timing(opacity, { toValue: 0, duration: MOTION_DURATION.fast, useNativeDriver: true }),
+        ]).start(finishDismiss);
+      }
     }, AUTO_DISMISS_MS);
   }, [opacity, y]);
 
@@ -312,6 +451,7 @@ function ActionToast() {
   const tone = TOAST_TONES[toast.type];
   const toneLabel = tone.label[lang] ?? tone.label.ru;
   const chrome = themedToastChrome(themeMode, t);
+  const isHybrid = toast.motionVariant === 'hybrid';
 
   return (
     <Animated.View
@@ -325,40 +465,50 @@ function ActionToast() {
       ]}
       pointerEvents="none"
     >
-      <LinearGradient
-        colors={chrome.cardColors}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={[
-          styles.toast,
-          {
-            borderColor: chrome.border,
-            borderRadius: chrome.radius,
-            shadowColor: chrome.shadowColor,
-          },
-        ]}
-      >
-        <View style={[styles.accentRail, { backgroundColor: chrome.accent }]} />
-        <View
+      {isHybrid ? (
+        <ActionToastHybridCard
+          type={toast.type}
+          toneLabel={toneLabel}
+          message={message}
+          icon={tone.icon}
+          chrome={chrome}
+        />
+      ) : (
+        <LinearGradient
+          colors={chrome.cardColors}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
           style={[
-            styles.iconBadge,
+            styles.toast,
             {
-              backgroundColor: chrome.accentSoft,
               borderColor: chrome.border,
+              borderRadius: chrome.radius,
+              shadowColor: chrome.shadowColor,
             },
           ]}
         >
-          <Ionicons name={tone.icon} size={21} color={chrome.accent} />
-        </View>
-        <View style={styles.copy}>
-          <Text style={[styles.label, { color: chrome.accent }]} numberOfLines={1}>
-            {toneLabel}
-          </Text>
-          <Text style={[styles.message, { color: chrome.title }]} numberOfLines={3}>
-            {message}
-          </Text>
-        </View>
-      </LinearGradient>
+          <View style={[styles.accentRail, { backgroundColor: chrome.accent }]} />
+          <View
+            style={[
+              styles.iconBadge,
+              {
+                backgroundColor: chrome.accentSoft,
+                borderColor: chrome.border,
+              },
+            ]}
+          >
+            <Ionicons name={tone.icon} size={21} color={chrome.accent} />
+          </View>
+          <View style={styles.copy}>
+            <Text style={[styles.label, { color: chrome.accent }]} numberOfLines={1}>
+              {toneLabel}
+            </Text>
+            <Text style={[styles.message, { color: chrome.title }]} numberOfLines={3}>
+              {message}
+            </Text>
+          </View>
+        </LinearGradient>
+      )}
     </Animated.View>
   );
 }

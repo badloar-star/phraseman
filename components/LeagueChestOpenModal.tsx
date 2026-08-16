@@ -31,6 +31,8 @@ import CustomAvatarBadge from './CustomAvatarBadge';
 import LeagueCrownName from './LeagueCrownName';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import LeagueChestSlitOpen from './league/LeagueChestSlitOpen';
+import type { RewardCard } from './league/leagueChestRewardCard';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
@@ -39,17 +41,12 @@ type Props = {
   isCrownWinner?: boolean;
   rewards?: LeagueChestRewardDrop[];
   onClose: () => void;
-};
-
-type RewardCard = {
-  title: string;
-  subtitle?: string;
-  accent: string;
-  icon:
-    | { type: 'image'; source: ImageSourcePropType; scale?: 'large' | 'normal' }
-    | { type: 'avatar'; avatarId: string; gradientId: string; logoColor: CustomAvatarLogoColor }
-    | { type: 'aura'; auraId: string; avatarId: string; gradientId: string; logoColor: CustomAvatarLogoColor }
-    | { type: 'goldTheme'; source: ImageSourcePropType };
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена «Сундук · щель света») живёт РЯДОМ со старой версией под флагом.
+   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.webp');
@@ -307,6 +304,7 @@ function LeagueChestOpenModal({
   isCrownWinner = false,
   rewards,
   onClose,
+  motionVariant = 'classic',
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
@@ -316,6 +314,10 @@ function LeagueChestOpenModal({
   const opacity = useRef(new Animated.Value(0)).current;
   const crownFloat = useRef(new Animated.Value(0)).current;
   const shine = useRef(new Animated.Value(0)).current;
+
+  // зачем: цикл «блика» — только у классики; в гибриде своя хореография
+  // живёт в LeagueChestSlitOpen, запускать оба параллельно бессмысленно.
+  const isClassic = motionVariant === 'classic';
 
   const visibleRewards = useMemo(
     () => (Array.isArray(rewards) ? rewards : []).filter(isActiveLeagueChestReward),
@@ -327,7 +329,7 @@ function LeagueChestOpenModal({
   const modalTheme = getLeagueBonusPalette(t, themeMode).modal;
 
   useEffect(() => {
-    if (!visible) return;
+    if (!visible || !isClassic) return;
     hapticSuccess();
     scale.setValue(0.72);
     opacity.setValue(0);
@@ -357,9 +359,24 @@ function LeagueChestOpenModal({
       floatLoop.stop();
       shineLoop.stop();
     };
-  }, [visible, crownFloat, opacity, scale, shine]);
+  }, [visible, isClassic, crownFloat, opacity, scale, shine]);
 
   if (!visible) return null;
+
+  if (motionVariant === 'hybrid') {
+    return (
+      <LeagueChestSlitOpen
+        visible={visible}
+        lang={lang}
+        crownName={crownName}
+        isCrownWinner={isCrownWinner}
+        rewards={rewards}
+        formatReward={(drop) => formatReward(drop, lang, themeMode)}
+        renderRewardIcon={(card, drop) => <RewardIcon card={card} drop={drop} />}
+        onClose={onClose}
+      />
+    );
+  }
 
   const dim = modalTheme.overlay;
   const crownDisplayName = crownName || triLang(lang, { ru: 'лидер', uk: 'лідер', es: 'líder', 'pt-BR': 'líder', vi: 'người dẫn đầu', id: 'pemimpin', tr: 'lider', pl: 'lider' });

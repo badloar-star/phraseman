@@ -12,15 +12,18 @@ interface Props {
   lang: Lang;
   onAccept: () => void;
   onDecline: () => void;
+  /** зачем: пробрасывает гибрид «Световод + Чекан» в общий движок согласий (см. AiConsentSheetModal). */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-function AiDialogConsentModal({ visible, lang, onAccept, onDecline }: Props) {
+function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVariant }: Props) {
   return (
     <AiConsentSheetModal
       visible={visible}
       testIdPrefix="ai-dialog-consent"
       onAccept={onAccept}
       onDecline={onDecline}
+      motionVariant={motionVariant}
       title={triLang(lang, {
         ru: 'Включить AI-диалоги?',
         uk: 'Увімкнути AI-діалоги?',

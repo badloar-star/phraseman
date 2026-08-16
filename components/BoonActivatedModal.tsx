@@ -21,6 +21,7 @@ import { getBoonCopy } from '../app/boons/boon_copy';
 import type { BoonId } from '../app/boons/boon_types';
 import { weeklyBoonIconSource } from '../constants/boonIconAssets';
 import { GiftOpenBurst } from './GiftOpenEffects';
+import BoonActivatedHybrid from './celebration/BoonActivatedHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 interface BoonActivatedModalProps {
@@ -28,11 +29,19 @@ interface BoonActivatedModalProps {
   /** Тихий бонус дня (null = нечего показывать). */
   boon: BoonId | null;
   onClose: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена M3 «Сундук-награда») живёт РЯДОМ со старой версией под флагом.
+   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-function BoonActivatedModal({ visible, boon, onClose }: BoonActivatedModalProps) {
+function BoonActivatedModal({ visible, boon, onClose, motionVariant = 'classic' }: BoonActivatedModalProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+
+  const isClassic = motionVariant === 'classic';
 
   const entrance = useRef(new Animated.Value(0)).current;
   const iconEntrance = useRef(new Animated.Value(0)).current; // влёт иконки (пружина+поворот)
@@ -43,7 +52,7 @@ function BoonActivatedModal({ visible, boon, onClose }: BoonActivatedModalProps)
   const shimmerLoop = useRef<Animated.CompositeAnimation | null>(null);
 
   useEffect(() => {
-    if (!visible) {
+    if (!visible || !isClassic) {
       floatLoop.current?.stop();
       shimmerLoop.current?.stop();
       return;
@@ -93,7 +102,7 @@ function BoonActivatedModal({ visible, boon, onClose }: BoonActivatedModalProps)
       floatLoop.current?.stop();
       shimmerLoop.current?.stop();
     };
-  }, [visible, entrance, iconEntrance, iconFloat, flash, shimmer]);
+  }, [visible, isClassic, entrance, iconEntrance, iconFloat, flash, shimmer]);
 
   const handleClose = () => {
     hapticTap();
@@ -104,6 +113,10 @@ function BoonActivatedModal({ visible, boon, onClose }: BoonActivatedModalProps)
 
   const copy = getBoonCopy(boon, lang);
   const iconSource = weeklyBoonIconSource(boon, themeMode);
+
+  if (motionVariant === 'hybrid') {
+    return <BoonActivatedHybrid visible={visible} title={copy.title} subtitle={copy.subtitle} iconSource={iconSource} onClose={onClose} />;
+  }
   const kicker = triLang(lang, {
     ru: 'Бонус дня активирован',
     uk: 'Бонус дня активовано',

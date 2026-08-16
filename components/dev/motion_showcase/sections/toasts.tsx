@@ -18,8 +18,10 @@ import MedalToast from '../../../MedalToast';
 import CoachToast from '../../../CoachToast';
 import InGameToast from '../../../InGameToast';
 
-/** Обёртка-мост: MedalToast принимает Animated.Value (0→1) и themeMode из контекста темы. */
-function MedalToastDemo({ onClose }: { onClose: () => void }) {
+/** Обёртка-мост: MedalToast принимает Animated.Value (0→1) и themeMode из контекста темы.
+ * зачем: motionVariant опционален — classic-вызов ниже передаёт демо-пружину anim как
+ * раньше, гибрид-вызов рядом просто добавляет проп, сам MedalToast решает какой путь идёт. */
+function MedalToastDemo({ onClose, motionVariant = 'classic' }: { onClose: () => void; motionVariant?: 'classic' | 'hybrid' }) {
   const { themeMode, theme: t } = useTheme();
   const { lang } = useLang();
   const anim = useRef(new Animated.Value(0)).current;
@@ -37,6 +39,7 @@ function MedalToastDemo({ onClose }: { onClose: () => void }) {
       lang={lang}
       spanishUiActive={false}
       onDismiss={onClose}
+      motionVariant={motionVariant}
     />
   );
 }
@@ -45,7 +48,7 @@ function CoachToastDemo({ onClose }: { onClose: () => void }) {
   return (
     <CoachToast
       category="verb"
-      labelRu={cs('toasts_24')}
+      labelRu={cs('coach_toast_demo_category_label')}
       labelUk={"неправильні дієслова"} // pairedUK: перевод рядом
       labelEs="verbos irregulares"
       labelPtBr="verbos irregulares"
@@ -61,13 +64,14 @@ function CoachToastDemo({ onClose }: { onClose: () => void }) {
   );
 }
 
-function InGameToastDemo({ onClose }: { onClose: () => void }) {
+function InGameToastDemo({ onClose, motionVariant = 'classic' }: { onClose: () => void; motionVariant?: 'classic' | 'hybrid' }) {
   return (
     <InGameToast
-      message={cs('toasts_25')}
+      message={cs('in_game_toast_demo_message')}
       onHide={onClose}
       duration={3000}
       type="info"
+      motionVariant={motionVariant}
     />
   );
 }
@@ -75,81 +79,132 @@ function InGameToastDemo({ onClose }: { onClose: () => void }) {
 export const SECTION: ShowcaseSection = {
   id: 'toasts',
   order: 50,
-  title: cs('toasts_1'),
+  title: cs('toasts_section_title'),
   items: [
     {
       id: 'action-toast-success',
-      title: cs('toasts_2'),
-      detail: cs('toasts_3'),
+      title: cs('toast_success_title'),
+      detail: cs('real_event'),
       kind: 'event',
       fire: () => emitAppEvent('action_toast', actionToastTri('success', copy('success_1'))),
     },
+    // зачем: гибрид «Световод + Чекан» рядом с боевым видом — motionVariant:'hybrid' в
+    // payload включает ActionToastHybridCard, боевые эмиты этого поля не передают.
+    {
+      id: 'action-toast-success-hybrid',
+      title: cs('toast_success_hybrid_title'),
+      detail: cs('real_event'),
+      kind: 'event',
+      fire: () => emitAppEvent('action_toast', { ...actionToastTri('success', copy('success_1')), motionVariant: 'hybrid' }),
+    },
     {
       id: 'action-toast-error',
-      title: cs('toasts_4'),
-      detail: cs('toasts_5'),
+      title: cs('toast_error_title'),
+      detail: cs('real_event'),
       kind: 'event',
       fire: () => emitAppEvent('action_toast', actionToastTri('error', copy('error_1'))),
     },
     {
+      id: 'action-toast-error-hybrid',
+      title: cs('toast_error_hybrid_title'),
+      detail: cs('real_event'),
+      kind: 'event',
+      fire: () => emitAppEvent('action_toast', { ...actionToastTri('error', copy('error_1')), motionVariant: 'hybrid' }),
+    },
+    {
       id: 'action-toast-info',
-      title: cs('toasts_6'),
-      detail: cs('toasts_7'),
+      title: cs('toast_info_title'),
+      detail: cs('real_event'),
       kind: 'event',
       fire: () => emitAppEvent('action_toast', actionToastTri('info', copy('info_1'))),
     },
     {
+      id: 'action-toast-info-hybrid',
+      title: cs('toast_info_hybrid_title'),
+      detail: cs('real_event'),
+      kind: 'event',
+      fire: () => emitAppEvent('action_toast', { ...actionToastTri('info', copy('info_1')), motionVariant: 'hybrid' }),
+    },
+    {
       id: 'action-toast-warning',
-      title: cs('toasts_8'),
-      detail: cs('toasts_9'),
+      title: cs('toast_warning_title'),
+      detail: cs('real_event'),
       kind: 'event',
       fire: () => emitAppEvent('action_toast', actionToastTri('warning', copy('warning_1'))),
     },
     {
+      id: 'action-toast-warning-hybrid',
+      title: cs('toast_warning_hybrid_title'),
+      detail: cs('real_event'),
+      kind: 'event',
+      fire: () => emitAppEvent('action_toast', { ...actionToastTri('warning', copy('warning_1')), motionVariant: 'hybrid' }),
+    },
+    {
       id: 'action-toast-reward',
-      title: cs('toasts_10'),
-      detail: cs('toasts_11'),
+      title: cs('toast_reward_title'),
+      detail: cs('real_event'),
       kind: 'event',
       fire: () => emitAppEvent('action_toast', actionToastTri('reward', copy('reward_1'))),
     },
     {
+      id: 'action-toast-reward-hybrid',
+      title: cs('toast_reward_hybrid_title'),
+      detail: cs('real_event'),
+      kind: 'event',
+      fire: () => emitAppEvent('action_toast', { ...actionToastTri('reward', copy('reward_1')), motionVariant: 'hybrid' }),
+    },
+    {
       id: 'achievement-toast',
-      title: cs('toasts_12'),
+      title: cs('achievement_toast_title'),
       kind: 'note',
-      note: cs('toasts_13'),
+      note: cs('achievement_toast_note'),
     },
     {
       id: 'medal-toast',
-      title: cs('toasts_14'),
-      detail: cs('toasts_15'),
+      title: cs('medal_toast_title'),
+      detail: cs('real_component'),
       kind: 'render',
       render: ({ visible, onClose }) => (visible ? <MedalToastDemo onClose={onClose} /> : null),
     },
     {
+      id: 'medal-toast-hybrid',
+      title: cs('medal_toast_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (visible ? <MedalToastDemo onClose={onClose} motionVariant="hybrid" /> : null),
+    },
+    {
       id: 'coach-toast',
-      title: cs('toasts_16'),
-      detail: cs('toasts_17'),
+      title: cs('coach_toast_title'),
+      detail: cs('real_component'),
       kind: 'render',
       render: ({ visible, onClose }) => (visible ? <CoachToastDemo onClose={onClose} /> : null),
     },
     {
       id: 'in-game-toast',
-      title: cs('toasts_18'),
-      detail: cs('toasts_19'),
+      title: cs('in_game_toast_title'),
+      detail: cs('real_component'),
       kind: 'render',
       render: ({ visible, onClose }) => (visible ? <InGameToastDemo onClose={onClose} /> : null),
     },
     {
+      id: 'in-game-toast-hybrid',
+      title: cs('in_game_toast_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (visible ? <InGameToastDemo onClose={onClose} motionVariant="hybrid" /> : null),
+    },
+    {
       id: 'streak-risk-toast-host',
-      title: cs('toasts_20'),
+      title: cs('streak_risk_toast_host_title'),
       kind: 'note',
-      note: cs('toasts_21'),
+      note: cs('streak_risk_toast_host_note'),
     },
     {
       id: 'billing-issue-toast-host',
-      title: cs('toasts_22'),
+      title: cs('billing_issue_toast_host_title'),
       kind: 'note',
-      note: cs('toasts_23'),
+      note: cs('billing_issue_toast_host_note'),
     },
   ],
 };

@@ -4,18 +4,20 @@ import {
   PressableProps,
   StyleProp,
   StyleSheet,
+  View,
   ViewStyle,
   type GestureResponderEvent,
 } from 'react-native';
 import Reanimated, {
-  interpolate,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 import { LinearGradient } from './SafeLinearGradient';
 import { hapticTap } from '../hooks/use-haptics';
-import { MOTION_SPRING } from '../constants/motion';
+import { PRESS } from '../constants/motionHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { mergeAccessibilityDisabled } from './a11y_state';
 
 // Пробрасываем нативные пропсы Pressable (a11y, testID, hitSlop), кроме тех,
@@ -38,9 +40,18 @@ interface Props extends PassthroughPressableProps {
   wrapStyle?: StyleProp<ViewStyle>;
   children: React.ReactNode;
   disabled?: boolean;
-  /** @deprecated Сохранено для совместимости. Декоративная кромка больше не рисуется. */
+  /**
+   * Цвет «подошвы» под лицом кнопки. Задан → рисуется отдельный статичный слой
+   * ниже лица (та же ширина/радиус), который НЕ двигается и не масштабируется —
+   * именно он создаёт объём клавиши. Не задан → кнопка плоская (старое
+   * поведение), кромка не рисуется и лишняя высота не резервируется.
+   */
   edgeColor?: string;
-  /** @deprecated Сохранено для совместимости. Нажатие больше не меняет геометрию. */
+  /**
+   * Высота кромки в px — на столько лицо уезжает вниз при нажатии (кромка
+   * визуально «схлопывается» до нуля). Учитывается в разметке: обёртка
+   * резервирует под неё место, чтобы контент под кнопкой не прыгал.
+   */
   edgeHeight?: number;
   /** Градиент поверхности (для градиентных CTA). Если задан — рисуется LinearGradient под children. */
   gradientColors?: readonly string[];
@@ -62,8 +73,17 @@ interface Props extends PassthroughPressableProps {
   delayPressIn?: number;
 }
 
+// зачем: владелец — «кромка должна продавливаться, а не всё целиком» (2026-08-16).
+// Плоские кнопки (без edgeColor) получают тот же честный keycap-принцип в
+// миниатюре: лёгкий сдвиг вниз без scale/opacity, вместо старого
+// «сжимается весь блок» (выглядело как второй слой под кнопкой).
+const FLAT_PRESS_TRANSLATE_Y = 1.5;
+
 /**
- * Кнопка с коротким press-откликом без декоративной обводки и сдвига геометрии.
+ * Кнопка-клавиша: статичная цветная «подошва» (edge) снизу + лицо (face),
+ * которое едет вниз на edgeHeight при нажатии — кромка визуально схлопывается
+ * до нуля, как у настоящей клавиши. Без edgeColor — плоская кнопка с лёгким
+ * translateY, без scale и без падения opacity.
  * Если в style приходит opacity, переносим её на wrapper, чтобы сохранить
  * disabled-состояние отдельно от анимированной прозрачности поверхности.
  */
@@ -76,8 +96,8 @@ function DuoPressable({
   wrapStyle,
   children,
   disabled,
-  edgeColor: _edgeColor,
-  edgeHeight: _edgeHeight = 6,
+  edgeColor,
+  edgeHeight = 6,
   gradientColors,
   gradientStart = { x: 0, y: 0 },
   gradientEnd = { x: 1, y: 1 },
@@ -86,25 +106,30 @@ function DuoPressable({
   delayPressIn = 0,
   ...rest
 }: Props) {
+  const hasEdge = !!edgeColor;
+  const travel = hasEdge ? edgeHeight : FLAT_PRESS_TRANSLATE_Y;
+  const reduceMotion = useReduceMotion();
+
   const press = useSharedValue(0);
   // Внешнее удержание «вдавленным» — отдельный канал, чтобы palec-press и
   // программное удержание не затирали друг друга.
   const held = useSharedValue(0);
 
   const pressIn = useCallback((event: GestureResponderEvent) => {
-    press.value = withSpring(1, MOTION_SPRING.micro);
+    press.value = reduceMotion ? 1 : withTiming(1, { duration: PRESS.downMs });
     if (withHaptic && !disabled) hapticTap();
     onPressIn?.(event);
-  }, [press, withHaptic, disabled, onPressIn]);
+  }, [press, reduceMotion, withHaptic, disabled, onPressIn]);
 
   const pressOut = useCallback((event: GestureResponderEvent) => {
-    press.value = withSpring(0, MOTION_SPRING.micro);
+    press.value = reduceMotion ? 0 : withSpring(0, PRESS.release);
     onPressOut?.(event);
-  }, [press, onPressOut]);
+  }, [press, reduceMotion, onPressOut]);
 
   useEffect(() => {
-    held.value = withSpring(pressedExternally ? 1 : 0, MOTION_SPRING.micro);
-  }, [pressedExternally, held]);
+    const next = pressedExternally ? 1 : 0;
+    held.value = reduceMotion ? next : withSpring(next, PRESS.release);
+  }, [pressedExternally, reduceMotion, held]);
 
   const flattenedSurfaceStyle = useMemo(() => StyleSheet.flatten(style) as ViewStyle | undefined, [style]);
   const surfaceOpacity = typeof flattenedSurfaceStyle?.opacity === 'number' ? flattenedSurfaceStyle.opacity : undefined;
@@ -115,13 +140,15 @@ function DuoPressable({
     return restStyle;
   }, [flattenedSurfaceStyle, style, surfaceOpacity]);
 
-  // Короткое сжатие и снижение прозрачности дают понятный press-state, но не
-  // создают цветную «обводку» и не двигают соседний контент.
-  const surfaceStyle = useAnimatedStyle(() => {
+  const radius = typeof flattenedSurfaceStyle?.borderRadius === 'number' ? flattenedSurfaceStyle.borderRadius : styles.surface.borderRadius;
+
+  // Лицо едет вниз на всю высоту кромки (или на лёгкий флэт-сдвиг без кромки).
+  // Никакого scale/opacity — вдавливание читается только по геометрии, как у
+  // настоящей клавиши.
+  const faceStyle = useAnimatedStyle(() => {
     const depth = Math.max(press.value, held.value);
     return {
-      transform: [{ scale: interpolate(depth, [0, 1], [1, 0.97]) }],
-      opacity: interpolate(depth, [0, 1], [1, 0.88]),
+      transform: [{ translateY: depth * travel }],
     };
   });
 
@@ -136,9 +163,12 @@ function DuoPressable({
       unstable_pressDelay={delayPressIn}
       disabled={disabled}
       accessibilityState={mergeAccessibilityDisabled(rest.accessibilityState, disabled)}
-      style={[styles.wrap, surfaceOpacityStyle, wrapStyle]}
+      style={[styles.wrap, hasEdge ? { paddingBottom: edgeHeight } : null, surfaceOpacityStyle, wrapStyle]}
     >
-      <Reanimated.View style={[styles.surface, surfaceBaseStyle, gradientColors ? styles.surfaceClip : null, surfaceStyle]}>
+      {hasEdge ? (
+        <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { borderRadius: radius, backgroundColor: edgeColor }]} />
+      ) : null}
+      <Reanimated.View style={[styles.surface, surfaceBaseStyle, gradientColors ? styles.surfaceClip : null, faceStyle]}>
         {gradientColors ? (
           <LinearGradient
             colors={gradientColors as unknown as readonly [string, string, ...string[]]}

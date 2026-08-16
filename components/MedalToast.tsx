@@ -1,5 +1,13 @@
-import React, { memo, useMemo, useRef } from 'react';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Animated, PanResponder, Text, View, StyleSheet } from 'react-native';
+import Reanimated, {
+  Easing,
+  cancelAnimation,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import { Image } from 'expo-image';
 import { LinearGradient } from './SafeLinearGradient';
 import type { MedalTier } from '../app/medal_utils';
@@ -7,6 +15,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { getMedalToastThemeStyle } from './medalToastThemeStyles';
 import { noAndroidOutline } from '../constants/androidGlow';
+import { LUM } from '../constants/motionHybrid';
 
 interface MedalPalette {
   primary: string;
@@ -52,6 +61,8 @@ interface MedalToastProps {
   spanishUiActive: boolean;
   /** Swipe left/right or upward to dismiss immediately. */
   onDismiss?: () => void;
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 interface Labels {
@@ -212,7 +223,30 @@ function MedalToast({
   lang,
   spanishUiActive,
   onDismiss,
+  motionVariant = 'classic',
 }: MedalToastProps) {
+  const isHybrid = motionVariant === 'hybrid';
+  // зачем: гибрид «Световод» (закон Motion DNA) — вход из света БЕЗ отскока
+  // (LUM.settle), в отличие от боевой пружины anim с перелётом scale 0.92→1.
+  // Каждый sharedValue живёт независимо от boевого `anim`, поэтому классика
+  // не трогается: боевой путь остаётся ровно тем же кодом, что и раньше.
+  const hybridOpacity = useSharedValue(0);
+  const hybridY = useSharedValue(14);
+  useEffect(() => {
+    if (!isHybrid) return;
+    hybridOpacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    hybridY.value = withSpring(0, LUM.settle);
+    return () => {
+      cancelAnimation(hybridOpacity);
+      cancelAnimation(hybridY);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isHybrid]);
+  const hybridWrapStyle = useAnimatedStyle(() => ({
+    opacity: hybridOpacity.value,
+    transform: [{ translateY: hybridY.value }],
+  }));
+
   const labels = useMemo(
     () => pickLabels(tier, promoted, lang, spanishUiActive),
     [tier, promoted, lang, spanishUiActive],
@@ -275,10 +309,12 @@ function MedalToast({
   const tierGlow = visualTheme.tierGlows[tier] ?? palette.glow;
   const accent = promoted ? tierAccent : visualTheme.badgeDownColor;
 
-  return (
-    <Animated.View
-      pointerEvents={onDismiss ? 'box-none' : 'none'}
-      style={[
+  // зачем: гибрид рендерит через Reanimated.View (LUM.settle, без отскока
+  // scale) — боевой путь остаётся на Animated.Value с прежней пружиной anim.
+  const WrapView = isHybrid ? Reanimated.View : Animated.View;
+  const wrapStyle = isHybrid
+    ? [styles.wrap, { bottom }, hybridWrapStyle]
+    : [
         styles.wrap,
         {
           bottom,
@@ -288,8 +324,10 @@ function MedalToast({
             { scale: anim.interpolate({ inputRange: [0, 1], outputRange: [0.92, 1] }) },
           ],
         },
-      ]}
-    >
+      ];
+
+  return (
+    <WrapView pointerEvents={onDismiss ? 'box-none' : 'none'} style={wrapStyle}>
       <Animated.View
         pointerEvents={onDismiss ? 'auto' : 'none'}
         {...(onDismiss ? panResponder.panHandlers : {})}
@@ -374,7 +412,7 @@ function MedalToast({
         </View>
       </LinearGradient>
       </Animated.View>
-    </Animated.View>
+    </WrapView>
   );
 }
 

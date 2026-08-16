@@ -54,6 +54,7 @@ import {
 import ExplainReportButton from './ExplainReportButton';
 import { useStudyTarget } from './StudyTargetContext';
 import TonalSurface from './TonalSurface';
+import ExplainSheetHybrid from './ExplainSheetHybrid';
 
 interface Props {
   visible: boolean;
@@ -70,11 +71,42 @@ interface Props {
    * (cache MISS), а не на бесплатном кэш-хите/ошибке. Необязателен (после ответа лимита нет).
    */
   onResolved?: (info: { fromCache: boolean; status: ExplainRequestStatus; error: boolean }) => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена M2 «Шторка (bottom sheet)») живёт РЯДОМ со старой версией под флагом.
+   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 const SHEET_HIDDEN = 320; // стартовая позиция листа под экраном (выезд/уезд)
 
-function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResolved }: Props) {
+function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResolved, motionVariant = 'classic' }: Props) {
+  if (motionVariant === 'hybrid') {
+    return (
+      <ExplainSheetHybrid
+        visible={visible}
+        onClose={onClose}
+        phraseEn={phraseEn}
+        phraseMeaning={phraseMeaning}
+        lang={lang}
+        onResolved={onResolved}
+      />
+    );
+  }
+  return (
+    <ExplainSheetClassic
+      visible={visible}
+      onClose={onClose}
+      phraseEn={phraseEn}
+      phraseMeaning={phraseMeaning}
+      lang={lang}
+      onResolved={onResolved}
+    />
+  );
+}
+
+function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, onResolved }: Omit<Props, 'motionVariant'>) {
   const { theme: t, f } = useTheme();
   const { lang: ctxLang } = useLang();
   const { studyTarget } = useStudyTarget();

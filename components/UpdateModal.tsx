@@ -31,6 +31,7 @@ import { useLang } from './LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { isLightThemeMode, type ThemeMode } from '../constants/theme';
 import { OLIVE_GRADIENTS, OLIVE_RICH } from '../constants/oliveTheme';
+import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 // Голос Компаса (канон): окно обновления говорит от первого лица, по-человечески —
@@ -251,9 +252,15 @@ interface UpdateModalProps {
   onWillOpenExternalUrl?: () => void;
   /** Если Linking.openURL не удался — вернуть UI (см. onWillOpenExternalUrl). */
   onExternalOpenFailed?: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (.motion-mockups/phraseman-hybrid.html,
+   * семья «Полноэкранные») — сцена входит из света, контент каскадом, CTA
+   * последним. Боевой дефолт — 'classic', ничего не меняется без включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUrl, onExternalOpenFailed }: UpdateModalProps) {
+function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUrl, onExternalOpenFailed, motionVariant = 'classic' }: UpdateModalProps) {
   const { f, themeMode } = useTheme();
   const { lang } = useLang();
   const { height, width } = useWindowDimensions();
@@ -273,11 +280,104 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
     });
   };
 
+  const artSlot = <PremiumUpdateArt compact={compact} />;
+
+  const titleSlot = (
+    <Text
+      style={[
+        styles.title,
+        { color: palette.title, fontSize: Math.min(34, Math.max(28, f.h1 + 7)) },
+      ]}
+      numberOfLines={2}
+    >
+      {tx.title}
+    </Text>
+  );
+
+  const bodySlot = (
+    <Text
+      style={[
+        styles.body,
+        {
+          color: palette.body,
+          fontSize: Math.max(17, f.body + 1),
+          lineHeight: Math.max(25, f.body + 9),
+        },
+      ]}
+    >
+      {message ? message : tx.body}
+    </Text>
+  );
+
+  const ctaSlot = (
+    <>
+      <View pointerEvents="none" style={styles.ctaDivider} />
+
+      <Pressable
+        style={({ pressed }) => [
+          styles.updateBtn,
+          {
+            opacity: pressed ? 0.96 : 1,
+            shadowColor: palette.primaryShadow,
+            transform: [{ translateY: pressed ? 1 : 0 }],
+          },
+        ]}
+        onPress={handleUpdate}
+      >
+        {({ pressed }) => (
+          <LinearGradient
+            colors={pressed ? palette.primaryPressed : palette.primary}
+            start={{ x: 0.08, y: 0 }}
+            end={{ x: 0.92, y: 1 }}
+            style={styles.updateBtnFill}
+          >
+            <LinearGradient
+              colors={['rgba(255,255,255,0.28)', 'rgba(255,255,255,0)']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+              style={styles.buttonSheen}
+            />
+            <Text
+              style={[styles.updateBtnText, { color: palette.primaryText, fontSize: Math.max(19, f.bodyLg + 1) }]}
+              numberOfLines={2}
+            >
+              {tx.update}
+            </Text>
+          </LinearGradient>
+        )}
+      </Pressable>
+
+      {!!onClose && (
+        <Pressable
+          style={({ pressed }) => [
+            styles.closeBtn,
+            {
+              borderColor: palette.secondaryBorder,
+              backgroundColor: palette.secondaryBg,
+              opacity: pressed ? 0.82 : 1,
+              transform: [{ translateY: pressed ? 1 : 0 }],
+            },
+          ]}
+          onPress={onClose}
+        >
+          <Text
+            style={[styles.closeBtnText, { color: palette.secondaryText, fontSize: Math.max(15, f.body) }]}
+            numberOfLines={1}
+          >
+            {tx.close}
+          </Text>
+        </Pressable>
+      )}
+    </>
+  );
+
+  const isHybrid = motionVariant === 'hybrid';
+
   return (
     <Modal
       visible={visible}
       transparent
-      animationType="fade"
+      animationType={isHybrid ? 'none' : 'fade'}
       statusBarTranslucent
       onRequestClose={() => { onClose?.(); }}
     >
@@ -297,87 +397,19 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
             <UpdateModalBackground palette={palette} />
             <View pointerEvents="none" style={[styles.innerStroke, { borderColor: palette.stroke }]} />
 
-            <PremiumUpdateArt compact={compact} />
-
-            <Text
-              style={[
-                styles.title,
-                { color: palette.title, fontSize: Math.min(34, Math.max(28, f.h1 + 7)) },
-              ]}
-              numberOfLines={2}
-            >
-              {tx.title}
-            </Text>
-
-            <Text
-              style={[
-                styles.body,
-                {
-                  color: palette.body,
-                  fontSize: Math.max(17, f.body + 1),
-                  lineHeight: Math.max(25, f.body + 9),
-                },
-              ]}
-            >
-              {message ? message : tx.body}
-            </Text>
-
-            <View pointerEvents="none" style={styles.ctaDivider} />
-
-            <Pressable
-              style={({ pressed }) => [
-                styles.updateBtn,
-                {
-                  opacity: pressed ? 0.96 : 1,
-                  shadowColor: palette.primaryShadow,
-                  transform: [{ translateY: pressed ? 1 : 0 }],
-                },
-              ]}
-              onPress={handleUpdate}
-            >
-              {({ pressed }) => (
-                <LinearGradient
-                  colors={pressed ? palette.primaryPressed : palette.primary}
-                  start={{ x: 0.08, y: 0 }}
-                  end={{ x: 0.92, y: 1 }}
-                  style={styles.updateBtnFill}
-                >
-                  <LinearGradient
-                    colors={['rgba(255,255,255,0.28)', 'rgba(255,255,255,0)']}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 0, y: 1 }}
-                    style={styles.buttonSheen}
-                  />
-                  <Text
-                    style={[styles.updateBtnText, { color: palette.primaryText, fontSize: Math.max(19, f.bodyLg + 1) }]}
-                    numberOfLines={2}
-                  >
-                    {tx.update}
-                  </Text>
-                </LinearGradient>
-              )}
-            </Pressable>
-
-            {!!onClose && (
-              <Pressable
-                style={({ pressed }) => [
-                  styles.closeBtn,
-                  {
-                    borderColor: palette.secondaryBorder,
-                    backgroundColor: palette.secondaryBg,
-                    opacity: pressed ? 0.82 : 1,
-                    transform: [{ translateY: pressed ? 1 : 0 }],
-                  },
-                ]}
-                onPress={onClose}
-              >
-                <Text
-                  style={[styles.closeBtnText, { color: palette.secondaryText, fontSize: Math.max(15, f.body) }]}
-                  numberOfLines={1}
-                >
-                  {tx.close}
-                </Text>
-              </Pressable>
+            {isHybrid ? (
+              <FullscreenHybridEntrance
+                visible={visible}
+                bloomColor={palette.primaryShadow}
+                slots={[artSlot, titleSlot, bodySlot, ctaSlot]}
+              />
+            ) : (
+              <>
+                {artSlot}
+                {titleSlot}
+                {bodySlot}
+                {ctaSlot}
+              </>
             )}
           </View>
         </LinearGradient>

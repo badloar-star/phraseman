@@ -1,11 +1,21 @@
 import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { LinearGradient } from './SafeLinearGradient';
 import { Animated, Modal, PanResponder, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import Reanimated, {
+  cancelAnimation,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import GoldBevel from './GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../constants/oliveTheme';
+import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { LUM, TOAST } from '../constants/motionHybrid';
 
 type Props = {
   visible: boolean;
@@ -20,6 +30,11 @@ type Props = {
   /** Accent confirm button (e.g. go to shop) */
   confirmVariant?: 'default' | 'accent';
   testIDPrefix?: string;
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
+  /** Деструктивное действие (например, «Удалить») — на подтверждение играет
+   * одна дрожь TOAST.errorShakePx (макет M1: «приглушённый тон + дрожь»). */
+  destructive?: boolean;
 };
 
 function ThemedConfirmModal({
@@ -33,8 +48,33 @@ function ThemedConfirmModal({
   onConfirm,
   confirmVariant = 'accent',
   testIDPrefix,
+  motionVariant = 'classic',
+  destructive = false,
 }: Props) {
   const { theme: t, themeMode, f } = useTheme();
+  const reduceMotion = useReduceMotion();
+  const isHybrid = motionVariant === 'hybrid';
+  const shakeX = useSharedValue(0);
+
+  useEffect(() => {
+    return () => cancelAnimation(shakeX);
+  }, [shakeX]);
+
+  const shakeStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: shakeX.value }],
+  }));
+
+  const runDangerShake = () => {
+    if (!isHybrid || !destructive || reduceMotion) return;
+    const [a, b, c, d, e] = TOAST.errorShakePx;
+    shakeX.value = withSequence(
+      withTiming(a, { duration: TOAST.errorShakeStepMs }),
+      withTiming(b, { duration: TOAST.errorShakeStepMs }),
+      withTiming(c, { duration: TOAST.errorShakeStepMs }),
+      withTiming(d, { duration: TOAST.errorShakeStepMs }),
+      withTiming(e, { duration: TOAST.errorShakeStepMs }),
+    );
+  };
   const dim = 'rgba(0,0,0,0.60)';
   const isGoldTheme = themeMode === 'gold';
   const isOliveTheme = themeMode === 'olive';

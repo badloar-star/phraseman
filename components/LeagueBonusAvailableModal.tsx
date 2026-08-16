@@ -13,6 +13,7 @@ import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import type { LeagueBonusAvailability } from '../app/services/league_chest_rewards';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import LeagueBonusBeaconOrb from './league/LeagueBonusBeaconOrb';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
@@ -20,6 +21,14 @@ type Props = {
   availability: LeagueBonusAvailability | null;
   onClose: () => void;
   onOpenLeague: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена «Бонус · маяк (премиум)») живёт РЯДОМ со старой версией под флагом.
+   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
+  /** Гибрид: сколько дней недели активны (0..7) для кольца-маяка. Дефолт 5. */
+  activeDaysThisWeek?: number;
 };
 
 const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.webp');
@@ -29,6 +38,8 @@ function LeagueBonusAvailableModal({
   availability,
   onClose,
   onOpenLeague,
+  motionVariant = 'classic',
+  activeDaysThisWeek = 5,
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
@@ -40,8 +51,12 @@ function LeagueBonusAvailableModal({
   const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
   const modalTheme = getLeagueBonusPalette(t, themeMode).modal;
 
+  // зачем: цикл «свечения» — только у классики; в гибриде своя хореография
+  // живёт в LeagueBonusBeaconOrb, запускать оба параллельно бессмысленно.
+  const isClassic = motionVariant === 'classic';
+
   useEffect(() => {
-    if (!visible) return;
+    if (!visible || !isClassic) return;
     scale.setValue(0.9);
     opacity.setValue(0);
     glow.setValue(0);
@@ -57,7 +72,7 @@ function LeagueBonusAvailableModal({
       glowLoop,
     ]).start();
     return () => glowLoop.stop();
-  }, [glow, opacity, scale, visible]);
+  }, [glow, isClassic, opacity, scale, visible]);
 
   if (!visible || !availability) return null;
 
@@ -65,6 +80,20 @@ function LeagueBonusAvailableModal({
   const buttonLabel = availability.isCrownWinner
     ? triLang(lang, { ru: 'Забрать корону', uk: 'Забрати корону', es: 'Recoger la corona', 'pt-BR': 'Resgatar a coroa', vi: 'Nhận vương miện', id: 'Klaim mahkota', tr: 'Tacını al', pl: 'Odbierz koronę' })
     : triLang(lang, { ru: 'Забрать бонус лиги', uk: 'Забрати бонус ліги', es: 'Recoger bono de liga', 'pt-BR': 'Resgatar bônus da liga', vi: 'Nhận thưởng giải đấu', id: 'Klaim bonus liga', tr: 'Lig bonusunu al', pl: 'Odbierz bonus ligi' });
+
+  if (motionVariant === 'hybrid') {
+    return (
+      <LeagueBonusBeaconOrb
+        visible={visible}
+        activeDaysThisWeek={activeDaysThisWeek}
+        crownName={crownName}
+        isCrownWinner={availability.isCrownWinner}
+        buttonLabel={buttonLabel}
+        onClose={onClose}
+        onOpenLeague={onOpenLeague}
+      />
+    );
+  }
 
   return (
     <Modal transparent animationType="none" visible={visible} onRequestClose={onClose}>

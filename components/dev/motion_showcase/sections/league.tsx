@@ -97,6 +97,52 @@ export const SECTION: ShowcaseSection = {
         />
       ),
     },
+    // ── гибрид («Световод + Чекан»): те же 3 исхода, motionVariant='hybrid' ──
+    {
+      id: 'league-result-promoted-hybrid',
+      title: cs('league_result_promoted_hybrid_title'),
+      detail: cs('league_result_synthetic_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <LeagueResultModal
+          visible={visible}
+          onClose={onClose}
+          previewMode
+          motionVariant="hybrid"
+          result={buildLeagueDevSeed('promoted')}
+        />
+      ),
+    },
+    {
+      id: 'league-result-demoted-hybrid',
+      title: cs('league_result_demoted_hybrid_title'),
+      detail: cs('league_result_synthetic_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <LeagueResultModal
+          visible={visible}
+          onClose={onClose}
+          previewMode
+          motionVariant="hybrid"
+          result={buildLeagueDevSeed('demoted')}
+        />
+      ),
+    },
+    {
+      id: 'league-result-stay-hybrid',
+      title: cs('league_result_stay_hybrid_title'),
+      detail: cs('league_result_synthetic_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <LeagueResultModal
+          visible={visible}
+          onClose={onClose}
+          previewMode
+          motionVariant="hybrid"
+          result={buildLeagueDevSeed('stay')}
+        />
+      ),
+    },
     {
       id: 'league-chest-open',
       title: cs('league_chest_open_title'),
@@ -113,6 +159,22 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'league-chest-open-hybrid',
+      title: cs('league_chest_open_hybrid_title'),
+      detail: cs('league_chest_open_hybrid_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <LeagueChestOpenModal
+          visible={visible}
+          onClose={onClose}
+          crownName={cs('league_chest_crown_name')}
+          isCrownWinner
+          rewards={DEMO_CHEST_REWARDS}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'league-bonus-available',
       title: cs('league_bonus_available_title'),
       detail: cs('league_bonus_available_detail'),
@@ -122,6 +184,34 @@ export const SECTION: ShowcaseSection = {
           visible={visible}
           onClose={onClose}
           onOpenLeague={() => {}}
+          availability={{
+            available: true,
+            weekId: 'dev-week',
+            groupId: 'dev-group',
+            leagueId: 3,
+            progress: 820,
+            goal: 1000,
+            memberCount: 29,
+            crownName: cs('league_chest_crown_name'),
+            crownUid: 'dev-me',
+            isCrownWinner: true,
+            userUid: 'dev-me',
+          }}
+        />
+      ),
+    },
+    {
+      id: 'league-bonus-available-hybrid',
+      title: cs('league_bonus_available_hybrid_title'),
+      detail: cs('league_bonus_available_hybrid_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <LeagueBonusAvailableModal
+          visible={visible}
+          onClose={onClose}
+          onOpenLeague={() => {}}
+          motionVariant="hybrid"
+          activeDaysThisWeek={5}
           availability={{
             available: true,
             weekId: 'dev-week',
@@ -153,6 +243,25 @@ export const SECTION: ShowcaseSection = {
           canClaim={false}
           rarities={['common', 'rare', 'epic', 'legendary']}
           onClaim={() => {}}
+        />
+      ),
+    },
+    {
+      id: 'league-chest-teaser-hybrid',
+      title: cs('league_chest_teaser_hybrid_title'),
+      detail: cs('league_chest_teaser_hybrid_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <LeagueChestTeaserModal
+          visible={visible}
+          onClose={onClose}
+          lang="ru"
+          palette={DEMO_HUB_PALETTE}
+          remainingXp={180}
+          canClaim={false}
+          rarities={['common', 'rare', 'epic', 'legendary']}
+          onClaim={() => {}}
+          motionVariant="hybrid"
         />
       ),
     },

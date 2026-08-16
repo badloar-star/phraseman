@@ -25,6 +25,7 @@ import {
 } from './league_engine';
 import { isLeagueXpPromotionEnabled, getLeagueXpPromotionThreshold } from './remote_flags';
 import AvatarView from '../components/AvatarView';
+import LeagueResultHybrid from '../components/league/LeagueResultHybrid';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import { memberNameStatusStyle } from '../components/premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
@@ -140,9 +141,16 @@ interface Props {
    * ничего не пишет в хранилище.
    */
   previewMode?: boolean;
+  /**
+   * зачем: гибридный редизайн («Световод + Чекан», см. constants/motionHybrid.ts)
+   * подключается ТОЛЬКО этим пропсом — боевое поведение не меняется, пока его
+   * никто не передаёт. 'hybrid' рендерит components/league/LeagueResultHybrid.tsx
+   * вместо классического тела; Modal/скрим/крестик/CTA — общие для обеих версий.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-export default function LeagueResultModal({ visible, result, onClose, previewMode = false }: Props) {
+export default function LeagueResultModal({ visible, result, onClose, previewMode = false, motionVariant = 'classic' }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
@@ -548,6 +556,149 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
   const closeButtonBg   = onLight ? 'rgba(23,32,29,0.08)' : 'rgba(255,255,255,0.06)';
   const transitionChipBg = onLight ? 'rgba(23,32,29,0.06)' : 'rgba(0,0,0,0.32)';
   const motivationBg    = onLight ? t.bgSurface : 'rgba(255,255,255,0.04)';
+
+  // ─── Гибридная («Световод + Чекан») версия тела ────────────────────────
+  // зачем: v2 включается ТОЛЬКО этим пропсом (владелец, план гибридного
+  // редизайна) — боевой Modal/scrim/крестик/CTA переиспользуются один в один
+  // из классической ветки ниже, меняется только содержимое карточки.
+  if (motionVariant === 'hybrid') {
+    return (
+      <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose} statusBarTranslucent>
+        <View
+          testID="league-result-modal"
+          accessible={false}
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingHorizontal: 12,
+            paddingTop: modalPadTop,
+            paddingBottom: modalPadBottom,
+          }}
+        >
+          {/* guard-ok: декоративный backdrop-тап, идентичен классической ветке — крестик рядом уже озвучен accessibilityLabel «Закрыть» */}
+          <Pressable
+            onPress={handleClose}
+            style={StyleSheet.absoluteFill}
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+          />
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: scrimColor }]} />
+
+          <View>
+            <Animated.View
+              style={{
+                opacity: Animated.multiply(
+                  cardOpacity,
+                  exitProgress.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }),
+                ),
+                transform: [
+                  { scale: cardScale },
+                  { scale: exitProgress.interpolate({ inputRange: [0, 1], outputRange: [1, 0.94] }) },
+                  { translateY: exitProgress.interpolate({ inputRange: [0, 1], outputRange: [0, 18] }) },
+                ],
+                shadowColor: palette.glow,
+                shadowOffset: { width: 0, height: 16 },
+                shadowOpacity: 0.45,
+                shadowRadius: 28, // guard-ok: тень унаследована 1:1 из классической ветки (уже прод), не новый расход
+                elevation: 24,
+              }}
+            >
+              <LinearGradient
+                colors={borderGradient}
+                start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
+                style={{ borderRadius: 28, padding: 1.5 }}
+              >
+                <View style={{
+                  width: CARD_W,
+                  height: modalMaxHeight,
+                  borderRadius: 26,
+                  overflow: 'hidden',
+                  backgroundColor: t.bgPrimary,
+                }}>
+                  <LeagueResultHybrid
+                    visible={visible}
+                    result={result}
+                    onClose={handleClose}
+                    reduceMotion={reduceMotion}
+                    previewMode={previewMode}
+                  />
+
+                  {/* Кнопка-крестик — общая с классической версией */}
+                  <TouchableOpacity
+                    testID="league-result-close-button"
+                    onPress={handleClose}
+                    accessibilityLabel={triLang(lang, {
+  ru: 'Закрыть',
+  uk: 'Закрити',
+  es: 'Cerrar',
+  "pt-BR": 'Fechar',
+  vi: 'Đóng',
+  id: 'Tutup',
+  tr: 'Kapat',
+  pl: 'Zamknij',
+})}
+                    hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                    style={{
+                      position: 'absolute', top: 10, right: 10, zIndex: 4,
+                      width: 30, height: 30, borderRadius: 15,
+                      alignItems: 'center', justifyContent: 'center',
+                      backgroundColor: closeButtonBg,
+                    }}
+                  >
+                    <Ionicons name="close" size={18} color={onLight ? t.textPrimary : t.textMuted} />
+                  </TouchableOpacity>
+
+                  {/* CTA — общий с классической версией (тот же текст/цвета/блик) */}
+                  <Animated.View style={{
+                    position: 'absolute', left: 0, right: 0, bottom: 0,
+                    paddingHorizontal: 18, paddingTop: 14, paddingBottom: 20,
+                    opacity: intro.interpolate({ inputRange: [0.7, 0.94], outputRange: [0, 1], extrapolate: 'clamp' }),
+                    transform: [{
+                      translateY: intro.interpolate({ inputRange: [0.7, 0.94], outputRange: [12, 0], extrapolate: 'clamp' }),
+                    }],
+                  }}>
+                    <TouchableOpacity
+                      testID="league-result-continue-button"
+                      activeOpacity={0.9}
+                      onPress={handleClose}
+                      accessibilityRole="button"
+                      accessibilityLabel={btnText}
+                    >
+                      <View style={{
+                        borderRadius: 16,
+                        overflow: 'hidden',
+                        shadowColor: palette.primary,
+                        shadowOffset: { width: 0, height: 6 },
+                        shadowOpacity: 0.45,
+                        shadowRadius: 10,
+                        ...noAndroidOutline,
+                      }}>
+                        <LinearGradient
+                          colors={ctaGradient}
+                          start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
+                          style={{ paddingVertical: 16, alignItems: 'center', justifyContent: 'center' }}
+                        >
+                          <Text style={{
+                            color: ctaTextColor,
+                            fontSize: f.bodyLg,
+                            fontWeight: '900',
+                            letterSpacing: 0.5,
+                          }}>
+                            {btnText}
+                          </Text>
+                        </LinearGradient>
+                      </View>
+                    </TouchableOpacity>
+                  </Animated.View>
+                </View>
+              </LinearGradient>
+            </Animated.View>
+          </View>
+        </View>
+      </Modal>
+    );
+  }
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose} statusBarTranslucent>

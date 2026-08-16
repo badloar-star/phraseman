@@ -14,6 +14,7 @@ import {
 import { useReducedMotion } from 'react-native-reanimated';
 import type { ThemeMode } from '../constants/theme';
 import LevelBadge from './LevelBadge';
+import LevelUpThresholdModalHybrid from './LevelUpThresholdModalHybrid';
 import { LinearGradient } from './SafeLinearGradient';
 import { getLevelUpThresholdPalette } from './levelUpThresholdTheme';
 import { SpinRewardPlaque } from './SpinRewardPlaque';
@@ -67,6 +68,14 @@ export type LevelUpThresholdModalProps = {
   glow: Animated.Value;
   onShow: () => void;
   onContinue: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена R3) живёт РЯДОМ со старой версией под флагом. Боевой дефолт — 'classic',
+   * ничего не меняется без явного включения. 'hybrid' рендерит
+   * LevelUpThresholdModalHybrid — свой собственный движок (reanimated shared
+   * values), Animated.Value-пропы (opacity/translateY/glow) ему не нужны.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 export default function LevelUpThresholdModal({
@@ -93,6 +102,7 @@ export default function LevelUpThresholdModal({
   glow,
   onShow,
   onContinue,
+  motionVariant = 'classic',
 }: LevelUpThresholdModalProps) {
   const { height, width } = useWindowDimensions();
   const reduceMotion = useReducedMotion();
@@ -137,6 +147,36 @@ export default function LevelUpThresholdModal({
       opacity: glow.interpolate({ inputRange: [0, 0.38, 1], outputRange: [0, 0, 1] }),
       transform: [{ translateY: glow.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }] as const,
     };
+
+  // зачем: гибрид — отдельный компонент со своим reanimated-движком (см. шапку
+  // motionVariant в типе выше); classic-хуки above уже отработали безвредно
+  // (Animated.Value интерполяции ничего не подписывают, пока не примонтированы).
+  if (motionVariant === 'hybrid') {
+    return (
+      <LevelUpThresholdModalHybrid
+        visible={visible}
+        variant={variant}
+        level={level}
+        themeMode={themeMode}
+        kicker={kicker}
+        headline={headline}
+        message={message}
+        xpLabel={xpLabel}
+        xpValue={xpValue}
+        titleLabel={titleLabel}
+        titleReward={titleReward}
+        titleColor={titleColor}
+        energyLabel={energyLabel}
+        energyReward={energyReward}
+        energyValue={energyValue}
+        spinReward={spinReward}
+        spinReceiptId={spinReceiptId}
+        continueLabel={continueLabel}
+        onShow={onShow}
+        onContinue={onContinue}
+      />
+    );
+  }
 
   return (
     <Modal

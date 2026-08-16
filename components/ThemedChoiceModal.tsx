@@ -6,6 +6,9 @@ import { hapticTap } from '../hooks/use-haptics';
 import GoldBevel from './GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../constants/oliveTheme';
+import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { LUM } from '../constants/motionHybrid';
 
 export type ThemedChoice = {
   label: string;
@@ -19,6 +22,8 @@ type Props = {
   message: string;
   choices: ThemedChoice[];
   onRequestClose: () => void;
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 function ThemedChoiceModal({
@@ -27,11 +32,14 @@ function ThemedChoiceModal({
   message,
   choices,
   onRequestClose,
+  motionVariant = 'classic',
 }: Props) {
   const { theme: t, themeMode, f } = useTheme();
+  const reduceMotion = useReduceMotion();
   const dim = 'rgba(0,0,0,0.60)';
   const isGoldTheme = themeMode === 'gold';
   const isOliveTheme = themeMode === 'olive';
+  const isHybrid = motionVariant === 'hybrid';
   const modalColors = isGoldTheme
     ? GOLD_GRADIENTS.premiumPanel
     : isOliveTheme ? OLIVE_GRADIENTS.quietPanel
@@ -39,41 +47,43 @@ function ThemedChoiceModal({
   const modalRadius = 16;
   const buttonRadius = 12;
 
-  return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={onRequestClose}>
-      <Pressable style={{ flex: 1, backgroundColor: dim, justifyContent: 'center', alignItems: 'center', padding: 24 }} onPress={onRequestClose}>
-        <Pressable onPress={e => e.stopPropagation()}>
-          <LinearGradient
-            colors={modalColors}
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-            start={isGoldTheme ? { x: 0, y: 0 } : undefined}
-            end={isGoldTheme ? { x: 1, y: 1 } : undefined}
-            style={{
-              borderRadius: modalRadius,
-              padding: 22,
-              width: '100%',
-              maxWidth: 360,
-              borderWidth: 0,
-              borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
-              overflow: 'hidden',
-              ...(isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(3) : {}),
-            }}
-          >
-            {isGoldTheme && <GoldBevel radius={16} intensity="strong" />}
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 10, zIndex: 10 }}>
-              {title}
-            </Text>
-            <Text
-              style={{
-                color: t.textMuted,
-                fontSize: f.body,
-                lineHeight: f.body * 1.5,
-                marginBottom: 18,
-                zIndex: 10,
-              }}
-            >
-              {message}
-            </Text>
+  const panelContent = (
+    <LinearGradient
+      colors={modalColors}
+      locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+      start={isGoldTheme ? { x: 0, y: 0 } : undefined}
+      end={isGoldTheme ? { x: 1, y: 1 } : undefined}
+      style={{
+        borderRadius: modalRadius,
+        padding: 22,
+        width: '100%',
+        maxWidth: 360,
+        borderWidth: 0,
+        borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
+        overflow: 'hidden',
+        ...(isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(3) : {}),
+      }}
+    >
+      {isGoldTheme && <GoldBevel radius={16} intensity="strong" />}
+      <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
+        <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 10, zIndex: 10 }}>
+          {title}
+        </Text>
+      </CascadeItem>
+      <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
+        <Text
+          style={{
+            color: t.textMuted,
+            fontSize: f.body,
+            lineHeight: f.body * 1.5,
+            marginBottom: 18,
+            zIndex: 10,
+          }}
+        >
+          {message}
+        </Text>
+      </CascadeItem>
+      <CascadeItem delay={isHybrid ? LUM.ladder[2] + 192 : 0} reduceMotion={!isHybrid || reduceMotion}>
             <View style={{ gap: 4, zIndex: 10 }}>
               {choices.map((c, i) => {
                 const primary = c.variant !== 'secondary';
@@ -159,7 +169,28 @@ function ThemedChoiceModal({
                 );
               })}
             </View>
-          </LinearGradient>
+      </CascadeItem>
+    </LinearGradient>
+  );
+
+  if (isHybrid) {
+    return (
+      <HybridAlertShell
+        visible={visible}
+        onRequestClose={onRequestClose}
+        shadowColor={isGoldTheme ? GOLD_RICH.hairlineStrong : isOliveTheme ? undefined : '#000000'}
+        testID="themed-choice-modal-hybrid"
+      >
+        {panelContent}
+      </HybridAlertShell>
+    );
+  }
+
+  return (
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={onRequestClose}>
+      <Pressable style={{ flex: 1, backgroundColor: dim, justifyContent: 'center', alignItems: 'center', padding: 24 }} onPress={onRequestClose}>
+        <Pressable onPress={e => e.stopPropagation()}>
+          {panelContent}
         </Pressable>
       </Pressable>
     </Modal>

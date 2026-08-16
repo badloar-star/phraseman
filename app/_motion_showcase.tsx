@@ -15,6 +15,7 @@ import TapScale from '../components/TapScale';
 import { hapticTap } from '../hooks/use-haptics';
 import { getShowcaseSections } from '../components/dev/motion_showcase';
 import type { ShowcaseItem } from '../components/dev/motion_showcase/types';
+import { cs } from '../components/dev/motion_showcase/showcase_copy';
 
 export default function MotionShowcaseScreen() {
   const { theme: t, f } = useTheme();
@@ -45,7 +46,7 @@ export default function MotionShowcaseScreen() {
     <View style={[styles.root, { backgroundColor: t.bgPrimary }]}>
       <ScreenGradient />
       <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
-        <TapScale onPress={() => router.back()} accessibilityLabel="Назад">
+        <TapScale onPress={() => router.back()} accessibilityLabel={cs('back')}>
           <View style={[styles.back, { backgroundColor: t.bgSurface }]}>
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </View>

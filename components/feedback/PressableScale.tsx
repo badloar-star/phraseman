@@ -1,9 +1,11 @@
 /**
  * PressableScale — обёртка кнопки FeedbackKit с физикой вдавливания (спек §2).
  *
- * Reanimated, всё на UI-треде: при нажатии кнопка «вдавливается» (translateY +
- * лёгкое сжатие scale), возврат — пружиной. На onPressIn зовёт fk.tap() (тихий
- * клик + light haptic; сам fk уважает тумблеры). variant:
+ * Reanimated, всё на UI-треде: при нажатии кнопка «вдавливается» — чистый
+ * translateY БЕЗ scale (владелец 2026-08-16: «вдавливание = сжатие всего
+ * блока» читалось как второй слой под кнопкой, а не как продавленная кромка).
+ * Возврат — пружиной. На onPressIn зовёт fk.tap() (тихий клик + light haptic;
+ * сам fk уважает тумблеры). variant:
  *  - '3d'   — кнопки ответов/CTA (заметное вдавливание вниз),
  *  - 'flat' — мелкие элементы (тоньше ход).
  *
@@ -26,6 +28,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import fk from '../../app/feedback/feedback_kit';
+import { PRESS } from '../../constants/motionHybrid';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
 
 type PressableScaleVariant = '3d' | 'flat';
 
@@ -39,8 +43,6 @@ export interface PressableScaleProps
   silent?: boolean;
 }
 
-const SPRING = { damping: 18, stiffness: 320, mass: 0.6 } as const;
-
 export function PressableScale({
   children,
   style,
@@ -53,25 +55,27 @@ export function PressableScale({
   ...rest
 }: PressableScaleProps) {
   const pressed = useSharedValue(0);
+  const reduceMotion = useReduceMotion();
 
-  const depth = variant === '3d' ? 3 : 1.5;
-  const minScale = variant === '3d' ? 0.97 : 0.98;
+  // зачем: вдавливание — чистая геометрия (translateY), не сжатие. depth —
+  // на сколько px «клавиша» уходит вниз; '3d' заметнее, 'flat' — тоньше ход.
+  const depth = variant === '3d' ? 4 : 1.5;
 
   const handlePressIn = useCallback(
     (e: GestureResponderEvent) => {
-      pressed.value = withTiming(1, { duration: 70 });
+      pressed.value = reduceMotion ? 1 : withTiming(1, { duration: PRESS.downMs });
       if (!silent && !disabled) fk.tap();
       onPressIn?.(e);
     },
-    [pressed, silent, disabled, onPressIn],
+    [pressed, reduceMotion, silent, disabled, onPressIn],
   );
 
   const handlePressOut = useCallback(
     (e: GestureResponderEvent) => {
-      pressed.value = withSpring(0, SPRING);
+      pressed.value = reduceMotion ? 0 : withSpring(0, variant === '3d' ? PRESS.releasePrimary : PRESS.release);
       onPressOut?.(e);
     },
-    [pressed, onPressOut],
+    [pressed, reduceMotion, variant, onPressOut],
   );
 
   React.useEffect(() => {
@@ -79,12 +83,8 @@ export function PressableScale({
   }, [pressed]);
 
   const animatedStyle = useAnimatedStyle(() => {
-    const p = pressed.value;
     return {
-      transform: [
-        { translateY: p * depth },
-        { scale: 1 - p * (1 - minScale) },
-      ],
+      transform: [{ translateY: pressed.value * depth }],
     };
   });
 

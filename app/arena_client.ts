@@ -7,7 +7,7 @@ import * as Crypto from 'expo-crypto';
 import Constants from 'expo-constants';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser } from './cloud_sync';
-import { getInstalledAppVersion } from './app_version';
+import { getVersionForServerGate } from './app_version';
 import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
 import type {
   ArenaMatch,
@@ -90,7 +90,10 @@ async function callArena<T>(name: string, payload: Record<string, unknown> = {})
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const { getApp } = await import('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
-  const clientVersion = getInstalledAppVersion({
+  // зачем: для гейта версии нужна разбираемая строка, а не 'unknown' —
+  // иначе сервер отвечает «обнови приложение» установленной свежей сборке,
+  // и хаб рисует «Арена не включена на сервере». См. getVersionForServerGate.
+  const clientVersion = getVersionForServerGate({
     nativeAppVersion: Constants.nativeAppVersion,
     expoConfig: Constants.expoConfig,
   });

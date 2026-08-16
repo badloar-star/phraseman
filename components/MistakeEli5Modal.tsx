@@ -39,6 +39,7 @@ import LearningSemanticBlock from './LearningSemanticBlock';
 import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import TonalSurface from './TonalSurface';
 import AiBadge from './AiBadge';
+import MistakeEli5ModalHybrid from './MistakeEli5ModalHybrid';
 
 export type MistakeEli5State = 'idle' | 'loading' | 'ready';
 
@@ -49,11 +50,24 @@ interface Props {
   state: MistakeEli5State;
   text: string | null;
   onRetry: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена M2 «Шторка (bottom sheet)») живёт РЯДОМ со старой версией под флагом.
+   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 const SHEET_HIDDEN = 320; // стартовая позиция листа под экраном (выезд/уезд)
 
-function MistakeEli5Modal({ visible, onClose, lang, state, text }: Props) {
+function MistakeEli5Modal({ visible, onClose, lang, state, text, motionVariant = 'classic' }: Props) {
+  if (motionVariant === 'hybrid') {
+    return <MistakeEli5ModalHybrid visible={visible} onClose={onClose} lang={lang} state={state} text={text} />;
+  }
+  return <MistakeEli5ModalClassic visible={visible} onClose={onClose} lang={lang} state={state} text={text} />;
+}
+
+function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<Props, 'onRetry' | 'motionVariant'>) {
   const { theme: t, f } = useTheme();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);

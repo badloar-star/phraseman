@@ -104,7 +104,11 @@ describe('Arena V2 listener and callable source contract', () => {
   });
 
   test('sends the installed app version through the server release gate', () => {
-    expect(client).toContain('getInstalledAppVersion');
+    // Именно нормализованную версию, а не 'unknown' из аналитической: сервер
+    // не разбирает 'unknown' и отвечает «обнови приложение» свежей сборке, а
+    // хаб рисует на это «Арена не включена на сервере».
+    expect(client).toContain('getVersionForServerGate');
+    expect(client).not.toContain('getInstalledAppVersion(');
     expect(client).toContain('{ ...payload, clientVersion }');
   });
 

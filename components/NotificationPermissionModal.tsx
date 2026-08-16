@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import type { Lang } from '../constants/i18n';
 import { triLang } from '../constants/i18n';
+import NotificationPermissionModalHybrid from './NotificationPermissionModalHybrid';
 
 type Props = {
   visible: boolean;
@@ -15,6 +16,12 @@ type Props = {
   points?: string[];
   confirmLabel?: string;
   cancelLabel?: string;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена M2 «Шторка (bottom sheet)») живёт РЯДОМ со старой версией под флагом.
+   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 function NotificationPermissionModal({
@@ -27,6 +34,7 @@ function NotificationPermissionModal({
   points,
   confirmLabel,
   cancelLabel,
+  motionVariant = 'classic',
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
 
@@ -66,6 +74,32 @@ function NotificationPermissionModal({
       tr: ['Günleri kaçırmadan seriyi koru', 'Kısa ve faydalı hatırlatmalar', 'İstediğin zaman kapatabilirsin'],
       pl: ['Bez przerw i utraty serii', 'Krótkie przydatne przypomnienia', 'Możesz wyłączyć w dowolnym momencie'],
     });
+
+  const resolvedConfirmLabel =
+    confirmLabel ??
+    triLang(lang, {
+      ru: 'Включить', uk: 'Увімкнути', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz',
+    });
+  const resolvedCancelLabel =
+    cancelLabel ??
+    triLang(lang, {
+      ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później',
+    });
+
+  if (motionVariant === 'hybrid') {
+    return (
+      <NotificationPermissionModalHybrid
+        visible={visible}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+        title={resolvedTitle}
+        body={resolvedBody}
+        points={[...resolvedPoints]}
+        confirmLabel={resolvedConfirmLabel}
+        cancelLabel={resolvedCancelLabel}
+      />
+    );
+  }
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>

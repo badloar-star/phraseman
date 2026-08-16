@@ -62,6 +62,47 @@ function makeLevelUpDemoRender(variant: 'standard' | 'milestone') {
 const renderLevelUpStandard = makeLevelUpDemoRender('standard');
 const renderLevelUpMilestone = makeLevelUpDemoRender('milestone');
 
+// зачем: гибрид «Световод + Чекан» — тот же реальный LevelUpThresholdModal,
+// motionVariant="hybrid" переключает рендер на LevelUpThresholdModalHybrid
+// (см. компонент). opacity/translateY/glow гибриду не нужны (свой reanimated
+// движок), но проп остаётся обязательным в типе classic-обёртки — передаём
+// те же одноразовые Animated.Value, что и в classic-варианте, без вреда.
+function makeLevelUpHybridDemoRender(variant: 'standard' | 'milestone') {
+  return ({ visible, onClose }: { visible: boolean; onClose: () => void }) => {
+    const opacity = new Animated.Value(1);
+    const translateY = new Animated.Value(0);
+    const glow = new Animated.Value(1);
+    return React.createElement(LevelUpThresholdModal, {
+      visible,
+      variant,
+      motionVariant: 'hybrid',
+      level: variant === 'milestone' ? 20 : 13,
+      themeMode: 'indigo',
+      kicker: variant === 'milestone' ? cs('levelup_kicker_milestone') : cs('levelup_kicker_standard'),
+      headline: cs('levelup_headline').replace('{level}', String(variant === 'milestone' ? 20 : 13)),
+      message: variant === 'milestone'
+        ? cs('levelup_message_milestone')
+        : cs('levelup_message_standard'),
+      xpLabel: cs('levelup_xp_label'),
+      xpValue: cs('levelup_xp_value'),
+      titleLabel: cs('levelup_title_label'),
+      energyLabel: cs('levelup_energy_label'),
+      energyValue: (amount: number) => cs('levelup_energy_value').replace('{amount}', String(amount)),
+      spinReward: true,
+      spinReceiptId: `motion-showcase-levelup-hybrid-${variant}`,
+      continueLabel: cs('levelup_continue_label'),
+      opacity,
+      translateY,
+      glow,
+      onShow: () => {},
+      onContinue: onClose,
+    });
+  };
+}
+
+const renderLevelUpStandardHybrid = makeLevelUpHybridDemoRender('standard');
+const renderLevelUpMilestoneHybrid = makeLevelUpHybridDemoRender('milestone');
+
 function renderSpinRewardModal({ visible, onClose }: { visible: boolean; onClose: () => void }) {
   return React.createElement(LevelSpinRewardModal, {
     visible,
@@ -105,6 +146,20 @@ export const SECTION: ShowcaseSection = {
       detail: cs('real_modal'),
       kind: 'render',
       render: renderLevelUpMilestone,
+    },
+    {
+      id: 'levelup_threshold_standard_hybrid',
+      title: cs('levelup_threshold_standard_hybrid_title'),
+      detail: cs('real_modal'),
+      kind: 'render',
+      render: renderLevelUpStandardHybrid,
+    },
+    {
+      id: 'levelup_threshold_milestone_hybrid',
+      title: cs('levelup_threshold_milestone_hybrid_title'),
+      detail: cs('real_modal'),
+      kind: 'render',
+      render: renderLevelUpMilestoneHybrid,
     },
     {
       id: 'level_spin_reward_modal',

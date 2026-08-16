@@ -54,6 +54,48 @@ describe('Arena V2 backend source contract', () => {
     expect(publicReward).not.toContain('spinAwarded');
   });
 
+  /**
+   * Инцидент 2026-08-16: конфиг стоял с minClientVersion '0.0.0' («подходит
+   * любая сборка»), но версию клиента всё равно разбирали. Android присылал
+   * 'unknown' (nativeAppVersion пустой), разбор падал, и сервер отвечал
+   * `arena_client_update_required`. Хаб рисует на любой отказ карточку
+   * «Арена ещё не включена на сервере» — раздел выглядел невключённым при
+   * полностью рабочем сервере.
+   *
+   * Функции приватные, поэтому вырезаем их из исходника и исполняем: проверяем
+   * поведение, а не совпадение текста.
+   */
+  it('treats 0.0.0 as "any build" and tolerates two- and four-part versions', () => {
+    const cut = (name: string): string => {
+      const start = source.indexOf(`function ${name}(`);
+      const end = source.indexOf('\n}\n', start);
+      expect(start).toBeGreaterThan(-1);
+      return source.slice(start, end + 3)
+        // Вырезанное — TypeScript; для исполнения снимаем аннотации типов:
+        // параметры, возвращаемые типы и приведения.
+        .replace(/: \[number, number, number\] \| null/g, '')
+        .replace(/(\w+): unknown/g, '$1')
+        .replace(/\): boolean \{/g, ') {');
+    };
+    // eslint-disable-next-line no-new-func
+    const versionAtLeast = new Function(
+      `${cut('comparableVersion')}${cut('versionAtLeast')}return versionAtLeast;`,
+    )() as (a: unknown, b: unknown) => boolean;
+
+    // Минимум '0.0.0' никого не отсекает — даже нечитаемую версию.
+    for (const actual of ['unknown', '', null, undefined, '1.6.7']) {
+      expect(versionAtLeast(actual, '0.0.0')).toBe(true);
+    }
+    // Обычные форматы магазинов разбираются, а не считаются поломкой.
+    expect(versionAtLeast('1.6', '1.5.0')).toBe(true);
+    expect(versionAtLeast('1.6.7.1', '1.6.7')).toBe(true);
+    // Настоящий минимум по-прежнему отсекает старое и мусорное.
+    expect(versionAtLeast('1.4.9', '1.5.0')).toBe(false);
+    expect(versionAtLeast('unknown', '1.5.0')).toBe(false);
+    // Опечатка администратора в минимуме не закрывает Арену всем.
+    expect(versionAtLeast('1.6.7', '1.0.0-beta')).toBe(true);
+  });
+
   it('has bounded queue/cleanup operations and a six-second bot recheck', () => {
     expect(source).not.toMatch(/\.limit\((?:1[1-9]|[2-9]\d+)\).*queue/);
     expect(source).toContain(".orderBy('joinedAtMs', 'asc').limit(10)");

@@ -263,15 +263,32 @@ function int(value: unknown, field: string, min: number, max: number): number {
   return Number(value);
 }
 
+/**
+ * Требовать РОВНО три части было слишком строго: `1.6` и `1.6.7.1` — обычные
+ * значения `CFBundleShortVersionString` и `versionName`, а не поломка. Такая
+ * версия не разбиралась, и гейт ниже отвечал «обнови приложение» установленной
+ * свежей сборке. Недостающие части дополняем нулями, лишние отбрасываем.
+ */
 function comparableVersion(value: unknown): [number, number, number] | null {
-  const match = String(value ?? '').trim().match(/^(\d+)\.(\d+)\.(\d+)(?:[-+].*)?$/);
-  return match ? [Number(match[1]), Number(match[2]), Number(match[3])] : null;
+  const match = String(value ?? '').trim().match(/^(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:[.\-+].*)?$/);
+  if (!match) return null;
+  return [Number(match[1]), Number(match[2] ?? 0), Number(match[3] ?? 0)];
 }
 
 function versionAtLeast(actualValue: unknown, minimumValue: unknown): boolean {
-  const actual = comparableVersion(actualValue);
   const minimum = comparableVersion(minimumValue);
-  if (!actual || !minimum) return false;
+  // Нечитаемый минимум закрывал Арену всем сразу. Он задаётся администратором,
+  // и цена его опечатки не должна ложиться на игроков.
+  if (!minimum) return true;
+  // зачем: '0.0.0' в конфиге означает «подходит любая сборка» — именно это и
+  // выставляет админка по умолчанию. Раньше версию всё равно разбирали, и
+  // клиент, приславший 'unknown' (на Android nativeAppVersion бывает пустым),
+  // получал «обнови приложение» при минимуме, который никого не отсекает.
+  // Владелец видел это как «Арена не включена на сервере»: экран рисует ту же
+  // карточку на любой отказ вызова.
+  if (minimum[0] === 0 && minimum[1] === 0 && minimum[2] === 0) return true;
+  const actual = comparableVersion(actualValue);
+  if (!actual) return false;
   for (let index = 0; index < 3; index += 1) {
     if (actual[index] !== minimum[index]) return actual[index] > minimum[index];
   }

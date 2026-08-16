@@ -7,20 +7,28 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
+import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 
 type Props = {
   message: AppMessageWithState | null;
   visible: boolean;
   onAcknowledge: (messageId: string) => Promise<void>;
+  /**
+   * зачем: гибрид «Световод + Чекан» (.motion-mockups/phraseman-hybrid.html,
+   * семья «Полноэкранные») — сцена входит из света, контент каскадом. Боевой
+   * дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
-function PersonalAdminMessageModal({ message, visible, onAcknowledge }: Props) {
+function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVariant = 'classic' }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const L = (copy: Record<Lang, string>) => triLang(lang, copy);
   const insets = useStableSafeAreaInsets();
   const [closing, setClosing] = useState(false);
   const text = message ? pickAppMessageText(message, lang) : null;
+  const isHybrid = motionVariant === 'hybrid';
 
   const close = useCallback(async () => {
     if (!message || closing) return;
@@ -30,11 +38,35 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge }: Props) {
     finally { setClosing(false); }
   }, [closing, message, onAcknowledge]);
 
+  const titleSlot = (
+    <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+      {text?.title || L({ ru: 'Сообщение', uk: 'Повідомлення', es: 'Mensaje', 'pt-BR': 'Mensagem', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesaj', pl: 'Wiadomość' })}
+    </Text>
+  );
+
+  const bodySlot = (
+    <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>
+      {text?.body || ''}
+    </Text>
+  );
+
+  const ctaSlot = (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={L({ ru: 'Закрыть сообщение', uk: 'Закрити повідомлення', es: 'Cerrar mensaje', 'pt-BR': 'Fechar mensagem', vi: 'Đóng tin nhắn', id: 'Tutup pesan', tr: 'Mesajı kapat', pl: 'Zamknij wiadomość' })}
+      disabled={closing}
+      onPress={() => { void close(); }}
+      style={({ pressed }) => [styles.button, { backgroundColor: t.accent, opacity: pressed || closing ? 0.82 : 1 }]}
+    >
+      <Text style={[styles.buttonText, { color: t.correctText, fontSize: f.bodyLg }]}>{L({ ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}</Text>
+    </Pressable>
+  );
+
   return (
     <Modal
       visible={visible}
       transparent
-      animationType="fade"
+      animationType={isHybrid ? 'none' : 'fade'}
       statusBarTranslucent
       onRequestClose={() => { void close(); }}
     >
@@ -43,21 +75,15 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge }: Props) {
           accessibilityViewIsModal
           style={[styles.card, { backgroundColor: t.bgCard, borderColor: `${t.accent}66` }]}
         >
-          <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
-            {text?.title || L({ ru: 'Сообщение', uk: 'Повідомлення', es: 'Mensaje', 'pt-BR': 'Mensagem', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesaj', pl: 'Wiadomość' })}
-          </Text>
-          <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>
-            {text?.body || ''}
-          </Text>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={L({ ru: 'Закрыть сообщение', uk: 'Закрити повідомлення', es: 'Cerrar mensaje', 'pt-BR': 'Fechar mensagem', vi: 'Đóng tin nhắn', id: 'Tutup pesan', tr: 'Mesajı kapat', pl: 'Zamknij wiadomość' })}
-            disabled={closing}
-            onPress={() => { void close(); }}
-            style={({ pressed }) => [styles.button, { backgroundColor: t.accent, opacity: pressed || closing ? 0.82 : 1 }]}
-          >
-            <Text style={[styles.buttonText, { color: t.correctText, fontSize: f.bodyLg }]}>{L({ ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}</Text>
-          </Pressable>
+          {isHybrid ? (
+            <FullscreenHybridEntrance visible={visible} bloomColor={t.accent} slots={[titleSlot, bodySlot, ctaSlot]} />
+          ) : (
+            <>
+              {titleSlot}
+              {bodySlot}
+              {ctaSlot}
+            </>
+          )}
         </View>
       </View>
     </Modal>

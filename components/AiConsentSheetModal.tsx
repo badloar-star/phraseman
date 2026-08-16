@@ -37,6 +37,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import TonalSurface from './TonalSurface';
 import AiBadge from './AiBadge';
 import { noAndroidOutline } from '../constants/androidGlow';
+import AiConsentSheetModalHybrid from './AiConsentSheetModalHybrid';
 
 interface Props {
   visible: boolean;
@@ -47,11 +48,17 @@ interface Props {
   onAccept: () => void;
   onDecline: () => void;
   testIdPrefix: string;
+  /**
+   * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
+   * сцена M2 «Шторка (bottom sheet)») живёт РЯДОМ со старой версией под флагом.
+   * Боевой дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 const SHEET_HIDDEN = 320;
 
-function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, onAccept, onDecline, testIdPrefix }: Props) {
+function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, onAccept, onDecline, testIdPrefix, motionVariant = 'classic' }: Props) {
   const { theme: t, f } = useTheme();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -132,6 +139,21 @@ function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, 
       if (finished) runOnJS(onAccept)();
     });
   }, [backdropO, sheetOpacity, sheetY, onAccept]);
+
+  if (motionVariant === 'hybrid') {
+    return (
+      <AiConsentSheetModalHybrid
+        visible={visible}
+        title={title}
+        body={body}
+        acceptLabel={acceptLabel}
+        declineLabel={declineLabel}
+        onAccept={onAccept}
+        onDecline={onDecline}
+        testIdPrefix={testIdPrefix}
+      />
+    );
+  }
 
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismissSheet}>

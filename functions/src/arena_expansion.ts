@@ -141,14 +141,28 @@ function featureFlag(feature: ExpansionFeature): string {
   } as const)[feature];
 }
 
+/**
+ * Тот же договор, что в `arena_v2.ts`: `1.6` и `1.6.7.1` — обычные значения
+ * версий магазинов, а не поломка. Недостающие части дополняем нулями.
+ */
 function comparableVersion(value: unknown): [number, number, number] | null {
-  const match = String(value ?? '').trim().match(/^(\d+)\.(\d+)\.(\d+)(?:[-+].*)?$/);
-  return match ? [Number(match[1]), Number(match[2]), Number(match[3])] : null;
+  const match = String(value ?? '').trim().match(/^(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:[.\-+].*)?$/);
+  if (!match) return null;
+  return [Number(match[1]), Number(match[2] ?? 0), Number(match[3] ?? 0)];
 }
 
 function versionAtLeast(actualValue: unknown, minimumValue: unknown): boolean {
-  const actual = comparableVersion(actualValue); const minimum = comparableVersion(minimumValue);
-  if (!actual || !minimum) return false;
+  const minimum = comparableVersion(minimumValue);
+  // Опечатка администратора в минимуме не должна закрывать раздел всем сразу.
+  if (!minimum) return true;
+  // зачем: '0.0.0' означает «подходит любая сборка» — так конфиг и стоит по
+  // умолчанию. Раньше версию всё равно разбирали, и Android с пустым
+  // nativeAppVersion получал «обнови приложение», а хаб рисовал на этот отказ
+  // «Не удалось загрузить» рядом с «Арена не включена». Дубль правки в
+  // arena_v2.ts: у расширения свой экземпляр этой проверки.
+  if (minimum[0] === 0 && minimum[1] === 0 && minimum[2] === 0) return true;
+  const actual = comparableVersion(actualValue);
+  if (!actual) return false;
   for (let index = 0; index < 3; index += 1) {
     if (actual[index] !== minimum[index]) return actual[index] > minimum[index];
   }

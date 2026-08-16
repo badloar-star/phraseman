@@ -97,6 +97,12 @@ export type AppEventMap = {
     type: 'success' | 'error' | 'info' | 'warning' | 'reward';
     /** Optional exact semantic cue; the visible ActionToast remains the playback trigger. */
     soundEventId?: SoundEventId;
+    /**
+     * зачем: витрина движения показывает гибрид «Световод + Чекан» РЯДОМ с
+     * боевым видом, не заменяя его. Поле dev-only — боевые эмиты его не
+     * передают, default остаётся 'classic'.
+     */
+    motionVariant?: 'classic' | 'hybrid';
     messageRu: string;
     messageUk?: string;
     /** Испанский UX (например dev); если нет — ActionToast использует базовую строку */

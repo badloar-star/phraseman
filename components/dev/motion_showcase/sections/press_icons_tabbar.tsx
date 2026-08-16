@@ -4,7 +4,7 @@
 // Файл .tsx (не .ts): render-пункт монтирует живую превью-панель с иконками (JSX).
 // Агрегатор components/dev/motion_showcase/index.ts импортирует без расширения —
 // tsc/Metro резолвят .tsx точно так же, как .ts.
-import React, { memo } from 'react';
+import React, { memo, useCallback, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MotionModal from '../../../MotionModal';
 import { useTheme } from '../../../ThemeContext';
@@ -13,6 +13,11 @@ import LevelBadge from '../../../LevelBadge';
 import PlusBadge from '../../../PlusBadge';
 import LeagueCrownName from '../../../LeagueCrownName';
 import EnergyIcon from '../../../EnergyIcon';
+import PressableHybrid, { type PressableHybridVariant } from '../../../PressableHybrid';
+import TabBarHybridPreview from '../../../tabbar/TabBarHybridPreview';
+import LiveStreakFlame from '../../../icons/LiveStreakFlame';
+import DuoPressable from '../../../DuoPressable';
+import { GOLD_RICH } from '../../../../constants/goldTheme';
 import type { ShowcaseRenderProps, ShowcaseSection } from '../types';
 import { cs } from '../showcase_copy';
 
@@ -63,6 +68,171 @@ function IconsLivePreview({ visible, onClose }: ShowcaseRenderProps) {
 
 const IconsLivePreviewMemo = memo(IconsLivePreview);
 
+/**
+ * Живая панель гибрид-таббара «жидкое золото» — TabBarHybridPreview монтируется
+ * напрямую (не бутафория): демо-переключение локальное, без роутера/навигации.
+ */
+function TabBarHybridLivePreview({ visible, onClose }: ShowcaseRenderProps) {
+  const { theme: t, f } = useTheme();
+  return (
+    <MotionModal visible={visible} onRequestClose={onClose} testID="motion-showcase-tabbar-hybrid-preview">
+      <View style={[styles.root, { backgroundColor: t.bgCard }]}>
+        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+          {cs('tabbar_hybrid_preview_heading')}
+        </Text>
+        <Text style={[styles.hint, { color: t.textMuted, fontSize: f.caption }]}>
+          {cs('tabbar_hybrid_preview_hint')}
+        </Text>
+        <View style={styles.tabbarWrap}>
+          <TabBarHybridPreview />
+        </View>
+      </View>
+    </MotionModal>
+  );
+}
+
+const TabBarHybridLivePreviewMemo = memo(TabBarHybridLivePreview);
+
+const PRESS_HYBRID_VARIANTS: readonly PressableHybridVariant[] = ['primary', 'secondary', 'icon', 'chip', 'card'];
+
+/**
+ * Живая панель единого пресс-стандарта (гибрид «Световод + Чекан») — все пять
+ * ролей PressableHybrid рядом, каждая тапабельна своей физикой (PRESS из
+ * constants/motionHybrid.ts). silent — чтобы демо-тапы в витрине не спамили
+ * хаптиком владельцу при простом просмотре списка кнопок.
+ */
+function PressHybridLivePreview({ visible, onClose }: ShowcaseRenderProps) {
+  const { theme: t, f } = useTheme();
+  return (
+    <MotionModal visible={visible} onRequestClose={onClose} testID="motion-showcase-press-hybrid-preview">
+      <View style={[styles.root, { backgroundColor: t.bgCard }]}>
+        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+          {cs('press_hybrid_panel_heading')}
+        </Text>
+        <Text style={[styles.hint, { color: t.textMuted, fontSize: f.caption }]}>
+          {cs('press_hybrid_panel_hint')}
+        </Text>
+        <View style={styles.pressGrid}>
+          {PRESS_HYBRID_VARIANTS.map((variant) => (
+            <PressableHybrid
+              key={variant}
+              variant={variant}
+              withHaptic={false}
+              style={styles.pressItem}
+              contentStyle={[
+                styles.pressChip,
+                { backgroundColor: t.bgSurface2, shadowColor: t.shadowDark },
+              ]}
+            >
+              <Text style={[styles.pressChipLabel, { color: t.textPrimary }]}>
+                {cs(`press_hybrid_variant_${variant}` as const)}
+              </Text>
+            </PressableHybrid>
+          ))}
+        </View>
+      </View>
+    </MotionModal>
+  );
+}
+
+const PressHybridLivePreviewMemo = memo(PressHybridLivePreview);
+
+/**
+ * Живая панель огня стрика — покой статичным тиром (LiveStreakFlame без
+ * burstToken → лёгкий expo-image путь), кнопка «Вспыхнуть» инкрементит токен
+ * и проигрывает burst (рост/колыхание/затухающий блик по гардам компонента).
+ */
+function StreakFlameHybridLivePreview({ visible, onClose }: ShowcaseRenderProps) {
+  const { theme: t, f, themeMode } = useTheme();
+  const [burstToken, setBurstToken] = useState<number | undefined>(undefined);
+  const burstSeqRef = useRef(0);
+  const handleBurst = useCallback(() => {
+    burstSeqRef.current += 1;
+    setBurstToken(burstSeqRef.current);
+  }, []);
+  return (
+    <MotionModal visible={visible} onRequestClose={onClose} testID="motion-showcase-streak-flame-hybrid-preview">
+      <View style={[styles.root, { backgroundColor: t.bgCard }]}>
+        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+          {cs('streak_flame_hybrid_heading')}
+        </Text>
+        <Text style={[styles.hint, { color: t.textMuted, fontSize: f.caption }]}>
+          {cs('streak_flame_hybrid_hint')}
+        </Text>
+        <View style={styles.flameWrap}>
+          <LiveStreakFlame themeMode={themeMode} streakDays={7} size={72} burstToken={burstToken} />
+        </View>
+        <PressableHybrid
+          variant="primary"
+          onPress={handleBurst}
+          contentStyle={[styles.burstButton, { backgroundColor: t.accent }]}
+        >
+          <Text style={[styles.burstButtonLabel, { color: t.bgCard }]}>
+            {cs('streak_flame_hybrid_burst_button')}
+          </Text>
+        </PressableHybrid>
+      </View>
+    </MotionModal>
+  );
+}
+
+const StreakFlameHybridLivePreviewMemo = memo(StreakFlameHybridLivePreview);
+
+/**
+ * Живая панель «кнопки с кромкой»: настоящая keycap-физика DuoPressable —
+ * статичная подошва (edge) снизу + лицо едет вниз на edgeHeight при нажатии
+ * (кромка «схлопывается»), без scale/opacity. Три кнопки: primary с кромкой 6,
+ * secondary с кромкой 4, плоская без edgeColor (лёгкий translateY, старое
+ * поведение сохранено для мест без кромки).
+ */
+function EdgePressLivePreview({ visible, onClose }: ShowcaseRenderProps) {
+  const { theme: t, f } = useTheme();
+  return (
+    <MotionModal visible={visible} onRequestClose={onClose} testID="motion-showcase-edge-press-preview">
+      <View style={[styles.root, { backgroundColor: t.bgCard }]}>
+        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+          {cs('edge_press_panel_heading')}
+        </Text>
+        <Text style={[styles.hint, { color: t.textMuted, fontSize: f.caption }]}>
+          {cs('edge_press_panel_hint')}
+        </Text>
+        <View style={styles.edgePressStack}>
+          <DuoPressable
+            withHaptic={false}
+            edgeColor={GOLD_RICH.bronzeDark}
+            edgeHeight={6}
+            style={[styles.edgePressButton, { backgroundColor: GOLD_RICH.metalGold }]}
+          >
+            <Text style={[styles.edgePressLabel, { color: GOLD_RICH.blackPiano }]}>
+              {cs('edge_press_primary_label')}
+            </Text>
+          </DuoPressable>
+          <DuoPressable
+            withHaptic={false}
+            edgeColor={t.shadowDark}
+            edgeHeight={4}
+            style={[styles.edgePressButton, { backgroundColor: t.bgSurface2 }]}
+          >
+            <Text style={[styles.edgePressLabel, { color: t.textPrimary }]}>
+              {cs('edge_press_secondary_label')}
+            </Text>
+          </DuoPressable>
+          <DuoPressable
+            withHaptic={false}
+            style={[styles.edgePressButton, { backgroundColor: t.bgSurface2 }]}
+          >
+            <Text style={[styles.edgePressLabel, { color: t.textMuted }]}>
+              {cs('edge_press_flat_label')}
+            </Text>
+          </DuoPressable>
+        </View>
+      </View>
+    </MotionModal>
+  );
+}
+
+const EdgePressLivePreviewMemo = memo(EdgePressLivePreview);
+
 const styles = StyleSheet.create({
   root: { flex: 1, padding: 20, gap: 6 },
   title: { fontWeight: '800' },
@@ -70,6 +240,17 @@ const styles = StyleSheet.create({
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 20, marginTop: 12 },
   cell: { alignItems: 'center', gap: 6, width: 92 },
   cellLabel: { fontSize: 11, fontWeight: '700', textAlign: 'center' },
+  tabbarWrap: { marginTop: 16 },
+  pressGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 14, marginTop: 16 },
+  pressItem: { width: 'auto', alignSelf: 'flex-start' },
+  pressChip: { paddingHorizontal: 18, paddingVertical: 12, borderRadius: 14 },
+  pressChipLabel: { fontSize: 13, fontWeight: '700' },
+  flameWrap: { alignItems: 'center', justifyContent: 'center', marginTop: 16, marginBottom: 20, height: 96 },
+  burstButton: { alignSelf: 'center', paddingHorizontal: 24, paddingVertical: 12, borderRadius: 14 },
+  burstButtonLabel: { fontSize: 14, fontWeight: '700' },
+  edgePressStack: { gap: 16, marginTop: 16 },
+  edgePressButton: { minHeight: 54, borderRadius: 14, paddingHorizontal: 20 },
+  edgePressLabel: { fontSize: 15, fontWeight: '700' },
 });
 
 export const SECTION: ShowcaseSection = {
@@ -101,6 +282,14 @@ export const SECTION: ShowcaseSection = {
       title: cs('press_primitive_target_hybrid_title'),
       kind: 'note',
       note: cs('press_primitive_target_hybrid_note'),
+    },
+    // ── Живая панель: единый пресс-стандарт (гибрид) уже реализован ──
+    {
+      id: 'press-hybrid-live-preview',
+      title: cs('press_hybrid_panel_title'),
+      kind: 'render',
+      detail: cs('press_hybrid_panel_detail'),
+      render: ({ visible, onClose }) => <PressHybridLivePreviewMemo visible={visible} onClose={onClose} />,
     },
     // ── Целевые статичные иконки: что оживёт по какому событию ──
     {
@@ -147,6 +336,14 @@ export const SECTION: ShowcaseSection = {
       detail: cs('icons_live_preview_detail'),
       render: ({ visible, onClose }) => <IconsLivePreviewMemo visible={visible} onClose={onClose} />,
     },
+    // ── Живая панель: таббар «жидкое золото» (гибрид) ──
+    {
+      id: 'tabbar-hybrid-live-preview',
+      title: cs('tabbar_hybrid_preview_title'),
+      kind: 'render',
+      detail: cs('tabbar_hybrid_preview_detail'),
+      render: ({ visible, onClose }) => <TabBarHybridLivePreviewMemo visible={visible} onClose={onClose} />,
+    },
     // ── Реальный таббар для проверки текущего состояния ──
     {
       id: 'route-tabbar-home',
@@ -154,6 +351,22 @@ export const SECTION: ShowcaseSection = {
       kind: 'route',
       route: '/(tabs)/home',
       detail: cs('route_tabbar_home_detail'),
+    },
+    // ── Живая панель: огонь стрика (гибрид) ──
+    {
+      id: 'streak-flame-hybrid-live-preview',
+      title: cs('streak_flame_hybrid_title'),
+      kind: 'render',
+      detail: cs('streak_flame_hybrid_detail'),
+      render: ({ visible, onClose }) => <StreakFlameHybridLivePreviewMemo visible={visible} onClose={onClose} />,
+    },
+    // ── Живая панель: кнопки с кромкой (keycap-физика DuoPressable) ──
+    {
+      id: 'edge-press-live-preview',
+      title: cs('edge_press_panel_title'),
+      kind: 'render',
+      detail: cs('edge_press_panel_detail'),
+      render: ({ visible, onClose }) => <EdgePressLivePreviewMemo visible={visible} onClose={onClose} />,
     },
   ],
 };

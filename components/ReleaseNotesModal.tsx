@@ -32,6 +32,8 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { pickReleaseNotesTexts, type ReleaseNoteItem } from './release_notes_copy';
+import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
+import { LUM } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 
@@ -61,6 +63,12 @@ const pickReleaseNotesCopy = <T extends { ru: unknown }>(
 type Props = {
   visible: boolean;
   onClose: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (.motion-mockups/phraseman-hybrid.html,
+   * семья «Полноэкранные») — сцена входит из света, контент каскадом. Боевой
+   * дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 /**
@@ -102,7 +110,7 @@ const ReleaseNoteRow = memo(function ReleaseNoteRow({
   );
 });
 
-function ReleaseNotesModal({ visible, onClose }: Props) {
+function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Props) {
   const { f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
@@ -110,6 +118,7 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
   // зачем: системная настройка «уменьшить движение» — бесконечные петли
   // свечения и блика для таких пользователей не запускаем вовсе.
   const reduceMotion = useReduceMotion();
+  const isHybrid = motionVariant === 'hybrid';
   const cardAnim = useRef(new Animated.Value(0)).current;
   const glowAnim = useRef(new Animated.Value(0)).current;
   const shineAnim = useRef(new Animated.Value(0)).current;
@@ -147,12 +156,29 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
       return;
     }
 
-    const enter = Animated.spring(cardAnim, {
-      toValue: 1,
-      useNativeDriver: true,
-      tension: 74,
-      friction: 9,
-    });
+    // зачем: гибрид «Световод» — карточка settle без отскока (LUM.settle),
+    // без бесконечных петель свечения/блика (те принадлежат только classic —
+    // база гибрида «свет рождает форму», не декоративный дрейф).
+    const enter = isHybrid
+      ? Animated.spring(cardAnim, {
+        toValue: 1,
+        useNativeDriver: true,
+        stiffness: LUM.settle.stiffness,
+        damping: LUM.settle.damping,
+        mass: LUM.settle.mass,
+      })
+      : Animated.spring(cardAnim, {
+        toValue: 1,
+        useNativeDriver: true,
+        tension: 74,
+        friction: 9,
+      });
+
+    if (isHybrid) {
+      enter.start();
+      return () => { enter.stop(); };
+    }
+
     const glowLoop = Animated.loop(
       Animated.sequence([
         Animated.timing(glowAnim, {
@@ -190,7 +216,7 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
       glowLoop.stop();
       shineLoop.stop();
     };
-  }, [cardAnim, glowAnim, shineAnim, reduceMotion, visible]);
+  }, [cardAnim, glowAnim, shineAnim, reduceMotion, visible, isHybrid]);
 
   const closeOnce = () => {
     hapticTap();
@@ -252,7 +278,7 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
     <Modal
       visible={visible}
       transparent
-      animationType="fade"
+      animationType={isHybrid ? 'none' : 'fade'}
       statusBarTranslucent
       onRequestClose={closeOnce}
     >
@@ -270,7 +296,8 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
             end={{ x: 1, y: 1 }}
             style={StyleSheet.absoluteFill}
           />
-          <Animated.View pointerEvents="none" style={[styles.shine, shineAnimatedStyle]} />
+          {/* зачем: гибрид «Световод» — свет рождает форму, без бесконечного блика (тот только у classic). */}
+          {isHybrid ? null : <Animated.View pointerEvents="none" style={[styles.shine, shineAnimatedStyle]} />}
 
           <View style={styles.hero}>
             <Animated.View style={[styles.iconHalo, iconAnimatedStyle]}>

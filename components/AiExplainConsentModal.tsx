@@ -12,15 +12,18 @@ interface Props {
   lang: Lang;
   onAccept: () => void;
   onDecline: () => void;
+  /** зачем: пробрасывает гибрид «Световод + Чекан» в общий движок согласий (см. AiConsentSheetModal). */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
-function AiExplainConsentModal({ visible, lang, onAccept, onDecline }: Props) {
+function AiExplainConsentModal({ visible, lang, onAccept, onDecline, motionVariant }: Props) {
   return (
     <AiConsentSheetModal
       visible={visible}
       testIdPrefix="ai-explain-consent"
       onAccept={onAccept}
       onDecline={onDecline}
+      motionVariant={motionVariant}
       title={triLang(lang, {
         ru: 'Включить ИИ-разбор ошибок?',
         uk: 'Увімкнути ІІ-розбір помилок?',

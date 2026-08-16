@@ -8,6 +8,7 @@ import { emitAppEvent } from '../../../../app/events';
 import IntroFullAccessModal from '../../../IntroFullAccessModal';
 import NoEnergyModal from '../../../NoEnergyModal';
 import PremiumCelebrationModal from '../../../PremiumCelebrationModal';
+import PremiumCelebrationHybrid from '../../../premium_celebration/PremiumCelebrationHybrid';
 import VipCelebrationModal from '../../../VipCelebrationModal';
 import StreakReviveModal from '../../../StreakReviveModal';
 import CardPackShardPaywallModal from '../../../../app/flashcards/CardPackShardPaywallModal';
@@ -113,6 +114,24 @@ export const SECTION: ShowcaseSection = {
       detail: cs('real_modal'),
       kind: 'render',
       render: ({ visible, onClose }) => <VipCelebrationModal visible={visible} onClose={onClose} />,
+    },
+    {
+      id: 'premium_celebration_plus_hybrid',
+      title: cs('premium_celebration_plus_hybrid_title'),
+      detail: cs('real_modal'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <PremiumCelebrationHybrid visible={visible} onClose={onClose} variant="premium" />
+      ),
+    },
+    {
+      id: 'premium_celebration_pro_hybrid',
+      title: cs('premium_celebration_pro_hybrid_title'),
+      detail: cs('real_modal'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <PremiumCelebrationHybrid visible={visible} onClose={onClose} variant="pro" />
+      ),
     },
     {
       id: 'no_energy_modal',

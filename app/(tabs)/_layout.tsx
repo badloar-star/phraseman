@@ -143,11 +143,9 @@ type LessonsPrivacyState = Readonly<{
 function LessonsPaneBoundary({
   freezeWanted,
   shouldLoad,
-  isActive,
 }: {
   freezeWanted: boolean;
   shouldLoad: boolean;
-  isActive: boolean;
 }) {
   const { theme: t } = useTheme();
   const renderToken = useRef(captureAccountGeneration()).current;
@@ -199,11 +197,17 @@ function LessonsPaneBoundary({
     }
   }, [renderToken]);
 
-  if (isActive && privacy.phase === 'active' && !privacy.failClosed) {
+  // зачем: крышка снималась только когда таб уже АКТИВЕН (isActive). Но вкладка
+  // премаунтится в фоне и в момент премаунта неактивна — эпоха не «усыновлялась»,
+  // и при первом открытии список был закрыт глухой заливкой bgPrimary (пустой
+  // экран), пока какой-нибудь перерендер не совпал с isActive. Приватность держит
+  // phase: 'active' означает, что владелец уже известен и это НЕ переходное
+  // состояние между аккаунтами, поэтому смотреть на видимость таба здесь не нужно.
+  if (privacy.phase === 'active' && !privacy.failClosed) {
     activatedEpochRef.current = privacy.epoch;
   }
   const coverLessons = privacy.failClosed
-    || privacy.phase === 'transitioning'
+    || privacy.phase !== 'active'
     || activatedEpochRef.current < privacy.epoch;
 
   return (
@@ -790,6 +794,25 @@ function ReleasedTabLayout() {
     return () => setExamBestPctTabActivity('unknown');
   }, []);
 
+  /**
+   * Немедленный маунт таба, на который пользователь смотрит ПРЯМО СЕЙЧАС.
+   * зачем: раздел «Уроки» открывался долго — тап ставил монтирование в общую
+   * idle-очередь (до BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200 мс), и всё
+   * это время на экране висела пустая панель. Фоновый премаунт соседей idle
+   * оставляем как есть: ждать там некому. Здесь же ждёт живой человек.
+   */
+  const mountNow = useCallback((idx: number) => {
+    if (idx < 0 || mountedTabsRef.current.has(idx)) return;
+    const scheduled = scheduledMountsRef.current.get(idx);
+    if (scheduled) {
+      scheduled.cancel?.();
+      scheduledMountsRef.current.delete(idx);
+    }
+    if (idx !== 0 && !prewarmDeferredTabScreen(idx)) return;
+    setVisitedTabs((prev) => addVisitedTab(prev, idx));
+    setMountedTabs((prev) => addVisitedTab(prev, idx));
+  }, []);
+
   const scheduleMount = useCallback((idx: number) => {
     if (idx < 0 || mountedTabsRef.current.has(idx) || scheduledMountsRef.current.has(idx)) return;
 
@@ -827,7 +850,9 @@ function ReleasedTabLayout() {
       if (!visitedTabsRef.current.has(hold)) {
         setVisitedTabs((prev) => addVisitedTab(prev, hold));
       }
-      scheduleMount(hold);
+      // зачем: это таб, который прямо сейчас становится активным по URL
+      // (deep link, возврат из урока) — маунт в idle оставлял пустую панель.
+      mountNow(hold);
       if (visualIdxRef.current !== hold) {
         setVisualIdx(hold);
       }
@@ -843,7 +868,7 @@ function ReleasedTabLayout() {
       if (!visitedTabsRef.current.has(fromRouter)) {
         setVisitedTabs((prev) => addVisitedTab(prev, fromRouter));
       }
-      scheduleMount(fromRouter);
+      mountNow(fromRouter);
       if (visualIdxRef.current !== fromRouter) {
         setVisualIdx(fromRouter);
       }
@@ -902,8 +927,9 @@ function ReleasedTabLayout() {
     setVisualIdx(idx);
     if (physicalIdx === 0 || idx === activeIdxRef.current) return;
     rememberVisitedTab(idx);
-    scheduleMount(idx);
-  }, [rememberVisitedTab, scheduleMount]);
+    // зачем: палец уже тянет соседнюю панель в кадр — она обязана быть заполненной.
+    mountNow(idx);
+  }, [mountNow, rememberVisitedTab]);
 
   const routerNavigateTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -933,9 +959,10 @@ function ReleasedTabLayout() {
     if (idx === activeIdxRef.current && physicalPageIdxRef.current === physical) return;
     setActiveIdx(idx);
     rememberVisitedTab(idx);
-    scheduleMount(idx);
+    // зачем: тап — пользователь уже смотрит на панель, ждать idle нельзя.
+    mountNow(idx);
     navigateTo(idx);
-  }, [navigateTo, rememberVisitedTab, scheduleMount]);
+  }, [mountNow, navigateTo, rememberVisitedTab]);
 
   /** Свайп завершён — теперь обновляем реальный активный таб и затем URL. */
   const handleSwipeComplete = useCallback((physicalIdx: number) => {
@@ -951,10 +978,10 @@ function ReleasedTabLayout() {
     if (idx !== activeIdxRef.current) {
       setActiveIdx(idx);
       rememberVisitedTab(idx);
-      scheduleMount(idx);
+      mountNow(idx);
     }
     navigateTo(idx);
-  }, [navigateTo, rememberVisitedTab, scheduleMount]);
+  }, [mountNow, navigateTo, rememberVisitedTab]);
 
   // зачем: перехват «Назад» существовал только ради страницы «Сегодня» (увести
   // на главную вместо выхода). Экран удалён, страница 0 — сама главная, и
@@ -981,7 +1008,6 @@ function ReleasedTabLayout() {
           key="lessons"
           freezeWanted={freezeWanted(1)}
           shouldLoad={shouldLoad(1)}
-          isActive={activeIdx === 1 && physicalPageIdx === logicalTabToPhysicalPage(1)}
         />
       ) : placeholder('ph-lessons'),
       show(2) ? <TabPane key="friends" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),

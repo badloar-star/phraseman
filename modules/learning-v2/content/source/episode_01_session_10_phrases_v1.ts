@@ -1,10 +1,80 @@
-// зачем: сессия 10 типа phrases — новой лексики нет, строится целиком на
-// словах сессии 9. Учит спрашивать о принадлежности (Whose) и отвечать двумя
+// зачем: сессия 10 учит спрашивать о принадлежности (Whose) и отвечать двумя
 // способами: апострофом (Anna’s) и самостоятельной формой (mine, hers).
+//
+// Тип words_then_phrases, а не phrases: агент-новичок прошёл сессию и поймал
+// подлог — bag, phone и book появлялись прямо внутри фраз, хотя сессия 9 их не
+// давала. «Их приходится угадывать по переводу», и это ровно то, чего быть не
+// должно. Три слова теперь идут карточками впереди, как sister и brother.
 import type { EpisodeSourcePhrase } from './episode_01_source_v1';
 
 export const EPISODE_01_SESSION_10_PHRASES: readonly EpisodeSourcePhrase[] =
   Object.freeze([
+    // ── Слова ──────────────────────────────────────────────────────────────
+    {
+      id: 'e01-s10-word-bag',
+      english: 'Bag',
+      russian: 'Сумка',
+      explanation:
+        'Короткое слово, но гласная в нём особенная: рот открывается шире, чем в русском «э». Не «бэг» и не «бег» — что-то между.',
+      words: [
+        {
+          correct: 'Bag',
+          category: 'noun',
+          distractors: [
+            { value: 'Bug', reasonCode: 'near_homophone_confusion', why: 'Bug — «жук», другая гласная.' },
+            { value: 'Big', reasonCode: 'near_homophone_confusion', why: 'Big — «большой».' },
+            { value: 'Back', reasonCode: 'near_homophone_confusion', why: 'Back — «спина», «назад».' },
+            { value: 'Bags', reasonCode: 'number_mismatch', why: 'Bags — «сумки», несколько.' },
+            { value: 'Beg', reasonCode: 'near_homophone_confusion', why: 'Beg — «умолять».' },
+          ],
+        },
+      ],
+      features: ['everyday_object_noun'],
+    },
+    {
+      id: 'e01-s10-word-phone',
+      english: 'Phone',
+      russian: 'Телефон',
+      explanation:
+        'Пишется через ph, а читается как «ф» — так во всех словах греческого происхождения. Конечное e не произносится.',
+      words: [
+        {
+          correct: 'Phone',
+          category: 'noun',
+          distractors: [
+            { value: 'Fone', reasonCode: 'spelling_invalid', why: 'Звучит верно, но пишется через ph.' },
+            { value: 'Phon', reasonCode: 'spelling_invalid', why: 'Пропущена буква e.' },
+            { value: 'Bone', reasonCode: 'near_homophone_confusion', why: 'Bone — «кость».' },
+            { value: 'Phones', reasonCode: 'number_mismatch', why: 'Phones — «телефоны», несколько.' },
+            { value: 'Phoning', reasonCode: 'wrong_word_form', why: 'Phoning — «звонящий», нужно название предмета.' },
+          ],
+        },
+      ],
+      features: ['everyday_object_noun'],
+    },
+    {
+      id: 'e01-s10-word-book',
+      english: 'Book',
+      russian: 'Книга',
+      explanation:
+        'Две буквы o подряд дают короткий звук, как в русском «бук». Не тяните его — длинное «у» превратит слово в другое.',
+      words: [
+        {
+          correct: 'Book',
+          category: 'noun',
+          distractors: [
+            { value: 'Buk', reasonCode: 'spelling_invalid', why: 'Пишется через две o: book.' },
+            { value: 'Boock', reasonCode: 'spelling_invalid', why: 'Лишняя буква c.' },
+            { value: 'Look', reasonCode: 'near_homophone_confusion', why: 'Look — «смотреть».' },
+            { value: 'Books', reasonCode: 'number_mismatch', why: 'Books — «книги», несколько.' },
+            { value: 'Booking', reasonCode: 'wrong_word_form', why: 'Booking — «бронирование».' },
+          ],
+        },
+      ],
+      features: ['everyday_object_noun'],
+    },
+
+    // ── Фразы ──────────────────────────────────────────────────────────────
     {
       id: 'e01-s10-whose-bag-is-this',
       english: 'Whose bag is this?',
@@ -161,7 +231,7 @@ export const EPISODE_01_SESSION_10_PHRASES: readonly EpisodeSourcePhrase[] =
             { value: 'me', reasonCode: 'pronoun_instead_of_possessive', why: 'Me — форма дополнения.' },
             { value: 'I', reasonCode: 'pronoun_instead_of_possessive', why: 'I — «я», а нужна принадлежность.' },
             { value: 'mines', reasonCode: 'possessive_pluralized', why: 'Такой формы нет: mine не меняется.' },
-            { value: 'my one', reasonCode: 'wrong_possessive_form', why: 'Так не говорят, для этого и есть mine.' },
+            { value: 'mine’s', reasonCode: 'apostrophe_misuse', why: 'Апостроф этим словам не нужен никогда.' },
           ],
         },
       ],
@@ -436,157 +506,6 @@ export const EPISODE_01_SESSION_10_PHRASES: readonly EpisodeSourcePhrase[] =
         },
       ],
       features: ['demonstrative', 'copula_be', 'possessive_apostrophe', 'proper_noun'],
-    },
-    {
-      id: 'e01-s10-it-is-not-mine',
-      english: 'It is not mine',
-      russian: 'Это не моё',
-      explanation:
-        'Отрицание там же, где всегда — сразу после связки. Полезная фраза: так отказываются от чужой вещи.',
-      words: [
-        {
-          correct: 'It',
-          category: 'pronoun',
-          distractors: [
-            { value: 'This', reasonCode: 'wrong_word_choice', why: 'О названном предмете говорят it.' },
-            { value: 'He', reasonCode: 'animacy_mismatch', why: 'He — про человека.' },
-            { value: 'Its', reasonCode: 'possessive_as_subject', why: 'Its — принадлежность.' },
-            { value: 'Not', reasonCode: 'negator_as_subject', why: 'Not — частица, не подлежащее.' },
-            { value: 'it', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
-          ],
-        },
-        {
-          correct: 'is',
-          category: 'to-be',
-          distractors: [
-            { value: 'are', reasonCode: 'agreement_number_mismatch', why: 'Предмет один, значит is.' },
-            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
-            { value: 'do', reasonCode: 'wrong_auxiliary', why: 'При связке do не ставят.' },
-            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
-            { value: 'was', reasonCode: 'tense_mismatch', why: 'Was — про прошлое.' },
-          ],
-        },
-        {
-          correct: 'not',
-          category: 'negation',
-          distractors: [
-            { value: 'no', reasonCode: 'negator_type_mismatch', why: 'Глагол отрицают через not.' },
-            { value: 'never', reasonCode: 'meaning_mismatch', why: 'Never — «никогда».' },
-            { value: 'doesn’t', reasonCode: 'wrong_auxiliary', why: 'При is вспомогательный глагол лишний.' },
-            { value: 'nor', reasonCode: 'wrong_word_class', why: 'Nor соединяет два отрицания.' },
-            { value: 'note', reasonCode: 'near_homophone_confusion', why: 'Note — «заметка».' },
-          ],
-        },
-        {
-          correct: 'mine',
-          category: 'possessive-pronoun',
-          distractors: [
-            { value: 'my', reasonCode: 'possessive_needs_noun', why: 'My требует предмета после себя.' },
-            { value: 'me', reasonCode: 'pronoun_instead_of_possessive', why: 'Me — форма дополнения.' },
-            { value: 'I', reasonCode: 'pronoun_instead_of_possessive', why: 'Нужна принадлежность, а не «я».' },
-            { value: 'mines', reasonCode: 'possessive_pluralized', why: 'Mine не меняется по числу.' },
-            { value: 'mine’s', reasonCode: 'apostrophe_misuse', why: 'Апостроф здесь не ставят.' },
-          ],
-        },
-      ],
-      features: ['copula_be', 'negation_not', 'possessive_standalone', 'third_person_pronoun'],
-    },
-    {
-      id: 'e01-s10-whose-is-it',
-      english: 'Whose is it?',
-      russian: 'Чьё это?',
-      explanation:
-        'Короткий вариант, когда предмет уже назван. Whose тут стоит один, без вещи — как mine и yours в ответах.',
-      words: [
-        {
-          correct: 'Whose',
-          category: 'question-word',
-          distractors: [
-            { value: 'Who’s', reasonCode: 'homophone_confusion', why: 'Who’s это «кто есть».' },
-            { value: 'Who', reasonCode: 'wrong_question_word', why: 'Who — «кто», о человеке.' },
-            { value: 'What', reasonCode: 'wrong_question_word', why: 'What — «что».' },
-            { value: 'Whos', reasonCode: 'spelling_invalid', why: 'Такого написания нет.' },
-            { value: 'House', reasonCode: 'near_homophone_confusion', why: 'House — «дом».' },
-          ],
-        },
-        {
-          correct: 'is',
-          category: 'to-be',
-          distractors: [
-            { value: 'are', reasonCode: 'agreement_number_mismatch', why: 'Предмет один, значит is.' },
-            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
-            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
-            { value: 'was', reasonCode: 'tense_mismatch', why: 'Was — про прошлое.' },
-            { value: 'do', reasonCode: 'wrong_auxiliary', why: 'Со связкой do не ставят.' },
-          ],
-        },
-        {
-          correct: 'it',
-          category: 'pronoun',
-          distractors: [
-            { value: 'this', reasonCode: 'wrong_word_choice', why: 'В этом коротком вопросе стоит it.' },
-            { value: 'he', reasonCode: 'animacy_mismatch', why: 'He — про человека.' },
-            { value: 'its', reasonCode: 'possessive_as_subject', why: 'Its — принадлежность.' },
-            { value: 'they', reasonCode: 'number_mismatch', why: 'They — о нескольких.' },
-            { value: 'she', reasonCode: 'animacy_mismatch', why: 'She — про женщину.' },
-          ],
-        },
-      ],
-      features: ['possessive_question', 'copula_be', 'third_person_pronoun'],
-    },
-    {
-      id: 'e01-s10-that-is-his-book',
-      english: 'That is his book',
-      russian: 'Это его книга',
-      explanation:
-        'Здесь апостроф не нужен: his само по себе значит принадлежность. Апостроф добавляют только к имени или названию человека.',
-      words: [
-        {
-          correct: 'That',
-          category: 'demonstrative',
-          distractors: [
-            { value: 'This', reasonCode: 'deixis_distance', why: 'This — о предмете рядом.' },
-            { value: 'Those', reasonCode: 'number_mismatch', why: 'Those — «те», о нескольких.' },
-            { value: 'It', reasonCode: 'wrong_word_choice', why: 'Показывая на предмет, говорят that.' },
-            { value: 'These', reasonCode: 'number_mismatch', why: 'These — «эти», о нескольких.' },
-            { value: 'Thet', reasonCode: 'spelling_invalid', why: 'Ошибка в написании.' },
-          ],
-        },
-        {
-          correct: 'is',
-          category: 'to-be',
-          distractors: [
-            { value: 'are', reasonCode: 'agreement_number_mismatch', why: 'Книга одна, значит is.' },
-            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
-            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
-            { value: 'was', reasonCode: 'tense_mismatch', why: 'Was — про прошлое.' },
-            { value: 'has', reasonCode: 'wrong_auxiliary', why: 'Чья вещь — говорят через быть.' },
-          ],
-        },
-        {
-          correct: 'his',
-          category: 'possessive',
-          distractors: [
-            { value: 'his’s', reasonCode: 'apostrophe_misuse', why: 'His уже значит принадлежность, апостроф лишний.' },
-            { value: 'her', reasonCode: 'gender_mismatch', why: 'Her — «её», а книга принадлежит мужчине.' },
-            { value: 'he', reasonCode: 'pronoun_instead_of_possessive', why: 'Перед предметом нужно his.' },
-            { value: 'him', reasonCode: 'object_pronoun_as_possessive', why: 'Him — форма дополнения.' },
-            { value: 'a his', reasonCode: 'article_with_possessive', why: 'Артикль и his вместе не ставят.' },
-          ],
-        },
-        {
-          correct: 'book',
-          category: 'noun',
-          distractors: [
-            { value: 'books', reasonCode: 'number_mismatch', why: 'Книга одна.' },
-            { value: 'buk', reasonCode: 'spelling_invalid', why: 'Ошибка в написании.' },
-            { value: 'boock', reasonCode: 'spelling_invalid', why: 'Лишняя буква c.' },
-            { value: 'look', reasonCode: 'near_homophone_confusion', why: 'Look — «смотреть».' },
-            { value: 'booking', reasonCode: 'wrong_word_form', why: 'Booking — «бронирование».' },
-          ],
-        },
-      ],
-      features: ['demonstrative', 'copula_be', 'possessive_his_her'],
     },
     {
       id: 'e01-s10-is-this-your-sisters-bag',

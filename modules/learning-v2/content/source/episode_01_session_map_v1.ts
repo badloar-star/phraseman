@@ -124,7 +124,7 @@ export const EPISODE_01_SESSION_MAP_V1: readonly EpisodeSessionPlanEntry[] =
 
     // ── Глава 2. Люди вокруг меня ─────────────────────────────────────────
     { sessionOrdinal: 9, kind: 'words_then_phrases', title: 'Моя семья', teaches: ['family_noun', 'possessive_his_her'], builtOn: [6], recalls: [4] },
-    { sessionOrdinal: 10, kind: 'phrases', title: 'Чей это', teaches: ['possessive_question', 'possessive_apostrophe'], builtOn: [9], recalls: [4] },
+    { sessionOrdinal: 10, kind: 'words_then_phrases', title: 'Чей это', teaches: ['possessive_question', 'possessive_apostrophe', 'everyday_object_noun'], builtOn: [9], recalls: [4] },
     { sessionOrdinal: 11, kind: 'words_then_phrases', title: 'Числа и возраст', teaches: ['number_1_20', 'age_expression'], builtOn: [], recalls: [9] },
     { sessionOrdinal: 12, kind: 'words_then_phrases', title: 'Числа дальше двадцати', teaches: ['number_21_100'], builtOn: [11], recalls: [11] },
     { sessionOrdinal: 13, kind: 'words_then_phrases', title: 'Какой человек', teaches: ['descriptive_adjective', 'adjective_before_noun'], builtOn: [9], recalls: [6] },
@@ -133,7 +133,7 @@ export const EPISODE_01_SESSION_MAP_V1: readonly EpisodeSessionPlanEntry[] =
     { sessionOrdinal: 16, kind: 'checkpoint', title: 'Рассказ о семье целиком', teaches: [], builtOn: [9, 10, 11, 12, 13, 14, 15], recalls: [6, 9, 10, 13, 14] },
 
     // ── Глава 3. Мои вещи и место ─────────────────────────────────────────
-    { sessionOrdinal: 17, kind: 'words_then_phrases', title: 'Мои вещи', teaches: ['everyday_object_noun', 'demonstrative_distance'], builtOn: [4], recalls: [10] },
+    { sessionOrdinal: 17, kind: 'words_then_phrases', title: 'Мои вещи', teaches: ['demonstrative_distance'], builtOn: [4, 10], recalls: [10] },
     { sessionOrdinal: 18, kind: 'prepositions', title: 'Где лежит: in, on, at', teaches: ['preposition_position'], builtOn: [17], recalls: [17] },
     { sessionOrdinal: 19, kind: 'words_then_phrases', title: 'Цвета', teaches: ['colour_adjective'], builtOn: [13, 17], recalls: [13] },
     { sessionOrdinal: 20, kind: 'words_then_phrases', title: 'Большой и маленький', teaches: ['size_adjective'], builtOn: [19], recalls: [19] },

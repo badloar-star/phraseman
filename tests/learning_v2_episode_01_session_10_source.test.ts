@@ -33,18 +33,30 @@ describe("episode 1 session 10 source", () => {
 
   it("delivers what the session map promised for slot 10", () => {
     expect(plan.sessionOrdinal).toBe(10);
-    expect(plan.kind).toBe("phrases");
+    expect(plan.kind).toBe("words_then_phrases");
     const features = new Set(
       EPISODE_01_SESSION_10_SOURCE.phrases.flatMap((phrase) => phrase.features),
     );
     for (const promised of plan.teaches) expect(features.has(promised)).toBe(true);
   });
 
-  // зачем: сессия типа phrases не вводит лексику. Если сюда просочилось
-  // одиночное слово-карточка, значит тип выбран неверно и карта врёт.
-  it("builds only phrases, since the vocabulary came in session 9", () => {
-    for (const phrase of EPISODE_01_SESSION_10_SOURCE.phrases)
-      expect(phrase.words.length).toBeGreaterThan(1);
+  // зачем: агент-новичок прошёл первую версию этой сессии и поймал подлог —
+  // bag, phone и book стояли прямо внутри фраз, хотя сессия 9 их не давала:
+  // «их приходится угадывать по переводу». Слова обязаны идти карточками
+  // впереди, как sister и brother.
+  it("introduces bag, phone and book as their own cards first", () => {
+    const phrases = EPISODE_01_SESSION_10_SOURCE.phrases;
+    const firstMultiWord = phrases.findIndex((phrase) => phrase.words.length > 1);
+    expect(firstMultiWord).toBeGreaterThanOrEqual(3);
+    for (let index = 0; index < firstMultiWord; index += 1)
+      expect(phrases[index].words).toHaveLength(1);
+    const taughtHere = new Set(
+      phrases
+        .filter((phrase) => phrase.words.length === 1)
+        .map((phrase) => phrase.english.toLowerCase()),
+    );
+    for (const word of ["bag", "phone", "book"])
+      expect(taughtHere.has(word)).toBe(true);
   });
 
   // зачем: без апострофа «sisters bag» читается как «сёстры сумка» — смысл
@@ -86,6 +98,7 @@ describe("episode 1 session 10 source", () => {
       "negation_not",
       "question_inversion",
       "short_answer",
+      "everyday_object_noun",
     ]);
     for (const phrase of EPISODE_01_SESSION_10_SOURCE.phrases)
       for (const feature of phrase.features)

@@ -55,6 +55,7 @@ import {
   cleanAccountDeleteLockId,
   createAccountDeleteOperationId,
   inspectAccountDeletePendingAuth,
+  isAccountDeleteGuardNoLockSeenError,
   persistAccountDeletePendingAuthLock,
   readAccountDeletePendingAuthRaw,
   restoreAccountDeletePendingAuthMirror,
@@ -652,7 +653,17 @@ export async function resumePendingAccountDeleteLocalExit(): Promise<boolean> {
     if (inspection.status === 'empty') return true;
     if (inspection.status === 'malformed') return false;
     pendingDelete = inspection.lock;
-  } catch {
+  } catch (e) {
+    // зачем: раньше ЛЮБАЯ ошибка чтения защищённого хранилища закрывала
+    // приложение экраном «Нужна безопасная проверка» — в том числе у людей,
+    // которые никогда ничего не удаляли (Keychain не отдал данные до первой
+    // разблокировки, dev-пересборка, отсутствие модуля). Блокировать имеет
+    // смысл, только когда замок удаления реально виден и повреждён; если
+    // следов удаления не видели — пускаем в приложение как обычно.
+    if (isAccountDeleteGuardNoLockSeenError(e)) {
+      logAuthEvent('auth_account_delete_guard_unreadable_no_lock');
+      return true;
+    }
     return false;
   }
   if (!pendingDelete) return false;

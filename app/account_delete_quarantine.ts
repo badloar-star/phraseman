@@ -302,9 +302,42 @@ async function readSecureRecord(
   }
 }
 
+/**
+ * Признак «замка удаления в хранилище точно нет».
+ *
+ * зачем: экран «Нужна безопасная проверка» показывался пользователям, которые
+ * НИЧЕГО не удаляли. Причина — readAccountDeletePendingAuthRaw() бросает
+ * исключение и на «замок есть, но повреждён», и на «хранилище просто не
+ * прочиталось» (Keychain недоступен при заблокированном экране, пересборке
+ * dev-билда, первом старте). Вызывающий не мог различить эти случаи и на любой
+ * бросок закрывал приложение. Теперь на «не удалось прочитать» ставим этот флаг
+ * на ошибке: замка не видели — значит блокировать пользователя не за что.
+ */
+export const ACCOUNT_DELETE_GUARD_NO_LOCK_SEEN = 'accountDeleteGuardNoLockSeen';
+
+function unreadableGuardError(code: string): Error {
+  const error = new Error(code);
+  (error as Error & { [ACCOUNT_DELETE_GUARD_NO_LOCK_SEEN]?: boolean })[ACCOUNT_DELETE_GUARD_NO_LOCK_SEEN] = true;
+  return error;
+}
+
+/**
+ * true = ошибка чтения, при которой мы НЕ видели замка удаления.
+ * Такую ошибку нельзя трактовать как «в хранилище лежит чужой аккаунт».
+ */
+export function isAccountDeleteGuardNoLockSeenError(error: unknown): boolean {
+  return Boolean(
+    error
+    && typeof error === 'object'
+    && (error as { [ACCOUNT_DELETE_GUARD_NO_LOCK_SEEN]?: boolean })[ACCOUNT_DELETE_GUARD_NO_LOCK_SEEN] === true,
+  );
+}
+
 export async function readAccountDeletePendingAuthRaw(): Promise<string | null> {
   const secureStore = getSecureStore();
-  if (!secureStore) throw new Error('account_delete_guard_secure_store_unavailable');
+  // Модуль SecureStore отсутствует целиком (Expo Go / web / кривой линк) — это
+  // не «замок повреждён», это «проверить нечем и следов удаления не видели».
+  if (!secureStore) throw unreadableGuardError('account_delete_guard_secure_store_unavailable');
 
   const [recordResult, anchorResult] = await Promise.all([
     readSecureRecord(secureStore, ACCOUNT_DELETE_PENDING_AUTH_SECURE_KEY),
@@ -338,8 +371,11 @@ export async function readAccountDeletePendingAuthRaw(): Promise<string | null> 
     return raw;
   }
   if (!recordResult.readable || !anchorResult.readable) {
+    // Сюда попадаем, когда ни в записи, ни в якоре не оказалось валидного
+    // замка, но хотя бы одно чтение сорвалось (Keychain недоступен). Следов
+    // удаления НЕ видели — помечаем ошибку, чтобы старт не закрывал приложение.
     knownGuardState = 'malformed';
-    throw new Error('account_delete_guard_secure_read_failed');
+    throw unreadableGuardError('account_delete_guard_secure_read_failed');
   }
 
   // Only when both authoritative records are confirmed absent may the v1

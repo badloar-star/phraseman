@@ -4,8 +4,10 @@
 // Файл .tsx (не .ts): render-пункт монтирует живую превью-панель с иконками (JSX).
 // Агрегатор components/dev/motion_showcase/index.ts импортирует без расширения —
 // tsc/Metro резолвят .tsx точно так же, как .ts.
-import React, { memo, useCallback, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import Reanimated, { useAnimatedStyle, useSharedValue, withSequence, withSpring, withTiming, Easing } from 'react-native-reanimated';
 import MotionModal from '../../../MotionModal';
 import { useTheme } from '../../../ThemeContext';
 import { StreakChainIcon } from '../../../StreakChainIcon';
@@ -23,8 +25,56 @@ import CircularProgress from '../../../CircularProgress';
 import GradientProgressBar from '../../../GradientProgressBar';
 import GiftExpiryCountdown from '../../../GiftExpiryCountdown';
 import { GOLD_RICH } from '../../../../constants/goldTheme';
+import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from '../../../homeNotificationBadge';
+import { SUITE } from '../../../../constants/motionHybrid';
+import { useReduceMotion } from '../../../../hooks/use_reduce_motion';
 import type { ShowcaseRenderProps, ShowcaseSection } from '../types';
 import { cs } from '../showcase_copy';
+
+/**
+ * Мини-демо колокольчика+бейджа для витрины: НЕ NotificationCenterButton
+ * (тот сам читает Firestore и помечает уведомления прочитанными — небезопасно
+ * для дев-превью). Здесь ровно та же реакция (bell-нод rotate ±10°/320мс +
+ * settle бейджа из scale .6 SUITE.pulse), только на локальном demoUnreadCount.
+ */
+function DemoBellBadge({ unreadCount }: { unreadCount: number }) {
+  const { theme: t } = useTheme();
+  const reduceMotion = useReduceMotion();
+  const bellDeg = useSharedValue(0);
+  const badgeScale = useSharedValue(unreadCount > 0 ? 1 : 0.6);
+  const prevCountRef = useRef(unreadCount);
+  useEffect(() => {
+    const prev = prevCountRef.current;
+    prevCountRef.current = unreadCount;
+    if (unreadCount <= prev) return; // реагируем только на реальный рост счётчика
+    if (reduceMotion) {
+      badgeScale.value = 1;
+      return;
+    }
+    bellDeg.value = withSequence(
+      withTiming(10, { duration: 110, easing: Easing.out(Easing.cubic) }),
+      withTiming(-10, { duration: 110, easing: Easing.inOut(Easing.cubic) }),
+      withTiming(0, { duration: 100, easing: Easing.out(Easing.cubic) }),
+    );
+    badgeScale.value = 0.6;
+    badgeScale.value = withSpring(1, SUITE.pulse);
+  }, [badgeScale, bellDeg, reduceMotion, unreadCount]);
+  const bellStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${bellDeg.value}deg` }] }));
+  const badgeStyle = useAnimatedStyle(() => ({ transform: [{ scale: unreadCount > 0 ? badgeScale.value : 1 }] }));
+
+  return (
+    <View style={styles.bellDemoWrap}>
+      <Reanimated.View style={bellStyle}>
+        <Ionicons name="notifications-outline" size={30} color={t.accent} />
+      </Reanimated.View>
+      {unreadCount > 0 ? (
+        <Reanimated.View style={[styles.bellDemoBadge, badgeStyle]}>
+          <Text style={styles.bellDemoBadgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
+        </Reanimated.View>
+      ) : null}
+    </View>
+  );
+}
 
 /**
  * Живая превью-панель шести «целевых» иконок семьи «Отклик» в одном месте.
@@ -32,9 +82,44 @@ import { cs } from '../showcase_copy';
  * grant/spend/claim колбэков, ничего не пишет в прогресс или сеть.
  * NotificationCenterButton сюда сознательно НЕ включён — см. note ниже:
  * компонент сам читает Firestore и помечает уведомления прочитанными.
+ * Кнопки-триггеры внизу дёргают реальные пропсы (level/justActivated/
+ * unread-счётчик/celebrate/energy) — владелец трогает каждую реакцию.
  */
 function IconsLivePreview({ visible, onClose }: ShowcaseRenderProps) {
   const { theme: t, f, themeMode } = useTheme();
+  const [demoLevel, setDemoLevel] = useState(12);
+  const [plusJustActivated, setPlusJustActivated] = useState(false);
+  const [demoUnreadCount, setDemoUnreadCount] = useState(0);
+  const [leagueCelebrate, setLeagueCelebrate] = useState(false);
+  const [demoEnergyFilled, setDemoEnergyFilled] = useState(true);
+
+  // зачем: bloomOnMount у PlusBadge реагирует на изменение false→true один раз
+  // (hasBloomedRef внутри компонента). Чтобы владелец мог нажать «Plus
+  // активирован» повторно и снова увидеть блик, гасим флаг обратно после
+  // короткой паузы — сам компонент всё равно проигрывает bloom только один
+  // раз за жизнь текущего инстанса, поэтому пересоздаём его через key.
+  const [plusReplayKey, setPlusReplayKey] = useState(0);
+  const handleLevelUp = useCallback(() => {
+    setDemoLevel((lv) => (lv >= 60 ? 1 : lv + 1));
+  }, []);
+  const handlePlusActivated = useCallback(() => {
+    setPlusReplayKey((k) => k + 1);
+    setPlusJustActivated(false);
+    // Следующий тик — реальный переход false→true, который ловит useEffect гарда.
+    setTimeout(() => setPlusJustActivated(true), 0);
+  }, []);
+  const handleNewNotification = useCallback(() => {
+    setDemoUnreadCount((c) => c + 1);
+  }, []);
+  const handleLeagueUp = useCallback(() => {
+    setLeagueCelebrate(false);
+    setTimeout(() => setLeagueCelebrate(true), 0);
+  }, []);
+  const handleEnergyRefill = useCallback(() => {
+    setDemoEnergyFilled(false);
+    setTimeout(() => setDemoEnergyFilled(true), 0);
+  }, []);
+
   return (
     <MotionModal visible={visible} onRequestClose={onClose} testID="motion-showcase-press-icons-preview">
       <View style={[styles.root, { backgroundColor: t.bgCard }]}>
@@ -50,21 +135,70 @@ function IconsLivePreview({ visible, onClose }: ShowcaseRenderProps) {
             <Text style={[styles.cellLabel, { color: t.textMuted }]}>{cs('press_icon_cell_streak_chain')}</Text>
           </View>
           <View style={styles.cell}>
-            <LevelBadge level={12} size={48} autoplay={false} centeredNumber />
+            <LevelBadge level={demoLevel} size={48} autoplay={false} centeredNumber pulseOnLevelChange />
             <Text style={[styles.cellLabel, { color: t.textMuted }]}>{cs('press_icon_cell_level_badge')}</Text>
           </View>
           <View style={styles.cell}>
-            <PlusBadge themeMode={themeMode} size="md" />
+            <PlusBadge key={plusReplayKey} themeMode={themeMode} size="md" bloomOnMount={plusJustActivated} />
             <Text style={[styles.cellLabel, { color: t.textMuted }]}>{cs('press_icon_cell_plus_badge')}</Text>
           </View>
           <View style={styles.cell}>
-            <LeagueCrownName text={cs('press_icon_league_crown_demo_text')} fontSize={16} count={3} />
+            <LeagueCrownName text={cs('press_icon_league_crown_demo_text')} fontSize={16} count={3} celebrate={leagueCelebrate} />
             <Text style={[styles.cellLabel, { color: t.textMuted }]}>{cs('press_icon_cell_league_crown_name')}</Text>
           </View>
           <View style={styles.cell}>
-            <EnergyIcon filled themeColor={t.accent} themeMode={themeMode} size={40} animateChange={false} />
+            <EnergyIcon filled={demoEnergyFilled} themeColor={t.accent} themeMode={themeMode} size={40} animateChange={false} bloomOnRefill />
             <Text style={[styles.cellLabel, { color: t.textMuted }]}>{cs('press_icon_cell_energy_icon')}</Text>
           </View>
+          <View style={styles.cell}>
+            <DemoBellBadge unreadCount={demoUnreadCount} />
+            <Text style={[styles.cellLabel, { color: t.textMuted }]}>{cs('icon_target_notification_center_button_title')}</Text>
+          </View>
+        </View>
+        <Text style={[styles.hint, { color: t.textMuted, fontSize: f.caption, marginTop: 14 }]}>
+          {cs('icons_live_preview_trigger_hint')}
+        </Text>
+        <View style={styles.triggerRow}>
+          <PressableHybrid
+            variant="chip"
+            silent
+            onPress={handleLevelUp}
+            contentStyle={[styles.triggerChip, { backgroundColor: t.bgSurface2 }]}
+          >
+            <Text style={[styles.triggerChipLabel, { color: t.textPrimary }]}>{cs('icons_live_trigger_level_up')}</Text>
+          </PressableHybrid>
+          <PressableHybrid
+            variant="chip"
+            silent
+            onPress={handlePlusActivated}
+            contentStyle={[styles.triggerChip, { backgroundColor: t.bgSurface2 }]}
+          >
+            <Text style={[styles.triggerChipLabel, { color: t.textPrimary }]}>{cs('icons_live_trigger_plus_activated')}</Text>
+          </PressableHybrid>
+          <PressableHybrid
+            variant="chip"
+            silent
+            onPress={handleNewNotification}
+            contentStyle={[styles.triggerChip, { backgroundColor: t.bgSurface2 }]}
+          >
+            <Text style={[styles.triggerChipLabel, { color: t.textPrimary }]}>{cs('icons_live_trigger_notification')}</Text>
+          </PressableHybrid>
+          <PressableHybrid
+            variant="chip"
+            silent
+            onPress={handleLeagueUp}
+            contentStyle={[styles.triggerChip, { backgroundColor: t.bgSurface2 }]}
+          >
+            <Text style={[styles.triggerChipLabel, { color: t.textPrimary }]}>{cs('icons_live_trigger_league_up')}</Text>
+          </PressableHybrid>
+          <PressableHybrid
+            variant="chip"
+            silent
+            onPress={handleEnergyRefill}
+            contentStyle={[styles.triggerChip, { backgroundColor: t.bgSurface2 }]}
+          >
+            <Text style={[styles.triggerChipLabel, { color: t.textPrimary }]}>{cs('icons_live_trigger_energy_refill')}</Text>
+          </PressableHybrid>
         </View>
       </View>
     </MotionModal>
@@ -353,6 +487,27 @@ const styles = StyleSheet.create({
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 20, marginTop: 12 },
   cell: { alignItems: 'center', gap: 6, width: 92 },
   cellLabel: { fontSize: 11, fontWeight: '700', textAlign: 'center' },
+  triggerRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 10 },
+  triggerChip: { paddingHorizontal: 14, paddingVertical: 10, borderRadius: 12 },
+  triggerChipLabel: { fontSize: 12, fontWeight: '700' },
+  bellDemoWrap: { width: 48, height: 48, alignItems: 'center', justifyContent: 'center' },
+  bellDemoBadge: {
+    position: 'absolute',
+    top: 2,
+    right: 2,
+    minWidth: 18,
+    height: 18,
+    paddingHorizontal: 4,
+    borderRadius: 9,
+    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bellDemoBadgeText: {
+    color: HOME_NOTIFICATION_BADGE_TEXT_COLOR,
+    fontSize: 9,
+    fontWeight: '900',
+  },
   tabbarWrap: { marginTop: 16 },
   pressGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 14, marginTop: 16 },
   pressItem: { width: 'auto', alignSelf: 'flex-start' },

@@ -455,4 +455,24 @@ describe('account deletion rebuilt flow contract', () => {
     // Даже если снять замок не удалось — не запираем молча.
     expect(authProvider).toContain('auth_account_delete_lock_release_failed');
   });
+
+  /**
+   * Вторая половина той же ловушки (инцидент 2026-08-16). После удаления
+   * аккаунта на устройстве оставался stableId, которым владеет уже стёртый
+   * uid. Сервер отвечал stable_id_mismatch, привязка личности не создавалась,
+   * и отказывало ВСЁ, что её требует: облачная синхронизация, лиги, Арена
+   * («Арена не включена на сервере»). Само удаление аккаунта тоже идёт через
+   * эту привязку — выйти из ловушки изнутри приложения было нельзя.
+   */
+  it('rotates a stale stable id instead of failing every cloud call forever', () => {
+    const cloudSync = fs.readFileSync(path.join(root, 'app', 'cloud_sync.ts'), 'utf8');
+    const boot = cloudSync.slice(
+      cloudSync.indexOf('export async function ensureStableAuthLink()'),
+    ).slice(0, 1600);
+    // Отказ распознаётся и лечится ротацией, а не возвращается наверх как есть.
+    expect(boot).toContain("failure !== 'stable_id_mismatch'");
+    expect(boot).toContain('await clearStableId()');
+    // Новый якорь обязан отличаться от застрявшего, иначе цикл повторится.
+    expect(boot).toContain('rotated === stableId');
+  });
 });

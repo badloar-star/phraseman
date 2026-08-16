@@ -46,7 +46,7 @@ import {
   withAccountTransitionLock,
   withRestoreApplicationLock,
 } from './account_generation';
-import { setStableId } from './stable_id';
+import { clearStableId, setStableId } from './stable_id';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
 import { patchAppSnapshotFromAuthoritativeCloudProgress } from './app_snapshot_store';
 // зачем: сброс кэша множителей XP при смене аккаунта — см. resetMultiplierBreakdownCache
@@ -1858,7 +1858,34 @@ export async function ensureStableAuthLink(): Promise<boolean> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return true;
   const stableId = await ensureAnonUser();
   if (!stableId) return false;
-  return ensureStableAuthLinkForStableId(stableId);
+  const first = await ensureStableAuthLinkForStableIdDetailed(stableId);
+  if (first.ok || first.failure !== 'stable_id_mismatch') return first.ok;
+
+  // зачем: замкнутая ловушка (инцидент 2026-08-16). После удаления аккаунта
+  // на устройстве остаётся stableId, которым владеет уже стёртый uid. Сервер
+  // отвечает stable_id_mismatch, привязка не создаётся — и следом отказывает
+  // ВСЁ, что её требует: облачная синхронизация, лиги, Арена (та показывала
+  // «Арена не включена на сервере»). Само удаление аккаунта тоже идёт через
+  // эту привязку, поэтому выйти из ловушки изнутри приложения было нельзя —
+  // только переустановкой. Для App Store это блокер.
+  //
+  // Ротация такая же, как на входе через провайдера (auth_provider.ts): чужой
+  // stableId не присваиваем и данные не сливаем — просто заводим свой новый.
+  // Прогресс на устройстве остаётся, потому что clearStableId трогает только
+  // якорь личности.
+  try {
+    await clearStableId();
+    const rotated = await ensureAnonUser();
+    if (!rotated || rotated === stableId) return false;
+    const second = await ensureStableAuthLinkForStableIdDetailed(rotated);
+    if (__DEV__ && !second.ok) {
+      console.warn('[cloud_sync] stale stable id rotated but link still failed:', second.failure);
+    }
+    return second.ok;
+  } catch (e) {
+    if (__DEV__) console.warn('[cloud_sync] stale stable id rotation failed', e);
+    return false;
+  }
 }
 
 export type AuthRecoveryHint = {

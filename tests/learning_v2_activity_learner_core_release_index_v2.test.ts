@@ -242,8 +242,13 @@ function session(ordinal: number) {
   };
 }
 
-function build() {
-  const sessions = Array.from({ length: 12 }, (_, index) => session(index + 1));
+// зачем: раньше урок принимался только целиком, и владелец не мог открыть на
+// телефоне то, что уже написано — приложение показывало «Сессия недоступна».
+// Число сессий стало параметром, чтобы проверять и полный урок, и неполный.
+function build(sessionCount = 12) {
+  const sessions = Array.from({ length: sessionCount }, (_, index) =>
+    session(index + 1),
+  );
   const core = materializeLearningV2ActivityLearnerCoreReleaseIndexV1({
     publishedView: publishedView(),
     expectedEnvironment: "lab",
@@ -322,5 +327,35 @@ describe("Learning V2 learner-core release index v2", () => {
         parseLearningV2ActivityLearnerCoreReleaseIndexV2(raw),
       ).toThrow("learning_v2_activity_learner_core_release_index_v2_invalid");
     }
+  });
+
+  // зачем: владелец не мог проверить курс на телефоне — рантайм требовал урок
+  // целиком и отвечал «Сессия недоступна», пока не написана последняя сессия.
+  // Владелец (2026-08-16): «РАЗРЕШАТЬ, как мне тестировать». Урок теперь может
+  // быть неполным, и это должно оставаться правдой.
+  it("accepts a lesson that is still being written", () => {
+    for (const sessionCount of [1, 8, 20]) {
+      const index = build(sessionCount);
+      expect(index.sessionCount).toBe(sessionCount);
+      expect(index.intros).toHaveLength(sessionCount);
+      // Вопросов ровно втрое больше: по одному внизу каждой страницы интро.
+      expect(index.introQuestionCount).toBe(sessionCount * 3);
+      expect(index.objectCount).toBe(sessionCount * 3);
+      // Неполнота не даёт лишних прав: релизом это по-прежнему не является.
+      expect(index.releaseAuthority).toBe(false);
+      const reparsed = parseLearningV2ActivityLearnerCoreReleaseIndexV2(
+        canonicalJsonV1(JSON.parse(JSON.stringify(index))),
+      );
+      expect(reparsed.sessionCount).toBe(sessionCount);
+    }
+  });
+
+  // зачем: имя ошибки без суффикса v2 — не опечатка. Индекс v1 строится первым
+  // и отвергает пустой или слишком длинный урок раньше, чем до него доберётся
+  // v2. Важно, что запрет держится, а какой из двух слоёв сработал — деталь.
+  it("still refuses an empty lesson", () => {
+    expect(() => build(0)).toThrow(
+      "learning_v2_activity_learner_core_release_index_invalid",
+    );
   });
 });

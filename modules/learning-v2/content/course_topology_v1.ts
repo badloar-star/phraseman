@@ -11,6 +11,11 @@ export const LEARNING_V2_COURSE_TOPOLOGY_SCHEMA_V1 =
 export const LEARNING_V2_COURSE_LESSON_COUNT_V1 = 32 as const;
 export const LEARNING_V2_LESSON_SESSION_COUNT_V1 = 56 as const;
 export const LEARNING_V2_LESSON_CHAPTER_COUNT_V1 = 7 as const;
+// зачем: интро сессии — ровно три страницы, на каждой свой вопрос (слоты 1–3).
+// Раньше произведение 12 × 3 = 36 стояло в проверках готовым числом, и урок из
+// 56 сессий рантайм отвергал молча. Держим множитель рядом с числом сессий,
+// чтобы обе величины менялись вместе.
+export const LEARNING_V2_INTRO_PAGES_PER_SESSION = 3 as const;
 export const LEARNING_V2_CHAPTER_SESSION_COUNT_V1 = 8 as const;
 export const LEARNING_V2_SESSION_MIN_MINUTES_V1 = 5 as const;
 export const LEARNING_V2_SESSION_TARGET_MINUTES_V1 = 7 as const;

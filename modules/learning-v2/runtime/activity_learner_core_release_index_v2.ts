@@ -1,4 +1,8 @@
 import {
+  LEARNING_V2_INTRO_PAGES_PER_SESSION,
+  LEARNING_V2_LESSON_SESSION_COUNT_V1,
+} from "../content/course_topology_v1";
+import {
   canonicalJsonV1,
   hashCanonicalBody,
   sha256Utf8,
@@ -42,9 +46,9 @@ export interface LearningV2ActivityLearnerCoreReleaseIndexV2 {
   readonly introProjectionSetFingerprint: string;
   readonly ownerConfirmationFingerprint: string;
   readonly intros: readonly LearningV2ActivityLearnerCoreIntroSessionPinV2[];
-  readonly sessionCount: 12;
-  readonly introQuestionCount: 36;
-  readonly objectCount: 36;
+  readonly sessionCount: number;
+  readonly introQuestionCount: number;
+  readonly objectCount: number;
   readonly introReleaseBinding: "exact_owner_confirmed_projection_to_render_session";
   readonly repositoryOriginAuthority: "none_server_readback_required";
   readonly storageAuthority: "none_server_readback_required";
@@ -117,6 +121,21 @@ function fail(): never {
   throw new Error("learning_v2_activity_learner_core_release_index_v2_invalid");
 }
 
+/**
+ * Урок может быть неполным, но не может быть пустым или длиннее плана.
+ *
+ * зачем: владелец должен видеть на телефоне то, что уже написано, иначе урок
+ * невозможно проверить до последней сессии. Верхнюю границу оставляем — она
+ * ловит рассинхрон с картой курса.
+ */
+function isAllowedSessionCount(count: unknown): boolean {
+  return (
+    Number.isSafeInteger(count) &&
+    Number(count) >= 1 &&
+    Number(count) <= LEARNING_V2_LESSON_SESSION_COUNT_V1
+  );
+}
+
 function record(value: unknown): value is Record<string, unknown> {
   return (
     typeof value === "object" &&
@@ -154,7 +173,7 @@ export function learningV2ActivitySessionIntroObjectPathV1(input: {
   if (
     !Number.isSafeInteger(input.sessionOrdinal) ||
     input.sessionOrdinal < 1 ||
-    input.sessionOrdinal > 12
+    input.sessionOrdinal > LEARNING_V2_LESSON_SESSION_COUNT_V1
   )
     fail();
   return `${LEARNING_V2_ACTIVITY_SESSION_INTRO_OBJECT_PREFIX_V1}/${sha256Utf8(id(input.stageId))}/sessions/${String(input.sessionOrdinal).padStart(2, "0")}/${hash(input.projectionFingerprint)}/${hash(input.rawHash)}.json`;
@@ -280,10 +299,23 @@ function parseValue(
       LEARNING_V2_ACTIVITY_LEARNER_CORE_RELEASE_INDEX_SCHEMA_V2 ||
     typeof value.coreIndexV1Raw !== "string" ||
     !Array.isArray(value.intros) ||
-    value.intros.length !== 12 ||
-    value.sessionCount !== 12 ||
-    value.introQuestionCount !== 36 ||
-    value.objectCount !== 36
+    // зачем: число сессий было зашито литералом 12, и урок из 56 сессий рантайм
+    // отвергал молча — владелец видел «Сессия недоступна». Плюс требование
+    // «ровно столько» означало, что урок нельзя открыть, пока не написана
+    // последняя сессия, и тестировать было нечего.
+    //
+    // Владелец (2026-08-16): «РАЗРЕШАТЬ, как мне тестировать». Поэтому урок
+    // теперь может быть неполным — от одной сессии до полных 56. Дырка внутри
+    // по-прежнему запрещена: сессии обязаны идти подряд с первой, иначе человек
+    // упрётся в стену посреди урока. За непрерывностью следит проверка
+    // sessionOrdinal ниже.
+    !isAllowedSessionCount(value.intros.length) ||
+    value.sessionCount !== value.intros.length ||
+    // Три вопроса на сессию — по одному внизу каждой страницы интро.
+    value.introQuestionCount !==
+      value.intros.length * LEARNING_V2_INTRO_PAGES_PER_SESSION ||
+    value.objectCount !==
+      value.intros.length * LEARNING_V2_INTRO_PAGES_PER_SESSION
   )
     fail();
   const core = parseLearningV2ActivityLearnerCoreReleaseIndexV1(
@@ -303,9 +335,9 @@ function parseValue(
     introProjectionSetFingerprint: hash(value.introProjectionSetFingerprint),
     ownerConfirmationFingerprint: hash(value.ownerConfirmationFingerprint),
     intros,
-    sessionCount: 12 as const,
-    introQuestionCount: 36 as const,
-    objectCount: 36 as const,
+    sessionCount: intros.length,
+    introQuestionCount: intros.length * LEARNING_V2_INTRO_PAGES_PER_SESSION,
+    objectCount: intros.length * LEARNING_V2_INTRO_PAGES_PER_SESSION,
     introReleaseBinding:
       "exact_owner_confirmed_projection_to_render_session" as const,
     repositoryOriginAuthority: "none_server_readback_required" as const,
@@ -354,7 +386,7 @@ export function materializeLearningV2ActivityLearnerCoreReleaseIndexV2(input: {
 }): LearningV2ActivityLearnerCoreReleaseIndexV2 {
   if (
     !isLearningV2ActivityLearnerCoreReleaseIndexV1(input.coreIndexV1) ||
-    input.sessions.length !== 12
+    !isAllowedSessionCount(input.sessions.length)
   )
     fail();
   const intros = input.sessions.map((session, index) => {
@@ -414,9 +446,9 @@ export function materializeLearningV2ActivityLearnerCoreReleaseIndexV2(input: {
     introProjectionSetFingerprint: hash(input.introProjectionSetFingerprint),
     ownerConfirmationFingerprint: hash(input.ownerConfirmationFingerprint),
     intros,
-    sessionCount: 12 as const,
-    introQuestionCount: 36 as const,
-    objectCount: 36 as const,
+    sessionCount: intros.length,
+    introQuestionCount: intros.length * LEARNING_V2_INTRO_PAGES_PER_SESSION,
+    objectCount: intros.length * LEARNING_V2_INTRO_PAGES_PER_SESSION,
     introReleaseBinding:
       "exact_owner_confirmed_projection_to_render_session" as const,
     repositoryOriginAuthority: "none_server_readback_required" as const,

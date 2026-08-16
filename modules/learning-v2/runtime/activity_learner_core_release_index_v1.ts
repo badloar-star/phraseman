@@ -5,6 +5,7 @@ import {
   type V2PublishedSeasonManifestView,
   type V2ReleaseEnvironment,
 } from "../content/release_manifest";
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from "../content/course_topology_v1";
 import {
   canonicalJsonV1,
   hashCanonicalBody,
@@ -55,8 +56,8 @@ export interface LearningV2ActivityLearnerCoreReleaseIndexV1 {
   readonly childReadbackAggregateFingerprint: string;
   readonly storageReadbackFingerprint: string;
   readonly sessions: readonly LearningV2ActivityLearnerCoreSessionPinV1[];
-  readonly sessionCount: 12;
-  readonly objectCount: 24;
+  readonly sessionCount: number;
+  readonly objectCount: number;
   readonly releaseIdentityEvidence: "validated_published_view_structure_only";
   readonly validatorEvidence: "opaque_validator_material_projected_structurally";
   readonly repositoryOriginAuthority: "none_server_readback_required";
@@ -175,6 +176,22 @@ const CAPSULE_KEYS = Object.freeze([
 
 function fail(): never {
   throw new Error("learning_v2_activity_learner_core_release_index_invalid");
+}
+
+/**
+ * Урок может быть неполным, но не пустым и не длиннее плана.
+ *
+ * зачем: число сессий было зашито литералом 12, из-за чего урок нельзя было
+ * открыть, пока не написана последняя сессия — владелец видел «Сессия
+ * недоступна» и не мог ничего проверить. Решение владельца (2026-08-16):
+ * разрешить неполный урок. Непрерывность нумерации проверяется отдельно.
+ */
+function isAllowedSessionCount(count: unknown): boolean {
+  return (
+    Number.isSafeInteger(count) &&
+    Number(count) >= 1 &&
+    Number(count) <= LEARNING_V2_LESSON_SESSION_COUNT_V1
+  );
 }
 
 function record(value: unknown): value is Record<string, unknown> {
@@ -454,9 +471,10 @@ function parseValue(
     !Number.isSafeInteger(value.lessonId) ||
     Number(value.lessonId) < 1 ||
     !Array.isArray(value.sessions) ||
-    value.sessions.length !== 12 ||
-    value.sessionCount !== 12 ||
-    value.objectCount !== 24
+    !isAllowedSessionCount(value.sessions.length) ||
+    value.sessionCount !== value.sessions.length ||
+    // Два объекта на сессию: render и capsule.
+    value.objectCount !== value.sessions.length * 2
   )
     fail();
   const stageId = id(value.stageId);
@@ -465,7 +483,8 @@ function parseValue(
       parseSession(session, stageId, index + 1),
     ),
   );
-  if (new Set(sessions.map((session) => session.sessionId)).size !== 12) fail();
+  if (new Set(sessions.map((session) => session.sessionId)).size !== sessions.length)
+    fail();
   const body = {
     schemaVersion: LEARNING_V2_ACTIVITY_LEARNER_CORE_RELEASE_INDEX_SCHEMA_V1,
     environment: value.environment as V2ReleaseEnvironment,
@@ -486,8 +505,8 @@ function parseValue(
     ),
     storageReadbackFingerprint: hash(value.storageReadbackFingerprint),
     sessions,
-    sessionCount: 12 as const,
-    objectCount: 24 as const,
+    sessionCount: sessions.length,
+    objectCount: sessions.length * 2,
     releaseIdentityEvidence: "validated_published_view_structure_only" as const,
     validatorEvidence:
       "opaque_validator_material_projected_structurally" as const,
@@ -552,7 +571,8 @@ export function materializeLearningV2ActivityLearnerCoreReleaseIndexV1(
   const lessonUnits = release.body.lessonUnits.filter(
     (unit) => unit.episodeId === episodeId,
   );
-  if (lessonUnits.length !== 1 || input.sessions.length !== 12) fail();
+  if (lessonUnits.length !== 1 || !isAllowedSessionCount(input.sessions.length))
+    fail();
   const sessions = Object.freeze(
     input.sessions.map((session, index) =>
       sessionFromMaterial(
@@ -584,8 +604,8 @@ export function materializeLearningV2ActivityLearnerCoreReleaseIndexV1(
     ),
     storageReadbackFingerprint: hash(input.storageReadbackFingerprint),
     sessions,
-    sessionCount: 12 as const,
-    objectCount: 24 as const,
+    sessionCount: sessions.length,
+    objectCount: sessions.length * 2,
     releaseIdentityEvidence: "validated_published_view_structure_only" as const,
     validatorEvidence:
       "opaque_validator_material_projected_structurally" as const,

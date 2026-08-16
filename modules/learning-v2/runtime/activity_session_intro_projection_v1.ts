@@ -4,6 +4,7 @@ import {
   utf8ByteLengthV1,
 } from "../policies/decision_registry";
 import { parseV2ExactLanguageTagV1 } from "../contracts/language_tag_v1";
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from "../content/course_topology_v1";
 
 export const LEARNING_V2_ACTIVITY_SESSION_INTRO_PROJECTION_SCHEMA_V1 =
   "learning-v2-activity-session-intro-projection.v1" as const;
@@ -188,7 +189,10 @@ function parseValue(
     ) ||
     !Number.isSafeInteger(value.sessionOrdinal) ||
     Number(value.sessionOrdinal) < 1 ||
-    Number(value.sessionOrdinal) > 12 ||
+    // зачем: верхняя граница была литералом 12, и сессия 13 и дальше не
+    // проходила проверку — урок из 56 сессий рантайм отвергал молча. Берём
+    // число из топологии, чтобы граница шла за планом курса.
+    Number(value.sessionOrdinal) > LEARNING_V2_LESSON_SESSION_COUNT_V1 ||
     !Array.isArray(value.pages) ||
     value.pages.length !== 3 ||
     value.pageCount !== 3 ||

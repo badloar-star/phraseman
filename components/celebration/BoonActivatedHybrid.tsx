@@ -10,8 +10,8 @@ import type { ImageSourcePropType } from 'react-native';
 import { Image } from 'expo-image';
 import Animated from 'react-native-reanimated';
 import { hapticTap } from '../../hooks/use-haptics';
-import { noAndroidOutline } from '../../constants/androidGlow';
 import { useTheme } from '../ThemeContext';
+import DuoPressable from '../DuoPressable';
 import { useRewardImpactHybrid } from './use_reward_impact_hybrid';
 import RewardImpactRings from './RewardImpactRings';
 
@@ -60,13 +60,14 @@ function BoonActivatedHybrid({ visible, title, subtitle, iconSource, onClose }: 
             </Animated.View>
 
             <Animated.View style={[styles.ctaWrap, impact.styles.cta]}>
-              <Pressable
-                accessibilityRole="button"
+              <DuoPressable
                 onPress={handleClose}
-                style={({ pressed }) => [styles.ctaBtn, { backgroundColor: t.accent, opacity: pressed ? 0.88 : 1 }, noAndroidOutline]}
+                edgeColor={t.bgSurface2}
+                edgeHeight={4}
+                style={[styles.ctaBtn, { backgroundColor: t.accent }]}
               >
                 <Text style={[styles.ctaText, { color: t.correctText }]}>{title}</Text>
-              </Pressable>
+              </DuoPressable>
             </Animated.View>
           </Animated.View>
         </View>

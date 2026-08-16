@@ -159,7 +159,7 @@ export const TournamentWelcomeModal = memo(function TournamentWelcomeModal({ vis
 
   const actionsSlot = (
     <View style={styles.actions}>
-      <V2Cta tone="gold" onPress={onClose}>{triLang(lang, { ru: 'Понятно, погнали', uk: 'Зрозуміло, почнімо', es: 'Entendido, vamos', 'pt-BR': 'Entendi, vamos lá', vi: 'Đã hiểu, bắt đầu thôi', id: 'Mengerti, ayo mulai', tr: 'Anladım, başlayalım', pl: 'Rozumiem, zaczынajmy' })}</V2Cta>
+      <V2Cta tone="gold" onPress={onClose}>{triLang(lang, { ru: 'Понятно, погнали', uk: 'Зрозуміло, почнімо', es: 'Entendido, vamos', 'pt-BR': 'Entendi, vamos lá', vi: 'Đã hiểu, bắt đầu thôi', id: 'Mengerti, ayo mulai', tr: 'Anladım, başlayalım', pl: 'Rozumiem, zaczynajmy' })}</V2Cta>
     </View>
   );
 

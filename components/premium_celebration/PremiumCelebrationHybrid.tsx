@@ -21,7 +21,6 @@ import {
   Pressable,
   StyleSheet,
   Text,
-  TouchableOpacity,
   useWindowDimensions,
   View,
 } from 'react-native';
@@ -40,6 +39,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import { LinearGradient } from '../SafeLinearGradient';
+import DuoPressable from '../DuoPressable';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
@@ -366,19 +366,20 @@ function PremiumCelebrationHybrid({ visible, onClose, variant = 'premium' }: Pre
 
         {/* ── CTA ── */}
         <Reanimated.View style={[styles.ctaWrap, { bottom: ctaBottom }, ctaStyle]}>
-          <TouchableOpacity
+          <DuoPressable
             testID={`${variant}-celebration-hybrid-cta`}
-            accessibilityRole="button"
-            activeOpacity={0.88}
             onPress={() => { hapticSuccess(); handleClose(); }}
-            style={styles.ctaTouch}
+            edgeColor={palette.bg[2]}
+            edgeHeight={6}
+            gradientColors={palette.cta}
+            gradientStart={{ x: 0, y: 0 }}
+            gradientEnd={{ x: 1, y: 1 }}
+            style={styles.ctaGradient}
           >
-            <LinearGradient colors={palette.cta} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.ctaGradient}>
-              <Text style={[styles.ctaText, { color: palette.ctaText, fontSize: f.bodyLg + 1 }]}>
-                {triLang(lang, { ru: 'Поехали', uk: 'Поїхали', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi başla', pl: 'Zaczynamy' })}
-              </Text>
-            </LinearGradient>
-          </TouchableOpacity>
+            <Text style={[styles.ctaText, { color: palette.ctaText, fontSize: f.bodyLg + 1 }]}>
+              {triLang(lang, { ru: 'Поехали', uk: 'Поїхали', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi başla', pl: 'Zaczynamy' })}
+            </Text>
+          </DuoPressable>
         </Reanimated.View>
       </View>
     </Modal>
@@ -506,7 +507,6 @@ const styles = StyleSheet.create({
   restTitle: { fontWeight: '700' },
 
   ctaWrap: { position: 'absolute', left: 24, right: 24 },
-  ctaTouch: { borderRadius: 19, overflow: 'hidden' },
-  ctaGradient: { height: 58, alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
+  ctaGradient: { height: 58, borderRadius: 19, alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
   ctaText: { fontWeight: '900', letterSpacing: 0.3 },
 });

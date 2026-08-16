@@ -15,8 +15,8 @@ import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated from 'react-native-reanimated';
 import { hapticTap } from '../../hooks/use-haptics';
-import { noAndroidOutline } from '../../constants/androidGlow';
 import { useTheme } from '../ThemeContext';
+import DuoPressable from '../DuoPressable';
 import { useRewardImpactHybrid } from './use_reward_impact_hybrid';
 import RewardImpactRings from './RewardImpactRings';
 
@@ -63,14 +63,15 @@ function ReferralFriendRewardHybrid({ visible, title, subtitle, ctaLabel, onClos
             </Animated.View>
 
             <Animated.View style={[styles.ctaWrap, impact.styles.cta]}>
-              <Pressable
-                accessibilityRole="button"
+              <DuoPressable
                 accessibilityLabel={ctaLabel}
                 onPress={handleClose}
-                style={({ pressed }) => [styles.ctaBtn, { backgroundColor: t.accent, opacity: pressed ? 0.92 : 1 }, noAndroidOutline]}
+                edgeColor={t.bgSurface2}
+                edgeHeight={4}
+                style={[styles.ctaBtn, { backgroundColor: t.accent }]}
               >
                 <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.bodyLg }]}>{ctaLabel}</Text>
-              </Pressable>
+              </DuoPressable>
             </Animated.View>
           </Animated.View>
         </View>

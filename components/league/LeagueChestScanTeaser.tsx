@@ -20,6 +20,7 @@ import Animated, {
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticLightImpact, hapticTap } from '../../hooks/use-haptics';
+import DuoPressable from '../DuoPressable';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { noAndroidOutline } from '../../constants/androidGlow';
@@ -268,18 +269,16 @@ function LeagueChestScanTeaser({ visible, lang, palette, opensAtMs, onClose }: P
               <Text style={[styles.timerValue, { color: palette.accent }]}>{formatOpensIn(msLeft)}</Text>
               <Text style={[styles.timerLabel, { color: palette.muted }]}>{opensLabel(lang)}</Text>
             </View>
-            <Pressable
-              accessibilityRole="button"
+            {/* зачем: настоящая клавиша с кромкой (DuoPressable сам даёт hapticTap на onPressIn) */}
+            <DuoPressable
               accessibilityLabel={holdTopLabel(lang)}
-              onPress={() => { void hapticTap(); onClose(); }}
-              style={({ pressed }) => [
-                styles.ctaBtn,
-                { backgroundColor: palette.elevated, opacity: pressed ? 0.85 : 1 },
-                noAndroidOutline,
-              ]}
+              onPress={onClose}
+              edgeColor={palette.surface}
+              edgeHeight={4}
+              style={[styles.ctaBtn, { backgroundColor: palette.elevated }, noAndroidOutline]}
             >
               <Text style={[styles.ctaText, { color: palette.text }]}>{holdTopLabel(lang)}</Text>
-            </Pressable>
+            </DuoPressable>
           </Animated.View>
         </Animated.View>
       </View>

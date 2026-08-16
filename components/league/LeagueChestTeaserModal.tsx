@@ -6,6 +6,7 @@ import Svg, { Defs, LinearGradient as SvgLinearGradient, Polygon, Stop } from 'r
 import { triLang, type Lang } from '../../constants/i18n';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { hapticTap } from '../../hooks/use-haptics';
+import DuoPressable from '../DuoPressable';
 import type { LeagueChestRewardRarity } from '../../app/services/league_chest_rewards';
 import type { LeagueHubPalette } from './leagueHubPalette';
 import LeagueChestScanTeaser from './LeagueChestScanTeaser';
@@ -196,15 +197,16 @@ function LeagueChestTeaserModalComponent({ visible, lang, palette, remainingXp, 
           </View>
 
           {canClaim ? (
-            <Pressable
-              accessibilityRole="button"
+            <DuoPressable
               accessibilityLabel={claimLabel(lang)}
-              onPress={() => { void hapticTap(); onClaim(); }}
-              style={({ pressed }) => [styles.claimBtn, { backgroundColor: palette.accent, opacity: pressed ? 0.86 : 1 }]}
+              onPress={onClaim}
+              edgeColor={palette.surface}
+              edgeHeight={4}
+              style={[styles.claimBtn, { backgroundColor: palette.accent }]}
             >
               <Text style={[styles.claimText, { color: palette.accentText }]}>{claimLabel(lang)}</Text>
               <Ionicons name="gift" size={18} color={palette.accentText} />
-            </Pressable>
+            </DuoPressable>
           ) : (
             <Text style={[styles.remaining, { color: palette.muted }]}>{teaserRemaining(lang, remainingXp)}</Text>
           )}

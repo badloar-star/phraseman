@@ -25,6 +25,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import type { LeagueChestRewardDrop, LeagueChestRewardRarity } from '../../app/services/league_chest_rewards';
 import { isActiveLeagueChestReward } from '../../app/services/league_chest_rewards';
 import { hapticSuccess, hapticTap } from '../../hooks/use-haptics';
+import DuoPressable from '../DuoPressable';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { noAndroidOutline } from '../../constants/androidGlow';
@@ -397,18 +398,16 @@ function LeagueChestSlitOpen({
           </ScrollView>
 
           <Animated.View style={[styles.ctaWrap, ctaStyle]}>
-            <Pressable
-              accessibilityRole="button"
+            {/* зачем: главный CTA — золотая клавиша с кромкой, вдавливается по-настоящему */}
+            <DuoPressable
               accessibilityLabel={claimAllLabel(lang)}
-              onPress={() => { void hapticTap(); onClose(); }}
-              style={({ pressed }) => [
-                styles.ctaBtn,
-                { backgroundColor: t.gold, opacity: pressed ? 0.88 : 1 },
-                noAndroidOutline,
-              ]}
+              onPress={onClose}
+              edgeColor={t.bgSurface2}
+              edgeHeight={6}
+              style={[styles.ctaBtn, { backgroundColor: t.gold }, noAndroidOutline]}
             >
               <Text style={[styles.ctaText, { color: t.textOnGold }]}>{claimAllLabel(lang)}</Text>
-            </Pressable>
+            </DuoPressable>
           </Animated.View>
         </View>
       </View>

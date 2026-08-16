@@ -13,23 +13,33 @@ describe('clean onboarding study-target and order contract', () => {
     expect(wrapperSource).not.toContain("require('../assets/images/onboarding");
   });
 
-  it('uses the approved English-only screen order with the aha scene', () => {
+  // зачем 2026-08-16: анкета построения плана (цель / минуты / режим старта /
+  // сравнение планов) удалена вместе с самими планами — утверждён минимальный
+  // флоу из 9 живых шагов. Сторожим НОВЫЙ порядок и то, что старые шаги ушли
+  // насовсем: вернутся — тест упадёт.
+  it('uses the approved minimal screen order', () => {
     [
       "'welcome'",
+      "'privacy'",
       "'source'",
       "'level'",
-      "'goal'",
-      "'minutes'",
-      "'aha'",
+      "'promise'",
       "'notifications'",
-      "'plusBenefits'",
-      "'startMode'",
+      "'trialReminder'",
+      "'onboardingPaywall'",
+      "'improve'",
       "'name'",
     ].forEach((step) => expect(source).toContain(step));
 
     expect(source).toContain('CLEAN_ONBOARDING_ORDER');
     expect(source).toContain('const SHOW_ONBOARDING_LANGUAGE_STEP = false');
-    expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? ['language' as const] : [])");
+    // Блок языка выключается целиком (выбор + уровень), одним рубильником.
+    expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : [])");
+    expect(source).not.toContain("| 'goal'");
+    expect(source).not.toContain("| 'minutes'");
+    expect(source).not.toContain("| 'plusBenefits'");
+    expect(source).not.toContain("| 'startMode'");
+    expect(source).not.toContain("| 'planComparison'");
     expect(source).not.toContain("'streak'");
     expect(source).not.toContain("'auth'");
     expect(source).not.toContain("'studyTarget'");
@@ -46,17 +56,17 @@ describe('clean onboarding study-target and order contract', () => {
     expect(source).toContain('signInWithProvider(provider)');
   });
 
-  it('captures source, defaults to English while language screen is hidden, then asks level/goal/minutes', () => {
+  it('captures source and defaults to English while the language block is hidden', () => {
     expect(source).toContain('DISCOVERY_OPTIONS');
     expect(source).toContain('onboarding_source_select');
+    // Маркетинговая атрибуция обязана дойти до Firestore и админки.
     expect(source).toContain('ensureEnglishStudyTarget');
-    expect(source).toContain("go('level')");
-    expect(source).toContain("if (SHOW_ONBOARDING_LANGUAGE_STEP)");
     expect(source).toContain('LANGUAGE_OPTIONS');
     expect(source).toContain('testID="onboarding-language-continue"');
     expect(source).toContain('LEVEL_OPTIONS');
-    expect(source).toContain('GOAL_OPTIONS');
-    expect(source).toContain('MINUTE_OPTIONS');
+    // Анкета плана удалена вместе с планами — её наборы не должны вернуться.
+    expect(source).not.toContain('GOAL_OPTIONS');
+    expect(source).not.toContain('MINUTE_OPTIONS');
   });
 
   it('persists requested English/French target without old onboarding image assets', () => {
@@ -76,8 +86,11 @@ describe('clean onboarding study-target and order contract', () => {
   it('keeps final legal as one terms/privacy checkbox plus optional analytics', () => {
     expect(source).toContain('testID="onboarding-age-yes"');
     expect(source).toContain('testID="onboarding-age-no"');
-    expect(source).toContain('testID="onboarding-legal-checkbox"');
     expect(source).toContain('testID="onboarding-analytics-checkbox"');
+    // Согласие с Условиями переехало на первый экран строкой вплотную к кнопке
+    // (sign-in-wrap). Сторожим факт согласия и его запись, а не форму галочки.
+    expect(source).toContain('Продолжая, ты принимаешь');
+    expect(source).toContain("'onboarding_terms_privacy_accepted_v1'");
     expect(source).toContain('KNOWLY_LEGAL_TERMS_URL');
     expect(source).toContain('KNOWLY_LEGAL_PRIVACY_URL');
     expect(source).not.toContain('YearWheel');

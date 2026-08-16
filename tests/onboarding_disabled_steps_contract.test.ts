@@ -10,7 +10,10 @@ describe('CleanOnboarding disabled step integration', () => {
     expect(source).toContain("resolveOnboardingStep(enabledOrder, savedStep, 'current-or-forward')");
     expect(source).toContain("onAppEvent('remote_config_changed'");
     expect(source).not.toContain('go(CLEAN_ONBOARDING_ORDER[index - 1])');
-    expect(source).toContain('accessibilityLabel={`Шаг ${progress} из ${total}`}');
+    // зачем 2026-08-16: полоски прогресса в утверждённом макете нет, но позиция
+    // во флоу обязана остаться доступной незрячим — номер шага переехал внутрь
+    // подписи кнопки «Назад». Пропадёт номер — скринридер потеряет место.
+    expect(source).toContain('`Назад. Шаг ${progress} из ${total}`');
     expect(source).not.toContain('PROGRESS_TOTAL');
   });
 

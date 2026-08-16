@@ -338,33 +338,10 @@ function trackOnboardingExit(step: OnboardingStepId) {
 }
 
 function Background() {
-  return (
-    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <LinearGradient
-        colors={['#050711', '#080914', '#02030A']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={StyleSheet.absoluteFill}
-      />
-      <View style={[styles.liquidBlob, styles.liquidBlobOne]} />
-      <View style={[styles.liquidBlob, styles.liquidBlobTwo]} />
-      <View style={styles.stars}>
-        {Array.from({ length: 18 }).map((_, index) => (
-          <View
-            key={index}
-            style={[
-              styles.star,
-              {
-                left: `${(index * 37) % 96}%`,
-                top: `${10 + ((index * 29) % 82)}%`,
-                opacity: 0.12 + ((index % 4) * 0.05),
-              },
-            ]}
-          />
-        ))}
-      </View>
-    </View>
-  );
+  // Светлая подложка макета (Bevel-стиль, утверждён владельцем 2026-08-16):
+  // ровный холодный фон вместо прежнего midnight-градиента со звёздами.
+  // Один непрозрачный слой — первый кадр стабилен, перерисовок нет.
+  return <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.backdrop]} />;
 }
 
 // Прогресс между экранами едет плавно: ProgressHeader ремоунтится на каждом
@@ -378,38 +355,21 @@ function ProgressHeader({
   onBack,
   onClose,
   headerRight,
-  light = false,
 }: {
   step: CleanOnboardingStep;
   onBack?: () => void;
   /** Крестик СЛЕВА вместо шеврона (пейвол): закрыть = уйти на бесплатный путь. */
   onClose?: () => void;
-  /** Слот справа от полоски прогресса (меню «···» на пейволе). */
+  /** Слот справа в топбаре (меню «···» на пейволе). */
   headerRight?: React.ReactNode;
-  light?: boolean;
 }) {
   const enabledOrder = React.useContext(OnboardingOrderContext);
   const { progress, total } = getOnboardingProgress(enabledOrder, step);
-  const fraction = Math.max(0, Math.min(1, progress / total));
-  const [trackWidth, setTrackWidth] = useState(0);
-  const fillAnim = useRef(new Animated.Value(lastProgressFraction)).current;
 
-  useEffect(() => {
-    lastProgressFraction = fraction;
-    const anim = Animated.timing(fillAnim, {
-      toValue: fraction,
-      duration: 340,
-      useNativeDriver: true,
-    });
-    anim.start();
-    return () => anim.stop();
-  }, [fillAnim, fraction]);
-
+  // Макет: шапка — топбар 52pt с круглой белой кнопкой слева и слотом справа.
+  // Полоски прогресса в утверждённом макете нет; номер шага остаётся только в
+  // accessibilityLabel кнопки, чтобы скринридер не потерял позицию во флоу.
   if (!progress) return null;
-  const translateX = fillAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: [-(trackWidth || 1), 0],
-  });
   const leftHandler = onClose ?? onBack;
   return (
     <View style={styles.progressHeader}>
@@ -421,25 +381,11 @@ function ProgressHeader({
         style={({ pressed }) => [styles.backButton, pressed && styles.pressed, !leftHandler && styles.hidden]}
         hitSlop={10}
         accessibilityRole="button"
-        accessibilityLabel={onClose ? 'Закрыть' : 'Назад'}
+        accessibilityLabel={onClose ? 'Закрыть' : `Назад. Шаг ${progress} из ${total}`}
       >
-        <Ionicons name={onClose ? 'close' : 'chevron-back'} size={onClose ? 26 : 30} color={light ? '#1F2A44' : '#DCE4FF'} />
+        <Ionicons name={onClose ? 'close' : 'chevron-back'} size={22} color="#0C111B" />
       </Pressable>
-      <View
-        style={[styles.progressTrack, light && styles.progressTrackLight]}
-        accessibilityLabel={`Шаг ${progress} из ${total}`}
-        onLayout={(event) => setTrackWidth(event.nativeEvent.layout.width)}
-      >
-        <Animated.View style={[StyleSheet.absoluteFillObject, { transform: [{ translateX }] }]}>
-          <LinearGradient
-            colors={['#8AB9FF', '#9B7CFF', '#E36EFF']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.progressFillFull}
-          />
-        </Animated.View>
-      </View>
-      {headerRight}
+      {headerRight ?? <View style={styles.headerRightSpacer} />}
     </View>
   );
 }
@@ -554,20 +500,9 @@ function WelcomeLogo() {
 
   return (
     <Animated.View style={{ opacity: enter, transform: [{ scale }] }}>
-      {/* зачем: на Android elevation погашен (иначе система рисует квадрат),
-          поэтому свечение даёт отдельный скруглённый слой под плиткой —
-          форма под нашим контролем, как на iOS. Статичный: у плитки уже есть
-          свой breathe-луп, второй анимации здесь не нужно. */}
-      <View pointerEvents="none" style={styles.logoTileGlow} />
-      <LinearGradient
-        colors={['rgba(238,245,255,0.34)', 'rgba(123,140,255,0.16)', 'rgba(201,92,255,0.12)']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.logoTileLarge}
-      >
-        {/* декоративный логотип: смысл несёт заголовок под плиткой */}
-        <Image source={WELCOME_LOGO_SOURCE} style={styles.logoImageLarge} resizeMode="contain" accessible={false} />
-      </LinearGradient>
+      {/* Макет .mark: знак 96×96 прямо на подложке — ни плитки-градиента,
+          ни ореола под ней в утверждённом макете нет. Смысл несёт заголовок. */}
+      <Image source={WELCOME_LOGO_SOURCE} style={styles.logoImageLarge} resizeMode="contain" accessible={false} />
     </Animated.View>
   );
 }
@@ -613,13 +548,15 @@ function PrimaryButton({
       accessibilityRole="button"
       accessibilityState={{ disabled: !!disabled, busy: !!loading }}
     >
+      {/* Макет (владелец, 2026-08-16): сплошная чёрная таблетка вместо
+          прежнего сине-фиолетового градиента. */}
       <LinearGradient
-        colors={disabled ? ['#293044', '#293044'] : ['#E3ECFF', '#7B8CFF', '#C95CFF']}
+        colors={disabled ? ['#B6BAC4', '#B6BAC4'] : ['#17191F', '#17191F']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.primaryButton}
       >
-        {loading ? <ActivityIndicator size="small" color="#07111F" /> : <Text style={styles.primaryButtonText}>{label}</Text>}
+        {loading ? <ActivityIndicator size="small" color="#FFFFFF" /> : <Text style={styles.primaryButtonText}>{label}</Text>}
       </LinearGradient>
       {flat ? null : <View style={styles.primaryButtonShadow} />}
     </Pressable>
@@ -663,13 +600,13 @@ function OptionCard<T extends string | number>({
       {option.asset ? (
         <Image source={option.asset} style={styles.optionAsset} resizeMode="contain" />
       ) : (
-        <Ionicons name={option.icon} size={36} color={selected ? '#E3ECFF' : '#C6D3FF'} />
+        <Ionicons name={option.icon} size={36} color={selected ? '#0C111B' : '#8A93A5'} />
       )}
       <View style={styles.optionCopy}>
         <Text style={styles.optionTitle} numberOfLines={2}>{option.title}</Text>
       </View>
       <View style={[styles.radio, selected && styles.radioSelected]}>
-        {selected ? <Ionicons name="checkmark" size={20} color="#07111F" /> : null}
+        {selected ? <Ionicons name="checkmark" size={15} color="#FFFFFF" /> : null}
       </View>
     </Pressable>
   );
@@ -696,13 +633,13 @@ function LanguageCard({
       {option.asset ? (
         <Image source={option.asset} style={styles.languageAsset} resizeMode="contain" />
       ) : (
-        <Ionicons name={option.icon} size={44} color={selected ? '#F7FAFF' : '#AEB8D6'} />
+        <Ionicons name={option.icon} size={44} color={selected ? '#0C111B' : '#8A93A5'} />
       )}
       <View style={styles.optionCopy}>
         <Text style={styles.languageTitle}>{option.native}</Text>
       </View>
       <View style={[styles.radioLarge, selected && styles.radioLargeSelected]}>
-        {selected ? <Ionicons name="checkmark" size={28} color="#07111F" /> : null}
+        {selected ? <Ionicons name="checkmark" size={15} color="#FFFFFF" /> : null}
       </View>
     </Pressable>
   );
@@ -723,7 +660,7 @@ const OnboardingSkipContext = React.createContext<(() => void) | null>(null);
 /** Экран оплаты исключён намеренно: см. комментарий выше. */
 const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name'];
 
-function OnboardingSkipLink({ step, light }: { step: CleanOnboardingStep; light?: boolean }) {
+function OnboardingSkipLink({ step }: { step: CleanOnboardingStep }) {
   const skip = React.useContext(OnboardingSkipContext);
   if (!skip || SKIP_HIDDEN_STEPS.includes(step)) return null;
   return (
@@ -736,7 +673,7 @@ function OnboardingSkipLink({ step, light }: { step: CleanOnboardingStep; light?
       accessibilityRole="button"
       accessibilityLabel="Пропустить знакомство"
     >
-      <Text style={[styles.skipLabel, light && styles.skipLabelLight]}>Пропустить</Text>
+      <Text style={styles.skipLabel}>Пропустить</Text>
     </Pressable>
   );
 }
@@ -750,7 +687,6 @@ function ScreenFrame({
   onClose,
   headerRight,
   center,
-  light,
   plainTitle,
 }: {
   step: CleanOnboardingStep;
@@ -761,16 +697,15 @@ function ScreenFrame({
   onClose?: () => void;
   headerRight?: React.ReactNode;
   center?: boolean;
-  light?: boolean;
   plainTitle?: boolean;
 }) {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
 
   return (
-    <SafeAreaView style={[styles.safe, light && styles.safeLight]} edges={['top', 'bottom']}>
-      <StatusBar barStyle={light ? 'dark-content' : 'light-content'} />
-      <ProgressHeader step={step} onBack={onBack} onClose={onClose} headerRight={headerRight} light={light} />
+    <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+      <StatusBar barStyle="dark-content" />
+      <ProgressHeader step={step} onBack={onBack} onClose={onClose} headerRight={headerRight} />
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.keyboard}>
         <ScrollView
           testID={`onboarding-${step}-screen`}
@@ -789,7 +724,7 @@ function ScreenFrame({
           {title ? (
             <FadeUp>
               {plainTitle ? (
-                <Text style={[styles.plainTitle, step === 'name' && styles.consentTitle, light && styles.plainTitleLight]}>{title}</Text>
+                <Text style={[styles.plainTitle, step === 'name' && styles.consentTitle]}>{title}</Text>
               ) : (
                 <CompassBubble compact>{title}</CompassBubble>
               )}
@@ -798,9 +733,9 @@ function ScreenFrame({
           <FadeUp delay={90} style={styles.frameChildren}>{children}</FadeUp>
         </ScrollView>
         {footer ? (
-          <FadeUp delay={150} style={[styles.footer, light && styles.footerLight, { paddingBottom: Math.max(12, bottomInset) }]}>
+          <FadeUp delay={150} style={[styles.footer, { paddingBottom: Math.max(30, bottomInset) }]}>
             {footer}
-            <OnboardingSkipLink step={step} light={light} />
+            <OnboardingSkipLink step={step} />
           </FadeUp>
         ) : null}
       </KeyboardAvoidingView>
@@ -837,7 +772,7 @@ function NotificationMock() {
           <Text style={styles.notificationMockAllow}>Разрешить</Text>
         </View>
       </Animated.View>
-      <Ionicons name="arrow-up" size={42} color="#86B7FF" style={styles.notificationArrow} />
+      <Ionicons name="arrow-up" size={42} color="#8A93A5" style={styles.notificationArrow} />
     </View>
   );
 }
@@ -868,13 +803,13 @@ function ImproveConstellation() {
         <Ionicons name="heart" size={54} color="#8FA0E8" />
       </Animated.View>
       <Animated.View style={[styles.improveSatellite, styles.improveSatelliteTop, pop(1)]}>
-        <Ionicons name="thumbs-up" size={22} color="#8C97B8" />
+        <Ionicons name="thumbs-up" size={22} color="#8A93A5" />
       </Animated.View>
       <Animated.View style={[styles.improveSatellite, styles.improveSatelliteLeft, pop(2)]}>
-        <Ionicons name="star" size={22} color="#8C97B8" />
+        <Ionicons name="star" size={22} color="#8A93A5" />
       </Animated.View>
       <Animated.View style={[styles.improveSatellite, styles.improveSatelliteRight, pop(3)]}>
-        <Ionicons name="people" size={22} color="#8C97B8" />
+        <Ionicons name="people" size={22} color="#8A93A5" />
       </Animated.View>
     </View>
   );
@@ -980,11 +915,11 @@ function PromiseFact({
       >
         <View style={styles.promiseFactHead}>
           <View style={styles.promiseFactIcon}>
-            <Ionicons name={icon} size={19} color="#B9C8FF" />
+            <Ionicons name={icon} size={19} color="#3B4EDB" />
           </View>
           <Text style={styles.promiseFactTitle}>{title}</Text>
           <Animated.View style={{ transform: [{ rotate }] }}>
-            <Ionicons name="chevron-down" size={19} color="#8C97B8" />
+            <Ionicons name="chevron-down" size={19} color="#8A91A1" />
           </Animated.View>
         </View>
         {open ? <Text style={styles.promiseFactDetail}>{detail}</Text> : null}
@@ -1053,39 +988,37 @@ function PromiseChart() {
       style={styles.promiseChartCard}
       onLayout={(event) => setRevealWidth(event.nativeEvent.layout.width)}
     >
-      <Svg width="100%" height={190} viewBox="0 0 320 190" preserveAspectRatio="none">
+      <Svg width="100%" height={158} viewBox="0 0 320 168" preserveAspectRatio="none">
         <Defs>
           <SvgLinearGradient id="promiseUpStroke" x1="0" y1="0" x2="1" y2="0">
             <Stop offset="0" stopColor="#6FE3AC" />
-            <Stop offset="1" stopColor="#3ECF8E" />
+            <Stop offset="1" stopColor="#25A97A" />
           </SvgLinearGradient>
           <SvgLinearGradient id="promiseUpFill" x1="0" y1="0" x2="0" y2="1">
-            <Stop offset="0" stopColor="#3ECF8E" stopOpacity="0.28" />
+            <Stop offset="0" stopColor="#3ECF8E" stopOpacity="0.25" />
             <Stop offset="1" stopColor="#3ECF8E" stopOpacity="0" />
           </SvgLinearGradient>
         </Defs>
         <Path
-          d="M12 158 C 96 150, 160 118, 210 78 C 244 51, 276 32, 306 22 L 306 178 L 12 178 Z"
+          d="M12 128 C 96 122, 160 96, 210 62 C 244 40, 276 26, 306 18 L 306 150 L 12 150 Z"
           fill="url(#promiseUpFill)"
         />
         <Path
-          d="M12 120 C 80 152, 150 166, 306 172"
-          stroke="#8B93A9"
-          strokeOpacity={0.55}
-          strokeWidth={4}
+          d="M12 96 C 80 124, 150 136, 306 142"
+          stroke="#B6BAC4"
+          strokeWidth={3.5}
           strokeLinecap="round"
-          strokeDasharray="1 9"
+          strokeDasharray="1 8"
           fill="none"
         />
         <Path
-          d="M12 158 C 96 150, 160 118, 210 78 C 244 51, 276 32, 306 22"
+          d="M12 128 C 96 122, 160 96, 210 62 C 244 40, 276 26, 306 18"
           stroke="url(#promiseUpStroke)"
-          strokeWidth={5}
+          strokeWidth={4.5}
           strokeLinecap="round"
           fill="none"
         />
-        <Circle cx={306} cy={22} r={7} fill="#3ECF8E" />
-        <Circle cx={306} cy={22} r={12} fill="#3ECF8E" fillOpacity={0.22} />
+        <Circle cx={306} cy={18} r={6} fill="#25A97A" />
       </Svg>
       <Animated.View
         pointerEvents="none"
@@ -1098,7 +1031,7 @@ function PromiseChart() {
       />
       {/* Подписи прижаты к своим кривым и въезжают пружиной после «рисования». */}
       <Animated.View style={[styles.promiseBadgeUp, badgePop(badgeUp)]}>
-        <Ionicons name="sparkles" size={13} color="#07111F" />
+        {/* Макет: бейдж только текстовый — иконки на нём нет. */}
         <Text style={styles.promiseBadgeUpText}>С Phraseman</Text>
       </Animated.View>
       <Animated.View style={[styles.promiseBadgeDown, badgePop(badgeDown)]}>
@@ -1135,7 +1068,7 @@ function TrialTimelineRow({
   return (
     <Animated.View style={[styles.trialTimelineRow, { opacity: anim, transform: [{ translateY }] }]}>
       <View style={styles.trialTimelineIcon}>
-        <Ionicons name={icon} size={19} color="#B9C8FF" />
+        <Ionicons name={icon} size={19} color="#3B4EDB" />
       </View>
       <Text style={styles.trialTimelineTitle}>{title}</Text>
     </Animated.View>
@@ -1191,7 +1124,7 @@ function PlanComparisonRow({
   return (
     <Animated.View style={[styles.cmpRow, { opacity: anim, transform: [{ translateY }] }]}>
       <View style={styles.cmpLabelCell}>
-        <Ionicons name={icon} size={20} color="#5B67D8" style={styles.cmpIcon} />
+        <Ionicons name={icon} size={20} color="#3B4EDB" style={styles.cmpIcon} />
         <Text style={styles.cmpLabel}>{title}</Text>
       </View>
       <View style={styles.cmpCell}>
@@ -1314,11 +1247,6 @@ function CleanOnboarding({
     purchasing: paywallPurchasing,
     offeringsFailed: paywallOfferingsFailed,
     ctaDisabled: paywallCtaDisabled,
-    // зачем: на макете CTA обещает пробный период словами («Попробовать 7 дней
-    // бесплатно»), а не нейтральное «Продолжить». Число дней берём из стора, а
-    // не хардкодим: у разных тарифов и регионов триал разный, и обещать в
-    // кнопке то, чего не даст App Store, нельзя.
-    trialDays: paywallTrialDays,
     reloadOfferings,
     handleRestore,
     handlePurchase: paywallHandlePurchase,
@@ -1862,7 +1790,7 @@ function CleanOnboarding({
       <View style={styles.root}>
         <Background />
         <View style={styles.loadingWrap}>
-          <ActivityIndicator size="large" color="#A9B8FF" />
+          <ActivityIndicator size="large" color="#0C111B" />
         </View>
       </View>
     );
@@ -1870,7 +1798,7 @@ function CleanOnboarding({
 
   const renderWelcome = () => (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="dark-content" />
       <Background />
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.keyboard}>
         <View style={styles.welcomeContent} testID="onboarding-welcome-screen">
@@ -2140,7 +2068,7 @@ function CleanOnboarding({
             testID="onboarding-trial-reminder-continue"
           />
           <View style={styles.trialReassureRow}>
-            <Ionicons name="checkmark-circle" size={17} color="#7BE0B0" />
+            <Ionicons name="checkmark-circle" size={17} color="#12805A" />
             <Text style={styles.trialReassureText}>Сейчас ничего не спишем</Text>
           </View>
         </>
@@ -2190,27 +2118,14 @@ function CleanOnboarding({
             accessibilityRole="button"
             accessibilityLabel="Ещё: промокод, код друга, восстановить покупку"
           >
-            <Ionicons name="ellipsis-horizontal" size={22} color="#1F2A44" />
+            <Ionicons name="ellipsis-horizontal" size={22} color="#0C111B" />
           </Pressable>
         )}
-        light
         plainTitle
         footer={
           <>
             <PrimaryButton
-              label={
-                paywallOfferingsFailed
-                  ? 'Повторить'
-                  // зачем: макет обещает пробный период прямо в кнопке — это
-                  // сильнее нейтрального «Продолжить». Формулировка взята из
-                  // paywall_purchase.ts (тот же текст в диалоге подтверждения),
-                  // чтобы обещание кнопки и диалога стора совпадали слово в слово.
-                  // Нет триала у выбранного тарифа (например пожизненный) —
-                  // возвращаемся к нейтральному тексту, а не врём про дни.
-                  : paywallTrialDays
-                    ? `Попробовать ${paywallTrialDays} дня бесплатно`
-                    : 'Продолжить'
-              }
+              label={paywallOfferingsFailed ? 'Повторить' : 'Продолжить'}
               onPress={() => {
                 if (paywallOfferingsFailed) { reloadOfferings(); return; }
                 void continueFromOnboardingPaywall();
@@ -2223,7 +2138,7 @@ function CleanOnboarding({
             {/* Внизу — оплата и тексты (владелец): «не спишем сейчас», бесплатный
                 путь и юридические ссылки вплотную к кнопке покупки. */}
             <View style={styles.trialReassureRow}>
-              <Ionicons name="checkmark-circle" size={16} color="#1E9E6A" />
+              <Ionicons name="checkmark-circle" size={16} color="#12805A" />
               <Text style={styles.paywallReassureText}>Сейчас ничего не спишем — напомним до конца пробного</Text>
             </View>
             <View style={styles.paywallFooterLinks}>
@@ -2299,7 +2214,7 @@ function CleanOnboarding({
                   onPress={() => openCodeSheet('promo')}
                   accessibilityRole="button"
                 >
-                  <Ionicons name="pricetag-outline" size={19} color="#1F2A44" />
+                  <Ionicons name="pricetag-outline" size={19} color="#0C111B" />
                   <Text style={styles.paywallMenuItemText}>Ввести промокод</Text>
                 </Pressable>
                 <Pressable
@@ -2308,7 +2223,7 @@ function CleanOnboarding({
                   onPress={() => openCodeSheet('referral')}
                   accessibilityRole="button"
                 >
-                  <Ionicons name="gift-outline" size={19} color="#1F2A44" />
+                  <Ionicons name="gift-outline" size={19} color="#0C111B" />
                   <Text style={styles.paywallMenuItemText}>Код от друга</Text>
                 </Pressable>
                 <Pressable
@@ -2318,7 +2233,7 @@ function CleanOnboarding({
                   disabled={paywallRestoring}
                   accessibilityRole="button"
                 >
-                  <Ionicons name="refresh-outline" size={19} color="#1F2A44" />
+                  <Ionicons name="refresh-outline" size={19} color="#0C111B" />
                   <Text style={styles.paywallMenuItemText}>{paywallRestoring ? 'Восстанавливаем...' : 'Восстановить покупку'}</Text>
                 </Pressable>
               </View>
@@ -2339,7 +2254,7 @@ function CleanOnboarding({
                   autoCorrect={false}
                   autoFocus
                   placeholder={codeSheet === 'promo' ? 'PHRASE20' : 'КОД ДРУГА'}
-                  placeholderTextColor="#98A3BD"
+                  placeholderTextColor="#9AA1B0"
                   editable={!codeBusy}
                   onSubmitEditing={() => { void submitCode(); }}
                   returnKeyType="done"
@@ -2420,14 +2335,13 @@ function CleanOnboarding({
         accessibilityRole="switch"
         accessibilityState={{ checked: analyticsAllowed }}
       >
-        <View style={styles.consentDecisionIcon}>
-          <Ionicons name="stats-chart-outline" size={22} color="#B9C8FF" />
+        {/* Макет .subrow: кольцо слева, вся строка — цель нажатия; отдельного
+            переключателя справа в утверждённом макете нет. */}
+        <View style={[styles.consentDecisionIcon, analyticsAllowed && styles.consentDecisionIconOn]}>
+          {analyticsAllowed ? <Ionicons name="checkmark" size={14} color="#FFFFFF" /> : null}
         </View>
         <View style={styles.consentDecisionCopy}>
           <Text style={styles.consentDecisionTitle}>Делиться анонимной статистикой</Text>
-        </View>
-        <View style={[styles.consentSwitch, analyticsAllowed && styles.consentSwitchOn]}>
-          <View style={[styles.consentSwitchThumb, analyticsAllowed && styles.consentSwitchThumbOn]} />
         </View>
       </Pressable>
       {/* Возраст — вопросом с «Да/Нет» (владелец, 2026-08-16): короче и честнее,
@@ -2522,13 +2436,14 @@ function CleanOnboarding({
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#050711',
+    backgroundColor: '#F1F2F6',
+  },
+  // Светлая подложка макета — единственный слой фона.
+  backdrop: {
+    backgroundColor: '#F1F2F6',
   },
   safe: {
     flex: 1,
-  },
-  safeLight: {
-    backgroundColor: '#F7FAFF',
   },
   keyboard: {
     flex: 1,
@@ -2538,66 +2453,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  liquidBlob: {
-    position: 'absolute',
-    borderRadius: 999,
-    opacity: 0.38,
-  },
-  liquidBlobOne: {
-    width: 260,
-    height: 260,
-    top: -72,
-    left: -72,
-    backgroundColor: 'rgba(62, 98, 255, 0.18)',
-  },
-  liquidBlobTwo: {
-    width: 300,
-    height: 300,
-    right: -130,
-    bottom: 80,
-    backgroundColor: 'rgba(198, 92, 255, 0.14)',
-  },
-  stars: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  star: {
-    position: 'absolute',
-    width: 2,
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: '#FFFFFF',
-  },
+  // Макет .topbar: высота 52, горизонтальные поля 18, кнопка слева — слот справа.
   progressHeader: {
+    height: 52,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 22,
-    paddingTop: 10,
-    paddingBottom: 14,
+    justifyContent: 'space-between',
+    paddingHorizontal: 18,
   },
+  // Макет .circbtn: круг 44 на белом с мягкой тенью.
   backButton: {
-    width: 36,
-    height: 36,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 12,
+    ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.09, offsetY: 1, backgroundColor: '#FFFFFF' }),
+  },
+  headerRightSpacer: {
+    width: 44,
+    height: 44,
   },
   hidden: {
     opacity: 0,
-  },
-  progressTrack: {
-    flex: 1,
-    height: 7,
-    borderRadius: 999,
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    overflow: 'hidden',
-  },
-  progressTrackLight: {
-    backgroundColor: 'rgba(19,31,56,0.12)',
-  },
-  progressFillFull: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 999,
   },
   scrollShell: {
     flex: 1,
@@ -2605,7 +2483,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     paddingHorizontal: 24,
-    paddingTop: 8,
+    paddingTop: 0,
   },
   scrollContentCenter: {
     justifyContent: 'center',
@@ -2616,135 +2494,92 @@ const styles = StyleSheet.create({
   stepSlide: {
     flex: 1,
   },
+  // Макет .h1 — единственная типографика заголовка экрана.
   plainTitle: {
-    color: '#F7FAFF',
-    fontSize: 36,
-    lineHeight: 41,
-    fontWeight: '900',
+    color: '#0C111B',
+    fontSize: 27,
+    lineHeight: 31,
+    fontWeight: '700',
+    letterSpacing: -0.68,
     textAlign: 'center',
-    marginBottom: 18,
+    marginBottom: 10,
   },
-  plainTitleLight: {
-    color: '#101828',
-  },
+  // Макет .dock: прозрачный, без разделителя, вертикальный ритм 11.
   footer: {
     paddingHorizontal: 24,
-    paddingTop: 10,
-    backgroundColor: 'rgba(5, 7, 17, 0.88)',
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.06)',
-  },
-  footerLight: {
-    backgroundColor: 'rgba(247,250,255,0.94)',
-    borderTopColor: 'rgba(16,24,40,0.08)',
+    paddingTop: 14,
+    gap: 11,
   },
   welcomeContent: {
     flex: 1,
-    paddingHorizontal: 32,
-    paddingBottom: 22,
+    paddingHorizontal: 24,
+    paddingBottom: 30,
     justifyContent: 'space-between',
   },
   welcomeLogoBlock: {
     flex: 1,
     justifyContent: 'center',
   },
-  logoTileLarge: {
-    width: 148,
-    height: 148,
-    borderRadius: 32,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    marginBottom: 36,
-    // зачем: фон плитки рисует LinearGradient поверх полупрозрачного bg, поэтому
-    // Android не может вывести скруглённый outline и заливал КВАДРАТ 148×148
-    // вокруг логотипа. iOS-свечение (эталон владельца) оставляем как было,
-    // на Android elevation гасим — мягкий ореол даёт GlowHalo ниже.
-    ...softShadow({
-      color: '#B7C8FF',
-      opacity: 0.34,
-      radius: 30,
-      offsetY: 16,
-      backgroundColor: 'rgba(255,255,255,0.08)',
-      elevation: 10,
-    }),
-    overflow: 'hidden',
-  },
-  // зачем: Android-замена elevation-свечению. Скруглённый слой на 10px шире
-  // плитки, лежит под ней (по потоку — до неё) и повторяет её радиус 32+10.
-  // На iOS не мешает: там работает родная shadow-тень, слой лишь чуть мягче.
-  logoTileGlow: {
-    position: 'absolute',
-    alignSelf: 'center',
-    top: -10,
-    width: 168,
-    height: 168,
-    borderRadius: 42,
-    backgroundColor: 'rgba(183,200,255,0.16)',
-  },
+  // Макет .mark
   logoImageLarge: {
-    width: 140,
-    height: 140,
+    width: 96,
+    height: 96,
+    alignSelf: 'center',
+    marginBottom: 26,
   },
+  // Макет .h1.lg
   welcomeTitle: {
-    color: '#FFFFFF',
-    fontSize: 34,
-    lineHeight: 39,
-    fontWeight: '900',
-    letterSpacing: 0,
+    color: '#0C111B',
+    fontSize: 31,
+    lineHeight: 36,
+    fontWeight: '700',
+    letterSpacing: -0.78,
     textAlign: 'center',
   },
   welcomeButtons: {
-    gap: 14,
+    gap: 11,
   },
   authButtons: {
-    gap: 14,
+    gap: 11,
   },
   primaryButtonOuter: {
-    minHeight: 64,
-    borderRadius: 14,
+    minHeight: 60,
+    borderRadius: 30,
   },
   primaryButton: {
-    minHeight: 64,
-    borderRadius: 14,
+    minHeight: 60,
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
     borderWidth: 0,
-    borderColor: 'rgba(255,255,255,0.28)',
   },
+  // Макет: у таблетки нет «подложки-тени» снизу — блок схлопнут в ноль.
   primaryButtonShadow: {
-    height: 8,
-    marginHorizontal: 2,
-    marginTop: -7,
-    borderBottomLeftRadius: 14,
-    borderBottomRightRadius: 14,
-    backgroundColor: '#3549E8',
-    opacity: 0.72,
-    zIndex: -1,
+    height: 0,
   },
   primaryButtonText: {
-    color: '#081020',
-    fontSize: 19,
-    lineHeight: 24,
-    fontWeight: '900',
+    color: '#FFFFFF',
+    fontSize: 17,
+    lineHeight: 22,
+    fontWeight: '600',
+    letterSpacing: -0.2,
     textAlign: 'center',
   },
+  // Макет: вторичное действие — «призрак» без фона и рамки.
   secondaryButton: {
-    minHeight: 58,
-    borderRadius: 14,
+    minHeight: 48,
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 0,
-    borderColor: 'rgba(255,255,255,0.20)',
-    backgroundColor: 'rgba(255,255,255,0.04)',
+    backgroundColor: 'transparent',
     paddingHorizontal: 16,
   },
   secondaryButtonText: {
-    color: '#C6C9D6',
-    fontSize: 18,
-    fontWeight: '900',
+    color: '#8A91A1',
+    fontSize: 16,
+    fontWeight: '500',
     textAlign: 'center',
   },
   pressed: {
@@ -2772,14 +2607,14 @@ const styles = StyleSheet.create({
     minHeight: 66,
     borderRadius: 18,
     borderWidth: 0,
-    borderColor: 'rgba(255,255,255,0.14)',
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderColor: '#E7E9F0',
+    backgroundColor: '#FFFFFF',
     paddingHorizontal: 18,
     paddingVertical: 14,
     justifyContent: 'center',
   },
   speechText: {
-    color: '#F4F6FF',
+    color: '#0C111B',
     fontSize: 18,
     lineHeight: 25,
     fontWeight: '800',
@@ -2789,19 +2624,19 @@ const styles = StyleSheet.create({
   },
   optionCard: {
     minHeight: 62,
-    borderRadius: 12,
-    borderWidth: 0,
-    borderColor: 'rgba(255,255,255,0.16)',
-    backgroundColor: 'rgba(255,255,255,0.045)',
+    borderRadius: 15,
+    borderWidth: 1.5,
+    borderColor: 'transparent',
+    backgroundColor: '#FFFFFF',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    gap: 10,
+    paddingHorizontal: 18,
+    paddingVertical: 17,
+    gap: 13,
   },
+  // Макет: выбранный вариант обводится чернильной рамкой, фон не меняется.
   optionCardSelected: {
-    borderColor: '#AAB5FF',
-    backgroundColor: 'rgba(133, 143, 255, 0.18)',
+    borderColor: '#0C111B',
   },
   optionAsset: {
     width: 48,
@@ -2810,63 +2645,62 @@ const styles = StyleSheet.create({
   optionCopy: {
     flex: 1,
   },
+  // Макет .opt-t
   optionTitle: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    lineHeight: 22,
-    fontWeight: '900',
+    color: '#0C111B',
+    fontSize: 16.5,
+    lineHeight: 21,
+    fontWeight: '600',
+    letterSpacing: -0.17,
   },
+  // Макет .tick: скруглённый квадрат, а не кружок; выбранный заливается чернилами.
   radio: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    borderWidth: 0,
-    borderColor: 'rgba(255,255,255,0.24)',
+    width: 23,
+    height: 23,
+    borderRadius: 7,
+    backgroundColor: '#EDEFF4',
     alignItems: 'center',
     justifyContent: 'center',
   },
   radioSelected: {
-    backgroundColor: '#DCE7FF',
-    borderColor: '#DCE7FF',
+    backgroundColor: '#0C111B',
   },
   languageCard: {
     minHeight: 88,
-    borderRadius: 14,
-    borderWidth: 0,
-    borderColor: 'rgba(255,255,255,0.18)',
-    backgroundColor: 'rgba(255,255,255,0.05)',
+    borderRadius: 15,
+    borderWidth: 1.5,
+    borderColor: 'transparent',
+    backgroundColor: '#FFFFFF',
     flexDirection: 'row',
     alignItems: 'center',
     padding: 12,
     gap: 12,
   },
   languageCardSelected: {
-    borderColor: '#9FAEFF',
-    backgroundColor: 'rgba(151, 138, 255, 0.20)',
+    borderColor: '#0C111B',
   },
   languageAsset: {
     width: 76,
     height: 48,
   },
   languageTitle: {
-    color: '#FFFFFF',
-    fontSize: 24,
-    lineHeight: 28,
-    fontWeight: '900',
+    color: '#0C111B',
+    fontSize: 16.5,
+    lineHeight: 21,
+    fontWeight: '600',
+    letterSpacing: -0.17,
     marginTop: 2,
   },
   radioLarge: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    borderWidth: 0,
-    borderColor: 'rgba(255,255,255,0.24)',
+    width: 23,
+    height: 23,
+    borderRadius: 7,
+    backgroundColor: '#EDEFF4',
     alignItems: 'center',
     justifyContent: 'center',
   },
   radioLargeSelected: {
-    backgroundColor: '#AAB5FF',
-    borderColor: '#AAB5FF',
+    backgroundColor: '#0C111B',
   },
   notificationMockWrap: {
     alignItems: 'center',
@@ -2875,53 +2709,54 @@ const styles = StyleSheet.create({
   },
   notificationMock: {
     width: '84%',
-    borderRadius: 18,
+    borderRadius: 14,
     borderWidth: 0,
-    borderColor: 'rgba(255,255,255,0.20)',
-    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderColor: 'transparent',
+    backgroundColor: '#F8F8F8',
     overflow: 'hidden',
   },
   notificationMockTitle: {
-    color: '#C7CEDF',
-    fontSize: 17,
-    lineHeight: 22,
-    fontWeight: '900',
+    color: '#0C111B',
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: '700',
+    letterSpacing: -0.16,
     textAlign: 'center',
-    paddingTop: 22,
-    paddingHorizontal: 20,
+    paddingTop: 19,
+    paddingHorizontal: 17,
   },
   notificationMockBody: {
-    color: '#7E879B',
-    fontSize: 14,
-    lineHeight: 19,
-    fontWeight: '700',
+    color: '#3A4150',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '400',
     textAlign: 'center',
-    paddingHorizontal: 20,
-    paddingTop: 8,
-    paddingBottom: 18,
+    paddingHorizontal: 17,
+    paddingTop: 5,
+    paddingBottom: 15,
   },
   notificationMockActions: {
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.12)',
+    borderTopWidth: 0.5,
+    borderTopColor: 'rgba(60, 60, 67, 0.29)',
     flexDirection: 'row',
   },
   notificationMockMuted: {
     flex: 1,
-    color: '#6E7587',
-    fontSize: 16,
-    fontWeight: '700',
+    color: '#3B4EDB',
+    fontSize: 16.5,
+    fontWeight: '400',
     textAlign: 'center',
-    paddingVertical: 14,
-    borderRightWidth: 1,
-    borderRightColor: 'rgba(255,255,255,0.12)',
+    paddingVertical: 12,
   },
   notificationMockAllow: {
     flex: 1,
-    color: '#82C7FF',
-    fontSize: 16,
-    fontWeight: '800',
+    color: '#3B4EDB',
+    fontSize: 16.5,
+    fontWeight: '600',
     textAlign: 'center',
-    paddingVertical: 14,
+    paddingVertical: 12,
+    borderLeftWidth: 0.5,
+    borderLeftColor: 'rgba(60, 60, 67, 0.29)',
   },
   notificationArrow: {
     marginTop: 12,
@@ -2937,9 +2772,9 @@ const styles = StyleSheet.create({
     minHeight: 44,
   },
   textButtonLabel: {
-    color: '#B8C1FF',
+    color: '#8A91A1',
     fontSize: 16,
-    fontWeight: '900',
+    fontWeight: '500',
   },
   // зачем: «Пропустить» — вспомогательный выход, а не второе главное действие.
   // Тише основной кнопки (приглушённый тон, вес 700 по DESIGN.md), но с полной
@@ -2951,12 +2786,9 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   skipLabel: {
-    color: 'rgba(220,228,255,0.62)',
+    color: '#8A91A1',
     fontSize: 15,
-    fontWeight: '700',
-  },
-  skipLabelLight: {
-    color: 'rgba(31,42,68,0.62)',
+    fontWeight: '500',
   },
   cmpHeaderRow: {
     flexDirection: 'row',
@@ -2969,15 +2801,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '700',
-    color: '#8A93A6',
+    color: '#8A91A1',
   },
   cmpHeaderPlus: {
     width: 52,
     textAlign: 'center',
     fontSize: 13,
-    fontWeight: '900',
+    fontWeight: '800',
     letterSpacing: 0.4,
-    color: '#9B7CFF',
+    color: '#3B4EDB',
   },
   cmpList: {
     marginTop: 2,
@@ -3002,8 +2834,8 @@ const styles = StyleSheet.create({
   cmpLabel: {
     flex: 1,
     fontSize: 15,
-    fontWeight: '700',
-    color: '#1B2333',
+    fontWeight: '600',
+    color: '#0C111B',
   },
   cmpCell: {
     width: 52,
@@ -3014,7 +2846,7 @@ const styles = StyleSheet.create({
     width: 16,
     height: 2,
     borderRadius: 2,
-    backgroundColor: '#C4CBD8',
+    backgroundColor: '#C9CDD7',
   },
   cmpCheckWrap: {
     width: 26,
@@ -3027,25 +2859,23 @@ const styles = StyleSheet.create({
   paywallPlanList: {
     gap: 9,
   },
+  // Макет .plan
   paywallPlanCard: {
     minHeight: 78,
-    borderRadius: 14,
-    borderWidth: 0,
-    borderColor: 'rgba(16,24,40,0.12)',
+    borderRadius: 15,
+    borderWidth: 1.5,
+    borderColor: '#E3E6EC',
     backgroundColor: '#FFFFFF',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 13,
     gap: 10,
-    shadowColor: '#18233F',
-    shadowOpacity: 0.06,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 8 },
     ...noAndroidOutline,
   },
   paywallPlanCardSelected: {
-    borderColor: '#8B7CFF',
-    backgroundColor: '#F1F4FF',
+    borderColor: '#0C111B',
+    ...softShadow({ color: '#0C111B', radius: 10, opacity: 0.08, offsetY: 2, backgroundColor: '#FFFFFF' }),
   },
   paywallPlanAsset: {
     width: 42,
@@ -3061,48 +2891,52 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   paywallPlanTitle: {
-    color: '#101828',
-    fontSize: 20,
-    lineHeight: 24,
-    fontWeight: '900',
+    color: '#0C111B',
+    fontSize: 15.5,
+    lineHeight: 20,
+    fontWeight: '600',
+    letterSpacing: -0.155,
   },
+  // Макет .best: чернильный ярлык, а не сиреневый.
   paywallPlanBadge: {
     color: '#FFFFFF',
-    backgroundColor: '#7B8CFF',
-    borderRadius: 999,
+    backgroundColor: '#17191F',
+    borderRadius: 5,
     overflow: 'hidden',
-    paddingHorizontal: 9,
-    paddingVertical: 4,
-    fontSize: 12,
-    lineHeight: 15,
-    fontWeight: '900',
+    paddingHorizontal: 7,
+    paddingVertical: 3,
+    fontSize: 9.5,
+    lineHeight: 12,
+    fontWeight: '700',
+    letterSpacing: 0.48,
   },
   paywallPlanPrice: {
-    color: '#6D5DFF',
-    fontSize: 22,
-    lineHeight: 26,
-    fontWeight: '900',
-    marginTop: 4,
+    color: '#0C111B',
+    fontSize: 19,
+    lineHeight: 24,
+    fontWeight: '700',
+    letterSpacing: -0.38,
+    marginTop: 5,
   },
   paywallPlanSubprice: {
-    color: '#64748B',
-    fontSize: 14,
-    lineHeight: 18,
-    fontWeight: '800',
+    color: '#8A91A1',
+    fontSize: 11.5,
+    lineHeight: 15,
+    fontWeight: '400',
     marginTop: 2,
   },
   paywallRadio: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    borderWidth: 0,
-    borderColor: '#CBD5E1',
+    width: 19,
+    height: 19,
+    borderRadius: 10,
+    borderWidth: 1.5,
+    borderColor: '#C9CDD7',
     alignItems: 'center',
     justifyContent: 'center',
   },
   paywallRadioSelected: {
-    backgroundColor: '#7B8CFF',
-    borderColor: '#7B8CFF',
+    backgroundColor: '#0C111B',
+    borderColor: '#0C111B',
   },
   paywallFooterLinks: {
     minHeight: 38,
@@ -3113,10 +2947,10 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   paywallFooterLink: {
-    color: '#536079',
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: '800',
+    color: '#7C8394',
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '400',
     textDecorationLine: 'underline',
   },
   consentTitle: {
@@ -3125,82 +2959,71 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     letterSpacing: -0.6,
   },
+  // Макет: «Да»/«Нет» — те же карточки .opt, только контент по центру.
   ageButtons: {
     flexDirection: 'row',
-    gap: 14,
-    marginBottom: 14,
+    gap: 9,
+    marginBottom: 0,
   },
   ageButton: {
     flex: 1,
-    minHeight: 54,
-    borderRadius: 14,
+    minHeight: 55,
+    borderRadius: 15,
     borderWidth: 1.5,
-    borderColor: '#343B59',
-    backgroundColor: '#101321',
+    borderColor: 'transparent',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 18,
+    paddingVertical: 17,
   },
   ageButtonSelected: {
-    borderColor: '#9DB8FF',
-    backgroundColor: '#20264A',
+    borderColor: '#0C111B',
   },
   ageButtonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: '700',
+    color: '#0C111B',
+    fontSize: 16.5,
+    lineHeight: 21,
+    fontWeight: '600',
+    letterSpacing: -0.17,
   },
+  // Макет .subrow: белая строка, вся площадь — цель нажатия, кольцо слева.
   consentDecisionRow: {
-    minHeight: 76,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    paddingHorizontal: 6,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#2A3048',
+    borderRadius: 14,
+    borderWidth: 1.5,
+    borderColor: 'transparent',
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 16,
+    paddingVertical: 15,
   },
   consentDecisionRowSelected: {
-    borderBottomColor: '#55628A',
+    borderColor: '#0C111B',
   },
+  // Макет .subrow .ring
   consentDecisionIcon: {
-    width: 46,
-    height: 46,
-    borderRadius: 15,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#C9CDD7',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#1B2142',
+  },
+  consentDecisionIconOn: {
+    backgroundColor: '#0C111B',
+    borderColor: '#0C111B',
   },
   consentDecisionCopy: {
     flex: 1,
   },
   consentDecisionTitle: {
-    color: '#F7F8FF',
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: '700',
-  },
-  consentSwitch: {
-    width: 52,
-    height: 32,
-    borderRadius: 16,
-    borderWidth: 1.5,
-    borderColor: '#69738F',
-    backgroundColor: '#141827',
-    justifyContent: 'center',
-    paddingHorizontal: 4,
-  },
-  consentSwitchOn: {
-    borderColor: '#C8FF3D',
-    backgroundColor: '#C8FF3D',
-  },
-  consentSwitchThumb: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: '#818CA8',
-  },
-  consentSwitchThumbOn: {
-    alignSelf: 'flex-end',
-    backgroundColor: '#07110A',
+    color: '#0C111B',
+    fontSize: 14.5,
+    lineHeight: 20,
+    fontWeight: '500',
   },
   consentLegalLinks: {
     flexDirection: 'row',
@@ -3209,14 +3032,14 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   linkText: {
-    color: '#DCE7FF',
+    color: '#3A4150',
     textDecorationLine: 'underline',
   },
   // зачем: это НЕ ошибка, а нормальная развилка («аккаунта нет — создать?»), поэтому
   // не красный errorText. Тон спокойный и светлый, вес и кегль — на уровне основного
   // текста экрана, чтобы сообщение читалось как утверждение, а не как мелкая сноска.
   unknownAccountText: {
-    color: '#E7ECFF',
+    color: '#0C111B',
     fontSize: 17,
     lineHeight: 24,
     fontWeight: '700',
@@ -3224,7 +3047,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   privacySubtitle: {
-    color: '#A9B4D8',
+    color: '#8A91A1',
     fontSize: 15.5,
     lineHeight: 22,
     fontWeight: '600',
@@ -3237,38 +3060,38 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
   },
   vaultBody: {
-    width: 224,
-    height: 224,
-    borderRadius: 56,
+    width: 216,
+    height: 216,
+    borderRadius: 54,
     alignItems: 'center',
     justifyContent: 'center',
     ...softShadow({ color: '#05070F', radius: 16, opacity: 0.55, offsetY: 14, backgroundColor: '#E9EDF4' }),
   },
   vaultBodyInnerEdge: {
     ...StyleSheet.absoluteFillObject,
-    borderRadius: 56,
+    borderRadius: 46,
     borderWidth: 2,
     borderColor: 'rgba(255, 255, 255, 0.85)',
-    margin: 7,
+    margin: 8,
   },
   vaultHinge: {
     position: 'absolute',
-    right: 13,
-    top: 52,
+    right: 12,
+    top: 50,
     width: 9,
-    height: 34,
+    height: 30,
     borderRadius: 5,
-    backgroundColor: '#CBD2DE',
+    backgroundColor: '#D9DDE6',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.7)',
   },
   vaultHingeBottom: {
     top: undefined,
-    bottom: 52,
+    bottom: 50,
   },
   vaultPointer: {
     position: 'absolute',
-    top: 40,
+    top: 30,
     width: 0,
     height: 0,
     borderLeftWidth: 7,
@@ -3279,9 +3102,9 @@ const styles = StyleSheet.create({
     borderTopColor: '#F0B429',
   },
   vaultRing: {
-    width: 122,
-    height: 122,
-    borderRadius: 61,
+    width: 112,
+    height: 112,
+    borderRadius: 56,
     backgroundColor: '#E2E6EE',
     alignItems: 'center',
     justifyContent: 'center',
@@ -3299,9 +3122,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#B9C0CE',
   },
   vaultDial: {
-    width: 74,
-    height: 74,
-    borderRadius: 37,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.9)',
@@ -3309,43 +3132,42 @@ const styles = StyleSheet.create({
   },
   vaultDialMark: {
     width: 5,
-    height: 17,
+    height: 15,
     borderRadius: 3,
-    marginTop: 7,
-    backgroundColor: '#9AA3B4',
+    marginTop: 6,
+    backgroundColor: '#8A91A1',
   },
   vaultSparkle: {
     position: 'absolute',
-    top: 16,
-    right: 18,
+    top: 56,
+    right: 64,
   },
   improveArt: {
     width: 250,
-    height: 210,
+    height: 200,
     alignSelf: 'center',
     marginBottom: 26,
   },
+  // Макет: сердце без плашки — только контур на подложке экрана.
   improveHeart: {
     position: 'absolute',
     left: 89,
-    top: 74,
+    top: 70,
     width: 72,
     height: 72,
     borderRadius: 24,
-    backgroundColor: 'rgba(143, 160, 232, 0.14)',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  // Макет .imp-sat: белый квадрат со скруглением 17 и мягкой тенью, без рамки.
   improveSatellite: {
     position: 'absolute',
     width: 52,
     height: 52,
     borderRadius: 17,
-    backgroundColor: 'rgba(24, 31, 56, 0.92)',
-    borderWidth: 1,
-    borderColor: 'rgba(133, 156, 255, 0.22)',
     alignItems: 'center',
     justifyContent: 'center',
+    ...softShadow({ color: '#0C111B', radius: 14, opacity: 0.08, offsetY: 4, backgroundColor: '#FFFFFF' }),
   },
   improveSatelliteTop: {
     left: 99,
@@ -3353,61 +3175,64 @@ const styles = StyleSheet.create({
   },
   improveSatelliteLeft: {
     left: 8,
-    bottom: 22,
+    bottom: 16,
   },
   improveSatelliteRight: {
     right: 8,
-    bottom: 14,
+    bottom: 10,
   },
   improveLink: {
     position: 'absolute',
     borderStyle: 'dashed',
-    borderColor: 'rgba(133, 156, 255, 0.35)',
+    borderColor: '#C9CDD7',
     borderTopWidth: 1.5,
     width: 74,
   },
   improveLinkTop: {
     left: 118,
-    top: 62,
+    top: 58,
     transform: [{ rotate: '90deg' }],
     width: 26,
   },
   improveLinkLeft: {
     left: 44,
-    top: 138,
+    top: 132,
     transform: [{ rotate: '-28deg' }],
   },
   improveLinkRight: {
     right: 40,
-    top: 134,
+    top: 128,
     transform: [{ rotate: '24deg' }],
   },
   improveTitle: {
-    color: '#F2F5FF',
-    fontSize: 26,
-    lineHeight: 32,
-    fontWeight: '800',
-    letterSpacing: -0.4,
+    color: '#0C111B',
+    fontSize: 27,
+    lineHeight: 31,
+    fontWeight: '700',
+    letterSpacing: -0.68,
     textAlign: 'center',
-    marginBottom: 12,
+    marginBottom: 10,
   },
   improveBody: {
-    color: '#A9B4D8',
+    color: '#7C8394',
     fontSize: 15.5,
     lineHeight: 23,
     textAlign: 'center',
     paddingHorizontal: 6,
   },
   promiseChartCard: {
-    backgroundColor: 'rgba(18, 24, 46, 0.72)',
-    borderRadius: 24,
-    borderWidth: 1,
-    borderColor: 'rgba(133, 156, 255, 0.16)',
-    paddingVertical: 18,
-    paddingHorizontal: 10,
-    marginBottom: 18,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 22,
+    borderWidth: 0,
+    borderColor: 'transparent',
+    paddingTop: 16,
+    paddingBottom: 6,
+    paddingHorizontal: 12,
+    marginTop: 16,
+    marginBottom: 14,
     position: 'relative',
     overflow: 'hidden',
+    ...softShadow({ color: '#0C111B', radius: 16, opacity: 0.08, offsetY: 3, backgroundColor: '#FFFFFF' }),
   },
   promiseReveal: {
     position: 'absolute',
@@ -3415,57 +3240,55 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 10,
     right: 10,
-    backgroundColor: '#121A2E',
+    backgroundColor: '#FFFFFF',
     borderRadius: 18,
   },
   promiseBadgeUp: {
     position: 'absolute',
-    top: 12,
-    right: 16,
+    top: 14,
+    right: 18,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    backgroundColor: '#7DE0A6',
     borderRadius: 999,
-    paddingHorizontal: 11,
-    paddingVertical: 6,
-    ...softShadow({ color: '#0A1A12', radius: 8, opacity: 0.35, offsetY: 3, backgroundColor: '#7DE0A6' }),
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    ...softShadow({ color: '#25A97A', radius: 8, opacity: 0.35, offsetY: 2, backgroundColor: '#7DE0A6' }),
   },
   promiseBadgeUpText: {
-    color: '#07111F',
-    fontSize: 13,
+    color: '#0C111B',
+    fontSize: 12,
     fontWeight: '800',
   },
   promiseBadgeDown: {
     position: 'absolute',
-    top: 86,
+    top: 96,
     left: 16,
-    backgroundColor: 'rgba(139, 147, 169, 0.22)',
+    backgroundColor: '#EDEFF4',
     borderRadius: 999,
-    paddingHorizontal: 11,
-    paddingVertical: 6,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
   },
   promiseBadgeDownText: {
-    color: '#A9B2C8',
-    fontSize: 13,
+    color: '#7C8394',
+    fontSize: 12,
     fontWeight: '700',
   },
   promisePulse: {
     position: 'absolute',
-    top: 24,
+    top: 22,
     right: 16,
-    width: 18,
-    height: 18,
-    borderRadius: 9,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
     backgroundColor: '#3ECF8E',
   },
+  // Макет .pfact
   promiseFact: {
-    backgroundColor: 'rgba(18, 24, 46, 0.72)',
-    borderRadius: 18,
-    borderWidth: 1,
-    borderColor: 'rgba(133, 156, 255, 0.14)',
-    paddingHorizontal: 14,
-    paddingVertical: 13,
+    borderRadius: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 14,
+    ...softShadow({ color: '#0C111B', radius: 10, opacity: 0.05, offsetY: 2, backgroundColor: '#FFFFFF' }),
   },
   promiseFactHead: {
     flexDirection: 'row',
@@ -3476,59 +3299,62 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     borderRadius: 12,
-    backgroundColor: 'rgba(133, 156, 255, 0.14)',
+    backgroundColor: '#EDF0FB',
     alignItems: 'center',
     justifyContent: 'center',
   },
   promiseFactTitle: {
     flex: 1,
-    color: '#F2F5FF',
+    color: '#0C111B',
     fontSize: 15.5,
     fontWeight: '800',
+    letterSpacing: -0.155,
   },
   promiseFactDetail: {
-    color: '#A9B4D8',
+    color: '#7C8394',
     fontSize: 13.5,
-    lineHeight: 20,
-    marginTop: 10,
+    lineHeight: 21,
+    marginTop: 9,
     marginLeft: 50,
   },
   promiseAxisRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingTop: 8,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: 'rgba(133, 156, 255, 0.22)',
-    marginTop: 4,
+    paddingHorizontal: 8,
+    paddingTop: 7,
+    paddingBottom: 6,
+    borderTopWidth: 1,
+    borderTopColor: '#EDEFF4',
   },
   promiseAxisLabel: {
-    color: '#8C97B8',
-    fontSize: 12,
+    color: '#9AA1B0',
+    fontSize: 11.5,
     fontWeight: '700',
   },
   promiseFactList: {
-    gap: 12,
+    gap: 9,
+    marginTop: 14,
   },
   ageIntro: {
-    color: '#A9B4D8',
-    fontSize: 14.5,
-    lineHeight: 21,
+    color: '#7C8394',
+    fontSize: 13.5,
+    lineHeight: 20,
     textAlign: 'center',
     marginTop: 24,
-    paddingHorizontal: 4,
+    marginBottom: 6,
+    paddingHorizontal: 6,
   },
   ageQuestion: {
-    color: '#F2F5FF',
-    fontSize: 19,
-    lineHeight: 25,
+    color: '#0C111B',
+    fontSize: 18,
+    lineHeight: 24,
     fontWeight: '800',
     textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 12,
+    marginTop: 4,
+    marginBottom: 10,
   },
   errorText: {
-    color: '#FF9AAE',
+    color: '#E5563B',
     fontSize: 15,
     lineHeight: 22,
     fontWeight: '800',
@@ -3537,33 +3363,33 @@ const styles = StyleSheet.create({
   },
   // ── welcome: sign-in-wrap согласие над кнопкой «Начать» ────────────────────
   welcomeLegalNote: {
-    color: '#8C9AC4',
-    fontSize: 13,
-    lineHeight: 19,
+    color: '#9AA1B0',
+    fontSize: 12,
+    lineHeight: 17,
     textAlign: 'center',
     marginBottom: 12,
     paddingHorizontal: 8,
   },
   welcomeLegalLink: {
-    color: '#B9C8FF',
+    color: '#7C8394',
     textDecorationLine: 'underline',
   },
   // ── trialReminder: пуш-мокап + таймлайн честного триала ────────────────────
   trialPushCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    backgroundColor: 'rgba(233, 239, 255, 0.96)',
-    borderRadius: 18,
-    paddingHorizontal: 14,
-    paddingVertical: 13,
+    gap: 9,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 11,
     marginBottom: 20,
-    ...softShadow({ color: '#0A1224', radius: 12, opacity: 0.3, offsetY: 5, backgroundColor: 'rgba(233, 239, 255, 0.96)' }),
+    ...softShadow({ color: '#0C111B', radius: 12, opacity: 0.10, offsetY: 3, backgroundColor: '#FFFFFF' }),
   },
   trialPushIcon: {
-    width: 38,
-    height: 38,
-    borderRadius: 10,
+    width: 30,
+    height: 30,
+    borderRadius: 8,
     backgroundColor: '#17191F',
     alignItems: 'center',
     justifyContent: 'center',
@@ -3573,19 +3399,20 @@ const styles = StyleSheet.create({
   },
   trialPushTitle: {
     color: '#0C111B',
-    fontSize: 14.5,
-    fontWeight: '800',
+    fontSize: 12.5,
+    fontWeight: '700',
+    letterSpacing: -0.125,
   },
   trialPushBody: {
     color: '#3A4150',
-    fontSize: 13,
-    lineHeight: 18,
-    marginTop: 2,
+    fontSize: 12,
+    lineHeight: 16,
+    marginTop: 1,
   },
   trialPushWhen: {
     color: '#8A91A1',
-    fontSize: 12,
-    fontWeight: '600',
+    fontSize: 11,
+    fontWeight: '400',
     alignSelf: 'flex-start',
   },
   trialTimeline: {
@@ -3595,25 +3422,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     gap: 12,
-    backgroundColor: 'rgba(18, 24, 46, 0.72)',
-    borderRadius: 18,
-    borderWidth: 1,
-    borderColor: 'rgba(133, 156, 255, 0.14)',
-    paddingHorizontal: 14,
-    paddingVertical: 13,
+    borderRadius: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 14,
+    ...softShadow({ color: '#0C111B', radius: 10, opacity: 0.05, offsetY: 2, backgroundColor: '#FFFFFF' }),
   },
   trialTimelineIcon: {
     width: 38,
     height: 38,
     borderRadius: 12,
-    backgroundColor: 'rgba(133, 156, 255, 0.14)',
+    backgroundColor: '#EDF0FB',
     alignItems: 'center',
     justifyContent: 'center',
   },
   trialTimelineTitle: {
-    color: '#F2F5FF',
+    color: '#0C111B',
     fontSize: 15.5,
     fontWeight: '800',
+    letterSpacing: -0.155,
   },
   trialReassureRow: {
     flexDirection: 'row',
@@ -3623,50 +3449,48 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   trialReassureText: {
-    color: '#7BE0B0',
+    color: '#12805A',
     fontSize: 13.5,
-    fontWeight: '700',
+    fontWeight: '500',
   },
   // ── paywall: выгоды над тарифами + низ с текстами ──────────────────────────
   paywallReassureText: {
-    color: '#1E9E6A',
-    fontSize: 13,
-    fontWeight: '700',
+    color: '#12805A',
+    fontSize: 13.5,
+    fontWeight: '500',
   },
   paywallLegalNote: {
-    color: '#8A93AC',
-    fontSize: 11.5,
-    lineHeight: 16,
+    color: '#9AA1B0',
+    fontSize: 12,
+    lineHeight: 17,
     textAlign: 'center',
     marginTop: 8,
   },
   paywallLegalLink: {
-    color: '#5B67D8',
+    color: '#7C8394',
     textDecorationLine: 'underline',
   },
   // ── paywall: кнопка «···» и меню кодов ─────────────────────────────────────
   paywallMenuButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginLeft: 10,
-    backgroundColor: 'rgba(31, 42, 68, 0.08)',
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
+    ...softShadow({ color: '#0C111B', radius: 3, opacity: 0.09, offsetY: 1, backgroundColor: '#FFFFFF' }),
   },
   menuScrim: {
     flex: 1,
-    backgroundColor: 'rgba(7, 11, 24, 0.42)',
     alignItems: 'flex-end',
-    paddingTop: 96,
+    paddingTop: 56,
     paddingRight: 18,
   },
   paywallMenuCard: {
-    minWidth: 236,
-    backgroundColor: '#FCFDFF',
-    borderRadius: 16,
-    paddingVertical: 4,
-    ...softShadow({ color: '#070B18', radius: 16, opacity: 0.32, offsetY: 8, backgroundColor: '#FCFDFF' }),
+    width: 210,
+    backgroundColor: '#FAFAFB',
+    borderRadius: 14,
+    overflow: 'hidden',
+    ...softShadow({ color: '#0C111B', radius: 28, opacity: 0.20, offsetY: 6, backgroundColor: '#FAFAFB' }),
   },
   paywallMenuItem: {
     flexDirection: 'row',
@@ -3674,64 +3498,65 @@ const styles = StyleSheet.create({
     gap: 11,
     paddingHorizontal: 16,
     paddingVertical: 13,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'rgba(31, 42, 68, 0.10)',
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'rgba(60, 60, 67, 0.15)',
   },
   paywallMenuItemLast: {
     borderBottomWidth: 0,
   },
   paywallMenuItemText: {
-    color: '#1F2A44',
+    color: '#0C111B',
     fontSize: 15.5,
-    fontWeight: '600',
+    fontWeight: '400',
   },
   codeScrim: {
     flex: 1,
-    backgroundColor: 'rgba(7, 11, 24, 0.5)',
+    backgroundColor: 'rgba(20, 22, 28, 0.45)',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 26,
   },
   codeCard: {
     alignSelf: 'stretch',
-    backgroundColor: '#FCFDFF',
-    borderRadius: 22,
+    borderRadius: 20,
     paddingHorizontal: 18,
-    paddingVertical: 20,
-    ...softShadow({ color: '#070B18', radius: 16, opacity: 0.32, offsetY: 8, backgroundColor: '#FCFDFF' }),
+    paddingTop: 22,
+    paddingBottom: 20,
+    ...softShadow({ color: '#0C111B', radius: 28, opacity: 0.20, offsetY: 6, backgroundColor: '#FFFFFF' }),
   },
   codeTitle: {
     color: '#0C111B',
     fontSize: 19,
     fontWeight: '800',
+    letterSpacing: -0.38,
     marginBottom: 5,
   },
   codeInput: {
     borderWidth: 1.5,
-    borderColor: '#D9DFEE',
+    borderColor: '#E3E6EC',
     borderRadius: 13,
-    backgroundColor: '#F5F7FC',
+    backgroundColor: '#F7F8FA',
     color: '#0C111B',
     fontSize: 17,
     fontWeight: '700',
-    letterSpacing: 2,
+    letterSpacing: 1.7,
     textAlign: 'center',
-    paddingHorizontal: 14,
-    paddingVertical: 13,
+    paddingHorizontal: 15,
+    paddingVertical: 15,
     marginBottom: 12,
   },
   codeFeedback: {
-    fontSize: 13.5,
+    fontSize: 13,
     lineHeight: 19,
-    fontWeight: '700',
+    fontWeight: '500',
     textAlign: 'center',
     marginBottom: 12,
   },
   codeFeedbackOk: {
-    color: '#1E9E6A',
+    color: '#12805A',
   },
   codeFeedbackError: {
-    color: '#D34B6A',
+    color: '#E5563B',
   },
   codeCancel: {
     alignItems: 'center',
@@ -3739,7 +3564,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   codeCancelText: {
-    color: '#8A93AC',
+    color: '#8A91A1',
     fontSize: 15,
     fontWeight: '600',
   },

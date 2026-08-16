@@ -29,8 +29,15 @@ describe('clean onboarding responsive layout contract', () => {
   it('keeps the final age consent truthful and checkbox-based', () => {
     expect(source).toContain('testID="onboarding-age-yes"');
     expect(source).toContain('testID="onboarding-age-no"');
-    expect(source).toContain('testID="onboarding-legal-checkbox"');
     expect(source).toContain('testID="onboarding-analytics-checkbox"');
+    // зачем 2026-08-16: согласие с Условиями больше не отдельная галочка на
+    // финале — по утверждённому макету оно собирается на ПЕРВОМ экране строкой
+    // вплотную к кнопке «Начать» (sign-in-wrap, как у топа стора). Юридически
+    // это по-прежнему явное согласие, поэтому сторожим не форму, а факт: текст
+    // показан и принятие записано. Пропадёт запись — тест упадёт.
+    expect(source).toContain('Продолжая, ты принимаешь');
+    expect(source).toContain('LEGAL_ACCEPTED_KEY');
+    expect(source).toContain("'onboarding_terms_privacy_accepted_v1'");
     // Онбординг спрашивает только «есть ли 16» — значит и записывать он должен ровно
     // этот факт. Синтетический год рождения (текущий − 16) уезжал в Firestore как
     // персональные данные: у всех одинаковый, бесполезный, лишний по GDPR ст. 5(1)(c).
@@ -51,10 +58,10 @@ describe('clean onboarding responsive layout contract', () => {
     expect(source).not.toContain('следующий шаг безопас');
   });
 
-  it('keeps the midnight liquid background asset-free', () => {
-    expect(source).toContain('function Background()');
-    expect(source).toContain('liquidBlobOne');
-    expect(source).toContain('liquidBlobTwo');
+  // зачем 2026-08-16: тёмный «полуночный» фон с блобами удалён — владелец
+  // утвердил светлый макет. Ценность теста не в цвете, а в том, что фон
+  // рисуется кодом и не тащит картинок: сохраняем именно это.
+  it('keeps the background asset-free', () => {
     expect(source).not.toContain("require('../assets/images/onboarding");
     expect(source).not.toMatch(/onboarding-bg-(welcome|name|streak|auth)-wide\.webp/);
     expect(source).not.toContain('ONBOARDING_THEME_BLUE');

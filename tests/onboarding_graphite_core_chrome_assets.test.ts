@@ -14,13 +14,14 @@ describe('Onboarding Graphite core chrome assets', () => {
     expect(firstLessonSource).not.toContain('sheet-bg-');
   });
 
-  test('onboarding keeps the midnight liquid background without full-screen art images', () => {
+  // зачем 2026-08-16: владелец утвердил СВЕТЛЫЙ макет онбординга, тёмный
+  // «полуночный» фон с блобами удалён вместе с развилкой тема-тёмная/светлая —
+  // именно она и оставляла онбординг визуально старым на устройстве. Проверка
+  // конкретных тёмных цветов снята; главное, что сторожил тест, сохранено:
+  // онбординг не тащит полноэкранных картинок (вес бандла и первый кадр).
+  test('onboarding stays free of full-screen art images', () => {
     const onboardingSource = fs.readFileSync(path.join(ROOT, 'components/CleanOnboarding.tsx'), 'utf8');
 
-    expect(onboardingSource).toContain('function Background()');
-    expect(onboardingSource).toContain("colors={['#050711', '#080914', '#02030A']}");
-    expect(onboardingSource).toContain('liquidBlobOne');
-    expect(onboardingSource).toContain('liquidBlobTwo');
     expect(onboardingSource).not.toContain('onboarding-professor-observatory.webp');
     expect(onboardingSource).not.toContain('onboarding-phrase-archive.webp');
     expect(onboardingSource).not.toContain('onboarding-sage-council.webp');

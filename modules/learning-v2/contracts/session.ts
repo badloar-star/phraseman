@@ -1,4 +1,5 @@
 import { V2_ACTIVITY_FAMILIES, type V2ActivityFamily } from "./activity";
+import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from "../content/course_topology_v1";
 import type { LearningSupportLevel, V2SessionSetRef } from "./episode";
 import {
   V2_IDENTITY_REGEX,
@@ -298,8 +299,57 @@ const hasExactKeys = (
 const isIdentity = (value: unknown): value is string =>
   typeof value === "string" && V2_IDENTITY_REGEX.test(value);
 
-const expectedZone = (index: number): V2RequiredSessionDefinition["zone"] =>
-  index < 4 ? "understand" : index < 8 ? "use" : "master";
+// зачем: границы 4 и 8 — раскладка зон для урока из 12 сессий. Урок вырос до
+// 56, и всё после восьмой сессии обязано было быть «master», из-за чего каждый
+// набор заваливался с session_set_required_order, а человек видел «Сессия
+// недоступна». Берём зону из той же таблицы, по которой сессии и собираются:
+// один источник правды вместо двух расходящихся.
+/**
+ * Зона сессии по её месту в уроке.
+ *
+ * зачем: раньше границы 4 и 8 были абсолютными — раскладка урока из 12 сессий.
+ * Урок вырос до 56, и всё после восьмой сессии обязано было быть «master»,
+ * из-за чего каждый набор заваливался с session_set_required_order, а человек
+ * видел «Сессия недоступна».
+ *
+ * Кривая поддержки повторяется каждые 12 сессий: четыре на понимание, четыре
+ * на применение, четыре на закрепление. Формула обязана совпадать с
+ * CHAPTER_SUPPORT_CURVE_V1 в session_compiler; импортировать её напрямую
+ * нельзя — компилятор уже импортирует этот файл, вышел бы цикл.
+ */
+/**
+ * Зона сессии по её месту в уроке.
+ *
+ * зачем: границы 4 и 8 были абсолютными — раскладка урока из 12 сессий. Урок
+ * вырос до 56, всё после восьмой обязано было быть «master», каждый набор
+ * заваливался с session_set_required_order, и человек видел «Сессия
+ * недоступна» вместо урока.
+ *
+ * Формула повторяет REQUIRED_SESSION_POLICY_V1 из session_compiler: первые
+ * двенадцать сессий исторические (4/4/4, по ним уже собран контент урока 1),
+ * дальше берётся кривая главы из восьми (3/3/2) — причём отсчёт продолжается
+ * сквозной нумерацией, поэтому сессия 13 попадает в середину кривой, а не в
+ * её начало. Импортировать таблицу напрямую нельзя: компилятор уже импортирует
+ * этот файл, вышел бы цикл. Расхождение ловит
+ * tests/learning_v2_session_zone_contract.test.ts.
+ */
+const LEGACY_ZONE_COUNT_V1 = 12;
+const CHAPTER_ZONE_CURVE_V1: readonly V2RequiredSessionDefinition["zone"][] =
+  Object.freeze([
+    "understand",
+    "understand",
+    "understand",
+    "use",
+    "use",
+    "use",
+    "master",
+    "master",
+  ]);
+const expectedZone = (index: number): V2RequiredSessionDefinition["zone"] => {
+  if (index < LEGACY_ZONE_COUNT_V1)
+    return index < 4 ? "understand" : index < 8 ? "use" : "master";
+  return CHAPTER_ZONE_CURVE_V1[index % CHAPTER_ZONE_CURVE_V1.length];
+};
 
 const fail = (issues: readonly string[]): V2SessionSetValidationResult => ({
   ok: false,
@@ -328,7 +378,16 @@ export const validateV2SessionSet = (
     issues.push("session_set_identity");
   if (!Array.isArray(input.sessions))
     return fail([...issues, "session_set_required_count"]);
-  if (input.sessions.length !== 12) issues.push("session_set_required_count");
+  // зачем: было «ровно 12» — литерал из времён, когда урок считался коротким.
+  // Курс объявляет 56 сессий, а компилятор их и выдаёт, поэтому контракт молча
+  // заваливал каждый набор и человек видел «Сессия недоступна». Владелец
+  // (2026-08-16) разрешил неполный урок, чтобы его можно было проверять по
+  // мере написания: принимаем от одной сессии до планового максимума.
+  if (
+    input.sessions.length < 1 ||
+    input.sessions.length > LEARNING_V2_LESSON_SESSION_COUNT_V1
+  )
+    issues.push("session_set_required_count");
 
   const sessionIds = new Set<string>();
   const cardIds = new Set<string>();

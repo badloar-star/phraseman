@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { FlowText } from './text-integrity/FlowText';
 import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
@@ -45,14 +46,14 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
   };
   const tx = {
     sent: triLang(lang, {
-      ru: '✅ Жалоба отправлена',
-      uk: '✅ Скаргу надіслано',
-      es: '✅ Reporte enviado',
-      'pt-BR': '✅ Denúncia enviada',
-      vi: '✅ Đã gửi báo cáo',
-      id: '✅ Laporan terkirim',
-      tr: '✅ Şikayet gönderildi',
-      pl: '✅ Zgłoszenie wysłane',
+      ru: 'Жалоба отправлена',
+      uk: 'Скаргу надіслано',
+      es: 'Reporte enviado',
+      'pt-BR': 'Denúncia enviada',
+      vi: 'Đã gửi báo cáo',
+      id: 'Laporan terkirim',
+      tr: 'Şikayet gönderildi',
+      pl: 'Zgłoszenie wysłane',
     }),
     title: triLang(lang, {
       ru: 'Пожаловаться на ник?',

@@ -31,7 +31,8 @@ const STATIC_CACHE_KEYS = [
   FRIENDS_TAB_SWR_CACHE_KEY,
   FRIEND_PROFILES_CACHE_KEY,
 
-  // Ленты друзей — тот же SWR-слой, что и две строки выше.
+  // Ленты друзей больше нет (2026-08-16); ключи оставлены, чтобы стереть старый
+  // кэш у тех, кто обновился со старой версии.
   'friends_activity_feed_v2',
   'friends_activity_feed_v1',
 

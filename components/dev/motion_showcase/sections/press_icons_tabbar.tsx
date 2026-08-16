@@ -17,6 +17,9 @@ import PressableHybrid, { type PressableHybridVariant } from '../../../Pressable
 import TabBarHybridPreview from '../../../tabbar/TabBarHybridPreview';
 import LiveStreakFlame from '../../../icons/LiveStreakFlame';
 import DuoPressable from '../../../DuoPressable';
+import CircularProgress from '../../../CircularProgress';
+import GradientProgressBar from '../../../GradientProgressBar';
+import GiftExpiryCountdown from '../../../GiftExpiryCountdown';
 import { GOLD_RICH } from '../../../../constants/goldTheme';
 import type { ShowcaseRenderProps, ShowcaseSection } from '../types';
 import { cs } from '../showcase_copy';
@@ -233,6 +236,114 @@ function EdgePressLivePreview({ visible, onClose }: ShowcaseRenderProps) {
 
 const EdgePressLivePreviewMemo = memo(EdgePressLivePreview);
 
+const RING_DEMO_VALUES = [18, 62, 94] as const;
+const BAR_DEMO_VALUES = [0.15, 0.55, 0.9] as const;
+
+/**
+ * Живая панель кольца прогресса (CircularProgress) — кнопка «изменить»
+ * переключает по кругу демо-значения, заливка едет плавно (Reanimated внутри
+ * самого компонента, withTiming LUM.resolveMs), а не прыгает.
+ */
+function ProgressRingLivePreview({ visible, onClose }: ShowcaseRenderProps) {
+  const { theme: t, f } = useTheme();
+  const [step, setStep] = useState(0);
+  const pct = RING_DEMO_VALUES[step % RING_DEMO_VALUES.length];
+  return (
+    <MotionModal visible={visible} onRequestClose={onClose} testID="motion-showcase-progress-ring-preview">
+      <View style={[styles.root, { backgroundColor: t.bgCard }]}>
+        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+          {cs('progress_ring_hybrid_heading')}
+        </Text>
+        <Text style={[styles.hint, { color: t.textMuted, fontSize: f.caption }]}>
+          {cs('progress_ring_hybrid_hint')}
+        </Text>
+        <View style={styles.progressRingWrap}>
+          <CircularProgress
+            pct={pct}
+            size={96}
+            sw={8}
+            color={t.accent}
+            bg={t.bgSurface2}
+            textColor={t.textPrimary}
+            fontSize={18}
+          />
+        </View>
+        <PressableHybrid
+          variant="primary"
+          onPress={() => setStep((s) => s + 1)}
+          contentStyle={[styles.burstButton, { backgroundColor: t.accent }]}
+        >
+          <Text style={[styles.burstButtonLabel, { color: t.bgCard }]}>
+            {cs('progress_change_value_button')}
+          </Text>
+        </PressableHybrid>
+      </View>
+    </MotionModal>
+  );
+}
+
+const ProgressRingLivePreviewMemo = memo(ProgressRingLivePreview);
+
+/** Живая панель полосы прогресса (GradientProgressBar) — тот же принцип. */
+function ProgressBarLivePreview({ visible, onClose }: ShowcaseRenderProps) {
+  const { theme: t, f } = useTheme();
+  const [step, setStep] = useState(0);
+  const progress = BAR_DEMO_VALUES[step % BAR_DEMO_VALUES.length];
+  return (
+    <MotionModal visible={visible} onRequestClose={onClose} testID="motion-showcase-progress-bar-preview">
+      <View style={[styles.root, { backgroundColor: t.bgCard }]}>
+        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+          {cs('progress_bar_hybrid_heading')}
+        </Text>
+        <Text style={[styles.hint, { color: t.textMuted, fontSize: f.caption }]}>
+          {cs('progress_bar_hybrid_hint')}
+        </Text>
+        <View style={styles.progressBarWrap}>
+          <GradientProgressBar progress={progress} accent={t.accent} height={10} />
+        </View>
+        <PressableHybrid
+          variant="primary"
+          onPress={() => setStep((s) => s + 1)}
+          contentStyle={[styles.burstButton, { backgroundColor: t.accent }]}
+        >
+          <Text style={[styles.burstButtonLabel, { color: t.bgCard }]}>
+            {cs('progress_change_value_button')}
+          </Text>
+        </PressableHybrid>
+      </View>
+    </MotionModal>
+  );
+}
+
+const ProgressBarLivePreviewMemo = memo(ProgressBarLivePreview);
+
+/**
+ * Живая панель таймера подарка (GiftExpiryCountdown) — демо-TTL 5 часов 50
+ * минут, чтобы «загорание» (порог 6ч) сработало почти сразу после открытия
+ * панели, без ожидания реального 72-часового отсчёта.
+ */
+function ProgressTimerLivePreview({ visible, onClose }: ShowcaseRenderProps) {
+  const { theme: t, f } = useTheme();
+  const [expiresAtMs] = useState(() => Date.now() + 5 * 60 * 60 * 1000 + 50 * 60 * 1000);
+  return (
+    <MotionModal visible={visible} onRequestClose={onClose} testID="motion-showcase-progress-timer-preview">
+      <View style={[styles.root, { backgroundColor: t.bgCard }]}>
+        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+          {cs('progress_timer_hybrid_heading')}
+        </Text>
+        <Text style={[styles.hint, { color: t.textMuted, fontSize: f.caption }]}>
+          {cs('progress_timer_hybrid_hint')}
+        </Text>
+        <View style={styles.progressTimerWrap}>
+          <GiftExpiryCountdown expiresAtMs={expiresAtMs} accent={t.accent} testID="motion-showcase-progress-timer" />
+        </View>
+      </View>
+    </MotionModal>
+  );
+}
+
+const ProgressTimerLivePreviewMemo = memo(ProgressTimerLivePreview);
+
 const styles = StyleSheet.create({
   root: { flex: 1, padding: 20, gap: 6 },
   title: { fontWeight: '800' },
@@ -251,6 +362,9 @@ const styles = StyleSheet.create({
   edgePressStack: { gap: 16, marginTop: 16 },
   edgePressButton: { minHeight: 54, borderRadius: 14, paddingHorizontal: 20 },
   edgePressLabel: { fontSize: 15, fontWeight: '700' },
+  progressRingWrap: { alignItems: 'center', justifyContent: 'center', marginTop: 16, marginBottom: 20, height: 120 },
+  progressBarWrap: { marginTop: 16, marginBottom: 20 },
+  progressTimerWrap: { alignItems: 'flex-start', marginTop: 16, marginBottom: 8 },
 });
 
 export const SECTION: ShowcaseSection = {
@@ -367,6 +481,28 @@ export const SECTION: ShowcaseSection = {
       kind: 'render',
       detail: cs('edge_press_panel_detail'),
       render: ({ visible, onClose }) => <EdgePressLivePreviewMemo visible={visible} onClose={onClose} />,
+    },
+    // ── Живые панели: прогресс-примитивы (кольцо/бар/таймер) с гибрид-заливкой ──
+    {
+      id: 'progress-ring-live-preview',
+      title: cs('progress_ring_hybrid_title'),
+      kind: 'render',
+      detail: cs('progress_ring_hybrid_detail'),
+      render: ({ visible, onClose }) => <ProgressRingLivePreviewMemo visible={visible} onClose={onClose} />,
+    },
+    {
+      id: 'progress-bar-live-preview',
+      title: cs('progress_bar_hybrid_title'),
+      kind: 'render',
+      detail: cs('progress_bar_hybrid_detail'),
+      render: ({ visible, onClose }) => <ProgressBarLivePreviewMemo visible={visible} onClose={onClose} />,
+    },
+    {
+      id: 'progress-timer-live-preview',
+      title: cs('progress_timer_hybrid_title'),
+      kind: 'render',
+      detail: cs('progress_timer_hybrid_detail'),
+      render: ({ visible, onClose }) => <ProgressTimerLivePreviewMemo visible={visible} onClose={onClose} />,
     },
   ],
 };

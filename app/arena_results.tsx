@@ -23,6 +23,7 @@ import { arenaStoreItemTitle } from '../modules/arena/expansion_store_copy';
 import type { ArenaExpansionHome } from '../modules/arena/expansion_contract';
 import { useArenaSound } from '../hooks/use_arena_sound';
 import { arenaResultAnnounce, arenaResultHasAnnounce } from '../modules/arena/result_view';
+import { ArenaTierDownHybrid, ArenaTierUpHybrid } from '../components/arena/ArenaRankHybrid';
 
 export default function ArenaResultsScreen() {
   const router = useRouter();
@@ -34,9 +35,18 @@ export default function ArenaResultsScreen() {
   const reactionLine = { lineHeight: 17 * fontScale };
   const pendingLine = { lineHeight: 20 * fontScale };
   const window = useWindowDimensions();
-  const params = useLocalSearchParams<{ matchId?: string; viewerSeat?: string; reportRejected?: string }>();
+  const params = useLocalSearchParams<{ matchId?: string; viewerSeat?: string; reportRejected?: string; motionVariant?: string }>();
   const matchId = typeof params.matchId === 'string' ? params.matchId : null;
   const reportRejected = params.reportRejected === '1';
+  // зачем: гибрид «Штамп ранга»/«Тихая ступень» (ArenaRankHybrid) включается
+  // через ?motionVariant=hybrid — по умолчанию classic, ничего не меняется
+  // для боевых игроков, пока владелец не переключит default.
+  const motionVariant = params.motionVariant === 'hybrid' ? 'hybrid' : 'classic';
+  // зачем: гибрид-сцена «Штамп ранга»/«Тихая ступень» — модальная кульминация
+  // (ArenaRankHybrid.onDone), а не постоянный блок как classic-текст: она
+  // доигрывает один раз и уступает место обычной карточке объявления.
+  const [rankSceneDismissed, setRankSceneDismissed] = useState(false);
+  useEffect(() => { setRankSceneDismissed(false); }, [matchId]);
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
   const fxRef = useRef<TournamentFxApi>(null);
@@ -165,8 +175,26 @@ export default function ArenaResultsScreen() {
     fxRef.current?.confetti({ x: window.width / 2, y: Math.min(260, window.height * 0.3) }, [P.accent, P.gold, P.text]);
   }, [active, match, P.accent, P.gold, P.text, reduceMotion, viewerSeat, winner, window.height, window.width]);
 
+  const rankScene = motionVariant === 'hybrid' && !rankSceneDismissed && announce.rank.kind === 'tier_up' ? (
+    <ArenaTierUpHybrid
+      tierIndex={announce.rank.tierIndex}
+      starsAwarded={announce.starsEarned}
+      chestUnlocked={announce.unlockedItemIds.length > 0}
+      reduceMotion={reduceMotion}
+      onDone={() => setRankSceneDismissed(true)}
+    />
+  ) : motionVariant === 'hybrid' && !rankSceneDismissed && announce.rank.kind === 'tier_down' ? (
+    <ArenaTierDownHybrid
+      tierIndex={announce.rank.tierIndex}
+      starsSaved={announce.starsEarned}
+      reduceMotion={reduceMotion}
+      onDone={() => setRankSceneDismissed(true)}
+      onRevenge={() => setRankSceneDismissed(true)}
+    />
+  ) : null;
+
   return (
-    <ArenaScreen title={arenaText(lang, 'result')} subtitle={title} variant="results" fxRef={fxRef} onBack={() => router.replace('/arena' as never)}>
+    <ArenaScreen title={arenaText(lang, 'result')} subtitle={title} variant="results" fxRef={fxRef} onBack={() => router.replace('/arena' as never)} overlay={rankScene}>
       {players.length ? <ArenaPlayers players={players} active={active} animateScore /> : null}
       {titleCosmetic ? <Text style={[styles.cosmeticTitle, { color: P.gold }]}>{titleCosmetic}</Text> : null}
       <V2Card style={[styles.resultSurface, resultTheme ? { backgroundColor: resultTheme.backgroundColor, borderColor: resultTheme.borderColor, borderWidth: 1 } : null]}>
@@ -179,7 +207,7 @@ export default function ArenaResultsScreen() {
         <SpinRewardPlaque amount={1} receiptId={reward.spinReceiptId} visible onComplete={() => {}} staticPresentation />
       ) : null}
       {match?.mode === 'series' ? <V2Card style={styles.seriesCard}><Text style={[styles.reactionHint, reactionLine, { color: P.muted }]}>{arenaExpansionText(lang, 'rivalryBody')}</Text><Text style={[styles.seriesScore, { color: P.gold }]}>{arenaExpansionText(lang, 'score').replace('{you}', String(seriesYou)).replace('{them}', String(seriesThem))}</Text></V2Card> : null}
-      {arenaResultHasAnnounce(announce) ? (
+      {arenaResultHasAnnounce(announce) && !(motionVariant === 'hybrid' && !rankSceneDismissed && (announce.rank.kind === 'tier_up' || announce.rank.kind === 'tier_down')) ? (
         <V2Card style={styles.announce}>
           {announce.rank.kind === 'tier_up' || announce.rank.kind === 'tier_down' ? (
             <Text style={[styles.announceHead, {

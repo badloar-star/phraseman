@@ -14,13 +14,13 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   InteractionManager,
-  RefreshControl,
   ScrollView,
   Share,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as Clipboard from 'expo-clipboard';
@@ -654,7 +654,7 @@ export default function ReferralsScreen() {
         />
         <ScrollView
           showsVerticalScrollIndicator={false}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} tintColor={t.accent} />}
+          refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={refresh} />}
           contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34, gap: 16 }}
         >
 

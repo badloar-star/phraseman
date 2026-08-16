@@ -104,20 +104,16 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import { useTabNav } from '../TabContext';
-import { fetchFriendsActivityFeed, invalidateFriendsActivityCache, type FriendEvent } from '../firestore_friend_activity';
-import { friendActivityGiftCopy } from '../friend_activity_gift_copy';
+// зачем (владелец, 2026-08-16): лента «Активность» удалена — у 99 % пользователей она была
+// пустой (35 из 4 657 имеют друзей), источник событий давал 0–2 события в день на всю базу.
+// Социальный жест остался один и дешёвый: «дай пять» = профильный лайк прямо в строке друга.
 import {
-  activityLikeStateKey,
+  PROFILE_LIKE_EVENT_ID,
   fetchActivityLikeState,
   fetchActivityLikeStates,
-  fetchActivityLikeTotal,
+  removeFriendActivityLike,
   sendFriendActivityLike,
 } from '../friend_activity_likes';
-import {
-  bumpActivityLikeCount,
-  rollbackActivityLikeCount,
-  setActivityLikeCount,
-} from '../friend_activity_like_optimistic';
 import { trackActivity } from '../app_activity';
 import {
   getShardsBalance,
@@ -125,7 +121,7 @@ import {
 } from '../shards_system';
 import { oskolokImageForPackShards } from '../oskolok';
 import { claimUnseenFriendGifts, type IncomingFriendGift } from '../friend_gift_inbox';
-import { emitAppEvent } from '../events';
+import { emitAppEvent, onAppEvent } from '../events';
 import { getNetStatus } from '../net_status';
 import {
   FRIEND_GIFT_CATALOG,
@@ -711,54 +707,50 @@ function PulseOn({ active, children }: { active: boolean; children: React.ReactN
   return <Reanimated.View style={style}>{children}</Reanimated.View>;
 }
 
-/** Кнопка лайка с pop-анимацией сердечка (scale 1→1.4→1) при тапе. */
-function ActivityLikeButton({
-  testID, liked, count, likeColor, chrome, t, f, accessibilityLabel, onPress,
+const HIGH_FIVE_COLOR = '#FF2D55';
+
+/**
+ * «Дай пять» — сердце в строке друга. Тот же профильный лайк, что в карточке игрока
+ * (PROFILE_LIKE_EVENT_ID), но на расстоянии одного тапа. Pop-анимация 1→1.35→1 на UI-потоке,
+ * без обводок — контейнер тот же, что у подарка/удаления (44×44 хит-зона).
+ */
+function HighFiveButton({
+  testID, liked, mutedColor, accessibilityLabel, onPress,
 }: {
-  testID: string; liked: boolean; count: number; likeColor: string;
-  chrome: FriendsChrome; t: any; f: any;
+  testID: string; liked: boolean; mutedColor: string;
   accessibilityLabel: string; onPress: () => void;
 }) {
   const scale = useSharedValue(1);
   const heartStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
   const handlePress = () => {
-    scale.value = withSequence(withTiming(1.4, { duration: 120 }), withTiming(1, { duration: 180 }));
+    scale.value = withSequence(withTiming(1.35, { duration: 110 }), withTiming(1, { duration: 170 }));
     onPress();
   };
   return (
     <TapScale
       testID={testID}
       onPress={handlePress}
+      hitSlop={6}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
-      style={{
-        minWidth: 44,
-        minHeight: 44,
-        borderRadius: 14,
-        paddingHorizontal: 7,
-        paddingVertical: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: liked ? 'rgba(255,45,85,0.16)' : chrome.button,
-        borderWidth: 0.5,
-        borderColor: liked ? 'rgba(255,45,85,0.55)' : chrome.border,
-      }}
+      accessibilityState={{ selected: liked }}
+      style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
     >
       <Reanimated.View style={heartStyle}>
-        <Ionicons name={liked ? 'heart' : 'heart-outline'} size={19} color={liked ? likeColor : t.textMuted} />
+        <Ionicons name={liked ? 'heart' : 'heart-outline'} size={18} color={liked ? HIGH_FIVE_COLOR : mutedColor} />
       </Reanimated.View>
-      <Text style={{ color: liked ? likeColor : t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '900', marginTop: 1 }}>
-        {count}
-      </Text>
     </TapScale>
   );
 }
 
 function FriendRow({
-  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome, themeMode, giftAvailable,
+  profile, rank, onPress, onDelete, onGift, onHighFive, highFived, lang, t, f, chrome, themeMode, giftAvailable,
 }: {
   profile: FriendProfile; rank: number;
   onPress: () => void; onDelete: () => void; onGift: () => void;
+  /** «Дай пять» — профильный лайк другу прямо из списка. */
+  onHighFive: () => void;
+  highFived: boolean;
   lang: string; t: any; f: any;
   chrome: FriendsChrome;
   themeMode: ThemeMode;
@@ -826,6 +818,15 @@ function FriendRow({
           )}
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+          <HighFiveButton
+            testID={`friend-high-five-${profile.uid}`}
+            liked={highFived}
+            mutedColor={t.textMuted}
+            accessibilityLabel={highFived
+              ? triLang(lang as any, { ru: `Убрать «дай пять» ${profile.name}`, uk: `Прибрати «дай п'ять» ${profile.name}`, es: `Quitar el «choca esos cinco» a ${profile.name}`, 'pt-BR': `Remover o «toca aqui» de ${profile.name}`, vi: `Bỏ «đập tay» với ${profile.name}`, id: `Batalkan «tos» untuk ${profile.name}`, tr: `${profile.name} için «çak bir beşlik» geri al`, pl: `Cofnij «przybij piątkę» dla ${profile.name}` })
+              : triLang(lang as any, { ru: `Дай пять ${profile.name}`, uk: `Дай п'ять ${profile.name}`, es: `Choca esos cinco con ${profile.name}`, 'pt-BR': `Toca aqui com ${profile.name}`, vi: `Đập tay với ${profile.name}`, id: `Tos dengan ${profile.name}`, tr: `${profile.name} ile çak bir beşlik`, pl: `Przybij piątkę ${profile.name}` })}
+            onPress={onHighFive}
+          />
           <TapScale
             testID={`friend-gift-${profile.uid}`}
             onPress={onGift}
@@ -1036,67 +1037,6 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome, 
   );
 }
 
-// ── Activity feed helpers ─────────────────────────────────────────────────────
-
-function formatEventTime(ts: number, lang: string): string {
-  const diff = Date.now() - ts;
-  const min = Math.floor(diff / 60000);
-  const hrs = Math.floor(diff / 3600000);
-  const days = Math.floor(diff / 86400000);
-  if (min < 2) return triLang(lang as any, {
-    ru: 'только что',
-    uk: 'щойно',
-    es: 'ahora mismo',
-    'pt-BR': 'agora mesmo',
-    vi: 'vừa xong',
-    id: 'baru saja',
-    tr: 'az önce',
-    pl: 'przed chwilą',
-  });
-  if (min < 60) return triLang(lang as any, {
-    ru: `${min} мин назад`,
-    uk: `${min} хв тому`,
-    es: `hace ${min} min`,
-    'pt-BR': `há ${min} min`,
-    vi: `${min} phút trước`,
-    id: `${min} menit lalu`,
-    tr: `${min} dk önce`,
-    pl: `${min} min temu`,
-  });
-  if (hrs < 24) return triLang(lang as any, {
-    ru: `${hrs} ч назад`,
-    uk: `${hrs} год тому`,
-    es: `hace ${hrs} h`,
-    'pt-BR': `há ${hrs} h`,
-    vi: `${hrs} giờ trước`,
-    id: `${hrs} jam lalu`,
-    tr: `${hrs} sa önce`,
-    pl: `${hrs} godz. temu`,
-  });
-  if (days < 7) return triLang(lang as any, {
-    ru: `${days} дн назад`,
-    uk: `${days} дн тому`,
-    es: `hace ${days} días`,
-    'pt-BR': `há ${days} dias`,
-    vi: `${days} ngày trước`,
-    id: `${days} hari lalu`,
-    tr: `${days} gün önce`,
-    pl: `${days} dni temu`,
-  });
-  const dateLocaleByLang: Record<Lang, string> = {
-    ru: 'ru-RU',
-    uk: 'uk-UA',
-    es: 'es-ES',
-    'pt-BR': 'pt-BR',
-    vi: 'vi-VN',
-    id: 'id-ID',
-    tr: 'tr-TR',
-    pl: 'pl-PL',
-  };
-  const dateLocale = dateLocaleByLang[lang as Lang] ?? dateLocaleByLang.ru;
-  return new Date(ts).toLocaleDateString(dateLocale, { day: 'numeric', month: 'short' });
-}
-
 function giftEventLabel(payload: Record<string, string | number>, lang: string): string {
   const payloadKeyByLang: Record<Lang, keyof typeof payload> = {
     ru: 'giftLabelRu',
@@ -1128,137 +1068,7 @@ function giftEventLabel(payload: Record<string, string | number>, lang: string):
   return typeof rawGiftId === 'string' ? rawGiftId : '';
 }
 
-function eventText(event: FriendEvent, friendName: string, lang: string, viewerUid: string): string {
-  const n = friendName;
-  const p = event.payload;
-  const L = (
-    ru: string,
-    uk: string,
-    es: string,
-    ptBr: string,
-    vi: string,
-    id: string,
-    tr: string,
-    pl: string,
-  ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
-  if (event.type === 'friend_gift_sent') {
-    const gift = giftEventLabel(p, lang);
-    return friendActivityGiftCopy({ type: event.type, friendName: n, giftLabel: gift, viewerUid, payload: p, lang });
-  }
-  if (event.type === 'friend_gift_received') {
-    const gift = giftEventLabel(p, lang);
-    return friendActivityGiftCopy({ type: event.type, friendName: n, giftLabel: gift, viewerUid, payload: p, lang });
-  }
-  switch (event.type) {
-    case 'level_up':
-      return L(`${n} достиг уровня ${p.level}`, `${n} досяг рівня ${p.level}`, `${n} alcanzó el nivel ${p.level}`, `${n} alcançou o nível ${p.level}`, `${n} đạt cấp ${p.level}`, `${n} mencapai level ${p.level}`, `${n} ${p.level}. seviyeye ulaştı`, `${n} osiągnął poziom ${p.level}`);
-    case 'lesson_complete': {
-      const lvlMap: Record<string, string> = {
-        easy: L('лёгкий', 'легкий', 'fácil', 'fácil', 'dễ', 'mudah', 'kolay', 'łatwy'),
-        medium: L('средний', 'середній', 'medio', 'médio', 'vừa', 'sedang', 'orta', 'średni'),
-        hard: L('сложный', 'складний', 'difícil', 'difícil', 'khó', 'sulit', 'zor', 'trudny'),
-      };
-      const lvlName = lvlMap[String(p.level)] ?? String(p.level);
-      return L(`${n} прошёл урок (${lvlName})`, `${n} пройшов урок (${lvlName})`, `${n} completó la lección (${lvlName})`, `${n} concluiu a lição (${lvlName})`, `${n} hoàn thành bài học (${lvlName})`, `${n} menyelesaikan pelajaran (${lvlName})`, `${n} dersi tamamladı (${lvlName})`, `${n} ukończył lekcję (${lvlName})`);
-    }
-    case 'achievement':
-      return L(`${n} получил достижение ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} отримав досягнення ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} desbloqueó logro ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} desbloqueou uma conquista ${p.icon ?? '🏆'}`, `${n} đã mở khóa một thành tích ${p.icon ?? '🏆'}`, `${n} membuka pencapaian ${p.icon ?? '🏆'}`, `${n} bir başarı açtı ${p.icon ?? '🏆'}`, `${n} odblokował osiągnięcie ${p.icon ?? '🏆'}`);
-    case 'streak_milestone':
-      return L(`${n} держит серию ${p.days} дней подряд 🔥`, `${n} тримає серію ${p.days} днів поспіль 🔥`, `${n} lleva ${p.days} días seguidos 🔥`, `${n} mantém uma sequência de ${p.days} dias 🔥`, `${n} giữ chuỗi ${p.days} ngày liên tiếp 🔥`, `${n} menjaga rangkaian ${p.days} hari berturut-turut 🔥`, `${n} ${p.days} günlük seriyi sürdürüyor 🔥`, `${n} utrzymuje serię ${p.days} dni z rzędu 🔥`);
-    default:
-      return `${n} — ${event.type}`;
-  }
-}
-
-/** Русские/украинские/польские формы «урок/урока/уроков» по числу. */
-function lessonsWordForm(count: number, one: string, few: string, many: string): string {
-  const mod10 = count % 10;
-  const mod100 = count % 100;
-  if (mod10 === 1 && mod100 !== 11) return one;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
-  return many;
-}
-
-/** Схлопнутая карточка «N уроков за день» — вместо ленты одинаковых событий. */
-function lessonsDayText(friendName: string, count: number, lang: string): string {
-  const n = friendName;
-  const ru = lessonsWordForm(count, 'урок', 'урока', 'уроков');
-  const uk = lessonsWordForm(count, 'урок', 'уроки', 'уроків');
-  const pl = lessonsWordForm(count, 'lekcję', 'lekcje', 'lekcji');
-  return triLang(lang as any, {
-    ru: `${n} прошёл ${count} ${ru} за день 💪`,
-    uk: `${n} пройшов ${count} ${uk} за день 💪`,
-    es: `${n} completó ${count} lecciones en un día 💪`,
-    'pt-BR': `${n} concluiu ${count} lições em um dia 💪`,
-    vi: `${n} đã hoàn thành ${count} bài học trong ngày 💪`,
-    id: `${n} menyelesaikan ${count} pelajaran dalam sehari 💪`,
-    tr: `${n} bir günde ${count} ders tamamladı 💪`,
-    pl: `${n} ukończył ${count} ${pl} w ciągu dnia 💪`,
-  });
-}
-
-/** Заголовок дайджеста «Сегодня у друзей: N уроков · M событий». */
-function activityDigestText(lessons: number, milestones: number, lang: string): string {
-  const parts: Record<Lang, string[]> = {
-    ru: [], uk: [], es: [], 'pt-BR': [], vi: [], id: [], tr: [], pl: [],
-  };
-  if (lessons > 0) {
-    parts.ru.push(`${lessons} ${lessonsWordForm(lessons, 'урок', 'урока', 'уроков')}`);
-    parts.uk.push(`${lessons} ${lessonsWordForm(lessons, 'урок', 'уроки', 'уроків')}`);
-    parts.es.push(`${lessons} ${lessons === 1 ? 'lección' : 'lecciones'}`);
-    parts['pt-BR'].push(`${lessons} ${lessons === 1 ? 'lição' : 'lições'}`);
-    parts.vi.push(`${lessons} bài học`);
-    parts.id.push(`${lessons} pelajaran`);
-    parts.tr.push(`${lessons} ders`);
-    parts.pl.push(`${lessons} ${lessonsWordForm(lessons, 'lekcja', 'lekcje', 'lekcji')}`);
-  }
-  if (milestones > 0) {
-    parts.ru.push(`${milestones} ${lessonsWordForm(milestones, 'достижение', 'достижения', 'достижений')}`);
-    parts.uk.push(`${milestones} ${lessonsWordForm(milestones, 'досягнення', 'досягнення', 'досягнень')}`);
-    parts.es.push(`${milestones} ${milestones === 1 ? 'logro' : 'logros'}`);
-    parts['pt-BR'].push(`${milestones} ${milestones === 1 ? 'conquista' : 'conquistas'}`);
-    parts.vi.push(`${milestones} cột mốc`);
-    parts.id.push(`${milestones} pencapaian`);
-    parts.tr.push(`${milestones} başarı`);
-    parts.pl.push(`${milestones} ${lessonsWordForm(milestones, 'osiągnięcie', 'osiągnięcia', 'osiągnięć')}`);
-  }
-  return triLang(lang as any, {
-    ru: `Сегодня у друзей: ${parts.ru.join(' · ')}`,
-    uk: `Сьогодні у друзів: ${parts.uk.join(' · ')}`,
-    es: `Hoy tus amigos: ${parts.es.join(' · ')}`,
-    'pt-BR': `Hoje seus amigos: ${parts['pt-BR'].join(' · ')}`,
-    vi: `Hôm nay bạn bè: ${parts.vi.join(' · ')}`,
-    id: `Hari ini temanmu: ${parts.id.join(' · ')}`,
-    tr: `Bugün arkadaşların: ${parts.tr.join(' · ')}`,
-    pl: `Dzisiaj znajomi: ${parts.pl.join(' · ')}`,
-  });
-}
-
-function eventIcon(type: FriendEvent['type']): string {
-  if (type === 'friend_gift_sent' || type === 'friend_gift_received') return 'gift-outline';
-  switch (type) {
-    case 'level_up': return 'trending-up';
-    case 'lesson_complete': return 'book-outline';
-    case 'achievement': return 'trophy-outline';
-    case 'streak_milestone': return 'flame-outline';
-    default: return 'ellipse-outline';
-  }
-}
-
-function eventIconColor(type: FriendEvent['type'], accent: string, themeMode: ThemeMode): string {
-  if (themeMode === 'olive') return type === 'friend_gift_sent' || type === 'friend_gift_received' || type === 'achievement' ? OLIVE_RICH.champagne : OLIVE_RICH.champagneLight;
-  if (type === 'friend_gift_sent') return '#60A5FA';
-  if (type === 'friend_gift_received') return '#A78BFA';
-  switch (type) {
-    case 'level_up': return '#34C759';
-    case 'lesson_complete': return accent;
-    case 'achievement': return '#FFD700';
-    case 'streak_milestone': return '#FF9500';
-    default: return accent;
-  }
-}
-
-// ── Activity tab ──────────────────────────────────────────────────────────────
+// ── Friend quest modals ────────────────────────────────────────────────────────
 
 function FriendQuestStartedModal({
   visible, onClose, L, f, themeMode,
@@ -1329,390 +1139,6 @@ function FriendQuestCompletedModal({
         </View>
       </View>
     </Modal>
-  );
-}
-
-type ActivityFeedSection = 'today' | 'yesterday' | 'earlier';
-
-// «Кто поставил лайк» переехало в центр уведомлений на главной (NotificationCenterButton) —
-// лента активности показывает только события друзей.
-type ActivityFeedItem =
-  | { kind: 'event'; ts: number; key: string; event: FriendEvent; lessonsCount?: number }
-  | { kind: 'section'; ts: number; key: string; section: ActivityFeedSection };
-
-/** Хвост ленты ограничен: старый шум не имеет ценности, важное всегда сверху. */
-const ACTIVITY_FEED_MAX_ITEMS = 60;
-
-function activityDayKey(ts: number): string {
-  const d = new Date(ts);
-  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-}
-
-function ActivityTab({
-  friendUids, profiles, lang, t, f, chrome, themeMode, header, footer, scrollProps, onOpenProfile,
-}: {
-  friendUids: string[];
-  profiles: Record<string, FriendProfile>;
-  lang: string; t: any; f: any;
-  chrome: FriendsChrome;
-  themeMode: ThemeMode;
-  header?: React.ReactNode;
-  footer?: React.ReactNode;
-  scrollProps?: Record<string, unknown>;
-  /** Тап по карточке события открывает профиль друга. */
-  onOpenProfile?: (uid: string) => void;
-}) {
-  const [events, setEvents] = useState<FriendEvent[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [refreshing, setRefreshing] = useState(false);
-  const [likedActivityKeys, setLikedActivityKeys] = useState<Set<string>>(() => new Set());
-  const [viewerUid, setViewerUid] = useState('');
-  const likeInFlightRef = useRef<Set<string>>(new Set());
-  const L = (
-    ru: string,
-    uk: string,
-    es: string,
-    ptBr: string,
-    vi: string,
-    id: string,
-    tr: string,
-    pl: string,
-  ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
-
-  const load = useCallback(async (force = false) => {
-    if (friendUids.length === 0) {
-      setEvents([]);
-      setLikedActivityKeys(new Set());
-      return;
-    }
-    if (force) setRefreshing(true); else setLoading(true);
-    try {
-      const [result, likeStates, currentUid] = await Promise.all([
-        fetchFriendsActivityFeed(friendUids, force),
-        fetchActivityLikeStates(),
-        getCanonicalUserId().catch(() => null),
-      ]);
-      setEvents(result);
-      setLikedActivityKeys(new Set(likeStates.map(state => activityLikeStateKey(state.targetUid, state.eventId))));
-      setViewerUid(currentUid ?? '');
-    } catch {
-      // Сеть/бэкенд упали — оставляем прежнюю ленту, спиннер гасим в finally.
-    } finally {
-      if (force) setRefreshing(false); else setLoading(false);
-    }
-    // Check "liked by friend" achievement
-    void (async () => {
-      try {
-        const myUid = await getCanonicalUserId();
-        if (!myUid) return;
-        const total = await fetchActivityLikeTotal(myUid);
-        if (total > 0) {
-          const { checkAchievements } = await import('../achievements');
-          void checkAchievements({ type: 'achievement_liked', likeTotal: total });
-        }
-      } catch {}
-    })();
-  }, [friendUids]);
-
-  const handleActivityLike = useCallback((event: FriendEvent) => {
-    const eventKey = activityLikeStateKey(event.uid, event.id);
-    if (likedActivityKeys.has(eventKey) || likeInFlightRef.current.has(eventKey)) return;
-    hapticTap();
-    likeInFlightRef.current.add(eventKey);
-    setLikedActivityKeys(current => new Set(current).add(eventKey));
-    setEvents(prev => bumpActivityLikeCount(prev, event.uid, event.id));
-
-    void sendFriendActivityLike({ targetUid: event.uid, eventId: event.id }).then(res => {
-      setLikedActivityKeys(current => new Set(current).add(eventKey));
-      setEvents(prev => setActivityLikeCount(prev, event.uid, event.id, res.activityLikeCount));
-      void invalidateFriendsActivityCache();
-    }).catch(async () => {
-      const freshState = await fetchActivityLikeState(event.uid, event.id).catch(() => null);
-      const freshMatchesEvent = !!freshState;
-      setLikedActivityKeys(current => {
-        const next = new Set(current);
-        if (freshMatchesEvent) next.add(eventKey); else next.delete(eventKey);
-        return next;
-      });
-      if (!freshMatchesEvent) {
-        setEvents(prev => rollbackActivityLikeCount(prev, event.uid, event.id));
-      }
-      emitAppEvent('action_toast', {
-        type: 'error',
-        messageRu: 'Лайк не отправлен. Проверь интернет и попробуй ещё раз.',
-        messageUk: 'Лайк не надіслано. Перевір інтернет і спробуй ще раз.',
-        messageEs: 'No se envió el like. Comprueba Internet e inténtalo de nuevo.',
-        messagePtBr: 'A curtida não foi enviada. Verifique a internet e tente novamente.',
-        messageVi: 'Chưa gửi được lượt thích. Hãy kiểm tra mạng rồi thử lại.',
-        messageId: 'Like belum terkirim. Periksa internet lalu coba lagi.',
-        messageTr: 'Beğeni gönderilmedi. İnterneti kontrol edip tekrar dene.',
-        messagePl: 'Nie wysłano polubienia. Sprawdź internet i spróbuj ponownie.',
-      });
-      void invalidateFriendsActivityCache();
-    }).finally(() => {
-      likeInFlightRef.current.delete(eventKey);
-    });
-  }, [likedActivityKeys]);
-
-  // Без force кэш ленты (30 мин) долго показывает пустоту после событий у друзей.
-  useEffect(() => { void load(false); }, [load]);
-
-  // Merge friends' events and incoming likes into one time-sorted feed ("X liked you" rows
-  // are interleaved with achievements/level-ups by timestamp, newest first).
-  // Одинаковые lesson_complete одного друга за день схлопнуты в одну карточку «N уроков за день»
-  // (лайк вешается на самое свежее событие группы), лента размечена секциями по дням.
-  const feedItems = useMemo<ActivityFeedItem[]>(() => {
-    const merged: ActivityFeedItem[] = [];
-    const lessonGroups = new Map<string, { event: FriendEvent; count: number }>();
-    for (const event of events) {
-      if (event.type === 'lesson_complete') {
-        const groupKey = `${event.uid}:${activityDayKey(event.ts)}`;
-        const group = lessonGroups.get(groupKey);
-        lessonGroups.set(groupKey, {
-          event: group && group.event.ts >= event.ts ? group.event : event,
-          count: (group?.count ?? 0) + 1,
-        });
-        continue;
-      }
-      merged.push({ kind: 'event', ts: event.ts, key: `event:${event.uid}:${event.id}`, event });
-    }
-    for (const group of lessonGroups.values()) {
-      merged.push({
-        kind: 'event',
-        ts: group.event.ts,
-        key: `event:${group.event.uid}:${group.event.id}`,
-        event: group.event,
-        lessonsCount: group.count,
-      });
-    }
-    merged.sort((a, b) => b.ts - a.ts);
-
-    const todayStart = new Date();
-    todayStart.setHours(0, 0, 0, 0);
-    const yesterdayStartMs = todayStart.getTime() - 86400000;
-    const withSections: ActivityFeedItem[] = [];
-    let lastSection: ActivityFeedSection | null = null;
-    for (const item of merged.slice(0, ACTIVITY_FEED_MAX_ITEMS)) {
-      const section: ActivityFeedSection = item.ts >= todayStart.getTime()
-        ? 'today'
-        : item.ts >= yesterdayStartMs ? 'yesterday' : 'earlier';
-      if (section !== lastSection) {
-        withSections.push({ kind: 'section', ts: item.ts, key: `section:${section}`, section });
-        lastSection = section;
-      }
-      withSections.push(item);
-    }
-    return withSections;
-  }, [events]);
-
-  // Сводка дня для карточки-дайджеста над лентой.
-  const todayDigest = useMemo(() => {
-    const todayStart = new Date();
-    todayStart.setHours(0, 0, 0, 0);
-    const todays = events.filter(e => e.ts >= todayStart.getTime());
-    if (todays.length === 0) return null;
-    const lessons = todays.filter(e => e.type === 'lesson_complete').length;
-    const counts = new Map<string, number>();
-    for (const e of todays) counts.set(e.uid, (counts.get(e.uid) ?? 0) + 1);
-    let topUid = '';
-    let topCount = 0;
-    for (const [uid, count] of counts) {
-      if (count > topCount) { topUid = uid; topCount = count; }
-    }
-    return { lessons, milestones: todays.length - lessons, topUid };
-  }, [events]);
-
-  // Пустые состояния уходят в ListEmptyComponent, чтобы FlashList оставался
-  // единственным скроллером таба (шапка скроллится вместе с лентой).
-  const emptyNoFriends = friendUids.length === 0;
-  const emptyNoEvents = events.length === 0;
-
-  const emptyState = emptyNoFriends ? (
-    <View testID="friends-activity-empty-no-friends" style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
-      <FriendsThemeIcon themeMode={themeMode} size={58} accessibilityLabel="Friends" />
-      <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
-        {L('Добавьте друзей, чтобы видеть их активность', 'Додайте друзів, щоб бачити їхню активність', 'Agrega amigos para ver su actividad', 'Adicione amigos para ver a atividade deles', 'Thêm bạn bè để xem hoạt động của họ', 'Tambahkan teman untuk melihat aktivitas mereka', 'Etkinliklerini görmek için arkadaş ekle', 'Dodaj znajomych, aby widzieć ich aktywność')}
-      </Text>
-    </View>
-  ) : (
-    <View testID="friends-activity-empty" style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
-      <Ionicons name="pulse-outline" size={40} color={t.textMuted} />
-      <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
-        {L('Пока нет активности', 'Поки немає активності', 'Sin actividad aún', 'Ainda sem atividade', 'Chưa có hoạt động', 'Belum ada aktivitas', 'Henüz etkinlik yok', 'Brak aktywności')}
-      </Text>
-      <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center' }}>
-        {L('Здесь появятся достижения и прогресс ваших друзей', 'Тут з\'являться досягнення та прогрес ваших друзів', 'Aquí aparecerán logros y progreso de tus amigos', 'Aqui aparecerão conquistas e progresso dos seus amigos', 'Thành tích và tiến độ của bạn bè sẽ xuất hiện ở đây', 'Pencapaian dan progres temanmu akan muncul di sini', 'Arkadaşlarının başarıları ve ilerlemesi burada görünecek', 'Tutaj pojawią się osiągnięcia i postępy znajomych')}
-      </Text>
-    </View>
-  );
-
-  const showFeed = !emptyNoFriends && !emptyNoEvents;
-
-  const renderFeedItem = ({ item, index }: { item: ActivityFeedItem; index: number }) => {
-        if (item.kind === 'section') {
-          const label = item.section === 'today'
-            ? L('Сегодня', 'Сьогодні', 'Hoy', 'Hoje', 'Hôm nay', 'Hari ini', 'Bugün', 'Dzisiaj')
-            : item.section === 'yesterday'
-            ? L('Вчера', 'Вчора', 'Ayer', 'Ontem', 'Hôm qua', 'Kemarin', 'Dün', 'Wczoraj')
-            : L('Ранее', 'Раніше', 'Antes', 'Antes', 'Trước đó', 'Sebelumnya', 'Daha önce', 'Wcześniej');
-          return (
-            <Reanimated.View entering={FadeInDown.duration(280)}>
-              <Text
-                testID={`friends-activity-section-${item.section}`}
-                style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, marginTop: 4, marginBottom: 10 }}
-              >
-                {label}
-              </Text>
-            </Reanimated.View>
-          );
-        }
-        const event = item.event;
-        const profile = profiles[event.uid];
-        const name = profile?.name ?? L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn bè', 'Teman', 'Arkadaş', 'Znajomy');
-        const color = eventIconColor(event.type, t.accent, themeMode);
-        const likeColor = '#FF2D55';
-        const likeCount = Math.max(0, Math.floor(Number(event.activityLikeCount ?? 0) || 0));
-        const liked = likedActivityKeys.has(activityLikeStateKey(event.uid, event.id));
-        // Вехи (уровень/серия/достижение/ранг) подсвечены цветом события — их видно в потоке.
-        const isMilestone = event.type === 'level_up' || event.type === 'streak_milestone'
-          || event.type === 'achievement';
-        const rowText = item.lessonsCount && item.lessonsCount > 1
-          ? lessonsDayText(name, item.lessonsCount, lang)
-          : eventText(event, name, lang, viewerUid);
-        return (
-          <Reanimated.View entering={FadeInDown.delay(Math.min(index, 10) * 40).duration(320)}>
-          <View
-            testID={`friends-activity-row-${event.uid}-${event.id}`}
-            style={{
-              flexDirection: 'row', alignItems: 'flex-start', gap: 12,
-              backgroundColor: glassFill(chrome.card, 0.46), borderRadius: 16, padding: 14, marginBottom: 10,
-              ...(isMilestone ? { borderTopWidth: 1, borderTopColor: color + '55' } : null),
-            }}
-          >
-            <TouchableOpacity
-              testID={`friends-activity-open-profile-${event.uid}-${event.id}`}
-              activeOpacity={0.75}
-              disabled={!profile || !onOpenProfile}
-              onPress={() => onOpenProfile?.(event.uid)}
-              accessibilityRole="button"
-              accessibilityLabel={triLang(lang as any, { ru: `Открыть профиль ${name}`, uk: `Відкрити профіль ${name}`, es: `Abrir perfil de ${name}`, 'pt-BR': `Abrir perfil de ${name}`, vi: `Mở hồ sơ ${name}`, id: `Buka profil ${name}`, tr: `${name} profilini aç`, pl: `Otwórz profil ${name}` })}
-              style={{ flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}
-            >
-              {/* Аватар друга вместо безликой иконки; тип события — мини-бейджем. */}
-              <View style={{ width: 38, height: 38, flexShrink: 0 }}>
-                {profile ? (
-                  <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={38} animateAura={false} />
-                ) : (
-                  <View style={{
-                    width: 38, height: 38, borderRadius: 19,
-                    backgroundColor: color + '22',
-                    justifyContent: 'center', alignItems: 'center',
-                  }}>
-                    <Ionicons name={eventIcon(event.type) as any} size={18} color={color} />
-                  </View>
-                )}
-                {profile && (
-                  <View style={{
-                    position: 'absolute', right: -4, bottom: -4,
-                    width: 18, height: 18, borderRadius: 9,
-                    backgroundColor: color,
-                    borderWidth: 1.5, borderColor: chrome.card,
-                    alignItems: 'center', justifyContent: 'center',
-                  }}>
-                    <Ionicons name={eventIcon(event.type) as any} size={10} color="#0B140E" />
-                  </View>
-                )}
-              </View>
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', lineHeight: 20 }}>
-                  {rowText}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4 }}>
-                  {formatEventTime(event.ts, lang)}
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <ActivityLikeButton
-              testID={`friends-activity-like-${event.uid}-${event.id}`}
-              liked={liked}
-              count={likeCount}
-              likeColor={likeColor}
-              chrome={chrome}
-              t={t}
-              f={f}
-              accessibilityLabel={L('Лайк за активность', 'Лайк за активність', 'Like de actividad', 'Like de atividade', 'Thích hoạt động', 'Like aktivitas', 'Etkinlik beğenisi', 'Polubienie aktywności')}
-              onPress={() => { void handleActivityLike(event); }}
-            />
-          </View>
-          </Reanimated.View>
-        );
-  };
-
-  // D3: лента виртуализирована — FlashList и есть скроллер таба (эталон: flashcards_collection.tsx).
-  return (
-    <AnimatedFlashList
-      {...(scrollProps ?? {})}
-      testID="friends-activity-list"
-      data={showFeed ? feedItems : []}
-      keyExtractor={(item: ActivityFeedItem) => item.key}
-      getItemType={(item: ActivityFeedItem) => item.kind}
-      renderItem={renderFeedItem}
-      ListHeaderComponent={
-        <>
-          {header}
-          {showFeed && (
-            <TapScale
-              testID="friends-activity-refresh"
-              onPress={() => { void load(true); }}
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'flex-end', marginBottom: 12 }}
-            >
-              <Ionicons name="refresh-outline" size={16} color={t.textMuted} />
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                {L('Обновить', 'Оновити', 'Actualizar', 'Atualizar', 'Làm mới', 'Perbarui', 'Yenile', 'Odśwież')}
-              </Text>
-            </TapScale>
-          )}
-          {showFeed && todayDigest && (
-            <View
-              testID="friends-activity-digest"
-              style={{
-                flexDirection: 'row', alignItems: 'center', gap: 12,
-                backgroundColor: glassFill(t.accent, 0.14), borderRadius: 16, padding: 14, marginBottom: 14,
-              }}
-            >
-              <View style={{
-                width: 36, height: 36, borderRadius: 18,
-                backgroundColor: t.accent + '26',
-                justifyContent: 'center', alignItems: 'center', flexShrink: 0,
-              }}>
-                <Ionicons name="flash" size={18} color={t.accent} />
-              </View>
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                  {activityDigestText(todayDigest.lessons, todayDigest.milestones, lang)}
-                </Text>
-                {!!profiles[todayDigest.topUid]?.name && (
-                  <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 2 }} numberOfLines={1}>
-                    {triLang(lang as any, {
-                      ru: `Самый активный — ${profiles[todayDigest.topUid].name} 👏`,
-                      uk: `Найактивніший — ${profiles[todayDigest.topUid].name} 👏`,
-                      es: `El más activo: ${profiles[todayDigest.topUid].name} 👏`,
-                      'pt-BR': `O mais ativo: ${profiles[todayDigest.topUid].name} 👏`,
-                      vi: `Năng nổ nhất — ${profiles[todayDigest.topUid].name} 👏`,
-                      id: `Paling aktif — ${profiles[todayDigest.topUid].name} 👏`,
-                      tr: `En aktif — ${profiles[todayDigest.topUid].name} 👏`,
-                      pl: `Najaktywniejszy — ${profiles[todayDigest.topUid].name} 👏`,
-                    })}
-                  </Text>
-                )}
-              </View>
-            </View>
-          )}
-        </>
-      }
-      ListEmptyComponent={emptyState}
-      ListFooterComponent={<>{footer}</>}
-    />
   );
 }
 
@@ -2285,8 +1711,6 @@ export default function FriendsTabScreen() {
         messageUk: gifts.length === 1 ? `${from} подарував: ${gift}` : `Нові подарунки від друзів: ${gifts.length}`,
         messageEs: gifts.length === 1 ? `${from} te regaló: ${gift}` : `Regalos nuevos de amigos: ${gifts.length}`,
       });
-      void invalidateFriendsActivityCache();
-      setActiveTab('activity');
     } catch {
       /* ignore */
     }
@@ -2695,7 +2119,6 @@ export default function FriendsTabScreen() {
       if (result === 'sent') {
         setFoundUser(null);
         setCodeInput('');
-        void invalidateFriendsActivityCache();
         showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!'));
       } else if (result === 'already_friends') {
         setFoundUser(null);
@@ -2753,7 +2176,6 @@ export default function FriendsTabScreen() {
     }
     acceptFriendRequest(request.fromUid)
       .then(() => {
-        void invalidateFriendsActivityCache();
       })
       .catch(() => {
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
@@ -2769,7 +2191,6 @@ export default function FriendsTabScreen() {
     setRequests(prev => prev.filter(item => item.fromUid !== request.fromUid));
     declineFriendRequest(request.fromUid)
       .then(() => {
-        void invalidateFriendsActivityCache();
       })
       .catch(() => {
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
@@ -3037,7 +2458,6 @@ export default function FriendsTabScreen() {
       });
       setIncomingGiftModal(null);
       showFeedback(L('Спасибо отправлено', 'Подяку надіслано', 'Thanks sent', 'Agradecimento enviado', 'Đã gửi lời cảm ơn', 'Ucapan terima kasih terkirim', 'Teşekkür gönderildi', 'Podziękowanie wysłane'));
-      void invalidateFriendsActivityCache();
     } catch {
       setIncomingGiftModal(previousModal);
       showFeedback(L('Не удалось отправить спасибо', 'Не вдалося надіслати подяку', 'Could not send thanks', 'Não foi possível agradecer', 'Không gửi được lời cảm ơn', 'Gagal mengirim terima kasih', 'Teşekkür gönderilemedi', 'Nie udało się podziękować'));
@@ -3116,7 +2536,84 @@ export default function FriendsTabScreen() {
   }, []);
 
   const [addModalOpen, setAddModalOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'friends' | 'activity'>('friends');
+
+  // ── «Дай пять» — профильный лайк другу прямо из списка ─────────────────────
+  // Optimistic UI: сердце меняется мгновенно, сеть догоняет; при ошибке — откат к
+  // серверной правде + тост; повторный тап во время полёта игнорируется.
+  const [highFivedUids, setHighFivedUids] = useState<Set<string>>(() => new Set());
+  const highFiveInFlightRef = useRef<Set<string>>(new Set());
+  const hasFriends = friends.length > 0;
+  useEffect(() => {
+    if (!hasFriends) return;
+    let cancelled = false;
+    // Один запрос на все мои лайки (≤500 док.), а не по чтению на каждого друга.
+    void fetchActivityLikeStates()
+      .then(states => {
+        if (cancelled) return;
+        setHighFivedUids(new Set(
+          states.filter(state => state.eventId === PROFILE_LIKE_EVENT_ID).map(state => state.targetUid),
+        ));
+      })
+      .catch(() => { /* сеть/бэкенд — сердца остаются пустыми, тап всё равно работает */ });
+    return () => { cancelled = true; };
+  }, [hasFriends]);
+  // Карточка игрока тоже умеет ставить/снимать этот лайк — держим строку в согласии.
+  useEffect(() => {
+    const sub = onAppEvent('profile_like_changed', ({ targetUid, liked }) => {
+      setHighFivedUids(prev => {
+        if (prev.has(targetUid) === liked) return prev;
+        const next = new Set(prev);
+        if (liked) next.add(targetUid); else next.delete(targetUid);
+        return next;
+      });
+    });
+    return () => sub.remove();
+  }, []);
+  const handleHighFive = useCallback((profile: FriendProfile) => {
+    const uid = profile.uid;
+    if (highFiveInFlightRef.current.has(uid)) return;
+    hapticTap();
+    const wasLiked = highFivedUids.has(uid);
+    highFiveInFlightRef.current.add(uid);
+    setHighFivedUids(prev => {
+      const next = new Set(prev);
+      if (wasLiked) next.delete(uid); else next.add(uid);
+      return next;
+    });
+    const action = wasLiked
+      ? removeFriendActivityLike({ targetUid: uid })
+      : sendFriendActivityLike({ targetUid: uid, senderDisplayName: myProfile?.name });
+    void action
+      .then(() => {
+        emitAppEvent('profile_like_changed', { targetUid: uid, liked: !wasLiked });
+      })
+      .catch(async () => {
+        // Откат к правде сервера, а не просто к прежнему значению: поздний ответ не должен
+        // затереть более свежий тап из карточки игрока.
+        const fresh = await fetchActivityLikeState(uid).catch(() => null);
+        const likedOnServer = !!fresh;
+        setHighFivedUids(prev => {
+          if (prev.has(uid) === likedOnServer) return prev;
+          const next = new Set(prev);
+          if (likedOnServer) next.add(uid); else next.delete(uid);
+          return next;
+        });
+        emitAppEvent('action_toast', {
+          type: 'error',
+          messageRu: 'Не получилось. Проверь интернет и попробуй ещё раз',
+          messageUk: 'Не вдалося. Перевір інтернет і спробуй ще раз',
+          messageEs: 'No funcionó. Comprueba Internet e inténtalo de nuevo',
+          messagePtBr: 'Não deu certo. Verifique a internet e tente novamente',
+          messageVi: 'Không thành công. Hãy kiểm tra mạng rồi thử lại',
+          messageId: 'Gagal. Periksa internet lalu coba lagi',
+          messageTr: 'Olmadı. İnterneti kontrol edip tekrar dene',
+          messagePl: 'Nie udało się. Sprawdź internet i spróbuj ponownie',
+        });
+      })
+      .finally(() => {
+        highFiveInFlightRef.current.delete(uid);
+      });
+  }, [highFivedUids, myProfile?.name]);
 
   // Обновляем гард на каждый рендер: любая открытая модалка блокирует открытие следующей.
   modalWedgeGuardRef.current = selectedPlayer !== null || deleteTarget !== null
@@ -3132,8 +2629,6 @@ export default function FriendsTabScreen() {
         .sort((a, b) => b.totalXp - a.totalXp),
     [friends, profiles],
   );
-
-  const friendUids = useMemo(() => friends.map(f => f.uid), [friends]);
 
   const friendQuestPeerUid = useMemo(() => {
     if (!activeFriendQuest) return '';
@@ -3187,53 +2682,16 @@ export default function FriendsTabScreen() {
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </TapScale>
-          <View style={{ flex: 1 }} />
-          {/* Разделы одним рядом компактных иконок (как чипы на главной, но свои иконки:
-              на главной — колокольчик/чат/видео, здесь — люди/пульс/добавить). */}
-          {(['friends', 'activity'] as const).map(tab => {
-            const active = activeTab === tab;
-            const tabLabel = tab === 'friends'
-              ? L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')
-              : L('Активность', 'Активність', 'Actividad', 'Atividade', 'Hoạt động', 'Aktivitas', 'Etkinlik', 'Aktywność');
-            const tabIcon = tab === 'friends'
-              ? (active ? 'people' : 'people-outline')
-              : (active ? 'pulse' : 'pulse-outline');
-            const tabBadge = tab === 'friends' ? requests.length : 0;
-            return (
-              <TouchableOpacity
-                testID={`friends-tab-${tab}`}
-                key={tab}
-                accessibilityRole="button"
-                accessibilityLabel={tabLabel}
-                accessibilityState={{ selected: active }}
-                hitSlop={8}
-                onPressIn={() => hapticTap()}
-                onPress={() => setActiveTab(tab)}
-                activeOpacity={0.8}
-                style={{
-                  width: 40, height: 40, borderRadius: 20,
-                  backgroundColor: active ? t.accent : chrome.button,
-                  borderWidth: 0.5, borderColor: active ? t.accent : chrome.border,
-                  justifyContent: 'center', alignItems: 'center', flexShrink: 0, marginRight: 10,
-                }}
-              >
-                <Ionicons name={tabIcon as any} size={19} color={active ? t.correctText : t.textPrimary} />
-                {tabBadge > 0 && (
-                  <View
-                    style={{
-                      position: 'absolute', top: -3, right: -3,
-                      minWidth: 18, height: 18, borderRadius: 9,
-                      backgroundColor: '#FF3B30',
-                      borderWidth: 1.5, borderColor: t.bgPrimary ?? '#000',
-                      alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4,
-                    }}
-                  >
-                    <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '900' }}>{tabBadge}</Text>
-                  </View>
-                )}
-              </TouchableOpacity>
-            );
-          })}
+          {/* зачем: переключатель «Друзья / Активность» ушёл вместе с лентой — экран
+              один, поэтому шапка получает обычный заголовок, как соседние табы. */}
+          <Text
+            testID="friends-screen-title"
+            accessibilityRole="header"
+            numberOfLines={1}
+            style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}
+          >
+            {L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
+          </Text>
           <TouchableOpacity
             testID="friends-open-add"
             onPressIn={() => hapticTap()}
@@ -3400,15 +2858,13 @@ export default function FriendsTabScreen() {
           </View>
         )}
 
-        {activeTab === 'friends' && (
-          <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-            <ReportErrorButton
-              screen="friends_tab"
-              dataId="friends_tab_main"
-              dataText={L('Вкладка друзья', 'Вкладка друзі', 'Pestaña amigos', 'Aba amigos', 'Tab bạn bè', 'Tab teman', 'Arkadaşlar sekmesi', 'Karta znajomych')}
-            />
-          </View>
-        )}
+        <View style={{ alignItems: 'center', paddingVertical: 16 }}>
+          <ReportErrorButton
+            screen="friends_tab"
+            dataId="friends_tab_main"
+            dataText={L('Вкладка друзья', 'Вкладка друзі', 'Pestaña amigos', 'Aba amigos', 'Tab bạn bè', 'Tab teman', 'Arkadaşlar sekmesi', 'Karta znajomych')}
+          />
+        </View>
     </>
   );
 
@@ -3416,7 +2872,6 @@ export default function FriendsTabScreen() {
     <ScreenGradient artBackdrop="friends">
       <View testID="screen-friends" style={{ flex: 1 }}>
       <BouncyWrap style={bouncyStyle}>
-      {activeTab === 'friends' ? (
         <AnimatedFlashList
           {...listScrollProps}
           testID="friends-list"
@@ -3430,6 +2885,8 @@ export default function FriendsTabScreen() {
                 onPress={() => openProfile(profile)}
                 onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
                 onGift={() => openGiftPicker(profile)}
+                onHighFive={() => handleHighFive(profile)}
+                highFived={highFivedUids.has(profile.uid)}
                 lang={lang} t={t} f={f} chrome={chrome}
                 themeMode={themeMode}
                 giftAvailable={giftBalance >= Math.min(...FRIEND_GIFT_CATALOG.map(g => g.costShards))}
@@ -3440,19 +2897,6 @@ export default function FriendsTabScreen() {
           ListEmptyComponent={friendsEmptyState}
           ListFooterComponent={listFooter}
         />
-      ) : (
-        <ActivityTab
-          friendUids={friendUids}
-          profiles={profiles}
-          lang={lang} t={t} f={f}
-          chrome={chrome}
-          themeMode={themeMode}
-          header={listHeader}
-          footer={listFooter}
-          scrollProps={listScrollProps}
-          onOpenProfile={(uid) => { const p = profiles[uid]; if (p) openProfile(p); }}
-        />
-      )}
       </BouncyWrap>
 
 
@@ -3899,7 +3343,6 @@ export default function FriendsTabScreen() {
             });
             deleteFriend(target.uid)
               .then(() => {
-                void invalidateFriendsActivityCache();
                 showFeedback(L('Друг удалён', 'Друга видалено', 'Amigo eliminado', 'Amigo removido', 'Đã xóa bạn bè', 'Teman dihapus', 'Arkadaş silindi', 'Znajomy usunięty'));
                 emitAppEvent('action_toast', {
                   type: 'success',

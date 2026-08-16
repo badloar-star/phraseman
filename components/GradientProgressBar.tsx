@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
+import Reanimated, {
+  Easing,
+  cancelAnimation,
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { LinearGradient } from './SafeLinearGradient';
+import { LUM } from '../constants/motionHybrid';
 
 /**
  * Единая красивая полоса прогресса для режимов заданий/отработки/вызовов.
@@ -56,6 +65,30 @@ export function GradientProgressBar({
   const pct = clamp01(progress);
   const radius = height / 2;
   const bright = accentBright ?? lightenHex(accent, 0.28);
+  const reduceMotion = useReducedMotion();
+
+  // зачем: заливка едет через transform:scaleX (закон «только transform/opacity»),
+  // а не через width — так рост полосы уходит с JS-потока на UI-поток и не
+  // триггерит layout-пересчёт на каждый answer в trainer/exam сессиях.
+  // transformOrigin: '0% 50%' держит левый край на месте при масштабировании
+  // (Fabric/New Architecture поддерживает нативно, RN 0.81 + Reanimated 4).
+  const scale = useSharedValue(reduceMotion ? pct : 0);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      cancelAnimation(scale);
+      scale.value = pct;
+      return;
+    }
+    scale.value = withTiming(pct, { duration: LUM.resolveMs, easing: Easing.out(Easing.quad) });
+    return () => cancelAnimation(scale);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pct, reduceMotion]);
+
+  const fillStyle = useAnimatedStyle(() => ({
+    transformOrigin: '0% 50%',
+    transform: [{ scaleX: Math.max(0.0001, scale.value) }],
+  }));
 
   return (
     <View
@@ -66,14 +99,14 @@ export function GradientProgressBar({
       ]}
       pointerEvents="none"
     >
-      <View style={[styles.fillClip, { width: `${pct * 100}%`, borderRadius: radius }]}>
+      <Reanimated.View style={[styles.fillClip, fillStyle, { borderRadius: radius }]}>
         <LinearGradient
           colors={[accent, bright]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={[styles.fill, { borderRadius: radius }]}
         />
-      </View>
+      </Reanimated.View>
     </View>
   );
 }
@@ -87,6 +120,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   fillClip: {
+    width: '100%',
     height: '100%',
     overflow: 'hidden',
   },

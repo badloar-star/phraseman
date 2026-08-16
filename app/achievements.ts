@@ -13,7 +13,6 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
-import { writeFriendEvent } from './firestore_friend_activity';
 import {
   achievementStateKey,
   achievementLessonMarathonDayKey,
@@ -2912,7 +2911,6 @@ export const checkAchievements = async (
             }).catch(() => {});
           }, 0);
         }
-        writeFriendEvent('achievement', { id: ach.id, nameRu: ach.nameRu, icon: ach.icon }).catch(() => {});
       }
     }
     return justUnlocked;

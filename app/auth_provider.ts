@@ -718,8 +718,32 @@ export async function resumePendingAccountDeleteLocalExit(): Promise<boolean> {
   if (pendingDelete.phase === 'server_enqueued' && auth?.currentUser?.isAnonymous === true) {
     return completePreparedAccountDeleteLocalExit(pendingDelete, true);
   }
+  // зачем: тупик, из которого не было выхода (инцидент 2026-08-16). Фаза
+  // local_cleared означает, что локальные данные удалённого аккаунта уже
+  // стёрты, а анонимный currentUser — что провайдер отвязан и возвращаться
+  // некуда. Стирать нечего, но ветка возвращала false навсегда: замок в
+  // Keychain переживает переустановку, clearAccountDeletePendingAuthLock()
+  // не вызывалась НИОТКУДА, и человек оставался заперт даже после сноса
+  // приложения. Для App Store это прямой блокер: удалил аккаунт — не можешь
+  // зарегистрироваться заново.
+  //
+  // Защита не слабеет. Замок держал ДВА смысла, и снимаем мы только первый:
+  //  1) «локальный выход не доделан» — уже доделан, поэтому снимаем;
+  //  2) «не пускать старый провайдер обратно» — этим занимается
+  //     handleAccountDeletePendingAuth на входе через провайдер, и сервер
+  //     всё равно откажет по tombstone/маркеру удаления.
   if (pendingDelete.phase === 'local_cleared' && auth?.currentUser?.isAnonymous === true) {
-    return false;
+    try {
+      await clearAccountDeletePendingAuthLock();
+      logAuthEvent('auth_account_delete_lock_released_after_local_exit');
+      return true;
+    } catch (e) {
+      // Не смогли снять — не запираем человека молча: локальных данных
+      // удалённого аккаунта всё равно нет, показывать нечего.
+      if (__DEV__) console.warn('[auth_provider] pending account delete: lock release failed', e);
+      logAuthEvent('auth_account_delete_lock_release_failed');
+      return true;
+    }
   }
   if (auth?.currentUser) {
     try {

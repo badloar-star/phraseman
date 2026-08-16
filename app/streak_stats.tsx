@@ -1073,6 +1073,32 @@ let journalMemorySnapshotPeek: JournalMemorySnapshot | null = null;
  * процесса (самый первый заход) неизбежно ждёт первого async-чтения один раз. */
 let primaryMetricPeek: StatsPrimaryMetric | null = null;
 
+/**
+ * Плейсхолдер-силуэт Wager-карточки на время первой загрузки (нет
+ * wagerCardWarm — самый первый заход в сессии). Геометрия повторяет самую
+ * частую итоговую форму (иконка + заголовок + строка ставки), чтобы переход
+ * «скелетон → реальная карточка» не двигал соседние блоки экрана.
+ */
+function WagerCardSkeleton({ t, themeMode, isGoldTheme, wagerBorder }: { t: any; themeMode: ThemeMode; isGoldTheme?: boolean; wagerBorder: string }) {
+    return (
+        <StatsCardArtSurface name="wager" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={18} scrim="stats" testID="wager-skeleton-card" style={[{ borderRadius: 18, padding: 14, borderWidth: themeMode === 'olive' ? 0 : 1, borderColor: wagerBorder, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
+      <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
+        <SkeletonBlock width={44} height={44} borderRadius={14}/>
+        <View style={{ flex: 1, minWidth: 0, gap: 8 }}>
+          <SkeletonBlock width="55%" height={16}/>
+          <SkeletonBlock width="35%" height={12}/>
+        </View>
+      </View>
+      <SkeletonBlock width="100%" height={10} borderRadius={999} style={{ marginBottom: 10 }}/>
+      <View style={{ flexDirection: 'row', gap: 6 }}>
+        {[0, 1, 2, 3, 4].map((i) => (
+          <SkeletonBlock key={i} width="100%" height={6} borderRadius={3} style={{ flex: 1 }}/>
+        ))}
+      </View>
+    </StatsCardArtSurface>
+    );
+}
+
 function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = false, pickerOnly = false, onPickerClose }: {
     lang: Lang;
     t: any;
@@ -1213,8 +1239,15 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
         }
         setPlacing(false);
     };
-    if (loading)
-        return null;
+    // зачем: раньше здесь стоял return null на время loading — карточка пари
+    // проваливалась в пустоту (скачок лэйаута), пока не придёт ответ storage.
+    // pickerOnly — это уже открытый по тапу модал-пикер, там null на долю
+    // кадра не заметен; в обычном потоке (карточка в скролле) резервируем
+    // геометрию скелетоном, который повторяет силуэт итоговой карточки.
+    if (loading) {
+        if (pickerOnly) return null;
+        return <WagerCardSkeleton t={t} themeMode={themeMode} isGoldTheme={isGoldTheme} wagerBorder={isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'wager', 'medium')}/>;
+    }
     // ── Результат ──────────────────────────────────────────────────────────────
     const wagerAccent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'wager');
     const wagerBorder = isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'wager', 'medium');

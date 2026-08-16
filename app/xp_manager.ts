@@ -15,7 +15,6 @@ import { recordActivityForRepair } from './streak_repair';
 import { getLevelFromXP } from '../constants/theme';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { isCustomAvatarValue } from '../constants/custom_avatars';
-import { writeFriendEvent } from './firestore_friend_activity';
 import { getTitleString } from '../constants/titles';
 import type { Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
@@ -681,8 +680,6 @@ export const registerXP = async (
         if (!profileCommitted) return staleResult(totalMultiplier);
         emitAppEvent('energy_reload'); // перезагружаем энергию после level-up
         emitAppEvent('xp_changed');    // обновляем UI в home.tsx
-        // Лента друзей: клиент (тестеры/registerXP) + CF после синка — один doc id level_up_{lvl}
-        writeFriendEvent('level_up', { level: newLvl }).catch(() => {});
         // зачем: владелец на новом аккаунте получил лавину модалок и тостов. Причина —
         // самоподдерживающийся каскад: достижение → registerXP('achievement_reward') →
         // новый уровень → level_reached → новые достижения → снова XP → снова уровень.

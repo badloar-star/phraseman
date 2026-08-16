@@ -171,6 +171,14 @@ function LessonsPaneBoundary({
       try {
         const previous = previousTokenRef.current;
         previousTokenRef.current = next;
+        // зачем: временная диагностика гонки privacy.phase (аудит 2026-08-16) —
+        // удалить после подтверждения причины на реальном устройстве.
+        if (__DEV__) {
+          console.log('[tabs][lessons-privacy] reconcile', {
+            prevPhase: previous.phase, prevGen: previous.generation, prevStableId: previous.stableId,
+            nextPhase: next.phase, nextGen: next.generation, nextStableId: next.stableId,
+          });
+        }
         // зачем: первое «усыновление» владельца (uninitialized → active) — это НЕ
         // смена аккаунта, новую эпоху заводить нельзя (иначе крышка закрылась бы
         // поверх уже показанного списка). Но записать фазу обязаны: без этого

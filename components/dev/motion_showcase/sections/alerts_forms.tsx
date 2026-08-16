@@ -59,6 +59,26 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'themed_confirm_default_hybrid',
+      title: cs('confirm_neutral_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <ThemedConfirmModal
+          visible={visible}
+          title={cs('confirm_exit_title')}
+          message={cs('confirm_exit_message')}
+          cancelLabel={cs('confirm_exit_cancel')}
+          confirmLabel={cs('confirm_exit_confirm')}
+          confirmVariant="default"
+          onCancel={onClose}
+          onConfirm={onClose}
+          testIDPrefix="showcase-confirm-default-hybrid"
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'themed_confirm_accent',
       title: cs('confirm_accent_title'),
       detail: cs('real_component'),
@@ -78,6 +98,49 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'themed_confirm_accent_hybrid',
+      title: cs('confirm_accent_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <ThemedConfirmModal
+          visible={visible}
+          title={cs('confirm_shards_title')}
+          message={cs('confirm_shards_message')}
+          cancelLabel={cs('confirm_shards_cancel')}
+          confirmLabel={cs('confirm_shards_confirm')}
+          confirmVariant="accent"
+          onCancel={onClose}
+          onConfirm={onClose}
+          testIDPrefix="showcase-confirm-accent-hybrid"
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
+      id: 'themed_confirm_destructive_hybrid',
+      title: cs('confirm_destructive_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      // зачем: M1 макета — единственное место семьи, где виден удар TOAST.errorShakePx
+      // на danger-CTA (см. header задания: «деструктивные — одна дрожь на подтверждении»).
+      render: ({ visible, onClose }) => (
+        <ThemedConfirmModal
+          visible={visible}
+          title={cs('confirm_destructive_title')}
+          message={cs('confirm_destructive_message')}
+          cancelLabel={cs('confirm_destructive_cancel')}
+          confirmLabel={cs('confirm_destructive_confirm')}
+          confirmVariant="default"
+          destructive
+          onCancel={onClose}
+          onConfirm={onClose}
+          testIDPrefix="showcase-confirm-destructive-hybrid"
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'themed_choice_two',
       title: cs('choice_two_title'),
       detail: cs('real_component'),
@@ -92,6 +155,25 @@ export const SECTION: ShowcaseSection = {
             { label: cs('choice_two_option_repeat'), onPress: onClose, variant: 'primary' },
             { label: cs('choice_two_option_next'), onPress: onClose, variant: 'secondary' },
           ]}
+        />
+      ),
+    },
+    {
+      id: 'themed_choice_two_hybrid',
+      title: cs('choice_two_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <ThemedChoiceModal
+          visible={visible}
+          title={cs('choice_two_question')}
+          message={cs('choice_two_message')}
+          onRequestClose={onClose}
+          choices={[
+            { label: cs('choice_two_option_repeat'), onPress: onClose, variant: 'primary' },
+            { label: cs('choice_two_option_next'), onPress: onClose, variant: 'secondary' },
+          ]}
+          motionVariant="hybrid"
         />
       ),
     },
@@ -115,6 +197,26 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'themed_choice_three_hybrid',
+      title: cs('choice_three_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <ThemedChoiceModal
+          visible={visible}
+          title={cs('choice_three_question')}
+          message={cs('choice_three_message')}
+          onRequestClose={onClose}
+          choices={[
+            { label: cs('choice_three_option_retry'), onPress: onClose, variant: 'primary' },
+            { label: cs('choice_three_option_offline'), onPress: onClose, variant: 'secondary' },
+            { label: cs('choice_three_option_close'), onPress: onClose, variant: 'secondary' },
+          ]}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'report_user_modal',
       title: cs('report_user_title'),
       detail: cs('report_user_detail'),
@@ -127,6 +229,23 @@ export const SECTION: ShowcaseSection = {
           screen="leaderboard"
           lang="ru"
           onClose={onClose}
+        />
+      ),
+    },
+    {
+      id: 'report_user_modal_hybrid',
+      title: cs('report_user_hybrid_title'),
+      detail: cs('report_user_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <ReportUserModal
+          visible={visible}
+          reportedUid="dev-showcase-ghost-uid"
+          reportedName={cs('report_user_demo_name')}
+          screen="leaderboard"
+          lang="ru"
+          onClose={onClose}
+          motionVariant="hybrid"
         />
       ),
     },
@@ -148,6 +267,24 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'report_pack_modal_hybrid',
+      title: cs('report_pack_hybrid_title'),
+      detail: cs('report_user_detail'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <ReportPackModal
+          visible={visible}
+          packId="dev-showcase-ghost-pack"
+          packTitle={cs('report_pack_demo_title')}
+          authorStableId={null}
+          lang="ru"
+          onClose={onClose}
+          onPackHiddenOnDevice={() => {}}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'nickname_edit_modal',
       title: cs('nickname_edit_title'),
       detail: cs('real_component'),
@@ -164,6 +301,23 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
+      id: 'nickname_edit_modal_hybrid',
+      title: cs('nickname_edit_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <NicknameEditModal
+          visible={visible}
+          currentName={cs('nickname_edit_demo_name')}
+          onRequestClose={onClose}
+          onOptimisticApply={() => {}}
+          onRollback={() => {}}
+          onNotice={() => {}}
+          motionVariant="hybrid"
+        />
+      ),
+    },
+    {
       id: 'certificate_name_modal',
       title: cs('certificate_name_title'),
       detail: cs('real_component'),
@@ -174,6 +328,21 @@ export const SECTION: ShowcaseSection = {
           initialName=""
           onSave={onClose}
           onSkip={onClose}
+        />
+      ),
+    },
+    {
+      id: 'certificate_name_modal_hybrid',
+      title: cs('certificate_name_hybrid_title'),
+      detail: cs('real_component'),
+      kind: 'render',
+      render: ({ visible, onClose }) => (
+        <CertificateNameModal
+          visible={visible}
+          initialName=""
+          onSave={onClose}
+          onSkip={onClose}
+          motionVariant="hybrid"
         />
       ),
     },

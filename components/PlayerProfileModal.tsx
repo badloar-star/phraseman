@@ -68,7 +68,6 @@ import {
 import { residentBaseLikes } from '../constants/synthetic_residents';
 import ReportUserModal from './ReportUserModal';
 import { fetchFriendProfilesBatch } from '../app/friends_profiles_batch';
-import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
 import {
   fetchActivityLikeTotal,
   fetchActivityLikeState,
@@ -87,7 +86,7 @@ import ProfileCardMotionFx from './ProfileCardMotionFx';
 import SeasonProfileCardFrame from './SeasonProfileCardFrame';
 import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
-import { onAppEvent } from '../app/events';
+import { emitAppEvent, onAppEvent } from '../app/events';
 import {
   loadSeasonCosmetics,
   peekSeasonCosmetics,
@@ -937,7 +936,6 @@ function PlayerProfileModalBody({
     try {
       const result = await sendFriendRequest(targetUid);
       if (result === 'sent') {
-        void invalidateFriendsActivityCache();
         onFriendRequestToast(
           triLang(lang as Lang, {
             ru: 'Заявка отправлена!',
@@ -1080,7 +1078,6 @@ function PlayerProfileModalBody({
           next.delete(removedUid);
           return next;
         });
-        void invalidateFriendsActivityCache();
         onFriendRequestToast(
           triLang(lang as Lang, {
             ru: 'Друг удалён',
@@ -1172,7 +1169,8 @@ function PlayerProfileModalBody({
             createdAt: Date.now(),
           });
         }
-        void invalidateFriendsActivityCache();
+        // зачем: сердце «дай пять» в строке списка друзей слушает это событие.
+        emitAppEvent('profile_like_changed', { targetUid: likeTargetUid, liked: !wasLiked });
       })
       .catch(async () => {
         // Roll back the optimistic change to the truth on the server.
@@ -1180,6 +1178,7 @@ function PlayerProfileModalBody({
         const freshTotal = await fetchActivityLikeTotal(likeTargetUid).catch(() => null);
         setProfileLike(freshState);
         if (typeof freshTotal === 'number') setActivityLikeTotal(Math.max(0, freshTotal));
+        emitAppEvent('profile_like_changed', { targetUid: likeTargetUid, liked: !!freshState });
         onFriendRequestToast(
           triLang(lang as Lang, {
             ru: 'Не получилось. Проверь интернет и попробуй ещё раз',
@@ -1193,7 +1192,6 @@ function PlayerProfileModalBody({
           }),
           'error',
         );
-        void invalidateFriendsActivityCache();
       })
       .finally(() => {
         likeInFlightRef.current = false;

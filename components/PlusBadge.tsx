@@ -1,11 +1,14 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import Reanimated, { useAnimatedStyle, useSharedValue, withSpring, withTiming, Easing } from 'react-native-reanimated';
 
 import { GOLD_GRADIENTS, GOLD_RICH } from '../constants/goldTheme';
 import { isLightThemeMode, type ThemeMode } from '../constants/theme';
 import { LinearGradient } from './SafeLinearGradient';
 import { OLIVE_GRADIENTS, OLIVE_RICH } from '../constants/oliveTheme';
+import { LUM, SUITE } from '../constants/motionHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 // зачем 2026-08-04 (владелец: «плашка Plus тусклая, сливается с фоном на
 // светлых темах»): primaryButton — светлое золото → бронза, задумано для
@@ -26,6 +29,15 @@ type PlusBadgeProps = {
   showIcon?: boolean;
   style?: StyleProp<ViewStyle>;
   testID?: string;
+  /**
+   * Гибрид «Световод + Чекан» (owner-инициатива, семья «Отклик» B6): bloom
+   * при появлении бейджа — свет загорается первым (LUM.bloomMs), форма
+   * выходит следом (SUITE.pulse, лёгкий scale 0.88→1). По умолчанию выключен:
+   * плашка в 12 существующих местах вызова — постоянный элемент шапки/списка,
+   * не свежее событие «только что выдали Plus». Включать точечно там, где
+   * бейдж реально появляется впервые (например при активации подписки).
+   */
+  bloomOnMount?: boolean;
 };
 
 const BADGE_SIZE: Record<PlusBadgeSize, {
@@ -47,6 +59,7 @@ export default function PlusBadge({
   showIcon = true,
   style,
   testID,
+  bloomOnMount = false,
 }: PlusBadgeProps) {
   const s = BADGE_SIZE[size];
   // зачем: isLightThemeMode() в constants/theme.ts узнаёт только sagePorcelain
@@ -59,7 +72,27 @@ export default function PlusBadge({
   const fg = isOliveTheme ? OLIVE_RICH.piano : isLight ? GOLD_RICH.champagne : (themeMode === 'business' ? '#0A0A0A' : GOLD_RICH.bronzeDark);
   const gradientColors = isOliveTheme ? OLIVE_GRADIENTS.primaryButton : isLight ? LIGHT_THEME_GRADIENT : GOLD_GRADIENTS.primaryButton;
 
-  return (
+  const reduceMotion = useReduceMotion();
+  const bloomOpacity = useSharedValue(bloomOnMount ? 0 : 1);
+  const bloomScale = useSharedValue(bloomOnMount ? 0.88 : 1);
+  const hasBloomedRef = useRef(false);
+  useEffect(() => {
+    if (!bloomOnMount || hasBloomedRef.current) return;
+    hasBloomedRef.current = true;
+    if (reduceMotion) {
+      bloomOpacity.value = 1;
+      bloomScale.value = 1;
+      return;
+    }
+    bloomOpacity.value = withTiming(1, { duration: LUM.bloomMs, easing: Easing.out(Easing.cubic) });
+    bloomScale.value = withSpring(1, SUITE.pulse);
+  }, [bloomOnMount, bloomOpacity, bloomScale, reduceMotion]);
+  const bloomStyle = useAnimatedStyle(() => ({
+    opacity: bloomOnMount ? bloomOpacity.value : 1,
+    transform: [{ scale: bloomOnMount ? bloomScale.value : 1 }],
+  }));
+
+  const content = (
     <View
       testID={testID}
       style={[
@@ -88,6 +121,9 @@ export default function PlusBadge({
       </Text>
     </View>
   );
+
+  if (!bloomOnMount) return content;
+  return <Reanimated.View style={bloomStyle}>{content}</Reanimated.View>;
 }
 
 const styles = StyleSheet.create({

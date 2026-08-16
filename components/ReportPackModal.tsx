@@ -13,6 +13,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useState } from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -30,6 +31,9 @@ import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { submitPackReport, type PackReportReason } from '../app/user_report';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { LUM } from '../constants/motionHybrid';
 
 interface Props {
   visible: boolean;
@@ -41,6 +45,8 @@ interface Props {
   onClose: () => void;
   /** Після приховування набору на цьому пристрої (оновити список у батьківському екрані). */
   onPackHiddenOnDevice?: (optimisticPackId?: string | null) => void | Promise<void>;
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 const REASONS_RU: { id: PackReportReason; label: string; sub: string }[] = [
@@ -79,8 +85,11 @@ function ReportPackModal({
   studyTarget,
   onClose,
   onPackHiddenOnDevice,
+  motionVariant = 'classic',
 }: Props) {
   const { theme: t, themeMode, f } = useTheme();
+  const reduceMotion = useReduceMotion();
+  const isHybrid = motionVariant === 'hybrid';
   const reasons = lang === 'uk' ? REASONS_UK : lang === 'es' ? REASONS_ES : REASONS_RU;
 
   const [selected, setSelected] = useState<PackReportReason | null>(null);
@@ -138,24 +147,7 @@ function ReportPackModal({
 
   const overlayBg = 'rgba(0,0,0,0.55)';
 
-  return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1 }}
-      >
-        <TouchableOpacity
-          style={{
-            flex: 1,
-            backgroundColor: overlayBg,
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingHorizontal: 18,
-          }}
-          activeOpacity={1}
-          onPress={handleClose}
-        >
-          <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 460 }}>
+  const panelContent = (
           <View
             style={{
               backgroundColor: t.bgCard,
@@ -168,7 +160,8 @@ function ReportPackModal({
           >
             {done ? (
               <View style={{ alignItems: 'stretch', paddingVertical: 8 }}>
-                <Text style={{ fontSize: 48, marginBottom: 6, textAlign: 'center' }}>✅</Text>
+                {/* зачем: эмодзи в UI запрещены владельцем — иконка набора приложения */}
+                <Ionicons name="checkmark-circle" size={48} color={t.accent} style={{ marginBottom: 6, alignSelf: 'center' }} />
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
                   {triLang(lang, { uk: 'Скаргу надіслано', ru: 'Жалоба отправлена', es: 'Denuncia enviada', 'pt-BR': 'Denúncia enviada', vi: 'Đã gửi báo cáo', id: 'Laporan terkirim', tr: 'Şikayet gönderildi', pl: 'Zgłoszenie wysłane' })}
                 </Text>
@@ -258,7 +251,7 @@ function ReportPackModal({
               </View>
             ) : throttled ? (
               <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-                <Text style={{ fontSize: 48, marginBottom: 8 }}>⏳</Text>
+                <Ionicons name="hourglass-outline" size={48} color={t.textMuted} style={{ marginBottom: 8 }} />
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
                   {triLang(lang, { uk: 'Зачекай 30 секунд', ru: 'Подожди 30 секунд', es: 'Espera 30 segundos', 'pt-BR': 'Espere 30 segundos', vi: 'Chờ 30 giây', id: 'Tunggu 30 detik', tr: '30 saniye bekle', pl: 'Poczekaj 30 sekund' })}
                 </Text>
@@ -417,6 +410,45 @@ function ReportPackModal({
               </>
             )}
           </View>
+  );
+
+  if (isHybrid) {
+    return (
+      <HybridAlertShell
+        visible={visible}
+        onRequestClose={handleClose}
+        shadowColor="#000000"
+        backdropColor={overlayBg}
+        testID="report-pack-modal-hybrid"
+      >
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ width: '100%', maxWidth: 460 }}>
+          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
+            {panelContent}
+          </CascadeItem>
+        </KeyboardAvoidingView>
+      </HybridAlertShell>
+    );
+  }
+
+  return (
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+      >
+        <TouchableOpacity
+          style={{
+            flex: 1,
+            backgroundColor: overlayBg,
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingHorizontal: 18,
+          }}
+          activeOpacity={1}
+          onPress={handleClose}
+        >
+          <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 460 }}>
+            {panelContent}
           </TouchableOpacity>
         </TouchableOpacity>
       </KeyboardAvoidingView>

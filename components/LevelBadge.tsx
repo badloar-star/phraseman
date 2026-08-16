@@ -1,9 +1,12 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { View } from 'react-native';
+import Reanimated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { Image } from 'expo-image';
 import Svg, { Defs, LinearGradient, Stop, Text as SvgText } from 'react-native-svg';
 import { getLevelAvatarMaterial } from '../constants/avatar_level_materials';
 import LevelAvatarMaterialOverlay from './LevelAvatarMaterialOverlay';
+import { SUITE } from '../constants/motionHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 // Static require map — Metro bundler needs literal paths
 const GIFS: Record<number, any> = {
@@ -79,9 +82,23 @@ interface Props {
    */
   autoplay?: boolean;
   centeredNumber?: boolean;
+  /**
+   * Гибрид «Световод + Чекан» (owner-инициатива, семья «Отклик» B6): пульс
+   * SUITE.pulse при смене уровня. По умолчанию выключен — прежнее поведение
+   * (статичный бейдж) сохраняется во всех 5 существующих местах вызова, пока
+   * владелец не включит проп явно на конкретном экране.
+   */
+  pulseOnLevelChange?: boolean;
 }
 
-function LevelBadge({ level, size = 40, height, autoplay: autoplayEnabled = true, centeredNumber = false }: Props) {
+function LevelBadge({
+  level,
+  size = 40,
+  height,
+  autoplay: autoplayEnabled = true,
+  centeredNumber = false,
+  pulseOnLevelChange = false,
+}: Props) {
   const clamped = Math.max(1, Math.min(60, level));
   const source = GIFS[clamped];
   const fallbackSource = source ?? GIFS[1];
@@ -90,15 +107,34 @@ function LevelBadge({ level, size = 40, height, autoplay: autoplayEnabled = true
   const numberLineHeight = size * 0.42;
   const numberGradientId = `levelBadgeNumber_${clamped}_${Math.round(size)}_${Math.round(badgeHeight)}`;
   const material = getLevelAvatarMaterial(clamped);
+
+  const reduceMotion = useReduceMotion();
+  const pulseScale = useSharedValue(1);
+  const prevLevelRef = useRef(clamped);
+  useEffect(() => {
+    if (!pulseOnLevelChange) return;
+    if (prevLevelRef.current === clamped) return;
+    prevLevelRef.current = clamped;
+    if (reduceMotion) return; // reduce motion = один кадр, без пульса
+    pulseScale.value = 0.9;
+    pulseScale.value = withSpring(1, SUITE.pulse);
+  }, [clamped, pulseOnLevelChange, pulseScale, reduceMotion]);
+  const pulseStyle = useAnimatedStyle(() => ({ transform: [{ scale: pulseOnLevelChange ? pulseScale.value : 1 }] }));
+
   const image = (
+    // guard-ok: декоративная картинка уровня — число озвучено соседним текстом
+    // во всех местах вызова (карта уровней, профиль), сам GIF не несёт смысла
+    // без контекста экрана.
     <Image
       source={fallbackSource}
       style={{ width: size, height: badgeHeight }}
       contentFit={height ? 'fill' : 'contain'}
       autoplay={autoplayEnabled}
+      accessible={false}
+      importantForAccessibility="no"
     />
   );
-  const materialImage = (
+  const materialImageInner = (
     <View style={{ width: size, height: badgeHeight, alignItems: 'center', justifyContent: 'center' }}>
       {image}
       {badgeHeight === size ? (
@@ -106,6 +142,9 @@ function LevelBadge({ level, size = 40, height, autoplay: autoplayEnabled = true
       ) : null}
     </View>
   );
+  const materialImage = pulseOnLevelChange ? (
+    <Reanimated.View style={pulseStyle}>{materialImageInner}</Reanimated.View>
+  ) : materialImageInner;
 
   if (!centeredNumber) return materialImage;
 

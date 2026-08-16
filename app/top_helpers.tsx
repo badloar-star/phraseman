@@ -18,6 +18,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
+import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -170,6 +171,7 @@ export default function TopHelpersScreen() {
   const [description, setDescription] = useState(() => helpersWarm?.description ?? '');
   const [enabled, setEnabled] = useState(() => helpersWarm?.enabled ?? true);
   const [loading, setLoading] = useState(() => helpersWarm == null);
+  const [refreshing, setRefreshing] = useState(false);
   const [profilePlayer, setProfilePlayer] = useState<PlayerInfo | null>(null);
 
   const load = useCallback(async () => {
@@ -201,6 +203,15 @@ export default function TopHelpersScreen() {
   useEffect(() => {
     logFeatureOpened('top_helpers');
     void load();
+  }, [load]);
+
+  // зачем: борд кэшируется на 3ч (см. шапку файла) — потянуть вниз, чтобы
+  // форсировать пересчёт, было нечем. loadTopHelpers сам решает актуальность
+  // кэша по cooldown; жест лишь просит перечитать прямо сейчас.
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    await load();
+    setRefreshing(false);
   }, [load]);
 
   const openCard = useCallback(
@@ -393,6 +404,7 @@ export default function TopHelpersScreen() {
               renderItem={renderItem}
               extraData={myUid}
               contentContainerStyle={{ flexGrow: 1, paddingBottom: bottomInset + 24 }}
+              refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void onRefresh()} />}
               ListHeaderComponent={
                 descText ? (
                   <View

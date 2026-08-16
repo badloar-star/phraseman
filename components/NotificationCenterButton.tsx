@@ -1,7 +1,9 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Reanimated, { useAnimatedStyle, useSharedValue, withSequence, withTiming, Easing } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import AvatarView from './AvatarView';
@@ -209,6 +211,25 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
   const combinedUnreadCount = teamUnreadCount + unreadCount;
   const selected = useMemo(() => visibleItems.find((row) => row.id === selectedId) ?? null, [visibleItems, selectedId]);
 
+  // Гибрид «Световод + Чекан» (owner-инициатива, семья «Отклик» B6): микро-
+  // качание колокольчика 4→-2.5→0 ОДИН раз, ровно в момент появления бейджа
+  // непрочитанного (переход 0 → >0), не на каждый ре-рендер счётчика.
+  const reduceMotion = useReduceMotion();
+  const bellShakeDeg = useSharedValue(0);
+  const prevUnreadRef = useRef(combinedUnreadCount);
+  useEffect(() => {
+    const prev = prevUnreadRef.current;
+    prevUnreadRef.current = combinedUnreadCount;
+    if (prev > 0 || combinedUnreadCount <= 0) return;
+    if (reduceMotion) return; // reduce motion = один кадр, без качания
+    bellShakeDeg.value = withSequence(
+      withTiming(4, { duration: 90, easing: Easing.out(Easing.cubic) }),
+      withTiming(-2.5, { duration: 90, easing: Easing.inOut(Easing.cubic) }),
+      withTiming(0, { duration: 90, easing: Easing.out(Easing.cubic) }),
+    );
+  }, [bellShakeDeg, combinedUnreadCount, reduceMotion]);
+  const bellShakeStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${bellShakeDeg.value}deg` }] }));
+
   // Открытие центра гасит непрочитанность: как в Telegram — увидел список, значит прочитал.
   const open = useCallback(() => {
     setVisible(true);
@@ -327,9 +348,9 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
         style={styles.headerPressable}
         contentStyle={styles.headerButton}
       >
-        <View style={styles.headerIconWrap}>
+        <Reanimated.View style={[styles.headerIconWrap, bellShakeStyle]}>
           <Ionicons name="notifications-outline" size={30} color={t.accent} />
-        </View>
+        </Reanimated.View>
         {combinedUnreadCount > 0 ? (
           <View testID="home-notification-center-badge" style={styles.badge}>
             <Text style={styles.badgeText}>{combinedUnreadCount > 99 ? '99+' : String(combinedUnreadCount)}</Text>

@@ -144,6 +144,11 @@ export type AppEventMap = {
   community_pack_added: { packId: string };
   /** Cards 2.1 §2.2: лайк набора поставлен/снят — плитки и экран набора обновляют счётчик. */
   community_pack_like_changed: { packId: string; liked: boolean };
+  /**
+   * зачем: «дай пять» другу можно поставить и в строке списка друзей, и в карточке
+   * игрока — оба места держат сердце в согласии через это событие, без лишних чтений.
+   */
+  profile_like_changed: { targetUid: string; liked: boolean };
 };
 
 /** RU + UK + ES для `action_toast` без дублирования полей. */

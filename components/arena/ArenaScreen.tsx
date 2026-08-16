@@ -20,6 +20,7 @@ export function ArenaScreen({
   onBack,
   fxRef,
   headerRight,
+  overlay,
 }: Readonly<{
   title: string;
   subtitle?: string;
@@ -29,6 +30,14 @@ export function ArenaScreen({
   onBack?: () => void;
   fxRef?: React.Ref<TournamentFxApi>;
   headerRight?: React.ReactNode;
+  /**
+   * Полноэкранная гибрид-сцена поверх всего экрана (напр. ArenaTierUpHybrid/
+   * ArenaTierDownHybrid) — рисуется НАД TournamentFxHost, привязана к `root`
+   * (position:relative по умолчанию в RN), а не к скроллящемуся контенту:
+   * иначе position:absolute сцены заняла бы место внутри ScrollView вместо
+   * перекрытия всего экрана.
+   */
+  overlay?: React.ReactNode;
 }>) {
   const P = useTournamentPalette();
   const insets = useStableSafeAreaInsets();
@@ -76,6 +85,7 @@ export function ArenaScreen({
         <ScrollView contentContainerStyle={[styles.scroll, { paddingTop: insets.top, paddingBottom: Math.max(24, insets.bottom + 16) + chromeInset }]}>{content}</ScrollView>
       ) : <View style={[styles.fixed, { paddingTop: insets.top, paddingBottom: Math.max(16, insets.bottom) + chromeInset }]}>{content}</View>}
       <TournamentFxHost ref={fxRef} width={window.width} height={window.height} />
+      {overlay}
     </View>
   );
 }

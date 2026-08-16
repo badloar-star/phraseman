@@ -86,23 +86,29 @@ function Get-LanIp {
 # ПРИЧИНА 1 → ОДИН METRO. Гасим все expo start ЭТОГО проекта, на любом порту.
 # Чужие проекты не трогаем: фильтр по пути к node_modules этого дерева.
 # ─────────────────────────────────────────────────────────────────────────────
-$rootPattern = [regex]::Escape($ProjectRoot)
-$strays = Get-CimInstance Win32_Process -ErrorAction SilentlyContinue |
-  Where-Object {
-    $_.Name -match '^node(\.exe)?$' -and
-    $_.CommandLine -match $rootPattern -and
-    $_.CommandLine -match 'expo[\\/]bin[\\/]cli.*start|expo start'
-  }
-foreach ($s in $strays) {
-  try { Stop-Process -Id $s.ProcessId -Force -ErrorAction SilentlyContinue } catch {}
+# Два способа найти лишний Metro, потому что один не надёжен:
+#  а) node-процесс, слушающий любой Metro-порт 8081..8090;
+#  б) node-процесс с «expo» и «start» в команде (CommandLine у CIM бывает
+#     обрезан, а regex-экранирование пути ломало совпадение — 2026-08-16
+#     скрипт из-за этого НЕ убил свой же Metro и спросил «Use port 8086?»).
+$killed = 0
+$byPort = foreach ($p in 8081..8090) {
+  (Get-NetTCPConnection -LocalPort $p -State Listen -ErrorAction SilentlyContinue).OwningProcess
 }
-if ($strays) {
-  Say ("Погашено лишних Metro этого проекта: {0}. Один сервер — один адрес." -f @($strays).Count)
+$byCmd = (Get-CimInstance Win32_Process -ErrorAction SilentlyContinue |
+  Where-Object { $_.Name -match '^node(\.exe)?$' -and $_.CommandLine -match 'expo' -and $_.CommandLine -match 'start' }).ProcessId
+foreach ($id in (@($byPort) + @($byCmd) | Where-Object { $_ } | Select-Object -Unique)) {
+  $proc = Get-Process -Id $id -ErrorAction SilentlyContinue
+  if ($proc -and $proc.ProcessName -match '^node') {
+    try { Stop-Process -Id $id -Force -ErrorAction SilentlyContinue; $killed++ } catch {}
+  }
+}
+if ($killed) {
+  Say "Погашено лишних Metro: $killed. Один сервер — один адрес."
   Start-Sleep -Seconds 2
 }
 
-# Порт занят кем-то не-Metro → берём следующий свободный. Не падаем молча:
-# именно молчаливое падение и оставляло адрес мёртвого порта.
+# Порт всё ещё занят (не-node процесс) → следующий свободный. Не падаем молча.
 if (Test-PortBusy $Port) {
   $free = $null
   foreach ($c in ($Port + 1)..($Port + 20)) { if (-not (Test-PortBusy $c)) { $free = $c; break } }
@@ -142,6 +148,22 @@ try {
   Start-Process -FilePath "powercfg.exe" -ArgumentList "/requestsoverride","PROCESS","node.exe","System" `
     -WindowStyle Hidden -Wait -ErrorAction Stop | Out-Null
 } catch {}
+
+# зачем: QR-код в окне — владелец НЕ вводит адрес руками. Рисуем своим
+# генератором (qrcode-terminal лежит в node_modules у Expo), а не ждём QR от
+# Expo: тот появляется только после удачного старта, а при занятом порте
+# Expo вместо QR задавал вопрос «Use port 8086?» и висел. Свой QR печатается
+# ДО старта — адрес известен заранее (IP + порт), dev-client сам дождётся
+# сервера. Формат ссылки — тот же, что сканирует dev-client.
+function Show-Qr([string]$serverUrl) {
+  $deepLink = "phraseman://expo-development-client/?url=" + [uri]::EscapeDataString($serverUrl)
+  $qrJs = Join-Path $ProjectRoot 'node_modules\qrcode-terminal\lib\main.js'
+  if (-not (Test-Path -LiteralPath $qrJs)) { Say "QR: нет qrcode-terminal — введи адрес руками."; return }
+  Write-Host ""
+  Write-Host "   СКАНИРУЙ КАМЕРОЙ iPhone:" -ForegroundColor Green
+  & node -e "require(process.argv[1]).generate(process.argv[2], { small: true })" $qrJs $deepLink
+  Write-Host ""
+}
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ПРИЧИНА 2 → АДРЕС. Отдельный процесс ждёт ответа /status и только тогда
@@ -195,11 +217,9 @@ try {
       $writer = Start-UrlWriter $Port $url $UrlFile
       Write-Host ""
       Write-Host "  ==================================================" -ForegroundColor Green
-      Write-Host "   НА iPhone (Enter URL manually):" -ForegroundColor Green
-      Write-Host ("      {0}" -f $url) -ForegroundColor Green
-      Write-Host "   Адрес запишется в .expo\metro-url.txt, когда сервер ответит." -ForegroundColor Green
+      Write-Host ("   Сервер: {0}" -f $url) -ForegroundColor Green
       Write-Host "  ==================================================" -ForegroundColor Green
-      Write-Host ""
+      Show-Qr $url
     }
     if ($Clear -and $attempt -eq 1) { $args += "--clear" }
 

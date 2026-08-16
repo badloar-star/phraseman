@@ -253,7 +253,8 @@ describe("Firebase cost controls", () => {
     const indexSource = read("functions/src/index.ts");
     const premiumExpirySource = read("functions/src/premium_expiry_cron.ts");
 
-    expect(indexSource).toContain("schedule: '0 3 * * *'");
+    // Кавычки в index.ts менялись форматтером — проверяем расписание, а не стиль кавычек.
+    expect(indexSource).toMatch(/schedule: ["']0 3 \* \* \*["']/);
     expect(premiumExpirySource).toContain("schedule: 'every 12 hours'");
   });
 

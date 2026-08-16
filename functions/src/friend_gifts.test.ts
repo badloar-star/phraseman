@@ -323,7 +323,9 @@ test('friendThankGift replays the same idempotency key without a second thanks e
     friendStableId: 'recipient',
     giftId: 'chain_shield_1',
   });
-  expect(Array.from(docs.keys()).filter(path => path.startsWith('users/recipient/my_events/friend_gift_thanks_'))).toHaveLength(1);
+  // Лента активности удалена (2026-08-16): «спасибо» больше не пишет my_events —
+  // повтор ключа не должен породить второе уведомление в центре событий.
+  expect(Array.from(docs.keys()).filter(path => path.startsWith('users/recipient/notifications/gift_thanks_'))).toHaveLength(1);
 });
 
 test('friendThankGift rejects reusing an idempotency key for another thanks gift', async () => {

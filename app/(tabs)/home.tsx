@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
-import { tabSwipeLock } from '../tabSwipeLock';
 // зачем: allowFontScaling={false} отключал системный размер шрифта — заголовки
 // обрезались при крупном шрифте и на длинных языках. FlowText переносит.
 import { FlowText } from '../../components/text-integrity';
@@ -2839,7 +2838,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               зачем: владелец вернул ряд плиток вместо трёх колец — иконка сама
               называет действие, подпись под ней короткая (запрет на подписи-
               расшифровки соблюдён: это label плитки, а не описание). */}
-          <View onTouchStart={() => { tabSwipeLock.blocked = true; }} onTouchEnd={() => { tabSwipeLock.blocked = false; }} onTouchCancel={() => { tabSwipeLock.blocked = false; }}>
+          {/* зачем (аудит свайпов 2026-08-16): раньше блок был горизонтальным скроллером
+              и держал tabSwipeLock, чтобы TabSlider не крал жест. Плитки — статичный
+              ряд, скроллить нечего, а замок глушил свайп по табам, начатый с этой зоны:
+              палец на плитке → tabSwipeLocked=true → onUpdate/onEnd слайдера выходят,
+              страница не едет. Замок снят; обёртка оставлена как нейтральный контейнер. */}
+          <View>
             {/* Заголовок секции — тот же кегль/вес, что у «Сегодня» ниже: одна
                 типографическая ступень для всех разделов главного экрана. */}
             <View style={{ marginHorizontal: 8, marginBottom: 10 }}>

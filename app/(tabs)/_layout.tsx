@@ -996,10 +996,18 @@ function ReleasedTabLayout() {
     setExamBestPctTabActivity('unsafe');
     setVisualIdx(idx);
     if (physicalIdx === 0 || idx === activeIdxRef.current) return;
+    // зачем (аудит свайпов 2026-08-16): здесь НЕ монтируем тяжёлый экран.
+    // onSwipeStart приходит в момент отпускания пальца, когда UI-поток уже
+    // ведёт 260-мс анимацию доезда. Синхронный require + первый рендер экрана
+    // (Уроки — 52 импорта) в этот момент замораживал JS на секунды: капсула
+    // таббара отставала, приземлившаяся страница оставалась pointerEvents='none'
+    // до конца рендера, а если человек за это время свайпал ещё раз — поздний
+    // physicalPageIdx откатывал слайдер назад («свайп не работает / прыгает»).
+    // Панель под пальцем это всё равно не заполняло: жест уже завершён.
+    // Отмечаем таб посещённым (лёгкий плейсхолдер в слоте), а маунт делаем в
+    // handleSwipeComplete — после приземления, отдельным кадром.
     rememberVisitedTab(idx);
-    // зачем: палец уже тянет соседнюю панель в кадр — она обязана быть заполненной.
-    mountNow(idx);
-  }, [mountNow, rememberVisitedTab]);
+  }, [rememberVisitedTab]);
 
   const routerNavigateTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -1048,7 +1056,12 @@ function ReleasedTabLayout() {
     if (idx !== activeIdxRef.current) {
       setActiveIdx(idx);
       rememberVisitedTab(idx);
-      mountNow(idx);
+      // зачем: сначала лёгкий коммит с новым physicalPageIdx (слайдер и UI-поток
+      // синхронны: prop === currentIdx), и только следующим кадром — тяжёлый
+      // маунт экрана. Если склеить их в один рендер, поздний prop приходит
+      // ПОСЛЕ следующего свайпа пользователя и слайдер отматывает его назад.
+      // На уже смонтированном табе mountNow — no-op, задержки нет.
+      requestAnimationFrame(() => mountNow(idx));
     }
     navigateTo(idx);
   }, [mountNow, navigateTo, rememberVisitedTab]);

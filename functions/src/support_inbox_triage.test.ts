@@ -212,6 +212,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
   let adminSupportCancelReplyBatch: (request: unknown) => Promise<Record<string, unknown>>;
   let adminSupportResolveReplyDelivery: (request: unknown) => Promise<Record<string, unknown>>;
   let claimSupportReplyDispatch: (db: ReturnType<typeof fakeDb>, input: Record<string, unknown>, actor: Record<string, unknown>) => Promise<Record<string, unknown>>;
+  let closeOpenThreadForOwnerReply: (db: ReturnType<typeof fakeDb>, messageDocId: string) => Promise<boolean>;
 
   beforeAll(() => {
     // require, not import: modules must load AFTER jest.mock() calls above run.
@@ -235,6 +236,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     adminSupportCancelReplyBatch = mod.adminSupportCancelReplyBatch;
     adminSupportResolveReplyDelivery = mod.adminSupportResolveReplyDelivery;
     claimSupportReplyDispatch = mod.claimSupportReplyDispatch;
+    closeOpenThreadForOwnerReply = mod.closeOpenThreadForOwnerReply;
   });
 
   beforeEach(() => {
@@ -259,7 +261,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     mockSmtpClose.mockClear();
   });
 
-  async function preparePremiumReview(messageDocId: string): Promise<{ reviewId: string; operationId: string; approveNonce: string }> {
+  async function preparePremiumReview(messageDocId: string): Promise<{ reviewId: string; operationId: string; approveNonce: string; cancelNonce: string }> {
     store.set('admin_config/support_inbox', {
       autoReplyMode: 'live_guarded', autoReplyRevision: 2, autoReplyDailyCap: 20,
       autoReplyPerSenderDailyCap: 3, signature: 'Phraseman Support', signatureRevision: 1,
@@ -277,10 +279,12 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     const operationEntry = [...store.entries()].find(([path]) => path.startsWith('support_reply_operations/'));
     const telegram = mockSendJarvisDigest.mock.calls.at(-1)?.[0] as { keyboard?: { inline_keyboard?: Array<Array<{ callback_data?: string }>> } };
     const callback = String(telegram.keyboard?.inline_keyboard?.[0]?.[0]?.callback_data ?? '');
+    const cancelCallback = String(telegram.keyboard?.inline_keyboard?.[1]?.[0]?.callback_data ?? '');
     return {
       reviewId: reviewEntry?.[0].split('/').pop() ?? '',
       operationId: operationEntry?.[0].split('/').pop() ?? '',
       approveNonce: callback.split(':')[2] ?? '',
+      cancelNonce: cancelCallback.split(':')[2] ?? '',
     };
   }
 
@@ -773,6 +777,149 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     await expect(runSupportTelegramAutoSendDeadline(Date.now() + 4 * 60 * 60 * 1000)).resolves.toMatchObject({ queued: 0 });
     await supportTelegramReplyJobOnCreate({ data: {}, params: { jobId: job?.[0].split('/').pop() } });
     expect(mockSmtpSendMail).not.toHaveBeenCalled();
+  });
+
+  // зачем (владелец, 2026-08-16: "должна ещё быть кнопка отменить! отправка
+  // только через 3 часа происходит, если я ничего не выбрал"): без явного
+  // «нет» молчание владельца в итоге всё равно приводит к автоотправке.
+  // Нужен способ прямо сказать «не надо», не заходя в админку и не нажимая
+  // «внести правки» (та кнопка ждёт текст правок, а не отказ).
+  describe('Telegram cancel button (2026-08-16)', () => {
+    test('cancelling a review permanently stops the pending auto-send, even after the crons run', async () => {
+      const messageDocId = `m_${'7'.repeat(64)}`;
+      const prepared = await preparePremiumReview(messageDocId);
+      expect(prepared.cancelNonce).not.toBe('');
+
+      await handleSupportTelegramAction({
+        db: fakeDb(), nonce: prepared.cancelNonce, requestedAction: 'reject',
+        fromTelegramUserId: '1', fromTelegramChatId: '1', nowMs: Date.now(),
+      });
+
+      expect(store.get(`support_inbox/${messageDocId}`)).toMatchObject({
+        replyGate: { state: 'cancelled' },
+        autoReply: { state: 'attention_required', autoSendAtMs: null, reason: 'owner_cancelled' },
+      });
+      expect(store.get(`support_reply_operations/${prepared.operationId}`)?.state).toBe('cancelled');
+      expect(store.get(`support_telegram_reviews/${prepared.reviewId}`)).toMatchObject({
+        state: 'attention_required', autoSendAtMs: null, lastErrorCode: 'owner_cancelled',
+      });
+
+      // Даже если бы что-то попыталось запустить авто-отправку намного позже
+      // (за пределами трёхчасового окна), отменённый review её не выдаст —
+      // это главное требование: молчание больше НЕ означает отправку.
+      store.set('admin_config/support_inbox', {
+        ...(store.get('admin_config/support_inbox') ?? {}), autoReplyMode: 'live_guarded',
+      });
+      await expect(runSupportTelegramAutoSendDeadline(Date.now() + 4 * 60 * 60 * 1000))
+        .resolves.toMatchObject({ queued: 0 });
+    });
+
+    test('does not offer a "reply with edits" prompt — cancel is a final no, not a request for wording', async () => {
+      // зачем: кнопка «Внести правки» открывает сессию, ожидающую текст от
+      // владельца. Отмена — это отказ, а не начало диалога о формулировках.
+      const messageDocId = `m_${'e'.repeat(64)}`;
+      const prepared = await preparePremiumReview(messageDocId);
+
+      await handleSupportTelegramAction({
+        db: fakeDb(), nonce: prepared.cancelNonce, requestedAction: 'reject',
+        fromTelegramUserId: '1', fromTelegramChatId: '1', nowMs: Date.now(),
+      });
+
+      const sessionEntry = [...store.entries()].find((entry) => entry[0].startsWith('support_telegram_edit_sessions/'));
+      expect(sessionEntry).toBeUndefined();
+    });
+
+    test('a used cancel token cannot be replayed to cancel a later, unrelated draft revision', async () => {
+      // зачем: тот же класс защиты, что и у approve/edit — токен привязан к
+      // конкретному draftRevision через decisionHash/reviewId, повторное
+      // использование не должно тронуть уже переписанный черновик.
+      const messageDocId = `m_${'d'.repeat(64)}`;
+      const prepared = await preparePremiumReview(messageDocId);
+
+      await handleSupportTelegramAction({
+        db: fakeDb(), nonce: prepared.cancelNonce, requestedAction: 'reject',
+        fromTelegramUserId: '1', fromTelegramChatId: '1', nowMs: Date.now(),
+      });
+      const afterFirstUse = store.get(`support_inbox/${messageDocId}`);
+
+      const replay = await handleSupportTelegramAction({
+        db: fakeDb(), nonce: prepared.cancelNonce, requestedAction: 'reject',
+        fromTelegramUserId: '1', fromTelegramChatId: '1', nowMs: Date.now() + 1_000,
+      });
+
+      expect(replay?.ok).toBe(false);
+      expect(store.get(`support_inbox/${messageDocId}`)).toEqual(afterFirstUse);
+    });
+  });
+
+  // зачем (владелец, 2026-08-16): "если на сообщение уже ответили, на него не
+  // надо повторно отвечать" — раньше Джарвис не видел ответы, отправленные
+  // владельцем напрямую в Gmail мимо админки, и продолжал держать открытой
+  // карточку с активными кнопками на уже закрытый вопрос.
+  describe('owner replied directly in Gmail — closeOpenThreadForOwnerReply', () => {
+    test('archives the message and silences a prepared Telegram review, cancelling its pending operation', async () => {
+      const messageDocId = `m_${'c'.repeat(64)}`;
+      const prepared = await preparePremiumReview(messageDocId);
+
+      const closed = await closeOpenThreadForOwnerReply(fakeDb(), messageDocId);
+
+      expect(closed).toBe(true);
+      expect(store.get(`support_inbox/${messageDocId}`)).toMatchObject({
+        status: 'archived',
+        replyGate: { state: 'cancelled' },
+        autoReply: { state: 'attention_required', autoSendAtMs: null, reason: 'owner_replied_manually' },
+      });
+      expect(store.get(`support_reply_operations/${prepared.operationId}`)?.state).toBe('cancelled');
+      expect(store.get(`support_telegram_reviews/${prepared.reviewId}`)).toMatchObject({
+        state: 'stale', autoSendAtMs: null, lastErrorCode: 'owner_replied_manually',
+      });
+    });
+
+    test('never fires the pending auto-send after closing, even if the deadline cron runs later', async () => {
+      const messageDocId = `m_${'b'.repeat(64)}`;
+      await preparePremiumReview(messageDocId);
+      await closeOpenThreadForOwnerReply(fakeDb(), messageDocId);
+
+      store.set('admin_config/support_inbox', {
+        ...(store.get('admin_config/support_inbox') ?? {}), autoReplyMode: 'live_guarded',
+      });
+      await expect(runSupportTelegramAutoSendDeadline(Date.now() + 4 * 60 * 60 * 1000))
+        .resolves.toMatchObject({ queued: 0 });
+    });
+
+    test('is a no-op for a message that does not exist', async () => {
+      const closed = await closeOpenThreadForOwnerReply(fakeDb(), `m_${'0'.repeat(64)}`);
+      expect(closed).toBe(false);
+    });
+
+    test('does not re-close an already archived message (idempotent, no double side effects)', async () => {
+      const messageDocId = `m_${'a'.repeat(64)}`;
+      await preparePremiumReview(messageDocId);
+      const first = await closeOpenThreadForOwnerReply(fakeDb(), messageDocId);
+      expect(first).toBe(true);
+
+      const second = await closeOpenThreadForOwnerReply(fakeDb(), messageDocId);
+      expect(second).toBe(false);
+    });
+
+    test('refuses to interrupt a send that is already in flight', async () => {
+      // зачем: владелец мог отправить прямой ответ в Gmail В ТОТ ЖЕ МОМЕНТ,
+      // когда автоматика уже начала SMTP-доставку подготовленного черновика —
+      // архивировать письмо посреди отправки значило бы потерять след того,
+      // что реально ушло клиенту.
+      const messageDocId = `m_${'f'.repeat(64)}`;
+      await preparePremiumReview(messageDocId);
+      const message = store.get(`support_inbox/${messageDocId}`)!;
+      store.set(`support_inbox/${messageDocId}`, {
+        ...message,
+        replyGate: { ...(message.replyGate as Record<string, unknown>), state: 'dispatching' },
+      });
+
+      const closed = await closeOpenThreadForOwnerReply(fakeDb(), messageDocId);
+
+      expect(closed).toBe(false);
+      expect(store.get(`support_inbox/${messageDocId}`)?.status).toBe('new');
+    });
   });
 
   test('archive callables require admin identity and cannot forge answered status', async () => {

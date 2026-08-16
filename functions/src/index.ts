@@ -37,6 +37,7 @@ const { runPremiumExpiryReminder } = require("./premium_expiry_reminder") as {
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   runSupportInboxPullCron,
+  runSupportOwnerReplyDetectionCron,
   runSupportOwnerAlertRetryCron,
   runSupportReplyDispatchSweeper,
   runSupportAutoReplyRetryCron,
@@ -46,6 +47,7 @@ const {
   SUPPORT_OPENAI_API_KEY,
 } = require("./support_inbox") as {
   runSupportInboxPullCron: () => Promise<unknown>;
+  runSupportOwnerReplyDetectionCron: () => Promise<unknown>;
   runSupportOwnerAlertRetryCron: () => Promise<unknown>;
   runSupportReplyDispatchSweeper: () => Promise<unknown>;
   runSupportAutoReplyRetryCron: () => Promise<unknown>;
@@ -479,6 +481,26 @@ export const gmailSupportPullCron = functions.scheduler.onSchedule(
   },
   async () => {
     await runSupportInboxPullCron();
+  },
+);
+
+// Owner requirement 2026-08-16: "если на сообщение уже ответили, на него не
+// надо повторно отвечать". gmailSupportPullCron only reads INBOX — a reply
+// the owner sends directly from Gmail (not through the admin panel) was
+// invisible to Jarvis, leaving a stale Telegram card with live buttons for
+// an already-answered question. This scans Sent on the same hourly cadence
+// as the INBOX pull (same bounded-poll budget, no extra load).
+export const gmailSupportOwnerReplyDetectionCron = functions.scheduler.onSchedule(
+  {
+    schedule: "every 60 minutes",
+    timeZone: "UTC",
+    region: "us-central1",
+    memory: "512MiB",
+    timeoutSeconds: 300,
+    secrets: [GMAIL_SUPPORT_APP_PASSWORD],
+  },
+  async () => {
+    await runSupportOwnerReplyDetectionCron();
   },
 );
 

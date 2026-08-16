@@ -84,13 +84,40 @@ export function supportReviewTokenDepartment(messageDocId: string, draftRevision
   return `${TOKEN_DEPARTMENT_PREFIX}:${messageDocId}:${draftRevision}`;
 }
 
+/**
+ * зачем отдельный department-префикс, а не третье значение ApprovalAction
+ * (владелец, 2026-08-16: "должна ещё быть кнопка отменить"): ApprovalAction
+ * ('approve'|'reject') — общий тип, его использует approval_webhook_core и
+ * другие department'ы Джарвиса за пределами поддержки. Расширять его ради
+ * одной кнопки в одном месте означало бы менять чужую инфраструктуру.
+ * department — обычная строка, которую сверяет только эта функция, поэтому
+ * третье действие безопасно кодируется отдельным префиксом на том же
+ * action='reject', не трогая общий тип нигде за пределами этого файла.
+ */
+const CANCEL_TOKEN_DEPARTMENT_PREFIX = 'support_email_cancel';
+
+export function supportReviewCancelTokenDepartment(messageDocId: string, draftRevision: number): string {
+  return `${CANCEL_TOKEN_DEPARTMENT_PREFIX}:${messageDocId}:${draftRevision}`;
+}
+
 export function parseSupportReviewApprovalToken(doc: ApprovalTokenDoc): {
   messageDocId: string;
   draftRevision: number;
-  action: 'send' | 'edit';
+  action: 'send' | 'edit' | 'cancel';
   draftHashPrefix: string;
 } | null {
-  const match = String(doc.department).match(/^support_email:(m_[a-f0-9]{64}):(\d+)$/);
+  const department = String(doc.department);
+  const cancelMatch = department.match(/^support_email_cancel:(m_[a-f0-9]{64}):(\d+)$/);
+  if (cancelMatch) {
+    if (doc.action !== 'reject' || !/^\w{8,64}$/.test(String(doc.decisionHash))) return null;
+    const draftRevision = Number(cancelMatch[2]);
+    if (!Number.isSafeInteger(draftRevision) || draftRevision < 0) return null;
+    return Object.freeze({
+      messageDocId: cancelMatch[1], draftRevision, action: 'cancel',
+      draftHashPrefix: String(doc.decisionHash),
+    });
+  }
+  const match = department.match(/^support_email:(m_[a-f0-9]{64}):(\d+)$/);
   if (!match || !/^\w{8,64}$/.test(String(doc.decisionHash))) return null;
   const draftRevision = Number(match[2]);
   if (!Number.isSafeInteger(draftRevision) || draftRevision < 0) return null;

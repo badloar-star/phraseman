@@ -8,6 +8,7 @@ import {
   supportEditSessionId,
   supportTelegramJobLeaseOwns,
   supportReviewTokenDepartment,
+  supportReviewCancelTokenDepartment,
 } from './support_telegram_review';
 
 const MESSAGE_ID = `m_${'a'.repeat(64)}`;
@@ -32,6 +33,48 @@ describe('support Telegram review contract', () => {
       ownerTelegramUserId: '1', ownerTelegramChatId: '1', nowMs: 1000,
     });
     expect(parseSupportReviewApprovalToken(built.doc)?.action).toBe('edit');
+  });
+
+  // зачем (владелец, 2026-08-16): "должна ещё быть кнопка отменить!" —
+  // третье действие, отдельное от send/edit, кодируется отдельным
+  // department-префиксом на том же action='reject', не трогая
+  // общий ApprovalAction-тип, используемый другими department'ами Джарвиса.
+  describe('cancel token (owner explicitly says no, not "edit")', () => {
+    test('a cancel-department token with action=reject parses as cancel, not edit', () => {
+      const built = buildApprovalToken({
+        nonce: 'n'.repeat(32), decisionHash: 'a'.repeat(32),
+        department: supportReviewCancelTokenDepartment(MESSAGE_ID, 3), action: 'reject',
+        ownerTelegramUserId: '1', ownerTelegramChatId: '1', nowMs: 1000,
+      });
+      expect(parseSupportReviewApprovalToken(built.doc)).toEqual({
+        messageDocId: MESSAGE_ID, draftRevision: 3, action: 'cancel', draftHashPrefix: 'a'.repeat(32),
+      });
+    });
+
+    test('a cancel-department token can never be forged with action=approve', () => {
+      // зачем: cancel обязан быть необратимым «нет», а не тихим «да» с
+      // подменённой этикеткой кнопки.
+      const built = buildApprovalToken({
+        nonce: 'n'.repeat(32), decisionHash: 'a'.repeat(32),
+        department: supportReviewCancelTokenDepartment(MESSAGE_ID, 3), action: 'approve',
+        ownerTelegramUserId: '1', ownerTelegramChatId: '1', nowMs: 1000,
+      });
+      expect(parseSupportReviewApprovalToken(built.doc)).toBeNull();
+    });
+
+    test('the plain support_email department never parses as cancel', () => {
+      const built = buildApprovalToken({
+        nonce: 'n'.repeat(32), decisionHash: 'a'.repeat(32),
+        department: supportReviewTokenDepartment(MESSAGE_ID, 3), action: 'reject',
+        ownerTelegramUserId: '1', ownerTelegramChatId: '1', nowMs: 1000,
+      });
+      expect(parseSupportReviewApprovalToken(built.doc)?.action).toBe('edit');
+    });
+
+    test('cancel and plain review departments never collide for the same message', () => {
+      expect(supportReviewCancelTokenDepartment(MESSAGE_ID, 3))
+        .not.toBe(supportReviewTokenDepartment(MESSAGE_ID, 3));
+    });
   });
 
   test('preview omits the subject and escapes the complete sealed body', () => {

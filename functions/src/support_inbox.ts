@@ -80,6 +80,7 @@ import {
   supportEditSessionId,
   supportTelegramJobLeaseOwns,
   supportReviewTokenDepartment,
+  supportReviewCancelTokenDepartment,
   type SupportTelegramReviewDoc,
   type SupportTelegramJobDoc,
 } from './support_telegram_review';
@@ -297,6 +298,42 @@ export function docIdForMessageId(messageId: string): string {
 export function legacyDocIdForMessageId(messageId: string): string {
   const raw = String(messageId || '').trim();
   return raw ? raw.replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 400) : '';
+}
+
+/**
+ * Находит открытый support_inbox docId, на который отвечает исходящее письмо
+ * из папки Sent.
+ *
+ * зачем (владелец, 2026-08-16: "если на сообщение уже ответили, на него не
+ * надо повторно отвечать"): раньше Джарвис читал только INBOX. Если владелец
+ * отвечал напрямую в Gmail (мимо админки), система физически не видела этот
+ * ответ и продолжала показывать в Telegram карточку с активными кнопками
+ * «Отправить»/«Внести правки» для уже закрытого вопроса.
+ *
+ * зачем In-Reply-To ПЕРЕД References: In-Reply-To — прямой родитель письма,
+ * это самый точный сигнал «это ответ вот на это письмо». References — вся
+ * цепочка треда; используется как запасной вариант, если In-Reply-To пуст
+ * (некоторые клиенты его не проставляют), перебор с конца — от новейшего
+ * предка к старейшему, потому что ближайший предок вероятнее сам открытый.
+ *
+ * Чистая: не трогает Firestore/сеть — только решает, КАКОЙ docId проверить.
+ * Существование и статус документа проверяет вызывающий код.
+ */
+export function candidateOpenThreadDocIdsForOwnerReply(sentEmail: {
+  readonly inReplyTo?: string;
+  readonly references?: readonly string[];
+}): readonly string[] {
+  const ids: string[] = [];
+  const seen = new Set<string>();
+  const add = (messageId: string) => {
+    const id = docIdForMessageId(messageId);
+    if (id && !seen.has(id)) { seen.add(id); ids.push(id); }
+  };
+  const inReplyTo = String(sentEmail.inReplyTo ?? '').trim();
+  if (inReplyTo) add(inReplyTo);
+  const references = Array.isArray(sentEmail.references) ? sentEmail.references : [];
+  for (let i = references.length - 1; i >= 0; i -= 1) add(String(references[i] ?? '').trim());
+  return Object.freeze(ids);
 }
 
 /** Есть ли у письма пригодное для ИИ тело (не пустое). Чистая. */
@@ -995,6 +1032,185 @@ async function fetchEmailsViaImap(
     cursorCheckpointUid: checkpointUid, cursorBackfillBeforeUid: backfillBeforeUid,
     retryUidsPresent: [],
   };
+}
+
+interface SentReplyHeaders {
+  readonly messageId: string;
+  readonly inReplyTo?: string;
+  readonly references?: string[];
+  readonly sourceUid: number;
+}
+
+/**
+ * Читает НОВЫЕ письма из папки «Отправленные» того же ящика после отдельного
+ * UID-checkpoint (свой, не путать с INBOX-курсором).
+ *
+ * зачем отдельная, более простая функция вместо переиспользования
+ * fetchEmailsViaImap на другой папке: цель здесь — только заголовки для
+ * сопоставления с открытым тредом (кто кому ответил), а не полноценная копия
+ * письма для хранения. Не нужны backfill/retry-uid — если один прогон
+ * пропустит письмо владельца из-за временного сбоя, следующий его подхватит
+ * тем же forward-checkpoint; риск в худшем случае — на час позже погашенная
+ * карточка, а не потерянные данные.
+ *
+ * зачем specialUse, а не жёсткое имя папки: Gmail локализует «Отправленные»
+ * (например, «[Gmail]/Sent Mail» для английского) — иностранные аккаунты
+ * получили бы молчаливый нулевой результат. specialUse === '\Sent' работает
+ * независимо от языка интерфейса.
+ */
+async function fetchOwnerSentRepliesViaImap(
+  appPassword: string,
+  checkpointUid: number,
+  storedUidValidity: string,
+): Promise<{
+  replies: SentReplyHeaders[];
+  uidValidity: string;
+  uidValidityChanged: boolean;
+  nextCheckpointUid: number;
+}> {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { ImapFlow } = require('imapflow');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { simpleParser } = require('mailparser');
+
+  const client = new ImapFlow({
+    host: 'imap.gmail.com', port: 993, secure: true,
+    auth: { user: SUPPORT_MAILBOX, pass: appPassword }, logger: false,
+  });
+
+  const out: SentReplyHeaders[] = [];
+  await client.connect();
+  try {
+    const mailboxes = await client.list();
+    const sentPath = mailboxes.find((box: { specialUse?: string }) => box.specialUse === '\\Sent')?.path
+      ?? '[Gmail]/Sent Mail';
+    const lock = await client.getMailboxLock(sentPath);
+    try {
+      const currentUidValidity = String(client.mailbox?.uidValidity ?? '').trim();
+      const cursor = resolveSupportImapCursor(storedUidValidity, currentUidValidity, checkpointUid, 0);
+      const all = (await client.search({ all: true }, { uid: true })) || [];
+      const uids = selectSupportImapUids(all, cursor.checkpointUid);
+      if (uids.length === 0) {
+        return { replies: out, uidValidity: currentUidValidity, uidValidityChanged: cursor.changed, nextCheckpointUid: cursor.checkpointUid };
+      }
+      // зачем source, а не envelope: ImapFlow envelope не отдаёт
+      // In-Reply-To/References напрямую — нужны полные заголовки письма.
+      for await (const msg of client.fetch(uids, { source: true, uid: true })) {
+        try {
+          const parsed = await simpleParser(msg.source as Buffer);
+          const headerGet = (name: string): string => {
+            const v = parsed.headers?.get(name);
+            return typeof v === 'string' ? v : (v ? String(v) : '');
+          };
+          const messageId = String(parsed.messageId || '');
+          const inReplyTo = normalizeSupportMessageId(parsed.inReplyTo || headerGet('in-reply-to'));
+          const references = normalizeSupportMessageIdList(parsed.references || headerGet('references'));
+          out.push({
+            messageId,
+            ...(inReplyTo ? { inReplyTo } : {}),
+            ...(references.length ? { references } : {}),
+            sourceUid: Number(msg.uid),
+          });
+        } catch (e) {
+          console.warn('support_inbox: sent-folder parse failed for uid', { uid: msg.uid, errorCode: supportAutoErrorCode(e) });
+        }
+      }
+      const nextCheckpointUid = uids.length > 0 ? Math.max(cursor.checkpointUid, ...uids) : cursor.checkpointUid;
+      return { replies: out, uidValidity: currentUidValidity, uidValidityChanged: cursor.changed, nextCheckpointUid };
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+/**
+ * Опрашивает Sent-папку и закрывает открытые треды, на которые владелец уже
+ * ответил напрямую (мимо админки). Идемпотентно: сохраняет отдельный
+ * checkpoint (imapSentLastUid), запуск без новых писем — no-op.
+ */
+export async function runSupportOwnerReplyDetection(appPassword: string): Promise<{
+  scanned: number;
+  closed: number;
+}> {
+  const db = admin.firestore();
+  const [configCollection, configDocId] = SUPPORT_CONFIG_DOC.split('/');
+  const configRef = db.collection(configCollection).doc(configDocId);
+  const configSnap = await configRef.get();
+  const rawCheckpoint = Number(configSnap.data()?.imapSentLastUid ?? 0);
+  const checkpointUid = Number.isInteger(rawCheckpoint) && rawCheckpoint > 0 ? rawCheckpoint : 0;
+  const storedUidValidity = String(configSnap.data()?.imapSentUidValidity ?? '').trim();
+
+  const fetched = await fetchOwnerSentRepliesViaImap(appPassword, checkpointUid, storedUidValidity);
+
+  let closed = 0;
+  for (const reply of fetched.replies) {
+    const candidates = candidateOpenThreadDocIdsForOwnerReply(reply);
+    for (const candidateId of candidates) {
+      // зачем break при первом закрытии, а не пробовать все кандидаты: один
+      // owner-ответ закрывает ровно один тред — если In-Reply-To совпал,
+      // References того же письма указывают на более старых предков той же
+      // цепочки, которые к этому моменту почти наверняка уже не 'new'.
+      const didClose = await closeOpenThreadForOwnerReply(db, candidateId);
+      if (didClose) { closed += 1; break; }
+    }
+  }
+
+  await configRef.set({
+    imapSentLastUid: fetched.nextCheckpointUid,
+    imapSentUidValidity: fetched.uidValidity,
+    imapSentSyncedAt: new Date().toISOString(),
+  }, { merge: true });
+
+  return { scanned: fetched.replies.length, closed };
+}
+
+/**
+ * Переводит один открытый тред в archived с провенансом «владелец ответил
+ * вручную», гасит подготовленную Telegram-карточку и операцию отправки.
+ *
+ * зачем транзакция: между чтением статуса и записью не должно помещаться
+ * параллельное действие (например, владелец как раз в этот момент нажимает
+ * «Отправить» в Telegram) — иначе можно закрыть письмо ПОСЛЕ того, как
+ * автоматика уже начала слать по нему настоящий ответ.
+ */
+export async function closeOpenThreadForOwnerReply(
+  db: FirebaseFirestore.Firestore,
+  messageDocId: string,
+): Promise<boolean> {
+  const messageRef = db.collection(INBOX_COLLECTION).doc(messageDocId);
+  return db.runTransaction(async (tx) => {
+    const snap = await tx.get(messageRef);
+    if (!snap.exists) return false;
+    const message = snap.data() as SupportInboxDoc;
+    if (message.status !== 'new') return false;
+    const gate = message.replyGate;
+    if (gate?.state === 'dispatching') return false; // отправка уже в полёте — не перебиваем.
+    const reviewId = message.autoReply?.reviewId;
+    const nowIso = new Date().toISOString();
+    const nowMs = Date.now();
+    if (gate?.operationId) {
+      const operationRef = db.collection('support_reply_operations').doc(gate.operationId);
+      const operationSnap = await tx.get(operationRef);
+      if (operationSnap.exists && String(operationSnap.data()?.state) === 'prepared') {
+        tx.set(operationRef, { state: 'cancelled', reconciledAt: nowIso, lastErrorCode: 'owner_replied_manually' }, { merge: true });
+      }
+    }
+    if (reviewId) {
+      const reviewRef = db.collection(SUPPORT_TELEGRAM_REVIEW_COLLECTION).doc(reviewId);
+      const reviewSnap = await tx.get(reviewRef);
+      if (reviewSnap.exists && !['accepted', 'stale'].includes(String(reviewSnap.data()?.state))) {
+        tx.set(reviewRef, { state: 'stale', autoSendAtMs: null, updatedAtMs: nowMs, lastErrorCode: 'owner_replied_manually' }, { merge: true });
+      }
+    }
+    tx.set(messageRef, {
+      status: 'archived',
+      replyGate: gate ? { ...gate, state: 'cancelled', updatedAt: nowIso } : gate,
+      autoReply: { ...(message.autoReply ?? {}), state: 'attention_required', reason: 'owner_replied_manually', autoSendAtMs: null, updatedAt: nowIso },
+    }, { merge: true });
+    return true;
+  });
 }
 
 // ── I/O: SMTP-отправка ответа через тот же Gmail ───────────────────────────────
@@ -2901,7 +3117,7 @@ async function prepareSupportTelegramReview(input: {
 
     let keyboard: InlineKeyboard | null = null;
     if (preview.approvable) {
-      const [approve, edit] = await Promise.all([
+      const [approve, edit, cancel] = await Promise.all([
         issueApprovalToken({
           db: input.db, decisionHash: reviewId,
           department: supportReviewTokenDepartment(input.messageDocId, input.draftRevision), action: 'approve',
@@ -2914,11 +3130,24 @@ async function prepareSupportTelegramReview(input: {
           ownerTelegramUserId: owner.ownerTelegramUserId, ownerTelegramChatId: owner.ownerTelegramChatId,
           nowMs: input.nowMs, ttlMs: SUPPORT_TELEGRAM_APPROVAL_TTL_MS,
         }),
+        // зачем третий токен (владелец, 2026-08-16: "должна ещё быть кнопка
+        // отменить! отправка только через 3 часа происходит, если я ничего
+        // не выбрал"): без явного «нет» молчание владельца в итоге всё
+        // равно приводит к отправке — нужен способ прямо сказать «не надо».
+        issueApprovalToken({
+          db: input.db, decisionHash: reviewId,
+          department: supportReviewCancelTokenDepartment(input.messageDocId, input.draftRevision), action: 'reject',
+          ownerTelegramUserId: owner.ownerTelegramUserId, ownerTelegramChatId: owner.ownerTelegramChatId,
+          nowMs: input.nowMs, ttlMs: SUPPORT_TELEGRAM_APPROVAL_TTL_MS,
+        }),
       ]);
       keyboard = Object.freeze({ inline_keyboard: Object.freeze([
         Object.freeze([
           Object.freeze({ text: '✅ Отправить сейчас', callback_data: approve.callbackData }),
           Object.freeze({ text: '✏️ Внести правки', callback_data: edit.callbackData }),
+        ]),
+        Object.freeze([
+          Object.freeze({ text: '🚫 Отменить', callback_data: cancel.callbackData }),
         ]),
       ]) });
     }
@@ -3454,7 +3683,12 @@ export async function handleSupportTelegramAction(input: {
   return input.db.runTransaction<ConsumeApprovalTokenResult | null>(async (tx) => {
     const tokenSnap = await tx.get(tokenRef);
     const token = tokenSnap.exists ? tokenSnap.data() as ApprovalTokenDoc : null;
-    if (!token || !String(token.department ?? '').startsWith('support_email:')) return null;
+    // зачем регулярка вместо startsWith('support_email:'): cancel-токены
+    // (2026-08-16) намеренно живут под отдельным department-префиксом
+    // support_email_cancel:..., чтобы не путаться с обычным send/edit —
+    // startsWith('support_email:') его отсекал бы, потому что после
+    // 'support_email' там подчёркивание, а не двоеточие.
+    if (!token || !/^support_email(?:_cancel)?:/.test(String(token.department ?? ''))) return null;
     const verdict = verifyApprovalToken({
       doc: token, nonce: input.nonce,
       fromTelegramUserId: input.fromTelegramUserId,
@@ -3537,6 +3771,23 @@ export async function handleSupportTelegramAction(input: {
         createdAtMs: input.nowMs, updatedAtMs: input.nowMs, source: 'telegram',
       } satisfies SupportTelegramJobDoc, { merge: false });
       tx.update(reviewRef, { state: 'dispatching', autoSendAtMs: null, updatedAtMs: input.nowMs });
+    } else if (parsed.action === 'cancel') {
+      // зачем отдельная ветка (владелец, 2026-08-16): без явного «нет»
+      // молчание в итоге всё равно приводит к отправке через 3 часа. Кнопка
+      // снимает подготовленную отправку насовсем — письмо уходит в ручной
+      // разбор, а не в очередь «переписать» (owner не собирается диктовать
+      // правки) и не в «повтор» (owner не просил Джарвиса пробовать снова).
+      const operationRef = input.db.collection('support_reply_operations').doc(String(review.operationId ?? ''));
+      const operationSnap = review.operationId ? await tx.get(operationRef) : null;
+      tx.update(tokenRef, { usedAtMs: input.nowMs });
+      if (operationSnap?.exists && String(operationSnap.data()?.state) === 'prepared') {
+        tx.update(operationRef, { state: 'cancelled', reconciledAt: new Date(input.nowMs).toISOString(), lastErrorCode: 'owner_cancelled' });
+      }
+      tx.set(messageRef, {
+        replyGate: { ...message.replyGate, state: 'cancelled', updatedAt: new Date(input.nowMs).toISOString() },
+        autoReply: { ...message.autoReply, state: 'attention_required', updatedAt: new Date(input.nowMs).toISOString(), autoSendAtMs: null, reason: 'owner_cancelled' },
+      }, { merge: true });
+      tx.update(reviewRef, { state: 'attention_required', autoSendAtMs: null, updatedAtMs: input.nowMs, lastErrorCode: 'owner_cancelled' });
     } else {
       const operationRef = input.db.collection('support_reply_operations').doc(String(review.operationId ?? ''));
       const operationSnap = review.operationId ? await tx.get(operationRef) : null;
@@ -5986,6 +6237,29 @@ export async function runSupportInboxPullCron(): Promise<PullSummary | null> {
     return summary;
   } catch (e) {
     console.error('gmailSupportPullCron failed (IMAP?)', { errorCode: supportAutoErrorCode(e) });
+    return null;
+  }
+}
+
+// ── Крон: обнаружение ответов владельца в Sent (расписание в index.ts) ─────────
+// (регистрируется в index.ts как gmailSupportOwnerReplyDetectionCron)
+//
+// зачем отдельный крон, а не часть runSupportInboxPullCron: разная папка,
+// разный checkpoint, разная цена ошибки (пропуск здесь — устаревшая карточка
+// на час дольше, не потеря входящей почты). Раздельные крон-функции — это
+// раздельные логи и раздельный откат, если один поток начнёт сбоить.
+export async function runSupportOwnerReplyDetectionCron(): Promise<{ scanned: number; closed: number } | null> {
+  const pass = String(GMAIL_SUPPORT_APP_PASSWORD.value() || process.env.GMAIL_SUPPORT_APP_PASSWORD || '').trim();
+  if (!pass) {
+    console.error('gmailSupportOwnerReplyDetectionCron: GMAIL_SUPPORT_APP_PASSWORD not configured — skipping');
+    return null;
+  }
+  try {
+    const summary = await runSupportOwnerReplyDetection(pass);
+    console.log('gmailSupportOwnerReplyDetectionCron', JSON.stringify(summary));
+    return summary;
+  } catch (e) {
+    console.error('gmailSupportOwnerReplyDetectionCron failed (IMAP?)', { errorCode: supportAutoErrorCode(e) });
     return null;
   }
 }

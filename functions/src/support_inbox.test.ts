@@ -21,6 +21,7 @@ import {
   mergeSupportImapFailedUids,
   selectSupportImapRetryUids,
   supportRequestFingerprint,
+  candidateOpenThreadDocIdsForOwnerReply,
   type RawEmail,
 } from './support_inbox';
 
@@ -310,5 +311,45 @@ describe('buildReplyPrompt', () => {
     });
     expect(p).toContain('Новая деталь');
     expect(p).not.toContain('Старый ответ');
+  });
+});
+
+// зачем (владелец, 2026-08-16): "если на сообщение уже ответили, на него не
+// надо повторно отвечать" — раньше Джарвис читал только INBOX и не видел
+// ответ, отправленный владельцем напрямую в Gmail мимо админки.
+describe('candidateOpenThreadDocIdsForOwnerReply — matching a Sent reply to an open thread', () => {
+  test('In-Reply-To alone resolves to the exact same docId the inbound message was stored under', () => {
+    const inboundId = 'CAF+abc123@mail.gmail.com';
+    const candidates = candidateOpenThreadDocIdsForOwnerReply({ inReplyTo: `<${inboundId}>` });
+    expect(candidates).toEqual([docIdForMessageId(`<${inboundId}>`)]);
+  });
+
+  test('empty In-Reply-To falls back to References, nearest ancestor first', () => {
+    const near = '<near@example.test>';
+    const far = '<far@example.test>';
+    const candidates = candidateOpenThreadDocIdsForOwnerReply({ references: [far, near] });
+    expect(candidates).toEqual([docIdForMessageId(near), docIdForMessageId(far)]);
+  });
+
+  test('In-Reply-To is tried before any References entry', () => {
+    const direct = '<direct@example.test>';
+    const older = '<older@example.test>';
+    const candidates = candidateOpenThreadDocIdsForOwnerReply({ inReplyTo: direct, references: [older] });
+    expect(candidates[0]).toBe(docIdForMessageId(direct));
+    expect(candidates).toContain(docIdForMessageId(older));
+  });
+
+  test('a duplicate id (In-Reply-To also present in References) is not returned twice', () => {
+    const shared = '<shared@example.test>';
+    const candidates = candidateOpenThreadDocIdsForOwnerReply({ inReplyTo: shared, references: [shared] });
+    expect(candidates).toEqual([docIdForMessageId(shared)]);
+  });
+
+  test('a completely unrelated new email (no headers) yields no candidates', () => {
+    expect(candidateOpenThreadDocIdsForOwnerReply({})).toEqual([]);
+  });
+
+  test('blank/whitespace-only headers do not produce a bogus candidate', () => {
+    expect(candidateOpenThreadDocIdsForOwnerReply({ inReplyTo: '   ', references: ['', '  '] })).toEqual([]);
   });
 });

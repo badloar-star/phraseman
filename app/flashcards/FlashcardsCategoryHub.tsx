@@ -202,7 +202,7 @@ type CommunityPackTileProps = {
  * ник автора, лайки и счётчик добавлений. Открывается и БЕЗ добавления —
  * в режиме просмотра.
  */
-function CommunityPackTile({
+function CommunityPackTileBase({
   pack, lang, t, width, owned, isTop, reduceMotion, showEdit, labelSize, icon, onOpen, onLongPress, onEdit,
 }: CommunityPackTileProps) {
   const authorName = useCommunityAuthorName(pack, lang);
@@ -310,6 +310,33 @@ function CommunityPackTile({
     </View>
   );
 }
+
+/**
+ * зачем (владелец, 2026-08-16, «прыжки страниц» / скорость): сетка сообщества
+ * рендерит до 50 плиток (серверный limit(50)) внутри общего ScrollView. Без
+ * memo ЛЮБОЙ ре-рендер хаба — ввод буквы в поиск, смена сортировки, тап по
+ * «пожаловаться» — перерисовывал все 50 плиток разом, и скролл спотыкался.
+ *
+ * Сравниваем ПО СУЩЕСТВУ, а не по ссылкам: `icon` — это заново созданный
+ * React-элемент, а `onOpen`/`onEdit`/`onLongPress` — стрелки, пересоздаваемые
+ * на каждый рендер родителя. При поверхностном сравнении memo не дал бы
+ * ничего. Иконка целиком выводится из pack.id и ширины плитки, а колбэки
+ * замкнуты на тот же pack, поэтому при равенстве полей ниже пропуск
+ * перерисовки безопасен: показать плитка может ровно то же самое.
+ */
+const CommunityPackTile = React.memo(CommunityPackTileBase, (prev, next) => (
+  prev.pack === next.pack
+  && prev.lang === next.lang
+  && prev.t === next.t
+  && prev.width === next.width
+  && prev.owned === next.owned
+  && prev.isTop === next.isTop
+  && prev.reduceMotion === next.reduceMotion
+  && prev.showEdit === next.showEdit
+  && prev.labelSize === next.labelSize
+  // Наличие/отсутствие long-press меняет поведение, ссылка — нет.
+  && (prev.onLongPress == null) === (next.onLongPress == null)
+));
 
 export default function FlashcardsCategoryHub({
   lang,

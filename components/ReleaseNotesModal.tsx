@@ -36,6 +36,7 @@ import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import { LUM } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import DuoPressable from './DuoPressable';
 
 /**
  * Локали окна. Контракт release_update_modals_locale_runtime.test.ts требует,
@@ -354,26 +355,22 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
             </Text>
           </ScrollView>
 
-          <Pressable
+          <DuoPressable
             onPress={closeOnce}
             accessibilityRole="button"
             accessibilityLabel={tx.cta}
-            style={({ pressed }) => [
-              styles.btn,
-              { opacity: pressed ? 0.9 : 1, transform: [{ scale: pressed ? 0.985 : 1 }] },
-            ]}
+            edgeColor="#B9791F"
+            edgeHeight={4}
+            wrapStyle={styles.btnWrap}
+            style={styles.btn}
+            gradientColors={['#FFE08A', '#F7BE4F', '#E99D35']}
+            gradientStart={{ x: 0, y: 0 }}
+            gradientEnd={{ x: 1, y: 1 }}
           >
-            <LinearGradient
-              colors={['#FFE08A', '#F7BE4F', '#E99D35']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.btnGradient}
-            >
-              <Text style={[styles.btnText, { fontSize: buttonSize, color: monoIcon(themeMode, '#121826', MONO_ICON.onLight) }]}>
-                {tx.cta}
-              </Text>
-            </LinearGradient>
-          </Pressable>
+            <Text style={[styles.btnText, { fontSize: buttonSize, color: monoIcon(themeMode, '#121826', MONO_ICON.onLight) }]}>
+              {tx.cta}
+            </Text>
+          </DuoPressable>
         </Animated.View>
       </View>
     </Modal>
@@ -522,23 +519,19 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginBottom: 4,
   },
-  btn: {
+  btnWrap: {
     width: '100%',
-    borderRadius: 16,
     marginTop: 12,
-    overflow: 'hidden',
     shadowColor: '#F7BE4F',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.24,
     shadowRadius: 16,
     elevation: Platform.OS === 'android' ? 3 : 0,
   },
-  btnGradient: {
+  btn: {
+    borderRadius: 16,
     minHeight: 54,
-    alignItems: 'center',
-    justifyContent: 'center',
     paddingHorizontal: 16,
-    paddingVertical: 15,
   },
   btnText: {
     color: '#121826',

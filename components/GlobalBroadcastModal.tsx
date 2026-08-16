@@ -2,6 +2,7 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useMemo, useState } from 'react';
 import { Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
@@ -16,14 +17,23 @@ import {
   recordReviewPromoClick,
 } from '../app/global_broadcast_modal';
 import { triLang } from '../constants/i18n';
+import { monoIcon } from '../constants/monoIcon';
+import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
+import DuoPressable from './DuoPressable';
 
 type Props = {
   payload: GlobalBroadcastModalPayload | null;
   visible: boolean;
   onClose: () => void;
+  /**
+   * зачем: гибрид «Световод + Чекан» (.motion-mockups/phraseman-hybrid.html,
+   * семья «Полноэкранные») — сцена входит из света, контент каскадом. Боевой
+   * дефолт — 'classic', ничего не меняется без явного включения.
+   */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
-function GlobalBroadcastModal({ payload, visible, onClose }: Props) {
+function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'classic' }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -126,7 +136,7 @@ function GlobalBroadcastModal({ payload, visible, onClose }: Props) {
             overflow: 'visible',
           },
         ]}>
-          <Text style={styles.emoji}>{'📣'}</Text>
+          <Ionicons name="megaphone-outline" size={44} color={t.accent} style={styles.icon} />
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
           <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{body}</Text>
 
@@ -169,48 +179,44 @@ function GlobalBroadcastModal({ payload, visible, onClose }: Props) {
             </View>
           )}
 
-          <Pressable
+          <DuoPressable
             disabled={busy}
             onPress={() => { void (isReviewPromo ? openReview() : closeOnce()); }}
-            style={({ pressed }) => [
+            edgeColor={t.bgSurface2}
+            edgeHeight={4}
+            wrapStyle={styles.btnWrap}
+            style={[
               styles.btn,
               {
                 backgroundColor: t.accent,
                 borderRadius: 14,
-                borderWidth: 0,
-                overflow: 'visible',
-                opacity: pressed || busy ? 0.85 : 1,
               },
             ]}
           >
-            {false && busy ? (
-              <View />
-            ) : (
-              <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
-                {isReviewPromo && payload
-                  ? triLang(lang, {
-                    ru: payload.reviewCtaRu,
-                    uk: payload.reviewCtaUk,
-                    es: payload.reviewCtaEs,
-                    'pt-BR': payload.reviewCtaPtBr,
-                    vi: payload.reviewCtaVi,
-                    id: payload.reviewCtaId,
-                    tr: payload.reviewCtaTr,
-                    pl: payload.reviewCtaPl,
-                  })
-                  : triLang(lang, {
-                    ru: 'Закрыть',
-                    uk: 'Закрити',
-                    es: 'Entendido',
-                    'pt-BR': 'Entendi',
-                    vi: 'Đã hiểu',
-                    id: 'Mengerti',
-                    tr: 'Anladım',
-                    pl: 'Rozumiem',
-                  })}
-              </Text>
-            )}
-          </Pressable>
+            <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
+              {isReviewPromo && payload
+                ? triLang(lang, {
+                  ru: payload.reviewCtaRu,
+                  uk: payload.reviewCtaUk,
+                  es: payload.reviewCtaEs,
+                  'pt-BR': payload.reviewCtaPtBr,
+                  vi: payload.reviewCtaVi,
+                  id: payload.reviewCtaId,
+                  tr: payload.reviewCtaTr,
+                  pl: payload.reviewCtaPl,
+                })
+                : triLang(lang, {
+                  ru: 'Закрыть',
+                  uk: 'Закрити',
+                  es: 'Entendido',
+                  'pt-BR': 'Entendi',
+                  vi: 'Đã hiểu',
+                  id: 'Mengerti',
+                  tr: 'Anladım',
+                  pl: 'Rozumiem',
+                })}
+            </Text>
+          </DuoPressable>
           {isReviewPromo && (
             <Pressable
               disabled={busy}
@@ -256,8 +262,7 @@ const styles = StyleSheet.create({
     paddingBottom: 22,
     alignItems: 'center',
   },
-  emoji: {
-    fontSize: 44,
+  icon: {
     marginBottom: 6,
   },
   title: {
@@ -295,11 +300,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 18,
   },
-  btn: {
+  btnWrap: {
     width: '100%',
+    marginTop: 12,
+  },
+  btn: {
     borderRadius: 14,
     paddingVertical: 15,
-    marginTop: 12,
     alignItems: 'center',
     minHeight: 52,
   },

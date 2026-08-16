@@ -34,6 +34,8 @@ import { OLIVE_GRADIENTS, OLIVE_RICH } from '../constants/oliveTheme';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import DuoPressable from './DuoPressable';
+import PressableHybrid from './PressableHybrid';
 // Голос Компаса (канон): окно обновления говорит от первого лица, по-человечески —
 // не казённое «Доступно обновление», а «это Компас, я подрос, обнови меня».
 const TEXTS = {
@@ -313,52 +315,42 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
     <>
       <View pointerEvents="none" style={styles.ctaDivider} />
 
-      <Pressable
-        style={({ pressed }) => [
-          styles.updateBtn,
-          {
-            opacity: pressed ? 0.96 : 1,
-            shadowColor: palette.primaryShadow,
-            transform: [{ translateY: pressed ? 1 : 0 }],
-          },
-        ]}
+      <DuoPressable
         onPress={handleUpdate}
+        edgeColor={palette.primaryPressed[1]}
+        edgeHeight={6}
+        wrapStyle={[styles.updateBtnWrap, { shadowColor: palette.primaryShadow }]}
+        style={styles.updateBtn}
+        gradientColors={palette.primary}
+        gradientStart={{ x: 0.08, y: 0 }}
+        gradientEnd={{ x: 0.92, y: 1 }}
       >
-        {({ pressed }) => (
-          <LinearGradient
-            colors={pressed ? palette.primaryPressed : palette.primary}
-            start={{ x: 0.08, y: 0 }}
-            end={{ x: 0.92, y: 1 }}
-            style={styles.updateBtnFill}
-          >
-            <LinearGradient
-              colors={['rgba(255,255,255,0.28)', 'rgba(255,255,255,0)']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              style={styles.buttonSheen}
-            />
-            <Text
-              style={[styles.updateBtnText, { color: palette.primaryText, fontSize: Math.max(19, f.bodyLg + 1) }]}
-              numberOfLines={2}
-            >
-              {tx.update}
-            </Text>
-          </LinearGradient>
-        )}
-      </Pressable>
+        <LinearGradient
+          colors={['rgba(255,255,255,0.28)', 'rgba(255,255,255,0)']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1 }}
+          style={styles.buttonSheen}
+          pointerEvents="none"
+        />
+        <Text
+          style={[styles.updateBtnText, { color: palette.primaryText, fontSize: Math.max(19, f.bodyLg + 1) }]}
+          numberOfLines={2}
+        >
+          {tx.update}
+        </Text>
+      </DuoPressable>
 
       {!!onClose && (
-        <Pressable
-          style={({ pressed }) => [
+        <PressableHybrid
+          onPress={onClose}
+          variant="secondary"
+          style={[
             styles.closeBtn,
             {
               borderColor: palette.secondaryBorder,
               backgroundColor: palette.secondaryBg,
-              opacity: pressed ? 0.82 : 1,
-              transform: [{ translateY: pressed ? 1 : 0 }],
             },
           ]}
-          onPress={onClose}
         >
           <Text
             style={[styles.closeBtnText, { color: palette.secondaryText, fontSize: Math.max(15, f.body) }]}
@@ -366,7 +358,7 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
           >
             {tx.close}
           </Text>
-        </Pressable>
+        </PressableHybrid>
       )}
     </>
   );
@@ -503,24 +495,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.085)',
     marginBottom: 22,
   },
-  updateBtn: {
+  updateBtnWrap: {
     width: '100%',
-    minHeight: 66,
-    borderRadius: 21,
-    alignItems: 'center',
-    justifyContent: 'center',
     marginBottom: 14,
-    overflow: 'hidden',
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.18,
     shadowRadius: 18,
     ...noAndroidOutline,
   },
-  updateBtnFill: {
+  updateBtn: {
     minHeight: 66,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: 21,
     paddingHorizontal: 18,
   },
   buttonSheen: {

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, StyleSheet, Text, View } from 'react-native';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { pickAppMessageText, type AppMessageWithState } from '../app/app_messages';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -8,6 +8,7 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
+import DuoPressable from './DuoPressable';
 
 type Props = {
   message: AppMessageWithState | null;
@@ -50,15 +51,18 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
   );
 
   const ctaSlot = (
-    <Pressable
+    <DuoPressable
       accessibilityRole="button"
       accessibilityLabel={triLang(lang, { ru: 'Закрыть сообщение', uk: 'Закрити повідомлення', es: 'Cerrar mensaje', 'pt-BR': 'Fechar mensagem', vi: 'Đóng tin nhắn', id: 'Tutup pesan', tr: 'Mesajı kapat', pl: 'Zamknij wiadomość' })}
       disabled={closing}
       onPress={() => { void close(); }}
-      style={({ pressed }) => [styles.button, { backgroundColor: t.accent, opacity: pressed || closing ? 0.82 : 1 }]}
+      edgeColor={t.bgSurface2}
+      edgeHeight={4}
+      wrapStyle={styles.buttonWrap}
+      style={[styles.button, { backgroundColor: t.accent }]}
     >
       <Text style={[styles.buttonText, { color: t.correctText, fontSize: f.bodyLg }]}>{triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}</Text>
-    </Pressable>
+    </DuoPressable>
   );
 
   return (
@@ -106,7 +110,8 @@ const styles = StyleSheet.create({
   },
   title: { fontWeight: '800', textAlign: 'center' },
   body: { marginTop: 12, lineHeight: 23, textAlign: 'center' },
-  button: { marginTop: 22, borderRadius: 14, minHeight: 50, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
+  buttonWrap: { marginTop: 22 },
+  button: { borderRadius: 14, minHeight: 50, paddingHorizontal: 18 },
   buttonText: { fontWeight: '800' },
 });
 

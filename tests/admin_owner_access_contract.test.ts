@@ -42,6 +42,25 @@ describe('admin owner access contract', () => {
     expect(legacy).toContain('signInWithRedirect');
   });
 
+  test('отказ по claim НЕ разлогинивает — иначе выгорает автовход', () => {
+    // Корень инцидента 2026-08-16: при отсутствии claim стоял signOut, и каждый
+    // заход уничтожал сохранённую сессию. Автовход не восстанавливался даже
+    // после возврата claim — сохранять было нечего. Сессию трогать нельзя.
+    // Блок отказа — последняя проверка claim в onAuthStateChanged: от неё до
+    // возврата из обработчика. lastIndexOf, потому что раньше в файле есть
+    // такая же проверка внутри кнопки повторной проверки.
+    const denyStart = legacy.lastIndexOf("if (!tr.claims || tr.claims.admin !== true) {");
+    const denyBlock = legacy.slice(denyStart, legacy.indexOf('showAdminRetryClaimButton(true)', denyStart) + 40);
+    expect(denyStart).toBeGreaterThan(0);
+    expect(denyBlock).not.toContain('signOut(auth)');
+    expect(denyBlock).toContain('showAdminRetryClaimButton(true)');
+  });
+
+  test('есть кнопка повторной проверки прав без перезахода', () => {
+    expect(legacy).toContain('function showAdminRetryClaimButton');
+    expect(legacy).toContain('Проверить доступ снова');
+  });
+
   test('закон о доступе владельца лежит рядом с админкой', () => {
     const doc = fs.readFileSync(ownerDocPath, 'utf8');
     expect(doc).toContain('badloar@gmail.com');

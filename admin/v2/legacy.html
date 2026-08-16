@@ -15300,6 +15300,52 @@
     await handleAdminGoogleSignIn();
   };
 
+  // зачем: claim admin возвращают снаружи (scripts/set_admin_claim.mjs). Без этой
+  // кнопки владельцу оставалось бы гадать, когда перезагружать страницу. Кнопка
+  // перечитывает токен принудительно и пускает внутрь сразу, не трогая сессию.
+  function showAdminRetryClaimButton(visible) {
+    let btn = document.getElementById('admin-retry-claim');
+    if (!visible) {
+      if (btn) btn.style.display = 'none';
+      return;
+    }
+    if (!btn) {
+      const host = document.getElementById('admin-signin-google')?.parentElement;
+      if (!host) return;
+      btn = document.createElement('button');
+      btn.id = 'admin-retry-claim';
+      btn.type = 'button';
+      btn.textContent = 'Проверить доступ снова';
+      btn.className = document.getElementById('admin-signin-switch')?.className || '';
+      btn.addEventListener('click', async () => {
+        const user = auth.currentUser;
+        if (!user) { setLoginError('Сессия не найдена — войдите с Google.'); return; }
+        btn.disabled = true;
+        setLoginError('');
+        setAdminSignInBusy(true, 'ПРОВЕРЯЕМ ПРАВА...');
+        try {
+          const fresh = await user.getIdTokenResult(true);
+          if (fresh?.claims?.admin === true) {
+            showAdminRetryClaimButton(false);
+            setAdminSignInBusy(false);
+            showAdminAuthenticatedShell();
+            const st = document.getElementById('status-text');
+            if (st) st.textContent = user.email || user.uid;
+            startAdminApp();
+            return;
+          }
+          setLoginError('Метка администратора всё ещё не выдана этому аккаунту.');
+        } catch (e) {
+          setLoginError('Не удалось перечитать права: ' + (e?.message || e));
+        }
+        setAdminSignInBusy(false);
+        btn.disabled = false;
+      });
+      host.appendChild(btn);
+    }
+    btn.style.display = 'block';
+  }
+
   window.adminSignOut = function adminSignOut() {
     setLoginError('');
     _adminAppStarted = false;
@@ -15519,11 +15565,25 @@
       }
     }
     if (!tr.claims || tr.claims.admin !== true) {
-      await signOut(auth);
+      // зачем: раньше здесь стоял signOut — и он выжигал автовход владельца.
+      // Пока claim admin был стёрт снаружи (инцидент 2026-08-16), КАЖДЫЙ заход
+      // восстанавливал сессию из IndexedDB, не находил claim и сносил её. Даже
+      // после возврата claim автовхода не было: сохранять стало нечего. То же
+      // самое происходило при сетевом сбое и сразу после signInWithRedirect,
+      // когда claim в свежем токене ещё не подъехал.
+      // Теперь сессию НЕ трогаем: она переживает и потерю claim, и обрыв сети.
+      // Достаточно обновить страницу — токен перечитается сам.
+      // Порядок восстановления доступа: admin/v2/OWNER_ACCESS.md
       setAdminSignInBusy(false);
-      setLoginError('У этого Google-аккаунта нет доступа к админке. Войдите под аккаунтом администратора или обратитесь к владельцу.');
+      showAdminLoginShell();
+      setLoginError(
+        'Вход выполнен как ' + (user.email || user.uid) +
+        ', но у аккаунта нет метки администратора. Сессия сохранена — верните claim admin и нажмите «Проверить доступ снова».'
+      );
+      showAdminRetryClaimButton(true);
       return;
     }
+    showAdminRetryClaimButton(false);
     setAdminSignInBusy(false);
     showAdminAuthenticatedShell();
     const st = document.getElementById('status-text');

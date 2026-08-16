@@ -38,4 +38,61 @@ describe('Phraseman support communication Bible', () => {
     expect(SUPPORT_COMMUNICATION_BIBLE_PROMPT).toMatch(/never rude/i);
     expect(SUPPORT_COMMUNICATION_BIBLE_PROMPT).toMatch(/internal tools/i);
   });
+
+  // зачем этот блок (ЖИВОЙ прогон 25 писем через модель, 2026-08-16):
+  // карта решений показывала «отвечает сам» и выглядела здоровой, но сами
+  // тексты вскрыли два дефекта, которые никакая проверка не ловила.
+  // Урок: маршрутизацию и текст надо проверять отдельно.
+  describe('язык ответа совпадает с языком письма', () => {
+    test('русский ответ англичанину — нарушение', () => {
+      // Реальный ответ модели на письмо «Hi! Where should I begin?».
+      expect(findSupportHumanVoiceViolations(
+        'Здравствуйте! Рад, что вы начали пользоваться приложением.',
+        'Hi! I just installed the app. Where should I begin?',
+      )).toContain('wrong_language');
+    });
+
+    test('русский ответ испанцу — нарушение', () => {
+      expect(findSupportHumanVoiceViolations(
+        'Здравствуйте! Обычно советуем 20-30 минут в день.',
+        '¡Hola! ¿Cuántos minutos al día recomiendan estudiar?',
+      )).toContain('wrong_language');
+    });
+
+    test('совпадающий язык нарушением не считается', () => {
+      expect(findSupportHumanVoiceViolations(
+        'Thank you so much for your kind words! We are glad to hear it.',
+        'Hi! Thanks a lot, the app is great!',
+      )).not.toContain('wrong_language');
+      expect(findSupportHumanVoiceViolations(
+        'Спасибо большое за тёплые слова!',
+        'Спасибо! Очень нравится приложение.',
+      )).not.toContain('wrong_language');
+    });
+
+    test('нераспознанный язык ложных срабатываний не даёт', () => {
+      // зачем: короткое «ok» или эмодзи не должны ломать проверку.
+      expect(findSupportHumanVoiceViolations('👍', '!!!')).not.toContain('wrong_language');
+    });
+  });
+
+  describe('поддержка говорит «мы», а не «я»', () => {
+    test('личное обещание помощи — нарушение', () => {
+      // Реальные формулировки из живого прогона: модель обещала личную
+      // помощь от лица одного человека, которого за письмом нет.
+      for (const reply of [
+        'Здравствуйте! Если понадобится, напишите мне, я помогу разобраться.',
+        'Обнулить прогресс можно, написав мне сюда.',
+      ]) {
+        expect(findSupportHumanVoiceViolations(reply, 'вопрос')).toContain('first_person_singular');
+      }
+    });
+
+    test('ответ от «мы» проходит', () => {
+      expect(findSupportHumanVoiceViolations(
+        'Здравствуйте! Мы поможем разобраться — напишите нам в ответ на это письмо.',
+        'вопрос',
+      )).not.toContain('first_person_singular');
+    });
+  });
 });

@@ -6,7 +6,9 @@ export type SupportHumanVoiceViolation =
   | 'blanket_diagnostic_request'
   | 'irrelevant_security_warning'
   | 'mixed_language_signature'
-  | 'too_many_questions';
+  | 'too_many_questions'
+  | 'wrong_language'
+  | 'first_person_singular';
 
 const INTERNAL_PROCESS_LANGUAGE = /(?:\b(?:snapshot|repository|repo|commit|sha|branch|pull request|build artifact|deployment|deploy|evidence|grounded|fingerprint|revision|prompt|reviewer|council|model|firestore|cron|source code|codebase)\b|(?:сним(?:ок|ка|ке|ком|ку|ки|ков)(?:\s+(?:продукта|сборки|репозитория))?|репозитор(?:ий|ия|ии)|коммит|ветк[аи]|ревизи[яи]|отпечаток|доказательств[а]?|исходн(?:ый|ого)\s+код|кодовая\s+база|модел[ьи]|промпт|ревьюер|проверяющ(?:ий|ая)|совет\s+агентов))/iu;
 const GENERIC_RECEIPT = /(?:мы получили ваше сообщение|we (?:have )?received your message|hemos recibido tu mensaje)/iu;
@@ -31,6 +33,33 @@ function questionCount(text: string): number {
   return (text.match(/[?？]/g) ?? []).length;
 }
 
+/**
+ * На каком языке написан текст.
+ *
+ * зачем (живой прогон 25 писем, 2026-08-16): модель отвечала ПО-РУССКИ на
+ * английское «Where should I begin?» и на испанское «¿Cuántos minutos?».
+ * Правило «отвечай на языке клиента» в своде было, но модель его молча
+ * игнорировала, а проверки на это не существовало вовсе — ответ уходил бы
+ * человеку, который его не поймёт.
+ */
+function detectLanguage(text: string): 'ru' | 'es' | 'en' | 'unknown' {
+  const t = String(text ?? '');
+  if (/[а-яё]/iu.test(t)) return 'ru';
+  if (/[áéíóúñ¿¡]/iu.test(t)) return 'es';
+  if (/[a-z]/i.test(t)) return 'en';
+  return 'unknown';
+}
+
+/**
+ * Поддержка пишет от «мы», а не от «я».
+ *
+ * зачем: в живом прогоне модель отвечала «Рад, что вы начали», «я помогу»,
+ * «пишите мне» — обещание личной помощи от лица одного человека. Это и
+ * ложное обещание (никто конкретный не закреплён за письмом), и разрыв с
+ * голосом продукта, где поддержка говорит от команды.
+ */
+const FIRST_PERSON_SINGULAR = /(?:^|[\s,.!?])(?:я\s+(?:помогу|подскажу|проверю|рад|рада|всегда)|мне\s+сюда|напишите\s+мне|пишите\s+мне|скажите\s+мне|i\s+(?:will\s+help|can\s+help|am\s+glad|will\s+check))/iu;
+
 export function findSupportHumanVoiceViolations(
   reply: unknown,
   issue: unknown = '',
@@ -45,6 +74,15 @@ export function findSupportHumanVoiceViolations(
   if (!securityRelevant && SECURITY_WARNING.test(text)) violations.push('irrelevant_security_warning');
   if (/[а-яёіїєґ]/iu.test(text) && EN_SIGNATURE_IN_CYRILLIC.test(text)) violations.push('mixed_language_signature');
   if (questionCount(text) > 2) violations.push('too_many_questions');
+  // зачем сверять язык с письмом клиента (живой прогон 2026-08-16): модель
+  // отвечала по-русски англичанину и испанцу. Проверяем только когда язык
+  // письма распознан уверенно — иначе короткое «ок» ловилось бы ложно.
+  const issueLang = detectLanguage(customerIssue);
+  const replyLang = detectLanguage(text);
+  if (issueLang !== 'unknown' && replyLang !== 'unknown' && issueLang !== replyLang) {
+    violations.push('wrong_language');
+  }
+  if (FIRST_PERSON_SINGULAR.test(text)) violations.push('first_person_singular');
   return Object.freeze([...new Set(violations)]);
 }
 

@@ -312,11 +312,29 @@ const INTERNAL_LEAK = /(?:functions\/src|(?:app|components|constants)\/[\w./-]+\
  */
 const PRODUCT_PROMISE = /(?:\b(?:will be added|coming soon|we (?:will|plan to)|in the next (?:update|release))\b|(?:добав(?:им|ится|лено)|скоро|планиру(?:ем|ется)|в следующ(?:ем|ей) (?:обновлени|верси)|уже работает|исправ(?:им|лено))|(?:pr[oó]ximamente|lo a[ñn]adiremos))/iu;
 
+/**
+ * Утверждение о том, что функция есть или её нет.
+ *
+ * зачем (живой прогон 25 писем, 2026-08-16): на вопрос «можно ли заниматься
+ * офлайн?» модель ответила «к сожалению, не получится, все материалы
+ * требуют подключения» — выдумка о продукте, поданная уверенно. И этот
+ * ответ ПРОШЁЛ мою проверку «не утверждает о продукте», потому что в нём
+ * нет ни одного слова-концепта: «интернет» и «подключение» в словаре
+ * концептов отсутствуют. То есть дыру открыл я сам предыдущей правкой.
+ *
+ * Ловим саму форму утверждения о наличии/отсутствии возможности, а не
+ * конкретные слова функций — список функций всегда будет неполным.
+ */
+const CAPABILITY_CLAIM = /(?:\b(?:is|are|isn'?t|aren'?t|can|cannot|can'?t|does|doesn'?t|will|won'?t)\s+(?:not\s+)?(?:be\s+)?(?:available|supported|possible|work|works|working)\b|(?:не\s+)?(?:получится|поддерживается|доступн[оаы]|возможн[оаы]|работает|предусмотрен[оаы])|тре(?:бует|буют)\s+подключени|(?:no|sin)\s+(?:funciona|disponible))/iu;
+
 export function replyMakesNoProductClaim(reply: unknown): boolean {
   const text = String(reply ?? '').trim();
   if (!text) return false;
   // Обещания и сроки — всегда факт о продукте, даже без концептов.
   if (PRODUCT_PROMISE.test(text)) return false;
+  // Утверждение «это работает / это невозможно» — тоже факт о продукте,
+  // даже когда названия функции в словаре концептов нет (случай «офлайн»).
+  if (CAPABILITY_CLAIM.test(text)) return false;
   return extractSupportConcepts(text).length === 0;
 }
 

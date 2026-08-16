@@ -591,20 +591,18 @@ export default function CollectionListView({
                 }
               }, 100);
             }}
-            ListEmptyComponent={
-              searchActive ? (
-                <View style={{ alignItems: 'center', paddingVertical: 48, gap: 8 }}>
-                  <Ionicons name="search-outline" size={40} color={t.textGhost} />
-                  <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
-                    {triLang(lang, {
-                      ru: 'Ничего не найдено',
-                      uk: 'Нічого не знайдено',
-                      es: 'No se encontró nada',
-                    })}
-                  </Text>
-                </View>
-              ) : null
-            }
+            /**
+             * FIX (владелец, 2026-08-16) «сначала одно, потом ничего не найдено,
+             * потом нет карточек»: пустых состояний было ДВА, и на входе они
+             * показывались друг за другом. Пока идёт первая загрузка, isEmpty
+             * ещё false, поэтому монтировался список — и он рисовал вот эту
+             * заглушку; следом экран целиком заменялся на CollectionEmptyState.
+             *
+             * Пустое состояние теперь ОДНО и живёт в контейнере
+             * (flashcards_collection.tsx → CollectionEmptyState). Здесь — null:
+             * список ничего не рисует, когда рисовать нечего, и моргать нечему.
+             */
+            ListEmptyComponent={null}
             ListFooterComponent={(
               <View>
                 {hiddenByLimitCount > 0 && (
@@ -756,6 +754,7 @@ export function CollectionEmptyState({
   f,
   emptyTitle,
   emptySub,
+  searchActive = false,
   loadError,
   onLeave,
   onRetry,
@@ -765,15 +764,22 @@ export function CollectionEmptyState({
   f: Record<string, number>;
   emptyTitle: string;
   emptySub: string;
+  /** Пустой РЕЗУЛЬТАТ ПОИСКА, а не пустая коллекция: другой значок, без выхода. */
+  searchActive?: boolean;
   loadError: boolean;
   onLeave: () => void;
-  onRetry: () => void;
+  onRetry: () => void | Promise<void>;
 }) {
   return (
     <View style={st.centerState}>
-      <Ionicons name="bookmark-outline" size={56} color={t.textGhost} />
+      <Ionicons name={searchActive ? 'search-outline' : 'bookmark-outline'} size={56} color={t.textGhost} />
       <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginTop: 12 }}>{emptyTitle}</Text>
-      <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 6 }}>{emptySub}</Text>
+      {emptySub ? (
+        <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 6 }}>{emptySub}</Text>
+      ) : null}
+      {/* зачем: при пустом поиске «К выбору категорий» — ложный выход: человек
+          хочет очистить запрос, а не покинуть раздел. Ссылку тут не показываем. */}
+      {searchActive ? null : (
       <TouchableOpacity
         onPress={onLeave}
         style={{ marginTop: 14, paddingHorizontal: 12, paddingVertical: 8 }}
@@ -786,9 +792,10 @@ export function CollectionEmptyState({
           })}
         </Text>
       </TouchableOpacity>
+      )}
       {loadError && (
         <TouchableOpacity
-          onPress={onRetry}
+          onPress={() => { void onRetry(); }}
           style={{ marginTop: 16, backgroundColor: t.bgSurface, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 12, borderWidth: 1, borderColor: t.border }}
         >
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>

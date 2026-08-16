@@ -5,7 +5,7 @@ export const STR = {
   ru: {
     title: 'Карточки',
     hubTitle: 'Жемчужины',
-    empty: 'Нет карточек', emptySub: '',
+    empty: 'Нет карточек', emptySub: '', nothingFound: 'Ничего не найдено',
     done: 'Все карточки просмотрены!', doneSub: 'Отличная работа', restart: 'Начать заново',
     cardOf: (a: number, b: number) => `${a} / ${b}`,
     tapFlip: 'Нажми чтобы перевернуть', delete: 'Удалить',
@@ -22,7 +22,7 @@ export const STR = {
   uk: {
     title: 'Картки',
     hubTitle: 'Жемчужини',
-    empty: 'Немає карток', emptySub: '',
+    empty: 'Немає карток', emptySub: '', nothingFound: 'Нічого не знайдено',
     done: 'Всі картки переглянуто!', doneSub: 'Чудова робота', restart: 'Почати знову',
     cardOf: (a: number, b: number) => `${a} / ${b}`,
     tapFlip: 'Натисни щоб перевернути', delete: 'Видалити',
@@ -39,7 +39,7 @@ export const STR = {
   es: {
     title: 'Tarjetas',
     hubTitle: 'Perlas',
-    empty: 'No hay tarjetas',
+    empty: 'No hay tarjetas', nothingFound: 'No se encontró nada',
     emptySub: '',
     done: '¡Has visto todas las tarjetas!',
     doneSub: 'Buen trabajo',
@@ -68,7 +68,7 @@ export const STR = {
   'pt-BR': {
     title: 'Cartões',
     hubTitle: 'Perlas',
-    empty: 'Nenhum cartão',
+    empty: 'Nenhum cartão', nothingFound: 'Nada encontrado',
     emptySub: '',
     done: 'Todos os cartões foram vistos!',
     doneSub: 'Bom trabalho',
@@ -97,7 +97,7 @@ export const STR = {
   vi: {
     title: 'Thẻ',
     hubTitle: 'Mảnh',
-    empty: 'Không có thẻ',
+    empty: 'Không có thẻ', nothingFound: 'Không tìm thấy gì',
     emptySub: '',
     done: 'Bạn đã xem hết thẻ!',
     doneSub: 'Làm tốt lắm',
@@ -126,7 +126,7 @@ export const STR = {
   'id': {
     title: 'Kartu',
     hubTitle: 'Shard',
-    empty: 'Tidak ada kartu',
+    empty: 'Tidak ada kartu', nothingFound: 'Tidak ditemukan',
     emptySub: '',
     done: 'Semua kartu sudah dilihat!',
     doneSub: 'Kerja bagus',
@@ -155,7 +155,7 @@ export const STR = {
   tr: {
     title: 'Kartlar',
     hubTitle: 'Parçalar',
-    empty: 'Kart yok',
+    empty: 'Kart yok', nothingFound: 'Hiçbir şey bulunamadı',
     emptySub: '',
     done: 'Tüm kartlar görüldü!',
     doneSub: 'İyi iş',
@@ -184,7 +184,7 @@ export const STR = {
   pl: {
     title: 'Karty',
     hubTitle: 'Odłamki',
-    empty: 'Brak kart',
+    empty: 'Brak kart', nothingFound: 'Nic nie znaleziono',
     emptySub: '',
     done: 'Wszystkie karty obejrzane!',
     doneSub: 'Dobra robota',

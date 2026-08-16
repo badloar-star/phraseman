@@ -747,12 +747,17 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
 
         {isEmpty ? (
           <ContentWrap>
+            {/* зачем: ЕДИНСТВЕННОЕ пустое состояние экрана. Раньше их было два —
+                своё у списка и это; на входе они показывались друг за другом и
+                читались как моргание. Поиск без результата — тот же блок, только
+                с другой подписью, а не отдельная заглушка. */}
             <CollectionEmptyState
               lang={strLang}
               t={t}
               f={f}
-              emptyTitle={s.empty}
-              emptySub={s.emptySub}
+              emptyTitle={searchActive ? s.nothingFound : s.empty}
+              emptySub={searchActive ? '' : s.emptySub}
+              searchActive={searchActive}
               loadError={loadError}
               onLeave={leaveCollection}
               onRetry={loadAll}

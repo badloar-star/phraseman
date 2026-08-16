@@ -17,6 +17,15 @@ export const SUPPORT_LOOKBACK_MS = 7 * 24 * 60 * 60 * 1_000;
 /** Верхняя граница выборки: обращений на порядки меньше, но защита нужна. */
 export const MAX_SUPPORT_DOCS = 500;
 
+/**
+ * Сколько ссылок на письма отдавать департаменту.
+ *
+ * зачем предел: это цели для действия, а не выгрузка ящика. Джарвису всё
+ * равно разрешено не больше трёх действий за прогон, а длинный список
+ * только раздувает документ решения и его хранение.
+ */
+export const MAX_ACTIONABLE_IDS = 10;
+
 /** Gmail опрашивается раз в час; через 90 минут без sync источник уже нельзя считать живым. */
 export const SUPPORT_SYNC_MAX_AGE_MS = 90 * 60 * 1_000;
 
@@ -32,6 +41,18 @@ export interface FetchSupportSourceResult {
   readonly actionableWaitingCount?: number | null;
   /** Самое старое письмо только в актуальной очереди. */
   readonly oldestActionableWaitingMs?: number | null;
+  /**
+   * Идентификаторы писем в актуальной очереди, от самого старого.
+   *
+   * зачем (владелец 2026-08-16): раньше департамент отдавал только числа,
+   * поэтому Джарвис мог сказать «12 писем ждут», но не мог ни пометить их,
+   * ни подготовить черновик — целей для действия не существовало.
+   *
+   * зачем бесплатно: id берётся из уже прочитанной страницы (`doc.id`), это
+   * имя документа, а не поле — ни одного дополнительного чтения Firestore
+   * и ни одного нового поля в проекции. Переписка по-прежнему не читается.
+   */
+  readonly actionableWaitingIds?: readonly string[];
   /** Неразмеченный legacy-хвост: виден по запросу, но не выдаётся за живой SLA. */
   readonly legacyWaitingCount?: number | null;
   /** Отвеченные письма за окно. */
@@ -90,6 +111,11 @@ export async function fetchSupportSource(input: FetchSupportSourceInput): Promis
     let actionableWaitingCount = 0;
     let oldestActionableWaitingMs: number | null = null;
     let legacyWaitingCount = 0;
+    /**
+     * Ссылки на письма в актуальной очереди — цели для действий Джарвиса.
+     * Собираются с возрастом, чтобы отдать самые старые первыми.
+     */
+    const actionableWaiting: { id: string; waited: number }[] = [];
     let answeredCount = 0;
     const replyDurations: number[] = [];
 
@@ -115,6 +141,9 @@ export async function fetchSupportSource(input: FetchSupportSourceInput): Promis
           // verified refund остаётся важным, а свежий неразмеченный spam — нет.
           if (data.triageState === 'kept') {
             actionableWaitingCount += 1;
+            // зачем только здесь: kept — единственное доказательство, что
+            // письмо от живого человека. Действовать по неразмеченному нельзя.
+            actionableWaiting.push({ id: doc.id, waited });
             if (oldestActionableWaitingMs === null || waited > oldestActionableWaitingMs) {
               oldestActionableWaitingMs = waited;
             }
@@ -145,6 +174,15 @@ export async function fetchSupportSource(input: FetchSupportSourceInput): Promis
       oldestWaitingMs,
       actionableWaitingCount,
       oldestActionableWaitingMs,
+      // зачем ограничение: это ссылки для действия, а не выгрузка ящика.
+      // Больше десяти целей за прогон Джарвису всё равно не разрешено
+      // (потолок действий), а длинный список только раздувает документ.
+      actionableWaitingIds: Object.freeze(
+        actionableWaiting
+          .sort((a, b) => b.waited - a.waited)
+          .slice(0, MAX_ACTIONABLE_IDS)
+          .map((item) => item.id),
+      ),
       legacyWaitingCount,
       answeredCount,
       medianReplyMs: median(replyDurations),

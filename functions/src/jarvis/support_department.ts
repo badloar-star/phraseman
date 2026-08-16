@@ -3,6 +3,16 @@ import { buildDecision, normalizeEvidence, type Decision, type DecisionTrigger, 
 import type { FetchSupportSourceResult } from './support_firestore_fetcher';
 
 /**
+ * Куда указывают адреса действий этого департамента.
+ *
+ * зачем копией, а не импортом из support_inbox.ts: тот модуль тянет за собой
+ * почтовый клиент и секреты SMTP, а департамент обязан оставаться чистым —
+ * его правила проверяются тестами без сети. Имя охраняется стражем контракта
+ * (jarvis_data_contract_guard), поэтому разойтись молча оно не может.
+ */
+const SUPPORT_INBOX_COLLECTION = 'support_inbox';
+
+/**
  * Департамент «Скорость поддержки» — следит, чтобы живые люди не ждали ответа
  * днями.
  *
@@ -154,6 +164,14 @@ export function runSupportDepartment(input: RunSupportDepartmentInput): RunSuppo
         : 'Очередь поддержки остаётся разобранной',
     rollback: 'Департамент только наблюдает; автоматические ответы выключаются в Gmail Support без изменения данных письма',
     evidence,
+    // зачем адреса (владелец 2026-08-16): раньше решение содержало только
+    // числа — «12 писем ждут». Пометить эти письма или подготовить черновик
+    // было физически нечем. Идентификатор документа — не переписка, PII не
+    // утекает: fetcher по-прежнему не читает ни темы, ни тела, ни адресов.
+    actionTargets: (input.fetch.actionableWaitingIds ?? []).map((docId) => ({
+      collection: SUPPORT_INBOX_COLLECTION,
+      docId,
+    })),
     nowMs: input.nowMs,
   });
 

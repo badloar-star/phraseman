@@ -26,6 +26,9 @@ function makeCollection(docs: readonly FakeDoc[], failing = false) {
       return {
         docs: docs.slice(startIndex, startIndex + pageLimit).map((data, offset) => ({
           index: startIndex + offset,
+          // зачем id: департамент отдаёт ссылки на конкретные письма,
+          // чтобы по находке можно было действовать, а не только считать.
+          id: (data as { readonly id?: string }).id ?? `doc-${startIndex + offset}`,
           data: () => data,
         })),
       };
@@ -241,5 +244,76 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
     expect(collection.selectedFields.flat()).not.toEqual(expect.arrayContaining([
       'fromEmail', 'fromName', 'subject', 'bodyText',
     ]));
+  });
+
+  describe('ссылки на конкретные письма', () => {
+    // зачем (владелец 2026-08-16): департаменты возвращали только сводные
+    // числа, поэтому Джарвис мог сказать «12 писем ждут», но не мог ни
+    // пометить их, ни подготовить черновик — целей для действия не было.
+    // doc.id берётся из уже прочитанной страницы: ни одного лишнего чтения.
+
+    test('отдаёт id самых старых ожидающих писем', async () => {
+      const result = await fetchSupportSource({
+        collection: queryOf([
+          letter({ id: 'old', receivedAtMs: NOW - 50 * HOUR }),
+          letter({ id: 'fresh', receivedAtMs: NOW - 3 * HOUR }),
+        ]),
+        nowMs: NOW,
+      });
+      expect(result.actionableWaitingIds).toEqual(['old', 'fresh']);
+    });
+
+    test('сначала самое старое — с него и начинают разбор', async () => {
+      const result = await fetchSupportSource({
+        collection: queryOf([
+          letter({ id: 'middle', receivedAtMs: NOW - 20 * HOUR }),
+          letter({ id: 'oldest', receivedAtMs: NOW - 90 * HOUR }),
+          letter({ id: 'newest', receivedAtMs: NOW - 2 * HOUR }),
+        ]),
+        nowMs: NOW,
+      });
+      expect(result.actionableWaitingIds?.[0]).toBe('oldest');
+    });
+
+    test('в список не попадают отвеченные и машинные письма', async () => {
+      const result = await fetchSupportSource({
+        collection: queryOf([
+          letter({ id: 'waiting', receivedAtMs: NOW - 10 * HOUR }),
+          letter({ id: 'answered', receivedAtMs: NOW - 10 * HOUR, status: 'answered', repliedAt: NOW - 9 * HOUR }),
+          letter({ id: 'robot', receivedAtMs: NOW - 10 * HOUR, mailCategory: 'automated' }),
+        ]),
+        nowMs: NOW,
+      });
+      expect(result.actionableWaitingIds).toEqual(['waiting']);
+    });
+
+    test('неразмеченный хвост не выдаётся за очередь к разбору', async () => {
+      // зачем: triageState=kept — единственное доказательство, что письмо
+      // от живого человека. Действовать по неразмеченному нельзя.
+      const result = await fetchSupportSource({
+        collection: queryOf([
+          letter({ id: 'legacy', receivedAtMs: NOW - 40 * HOUR, triageState: undefined }),
+        ]),
+        nowMs: NOW,
+      });
+      expect(result.actionableWaitingIds ?? []).toEqual([]);
+    });
+
+    test('список ограничен — это ссылки для действия, а не выгрузка ящика', async () => {
+      const many = Array.from({ length: 40 }, (_, i) =>
+        letter({ id: `m${i}`, receivedAtMs: NOW - (40 - i) * HOUR }));
+      const result = await fetchSupportSource({ collection: queryOf(many), nowMs: NOW });
+      expect(result.actionableWaitingIds!.length).toBeLessThanOrEqual(10);
+    });
+
+    test('сбор ссылок не добавляет ни одного читаемого поля', async () => {
+      // зачем: fetcher намеренно не читает переписку. doc.id — это имя
+      // документа, а не поле, поэтому проекция обязана остаться прежней.
+      const collection = makeCollection([letter()]);
+      await fetchSupportSource({ collection: collection.query, nowMs: NOW });
+      expect(collection.selectedFields[0]).toEqual([
+        'receivedAtMs', 'status', 'repliedAt', 'mailCategory', 'triageState',
+      ]);
+    });
   });
 });

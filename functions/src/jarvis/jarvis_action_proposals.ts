@@ -23,6 +23,16 @@ import { JARVIS_ACTIONS_MAX_PER_RUN, type ProposedActionInput } from './jarvis_a
 const MAX_TITLE_LENGTH = 200;
 const OUTBOX_COLLECTION = 'jarvis_github_outbox';
 
+/**
+ * Какую пометку ставить на найденные документы.
+ *
+ * зачем одна из словаря, а не по смыслу находки: тег, выбранный моделью, —
+ * это запись произвольного текста в чужую коллекцию, тот же вектор, что
+ * инъекция, только через админку. Словарь — в jarvis_actions.ALLOWED_TAGS,
+ * валидатор отвергает всё, чего в нём нет.
+ */
+const REVIEW_TAG = 'jarvis:needs-review';
+
 export interface ProposeActionsForDecisionsInput {
   readonly decisions: readonly Decision[];
   readonly nowMs: number;
@@ -82,6 +92,21 @@ export function proposeActionsForDecisions(
       },
       nowMs: input.nowMs,
     });
+
+    // зачем пометки (владелец 2026-08-16): у решения появились адреса
+    // конкретных документов — значит появилась цель, по которой можно
+    // действовать, а не только считать. Пометка обратима одним кликом
+    // и ничего не ломает: она добавляет тег из словаря, не трогая данные.
+    for (const target of decision.actionTargets ?? []) {
+      if (proposals.length >= JARVIS_ACTIONS_MAX_PER_RUN) break;
+      proposals.push({
+        decision,
+        kind: 'admin_tag',
+        target: { collection: target.collection, docId: target.docId },
+        payload: { tag: REVIEW_TAG },
+        nowMs: input.nowMs,
+      });
+    }
   }
 
   return Object.freeze(proposals);

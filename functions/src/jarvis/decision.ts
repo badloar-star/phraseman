@@ -37,6 +37,22 @@ export type DecisionStatus =
   | 'rejected'
   | 'expired';
 
+/**
+ * Сколько целей действия помещается в одно решение.
+ *
+ * зачем предел: решение с сотней адресов — это не решение, а выгрузка базы.
+ * Джарвису всё равно разрешено не больше трёх действий за прогон.
+ */
+export const MAX_ACTION_TARGETS = 10;
+
+/** Адрес документа, по которому применимо действие. */
+export interface DecisionActionTarget {
+  readonly collection: string;
+  readonly docId: string;
+}
+
+export type JarvisActionTargetInput = DecisionActionTarget;
+
 export interface EvidenceInput {
   readonly sourceId: string;
   readonly state: EvidenceState | string;
@@ -85,6 +101,7 @@ export interface BuildDecisionInput {
   readonly severityHint?: DecisionSeverityHint;
   readonly constraints?: readonly string[];
   readonly relatedDecisionIds?: readonly string[];
+  readonly actionTargets?: readonly JarvisActionTargetInput[];
   readonly nowMs: number;
 }
 
@@ -108,6 +125,17 @@ export interface Decision {
   readonly confidence: number;
   readonly constraints: readonly string[];
   readonly relatedDecisionIds: readonly string[];
+  /**
+   * Конкретные документы, по которым можно действовать.
+   *
+   * зачем (владелец 2026-08-16): департаменты работают с агрегатами, и до сих
+   * пор решение содержало только числа — «12 писем ждут». Пометить эти письма
+   * или подготовить черновик было физически нечем: целей не существовало.
+   * Здесь появляется адрес, по которому действие применимо.
+   *
+   * Пустой массив — нормальный случай: большинство находок наблюдательные.
+   */
+  readonly actionTargets: readonly DecisionActionTarget[];
   readonly status: DecisionStatus;
   readonly actionability: DecisionActionability;
   readonly severityHint?: DecisionSeverityHint;
@@ -210,6 +238,25 @@ function assertOptions(options: readonly DecisionOption[]): readonly DecisionOpt
 }
 
 /**
+ * Проверяет адреса действий.
+ *
+ * зачем строго: пустой docId означал бы действие «по всей коллекции» — ровно
+ * то, чего белый список действий не должен допускать ни при каких условиях.
+ */
+function assertActionTargets(
+  targets: readonly JarvisActionTargetInput[] | undefined,
+): readonly DecisionActionTarget[] {
+  if (!targets || targets.length === 0) return Object.freeze([]);
+  if (targets.length > MAX_ACTION_TARGETS) {
+    throw new Error(`Jarvis decision: too many action targets (${targets.length} > ${MAX_ACTION_TARGETS})`);
+  }
+  return Object.freeze(targets.map((target) => Object.freeze({
+    collection: assertText(target?.collection, 'action target collection'),
+    docId: assertText(target?.docId, 'action target docId'),
+  })));
+}
+
+/**
  * Хэш содержания. Меняется вместе с любым смыслом решения, поэтому одобрение,
  * выданное на прежнюю версию, автоматически перестаёт действовать.
  */
@@ -247,6 +294,7 @@ export function buildDecision(input: BuildDecisionInput): Decision {
 
   const constraints = Object.freeze((input.constraints ?? []).map((item) => assertText(item, 'constraint')));
   const relatedDecisionIds = Object.freeze([...(input.relatedDecisionIds ?? [])]);
+  const actionTargets = assertActionTargets(input.actionTargets);
 
   return Object.freeze({
     schemaVersion: JARVIS_DECISION_SCHEMA_VERSION,
@@ -269,6 +317,10 @@ export function buildDecision(input: BuildDecisionInput): Decision {
       actionability,
       input.severityHint ?? null,
       constraints,
+      // зачем цели в хеше: contentHash — защита «одобрили одно, применилось
+      // другое». Изменились адреса действия — это ДРУГОЕ решение, и прежнее
+      // одобрение к нему не относится.
+      actionTargets.map((target) => [target.collection, target.docId]),
       evidence.map((item) => [item.sourceId, item.state, item.count, item.droppedCount]),
     ]),
     department: input.department,
@@ -287,6 +339,7 @@ export function buildDecision(input: BuildDecisionInput): Decision {
     confidence,
     constraints,
     relatedDecisionIds,
+    actionTargets,
     status,
     actionability,
     ...(input.severityHint ? { severityHint: input.severityHint } : {}),

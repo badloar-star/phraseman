@@ -96,4 +96,39 @@ describe('Jarvis support department — a person waiting is not a statistic', ()
     expect(decisions[0].mode).toBe('observe');
     expect(JSON.stringify(decisions[0].options)).not.toMatch(/сам отправ|отправить письмо/i);
   });
+
+  describe('цели для действия', () => {
+    // зачем (владелец 2026-08-16): решение содержало только числа, поэтому
+    // пометить письмо или подготовить черновик было нечем — адресов не было.
+
+    test('ссылки на письма доходят до решения', () => {
+      const { decisions } = run({
+        waitingCount: 3,
+        oldestWaitingMs: 100 * HOUR,
+        actionableWaitingIds: ['letter-a', 'letter-b'],
+      }, 'owner_request');
+      expect(decisions[0].actionTargets).toEqual([
+        { collection: 'support_inbox', docId: 'letter-a' },
+        { collection: 'support_inbox', docId: 'letter-b' },
+      ]);
+    });
+
+    test('без ссылок решение остаётся наблюдательным', () => {
+      const { decisions } = run({ waitingCount: 3, oldestWaitingMs: 100 * HOUR }, 'owner_request');
+      expect(decisions[0].actionTargets).toEqual([]);
+    });
+
+    test('идентификаторы писем — не переписка: PII по-прежнему не утекает', () => {
+      // зачем отдельно: id документа безопасен, но проверка должна остаться
+      // зелёной и после того, как в решении появились адреса.
+      const { decisions } = run({
+        waitingCount: 2,
+        oldestWaitingMs: 100 * HOUR,
+        actionableWaitingIds: ['aBc123', 'dEf456'],
+      }, 'owner_request');
+      const serialized = JSON.stringify(decisions);
+      expect(serialized).not.toMatch(/@/);
+      expect(serialized).not.toMatch(/bodyText|fromEmail|subject/i);
+    });
+  });
 });

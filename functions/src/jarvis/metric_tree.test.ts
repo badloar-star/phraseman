@@ -116,3 +116,58 @@ describe('Текст объяснения', () => {
     }))).toBe('');
   });
 });
+
+describe('Инвертированная ветка (возвраты) — текст не должен врать наоборот', () => {
+  // зачем (аудит 2026-08-16): возвраты подаются со знаком минус, чтобы
+  // двигаться синфазно с итогом. Из-за этого фраза выходила ровно
+  // противоположной правде — «Возвраты просела», когда их стало больше.
+  // Этот текст уходит в промпт модели, поэтому ложь тут не косметика:
+  // модель строит гипотезу и эксперимент на перевёрнутом факте.
+
+  const worseRefunds = () => buildMetricTree({
+    metric: 'Денежные события',
+    branches: [
+      { name: 'Новые платящие', current: 10, previous: 10 },
+      { name: 'Возвраты', current: -5, previous: -1, inverted: true },
+    ],
+  });
+
+  const betterRefunds = () => buildMetricTree({
+    metric: 'Денежные события',
+    branches: [
+      { name: 'Новые платящие', current: 10, previous: 10 },
+      { name: 'Возвраты', current: -1, previous: -5, inverted: true },
+    ],
+  });
+
+  test('больше возвратов — говорит «выросли», а НЕ «просела»', () => {
+    const text = explainMetricChange(worseRefunds());
+    expect(text).toContain('выросли');
+    expect(text).not.toContain('просела');
+  });
+
+  test('меньше возвратов — говорит «снизились», а НЕ «выросла»', () => {
+    const text = explainMetricChange(betterRefunds());
+    expect(text).toContain('снизились');
+    expect(text).not.toContain('выросла');
+  });
+
+  test('обычная ветка сохраняет прежние формулировки', () => {
+    // зачем: правка не должна была задеть неинвертированные ветки.
+    const down = buildMetricTree({
+      metric: 'x',
+      branches: [{ name: 'Новые платящие', current: 2, previous: 20 }],
+    });
+    expect(explainMetricChange(down)).toContain('просела');
+    const up = buildMetricTree({
+      metric: 'x',
+      branches: [{ name: 'Новые платящие', current: 20, previous: 2 }],
+    });
+    expect(explainMetricChange(up)).toContain('выросла');
+  });
+
+  test('виновник определяется по-прежнему верно — математика не сломана', () => {
+    expect(worseRefunds().mainDriver?.name).toBe('Возвраты');
+    expect(worseRefunds().direction).toBe('down');
+  });
+});

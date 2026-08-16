@@ -100,6 +100,21 @@ export function supportReviewCancelTokenDepartment(messageDocId: string, draftRe
   return `${CANCEL_TOKEN_DEPARTMENT_PREFIX}:${messageDocId}:${draftRevision}`;
 }
 
+/**
+ * Принадлежит ли approval-токен поддержке (любой из трёх её кнопок).
+ *
+ * зачем единая функция (аудит 2026-08-16): проверка «это департамент
+ * поддержки?» была скопирована в ТРИ места, и добавляя cancel-кнопку я
+ * починил только одно. Два других (approval_webhook, approval_webhook_core)
+ * не узнавали 'support_email_cancel:' — нажатие «Отменить» показывало чужой
+ * текст подтверждения и проваливалось в lifecycle-механику планов Джарвиса.
+ * Разошедшиеся копии одного правила — известный класс бага в этом проекте,
+ * поэтому здесь одна точка правды вместо четвёртой копии регулярки.
+ */
+export function isSupportEmailDepartment(department: unknown): boolean {
+  return /^support_email(?:_cancel)?:/.test(String(department ?? ''));
+}
+
 export function parseSupportReviewApprovalToken(doc: ApprovalTokenDoc): {
   messageDocId: string;
   draftRevision: number;

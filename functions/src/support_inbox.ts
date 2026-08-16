@@ -1190,19 +1190,32 @@ export async function closeOpenThreadForOwnerReply(
     const reviewId = message.autoReply?.reviewId;
     const nowIso = new Date().toISOString();
     const nowMs = Date.now();
-    if (gate?.operationId) {
-      const operationRef = db.collection('support_reply_operations').doc(gate.operationId);
-      const operationSnap = await tx.get(operationRef);
-      if (operationSnap.exists && String(operationSnap.data()?.state) === 'prepared') {
-        tx.set(operationRef, { state: 'cancelled', reconciledAt: nowIso, lastErrorCode: 'owner_replied_manually' }, { merge: true });
-      }
+
+    // зачем ВСЕ чтения до первой записи (аудит 2026-08-16): Firestore
+    // запрещает tx.get после tx.set в одной транзакции и бросает
+    // «transactions require all reads to be executed before all writes».
+    // Раньше чтение review шло ПОСЛЕ записи операции — и это ломалось
+    // ровно в главном сценарии функции (письмо с подготовленной отправкой
+    // и живой Telegram-карточкой), то есть она не закрывала ничего.
+    // Тесты этого не поймали: мок транзакции был снисходительнее прода.
+    // Мок ужесточён в support_inbox_triage.test.ts — теперь такой порядок
+    // роняет тесты так же, как уронил бы прод.
+    const operationRef = gate?.operationId
+      ? db.collection('support_reply_operations').doc(gate.operationId)
+      : null;
+    const reviewRef = reviewId
+      ? db.collection(SUPPORT_TELEGRAM_REVIEW_COLLECTION).doc(reviewId)
+      : null;
+    const [operationSnap, reviewSnap] = await Promise.all([
+      operationRef ? tx.get(operationRef) : Promise.resolve(null),
+      reviewRef ? tx.get(reviewRef) : Promise.resolve(null),
+    ]);
+
+    if (operationRef && operationSnap?.exists && String(operationSnap.data()?.state) === 'prepared') {
+      tx.set(operationRef, { state: 'cancelled', reconciledAt: nowIso, lastErrorCode: 'owner_replied_manually' }, { merge: true });
     }
-    if (reviewId) {
-      const reviewRef = db.collection(SUPPORT_TELEGRAM_REVIEW_COLLECTION).doc(reviewId);
-      const reviewSnap = await tx.get(reviewRef);
-      if (reviewSnap.exists && !['accepted', 'stale'].includes(String(reviewSnap.data()?.state))) {
-        tx.set(reviewRef, { state: 'stale', autoSendAtMs: null, updatedAtMs: nowMs, lastErrorCode: 'owner_replied_manually' }, { merge: true });
-      }
+    if (reviewRef && reviewSnap?.exists && !['accepted', 'stale'].includes(String(reviewSnap.data()?.state))) {
+      tx.set(reviewRef, { state: 'stale', autoSendAtMs: null, updatedAtMs: nowMs, lastErrorCode: 'owner_replied_manually' }, { merge: true });
     }
     tx.set(messageRef, {
       status: 'archived',
@@ -3141,12 +3154,17 @@ async function prepareSupportTelegramReview(input: {
           nowMs: input.nowMs, ttlMs: SUPPORT_TELEGRAM_APPROVAL_TTL_MS,
         }),
       ]);
+      // зачем все три кнопки в ОДНОМ ряду (аудит 2026-08-16): markRowDecided
+      // гасит после нажатия только тот ряд, в котором была кнопка — и это
+      // правильно, потому что в общих сводках Джарвиса соседние ряды
+      // принадлежат другим департаментам. Когда «Отменить» лежал отдельным
+      // рядом, после отмены первый ряд оставался визуально активным: владелец
+      // видел живую кнопку «Отправить сейчас» на уже отменённом письме.
+      // Один ряд = все три гаснут вместе, как одно решение.
       keyboard = Object.freeze({ inline_keyboard: Object.freeze([
         Object.freeze([
-          Object.freeze({ text: '✅ Отправить сейчас', callback_data: approve.callbackData }),
-          Object.freeze({ text: '✏️ Внести правки', callback_data: edit.callbackData }),
-        ]),
-        Object.freeze([
+          Object.freeze({ text: '✅ Отправить', callback_data: approve.callbackData }),
+          Object.freeze({ text: '✏️ Правки', callback_data: edit.callbackData }),
           Object.freeze({ text: '🚫 Отменить', callback_data: cancel.callbackData }),
         ]),
       ]) });

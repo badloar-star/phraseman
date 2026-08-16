@@ -112,7 +112,9 @@ function explainMoneyBreakdown(
       { name: 'Продления', current: today.renewals, previous: yesterday.renewals },
       // зачем возвраты со знаком минус: они уменьшают итог, и в дереве
       // должны двигаться в ту же сторону, что и общая сумма.
-      { name: 'Возвраты', current: -today.refunds, previous: -yesterday.refunds },
+      // зачем inverted (аудит 2026-08-16): без этого флага текст выходил
+      // перевёрнутым — «Возвраты просела», когда возвратов стало больше.
+      { name: 'Возвраты', current: -today.refunds, previous: -yesterday.refunds, inverted: true },
     ],
   }));
 }

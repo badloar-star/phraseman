@@ -3,6 +3,7 @@ import { logger } from 'firebase-functions';
 import { onRequest } from 'firebase-functions/v2/https';
 import { ADMIN_ALERT_BOT_TOKEN } from '../admin_alerts';
 import { handleSupportTelegramAction, handleSupportTelegramFeedback } from '../support_inbox';
+import { isSupportEmailDepartment } from '../support_telegram_review';
 import {
   buildApprovalAuditEntry,
   JARVIS_APPROVAL_AUDIT_COLLECTION,
@@ -255,7 +256,13 @@ export const jarvisTelegramApprovalWebhook = onRequest(
           outcome: outcome.ok ? 'accepted' : outcome.reason,
           nowMs,
         });
-        if (outcome.ok && !outcome.doc.department.startsWith('support_email:')) {
+        // зачем регулярка, а не startsWith (аудит 2026-08-16): cancel-кнопка
+        // поддержки выпускается с department 'support_email_cancel:...', и
+        // startsWith('support_email:') её НЕ узнавал — нажатие «Отменить»
+        // проваливалось сюда, в lifecycle-механику планов Джарвиса, и лезло
+        // в чужую коллекцию с support-овским reviewId. Сегодня безвредно
+        // (совпадений нет), но это заложенная мина.
+        if (outcome.ok && !isSupportEmailDepartment(outcome.doc.department)) {
           // зачем без отдельной кнопки: владелец уже сказал «да» этой находке.
           // Спрашивать второй раз «точно поставить пометку?» — лишний тап и та
           // самая усталость от подтверждений, из-за которой жмут «ок» не глядя.

@@ -37,6 +37,17 @@ export interface MetricBranch {
   readonly current: number;
   /** null — сравнивать не с чем (первый запуск, источник молчал). */
   readonly previous: number | null;
+  /**
+   * Величина подаётся со знаком минус, потому что уменьшает итог (возвраты).
+   *
+   * зачем флаг (аудит 2026-08-16): без него текст получался перевёрнутым.
+   * Возвраты 1 → 5 (стало ХУЖЕ) подаются как -1 → -5, дельта отрицательная,
+   * общее направление «вниз», и фраза выходила «Возвраты просела на 4» —
+   * ровно противоположное правде. Математика дерева при этом верна: минус
+   * нужен, чтобы возвраты двигались синфазно с итогом. Врал только текст,
+   * и он же уходит в промпт модели — та строила гипотезу на ложном факте.
+   */
+  readonly inverted?: boolean;
 }
 
 export type MetricDirection = 'up' | 'down' | 'flat' | 'unknown';
@@ -46,6 +57,8 @@ export interface MetricDriver {
   readonly delta: number;
   /** Какую долю общего изменения объясняет эта ветка, 0..1. */
   readonly share: number;
+  /** Ветка подавалась инвертированной — влияет только на формулировку. */
+  readonly inverted: boolean;
 }
 
 export interface MetricTree {
@@ -90,7 +103,7 @@ export function buildMetricTree(input: BuildMetricTreeInput): MetricTree {
   // причина — среди упавших. Выросшая ветка изменение не объясняет,
   // она его смягчила.
   const sameWay = branches
-    .map((b) => ({ name: b.name, delta: b.current - (b.previous as number) }))
+    .map((b) => ({ name: b.name, delta: b.current - (b.previous as number), inverted: b.inverted === true }))
     .filter((b) => (totalDelta > 0 ? b.delta > 0 : b.delta < 0))
     .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
 
@@ -101,7 +114,7 @@ export function buildMetricTree(input: BuildMetricTreeInput): MetricTree {
   const share = sameWayTotal === 0 ? 0 : Math.abs(top.delta) / sameWayTotal;
 
   const driver = share >= MIN_BRANCH_SHARE
-    ? Object.freeze({ name: top.name, delta: top.delta, share })
+    ? Object.freeze({ name: top.name, delta: top.delta, share, inverted: top.inverted })
     : null;
 
   return freeze(input.metric, direction, total, previousTotal, driver);
@@ -126,8 +139,14 @@ function freeze(
  */
 export function explainMetricChange(tree: MetricTree): string {
   if (!tree.mainDriver || tree.direction === 'flat' || tree.direction === 'unknown') return '';
-  const { name, delta } = tree.mainDriver;
-  const word = tree.direction === 'down' ? 'просела' : 'выросла';
+  const { name, delta, inverted } = tree.mainDriver;
   const pct = Math.round(tree.mainDriver.share * 100);
+  // зачем разный глагол для инвертированной ветки (аудит 2026-08-16):
+  // возвраты подаются со знаком минус, поэтому «итог упал» для них
+  // означает «возвратов стало БОЛЬШЕ». Без этой ветки текст выходил
+  // ровно противоположным правде: «Возвраты просела», когда их выросло.
+  const word = inverted
+    ? (tree.direction === 'down' ? 'выросли' : 'снизились')
+    : (tree.direction === 'down' ? 'просела' : 'выросла');
   return `Изменение объясняется одной частью: «${name}» ${word} на ${Math.abs(delta)} — это ${pct}% всего сдвига.`;
 }

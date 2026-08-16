@@ -2345,11 +2345,60 @@ service cloud.firestore {
     match /quiz_explanations/{quizHash} {
       allow read, write: if false;
     }
-    // зачем удалены правила quiz_explain_billing и compass_briefings
-    // (аудит 2026-08-16): обе функции снесены, кода нет нигде. У
-    // compass_briefings при этом стояло `allow read: if true` — коллекция
-    // без владельца оставалась открытой на чтение кому угодно.
-    // Правила удалены, коллекции закрываются общим deny в конце файла.
+    // зачем эти правила ВЕРНУЛИ (аудит 2026-08-16, вторая итерация):
+    // сначала я их снёс с обоснованием «общий deny в конце файла всё
+    // закроет». Обоснование НЕВЕРНОЕ: правила Firestore объединяются через
+    // ИЛИ, и админский catch-all `match /{collection}/{document=**}` ниже
+    // разрешает admin'у любую коллекцию, которой нет в его списке
+    // исключений. Сняв явный `if false`, я понизил эти коллекции с
+    // «запечатано навсегда» до «доступно браузерной админке» — то есть
+    // ослабил защиту, а не убрал мёртвый код.
+    //
+    // Явный deny здесь — не дубликат финального catch-all, а единственное,
+    // что реально держит коллекцию закрытой поверх админского allow.
+    // Это ровно тот же урок, что дал legacy_agent_rules_guard для agent_*.
+    match /quiz_explain_billing/{docId} {
+      allow read, write: if false;
+    }
+    // compass_briefings: функция удалена. Раньше здесь стояло
+    // `allow read: if true` — коллекция без владельца была открыта на
+    // чтение кому угодно. Публичное чтение убрано, доступ запечатан.
+    match /compass_briefings/{hash} {
+      allow read, write: if false;
+    }
+    match /compass_why_cache/{docId} {
+      allow read, write: if false;
+    }
+    match /compass_why_rate_limits/{docId} {
+      allow read, write: if false;
+    }
+    match /compass_why_daily_budget/{docId} {
+      allow read, write: if false;
+    }
+    match /compass_why_billing/{docId} {
+      allow read, write: if false;
+    }
+    match /content_mode_templates/{docId} {
+      allow read, write: if false;
+    }
+    match /content_mode_template_draft_revisions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_review_queue/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_localization_units/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_waivers/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_preview_sessions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_preview_receipts/{docId} {
+      allow read, write: if false;
+    }
 
     // Исторический биллинг голосовой части Компаса остаётся закрытым.
     match /compass_billing/{docId} {
@@ -2376,9 +2425,18 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // зачем удалены правила произношения (аудит 2026-08-16): функция
-    // scorePronunciationAttempt снесена, её лимиты и квоты больше никем не
-    // читаются и не пишутся. Коллекции закрываются общим deny в конце файла.
+    // Произношение: функция scorePronunciationAttempt снесена, но правила
+    // остаются намеренно — см. разбор выше про админский catch-all. Без
+    // явного deny эти коллекции стали бы доступны браузерной админке.
+    match /pronunciation_score_rate_limits/{docId} {
+      allow read, write: if false;
+    }
+    match /pronunciation_score_daily_quota/{docId} {
+      allow read, write: if false;
+    }
+    match /pronunciation_global_budget/{docId} {
+      allow read, write: if false;
+    }
 
     // Жалобы «Непонятно объяснили»: ПИШЕТ только CF submitExplainReport (Admin SDK), а
     // админ-панель ЧИТАЕТ и разбирает их (раздел «Непонятно объяснили») — паттерн user_reports.

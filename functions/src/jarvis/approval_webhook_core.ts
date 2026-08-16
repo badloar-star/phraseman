@@ -190,10 +190,19 @@ export async function handleApprovalCallback(
     return { status: 200, callbackQueryId, answerText: REASON_ANSWER[outcome.reason] ?? 'Не получилось.' };
   }
 
-  const isSupport = outcome.doc.department.startsWith('support_email:');
-  const answerText = isSupport
-    ? (parsed.action === 'approve' ? 'Ответ поставлен в очередь отправки.' : 'Пришлите ваши правки следующим сообщением.')
-    : (parsed.action === 'approve' ? 'Принято, подтверждено.' : 'Принято, отклонено.');
+  // зачем разбор на три случая (аудит 2026-08-16): у кнопок «Внести правки»
+  // и «Отменить» ОДИН И ТОТ ЖЕ action='reject', различает их только префикс
+  // department. Без этого нажатие «Отменить» показывало владельцу чужой
+  // текст «Принято, отклонено» вместо подтверждения отмены, а
+  // startsWith('support_email:') вообще не узнавал cancel-токен.
+  const department = String(outcome.doc.department ?? '');
+  const isSupportCancel = department.startsWith('support_email_cancel:');
+  const isSupport = department.startsWith('support_email:') || isSupportCancel;
+  const answerText = isSupportCancel
+    ? 'Отправка отменена. Письмо осталось в «Gmail Support Inbox».'
+    : isSupport
+      ? (parsed.action === 'approve' ? 'Ответ поставлен в очередь отправки.' : 'Пришлите ваши правки следующим сообщением.')
+      : (parsed.action === 'approve' ? 'Принято, подтверждено.' : 'Принято, отклонено.');
   const messageId = typeof message.message_id === 'number' ? message.message_id : null;
   // зачем messageId может отсутствовать: старые/нестандартные апдейты Telegram
   // технически могут не нести message_id — тогда просто нечего редактировать,

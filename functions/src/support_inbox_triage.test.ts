@@ -146,21 +146,39 @@ function fakeDb() {
     }),
     doc: (path: string) => refFor(path),
     runTransaction: async (fn: (tx: unknown) => Promise<unknown>) => {
+      // зачем мок ЗАПРЕЩАЕТ чтение после записи (аудит 2026-08-16): настоящий
+      // Firestore бросает «transactions require all reads to be executed
+      // before all writes», а этот мок раньше молча разрешал. Из-за этого
+      // тесты остались зелёными на функции, которая в проде падала
+      // исключением в своём главном сценарии. Мок, более снисходительный
+      // чем прод, — это не подстраховка, а слепое пятно.
+      let hasWritten = false;
+      const assertReadBeforeWrite = () => {
+        if (hasWritten) {
+          throw new Error('Firestore transactions require all reads to be executed before all writes');
+        }
+      };
       const tx = {
-        get: async (ref: { path: string; id?: string }) => ({
-          id: ref.id ?? ref.path.split('/').pop() ?? ref.path,
-          ref,
-          exists: store.has(ref.path),
-          data: () => store.get(ref.path),
-        }),
+        get: async (ref: { path: string; id?: string }) => {
+          assertReadBeforeWrite();
+          return {
+            id: ref.id ?? ref.path.split('/').pop() ?? ref.path,
+            ref,
+            exists: store.has(ref.path),
+            data: () => store.get(ref.path),
+          };
+        },
         set: (ref: { path: string }, data: DocData, opts?: { merge?: boolean }) => {
+          hasWritten = true;
           const prev = opts?.merge ? (store.get(ref.path) ?? {}) : {};
           store.set(ref.path, { ...prev, ...data });
         },
         update: (ref: { path: string }, data: DocData) => {
+          hasWritten = true;
           store.set(ref.path, { ...(store.get(ref.path) ?? {}), ...data });
         },
         create: (ref: { path: string }, data: DocData) => {
+          hasWritten = true;
           store.set(ref.path, data);
         },
       };
@@ -279,7 +297,9 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     const operationEntry = [...store.entries()].find(([path]) => path.startsWith('support_reply_operations/'));
     const telegram = mockSendJarvisDigest.mock.calls.at(-1)?.[0] as { keyboard?: { inline_keyboard?: Array<Array<{ callback_data?: string }>> } };
     const callback = String(telegram.keyboard?.inline_keyboard?.[0]?.[0]?.callback_data ?? '');
-    const cancelCallback = String(telegram.keyboard?.inline_keyboard?.[1]?.[0]?.callback_data ?? '');
+    // зачем [0][2], а не [1][0] (аудит 2026-08-16): все три кнопки лежат в
+    // одном ряду, чтобы markRowDecided гасил их вместе после нажатия.
+    const cancelCallback = String(telegram.keyboard?.inline_keyboard?.[0]?.[2]?.callback_data ?? '');
     return {
       reviewId: reviewEntry?.[0].split('/').pop() ?? '',
       operationId: operationEntry?.[0].split('/').pop() ?? '',
@@ -812,6 +832,22 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
       });
       await expect(runSupportTelegramAutoSendDeadline(Date.now() + 4 * 60 * 60 * 1000))
         .resolves.toMatchObject({ queued: 0 });
+    });
+
+    test('all three buttons live in ONE keyboard row so pressing any of them greys out the rest', async () => {
+      // зачем (аудит 2026-08-16): markRowDecided гасит только тот ряд, в
+      // котором была нажатая кнопка. Пока «Отменить» лежал отдельным рядом,
+      // после отмены владелец продолжал видеть живую кнопку «Отправить» на
+      // уже отменённом письме — и мог её нажать.
+      const messageDocId = `m_${'2'.repeat(64)}`;
+      await preparePremiumReview(messageDocId);
+      const telegram = mockSendJarvisDigest.mock.calls.at(-1)?.[0] as {
+        keyboard?: { inline_keyboard?: Array<Array<{ text?: string }>> };
+      };
+      const rows = telegram.keyboard?.inline_keyboard ?? [];
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toHaveLength(3);
+      expect(rows[0].map((b) => String(b.text)).join(' ')).toMatch(/Отправить.*Правки.*Отменить/u);
     });
 
     test('does not offer a "reply with edits" prompt — cancel is a final no, not a request for wording', async () => {

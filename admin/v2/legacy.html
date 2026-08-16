@@ -11547,6 +11547,16 @@
         <input type="checkbox" id="alerts-type-serialRefunder" aria-label="Alert on serial refunders" style="width:16px;height:16px;cursor:pointer">
         <span style="font-size:13px;color:#e5e7eb">🔁 Серийные возвраты у одного покупателя</span>
       </label>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-explanationRetired" aria-label="Alert when an explanation is auto-retired" style="width:16px;height:16px;cursor:pointer">
+        <span style="font-size:13px;color:#e5e7eb">🧹 Объяснение снято автоматически по жалобам</span>
+      </label>
+      <!-- зачем добавлен: тип authFailureSpike существовал в коде, но
+           переключателя не было — алерт нельзя было выключить из панели. -->
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-authFailureSpike" aria-label="Alert on authentication failure spikes" style="width:16px;height:16px;cursor:pointer">
+        <span style="font-size:13px;color:#e5e7eb">🔐 Всплеск отказов авторизации</span>
+      </label>
       <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;cursor:pointer">
         <input type="checkbox" id="alerts-type-safetyFlag" aria-label="Alert on AI safety flags" style="width:16px;height:16px;cursor:pointer">
         <span style="font-size:13px;color:#fca5a5">🆘 Опасные сообщения в ИИ (суицид/самоповреждение/абьюз/дети/насилие + OpenAI Moderation)</span>
@@ -32262,7 +32272,7 @@
     const el = document.getElementById('alerts-status');
     if (el) { el.textContent = msg || ''; el.style.color = color || '#9ca3af'; }
   }
-  const ALERTS_TYPES = ['userReport', 'criticalError', 'contentReportDigest', 'cancelRefundSpike', 'serialRefunder', 'safetyFlag'];
+  const ALERTS_TYPES = ['userReport', 'criticalError', 'contentReportDigest', 'cancelRefundSpike', 'serialRefunder', 'explanationRetired', 'authFailureSpike', 'safetyFlag'];
   let _alertsServerRevision = 0;
   function alertsRenderMeta(data) {
     const meta = document.getElementById('alerts-meta');

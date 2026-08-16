@@ -26,7 +26,7 @@ export const ADMIN_ALERT_BOT_TOKEN = defineSecret('ADMIN_ALERT_BOT_TOKEN');
 // за час у разных людей, этот — про одного человека с повторяющимися
 // возвратами. Один выключатель на оба означал бы, что глуша шум всплесков,
 // владелец молча теряет и сигнал о закономерности.
-type AlertType = 'userReport' | 'criticalError' | 'contentReportDigest' | 'cancelRefundSpike' | 'safetyFlag' | 'authFailureSpike' | 'serialRefunder';
+type AlertType = 'userReport' | 'criticalError' | 'contentReportDigest' | 'cancelRefundSpike' | 'safetyFlag' | 'authFailureSpike' | 'serialRefunder' | 'explanationRetired';
 
 interface AlertsConfig {
   enabled?: boolean;
@@ -48,7 +48,7 @@ function db(): FirebaseFirestore.Firestore {
   return admin.firestore();
 }
 
-async function readAlertsConfig(): Promise<AlertsConfig | null> {
+export async function readAlertsConfig(): Promise<AlertsConfig | null> {
   try {
     const snap = await db().doc(ALERTS_DOC).get();
     if (!snap.exists) return null;
@@ -59,7 +59,7 @@ async function readAlertsConfig(): Promise<AlertsConfig | null> {
   }
 }
 
-function alertTypeEnabled(cfg: AlertsConfig | null, type: AlertType): boolean {
+export function alertTypeEnabled(cfg: AlertsConfig | null, type: AlertType): boolean {
   if (!cfg || cfg.enabled === false) return false;
   // A type is on unless explicitly disabled (default-on once master switch is on).
   return cfg.types?.[type] !== false;
@@ -117,7 +117,7 @@ export async function sendTelegramAlert(token: string, text: string, cfg?: Alert
 }
 
 /** Record the time an alert of a given type was last sent (for throttling/UI). */
-async function markSent(type: string): Promise<void> {
+export async function markSent(type: string): Promise<void> {
   try {
     await db().doc(ALERTS_DOC).set(
       { lastSentByType: { [type]: Date.now() }, lastSentAt: Date.now() },

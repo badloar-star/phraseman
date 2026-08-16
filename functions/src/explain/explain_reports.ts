@@ -28,6 +28,14 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from '../callable_options';
 import { resolveStableUidForAuth } from '../auth_identity';
+import { buildRetireAlert, shouldRetireCache } from './auto_retire';
+import {
+  ADMIN_ALERT_BOT_TOKEN,
+  alertTypeEnabled,
+  markSent,
+  readAlertsConfig,
+  sendTelegramAlert,
+} from '../admin_alerts';
 import {
   EXPLAIN_COLLECTION,
   phraseHashFor,
@@ -59,7 +67,12 @@ export const REPORT_RATE_WINDOW_MS = HOUR_MS;
  * Сколько РАЗНЫХ юзеров должны пожаловаться на один phraseHash, чтобы авто-reject кэш-запись.
  * Считаются только УНИКАЛЬНЫЕ stableUid (см. reporters) — один юзер не может добить порог сам.
  */
-export const REPORT_REJECT_THRESHOLD = 5;
+// зачем реэкспорт: до 2026-08-16 константа жила здесь, но НИГДЕ не
+// использовалась — имя обещало отклонение при пяти жалобах, а кода не было.
+// Теперь она живёт рядом с логикой снятия (auto_retire), а здесь остаётся
+// имя, на которое ссылаются тесты и админка. Два объявления одного порога
+// неизбежно разошлись бы.
+export { REPORT_REJECT_THRESHOLD } from './auto_retire';
 
 /** Белый список причин жалобы (меню в шторке). Неизвестное/пустое значение → 'unclear'. */
 export const REPORT_REASONS = ['unclear', 'incorrect', 'wrong_language', 'other'] as const;
@@ -123,6 +136,9 @@ export const submitExplainReport = onCall({
   timeoutSeconds: 15,
   memory: '256MiB',
   maxInstances: 40,
+  // зачем секрет здесь: при автоснятии объяснения владелец должен узнать
+  // об этом сразу. Молча удалённый кэш выглядел бы как «само исчезло».
+  secrets: [ADMIN_ALERT_BOT_TOKEN],
 }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
@@ -160,7 +176,7 @@ export const submitExplainReport = onCall({
   // Запись ленты создаётся в ТОЙ ЖЕ tx (ref с auto-id готовим заранее — reads-before-writes).
   const entryRef = db.collection(REPORT_ENTRIES_COLLECTION).doc();
 
-  return db.runTransaction(async (tx) => {
+  const outcome = await db.runTransaction(async (tx) => {
     // --- читаем всё ДО записи (Firestore требует reads-before-writes) ---
     const rateSnap = await tx.get(rateRef);
     const counterSnap = await tx.get(counterRef);
@@ -195,6 +211,19 @@ export const submitExplainReport = onCall({
       rawCacheText = cache.text;
     }
     const explanationText = typeof rawCacheText === 'string' ? rawCacheText.slice(0, 4000) : '';
+
+    // зачем автоснятие (аудит 2026-08-16): до сих пор система знала, что
+    // объяснение плохое, но ждала, пока владелец зайдёт в админку и нажмёт
+    // «Убрать из кэша». До этого каждый следующий пользователь получал то
+    // же самое объяснение, на которое уже пожаловались пятеро.
+    //
+    // зачем alreadyRetired по отсутствию документа: снятый кэш физически
+    // удаляется, поэтому пустой снапшот И ЕСТЬ признак «уже снято». Отдельный
+    // флаг завёл бы второй источник правды о том же самом.
+    const willRetire = shouldRetireCache({
+      reportCount,
+      alreadyRetired: !cacheSnap.exists,
+    });
 
     // rate-doc
     tx.set(rateRef, {
@@ -245,8 +274,53 @@ export const submitExplainReport = onCall({
       latestCacheStatus: cacheStatus,
       latestExplanationText: explanationText,
       updatedAtMs: now,
+      ...(willRetire ? { autoRetiredAtMs: now, autoRetiredCount: reportCount } : {}),
     }, { merge: true });
 
-    return { ok: true, reportCount, queued: true, flipped: false, rejected: false, kind };
+    // зачем внутри транзакции (аудит 2026-08-16): счётчик и удаление кэша
+    // обязаны примениться вместе. Иначе при сбое между ними счётчик покажет
+    // «снято», а объяснение останется — и никто больше его не снимет,
+    // потому что повторно порог не сработает.
+    if (willRetire) tx.delete(cacheRef);
+
+    return {
+      ok: true, reportCount, queued: true, flipped: false, rejected: willRetire, kind,
+      // зачем наружу: сигнал шлётся ПОСЛЕ коммита — сеть внутри транзакции
+      // означала бы, что при повторе транзакции уходит второе сообщение.
+      retiredPhrase: willRetire ? phraseEn.slice(0, 120) : null,
+      retiredLang: langKey,
+    };
   });
+
+  if (outcome.retiredPhrase) {
+    // зачем не ронять жалобу при сбое сигнала: жалоба уже принята и кэш
+    // уже снят. Упасть здесь значило бы показать пользователю ошибку там,
+    // где всё сработало.
+    try {
+      const cfg = await readAlertsConfig();
+      if (alertTypeEnabled(cfg, 'explanationRetired')) {
+        const ok = await sendTelegramAlert(
+          ADMIN_ALERT_BOT_TOKEN.value(),
+          buildRetireAlert({
+            phraseEn: outcome.retiredPhrase,
+            reportCount: outcome.reportCount,
+            lang: outcome.retiredLang,
+          }),
+          cfg,
+        );
+        if (ok) await markSent('explanationRetired');
+      }
+    } catch (error) {
+      console.warn('explain_reports: retire alert failed', error);
+    }
+  }
+
+  return {
+    ok: outcome.ok,
+    reportCount: outcome.reportCount,
+    queued: outcome.queued,
+    flipped: outcome.flipped,
+    rejected: outcome.rejected,
+    kind: outcome.kind,
+  };
 });

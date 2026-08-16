@@ -101,6 +101,7 @@ function fakeDb() {
       get: (ref: FakeRef) => Promise<FakeSnap>;
       set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => void;
       create: (ref: FakeRef, data: DocData) => void;
+      delete: (ref: FakeRef) => void;
     }) => Promise<T>): Promise<T> => {
       for (let attempt = 0; attempt < 16; attempt += 1) {
         // Каждую попытку выполняем под глобальным lock'ом → две транзакции не перемежаются
@@ -117,6 +118,15 @@ function fakeDb() {
             },
             set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => {
               writes.push(() => writeDoc(ref.path, data, opts?.merge));
+            },
+            // зачем в тот же список отложенных записей: удаление обязано
+            // проходить проверку конфликтов наравне с записью, иначе тест
+            // на гонки перестал бы ловить двойное снятие кэша.
+            delete: (ref: FakeRef) => {
+              writes.push(() => {
+                docs.delete(ref.path);
+                versions.set(ref.path, (versions.get(ref.path) ?? 0) + 1);
+              });
             },
             create: (ref: FakeRef, data: DocData) => {
               writes.push(() => {
@@ -277,9 +287,15 @@ describe('submitExplainReport — per-hash counter', () => {
   });
 });
 
-describe('submitExplainReport — admin moderation queue, no automatic cache removal', () => {
-  test('keeps cache live even when the complaint threshold is reached', async () => {
-    // Сидируем готовый кэш, чтобы было что отклонять.
+describe('submitExplainReport — автоснятие кэша по жалобам', () => {
+  // зачем блок переписан (аудит 2026-08-16): раньше он закреплял ручной
+  // режим — «объяснение живёт, пока админ не уберёт». Из-за этого система
+  // знала, что объяснение плохое, но продолжала отдавать его новым людям,
+  // пока владелец не зайдёт в админку. Требование изменилось: на пороге
+  // кэш снимается сам. Удаление обратимо — следующий запрос сгенерирует
+  // объяснение заново.
+
+  test('до порога объяснение остаётся', async () => {
     docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, {
       status: 'ready',
       schemaVersion: 2,
@@ -289,15 +305,30 @@ describe('submitExplainReport — admin moderation queue, no automatic cache rem
     for (let i = 0; i < REPORT_REJECT_THRESHOLD - 1; i += 1) {
       const res = await callReport({ phraseEn: PHRASE }, `auth-r${i}`);
       expect(res).toMatchObject({ queued: true, flipped: false, rejected: false });
-      expect(cacheDoc()).toMatchObject({ status: 'ready' }); // ещё не отклонено
+      expect(cacheDoc()).toMatchObject({ status: 'ready' });
+    }
+  });
+
+  test('на пороге объяснение снимается автоматически', async () => {
+    docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, {
+      status: 'ready',
+      schemaVersion: 2,
+      text: 'a fine explanation',
+    });
+
+    for (let i = 0; i < REPORT_REJECT_THRESHOLD - 1; i += 1) {
+      await callReport({ phraseEn: PHRASE }, `auth-r${i}`);
     }
 
     const final = await callReport({ phraseEn: PHRASE }, `auth-r${REPORT_REJECT_THRESHOLD - 1}`);
-    expect(final).toMatchObject({ reportCount: REPORT_REJECT_THRESHOLD, queued: true, flipped: false, rejected: false });
-    expect(cacheDoc()).toMatchObject({ status: 'ready', text: 'a fine explanation' });
+    expect(final).toMatchObject({ reportCount: REPORT_REJECT_THRESHOLD, queued: true, rejected: true });
+    // Кэша больше нет — следующий запрос сгенерирует заново.
+    expect(cacheDoc()).toBeUndefined();
   });
 
-  test('further reports keep the cached explanation until admin removes it', async () => {
+  test('следующая жалоба не снимает повторно и не шлёт второй сигнал', async () => {
+    // зачем: иначе каждая следующая жалоба слала бы владельцу новое
+    // уведомление об одном и том же объяснении.
     docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, {
       status: 'ready',
       schemaVersion: 2,
@@ -307,11 +338,18 @@ describe('submitExplainReport — admin moderation queue, no automatic cache rem
     for (let i = 0; i < REPORT_REJECT_THRESHOLD; i += 1) {
       await callReport({ phraseEn: PHRASE }, `auth-r${i}`);
     }
-    expect(cacheDoc()).toMatchObject({ status: 'ready' });
+    expect(cacheDoc()).toBeUndefined();
 
     const extra = await callReport({ phraseEn: PHRASE }, `auth-r${REPORT_REJECT_THRESHOLD}`);
-    expect(extra).toMatchObject({ reportCount: REPORT_REJECT_THRESHOLD + 1, queued: true, flipped: false, rejected: false });
-    expect(cacheDoc()).toMatchObject({ status: 'ready', text: 'a fine explanation' });
+    expect(extra).toMatchObject({ reportCount: REPORT_REJECT_THRESHOLD + 1, queued: true, rejected: false });
+  });
+
+  test('счётчик помечен временем автоснятия', async () => {
+    docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, { status: 'ready', schemaVersion: 2, text: 'x' });
+    for (let i = 0; i < REPORT_REJECT_THRESHOLD; i += 1) {
+      await callReport({ phraseEn: PHRASE }, `auth-r${i}`);
+    }
+    expect(counterDoc()).toMatchObject({ autoRetiredCount: REPORT_REJECT_THRESHOLD });
   });
 });
 
@@ -341,8 +379,13 @@ describe('submitExplainReport — concurrency does not race the moderation queue
     expect(reportCounts).toEqual([REPORT_REJECT_THRESHOLD, REPORT_REJECT_THRESHOLD + 1]);
     const flips = results.filter((r) => r.flipped === true).length;
     expect(flips).toBe(0);
-    expect(results.every((r) => r.queued === true && r.rejected === false)).toBe(true);
-    expect(cacheDoc()).toMatchObject({ status: 'ready', text: 'ok' });
+    // зачем ровно одно снятие: обе транзакции пересекают порог, но кэш
+    // должен сняться ОДИН раз — иначе владелец получил бы два сигнала об
+    // одном объяснении. Атомарность транзакции это и обеспечивает.
+    const rejections = results.filter((r) => r.rejected === true).length;
+    expect(rejections).toBe(1);
+    expect(results.every((r) => r.queued === true)).toBe(true);
+    expect(cacheDoc()).toBeUndefined();
   });
 });
 

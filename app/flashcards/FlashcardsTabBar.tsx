@@ -545,7 +545,9 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
       void hapticTap();
       const target = buildFcPacksRoute(option);
       const alreadyHere =
-        (option === 'mine' && active === 'mine') || (option === 'community' && active === 'packs');
+        (option === 'mine' && active === 'mine')
+        || (option === 'community' && active === 'packs')
+        || (option === 'collection' && active === 'cards');
       if (alreadyHere) {
         close();
         return;
@@ -630,6 +632,11 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         ru: 'Создать набор', uk: 'Створити набір', es: 'Crear pack',
         'pt-BR': 'Criar pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
       }),
+      /** Вход в сохранённые карточки — первый пункт группы «Наборы». */
+      collection: triLang(lang, {
+        ru: 'Коллекция', uk: 'Колекція', es: 'Colección',
+        'pt-BR': 'Coleção', vi: 'Bộ sưu tập', id: 'Koleksi', tr: 'Koleksiyon', pl: 'Kolekcja',
+      }),
       myPacks: triLang(lang, {
         ru: 'Мои наборы', uk: 'Мої набори', es: 'Mis packs',
         'pt-BR': 'Meus pacotes', vi: 'Bộ thẻ của tôi', id: 'Paket saya', tr: 'Paketlerim', pl: 'Moje zestawy',
@@ -663,6 +670,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     pack: { icon: 'albums-outline', label: labels.createPack, testID: 'fc-tabbar-create-pack' },
   };
   const packsMeta: Record<FcPacksOption, { icon: keyof typeof Ionicons.glyphMap; label: string }> = {
+    collection: { icon: 'layers-outline', label: labels.collection },
     mine: { icon: 'bookmarks-outline', label: labels.myPacks },
     community: { icon: 'people-outline', label: labels.communityPacks },
   };
@@ -690,8 +698,14 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
    */
   const menuSideInset = Math.max(ds.spacing.lg, (screenWidth - pillW) / 2);
 
-  /** Стартовое положение подсветки = финальное: первый кадр без «переезда». */
-  const initialActiveIdx = active === 'packs' || active === 'mine' ? BAR_SLOTS.indexOf('packs') : -1;
+  /**
+   * Стартовое положение подсветки = финальное: первый кадр без «переезда».
+   * Коллекция живёт в той же группе, что наборы, — подсвечиваем тот же слот,
+   * иначе открытая коллекция выглядела бы «нигде».
+   */
+  const initialActiveIdx = active === 'packs' || active === 'mine' || active === 'cards'
+    ? BAR_SLOTS.indexOf('packs')
+    : -1;
   const highlightAnim = useRef(new Animated.Value(Math.max(0, initialActiveIdx))).current;
   const highlightOpacity = useRef(new Animated.Value(initialActiveIdx >= 0 ? 1 : 0)).current;
   const pressAnim = useRef(new Animated.Value(0)).current;
@@ -702,7 +716,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     menu === 'train' ? 'train'
       : menu === 'create' ? 'create'
         : menu === 'packs' ? 'packs'
-          : active === 'packs' || active === 'mine' ? 'packs'
+          : active === 'packs' || active === 'mine' || active === 'cards' ? 'packs'
             : null;
   const activeSlotIdx = activeSlot ? BAR_SLOTS.indexOf(activeSlot) : -1;
 

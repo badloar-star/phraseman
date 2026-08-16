@@ -33,12 +33,19 @@ export type FcCreateOption = 'card' | 'pack';
 export const FC_CREATE_OPTIONS: readonly FcCreateOption[] = ['card', 'pack'];
 
 /**
- * Пункты группы «Наборы» — это два РАЗНЫХ раздела, а не один экран:
- *  • `mine`      — только свои/добавленные наборы;
- *  • `community` — каталог наборов сообщества.
+ * Пункты группы «Наборы» — это РАЗНЫЕ разделы, а не один экран:
+ *  • `collection` — сохранённые карточки (вход в коллекцию);
+ *  • `mine`       — только свои/добавленные наборы;
+ *  • `community`  — каталог наборов сообщества.
+ *
+ * зачем (владелец, 2026-08-16, «входа в коллекцию просто нет кнопки»): капсула
+ * таббара — это три слота-ГРУППЫ (train/+/packs), отдельного слота под коллекцию
+ * в ней не осталось, поэтому из раздела нельзя было вернуться к сохранённым
+ * карточкам: уход в наборы идёт через `replace`, и стек назад не помнит. Ставим
+ * коллекцию ПЕРВЫМ пунктом группы — к ней возвращаются чаще, чем к каталогу.
  */
-export type FcPacksOption = 'mine' | 'community';
-export const FC_PACKS_OPTIONS: readonly FcPacksOption[] = ['mine', 'community'];
+export type FcPacksOption = 'collection' | 'mine' | 'community';
+export const FC_PACKS_OPTIONS: readonly FcPacksOption[] = ['collection', 'mine', 'community'];
 
 /**
  * Блиц требует минимум `BLITZ_MIN_CARDS` карточек (нужны 4 варианта ответа):
@@ -250,6 +257,7 @@ export const FC_MY_PACKS_ROUTE = '/flashcards_my_packs';
 
 /** Маршрут пункта группы «Наборы». */
 export function buildFcPacksRoute(option: FcPacksOption): FcTabRouteTarget {
+  if (option === 'collection') return { pathname: FC_CARDS_ROUTE, params: {} };
   if (option === 'mine') return { pathname: FC_MY_PACKS_ROUTE, params: {} };
   return { pathname: FC_PACKS_ROUTE, params: {} };
 }

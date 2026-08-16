@@ -11,7 +11,7 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
  * Текстовой подсказки про тап на экране нет (репорт владельца).
  */
 import { Ionicons } from '@expo/vector-icons';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Platform, Pressable, Text, View, useWindowDimensions } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Reanimated, {
@@ -22,6 +22,7 @@ import Reanimated, {
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
+  withSequence,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
@@ -115,9 +116,18 @@ export default function CollectionDeckView({
   const tx = useSharedValue(0);
   /** Высота верхней карточки (onLayout) — компенсация центр-скейла подложек. */
   const cardHsv = useSharedValue(0);
+  /**
+   * 1 — верхняя карточка ВЪЕЗЖАЕТ (возврат к предыдущей), а не уходит.
+   * зачем: progress считается от |tx|, поэтому въезд слева читался как «ушла
+   * далеко» — подложки схлопывались в позицию «стопка сдвинулась» и разъезжались
+   * обратно. Стопка дребезжала при листании назад. На входе они стоят смирно.
+   */
+  const enteringSV = useSharedValue(0);
   /** Прогресс ухода верхней карточки 0..1 — подложки подтягиваются от него. */
   const progress = useDerivedValue(() =>
-    interpolate(Math.abs(tx.value), [0, screenW * 0.5], [0, 1], Extrapolation.CLAMP),
+    enteringSV.value === 1
+      ? 0
+      : interpolate(Math.abs(tx.value), [0, screenW * 0.5], [0, 1], Extrapolation.CLAMP),
   );
 
   const topStyle = useAnimatedStyle(() => ({
@@ -175,25 +185,56 @@ export default function CollectionDeckView({
     canPrevSV.value = index > 0 ? 1 : 0;
   }, [index, total, canNextSV, canPrevSV]);
 
+  /**
+   * Как новая верхняя карточка занимает место после подмены индекса.
+   * Читается в useLayoutEffect ПОСЛЕ коммита React — см. комментарий там.
+   */
+  const pendingEnterRef = useRef<'instant' | 'fromLeft' | null>(null);
+
   /** Подмена верхней карточки (JS): сброс флипа и позиции стека. */
   const settleAt = useCallback((next: number, enterFromLeft: boolean) => {
+    // зачем (владелец, 2026-08-16, «промельк старой карточки»): раньше tx
+    // возвращался в 0 ПРЯМО ЗДЕСЬ, рядом с setIndex. Но запись в SharedValue
+    // уходит на UI-поток немедленно, а setIndex ждёт коммита React — и один-два
+    // кадра в центре экрана стояла ещё СТАРАЯ карточка, вернувшаяся из-за края.
+    // Отсюда наложение слов (Brother/Sister/Granny на репорте). Теперь позицию
+    // выставляет useLayoutEffect — то есть уже после того, как React отрисовал
+    // новый контент.
+    pendingEnterRef.current = enterFromLeft ? 'fromLeft' : 'instant';
     setFlipped(false);
     setIndex(next);
-    if (enterFromLeft) {
-      // «Возврат» предыдущей: новая верхняя въезжает слева поверх стека
-      tx.value = -1.2 * (typeof screenW === 'number' ? screenW : 390);
-      tx.value = withSpring(0, FC_SPRING.return, () => {
-        runOnJS(unlockNav)();
-      });
-    } else {
+  }, []);
+
+  /**
+   * Вход новой верхней карточки — строго ПОСЛЕ коммита React (useLayoutEffect,
+   * до кадра). К этому моменту PhraseCard уже держит новый текст, поэтому
+   * возврат в центр не может показать предыдущую карточку.
+   */
+  useLayoutEffect(() => {
+    const mode = pendingEnterRef.current;
+    if (!mode) return;
+    pendingEnterRef.current = null;
+    if (mode === 'instant') {
+      enteringSV.value = 0;
       tx.value = 0;
       navBusySV.value = 0;
+      return;
     }
-  }, [screenW, tx]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  function unlockNav() {
-    navBusySV.value = 0;
-  }
+    // «Возврат» предыдущей: новая верхняя въезжает слева поверх стека.
+    // Одной записью через withSequence — два присваивания tx.value подряд не
+    // гарантируют порядок на UI-потоке, и пружина стартовала из точки улёта.
+    enteringSV.value = 1;
+    tx.value = withSequence(
+      withTiming(-1.2 * screenW, { duration: 0 }),
+      withSpring(0, FC_SPRING.return, () => {
+        'worklet';
+        // Замок снимаем прямо на UI-потоке: runOnJS отсюда мог не долететь и
+        // навигация залипала в navBusySV === 1 навсегда.
+        enteringSV.value = 0;
+        navBusySV.value = 0;
+      }),
+    );
+  }, [index, screenW, tx, navBusySV, enteringSV]);
 
   /** Финал свайпа: улёт уже отыгран на UI-потоке, здесь только подмена индекса. */
   const settleFromSwipe = useCallback((forward: boolean) => {
@@ -214,8 +255,10 @@ export default function CollectionDeckView({
       return;
     }
     tx.value = withTiming(-screenW * 1.2, { duration: FC_SWIPE.flyOutMs }, (finished) => {
+      'worklet';
       if (finished) runOnJS(settleAt)(cur + 1, false);
-      else runOnJS(unlockNav)();
+      // Прерванный улёт: замок снимаем на UI-потоке, без похода на JS.
+      else navBusySV.value = 0;
     });
   }, [instantNav, navBusySV, screenW, settleAt, total, tx]);
 
@@ -233,8 +276,9 @@ export default function CollectionDeckView({
     }
     // Текущая уезжает вправо, предыдущая въезжает слева (undo-паттерн)
     tx.value = withTiming(screenW * 1.2, { duration: FC_SWIPE.flyOutMs }, (finished) => {
+      'worklet';
       if (finished) runOnJS(settleAt)(cur - 1, true);
-      else runOnJS(unlockNav)();
+      else navBusySV.value = 0;
     });
   }, [instantNav, navBusySV, screenW, settleAt, tx]);
 
@@ -392,14 +436,20 @@ export default function CollectionDeckView({
         </Reanimated.View>
       )}
       {/* Верхняя карточка: tap = флип, свайп = навигация */}
+      {/*
+        зачем: ключ на ОБЁРТКЕ, а не на PhraseCard. Иначе Reanimated.View
+        переиспользуется между карточками, onLayout не перевыстреливает и
+        cardHsv остаётся от прошлой карточки — подложки скачут на карточках
+        разной высоты.
+      */}
       <Reanimated.View
+        key={card.id}
         style={[shadow, topStyle]}
         onLayout={(e) => {
           cardHsv.value = e.nativeEvent.layout.height;
         }}
       >
         <PhraseCard
-          key={card.id}
           en={card.en}
           transcription={card.transcription}
           translation={backText}

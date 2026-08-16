@@ -156,7 +156,7 @@ for (`$i = 0; `$i -lt 150; `$i++) {
     `$c = `$r.Content
     if (`$c -is [byte[]]) { `$c = [System.Text.Encoding]::UTF8.GetString(`$c) }
     if ([string]`$c -match 'packager-status:running') {
-      Set-Content -LiteralPath '$f' -Encoding UTF8 -Value '$u'
+      [IO.File]::WriteAllText('$f', '$u', (New-Object Text.UTF8Encoding `$false))
       exit 0
     }
   } catch {}

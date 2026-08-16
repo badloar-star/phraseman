@@ -26,6 +26,8 @@ type SessionCopy = Readonly<{
   reportTask: string;
   savePhrase: string;
   saveAdded: string;
+  /** Тост самого первого сохранения: объясняет, куда делась карточка. */
+  saveFirstEver: string;
   saveDuplicate: string;
   saveFailed: string;
   voiceSpeaking: string;
@@ -115,6 +117,8 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     reportTask: "Отправить репорт об этом задании",
     savePhrase: "Сохранить фразу в карточки",
     saveAdded: "Фраза сохранена в карточки",
+    saveFirstEver:
+      "Вы сохранили свою первую карточку. Потренируйте её в любое время в разделе «Карточки»",
     saveDuplicate: "Фраза уже есть в карточках",
     saveFailed: "Не удалось сохранить фразу",
     voiceSpeaking: "Говорите — отпустите кнопку, чтобы остановить",
@@ -609,6 +613,15 @@ function makeCopy(
       "Frasa disimpan ke kartu",
       "Cümle kartlara kaydedildi",
       "Fraza została zapisana w fiszkach",
+    ),
+    saveFirstEver: phrase(
+      "Ви зберегли свою першу картку. Потренуйте її будь-коли в розділі «Картки»",
+      "Has guardado tu primera tarjeta. Practícala cuando quieras en «Tarjetas»",
+      "Você salvou seu primeiro cartão. Pratique quando quiser em «Cartões»",
+      "Bạn đã lưu thẻ đầu tiên. Luyện tập bất cứ lúc nào trong mục «Thẻ»",
+      "Kamu menyimpan kartu pertamamu. Latih kapan saja di bagian «Kartu»",
+      "İlk kartını kaydettin. İstediğin zaman «Kartlar» bölümünde çalış",
+      "Zapisano pierwszą fiszkę. Poćwicz ją kiedy chcesz w sekcji «Fiszki»",
     ),
     saveDuplicate: phrase(
       "Фраза вже є в картках",

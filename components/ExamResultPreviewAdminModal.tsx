@@ -10,6 +10,8 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import DuoPressable from './DuoPressable';
+import PressableHybrid from './PressableHybrid';
 import Svg from 'react-native-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import LingmanCertificateSvg from './share_cards/LingmanCertificateSvg';
@@ -30,6 +32,8 @@ type Props = {
   visible: boolean;
   onClose: () => void;
   cert: LingmanCertificate;
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 };
 
 // Демо-список тем для разбивки результатов в превью.
@@ -91,10 +95,11 @@ const STUB_TOPIC_PLANNED: Record<string, PlannedTopicCopy> = {
 const plannedTopicFor = (topic: string): PlannedTopicCopy =>
   STUB_TOPIC_PLANNED[topic] ?? { 'pt-BR': topic, vi: topic, id: topic, tr: topic, pl: topic };
 
-export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: Props) {
+export default function ExamResultPreviewAdminModal({ visible, onClose, cert, motionVariant = 'classic' }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { width: winW } = useWindowDimensions();
+  const isHybrid = motionVariant === 'hybrid';
 
   const [nameModalVisible, setNameModalVisible] = useState(false);
   const [mountExportCert, setMountExportCert] = useState(false);
@@ -229,20 +234,40 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
           )}
           {/* Admin-шапка превью (не отображается юзеру в проде) */}
           <View style={[styles.adminHeader, { borderBottomColor: t.border }]}>
-            <TouchableOpacity onPress={onClose} hitSlop={10}>
-              <Ionicons name="close" size={26} color={t.textPrimary} />
-            </TouchableOpacity>
+            {isHybrid ? (
+              <PressableHybrid variant="icon" onPress={onClose} hitSlop={10} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}>
+                <Ionicons name="close" size={26} color={t.textPrimary} />
+              </PressableHybrid>
+            ) : (
+              <TouchableOpacity onPress={onClose} hitSlop={10}>
+                <Ionicons name="close" size={26} color={t.textPrimary} />
+              </TouchableOpacity>
+            )}
             <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', marginLeft: 12, flex: 1 }}>
               Preview · экран после экзамена
             </Text>
-            <TouchableOpacity
-              onPress={() => { hapticTap(); setShowCert(s => !s); }}
-              style={[styles.toggleBtn, { borderColor: showCert ? '#22c55e' : '#f97316' }]}
-            >
-              <Text style={{ color: showCert ? '#22c55e' : '#f97316', fontSize: f.caption, fontWeight: '700' }}>
-                {showCert ? (hasName ? 'WITH CERT' : 'CTA ONLY') : 'NO CERT'}
-              </Text>
-            </TouchableOpacity>
+            {isHybrid ? (
+              <PressableHybrid
+                variant="chip"
+                onPress={() => { setShowCert(s => !s); }}
+                style={[styles.toggleBtn, { backgroundColor: showCert ? 'rgba(34,197,94,0.14)' : 'rgba(249,115,22,0.14)' }]}
+              >
+                <Text style={{ color: showCert ? '#22c55e' : '#f97316', fontSize: f.caption, fontWeight: '700' }}>
+                  {showCert ? (hasName ? 'WITH CERT' : 'CTA ONLY') : 'NO CERT'}
+                </Text>
+              </PressableHybrid>
+            ) : (
+              // guard-ok: classic-путь не трогаем (владелец не просил менять
+              // существующий вид) — обводка-индикатор тут pre-existing.
+              <TouchableOpacity
+                onPress={() => { hapticTap(); setShowCert(s => !s); }}
+                style={[styles.toggleBtn, { borderColor: showCert ? '#22c55e' : '#f97316' }]}
+              >
+                <Text style={{ color: showCert ? '#22c55e' : '#f97316', fontSize: f.caption, fontWeight: '700' }}>
+                  {showCert ? (hasName ? 'WITH CERT' : 'CTA ONLY') : 'NO CERT'}
+                </Text>
+              </TouchableOpacity>
+            )}
           </View>
 
           {/* Реальный визуал «phase === result» из app/exam.tsx */}
@@ -424,42 +449,85 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
               </TouchableOpacity>
             )}
 
-            <TouchableOpacity
-              style={{
-                backgroundColor: t.bgCard, borderRadius: 14, padding: 16,
-                width: '100%', alignItems: 'center', borderWidth: 0.5, borderColor: t.border, marginBottom: 12,
-              }}
-              onPress={() => { hapticTap(); }}
-              activeOpacity={0.85}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-                {triLang(lang, {
-                  ru: '🔄 Попробовать ещё раз',
-                  uk: '🔄 Спробувати ще раз',
-                  es: '🔄 Intentar de nuevo',
-                  'pt-BR': '🔄 Tentar novamente',
-                  vi: '🔄 Thử lại',
-                  id: '🔄 Coba lagi',
-                  tr: '🔄 Tekrar dene',
-                  pl: '🔄 Spróbuj ponownie',
-                })}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 8, padding: 12, marginBottom: 4 }}
-              onPress={() => { void handleShareExam(); }}
-              activeOpacity={0.85}
-            >
-              <Ionicons name="share-outline" size={18} color={t.textSecond} />
-              <Text style={{ color: t.textSecond, fontSize: f.bodyLg }}>
-                {triLang(lang, { ru: 'Поделиться результатом', uk: 'Поділитися результатом', es: 'Compartir el resultado', 'pt-BR': 'Compartilhar resultado', vi: 'Chia sẻ kết quả', id: 'Bagikan hasil', tr: 'Sonucu paylaş', pl: 'Udostępnij wynik' })}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 14 }} onPress={onClose} activeOpacity={0.7}>
-              <Text style={{ color: t.textSecond, fontSize: f.bodyLg, textDecorationLine: 'underline' }}>
-                {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
-              </Text>
-            </TouchableOpacity>
+            {isHybrid ? (
+              <DuoPressable
+                edgeColor={t.border}
+                edgeHeight={5}
+                style={{ backgroundColor: t.bgCard, borderRadius: 14, padding: 16, marginBottom: 12 }}
+                onPress={() => {}}
+              >
+                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
+                  {triLang(lang, {
+                    ru: 'Попробовать ещё раз',
+                    uk: 'Спробувати ще раз',
+                    es: 'Intentar de nuevo',
+                    'pt-BR': 'Tentar novamente',
+                    vi: 'Thử lại',
+                    id: 'Coba lagi',
+                    tr: 'Tekrar dene',
+                    pl: 'Spróbuj ponownie',
+                  })}
+                </Text>
+              </DuoPressable>
+            ) : (
+              <TouchableOpacity
+                style={{
+                  backgroundColor: t.bgCard, borderRadius: 14, padding: 16,
+                  width: '100%', alignItems: 'center', borderWidth: 0.5, borderColor: t.border, marginBottom: 12,
+                }}
+                onPress={() => { hapticTap(); }}
+                activeOpacity={0.85}
+              >
+                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
+                  {triLang(lang, {
+                    ru: 'Попробовать ещё раз',
+                    uk: 'Спробувати ще раз',
+                    es: 'Intentar de nuevo',
+                    'pt-BR': 'Tentar novamente',
+                    vi: 'Thử lại',
+                    id: 'Coba lagi',
+                    tr: 'Tekrar dene',
+                    pl: 'Spróbuj ponownie',
+                  })}
+                </Text>
+              </TouchableOpacity>
+            )}
+            {isHybrid ? (
+              <PressableHybrid
+                variant="secondary"
+                style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, padding: 12, marginBottom: 4 }}
+                onPress={() => { void handleShareExam(); }}
+              >
+                <Ionicons name="share-outline" size={18} color={t.textSecond} />
+                <Text style={{ color: t.textSecond, fontSize: f.bodyLg }}>
+                  {triLang(lang, { ru: 'Поделиться результатом', uk: 'Поділитися результатом', es: 'Compartir el resultado', 'pt-BR': 'Compartilhar resultado', vi: 'Chia sẻ kết quả', id: 'Bagikan hasil', tr: 'Sonucu paylaş', pl: 'Udostępnij wynik' })}
+                </Text>
+              </PressableHybrid>
+            ) : (
+              <TouchableOpacity
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 8, padding: 12, marginBottom: 4 }}
+                onPress={() => { void handleShareExam(); }}
+                activeOpacity={0.85}
+              >
+                <Ionicons name="share-outline" size={18} color={t.textSecond} />
+                <Text style={{ color: t.textSecond, fontSize: f.bodyLg }}>
+                  {triLang(lang, { ru: 'Поделиться результатом', uk: 'Поділитися результатом', es: 'Compartir el resultado', 'pt-BR': 'Compartilhar resultado', vi: 'Chia sẻ kết quả', id: 'Bagikan hasil', tr: 'Sonucu paylaş', pl: 'Udostępnij wынik' })}
+                </Text>
+              </TouchableOpacity>
+            )}
+            {isHybrid ? (
+              <PressableHybrid variant="secondary" style={{ padding: 14 }} onPress={onClose}>
+                <Text style={{ color: t.textSecond, fontSize: f.bodyLg, textDecorationLine: 'underline', textAlign: 'center' }}>
+                  {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
+                </Text>
+              </PressableHybrid>
+            ) : (
+              <TouchableOpacity style={{ padding: 14 }} onPress={onClose} activeOpacity={0.7}>
+                <Text style={{ color: t.textSecond, fontSize: f.bodyLg, textDecorationLine: 'underline' }}>
+                  {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
+                </Text>
+              </TouchableOpacity>
+            )}
 
             {/* Admin-only: явно открыть модалку ввода имени */}
             <View style={{ height: 1, backgroundColor: t.border, alignSelf: 'stretch', marginVertical: 18, opacity: 0.5 }} />

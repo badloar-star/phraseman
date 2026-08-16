@@ -392,7 +392,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
       state: 'awaiting_approval', grounded: false, holding: true, reason: 'guarded_billing',
     });
     const draft = String(store.get('support_inbox/m3')?.draftReply ?? '');
-    expect(draft).toContain('вручную');
+    expect(draft).toMatch(/человек из команды|не решаем автоматически/iu);
     // Промежуточный ответ ничего не утверждает о покупке.
     expect(draft).not.toMatch(/мы (?:проверили|вернули|исправили)/iu);
     expect([...store.keys()].some((path) => path.startsWith('support_telegram_reviews/'))).toBe(true);
@@ -533,7 +533,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
         const evidenceId = rawIds.split(',').map((value) => value.trim()).find(Boolean) ?? '';
         return {
           text: JSON.stringify({
-            reply: 'Hello! Open the practice section in Phraseman and choose a learning activity.',
+            reply: 'Hello! Open the practice section in Phraseman and choose a learning activity. Short regular sessions usually work better than one long one, so even ten minutes a day counts. If you are not sure which activity fits you best, tell us what feels hardest right now and we will point you to the right place.',
             evidenceIds: evidenceId ? [evidenceId] : [], confidence: 0.94, needsHuman: false,
           }),
           promptTokens: 120, completionTokens: 35,
@@ -584,7 +584,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
         const evidenceId = rawIds.split(',').map((value) => value.trim()).find(Boolean) ?? '';
         return {
           text: JSON.stringify({
-            reply: 'Hello! Open Phraseman and choose a practice activity.',
+            reply: 'Hello! Open Phraseman and choose a practice activity that matches what you want to work on today. Short regular sessions usually work better than one long one, so even ten minutes counts. If you are not sure which one fits, tell us what feels hardest and we will point you to the right place.',
             evidenceIds: evidenceId ? [evidenceId] : [], confidence: 0.94, needsHuman: false,
           }),
           promptTokens: 120, completionTokens: 35,
@@ -642,7 +642,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
         promptTokens: 40, completionTokens: 10,
       })
       .mockImplementationOnce(async (request: unknown) => writerResult(
-        request, 'Hello! Open the practice section in Phraseman and choose a learning activity.',
+        request, 'Hello! Open the practice section in Phraseman and choose a learning activity. Short regular sessions usually work better than one long one, so even ten minutes a day counts. If you are not sure which activity fits you best, tell us what feels hardest right now and we will point you to the right place.',
       ))
       .mockResolvedValueOnce({
         text: JSON.stringify({
@@ -656,7 +656,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
         const messages = (request as { messages?: Array<{ content?: string }> }).messages ?? [];
         repairWriterPrompt = String(messages[1]?.content ?? '');
         return writerResult(
-          request, 'Hello! In Phraseman, open Lessons and choose one of the available practice activities.',
+          request, 'Hello! In Phraseman, open Lessons and choose one of the available practice activities that fits what you want to work on today. Short regular sessions usually work better than one long one, so even ten minutes counts. If you are not sure which activity suits you, tell us what feels hardest right now and we will point you to the right one.',
         );
       })
       .mockResolvedValueOnce({
@@ -674,7 +674,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect(repairWriterPrompt).toContain('UNTRUSTED AUTOMATIC REPAIR FEEDBACK');
     expect(repairWriterPrompt).toContain('answer_needs_clearer_next_step');
     expect(store.get('support_inbox/m-auto-repair')).toMatchObject({
-      draftReply: 'Hello! In Phraseman, open Lessons and choose one of the available practice activities.',
+      draftReply: 'Hello! In Phraseman, open Lessons and choose one of the available practice activities that fits what you want to work on today. Short regular sessions usually work better than one long one, so even ten minutes counts. If you are not sure which activity suits you, tell us what feels hardest right now and we will point you to the right one.',
       draftRevision: 1,
       autoReply: { state: 'awaiting_approval', grounded: true, reason: 'grounded_and_reviewed' },
     });
@@ -736,7 +736,11 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
       },
     });
     const exhaustedDraft = String(store.get('support_inbox/m-auto-repair-exhausted')?.draftReply ?? '');
-    expect(exhaustedDraft).toContain('The team will review it');
+    // зачем проверка по СМЫСЛУ, а не по фразе (2026-08-16): заглушки
+    // переписаны развёрнуто, и точная формулировка ушла. Тест обязан
+    // держать обещание «этим займётся человек», а не конкретные слова —
+    // иначе он ломается при каждой редактуре текста.
+    expect(exhaustedDraft).toMatch(/a person from the team|the team will/iu);
     expect(exhaustedDraft).not.toContain('Open Lessons');
     expect([...store.keys()].some((path) => path.startsWith('support_telegram_reviews/'))).toBe(true);
     expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
@@ -1212,7 +1216,7 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect(store.get('support_inbox/m-stuck-old-policy')?.autoReply).toMatchObject({
       state: 'awaiting_approval', holding: true, reason: 'guarded_billing',
     });
-    expect(String(store.get('support_inbox/m-stuck-old-policy')?.draftReply ?? '')).toContain('вручную');
+    expect(String(store.get('support_inbox/m-stuck-old-policy')?.draftReply ?? '')).toMatch(/человек из команды|не решаем автоматически/iu);
     expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
   });
 

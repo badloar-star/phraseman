@@ -78,7 +78,7 @@ describe('support Telegram review contract', () => {
   });
 
   test('preview omits the subject and escapes the complete sealed body', () => {
-    const text = formatSupportTelegramReview({ subject: '<Problem>', draftReply: 'Use <Settings>.', draftRevision: 1 });
+    const text = formatSupportTelegramReview({ subject: '<Problem>', draftReply: 'Use <Settings> to change this. Open the app, go to the settings screen and look for the option near the top of the list. If you do not see it there, tell us which screen you are on and we will point you to the right place straight away.', draftRevision: 1 });
     expect(text).not.toContain('Problem');
     expect(text).toContain('&lt;Settings&gt;');
   });
@@ -105,7 +105,7 @@ describe('support Telegram review contract', () => {
     expect(internal.text).not.toContain('Ответ Джарвиса готов');
     expect(internal.text).not.toContain('Исправленная версия ответа');
     const ungrounded = buildSupportTelegramReviewPreview({
-      finalText: 'Здравствуйте! Здесь нужна ручная проверка.',
+      finalText: 'Здравствуйте! Здесь нужна ручная проверка, чтобы не дать вам неточный ответ. Человек из команды посмотрит вашу ситуацию и напишет в эту же переписку, обычно в течение рабочего дня. Если можете добавить подробностей, напишите их в ответ — так поможем точнее.',
       draftRevision: 5,
       customerReady: false,
     });
@@ -151,7 +151,7 @@ describe('support Telegram review contract', () => {
   describe('unresolved conversation identity always shows the owner a prepared draft', () => {
     test('is approvable — the owner can still press "send" after checking the thread', () => {
       const preview = buildSupportTelegramReviewPreview({
-        finalText: 'Здравствуйте! Прежде чем ответить по существу, команда вручную проверит цепочку переписки.',
+        finalText: 'Здравствуйте! Прежде чем ответить по существу, команда вручную проверит цепочку переписки — хотим убедиться, что отвечаем именно вам, а не другому человеку. Это займёт немного времени, зато без ошибок. Ответ придёт в это же письмо, обычно в течение рабочего дня.',
         draftRevision: 3,
         customerReady: true,
         holding: true,
@@ -162,7 +162,7 @@ describe('support Telegram review contract', () => {
 
     test('shows the full drafted text, not a blocked-response placeholder', () => {
       const preview = buildSupportTelegramReviewPreview({
-        finalText: 'Здравствуйте! Прежде чем ответить по существу, команда вручную проверит цепочку переписки.',
+        finalText: 'Здравствуйте! Прежде чем ответить по существу, команда вручную проверит цепочку переписки — хотим убедиться, что отвечаем именно вам, а не другому человеку. Это займёт немного времени, зато без ошибок. Ответ придёт в это же письмо, обычно в течение рабочего дня.',
         draftRevision: 3,
         customerReady: true,
         holding: true,
@@ -175,7 +175,7 @@ describe('support Telegram review contract', () => {
 
     test('explicitly warns that auto-send will not fire', () => {
       const preview = buildSupportTelegramReviewPreview({
-        finalText: 'Здравствуйте! Прежде чем ответить по существу, команда вручную проверит цепочку переписки.',
+        finalText: 'Здравствуйте! Прежде чем ответить по существу, команда вручную проверит цепочку переписки — хотим убедиться, что отвечаем именно вам, а не другому человеку. Это займёт немного времени, зато без ошибок. Ответ придёт в это же письмо, обычно в течение рабочего дня.',
         draftRevision: 3,
         customerReady: true,
         holding: true,
@@ -189,11 +189,11 @@ describe('support Telegram review contract', () => {
       // зачем: обычный промежуточный ответ безопасен для авто-отправки,
       // этот — нет. Владелец должен видеть разницу с первого взгляда.
       const identity = buildSupportTelegramReviewPreview({
-        finalText: 'Здравствуйте! Здесь нужна ручная проверка.',
+        finalText: 'Здравствуйте! Здесь нужна ручная проверка, чтобы не дать вам неточный ответ. Человек из команды посмотрит вашу ситуацию и напишет в эту же переписку, обычно в течение рабочего дня. Если можете добавить подробностей, напишите их в ответ — так поможем точнее.',
         draftRevision: 3, customerReady: true, holding: true, identityUnresolved: true,
       });
       const billing = buildSupportTelegramReviewPreview({
-        finalText: 'Здравствуйте! Здесь нужна ручная проверка.',
+        finalText: 'Здравствуйте! Здесь нужна ручная проверка, чтобы не дать вам неточный ответ. Человек из команды посмотрит вашу ситуацию и напишет в эту же переписку, обычно в течение рабочего дня. Если можете добавить подробностей, напишите их в ответ — так поможем точнее.',
         draftRevision: 3, customerReady: true, holding: true,
       });
       expect(identity.text).not.toBe(billing.text);

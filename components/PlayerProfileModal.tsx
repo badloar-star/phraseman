@@ -28,7 +28,19 @@ import { useRouter } from 'expo-router';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Stop } from 'react-native-svg';
+import Reanimated, {
+  Easing as REasing,
+  cancelAnimation,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import { LinearGradient } from './SafeLinearGradient';
+import { LUM } from '../constants/motionHybrid';
+import DuoPressable from './DuoPressable';
+import PressableHybrid from './PressableHybrid';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
@@ -161,6 +173,8 @@ interface Props {
   player: PlayerInfo | null;
   myInfo: MyInfo;
   onClose: () => void;
+  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 // Синяя «дорогая» палитра Pro-плашки (зеркало celebrationContent.ts → pro.main).
@@ -307,6 +321,10 @@ type BodyProps = {
   onClose: () => void;
   multipliers: MultiplierBreakdown | null;
   onFriendRequestToast: (message: string, toastType?: 'error' | 'info') => void;
+  /** Гибрид «Световод»: вход панели из света вместо classic-пружины; кнопки — DuoPressable/PressableHybrid. */
+  isHybrid: boolean;
+  hybridOpacity: ReturnType<typeof useSharedValue<number>>;
+  hybridY: ReturnType<typeof useSharedValue<number>>;
 };
 
 function PlayerProfileModalBody({
@@ -321,6 +339,9 @@ function PlayerProfileModalBody({
   onClose,
   multipliers,
   onFriendRequestToast,
+  isHybrid,
+  hybridOpacity,
+  hybridY,
 }: BodyProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
@@ -816,14 +837,14 @@ function PlayerProfileModalBody({
           const legendNo = result.legendNo;
           setTimeout(() => {
             onFriendRequestToast(triLang(lang as Lang, {
-              ru: `🎉 Ты стал Легендой № ${legendNo}! Друзья получили +5 💠`,
-              uk: `🎉 Ти став Легендою № ${legendNo}! Друзі отримали +5 💠`,
-              es: `🎉 ¡Te convertiste en Leyenda n.º ${legendNo}! Tus amigos recibieron +5 💠`,
-              'pt-BR': `🎉 Você virou Lenda n.º ${legendNo}! Seus amigos receberam +5 💠`,
-              vi: `🎉 Bạn đã trở thành Huyền thoại số ${legendNo}! Bạn bè nhận được +5 💠`,
-              id: `🎉 Kamu menjadi Legenda № ${legendNo}! Temanmu menerima +5 💠`,
-              tr: `🎉 Efsane № ${legendNo} oldun! Arkadaşların +5 💠 kazandı`,
-              pl: `🎉 Zostałeś Legendą № ${legendNo}! Znajomi otrzymali +5 💠`,
+              ru: `Ты стал Легендой № ${legendNo}! Друзья получили +5`,
+              uk: `Ти став Легендою № ${legendNo}! Друзі отримали +5`,
+              es: `¡Te convertiste en Leyenda n.º ${legendNo}! Tus amigos recibieron +5`,
+              'pt-BR': `Você virou Lenda n.º ${legendNo}! Seus amigos receberam +5`,
+              vi: `Bạn đã trở thành Huyền thoại số ${legendNo}! Bạn bè nhận được +5`,
+              id: `Kamu menjadi Legenda № ${legendNo}! Temanmu menerima +5`,
+              tr: `Efsane № ${legendNo} oldun! Arkadaşların +5 kazandı`,
+              pl: `Zostałeś Legendą № ${legendNo}! Znajomi otrzymali +5`,
             }), 'info');
           }, 1400);
         }
@@ -1222,8 +1243,44 @@ function PlayerProfileModalBody({
     pl: "seria",
   });
 
+  // зачем: гибрид «Световод» (владелец 2026-08-15) — панель поднимается из
+  // света (opacity+y на LUM.settle, без отскока) вместо classic-таймингов
+  // (timing 300 out-cubic). Управляется общими sharedValue из корневого
+  // компонента (hybridOpacity/hybridY), чтобы выход мог доиграть ПЕРЕД onClose.
+  const hybridPanelStyle = useAnimatedStyle(() => ({
+    opacity: hybridOpacity.value,
+    transform: [{ translateY: hybridY.value }],
+  }));
+  const hybridBackdropStyle = useAnimatedStyle(() => ({ opacity: hybridOpacity.value * 0.55 }));
+
   return (
     <>
+    {isHybrid ? (
+      <Reanimated.View pointerEvents="box-none" style={[{ flex: 1, justifyContent: 'flex-end' }]}>
+        <Reanimated.View
+          pointerEvents="none"
+          style={[{ ...StyleSheet.absoluteFillObject, backgroundColor: '#000' }, hybridBackdropStyle]}
+        />
+        <Pressable style={{ ...StyleSheet.absoluteFillObject }} onPress={onBackdropPress} />
+        <Reanimated.View testID="player-profile-modal-sheet" style={[{
+          backgroundColor: t.bgCard,
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
+          maxHeight: '90%',
+          overflow: 'hidden',
+          // Без обводок (правило владельца): модал держат скругление, градиент и тень.
+          borderTopWidth: prestigeActive ? 0 : 0.5,
+          borderColor: t.border,
+          shadowColor: prestigeActive ? cardVisual.shadowColor : '#000',
+          shadowOpacity: prestigeActive ? 0.34 : 0.18,
+          shadowRadius: prestigeActive ? 22 : 12,
+          elevation: prestigeActive ? 12 : 6,
+        }, hybridPanelStyle]}>
+          {renderHeaderActions()}
+          {renderCardBody()}
+        </Reanimated.View>
+      </Reanimated.View>
+    ) : (
     <Animated.View
       style={{
         flex: 1,
@@ -1251,9 +1308,35 @@ function PlayerProfileModalBody({
         shadowRadius: prestigeActive ? 22 : 12,
         elevation: prestigeActive ? 12 : 6,
       }}>
-        <TouchableOpacity
+        {renderHeaderActions()}
+        {renderCardBody()}
+      </Animated.View>
+    </Animated.View>
+    )}
+    {renderProfileModalOverlays(
+      player,
+      lang,
+      removeFriendConfirmOpen,
+      setRemoveFriendConfirmOpen,
+      handleRemoveFriendConfirm,
+      reportUserOpen,
+      setReportUserOpen,
+    )}
+    </>
+  );
+
+  // зачем: шапка (крест/друг/жалоба/апгрейд) идентична в classic и hybrid —
+  // вынесена в функцию, чтобы не дублировать 200 строк JSX между двумя ветками
+  // разметки панели. Кнопки-действия переведены на DuoPressable/PressableHybrid
+  // (единый пресс-стандарт constants/motionHybrid.ts → PRESS) в ОБЕИХ ветках —
+  // это не визуальный редизайн classic, а замена трёх расходящихся способов
+  // «вдавливания» на один. Тело карточки (сканирующий ScrollView) — ниже отдельно.
+  function renderHeaderActions() {
+    return (
+      <>
+        <PressableHybrid
           testID="player-profile-close"
-          accessibilityRole="button"
+          variant="icon"
           accessibilityLabel={triLang(lang as Lang, {
             ru: 'Закрыть профиль',
             uk: 'Закрити профіль',
@@ -1265,15 +1348,16 @@ function PlayerProfileModalBody({
             pl: 'Zamknij profil',
           })}
           hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
-          onPress={() => {
-            hapticTap();
-            onClose();
-          }}
+          onPress={onClose}
+          withHaptic={false}
           style={{
             position: 'absolute',
             top: PROFILE_HEADER_ACTION_TOP,
             right: PROFILE_HEADER_ACTION_RIGHT,
             zIndex: 30,
+            width: PROFILE_HEADER_ACTION_SIZE,
+          }}
+          contentStyle={{
             width: PROFILE_HEADER_ACTION_SIZE,
             height: PROFILE_HEADER_ACTION_SIZE,
             borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
@@ -1291,17 +1375,22 @@ function PlayerProfileModalBody({
           }}
         >
           <Ionicons name="close" size={22} color={prestigeActive ? 'rgba(255,255,255,0.82)' : t.textPrimary} />
-        </TouchableOpacity>
+        </PressableHybrid>
         {showAddFriend ? (
-          <Pressable
+          <PressableHybrid
             testID="player-profile-add-friend"
+            variant="icon"
             onPress={handleFriendButtonPress}
             disabled={friendRequestBusy || isFriendRequestSent}
+            withHaptic={false}
             style={{
               position: 'absolute',
               top: PROFILE_HEADER_ACTION_TOP + PROFILE_HEADER_ACTION_SIZE + PROFILE_HEADER_ACTION_GAP,
               right: PROFILE_HEADER_ACTION_RIGHT,
               zIndex: 30,
+              width: PROFILE_HEADER_ACTION_SIZE,
+            }}
+            contentStyle={{
               width: PROFILE_HEADER_ACTION_SIZE,
               height: PROFILE_HEADER_ACTION_SIZE,
               borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
@@ -1319,7 +1408,6 @@ function PlayerProfileModalBody({
               elevation: 5,
               opacity: friendRequestBusy ? 0.55 : isFriendRequestSent ? 0.75 : 1,
             }}
-            accessibilityRole="button"
             accessibilityLabel={triLang(lang as Lang, {
               ru: 'Добавить в друзья',
               uk: 'Додати до друзів',
@@ -1336,7 +1424,7 @@ function PlayerProfileModalBody({
               size={22}
               color={isAlreadyFriend ? (t.wrong ?? t.accent) : t.accent}
             />
-          </Pressable>
+          </PressableHybrid>
         ) : null}
         {!isMe && (player.friendUid || player.uid) ? (
           // зачем (владелец, обязательное требование сторов — report-abuse для
@@ -1344,17 +1432,18 @@ function PlayerProfileModalBody({
           // друзей — ник виден и незнакомцам. Без uid жаловаться некуда
           // (submitUserReport требует reportedUid), кнопку тогда не показываем.
           // Позиция под кнопкой друга, если она есть, иначе под крестиком.
-          <Pressable
+          <PressableHybrid
             testID="player-profile-report-user"
-            onPress={() => {
-              hapticTap();
-              setReportUserOpen(true);
-            }}
+            variant="icon"
+            onPress={() => setReportUserOpen(true)}
             style={{
               position: 'absolute',
               top: PROFILE_HEADER_ACTION_TOP + (PROFILE_HEADER_ACTION_SIZE + PROFILE_HEADER_ACTION_GAP) * (showAddFriend ? 2 : 1),
               right: PROFILE_HEADER_ACTION_RIGHT,
               zIndex: 30,
+              width: PROFILE_HEADER_ACTION_SIZE,
+            }}
+            contentStyle={{
               width: PROFILE_HEADER_ACTION_SIZE,
               height: PROFILE_HEADER_ACTION_SIZE,
               borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
@@ -1368,7 +1457,6 @@ function PlayerProfileModalBody({
               shadowOffset: { width: 0, height: 3 },
               elevation: 5,
             }}
-            accessibilityRole="button"
             accessibilityLabel={triLang(lang as Lang, {
               ru: 'Пожаловаться на ник',
               uk: 'Поскаржитися на нік',
@@ -1381,16 +1469,16 @@ function PlayerProfileModalBody({
             })}
           >
             <Ionicons name="flag-outline" size={20} color={t.textSecond} />
-          </Pressable>
+          </PressableHybrid>
         ) : null}
         {isMe && !hasDevProfileCardLevelOverride && ENABLE_PROFILE_CARD && nextRealLevel !== null ? (
           // Круглая кнопка апгрейда на СВОЕЙ карточке: тап преображает карточку в
           // превью следующего уровня ПРЯМО НА МЕСТЕ, повторные тапы листают до V.
           // AURORA: стеклянный круг, кромка и стрелка в акценте СЛЕДУЮЩЕГО уровня
           // + его свечение (в превью — римский номер уровня вместо стрелки).
-          <Pressable
+          <PressableHybrid
             testID="player-profile-upgrade-card"
-            accessibilityRole="button"
+            variant="icon"
             accessibilityLabel={triLang(lang as Lang, {
               ru: 'Улучшить карточку',
               uk: 'Покращити картку',
@@ -1403,11 +1491,15 @@ function PlayerProfileModalBody({
             })}
             hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
             onPress={handleUpgradeButtonTap}
+            withHaptic={false}
             style={{
               position: 'absolute',
               top: PROFILE_HEADER_ACTION_TOP + PROFILE_HEADER_ACTION_SIZE + PROFILE_HEADER_ACTION_GAP,
               right: PROFILE_HEADER_ACTION_RIGHT,
               zIndex: 30,
+              width: PROFILE_HEADER_ACTION_SIZE,
+            }}
+            contentStyle={{
               width: PROFILE_HEADER_ACTION_SIZE,
               height: PROFILE_HEADER_ACTION_SIZE,
               borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
@@ -1433,8 +1525,18 @@ function PlayerProfileModalBody({
                 </Text>
               )}
             </Animated.View>
-          </Pressable>
+          </PressableHybrid>
         ) : null}
+      </>
+    );
+  }
+
+  // зачем: остальное тело карточки (пилюля уровня, эффекты престижа,
+  // прокручиваемый контент — статы/лайки/превью апгрейда) идентично в classic
+  // и hybrid, вынесено рядом с renderHeaderActions по той же причине.
+  function renderCardBody() {
+    return (
+      <>
         {displayCardLevel > 0 && (
           // AURORA: пилюля уровня переехала из центра в ЛЕВЫЙ ВЕРХНИЙ УГОЛ —
           // floating glass pill, кромка и текст в акценте отображаемого уровня.
@@ -1831,7 +1933,7 @@ function PlayerProfileModalBody({
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
               {multipliers.clubM > 1 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
-                  <Text style={{ fontSize: 13 }}>🏛️</Text>
+                  <Ionicons name="business-outline" size={13} color={t.textMuted} />
                   <Text style={{ color: inkSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Лига',
@@ -1848,7 +1950,7 @@ function PlayerProfileModalBody({
               )}
               {multipliers.streakM > 1 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
-                  <Text style={{ fontSize: 13 }}>🔥</Text>
+                  <Ionicons name="flame" size={13} color={t.accent} />
                   <Text style={{ color: inkSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Цепочка',
@@ -1916,7 +2018,7 @@ function PlayerProfileModalBody({
               )}
               {multipliers.giftM > 1 && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
-                  <Text style={{ fontSize: 13 }}>🎁</Text>
+                  <Ionicons name="gift-outline" size={13} color={t.accent} />
                   <Text style={{ color: inkSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Подарок',
@@ -2048,7 +2150,7 @@ function PlayerProfileModalBody({
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: inkPrimary, fontSize: 14, fontWeight: '700' }}>
-                    {(cardStats?.appDays ?? 0).toLocaleString()} · 🔥{(cardStats?.longestStreak ?? 0).toLocaleString()}
+                    {(cardStats?.appDays ?? 0).toLocaleString()} · {(cardStats?.longestStreak ?? 0).toLocaleString()}
                   </Text>
                   <Text style={{ color: inkMuted, fontSize: 10, marginTop: 1 }}>
                     {triLang(lang as Lang, {
@@ -2076,7 +2178,7 @@ function PlayerProfileModalBody({
             borderRadius: 16, backgroundColor: cardVisual.accentSoft,
             paddingHorizontal: 12, paddingVertical: 11, marginBottom: 14,
           }}>
-            <Text style={{ fontSize: f.numMd }}>👑</Text>
+            <Ionicons name="trophy" size={f.numMd} color={t.gold} />
             <Text style={{ color: cardVisual.secondary, fontSize: 14, fontWeight: '900' }}>
               {cardStats?.legendNo
                 ? triLang(lang as Lang, {
@@ -2206,8 +2308,24 @@ function PlayerProfileModalBody({
           </Animated.View>
         )}
         {hasSeasonProfileFrame && <SeasonProfileCardFrame radius={30} />}
-      </Animated.View>
-    </Animated.View>
+      </>
+    );
+  }
+}
+
+// зачем: подтверждение удаления друга и жалоба на ник рендерятся ВНЕ анимированной
+// панели (свои Modal), поэтому не участвуют в classic/hybrid ветвлении входа.
+function renderProfileModalOverlays(
+  player: PlayerInfo,
+  lang: string,
+  removeFriendConfirmOpen: boolean,
+  setRemoveFriendConfirmOpen: (v: boolean) => void,
+  handleRemoveFriendConfirm: () => void,
+  reportUserOpen: boolean,
+  setReportUserOpen: (v: boolean) => void,
+) {
+  return (
+    <>
     <ThemedConfirmModal
       visible={removeFriendConfirmOpen}
       title={triLang(lang as Lang, {
@@ -2257,10 +2375,20 @@ function PlayerProfileModalBody({
   );
 }
 
-function PlayerProfileModal({ player, myInfo, onClose }: Props) {
+function PlayerProfileModal({ player, myInfo, onClose, motionVariant = 'classic' }: Props) {
+  const isHybrid = motionVariant === 'hybrid';
   const slideAnim = useRef(new Animated.Value(500)).current;
   const fadeAnim  = useRef(new Animated.Value(0)).current;
   const shimmerAnim = useRef(new Animated.Value(0)).current;
+  // Гибрид «Световод»: панель поднимается из света (opacity+y, LUM.settle, без
+  // отскока) — отдельные Reanimated sharedValue, т.к. classic-путь остаётся на
+  // legacy Animated.Value (slideAnim/fadeAnim) и не смешивается с ним.
+  const hybridOpacity = useSharedValue(0);
+  const hybridY = useSharedValue(24);
+  // Держим панель смонтированной, пока не доиграет hybrid-выход (аудит A-55:
+  // раньше закрытие обрывало кадр мгновенно — onClose звался ДО завершения анимации).
+  const [hybridClosing, setHybridClosing] = useState(false);
+  const hybridCloseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // зачем: требование владельца — модалка открывается СНИМКОМ, без skeleton→
   // reveal. getCurrentMultiplierBreakdown() сама по себе асинхронна (AsyncStorage
@@ -2474,6 +2602,9 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
             onClose={handleClose}
             multipliers={multipliers}
             onFriendRequestToast={showFriendRequestToast}
+            isHybrid={isHybrid}
+            hybridOpacity={hybridOpacity}
+            hybridY={hybridY}
           />
           <InGameToast
             message={friendToast}

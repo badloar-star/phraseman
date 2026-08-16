@@ -199,9 +199,19 @@ export function buildSupportTelegramReviewPreview(input: {
   readonly customerIssue?: string;
   readonly holding?: boolean;
   readonly identityUnresolved?: boolean;
+  /** Текст написал владелец руками, а не модель. */
+  readonly ownerManual?: boolean;
 }): { readonly text: string; readonly approvable: boolean; readonly violations: readonly string[] } {
   const finalText = String(input.finalText ?? '').trim();
-  const violations = findSupportHumanVoiceViolations(finalText, input.customerIssue ?? '');
+  // зачем послабления для ручного текста (найдено тестом 2026-08-16):
+  // правила «не короче 35 слов» и «язык ответа = язык письма» написаны
+  // против МОДЕЛИ. Владелец вправе ответить коротко и на своём языке —
+  // без этой ветки его собственный текст блокировался бы в карточке,
+  // и он не смог бы отправить то, что сам же и написал.
+  const rawViolations = findSupportHumanVoiceViolations(finalText, input.customerIssue ?? '');
+  const violations = input.ownerManual
+    ? rawViolations.filter((v) => v !== 'too_short' && v !== 'wrong_language')
+    : rawViolations;
   const approvable = Boolean(finalText)
     && input.customerReady !== false
     && finalText.length <= TELEGRAM_SAFE_FINAL_TEXT_MAX

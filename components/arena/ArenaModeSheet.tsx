@@ -1,7 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, {
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -14,6 +15,7 @@ import { useArenaFontScale } from '../../hooks/use_arena_font_scale';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { hapticTap } from '../../hooks/use-haptics';
+import PressableHybrid from '../PressableHybrid';
 
 /**
  * Выбор режима матча — шторка по кнопке «Матч», как в «Карточках 2.1».
@@ -21,6 +23,14 @@ import { hapticTap } from '../../hooks/use-haptics';
  * Анимация: затемнение подложки, пружинный выезд листа, ступенчатое появление
  * карточек (по 45 мс друг за другом) и отдельная физика нажатия на каждой.
  * При Reduce Motion всё становится мгновенным, без единого движения.
+ *
+ * зачем (аудит гибрида, 2026-08-16): раньше `visible` пробрасывался прямо в
+ * RN `Modal`, и родитель (ArenaHubChrome) снимал его в тот же кадр, что вызывал
+ * onClose — Modal с animationType="none" размонтировался МГНОВЕННО, и написанная
+ * ниже exit-анимация (sheet.value → 0) была недостижима: полотно исчезало без
+ * доигрывания. Теперь шторка держит собственный `mounted` и снимает Modal только
+ * после того, как exit действительно доиграл (или сразу, если Reduce Motion/маунт
+ * ещё не случился) — контракт закрытия как у DeckPickerSheet/HybridSheetShell.
  */
 
 export type ArenaModeKey = 'quick' | 'ranked' | 'friend';
@@ -56,7 +66,6 @@ function ModeRow({
   // крупном кегле строки наезжали друг на друга. См. use_arena_font_scale.
   const bodyLine = { lineHeight: 18 * useArenaFontScale() };
   const enter = useSharedValue(0);
-  const press = useSharedValue(0);
 
   useEffect(() => {
     if (reduceMotion) { enter.value = visible ? 1 : 0; return; }
@@ -65,34 +74,28 @@ function ModeRow({
       : withTiming(0, { duration: 120 });
   }, [enter, index, reduceMotion, visible]);
 
+  // зачем: сила нажатия теперь идёт из общего пресс-стандарта гибрида
+  // (PressableHybrid variant="card", constants/motionHybrid.ts → PRESS.scale.card)
+  // вместо самодельной пружины 0.03 — вход строки (opacity/translateY) остаётся
+  // здесь же, но больше не смешивается со press-скейлом на одном узле.
   const style = useAnimatedStyle(() => ({
     opacity: enter.value,
-    transform: [
-      { translateY: (1 - enter.value) * 22 },
-      { scale: (0.96 + enter.value * 0.04) * (1 - press.value * 0.03) },
-    ],
+    transform: [{ translateY: (1 - enter.value) * 22 }, { scale: 0.96 + enter.value * 0.04 }],
   }));
 
   const tint = option.accent ? P.accent : P.text;
   return (
     <Animated.View style={style}>
-      <Pressable
-        accessibilityRole="button"
+      <PressableHybrid
+        variant="card"
         accessibilityLabel={`${option.title}. ${option.body}`}
         accessibilityState={{ disabled: Boolean(option.disabled) }}
         testID={`arena-mode-${option.key}`}
         disabled={option.disabled}
-        onPressIn={() => { press.value = reduceMotion ? 0 : withTiming(1, { duration: 90 }); }}
-        onPressOut={() => { press.value = reduceMotion ? 0 : withSpring(0, SPRING); }}
+        withHaptic={false}
         onPress={() => { void hapticTap(); onPress(); }}
-        style={[
-          styles.row,
-          {
-            backgroundColor: option.accent ? P.accentSoft : P.elev2,
-            borderColor: option.accent ? P.accent : 'transparent',
-            opacity: option.disabled ? 0.45 : 1,
-          },
-        ]}
+        style={{ opacity: option.disabled ? 0.45 : 1 }}
+        contentStyle={[styles.row, { backgroundColor: option.accent ? P.accentSoft : P.elev2 }]}
       >
         <View style={[styles.iconPlate, { backgroundColor: option.accent ? P.accent : P.elev }]}>
           <Ionicons name={option.icon} size={23} color={option.accent ? P.accentText : tint} />
@@ -104,7 +107,7 @@ function ModeRow({
         <View style={[styles.badge, { backgroundColor: P.elev }]}>
           <Text numberOfLines={1} maxFontSizeMultiplier={1.4} style={[styles.badgeText, { color: P.muted }]}>{option.badge}</Text>
         </View>
-      </Pressable>
+      </PressableHybrid>
     </Animated.View>
   );
 }
@@ -127,12 +130,24 @@ function ArenaModeSheetBase({
   const reduceMotion = useReduceMotion();
   const { height } = useWindowDimensions();
   const sheet = useSharedValue(0);
+  // Modal остаётся смонтированным, пока не доиграет exit — иначе родитель
+  // (ArenaHubChrome) снимает `visible` в тот же кадр и обрезает анимацию.
+  const [mounted, setMounted] = useState(visible);
+  const unmount = useCallback(() => setMounted(false), []);
 
   useEffect(() => {
-    if (reduceMotion) { sheet.value = visible ? 1 : 0; return; }
-    sheet.value = visible
-      ? withSpring(1, SPRING)
-      : withTiming(0, { duration: 160, easing: Easing.in(Easing.quad) });
+    if (visible) {
+      setMounted(true);
+      if (reduceMotion) { sheet.value = 1; return; }
+      sheet.value = withSpring(1, SPRING);
+      return;
+    }
+    if (!mounted) return;
+    if (reduceMotion) { sheet.value = 0; setMounted(false); return; }
+    sheet.value = withTiming(0, { duration: 160, easing: Easing.in(Easing.quad) }, (finished) => {
+      if (finished) runOnJS(unmount)();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduceMotion, sheet, visible]);
 
   const backdropStyle = useAnimatedStyle(() => ({ opacity: sheet.value * 0.62 }));
@@ -141,8 +156,10 @@ function ArenaModeSheetBase({
     opacity: 0.4 + sheet.value * 0.6,
   }));
 
+  if (!mounted) return null;
+
   return (
-    <Modal visible={visible} transparent animationType="none" onRequestClose={onClose}>
+    <Modal visible transparent animationType="none" onRequestClose={onClose}>
       <View style={styles.root}>
         <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]} />
         <Pressable
@@ -211,7 +228,6 @@ const styles = StyleSheet.create({
   row: {
     minHeight: 76,
     borderRadius: 20,
-    borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 13,

@@ -806,8 +806,13 @@ async function generateGroundedDraftForDoc(
       { role: 'system', content: buildGroundedReplySystemPrompt(context) },
       { role: 'user', content: `${renderSupportRepositoryContext(context)}\n\n${renderSupportOwnerInstructions(ownerInstructions)}\n\n${styleBlock ? `${styleBlock}\n\n` : ''}${conversationHistory ? `${conversationHistory}\n\n` : ''}${buildReplyPrompt(doc)}${repairPrompt}` },
     ],
-    maxTokens: 800,
-    temperature: 0.2,
+    // зачем 1400 вместо 800 (владелец, 2026-08-16: «ответы должны быть
+    // полными, а не коротышками»): ответ идёт в JSON-конверте вместе с
+    // полями evidenceIds и confidence, поэтому на сам текст оставалось
+    // немного. Развёрнутый ответ на 4-8 предложений в прежний лимит
+    // упирался и обрывался.
+    maxTokens: 1_400,
+    temperature: 0.4,
   });
   const envelope = parseSupportDraftEnvelope(result.text, context);
   return Object.freeze({
@@ -3154,6 +3159,7 @@ async function prepareSupportTelegramReview(input: {
       customerIssue,
       holding: input.holding === true,
       identityUnresolved: supportReasonHasUnresolvedIdentity(input.reason),
+      ownerManual: input.doc.draftOrigin === 'owner_manual',
     });
     const notificationLeaseId = randomUUID();
     const notificationLeaseExpiresAtMs = input.nowMs + SUPPORT_TELEGRAM_JOB_LEASE_MS;

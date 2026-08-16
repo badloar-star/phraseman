@@ -8,7 +8,8 @@ export type SupportHumanVoiceViolation =
   | 'mixed_language_signature'
   | 'too_many_questions'
   | 'wrong_language'
-  | 'first_person_singular';
+  | 'first_person_singular'
+  | 'too_short';
 
 const INTERNAL_PROCESS_LANGUAGE = /(?:\b(?:snapshot|repository|repo|commit|sha|branch|pull request|build artifact|deployment|deploy|evidence|grounded|fingerprint|revision|prompt|reviewer|council|model|firestore|cron|source code|codebase)\b|(?:сним(?:ок|ка|ке|ком|ку|ки|ков)(?:\s+(?:продукта|сборки|репозитория))?|репозитор(?:ий|ия|ии)|коммит|ветк[аи]|ревизи[яи]|отпечаток|доказательств[а]?|исходн(?:ый|ого)\s+код|кодовая\s+база|модел[ьи]|промпт|ревьюер|проверяющ(?:ий|ая)|совет\s+агентов))/iu;
 const GENERIC_RECEIPT = /(?:мы получили ваше сообщение|we (?:have )?received your message|hemos recibido tu mensaje)/iu;
@@ -23,11 +24,32 @@ export const SUPPORT_COMMUNICATION_BIBLE_PROMPT = Object.freeze([
   'Use warm, calm, plain everyday language. Be friendly, never rude, sarcastic, defensive, or patronizing.',
   'Show only the useful conclusion. Never mention internal tools, source retrieval, snapshots, repositories, commits, builds, evidence, models, prompts, reviewers, policies, confidence, or infrastructure.',
   'Distinguish clearly between what exists now, what existed before, and what is merely planned. Do not invent a reason for a product change.',
-  'Give one useful next step or alternative. Ask a question only when its answer changes that next step.',
-  'Never ask for version, platform, and troubleshooting history as a blanket list. Ask at most one necessary question in ordinary cases.',
+  // зачем переписано (владелец, 2026-08-16: «он должен задавать наводящие
+  // вопросы и общаться с юзерами! ответы должны быть полными, а не
+  // коротышками»): прежние правила ПРЯМО запрещали спрашивать — «максимум
+  // один вопрос», «спрашивай, только если ответ меняет шаг». Живой прогон
+  // показал результат: отписки в три строки без единого вопроса. Человек
+  // из поддержки так себя не ведёт — он уточняет, чтобы помочь по делу.
+  'Write a complete, unhurried reply: 4-8 sentences. A three-line brush-off is worse than no reply.',
+  'Acknowledge the specific feeling behind the letter — confusion, frustration, excitement — before moving to the substance.',
+  'Give a concrete next step, and explain briefly WHY it helps. Add one alternative when the first step may not fit.',
+  'Ask one or two genuinely useful clarifying questions that move the case forward. Never interrogate: no blanket list of version, platform and history.',
+  'End by inviting the person to write back — support is a conversation, not a ticket that closes itself.',
   'Do not add password, card, or security warnings unless the customer is actually discussing credentials, payment data, or account security.',
   'Use the customer language consistently. Do not add a closing or signature; the delivery layer handles it.',
 ].join('\n'));
+
+/**
+ * Ниже этого — отписка, а не ответ.
+ *
+ * зачем 35 слов (владелец, 2026-08-16: «ответы должны быть полными, а не
+ * коротышками»): реальный ответ из живого прогона — «Здравствуйте! Очень
+ * рад слышать. Если понадобится помощь — обращайтесь» — это 12 слов.
+ * Четыре-восемь предложений живого ответа дают 45-90 слов, поэтому 35 —
+ * нижняя граница, отсекающая отписку, но не мешающая краткому по существу
+ * ответу на совсем простой вопрос.
+ */
+export const MIN_REPLY_WORDS = 35;
 
 function questionCount(text: string): number {
   return (text.match(/[?？]/g) ?? []).length;
@@ -73,7 +95,16 @@ export function findSupportHumanVoiceViolations(
   const securityRelevant = /(?:парол|код входа|данн(?:ые|ых) карт|password|sign-in code|card details|credential|security|безопасност|оплат|payment)/iu.test(customerIssue);
   if (!securityRelevant && SECURITY_WARNING.test(text)) violations.push('irrelevant_security_warning');
   if (/[а-яёіїєґ]/iu.test(text) && EN_SIGNATURE_IN_CYRILLIC.test(text)) violations.push('mixed_language_signature');
-  if (questionCount(text) > 2) violations.push('too_many_questions');
+  // зачем порог поднят с 2 до 4 (владелец, 2026-08-16): два вопроса — это
+  // норма живого разговора, а не нарушение. Ограничение остаётся, чтобы
+  // ответ не превратился в допрос анкетой.
+  if (questionCount(text) > 4) violations.push('too_many_questions');
+  // зачем проверка на короткий ответ: живой прогон дал отписки в три
+  // строки — «попробуйте паузы», и всё. Человек с проблемой получает
+  // ощущение, что от него отмахнулись. Порог по СЛОВАМ, а не символам:
+  // кириллица и латиница дают разную длину при одинаковом содержании.
+  const words = text.split(/\s+/u).filter(Boolean).length;
+  if (words > 0 && words < MIN_REPLY_WORDS) violations.push('too_short');
   // зачем сверять язык с письмом клиента (живой прогон 2026-08-16): модель
   // отвечала по-русски англичанину и испанцу. Проверяем только когда язык
   // письма распознан уверенно — иначе короткое «ок» ловилось бы ложно.
@@ -99,5 +130,19 @@ export function supportReplyIsCustomerReady(input: {
   readonly holding?: boolean;
 }): boolean {
   if (!input.ownerManual && !input.holding && !input.grounded) return false;
-  return findSupportHumanVoiceViolations(input.reply, input.issue).length === 0;
+  const violations = findSupportHumanVoiceViolations(input.reply, input.issue);
+  // зачем послабления для ручного текста (найдено тестом 2026-08-16):
+  // правила «не короче 35 слов» и «отвечай на языке клиента» написаны
+  // против МОДЕЛИ — она отписывалась в три строки и отвечала русским
+  // текстом англичанам. Владелец же вправе и ответить коротко
+  // («Проверил, всё восстановил»), и написать на другом языке, если так
+  // понятнее конкретному человеку. Правила перекрывали ему отправку
+  // собственного текста. Запреты на ЛОЖЬ (мы проверили, вернём деньги,
+  // внутренняя кухня) для ручного текста остаются в силе — их проверяет
+  // отдельный слой в selectFinalAutoReply.
+  const OWNER_EXEMPT: readonly SupportHumanVoiceViolation[] = ['too_short', 'wrong_language'];
+  const effective = input.ownerManual
+    ? violations.filter((v) => !OWNER_EXEMPT.includes(v))
+    : violations;
+  return effective.length === 0;
 }

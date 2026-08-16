@@ -33,12 +33,20 @@ import { isLightThemeMode } from '../constants/theme';
 import { OLIVE_RICH } from '../constants/oliveTheme';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import DuoPressable from './DuoPressable';
+import PressableHybrid from './PressableHybrid';
+import LiveStreakFlame from './icons/LiveStreakFlame';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { LUM } from '../constants/motionHybrid';
 interface StreakReviveModalProps {
   visible: boolean;
   offer: StreakReviveOffer | null;
   onClose: () => void;
   onRevived?: (restoredStreak: number) => void;
   shopReturnTo?: 'home' | 'streak_stats';
+  /** default 'classic' — боевое поведение не меняется, пока не передан явно. */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 function slavicPlural(count: number, one: string, few: string, many: string): string {
@@ -69,7 +77,7 @@ function formatCountdown(msLeft: number, lang: Lang): string {
   });
 }
 
-function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 'home' }: StreakReviveModalProps) {
+function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 'home', motionVariant = 'classic' }: StreakReviveModalProps) {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
@@ -78,6 +86,14 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const { height: windowHeight, fontScale } = useWindowDimensions();
   const [busy, setBusy] = useState(false);
   const [msLeft, setMsLeft] = useState(0);
+  const reduceMotion = useReduceMotion();
+  const hybrid = motionVariant === 'hybrid';
+  // зачем: восстановление серии — награда (закон гибрида: удар/вес только у
+  // кульминации наград). LiveStreakFlame.burstToken — единственный удар героя
+  // на подтверждении успеха (squash + colykhanie), без отдельного движка удара —
+  // модалка закрывается сразу после revive, полноценный RewardImpactRings-
+  // проезд (блум→падение→кольца) не успел бы доиграть до размонтирования.
+  const [flameBurstToken, setFlameBurstToken] = useState(0);
 
   useEffect(() => { if (!visible) setBusy(false); }, [visible]);
 
@@ -195,16 +211,20 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
       const r = await reviveStreak();
       if (r.ok) {
         hapticSuccess();
+        // зачем: гибрид — единственный удар героя (флейм-иконка) на подтверждении
+        // успеха, ДО onClose/emitAppEvent (тот же кадр, что и hapticSuccess);
+        // classic-путь не читает этот стейт вообще, поведение не меняется.
+        if (hybrid) setFlameBurstToken((n) => n + 1);
         emitAppEvent('action_toast', {
           type: 'success',
-          messageRu: `🔥 Цепочка восстановлена: ${r.restoredStreak} дн.`,
-          messageUk: `🔥 Ланцюжок відновлено: ${r.restoredStreak} дн.`,
-          messageEs: `🔥 Racha recuperada: ${r.restoredStreak} días`,
-          messagePtBr: `🔥 Sequência restaurada: ${r.restoredStreak} dias`,
-          messageVi: `🔥 Đã khôi phục chuỗi: ${r.restoredStreak} ngày`,
-          messageId: `🔥 Streak dipulihkan: ${r.restoredStreak} hari`,
-          messageTr: `🔥 Seri yenilendi: ${r.restoredStreak} gün`,
-          messagePl: `🔥 Seria odnowiona: ${r.restoredStreak} dni`,
+          messageRu: `Цепочка восстановлена: ${r.restoredStreak} дн.`,
+          messageUk: `Ланцюжок відновлено: ${r.restoredStreak} дн.`,
+          messageEs: `Racha recuperada: ${r.restoredStreak} días`,
+          messagePtBr: `Sequência restaurada: ${r.restoredStreak} dias`,
+          messageVi: `Đã khôi phục chuỗi: ${r.restoredStreak} ngày`,
+          messageId: `Streak dipulihkan: ${r.restoredStreak} hari`,
+          messageTr: `Seri yenilendi: ${r.restoredStreak} gün`,
+          messagePl: `Seria odnowiona: ${r.restoredStreak} dni`,
         });
         onRevived?.(r.restoredStreak);
         onClose();
@@ -227,7 +247,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
     } finally {
       setBusy(false);
     }
-  }, [busy, offer, cost, onClose, router, onRevived, shopReturnTo]);
+  }, [busy, offer, cost, onClose, router, onRevived, shopReturnTo, hybrid]);
 
   const onDismiss = useCallback(() => {
     if (busy) return;
@@ -252,6 +272,116 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const primaryText = isOliveTheme ? OLIVE_RICH.piano : isLightTheme ? '#FFFFFF' : '#171421';
 
   if (!visible || !offer) return null;
+
+  if (hybrid) {
+    return (
+      <HybridAlertShell
+        visible
+        onRequestClose={handleDismiss}
+        shadowColor="#000000"
+        backdropColor="rgba(2, 4, 10, 0.76)"
+        testID="streak-revive-backdrop-hybrid"
+      >
+        <View style={[styles.passShadow, styles.hybridPassShadow, compactHeight && styles.passCompact, isOliveTheme ? styles.olivePassShadow : null]}>
+          <View testID="streak-revive-pass" style={[styles.pass, { backgroundColor: passSurface }]} accessibilityViewIsModal>
+            <View
+              testID="streak-revive-header"
+              style={[styles.header, compactHeight && styles.headerCompact, { backgroundColor: accent }]}
+            >
+              <PressableHybrid
+                testID="streak-revive-close"
+                variant="icon"
+                onPress={handleDismiss}
+                disabled={busy}
+                accessibilityLabel={closeLabel}
+                hitSlop={8}
+                style={styles.closeButton}
+              >
+                <Ionicons name="close" size={27} color={accentDarkText} />
+              </PressableHybrid>
+              <View style={styles.hybridFlameWrap}>
+                <LiveStreakFlame
+                  themeMode={themeMode}
+                  streakDays={lostStreak}
+                  size={34}
+                  burstToken={flameBurstToken || undefined}
+                />
+              </View>
+              <FlowText
+                testID="streak-revive-number"
+                provenance="authored"
+                style={[styles.streakNumber, compactHeight && styles.streakNumberCompact, { color: accentDarkText, fontVariant: ['tabular-nums'] }]}
+              >
+                {lostStreak}
+              </FlowText>
+              <Text style={[styles.streakLabel, { color: accentDarkText }]}>{streakUnit}</Text>
+            </View>
+
+            <ScrollView
+              style={styles.bodyScroll}
+              contentContainerStyle={[styles.body, compactHeight && styles.bodyCompact]}
+              bounces={false}
+              showsVerticalScrollIndicator={false}
+            >
+              <CascadeItem delay={LUM.ladder[1]} reduceMotion={reduceMotion}>
+                <FlowText
+                  testID="streak-revive-title"
+                  provenance="authored"
+                  style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}
+                >
+                  {title}
+                </FlowText>
+              </CascadeItem>
+              <CascadeItem delay={LUM.ladder[1]} reduceMotion={reduceMotion}>
+                <Text style={[styles.description, { color: t.textSecond, fontSize: f.body }]}>{description}</Text>
+              </CascadeItem>
+
+              <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
+                <DuoPressable
+                  testID="streak-revive-primary"
+                  onPress={() => { void onConfirm(); }}
+                  disabled={busy}
+                  accessibilityLabel={busy ? busyLabel : primaryLabel}
+                  edgeColor={isOliveTheme ? OLIVE_RICH.piano : isLightTheme ? '#22463A' : '#C8C3FF'}
+                  edgeHeight={5}
+                  style={[styles.hybridPrimaryFace, { backgroundColor: primarySurface }]}
+                  wrapStyle={styles.hybridPrimaryWrap}
+                >
+                  {busy ? <ActivityIndicator color={primaryText} size="small" /> : null}
+                  <Text style={[styles.primaryText, { color: primaryText }]}>{busy ? busyLabel : primaryLabel}</Text>
+                </DuoPressable>
+              </CascadeItem>
+
+              <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
+                <View style={styles.costRow}>
+                  {/* guard-ok: декоративная иконка — costText рядом уже называет сумму словами */}
+                  <Image source={oskolokImageForPackShards(cost)} style={styles.priceIcon} contentFit="contain" accessible={false} />
+                  <Text style={[styles.costText, { color: t.textSecond }]}>{costLabel}: {cost}</Text>
+                </View>
+              </CascadeItem>
+
+              <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
+                <PressableHybrid
+                  testID="streak-revive-secondary"
+                  variant="secondary"
+                  onPress={handleDismiss}
+                  disabled={busy}
+                  accessibilityLabel={secondaryLabel}
+                  style={styles.secondaryButton}
+                >
+                  <Text style={[styles.secondaryText, { color: t.textMuted }]}>{secondaryLabel}</Text>
+                </PressableHybrid>
+              </CascadeItem>
+
+              {msLeft > 0 ? (
+                <Text style={[styles.countdown, { color: t.textMuted }]}>{formatCountdown(msLeft, lang)}</Text>
+              ) : null}
+            </ScrollView>
+          </View>
+        </View>
+      </HybridAlertShell>
+    );
+  }
 
   return (
     <Modal
@@ -527,5 +657,28 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '600',
+  },
+  hybridPassShadow: {
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
+  hybridFlameWrap: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
+  },
+  hybridPrimaryWrap: {
+    marginTop: 24,
+    borderRadius: 19,
+  },
+  hybridPrimaryFace: {
+    minHeight: 58,
+    borderRadius: 19,
+    flexDirection: 'row',
+    gap: 9,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 18,
   },
 });

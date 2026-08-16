@@ -1,17 +1,12 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import { Modal, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
-import Animated, {
-  Easing as REasing,
-  runOnJS,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
+import React, { useCallback } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import CustomAvatarBadge from '../CustomAvatarBadge';
-import TapScale from '../TapScale';
+import DuoPressable from '../DuoPressable';
+import PressableHybrid from '../PressableHybrid';
 import { useTheme } from '../ThemeContext';
+import { hapticTap } from '../../hooks/use-haptics';
 import {
   CUSTOM_AVATAR_GRADIENTS,
   CUSTOM_AVATAR_RESTYLE_COST,
@@ -36,137 +31,147 @@ export interface AvatarEditorSheetProps {
   onClose: () => void;
 }
 
-const SHEET_HIDDEN = 320; // стартовая позиция листа под экраном (выезд/уезд)
-
+/**
+ * AvatarEditorSheet — гибрид «Световод + Чекан» (владелец, 2026-08-15).
+ *
+ * зачем: собственный PanResponder-выезд (кастомный translateY + drag-to-dismiss)
+ * заменён на общий каркас HybridSheetShell — жесты совпадали 1:1 (тяга вниз,
+ * резина ×0.12, порог 88px/900), так что конфликта нет и держать свою копию
+ * незачем. Плитки градиентов/чипы цвета логотипа — PressableHybrid variant
+ * (card/chip), выбор читается тоном (accentBg) и галочкой, а не рамкой (правило
+ * владельца — контейнеры без обводок). CTA «Сохранить» — DuoPressable, кромка 6.
+ */
 export function AvatarEditorSheet(props: AvatarEditorSheetProps) {
   const { theme: t } = useTheme();
-  const { height: viewportHeight } = useWindowDimensions();
 
-  // Интерактивная шторка (единый стандарт, паттерн RegistrationPromptModal):
-  // кастомный выезд снизу + drag-to-dismiss вместо нативной slide-анимации.
-  const backdropO = useSharedValue(0);
-  const sheetY = useSharedValue(SHEET_HIDDEN);
-  const sheetOpacity = useSharedValue(0);
-  const dragTranslateY = useSharedValue(0);
+  const handleClose = useCallback(() => {
+    props.onClose();
+  }, [props]);
 
-  useEffect(() => {
-    if (!props.visible) return;
-    dragTranslateY.value = 0;
-    backdropO.value = withTiming(1, { duration: 200, easing: REasing.out(REasing.cubic) });
-    sheetY.value = SHEET_HIDDEN;
-    sheetOpacity.value = withTiming(1, { duration: 220 });
-    sheetY.value = withTiming(0, { duration: 380, easing: REasing.bezier(0.32, 0.72, 0, 1) });
-  }, [props.visible, backdropO, sheetY, sheetOpacity, dragTranslateY]);
-
-  const onCloseRef = useRef(props.onClose);
-  onCloseRef.current = props.onClose;
-
-  // Анимированное закрытие (фон/системная «назад»): лист уезжает вниз + подложка тает.
-  const dismissSheet = useCallback(() => {
-    backdropO.value = withTiming(0, { duration: 200 });
-    sheetOpacity.value = withTiming(0, { duration: 180 });
-    sheetY.value = withTiming(SHEET_HIDDEN, { duration: 240, easing: REasing.out(REasing.cubic) }, (finished) => {
-      if (finished) runOnJS(onCloseRef.current)();
-    });
-  }, [backdropO, sheetOpacity, sheetY]);
-
-  const closeAfterSwipe = useCallback(() => {
-    onCloseRef.current();
-  }, []);
-
-  const swipeOffDistance = useMemo(() => Math.max(480, viewportHeight * 0.6), [viewportHeight]);
-
-  // Тяга вниз 1:1, вверх — резина ×0.12; отпустил — spring обратно или
-  // уезд вниз + закрытие (порог 88px / velocityY 900).
-  const panGesture = useMemo(
-    () =>
-      Gesture.Pan()
-        .activeOffsetY(10)
-        .failOffsetX([-32, 32])
-        .onUpdate((e) => {
-          'worklet';
-          const ty = e.translationY;
-          dragTranslateY.value = ty < 0 ? ty * 0.12 : ty;
-        })
-        .onEnd((e) => {
-          'worklet';
-          const shouldClose = dragTranslateY.value > 88 || e.velocityY > 900;
-          if (shouldClose) {
-            dragTranslateY.value = withTiming(swipeOffDistance, { duration: 260 }, (finished) => {
-              if (finished) {
-                runOnJS(closeAfterSwipe)();
-              }
-            });
-          } else {
-            dragTranslateY.value = withSpring(0, { damping: 22, stiffness: 300 });
-          }
-        }),
-    [closeAfterSwipe, dragTranslateY, swipeOffDistance],
-  );
-
-  // Подложка слабеет при оттягивании листа вниз.
-  const backdropStyle = useAnimatedStyle(() => ({
-    opacity: backdropO.value * (1 - Math.min(Math.max(dragTranslateY.value, 0) / 600, 0.5)),
-  }));
-
-  const sheetStyle = useAnimatedStyle(() => ({
-    opacity: sheetOpacity.value,
-    transform: [{ translateY: sheetY.value + dragTranslateY.value }],
-  }));
+  const handleConfirm = useCallback(() => {
+    void hapticTap();
+    props.onConfirm();
+  }, [props]);
 
   return (
-    <Modal visible={props.visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismissSheet}>
-      <GestureHandlerRootView style={styles.root}>
-        <Pressable style={StyleSheet.absoluteFill} onPress={dismissSheet}>
-          <Animated.View style={[styles.backdropFill, backdropStyle]} />
-        </Pressable>
-        <GestureDetector gesture={panGesture}>
-          <Animated.View style={[styles.sheet, { backgroundColor: t.bgCard }, sheetStyle]}>
-            <View style={[styles.handle, { backgroundColor: t.border }]} />
-            <Text style={[styles.title, { color: t.textPrimary }]}>{props.title}</Text>
-            {props.avatar ? <CustomAvatarBadge avatarId={props.avatar.id} gradientId={props.gradientId} logoColor={props.logoColor} size={104} /> : null}
-            <View style={styles.gradientGrid}>
-              {CUSTOM_AVATAR_GRADIENTS.map((gradient) => {
-                const selected = gradient.id === props.gradientId;
-                return (
-                  <TapScale key={gradient.id} onPress={() => props.onGradientChange(gradient.id)}
-                    style={[styles.gradient, { borderColor: selected ? t.accent : t.border, backgroundColor: gradient.colors[1] }]}
-                    accessibilityState={{ selected }} accessibilityLabel={props.gradientLabel(gradient.id)}>
-                    <Text style={styles.gradientText}>{props.gradientLabel(gradient.id)}</Text>
-                  </TapScale>
-                );
-              })}
-            </View>
-            <View style={styles.colorRow}>
-              {(['black', 'white'] as const).map((color) => (
-                <TapScale key={color} onPress={() => props.onLogoColorChange(color)}
-                  style={[styles.colorChoice, { borderColor: props.logoColor === color ? t.accent : t.border, backgroundColor: color === 'black' ? '#111827' : '#F8FAFC' }]}
-                  accessibilityState={{ selected: props.logoColor === color }}>
-                  <Text style={{ color: color === 'black' ? '#FFFFFF' : '#111827', fontWeight: '800' }}>{color === 'black' ? props.darkLabel : props.lightLabel}</Text>
-                </TapScale>
-              ))}
-            </View>
-            <Pressable onPress={props.onConfirm} style={[styles.confirm, { backgroundColor: t.accent }]}>
-              <Text style={[styles.confirmText, { color: t.correctText }]}>{props.applyLabel}{props.owned ? ` · ${CUSTOM_AVATAR_RESTYLE_COST}` : ''}</Text>
-            </Pressable>
-          </Animated.View>
-        </GestureDetector>
-      </GestureHandlerRootView>
-    </Modal>
+    <HybridSheetShell
+      visible={props.visible}
+      onClose={handleClose}
+      closeLabel={props.title}
+      glowColor={t.accent}
+      testID="avatar-editor-sheet"
+    >
+      <View style={styles.body}>
+        <Text style={[styles.title, { color: t.textPrimary }]}>{props.title}</Text>
+        {props.avatar ? (
+          <View style={styles.badgeWrap}>
+            <CustomAvatarBadge avatarId={props.avatar.id} gradientId={props.gradientId} logoColor={props.logoColor} size={104} />
+          </View>
+        ) : null}
+
+        <View style={styles.gradientGrid}>
+          {CUSTOM_AVATAR_GRADIENTS.map((gradient) => {
+            const selected = gradient.id === props.gradientId;
+            return (
+              <PressableHybrid
+                key={gradient.id}
+                variant="card"
+                onPress={() => props.onGradientChange(gradient.id)}
+                style={styles.gradient}
+                contentStyle={[
+                  styles.gradientSurface,
+                  { backgroundColor: gradient.colors[1] },
+                ]}
+                accessibilityState={{ selected }}
+                accessibilityLabel={props.gradientLabel(gradient.id)}
+              >
+                <Text style={styles.gradientText} numberOfLines={1}>{props.gradientLabel(gradient.id)}</Text>
+                {selected ? (
+                  <View style={[styles.selectedBadge, { backgroundColor: t.accent }]}>
+                    <Ionicons name="checkmark" size={11} color={t.correctText} />
+                  </View>
+                ) : null}
+              </PressableHybrid>
+            );
+          })}
+        </View>
+
+        <View style={styles.colorRow}>
+          {(['black', 'white'] as const).map((color) => {
+            const selected = props.logoColor === color;
+            return (
+              <PressableHybrid
+                key={color}
+                variant="card"
+                onPress={() => props.onLogoColorChange(color)}
+                style={styles.colorChoiceWrap}
+                contentStyle={[
+                  styles.colorChoice,
+                  { backgroundColor: color === 'black' ? '#111827' : '#F8FAFC' },
+                  selected ? { backgroundColor: color === 'black' ? '#111827' : '#F8FAFC' } : null,
+                ]}
+                accessibilityState={{ selected }}
+              >
+                <Text style={{ color: color === 'black' ? '#FFFFFF' : '#111827', fontWeight: '700' }}>
+                  {color === 'black' ? props.darkLabel : props.lightLabel}
+                </Text>
+                {selected ? (
+                  <View style={[styles.selectedBadge, { backgroundColor: t.accent }]}>
+                    <Ionicons name="checkmark" size={11} color={t.correctText} />
+                  </View>
+                ) : null}
+              </PressableHybrid>
+            );
+          })}
+        </View>
+
+        <DuoPressable
+          onPress={handleConfirm}
+          style={[styles.confirm, { backgroundColor: t.accent }]}
+          edgeColor={t.accentBg}
+          edgeHeight={6}
+          testID="avatar-editor-confirm"
+        >
+          <Text style={[styles.confirmText, { color: t.correctText }]}>
+            {props.applyLabel}{props.owned ? ` · ${CUSTOM_AVATAR_RESTYLE_COST}` : ''}
+          </Text>
+        </DuoPressable>
+      </View>
+    </HybridSheetShell>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, justifyContent: 'flex-end' },
-  backdropFill: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.58)' },
-  sheet: { borderTopLeftRadius: 28, borderTopRightRadius: 28, padding: 20, alignItems: 'center', maxHeight: '90%' },
-  handle: { width: 44, height: 5, borderRadius: 3, marginBottom: 16 },
-  title: { fontSize: 21, lineHeight: 27, fontWeight: '900', marginBottom: 16 },
-  gradientGrid: { width: '100%', flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 18 },
-  gradient: { width: '31%', minHeight: 48, borderRadius: 12, borderWidth: 2, justifyContent: 'center', paddingHorizontal: 6 },
-  gradientText: { color: '#FFFFFF', fontSize: 10, fontWeight: '900', textAlign: 'center' },
+  body: { alignItems: 'center', paddingBottom: 4 },
+  badgeWrap: { marginTop: 4, marginBottom: 4 },
+  title: { fontSize: 21, lineHeight: 27, fontWeight: '700', marginBottom: 12, textAlign: 'center' },
+  gradientGrid: { width: '100%', flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 14 },
+  gradient: { width: '31%' },
+  gradientSurface: {
+    minHeight: 48,
+    borderRadius: 12,
+    justifyContent: 'center',
+    paddingHorizontal: 6,
+  },
+  gradientText: { color: '#FFFFFF', fontSize: 10, fontWeight: '700', textAlign: 'center' },
+  selectedBadge: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   colorRow: { width: '100%', flexDirection: 'row', gap: 10, marginTop: 14 },
-  colorChoice: { flex: 1, minHeight: 46, borderWidth: 2, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  confirm: { width: '100%', minHeight: 54, marginTop: 18, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  confirmText: { fontSize: 16, fontWeight: '900' },
+  colorChoiceWrap: { flex: 1 },
+  colorChoice: {
+    minHeight: 46,
+    borderRadius: 13,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  confirm: { width: '100%', marginTop: 18, borderRadius: 16 },
+  confirmText: { fontSize: 16, fontWeight: '700', paddingVertical: 15 },
 });

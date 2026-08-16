@@ -86,7 +86,7 @@ describe('support auto-reply policy', () => {
 
   test('drops invented evidence IDs', () => {
     const parsed = parseSupportDraftEnvelope(JSON.stringify({
-      reply: 'Open lessons and choose a practice activity.',
+      reply: 'Open the Lessons tab and pick a practice activity that matches what you want to work on today. Short regular sessions usually work better than one long one, so even ten minutes counts. If you are not sure which activity fits, tell us what feels hardest right now and we will point you to the right one.',
       evidenceIds: ['repo-facts-1', 'made-up'], confidence: 0.9, needsHuman: false,
     }), context);
     expect(parsed?.evidenceIds).toEqual(['repo-facts-1']);
@@ -122,7 +122,16 @@ describe('support auto-reply policy', () => {
     };
     const selected = selectFinalAutoReply({
       issue: 'How do lessons work?', risk: 'safe', context: restoreContext,
-      draft: { reply: 'Open Settings and restore purchases.', evidenceIds: ['repo-facts-1'], confidence: 0.99, needsHuman: false },
+      // зачем ответ развёрнутый (2026-08-16): короткий текст теперь
+      // отсекается правилом длины раньше семантической сверки, и тест
+      // проверял бы не то, ради чего написан. Смысл прежний: ответ не по
+      // теме вопроса не должен пройти, даже если ссылка на факт валидна.
+      draft: {
+        reply: 'Open Settings and restore purchases from there. It usually takes a few seconds, '
+          + 'and your previous items will come back automatically once the store confirms them. '
+          + 'If nothing appears after that, tell us which account you used and we will look further.',
+        evidenceIds: ['repo-facts-1'], confidence: 0.99, needsHuman: false,
+      },
       review: { approved: true, correctedReply: '', reasons: [] },
     });
     expect(selected).toMatchObject({ grounded: false, reason: 'semantic_mismatch' });
@@ -132,7 +141,7 @@ describe('support auto-reply policy', () => {
   test('reviewer cannot replace a grounded draft with an unrelated correction', () => {
     const selected = selectFinalAutoReply({
       issue: 'What learning activities are available?', risk: 'safe', context,
-      draft: { reply: 'Open lessons and choose a practice activity.', evidenceIds: ['repo-facts-1'], confidence: 0.9, needsHuman: false },
+      draft: { reply: 'Open the Lessons tab and pick a practice activity that matches what you want to work on today. Short regular sessions usually work better than one long one, so even ten minutes counts. If you are not sure which activity fits, tell us what feels hardest right now and we will point you to the right one.', evidenceIds: ['repo-facts-1'], confidence: 0.9, needsHuman: false },
       review: { approved: true, correctedReply: 'Restore your purchase.', reasons: [] },
     });
     expect(selected).toMatchObject({ grounded: true, reason: 'grounded_and_reviewed' });
@@ -142,7 +151,7 @@ describe('support auto-reply policy', () => {
   test('allows a relevant grounded safe answer only after independent approval', () => {
     const selected = selectFinalAutoReply({
       issue: 'What learning activities are available?', risk: 'safe', context,
-      draft: { reply: 'Open lessons and choose a practice activity.', evidenceIds: ['repo-facts-1'], confidence: 0.9, needsHuman: false },
+      draft: { reply: 'Open the Lessons tab and pick a practice activity that matches what you want to work on today. Short regular sessions usually work better than one long one, so even ten minutes counts. If you are not sure which activity fits, tell us what feels hardest right now and we will point you to the right one.', evidenceIds: ['repo-facts-1'], confidence: 0.9, needsHuman: false },
       review: { approved: true, correctedReply: '', reasons: [] },
     });
     expect(selected).toMatchObject({ grounded: true, reason: 'grounded_and_reviewed' });
@@ -151,7 +160,7 @@ describe('support auto-reply policy', () => {
   test('rejects a model-invented link even when evidence and reviewer approve it', () => {
     const selected = selectFinalAutoReply({
       issue: 'What learning activities are available?', risk: 'safe', context,
-      draft: { reply: 'Open lessons and choose a practice activity at https://fake.example/help', evidenceIds: ['repo-facts-1'], confidence: 0.9, needsHuman: false },
+      draft: { reply: 'Open the Lessons tab and pick a practice activity that matches what you want to work on today. Short regular sessions usually work better than one long one, so even ten minutes counts. If you are not sure which activity fits, tell us what feels hardest right now and we will point you to the right one. See https://fake.example/help', evidenceIds: ['repo-facts-1'], confidence: 0.9, needsHuman: false },
       review: { approved: true, correctedReply: '', reasons: [] },
       ownerInstructions: makeSupportOwnerInstructionsSnapshot('Пишем дружелюбно.', 1),
     });
@@ -162,7 +171,7 @@ describe('support auto-reply policy', () => {
   test('untrusted repository snapshot can only produce a holding reply', () => {
     const selected = selectFinalAutoReply({
       issue: 'What learning activities are available?', risk: 'safe', context: { ...context, trustworthy: false, trustReason: 'fingerprint_mismatch' },
-      draft: { reply: 'Open lessons and choose a practice activity.', evidenceIds: ['repo-facts-1'], confidence: 1, needsHuman: false },
+      draft: { reply: 'Open the Lessons tab and pick a practice activity that matches what you want to work on today. Short regular sessions usually work better than one long one, so even ten minutes counts. If you are not sure which activity fits, tell us what feels hardest right now and we will point you to the right one.', evidenceIds: ['repo-facts-1'], confidence: 1, needsHuman: false },
       review: { approved: true, correctedReply: '', reasons: [] },
     });
     expect(selected).toMatchObject({ grounded: false, reason: 'untrusted_snapshot_fingerprint_mismatch' });
@@ -241,7 +250,7 @@ describe('Ответ без утверждений о продукте', () => {
 
   describe('распознавание утверждений', () => {
     test('тёплая благодарность утверждением не является', () => {
-      expect(replyMakesNoProductClaim('Спасибо большое за тёплые слова! Очень приятно это слышать.')).toBe(true);
+      expect(replyMakesNoProductClaim('Спасибо большое за тёплые слова! Очень приятно это слышать — такие письма правда поддерживают нас в работе. Рады, что у вас всё складывается хорошо и приносит удовольствие. Если вдруг появятся вопросы или предложения, пишите нам сюда, всегда рады помочь.')).toBe(true);
     });
 
     test('обещание добавить функцию — это утверждение', () => {
@@ -272,7 +281,7 @@ describe('Ответ без утверждений о продукте', () => {
 
     test('тёплый ответ без утверждений по-прежнему проходит', () => {
       // зачем: новая проверка не должна перекрыть путь вообще всему.
-      expect(replyMakesNoProductClaim('Спасибо большое за тёплые слова! Очень приятно это слышать.')).toBe(true);
+      expect(replyMakesNoProductClaim('Спасибо большое за тёплые слова! Очень приятно это слышать — такие письма правда поддерживают нас в работе. Рады, что у вас всё складывается хорошо и приносит удовольствие. Если вдруг появятся вопросы или предложения, пишите нам сюда, всегда рады помочь.')).toBe(true);
     });
 
     test('пустой ответ утверждением не считается, но и не проходит', () => {
@@ -282,7 +291,7 @@ describe('Ответ без утверждений о продукте', () => {
 
   describe('сквозное решение', () => {
     test('на «спасибо» Джарвис наконец отвечает сам, без заглушки', () => {
-      const out = decide('Спасибо большое за тёплые слова! Очень приятно это слышать.');
+      const out = decide('Спасибо большое за тёплые слова! Очень приятно это слышать — такие письма правда поддерживают нас в работе. Рады, что у вас всё складывается хорошо и приносит удовольствие. Если вдруг появятся вопросы или предложения, пишите нам сюда, всегда рады помочь.');
       expect(out).toMatchObject({ grounded: true, reason: 'no_product_claim' });
       expect(out.reply).toContain('Спасибо');
     });
@@ -333,6 +342,31 @@ describe('Ответ без утверждений о продукте', () => {
 
     test('английские ложные утверждения тоже по-прежнему ловятся', () => {
       expect(decide('We have refunded your payment.').grounded).toBe(false);
+    });
+
+    // зачем эти случаи (прогон 10 ТРЕДОВ, 2026-08-16): модель девять раз
+    // написала «мы сейчас проверяем ваш аккаунт» и «мы связались с
+    // поддержкой App Store». Прежний запрет ловил только прошедшее время
+    // («мы проверили»), а настоящее проходило свободно. Клиент при этом
+    // ждёт результата проверки, которая даже не начиналась.
+    test.each([
+      'Мы сейчас проверяем ваш аккаунт и скоро сообщим результат по вашему обращению.',
+      'Мы связались с поддержкой App Store, чтобы уточнить статус вашей подписки сегодня.',
+      'Мы разбираемся с вашей ситуацией и вернёмся с ответом в ближайшее время сегодня.',
+      'We are currently checking your account and will get back to you shortly today.',
+    ])('ложь о начатой работе не проходит: %s', (reply) => {
+      expect(decide(reply).grounded).toBe(false);
+    });
+
+    // зачем (тот же прогон): на «верните деньги» модель ответила
+    // «подготовим возврат» и «можем оформить возврат». Обещать чужие
+    // деньги она не вправе — это решение владельца.
+    test.each([
+      'Мы обязательно подготовим возврат денег, если ситуация не улучшится в ближайшие дни.',
+      'Если проблема не решится, мы можем оформить возврат средств вам в ближайшее время.',
+      'We will issue a refund if the problem is not solved within the next few days.',
+    ])('обещание денег не проходит: %s', (reply) => {
+      expect(decide(reply).grounded).toBe(false);
     });
 
     test('низкая уверенность модели закрывает путь', () => {

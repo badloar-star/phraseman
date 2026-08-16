@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   View,
   Text,
@@ -32,6 +33,11 @@ import type { ThemeMode } from '../constants/theme';
 import { soundDirector } from '../modules/audio/sound_director';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
+import DuoPressable from './DuoPressable';
+import PressableHybrid from './PressableHybrid';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { LUM } from '../constants/motionHybrid';
 type NoEnergyModalChrome = {
   glow: string;
   borderColor: string;
@@ -207,6 +213,8 @@ interface Props {
   qaForceShardCta?: boolean;
   /** Admin/QA preview: render the no-energy UI even for Premium/VIP accounts. */
   qaIgnorePremiumAccess?: boolean;
+  /** default 'classic' — боевое поведение не меняется, пока не передан явно. */
+  motionVariant?: 'classic' | 'hybrid';
 }
 
 function NoEnergyModal({
@@ -219,6 +227,7 @@ function NoEnergyModal({
   onBeforeOpenPremium,
   qaForceShardCta = false,
   qaIgnorePremiumAccess = false,
+  motionVariant = 'classic',
 }: Props) {
   const router = useRouter();
   const { theme: t, themeMode, f } = useTheme();
@@ -382,6 +391,134 @@ function NoEnergyModal({
     ? ENERGY_GATE_MESSAGES_BY_LANG[lang][0]!({ required: String(minRequired), have: String(totalAvailable) })
     : '';
   const showBody = (isGate ? (lineText || gateFallback) : (lineText || defaultSubtitle)).replace(/\{time\}/g, recoveryTimeText);
+  const reduceMotion = useReduceMotion();
+  const hybrid = motionVariant === 'hybrid';
+
+  const titleText = isGate
+    ? triLang(lang, {
+        ru: 'Недостаточно энергии',
+        uk: 'Недостатньо енергії',
+        es: 'No tienes suficiente energía',
+        'pt-BR': 'Energia insuficiente',
+        vi: 'Không đủ năng lượng',
+        id: 'Energi tidak cukup',
+        tr: 'Yeterli enerji yok',
+        pl: 'Za mało energii',
+      })
+    : triLang(lang, {
+        ru: 'Энергия закончилась',
+        uk: 'Енергія закінчилась',
+        es: 'Se acabó la energía',
+        'pt-BR': 'A energia acabou',
+        vi: 'Hết năng lượng',
+        id: 'Energi habis',
+        tr: 'Enerji bitti',
+        pl: 'Energia się skończyła',
+      });
+  const laterLabel = triLang(lang, {
+    ru: 'Позже',
+    uk: 'Пізніше',
+    es: 'Más tarde',
+    'pt-BR': 'Mais tarde',
+    vi: 'Để sau',
+    id: 'Nanti',
+    tr: 'Daha sonra',
+    pl: 'Później',
+  });
+  const goldCtaLabel = triLang(lang, {
+    ru: 'Получить Плюс',
+    uk: 'Отримати Plus',
+    es: 'Obtener Plus',
+    'pt-BR': 'Obter Plus',
+    vi: 'Nhận Plus',
+    id: 'Dapatkan Plus',
+    tr: 'Plus al',
+    pl: 'Uzyskaj Plus',
+  });
+
+  // зачем: оффер энергии — НЕ награда (закон гибрида: удар/вес только у
+  // кульминации наград). Молния выходит из света и садится БЕЗ отскока
+  // (LUM.settle), без CHK/RewardImpactRings.
+  if (hybrid) {
+    return (
+      <HybridAlertShell
+        visible={modalVisible}
+        onRequestClose={onClose}
+        shadowColor={art.glow}
+        backdropColor="rgba(0,0,0,0.72)"
+        testID="no-energy-modal-hybrid-backdrop"
+      >
+        <View style={[styles.hybridCard, { backgroundColor: paywallCardBg, borderRadius: modalRadius }]}>
+          <LinearGradient
+            colors={art.surfaceColors}
+            locations={[0, 0.5, 1]}
+            start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
+            style={StyleSheet.absoluteFill}
+            pointerEvents="none"
+          />
+          <LinearGradient
+            colors={art.cardGlowColors}
+            start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
+            style={styles.cardGlow}
+            pointerEvents="none"
+          />
+
+          <CascadeItem delay={LUM.ladder[1]} reduceMotion={reduceMotion}>
+            <View style={styles.boltIconHybrid}>
+              <EnergyIcon
+                filled
+                themeColor={t.gold}
+                size={64}
+                animateChange={false}
+                shouldShake={false}
+                themeMode={themeMode}
+              />
+            </View>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
+            <Text style={[styles.title, { color: art.titleColor, fontSize: f.h2 }]}>{titleText}</Text>
+          </CascadeItem>
+          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
+            <Text style={[styles.subtitle, { color: art.subtitleColor, fontSize: f.body }]}>{showBody}</Text>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
+            <DuoPressable
+              testID="no-energy-modal-hybrid-cta"
+              onPress={openPremiumAfterClose}
+              edgeColor="#8A6B12"
+              edgeHeight={6}
+              gradientColors={['#5C4818', '#9A7B1A', '#D4AF37', '#F0D060', '#D4AF37', '#8A6B12']}
+              style={styles.hybridCtaFace}
+              wrapStyle={styles.hybridCtaWrap}
+            >
+              <Ionicons name="sparkles" size={16} color="#1a1206" />
+              <Text style={styles.hybridCtaText} numberOfLines={2}>{goldCtaLabel}</Text>
+              <Ionicons name="sparkles" size={16} color="#1a1206" />
+            </DuoPressable>
+          </CascadeItem>
+
+          <CascadeItem delay={LUM.ladder[4]} reduceMotion={reduceMotion}>
+            <PressableHybrid
+              testID="no-energy-modal-hybrid-later"
+              variant="secondary"
+              onPress={() => {
+                if (onGotIt) {
+                  onGotIt();
+                  return;
+                }
+                (onBackHome ?? onClose)();
+              }}
+              style={styles.hybridLaterBtn}
+            >
+              <Text style={{ fontSize: f.body, color: t.textMuted }}>{laterLabel}</Text>
+            </PressableHybrid>
+          </CascadeItem>
+        </View>
+      </HybridAlertShell>
+    );
+  }
 
   return (
     <Modal
@@ -595,4 +732,45 @@ const styles = StyleSheet.create({
     minHeight: 50,
   },
   closeBtnText: { fontWeight: '700' },
+  hybridCard: {
+    width: '100%',
+    paddingVertical: 26,
+    paddingHorizontal: 24,
+    alignItems: 'center',
+    gap: 14,
+    overflow: 'hidden',
+  },
+  boltIconHybrid: {
+    width: 68,
+    height: 68,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  hybridCtaWrap: {
+    marginTop: 4,
+    borderRadius: 14,
+    overflow: 'hidden',
+  },
+  hybridCtaFace: {
+    minHeight: 50,
+    borderRadius: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+  },
+  hybridCtaText: {
+    flex: 1,
+    textAlign: 'center',
+    fontWeight: '700',
+    color: '#1a1206',
+    letterSpacing: 0.5,
+  },
+  hybridLaterBtn: {
+    paddingVertical: 10,
+    alignItems: 'center',
+    marginTop: 4,
+  },
 });

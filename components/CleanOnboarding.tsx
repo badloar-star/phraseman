@@ -514,7 +514,10 @@ function CompassBubble({ children, compact = false }: { children: React.ReactNod
       <View style={styles.speechBubble}>
         {typeof children === 'string' ? (
           // key по тексту — при смене вопроса на реакцию строка перепечатывается.
-          <TypewriterText key={children} text={children} charMs={12} skipOnPress />
+          // зачем: TypewriterText родом из тёмной АХ-сцены и по умолчанию печатает
+          // почти белым — в белом пузыре светлого макета текст был невидим.
+          // Цвет берём тот же, что у обычной реплики рядом (styles.speechText).
+          <TypewriterText key={children} text={children} charMs={12} skipOnPress color="#0C111B" />
         ) : (
           <Text style={styles.speechText}>{children}</Text>
         )}

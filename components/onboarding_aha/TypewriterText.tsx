@@ -12,7 +12,7 @@ import type { TypewriterTextProps } from './aha_types';
 const DEFAULT_CHAR_MS = 32;
 const CURSOR_PHASE_MS = 500;
 
-export default function TypewriterText({ text, charMs = DEFAULT_CHAR_MS, onDone, skipOnPress }: TypewriterTextProps) {
+export default function TypewriterText({ text, charMs = DEFAULT_CHAR_MS, onDone, skipOnPress, color }: TypewriterTextProps) {
   const [shownLength, setShownLength] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const doneCalledRef = useRef(false);
@@ -127,10 +127,10 @@ export default function TypewriterText({ text, charMs = DEFAULT_CHAR_MS, onDone,
   const shownText = text.slice(0, shownLength);
 
   const body = (
-    <Text style={styles.text}>
+    <Text style={[styles.text, color ? { color } : null]}>
       {shownText}
       {!isComplete && (
-        <Animated.Text style={[styles.cursor, { opacity: cursorOpacity }]}>{'▍'}</Animated.Text>
+        <Animated.Text style={[styles.cursor, color ? { color } : null, { opacity: cursorOpacity }]}>{'▍'}</Animated.Text>
       )}
     </Text>
   );

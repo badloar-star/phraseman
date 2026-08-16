@@ -1314,6 +1314,11 @@ function CleanOnboarding({
     purchasing: paywallPurchasing,
     offeringsFailed: paywallOfferingsFailed,
     ctaDisabled: paywallCtaDisabled,
+    // зачем: на макете CTA обещает пробный период словами («Попробовать 7 дней
+    // бесплатно»), а не нейтральное «Продолжить». Число дней берём из стора, а
+    // не хардкодим: у разных тарифов и регионов триал разный, и обещать в
+    // кнопке то, чего не даст App Store, нельзя.
+    trialDays: paywallTrialDays,
     reloadOfferings,
     handleRestore,
     handlePurchase: paywallHandlePurchase,
@@ -2193,7 +2198,19 @@ function CleanOnboarding({
         footer={
           <>
             <PrimaryButton
-              label={paywallOfferingsFailed ? 'Повторить' : 'Продолжить'}
+              label={
+                paywallOfferingsFailed
+                  ? 'Повторить'
+                  // зачем: макет обещает пробный период прямо в кнопке — это
+                  // сильнее нейтрального «Продолжить». Формулировка взята из
+                  // paywall_purchase.ts (тот же текст в диалоге подтверждения),
+                  // чтобы обещание кнопки и диалога стора совпадали слово в слово.
+                  // Нет триала у выбранного тарифа (например пожизненный) —
+                  // возвращаемся к нейтральному тексту, а не врём про дни.
+                  : paywallTrialDays
+                    ? `Попробовать ${paywallTrialDays} дня бесплатно`
+                    : 'Продолжить'
+              }
               onPress={() => {
                 if (paywallOfferingsFailed) { reloadOfferings(); return; }
                 void continueFromOnboardingPaywall();

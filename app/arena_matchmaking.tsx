@@ -206,17 +206,41 @@ export default function ArenaMatchmakingScreen() {
    * сервер продолжал его искать — и в рейтинге это кончалось матчем, который
    * начался без него, то есть поражением ни за что.
    */
+  /** Сколько игрок уже ждёт: м:сс, моноширинно — цифры не должны прыгать. */
+  const elapsedLabel = useMemo(() => {
+    const seconds = Math.max(0, Math.floor((now - localStartedAtMsRef.current) / 1000));
+    return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+  }, [now]);
+
   const [cancelFailed, setCancelFailed] = useState(false);
-  const cancel = () => {
+  const cancellingRef = useRef(false);
+  /**
+   * Отмена поиска. Уходим с экрана МГНОВЕННО, сеть догоняет фоном.
+   *
+   * зачем: router.replace стоял внутри .then() — экран висел до ответа
+   * сервера, и ни «Назад», ни «Отмена» не срабатывали сразу. Владелец
+   * (2026-08-16): «они должны прерывать процесс мгновенно».
+   *
+   * Почему это безопасно, хотя раньше ждали намеренно: снятие с очереди
+   * идемпотентно и переживает уход с экрана. Прежний страх — «игрок думает,
+   * что вышел, а сервер его ещё ищет, и в рейтинге это поражение ни за что» —
+   * закрыт иначе: requestId освобождается сразу, повтор шлётся при отказе, а
+   * если отменить так и не удалось, хаб Арены увидит активную очередь в
+   * arenaV2Home и покажет её честно. Держать человека на экране ради этого —
+   * плата не с той стороны.
+   */
+  const cancel = useCallback(() => {
+    if (cancellingRef.current) return; // защита от двойного тапа
+    cancellingRef.current = true;
     quickFallbackRequests.delete(requestId);
     setCancelFailed(false);
-    void arenaV2QueueCancel(requestId)
-      .then(() => {
-        releaseImplicitQueueRequestId(mode, requestId);
-        router.replace('/arena' as never);
-      })
-      .catch(() => setCancelFailed(true));
-  };
+    releaseImplicitQueueRequestId(mode, requestId);
+    router.replace('/arena' as never);
+    // Сеть — вдогонку. Один повтор: сеть на телефоне моргает чаще, чем падает.
+    void arenaV2QueueCancel(requestId).catch(() => {
+      setTimeout(() => { void arenaV2QueueCancel(requestId).catch(() => {}); }, 1500);
+    });
+  }, [mode, requestId, router]);
 
   const switchToQuick = async () => {
     if (mode !== 'ranked' || switchingMode || matchId) return;
@@ -253,6 +277,13 @@ export default function ArenaMatchmakingScreen() {
           <Text accessibilityLiveRegion="polite" style={[styles.searching, { color: P.text }]}>
             {rankedPresentation === 'calm' ? arenaText(lang, 'rankedEmpty') : arenaText(lang, 'searching')}
           </Text>
+          {/* зачем: без счётчика ожидание безразмерно — непонятно, идёт ли
+              поиск вообще. Владелец (2026-08-16): «поиск должен происходить с
+              таймером, сколько человек времени уже ищет». Часы тикают только
+              на видимом экране, поэтому фоновой работы это не добавляет. */}
+          {rankedPresentation !== 'calm' ? (
+            <Text style={[styles.elapsed, { color: P.text }]}>{elapsedLabel}</Text>
+          ) : null}
           <Text style={[styles.hint, hintLine, { color: P.muted }]}>
             {mode === 'ranked' && searchingNow !== null
               ? arenaSearchingCountText(lang, searchingNow)
@@ -302,6 +333,9 @@ const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: 'center' },
   card: { minHeight: 230, justifyContent: 'center', alignItems: 'center', gap: 14 },
   searching: { fontSize: 22, fontWeight: '900', textAlign: 'center' },
+  // Моноширинные цифры: без них ширина строки скачет на каждой секунде и
+  // таймер дёргается — ровно та мелочь, из-за которой ожидание раздражает.
+  elapsed: { fontSize: 30, fontWeight: '800', textAlign: 'center', fontVariant: ['tabular-nums'], letterSpacing: 0.5 },
   hint: { fontSize: 14, fontWeight: '600', textAlign: 'center' },
   error: { fontSize: 13, fontWeight: '700', textAlign: 'center' },
   failure: { gap: 6, alignSelf: 'stretch' },

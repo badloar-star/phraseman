@@ -3,12 +3,15 @@ import { join } from 'path';
 
 describe('level-up spin sheet cutover', () => {
   const source = readFileSync(join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
-  const modalSource = readFileSync(join(process.cwd(), 'components', 'LevelUpThresholdModal.tsx'), 'utf8');
+  // зачем 2026-08-16: гибрид «Световод + Чекан» стал единственной реализацией
+  // (project_motion_program.md) — сама разметка/testID'ы теперь в Hybrid-файле,
+  // components/LevelUpThresholdModal.tsx осталась тонкой точкой входа.
+  const modalSource = readFileSync(join(process.cwd(), 'components', 'LevelUpThresholdModalHybrid.tsx'), 'utf8');
 
   test('acknowledges the already-delivered spin from one ordinary Done action', () => {
     expect(modalSource).not.toContain('level-up-spin-button');
     expect(modalSource).not.toContain('level-up-spin-later');
-    expect(modalSource).toContain('testID="level-up-dismiss"');
+    expect(modalSource).toContain('testID="level-up-dismiss-hybrid"');
     expect(source).toContain("PENDING_LEVEL_SPIN_LEVEL_UP_QUEUE_KEY");
     expect(source).toContain('onContinue={currentIsSpin ? finalizeSpinLevelUp : dismissLevelUp}');
     expect(source).not.toContain('onSpin={() => finalizeSpinLevelUp(true)}');

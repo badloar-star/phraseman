@@ -38,8 +38,9 @@ import type { LevelUpPreviewVariant } from './LevelUpThresholdModal';
  * два кольца + пыль → каскад текста/наград → CTA. Единственный удар кульминации
  * (закон №1 Motion DNA) — медаль, которую игрок узнаёт со своего главного экрана.
  *
- * Подключается ТОЛЬКО через <LevelUpThresholdModal motionVariant="hybrid">,
- * классический путь (Animated.Value из вызывающего кода) этот файл не трогает.
+ * зачем: владелец принял этот гибрид как ЕДИНСТВЕННУЮ реализацию (2026-08-16,
+ * project_motion_program.md). Подключается через точку входа
+ * components/LevelUpThresholdModal.tsx (тонкая обёртка, без classic-ветки).
  */
 
 const DUST_COUNT_FULL = 12;

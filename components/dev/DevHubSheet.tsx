@@ -135,9 +135,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   const closingRef = useRef(false);
   const backdropOpacity = useRef(new Animated.Value(0)).current;
   const sheetY = useRef(new Animated.Value(SHEET_HIDDEN_Y)).current;
-  const previewOpacity = useRef(new Animated.Value(0)).current;
-  const previewTranslateY = useRef(new Animated.Value(16)).current;
-  const previewGlow = useRef(new Animated.Value(0)).current;
   const sections = useMemo(() => getOrderedDevToolSections(), []);
   const devSurfaceWanted = visible || preview !== null;
   const devSurfaceGranted = useOverlayVisible('devHub', devSurfaceWanted);
@@ -246,12 +243,9 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   const openPreview = useCallback((variant: LevelUpPreviewVariant) => {
     hapticTap();
     runRef.current += 1;
-    previewOpacity.setValue(reduceMotion ? 1 : 0);
-    previewTranslateY.setValue(reduceMotion ? 0 : variant === 'milestone' ? 24 : 14);
-    previewGlow.setValue(reduceMotion ? 1 : 0);
     setPreview({ type: 'level-up', variant, run: runRef.current });
     requestClose(true);
-  }, [previewGlow, previewOpacity, previewTranslateY, reduceMotion, requestClose]);
+  }, [requestClose]);
 
   const openLessonResultsPreview = useCallback(() => {
     hapticTap();
@@ -289,32 +283,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     requestClose(true);
     setBusy(false);
   }, [account.phase, account.stableId, busy, requestClose]);
-
-  const animatePreview = useCallback(() => {
-    if (!preview || preview.type !== 'level-up' || reduceMotion) return;
-    const duration = preview.variant === 'milestone' ? 1_800 : 1_200;
-    Animated.parallel([
-      Animated.timing(previewOpacity, {
-        toValue: 1,
-        duration: Math.round(duration * 0.34),
-        useNativeDriver: true,
-      }),
-      Animated.timing(previewTranslateY, {
-        toValue: 0,
-        duration: Math.round(duration * 0.42),
-        useNativeDriver: true,
-      }),
-      Animated.timing(previewGlow, { toValue: 1, duration, useNativeDriver: true }),
-    ]).start();
-  }, [preview, previewGlow, previewOpacity, previewTranslateY, reduceMotion]);
-
-  // A second native Modal does not reliably fire onShow above the DEV sheet.
-  // Start from preview state so the entrance is deterministic on Android and web.
-  const previewRun = preview?.run;
-  useEffect(() => {
-    if (visible || previewRun === undefined) return;
-    animatePreview();
-  }, [animatePreview, previewRun, visible]);
 
   const closePreview = useCallback((message = '') => {
     setPreview(null);
@@ -553,9 +521,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
           spinReward={true}
           spinReceiptId={`dev-level-spin-${preview?.run ?? 0}`}
           continueLabel="Готово"
-          opacity={previewOpacity}
-          translateY={previewTranslateY}
-          glow={previewGlow}
           onShow={() => {}}
           onContinue={() => closePreview()}
         />

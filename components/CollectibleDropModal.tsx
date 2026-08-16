@@ -16,9 +16,7 @@ import {
   COLLECTIBLE_RARITY_LABEL_RU,
   COLLECTIBLE_RARITY_LABELS,
   collectibleCardTextForLang,
-  collectibleSetTitleForLang,
   findCollectibleCard,
-  findCollectibleSet,
 } from '../app/collectibles/catalog';
 import type { CollectibleDropOutcome } from '../app/collectibles/storage';
 import { soundDirector } from '../modules/audio/sound_director';
@@ -63,7 +61,6 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
   const reduceMotion = useReduceMotion();
 
   const found = outcome ? findCollectibleCard(outcome.cardId) : null;
-  const set = outcome ? findCollectibleSet(outcome.setId) : null;
   const secret = outcome?.secretCardId ? findCollectibleCard(outcome.secretCardId) : null;
 
   // зачем: классический путь проигрывает звук/хаптик сразу на монтировании —
@@ -91,7 +88,6 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
   if (!outcome || !found) return null;
   const card = found.card;
   const cardText = collectibleCardTextForLang(card, lang);
-  const setTitle = set ? collectibleSetTitleForLang(set, lang) : '';
 
   const newCardKicker = triLang(lang, { ru: 'Новая карточка!', uk: 'Нова картка!', es: '¡Nueva carta!', 'pt-BR': 'Nova carta!', vi: 'Thẻ mới!', id: 'Kartu baru!', tr: 'Yeni kart!', pl: 'Nowa karta!' });
   const claimLabel = triLang(lang, { ru: 'Класс!', uk: 'Клас!', es: '¡Genial!', 'pt-BR': 'Legal!', vi: 'Tuyệt!', id: 'Keren!', tr: 'Harika!', pl: 'Super!' });
@@ -149,7 +145,6 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
             <>
               <Text style={[styles.cardName, { color: t.textPrimary, fontSize: f.h2 }]}>{card.en}</Text>
               <Text style={[styles.cardTranslation, { color: t.textSecond, fontSize: f.body }]}>{cardText.translation}</Text>
-              {!!set && <Text style={[styles.setName, { color: t.textMuted, fontSize: f.sub }]}>{setTitle}</Text>}
             </>
           </CascadeItem>
 
@@ -236,10 +231,6 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
           <Text style={[styles.cardName, { color: t.textPrimary, fontSize: f.h2 }]}>{card.en}</Text>
           <Text style={[styles.cardTranslation, { color: t.textSecond, fontSize: f.body }]}>{cardText.translation}</Text>
 
-          {!!set && (
-            <Text style={[styles.setName, { color: t.textMuted, fontSize: f.sub }]}>{setTitle}</Text>
-          )}
-
           {outcome.setCompleted && (
             <View style={styles.setCompletedBox}>
               <Text style={[styles.setCompletedTitle, { fontSize: f.body }]}>
@@ -313,7 +304,6 @@ const styles = StyleSheet.create({
   rarityText: { fontSize: 12, fontWeight: '900', letterSpacing: 0.4 },
   cardName: { fontWeight: '900', textAlign: 'center', marginTop: 10 },
   cardTranslation: { textAlign: 'center', marginTop: 4 },
-  setName: { marginTop: 6 },
   setCompletedBox: {
     marginTop: 14,
     width: '100%',

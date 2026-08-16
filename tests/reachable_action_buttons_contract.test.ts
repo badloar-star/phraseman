@@ -32,7 +32,10 @@ const CENTERING = /justifyContent:\s*'center'/;
 const KNOWN_DEBT: readonly string[] = [
   'app/_layout.tsx',
   'app/trainer_words_session.tsx',
-  'components/DialogVictoryCelebration.tsx',
+  // зачем 2026-08-16: гибрид «Световод + Чекан» стал единственной реализацией
+  // (project_motion_program.md) — тот же долг центрирования без скролла
+  // переехал из точки входа (теперь тонкая обёртка) в Hybrid-файл.
+  'components/DialogVictoryCelebrationHybrid.tsx',
   'components/ExplainReportButton.tsx',
   'components/ReportErrorButton.tsx',
   'components/SpeakingPanel.tsx',

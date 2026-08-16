@@ -23,18 +23,14 @@ const DEMO_GIFT: GiftDef = {
   weight: 1,
 };
 
-// зачем: LevelUpThresholdModal — портал-оверлей, которым владеет родитель
-// (держит Animated.Value-драйверы в useRef и сам анимирует вход). Хост
-// повторяет боевого родителя 1:1; сырой вызов с `new Animated.Value` в render
-// давал статичный «экран» и ронял приложение на ремаунте.
+// зачем: LevelUpThresholdModal — портал-оверлей, которым владеет родитель.
+// Гибрид «Световод + Чекан» — ЕДИНСТВЕННАЯ реализация (2026-08-16,
+// project_motion_program.md), поэтому один пункт на вариант, без пары
+// «текущий вид / · гибрид».
 const renderLevelUpStandard = ({ visible, onClose }: { visible: boolean; onClose: () => void }) =>
-  React.createElement(LevelUpShowcaseHost, { visible, onClose, variant: 'standard', motionVariant: 'classic' });
+  React.createElement(LevelUpShowcaseHost, { visible, onClose, variant: 'standard' });
 const renderLevelUpMilestone = ({ visible, onClose }: { visible: boolean; onClose: () => void }) =>
-  React.createElement(LevelUpShowcaseHost, { visible, onClose, variant: 'milestone', motionVariant: 'classic' });
-const renderLevelUpStandardHybrid = ({ visible, onClose }: { visible: boolean; onClose: () => void }) =>
-  React.createElement(LevelUpShowcaseHost, { visible, onClose, variant: 'standard', motionVariant: 'hybrid' });
-const renderLevelUpMilestoneHybrid = ({ visible, onClose }: { visible: boolean; onClose: () => void }) =>
-  React.createElement(LevelUpShowcaseHost, { visible, onClose, variant: 'milestone', motionVariant: 'hybrid' });
+  React.createElement(LevelUpShowcaseHost, { visible, onClose, variant: 'milestone' });
 
 function renderSpinRewardModal({ visible, onClose }: { visible: boolean; onClose: () => void }) {
   return React.createElement(LevelSpinRewardModal, {
@@ -93,20 +89,6 @@ export const SECTION: ShowcaseSection = {
       detail: cs('real_modal'),
       kind: 'render',
       render: renderLevelUpMilestone,
-    },
-    {
-      id: 'levelup_threshold_standard_hybrid',
-      title: cs('levelup_threshold_standard_hybrid_title'),
-      detail: cs('real_modal'),
-      kind: 'render',
-      render: renderLevelUpStandardHybrid,
-    },
-    {
-      id: 'levelup_threshold_milestone_hybrid',
-      title: cs('levelup_threshold_milestone_hybrid_title'),
-      detail: cs('real_modal'),
-      kind: 'render',
-      render: renderLevelUpMilestoneHybrid,
     },
     {
       id: 'level_spin_reward_modal',

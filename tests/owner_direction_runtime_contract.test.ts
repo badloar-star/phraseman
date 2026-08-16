@@ -201,8 +201,11 @@ describe('owner runtime direction contract', () => {
       // sites but create at most one live interval for all current subscribers.
       // Интервал стартует ТОЛЬКО на переднем плане (AppState-гвард, 2026-07-27).
       'app/visible_wall_clock.ts': 3,
-      // Конечный 16мс XP count-up (1200мс), очищается при завершении и unmount.
-      'components/DialogVictoryCelebration.tsx': 1,
+      // Конечный 16мс XP count-up, очищается при завершении и unmount.
+      // зачем 2026-08-16: гибрид «Световод + Чекан» стал единственной реализацией
+      // (project_motion_program.md) — таймер живёт в Hybrid-файле, точка входа
+      // components/DialogVictoryCelebration.tsx стала тонкой обёрткой без setInterval.
+      'components/DialogVictoryCelebrationHybrid.tsx': 1,
       'components/GiftExpiryCountdown.tsx': 1,
       // Три внутренних scheduler-тика одного shared countdown store; подписчики
       // не создают свои интервалы, а последний unsubscribe останавливает clock.

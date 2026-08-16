@@ -360,7 +360,6 @@ const FOREGROUND_FLUSH_MIN_MS = 15_000;
 const FOREGROUND_MODAL_CHECK_MIN_MS = 60_000;
 const ENABLE_STARTUP_CONTENT_PREWARM = false;
 const FIRST_CONTENT_READY_FALLBACK_MS = 900;
-const USE_ELITE_LEVEL_UP_MODAL = true;
 const POST_ONBOARDING_GOLD_BRIDGE_MS = 3000;
 const POST_ONBOARDING_GOLD_BRIDGE_SCREEN = ['rgba(255,224,144,0.34)', 'rgba(163,104,24,0.16)', 'rgba(18,14,6,0.08)'] as const;
 
@@ -799,9 +798,6 @@ function GlobalLevelUpHandler() {
   const [giftPreRolled, setGiftPreRolled] = useState<GiftDef | undefined>(undefined);
   const [giftPreRolledPair, setGiftPreRolledPair] = useState<PremPair | undefined>(undefined);
 
-  const levelUpOpacity    = useRef(new Animated.Value(0)).current;
-  const levelUpTranslateY = useRef(new Animated.Value(40)).current;
-  const levelUpGlow       = useRef(new Animated.Value(0)).current;
   const queueRef    = useRef<number[]>([]);
   const singleGiftsRef = useRef<Record<number, GiftDef>>({});
   const dualGiftsRef = useRef<Record<number, PremPair>>({});
@@ -837,9 +833,6 @@ function GlobalLevelUpHandler() {
       levelUpTransitionGuardRef.current = null;
     }
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
-    levelUpOpacity.stopAnimation();
-    levelUpTranslateY.stopAnimation();
-    levelUpGlow.stopAnimation();
     queueRef.current = [];
     singleGiftsRef.current = {};
     dualGiftsRef.current = {};
@@ -859,7 +852,7 @@ function GlobalLevelUpHandler() {
     setCurrentLevel(0);
     setCurrentAccountLevel(0);
     setUserName('');
-  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY]);
+  }, []);
 
   const showNext = useCallback(async () => {
     const accountToken = queuedAccountTokenRef.current;
@@ -881,14 +874,6 @@ function GlobalLevelUpHandler() {
       modalLevelRef.current = lvl;
       setCurrentLevel(lvl);
       setShowLevelUp(true);
-      levelUpOpacity.setValue(0);
-      levelUpTranslateY.setValue(40);
-      levelUpGlow.setValue(0);
-      Animated.parallel([
-        Animated.spring(levelUpOpacity, { toValue: 1, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
-        Animated.spring(levelUpTranslateY, { toValue: 0, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
-        Animated.timing(levelUpGlow, { toValue: 1, duration: 900, useNativeDriver: true }),
-      ]).start();
       return;
     }
     setCurrentIsSpin(false);
@@ -966,15 +951,7 @@ function GlobalLevelUpHandler() {
     modalLevelRef.current = lvl;
     setCurrentLevel(lvl);
     setShowLevelUp(true);
-    levelUpOpacity.setValue(0);
-    levelUpTranslateY.setValue(40);
-    levelUpGlow.setValue(0);
-    Animated.parallel([
-      Animated.spring(levelUpOpacity, { toValue: 1, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
-      Animated.spring(levelUpTranslateY, { toValue: 0, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
-      Animated.timing(levelUpGlow, { toValue: 1, duration: 900, useNativeDriver: true }),
-    ]).start();
-  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY, resetLevelUpChainForAccountChange, studyTarget]);
+  }, [resetLevelUpChainForAccountChange, studyTarget]);
 
   const drainLevelUpBonusOutbox = useCallback(async () => {
     try {
@@ -1178,8 +1155,12 @@ function GlobalLevelUpHandler() {
     if (!Number.isInteger(level) || level <= 0 || dismissingLevelUpRef.current) return;
     dismissingLevelUpRef.current = true;
     setLevelUpTransitioning(true);
-    Animated.timing(levelUpOpacity, { toValue: 0, duration: 220, useNativeDriver: true }).start(({ finished }) => {
-      if (!finished || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) {
+    // зачем: гибрид (LevelUpThresholdModalHybrid) ведёт свой собственный выход
+    // (reanimated), Animated.Value-гейт больше не нужен — но порядок операций
+    // (тот же 220мс зазор перед записью прогресса/наград) сохраняем таймером,
+    // чтобы колбэки прогресса не сдвинулись и не начали гонку с закрытием Modal.
+    const exitTimer = setTimeout(() => {
+      if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) {
         dismissingLevelUpRef.current = false;
         setLevelUpTransitioning(false);
         return;
@@ -1196,7 +1177,6 @@ function GlobalLevelUpHandler() {
             if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
             dismissingLevelUpRef.current = false;
             setLevelUpTransitioning(false);
-            levelUpOpacity.setValue(1);
             setShowLevelUp(true);
             return;
           }
@@ -1217,7 +1197,8 @@ function GlobalLevelUpHandler() {
           }
         })();
       });
-    });
+    }, 220);
+    scheduledStateUpdatesRef.current.push({ cancel: () => clearTimeout(exitTimer) });
   };
 
   const dismissLevelUp = () => {
@@ -1227,8 +1208,13 @@ function GlobalLevelUpHandler() {
     dismissingLevelUpRef.current = true;
     // Держим слот арбитра на весь переход level-up → подарок (см. levelUpTransitioning).
     setLevelUpTransitioning(true);
-    Animated.timing(levelUpOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(({ finished }) => {
-      if (!finished || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+    // зачем: гибрид (LevelUpThresholdModalHybrid) ведёт свой собственный выход
+    // (reanimated), Animated.Value-гейт больше не нужен — но порядок операций
+    // (тот же 300мс зазор перед начислением XP и открытием подарка) сохраняем
+    // таймером, чтобы колбэки прогресса не сдвинулись и не начали гонку с
+    // закрытием Modal.
+    const exitTimer = setTimeout(() => {
+      if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
       scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
         setShowLevelUp(false);
         giftOpenInteractionRef.current = InteractionManager.runAfterInteractions(() => {
@@ -1269,7 +1255,8 @@ function GlobalLevelUpHandler() {
           }
         });
       });
-    });
+    }, 300);
+    scheduledStateUpdatesRef.current.push({ cancel: () => clearTimeout(exitTimer) });
   };
 
   const onGiftClose = (_claimed: boolean) => {
@@ -1460,9 +1447,6 @@ function GlobalLevelUpHandler() {
           tr: 'Tamam',
           pl: 'Gotowe',
         })}
-        opacity={levelUpOpacity}
-        translateY={levelUpTranslateY}
-        glow={levelUpGlow}
         onShow={() => {
           if (!currentIsSpin) acknowledgeNativeLevelUpShown();
           soundDirector.request('pm.reward.level_up', {

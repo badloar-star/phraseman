@@ -292,6 +292,22 @@ App Check; (2) прописать ключ в `admin/v2/legacy.html`; (3) убе
    (реальный компонент с безопасными демо-пропсами: пустые колбэки, ничего не
    начислять; подписи через `cs()` из `showcase_copy.ts`).
 
+## Коллекции: категория не пишется при получении (владелец, 2026-08-17)
+
+Название сета коллекционных карточек (`titleRu` в `app/collectibles/catalog_data.ts`,
+например «Животные», «Природа и сад») **не выводится в UI в момент получения карточки**
+— ни в классической, ни в гибридной ветке. Показываем название карточки, редкость,
+картинку и кнопки; сет/категорию — нет. Правило общее для ВСЕХ коллекций, не только
+одной. Словарь переводов (`triLang`) не трогаем — просто не рендерим строку.
+
+Просмотр коллекции (галерея) — другое: там название сета остаётся, это не момент
+получения. Соблюдено:
+- `components/CollectibleDropModal.tsx` — убран `setName`/`setTitle` (обе ветки,
+  `motionVariant: 'classic'` и `'hybrid'`), заодно удалены ставшие мёртвыми
+  `findCollectibleSet`/`collectibleSetTitleForLang`/`set`/`setTitle` и стиль `setName`.
+- `app/collectibles_screen.tsx` — это галерея (просмотр), название сета там
+  умышленно остаётся.
+
 ## Tests Are Read-Only Guards
 
 - Tests must report failures; they must not rewrite app source, tests, configs, assets, generated source, storage contracts, or snapshots as part of a normal test run.

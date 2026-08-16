@@ -21,14 +21,20 @@ function contrastRatio(foreground: string, background: string): number {
 
 describe('Threshold level-up modal contract', () => {
   const layoutSource = readFileSync(join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
-  const modalSource = readFileSync(join(process.cwd(), 'components', 'LevelUpThresholdModal.tsx'), 'utf8');
+  // зачем 2026-08-16: гибрид «Световод + Чекан» стал единственной реализацией
+  // (project_motion_program.md). components/LevelUpThresholdModal.tsx осталась
+  // точкой входа (тонкая обёртка), но сама хореография/testID'ы/JSX живут в
+  // LevelUpThresholdModalHybrid.tsx — контракт проверяет именно его.
+  const entrySource = readFileSync(join(process.cwd(), 'components', 'LevelUpThresholdModal.tsx'), 'utf8');
+  const modalSource = readFileSync(join(process.cwd(), 'components', 'LevelUpThresholdModalHybrid.tsx'), 'utf8');
   const paletteSource = readFileSync(join(process.cwd(), 'components', 'levelUpThresholdTheme.ts'), 'utf8');
 
   test('uses the Threshold surface while preserving the global native Modal lifecycle', () => {
     expect(layoutSource).toContain('<LevelUpThresholdModal');
+    expect(entrySource).toContain('<LevelUpThresholdModalHybrid');
     expect(modalSource).toContain('<Modal');
     expect(modalSource).toContain('onShow={onShow}');
-    expect(modalSource).toContain('testID="level-up-modal"');
+    expect(modalSource).toContain('testID="level-up-modal-hybrid"');
   });
 
   test('renders only rewards confirmed by runtime state', () => {
@@ -41,7 +47,7 @@ describe('Threshold level-up modal contract', () => {
   });
 
   test('uses the shared durable-receipt spin plaque while keeping its primary action', () => {
-    expect(modalSource).toContain('testID="level-up-dismiss"');
+    expect(modalSource).toContain('testID="level-up-dismiss-hybrid"');
     expect(modalSource).toContain('accessibilityRole="button"');
     expect(modalSource).toContain("import { SpinRewardPlaque } from './SpinRewardPlaque'");
     expect(modalSource).toContain('<SpinRewardPlaque');
@@ -93,25 +99,35 @@ describe('Threshold level-up modal contract', () => {
   );
 
   test('keeps the choreography finite and limited to transform and opacity', () => {
-    expect(modalSource).toContain('Animated.Value');
+    // зачем 2026-08-16: гибрид «Световод + Чекан» пошёл дальше классики — нет
+    // ни одного withRepeat/animationIterationCount вообще (не только с
+    // положительным счётчиком), удар кульминации одноразовый по завершении
+    // падения медали. useAnimatedStyle-хуки ниже возвращают только
+    // opacity/transform, как и раньше.
     expect(modalSource).not.toContain('withRepeat');
     expect(modalSource).not.toContain('animationIterationCount');
-    expect(modalSource).toContain('rewardRevealStyle');
-    expect(modalSource).toContain('actionRevealStyle');
+    expect(modalSource).toContain('const cardStyle = useAnimatedStyle(() => ({');
+    expect(modalSource).toContain('const badgeStyle = useAnimatedStyle(() => ({');
   });
 
   test('exposes standard and every-fifth-level presentation variants', () => {
-    expect(modalSource).toContain("export type LevelUpPreviewVariant = 'standard' | 'milestone'");
+    expect(entrySource).toContain("export type LevelUpPreviewVariant = 'standard' | 'milestone'");
     expect(modalSource).toContain("variant = 'standard'");
     expect(modalSource).toContain("const milestone = variant === 'milestone'");
-    expect(modalSource).toContain('testID={`level-up-portal-${variant}`}');
+    expect(modalSource).toContain('testID={`level-up-portal-hybrid-${variant}`}');
     expect(modalSource).toContain('milestone && styles.portalStageMilestone');
     expect(layoutSource).toContain("variant={currentLevel % 5 === 0 ? 'milestone' : 'standard'}");
   });
 
   test('keeps both variants accessible when reduced motion is enabled', () => {
-    expect(modalSource).toContain('useReducedMotion()');
-    expect(modalSource).toContain('if (reduceMotion) return { opacity: 1 }');
-    expect(modalSource).toContain('reduceMotion || !milestone');
+    // зачем 2026-08-16: гибрид использует общий хук useReduceMotion() (не
+    // reanimated useReducedMotion()) и в режиме reduce motion выставляет
+    // финальные значения shared values напрямую, а не единый early-return
+    // { opacity: 1 } — сохранённый инвариант: reduce motion = один
+    // финальный кадр без каскада, для обоих вариантов (milestone тоже).
+    expect(modalSource).toContain("import { useReduceMotion } from '../hooks/use_reduce_motion'");
+    expect(modalSource).toContain('const reduceMotion = useReduceMotion()');
+    expect(modalSource).toContain('if (reduceMotion) {');
+    expect(modalSource).toContain("milestoneFlareOpacity.value = milestone ? 1 : 0");
   });
 });

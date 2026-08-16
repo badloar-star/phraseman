@@ -205,15 +205,19 @@ describe('DEV center bottom sheet', () => {
     expect(sheet).not.toMatch(/claimLevelSpin|levelRewardSpinClaim/);
   });
 
-  test('closes the DEV Modal before mounting and animating a level-up preview', () => {
+  test('closes the DEV Modal before mounting a level-up preview', () => {
     const sheet = read('components/dev/DevHubSheet.tsx');
 
-    expect(sheet).toContain('const previewRun = preview?.run;');
-    expect(sheet).toContain('if (visible || previewRun === undefined) return;');
-    expect(sheet).toContain('}, [animatePreview, previewRun, visible]);');
+    // зачем 2026-08-16: гибрид «Световод + Чекан» стал единственная реализация
+    // (project_motion_program.md) — LevelUpThresholdModalHybrid ведёт свой
+    // собственный вход (reanimated), локальный previewRun/animatePreview
+    // driver-таймлайн DevHubSheet больше не нужен. Инвариант "DEV Modal
+    // закрывается ДО показа превью" остаётся и проверяется напрямую.
     expect(sheet).toContain('requestClose(true);');
     expect(sheet).toContain('visible={!visible && preview !== null}');
     expect(sheet).toContain('onShow={() => {}}');
+    expect(sheet).not.toContain('previewRun');
+    expect(sheet).not.toContain('animatePreview');
   });
 
   test('scopes local Plus state to the active account and never mutates real entitlements', async () => {

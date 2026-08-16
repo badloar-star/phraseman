@@ -156,11 +156,9 @@ const RU = {
   celebrations_referral_friend_reward_modal_title: 'Ключ готов!',
   celebrations_referral_friend_reward_modal_subtitle: 'Алекс оформил подписку — открой награду в разделе «Друзья»',
   celebrations_referral_friend_reward_cta: 'Отлично',
-  celebrations_referral_friend_reward_hybrid_title: 'Друг принёс ключ (награда за друга) · гибрид',
   celebrations_loyalty_gift_title: 'Награда за верность (LoyaltyGiftModal)',
   celebrations_loyalty_gift_note: 'компонента нет в текущем рабочем дереве (components/LoyaltyGiftModal.tsx отсутствует)',
   celebrations_dialog_victory_title: 'Салют финала ИИ-диалога',
-  celebrations_dialog_victory_hybrid_title: 'Салют финала ИИ-диалога · гибрид',
   celebrations_dialog_victory_detail: 'реальный компонент — полноэкранный оверлей, демо-метрики',
 
   // ── consent_info ──
@@ -257,8 +255,6 @@ const RU = {
   levelup_continue_label: 'Готово',
   levelup_threshold_standard_title: 'Повышение уровня · обычное',
   levelup_threshold_milestone_title: 'Повышение уровня · юбилейный (×5)',
-  levelup_threshold_standard_hybrid_title: 'Уровень: обычный · гибрид',
-  levelup_threshold_milestone_hybrid_title: 'Уровень: каждый 5-й · гибрид',
   level_spin_reward_modal_title: 'Приз спина · карточка награды',
   level_spin_reward_modal_hybrid_title: 'Приз спина · карточка награды · гибрид',
   spin_reward_plaque_title: 'Приз спина · плашка-оверлей',

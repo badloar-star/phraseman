@@ -20,7 +20,13 @@ const config = getDefaultConfig(__dirname);
 // единственный надёжный источник событий об изменении файлов: без него Metro
 // крауллит дерево сам и на проекте такого размера пропускает правки, поэтому
 // Fast Refresh на телефоне не срабатывает и приходится жать reload руками.
-config.resolver.useWatchman = process.platform !== 'win32';
+// 2026-08-16: Watchman на Windows ЧИНЁН и снова включён — владелец жаловался,
+// что правки не доезжают на iPhone без ручного reload. Причина была ровно в
+// этом: без Watchman node-крawler на дереве такого размера пропускает события,
+// и Fast Refresh молчит. Демон проверен (watch-project отвечает, видит дерево),
+// а .watchmanconfig ограничивает обход. Аварийный выключатель на случай, если
+// мёртвый sock вернётся: PHRASEMAN_NO_WATCHMAN=1 в окружении.
+config.resolver.useWatchman = process.env.PHRASEMAN_NO_WATCHMAN !== '1';
 
 const existingBlockList = config.resolver.blockList;
 const blockList = Array.isArray(existingBlockList)

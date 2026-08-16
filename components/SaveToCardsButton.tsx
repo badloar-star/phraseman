@@ -20,6 +20,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -53,12 +54,16 @@ export function SaveToCardsButton({
   testID,
 }: SaveToCardsButtonProps) {
   const reduceMotion = useReduceMotion();
+  // зачем: владелец жаловался, что приложение греет телефон. Бесконечный пульс
+  // обязан замирать на невидимом экране — экраны в табах не размонтируются,
+  // и без этой привязки анимация крутилась бы в фоне вечно.
+  const focused = useIsScreenFocused();
   const scale = useSharedValue(1);
   const glow = useSharedValue(0);
 
-  // зачем: пульс — это приглашение, а не украшение. Он живёт ровно до первого
-  // сохранения и глохнет при системном «уменьшить движение».
-  const invite = pulse && !saved && !disabled && !reduceMotion;
+  // Пульс — это приглашение, а не украшение: живёт до первого сохранения и
+  // глохнет при системном «уменьшить движение».
+  const invite = pulse && !saved && !disabled && !reduceMotion && focused;
 
   useEffect(() => {
     if (!invite) {

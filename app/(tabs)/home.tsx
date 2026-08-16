@@ -81,6 +81,12 @@ import { getCanonicalUserId } from '../user_id_policy';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import GoldBevel from '../../components/GoldBevel';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
+import SavedCardsFlight from '../../components/SavedCardsFlight';
+import {
+  homeArrivalEffect,
+  markHomeArrivalPlayed,
+  readSavedCardsFirstRun,
+} from '../saved_cards_first_run';
 import { useEnergy } from '../../components/EnergyContext';
 import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, onStreakUpdated } from '../shards_system';
@@ -499,6 +505,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const topFadeScroll = useTopFadeScroll();
     // Скролл-реф для приветствия: подвести нужный блок в кадр перед подсветкой.
     const homeScrollRef = useRef<ScrollView | null>(null);
+    // зачем: владелец попросил, чтобы сохранённые карточки на главной собирались
+    // в кучку и улетали в раздел «Карточки». Держим здесь только координату плитки
+    // и число прилетевших — сама анимация живёт оверлеем и вёрстку не двигает.
+    const [cardsTileCenter, setCardsTileCenter] = useState<{ x: number; y: number } | null>(null);
+    const [cardArrivals, setCardArrivals] = useState(0);
+    const cardArrivalEffectRef = useRef<'pulse' | 'flight' | null>(null);
     const dailyPhraseLayoutRef = useRef({ top: 0, height: 0 });
     const homeViewportHeightRef = useRef(0);
     const homeScrollYRef = useRef(0);
@@ -2065,6 +2077,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             return;
         }
     }, [homeRuntimeActive, focusTick]);
+    // зачем: карточки «прилетают» только если человек что-то сохранил с прошлого
+    // захода. Локальный флаг, ноль обращений к сети; повторный вход без новых
+    // сохранений анимацию не крутит.
+    useEffect(() => {
+        if (!homeRuntimeActive) return;
+        let cancelled = false;
+        void readSavedCardsFirstRun().then((state) => {
+            if (cancelled) return;
+            const effect = homeArrivalEffect(state);
+            if (effect === 'none') return;
+            cardArrivalEffectRef.current = effect;
+            setCardArrivals(state.pendingArrivals);
+        });
+        return () => { cancelled = true; };
+    }, [homeRuntimeActive, focusTick]);
     useEffect(() => {
         if (!homeRuntimeActive) {
             shardsAnim.stopAnimation();
@@ -2830,7 +2857,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 const tilePanelBg = isGoldTheme ? goldPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
                 const tileIconBg = isGoldTheme ? goldIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
                 return (
-                  <Animated.View key={item.key} style={{ flex: 1, opacity: tileOpacity, transform: [{ translateY: tileY }] }}>
+                  <Animated.View
+                    key={item.key}
+                    style={{ flex: 1, opacity: tileOpacity, transform: [{ translateY: tileY }] }}
+                    // зачем: полёт карточек должен приземляться точно в плитку
+                    // «Карточки». Меряем её центр в координатах окна; замер
+                    // пассивный и вёрстку не двигает.
+                    onLayout={item.key === 'flashcards' ? (event) => {
+                      const { x, y, width, height } = event.nativeEvent.layout;
+                      setCardsTileCenter({ x: x + width / 2, y: y + height / 2 });
+                    } : undefined}
+                  >
                     <TouchableOpacity
                       testID={item.testID}
                       accessible={true}
@@ -3457,5 +3494,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 void clearPendingResult();
             }}/>)}
       {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
+      {/* Сохранённые карточки слетаются в плитку «Карточки». Оверлей поверх всего:
+          места не занимает, поэтому первый кадр главной остаётся стабильным. */}
+      <SavedCardsFlight
+        count={cardArrivals}
+        target={cardsTileCenter}
+        origin={{ x: Dimensions.get('window').width / 2, y: Dimensions.get('window').height * 0.32 }}
+        color={t.accent}
+        onDone={() => {
+          const effect = cardArrivalEffectRef.current ?? 'flight';
+          cardArrivalEffectRef.current = null;
+          setCardArrivals(0);
+          // Отмечаем показ только после анимации — иначе повторный вход
+          // проиграет её заново или, наоборот, съест непоказанный прилёт.
+          void markHomeArrivalPlayed(effect);
+        }}
+      />
     </View>);
 }

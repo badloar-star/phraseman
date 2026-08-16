@@ -1,7 +1,7 @@
 import type { AppTier } from './app_tier';
 import type { Decision, DecisionTrigger } from './decision';
 import type { FetchMoneySourceResult } from './money_firestore_fetcher';
-import { runMoneyDepartment } from './money_department';
+import { runMoneyDepartment, type MoneyYesterdayPoint } from './money_department';
 import type { MoneyReportCollection } from './money_source_reader';
 
 /**
@@ -26,6 +26,11 @@ export interface BuildMoneySnapshotInput {
   readonly question?: string;
   readonly nowMs: number;
   readonly appTier?: AppTier;
+  /**
+   * Вчерашняя точка истории — для разбора «где именно изменилось».
+   * Необязательна: без неё департамент просто не делает разбор.
+   */
+  readonly yesterday?: MoneyYesterdayPoint | null;
 }
 
 export interface MoneySnapshot {
@@ -57,6 +62,7 @@ export async function buildMoneySnapshot(input: BuildMoneySnapshotInput): Promis
     question: input.question,
     nowMs: input.nowMs,
     appTier: input.appTier,
+    yesterday: input.yesterday,
   });
 
   return Object.freeze({ generatedAtMs: input.nowMs, decisions });

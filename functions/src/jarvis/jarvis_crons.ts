@@ -226,6 +226,18 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     return lessonStatsOnce;
   };
 
+  // зачем читать историю здесь (аудит 2026-08-16): без вчерашней точки
+  // департамент денег может сказать только «столько-то событий», а с ней —
+  // назвать часть, из-за которой изменился итог. Одно чтение с лимитом 1;
+  // те же три числа уже собирает суточный крон истории, второй запрос
+  // к событиям RevenueCat удвоил бы чтения ради посчитанного.
+  const yesterdayPoint = await readRecentHistory({ db, limit: 1 })
+    .then((points) => points[0] ?? null)
+    .catch((error: unknown) => {
+      logger.warn('jarvis_daily_departments: history read failed', error);
+      return null;
+    });
+
   const snapshot = await buildAllDepartmentsSnapshot({
     resolveAppTier: () => resolveAppTier(() => fetchActiveUserCount({ collection: db.collection('users'), nowMs })),
     runQuality: (appTier) => buildQualitySnapshot({
@@ -249,6 +261,15 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
       trigger: 'scheduled',
       nowMs,
       appTier,
+      // зачем именно эти три поля: они уже посчитаны суточным кроном
+      // истории и достаточны, чтобы разложить денежные события по частям.
+      yesterday: yesterdayPoint
+        ? {
+          newPaying: yesterdayPoint.newPaying,
+          renewals: yesterdayPoint.renewals,
+          refunds: yesterdayPoint.refunds,
+        }
+        : null,
     }),
     runGrowth: () => buildGrowthSnapshot({
       fetchers: { users: () => fetchGrowthSource({

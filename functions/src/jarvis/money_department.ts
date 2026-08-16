@@ -3,6 +3,7 @@ import { tierThresholdMultiplier } from './app_tier';
 import { buildDecision, type Decision, type DecisionTrigger } from './decision';
 import type { FetchMoneySourceResult } from './money_firestore_fetcher';
 import { aggregateMoneyRows, buildMoneyEvidence, diagnosePersonalEconomy } from './money_source_reader';
+import { buildMetricTree, explainMetricChange } from './metric_tree';
 
 /**
  * Департамент «Деньги» — второй департамент Джарвиса (решение владельца
@@ -23,12 +24,27 @@ const MIN_NEW_PAYING_FOR_SIGNAL = 5;
  * масштабируется tierThresholdMultiplier(appTier). */
 const REFUND_RATE_SPIKE_THRESHOLD = 0.3;
 
+/**
+ * Вчерашняя точка из истории бизнес-тиров.
+ *
+ * зачем необязательная: истории может не быть (первый запуск, чтение упало).
+ * Департамент обязан работать и без неё — просто без разбора по частям.
+ * Выдумывать «вчера было ноль» нельзя: это превратило бы первый запуск
+ * в рапорт о катастрофическом росте.
+ */
+export interface MoneyYesterdayPoint {
+  readonly newPaying: number;
+  readonly renewals: number;
+  readonly refunds: number;
+}
+
 export interface RunMoneyDepartmentInput {
   readonly fetches: readonly FetchMoneySourceResult[];
   readonly trigger: DecisionTrigger;
   readonly question?: string;
   readonly nowMs: number;
   readonly appTier?: AppTier;
+  readonly yesterday?: MoneyYesterdayPoint | null;
 }
 
 export interface RunMoneyDepartmentResult {
@@ -71,6 +87,36 @@ function buildFindingText(
     : 'Недостаточно данных о новых платящих за последние сутки.';
 }
 
+/**
+ * Раскладывает сегодняшние деньги по составляющим и называет ту, что
+ * объясняет сдвиг.
+ *
+ * зачем брать вчерашнюю точку из истории, а не тянуть второй период из
+ * RevenueCat: история уже собирается суточным кроном и содержит ровно эти
+ * три числа. Второй запрос к событиям удвоил бы чтения ради того, что
+ * уже посчитано.
+ */
+function explainMoneyBreakdown(
+  fetches: readonly FetchMoneySourceResult[],
+  yesterday: MoneyYesterdayPoint | null,
+): string {
+  if (!yesterday) return '';
+  const revenuecat = fetches.find((fetch) => fetch.sourceId === 'revenuecat_premium_events');
+  if (!revenuecat) return '';
+  const today = aggregateMoneyRows(revenuecat.rows);
+
+  return explainMetricChange(buildMetricTree({
+    metric: 'Денежные события',
+    branches: [
+      { name: 'Новые платящие', current: today.newPaying, previous: yesterday.newPaying },
+      { name: 'Продления', current: today.renewals, previous: yesterday.renewals },
+      // зачем возвраты со знаком минус: они уменьшают итог, и в дереве
+      // должны двигаться в ту же сторону, что и общая сумма.
+      { name: 'Возвраты', current: -today.refunds, previous: -yesterday.refunds },
+    ],
+  }));
+}
+
 export function runMoneyDepartment(input: RunMoneyDepartmentInput): RunMoneyDepartmentResult {
   const evidence = input.fetches.map((fetch) => buildMoneyEvidence({
     sourceId: fetch.sourceId,
@@ -94,7 +140,15 @@ export function runMoneyDepartment(input: RunMoneyDepartmentInput): RunMoneyDepa
   if (!shouldDecide) return { decisions: [] };
 
   const economyFinding = `Экономика: ${economy.operationCount} клиентских операций, ${economy.externalEventCount} внешних событий; некорректных строк ${economy.invalidRows}, разрывов ревизии ${economy.revisionDiscontinuities}, разрывов баланса ${economy.balanceDiscontinuities}, повторов внешних фактов ${economy.duplicateExternalFacts}.`;
-  const finding = `${buildFindingText(spike, input.fetches, completeEvidence)} ${economyFinding}`;
+  // зачем разбор (аудит 2026-08-16): «денег меньше» — это констатация,
+  // с которой владелец идёт искать причину сам. Дерево называет часть,
+  // объясняющую сдвиг, и делает это детерминированным кодом, а не догадкой.
+  const breakdown = explainMoneyBreakdown(input.fetches, input.yesterday ?? null);
+  const finding = [
+    buildFindingText(spike, input.fetches, completeEvidence),
+    breakdown,
+    economyFinding,
+  ].filter(Boolean).join(' ');
   const question = input.question ?? (spike ? 'Растут ли возвраты относительно новых платящих?' : 'Есть ли аномалии в деньгах за последние сутки?');
 
   const decision = buildDecision({

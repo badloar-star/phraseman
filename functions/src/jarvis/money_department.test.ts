@@ -166,4 +166,48 @@ describe('Jarvis money department — app tier scales the spike threshold', () =
     });
     expect(result.decisions).toEqual([]);
   });
+
+  describe('разбор по составляющим', () => {
+    // зачем (аудит 2026-08-16): департамент говорил «столько-то новых
+    // платящих» и останавливался. Владельцу приходилось самому искать,
+    // из-за какой части это произошло — находка не экономила работу.
+
+    function runWithYesterday(yesterday: { newPaying: number; renewals: number; refunds: number } | null) {
+      return runMoneyDepartment({
+        fetches: [
+          fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 4), ...REFUND_ROWS] }),
+          fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
+        ],
+        trigger: 'owner_request',
+        nowMs: 10_000,
+        yesterday,
+      });
+    }
+
+    test('называет просевшую часть, а не только итог', () => {
+      const result = runWithYesterday({ newPaying: 40, renewals: 10, refunds: 1 });
+      expect(result.decisions[0].finding).toMatch(/новые платящие|Новые платящие/i);
+    });
+
+    test('без вчерашних данных разбор не выдумывается', () => {
+      // зачем: первый запуск не должен рапортовать о падении с нуля.
+      const result = runWithYesterday(null);
+      expect(result.decisions[0].finding).not.toMatch(/объясняется одной частью/i);
+    });
+
+    test('ровный день не порождает лишней строки', () => {
+      // зачем: «изменений нет» каждый день — шум, из-за которого
+      // перестают читать находку целиком.
+      const result = runMoneyDepartment({
+        fetches: [
+          fetchResult({ rows: [...NEW_PAYING_ROWS.slice(0, 4), ...REFUND_ROWS] }),
+          fetchResult({ sourceId: 'paywall_funnel', rows: [] }),
+        ],
+        trigger: 'owner_request',
+        nowMs: 10_000,
+        yesterday: { newPaying: 4, renewals: 0, refunds: REFUND_ROWS.length },
+      });
+      expect(result.decisions[0].finding).not.toMatch(/объясняется одной частью/i);
+    });
+  });
 });

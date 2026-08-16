@@ -1056,9 +1056,9 @@ export const EPISODE_01_SESSION_04_PHRASES: readonly EpisodeSourcePhrase[] =
               why: 'Who — «кто».',
             },
             {
-              value: 'Which',
+              value: 'When',
               reasonCode: 'wrong_question_word',
-              why: 'Which — «который из», нужен выбор из известных вариантов.',
+              why: 'When — «когда», это о времени.',
             },
             {
               value: 'Wat',
@@ -1463,9 +1463,9 @@ export const EPISODE_01_SESSION_04_PHRASES: readonly EpisodeSourcePhrase[] =
               why: 'Where — «где».',
             },
             {
-              value: 'Which',
+              value: 'When',
               reasonCode: 'wrong_question_word',
-              why: 'Which нужен, когда выбирают из известных вариантов.',
+              why: 'When — «когда», это о времени, а не о работе.',
             },
             {
               value: 'Wat',

@@ -115,10 +115,41 @@
     });
   })();
 
-  /* ============ Меню магазинов ============ */
+  /* ============ Меню магазинов ============
+     зачем: владелец 2026-08-16 — «при нажатии на скачать с телефона должно
+     переводить сразу на стор, как было раньше». Возвращено поведение старого
+     home.js: на телефоне и планшете кнопка ведёт прямо в нужный магазин,
+     на компьютере — открывает меню выбора платформы.
+     Кнопке заранее проставляется data-store, чтобы stats.js посчитал клик
+     ДО перехода (его слушатель на фазе погружения, beacon переживает уход). */
   (function storeMenu() {
     var triggers = document.querySelectorAll('.js-store-toggle');
     if (!triggers.length) return;
+
+    var ua = navigator.userAgent || '';
+    var isIos = /iPhone|iPad|iPod/i.test(ua);
+    var isAndroid = /Android/i.test(ua);
+    var isNarrow = window.matchMedia('(max-width: 720px)').matches;
+    var isTouch = window.matchMedia('(hover: none)').matches;
+    var goStraightToStore = isIos || isAndroid || (isNarrow && isTouch);
+
+    if (goStraightToStore) {
+      var cfg = window.KNOWLY_SITE || {};
+      var storeUrl = isIos
+        ? (cfg.storeIos || 'https://apps.apple.com/app/id6764800879')
+        : (cfg.storeAndroid || 'https://play.google.com/store/apps/details?id=app.phraseman');
+
+      triggers.forEach(function (btn) {
+        btn.setAttribute('data-store', isIos ? 'ios' : 'android');
+        btn.setAttribute('aria-haspopup', 'false');
+        btn.removeAttribute('aria-expanded');
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          location.href = storeUrl;
+        });
+      });
+      return; /* меню на телефоне не нужно — уходим сразу в магазин */
+    }
 
     function closeAll(except) {
       document.querySelectorAll('.store-menu.is-open').forEach(function (menu) {

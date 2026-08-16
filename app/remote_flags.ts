@@ -333,9 +333,10 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_speaking_premium: true,
   gate_ai_dialog_premium: true,
   // MAX voice: здесь семантика не «премиум-замок», а kill switch фичи целиком.
-  // Дефолт FALSE = звонки выключены до запуска; включает только явный true из
-  // «Пульта» (remote_config/app.bools). Потребитель: app/max_voice_flags.ts.
-  gate_ai_voice_call: false,
+  // зачем: владелец 2026-08-16 — «звонок должен работать всегда без исключений,
+  // единственный гейт будет пейвол». Дефолт TRUE = линия открыта без записи в
+  // «Пульте»; выключает только явный false оттуда. Потребитель: app/max_voice_flags.ts.
+  gate_ai_voice_call: true,
   gate_smart_trainer_premium: true,
   gate_trainer_modes_premium: true,
   gate_diagnosis_training_premium: true,

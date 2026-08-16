@@ -18,7 +18,11 @@ describe('MAX Voice error normalization', () => {
       .toBe('voice_provider_failed');
   });
 
-  it('surfaces a missing admin claim for protected DEV access', () => {
+  // DEV-гейт снят навсегда (владелец 2026-08-16) — свежий сервер этот reason не
+  // шлёт. Парсер обязан продолжать его понимать: старые сборки в проде ещё могут
+  // получить его от не обновлённой функции, и им нужен внятный текст, а не сырое
+  // исключение. Экранного текста у reason больше нет — показывается общий.
+  it('still parses the retired dev_admin_required reason from older builds', () => {
     expect(maxVoiceFailureReason(new Error('[functions/permission-denied] dev_admin_required'), 'mint_failed'))
       .toBe('dev_admin_required');
   });

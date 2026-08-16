@@ -114,10 +114,13 @@ describe('clampMaxVoiceConfig', () => {
     expect(cfg.hintDelaySec.B2).toBe(60);
   });
 
-  it('normalizes enums and booleans (kill switch defaults to OFF)', () => {
-    expect(clampMaxVoiceConfig({}).gate_ai_voice_call).toBe(false);
-    expect(clampMaxVoiceConfig({ gate_ai_voice_call: 'true' }).gate_ai_voice_call).toBe(true);
-    expect(clampMaxVoiceConfig({ gate_ai_voice_call: 'garbage' }).gate_ai_voice_call).toBe(false);
+  // зачем: владелец 2026-08-16 — дефолт рубильника ВКЛ («звонок работает всегда»).
+  // Мусор в доке теперь тоже падает в ВКЛ: пустой/битый док не должен убивать
+  // работающую линию — выключение только явным false/'false' от админа.
+  it('normalizes enums and booleans (kill switch defaults to ON)', () => {
+    expect(clampMaxVoiceConfig({}).gate_ai_voice_call).toBe(true);
+    expect(clampMaxVoiceConfig({ gate_ai_voice_call: 'false' }).gate_ai_voice_call).toBe(false);
+    expect(clampMaxVoiceConfig({ gate_ai_voice_call: 'garbage' }).gate_ai_voice_call).toBe(true);
     expect(clampMaxVoiceConfig({}).devTestUids).toEqual([]);
     expect(clampMaxVoiceConfig({ devTestUids: 'uid-1' }).devTestUids).toEqual([]);
     expect(clampMaxVoiceConfig({ devTestUids: [' uid-1 ', 'uid-1', '', 7, null, 'uid-2'] }).devTestUids)

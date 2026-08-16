@@ -284,19 +284,14 @@ async function resolveVoiceGates(
   }
   // Kill switch №2: собственный гейт голосовых звонков (дефолт ВЫКЛ до запуска).
   const config = await resolveMaxVoiceConfig(db);
-  // DEV Hub может тестировать закрытую линию либо с подтверждённым server-side
-  // admin claim, либо с uid из аллоулиста config.devTestUids (свои тестовые
-  // аккаунты без админ-прав). Оба источника серверные: тело запроса говорит
-  // лишь «хочу DEV», а «можно ли» решают токен и админ-док. Чужого uid в списке нет.
-  const devAllowed = isAdmin || config.devTestUids.includes(authUid);
-  const adminDevMode = data.devMode === true && devAllowed;
-  if (data.devMode === true && !devAllowed && !config.gate_ai_voice_call) {
-    // authUid в логе — чтобы своего тестера можно было внести в devTestUids,
-    // не выискивая uid по консоли Firebase Auth.
-    console.warn('max_voice_mint rejected', { reason: 'dev_admin_required', authUid });
-    throw new HttpsError('permission-denied', 'dev_admin_required');
-  }
-  if (!config.gate_ai_voice_call && !adminDevMode) {
+  // зачем: владелец 2026-08-16 — «звонок должен работать всегда без исключений,
+  // единственным гейтом будет пейвол». До релиза линия открыта всем: снят и
+  // прежний DEV-аллоулист (админ-claim + devTestUids), и «выключено по умолчанию».
+  // Остаётся только рубильник всего ИИ выше — он общий на весь проект.
+  // Тумблер gate_ai_voice_call остаётся рабочим выключателем в админке, но его
+  // ДЕФОЛТ теперь true (max_voice_config.ts): «выключено» бывает только когда
+  // владелец сам снял галочку, а не потому что фича ещё не запущена.
+  if (!config.gate_ai_voice_call) {
     console.warn('max_voice_mint rejected', { reason: 'voice_disabled' });
     throw new HttpsError('failed-precondition', 'voice_disabled');
   }
@@ -308,27 +303,12 @@ async function resolveVoiceGates(
   const quotaSnap = await db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid)).get();
   const quotaData = (quotaSnap.data() ?? {}) as Record<string, unknown>;
 
-  const hasMax = adminDevMode || (isPremium && config.voiceForPremiumBeta);
-  if (hasMax) {
-    return { db, authUid, stableUid, config, isPremium, quotaData, access: 'max', trialVariant: null, nowMs };
-  }
-
-  const trial = resolveTrialState(quotaData, config, nowMs);
-  // Реконнект НЕ гейтится триалом: первый минт уже проштамповал trialUsedAtMs,
-  // и повторная проверка убивала бы живой пробный звонок при обрыве сети.
-  // Легитимность реконнекта дальше проверит transferReserve (владелец + живая
-  // сессия); фальшивый reconnectOf упрётся в voice_session_mismatch ДО минта.
-  const isReconnect = text(data.reconnectOf, 80).length > 0;
-  if (!trial.available && !isReconnect) {
-    console.warn('max_voice_mint rejected', { reason: 'voice_max_required', isPremium });
-    throw new HttpsError('permission-denied', 'voice_max_required');
-  }
-  // srsCount шлёт клиент из своего SRS-стора. Полю НЕ доверяем в деньгах — оно
-  // влияет только на выбор варианта пробника (companion vs scenario), поэтому
-  // враньё здесь ничего не стоит серверу; всё равно клампим в разумный коридор.
-  const srsCount = Math.max(0, Math.min(10_000, Math.floor(num(data.srsCount))));
-  const trialVariant = chooseTrialVariant(config, srsCount, text(data.cefr, 2));
-  return { db, authUid, stableUid, config, isPremium, quotaData, access: 'trial', trialVariant, nowMs };
+  // зачем: владелец 2026-08-16 — до релиза подписка звонок НЕ гейтит («единственный
+  // гейт будет пейвол, лимиты введу сам при релизе»). Поэтому доступ 'max' выдаётся
+  // всем, а исчерпанный пробник (voice_max_required) больше не закрывает линию.
+  // voiceForPremiumBeta оставлен в конфиге: он вернёт разделение одним переключением,
+  // когда владелец будет ставить пейвол перед релизом.
+  return { db, authUid, stableUid, config, isPremium, quotaData, access: 'max', trialVariant: null, nowMs };
 }
 
 /** Read-only остаток дня/месяца (для preflight; резерв всё равно транзакционный). */

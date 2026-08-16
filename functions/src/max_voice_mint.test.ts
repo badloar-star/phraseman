@@ -204,34 +204,28 @@ describe('gate order (App Check → kill switch → subscription → quota → m
     await expect(callMint({}, null)).rejects.toMatchObject({ code: 'unauthenticated', message: 'auth_required' });
   });
 
-  it('allows the closed line only for DEV Hub callers with a verified admin claim', async () => {
+  // зачем: владелец 2026-08-16 снял DEV-гейт звонка навсегда («должно работать
+  // всегда без исключений, единственный гейт — пейвол»). Прежние три теста
+  // сторожили ОТМЕНЁННОЕ правило (dev_admin_required + аллоулист devTestUids) —
+  // они заменены на сторожа обратного контракта: линия открыта без админ-прав.
+  it('opens the line for an ordinary account with no admin claim and no allowlist', async () => {
+    setConfig({ devTestUids: [] });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS }); // пробник уже израсходован
+
+    await expect(callMint()).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
+  });
+
+  it('never answers dev_admin_required again (the DEV gate is gone for good)', async () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'max_voice_mint.ts'), 'utf8');
+    expect(source).not.toContain('dev_admin_required');
+  });
+
+  it('keeps the admin kill switch working when the owner turns it off explicitly', async () => {
     setConfig({ gate_ai_voice_call: false });
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
-
-    await expect(callMint({ devMode: true })).rejects.toMatchObject({ message: 'dev_admin_required' });
-    await expect(callAdminMint({ devMode: true })).resolves.toMatchObject({
-      ok: true,
-      value: 'ek_test_123',
-    });
-  });
-
-  it('opens the closed line for a uid on the devTestUids allowlist (no admin claim)', async () => {
-    setConfig({ gate_ai_voice_call: false, devTestUids: [AUTH] });
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
-
-    await expect(callMint({ devMode: true })).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
-  });
-
-  it('keeps the closed line shut for uids outside the allowlist', async () => {
-    setConfig({ gate_ai_voice_call: false, devTestUids: ['someone-else'] });
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
-
-    await expect(callMint({ devMode: true })).rejects.toMatchObject({ message: 'dev_admin_required' });
-    // Без devMode аллоулист не открывает ничего: обычный вызов упирается в kill switch.
     await expect(callMint()).rejects.toMatchObject({ message: 'voice_disabled' });
   });
 
-  it('fires gates strictly in order: kill switches → subscription → quota → mint', async () => {
+  it('fires gates strictly in order: kill switches → quota → mint', async () => {
     // Всё закрыто сразу — побеждает самый ранний гейт.
     mockAiDisabled.mockResolvedValue(true as never);
     setConfig({ gate_ai_voice_call: false });
@@ -241,15 +235,14 @@ describe('gate order (App Check → kill switch → subscription → quota → m
     mockAiDisabled.mockResolvedValue(false as never);
     await expect(callMint()).rejects.toMatchObject({ code: 'failed-precondition', message: 'voice_disabled' });
 
+    // Ступени «подписка» между рубильником и квотой больше нет (гейт снят
+    // владельцем 2026-08-16): следующий по порядку гейт — дневная квота.
     setConfig();
-    await expect(callMint()).rejects.toMatchObject({ code: 'permission-denied', message: 'voice_max_required' });
-
-    mockResolvePremium.mockResolvedValue(true as never);
-    docs.set(QUOTA_PATH, { // день полностью выбран
+    docs.set(QUOTA_PATH, { // день полностью выбран (потолок поднят до 14400с)
       trialUsedAtMs: NOW - DAY_MS,
       resetAtMs: NOW + 3_600_000,
       monthResetAtMs: NOW + DAY_MS,
-      dailyUsedSec: 900,
+      dailyUsedSec: 14_400,
     });
     await expect(callMint()).rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_quota_exhausted' });
     expect(fetchMock).not.toHaveBeenCalled(); // до минта ни разу не дошли
@@ -259,21 +252,27 @@ describe('gate order (App Check → kill switch → subscription → quota → m
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
-  it('premium without the beta flag has no MAX access', async () => {
-    mockResolvePremium.mockResolvedValue(true as never);
+  // зачем: до релиза подписка звонок не гейтит (решение владельца 2026-08-16).
+  // Ни отсутствие премиума, ни снятый voiceForPremiumBeta не закрывают линию —
+  // voice_max_required вернётся только вместе с пейволом перед релизом.
+  it('gives MAX access without premium and with the beta flag off', async () => {
+    mockResolvePremium.mockResolvedValue(false as never);
     setConfig({ voiceForPremiumBeta: false });
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
-    await expect(callMint()).rejects.toMatchObject({ message: 'voice_max_required' });
+    await expect(callMint()).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
   });
 });
 
-describe('rate limit — 8 fresh mints/hour, reconnects excluded', () => {
+// зачем: лимит минут снят (владелец 2026-08-16), но потолок СТАРТОВ в час
+// сохранён как предохранитель от цикла-бага: экран в бесконечном ретрае не
+// должен молотить платный минт всю ночь. Дефолт поднят 8 → 60.
+describe('rate limit — 60 fresh mints/hour, reconnects excluded', () => {
   beforeEach(() => {
     mockResolvePremium.mockResolvedValue(true as never);
   });
 
-  it('rejects the 9th fresh mint inside the hour window', async () => {
-    docs.set(RATE_PATH, { windowStartMs: NOW - 60_000, count: 8 });
+  it('rejects the 61st fresh mint inside the hour window', async () => {
+    docs.set(RATE_PATH, { windowStartMs: NOW - 60_000, count: 60 });
     await expect(callMint()).rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_mint_rate_limited' });
     expect(fetchMock).not.toHaveBeenCalled();
   });
@@ -284,7 +283,7 @@ describe('rate limit — 8 fresh mints/hour, reconnects excluded', () => {
   });
 
   it('a reconnect mint bypasses the rate limit and transfers the remainder', async () => {
-    docs.set(RATE_PATH, { windowStartMs: NOW - 60_000, count: 8 }); // лимит выбран
+    docs.set(RATE_PATH, { windowStartMs: NOW - 60_000, count: 60 }); // лимит выбран
     liveSession();
 
     const res = await callMint({ reconnectOf: 's1', heartbeatElapsedSec: 80, reconnectSummary: 'we ordered a latte' });
@@ -292,7 +291,7 @@ describe('rate limit — 8 fresh mints/hour, reconnects excluded', () => {
     // consumed = max(80, 100) − бесплатный gap 10 = 90 → остаток 230.
     expect(res).toMatchObject({ ok: true, maxSeconds: 230 - 20 });
     expect(res.limits.reservedSec).toBe(230);
-    expect(docs.get(RATE_PATH)!.count).toBe(8); // reconnect лимит не тронул
+    expect(docs.get(RATE_PATH)!.count).toBe(60); // reconnect лимит не тронул
     expect(docs.get(QUOTA_PATH)).toMatchObject({ reservedSec: 230, reconnectChain: { rootId: 's1', count: 1 } });
     // Summary долетело в хвост инструкций.
     expect(lastFetchBody().session.instructions).toContain('we ordered a latte');
@@ -306,30 +305,29 @@ describe('rate limit — 8 fresh mints/hour, reconnects excluded', () => {
   });
 });
 
-describe('trial branching (SRS ≥ 15 & level ≥ A2 → companion)', () => {
-  it('routes a practiced learner to the companion variant', async () => {
+// зачем: владелец 2026-08-16 снял гейт подписки до релиза, поэтому ветка
+// «пробник» (access: 'trial') сейчас НЕДОСТИЖИМА — все получают полный доступ.
+// Логика ветвления пробника сохранена в коде (chooseTrialVariant/resolveTrialState)
+// и вернётся вместе с пейволом; тесты здесь сторожат новое поведение: израсходованный
+// пробник больше никого не закрывает, а звонок идёт по обычному сценарному капу.
+describe('trial branch is bypassed until the paywall ships', () => {
+  it('gives a practiced learner a full call instead of a trial variant', async () => {
     const res = await callMint({ srsCount: 20, cefr: 'B1' });
-    expect(res.trialVariant).toBe('companion');
-    expect(lastFetchBody().session.instructions).toContain('COMPANION CALL');
+    expect(res.trialVariant).toBeNull();
+    expect(res.ok).toBe(true);
   });
 
-  it('routes a beginner to the coffee scenario with Mia and stamps trialUsedAtMs', async () => {
+  it('does not stamp trialUsedAtMs and does not use the trial cap', async () => {
     const res = await callMint({ srsCount: 3, cefr: 'A1' });
-    expect(res.trialVariant).toBe('scenario');
-    const instructions = lastFetchBody().session.instructions as string;
-    expect(instructions).toContain(TRIAL_SCENARIO_BLOCK);
-    expect(instructions).toContain(TRIAL_PERSONA_NAME);
-    // Резерв по капу пробника: 180 + 20 хвоста.
-    expect(res.limits.reservedSec).toBe(200);
-    expect(docs.get(QUOTA_PATH)!.trialUsedAtMs).toBe(NOW);
+    expect(res.trialVariant).toBeNull();
+    // Сценарный кап 300 + 20 хвоста, а не пробниковые 180 + 20.
+    expect(res.limits.reservedSec).toBe(320);
+    expect(docs.get(QUOTA_PATH)!.trialUsedAtMs).toBeUndefined();
   });
 
-  it('a recently used trial refuses access, an expired one re-opens after trialRefreshDays', async () => {
+  it('a recently used trial no longer refuses access', async () => {
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
-    await expect(callMint({ srsCount: 3 })).rejects.toMatchObject({ message: 'voice_max_required' });
-
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - 31 * DAY_MS });
-    await expect(callMint({ srsCount: 3 })).resolves.toMatchObject({ ok: true, trialVariant: 'scenario' });
+    await expect(callMint({ srsCount: 3 })).resolves.toMatchObject({ ok: true, trialVariant: null });
   });
 });
 
@@ -344,12 +342,13 @@ describe('budget ladder', () => {
     await expect(callMint()).rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_budget_exhausted' });
   });
 
-  it('80–100%: trials are cut first, premium sessions get capped at 300s', async () => {
+  // Пробников больше нет (все — 'max'), поэтому ступень voice_trial_paused
+  // никого не режет; soft-кап сессии на 300с продолжает работать для всех.
+  // Один минт на тест: успешный звонок оставляет живой резерв, и второй подряд
+  // упёрся бы в voice_session_active — это защита от двух параллельных звонков.
+  it('80–100%: no trials to cut, sessions get capped at 300s', async () => {
     docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 20 });
-    await expect(callMint({ srsCount: 3 }))
-      .rejects.toMatchObject({ message: 'voice_trial_paused' });
 
-    mockResolvePremium.mockResolvedValue(true as never);
     const res = await callMint({ format: 'companion' }); // кап формата 480 → soft-кап 300
     expect(res.limits.reservedSec).toBe(320); // 300 + 20 хвоста
     expect(res.maxSeconds).toBe(300);
@@ -472,9 +471,9 @@ describe('mint response contract — both key spellings + limits', () => {
     const res = await callMint({ cefr: 'B1' });
 
     expect(res.limits).toMatchObject({
-      dayRemainingSec: 580,
+      dayRemainingSec: 14_080, // дневной потолок 14400 − резерв 320
       sessionCapSec: 300, // число секунд ЭТОЙ сессии, не карта форматов
-      dailyVoiceSecMax: 900,
+      dailyVoiceSecMax: 14_400,
       heartbeatSec: 30,
       wrapUpLeadSec: 75,
       graceTailSec: 20,
@@ -629,14 +628,15 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
     const res = await preflight({ auth: { uid: AUTH }, data: {} });
 
     expect(res).toMatchObject({ ok: true, allowed: true, access: 'max', trialVariant: null });
-    expect(res.limits).toMatchObject({ dayRemainingSec: 900, monthRemainingSec: 14_400, dailyVoiceSecMax: 900 });
+    expect(res.limits).toMatchObject({ dayRemainingSec: 14_400, monthRemainingSec: 172_800, dailyVoiceSecMax: 14_400 });
     expect(fetchMock).not.toHaveBeenCalled();
     expect(docs.get(QUOTA_PATH)).toBeUndefined(); // резервов не создаёт
   });
 
   it('rejects when the day quota is exhausted', async () => {
     mockResolvePremium.mockResolvedValue(true as never);
-    docs.set(QUOTA_PATH, { resetAtMs: NOW + 3_600_000, monthResetAtMs: NOW + DAY_MS, dailyUsedSec: 870 });
+    // Потолок дня поднят до 14400с — «почти выбран» теперь это 14370, а не 870.
+    docs.set(QUOTA_PATH, { resetAtMs: NOW + 3_600_000, monthResetAtMs: NOW + DAY_MS, dailyUsedSec: 14_370 });
     await expect(preflight({ auth: { uid: AUTH }, data: {} }))
       .rejects.toMatchObject({ code: 'resource-exhausted', message: 'voice_quota_exhausted' });
   });
@@ -647,21 +647,13 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
       .rejects.toMatchObject({ message: 'voice_disabled' });
   });
 
-  it('lets an authenticated admin preflight the closed line from DEV Hub only', async () => {
-    setConfig({ gate_ai_voice_call: false });
+  // зачем: DEV-гейт снят навсегда (владелец 2026-08-16) — preflight обязан
+  // пускать обычный аккаунт без админ-claim и без записи в devTestUids.
+  it('lets an ordinary account preflight without an admin claim or allowlist', async () => {
+    setConfig({ devTestUids: [] });
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
 
-    await expect(preflight({ auth: { uid: AUTH }, data: { devMode: true } }))
-      .rejects.toMatchObject({ message: 'dev_admin_required' });
-    await expect(preflight({ auth: { uid: AUTH, token: { admin: true } }, data: { devMode: true } }))
-      .resolves.toMatchObject({ ok: true, allowed: true, access: 'max' });
-  });
-
-  it('lets a devTestUids account preflight the closed line without an admin claim', async () => {
-    setConfig({ gate_ai_voice_call: false, devTestUids: [AUTH] });
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
-
-    await expect(preflight({ auth: { uid: AUTH }, data: { devMode: true } }))
+    await expect(preflight({ auth: { uid: AUTH }, data: {} }))
       .resolves.toMatchObject({ ok: true, allowed: true, access: 'max' });
   });
 });

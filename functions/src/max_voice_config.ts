@@ -104,8 +104,11 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   transcriptionModel: 'gpt-4o-mini-transcribe',
   sessionCapSec: { scenario: 300, companion: 480, trial: 180 },
   graceTailSec: 20,
-  dailyVoiceSecMax: 900,
-  monthlyVoiceSecMax: 14400,
+  // зачем: владелец 2026-08-16 — «все лимиты снять, лимиты введу сам при релизе».
+  // Ставим верхнюю границу клампа (4ч/день, 48ч/месяц): счётчик продолжает считать
+  // минуты для будущего пейвола, но практически звонок не упирается в потолок.
+  dailyVoiceSecMax: 14_400,
+  monthlyVoiceSecMax: 172_800,
   trialCallSec: 180,
   trialRefreshDays: 30,
   trialSrsThreshold: 15,
@@ -121,17 +124,22 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   hintMaxPerSession: 4,
   idleTimeoutMs: 90_000,
   wrapUpLeadSec: 75,
-  mintPerHourMax: 8,
+  // Не «лимит пользователю», а предохранитель от цикла-бага: экран в бесконечном
+  // ретрае не должен молотить минт всю ночь. Живому человеку 60 стартов в час не нужны.
+  mintPerHourMax: 60,
   reconnectChainMax: { auto: 2, manual: 1 },
   reconnectFreeGapSecTotal: 60,
   heartbeatSec: 30,
-  // Консервативный дневной бюджет на запуск: ~50 подписчиков × худший день.
-  // Реальное значение админ поднимает доком после первых недель Usage-сверки.
-  globalDailyBudgetUsd: 25,
+  // зачем: владелец 2026-08-16 — лимиты снять до релиза. Бюджетная лестница
+  // остаётся живым механизмом (её планка задаётся доком), но дефолт поднят так,
+  // чтобы тестовые звонки в неё не упирались. Перед релизом вернуть реальное число.
+  globalDailyBudgetUsd: 5_000,
   budgetSoftPct: 0.8,
-  // Kill switch: дефолт ВЫКЛ до запуска — включается только явным админ-действием.
-  gate_ai_voice_call: false,
-  // Пусто по умолчанию: DEV-линия открывается только явной записью uid в док.
+  // зачем: владелец 2026-08-16 — «звонок должен работать всегда без исключений».
+  // Дефолт ВКЛ: линия открыта сразу, выключение — только явным админ-действием.
+  gate_ai_voice_call: true,
+  // DEV-аллоулист больше не гейтит звонок (линия открыта всем). Поле оставлено
+  // ради совместимости со схемой дока и админкой; на доступ оно не влияет.
   devTestUids: [],
   voiceForPremiumBeta: true,
   degradeMode: 'auto',

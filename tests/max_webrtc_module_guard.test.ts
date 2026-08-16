@@ -47,10 +47,13 @@ describe('max_voice_flags: вход скрыт без нативного мод�
     else process.env[ENV_KEY] = savedEnv;
   });
 
-  it('kill switch по дефолту ВЫКЛ (до запуска голосовая линия не существует)', () => {
+  // зачем: владелец 2026-08-16 — звонок должен работать всегда, дефолт ВКЛ.
+  // Вход всё равно скрыт, пока нет нативного стека: гейт и наличие WebRTC —
+  // независимые условия, и второе здесь (в jest-окружении) не выполнено.
+  it('kill switch по дефолту ВКЛ (линия открыта без записи в «Пульте»)', () => {
     delete process.env[ENV_KEY];
-    expect(MAX_VOICE_GATE_DEFAULT).toBe(false);
-    expect(isMaxVoiceCallEnabled()).toBe(false);
+    expect(MAX_VOICE_GATE_DEFAULT).toBe(true);
+    expect(isMaxVoiceCallEnabled()).toBe(true);
     expect(isMaxVoiceEntryVisible()).toBe(false);
   });
 

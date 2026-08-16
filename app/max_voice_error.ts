@@ -109,18 +109,10 @@ export function maxVoiceFailureMessage(reason: string | null, lang: Lang): strin
       pl: 'Ta rozmowa wymaga dostępu MAX albo dostępnej rozmowy próbnej.',
     });
   }
-  if (reason === 'dev_admin_required') {
-    return triLang(lang, {
-      ru: 'DEV-тест MAX разрешён только аккаунту с серверным правом администратора.',
-      uk: 'DEV-тест MAX дозволений лише акаунту із серверним правом адміністратора.',
-      es: 'La prueba DEV de MAX requiere una cuenta con permiso de administrador.',
-      'pt-BR': 'O teste DEV do MAX requer uma conta com permissão de administrador.',
-      vi: 'Bản thử nghiệm DEV của MAX cần tài khoản có quyền quản trị viên.',
-      id: 'Tes DEV MAX memerlukan akun dengan izin administrator.',
-      tr: 'MAX DEV testi için sunucu yönetici yetkili bir hesap gerekir.',
-      pl: 'Test DEV MAX wymaga konta z uprawnieniem administratora.',
-    });
-  }
+  // зачем: владелец 2026-08-16 — DEV-гейт звонка снят навсегда, сервер больше не
+  // отдаёт dev_admin_required (functions/src/max_voice_mint.ts). Текст удалён,
+  // чтобы плашка не могла вернуться на экран; сам reason оставлен в KNOWN_REASONS
+  // ради старых сборок в проде — они получат общий текст «связь не установилась».
   if (reason === 'media_failed') {
     return triLang(lang, {
       ru: 'Не удалось запустить микрофон. Проверь разрешение микрофона в настройках iPhone.',

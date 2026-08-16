@@ -39,6 +39,12 @@ const RARITY_STRENGTH: Record<RewardImpactRarity, { bloomTo: number; rings: bool
 
 export interface RewardImpactHybridOptions {
   visible: boolean;
+  /**
+   * зачем: сундуку нужен раздельный сценарий — «карточка входит из света сразу,
+   * а удар героя — только по тапу». armed = момент удара; по умолчанию равен
+   * visible (вход и удар одной последовательностью — как у остальных наград).
+   */
+  armed?: boolean;
   rarity?: RewardImpactRarity;
   /** Проигрывается на ударе героя. По умолчанию — сундук/подарок (закон семьи). */
   impactSoundId?: 'pm.reward.chest_open';
@@ -50,6 +56,7 @@ const DUST_SLOTS = 12;
 
 export function useRewardImpactHybrid({
   visible,
+  armed,
   rarity = 'common',
   impactSoundId = 'pm.reward.chest_open',
   scope,
@@ -163,7 +170,22 @@ export function useRewardImpactHybrid({
     cardOpacity.value = withDelay(LUM.ladder[1], withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) }));
     cardScale.value = withDelay(LUM.ladder[1], withSpring(1, LUM.settle));
 
-    // ── фаза 2: замах героя (CHK.anticipMs) → падение (CHK.fallMs, bezier) → УДАР ──
+    return () => {
+      cancelAnimation(backdropOpacity);
+      cancelAnimation(bloomOpacity);
+      cancelAnimation(bloomScale);
+      cancelAnimation(cardOpacity);
+      cancelAnimation(cardScale);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, reduceMotion, rarity, impactSoundId, scope]);
+
+  // ── фаза 2: замах героя (CHK.anticipMs) → падение (CHK.fallMs, bezier) → УДАР ──
+  // зачем: отдельный эффект — удар может наступать позже входа (сундук: по тапу).
+  const armedNow = armed === undefined ? visible : (visible && armed);
+  useEffect(() => {
+    if (!armedNow || reduceMotion) return undefined;
+
     const soundTimer = setTimeout(() => {
       soundDirector.request(impactSoundId, { scope, dedupeKey: scope });
     }, LUM.ladder[2]);
@@ -189,11 +211,6 @@ export function useRewardImpactHybrid({
 
     return () => {
       clearTimeout(soundTimer);
-      cancelAnimation(backdropOpacity);
-      cancelAnimation(bloomOpacity);
-      cancelAnimation(bloomScale);
-      cancelAnimation(cardOpacity);
-      cancelAnimation(cardScale);
       cancelAnimation(cardRecoilY);
       cancelAnimation(heroY);
       cancelAnimation(heroScale);
@@ -214,7 +231,7 @@ export function useRewardImpactHybrid({
     // зачем: пересобираем последовательность заново при каждом показе —
     // shared values нельзя мутировать вне эффекта (нет setState в кадрах).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, reduceMotion, rarity, impactSoundId, scope, handleImpact]);
+  }, [armedNow, reduceMotion, rarity, impactSoundId, scope, handleImpact]);
 
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropOpacity.value }));
   const bloomStyle = useAnimatedStyle(() => ({

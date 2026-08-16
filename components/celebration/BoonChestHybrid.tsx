@@ -87,8 +87,11 @@ function BoonChestHybrid({
   }, [visible, phase, impactArmed, reduceMotion]);
   const idleFloatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: idleFloat.value }] }));
 
+  // зачем: карточка входит из света сразу (visible), удар героя — только по тапу (armed).
+  // Раньше visible гейтился impactArmed — до тапа всё было с opacity 0: «гибрид не запускается».
   const impact = useRewardImpactHybrid({
-    visible: visible && impactArmed,
+    visible,
+    armed: impactArmed,
     rarity,
     scope: 'boon-chest-hybrid',
   });

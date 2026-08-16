@@ -34,6 +34,7 @@ import {
   authoredLearningV2SessionShards,
 } from "../../../modules/learning-v2/content/source/authored_sessions_v1";
 import { buildSessionChildBodiesFromShard } from "../../../modules/learning-v2/content/source/session_package_from_shard_v1";
+import { expandLocalized } from "../../../modules/learning-v2/content/source/session_shard_from_source_v1";
 import { buildLearningV2CourseTopologyV1 } from "../../../modules/learning-v2/content/course_topology_v1";
 
 // зачем: тот же регион, что у остальных функций Learning V2 и у админки —
@@ -332,10 +333,16 @@ export const adminPublishAuthoredLearningV2Course = onCall(
     const first = AUTHORED_EPISODE_01_SESSIONS[0];
     if (!first)
       throw new HttpsError("failed-precondition", "publish_no_sessions_authored");
+    // зачем: индекс урока требует все восемь локалей интерфейса, а автор пишет
+    // три (ru, uk, es). Разворачиваем тем же способом, что и шард: недостающие
+    // помечаются как непереведённые, а не подменяются русским молча. Без этого
+    // публикация падала на проверке заголовка.
     const result = await publishAuthoredLearningV2Course(input, {
       sessions,
-      titleByLocale: first.title as unknown as Readonly<Record<string, string>>,
-      canDoByLocale: first.summary as unknown as Readonly<
+      titleByLocale: expandLocalized(first.title) as unknown as Readonly<
+        Record<string, string>
+      >,
+      canDoByLocale: expandLocalized(first.summary) as unknown as Readonly<
         Record<string, string>
       >,
       bucket: admin.storage().bucket(),

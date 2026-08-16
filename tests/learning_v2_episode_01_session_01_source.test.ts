@@ -57,6 +57,24 @@ describe("episode 1 session 1 source", () => {
       expect(shard.cards[index].introQuestionId).toBeNull();
   });
 
+  // зачем: агент-новичок прошёл первую версию сессии и нашёл дыру — 6 из 12
+  // карточек требовали приветствий и артикля, которых интро не объясняло, и
+  // правило приходило в подсказке уже ПОСЛЕ ответа. Этот гейт держит границу:
+  // сессия не смеет требовать конструкцию, которой интро не научило.
+  it("never asks for a construction the intro did not teach", () => {
+    const taughtFeatures = new Set([
+      "copula_be",
+      "first_person_singular",
+      "state_adjective",
+      "adverb_place",
+      "adjective_predicate",
+      "negation_not",
+    ]);
+    for (const phrase of EPISODE_01_SESSION_01_SOURCE.phrases)
+      for (const feature of phrase.features)
+        expect(taughtFeatures.has(feature)).toBe(true);
+  });
+
   // зачем: честность важнее зелёного теста — непереведённые локали должны быть
   // видимы, а не притворяться готовыми.
   it("marks locales that still need a human translation", () => {

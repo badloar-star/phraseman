@@ -287,6 +287,12 @@ export function buildGroundedReplySystemPrompt(context: SupportRepositoryContext
     // ответила «подготовим возврат» и «можем оформить возврат». Обещать
     // чужие деньги она не вправе — решение только за владельцем.
     'NEVER promise a refund, compensation, discount or any money decision. Only the owner decides that.',
+    // зачем (прогон 10 тредов про оплату, 2026-08-16): на «сколько ждать?»
+    // модель ответила «обычно не больше 48 часов» и «несколько часов до
+    // одного-двух дней». Никто такого срока не устанавливал — она его
+    // выдумала. Клиент начнёт отсчитывать эти 48 часов и напишет снова
+    // с претензией, когда они пройдут.
+    'NEVER invent a deadline ("within 48 hours", "in a day or two"). Say honestly: there is a queue right now, the team answers in order and will not forget your case.',
     'If evidence is missing or conflicting, set needsHuman=true and avoid guessing.',
     `Allowed evidence IDs: ${ids}.`,
     'Return exactly one JSON object: {"reply":"...","evidenceIds":["..."],"confidence":0.0,"needsHuman":false}.',
@@ -372,7 +378,20 @@ export function parseSupportReviewEnvelope(raw: unknown): SupportReviewEnvelope 
  *
  * Латинские варианты сохраняют свои границы через (?:^|\W) и \b внутри.
  */
-const FORBIDDEN_ASSERTIONS = /(?:\b(?:we (?:have )?(?:checked|verified|fixed|refunded|restored|deleted)|we (?:are|'re)\s+(?:currently\s+)?(?:checking|looking into|investigating|contacting)|access (?:is|has been) (?:open|restored)|refund (?:was|has been) issued)\b|мы (?:проверили|исправили|вернули|удалили|связались|передали|отправили)|мы (?:сейчас\s+)?(?:проверяем|смотрим|разбираемся|связываемся)|доступ (?:уже )?(?:открыт|восстановлен)|возврат (?:оформлен|выполнен)|(?:подготовим|оформим|сделаем|можем оформить)\s+возврат|верн[её]м\s+(?:вам\s+)?деньги|\bwe (?:will|can) (?:issue|process|arrange) (?:a )?refund\b)/iu;
+/**
+ * Ложные утверждения о выполненных действиях и выдуманные сроки.
+ *
+ * зачем без \b вокруг всей группы (найдено тестом 2026-08-16): в
+ * JavaScript \b определяет границу слова только для латиницы, поэтому
+ * с внешними \b вся РУССКАЯ половина запрета молча НЕ работала —
+ * «Мы проверили и вернули вам деньги» проходило свободно.
+ *
+ * зачем сроки (прогон 10 тредов про оплату, 2026-08-16): на «сколько
+ * ждать?» модель ответила «обычно не больше 48 часов». Такого срока
+ * никто не устанавливал — клиент начнёт его отсчитывать и вернётся с
+ * претензией. Честная альтернатива: «отвечаем в порядке очереди».
+ */
+const FORBIDDEN_ASSERTIONS = /(?:\b(?:we (?:have )?(?:checked|verified|fixed|refunded|restored|deleted)|we (?:are|'re)\s+(?:currently\s+)?(?:checking|looking into|investigating|contacting)|access (?:is|has been) (?:open|restored)|refund (?:was|has been) issued)\b|мы (?:проверили|исправили|вернули|удалили|связались|передали|отправили)|мы (?:сейчас\s+)?(?:проверяем|смотрим|разбираемся|связываемся)|доступ (?:уже )?(?:открыт|восстановлен)|возврат (?:оформлен|выполнен)|(?:подготовим|оформим|сделаем|можем оформить)\s+возврат|верн[её]м\s+(?:вам\s+)?деньги|\bwe (?:will|can) (?:issue|process|arrange) (?:a )?refund\b|(?:в течение|не занимает больше|не более|максимум)\s+\d{1,2}[-\s]*(?:час|дн|сутк)|(?:в течение|за)\s+(?:одного|двух|пары|нескольких)\s+(?:часов|дней|суток)|\bwithin\s+\d{1,2}\s*(?:hours?|days?)\b)/iu;
 const INTERNAL_LEAK = /(?:functions\/src|(?:app|components|constants)\/[\w./-]+\.tsx?|\.tsx?:\d+|sourceFingerprint|repository commit|OPENAI_API_KEY|GMAIL_SUPPORT_APP_PASSWORD|\b[a-f0-9]{40,64}\b)/iu;
 
 /**

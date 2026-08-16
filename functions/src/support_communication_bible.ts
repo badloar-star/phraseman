@@ -9,7 +9,8 @@ export type SupportHumanVoiceViolation =
   | 'too_many_questions'
   | 'wrong_language'
   | 'first_person_singular'
-  | 'too_short';
+  | 'too_short'
+  | 'repeated_greeting';
 
 const INTERNAL_PROCESS_LANGUAGE = /(?:\b(?:snapshot|repository|repo|commit|sha|branch|pull request|build artifact|deployment|deploy|evidence|grounded|fingerprint|revision|prompt|reviewer|council|model|firestore|cron|source code|codebase)\b|(?:сним(?:ок|ка|ке|ком|ку|ки|ков)(?:\s+(?:продукта|сборки|репозитория))?|репозитор(?:ий|ия|ии)|коммит|ветк[аи]|ревизи[яи]|отпечаток|доказательств[а]?|исходн(?:ый|ого)\s+код|кодовая\s+база|модел[ьи]|промпт|ревьюер|проверяющ(?:ий|ая)|совет\s+агентов))/iu;
 const GENERIC_RECEIPT = /(?:мы получили ваше сообщение|we (?:have )?received your message|hemos recibido tu mensaje)/iu;
@@ -35,6 +36,12 @@ export const SUPPORT_COMMUNICATION_BIBLE_PROMPT = Object.freeze([
   'Give a concrete next step, and explain briefly WHY it helps. Add one alternative when the first step may not fit.',
   'Ask one or two genuinely useful clarifying questions that move the case forward. Never interrogate: no blanket list of version, platform and history.',
   'End by inviting the person to write back — support is a conversation, not a ticket that closes itself.',
+  // зачем (владелец, 2026-08-16): «повторно говорить здравствуйте можно
+  // только если это следующий день; в тот же день повторно не надо».
+  // В живом прогоне каждый второй ответ в одном треде начинался с
+  // «Здравствуйте!» — так пишет автоответчик, а не человек, который
+  // помнит, что уже разговаривает с тобой десять минут.
+  'Greet only in the FIRST reply of the day. Later in the same conversation continue without "Hello" — you are already talking.',
   'Do not add password, card, or security warnings unless the customer is actually discussing credentials, payment data, or account security.',
   'Use the customer language consistently. Do not add a closing or signature; the delivery layer handles it.',
 ].join('\n'));
@@ -73,6 +80,25 @@ function detectLanguage(text: string): 'ru' | 'es' | 'en' | 'unknown' {
 }
 
 /**
+ * Приветствие в начале ответа.
+ *
+ * зачем (владелец, 2026-08-16): «повторно говорить здравствуйте можно
+ * только если это следующий день». В живом прогоне каждый ответ в треде
+ * начинался с «Здравствуйте!» — на пятом сообщении подряд это выдаёт
+ * автоответчик. Живой человек здоровается один раз за день.
+ */
+// зачем без \b у русских слов и с допуском «¡» в начале (2026-08-16):
+// в JavaScript граница слова не работает с кириллицей — с ней регулярка
+// не ловила ни «Здравствуйте», ни «Добрый день». Тот же класс дефекта уже
+// находился в запрете ложных утверждений. Испанское «¡Hola!» отсекалось
+// якорем начала строки, потому что перевёрнутый знак идёт перед словом.
+const GREETING_OPENER = /^\s*[¡¿]?\s*(?:здравствуйте|здравствуй|добрый (?:день|вечер)|доброе утро|привет|\bhello\b|\bhi\b|\bhey\b|good (?:morning|afternoon|evening)|hola|buenos d[ií]as)/iu;
+
+export function replyOpensWithGreeting(reply: unknown): boolean {
+  return GREETING_OPENER.test(String(reply ?? ''));
+}
+
+/**
  * Поддержка пишет от «мы», а не от «я».
  *
  * зачем: в живом прогоне модель отвечала «Рад, что вы начали», «я помогу»,
@@ -85,6 +111,14 @@ const FIRST_PERSON_SINGULAR = /(?:^|[\s,.!?])(?:я\s+(?:помогу|подск�
 export function findSupportHumanVoiceViolations(
   reply: unknown,
   issue: unknown = '',
+  /**
+   * Мы уже здоровались с этим человеком СЕГОДНЯ.
+   *
+   * зачем отдельный параметр, а не вывод из истории внутри функции: модуль
+   * чистый, без доступа к базе. Признак вычисляет вызывающий код, который
+   * и так читает переписку.
+   */
+  alreadyGreetedToday = false,
 ): readonly SupportHumanVoiceViolation[] {
   const text = String(reply ?? '').trim();
   const customerIssue = String(issue ?? '');
@@ -99,6 +133,10 @@ export function findSupportHumanVoiceViolations(
   // норма живого разговора, а не нарушение. Ограничение остаётся, чтобы
   // ответ не превратился в допрос анкетой.
   if (questionCount(text) > 4) violations.push('too_many_questions');
+  // зачем (владелец, 2026-08-16): «в тот же день повторно здравствуйте
+  // говорить не надо». Пятое «Здравствуйте!» подряд в одной переписке
+  // выдаёт автоответчик — живой человек здоровается один раз за день.
+  if (alreadyGreetedToday && replyOpensWithGreeting(text)) violations.push('repeated_greeting');
   // зачем проверка на короткий ответ: живой прогон дал отписки в три
   // строки — «попробуйте паузы», и всё. Человек с проблемой получает
   // ощущение, что от него отмахнулись. Порог по СЛОВАМ, а не символам:

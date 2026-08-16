@@ -270,6 +270,18 @@ interface SupportConversationDoc {
   createdAt: string;
   updatedAt: string;
   lastInboundAtMs: number;
+  /**
+   * Владелец ответил в этой переписке лично, мимо админки.
+   *
+   * зачем (владелец, 2026-08-16: «если я ответил на сообщение сам, то на
+   * все эти сообщения юзера бот больше не отвечает, а только присылает мне
+   * в телеграм уведомление»): человек уже общается с живым владельцем.
+   * Если бот вклинится со своим черновиком, получится два голоса в одной
+   * переписке — и клиент увидит, что «поддержка» сама с собой не согласна.
+   * Метка ставится на РАЗГОВОР, а не на письмо: замолчать нужно навсегда,
+   * а не до следующего входящего.
+   */
+  ownerTookOverAtMs?: number;
 }
 
 interface SupportMessageIndexDoc {
@@ -1353,6 +1365,18 @@ export async function closeOpenThreadForOwnerReply(
       replyGate: gate ? { ...gate, state: 'cancelled', updatedAt: nowIso } : gate,
       autoReply: { ...(message.autoReply ?? {}), state: 'attention_required', reason: 'owner_replied_manually', autoSendAtMs: null, updatedAt: nowIso },
     }, { merge: true });
+    // зачем метка на РАЗГОВОР, а не только на письмо (владелец, 2026-08-16):
+    // «если я ответил сам, то на все эти сообщения юзера бот больше не
+    // отвечает». Закрыть текущее письмо мало — человек напишет снова, и
+    // бот вклинится в переписку, которую владелец уже ведёт лично. Тогда у
+    // клиента два голоса поддержки, противоречащих друг другу.
+    if (message.conversationId) {
+      tx.set(
+        db.collection(SUPPORT_CONVERSATION_COLLECTION).doc(message.conversationId),
+        { ownerTookOverAtMs: nowMs },
+        { merge: true },
+      );
+    }
     return true;
   });
 }
@@ -2655,6 +2679,13 @@ async function claimSupportAutoReplyWork(
       || Number(conversationSnap.data()?.headRevision ?? 0) !== Number(doc.conversationRevision ?? 0)
     ))) return null;
     if (doc.status !== 'new' || doc.triageState !== 'kept' || doc.mailCategory === 'automated') return null;
+    // зачем молчание навсегда (владелец, 2026-08-16): «если я ответил на
+    // сообщение сам, то на все эти сообщения юзера бот больше не отвечает,
+    // а только присылает мне уведомление». Владелец уже ведёт эту переписку
+    // лично; черновик бота дал бы клиенту второй, противоречащий голос.
+    // Уведомление владельцу при этом уходит обычным путём (ownerNotification),
+    // поэтому письмо не теряется — просто на него не отвечает автоматика.
+    if (Number(conversationSnap?.data()?.ownerTookOverAtMs ?? 0) > 0) return null;
     if (doc.draftOrigin === 'owner_manual' && String(doc.draftReply ?? '').trim()) return null;
     if (doc.autoReply?.state === 'accepted' || doc.autoReply?.state === 'attention_required'
       || doc.autoReply?.state === 'exhausted' || doc.autoReply?.state === 'suppressed') return null;

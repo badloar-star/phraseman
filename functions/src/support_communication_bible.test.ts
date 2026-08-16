@@ -1,5 +1,6 @@
 import {
   findSupportHumanVoiceViolations,
+  replyOpensWithGreeting,
   supportReplyIsCustomerReady,
   SUPPORT_COMMUNICATION_BIBLE_PROMPT,
 } from './support_communication_bible';
@@ -116,6 +117,51 @@ describe('Phraseman support communication Bible', () => {
 
     test('пустой ответ коротким не считается — это другая проблема', () => {
       expect(findSupportHumanVoiceViolations('', 'вопрос')).not.toContain('too_short');
+    });
+  });
+
+  // зачем этот блок (владелец, 2026-08-16): «повторно говорить
+  // здравствуйте можно только если это следующий день — в тот же день
+  // повторно не надо». В прогоне 10 тредов КАЖДЫЙ ответ начинался с
+  // «Здравствуйте!», включая пятый подряд. Так пишет автоответчик.
+  describe('здоровается один раз за день', () => {
+    const GREETING = 'Здравствуйте! Понимаем ваш вопрос и хотим разобраться вместе с вами, '
+      + 'поэтому смотрим, что можно сделать. Расскажите, пожалуйста, чуть подробнее — '
+      + 'так мы подскажем точнее и быстрее найдём решение вашей ситуации.';
+    const NO_GREETING = 'Понимаем ваш вопрос и хотим разобраться вместе с вами, поэтому '
+      + 'смотрим, что можно сделать. Расскажите, пожалуйста, чуть подробнее — так мы '
+      + 'подскажем точнее и быстрее найдём решение вашей ситуации.';
+
+    test('первое письмо дня: приветствие уместно', () => {
+      expect(findSupportHumanVoiceViolations(GREETING, 'вопрос', false))
+        .not.toContain('repeated_greeting');
+    });
+
+    test('повторно в тот же день: приветствие — нарушение', () => {
+      expect(findSupportHumanVoiceViolations(GREETING, 'вопрос', true))
+        .toContain('repeated_greeting');
+    });
+
+    test('продолжение разговора без приветствия проходит', () => {
+      expect(findSupportHumanVoiceViolations(NO_GREETING, 'вопрос', true))
+        .not.toContain('repeated_greeting');
+    });
+
+    test.each([
+      'Здравствуйте! ',
+      'Добрый день! ',
+      'Привет! ',
+      'Hello! ',
+      'Hi there! ',
+      '¡Hola! ',
+    ])('распознаёт приветствие в разных языках: %s', (opener) => {
+      expect(replyOpensWithGreeting(`${opener}Дальше идёт текст ответа.`)).toBe(true);
+    });
+
+    test('слово «привет» в середине письма приветствием не считается', () => {
+      // зачем: клиент мог процитировать чужое «привет», и это не повод
+      // объявлять ответ нарушением.
+      expect(replyOpensWithGreeting('Мы передали ваш привет команде, спасибо!')).toBe(false);
     });
   });
 

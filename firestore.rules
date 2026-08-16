@@ -1674,6 +1674,15 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // Product charter history — immutable version log of the Phraseman charter
+    // (owner, 2026-08-16). Writes go through adminSaveProductCharter with the
+    // Admin SDK; update/delete stay closed so a saved version can always be
+    // restored. Deny is explicit: it documents that immutability is intended.
+    match /product_charter_history/{docId} {
+      allow read: if isAdmin();
+      allow create, update, delete: if false;
+    }
+
     // â”€â”€ User warnings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /user_warnings/{docId} {
       allow read:   if request.auth != null;

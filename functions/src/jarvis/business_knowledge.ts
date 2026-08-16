@@ -26,13 +26,25 @@
 export const KNOWLEDGE_MAX_CHARS = 6_000;
 
 /**
- * Файл, который читают ВСЕ департаменты.
+ * Файлы, которые читают ВСЕ департаменты.
  *
- * зачем: правила уровня продукта («мы не показываем рекламу») касаются всех,
- * и дублировать их в каждый файл — прямой путь к рассинхрону, когда правило
- * поменяли в одном месте и забыли в остальных.
+ * зачем common.md: правила уровня продукта («мы не показываем рекламу»)
+ * касаются всех, и дублировать их в каждый файл — прямой путь к рассинхрону,
+ * когда правило поменяли в одном месте и забыли в остальных.
+ *
+ * зачем product.md всем, а не только департаменту product (владелец,
+ * 2026-08-16): это справочник «что вообще есть в приложении» — как называются
+ * разделы, валюты и тарифы. Без него департамент опирается на обрывки
+ * исходного кода и путает внутренние имена с тем, что видит человек: «Компас»
+ * приняли за стороннее приложение, хотя такого раздела в приложении просто
+ * нет. Знание о продукте нужно каждому, кто вообще о продукте говорит.
  */
 export const COMMON_KNOWLEDGE_FILE = 'common.md';
+export const PRODUCT_KNOWLEDGE_FILE = 'product.md';
+const SHARED_KNOWLEDGE_FILES: readonly string[] = Object.freeze([
+  COMMON_KNOWLEDGE_FILE,
+  PRODUCT_KNOWLEDGE_FILE,
+]);
 
 export interface KnowledgeFile {
   readonly name: string;
@@ -109,7 +121,7 @@ export function selectKnowledgeForDepartment(
 ): readonly KnowledgeFile[] {
   const own = `${department.toLowerCase()}.md`;
   return Object.freeze(files.filter(
-    (file) => file.name.toLowerCase() === own || file.name.toLowerCase() === COMMON_KNOWLEDGE_FILE,
+    (file) => file.name.toLowerCase() === own || SHARED_KNOWLEDGE_FILES.includes(file.name.toLowerCase()),
   ));
 }
 
@@ -154,13 +166,31 @@ export function readBusinessKnowledge(directory?: string): readonly KnowledgeFil
  *
  * зачем обрезать, а не отдавать целиком: см. KNOWLEDGE_MAX_CHARS. Обрезка
  * идёт по файлам, а не по символам — половина правила хуже его отсутствия.
+ *
+ * зачем общие файлы первыми (замер 2026-08-16): порядок задавал readdirSync,
+ * то есть алфавит. Добавив product.md, я померил, что доходит до департамента,
+ * и у денег он выпадал ЦЕЛИКОМ и молча: common+money уже съедали лимит, а
+ * product по алфавиту шёл последним. Департамент при этом бодро отвечал бы про
+ * продукт, которого не знает. Общее знание нужно всем — оно идёт вперёд, свой
+ * файл департамента уступает ему место.
+ *
+ * зачем continue, а не break: один толстый файл отсекал ВСЁ, что за ним, даже
+ * если следующий файл — пара строк и место под него есть.
  */
+function sharedKnowledgeFirst(files: readonly KnowledgeFile[]): readonly KnowledgeFile[] {
+  const rank = (file: KnowledgeFile): number => {
+    const index = SHARED_KNOWLEDGE_FILES.indexOf(file.name.toLowerCase());
+    return index < 0 ? SHARED_KNOWLEDGE_FILES.length : index;
+  };
+  return Object.freeze([...files].sort((a, b) => rank(a) - rank(b)));
+}
+
 export function renderKnowledge(files: readonly KnowledgeFile[]): string {
   const blocks: string[] = [];
   let size = 0;
-  for (const file of files) {
+  for (const file of sharedKnowledgeFirst(files)) {
     const block = file.raw.trim();
-    if (size + block.length > KNOWLEDGE_MAX_CHARS) break;
+    if (size + block.length > KNOWLEDGE_MAX_CHARS) continue;
     blocks.push(block);
     size += block.length;
   }

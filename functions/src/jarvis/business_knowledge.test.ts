@@ -1,6 +1,7 @@
 import {
   KNOWLEDGE_MAX_CHARS,
   parseKnowledgeFile,
+  renderKnowledge,
   selectKnowledgeForDepartment,
   type KnowledgeFile,
 } from './business_knowledge';
@@ -92,5 +93,54 @@ describe('Отбор знания под департамент', () => {
     // зачем предел: контекст модели конечен, и качество падает задолго до
     // формального лимита. Знание должно быть коротким по определению.
     expect(KNOWLEDGE_MAX_CHARS).toBeLessThanOrEqual(8_000);
+  });
+
+  test('справочник о продукте получает КАЖДЫЙ департамент, даже без своего файла', () => {
+    // зачем (владелец, 2026-08-16): «Компас» приняли за стороннее приложение,
+    // потому что описания продукта не было вовсе. Знание о том, что вообще
+    // есть в приложении, нужно каждому, кто о продукте говорит.
+    const files = [file('product.md', 'Продукт', ['Внизу четыре вкладки']), file('money.md', 'Деньги', ['x'])];
+    for (const department of ['support', 'money', 'growth']) {
+      expect(selectKnowledgeForDepartment(files, department).map((f) => f.name)).toContain('product.md');
+    }
+  });
+});
+
+// зачем этот блок (замер 2026-08-16): добавив product.md, я ПОМЕРИЛ, доходит
+// ли он до департаментов, — и у денег он выпадал целиком и молча. Департамент
+// при этом бодро отвечал бы про продукт, которого не знает. Тихая потеря
+// знания опаснее явной поломки: она не видна ни в логах, ни в тестах.
+describe('renderKnowledge — общее знание не должно молча выпадать', () => {
+  const bulky = (name: string, chars: number): KnowledgeFile => ({
+    name, topic: name, truths: [], reasons: [], forbidden: [], reviewBy: null, raw: 'п'.repeat(chars),
+  });
+
+  test('общие файлы попадают в промпт, даже когда свой файл департамента огромен', () => {
+    // Порядок здесь — как его отдаёт readdirSync: алфавит, product последним.
+    const rendered = renderKnowledge([
+      bulky('common.md', 2_400),
+      bulky('money.md', 4_100),
+      bulky('product.md', 1_200),
+    ]);
+    expect(rendered).toContain('п'.repeat(1_200));
+  });
+
+  test('файл, который не влез, не отсекает следующие за ним', () => {
+    // зачем: раньше стоял break — один толстый файл выкидывал всё, что за
+    // ним, даже если следующий файл пара строк и место под него есть.
+    const rendered = renderKnowledge([
+      bulky('common.md', 100),
+      bulky('money.md', KNOWLEDGE_MAX_CHARS + 1),
+      bulky('support.md', 200),
+    ]);
+    expect(rendered).toContain('п'.repeat(200));
+    expect(rendered).not.toContain('п'.repeat(KNOWLEDGE_MAX_CHARS + 1));
+  });
+
+  test('предел всё ещё соблюдается', () => {
+    const rendered = renderKnowledge([
+      bulky('common.md', 3_000), bulky('product.md', 3_000), bulky('money.md', 3_000),
+    ]);
+    expect(rendered.length).toBeLessThanOrEqual(KNOWLEDGE_MAX_CHARS + 16);
   });
 });

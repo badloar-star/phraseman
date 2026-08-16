@@ -742,16 +742,24 @@ export {
 // зачем отдельно: owner-facing раздел «Стадия роста бизнеса» — своя пара
 // callable (чтение панели + продолжаемый бэкфилл истории под строгим гейтом).
 export { jarvisGetBusinessTier, jarvisRunBusinessTierBackfill } from "./jarvis";
-// зачем два крона: суточный проход департаментов (06:00 UTC) и точка истории
-// бизнес-тиров (07:00 UTC, после устаканивания суточных счётчиков).
+// зачем три крона: суточный проход департаментов (06:00 UTC), точка истории
+// бизнес-тиров (07:00 UTC, после устаканивания суточных счётчиков) и
+// еженедельная проверка, не пора ли пересматривать устав продукта — она пишет
+// в телеграм, только когда чей-то срок подошёл (владелец, 2026-08-16).
 export {
   jarvisDailyDepartmentsCron,
   jarvisDailyBusinessHistoryCron,
+  jarvisProductKnowledgeReviewCron,
 } from "./jarvis";
 
 // Кнопки подтверждения в Telegram. Функция выключена (404), пока не задан
 // секрет JARVIS_TELEGRAM_CONFIG; вебхук ставится вручную по runbook.
 export { jarvisTelegramApprovalWebhook } from "./jarvis";
+
+// Устав Phraseman: описание продукта, на которое опирается Джарвис. Правится в
+// админке, каждая версия сохраняется в неизменяемую историю (владелец,
+// 2026-08-16). Источник — база; файл knowledge/product.md остаётся запасным.
+export { adminGetProductCharter, adminSaveProductCharter } from "./admin_product_charter";
 export {
   adminGetRemoteConfigWorkspace,
   adminPublishRemoteConfig,

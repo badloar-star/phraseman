@@ -34,6 +34,8 @@ import { parseOwnerConfig } from './approval_webhook_core';
 import { JARVIS_TELEGRAM_CONFIG } from './approval_webhook';
 import { issueDecisionButtons } from './issue_decision_buttons';
 import { sendJarvisDigest } from './telegram_send';
+import { readBusinessKnowledge } from './business_knowledge';
+import { buildKnowledgeReviewNotice, selectKnowledgeReviewsDue } from './knowledge_review_due';
 import { fetchActiveUserCount } from './app_tier_reader';
 import { resolveAppTier } from './app_tier_resolver';
 import { buildAllDepartmentsSnapshot } from './all_departments_snapshot';
@@ -682,5 +684,57 @@ export const jarvisDailyBusinessHistoryCron = onSchedule(HISTORY_SCHEDULE_OPTION
     activeUsers: point.activeUsers,
     dayMoneyCoverage: point.dayMoneyCoverage,
     tier: snapshot.tier,
+  });
+});
+
+/**
+ * Ежемесячное напоминание пересмотреть устав продукта.
+ *
+ * зачем (владелец, 2026-08-16): «сделай что-то, что раз в месяц надо обновлять
+ * описание продукта». Описание устаревает молча — включили раздел, сменили
+ * тариф, а файл продолжает уверенно рассказывать старое. Джарвис при этом
+ * врёт клиентам с той же интонацией, что и раньше, и заметить это можно только
+ * по жалобе живого человека.
+ *
+ * зачем раз в неделю, а не раз в месяц: срок пересмотра стоит в самом файле, и
+ * файлов несколько с разными датами. Крон раз в месяц промахнулся бы мимо
+ * большинства из них почти на месяц. Здесь он смотрит еженедельно, но пишет,
+ * только когда чей-то срок реально подошёл, — молчание тут норма, а не сбой.
+ *
+ * зачем sendTelegramAlert, а не sendJarvisDigest: кнопок здесь нет, решать
+ * нечего. Alert к тому же сам уважает выключатель уведомлений в admin_config.
+ */
+const KNOWLEDGE_REVIEW_SCHEDULE_OPTIONS = {
+  schedule: 'every monday 09:00',
+  timeZone: 'Europe/Kyiv',
+  region: REGION,
+  retryCount: 1,
+  timeoutSeconds: 60,
+  memory: '256MiB' as const,
+} as const;
+
+const KNOWLEDGE_REVIEW_ADMIN_URL = 'https://phraseman-ea0b3.web.app/legacy.html#product-charter';
+
+export const jarvisProductKnowledgeReviewCron = onSchedule(KNOWLEDGE_REVIEW_SCHEDULE_OPTIONS, async () => {
+  const nowMs = Date.now();
+  // Файлы лежат рядом с кодом и читаются из кэша — обращений к Firestore нет.
+  const due = selectKnowledgeReviewsDue(readBusinessKnowledge(), nowMs);
+  if (due.length === 0) {
+    logger.info('jarvis_product_knowledge_review', { due: 0 });
+    return;
+  }
+
+  const control = parseControl((await admin.firestore().doc(JARVIS_CONTROL_DOC).get()).data());
+  if (!canNotify(control)) {
+    logger.info('jarvis_product_knowledge_review', { due: due.length, muted: true });
+    return;
+  }
+
+  const text = buildKnowledgeReviewNotice(due, KNOWLEDGE_REVIEW_ADMIN_URL);
+  const sent = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text);
+  logger.info('jarvis_product_knowledge_review', {
+    due: due.length,
+    files: due.map((status) => status.file),
+    sent,
   });
 });

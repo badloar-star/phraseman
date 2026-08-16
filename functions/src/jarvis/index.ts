@@ -121,7 +121,11 @@ export { APPROVAL_TTL_MS, buildApprovalToken, verifyApprovalToken, parseCallback
 export { JARVIS_APPROVAL_AUDIT_COLLECTION } from './approval_audit';
 
 // ── Суточные планировщики ──────────────────────────────────────────────────
-export { jarvisDailyDepartmentsCron, jarvisDailyBusinessHistoryCron } from './jarvis_crons';
+export {
+  jarvisDailyDepartmentsCron,
+  jarvisDailyBusinessHistoryCron,
+  jarvisProductKnowledgeReviewCron,
+} from './jarvis_crons';
 export { buildDailyHistoryPoint } from './business_tier_daily_point';
 
 // ── Owner-facing раздел «Стадия роста бизнеса» ─────────────────────────────

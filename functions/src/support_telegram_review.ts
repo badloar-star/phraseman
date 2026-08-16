@@ -101,7 +101,31 @@ export function supportReviewCancelTokenDepartment(messageDocId: string, draftRe
 }
 
 /**
- * Принадлежит ли approval-токен поддержке (любой из трёх её кнопок).
+ * Кнопка «Снова доверить боту» — снимает молчание после личного ответа.
+ *
+ * зачем (владелец, 2026-08-16): молчание после личного ответа было вечным и
+ * отменялось только правкой базы руками. Человек, которому владелец ответил
+ * однажды, через полгода пишет с новым вопросом — и не получает ответа
+ * никогда. Кнопка возвращает разговор автоматике одним нажатием.
+ *
+ * зачем conversationId, а НЕ messageDocId, как у трёх остальных кнопок:
+ * молчание живёт на разговоре. Снять его с одного письма бессмысленно —
+ * следующее письмо того же человека снова упрётся в метку, и владелец жал бы
+ * кнопку на каждое письмо, думая, что она не работает.
+ *
+ * зачем свой префикс, а не 'approve' у общего типа: см. соседний
+ * CANCEL_TOKEN_DEPARTMENT_PREFIX — ApprovalAction общий для всех
+ * департаментов Джарвиса, и расширять его ради одной кнопки поддержки
+ * означало бы менять чужую инфраструктуру.
+ */
+const RESUME_TOKEN_DEPARTMENT_PREFIX = 'support_email_resume';
+
+export function supportResumeBotTokenDepartment(conversationId: string): string {
+  return `${RESUME_TOKEN_DEPARTMENT_PREFIX}:${conversationId}`;
+}
+
+/**
+ * Принадлежит ли approval-токен поддержке (любой из её кнопок).
  *
  * зачем единая функция (аудит 2026-08-16): проверка «это департамент
  * поддержки?» была скопирована в ТРИ места, и добавляя cancel-кнопку я
@@ -112,7 +136,20 @@ export function supportReviewCancelTokenDepartment(messageDocId: string, draftRe
  * поэтому здесь одна точка правды вместо четвёртой копии регулярки.
  */
 export function isSupportEmailDepartment(department: unknown): boolean {
-  return /^support_email(?:_cancel)?:/.test(String(department ?? ''));
+  return /^support_email(?:_cancel|_resume)?:/.test(String(department ?? ''));
+}
+
+/**
+ * Разбирает токен кнопки «Снова доверить боту».
+ *
+ * зачем отдельно от parseSupportReviewApprovalToken: тот возвращает
+ * messageDocId и draftRevision, которых у этой кнопки нет и быть не может —
+ * она про разговор, а не про конкретный черновик.
+ */
+export function parseSupportResumeBotToken(doc: ApprovalTokenDoc): { conversationId: string } | null {
+  const match = String(doc.department).match(/^support_email_resume:([A-Za-z0-9_-]{1,200})$/);
+  if (!match || doc.action !== 'approve') return null;
+  return Object.freeze({ conversationId: match[1] });
 }
 
 export function parseSupportReviewApprovalToken(doc: ApprovalTokenDoc): {

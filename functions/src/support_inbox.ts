@@ -82,6 +82,7 @@ import {
   SUPPORT_TELEGRAM_JOB_LEASE_MS,
   buildSupportAttentionRequiredNotice,
   buildSupportTelegramReviewPreview,
+  isSupportEmailDepartment,
   parseSupportReviewApprovalToken,
   supportDraftHash,
   supportEditSessionId,
@@ -3883,12 +3884,12 @@ export async function handleSupportTelegramAction(input: {
   return input.db.runTransaction<ConsumeApprovalTokenResult | null>(async (tx) => {
     const tokenSnap = await tx.get(tokenRef);
     const token = tokenSnap.exists ? tokenSnap.data() as ApprovalTokenDoc : null;
-    // зачем регулярка вместо startsWith('support_email:'): cancel-токены
-    // (2026-08-16) намеренно живут под отдельным department-префиксом
-    // support_email_cancel:..., чтобы не путаться с обычным send/edit —
-    // startsWith('support_email:') его отсекал бы, потому что после
-    // 'support_email' там подчёркивание, а не двоеточие.
-    if (!token || !/^support_email(?:_cancel)?:/.test(String(token.department ?? ''))) return null;
+    // зачем общая isSupportEmailDepartment, а не своя регулярка: это была
+    // ЧЕТВЁРТАЯ копия одного правила, ровно та, от которой предостерегает
+    // комментарий в support_telegram_review. Добавляя кнопку «Снова доверить
+    // боту» (2026-08-16), я обновил бы префиксы в трёх местах и забыл здесь —
+    // нажатие просто не дошло бы до обработчика.
+    if (!token || !isSupportEmailDepartment(token.department)) return null;
     const verdict = verifyApprovalToken({
       doc: token, nonce: input.nonce,
       fromTelegramUserId: input.fromTelegramUserId,

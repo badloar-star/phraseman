@@ -9899,6 +9899,7 @@
        видны секунду в Telegram и негде их читать полностью. «Планы» —
        постоянный архив, живёт своей жизнью независимо от уведомлений. -->
   <div class="tab" onclick="switchTab('jarvis-plans')" style="background:rgba(96,165,250,0.14);border:1px solid rgba(96,165,250,0.4);color:#60a5fa;font-weight:700">📋 Планы</div>
+  <div class="tab" onclick="switchTab('product-charter')" title="Устав Phraseman — описание продукта, на которое опирается Джарвис и поддержка" style="background:rgba(52,211,153,0.14);border:1px solid rgba(52,211,153,0.4);color:#34d399;font-weight:700">📘 Устав</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('daily-digest')" title="Сводка от прошлого открытия: сравнения, продуктовые выводы, риски и действия" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
@@ -11960,6 +11961,21 @@
     <span class="reports-count" id="sf-count"></span>
   </div>
   <div id="sf-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
+</div>
+
+<!-- PRODUCT CHARTER TAB — устав Phraseman.
+     зачем (владелец, 2026-08-16): у Джарвиса не было описания продукта — он
+     собирал ответы из кусков исходного кода и путался. Здесь единая точка
+     правды по категориям, чтобы раз в месяц пройти сверху вниз и обновить. -->
+<div id="tab-product-charter" class="reports-tab">
+  <div class="reports-toolbar">
+    <button onclick="loadProductCharter(true)" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
+    <button id="pc-save" onclick="saveProductCharter()" style="background:#0f2e22;border:1px solid #1f5f45;color:#34d399;font-weight:700">Сохранить изменения</button>
+    <span class="reports-count" id="pc-status"></span>
+  </div>
+  <div id="pc-review"></div>
+  <div id="pc-sections"><div class="reports-empty">⏳ Загрузка...</div></div>
+  <div id="pc-history"></div>
 </div>
 
 <!-- AGE & CONSENT TAB (учёт возрастных групп и согласий на аналитику — accountability) -->
@@ -14275,6 +14291,199 @@
       if (jobBox) jobBox.textContent = '—';
     }
   };
+  /* ── УСТАВ PHRASEMAN ───────────────────────────────────────────────────────
+     зачем (владелец, 2026-08-16): «пиши сразу устав где-то в админке, на
+     который он будет ориентироваться… удобными категориями, чтобы было удобно
+     раз в месяц всё проверить и обновить, а также записывать и сохранять
+     всегда историю».
+
+     зачем категории, а не одно поле: раз в месяц надо пройти сверху вниз и
+     спросить себя «здесь что-то поменялось?». По сплошному тексту это
+     невозможно — глаз соскальзывает. По семи пунктам проверка занимает минуты.
+  */
+  var _pcState = { charter: null, sections: [], history: [], loading: false, saving: false };
+
+  function _pcDaysLeft(reviewBy) {
+    if (!reviewBy) return null;
+    var due = Date.parse(reviewBy + 'T00:00:00.000Z');
+    if (!isFinite(due)) return null;
+    var today = Date.parse(new Date().toISOString().slice(0, 10) + 'T00:00:00.000Z');
+    return Math.round((due - today) / 86400000);
+  }
+
+  function _pcPlural(n, one, few, many) {
+    var tail = n % 100;
+    if (tail >= 11 && tail <= 14) return many;
+    var last = n % 10;
+    if (last === 1) return one;
+    if (last >= 2 && last <= 4) return few;
+    return many;
+  }
+
+  function _pcRenderReview() {
+    var box = document.getElementById('pc-review');
+    if (!box) return;
+    var charter = _pcState.charter || {};
+    var days = _pcDaysLeft(charter.reviewBy);
+    var overdue = days !== null && days < 0;
+    var soon = days !== null && days >= 0 && days <= 7;
+    var tone = overdue ? '#f87171' : soon ? '#fbbf24' : '#34d399';
+    var when;
+    if (days === null) when = 'Срок пересмотра не назначен — сохраните устав, и он появится';
+    else if (overdue) when = 'Просрочено на ' + Math.abs(days) + ' ' + _pcPlural(Math.abs(days), 'день', 'дня', 'дней');
+    else if (days === 0) when = 'Пересмотреть сегодня';
+    else when = 'Пересмотреть через ' + days + ' ' + _pcPlural(days, 'день', 'дня', 'дней');
+
+    var updated = charter.updatedAtMs
+      ? new Date(charter.updatedAtMs).toLocaleString('ru-RU')
+      : '—';
+    box.innerHTML = ''
+      + '<div style="background:#151a17;border-radius:14px;padding:14px 16px;margin-bottom:14px">'
+      + '<div style="color:' + tone + ';font-weight:800;font-size:15px">' + escapeHtml(when) + '</div>'
+      + '<div style="color:#6b7280;font-size:13px;margin-top:6px">'
+      + 'Версия ' + Number(charter.revision || 0) + ' · последнее сохранение ' + escapeHtml(updated)
+      + '</div>'
+      + '<div style="color:#9ca3af;font-size:13px;margin-top:8px;line-height:1.5">'
+      + 'Каждое сохранение сдвигает срок на месяц и попадает в историю ниже. '
+      + 'Джарвис и поддержка отвечают клиентам по этому тексту.'
+      + '</div>'
+      + '</div>';
+  }
+
+  function _pcRenderSections() {
+    var box = document.getElementById('pc-sections');
+    if (!box) return;
+    var bodies = {};
+    ((_pcState.charter || {}).sections || []).forEach(function (s) { bodies[s.key] = s.body; });
+    box.innerHTML = _pcState.sections.map(function (meta) {
+      var value = bodies[meta.key] || '';
+      return ''
+        + '<div style="background:#151a17;border-radius:14px;padding:14px 16px;margin-bottom:12px">'
+        + '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px">'
+        + '<div style="color:#e5e7eb;font-weight:800;font-size:15px">' + escapeHtml(meta.title) + '</div>'
+        + '<div style="color:#6b7280;font-size:12px;text-align:right">' + escapeHtml(meta.checkHint) + '</div>'
+        + '</div>'
+        + '<textarea id="pc-body-' + escapeHtml(meta.key) + '" data-pc-key="' + escapeHtml(meta.key) + '" rows="6" '
+        + 'style="width:100%;box-sizing:border-box;background:#0f1310;border:0;border-radius:10px;color:#d1d5db;'
+        + 'padding:10px 12px;font-family:inherit;font-size:13px;line-height:1.6;resize:vertical">'
+        + escapeHtml(value) + '</textarea>'
+        + '</div>';
+    }).join('');
+  }
+
+  function _pcChangeLabel(kind) {
+    if (kind === 'added') return 'добавлен';
+    if (kind === 'removed') return 'убран';
+    return 'изменён';
+  }
+
+  function _pcRenderHistory() {
+    var box = document.getElementById('pc-history');
+    if (!box) return;
+    if (!_pcState.history.length) {
+      box.innerHTML = '<div style="color:#6b7280;font-size:13px;padding:8px 4px">История пуста — она появится после первого сохранения.</div>';
+      return;
+    }
+    var rows = _pcState.history.map(function (item) {
+      var when = item.timestamp ? new Date(item.timestamp).toLocaleString('ru-RU') : '—';
+      var changes = (item.changes || []).map(function (c) {
+        return escapeHtml(c.title) + ' — ' + _pcChangeLabel(c.kind);
+      }).join(' · ');
+      return ''
+        + '<div style="padding:10px 0;border-top:1px solid rgba(148,163,184,0.14)">'
+        + '<div style="color:#d1d5db;font-size:13px;font-weight:700">Версия ' + Number(item.revision || 0)
+        + ' <span style="color:#6b7280;font-weight:400">· ' + escapeHtml(when) + '</span></div>'
+        + (changes ? '<div style="color:#9ca3af;font-size:12px;margin-top:4px">' + changes + '</div>'
+                   : '<div style="color:#6b7280;font-size:12px;margin-top:4px">без изменений в разделах</div>')
+        + (item.reason ? '<div style="color:#6b7280;font-size:12px;margin-top:4px">' + escapeHtml(item.reason) + '</div>' : '')
+        + '</div>';
+    }).join('');
+    box.innerHTML = ''
+      + '<div style="background:#151a17;border-radius:14px;padding:14px 16px;margin-top:6px">'
+      + '<div style="color:#e5e7eb;font-weight:800;font-size:15px;margin-bottom:4px">История версий</div>'
+      + rows
+      + '</div>';
+  }
+
+  function _pcSetStatus(text, color) {
+    var el = document.getElementById('pc-status');
+    if (el) {
+      el.textContent = text || '';
+      el.style.color = color || '#6b7280';
+    }
+  }
+
+  window.loadProductCharter = async function (force) {
+    if (_pcState.loading) return;
+    _pcState.loading = true;
+    _pcSetStatus('Загружаю…', '#fbbf24');
+    try {
+      const call = httpsCallable(functionsUs, 'adminGetProductCharter');
+      const result = await call({});
+      const data = (result && result.data) || {};
+      _pcState.charter = data.charter || { sections: [], revision: 0 };
+      _pcState.sections = data.sections || [];
+      _pcState.history = data.history || [];
+      _pcRenderReview();
+      _pcRenderSections();
+      _pcRenderHistory();
+      _pcSetStatus('');
+    } catch (error) {
+      _pcSetStatus('Ошибка: ' + ((error && error.message) || 'не загрузилось'), '#f87171');
+    } finally {
+      _pcState.loading = false;
+    }
+  };
+
+  window.saveProductCharter = async function () {
+    // зачем защита от двойного нажатия: иначе две версии подряд с одинаковым
+    // содержимым засоряют историю, ради которой всё и делалось.
+    if (_pcState.saving) return;
+    if (!_pcState.charter) { _pcSetStatus('Сначала дождитесь загрузки', '#f87171'); return; }
+
+    var sections = [];
+    var empty = true;
+    _pcState.sections.forEach(function (meta) {
+      var el = document.getElementById('pc-body-' + meta.key);
+      var body = el ? String(el.value || '').trim() : '';
+      if (body) empty = false;
+      sections.push({ key: meta.key, body: body });
+    });
+    if (empty) { _pcSetStatus('Устав пустой — нечего сохранять', '#f87171'); return; }
+
+    var reason = String(window.prompt('Что изменилось? (коротко, попадёт в историю)') || '').trim();
+    if (!reason) { _pcSetStatus('Отменено', '#6b7280'); return; }
+
+    _pcState.saving = true;
+    var button = document.getElementById('pc-save');
+    if (button) { button.disabled = true; button.style.opacity = '0.6'; }
+    _pcSetStatus('Сохраняю…', '#fbbf24');
+    try {
+      const call = httpsCallable(functionsUs, 'adminSaveProductCharter');
+      const result = await call({
+        sections: sections,
+        expectedRevision: Number(_pcState.charter.revision || 0),
+        reason: reason,
+        idempotencyKey: 'pc_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10),
+      });
+      const data = (result && result.data) || {};
+      _pcSetStatus('Сохранено — версия ' + Number(data.revision || 0), '#34d399');
+      // зачем перечитать: сервер вернул новую ревизию и срок, и следующее
+      // сохранение обязано опираться на них, иначе упрётся в проверку версии.
+      _pcState.loading = false;
+      await window.loadProductCharter(true);
+    } catch (error) {
+      var message = (error && error.message) || 'не сохранилось';
+      if (String(message).indexOf('changed; reload') >= 0) {
+        message = 'Устав уже изменили в другом окне — обновите страницу, чтобы не затереть чужую правку';
+      }
+      _pcSetStatus('Ошибка: ' + message, '#f87171');
+    } finally {
+      _pcState.saving = false;
+      if (button) { button.disabled = false; button.style.opacity = '1'; }
+    }
+  };
+
   window.v2gSeed = async function() {
     if (_v2gState.seeding) return; // защита от двойного клика
     _v2gState.seeding = true;
@@ -15301,7 +15510,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','youtube-catalog','asset-archive','paywall-ab','v2-generator','alerts'];
+  const ADMIN_TAB_KEYS = ['control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','archive','audit','ops-log','remote-config','youtube-catalog','asset-archive','paywall-ab','v2-generator','alerts'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab);
@@ -19585,6 +19794,12 @@
     if (tab === 'jarvis' && !window._jarvisLoaded && typeof window.loadJarvisAllDecisions === 'function') {
       window._jarvisLoaded = true;
       void window.loadJarvisAllDecisions(false);
+    }
+    // зачем лениво: устав открывают раз в месяц — тянуть его на каждый
+    // вход в админку значит платить за чтения, которые никто не смотрит.
+    if (tab === 'product-charter' && !window._productCharterLoaded && typeof window.loadProductCharter === 'function') {
+      window._productCharterLoaded = true;
+      void window.loadProductCharter(false);
     }
     // зачем: при открытии вкладки сразу показываем готовность режима и очередь
     // проверки — владельцу не нужно жать «Обновить», чтобы увидеть состояние.

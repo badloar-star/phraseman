@@ -355,6 +355,29 @@ export function candidateOpenThreadDocIdsForOwnerReply(sentEmail: {
   return Object.freeze(ids);
 }
 
+/**
+ * Замолчал ли бот в этой переписке навсегда, потому что владелец ответил сам.
+ *
+ * зачем (владелец, 2026-08-16): «если я ответил на сообщение сам, лично я, а
+ * не Джарвис, то на все эти сообщения юзера бот больше не отвечает, а только
+ * присылает мне в телеграм уведомление». Метка стоит на РАЗГОВОРЕ, а не на
+ * письме: закрыть одно письмо мало — человек напишет снова, и бот вклинится в
+ * переписку, которую владелец уже ведёт лично. У клиента получилось бы два
+ * голоса поддержки, противоречащих друг другу.
+ *
+ * Молчание касается только автоматики. Уведомление владельцу уходит обычным
+ * путём, поэтому письмо не теряется — на него просто не отвечает робот.
+ *
+ * Чистая: отделена от транзакции claimSupportAutoReplyWork, чтобы правило
+ * можно было проверить тестом без подделки Firestore.
+ */
+export function ownerHasTakenOverConversation(
+  conversation: { readonly ownerTookOverAtMs?: unknown } | null | undefined,
+): boolean {
+  const stamp = Number(conversation?.ownerTookOverAtMs ?? 0);
+  return Number.isFinite(stamp) && stamp > 0;
+}
+
 /** Есть ли у письма пригодное для ИИ тело (не пустое). Чистая. */
 export function hasUsableBody(doc: { bodyText?: string; subject?: string }): boolean {
   return String(doc.bodyText ?? '').trim().length > 0 || String(doc.subject ?? '').trim().length > 0;
@@ -2679,13 +2702,9 @@ async function claimSupportAutoReplyWork(
       || Number(conversationSnap.data()?.headRevision ?? 0) !== Number(doc.conversationRevision ?? 0)
     ))) return null;
     if (doc.status !== 'new' || doc.triageState !== 'kept' || doc.mailCategory === 'automated') return null;
-    // зачем молчание навсегда (владелец, 2026-08-16): «если я ответил на
-    // сообщение сам, то на все эти сообщения юзера бот больше не отвечает,
-    // а только присылает мне уведомление». Владелец уже ведёт эту переписку
-    // лично; черновик бота дал бы клиенту второй, противоречащий голос.
-    // Уведомление владельцу при этом уходит обычным путём (ownerNotification),
-    // поэтому письмо не теряется — просто на него не отвечает автоматика.
-    if (Number(conversationSnap?.data()?.ownerTookOverAtMs ?? 0) > 0) return null;
+    // Молчание навсегда, если владелец ответил сам — правило и его причина
+    // описаны у ownerHasTakenOverConversation.
+    if (ownerHasTakenOverConversation(conversationSnap?.data())) return null;
     if (doc.draftOrigin === 'owner_manual' && String(doc.draftReply ?? '').trim()) return null;
     if (doc.autoReply?.state === 'accepted' || doc.autoReply?.state === 'attention_required'
       || doc.autoReply?.state === 'exhausted' || doc.autoReply?.state === 'suppressed') return null;

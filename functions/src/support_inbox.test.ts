@@ -22,6 +22,7 @@ import {
   selectSupportImapRetryUids,
   supportRequestFingerprint,
   candidateOpenThreadDocIdsForOwnerReply,
+  ownerHasTakenOverConversation,
   type RawEmail,
 } from './support_inbox';
 
@@ -351,5 +352,49 @@ describe('candidateOpenThreadDocIdsForOwnerReply — matching a Sent reply to an
 
   test('blank/whitespace-only headers do not produce a bogus candidate', () => {
     expect(candidateOpenThreadDocIdsForOwnerReply({ inReplyTo: '   ', references: ['', '  '] })).toEqual([]);
+  });
+});
+
+// зачем (владелец, 2026-08-16): «если я ответил на сообщение сам, лично я, а
+// не Джарвис, то на все эти сообщения юзера бот больше не отвечает, а только
+// присылает мне в телеграм уведомление что есть сообщение от юзера с которым
+// я уже говорил».
+describe('ownerHasTakenOverConversation — the bot goes silent once the owner replies personally', () => {
+  test('a conversation the owner answered personally silences the bot', () => {
+    expect(ownerHasTakenOverConversation({ ownerTookOverAtMs: 1_755_300_000_000 })).toBe(true);
+  });
+
+  test('silence outlives the letter it started on: the NEXT message in the same conversation is also silent', () => {
+    // Метка живёт на разговоре, поэтому она одна и та же для всех писем треда.
+    // Иначе бот вклинился бы в переписку, которую владелец уже ведёт лично.
+    const conversation = { ownerTookOverAtMs: 1_755_300_000_000 };
+    const secondLetterArrivesLater = ownerHasTakenOverConversation(conversation);
+    const thirdLetterArrivesMuchLater = ownerHasTakenOverConversation(conversation);
+    expect([secondLetterArrivesLater, thirdLetterArrivesMuchLater]).toEqual([true, true]);
+  });
+
+  test('an untouched conversation still gets an automatic draft', () => {
+    expect(ownerHasTakenOverConversation({})).toBe(false);
+    expect(ownerHasTakenOverConversation({ ownerTookOverAtMs: 0 })).toBe(false);
+  });
+
+  test('a missing conversation document does not silence the bot', () => {
+    // зачем: снапшот отсутствующего разговора приходит как undefined/null.
+    // Ошибиться в эту сторону — замолчать на письмах, которых владелец не
+    // касался, то есть тихо потерять поддержку целиком.
+    expect(ownerHasTakenOverConversation(null)).toBe(false);
+    expect(ownerHasTakenOverConversation(undefined)).toBe(false);
+  });
+
+  test('a corrupted stamp does not silence the bot', () => {
+    for (const broken of ['', 'вчера', NaN, Infinity, -1, null]) {
+      expect(ownerHasTakenOverConversation({ ownerTookOverAtMs: broken })).toBe(false);
+    }
+  });
+
+  test('a stamp arriving as a numeric string still silences the bot', () => {
+    // Firestore возвращает число, но экспорт/импорт и ручная правка в консоли
+    // дают строку. Замолчать здесь важнее, чем ответить.
+    expect(ownerHasTakenOverConversation({ ownerTookOverAtMs: '1755300000000' })).toBe(true);
   });
 });

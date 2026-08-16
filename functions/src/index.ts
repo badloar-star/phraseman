@@ -926,6 +926,10 @@ export { adminArenaConfigGet, adminArenaConfigSet } from "./admin_arena_config";
 export {
   arenaV2Home,
   arenaV2FindMatch,
+  // Сведение со стороны сервера в момент входа в очередь. Не крон: реагирует
+  // на событие. Без него пара возникала только когда чей-то телефон
+  // переспросит — раз в 15 секунд и лишь на видимом экране.
+  arenaV2OnQueueWrite,
   arenaV2QueueCancel,
   arenaV2QuickBotFallback,
   arenaV2MatchAccept,

@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { createHash, createHmac, randomBytes } from 'crypto';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
@@ -1764,6 +1765,182 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
       queue: { status: 'matched', matchId, viewerSeat: 'a' }, searchingNow };
   });
   return { ok: true, stableUid: who.stableUid, ...result };
+});
+
+/**
+ * Свести ждущий билет с другим ждущим. Возвращает id матча или null.
+ *
+ * Отличие от одноимённой логики в `arenaV2FindMatch`: там всё считается от
+ * актора вызова (`who`) — есть auth, профиль, права. Здесь актора нет вовсе,
+ * работаем от двух билетов очереди. Поэтому проверки берутся из самих билетов,
+ * а конфиг Арены сверяется отдельно: триггер обязан молчать, когда раздел
+ * выключен, иначе матчи продолжат создаваться после выключения флага.
+ */
+async function pairWaitingQueueTicket(
+  stableUid: string,
+  mode: ArenaV2QueueMode,
+  now: number,
+): Promise<string | null> {
+  const configSnap = await db.collection(ARENA_V2_COLLECTIONS.config).doc('current').get();
+  const config = configSnap.data() ?? {};
+  if (arenaConfigProblems(config).length) return null;
+  const modeFlag = mode === 'ranked' ? 'rankedEnabled' : 'quickEnabled';
+  if (config.enabled !== true || config[modeFlag] !== true) return null;
+
+  const ownQueueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(stableUid);
+  const ownProfileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(stableUid);
+  const matchId = db.collection(ARENA_V2_COLLECTIONS.matches).doc().id;
+
+  return db.runTransaction(async (tx) => {
+    const [ownQueueSnap, ownProfileSnap, candidates] = await Promise.all([
+      tx.get(ownQueueRef),
+      tx.get(ownProfileRef),
+      tx.get(db.collection(ARENA_V2_COLLECTIONS.queue)
+        .where('mode', '==', mode).where('status', '==', 'waiting')
+        .orderBy('joinedAtMs', 'asc').limit(10)),
+    ]);
+    const own = ownQueueSnap.data() ?? {};
+    // Билет мог измениться, пока триггер летел: отменён, уже сведён, протух.
+    if (own.status !== 'waiting' || Number(own.leaseExpiresAt ?? 0) <= now) return null;
+    const profile = profileDefaults(stableUid, ownProfileSnap.data());
+    if (profile.activeMatchId) return null;
+
+    const ownJoinedAt = Number(own.joinedAtMs ?? now);
+    const eligible = candidates.docs.filter((doc) => {
+      if (doc.id === stableUid || doc.id.startsWith('bot_')) return false;
+      const data = doc.data();
+      const rankedWindow = mode === 'ranked'
+        && Math.min(now - ownJoinedAt, now - Number(data.joinedAtMs ?? now)) < 10_000 ? 0 : 1;
+      return Number(data.leaseExpiresAt ?? 0) > now
+        && Math.abs(profile.rank - Number(data.rank ?? 0)) <= (mode === 'quick' ? 3 : rankedWindow);
+    });
+
+    let candidate: admin.firestore.QueryDocumentSnapshot | undefined;
+    let candidateProfile: Json | undefined;
+    let pairRef: admin.firestore.DocumentReference | null = null;
+    let pairData: Json = {};
+    for (const possible of eligible) {
+      const possibleProfile = profileDefaults(
+        possible.id,
+        (await tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(possible.id))).data(),
+      );
+      if (possibleProfile.activeMatchId
+        || !arenaRanksCompatible(mode, profile.rank, possibleProfile.rank)) continue;
+      if (mode === 'ranked') {
+        // Тот же лимит повторных встреч, что и в callable: без него двое
+        // активных игроков всю ночь играли бы только друг с другом.
+        const currentRef = db.collection(ARENA_V2_COLLECTIONS.pairLimits)
+          .doc(pairLimitId(stableUid, possible.id, utcDayKey(now)));
+        const previousRef = db.collection(ARENA_V2_COLLECTIONS.pairLimits)
+          .doc(pairLimitId(stableUid, possible.id, previousUtcDayKey(now)));
+        const [currentPair, previousPair] = await Promise.all([
+          tx.get(currentRef), tx.get(previousRef),
+        ]);
+        const data = currentPair.data() ?? {};
+        const lastRatedAtMs = Math.max(Number(data.lastRatedAtMs ?? 0),
+          Number(previousPair.data()?.lastRatedAtMs ?? 0));
+        if (lastRatedAtMs > now - 30 * 60_000 || Number(data.ratedMatches ?? 0) >= 2
+          || Number(data.reservationExpiresAtMs ?? 0) > now) continue;
+        pairRef = currentRef;
+        pairData = data;
+      }
+      candidate = possible;
+      candidateProfile = possibleProfile;
+      break;
+    }
+    if (!candidate || !candidateProfile) return null;
+
+    const candidateData = candidate.data();
+    const contentDivision = arenaContentDivision(profile.rank, candidateProfile.rank);
+    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, mode);
+    const built = makeMatch({
+      matchId, mode,
+      left: { ...own.player, rank: profile.rank, rating: profile.rating },
+      right: { ...candidateData.player, rank: candidateProfile.rank, rating: candidateProfile.rating },
+      leftAuthUid: String(own.authUid),
+      rightAuthUid: String(candidateData.authUid),
+      privateEnvelope: selectedTaskEnvelope(matchId, pool, now, contentDivision, mode),
+      now,
+    });
+    if (pairRef) built.privateDoc.pairLimitId = pairRef.id;
+    if (!validateArenaPrivateEnvelope(built.privateDoc, mode).ok) return null;
+
+    tx.create(db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId), built.publicDoc);
+    tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
+    tx.create(memberRef(matchId, String(own.authUid)),
+      memberMarker(matchId, String(own.authUid), 'a', now));
+    tx.create(memberRef(matchId, String(candidateData.authUid)),
+      memberMarker(matchId, String(candidateData.authUid), 'b', now));
+    tx.set(ownQueueRef, { status: 'matched', matchId, matchedAtMs: now,
+      viewerSeat: 'a', opponentKind: 'human' }, { merge: true });
+    tx.set(candidate.ref, { status: 'matched', matchId, matchedAtMs: now,
+      viewerSeat: 'b', opponentKind: 'human' }, { merge: true });
+    tx.set(ownProfileRef, { activeMatchId: matchId, updatedAtMs: now }, { merge: true });
+    tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(candidate.id),
+      { activeMatchId: matchId, updatedAtMs: now }, { merge: true });
+    if (pairRef) {
+      tx.set(pairRef, {
+        pairHashDay: pairRef.id,
+        participantStableUids: [stableUid, candidate.id].sort(),
+        utcDayKey: utcDayKey(now),
+        ratedMatches: Math.max(0, Math.trunc(Number(pairData.ratedMatches ?? 0))),
+        reservationMatchId: matchId,
+        reservationExpiresAtMs: now + ARENA_V2_ACCEPT_MS,
+        expireAt: timestamp(now + 32 * 24 * 60 * 60 * 1_000),
+      }, { merge: true });
+    }
+    return matchId;
+  });
+}
+
+/**
+ * Сведение со стороны сервера, в момент появления билета в очереди.
+ *
+ * зачем: в старой Арене (`matchmaking.ts`, до 12.08) сервер сводил игроков сам
+ * — триггером `onMatchmakingWrite` на запись в очередь. При переписывании в
+ * arena_v2 эта часть выпала, и сведение осталось только внутри callable: пара
+ * возникает, ТОЛЬКО когда чей-то телефон переспросит. Телефон переспрашивает
+ * раз в 15 секунд и лишь на видимом экране, поэтому двое ждущих могли стоять
+ * в очереди и не видеть друг друга. Владелец: «мгновенное подключение».
+ *
+ * Это НЕ крон (владелец запретил расписания): функция не тикает по времени, а
+ * срабатывает ровно на событие «игрок встал в очередь».
+ *
+ * Дешевле нынешнего опроса: один запуск на вход в очередь против вызова раз в
+ * 15 секунд с каждого ищущего телефона.
+ *
+ * Клиент узнаёт о паре мгновенно — он и так подписан на свой билет
+ * (`useArenaQueue`), отдельного оповещения не нужно.
+ */
+export const arenaV2OnQueueWrite = onDocumentWritten({
+  document: `${ARENA_V2_COLLECTIONS.queue}/{stableUid}`,
+  region: 'us-central1',
+  memory: '256MiB',
+  // Сведение — гонка по своей природе: две записи об одной паре обязаны
+  // сериализоваться, иначе оба игрока получат по своему матчу.
+  maxInstances: 3,
+  secrets: ARENA_V2_SECRET_NAMES,
+}, async (event) => {
+  const after = event.data?.after?.data();
+  // Интересует только билет, который ЖДЁТ соперника. Отмены, найденные пары и
+  // удаления обрабатывать нечего — иначе триггер будит сам себя по кругу.
+  if (!after || after.status !== 'waiting') return;
+  const mode = after.mode === 'ranked' ? 'ranked' : after.mode === 'quick' ? 'quick' : null;
+  if (!mode) return;
+  const stableUid = String(event.params.stableUid ?? '');
+  if (!stableUid || stableUid.startsWith('bot_')) return;
+
+  const now = nowMs();
+  if (Number(after.leaseExpiresAt ?? 0) <= now) return;
+
+  try {
+    await pairWaitingQueueTicket(stableUid, mode, now);
+  } catch (e) {
+    // Молча: сведение повторится на следующем билете или на сверке клиента.
+    // Ронять триггер нельзя — Firebase будет ретраить его по кругу.
+    console.info(JSON.stringify({ event: 'arena_v2_pair_trigger_skipped',
+      reason: String((e as { message?: unknown })?.message ?? e).slice(0, 120) }));
+  }
 });
 
 export const arenaV2QueueCancel = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {

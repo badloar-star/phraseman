@@ -167,11 +167,20 @@ function LessonsPaneBoundary({
       try {
         const previous = previousTokenRef.current;
         previousTokenRef.current = next;
+        // зачем: первое «усыновление» владельца (uninitialized → active) — это НЕ
+        // смена аккаунта, новую эпоху заводить нельзя (иначе крышка закрылась бы
+        // поверх уже показанного списка). Но записать фазу обязаны: без этого
+        // privacy.phase навсегда оставался 'uninitialized', и любое условие,
+        // смотрящее на фазу, держало вкладку закрытой — пустой экран.
         const initialAdoption = previous.phase === 'uninitialized' && next.phase === 'active';
+        if (initialAdoption) {
+          setPrivacy((current) => ({ ...current, phase: 'active' }));
+          return;
+        }
         const sameActiveOwner = previous.phase === 'active'
           && next.phase === 'active'
           && previous.stableId === next.stableId;
-        if (initialAdoption || sameActiveOwner) return;
+        if (sameActiveOwner) return;
         if (
           previous.generation === next.generation
           && previous.phase === next.phase

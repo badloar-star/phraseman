@@ -2549,6 +2549,72 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Снесённые агентные слои: код удалён, но правила остаются
+    // намеренно. Явный deny — это документированное «закрыто навсегда»,
+    // его охраняет legacy_agent_rules_guard. Общий deny в конце файла
+    // выглядит так же, но не выражает намерения и молча исчезнет, если
+    // кто-то добавит разрешающее правило выше.
+    match /agent_cases/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_recommendations/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_approvals/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_tasks/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_audit_events/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_office_control/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_telegram_tokens/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_observation_receipts/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_agents/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_tasks/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_task_events/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_approvals/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_execution_jobs/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_inbox_links/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_telegram_tokens/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_telegram_publication_receipts/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_local_runner_pairings/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_local_runner_capabilities/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_local_runner_leases/{document=**} {
+      allow read, write: if false;
+    }
+    match /agent_manager_support_draft_operations/{document=**} {
+      allow read, write: if false;
+    }
+
     match /{collection}/{document=**} {
       allow read, write: if isAdmin()
         && collection != 'users'

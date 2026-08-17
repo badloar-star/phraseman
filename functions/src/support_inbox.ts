@@ -2964,7 +2964,16 @@ async function buildCouncilReviewedSupportReply(input: {
       knowledgeFingerprint: repositoryContext.sourceFingerprint,
     });
   }
-  if (isPremiumAlternativePaymentQuestion(issue)) {
+  const risk = issueRisk;
+  // зачем премиум-маршрут ПОСЛЕ проверки риска (инцидент 2026-08-17): он стоял
+  // первым и перехватывал письма, которые на самом деле про другое. Женщина
+  // написала, что не может войти в аккаунт, — получила инструкцию по покупке
+  // Premium. Корневую причину (слова из процитированной переписки) закрыл
+  // supportIssueText, но сам порядок оставался хрупким: письмо «оплатил, а
+  // доступа нет» — это billing/account, там нужен человек, а не заготовка про
+  // способы оплаты. Заготовка уместна ровно тогда, когда весь вопрос человека
+  // и есть «как заплатить», то есть когда риск safe.
+  if (risk === 'safe' && isPremiumAlternativePaymentQuestion(issue)) {
     return {
       kind: 'ready',
       reply: buildPremiumAlternativePaymentReply(issue),
@@ -2973,7 +2982,6 @@ async function buildCouncilReviewedSupportReply(input: {
       knowledgeFingerprint: repositoryContext.sourceFingerprint,
     };
   }
-  const risk = issueRisk;
   // Guarded topics must never get an invented answer — but they still get the
   // holding reply, so the customer knows a human is on it.
   if (risk !== 'safe') return holdingOrAttention(`guarded_${risk}`);

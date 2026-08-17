@@ -4,6 +4,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolveConfiguredDialogModel, modelSupportsJsonObject } from './openai_dialog_model_config';
+import { applyTutorMemoryUpdate } from './max_voice_tutor_memory';
 import { enforceRateLimit, asInterfaceLang } from './premium_dialog';
 import { resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
 
@@ -69,6 +70,10 @@ interface DialogReviewRequest {
    * которую слышно на слух.
    */
   mode?: unknown;
+  /** tutor: домашка, которую учитель назначил инструментом assign_homework (клиент собрал). */
+  homework?: unknown;
+  /** tutor: тема следующего урока (set_next_topic). */
+  nextTopic?: unknown;
 }
 
 /** Одно исправление: фраза ученика → естественный вариант + короткое пояснение. */
@@ -85,10 +90,19 @@ export interface DialogReviewCorrection {
   kind?: 'fix' | 'polish';
 }
 
+/** tutor: что модель извлекла для памяти учителя (voice_tutor_memory). */
+export interface DialogReviewMemoryExtract {
+  facts: string[];
+  recurringErrors: string[];
+  resolvedErrors: string[];
+}
+
 export interface DialogReviewResult {
   praise: string;
   corrections: DialogReviewCorrection[];
   tip: string;
+  /** Только mode 'tutor'. */
+  memory?: DialogReviewMemoryExtract;
 }
 
 function text(value: unknown, max: number): string {
@@ -100,11 +114,12 @@ function asCefr(value: unknown): string {
   return ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].includes(c) ? c : 'A2';
 }
 
-export type DialogReviewMode = 'text' | 'voice';
+export type DialogReviewMode = 'text' | 'voice' | 'tutor';
 
 /** Неизвестное/отсутствующее значение ⇒ 'text' — обратная совместимость со старыми клиентами. */
 export function asReviewMode(value: unknown): DialogReviewMode {
-  return text(value, 8) === 'voice' ? 'voice' : 'text';
+  const m = text(value, 8);
+  return m === 'voice' || m === 'tutor' ? m : 'text';
 }
 
 function sanitizeReviewHistory(value: unknown): ChatTurn[] {
@@ -141,15 +156,26 @@ export function buildReviewSystemPrompt(
   // либо наоборот тихо прощает реальные грамматические/лексические ошибки,
   // спрятанные среди естественных заминок разговорной речи.
   const modeLine =
-    mode === 'voice'
+    mode === 'voice' || mode === 'tutor'
       ? `\nThis transcript is from a SPOKEN phone call (speech-to-text), not written chat. Do NOT flag spoken-only features as mistakes: filler words ("um", "uh", "like"), false starts the learner self-corrected, informal contractions, or missing punctuation/capitalization — that is just how speech sounds and text-to-speech is transcribed. DO still flag real grammar, word choice, and word order mistakes that a listener would actually notice in speech.`
+      : '';
+  // зачем: учитель (вариант A) помнит ученика между уроками: разбор извлекает
+  // факты и повторяющиеся ошибки для voice_tutor_memory. Урок двуязычный
+  // (родной язык + английский): судим только английские попытки ученика.
+  const tutorRule =
+    mode === 'tutor'
+      ? `\n- This was a LESSON with the learner's personal teacher ("Teacher" lines). The learner may speak partly in ${learnerLangName}; review ONLY their ${targetName} attempts (words and phrases in ${targetName}), never their ${learnerLangName} lines.
+- Add a "memory" object for the teacher's notebook: {"facts": [...], "recurringErrors": [...], "resolvedErrors": [...]}.
+  - "facts": up to 6 short ${targetName} notes about the learner's LIFE they told the teacher (name, city, job, hobbies, family, plans) — only what they actually said, no guesses, no lesson content. Empty array if nothing personal was said.
+  - "recurringErrors": up to 5 short ${targetName} notes of language mistakes worth watching next time ("says 'I go yesterday' — past simple of go"), based on this transcript.
+  - "resolvedErrors": mistakes the learner clearly got right today after being corrected earlier (short notes), else [].`
       : '';
   // зачем: владелец 2026-08-16 — разбор после звонка «ничего не разбирает».
   // Даже когда все реплики верны, ученику нужен материал: как это сказал бы
   // носитель на его уровне. Такие пункты помечаются "kind":"polish" (клиент
   // не зачёркивает исходник) и всегда идут ПОСЛЕ настоящих ошибок.
   const polishRule =
-    mode === 'voice'
+    mode === 'voice' || mode === 'tutor'
       ? `\n- Every learner line deserves a look. If a line is grammatically fine but a native speaker at level ${cefr} would say it more naturally, add an item with "kind": "polish": "original" = the learner's line, "corrected" = the more natural version, "note" = one warm sentence in ${learnerLangName} that clearly says the line was already correct and this is just a nicer way to say it. Mistakes are "kind": "fix" (or omit "kind"). Add at most 3 polish items and put them AFTER all real mistakes.`
       : '';
   return `You are a warm, encouraging ${targetName} tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's ${targetName}.${goalLine}${modeLine}
@@ -167,7 +193,7 @@ Rules:
   Skip lines that are already fine. At most ${MAX_CORRECTIONS} items — if there are more mistakes, pick the most useful ones.
 - "tip": one short, practical suggestion in ${learnerLangName} for the next conversation; quote any recommended ${targetName} phrase in ${targetName}.
 - Comment ONLY on language. Never scold the learner for rudeness, topics, or how the scene went.
-- If every learner line is fine, return "corrections": [] and make "praise" a bit warmer.${polishRule}`;
+- If every learner line is fine, return "corrections": [] and make "praise" a bit warmer.${polishRule}${tutorRule}`;
 }
 
 interface OpenAIChatResponse {
@@ -203,7 +229,17 @@ export function parseReviewEnvelope(raw: string): DialogReviewResult | null {
   const praise = text(parsed.praise, 500);
   const tip = text(parsed.tip, 400);
   if (!praise && corrections.length === 0 && !tip) return null;
-  return { praise, corrections, tip };
+  const rawMemory = parsed.memory && typeof parsed.memory === 'object' ? (parsed.memory as Record<string, unknown>) : null;
+  const list = (v: unknown, max: number): string[] =>
+    Array.isArray(v) ? v.map((x) => text(x, 140)).filter((x) => x !== '').slice(0, max) : [];
+  const memory: DialogReviewMemoryExtract | undefined = rawMemory
+    ? {
+        facts: list(rawMemory.facts, 6),
+        recurringErrors: list(rawMemory.recurringErrors, 5),
+        resolvedErrors: list(rawMemory.resolvedErrors, 5),
+      }
+    : undefined;
+  return memory ? { praise, corrections, tip, memory } : { praise, corrections, tip };
 }
 
 export const premiumDialogReview = onCall({
@@ -248,8 +284,9 @@ export const premiumDialogReview = onCall({
   const studyTarget = resolveStudyTarget(data.studyTarget);
   const mode = asReviewMode(data.mode);
 
+  const partnerLabel = mode === 'tutor' ? 'Teacher' : 'Partner';
   const transcript = history
-    .map((t) => `${t.role === 'user' ? 'Learner' : 'Partner'}: ${stripKeyPhraseMarkers(t.content)}`)
+    .map((t) => `${t.role === 'user' ? 'Learner' : partnerLabel}: ${stripKeyPhraseMarkers(t.content)}`)
     .join('\n');
 
   const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
@@ -326,5 +363,26 @@ export const premiumDialogReview = onCall({
     createdAtMs: Date.now(),
   }).catch(() => {});
 
-  return { ok: true, ...review };
+  // Учитель: обновить память между уроками (домашка/тема — от клиента, из
+  // инструментов учителя; факты/ошибки — из разбора). Ошибка записи — не
+  // причина ронять разбор.
+  let tutorMemoryOut: { callCount: number; homework: string[]; nextTopic: string } | undefined;
+  if (mode === 'tutor') {
+    const list = (v: unknown, max: number): string[] =>
+      Array.isArray(v) ? v.map((x) => text(x, 140)).filter((x) => x !== '').slice(0, max) : [];
+    const next = await applyTutorMemoryUpdate(db, authUid, stableUid, {
+      facts: review.memory?.facts ?? [],
+      recurringErrors: review.memory?.recurringErrors ?? [],
+      resolvedErrors: review.memory?.resolvedErrors ?? [],
+      homework: list(data.homework, 4),
+      nextTopic: text(data.nextTopic, 140),
+      cefr,
+      nowMs: Date.now(),
+    });
+    tutorMemoryOut = { callCount: next.callCount, homework: next.homework, nextTopic: next.nextTopic };
+  }
+
+  // Память — внутренняя кухня учителя: клиенту она не нужна и не уходит.
+  const { memory: _memory, ...publicReview } = review;
+  return { ok: true, ...publicReview, ...(tutorMemoryOut ? { tutorMemory: tutorMemoryOut } : {}) };
 });

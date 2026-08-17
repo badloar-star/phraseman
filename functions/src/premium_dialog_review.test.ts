@@ -146,3 +146,42 @@ describe('buildReviewSystemPrompt mode awareness', () => {
     expect(out!.corrections.map((c) => c.kind)).toEqual(['polish', 'fix', 'fix']);
   });
 });
+
+// ── Учитель (mode 'tutor', вариант A — владелец 2026-08-16) ──────────────────
+
+describe("mode 'tutor' — разбор урока с учителем и память", () => {
+  it("asReviewMode принимает 'tutor'", () => {
+    expect(asReviewMode('tutor')).toBe('tutor');
+  });
+
+  it('промпт учителя: судить только английские попытки, извлечь память (facts/recurringErrors/resolvedErrors), polish тоже есть', () => {
+    const prompt = buildReviewSystemPrompt('A1', 'Russian', '', 'en', 'tutor');
+    expect(prompt).toContain('LESSON with the learner\'s personal teacher');
+    expect(prompt).toContain('never their Russian lines');
+    expect(prompt).toContain('"memory"');
+    expect(prompt).toContain('"recurringErrors"');
+    expect(prompt).toContain('"resolvedErrors"');
+    expect(prompt).toContain('"kind": "polish"');
+    expect(prompt).toContain('SPOKEN phone call');
+    expect(buildReviewSystemPrompt('A1', 'Russian', '', 'en', 'voice')).not.toContain('"memory"');
+  });
+
+  it('парсер сохраняет memory-объект и режет его потолками', () => {
+    const out = parseReviewEnvelope(JSON.stringify({
+      praise: 'ok',
+      corrections: [],
+      tip: 't',
+      memory: {
+        facts: ['name is Olga', 'lives in Kyiv', 'a', 'b', 'c', 'd', 'e', 'f'],
+        recurringErrors: ['says I go yesterday'],
+        resolvedErrors: 'not-an-array',
+      },
+    }));
+    expect(out!.memory).toEqual({
+      facts: ['name is Olga', 'lives in Kyiv', 'a', 'b', 'c', 'd'],
+      recurringErrors: ['says I go yesterday'],
+      resolvedErrors: [],
+    });
+    expect(parseReviewEnvelope(JSON.stringify({ praise: 'x', corrections: [], tip: '' }))!.memory).toBeUndefined();
+  });
+});

@@ -177,6 +177,12 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'league_crowns', field: 'uid', values: 'stable' },
   { collection: 'daily_phrase_saves', field: 'uid', values: 'stable' },
   { collection: 'daily_phrase_saves', field: 'authUid', values: 'auth' },
+  // MAX-звонок: память учителя (факты об ученике из разговоров — персональные
+  // данные) и квота минут; docId — хэш, поэтому удаляем по полям.
+  { collection: 'voice_tutor_memory', field: 'stableUid', values: 'stable' },
+  { collection: 'voice_tutor_memory', field: 'authUid', values: 'auth' },
+  { collection: 'voice_call_quotas', field: 'stableUid', values: 'stable' },
+  { collection: 'voice_call_quotas', field: 'authUid', values: 'auth' },
 ];
 
 const COLLECTION_GROUP_QUERY_SPECS: AccountDeleteCollectionGroupSpec[] = [

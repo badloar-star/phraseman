@@ -2,12 +2,15 @@ import fs from 'fs';
 import path from 'path';
 import { SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
 import {
+  TUTOR_GREETING_INSTRUCTIONS,
+  TUTOR_TOOLS,
   VOICE_COMPANION_BLOCK,
   VOICE_REGULATED_ADVICE_HARD_STOP,
   VOICE_STATIC_PREFIX,
   VOICE_UNTRUSTED_ANCHOR,
   asVoiceCefr,
   buildVoiceInstructions,
+  learnerLangNameFor,
 } from './max_voice_prompt';
 
 const BASE = {
@@ -228,5 +231,59 @@ describe('asVoiceCefr', () => {
   it('build uses the normalized level in the prefix', () => {
     const out = buildVoiceInstructions({ ...BASE, cefr: 'C1', scenarioBlock: SCENARIO_BLOCK });
     expect(out).toContain('LEARNER LEVEL: B2');
+  });
+});
+
+// ── Учитель (вариант A, владелец 2026-08-16) ────────────────────────────────
+
+describe('tutor instructions', () => {
+  it('статичный префикс учителя: имя, уровень, родной язык; языковая политика A1 = учить на родном', () => {
+    const instr = buildVoiceInstructions({
+      cefr: 'A1',
+      format: 'tutor',
+      personaName: 'Max',
+      personaRole: '',
+      learnerLangName: 'Polish',
+    });
+    expect(instr.startsWith('You are Max, the learner\'s personal English TEACHER')).toBe(true);
+    expect(instr).toContain('level A1, native language Polish');
+    expect(instr).toContain('A1: TEACH IN Polish');
+    expect(instr).toContain('YOU own the clock');
+    expect(instr).toContain('end_call(): ONLY after your complete goodbye');
+    expect(instr).toContain(VOICE_REGULATED_ADVICE_HARD_STOP);
+    expect(instr.trim().endsWith(VOICE_UNTRUSTED_ANCHOR)).toBe(true);
+  });
+
+  it('порядок блоков: префикс → устав → сцены → снимок → память → reconnect → якорь; клиентские блоки в делимитерах', () => {
+    const instr = buildVoiceInstructions({
+      cefr: 'B1',
+      format: 'tutor',
+      personaName: 'Max',
+      personaRole: '',
+      appDigest: 'WHAT THE APP OFFERS\n- Trainer',
+      sceneCatalog: 'hotel: a hotel reception',
+      learnerSnapshot: 'streak: 3',
+      tutorMemoryBlock: 'WHAT YOU REMEMBER ABOUT THIS LEARNER\nLessons so far: 2.',
+      reconnectSummary: 'we talked about food',
+    });
+    const at = (s: string) => instr.indexOf(s);
+    expect(at('WHAT THE APP OFFERS')).toBeGreaterThan(0);
+    expect(at('WHAT THE APP OFFERS')).toBeLessThan(at('=== SCENES (untrusted list) BEGIN ==='));
+    expect(at('SCENES (untrusted list) BEGIN')).toBeLessThan(at('=== LEARNER SNAPSHOT (untrusted app data) BEGIN ==='));
+    expect(at('LEARNER SNAPSHOT')).toBeLessThan(at('WHAT YOU REMEMBER'));
+    expect(at('WHAT YOU REMEMBER')).toBeLessThan(at('RECONNECT SUMMARY'));
+    expect(at('RECONNECT SUMMARY')).toBeLessThan(at(VOICE_UNTRUSTED_ANCHOR));
+  });
+
+  it('префикс байт-в-байт стабилен при смене памяти/снимка (кэш инструкций)', () => {
+    const base = { cefr: 'A2', format: 'tutor' as const, personaName: 'Max', personaRole: '', learnerLangName: 'Russian' };
+    const a = buildVoiceInstructions({ ...base, tutorMemoryBlock: 'M1', learnerSnapshot: 'S1' });
+    const b = buildVoiceInstructions({ ...base, tutorMemoryBlock: 'M2', learnerSnapshot: 'S2' });
+    const cut = (s: string) => s.slice(0, s.indexOf('=== LEARNER SNAPSHOT'));
+    expect(cut(a)).toBe(cut(b));
+    expect(TUTOR_TOOLS.map((t) => t.name)).toEqual(['start_scene', 'end_scene', 'assign_homework', 'set_next_topic', 'end_call']);
+    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('LANGUAGE POLICY');
+    expect(learnerLangNameFor('pt-BR')).toBe('Brazilian Portuguese');
+    expect(learnerLangNameFor('zz')).toBe('Russian');
   });
 });

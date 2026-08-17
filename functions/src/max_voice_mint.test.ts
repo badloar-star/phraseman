@@ -100,6 +100,7 @@ jest.mock('./max_voice_config', () => {
 
 import { clampMaxVoiceConfig, type MaxVoiceConfig } from './max_voice_config';
 import { voiceQuotaDocId } from './max_voice_quota';
+import { __resetTutorCharterCacheForTests, voiceTutorMemoryDocId } from './max_voice_tutor_memory';
 import {
   TRIAL_PERSONA_NAME,
   TRIAL_SCENARIO_BLOCK,
@@ -660,5 +661,92 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
 
     await expect(preflight({ auth: { uid: AUTH }, data: {} }))
       .resolves.toMatchObject({ ok: true, allowed: true, access: 'max' });
+  });
+});
+
+// ── Учитель (формат 'tutor', вариант A — владелец 2026-08-16) ────────────────
+
+describe("format 'tutor' — личный учитель", () => {
+  it('минт учителя: свой голос, инструменты, память и устав в instructions, tutor-блок в ответе', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    okProvider();
+    docs.set(`voice_tutor_memory/${voiceTutorMemoryDocId(AUTH, STABLE)}`, {
+      facts: ['name is Olga', 'lives in Kyiv'],
+      recurringErrors: ['says I go yesterday'],
+      homework: ['I would like a coffee'],
+      nextTopic: 'weekend plans',
+      callCount: 3,
+      lastCallAtMs: NOW - 86_400_000,
+    });
+    docs.set('admin_config/product_charter', {
+      sections: [{ key: 'learning', body: 'Уроки, тренажёр карточек, диалоги, звонки.' }],
+      revision: 1,
+    });
+
+    const res = await callMint({
+      format: 'tutor',
+      cefr: 'A1',
+      interfaceLang: 'uk',
+      sceneCatalog: 'hotel_checkin: a hotel reception (you are the receptionist)\ncoffee: a coffee shop (you are the barista)',
+      learnerSnapshot: 'name: Olga; streak: 5 days; trainer due: 7',
+    });
+
+    const body = lastFetchBody();
+    expect(body.session.audio.output).toEqual({ voice: 'cedar' }); // tutorVoice, не голос сцен
+    expect(body.session.tools.map((t: DocData) => t.name)).toEqual([
+      'start_scene', 'end_scene', 'assign_homework', 'set_next_topic', 'end_call',
+    ]);
+    expect(body.session.tool_choice).toBe('auto');
+    const instr: string = body.session.instructions;
+    expect(instr).toContain('You are Max, the learner\'s personal English TEACHER');
+    expect(instr).toContain('native language Ukrainian');
+    expect(instr).toContain('level A1');
+    expect(instr).toContain('WHAT THE APP OFFERS');
+    expect(instr).toContain('тренажёр карточек'); // выжимка устава из админки
+    expect(instr).toContain('hotel_checkin'); // каталог сцен от клиента
+    expect(instr).toContain('streak: 5 days'); // снимок ученика
+    expect(instr).toContain('name is Olga'); // память
+    expect(instr).toContain('I would like a coffee'); // домашка на проверку
+    expect(instr).toContain('weekend plans');
+    expect(instr).toContain('TIME NOTE');
+    // Кап учителя (600) + хвост 20 → резерв 620.
+    expect(res.limits.reservedSec).toBe(620);
+    expect(res.tutor).toMatchObject({
+      name: 'Max',
+      lessonsSoFar: 3,
+      homework: ['I would like a coffee'],
+      nextTopic: 'weekend plans',
+    });
+    expect(String(res.tutor.greetingInstructions)).toContain('LANGUAGE POLICY');
+  });
+
+  it('первый урок без памяти и без устава: встроенная выжимка продукта, память «первый урок»', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    okProvider();
+    __resetTutorCharterCacheForTests(); // выжимка устава кэшируется на инстанс 1ч
+    const res = await callMint({ format: 'tutor', cefr: 'B1', interfaceLang: 'ru' });
+    const instr: string = lastFetchBody().session.instructions;
+    expect(instr).toContain('FIRST lesson');
+    expect(instr).toContain('Trainer (flashcards)'); // TUTOR_APP_DIGEST_FALLBACK
+    expect(instr).toContain('native language Russian');
+    expect(res.tutor.lessonsSoFar).toBe(0);
+  });
+
+  it('совместимый профиль поднимает учителя без инструментов (аварийный путь), сцены/компаньон tutor-блока не получают', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    fetchMock
+      .mockResolvedValueOnce({ ok: false, status: 400, text: async () => 'bad tools' })
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ value: 'ek_compat', expires_at: 1 }) });
+    await callMint({ format: 'tutor' });
+    const compat = JSON.parse(fetchMock.mock.calls[1][1].body);
+    expect(compat.session.tools).toBeUndefined();
+    expect(compat.session.audio.output).toEqual({ voice: 'cedar' });
+
+    fetchMock.mockReset();
+    okProvider();
+    docs.delete(QUOTA_PATH);
+    const scenario = await callMint({ format: 'scenario', scenarioBlock: 'SCENARIO x' });
+    expect(scenario.tutor).toBeUndefined();
+    expect(lastFetchBody().session.tools).toBeUndefined();
   });
 });

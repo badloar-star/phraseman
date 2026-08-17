@@ -58,7 +58,14 @@ export interface MaxVoiceConfig {
   model: MaxVoiceModel;
   voice: string;
   transcriptionModel: string;
-  sessionCapSec: { scenario: number; companion: number; trial: number };
+  sessionCapSec: { scenario: number; companion: number; trial: number; tutor: number };
+  /**
+   * Учитель (формат 'tutor'): имя, которым он представляется, и голос.
+   * зачем: владелец 2026-08-16 — «не звонок в кафе, а учитель, который ведёт»;
+   * имя/голос — ручки админки, чтобы поменять персонажа без релиза.
+   */
+  tutorName: string;
+  tutorVoice: string;
   graceTailSec: number;
   dailyVoiceSecMax: number;
   monthlyVoiceSecMax: number;
@@ -102,7 +109,11 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   model: 'gpt-realtime-2.1-mini',
   voice: 'marin',
   transcriptionModel: 'gpt-4o-mini-transcribe',
-  sessionCapSec: { scenario: 300, companion: 480, trial: 180 },
+  // tutor — урок-звонок с учителем; учитель сам предупреждает и прощается,
+  // клиент шлёт ему заметки времени (T−120с / T−45с).
+  sessionCapSec: { scenario: 300, companion: 480, trial: 180, tutor: 600 },
+  tutorName: 'Max',
+  tutorVoice: 'cedar',
   graceTailSec: 20,
   // зачем: владелец 2026-08-16 — «все лимиты снять, лимиты введу сам при релизе».
   // Ставим верхнюю границу клампа (4ч/день, 48ч/месяц): счётчик продолжает считать
@@ -257,7 +268,10 @@ export function clampMaxVoiceConfig(raw: unknown): MaxVoiceConfig {
       scenario: capSec(caps.scenario, d.sessionCapSec.scenario),
       companion: capSec(caps.companion, d.sessionCapSec.companion),
       trial: capSec(caps.trial, d.sessionCapSec.trial),
+      tutor: capSec(caps.tutor, d.sessionCapSec.tutor),
     },
+    tutorName: String(r.tutorName ?? '').replace(/[^\p{L}\p{N} .'-]/gu, '').trim().slice(0, 24) || d.tutorName,
+    tutorVoice: pickEnum(r.tutorVoice, ALLOWED_REALTIME_VOICES, d.tutorVoice),
     graceTailSec: clampInt(r.graceTailSec, 0, 120, d.graceTailSec),
     dailyVoiceSecMax: clampInt(r.dailyVoiceSecMax, 60, 14_400, d.dailyVoiceSecMax),
     monthlyVoiceSecMax: clampInt(r.monthlyVoiceSecMax, 60, 172_800, d.monthlyVoiceSecMax),

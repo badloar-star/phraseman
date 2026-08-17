@@ -21,7 +21,14 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import { aiGloballyDisabled } from './remote_gates';
 import { resolveMaxVoiceConfig, type MaxVoiceConfig } from './max_voice_config';
-import { asVoiceCefr, buildVoiceInstructions } from './max_voice_prompt';
+import {
+  TUTOR_GREETING_INSTRUCTIONS,
+  TUTOR_TOOLS,
+  asVoiceCefr,
+  buildVoiceInstructions,
+  learnerLangNameFor,
+} from './max_voice_prompt';
+import { loadTutorAppDigest, readTutorMemory, renderTutorMemoryBlock } from './max_voice_tutor_memory';
 import {
   VOICE_QUOTA_COLLECTION,
   releaseVoiceReservation,
@@ -337,12 +344,17 @@ export function estimateQuotaRemaining(
   };
 }
 
-function formatOf(data: Record<string, unknown>, access: 'max' | 'trial', trialVariant: VoiceTrialVariant | null): 'scenario' | 'companion' | 'trial' {
+type VoiceMintFormat = 'scenario' | 'companion' | 'trial' | 'tutor';
+
+function formatOf(data: Record<string, unknown>, access: 'max' | 'trial', trialVariant: VoiceTrialVariant | null): VoiceMintFormat {
   if (access === 'trial') return 'trial';
-  return text(data.format, 20) === 'companion' ? 'companion' : 'scenario';
+  const raw = text(data.format, 20);
+  // зачем: 'tutor' — урок-звонок с учителем (вариант A, владелец 2026-08-16).
+  if (raw === 'companion' || raw === 'tutor') return raw;
+  return 'scenario';
 }
 
-function sessionCapFor(config: MaxVoiceConfig, format: 'scenario' | 'companion' | 'trial'): number {
+function sessionCapFor(config: MaxVoiceConfig, format: VoiceMintFormat): number {
   return config.sessionCapSec[format];
 }
 
@@ -434,16 +446,21 @@ interface MintedSecret {
 
 type ProviderMintProfile = 'full' | 'compatibility';
 
-function clientSecretBody(args: {
+interface ClientSecretArgs {
   config: MaxVoiceConfig;
   cefr: 'A1' | 'A2' | 'B1' | 'B2';
   instructions: string;
-}, profile: ProviderMintProfile): string {
+  /** Учитель: свой голос и инструменты (start_scene / assign_homework / end_call…). */
+  tutor?: boolean;
+}
+
+function clientSecretBody(args: ClientSecretArgs, profile: ProviderMintProfile): string {
+  const voice = args.tutor ? args.config.tutorVoice : args.config.voice;
   const core = {
     type: 'realtime',
     model: args.config.model,
     instructions: args.instructions,
-    audio: { output: { voice: args.config.voice } },
+    audio: { output: { voice } },
   };
 
   // Последний аварийный профиль буквально повторяет минимальную конфигурацию
@@ -470,13 +487,16 @@ function clientSecretBody(args: {
           // для server_vad, а semantic_vad с этим полем отклоняет весь mint.
         },
       },
-      output: { voice: args.config.voice },
+      output: { voice },
     },
     max_output_tokens: args.config.maxResponseOutputTokens[args.cefr],
     truncation: {
       type: 'retention_ratio',
       retention_ratio: args.config.truncationRetentionRatio,
     },
+    // Инструменты учителя — только в полном профиле: совместимый профиль
+    // (аварийный) поднимает звонок без них, урок всё равно завершит клиент по дедлайну.
+    ...(args.tutor ? { tools: TUTOR_TOOLS, tool_choice: 'auto' } : {}),
   };
 
   return JSON.stringify({
@@ -490,12 +510,9 @@ function clientSecretBody(args: {
 }
 
 /** POST /v1/realtime/client_secrets с полным session-конфигом раздела 4 спеки. */
-async function mintClientSecret(args: {
+async function mintClientSecret(args: ClientSecretArgs & {
   apiKey: string;
   stableUid: string;
-  config: MaxVoiceConfig;
-  cefr: 'A1' | 'A2' | 'B1' | 'B2';
-  instructions: string;
 }): Promise<MintedSecret> {
   const profiles: ProviderMintProfile[] = ['full', 'compatibility'];
 
@@ -715,19 +732,34 @@ export const maxVoiceMint = onCall({
   // Пробник-сценарий использует встроенную кофейню с Mia; остальное — контент
   // клиента (сервер не знает сценарии, как и premium_dialog), санитайзится в prompt.
   const usesTrialScenario = ctx.access === 'trial' && ctx.trialVariant === 'scenario';
+  const isTutor = ctx.access !== 'trial' && format === 'tutor';
+  // Учитель: память ученика (сервер) и выжимка устава — параллельно, оба
+  // никогда не бросают. Память — 1 чтение на минт, устав — кэш 1ч на инстанс.
+  const [tutorMemory, appDigest] = isTutor
+    ? await Promise.all([readTutorMemory(db, authUid, stableUid), loadTutorAppDigest(db, nowMs)])
+    : [null, ''];
   const instructions = buildVoiceInstructions({
     cefr,
     format: ctx.access === 'trial' ? (ctx.trialVariant === 'companion' ? 'companion' : 'trial') : format === 'trial' ? 'scenario' : format,
-    personaName: usesTrialScenario ? TRIAL_PERSONA_NAME : text(data.personaName, 60),
+    personaName: isTutor ? config.tutorName : usesTrialScenario ? TRIAL_PERSONA_NAME : text(data.personaName, 60),
     personaRole: usesTrialScenario ? TRIAL_PERSONA_ROLE : text(data.personaRole, 160),
     scenarioBlock: usesTrialScenario ? TRIAL_SCENARIO_BLOCK : text(data.scenarioBlock, 4000),
     memoryBlock: text(data.memoryBlock, 1200),
     reconnectSummary: reconnectOf ? text(data.reconnectSummary, 1500) : '',
+    ...(isTutor
+      ? {
+          learnerLangName: learnerLangNameFor(text(data.interfaceLang, 8)),
+          appDigest,
+          sceneCatalog: text(data.sceneCatalog, 2000),
+          learnerSnapshot: text(data.learnerSnapshot, 1200),
+          tutorMemoryBlock: tutorMemory ? renderTutorMemoryBlock(tutorMemory, nowMs) : '',
+        }
+      : {}),
   });
 
   let minted: MintedSecret;
   try {
-    minted = await mintClientSecret({ apiKey, stableUid, config, cefr, instructions });
+    minted = await mintClientSecret({ apiKey, stableUid, config, cefr, instructions, tutor: isTutor });
   } catch (error) {
     // Токена нет — резерв, оценка бюджета и rate-слот возвращаются.
     // Сторно бюджета — по ФАКТИЧЕСКИ освобождённым секундам (released.refundedSec),
@@ -780,5 +812,18 @@ export const maxVoiceMint = onCall({
       month: monthRemainingSec,
     }),
     trialVariant: ctx.trialVariant,
+    // Учитель: имя (шапка экрана звонка) и инструкция первого ответа — клиент
+    // шлёт её в response.create вместо ролевого приветствия.
+    ...(isTutor
+      ? {
+          tutor: {
+            name: config.tutorName,
+            greetingInstructions: TUTOR_GREETING_INSTRUCTIONS,
+            lessonsSoFar: tutorMemory?.callCount ?? 0,
+            homework: tutorMemory?.homework ?? [],
+            nextTopic: tutorMemory?.nextTopic ?? '',
+          },
+        }
+      : {}),
   };
 });

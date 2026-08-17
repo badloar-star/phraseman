@@ -249,8 +249,30 @@ export function buildSupportSendCancelledNotice(reason: unknown, willRetry: bool
   ].join('\n');
 }
 
-export function buildSupportAttentionRequiredNotice(reason: unknown): string {
-  const code = String(reason ?? '');
+/**
+ * зачем письмо целиком, а не «откройте админку» (владелец, 2026-08-17: «не
+ * должно быть заготовок!!!»): раньше клиенту на billing/account/legal уходил
+ * фиксированный текст «поднимем вашу покупку» — читался как отписка сервиса,
+ * а не осмысленный ответ. Теперь клиент не получает НИЧЕГО, а владелец
+ * получает всё сразу — тему, от кого, текст письма — и отвечает сам прямо
+ * из Gmail, не заходя в админку. Заход в админку означал минуту простоя
+ * между «увидел уведомление» и «начал отвечать»; теперь простоя нет.
+ *
+ * зачем ответ владельца становится обучающим примером автоматически, а не
+ * по отдельной кнопке: этот путь уже существует — rememberOwnerStyleExample
+ * читает папку «Отправленные» в Gmail и учится на КАЖДОМ личном ответе
+ * владельца, входящем письмо было приоткрыто ботом или нет. Дублировать
+ * его отдельной кнопкой «взять на обучение» значило бы завести вторую копию
+ * одного и того же механизма — известный класс бага в этом проекте.
+ */
+export function buildSupportAttentionRequiredNotice(input: {
+  readonly reason: unknown;
+  readonly fromName?: string;
+  readonly fromEmail?: string;
+  readonly subject?: string;
+  readonly bodyText?: string;
+}): string {
+  const code = String(input.reason ?? '');
   if (code === 'telegram_preview_unsafe') {
     return [
       '🔒 <b>Ответ готов, но Telegram-предпросмотр заблокирован</b>',
@@ -259,24 +281,42 @@ export function buildSupportAttentionRequiredNotice(reason: unknown): string {
       'Автоотправка отключена. Проверьте полный текст и отправьте его вручную из Gmail Support Inbox.',
     ].join('\n');
   }
-  let explanation = 'Для ответа не хватает подтверждённых фактов или требуется решение владельца.';
+  let explanation = 'Подтверждённого ответа по существу не нашлось.';
   if (/^guarded_(?:billing|account)$/.test(code)) {
-    explanation = 'Нужно проверить данные конкретной покупки, подписки или аккаунта. Джарвис не создаёт догадки вместо такой проверки.';
+    explanation = 'Нужно проверить данные конкретной покупки, подписки или аккаунта — Джарвис не создаёт догадки вместо такой проверки.';
   } else if (/^guarded_(?:legal|privacy|safety|security)$/.test(code)) {
-    explanation = 'Обращение относится к чувствительной теме и требует решения владельца.';
+    explanation = 'Обращение относится к чувствительной теме и требует вашего решения.';
   } else if (/^conversation_(?:sender_mismatch|ambiguous_parent)$/.test(code)) {
-    explanation = 'Нужно вручную проверить отправителя и цепочку переписки.';
+    explanation = 'Не удалось надёжно понять, кому именно отвечать в этой цепочке писем.';
   } else if (/^(?:auto_repair_exhausted_|untrusted_snapshot_|insufficient_evidence)/.test(code)) {
-    explanation = 'Автоматическая доработка не смогла получить подтверждённый ответ, прошедший проверку.';
+    explanation = 'Собранный ответ не прошёл проверку фактов.';
+  } else if (code === 'model_unavailable') {
+    explanation = 'Модель сейчас недоступна.';
   }
+  const from = String(input.fromName ?? '').trim() || String(input.fromEmail ?? '').trim() || 'клиент';
+  const subject = String(input.subject ?? '').trim();
+  const body = String(input.bodyText ?? '').trim();
   return [
-    '⚠️ <b>Обращение требует решения</b>',
+    '🤷 <b>Не знаю, как ответить</b>',
     '',
     explanation,
-    'Готового ответа нет. Кнопка отправки и автоотправка не создавались.',
     '',
-    '<i>Откройте админку → Gmail Support Inbox и проверьте само обращение.</i>',
+    `<b>От:</b> ${escapeTelegramHtml(from)}`,
+    ...(subject ? [`<b>Тема:</b> ${escapeTelegramHtml(subject)}`] : []),
+    '',
+    body ? escapeTelegramHtml(clampSupportAttentionBody(body)) : '<i>(тело письма пустое)</i>',
+    '',
+    '<i>Клиенту пока ничего не отправлено. Ответьте прямо в Gmail — систему учит на ваших живых ответах.</i>',
   ].join('\n');
+}
+
+/**
+ * Telegram обрезает сообщения на 4096 символах — длинное письмо целиком
+ * могло бы обрезать уже саму пометку «клиенту не отправлено», самую важную
+ * строку в уведомлении. Оставляем письмо читаемым, но не безграничным.
+ */
+function clampSupportAttentionBody(body: string, max = 1_500): string {
+  return body.length > max ? `${body.slice(0, max)}…` : body;
 }
 
 /** зачем отдельный флаг, а не парсить reason из текста: строка reason

@@ -115,21 +115,69 @@ describe('support Telegram review contract', () => {
     expect(ungrounded.text).not.toContain('перепишите ответ');
   });
 
-  test('attention notice never claims that Jarvis prepared a ready reply', () => {
-    const text = buildSupportAttentionRequiredNotice('guarded_billing');
-    expect(text).toContain('Обращение требует решения');
+  // зачем этот блок переписан (владелец, 2026-08-17: «не должно быть
+  // заготовок!!!»): раньше клиенту на billing/account уходил фиксированный
+  // текст «поднимем вашу покупку». Теперь клиенту не уходит НИЧЕГО, а
+  // владельцу приходит письмо целиком — тема, от кого, текст — чтобы
+  // ответить прямо из Gmail, не заходя в админку.
+  test('уведомление никогда не утверждает, что Джарвис подготовил ответ', () => {
+    const text = buildSupportAttentionRequiredNotice({
+      reason: 'guarded_billing', fromName: 'Шухрат', fromEmail: 'satoshinakamoto2233@gmail.com',
+      subject: 'Phraseman', bodyText: 'Могу ли я уточнить если я оплачу подписку оплата какой стране идет?',
+    });
+    expect(text).toContain('Не знаю, как ответить');
     expect(text).toContain('покупки, подписки или аккаунта');
-    expect(text).toContain('Готового ответа нет');
     expect(text).not.toContain('Ответ Джарвиса готов');
     expect(text).not.toContain('перепишите');
   });
 
+  test('письмо клиента видно в самом уведомлении — не нужно заходить в админку', () => {
+    // зачем: раньше текст заканчивался словами «откройте админку → Gmail
+    // Support Inbox». Владелец явно попросил убрать этот шаг — минута между
+    // «увидел уведомление» и «начал отвечать» лишняя.
+    const text = buildSupportAttentionRequiredNotice({
+      reason: 'guarded_account', fromName: 'Ольга', fromEmail: 'olga@example.test',
+      subject: 'Не могу войти', bodyText: 'Помогите восстановить доступ к аккаунту.',
+    });
+    expect(text).toContain('Ольга');
+    expect(text).toContain('Не могу войти');
+    expect(text).toContain('Помогите восстановить доступ');
+    expect(text).not.toContain('Откройте админку');
+  });
+
+  test('явно сказано, что клиенту ничего не отправлено', () => {
+    const text = buildSupportAttentionRequiredNotice({ reason: 'guarded_legal', subject: 'Вопрос', bodyText: 'Текст' });
+    expect(text).toMatch(/клиенту.{0,20}(?:ничего не отправлено|пока ничего не отправлено)/i);
+  });
+
+  test('HTML в письме клиента экранируется — untrusted-текст не ломает разметку Telegram', () => {
+    const text = buildSupportAttentionRequiredNotice({
+      reason: 'guarded_billing', subject: '<script>x</script>', bodyText: 'Оплата <b>сейчас</b> недоступна & важно',
+    });
+    expect(text).not.toContain('<script>');
+    expect(text).toContain('&lt;script&gt;');
+    expect(text).toContain('&amp;');
+  });
+
+  test('без email и имени показывает нейтральное «клиент», не падает', () => {
+    expect(() => buildSupportAttentionRequiredNotice({ reason: 'guarded_billing' })).not.toThrow();
+    const text = buildSupportAttentionRequiredNotice({ reason: 'guarded_billing' });
+    expect(text).toContain('клиент');
+  });
+
+  test('очень длинное письмо обрезается — важная строка про «не отправлено» не должна теряться', () => {
+    const text = buildSupportAttentionRequiredNotice({
+      reason: 'guarded_billing', subject: 'Длинное письмо', bodyText: 'x'.repeat(5_000),
+    });
+    expect(text.length).toBeLessThan(4_096);
+    expect(text).toMatch(/клиенту.{0,20}(?:ничего не отправлено|пока ничего не отправлено)/i);
+  });
+
   test('a Telegram-unsafe preview distinguishes a ready admin draft from a failed answer', () => {
-    const text = buildSupportAttentionRequiredNotice('telegram_preview_unsafe');
+    const text = buildSupportAttentionRequiredNotice({ reason: 'telegram_preview_unsafe' });
     expect(text).toContain('Ответ готов');
     expect(text).toContain('Полная версия сохранена в админке');
     expect(text).toContain('Автоотправка отключена');
-    expect(text).not.toContain('Готового ответа нет');
   });
 
   test('a stale worker cannot settle a job after a newer lease reclaims it', () => {

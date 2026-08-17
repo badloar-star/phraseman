@@ -99,7 +99,6 @@ import {
   buildPaymentCountryReply,
   buildPremiumAlternativePaymentReply,
   buildSafeHoldingReply,
-  buildUnresolvedIdentityHoldingReply,
   supportReasonHasUnresolvedIdentity,
   buildSupportReviewPrompt,
   classifySupportRisk,
@@ -3089,30 +3088,32 @@ async function buildCouncilReviewedSupportReply(input: {
     kind: 'attention', grounded: false, reason,
     knowledgeFingerprint: repositoryContext.sourceFingerprint,
   });
-  // No customer is left without an answer: when grounding fails we fall back to
-  // the safe holding reply rather than dropping the thread into a silent queue.
-  // зачем attention() остаётся отдельным именем (2026-08-16): единственный
-  // оставшийся вызов — model_unavailable, инфраструктурная причина, а не
-  // содержательный отказ. Все причины, доходящие сюда, получают holding.
-  const holdingOrAttention = (reason: string): SupportCouncilOutcome => {
-    return Object.freeze({
-      kind: 'holding', grounded: false, reason,
-      reply: buildSafeHoldingReply(issue, issueRisk),
-      knowledgeFingerprint: repositoryContext.sourceFingerprint,
-    });
-  };
+  // зачем holding БОЛЬШЕ НЕ отправляется клиенту (владелец, 2026-08-17: «не
+  // должно быть заготовок!!! если не знает как отвечать — не отвечает, а
+  // присылает мне уведомление в телеграме, я отвечу сам, а он обучится на
+  // моём ответе»): раньше сюда стекались все содержательные отказы —
+  // billing/account/legal/privacy/safety, неудачный auto-repair — и КАЖДЫЙ
+  // получал фиксированный текст «поднимем вашу покупку, ответит человек».
+  // Клиенту, который ещё НЕ платил (см. письмо Шухрата про страну платежа),
+  // приходила формула для того, у кого списали деньги — читалась как
+  // отписка сервиса, а не осмысленный ответ.
+  //
+  // Прежнее правило от 2026-08-16 («готовить ВСЕГДА человеческий ответ, без
+  // исключений») решало другую проблему — ПОЛНУЮ ТИШИНУ: ни текста клиенту,
+  // ни информации владельцу. Тот разрыв закрыт не текстом клиенту, а полным
+  // уведомлением владельцу — тема, тело письма и причина отказа видны сразу,
+  // без захода в админку. Обе версии правила сходятся в одном: клиент не
+  // должен ждать молча, а владелец не должен объяснять код.
+  const escalate = (reason: string): SupportCouncilOutcome => Object.freeze({
+    kind: 'attention', grounded: false, reason,
+    knowledgeFingerprint: repositoryContext.sourceFingerprint,
+  });
   if (input.doc.conversationResolution === 'sender_mismatch' || input.doc.conversationResolution === 'ambiguous_parent') {
-    // зачем holding, а не attention (2026-08-16, владелец: "он обязан
-    // готовить ВСЕГДА человеческий ответ, без исключений"): раньше это было
-    // единственным случаем полной тишины в Telegram — ни текста, ни
-    // информации о проблеме. Автоотправка клиенту всё равно исключена
-    // отдельно (см. autoSendEligible ниже) — риск, что промежуточный ответ
-    // уйдёт не тому человеку, закрыт там, а не молчанием здесь.
-    return Object.freeze({
-      kind: 'holding', grounded: false, reason: `conversation_${input.doc.conversationResolution}`,
-      reply: buildUnresolvedIdentityHoldingReply(issue),
-      knowledgeFingerprint: repositoryContext.sourceFingerprint,
-    });
+    // зачем эскалация, а не holding: тот же принцип, что и везде теперь —
+    // фиктивный текст клиенту хуже, чем полное уведомление владельцу.
+    // Личность отправителя не подтверждена — здесь тем более нельзя слать
+    // готовый текст: он может уйти не тому человеку.
+    return escalate(`conversation_${input.doc.conversationResolution}`);
   }
   const risk = issueRisk;
   // зачем премиум-маршрут ПОСЛЕ проверки риска (инцидент 2026-08-17): он стоял
@@ -3159,9 +3160,10 @@ async function buildCouncilReviewedSupportReply(input: {
       knowledgeFingerprint: repositoryContext.sourceFingerprint,
     };
   }
-  // Guarded topics must never get an invented answer — but they still get the
-  // holding reply, so the customer knows a human is on it.
-  if (risk !== 'safe') return holdingOrAttention(`guarded_${risk}`);
+  // Guarded topics must never get an invented answer, and (владелец,
+  // 2026-08-17) не получают и фиктивный «поднимем вашу покупку» — клиент не
+  // видит ничего, владелец видит письмо целиком и отвечает сам.
+  if (risk !== 'safe') return escalate(`guarded_${risk}`);
   if (!input.apiKey) return attention('model_unavailable');
 
   const runAttempt = async (repair?: {
@@ -3224,7 +3226,7 @@ async function buildCouncilReviewedSupportReply(input: {
     && first.draftResult.context.trustworthy
     && first.draftResult.context.evidence.length > 0
     && first.draftResult.envelope?.needsHuman !== true;
-  if (!repairable) return holdingOrAttention(first.selected.reason);
+  if (!repairable) return escalate(first.selected.reason);
 
   const repairBudget = await checkAndReserveBudget({
     db: input.db,
@@ -3252,7 +3254,7 @@ async function buildCouncilReviewedSupportReply(input: {
       evidenceIds: Object.freeze([...(repaired.draftResult.envelope?.evidenceIds ?? [])]),
     });
   }
-  return holdingOrAttention(`auto_repair_exhausted_${repaired.selected.reason}`);
+  return escalate(`auto_repair_exhausted_${repaired.selected.reason}`);
 }
 
 async function invalidatePreparedSupportDraftForRegeneration(input: {
@@ -4374,29 +4376,21 @@ async function buildCouncilReviewedSupportRevision(input: {
     knowledgeFingerprint: context.sourceFingerprint,
     ownerInstructions,
   });
-  // зачем без проверки reason здесь (2026-08-16): единственная причина, ради
-  // которой holding когда-либо запрещался (conversation identity), теперь
-  // обрабатывается отдельно, до вызова этой функции. Всё, что доходит сюда,
-  // получает holding безусловно; attention() остаётся только для
-  // инфраструктурных отказов (нет бюджета на повторную попытку — см. ниже).
-  const holdingOrAttention = (reason: string): SupportCouncilRevisionOutcome => Object.freeze({
-    kind: 'holding', grounded: false, reason,
-    reply: buildSafeHoldingReply(issue, risk),
+  // зачем escalate вместо holding (владелец, 2026-08-17): симметрично с
+  // первичной обработкой выше — правка черновика по фидбеку владельца,
+  // которая снова не удалась, тоже не должна уходить клиенту фиктивным
+  // текстом. Владелец сам просил править этот черновик; если и после
+  // правки система не справилась, честнее сказать ему прямо, чем прислать
+  // готовую заготовку под видом исправленного ответа.
+  const escalate = (reason: string): SupportCouncilRevisionOutcome => Object.freeze({
+    kind: 'attention', grounded: false, reason,
     knowledgeFingerprint: context.sourceFingerprint,
     ownerInstructions,
   });
   if (input.doc.conversationResolution === 'sender_mismatch' || input.doc.conversationResolution === 'ambiguous_parent') {
-    // зачем holding, а не attention: см. комментарий на первичной обработке
-    // выше — то же правило, симметрично, для случая правки уже показанного
-    // черновика.
-    return Object.freeze({
-      kind: 'holding', grounded: false, reason: `conversation_${input.doc.conversationResolution}`,
-      reply: buildUnresolvedIdentityHoldingReply(issue),
-      knowledgeFingerprint: context.sourceFingerprint,
-      ownerInstructions,
-    });
+    return escalate(`conversation_${input.doc.conversationResolution}`);
   }
-  if (risk !== 'safe') return holdingOrAttention(`guarded_${risk}`);
+  if (risk !== 'safe') return escalate(`guarded_${risk}`);
   const conversationHistory = await renderHistoryForSupportDoc(input.db, input.doc);
   const result = await openAiChat({
     apiKey: input.apiKey, model: input.model,
@@ -4454,7 +4448,7 @@ async function buildCouncilReviewedSupportRevision(input: {
     && context.trustworthy
     && context.evidence.length > 0
     && firstCandidate.envelope?.needsHuman !== true;
-  if (!repairable) return holdingOrAttention(first.selected.reason);
+  if (!repairable) return escalate(first.selected.reason);
   const repairBudget = await checkAndReserveBudget({
     db: input.db, nowMs: input.nowMs, estimatedCostUsd: SUPPORT_COUNCIL_BUDGET_RESERVATION_USD,
   });
@@ -4470,7 +4464,7 @@ async function buildCouncilReviewedSupportRevision(input: {
       knowledgeFingerprint: context.sourceFingerprint, ownerInstructions,
     });
   }
-  return holdingOrAttention(`auto_repair_exhausted_${repaired.selected.reason}`);
+  return escalate(`auto_repair_exhausted_${repaired.selected.reason}`);
 }
 
 async function processSupportTelegramJob(db: FirebaseFirestore.Firestore, jobId: string, nowMs: number): Promise<void> {
@@ -4602,7 +4596,10 @@ async function processSupportTelegramJob(db: FirebaseFirestore.Firestore, jobId:
         if (attentionWon) {
           await deliverSupportOwnerAlert({
             db, messageDocId: claimed.messageDocId, botToken: ADMIN_ALERT_BOT_TOKEN.value(),
-            text: buildSupportAttentionRequiredNotice(revised.reason), nowMs: Date.now(),
+            text: buildSupportAttentionRequiredNotice({
+              reason: revised.reason, fromName: message.fromName, fromEmail: message.fromEmail,
+              subject: message.subject, bodyText: message.bodyText,
+            }), nowMs: Date.now(),
           }).catch(() => logger.warn('support_rewrite_attention_notification_failed', { messageDocId: claimed.messageDocId }));
         } else {
           await settle(
@@ -4670,9 +4667,13 @@ async function processSupportTelegramJob(db: FirebaseFirestore.Firestore, jobId:
       });
       if (reviewState === 'attention_required' || reviewState === 'exhausted') {
         const attentionMessage = await messageRef.get();
+        const attentionDoc = attentionMessage.data() as SupportInboxDoc | undefined;
         await deliverSupportOwnerAlert({
           db, messageDocId: claimed.messageDocId, botToken: ADMIN_ALERT_BOT_TOKEN.value(),
-          text: buildSupportAttentionRequiredNotice(attentionMessage.data()?.autoReply?.reason), nowMs: Date.now(),
+          text: buildSupportAttentionRequiredNotice({
+            reason: attentionDoc?.autoReply?.reason, fromName: attentionDoc?.fromName, fromEmail: attentionDoc?.fromEmail,
+            subject: attentionDoc?.subject, bodyText: attentionDoc?.bodyText,
+          }), nowMs: Date.now(),
         }).catch(() => logger.warn('support_rewrite_attention_notification_failed', { messageDocId: claimed.messageDocId }));
       }
       return;
@@ -6538,7 +6539,10 @@ export async function runSupportOwnerAlertRetryCron(nowMs: number = Date.now()):
           message.ownerNotification?.sendCancelledWillRetry === true,
         )
         : message.autoReply?.state === 'attention_required'
-          ? buildSupportAttentionRequiredNotice(message.autoReply.reason)
+          ? buildSupportAttentionRequiredNotice({
+            reason: message.autoReply.reason, fromName: message.fromName, fromEmail: message.fromEmail,
+            subject: message.subject, bodyText: message.bodyText,
+          })
           : SUPPORT_OWNER_ALERT_RETRY_TEXT;
       const result = await deliverSupportOwnerAlert({
         db, messageDocId: doc.id, botToken: ADMIN_ALERT_BOT_TOKEN.value(), text, nowMs,
@@ -6717,7 +6721,11 @@ export const supportInboxOnNewMail = onDocumentCreated(
         });
         if (generation === 'attention_required') {
           const current = await db.collection(INBOX_COLLECTION).doc(messageDocId).get();
-          ownerAlertText = buildSupportAttentionRequiredNotice(current.data()?.autoReply?.reason);
+          const currentDoc = current.data() as SupportInboxDoc | undefined;
+          ownerAlertText = buildSupportAttentionRequiredNotice({
+            reason: currentDoc?.autoReply?.reason, fromName: currentDoc?.fromName, fromEmail: currentDoc?.fromEmail,
+            subject: currentDoc?.subject, bodyText: currentDoc?.bodyText,
+          });
         }
       }
 

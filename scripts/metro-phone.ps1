@@ -18,6 +18,12 @@
       → Блок «WATCHDOG»: поднимаем заново, а причину падения ПИШЕМ В ЛОГ словами.
         Копии убраны отдельно; здесь — большой heap и много файловых дескрипторов.
 
+   5. (2026-08-17) Вывод Metro — включая WARN/ERROR, которые телефон шлёт в
+      терминал, — жил только в этом окне. Ошибка входа через Apple погибла
+      вместе с окном, «проверь логи» проверить было нечего.
+      → Блок «ЛОГ»: весь вывод зеркалится в .expo/metro-console.log
+        (scripts/metro_console_tee.cjs через NODE_OPTIONS --require, TTY цел).
+
   ЗАЧЕМ ВООБЩЕ ФАЙЛ С АДРЕСОМ: телефон и ноутбук в одной Wi-Fi сети, iPhone
   вводит адрес один раз через «Enter URL manually». Файл — единственная точка,
   откуда этот адрес известен, поэтому он обязан быть честным.
@@ -46,6 +52,11 @@ $StateDir = Join-Path $ProjectRoot ".expo"
 New-Item -ItemType Directory -Force -Path $StateDir | Out-Null
 $UrlFile = Join-Path $StateDir "metro-url.txt"
 $LogFile = Join-Path $StateDir "metro-phone.log"
+# зачем: сюда зеркалится ВЕСЬ вывод Metro/Expo (бандлинг, ошибки, WARN/ERROR с
+# телефона). 2026-08-17 ошибка входа через Apple жила только в этом окне и
+# погибла вместе с ним — «проверь логи» проверить было нечего. Пишет
+# scripts/metro_console_tee.cjs изнутри процесса (см. блок «ЛОГ» ниже).
+$ConsoleLog = Join-Path $StateDir "metro-console.log"
 
 function Say([string]$m) {
   Write-Host "[metro] $m" -ForegroundColor Cyan
@@ -171,6 +182,26 @@ $env:CI = "false"
 $env:EXPO_NO_TELEMETRY = "1"
 $env:UV_THREADPOOL_SIZE = "128"
 $env:NODE_OPTIONS = "--max-old-space-size=12288"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ПРИЧИНА 5 → ЛОГ. Вывод Metro зеркалится в .expo/metro-console.log.
+# Не через пайп (| Tee-Object): тогда Expo теряет TTY — пропадают клавиши,
+# цвета и живой прогресс. Модуль подключается внутрь процесса через
+# NODE_OPTIONS --require и просто дублирует stdout/stderr в файл.
+# Один запуск окна = один файл; прошлый уезжает в metro-console.prev.log,
+# чтобы после «Metro упал и поднялся» не потерять причину падения.
+# ─────────────────────────────────────────────────────────────────────────────
+$teeModule = Join-Path $ProjectRoot 'scripts\metro_console_tee.cjs'
+if (Test-Path -LiteralPath $teeModule) {
+  $prevLog = Join-Path $StateDir "metro-console.prev.log"
+  if (Test-Path -LiteralPath $ConsoleLog) {
+    Move-Item -LiteralPath $ConsoleLog -Destination $prevLog -Force -ErrorAction SilentlyContinue
+  }
+  $env:METRO_CONSOLE_LOG = $ConsoleLog
+  # NODE_OPTIONS с обратными слэшами Windows node понимает; пробелов в пути нет.
+  $env:NODE_OPTIONS = "$($env:NODE_OPTIONS) --require $($teeModule -replace '\\','/')"
+  Say "Вывод Metro пишется в .expo\metro-console.log (прошлый — metro-console.prev.log)."
+}
 
 $expoCli = Join-Path $ProjectRoot 'node_modules\expo\bin\cli'
 if (-not (Test-Path -LiteralPath $expoCli)) { Say "ОШИБКА: нет node_modules\expo\bin\cli. Выполни npm install."; exit 1 }

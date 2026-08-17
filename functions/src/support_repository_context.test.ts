@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import { retrieveSupportRepositoryContext, tokenizeSupportQuery } from './support_repository_context';
+import { retrieveSupportRepositoryContext, supportEvidenceFingerprint, tokenizeSupportQuery } from './support_repository_context';
 import type { SupportRepositoryChunk, SupportRepositorySnapshot } from './support_repository_context_types';
 
 const required: SupportRepositoryChunk[] = [
@@ -77,5 +77,83 @@ describe('support repository context', () => {
     expect(result.queryConcepts).toEqual(expect.arrayContaining(['compass', 'feature_lifecycle']));
     expect(result.evidence[0].path).toBe('support-history/compass_daily_assistant.md');
     expect(result.evidence[0].matchedConcepts).toEqual(expect.arrayContaining(['compass', 'feature_lifecycle']));
+  });
+});
+
+// зачем этот блок (владелец, 2026-08-17: «я одобрил, но сообщение не
+// отправилось»): готовый ответ сверялся с отпечатком ВСЕЙ кодовой базы. Он
+// меняется на каждом деплое — в том числе от чужой правки в другой части
+// проекта. Между подготовкой ответа и нажатием кнопки проходил деплой, и
+// ответ отменялся как устаревший. Женщина ждала письма, которого никто не
+// отправил. Смысл проверки — «не устарели ли ФАКТЫ ответа», а факты живут в
+// процитированных фрагментах.
+describe('supportEvidenceFingerprint — отпечаток только процитированного', () => {
+  const ctx = (chunks: Array<{ id: string; path: string; line: number; text: string }>) => ({
+    generatedAt: '2026-08-17T00:00:00.000Z',
+    commit: 'abc',
+    dirty: false,
+    appVersion: '1.0.0',
+    appBuild: '1',
+    sourceFingerprint: 'f'.repeat(64),
+    trustworthy: true,
+    trustReason: 'ok',
+    queryConcepts: [] as readonly string[],
+    evidence: chunks.map((c) => ({
+      evidenceId: c.id, path: c.path, line: c.line, text: c.text,
+      relevanceScore: 1, queryCoverage: 1, matchedConcepts: [] as readonly string[],
+    })),
+  });
+
+  const A = { id: 'e1', path: 'app/pay.ts', line: 10, text: 'оплата через бота' };
+  const B = { id: 'e2', path: 'app/login.ts', line: 20, text: 'вход по коду' };
+  const C = { id: 'e3', path: 'app/other.ts', line: 30, text: 'не при чём' };
+
+  test('правка НЕ процитированного файла не меняет отпечаток', () => {
+    // Главный случай: чужой деплой больше не рушит готовый ответ.
+    const before = supportEvidenceFingerprint(ctx([A, B, C]), ['e1']);
+    const after = supportEvidenceFingerprint(
+      ctx([A, B, { ...C, text: 'переписали совсем другое' }]), ['e1'],
+    );
+    expect(after).toBe(before);
+  });
+
+  test('правка процитированного файла меняет отпечаток', () => {
+    // Защита остаётся: факт изменился — ответ обязан пересобраться.
+    const before = supportEvidenceFingerprint(ctx([A, B]), ['e1']);
+    const after = supportEvidenceFingerprint(
+      ctx([{ ...A, text: 'оплата только через магазин' }, B]), ['e1'],
+    );
+    expect(after).not.toBe(before);
+  });
+
+  test('порядок цитат не влияет на отпечаток', () => {
+    // зачем: модель возвращает id в произвольном порядке, а отпечаток обязан
+    // быть одинаковым — иначе он «менялся» бы сам по себе.
+    expect(supportEvidenceFingerprint(ctx([A, B]), ['e1', 'e2']))
+      .toBe(supportEvidenceFingerprint(ctx([A, B]), ['e2', 'e1']));
+  });
+
+  test('исчезнувший процитированный фрагмент меняет отпечаток', () => {
+    const before = supportEvidenceFingerprint(ctx([A, B]), ['e1', 'e2']);
+    const after = supportEvidenceFingerprint(ctx([B]), ['e1', 'e2']);
+    expect(after).not.toBe(before);
+  });
+
+  test('без цитат — пустая строка, а не хеш пустоты', () => {
+    // зачем: пустой отпечаток означает «состав фактов неизвестен», и
+    // вызывающий код обязан упасть на прежнюю проверку по всей базе.
+    expect(supportEvidenceFingerprint(ctx([A]), [])).toBe('');
+    expect(supportEvidenceFingerprint(ctx([]), ['e1'])).toBe('');
+  });
+
+  test('несуществующий id не роняет расчёт', () => {
+    expect(() => supportEvidenceFingerprint(ctx([A]), ['нет-такого'])).not.toThrow();
+    expect(supportEvidenceFingerprint(ctx([A]), ['нет-такого'])).toBe('');
+  });
+
+  test('разные строки одного файла различаются', () => {
+    const one = supportEvidenceFingerprint(ctx([A]), ['e1']);
+    const two = supportEvidenceFingerprint(ctx([{ ...A, line: 999 }]), ['e1']);
+    expect(one).not.toBe(two);
   });
 });

@@ -2,6 +2,7 @@ import { buildApprovalToken } from './jarvis/approval_token';
 import {
   buildSupportTelegramReviewPreview,
   buildSupportAttentionRequiredNotice,
+  buildSupportSendCancelledNotice,
   formatSupportTelegramReview,
   parseSupportReviewApprovalToken,
   supportDraftHash,
@@ -198,5 +199,53 @@ describe('support Telegram review contract', () => {
       });
       expect(identity.text).not.toBe(billing.text);
     });
+  });
+});
+
+// зачем этот блок (владелец, 2026-08-17: «я одобрил, но сообщение не
+// отправилось»): при отмене подготовленного ответа в Telegram не приходило
+// НИЧЕГО. Владелец нажимал кнопку, видел «поставлен в очередь отправки» — и
+// считал дело закрытым. Письмо не ушло, узнать об этом было негде. Молчание
+// здесь превращает нажатие кнопки в ложное обещание.
+describe('buildSupportSendCancelledNotice — почему письмо не ушло', () => {
+  test('прямо говорит, что письмо НЕ отправлено', () => {
+    const text = buildSupportSendCancelledNotice('support_knowledge_changed', true);
+    expect(text).toContain('НЕ отправлено');
+  });
+
+  test('объясняет смену кода человеческими словами, без внутренних терминов', () => {
+    const text = buildSupportSendCancelledNotice('support_knowledge_changed', true);
+    expect(text).toMatch(/изменился код|устаревш/i);
+    expect(text).not.toContain('fingerprint');
+    expect(text).not.toContain('support_knowledge_changed');
+  });
+
+  test('когда готовится новый ответ — говорит «ничего делать не нужно»', () => {
+    const text = buildSupportSendCancelledNotice('support_knowledge_changed', true);
+    expect(text).toMatch(/ничего делать не нужно/i);
+    expect(text).not.toMatch(/отправьте ответ вручную/i);
+  });
+
+  test('когда автоматика сдалась — отправляет в админку', () => {
+    const text = buildSupportSendCancelledNotice('support_quality_not_customer_ready', false);
+    expect(text).toMatch(/вручную/i);
+    expect(text).not.toMatch(/ничего делать не нужно/i);
+  });
+
+  test('сбой доставки предупреждает про «Отправленные» — чтобы не послать второе письмо', () => {
+    const text = buildSupportSendCancelledNotice('delivery_unknown', false);
+    expect(text).toContain('Отправленные');
+  });
+
+  test('неизвестная причина не даёт пустого или технического текста', () => {
+    const text = buildSupportSendCancelledNotice('какой_то_новый_код', false);
+    expect(text).toContain('НЕ отправлено');
+    expect(text).not.toContain('какой_то_новый_код');
+    expect(text.length).toBeGreaterThan(60);
+  });
+
+  test('пустая причина не роняет построение', () => {
+    expect(() => buildSupportSendCancelledNotice(undefined, false)).not.toThrow();
+    expect(buildSupportSendCancelledNotice(null, true)).toContain('НЕ отправлено');
   });
 });

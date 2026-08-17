@@ -137,6 +137,30 @@ describe('renderKnowledge — общее знание не должно молч
     expect(rendered).not.toContain('п'.repeat(KNOWLEDGE_MAX_CHARS + 1));
   });
 
+  test('свои запреты департамента важнее справочника о продукте', () => {
+    // зачем (регрессия 2026-08-17, поймал тест llm_enricher): я поставил общие
+    // файлы вперёд — и у денег вылетел money.md, то есть СВОИ ЖЕ запреты
+    // («не предлагать ужесточать возвраты»). Департамент начал бы советовать
+    // ровно то, что владелец однажды отверг. Справочник о продукте информирует,
+    // файл департамента запрещает — при нехватке места уступает справочник.
+    const rendered = renderKnowledge([
+      bulky('common.md', 1_400),
+      bulky('money.md', 2_400),
+      bulky('product.md', 3_200),
+    ]);
+    expect(rendered).toContain('п'.repeat(2_400));
+  });
+
+  test('общие правила продукта не вытесняются ничем', () => {
+    // Нарушение правил уровня продукта стоит дороже всего остального.
+    const rendered = renderKnowledge([
+      bulky('money.md', 4_000),
+      bulky('common.md', 1_500),
+      bulky('product.md', 2_000),
+    ]);
+    expect(rendered).toContain('п'.repeat(1_500));
+  });
+
   test('предел всё ещё соблюдается', () => {
     const rendered = renderKnowledge([
       bulky('common.md', 3_000), bulky('product.md', 3_000), bulky('money.md', 3_000),

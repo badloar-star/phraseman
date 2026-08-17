@@ -162,33 +162,49 @@ export function readBusinessKnowledge(directory?: string): readonly KnowledgeFil
 }
 
 /**
+ * Порядок важности знания при нехватке места.
+ *
+ * зачем именно такой (два замера, 2026-08-16 и 2026-08-17): лимит держит от
+ * утопления модели в контексте, но при переполнении кто-то обязан уступить.
+ * Сначала я поставил вперёд общие файлы — и поймал зеркальную поломку: у денег
+ * common(1373) + product(3206) съедали место, и вылетал money.md, то есть
+ * СВОИ ЖЕ запреты департамента («не предлагать ужесточать возвраты»). Поймал
+ * тест llm_enricher, а не глаз.
+ *
+ * Правильный порядок по цене ошибки:
+ *   1. common.md  — запреты уровня продукта, нарушение стоит дороже всего;
+ *   2. свой файл  — запреты департамента, ради которых он и существует;
+ *   3. product.md — справочник «что есть в приложении», полезен, но потеря
+ *                   его не заставит советовать отвергнутое.
+ */
+const KNOWLEDGE_PRIORITY: readonly string[] = Object.freeze([COMMON_KNOWLEDGE_FILE]);
+
+function knowledgeByPriority(files: readonly KnowledgeFile[]): readonly KnowledgeFile[] {
+  const rank = (file: KnowledgeFile): number => {
+    const name = file.name.toLowerCase();
+    const top = KNOWLEDGE_PRIORITY.indexOf(name);
+    if (top >= 0) return top;
+    // Справочник о продукте уступает файлу департамента: он информирует,
+    // а тот запрещает.
+    if (name === PRODUCT_KNOWLEDGE_FILE) return KNOWLEDGE_PRIORITY.length + 1;
+    return KNOWLEDGE_PRIORITY.length;
+  };
+  return Object.freeze([...files].sort((a, b) => rank(a) - rank(b)));
+}
+
+/**
  * Собирает знание в текст для промпта.
  *
  * зачем обрезать, а не отдавать целиком: см. KNOWLEDGE_MAX_CHARS. Обрезка
  * идёт по файлам, а не по символам — половина правила хуже его отсутствия.
  *
- * зачем общие файлы первыми (замер 2026-08-16): порядок задавал readdirSync,
- * то есть алфавит. Добавив product.md, я померил, что доходит до департамента,
- * и у денег он выпадал ЦЕЛИКОМ и молча: common+money уже съедали лимит, а
- * product по алфавиту шёл последним. Департамент при этом бодро отвечал бы про
- * продукт, которого не знает. Общее знание нужно всем — оно идёт вперёд, свой
- * файл департамента уступает ему место.
- *
  * зачем continue, а не break: один толстый файл отсекал ВСЁ, что за ним, даже
  * если следующий файл — пара строк и место под него есть.
  */
-function sharedKnowledgeFirst(files: readonly KnowledgeFile[]): readonly KnowledgeFile[] {
-  const rank = (file: KnowledgeFile): number => {
-    const index = SHARED_KNOWLEDGE_FILES.indexOf(file.name.toLowerCase());
-    return index < 0 ? SHARED_KNOWLEDGE_FILES.length : index;
-  };
-  return Object.freeze([...files].sort((a, b) => rank(a) - rank(b)));
-}
-
 export function renderKnowledge(files: readonly KnowledgeFile[]): string {
   const blocks: string[] = [];
   let size = 0;
-  for (const file of sharedKnowledgeFirst(files)) {
+  for (const file of knowledgeByPriority(files)) {
     const block = file.raw.trim();
     if (size + block.length > KNOWLEDGE_MAX_CHARS) continue;
     blocks.push(block);

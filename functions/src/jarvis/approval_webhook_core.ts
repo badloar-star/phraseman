@@ -198,10 +198,17 @@ export async function handleApprovalCallback(
   const department = String(outcome.doc.department ?? '');
   const isSupportCancel = department.startsWith('support_email_cancel:');
   const isSupport = department.startsWith('support_email:') || isSupportCancel;
+  // зачем «отправляю» вместо «поставлен в очередь отправки» (владелец,
+  // 2026-08-17: «я одобрил, но сообщение не отправилось»): прежний текст
+  // звучал как гарантия доставки, а отправка идёт следующим шагом и может не
+  // состояться — например, черновик отменяется как устаревший. Владелец видел
+  // «поставлен в очередь» и считал дело закрытым, хотя письмо не ушло.
+  // Про исход теперь сообщает отдельное уведомление, поэтому здесь честнее
+  // сказать «начал», а не «сделал».
   const answerText = isSupportCancel
     ? 'Отправка отменена. Письмо осталось в «Gmail Support Inbox».'
     : isSupport
-      ? (parsed.action === 'approve' ? 'Ответ поставлен в очередь отправки.' : 'Пришлите ваши правки следующим сообщением.')
+      ? (parsed.action === 'approve' ? 'Отправляю — сообщу, когда письмо уйдёт.' : 'Пришлите ваши правки следующим сообщением.')
       : (parsed.action === 'approve' ? 'Принято, подтверждено.' : 'Принято, отклонено.');
   const messageId = typeof message.message_id === 'number' ? message.message_id : null;
   // зачем messageId может отсутствовать: старые/нестандартные апдейты Telegram

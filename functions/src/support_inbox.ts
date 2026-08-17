@@ -32,7 +32,7 @@ import { ADMIN_ALERT_BOT_TOKEN, sendTelegramAlert } from './admin_alerts';
 import { decideSpamAction, buildSpamTriagePrompt, parseSpamVerdict } from './jarvis/support_spam_triage';
 import { checkAndReserveBudget, recordActualSpend } from './jarvis/llm_budget';
 import { actualEnrichmentCostUsd } from './jarvis/llm_enricher_cost';
-import { retrieveSupportRepositoryContext, renderSupportRepositoryContext } from './support_repository_context';
+import { retrieveSupportRepositoryContext, renderSupportRepositoryContext, supportEvidenceFingerprint } from './support_repository_context';
 import { supportReplyIsCustomerReady } from './support_communication_bible';
 import {
   SUPPORT_CONVERSATION_SCHEMA_VERSION,
@@ -81,6 +81,7 @@ import {
   SUPPORT_TELEGRAM_AUTO_SEND_DELAY_MS,
   SUPPORT_TELEGRAM_JOB_LEASE_MS,
   buildSupportAttentionRequiredNotice,
+  buildSupportSendCancelledNotice,
   buildSupportTelegramReviewPreview,
   isSupportEmailDepartment,
   parseSupportReviewApprovalToken,
@@ -171,6 +172,18 @@ export interface SupportOwnerNotification {
   leaseId?: string;
   leaseExpiresAtMs?: number;
   lastErrorCode?: string;
+  /**
+   * Причина, по которой одобренный ответ так и не ушёл.
+   *
+   * зачем отдельное поле, а не autoReply.reason (владелец, 2026-08-17: «я
+   * одобрил, но сообщение не отправилось»): autoReply.reason перезаписывается
+   * следующей попыткой, и к моменту доставки уведомления там уже стоит причина
+   * НОВОГО прогона. Владелец получил бы объяснение не того события, которое
+   * его волнует. Здесь причина фиксируется на момент отмены и не меняется.
+   */
+  sendCancelledReason?: string;
+  /** Готовится ли новый ответ автоматически — от этого зависит совет владельцу. */
+  sendCancelledWillRetry?: boolean;
 }
 
 export interface RawEmail {
@@ -242,6 +255,21 @@ export interface SupportInboxDoc {
     leaseExpiresAtMs?: number;
     operationId?: string;
     knowledgeFingerprint?: string;
+    /**
+     * Отпечаток ТОЛЬКО процитированных фрагментов кода.
+     *
+     * зачем рядом с knowledgeFingerprint (владелец, 2026-08-17: «я одобрил, но
+     * сообщение не отправилось»): knowledgeFingerprint считается по ВСЕЙ
+     * кодовой базе и меняется на каждом деплое — даже от чужой правки в другой
+     * части проекта. Готовый ответ отменялся как устаревший ровно в момент
+     * нажатия кнопки. Смысл проверки — «не устарели ли ФАКТЫ, на которых
+     * построен ответ», а факты живут в процитированных фрагментах.
+     *
+     * Пусто у промежуточных ответов: они ничего не цитируют.
+     */
+    evidenceFingerprint?: string;
+    /** Какие именно фрагменты процитированы — нужны, чтобы пересчитать отпечаток. */
+    evidenceIds?: readonly string[];
     policyVersion?: number;
     instructionsRevision?: number;
     instructionsFingerprint?: string;
@@ -902,9 +930,22 @@ async function generateDraftForDoc(
   return buildCouncilReviewedSupportReply({ apiKey, model, doc, ownerInstructions, db, nowMs });
 }
 
+/**
+ * Нужен ли вызов модели, или ответ соберётся без неё.
+ *
+ * зачем условие обязано совпадать с buildCouncilReviewedSupportReply
+ * (2026-08-17): здесь решается, платить ли за вызов модели, а там — какой
+ * ответ вернуть. Разошлись — либо платим зря, либо получаем ответ без модели
+ * там, где она была нужна. Это тот класс бага, что в этой сессии вылезал
+ * четыре раза: две копии одного правила расходятся молча.
+ */
 function supportCouncilNeedsModel(doc: SupportInboxDoc): boolean {
   const issue = supportIssueText(doc);
-  return !isPremiumAlternativePaymentQuestion(issue) && classifySupportRisk(issue) === 'safe';
+  const risk = classifySupportRisk(issue);
+  // Детерминированный маршрут оплаты покрывает safe и billing — см. там же.
+  const deterministicRoute = (risk === 'safe' || risk === 'billing')
+    && isPremiumAlternativePaymentQuestion(issue);
+  return !deterministicRoute && risk === 'safe';
 }
 
 // ── I/O: чтение конфигурации (подпись) ─────────────────────────────────────────
@@ -1792,6 +1833,11 @@ async function saveGeneratedSupportDraft(
         updatedAt: now,
         policyVersion: SUPPORT_AUTO_POLICY_VERSION,
         knowledgeFingerprint: outcome.knowledgeFingerprint,
+        // Отпечаток цитат: см. поле evidenceFingerprint в SupportInboxDoc.
+        ...(outcome.evidenceFingerprint ? {
+          evidenceFingerprint: outcome.evidenceFingerprint,
+          evidenceIds: outcome.evidenceIds ?? [],
+        } : {}),
         grounded: true,
         reason: outcome.reason,
         autoSendAtMs: null,
@@ -1897,6 +1943,11 @@ export async function generateAgentManagerSupportDraft(input: Readonly<{
         updatedAt: now,
         policyVersion: SUPPORT_AUTO_POLICY_VERSION,
         knowledgeFingerprint: outcome.knowledgeFingerprint,
+        // Отпечаток цитат: см. поле evidenceFingerprint в SupportInboxDoc.
+        ...(outcome.evidenceFingerprint ? {
+          evidenceFingerprint: outcome.evidenceFingerprint,
+          evidenceIds: outcome.evidenceIds ?? [],
+        } : {}),
         grounded: true,
         reason: outcome.reason,
         autoSendAtMs: null,
@@ -2456,6 +2507,11 @@ export async function claimSupportReplyDispatch(
           tx.set(messageRef, {
             replyGate: { ...message.replyGate, state: 'cancelled', updatedAt: nowIso },
             autoReply: { ...message.autoReply, state: 'retry', updatedAt: nowIso, autoSendAtMs: null, reason: 'support_instructions_changed' },
+            ownerNotification: {
+              state: 'pending', attempts: 0, updatedAt: nowIso,
+              sendCancelledReason: 'support_instructions_changed',
+              sendCancelledWillRetry: true,
+            },
           }, { merge: true });
         }
         return { kind: 'replay', state: 'cancelled' };
@@ -2475,10 +2531,27 @@ export async function claimSupportReplyDispatch(
       // нечему. Отменять его из-за чужого деплоя значит держать человека без
       // ответа тем дольше, чем активнее идёт разработка.
       const holdingNeedsNoRepositoryFacts = message.autoReply?.holding === true;
+      // зачем сверять ЦИТАТЫ, а не всю кодовую базу: отпечаток репозитория
+      // меняется от любой правки в проекте, включая чужую и не связанную с
+      // письмом. Факты ответа живут в процитированных фрагментах — если они
+      // те же, ответ остался правдой, сколько бы деплоев ни прошло.
+      // Меняется сам процитированный код — отпечаток расходится, и ответ
+      // отменяется, как и должен.
+      //
+      // Пустой отпечаток означает «цитат нет» (старый черновик, созданный до
+      // этой правки, или ответ без ссылок). Тогда падаем на прежнюю проверку
+      // по всей базе: ослаблять защиту там, где не знаем состава фактов,
+      // нельзя — ложное утверждение клиенту дороже лишней пересборки.
+      const citedEvidenceFingerprint = String(message.autoReply?.evidenceFingerprint ?? '');
+      const citedEvidenceIds = Array.isArray(message.autoReply?.evidenceIds)
+        ? message.autoReply.evidenceIds
+        : [];
+      const factsUnchanged = citedEvidenceFingerprint && citedEvidenceIds.length > 0
+        ? citedEvidenceFingerprint === supportEvidenceFingerprint(currentKnowledge, citedEvidenceIds)
+        : message.autoReply?.knowledgeFingerprint === currentKnowledge.sourceFingerprint;
       if (!currentKnowledge.trustworthy
         || (actor.actorUid === 'system:jarvis-support-3h-deadline' && currentKnowledge.dirty)
-        || (!holdingNeedsNoRepositoryFacts
-          && message.autoReply?.knowledgeFingerprint !== currentKnowledge.sourceFingerprint)) {
+        || (!holdingNeedsNoRepositoryFacts && !factsUnchanged)) {
         tx.update(operationRef, {
           state: 'cancelled', reconciledAt: nowIso, lastErrorCode: 'support_knowledge_changed',
         });
@@ -2488,6 +2561,14 @@ export async function claimSupportReplyDispatch(
             autoReply: {
               ...message.autoReply, state: 'retry', updatedAt: nowIso, autoSendAtMs: null,
               nextAttemptAtMs: Date.now(), reason: 'support_knowledge_changed',
+            },
+            // зачем уведомлять (владелец, 2026-08-17): раньше отмена была
+            // полностью беззвучной — нажал кнопку, увидел «поставлен в очередь
+            // отправки», и всё. Письмо не ушло, узнать негде.
+            ownerNotification: {
+              state: 'pending', attempts: 0, updatedAt: nowIso,
+              sendCancelledReason: 'support_knowledge_changed',
+              sendCancelledWillRetry: true,
             },
           }, { merge: true });
         }
@@ -2508,6 +2589,14 @@ export async function claimSupportReplyDispatch(
           tx.set(messageRef, {
             replyGate: { ...message.replyGate, state: 'cancelled', updatedAt: nowIso },
             autoReply: { ...message.autoReply, state: 'attention_required', updatedAt: nowIso, autoSendAtMs: null, reason: 'support_quality_not_customer_ready' },
+            // Здесь willRetry=false: состояние attention_required означает, что
+            // автоматика сдалась и дальше нужен человек. Обещать «готовлю новый
+            // ответ» было бы врать — владелец ждал бы карточку, которой нет.
+            ownerNotification: {
+              state: 'pending', attempts: 0, updatedAt: nowIso,
+              sendCancelledReason: 'support_quality_not_customer_ready',
+              sendCancelledWillRetry: false,
+            },
           }, { merge: true });
         }
         return { kind: 'replay', state: 'cancelled' };
@@ -2671,6 +2760,14 @@ async function markSupportReplyDeliveryUnknown(
             lastErrorCode: errorCode.slice(0, 120),
           },
         } : {}),
+        // зачем willRetry=false и предупреждение про «Отправленные»: доставка
+        // могла состояться, но подтверждения не пришло. Автоматический повтор
+        // здесь отправил бы клиенту ВТОРОЕ письмо, поэтому решает человек.
+        ownerNotification: {
+          state: 'pending', attempts: 0, updatedAt: nowIso,
+          sendCancelledReason: 'delivery_unknown',
+          sendCancelledWillRetry: false,
+        },
       }, { merge: true });
     }
     if (reviewRef && reviewSnap?.exists
@@ -2922,6 +3019,9 @@ type SupportCouncilOutcome =
     readonly grounded: true;
     readonly reason: string;
     readonly knowledgeFingerprint: string;
+    /** Отпечаток процитированных фрагментов — см. поле в SupportInboxDoc. */
+    readonly evidenceFingerprint?: string;
+    readonly evidenceIds?: readonly string[];
   }
   | {
     // Grounding failed, but the customer still gets the safe holding reply
@@ -2984,11 +3084,21 @@ async function buildCouncilReviewedSupportReply(input: {
   // первым и перехватывал письма, которые на самом деле про другое. Женщина
   // написала, что не может войти в аккаунт, — получила инструкцию по покупке
   // Premium. Корневую причину (слова из процитированной переписки) закрыл
-  // supportIssueText, но сам порядок оставался хрупким: письмо «оплатил, а
-  // доступа нет» — это billing/account, там нужен человек, а не заготовка про
-  // способы оплаты. Заготовка уместна ровно тогда, когда весь вопрос человека
-  // и есть «как заплатить», то есть когда риск safe.
-  if (risk === 'safe' && isPremiumAlternativePaymentQuestion(issue)) {
+  // supportIssueText, но порядок оставался хрупким: вопрос про аккаунт не
+  // должен уходить к заготовке про оплату ни при каких условиях.
+  //
+  // зачем 'safe' И 'billing', а не только 'safe' (поймал тест
+  // support_inbox_triage, замер 2026-08-17): классификатор помечает billing
+  // ЛЮБОЙ вопрос про оплату, включая «как оплатить из России» — то есть ровно
+  // тот случай, для которого заготовка и создана. Условие «только safe»
+  // отключило бы её полностью, и владелец получал бы промежуточный ответ на
+  // простейший вопрос со готовым ответом.
+  //
+  // Жалобы на списания, двойные платежи, возвраты и «оплатил, а доступа нет»
+  // отсекает сама isPremiumAlternativePaymentQuestion — первым же условием.
+  // Здесь остаётся отсечь чужие темы: аккаунт, безопасность, приватность.
+  const premiumRouteAllowedRisk = risk === 'safe' || risk === 'billing';
+  if (premiumRouteAllowedRisk && isPremiumAlternativePaymentQuestion(issue)) {
     return {
       kind: 'ready',
       reply: buildPremiumAlternativePaymentReply(issue),
@@ -3051,6 +3161,11 @@ async function buildCouncilReviewedSupportReply(input: {
       grounded: true,
       reason: first.selected.reason,
       knowledgeFingerprint: first.draftResult.context.sourceFingerprint,
+      evidenceFingerprint: supportEvidenceFingerprint(
+        first.draftResult.context,
+        first.draftResult.envelope?.evidenceIds ?? [],
+      ),
+      evidenceIds: Object.freeze([...(first.draftResult.envelope?.evidenceIds ?? [])]),
     });
   }
   const repairable = supportAutoReplyFailureIsRepairable(first.selected.reason)
@@ -3078,6 +3193,11 @@ async function buildCouncilReviewedSupportReply(input: {
       grounded: true,
       reason: repaired.selected.reason,
       knowledgeFingerprint: repaired.draftResult.context.sourceFingerprint,
+      evidenceFingerprint: supportEvidenceFingerprint(
+        repaired.draftResult.context,
+        repaired.draftResult.envelope?.evidenceIds ?? [],
+      ),
+      evidenceIds: Object.freeze([...(repaired.draftResult.envelope?.evidenceIds ?? [])]),
     });
   }
   return holdingOrAttention(`auto_repair_exhausted_${repaired.selected.reason}`);
@@ -6296,9 +6416,20 @@ export async function runSupportOwnerAlertRetryCron(nowMs: number = Date.now()):
   for (const doc of snap.docs) {
     try {
       const message = doc.data() as SupportInboxDoc;
-      const text = message.autoReply?.state === 'attention_required'
-        ? buildSupportAttentionRequiredNotice(message.autoReply.reason)
-        : SUPPORT_OWNER_ALERT_RETRY_TEXT;
+      // зачем причина отмены ПЕРЕД остальными вариантами (владелец,
+      // 2026-08-17: «я одобрил, но сообщение не отправилось»): это самое
+      // важное, что владелец должен узнать. Прежде здесь приходило безликое
+      // «в поддержке ждёт новое письмо» — и человек не понимал, что его
+      // нажатие ни к чему не привело.
+      const cancelledReason = message.ownerNotification?.sendCancelledReason;
+      const text = cancelledReason
+        ? buildSupportSendCancelledNotice(
+          cancelledReason,
+          message.ownerNotification?.sendCancelledWillRetry === true,
+        )
+        : message.autoReply?.state === 'attention_required'
+          ? buildSupportAttentionRequiredNotice(message.autoReply.reason)
+          : SUPPORT_OWNER_ALERT_RETRY_TEXT;
       const result = await deliverSupportOwnerAlert({
         db, messageDocId: doc.id, botToken: ADMIN_ALERT_BOT_TOKEN.value(), text, nowMs,
       });

@@ -194,6 +194,52 @@ function escapeTelegramHtml(value: unknown): string {
 const TELEGRAM_SAFE_FINAL_TEXT_MAX = 2_900;
 const TELEGRAM_SENSITIVE = /(?:\b(?:\d[ -]*?){13,19}\b|\b\d{4,8}\b|\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b|(?:api[_ -]?key|password|парол|код подтверждения|verification code|bearer)\s*[:=]\s*\S+)/i;
 
+/**
+ * Почему одобренный ответ так и не ушёл.
+ *
+ * зачем (владелец, 2026-08-17: «я одобрил, но сообщение не отправилось»): при
+ * отмене подготовленного черновика письмо тихо возвращалось в очередь, а в
+ * Telegram не приходило НИЧЕГО. Владелец нажимал кнопку, видел «поставлен в
+ * очередь отправки» — и считал дело закрытым. Женщина ждала ответа, которого
+ * никто не отправил, и узнать об этом было негде.
+ *
+ * Молчание здесь дороже любой другой недоработки: оно превращает нажатие
+ * кнопки в ложное обещание. Поэтому у каждой причины отмены есть человеческое
+ * объяснение и понятный следующий шаг.
+ */
+export function buildSupportSendCancelledNotice(reason: unknown, willRetry: boolean): string {
+  const code = String(reason ?? '');
+  let explanation = 'Черновик перестал быть актуальным до отправки.';
+  if (code === 'support_knowledge_changed') {
+    explanation = 'Пока ответ ждал одобрения, изменился код приложения — Джарвис не отправляет ответ,'
+      + ' собранный по устаревшим данным, чтобы не написать клиенту неправду.';
+  } else if (code === 'support_instructions_changed') {
+    explanation = 'Пока ответ ждал одобрения, изменились ваши инструкции для поддержки.';
+  } else if (code === 'support_quality_not_customer_ready') {
+    explanation = 'Ответ не прошёл проверку качества перед отправкой.';
+  } else if (code === 'signature_changed') {
+    explanation = 'Пока ответ ждал одобрения, изменилась подпись писем.';
+  } else if (code === 'draft_changed') {
+    explanation = 'Черновик успели изменить в админке.';
+  } else if (code === 'automation_revision_changed' || code === 'automation_mode_changed') {
+    explanation = 'Изменились настройки автоответов.';
+  } else if (code === 'confirmation_expired') {
+    explanation = 'Подтверждение просрочено — на отправку даётся ограниченное время.';
+  } else if (code === 'delivery_unknown') {
+    explanation = 'Отправка началась, но почтовый сервер не подтвердил доставку.'
+      + ' Проверьте папку «Отправленные» в Gmail, прежде чем отправлять снова.';
+  }
+  return [
+    '🚫 <b>Письмо НЕ отправлено</b>',
+    '',
+    explanation,
+    '',
+    willRetry
+      ? 'Джарвис готовит новый ответ — он придёт сюда отдельной карточкой. Ничего делать не нужно.'
+      : '<i>Откройте админку → Gmail Support Inbox и отправьте ответ вручную.</i>',
+  ].join('\n');
+}
+
 export function buildSupportAttentionRequiredNotice(reason: unknown): string {
   const code = String(reason ?? '');
   if (code === 'telegram_preview_unsafe') {

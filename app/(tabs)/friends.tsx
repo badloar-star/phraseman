@@ -2990,6 +2990,7 @@ export default function FriendsTabScreen() {
             model={weeklyChestModel}
             onClaim={handleClaimWeeklyChest}
             claimBusy={chestClaimBusy}
+            ownerVisible={friendsTabVisible}
           />
         )}
     </>

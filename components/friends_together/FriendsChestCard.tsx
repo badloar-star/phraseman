@@ -20,6 +20,7 @@ import TonalSurface from '../TonalSurface';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { WeeklyChestModel } from '../../app/friends_together/weekly_chest_model';
 
@@ -51,6 +52,8 @@ export interface FriendsChestCardProps {
   /** Кнопка «Открыть» гаснет мгновенно после тапа — до ответа сервера (optimistic). */
   claimBusy?: boolean;
   testID?: string;
+  /** Вкладка Друзья видима (runtimeOwnerId === 'friends') — гейт бесконечного покачивания. */
+  ownerVisible?: boolean;
 }
 
 /** Статус-пилюля — ОДНО слово/фраза, без цифр (закон макета). */
@@ -72,10 +75,13 @@ function TierTick({ leftPercent }: { leftPercent: number }) {
   );
 }
 
-function FriendsChestCard({ model, onClaim, claimBusy = false, testID = 'friends-chest-card' }: FriendsChestCardProps) {
+function FriendsChestCard({ model, onClaim, claimBusy = false, ownerVisible = true, testID = 'friends-chest-card' }: FriendsChestCardProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
+  // зачем: бесконечное покачивание сундука обязано иметь владельца (runtime_lifecycle_ratchet /
+  // perf_freeze_contract) — крутится только пока вкладка Друзья в фокусе и приложение активно.
+  const runtimeActive = useRuntimeActive(ownerVisible);
   const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
     triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
@@ -91,7 +97,7 @@ function FriendsChestCard({ model, onClaim, claimBusy = false, testID = 'friends
 
   const rock = useSharedValue(0);
   useEffect(() => {
-    if (!model.canClaim || reduceMotion) {
+    if (!model.canClaim || reduceMotion || !runtimeActive) {
       cancelAnimation(rock);
       rock.value = 0;
       return;
@@ -105,7 +111,7 @@ function FriendsChestCard({ model, onClaim, claimBusy = false, testID = 'friends
       true,
     );
     return () => cancelAnimation(rock);
-  }, [model.canClaim, reduceMotion, rock]);
+  }, [model.canClaim, reduceMotion, runtimeActive, rock]);
   const rockStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${rock.value}deg` }] }));
 
   const openLabel = L('Открыть', 'Відкрити', 'Abrir', 'Abrir', 'Mở', 'Buka', 'Aç', 'Otwórz');

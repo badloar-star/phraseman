@@ -116,6 +116,9 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/CleanOnboarding.tsx': guarded('Onboarding breathing loop uses screen focus and AppState.'),
   'components/CollectibleArtFrame.tsx': guarded('Collectible effects use screen focus and AppState.'),
   'components/HoloFoilCard.tsx': guarded('Holo idle motion uses screen focus and AppState.'),
+  // зачем (2026-08-17, «Вместе»): покачивание готового сундука недели — только пока вкладка
+  // Друзья видима и приложение активно (useRuntimeActive(ownerVisible)), иначе гасится.
+  'components/friends_together/FriendsChestCard.tsx': runtime('Weekly friends chest idle rock runs only while the Friends tab owns the runtime.', ['useRuntimeActive(ownerVisible)', 'cancelAnimation(rock)']),
   'components/HomeTheoAdvisorCard.tsx': guarded('Theo card float uses screen focus and AppState.'),
   'components/LeagueBonusAvailableModal.tsx': owned('League bonus modal unmounts while hidden.', ['if (!visible || !availability) return null', 'if (!visible) return']),
   'components/LeagueChestOpenModal.tsx': owned('League chest motion is visible-only and unmounts while hidden.', ['if (!visible) return null', 'if (!visible) return']),

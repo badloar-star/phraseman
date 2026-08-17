@@ -181,13 +181,33 @@ export function createV2CourseActiveCatalogHandlerV1(
       raw = await resolve(input, stableAccountId);
     } catch (error) {
       if (error instanceof HttpsError) throw error;
-      throw new HttpsError("unavailable", "course_catalog_unavailable");
+      // зачем: глухое «course_catalog_unavailable» скрывало настоящую причину и
+      // заставляло искать вслепую (владелец 2026-08-16: «может ты начнёшь логи
+      // читать, чтобы точно знать, в чём дело»). Текст ошибки безопасен: он не
+      // содержит ни данных ученика, ни правильных ответов — только имя сбоя и
+      // место в коде.
+      const message = error instanceof Error ? error.message : String(error);
+      const where =
+        error instanceof Error && error.stack
+          ? error.stack.split("\n").slice(1, 3).join(" | ")
+          : "";
+      throw new HttpsError(
+        "unavailable",
+        `course_catalog_unavailable: ${message}${where ? ` @ ${where}` : ""}`,
+      );
     }
     let catalog;
     try {
       catalog = parseLearningV2ActiveCourseCatalogV1(raw);
-    } catch {
-      throw new HttpsError("data-loss", "course_catalog_projection_invalid");
+    } catch (error) {
+      // зачем: та же причина, что у course_catalog_unavailable выше — глухой код
+      // ошибки заставлял искать вслепую. Текст безопасен: имя сбоя и место, без
+      // данных ученика и без правильных ответов.
+      const message = error instanceof Error ? error.message : String(error);
+      throw new HttpsError(
+        "data-loss",
+        `course_catalog_projection_invalid: ${message}`,
+      );
     }
     if (
       catalog.environment !== input.environment ||

@@ -270,7 +270,18 @@ export function createV2CourseReleasedSessionHandlerV3(
       resolved = await resolve(input, stableAccountId);
     } catch (error) {
       if (error instanceof HttpsError) throw error;
-      throw new HttpsError("unavailable", "course_session_unavailable");
+      // зачем: та же причина, что у каталога — глухой код ошибки заставлял
+      // искать вслепую. Текст безопасен: имя сбоя и место, без данных ученика
+      // и без правильных ответов заданий.
+      const message = error instanceof Error ? error.message : String(error);
+      const where =
+        error instanceof Error && error.stack
+          ? error.stack.split("\n").slice(1, 3).join(" | ")
+          : "";
+      throw new HttpsError(
+        "unavailable",
+        `course_session_unavailable: ${message}${where ? ` @ ${where}` : ""}`,
+      );
     }
     const checked = exactResolved(input, resolved);
     return Object.freeze({

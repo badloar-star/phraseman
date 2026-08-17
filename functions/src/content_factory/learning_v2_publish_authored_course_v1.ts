@@ -19,6 +19,10 @@ import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { hasAdminRole } from "../admin/roles";
 import { hasPermission } from "../admin/permissions";
 import { writeImmutableObject } from "./artifact_storage";
+// зачем: путь пакета включает хеш содержимого, а он нужен ДО записи. Считать
+// его надо ровно тем же сериализатором, каким пишет writeImmutableObject —
+// иначе хеш в пути разойдётся с хешем записанного файла.
+import { serializeArtifactPayload } from "./artifact_repository";
 import {
   materializeV2UnifiedCourseReleaseRootV2,
   v2UnifiedCourseLessonIndexObjectPathV2,
@@ -27,6 +31,7 @@ import { createFirebaseAdminV2UnifiedCourseReleaseRepositoryV2 } from "./v2_unif
 import {
   encodeLearningV2CourseLessonReleaseIndexV1,
   materializeLearningV2CourseLessonReleaseIndexV1,
+  learningV2CourseSessionPackageObjectPathV1,
   LEARNING_V2_COURSE_SESSION_RELEASE_PACKAGE_SCHEMA_V1,
 } from "../../../modules/learning-v2/runtime/course_lesson_release_index_v1";
 import {
@@ -164,16 +169,48 @@ export async function publishAuthoredLearningV2Course(
   const releaseId = `authored-${input.lessonOrdinal}-${attemptFingerprint.slice(0, 24)}`;
 
   // 1. Пакет каждой сессии уезжает в Storage и возвращает своё закрепление.
+  //
+  // зачем (инцидент 2026-08-17): раньше путь строился здесь вручную и плоско —
+  // `<releaseId>/01.json`. Но индекс урока вычисляет путь САМ, канонической
+  // функцией: `sha256(releaseId)/lesson-01/sessions/01/<отпечаток>/<хеш>.json`.
+  // Пути расходились, файлы лежали не там, где их искал индекс, и приложение
+  // получало «course_catalog_unavailable» при живом опубликованном релизе.
+  // Теперь обе стороны зовут ОДНУ функцию — разойтись физически не могут.
+  //
+  // Хеш содержимого нужен ДО записи (он часть пути), поэтому считаем его здесь,
+  // а после записи сверяем с тем, что вернуло хранилище: несовпадение означало
+  // бы, что записалось не то, что мы посчитали.
   const sessionInputs = [];
   for (const session of deps.sessions) {
-    const objectPath = `learning-v2/course-session-packages/${releaseId}/${String(
-      session.sessionOrdinal,
-    ).padStart(2, "0")}.json`;
+    const contentHashAhead = createHash("sha256")
+      .update(serializeArtifactPayload(session.packageBody))
+      .digest("hex");
+    const objectPath = learningV2CourseSessionPackageObjectPathV1({
+      releaseId,
+      lessonOrdinal: input.lessonOrdinal,
+      sessionOrdinal: session.sessionOrdinal,
+      packageFingerprint: contentHashAhead,
+      contentHash: contentHashAhead,
+    });
     const receipt = await writeImmutableObject(
       deps.bucket,
       objectPath,
       session.packageBody,
+      // зачем: закрепления релиза сверяют contentType и ждут charset.
+      // Без него чтение каталога падает с metadata_mismatch (2026-08-17).
+      "application/json; charset=utf-8",
     );
+    // зачем: путь уже содержит предсчитанный хеш. Если хранилище посчитало
+    // другой — значит записалось не то, что мы хешировали, и ссылка в индексе
+    // будет вести в пустоту. Падаем громко здесь, а не молча позже: именно
+    // молчаливое расхождение путей и дало «course_catalog_unavailable».
+    if (receipt.contentHash !== contentHashAhead) {
+      throw new HttpsError(
+        "internal",
+        `package_hash_mismatch: сессия ${session.sessionOrdinal}, ` +
+          `ожидали ${contentHashAhead.slice(0, 12)}, получили ${receipt.contentHash.slice(0, 12)}`,
+      );
+    }
     sessionInputs.push({
       courseSessionId: session.courseSessionId,
       learningOutcomeKind: session.learningOutcomeKind,
@@ -213,6 +250,10 @@ export async function publishAuthoredLearningV2Course(
     deps.bucket,
     indexPath,
     JSON.parse(indexRaw),
+    // зачем: корень релиза сверяет contentType индекса и ждёт charset. Без него
+    // чтение каталога падало с metadata_mismatch — четыре поля из пяти совпадали,
+    // а пятое рубило весь курс (2026-08-17).
+    "application/json; charset=utf-8",
   );
 
   // 3. Подтверждение владельца: кто и почему разрешил публикацию.
@@ -227,6 +268,9 @@ export async function publishAuthoredLearningV2Course(
       reason: input.reason,
       sessionCount: deps.sessions.length,
     },
+    // зачем: подтверждение владельца тоже закреплено в корне и сверяется по
+    // contentType — тот же charset, что у индекса и пакетов (2026-08-17).
+    "application/json; charset=utf-8",
   );
 
   // 4. Корень релиза — сводка по уроку.

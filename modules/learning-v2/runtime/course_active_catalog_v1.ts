@@ -29,7 +29,9 @@ export type LearningV2ActiveCourseCatalogLessonV1 = Readonly<{
   canDo: string;
   lessonIndexFingerprint: string;
   sessions: readonly LearningV2ActiveCourseCatalogSessionV1[];
-  sessionCount: typeof LEARNING_V2_LESSON_SESSION_COUNT_V1;
+  // зачем: было прибито к 56, теперь просто число — урок может быть неполным
+  // (решение владельца). Плановая ёмкость осталась в sessionsPerLesson.
+  sessionCount: number;
   chapterCount: typeof LEARNING_V2_LESSON_CHAPTER_COUNT_V1;
 }>;
 
@@ -246,7 +248,9 @@ function build(input: MaterializeInput): LearningV2ActiveCourseCatalogV1 {
       canDo: exactText(index.canDoByLocale[input.interfaceLocale], 512),
       lessonIndexFingerprint: exactHash(index.indexFingerprint),
       sessions: Object.freeze(sessions),
-      sessionCount: LEARNING_V2_LESSON_SESSION_COUNT_V1,
+      // зачем: счёт по факту написанных сессий, а не плановые 56. Владелец
+      // разрешил неполный урок; жёсткое 56 роняло каталог при 10 готовых.
+      sessionCount: sessions.length,
       chapterCount: LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
     });
   });
@@ -278,8 +282,17 @@ function build(input: MaterializeInput): LearningV2ActiveCourseCatalogV1 {
     releaseScope: input.releaseScope,
     lessons: Object.freeze(lessons),
     lessonCount: lessons.length,
+    // зачем: sessionsPerLesson — ПЛАНОВАЯ ёмкость урока (56), она неизменна.
+    // А directSessionCount считается по ФАКТУ написанных сессий: владелец
+    // разрешил неполный урок («РАЗРЕШАЮ НЕПОЛНЫЙ УРОК УЖЕ НЕ ПЕРВЫЙ РАЗ»), и
+    // формула lessons.length × 56 требовала все 56 готовыми. Из-за неё каталог
+    // падал с learning_v2_active_course_catalog_invalid при 10 написанных
+    // сессиях — курс был опубликован, но приложение показывало NOT FOUND.
     sessionsPerLesson: LEARNING_V2_LESSON_SESSION_COUNT_V1,
-    directSessionCount: lessons.length * LEARNING_V2_LESSON_SESSION_COUNT_V1,
+    directSessionCount: lessons.reduce(
+      (total, lesson) => total + lesson.sessions.length,
+      0,
+    ),
     lessonIndexAggregate: exactHash(input.lessonIndexAggregate),
     learnerProjection: 'titles_can_do_and_session_learning_outcomes_only' as const,
     correctnessAuthority: 'local_device_only' as const,
@@ -351,9 +364,13 @@ export function parseLearningV2ActiveCourseCatalogV1(raw: string): LearningV2Act
       !expectedLesson ||
       lesson.lessonId !== expectedLesson.lessonId ||
       lesson.lessonOrdinal !== expectedLesson.lessonOrdinal ||
-      lesson.sessionCount !== LEARNING_V2_LESSON_SESSION_COUNT_V1 ||
+      // зачем: см. build() — урок может быть неполным (решение владельца).
+      // Проверяем согласованность и границы, а не равенство плановым 56:
+      // сессий должно быть хотя бы одна и не больше ёмкости урока.
+      lesson.sessionCount !== sessions.length ||
       lesson.chapterCount !== LEARNING_V2_LESSON_CHAPTER_COUNT_V1 ||
-      sessions.length !== LEARNING_V2_LESSON_SESSION_COUNT_V1
+      sessions.length < 1 ||
+      sessions.length > LEARNING_V2_LESSON_SESSION_COUNT_V1
     )
       fail();
     return Object.freeze({
@@ -385,7 +402,10 @@ export function parseLearningV2ActiveCourseCatalogV1(raw: string): LearningV2Act
     Number(value.headOperationRevision) < 1 ||
     value.lessonCount !== lessons.length ||
     value.sessionsPerLesson !== LEARNING_V2_LESSON_SESSION_COUNT_V1 ||
-    value.directSessionCount !== lessons.length * LEARNING_V2_LESSON_SESSION_COUNT_V1 ||
+    // зачем: см. build() выше — счёт по факту, а не lessons.length × 56.
+    // Неполный урок разрешён владельцем; жёсткая формула роняла весь каталог.
+    value.directSessionCount !==
+      lessons.reduce((total, lesson) => total + lesson.sessions.length, 0) ||
     value.lessonIndexAggregate !== lessonIndexAggregate
   )
     fail();
@@ -408,7 +428,14 @@ export function parseLearningV2ActiveCourseCatalogV1(raw: string): LearningV2Act
     lessons: Object.freeze(lessons),
     lessonCount: lessons.length,
     sessionsPerLesson: LEARNING_V2_LESSON_SESSION_COUNT_V1,
-    directSessionCount: lessons.length * LEARNING_V2_LESSON_SESSION_COUNT_V1,
+    // зачем: ЗЕРКАЛО build() — разбор пересобирает тело и сверяет отпечаток.
+    // Здесь оставалась старая формула lessons.length × 56, поэтому при неполном
+    // уроке отпечаток не сходился и каталог падал уже ПОСЛЕ успешной сборки.
+    // Правишь одну сторону — правь вторую в том же коммите.
+    directSessionCount: lessons.reduce(
+      (total, lesson) => total + lesson.sessions.length,
+      0,
+    ),
     lessonIndexAggregate,
     learnerProjection: 'titles_can_do_and_session_learning_outcomes_only' as const,
     correctnessAuthority: 'local_device_only' as const,

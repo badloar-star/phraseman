@@ -20,6 +20,17 @@ import {
 import { REQUIRED_SESSION_POLICY_V1 } from './session_compiler';
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from './course_topology_v1';
 
+/**
+ * Назначение каждой карточки по её месту в сессии. Кривая нагрузки:
+ * проверка после интро → практика с опорой → практика с подсказкой →
+ * извлечение из памяти → перенос → самостоятельная проверка.
+ *
+ * зачем 15, а не 12 (владелец, 2026-08-17): контракт пакета сессии требует
+ * 14–18 заданий в профиле standard, а 12 карточек давали ровно 12 заданий —
+ * публикация падала. Владелец выбрал привести содержание к контракту.
+ * Три добавленных слота продолжают ту же кривую: закрепить (retrieval),
+ * применить в новом окружении (near_transfer), проверить себя без опоры.
+ */
 export const LEARNING_V2_SESSION_CARD_PURPOSES = Object.freeze([
   'intro_check',
   'intro_check',
@@ -32,6 +43,9 @@ export const LEARNING_V2_SESSION_CARD_PURPOSES = Object.freeze([
   'near_transfer',
   'independent_check',
   'delayed_review',
+  'independent_check',
+  'retrieval_practice',
+  'near_transfer',
   'independent_check',
 ] as const);
 
@@ -357,7 +371,14 @@ export function validateLearningV2GeneratedSessionShardV1(
   );
   if (intro.sessionTemplateId !== sessionTemplateId)
     throw new Error('learning_v2_session_shard_intro_identity_invalid');
-  if (!Array.isArray(input.cards) || input.cards.length !== 12)
+  // зачем 15, а не 12 (владелец, 2026-08-17): контракт пакета сессии требует
+  // 14-18 заданий в профиле standard (3 вопроса интро + 12 карточек), а 12
+  // карточек давали ровно 12 заданий — публикация падала. См.
+  // LEARNING_V2_SESSION_CARD_PURPOSES и SESSION_PHRASE_COUNT_V1.
+  if (
+    !Array.isArray(input.cards) ||
+    input.cards.length !== LEARNING_V2_SESSION_CARD_PURPOSES.length
+  )
     throw new Error('learning_v2_session_shard_cards_invalid');
   const cards: LearningV2GeneratedSessionCardV1[] = [];
   const contentIds = new Set<string>();

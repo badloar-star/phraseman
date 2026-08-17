@@ -93,7 +93,7 @@ function makeSessionShard() {
     slotPresentationPolicy:
       "slots_1_2_3_embedded_in_intro_pages_not_repeated" as const,
   };
-  const cards = Array.from({ length: 12 }, (_, index) => {
+  const cards = Array.from({ length: LEARNING_V2_SESSION_CARD_PURPOSES.length }, (_, index) => {
     const slot = index + 1;
     const paddedSlot = String(slot).padStart(2, "0");
     const family = policy.families[index % policy.families.length];
@@ -200,13 +200,15 @@ function makeSessionShard() {
 }
 
 describe("Learning V2 all-locale generated session shard", () => {
-  test("accepts exactly one complete 12-card session across all eight interface locales", () => {
+  test("accepts exactly one complete 15-card session across all eight interface locales", () => {
     const shard = makeSessionShard();
     const validated = validateLearningV2GeneratedSessionShardV1(
       shard,
       expected,
     );
-    expect(validated.cards).toHaveLength(12);
+    expect(validated.cards).toHaveLength(
+      LEARNING_V2_SESSION_CARD_PURPOSES.length,
+    );
     expect(
       validated.intro.pages.map((page) => page.question.requiredTaskSlot),
     ).toEqual([1, 2, 3]);

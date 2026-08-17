@@ -96,6 +96,34 @@ describe('speaking session logic', () => {
     const s = beginSpeakingAttempt(initialSpeakingState(cards));
     expect(beginSpeakingAttempt(s)).toBe(s);
   });
+
+  /**
+   * Регрессия владельца (2026-08-17): панель уходила в тупиковый статус
+   * (не расслышал / завис движок / нет доступа к микрофону / устройство не
+   * распознаёт речь) без внутреннего выхода в presentation="inline", и
+   * `advanceSpeaking` без изменений отказывал в фазе 'live' — карточка
+   * зависала навсегда, «Пропустить» не работал. `force` — явный обход,
+   * которым пользуется только хост, когда точно знает: живой записи больше
+   * нет, дальше — то же самое, что честный промах/пропуск.
+   */
+  it('force пропускает мёртвую live-фазу как обычный промах, не как зачёт', () => {
+    let s = beginSpeakingAttempt(initialSpeakingState(cards));
+    // Обычный advance в live без force — блокирован, как и раньше.
+    expect(advanceSpeaking(s)).toBe(s);
+    // force снимает блокировку: карточка уходит в конец очереди, не в зачёт.
+    s = advanceSpeaking(s, { force: true });
+    expect(s.phase).toBe('idle');
+    expect(currentSpeakingCard(s)?.id).toBe('b');
+    expect(s.queue.map((c) => c.id)).toEqual(['a', 'b', 'c', 'a']);
+    expect(s.events).toEqual([]); // тихий выход из тупика — не «пропуск», честной ошибки в журнале ещё нет
+  });
+
+  it('force в фазе idle/scored ведёт себя как обычный advance (флаг не мешает штатному пути)', () => {
+    let s = initialSpeakingState(cards);
+    s = advanceSpeaking(scoreSpeakingAttempt(beginSpeakingAttempt(s), { score: 95, passed: true }), { force: true });
+    expect(currentSpeakingCard(s)?.id).toBe('b');
+    expect(s.events).toEqual([{ key: 'a', correct: true }]);
+  });
 });
 
 describe('fc_speaking_prefs_v1', () => {

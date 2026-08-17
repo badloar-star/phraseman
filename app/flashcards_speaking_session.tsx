@@ -40,7 +40,7 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
-import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
+import SpeakingPanel, { buildSpeakingPanelTheme, type SpeakingPanelStatus } from '../components/SpeakingPanel';
 import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
 import SpeakingInlineResultStars from '../components/SpeakingInlineResultStars';
 import { triLang } from '../constants/i18n';
@@ -149,6 +149,17 @@ export default function FlashcardsSpeakingSession() {
   const [flipped, setFlipped] = useState(false);
   /** Микрофон зажат прямо сейчас — SpeakingPanel слушает. */
   const [holdActive, setHoldActive] = useState(false);
+  /**
+   * Панель уткнулась в тупик (не расслышал / завис движок / нет доступа к
+   * микрофону / устройство не умеет распознавать речь) и сама выйти из него
+   * не может — presentation="inline" не имеет кнопки «Дальше»/«Закрыть» для
+   * этих статусов (только «Открыть настройки» на denied). Раньше это держало
+   * карточку залипшей навсегда: phase оставался 'live', «Пропустить» и
+   * «Послушать» были заблокированы holdActive, единственный выход — снова
+   * зажать микрофон и надеяться на удачу (а для 'unavailable' и это не
+   * помогает — устройство физически не распознаёт речь).
+   */
+  const [stuck, setStuck] = useState(false);
   const [result, setResult] = useState<ResultState | null>(null);
   const [deckPickerOpen, setDeckPickerOpen] = useState(false);
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
@@ -186,6 +197,7 @@ export default function FlashcardsSpeakingSession() {
       setTask(prefs.task);
       setFlipped(false);
       setHoldActive(false);
+      setStuck(false);
       setResult(null);
       setSession(initialSpeakingState(cards));
       setLoading(false);
@@ -246,19 +258,23 @@ export default function FlashcardsSpeakingSession() {
     clearAdvanceTimer();
     // Эталон не должен попасть в микрофон (панель тоже глушит, но лучше сразу).
     stopSpeech();
-    if (s.phase !== 'live') attemptKeyRef.current += 1;
+    // Новая попытка после тупика — пробуем снова начисто: свежий key панели
+    // (тупиковый статус мог быть на предыдущей попытке) и сброс stuck.
+    if (s.phase !== 'live' || stuck) attemptKeyRef.current += 1;
+    setStuck(false);
     setSession((cur) => beginSpeakingAttempt(cur));
     setHoldActive(true);
-  }, [clearAdvanceTimer, stopSpeech]);
+  }, [clearAdvanceTimer, stopSpeech, stuck]);
 
   const onHoldEnd = useCallback(() => {
     setHoldActive(false);
   }, []);
 
-  const goNext = useCallback((opts?: { skip?: boolean }) => {
+  const goNext = useCallback((opts?: { skip?: boolean; force?: boolean }) => {
     clearAdvanceTimer();
     stopSpeech();
     setFlipped(false);
+    setStuck(false);
     setSession((cur) => advanceSpeaking(cur, opts));
   }, [clearAdvanceTimer, stopSpeech]);
 
@@ -267,6 +283,7 @@ export default function FlashcardsSpeakingSession() {
       const s = sessionRef.current;
       if (s.phase !== 'live') return;
       setHoldActive(false);
+      setStuck(false);
       setSession((cur) => scoreSpeakingAttempt(cur, attempt));
       // Раскрываем английский — и на зачёте (подтверждение), и на промахе (учимся).
       setFlipped(task === 'recall');
@@ -292,6 +309,26 @@ export default function FlashcardsSpeakingSession() {
     setHoldActive(false);
     setSession((cur) => cancelSpeakingAttempt(cur));
   }, []);
+
+  /**
+   * Тупиковый статус движка (см. коммент у `stuck`): панель сама не сообщает
+   * ни оценку, ни закрытие — держим её видимой (текст ошибки/кнопка
+   * «Открыть настройки» никуда не денутся, key не меняем), но разблокируем
+   * выход из карточки. holdActive гасим — микрофон физически не слушает.
+   */
+  const DEAD_END_STATUSES = useMemo(
+    () => new Set(['no_speech', 'stalled', 'denied', 'unavailable']),
+    [],
+  );
+  const onPanelStatusChange = useCallback(
+    (status: string) => {
+      if (DEAD_END_STATUSES.has(status)) {
+        setHoldActive(false);
+        setStuck(true);
+      }
+    },
+    [DEAD_END_STATUSES],
+  );
 
   const onRetry = useCallback(() => {
     fcHaptic('tap');
@@ -322,6 +359,7 @@ export default function FlashcardsSpeakingSession() {
     setResult(null);
     setFlipped(false);
     setHoldActive(false);
+    setStuck(false);
     setSession(initialSpeakingState(cards));
   }, [clearAdvanceTimer]);
 
@@ -603,7 +641,13 @@ export default function FlashcardsSpeakingSession() {
   const back = task === 'recall' ? card?.en ?? '' : card?.translation ?? '';
   const attempt = session.attempt;
   const band = attempt ? speakingBand(attempt.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD) : null;
-  const holdLabel = holdActive ? labels.holdLive : phase === 'scored' ? labels.holdAgain : phase === 'live' ? '' : labels.holdIdle;
+  const holdLabel = holdActive
+    ? labels.holdLive
+    : stuck || phase === 'scored'
+      ? labels.holdAgain
+      : phase === 'live'
+        ? ''
+        : labels.holdIdle;
   const spoken = session.events.filter((e) => e.correct).length;
 
   return (
@@ -677,6 +721,7 @@ export default function FlashcardsSpeakingSession() {
                 holdActive={holdActive}
                 onScore={onScore}
                 onClose={onPanelClose}
+                onStatusChange={onPanelStatusChange}
               />
             ) : phase === 'scored' && attempt && band ? (
               <View style={[styles.resultCard, { backgroundColor: t.bgCard }]} testID="fc-speak-attempt-result">
@@ -747,18 +792,21 @@ export default function FlashcardsSpeakingSession() {
             })}
           </View>
 
-          {/* Транспорт: пропустить · зажми-и-говори · послушать */}
+          {/* Транспорт: пропустить · зажми-и-говори · послушать.
+              `stuck` (панель уткнулась в тупик без своего выхода) разблокирует
+              оба соседа: живой holdActive там уже не идёт, запись фактически
+              остановлена — держать «Пропустить»/«Послушать» под замком нечестно. */}
           <View style={styles.transportRow}>
             <TouchableOpacity
-              onPress={() => { fcHaptic('tap'); goNext({ skip: phase !== 'scored' }); }}
-              disabled={holdActive}
+              onPress={() => { fcHaptic('tap'); goNext({ skip: phase !== 'scored', force: stuck }); }}
+              disabled={holdActive && !stuck}
               testID="fc-speak-skip"
               accessibilityLabel="qa-fc-speak-skip"
               accessibilityHint={phase === 'scored' ? labels.next : labels.skip}
               accessibilityRole="button"
-              accessibilityState={{ disabled: holdActive }}
+              accessibilityState={{ disabled: holdActive && !stuck }}
               accessible
-              style={[styles.sideBtn, { backgroundColor: t.bgSurface, opacity: holdActive ? 0.5 : 1 }]}
+              style={[styles.sideBtn, { backgroundColor: t.bgSurface, opacity: holdActive && !stuck ? 0.5 : 1 }]}
             >
               <Ionicons name="play-skip-forward" size={22} color={t.textPrimary} />
             </TouchableOpacity>
@@ -773,12 +821,12 @@ export default function FlashcardsSpeakingSession() {
             />
             <TouchableOpacity
               onPress={() => { fcHaptic('tap'); speakCard(card); }}
-              disabled={holdActive}
+              disabled={holdActive && !stuck}
               testID="fc-speak-listen"
               accessibilityLabel="qa-fc-speak-listen"
               accessibilityHint={labels.listen}
               accessibilityRole="button"
-              accessibilityState={{ disabled: holdActive }}
+              accessibilityState={{ disabled: holdActive && !stuck }}
               accessible
               style={[styles.sideBtn, { backgroundColor: t.bgSurface, opacity: holdActive ? 0.5 : 1 }]}
             >

@@ -240,6 +240,15 @@ export interface SpeakingPanelProps {
   presentation?: 'modal' | 'inline';
   /** Controlled by the host's existing press-and-hold voice button. */
   holdActive?: boolean;
+  /**
+   * Fires on every internal status transition. Modal hosts don't need this
+   * (the panel owns its own retry/close UI). Inline hosts that render their
+   * own transport row (flashcards_speaking_session) do: 'no_speech' /
+   * 'stalled' / 'denied' / 'unavailable' have no in-panel recovery affordance
+   * in `presentation="inline"` — the host must react (e.g. unblock "Skip") or
+   * the recognition-hold gesture is the only way out.
+   */
+  onStatusChange?: (status: SpeakingPanelStatus) => void;
 }
 
 type SpeechModule = {
@@ -283,6 +292,7 @@ export function SpeakingPanel({
   onClose,
   presentation = 'modal',
   holdActive = false,
+  onStatusChange,
 }: SpeakingPanelProps) {
   const inlineMetrics = useSpeakingInlineMetrics();
   const speech = useMemo(() => loadSpeechModule(), []);
@@ -303,6 +313,14 @@ export function SpeakingPanel({
   const [status, setStatus] = useState<SpeakingPanelStatus>('idle');
   const statusRef = useRef<SpeakingPanelStatus>('idle');
   statusRef.current = status;
+  // зачем: dead-end statuses (no_speech/stalled/denied/unavailable) have no
+  // in-panel recovery UI in presentation="inline" — the host needs a signal
+  // to unblock its own transport (e.g. "Skip") instead of trapping the user.
+  const onStatusChangeRef = useRef(onStatusChange);
+  onStatusChangeRef.current = onStatusChange;
+  useEffect(() => {
+    onStatusChangeRef.current?.(status);
+  }, [status]);
   const [transcript, setTranscript] = useState('');
   // Пословная карта попытки (чисто/нечётко/пропущено) — показывается после
   // КАЖДОЙ оценённой попытки, и на passed, и на failed.

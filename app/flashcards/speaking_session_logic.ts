@@ -139,13 +139,20 @@ export function cancelSpeakingAttempt(s: SpeakingSessionState): SpeakingSessionS
  * Не сдал → карточка дописывается в конец очереди (кэп повторов — session_queue),
  * так фраза вернётся ещё раз до конца сессии. Пропуск без попытки (`skip`) —
  * тоже «не сдал»: иначе можно было бы прокликать сессию насквозь.
+ *
+ * `force` — хост уже знает, что фаза 'live' мертва (SpeakingPanel уткнулась в
+ * статус без внутреннего выхода — не расслышал / завис движок / нет доступа
+ * к микрофону / устройство не распознаёт речь) и держит панель на экране
+ * только чтобы показать причину, а не потому что запись всё ещё идёт. Без
+ * `force` обычный live честно блокирует «Дальше» — гонка с ещё звучащей
+ * попыткой недопустима.
  */
 export function advanceSpeaking(
   s: SpeakingSessionState,
-  opts?: { skip?: boolean },
+  opts?: { skip?: boolean; force?: boolean },
 ): SpeakingSessionState {
   const card = currentSpeakingCard(s);
-  if (!card || s.phase === 'live') return s;
+  if (!card || (s.phase === 'live' && !opts?.force)) return s;
   const passed = !opts?.skip && s.attempt?.passed === true;
   let queue = s.queue;
   let repeatCounts = s.repeatCounts;

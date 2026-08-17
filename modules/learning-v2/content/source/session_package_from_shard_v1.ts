@@ -107,10 +107,21 @@ function inputModeFor(family: string): 'ordered_tokens' | 'single_choice' | 'scr
  * Отпечатки считают сами сборщики рантайма — здесь только раскладка данных по
  * их местам. Это важно: если бы отпечатки считались тут, они разошлись бы с
  * тем, что ждёт сервер, и релиз отвергался бы целиком.
+ *
+ * зачем courseSessionId — отдельный параметр, а не shard.sessionId (инцидент
+ * 2026-08-17): шард нумерует сессию по-своему (session-episode-01-01), а
+ * топология курса и клиент ждут канонический id (lesson-01:session:01).
+ * Публикатор раньше подставлял канонический id только в индекс релиза
+ * СНАРУЖИ, а внутрь пяти детей уезжал старый — клиентская проверка
+ * introChild.courseSessionId !== expectedSessionId должна была отвергать
+ * КАЖДУЮ опубликованную сессию, просто до неё ни разу не дошла живая
+ * проверка. Теперь id — один, приходит от вызывающей стороны (топологии),
+ * и утечь в двух местах по-разному больше не может.
  */
 export function buildSessionChildBodiesFromShard(
   shard: LearningV2GeneratedSessionShardV1,
   interfaceLocale: string,
+  courseSessionId: string,
 ): Readonly<{
   intro: unknown;
   learner: unknown;
@@ -119,7 +130,6 @@ export function buildSessionChildBodiesFromShard(
   auxiliary: unknown;
 }> {
   const locale = interfaceLocale as never;
-  const courseSessionId = shard.sessionId;
 
   // Интро: три страницы, у каждой свой вопрос внизу.
   //
@@ -191,18 +201,32 @@ export function buildSessionChildBodiesFromShard(
   const capsuleEntries = [
     // Вопросы интро: правильный вариант живёт ТОЛЬКО здесь. В самом интро его
     // быть не должно, иначе ответ виден в трафике.
+    //
+    // зачем family: 'phrase_builder' (инцидент 2026-08-17): раньше стояло
+    // listen_choose → choice_token, но createLearningV2CourseSessionDeviceRunV1
+    // ЖЁСТКО требует entries[0..2].inputKind === 'text' для интро — это правило
+    // устройства, не зависящее от того, как вопрос показан на экране (там
+    // сравнение по индексу выбора). phrase_builder — простейшее семейство,
+    // дающее inputKind: 'text'. Расхождение не ловилось раньше, потому что ни
+    // один прогон не доходил до createLearningV2CourseSessionDeviceRunV1 —
+    // только до отдельной сборки/разбора капсулы саму по себе.
     ...shard.intro.pages.map((page) => ({
       interactionId: page.question.questionId,
       activityId: `activity-intro-${page.pageId}`,
       capsuleId: `capsule-intro-${page.pageId}`,
-      family: 'listen_choose' as never,
+      family: 'phrase_builder' as never,
       normalizationLocale: shard.targetLanguage,
       salt: saltFor(page.question.questionId),
-      // зачем токен, а не текст варианта: семейство listen_choose принимает
-      // только choice_token — короткий идентификатор без пробелов. Текст
-      // «I am here» нормализацию не проходит. Номер варианта устойчив и к
-      // смене языка интерфейса: в каждом языке порядок вариантов один и тот же.
-      acceptedResponses: [`choice-${page.question.correctChoiceIndex}`],
+      acceptedResponses: [
+        String(
+          (
+            page.question.choicesByLocale as Record<
+              string,
+              readonly string[]
+            >
+          )[interfaceLocale]?.[page.question.correctChoiceIndex] ?? '',
+        ),
+      ],
     })),
     ...practiceCards.map((card) => {
       // зачем: семейства с выбором (listen_choose, sound_contrast,
@@ -259,35 +283,54 @@ export function buildSessionChildBodiesFromShard(
   // Смысл правила прямой: кнопка сохранения должна быть на каждом экране, а не
   // только там, где есть задание.
   const introCards = shard.cards.filter((card) => card.taskSlot < 4);
+  // зачем interactionId переопределён для интро-карточек (инцидент
+  // 2026-08-17): card.cardId (card-episode-01-s01-01) и
+  // page.question.questionId (...:intro-q-1) — РАЗНЫЕ строки для одного и
+  // того же интро-слота. createLearningV2CourseSessionDeviceRunV1 требует,
+  // чтобы интро-порядок совпадал буквально между intro/learner/evaluatorCapsule
+  // И auxiliary (sameOrder). Раньше auxiliary брал card.cardId везде — первые
+  // три записи расходились с остальными тремя детьми, и пакет отвергался на
+  // этой сверке. Не ловилось раньше, потому что ни один прогон не доходил до
+  // createLearningV2CourseSessionDeviceRunV1 целиком.
   const auxiliary = materializeLearningV2CourseSessionAuxiliaryChildV1({
     courseSessionId,
-    entries: [...introCards, ...practiceCards].map((card) => ({
-      interactionId: card.cardId,
-      report: {
-        available: true,
-        reportContextRef: card.cardId,
-        screen: 'learning_v2_session',
-      },
-      save: materializeLearningV2CourseSessionSavablePhraseV1({
-        targetLanguage: shard.targetLanguage,
-        targetText: card.contentItem.target.text,
-        // зачем: берём только перевод. acceptedAnswers лежат в том же объекте,
-        // и утащить их сюда значило бы отдать правильные ответы на телефон.
-        meaningByLocale: Object.fromEntries(
-          card.contentItem.learnerMeanings.map((meaning) => [
-            meaning.locale,
-            meaning.value,
-          ]),
-        ) as never,
-      }),
-      voice: {
-        available: true,
-        tapToRecordAllowed: true,
-        holdToTalkAllowed: true,
-      },
-      secondErrorExplanationRef: card.cardId,
-      secondErrorExplanationByLocale: card.errorExplanationByLocale as never,
-    })) as never,
+    entries: [...introCards, ...practiceCards].map((card) => {
+      const introPage = shard.intro.pages.find(
+        (page) => page.pageOrdinal === card.taskSlot,
+      );
+      const interactionId =
+        card.taskSlot < 4 && introPage
+          ? introPage.question.questionId
+          : card.cardId;
+      return {
+        interactionId,
+        report: {
+          available: true,
+          reportContextRef: card.cardId,
+          screen: 'learning_v2_session',
+        },
+        save: materializeLearningV2CourseSessionSavablePhraseV1({
+          targetLanguage: shard.targetLanguage,
+          targetText: card.contentItem.target.text,
+          // зачем: берём только перевод. acceptedAnswers лежат в том же
+          // объекте, и утащить их сюда значило бы отдать правильные ответы на
+          // телефон.
+          meaningByLocale: Object.fromEntries(
+            card.contentItem.learnerMeanings.map((meaning) => [
+              meaning.locale,
+              meaning.value,
+            ]),
+          ) as never,
+        }),
+        voice: {
+          available: true,
+          tapToRecordAllowed: true,
+          holdToTalkAllowed: true,
+        },
+        secondErrorExplanationRef: card.cardId,
+        secondErrorExplanationByLocale: card.errorExplanationByLocale as never,
+      };
+    }) as never,
   } as never);
 
   return Object.freeze({

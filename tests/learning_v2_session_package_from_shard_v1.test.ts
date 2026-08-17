@@ -12,7 +12,7 @@ const shard = buildSessionShardFromSource(EPISODE_01_SESSION_01_SOURCE);
 
 describe("session package children built from an authored shard", () => {
   it("produces all five children the release package requires", () => {
-    const children = buildSessionChildBodiesFromShard(shard, "ru");
+    const children = buildSessionChildBodiesFromShard(shard, "ru", "lesson-01:session:01");
     for (const key of [
       "intro",
       "learner",
@@ -26,7 +26,7 @@ describe("session package children built from an authored shard", () => {
   // зачем: слоты 1–3 занимают вопросы интро, практика начинается с четвёртого.
   // Если это разъедется, человек увидит вопрос вступления дважды.
   it("starts practice at slot four and keeps intro questions out of it", () => {
-    const children = buildSessionChildBodiesFromShard(shard, "ru");
+    const children = buildSessionChildBodiesFromShard(shard, "ru", "lesson-01:session:01");
     const learner = children.learner as {
       interactions: readonly { ordinal: number }[];
       firstPracticeOrdinal: number;
@@ -47,7 +47,7 @@ describe("session package children built from an authored shard", () => {
   // зачем: правильные ответы обязаны остаться на сервере. Если они попадут в
   // learner, любой сможет вытащить их из трафика и «пройти» курс не учась.
   it("never leaks answers into what the learner receives", () => {
-    const children = buildSessionChildBodiesFromShard(shard, "ru");
+    const children = buildSessionChildBodiesFromShard(shard, "ru", "lesson-01:session:01");
     const learnerRaw = JSON.stringify(children.learner);
     expect(learnerRaw).toContain("absent_by_exact_schema");
     // Ни один правильный ответ из шарда не должен встретиться в тексте ученика.
@@ -58,7 +58,7 @@ describe("session package children built from an authored shard", () => {
   });
 
   it("carries every practice card into the learner child", () => {
-    const children = buildSessionChildBodiesFromShard(shard, "ru");
+    const children = buildSessionChildBodiesFromShard(shard, "ru", "lesson-01:session:01");
     const practiceCount = shard.cards.filter((card) => card.taskSlot >= 4).length;
     expect(
       (children.learner as { interactions: readonly unknown[] }).interactions,
@@ -75,7 +75,7 @@ describe("session package children built from an authored shard", () => {
       ),
     };
     expect(() =>
-      buildSessionChildBodiesFromShard(broken as never, "ru"),
+      buildSessionChildBodiesFromShard(broken as never, "ru", "lesson-01:session:01"),
     ).toThrow(/session_package_unsupported_family/);
   });
 });

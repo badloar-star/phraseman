@@ -44,6 +44,9 @@ import {
   parseLearningV2CourseSessionEvaluatorCapsuleChildV1,
   type LearningV2CourseSessionEvaluatorCapsuleChildV1,
 } from "../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
+import { materializeLearningV2CourseSessionAudioChildV1 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
+import { authoredLearningV2SessionShards } from "../modules/learning-v2/content/source/authored_sessions_v1";
+import { buildSessionChildBodiesFromShard } from "../modules/learning-v2/content/source/session_package_from_shard_v1";
 
 export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3 =
   "learning-v2-course-released-session-cache.v3" as const;
@@ -709,10 +712,107 @@ export async function hydrateLearningV2CourseReleasedSessionCacheV3(): Promise<v
   await readEnvelope();
 }
 
+// зачем этот блок целиком (владелец, 2026-08-17): «первый урок уже должен быть
+// в бандле». Урок 1 (10 написанных сессий) лежит в коде приложения с прошлой
+// сессии работы, но проигрыватель всё равно уходил в сеть за КАЖДОЙ сессией —
+// экран висел на «Подготавливаем занятие» и мог показать «Сессия недоступна»,
+// хотя весь текст уже был на телефоне. Здесь — прямой путь без единого
+// сетевого вызова для сессий, у которых есть локальный источник; остальные
+// уроки (пока не написаны локально) идут через сеть как раньше.
+//
+// Отпечатки релиза (activeRootFingerprint, packageFingerprint и т.д.) для
+// бандла условны: они не сверяются ни с чем внешним — createLearningV2Course-
+// SessionDeviceRunV1 проверяет только их ФОРМУ (валидный id/64-hex), не
+// подлинность. Единственная сверка, которая реально что-то проверяет —
+// courseSessionId детей ДОЛЖЕН совпадать с каноническим id из топологии,
+// и это гарантируется тем, что buildSessionChildBodiesFromShard получает его
+// явным параметром, а не вычисляет сам.
+const BUNDLED_RELEASE_ID = "bundled-lesson-01" as const;
+const BUNDLED_FINGERPRINT = "0".repeat(64);
+
+function bundledShardFor(
+  lessonOrdinal: number,
+  sessionOrdinal: number,
+): ReturnType<typeof authoredLearningV2SessionShards>[number] | null {
+  if (lessonOrdinal !== 1) return null;
+  const shards = authoredLearningV2SessionShards();
+  return (
+    shards.find((shard) => shard.requiredSessionOrdinal === sessionOrdinal) ??
+    null
+  );
+}
+
+/**
+ * Материал урока из бандла, если он для этой сессии написан локально.
+ * Возвращает null, когда локального источника нет — вызывающая сторона тогда
+ * идёт в сеть как раньше. Синхронная: сборка занимает миллисекунды, сеть
+ * здесь не участвует вообще.
+ */
+export function bundledLearningV2CourseSessionMaterialV3(
+  locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
+): LearningV2CourseReleasedSessionMaterialV3 | null {
+  const locator = exactCurrentLocator(locatorInput);
+  const shard = bundledShardFor(locator.lessonOrdinal, locator.sessionOrdinal);
+  if (!shard) return null;
+  const courseSessionId = learningV2CourseSessionIdV1(
+    locator.lessonOrdinal,
+    locator.sessionOrdinal,
+  );
+  const lessonId = learningV2CourseLessonIdV1(locator.lessonOrdinal);
+  const children = buildSessionChildBodiesFromShard(
+    shard,
+    locator.learnerSourceLocale,
+    courseSessionId,
+  ) as {
+    intro: LearningV2CourseSessionIntroChildV1;
+    learner: LearningV2CourseSessionLearnerChildV1;
+    evaluatorCapsule: LearningV2CourseSessionEvaluatorCapsuleChildV1;
+    auxiliary: LearningV2CourseSessionAuxiliaryChildV1;
+  };
+  // зачем аудио-ребёнок пуст, а не отсутствует: контракт требует запись на
+  // каждое взаимодействие с аудио-целями. У бандла озвучки пока нет —
+  // audioTargetIds у всех карточек пустые (owner-решение отложить озвучку до
+  // визуального одобрения), поэтому пустой список записей — единственно
+  // верный, а не временный обход.
+  const audioChild = materializeLearningV2CourseSessionAudioChildV1({
+    learner: children.learner,
+    interactions: [],
+  });
+  return Object.freeze({
+    releaseId: BUNDLED_RELEASE_ID,
+    activeRootFingerprint: BUNDLED_FINGERPRINT,
+    activeBaseRootFingerprint: BUNDLED_FINGERPRINT,
+    activeHeadFingerprint: BUNDLED_FINGERPRINT,
+    topologyFingerprint: BUNDLED_FINGERPRINT,
+    lessonId,
+    lessonOrdinal: locator.lessonOrdinal,
+    baseLessonIndexFingerprint: BUNDLED_FINGERPRINT,
+    audioLessonIndexFingerprint: BUNDLED_FINGERPRINT,
+    courseSessionId,
+    sessionOrdinal: locator.sessionOrdinal,
+    packageFingerprint: BUNDLED_FINGERPRINT,
+    childSetFingerprint: BUNDLED_FINGERPRINT,
+    audioExtensionFingerprint: BUNDLED_FINGERPRINT,
+    introChild: children.intro,
+    learnerChild: children.learner,
+    evaluatorCapsuleChild: children.evaluatorCapsule,
+    auxiliaryChild: children.auxiliary,
+    audioChild,
+  });
+}
+
 export async function loadCurrentLearningV2CourseReleasedSessionV3(
   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
 ): Promise<LearningV2CourseReleasedSessionAppResultV3> {
   const locator = exactCurrentLocator(locatorInput);
+  // зачем это первая строка функции (владелец, 2026-08-17: «первый урок уже
+  // должен быть в бандле» / «убери сервер наглухо»): если сессия написана
+  // локально — отдаём её и выходим, ДО ensureAnonUser/сети целиком. Раньше
+  // локальный источник существовал в коде, но проигрыватель ни разу его не
+  // читал — экран висел на сетевом запросе даже для контента, который уже был
+  // на телефоне.
+  const bundled = bundledLearningV2CourseSessionMaterialV3(locator);
+  if (bundled) return appResult(bundled, "network");
   const stableId = await ensureAnonUser();
   if (!stableId) fail();
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);

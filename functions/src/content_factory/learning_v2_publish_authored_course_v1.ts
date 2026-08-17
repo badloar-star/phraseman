@@ -226,6 +226,18 @@ export async function publishAuthoredLearningV2Course(
       interactionProfile?: string;
       interactions?: readonly Readonly<{ interactionId: string }>[];
     }>;
+    // зачем: контракт считает заданиями И три вопроса интро, И карточки
+    // практики — introInteractionIds обязаны быть первыми тремя элементами
+    // interactionIds. Раньше сюда шли только карточки, и пакет отвергался:
+    // «practiceInteractionIds.length !== interactionIds.length - 3».
+    const introBody = (children.intro ?? {}) as Readonly<{
+      pages?: readonly Readonly<{
+        question?: Readonly<{ interactionId?: string }>;
+      }>[];
+    }>;
+    const introInteractionIds = (introBody.pages ?? [])
+      .map((page) => page.question?.interactionId)
+      .filter((id): id is string => typeof id === "string");
     const childInputs = [];
     for (const kind of LEARNING_V2_COURSE_SESSION_CHILD_KINDS_V1) {
       const body = children[CHILD_BODY_KEY_BY_KIND[kind]];
@@ -282,20 +294,28 @@ export async function publishAuthoredLearningV2Course(
       // том, какие задания в сессии на самом деле есть.
       interactionProfile: (learnerBody.interactionProfile ??
         "standard") as never,
-      interactionIds: (learnerBody.interactions ?? []).map(
-        (entry) => entry.interactionId,
-      ),
+      interactionIds: [
+        ...introInteractionIds,
+        ...(learnerBody.interactions ?? []).map((entry) => entry.interactionId),
+      ],
       children: childInputs as never,
     });
 
     const contentHashAhead = createHash("sha256")
       .update(serializeArtifactPayload(packageBody))
       .digest("hex");
+    // зачем: packageFingerprint и хеш ФАЙЛА — РАЗНЫЕ числа. Контракт считает
+    // отпечаток как хеш тела пакета БЕЗ самого поля packageFingerprint
+    // (hashCanonicalBody), а хеш файла берётся от всего записанного JSON.
+    // Раньше я подставлял хеш файла в оба места, и чтение падало с
+    // v2_course_released_session_package_join_mismatch: индекс хранил одно
+    // число, пакет содержал другое. Отпечаток берём из самого пакета — он его
+    // уже посчитал, второй раз считать негде ошибиться.
     const objectPath = learningV2CourseSessionPackageObjectPathV1({
       releaseId,
       lessonOrdinal: input.lessonOrdinal,
       sessionOrdinal: session.sessionOrdinal,
-      packageFingerprint: contentHashAhead,
+      packageFingerprint: packageBody.packageFingerprint,
       contentHash: contentHashAhead,
     });
     const receipt = await writeImmutableObject(
@@ -322,7 +342,8 @@ export async function publishAuthoredLearningV2Course(
       learningOutcomeKind: session.learningOutcomeKind,
       learningOutcomeByLocale: session.learningOutcomeByLocale,
       packageSchemaVersion: LEARNING_V2_COURSE_SESSION_RELEASE_PACKAGE_SCHEMA_V1,
-      packageFingerprint: receipt.contentHash,
+      // Отпечаток пакета — из пакета, хеш файла — из хранилища. См. выше.
+      packageFingerprint: packageBody.packageFingerprint,
       contentHash: receipt.contentHash,
       objectGeneration: receipt.objectGeneration,
       byteSize: receipt.byteSize,
@@ -487,14 +508,20 @@ export const adminPublishAuthoredLearningV2Course = onCall(
     if (!topologyLesson)
       throw new HttpsError("invalid-argument", "publish_lesson_not_in_topology");
     const sessions = shards.map((shard) => {
+      const canonicalSessionId =
+        topologyLesson.sessions[shard.requiredSessionOrdinal - 1]!.sessionId;
+      // зачем canonicalSessionId идёт ВНУТРЬ конвертера, а не только в индекс:
+      // клиент сверяет introChild.courseSessionId с ожидаемым id из топологии
+      // (learning_v2_course_released_session_client_v3.ts) — расхождение
+      // раньше отвергло бы КАЖДУЮ опубликованную сессию на этой проверке.
       const children = buildSessionChildBodiesFromShard(
         shard,
         input.learnerSourceLocale,
+        canonicalSessionId,
       );
       return {
         sessionOrdinal: shard.requiredSessionOrdinal,
-        courseSessionId:
-          topologyLesson.sessions[shard.requiredSessionOrdinal - 1]!.sessionId,
+        courseSessionId: canonicalSessionId,
         // Первая сессия знакомит, дальше учит: это влияет на подпись в списке.
         learningOutcomeKind:
           shard.requiredSessionOrdinal === 1

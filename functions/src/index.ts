@@ -146,6 +146,7 @@ const {
 const {
   referralEnsureMyCode,
   referralApply,
+  referralOnUserProgressUpdated,
   referralClaimVipReward,
   referralListMyInvites,
 } = require("./referral");
@@ -322,6 +323,9 @@ exports.telegramPremiumWebhook = telegramPremiumWebhook;
 exports.telegramPremiumActivationNotifier = telegramPremiumActivationNotifier;
 exports.referralEnsureMyCode = referralEnsureMyCode;
 exports.referralApply = referralApply;
+// зачем: функция создана в 04668600d, но экспорт потерялся при последующем рефакторинге
+// index.ts — восстановлено 2026-08-17, второй путь квалификации (отложенная покупка) не деплоился.
+exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;

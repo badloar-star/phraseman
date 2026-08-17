@@ -3769,6 +3769,24 @@ export async function runSupportAutoReplyRetryCron(nowMs: number = Date.now()): 
   const db = admin.firestore();
   const config = await readSupportAutomationConfig(db);
   if (config.mode === 'off') return { scanned: 0, attempted: 0 };
+  // зачем эта проверка (инцидент 2026-08-17): инструкции владельца записали в
+  // Firestore напрямую, мимо adminSupportSaveInstructions, — без promptVersion
+  // и fingerprint. parseSupportOwnerInstructions на таком документе БРОСАЕТ, и
+  // каждое письмо молча уходило в retry с support_instructions_unavailable.
+  // Человек не получал ответа, а в панели всё выглядело работающим.
+  // Тесты контракта это не ловят: они проверяют код, а сломан был документ.
+  // Здесь — единственное место, где видно живой документ И известно, что
+  // очередь идёт: пишем в лог как ошибку, чтобы поломка перестала быть тихой.
+  try {
+    const [collectionName, docId] = SUPPORT_CONFIG_DOC.split('/');
+    parseSupportOwnerInstructions((await db.collection(collectionName).doc(docId).get()).data());
+  } catch (error) {
+    logger.error('support_owner_instructions_broken', {
+      reason: error instanceof Error ? error.message : String(error),
+      hint: 'правьте инструкции только через админку (adminSupportSaveInstructions); '
+        + 'починка: node scripts/repair_support_owner_instructions.mjs --apply',
+    });
+  }
   const [actionableSnap, awaitingSnap, attentionSnap] = await Promise.all([
     db.collection(INBOX_COLLECTION)
       .where('autoReply.state', 'in', ['pending', 'retry', 'processing', 'paused'])

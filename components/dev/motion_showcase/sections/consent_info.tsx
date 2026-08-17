@@ -13,7 +13,6 @@ import AiExplainConsentModal from '../../../AiExplainConsentModal';
 import NotificationPermissionModal from '../../../NotificationPermissionModal';
 import MistakeEli5Modal from '../../../MistakeEli5Modal';
 import OnboardingWelcomeSheet from '../../../OnboardingWelcomeSheet';
-import YoutubeChannelPickerSheet from '../../../youtube/YoutubeChannelPickerSheet';
 import DeckPickerSheet from '../../../../app/flashcards/DeckPickerSheet';
 import SectionSheetHeader from '../../../SectionSheetHeader';
 import { useTheme } from '../../../ThemeContext';
@@ -22,24 +21,6 @@ import { cs } from '../showcase_copy';
 const DEMO_LANG = 'ru' as Lang;
 
 const DEMO_MISTAKE_TEXT = cs('consent_mistake_demo_text');
-
-/** Демо-манифест для YoutubeChannelPickerSheet — один канал, без сети. */
-const DEMO_YOUTUBE_MANIFEST = {
-  schemaVersion: 1 as const,
-  activeVersion: 'showcase-demo',
-  generatedAt: new Date().toISOString(),
-  sourceRefreshedAt: new Date().toISOString(),
-  defaultChannelId: 'demo-channel',
-  localeDefaults: {},
-  channels: [
-    {
-      id: 'demo-channel',
-      displayName: cs('youtube_channel_picker_sheet_demo_channel'),
-      languageTags: ['ru'],
-      order: 0,
-    },
-  ],
-};
 
 /** Демо-наборы для DeckPickerSheet — безопасные deckId ('saved'/'custom'), онбординг ничего не начисляет. */
 const DEMO_FC_DECKS = [
@@ -217,21 +198,10 @@ export const SECTION: ShowcaseSection = {
         />
       ),
     },
-    {
-      id: 'youtube-channel-picker-sheet',
-      title: cs('youtube_channel_picker_sheet_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <YoutubeChannelPickerSheet
-          visible={visible}
-          manifest={DEMO_YOUTUBE_MANIFEST}
-          preference={{ mode: 'auto' }}
-          onSelect={() => {}}
-          onClose={onClose}
-        />
-      ),
-    },
+    // зачем: пункт «шторка выбора канала» УДАЛЁН из витрины (владелец, 2026-08-17).
+    // Шторка открывает настоящий YouTube и выкидывает из приложения — проверять её
+    // здесь невозможно, а автопрогон она ломала: после ухода наружу все следующие
+    // тапы уходили в чужое приложение. Сама шторка в приложении не тронута.
 {
       id: 'fc-deck-picker-sheet',
       title: cs('fc_deck_picker_sheet_title'),

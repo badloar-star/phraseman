@@ -124,4 +124,25 @@ describe('buildReviewSystemPrompt mode awareness', () => {
     const prompt = buildReviewSystemPrompt('B1', 'Russian', '', 'en', 'voice');
     expect(prompt).toContain('"praise": "...", "corrections": [{"original": "...", "corrected": "...", "note": "..."}], "tip": "..."');
   });
+
+  // зачем: владелец 2026-08-16 — разбор после звонка «ничего не разбирает».
+  it('voice mode asks for "polish" items after real fixes; text mode does not', () => {
+    const voice = buildReviewSystemPrompt('A2', 'Russian', '', 'en', 'voice');
+    expect(voice).toContain('"kind": "polish"');
+    expect(voice).toContain('AFTER all real mistakes');
+    expect(buildReviewSystemPrompt('A2', 'Russian', '', 'en', 'text')).not.toContain('polish');
+  });
+
+  it('parser keeps kind=polish and defaults everything else to fix', () => {
+    const out = parseReviewEnvelope(JSON.stringify({
+      praise: 'ok',
+      corrections: [
+        { original: 'I want coffee', corrected: "I'd like a coffee, please", note: 'Так вежливее.', kind: 'polish' },
+        { original: 'he go', corrected: 'he goes', note: '', kind: 'junk' },
+        { original: 'a', corrected: 'b', note: '' },
+      ],
+      tip: '',
+    }));
+    expect(out!.corrections.map((c) => c.kind)).toEqual(['polish', 'fix', 'fix']);
+  });
 });

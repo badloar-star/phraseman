@@ -92,6 +92,9 @@ export default function MaxVoiceReview() {
   const [transcriptOpen, setTranscriptOpen] = useState(false);
   const [reviewState, setReviewState] = useState<ReviewFetchState>('idle');
   const [praise, setPraise] = useState('');
+  // Совет на следующий разговор — сервер его отдаёт с первого дня, экран
+  // звонка его не показывал (владелец 2026-08-16: «разбор ничего не разбирает»).
+  const [tip, setTip] = useState('');
   const [corrections, setCorrections] = useState<PremiumDialogReviewCorrection[]>([]);
   // Один запрос на результат звонка: смена звонка (новый result) отпускает
   // защёлку, но StrictMode/ре-рендер того же result не должны дублировать вызов.
@@ -143,6 +146,7 @@ export default function MaxVoiceReview() {
         if (cancelled) return;
         setPraise(res.praise);
         setCorrections(res.corrections);
+        setTip(typeof res.tip === 'string' ? res.tip : '');
         setReviewState('loaded');
       })
       .catch(() => {
@@ -454,7 +458,13 @@ export default function MaxVoiceReview() {
                     }}
                   >
                     <Text
-                      style={{ color: t.textMuted, fontSize: f.sub, textDecorationLine: 'line-through' }}
+                      // polish — реплика была верной: не зачёркиваем, просто
+                      // показываем «как сказал бы носитель» рядом.
+                      style={{
+                        color: t.textMuted,
+                        fontSize: f.sub,
+                        textDecorationLine: c.kind === 'polish' ? 'none' : 'line-through',
+                      }}
                       maxFontSizeMultiplier={1.2}
                     >
                       {c.original}
@@ -475,6 +485,27 @@ export default function MaxVoiceReview() {
                     )}
                   </View>
                 ))}
+                {tip !== '' && (
+                  <View
+                    style={{
+                      marginTop: 12,
+                      flexDirection: 'row',
+                      alignItems: 'flex-start',
+                      gap: 8,
+                      backgroundColor: glassFill(t.bgSurface, 0.6),
+                      borderRadius: 12,
+                      padding: 10,
+                    }}
+                  >
+                    <Ionicons name="bulb-outline" size={16} color={t.gold} style={{ marginTop: 1 }} />
+                    <Text
+                      style={{ color: t.textPrimary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), flex: 1 }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {tip}
+                    </Text>
+                  </View>
+                )}
                 {corrections.length === 0 && praise === '' && (
                   <Text
                     style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4, lineHeight: Math.round(f.sub * 1.4) }}

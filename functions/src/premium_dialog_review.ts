@@ -76,6 +76,13 @@ export interface DialogReviewCorrection {
   original: string;
   corrected: string;
   note: string;
+  /**
+   * 'fix' — ошибка (по умолчанию); 'polish' — реплика верна, но есть более
+   * естественный вариант. Только voice-режим (МАКС-звонок): владелец
+   * 2026-08-16 — «разбор ничего не разбирает с точки зрения грамматики»:
+   * когда ученик сказал две правильные фразы, разбор состоял из одной похвалы.
+   */
+  kind?: 'fix' | 'polish';
 }
 
 export interface DialogReviewResult {
@@ -137,6 +144,14 @@ export function buildReviewSystemPrompt(
     mode === 'voice'
       ? `\nThis transcript is from a SPOKEN phone call (speech-to-text), not written chat. Do NOT flag spoken-only features as mistakes: filler words ("um", "uh", "like"), false starts the learner self-corrected, informal contractions, or missing punctuation/capitalization — that is just how speech sounds and text-to-speech is transcribed. DO still flag real grammar, word choice, and word order mistakes that a listener would actually notice in speech.`
       : '';
+  // зачем: владелец 2026-08-16 — разбор после звонка «ничего не разбирает».
+  // Даже когда все реплики верны, ученику нужен материал: как это сказал бы
+  // носитель на его уровне. Такие пункты помечаются "kind":"polish" (клиент
+  // не зачёркивает исходник) и всегда идут ПОСЛЕ настоящих ошибок.
+  const polishRule =
+    mode === 'voice'
+      ? `\n- Every learner line deserves a look. If a line is grammatically fine but a native speaker at level ${cefr} would say it more naturally, add an item with "kind": "polish": "original" = the learner's line, "corrected" = the more natural version, "note" = one warm sentence in ${learnerLangName} that clearly says the line was already correct and this is just a nicer way to say it. Mistakes are "kind": "fix" (or omit "kind"). Add at most 3 polish items and put them AFTER all real mistakes.`
+      : '';
   return `You are a warm, encouraging ${targetName} tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's ${targetName}.${goalLine}${modeLine}
 The learner's level is ${cefr}. The learner's native language is ${learnerLangName}.
 
@@ -152,7 +167,7 @@ Rules:
   Skip lines that are already fine. At most ${MAX_CORRECTIONS} items — if there are more mistakes, pick the most useful ones.
 - "tip": one short, practical suggestion in ${learnerLangName} for the next conversation; quote any recommended ${targetName} phrase in ${targetName}.
 - Comment ONLY on language. Never scold the learner for rudeness, topics, or how the scene went.
-- If every learner line is fine, return "corrections": [] and make "praise" a bit warmer.`;
+- If every learner line is fine, return "corrections": [] and make "praise" a bit warmer.${polishRule}`;
 }
 
 interface OpenAIChatResponse {
@@ -181,7 +196,8 @@ export function parseReviewEnvelope(raw: string): DialogReviewResult | null {
     const original = text(c.original, 300);
     const corrected = text(c.corrected, 300);
     if (!original || !corrected) continue;
-    corrections.push({ original, corrected, note: text(c.note, 300) });
+    const kind = text(c.kind, 10) === 'polish' ? 'polish' : 'fix';
+    corrections.push({ original, corrected, note: text(c.note, 300), kind });
   }
 
   const praise = text(parsed.praise, 500);

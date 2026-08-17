@@ -70,7 +70,12 @@ describe('max_call_ui_state: допустимые переходы', () => {
     s = reduceMaxCallUi(s, { type: 'greeting_started' });
     expect(s).toMatchObject({ phase: 'connected_greeting', eqOwner: 'ai' });
 
-    s = reduceMaxCallUi(s, { type: 'response_done' });
+    // response.done = конец генерации; аудио приветствия ещё играет из буфера —
+    // ход юзера НЕ начинается (иначе таймер подсказки стрелял под речь ИИ).
+    const stillGreeting = reduceMaxCallUi(s, { type: 'response_done' });
+    expect(stillGreeting).toBe(s);
+
+    s = reduceMaxCallUi(stillGreeting, { type: 'audio_out_stopped' });
     expect(s).toMatchObject({ phase: 'listening', eqOwner: 'user', allowHintTimer: true });
 
     s = reduceMaxCallUi(s, { type: 'speech_started' });
@@ -90,6 +95,23 @@ describe('max_call_ui_state: допустимые переходы', () => {
 
     s = reduceMaxCallUi(s, { type: 'end' });
     expect(s).toMatchObject({ phase: 'ended', eqOwner: 'idle', allowHintTimer: false });
+  });
+
+  // зачем: владелец 2026-08-16 — «реплика не успевает закончиться, снизу уже
+  // текст следующей». Пока звучит аудио ИИ, никакое response_done не отдаёт
+  // ход юзеру (и не взводит подсказку) — только реальный конец аудио.
+  it('ai_speaking: response_done при звучащем аудио — no-op, ход юзера начинается с audio_out_stopped', () => {
+    const speaking = reach('ai_speaking');
+    expect(reduceMaxCallUi(speaking, { type: 'response_done' })).toBe(speaking);
+    expect(reduceMaxCallUi(speaking, { type: 'audio_out_stopped' })).toMatchObject({ phase: 'listening', eqOwner: 'user' });
+    // Порядок наоборот (аудио доиграло раньше done): stopped → listening, поздний done — no-op.
+    const listening = reduceMaxCallUi(speaking, { type: 'audio_out_stopped' });
+    expect(reduceMaxCallUi(listening, { type: 'response_done' })).toBe(listening);
+  });
+
+  it('приветствие без аудио (пустой response) всё же отдаёт ход юзеру по response_done', () => {
+    const s = reduceMaxCallUi(reach('connected_greeting'), { type: 'response_done' });
+    expect(s).toMatchObject({ phase: 'listening', eqOwner: 'user' });
   });
 
   it('response_created ведёт из listening в thinking (semantic_vad создал ответ)', () => {

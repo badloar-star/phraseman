@@ -138,9 +138,17 @@ export function reduceMaxCallUi(state: MaxCallUiState, event: MaxCallUiEvent): M
         case 'audio_out_started':
           return make('connected_greeting', 'ai');
         case 'audio_out_stopped':
-          return make('connected_greeting', 'idle');
+        case 'audio_out_cleared':
+          // Аудио приветствия ДОИГРАЛО — вот теперь ход юзера.
+          return make('listening', 'user');
         case 'response_done':
-          // Приветствие дозвучало — ход юзера.
+          // зачем: владелец 2026-08-16 — «она не даёт мне сказать: реплика не
+          // успевает закончиться, снизу уже текст следующей». response.done —
+          // это конец ГЕНЕРАЦИИ, аудио ещё играет из буфера (модель генерирует
+          // быстрее реального времени). Уход в listening здесь взводил таймер
+          // подсказки под ещё звучащую речь → response.create → цепочка реплик.
+          // Пока аудио играет (eqOwner ai) — ждём output_audio_buffer.stopped.
+          if (state.eqOwner === 'ai') return state;
           return make('listening', 'user');
         case 'speech_started':
           // Юзер перебил приветствие (interrupt_response включён) — его ход.
@@ -191,9 +199,13 @@ export function reduceMaxCallUi(state: MaxCallUiState, event: MaxCallUiEvent): M
           return make('barge_in', 'user');
         case 'audio_out_stopped':
         case 'audio_out_cleared':
-        case 'response_done':
           // ИИ замолчал (хвостовой таймер 400мс — забота клиента, не автомата).
           return make('listening', 'user');
+        case 'response_done':
+          // Генерация кончилась, аудио ещё звучит (см. connected_greeting):
+          // ход юзера начнётся с output_audio_buffer.stopped, не отсюда —
+          // иначе таймер подсказки стрелял под речь ИИ и порождал новую реплику.
+          return state;
         default:
           return state;
       }

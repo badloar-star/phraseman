@@ -371,6 +371,11 @@ export interface PremiumDialogReviewCorrection {
   corrected: string;
   /** Короткое тёплое пояснение на языке интерфейса (без жаргона). */
   note: string;
+  /**
+   * 'polish' — реплика была верной, это лишь более естественный вариант
+   * (voice-режим МАКС-звонка); UI не зачёркивает исходник. Отсутствие = 'fix'.
+   */
+  kind?: 'fix' | 'polish';
 }
 
 export interface PremiumDialogReviewResponse {

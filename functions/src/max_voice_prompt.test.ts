@@ -280,6 +280,23 @@ describe('tutor instructions', () => {
     expect(instr).toContain("I'm your English teacher here in the app");
   });
 
+  // зачем: владелец 2026-08-17 — уточнение. Учитель не говорил, что он сам из
+  // России: он ПРЕДЛОЖИЛ ученику сказать «I'm from Russia» как пример фразы
+  // (уча "I'm from ___"). Тема войны/политики делает такой пример опасным для
+  // части пользователей, даже если сам пример нейтральный по формулировке.
+  // Запрет должен покрывать ЛЮБОЙ пример, который учитель придумывает сам
+  // (страна, имя, город) — не только вопросы о его собственной биографии.
+  it('запрещает выбирать геополитически спорные страны в ПРИДУМАННЫХ учителем примерах (не только в его собственной биографии)', () => {
+    const instr = buildVoiceInstructions({
+      cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian', targetLangName: 'English',
+    });
+    expect(instr).toContain('Keep YOUR OWN example content neutral');
+    expect(instr).toContain('Russia, Ukraine, Israel, Palestine, Ossetia');
+    expect(instr).toContain('This applies to every example you invent, not only ones the learner brings up');
+    // SAFETY PLAYBOOK явно ссылается на это правило, а не только на реакцию на слова ученика.
+    expect(instr).toContain('This applies even when YOU bring up the example, not only when the learner does');
+  });
+
   it('изучаемый язык подставляется (французский курс) и учитель не переключается на другой язык по просьбе', () => {
     const fr = buildVoiceInstructions({
       cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian', targetLangName: 'French',

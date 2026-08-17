@@ -13,6 +13,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import {
+  DIALOG_SCENARIOS,
   getScenarioById,
   scenarioObjectives,
   scenarioTemperament,
@@ -20,7 +21,13 @@ import {
 } from './ai_dialog_scenarios';
 import { buildCompanionMemory } from './ai_companion_memory';
 import type { DialogMemory } from './ai_dialog_client';
-import { getTrainerCounts } from './trainer_store';
+import { getTrainerCounts, getTrainerPremiumItems } from './trainer_store';
+import { peekHomeScreenHydration } from './home_screen_hydration';
+import {
+  buildTutorSceneCatalog,
+  renderTutorSceneCatalog,
+  type TutorSceneItem,
+} from './max_call_tutor_tools';
 import {
   parseMintResponse,
   type MaxVoiceMintRequest,
@@ -129,6 +136,60 @@ export interface MaxCallParams {
   scenarioId: string;
   cefr?: string;
   devMode: boolean;
+  /** Язык интерфейса (родной язык ученика) — учителю для объяснений новичкам. */
+  interfaceLang?: string;
+}
+
+/**
+ * Уровень ученика по прогрессу уроков (та же эвристика, что у диалогов урока в
+ * ai_dialog_session: ≤8 → A1, ≤20 → A2, дальше B1). Без прогресса — A1: учитель
+ * с новичком говорит на родном языке, это безопаснее, чем завысить.
+ */
+export function guessLearnerCefr(): 'A1' | 'A2' | 'B1' {
+  const home = peekHomeScreenHydration();
+  const lessons = Math.max(home?.lessonsCompleted ?? 0, home?.lastLessonId ?? 0);
+  if (lessons <= 0) return 'A1';
+  return lessons <= 8 ? 'A1' : lessons <= 20 ? 'A2' : 'B1';
+}
+
+/** Сцены, которые учитель может предложить в этом уроке (детерминировано по уровню и номеру урока). */
+export function tutorSceneItems(cefr: string | undefined, seed = 0): TutorSceneItem[] {
+  return buildTutorSceneCatalog(DIALOG_SCENARIOS, cefr ?? 'A1', seed);
+}
+
+/** Полный блок сцены по id — тот же формат, что у формата scenario. */
+export function tutorSceneBlock(id: string): string | null {
+  const scenario = getScenarioById(id);
+  return scenario ? buildScenarioBlock(scenario) : null;
+}
+
+/**
+ * Снимок ученика для промпта учителя: только то, о чём учитель может честно
+ * сказать (имя, серия, уроки, тренажёр, слабые слова). Никогда не бросает.
+ */
+export async function buildLearnerSnapshot(cefr: string | undefined): Promise<string> {
+  const lines: string[] = [];
+  try {
+    const home = peekHomeScreenHydration();
+    if (home) {
+      if (home.userName && home.userName.trim() !== '') lines.push(`name: ${home.userName.trim().slice(0, 40)}`);
+      lines.push(`streak: ${Math.max(0, home.streak)} days`);
+      lines.push(`lessons completed: ${Math.max(0, home.lessonsCompleted)}`);
+      if (home.lastLessonId) lines.push(`last lesson: ${home.lastLessonId}`);
+    }
+  } catch {}
+  try {
+    const counts = await getTrainerCounts();
+    const due = Object.values(counts).reduce((sum, n) => sum + Math.max(0, n), 0);
+    lines.push(`trainer cards due today: ${due}`);
+  } catch {}
+  try {
+    const weak = await getTrainerPremiumItems('weak', 6);
+    const words = weak.map((i) => i.key.trim()).filter((k) => k !== '');
+    if (words.length > 0) lines.push(`weak words/phrases (from the trainer): ${words.join(', ')}`);
+  } catch {}
+  if (cefr) lines.push(`level in the app: ${cefr}`);
+  return lines.join('\n');
 }
 
 /** Сценарий для промпт-полей: companion — без сценария. */
@@ -158,7 +219,9 @@ export async function performMaxVoiceMint(
   req: MaxVoiceMintRequest,
 ): Promise<MaxVoiceMintResponse> {
   try {
-    const extras = await buildMintExtras(params.format, scenarioForCall(params), params.cefr);
+    const extras = params.format === 'tutor'
+      ? await buildTutorMintExtras(params)
+      : await buildMintExtras(params.format, scenarioForCall(params), params.cefr);
     const data = await maxVoiceCallable<unknown>('maxVoiceMint')(
       { ...extras, ...req } as unknown as Record<string, unknown>,
     );
@@ -167,6 +230,21 @@ export async function performMaxVoiceMint(
     if (__DEV__) console.warn('[MAX Voice] mint failed', error);
     throw new MaxVoiceStageError(maxVoiceFailureReason(error, 'mint_failed'), error);
   }
+}
+
+/**
+ * Промпт-поля учителя: язык, каталог сцен под уровень, снимок ученика.
+ * Ротация каталога — по дню (сегодня одни сцены, завтра другие).
+ */
+export async function buildTutorMintExtras(params: MaxCallParams): Promise<Partial<MaxVoiceMintRequest>> {
+  const cefr = params.cefr ?? guessLearnerCefr();
+  const daySeed = Math.floor(Date.now() / 86_400_000);
+  return {
+    cefr,
+    interfaceLang: params.interfaceLang ?? 'ru',
+    sceneCatalog: renderTutorSceneCatalog(tutorSceneItems(cefr, daySeed)),
+    learnerSnapshot: await buildLearnerSnapshot(cefr),
+  };
 }
 
 /**

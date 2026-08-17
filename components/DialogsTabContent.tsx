@@ -42,6 +42,7 @@ import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { guessLearnerCefr } from '../app/max_call_mint_request';
 // Статус карточки сценария — кодирует и подачу, и доступность.
 type ScenarioStatus = 'done' | 'available' | 'locked';
 
@@ -599,7 +600,13 @@ export default function DialogsTabContent({
           accessibilityRole="button"
           onPress={() => {
             hapticTap();
-            router.push('/max_call_prestart' as never);
+            // зачем: владелец 2026-08-16 — не «звонок в кафе», а личный учитель:
+            // ведёт урок, помнит ученика, предлагает сцены сам. Уровень — по
+            // прогрессу уроков, чтобы новичок услышал родной язык, а не английский.
+            router.push({
+              pathname: '/max_call_prestart',
+              params: { format: 'tutor', cefr: guessLearnerCefr() },
+            } as never);
           }}
           style={{
             marginHorizontal: 14,
@@ -628,17 +635,17 @@ export default function DialogsTabContent({
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
               {triLang(lang, {
-                ru: 'Позвонить собеседнику', uk: 'Подзвонити співрозмовнику', es: 'Llamar a tu compañero',
-                'pt-BR': 'Ligar para seu parceiro', vi: 'Gọi cho bạn đồng hành', id: 'Telepon teman bicara',
-                tr: 'Konuşma arkadaşını ara', pl: 'Zadzwoń do partnera',
+                ru: 'Позвонить учителю', uk: 'Подзвонити вчителю', es: 'Llamar a tu profesor',
+                'pt-BR': 'Ligar para seu professor', vi: 'Gọi cho giáo viên', id: 'Telepon guru',
+                tr: 'Öğretmeni ara', pl: 'Zadzwoń do nauczyciela',
               })}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
               {triLang(lang, {
-                ru: 'Живой разговор голосом в реальном времени', uk: 'Жива розмова голосом у реальному часі',
-                es: 'Conversación de voz en tiempo real', 'pt-BR': 'Conversa de voz em tempo real',
-                vi: 'Trò chuyện bằng giọng nói theo thời gian thực', id: 'Percakapan suara secara real-time',
-                tr: 'Gerçek zamanlı sesli konuşma', pl: 'Rozmowa głosowa w czasie rzeczywistym',
+                ru: 'Урок голосом: помнит тебя, ведёт и задаёт домашку', uk: 'Урок голосом: пам’ятає тебе, веде й дає домашку',
+                es: 'Clase de voz: te recuerda, te guía y deja tarea', 'pt-BR': 'Aula de voz: lembra de você, conduz e passa tarefa',
+                vi: 'Buổi học bằng giọng nói: nhớ bạn, dẫn dắt và giao bài tập', id: 'Pelajaran suara: mengingatmu, memandu, memberi PR',
+                tr: 'Sesli ders: seni hatırlar, yönlendirir ve ödev verir', pl: 'Lekcja głosowa: pamięta cię, prowadzi i zadaje pracę domową',
               })}
             </Text>
           </View>

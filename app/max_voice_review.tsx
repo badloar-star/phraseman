@@ -35,8 +35,10 @@ export interface MaxCallResult {
   durationSec: number;
   /** Секунды речи юзера (по speech_started/stopped) — вход метрик и XP-заявки. */
   speechSec: number;
-  format: 'scenario' | 'companion' | 'trial';
+  format: 'scenario' | 'companion' | 'trial' | 'tutor';
   scenarioId?: string;
+  /** Учитель: имя, домашка и тема на завтра (из инструментов урока). */
+  tutor?: { name: string; homework: string[]; nextTopic: string; lessonsSoFar: number };
   /** CEFR звонка — прокидывается в «Позвонить ещё раз», чтобы не терять уровень. */
   cefr?: string;
   /** Сохраняет защищённый admin DEV-контекст для «Позвонить ещё раз». */
@@ -140,7 +142,11 @@ export default function MaxVoiceReview() {
       interfaceLang: lang,
       scenarioId: result.scenarioId,
       goalEn: scenario?.goalEn,
-      mode: 'voice',
+      // Учитель: разбор ещё и обновляет память учителя (факты, ошибки, домашка, тема).
+      mode: result.format === 'tutor' ? 'tutor' : 'voice',
+      ...(result.format === 'tutor'
+        ? { homework: result.tutor?.homework ?? [], nextTopic: result.tutor?.nextTopic ?? '' }
+        : {}),
     })
       .then((res) => {
         if (cancelled) return;
@@ -405,7 +411,62 @@ export default function MaxVoiceReview() {
             )}
           </View>
 
-          {/* Разбор фраз — premiumDialogReview(mode:'voice'), МАКС ПЛАН §6.2 */}
+          {/* Учитель: домашка на завтра и обещанная тема — то, что учитель сказал голосом, теперь на глазах */}
+          {result.format === 'tutor' && ((result.tutor?.homework.length ?? 0) > 0 || (result.tutor?.nextTopic ?? '') !== '') && (
+            <View
+              testID="max-voice-review-tutor-homework"
+              style={{
+                backgroundColor: glassFill(t.bgSurface, 0.46),
+                borderRadius: 16,
+                padding: 14,
+                marginTop: 12,
+              }}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                <Ionicons name="book-outline" size={15} color={t.gold} />
+                <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
+                  {triLang(lang, {
+                    ru: 'Домашка на завтра',
+                    uk: 'Домашка на завтра',
+                    es: 'Tarea para mañana',
+                    'pt-BR': 'Tarefa para amanhã',
+                    vi: 'Bài tập cho ngày mai',
+                    id: 'PR untuk besok',
+                    tr: 'Yarına ödev',
+                    pl: 'Zadanie na jutro',
+                  })}
+                </Text>
+              </View>
+              {(result.tutor?.homework ?? []).map((phrase, i) => (
+                <Text
+                  key={`hw-${i}`}
+                  style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', marginTop: i === 0 ? 8 : 6, lineHeight: Math.round(f.sub * 1.4) }}
+                  maxFontSizeMultiplier={1.2}
+                >
+                  {phrase}
+                </Text>
+              ))}
+              {(result.tutor?.nextTopic ?? '') !== '' && (
+                <Text
+                  style={{ color: t.textMuted, fontSize: f.sub, marginTop: 10, lineHeight: Math.round(f.sub * 1.4) }}
+                  maxFontSizeMultiplier={1.2}
+                >
+                  {triLang(lang, {
+                    ru: `Завтра: ${result.tutor?.nextTopic}`,
+                    uk: `Завтра: ${result.tutor?.nextTopic}`,
+                    es: `Mañana: ${result.tutor?.nextTopic}`,
+                    'pt-BR': `Amanhã: ${result.tutor?.nextTopic}`,
+                    vi: `Ngày mai: ${result.tutor?.nextTopic}`,
+                    id: `Besok: ${result.tutor?.nextTopic}`,
+                    tr: `Yarın: ${result.tutor?.nextTopic}`,
+                    pl: `Jutro: ${result.tutor?.nextTopic}`,
+                  })}
+                </Text>
+              )}
+            </View>
+          )}
+
+          {/* Разбор фраз — premiumDialogReview(mode:'voice'|'tutor'), МАКС ПЛАН §6.2 */}
           <View
             // Состояние в testID: смоук-тест (и скриншот) должны однозначно
             // отличать «сервер ответил» от «ещё грузится»/«отвалился», а не

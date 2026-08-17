@@ -28,11 +28,15 @@ import {
 } from './max_call_client';
 import {
   extractPersonaName,
+  guessLearnerCefr,
   maxVoiceCallable,
   performMaxVoiceMint,
   releaseUnusedMint,
+  tutorSceneBlock,
+  tutorSceneItems,
   type MaxCallParams,
 } from './max_call_mint_request';
+import { createTutorToolRunner, type TutorToolRunner } from './max_call_tutor_tools';
 import {
   abandonPremint,
   claimPremint,
@@ -85,6 +89,17 @@ const RECONNECT_BANNER_DELAY_MS = 1_500;
 /** Серверные константы дедлайнов (спека §3): [WRAP_UP] за 75с, teardown +20с. */
 const WRAP_UP_LEAD_SEC = 75;
 const GRACE_TAIL_SEC = 20;
+/**
+ * Учитель (format 'tutor'): вместо [WRAP_UP] — trusted-заметки времени. Учитель
+ * сам предупреждает ученика и сам прощается (владелец 2026-08-16: «знает лимит,
+ * предупреждает и заканчивает сессию сам — не обрывая, а прощаясь»). Префикс
+ * совпадает с TUTOR_TIME_NOTE_PREFIX в functions/src/max_voice_prompt.ts.
+ */
+const TUTOR_TIME_NOTE_PREFIX = 'TIME NOTE:';
+const TUTOR_TWO_MIN_LEAD_SEC = 120;
+const TUTOR_GOODBYE_LEAD_SEC = 45;
+/** Заметка ждёт паузы учителя не дольше этого — иначе уходит как есть. */
+const TUTOR_NOTE_DEFER_MAX_MS = 15_000;
 /** Тёплый тон голоса ИИ — един для ореола и баров эквалайзера. */
 const AI_WARM_COLOR = '#F2A45C';
 
@@ -308,27 +323,43 @@ export default function MaxCallSession() {
   const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string }>();
 
   const format: MaxVoiceMintRequest['format'] =
-    params.format === 'companion' || params.format === 'trial' ? params.format : 'scenario';
+    params.format === 'companion' || params.format === 'trial' || params.format === 'tutor'
+      ? params.format
+      : 'scenario';
+  const isTutor = format === 'tutor';
   const scenarioId = String(params.scenarioId ?? 'coffee');
   const cefr = typeof params.cefr === 'string' && params.cefr !== '' ? params.cefr : undefined;
   const devMode = params.devMode === '1';
 
   const scenario = useMemo(
-    () => (format === 'companion' ? undefined : getScenarioById(scenarioId)),
+    () => (format === 'companion' || format === 'tutor' ? undefined : getScenarioById(scenarioId)),
     [format, scenarioId],
   );
+  // Учитель: имя приходит из минта (конфиг админки); до него — дефолт сервера.
+  const [tutorName, setTutorName] = useState('Max');
+  // Активная сцена урока (учитель вызвал start_scene) — подпись в шапке.
+  const [tutorSceneLabel, setTutorSceneLabel] = useState('');
   const personaName = useMemo(() => {
+    if (isTutor) return tutorName;
     const fromScenario = extractPersonaName(scenario?.persona);
     if (fromScenario !== '') return fromScenario;
     // Companion-режим: постоянный собеседник (имя совпадает с ai_companion).
     return 'Alex';
-  }, [scenario?.persona]);
-  const scenarioChip = useMemo(
-    () => (scenario ? dialogScenarioTitle(scenario, lang) : ''),
-    [scenario, lang],
-  );
+  }, [isTutor, tutorName, scenario?.persona]);
+  const scenarioChip = useMemo(() => {
+    if (isTutor) {
+      return tutorSceneLabel !== ''
+        ? tutorSceneLabel
+        : triLang(lang, {
+            ru: 'Учитель', uk: 'Вчитель', es: 'Profesor', 'pt-BR': 'Professor',
+            vi: 'Giáo viên', id: 'Guru', tr: 'Öğretmen', pl: 'Nauczyciel',
+          });
+    }
+    return scenario ? dialogScenarioTitle(scenario, lang) : '';
+  }, [isTutor, tutorSceneLabel, scenario, lang]);
 
   const [uiState, setUiState] = useState<MaxCallUiState>(MAX_CALL_UI_INITIAL);
+  const uiPhaseRef = useRef<MaxCallUiPhase>('connecting');
   const [turns, setTurns] = useState<TranscriptTurn[]>([]);
   const [ccEnabled, setCcEnabled] = useState(true);
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -347,6 +378,11 @@ export default function MaxCallSession() {
   // Таймер подсказок создаётся в onCallActivated из limits минта (per-CEFR
   // порог, кэп на сессию); до active — null, подсказки невозможны.
   const hintTimerRef = useRef<HintTimer | null>(null);
+  // Инструменты учителя (сцены/домашка/тема/end_call) — исполняются локально.
+  const tutorRunnerRef = useRef<TutorToolRunner | null>(null);
+  const tutorNoteTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  // Заметка времени, отложенная до паузы учителя (см. sendTutorNoteWhenQuiet).
+  const pendingTutorNoteRef = useRef<{ text: string; deadlineMs: number } | null>(null);
   // Сигналы границ звонка: живут в ref, чтобы пилюля/эффекты могли дёргать
   // haptics без пересоздания клиента.
   const sfxRef = useRef<MaxCallSfx | null>(null);
@@ -386,8 +422,26 @@ export default function MaxCallSession() {
 
     const heartbeatCallable = maxVoiceCallable<unknown>('maxVoiceHeartbeat');
     const endCallable = maxVoiceCallable<unknown>('maxVoiceSessionEnd');
-    const callParams: MaxCallParams = { format, scenarioId, cefr, devMode };
+    const callParams: MaxCallParams = { format, scenarioId, cefr, devMode, interfaceLang: lang };
     const key = premintKey(callParams);
+    if (isTutor) {
+      // Тот же каталог, что ушёл в промпт (уровень + день): id совпадают.
+      const tutorCefr = cefr ?? guessLearnerCefr();
+      tutorRunnerRef.current = createTutorToolRunner({
+        scenes: tutorSceneItems(tutorCefr, Math.floor(Date.now() / 86_400_000)),
+        sceneBlock: tutorSceneBlock,
+        onSceneChange: (scene) => {
+          const sc = scene ? getScenarioById(scene.id) : undefined;
+          setTutorSceneLabel(sc ? dialogScenarioTitle(sc, lang) : '');
+        },
+        onEndCall: () => {
+          // Учитель попрощался: даём аудио доиграть и завершаем сами — ученику
+          // не нужно вешать трубку.
+          endReasonRef.current = 'completed';
+          clientRef.current?.endAfterAudio('completed');
+        },
+      });
+    }
 
     // зачем: владелец 2026-08-16 — соединение должно быть мгновенным. Пре-экран
     // уже запустил минт (max_call_premint); здесь мы его ЗАБИРАЕМ, а свежий
@@ -440,6 +494,12 @@ export default function MaxCallSession() {
       reconnectHistory: () => bufferRef.current.history(),
       sfx: sfxRef.current ?? undefined,
       now: () => Date.now(),
+      onToolCall: (call) => {
+        const runner = tutorRunnerRef.current;
+        if (!runner) return;
+        const result = runner.handle(call.name, call.args);
+        clientRef.current?.sendToolResult(call.callId, result.output, { respond: result.respond });
+      },
       onUiEvent: handleUiEvent,
       onTranscriptDelta: (event) => {
         const buffer = bufferRef.current;
@@ -484,6 +544,8 @@ export default function MaxCallSession() {
       if (wrapTimerRef.current !== null) clearTimeout(wrapTimerRef.current);
       if (teardownTimerRef.current !== null) clearTimeout(teardownTimerRef.current);
       if (graceTimerRef.current !== null) clearTimeout(graceTimerRef.current);
+      for (const id of tutorNoteTimersRef.current) clearTimeout(id);
+      tutorNoteTimersRef.current = [];
       // Уход с экрана = завершение звонка (идемпотентно, сеттлмент — внутри).
       void client.end(endReasonRef.current);
     };
@@ -534,13 +596,50 @@ export default function MaxCallSession() {
       graceTailSec: GRACE_TAIL_SEC,
     });
     setHardAtMs(deadlines.hardAtMs);
-    wrapTimerRef.current = setTimeout(() => {
-      clientRef.current?.sendWrapUp();
-    }, Math.max(0, deadlines.wrapAtMs - startedAt));
+    if (isTutor) {
+      if (mint.tutor?.name) setTutorName(mint.tutor.name);
+      // Учитель знает длину урока и сам ведёт к концу: заметки времени вместо [WRAP_UP].
+      const lessonMin = Math.max(1, Math.round(mint.max_seconds / 60));
+      clientRef.current?.sendSystemNote(`${TUTOR_TIME_NOTE_PREFIX} lesson length ${lessonMin} minutes`, { respond: false });
+      const at = (leadSec: number, text: string) => {
+        const delay = Math.max(0, deadlines.hardAtMs - leadSec * 1000 - startedAt);
+        tutorNoteTimersRef.current.push(setTimeout(() => sendTutorNoteWhenQuiet(text), delay));
+      };
+      at(TUTOR_TWO_MIN_LEAD_SEC, `${TUTOR_TIME_NOTE_PREFIX} about 2 minutes left — finish the current activity and start the wrap-up (praise, homework, next topic, goodbye).`);
+      at(TUTOR_GOODBYE_LEAD_SEC, `${TUTOR_TIME_NOTE_PREFIX} 45 seconds left — say goodbye now in one or two short turns, then call end_call.`);
+    } else {
+      wrapTimerRef.current = setTimeout(() => {
+        clientRef.current?.sendWrapUp();
+      }, Math.max(0, deadlines.wrapAtMs - startedAt));
+    }
+    // Жёсткий дедлайн — страховка и для учителя: не попрощался сам — завершим.
     teardownTimerRef.current = setTimeout(() => {
       endReasonRef.current = 'capped';
       void clientRef.current?.end('capped');
     }, Math.max(0, deadlines.teardownAtMs - startedAt));
+  }
+
+  /**
+   * Заметка учителю уходит в паузу (не поверх его речи: response.create во время
+   * активного ответа отклоняется). Если учитель говорит — ждём фазы
+   * listening/thinking, но не дольше TUTOR_NOTE_DEFER_MAX_MS.
+   */
+  function sendTutorNoteWhenQuiet(text: string): void {
+    const phaseNow = uiPhaseRef.current;
+    const quiet = phaseNow === 'listening' || phaseNow === 'thinking' || phaseNow === 'connected_greeting';
+    if (quiet) {
+      clientRef.current?.sendSystemNote(text);
+      return;
+    }
+    pendingTutorNoteRef.current = { text, deadlineMs: Date.now() + TUTOR_NOTE_DEFER_MAX_MS };
+    tutorNoteTimersRef.current.push(setTimeout(flushPendingTutorNote, TUTOR_NOTE_DEFER_MAX_MS));
+  }
+
+  function flushPendingTutorNote(): void {
+    const pending = pendingTutorNoteRef.current;
+    if (!pending) return;
+    pendingTutorNoteRef.current = null;
+    clientRef.current?.sendSystemNote(pending.text);
   }
 
   // -------------------------------------------------------------------------
@@ -614,9 +713,19 @@ export default function MaxCallSession() {
       endReason: endReasonRef.current,
       dayRemainingSec:
         dayRemainingBefore === null ? null : Math.max(0, dayRemainingBefore - durationSec),
+      ...(isTutor
+        ? {
+            tutor: {
+              name: personaName,
+              homework: tutorRunnerRef.current?.homework() ?? [],
+              nextTopic: tutorRunnerRef.current?.nextTopic() ?? '',
+              lessonsSoFar: mint?.tutor?.lessonsSoFar ?? 0,
+            },
+          }
+        : {}),
     });
     router.replace('/max_voice_review' as any);
-  }, [uiState.phase, format, scenarioId, cefr, devMode, personaName, router]);
+  }, [uiState.phase, format, scenarioId, cefr, devMode, personaName, isTutor, router]);
 
   // -------------------------------------------------------------------------
   const onEndPress = () => {
@@ -635,6 +744,11 @@ export default function MaxCallSession() {
   };
 
   const phase = uiState.phase;
+  uiPhaseRef.current = phase;
+  useEffect(() => {
+    // Отложенная заметка учителю уходит, как только он замолчал.
+    if ((phase === 'listening' || phase === 'thinking') && pendingTutorNoteRef.current) flushPendingTutorNote();
+  }, [phase]);
   useEffect(() => {
     if (phase !== 'reconnecting') {
       setReconnectShown(false);
@@ -790,7 +904,7 @@ export default function MaxCallSession() {
               justifyContent: 'center',
             }}
           >
-            <Ionicons name={(scenario?.icon ?? 'chatbubbles-outline') as any} size={19} color={t.accent} />
+            <Ionicons name={(isTutor ? 'school-outline' : (scenario?.icon ?? 'chatbubbles-outline')) as any} size={19} color={t.accent} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
@@ -846,7 +960,7 @@ export default function MaxCallSession() {
                 justifyContent: 'center',
               }}
             >
-              <Ionicons name={(scenario?.icon ?? 'chatbubbles-outline') as any} size={44} color={t.accent} />
+              <Ionicons name={(isTutor ? 'school-outline' : (scenario?.icon ?? 'chatbubbles-outline')) as any} size={44} color={t.accent} />
             </View>
           </MaxCallHalo>
           {hint !== '' && (

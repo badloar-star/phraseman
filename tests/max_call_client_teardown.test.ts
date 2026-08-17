@@ -9,11 +9,13 @@ import {
   MAX_CALL_BARGE_IN_MUTE_MS,
   MAX_CALL_HEARTBEAT_MS,
   MAX_CALL_CONNECT_TIMEOUT_MS,
+  MAX_CALL_END_AFTER_AUDIO_MAX_MS,
   MAX_CALL_GREETING_HOLD_MAX_MS,
   MAX_CALL_ICE_GATHER_TIMEOUT_MS,
   MAX_CALL_START_TIMEOUT_MS,
   completeLocalOfferSdp,
   type MaxCallDeps,
+  type MaxCallToolCall,
   type MaxCallTranscriptEvent,
   type MaxVoiceMintResponse,
   type VoiceUsageTotals,
@@ -726,5 +728,94 @@ describe('sfx на границах владения аудиосессией (�
     expect(h.inCall.stop.mock.invocationCallOrder[0]).toBeLessThan(
       sfx.endCue.mock.invocationCallOrder[0],
     );
+  });
+});
+
+// ── Учитель: инструменты, заметки времени, мягкое завершение (вариант A, 2026-08-16) ──
+
+describe('учитель: function calling, system notes, endAfterAudio', () => {
+  const sentBy = (h: ReturnType<typeof makeHarness>) =>
+    h.dc.send.mock.calls.map(([raw]) => JSON.parse(raw as string) as Record<string, unknown>);
+
+  it('response.function_call_arguments.done → onToolCall с разобранными аргументами; битый JSON → {}', async () => {
+    const calls: MaxCallToolCall[] = [];
+    const h = makeHarness({ onToolCall: (c) => calls.push(c) });
+    await connect(h);
+    dcMessage(h, { type: 'response.function_call_arguments.done', name: 'start_scene', call_id: 'c1', arguments: '{"scene_id":"hotel"}' });
+    dcMessage(h, { type: 'response.function_call_arguments.done', name: 'end_call', call_id: 'c2', arguments: '{oops' });
+    dcMessage(h, { type: 'response.function_call_arguments.done', call_id: 'c3', arguments: '{}' }); // без name — шум
+    expect(calls).toEqual([
+      { name: 'start_scene', callId: 'c1', args: { scene_id: 'hotel' } },
+      { name: 'end_call', callId: 'c2', args: {} },
+    ]);
+  });
+
+  it('sendToolResult шлёт function_call_output и response.create (respond=false — без него)', async () => {
+    const h = makeHarness();
+    const client = await connect(h);
+    const before = h.dc.send.mock.calls.length;
+    client.sendToolResult('c1', { ok: true });
+    client.sendToolResult('c2', 'bye', { respond: false });
+    const sent = sentBy(h).slice(before);
+    expect(sent[0]).toMatchObject({ type: 'conversation.item.create', item: { type: 'function_call_output', call_id: 'c1', output: '{"ok":true}' } });
+    expect(sent[1]).toEqual({ type: 'response.create' });
+    expect(sent[2]).toMatchObject({ item: { call_id: 'c2', output: 'bye' } });
+    expect(sent).toHaveLength(3);
+  });
+
+  it('sendSystemNote — system-сообщение + response.create (или без него)', async () => {
+    const h = makeHarness();
+    const client = await connect(h);
+    const before = h.dc.send.mock.calls.length;
+    client.sendSystemNote('TIME NOTE: lesson length 10 minutes', { respond: false });
+    client.sendSystemNote('TIME NOTE: about 2 minutes left');
+    const sent = sentBy(h).slice(before);
+    expect(sent[0]).toMatchObject({ type: 'conversation.item.create', item: { role: 'system' } });
+    expect(JSON.stringify(sent[0])).toContain('lesson length 10 minutes');
+    expect(sent[1]).toMatchObject({ type: 'conversation.item.create', item: { role: 'system' } });
+    expect(sent[2]).toMatchObject({ type: 'response.create' });
+    expect(sent).toHaveLength(3);
+  });
+
+  it('endAfterAudio: пока учитель договаривает — ждём конца аудио, микрофон закрыт; потом end(completed) один раз', async () => {
+    const h = makeHarness();
+    const client = await connect(h);
+    dcMessage(h, usageDone({}, {})); // приветствие договорено → hold снят
+    dcMessage(h, { type: 'output_audio_buffer.started' }); // прощание звучит
+    client.endAfterAudio('completed');
+    expect(client.phase()).toBe('active');
+    expect(h.localTrack.enabled).toBe(false); // «пока-пока» ученика не породит новый ответ
+    dcMessage(h, { type: 'output_audio_buffer.stopped' });
+    await flushAsync();
+    expect(client.phase()).toBe('ended');
+    expect(h.deps.end).toHaveBeenCalledTimes(1);
+    expect(h.deps.end).toHaveBeenLastCalledWith(expect.objectContaining({ endReason: 'completed' }));
+  });
+
+  it('endAfterAudio без звучащего аудио завершает сразу; зависшее аудио — по страховочному таймеру', async () => {
+    const h = makeHarness();
+    const client = await connect(h);
+    client.endAfterAudio('completed');
+    await flushAsync();
+    expect(client.phase()).toBe('ended');
+
+    const h2 = makeHarness();
+    const client2 = await connect(h2);
+    dcMessage(h2, { type: 'output_audio_buffer.started' });
+    client2.endAfterAudio('completed');
+    expect(client2.phase()).toBe('active');
+    await jest.advanceTimersByTimeAsync(MAX_CALL_END_AFTER_AUDIO_MAX_MS);
+    await flushAsync();
+    expect(client2.phase()).toBe('ended');
+  });
+
+  it('приветствие учителя берётся из ответа минта (tutor.greetingInstructions)', async () => {
+    const h = makeHarness();
+    h.mintResponse.tutor = {
+      name: 'Max', greetingInstructions: 'Start the lesson now (tutor).', lessonsSoFar: 2, homework: [], nextTopic: '',
+    };
+    await connect(h);
+    const greeting = sentBy(h).find((e) => e.type === 'response.create');
+    expect(JSON.stringify(greeting)).toContain('Start the lesson now (tutor).');
   });
 });

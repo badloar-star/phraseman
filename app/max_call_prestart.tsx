@@ -43,11 +43,12 @@ import {
  * (release), а секунды разговора сервер считает от «алло», не от минта.
  */
 
-/** Дефолтные капы форматов (спека §3 sessionCapSec) до ответа preflight. */
-const DEFAULT_CAP_SEC: Record<'scenario' | 'companion' | 'trial', number> = {
+/** Дефолтные капы форматов (спека §3 sessionCapSec) до ответа сервера. */
+const DEFAULT_CAP_SEC: Record<'scenario' | 'companion' | 'trial' | 'tutor', number> = {
   scenario: 300,
   companion: 480,
   trial: 180,
+  tutor: 600,
 };
 /**
  * Дневной пул по умолчанию — до ответа сервера. Совпадает с серверным дефолтом
@@ -84,7 +85,7 @@ export function limitsBeforeReserve(limits: Record<string, unknown> | undefined)
  * ключей и не падаем на недостающих полях — до ответа/при ошибке работаем от
  * дефолтов спеки.
  */
-export function parsePreflight(data: unknown, format: 'scenario' | 'companion' | 'trial'): PreflightView {
+export function parsePreflight(data: unknown, format: 'scenario' | 'companion' | 'trial' | 'tutor'): PreflightView {
   const d = (data !== null && typeof data === 'object' ? data : {}) as Record<string, unknown>;
   const limits =
     d.limits !== null && typeof d.limits === 'object' ? (d.limits as Record<string, unknown>) : d;
@@ -103,20 +104,25 @@ export default function MaxCallPrestart() {
   const router = useRouter();
   const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string }>();
 
-  const format: 'scenario' | 'companion' | 'trial' =
-    params.format === 'companion' || params.format === 'trial' ? params.format : 'scenario';
+  const format: 'scenario' | 'companion' | 'trial' | 'tutor' =
+    params.format === 'companion' || params.format === 'trial' || params.format === 'tutor'
+      ? params.format
+      : 'scenario';
+  const isTutor = format === 'tutor';
   const scenarioId = String(params.scenarioId ?? 'coffee');
   const devMode = params.devMode === '1';
   const scenario = useMemo(
-    () => (format === 'companion' ? undefined : getScenarioById(scenarioId)),
+    () => (format === 'companion' || format === 'tutor' ? undefined : getScenarioById(scenarioId)),
     [format, scenarioId],
   );
 
   const cefr = typeof params.cefr === 'string' && params.cefr !== '' ? params.cefr : undefined;
   const callParams: MaxCallParams = useMemo(
-    () => ({ format, scenarioId, cefr, devMode }),
-    [format, scenarioId, cefr, devMode],
+    () => ({ format, scenarioId, cefr, devMode, interfaceLang: lang }),
+    [format, scenarioId, cefr, devMode, lang],
   );
+  // Учитель: имя из минта (конфиг админки); до ответа — дефолт сервера.
+  const [tutorName, setTutorName] = useState('Max');
   const key = premintKey(callParams);
 
   const [preflight, setPreflight] = useState<PreflightView | null>(null);
@@ -137,6 +143,7 @@ export default function MaxCallPrestart() {
       (mint) => {
         if (!mountedRef.current) return;
         setPreflight(parsePreflight({ limits: limitsBeforeReserve(mint.limits) }, format));
+        if (mint.tutor?.name) setTutorName(mint.tutor.name);
         setPreflightReason(null);
       },
       (error) => {
@@ -162,7 +169,9 @@ export default function MaxCallPrestart() {
   const noMinutesLeft = dayRemainingSec < 60;
 
   const title =
-    format === 'companion'
+    isTutor
+      ? tutorName
+      : format === 'companion'
       ? triLang(lang, {
           ru: 'Разговор с собеседником',
           uk: 'Розмова зі співрозмовником',
@@ -286,14 +295,25 @@ export default function MaxCallPrestart() {
                 justifyContent: 'center',
               }}
             >
-              <Ionicons name={(scenario?.icon ?? 'chatbubbles-outline') as any} size={24} color={t.accent} />
+              <Ionicons name={(isTutor ? 'school-outline' : (scenario?.icon ?? 'chatbubbles-outline')) as any} size={24} color={t.accent} />
             </View>
             <View style={{ flex: 1, minWidth: 0 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
                 {title}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>
-                {triLang(lang, {
+                {isTutor
+                  ? triLang(lang, {
+                      ru: `Урок с учителем голосом · до ${capMin} мин`,
+                      uk: `Урок із вчителем голосом · до ${capMin} хв`,
+                      es: `Clase de voz con tu profesor · hasta ${capMin} min`,
+                      'pt-BR': `Aula de voz com seu professor · até ${capMin} min`,
+                      vi: `Buổi học bằng giọng nói với giáo viên · tối đa ${capMin} phút`,
+                      id: `Pelajaran suara bersama guru · hingga ${capMin} mnt`,
+                      tr: `Öğretmenle sesli ders · en fazla ${capMin} dk`,
+                      pl: `Lekcja głosowa z nauczycielem · do ${capMin} min`,
+                    })
+                  : triLang(lang, {
                   ru: `Живой разговор голосом · до ${capMin} мин`,
                   uk: `Жива розмова голосом · до ${capMin} хв`,
                   es: `Conversación de voz en vivo · hasta ${capMin} min`,

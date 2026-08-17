@@ -148,7 +148,8 @@ export interface VoiceUsageTotals {
 }
 
 export interface MaxVoiceMintRequest {
-  format: 'scenario' | 'companion' | 'trial';
+  /** 'tutor' — урок-звонок с личным учителем (вариант A, владелец 2026-08-16). */
+  format: 'scenario' | 'companion' | 'trial' | 'tutor';
   scenarioId?: string;
   cefr?: string;
   /** Имя персонажа — сервер вставляет в {{PERSONA_NAME}} промпта (спека §7). */
@@ -167,6 +168,21 @@ export interface MaxVoiceMintRequest {
   reconnectOf?: string;
   /** Локальная reconnect-summary (шаблонная, без AI) для хвоста инструкций. */
   reconnectSummary?: string;
+  /** Учитель: язык интерфейса ученика (родной язык объяснений для новичков). */
+  interfaceLang?: string;
+  /** Учитель: каталог сцен «id: сеттинг» — из ai_dialog_scenarios (сервер сцен не знает). */
+  sceneCatalog?: string;
+  /** Учитель: снимок ученика (имя, серия, тренажёр, слабые слова) для промпта. */
+  learnerSnapshot?: string;
+}
+
+/** Блок учителя в ответе минта: имя, инструкция приветствия, память для UI. */
+export interface MaxVoiceTutorInfo {
+  name: string;
+  greetingInstructions: string;
+  lessonsSoFar: number;
+  homework: string[];
+  nextTopic: string;
 }
 
 /** Ответ maxVoiceMint (контракт спеки §2: max_voice_mint). */
@@ -181,6 +197,8 @@ export interface MaxVoiceMintResponse {
   wrapUpText: string;
   limits?: Record<string, unknown>;
   trialVariant?: 'companion' | 'scenario' | null;
+  /** Только формат 'tutor'. */
+  tutor?: MaxVoiceTutorInfo;
 }
 
 /**
@@ -217,7 +235,28 @@ export function parseMintResponse(data: unknown): MaxVoiceMintResponse {
     expires_at: num(d.expires_at, d.expiresAt),
     trialVariant:
       d.trialVariant === 'companion' || d.trialVariant === 'scenario' ? d.trialVariant : null,
+    ...(d.tutor !== null && typeof d.tutor === 'object' ? { tutor: parseTutorInfo(d.tutor as Record<string, unknown>) } : {}),
   };
+}
+
+function parseTutorInfo(t: Record<string, unknown>): MaxVoiceTutorInfo {
+  const strList = (v: unknown): string[] =>
+    Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string' && x.trim() !== '').slice(0, 6) : [];
+  return {
+    name: typeof t.name === 'string' && t.name.trim() !== '' ? t.name.trim().slice(0, 24) : 'Max',
+    greetingInstructions: typeof t.greetingInstructions === 'string' ? t.greetingInstructions : '',
+    lessonsSoFar: typeof t.lessonsSoFar === 'number' && Number.isFinite(t.lessonsSoFar) ? Math.max(0, Math.floor(t.lessonsSoFar)) : 0,
+    homework: strList(t.homework),
+    nextTopic: typeof t.nextTopic === 'string' ? t.nextTopic.slice(0, 140) : '',
+  };
+}
+
+/** Вызов инструмента моделью (Realtime function calling) — учитель просит клиент что-то сделать. */
+export interface MaxCallToolCall {
+  name: string;
+  callId: string;
+  /** Уже разобранные аргументы (битый JSON → {}). */
+  args: Record<string, unknown>;
 }
 
 /** Дефолтный кап чейна (спека §3 reconnectChainMax) — если limits не доехали. */
@@ -310,6 +349,11 @@ export interface MaxCallDeps {
    * InCallManager.start(), end-нота ПОСЛЕ stop(), mid-call — только haptics.
    */
   sfx?: MaxCallSfx;
+  /**
+   * Учитель вызвал инструмент (start_scene / assign_homework / end_call…).
+   * Экран исполняет его локально и отвечает через sendToolResult.
+   */
+  onToolCall?(call: MaxCallToolCall): void;
 }
 
 export interface MaxCallClient {
@@ -333,6 +377,18 @@ export interface MaxCallClient {
   /** Одноразовый response.create с инструкцией подсказки (кап injected-токенов). */
   sendHintResponse(instructions: string, maxOutputTokens?: number): void;
   /**
+   * Trusted-заметка учителю (TIME NOTE / Reminder): system-сообщение +
+   * response.create, чтобы учитель отреагировал голосом.
+   */
+  sendSystemNote(text: string, opts?: { respond?: boolean }): void;
+  /** Ответ на вызов инструмента: function_call_output (+ response.create по умолчанию). */
+  sendToolResult(callId: string, output: unknown, opts?: { respond?: boolean }): void;
+  /**
+   * Мягкое завершение: дождаться, пока договорит и ДОИГРАЕТ аудио (или таймер),
+   * и только потом end(). Для end_call учителя после прощания.
+   */
+  endAfterAudio(reason?: MaxCallEndReason): void;
+  /**
    * Идемпотентный teardown: повторный вызов возвращает тот же промис, каждый
    * нативный ресурс закрывается ровно один раз, отчёт maxVoiceSessionEnd — один.
    */
@@ -346,6 +402,8 @@ export interface MaxCallClient {
  * конца»). 600 = 30с — предохранитель, а не длина: краткость держит промпт.
  */
 export const INJECTED_MAX_TOKENS = 600;
+/** Мягкое завершение ждёт конца аудио не дольше этого (страховка от вечного ожидания). */
+export const MAX_CALL_END_AFTER_AUDIO_MAX_MS = 12_000;
 const INITIAL_GREETING_INSTRUCTIONS =
   'Begin speaking immediately with one brief warm in-character greeting. Never announce turns or say "your turn". Then pause naturally and listen.';
 
@@ -393,6 +451,11 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
   // Идемпотентность teardown: один закэшированный промис на всю жизнь клиента.
   let endPromise: Promise<void> | null = null;
+
+  // Мягкое завершение (end_call учителя): ждём конца аудио, потом end().
+  let remoteAudioPlaying = false;
+  let endAfterAudioReason: MaxCallEndReason | null = null;
+  let endAfterAudioTimer: ReturnType<typeof setTimeout> | null = null;
 
   function setPhase(next: MaxCallPhase): void {
     if (phase === next) return;
@@ -547,17 +610,39 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         emitUi({ type: 'response_created' });
         return;
       case 'output_audio_buffer.started':
+        remoteAudioPlaying = true;
         if (greetingHold) greetingAudioStarted = true;
         emitUi({ type: 'audio_out_started' });
         return;
       case 'output_audio_buffer.stopped':
+        remoteAudioPlaying = false;
         noteGreetingAudioStopped();
         emitUi({ type: 'audio_out_stopped' });
+        finishEndAfterAudioIfDue();
         return;
       case 'output_audio_buffer.cleared':
+        remoteAudioPlaying = false;
         noteGreetingAudioStopped();
         emitUi({ type: 'audio_out_cleared' });
+        finishEndAfterAudioIfDue();
         return;
+      // Учитель вызвал инструмент: аргументы приходят одним событием по завершении.
+      case 'response.function_call_arguments.done': {
+        const name = typeof message.name === 'string' ? message.name : '';
+        const callId = typeof message.call_id === 'string' ? message.call_id : '';
+        if (!name || !callId) return;
+        let args: Record<string, unknown> = {};
+        try {
+          const parsed: unknown = JSON.parse(typeof message.arguments === 'string' ? message.arguments : '{}');
+          if (parsed !== null && typeof parsed === 'object') args = parsed as Record<string, unknown>;
+        } catch {
+          // Битые аргументы — пустой объект: исполнитель ответит ошибкой в output.
+        }
+        try {
+          deps.onToolCall?.({ name, callId, args });
+        } catch {}
+        return;
+      }
       case 'response.done':
         accumulateUsage(message);
         if (greetingHold) {
@@ -663,10 +748,39 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     dcSend({
       type: 'response.create',
       response: {
-        instructions: INITIAL_GREETING_INSTRUCTIONS,
+        // Учитель получает свою инструкцию приветствия от сервера (языковая
+        // политика уровня); ролевые сцены — прежнее короткое приветствие.
+        instructions: mint?.tutor?.greetingInstructions || INITIAL_GREETING_INSTRUCTIONS,
         max_output_tokens: INJECTED_MAX_TOKENS,
       },
     });
+  }
+
+  function finishEndAfterAudioIfDue(): void {
+    if (endAfterAudioReason === null || remoteAudioPlaying) return;
+    const reason = endAfterAudioReason;
+    endAfterAudioReason = null;
+    if (endAfterAudioTimer !== null) {
+      clearTimeout(endAfterAudioTimer);
+      endAfterAudioTimer = null;
+    }
+    void end(reason);
+  }
+
+  function endAfterAudio(reason: MaxCallEndReason = 'completed'): void {
+    if (isTornDown() || endAfterAudioReason !== null) return;
+    endAfterAudioReason = reason;
+    // Микрофон закрываем сразу: прощание сказано, новых реплик от ученика
+    // учитель уже не ждёт (иначе VAD породил бы ответ на «пока-пока»).
+    applyTrackMute(true);
+    endAfterAudioTimer = setTimeout(() => {
+      endAfterAudioTimer = null;
+      if (endAfterAudioReason === null) return;
+      const late = endAfterAudioReason;
+      endAfterAudioReason = null;
+      void end(late);
+    }, MAX_CALL_END_AFTER_AUDIO_MAX_MS);
+    finishEndAfterAudioIfDue();
   }
 
   function settleDetachedMint(lateMint: MaxVoiceMintResponse, elapsed = elapsedSec()): void {
@@ -933,6 +1047,11 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       greetingTimer = null;
     }
     greetingHold = false;
+    if (endAfterAudioTimer !== null) {
+      clearTimeout(endAfterAudioTimer);
+      endAfterAudioTimer = null;
+    }
+    endAfterAudioReason = null;
     try {
       dc?.close();
     } catch {}
@@ -1166,6 +1285,31 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     emitUi({ type: 'wrap_up' });
   }
 
+  function sendSystemNote(text: string, opts?: { respond?: boolean }): void {
+    if (isTornDown() || !text) return;
+    dcSend({
+      type: 'conversation.item.create',
+      item: { type: 'message', role: 'system', content: [{ type: 'input_text', text }] },
+    });
+    if (opts?.respond !== false) {
+      // Гонку с активным response сервер вернёт error-событием — оно no-op.
+      dcSend({ type: 'response.create', response: { max_output_tokens: INJECTED_MAX_TOKENS } });
+    }
+  }
+
+  function sendToolResult(callId: string, output: unknown, opts?: { respond?: boolean }): void {
+    if (isTornDown() || !callId) return;
+    dcSend({
+      type: 'conversation.item.create',
+      item: {
+        type: 'function_call_output',
+        call_id: callId,
+        output: typeof output === 'string' ? output : JSON.stringify(output ?? {}),
+      },
+    });
+    if (opts?.respond !== false) dcSend({ type: 'response.create' });
+  }
+
   function sendHintResponse(instructions: string, maxOutputTokens = INJECTED_MAX_TOKENS): void {
     if (isTornDown()) return;
     // Гонку с активным response сервер вернёт error-событием — оно no-op.
@@ -1185,6 +1329,9 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     bargeIn,
     sendWrapUp,
     sendHintResponse,
+    sendSystemNote,
+    sendToolResult,
+    endAfterAudio,
     end,
   };
 }

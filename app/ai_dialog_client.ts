@@ -360,7 +360,11 @@ export interface PremiumDialogReviewRequest {
    * транскрипт голосового MAX-звонка: сервер мягче к артефактам устной речи
    * (filler words, самоисправления) и не меняет форму JSON-ответа.
    */
-  mode?: 'text' | 'voice';
+  mode?: 'text' | 'voice' | 'tutor';
+  /** tutor: домашка от учителя (инструмент assign_homework) — уходит в его память. */
+  homework?: string[];
+  /** tutor: тема следующего урока (set_next_topic). */
+  nextTopic?: string;
 }
 
 /** Одно исправление: как сказал ученик → как естественнее + короткое пояснение. */

@@ -27,7 +27,7 @@ export const PREMINT_MAX_AGE_MS = 40_000;
 export const PREMINT_MIN_TOKEN_REMAINING_MS = 20_000;
 
 export interface PremintKeyParams {
-  format: 'scenario' | 'companion' | 'trial';
+  format: 'scenario' | 'companion' | 'trial' | 'tutor';
   scenarioId?: string;
   cefr?: string;
   devMode?: boolean;

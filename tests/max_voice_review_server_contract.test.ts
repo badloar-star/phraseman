@@ -18,7 +18,8 @@ describe('MAX Voice review server wiring', () => {
 
   it('screen calls callPremiumDialogReview with mode:voice and a mapped transcript', () => {
     expect(screen).toContain("import {\n  callPremiumDialogReview,\n  type PremiumDialogReviewCorrection,\n} from './ai_dialog_client';");
-    expect(screen).toContain("mode: 'voice'");
+    // Учитель шлёт mode 'tutor', остальные звонки — 'voice'.
+    expect(screen).toContain("mode: result.format === 'tutor' ? 'tutor' : 'voice'");
     // TranscriptTurn {role,text} must be mapped to DialogChatTurn {role,content} —
     // the raw TranscriptTurn shape is NOT a valid request payload.
     expect(screen).toContain('role: turn.role,\n        content: turn.text,');
@@ -42,7 +43,8 @@ describe('MAX Voice review server wiring', () => {
   });
 
   it('client request type carries an optional mode field forwarded verbatim to the callable', () => {
-    expect(client).toContain("mode?: 'text' | 'voice';");
+    // 'tutor' — разбор урока с учителем (память учителя обновляет сервер).
+    expect(client).toContain("mode?: 'text' | 'voice' | 'tutor';");
     // The whole `req` object (including mode) is passed straight into fn(req) —
     // no field allowlist that would silently drop `mode` before it reaches the server.
     expect(client).toContain('fn(req)');

@@ -248,6 +248,19 @@ describe('composeReplyWithSignature', () => {
       .toBe('С уважением,\nПоддержка Phraseman');
   });
 
+  test('наша подпись из базы переводится под язык письма', () => {
+    // зачем (поймал замер 2026-08-17): владелец выбрал РУССКИЙ текст, и он
+    // лежит в базе. Первая версия правки возвращала его как есть — англичанин
+    // получал письмо с русской подписью. Русский текст в иностранном
+    // интерфейсе — всегда ошибка по правилу владельца.
+    const chosen = 'С уважением,\nПоддержка Phraseman';
+    expect(localizedSupportSignature('Hello! We can help.', chosen))
+      .toBe('Kind regards,\nPhraseman Support');
+    expect(localizedSupportSignature('¡Hola! Podemos ayudar.', chosen))
+      .toBe('Atentamente,\nSoporte de Phraseman');
+    expect(localizedSupportSignature('Здравствуйте!', chosen)).toBe(chosen);
+  });
+
   test('своя подпись владельца сохраняется как есть', () => {
     // зачем: подпись из админки — его право. Заменяем только известный
     // шаблон и всё, что содержит битую ссылку.

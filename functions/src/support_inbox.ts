@@ -791,13 +791,27 @@ export const SUPPORT_SIGNATURE_EN = 'Kind regards,\nPhraseman Support';
  *
  * зачем заменять и АНГЛИЙСКИЙ шаблон тоже (в отличие от прежней версии):
  * старый текст в базе сам содержал битую ссылку, поэтому «сохранить как есть»
- * означало продолжать её рассылать. Свою подпись владельца, набранную в
- * админке, по-прежнему не трогаем — она его право.
+ * означало продолжать её рассылать.
+ *
+ * зачем НАШИ подписи считаются переводимыми, а не «своими» (поймал замер
+ * 2026-08-17): владелец выбрал русский текст «С уважением, Поддержка
+ * Phraseman» и он лежит в базе. Первая версия правки возвращала его как есть —
+ * и англичанин с испанцем получали письмо с РУССКОЙ подписью. По правилу
+ * владельца русский текст в иностранном интерфейсе всегда ошибка. Поэтому
+ * любая из трёх наших подписей распознаётся и переводится по языку письма.
+ *
+ * Настоящую свою подпись (например «Максим, Phraseman») по-прежнему не
+ * трогаем: владелец вправе подписаться как хочет.
  */
+const OUR_SIGNATURES: readonly string[] = Object.freeze([
+  SUPPORT_SIGNATURE_RU, SUPPORT_SIGNATURE_ES, SUPPORT_SIGNATURE_EN,
+]);
+
 export function localizedSupportSignature(replyBody: string, signature: string): string {
   const original = String(signature ?? '').trim();
   const isLegacyTemplate = /(?:thanks so much|the phraseman team|just reply here|knowlyapps\.com\/help)/iu.test(original);
-  if (original && !isLegacyTemplate) return original;
+  const isOurSignature = OUR_SIGNATURES.some((ours) => ours === original);
+  if (original && !isLegacyTemplate && !isOurSignature) return original;
   const language = detectSupportLanguage(replyBody);
   if (language === 'ru') return SUPPORT_SIGNATURE_RU;
   if (language === 'es') return SUPPORT_SIGNATURE_ES;

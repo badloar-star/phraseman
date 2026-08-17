@@ -35161,6 +35161,11 @@
   let _onboardingFunnelLoaded = false;
   let _onboardingExitsLoaded = false;
   let _onboardingScreensSaved = null; // что реально лежит в remote_config
+  // зачем 2026-08-17: опубликованный список без метки каталога читается клиентом
+  // «мягко» (новые экраны включены по умолчанию). Пока метки нет — это само по себе
+  // повод опубликовать, даже если галочки не трогали: иначе владелец не находил
+  // кнопку «Опубликовать» (предпросмотр видел только галочки и говорил «изменений нет»).
+  let _onboardingScreensSavedHasMark = true;
   let _fnAdminGetOnboardingFunnel = null;
 
   function getAdminOnboardingFunnelCallable() {
@@ -35253,7 +35258,11 @@
     try {
       const snap = await getDoc(doc(db, 'remote_config', 'app'));
       const texts = (snap.exists() && snap.data() && snap.data().texts) || {};
-      _onboardingScreensSaved = onboardingParseEnabled(texts[ONBOARDING_ENABLED_STEPS_KEY]);
+      const rawSteps = texts[ONBOARDING_ENABLED_STEPS_KEY];
+      _onboardingScreensSaved = onboardingParseEnabled(rawSteps);
+      // Пустое значение = «всё включено» и метка не нужна; непустое без метки — старое
+      // сохранение, его стоит переопубликовать, чтобы список читался буквально.
+      _onboardingScreensSavedHasMark = !rawSteps || String(rawSteps).includes(ONBOARDING_STEPS_CATALOG_MARK);
       renderOnboardingScreens(_onboardingScreensSaved);
       // Рубильники поведения читаем из ТОГО ЖЕ снапшота — отдельного чтения
       // Firestore не делаем. Отсутствие ключа = true (kill-switch семантика,
@@ -35316,6 +35325,11 @@
     const changes = ONBOARDING_STEP_CATALOG
       .filter(([id]) => was.has(id) !== now.has(id))
       .map(([id, label]) => `${now.has(id) ? '🟢 включаем' : '🔴 отключаем'} — ${label}`);
+    // Опубликованный список без метки каталога — тоже изменение: после публикации
+    // клиенты будут читать его буквально, а не «мягко» с новыми экранами по умолчанию.
+    if (!_onboardingScreensSavedHasMark) {
+      changes.push('🔖 закрепляем актуальный каталог экранов (новые экраны перестанут добавляться автоматически)');
+    }
     if (!changes.length) {
       box.innerHTML = '<div class="reports-empty" style="padding:10px 0">Изменений нет — список совпадает с опубликованным.</div>';
       if (publish) publish.style.display = 'none';
@@ -35344,6 +35358,7 @@
         logAction('onboarding_steps_publish', 'remote_config/app', { steps: next, reason });
       }
       _onboardingScreensSaved = next;
+      _onboardingScreensSavedHasMark = true;
       const box = document.getElementById('onboarding-screens-preview');
       if (box) box.innerHTML = '<div style="background:rgba(52,211,153,0.12);border-radius:10px;padding:12px 14px;color:#6ee7b7;font-size:13px">Опубликовано. Клиенты подхватят изменения при запуске/возврате или не позднее примерно 5 минут.</div>';
       if (publish) publish.style.display = 'none';

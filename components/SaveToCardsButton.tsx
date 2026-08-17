@@ -3,6 +3,12 @@
 // анимацией. Раньше сохранение было спрятано за правильным ответом — человек не
 // мог отложить слово, которое как раз не знает.
 //
+// зачем маленькая иконка, а не кнопка с текстом (владелец, 2026-08-17): текст
+// «Сохранить фразу в карточки» растягивал кнопку почти на весь ряд действий и
+// обрезал соседнюю «Ответить голосом». Смысл действия и так понятен по иконке
+// закладки (тот же язык, что у платформенных «сохранить»); полная подпись
+// осталась для программ чтения с экрана через accessibilityLabel.
+//
 // Правила владельца соблюдены: контейнер без обводки (разделяем тоном), подписи
 // мелким шрифтом под названием нет, размер текста не ужимается.
 import { Ionicons } from '@expo/vector-icons';
@@ -139,12 +145,6 @@ export function SaveToCardsButton({
           size={20}
           color={saved ? colors.accent : colors.text}
         />
-        <Text
-          numberOfLines={1}
-          style={[styles.text, { color: saved ? colors.accent : colors.text }]}
-        >
-          {saved ? savedLabel : label}
-        </Text>
       </AnimatedPressable>
     </View>
   );
@@ -160,15 +160,16 @@ const styles = StyleSheet.create({
     bottom: -6,
     borderRadius: 22,
   },
+  // зачем 48×48 (владелец, 2026-08-17): та же высота, что у соседней кнопки
+  // «Ответить голосом» (compactAction, minHeight: 48) — обе смотрятся парой,
+  // а не разного размера. 48 — минимальная зона касания на iOS/Android.
   button: {
-    flexDirection: 'row',
+    width: 48,
+    height: 48,
     alignItems: 'center',
-    gap: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 11,
+    justifyContent: 'center',
     borderRadius: 16,
   },
-  text: { fontSize: 15, fontWeight: '600', letterSpacing: -0.2 },
 });
 
 export default SaveToCardsButton;

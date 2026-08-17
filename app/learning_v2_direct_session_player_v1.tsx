@@ -1357,13 +1357,24 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   explanationText: { flex: 1, fontSize: 14, lineHeight: 21, fontWeight: "700" },
-  actionRow: { marginTop: 22, flexDirection: "row" },
+  // зачем gap и alignItems (владелец, 2026-08-17): раньше кнопка сохранения с
+  // длинным текстом растягивалась почти на всю ширину и обрезала соседнюю
+  // «Ответить голосом» — теперь сохранение стало квадратной иконкой (48×48),
+  // а «Ответить голосом» получает всё оставшееся место через flex: 1.
+  actionRow: {
+    marginTop: 22,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
   compactAction: {
+    flex: 1,
     minHeight: 48,
     borderRadius: 16,
     paddingHorizontal: 14,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     gap: 8,
   },
   compactActionText: { fontSize: 13, fontWeight: "800" },

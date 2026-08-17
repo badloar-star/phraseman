@@ -424,6 +424,7 @@ export default function MaxCallSession() {
 
     const heartbeatCallable = maxVoiceCallable<unknown>('maxVoiceHeartbeat');
     const endCallable = maxVoiceCallable<unknown>('maxVoiceSessionEnd');
+    const safetyReportCallable = maxVoiceCallable<unknown>('maxVoiceSafetyReport');
     const callParams: MaxCallParams = { format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget };
     const key = premintKey(callParams);
     if (isTutor) {
@@ -501,6 +502,21 @@ export default function MaxCallSession() {
         if (!runner) return;
         const result = runner.handle(call.name, call.args);
         clientRef.current?.sendToolResult(call.callId, result.output, { respond: result.respond });
+        // зачем: владелец 2026-08-16 — опасные/грубые разговоры сразу в журнал и
+        // Telegram, не дожидаясь разбора после урока (приложение могут убить).
+        // Мгновенный репорт: дата, сессия, что говорил ученик + контекст.
+        if (call.name === 'flag_safety' && result.output.startsWith('Noted')) {
+          const history = bufferRef.current.history().slice(-40).map((t) => ({ role: t.role, content: t.text }));
+          void safetyReportCallable({
+            sessionId: clientRef.current?.sessionId() ?? '',
+            kind: String(call.args.kind ?? ''),
+            note: String(call.args.note ?? ''),
+            history,
+            mode: 'voice_tutor',
+          }).catch(() => {
+            // Не доехало — тот же флаг уйдёт с разбором после урока (safetyFlags).
+          });
+        }
       },
       onUiEvent: handleUiEvent,
       onTranscriptDelta: (event) => {
@@ -712,6 +728,7 @@ export default function MaxCallSession() {
       cefr,
       devMode,
       studyTarget,
+      sessionId: mint?.session_id,
       personaName,
       endReason: endReasonRef.current,
       dayRemainingSec:

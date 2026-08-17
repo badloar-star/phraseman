@@ -79,6 +79,8 @@ interface DialogReviewRequest {
   languagePreference?: unknown;
   /** voice/tutor: флаги учителя (инструмент flag_safety) — { kind, note }[]. */
   safetyFlags?: unknown;
+  /** voice/tutor: id сессии звонка — дедуп сейфти-журнала с мгновенными репортами. */
+  sessionId?: unknown;
 }
 
 /** Одно исправление: фраза ученика → естественный вариант + короткое пояснение. */
@@ -308,6 +310,7 @@ export const premiumDialogReview = onCall({
         mode: mode === 'tutor' ? 'voice_tutor' : 'voice_call',
         history,
         clientFlags: sanitizeClientSafetyFlags(data.safetyFlags),
+        sessionId: text(data.sessionId, 80) || undefined,
       })
     : Promise.resolve({ categories: [] });
 

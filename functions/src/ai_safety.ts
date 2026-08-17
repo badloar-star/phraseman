@@ -276,7 +276,17 @@ interface SafetyFlagContext {
   transcript?: string;
   /** Откуда флаг: 'keywords' | 'moderation' | 'tutor_tool' | … (для оператора). */
   source?: string;
+  /** Сессия голосового урока/звонка — дедуп флагов одной сессии между мгновенным репортом и разбором. */
+  sessionId?: string;
+  /**
+   * До какого момента запись хранится (владелец 2026-08-16: «храним пару лет
+   * на случай нужды по закону»). Информационное поле для админки/чистки.
+   */
+  retainUntilMs?: number;
 }
+
+/** Срок хранения записей сейфти-журнала голосовых уроков: 2 года. */
+export const SAFETY_FLAG_RETENTION_MS = 2 * 365 * 24 * 60 * 60 * 1000;
 
 function clip(value: unknown, max: number): string {
   const out = String(value ?? '').trim();
@@ -321,6 +331,8 @@ export async function recordSafetyFlag(
       historyContext,
       ...(ctx.transcript ? { transcript: clip(ctx.transcript, 12_000) } : {}),
       ...(ctx.source ? { source: ctx.source } : {}),
+      ...(ctx.sessionId ? { sessionId: ctx.sessionId } : {}),
+      ...(ctx.retainUntilMs ? { retainUntilMs: ctx.retainUntilMs, retentionReason: 'legal_safety' } : {}),
       handled: false,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
       createdAtMs: Date.now(),

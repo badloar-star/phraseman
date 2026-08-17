@@ -54,6 +54,8 @@ export interface MaxCallResult {
   devMode?: boolean;
   /** Изучаемый язык звонка ('en' | 'fr') — разбор судит именно его. */
   studyTarget?: string;
+  /** Серверный id сессии звонка — дедуп сейфти-журнала с мгновенными репортами. */
+  sessionId?: string;
   personaName: string;
   endReason: 'completed' | 'capped' | 'dropped' | 'background' | 'failed';
   /** Остаток дневных секунд MAX после звонка; null — сервер не сообщил. */
@@ -154,6 +156,7 @@ export default function MaxVoiceReview() {
       scenarioId: result.scenarioId,
       goalEn: scenario?.goalEn,
       ...(result.studyTarget ? { studyTarget: result.studyTarget } : {}),
+      ...(result.sessionId ? { sessionId: result.sessionId } : {}),
       // Учитель: разбор ещё и обновляет память учителя (факты, ошибки, домашка, тема).
       mode: result.format === 'tutor' ? 'tutor' : 'voice',
       ...(result.format === 'tutor'

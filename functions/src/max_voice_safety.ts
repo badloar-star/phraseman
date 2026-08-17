@@ -12,13 +12,20 @@
 // Никогда не бросает: сбой журнала не должен ломать разбор урока.
 // ═══════════════════════════════════════════════════════════════════════════
 
+import * as admin from 'firebase-admin';
+import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
+import { resolveStableUidForAuth } from './auth_identity';
 import {
+  SAFETY_FLAG_RETENTION_MS,
   evaluateSafety,
   moderateUserText,
   recordSafetyFlag,
   type SafetyCategory,
   type SafetyVerdict,
 } from './ai_safety';
+
+if (!admin.apps.length) admin.initializeApp();
 
 export const VOICE_SAFETY_TRANSCRIPT_MAX_CHARS = 12_000;
 
@@ -45,6 +52,8 @@ export interface VoiceSafetyReviewArgs {
   history: readonly VoiceSafetyTurn[];
   /** Флаги, поставленные учителем инструментом flag_safety (клиент собрал за урок). */
   clientFlags?: readonly VoiceSafetyClientFlag[];
+  /** Сессия звонка: категории, уже записанные мгновенным репортом, не дублируем. */
+  sessionId?: string;
 }
 
 export interface VoiceSafetyReviewResult {
@@ -126,8 +135,14 @@ export async function reviewVoiceSafety(args: VoiceSafetyReviewArgs): Promise<Vo
       ...(moderation.flagged ? [{ verdict: moderation, source: 'moderation', userText: learnerText.slice(-400) }] : []),
     ]);
     if (all.length === 0) return { categories: [] };
+    // Категории этой сессии, уже записанные мгновенным репортом из урока
+    // (maxVoiceSafetyReport), — не дублируем. Один маленький запрос, и только
+    // когда есть что писать.
+    const already = args.sessionId ? await alreadyFlaggedCategories(args.sessionId) : new Set<string>();
+    const fresh = all.filter((i) => !already.has(String(i.verdict.category)));
     const transcript = renderSafetyTranscript(args.history);
-    for (const item of all) {
+    const nowMs = Date.now();
+    for (const item of fresh) {
       await recordSafetyFlag(item.verdict, {
         authUid: args.authUid,
         stableUid: args.stableUid,
@@ -136,6 +151,8 @@ export async function reviewVoiceSafety(args: VoiceSafetyReviewArgs): Promise<Vo
         history: args.history,
         transcript,
         source: item.source,
+        sessionId: args.sessionId,
+        retainUntilMs: nowMs + SAFETY_FLAG_RETENTION_MS,
       });
     }
     return { categories: all.map((i) => i.verdict.category as SafetyCategory) };
@@ -144,3 +161,76 @@ export async function reviewVoiceSafety(args: VoiceSafetyReviewArgs): Promise<Vo
     return { categories: [] };
   }
 }
+
+async function alreadyFlaggedCategories(sessionId: string): Promise<Set<string>> {
+  try {
+    const snap = await admin.firestore().collection('safety_flags')
+      .where('sessionId', '==', sessionId)
+      .limit(20)
+      .get();
+    return new Set(snap.docs.map((d) => String(d.data()?.category ?? '')));
+  } catch {
+    return new Set();
+  }
+}
+
+// ── Мгновенный репорт из урока ──────────────────────────────────────────────
+
+const REGION = 'us-central1';
+const REPORT_TURNS_MAX = 40;
+const REPORT_TURN_CHARS = 600;
+
+function sanitizeReportHistory(value: unknown): VoiceSafetyTurn[] {
+  if (!Array.isArray(value)) return [];
+  const out: VoiceSafetyTurn[] = [];
+  for (const raw of value.slice(-REPORT_TURNS_MAX)) {
+    const item = (raw ?? {}) as Record<string, unknown>;
+    const role = item.role === 'user' ? 'user' : item.role === 'assistant' ? 'assistant' : null;
+    const content = String(item.content ?? '').trim().slice(0, REPORT_TURN_CHARS);
+    if (role && content) out.push({ role, content });
+  }
+  return out;
+}
+
+/**
+ * Учитель вызвал flag_safety прямо в уроке → клиент немедленно шлёт сюда:
+ * запись в safety_flags (дата, сессия, что говорил ученик, контекст, полный
+ * транскрипт на этот момент, срок хранения 2 года) + Telegram сразу, не дожидаясь
+ * разбора после урока (владелец 2026-08-16). Разбор потом дописывает только
+ * НОВЫЕ категории (дедуп по sessionId).
+ */
+export const maxVoiceSafetyReport = onCall({
+  region: REGION,
+  enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
+  timeoutSeconds: 20,
+  memory: '256MiB',
+  maxInstances: 10,
+}, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  const data = (request.data ?? {}) as Record<string, unknown>;
+  const flags = sanitizeClientSafetyFlags([{ kind: data.kind, note: data.note }]);
+  if (flags.length === 0) throw new HttpsError('invalid-argument', 'safety_kind_invalid');
+  const sessionId = String(data.sessionId ?? '').trim().slice(0, 80);
+  const history = sanitizeReportHistory(data.history);
+  const mode = String(data.mode ?? '').trim() === 'voice_call' ? 'voice_call' : 'voice_tutor';
+  const db = admin.firestore();
+  const authUid = request.auth.uid;
+  const stableUid = await resolveStableUidForAuth(db, authUid);
+  const flag = flags[0];
+  const learnerLines = history.filter((t) => t.role === 'user');
+  await recordSafetyFlag(
+    { flagged: true, category: flag.kind as SafetyCategory, matched: 'tutor:flag_safety' },
+    {
+      authUid,
+      stableUid,
+      mode,
+      userText: flag.note || learnerLines.slice(-1)[0]?.content || '',
+      history,
+      transcript: renderSafetyTranscript(history),
+      source: 'tutor_tool',
+      sessionId: sessionId || undefined,
+      retainUntilMs: Date.now() + SAFETY_FLAG_RETENTION_MS,
+    },
+  );
+  return { ok: true };
+});

@@ -16,6 +16,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
 import { patchAppSnapshot } from '../app_snapshot_store';
 import { getFriendsTogetherSnapshot } from './together_store';
+import { prepareTogetherSender } from './sender_identity';
 
 const REGION = 'us-central1';
 
@@ -105,12 +106,15 @@ export async function claimFriendLevel(friendUid: string, level: number): Promis
 
   try {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
+    // зачем: сервер требует stableId (как friend_gifts) — без него invalid-argument.
+    const sender = await prepareTogetherSender();
+    if (!sender) return { ok: false, reason: 'network' };
     const requestId = makeRequestId('ftcl');
     const fn = httpsCallable<
-      { friendUid: string; level: number; requestId: string },
+      { stableId: string; friendUid: string; level: number; requestId: string },
       { ok: boolean; starsGranted: number; stars?: number; starsEarnedTotal?: number }
     >(getFunctions(getApp(), REGION), 'friendsTogetherClaimLevel');
-    const res = await fn({ friendUid: uid, level: lvl, requestId });
+    const res = await fn({ stableId: sender.stableId, friendUid: uid, level: lvl, requestId });
     const data = res.data;
     markLevelClaimedLocally(uid, lvl);
     patchStarsIfPresent(data);
@@ -127,9 +131,12 @@ export async function claimWeeklyChest(weekKey: string): Promise<ClaimChestResul
 
   try {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
+    // зачем: сервер требует stableId (как friend_gifts) — без него invalid-argument.
+    const sender = await prepareTogetherSender();
+    if (!sender) return { ok: false, reason: 'network' };
     const requestId = makeRequestId('ftcc');
     const fn = httpsCallable<
-      { weekKey: string; requestId: string },
+      { stableId: string; weekKey: string; requestId: string },
       {
         ok: boolean;
         starsGranted: number;
@@ -140,7 +147,7 @@ export async function claimWeeklyChest(weekKey: string): Promise<ClaimChestResul
         starsEarnedTotal?: number;
       }
     >(getFunctions(getApp(), REGION), 'friendsClaimWeeklyChest');
-    const res = await fn({ weekKey: key, requestId });
+    const res = await fn({ stableId: sender.stableId, weekKey: key, requestId });
     const data = res.data;
     patchStarsIfPresent(data);
     return {

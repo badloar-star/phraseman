@@ -35,6 +35,13 @@ jest.mock('../app/local_date', () => ({
   getLocalDayKey: jest.fn(() => '2026-08-17'),
 }));
 
+// зачем: sender_identity тянет cloud_sync (тяжёлый модуль) — стабим; заодно проверяем,
+// что stableId и имя зовущего реально уходят в payload (аудит 2026-08-17).
+const mockPrepareTogetherSender = jest.fn(async () => ({ stableId: 'me-stable', displayName: 'Марина' }));
+jest.mock('../app/friends_together/sender_identity', () => ({
+  prepareTogetherSender: () => mockPrepareTogetherSender(),
+}));
+
 beforeEach(() => {
   jest.resetModules();
   jest.clearAllMocks();
@@ -53,6 +60,17 @@ describe('nudgeFriend', () => {
     expect(result).toEqual({ ok: true });
     expect(isNudgedToday('friend-1')).toBe(true);
     expect(mockCallableInvoker).toHaveBeenCalledTimes(1);
+    expect(mockCallableInvoker).toHaveBeenCalledWith(expect.objectContaining({ stableId: 'me-stable', friendUid: 'friend-1', senderDisplayName: 'Марина' }));
+  });
+
+  it('rolls back and reports network when sender identity is unavailable', async () => {
+    mockPrepareTogetherSender.mockResolvedValueOnce(null as any);
+    const { nudgeFriend, isNudgedToday, primeNudgedTodayCache } = await import('../app/friends_together/nudge_client');
+    await primeNudgedTodayCache();
+    const result = await nudgeFriend('friend-3');
+    expect(result).toEqual({ ok: false, reason: 'network' });
+    expect(isNudgedToday('friend-3')).toBe(false);
+    expect(mockCallableInvoker).not.toHaveBeenCalled();
   });
 
   it('rolls back the optimistic mark on a definitive error (e.g. daily_limit)', async () => {

@@ -12,6 +12,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
 import { getLocalDayKey } from '../local_date';
+import { prepareTogetherSender } from './sender_identity';
 
 const REGION = 'us-central1';
 const NUDGED_TODAY_KEY_PREFIX = 'friends_nudged_today_v1';
@@ -118,6 +119,11 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
     const dayKey = _memoryDayKey;
     if (_memoryMap[uid]) return { ok: true }; // уже позвали сегодня — идемпотентно ok
 
+    // 0) Идентичность отправителя — ДО оптимистичной отметки: если её нет, вызов не уйдёт,
+    //    и отмечать нечего (аудит 2026-08-17: сервер требует stableId и имя для пуша).
+    const sender = await prepareTogetherSender();
+    if (!sender) return { ok: false, reason: 'network' };
+
     // 1) Optimistic: отмечаем ДО ответа сервера.
     const previousMap = { ..._memoryMap };
     _memoryMap = { ..._memoryMap, [uid]: Date.now() };
@@ -127,11 +133,18 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
     const attempt = async (): Promise<NudgeResult> => {
       try {
         await initFirebaseAppCheckIfAvailable().catch(() => {});
-        const fn = httpsCallable<{ friendUid: string; requestId: string }, { ok: boolean }>(
-          getFunctions(getApp(), REGION),
-          'friendsNudge',
-        );
-        await fn({ friendUid: uid, requestId });
+        // зачем: сервер требует stableId и берёт имя зовущего из senderDisplayName —
+        // иначе пуш уйдёт как «Friend» (аудит 2026-08-17).
+        const fn = httpsCallable<
+          { stableId: string; friendUid: string; requestId: string; senderDisplayName?: string },
+          { ok: boolean }
+        >(getFunctions(getApp(), REGION), 'friendsNudge');
+        await fn({
+          stableId: sender.stableId,
+          friendUid: uid,
+          requestId,
+          ...(sender.displayName ? { senderDisplayName: sender.displayName } : {}),
+        });
         return { ok: true };
       } catch (error) {
         const reason = classifyNudgeError(error);

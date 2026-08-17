@@ -9,6 +9,7 @@
 //   evaluator_capsule — правильные ответы, остаются на сервере
 //   evaluator_sidecar — разбор ошибок для подсказок
 //   auxiliary         — вспомогательное: сохранение фраз, объяснения
+import { createHash } from 'node:crypto';
 import {
   materializeLearningV2CourseSessionAuxiliaryChildV1,
   materializeLearningV2CourseSessionIntroChildV1,
@@ -16,6 +17,43 @@ import {
   materializeLearningV2CourseSessionSavablePhraseV1,
 } from '../../runtime/course_session_client_children_v1';
 import type { LearningV2GeneratedSessionShardV1 } from '../generator_session_shard';
+// зачем: капсула обязана собираться каноническим строителем, а не вручную —
+// он считает криптографические обязательства вместо открытых ответов и
+// заполняет восемь полей полномочий, которых у ручного объекта не было.
+import { materializeLearningV2CourseSessionEvaluatorCapsuleChildV1 } from '../../runtime/course_session_evaluator_capsule_child_v1';
+import { v2LocalEvaluatorInputKindForFamilyV1 } from '../../runtime/local_evaluator_capsule_v1';
+
+/**
+ * Соль для криптографического обязательства ответа. Контракт требует ровно
+ * 64 шестнадцатеричных знака.
+ *
+ * зачем детерминированная, а не случайная: публикация обязана быть
+ * воспроизводимой — один и тот же контент даёт один и тот же релиз. Случайная
+ * соль меняла бы отпечаток при каждом запуске, и система идемпотентности
+ * считала бы неизменный курс новым релизом на каждой публикации.
+ */
+function saltFor(seed: string): string {
+  return createHash('sha256').update(`capsule-salt\n${seed}`).digest('hex');
+}
+
+/**
+ * Превращает вариант ответа в choice_token: локальный оценщик требует
+ * `^[a-z0-9][a-z0-9._:-]{0,159}$` — без пробелов и заглавных букв.
+ *
+ * зачем не хешируем, а нормализуем читаемо: токен участвует в отладке
+ * (видно в логах при расхождении), а хеш от исходного ответа уже добавляет
+ * соль внутри createV2LocalEvaluatorCommitmentV1 — двойное хеширование тут
+ * не нужно, нужна только устойчивая по форме строка.
+ */
+function toChoiceToken(answer: string): string {
+  const cleaned = answer
+    .normalize('NFKC')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return cleaned.length > 0 ? cleaned.slice(0, 160) : 'blank';
+}
 
 /** Как называется задание в приложении — по назначению карточки в сессии. */
 const FAMILY_INPUT_MODE = Object.freeze({
@@ -141,18 +179,57 @@ export function buildSessionChildBodiesFromShard(
   //
   // Сюда же переезжают ответы на вопросы интро — в самом интро их быть не
   // должно, иначе их видно в трафике.
-  const evaluatorCapsule = {
-    schemaVersion: 'learning-v2-course-session-evaluator-capsule-child.v1',
-    courseSessionId,
-    introAnswers: shard.intro.pages.map((page) => ({
+  // зачем (инцидент 2026-08-17): капсула СЛЕПЛИВАЛАСЬ ВРУЧНУЮ объектом с
+  // полями answers/introAnswers — единственный ребёнок, который я собирал не
+  // каноническим строителем. Контракт ждёт совсем другое: entries, entryCount
+  // и восемь полей полномочий, плюс криптографические обязательства вместо
+  // открытых ответов. Чтение падало с
+  // learning_v2_course_session_evaluator_capsule_child_invalid.
+  //
+  // Строитель сам считает обязательства и хеши: открытый правильный ответ в
+  // файл не попадает даже здесь, на сервере — сверка идёт по хешу.
+  const capsuleEntries = [
+    // Вопросы интро: правильный вариант живёт ТОЛЬКО здесь. В самом интро его
+    // быть не должно, иначе ответ виден в трафике.
+    ...shard.intro.pages.map((page) => ({
       interactionId: page.question.questionId,
-      correctChoiceIndex: page.question.correctChoiceIndex,
+      activityId: `activity-intro-${page.pageId}`,
+      capsuleId: `capsule-intro-${page.pageId}`,
+      family: 'listen_choose' as never,
+      normalizationLocale: shard.targetLanguage,
+      salt: saltFor(page.question.questionId),
+      // зачем токен, а не текст варианта: семейство listen_choose принимает
+      // только choice_token — короткий идентификатор без пробелов. Текст
+      // «I am here» нормализацию не проходит. Номер варианта устойчив и к
+      // смене языка интерфейса: в каждом языке порядок вариантов один и тот же.
+      acceptedResponses: [`choice-${page.question.correctChoiceIndex}`],
     })),
-    answers: practiceCards.map((card) => ({
-      interactionId: card.cardId,
-      contentItemId: card.contentItem.contentItemId,
-    })),
-  };
+    ...practiceCards.map((card) => {
+      // зачем: семейства с выбором (listen_choose, sound_contrast,
+      // context_gap_grammar, speed_match) принимают только choice_token —
+      // короткий токен без пробелов; остальные (phrase_builder,
+      // listen_build_dictation) принимают свободный текст. Полный текст
+      // фразы токен-регэксп не проходит, поэтому для choice_token-семейств
+      // берём нормализованный токен, для остальных — сами варианты ответа.
+      const inputKind = v2LocalEvaluatorInputKindForFamilyV1(card.family as never);
+      const acceptedResponses =
+        inputKind === 'choice_token'
+          ? card.contentItem.acceptedAnswers.map((answer) => toChoiceToken(answer))
+          : card.contentItem.acceptedAnswers;
+      return {
+        interactionId: card.cardId,
+        activityId: card.activityId,
+        capsuleId: `capsule-${card.cardId}`,
+        family: card.family as never,
+        normalizationLocale: shard.targetLanguage,
+        salt: saltFor(card.cardId),
+        acceptedResponses,
+      };
+    }),
+  ];
+  const evaluatorCapsule = materializeLearningV2CourseSessionEvaluatorCapsuleChildV1(
+    { courseSessionId, entries: capsuleEntries as never },
+  );
 
   // Разбор ошибок: почему неверный вариант неверен.
   const evaluatorSidecar = {

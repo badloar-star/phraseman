@@ -694,7 +694,7 @@ describe("format 'tutor' — личный учитель", () => {
     const body = lastFetchBody();
     expect(body.session.audio.output).toEqual({ voice: 'cedar' }); // tutorVoice, не голос сцен
     expect(body.session.tools.map((t: DocData) => t.name)).toEqual([
-      'start_scene', 'end_scene', 'mark_phrase_result', 'assign_homework', 'set_next_topic', 'set_language_preference', 'flag_safety', 'end_call',
+      'start_scene', 'end_scene', 'mark_phrase_result', 'assign_homework', 'set_next_topic', 'mark_goal_progress', 'set_language_preference', 'flag_safety', 'end_call',
     ]);
     expect(body.session.tool_choice).toBe('auto');
     const instr: string = body.session.instructions;
@@ -718,6 +718,13 @@ describe("format 'tutor' — личный учитель", () => {
       nextTopic: 'weekend plans',
     });
     expect(String(res.tutor.greetingInstructions)).toContain('LANGUAGE POLICY');
+    // Карта целей: A1 → первая цель a1_greet, «0 из 60», блок цели в промпте.
+    expect(instr).toContain('CURRENT SPEAKING GOAL');
+    expect(instr).toContain('a1_greet');
+    expect(res.tutor.plan.goal).toMatchObject({ id: 'a1_greet', level: 'A1', mastery: 0 });
+    expect(res.tutor.plan.goalsDone).toBe(0);
+    expect(res.tutor.plan.goalsTotal).toBe(60);
+    expect(res.tutor.plan.lessonType).toBe('new_material'); // callCount 3 → 3 % 3 = 0
   });
 
   it('первый урок без памяти и без устава: встроенная выжимка продукта, память «первый урок»', async () => {

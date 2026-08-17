@@ -133,6 +133,10 @@ export default function MaxCallPrestart() {
     dueCount: number;
     homeworkCount: number;
     nextTopic: string;
+    goalTitle: string;
+    goalLevel: string;
+    goalsDone: number;
+    goalsTotal: number;
   } | null>(null);
   const key = premintKey(callParams);
 
@@ -162,6 +166,12 @@ export default function MaxCallPrestart() {
             dueCount: mint.tutor.plan?.duePhrases.length ?? 0,
             homeworkCount: mint.tutor.homework.length,
             nextTopic: mint.tutor.nextTopic,
+            goalTitle: mint.tutor.plan?.goal
+              ? (lang === 'ru' ? mint.tutor.plan.goal.title.ru : lang === 'uk' ? mint.tutor.plan.goal.title.uk : mint.tutor.plan.goal.title.en)
+              : '',
+            goalLevel: mint.tutor.plan?.goal?.level ?? '',
+            goalsDone: mint.tutor.plan?.goalsDone ?? 0,
+            goalsTotal: mint.tutor.plan?.goalsTotal ?? 0,
           });
         }
         setPreflightReason(null);
@@ -389,6 +399,19 @@ export default function MaxCallPrestart() {
                   </View>
                 ))}
               </View>
+              {tutorPlan.goalTitle !== '' && (
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 10 }}>
+                  <Ionicons name="flag-outline" size={15} color={t.accent} />
+                  <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', flex: 1 }} maxFontSizeMultiplier={1.2}>
+                    {`${tutorPlan.goalLevel} · ${tutorPlan.goalTitle}`}
+                  </Text>
+                  {tutorPlan.goalsTotal > 0 && (
+                    <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.2}>
+                      {`${tutorPlan.goalsDone} / ${tutorPlan.goalsTotal}`}
+                    </Text>
+                  )}
+                </View>
+              )}
               {tutorPlan.nextTopic !== '' && (
                 <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 10 }} maxFontSizeMultiplier={1.2}>
                   {triLang(lang, {

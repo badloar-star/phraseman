@@ -37,6 +37,13 @@ import {
 } from './max_voice_tutor_memory';
 import { resolveStudyTarget, studyTargetName } from './ai_language_contract';
 import {
+  CAN_DO_GOALS_TOTAL,
+  canDoProgress,
+  levelFromMastery,
+  pickNextGoal,
+  renderCanDoGoalBlock,
+} from './max_voice_can_do_goals';
+import {
   VOICE_QUOTA_COLLECTION,
   releaseVoiceReservation,
   markVoiceTrialUsed,
@@ -745,6 +752,16 @@ export const maxVoiceMint = onCall({
   const [tutorMemory, appDigest] = isTutor
     ? await Promise.all([readTutorMemory(db, authUid, stableUid), loadTutorAppDigest(db, nowMs)])
     : [null, ''];
+  // Карта целей (ступень 2): текущая цель по mastery и уровню. Уровень для выбора
+  // цели — из закрытых целей, если они уже есть, иначе — cefr клиента.
+  const goalProgressNow = tutorMemory ? canDoProgress(tutorMemory.goalMastery) : null;
+  const goalLevel = tutorMemory && goalProgressNow && goalProgressNow.done > 0
+    ? levelFromMastery(tutorMemory.goalMastery, cefr)
+    : cefr;
+  const currentGoal = tutorMemory ? pickNextGoal(tutorMemory.goalMastery, goalLevel) : null;
+  const goalBlock = tutorMemory && currentGoal && goalProgressNow
+    ? renderCanDoGoalBlock(currentGoal, tutorMemory.goalMastery, goalProgressNow)
+    : '';
   const instructions = buildVoiceInstructions({
     cefr,
     format: ctx.access === 'trial' ? (ctx.trialVariant === 'companion' ? 'companion' : 'trial') : format === 'trial' ? 'scenario' : format,
@@ -760,7 +777,9 @@ export const maxVoiceMint = onCall({
           appDigest,
           sceneCatalog: text(data.sceneCatalog, 2000),
           learnerSnapshot: text(data.learnerSnapshot, 2400),
-          tutorMemoryBlock: tutorMemory ? renderTutorMemoryBlock(tutorMemory, nowMs) : '',
+          tutorMemoryBlock: tutorMemory
+            ? renderTutorMemoryBlock(tutorMemory, nowMs) + (goalBlock ? `\n\n${goalBlock}` : '')
+            : '',
         }
       : {}),
   });
@@ -837,6 +856,12 @@ export const maxVoiceMint = onCall({
               duePhrases: tutorMemory ? duePhrases(tutorMemory, nowMs).map((p) => p.text) : [],
               scenesDone: tutorMemory?.scenesDone ?? 0,
               scenesTotal: tutorMemory?.scenesTotal ?? 0,
+              // Карта речевых целей: текущая цель + «14 из 60».
+              goal: currentGoal
+                ? { id: currentGoal.id, level: currentGoal.level, title: currentGoal.title, mastery: tutorMemory?.goalMastery[currentGoal.id] ?? 0 }
+                : null,
+              goalsDone: goalProgressNow?.done ?? 0,
+              goalsTotal: CAN_DO_GOALS_TOTAL,
             },
           },
         }

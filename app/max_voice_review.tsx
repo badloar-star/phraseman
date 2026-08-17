@@ -54,6 +54,12 @@ export interface MaxCallResult {
     phraseResults: { text: string; ok: boolean }[];
     /** Итог сцены-задачи ('' — сцены не было). */
     sceneOutcome: string;
+    /** Прогресс по текущей цели за урок (mark_goal_progress). */
+    goalProgress: { goalId: string; mastery: number } | null;
+    /** Цель, над которой работали, и карта «done/total» на момент звонка. */
+    goal: { id: string; level: string; title: { en: string; ru: string; uk: string }; mastery: number } | null;
+    goalsDone: number;
+    goalsTotal: number;
     lessonsSoFar: number;
   };
   /** CEFR звонка — прокидывается в «Позвонить ещё раз», чтобы не терять уровень. */
@@ -118,6 +124,8 @@ export default function MaxVoiceReview() {
   // Совет на следующий разговор — сервер его отдаёт с первого дня, экран
   // звонка его не показывал (владелец 2026-08-16: «разбор ничего не разбирает»).
   const [tip, setTip] = useState('');
+  // Карта целей после разбора: сервер вернул свежий счёт (goalsDone/goalsTotal).
+  const [goalsAfter, setGoalsAfter] = useState<{ done: number; total: number } | null>(null);
   const [corrections, setCorrections] = useState<PremiumDialogReviewCorrection[]>([]);
   // Один запрос на результат звонка: смена звонка (новый result) отпускает
   // защёлку, но StrictMode/ре-рендер того же result не должны дублировать вызов.
@@ -175,6 +183,7 @@ export default function MaxVoiceReview() {
             ...((result.tutor?.safetyFlags?.length ?? 0) > 0 ? { safetyFlags: result.tutor?.safetyFlags } : {}),
             ...((result.tutor?.phraseResults?.length ?? 0) > 0 ? { phraseResults: result.tutor?.phraseResults } : {}),
             ...(result.tutor?.sceneOutcome ? { sceneOutcome: result.tutor.sceneOutcome } : {}),
+            ...(result.tutor?.goalProgress ? { goalProgress: result.tutor.goalProgress } : {}),
           }
         : {}),
     })
@@ -183,6 +192,10 @@ export default function MaxVoiceReview() {
         setPraise(res.praise);
         setCorrections(res.corrections);
         setTip(typeof res.tip === 'string' ? res.tip : '');
+        const tm = (res as unknown as { tutorMemory?: { goalsDone?: number; goalsTotal?: number } }).tutorMemory;
+        if (tm && typeof tm.goalsDone === 'number' && typeof tm.goalsTotal === 'number' && tm.goalsTotal > 0) {
+          setGoalsAfter({ done: tm.goalsDone, total: tm.goalsTotal });
+        }
         setReviewState('loaded');
       })
       .catch(() => {
@@ -462,6 +475,33 @@ export default function MaxVoiceReview() {
               }),
             )}
           </View>
+
+          {/* Учитель: речевая цель урока и карта «N из 60» (ступень 2 плана обучения) */}
+          {result.format === 'tutor' && result.tutor?.goal && (
+            <View
+              testID="max-voice-review-tutor-goal"
+              style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 14, marginTop: 12 }}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                <Ionicons name="flag-outline" size={15} color={t.accent} />
+                <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '900', flex: 1 }} maxFontSizeMultiplier={1.2}>
+                  {triLang(lang, { ru: 'Цель урока', uk: 'Мета уроку', es: 'Objetivo de la clase', 'pt-BR': 'Objetivo da aula', vi: 'Mục tiêu buổi học', id: 'Tujuan pelajaran', tr: 'Ders hedefi', pl: 'Cel lekcji' })}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.2}>
+                  {`${goalsAfter?.done ?? result.tutor.goalsDone} / ${goalsAfter?.total ?? result.tutor.goalsTotal}`}
+                </Text>
+              </View>
+              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', marginTop: 8 }} maxFontSizeMultiplier={1.2}>
+                {`${result.tutor.goal.level} · ${lang === 'ru' ? result.tutor.goal.title.ru : lang === 'uk' ? result.tutor.goal.title.uk : result.tutor.goal.title.en}`}
+              </Text>
+              <View style={{ flexDirection: 'row', gap: 6, marginTop: 8 }}>
+                {[1, 2, 3].map((step) => {
+                  const reached = Math.max(result.tutor?.goal?.mastery ?? 0, result.tutor?.goalProgress?.goalId === result.tutor?.goal?.id ? (result.tutor?.goalProgress?.mastery ?? 0) : 0);
+                  return <View key={`gm-${step}`} style={{ flex: 1, height: 6, borderRadius: 3, backgroundColor: step <= reached ? t.accent : glassFill(t.bgSurface, 0.8) }} />;
+                })}
+              </View>
+            </View>
+          )}
 
           {/* Учитель: домашка на завтра и обещанная тема — то, что учитель сказал голосом, теперь на глазах */}
           {result.format === 'tutor' && ((result.tutor?.homework.length ?? 0) > 0 || (result.tutor?.nextTopic ?? '') !== '') && (

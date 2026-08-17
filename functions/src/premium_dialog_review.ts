@@ -6,6 +6,7 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { resolveConfiguredDialogModel, modelSupportsJsonObject } from './openai_dialog_model_config';
 import { applyTutorMemoryUpdate } from './max_voice_tutor_memory';
 import { reviewVoiceSafety, sanitizeClientSafetyFlags } from './max_voice_safety';
+import { canDoProgress } from './max_voice_can_do_goals';
 import { enforceRateLimit, asInterfaceLang } from './premium_dialog';
 import { resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
 
@@ -85,6 +86,8 @@ interface DialogReviewRequest {
   phraseResults?: unknown;
   /** tutor: итог сцены-задачи (end_scene outcome). */
   sceneOutcome?: unknown;
+  /** tutor: прогресс по текущей цели (mark_goal_progress) — { goalId, mastery }. */
+  goalProgress?: unknown;
 }
 
 /** Одно исправление: фраза ученика → естественный вариант + короткое пояснение. */
@@ -400,7 +403,7 @@ export const premiumDialogReview = onCall({
   // Учитель: обновить память между уроками (домашка/тема — от клиента, из
   // инструментов учителя; факты/ошибки — из разбора). Ошибка записи — не
   // причина ронять разбор.
-  let tutorMemoryOut: { callCount: number; homework: string[]; nextTopic: string } | undefined;
+  let tutorMemoryOut: { callCount: number; homework: string[]; nextTopic: string; goalsDone: number; goalsTotal: number } | undefined;
   if (mode === 'tutor') {
     const list = (v: unknown, max: number): string[] =>
       Array.isArray(v) ? v.map((x) => text(x, 140)).filter((x) => x !== '').slice(0, max) : [];
@@ -420,9 +423,16 @@ export const premiumDialogReview = onCall({
           }).filter((r) => r.text !== '')
         : [],
       sceneOutcome: text(data.sceneOutcome, 12),
+      goalProgress: data.goalProgress && typeof data.goalProgress === 'object'
+        ? { goalId: (data.goalProgress as Record<string, unknown>).goalId, mastery: (data.goalProgress as Record<string, unknown>).mastery }
+        : null,
       nowMs: Date.now(),
     });
-    tutorMemoryOut = { callCount: next.callCount, homework: next.homework, nextTopic: next.nextTopic };
+    const progress = canDoProgress(next.goalMastery);
+    tutorMemoryOut = {
+      callCount: next.callCount, homework: next.homework, nextTopic: next.nextTopic,
+      goalsDone: progress.done, goalsTotal: progress.total,
+    };
   }
 
   // Память — внутренняя кухня учителя: клиенту она не нужна и не уходит.

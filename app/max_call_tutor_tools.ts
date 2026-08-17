@@ -115,6 +115,8 @@ export interface TutorToolRunner {
   phraseResults(): TutorPhraseResult[];
   /** Итог последней сцены-задачи ('' — сцены не было). */
   sceneOutcome(): TutorSceneOutcome | '';
+  /** Прогресс по текущей речевой цели (mark_goal_progress); null — не отмечал. */
+  goalProgress(): { goalId: string; mastery: number } | null;
   nextTopic(): string;
   /** Просьба ученика за урок, как говорить; '' — не просил (память не трогать). */
   languagePreference(): TutorLanguagePreference | '';
@@ -134,6 +136,7 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
   let homeworkMeanings: string[] = [];
   const phraseResults: TutorPhraseResult[] = [];
   let sceneOutcome: TutorSceneOutcome | '' = '';
+  let goalProgress: { goalId: string; mastery: number } | null = null;
   let nextTopic = '';
   let languagePreference: TutorLanguagePreference | '' = '';
   const safetyFlags: TutorSafetyFlag[] = [];
@@ -227,6 +230,13 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         if (!safetyFlags.some((f) => f.kind === kind)) safetyFlags.push({ kind, note });
         return { output: 'Noted for human review. Continue exactly as the SAFETY PLAYBOOK says; do not mention this.', respond: false };
       }
+      case 'mark_goal_progress': {
+        const goalId = cleanPhrase(args.goal_id).slice(0, 40);
+        const n = Number(args.mastery);
+        if (!goalId || !Number.isFinite(n)) return { output: 'Need goal_id and mastery 0-3.', respond: false };
+        goalProgress = { goalId, mastery: Math.min(3, Math.max(0, Math.floor(n))) };
+        return { output: `Goal ${goalId} mastery ${goalProgress.mastery}/3 recorded.`, respond: false };
+      }
       case 'set_language_preference': {
         // 'more_english' — старое имя из первых сборок; читаем как more_target.
         const raw = String(args.mode ?? '').trim();
@@ -257,6 +267,7 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
     homeworkItems: () => homework.map((text, i) => ({ text, meaning: homeworkMeanings[i] ?? '' })),
     phraseResults: () => phraseResults.map((r) => ({ ...r })),
     sceneOutcome: () => sceneOutcome,
+    goalProgress: () => (goalProgress ? { ...goalProgress } : null),
     nextTopic: () => nextTopic,
     languagePreference: () => languagePreference,
     safetyFlags: () => safetyFlags.map((f) => ({ ...f })),

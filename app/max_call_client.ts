@@ -191,6 +191,10 @@ export interface MaxVoiceTutorInfo {
     duePhrases: string[];
     scenesDone: number;
     scenesTotal: number;
+    /** Текущая речевая цель карты (null — все закрыты) и счёт «14 / 60». */
+    goal: { id: string; level: string; title: { en: string; ru: string; uk: string }; mastery: number } | null;
+    goalsDone: number;
+    goalsTotal: number;
   };
 }
 
@@ -269,6 +273,23 @@ function parseTutorPlan(p: Record<string, unknown>): NonNullable<MaxVoiceTutorIn
     duePhrases: Array.isArray(p.duePhrases) ? p.duePhrases.filter((x): x is string => typeof x === 'string').slice(0, 6) : [],
     scenesDone: n(p.scenesDone),
     scenesTotal: n(p.scenesTotal),
+    goal: parseTutorGoal(p.goal),
+    goalsDone: n(p.goalsDone),
+    goalsTotal: n(p.goalsTotal),
+  };
+}
+
+function parseTutorGoal(g: unknown): NonNullable<MaxVoiceTutorInfo['plan']>['goal'] {
+  if (!g || typeof g !== 'object') return null;
+  const o = g as Record<string, unknown>;
+  const title = (o.title && typeof o.title === 'object' ? o.title : {}) as Record<string, unknown>;
+  const str = (v: unknown): string => (typeof v === 'string' ? v : '');
+  if (!str(o.id)) return null;
+  return {
+    id: str(o.id),
+    level: str(o.level) || 'A1',
+    title: { en: str(title.en), ru: str(title.ru), uk: str(title.uk) },
+    mastery: typeof o.mastery === 'number' && Number.isFinite(o.mastery) ? Math.min(3, Math.max(0, Math.floor(o.mastery))) : 0,
   };
 }
 

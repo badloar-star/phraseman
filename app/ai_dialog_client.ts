@@ -375,6 +375,8 @@ export interface PremiumDialogReviewRequest {
   phraseResults?: { text: string; ok: boolean }[];
   /** tutor: итог сцены-задачи (end_scene outcome). */
   sceneOutcome?: string;
+  /** tutor: прогресс по текущей речевой цели (mark_goal_progress). */
+  goalProgress?: { goalId: string; mastery: number };
 }
 
 /** Одно исправление: как сказал ученик → как естественнее + короткое пояснение. */

@@ -744,6 +744,10 @@ export default function MaxCallSession() {
               homeworkItems: tutorRunnerRef.current?.homeworkItems() ?? [],
               phraseResults: tutorRunnerRef.current?.phraseResults() ?? [],
               sceneOutcome: tutorRunnerRef.current?.sceneOutcome() ?? '',
+              goalProgress: tutorRunnerRef.current?.goalProgress() ?? null,
+              goal: mint?.tutor?.plan?.goal ?? null,
+              goalsDone: mint?.tutor?.plan?.goalsDone ?? 0,
+              goalsTotal: mint?.tutor?.plan?.goalsTotal ?? 0,
               lessonsSoFar: mint?.tutor?.lessonsSoFar ?? 0,
             },
           }

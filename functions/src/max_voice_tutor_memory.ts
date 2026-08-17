@@ -19,6 +19,7 @@
 import { createHash } from 'crypto';
 import type { Firestore } from 'firebase-admin/firestore';
 import { PRODUCT_CHARTER_DOC, parseProductCharter, type ProductCharter } from './jarvis/product_charter';
+import { canDoGoalById, parseCanDoMastery, type CanDoMastery } from './max_voice_can_do_goals';
 
 export const VOICE_TUTOR_MEMORY_COLLECTION = 'voice_tutor_memory';
 
@@ -74,6 +75,8 @@ export interface TutorMemory {
   /** Сцены-задачи: сколько выполнено / всего (критерий успеха сцены — objectives). */
   scenesDone: number;
   scenesTotal: number;
+  /** Карта речевых целей (ступень 2): id цели → mastery 0–3. */
+  goalMastery: CanDoMastery;
 }
 
 export type TutorLanguagePreference = '' | 'more_target' | 'more_native';
@@ -97,6 +100,7 @@ export const TUTOR_MEMORY_EMPTY: TutorMemory = Object.freeze({
   phraseQueue: [],
   scenesDone: 0,
   scenesTotal: 0,
+  goalMastery: {},
 }) as TutorMemory;
 
 function docId(prefix: string, authUid: string, stableUid: string): string {
@@ -146,6 +150,7 @@ export function parseTutorMemory(raw: unknown): TutorMemory {
     phraseQueue: parsePhraseQueue(d.phraseQueue),
     scenesDone: Math.floor(num(d.scenesDone)),
     scenesTotal: Math.floor(num(d.scenesTotal)),
+    goalMastery: parseCanDoMastery(d.goalMastery),
   };
 }
 
@@ -246,6 +251,8 @@ export interface TutorMemoryUpdate {
   phraseResults?: readonly TutorPhraseResult[];
   /** Сцена-задача: 'done' | 'partial' | 'skipped' | '' (end_scene outcome). */
   sceneOutcome?: unknown;
+  /** Прогресс по цели за урок (mark_goal_progress): { goalId, mastery 0–3 }. Mastery не убывает. */
+  goalProgress?: { goalId: unknown; mastery: unknown } | null;
   nowMs: number;
 }
 
@@ -277,7 +284,21 @@ export function mergeTutorMemory(prev: TutorMemory, update: TutorMemoryUpdate): 
     phraseQueue: applyPhraseResults(prev.phraseQueue, update.phraseResults ?? [], homework, update.nowMs),
     scenesTotal: prev.scenesTotal + (String(update.sceneOutcome ?? '') === 'done' || String(update.sceneOutcome ?? '') === 'partial' ? 1 : 0),
     scenesDone: prev.scenesDone + (String(update.sceneOutcome ?? '') === 'done' ? 1 : 0),
+    goalMastery: applyGoalProgress(prev.goalMastery, update.goalProgress),
   };
+}
+
+/** Mastery цели только растёт (учитель не может «разучить»); неизвестная цель игнорируется. */
+export function applyGoalProgress(prev: CanDoMastery, progress: TutorMemoryUpdate['goalProgress']): CanDoMastery {
+  if (!progress) return prev;
+  const goalId = String(progress.goalId ?? '').trim();
+  if (!canDoGoalById(goalId)) return prev;
+  const n = Number(progress.mastery);
+  if (!Number.isFinite(n)) return prev;
+  const mastery = Math.min(3, Math.max(0, Math.floor(n)));
+  const current = prev[goalId] ?? 0;
+  if (mastery <= current) return prev;
+  return { ...prev, [goalId]: mastery };
 }
 
 /** Прочитать → слить → записать. Ошибка записи логируется, не бросает (разбор важнее). */

@@ -45,6 +45,17 @@ export interface FriendProfileBatchRecord {
   isPremium: boolean;
   isVip: boolean;
   isLifetime: boolean;
+  // ── «Вместе» (friends_together): расширение сервера идёт параллельно в этой же
+  // фазе — поля читаем tolerant-к-отсутствию (undefined/null → безопасный дефолт),
+  // старый ответ callable без этих полей не должен ломать маппинг.
+  /** Локальный день последней активности друга (YYYY-MM-DD), null = сервер не отдал. */
+  lastActiveDate?: string | null;
+  /** Кодированные активные дни друга — вход для together_days.daysTogether. */
+  activeDays?: { anchor: string; bits: string } | null;
+  /** XP друга за ТЕКУЩУЮ неделю лиг (0, если сервер не отдал или неделя не совпала). */
+  weeklyXp?: number;
+  /** Настройки пуша «Позвать» друга — null, если сервер не знает/друг не настраивал. */
+  friendsPush?: { enabled: boolean; tz: number } | null;
 }
 
 type ProfilesResponse = {

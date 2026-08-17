@@ -17,6 +17,7 @@ import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
 import { mergeStreakByActivityDate, normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from './streak_safety';
+import { mergeActiveDays } from './friends_together/together_days';
 import {
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
@@ -271,12 +272,38 @@ const SEASON_COSMETICS_SYNC_KEY = 'season_cosmetics_v1';
  * merge локального и облачного значения кастомной стратегией.
  * Стратегия чистая: (localRaw, cloudRaw) → строка для записи в AsyncStorage.
  */
+function mergeActiveDaysRestoreValue(localRaw: string | null | undefined, cloudRaw: string): string {
+  // зачем («Вместе», friends_together §2.1): active_days_v1 — история активных дней,
+  // видна друзьям для подсчёта общих дней. LWW здесь недопустим — облачное значение
+  // с другого устройства НЕ должно стирать дни, отмеченные локально на этом (и наоборот).
+  // OR по датам, как и требует спецификация.
+  let localState: { anchor: string; bits: string } | null = null;
+  let cloudState: { anchor: string; bits: string } | null = null;
+  try {
+    const parsedLocal = localRaw ? JSON.parse(localRaw) as { anchor?: unknown; bits?: unknown } : null;
+    if (parsedLocal && typeof parsedLocal.anchor === 'string' && typeof parsedLocal.bits === 'string') {
+      localState = { anchor: parsedLocal.anchor, bits: parsedLocal.bits };
+    }
+  } catch { /* локальное значение повреждено — считаем пустым */ }
+  try {
+    const parsedCloud = JSON.parse(cloudRaw) as { anchor?: unknown; bits?: unknown };
+    if (parsedCloud && typeof parsedCloud.anchor === 'string' && typeof parsedCloud.bits === 'string') {
+      cloudState = { anchor: parsedCloud.anchor, bits: parsedCloud.bits };
+    }
+  } catch { /* облачное значение повреждено — считаем пустым */ }
+  const merged = mergeActiveDays(localState, cloudState);
+  if (!merged.anchor) return localRaw ?? cloudRaw;
+  return JSON.stringify(merged);
+}
+
 const FC_RESTORE_MERGE_STRATEGIES: Record<
   string,
   (localRaw: string | null | undefined, cloudRaw: string) => string
 > = {
   // Cards 2.1 §3: звёзды раздела карточек удалены — ключей `fc_stars_v1` /
   // `fc_deck_best_stars_v1` больше нет ни в SYNC_KEYS, ни в merge-стратегиях.
+  // «Вместе»: active_days_v1 мержится OR по датам между устройствами (см. функцию выше).
+  active_days_v1: mergeActiveDaysRestoreValue,
 };
 
 export const SYNC_KEYS = [
@@ -315,6 +342,11 @@ export const SYNC_KEYS = [
   'streak_count',
   'last_active_date',
   'streak_last_date',
+  // «Вместе» (friends_together §2.1): история активных дней (для подсчёта "дней вместе"
+  // с друзьями — OR-мерж между устройствами, см. FC_RESTORE_MERGE_STRATEGIES) и
+  // настройка пуша "Позвать" (обычный LWW — это просто тумблер с tz).
+  'active_days_v1',
+  'friends_push_v1',
   // ── Мультиязычность: начатые языки + ответы мини-онбординга языка ─────────
   // (гейт «1 язык фри»; см. app/study_languages.ts)
   'study_languages_started_v1',

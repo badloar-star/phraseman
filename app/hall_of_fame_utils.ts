@@ -15,6 +15,7 @@ import { isStreakFreezeActiveToday } from './streak_freeze';
 import { getCardStreakShieldStatus, tryConsumeCardStreakShield } from './profile_card_streak_shield';
 import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
 import { consumeFriendChainShield } from './friend_gifts';
+import { markActiveDay } from './friends_together/together_days';
 import {
   getLocalDayKey,
   isDayBeforeYesterdayFlexible,
@@ -378,6 +379,24 @@ export const updateStreakOnActivity = async (
     // Сохраняем цепочку
     await AsyncStorage.setItem('streak_count', String(streak));
     await AsyncStorage.setItem(lastActiveKey, today);
+
+    // зачем («Вместе», friends_together): рядом с last_active_date копим ПОЛНУЮ
+    // историю активных дней (окно 120 дней) — она нужна другим людям (друзьям),
+    // не только своему стрику, чтобы посчитать пересечение "дней вместе". Не
+    // трогает логику стрика выше — чисто аддитивная запись.
+    try {
+      const activeDaysRaw = await AsyncStorage.getItem('active_days_v1');
+      const activeDaysState = activeDaysRaw ? (JSON.parse(activeDaysRaw) as { anchor?: unknown; bits?: unknown }) : null;
+      const validState = activeDaysState && typeof activeDaysState.anchor === 'string' && typeof activeDaysState.bits === 'string'
+        ? { anchor: activeDaysState.anchor, bits: activeDaysState.bits }
+        : null;
+      const nextActiveDays = markActiveDay(validState, today);
+      if (nextActiveDays.anchor) {
+        await AsyncStorage.setItem('active_days_v1', JSON.stringify(nextActiveDays));
+      }
+    } catch (e) {
+      if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils] active_days_v1', e);
+    }
 
     // Достижения по цепочке + пари (только при реальном изменении — не в firstLoads)
     if (!isSameLocalOrUtcDay(lastActive)) {

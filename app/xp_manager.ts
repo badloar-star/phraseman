@@ -61,6 +61,27 @@ async function getClubWeekTierMultiplier(): Promise<number> {
   }
 }
 
+/**
+ * «Вместе» (friends_together): бонус к XP в общий день с другом уровня ≥2
+ * (+5%/+10%/+15% — максимум среди друзей, не суммируется). together_store.ts
+ * пишет friends_together_bonus_v1 = {dayKey, percent} при каждом refreshFriendsTogether
+ * (открытие вкладки Друзья / после клейма) — здесь только читаем, применяем только
+ * если dayKey совпадает с СЕГОДНЯ (вчерашний бонус не должен утечь в новый день).
+ */
+async function getFriendsTogetherXpMultiplier(): Promise<number> {
+  try {
+    const raw = await storageGetString('friends_together_bonus_v1');
+    if (!raw) return 1;
+    const parsed = JSON.parse(raw) as { dayKey?: unknown; percent?: unknown };
+    if (typeof parsed?.dayKey !== 'string' || parsed.dayKey !== getLocalDayKey()) return 1;
+    const percent = Number(parsed.percent);
+    if (!Number.isFinite(percent) || percent <= 0) return 1;
+    return 1 + percent / 100;
+  } catch {
+    return 1;
+  }
+}
+
 /** Клуб в XP: активный буст + уровень клуба недели (как раньше: boost + tier − 1 в аддитивной сумме). */
 async function getCombinedClubMultiplier(): Promise<number> {
   const boostM = await getXPMultiplier();
@@ -312,6 +333,7 @@ type XpMultiplierSnapshot = {
   token: AccountGenerationToken;
   club: number;
   leagueGroup: number;
+  friendsTogether: number;
   refresh: Promise<void> | null;
 };
 
@@ -381,7 +403,7 @@ function getXpMultiplierSnapshot(token: AccountGenerationToken): XpMultiplierSna
   const key = accountScopeKey(token);
   const existing = key ? xpMultiplierByAccount.get(key) : undefined;
   if (existing) return existing;
-  const snapshot: XpMultiplierSnapshot = { token, club: 1, leagueGroup: 1, refresh: null };
+  const snapshot: XpMultiplierSnapshot = { token, club: 1, leagueGroup: 1, friendsTogether: 1, refresh: null };
   if (key) {
     xpMultiplierByAccount.set(key, snapshot);
     if (xpMultiplierByAccount.size > XP_MULTIPLIER_CACHE_MAX_ACCOUNTS) pruneStaleXpRuntimeState();
@@ -397,11 +419,15 @@ function refreshXpMultiplierSnapshot(
   snapshot.refresh = Promise.allSettled([
     getCombinedClubMultiplier(),
     getLeagueGroupBoostMultiplier(),
-  ]).then(([club, leagueGroup]) => {
+    getFriendsTogetherXpMultiplier(),
+  ]).then(([club, leagueGroup, friendsTogether]) => {
     if (!isXpAccountGenerationCurrent(token)) return;
     if (club.status === 'fulfilled') snapshot.club = sanitizeLocalXpMultiplier(club.value);
     if (leagueGroup.status === 'fulfilled') {
       snapshot.leagueGroup = sanitizeLocalXpMultiplier(leagueGroup.value);
+    }
+    if (friendsTogether.status === 'fulfilled') {
+      snapshot.friendsTogether = sanitizeLocalXpMultiplier(friendsTogether.value);
     }
   }).finally(() => {
     snapshot.refresh = null;
@@ -458,6 +484,9 @@ export const registerXP = async (
       const multiplierSnapshot = getXpMultiplierSnapshot(accountToken);
       const clubM = multiplierSnapshot.club;
       const leagueGroupBoostM = multiplierSnapshot.leagueGroup;
+      // «Вместе»: бонус к XP в общий день с другом уровня ≥2 (кэш обновляется тем же
+      // способом, что club/leagueGroup — на открытии вкладки Друзья/после клейма).
+      const friendsTogetherM = multiplierSnapshot.friendsTogether;
       refreshXpMultiplierSnapshot(accountToken, multiplierSnapshot);
 
       // Б) Множитель за длину цепочки (x2, x3, x5)
@@ -517,7 +546,7 @@ export const registerXP = async (
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
 
       totalMultiplier = sanitizeLocalXpMultiplier(
-        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1) + (goldenLessonM - 1),
+        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1) + (goldenLessonM - 1) + (friendsTogetherM - 1),
       );
       finalDelta = sanitizeLocalXpAmount(Math.round(amount * totalMultiplier));
       appliedDelta = finalDelta;
@@ -918,11 +947,12 @@ export const __xpManagerTestHooks = {
     timeOfDayAchievementCheckByAccount.clear();
     activeXpOperationLeases = new WeakMap<object, string>();
   },
-  setXpMultiplierSnapshot: (club: number, leagueGroup: number) => {
+  setXpMultiplierSnapshot: (club: number, leagueGroup: number, friendsTogether = 1) => {
     const token = captureAccountGeneration();
     const snapshot = getXpMultiplierSnapshot(token);
     snapshot.club = sanitizeLocalXpMultiplier(club);
     snapshot.leagueGroup = sanitizeLocalXpMultiplier(leagueGroup);
+    snapshot.friendsTogether = sanitizeLocalXpMultiplier(friendsTogether);
   },
   sanitizeLocalXpAmount,
   sanitizeLocalXpMultiplier,

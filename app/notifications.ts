@@ -1301,7 +1301,10 @@ export type NotifCategory =
   | 'monthly_recap'
   | 'league'
   | 'offers'
-  | 'gifts';
+  | 'gifts'
+  // «Вместе» (friends_together §1.3): пуш «Позвал(а)» от друга. Локальных
+  // напоминаний нет (см. CATEGORY_LOCAL_TYPES ниже) — шлёт только сервер по чужому тапу.
+  | 'friends';
 
 export type NotifPrefs = { master: boolean; categories: Record<NotifCategory, boolean> };
 
@@ -1318,6 +1321,9 @@ export const DEFAULT_NOTIF_PREFS: NotifPrefs = {
     // зачем (2026-08-02, владелец): пуш «подарок сгорит» — про потерю своего
     // добра, отдельный тумблер, по умолчанию включён (не «предложения»).
     gifts: true,
+    // «Вместе»: по умолчанию включено, как и остальные социальные категории;
+    // получатель может выключить в настройках (friendsNudge это уважает).
+    friends: true,
   },
 };
 
@@ -1333,6 +1339,9 @@ const CATEGORY_LOCAL_TYPES: Record<NotifCategory, LocalNotificationType[]> = {
   league: ['league_overtake'],
   offers: ['intro_expiring', 'upsell_d4', 'upsell_d7', 'upsell_d14', 'paywall_abandoned', 'premium'],
   gifts: ['gift_expiring'],
+  // Пустой массив: «Позвать» — не локальное напоминание с расписанием, а серверный
+  // пуш по тапу другого человека. Отменять здесь нечего.
+  friends: [],
 };
 
 function normalizeNotifPrefs(raw: unknown): NotifPrefs {
@@ -1383,6 +1392,35 @@ export async function hydrateNotifPrefsFromStorage(): Promise<NotifPrefs> {
   }
 }
 
+/** {enabled, tz} для friendsNudge на сервере: tz — минуты смещения от UTC, знак как getTimezoneOffset()*-1. */
+const FRIENDS_PUSH_PREF_KEY = 'friends_push_v1';
+
+function currentTzOffsetMinutes(): number {
+  return -new Date().getTimezoneOffset();
+}
+
+async function writeFriendsPushPref(enabled: boolean): Promise<void> {
+  try {
+    const value = JSON.stringify({ enabled, tz: currentTzOffsetMinutes() });
+    const prevRaw = await AsyncStorage.getItem(FRIENDS_PUSH_PREF_KEY);
+    if (prevRaw === value) return; // не пишем без реального изменения — cloud_sync экономит трафик
+    await AsyncStorage.setItem(FRIENDS_PUSH_PREF_KEY, value);
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications] friends_push_v1', e);
+  }
+}
+
+/**
+ * «Вместе» (friends_together §4): раз в сутки при старте — обновить friends_push_v1,
+ * только если реально изменилось (тумблер «Друзья» или сместился часовой пояс
+ * устройства). Экспортируется, но НЕ вызывается автоматически из _layout — по заданию
+ * это делает UI-агент явно на старте приложения, здесь только сама функция.
+ */
+export async function syncFriendsPushPrefIfChanged(): Promise<void> {
+  const prefs = await getNotifPrefs();
+  await writeFriendsPushPref(prefs.master && prefs.categories.friends !== false);
+}
+
 export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
   const normalized = normalizeNotifPrefs(p);
   notifPrefsMemory = normalized;
@@ -1393,6 +1431,9 @@ export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
   }
+  // «Вместе»: зеркалим категорию «Друзья» в friends_push_v1 (подхватывается
+  // cloud_sync через SYNC_KEYS) — при смене тумблера, не только раз в сутки.
+  await writeFriendsPushPref(normalized.master && normalized.categories.friends !== false);
   // Зеркалим выбор в облако для серверных пушей — best-effort, 1 write и только
   // при реальном изменении (кэш внутри updateServerPushPrefs). Firebase-экономия:
   // кроны и так читают users-док ради токена, лишних чтений не появляется.

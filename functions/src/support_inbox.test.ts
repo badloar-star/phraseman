@@ -217,12 +217,47 @@ describe('composeReplyWithSignature', () => {
   test('тримит тело', () => {
     expect(composeReplyWithSignature('  Тело  ', 'Sig')).toBe('Тело\n\nSig');
   });
-  test('локализует известную английскую подпись для русского письма', () => {
-    const signature = 'Thanks so much,\n\nThe Phraseman Team\nJust reply here if you need anything else.';
-    expect(localizedSupportSignature('Здравствуйте! Поможем разобраться.', signature)).toBe(
-      'Команда Phraseman\nПоддержка: Phraseman by Knowly\nСправка: https://knowlyapps.com/help',
-    );
-    expect(localizedSupportSignature('Hello! We can help.', signature)).toBe(signature);
+  // зачем этот блок переписан (владелец, 2026-08-17): прежний тест сторожил
+  // подпись со ссылкой knowlyapps.com/help — страницы, которой на сайте НЕТ.
+  // Клиенты годами получали ссылку на 404. Тест охранял дефект, поэтому
+  // чинить надо было тест, а не код.
+  test('подпись на языке письма, выбранная владельцем', () => {
+    const legacy = 'Thanks so much,\n\nThe Phraseman Team\nJust reply here if you need anything else.';
+    expect(localizedSupportSignature('Здравствуйте! Поможем разобраться.', legacy))
+      .toBe('С уважением,\nПоддержка Phraseman');
+    expect(localizedSupportSignature('Hello! We can help.', legacy))
+      .toBe('Kind regards,\nPhraseman Support');
+    expect(localizedSupportSignature('¡Hola! Podemos ayudar.', legacy))
+      .toBe('Atentamente,\nSoporte de Phraseman');
+  });
+
+  test('ни в одной подписи нет ссылок', () => {
+    // зачем: ссылка в подписи повторяется в КАЖДОМ письме, поэтому одна
+    // опечатка бьёт по всем клиентам сразу. Полезные адреса (бот оплаты,
+    // сертификат) уместны в самом ответе, где они к месту.
+    for (const body of ['Здравствуйте!', 'Hello!', '¡Hola!']) {
+      const sig = localizedSupportSignature(body, 'Thanks so much, The Phraseman Team');
+      expect(sig).not.toMatch(/https?:\/\/|knowlyapps|\.com/i);
+    }
+  });
+
+  test('старый шаблон с битой ссылкой заменяется, даже если текст изменили', () => {
+    // Владелец мог поправить шаблон вручную, оставив ссылку — она всё равно
+    // ведёт в 404, поэтому такую подпись тоже заменяем.
+    expect(localizedSupportSignature('Здравствуйте!', 'Наша справка: knowlyapps.com/help'))
+      .toBe('С уважением,\nПоддержка Phraseman');
+  });
+
+  test('своя подпись владельца сохраняется как есть', () => {
+    // зачем: подпись из админки — его право. Заменяем только известный
+    // шаблон и всё, что содержит битую ссылку.
+    const own = 'Максим, Phraseman';
+    expect(localizedSupportSignature('Здравствуйте!', own)).toBe(own);
+  });
+
+  test('пустая подпись даёт подпись по языку, а не пустоту', () => {
+    // зачем: письмо без подписи выглядит как обрывок. Дефолт по языку.
+    expect(localizedSupportSignature('Здравствуйте!', '')).toBe('С уважением,\nПоддержка Phraseman');
   });
 });
 

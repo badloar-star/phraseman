@@ -771,18 +771,37 @@ export function composeReplyWithSignature(replyBody: string, signature: string):
 }
 
 /**
- * The legacy admin signature may be an English multi-line template. For a
- * Russian or Spanish reply we replace only that known English template with a
- * short localized brand signature. Arbitrary custom signatures are preserved
- * and the final human-voice gate decides whether they are safe to send.
+ * Подпись письма поддержки, выбранная владельцем (2026-08-17).
+ *
+ * зачем БЕЗ ссылок: подпись годами вела на knowlyapps.com/help — страницы,
+ * которой на сайте НЕТ и никогда не было. Каждый клиент получал ссылку на 404,
+ * включая женщину, которой мы сегодня отвечали. Ссылка в подписи повторяется
+ * в каждом письме, поэтому одна опечатка бьёт по всем сразу; полезные адреса
+ * (бот оплаты, сертификат) уместнее в САМОМ ответе, где они к месту.
+ *
+ * зачем формулировка «С уважением, Поддержка Phraseman» — прямой выбор
+ * владельца из десяти вариантов. Никаких пояснений в подписи он не хочет.
+ */
+export const SUPPORT_SIGNATURE_RU = 'С уважением,\nПоддержка Phraseman';
+export const SUPPORT_SIGNATURE_ES = 'Atentamente,\nSoporte de Phraseman';
+export const SUPPORT_SIGNATURE_EN = 'Kind regards,\nPhraseman Support';
+
+/**
+ * Подставляет подпись на языке ответа.
+ *
+ * зачем заменять и АНГЛИЙСКИЙ шаблон тоже (в отличие от прежней версии):
+ * старый текст в базе сам содержал битую ссылку, поэтому «сохранить как есть»
+ * означало продолжать её рассылать. Свою подпись владельца, набранную в
+ * админке, по-прежнему не трогаем — она его право.
  */
 export function localizedSupportSignature(replyBody: string, signature: string): string {
   const original = String(signature ?? '').trim();
-  if (!original || !/(?:thanks so much|the phraseman team|just reply here)/iu.test(original)) return original;
+  const isLegacyTemplate = /(?:thanks so much|the phraseman team|just reply here|knowlyapps\.com\/help)/iu.test(original);
+  if (original && !isLegacyTemplate) return original;
   const language = detectSupportLanguage(replyBody);
-  if (language === 'ru') return 'Команда Phraseman\nПоддержка: Phraseman by Knowly\nСправка: https://knowlyapps.com/help';
-  if (language === 'es') return 'El equipo de Phraseman\nSoporte: Phraseman by Knowly\nAyuda: https://knowlyapps.com/help';
-  return original;
+  if (language === 'ru') return SUPPORT_SIGNATURE_RU;
+  if (language === 'es') return SUPPORT_SIGNATURE_ES;
+  return SUPPORT_SIGNATURE_EN;
 }
 
 /**

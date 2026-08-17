@@ -23,6 +23,7 @@ import {
   supportRequestFingerprint,
   candidateOpenThreadDocIdsForOwnerReply,
   ownerHasTakenOverConversation,
+  supportIssueText,
   type RawEmail,
 } from './support_inbox';
 
@@ -396,5 +397,55 @@ describe('ownerHasTakenOverConversation — the bot goes silent once the owner r
     // Firestore возвращает число, но экспорт/импорт и ручная правка в консоли
     // дают строку. Замолчать здесь важнее, чем ответить.
     expect(ownerHasTakenOverConversation({ ownerTookOverAtMs: '1755300000000' })).toBe(true);
+  });
+});
+
+// зачем этот блок (инцидент 2026-08-17, письмо Ольги): человек написал, что не
+// может ВОЙТИ в аккаунт после настройки на двух телефонах. Джарвис ответил, как
+// купить Premium из России — вообще не по теме. Замер тела письма: 472 строки,
+// из них 461 (98%) — цитаты старой переписки; новый вопрос 544 символа из 14817.
+// Слова «Plus», «оплат», «Росси» нашлись в ЦИТАТАХ прошлогоднего разговора, и
+// короткое замыкание isPremiumAlternativePaymentQuestion сработало на них,
+// минуя и модель, и совет. Классификаторы ищут слова во всём тексте и не умеют
+// отличать «человек спрашивает про оплату» от «в цитате когда-то было слово
+// оплата», поэтому чистим на входе в анализ.
+describe('supportIssueText — вопрос письма без процитированной переписки', () => {
+  const REAL_LETTER = [
+    'Добрый день, Максим!',
+    'Мой аккаунт olga@example.test',
+    'Я попыталась отрегулировать свои аккаунты на двух телефонах и очень неудачно.',
+    'Теперь не могу ни войти, ни восстановить. Боюсь без вас я не справлюсь.',
+    'С уважением!',
+    '',
+    'среда, 29 июля 2026 г. в 18:03 +07:00 от support.phraseman@gmail.com <support.phraseman@gmail.com>:',
+    '>Здравствуйте! Оплатить Plus из России можно через Telegram-бота.',
+    '>>Раньше вы спрашивали про способы оплаты в России.',
+  ].join('\n');
+
+  test('цитаты не попадают в текст вопроса', () => {
+    const issue = supportIssueText({ subject: 'Re[2]: Phraseman', bodyText: REAL_LETTER });
+    expect(issue).toContain('не могу ни войти');
+    expect(issue).not.toContain('Telegram-бота');
+    expect(issue).not.toMatch(/Plus|оплат|Росси/i);
+  });
+
+  test('тема остаётся: по ней тоже классифицируют', () => {
+    expect(supportIssueText({ subject: 'Не могу войти', bodyText: 'помогите' })).toContain('Не могу войти');
+  });
+
+  test('письмо из одной цитаты не превращается в пустой вопрос', () => {
+    // зачем откат к полному телу: пустой вопрос — гарантированно бессмысленный
+    // ответ. Лучше шумный текст, чем никакого.
+    const onlyQuote = '> старое письмо целиком';
+    expect(supportIssueText({ subject: 'Re: тема', bodyText: onlyQuote })).toContain('старое письмо');
+  });
+
+  test('обычное письмо без цитат не портится', () => {
+    const plain = 'Здравствуйте! Как купить Premium из России?';
+    expect(supportIssueText({ subject: 'Оплата', bodyText: plain })).toContain('Как купить Premium');
+  });
+
+  test('пустой документ не роняет разбор', () => {
+    expect(() => supportIssueText({})).not.toThrow();
   });
 });

@@ -306,6 +306,36 @@ export function truncateBody(body: unknown): string {
 }
 
 /**
+ * Текст ВОПРОСА письма: тема плюс тело без процитированной переписки.
+ *
+ * зачем (инцидент 2026-08-17, письмо Ольги): человек написал, что не может
+ * войти в аккаунт после настройки на двух телефонах. Джарвис ответил, как
+ * купить Premium из России. Замер тела письма: 472 строки, из них 461 (98%) —
+ * цитаты старой переписки, новый вопрос всего 544 символа из 14817. Слова
+ * «Plus», «оплат», «Росси» нашлись в ЦИТАТАХ прошлогоднего разговора, и
+ * короткое замыкание isPremiumAlternativePaymentQuestion сработало на них,
+ * минуя и модель, и совет.
+ *
+ * Классификаторы ищут слова во всём тексте и не умеют отличать «человек
+ * спрашивает про оплату» от «в подписи цитаты когда-то было слово оплата».
+ * Поэтому чистить надо на входе в анализ, а не учить каждый классификатор.
+ *
+ * зачем НЕ резать при сохранении в базу: цитаты — это контекст, который вы
+ * читаете в админке, чтобы понять, о чём вообще речь. Режем только то, что
+ * уходит в анализ.
+ *
+ * зачем откат к полному телу, когда чистого текста нет: письмо, состоящее
+ * из одной цитаты, иначе стало бы пустым — а пустой вопрос это гарантированно
+ * бессмысленный ответ. Лучше шумный текст, чем никакого.
+ */
+export function supportIssueText(doc: { subject?: unknown; bodyText?: unknown }): string {
+  const subject = String(doc.subject ?? '');
+  const full = String(doc.bodyText ?? '');
+  const fresh = stripQuotedTail(full);
+  return `${subject}\n${fresh || full}`;
+}
+
+/**
  * Стабильный docId из Gmail Message-ID: детерминированный, безопасный для
  * Firestore (без '/'). Дедуп строится на нём — один Message-ID = один документ.
  */
@@ -827,7 +857,7 @@ async function generateGroundedDraftForDoc(
     readonly review: SupportReviewEnvelope | null;
   },
 ): Promise<GroundedDraftResult> {
-  const issue = `${String(doc.subject ?? '')}\n${String(doc.bodyText ?? '')}`;
+  const issue = supportIssueText(doc);
   const context = retrieveSupportRepositoryContext(issue);
   const conversationHistory = await renderHistoryForSupportDoc(db, doc);
   const repairPrompt = repair ? `\n\n${buildSupportAutomaticRepairPrompt(repair)}` : '';
@@ -873,7 +903,7 @@ async function generateDraftForDoc(
 }
 
 function supportCouncilNeedsModel(doc: SupportInboxDoc): boolean {
-  const issue = `${String(doc.subject ?? '')}\n${String(doc.bodyText ?? '')}`;
+  const issue = supportIssueText(doc);
   return !isPremiumAlternativePaymentQuestion(issue) && classifySupportRisk(issue) === 'safe';
 }
 
@@ -2205,7 +2235,7 @@ async function prepareSupportReplyOperation(
         && message.draftInstructionsFingerprint === currentInstructions.fingerprint
         && supportReplyIsCustomerReady({
           reply: payload.finalText,
-          issue: `${message.subject}\n${message.bodyText}`,
+          issue: supportIssueText(message),
           grounded: !holdingDraft,
           holding: holdingDraft,
         });
@@ -2430,7 +2460,7 @@ export async function claimSupportReplyDispatch(
         }
         return { kind: 'replay', state: 'cancelled' };
       }
-      const currentKnowledge = retrieveSupportRepositoryContext(`${message.subject}\n${message.bodyText}`);
+      const currentKnowledge = retrieveSupportRepositoryContext(supportIssueText(message));
       if (!currentKnowledge.trustworthy
         || (actor.actorUid === 'system:jarvis-support-3h-deadline' && currentKnowledge.dirty)
         || message.autoReply?.knowledgeFingerprint !== currentKnowledge.sourceFingerprint) {
@@ -2453,7 +2483,7 @@ export async function claimSupportReplyDispatch(
         && message.draftPolicyVersion === SUPPORT_AUTO_POLICY_VERSION
         && supportReplyIsCustomerReady({
           reply: operation.payload.finalText,
-          issue: `${message.subject}\n${message.bodyText}`,
+          issue: supportIssueText(message),
           grounded: !holdingDraft,
           holding: holdingDraft,
         });
@@ -2902,7 +2932,7 @@ async function buildCouncilReviewedSupportReply(input: {
   nowMs: number;
   ownerInstructions: SupportOwnerInstructionsSnapshot;
 }): Promise<SupportCouncilOutcome> {
-  const issue = `${input.doc.subject}\n${input.doc.bodyText}`;
+  const issue = supportIssueText(input.doc);
   const repositoryContext = retrieveSupportRepositoryContext(issue);
   const issueRisk = classifySupportRisk(issue);
   const attention = (reason: string): SupportCouncilOutcome => Object.freeze({
@@ -3194,7 +3224,7 @@ async function prepareSupportTelegramReview(input: {
     const reviewId = createHash('sha256').update(`${operationId}|${payloadHash}`, 'utf8').digest('hex');
     preparedReviewId = reviewId;
     const reviewRef = input.db.collection(SUPPORT_TELEGRAM_REVIEW_COLLECTION).doc(reviewId);
-    const customerIssue = `${input.doc.subject}\n${input.doc.bodyText}`;
+    const customerIssue = supportIssueText(input.doc);
     const customerReady = supportReplyIsCustomerReady({
       reply: payload.finalText,
       issue: customerIssue,
@@ -3420,7 +3450,7 @@ async function prepareSupportTelegramReview(input: {
     });
     if (!sent) throw new Error('telegram_review_send_failed');
     const notificationAtMs = Date.now();
-    const repositoryTrust = retrieveSupportRepositoryContext(`${input.doc.subject}\n${input.doc.bodyText}`);
+    const repositoryTrust = retrieveSupportRepositoryContext(supportIssueText(input.doc));
     const configRef = input.db.collection('admin_config').doc('support_inbox');
     const finalized = await input.db.runTransaction(async (tx) => {
       const [messageSnap, currentReviewSnap, operationSnap, configSnap] = await Promise.all([
@@ -3670,7 +3700,7 @@ async function generateSaveAndDispatchAutoReply(input: {
     }
     council = await buildCouncilReviewedSupportReply({ ...input, doc: claim.doc, model, ownerInstructions });
   } catch (error) {
-    const context = retrieveSupportRepositoryContext(`${claim.doc.subject}\n${claim.doc.bodyText}`);
+    const context = retrieveSupportRepositoryContext(supportIssueText(claim.doc));
     const reason = ownerInstructions ? 'council_unavailable' : 'support_instructions_unavailable';
     const settled = await settleSupportAutoReplyClaimWithoutDraft({
       db: input.db,
@@ -4083,7 +4113,7 @@ async function buildCouncilReviewedSupportRevision(input: {
 }): Promise<SupportCouncilRevisionOutcome> {
   if (!input.apiKey) throw new Error('support_rewrite_model_unavailable');
   const ownerInstructions = await readSupportOwnerInstructions(input.db);
-  const issue = `${input.doc.subject}\n${input.doc.bodyText}`;
+  const issue = supportIssueText(input.doc);
   const risk = classifySupportRisk(issue);
   const context = retrieveSupportRepositoryContext(issue);
   const attention = (reason: string): SupportCouncilRevisionOutcome => Object.freeze({
@@ -4690,7 +4720,7 @@ export async function runSupportTelegramAutoSendDeadline(nowMs: number = Date.no
         // A holding reply cites nothing, so a moved repository snapshot cannot
         // invalidate it. Only grounded answers are tied to the fingerprint.
         const holdingReply = currentReview.holding === true || currentMessage.autoReply?.holding === true;
-        const currentKnowledge = retrieveSupportRepositoryContext(`${currentMessage.subject}\n${currentMessage.bodyText}`);
+        const currentKnowledge = retrieveSupportRepositoryContext(supportIssueText(currentMessage));
         if (!holdingReply && (!currentKnowledge.trustworthy
           || currentKnowledge.dirty
           || currentReview.knowledgeFingerprint !== currentKnowledge.sourceFingerprint)) {
@@ -5042,7 +5072,7 @@ export const adminSupportPrepareReplyBatch = onCall(
             String(message.draftReply ?? ''),
             localizedSupportSignature(String(message.draftReply ?? ''), signature),
           ),
-          issue: `${message.subject}\n${message.bodyText}`,
+          issue: supportIssueText(message),
           grounded: message.draftOrigin === 'jarvis',
           ownerManual: message.draftOrigin !== 'jarvis',
         }))
@@ -5909,7 +5939,7 @@ export const adminSupportSaveDraft = onCall(
     });
     const fresh = await messageRef.get();
     const doc = fresh.data() as SupportInboxDoc;
-    const context = retrieveSupportRepositoryContext(`${doc.subject}\n${doc.bodyText}`);
+    const context = retrieveSupportRepositoryContext(supportIssueText(doc));
     const reviewState = await prepareSupportTelegramReview({
       db, messageDocId, doc, replyText, draftRevision: nextRevision,
       appPassword: '', grounded: false, reason: 'owner_manual_edit',

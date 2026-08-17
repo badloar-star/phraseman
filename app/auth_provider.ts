@@ -1075,6 +1075,19 @@ async function createAppleSignInNonce(): Promise<{ rawNonce: string; hashedNonce
   return { rawNonce, hashedNonce };
 }
 
+// зачем: ASAuthorizationError.unknown ("The authorization attempt failed for
+// an unknown reason", код ERR_REQUEST_UNKNOWN — подтверждено в исходниках
+// expo-apple-authentication/expo-modules-core) — задокументированный
+// транзиентный сбой самой iOS ДО того, как приложение успевает что-либо
+// отправить на сервер (владелец поймал его 2026-08-17 на dev-client; лог
+// .expo/metro-console.log показал [auth_provider] signInAsync упал этим кодом
+// за секунды до успешного входа через Google на том же устройстве). Наш код
+// в момент ошибки ничего не делает, кроме ожидания системного окна Apple —
+// повторный вызов почти всегда проходит второй попыткой. Один тихий повтор
+// без участия юзера закрывает класс бага «показываем ошибку там, где хватило
+// бы подождать 1 секунду».
+const APPLE_UNKNOWN_ERROR_RETRY_DELAY_MS = 700;
+
 async function runAppleNativeSignIn(): Promise<NativeAuthCredential | { cancelled: true }> {
   const mod = getAppleAuth();
   if (!mod) throw new Error('apple_auth_module_unavailable');
@@ -1083,16 +1096,26 @@ async function runAppleNativeSignIn(): Promise<NativeAuthCredential | { cancelle
   // value later and verifies it against the ID token, preventing token replay.
   const { rawNonce, hashedNonce } = await createAppleSignInNonce();
   let credential: any;
-  try {
-    credential = await mod.signInAsync({
-      requestedScopes: [mod.AppleAuthenticationScope.FULL_NAME, mod.AppleAuthenticationScope.EMAIL],
-      nonce: hashedNonce,
-    });
-  } catch (e: any) {
-    if (e?.code === 'ERR_REQUEST_CANCELED' || e?.code === 'ERR_CANCELED') {
-      return { cancelled: true };
+  let attempt = 0;
+  for (;;) {
+    attempt += 1;
+    try {
+      credential = await mod.signInAsync({
+        requestedScopes: [mod.AppleAuthenticationScope.FULL_NAME, mod.AppleAuthenticationScope.EMAIL],
+        nonce: hashedNonce,
+      });
+      break;
+    } catch (e: any) {
+      if (e?.code === 'ERR_REQUEST_CANCELED' || e?.code === 'ERR_CANCELED') {
+        return { cancelled: true };
+      }
+      if (e?.code === 'ERR_REQUEST_UNKNOWN' && attempt === 1) {
+        logAuthEvent('auth_signin_apple_unknown_retry', {});
+        await new Promise((resolve) => setTimeout(resolve, APPLE_UNKNOWN_ERROR_RETRY_DELAY_MS));
+        continue;
+      }
+      throw e;
     }
-    throw e;
   }
 
   const idToken: string | null = credential?.identityToken ?? null;

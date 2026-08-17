@@ -173,12 +173,25 @@ import {
 import { buildWeeklyChestModel, type WeeklyChestModel } from '../friends_together/weekly_chest_model';
 import { nudgeFriend, isNudgedToday, primeNudgedTodayCache, type NudgeErrorReason } from '../friends_together/nudge_client';
 import { claimFriendLevel, claimWeeklyChest } from '../friends_together/claims_client';
-import { LEVEL_NAMES, bonusPercentForLevel, nextThreshold, starRewardForLevel, decodeActiveDays } from '../friends_together/together_days';
+import { LEVEL_NAMES, bonusPercentForLevel, nextThreshold, starRewardForLevel, decodeActiveDays, levelForDays as levelForDaysDev } from '../friends_together/together_days';
 import { getMyWeekPoints, getWeekKey } from '../hall_of_fame_utils';
 import FriendsChestCard from '../../components/friends_together/FriendsChestCard';
 import FriendTogetherSheet from '../../components/friends_together/FriendTogetherSheet';
 import FriendLevelUpModal from '../../components/friends_together/FriendLevelUpModal';
 import FriendsChestModal from '../../components/friends_together/FriendsChestModal';
+// DEV-only: сквозная ручная проверка «Вместе» без реальных друзей (владелец, 2026-08-17).
+import DevBotsSheet from '../../components/friends_together/DevBotsSheet';
+import {
+  type DevBotFriend,
+  loadDevBots,
+  addDevBots,
+  advanceBotDay,
+  advanceAllBots,
+  setChestScenario,
+  simulateIncomingNudge,
+  markGiftReady,
+  resetDevBots,
+} from '../friends_together/dev_bots';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -1409,6 +1422,16 @@ export default function FriendsTabScreen() {
   const [nudgedTick, setNudgedTick] = useState(0);
   const levelUpShownRef = useRef<Set<string>>(new Set());
 
+  // DEV-only: боты «Вместе» — сквозная ручная проверка без реальных друзей и без
+  // единого чтения/записи Firestore (owner, 2026-08-17). Полностью выпадает из
+  // сборки для не-__DEV__: и sheet, и state отсекаются условием ниже.
+  const [devBotsSheetOpen, setDevBotsSheetOpen] = useState(false);
+  const [devBots, setDevBots] = useState<DevBotFriend[]>([]);
+  useEffect(() => {
+    if (!__DEV__ || !friendsTogetherPolicy.enabled) return;
+    void loadDevBots().then((s) => setDevBots(s.bots));
+  }, [friendsTogetherPolicy.enabled]);
+
   useEffect(() => {
     if (!friendsTogetherPolicy.enabled) return;
     void primeFriendsTogetherSnapshot().then((snap) => { if (snap) setTogetherSnapshot(snap); });
@@ -1455,6 +1478,13 @@ export default function FriendsTabScreen() {
       pairLevel: p.level,
       boostActive: p.boostActive,
     }));
+    // DEV-only: боты подмешиваются в тот же вход модели сундука — не трогают
+    // togetherSnapshot (реальные пары), исчезают вместе с __DEV__ в проде.
+    if (__DEV__ && devBots.length > 0) {
+      for (const b of devBots) {
+        friendsInput.push({ uid: b.uid, weeklyXp: b.weeklyXp, pairLevel: levelForDaysDev(b.days), boostActive: false });
+      }
+    }
     return buildWeeklyChestModel({
       friends: friendsInput,
       myDays: myWeeklyStats.activeDaysThisWeek,
@@ -1462,7 +1492,7 @@ export default function FriendsTabScreen() {
       weekKey: myWeeklyStats.weekKey,
       claimedWeekKey: chestClaimedWeekKey,
     });
-  }, [friendsTogetherPolicy.enabled, togetherSnapshot, myWeeklyStats, chestClaimedWeekKey]);
+  }, [friendsTogetherPolicy.enabled, togetherSnapshot, myWeeklyStats, chestClaimedWeekKey, devBots]);
 
   // Уровень дружбы вырос с последнего клейма — открыть модалку один раз на пару+уровень.
   useEffect(() => {
@@ -1486,6 +1516,37 @@ export default function FriendsTabScreen() {
       await claimFriendLevel(friendUid, level);
     } catch { /* тихо — звёзды придут при следующем refreshFriendsTogether, если сервер всё же принял */ }
   }, [levelUpModal]);
+
+  // DEV-only: обработчики панели ботов — каждый просто мутирует локальное
+  // AsyncStorage-состояние ботов и перечитывает снапшот, ничего не шлёт в сеть.
+  const handleDevAddBots = useCallback(async (count: number) => {
+    const s = await addDevBots(count);
+    setDevBots(s.bots);
+  }, []);
+  const handleDevAdvanceAll = useCallback(async () => {
+    const s = await advanceAllBots();
+    setDevBots(s.bots);
+  }, []);
+  const handleDevAdvanceOne = useCallback(async (uid: string) => {
+    const s = await advanceBotDay(uid);
+    setDevBots(s.bots);
+  }, []);
+  const handleDevChestTier = useCallback(async (tier: 0 | 1 | 2 | 3) => {
+    const s = await setChestScenario(tier);
+    setDevBots(s.bots);
+  }, []);
+  const handleDevIncomingNudge = useCallback(async (uid: string) => {
+    const s = await simulateIncomingNudge(uid);
+    setDevBots(s.bots);
+  }, []);
+  const handleDevGiftReady = useCallback(async (uid: string) => {
+    const s = await markGiftReady(uid);
+    setDevBots(s.bots);
+  }, []);
+  const handleDevReset = useCallback(async () => {
+    const s = await resetDevBots();
+    setDevBots(s.bots);
+  }, []);
 
   const handleClaimWeeklyChest = useCallback(async () => {
     if (!weeklyChestModel || !weeklyChestModel.canClaim || chestClaimBusy) return;
@@ -2969,6 +3030,21 @@ export default function FriendsTabScreen() {
           >
             {L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
           </Text>
+          {/* DEV-only: панель ботов «Вместе» — сквозная ручная проверка сценариев (owner, 2026-08-17). */}
+          {__DEV__ && friendsTogetherPolicy.enabled && (
+            <TouchableOpacity
+              testID="friends-together-dev-open"
+              onPressIn={() => hapticTap()}
+              onPress={() => setDevBotsSheetOpen(true)}
+              activeOpacity={0.8}
+              accessibilityRole="button"
+              accessibilityLabel="DEV: боты «Вместе»"
+              hitSlop={8}
+              style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center', flexShrink: 0, marginRight: 8 }}
+            >
+              <Ionicons name="flask-outline" size={18} color={t.accent} />
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             testID="friends-open-add"
             onPressIn={() => hapticTap()}
@@ -3665,6 +3741,21 @@ export default function FriendsTabScreen() {
           streakShield={chestModal.streakShield}
           aura={chestModal.aura}
           onClaim={() => setChestModal(null)}
+        />
+      )}
+
+      {__DEV__ && friendsTogetherPolicy.enabled && (
+        <DevBotsSheet
+          visible={devBotsSheetOpen}
+          onClose={() => setDevBotsSheetOpen(false)}
+          bots={devBots}
+          onAddBots={(count) => { void handleDevAddBots(count); }}
+          onAdvanceAll={() => { void handleDevAdvanceAll(); }}
+          onAdvanceOne={(uid) => { void handleDevAdvanceOne(uid); }}
+          onChestTier={(tier) => { void handleDevChestTier(tier); }}
+          onIncomingNudge={(uid) => { void handleDevIncomingNudge(uid); }}
+          onGiftReady={(uid) => { void handleDevGiftReady(uid); }}
+          onReset={() => { void handleDevReset(); }}
         />
       )}
 

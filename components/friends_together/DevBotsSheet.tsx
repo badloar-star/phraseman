@@ -1,0 +1,97 @@
+// «Вместе» — DEV-панель ботов (только __DEV__): сквозная проверка всех сценариев
+// фичи без реальных друзей и без единого чтения/записи Firestore.
+// зачем: владелец попросил кнопку в разделе Друзья, которая заводит ботов и
+// умеет прогонять их через все состояния — рост дружбы, каждый порог сундука,
+// входящий зов, готовый подарок — руками, за секунды. Каркас — ReferralSheetShell
+// (тот же паттерн шторки, что и остальные шиты «Вместе»/«Награда за друга»).
+import React, { memo } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import ReferralSheetShell from '../referral_sheet_shell';
+import TapScale from '../TapScale';
+import { useTheme } from '../ThemeContext';
+import type { DevBotFriend } from '../../app/friends_together/dev_bots';
+
+export interface DevBotsSheetProps {
+  visible: boolean;
+  onClose: () => void;
+  bots: DevBotFriend[];
+  onAddBots: (count: number) => void;
+  onAdvanceAll: () => void;
+  onAdvanceOne: (uid: string) => void;
+  onChestTier: (tier: 0 | 1 | 2 | 3) => void;
+  onIncomingNudge: (uid: string) => void;
+  onGiftReady: (uid: string) => void;
+  onReset: () => void;
+}
+
+function Row({ label, icon, onPress, tone = 'default' }: { label: string; icon: keyof typeof Ionicons.glyphMap; onPress: () => void; tone?: 'default' | 'danger' }) {
+  const { theme: t, f, ds } = useTheme();
+  const color = tone === 'danger' ? t.wrong : t.accent;
+  return (
+    <TapScale onPress={onPress} style={[styles.row, { backgroundColor: t.bgSurface }]} accessibilityLabel={label}>
+      <Ionicons name={icon} size={16} color={color} />
+      <Text style={{ color: t.textPrimary, fontSize: f.body ?? 14, fontFamily: ds.fontFamily, fontWeight: '700', flex: 1 }}>{label}</Text>
+      <Ionicons name="chevron-forward" size={14} color={t.textGhost} />
+    </TapScale>
+  );
+}
+
+function DevBotsSheet({
+  visible, onClose, bots, onAddBots, onAdvanceAll, onAdvanceOne, onChestTier, onIncomingNudge, onGiftReady, onReset,
+}: DevBotsSheetProps) {
+  const { theme: t, f, ds } = useTheme();
+
+  return (
+    <ReferralSheetShell visible={visible} onClose={onClose} title="DEV: боты «Вместе»" closeLabel="Закрыть" testID="friends-together-dev-sheet">
+      {/* зачем: инструмент только для __DEV__ (никогда не виден пользователю, как
+          'DEV +1' в app/referrals.tsx) — намеренно на английском, без triLang. */}
+      <ScrollView showsVerticalScrollIndicator={false} style={{ maxHeight: 480 }}>
+        <Text style={[styles.eyebrow, { color: t.textSecond, fontFamily: ds.fontFamily }]}>Bots</Text>
+        <Row label="Add 3 bots (different levels)" icon="person-add-outline" onPress={() => onAddBots(3)} />
+        <Row label="All bots did today's lesson" icon="checkmark-done-outline" onPress={onAdvanceAll} />
+        <Row label="Reset all bots" icon="trash-outline" tone="danger" onPress={onReset} />
+
+        <Text style={[styles.eyebrow, { color: t.textSecond, fontFamily: ds.fontFamily, marginTop: 16 }]}>Weekly chest</Text>
+        <Row label="Force tier I (6,000)" icon="gift-outline" onPress={() => onChestTier(1)} />
+        <Row label="Force tier II (12,000)" icon="gift-outline" onPress={() => onChestTier(2)} />
+        <Row label="Force tier III (20,000)" icon="gift-outline" onPress={() => onChestTier(3)} />
+        <Row label="Clear chest" icon="refresh-outline" onPress={() => onChestTier(0)} />
+
+        {bots.length > 0 && (
+          <>
+            <Text style={[styles.eyebrow, { color: t.textSecond, fontFamily: ds.fontFamily, marginTop: 16 }]}>Per bot</Text>
+            {bots.map((b) => (
+              <View key={b.uid} style={[styles.botCard, { backgroundColor: t.bgSurface }]}>
+                <Text style={{ color: t.textPrimary, fontSize: f.body ?? 14, fontFamily: ds.fontFamily, fontWeight: '700' }}>
+                  {b.name} · {b.days}d
+                </Text>
+                <View style={styles.botActs}>
+                  <TapScale onPress={() => onAdvanceOne(b.uid)} style={[styles.chip, { backgroundColor: t.accentBg }]} accessibilityLabel={`${b.name}: +1 day`}>
+                    <Text style={{ color: t.accent, fontSize: f.caption ?? 12, fontFamily: ds.fontFamily, fontWeight: '700' }}>+1 day</Text>
+                  </TapScale>
+                  <TapScale onPress={() => onIncomingNudge(b.uid)} style={[styles.chip, { backgroundColor: t.goldBg }]} accessibilityLabel={`${b.name}: nudges me`}>
+                    <Text style={{ color: t.gold, fontSize: f.caption ?? 12, fontFamily: ds.fontFamily, fontWeight: '700' }}>Nudges me</Text>
+                  </TapScale>
+                  <TapScale onPress={() => onGiftReady(b.uid)} style={[styles.chip, { backgroundColor: t.correctBg }]} accessibilityLabel={`${b.name}: gift ready`}>
+                    <Text style={{ color: t.correct, fontSize: f.caption ?? 12, fontFamily: ds.fontFamily, fontWeight: '700' }}>Gift ready</Text>
+                  </TapScale>
+                </View>
+              </View>
+            ))}
+          </>
+        )}
+      </ScrollView>
+    </ReferralSheetShell>
+  );
+}
+
+const styles = StyleSheet.create({
+  eyebrow: { fontSize: 12, letterSpacing: 1, textTransform: 'uppercase', fontWeight: '700', marginBottom: 8 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 48, borderRadius: 14, paddingHorizontal: 14, marginBottom: 8 },
+  botCard: { borderRadius: 14, padding: 12, marginBottom: 8 },
+  botActs: { flexDirection: 'row', gap: 8, marginTop: 8, flexWrap: 'wrap' },
+  chip: { height: 30, paddingHorizontal: 10, borderRadius: 9, alignItems: 'center', justifyContent: 'center' },
+});
+
+export default memo(DevBotsSheet);

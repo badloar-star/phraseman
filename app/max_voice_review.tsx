@@ -13,6 +13,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { TranscriptTurn } from './max_call_transcript';
 import { computeVoiceCallMetrics } from './max_voice_metrics';
 import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
+import { recordPhraseMistake } from './trainer_store';
+import { peekHomeScreenHydration } from './home_screen_hydration';
 import {
   callPremiumDialogReview,
   type PremiumDialogReviewCorrection,
@@ -46,6 +48,12 @@ export interface MaxCallResult {
     languagePreference: string;
     /** Флаги безопасности учителя за урок (flag_safety) — уходят в журнал. */
     safetyFlags: { kind: string; note: string }[];
+    /** Домашка со значениями (для карточек тренажёра). */
+    homeworkItems: { text: string; meaning: string }[];
+    /** Итоги повторения речи (mark_phrase_result) — двигают интервалы в памяти учителя. */
+    phraseResults: { text: string; ok: boolean }[];
+    /** Итог сцены-задачи ('' — сцены не было). */
+    sceneOutcome: string;
     lessonsSoFar: number;
   };
   /** CEFR звонка — прокидывается в «Позвонить ещё раз», чтобы не терять уровень. */
@@ -165,6 +173,8 @@ export default function MaxVoiceReview() {
             nextTopic: result.tutor?.nextTopic ?? '',
             ...(result.tutor?.languagePreference ? { languagePreference: result.tutor.languagePreference } : {}),
             ...((result.tutor?.safetyFlags?.length ?? 0) > 0 ? { safetyFlags: result.tutor?.safetyFlags } : {}),
+            ...((result.tutor?.phraseResults?.length ?? 0) > 0 ? { phraseResults: result.tutor?.phraseResults } : {}),
+            ...(result.tutor?.sceneOutcome ? { sceneOutcome: result.tutor.sceneOutcome } : {}),
           }
         : {}),
     })
@@ -183,6 +193,28 @@ export default function MaxVoiceReview() {
     return () => {
       cancelled = true;
     };
+  }, [result, lang]);
+
+  // Домашка → тренажёр (решение владельца 2026-08-17): фразы учителя со значениями
+  // становятся карточками SRS на завтра. Один раз на результат, локально, без сети.
+  const homeworkSavedForRef = useRef<MaxCallResult['history'] | null>(null);
+  useEffect(() => {
+    if (!result || result.format !== 'tutor') return;
+    const items = result.tutor?.homeworkItems ?? [];
+    if (items.length === 0 || homeworkSavedForRef.current === result.history) return;
+    homeworkSavedForRef.current = result.history;
+    const lessonId = Math.max(1, peekHomeScreenHydration()?.lastLessonId ?? 1);
+    void (async () => {
+      for (const item of items) {
+        try {
+          // Значение — на языке интерфейса; кладём его в оба «родных» поля карточки
+          // (ru/uk выбираются по языку), для es — отдельное поле.
+          await recordPhraseMistake(item.text, item.meaning, item.meaning, lessonId, undefined, undefined, lang === 'es' ? item.meaning : undefined);
+        } catch {
+          // Тренажёр недоступен — домашка всё равно видна на экране и в памяти учителя.
+        }
+      }
+    })();
   }, [result, lang]);
 
   const goBack = () => {

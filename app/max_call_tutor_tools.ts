@@ -3,7 +3,8 @@
 // Учитель (OpenAI Realtime, format 'tutor') вызывает функции через data channel:
 //   start_scene(scene_id)  → сцена из ai_dialog_scenarios (сервер сцен не знает)
 //   end_scene()            → назад к роли учителя
-//   assign_homework(...)   → 2–3 фразы на завтра (уезжают в память с разбором)
+//   mark_phrase_result(phrase, ok) → повторение речи: сказал/не смог (двигает интервал в памяти)
+//   assign_homework(phrases, meanings) → 2–3 фразы на завтра + значения (память + тренажёр)
 //   set_next_topic(topic)  → тема следующего урока
 //   set_language_preference(mode) → «говори со мной по-английски / по-русски» — на будущие уроки
 //   end_call()             → учитель попрощался — экран мягко завершает звонок
@@ -91,10 +92,29 @@ export interface TutorSafetyFlag {
 }
 const SAFETY_KINDS = new Set(['self_harm', 'abuse', 'harassment', 'sexual', 'violence', 'hate', 'illicit', 'minor', 'other']);
 
+/** Домашняя фраза + значение на родном языке (для карточки тренажёра). */
+export interface TutorHomeworkItem {
+  text: string;
+  meaning: string;
+}
+
+export interface TutorPhraseResult {
+  text: string;
+  ok: boolean;
+}
+
+export type TutorSceneOutcome = 'done' | 'partial' | 'skipped';
+
 export interface TutorToolRunner {
   handle(name: string, args: Record<string, unknown>): TutorToolResult;
   /** Домашка и тема, собранные за урок — уходят в разбор (память учителя). */
   homework(): string[];
+  /** Домашка со значениями — для карточек тренажёра. */
+  homeworkItems(): TutorHomeworkItem[];
+  /** Итоги повторения речи за урок (mark_phrase_result). */
+  phraseResults(): TutorPhraseResult[];
+  /** Итог последней сцены-задачи ('' — сцены не было). */
+  sceneOutcome(): TutorSceneOutcome | '';
   nextTopic(): string;
   /** Просьба ученика за урок, как говорить; '' — не просил (память не трогать). */
   languagePreference(): TutorLanguagePreference | '';
@@ -111,6 +131,9 @@ function cleanPhrase(value: unknown): string {
 
 export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunner {
   let homework: string[] = [];
+  let homeworkMeanings: string[] = [];
+  const phraseResults: TutorPhraseResult[] = [];
+  let sceneOutcome: TutorSceneOutcome | '' = '';
   let nextTopic = '';
   let languagePreference: TutorLanguagePreference | '' = '';
   const safetyFlags: TutorSafetyFlag[] = [];
@@ -146,6 +169,8 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
       case 'end_scene': {
         const had = activeScene !== null;
         activeScene = null;
+        const outcome = String(args.outcome ?? '').trim();
+        if (had) sceneOutcome = outcome === 'done' || outcome === 'partial' || outcome === 'skipped' ? outcome : 'partial';
         try { deps.onSceneChange?.(null); } catch {}
         return {
           output: had
@@ -154,20 +179,36 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
           respond: true,
         };
       }
+      case 'mark_phrase_result': {
+        const text = cleanPhrase(args.phrase);
+        if (!text) return { output: 'Empty phrase; nothing recorded.', respond: false };
+        const ok = args.ok === true;
+        const idx = phraseResults.findIndex((r) => r.text.toLowerCase() === text.toLowerCase());
+        if (idx >= 0) phraseResults[idx] = { text, ok }; else phraseResults.push({ text, ok });
+        // Тихо: учитель уже отреагировал вслух; response.create не нужен.
+        return { output: ok ? 'Recorded: said correctly.' : 'Recorded: needs more practice.', respond: false };
+      }
       case 'assign_homework': {
         const raw = Array.isArray(args.phrases) ? args.phrases : [];
-        const phrases = raw.map(cleanPhrase).filter((p) => p !== '');
-        const unique: string[] = [];
-        for (const p of phrases) {
-          if (!unique.some((u) => u.toLowerCase() === p.toLowerCase())) unique.push(p);
+        const rawMeanings = Array.isArray(args.meanings) ? args.meanings : [];
+        const pairs = raw.map((p, i) => ({ text: cleanPhrase(p), meaning: cleanPhrase(rawMeanings[i]).slice(0, 120) })).filter((p) => p.text !== '');
+        const unique: TutorHomeworkItem[] = [];
+        for (const p of pairs) {
+          if (!unique.some((u) => u.text.toLowerCase() === p.text.toLowerCase())) unique.push(p);
           if (unique.length >= TUTOR_HOMEWORK_MAX) break;
         }
         if (unique.length === 0) {
-          return { output: 'No phrases received. Say 2-3 short English phrases aloud and call assign_homework again with them.', respond: true };
+          return { output: 'No phrases received. Say 2-3 short phrases aloud and call assign_homework again with them (and their meanings).', respond: true };
         }
-        homework = unique;
-        try { deps.onHomework?.(unique); } catch {}
-        return { output: `Homework saved (${unique.length}): ${unique.join(' | ')}. It will be shown to the learner after the lesson.`, respond: true };
+        homework = unique.map((u) => u.text);
+        homeworkMeanings = unique.map((u) => u.meaning);
+        try { deps.onHomework?.(homework); } catch {}
+        const missing = unique.filter((u) => u.meaning === '').length;
+        return {
+          output: `Homework saved (${unique.length}): ${homework.join(' | ')}. It will be shown to the learner after the lesson and added to their Trainer.` +
+            (missing ? ` ${missing} phrase(s) have no meaning — call assign_homework again with "meanings" in the learner's native language if you can.` : ''),
+          respond: true,
+        };
       }
       case 'set_next_topic': {
         const topic = cleanPhrase(args.topic).slice(0, 140);
@@ -213,6 +254,9 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
   return {
     handle,
     homework: () => [...homework],
+    homeworkItems: () => homework.map((text, i) => ({ text, meaning: homeworkMeanings[i] ?? '' })),
+    phraseResults: () => phraseResults.map((r) => ({ ...r })),
+    sceneOutcome: () => sceneOutcome,
     nextTopic: () => nextTopic,
     languagePreference: () => languagePreference,
     safetyFlags: () => safetyFlags.map((f) => ({ ...f })),

@@ -741,6 +741,9 @@ export default function MaxCallSession() {
               nextTopic: tutorRunnerRef.current?.nextTopic() ?? '',
               languagePreference: tutorRunnerRef.current?.languagePreference() ?? '',
               safetyFlags: tutorRunnerRef.current?.safetyFlags() ?? [],
+              homeworkItems: tutorRunnerRef.current?.homeworkItems() ?? [],
+              phraseResults: tutorRunnerRef.current?.phraseResults() ?? [],
+              sceneOutcome: tutorRunnerRef.current?.sceneOutcome() ?? '',
               lessonsSoFar: mint?.tutor?.lessonsSoFar ?? 0,
             },
           }

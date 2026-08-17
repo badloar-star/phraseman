@@ -81,6 +81,10 @@ interface DialogReviewRequest {
   safetyFlags?: unknown;
   /** voice/tutor: id сессии звонка — дедуп сейфти-журнала с мгновенными репортами. */
   sessionId?: unknown;
+  /** tutor: итоги повторения речи (mark_phrase_result) — { text, ok }[]. */
+  phraseResults?: unknown;
+  /** tutor: итог сцены-задачи (end_scene outcome). */
+  sceneOutcome?: unknown;
 }
 
 /** Одно исправление: фраза ученика → естественный вариант + короткое пояснение. */
@@ -409,6 +413,13 @@ export const premiumDialogReview = onCall({
       cefr,
       // 'default' → сброс на политику уровня; пусто/нет поля → предпочтение не трогаем.
       languagePreference: text(data.languagePreference, 16) === '' ? undefined : text(data.languagePreference, 16),
+      phraseResults: Array.isArray(data.phraseResults)
+        ? data.phraseResults.slice(0, 12).map((r) => {
+            const item = (r ?? {}) as Record<string, unknown>;
+            return { text: text(item.text, 140), ok: item.ok === true };
+          }).filter((r) => r.text !== '')
+        : [],
+      sceneOutcome: text(data.sceneOutcome, 12),
       nowMs: Date.now(),
     });
     tutorMemoryOut = { callCount: next.callCount, homework: next.homework, nextTopic: next.nextTopic };

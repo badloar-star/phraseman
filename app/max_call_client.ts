@@ -185,6 +185,13 @@ export interface MaxVoiceTutorInfo {
   lessonsSoFar: number;
   homework: string[];
   nextTopic: string;
+  /** План сегодняшнего урока (ступень 1): тип и созревшие фразы для повторения. */
+  plan?: {
+    lessonType: 'new_material' | 'review_and_scene' | 'free_talk';
+    duePhrases: string[];
+    scenesDone: number;
+    scenesTotal: number;
+  };
 }
 
 /** Ответ maxVoiceMint (контракт спеки §2: max_voice_mint). */
@@ -250,6 +257,18 @@ function parseTutorInfo(t: Record<string, unknown>): MaxVoiceTutorInfo {
     lessonsSoFar: typeof t.lessonsSoFar === 'number' && Number.isFinite(t.lessonsSoFar) ? Math.max(0, Math.floor(t.lessonsSoFar)) : 0,
     homework: strList(t.homework),
     nextTopic: typeof t.nextTopic === 'string' ? t.nextTopic.slice(0, 140) : '',
+    ...(t.plan !== null && typeof t.plan === 'object' ? { plan: parseTutorPlan(t.plan as Record<string, unknown>) } : {}),
+  };
+}
+
+function parseTutorPlan(p: Record<string, unknown>): NonNullable<MaxVoiceTutorInfo['plan']> {
+  const lt = p.lessonType;
+  const n = (v: unknown): number => (typeof v === 'number' && Number.isFinite(v) ? Math.max(0, Math.floor(v)) : 0);
+  return {
+    lessonType: lt === 'review_and_scene' || lt === 'free_talk' ? lt : 'new_material',
+    duePhrases: Array.isArray(p.duePhrases) ? p.duePhrases.filter((x): x is string => typeof x === 'string').slice(0, 6) : [],
+    scenesDone: n(p.scenesDone),
+    scenesTotal: n(p.scenesTotal),
   };
 }
 

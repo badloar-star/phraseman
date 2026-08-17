@@ -28,7 +28,13 @@ import {
   buildVoiceInstructions,
   learnerLangNameFor,
 } from './max_voice_prompt';
-import { loadTutorAppDigest, readTutorMemory, renderTutorMemoryBlock } from './max_voice_tutor_memory';
+import {
+  duePhrases,
+  loadTutorAppDigest,
+  readTutorMemory,
+  renderTutorMemoryBlock,
+  tutorLessonTypeFor,
+} from './max_voice_tutor_memory';
 import { resolveStudyTarget, studyTargetName } from './ai_language_contract';
 import {
   VOICE_QUOTA_COLLECTION,
@@ -824,6 +830,14 @@ export const maxVoiceMint = onCall({
             lessonsSoFar: tutorMemory?.callCount ?? 0,
             homework: tutorMemory?.homework ?? [],
             nextTopic: tutorMemory?.nextTopic ?? '',
+            // План сегодняшнего урока для экрана «Учитель»: тип урока и сколько
+            // фраз созрело для повторения речи (ступень 1 плана обучения).
+            plan: {
+              lessonType: tutorLessonTypeFor(tutorMemory?.callCount ?? 0),
+              duePhrases: tutorMemory ? duePhrases(tutorMemory, nowMs).map((p) => p.text) : [],
+              scenesDone: tutorMemory?.scenesDone ?? 0,
+              scenesTotal: tutorMemory?.scenesTotal ?? 0,
+            },
           },
         }
       : {}),

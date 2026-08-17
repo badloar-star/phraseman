@@ -371,6 +371,10 @@ export interface PremiumDialogReviewRequest {
   safetyFlags?: { kind: string; note: string }[];
   /** voice/tutor: id сессии звонка (дедуп журнала с мгновенными репортами). */
   sessionId?: string;
+  /** tutor: итоги повторения речи (mark_phrase_result). */
+  phraseResults?: { text: string; ok: boolean }[];
+  /** tutor: итог сцены-задачи (end_scene outcome). */
+  sceneOutcome?: string;
 }
 
 /** Одно исправление: как сказал ученик → как естественнее + короткое пояснение. */

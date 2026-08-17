@@ -125,6 +125,15 @@ export default function MaxCallPrestart() {
   );
   // Учитель: имя из минта (конфиг админки); до ответа — дефолт сервера.
   const [tutorName, setTutorName] = useState('Max');
+  // План сегодняшнего урока (ступень 1): тип урока, сколько фраз повторим, домашка.
+  // Показывается ученику на экране «Учитель» (решение владельца 2026-08-17).
+  const [tutorPlan, setTutorPlan] = useState<{
+    lessonsSoFar: number;
+    lessonType: 'new_material' | 'review_and_scene' | 'free_talk';
+    dueCount: number;
+    homeworkCount: number;
+    nextTopic: string;
+  } | null>(null);
   const key = premintKey(callParams);
 
   const [preflight, setPreflight] = useState<PreflightView | null>(null);
@@ -146,6 +155,15 @@ export default function MaxCallPrestart() {
         if (!mountedRef.current) return;
         setPreflight(parsePreflight({ limits: limitsBeforeReserve(mint.limits) }, format));
         if (mint.tutor?.name) setTutorName(mint.tutor.name);
+        if (mint.tutor) {
+          setTutorPlan({
+            lessonsSoFar: mint.tutor.lessonsSoFar,
+            lessonType: mint.tutor.plan?.lessonType ?? 'new_material',
+            dueCount: mint.tutor.plan?.duePhrases.length ?? 0,
+            homeworkCount: mint.tutor.homework.length,
+            nextTopic: mint.tutor.nextTopic,
+          });
+        }
         setPreflightReason(null);
       },
       (error) => {
@@ -328,6 +346,60 @@ export default function MaxCallPrestart() {
               </Text>
             </View>
           </View>
+
+          {/* План урока учителя: что будет сегодня — тип, повторение, домашка (без ожидания: до ответа блока нет) */}
+          {isTutor && tutorPlan && (
+            <View
+              testID="max-call-tutor-plan"
+              style={{
+                backgroundColor: glassFill(t.bgSurface, 0.46),
+                borderRadius: 16,
+                padding: 14,
+                marginTop: 12,
+              }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={1.2}>
+                {triLang(lang, {
+                  ru: `Урок ${tutorPlan.lessonsSoFar + 1}`,
+                  uk: `Урок ${tutorPlan.lessonsSoFar + 1}`,
+                  es: `Clase ${tutorPlan.lessonsSoFar + 1}`,
+                  'pt-BR': `Aula ${tutorPlan.lessonsSoFar + 1}`,
+                  vi: `Buổi học ${tutorPlan.lessonsSoFar + 1}`,
+                  id: `Pelajaran ${tutorPlan.lessonsSoFar + 1}`,
+                  tr: `Ders ${tutorPlan.lessonsSoFar + 1}`,
+                  pl: `Lekcja ${tutorPlan.lessonsSoFar + 1}`,
+                })}
+              </Text>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 10 }}>
+                {[
+                  tutorPlan.lessonType === 'new_material'
+                    ? triLang(lang, { ru: 'Новый материал', uk: 'Новий матеріал', es: 'Material nuevo', 'pt-BR': 'Conteúdo novo', vi: 'Bài mới', id: 'Materi baru', tr: 'Yeni konu', pl: 'Nowy materiał' })
+                    : tutorPlan.lessonType === 'review_and_scene'
+                      ? triLang(lang, { ru: 'Повторение и сцена', uk: 'Повторення і сцена', es: 'Repaso y escena', 'pt-BR': 'Revisão e cena', vi: 'Ôn tập và tình huống', id: 'Ulangan dan adegan', tr: 'Tekrar ve sahne', pl: 'Powtórka i scenka' })
+                      : triLang(lang, { ru: 'Свободный разговор', uk: 'Вільна розмова', es: 'Conversación libre', 'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Percakapan bebas', tr: 'Serbest sohbet', pl: 'Swobodna rozmowa' }),
+                  tutorPlan.dueCount > 0
+                    ? triLang(lang, { ru: `Повторим: ${tutorPlan.dueCount}`, uk: `Повторимо: ${tutorPlan.dueCount}`, es: `Repaso: ${tutorPlan.dueCount}`, 'pt-BR': `Revisão: ${tutorPlan.dueCount}`, vi: `Ôn: ${tutorPlan.dueCount}`, id: `Ulang: ${tutorPlan.dueCount}`, tr: `Tekrar: ${tutorPlan.dueCount}`, pl: `Powtórka: ${tutorPlan.dueCount}` })
+                    : '',
+                  tutorPlan.homeworkCount > 0
+                    ? triLang(lang, { ru: `Домашка: ${tutorPlan.homeworkCount}`, uk: `Домашка: ${tutorPlan.homeworkCount}`, es: `Tarea: ${tutorPlan.homeworkCount}`, 'pt-BR': `Tarefa: ${tutorPlan.homeworkCount}`, vi: `Bài tập: ${tutorPlan.homeworkCount}`, id: `PR: ${tutorPlan.homeworkCount}`, tr: `Ödev: ${tutorPlan.homeworkCount}`, pl: `Zadanie: ${tutorPlan.homeworkCount}` })
+                    : '',
+                ].filter((c) => c !== '').map((chip, i) => (
+                  <View key={`plan-chip-${i}`} style={{ backgroundColor: i === 0 ? t.accentBg : glassFill(t.bgSurface, 0.7), borderRadius: 10, paddingHorizontal: 10, paddingVertical: 5 }}>
+                    <Text style={{ color: i === 0 ? t.accent : t.textPrimary, fontSize: f.caption, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>{chip}</Text>
+                  </View>
+                ))}
+              </View>
+              {tutorPlan.nextTopic !== '' && (
+                <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 10 }} maxFontSizeMultiplier={1.2}>
+                  {triLang(lang, {
+                    ru: `Тема: ${tutorPlan.nextTopic}`, uk: `Тема: ${tutorPlan.nextTopic}`, es: `Tema: ${tutorPlan.nextTopic}`,
+                    'pt-BR': `Tema: ${tutorPlan.nextTopic}`, vi: `Chủ đề: ${tutorPlan.nextTopic}`, id: `Topik: ${tutorPlan.nextTopic}`,
+                    tr: `Konu: ${tutorPlan.nextTopic}`, pl: `Temat: ${tutorPlan.nextTopic}`,
+                  })}
+                </Text>
+              )}
+            </View>
+          )}
 
           {/* Остаток минут дня — КРУПНО: топливо живёт здесь, не в звонке */}
           <View

@@ -24,6 +24,7 @@ import type { DialogMemory } from './ai_dialog_client';
 import { getTrainerCounts, getTrainerPremiumItems } from './trainer_store';
 import { peekHomeScreenHydration } from './home_screen_hydration';
 import { getLessonData } from './lesson_data_all';
+import { lessonGrammarEntry } from './lesson_grammar_map';
 import {
   buildTutorSceneCatalog,
   renderTutorSceneCatalog,
@@ -207,6 +208,12 @@ export async function buildLearnerSnapshot(cefr: string | undefined): Promise<st
     const currentPhrases = phrasesOf(current, 10);
     if (currentPhrases.length > 0) {
       lines.push(`SYLLABUS — current app lesson ${current} phrases (teach and practise 2-3 of these today): ${currentPhrases.join(' | ')}`);
+    }
+    // Грамматика урока из карты (единый источник: lesson_grammar_map) — учитель
+    // объясняет конструкцию (на родном для A1/A2) и даёт 2 подстановки.
+    const grammar = lessonGrammarEntry(current);
+    if (grammar && grammar.constructions.length > 0) {
+      lines.push(`SYLLABUS — grammar point of lesson ${current} (${grammar.level}): ${grammar.constructions.join(', ')} — explain it simply and practise it in two substitutions.`);
     }
     const nextPhrases = phrasesOf(current + 1, 6);
     if (nextPhrases.length > 0) {

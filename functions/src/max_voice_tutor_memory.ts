@@ -27,7 +27,26 @@ export const TUTOR_MEMORY_FACTS_MAX = 12;
 export const TUTOR_MEMORY_ERRORS_MAX = 8;
 export const TUTOR_MEMORY_HOMEWORK_MAX = 6;
 export const TUTOR_MEMORY_ITEM_MAX_CHARS = 140;
-export const TUTOR_MEMORY_BLOCK_MAX_CHARS = 1_800;
+export const TUTOR_MEMORY_BLOCK_MAX_CHARS = 2_600;
+
+// ── Ступень 1 плана обучения (владелец 2026-08-17: «1 → 2 → 3») ─────────────
+// Очередь ПОВТОРЕНИЯ РЕЧИ: каждая отработанная фраза созревает по расширяющимся
+// интервалам (Cepeda: 1 → 3 → 7 → 21 день); учитель в начале урока просит СКАЗАТЬ
+// созревшие, результат двигает интервал. Домашка входит в очередь на завтра.
+export const TUTOR_PHRASE_QUEUE_MAX = 40;
+export const TUTOR_PHRASE_DUE_MAX = 4;
+/** Интервалы (дни) по «коробке»; выше последней — коробка держится на 21 дне. */
+export const TUTOR_PHRASE_INTERVAL_DAYS = [1, 3, 7, 21] as const;
+/** Типы уроков чередуются по номеру урока (как «цель звонка» у Duolingo/Loora). */
+export const TUTOR_LESSON_TYPES = ['new_material', 'review_and_scene', 'free_talk'] as const;
+export type TutorLessonType = typeof TUTOR_LESSON_TYPES[number];
+
+export interface TutorPhraseQueueItem {
+  text: string;
+  /** Индекс в TUTOR_PHRASE_INTERVAL_DAYS. */
+  box: number;
+  dueAtMs: number;
+}
 
 export interface TutorMemory {
   /** Что учитель знает об ученике: имя, город, интересы, работа — как сказал сам ученик. */
@@ -50,6 +69,11 @@ export interface TutorMemory {
    * уроками, пока ученик не попросит иначе.
    */
   languagePreference: TutorLanguagePreference;
+  /** Очередь повторения речи (ступень 1 плана обучения). */
+  phraseQueue: TutorPhraseQueueItem[];
+  /** Сцены-задачи: сколько выполнено / всего (критерий успеха сцены — objectives). */
+  scenesDone: number;
+  scenesTotal: number;
 }
 
 export type TutorLanguagePreference = '' | 'more_target' | 'more_native';
@@ -70,6 +94,9 @@ export const TUTOR_MEMORY_EMPTY: TutorMemory = Object.freeze({
   lastCallAtMs: 0,
   lastCefr: '',
   languagePreference: '',
+  phraseQueue: [],
+  scenesDone: 0,
+  scenesTotal: 0,
 }) as TutorMemory;
 
 function docId(prefix: string, authUid: string, stableUid: string): string {
@@ -116,7 +143,79 @@ export function parseTutorMemory(raw: unknown): TutorMemory {
     lastCallAtMs: Math.floor(num(d.lastCallAtMs)),
     lastCefr: cleanItem(d.lastCefr).slice(0, 2).toUpperCase(),
     languagePreference: asTutorLanguagePreference(d.languagePreference),
+    phraseQueue: parsePhraseQueue(d.phraseQueue),
+    scenesDone: Math.floor(num(d.scenesDone)),
+    scenesTotal: Math.floor(num(d.scenesTotal)),
   };
+}
+
+function parsePhraseQueue(value: unknown): TutorPhraseQueueItem[] {
+  if (!Array.isArray(value)) return [];
+  const out: TutorPhraseQueueItem[] = [];
+  for (const raw of value) {
+    const item = (raw ?? {}) as Record<string, unknown>;
+    const text = typeof item.text === 'string' ? cleanItem(item.text) : '';
+    if (!text || out.some((x) => x.text.toLowerCase() === text.toLowerCase())) continue;
+    const box = Math.min(TUTOR_PHRASE_INTERVAL_DAYS.length - 1, Math.max(0, Math.floor(num(item.box))));
+    out.push({ text, box, dueAtMs: Math.floor(num(item.dueAtMs)) });
+    if (out.length >= TUTOR_PHRASE_QUEUE_MAX) break;
+  }
+  return out;
+}
+
+const DAY_MS = 86_400_000;
+
+/** Тип сегодняшнего урока по номеру (0-based callCount → 1-й урок = new_material). */
+export function tutorLessonTypeFor(callCount: number): TutorLessonType {
+  const idx = ((Math.max(0, Math.floor(callCount)) % TUTOR_LESSON_TYPES.length) + TUTOR_LESSON_TYPES.length) % TUTOR_LESSON_TYPES.length;
+  return TUTOR_LESSON_TYPES[idx];
+}
+
+/** Созревшие к уроку фразы — самые «старые» первыми, не больше потолка. */
+export function duePhrases(memory: TutorMemory, nowMs: number, max = TUTOR_PHRASE_DUE_MAX): TutorPhraseQueueItem[] {
+  return memory.phraseQueue
+    .filter((p) => p.dueAtMs <= nowMs)
+    .sort((a, b) => a.dueAtMs - b.dueAtMs)
+    .slice(0, max);
+}
+
+export interface TutorPhraseResult {
+  text: string;
+  ok: boolean;
+}
+
+/**
+ * Обновить очередь по итогам урока: сказал верно → коробка +1 (интервал шире),
+ * не смог → коробка 0 (завтра снова); новая домашка → в очередь на завтра
+ * (коробка 0). Чистая функция.
+ */
+export function applyPhraseResults(
+  queue: readonly TutorPhraseQueueItem[],
+  results: readonly TutorPhraseResult[],
+  newPhrases: readonly string[],
+  nowMs: number,
+): TutorPhraseQueueItem[] {
+  const byKey = new Map<string, TutorPhraseQueueItem>();
+  for (const item of queue) byKey.set(item.text.toLowerCase(), { ...item });
+  for (const r of results) {
+    const key = cleanItem(r.text).toLowerCase();
+    if (!key) continue;
+    const prev = byKey.get(key);
+    const box = r.ok ? Math.min(TUTOR_PHRASE_INTERVAL_DAYS.length - 1, (prev?.box ?? -1) + 1) : 0;
+    byKey.set(key, {
+      text: prev?.text ?? cleanItem(r.text),
+      box,
+      dueAtMs: nowMs + TUTOR_PHRASE_INTERVAL_DAYS[box] * DAY_MS,
+    });
+  }
+  for (const raw of newPhrases) {
+    const text = cleanItem(raw);
+    const key = text.toLowerCase();
+    if (!text || byKey.has(key)) continue;
+    byKey.set(key, { text, box: 0, dueAtMs: nowMs + TUTOR_PHRASE_INTERVAL_DAYS[0] * DAY_MS });
+  }
+  // Свежие (ближайшие к повторению) — впереди; хвост режем по потолку.
+  return [...byKey.values()].sort((a, b) => a.dueAtMs - b.dueAtMs).slice(0, TUTOR_PHRASE_QUEUE_MAX);
 }
 
 export async function readTutorMemory(db: Firestore, authUid: string, stableUid: string): Promise<TutorMemory> {
@@ -143,6 +242,10 @@ export interface TutorMemoryUpdate {
   cefr?: unknown;
   /** Просьба ученика за урок ('more_english' | 'more_native' | 'default' → ''); undefined — не менять. */
   languagePreference?: unknown;
+  /** Итоги повторения речи за урок: сказал верно / не смог (инструмент mark_phrase_result). */
+  phraseResults?: readonly TutorPhraseResult[];
+  /** Сцена-задача: 'done' | 'partial' | 'skipped' | '' (end_scene outcome). */
+  sceneOutcome?: unknown;
   nowMs: number;
 }
 
@@ -170,6 +273,10 @@ export function mergeTutorMemory(prev: TutorMemory, update: TutorMemoryUpdate): 
       update.languagePreference === undefined || update.languagePreference === null || update.languagePreference === ''
         ? prev.languagePreference
         : asTutorLanguagePreference(update.languagePreference),
+    // Очередь повторения: результаты урока + новая домашка на завтра.
+    phraseQueue: applyPhraseResults(prev.phraseQueue, update.phraseResults ?? [], homework, update.nowMs),
+    scenesTotal: prev.scenesTotal + (String(update.sceneOutcome ?? '') === 'done' || String(update.sceneOutcome ?? '') === 'partial' ? 1 : 0),
+    scenesDone: prev.scenesDone + (String(update.sceneOutcome ?? '') === 'done' ? 1 : 0),
   };
 }
 
@@ -220,6 +327,19 @@ export function renderTutorMemoryBlock(memory: TutorMemory, nowMs: number): stri
     lines.push(`Homework you gave last time (check it early in this lesson, ask them to SAY each phrase): ${memory.homework.join(' | ')}.`);
   }
   if (memory.nextTopic) lines.push(`You promised today's topic would be: ${memory.nextTopic}.`);
+  // План урока: тип сегодняшнего урока и созревшие фразы для повторения речи.
+  const lessonType = tutorLessonTypeFor(memory.callCount);
+  const typeLine = lessonType === 'new_material'
+    ? 'TODAY\'S LESSON TYPE: NEW MATERIAL — teach 2-3 phrases + the grammar point of the current app lesson (SYLLABUS), practise them in mini-situations.'
+    : lessonType === 'review_and_scene'
+      ? 'TODAY\'S LESSON TYPE: REVIEW + SCENE — retrieval of due phrases first, then a role-play scene as a TASK with a clear goal; new material only if time remains.'
+      : 'TODAY\'S LESSON TYPE: FREE TALK — a warm conversation about the learner\'s life that naturally uses their weak words and recurring mistakes; correct gently, no new grammar.';
+  lines.push(typeLine);
+  const due = duePhrases(memory, nowMs);
+  if (due.length > 0) {
+    lines.push(`PHRASES DUE FOR SPOKEN RETRIEVAL TODAY (ask the learner to SAY each one in a natural mini-question, then call mark_phrase_result for each): ${due.map((p) => p.text).join(' | ')}.`);
+  }
+  if (memory.scenesTotal > 0) lines.push(`Scene tasks completed so far: ${memory.scenesDone} of ${memory.scenesTotal}.`);
   if (memory.languagePreference === 'more_target') {
     lines.push('LANGUAGE PREFERENCE: the learner asked you to speak MORE of the language they are learning with them than the level default — honor it (still keep it simple and clear).');
   } else if (memory.languagePreference === 'more_native') {

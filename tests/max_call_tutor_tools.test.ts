@@ -154,6 +154,34 @@ describe('createTutorToolRunner', () => {
     ]);
   });
 
+  it('mark_phrase_result: результаты повторения собираются (последний по фразе побеждает), без response', () => {
+    const { runner } = makeRunner();
+    expect(runner.handle('mark_phrase_result', { phrase: 'I would like a coffee', ok: false }).respond).toBe(false);
+    runner.handle('mark_phrase_result', { phrase: 'i would like a COFFEE', ok: true });
+    runner.handle('mark_phrase_result', { phrase: 'How much is it?', ok: true });
+    runner.handle('mark_phrase_result', { phrase: '', ok: true });
+    expect(runner.phraseResults()).toEqual([
+      { text: 'i would like a COFFEE', ok: true },
+      { text: 'How much is it?', ok: true },
+    ]);
+  });
+
+  it('assign_homework со значениями → homeworkItems для тренажёра; end_scene(outcome) → sceneOutcome', () => {
+    const { runner } = makeRunner();
+    runner.handle('assign_homework', { phrases: ['I would like tea', 'See you tomorrow'], meanings: ['Я хотел бы чай'] });
+    expect(runner.homeworkItems()).toEqual([
+      { text: 'I would like tea', meaning: 'Я хотел бы чай' },
+      { text: 'See you tomorrow', meaning: '' },
+    ]);
+    expect(runner.sceneOutcome()).toBe('');
+    runner.handle('start_scene', { scene_id: 'a2_one' });
+    runner.handle('end_scene', { outcome: 'done' });
+    expect(runner.sceneOutcome()).toBe('done');
+    runner.handle('start_scene', { scene_id: 'a1_one' });
+    runner.handle('end_scene', { outcome: 'weird' });
+    expect(runner.sceneOutcome()).toBe('partial'); // неизвестный исход — «частично», не теряем факт сцены
+  });
+
   it('неизвестный инструмент — мягкий ответ, ничего не ломает', () => {
     const { runner } = makeRunner();
     expect(runner.handle('teleport', {}).output).toContain('Unknown tool');

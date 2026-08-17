@@ -19377,6 +19377,7 @@
         <div class="drow"><span class="k">Plus</span><span class="v">${premHtml}</span></div>
         <div class="drow"><span class="k">Онбординг</span><span class="v">${u.onboarding?'✅ Завершён':'❌ Нет'}</span></div>`, { open: true })}
       ${acc('reputation', '🚩 Репутация и нарушения', lazyPlaceholder, { lazy: 'reputation' })}
+      ${acc('safety', '🆘 Флаги безопасности (ИИ-диалоги и уроки-звонки)', lazyPlaceholder, { lazy: 'safety' })}
       ${acc('reports', '📝 Content-репорты юзера', lazyPlaceholder, { lazy: 'reports' })}
       ${acc('payments', '💳 Платежи / Plus-история', lazyPlaceholder, { lazy: 'payments' })}
       ${acc('chat', '💬 Чат лиг / UGC / рефералы', lazyPlaceholder, { lazy: 'social' })}
@@ -19625,6 +19626,48 @@
         bodyEl.innerHTML = bodyHtml;
         if (repBadge && violationCount > 0) repBadge.textContent = String(violationCount);
         else if (repBadge) repBadge.remove();
+      } else if (kind === 'safety') {
+        // зачем: владелец 2026-08-17 — в карточке ученика должен быть раздел, где
+        // видно, где были флаги и что юзер говорил. Читаем safety_flags по обоим
+        // id (stable/auth), 30+30 записей, сортировка по времени на клиенте.
+        const [byStable, byAuth] = await Promise.all([
+          u360Query('safety_flags', 'uid', uid, 'createdAtMs', 30).catch(() => []),
+          u360Query('safety_flags', 'authUid', uid, 'createdAtMs', 30).catch(() => []),
+        ]);
+        const rows = u360MergeRowsById(byStable, byAuth)
+          .sort((a, b) => Number(b.createdAtMs || 0) - Number(a.createdAtMs || 0));
+        const badge = document.querySelector('.dsec-acc[data-acc="safety"] .acc-badge');
+        const open = rows.filter(r => !r.handled).length;
+        const head = document.querySelector('.dsec-acc[data-acc="safety"] .dsec-acc-head');
+        if (head && rows.length && !head.querySelector('.acc-badge')) {
+          const b = document.createElement('span'); b.className = 'acc-badge';
+          b.textContent = open ? `${open} новых / ${rows.length}` : String(rows.length);
+          head.insertBefore(b, head.querySelector('.acc-chev'));
+        } else if (badge) {
+          badge.textContent = open ? `${open} новых / ${rows.length}` : String(rows.length);
+        }
+        const catColor = (c) => (c === 'suicide' || c === 'self_harm' || c === 'sexual_minors' || c === 'abuse') ? '#f87171' : '#fbbf24';
+        bodyEl.innerHTML = `<div style="font-size:11px;color:#8b8b9a;margin-bottom:6px">Флагов: ${rows.length} · новых: ${open} · хранятся 2 года (safety_flags)</div>` +
+          u360List(rows, r => {
+            const when = r.createdAtMs ? new Date(r.createdAtMs).toLocaleString() : escapeHtml(fdate(r.createdAt));
+            const ctx = Array.isArray(r.historyContext)
+              ? r.historyContext.map(m => `<div style="opacity:.75;font-size:12px"><b>${escapeHtml(m.role)}:</b> ${escapeHtml(m.content)}</div>`).join('')
+              : '';
+            const transcript = r.transcript
+              ? `<details style="margin-top:6px"><summary style="cursor:pointer;font-size:12px;color:#94a3b8">Полный транскрипт (${String(r.transcript).length} симв.)</summary><pre style="white-space:pre-wrap;font-size:11px;line-height:1.4;margin:6px 0 0;color:#cbd5e1;max-height:320px;overflow:auto">${escapeHtml(r.transcript)}</pre></details>`
+              : '';
+            const handledHtml = r.handled
+              ? '<span style="color:#4ade80;font-size:12px">✓ обработано</span>'
+              : `<button onclick="markSafetyHandled(decodeURIComponent('${encodeURIComponent(String(r.id)).replace(/'/g, '%27')}'))" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#4ade80;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer">Отметить обработанным</button>`;
+            return `<div class="u360-list-item" style="border-left:3px solid ${catColor(r.category)}">
+              <div class="u360-li-top"><span style="color:${catColor(r.category)};font-weight:700">🆘 ${escapeHtml(r.category || '—')}</span><span style="color:#7e8494">${when}</span></div>
+              <div style="color:#7e8494;font-size:12px">режим ${escapeHtml(r.mode || '—')}${r.source ? ' · источник ' + escapeHtml(r.source) : ''}${r.matched ? ' · «' + escapeHtml(r.matched) + '»' : ''}${r.sessionId ? ' · сессия …' + escapeHtml(String(r.sessionId).slice(-8)) : ''}</div>
+              <div style="margin-top:6px;padding:6px 8px;background:rgba(248,113,113,0.08);border-radius:6px"><b>Что говорил:</b> ${escapeHtml(r.userText || '—')}</div>
+              ${ctx ? `<div style="margin-top:6px"><b style="font-size:12px">Контекст:</b>${ctx}</div>` : ''}
+              ${transcript}
+              <div style="margin-top:6px">${handledHtml}</div>
+            </div>`;
+          }, 'Флагов безопасности нет');
       } else if (kind === 'reports') {
         const rows = await u360Query('error_reports', 'uid', uid, 'createdAt', 30).catch(() => []);
         bodyEl.innerHTML = `<div style="font-size:11px;color:#8b8b9a;margin-bottom:6px">Content-репортов: ${rows.length}</div>` +
@@ -35101,15 +35144,17 @@
   const ONBOARDING_STEP_CATALOG = [
     ['welcome', 'Приветствие', 'Логотип, обещание и вход для тех, кто уже с нами. Здесь же строка про Условия.'],
     ['privacy', 'Приватность и вход', 'Экран-сейф: «Твои данные — только твои», вход через Apple или Google, «Позже».'],
+    ['niceToMeet', 'Приятно познакомиться', 'Эмодзи-приветствие по имени после входа/сейфа.'],
+    ['promise', 'Обещание результата', 'График роста «с Phraseman / без повторения» на весь экран.'],
+    ['improve', 'Помоги улучшить', 'Зачем нужна анонимная статистика — перед вопросом «откуда узнал».'],
     ['source', 'Источник', 'Откуда узнал о нас. Ответы попадают в раздел «Откуда узнали».'],
     ['language', 'Язык', 'Выбор изучаемого языка.', 'lang'],
     ['level', 'Уровень', 'Насколько хорошо уже говорит.', 'lang'],
-    ['promise', 'Обещание результата', 'График роста «с повторением / без» и два раскрывающихся факта.'],
-    ['notifications', 'Уведомления', 'Просьба разрешить напоминания, с макетом пуша.'],
+    ['notifications', 'Уведомления', 'Просьба разрешить напоминания, с макетом телефона и пушем.'],
+    ['letsBuild', 'Настроим под тебя', 'Пустой экран-переход перед согласиями.'],
+    ['name', 'Имя и согласия', 'Галочка статистики и вопрос про возраст — до пробного и цен. Имя создаётся автоматически.'],
     ['trialReminder', 'Напоминание о пробном', 'Честный триал: «предупредим до конца» и «сейчас ничего не спишем».'],
-    ['onboardingPaywall', 'Предложение подписки', 'Цены: колонки FREE/PLUS, крестик слева, «···» с промокодом и кодом друга.'],
-    ['improve', 'Помоги улучшить', 'Зачем нужна анонимная статистика — перед экраном согласий.'],
-    ['name', 'Имя и согласия', 'Галочка статистики и вопрос про возраст. Имя создаётся автоматически.'],
+    ['onboardingPaywall', 'Предложение подписки', 'Цены: список выгод, два тарифа, «Больше предложений», «···» с промокодом и кодом друга. Любой выход отсюда завершает онбординг.'],
   ];
   const ONBOARDING_STEP_LABELS = Object.fromEntries(ONBOARDING_STEP_CATALOG);
   let _onboardingScreensLoaded = false;
@@ -35128,6 +35173,12 @@
   // Пустая строка/битый JSON = «включено всё» (та же логика, что в
   // parseEnabledOnboardingSteps на клиенте) — иначе админка показала бы всё
   // выключенным там, где приложение показывает всё включённым.
+  // Зеркало app/onboarding_flow.ts (ONBOARDING_STEPS_DEFAULT_ON /
+  // ONBOARDING_STEPS_CATALOG_MARK): экраны, добавленные 2026-08-17, считаются
+  // включёнными в списках, сохранённых ДО них (в таких нет метки каталога).
+  // Список с меткой читается буквально — так владелец может их выключить.
+  const ONBOARDING_STEPS_DEFAULT_ON = ['niceToMeet', 'letsBuild'];
+  const ONBOARDING_STEPS_CATALOG_MARK = 'catalog_2026_08_17';
   function onboardingParseEnabled(raw) {
     const all = ONBOARDING_STEP_CATALOG.map(([id]) => id);
     if (!raw) return all;
@@ -35136,6 +35187,7 @@
       if (!Array.isArray(parsed)) return all;
       const set = new Set(parsed.filter((x) => typeof x === 'string'));
       set.add(ONBOARDING_MANDATORY_STEP);
+      if (!set.has(ONBOARDING_STEPS_CATALOG_MARK)) ONBOARDING_STEPS_DEFAULT_ON.forEach((id) => set.add(id));
       return all.filter((id) => set.has(id));
     } catch (_) { return all; }
   }
@@ -35283,7 +35335,9 @@
     try {
       // Переиспользуем общий писатель texts: он читает prev без глушилки и
       // сохраняет numbers/bools/остальные texts (merge:false + ручное слияние).
-      await window.saveControlPanelTexts({ [ONBOARDING_ENABLED_STEPS_KEY]: JSON.stringify(next) });
+      // Метка каталога в массиве: клиент читает такой список буквально (без
+      // «включённых по умолчанию» новых экранов); старые клиенты её отбрасывают.
+      await window.saveControlPanelTexts({ [ONBOARDING_ENABLED_STEPS_KEY]: JSON.stringify([...next, ONBOARDING_STEPS_CATALOG_MARK]) });
       const reason = String(document.getElementById('onboarding-screens-reason')?.value || '').trim();
       if (reason && typeof logAction === 'function') {
         logAction('onboarding_steps_publish', 'remote_config/app', { steps: next, reason });

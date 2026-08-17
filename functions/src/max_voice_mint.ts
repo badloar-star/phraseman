@@ -753,7 +753,7 @@ export const maxVoiceMint = onCall({
           targetLangName: studyTargetName(resolveStudyTarget(data.studyTarget)),
           appDigest,
           sceneCatalog: text(data.sceneCatalog, 2000),
-          learnerSnapshot: text(data.learnerSnapshot, 1200),
+          learnerSnapshot: text(data.learnerSnapshot, 2400),
           tutorMemoryBlock: tutorMemory ? renderTutorMemoryBlock(tutorMemory, nowMs) : '',
         }
       : {}),

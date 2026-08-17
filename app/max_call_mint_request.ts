@@ -23,6 +23,7 @@ import { buildCompanionMemory } from './ai_companion_memory';
 import type { DialogMemory } from './ai_dialog_client';
 import { getTrainerCounts, getTrainerPremiumItems } from './trainer_store';
 import { peekHomeScreenHydration } from './home_screen_hydration';
+import { getLessonData } from './lesson_data_all';
 import {
   buildTutorSceneCatalog,
   renderTutorSceneCatalog,
@@ -191,6 +192,27 @@ export async function buildLearnerSnapshot(cefr: string | undefined): Promise<st
     if (words.length > 0) lines.push(`weak words/phrases (from the trainer): ${words.join(', ')}`);
   } catch {}
   if (cefr) lines.push(`level in the app: ${cefr}`);
+  // зачем: владелец 2026-08-17 — «а план обучения у тутора есть или от фонаря?».
+  // План = курс приложения: учитель получает фразы ТЕКУЩЕГО урока ученика (тот
+  // же контент, что видит ученик в уроках) и следующего — и ведёт урок-звонок по
+  // ним, а не выбирает тему наугад. Контент в бандле, сеть не нужна.
+  try {
+    const home = peekHomeScreenHydration();
+    const current = Math.max(1, home?.lastLessonId ?? Math.max(1, (home?.lessonsCompleted ?? 0) + 1));
+    const phrasesOf = (lessonId: number, limit: number): string[] =>
+      getLessonData(lessonId)
+        .map((phrase) => String(phrase.english ?? '').trim())
+        .filter((p) => p !== '')
+        .slice(0, limit);
+    const currentPhrases = phrasesOf(current, 10);
+    if (currentPhrases.length > 0) {
+      lines.push(`SYLLABUS — current app lesson ${current} phrases (teach and practise 2-3 of these today): ${currentPhrases.join(' | ')}`);
+    }
+    const nextPhrases = phrasesOf(current + 1, 6);
+    if (nextPhrases.length > 0) {
+      lines.push(`SYLLABUS — next app lesson ${current + 1} phrases (preview; a natural "next topic"): ${nextPhrases.join(' | ')}`);
+    }
+  } catch {}
   return lines.join('\n');
 }
 

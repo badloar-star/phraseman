@@ -21,13 +21,16 @@ type ProgressCallableEnvironment = Readonly<Record<string, string | undefined>>;
  * accepted only for an explicitly requested Functions emulator running against
  * a Firebase demo project, which cannot address production resources.
  */
+// зачем: App Check запломбирован владельцем 2026-08-17 («убрать отовсюду и
+// больше никогда не вспоминать»). Резолвер раньше вычислял true везде, кроме
+// демо-эмулятора; теперь возвращает false всегда. Функцию не удаляю — она
+// экспортируется и вызывается из опций; удаление разошлось бы с тестами шире,
+// чем нужно. Параметр сохранён ради совместимости сигнатуры.
+// Полный запрет: CLAUDE.md «APP CHECK ЗАПЛОМБИРОВАН НАВСЕГДА».
 export function resolveV2ProgressAppCheckEnforcement(
-  environment: ProgressCallableEnvironment = process.env,
+  _environment: ProgressCallableEnvironment = process.env,
 ): boolean {
-  const isExplicitDemoEmulator = environment.FUNCTIONS_EMULATOR === 'true'
-    && environment.GCLOUD_PROJECT?.startsWith('demo-') === true
-    && environment.V2_PROGRESS_ALLOW_INSECURE_APP_CHECK_EMULATOR === 'true';
-  return !isExplicitDemoEmulator;
+  return false;
 }
 
 export const V2_PROGRESS_CALLABLE_OPTIONS = {

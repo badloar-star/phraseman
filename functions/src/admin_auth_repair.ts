@@ -124,7 +124,7 @@ export function normalizeAuthLinkRepairInput(data: unknown): AdminAuthLinkRepair
   return Object.freeze({ uid, reason, requestId, idempotencyKey });
 }
 
-export const adminRepairAuthLink = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
+export const adminRepairAuthLink = onCall({ region: REGION, enforceAppCheck: false }, async (request) => {
   if (!request.app) throw new HttpsError('failed-precondition', 'app_check_required');
   const input = normalizeAuthLinkRepairInput(request.data);
   const a = actor(request as { auth?: { uid?: string; token?: Row } });
@@ -304,7 +304,7 @@ export function normalizeProviderRelinkInput(data: unknown): AdminProviderRelink
   return Object.freeze({ uid, providerEmail, providerUid, reason, requestId, idempotencyKey });
 }
 
-export const adminRelinkProvider = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
+export const adminRelinkProvider = onCall({ region: REGION, enforceAppCheck: false }, async (request) => {
   if (!request.app) throw new HttpsError('failed-precondition', 'app_check_required');
   const input = normalizeProviderRelinkInput(request.data);
   const a = actor(request as { auth?: { uid?: string; token?: Row } });

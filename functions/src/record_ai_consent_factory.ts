@@ -50,7 +50,7 @@ export async function handleRecordAiConsent(
 export function createRecordAiConsentCallable(field: string) {
   return onCall({
     region: 'us-central1',
-    enforceAppCheck: true,
+    enforceAppCheck: false,
     timeoutSeconds: 15,
     memory: '256MiB',
     maxInstances: 40,

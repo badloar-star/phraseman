@@ -298,7 +298,7 @@ function parseAdminFilter(value: unknown): { rangeDays: 7 | 28 | 90; platform: O
 
 export const recordOnboardingFunnelEvent = onCall({
   region: REGION,
-  enforceAppCheck: true,
+  enforceAppCheck: false,
   timeoutSeconds: 15,
   memory: '256MiB',
   maxInstances: 40,

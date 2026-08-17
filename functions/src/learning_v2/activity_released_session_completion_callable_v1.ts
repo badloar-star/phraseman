@@ -37,7 +37,7 @@ export const LEARNING_V2_ACTIVITY_RELEASED_COMPLETION_INBOX_SUBCOLLECTION_V1 =
 export const LEARNING_V2_ACTIVITY_RELEASED_COMPLETION_CALLABLE_OPTIONS_V1 =
   Object.freeze({
     region: "us-central1",
-    enforceAppCheck: true,
+    enforceAppCheck: false,
     timeoutSeconds: 30,
     memory: "512MiB" as const,
     maxInstances: 40,

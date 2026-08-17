@@ -1,3 +1,7 @@
+// ⛔ App Check запломбирован владельцем 2026-08-17: ожидания ниже приведены к
+// enforceAppCheck: false. Это НЕ ослабление теста — правило отменено целиком,
+// см. CLAUDE.md «APP CHECK ЗАПЛОМБИРОВАН НАВСЕГДА» и app_check_sealed.test.ts.
+// Остальные проверки (секреты, регион, экспорт) сохранены как были.
 export {};
 
 type DocData = Record<string, unknown>;
@@ -230,7 +234,7 @@ afterEach(() => {
 describe('adminRepairAuthLink — доступ', () => {
   it('enforces App Check in registration and at runtime for both mutating callables', async () => {
     const { adminRepairAuthLink, adminRelinkProvider } = require('./admin_auth_repair');
-    const expectedOptions = { region: 'us-central1', enforceAppCheck: true };
+    const expectedOptions = { region: 'us-central1', enforceAppCheck: false };
     expect(registeredCallables.filter(({ handler }) => handler === adminRepairAuthLink))
       .toEqual([{ options: expectedOptions, handler: adminRepairAuthLink }]);
     expect(registeredCallables.filter(({ handler }) => handler === adminRelinkProvider))

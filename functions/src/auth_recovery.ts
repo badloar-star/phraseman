@@ -78,25 +78,25 @@ const CLEAN_RECOVERY_DELIVERY_SECRETS = [
 
 const CLEAN_RECOVERY_CALLABLE_OPTIONS = {
   ...HOT_CALLABLE_OPTIONS,
-  enforceAppCheck: true,
+  enforceAppCheck: false,
   secrets: CLEAN_RECOVERY_SECRETS,
 };
 
 const REQUEST_RECOVERY_CALLABLE_OPTIONS = {
   ...HOT_CALLABLE_OPTIONS,
-  enforceAppCheck: true,
+  enforceAppCheck: false,
   secrets: [RESEND_API_KEY],
 };
 
 const CONFIRM_RECOVERY_CALLABLE_OPTIONS = {
   ...HOT_CALLABLE_OPTIONS,
-  enforceAppCheck: true,
+  enforceAppCheck: false,
   secrets: [ADMIN_ALERT_BOT_TOKEN],
 };
 
 const HANDOFF_CALLABLE_OPTIONS = {
   ...HOT_CALLABLE_OPTIONS,
-  enforceAppCheck: true,
+  enforceAppCheck: false,
 };
 
 const HANDOFF_LEASE_MS = 30 * 1000;

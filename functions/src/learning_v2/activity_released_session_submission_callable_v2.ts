@@ -60,7 +60,7 @@ export const LEARNING_V2_ACTIVITY_RELEASED_SUBMISSION_INBOX_SUBCOLLECTION_V2 =
 export const LEARNING_V2_ACTIVITY_RELEASED_SUBMISSION_CALLABLE_OPTIONS_V2 =
   Object.freeze({
     region: "us-central1",
-    enforceAppCheck: true,
+    enforceAppCheck: false,
     timeoutSeconds: 30,
     memory: "512MiB" as const,
     maxInstances: 40,

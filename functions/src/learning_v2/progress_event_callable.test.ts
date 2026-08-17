@@ -121,38 +121,27 @@ describe('V2 progress callable auth adapter', () => {
     expect(execute).not.toHaveBeenCalled();
   });
 
-  it('uses a fail-closed App Check callable configuration', () => {
-    expect(V2_PROGRESS_CALLABLE_OPTIONS.enforceAppCheck).toBe(true);
+  // зачем: здесь было ПЯТЬ тестов, сторожащих поэтапное включение App Check
+  // (энфорс везде, кроме демо-эмулятора). Механики больше нет: владелец
+  // 2026-08-17 запломбировал App Check целиком — «убрать отовсюду и больше
+  // никогда не вспоминать». Тесты сторожили отменённое правило, поэтому
+  // заменены одним, проверяющим пломбу.
+  // Полный запрет и его история: CLAUDE.md «APP CHECK ЗАПЛОМБИРОВАН НАВСЕГДА».
+  it('App Check запломбирован: резолвер всегда false, окружение не влияет', () => {
+    expect(V2_PROGRESS_CALLABLE_OPTIONS.enforceAppCheck).toBe(false);
     expect(V2_PROGRESS_CALLABLE_OPTIONS.region).toBe('us-central1');
-  });
-
-  it('keeps App Check enforced when the legacy production toggle is false', () => {
-    expect(resolveV2ProgressAppCheckEnforcement({
-      ENFORCE_APP_CHECK_V2_PROGRESS: 'false',
-    })).toBe(true);
-  });
-
-  it('keeps App Check enforced when an emulator opt-out is requested outside the emulator', () => {
-    expect(resolveV2ProgressAppCheckEnforcement({
-      GCLOUD_PROJECT: 'demo-phraseman-progress',
-      V2_PROGRESS_ALLOW_INSECURE_APP_CHECK_EMULATOR: 'true',
-    })).toBe(true);
-  });
-
-  it('keeps App Check enforced for an emulator process targeting a non-demo project', () => {
-    expect(resolveV2ProgressAppCheckEnforcement({
-      FUNCTIONS_EMULATOR: 'true',
-      GCLOUD_PROJECT: 'phraseman-production',
-      V2_PROGRESS_ALLOW_INSECURE_APP_CHECK_EMULATOR: 'true',
-    })).toBe(true);
-  });
-
-  it('allows an explicit App Check opt-out only in a demo-project Functions emulator', () => {
-    expect(resolveV2ProgressAppCheckEnforcement({
-      FUNCTIONS_EMULATOR: 'true',
-      GCLOUD_PROJECT: 'demo-phraseman-progress',
-      V2_PROGRESS_ALLOW_INSECURE_APP_CHECK_EMULATOR: 'true',
-    })).toBe(false);
+    // Ни одна комбинация переменных не возвращает энфорс.
+    for (const environment of [
+      {},
+      { ENFORCE_APP_CHECK_V2_PROGRESS: 'true' },
+      { FUNCTIONS_EMULATOR: 'true', GCLOUD_PROJECT: 'phraseman-production' },
+      {
+        GCLOUD_PROJECT: 'demo-phraseman-progress',
+        V2_PROGRESS_ALLOW_INSECURE_APP_CHECK_EMULATOR: 'true',
+      },
+    ]) {
+      expect(resolveV2ProgressAppCheckEnforcement(environment)).toBe(false);
+    }
   });
 
   it('requires a strict auth_links anchor before reading the server generation', async () => {

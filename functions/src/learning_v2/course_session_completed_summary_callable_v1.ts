@@ -26,7 +26,7 @@ export const LEARNING_V2_COURSE_SESSION_COMPLETED_INBOX_SUBCOLLECTION_V1 =
 export const LEARNING_V2_COURSE_SESSION_COMPLETED_CALLABLE_OPTIONS_V1 =
   Object.freeze({
     region: "us-central1",
-    enforceAppCheck: true,
+    enforceAppCheck: false,
     timeoutSeconds: 15,
     memory: "256MiB" as const,
     maxInstances: 80,

@@ -180,7 +180,7 @@ function firestoreRepository(db: FirebaseFirestore.Firestore): AgeConsentReposit
 
 export const recordAgeConsentSnapshot = onCall({
   region: 'us-central1',
-  enforceAppCheck: true,
+  enforceAppCheck: false,
   timeoutSeconds: 15,
   memory: '256MiB',
   maxInstances: 40,

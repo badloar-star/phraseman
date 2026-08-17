@@ -58,22 +58,33 @@ describe('critical admin write boundaries', () => {
     }
   });
 
-  // зачем (владелец, 2026-08-03): «никогда не включать App Check, пока сам не скажу».
-  // Глобальный раскат ENFORCE_APP_CHECK=true не имеет права утащить админку за собой —
-  // иначе требование нарушается побочным эффектом чужой задачи.
-  it('never inherits the global App Check rollout flag', () => {
+  // зачем: раньше здесь были два теста про поэтапный раскат — «админка не
+  // наследует глобальный флаг» и «включается отдельной переменной». Механики
+  // раската больше НЕТ: владелец 2026-08-17 запломбировал App Check целиком
+  // («убрать отовсюду и больше никогда не вспоминать»), флаги захардкожены в
+  // false и окружение не читают. Тесты заменены на проверку самой пломбы,
+  // потому что сторожили отменённое правило.
+  // Полный запрет и его история: CLAUDE.md «APP CHECK ЗАПЛОМБИРОВАН НАВСЕГДА».
+  it('никакая переменная окружения не может вернуть энфорс админке', () => {
     jest.resetModules();
     const previousGlobal = process.env.ENFORCE_APP_CHECK;
     const previousAdmin = process.env.ENFORCE_APP_CHECK_ADMIN;
     process.env.ENFORCE_APP_CHECK = 'true';
-    delete process.env.ENFORCE_APP_CHECK_ADMIN;
+    process.env.ENFORCE_APP_CHECK_ADMIN = 'true';
     try {
       const mod = require('./callable_options') as {
         ADMIN_SENSITIVE_WRITE_OPTIONS?: Readonly<{ enforceAppCheck: boolean }>;
         ENFORCE_APP_CHECK?: boolean;
+        ENFORCE_APP_CHECK_ADMIN?: boolean;
+        requireAdminAppCheck?: (request: { app?: unknown }) => void;
       };
-      expect(mod.ENFORCE_APP_CHECK).toBe(true);
+      // Обе переменные выставлены в 'true' — и обе игнорируются.
+      expect(mod.ENFORCE_APP_CHECK).toBe(false);
+      expect(mod.ENFORCE_APP_CHECK_ADMIN).toBe(false);
       expect(mod.ADMIN_SENSITIVE_WRITE_OPTIONS?.enforceAppCheck).toBe(false);
+      // Гард тоже молчит: иначе выключенный энфорс ничего не давал бы —
+      // функция всё равно падала бы здесь (ровно так и было в инциденте).
+      expect(() => mod.requireAdminAppCheck?.({})).not.toThrow();
     } finally {
       if (previousGlobal === undefined) delete process.env.ENFORCE_APP_CHECK;
       else process.env.ENFORCE_APP_CHECK = previousGlobal;
@@ -83,7 +94,7 @@ describe('critical admin write boundaries', () => {
     }
   });
 
-  it('still fails closed once the owner explicitly enables the admin flag', () => {
+  it('админские записи по-прежнему защищены claim admin, а не App Check', () => {
     jest.resetModules();
     const previous = process.env.ENFORCE_APP_CHECK_ADMIN;
     process.env.ENFORCE_APP_CHECK_ADMIN = 'true';
@@ -92,10 +103,10 @@ describe('critical admin write boundaries', () => {
         ADMIN_SENSITIVE_WRITE_OPTIONS?: Readonly<{ region: string; enforceAppCheck: boolean }>;
         requireAdminAppCheck?: (request: { app?: unknown }) => void;
       };
-      expect(enabled.ADMIN_SENSITIVE_WRITE_OPTIONS?.enforceAppCheck).toBe(true);
-      // зачем: сверяем по сообщению, а не по конструктору — jest.resetModules()
-      // поднимает ВТОРОЙ экземпляр firebase-functions, и его HttpsError !== импортированного.
-      expect(() => enabled.requireAdminAppCheck?.({})).toThrow('app_check_required');
+      expect(enabled.ADMIN_SENSITIVE_WRITE_OPTIONS?.enforceAppCheck).toBe(false);
+      expect(enabled.ADMIN_SENSITIVE_WRITE_OPTIONS?.region).toBe('us-central1');
+      // Гард не бросает ни без app, ни с ним — пломба, а не «мягкий режим».
+      expect(() => enabled.requireAdminAppCheck?.({})).not.toThrow();
       expect(() => enabled.requireAdminAppCheck?.({ app: {} })).not.toThrow();
     } finally {
       if (previous === undefined) delete process.env.ENFORCE_APP_CHECK_ADMIN;

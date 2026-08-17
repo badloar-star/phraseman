@@ -127,5 +127,5 @@ export async function executeV2AccessPurchaseCallable(
 
 export const createV2AccessPurchaseCallable = (
   dependencies: V2AccessCallableDependencies,
-) => onCall({ enforceAppCheck: true }, async (request: CallableRequest<unknown>) =>
+) => onCall({ enforceAppCheck: false }, async (request: CallableRequest<unknown>) =>
   executeV2AccessPurchaseCallable(request, dependencies));

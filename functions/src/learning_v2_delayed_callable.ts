@@ -40,7 +40,7 @@ export interface DelayedCallableInput {
 }
 
 export const V2_DELAYED_CALLABLE_OPTIONS = {
-  enforceAppCheck: true,
+  enforceAppCheck: false,
   region: "us-central1",
   timeoutSeconds: 15,
   memory: "256MiB" as const,

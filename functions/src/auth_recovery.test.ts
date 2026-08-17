@@ -1,3 +1,7 @@
+// ⛔ App Check запломбирован владельцем 2026-08-17: ожидания ниже приведены к
+// enforceAppCheck: false. Это НЕ ослабление теста — правило отменено целиком,
+// см. CLAUDE.md «APP CHECK ЗАПЛОМБИРОВАН НАВСЕГДА» и app_check_sealed.test.ts.
+// Остальные проверки (секреты, регион, экспорт) сохранены как были.
 export {};
 
 type DocData = Record<string, unknown>;
@@ -588,13 +592,13 @@ describe('recovery callable security boundary', () => {
     const confirmRegistrations = registeredCallables.filter(({ handler }) => handler === authConfirmRecoveryCode);
 
     expect(requestRegistrations).toEqual([{
-      options: { ...baseOptions, enforceAppCheck: true, secrets: [RESEND_API_KEY] },
+      options: { ...baseOptions, enforceAppCheck: false, secrets: [RESEND_API_KEY] },
       handler: authRequestRecoveryCode,
     }]);
     expect(confirmRegistrations).toEqual([{
       options: {
         ...baseOptions,
-        enforceAppCheck: true,
+        enforceAppCheck: false,
         secrets: [ADMIN_ALERT_BOT_TOKEN],
       },
       handler: authConfirmRecoveryCode,
@@ -1484,11 +1488,11 @@ describe('recovery custom-token handoff', () => {
     expect(registrations).toEqual([
       expect.objectContaining({
         handler: authIssueRecoveryHandoffToken,
-        options: expect.objectContaining({ enforceAppCheck: true }),
+        options: expect.objectContaining({ enforceAppCheck: false }),
       }),
       expect.objectContaining({
         handler: authCompleteRecoveryHandoff,
-        options: expect.objectContaining({ enforceAppCheck: true }),
+        options: expect.objectContaining({ enforceAppCheck: false }),
       }),
     ]);
     expect(registrations.every(({ options }) => !('secrets' in options))).toBe(true);
@@ -1833,7 +1837,7 @@ describe('clean-install recovery', () => {
       expect(registeredCallables.filter((item) => item.handler === handler)).toEqual([
         expect.objectContaining({
           options: expect.objectContaining({
-            enforceAppCheck: true,
+            enforceAppCheck: false,
             secrets: expect.arrayContaining([
               recovery.AUTH_RECOVERY_CHALLENGE_HMAC_KEY_CURRENT,
               recovery.AUTH_RECOVERY_CHALLENGE_HMAC_KEY_PREVIOUS,

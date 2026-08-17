@@ -18,12 +18,12 @@ export const V2_ACTIVITY_AUXILIARY_SESSION_RESPONSE_SCHEMA_V1 =
 
 export const V2_ACTIVITY_AUXILIARY_SESSION_CALLABLE_OPTIONS_V1 = Object.freeze({
   region: "us-central1",
-  enforceAppCheck: !(
-    process.env.FUNCTIONS_EMULATOR === "true" &&
-    process.env.GCLOUD_PROJECT?.startsWith("demo-") === true &&
-    process.env.V2_ACTIVITY_AUXILIARY_ALLOW_INSECURE_APP_CHECK_EMULATOR ===
-      "true"
-  ),
+  // зачем: App Check запломбирован владельцем 2026-08-17 («убрать отовсюду и
+  // больше никогда не вспоминать»). Раньше здесь энфорс отключался только в
+  // демо-эмуляторе, а на проде требовался — из-за чего дев-сборка получала 401
+  // и опубликованный курс был нечитаем. Авторизация пользователя и запрет на
+  // транспорт правильных ответов сохранены. Полный запрет: CLAUDE.md.
+  enforceAppCheck: false,
   timeoutSeconds: 30,
   memory: "512MiB" as const,
   maxInstances: 40,

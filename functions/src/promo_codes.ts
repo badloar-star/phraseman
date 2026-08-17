@@ -468,7 +468,7 @@ export const promoCodeBatchUpsert = onCall({ region: REGION, enforceAppCheck: EN
 });
 
 /** Deletes an ordinary promo code; gift-backed codes cannot bypass certificate deletion. */
-export const promoCodeDelete = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
+export const promoCodeDelete = onCall({ region: REGION, enforceAppCheck: false }, async (request) => {
   assertAdminPermission(request, 'money.manual_access.write');
   const code = normalizePromoCode(request.data?.code);
   if (!CODE_RE.test(code)) throw new HttpsError('invalid-argument', 'bad_code');

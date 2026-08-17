@@ -709,7 +709,7 @@ export const createRequiredSessionCompletionProductionCallable = (
   db: Firestore = admin.firestore(),
 ) => onCall({
   region: "us-central1",
-  enforceAppCheck: true,
+  enforceAppCheck: false,
   timeoutSeconds: 15,
   memory: "256MiB",
   maxInstances: 80,

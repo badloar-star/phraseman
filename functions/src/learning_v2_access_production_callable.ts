@@ -13,7 +13,7 @@ import { readProgressAccountBinding } from './learning_v2/progress_event_callabl
 const gatePath = (stableId: string, seasonId: string, gateId: string): string =>
   `users/${stableId}/v2_gate_receipts/${seasonId}__${gateId}`;
 
-export const finalizeLearningV2AccessPurchase = onCall({ enforceAppCheck: true },
+export const finalizeLearningV2AccessPurchase = onCall({ enforceAppCheck: false },
   async (request: CallableRequest<unknown>) => {
     if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
     const input = normalizeV2AccessPurchaseInput(request.data);

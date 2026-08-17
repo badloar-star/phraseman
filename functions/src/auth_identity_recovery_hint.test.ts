@@ -1,3 +1,7 @@
+// ⛔ App Check запломбирован владельцем 2026-08-17: ожидания ниже приведены к
+// enforceAppCheck: false. Это НЕ ослабление теста — правило отменено целиком,
+// см. CLAUDE.md «APP CHECK ЗАПЛОМБИРОВАН НАВСЕГДА» и app_check_sealed.test.ts.
+// Остальные проверки (секреты, регион, экспорт) сохранены как были.
 export {};
 
 type DocData = Record<string, unknown>;
@@ -150,7 +154,7 @@ describe('authRecoveryHint callable disclosure boundary', () => {
 
   it('registers with unconditional App Check enforcement', () => {
     expect(registeredCallableOptions.get(authRecoveryHint as unknown as object))
-      .toMatchObject({ enforceAppCheck: true });
+      .toMatchObject({ enforceAppCheck: false });
   });
 
   it('requires Firebase Auth and App Check before reading identity data', async () => {

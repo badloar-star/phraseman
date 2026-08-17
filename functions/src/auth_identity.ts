@@ -1714,7 +1714,7 @@ export function buildRecoveryHintFromUserData(
 
 export const authRecoveryHint = onCall({
   ...HOT_CALLABLE_OPTIONS,
-  enforceAppCheck: true,
+  enforceAppCheck: false,
 }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   if (!request.app) throw new HttpsError('failed-precondition', 'app_check_required');

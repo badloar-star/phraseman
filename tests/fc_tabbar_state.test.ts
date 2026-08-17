@@ -173,12 +173,22 @@ describe('маршруты пунктов «Тренировка» (§5.2)', () 
     });
   });
 
-  it('«Говорить» прячется за remote kill-switch речи, блиц — за размером пула', () => {
+  /**
+   * Владелец (2026-08-17): «исправь блиц — показывается только когда есть
+   * карточки в наборах, просто сделай чтобы был модал лист который выезжает
+   * и позволяет выбрать/отметить наборы». «Блиц» больше НЕ зависит от
+   * cardCount — этот аргумент остался в сигнатуре для обратной совместимости
+   * вызывающего кода, но игнорируется. Недостаток карточек теперь решает
+   * DeckPickerSheet внутри самого экрана (flashcards_blitz_session.tsx).
+   */
+  it('«Говорить» прячется за remote kill-switch речи; «Блиц» виден всегда, размер пула не влияет', () => {
     expect(visibleFcTrainOptions(20)).toEqual(['train', 'listen', 'speak', 'blitz']);
     expect(visibleFcTrainOptions(20, { speakingEnabled: true })).toEqual(['train', 'listen', 'speak', 'blitz']);
     expect(visibleFcTrainOptions(20, { speakingEnabled: false })).toEqual(['train', 'listen', 'blitz']);
-    expect(visibleFcTrainOptions(1, { speakingEnabled: false })).toEqual(['train', 'listen']);
-    expect(visibleFcTrainOptions(null)).toEqual(['train', 'listen', 'speak']);
+    expect(visibleFcTrainOptions(1, { speakingEnabled: false })).toEqual(['train', 'listen', 'blitz']);
+    expect(visibleFcTrainOptions(0, { speakingEnabled: false })).toEqual(['train', 'listen', 'blitz']);
+    expect(visibleFcTrainOptions(null)).toEqual(FC_TRAIN_OPTIONS);
+    expect(visibleFcTrainOptions(null, { speakingEnabled: false })).toEqual(['train', 'listen', 'blitz']);
   });
 });
 

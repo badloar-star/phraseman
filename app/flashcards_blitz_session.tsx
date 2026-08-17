@@ -217,15 +217,6 @@ export default function FlashcardsBlitzSession() {
     };
   }, [deckRefs, contentLang]);
 
-  // Недостаточно карточек → уходим назад БЕЗ текста ошибки (владелец,
-  // 2026-08-13). В норме сюда не попасть: пункт «Блиц» скрыт предикатом
-  // `canStartBlitz`; это страховка от deep link и устаревшего пресета.
-  const bouncedRef = useRef(false);
-  useEffect(() => {
-    if (loading || canStartBlitz(pool.length) || bouncedRef.current) return;
-    bouncedRef.current = true;
-    safeRouterBack(router, '/flashcards' as never);
-  }, [loading, pool.length, router]);
 
   // ── Финал: таймер 0 или жизни 0 → результат ───────────────────────────────
   const finish = useCallback(() => {
@@ -460,6 +451,25 @@ export default function FlashcardsBlitzSession() {
   }, [restart]);
 
   /**
+   * Недостаточно карточек → предлагаем выбрать наборы, как в «Слушать»/
+   * «Говорить» (владелец, 2026-08-17): «Блиц» больше не прячется из меню по
+   * размеру пула, значит вход возможен и с пустым/маленьким набором. Раньше
+   * этот случай молча уводил назад (`safeRouterBack`) — теперь тот же
+   * DeckPickerSheet, что уже открывается кнопкой в шапке, открывается сам.
+   * Раунд ещё не стартовал (эффект старта сам ждёт `canStartBlitz`), поэтому
+   * `openDeckPicker`'ы `clearRoundTimers`/`cancelAnimation` здесь — no-op.
+   */
+  const autoPickedRef = useRef(false);
+  useEffect(() => {
+    autoPickedRef.current = false;
+  }, [deckParamStr]);
+  useEffect(() => {
+    if (loading || canStartBlitz(pool.length) || autoPickedRef.current) return;
+    autoPickedRef.current = true;
+    openDeckPicker();
+  }, [loading, pool.length, openDeckPicker]);
+
+  /**
    * Старт с выбранными наборами: тот же экран с новым `?deck=` (replace, чтобы
    * «назад» не возвращал в раунд со старым набором). Пресет уже сохранён шитом
    * (`setLastPreset('blitz', …)`), поэтому следующий запуск придёт с ним сам.
@@ -655,10 +665,13 @@ export default function FlashcardsBlitzSession() {
     );
   }
 
-  // Карточек не хватает — экрана с текстом ошибки больше нет (владелец,
-  // 2026-08-13): правило переехало в предикат `canStartBlitz`, и пункт «Блиц»
-  // просто не показывается. Если сюда всё же попали (deep link / устаревший
-  // пресет) — молча возвращаемся назад, без ругательной надписи.
+  /**
+   * Карточек не хватает — предлагаем выбрать наборы (владелец, 2026-08-17),
+   * как в «Слушать»/«Говорить»: пункт «Блиц» больше не прячется из меню по
+   * размеру пула, значит этот экран — не редкий deep-link случай, а обычный
+   * путь для того, кто ещё не отметил наборы. Шит уже открылся сам (эффект
+   * выше); эта кнопка — на случай, если его закрыли не выбрав ничего.
+   */
   if (!canStartBlitz(pool.length)) {
     return (
       <ScreenGradient>
@@ -682,9 +695,39 @@ export default function FlashcardsBlitzSession() {
               </Text>
               <View style={{ width: 32 }} />
             </View>
-            <View style={{ flex: 1 }} />
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14, paddingHorizontal: 32 }}>
+              <Ionicons name="flash-outline" size={44} color={t.textGhost} />
+              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
+                {triLang(lang, {
+                  ru: 'Здесь пока нечего играть — выберите наборы',
+                  uk: 'Тут поки нема у що грати — оберіть набори',
+                  es: 'Aún no hay nada que jugar: elige los packs',
+                  'pt-BR': 'Ainda não há o que jogar: escolha os pacotes',
+                  vi: 'Chưa có gì để chơi — hãy chọn bộ thẻ',
+                  id: 'Belum ada yang bisa dimainkan — pilih set kartu',
+                  tr: 'Oynanacak bir şey yok — setleri seçin',
+                  pl: 'Nie ma jeszcze w co grać — wybierz zestawy',
+                })}
+              </Text>
+              <TouchableOpacity
+                testID="fc-blitz-pick-decks-empty"
+                accessibilityRole="button"
+                accessibilityLabel="qa-fc-blitz-pick-decks"
+                accessible
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                onPress={openDeckPicker}
+                style={{
+                  flexDirection: 'row', alignItems: 'center', gap: 8,
+                  paddingHorizontal: 18, paddingVertical: 12, borderRadius: 16, backgroundColor: t.bgSurface,
+                }}
+              >
+                <Ionicons name="albums-outline" size={18} color={ACCENT} />
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{pickDecksLabel}</Text>
+              </TouchableOpacity>
+            </View>
           </ContentWrap>
         </SafeAreaView>
+        {deckPickerSheet}
       </ScreenGradient>
     );
   }

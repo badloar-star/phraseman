@@ -54,7 +54,7 @@ import PhraseCard, { useFcReduceMotion } from './flashcards/PhraseCard';
 import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSheet';
 import { loadFcDeckOptions } from './flashcards/deck_options';
 import SessionResultScreen from './flashcards/SessionResultScreen';
-import SpeakHoldButton from './flashcards/SpeakHoldButton';
+import SpeakHoldButton, { SPEAK_HOLD_LABEL_HEIGHT } from './flashcards/SpeakHoldButton';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import { safeRouterBack } from './navigation_back';
 import { deckRefKey, loadDeckCardsMulti, parseDeckParams, type DeckCard, type DeckRef } from './flashcards/deck_sources';
@@ -641,9 +641,16 @@ export default function FlashcardsSpeakingSession() {
   const back = task === 'recall' ? card?.en ?? '' : card?.translation ?? '';
   const attempt = session.attempt;
   const band = attempt ? speakingBand(attempt.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD) : null;
+  /**
+   * зачем (владелец, 2026-08-17, скриншот): подпись «Зажми — скажи ещё раз»
+   * раньше показывалась и после ЗАЧЁТА (phase==='scored' безусловно) — но там
+   * идёт автопереход на НОВУЮ карточку, и на ней снова нужно нейтральное
+   * «Зажми и говори», а не «ещё раз» (ещё раз чего? фраза уже другая). «Скажи
+   * ещё раз» осмысленно только после промаха/тупика — той же карточки.
+   */
   const holdLabel = holdActive
     ? labels.holdLive
-    : stuck || phase === 'scored'
+    : stuck || (phase === 'scored' && attempt?.passed === false)
       ? labels.holdAgain
       : phase === 'live'
         ? ''
@@ -665,7 +672,9 @@ export default function FlashcardsSpeakingSession() {
             />
           </View>
 
-          {/* Карточка: тап — подсмотреть/вернуть; динамик — эталон вслух. */}
+          {/* Карточка: тап — подсмотреть/вернуть. Динамик — только в транспорте
+              снизу (владелец, 2026-08-17): кнопка на самой карточке дублировала
+              «Послушать» из транспортного ряда, убрана. */}
           <View style={styles.cardArea}>
             <PhraseCard
               mode="view"
@@ -673,8 +682,6 @@ export default function FlashcardsSpeakingSession() {
               translation={back}
               flipped={flipped}
               onFlip={setFlipped}
-              onSpeakFront={() => { fcHaptic('tap'); speakCard(card); }}
-              onSpeakBack={() => { fcHaptic('tap'); speakCard(card); }}
               minHeight={CARD_MIN_H}
               disabled={holdActive}
               testID="fc-speak-card"
@@ -762,31 +769,35 @@ export default function FlashcardsSpeakingSession() {
             ) : null}
           </SpeakingInlineSlot>
 
-          {/* Тип задания — сегмент из двух: тон, не обводка. */}
-          <View style={[styles.taskRow, { backgroundColor: t.bgSurface }]} testID="fc-speak-task">
+          {/* Тип задания — две круглые кнопки с иконкой, без текста (владелец,
+              2026-08-17): подписи «Скажи по-англи…»/«Повтори за дикт…» резались
+              многоточием на узких экранах. Подпись живёт в accessibilityLabel —
+              экранный диктор объявляет полный смысл, зрячий выбирает по цвету
+              заливки активной кнопки (тон, не обводка). */}
+          <View style={styles.taskRow} testID="fc-speak-task">
             {SPEAKING_TASKS.map((option) => {
               const active = option === task;
+              const optionLabel = option === 'recall' ? labels.recall : labels.repeat;
               return (
                 <TouchableOpacity
                   key={option}
                   testID={`fc-speak-task-${option}`}
                   accessibilityRole="button"
+                  accessibilityLabel={optionLabel}
                   accessibilityState={{ selected: active }}
                   onPress={() => onPickTask(option)}
                   disabled={holdActive}
-                  style={[styles.taskChip, { backgroundColor: active ? `${ACCENT}33` : 'transparent' }]}
+                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                  style={[
+                    styles.taskCircle,
+                    { backgroundColor: active ? ACCENT : t.bgSurface },
+                  ]}
                 >
                   <Ionicons
                     name={option === 'recall' ? 'bulb-outline' : 'repeat-outline'}
-                    size={15}
-                    color={active ? ACCENT : t.textMuted}
+                    size={20}
+                    color={active ? t.correctText : t.textMuted}
                   />
-                  <Text
-                    numberOfLines={1}
-                    style={{ color: active ? ACCENT : t.textMuted, fontSize: f.caption, fontWeight: '800' }}
-                  >
-                    {option === 'recall' ? labels.recall : labels.repeat}
-                  </Text>
                 </TouchableOpacity>
               );
             })}
@@ -879,28 +890,29 @@ const styles = StyleSheet.create({
   },
   taskRow: {
     flexDirection: 'row',
-    marginHorizontal: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 8,
-    borderRadius: 14,
-    padding: 4,
-    gap: 4,
+    gap: 14,
   },
-  taskChip: {
-    flex: 1,
-    flexDirection: 'row',
+  taskCircle: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 6,
-    borderRadius: 11,
-    paddingVertical: 9,
-    paddingHorizontal: 8,
   },
   transportRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    // зачем (владелец, 2026-08-17): центр «зажми-и-говори» — круг + подпись
+    // под ним, боковые кнопки — просто круг. `center` центрировал боковые по
+    // ВСЕЙ высоте (круг+подпись), поэтому они садились выше, чем низ круга
+    // микрофона. `flex-end` + компенсация в sideBtn сажает все три круга на
+    // одну линию, подпись остаётся ниже них.
+    alignItems: 'flex-end',
     justifyContent: 'center',
     gap: 22,
-    marginTop: 10,
+    marginTop: 14,
     marginBottom: 14,
   },
   sideBtn: {
@@ -909,5 +921,8 @@ const styles = StyleSheet.create({
     borderRadius: 27,
     alignItems: 'center',
     justifyContent: 'center',
+    // Поднимаем боковые кнопки на высоту подписи под микрофоном (см. sideBtn
+    // выше) — их низ совпадает с низом круга, а не с низом подписи.
+    marginBottom: SPEAK_HOLD_LABEL_HEIGHT,
   },
 });

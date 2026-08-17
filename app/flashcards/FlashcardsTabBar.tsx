@@ -25,7 +25,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Animated,
   BackHandler,
-  InteractionManager,
   Platform,
   Pressable,
   StyleSheet,
@@ -55,7 +54,6 @@ import { isSpeakingEnabled } from '../remote_flags';
 import DeckPickerSheet, { type DeckSheetOption } from './DeckPickerSheet';
 import { loadFcDeckOptions } from './deck_options';
 import { type DeckRef } from './deck_sources';
-import { countAvailableFcCards } from './deck_options';
 import { isLowPowerEffective } from './low_power';
 import { getLastPreset, type FcModePreset } from './mode_prefs';
 import { useFcReduceMotion } from './PhraseCard';
@@ -126,10 +124,6 @@ const BAR_SLOTS = ['train', 'create', 'packs'] as const;
 type BarSlot = (typeof BAR_SLOTS)[number];
 const CENTER_SLOT: BarSlot = 'create';
 
-/** Пул блица по умолчанию — «все сохранённые + мои карточки» (как в сессии блица). */
-/** Счёт карточек переживает перемонтирование таббара: пункт не мигает при переходах. */
-let blitzPoolCountCache: number | null = null;
-
 type Props = {
   lang: Lang;
   t: Theme;
@@ -142,6 +136,14 @@ type Props = {
    * статична — экраны без списка ничего не подключают.
    */
   scroll?: FcTabBarScroll | null;
+  /**
+   * зачем (владелец): пункт «Коллекция» ведёт в сохранённые+свои карточки раздела.
+   * Когда там пусто, вести туда нечего — тап всё равно закрывает меню без перехода
+   * (см. onPacksOption). Прячем пункт вместо мёртвого тапа, а не оставляем его как
+   * видимую, но бездействующую кнопку. По умолчанию true — экраны без своих данных
+   * (каталог, «Мои наборы») не обязаны об этом знать.
+   */
+  hasAnyCards?: boolean;
 };
 
 /**
@@ -383,7 +385,7 @@ function TabMenuItem({
   );
 }
 
-export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scroll = null }: Props) {
+export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scroll = null, hasAnyCards = true }: Props) {
   const router = useRouter();
   const { f, ds, themeMode } = useTheme();
   const { tabBarHeight, bottomInset: screenBottomInset, width: screenWidth } = useScreen();
@@ -392,8 +394,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
   const [pickerOption, setPickerOption] = useState<FcTrainOption | null>(null);
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
   const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);
-  /** Сколько карточек в пуле блица по умолчанию (null — ещё не посчитано). */
-  const [blitzPoolCount, setBlitzPoolCount] = useState<number | null>(blitzPoolCountCache);
   const reduceMotion = useFcReduceMotion();
   /** §8: «уменьшить движение» и слабые устройства — упрощённый вариант без потери функций. */
   const simple = reduceMotion || isLowPowerEffective() || Platform.OS === 'web';
@@ -460,53 +460,31 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
   }, [open, menu]);
 
   /**
-   * Пункт «Блиц» показываем только когда карточек хватает на 4 варианта ответа:
-   * иначе он ведёт на экран-заглушку. Счёт снимаем ПОСЛЕ интеракций — вход в
-   * раздел за это не платит, а результат кэшируется на модуль.
-   */
-  const refreshBlitzPoolCount = useCallback(() => {
-    let cancelled = false;
-    void (async () => {
-      // FIX (владелец, 2026-08-13): считали только «сохранённые + мои карточки»,
-      // поэтому у человека с карточками ТОЛЬКО в добавленных наборах пункт
-      // «Блиц» не появлялся вовсе. Считаем ВСЕ доступные источники — ровно тот
-      // же пул, что берёт сама сессия блица по умолчанию (loadAllFcDeckRefs).
-      const count = await countAvailableFcCards(lang).catch(() => null);
-      if (cancelled || count === null) return;
-      blitzPoolCountCache = count;
-      setBlitzPoolCount(count);
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [lang]);
-
-  useEffect(() => {
-    let cancelPool: (() => void) | null = null;
-    const task = InteractionManager.runAfterInteractions(() => {
-      cancelPool = refreshBlitzPoolCount();
-    });
-    return () => {
-      task.cancel();
-      cancelPool?.();
-    };
-  }, [refreshBlitzPoolCount]);
-
-  /** Свежесозданная карточка могла разблокировать блиц — пересчитываем на раскрытии. */
-  useEffect(() => {
-    if (!trainOpen) return;
-    return refreshBlitzPoolCount();
-  }, [trainOpen, refreshBlitzPoolCount]);
-
-  /**
    * «Говорить» живёт за тем же remote kill-switch, что и «Устно» в уроках:
    * выключили распознавание речи — пункт исчезает, а не ведёт в мёртвый экран.
    * Флаг читаем при раскрытии меню (дёшево: синхронный кэш remote config).
+   *
+   * «Блиц» видим всегда (владелец, 2026-08-17): раньше пункт скрывался, пока
+   * карточек не хватало на 4 варианта ответа — счёт пула снимался отдельным
+   * эффектом при каждом раскрытии меню. Теперь недостаток карточек решает
+   * DeckPickerSheet внутри самого режима блица (как у «Слушать»/«Говорить»),
+   * и подсчёт здесь стал не нужен.
    */
   const speakingEnabled = isSpeakingEnabled();
   const trainOptions = useMemo(
-    () => visibleFcTrainOptions(blitzPoolCount, { speakingEnabled }),
-    [blitzPoolCount, speakingEnabled],
+    () => visibleFcTrainOptions(null, { speakingEnabled }),
+    [speakingEnabled],
+  );
+
+  /**
+   * зачем (владелец): «Коллекция» ведёт в сохранённые+свои карточки раздела —
+   * пустая коллекция это пункт в никуда (onPacksOption просто закроет меню,
+   * alreadyHere/переход некуда). Прячем его вместо видимой, но бездействующей
+   * кнопки; «Мои наборы» и «Наборы сообщества» от количества карточек не зависят.
+   */
+  const packsOptions = useMemo(
+    () => (hasAnyCards ? FC_PACKS_OPTIONS : FC_PACKS_OPTIONS.filter((o) => o !== 'collection')),
+    [hasAnyCards],
   );
 
   /**
@@ -834,7 +812,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
           style={{ position: 'absolute', right: menuSideInset, bottom: barTotalH + 10 }}
         >
           <View pointerEvents="box-none" style={{ gap: 8, alignItems: 'flex-end' }}>
-            {FC_PACKS_OPTIONS.map((option, i) => (
+            {packsOptions.map((option, i) => (
               <TabMenuItem
                 key={option}
                 t={t}
@@ -842,7 +820,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
                 icon={packsMeta[option].icon}
                 label={packsMeta[option].label}
                 index={i}
-                total={FC_PACKS_OPTIONS.length}
+                total={packsOptions.length}
                 open={packsOpen}
                 simple={simple}
                 onPress={() => onPacksOption(option)}

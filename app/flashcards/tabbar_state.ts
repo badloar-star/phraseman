@@ -53,29 +53,31 @@ export type FcPacksOption = 'collection' | 'mine' | 'community';
 export const FC_PACKS_OPTIONS: readonly FcPacksOption[] = ['collection', 'mine', 'community'];
 
 /**
- * Блиц требует минимум `BLITZ_MIN_CARDS` карточек (нужны 4 варианта ответа):
- * если их меньше, экран блица показывает заглушку — значит пункт в меню
- * «Тренировка» показывать незачем. Предикат чистый: `null` — количество ещё не
- * известно (первый кадр), пункт скрыт до подтверждения.
+ * @deprecated Владелец (2026-08-17): «Блиц» больше не прячется по размеру пула —
+ * недостатка карточек экран блица теперь решает тем же способом, что «Слушать»/
+ * «Говорить»: открывает DeckPickerSheet и предлагает выбрать наборы (см.
+ * flashcards_blitz_session.tsx). Раньше пункт скрывался предикатом ниже, из-за
+ * чего человек без карточек ни разу не видел вход в режим и не понимал, что
+ * он вообще есть. Оставлено только как чистая функция для тестов истории.
  */
 export function canStartFcBlitz(cardCount: number | null | undefined): boolean {
   return typeof cardCount === 'number' && Number.isFinite(cardCount) && cardCount >= BLITZ_MIN_CARDS;
 }
 
 /**
- * Пункты «Тренировки», доступные при текущем размере пула карточек.
- * `speakingEnabled` — remote kill-switch `speaking_enabled` (тот же, что прячет
- * кнопку «Устно» в уроках): выключили распознавание речи — пункт «Говорить»
- * исчезает из меню, а не ведёт в мёртвый экран.
+ * Пункты «Тренировки», доступные всегда, кроме «Говорить» — за remote
+ * kill-switch `speaking_enabled` (тот же, что прячет кнопку «Устно» в уроках):
+ * выключили распознавание речи — пункт исчезает из меню, а не ведёт в мёртвый
+ * экран. «Блиц» видим всегда (владелец, 2026-08-17) — недостаток карточек
+ * решает DeckPickerSheet внутри самого режима, не скрытие пункта в меню.
  */
 export function visibleFcTrainOptions(
   cardCount: number | null | undefined,
   opts?: { speakingEnabled?: boolean },
 ): readonly FcTrainOption[] {
-  const blitzOk = canStartFcBlitz(cardCount);
   const speakOk = opts?.speakingEnabled !== false;
-  if (blitzOk && speakOk) return FC_TRAIN_OPTIONS;
-  return FC_TRAIN_OPTIONS.filter((option) => (option === 'blitz' ? blitzOk : option === 'speak' ? speakOk : true));
+  if (speakOk) return FC_TRAIN_OPTIONS;
+  return FC_TRAIN_OPTIONS.filter((option) => option !== 'speak');
 }
 
 /**

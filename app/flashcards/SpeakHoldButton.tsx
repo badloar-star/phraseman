@@ -29,6 +29,10 @@ import { hapticTap } from '../../hooks/use-haptics';
 const PRESS_SPRING = { damping: 16, stiffness: 320, mass: 0.6 } as const;
 export const SPEAK_HOLD_BUTTON_SIZE = 76;
 const HALO_SIZE = SPEAK_HOLD_BUTTON_SIZE + 22;
+/** Высота подписи под кругом (marginTop 4 + height 18) — соседи в транспортном
+ *  ряду используют это, чтобы выровнять свои круги по низу HALO_SIZE, а не по
+ *  низу всего компонента (круг+подпись). */
+export const SPEAK_HOLD_LABEL_HEIGHT = 22;
 
 export type SpeakHoldButtonProps = {
   accent: string;

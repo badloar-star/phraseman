@@ -11,6 +11,12 @@ import { hapticTap } from '../hooks/use-haptics';
 import { type WordCategory } from '../app/phrase_analytics';
 import { useOverlayVisible } from './OverlayArbiter';
 import { LUM } from '../constants/motionHybrid';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+
+/** Минимальный отступ снизу — прежнее поведение на экранах без системной панели. */
+const COACH_BOTTOM_MIN = 24;
+/** Воздух между кнопками навигации Android и тостом. */
+const COACH_BOTTOM_GAP = 12;
 import {
   cancelScheduledAnimatedStateUpdates,
   scheduleTrackedAnimatedStateUpdate,
@@ -82,6 +88,11 @@ function CoachToast({
   const router = useRouter();
   const overlayVisible = useOverlayVisible('coachToast', true);
   const hybrid = motionVariant === 'hybrid';
+  // зачем: тост висел на жёстком bottom:24 и на Android пересекался с системными
+  // кнопками навигации («слишком низко, пересекаются с кнопками» — владелец).
+  // Отступ считаем от безопасной зоны, минимум оставляем прежним.
+  const insets = useStableSafeAreaInsets();
+  const safeBottom = Math.max(COACH_BOTTOM_MIN, insets.bottom + COACH_BOTTOM_GAP);
   const slideAnim = useRef(new Animated.Value(120)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
@@ -229,10 +240,11 @@ function CoachToast({
     <Animated.View
       style={[
         styles.container,
-        { transform: [{ translateY: slideAnim }], opacity: opacityAnim },
+        { bottom: safeBottom, transform: [{ translateY: slideAnim }], opacity: opacityAnim },
       ]}
     >
-      <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+      {/* зачем: обводка контейнера запрещена стилем владельца — отделяем тоном и тенью */}
+      <View style={[styles.card, { backgroundColor: t.bgCard }]}>
         <View style={styles.headerRow}>
           <View style={[styles.iconWrap, { backgroundColor: t.accentBg }]}>
             <Ionicons name="sparkles" size={21} color={t.accent} />

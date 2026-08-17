@@ -158,6 +158,61 @@ export function buildPremiumAlternativePaymentReply(input: unknown): string {
 }
 
 /**
+ * «В какую страну идёт платёж, если оформлю подписку?» — вопрос ФАКТА, а не
+ * запрос на разбор конкретной покупки.
+ *
+ * зачем этот маршрут (владелец, 2026-08-17, письмо Шухрата): слово «оплата»
+ * само по себе классифицируется как billing-риск, и ЛЮБОЙ вопрос с этим
+ * словом уезжал в шаблон «поднимем вашу покупку, ответит человек в течение
+ * дня» — даже когда вопрос не про покупку вообще, а про факт устройства
+ * платежа. Клиент, который ещё НЕ платил, получал ответ, написанный для
+ * того, у кого списали деньги дважды. Ответ не по делу выглядит как
+ * заготовка, а не как осмысленный ИИ-ответ, — именно это владелец и заметил.
+ *
+ * зачем исключать спорные формулировки строже, чем isPremiumAlternative
+ * PaymentQuestion выше: там уже есть отдельная проверка на «списали, а
+ * доступа нет» — я её переиспользую как есть, а не дублирую регулярку.
+ */
+export function isPaymentCountryQuestion(input: unknown): boolean {
+  const text = String(input ?? '').slice(0, 30_000);
+  // Те же слова тревоги, что и у соседнего маршрута: «списали дважды» или
+  // «оплатил, но доступа нет» — это не вопрос факта, а разбор конкретной
+  // покупки, ему сюда нельзя.
+  if (/(?:refund|chargeback|charged twice|double charge|paid but|access.{0,20}(?:missing|not appear)|возврат|чарджбэк|списал[ио]? дважды|двойн.{0,10}списан|оплатил.{0,24}(?:доступ|premium|plus).{0,20}(?:нет|не появ)|reembolso|cobro duplicado|pagu[eé].{0,20}no aparece)/iu.test(text)) return false;
+  // зачем корень слова, а не фиксированный порядок «в какую страну» (поймал
+  // тест на РЕАЛЬНОМ письме Шухрата): живой текст пишет «оплата какой стране
+  // идёт» — без предлога и в другом порядке. Требовать точную формулировку
+  // означало бы отсеивать ровно те письма, ради которых маршрут и делался:
+  // обычные люди не редактируют вопросы под регулярку.
+  const country = /стран|куда.{0,12}(?:ид[её]т|уход(?:ит|ят))|which country|what country|to which country|a qu[eé] pa[ií]s/iu.test(text);
+  const paymentContext = /(?:pay|payment|subscription|purchase|plus|premium|оплат|плат[её]ж|подписк|покуп|плюс|премиум|pago|suscripci[oó]n)/iu.test(text);
+  return country && paymentContext;
+}
+
+export function buildPaymentCountryReply(input: unknown): string {
+  const lang = detectSupportLanguage(input);
+  if (lang === 'ru') {
+    return 'Здравствуйте! Оплата подписки в приложении проходит напрямую через App Store или Google '
+      + 'Play — Phraseman к ней доступа не имеет. Страну и валюту списания определяет ваш аккаунт Apple '
+      + 'ID или Google, а не мы: посмотреть их можно в настройках платёжного метода этого аккаунта. '
+      + 'Если оплата через магазин приложений у вас недоступна, есть Telegram-бот '
+      + '@PhrasemanPremiumBot: https://t.me/PhrasemanPremiumBot — он покажет доступные способы оплаты.';
+  }
+  if (lang === 'es') {
+    return '¡Hola! El pago de la suscripción se procesa directamente a través de App Store o Google '
+      + 'Play — Phraseman no tiene acceso a él. El país y la moneda del cargo los determina tu cuenta '
+      + 'de Apple ID o Google, no nosotros: puedes verlos en la configuración del método de pago de esa '
+      + 'cuenta. Si el pago a través de la tienda no está disponible para ti, tenemos un bot de '
+      + 'Telegram @PhrasemanPremiumBot: https://t.me/PhrasemanPremiumBot con otras formas de pago.';
+  }
+  return 'Hello! Subscription payments are processed directly through the App Store or Google Play — '
+    + 'Phraseman has no access to them. The billing country and currency are determined by your Apple '
+    + 'ID or Google account, not by us: you can check them in that account’s payment method settings. '
+    + 'If paying through the app store is not available to you, we have a Telegram bot '
+    + '@PhrasemanPremiumBot: https://t.me/PhrasemanPremiumBot with alternative payment options.';
+}
+
+/**
  * зачем отдельная функция, а не ещё один SupportRisk: неподтверждённая
  * личность отправителя — это не тема письма, а сомнение в том, кому вообще
  * отвечаем. Владелец получает этот текст ТОЛЬКО в админке/Telegram для

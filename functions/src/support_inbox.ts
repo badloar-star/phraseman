@@ -96,6 +96,7 @@ import {
 import {
   buildSupportAutomaticRepairPrompt,
   buildGroundedReplySystemPrompt,
+  buildPaymentCountryReply,
   buildPremiumAlternativePaymentReply,
   buildSafeHoldingReply,
   buildUnresolvedIdentityHoldingReply,
@@ -103,6 +104,7 @@ import {
   buildSupportReviewPrompt,
   classifySupportRisk,
   detectSupportLanguage,
+  isPaymentCountryQuestion,
   isPremiumAlternativePaymentQuestion,
   parseSupportDraftEnvelope,
   parseSupportReviewEnvelope,
@@ -3137,6 +3139,23 @@ async function buildCouncilReviewedSupportReply(input: {
       reply: buildPremiumAlternativePaymentReply(issue),
       grounded: true,
       reason: 'authoritative_premium_payment_route',
+      knowledgeFingerprint: repositoryContext.sourceFingerprint,
+    };
+  }
+  // зачем этот маршрут (владелец, 2026-08-17, письмо Шухрата — «в какую
+  // страну идёт платёж, если оплачу?»): слово «оплата» само по себе даёт
+  // billing-риск, и любой вопрос с ним уезжал в заготовку «поднимем вашу
+  // покупку» — написанную для того, у кого списали деньги, а не для того,
+  // кто спрашивает факт до покупки. Ответ не по делу читается как шаблон,
+  // а не как осмысленный ответ — это и было замечено. Тот же принцип
+  // допуска, что у маршрута выше: safe или billing, isPaymentCountryQuestion
+  // сама отсекает жалобы на списания в первом условии.
+  if (premiumRouteAllowedRisk && isPaymentCountryQuestion(issue)) {
+    return {
+      kind: 'ready',
+      reply: buildPaymentCountryReply(issue),
+      grounded: true,
+      reason: 'authoritative_payment_country_route',
       knowledgeFingerprint: repositoryContext.sourceFingerprint,
     };
   }

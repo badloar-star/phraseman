@@ -79,6 +79,31 @@ weaken or delete the guard to make CI green.
 `____ЛИГИ_ПОНИЖЕНИЕ_НЕ_ЛОМАТЬ____.md`.
 
 
+## ⛔ ЛИГИ: КЭШ 6 ЧАСОВ, ТОЛЬКО ПРИ ЗАХОДЕ НА ЭКРАН (владелец, 2026-08-17)
+
+Чужие цифры в таблице лиги обновляются **не чаще раза в 6 часов** и **только при
+заходе на экран клуба**. Фоновых таймеров быть не должно. Свои очки живые — они
+читаются локально (`withMyLivePoints` в `app/league_open_cache_policy.ts`,
+0 чтений Firestore), поэтому редкий сетевой рефреш экран не «убивает».
+
+Инцидент: снапшот-коммит `e7eb7d316` («preserve complete project snapshot»)
+сломал правило дважды одной правкой — занизил `CLUB_REMOTE_REFRESH_MS` с 6 часов
+до 45 секунд (константа служит И TTL кэша в `shouldRefreshRemote`, И периодом
+таймера) и добавил `setInterval`, зовущий `loadData({ forceRemote: true })`, а
+`forceRemote` явно обнуляет TTL и сбрасывает кэш группы. Открытый экран клуба
+перечитывал Firestore каждые 45 секунд: 14 чтений за 10 минут вместо одного.
+
+Правила: `forceRemote: true` допустим ТОЛЬКО в pull-to-refresh (`onLeagueRefresh`
+— осознанный жест пользователя). Смена ISO-недели обходит троттл намеренно
+(`weekChanged`), иначе теряется модалка итогов — это не баг. Живая подписка на
+буст/лайки оставлена сознательно.
+
+Сторож `scripts/guard_league_refresh_ttl.mjs` (pre-commit) проверяет три вещи:
+TTL ≥ 6 часов, отсутствие `setInterval` рядом с `loadData`, не более одного
+`forceRemote: true`. Сработал — вернуть правило, а не удалять проверку.
+Подробности: `____ЛИГИ_КЭШ_6_ЧАСОВ_НЕ_ЛОМАТЬ____.md`.
+
+
 ## Workspace And Branch Safety
 
 - The owner cancelled the obsolete fixed Windows checkout and fixed release-branch restriction on 2026-08-10.

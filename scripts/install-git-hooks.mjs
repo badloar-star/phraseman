@@ -74,6 +74,15 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Owner lock: the league table cache stays at 6h, refreshed only on screen entry
+# (see scripts/guard_league_refresh_ttl.mjs). Snapshot commit e7eb7d316 lowered
+# CLUB_REMOTE_REFRESH_MS from 6h to 45s AND added a setInterval with
+# forceRemote:true, so an open League screen re-read Firestore every 45 seconds.
+node scripts/guard_league_refresh_ttl.mjs
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 # Ratchet: no new hardcoded Russian UI strings (see scripts/scan_untranslated_ui.mjs).
 # The same "screen showed Russian text in every language" bug was fixed 14 times
 # screen by screen; the count may only go down, never up. Runs in ~0.3s.

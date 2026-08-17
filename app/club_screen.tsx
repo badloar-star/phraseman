@@ -20,6 +20,7 @@ import PremiumGoldUserName from '../components/PremiumGoldUserName';
 import LeagueCrownName from '../components/LeagueCrownName';
 import ProfileCardBadge from '../components/ProfileCardBadge';
 import AvatarView from '../components/AvatarView';
+import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 
 // Фаза 4: золото имени владельца карточки V «Легенда» — насыщенное золото + лёгкое
 // свечение. Применяется только в «простой» ветке имени (vip/premium-стили сильнее).
@@ -122,9 +123,20 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
 // fetchGroupForUser возвращал только пользователя из-за PERMISSION_DENIED.
 const CLUB_REMOTE_REFRESH_AT_KEY = 'club_remote_refresh_at_v2';
-// The bonus modal reads Firestore on app start, so the League screen must also
-// revalidate on every open; otherwise it can contradict a just-shown modal.
-const CLUB_REMOTE_REFRESH_MS = 45_000;
+// ⛔ ПРАВИЛО ВЛАДЕЛЬЦА (восстановлено 2026-08-17): чужие цифры в таблице лиги
+// обновляются НЕ ЧАЩЕ РАЗА В 6 ЧАСОВ и ТОЛЬКО при заходе на экран. Никаких
+// фоновых таймеров и никакого «освежать на каждый вход».
+//
+// зачем: снапшот-коммит e7eb7d316 занизил эту константу с 6 часов до 45 секунд
+// И добавил setInterval с forceRemote:true — то есть убил 6-часовой кэш дважды.
+// Пока экран был открыт, группа перечитывалась из Firestore каждые 45 секунд.
+// Свои очки берутся локально (withMyLivePoints, 0 чтений Firestore) и остаются
+// живыми — освежать сеть ради них не нужно. Смена ISO-недели троттл обходит
+// отдельно (weekChanged ниже), поэтому итоговая модалка не теряется.
+//
+// Сторож scripts/guard_league_refresh_ttl.mjs блокирует занижение и возврат
+// таймера. Подробности: ____ЛИГИ_КЭШ_6_ЧАСОВ_НЕ_ЛОМАТЬ____.md
+const CLUB_REMOTE_REFRESH_MS = 6 * 60 * 60 * 1000;
 const CLUB_ENTRY_REPEATING_MOTION_ENABLED = false;
 const CLUB_ANIMATION_USE_NATIVE_DRIVER = false;
 
@@ -414,6 +426,9 @@ export default function ClubScreen() {
   const [userName, setUserName]         = useState('');
   const [playerXP, setPlayerXP]         = useState(0);
   const [localLeagueHydrated, setLocalLeagueHydrated] = useState(initialLeagueState != null);
+  // зачем: пункт 3 — pull-to-refresh на список лиги. Дёргает loadData({ forceRemote: true }) —
+  // тот же путь, что уже используется остальным экраном, никакой новой Firestore-логики.
+  const [leagueRefreshing, setLeagueRefreshing] = useState(false);
   const [rankDelta, setRankDelta] = useState<RankDelta | null>(null);
   const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
   const deferredLeagueResultRef = useRef<LeagueResult | null>(null);
@@ -751,6 +766,18 @@ export default function ClubScreen() {
     }
   }, [lang]);
 
+  // зачем: пункт 3 — тонкая надстройка над УЖЕ существующим loadData(forceRemote),
+  // никакого нового Firestore-запроса. Локальный флаг гасится в finally, чтобы
+  // жест не завис при ошибке сети.
+  const onLeagueRefresh = useCallback(async () => {
+    setLeagueRefreshing(true);
+    try {
+      await loadData({ forceRemote: true });
+    } finally {
+      if (isMountedRef.current) setLeagueRefreshing(false);
+    }
+  }, [loadData]);
+
   useEffect(() => {
     if (!runtimeActive) return;
     const result = deferredLeagueResultRef.current;
@@ -782,13 +809,17 @@ export default function ClubScreen() {
 
   useEffect(() => {
     if (!runtimeActive) return undefined;
-    // Re-read on focus/foreground and refresh only while both conditions stay
-    // true. useFocusEffect alone remains active when the app is backgrounded.
-    void loadData({ forceRemote: true });
-    const intervalId = setInterval(() => {
-      void loadData({ forceRemote: true });
-    }, CLUB_REMOTE_REFRESH_MS);
-    return () => clearInterval(intervalId);
+    // ⛔ ПРАВИЛО ВЛАДЕЛЬЦА: обновляем ТОЛЬКО при заходе на экран, и сам loadData
+    // решает по 6-часовому TTL, нужна ли сеть вообще. Ни setInterval, ни
+    // forceRemote здесь быть НЕ ДОЛЖНО.
+    //
+    // зачем: снапшот-коммит e7eb7d316 поставил тут setInterval с forceRemote:true
+    // на 45 секунд. forceRemote явно обнуляет TTL (см. shouldRefreshRemote в
+    // loadData) и сбрасывает кэш группы — открытый экран перечитывал Firestore
+    // каждые 45 секунд вместо «раз в 6 часов при заходе». Свои очки живые и без
+    // сети (withMyLivePoints, 0 чтений), а смену недели TTL не блокирует.
+    void loadData();
+    return undefined;
   }, [loadData, runtimeActive]);
 
   useEffect(() => {
@@ -1518,6 +1549,7 @@ export default function ClubScreen() {
         onScroll={onAnimatedScroll}
         onScrollToIndexFailed={() => contentScrollRef.current?.scrollToEnd({ animated: true })}
         scrollEventThrottle={16}
+        refreshControl={<HybridRefreshControl refreshing={leagueRefreshing} onRefresh={() => void onLeagueRefresh()} />}
         ListHeaderComponent={(<>
 
         {leagueXpPromotionMode && myLeagueId < LEAGUES.length - 1 && (

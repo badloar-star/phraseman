@@ -117,6 +117,15 @@ export function computeGroupResults(
 
   const total = entries.length;
   const zoneSize = getLeagueResultZoneSize(total);
+  // зачем (владелец, 2026-08-17): в типичной комнате играют 3-5 человек, а хвост —
+  // сплошные нули (неактивные + жители без прироста). Competition ranking считает
+  // «строго больше/строго меньше», поэтому у игрока с 0 очков строго меньше нет
+  // НИКОГО → bottomRank=1, а строго больше — только играющие → rank попадал в зону
+  // повышения, и ветка `&& !promoted` гасила понижение. Итог: понижение не
+  // происходило вообще (скриншот владельца: 27 место из 29, «Остаёшься в лиге»).
+  // Правило владельца: понижаются нижние 15% И ВСЕ с нулём очков; повышение
+  // требует хотя бы одного набранного очка.
+  const hasAnyScorer = entries.some((candidate) => candidate.points > 0);
   const results: Record<string, MemberResult> = {};
 
   entries.forEach((e) => {
@@ -124,15 +133,23 @@ export function computeGroupResults(
     if (e.isResident) return;
     const rank = 1 + entries.filter((candidate) => candidate.points > e.points).length;
     const bottomRank = 1 + entries.filter((candidate) => candidate.points < e.points).length;
-    // XP-режим (зеркало app/league_engine.ts:710-717): повышение по набранным
+    const scored = e.points > 0;
+    // XP-режим (зеркало app/league_engine.ts): повышение по набранным
     // очкам, БЕЗ понижения — чтобы сервер совпал с клиентским бейджем «Переход».
     // Иначе — обычный rank-режим (топ-15% ↑, низ-15% ↓).
     const promoted = xpPromotion.enabled
       ? e.points >= xpPromotion.threshold && leagueId < CLUBS_MAX_ID
-      : total >= 2 && rank <= zoneSize && leagueId < CLUBS_MAX_ID;
+      : scored && total >= 2 && rank <= zoneSize && leagueId < CLUBS_MAX_ID;
+    // Комната, где не играл НИКТО, — не соревнование: там понижать некого,
+    // поэтому hasAnyScorer гасит и зонную ветку тоже (иначе в комнате сплошных
+    // нулей bottomRank=1 понизил бы разом всех до единого).
+    const inZeroZone = !scored && hasAnyScorer;
     const demoted = xpPromotion.enabled
       ? false
-      : total >= 2 && bottomRank <= zoneSize && leagueId > 0 && !promoted;
+      : hasAnyScorer
+        && (inZeroZone || (total >= 2 && bottomRank <= zoneSize))
+        && leagueId > 0
+        && !promoted;
     results[e.uid] = {
       rank,
       total,

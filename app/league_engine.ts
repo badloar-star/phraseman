@@ -861,12 +861,25 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
   const topCutoff    = hasValidGroup ? zoneSize : 0;
   const xpPromotionMode = isLeagueXpPromotionEnabled();
   const xpPromotionThreshold = getLeagueXpPromotionThreshold();
+  // зачем (владелец, 2026-08-17): зеркало functions/src/league_finalize_cron.ts —
+  // при массовых нулях в хвосте комнаты competition ranking давал игроку с 0 очков
+  // rank внутри зоны повышения и bottomRank=1, из-за чего понижение не наступало
+  // никогда. Понижаем нижние 15% И всех с нулём очков; повышение требует очков.
+  const iScored = myWeekPoints > 0;
+  const someoneScored = updated.some((member) => readMemberPoints(member, 0) > 0);
   const promoted = xpPromotionMode
     ? myWeekPoints >= xpPromotionThreshold && state.leagueId < CLUBS.length - 1
-    : hasValidGroup && myRank <= topCutoff && state.leagueId < CLUBS.length - 1;
+    : iScored && hasValidGroup && myRank <= topCutoff && state.leagueId < CLUBS.length - 1;
+  // Комната, где не играл НИКТО, — не соревнование: там понижать некого,
+  // поэтому someoneScored гасит и зонную ветку тоже (иначе в комнате сплошных
+  // нулей myBottomRank=1 понизил бы разом всех до единого).
+  const inZeroZone = hasValidGroup && !iScored && someoneScored;
   const demoted = xpPromotionMode
     ? false
-    : hasValidGroup && myBottomRank <= zoneSize && state.leagueId > 0 && !promoted;
+    : someoneScored
+      && (inZeroZone || (hasValidGroup && myBottomRank <= zoneSize))
+      && state.leagueId > 0
+      && !promoted;
 
   return {
     prevLeagueId: state.leagueId,

@@ -9,7 +9,8 @@ import {
   pickNextGoal,
   renderCanDoGoalBlock,
 } from './max_voice_can_do_goals';
-import { applyGoalProgress, mergeTutorMemory, parseTutorMemory } from './max_voice_tutor_memory';
+import { applyGoalProgress, mergeTutorMemory, parseTutorMemory, tutorLessonTypeFor } from './max_voice_tutor_memory';
+import { planUpcomingLessons } from './max_voice_can_do_goals';
 
 describe('карта целей: контент', () => {
   it('60 целей: 20 A1 / 22 A2 / 18 B1, уникальные id, у каждой 3–4 фразы, названия на en/ru/uk', () => {
@@ -75,5 +76,24 @@ describe('память: mastery цели только растёт и пишет
     const prev = parseTutorMemory({ callCount: 1, goalMastery: { a1_greet: 1 } });
     const next = mergeTutorMemory(prev, { goalProgress: { goalId: 'a1_greet', mastery: 3 }, nowMs: 1_800_000_000_000 });
     expect(next.goalMastery).toEqual({ a1_greet: 3 });
+  });
+});
+
+describe('план ближайших уроков (ступень 3, детерминированный)', () => {
+  it('5 слотов: типы чередуются, цель держится ~2 урока, потом следующая; free_talk цель не двигает', () => {
+    const plan = planUpcomingLessons({}, 'A1', 0, 5, tutorLessonTypeFor);
+    expect(plan.map((p) => p.ordinal)).toEqual([1, 2, 3, 4, 5]);
+    expect(plan.map((p) => p.lessonType)).toEqual(['new_material', 'review_and_scene', 'free_talk', 'new_material', 'review_and_scene']);
+    expect(plan[0].goal!.id).toBe('a1_greet');
+    expect(plan[1].goal!.id).toBe('a1_greet');
+    expect(plan[2].goal!.id).toBe('a1_intro'); // после review-слота цель «закрыта» в симуляции
+    expect(plan[4].goal!.id).toBe('a1_ask_name');
+  });
+
+  it('все цели закрыты → слоты без цели, но с типами', () => {
+    const all = Object.fromEntries(CAN_DO_GOALS.map((g) => [g.id, 3]));
+    const plan = planUpcomingLessons(all, 'B1', 7, 3, tutorLessonTypeFor);
+    expect(plan.every((p) => p.goal === null)).toBe(true);
+    expect(plan[0].lessonType).toBe(tutorLessonTypeFor(7));
   });
 });

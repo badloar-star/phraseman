@@ -102,6 +102,12 @@ export function parsePreflight(data: unknown, format: 'scenario' | 'companion' |
 export default function MaxCallPrestart() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const lessonTypeLabel = (kind: 'new_material' | 'review_and_scene' | 'free_talk'): string =>
+    kind === 'new_material'
+      ? triLang(lang, { ru: 'Новый материал', uk: 'Новий матеріал', es: 'Material nuevo', 'pt-BR': 'Conteúdo novo', vi: 'Bài mới', id: 'Materi baru', tr: 'Yeni konu', pl: 'Nowy materiał' })
+      : kind === 'review_and_scene'
+        ? triLang(lang, { ru: 'Повторение и сцена', uk: 'Повторення і сцена', es: 'Repaso y escena', 'pt-BR': 'Revisão e cena', vi: 'Ôn tập và tình huống', id: 'Ulangan dan adegan', tr: 'Tekrar ve sahne', pl: 'Powtórka i scenka' })
+        : triLang(lang, { ru: 'Свободный разговор', uk: 'Вільна розмова', es: 'Conversación libre', 'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Percakapan bebas', tr: 'Serbest sohbet', pl: 'Swobodna rozmowa' });
   const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string }>();
@@ -137,6 +143,7 @@ export default function MaxCallPrestart() {
     goalLevel: string;
     goalsDone: number;
     goalsTotal: number;
+    upcoming: Array<{ ordinal: number; lessonType: 'new_material' | 'review_and_scene' | 'free_talk'; goalTitle: string }>;
   } | null>(null);
   const key = premintKey(callParams);
 
@@ -172,6 +179,11 @@ export default function MaxCallPrestart() {
             goalLevel: mint.tutor.plan?.goal?.level ?? '',
             goalsDone: mint.tutor.plan?.goalsDone ?? 0,
             goalsTotal: mint.tutor.plan?.goalsTotal ?? 0,
+            upcoming: (mint.tutor.plan?.upcoming ?? []).slice(0, 5).map((u) => ({
+              ordinal: u.ordinal,
+              lessonType: u.lessonType,
+              goalTitle: u.goal ? (lang === 'ru' ? u.goal.title.ru : lang === 'uk' ? u.goal.title.uk : u.goal.title.en) : '',
+            })),
           });
         }
         setPreflightReason(null);
@@ -382,11 +394,7 @@ export default function MaxCallPrestart() {
               </Text>
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 10 }}>
                 {[
-                  tutorPlan.lessonType === 'new_material'
-                    ? triLang(lang, { ru: 'Новый материал', uk: 'Новий матеріал', es: 'Material nuevo', 'pt-BR': 'Conteúdo novo', vi: 'Bài mới', id: 'Materi baru', tr: 'Yeni konu', pl: 'Nowy materiał' })
-                    : tutorPlan.lessonType === 'review_and_scene'
-                      ? triLang(lang, { ru: 'Повторение и сцена', uk: 'Повторення і сцена', es: 'Repaso y escena', 'pt-BR': 'Revisão e cena', vi: 'Ôn tập và tình huống', id: 'Ulangan dan adegan', tr: 'Tekrar ve sahne', pl: 'Powtórka i scenka' })
-                      : triLang(lang, { ru: 'Свободный разговор', uk: 'Вільна розмова', es: 'Conversación libre', 'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Percakapan bebas', tr: 'Serbest sohbet', pl: 'Swobodna rozmowa' }),
+                  lessonTypeLabel(tutorPlan.lessonType),
                   tutorPlan.dueCount > 0
                     ? triLang(lang, { ru: `Повторим: ${tutorPlan.dueCount}`, uk: `Повторимо: ${tutorPlan.dueCount}`, es: `Repaso: ${tutorPlan.dueCount}`, 'pt-BR': `Revisão: ${tutorPlan.dueCount}`, vi: `Ôn: ${tutorPlan.dueCount}`, id: `Ulang: ${tutorPlan.dueCount}`, tr: `Tekrar: ${tutorPlan.dueCount}`, pl: `Powtórka: ${tutorPlan.dueCount}` })
                     : '',
@@ -410,6 +418,23 @@ export default function MaxCallPrestart() {
                       {`${tutorPlan.goalsDone} / ${tutorPlan.goalsTotal}`}
                     </Text>
                   )}
+                </View>
+              )}
+              {tutorPlan.upcoming.length > 1 && (
+                <View style={{ marginTop: 12 }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.4 }} maxFontSizeMultiplier={1.2}>
+                    {triLang(lang, { ru: 'Ближайшие уроки', uk: 'Найближчі уроки', es: 'Próximas clases', 'pt-BR': 'Próximas aulas', vi: 'Các buổi học tới', id: 'Pelajaran berikutnya', tr: 'Sonraki dersler', pl: 'Najbliższe lekcje' })}
+                  </Text>
+                  {tutorPlan.upcoming.map((u, i) => (
+                    <View key={`up-${u.ordinal}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: i === 0 ? 6 : 4 }}>
+                      <View style={{ width: 20, height: 20, borderRadius: 10, backgroundColor: i === 0 ? t.accentBg : glassFill(t.bgSurface, 0.8), alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ color: i === 0 ? t.accent : t.textMuted, fontSize: f.label, fontWeight: '900', fontVariant: ['tabular-nums'] }}>{String(u.ordinal)}</Text>
+                      </View>
+                      <Text style={{ color: i === 0 ? t.textPrimary : t.textSecond, fontSize: f.caption, fontWeight: i === 0 ? '700' : '600', flex: 1 }} numberOfLines={1} maxFontSizeMultiplier={1.2}>
+                        {`${lessonTypeLabel(u.lessonType)}${u.goalTitle ? ' · ' + u.goalTitle : ''}`}
+                      </Text>
+                    </View>
+                  ))}
                 </View>
               )}
               {tutorPlan.nextTopic !== '' && (

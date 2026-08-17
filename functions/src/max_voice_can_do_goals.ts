@@ -310,3 +310,38 @@ export function renderCanDoGoalBlock(goal: CanDoGoal, mastery: CanDoMastery, pro
   ];
   return lines.join('\n');
 }
+
+/**
+ * Ступень 3 (владелец 2026-08-17): план ближайших уроков. Детерминированный
+ * планировщик без LLM: тип урока чередуется по номеру, цель — текущая на первые
+ * два слота, затем следующие незакрытые по порядку. Перестраивается сам на
+ * каждом минте по свежей памяти (mastery/callCount).
+ */
+export interface UpcomingLesson {
+  ordinal: number;
+  lessonType: 'new_material' | 'review_and_scene' | 'free_talk';
+  goal: { id: string; level: CanDoLevel; title: CanDoGoal['title'] } | null;
+}
+
+export function planUpcomingLessons(
+  mastery: CanDoMastery,
+  level: string,
+  callCount: number,
+  count = 5,
+  lessonTypeFor: (callCount: number) => UpcomingLesson['lessonType'],
+): UpcomingLesson[] {
+  const out: UpcomingLesson[] = [];
+  const simulated: CanDoMastery = { ...mastery };
+  let goal = pickNextGoal(simulated, level);
+  for (let i = 0; i < count; i += 1) {
+    const ordinal = callCount + i + 1;
+    const lessonType = lessonTypeFor(callCount + i);
+    out.push({ ordinal, lessonType, goal: goal ? { id: goal.id, level: goal.level, title: goal.title } : null });
+    // Одна цель ≈ два урока (новое + повторение со сценой); свободный разговор цель не двигает.
+    if (goal && lessonType !== 'free_talk' && i % 2 === 1) {
+      simulated[goal.id] = 3;
+      goal = pickNextGoal(simulated, level);
+    }
+  }
+  return out;
+}

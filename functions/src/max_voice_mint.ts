@@ -41,6 +41,7 @@ import {
   canDoProgress,
   levelFromMastery,
   pickNextGoal,
+  planUpcomingLessons,
   renderCanDoGoalBlock,
 } from './max_voice_can_do_goals';
 import {
@@ -862,6 +863,10 @@ export const maxVoiceMint = onCall({
                 : null,
               goalsDone: goalProgressNow?.done ?? 0,
               goalsTotal: CAN_DO_GOALS_TOTAL,
+              // Ступень 3: ближайшие уроки (тип + цель) для экрана «Учитель».
+              upcoming: tutorMemory
+                ? planUpcomingLessons(tutorMemory.goalMastery, goalLevel, tutorMemory.callCount, 5, tutorLessonTypeFor)
+                : [],
             },
           },
         }

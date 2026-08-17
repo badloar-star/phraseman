@@ -195,6 +195,12 @@ export interface MaxVoiceTutorInfo {
     goal: { id: string; level: string; title: { en: string; ru: string; uk: string }; mastery: number } | null;
     goalsDone: number;
     goalsTotal: number;
+    /** Ступень 3: ближайшие уроки (тип + цель), детерминированный план сервера. */
+    upcoming: Array<{
+      ordinal: number;
+      lessonType: 'new_material' | 'review_and_scene' | 'free_talk';
+      goal: { id: string; level: string; title: { en: string; ru: string; uk: string } } | null;
+    }>;
   };
 }
 
@@ -276,6 +282,14 @@ function parseTutorPlan(p: Record<string, unknown>): NonNullable<MaxVoiceTutorIn
     goal: parseTutorGoal(p.goal),
     goalsDone: n(p.goalsDone),
     goalsTotal: n(p.goalsTotal),
+    upcoming: Array.isArray(p.upcoming)
+      ? p.upcoming.slice(0, 7).flatMap((item) => {
+          const o = (item ?? {}) as Record<string, unknown>;
+          const lessonType = o.lessonType === 'review_and_scene' || o.lessonType === 'free_talk' ? o.lessonType : 'new_material';
+          const goal = parseTutorGoal(o.goal);
+          return [{ ordinal: n(o.ordinal), lessonType, goal: goal ? { id: goal.id, level: goal.level, title: goal.title } : null }];
+        })
+      : [],
   };
 }
 

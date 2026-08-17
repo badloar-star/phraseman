@@ -64,6 +64,16 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Owner lock: league demotion must keep working (see scripts/guard_league_demotion.mjs).
+# 2026-08-17 demotion was dead for EVERYONE: rooms have 3-5 real players and a tail of
+# exactly-zero scores, so competition ranking made a zero-point player look 4th (top
+# zone) and the "&& !promoted" branch swallowed the demotion. Client and server must
+# stay mirrored, or the modal badge contradicts the authoritative cron result.
+node scripts/guard_league_demotion.mjs
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 # Ratchet: no new hardcoded Russian UI strings (see scripts/scan_untranslated_ui.mjs).
 # The same "screen showed Russian text in every language" bug was fixed 14 times
 # screen by screen; the count may only go down, never up. Runs in ~0.3s.

@@ -161,6 +161,24 @@ import {
   readReferralDrain,
   readReferralInvites,
 } from '../referrals_cache';
+// «Вместе» (friends_together) — ядро уже построено и протестировано отдельно
+// (app/friends_together/*), здесь только UI-слой за флагом.
+import { useFriendsTogetherEnabled } from '../friends_together/together_config';
+import {
+  getFriendsTogetherSnapshot,
+  primeFriendsTogetherSnapshot,
+  refreshFriendsTogether,
+  type FriendTogetherPairState,
+} from '../friends_together/together_store';
+import { buildWeeklyChestModel, type WeeklyChestModel } from '../friends_together/weekly_chest_model';
+import { nudgeFriend, isNudgedToday, primeNudgedTodayCache, type NudgeErrorReason } from '../friends_together/nudge_client';
+import { claimFriendLevel, claimWeeklyChest } from '../friends_together/claims_client';
+import { LEVEL_NAMES, bonusPercentForLevel, nextThreshold, starRewardForLevel, decodeActiveDays } from '../friends_together/together_days';
+import { getMyWeekPoints, getWeekKey } from '../hall_of_fame_utils';
+import FriendsChestCard from '../../components/friends_together/FriendsChestCard';
+import FriendTogetherSheet from '../../components/friends_together/FriendTogetherSheet';
+import FriendLevelUpModal from '../../components/friends_together/FriendLevelUpModal';
+import FriendsChestModal from '../../components/friends_together/FriendsChestModal';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -743,8 +761,18 @@ function HighFiveButton({
   );
 }
 
+/** «Вместе» — данные строки друга, посчитанные родителем (together_store снапшот). */
+type FriendRowTogether = {
+  level: number;
+  progressPercent: number; // 0..100 до следующего уровня (100 — уже максимум)
+  nudged: boolean;
+  learnedToday: boolean;
+  onNudge: () => void;
+  onOpenSheet: () => void;
+};
+
 function FriendRow({
-  profile, rank, onPress, onDelete, onGift, onHighFive, highFived, lang, t, f, chrome, themeMode, giftAvailable,
+  profile, rank, onPress, onDelete, onGift, onHighFive, highFived, lang, t, f, chrome, themeMode, giftAvailable, together,
 }: {
   profile: FriendProfile; rank: number;
   onPress: () => void; onDelete: () => void; onGift: () => void;
@@ -756,6 +784,8 @@ function FriendRow({
   themeMode: ThemeMode;
   /** Подарок реально доступен (баланс осколков ≥ цены самого дешёвого) — кнопка мягко пульсирует. */
   giftAvailable?: boolean;
+  /** «Вместе»: undefined, когда флаг выключен — строка рендерится ровно как раньше. */
+  together?: FriendRowTogether;
 }) {
   const rankColor = rank === 1 ? '#FFD700' : rank === 2 ? '#C0C0C0' : rank === 3 ? '#CD7F32' : t.textMuted;
   const leagueCrownCount = Math.max(0, Math.floor(Number(profile.leagueCrownCount) || 0));
@@ -795,10 +825,24 @@ function FriendRow({
                 ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
                 : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', ...((profile.profileCardLevel ?? 0) >= 5 ? LEGEND_CARD_NAME_GOLD : null) }} numberOfLines={1}>{profile.name}</Text>
               }
+              {/* «Вместе»: пилюля уровня дружбы рядом с именем — золото с уровня 4. */}
+              {!!together && together.level >= 2 && (
+                <View style={{ height: 22, paddingHorizontal: 8, borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: together.level >= 4 ? t.goldBg : t.accentBg, marginLeft: 6 }}>
+                  <Text style={{ color: together.level >= 4 ? t.gold : t.accent, fontSize: 11, fontWeight: '700' }}>
+                    {LEVEL_NAMES[Math.min(LEVEL_NAMES.length - 1, together.level)]}
+                  </Text>
+                </View>
+              )}
             </View>
           </View>
           <ProfileCardBadge level={profile.profileCardLevel} theme={profile.profileCardTheme} style={{ marginTop: 3 }} />
           <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
+          {/* «Вместе»: полоска дружбы до следующего уровня — высота 8, тон бар, золото с уровня 4. */}
+          {!!together && together.level >= 2 && (
+            <View style={{ height: 8, borderRadius: 4, backgroundColor: t.bgSurface2, marginTop: 6, overflow: 'hidden' }}>
+              <View style={{ height: '100%', borderRadius: 4, width: `${together.progressPercent}%`, backgroundColor: together.level >= 4 ? t.gold : t.accent }} />
+            </View>
+          )}
         </View>
       </TouchableOpacity>
       <View style={{ alignItems: 'flex-end', justifyContent: 'center', gap: 8, flexShrink: 0, marginLeft: 10 }}>
@@ -818,6 +862,33 @@ function FriendRow({
           )}
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+          {/* «Вместе»: колокольчик «Позвать» / пилюля «сегодня» — только когда флаг включён. */}
+          {!!together && (
+            together.learnedToday ? (
+              <View
+                testID={`friend-together-today-${profile.uid}`}
+                style={{ height: 30, paddingHorizontal: 10, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correctBg, flexDirection: 'row', gap: 4 }}
+              >
+                <Ionicons name="checkmark" size={13} color={t.correct} />
+                <Text style={{ color: t.correct, fontSize: 13, fontWeight: '700' }}>
+                  {triLang(lang as any, { ru: 'сегодня', uk: 'сьогодні', es: 'hoy', 'pt-BR': 'hoje', vi: 'hôm nay', id: 'hari ini', tr: 'bugün', pl: 'dziś' })}
+                </Text>
+              </View>
+            ) : (
+              <TapScale
+                testID={`friend-together-nudge-${profile.uid}`}
+                onPress={together.onNudge}
+                disabled={together.nudged}
+                hitSlop={6}
+                accessibilityLabel={together.nudged
+                  ? triLang(lang as any, { ru: `${profile.name} уже позван сегодня`, uk: `${profile.name} вже покликана сьогодні`, es: `Ya llamaste a ${profile.name} hoy`, 'pt-BR': `Você já chamou ${profile.name} hoje`, vi: `Đã gọi ${profile.name} hôm nay`, id: `Sudah memanggil ${profile.name} hari ini`, tr: `${profile.name} bugün zaten çağrıldı`, pl: `${profile.name} już wołany dziś` })
+                  : triLang(lang as any, { ru: `Позвать ${profile.name}`, uk: `Покликати ${profile.name}`, es: `Llamar a ${profile.name}`, 'pt-BR': `Chamar ${profile.name}`, vi: `Gọi ${profile.name}`, id: `Panggil ${profile.name}`, tr: `${profile.name} çağır`, pl: `Zawołaj ${profile.name}` })}
+                style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
+              >
+                <Ionicons name={together.nudged ? 'checkmark' : 'notifications-outline'} size={18} color={t.accent} />
+              </TapScale>
+            )
+          )}
           <HighFiveButton
             testID={`friend-high-five-${profile.uid}`}
             liked={highFived}
@@ -1325,6 +1396,165 @@ export default function FriendsTabScreen() {
   const { goHome, focusTick, runtimeOwnerId } = useTabNav();
   const friendsTabVisible = runtimeOwnerId === 'friends';
   const friendsRuntimeActive = useRuntimeActive(friendsTabVisible);
+
+  // ── «Вместе» (friends_together) — состояние UI-слоя, целиком за флагом ─────
+  const friendsTogetherPolicy = useFriendsTogetherEnabled();
+  const [togetherSnapshot, setTogetherSnapshot] = useState(() => getFriendsTogetherSnapshot());
+  const [myWeeklyStats, setMyWeeklyStats] = useState<{ weeklyXp: number; activeDaysThisWeek: number; weekKey: string } | null>(null);
+  const [chestClaimedWeekKey, setChestClaimedWeekKey] = useState<string | null>(null);
+  const [togetherSheetFriendUid, setTogetherSheetFriendUid] = useState<string | null>(null);
+  const [levelUpModal, setLevelUpModal] = useState<{ friendUid: string; level: number; starsGranted: number } | null>(null);
+  const [chestModal, setChestModal] = useState<{ tier: number; starsGranted: number; xpBoostMinutes: number; streakShield: boolean; aura: boolean } | null>(null);
+  const [chestClaimBusy, setChestClaimBusy] = useState(false);
+  const [nudgedTick, setNudgedTick] = useState(0);
+  const levelUpShownRef = useRef<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (!friendsTogetherPolicy.enabled) return;
+    void primeFriendsTogetherSnapshot().then((snap) => { if (snap) setTogetherSnapshot(snap); });
+    void primeNudgedTodayCache().then(() => setNudgedTick((n) => n + 1));
+  }, [friendsTogetherPolicy.enabled]);
+
+  // Мои недельные XP/дни — читаются раз при фокусе вкладки (не листенер, не таймер).
+  useEffect(() => {
+    if (!friendsTogetherPolicy.enabled || !friendsRuntimeActive) return;
+    let cancelled = false;
+    void (async () => {
+      try {
+        const [weeklyXp, myActiveDaysRaw] = await Promise.all([
+          getMyWeekPoints(),
+          AsyncStorage.getItem('active_days_v1'),
+        ]);
+        if (cancelled) return;
+        const weekKey = getWeekKey(new Date());
+        let activeDaysThisWeek = 0;
+        try {
+          const parsed = myActiveDaysRaw ? JSON.parse(myActiveDaysRaw) : null;
+          if (parsed?.anchor && typeof parsed.bits === 'string') {
+            const dates = decodeActiveDays({ anchor: parsed.anchor, bits: parsed.bits });
+            const now = new Date();
+            const day = now.getUTCDay() || 7;
+            const monday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - day + 1));
+            for (const d of dates) {
+              const dMs = Date.parse(`${d}T00:00:00.000Z`);
+              if (Number.isFinite(dMs) && dMs >= monday.getTime()) activeDaysThisWeek += 1;
+            }
+          }
+        } catch { /* дефолт 0 активных дней */ }
+        setMyWeeklyStats({ weeklyXp, activeDaysThisWeek, weekKey });
+      } catch { /* офлайн — сундук останется locked до следующего фокуса */ }
+    })();
+    return () => { cancelled = true; };
+  }, [friendsTogetherPolicy.enabled, friendsRuntimeActive, focusTick]);
+
+  const weeklyChestModel: WeeklyChestModel | null = useMemo(() => {
+    if (!friendsTogetherPolicy.enabled || !togetherSnapshot || !myWeeklyStats) return null;
+    const friendsInput = Object.values(togetherSnapshot.pairs).map((p: FriendTogetherPairState) => ({
+      uid: p.friendUid,
+      weeklyXp: p.weeklyXp,
+      pairLevel: p.level,
+      boostActive: p.boostActive,
+    }));
+    return buildWeeklyChestModel({
+      friends: friendsInput,
+      myDays: myWeeklyStats.activeDaysThisWeek,
+      myWeeklyXp: myWeeklyStats.weeklyXp,
+      weekKey: myWeeklyStats.weekKey,
+      claimedWeekKey: chestClaimedWeekKey,
+    });
+  }, [friendsTogetherPolicy.enabled, togetherSnapshot, myWeeklyStats, chestClaimedWeekKey]);
+
+  // Уровень дружбы вырос с последнего клейма — открыть модалку один раз на пару+уровень.
+  useEffect(() => {
+    if (!friendsTogetherPolicy.enabled || !togetherSnapshot || levelUpModal) return;
+    for (const pair of Object.values(togetherSnapshot.pairs) as FriendTogetherPairState[]) {
+      if (pair.level > pair.claimedLevel && pair.level >= 2) {
+        const key = `${pair.friendUid}:${pair.level}`;
+        if (levelUpShownRef.current.has(key)) continue;
+        levelUpShownRef.current.add(key);
+        setLevelUpModal({ friendUid: pair.friendUid, level: pair.level, starsGranted: starRewardForLevel(pair.level) });
+        break; // одна модалка за раз — не наваливаем каскад окон
+      }
+    }
+  }, [friendsTogetherPolicy.enabled, togetherSnapshot, levelUpModal]);
+
+  const handleClaimFriendLevel = useCallback(async () => {
+    if (!levelUpModal) return;
+    const { friendUid, level } = levelUpModal;
+    setLevelUpModal(null);
+    try {
+      await claimFriendLevel(friendUid, level);
+    } catch { /* тихо — звёзды придут при следующем refreshFriendsTogether, если сервер всё же принял */ }
+  }, [levelUpModal]);
+
+  const handleClaimWeeklyChest = useCallback(async () => {
+    if (!weeklyChestModel || !weeklyChestModel.canClaim || chestClaimBusy) return;
+    setChestClaimBusy(true);
+    try {
+      const result = await claimWeeklyChest(weeklyChestModel.weekKey);
+      if (result.ok) {
+        setChestClaimedWeekKey(weeklyChestModel.weekKey);
+        setChestModal({
+          tier: weeklyChestModel.tier,
+          starsGranted: result.rewards.starsGranted,
+          xpBoostMinutes: result.rewards.xpBoostMinutes,
+          streakShield: result.rewards.streakShield,
+          aura: result.rewards.aura,
+        });
+      } else {
+        emitAppEvent('action_toast', {
+          type: 'error',
+          messageRu: 'Не удалось открыть сундук',
+          messageUk: 'Не вдалося відкрити скриню',
+          messageEs: 'No se pudo abrir el cofre',
+          messagePtBr: 'Não foi possível abrir o baú',
+          messageVi: 'Không mở được rương',
+          messageId: 'Gagal membuka peti',
+          messageTr: 'Sandık açılamadı',
+          messagePl: 'Nie udało się otworzyć skrzyni',
+        });
+      }
+    } finally {
+      setChestClaimBusy(false);
+    }
+  }, [weeklyChestModel, chestClaimBusy]);
+
+  const NUDGE_ERROR_TEXT: Record<NudgeErrorReason, { ru: string; uk: string; es: string; ptBr: string; vi: string; id: string; tr: string; pl: string }> = {
+    disabled: { ru: 'Друг отключил зовы', uk: 'Друг вимкнув кличі', es: 'Tu amigo desactivó las llamadas', ptBr: 'Seu amigo desativou os chamados', vi: 'Bạn đã tắt lời gọi', id: 'Teman menonaktifkan panggilan', tr: 'Arkadaşın çağrıları kapattı', pl: 'Znajomy wyłączył wołania' },
+    quiet_hours: { ru: 'У друга тихие часы', uk: 'У друга тихі години', es: 'Tu amigo está en horas de silencio', ptBr: 'Seu amigo está no horário silencioso', vi: 'Bạn đang trong giờ yên tĩnh', id: 'Teman sedang jam tenang', tr: 'Arkadaşının sessiz saatleri', pl: 'Znajomy ma ciche godziny' },
+    daily_limit: { ru: 'Сегодня уже звал', uk: 'Сьогодні вже кликав', es: 'Ya llamaste hoy', ptBr: 'Você já chamou hoje', vi: 'Hôm nay đã gọi rồi', id: 'Sudah memanggil hari ini', tr: 'Bugün zaten çağırdın', pl: 'Dziś już wołałeś' },
+    sender_limit: { ru: 'Сегодня уже звал', uk: 'Сьогодні вже кликав', es: 'Ya llamaste hoy', ptBr: 'Você já chamou hoje', vi: 'Hôm nay đã gọi rồi', id: 'Sudah memanggil hari ini', tr: 'Bugün zaten çağırdın', pl: 'Dziś już wołałeś' },
+    receiver_limit: { ru: 'Друг сегодня уже занят зовами', uk: 'Друга сьогодні вже кликали', es: 'Tu amigo ya recibió llamadas hoy', ptBr: 'Seu amigo já recebeu chamados hoje', vi: 'Bạn đã nhận đủ lời gọi hôm nay', id: 'Teman sudah menerima panggilan hari ini', tr: 'Arkadaşın bugün zaten çağrıldı', pl: 'Znajomy ma już dość wołań dziś' },
+    not_friends: { ru: 'Это уже не друг', uk: 'Це вже не друг', es: 'Ya no son amigos', ptBr: 'Vocês não são mais amigos', vi: 'Không còn là bạn bè', id: 'Bukan teman lagi', tr: 'Artık arkadaş değil', pl: 'To już nie znajomy' },
+    network: { ru: 'Нет сети — попробуй ещё раз', uk: 'Немає мережі — спробуй ще раз', es: 'Sin conexión — inténtalo de nuevo', ptBr: 'Sem conexão — tente novamente', vi: 'Không có mạng — thử lại nhé', id: 'Tidak ada jaringan — coba lagi', tr: 'Bağlantı yok — tekrar dene', pl: 'Brak sieci — spróbuj ponownie' },
+  };
+
+  const handleNudgeFriend = useCallback(async (friendUid: string, friendName: string) => {
+    setNudgedTick((n) => n + 1); // optimistic: перерисовать колокольчик мгновенно (isNudgedToday уже true внутри nudgeFriend)
+    const result = await nudgeFriend(friendUid);
+    setNudgedTick((n) => n + 1);
+    if (!result.ok) {
+      const texts = NUDGE_ERROR_TEXT[result.reason];
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: texts.ru, messageUk: texts.uk, messageEs: texts.es, messagePtBr: texts.ptBr,
+        messageVi: texts.vi, messageId: texts.id, messageTr: texts.tr, messagePl: texts.pl,
+      });
+      return;
+    }
+    emitAppEvent('action_toast', {
+      type: 'success',
+      messageRu: `Позвал ${friendName}`,
+      messageUk: `Покликав ${friendName}`,
+      messageEs: `Llamaste a ${friendName}`,
+      messagePtBr: `Você chamou ${friendName}`,
+      messageVi: `Đã gọi ${friendName}`,
+      messageId: `Memanggil ${friendName}`,
+      messageTr: `${friendName} çağrıldı`,
+      messagePl: `Zawołano ${friendName}`,
+    });
+  }, []);
+
   const insets = useStableSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
@@ -1951,9 +2181,30 @@ export default function FriendsTabScreen() {
         const next = { ...prev, ...fresh };
         return next;
       });
+      // «Вместе» (G, ТЗ): пересчёт снапшота пар из тех же профилей друзей —
+      // fetchFriendProfilesBatch(uids) сейчас 100% попадает в TTL-кэш (loadProfiles
+      // выше только что его прогрел), поэтому это НЕ второе сетевое чтение.
+      // friend_pairs освежается своим отдельным кэшем 6ч внутри together_store.
+      if (friendsTogetherPolicy.enabled) {
+        void (async () => {
+          try {
+            const friendUids = friends.map(f => f.uid);
+            if (friendUids.length === 0) return;
+            const batchMap = await fetchFriendProfilesBatch(friendUids);
+            if (cancelled) return;
+            const records = friendUids
+              .map((uid) => batchMap[uid])
+              .filter((r): r is FriendProfileBatchRecord => !!r);
+            await refreshFriendsTogether(records);
+            if (cancelled) return;
+            setTogetherSnapshot(getFriendsTogetherSnapshot());
+          } catch { /* best-effort — снапшот остаётся прежним/пустым */ }
+        })();
+      }
     })();
     return () => { cancelled = true; };
-  }, [friends, requests, friendsRuntimeActive, focusTick]); // eslint-disable-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [friends, requests, friendsRuntimeActive, focusTick, friendsTogetherPolicy.enabled]);
 
   // ── Cleanup ────────────────────────────────────────────────────────────────
 
@@ -2649,6 +2900,32 @@ export default function FriendsTabScreen() {
 
   const PX = 16;
 
+  // «Вместе»: одна пересборка uid → together-пропы за снапшот/тик, а не за каждый
+  // рендер каждой строки — FriendRow остаётся дешёвым для FlashList.
+  const togetherByUid = useMemo<Record<string, FriendRowTogether>>(() => {
+    if (!friendsTogetherPolicy.enabled || !togetherSnapshot) return {};
+    void nudgedTick; // зачем: isNudgedToday() синхронный над модульной памятью — тик форсирует пересборку карты
+    const out: Record<string, FriendRowTogether> = {};
+    for (const pair of Object.values(togetherSnapshot.pairs) as FriendTogetherPairState[]) {
+      const next = nextThreshold(pair.level);
+      const prevThreshold = pair.level <= 1 ? 0 : (nextThreshold(pair.level - 1) ?? 0);
+      const progressPercent = next === null
+        ? 100
+        : Math.max(0, Math.min(100, Math.round(((pair.days - prevThreshold) / Math.max(1, next - prevThreshold)) * 100)));
+      const friendUid = pair.friendUid;
+      out[friendUid] = {
+        level: pair.level,
+        progressPercent,
+        nudged: isNudgedToday(friendUid),
+        learnedToday: pair.todayCommon,
+        onNudge: () => { void handleNudgeFriend(friendUid, profiles[friendUid]?.name ?? ''); },
+        onOpenSheet: () => setTogetherSheetFriendUid(friendUid),
+      };
+    }
+    return out;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [friendsTogetherPolicy.enabled, togetherSnapshot, nudgedTick, handleNudgeFriend]);
+
   // ── Render ─────────────────────────────────────────────────────────────────
 
   // D3: вместо общего ScrollView каждый таб — собственный FlashList (виртуализация,
@@ -2706,6 +2983,15 @@ export default function FriendsTabScreen() {
           </TouchableOpacity>
         </View>
         <View style={{ height: 12 }} />
+        {/* «Вместе» (G): сундук недели — только когда есть друзья и флаг включён;
+            снапшот из памяти даёт мгновенный первый кадр (нет сети/спиннера). */}
+        {friendsTogetherPolicy.enabled && weeklyChestModel && sortedFriends.length > 0 && (
+          <FriendsChestCard
+            model={weeklyChestModel}
+            onClaim={handleClaimWeeklyChest}
+            claimBusy={chestClaimBusy}
+          />
+        )}
     </>
   );
 
@@ -2877,22 +3163,26 @@ export default function FriendsTabScreen() {
           testID="friends-list"
           data={sortedFriends}
           keyExtractor={(profile: FriendProfile) => profile.uid}
-          renderItem={({ item: profile, index: i }: { item: FriendProfile; index: number }) => (
-            <Reanimated.View entering={FadeInDown.delay(Math.min(i, 10) * 40).duration(320)}>
-              <FriendRow
-                profile={profile}
-                rank={i + 1}
-                onPress={() => openProfile(profile)}
-                onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
-                onGift={() => openGiftPicker(profile)}
-                onHighFive={() => handleHighFive(profile)}
-                highFived={highFivedUids.has(profile.uid)}
-                lang={lang} t={t} f={f} chrome={chrome}
-                themeMode={themeMode}
-                giftAvailable={giftBalance >= Math.min(...FRIEND_GIFT_CATALOG.map(g => g.costShards))}
-              />
-            </Reanimated.View>
-          )}
+          renderItem={({ item: profile, index: i }: { item: FriendProfile; index: number }) => {
+            const together = togetherByUid[profile.uid];
+            return (
+              <Reanimated.View entering={FadeInDown.delay(Math.min(i, 10) * 40).duration(320)}>
+                <FriendRow
+                  profile={profile}
+                  rank={i + 1}
+                  onPress={() => (together ? together.onOpenSheet() : openProfile(profile))}
+                  onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
+                  onGift={() => openGiftPicker(profile)}
+                  onHighFive={() => handleHighFive(profile)}
+                  highFived={highFivedUids.has(profile.uid)}
+                  lang={lang} t={t} f={f} chrome={chrome}
+                  themeMode={themeMode}
+                  giftAvailable={giftBalance >= Math.min(...FRIEND_GIFT_CATALOG.map(g => g.costShards))}
+                  together={together}
+                />
+              </Reanimated.View>
+            );
+          }}
           ListHeaderComponent={<>{listHeader}{friendsPreList}</>}
           ListEmptyComponent={friendsEmptyState}
           ListFooterComponent={listFooter}
@@ -3313,6 +3603,70 @@ export default function FriendsTabScreen() {
         }}
         onClose={() => setSelectedPlayer(null)}
       />
+
+      {friendsTogetherPolicy.enabled && togetherSheetFriendUid && (() => {
+        const friendProfile = profiles[togetherSheetFriendUid];
+        const pair = togetherSnapshot?.pairs[togetherSheetFriendUid];
+        if (!friendProfile || !pair) return null;
+        const next = nextThreshold(pair.level);
+        const prevThreshold = pair.level <= 1 ? 0 : (nextThreshold(pair.level - 1) ?? 0);
+        const progressPercent = next === null ? null : Math.max(0, Math.min(100, Math.round(((pair.days - prevThreshold) / Math.max(1, next - prevThreshold)) * 100)));
+        const nextLevelName = next === null ? null : (LEVEL_NAMES[Math.min(LEVEL_NAMES.length - 1, pair.level + 1)] || null);
+        return (
+          <FriendTogetherSheet
+            visible
+            onClose={() => setTogetherSheetFriendUid(null)}
+            friendName={friendProfile.name}
+            friendUid={togetherSheetFriendUid}
+            friendAvatar={friendProfile.avatar}
+            friendTotalXp={friendProfile.totalXp}
+            friendAura={friendProfile.aura}
+            myAvatar={myProfile?.avatar ?? String(getBestAvatarForLevel(1))}
+            myTotalXp={myProfile?.totalXP ?? 0}
+            days={pair.days}
+            level={pair.level}
+            progressPercent={progressPercent}
+            nextLevelName={nextLevelName}
+            nudged={isNudgedToday(togetherSheetFriendUid)}
+            onNudge={() => { void handleNudgeFriend(togetherSheetFriendUid, friendProfile.name); }}
+            onGift={() => { setTogetherSheetFriendUid(null); openGiftPicker(friendProfile); }}
+            onDuel={null}
+          />
+        );
+      })()}
+
+      {friendsTogetherPolicy.enabled && levelUpModal && (() => {
+        const friendProfile = profiles[levelUpModal.friendUid];
+        if (!friendProfile) return null;
+        return (
+          <FriendLevelUpModal
+            visible
+            friendName={friendProfile.name}
+            friendAvatar={friendProfile.avatar}
+            friendTotalXp={friendProfile.totalXp}
+            friendAura={friendProfile.aura}
+            myAvatar={myProfile?.avatar ?? String(getBestAvatarForLevel(1))}
+            myTotalXp={myProfile?.totalXP ?? 0}
+            level={levelUpModal.level}
+            bonusPercent={bonusPercentForLevel(levelUpModal.level)}
+            starsGranted={levelUpModal.starsGranted}
+            onClaim={() => { void handleClaimFriendLevel(); }}
+          />
+        );
+      })()}
+
+      {friendsTogetherPolicy.enabled && chestModal && (
+        <FriendsChestModal
+          visible
+          tier={chestModal.tier}
+          starsGranted={chestModal.starsGranted}
+          xpBoostMinutes={chestModal.xpBoostMinutes}
+          streakShield={chestModal.streakShield}
+          aura={chestModal.aura}
+          onClaim={() => setChestModal(null)}
+        />
+      )}
+
       <ThemedConfirmModal
         visible={deleteTarget !== null}
         title={L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?', 'Remover amigo?', 'Xóa bạn bè?', 'Hapus teman?', 'Arkadaşı sil?', 'Usunąć znajomego?')}

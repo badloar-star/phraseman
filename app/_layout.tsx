@@ -104,7 +104,7 @@ import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
 import {
-  checkLeagueOvertakeNotification, getNotifSettingsSnapshot, getNotifPrefsSnapshot, hydrateNotifSettingsFromStorage, hydrateNotifPrefsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, saveNotifPrefs, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhraseOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
+  checkLeagueOvertakeNotification, getNotifSettingsSnapshot, getNotifPrefsSnapshot, hydrateNotifSettingsFromStorage, hydrateNotifPrefsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, saveNotifPrefs, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhraseOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler, syncFriendsPushPrefIfChanged,
 } from './notifications';
 import { initRevenueCat } from './revenuecat_init';
 import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
@@ -741,6 +741,10 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
       void import('./push_token_registration')
         .then(({ registerPushTokenForServerPush }) => registerPushTokenForServerPush(lang))
         .catch(() => {});
+      // «Вместе»: раз в запуск синхронизируем в облако тумблер «Друзья» + смещение часового
+      // пояса (friends_push_v1) — сервер по ним решает, слать ли пуш «зовёт» и когда тихие часы.
+      // зачем: без tz сервер считает тихие часы по UTC+3, а не по времени получателя.
+      syncFriendsPushPrefIfChanged().catch(() => {});
     }
 
     // ── 6. League Overtake Notification ─────────────────────────────────────
@@ -3267,6 +3271,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_words_session" />
       <Stack.Screen name="flashcards_listening_session" />
+      <Stack.Screen name="flashcards_speaking_session" />
       <Stack.Screen name="flashcards_blitz_session" />
       <Stack.Screen name="flashcards_voice_picker" />
       <Stack.Screen name="trainer_phrases_session" />

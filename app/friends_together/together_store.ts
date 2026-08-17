@@ -10,6 +10,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getLocalDayKey } from '../local_date';
+import { getWeekKey } from '../hall_of_fame_utils';
 import { getCanonicalUserId } from '../user_id_policy';
 import type { FriendProfileBatchRecord } from '../friends_profiles_batch';
 import {
@@ -44,6 +45,8 @@ export type FriendTogetherPairState = Readonly<{
   claimedLevel: number;
   bonusPercent: number;
   weeklyXp: number;
+  /** Реферальный буст сундука (×2 вклада) действует на текущей неделе. */
+  boostActive: boolean;
 }>;
 
 export type FriendsTogetherSnapshot = Readonly<{
@@ -150,7 +153,9 @@ export async function loadFriendPairsServerState(
         ? Math.max(0, Math.floor(Number(claimedLevelMap[myUid])))
         : 0;
       const boostUntilWeekKey = typeof data.boostUntilWeekKey === 'string' ? data.boostUntilWeekKey : null;
-      const boostActive = !!boostUntilWeekKey; // сравнение с текущей неделей делает вызывающий сундука при желании точнее
+      // зачем: сервер считает буст ×2 только пока boostUntilWeekKey ≥ текущей недели —
+      // клиентская полоса сундука должна совпадать, иначе после первой недели она врёт вверх.
+      const boostActive = !!boostUntilWeekKey && boostUntilWeekKey >= getWeekKey(new Date());
       fetchedPairs[otherUid] = { bonusDays, claimedLevel, boostActive };
       if (uniqueUids.includes(otherUid)) {
         out[otherUid] = { friendUid: otherUid, bonusDays, claimedLevel, boostActive };
@@ -233,6 +238,7 @@ export async function refreshFriendsTogether(
       claimedLevel: server.claimedLevel,
       bonusPercent,
       weeklyXp: Math.max(0, Math.floor(profile.weeklyXp ?? 0)),
+      boostActive: server.boostActive === true,
     };
 
     if (todayCommon && level >= 2 && bonusPercent > bestBonusPercent) {

@@ -265,6 +265,8 @@ export default function SettingsNotifications() {
   // зачем (2026-08-02, владелец): пуш «подарок сгорит» — отдельный тумблер,
   // не «Предложения»: это предупреждение о потере своего добра, не маркетинг.
   const giftsLabel = L({ ru:'Подарок сгорает', uk:'Подарунок згорає', es:'Regalo por caducar', 'pt-BR':'Presente expirando', vi:'Quà sắp hết hạn', id:'Hadiah akan hangus', tr:'Hediye yanmak üzere', pl:'Prezent wygasa' });
+  // «Вместе»: пуш «Позвал(а)» от друга — отдельная категория (владелец, 2026-08-16).
+  const friendsLabel = L({ ru:'Друзья', uk:'Друзі', es:'Amigos', 'pt-BR':'Amigos', vi:'Bạn bè', id:'Teman', tr:'Arkadaşlar', pl:'Znajomi' });
   const offersLabel = L({ ru:'Скидки и предложения', uk:'Знижки та пропозиції', es:'Descuentos y ofertas', 'pt-BR':'Descontos e ofertas', vi:'Giảm giá và ưu đãi', id:'Diskon dan penawaran', tr:'İndirimler ve teklifler', pl:'Zniżki i oferty' });
   const savedLabel = L({ ru:'Сохранено', uk:'Збережено', es:'Guardado', 'pt-BR':'Salvo', vi:'Đã lưu', id:'Tersimpan', tr:'Kaydedildi', pl:'Zapisano' });
   const cancelLabel = L({ ru:'Отмена', uk:'Скасувати', es:'Cancelar', 'pt-BR':'Cancelar', vi:'Hủy', id:'Batal', tr:'İptal', pl:'Anuluj' });
@@ -373,6 +375,8 @@ export default function SettingsNotifications() {
           <View style={groupStyle}>
             <ToggleRow label={leagueLabel} value={prefs.categories.league} onChange={toggleCategory('league')} />
             <ToggleRow label={giftsLabel} value={prefs.categories.gifts} onChange={toggleCategory('gifts')} />
+            {/* «Вместе» (friends_together §4/§5): категория «Друзья» — пуш «Позвал(а)». */}
+            <ToggleRow label={friendsLabel} value={prefs.categories.friends} onChange={toggleCategory('friends')} />
             <ToggleRow label={offersLabel} value={prefs.categories.offers} onChange={toggleCategory('offers')} last />
           </View>
         </View>

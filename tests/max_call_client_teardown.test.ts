@@ -122,6 +122,21 @@ function dcMessage(h: ReturnType<typeof makeHarness>, payload: Record<string, un
   h.dc.onmessage?.({ data: JSON.stringify(payload) });
 }
 
+// зачем: владелец 2026-08-17 — «он говорит-говорит, потом прерывается, будто
+// отвечает на свою реплику». На громкой связи без гарантированного echo
+// cancellation голос ИИ из динамика долетает до микрофона и сервер читает его
+// как речь ученика (interrupt_response обрывает ответ). getUserMedia обязан
+// явно просить AEC/NS/AGC, не полагаться на дефолт платформы.
+describe('getUserMedia: echo cancellation против самоперебивания ИИ', () => {
+  it('запрашивает echoCancellation/noiseSuppression/autoGainControl явно, не голый audio:true', async () => {
+    const h = makeHarness();
+    await connect(h);
+    expect(h.deps.native.mediaDevices.getUserMedia).toHaveBeenCalledWith({
+      audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+    });
+  });
+});
+
 /** response.done с контрактной разбивкой usage (input/output_token_details). */
 function usageDone(input: Partial<Record<string, number>>, output: Partial<Record<string, number>>) {
   return {

@@ -254,6 +254,32 @@ describe('tutor instructions', () => {
     expect(instr.trim().endsWith(VOICE_UNTRUSTED_ANCHOR)).toBe(true);
   });
 
+  // зачем: владелец 2026-08-17 — «когда я попросил говорить со мной на русском,
+  // он начал учить меня русскому». "Говори со мной на {{TARGET_LANG}}" и "говори
+  // со мной на {{LEARNER_LANG}}" звучат почти одинаково — модель путала
+  // направление. Явно разводим два запроса и запрещаем понимать вторую просьбу
+  // как «преподавай родной язык».
+  it('LANGUAGE POLICY явно различает "больше {{TARGET_LANG}}" и "больше {{LEARNER_LANG}}", запрещая перепутать их с "учи меня родному"', () => {
+    const instr = buildVoiceInstructions({
+      cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian', targetLangName: 'English',
+    });
+    expect(instr).toContain('set_language_preference("more_target")');
+    expect(instr).toContain('set_language_preference("more_native")');
+    expect(instr).toContain('This does NOT mean "teach me Russian"');
+    expect(instr).toContain('Never start giving Russian lessons');
+  });
+
+  // зачем: владелец 2026-08-17 — учитель сказал ученику «привет, я из России»
+  // (выдуманный факт о себе). У учителя нет заданной биографии/национальности.
+  it('запрещает учителю выдумывать факты о СЕБЕ (страна, семья, биография)', () => {
+    const instr = buildVoiceInstructions({
+      cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian', targetLangName: 'English',
+    });
+    expect(instr).toContain('Never invent facts about YOURSELF');
+    expect(instr).toContain('no nationality, hometown, family, age, or personal backstory');
+    expect(instr).toContain("I'm your English teacher here in the app");
+  });
+
   it('изучаемый язык подставляется (французский курс) и учитель не переключается на другой язык по просьбе', () => {
     const fr = buildVoiceInstructions({
       cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian', targetLangName: 'French',

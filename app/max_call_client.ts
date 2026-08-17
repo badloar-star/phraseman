@@ -868,7 +868,21 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     pc = connection;
     wirePeerConnection(connection);
     try {
-      stream = await deps.native.mediaDevices.getUserMedia({ audio: true });
+      // зачем: владелец 2026-08-17 — «он говорит-говорит, потом прерывается и
+      // будто отвечает на свою же реплику». Голый {audio:true} не гарантирует
+      // echo cancellation на всех устройствах/маршрутах — а мы держим звук на
+      // громком динамике (setForceSpeakerphoneOn), так что голос учителя из
+      // динамика долетает обратно до микрофона. Без AEC этот отголосок читается
+      // сервером как «ученик заговорил» → interrupt_response обрывает ответ ИИ
+      // на полуслове → тут же создаётся новый response. Явные constraints
+      // заставляют WebRTC применить AEC/NS/AGC гарантированно, а не «как повезёт».
+      stream = await deps.native.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true,
+        },
+      });
       if (isTornDown()) throw new Error('call_ended');
       localStream = stream;
       // Тап mute мог прийти, пока системный permission/getUserMedia ещё ждал.

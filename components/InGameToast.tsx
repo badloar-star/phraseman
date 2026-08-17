@@ -17,6 +17,12 @@ import { LinearGradient } from './SafeLinearGradient';
 import { themedToastChrome } from '../constants/themedToastChrome';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { LUM, TOAST } from '../constants/motionHybrid';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+
+/** Минимальный отступ сверху — прежнее поведение на экранах без выреза. */
+const TOAST_TOP_MIN = 60;
+/** Воздух между системной панелью и тостом, когда вырез есть. */
+const TOAST_TOP_GAP = 12;
 
 interface Props {
   message: string | null;
@@ -51,6 +57,11 @@ function InGameToastHybrid({
   chrome: ReturnType<typeof themedToastChrome>;
 }) {
   const { f } = useTheme();
+  // зачем: тост висел на жёстком top:60 и на Android с вырезом/высоким статус-баром
+  // уезжал под системную панель («вылазит за рамки экрана», замечание владельца).
+  // Отступ берём от безопасной зоны, минимум сохраняем прежним.
+  const insets = useStableSafeAreaInsets();
+  const safeTop = Math.max(TOAST_TOP_MIN, insets.top + TOAST_TOP_GAP);
   const opacity = useSharedValue(0);
   const y = useSharedValue(-14);
   const x = useSharedValue(0);
@@ -100,7 +111,10 @@ function InGameToastHybrid({
   const icon = TONE_ICON[type];
 
   return (
-    <Reanimated.View style={[styles.toast, { shadowColor: chrome.shadowColor }, cardStyle]} pointerEvents="none">
+    <Reanimated.View
+      style={[styles.toast, { top: safeTop, shadowColor: chrome.shadowColor }, cardStyle]}
+      pointerEvents="none"
+    >
       <LinearGradient colors={chrome.cardColors} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFillObject} />
       <View style={styles.hybridRow}>
         <Ionicons name={icon} size={18} color={chrome.accent} />
@@ -116,6 +130,10 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVa
   const { theme: t, f, themeMode } = useTheme();
   const anim = useRef(new Animated.Value(0)).current;
   const isHybrid = motionVariant === 'hybrid';
+  // зачем: тот же фикс безопасной зоны, что в гибриде — жёсткий top:60 уводил
+  // тост под системную панель на Android с вырезом.
+  const insets = useStableSafeAreaInsets();
+  const safeTop = Math.max(TOAST_TOP_MIN, insets.top + TOAST_TOP_GAP);
 
   useEffect(() => {
     if (!message || isHybrid) return;
@@ -155,7 +173,9 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVa
       pointerEvents="none"
       style={[
         styles.toast,
-        { borderColor: chrome.border, shadowColor: chrome.shadowColor, opacity: anim,
+        // зачем: обводка контейнера запрещена стилем владельца — разделяем тоном
+        // и тенью; отступ сверху берём от безопасной зоны.
+        { top: safeTop, shadowColor: chrome.shadowColor, opacity: anim,
           transform: [{ translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [-20, 0] }) }] },
       ]}
     >

@@ -42,6 +42,15 @@ export interface SupportTelegramReviewDoc {
   readonly instructionsRevision?: number;
   readonly instructionsFingerprint?: string;
   readonly notificationAtMs?: number;
+  /**
+   * message_id карточки в Telegram.
+   *
+   * зачем (владелец, 2026-08-17): карточка пересоздаётся каждый час, и в чате
+   * копились пять версий с живыми на вид кнопками. Владелец жал на старую —
+   * её токен погашен, нажатие уходило в пустоту. По этому номеру новая
+   * карточка снимает кнопки у прежних, оставляя действующей ровно одну.
+   */
+  readonly telegramMessageId?: number;
   readonly notificationLeaseId?: string | null;
   readonly notificationLeaseExpiresAtMs?: number | null;
   readonly autoSendAtMs?: number | null;

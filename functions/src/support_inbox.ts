@@ -69,7 +69,7 @@ import {
 import { issueApprovalToken, type ConsumeApprovalTokenResult } from './jarvis/approval_store';
 import { parseOwnerConfig, type OwnerConfig } from './jarvis/approval_webhook_core';
 import { JARVIS_TELEGRAM_CONFIG } from './jarvis/telegram_owner_config';
-import { sendJarvisDigest } from './jarvis/telegram_send';
+import { expireJarvisCardButtons, sendJarvisDigest, sendJarvisDigestMessage } from './jarvis/telegram_send';
 import { hashNonce, verifyApprovalToken, type ApprovalAction, type ApprovalTokenDoc } from './jarvis/approval_token';
 import type { InlineKeyboard } from './jarvis/telegram_buttons';
 import {
@@ -3304,6 +3304,48 @@ async function invalidatePreparedSupportDraftForRegeneration(input: {
   });
 }
 
+/**
+ * Снимает кнопки у прежних карточек этого письма.
+ *
+ * зачем (владелец, 2026-08-17: «я нажал уже кучу раз, а оно всё приходит»):
+ * карточка ответа пересоздаётся каждый час, и в чате скопилось ПЯТЬ версий,
+ * каждая с кнопками «Отправить / Правки / Отменить». Живая всегда только
+ * последняя — токены прежних погашены. Владелец жал на старую, нажатие уходило
+ * в пустоту, и это читалось как «система не работает». Половина сегодняшнего
+ * разбора ушла на этот симптом.
+ *
+ * зачем limit(5): гасим только заметный хвост. Карточек старше пяти в глазах
+ * владельца нет, а Telegram всё равно запрещает правку сообщений старше 48
+ * часов — тянуть всю историю значило бы платить чтениями за отказы API.
+ *
+ * зачем никогда не бросать: это косметика. Уронить отправку нового ответа
+ * из-за того, что старую кнопку не удалось погасить, — плохая сделка.
+ */
+async function expirePreviousSupportCard(
+  db: FirebaseFirestore.Firestore,
+  messageDocId: string,
+  chatId: string,
+): Promise<void> {
+  try {
+    const snap = await db.collection(SUPPORT_TELEGRAM_REVIEW_COLLECTION)
+      .where('messageDocId', '==', messageDocId)
+      .orderBy('createdAtMs', 'desc')
+      .limit(5)
+      .get();
+    const botToken = ADMIN_ALERT_BOT_TOKEN.value();
+    for (const doc of snap.docs) {
+      const messageId = Number((doc.data() as { telegramMessageId?: unknown }).telegramMessageId ?? 0);
+      if (!messageId) continue;
+      await expireJarvisCardButtons({ botToken, chatId, messageId, note: 'stale' });
+    }
+  } catch (error) {
+    logger.warn('support_expire_previous_card_failed', {
+      messageDocId,
+      errorCode: supportAutoErrorCode(error),
+    });
+  }
+}
+
 async function prepareSupportTelegramReview(input: {
   db: FirebaseFirestore.Firestore;
   messageDocId: string;
@@ -3620,11 +3662,24 @@ async function prepareSupportTelegramReview(input: {
       });
       return cancelled ? 'attention_required' : 'stale';
     }
-    const sent = await sendJarvisDigest({
+    // зачем гасить прежнюю карточку ПЕРЕД отправкой новой (владелец,
+    // 2026-08-17: «я нажал уже кучу раз, а оно всё приходит»): карточка
+    // пересоздаётся каждый час, и в чате копились ПЯТЬ версий с живыми на вид
+    // кнопками. Владелец жал на старую — её токен уже погашен, нажатие уходило
+    // в пустоту, и это читалось как «система не работает». Теперь кнопки
+    // остаются ровно у одной, самой свежей карточки.
+    //
+    // зачем не бросать при неудаче: снятие кнопок — косметика. Сообщение могло
+    // быть удалено владельцем вручную или устареть для правки (Telegram даёт
+    // 48 часов). Уронить из-за этого ОТПРАВКУ нового ответа значит променять
+    // мелкое неудобство на потерю письма.
+    await expirePreviousSupportCard(input.db, input.messageDocId, owner.ownerTelegramChatId);
+
+    const sentMessageId = await sendJarvisDigestMessage({
       botToken: ADMIN_ALERT_BOT_TOKEN.value(), chatId: owner.ownerTelegramChatId,
       text: preview.text, keyboard,
     });
-    if (!sent) throw new Error('telegram_review_send_failed');
+    if (sentMessageId === null) throw new Error('telegram_review_send_failed');
     const notificationAtMs = Date.now();
     const repositoryTrust = retrieveSupportRepositoryContext(supportIssueText(input.doc));
     const configRef = input.db.collection('admin_config').doc('support_inbox');
@@ -3714,6 +3769,9 @@ async function prepareSupportTelegramReview(input: {
       tx.set(reviewRef, {
         state: 'awaiting_approval', notificationAtMs, autoSendAtMs, updatedAtMs: notificationAtMs,
         notificationLeaseId: null, notificationLeaseExpiresAtMs: null,
+        // Номер сообщения в Telegram: по нему следующая карточка погасит кнопки
+        // этой. Ноль означает «отправлено, но номер не разобрался».
+        ...(sentMessageId > 0 ? { telegramMessageId: sentMessageId } : {}),
       }, { merge: true });
       tx.set(messageRef, {
         ownerNotification: {

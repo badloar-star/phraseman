@@ -22,6 +22,13 @@ export interface LabModeEntry {
   readonly icon: keyof typeof Ionicons.glyphMap;
   // зачем: describe_scene снят владельцем с направления — показываем честно, но не даём запускать.
   readonly removedByOwner?: true;
+  /**
+   * зачем: режим невозможен на текущем движке — доказано по коду, не «пока не сделали».
+   * Каталог обязан говорить правду: без этой пометки будущие сессии снова
+   * предложат владельцу режим, который физически не запускается.
+   * Текст — конкретная причина с местом в коде, а не «не поддерживается».
+   */
+  readonly blockedByEngine?: string;
 }
 
 export const LAB_GROUPS: readonly LabGroup[] = Object.freeze([
@@ -39,7 +46,8 @@ export const LAB_MODE_CATALOG: readonly LabModeEntry[] = Object.freeze([
   { family: 'sound_contrast', title: 'Контраст звуков', group: 'sound', interaction: 'listen', icon: 'pulse-outline' },
   { family: 'sound_syllable_lab', title: 'Лаборатория слогов', group: 'sound', interaction: 'listen', icon: 'analytics-outline' },
   { family: 'scripted_repeat_compare', title: 'Повтори и сравни', group: 'sound', interaction: 'speak', icon: 'repeat-outline' },
-  { family: 'shadowing_prosody', title: 'Шэдоуинг', group: 'sound', interaction: 'speak', icon: 'mic-outline' },
+  { family: 'shadowing_prosody', title: 'Шэдоуинг', group: 'sound', interaction: 'speak', icon: 'mic-outline',
+    blockedByEngine: 'Нужно слушать микрофон и играть диктора одновременно. SpeakingPanel глушит эталон перед записью (Speech.stop), а аудио-режимы взаимоисключающие: SPOKEN_AUDIO_MODE.allowsRecording=false против SPEAKING_RECORDING_AUDIO_MODE.interruptionMode=doNotMix. Нужен нативный аудио-граф с эхоподавлением.' },
   { family: 'phrase_builder', title: 'Собери фразу', group: 'build', interaction: 'assemble', icon: 'construct-outline' },
   { family: 'listen_build_dictation', title: 'Диктант на сборку', group: 'build', interaction: 'assemble', icon: 'headset-outline' },
   { family: 'context_gap_grammar', title: 'Пропуск в контексте', group: 'build', interaction: 'choice', icon: 'extension-puzzle-outline' },

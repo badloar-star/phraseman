@@ -862,6 +862,21 @@ function LearningV2LegacySessionScreen() {
         : null;
     // Feedback is final for the active interaction on this device. Answers are
     // never sent to a server for a second correct/wrong decision.
+    //
+    // зачем: technical_invalid — сбой ЗАХВАТА, а не ошибка ученика (микрофон без
+    // разрешения, тишина, оценщик не смог посчитать). Контракт course_economy
+    // прямо говорит: «Technical capture failures never increment it» про
+    // learnerAttempts, и projectRequiredTaskStars возвращает для него
+    // countsAsLearnerError:false + retryRequired:true. Раньше экран считал
+    // ЛЮБОЙ не-provisional_correct ошибкой и отнимал звезду за чужой сбой —
+    // на говорильной дорожке это било бы по каждому отказу микрофона.
+    const captureFailed = releasedVerdict?.resultCode === "technical_invalid";
+    if (captureFailed) {
+      setWrongExplanation(copy.captureFailed);
+      setResult("idle");
+      void hapticError();
+      return;
+    }
     const answerCorrect = releasedVerdict
       ? releasedVerdict.resultCode === "provisional_correct"
       : normalize(answer) === normalize(correctAnswer);

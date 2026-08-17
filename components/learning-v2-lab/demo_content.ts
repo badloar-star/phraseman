@@ -43,7 +43,10 @@ const INSTRUCTIONS: Partial<Record<V2ActivityFamily, string>> = {
   sound_contrast: 'Прослушай и выбери форму, которая звучала',
   sound_syllable_lab: 'Выбери фразу с правильным ударением',
   scripted_repeat_compare: 'Произнеси фразу и сравни с образцом',
-  shadowing_prosody: 'Повторяй вслух в темпе диктора',
+  // зачем: движок не может слушать микрофон и играть диктора одновременно —
+  // подробная причина в mode_catalog (blockedByEngine). Пишем правду, чтобы
+  // лаборатория не обещала режим, который физически не запускается.
+  shadowing_prosody: 'Невозможен на текущем движке: нельзя слушать и говорить одновременно',
   phrase_builder: 'Собери фразу из плиток',
   listen_build_dictation: 'Прослушай и собери услышанное',
   context_gap_grammar: 'Выбери форму для пропуска',

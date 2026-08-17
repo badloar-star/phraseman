@@ -97,6 +97,23 @@ export interface V2ActivityRequiredSessionV2 {
   readonly tasks: readonly V2ActivitySessionTaskV2[];
 }
 
+/**
+ * @deprecated НЕ ИСПОЛЬЗОВАТЬ для говорильной дорожки.
+ *
+ * зачем: заготовка осталась от «Разговорного клуба» — разговора с ИИ-собеседником,
+ * который владелец удалил намеренно (восстанавливать запрещено). Владелец
+ * утверждил вместо него ДРУГУЮ фичу — говорильную дорожку: 56 сессий на урок,
+ * задания на произнесение фраз урока, звёзды из общего кошелька.
+ *
+ * Эта структура ей не подходит по трём причинам сразу:
+ *   1. максимум 2 записи на эпизод (см. проверку ниже) — нужно 56;
+ *   2. walletAuthority "none" — говорильная дорожка обязана начислять звёзды;
+ *   3. requiredSessionStarEligible false — звёзды должны быть те же самые.
+ *
+ * Менять поля здесь нельзя: они и есть смысл заготовки, её проверки на них
+ * держатся. Говорильная дорожка получает СВОЮ сущность.
+ * План: docs/v2/SPEAKING_TRACK_PLAN_2026-08-17.md §4.1.
+ */
 export interface V2ActivityOptionalClubCapstoneV2 {
   readonly capstoneId: string;
   readonly activityId: string;
@@ -118,6 +135,7 @@ export interface V2ActivitySessionPackageV2 {
   readonly requiredTasksPerSession: 12;
   readonly requiredFamilies: typeof V2_REQUIRED_SESSION_FAMILIES_V2;
   readonly sessions: readonly V2ActivityRequiredSessionV2[];
+  /** @deprecated Наследие удалённого «Разговорного клуба» — см. V2ActivityOptionalClubCapstoneV2. */
   readonly optionalClubCapstones: readonly V2ActivityOptionalClubCapstoneV2[];
   readonly contentMayAward: false;
   readonly walletAuthority: "none";
@@ -581,6 +599,7 @@ export const V2_ACTIVITY_SESSION_PACKAGE_AUTHORITY_V2 = Object.freeze({
   releaseAuthority: false as const,
 });
 
+/** @deprecated Наследие удалённого «Разговорного клуба» — см. V2ActivityOptionalClubCapstoneV2. */
 export type V2OptionalActivityFamilyV2 = Extract<
   V2ActivityFamilyV2,
   "speaking_club_mission"

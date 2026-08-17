@@ -4,6 +4,12 @@ type SessionCopy = Readonly<{
   modes: Readonly<Record<string, string>>;
   preparing: string;
   unavailable: string;
+  /**
+   * зачем: сбой ЗАХВАТА ответа (микрофон без разрешения, тишина, оценщик не смог
+   * посчитать) — не ошибка ученика. Звёзды не снимаются, попытка не тратится;
+   * текст обязан звать повторить, а не обвинять.
+   */
+  captureFailed: string;
   retry: string;
   close: string;
   introCheck: (question: number) => string;
@@ -92,6 +98,7 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     },
     preparing: "Подготавливаем занятие и локальное аудио…",
     unavailable: "Сессия недоступна",
+    captureFailed: "Не удалось записать ответ. Попробуй ещё раз — попытка не потрачена",
     retry: "Повторить",
     close: "Закрыть сессию",
     introCheck: (n) => `Проверка интро · вопрос ${n} из 3`,
@@ -439,6 +446,15 @@ function makeCopy(
       "Przygotowujemy sesję i nagrania lokalne…",
     ),
     unavailable: base.unavailable,
+    captureFailed: phrase(
+      "Не вдалося записати відповідь. Спробуй ще раз — спроба не витрачена",
+      "No se pudo grabar tu respuesta. Inténtalo otra vez: no se gastó el intento",
+      "Não foi possível gravar sua resposta. Tente de novo: a tentativa não foi gasta",
+      "Không ghi được câu trả lời. Hãy thử lại — lượt của bạn vẫn còn",
+      "Jawabanmu tidak terekam. Coba lagi — percobaanmu tidak terpakai",
+      "Yanıtın kaydedilemedi. Tekrar dene — hakkın harcanmadı",
+      "Nie udało się nagrać odpowiedzi. Spróbuj ponownie — próba nie przepadła",
+    ),
     retry: phrase(
       "Повторити",
       "Reintentar",

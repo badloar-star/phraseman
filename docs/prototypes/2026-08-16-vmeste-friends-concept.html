@@ -147,6 +147,7 @@ ol.tight li,ul.tight li{margin:0 0 6px}
 @keyframes chestRock{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(4deg) translateY(-3px)}}
 .floaters{position:absolute;inset:0;pointer-events:none}
 .flt{position:absolute;display:inline-flex;align-items:center;gap:4px;height:22px;padding:0 7px;border-radius:8px;background:var(--accentBg);color:var(--accent);font-size:11px;font-weight:700;opacity:0}
+.flt svg{width:12px;height:12px}
 .flt.go{animation:floatIn 1.5s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes floatIn{0%{opacity:0;transform:translate(0,0) scale(.9)}20%{opacity:1;transform:translate(0,-6px) scale(1)}100%{opacity:0;transform:translate(var(--dx,120px),var(--dy,-40px)) scale(.7)}}
 .bigno{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
@@ -335,7 +336,7 @@ ol.tight li,ul.tight li{margin:0 0 6px}
   <h2>Три вещи, один экран</h2>
   <div class="grid3">
     <div class="card"><div class="eyebrow">1 · с каждым другом</div><h3>Дружба растёт</h3><p>День, когда урок прошли <b>оба</b>, — это «день вместе». Дни копятся (не сгорают) и поднимают <b>уровень дружбы</b>: Знакомые → Приятели → Друзья → Близкие → Лучшие. Чем выше — тем больше бонус к опыту обоим в общий день, дешевле подарки, заметнее рамка/аура. Это и есть «что качать».</p></div>
-    <div class="card"><div class="eyebrow">2 · все друзья вместе</div><h3>Сундук недели</h3><p>Опыт, который твои друзья зарабатывают за неделю, наполняет <b>твой</b> сундук (у каждого — свой). Три порога — три размера награды из уже существующего каталога сундука лиги. Открыть можно в воскресенье, если сам занимался хотя бы 3 дня. Больше живых друзей — выше порог, до которого дотягиваешься.</p></div>
+    <div class="card"><div class="eyebrow">2 · все друзья вместе</div><h3>Сундук недели</h3><p>Опыт, который твои друзья зарабатывают за неделю, наполняет <b>твой</b> сундук (у каждого — свой). Считаются только друзья от уровня «Приятели» — до <b>10 лучших</b>, у каждого кап 2 000 XP. Три порога — три награды: звёзды (10/25/50), буст, щит, редкая косметика, на III — дни Plus. Открыть можно в воскресенье, если <b>сам</b> набрал ≥5 дней и ≥1 000 XP; чем больше своих дней — тем полнее сундук. Толпа случайных друзей не помогает — нужны десять живых, с которыми есть общие дни.</p></div>
     <div class="card"><div class="eyebrow">3 · одно действие</div><h3>Позвать</h3><p>Друг сегодня ещё не занимался — один тап, и ему уходит пуш <b>от твоего имени</b> («Марина зовёт: 5 минут — и цепь цела»). Раз в день на друга, тихие часы, отключается в настройках. Ответил уроком — у вас «день вместе», бонус получают оба, его опыт капает в твой сундук.</p></div>
   </div>
   <svg class="loopviz" viewBox="0 0 760 210" aria-label="Петля">
@@ -411,8 +412,8 @@ ol.tight li,ul.tight li{margin:0 0 6px}
   <div class="showcase">
     <div class="text">
       <h3>4.5 · Сундук недели открыт</h3>
-      <div class="step"><i>1</i><div>Воскресенье. Друзья за неделю принесли 9 400 опыта — второй порог из трёх. Ты занимался 5 дней из 7 — сундук доступен.</div></div>
-      <div class="step"><i>2</i><div>Внутри — то, что и так выдаёт сундук лиги: ×2 опыта на 30 минут, щит цепи, шанс на ауру. Никаких новых предметов.</div></div>
+      <div class="step"><i>1</i><div>Воскресенье. Десять лучших друзей за неделю принесли 13 800 опыта — второй порог из трёх. Ты занимался 6 дней из 7 и набрал 1 900 XP — сундук доступен, награда ×1.25.</div></div>
+      <div class="step"><i>2</i><div>Внутри — ×2 опыта на час, щит цепи, +25 ★ и бесплатный подарок другу. На третьем пороге — редкая аура и дни Plus. Предметы — из существующих каталогов, новых сущностей нет.</div></div>
       <div class="step"><i>3</i><div>Под сундуком — кто принёс больше всех (топ-3 из батча профилей). Это тихая причина позвать двух самых активных в друзья и держать их рядом.</div></div>
     </div>
     <div class="phones"><div><div class="phone" id="ph-chest"></div><div class="cap">Сундук: 2-й порог, клейм, награды из существующего каталога</div></div></div>
@@ -455,18 +456,19 @@ ol.tight li,ul.tight li{margin:0 0 6px}
   <div class="grid2 mt12" style="margin-top:22px">
     <div class="card"><h3>Сундук недели — пороги</h3>
       <div class="tbl" style="box-shadow:none;margin:8px 0"><table>
-        <tr><th>Порог</th><th>Опыт друзей за неделю</th><th>Что внутри (существующие награды сундука лиги)</th></tr>
-        <tr><td><b>I</b></td><td>3 000</td><td>×2 опыта на 30 мин</td></tr>
-        <tr><td><b>II</b></td><td>8 000</td><td>×2 опыта на 60 мин + щит цепи</td></tr>
-        <tr><td><b>III</b></td><td>15 000</td><td>всё выше + шанс на ауру/аватар из каталога сундука</td></tr>
+        <tr><th>Порог</th><th>Опыт друзей за неделю</th><th>Что внутри</th></tr>
+        <tr><td><b>I</b></td><td>6 000</td><td>×2 опыта на 60 мин · <b>+10 ★</b></td></tr>
+        <tr><td><b>II</b></td><td>12 000</td><td>+ щит цепи · <b>+25 ★</b> · один подарок другу бесплатно</td></tr>
+        <tr><td><b>III</b></td><td>20 000 (≈10 друзей на капе)</td><td>+ <b>+50 ★</b> · редкая аура/аватар из каталога сундука · <b>3 дня Plus</b> (или 100 ★ — решение владельца)</td></tr>
+        <tr><td><b>Серия</b></td><td>4 сундука III подряд</td><td>золотая рамка «Круг» — получить иначе нельзя</td></tr>
       </table></div>
-      <p class="src">Каждый друг засчитывается максимум на 1 500 опыта в неделю — чтобы один «марафонец» не закрывал сундук, а нужны были 5–10 живых друзей. Условие открытия: сам занимался ≥3 дня.</p></div>
+      <p class="src"><b>Защита от «набрать 200 друзей»:</b> считаются только друзья уровня «Приятели» и выше (≥3 общих дня — а общий день требует, чтобы занимался и ты); в зачёт идут максимум 10 лучших по вкладу, кап 2 000 XP на друга; открытие — только при своих ≥5 днях и ≥1 000 XP за неделю, награда умножается на свои дни (5 → ×1, 7 → ×1.5). Больше десяти друзей ничего не добавляют — но десять живых нужны.</p></div>
     <div class="card"><h3>Ограничения, чтобы не ломать экономику</h3>
       <ul class="tight">
         <li>Бонус к опыту действует только на XP уроков в общий день, не суммируется с личными бустами (берётся максимум) — не разгоняет лигу.</li>
-        <li>Звёзды в наградах — не более 5 в неделю на человека (валюта открытия уроков V2).</li>
+        <li>Звёзды: до 50 в неделю из сундука (III) + до 3 за уровни дружбы — валюта открытия уроков V2, инфляцию держим ручкой в remote config.</li>
         <li>Жемчужины не выдаются; только тратятся (подарки дешевле — стимул дарить).</li>
-        <li>Дни вместе с синтетическими жителями лиг не считаются; дружба моложе 24 ч не даёт перков.</li>
+        <li>Дружба моложе 24 ч не даёт перков; в сундук идут только «Приятели» и выше.</li>
       </ul></div>
   </div>
 </section>
@@ -476,7 +478,7 @@ ol.tight li,ul.tight li{margin:0 0 6px}
   <div class="num">06 · Вирусная петля</div>
   <h2>Почему зовёшь друзей — и почему приглашённый остаётся</h2>
   <div class="grid3">
-    <div class="card tone"><h3>Причина позвать</h3><p>Сундук недели дотягивается до II–III порога только с 5+ живыми друзьями. Каждый новый друг — новая полоска дружбы, которую хочется докачать. Приглашённый стартует «Приятелем» и первую неделю приносит в сундук вдвойне.</p></div>
+    <div class="card tone"><h3>Причина позвать</h3><p>Сундук недели дотягивается до II–III порога только с 7–10 живыми друзьями уровня «Приятели»+. Каждый новый друг — новая полоска дружбы, которую хочется докачать. Приглашённый стартует «Приятелем» и первую неделю приносит в сундук вдвойне.</p></div>
     <div class="card tone"><h3>Причина остаться</h3><p>У приглашённого с первого дня есть человек, с которым «дни вместе» уже идут, и который может его позвать. Он видит того, кто его пригласил, первым в списке — не пустую вкладку.</p></div>
     <div class="card tone"><h3>Причина возвращаться</h3><p>Утром: «3 друга уже занимались — сундук 4 200/8 000». Днём: «Марина зовёт». Вечером: «Игорь ещё нет — позвать». Воскресенье: сундук. Всё на вкладке «Друзья», ни одной новой поверхности.</p></div>
   </div>
@@ -572,11 +574,11 @@ function frow(f,i,opts={}){
     <div class="fbar"><span class="b"><i class="${f.fl>=4?'gold':''}" style="width:${pct}%"></i></span><small class="fd">${f.fd} / ${f.fn} дн.</small></div></div>${bell}</div>`;
 }
 function chestCard(xp,goal2,claimable){
-  const pct=Math.min(100,xp/15000*100);
-  return `<div class="pcard" data-chest><div class="row spread"><div class="peye" style="margin:0">Сундук недели</div><span class="tagp acc" data-tier>${xp>=15000?'порог III':xp>=8000?'порог II':xp>=3000?'порог I':'до порога I'}</span></div>
-    <div class="row mt8"><div class="chest ${claimable?'ready':''}">${chestSvg()}</div><div class="grow"><div class="row spread"><span class="bigno" data-xp>${xp.toLocaleString('ru-RU')}</span><span class="tagp">${xp>=8000?'дальше: III · 15 000':'дальше: II · 8 000'}</span></div>
-    <div class="prog mt8"><i data-bar style="width:${pct}%"></i><span class="tick" style="left:20%"></span><span class="tick" style="left:53.3%"></span></div><div class="tiers"><span class="${xp>=3000?'on':''}">I · ×2 XP 30 мин</span><span class="${xp>=8000?'on':''}">II · + щит</span><span class="${xp>=15000?'on':''}">III · аура</span></div></div></div>
-    <p class="mt8" style="font-size:12px;color:var(--muted)">Опыт твоих друзей за неделю. Откроется в воскресенье — ты занимался <b style="color:var(--text)">4 из 3</b> нужных дней ✓</p><div class="floaters" data-fl></div></div>`;
+  const pct=Math.min(100,xp/20000*100);
+  return `<div class="pcard" data-chest><div class="row spread"><div class="peye" style="margin:0">Сундук недели</div><span class="tagp acc" data-tier>${xp>=20000?'порог III':xp>=12000?'порог II':xp>=6000?'порог I':'до порога I'}</span></div>
+    <div class="row mt8"><div class="chest ${claimable?'ready':''}">${chestSvg()}</div><div class="grow"><div class="row spread"><span class="bigno" data-xp>${xp.toLocaleString('ru-RU')}</span><span class="tagp">${xp>=12000?'дальше: III · 20 000':xp>=6000?'дальше: II · 12 000':'дальше: I · 6 000'}</span></div>
+    <div class="prog mt8"><i data-bar style="width:${pct}%"></i><span class="tick" style="left:30%"></span><span class="tick" style="left:60%"></span></div><div class="tiers"><span class="${xp>=6000?'on':''}">I · 6 000 · +10 ★</span><span class="${xp>=12000?'on':''}">II · 12 000 · +25 ★</span><span class="${xp>=20000?'on':''}">III · 20 000</span></div></div></div>
+    <p class="mt8" style="font-size:12px;color:var(--muted)">Опыт 10 лучших друзей за неделю. Откроется в воскресенье — твои дни: <b style="color:var(--text)">4 из 5</b> нужных</p><div class="floaters" data-fl></div></div>`;
 }
 function toastEl(kind,label,text){ return `<div class="toast ${kind}"><span class="rail"></span><span class="ic">${svg(kind==='reward'?'i-gift':kind==='success'?'i-checkc':'i-info')}</span><div class="tt"><small>${label}</small>${text}</div></div>`; }
 function showToast(host,kind,label,text,ms=3200){ const t=document.createElement('div'); t.innerHTML=toastEl(kind,label,text); const el=t.firstChild; el.classList.add('in'); host.appendChild(el); setTimeout(()=>{el.classList.remove('in');el.classList.add('out');setTimeout(()=>el.remove(),300)},ms); }
@@ -599,11 +601,11 @@ scene('ph-list', el=>{
     ${tabbar(3,false)}<div class="toasts"></div>`;
 },el=>[
   [1200,()=>{ const fl=el.querySelector('[data-fl]'); const f=document.createElement('span'); f.className='flt go'; f.style.left='150px'; f.style.top='70px'; f.style.setProperty('--dx','-100px'); f.style.setProperty('--dy','-46px'); f.innerHTML=svg('i-flash')+'+140 · Сергей'; fl.appendChild(f); setTimeout(()=>f.remove(),1600); }],
-  [1900,()=>{ countTo(el.querySelector('[data-xp]'),4340); el.querySelector('[data-bar]').style.width=(4340/150)+'%'; }],
+  [1900,()=>{ countTo(el.querySelector('[data-xp]'),4340); el.querySelector('[data-bar]').style.width=(4340/200)+'%'; }],
   [3600,()=>{ // Marina does lesson
     const row=el.querySelector('[data-row="0"]'); const f={...friendsData[0],done:true,fd:15}; row.outerHTML=frow(f,0,{});
     const fl=el.querySelector('[data-fl]'); const g=document.createElement('span'); g.className='flt go'; g.style.left='120px'; g.style.top='330px'; g.style.setProperty('--dx','-40px'); g.style.setProperty('--dy','-270px'); g.innerHTML=svg('i-flash')+'+120 · Марина'; el.querySelector('.scr').appendChild(g); setTimeout(()=>g.remove(),1600); }],
-  [4200,()=>{ countTo(el.querySelector('[data-xp]'),4460); el.querySelector('[data-bar]').style.width=(4460/150)+'%'; showToast(el.querySelector('.toasts'),'success','Вместе','Марина прошла урок — день вместе +1 · +5% опыта сегодня'); }],
+  [4200,()=>{ countTo(el.querySelector('[data-xp]'),4460); el.querySelector('[data-bar]').style.width=(4460/200)+'%'; showToast(el.querySelector('.toasts'),'success','Вместе','Марина прошла урок — день вместе +1 · +5% опыта сегодня'); }],
   [4300,()=>{ const r=el.querySelector('[data-row="0"] .fbar .b i'); if(r) r.style.width=(15/30*100)+'%'; }],
 ], 8200);
 
@@ -630,7 +632,7 @@ scene('ph-me', el=>{
 },el=>[
   [900,()=>tapAt(el,292,318)],
   [1100,()=>{ const b=el.querySelector('[data-bell="0"]'); b.classList.remove('pulse'); b.innerHTML=svg('i-check'); b.style.opacity='.5'; showToast(el.querySelector('.toasts'),'success','Готово','Позвал Марину — пуш ушёл от твоего имени'); }],
-  [5200,()=>{ const row=el.querySelector('[data-row="0"]'); row.outerHTML=frow({...friendsData[0],done:true,fd:15},0,{}); countTo(el.querySelector('[data-xp]'),7020); el.querySelector('[data-bar]').style.width=(7020/150)+'%'; showToast(el.querySelector('.toasts'),'reward','Вместе','Марина откликнулась — день вместе +1 · +5% опыта'); }],
+  [5200,()=>{ const row=el.querySelector('[data-row="0"]'); row.outerHTML=frow({...friendsData[0],done:true,fd:15},0,{}); countTo(el.querySelector('[data-xp]'),7020); el.querySelector('[data-bar]').style.width=(7020/200)+'%'; showToast(el.querySelector('.toasts'),'reward','Вместе','Марина откликнулась — день вместе +1 · +5% опыта'); }],
 ], 9000);
 scene('ph-her', el=>{
   el.innerHTML = `<div class="lock" data-lock><div class="time">18:40</div><div class="date">воскресенье, 16 августа</div></div>`+status('18:41')+`<div class="scr"><div class="hdr"><div><h1>Уроки</h1><div class="sub">Урок 12 · Как заказать кофе</div></div></div>
@@ -659,13 +661,13 @@ scene('ph-level', el=>{
 
 /* ═══════ 4.5 chest ═══════ */
 scene('ph-chest', el=>{
-  el.innerHTML = status('10:20')+`<div class="scr"><div class="hdr"><div><h1>Друзья</h1><div class="sub">воскресенье · сундук готов</div></div>${wallet('14 120','52')}</div>
+  el.innerHTML = status('10:20')+`<div class="scr"><div class="hdr"><div><h1>Друзья</h1><div class="sub">воскресенье · сундук готов · ×1.25 за 6 дней</div></div>${wallet('14 120','52')}</div>
     <div class="pcard" data-chest><div class="row spread"><div class="peye" style="margin:0">Сундук недели</div><span class="tagp gold">порог II</span></div>
-    <div class="row mt8"><div class="chest ready">${chestSvg()}</div><div class="grow"><div class="row spread"><span class="bigno">9 400</span><span class="tagp ok">${svg('i-check')}ты: 5 из 3 дней</span></div><div class="prog mt8"><i class="gold" style="width:62%"></i><span class="tick" style="left:20%"></span><span class="tick" style="left:53.3%"></span></div><div class="tiers"><span class="on">I</span><span class="on">II</span><span>III · 15 000</span></div></div></div>
+    <div class="row mt8"><div class="chest ready">${chestSvg()}</div><div class="grow"><div class="row spread"><span class="bigno">13 800</span><span class="tagp ok">${svg('i-check')}ты: 6 дн · 1 900 XP</span></div><div class="prog mt8"><i class="gold" style="width:69%"></i><span class="tick" style="left:30%"></span><span class="tick" style="left:60%"></span></div><div class="tiers"><span class="on">I · 6 000</span><span class="on">II · 12 000</span><span>III · 20 000</span></div></div></div>
     <span class="key sm mt12" data-claim>${svg('i-chest')}Открыть сундук</span>
-    <div class="psect">Принесли больше всех</div><div class="row" style="gap:12px">${av('С','#3E9A7A','#236A52','sm')}<span style="font-size:12px"><b>Сергей</b> · 2 100</span>${av('М','#7C5CBF','#4A2F8A','sm')}<span style="font-size:12px"><b>Марина</b> · 1 500</span>${av('И','#3E7CB1','#22507A','sm')}<span style="font-size:12px"><b>Игорь</b> · 1 100</span></div></div>
+    <div class="psect">Топ-10 друзей · больше всех</div><div class="row" style="gap:10px">${av('С','#3E9A7A','#236A52','sm')}<span style="font-size:12px"><b>Сергей</b> · 2 000</span>${av('М','#7C5CBF','#4A2F8A','sm')}<span style="font-size:12px"><b>Марина</b> · 1 900</span>${av('И','#3E7CB1','#22507A','sm')}<span style="font-size:12px"><b>Игорь</b> · 1 400</span></div></div>
     ${friendsData.slice(0,2).map((f,i)=>frow(f,i)).join('')}</div>${tabbar(3)}
-  <div class="layer" data-cel><div class="scrim"></div><div class="modal"><div class="glass"></div><div class="hero gold"><span class="bloom"></span>${svg('i-chest')}</div><div class="ladder"><h2>Сундук недели</h2><p>Твои друзья принесли 9 400 опыта</p><div class="rewards"><span class="rw xp">${svg('i-flash')}×2 XP · 60 мин</span><span class="rw gold">${svg('i-shield')}щит цепи</span><span class="rw star">${svg('i-star')}+3</span></div><p style="font-size:12px">До порога III не хватило 5 600 — ещё двое активных друзей закроют его</p><span class="key">Забрать</span></div></div></div>`;
+  <div class="layer" data-cel><div class="scrim"></div><div class="modal"><div class="glass"></div><div class="hero gold"><span class="bloom"></span>${svg('i-chest')}</div><div class="ladder"><h2>Сундук недели · II</h2><p>Десять друзей принесли 13 800 опыта · твои 6 дней → ×1.25</p><div class="rewards"><span class="rw star">${svg('i-star')}+31</span><span class="rw xp">${svg('i-flash')}×2 XP · 60 мин</span><span class="rw gold">${svg('i-shield')}щит цепи</span><span class="rw gold">${svg('i-gift')}подарок другу бесплатно</span></div><p style="font-size:12px">До порога III не хватило 6 200 — ещё трое «Приятелей» на капе закроют его: там +50 ★, аура и 3 дня Plus</p><span class="key">Забрать</span></div></div></div>`;
 },el=>[
   [1200,()=>{ tapAt(el,195,262); el.querySelector('[data-claim]').classList.add('pressed'); }],
   [1350,()=>el.querySelector('[data-claim]').classList.remove('pressed')],

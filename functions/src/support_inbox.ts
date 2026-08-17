@@ -2461,9 +2461,24 @@ export async function claimSupportReplyDispatch(
         return { kind: 'replay', state: 'cancelled' };
       }
       const currentKnowledge = retrieveSupportRepositoryContext(supportIssueText(message));
+      // зачем промежуточный ответ НЕ инвалидируется отпечатком кодовой базы
+      // (инцидент 2026-08-17, владелец: «я одобрил, но сообщение не
+      // отправилось»): отпечаток меняется на КАЖДОМ деплое функций. Владелец
+      // нажимал «Одобрено» — между подготовкой черновика и нажатием прошёл
+      // деплой, отпечаток разошёлся, и черновик отменялся как устаревший.
+      // Письмо женщине так и не ушло, а причина в Telegram не показывалась.
+      //
+      // Для ОБОСНОВАННОГО ответа проверка обязательна: он опирается на
+      // конкретные фрагменты кода, и если код изменился, факты могли стать
+      // ложью. Но промежуточный ответ («смотрит человек, ответим в эту же
+      // переписку») не утверждает НИЧЕГО о продукте — устаревать в нём
+      // нечему. Отменять его из-за чужого деплоя значит держать человека без
+      // ответа тем дольше, чем активнее идёт разработка.
+      const holdingNeedsNoRepositoryFacts = message.autoReply?.holding === true;
       if (!currentKnowledge.trustworthy
         || (actor.actorUid === 'system:jarvis-support-3h-deadline' && currentKnowledge.dirty)
-        || message.autoReply?.knowledgeFingerprint !== currentKnowledge.sourceFingerprint) {
+        || (!holdingNeedsNoRepositoryFacts
+          && message.autoReply?.knowledgeFingerprint !== currentKnowledge.sourceFingerprint)) {
         tx.update(operationRef, {
           state: 'cancelled', reconciledAt: nowIso, lastErrorCode: 'support_knowledge_changed',
         });

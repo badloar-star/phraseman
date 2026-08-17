@@ -2033,6 +2033,13 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // Счётчики «сколько уже таких имён» для ников вида «Имя N».
+    // Пишет только сервер (nameGenerateAndReserve через Admin SDK); клиентам
+    // ни читать, ни писать — иначе можно подсмотреть, сколько раз встречается имя.
+    match /name_counters/{nameKey} {
+      allow read, write: if false;
+    }
+
     // Friend code reverse index. Doc id = 6-char code; data = { uid, createdAt }.
     match /friend_code_index/{code} {
       allow read: if request.auth != null;

@@ -294,7 +294,11 @@ export async function reserveNameDetailed(
   }
 }
 
-export async function generateAndReserveNickname(): Promise<GeneratedNicknameResult> {
+/**
+ * @param baseName имя из аккаунта (Apple/Google), если известно. Сервер сделает из него
+ *   ник «Имя N» с порядковым номером; без него — случайное «Слово 12345».
+ */
+export async function generateAndReserveNickname(baseName?: string | null): Promise<GeneratedNicknameResult> {
   if (!CLOUD_SYNC_ENABLED) return { status: 'error' };
   let stableId = readCachedNameReservationIdentity() || await ensureNameReservationIdentityReady(NAME_RESERVE_TIMEOUT_MS);
   if (!stableId) {
@@ -303,9 +307,10 @@ export async function generateAndReserveNickname(): Promise<GeneratedNicknameRes
   }
   if (!stableId) return { status: 'error' };
   try {
-    const fn = callable<{ stableId?: string }, { ok: boolean; status: 'ok'; name: string }>('nameGenerateAndReserve');
+    const fn = callable<{ stableId?: string; baseName?: string }, { ok: boolean; status: 'ok'; name: string }>('nameGenerateAndReserve');
+    const trimmedBase = String(baseName ?? '').trim();
     const { data } = await withTimeout(
-      fn({ stableId }),
+      fn(trimmedBase ? { stableId, baseName: trimmedBase } : { stableId }),
       NAME_RESERVE_RETRY_TIMEOUT_MS,
       'name_generate_and_reserve',
     );

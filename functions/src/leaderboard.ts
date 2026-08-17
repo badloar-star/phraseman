@@ -73,6 +73,42 @@ function generateNicknameCandidates(): string[] {
   return [...candidates];
 }
 
+/** Коллекция счётчиков «сколько уже таких имён»: doc id = имя в нижнем регистре. */
+const NAME_COUNTERS = 'name_counters';
+/** Максимум номеров, которые пробуем подряд, если счётчик отстал от индекса. */
+const NAMED_NICKNAME_ATTEMPTS = 20;
+
+/**
+ * Базовое имя из аккаунта → чистое «Имя», пригодное для ника, или '' если мусор.
+ *
+ * зачем 2026-08-17 (владелец): ник из почты/аккаунта не должен быть случайным
+ * «Аксим 48213» — берём настоящее имя. Оставляем только буквы/цифры/пробел/дефис,
+ * схлопываем пробелы, режем до 20 символов, чтобы «Имя 123» влезло в лимит 32.
+ */
+export function sanitizeBaseNickname(raw: unknown): string {
+  const text = String(raw ?? '')
+    .replace(/[^\p{L}\p{N} \-]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 20)
+    .trim();
+  return text.length >= 2 ? text : '';
+}
+
+/**
+ * Кандидаты вида «Имя N», начиная с уже известного числа таких имён.
+ *
+ * зачем 2026-08-17 (владелец): «порядковая цифра ника — сколько таких уже есть:
+ * третий Виталий будет Виталий 3». Счётчик хранится отдельно и растёт монотонно;
+ * если запись в индекс уже занята (гонка, старые данные) — просто идём дальше.
+ */
+export function buildNumberedNicknameCandidates(base: string, alreadyTaken: number): string[] {
+  const start = Math.max(0, Math.trunc(alreadyTaken)) + 1;
+  const out: string[] = [];
+  for (let n = start; n < start + NAMED_NICKNAME_ATTEMPTS; n++) out.push(`${base} ${n}`);
+  return out;
+}
+
 function assertValidName(name: string): void {
   if (name.length < 2 || name.length > 32) {
     throw new HttpsError('invalid-argument', 'name_length');
@@ -241,13 +277,27 @@ export const nameGenerateAndReserve = onCall(HOT_CALLABLE_OPTIONS, async (reques
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
   await assertNotBanned(db, stableUid);
-  const candidates = generateNicknameCandidates();
+  // зачем 2026-08-17 (владелец): если клиент знает имя из аккаунта — ник строится
+  // как «Имя N», где N = сколько таких имён уже выдано + 1. Без базового имени —
+  // прежний случайный «Слово 12345».
+  const baseName = sanitizeBaseNickname(request.data?.baseName);
+  const counterRef = baseName ? db.collection(NAME_COUNTERS).doc(baseName.toLowerCase()) : null;
   let assignedName = '';
 
   await db.runTransaction(async (tx) => {
     const now = Date.now();
     const userRef = db.collection('users').doc(stableUid);
     const userSnap = await tx.get(userRef);
+    // Счётчик читаем в той же транзакции: параллельные регистрации одного имени
+    // не получат одинаковый номер — транзакция перезапустится на конфликте.
+    let takenSoFar = 0;
+    if (counterRef) {
+      const counterSnap = await tx.get(counterRef);
+      takenSoFar = Math.max(0, Math.trunc(Number(counterSnap.data()?.count ?? 0)) || 0);
+    }
+    const candidates = baseName
+      ? buildNumberedNicknameCandidates(baseName, takenSoFar)
+      : generateNicknameCandidates();
     const userData = userSnap.data();
     const existingName = readProgressString(userData, 'user_name');
     const existingNameLower = readProgressString(userData, 'user_name_lower') || existingName.toLowerCase();
@@ -283,6 +333,13 @@ export const nameGenerateAndReserve = onCall(HOT_CALLABLE_OPTIONS, async (reques
     if (!chosen) throw new HttpsError('resource-exhausted', 'nickname_generation_exhausted');
 
     assignedName = chosen.name;
+    if (counterRef) {
+      // Счётчик = номер только что выданного ника: следующий такой же получит N+1.
+      // Берём число из выбранного имени, а не takenSoFar+1: если несколько номеров
+      // оказались заняты, счётчик перепрыгнет их и больше в них не упрётся.
+      const issued = Number(chosen.name.slice(chosen.name.lastIndexOf(' ') + 1)) || takenSoFar + 1;
+      tx.set(counterRef, { base: baseName, count: issued, updatedAt: now }, { merge: true });
+    }
     tx.set(chosen.ref, {
       uid: stableUid,
       authUid,

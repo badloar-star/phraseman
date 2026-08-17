@@ -41,6 +41,9 @@ function makeDbStub(initial: LbStore = {}) {
     leaderboard: { ...(initial.leaderboard ?? {}) },
     name_index: { ...(initial.name_index ?? {}) },
     auth_links: { ...(initial.auth_links ?? {}) },
+    // Счётчики «Имя N» заводим только если тест их дал — иначе проверка
+    // «счётчик не создан» для мусорного baseName остаётся честной.
+    ...(initial.name_counters ? { name_counters: { ...initial.name_counters } } : {}),
   };
 
   const snapFor = (id: string, data: LbDocData | undefined) => ({
@@ -545,6 +548,68 @@ describe('nameGenerateAndReserve — server-owned automatic nickname', () => {
     expect(res.name).toBe('Axiom 10002');
     const indexDoc = store.name_index[res.name.toLowerCase()];
     expect(indexDoc?.identityHidden).toBeUndefined();
+  });
+});
+
+// зачем 2026-08-17 (владелец): ник из имени аккаунта — «Имя N», где N = порядковый номер
+// среди таких же имён: «если это третий Виталий, будет Виталий 3». Счётчик живёт в
+// name_counters/{имя_lower} и растёт монотонно; занятый номер перепрыгивается.
+describe('nameGenerateAndReserve — «Имя N» из имени аккаунта', () => {
+  beforeEach(() => { cryptoCounter = 0; });
+
+  it('первому Виталию выдаёт «Виталий 1» и заводит счётчик', async () => {
+    const { store } = makeDbStub({ users: { 'stable-a': { firebaseAuthUid: 'auth-a' } } });
+
+    const res: any = await callableRun(nameGenerateAndReserve, { stableId: 'stable-a', baseName: 'Виталий' }, 'auth-a');
+
+    expect(res).toMatchObject({ status: 'ok', name: 'Виталий 1' });
+    expect(store.name_index['виталий 1']).toMatchObject({ uid: 'stable-a' });
+    expect(store.name_counters?.['виталий']).toMatchObject({ base: 'Виталий', count: 1 });
+  });
+
+  it('третьему Виталию выдаёт «Виталий 3» по счётчику', async () => {
+    const { store } = makeDbStub({
+      users: { 'stable-c': { firebaseAuthUid: 'auth-c' } },
+      name_counters: { 'виталий': { base: 'Виталий', count: 2 } },
+      name_index: {
+        'виталий 1': { uid: 'stable-x', name: 'Виталий 1', nameLower: 'виталий 1' },
+        'виталий 2': { uid: 'stable-y', name: 'Виталий 2', nameLower: 'виталий 2' },
+      },
+    });
+
+    const res: any = await callableRun(nameGenerateAndReserve, { stableId: 'stable-c', baseName: 'Виталий' }, 'auth-c');
+
+    expect(res).toMatchObject({ status: 'ok', name: 'Виталий 3' });
+    expect(store.name_counters?.['виталий']?.count).toBe(3);
+  });
+
+  it('перепрыгивает номер, занятый мимо счётчика, и двигает счётчик за него', async () => {
+    // Счётчик отстал (count 1), но «Виталий 2» уже кем-то занят живым — выдаём «3».
+    const { store } = makeDbStub({
+      users: {
+        'stable-c': { firebaseAuthUid: 'auth-c' },
+        'stable-live': { firebaseAuthUid: 'auth-live' },
+      },
+      name_counters: { 'виталий': { base: 'Виталий', count: 1 } },
+      name_index: {
+        'виталий 2': { uid: 'stable-live', name: 'Виталий 2', nameLower: 'виталий 2' },
+      },
+    });
+
+    const res: any = await callableRun(nameGenerateAndReserve, { stableId: 'stable-c', baseName: 'Виталий' }, 'auth-c');
+
+    expect(res).toMatchObject({ status: 'ok', name: 'Виталий 3' });
+    expect(store.name_counters?.['виталий']?.count).toBe(3);
+  });
+
+  it('мусорное baseName игнорирует и выдаёт обычный случайный ник', async () => {
+    const { store } = makeDbStub({ users: { 'stable-a': { firebaseAuthUid: 'auth-a' } } });
+
+    const res: any = await callableRun(nameGenerateAndReserve, { stableId: 'stable-a', baseName: '@#$' }, 'auth-a');
+
+    expect(res.status).toBe('ok');
+    expect(res.name).toMatch(/^[A-Z][A-Za-z]+ [0-9]{5}$/);
+    expect(store.name_counters).toBeUndefined();
   });
 });
 

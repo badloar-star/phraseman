@@ -87,12 +87,17 @@ export async function ensureLocalNickname(candidate?: string | null): Promise<st
   return finalName;
 }
 
-export async function ensureUniqueGeneratedNickname(): Promise<string> {
+/**
+ * @param baseName имя из аккаунта (Apple/Google), если вошли. Сервер выдаст «Имя N»
+ *   с порядковым номером — третий Виталий станет «Виталий 3». Без имени — случайный ник.
+ *   Уже подтверждённый ник не перегенерируется: повторный вызов вернёт его как есть.
+ */
+export async function ensureUniqueGeneratedNickname(baseName?: string | null): Promise<string> {
   const stored = (await AsyncStorage.getItem('user_name').catch(() => null))?.trim() ?? '';
   const confirmed = (await AsyncStorage.getItem(GENERATED_NAME_CONFIRMED_KEY).catch(() => null))?.trim() ?? '';
   if (stored && confirmed === stored) return stored;
   const { generateAndReserveNickname } = await import('./firestore_leaderboard');
-  const result = await generateAndReserveNickname();
+  const result = await generateAndReserveNickname(baseName);
   const name = result.status === 'ok' ? String(result.name ?? '').trim() : '';
   if (!name) throw new Error('nickname_reservation_unavailable');
   await AsyncStorage.multiSet([
@@ -150,8 +155,17 @@ export function resumePendingGeneratedNickname(): Promise<void> {
       return;
     }
     const accountToken = captureAccountGeneration();
+    // зачем 2026-08-17 (владелец): онбординг кладёт во флаг имя из аккаунта, если
+    // вошли через Apple/Google — сервер сделает из него «Имя N». Старый флаг без
+    // baseName (или не-JSON) даёт прежний случайный ник — обратная совместимость.
+    let baseName: string | undefined;
+    try {
+      const parsed = JSON.parse(pending) as { baseName?: unknown };
+      const candidate = String(parsed?.baseName ?? '').trim();
+      if (candidate) baseName = candidate;
+    } catch { /* старый формат флага — без базового имени */ }
     const { generateAndReserveNickname } = await import('./firestore_leaderboard');
-    const result = await generateAndReserveNickname();
+    const result = await generateAndReserveNickname(baseName);
     const name = result.status === 'ok' ? String(result.name ?? '').trim() : '';
     const resultStableId = String(result.stableId ?? '').trim();
     if (!name || !resultStableId) {

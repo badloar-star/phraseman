@@ -83,11 +83,15 @@ describe('Arena V2 client contract', () => {
     expect([...cache.keys()]).toEqual(['m1:2:answer']);
   });
 
-  test('shows the ranked quick offer at 30s and calm choice state at 90s', () => {
-    expect(arenaRankedWaitPresentation(29_999)).toBe('searching');
-    expect(arenaRankedWaitPresentation(30_000)).toBe('quick_offer');
-    expect(arenaRankedWaitPresentation(89_999)).toBe('quick_offer');
-    expect(arenaRankedWaitPresentation(90_000)).toBe('calm');
+  // Пороги 30/90 отменены владельцем 2026-08-16: на полуминуте предложение
+  // уйти в быстрый матч читалось как «здесь никого нет» и уводило людей из
+  // рейтинга, пока очередь только набирается. Стало 60/150.
+  test('shows the ranked quick offer at 60s and calm choice state at 150s', () => {
+    expect(arenaRankedWaitPresentation(30_000)).toBe('searching');
+    expect(arenaRankedWaitPresentation(59_999)).toBe('searching');
+    expect(arenaRankedWaitPresentation(60_000)).toBe('quick_offer');
+    expect(arenaRankedWaitPresentation(149_999)).toBe('quick_offer');
+    expect(arenaRankedWaitPresentation(150_000)).toBe('calm');
     expect(arenaRankedElapsedMs(100_000, 80_000, 10_000, 95_000)).toBe(5_000);
   });
 

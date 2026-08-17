@@ -41,6 +41,27 @@ import {
 import { buildSessionChildBodiesFromShard } from "../../../modules/learning-v2/content/source/session_package_from_shard_v1";
 import { expandLocalized } from "../../../modules/learning-v2/content/source/session_shard_from_source_v1";
 import { buildLearningV2CourseTopologyV1 } from "../../../modules/learning-v2/content/course_topology_v1";
+import {
+  LEARNING_V2_COURSE_SESSION_CHILD_KINDS_V1,
+  LEARNING_V2_COURSE_SESSION_CHILD_SCHEMAS_V1,
+  learningV2CourseSessionChildObjectPathV1,
+  materializeLearningV2CourseSessionReleasePackageV1,
+  type LearningV2CourseSessionChildKindV1,
+} from "../../../modules/learning-v2/runtime/course_session_release_package_v1";
+
+// зачем: конвертер отдаёт детей под своими именами (evaluatorCapsule), а
+// контракт знает их как виды (evaluator_capsule). Таблица связывает одно с
+// другим явно — иначе пришлось бы угадывать преобразованием имён, и опечатка
+// прошла бы молча.
+const CHILD_BODY_KEY_BY_KIND: Readonly<
+  Record<LearningV2CourseSessionChildKindV1, string>
+> = Object.freeze({
+  intro: "intro",
+  learner: "learner",
+  evaluator_capsule: "evaluatorCapsule",
+  evaluator_sidecar: "evaluatorSidecar",
+  auxiliary: "auxiliary",
+});
 
 // зачем: тот же регион, что у остальных функций Learning V2 и у админки —
 // admin/v2/legacy.html поднимает getFunctions(app, 'us-central1'). В другом
@@ -180,10 +201,95 @@ export async function publishAuthoredLearningV2Course(
   // Хеш содержимого нужен ДО записи (он часть пути), поэтому считаем его здесь,
   // а после записи сверяем с тем, что вернуло хранилище: несовпадение означало
   // бы, что записалось не то, что мы посчитали.
+  // зачем: оба отпечатка зависят только от releaseId, но нужны уже внутри
+  // цикла — обёртка пакета их требует. Раньше объявлялись ниже, после цикла.
+  const ownerLessonFingerprint = createHash("sha256")
+    .update(`${releaseId}\nowner-lesson`)
+    .digest("hex");
+  const ownerConfirmationFingerprint = createHash("sha256")
+    .update(`${releaseId}\n${deps.actorUid}\n${input.reason}`)
+    .digest("hex");
+
   const sessionInputs = [];
   for (const session of deps.sessions) {
+    // зачем (инцидент 2026-08-17): раньше сюда клался ЦЕЛИКОМ объект из пяти
+    // детей — и чтение падало с learning_v2_course_session_release_package_invalid:
+    // в пакете было 5 ключей вместо 40. Контракт требует не тела детей, а
+    // ОБЁРТКУ из сорока полей, где каждый ребёнок — ссылка на отдельный файл
+    // со своим хешем, размером и generation.
+    //
+    // Поэтому: сначала пишем пятерых детей по отдельности, собираем их
+    // закрепления, потом строим обёртку каноническим строителем. Путь каждого
+    // ребёнка тоже считает контракт — вручную его строить нельзя, разойдётся.
+    const children = session.packageBody as Readonly<Record<string, unknown>>;
+    const learnerBody = (children.learner ?? {}) as Readonly<{
+      interactionProfile?: string;
+      interactions?: readonly Readonly<{ interactionId: string }>[];
+    }>;
+    const childInputs = [];
+    for (const kind of LEARNING_V2_COURSE_SESSION_CHILD_KINDS_V1) {
+      const body = children[CHILD_BODY_KEY_BY_KIND[kind]];
+      if (body === undefined) {
+        throw new HttpsError(
+          "internal",
+          `child_missing: сессия ${session.sessionOrdinal}, ребёнок ${kind}`,
+        );
+      }
+      const childHash = createHash("sha256")
+        .update(serializeArtifactPayload(body))
+        .digest("hex");
+      const childPath = learningV2CourseSessionChildObjectPathV1({
+        releaseId,
+        lessonOrdinal: input.lessonOrdinal,
+        sessionOrdinal: session.sessionOrdinal,
+        kind,
+        artifactFingerprint: childHash,
+        contentHash: childHash,
+      });
+      const childReceipt = await writeImmutableObject(
+        deps.bucket,
+        childPath,
+        body,
+        "application/json; charset=utf-8",
+      );
+      if (childReceipt.contentHash !== childHash) {
+        throw new HttpsError(
+          "internal",
+          `child_hash_mismatch: сессия ${session.sessionOrdinal}, ребёнок ${kind}`,
+        );
+      }
+      childInputs.push({
+        kind,
+        schemaVersion: LEARNING_V2_COURSE_SESSION_CHILD_SCHEMAS_V1[kind],
+        artifactFingerprint: childHash,
+        contentHash: childReceipt.contentHash,
+        objectGeneration: childReceipt.objectGeneration,
+        byteSize: childReceipt.byteSize,
+      });
+    }
+
+    const packageBody = materializeLearningV2CourseSessionReleasePackageV1({
+      releaseId,
+      lessonOrdinal: input.lessonOrdinal,
+      sessionOrdinal: session.sessionOrdinal,
+      ownerLessonFingerprint,
+      ownerConfirmationFingerprint,
+      learningOutcomeKind: session.learningOutcomeKind,
+      learningOutcomeByLocale: session.learningOutcomeByLocale as never,
+      // зачем: профиль и список заданий берём ИЗ ТЕЛА ребёнка-ученика, а не из
+      // полей сессии — там их нет, и дублировать их в двух местах значило бы
+      // однажды получить расхождение. Ученик — единственный источник правды о
+      // том, какие задания в сессии на самом деле есть.
+      interactionProfile: (learnerBody.interactionProfile ??
+        "standard") as never,
+      interactionIds: (learnerBody.interactions ?? []).map(
+        (entry) => entry.interactionId,
+      ),
+      children: childInputs as never,
+    });
+
     const contentHashAhead = createHash("sha256")
-      .update(serializeArtifactPayload(session.packageBody))
+      .update(serializeArtifactPayload(packageBody))
       .digest("hex");
     const objectPath = learningV2CourseSessionPackageObjectPathV1({
       releaseId,
@@ -195,7 +301,7 @@ export async function publishAuthoredLearningV2Course(
     const receipt = await writeImmutableObject(
       deps.bucket,
       objectPath,
-      session.packageBody,
+      packageBody,
       // зачем: закрепления релиза сверяют contentType и ждут charset.
       // Без него чтение каталога падает с metadata_mismatch (2026-08-17).
       "application/json; charset=utf-8",
@@ -224,12 +330,6 @@ export async function publishAuthoredLearningV2Course(
   }
 
   // 2. Индекс урока — оглавление, по которому приложение находит сессии.
-  const ownerLessonFingerprint = createHash("sha256")
-    .update(`${releaseId}\nowner-lesson`)
-    .digest("hex");
-  const ownerConfirmationFingerprint = createHash("sha256")
-    .update(`${releaseId}\n${deps.actorUid}\n${input.reason}`)
-    .digest("hex");
   const index = materializeLearningV2CourseLessonReleaseIndexV1({
     releaseId,
     lessonOrdinal: input.lessonOrdinal,

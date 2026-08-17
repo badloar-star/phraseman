@@ -89,23 +89,74 @@ describe('интро-экраны сессии', () => {
     expect(problems.join('\n')).toBe('');
   });
 
-  test('восемь языков в заголовке, теле и вопросе', () => {
-    // зачем: владелец 2026-08-16 — «все языки должны быть, это строго при
-    // генерации». Сейчас в интро только ru/uk/es, поэтому тест КРАСНЫЙ
-    // намеренно: он показывает объём работы, а не ломает готовое.
+  test('восемь языков в КАЖДОМ тексте интро', () => {
+    // зачем: владелец 2026-08-17 отдельным решением — «все интро должны быть
+    // написаны на всех языках». Раньше правило понимали как «объяснения фраз»,
+    // и интро писались только на ru/uk/es во всех десяти сессиях: ученик с
+    // турецким интерфейсом увидел бы пустой экран объяснения.
+    //
+    // Проверяются ВСЕ тексты страницы, а не только заголовок: варианты ответа
+    // и разбор — такой же текст для ученика, и без них экран тоже пустой.
+    const problems: string[] = [];
+    for (const session of AUTHORED_EPISODE_01_SESSIONS) {
+      session.introPages.forEach((page, index) => {
+        const where = `сессия ${session.requiredSessionOrdinal}, страница ${index + 1}`;
+        const check = (name: string, value: unknown): void => {
+          if (typeof value !== 'object' || value === null) {
+            problems.push(`${where} · ${name}: поля нет вовсе`);
+            return;
+          }
+          const have = Object.keys(value as Record<string, unknown>);
+          const missing = REQUIRED_LOCALES.filter((l) => !have.includes(l));
+          if (missing.length) problems.push(`${where} · ${name}: нет ${missing.join(', ')}`);
+          // Пустая строка в поле языка — тот же дефект, что отсутствие поля.
+          const blank = REQUIRED_LOCALES.filter((l) => {
+            const text = (value as Record<string, unknown>)[l];
+            return have.includes(l) && String(text ?? '').trim().length === 0;
+          });
+          if (blank.length) problems.push(`${where} · ${name}: пусто в ${blank.join(', ')}`);
+        };
+        check('заголовок', page.title);
+        check('тело', page.body);
+        check('текст вопроса', page.question?.prompt);
+        check('разбор ответа', page.question?.explanation);
+        (page.question?.choices ?? []).forEach((choice, ci) => {
+          check(`вариант ${ci + 1}`, choice);
+        });
+      });
+    }
+    expect(problems.join('\n')).toBe('');
+  });
+
+  test('русский текст не подставлен вместо перевода', () => {
+    // зачем: подстановка русского в поле другого языка — тот же дефект, что
+    // отсутствие перевода, но сторож длины его не видит. Ловим по кириллице:
+    // в es/pt-BR/vi/id/tr/pl её быть не может. uk пропускаем — там кириллица
+    // законна, но текст обязан отличаться от русского.
+    const CYRILLIC_FORBIDDEN = ['es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
     const problems: string[] = [];
     for (const session of AUTHORED_EPISODE_01_SESSIONS) {
       session.introPages.forEach((page, index) => {
         const where = `сессия ${session.requiredSessionOrdinal}, страница ${index + 1}`;
         const check = (name: string, value: unknown): void => {
           if (typeof value !== 'object' || value === null) return;
-          const have = Object.keys(value as Record<string, unknown>);
-          const missing = REQUIRED_LOCALES.filter((l) => !have.includes(l));
-          if (missing.length) problems.push(`${where} · ${name}: нет ${missing.join(', ')}`);
+          const record = value as Record<string, unknown>;
+          for (const locale of CYRILLIC_FORBIDDEN) {
+            const text = String(record[locale] ?? '');
+            if (/[Ѐ-ӿ]/.test(text)) {
+              problems.push(`${where} · ${name} · ${locale}: кириллица в переводе`);
+            }
+          }
+          const ru = String(record.ru ?? '').trim();
+          const uk = String(record.uk ?? '').trim();
+          if (ru.length > 0 && ru === uk) {
+            problems.push(`${where} · ${name} · uk: копия русского текста`);
+          }
         };
         check('заголовок', page.title);
         check('тело', page.body);
-        check('вопрос', page.question?.prompt);
+        check('текст вопроса', page.question?.prompt);
+        check('разбор ответа', page.question?.explanation);
       });
     }
     expect(problems.join('\n')).toBe('');

@@ -114,7 +114,16 @@ export interface SessionSource {
     SessionSourceIntroPage,
     SessionSourceIntroPage,
   ];
-  /** Ровно 12 фраз: слоты 1–3 привязаны к вопросам интро, 4–12 — практика. */
+  /**
+   * Ровно 15 фраз: слоты 1–3 привязаны к вопросам интро, 4–15 — практика.
+   *
+   * зачем 15, а не 12 (владелец, 2026-08-17): контракт пакета сессии требует
+   * 14–18 заданий в профиле standard, а 12 фраз давали ровно 12 заданий
+   * (3 вопроса интро + 9 карточек практики) — публикация падала с
+   * learning_v2_course_session_release_package_invalid. Владелец выбрал
+   * привести содержание к контракту, а не опускать порог: 15 попадает
+   * в середину диапазона, остаётся запас в обе стороны.
+   */
   readonly phrases: readonly EpisodeSourcePhrase[];
 }
 
@@ -215,11 +224,25 @@ function cardCopy(
   };
 }
 
+/**
+ * Сколько фраз в одной сессии. Слоты 1–3 привязаны к вопросам интро,
+ * 4–15 — практика. Итого 15 заданий: контракт пакета требует 14–18.
+ * Одно число на весь проект — иначе части разойдутся молча.
+ */
+export const SESSION_PHRASE_COUNT_V1 = 15 as const;
+/** Практических карточек: всё, что после трёх слотов интро. */
+export const SESSION_PRACTICE_CARD_COUNT_V1 = SESSION_PHRASE_COUNT_V1 - 3;
+
 export function buildSessionShardFromSource(
   source: SessionSource,
 ): LearningV2GeneratedSessionShardV1 {
-  if (source.phrases.length !== 12)
-    throw new Error('session_source_requires_exactly_12_phrases');
+  // зачем 15 (владелец, 2026-08-17): контракт пакета требует 14–18 заданий в
+  // профиле standard. 12 фраз давали ровно 12 заданий (3 вопроса интро + 9
+  // карточек) — публикация падала. 15 фраз дают 15 заданий, середина диапазона.
+  if (source.phrases.length !== SESSION_PHRASE_COUNT_V1)
+    throw new Error(
+      `session_source_requires_exactly_${SESSION_PHRASE_COUNT_V1}_phrases`,
+    );
   const episodeId = `episode-${pad(source.episodeOrdinal)}`;
   const sessionOrdinal = source.requiredSessionOrdinal;
   const sessionTemplateId = `${episodeId}:session-${pad(sessionOrdinal)}`;

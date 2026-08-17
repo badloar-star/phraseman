@@ -5,6 +5,7 @@
 //   end_scene()            → назад к роли учителя
 //   assign_homework(...)   → 2–3 фразы на завтра (уезжают в память с разбором)
 //   set_next_topic(topic)  → тема следующего урока
+//   set_language_preference(mode) → «говори со мной по-английски / по-русски» — на будущие уроки
 //   end_call()             → учитель попрощался — экран мягко завершает звонок
 // Клиент исполняет их ЛОКАЛЬНО (ноль серверных вызовов) и отвечает
 // function_call_output. Здесь — детерминированная логика без React/сети: каталог
@@ -81,11 +82,15 @@ export interface TutorToolRunnerDeps {
   onEndCall?(): void;
 }
 
+export type TutorLanguagePreference = 'more_english' | 'more_native' | 'default';
+
 export interface TutorToolRunner {
   handle(name: string, args: Record<string, unknown>): TutorToolResult;
   /** Домашка и тема, собранные за урок — уходят в разбор (память учителя). */
   homework(): string[];
   nextTopic(): string;
+  /** Просьба ученика за урок, как говорить; '' — не просил (память не трогать). */
+  languagePreference(): TutorLanguagePreference | '';
   activeScene(): TutorSceneItem | null;
   /** Учитель вызвал end_call — экран завершит звонок мягко. */
   endRequested(): boolean;
@@ -98,6 +103,7 @@ function cleanPhrase(value: unknown): string {
 export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunner {
   let homework: string[] = [];
   let nextTopic = '';
+  let languagePreference: TutorLanguagePreference | '' = '';
   let activeScene: TutorSceneItem | null = null;
   let endRequested = false;
 
@@ -160,6 +166,17 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         try { deps.onNextTopic?.(topic); } catch {}
         return { output: `Next topic saved: ${topic}.`, respond: true };
       }
+      case 'set_language_preference': {
+        const mode = String(args.mode ?? '').trim();
+        if (mode !== 'more_english' && mode !== 'more_native' && mode !== 'default') {
+          return { output: 'Unknown mode. Use "more_english", "more_native" or "default".', respond: true };
+        }
+        languagePreference = mode;
+        return {
+          output: `Language preference saved: ${mode}. Apply it for the rest of this lesson and it will be remembered next time.`,
+          respond: true,
+        };
+      }
       case 'end_call': {
         endRequested = true;
         try { deps.onEndCall?.(); } catch {}
@@ -175,6 +192,7 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
     handle,
     homework: () => [...homework],
     nextTopic: () => nextTopic,
+    languagePreference: () => languagePreference,
     activeScene: () => activeScene,
     endRequested: () => endRequested,
   };

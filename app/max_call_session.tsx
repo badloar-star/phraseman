@@ -719,6 +719,7 @@ export default function MaxCallSession() {
               name: personaName,
               homework: tutorRunnerRef.current?.homework() ?? [],
               nextTopic: tutorRunnerRef.current?.nextTopic() ?? '',
+              languagePreference: tutorRunnerRef.current?.languagePreference() ?? '',
               lessonsSoFar: mint?.tutor?.lessonsSoFar ?? 0,
             },
           }

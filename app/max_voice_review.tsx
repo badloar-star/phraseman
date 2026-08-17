@@ -38,7 +38,14 @@ export interface MaxCallResult {
   format: 'scenario' | 'companion' | 'trial' | 'tutor';
   scenarioId?: string;
   /** Учитель: имя, домашка и тема на завтра (из инструментов урока). */
-  tutor?: { name: string; homework: string[]; nextTopic: string; lessonsSoFar: number };
+  tutor?: {
+    name: string;
+    homework: string[];
+    nextTopic: string;
+    /** Просьба ученика, как говорить ('' — не просил). */
+    languagePreference: string;
+    lessonsSoFar: number;
+  };
   /** CEFR звонка — прокидывается в «Позвонить ещё раз», чтобы не терять уровень. */
   cefr?: string;
   /** Сохраняет защищённый admin DEV-контекст для «Позвонить ещё раз». */
@@ -145,7 +152,11 @@ export default function MaxVoiceReview() {
       // Учитель: разбор ещё и обновляет память учителя (факты, ошибки, домашка, тема).
       mode: result.format === 'tutor' ? 'tutor' : 'voice',
       ...(result.format === 'tutor'
-        ? { homework: result.tutor?.homework ?? [], nextTopic: result.tutor?.nextTopic ?? '' }
+        ? {
+            homework: result.tutor?.homework ?? [],
+            nextTopic: result.tutor?.nextTopic ?? '',
+            ...(result.tutor?.languagePreference ? { languagePreference: result.tutor.languagePreference } : {}),
+          }
         : {}),
     })
       .then((res) => {

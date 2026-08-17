@@ -43,6 +43,20 @@ export interface TutorMemory {
   lastCallAtMs: number;
   /** Последний известный уровень (для «ты вырос с A1 до A2»). */
   lastCefr: string;
+  /**
+   * Просьба ученика, как с ним говорить: 'more_english' | 'more_native' | ''
+   * (дефолт уровня). зачем: владелец 2026-08-16 — «он должен учитывать пожелание:
+   * если пользователь говорит "дальше говори со мной по-английски"». Живёт между
+   * уроками, пока ученик не попросит иначе.
+   */
+  languagePreference: TutorLanguagePreference;
+}
+
+export type TutorLanguagePreference = '' | 'more_english' | 'more_native';
+
+export function asTutorLanguagePreference(value: unknown): TutorLanguagePreference {
+  const v = String(value ?? '').trim();
+  return v === 'more_english' || v === 'more_native' ? v : '';
 }
 
 export const TUTOR_MEMORY_EMPTY: TutorMemory = Object.freeze({
@@ -53,6 +67,7 @@ export const TUTOR_MEMORY_EMPTY: TutorMemory = Object.freeze({
   callCount: 0,
   lastCallAtMs: 0,
   lastCefr: '',
+  languagePreference: '',
 }) as TutorMemory;
 
 function docId(prefix: string, authUid: string, stableUid: string): string {
@@ -98,6 +113,7 @@ export function parseTutorMemory(raw: unknown): TutorMemory {
     callCount: Math.floor(num(d.callCount)),
     lastCallAtMs: Math.floor(num(d.lastCallAtMs)),
     lastCefr: cleanItem(d.lastCefr).slice(0, 2).toUpperCase(),
+    languagePreference: asTutorLanguagePreference(d.languagePreference),
   };
 }
 
@@ -123,6 +139,8 @@ export interface TutorMemoryUpdate {
   homework?: unknown;
   nextTopic?: unknown;
   cefr?: unknown;
+  /** Просьба ученика за урок ('more_english' | 'more_native' | 'default' → ''); undefined — не менять. */
+  languagePreference?: unknown;
   nowMs: number;
 }
 
@@ -145,6 +163,11 @@ export function mergeTutorMemory(prev: TutorMemory, update: TutorMemoryUpdate): 
     callCount: prev.callCount + 1,
     lastCallAtMs: update.nowMs,
     lastCefr: cleanItem(update.cefr).slice(0, 2).toUpperCase() || prev.lastCefr,
+    // Явная просьба за урок меняет предпочтение ('default' сбрасывает); молчание — сохраняет прежнее.
+    languagePreference:
+      update.languagePreference === undefined || update.languagePreference === null || update.languagePreference === ''
+        ? prev.languagePreference
+        : asTutorLanguagePreference(update.languagePreference),
   };
 }
 
@@ -195,6 +218,11 @@ export function renderTutorMemoryBlock(memory: TutorMemory, nowMs: number): stri
     lines.push(`Homework you gave last time (check it early in this lesson, ask them to SAY each phrase): ${memory.homework.join(' | ')}.`);
   }
   if (memory.nextTopic) lines.push(`You promised today's topic would be: ${memory.nextTopic}.`);
+  if (memory.languagePreference === 'more_english') {
+    lines.push('LANGUAGE PREFERENCE: the learner asked you to speak MORE ENGLISH with them than the level default — honor it (still keep it simple and clear).');
+  } else if (memory.languagePreference === 'more_native') {
+    lines.push('LANGUAGE PREFERENCE: the learner asked you to explain and speak MORE in their native language than the level default — honor it.');
+  }
   const text = lines.join('\n');
   return text.length > TUTOR_MEMORY_BLOCK_MAX_CHARS ? text.slice(0, TUTOR_MEMORY_BLOCK_MAX_CHARS) : text;
 }

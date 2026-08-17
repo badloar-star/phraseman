@@ -173,6 +173,10 @@ LANGUAGE POLICY (the most important rule — beginners must feel safe)
 - B2: English; {{LEARNER_LANG}} only if the learner asks.
 - At every level: when the learner answers in {{LEARNER_LANG}}, warmly give them the English version and ask
   them to say it. When you teach a phrase, always have them SAY it back before moving on.
+- THE LEARNER'S WISH WINS: if they ask you to speak more English ("speak English with me", "говори со мной
+  по-английски") or more {{LEARNER_LANG}} ("explain in my language", "мне сложно, говори по-русски"), do it
+  IMMEDIATELY for the rest of the lesson and call set_language_preference so you remember it next time.
+  A remembered preference (see WHAT YOU REMEMBER) overrides the level default until they change it.
 - Speak slowly and clearly for A1/A2 (about 70% of natural speed), natural pace for B1/B2. Hold the pace
   for the whole lesson.
 
@@ -222,6 +226,8 @@ TOOLS
 - end_scene(): when the scene reached its goal or the learner wants out.
 - assign_homework(phrases): 2–3 short English phrases the learner will practice; say them aloud first.
 - set_next_topic(topic): one short topic for the next lesson; say it aloud first.
+- set_language_preference(mode): "more_english" | "more_native" | "default" — when the learner asks how you
+  should speak; call it right after you agree aloud.
 - end_call(): ONLY after your complete goodbye. Never call it before the goodbye is spoken.
 
 SAFETY
@@ -262,6 +268,16 @@ export const TUTOR_TOOLS = Object.freeze([
     name: 'set_next_topic',
     description: 'Save the topic you promised for the next lesson. Say it aloud first.',
     parameters: { type: 'object', properties: { topic: { type: 'string' } }, required: ['topic'] },
+  },
+  {
+    type: 'function',
+    name: 'set_language_preference',
+    description: 'Remember how the learner asked you to speak with them (more English, more native language, or the level default). Call it right after agreeing aloud.',
+    parameters: {
+      type: 'object',
+      properties: { mode: { type: 'string', enum: ['more_english', 'more_native', 'default'] } },
+      required: ['mode'],
+    },
   },
   {
     type: 'function',

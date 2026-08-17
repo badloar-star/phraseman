@@ -126,6 +126,17 @@ describe('createTutorToolRunner', () => {
     expect(events).toEqual(['topic:ordering food', 'end']);
   });
 
+  it('set_language_preference: «говори со мной по-английски» запоминается на урок и уезжает в память; мусор отклоняется', () => {
+    const { runner } = makeRunner();
+    expect(runner.languagePreference()).toBe('');
+    expect(runner.handle('set_language_preference', { mode: 'more_english' }).output).toContain('more_english');
+    expect(runner.languagePreference()).toBe('more_english');
+    expect(runner.handle('set_language_preference', { mode: 'loud' }).output).toContain('Unknown mode');
+    expect(runner.languagePreference()).toBe('more_english');
+    runner.handle('set_language_preference', { mode: 'default' });
+    expect(runner.languagePreference()).toBe('default');
+  });
+
   it('неизвестный инструмент — мягкий ответ, ничего не ломает', () => {
     const { runner } = makeRunner();
     expect(runner.handle('teleport', {}).output).toContain('Unknown tool');

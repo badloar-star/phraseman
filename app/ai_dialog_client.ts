@@ -365,6 +365,8 @@ export interface PremiumDialogReviewRequest {
   homework?: string[];
   /** tutor: тема следующего урока (set_next_topic). */
   nextTopic?: string;
+  /** tutor: просьба ученика, как говорить (set_language_preference). */
+  languagePreference?: string;
 }
 
 /** Одно исправление: как сказал ученик → как естественнее + короткое пояснение. */

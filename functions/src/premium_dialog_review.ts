@@ -74,6 +74,8 @@ interface DialogReviewRequest {
   homework?: unknown;
   /** tutor: тема следующего урока (set_next_topic). */
   nextTopic?: unknown;
+  /** tutor: просьба ученика, как говорить (set_language_preference): more_english | more_native | default. */
+  languagePreference?: unknown;
 }
 
 /** Одно исправление: фраза ученика → естественный вариант + короткое пояснение. */
@@ -377,6 +379,8 @@ export const premiumDialogReview = onCall({
       homework: list(data.homework, 4),
       nextTopic: text(data.nextTopic, 140),
       cefr,
+      // 'default' → сброс на политику уровня; пусто/нет поля → предпочтение не трогаем.
+      languagePreference: text(data.languagePreference, 16) === '' ? undefined : text(data.languagePreference, 16),
       nowMs: Date.now(),
     });
     tutorMemoryOut = { callCount: next.callCount, homework: next.homework, nextTopic: next.nextTopic };

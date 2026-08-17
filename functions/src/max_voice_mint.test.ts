@@ -694,7 +694,7 @@ describe("format 'tutor' — личный учитель", () => {
     const body = lastFetchBody();
     expect(body.session.audio.output).toEqual({ voice: 'cedar' }); // tutorVoice, не голос сцен
     expect(body.session.tools.map((t: DocData) => t.name)).toEqual([
-      'start_scene', 'end_scene', 'assign_homework', 'set_next_topic', 'end_call',
+      'start_scene', 'end_scene', 'assign_homework', 'set_next_topic', 'set_language_preference', 'end_call',
     ]);
     expect(body.session.tool_choice).toBe('auto');
     const instr: string = body.session.instructions;

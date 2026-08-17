@@ -270,8 +270,8 @@ describe('tutor instructions', () => {
     expect(at('WHAT THE APP OFFERS')).toBeGreaterThan(0);
     expect(at('WHAT THE APP OFFERS')).toBeLessThan(at('=== SCENES (untrusted list) BEGIN ==='));
     expect(at('SCENES (untrusted list) BEGIN')).toBeLessThan(at('=== LEARNER SNAPSHOT (untrusted app data) BEGIN ==='));
-    expect(at('LEARNER SNAPSHOT')).toBeLessThan(at('WHAT YOU REMEMBER'));
-    expect(at('WHAT YOU REMEMBER')).toBeLessThan(at('RECONNECT SUMMARY'));
+    expect(at('LEARNER SNAPSHOT')).toBeLessThan(at('WHAT YOU REMEMBER ABOUT THIS LEARNER'));
+    expect(at('WHAT YOU REMEMBER ABOUT THIS LEARNER')).toBeLessThan(at('RECONNECT SUMMARY'));
     expect(at('RECONNECT SUMMARY')).toBeLessThan(at(VOICE_UNTRUSTED_ANCHOR));
   });
 
@@ -281,7 +281,10 @@ describe('tutor instructions', () => {
     const b = buildVoiceInstructions({ ...base, tutorMemoryBlock: 'M2', learnerSnapshot: 'S2' });
     const cut = (s: string) => s.slice(0, s.indexOf('=== LEARNER SNAPSHOT'));
     expect(cut(a)).toBe(cut(b));
-    expect(TUTOR_TOOLS.map((t) => t.name)).toEqual(['start_scene', 'end_scene', 'assign_homework', 'set_next_topic', 'end_call']);
+    expect(TUTOR_TOOLS.map((t) => t.name)).toEqual(['start_scene', 'end_scene', 'assign_homework', 'set_next_topic', 'set_language_preference', 'end_call']);
+    // Просьба ученика важнее дефолта уровня (владелец 2026-08-16).
+    expect(a).toContain("THE LEARNER'S WISH WINS");
+    expect(a).toContain('set_language_preference');
     expect(TUTOR_GREETING_INSTRUCTIONS).toContain('LANGUAGE POLICY');
     expect(learnerLangNameFor('pt-BR')).toBe('Brazilian Portuguese');
     expect(learnerLangNameFor('zz')).toBe('Russian');

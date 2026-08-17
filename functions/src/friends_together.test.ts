@@ -245,7 +245,8 @@ beforeEach(() => {
   // 2026-08-21 is a Friday in ISO week 2026-W34 (week starts Monday 2026-08-17) —
   // keeps all 5 seeded "common days" (08-17..08-21) inside the SAME ISO week so
   // myDaysThisWeek (week-scoped) and daysTogether (all-time) agree in these fixtures.
-  jest.useFakeTimers().setSystemTime(new Date('2026-08-21T10:00:00.000Z'));
+  // зачем: воскресенье той же ISO-недели (W34) — сундук открывается только в воскресенье
+  jest.useFakeTimers().setSystemTime(new Date('2026-08-23T10:00:00.000Z'));
   jest.resetModules();
   docs.clear();
   autoId = 0;
@@ -400,6 +401,25 @@ describe('friendsClaimWeeklyChest', () => {
     docs.set(`users/${uid}/friends/alice`, { since: 1 });
   }
 
+  test('week_open on a weekday: chest opens only on Sunday (local tz of caller)', async () => {
+    setAliceWeeklyXp(5000);
+    setBobWeeklyXp(6000);
+    seedExtraFriend('carol', 6);
+    seedExtraFriend('dave', 6);
+    jest.setSystemTime(new Date('2026-08-21T10:00:00.000Z')); // пятница той же недели
+    await expect(claimChest()).rejects.toMatchObject({ code: 'failed-precondition', message: 'week_open' });
+    jest.setSystemTime(new Date('2026-08-23T10:00:00.000Z'));
+  });
+
+  test('week_expired for a past week key (weekly xp is reset by cron — nothing to compute)', async () => {
+    setAliceWeeklyXp(5000);
+    await expect(claimChest({ weekKey: '2026-W33' })).rejects.toMatchObject({ code: 'failed-precondition', message: 'week_expired' });
+  });
+
+  test('invalid weekKey format is rejected before touching Firestore', async () => {
+    await expect(claimChest({ weekKey: 'junk-week' })).rejects.toMatchObject({ code: 'invalid-argument', message: 'week_key_format' });
+  });
+
   test('week_open when weekKey is in the future', async () => {
     setAliceWeeklyXp(5000);
     await expect(claimChest({ weekKey: '2099-W01' })).rejects.toMatchObject({ code: 'failed-precondition', message: 'week_open' });
@@ -422,9 +442,9 @@ describe('friendsNudge', () => {
   test('sends a nudge successfully and records receipts on both sides', async () => {
     const result = await nudge();
     expect(result.ok).toBe(true);
-    const senderDoc = docs.get('users/alice/friend_nudges/2026-08-21');
+    const senderDoc = docs.get('users/alice/friend_nudges/2026-08-23');
     expect((senderDoc?.sent as Record<string, number>).bob).toBeDefined();
-    const receiverDoc = docs.get('users/bob/friend_nudges/2026-08-21');
+    const receiverDoc = docs.get('users/bob/friend_nudges/2026-08-23');
     expect(receiverDoc?.receivedCount).toBe(1);
   });
 
@@ -443,7 +463,7 @@ describe('friendsNudge', () => {
   });
 
   test('quiet_hours when it is 23:00 in the receiver local time', async () => {
-    jest.setSystemTime(new Date('2026-08-21T23:00:00.000Z')); // tz=0 for bob → local 23:00
+    jest.setSystemTime(new Date('2026-08-23T23:00:00.000Z')); // tz=0 for bob → local 23:00
     await expect(nudge()).rejects.toMatchObject({ code: 'failed-precondition', message: 'quiet_hours' });
   });
 
@@ -492,7 +512,7 @@ describe('friendsNudge', () => {
     const first = await nudge({ requestId });
     const second = await nudge({ requestId });
     expect(second).toEqual(first);
-    const senderDoc = docs.get('users/alice/friend_nudges/2026-08-21');
+    const senderDoc = docs.get('users/alice/friend_nudges/2026-08-23');
     expect(senderDoc?.sentCount).toBe(1);
   });
 });

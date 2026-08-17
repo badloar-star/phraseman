@@ -257,6 +257,24 @@ export function isQuietHours(
   return localHour >= startHour || localHour < endHour;
 }
 
+/**
+ * Клейм сундука недели — только в воскресенье ПО ЛОКАЛЬНОМУ времени вызывающего
+ * (макет владельца: «Откроется в воскресенье»). tz — как в isQuietHours; нет tz → UTC+3.
+ * зачем: иначе сундук открывали бы во вторник на пороге I и теряли II/III к концу недели.
+ */
+export const WEEK_KEY_RE = /^\d{4}-W\d{2}$/;
+export function isChestClaimDay(
+  nowMs: number,
+  tzOffsetMinutes: number | null | undefined,
+  defaultTzOffsetMinutes: number = DEFAULT_NUDGE_TZ_OFFSET_MINUTES,
+): boolean {
+  const offset = typeof tzOffsetMinutes === 'number' && Number.isFinite(tzOffsetMinutes)
+    ? tzOffsetMinutes
+    : defaultTzOffsetMinutes;
+  const localMs = nowMs + offset * 60 * 1000;
+  return new Date(localMs).getUTCDay() === 0;
+}
+
 /* -------------------------------- nudge limits ------------------------------- */
 
 export const NUDGE_MAX_PER_FRIEND_PER_DAY = 1;
@@ -309,6 +327,8 @@ export type FriendsTogetherConfig = {
   nudgeQuietStartHour: number;
   nudgeQuietEndHour: number;
   nudgeDefaultTzOffsetMinutes: number;
+  /** Разрешить клейм сундука в любой день (тесты/админка). По умолчанию — только воскресенье. */
+  chestClaimAnyDay: boolean;
 };
 
 export const FRIENDS_TOGETHER_DEFAULTS: FriendsTogetherConfig = {
@@ -326,6 +346,7 @@ export const FRIENDS_TOGETHER_DEFAULTS: FriendsTogetherConfig = {
   nudgeQuietStartHour: QUIET_HOURS_START,
   nudgeQuietEndHour: QUIET_HOURS_END,
   nudgeDefaultTzOffsetMinutes: DEFAULT_NUDGE_TZ_OFFSET_MINUTES,
+  chestClaimAnyDay: false,
 };
 
 function clampInt(value: unknown, min: number, max: number, fallback: number): number {
@@ -360,6 +381,7 @@ export function friendsTogetherConfigFromNumbers(
     chestMinMyDays: clampInt(n.friends_chest_min_days, 0, 7, d.chestMinMyDays),
     chestMinMyWeeklyXp: clampInt(n.friends_chest_min_xp, 0, 1_000_000, d.chestMinMyWeeklyXp),
     chestBoostMultiplier: clampInt(n.friends_chest_boost_multiplier, 1, 10, d.chestBoostMultiplier),
+    chestClaimAnyDay: n.friends_chest_claim_any_day === 1 || n.friends_chest_claim_any_day === true,
     nudgeMaxPerFriendPerDay: clampInt(n.friends_nudge_max_per_friend_day, 0, 100, d.nudgeMaxPerFriendPerDay),
     nudgeMaxSenderPerDay: clampInt(n.friends_nudge_max_sender_day, 0, 1000, d.nudgeMaxSenderPerDay),
     nudgeMaxReceiverPerDay: clampInt(n.friends_nudge_max_receiver_day, 0, 1000, d.nudgeMaxReceiverPerDay),

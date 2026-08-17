@@ -32,6 +32,12 @@ export type WeeklyChestModelInput = Readonly<{
   weekKey: string;
   /** weekKey уже забранной награды (из friends_chest_claims), либо null. */
   claimedWeekKey: string | null;
+  /**
+   * Сегодня — день открытия (воскресенье по локальному времени). Сервер отклоняет клейм в
+   * другие дни (`week_open`), поэтому кнопка «Открыть» до воскресенья не показывается —
+   * состояние остаётся `active`. Не задано → считаем по устройству.
+   */
+  isClaimDay?: boolean;
 }>;
 
 export type WeeklyChestState = 'locked' | 'active' | 'ready' | 'claimed';
@@ -83,7 +89,9 @@ export function buildWeeklyChestModel(input: WeeklyChestModelInput): WeeklyChest
   const eligibleByMyStats = myDays >= FRIENDS_CHEST_MIN_DAYS && myWeeklyXp >= FRIENDS_CHEST_MIN_WEEKLY_XP;
   const alreadyClaimed = input.claimedWeekKey === input.weekKey;
 
-  const canClaim = !alreadyClaimed && eligibleByMyStats && tiersReached > 0;
+  // зачем: сундук открывается только в воскресенье (макет владельца) — до этого кнопки нет.
+  const isClaimDay = input.isClaimDay ?? (new Date().getDay() === 0);
+  const canClaim = !alreadyClaimed && eligibleByMyStats && tiersReached > 0 && isClaimDay;
   const state: WeeklyChestState = alreadyClaimed
     ? 'claimed'
     : canClaim

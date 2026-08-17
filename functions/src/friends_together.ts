@@ -37,6 +37,8 @@ import {
   chestRewardMultiplier,
   isQuietHours,
   nudgeLimitBlockReason,
+  isChestClaimDay,
+  WEEK_KEY_RE,
 } from './friends_together_core';
 
 const REGION = 'us-central1';
@@ -277,9 +279,15 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
 
   const now = Date.now();
   const currentWeekKey = isoWeekKey(now);
+  if (requestedWeekKey && !WEEK_KEY_RE.test(requestedWeekKey)) {
+    throw new HttpsError('invalid-argument', 'week_key_format');
+  }
   const weekKey = requestedWeekKey || currentWeekKey;
-  // Только текущая (в процессе) или уже прошедшая неделя — будущее не пускаем.
+  // зачем (аудит 2026-08-17): прогресс считается по ТЕКУЩЕЙ неделе (weekly_xp прошлой
+  // недели сброшен кроном), поэтому клеймить можно только текущую неделю; будущее и
+  // прошлое — отказ. Открытие — только в воскресенье по локальному времени вызывающего.
   if (weekKey > currentWeekKey) throw new HttpsError('failed-precondition', 'week_open');
+  if (weekKey < currentWeekKey) throw new HttpsError('failed-precondition', 'week_expired');
 
   const config = await resolveConfig(db);
   const userRef = db.collection('users').doc(stableUid);
@@ -309,6 +317,13 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
 
     const myActiveDays = activeDaysFromUser(userSnap.data());
     const myProgress = getProgress(userSnap.data());
+    if (!config.chestClaimAnyDay) {
+      const myPush = parseJsonObject(getField(userSnap.data(), 'friends_push_v1'));
+      const myTz = typeof myPush.tz === 'number' && Number.isFinite(myPush.tz) ? myPush.tz : null;
+      if (!isChestClaimDay(now, myTz, config.nudgeDefaultTzOffsetMinutes)) {
+        throw new HttpsError('failed-precondition', 'week_open');
+      }
+    }
     const myWeeklyXp = weeklyXpFromProgress(myProgress, currentWeekKey, now);
     const myDaysThisWeek = activeDaysCountForWeek(myActiveDays, weekKey);
 

@@ -141,12 +141,25 @@ describe('buildWeeklyChestModel', () => {
     expect(zeroTier.canClaim).toBe(false);
     expect(zeroTier.state).toBe('locked');
 
+    // зачем: сундук открывается только в воскресенье — до этого кнопки нет.
+    const weekday = buildWeeklyChestModel({
+      friends: tier1Friends(),
+      myDays: 5,
+      myWeeklyXp: 1000,
+      weekKey: '2026-W33',
+      claimedWeekKey: null,
+      isClaimDay: false,
+    });
+    expect(weekday.canClaim).toBe(false);
+    expect(weekday.state).toBe('active');
+
     const ready = buildWeeklyChestModel({
       friends: tier1Friends(),
       myDays: 5,
       myWeeklyXp: 1000,
       weekKey: '2026-W33',
       claimedWeekKey: null,
+      isClaimDay: true,
     });
     expect(ready.canClaim).toBe(true);
     expect(ready.state).toBe('ready');
@@ -157,6 +170,7 @@ describe('buildWeeklyChestModel', () => {
       myWeeklyXp: 1000,
       weekKey: '2026-W33',
       claimedWeekKey: '2026-W33',
+      isClaimDay: true,
     });
     expect(claimed.canClaim).toBe(false);
     expect(claimed.state).toBe('claimed');

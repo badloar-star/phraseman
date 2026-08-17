@@ -12,6 +12,7 @@ import { arenaV2Home, createArenaRequestId } from '../../app/arena_client';
 import { arenaText } from '../../modules/arena/copy';
 import {
   ARENA_HUB_ROUTES,
+  ARENA_HUB_TAB_CHOICES,
   arenaHubBodyPaddingBottom,
   arenaHubTabForRoute,
   arenaMatchButtonAction,
@@ -78,9 +79,9 @@ export function ArenaHubChrome({
   const activeTab = arenaHubTabForRoute(pathname);
 
   const tabs: readonly ArenaTabDef[] = useMemo(() => ([
-    { key: 'today', icon: 'today-outline', active: 'today', label: arenaText(lang, 'todayTab') },
-    { key: 'rank', icon: 'podium-outline', active: 'podium', label: arenaText(lang, 'ranks') },
-    { key: 'tops', icon: 'trophy-outline', active: 'trophy', label: arenaText(lang, 'topsTab') },
+    // Порядок фиксирован: «Играть» рисуется по центру и крупно (см. ArenaTabBar).
+    { key: 'rating', icon: 'podium-outline', active: 'podium', label: arenaText(lang, 'ranks') },
+    { key: 'play', icon: 'flash-outline', active: 'flash', label: arenaText(lang, 'matchCta') },
     { key: 'history', icon: 'time-outline', active: 'time', label: arenaText(lang, 'historyTab') },
   ]), [lang]);
 
@@ -111,10 +112,36 @@ export function ArenaHubChrome({
     }));
   }, [resolvedAvailability, lang]);
 
-  const onSelectTab = useCallback((key: ArenaTabKey) => {
-    if (key === activeTab) return;
-    router.replace(ARENA_HUB_ROUTES[key] as never);
-  }, [activeTab, router]);
+  /**
+   * зачем список у КАЖДОЙ кнопки (владелец, 2026-08-16): раньше выпадающий
+   * выбор был только у центральной, а боковые вкладки просто переключали
+   * экран. Из-за этого разделы вроде «Топы» и «Сезон» приходилось выносить
+   * отдельными вкладками — так и набралось четыре вкладки плюс вкладки внутри
+   * экрана. Теперь сущностей три, а их содержимое раскрывается тем же жестом.
+   */
+  const [openTab, setOpenTab] = useState<ArenaTabKey | null>(null);
+
+  const tabChoices = useMemo(() => {
+    if (!openTab) return [];
+    return ARENA_HUB_TAB_CHOICES[openTab].map((choice) => ({
+      key: choice.key as ArenaModeKey,
+      icon: choice.icon as React.ComponentProps<typeof ArenaModeSheet>['options'][number]['icon'],
+      title: arenaText(lang, choice.label as Parameters<typeof arenaText>[1]),
+      // Пусто намеренно: подписи-расшифровки под названием запрещены.
+      body: '',
+      badge: '',
+      accent: choice.route === ARENA_HUB_ROUTES[openTab],
+      disabled: false,
+    }));
+  }, [lang, openTab]);
+
+  const onSelectTabChoice = useCallback((key: ArenaModeKey) => {
+    const choice = openTab
+      ? ARENA_HUB_TAB_CHOICES[openTab].find((row) => row.key === key)
+      : undefined;
+    setOpenTab(null);
+    if (choice) router.replace(choice.route as never);
+  }, [openTab, router]);
 
   const onMatch = useCallback(() => {
     const action = arenaMatchButtonAction({
@@ -142,6 +169,13 @@ export function ArenaHubChrome({
      */
     setSheetOpen(true);
   }, [resolvedMatchId, resolvedQueue, resolvedAvailability?.enabled, router]);
+
+  const onSelectTab = useCallback((key: ArenaTabKey) => {
+    // «Играть» ведёт себя как прежде: недоигранный матч или очередь важнее
+    // выбора режима, иначе игрок начинает второй матч и теряет первый.
+    if (key === 'play') { onMatch(); return; }
+    setOpenTab(key);
+  }, [onMatch]);
 
   const onSelectMode = useCallback((key: ArenaModeKey) => {
     setSheetOpen(false);
@@ -187,6 +221,14 @@ export function ArenaHubChrome({
         options={modeOptions}
         onSelect={onSelectMode}
         onClose={() => setSheetOpen(false)}
+      />
+      {/* Тот же лист, что и у «Играть»: жест один на все три кнопки. */}
+      <ArenaModeSheet
+        visible={openTab !== null}
+        title={openTab ? arenaText(lang, openTab === 'rating' ? 'ranks' : 'historyTab') : ''}
+        options={tabChoices}
+        onSelect={onSelectTabChoice}
+        onClose={() => setOpenTab(null)}
       />
     </View>
   );

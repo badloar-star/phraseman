@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
@@ -15,8 +15,6 @@ import { arenaHubModel } from '../modules/arena/hub_view';
 import {
   ArenaFeatureRow,
   ArenaProgress,
-  ArenaSectionTabs,
-  ArenaSectionTitle,
   ArenaStateCard,
   ArenaStateNotice,
   ArenaWalletButton,
@@ -24,7 +22,7 @@ import {
 import { arenaText } from '../modules/arena/copy';
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
-import { coerceArenaHubSection, type ArenaExpansionHome } from '../modules/arena/expansion_contract';
+import type { ArenaExpansionHome } from '../modules/arena/expansion_contract';
 import { arenaExpansionHome, arenaFetchMatchHistory, arenaFlushOutbox, arenaOutboxBlockedByUpdate, arenaV2FriendsBoard, arenaV2Home, arenaV2SpinClaim, createArenaRequestId, type ArenaFriendsBoardRow, type ArenaHomeResponse } from './arena_client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -64,7 +62,6 @@ function arenaErrorCode(e: unknown): string {
 
 export default function ArenaHubScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ section?: string }>();
   const { lang } = useLang();
   const P = useTournamentPalette();
   // Высота строки числом не растёт вместе с системным шрифтом — при
@@ -73,7 +70,6 @@ export default function ArenaHubScreen() {
   const todayTitleLine = { lineHeight: 28 * fontScale };
   const todayBodyLine = { lineHeight: 20 * fontScale };
   const active = useRuntimeActive();
-  const section = coerceArenaHubSection(params.section);
   /**
    * Первый кадр рисуется ПРОШЛЫМ снимком, а не пустотой (владелец: «видимой
    * загрузки не должно быть нигде»). Снимок читается из памяти синхронно,
@@ -173,13 +169,6 @@ export default function ArenaHubScreen() {
     return () => { alive = false; };
   }, [active]);
 
-  const labels = useMemo(() => ({
-    today: arenaExpansionText(lang, 'today'),
-    play: arenaExpansionText(lang, 'play'),
-    growth: arenaExpansionText(lang, 'growth'),
-    together: arenaExpansionText(lang, 'together'),
-  }), [lang]);
-
   /**
    * Скелетон показывается ТОЛЬКО когда нет вообще ничего: ни тёплого снимка
    * (память), ни диск-кэша, ни ответа сети. Если warm-снимок есть — экран
@@ -264,36 +253,11 @@ export default function ArenaHubScreen() {
           )}
         </V2Card>
       ) : null}
-      <ArenaSectionTitle>{arenaExpansionText(lang, 'play')}</ArenaSectionTitle>
+      {/* зачем заголовок убран (владелец, 2026-08-16): экран и так открыт по
+          кнопке «Играть» в таббаре — подпись над первым же пунктом повторяла
+          название, под которым сюда пришли. */}
       <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
       {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => { setSpinBusy(true); void arenaV2SpinClaim(spinRequestIdRef.current).then(() => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); }).finally(() => setSpinBusy(false)); }} /> : null}
-    </>
-  );
-
-  const playContent = (
-    <>
-      <ArenaSectionTitle>{arenaExpansionText(lang, 'playTitle')}</ArenaSectionTitle>
-      <ArenaFeatureRow accent icon="flash" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
-      <ArenaFeatureRow icon="trophy" title={arenaText(lang, 'ranked')} body={arenaText(lang, 'rankedHint')} disabled={!baseEnabled || !home?.availability.rankedEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'ranked', requestId: createArenaRequestId('queue') } } as never)} />
-      <ArenaFeatureRow icon="people" title={arenaText(lang, 'friend')} body={arenaText(lang, 'friendHint')} disabled={!baseEnabled || !home?.availability.friendEnabled} onPress={() => router.push('/arena_friend_duel' as never)} />
-      <ArenaFeatureRow icon="flask" title={arenaExpansionText(lang, 'lab')} body={arenaExpansionText(lang, 'labBody')} disabled={!baseEnabled || !expansion?.availability.lab} onPress={() => router.push('/arena_match_lab' as never)} />
-      <ArenaFeatureRow icon="recording" title={arenaExpansionText(lang, 'ghost')} body={arenaExpansionText(lang, 'ghostDisclosure')} disabled={!baseEnabled || !expansion?.availability.ghost} badge={arenaExpansionText(lang, 'recordingBadge')} onPress={() => router.push('/arena_ghost_duel' as never)} />
-    </>
-  );
-
-  const growthContent = (
-    <>
-      <ArenaFeatureRow accent icon="map" title={arenaExpansionText(lang, 'mastery')} body={expansion?.mastery.length ? `${expansion.mastery.length} / 5` : arenaExpansionText(lang, 'masteryLow')} disabled={!baseEnabled || !expansion?.availability.mastery} onPress={() => router.push('/arena_mastery_map' as never)} />
-      <ArenaFeatureRow icon="podium" title={arenaText(lang, 'ranks')} body={home?.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home?.profile.rank ?? 0) + 1}`} disabled={!baseEnabled} onPress={() => router.push('/arena_ranks' as never)} />
-      <ArenaFeatureRow icon="star" title={arenaText(lang, 'season')} body={`${home?.season.stars ?? 0}`} disabled={!baseEnabled} onPress={() => router.push('/arena_season_pass' as never)} />
-    </>
-  );
-
-  const togetherContent = (
-    <>
-      <ArenaFeatureRow accent icon="ribbon" title={arenaExpansionText(lang, 'rivalry')} body={arenaExpansionText(lang, 'rivalryBody')} disabled={!baseEnabled || !expansion?.availability.rival} badge={expansion?.rivalries.length ? `${expansion.rivalries.length}` : undefined} onPress={() => router.push('/arena_rivalries' as never)} />
-      <ArenaFeatureRow icon="people-circle" title={arenaExpansionText(lang, 'partner')} body={arenaExpansionText(lang, 'partnerBody')} disabled={!baseEnabled || !expansion?.availability.partner} onPress={() => router.push('/arena_partner' as never)} />
-      <ArenaFeatureRow icon="person-add" title={arenaText(lang, 'friend')} body={arenaText(lang, 'friendHint')} disabled={!baseEnabled || !home?.availability.friendEnabled} onPress={() => router.push('/arena_friend_duel' as never)} />
     </>
   );
 
@@ -309,7 +273,6 @@ export default function ArenaHubScreen() {
       onBack={() => router.replace('/(tabs)/home' as never)}
       headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion ? expansion.wallet.walletStars : null} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
     >
-      <ArenaSectionTabs selected={section} labels={labels} onSelect={(next) => router.setParams({ section: next })} />
       {/*
         Пока Арена не включена на сервере, все кнопки погашены — и без
         объяснения это выглядит как поломка приложения. Владелец увидел ровно
@@ -335,7 +298,7 @@ export default function ArenaHubScreen() {
       {reportBlocked ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'reportBlocked')} body={arenaText(lang, 'reportBlockedHint')} /> : null}
       {home && !home.availability.enabled ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'maintenance')} body={arenaText(lang, 'maintenanceHint')} /> : null}
       <SkeletonSwap loading={hubLoading} skeleton={<ArenaHubSkeleton palette={P} />}>
-        {section === 'today' ? todayContent : section === 'play' ? playContent : section === 'growth' ? growthContent : togetherContent}
+        {todayContent}
       </SkeletonSwap>
     </ArenaScreen>
     {arenaIntroDef ? (

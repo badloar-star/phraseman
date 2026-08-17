@@ -21,9 +21,15 @@ import {
  * — предлагает начать второй матч, когда первый не доигран.
  */
 
+/**
+ * зачем три, а не четыре (владелец, 2026-08-16): навигаций было ДВЕ — таббар
+ * снизу и вкладки внутри экрана («Обзор · Играть · Рост · Вместе»). Они
+ * пересекались: «Играть» внутри дублировал центральную кнопку, «Рост» —
+ * «Ранги». Осталось три глагола без пересечений: Играть · Рейтинг · История.
+ */
 describe('вкладки', () => {
-  it('их четыре и у каждой свой путь', () => {
-    expect(ARENA_HUB_TABS.length).toBe(4);
+  it('их три и у каждой свой путь', () => {
+    expect(ARENA_HUB_TABS.length).toBe(3);
     const routes = ARENA_HUB_TABS.map((tab) => ARENA_HUB_ROUTES[tab]);
     expect(new Set(routes).size).toBe(routes.length);
   });
@@ -36,28 +42,35 @@ describe('вкладки', () => {
 
   /**
    * `/arena_ranks` начинается с `/arena`. Наивная проверка по префиксу
-   * подсветила бы «Сегодня» на экране рангов.
+   * подсветила бы «Играть» на экране рангов.
    */
   it('похожие пути не путаются между собой', () => {
-    expect(arenaHubTabForRoute('/arena_ranks')).toBe('rank');
+    expect(arenaHubTabForRoute('/arena_ranks')).toBe('rating');
     expect(arenaHubTabForRoute('/arena_history')).toBe('history');
-    expect(arenaHubTabForRoute('/arena_tops')).toBe('tops');
-    expect(arenaHubTabForRoute('/arena')).toBe('today');
+    expect(arenaHubTabForRoute('/arena_tops')).toBe('rating');
+    expect(arenaHubTabForRoute('/arena')).toBe('play');
   });
 
   it('хвостовой слэш и параметры не сбивают подсветку', () => {
-    expect(arenaHubTabForRoute('/arena_ranks/')).toBe('rank');
-    expect(arenaHubTabForRoute('/arena_ranks?season=2')).toBe('rank');
-    expect(arenaHubTabForRoute('/arena?section=play')).toBe('today');
+    expect(arenaHubTabForRoute('/arena_ranks/')).toBe('rating');
+    expect(arenaHubTabForRoute('/arena_ranks?season=2')).toBe('rating');
+    expect(arenaHubTabForRoute('/arena?section=play')).toBe('play');
   });
 
   it('вложенный путь остаётся в своей вкладке', () => {
     expect(arenaHubTabForRoute('/arena_history/2026-08')).toBe('history');
   });
 
-  it('незнакомый путь падает на «Сегодня», а не гасит таббар', () => {
-    for (const path of ['', null, undefined, '/', '/settings', '/arena_match']) {
-      expect(arenaHubTabForRoute(path as string)).toBe('today');
+  it('незнакомый путь падает на «Играть», а не гасит таббар', () => {
+    for (const path of ['', null, undefined, '/', '/settings']) {
+      expect(arenaHubTabForRoute(path as string)).toBe('play');
+    }
+  });
+
+  /** Экраны игрового потока подсвечивают «Играть» — они его список членов. */
+  it('экраны потока быстрого/рейтинг-матча подсвечивают «Играть»', () => {
+    for (const path of ['/arena_matchmaking', '/arena_match', '/arena_results', '/arena_friend_duel']) {
+      expect(arenaHubTabForRoute(path)).toBe('play');
     }
   });
 });
@@ -196,25 +209,29 @@ describe('место под таббар', () => {
 describe('какие экраны живут под таббаром', () => {
   const read = (rel: string) => fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8');
 
-  /** Разделы, по которым игрок ходит: без таббара он теряет навигацию Арены. */
+  /**
+   * Разделы, по которым игрок ходит: без таббара он теряет навигацию Арены.
+   *
+   * зачем короче прежнего списка (владелец, 2026-08-16): экраны расширения
+   * (магазин звёзд, соперничества, партнёр, карта мастерства) удалены — они
+   * дублировали то, что уже есть в рангах и режимах, и добавляли сущности без
+   * новых задач. Магазин остаётся, но пуст — контента для него ещё нет.
+   */
   const SECTIONS = [
     'app/arena.tsx',
     'app/arena_ranks.tsx',
     'app/arena_tops.tsx',
     'app/arena_history.tsx',
-    'app/arena_star_wallet.tsx',
     'app/arena_season_pass.tsx',
-    'app/arena_rivalries.tsx',
-    'app/arena_partner.tsx',
-    'app/arena_mastery_map.tsx',
+    'app/arena_star_wallet.tsx',
   ];
 
   /**
    * Шаги внутри потока. Таббар на них — это кнопка «уйти отсюда» посреди
    * недоигранного матча или прогона: игрок нажмёт её и потеряет результат.
    *
-   * «Сегодня» и «Лаборатория» выглядят разделами, но на самом деле показывают
-   * задания — это прогоны, и уводить из них нельзя.
+   * «Сегодня» выглядит разделом, но на самом деле показывает задание — это
+   * прогон, и уводить из него нельзя.
    */
   const FLOWS = [
     'app/arena_matchmaking.tsx',
@@ -223,7 +240,6 @@ describe('какие экраны живут под таббаром', () => {
     'app/arena_review.tsx',
     'app/arena_invite.tsx',
     'app/arena_today.tsx',
-    'app/arena_match_lab.tsx',
   ];
 
   it.each(SECTIONS)('%s показывает таббар', (rel) => {
@@ -236,7 +252,7 @@ describe('какие экраны живут под таббаром', () => {
 
   /** Прогон узнаётся по тому, что он рисует задание. */
   it('экраны с заданиями действительно прогоны, а не разделы', () => {
-    for (const rel of ['app/arena_today.tsx', 'app/arena_match_lab.tsx', 'app/arena_match.tsx']) {
+    for (const rel of ['app/arena_today.tsx', 'app/arena_match.tsx']) {
       expect(read(rel)).toContain('ArenaQuestion');
     }
   });

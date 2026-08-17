@@ -55,6 +55,7 @@ import {
   arenaV2MatchPlan,
   arenaV2MatchSettle,
   arenaPublishLiveTicks,
+  createArenaRequestId,
   rememberArenaViewerSeat,
   useArenaOpponentLive,
 } from './arena_client';
@@ -466,6 +467,19 @@ export default function ArenaMatchScreen() {
           {failure.canRetry ? (
             <V2Cta onPress={() => { setEntryFailure(null); setPlanError(false); }}>
               {arenaText(lang, 'retry')}
+            </V2Cta>
+          ) : null}
+          {/* зачем: соперник не принял вызов — человек всё ещё хочет играть,
+              а единственной кнопкой была «На главную». Его выкидывало из
+              Арены за чужой отказ (владелец, 2026-08-16: «появился экран
+              соперник не принял вызов»). Возвращаем в поиск одним нажатием,
+              новым requestId — старый билет уже закрыт сервером. */}
+          {entryFailure === 'no_opponent' ? (
+            <V2Cta onPress={() => router.replace({
+              pathname: '/arena_matchmaking',
+              params: { mode: 'quick', requestId: createArenaRequestId('queue') },
+            } as never)}>
+              {arenaText(lang, 'quick')}
             </V2Cta>
           ) : null}
           <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>

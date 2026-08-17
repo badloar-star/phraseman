@@ -29,7 +29,7 @@ import { hapticTap, hapticMediumImpact } from '../../hooks/use-haptics';
  * Reduce Motion вся анимация схлопывается в мгновенные состояния.
  */
 
-export type ArenaTabKey = 'today' | 'rank' | 'tops' | 'history';
+export type ArenaTabKey = 'play' | 'rating' | 'history';
 
 export type ArenaTabDef = Readonly<{
   key: ArenaTabKey;
@@ -197,8 +197,17 @@ function ArenaTabBarBase({
   const reduceMotion = useReduceMotion();
   const select = useCallback((key: ArenaTabKey) => onSelect(key), [onSelect]);
 
-  const left = tabs.slice(0, 2);
-  const right = tabs.slice(2, 4);
+  /**
+   * зачем три равные кнопки вместо «две слева + центральная + две справа»
+   * (владелец, 2026-08-16): вкладок было четыре, и они пересекались со
+   * вкладками внутри экрана. Теперь три сущности, и КАЖДАЯ раскрывает свой
+   * список — «Играть» отдаёт режимы, остальные свои разделы.
+   *
+   * «Играть» остаётся крупной: это то, ради чего сюда приходят, и она должна
+   * читаться первой, а не теряться среди равных.
+   */
+  const play = tabs.find((tab) => tab.key === 'play');
+  const sides = tabs.filter((tab) => tab.key !== 'play');
 
   return (
     <View
@@ -206,30 +215,28 @@ function ArenaTabBarBase({
       pointerEvents="box-none"
     >
       <View style={[styles.bar, { backgroundColor: P.elev, shadowColor: '#000' }]}>
-        {left.map((tab) => (
+        {sides[0] ? (
           <SideTab
-            key={tab.key}
-            tab={tab}
-            focused={active === tab.key}
+            tab={sides[0]}
+            focused={active === sides[0].key}
             reduceMotion={reduceMotion}
-            onPress={() => select(tab.key)}
+            onPress={() => select(sides[0].key)}
           />
-        ))}
+        ) : null}
         <CenterMatchButton
           label={matchLabel}
           busy={matchBusy}
           reduceMotion={reduceMotion}
-          onPress={onMatch}
+          onPress={play ? () => select(play.key) : onMatch}
         />
-        {right.map((tab) => (
+        {sides[1] ? (
           <SideTab
-            key={tab.key}
-            tab={tab}
-            focused={active === tab.key}
+            tab={sides[1]}
+            focused={active === sides[1].key}
             reduceMotion={reduceMotion}
-            onPress={() => select(tab.key)}
+            onPress={() => select(sides[1].key)}
           />
-        ))}
+        ) : null}
       </View>
     </View>
   );

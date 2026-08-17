@@ -11,17 +11,71 @@
  * либо кнопку, ведущую в отключённый раздел.
  */
 
-export type ArenaHubTab = 'today' | 'rank' | 'tops' | 'history';
+/**
+ * зачем три, а не четыре плюс центральная (владелец, 2026-08-16): навигаций
+ * было ДВЕ — таббар снизу (Сегодня · Ранги · [Матч] · Топы · История) и вкладки
+ * внутри экрана (Обзор · Играть · Рост · Вместе). Они пересекались: «Играть»
+ * внутри дублировал центральную кнопку, «Рост» — «Ранги». Девять точек входа
+ * туда, где смыслов три.
+ *
+ * Осталось три глагола без пересечений, и КАЖДЫЙ раскрывает свой список —
+ * одно правило на все три, угадывать нечего.
+ */
+export type ArenaHubTab = 'play' | 'rating' | 'history';
 export type ArenaHubMode = 'quick' | 'ranked' | 'friend';
 
-export const ARENA_HUB_TABS: readonly ArenaHubTab[] = ['today', 'rank', 'tops', 'history'];
+export const ARENA_HUB_TABS: readonly ArenaHubTab[] = ['play', 'rating', 'history'];
 
-/** Куда ведёт вкладка. Одно место, где это записано. */
+/**
+ * «Дом» каждой кнопки: сюда ведёт сама кнопка, если список не открывать, и по
+ * нему таббар понимает, какая вкладка активна.
+ */
 export const ARENA_HUB_ROUTES: Readonly<Record<ArenaHubTab, string>> = Object.freeze({
-  today: '/arena',
-  rank: '/arena_ranks',
-  tops: '/arena_tops',
+  play: '/arena',
+  rating: '/arena_ranks',
   history: '/arena_history',
+});
+
+/** Пункт списка под кнопкой таббара. */
+export type ArenaHubTabChoice = Readonly<{
+  key: string;
+  icon: string;
+  /** Ключ текста в arenaText — подписи-расшифровки запрещены, только название. */
+  label: string;
+  route: string;
+}>;
+
+/**
+ * Что раскрывается под кнопкой.
+ *
+ * У «Играть» список пустой намеренно: режимы отдаёт `arenaModeChoices`, потому
+ * что их доступность зависит от ответа сервера, а эти маршруты доступны всегда.
+ */
+export const ARENA_HUB_TAB_CHOICES: Readonly<Record<ArenaHubTab, readonly ArenaHubTabChoice[]>> =
+  Object.freeze({
+    play: Object.freeze([] as readonly ArenaHubTabChoice[]),
+    rating: Object.freeze([
+      { key: 'ranks', icon: 'podium', label: 'ranks', route: '/arena_ranks' },
+      { key: 'tops', icon: 'trophy', label: 'topsTab', route: '/arena_tops' },
+      { key: 'season', icon: 'star', label: 'season', route: '/arena_season_pass' },
+    ] as readonly ArenaHubTabChoice[]),
+    history: Object.freeze([
+      { key: 'matches', icon: 'time', label: 'historyTab', route: '/arena_history' },
+      { key: 'review', icon: 'search', label: 'reviewTitle', route: '/arena_review' },
+    ] as readonly ArenaHubTabChoice[]),
+  });
+
+/**
+ * Какие экраны принадлежат кнопке.
+ *
+ * зачем: экран из списка обязан подсвечивать СВОЮ кнопку. Иначе игрок уходит в
+ * «Топы», а подсвечено «Играть» — таббар врёт о том, где человек находится.
+ */
+export const ARENA_HUB_TAB_MEMBERS: Readonly<Record<ArenaHubTab, readonly string[]>> = Object.freeze({
+  play: Object.freeze(['/arena_matchmaking', '/arena_match', '/arena_results',
+    '/arena_friend_duel', '/arena_invite', '/arena_today']),
+  rating: Object.freeze(['/arena_ranks', '/arena_tops', '/arena_season_pass']),
+  history: Object.freeze(['/arena_history', '/arena_review']),
 });
 
 /**
@@ -33,15 +87,18 @@ export const ARENA_HUB_ROUTES: Readonly<Record<ArenaHubTab, string>> = Object.fr
  */
 export function arenaHubTabForRoute(pathname: string | null | undefined): ArenaHubTab {
   const path = String(pathname ?? '').split('?')[0].replace(/\/+$/, '');
-  // Сначала точные совпадения, потом префиксы: `/arena_ranks` не должен
-  // считаться вкладкой «Сегодня» только потому, что начинается с `/arena`.
+  // Сначала точные совпадения: `/arena_ranks` не должен считаться вкладкой
+  // «Играть» только потому, что начинается с `/arena`.
   for (const tab of ARENA_HUB_TABS) {
     if (path === ARENA_HUB_ROUTES[tab]) return tab;
   }
+  // Затем экраны из списков — они подсвечивают кнопку, которой принадлежат.
   for (const tab of ARENA_HUB_TABS) {
-    if (tab !== 'today' && path.startsWith(`${ARENA_HUB_ROUTES[tab]}/`)) return tab;
+    for (const route of ARENA_HUB_TAB_MEMBERS[tab]) {
+      if (path === route || path.startsWith(`${route}/`)) return tab;
+    }
   }
-  return 'today';
+  return 'play';
 }
 
 /* ------------------------------ режимы ----------------------------------- */

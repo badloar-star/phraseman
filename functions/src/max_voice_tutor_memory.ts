@@ -52,11 +52,13 @@ export interface TutorMemory {
   languagePreference: TutorLanguagePreference;
 }
 
-export type TutorLanguagePreference = '' | 'more_english' | 'more_native';
+export type TutorLanguagePreference = '' | 'more_target' | 'more_native';
 
+/** 'more_english' — старое имя (до появления второго изучаемого языка) → 'more_target'. */
 export function asTutorLanguagePreference(value: unknown): TutorLanguagePreference {
   const v = String(value ?? '').trim();
-  return v === 'more_english' || v === 'more_native' ? v : '';
+  if (v === 'more_target' || v === 'more_english') return 'more_target';
+  return v === 'more_native' ? 'more_native' : '';
 }
 
 export const TUTOR_MEMORY_EMPTY: TutorMemory = Object.freeze({
@@ -218,8 +220,8 @@ export function renderTutorMemoryBlock(memory: TutorMemory, nowMs: number): stri
     lines.push(`Homework you gave last time (check it early in this lesson, ask them to SAY each phrase): ${memory.homework.join(' | ')}.`);
   }
   if (memory.nextTopic) lines.push(`You promised today's topic would be: ${memory.nextTopic}.`);
-  if (memory.languagePreference === 'more_english') {
-    lines.push('LANGUAGE PREFERENCE: the learner asked you to speak MORE ENGLISH with them than the level default — honor it (still keep it simple and clear).');
+  if (memory.languagePreference === 'more_target') {
+    lines.push('LANGUAGE PREFERENCE: the learner asked you to speak MORE of the language they are learning with them than the level default — honor it (still keep it simple and clear).');
   } else if (memory.languagePreference === 'more_native') {
     lines.push('LANGUAGE PREFERENCE: the learner asked you to explain and speak MORE in their native language than the level default — honor it.');
   }

@@ -5,6 +5,7 @@ import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolveConfiguredDialogModel, modelSupportsJsonObject } from './openai_dialog_model_config';
 import { applyTutorMemoryUpdate } from './max_voice_tutor_memory';
+import { reviewVoiceSafety, sanitizeClientSafetyFlags } from './max_voice_safety';
 import { enforceRateLimit, asInterfaceLang } from './premium_dialog';
 import { resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
 
@@ -74,8 +75,10 @@ interface DialogReviewRequest {
   homework?: unknown;
   /** tutor: тема следующего урока (set_next_topic). */
   nextTopic?: unknown;
-  /** tutor: просьба ученика, как говорить (set_language_preference): more_english | more_native | default. */
+  /** tutor: просьба ученика, как говорить (set_language_preference): more_target | more_native | default. */
   languagePreference?: unknown;
+  /** voice/tutor: флаги учителя (инструмент flag_safety) — { kind, note }[]. */
+  safetyFlags?: unknown;
 }
 
 /** Одно исправление: фраза ученика → естественный вариант + короткое пояснение. */
@@ -294,57 +297,79 @@ export const premiumDialogReview = onCall({
   const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
   const useJsonFormat = modelSupportsJsonObject(dialogModel);
 
-  let json: OpenAIChatResponse;
-  let review: DialogReviewResult | null;
-  try {
-    const response = await fetch(OPENAI_CHAT_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: dialogModel,
-        max_tokens: MAX_REVIEW_OUTPUT_TOKENS,
-        // Разбор — аналитическая задача: низкая температура ради точности цитат.
-        temperature: 0.3,
-        messages: [
-          { role: 'system', content: buildReviewSystemPrompt(cefr, learnerLangName, goalEn, studyTarget, mode) },
-          { role: 'user', content: transcript },
-        ],
-        ...(useJsonFormat ? { response_format: { type: 'json_object' } } : {}),
-      }),
-    });
+  // Сейфти-журнал голосовых уроков/звонков (владелец 2026-08-16): флаги учителя +
+  // словарь + модерация → safety_flags с полным транскриптом + Telegram. Идёт
+  // ПАРАЛЛЕЛЬНО с разбором и никогда не бросает.
+  const safetyPromise = mode === 'voice' || mode === 'tutor'
+    ? reviewVoiceSafety({
+        apiKey,
+        authUid,
+        stableUid,
+        mode: mode === 'tutor' ? 'voice_tutor' : 'voice_call',
+        history,
+        clientFlags: sanitizeClientSafetyFlags(data.safetyFlags),
+      })
+    : Promise.resolve({ categories: [] });
 
-    if (!response.ok) {
-      const detail = await response.text().catch(() => '');
-      console.error('premium_dialog_review chat failed', {
-        status: response.status,
+  // Разбор и сейфти-журнал идут параллельно; журнал ДОЛЖЕН дописаться даже
+  // если провайдер разбора упал (иначе Cloud Functions обрежет фоновую запись).
+  const runReview = async (): Promise<{ json: OpenAIChatResponse; review: DialogReviewResult }> => {
+    let json: OpenAIChatResponse;
+    let review: DialogReviewResult | null;
+    try {
+      const response = await fetch(OPENAI_CHAT_URL, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: dialogModel,
+          max_tokens: MAX_REVIEW_OUTPUT_TOKENS,
+          // Разбор — аналитическая задача: низкая температура ради точности цитат.
+          temperature: 0.3,
+          messages: [
+            { role: 'system', content: buildReviewSystemPrompt(cefr, learnerLangName, goalEn, studyTarget, mode) },
+            { role: 'user', content: transcript },
+          ],
+          ...(useJsonFormat ? { response_format: { type: 'json_object' } } : {}),
+        }),
+      });
+
+      if (!response.ok) {
+        const detail = await response.text().catch(() => '');
+        console.error('premium_dialog_review chat failed', {
+          status: response.status,
+          model: dialogModel,
+          scenarioId: text(data.scenarioId, 80) || null,
+          detail: detail.slice(0, 500),
+        });
+        throw new HttpsError('unavailable', 'dialog_provider_failed');
+      }
+
+      json = (await response.json()) as OpenAIChatResponse;
+      review = parseReviewEnvelope(text(json.choices?.[0]?.message?.content, 6000));
+      if (!review) {
+        console.error('premium_dialog_review unparseable reply', {
+          model: dialogModel,
+          scenarioId: text(data.scenarioId, 80) || null,
+        });
+        throw new HttpsError('unavailable', 'dialog_provider_failed');
+      }
+    } catch (error) {
+      if (error instanceof HttpsError) throw error;
+      console.error('premium_dialog_review provider exception', {
         model: dialogModel,
         scenarioId: text(data.scenarioId, 80) || null,
-        detail: detail.slice(0, 500),
+        error: String((error as Error)?.message ?? error).slice(0, 500),
       });
       throw new HttpsError('unavailable', 'dialog_provider_failed');
     }
-
-    json = (await response.json()) as OpenAIChatResponse;
-    review = parseReviewEnvelope(text(json.choices?.[0]?.message?.content, 6000));
-    if (!review) {
-      console.error('premium_dialog_review unparseable reply', {
-        model: dialogModel,
-        scenarioId: text(data.scenarioId, 80) || null,
-      });
-      throw new HttpsError('unavailable', 'dialog_provider_failed');
-    }
-  } catch (error) {
-    if (error instanceof HttpsError) throw error;
-    console.error('premium_dialog_review provider exception', {
-      model: dialogModel,
-      scenarioId: text(data.scenarioId, 80) || null,
-      error: String((error as Error)?.message ?? error).slice(0, 500),
-    });
-    throw new HttpsError('unavailable', 'dialog_provider_failed');
-  }
+    return { json, review };
+  };
+  const [, reviewSettled] = await Promise.allSettled([safetyPromise, runReview()]);
+  if (reviewSettled.status === 'rejected') throw reviewSettled.reason;
+  const { json, review } = reviewSettled.value;
 
   const usage = json.usage ?? {};
   await db.collection(BILLING_COLLECTION).doc().set({

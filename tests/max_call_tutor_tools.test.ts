@@ -129,12 +129,29 @@ describe('createTutorToolRunner', () => {
   it('set_language_preference: «говори со мной по-английски» запоминается на урок и уезжает в память; мусор отклоняется', () => {
     const { runner } = makeRunner();
     expect(runner.languagePreference()).toBe('');
-    expect(runner.handle('set_language_preference', { mode: 'more_english' }).output).toContain('more_english');
-    expect(runner.languagePreference()).toBe('more_english');
+    expect(runner.handle('set_language_preference', { mode: 'more_target' }).output).toContain('more_target');
+    expect(runner.languagePreference()).toBe('more_target');
     expect(runner.handle('set_language_preference', { mode: 'loud' }).output).toContain('Unknown mode');
-    expect(runner.languagePreference()).toBe('more_english');
+    expect(runner.languagePreference()).toBe('more_target');
+    // Старое имя из первых сборок читается как more_target.
+    runner.handle('set_language_preference', { mode: 'more_english' });
+    expect(runner.languagePreference()).toBe('more_target');
     runner.handle('set_language_preference', { mode: 'default' });
     expect(runner.languagePreference()).toBe('default');
+  });
+
+  it('flag_safety: тихая пометка без response, дедуп по виду, мусор игнорируется', () => {
+    const { runner } = makeRunner();
+    const res = runner.handle('flag_safety', { kind: 'harassment', note: 'insulted the tutor twice' });
+    expect(res.respond).toBe(false);
+    expect(res.output).toContain('do not mention this');
+    runner.handle('flag_safety', { kind: 'harassment', note: 'again' });
+    runner.handle('flag_safety', { kind: 'teleport' });
+    runner.handle('flag_safety', { kind: 'self_harm' });
+    expect(runner.safetyFlags()).toEqual([
+      { kind: 'harassment', note: 'insulted the tutor twice' },
+      { kind: 'self_harm', note: '' },
+    ]);
   });
 
   it('неизвестный инструмент — мягкий ответ, ничего не ломает', () => {

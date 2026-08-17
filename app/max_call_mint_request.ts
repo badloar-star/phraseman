@@ -138,6 +138,8 @@ export interface MaxCallParams {
   devMode: boolean;
   /** Язык интерфейса (родной язык ученика) — учителю для объяснений новичкам. */
   interfaceLang?: string;
+  /** Изучаемый язык ('en' | 'fr') — учитель ведёт урок именно на нём и не переключается по просьбе. */
+  studyTarget?: string;
 }
 
 /**
@@ -242,6 +244,7 @@ export async function buildTutorMintExtras(params: MaxCallParams): Promise<Parti
   return {
     cefr,
     interfaceLang: params.interfaceLang ?? 'ru',
+    studyTarget: params.studyTarget ?? 'en',
     sceneCatalog: renderTutorSceneCatalog(tutorSceneItems(cefr, daySeed)),
     learnerSnapshot: await buildLearnerSnapshot(cefr),
   };

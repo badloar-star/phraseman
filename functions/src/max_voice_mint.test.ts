@@ -694,7 +694,7 @@ describe("format 'tutor' — личный учитель", () => {
     const body = lastFetchBody();
     expect(body.session.audio.output).toEqual({ voice: 'cedar' }); // tutorVoice, не голос сцен
     expect(body.session.tools.map((t: DocData) => t.name)).toEqual([
-      'start_scene', 'end_scene', 'assign_homework', 'set_next_topic', 'set_language_preference', 'end_call',
+      'start_scene', 'end_scene', 'assign_homework', 'set_next_topic', 'set_language_preference', 'flag_safety', 'end_call',
     ]);
     expect(body.session.tool_choice).toBe('auto');
     const instr: string = body.session.instructions;
@@ -724,8 +724,9 @@ describe("format 'tutor' — личный учитель", () => {
     mockResolvePremium.mockResolvedValue(true as never);
     okProvider();
     __resetTutorCharterCacheForTests(); // выжимка устава кэшируется на инстанс 1ч
-    const res = await callMint({ format: 'tutor', cefr: 'B1', interfaceLang: 'ru' });
+    const res = await callMint({ format: 'tutor', cefr: 'B1', interfaceLang: 'ru', studyTarget: 'fr' });
     const instr: string = lastFetchBody().session.instructions;
+    expect(instr).toContain('personal French TEACHER'); // изучаемый язык из studyTarget
     expect(instr).toContain('FIRST lesson');
     expect(instr).toContain('Trainer (flashcards)'); // TUTOR_APP_DIGEST_FALLBACK
     expect(instr).toContain('native language Russian');

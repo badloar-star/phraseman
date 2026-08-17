@@ -29,6 +29,7 @@ import {
   learnerLangNameFor,
 } from './max_voice_prompt';
 import { loadTutorAppDigest, readTutorMemory, renderTutorMemoryBlock } from './max_voice_tutor_memory';
+import { resolveStudyTarget, studyTargetName } from './ai_language_contract';
 import {
   VOICE_QUOTA_COLLECTION,
   releaseVoiceReservation,
@@ -749,6 +750,7 @@ export const maxVoiceMint = onCall({
     ...(isTutor
       ? {
           learnerLangName: learnerLangNameFor(text(data.interfaceLang, 8)),
+          targetLangName: studyTargetName(resolveStudyTarget(data.studyTarget)),
           appDigest,
           sceneCatalog: text(data.sceneCatalog, 2000),
           learnerSnapshot: text(data.learnerSnapshot, 1200),

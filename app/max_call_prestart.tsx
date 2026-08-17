@@ -8,6 +8,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
@@ -101,6 +102,7 @@ export function parsePreflight(data: unknown, format: 'scenario' | 'companion' |
 export default function MaxCallPrestart() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string }>();
 
@@ -118,8 +120,8 @@ export default function MaxCallPrestart() {
 
   const cefr = typeof params.cefr === 'string' && params.cefr !== '' ? params.cefr : undefined;
   const callParams: MaxCallParams = useMemo(
-    () => ({ format, scenarioId, cefr, devMode, interfaceLang: lang }),
-    [format, scenarioId, cefr, devMode, lang],
+    () => ({ format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget }),
+    [format, scenarioId, cefr, devMode, lang, studyTarget],
   );
   // Учитель: имя из минта (конфиг админки); до ответа — дефолт сервера.
   const [tutorName, setTutorName] = useState('Max');

@@ -367,6 +367,8 @@ export interface PremiumDialogReviewRequest {
   nextTopic?: string;
   /** tutor: просьба ученика, как говорить (set_language_preference). */
   languagePreference?: string;
+  /** voice/tutor: флаги безопасности учителя (flag_safety) — сервер пишет safety_flags + Telegram. */
+  safetyFlags?: { kind: string; note: string }[];
 }
 
 /** Одно исправление: как сказал ученик → как естественнее + короткое пояснение. */

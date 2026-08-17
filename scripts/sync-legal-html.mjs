@@ -283,6 +283,51 @@ function dataDeletionPage({ date }) {
 `;
 }
 
+/**
+ * зачем: страницы knowly-www/legal/* были переделаны в новом дизайне сайта
+ * (свой <head>, шапка, футер). Полная перезапись старым шаблоном сносила
+ * редизайн. Поэтому, если на диске уже лежит редизайн-страница с контейнером
+ * <div class="legal-document">…</div></main>, обновляем ТОЛЬКО текст внутри
+ * контейнера (заголовок, дата, разделы), а обвязку сайта не трогаем. Старого
+ * контейнера нет — пишем полный шаблон, как раньше.
+ */
+function writeLegalIntoExistingPage(filePath, { title, sections, date }, fallbackHtml) {
+  if (!fs.existsSync(filePath)) return writeFileEnsured(filePath, fallbackHtml);
+  const current = fs.readFileSync(filePath, 'utf8');
+  const open = current.indexOf('<div class="legal-document">');
+  const close = current.indexOf('</main>', open);
+  if (open === -1 || close === -1) return writeFileEnsured(filePath, fallbackHtml);
+  const closeDiv = current.lastIndexOf('</div>', close);
+  if (closeDiv === -1 || closeDiv < open) return writeFileEnsured(filePath, fallbackHtml);
+  const inner =
+    `<div class="legal-document">
+` +
+    `        <h1>${escapeHtml(title)}</h1>
+` +
+    `        <p class="meta">
+` +
+    `          Application: <strong style="color:var(--km-text)">Phraseman</strong> &middot; Developer:
+` +
+    `          <strong style="color:var(--km-text)">Knowly</strong> &middot; Last updated <strong>${escapeHtml(date)}</strong>.
+` +
+    `        </p>
+
+` +
+    `${renderLegalBlocks(sections)}
+  `;
+  const next = current.slice(0, open) + inner + current.slice(closeDiv);
+  return writeFileEnsured(filePath, next);
+}
+
+/** Страница удаления данных: в редизайн-версии обновляем только дату. */
+function writeDataDeletionIntoExistingPage(filePath, { date }, fallbackHtml) {
+  if (!fs.existsSync(filePath)) return writeFileEnsured(filePath, fallbackHtml);
+  const current = fs.readFileSync(filePath, 'utf8');
+  if (!current.includes('<div class="legal-document">')) return writeFileEnsured(filePath, fallbackHtml);
+  const next = current.replace(/Last updated <strong>[^<]*<\/strong>/, `Last updated <strong>${escapeHtml(date)}</strong>`);
+  return writeFileEnsured(filePath, next);
+}
+
 function writeFileEnsured(filePath, contents) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, contents, 'utf8');
@@ -316,16 +361,19 @@ function main() {
   writeFileEnsured(path.join(ROOT, 'terms.html'), termsRoot);
   writeFileEnsured(path.join(ROOT, 'privacy.html'), privacyRoot);
   writeFileEnsured(path.join(ROOT, 'admin', 'oauth-privacy.html'), privacyRoot);
-  writeFileEnsured(
+  writeLegalIntoExistingPage(
     path.join(KNOWLY_WWW, 'legal', 'terms', 'index.html'),
+    { title: termsTitle, sections: terms, date: termsDate },
     knowlyPage({ title: termsTitle, sections: terms, date: termsDate, active: 'terms' }),
   );
-  writeFileEnsured(
+  writeLegalIntoExistingPage(
     path.join(KNOWLY_WWW, 'legal', 'privacy', 'index.html'),
+    { title: privacyTitle, sections: privacy, date: privacyDate },
     knowlyPage({ title: privacyTitle, sections: privacy, date: privacyDate, active: 'privacy' }),
   );
-  writeFileEnsured(
+  writeDataDeletionIntoExistingPage(
     path.join(KNOWLY_WWW, 'legal', 'data-deletion', 'index.html'),
+    { date: privacyDate },
     dataDeletionPage({ date: privacyDate }),
   );
 

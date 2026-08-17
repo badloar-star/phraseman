@@ -44,12 +44,16 @@ export interface MaxCallResult {
     nextTopic: string;
     /** Просьба ученика, как говорить ('' — не просил). */
     languagePreference: string;
+    /** Флаги безопасности учителя за урок (flag_safety) — уходят в журнал. */
+    safetyFlags: { kind: string; note: string }[];
     lessonsSoFar: number;
   };
   /** CEFR звонка — прокидывается в «Позвонить ещё раз», чтобы не терять уровень. */
   cefr?: string;
   /** Сохраняет защищённый admin DEV-контекст для «Позвонить ещё раз». */
   devMode?: boolean;
+  /** Изучаемый язык звонка ('en' | 'fr') — разбор судит именно его. */
+  studyTarget?: string;
   personaName: string;
   endReason: 'completed' | 'capped' | 'dropped' | 'background' | 'failed';
   /** Остаток дневных секунд MAX после звонка; null — сервер не сообщил. */
@@ -149,6 +153,7 @@ export default function MaxVoiceReview() {
       interfaceLang: lang,
       scenarioId: result.scenarioId,
       goalEn: scenario?.goalEn,
+      ...(result.studyTarget ? { studyTarget: result.studyTarget } : {}),
       // Учитель: разбор ещё и обновляет память учителя (факты, ошибки, домашка, тема).
       mode: result.format === 'tutor' ? 'tutor' : 'voice',
       ...(result.format === 'tutor'
@@ -156,6 +161,7 @@ export default function MaxVoiceReview() {
             homework: result.tutor?.homework ?? [],
             nextTopic: result.tutor?.nextTopic ?? '',
             ...(result.tutor?.languagePreference ? { languagePreference: result.tutor.languagePreference } : {}),
+            ...((result.tutor?.safetyFlags?.length ?? 0) > 0 ? { safetyFlags: result.tutor?.safetyFlags } : {}),
           }
         : {}),
     })

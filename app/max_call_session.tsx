@@ -15,6 +15,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
 import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
@@ -319,6 +320,7 @@ function phaseHint(phase: MaxCallUiPhase, lang: Lang): string {
 export default function MaxCallSession() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string }>();
 
@@ -422,7 +424,7 @@ export default function MaxCallSession() {
 
     const heartbeatCallable = maxVoiceCallable<unknown>('maxVoiceHeartbeat');
     const endCallable = maxVoiceCallable<unknown>('maxVoiceSessionEnd');
-    const callParams: MaxCallParams = { format, scenarioId, cefr, devMode, interfaceLang: lang };
+    const callParams: MaxCallParams = { format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget };
     const key = premintKey(callParams);
     if (isTutor) {
       // Тот же каталог, что ушёл в промпт (уровень + день): id совпадают.
@@ -709,6 +711,7 @@ export default function MaxCallSession() {
       scenarioId: format === 'companion' ? undefined : scenarioId,
       cefr,
       devMode,
+      studyTarget,
       personaName,
       endReason: endReasonRef.current,
       dayRemainingSec:
@@ -720,13 +723,14 @@ export default function MaxCallSession() {
               homework: tutorRunnerRef.current?.homework() ?? [],
               nextTopic: tutorRunnerRef.current?.nextTopic() ?? '',
               languagePreference: tutorRunnerRef.current?.languagePreference() ?? '',
+              safetyFlags: tutorRunnerRef.current?.safetyFlags() ?? [],
               lessonsSoFar: mint?.tutor?.lessonsSoFar ?? 0,
             },
           }
         : {}),
     });
     router.replace('/max_voice_review' as any);
-  }, [uiState.phase, format, scenarioId, cefr, devMode, personaName, isTutor, router]);
+  }, [uiState.phase, format, scenarioId, cefr, devMode, studyTarget, personaName, isTutor, router]);
 
   // -------------------------------------------------------------------------
   const onEndPress = () => {

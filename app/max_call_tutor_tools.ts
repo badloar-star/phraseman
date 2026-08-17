@@ -82,7 +82,14 @@ export interface TutorToolRunnerDeps {
   onEndCall?(): void;
 }
 
-export type TutorLanguagePreference = 'more_english' | 'more_native' | 'default';
+export type TutorLanguagePreference = 'more_target' | 'more_native' | 'default';
+
+/** Флаг безопасности, поставленный учителем (инструмент flag_safety) — уходит в разбор → safety_flags + Telegram. */
+export interface TutorSafetyFlag {
+  kind: string;
+  note: string;
+}
+const SAFETY_KINDS = new Set(['self_harm', 'abuse', 'harassment', 'sexual', 'violence', 'hate', 'illicit', 'minor', 'other']);
 
 export interface TutorToolRunner {
   handle(name: string, args: Record<string, unknown>): TutorToolResult;
@@ -91,6 +98,8 @@ export interface TutorToolRunner {
   nextTopic(): string;
   /** Просьба ученика за урок, как говорить; '' — не просил (память не трогать). */
   languagePreference(): TutorLanguagePreference | '';
+  /** Флаги безопасности за урок (дедуп по виду). */
+  safetyFlags(): TutorSafetyFlag[];
   activeScene(): TutorSceneItem | null;
   /** Учитель вызвал end_call — экран завершит звонок мягко. */
   endRequested(): boolean;
@@ -104,6 +113,7 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
   let homework: string[] = [];
   let nextTopic = '';
   let languagePreference: TutorLanguagePreference | '' = '';
+  const safetyFlags: TutorSafetyFlag[] = [];
   let activeScene: TutorSceneItem | null = null;
   let endRequested = false;
 
@@ -166,10 +176,22 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         try { deps.onNextTopic?.(topic); } catch {}
         return { output: `Next topic saved: ${topic}.`, respond: true };
       }
+      case 'flag_safety': {
+        // Тихая пометка для людей: ученику ничего не говорим, урок продолжается
+        // по SAFETY PLAYBOOK промпта. Ответ без response.create — учитель уже
+        // сказал всё нужное вслух до вызова.
+        const kind = String(args.kind ?? '').trim();
+        if (!SAFETY_KINDS.has(kind)) return { output: 'Unknown kind; nothing recorded.', respond: false };
+        const note = cleanPhrase(args.note).slice(0, 200);
+        if (!safetyFlags.some((f) => f.kind === kind)) safetyFlags.push({ kind, note });
+        return { output: 'Noted for human review. Continue exactly as the SAFETY PLAYBOOK says; do not mention this.', respond: false };
+      }
       case 'set_language_preference': {
-        const mode = String(args.mode ?? '').trim();
-        if (mode !== 'more_english' && mode !== 'more_native' && mode !== 'default') {
-          return { output: 'Unknown mode. Use "more_english", "more_native" or "default".', respond: true };
+        // 'more_english' — старое имя из первых сборок; читаем как more_target.
+        const raw = String(args.mode ?? '').trim();
+        const mode = raw === 'more_english' ? 'more_target' : raw;
+        if (mode !== 'more_target' && mode !== 'more_native' && mode !== 'default') {
+          return { output: 'Unknown mode. Use "more_target", "more_native" or "default".', respond: true };
         }
         languagePreference = mode;
         return {
@@ -193,6 +215,7 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
     homework: () => [...homework],
     nextTopic: () => nextTopic,
     languagePreference: () => languagePreference,
+    safetyFlags: () => safetyFlags.map((f) => ({ ...f })),
     activeScene: () => activeScene,
     endRequested: () => endRequested,
   };

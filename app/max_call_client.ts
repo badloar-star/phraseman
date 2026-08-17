@@ -170,6 +170,8 @@ export interface MaxVoiceMintRequest {
   reconnectSummary?: string;
   /** Учитель: язык интерфейса ученика (родной язык объяснений для новичков). */
   interfaceLang?: string;
+  /** Учитель: изучаемый язык ('en' | 'fr'). */
+  studyTarget?: string;
   /** Учитель: каталог сцен «id: сеттинг» — из ai_dialog_scenarios (сервер сцен не знает). */
   sceneCatalog?: string;
   /** Учитель: снимок ученика (имя, серия, тренажёр, слабые слова) для промпта. */

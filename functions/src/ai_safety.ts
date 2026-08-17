@@ -37,7 +37,12 @@ export type SafetyCategory =
   | 'sexual_minors'
   | 'sexual'
   | 'hate'
-  | 'illicit';
+  | 'illicit'
+  // Голосовой учитель (max_voice_safety): грубость/травля учителя, признание
+  // несовершеннолетия, прочее на усмотрение модели.
+  | 'harassment'
+  | 'minor'
+  | 'other';
 
 export interface SafetyVerdict {
   flagged: boolean;
@@ -264,6 +269,13 @@ interface SafetyFlagContext {
   mode: string;
   userText: string;
   history?: ReadonlyArray<{ role: string; content: string }>;
+  /**
+   * Полный транскрипт разговора (голосовые уроки): владелец 2026-08-16 —
+   * «сохранение всех грубых и опасных разговоров». Обрезан вызывающим.
+   */
+  transcript?: string;
+  /** Откуда флаг: 'keywords' | 'moderation' | 'tutor_tool' | … (для оператора). */
+  source?: string;
 }
 
 function clip(value: unknown, max: number): string {
@@ -307,6 +319,8 @@ export async function recordSafetyFlag(
       mode: ctx.mode,
       userText: clip(ctx.userText, 2000),
       historyContext,
+      ...(ctx.transcript ? { transcript: clip(ctx.transcript, 12_000) } : {}),
+      ...(ctx.source ? { source: ctx.source } : {}),
       handled: false,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
       createdAtMs: Date.now(),
@@ -331,8 +345,9 @@ export async function recordSafetyFlag(
         `🆘 <b>Safety flag</b> — ${escapeHtml(verdict.category)}\n` +
         `<b>User:</b> ${escapeHtml(ctx.stableUid)}` +
         (ageBracket ? ` (${escapeHtml(ageBracket)})` : '') +
-        `\n<b>Mode:</b> ${escapeHtml(ctx.mode)}\n` +
-        `<b>Matched:</b> ${escapeHtml(verdict.matched)}\n` +
+        `\n<b>Mode:</b> ${escapeHtml(ctx.mode)}` +
+        (ctx.source ? ` (${escapeHtml(ctx.source)})` : '') +
+        `\n<b>Matched:</b> ${escapeHtml(verdict.matched)}\n` +
         `<b>Message:</b> ${escapeHtml(clip(ctx.userText, 400))}`;
       await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value() || process.env.ADMIN_ALERT_BOT_TOKEN || '', msg, null);
     }

@@ -20,11 +20,11 @@ export const V2_COURSE_ACTIVE_CATALOG_RESPONSE_SCHEMA_V1 =
 
 export const V2_COURSE_ACTIVE_CATALOG_CALLABLE_OPTIONS_V1 = Object.freeze({
   region: "us-central1",
-  enforceAppCheck: !(
-    process.env.FUNCTIONS_EMULATOR === "true" &&
-    process.env.GCLOUD_PROJECT?.startsWith("demo-") === true &&
-    process.env.V2_COURSE_RELEASE_ALLOW_INSECURE_APP_CHECK_EMULATOR === "true"
-  ),
+  // зачем: App Check отключён по прямому решению владельца (2026-08-16) — та же
+  // причина, что и у чтения сессии: без отладочного токена дев-сборка получала
+  // 401, и опубликованный курс был недоступен. Авторизация пользователя
+  // сохраняется. Вернуть вместе с настройкой токена в сборке.
+  enforceAppCheck: false,
   timeoutSeconds: 30,
   memory: "512MiB" as const,
   maxInstances: 40,

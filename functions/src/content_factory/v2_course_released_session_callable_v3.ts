@@ -30,11 +30,17 @@ export const V2_COURSE_RELEASED_SESSION_RESPONSE_SCHEMA_V3 =
 
 export const V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V3 = Object.freeze({
   region: "us-central1",
-  enforceAppCheck: !(
-    process.env.FUNCTIONS_EMULATOR === "true" &&
-    process.env.GCLOUD_PROJECT?.startsWith("demo-") === true &&
-    process.env.V2_COURSE_RELEASE_ALLOW_INSECURE_APP_CHECK_EMULATOR === "true"
-  ),
+  // зачем: App Check отключён по прямому решению владельца (2026-08-16). В его
+  // дев-сборке отладочный токен не настроен, приложение молча пропускало
+  // инициализацию (.catch(() => false)) и получало 401, а экран переводил это
+  // как «Сессия недоступна / NOT FOUND» — курс был опубликован и жив, но
+  // прочитать его было нельзя.
+  //
+  // Что осталось: вызов по-прежнему требует авторизованного пользователя, а
+  // ответы не содержат правильных ответов на задания. Ослабла проверка того,
+  // что запрос пришёл именно из подлинного приложения. Вернуть, когда в сборке
+  // появится отладочный токен или боевая аттестация.
+  enforceAppCheck: false,
   timeoutSeconds: 30,
   memory: "512MiB" as const,
   maxInstances: 40,

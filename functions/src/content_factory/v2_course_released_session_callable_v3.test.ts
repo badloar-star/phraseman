@@ -104,8 +104,13 @@ describe("Learning V2 composite text+audio released session callable", () => {
   });
 
   test("returns authenticated learner material and audio descriptors but no answer or verdict transport", async () => {
+    // зачем: App Check выключен по решению владельца 2026-08-16 — без него дев-сборка
+    // получала 401 и опубликованный курс был нечитаем. Сторож обязанности функции при
+    // этом остаётся: ниже она по-прежнему обязана отказать безымянному вызову
+    // (unauthenticated) и не отдавать правильные ответы. Вернуть true вместе с
+    // отладочным токеном в сборке.
     expect(V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V3.enforceAppCheck).toBe(
-      true,
+      false,
     );
     const handler = createV2CourseReleasedSessionHandlerV3(
       async (_input, stableAccountId) => {

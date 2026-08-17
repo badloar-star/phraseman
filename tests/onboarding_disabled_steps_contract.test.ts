@@ -18,12 +18,14 @@ describe('CleanOnboarding disabled step integration', () => {
   });
 
   it('decides paywall side effects from the actual destination', () => {
-    // Минимальный флоу (2026-08-16): к ценам ведёт один переход — с экрана
-    // «предупредим до конца пробного». Эффекты пейвола не должны дублироваться,
-    // поэтому вызов ровно один; появится второй вход — тест обязан упасть.
-    expect(source).toContain("decideOnboardingTransition(enabledOrder, 'trialReminder')");
+    // 2026-08-17: к ценам ведёт единая точка advanceOrComplete(from) — с
+    // trialReminder или прямо с «name», если напоминание выключено. Эффекты
+    // пейвола не должны дублироваться, поэтому вызов ровно один; появится
+    // второй вход — тест обязан упасть.
+    expect(source).toContain('decideOnboardingTransition(enabledOrder, from)');
     expect(source.match(/runOnboardingTransitionEffects\(decision/g)).toHaveLength(1);
-    // Решение берётся из decision, а не из захардкоженного шага.
-    expect(source).toContain('go(decision.destination)');
+    // Цель берётся из общего решателя (вперёд или финал), а не из захардкоженного шага.
+    expect(source).toContain('const next = resolveOnboardingAdvance(enabledOrder, from);');
+    expect(source).toContain('go(next);');
   });
 });

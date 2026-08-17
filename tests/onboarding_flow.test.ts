@@ -1,6 +1,8 @@
 import {
   MANDATORY_ONBOARDING_STEP,
   ONBOARDING_STEP_CATALOG,
+  ONBOARDING_STEPS_CATALOG_MARK,
+  ONBOARDING_STEPS_DEFAULT_ON,
   decideOnboardingTransition,
   getOnboardingProgress,
   parseEnabledOnboardingSteps,
@@ -12,7 +14,47 @@ import {
 
 describe('configurable onboarding flow', () => {
   it('keeps the mandatory legal step enabled when remote config omits it', () => {
-    expect(parseEnabledOnboardingSteps('[]')).toEqual([MANDATORY_ONBOARDING_STEP]);
+    expect(parseEnabledOnboardingSteps(JSON.stringify([ONBOARDING_STEPS_CATALOG_MARK]))).toEqual([MANDATORY_ONBOARDING_STEP]);
+  });
+
+  // зачем (2026-08-17): сохранённый список — allowlist; экраны, добавленные в
+  // каталог позже сохранения, иначе молча выключались бы на проде. Список без
+  // метки каталога = старое сохранение → новые id включены; с меткой — буквально.
+  it('treats catalog ids added after an old save as enabled until the toggles are re-saved', () => {
+    // Набор = все id, которых не знал последний РЕЛИЗНЫЙ каталог, а не только 17.08:
+    // панель тумблеров публиковалась с 12.07, старый список не содержит ни одного из них.
+    expect(ONBOARDING_STEPS_DEFAULT_ON).toEqual([
+      'privacy',
+      'niceToMeet',
+      'promise',
+      'improve',
+      'letsBuild',
+      'trialReminder',
+    ]);
+    // Старое сохранение (без метки): новых id нет в списке — они всё равно включены,
+    // а релизные (source, notifications, onboardingPaywall) — нет, раз их не сохранили.
+    expect(parseEnabledOnboardingSteps('["welcome","name"]')).toEqual([
+      'welcome',
+      'privacy',
+      'niceToMeet',
+      'promise',
+      'improve',
+      'letsBuild',
+      'name',
+      'trialReminder',
+    ]);
+    // Новое сохранение (с меткой): владелец выключил их явно — уважаем.
+    expect(parseEnabledOnboardingSteps(JSON.stringify(['welcome', 'promise', ONBOARDING_STEPS_CATALOG_MARK]))).toEqual([
+      'welcome',
+      'promise',
+      'name',
+    ]);
+    // Метка — не шаг: в результат не попадает.
+    expect(parseEnabledOnboardingSteps(JSON.stringify(['welcome', 'letsBuild', ONBOARDING_STEPS_CATALOG_MARK]))).toEqual([
+      'welcome',
+      'letsBuild',
+      'name',
+    ]);
   });
 
   it.each([null, undefined, '', '{broken', '{}', '[1]']) (
@@ -25,7 +67,7 @@ describe('configurable onboarding flow', () => {
   );
 
   it('ignores unknown ids and restores canonical order', () => {
-    expect(parseEnabledOnboardingSteps('["promise","future","welcome"]')).toEqual([
+    expect(parseEnabledOnboardingSteps(JSON.stringify(['promise', 'future', 'welcome', ONBOARDING_STEPS_CATALOG_MARK]))).toEqual([
       'welcome',
       'promise',
       'name',
@@ -53,26 +95,27 @@ describe('configurable onboarding flow', () => {
   });
 
   it('resolves a disabled restored step to the nearest following step', () => {
-    // 'source' выключен, якорь на него → отдаём ближайший следующий живой шаг.
+    // 'niceToMeet' выключен, якорь на него → отдаём ближайший следующий живой шаг.
     const order = resolveEnabledOnboardingOrder(['welcome', 'promise', 'name'], false);
-    expect(resolveOnboardingStep(order, 'source', 'current-or-forward')).toBe('promise');
+    expect(resolveOnboardingStep(order, 'niceToMeet', 'current-or-forward')).toBe('promise');
+    // 'source' теперь стоит после promise (Bevel) — ближайший живой справа = name.
+    expect(resolveOnboardingStep(order, 'source', 'current-or-forward')).toBe('name');
   });
 
   // Эффекты пейвола (подготовка, pending-план, трекинг показа) обязаны сработать
   // РОВНО тогда, когда следующий шаг — сам пейвол, и ни на шаг раньше.
+  // 2026-08-17 (Bevel): хвост флоу — name → trialReminder → onboardingPaywall,
+  // поэтому якорь — обязательный «name»; пустой хвост оставляет на «name».
   it.each([
     [[], 'name', false],
     [['trialReminder'], 'trialReminder', false],
-    [['improve'], 'improve', false],
     [['onboardingPaywall'], 'onboardingPaywall', true],
     [['trialReminder', 'onboardingPaywall'], 'trialReminder', false],
-    [['onboardingPaywall', 'improve'], 'onboardingPaywall', true],
-    [['trialReminder', 'onboardingPaywall', 'improve'], 'trialReminder', false],
   ] as Array<[OnboardingStepId[], OnboardingStepId, boolean]>) (
     'chooses destination and paywall effects for enabled tail %p',
     (tail, destination, paywallEffects) => {
-      const order = resolveEnabledOnboardingOrder(['notifications', ...tail, 'name'], false);
-      const decision = decideOnboardingTransition(order, 'notifications');
+      const order = resolveEnabledOnboardingOrder(['notifications', 'name', ...tail], false);
+      const decision = decideOnboardingTransition(order, 'name');
       expect(decision).toEqual({
         destination,
         preparePaywall: paywallEffects,
@@ -81,6 +124,17 @@ describe('configurable onboarding flow', () => {
       });
     },
   );
+
+  it('never fires paywall effects on the way into the mandatory consent step', () => {
+    // letsBuild → name: цены ещё впереди, эффекты пейвола здесь — ошибка.
+    const order = resolveEnabledOnboardingOrder(['letsBuild', 'name', 'trialReminder', 'onboardingPaywall'], false);
+    expect(decideOnboardingTransition(order, 'letsBuild')).toEqual({
+      destination: 'name',
+      preparePaywall: false,
+      createPendingPlan: false,
+      trackPaywallView: false,
+    });
+  });
 
   it('prepares paywall when the trial reminder leads straight into prices', () => {
     const order = resolveEnabledOnboardingOrder(

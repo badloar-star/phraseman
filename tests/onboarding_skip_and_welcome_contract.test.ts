@@ -13,14 +13,19 @@ const rootLayout = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'
 // выключаемыми из админки без релиза, а «Пропустить» — не появляться на пейволе,
 // иначе это прямой удар по конверсии.
 describe('Onboarding skip link', () => {
-  it('is hidden on the paywall and on the mandatory final step', () => {
-    expect(onboarding).toContain("const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name']");
+  // 2026-08-17: privacy и notifications тоже без «Пропустить» — у них уже есть
+  // своя серая ссылка («Позже» / «Не сейчас»), вторая подряд читалась бы дублем.
+  // 2026-08-17b: letsBuild и trialReminder тоже — «Пропустить» ведёт на «name»:
+  // с letsBuild это просто «Продолжить», а с trialReminder — шаг НАЗАД.
+  it('is hidden on the paywall, the mandatory step and screens with their own grey exit', () => {
+    expect(onboarding).toContain("const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name', 'privacy', 'notifications', 'letsBuild', 'trialReminder']");
     expect(onboarding).toContain('if (!skip || SKIP_HIDDEN_STEPS.includes(step)) return null');
   });
 
   it('jumps straight to the mandatory consent step and guards double taps', () => {
     expect(onboarding).toContain('go(MANDATORY_ONBOARDING_STEP)');
-    expect(onboarding).toContain('if (skippedRef.current || step === MANDATORY_ONBOARDING_STEP) return;');
+    // На «name» и ПОСЛЕ него (trialReminder/пейвол) пропуск — no-op: иначе он вёл бы назад.
+    expect(onboarding).toContain('if (skippedRef.current || enabledOrder.indexOf(step) >= enabledOrder.indexOf(MANDATORY_ONBOARDING_STEP)) return;');
   });
 
   it('is killable from the admin without a release', () => {

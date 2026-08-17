@@ -108,7 +108,8 @@ export type AnalyticsEvent =
   | 'onboarding_step_view'        // показан шаг онбординга (props.step)
   | 'onboarding_skip'             // нажал «Пропустить» (props.step — откуда ушёл)
   | 'onboarding_welcome_sheet_view' // показана приветственная шторка после онбординга
-  | 'onboarding_complete'
+  | 'onboarding_consent_done'      // согласия и возраст собраны на шаге «name» (ДО пробного и цен)
+  | 'onboarding_complete'          // онбординг окончен — любой выход с пейвола (после согласий)
   | 'onboarding_source_select'
   | 'onboarding_plan_goal_select'    // выбрана цель плана (props.goal)
   | 'onboarding_plan_level_select'   // выбран уровень (props.level)

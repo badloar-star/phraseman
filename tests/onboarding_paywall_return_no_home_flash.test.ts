@@ -92,15 +92,17 @@ describe('onboarding ← paywall return: no home flash, no 4s stall', () => {
     expect(layout).toContain('setOnboardingStartAtName(false)');
   });
 
-  it('onboarding mounts at name synchronously (no resolving-gate, no getStableId await) on fast path', () => {
+  // 2026-08-17 (Bevel): согласия («name») собираются ДО цен, поэтому возврат после
+  // покупки ничего не показывает — быстрый путь сразу завершает онбординг
+  // (completeOnboarding → onDone), без чтения stable-id и без кадра чужого шага.
+  it('onboarding on the fast path completes synchronously-armed (no resolving-gate, no getStableId await)', () => {
     expect(onboarding).toContain('startAtNameStep');
     const code = stripLineComments(onboarding);
     // The fast path no longer needs any stable-id read at all, so there is no
-    // Keychain/AsyncStorage identity await before the first name-step paint.
+    // Keychain/AsyncStorage identity await before handing control back.
     expect(code).not.toContain('getStableId');
-    // начальный шаг = 'name' на быстром пути без отдельного resolving gate
     expect(code).toContain("useState<CleanOnboardingStep>(startAtNameStep ? 'name' : 'welcome')");
     expect(code).toContain("if (startAtNameStep) {");
-    expect(code).toContain("setStep('name')");
+    expect(code).toContain('void completeOnboardingRef.current();');
   });
 });

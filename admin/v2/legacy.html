@@ -35177,7 +35177,8 @@
   // ONBOARDING_STEPS_CATALOG_MARK): экраны, добавленные 2026-08-17, считаются
   // включёнными в списках, сохранённых ДО них (в таких нет метки каталога).
   // Список с меткой читается буквально — так владелец может их выключить.
-  const ONBOARDING_STEPS_DEFAULT_ON = ['niceToMeet', 'letsBuild'];
+  // Все id, которых не знал последний РЕЛИЗНЫЙ каталог — не только 17.08.
+  const ONBOARDING_STEPS_DEFAULT_ON = ['privacy', 'niceToMeet', 'promise', 'improve', 'letsBuild', 'trialReminder'];
   const ONBOARDING_STEPS_CATALOG_MARK = 'catalog_2026_08_17';
   function onboardingParseEnabled(raw) {
     const all = ONBOARDING_STEP_CATALOG.map(([id]) => id);

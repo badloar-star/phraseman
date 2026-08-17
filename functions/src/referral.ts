@@ -41,6 +41,9 @@ import {
   shouldMigrateLegacyAggregate,
 } from './referral_spin_ledger';
 import { isStorePremiumActive } from './premium_status';
+// «Вместе» (docs/plans/2026-08-16-friends-together-implementation.ru.md §1.4/§3.5):
+// квалификация реферала стартует пару с bonusDays=3 «дней вместе» + недельный буст сундука.
+import { applyReferralPairBonus } from './friends_together';
 
 const REGION = 'us-central1';
 
@@ -459,6 +462,7 @@ export async function markRefereeQualified(
   const uref = (uid: string) => db.collection(USERS).doc(uid);
   const configRef = db.collection('remote_config').doc('app');
 
+  let qualifiedJustNow = false;
   await db.runTransaction(async (tx) => {
     const [configSnap, attR, refeeSnap] = await Promise.all([
       tx.get(configRef),
@@ -518,7 +522,22 @@ export async function markRefereeQualified(
       atMs: nowMs,
       softEnabled: policy.softEnabled,
     }));
+    qualifiedJustNow = true;
   });
+
+  // «Вместе» (§1.4/§3.5 спецификации): квалификация реферала стартует пару с 3 «днями
+  // вместе» и ×2 бустом сундука на первую неделю приглашённого. Отдельная транзакция
+  // (friend_pairs — не friend_pairs) НЕ может быть частью транзакции выше — Firestore
+  // не поддерживает вложенные транзакции. Оборачиваем в try/catch: реферальная
+  // квалификация уже совершилась и НИКОГДА не должна откатиться/провалиться из-за
+  // побочной фичи дружбы (owner rule — качество этой ветки ниже критичности реферала).
+  if (qualifiedJustNow) {
+    try {
+      await applyReferralPairBonus(db, referrerId, userId, Date.now());
+    } catch (e) {
+      console.warn('[referral] applyReferralPairBonus failed (non-fatal)', e);
+    }
+  }
 }
 
 export async function assertAuthStableLink(

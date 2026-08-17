@@ -171,6 +171,8 @@ const {
   maxVoiceProviderHealth,
 } = require("./max_voice_watchdog");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { maxVoiceSafetyReport } = require("./max_voice_safety");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require("./weekly_review");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { statsInsightsGenerate } = require("./stats_insights");
@@ -332,6 +334,7 @@ exports.maxVoiceHeartbeat = maxVoiceHeartbeat;
 exports.maxVoiceSessionEnd = maxVoiceSessionEnd;
 exports.maxVoiceWatchdog = maxVoiceWatchdog;
 exports.maxVoiceProviderHealth = maxVoiceProviderHealth;
+exports.maxVoiceSafetyReport = maxVoiceSafetyReport;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
@@ -1050,6 +1053,15 @@ export { referralDevGrantSpin } from "./referral_dev_grant";
 
 // ── Пачковая выдача публичных профилей друзей (убирает 4-RTT цепочку с клиента) ──
 export { friendsGetProfiles } from "./friends_profiles";
+
+// ── «Вместе» (docs/plans/2026-08-16-friends-together-implementation.ru.md) ──
+// Веха уровня дружбы, сундук недели, «Позвать» — вкладка Друзья, за флагом
+// friends_together_enabled на клиенте.
+export {
+  friendsTogetherClaimLevel,
+  friendsClaimWeeklyChest,
+  friendsNudge,
+} from "./friends_together";
 export { publicProfileProjectMine } from "./public_profile_projection";
 export { adminActivateTelegramPremiumOrder } from "./telegram_premium_admin";
 

@@ -23,6 +23,8 @@ export type UserNotificationType =
   | 'friend_gift_thanks'
   | 'arena_partner_invite'
   | 'arena_partner_nudge'
+  // «Вместе» (docs/plans/2026-08-16-friends-together-implementation.ru.md §3.4): «Позвать».
+  | 'friend_nudge'
   | 'report_reply';
 
 export interface UserNotificationInput {

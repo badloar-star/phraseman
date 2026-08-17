@@ -81,7 +81,10 @@ export const EMPTY_STARS_STATE: StarsState = Object.freeze({
 
 export type StarOpReason =
   | 'arena_match' | 'arena_mastery' | 'arena_today' | 'arena_today_mastery'
-  | 'arena_partner' | 'arena_tier' | 'spend_shop' | 'admin_grant' | 'admin_revoke' | 'coin_exchange';
+  | 'arena_partner' | 'arena_tier' | 'spend_shop' | 'admin_grant' | 'admin_revoke' | 'coin_exchange'
+  // «Вместе» (friends_together.ts): веха уровня дружбы и сундук недели — оба заработок
+  // (клеймится только за реально накопленные дни/XP, не подарок).
+  | 'friends_together_level' | 'friends_together_chest';
 
 export type StarOpClass = 'earn' | 'grant' | 'spend';
 
@@ -98,6 +101,8 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   admin_revoke: 'spend',
   admin_grant: 'grant',
   coin_exchange: 'grant',
+  friends_together_level: 'earn',
+  friends_together_chest: 'earn',
 });
 
 export type StarOpMeta = Record<string, string | number | boolean>;

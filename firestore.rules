@@ -2126,6 +2126,33 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // ── «Вместе» (docs/plans/2026-08-16-friends-together-implementation.ru.md §2.3) ──
+    // friend_pairs/{pairId}: pairId = [a,b].sort().join('__'), data.uids = [a,b].
+    // Читают ОБА участника (свой stableUid должен встречаться в uids); пишет только
+    // сервер (friends_together.ts / applyReferralPairBonus), Admin SDK обходит правила.
+    match /friend_pairs/{pairId} {
+      allow read: if request.auth != null && resource.data.uids is list
+        && (
+          (resource.data.uids[0] is string && canonicalUserMatchesAuth(resource.data.uids[0]))
+          || (resource.data.uids.size() > 1 && resource.data.uids[1] is string && canonicalUserMatchesAuth(resource.data.uids[1]))
+        );
+      allow write: if false;
+    }
+
+    // Клеймы сундука недели «Вместе» — читает только владелец, пишет только сервер
+    // (friendsClaimWeeklyChest, транзакционно, идемпотентно по weekKey=docId).
+    match /users/{userId}/friends_chest_claims/{weekKey} {
+      allow read: if canonicalUserMatchesAuth(userId);
+      allow write: if false;
+    }
+
+    // «Позвать» — дневные лимиты/receipts обеих сторон в доке владельца (friendsNudge).
+    // Читает только владелец (та же модель, что friend_activity_like_daily_limits выше).
+    match /users/{userId}/friend_nudges/{dayKey} {
+      allow read: if canonicalUserMatchesAuth(userId);
+      allow write: if false;
+    }
+
     // â”€â”€ League / clubs (Ð½ÐµÐ´ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ð¼Ð¸Ð½Ð¸-Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // ÐšÐ»Ð¸ÐµÐ½Ñ‚: ÐºÐ°Ðº leaderboard â€” Ð²Ð¾ÑˆÐµÐ´ÑˆÐ¸Ðµ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ð¸. ÐÐ´Ð¼Ð¸Ð½ÐºÐ° index.html: ÑÐ¿Ð¸ÑÐ¾Ðº Ð³Ñ€ÑƒÐ¿Ð¿.
     match /league_groups/{groupId} {

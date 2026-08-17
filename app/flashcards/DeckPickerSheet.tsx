@@ -88,6 +88,23 @@ type Props = {
   motionVariant?: 'classic' | 'hybrid';
 };
 
+/**
+ * Подписи шита для режима «Говорить» (владелец, 2026-08-17). Вынесены в функции,
+ * потому что шит рендерится двумя ветками (hybrid / classic) и текст нужен в обеих.
+ */
+const SPEAKING_SHEET_HEADING = (lang: Lang) =>
+  triLang(lang, {
+    ru: 'Что говорим?', uk: 'Що говоримо?', es: '¿Qué decimos?',
+    'pt-BR': 'O que vamos falar?', vi: 'Nói gì?', id: 'Bicara apa?',
+    tr: 'Ne söylüyoruz?', pl: 'Co mówimy?',
+  });
+const SPEAKING_SHEET_START = (lang: Lang) =>
+  triLang(lang, {
+    ru: 'Начать говорить', uk: 'Почати говорити', es: 'Empezar a hablar',
+    'pt-BR': 'Começar a falar', vi: 'Bắt đầu nói', id: 'Mulai bicara',
+    tr: 'Konuşmaya başla', pl: 'Zacznij mówić',
+  });
+
 const SHEET_SPRING = { damping: 22, stiffness: 260, mass: 0.9 } as const;
 /** Мягкая пружина галочки — заметная, но без «резинового» перелёта. */
 const CHECK_SPRING = { damping: 15, stiffness: 320, mass: 0.7 } as const;
@@ -331,6 +348,8 @@ export default function DeckPickerSheet({
         'pt-BR': 'O que vamos ouvir?', vi: 'Nghe gì?', id: 'Dengar apa?',
         tr: 'Ne dinliyoruz?', pl: 'Czego słuchamy?',
       })
+    : mode === 'speaking'
+      ? SPEAKING_SHEET_HEADING(lang)
     : mode === 'blitz'
       ? triLang(lang, {
           ru: 'Что в блице?',
@@ -359,6 +378,8 @@ export default function DeckPickerSheet({
         'pt-BR': 'Começar a ouvir', vi: 'Bắt đầu nghe', id: 'Mulai mendengar',
         tr: 'Dinlemeye başla', pl: 'Zacznij słuchać',
       })
+    : mode === 'speaking'
+      ? SPEAKING_SHEET_START(lang)
     : mode === 'blitz'
       ? triLang(lang, {
           ru: 'В блиц!', uk: 'У бліц!', es: '¡Al blitz!',
@@ -569,6 +590,8 @@ export default function DeckPickerSheet({
                     'pt-BR': 'O que vamos ouvir?', vi: 'Nghe gì?', id: 'Dengar apa?',
                     tr: 'Ne dinliyoruz?', pl: 'Czego słuchamy?',
                   })
+                : mode === 'speaking'
+                  ? SPEAKING_SHEET_HEADING(lang)
                 : mode === 'blitz'
                   ? triLang(lang, {
                       ru: 'Что в блице?',
@@ -745,6 +768,8 @@ export default function DeckPickerSheet({
                     'pt-BR': 'Começar a ouvir', vi: 'Bắt đầu nghe', id: 'Mulai mendengar',
                     tr: 'Dinlemeye başla', pl: 'Zacznij słuchać',
                   })
+                : mode === 'speaking'
+                  ? SPEAKING_SHEET_START(lang)
                 : mode === 'blitz'
                   ? triLang(lang, {
                       ru: 'В блиц!', uk: 'У бліц!', es: '¡Al blitz!',

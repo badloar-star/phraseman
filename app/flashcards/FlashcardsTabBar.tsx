@@ -51,6 +51,7 @@ import { useScreen } from '../../hooks/use-screen';
 import { useTheme } from '../../components/ThemeContext';
 import { markNextNavigationAsReplace } from '../navigation_back';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
+import { isSpeakingEnabled } from '../remote_flags';
 import DeckPickerSheet, { type DeckSheetOption } from './DeckPickerSheet';
 import { loadFcDeckOptions } from './deck_options';
 import { type DeckRef } from './deck_sources';
@@ -497,7 +498,16 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     return refreshBlitzPoolCount();
   }, [trainOpen, refreshBlitzPoolCount]);
 
-  const trainOptions = useMemo(() => visibleFcTrainOptions(blitzPoolCount), [blitzPoolCount]);
+  /**
+   * «Говорить» живёт за тем же remote kill-switch, что и «Устно» в уроках:
+   * выключили распознавание речи — пункт исчезает, а не ведёт в мёртвый экран.
+   * Флаг читаем при раскрытии меню (дёшево: синхронный кэш remote config).
+   */
+  const speakingEnabled = isSpeakingEnabled();
+  const trainOptions = useMemo(
+    () => visibleFcTrainOptions(blitzPoolCount, { speakingEnabled }),
+    [blitzPoolCount, speakingEnabled],
+  );
 
   /**
    * FIX (владелец, 2026-08-16) «разделы карточек зациклены, выйти невозможно»:
@@ -616,6 +626,11 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         ru: 'Слушать', uk: 'Слухати', es: 'Escuchar',
         'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengar', tr: 'Dinle', pl: 'Słuchaj',
       }),
+      /** Пара к «Слушать»: карточки отрабатываются речью (владелец, 2026-08-17). */
+      speak: triLang(lang, {
+        ru: 'Говорить', uk: 'Говорити', es: 'Hablar',
+        'pt-BR': 'Falar', vi: 'Nói', id: 'Bicara', tr: 'Konuş', pl: 'Mów',
+      }),
       blitz: triLang(lang, {
         ru: 'Блиц', uk: 'Бліц', es: 'Blitz',
         'pt-BR': 'Blitz', vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
@@ -663,6 +678,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
   const trainMeta: Record<FcTrainOption, { icon: keyof typeof Ionicons.glyphMap; label: string }> = {
     train: { icon: 'barbell-outline', label: labels.train },
     listen: { icon: 'headset-outline', label: labels.listen },
+    speak: { icon: 'mic-outline', label: labels.speak },
     blitz: { icon: 'flash-outline', label: labels.blitz },
   };
   const createMeta: Record<FcCreateOption, { icon: keyof typeof Ionicons.glyphMap; label: string; testID: string }> = {

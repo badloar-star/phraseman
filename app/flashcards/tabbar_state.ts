@@ -11,7 +11,7 @@
  */
 import { BLITZ_MIN_CARDS } from './blitz_logic';
 import { deckRouteParam, SOLO_DECK_ID, type FcDeckId } from './deck_selection';
-import { FC_DEFAULT_SESSION_SIZE, presetDeckIds, type FcModePreset } from './mode_prefs';
+import { FC_DEFAULT_SESSION_SIZE, presetDeckIds, type FcModePreset, type FcPresetMode } from './mode_prefs';
 import {
   TAB_SCROLL_COLLAPSE_TRIGGER_Y,
   TAB_SCROLL_DIRECTION_EPSILON,
@@ -24,9 +24,14 @@ export type FcTabMenu = 'none' | 'train' | 'create' | 'packs';
 /** Раскрываемые группы (левая «Тренировка» и центральная «+»). */
 export type FcTabMenuKind = Exclude<FcTabMenu, 'none'>;
 
-/** Пункты списка «Тренировка» — порядок сверху вниз при раскрытии. */
-export type FcTrainOption = 'train' | 'listen' | 'blitz';
-export const FC_TRAIN_OPTIONS: readonly FcTrainOption[] = ['train', 'listen', 'blitz'];
+/**
+ * Пункты списка «Тренировка» — порядок сверху вниз при раскрытии.
+ * `speak` — «Говорить» (владелец, 2026-08-17): «в отработке есть блиц и слушать —
+ * надо ещё речь, чтобы карточки можно было отрабатывать говоря». Стоит рядом
+ * со «Слушать»: это парный к нему навык (вход ↔ выход речи).
+ */
+export type FcTrainOption = 'train' | 'listen' | 'speak' | 'blitz';
+export const FC_TRAIN_OPTIONS: readonly FcTrainOption[] = ['train', 'listen', 'speak', 'blitz'];
 
 /** Пункты группы «+». */
 export type FcCreateOption = 'card' | 'pack';
@@ -57,11 +62,20 @@ export function canStartFcBlitz(cardCount: number | null | undefined): boolean {
   return typeof cardCount === 'number' && Number.isFinite(cardCount) && cardCount >= BLITZ_MIN_CARDS;
 }
 
-/** Пункты «Тренировки», доступные при текущем размере пула карточек. */
-export function visibleFcTrainOptions(cardCount: number | null | undefined): readonly FcTrainOption[] {
-  return canStartFcBlitz(cardCount)
-    ? FC_TRAIN_OPTIONS
-    : FC_TRAIN_OPTIONS.filter((option) => option !== 'blitz');
+/**
+ * Пункты «Тренировки», доступные при текущем размере пула карточек.
+ * `speakingEnabled` — remote kill-switch `speaking_enabled` (тот же, что прячет
+ * кнопку «Устно» в уроках): выключили распознавание речи — пункт «Говорить»
+ * исчезает из меню, а не ведёт в мёртвый экран.
+ */
+export function visibleFcTrainOptions(
+  cardCount: number | null | undefined,
+  opts?: { speakingEnabled?: boolean },
+): readonly FcTrainOption[] {
+  const blitzOk = canStartFcBlitz(cardCount);
+  const speakOk = opts?.speakingEnabled !== false;
+  if (blitzOk && speakOk) return FC_TRAIN_OPTIONS;
+  return FC_TRAIN_OPTIONS.filter((option) => (option === 'blitz' ? blitzOk : option === 'speak' ? speakOk : true));
 }
 
 /**
@@ -181,11 +195,15 @@ function presetSize(preset: FcModePreset | null | undefined): number {
  */
 export const FC_TRAIN_ROUTE = '/flashcards_swipe';
 
+/** Экран режима «Говорить»: карточка-перевод → зажми микрофон → скажи по-английски. */
+export const FC_SPEAK_ROUTE = '/flashcards_speaking_session';
+
 /**
  * Маршрут пункта списка «Тренировка» (§5.2). Пресет быстрого старта —
  * `fc_mode_prefs_v1`; без пресета каждый режим стартует со своего дефолта:
  *  • «Тренировка» — все доступные наборы (экран свайпа отметит их сам);
  *  • «Слушать»    — все сохранённые (`deck=saved`, 'weak' для аудио бессмысленна);
+ *  • «Говорить»   — как «Слушать»: сохранённые, размер сессии из пресета;
  *  • «Блиц»       — смешанный пул по умолчанию (без `?deck=`).
  */
 export function buildFcTrainRoute(
@@ -208,6 +226,12 @@ export function buildFcTrainRoute(
       params: { deck: deckParam || 'saved', size: String(presetSize(preset)) },
     };
   }
+  if (option === 'speak') {
+    return {
+      pathname: FC_SPEAK_ROUTE,
+      params: { deck: deckParam || 'saved', size: String(presetSize(preset)) },
+    };
+  }
   if (option === 'blitz') {
     return {
       pathname: '/flashcards_blitz_session',
@@ -221,8 +245,9 @@ export function buildFcTrainRoute(
 }
 
 /** Режим `mode_prefs`, из которого читается пресет быстрого старта пункта. */
-export function fcTrainOptionPresetMode(option: FcTrainOption): 'trainer' | 'listening' | 'blitz' {
+export function fcTrainOptionPresetMode(option: FcTrainOption): FcPresetMode {
   if (option === 'listen') return 'listening';
+  if (option === 'speak') return 'speaking';
   if (option === 'blitz') return 'blitz';
   return 'trainer';
 }

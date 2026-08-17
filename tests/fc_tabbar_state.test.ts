@@ -10,6 +10,7 @@ import {
   FC_CREATE_OPTIONS,
   FC_PACKS_ROUTE,
   FC_PLUS_ROTATION_DEG,
+  FC_SPEAK_ROUTE,
   FC_TRAIN_ROUTE,
   FC_TABBAR_SCRIM_OPACITY,
   FC_TABBAR_STAGGER_MS,
@@ -22,6 +23,7 @@ import {
   isFcTabMenuKindOpen,
   isFcTabMenuOpen,
   toggleFcTabMenu,
+  visibleFcTrainOptions,
   type FcTabMenu,
 } from '../app/flashcards/tabbar_state';
 import type { FcModePreset } from '../app/flashcards/mode_prefs';
@@ -83,14 +85,14 @@ describe('стаггер появления кнопок (§5.2)', () => {
     const delays = FC_TRAIN_OPTIONS.map((_, i) =>
       fcTabMenuItemDelay(i, { open: true, total: FC_TRAIN_OPTIONS.length }),
     );
-    expect(delays).toEqual([0, FC_TABBAR_STAGGER_MS, FC_TABBAR_STAGGER_MS * 2]);
+    expect(delays).toEqual([0, FC_TABBAR_STAGGER_MS, FC_TABBAR_STAGGER_MS * 2, FC_TABBAR_STAGGER_MS * 3]);
   });
 
   it('при сворачивании порядок обратный', () => {
     const delays = FC_TRAIN_OPTIONS.map((_, i) =>
       fcTabMenuItemDelay(i, { open: false, total: FC_TRAIN_OPTIONS.length }),
     );
-    expect(delays).toEqual([FC_TABBAR_STAGGER_MS * 2, FC_TABBAR_STAGGER_MS, 0]);
+    expect(delays).toEqual([FC_TABBAR_STAGGER_MS * 3, FC_TABBAR_STAGGER_MS * 2, FC_TABBAR_STAGGER_MS, 0]);
   });
 
   it('reduce motion — без стаггера; мусорный индекс не ломает расчёт', () => {
@@ -150,7 +152,33 @@ describe('маршруты пунктов «Тренировка» (§5.2)', () 
   });
 
   it('каждый пункт читает свой пресет из mode_prefs', () => {
-    expect(FC_TRAIN_OPTIONS.map(fcTrainOptionPresetMode)).toEqual(['trainer', 'listening', 'blitz']);
+    expect(FC_TRAIN_OPTIONS.map(fcTrainOptionPresetMode)).toEqual(['trainer', 'listening', 'speaking', 'blitz']);
+  });
+
+  /**
+   * Владелец (2026-08-17): «в отработке есть блиц и слушать — надо ещё речь».
+   * «Говорить» стартует как «Слушать»: сохранённые по умолчанию, размер из пресета,
+   * мультивыбор — списком в `?deck=`.
+   */
+  it('«Говорить» ведёт в сессию говорения с теми же правилами дефолтов, что «Слушать»', () => {
+    expect(FC_SPEAK_ROUTE).toBe('/flashcards_speaking_session');
+    expect(buildFcTrainRoute('speak', null)).toEqual({
+      pathname: FC_SPEAK_ROUTE,
+      params: { deck: 'saved', size: '15' },
+    });
+    expect(buildFcTrainRoute('speak', preset(['weak'], 20)).params).toEqual({ deck: 'saved', size: '20' });
+    expect(buildFcTrainRoute('speak', preset(['saved', 'custom', 'pack:abc'], 10)).params).toEqual({
+      deck: 'saved,custom,pack:abc',
+      size: '10',
+    });
+  });
+
+  it('«Говорить» прячется за remote kill-switch речи, блиц — за размером пула', () => {
+    expect(visibleFcTrainOptions(20)).toEqual(['train', 'listen', 'speak', 'blitz']);
+    expect(visibleFcTrainOptions(20, { speakingEnabled: true })).toEqual(['train', 'listen', 'speak', 'blitz']);
+    expect(visibleFcTrainOptions(20, { speakingEnabled: false })).toEqual(['train', 'listen', 'blitz']);
+    expect(visibleFcTrainOptions(1, { speakingEnabled: false })).toEqual(['train', 'listen']);
+    expect(visibleFcTrainOptions(null)).toEqual(['train', 'listen', 'speak']);
   });
 });
 
@@ -166,9 +194,9 @@ describe('маршруты группы «+» и правой позиции', (
     expect(buildFcCreateRoute('pack')).toEqual({ pathname: '/community_pack_create', params: {} });
   });
 
-  it('в группе «+» ровно две кнопки, в «Тренировке» — три', () => {
+  it('в группе «+» ровно две кнопки, в «Тренировке» — четыре (речь встала рядом со слушанием)', () => {
     expect(FC_CREATE_OPTIONS).toEqual(['card', 'pack']);
-    expect(FC_TRAIN_OPTIONS).toEqual(['train', 'listen', 'blitz']);
+    expect(FC_TRAIN_OPTIONS).toEqual(['train', 'listen', 'speak', 'blitz']);
   });
 
   it('вход в раздел — сохранённые карточки, правая позиция — каталог наборов (§5.1/§5.3)', () => {

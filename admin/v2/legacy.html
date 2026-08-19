@@ -49769,9 +49769,10 @@ html[data-pm-motion="off"] .pm-sauron-eye-shell::before{animation:none!important
       </div>
     </section>`}
   function ensureEye(){
-    const section=document.getElementById('tab-jarvis');if(!section)return null;let hero=document.getElementById('pm-sauron-hero');
-    if(!hero){section.insertAdjacentHTML('afterbegin',eyeMarkup());hero=document.getElementById('pm-sauron-hero');const card=Array.from(section.children).find(el=>el.classList?.contains('cp-card'));if(card){card.dataset.pmSauronControls='true';if(!card.id)card.id='pm-sauron-controls';}wireEye(hero);}
-    return hero;
+    // зачем: старый SVG-глаз дублировал новый WebGL-глаз (pm-ogl-evil-eye-hero,
+    // pm-remediation-runtime) на одной вкладке — владелец увидел два глаза
+    // подряд на скриншоте и попросил оставить только WebGL-версию.
+    return document.getElementById('pm-sauron-hero');
   }
   function seededParticles(){let seed=0x51a7;const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};return Array.from({length:38},()=>({x:rnd(),y:rnd(),r:.5+rnd()*1.7,s:.015+rnd()*.05,d:rnd()*Math.PI*2,a:.18+rnd()*.55}))}
   function resizeEyeCanvas(){const canvas=document.getElementById('pm-sauron-ambient');if(!canvas)return;const r=canvas.getBoundingClientRect(),dpr=Math.min(1.7,devicePixelRatio||1);canvas.width=Math.max(1,Math.round(r.width*dpr));canvas.height=Math.max(1,Math.round(r.height*dpr));canvas.dataset.dpr=String(dpr)}

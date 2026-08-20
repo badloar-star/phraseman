@@ -70,15 +70,6 @@ function shouldRepairIdentityLinks(options?: ResolveStableUidForAuthOptions): bo
   return options?.repairLinks !== false;
 }
 
-type RetiredIdentitySubject = 'auth' | 'stable' | 'closure';
-
-function throwIdentityRetired(subject: RetiredIdentitySubject): never {
-  throw new HttpsError('failed-precondition', 'identity_retired', {
-    subject,
-    recovery: 'create_fresh_anonymous',
-  });
-}
-
 function throwIdentityCheckUnavailable(error: unknown): never {
   if (error instanceof HttpsError) throw error;
   throw new HttpsError('unavailable', 'identity_check_unavailable');
@@ -105,7 +96,7 @@ async function assertAccountDeletionNotPending(
     ),
   ]);
   if (marker.exists || permanentDenial.exists) {
-    throwIdentityRetired('auth');
+    throw new HttpsError('failed-precondition', 'account_delete_pending');
   }
 }
 
@@ -122,7 +113,7 @@ async function assertStableDeletionNotPending(
     ),
   ]);
   if (tombstone.exists || permanentDenial.exists) {
-    throwIdentityRetired('stable');
+    throw new HttpsError('failed-precondition', 'account_delete_pending');
   }
 }
 
@@ -626,14 +617,13 @@ async function repairIdentityDocumentsAtomically(
         options.writeUser ? transaction.get(existingOwnerQuery) : Promise.resolve(null),
       ]);
 
-      if (authMarkerSnap.exists || authPermanentDenialSnap.exists) {
-        throwIdentityRetired('auth');
-      }
       if (
-        tombstoneSnaps.some((snap) => snap.exists)
+        authMarkerSnap.exists
+        || authPermanentDenialSnap.exists
+        || tombstoneSnaps.some((snap) => snap.exists)
         || permanentDenialSnaps.some((snap) => snap.exists)
       ) {
-        throwIdentityRetired('stable');
+        throw new HttpsError('failed-precondition', 'account_delete_pending');
       }
 
       const currentUserData = userSnap?.data() ?? {};
@@ -651,7 +641,7 @@ async function repairIdentityDocumentsAtomically(
           ),
         ]);
         if (currentLinkTombstone.exists || currentLinkPermanentDenial.exists) {
-          throwIdentityRetired('stable');
+          throw new HttpsError('failed-precondition', 'account_delete_pending');
         }
       }
       const currentOwnerIds = (existingOwnerSnap?.docs ?? []).map((doc) => doc.id).sort();
@@ -1364,7 +1354,7 @@ export async function resolveStableUidForAuth(
 
 type MissingIdentityBootstrapResult =
   | { status: 'bootstrapped'; stableUid: string }
-  | { status: 'authoritative'; stableUid: string; identityReady: boolean }
+  | { status: 'authoritative'; stableUid: string }
   | { status: 'not_candidate' };
 
 async function bootstrapMissingStableIdentity(
@@ -1406,11 +1396,13 @@ async function bootstrapMissingStableIdentity(
         transaction.get(existingIdentityQuery),
       ]);
 
-      if (authMarkerSnap.exists || authPermanentDenialSnap.exists) {
-        throwIdentityRetired('auth');
-      }
-      if (tombstoneSnap.exists || stablePermanentDenialSnap.exists) {
-        throwIdentityRetired('stable');
+      if (
+        authMarkerSnap.exists
+        || tombstoneSnap.exists
+        || authPermanentDenialSnap.exists
+        || stablePermanentDenialSnap.exists
+      ) {
+        throw new HttpsError('failed-precondition', 'account_delete_pending');
       }
 
       if (authLinkSnap.exists) {
@@ -1429,12 +1421,12 @@ async function bootstrapMissingStableIdentity(
             ),
           ]);
         if (linkedTombstoneSnap.exists || linkedPermanentDenialSnap.exists) {
-          throwIdentityRetired('stable');
+          throw new HttpsError('failed-precondition', 'account_delete_pending');
         }
         if (!linkedUserSnap.exists) {
           throw new HttpsError('permission-denied', 'stable_id_mismatch');
         }
-        return { status: 'authoritative', stableUid: linkedStableId, identityReady: true };
+        return { status: 'authoritative', stableUid: linkedStableId };
       }
 
       if (userSnap.exists) {
@@ -1460,9 +1452,9 @@ async function bootstrapMissingStableIdentity(
             ),
           ]);
         if (authoritativeTombstoneSnap.exists || authoritativePermanentDenialSnap.exists) {
-          throwIdentityRetired('stable');
+          throw new HttpsError('failed-precondition', 'account_delete_pending');
         }
-        return { status: 'authoritative', stableUid: authoritativeStableId, identityReady: false };
+        return { status: 'authoritative', stableUid: authoritativeStableId };
       }
 
       previouslyObservedMissingTarget = true;
@@ -1515,7 +1507,7 @@ export async function ensureStableLinkForAuth(
   requestedStableId: unknown,
   signInProvider: string,
   metadata?: AuthLinkMetadata,
-): Promise<{ ok: true; stableUid: string; authUid: string; identityReady: true }> {
+): Promise<{ ok: true; stableUid: string; authUid: string }> {
   const stableId = normalizeStableId(requestedStableId);
   const provider: AuthProvider | null =
     signInProvider === 'google.com'
@@ -1570,7 +1562,7 @@ export async function ensureStableLinkForAuth(
         stableUid: linkedStableUid,
         sourceStableIds: [linkedStableId, linkedStableUid],
       }, provider, metadata);
-      return { ok: true, stableUid: linkedStableUid, authUid, identityReady: true };
+      return { ok: true, stableUid: linkedStableUid, authUid };
     }
     if (!linkedStableId) {
       const existingUserSelection = await findStableUidForProviderAuth(db, authUid);
@@ -1583,7 +1575,7 @@ export async function ensureStableLinkForAuth(
           stableUid,
           sourceStableIds: [...existingUserSelection.sourceStableIds, stableUid],
         }, provider, metadata);
-        return { ok: true, stableUid, authUid, identityReady: true };
+        return { ok: true, stableUid, authUid };
       }
     }
   }
@@ -1600,7 +1592,7 @@ export async function ensureStableLinkForAuth(
         stableUid,
         sourceStableIds: [...existingAnchor.selection.sourceStableIds, stableUid],
       }, provider, metadata);
-      return { ok: true, stableUid, authUid, identityReady: true };
+      return { ok: true, stableUid, authUid };
     }
 
     const existingUserSelection = await findStableUidForProviderAuth(db, authUid);
@@ -1614,7 +1606,7 @@ export async function ensureStableLinkForAuth(
         stableUid,
         sourceStableIds: [...existingUserSelection.sourceStableIds, stableUid],
       }, provider, metadata);
-      return { ok: true, stableUid, authUid, identityReady: true };
+      return { ok: true, stableUid, authUid };
     }
 
     const bootstrap = await bootstrapMissingStableIdentity(db, authUid, stableId, provider, metadata);
@@ -1639,17 +1631,11 @@ export async function ensureStableLinkForAuth(
           }));
         });
       }
-      return { ok: true, stableUid: bootstrap.stableUid, authUid, identityReady: true };
+      return { ok: true, stableUid: bootstrap.stableUid, authUid };
     }
     if (bootstrap.status === 'authoritative') {
       await assertStableDeletionNotPending(db, bootstrap.stableUid);
-      if (!bootstrap.identityReady) {
-        await ensureStableIdentityPair(db, authUid, {
-          stableUid: bootstrap.stableUid,
-          sourceStableIds: [bootstrap.stableUid],
-        }, provider, metadata);
-      }
-      return { ok: true, stableUid: bootstrap.stableUid, authUid, identityReady: true };
+      return { ok: true, stableUid: bootstrap.stableUid, authUid };
     }
   }
 
@@ -1662,7 +1648,7 @@ export async function ensureStableLinkForAuth(
     stableUid,
     sourceStableIds: [...new Set([stableId, stableUid].filter(Boolean))],
   }, provider, metadata);
-  return { ok: true, stableUid, authUid, identityReady: true };
+  return { ok: true, stableUid, authUid };
 }
 
 export const authEnsureStableLink = onCall(HOT_CALLABLE_OPTIONS, async (request) => {

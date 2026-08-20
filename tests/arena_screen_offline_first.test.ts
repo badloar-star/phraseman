@@ -2,6 +2,7 @@ import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react-native';
 
 import ArenaHubScreen from '../app/arena';
+import { ArenaTabBar } from '../components/arena/ArenaTabBar';
 
 const h = React.createElement;
 
@@ -35,12 +36,34 @@ const expansion = (overrides: Record<string, unknown> = {}) => ({
   ...overrides,
 });
 
-jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Pressable: 'Pressable', StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style } }));
+jest.mock('react-native', () => {
+  const ReactNativeTest = jest.requireActual<typeof import('react')>('react');
+  const Pressable = ({ disabled, onPress, ...props }: any) => ReactNativeTest.createElement('Pressable', { ...props, disabled, onPress: disabled ? undefined : onPress });
+  return { View: 'View', Text: 'Text', Pressable, StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style } };
+});
+jest.mock('react-native-reanimated', () => {
+  const easing = { out: (value: unknown) => value, inOut: (value: unknown) => value, quad: 'quad' };
+  return {
+    __esModule: true,
+    default: { View: 'AnimatedView' },
+    interpolate: (value: number) => value,
+    useAnimatedStyle: (factory: () => unknown) => factory(),
+    useSharedValue: (value: number) => ({ value }),
+    withSequence: (...values: unknown[]) => values[values.length - 1],
+    withSpring: (value: number) => value,
+    withTiming: (value: number) => value,
+    Easing: easing,
+  };
+});
+jest.mock('@expo/vector-icons/Ionicons', () => () => null);
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: (value: unknown) => pushed.push(value), replace: jest.fn() }) }));
 jest.mock('@react-native-async-storage/async-storage', () => ({ getItem: jest.fn(), setItem: jest.fn(() => Promise.resolve()) }));
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'ru' }) }));
 jest.mock('../hooks/use_runtime_active', () => ({ useRuntimeActive: () => true }));
 jest.mock('../hooks/use_arena_font_scale', () => ({ useArenaFontScale: () => 1 }));
+jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
+jest.mock('../hooks/use-haptics', () => ({ hapticTap: () => Promise.resolve(), hapticMediumImpact: () => Promise.resolve() }));
+jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ bottom: 0 }) }));
 jest.mock('../hooks/use_feature_intro', () => ({ useFeatureIntro: () => ({ visible: false, dismiss: jest.fn() }) }));
 jest.mock('../app/feature_intro_registry', () => ({ featureIntroById: () => null }));
 jest.mock('../components/FeatureIntroModal', () => () => null);
@@ -53,10 +76,10 @@ jest.mock('../modules/arena/expansion_copy', () => ({ arenaExpansionText: (_lang
 jest.mock('../app/arena_client', () => ({
   arenaV2Home: () => homeRequests.shift()!.promise,
   arenaExpansionHome: () => expansionRequests.shift()!.promise,
-  arenaFetchMatchHistory: () => Promise.resolve([]),
-  arenaV2FriendsBoard: () => Promise.resolve({ rows: [] }),
-  arenaFlushOutbox: () => Promise.resolve(0),
-  arenaOutboxBlockedByUpdate: () => Promise.resolve(false),
+  arenaFetchMatchHistory: () => new Promise(() => {}),
+  arenaV2FriendsBoard: () => new Promise(() => {}),
+  arenaFlushOutbox: () => new Promise(() => {}),
+  arenaOutboxBlockedByUpdate: () => new Promise(() => {}),
   arenaV2SpinClaim: jest.fn(),
   createArenaRequestId: () => 'request-id',
 }));
@@ -105,7 +128,7 @@ describe('ArenaHubScreen offline-first orchestration', () => {
   });
 
   it('keeps yesterday rank and wallet but removes daily claims and active run', async () => {
-    memoryWarm = { home: home(), expansion: expansion({ activeRun: { runId: 'old', runKind: 'today' } }) };
+    memoryWarm = { savedDayKey: '2026-08-19', home: home(), expansion: expansion({ activeRun: { runId: 'old', runKind: 'today' } }) };
     homeRequests.push(deferred());
     expansionRequests.push(deferred());
     const screen = await render(h(ArenaHubScreen));
@@ -124,6 +147,7 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     homeRequests.push(base);
     expansionRequests.push(extra);
     const screen = await render(h(ArenaHubScreen));
+    await flush();
     await act(async () => {
       base.reject(new Error('network offline'));
       extra.reject(new Error('network offline'));
@@ -145,28 +169,63 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     homeRequests.push(oldHome, newHome);
     expansionRequests.push(oldExpansion, newExpansion);
     const screen = await render(h(ArenaHubScreen));
+    await flush();
     await act(async () => {
       oldHome.reject(new Error('network offline'));
-      oldExpansion.reject(new Error('network offline'));
       await flush();
     });
     await flush();
-    fireEvent.press(screen.getByTestId('arena-hub-offline'));
-    await flush();
     await act(async () => {
+      screen.getByTestId('arena-hub-offline').props.onPress();
       newHome.resolve(home({ profile: { ...home().profile, rating: 777 } }));
       newExpansion.resolve(expansion({ wallet: { walletStars: 77 } }));
       await flush();
     });
+    expect(rememberWarm).toHaveBeenCalledTimes(3);
+    expect(rememberWarm).toHaveBeenNthCalledWith(1, expect.objectContaining({
+      home: expect.objectContaining({ profile: expect.objectContaining({ rating: 777 }) }),
+    }));
+    expect(rememberWarm).toHaveBeenNthCalledWith(2, expect.objectContaining({
+      expansion: expect.objectContaining({ wallet: { walletStars: 77 } }),
+    }));
+    expect(rememberWarm).toHaveBeenNthCalledWith(3, expect.objectContaining({
+      home: expect.objectContaining({ profile: expect.objectContaining({ rating: 777 }) }),
+      expansion: expect.objectContaining({ wallet: { walletStars: 77 } }),
+    }));
+    rememberWarm.mockClear();
     await flush();
     await act(async () => {
-      oldHome.resolve(home({ profile: { ...home().profile, rating: 111 } }));
       oldExpansion.resolve(expansion({ wallet: { walletStars: 11 } }));
       await flush();
     });
 
     expect(screen.getByTestId('hub-live').props.children).toBe('rank:777');
     expect(screen.getByTestId('wallet').props.children).toBe('Wallet:77');
+    expect(rememberWarm).not.toHaveBeenCalled();
+    await screen.unmount();
+  });
+
+  it('makes the real central match control unavailable with its reason and restores its press action when enabled', async () => {
+    const onMatch = jest.fn();
+    const tabs = [
+      { key: 'rating' as const, icon: 'podium-outline' as const, active: 'podium' as const, label: 'Ranks' },
+      { key: 'history' as const, icon: 'time-outline' as const, active: 'time' as const, label: 'History' },
+    ];
+    const screen = await render(h(ArenaTabBar, { tabs, active: 'rating', matchLabel: 'Play', matchBusy: true, matchDisabledHint: 'Fresh data returns when the network returns.', onSelect: jest.fn(), onMatch }));
+    const blocked = screen.getByTestId('arena-tab-match');
+    expect(blocked.props.accessibilityState).toEqual({ disabled: true });
+    expect(blocked.props.accessibilityHint).toBe('Fresh data returns when the network returns.');
+    // The host Pressable has no native press handler while disabled; RNTL's
+    // fireEvent intentionally bubbles past disabled hosts, unlike RN itself.
+    expect(blocked.props.onPress).toBeUndefined();
+    expect(onMatch).not.toHaveBeenCalled();
+
+    await screen.rerender(h(ArenaTabBar, { tabs, active: 'rating', matchLabel: 'Play', matchBusy: false, onSelect: jest.fn(), onMatch }));
+    const enabled = screen.getByTestId('arena-tab-match');
+    expect(enabled.props.accessibilityState).toEqual({ disabled: false });
+    expect(enabled.props.accessibilityHint).toBeUndefined();
+    fireEvent.press(enabled);
+    expect(onMatch).toHaveBeenCalledTimes(1);
     await screen.unmount();
   });
 
@@ -175,6 +234,7 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     homeRequests.push(pendingHome); expansionRequests.push(pendingExpansion);
     const error = jest.spyOn(console, 'error').mockImplementation(() => undefined);
     const screen = await render(h(ArenaHubScreen));
+    await flush();
     await screen.unmount();
     await act(async () => {
       pendingHome.resolve(home()); pendingExpansion.resolve(expansion());

@@ -28,7 +28,7 @@ export type AvatarDNA = Readonly<{
   schemaVersion: typeof AVATAR_DNA_SCHEMA_VERSION;
   rigId: typeof AVATAR_DNA_RIG_ID;
   base: Readonly<{
-    starterPresetId: string;
+    starterPresetId: string | null;
     skinToneId: string;
     faceBaseId: string;
     bodyBaseId: string;
@@ -61,33 +61,51 @@ export type AvatarDNA = Readonly<{
 }>;
 
 export type AvatarLayerRecord = Readonly<{
+  id: string;
   slot: AvatarSlot;
-  itemId: string;
-  assetId: string;
+  z: number;
+  file: string;
+  clip?: string;
+}>;
+
+export type AvatarItemEntitlement = Readonly<{
+  kind: 'starter' | 'purchase' | 'reward';
+  rarity?: string;
 }>;
 
 export type AvatarItemManifest = Readonly<{
   id: string;
+  assetVersion: number;
+  rigIds: readonly string[];
   category: AvatarCategory;
-  slots: readonly AvatarSlot[];
+  entitlement: AvatarItemEntitlement;
   layers: readonly AvatarLayerRecord[];
+  occludes: readonly AvatarSlot[];
+  conflicts: readonly string[];
+  restoresOnRemove: boolean;
 }>;
 
 export type AvatarCatalogManifest = Readonly<{
   catalogVersion: 1;
-  rigId: typeof AVATAR_DNA_RIG_ID;
+  rigIds: readonly string[];
   items: readonly AvatarItemManifest[];
 }>;
 
 export type ResolvedAvatarDNA = Readonly<{
-  dna: AvatarDNA;
+  chosenDNA: AvatarDNA;
+  effectiveDNA: AvatarDNA;
+  visibilityPlan: Readonly<{
+    hiddenSlots: readonly AvatarSlot[];
+  }>;
   layers: readonly AvatarLayerRecord[];
-  notices: readonly AvatarDNAConflictNotice[];
 }>;
 
 export type AvatarV2Projection = Readonly<{
-  dna: AvatarDNA;
-  canonicalDNA: string;
-  camera: AvatarCamera;
-  resolved: ResolvedAvatarDNA;
+  schemaVersion: 1;
+  state: 'ready';
+  renderId: string;
+  portraitUrl: string;
+  studioUrl: string;
+  manifestVersion: 1;
+  updatedAtMs?: number;
 }>;

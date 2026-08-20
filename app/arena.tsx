@@ -64,6 +64,7 @@ export default function ArenaHubScreen() {
       initialHome: warm?.home,
       initialExpansion: warm?.expansion,
       todayKey: arenaWarmDayKey(Date.now()),
+      warmDayKey: warm?.savedDayKey,
       fetchHome: arenaV2Home,
       fetchExpansion: arenaExpansionHome,
       remember: (value) => arenaRememberHomeWarm({ ...value, wallNowMs: Date.now(), store: warmStore }),
@@ -159,8 +160,8 @@ export default function ArenaHubScreen() {
   const quickBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: home?.availability.quickEnabled });
   const todayBlock = arenaHubActionBlock({ known: expansion !== null && today !== undefined, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: expansion?.availability.today && today?.state !== 'unavailable' });
   const walletBlock = arenaHubActionBlock({ known: expansion !== null, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: expansion?.availability.store });
+  const spinBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: home?.availability.spinEnabled, busy: spinBusy });
   const baseEnabled = baseBlock === 'ok';
-  const offlineHint = offline ? arenaText(lang, 'hubOfflineHint') : undefined;
   const quickDisabledHint = quickBlock === 'ok' ? undefined : blockHint(quickBlock);
   const todayDisabledHint = todayBlock === 'ok' ? undefined : blockHint(todayBlock);
   const walletDisabledHint = walletBlock === 'ok' ? undefined : blockHint(walletBlock);
@@ -194,6 +195,8 @@ export default function ArenaHubScreen() {
           icon="flash"
           title={activeRun.runKind === 'ghost' ? arenaExpansionText(lang, 'ghost') : arenaExpansionText(lang, 'todayContinue')}
           body={activeRun.runKind === 'ghost' ? arenaExpansionText(lang, 'recordingBadge') : arenaExpansionText(lang, 'todayBody')}
+          disabled={baseBlock !== 'ok'}
+          disabledHint={baseBlock === 'ok' ? undefined : blockHint(baseBlock)}
           onPress={() => router.push({ pathname: '/arena_today', params: { runId: activeRun.runId, runKind: activeRun.runKind } } as never)}
         />
       ) : home?.activeMatch?.matchId ? (
@@ -202,6 +205,8 @@ export default function ArenaHubScreen() {
           icon="flash"
           title={arenaExpansionText(lang, 'activeMatch')}
           body={arenaText(lang, 'subtitle')}
+          disabled={baseBlock !== 'ok'}
+          disabledHint={baseBlock === 'ok' ? undefined : blockHint(baseBlock)}
           onPress={() => router.push({ pathname: '/arena_match', params: { matchId: home.activeMatch?.matchId } } as never)}
         />
       ) : activeQueue ? (
@@ -210,6 +215,8 @@ export default function ArenaHubScreen() {
           icon="search"
           title={arenaExpansionText(lang, 'activeQueue')}
           body={activeQueue.mode === 'ranked' ? arenaText(lang, 'rankedHint') : arenaText(lang, 'quickHint')}
+          disabled={baseBlock !== 'ok'}
+          disabledHint={baseBlock === 'ok' ? undefined : blockHint(baseBlock)}
           onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: activeQueue.mode, requestId: activeQueue.requestId, stableUid: activeQueue.stableUid } } as never)}
         />
       ) : null}
@@ -235,7 +242,7 @@ export default function ArenaHubScreen() {
           кнопке «Играть» в таббаре — подпись над первым же пунктом повторяла
           название, под которым сюда пришли. */}
       <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabledHint={quickDisabledHint} disabled={quickBlock !== 'ok'} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
-      {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabledHint={offlineHint} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => runArenaHubSpin({ controller: hydrationController, claim: () => arenaV2SpinClaim(spinRequestIdRef.current), onBusy: setSpinBusy, onAccepted: () => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); } })} /> : null}
+      {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabledHint={spinBlock === 'ok' ? undefined : blockHint(spinBlock)} disabled={spinBlock !== 'ok'} onPress={() => runArenaHubSpin({ controller: hydrationController, claim: () => arenaV2SpinClaim(spinRequestIdRef.current), onBusy: setSpinBusy, onAccepted: () => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); } })} /> : null}
     </>
   );
 

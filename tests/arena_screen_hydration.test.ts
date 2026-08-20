@@ -77,12 +77,23 @@ describe('Arena hub hydration safety', () => {
     const warm = arenaWarmForDay({
       home: { ...validHome, profile: { ...validHome.profile, dailyDayKey: yesterday, todayKey: yesterday, dailyMatches: 3, dailyFirstAnswers: 8, dailyWins: 1 } },
       expansion: { ...validExpansion, activeRun: { runId: 'old-run', runKind: 'today' } },
-    }, today);
+    }, today, yesterday);
     expect(warm.home?.profile.rating).toBe(900);
     expect(warm.home?.profile.dailyMatches).toBeUndefined();
     expect(warm.expansion?.wallet.walletStars).toBe(20);
     expect(warm.expansion?.today).toBeUndefined();
     expect(warm.expansion?.activeRun).toBeUndefined();
+  });
+
+  it('preserves same-day zero progress before the first activity', () => {
+    const today = '2026-08-20';
+    const warm = arenaWarmForDay({
+      home: { ...validHome, profile: { ...validHome.profile, dailyDayKey: '', todayKey: today, dailyMatches: 0, dailyFirstAnswers: 0, dailyWins: 0 } },
+      expansion: { ...validExpansion, activeRun: { runId: 'today-run', runKind: 'today' } },
+    }, today, today);
+    expect(warm.home?.profile.dailyMatches).toBe(0);
+    expect(warm.expansion?.today?.completedTasks).toBe(10);
+    expect(warm.expansion?.activeRun?.runId).toBe('today-run');
   });
 
   it('orchestrates a valid cache, ignores malformed cache, and keeps cached values on failure', async () => {

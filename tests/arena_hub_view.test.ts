@@ -208,6 +208,7 @@ describe('причины блокировки действий хаба', () => 
     expect(arenaHubActionBlock({ known: true, modeEnabled: false })).toBe('mode_disabled');
     expect(arenaHubActionBlock({ known: true, modeEnabled: true, busy: true })).toBe('busy');
     expect(arenaHubActionBlock({ known: true, modeEnabled: true })).toBe('ok');
+    expect(arenaHubActionBlock({ known: true })).toBe('ok');
   });
 });
 

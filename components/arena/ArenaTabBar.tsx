@@ -165,12 +165,13 @@ function CenterMatchButton({
           accessibilityRole="button"
           accessibilityLabel={label}
           accessibilityHint={disabledHint}
+          accessibilityState={{ disabled: busy }}
           testID="arena-tab-match"
           disabled={busy}
           onPressIn={() => { press.value = reduceMotion ? 0 : withTiming(1, { duration: 90 }); }}
           onPressOut={() => { press.value = reduceMotion ? 0 : withSpring(0, SPRING); }}
           onPress={() => { void hapticMediumImpact(); onPress(); }}
-          style={[styles.centerButton, { backgroundColor: P.accent, shadowColor: P.accent }]}
+          style={[styles.centerButton, { backgroundColor: P.accent, shadowColor: P.accent }, busy ? styles.centerButtonDisabled : null]}
         >
           <Ionicons name="flash" size={27} color={P.accentText} />
         </Pressable>
@@ -279,6 +280,7 @@ const styles = StyleSheet.create({
     shadowRadius: 18,
     elevation: 14,
   },
+  centerButtonDisabled: { opacity: 0.48 },
   sideTab: { flex: 1, minHeight: 44, alignItems: 'center', justifyContent: 'center', gap: 2 },
   sideLabel: { fontSize: 10.5, fontWeight: '800', letterSpacing: 0.1 },
   centerSlot: { width: CENTER_SIZE + 12, alignItems: 'center', justifyContent: 'center' },

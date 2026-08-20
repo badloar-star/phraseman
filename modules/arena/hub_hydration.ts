@@ -109,14 +109,16 @@ export function arenaWarmExpansion(value: unknown): ArenaHubWarmExpansion | null
 }
 
 /** Projects an old warm snapshot onto a known UTC day without inventing daily state. */
-export function arenaWarmForDay(warm: Readonly<{ home?: unknown; expansion?: unknown }>, todayKey: string): Readonly<{
+export function arenaWarmForDay(warm: Readonly<{ home?: unknown; expansion?: unknown }>, todayKey: string, savedDayKey?: string): Readonly<{
   home: ArenaHubWarmHome | null;
   expansion: ArenaHubWarmExpansion | null;
 }> {
   const home = arenaWarmHome(warm.home);
   const expansion = arenaWarmExpansion(warm.expansion);
+  // savedDayKey is the snapshot's date, unlike dailyDayKey which can remain
+  // empty until the player does something today.
   const sameDay = home !== null
-    && home.profile.dailyDayKey === todayKey
+    && savedDayKey === todayKey
     && home.profile.todayKey === todayKey;
   if (sameDay) return { home, expansion };
   if (home === null) return { home: null, expansion };
@@ -144,6 +146,7 @@ type ArenaHubHydrationOptions<Home extends ArenaHubWarmHome, Expansion extends A
   initialHome?: unknown;
   initialExpansion?: unknown;
   todayKey?: string;
+  warmDayKey?: string;
   fetchHome: () => Promise<Home>;
   fetchExpansion: () => Promise<Expansion>;
   remember: (value: Readonly<{ home?: Home; expansion?: Expansion }>) => void;
@@ -153,8 +156,8 @@ type ArenaHubHydrationOptions<Home extends ArenaHubWarmHome, Expansion extends A
 /** Small UI-agnostic coordinator for warm cache, parallel refresh, and unmount safety. */
 export function createArenaHubHydrationController<Home extends ArenaHubWarmHome, Expansion extends ArenaHubWarmExpansion>(options: ArenaHubHydrationOptions<Home, Expansion>) {
   const gate = arenaHubRequestGate();
-  const projectWarm = (warm: Readonly<{ home?: unknown; expansion?: unknown }>) => arenaWarmForDay(warm, options.todayKey ?? '');
-  const initialWarm = projectWarm({ home: options.initialHome, expansion: options.initialExpansion });
+  const projectWarm = (warm: Readonly<{ home?: unknown; expansion?: unknown; savedDayKey?: string }>) => arenaWarmForDay(warm, options.todayKey ?? '', warm.savedDayKey ?? options.warmDayKey);
+  const initialWarm = projectWarm({ home: options.initialHome, expansion: options.initialExpansion, savedDayKey: options.warmDayKey });
   let snapshot: ArenaHubHydrationSnapshot = {
     home: arenaHubCached(arenaHubNeutral<ArenaHubWarmHome>(), initialWarm.home),
     expansion: arenaHubCached(arenaHubNeutral<ArenaHubWarmExpansion>(), initialWarm.expansion),
@@ -174,7 +177,7 @@ export function createArenaHubHydrationController<Home extends ArenaHubWarmHome,
   };
   return {
     snapshot: () => snapshot,
-    hydrate: (warm: Readonly<{ home?: unknown; expansion?: unknown }>) => {
+    hydrate: (warm: Readonly<{ home?: unknown; expansion?: unknown; savedDayKey?: string }>) => {
       if (!gate.mounted()) return;
       const projected = projectWarm(warm);
       update({ ...snapshot, home: arenaHubCached(snapshot.home, projected.home), expansion: arenaHubCached(snapshot.expansion, projected.expansion) });

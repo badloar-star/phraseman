@@ -66,8 +66,8 @@ export function arenaHubActionBlock(input: Readonly<{
   if (input.maintenance) return 'maintenance';
   if (input.reportBlocked) return 'report_blocked';
   if (!input.known) return 'unknown';
-  if (!input.modeEnabled) return 'mode_disabled';
-  if (input.busy) return 'busy';
+  if (input.modeEnabled === false) return 'mode_disabled';
+  if (input.busy === true) return 'busy';
   return 'ok';
 }
 

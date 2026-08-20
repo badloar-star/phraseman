@@ -208,15 +208,24 @@ export function adaptTournamentTaskForArena(task: TournamentTask, seed = task.ta
     .slice(0, ARENA_V2_SPEED_MATCH_PAIRS);
   const selectedItems = selectedIndexes.map((index) => sourceItems[index]);
   if (selectedItems.length !== ARENA_V2_SPEED_MATCH_PAIRS) return null;
-  const sourceIndexes = selectedItems.map((item) => Number(item.correctIndex));
-  if (new Set(sourceIndexes).size !== ARENA_V2_SPEED_MATCH_PAIRS) return null;
-  const rightOptions = sourceIndexes.map((index) => sourceRight[index]);
+  const selectedSourceIndexes = selectedItems.map((item) => Number(item.correctIndex));
+  if (new Set(selectedSourceIndexes).size !== ARENA_V2_SPEED_MATCH_PAIRS) return null;
+  // Правая колонка обязана быть не просто случайной, а без единого готового
+  // ответа напротив своей строки. Ненулевой детерминированный сдвиг даёт
+  // derangement для всех четырёх пар и одинаково воспроизводится по seed.
+  const rotation = 1 + (hash32(`${seed}|${task.taskId}|right`) % (ARENA_V2_SPEED_MATCH_PAIRS - 1));
+  const rightSourceIndexes = selectedSourceIndexes.map((_, index) => (
+    selectedSourceIndexes[(index + rotation) % ARENA_V2_SPEED_MATCH_PAIRS]
+  ));
+  const rightOptions = rightSourceIndexes.map((index) => sourceRight[index]);
   if (rightOptions.some((value) => typeof value !== 'string')) return null;
 
-  const items = selectedItems.map((item, correctIndex) => {
+  const items = selectedItems.map((item) => {
+    const correctIndex = rightSourceIndexes.indexOf(Number(item.correctIndex));
+    if (correctIndex < 0) return null;
     const sourceReasons = (item.explanation as { wrongOptionReasons?: unknown[] } | undefined)
       ?.wrongOptionReasons;
-    const reorderedReasons = sourceIndexes.map((sourceIndex) => (
+    const reorderedReasons = rightSourceIndexes.map((sourceIndex) => (
       typeof sourceReasons?.[sourceIndex] === 'string' ? sourceReasons[sourceIndex] : ''
     ));
     return {
@@ -225,14 +234,15 @@ export function adaptTournamentTaskForArena(task: TournamentTask, seed = task.ta
       correctIndex,
       ...(item.explanation && typeof item.explanation === 'object'
         ? {
-          explanation: {
-            ...structuredClone(item.explanation),
-            wrongOptionReasons: reorderedReasons,
-          },
-        }
+            explanation: {
+              ...structuredClone(item.explanation),
+              wrongOptionReasons: reorderedReasons,
+            },
+          }
         : {}),
     };
   });
+  if (items.some((item) => item === null)) return null;
   const adapted: TournamentTask = {
     ...structuredClone(task),
     payload: {

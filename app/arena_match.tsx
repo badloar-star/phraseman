@@ -490,17 +490,17 @@ export default function ArenaMatchScreen() {
 
   if (!plan || !match || !hud) {
     /**
-     * Здесь ждут не загрузки, а СОПЕРНИКА: плана не существует, пока дуэль не
-     * приняли оба. «Загрузка…» в этом месте была неправдой — она обещала, что
-     * дело в устройстве, и игрок начинал винить связь.
+     * Соперник уже найден матчмейкером. Здесь оба клиента принимают найденную
+     * дуэль и получают план, поэтому повторное «ждём второго игрока» было
+     * неправдой и выглядело как возврат обратно в поиск.
      */
     return (
       <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
         <View style={styles.center}>
           <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, titleLine, { color: P.text }]}>
-            {arenaText(lang, 'waiting')}
+            {arenaText(lang, 'preparingDuel')}
           </Text>
-          <Text style={[styles.failureHint, hintLine, { color: P.muted }]}>{arenaText(lang, 'waitingHint')}</Text>
+          <Text style={[styles.failureHint, hintLine, { color: P.muted }]}>{arenaText(lang, 'preparingDuelHint')}</Text>
         </View>
       </ArenaScreen>
     );
@@ -590,7 +590,7 @@ export default function ArenaMatchScreen() {
                     style={[styles.rival, { color: P.gold }]}
                     accessibilityLiveRegion="polite"
                   >
-                    {plan.opponent.name || arenaText(lang, 'opponent')} · {arenaText(lang, 'submit')}
+                    {plan.opponent.name || arenaText(lang, 'opponent')} · {arenaText(lang, 'opponentAnsweredBadge')}
                   </Text>
                 </Animated.View>
               ) : null}

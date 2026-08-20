@@ -536,19 +536,28 @@ describe('почему матч не начался — словами, а не 
     expect(source).not.toContain('setError(String(reason))');
   });
 
-  /**
-   * Пока дуэль не приняли оба, плана не существует — ждут не загрузки, а
-   * соперника. «Загрузка…» здесь обещала, что дело в устройстве, и игрок
-   * начинал винить связь.
-   */
-  it('ожидание соперника не притворяется загрузкой', () => {
+  /** После сведения игрок уже найден. Пока оба клиента принимают дуэль и
+   * приезжает план, нельзя снова говорить, что мы всё ещё ищем второго. */
+  it('после сведения готовит дуэль, а не ждёт второго игрока', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
-    expect(source).toContain("arenaText(lang, 'waiting')");
-    expect(source).toContain("arenaText(lang, 'waitingHint')");
+    expect(source).toContain("arenaText(lang, 'preparingDuel')");
+    expect(source).toContain("arenaText(lang, 'preparingDuelHint')");
+    expect(source).not.toContain("arenaText(lang, 'waiting')");
     expect(source).not.toContain("<View style={styles.center}><Text style={{ color: P.text }}>{arenaText(lang, 'loading')}</Text></View>");
     for (const lang of LANGS) {
-      expect(arenaText(lang, 'waitingHint').length).toBeGreaterThan(0);
-      expect(arenaText(lang, 'waitingHint')).not.toBe(arenaText(lang, 'loading'));
+      expect(arenaText(lang, 'preparingDuel').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'preparingDuelHint').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'preparingDuel')).not.toBe(arenaText(lang, 'waiting'));
+    }
+  });
+
+  it('свершившийся ответ соперника не подписан глаголом кнопки', () => {
+    const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+    expect(source).toContain("arenaText(lang, 'opponentAnsweredBadge')");
+    expect(source).not.toContain("arenaText(lang, 'opponent')} · {arenaText(lang, 'submit')}");
+    for (const lang of LANGS) {
+      expect(arenaText(lang, 'opponentAnsweredBadge').length).toBeGreaterThan(0);
+      expect(arenaText(lang, 'opponentAnsweredBadge')).not.toBe(arenaText(lang, 'submit'));
     }
   });
 

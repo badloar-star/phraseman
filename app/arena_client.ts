@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { arenaOutboxFlush, arenaOutboxHasMatch, arenaOutboxList } from '../modules/arena/outbox_storage';
 import { arenaOutboxHasGated } from '../modules/arena/result_outbox';
+import { arenaReadReviewWithRetry } from '../modules/arena/review_retry';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useEffect, useRef, useState } from 'react';
 import * as Crypto from 'expo-crypto';
@@ -632,18 +633,32 @@ export async function arenaFetchMatchHistory(limit = 30): Promise<readonly unkno
  * Разбор матча. Читается напрямую из документа, который сервер пишет при
  * закрытии матча: он доступен только владельцу, и заводить под разбор
  * отдельный вызов значило бы платить за то, что уже лежит.
+ *
+ * зачем повтор (владелец, 2026-08-17): «Разбор» на экране результата ведёт
+ * сюда МГНОВЕННО по нажатию, а серверная транзакция settleMatch дописывает
+ * этот же документ асинхронно, на доли секунды позже отправки результата.
+ * Игрок, нажавший быстро, попадал в гонку: документа ещё нет, экран навсегда
+ * говорит «разбор не готов», хотя запись доедет через мгновение. Один короткий
+ * повтор закрывает окно гонки, не превращаясь в опрос по кругу — читаем
+ * ровно дважды, максимум.
  */
 export async function arenaFetchMatchReview(matchId: string): Promise<readonly unknown[] | null> {
   const authModule = await import('@react-native-firebase/auth');
   const uid = authModule.default().currentUser?.uid;
   if (!uid || !matchId) return null;
   const firestore = (await import('@react-native-firebase/firestore')).default;
-  const snapshot = await firestore()
-    .collection('users').doc(uid).collection('arena_v2_match_labs').doc(matchId)
-    .get();
-  if (!snapshot.exists) return null;
-  const tasks = (snapshot.data() as { tasks?: unknown } | undefined)?.tasks;
-  return Array.isArray(tasks) ? tasks : [];
+  const ref = firestore()
+    .collection('users').doc(uid).collection('arena_v2_match_labs').doc(matchId);
+  const read = async (): Promise<readonly unknown[] | null> => {
+    const snapshot = await ref.get();
+    if (!snapshot.exists) return null;
+    const tasks = (snapshot.data() as { tasks?: unknown } | undefined)?.tasks;
+    return Array.isArray(tasks) ? tasks : [];
+  };
+  return arenaReadReviewWithRetry(
+    read,
+    () => new Promise((resolve) => setTimeout(resolve, 900)),
+  );
 }
 
 /** Host-only friend-duel handoff: observes the owner's opaque active match id. */

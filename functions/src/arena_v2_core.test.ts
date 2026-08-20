@@ -102,11 +102,18 @@ describe('Arena V2 pure product contract', () => {
     expect(first).toEqual(replay);
     expect((first.payload.items as unknown[])).toHaveLength(4);
     expect((first.payload.rightOptions as unknown[])).toHaveLength(4);
-    expect((first.payload.items as any[]).map((item) => item.correctIndex)).toEqual([0, 1, 2, 3]);
-    const projections = new Set(Array.from({ length: 12 }, (_, index) => JSON.stringify(
-      (adaptTournamentTaskForArena(source, `seed-${index}`)!.payload.items as any[])
-        .map((item) => item.prompt),
-    )));
+    const projections = new Set(Array.from({ length: 32 }, (_, index) => {
+      const projected = adaptTournamentTaskForArena(source, `seed-${index}`)!;
+      const items = projected.payload.items as any[];
+      const rightOptions = projected.payload.rightOptions as string[];
+      items.forEach((item, rowIndex) => {
+        const sourceIndex = Number(String(item.prompt).replace('word', ''));
+        expect(item.correctIndex).not.toBe(rowIndex);
+        expect(rightOptions[item.correctIndex]).toBe((source.payload.rightOptions as string[])[sourceIndex]);
+        expect(item.options).toEqual(rightOptions);
+      });
+      return JSON.stringify(items.map((item) => item.prompt));
+    }));
     expect(projections.size).toBeGreaterThan(1);
   });
 

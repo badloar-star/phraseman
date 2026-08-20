@@ -3,11 +3,22 @@ import { resolveAvatarDNA } from '../modules/avatar-dna/resolver';
 
 describe('Avatar DNA resolver', () => {
   it('returns the exact free starter DNA', () => {
-    expect(starterAvatarDNA('starter_warm_01')).toMatchObject({
+    expect(starterAvatarDNA('starter_warm_01')).toEqual({
       schemaVersion: 1, rigId: 'human_v1',
       base: { starterPresetId: 'starter_warm_01', skinToneId: 'skin_03', faceBaseId: 'face_01', bodyBaseId: 'body_01' },
       hair: { styleId: 'hair_01', colorId: 'hair_brown' },
+      face: { eyesId: 'eyes_01', irisColorId: 'iris_brown', browsId: 'brows_01', noseId: 'nose_01', mouthId: 'mouth_01', skinDetailIds: [], makeupIds: [], facialHairId: null },
+      wearables: { outfitId: 'outfit_01', headwearId: null, maskId: null, eyewearId: null, earAccessoryId: null, neckAccessoryId: null },
+      scene: { backgroundId: 'background_cream', auraId: null, frameId: null, foregroundFxId: null },
     });
+  });
+
+  it('rejects selected item conflicts without mutating chosen DNA', () => {
+    const chosen = starterAvatarDNA('starter_warm_01'); const before = JSON.parse(JSON.stringify(chosen));
+    const catalog = JSON.parse(JSON.stringify(require('../config/avatar-dna/catalog.v1.json')));
+    catalog.items.find((item: any) => item.id === 'hair_01').conflicts = ['outfit_01'];
+    expect(() => resolveAvatarDNA(chosen, catalog)).toThrow('avatar_catalog_invalid: conflict');
+    expect(chosen).toEqual(before);
   });
 
   it('resolves a hood without changing the stored hair choice', () => {

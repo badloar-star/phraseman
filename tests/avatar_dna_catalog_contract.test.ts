@@ -38,7 +38,14 @@ describe('Avatar DNA catalog contract', () => {
     expect(result.status).not.toBe(0); expect(result.stderr).toContain('avatar_catalog_invalid');
   });
 
-  it.each(['valid', 'missing file', 'png extension', 'wrong dimensions', 'bytes mismatch', 'sha mismatch'])('CLI non-fixture WebP %s', async (scenario) => {
+  it.each([
+    ['duplicate item ID', (c: any, _r: any) => { c.items[1].id = c.items[0].id; }], ['missing entitlement', (c: any, _r: any) => { delete c.items[0].entitlement; }], ['negative z', (c: any, _r: any) => { c.items[1].layers[0].z = -1; }], ['extra safe polygon', (_c: any, r: any) => { r.safePolygons.extra = [[0, 0], [1, 0], [1, 1]]; }], ['anchor outside bounds', (_c: any, r: any) => { r.anchors.headTop = [1.1, 0]; }], ['polygon outside bounds', (_c: any, r: any) => { r.safePolygons['face.safe'][0] = [-0.1, 0]; }], ['portrait crop outside bounds', (_c: any, r: any) => { r.portraitCrop[0] = 2; }], ['studio crop outside bounds', (_c: any, r: any) => { r.studioCrop[0] = -1; }], ['runtime dimensions', (_c: any, r: any) => { r.runtime.width = 511; }], ['canvas dimensions', (_c: any, r: any) => { r.canvas.width = 2047; }],
+  ])('CLI fixture mode rejects %s', (_name, mutate) => {
+    const catalog = JSON.parse(JSON.stringify(canonicalCatalog)); const rig = JSON.parse(JSON.stringify(canonicalRig)); mutate(catalog, rig);
+    const result = cliResult(catalog, rig); expect(result.status).not.toBe(0); expect(result.stderr).toContain('avatar_catalog_invalid');
+  });
+
+  it.each(['valid', 'missing file', 'png bytes named webp', 'wrong dimensions', 'bytes mismatch', 'sha mismatch'])('CLI non-fixture WebP %s', async (scenario) => {
     const temp = mkdtempSync(path.join(os.tmpdir(), 'avatar-dna-images-'));
     try {
       const catalog = JSON.parse(JSON.stringify(canonicalCatalog));
@@ -50,7 +57,7 @@ describe('Avatar DNA catalog contract', () => {
       }
       const target = catalog.items.find((item: any) => item.layers.length).layers[0];
       if (scenario === 'missing file') target.file = 'missing.webp';
-      if (scenario === 'png extension') { target.file = 'bad.png'; writeFileSync(path.join(assetDir, 'bad.png'), Buffer.from('not-webp')); }
+      if (scenario === 'png bytes named webp') { const image = await sharp({ create: { width: 512, height: 512, channels: 4, background: '#336699' } }).png().toBuffer(); writeFileSync(path.join(assetDir, target.file), image); target.bytes = image.length; target.sha256 = createHash('sha256').update(image).digest('hex'); }
       if (scenario === 'wrong dimensions') { const image = await sharp({ create: { width: 256, height: 256, channels: 4, background: '#336699' } }).webp().toBuffer(); writeFileSync(path.join(assetDir, target.file), image); target.bytes = image.length; target.sha256 = createHash('sha256').update(image).digest('hex'); }
       if (scenario === 'bytes mismatch') target.bytes += 1;
       if (scenario === 'sha mismatch') target.sha256 = '0'.repeat(64);

@@ -4241,7 +4241,7 @@ font scale. Оба immersive-task целиком живут в bounded outer `Sc
 
 ### Фактические проверки
 
-- `npx jest --runTestsByPath tests/arena_live_channel.test.ts tests/arena_match_view.test.ts tests/arena_question_layout.test.ts tests/arena_v2_client_contract.test.ts tests/arena_v2_client_source_contract.test.ts tests/arena_callable_surface.test.ts --no-cache --runInBand --watchman=false` — **6/6 наборов, 165/165 тестов**, exit 0 после privacy/fallback/compact-height follow-up.
+- `npx jest --runTestsByPath tests/arena_live_channel.test.ts tests/arena_match_view.test.ts tests/arena_question_layout.test.ts tests/arena_v2_client_contract.test.ts tests/arena_v2_client_source_contract.test.ts tests/arena_callable_surface.test.ts --no-cache --runInBand --watchman=false` — **6/6 наборов, 171/171 тестов**, exit 0 после двух follow-up review.
 - `functions: npx jest --runTestsByPath src/arena_duel_v3.test.ts src/arena_v2_core.test.ts --runInBand --watchman=false` — **2/2 набора, 83/83 теста**, exit 0.
 - `functions: npm run build` — TypeScript, копирование assets и runtime parity
   завершились, exit 0.
@@ -4265,6 +4265,12 @@ font scale. Оба immersive-task целиком живут в bounded outer `Sc
   остановился до тестов из-за отсутствия WSL distro; свежая компиляция в
   отдельный ignored outDir дала **0 неожиданных TypeScript errors**, а
   PowerShell jestlite — **49 наборов, 871 утверждение, 0 падений**, exit 0.
+- Второй re-review дал RED **5** кейсов: точные `firstAttemptPairs` 0/1/3/4
+  при `correct:false` возвращали unknown, и inconsistent boolean обрывал точный
+  speed fallback. Layout contract дал RED **4** кейсов: CTA и последняя пара не
+  находились внутри bounded task scroll. После исправлений focused client —
+  **171/171**, свежая Arena-компиляция — **0 неожиданных TypeScript errors**,
+  PowerShell jestlite — **49 наборов, 877 утверждений, 0 падений**, exit 0.
 - `git diff --check` — exit 0; `git status --short` содержит многочисленные
   существовавшие чужие изменения, принадлежащие другим потокам работы.
 

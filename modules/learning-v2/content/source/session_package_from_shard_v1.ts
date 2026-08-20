@@ -150,6 +150,9 @@ export function buildSessionChildBodiesFromShard(
       kind: page.kind,
       titleByLocale: page.titleByLocale as never,
       bodyByLocale: page.bodyByLocale as never,
+      ...(page.bodyRunsByLocale
+        ? { bodyRunsByLocale: page.bodyRunsByLocale }
+        : {}),
       question: {
         interactionId: page.question.questionId,
         promptByLocale: page.question.promptByLocale as never,

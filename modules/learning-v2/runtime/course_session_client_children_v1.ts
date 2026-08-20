@@ -3,6 +3,11 @@ import {
   type LearningV2InterfaceLocale,
 } from "../content/generator_course_contract";
 import {
+  introRunsPlainTextV1,
+  validateLearningV2IntroRunsByLocaleV1,
+  type LearningV2IntroRunsByLocaleV1,
+} from "../content/intro_semantic_runs_v1";
+import {
   canonicalJsonV1,
   hashCanonicalBody,
   utf8ByteLengthV1,
@@ -47,6 +52,7 @@ export interface LearningV2CourseSessionIntroPageV1 {
   readonly kind: "concept" | "formula" | "example" | "trap" | "tip";
   readonly titleByLocale: LocalizedText;
   readonly bodyByLocale: LocalizedText;
+  readonly bodyRunsByLocale?: LearningV2IntroRunsByLocaleV1;
   readonly question: LearningV2CourseSessionIntroQuestionV1;
 }
 
@@ -261,6 +267,32 @@ function localizedChoices(value: unknown) {
   >;
 }
 
+function localizedIntroRuns(value: unknown): LearningV2IntroRunsByLocaleV1 {
+  let validated: LearningV2IntroRunsByLocaleV1;
+  try {
+    validated = validateLearningV2IntroRunsByLocaleV1(value);
+  } catch {
+    fail();
+  }
+  const result: Partial<
+    Record<
+      LearningV2InterfaceLocale,
+      LearningV2IntroRunsByLocaleV1[LearningV2InterfaceLocale]
+    >
+  > = {};
+  for (const locale of LEARNING_V2_INTERFACE_LOCALES) {
+    result[locale] = Object.freeze(
+      validated[locale].map((run) =>
+        Object.freeze({
+          text: text(run.text, 1_000),
+          semantic: run.semantic,
+        }),
+      ),
+    );
+  }
+  return Object.freeze(result) as LearningV2IntroRunsByLocaleV1;
+}
+
 function preflight(value: unknown): void {
   const stack: { value: unknown; depth: number }[] = [{ value, depth: 0 }];
   let nodes = 0;
@@ -326,12 +358,21 @@ const INTRO_ROOT_KEYS = [
   "releaseAuthority",
   "introFingerprint",
 ] as const;
-const INTRO_PAGE_KEYS = [
+const INTRO_PAGE_KEYS_LEGACY = [
   "pageOrdinal",
   "pageId",
   "kind",
   "titleByLocale",
   "bodyByLocale",
+  "question",
+] as const;
+const INTRO_PAGE_KEYS_WITH_RUNS = [
+  "pageOrdinal",
+  "pageId",
+  "kind",
+  "titleByLocale",
+  "bodyByLocale",
+  "bodyRunsByLocale",
   "question",
 ] as const;
 const INTRO_QUESTION_KEYS = [
@@ -358,7 +399,14 @@ export function parseLearningV2CourseSessionIntroChildV1(
   const ids = new Set<string>();
   const pages = value.pages.map((entry, index) => {
     if (!record(entry)) fail();
-    exactKeys(entry, INTRO_PAGE_KEYS);
+    const hasBodyRuns = Object.prototype.hasOwnProperty.call(
+      entry,
+      "bodyRunsByLocale",
+    );
+    exactKeys(
+      entry,
+      hasBodyRuns ? INTRO_PAGE_KEYS_WITH_RUNS : INTRO_PAGE_KEYS_LEGACY,
+    );
     if (
       entry.pageOrdinal !== index + 1 ||
       !["concept", "formula", "example", "trap", "tip"].includes(
@@ -371,12 +419,27 @@ export function parseLearningV2CourseSessionIntroChildV1(
     const interactionId = id(entry.question.interactionId);
     if (ids.has(interactionId)) fail();
     ids.add(interactionId);
+    const bodyByLocale = localized(entry.bodyByLocale, 4_000);
+    const bodyRunsByLocale = hasBodyRuns
+      ? localizedIntroRuns(entry.bodyRunsByLocale)
+      : undefined;
+    if (
+      bodyRunsByLocale &&
+      LEARNING_V2_INTERFACE_LOCALES.some(
+        (locale) =>
+          introRunsPlainTextV1(bodyRunsByLocale[locale]) !==
+          bodyByLocale[locale],
+      )
+    ) {
+      fail();
+    }
     return Object.freeze({
       pageOrdinal: (index + 1) as 1 | 2 | 3,
       pageId: id(entry.pageId),
       kind: entry.kind as LearningV2CourseSessionIntroPageV1["kind"],
       titleByLocale: localized(entry.titleByLocale, 240),
-      bodyByLocale: localized(entry.bodyByLocale, 4_000),
+      bodyByLocale,
+      ...(bodyRunsByLocale ? { bodyRunsByLocale } : {}),
       question: Object.freeze({
         interactionId,
         promptByLocale: localized(entry.question.promptByLocale, 1_000),

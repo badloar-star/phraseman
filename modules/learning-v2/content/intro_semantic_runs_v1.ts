@@ -1,5 +1,4 @@
 import {
-  assertLearningV2LocalizedEnvelope,
   LEARNING_V2_INTERFACE_LOCALES,
   type LearningV2Localized,
 } from './generator_course_contract';
@@ -32,22 +31,34 @@ export function introRunsPlainTextV1(
 export function validateLearningV2IntroRunsByLocaleV1(
   input: unknown,
 ): LearningV2IntroRunsByLocaleV1 {
-  assertLearningV2LocalizedEnvelope<readonly LearningV2IntroTextRunV1[]>(
-    input,
-    'intro_runs',
-  );
+  if (typeof input !== 'object' || input === null || Array.isArray(input)) {
+    throw new Error('learning_v2_generator_intro_runs_locales_invalid');
+  }
+  const expectedLocales = [...LEARNING_V2_INTERFACE_LOCALES].sort();
+  const actualLocales = Object.keys(input).sort();
+  if (
+    actualLocales.length !== expectedLocales.length ||
+    expectedLocales.some((locale, index) => actualLocales[index] !== locale)
+  ) {
+    throw new Error('learning_v2_generator_intro_runs_locales_invalid');
+  }
+  const localizedRuns = input as Record<string, unknown>;
   for (const locale of LEARNING_V2_INTERFACE_LOCALES) {
-    const runs = input[locale];
+    const runs = localizedRuns[locale];
     if (!Array.isArray(runs) || runs.length < 1 || runs.length > 64)
       throw new Error('learning_v2_intro_runs_invalid');
     for (const run of runs) {
+      const runKeys =
+        typeof run === 'object' && run !== null && !Array.isArray(run)
+          ? Object.keys(run).sort()
+          : [];
       if (
         typeof run !== 'object' ||
         run === null ||
         Array.isArray(run) ||
-        Object.keys(run).length !== 2 ||
-        Object.keys(run)[0] !== 'text' ||
-        Object.keys(run)[1] !== 'semantic' ||
+        runKeys.length !== 2 ||
+        runKeys[0] !== 'semantic' ||
+        runKeys[1] !== 'text' ||
         typeof run.text !== 'string' ||
         run.text.length < 1 ||
         run.text.length > 1_000 ||
@@ -59,5 +70,5 @@ export function validateLearningV2IntroRunsByLocaleV1(
       }
     }
   }
-  return input;
+  return input as LearningV2IntroRunsByLocaleV1;
 }

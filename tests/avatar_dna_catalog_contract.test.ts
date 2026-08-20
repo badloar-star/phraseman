@@ -21,4 +21,14 @@ describe('Avatar DNA catalog contract', () => {
     if (kind === 'unknown clip') mutable.items[1].layers[0].clip = 'missing.safe';
     expect(() => parseAvatarCatalog(mutable)).toThrow('avatar_catalog_invalid');
   });
+
+  it('requires closed inventory and resolved conflicts', () => {
+    const catalog = require('../config/avatar-dna/catalog.v1.json');
+    const missing = JSON.parse(JSON.stringify(catalog));
+    missing.items.pop();
+    const conflict = JSON.parse(JSON.stringify(catalog));
+    conflict.items[0].conflicts = ['missing.item'];
+    expect(() => parseAvatarCatalog(missing)).toThrow('avatar_catalog_invalid');
+    expect(() => parseAvatarCatalog(conflict)).toThrow('avatar_catalog_invalid');
+  });
 });

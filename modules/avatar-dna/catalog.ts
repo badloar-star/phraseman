@@ -27,10 +27,12 @@ export const parseAvatarCatalog = (input: unknown): AvatarCatalogManifest => {
     if (!isRecord(value) || !exactKeys(value, ['id','assetVersion','rigIds','category','entitlement','layers','occludes','conflicts','restoresOnRemove'])) throw new TypeError('avatar_catalog_invalid: item');
     const id = asString(value.id, 'item.id'); if (!AVATAR_ID.test(id) || ids.has(id)) throw new TypeError('avatar_catalog_invalid: item id'); ids.add(id);
     const itemRigs = asArray(value.rigIds, 'item.rigIds').map((rig) => asString(rig, 'item.rigId'));
-    const entitlement = value.entitlement; if (!isRecord(entitlement) || !exactKeys(entitlement, typeof entitlement.rarity === 'string' ? ['kind','rarity'] : ['kind']) || !['starter','purchase','reward'].includes(String(entitlement.kind))) throw new TypeError('avatar_catalog_invalid: entitlement');
+    const entitlement = value.entitlement; if (!isRecord(entitlement) || !exactKeys(entitlement, typeof entitlement.rarity === 'string' ? ['kind','rarity'] : ['kind']) || !['free','purchase','reward'].includes(String(entitlement.kind))) throw new TypeError('avatar_catalog_invalid: entitlement');
     const layers = asArray(value.layers, 'layers').map((layer): AvatarItemManifest['layers'][number] => {
-      if (!isRecord(layer) || !exactKeys(layer, typeof layer.clip === 'string' ? ['id','slot','z','file','clip'] : ['id','slot','z','file'])) throw new TypeError('avatar_catalog_invalid: layer'); const layerId = asString(layer.id, 'layer.id'); const slot = asString(layer.slot, 'layer.slot'); const file = asString(layer.file, 'layer.file');
-      if (!AVATAR_ID.test(layerId) || layerIds.has(layerId) || !slots.has(slot as AvatarSlot) || !safeFile(file) || !Number.isInteger(layer.z) || (layer.z as number) < 0 || (layer.z as number) > 179 || (layer.clip !== undefined && layer.clip !== 'face.safe' && layer.clip !== 'head.safe')) throw new TypeError('avatar_catalog_invalid: layer');
+      if (!isRecord(layer)) throw new TypeError('avatar_catalog_invalid: layer');
+      const layerKeys = ['id','slot','z','file', ...(typeof layer.clip === 'string' ? ['clip'] : []), ...(layer.bytes !== undefined ? ['bytes'] : []), ...(layer.sha256 !== undefined ? ['sha256'] : [])];
+      if (!exactKeys(layer, layerKeys)) throw new TypeError('avatar_catalog_invalid: layer'); const layerId = asString(layer.id, 'layer.id'); const slot = asString(layer.slot, 'layer.slot'); const file = asString(layer.file, 'layer.file');
+      if (!AVATAR_ID.test(layerId) || layerIds.has(layerId) || !slots.has(slot as AvatarSlot) || !safeFile(file) || !Number.isInteger(layer.z) || (layer.z as number) < 0 || (layer.z as number) > 179 || (layer.clip !== undefined && layer.clip !== 'face.safe' && layer.clip !== 'head.safe') || (layer.bytes !== undefined && (!Number.isInteger(layer.bytes) || (layer.bytes as number) <= 0)) || (layer.sha256 !== undefined && (typeof layer.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(layer.sha256))) || ((layer.bytes === undefined) !== (layer.sha256 === undefined))) throw new TypeError('avatar_catalog_invalid: layer');
       layerIds.add(layerId); return { id: layerId, slot: slot as AvatarSlot, z: layer.z as number, file, ...(typeof layer.clip === 'string' ? { clip: layer.clip } : {}) };
     });
     const occludes = asArray(value.occludes, 'occludes').map((slot) => asString(slot, 'occlude') as AvatarSlot); if (occludes.some((slot) => !slots.has(slot))) throw new TypeError('avatar_catalog_invalid: occlude');
@@ -39,6 +41,7 @@ export const parseAvatarCatalog = (input: unknown): AvatarCatalogManifest => {
     return { id, assetVersion: value.assetVersion as number, rigIds: itemRigs, category: value.category as AvatarItemManifest['category'], entitlement: { kind: entitlement.kind as AvatarItemManifest['entitlement']['kind'], ...(typeof entitlement.rarity === 'string' ? { rarity: entitlement.rarity } : {}) }, layers, occludes, conflicts, restoresOnRemove: value.restoresOnRemove };
   });
   const itemIds = new Set(items.map((item) => item.id));
+  if (items.some((item) => item.conflicts.some((conflict) => !itemIds.has(conflict)))) throw new TypeError('avatar_catalog_invalid: conflict reference');
   const visiting = new Set<string>(); const visited = new Set<string>();
   const visit = (id: string): void => {
     if (visiting.has(id)) throw new TypeError('avatar_manifest_cycle');
@@ -51,6 +54,7 @@ export const parseAvatarCatalog = (input: unknown): AvatarCatalogManifest => {
   items.forEach((item) => visit(item.id));
   const required = ['skin_03','face_01','body_01','eyes_01','iris_brown','brows_01','nose_01','mouth_01','hair_01','hair_brown','outfit_01','background_cream','hair_wavy_01','headwear.assassin_hood.01'];
   if (items.length === 0 || required.some((id) => !itemIds.has(id))) throw new TypeError('avatar_catalog_invalid: required inventory');
+  if (items.length !== required.length || items.some((item) => item.id !== 'headwear.assassin_hood.01' && item.entitlement.kind !== 'free') || items.find((item) => item.id === 'headwear.assassin_hood.01')?.entitlement.kind !== 'reward') throw new TypeError('avatar_catalog_invalid: canonical entitlement');
   const parsed = deepFreeze({ catalogVersion: 1 as const, rigIds: [...rigIds], items });
   parsedCatalogs.add(parsed);
   return parsed;

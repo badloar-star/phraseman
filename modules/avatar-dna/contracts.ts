@@ -69,7 +69,7 @@ export type AvatarLayerRecord = Readonly<{
 }>;
 
 export type AvatarItemEntitlement = Readonly<{
-  kind: 'starter' | 'purchase' | 'reward';
+  kind: 'free' | 'purchase' | 'reward';
   rarity?: string;
 }>;
 

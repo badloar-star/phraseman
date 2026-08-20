@@ -4,6 +4,7 @@ import {
 } from '../modules/avatar-dna/canonicalize';
 import type {
   AvatarCatalogManifest,
+  AvatarItemEntitlement,
   AvatarItemManifest,
   AvatarV2Projection,
   ResolvedAvatarDNA,
@@ -156,10 +157,27 @@ const hoodManifest = {
   restoresOnRemove: true,
 } as const satisfies AvatarItemManifest;
 
+const freeBaseManifest = {
+  id: 'base.starter.01',
+  assetVersion: 1,
+  rigIds: ['human_v1'],
+  category: 'base',
+  entitlement: { kind: 'free' },
+  layers: [{ id: 'body', slot: 'body', z: 0, file: 'body.webp' }],
+  occludes: [],
+  conflicts: [],
+  restoresOnRemove: true,
+} as const satisfies AvatarItemManifest;
+
+const legacyStarterEntitlement = {
+  // @ts-expect-error `starter` is not a catalog entitlement kind.
+  kind: 'starter',
+} as const satisfies AvatarItemEntitlement;
+
 const catalogFixture = {
   catalogVersion: 1,
   rigIds: ['human_v1'],
-  items: [hoodManifest],
+  items: [freeBaseManifest, hoodManifest],
 } as const satisfies AvatarCatalogManifest;
 
 const resolvedFixture = {
@@ -179,5 +197,6 @@ const readyProjectionFixture = {
 } as const satisfies AvatarV2Projection;
 
 void catalogFixture;
+void legacyStarterEntitlement;
 void resolvedFixture;
 void readyProjectionFixture;

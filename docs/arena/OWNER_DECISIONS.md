@@ -4230,11 +4230,11 @@ uid, баланс, сезонные награды и лишние верхне�
 
 ### Фактические проверки
 
-- `npx jest --runTestsByPath tests/arena_live_channel.test.ts tests/arena_match_view.test.ts tests/arena_question_layout.test.ts tests/arena_v2_client_contract.test.ts tests/arena_v2_client_source_contract.test.ts tests/arena_callable_surface.test.ts --no-cache --runInBand --watchman=false` — **6/6 наборов, 158/158 тестов**, exit 0.
+- `npx jest --runTestsByPath tests/arena_live_channel.test.ts tests/arena_match_view.test.ts tests/arena_question_layout.test.ts tests/arena_v2_client_contract.test.ts tests/arena_v2_client_source_contract.test.ts tests/arena_callable_surface.test.ts --no-cache --runInBand --watchman=false` — **6/6 наборов, 165/165 тестов**, exit 0 после privacy/fallback/compact-height follow-up.
 - `functions: npx jest --runTestsByPath src/arena_duel_v3.test.ts src/arena_v2_core.test.ts --runInBand --watchman=false` — **2/2 набора, 83/83 теста**, exit 0.
 - `functions: npm run build` — TypeScript, копирование assets и runtime parity
   завершились, exit 0.
-- `functions: npm run test:emulator:arena-v2-rules` — **1/1 набор, 7/7 тестов**,
+- `functions: npm run test:emulator:arena-v2-rules` — **1/1 набор, 9/9 тестов**,
   exit 0; `PERMISSION_DENIED` в логе — ожидаемые отрицательные кейсы.
 - `bash tools/arena_tests/run.sh` — exit 1 до тестов: установленный Windows WSL
   launcher сообщает, что ни одного дистрибутива нет. Свежая компиляция тем же
@@ -4245,6 +4245,15 @@ uid, баланс, сезонные награды и лишние верхне�
   `lineHeight` и старую текстовую проверку nullable score: **47 наборов, 823
   утверждения, 2 падения**. После минимальной правки регрессии дали **41/41**,
   layout/live focused gate — **97/97**, затем полный свежий harness — **864/864**.
+- Follow-up RED: nested `answer`/`uid`/extra и malformed/out-of-bounds tick
+  принимались Rules; strict parser/writer export отсутствовали; затем source
+  contract дал ожидаемый RED на старом serializer. Fallback-регрессии дали
+  `null → 3` и `prefix 3 → 6`; layout-регрессии поймали отсутствующий viewport
+  contract и оба неограниченных региона. После минимальных правок свежий
+  клиентский gate — **165/165**, emulator — **9/9**. Bash harness снова
+  остановился до тестов из-за отсутствия WSL distro; свежая компиляция в
+  отдельный ignored outDir дала **0 неожиданных TypeScript errors**, а
+  PowerShell jestlite — **49 наборов, 871 утверждение, 0 падений**, exit 0.
 - `git diff --check` — exit 0; `git status --short` содержит многочисленные
   существовавшие чужие изменения, принадлежащие другим потокам работы.
 

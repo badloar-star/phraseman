@@ -201,7 +201,8 @@ describe('неизвестная награда не выдаётся за но�
 
   it('счёт неизвестного игрока тоже не превращается в ноль', () => {
     const players = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaPlayers.tsx'), 'utf8');
-    expect(players).toContain('player ? <V2Counter');
+    expect(players).toContain('player && knownScore !== null');
+    expect(players).toContain('? <V2Counter value={shownScore} />');
   });
 });
 

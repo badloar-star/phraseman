@@ -58,7 +58,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
           <>
             {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- the approved immersive instruction is intentionally capped at two wrapped lines */}
             <Text accessibilityLiveRegion="polite" numberOfLines={2}
-              style={[styles.instruction, { color: P.muted }]}
+              style={[styles.instruction, { color: P.muted, lineHeight: 18 * fontScale }]}
             >
               {instruction}
             </Text>
@@ -125,7 +125,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
           <>
             {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- the approved immersive instruction is intentionally capped at two wrapped lines */}
             <Text accessibilityLiveRegion="polite" numberOfLines={2}
-              style={[styles.instruction, { color: P.muted }]}
+              style={[styles.instruction, { color: P.muted, lineHeight: 18 * fontScale }]}
             >
               {instruction}
             </Text>
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
   // Высота строки задаётся на месте: она умножается на системный масштаб.
   prompt: { fontSize: 22, fontWeight: '900', textAlign: 'center' },
   promptImmersive: { fontSize: 19 },
-  instruction: { fontSize: 13, fontWeight: '700', lineHeight: 18, textAlign: 'center' },
+  instruction: { fontSize: 13, fontWeight: '700', textAlign: 'center' },
   options: { gap: 10 },
   // Прокрутка занимает только то место, что осталось: таймер и счёт выше
   // остаются на экране при любой длине вариантов.

@@ -32,6 +32,8 @@ import {
   arenaQuickResultTerminalSyncVersion,
 } from '../modules/arena/quick_result_state';
 import { arenaResultReplayMode, arenaResultSurfaceKind } from '../modules/arena/result_surface_state';
+import { useArenaTerminalResultSync } from '../hooks/use_arena_terminal_result_sync';
+import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
 
 export default function ArenaResultsScreen() {
   const router = useRouter();
@@ -57,6 +59,14 @@ export default function ArenaResultsScreen() {
   const [rankSceneDismissed, setRankSceneDismissed] = useState(false);
   useEffect(() => { setRankSceneDismissed(false); }, [matchId]);
   const active = useRuntimeActive();
+  const [resultAccount, setResultAccount] = useState(captureAccountGeneration);
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration(setResultAccount);
+    setResultAccount(captureAccountGeneration());
+    return () => subscription.remove();
+  }, []);
+  const resultAccountKey = `${resultAccount.phase}:${resultAccount.generation}:${resultAccount.stableId ?? ''}`;
+  const resultAccountActive = active && resultAccount.phase === 'active' && Boolean(resultAccount.stableId);
   const reduceMotion = useReduceMotion();
   const fxRef = useRef<TournamentFxApi>(null);
   const celebratedRef = useRef<string | null>(null);
@@ -70,11 +80,12 @@ export default function ArenaResultsScreen() {
   const [quickResultState, setQuickResultState] = useState(() => (
     arenaQuickResultInitialState(matchId, routeSeat, routeMode === 'quick')
   ));
-  const terminalSyncRequestsRef = useRef(new Set<string>());
+  const [quickResultAccountKey, setQuickResultAccountKey] = useState(resultAccountKey);
   useEffect(() => {
-    terminalSyncRequestsRef.current.clear();
+    setQuickResultAccountKey(resultAccountKey);
+    setPrivateRewardState(null);
     setQuickResultState(arenaQuickResultInitialState(matchId, routeSeat, routeMode === 'quick'));
-  }, [matchId, routeMode, routeSeat]);
+  }, [matchId, resultAccountKey, routeMode, routeSeat]);
   const [equipped, setEquipped] = useState<Readonly<Record<string, string>>>({});
   const [reactionChosen, setReactionChosen] = useState<string | null>(null);
   const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(null);
@@ -101,7 +112,7 @@ export default function ArenaResultsScreen() {
   }, [active, matchId]);
 
   useEffect(() => {
-    if (!active || !matchId) return;
+    if (!resultAccountActive || !matchId) return;
     let alive = true;
     void arenaV2SyncMatch(matchId).then((response) => {
       if (!alive) return;
@@ -119,7 +130,7 @@ export default function ArenaResultsScreen() {
       }));
     }).catch(() => {});
     return () => { alive = false; };
-  }, [active, matchId]);
+  }, [matchId, resultAccountActive, resultAccountKey]);
   useEffect(() => { if (active) void Promise.all([arenaExpansionHome(), arenaV2Home()]).then(([home, base]) => { setExpansion(home); setEquipped(home.wallet.equippedBySlot); setBaseEnabled(base.availability.enabled); }).catch(() => { setExpansion(null); setBaseEnabled(false); }); }, [active]);
   useEffect(() => {
     if (!matchId) return;
@@ -127,18 +138,19 @@ export default function ArenaResultsScreen() {
       type: 'live', matchId, match: live.value,
     }));
   }, [live.value, matchId]);
-  const terminalSyncVersion = arenaQuickResultTerminalSyncVersion(quickResultState);
-  useEffect(() => {
-    if (!active || !matchId || terminalSyncVersion === null) return;
-    const requestKey = `${matchId}:${terminalSyncVersion}`;
-    if (terminalSyncRequestsRef.current.has(requestKey)) return;
-    terminalSyncRequestsRef.current.add(requestKey);
-    let alive = true;
-    setQuickResultState((previous) => arenaQuickResultReduce(previous, {
-      type: 'terminal_sync_requested', matchId, version: terminalSyncVersion,
-    }));
-    void arenaV2SyncMatch(matchId, terminalSyncVersion).then((response) => {
-      if (!alive) return;
+  const terminalSyncVersion = quickResultAccountKey === resultAccountKey
+    ? arenaQuickResultTerminalSyncVersion(quickResultState)
+    : null;
+  useArenaTerminalResultSync({
+    active: resultAccountActive,
+    matchId,
+    accountKey: resultAccountKey,
+    terminalSyncVersion,
+    request: arenaV2SyncMatch,
+    onRequested: (version) => setQuickResultState((previous) => arenaQuickResultReduce(previous, {
+      type: 'terminal_sync_requested', matchId, version,
+    })),
+    onResolved: (response) => {
       setSyncState(String(response.state ?? ''));
       if (response.viewerSeat) {
         rememberArenaViewerSeat(matchId, response.viewerSeat);
@@ -154,13 +166,14 @@ export default function ArenaResultsScreen() {
         viewerSeat: response.viewerSeat,
         viewerReward: response.viewerReward,
       }));
-    }).catch(() => {});
-    return () => { alive = false; };
-  }, [active, matchId, terminalSyncVersion]);
-  const quickPresentation = quickResultState.matchId === matchId
+    },
+  });
+  const quickPresentation = quickResultAccountKey === resultAccountKey
+    && quickResultState.matchId === matchId
     ? quickResultState.presentation
     : null;
-  const quickKnown = quickResultState.matchId === matchId && quickResultState.quickKnown;
+  const quickKnown = quickResultAccountKey === resultAccountKey
+    && quickResultState.matchId === matchId && quickResultState.quickKnown;
   const match = quickPresentation?.match ?? live.value;
   const replayMode = arenaResultReplayMode(routeMode, match);
   const surfaceKind = arenaResultSurfaceKind({

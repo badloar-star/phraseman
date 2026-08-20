@@ -7,9 +7,9 @@ describe('Arena result and settle orchestration wiring', () => {
   it('requests one terminal sync from reducer state instead of trusting public live reward', () => {
     const results = read('app/arena_results.tsx');
     expect(results).toContain('arenaQuickResultTerminalSyncVersion(quickResultState)');
-    expect(results).toContain('terminalSyncRequestsRef.current.has(requestKey)');
+    expect(results).toContain('useArenaTerminalResultSync({');
     expect(results).toContain("type: 'terminal_sync_requested'");
-    expect(results).toContain('arenaV2SyncMatch(matchId, terminalSyncVersion)');
+    expect(results).toContain('request: arenaV2SyncMatch');
   });
 
   it('schedules settle outside screen lifetime and carries route mode to results', () => {

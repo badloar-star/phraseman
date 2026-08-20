@@ -237,6 +237,19 @@ describe('asVoiceCefr', () => {
 // ── Учитель (вариант A, владелец 2026-08-16) ────────────────────────────────
 
 describe('tutor instructions', () => {
+  it('exposes bounded live-board and topic tools only in tutor sessions', () => {
+    const names = TUTOR_TOOLS.map((tool) => tool.name);
+    expect(names).toContain('show_tutor_board');
+    expect(names).toContain('set_live_topic');
+    expect(JSON.stringify(TUTOR_TOOLS)).toContain('confident_correction');
+
+    const instr = buildVoiceInstructions({
+      cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian', targetLangName: 'English',
+    });
+    expect(instr).toContain('The learning goal and conversation topic are separate');
+    expect(instr).toContain('Never show a recast when recognition is uncertain');
+  });
+
   it('статичный префикс учителя: имя, уровень, родной язык; языковая политика A1 = учить на родном', () => {
     const instr = buildVoiceInstructions({
       cefr: 'A1',
@@ -352,7 +365,7 @@ describe('tutor instructions', () => {
     const b = buildVoiceInstructions({ ...base, tutorMemoryBlock: 'M2', learnerSnapshot: 'S2' });
     const cut = (s: string) => s.slice(0, s.indexOf('=== LEARNER SNAPSHOT'));
     expect(cut(a)).toBe(cut(b));
-    expect(TUTOR_TOOLS.map((t) => t.name)).toEqual(['start_scene', 'end_scene', 'mark_phrase_result', 'assign_homework', 'set_next_topic', 'mark_goal_progress', 'set_language_preference', 'flag_safety', 'end_call']);
+    expect(TUTOR_TOOLS.map((t) => t.name)).toEqual(['start_scene', 'end_scene', 'mark_phrase_result', 'assign_homework', 'set_next_topic', 'show_tutor_board', 'set_live_topic', 'mark_goal_progress', 'set_language_preference', 'flag_safety', 'end_call']);
     // Просьба ученика важнее дефолта уровня (владелец 2026-08-16).
     expect(a).toContain("THE LEARNER'S WISH WINS");
     expect(a).toContain('set_language_preference');

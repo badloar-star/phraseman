@@ -8,7 +8,9 @@ import {
   createTutorToolRunner,
   renderTutorSceneCatalog,
 } from '../app/max_call_tutor_tools';
+import type { TutorBoardToolPayload } from '../app/max_call_tutor_tools';
 import type { DialogScenario } from '../app/ai_dialog_scenarios';
+import type { TutorConversationMode } from '../app/max_tutor_live_board_state';
 
 function scenario(id: string, cefr: DialogScenario['cefr'], active = true): DialogScenario {
   return {
@@ -62,15 +64,19 @@ describe('buildTutorSceneCatalog', () => {
 describe('createTutorToolRunner', () => {
   function makeRunner() {
     const events: string[] = [];
+    const liveBoards: TutorBoardToolPayload[] = [];
+    const liveTopics: Array<{ topic: string; mode: TutorConversationMode }> = [];
     const runner = createTutorToolRunner({
       scenes: buildTutorSceneCatalog(ALL, 'A2'),
       sceneBlock: (id) => (ALL.some((s) => s.id === id && s.active) ? `SCENARIO ${id}` : null),
       onSceneChange: (scene) => events.push(`scene:${scene ? scene.id : 'none'}`),
       onHomework: (p) => events.push(`hw:${p.join('|')}`),
       onNextTopic: (t) => events.push(`topic:${t}`),
+      onLiveBoard: (payload) => liveBoards.push(payload),
+      onLiveTopic: (payload) => liveTopics.push(payload),
       onEndCall: () => events.push('end'),
     });
-    return { runner, events };
+    return { runner, events, liveBoards, liveTopics };
   }
 
   it('start_scene: известная сцена → блок сцены и respond; неизвестная → подсказка со списком', () => {
@@ -124,6 +130,51 @@ describe('createTutorToolRunner', () => {
     expect(end.respond).toBe(false);
     expect(runner.endRequested()).toBe(true);
     expect(events).toEqual(['topic:ordering food', 'end']);
+  });
+
+  it('show_tutor_board validates and emits one safe payload', () => {
+    const { runner, liveBoards } = makeRunner();
+    const result = runner.handle('show_tutor_board', {
+      kind: 'hint',
+      target_text: 'Could we move it to Friday?',
+      meaning: 'Можем перенести это на пятницу?',
+      source: 'learner_request',
+    });
+
+    expect(result).toEqual({ output: 'Tutor board shown.', respond: false });
+    expect(liveBoards).toEqual([{
+      kind: 'hint',
+      targetText: 'Could we move it to Friday?',
+      meaning: 'Можем перенести это на пятницу?',
+      source: 'learner_request',
+    }]);
+  });
+
+  it('show_tutor_board rejects unsafe enums, oversized text, and uncertain recasts', () => {
+    const { runner, liveBoards } = makeRunner();
+
+    expect(runner.handle('show_tutor_board', {
+      kind: 'grade', target_text: 'Try this', source: 'silence',
+    }).output).toContain('Invalid tutor board');
+    expect(runner.handle('show_tutor_board', {
+      kind: 'hint', target_text: 'x'.repeat(101), source: 'silence',
+    }).output).toContain('Invalid tutor board');
+    expect(runner.handle('show_tutor_board', {
+      kind: 'recast', target_text: 'Try this', source: 'silence',
+    }).output).toContain('Invalid tutor board');
+    expect(liveBoards).toEqual([]);
+  });
+
+  it('set_live_topic emits guided/free-talk mode and rejects blank topics', () => {
+    const { runner, liveTopics } = makeRunner();
+
+    expect(runner.handle('set_live_topic', {
+      topic: 'Weekend plans', mode: 'guided',
+    }).respond).toBe(false);
+    expect(liveTopics).toEqual([{ topic: 'Weekend plans', mode: 'guided' }]);
+    expect(runner.handle('set_live_topic', {
+      topic: ' ', mode: 'free_talk',
+    }).output).toContain('Topic is empty');
   });
 
   it('set_language_preference: «говори со мной по-английски» запоминается на урок и уезжает в память; мусор отклоняется', () => {

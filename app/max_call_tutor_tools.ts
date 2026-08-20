@@ -13,6 +13,9 @@
 // сцен под уровень, ответы модели, сбор домашки; экран лишь подключает колбэки.
 
 import type { DialogScenario } from './ai_dialog_scenarios';
+import type { TutorBoardPayload, TutorConversationMode } from './max_tutor_live_board_state';
+
+export type TutorBoardToolPayload = Omit<TutorBoardPayload, 'shownAtMs' | 'expiresAtMs'>;
 
 export interface TutorSceneItem {
   id: string;
@@ -80,6 +83,8 @@ export interface TutorToolRunnerDeps {
   onSceneChange?(scene: TutorSceneItem | null): void;
   onHomework?(phrases: string[]): void;
   onNextTopic?(topic: string): void;
+  onLiveBoard?(payload: TutorBoardToolPayload): void;
+  onLiveTopic?(payload: { topic: string; mode: TutorConversationMode }): void;
   onEndCall?(): void;
 }
 
@@ -129,6 +134,11 @@ export interface TutorToolRunner {
 
 function cleanPhrase(value: unknown): string {
   return String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, TUTOR_HOMEWORK_PHRASE_MAX_CHARS);
+}
+
+function cleanBounded(value: unknown, maxChars: number): string | null {
+  const cleaned = String(value ?? '').replace(/\s+/g, ' ').trim();
+  return cleaned.length <= maxChars ? cleaned : null;
 }
 
 export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunner {
@@ -219,6 +229,37 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         nextTopic = topic;
         try { deps.onNextTopic?.(topic); } catch {}
         return { output: `Next topic saved: ${topic}.`, respond: true };
+      }
+      case 'show_tutor_board': {
+        const kind = String(args.kind ?? '').trim();
+        const source = String(args.source ?? '').trim();
+        const targetText = cleanBounded(args.target_text, 100);
+        const meaning = cleanBounded(args.meaning, 140);
+        const validKind = kind === 'hint' || kind === 'recast' || kind === 'translation';
+        const validSource = source === 'learner_request' || source === 'silence' || source === 'confident_correction';
+        const validRecast = kind !== 'recast' || source === 'confident_correction';
+        if (!validKind || !validSource || !targetText || meaning === null || !validRecast) {
+          return { output: 'Invalid tutor board. Use a supported kind/source, keep text within limits, and only recast a confident correction.', respond: false };
+        }
+        const payload: TutorBoardToolPayload = {
+          kind,
+          targetText,
+          meaning,
+          source,
+        };
+        try { deps.onLiveBoard?.(payload); } catch {}
+        return { output: 'Tutor board shown.', respond: false };
+      }
+      case 'set_live_topic': {
+        const topic = cleanBounded(args.topic, 80);
+        const mode = String(args.mode ?? '').trim();
+        if (topic === '') return { output: 'Topic is empty. Ask what the learner wants to discuss.', respond: false };
+        if (topic === null) return { output: 'Topic is too long. Keep it within 80 characters.', respond: false };
+        if (mode !== 'guided' && mode !== 'free_talk') {
+          return { output: 'Unknown topic mode. Use "guided" or "free_talk".', respond: false };
+        }
+        try { deps.onLiveTopic?.({ topic, mode }); } catch {}
+        return { output: 'Live topic updated.', respond: false };
       }
       case 'flag_safety': {
         // Тихая пометка для людей: ученику ничего не говорим, урок продолжается

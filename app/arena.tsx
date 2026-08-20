@@ -153,7 +153,8 @@ export default function ArenaHubScreen() {
     if (reason === 'server') return arenaText(lang, 'arenaNotDeployedHint');
     if (reason === 'maintenance') return arenaText(lang, 'maintenanceHint');
     if (reason === 'report_blocked') return arenaText(lang, 'reportBlockedHint');
-    if (reason === 'mode_disabled' || reason === 'busy') return arenaText(lang, 'modeOff');
+    if (reason === 'busy') return arenaText(lang, 'loading');
+    if (reason === 'mode_disabled') return arenaText(lang, 'modeOff');
     return arenaText(lang, 'valueUnknown');
   };
   const baseBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
@@ -161,6 +162,7 @@ export default function ArenaHubScreen() {
   const todayBlock = arenaHubActionBlock({ known: expansion !== null && today !== undefined, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: expansion?.availability.today && today?.state !== 'unavailable' });
   const walletBlock = arenaHubActionBlock({ known: expansion !== null, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: expansion?.availability.store });
   const spinBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: home?.availability.spinEnabled, busy: spinBusy });
+  const activeMatchBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, reportBlocked });
   const baseEnabled = baseBlock === 'ok';
   const quickDisabledHint = quickBlock === 'ok' ? undefined : blockHint(quickBlock);
   const todayDisabledHint = todayBlock === 'ok' ? undefined : blockHint(todayBlock);
@@ -205,8 +207,8 @@ export default function ArenaHubScreen() {
           icon="flash"
           title={arenaExpansionText(lang, 'activeMatch')}
           body={arenaText(lang, 'subtitle')}
-          disabled={baseBlock !== 'ok'}
-          disabledHint={baseBlock === 'ok' ? undefined : blockHint(baseBlock)}
+          disabled={activeMatchBlock !== 'ok'}
+          disabledHint={activeMatchBlock === 'ok' ? undefined : blockHint(activeMatchBlock)}
           onPress={() => router.push({ pathname: '/arena_match', params: { matchId: home.activeMatch?.matchId } } as never)}
         />
       ) : activeQueue ? (

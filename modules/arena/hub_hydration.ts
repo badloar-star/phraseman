@@ -165,15 +165,25 @@ export function createArenaHubHydrationController<Home extends ArenaHubWarmHome,
   };
   const publish = () => { if (gate.mounted()) options.onSnapshot(snapshot); };
   const update = (next: ArenaHubHydrationSnapshot) => { snapshot = next; publish(); };
+  let accepted: Readonly<{ generation: number; home?: Home; expansion?: Expansion }> | null = null;
+  const rememberComplete = (generation: number, half: Readonly<{ home?: Home; expansion?: Expansion }>) => {
+    if (!gate.current(generation)) return;
+    const pending = accepted?.generation === generation ? accepted : { generation };
+    accepted = { ...pending, ...half };
+    if (accepted.home && accepted.expansion) {
+      options.remember({ home: accepted.home, expansion: accepted.expansion });
+      accepted = null;
+    }
+  };
   const acceptHome = (generation: number, response: Home) => {
     if (!gate.current(generation)) return;
     update({ ...snapshot, home: arenaHubCurrent(response), failure: { ...snapshot.failure, home: null } });
-    options.remember({ home: response });
+    rememberComplete(generation, { home: response });
   };
   const acceptExpansion = (generation: number, response: Expansion) => {
     if (!gate.current(generation)) return;
     update({ ...snapshot, expansion: arenaHubCurrent(response), failure: { ...snapshot.failure, expansion: null } });
-    options.remember({ expansion: response });
+    rememberComplete(generation, { expansion: response });
   };
   return {
     snapshot: () => snapshot,

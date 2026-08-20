@@ -30,17 +30,83 @@ const BODY: Record<Locale, readonly [string, string, string]> = {
 const localized = (value: (locale: Locale) => string): LocalizedSource => Object.fromEntries(LOCALES.map((locale) => [locale, value(locale)])) as unknown as LocalizedSource;
 const tokens = (english: string) => english.replace(/[?!.]/g, '').split(/\s+/).filter(Boolean);
 
+const COMPLEMENTS: Record<Locale, Record<string, string>> = {
+  ru: { ready: 'готов', okay: 'в порядке', here: 'здесь', busy: 'занят', tired: 'уставший', happy: 'счастлив', calm: 'спокоен', cold: 'мне холодно', warm: 'мне тепло', 'all right': 'всё в порядке', 'at home': 'дома', 'in class': 'на занятии', 'at work': 'на работе', 'in the park': 'в парке', 'at the station': 'на станции', 'on the bus': 'в автобусе', 'in the café': 'в кафе', sure: 'уверен' },
+  uk: { ready: 'готовий', okay: 'гаразд', here: 'тут', busy: 'зайнятий', tired: 'втомлений', happy: 'щасливий', calm: 'спокійний', cold: 'мені холодно', warm: 'мені тепло', 'all right': 'усе гаразд', 'at home': 'вдома', 'in class': 'на занятті', 'at work': 'на роботі', 'in the park': 'у парку', 'at the station': 'на станції', 'on the bus': 'в автобусі', 'in the café': 'у кафе', sure: 'упевнений' },
+  es: { ready: 'listo', okay: 'bien', here: 'aquí', busy: 'ocupado', tired: 'cansado', happy: 'feliz', calm: 'tranquilo', cold: 'con frío', warm: 'abrigado', 'all right': 'bien', 'at home': 'en casa', 'in class': 'en clase', 'at work': 'en el trabajo', 'in the park': 'en el parque', 'at the station': 'en la estación', 'on the bus': 'en el autobús', 'in the café': 'en el café', sure: 'seguro' },
+  'pt-BR': { ready: 'pronto', okay: 'bem', here: 'aqui', busy: 'ocupado', tired: 'cansado', happy: 'feliz', calm: 'calmo', cold: 'com frio', warm: 'aquecido', 'all right': 'bem', 'at home': 'em casa', 'in class': 'na aula', 'at work': 'no trabalho', 'in the park': 'no parque', 'at the station': 'na estação', 'on the bus': 'no ônibus', 'in the café': 'no café', sure: 'seguro' },
+  vi: { ready: 'sẵn sàng', okay: 'ổn', here: 'ở đây', busy: 'bận', tired: 'mệt', happy: 'vui', calm: 'bình tĩnh', cold: 'lạnh', warm: 'ấm', 'all right': 'ổn', 'at home': 'ở nhà', 'in class': 'ở lớp', 'at work': 'ở chỗ làm', 'in the park': 'ở công viên', 'at the station': 'ở nhà ga', 'on the bus': 'trên xe buýt', 'in the café': 'ở quán cà phê', sure: 'chắc chắn' },
+  id: { ready: 'siap', okay: 'baik-baik saja', here: 'di sini', busy: 'sibuk', tired: 'lelah', happy: 'senang', calm: 'tenang', cold: 'kedinginan', warm: 'hangat', 'all right': 'baik-baik saja', 'at home': 'di rumah', 'in class': 'di kelas', 'at work': 'di tempat kerja', 'in the park': 'di taman', 'at the station': 'di stasiun', 'on the bus': 'di bus', 'in the café': 'di kafe', sure: 'yakin' },
+  tr: { ready: 'hazır', okay: 'iyi', here: 'burada', busy: 'meşgul', tired: 'yorgun', happy: 'mutlu', calm: 'sakin', cold: 'üşümüş', warm: 'sıcak', 'all right': 'iyi', 'at home': 'evde', 'in class': 'derste', 'at work': 'işte', 'in the park': 'parkta', 'at the station': 'istasyonda', 'on the bus': 'otobüste', 'in the café': 'kafede', sure: 'emin' },
+  pl: { ready: 'gotowy', okay: 'w porządku', here: 'tutaj', busy: 'zajęty', tired: 'zmęczony', happy: 'szczęśliwy', calm: 'spokojny', cold: 'zmarznięty', warm: 'ciepło', 'all right': 'w porządku', 'at home': 'w domu', 'in class': 'na zajęciach', 'at work': 'w pracy', 'in the park': 'w parku', 'at the station': 'na stacji', 'on the bus': 'w autobusie', 'in the café': 'w kawiarni', sure: 'pewny' },
+};
+
+function renderMeaning(locale: Locale, english: string): string {
+  const clean = english.replace(/[?!.]/g, '');
+  const question = /^(Are you|Am I)\b/.test(clean);
+  const subject = clean.startsWith('Am I') || clean.startsWith('I am') ? 'I' : 'you';
+  const negative = /\bnot\b/.test(clean);
+  const complement = clean.replace(/^(?:Are you|Am I|You’re|You are|I am)(?: not)?\s*/, '');
+  const c = COMPLEMENTS[locale][complement] ?? complement;
+  const neg = negative ? 'not ' : '';
+  if (locale === 'ru') return question ? `${subject === 'I' ? 'Я' : 'Ты'} ${negative ? 'не ' : ''}${c}?` : `${subject === 'I' ? 'Я' : 'Ты'} ${negative ? 'не ' : ''}${c}.`;
+  if (locale === 'uk') return question ? `${subject === 'I' ? 'Я' : 'Ти'} ${negative ? 'не ' : ''}${c}?` : `${subject === 'I' ? 'Я' : 'Ти'} ${negative ? 'не ' : ''}${c}.`;
+  if (locale === 'es') return question ? `¿${negative ? 'No ' : ''}${subject === 'I' ? 'estoy' : 'estás'} ${c}?` : `${negative ? 'No ' : ''}${subject === 'I' ? 'estoy' : 'estás'} ${c}.`;
+  if (locale === 'pt-BR') return question ? `${subject === 'I' ? 'Estou' : 'Você está'} ${negative ? 'não ' : ''}${c}?` : `${subject === 'I' ? 'Eu não estou' : 'Você não está'} ${c}.`;
+  if (locale === 'vi') return question ? `${subject === 'I' ? 'Tôi' : 'Bạn'} ${negative ? 'không ' : ''}${c} phải không?` : `${subject === 'I' ? 'Tôi' : 'Bạn'} ${negative ? 'không ' : ''}${c}.`;
+  if (locale === 'id') return question ? `Apakah ${subject === 'I' ? 'saya' : 'kamu'} ${negative ? 'tidak ' : ''}${c}?` : `${subject === 'I' ? 'Saya' : 'Kamu'} ${negative ? 'tidak ' : ''}${c}.`;
+  if (locale === 'tr') return question ? `${subject === 'I' ? 'Ben' : 'Sen'} ${c} ${negative ? 'değil ' : ''}${subject === 'I' ? 'miyim' : 'misin'}?` : `${subject === 'I' ? 'Ben' : 'Sen'} ${c}${negative ? ' değil' : ''}.`;
+  return question ? `Czy ${subject === 'I' ? 'jestem' : 'jesteś'} ${negative ? 'nie ' : ''}${c}?` : `${negative ? 'Nie ' : ''}${subject === 'I' ? 'jestem' : 'jesteś'} ${c}.`;
+}
+
+const DISTRACTORS: Record<string, readonly string[]> = {
+  I: ['You', 'me', 'my', 'we', 'it'], You: ['I', 'Me', 'My', 'We', 'It'], you: ['I', 'me', 'your', 'we', 'it'], am: ['are', 'is', 'be', 'was', 'were'], Are: ['Am', 'Is', 'Be', 'Was', 'Were'], Am: ['Are', 'Is', 'Be', 'Was', 'Were'], 'You’re': ['I’m', 'You', 'Your', 'We’re', 'They’re'], are: ['am', 'is', 'be', 'was', 'were'], not: ['no', 'never', 'none', 'now', 'note'],
+  ready: ['busy', 'tired', 'sure', 'calm', 'late'], okay: ['ready', 'sure', 'well', 'calm', 'fine'], here: ['there', 'where', 'near', 'home', 'away'], busy: ['ready', 'tired', 'free', 'calm', 'late'], tired: ['ready', 'busy', 'calm', 'sure', 'happy'], happy: ['sad', 'calm', 'tired', 'busy', 'ready'], calm: ['busy', 'tired', 'happy', 'ready', 'sure'], cold: ['warm', 'cool', 'old', 'gold', 'called'], warm: ['cold', 'cool', 'calm', 'warmth', 'warn'], sure: ['ready', 'calm', 'busy', 'tired', 'safe'], 'all right': ['ready', 'busy', 'tired', 'sure', 'here'], 'at home': ['at work', 'in class', 'in the park', 'at the station', 'on the bus'], 'in class': ['at home', 'at work', 'in the park', 'at the station', 'on the bus'], 'at work': ['at home', 'in class', 'in the park', 'at the station', 'on the bus'], 'in the park': ['at home', 'in class', 'at work', 'at the station', 'on the bus'], 'at the station': ['at home', 'in class', 'at work', 'in the park', 'on the bus'], 'on the bus': ['at home', 'in class', 'at work', 'in the park', 'at the station'], 'in the café': ['at home', 'in class', 'at work', 'in the park', 'on the bus'],
+};
+
+const EXTRA_DISTRACTORS: Record<string, readonly string[]> = {
+  all: ['some', 'every', 'most', 'many', 'any'], right: ['left', 'wrong', 'write', 'bright', 'light'],
+  at: ['in', 'on', 'to', 'by', 'from'], in: ['at', 'on', 'to', 'by', 'from'], on: ['in', 'at', 'to', 'by', 'from'],
+  the: ['a', 'an', 'this', 'that', 'my'], home: ['work', 'school', 'park', 'station', 'café'], class: ['home', 'work', 'park', 'station', 'café'], work: ['home', 'class', 'park', 'station', 'café'], park: ['home', 'class', 'work', 'station', 'café'], station: ['home', 'class', 'work', 'park', 'café'], bus: ['home', 'class', 'work', 'park', 'station'], café: ['home', 'class', 'work', 'park', 'station'],
+};
+
 function allDetails(english: string): Record<Locale, EpisodeSourcePhraseLocalizedDetails> {
   return Object.fromEntries(LOCALES.map((locale) => {
     const copy = COPY[locale];
     const words = tokens(english);
+    const meaning = renderMeaning(locale, english);
     return [locale, {
-      meaning: `${copy.meaning}: ${english}`,
-      explanation: copy.explain,
-      distractors: words.slice(0, 5).map((word) => ({ value: `${word}?`, reason: copy.wrong })),
-      words: words.map((word) => ({ correct: word, prompt: `${copy.choose} ${word}`, distractors: Array.from({ length: 5 }, (_, index) => ({ value: `${word}${index + 1}`, reason: copy.wrong })) })),
+      meaning,
+      explanation: phraseExplanation(locale, english),
+      distractors: words.slice(0, 5).map((word) => ({ value: (DISTRACTORS[word] ?? EXTRA_DISTRACTORS[word] ?? DISTRACTORS.ready)[0], reason: wordReason(locale, word, (DISTRACTORS[word] ?? EXTRA_DISTRACTORS[word] ?? DISTRACTORS.ready)[0], english) })),
+      words: words.map((word) => ({ correct: word, prompt: `${copy.choose} ${word}`, distractors: (DISTRACTORS[word] ?? EXTRA_DISTRACTORS[word] ?? DISTRACTORS.ready).map((value) => ({ value, reason: wordReason(locale, word, value, english) })) })),
     }];
   })) as unknown as Record<Locale, EpisodeSourcePhraseLocalizedDetails>;
+}
+
+function phraseExplanation(locale: Locale, english: string): string {
+  const question = /\?$/.test(english);
+  const negative = /\bnot\b/.test(english);
+  const location = /(home|class|work|park|station|bus|café)/.test(english);
+  const point = question ? 'question' : negative ? 'negative' : location ? 'location' : 'state';
+  const copy: Record<Locale, Record<string, string>> = {
+    ru: { question: 'Это вопрос: связка стоит перед человеком, поэтому собеседник слышит просьбу уточнить.', negative: 'Это отрицание: not идёт после связки, поэтому смысл не меняется на утверждение.', location: 'Это готовое дополнение места: его говорят целиком, чтобы назвать, где находится человек.', state: 'Это естественное описание состояния: связка соединяет человека и его признак.' },
+    uk: { question: 'Це запитання: зв’язка стоїть перед людиною, тому співрозмовник чує прохання уточнити.', negative: 'Це заперечення: not стоїть після зв’язки, тому зміст не стає твердженням.', location: 'Це готовий додаток місця: його вимовляють цілком, щоб назвати, де є людина.', state: 'Це природний опис стану: зв’язка поєднує людину та її ознаку.' },
+    es: { question: 'Es una pregunta: be va antes de la persona y se oye que quieres confirmar algo.', negative: 'Es una negación: not va después de be y no convierte la frase en una afirmación.', location: 'Es un complemento de lugar completo: se dice entero para indicar dónde está la persona.', state: 'Es una descripción natural de un estado: be une a la persona con su cualidad.' },
+    'pt-BR': { question: 'É uma pergunta: be vem antes da pessoa e deixa claro que você quer confirmar algo.', negative: 'É uma negação: not vem depois de be e não transforma a frase em afirmação.', location: 'É um complemento de lugar completo: ele é dito inteiro para indicar onde a pessoa está.', state: 'É uma descrição natural de um estado: be liga a pessoa à sua característica.' },
+    vi: { question: 'Đây là câu hỏi: be đứng trước người nên người nghe biết bạn đang muốn xác nhận.', negative: 'Đây là câu phủ định: not đứng sau be nên câu không thành lời khẳng định.', location: 'Đây là cụm địa điểm hoàn chỉnh: hãy nói cả cụm để chỉ người đó ở đâu.', state: 'Đây là cách mô tả trạng thái tự nhiên: be nối người với đặc điểm của họ.' },
+    id: { question: 'Ini pertanyaan: be berada sebelum orangnya sehingga lawan bicara tahu kamu ingin memastikan.', negative: 'Ini penyangkalan: not berada setelah be sehingga kalimat tidak menjadi pernyataan.', location: 'Ini pelengkap tempat yang utuh: ucapkan seluruhnya untuk menyatakan lokasi orang itu.', state: 'Ini gambaran keadaan yang alami: be menghubungkan orang dengan sifatnya.' },
+    tr: { question: 'Bu bir sorudur: be kişiden önce gelir ve bir şeyi doğrulamak istediğiniz duyulur.', negative: 'Bu bir olumsuzluktur: not be sonrasında gelir, bu yüzden cümle bildirim olmaz.', location: 'Bu tam bir yer tamamlayıcısıdır: kişinin nerede olduğunu söylemek için bütünüyle kullanılır.', state: 'Bu doğal bir durum açıklamasıdır: be kişiyi özelliğine bağlar.' },
+    pl: { question: 'To pytanie: be stoi przed osobą, więc rozmówca słyszy, że chcesz coś potwierdzić.', negative: 'To przeczenie: not stoi po be, dlatego zdanie nie staje się twierdzeniem.', location: 'To pełne określenie miejsca: wypowiada się je w całości, aby wskazać, gdzie jest osoba.', state: 'To naturalny opis stanu: be łączy osobę z jej cechą.' },
+  };
+  return `${english} — ${copy[locale][point]} ${COPY[locale].right}`;
+}
+
+function wordReason(locale: Locale, correct: string, alternative: string, english: string): string {
+  const text: Record<Locale, string> = {
+    ru: `«${alternative}» не подходит вместо «${correct}» в «${english}»: изменится человек, форма связки или названное место.`, uk: `«${alternative}» не підходить замість «${correct}» у «${english}»: зміниться особа, форма зв’язки або назване місце.`, es: `«${alternative}» no sirve en lugar de «${correct}» en «${english}»: cambiaría la persona, be o el lugar indicado.`, 'pt-BR': `«${alternative}» não serve no lugar de «${correct}» em «${english}»: mudaria a pessoa, be ou o lugar indicado.`, vi: `«${alternative}» không thay cho «${correct}» trong «${english}»: nó đổi người, dạng be hoặc địa điểm.`, id: `«${alternative}» tidak menggantikan «${correct}» dalam «${english}»: orang, bentuk be, atau tempatnya berubah.`, tr: `«${alternative}», «${english}» içinde «${correct}» yerine gelemez; kişi, be biçimi ya da yer değişir.`, pl: `«${alternative}» nie pasuje zamiast «${correct}» w «${english}»: zmieniłaby się osoba, be albo wskazane miejsce.`,
+  };
+  return text[locale];
 }
 
 function phrase(ordinal: number, index: number, english: string, features: readonly string[]): EpisodeSourcePhrase {
@@ -49,11 +115,11 @@ function phrase(ordinal: number, index: number, english: string, features: reado
     id: `e01-s${String(ordinal).padStart(2, '0')}-${String(index + 1).padStart(2, '0')}`,
     english,
     russian: localizedDetails.ru.meaning,
-    explanation: `Эту фразу говорят, когда нужно естественно уточнить состояние или место человека. Слова стоят именно в таком порядке, потому что форма to be связывает человека с признаком, местом или вопросом.`,
+    explanation: phraseExplanation('ru', english),
     words: tokens(english).map((correct) => ({
       correct,
       category: /^(I|you|You)$/u.test(correct) ? 'pronoun' : /^(am|are|Are|Am)$/u.test(correct) ? 'to-be' : correct === 'not' ? 'negation' : 'lexical',
-      distractors: Array.from({ length: 5 }, (_, distractor) => ({ value: `${correct}${distractor + 1}`, reasonCode: 'wrong_token', why: `Вариант ${correct}${distractor + 1} не является нужным английским словом и не может занять эту позицию в готовой фразе.` })),
+      distractors: (DISTRACTORS[correct] ?? EXTRA_DISTRACTORS[correct] ?? DISTRACTORS.ready).map((value) => ({ value, reasonCode: 'wrong_token', why: wordReason('ru', correct, value, english) })),
     })),
     localizedDetails,
     features,
@@ -81,16 +147,25 @@ const SESSION_PHRASES: Record<number, readonly string[]> = {
 
 const FEATURES: Record<number, readonly string[]> = { 11: ['copula_be', 'second_person', 'question_inversion'], 12: ['copula_be', 'first_person_singular', 'question_inversion'], 13: ['copula_be', 'second_person', 'contraction_youre', 'negation_not'], 14: ['copula_be', 'first_person_singular', 'second_person', 'place_noun', 'preposition_place'], 15: ['copula_be', 'first_person_singular', 'second_person', 'question_inversion', 'spoken_production'], 16: ['copula_be', 'first_person_singular', 'second_person', 'question_inversion', 'contraction_youre', 'place_noun'] };
 
-function introBody(locale: Locale, page: 0 | 1 | 2, target: string): string {
-  return `${BODY[locale][page]} ${COPY[locale].explain} ${COPY[locale].right} ${target}`;
+const TOPIC: Record<number, Record<Locale, string>> = {
+  11: { ru: 'Здесь вы спрашиваете собеседника через Are you, поэтому связка выходит вперёд.', uk: 'Тут ви питаєте співрозмовника через Are you, тому зв’язка виходить уперед.', es: 'Aquí preguntas a la otra persona con Are you, por eso be sale delante.', 'pt-BR': 'Aqui você pergunta à outra pessoa com Are you, por isso be vem primeiro.', vi: 'Ở đây bạn hỏi người đối diện bằng Are you, vì vậy be đứng đầu.', id: 'Di sini kamu bertanya kepada lawan bicara dengan Are you, jadi be berada di depan.', tr: 'Burada karşıdakine Are you ile sorarsınız; bu yüzden be öne gelir.', pl: 'Tutaj pytasz rozmówcę przez Are you, więc be wychodzi na początek.' },
+  12: { ru: 'Здесь вопрос направлен на себя: Am I ставит am перед I.', uk: 'Тут запитання спрямоване на себе: Am I ставить am перед I.', es: 'Aquí la pregunta es sobre ti: Am I coloca am antes de I.', 'pt-BR': 'Aqui a pergunta é sobre você: Am I coloca am antes de I.', vi: 'Ở đây câu hỏi nói về chính bạn: Am I đặt am trước I.', id: 'Di sini pertanyaan tentang diri sendiri: Am I menempatkan am sebelum I.', tr: 'Burada soru kendinizledir: Am I, am biçimini I önüne koyar.', pl: 'Tutaj pytanie dotyczy ciebie: Am I stawia am przed I.' },
+  13: { ru: 'Здесь You’re — разговорная короткая форма You are, а смысл остаётся тем же.', uk: 'Тут You’re — розмовна коротка форма You are, а зміст не змінюється.', es: 'Aquí You’re es la forma breve de You are y el sentido no cambia.', 'pt-BR': 'Aqui You’re é a forma curta de You are e o sentido não muda.', vi: 'Ở đây You’re là dạng ngắn của You are và nghĩa không đổi.', id: 'Di sini You’re adalah bentuk singkat You are dan maknanya tetap sama.', tr: 'Burada You’re, You are biçiminin kısa şeklidir ve anlam değişmez.', pl: 'Tutaj You’re to krótka forma You are, a znaczenie się nie zmienia.' },
+  14: { ru: 'Здесь место называют готовым сочетанием: дома, в классе или в автобусе.', uk: 'Тут місце називають готовим поєднанням: удома, у класі або в автобусі.', es: 'Aquí el lugar se dice como bloque completo: en casa, en clase o en el autobús.', 'pt-BR': 'Aqui o lugar é dito como bloco completo: em casa, na aula ou no ônibus.', vi: 'Ở đây địa điểm được nói thành cụm hoàn chỉnh: ở nhà, ở lớp hoặc trên xe buýt.', id: 'Di sini tempat diucapkan sebagai kelompok utuh: di rumah, di kelas, atau di bus.', tr: 'Burada yer tam bir ifadeyle söylenir: evde, derste ya da otobüste.', pl: 'Tutaj miejsce mówi się jako całość: w domu, na zajęciach albo w autobusie.' },
+  15: { ru: 'Здесь знакомые фразы нужны для спокойного произнесения вслух без новых правил.', uk: 'Тут знайомі фрази потрібні для спокійного вимовляння вголос без нових правил.', es: 'Aquí usas frases conocidas en voz alta, sin añadir ninguna regla nueva.', 'pt-BR': 'Aqui você fala frases conhecidas em voz alta, sem acrescentar regra nova.', vi: 'Ở đây bạn nói to những câu quen thuộc, không thêm quy tắc mới.', id: 'Di sini kamu mengucapkan kalimat yang sudah dikenal, tanpa aturan baru.', tr: 'Burada yeni kural eklemeden tanıdık cümleleri sesli söylersiniz.', pl: 'Tutaj mówisz głośno znane zdania, bez dodawania nowej zasady.' },
+  16: { ru: 'Здесь соединяются знакомые I и you, вопросы, сокращение и места без новой формы.', uk: 'Тут поєднуються знайомі I та you, запитання, скорочення й місця без нової форми.', es: 'Aquí unes I y you conocidos, preguntas, la contracción y lugares sin forma nueva.', 'pt-BR': 'Aqui você junta I e you conhecidos, perguntas, contração e lugares sem forma nova.', vi: 'Ở đây bạn kết hợp I và you quen thuộc, câu hỏi, dạng ngắn và địa điểm mà không có dạng mới.', id: 'Di sini kamu menggabungkan I dan you, pertanyaan, bentuk singkat, dan tempat tanpa bentuk baru.', tr: 'Burada I ve you, sorular, kısa biçim ve yerler yeni bir biçim olmadan birleşir.', pl: 'Tutaj łączysz znane I i you, pytania, skrót i miejsca bez nowej formy.' },
+};
+
+function introBody(locale: Locale, ordinal: number, page: 0 | 1 | 2, target: string): string {
+  return `${TOPIC[ordinal][locale]} ${BODY[locale][page]} ${COPY[locale].explain} ${COPY[locale].right} ${target}`;
 }
 
 export function buildEpisode01Session11To16(ordinal: 11 | 12 | 13 | 14 | 15 | 16): SessionSource {
   const target = SESSION_PHRASES[ordinal][0];
   const title = localized((locale) => `${COPY[locale].title}: ${target}`);
-  const body1 = localized((locale) => introBody(locale, 0, target));
-  const body2 = localized((locale) => introBody(locale, 1, target));
-  const body3 = localized((locale) => introBody(locale, 2, target));
+  const body1 = localized((locale) => introBody(locale, ordinal, 0, target));
+  const body2 = localized((locale) => introBody(locale, ordinal, 1, target));
+  const body3 = localized((locale) => introBody(locale, ordinal, 2, target));
   const introPages = [body1, body2, body3].map((body, index) => ({
     kind: (['concept', 'formula', 'trap'] as const)[index],
     title,

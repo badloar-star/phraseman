@@ -153,7 +153,7 @@ export default function ArenaHubScreen() {
     if (reason === 'server') return arenaText(lang, 'arenaNotDeployedHint');
     if (reason === 'maintenance') return arenaText(lang, 'maintenanceHint');
     if (reason === 'report_blocked') return arenaText(lang, 'reportBlockedHint');
-    if (reason === 'busy') return arenaText(lang, 'loading');
+    if (reason === 'busy') return arenaText(lang, 'spinInProgress');
     if (reason === 'mode_disabled') return arenaText(lang, 'modeOff');
     return arenaText(lang, 'valueUnknown');
   };
@@ -163,6 +163,7 @@ export default function ArenaHubScreen() {
   const walletBlock = arenaHubActionBlock({ known: expansion !== null, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: expansion?.availability.store });
   const spinBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: home?.availability.spinEnabled, busy: spinBusy });
   const activeMatchBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, reportBlocked });
+  const activeRunBlock = arenaHubActionBlock({ known: expansion !== null, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
   const baseEnabled = baseBlock === 'ok';
   const quickDisabledHint = quickBlock === 'ok' ? undefined : blockHint(quickBlock);
   const todayDisabledHint = todayBlock === 'ok' ? undefined : blockHint(todayBlock);
@@ -197,8 +198,8 @@ export default function ArenaHubScreen() {
           icon="flash"
           title={activeRun.runKind === 'ghost' ? arenaExpansionText(lang, 'ghost') : arenaExpansionText(lang, 'todayContinue')}
           body={activeRun.runKind === 'ghost' ? arenaExpansionText(lang, 'recordingBadge') : arenaExpansionText(lang, 'todayBody')}
-          disabled={baseBlock !== 'ok'}
-          disabledHint={baseBlock === 'ok' ? undefined : blockHint(baseBlock)}
+          disabled={activeRunBlock !== 'ok'}
+          disabledHint={activeRunBlock === 'ok' ? undefined : blockHint(activeRunBlock)}
           onPress={() => router.push({ pathname: '/arena_today', params: { runId: activeRun.runId, runKind: activeRun.runKind } } as never)}
         />
       ) : home?.activeMatch?.matchId ? (

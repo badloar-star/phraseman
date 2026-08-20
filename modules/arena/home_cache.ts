@@ -45,7 +45,7 @@ export function arenaWarmDayKey(wallMs: number): string {
  * сегодняшние — значит соврать игроку, что он уже сыграл три матча и закрыл
  * половину дневных целей.
  */
-const DAILY_PROFILE_FIELDS = ['dailyMatches', 'dailyWins', 'dailyFirstAnswers'] as const;
+const DAILY_PROFILE_FIELDS = ['dailyMatches', 'dailyWins', 'dailyFirstAnswers', 'dailyDayKey', 'todayKey'] as const;
 
 function stripDailyCounters(home: Record<string, unknown> | null): Record<string, unknown> | null {
   if (!home) return null;
@@ -54,6 +54,15 @@ function stripDailyCounters(home: Record<string, unknown> | null): Record<string
   const nextProfile: Record<string, unknown> = { ...profile };
   for (const field of DAILY_PROFILE_FIELDS) delete nextProfile[field];
   return { ...home, profile: nextProfile };
+}
+
+/** Today and an unfinished run are only meaningful for the exact snapshot day. */
+export function stripExpansionDaily(expansion: Record<string, unknown> | null): Record<string, unknown> | null {
+  if (!expansion) return null;
+  const next = { ...expansion };
+  delete next.today;
+  delete next.activeRun;
+  return next;
 }
 
 let warm: ArenaHomeWarm | null = null;
@@ -93,7 +102,7 @@ export function arenaHomeWarmUsable(value: unknown, wallNowMs: number): ArenaHom
     // Сутки сменились — дневные счётчики выбрасываются, остальное остаётся:
     // ранг и звёзды за ночь не портятся, а «сыграно сегодня» портится.
     home: sameDay ? home : stripDailyCounters(home),
-    expansion: isRecord(value.expansion) ? value.expansion : null,
+    expansion: sameDay ? (isRecord(value.expansion) ? value.expansion : null) : stripExpansionDaily(isRecord(value.expansion) ? value.expansion : null),
   };
 }
 
@@ -112,9 +121,9 @@ export function arenaRememberHomeWarm(input: Readonly<{
     schemaVersion: ARENA_HOME_CACHE_SCHEMA,
     savedAtWallMs: Math.trunc(input.wallNowMs),
     savedDayKey: arenaWarmDayKey(input.wallNowMs),
-    home: input.home === undefined ? warm?.home ?? null : arenaHomeWarmSanitize(input.home),
+    home: input.home === undefined ? stripDailyCounters(warm?.home ?? null) : arenaHomeWarmSanitize(input.home),
     expansion: input.expansion === undefined
-      ? warm?.expansion ?? null
+      ? stripExpansionDaily(warm?.expansion ?? null)
       : (isRecord(input.expansion) ? input.expansion : null),
   };
   warm = next;

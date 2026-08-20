@@ -96,6 +96,15 @@ describe('Arena hub hydration safety', () => {
     expect(warm.expansion?.activeRun?.runId).toBe('today-run');
   });
 
+  it('strips expansion daily state when no validated home proves its day', () => {
+    const warm = arenaWarmForDay({
+      expansion: { ...validExpansion, activeRun: { runId: 'old', runKind: 'today' } },
+    }, '2026-08-20', '2026-08-20');
+    expect(warm.expansion?.wallet.walletStars).toBe(20);
+    expect(warm.expansion?.today).toBeUndefined();
+    expect(warm.expansion?.activeRun).toBeUndefined();
+  });
+
   it('orchestrates a valid cache, ignores malformed cache, and keeps cached values on failure', async () => {
     const home = deferred<typeof validHome>();
     const expansion = deferred<typeof validExpansion>();
@@ -148,7 +157,7 @@ describe('Arena hub hydration safety', () => {
 
     expect(controller.snapshot().home.value?.profile.rank).toBe(7);
     expect(controller.snapshot().expansion.value?.wallet.walletStars).toBe(77);
-    expect(remembered).toHaveLength(1);
+    expect(remembered).toHaveLength(2);
     controller.hydrate({ home: validHome, expansion: validExpansion });
     expect(controller.snapshot().home.value?.profile.rank).toBe(7);
   });

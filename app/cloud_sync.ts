@@ -56,9 +56,17 @@ import { resetMultiplierBreakdownCache } from './xp_manager';
 // зачем: сброс кэша состояния лиги предыдущего аккаунта при смене юзера — см.
 // clearCachedLeagueStateSnapshot в league_open_cache_policy.ts (защита от утечки
 // ранга/группы/участников лиги предыдущего аккаунта в club_screen).
-import { clearCachedLeagueStateSnapshot } from './league_open_cache_policy';
+import {
+  clearCachedLeagueStateSnapshot,
+  projectCloudLeagueStateSnapshot,
+} from './league_open_cache_policy';
 import { clearScreenSnapshots } from './screen_snapshot_store';
 import { clearTrainerPracticeSnapshotOnDisk } from './trainer_practice_persist';
+import {
+  invalidatePersonalPlanStateCache,
+  withPersonalPlanStateStorageLock,
+} from './personal_plan_state';
+import { withPlanXpLedgerStorageLock } from './personal_plan_xp_ledger';
 import {
   isVipSnapshotStorageKey,
   VIP_STORAGE_KEYS,
@@ -139,6 +147,10 @@ import {
   masteryFinishedOnceKey,
   masteryReplayCountKey,
   mistakeLogKey,
+  mistakePracticeEventsKey,
+  mistakePracticePreferencesKey,
+  mistakePracticeProjectionKey,
+  mistakePracticeSessionKey,
   personalPracticeFreeAccessKey,
   personalPracticeTrainingProgressKey,
   posMasteryKey,
@@ -156,6 +168,7 @@ import {
   userStatsKey,
   statsDailyBreakdownKey,
 } from './target_storage_keys';
+import { mergeMistakeEventJournalRaw } from './mistake_practice_cloud_merge';
 import {
   LEGACY_FREE_LESSON_MIGRATION_COMPLETE,
   LEGACY_FREE_LESSON_MIN,
@@ -172,6 +185,7 @@ const LESSON_SESSION_FIELDS = ['cellIndex', 'phraseOrder', 'errorReplayQueue', '
 const GRAMMAR_HINT_STORAGE_IDS = ['grammar_hint_articles', 'grammar_hint_some_any'] as const;
 
 export const FRENCH_TARGET_SYNC_KEYS = [
+  mistakePracticeEventsKey('fr'),
   unlockedLessonsKey('fr'),
   legacyFreeLessonCapKey('fr'),
   legacyFreeLessonMigrationKey('fr'),
@@ -304,9 +318,12 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   // `fc_deck_best_stars_v1` больше нет ни в SYNC_KEYS, ни в merge-стратегиях.
   // «Вместе»: active_days_v1 мержится OR по датам между устройствами (см. функцию выше).
   active_days_v1: mergeActiveDaysRestoreValue,
+  [mistakePracticeEventsKey('en')]: mergeMistakeEventJournalRaw,
+  [mistakePracticeEventsKey('fr')]: mergeMistakeEventJournalRaw,
 };
 
 export const SYNC_KEYS = [
+  mistakePracticeEventsKey('en'),
   // cards-2.0: очередь ошибок Тренера переживает переустановку.
   'trainer_store_v1',
   // ── Идентичность и базовый прогресс ────────────────────────────────────────
@@ -493,6 +510,13 @@ export const SYNC_KEYS = [
   'shards_lifetime_spent_v1',
   /** Посуточные счётчики для графиков «Весь путь» (JSON { дата → метрики }). */
   'stats_daily_breakdown_v1',
+  // Персональный маршрут — durable account progress. These keys must survive a
+  // reinstall/account restore; pending activation and per-device runtime remain local.
+  'personal_plan_state_v1',
+  'personal_plan_progress_v1',
+  'personal_plan_completed_tasks_v1',
+  'personal_plan_task_progress_v1',
+  'personal_plan_xp_ledger_v1',
 
   // ── Уроки 1..32 (per-lesson) ───────────────────────────────────────────────
   // КРИТИЧНО: lesson{N}_best_score нужен для медалек уроков и для гейта зачёта
@@ -552,11 +576,6 @@ const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
   'personal_plan_attempt_events_v1',
   'personal_plan_counted_phrases_v1',
   'personal_plan_recovery_applied_actions_v1',
-  'personal_plan_state_v1',
-  'personal_plan_progress_v1',
-  'personal_plan_completed_tasks_v1',
-  'personal_plan_task_progress_v1',
-  'personal_plan_xp_ledger_v1',
   'personal_plan_onboarding_nickname_pending_v1',
   'personal_plan_pending_activation_v1',
   'plan_day_shard_rewards_v1',
@@ -628,6 +647,9 @@ async function collectAccountLocalDataKeys(): Promise<string[]> {
 
 export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()): string[] {
   const localOnlyTargetKeys = SYNC_STUDY_TARGETS.flatMap((target) => [
+    mistakePracticeProjectionKey(target),
+    mistakePracticeSessionKey(target),
+    mistakePracticePreferencesKey(target),
     fiftyFiftyUsageKey(todayKey, target),
     lessonBonusHintsKey(todayKey, target),
     diagnosticOpenFlagKey(target),
@@ -813,7 +835,7 @@ export type CloudAccessFailureReason =
   | 'identity_unavailable'
   | 'transport_unavailable';
 
-export type StableAuthLinkFailure = CloudAccessFailureReason | 'stable_id_mismatch';
+export type StableAuthLinkFailure = CloudAccessFailureReason | 'stable_id_mismatch' | 'identity_retired';
 
 export type StableAuthLinkEnsureResult = {
   ok: boolean;
@@ -842,6 +864,9 @@ function classifyCloudAccessFailure(
   const code = String((error as { code?: unknown })?.code ?? '').toLowerCase();
   const message = String((error as { message?: unknown })?.message ?? error).toLowerCase();
   const combined = `${code} ${message}`;
+  if (combined.includes('identity_retired') || combined.includes('account_delete_pending')) {
+    return 'identity_retired';
+  }
   if (combined.includes('stable_id_mismatch')) return 'stable_id_mismatch';
   if (combined.includes('auth_required')) return 'identity_unavailable';
 
@@ -1217,9 +1242,18 @@ const LEVEL_EXAM_RESTORE_MERGE_KEYS = LEVEL_EXAM_RESTORE_LEVELS.flatMap((level) 
   ...LEVEL_EXAM_RESTORE_FIELDS.map((field) => levelExamKey(level, field, 'en')),
   ...LEVEL_EXAM_RESTORE_FIELDS.map((field) => levelExamKey(level, field, 'fr')),
 ]);
+export const PERSONAL_PLAN_RESTORE_KEYS = [
+  'personal_plan_state_v1',
+  'personal_plan_progress_v1',
+  'personal_plan_completed_tasks_v1',
+  'personal_plan_task_progress_v1',
+  'personal_plan_xp_ledger_v1',
+] as const;
+const PERSONAL_PLAN_RESTORE_KEY_SET = new Set<string>(PERSONAL_PLAN_RESTORE_KEYS);
 const RESTORE_MERGE_KEY_SET = new Set<string>([
   ...LESSON_RESTORE_MERGE_KEYS,
   ...LEVEL_EXAM_RESTORE_MERGE_KEYS,
+  ...PERSONAL_PLAN_RESTORE_KEYS,
   SEASON_COSMETICS_SYNC_KEY,
 ]);
 const LEGACY_FREE_LESSON_CAP_RESTORE_KEYS = new Set<string>([
@@ -1498,11 +1532,208 @@ function isMonotonicLessonRestoreKey(key: string): boolean {
   return false;
 }
 
+function parseRestoreRecord(raw: string | null | undefined): Record<string, any> | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function restoreTimestamp(value: unknown): number {
+  const parsed = typeof value === 'string' ? Date.parse(value) : NaN;
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function mergePersonalPlanStateRestoreValue(cloudRaw: string, localRaw: string | null | undefined): string {
+  const cloud = parseRestoreRecord(cloudRaw);
+  const local = parseRestoreRecord(localRaw);
+  if (!local) return cloudRaw;
+  if (!cloud) return localRaw ?? cloudRaw;
+  const cloudInstance = String(cloud.planInstanceId || cloud.id || '');
+  const localInstance = String(local.planInstanceId || local.id || '');
+  const cloudTime = Math.max(
+    restoreTimestamp(cloud.updatedAt), restoreTimestamp(cloud.activatedAt), restoreTimestamp(cloud.createdAt),
+  );
+  const localTime = Math.max(
+    restoreTimestamp(local.updatedAt), restoreTimestamp(local.activatedAt), restoreTimestamp(local.createdAt),
+  );
+  if (!cloudInstance || !localInstance || cloudInstance !== localInstance) {
+    const cloudActivationTime = Math.max(
+      restoreTimestamp(cloud.activatedAt), restoreTimestamp(cloud.createdAt),
+    ) || cloudTime;
+    const localActivationTime = Math.max(
+      restoreTimestamp(local.activatedAt), restoreTimestamp(local.createdAt),
+    ) || localTime;
+    return localActivationTime >= cloudActivationTime ? (localRaw ?? cloudRaw) : cloudRaw;
+  }
+  const base = localTime >= cloudTime ? local : cloud;
+  const other = base === local ? cloud : local;
+  const baseDayIndex = Math.max(1, Math.floor(Number(base.currentDayIndex) || 1));
+  const otherDayIndex = Math.max(1, Math.floor(Number(other.currentDayIndex) || 1));
+  const furthestDayState = otherDayIndex > baseDayIndex ? other : base;
+  const currentDayIndex = Math.max(
+    baseDayIndex,
+    otherDayIndex,
+  );
+  const status = base.status === 'completed' || other.status === 'completed' ? 'completed' : base.status;
+  const updatedAt = localTime >= cloudTime ? local.updatedAt : cloud.updatedAt;
+  return JSON.stringify({
+    ...base,
+    status,
+    currentDayIndex,
+    currentDayStartedAt: furthestDayState.currentDayStartedAt ?? base.currentDayStartedAt,
+    updatedAt,
+  });
+}
+
+function mergePersonalPlanTaskProgressRestoreValue(cloudRaw: string, localRaw: string | null | undefined): string {
+  const cloud = parseRestoreRecord(cloudRaw);
+  const local = parseRestoreRecord(localRaw);
+  if (!local) return cloudRaw;
+  if (!cloud) return localRaw ?? cloudRaw;
+  const merged: Record<string, unknown> = { ...cloud };
+  for (const key of new Set([...Object.keys(cloud), ...Object.keys(local)])) {
+    const cloudEntry = cloud[key];
+    const localEntry = local[key];
+    if (!cloudEntry || typeof cloudEntry !== 'object') {
+      merged[key] = localEntry;
+      continue;
+    }
+    if (!localEntry || typeof localEntry !== 'object') continue;
+    const cloudSequence = Math.max(0, Math.floor(Number(cloudEntry.attemptSequence) || 0));
+    const localSequence = Math.max(0, Math.floor(Number(localEntry.attemptSequence) || 0));
+    const base = localSequence > cloudSequence || (
+      localSequence === cloudSequence && restoreTimestamp(localEntry.updatedAt) >= restoreTimestamp(cloudEntry.updatedAt)
+    ) ? localEntry : cloudEntry;
+    merged[key] = {
+      ...base,
+      index: Math.max(0, Math.floor(Number(cloudEntry.index) || 0), Math.floor(Number(localEntry.index) || 0)),
+      attemptSequence: Math.max(cloudSequence, localSequence),
+      correctIds: [...new Set([
+        ...(Array.isArray(cloudEntry.correctIds) ? cloudEntry.correctIds.filter((id: unknown) => typeof id === 'string') : []),
+        ...(Array.isArray(localEntry.correctIds) ? localEntry.correctIds.filter((id: unknown) => typeof id === 'string') : []),
+      ])],
+    };
+  }
+  return JSON.stringify(merged);
+}
+
+function receiptApplied(value: any): boolean {
+  return Boolean(value && typeof value === 'object' && value.status !== 'pending');
+}
+
+function appliedReceiptTotals(entry: any): { xp: number; phrases: number } {
+  const receipts = entry && typeof entry.taskIds === 'object' && entry.taskIds ? Object.values(entry.taskIds) : [];
+  return receipts.reduce((totals: { xp: number; phrases: number }, receipt: any) => {
+    if (!receiptApplied(receipt)) return totals;
+    totals.xp += Math.max(0, Math.floor(Number(receipt.xp) || 0));
+    totals.phrases += Math.max(0, Math.floor(Number(receipt.phrases) || 0));
+    return totals;
+  }, { xp: 0, phrases: 0 });
+}
+
+function mergePersonalPlanXpLedgerRestoreValue(cloudRaw: string, localRaw: string | null | undefined): string {
+  const cloud = parseRestoreRecord(cloudRaw);
+  const local = parseRestoreRecord(localRaw);
+  if (!local) return cloudRaw;
+  if (!cloud) return localRaw ?? cloudRaw;
+  const merged: Record<string, unknown> = {};
+  for (const planId of new Set([...Object.keys(cloud), ...Object.keys(local)])) {
+    const cloudEntry = cloud[planId] && typeof cloud[planId] === 'object' ? cloud[planId] : {};
+    const localEntry = local[planId] && typeof local[planId] === 'object' ? local[planId] : {};
+    const cloudTasks = cloudEntry.taskIds && typeof cloudEntry.taskIds === 'object' ? cloudEntry.taskIds : {};
+    const localTasks = localEntry.taskIds && typeof localEntry.taskIds === 'object' ? localEntry.taskIds : {};
+    const taskIds: Record<string, any> = { ...cloudTasks };
+    for (const taskId of Object.keys(localTasks)) {
+      const localReceipt = localTasks[taskId];
+      const cloudReceipt = cloudTasks[taskId];
+      taskIds[taskId] = receiptApplied(localReceipt) || !receiptApplied(cloudReceipt) ? localReceipt : cloudReceipt;
+    }
+    const mergedApplied = appliedReceiptTotals({ taskIds });
+    const cloudApplied = appliedReceiptTotals(cloudEntry);
+    const localApplied = appliedReceiptTotals(localEntry);
+    const legacyXp = Math.max(
+      0,
+      Math.max(0, Math.floor(Number(cloudEntry.xp) || 0)) - cloudApplied.xp,
+      Math.max(0, Math.floor(Number(localEntry.xp) || 0)) - localApplied.xp,
+    );
+    const legacyPhrases = Math.max(
+      0,
+      Math.max(0, Math.floor(Number(cloudEntry.phrases) || 0)) - cloudApplied.phrases,
+      Math.max(0, Math.floor(Number(localEntry.phrases) || 0)) - localApplied.phrases,
+    );
+    const localIsNewer = restoreTimestamp(localEntry.updatedAt) >= restoreTimestamp(cloudEntry.updatedAt);
+    merged[planId] = {
+      ...(localIsNewer ? cloudEntry : localEntry),
+      ...(localIsNewer ? localEntry : cloudEntry),
+      xp: mergedApplied.xp + legacyXp,
+      phrases: mergedApplied.phrases + legacyPhrases,
+      taskIds,
+    };
+  }
+  return JSON.stringify(merged);
+}
+
+function mergePersonalPlanRestoreValue(
+  key: string,
+  cloudValue: string,
+  localValue: string | null | undefined,
+): string {
+  if (!localValue) return cloudValue;
+  if (key === 'personal_plan_state_v1') return mergePersonalPlanStateRestoreValue(cloudValue, localValue);
+  if (key === 'personal_plan_task_progress_v1') {
+    return mergePersonalPlanTaskProgressRestoreValue(cloudValue, localValue);
+  }
+  if (key === 'personal_plan_xp_ledger_v1') {
+    return mergePersonalPlanXpLedgerRestoreValue(cloudValue, localValue);
+  }
+  if (key === 'personal_plan_progress_v1' || key === 'personal_plan_completed_tasks_v1') {
+    const cloud = parseRestoreRecord(cloudValue);
+    const local = parseRestoreRecord(localValue);
+    if (!cloud) return localValue;
+    if (!local) return cloudValue;
+    return JSON.stringify({ ...cloud, ...local });
+  }
+  return cloudValue;
+}
+
+async function applyPersonalPlanRestorePairs(pairs: readonly (readonly [string, string])[]): Promise<void> {
+  const hasPersonalPlanState = pairs.some(([key]) => PERSONAL_PLAN_RESTORE_KEY_SET.has(key));
+  if (!hasPersonalPlanState) {
+    await AsyncStorage.multiSet(sanitizeStoragePairs(pairs));
+    return;
+  }
+  await withPersonalPlanStateStorageLock(() => withPlanXpLedgerStorageLock(async () => {
+    const nextPairs: [string, string][] = [];
+    for (const [key, cloudMergedValue] of pairs) {
+      if (!PERSONAL_PLAN_RESTORE_KEY_SET.has(key)) {
+        nextPairs.push([key, cloudMergedValue]);
+        continue;
+      }
+      const latestLocalValue = await AsyncStorage.getItem(key);
+      nextPairs.push([
+        key,
+        mergePersonalPlanRestoreValue(key, cloudMergedValue, latestLocalValue),
+      ]);
+    }
+    await AsyncStorage.multiSet(sanitizeStoragePairs(nextPairs));
+    if (nextPairs.some(([key]) => key === 'personal_plan_state_v1')) {
+      invalidatePersonalPlanStateCache();
+    }
+  }));
+}
+
 function mergeLessonRestoreValue(
   key: string,
   cloudValue: string,
   localValue: string | null | undefined,
 ): string {
+  if (PERSONAL_PLAN_RESTORE_KEY_SET.has(key)) {
+    return mergePersonalPlanRestoreValue(key, cloudValue, localValue);
+  }
   if (key === SEASON_COSMETICS_SYNC_KEY) {
     return mergeSeasonCosmeticsRestoreValue(cloudValue, localValue);
   }
@@ -1850,7 +2081,7 @@ export async function ensureStableAuthLinkForStableIdDetailed(
     try {
       const fn = callable<
         { stableId: string; linkMetadata?: StableAuthLinkMetadata },
-        { ok: boolean; stableUid: string; authUid: string }
+        { ok: boolean; stableUid: string; authUid: string; identityReady: boolean }
       >('authEnsureStableLink');
       const res = await withTimeout(
         fn({ stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}) }),
@@ -1859,7 +2090,7 @@ export async function ensureStableAuthLinkForStableIdDetailed(
       );
       const actualStableUid = String(res?.data?.stableUid ?? '').trim();
       const actualAuthUid = String(res?.data?.authUid ?? authUid).trim() || authUid;
-      const ok = res?.data?.ok === true && actualStableUid.length > 0;
+      const ok = res?.data?.ok === true && res.data.identityReady === true && actualStableUid.length > 0;
       if (ok) writeStableAuthLinkCache(`${actualStableUid}:${actualAuthUid}`).catch(() => {});
       return {
         ok,
@@ -2547,6 +2778,10 @@ async function applyRestoreFromUserDoc(
     ? root.progress as Record<string, unknown>
     : {};
   const cloudData: Record<string, string | null> = { ...progressData } as Record<string, string | null>;
+  // Keep league recovery independent from SQLite capacity. The account cache is
+  // cleared on sign-out/switch and this projection never overwrites a state that
+  // the current account already loaded into memory.
+  projectCloudLeagueStateSnapshot(cloudData['league_state_v3']);
   const canonicalShield = canonicalGiftPerkStorageValue(
     root.chain_shield,
     progressData.chain_shield,
@@ -2852,6 +3087,23 @@ async function applyRestoreFromUserDoc(
         if (merged !== localLessonStickyMap[key]) stickyPairs.push([key, merged]);
       }
     }
+    // Personal-plan completion/progress/receipts are account-owned monotonic
+    // journals too. They must converge even when local XP keeps the restore in
+    // this sticky branch.
+    const localPersonalPlanMap = Object.fromEntries(
+      await AsyncStorage.multiGet([...PERSONAL_PLAN_RESTORE_KEYS]),
+    ) as Record<string, string | null>;
+    assertCurrent();
+    for (const key of PERSONAL_PLAN_RESTORE_KEYS) {
+      const cloudVal = cloudData[key];
+      if (cloudVal === null || cloudVal === undefined) continue;
+      const merged = mergePersonalPlanRestoreValue(
+        key,
+        cloudProgressStorageValue(key, cloudVal),
+        localPersonalPlanMap[key],
+      );
+      if (merged !== localPersonalPlanMap[key]) stickyPairs.push([key, merged]);
+    }
     const cloudActiveAura = cloudData[USER_AVATAR_AURA_KEY];
     if (cloudActiveAura != null && String(cloudActiveAura).trim() !== '') {
       stickyPairs.push([USER_AVATAR_AURA_KEY, String(cloudActiveAura)]);
@@ -2895,7 +3147,7 @@ async function applyRestoreFromUserDoc(
     let appliedStickyState = false;
     if (stickyPairs.length > 0) {
       assertCurrent();
-      await AsyncStorage.multiSet(sanitizeStoragePairs(stickyPairs));
+      await applyPersonalPlanRestorePairs(stickyPairs);
       assertCurrent();
       appliedStickyState = true;
     }
@@ -3006,7 +3258,7 @@ async function applyRestoreFromUserDoc(
   }
   if (pairs.length > 0) {
     assertCurrent();
-    await AsyncStorage.multiSet(sanitizeStoragePairs(pairs));
+    await applyPersonalPlanRestorePairs(pairs);
     assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
@@ -3202,6 +3454,8 @@ export const __cloudSyncTestHooks = {
   buildStickyServerProgressPairs,
   buildGiftEntitlementStickyPairs,
   mergeCurrentWeekProgressRestoreValue,
+  mergePersonalPlanRestoreValue,
+  applyPersonalPlanRestorePairs,
 };
 
 // ── Одноразовая миграция локального прогресса в облако ──────────────────────
@@ -3596,6 +3850,11 @@ export async function saveAccountSwitchEmergencyBackup(
 }
 
 async function wipeLocalAccountDataUnsafe(): Promise<void> {
+  await withPersonalPlanStateStorageLock(() =>
+    withPlanXpLedgerStorageLock(wipeLocalAccountDataUnsafeBody));
+}
+
+async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   const { cancelPendingGeneratedNicknameRetry } = await import('./nickname_guard');
   cancelPendingGeneratedNicknameRetry();
   const accountKeys = await collectAccountLocalDataKeys();
@@ -3631,6 +3890,7 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
   lastActivityStampAt = 0;
   pendingSync = false;
   resetAppSnapshotForAccountSwitch();
+  invalidatePersonalPlanStateCache();
   // зачем: без этого PlayerProfileModal мог мгновенно отрендерить множители
   // XP предыдущего аккаунта (см. комментарий у resetMultiplierBreakdownCache).
   resetMultiplierBreakdownCache();

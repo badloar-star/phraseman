@@ -28,20 +28,27 @@ describe('authEnsureStableLink anon relink (post-reinstall fix)', () => {
     );
   });
 
-  // ── Хвост E: осиротевшая auth_links после удаления аккаунта ───────────────
-  // Повторный вход тем же Google/Apple НЕ должен цепляться за мёртвый users-док
-  // (stable_id из auth_links указывает на удалённый аккаунт). Сервер должен
-  // игнорировать осиротевшую привязку и перепривязать на текущий stableId.
-  test('ensureStableLinkForAuth ignores an auth_link pointing to a deleted user doc', () => {
-    // Перед использованием linkedStableId проверяется существование users-дока.
-    expect(source).toContain('const linkedUserExists');
+  test('checks retired auth and linked identities before any orphan relink repair', () => {
+    const start = source.indexOf('export async function ensureStableLinkForAuth');
+    const end = source.indexOf('export const authEnsureStableLink', start);
+    const body = source.slice(start, end);
+
+    expect(body.indexOf('await assertAccountDeletionNotPending(db, authUid)')).toBeGreaterThan(-1);
+    expect(body.indexOf('await assertAccountDeletionNotPending(db, authUid)'))
+      .toBeLessThan(body.indexOf('const existingLinkSnap'));
+    expect(body.indexOf('if (linkedStableId) await assertStableDeletionNotPending(db, linkedStableId)'))
+      .toBeLessThan(body.indexOf('const linkedUserExists'));
+    expect(source).toContain("throw new HttpsError('failed-precondition', 'identity_retired'");
+    expect(source).toContain("recovery: 'create_fresh_anonymous'");
+  });
+
+  test('returns identityReady only after the exact server identity pair is ensured', () => {
+    expect(source).toContain('const userRef = db.collection(USERS).doc(stableId);');
+    expect(source).toContain('const authLinkRef = db.collection(AUTH_LINKS).doc(authUid);');
+    expect(source).toContain('await ensureStableIdentityPair(db, authUid');
+    expect(source).toContain('identityReady: true');
     expect(source).toMatch(
-      /linkedUserExists[\s\S]{0,160}collection\(USERS\)\.doc\(linkedStableId\)\.get\(\)/,
+      /await ensureStableIdentityPair\(db, authUid,[\s\S]{0,420}return \{ ok: true, stableUid[^}]*identityReady: true \};/,
     );
-    // Осиротевшая ветка логируется и НЕ привязывается к мёртвому id.
-    expect(source).toContain("event: 'auth_link_orphan_ignored'");
-    expect(source).toContain('if (linkedStableId && linkedStableId !== stableId && !linkedUserExists)');
-    // Живая привязка по-прежнему обрабатывается (else if с тем же условием без orphan).
-    expect(source).toContain('} else if (linkedStableId && linkedStableId !== stableId) {');
   });
 });

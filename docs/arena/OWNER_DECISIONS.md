@@ -4274,12 +4274,17 @@ font scale. Оба immersive-task целиком живут в bounded outer `Sc
 - `git diff --check` — exit 0; `git status --short` содержит многочисленные
   существовавшие чужие изменения, принадлежащие другим потокам работы.
 
-Device smoke не объявляется пройденным. На момент проверки подключён только
-`emulator-5556`, а для live-счёта нужны два игрока. Deep link открыл карточку
-Арены, но после нажатия «В бой» уже работающий Metro вернул HTTP 500
-`UnableToResolveError` для `../modules/arena/question_layout` из
-`app/arena_match.tsx`. Скриншот и полный UI dump сохранены в
-`.codex-tmp/arena-live-score-immersive/2026-08-20-emulator-5556-after-cta.png`
-и соседнем `.xml`. Поэтому обновление счёта, неизвестный `—`, невыровненные
-пары, доступность нижних фишек и видимость CTA на 320 pt / 1.5× font на живых
-устройствах остаются обязательным release smoke, а не выводом из кода.
+Device smoke не объявляется пройденным. Последняя фактическая попытка подняла
+headless AVD `phraseman_smoke` с override `1680×840` и `font_scale 1.5`.
+Свежий Metro на `8081` собрал Android `index.js` (**4942 modules за 19439 ms**),
+а `MainActivity` загрузилась: прежний `UnableToResolveError` для
+`question_layout` этим прогоном подтверждён как устранённый.
+
+До входа в Арену глобальный render приложения остановился на другом runtime
+blocker:
+`ReanimatedError: [Reanimated] The easing function is not a worklet. Please make sure you import Easing from react-native-reanimated.`
+Поэтому ни immersive gesture smoke на 320 pt / 1.5×, ни двухпользовательское
+обновление live-счёта не проверены и не считаются пройденными. Скриншот:
+`.codex-tmp/arena-live-score-immersive/2026-08-20-final-runtime-blocker.png`;
+сопутствующие XML и Metro/AVD logs находятся в той же папке. Временные Metro и
+AVD остановлены, настройки AVD после попытки восстановлены.

@@ -10,6 +10,8 @@ module.exports = {
     '<rootDir>/tests/registration_prompt_modal_lifecycle.test.ts',
     '<rootDir>/tests/nickname_edit_modal_availability.test.tsx',
     '<rootDir>/tests/level_exam_intro.test.tsx',
+    '<rootDir>/tests/friends_together_dev_bots_sheet.test.tsx',
+    '<rootDir>/tests/learning_v2_intro_reader_a.test.tsx',
   ],
   setupFilesAfterEnv: ['<rootDir>/tests/setup_jest_write_guard.js'],
   transformIgnorePatterns: [

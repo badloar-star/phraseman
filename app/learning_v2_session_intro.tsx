@@ -1,7 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -9,27 +8,27 @@ import {
   View,
 } from "react-native";
 import Animated, {
-  FadeIn,
   FadeInDown,
   ReduceMotion,
-  useAnimatedStyle,
   useReducedMotion,
-  useSharedValue,
-  withSequence,
-  withTiming,
 } from "react-native-reanimated";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
+import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
+import DuoPressable from "../components/DuoPressable";
 import { useLang } from "../components/LangContext";
+import PressableHybrid from "../components/PressableHybrid";
 import { LinearGradient } from "../components/SafeLinearGradient";
 import { useStudyTarget } from "../components/StudyTargetContext";
 import { useTheme } from "../components/ThemeContext";
 import { triLang, type Lang } from "../constants/i18n";
-import { hapticError, hapticSuccess, hapticTap } from "../hooks/use-haptics";
+import { CHK, LUM } from "../constants/motionHybrid";
+import { hapticError, hapticSuccess } from "../hooks/use-haptics";
 import type { RequiredSessionTaskCompletionInputV3 } from "../modules/learning-v2/progress/required_session_completion_envelope";
+import {
+  introCtaTextColor,
+  introTargetTextColor,
+} from "./learning_v2_intro_theme";
 import type {
   IntroLine,
   IntroTextPart,
@@ -41,22 +40,6 @@ import {
   richSubtitle,
   richTitle,
 } from "./lesson_intro_rich";
-
-type IntroVisual = Readonly<{
-  icon: React.ComponentProps<typeof Ionicons>["name"];
-}>;
-
-const VISUALS: readonly IntroVisual[] = Object.freeze([
-  Object.freeze({
-    icon: "sparkles-outline",
-  }),
-  Object.freeze({
-    icon: "git-branch-outline",
-  }),
-  Object.freeze({
-    icon: "flash-outline",
-  }),
-]);
 
 const lineText = (line: IntroLine): string =>
   line.parts?.map((part) => part.text).join("") ?? line.text ?? "";
@@ -71,16 +54,6 @@ const stringsFor = (lang: Lang) => ({
     id: "Tutup pengantar",
     tr: "Girişi kapat",
     pl: "Zamknij wprowadzenie",
-  }),
-  session: triLang(lang, {
-    ru: "Интро сессии",
-    uk: "Вступ до сесії",
-    es: "Introducción de sesión",
-    "pt-BR": "Introdução da sessão",
-    vi: "Giới thiệu phiên học",
-    id: "Pengantar sesi",
-    tr: "Oturum girişi",
-    pl: "Wprowadzenie do sesji",
   }),
   next: triLang(lang, {
     ru: "Дальше",
@@ -103,14 +76,14 @@ const stringsFor = (lang: Lang) => ({
     pl: "Zacznij ćwiczenie",
   }),
   answerFirst: triLang(lang, {
-    ru: "Сначала ответь на вопрос",
-    uk: "Спочатку дай відповідь",
-    es: "Responde primero",
-    "pt-BR": "Responda primeiro",
-    vi: "Hãy trả lời trước",
-    id: "Jawab dulu",
-    tr: "Önce cevapla",
-    pl: "Najpierw odpowiedz",
+    ru: "Проверь себя",
+    uk: "Перевір себе",
+    es: "Compruébalo",
+    "pt-BR": "Confira",
+    vi: "Tự kiểm tra",
+    id: "Periksa pemahamanmu",
+    tr: "Kendini kontrol et",
+    pl: "Sprawdź się",
   }),
   correct: triLang(lang, {
     ru: "Верно",
@@ -122,6 +95,37 @@ const stringsFor = (lang: Lang) => ({
     tr: "Doğru",
     pl: "Dobrze",
   }),
+  correctExample: triLang(lang, {
+    ru: "правильный пример",
+    uk: "правильний приклад",
+    es: "ejemplo correcto",
+    "pt-BR": "exemplo correto",
+    vi: "ví dụ đúng",
+    id: "contoh benar",
+    tr: "doğru örnek",
+    pl: "poprawny przykład",
+  }),
+  wrongExample: triLang(lang, {
+    ru: "неверный пример",
+    uk: "неправильний приклад",
+    es: "ejemplo incorrecto",
+    "pt-BR": "exemplo incorreto",
+    vi: "ví dụ sai",
+    id: "contoh salah",
+    tr: "yanlış örnek",
+    pl: "błędny przykład",
+  }),
+  progress: (current: number, total: number) =>
+    triLang(lang, {
+      ru: `${current} из ${total}`,
+      uk: `${current} з ${total}`,
+      es: `${current} de ${total}`,
+      "pt-BR": `${current} de ${total}`,
+      vi: `${current} trên ${total}`,
+      id: `${current} dari ${total}`,
+      tr: `${current} / ${total}`,
+      pl: `${current} z ${total}`,
+    }),
   stageLabels: [
     triLang(lang, {
       ru: "СМЫСЛ",
@@ -144,120 +148,87 @@ const stringsFor = (lang: Lang) => ({
       pl: "SCHEMAT",
     }),
     triLang(lang, {
-      ru: "ПРИМЕНЕНИЕ",
-      uk: "ЗАСТОСУВАННЯ",
-      es: "APLICACIÓN",
-      "pt-BR": "APLICAÇÃO",
-      vi: "ÁP DỤNG",
-      id: "PENERAPAN",
-      tr: "UYGULAMA",
-      pl: "ZASTOSOWANIE",
+      ru: "ЛОВУШКА",
+      uk: "ПАСТКА",
+      es: "TRAMPA",
+      "pt-BR": "ARMADILHA",
+      vi: "BẪY",
+      id: "JEBAKAN",
+      tr: "TUZAK",
+      pl: "PUŁAPKA",
     }),
   ] as const,
 });
 
-function RichLine({
-  line,
-  accent,
+function IntroReaderParagraph({
+  lineIndex,
+  parts,
+  targetColor,
   theme,
+  correctExampleLabel,
+  wrongExampleLabel,
 }: Readonly<{
-  line: IntroLine;
-  accent: string;
+  lineIndex: number;
+  parts: readonly IntroTextPart[];
+  targetColor: string;
   theme: ReturnType<typeof useTheme>["theme"];
+  correctExampleLabel: string;
+  wrongExampleLabel: string;
 }>) {
-  if (line.type === "spacer") return <View style={styles.spacer} />;
-  const text = lineText(line).trim();
-  if (!text) return null;
-
-  const formula = line.type === "formula";
-  const danger = line.type === "wrong";
-  const success = line.type === "correct";
-  const featured =
-    formula ||
-    danger ||
-    success ||
-    line.type === "tip" ||
-    line.type === "example";
-  const icon: React.ComponentProps<typeof Ionicons>["name"] = danger
-    ? "close-circle-outline"
-    : success
-      ? "checkmark-circle-outline"
-      : formula
-        ? "code-slash-outline"
-        : line.type === "tip"
-          ? "bulb-outline"
-          : "chatbubble-ellipses-outline";
-  const featureColor = danger ? theme.wrong : success ? theme.correct : accent;
-  const toneColors: Readonly<
-    Record<NonNullable<IntroTextPart["tone"]>, string>
-  > = {
-    normal: featured ? theme.textOnCard : theme.heroTextPrimary,
-    muted: featured ? theme.textMuted : theme.heroTextMuted,
-    strong: featured ? theme.textOnCard : theme.heroTextPrimary,
-    accent,
-    success: theme.correct,
-    danger: theme.wrong,
-    warning: theme.gold,
-    formula: accent,
-    code: accent,
-  };
-
   return (
-    <View
+    <Text
+      testID={
+        lineIndex === 0
+          ? "learning-v2-intro-reader-paragraph"
+          : `learning-v2-intro-reader-paragraph-${lineIndex}`
+      }
       style={[
-        styles.line,
-        featured && styles.featuredLine,
-        featured && {
-          borderColor: theme.border,
-          backgroundColor: theme.bgCard,
-        },
+        styles.readerParagraph,
+        { color: theme.textOnCard },
       ]}
     >
-      {featured && (
-        <View
-          style={[styles.lineIcon, { backgroundColor: `${featureColor}18` }]}
-        >
-          <Ionicons name={icon} size={18} color={featureColor} />
-        </View>
-      )}
-      <Text
-        style={[
-          styles.lineText,
-          { color: featured ? theme.textOnCard : theme.heroTextPrimary },
-          formula && styles.formulaText,
-        ]}
-      >
-        {line.parts?.length
-          ? line.parts.map((part, index) => (
-              <Text
-                key={`${part.text}-${index}`}
-                style={{
-                  color: part.tone
-                    ? toneColors[part.tone]
-                    : featured
-                      ? theme.textOnCard
-                      : theme.heroTextPrimary,
-                  fontWeight:
-                    part.tone === "strong" ||
-                    part.tone === "formula" ||
-                    part.tone === "code"
-                      ? "900"
-                      : "700",
-                }}
-              >
-                {part.text}
-              </Text>
-            ))
-          : text}
-      </Text>
-    </View>
+      {parts.map((part, index) => {
+        const target = part.semantic === "targetCorrect";
+        const wrong = part.semantic === "targetWrong";
+        const gloss = part.semantic === "nativeGloss";
+        const emphasizedLegacy = !part.semantic && part.tone === "strong";
+        return (
+          <Text
+            key={`${index}-${part.text}`}
+            testID={`learning-v2-intro-part-${lineIndex}-${index}`}
+            accessibilityLabel={
+              wrong
+                ? `${part.text}, ${wrongExampleLabel}`
+                : target
+                  ? `${part.text}, ${correctExampleLabel}`
+                  : part.text
+            }
+            style={{
+              color: wrong
+                ? theme.wrong
+                : target
+                  ? targetColor
+                  : gloss
+                    ? theme.textMuted
+                    : theme.textOnCard,
+              fontSize: target || wrong ? 18 : 17,
+              fontWeight:
+                target || wrong || emphasizedLegacy ? "700" : "400",
+              textDecorationLine: wrong ? "line-through" : "none",
+            }}
+          >
+            {part.text}
+          </Text>
+        );
+      })}
+    </Text>
   );
 }
 
 export default function LearningV2SessionIntro({
   introScreens,
   lessonId,
-  sessionOrdinal,
+  sessionOrdinal: _sessionOrdinal,
   taskIds,
   evaluateChoice,
   resolveSecondWrongExplanation,
@@ -283,9 +254,9 @@ export default function LearningV2SessionIntro({
 }>) {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const { height } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const reducedMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [selectedCorrectIndex, setSelectedCorrectIndex] = useState<
@@ -296,30 +267,13 @@ export default function LearningV2SessionIntro({
   const completionsRef = useRef(
     new Map<string, RequiredSessionTaskCompletionInputV3>(),
   );
-  // A release may finish hydrating while the learner reads page two. The
-  // three intro answers must nevertheless stay on the exact task identity set
-  // selected at the intro boundary.
   const stableTaskIdsRef = useRef(taskIds);
   const stableTaskIds = stableTaskIdsRef.current;
-  const answerShake = useSharedValue(0);
   const copy = useMemo(() => stringsFor(lang), [lang]);
   const screens = introScreens.length > 0 ? introScreens : [];
   const safeIndex = Math.min(index, Math.max(0, screens.length - 1));
   const screen = screens[safeIndex];
-  const visualIndex =
-    screen?.kind === "formula"
-      ? 1
-      : screen?.kind === "practice"
-        ? 2
-        : safeIndex % VISUALS.length;
-  const visualBase = VISUALS[visualIndex] ?? VISUALS[0]!;
-  const visual = {
-    ...visualBase,
-    accent: [t.accent, t.gold, t.correct][visualIndex] ?? t.accent,
-    accentSoft: [t.accentBg, t.goldBg, t.correctBg][visualIndex] ?? t.accentBg,
-    glow: [t.glow, t.goldBg, t.correctBg][visualIndex] ?? t.glow,
-  };
-  const stageLabel = copy.stageLabels[visualIndex] ?? copy.stageLabels[0];
+  const stageLabel = copy.stageLabels[safeIndex] ?? copy.stageLabels[0];
   const title = screen
     ? (richTitle(screen, lang, studyTarget) ?? stageLabel)
     : "";
@@ -335,7 +289,12 @@ export default function LearningV2SessionIntro({
       : [
           {
             type: "text" as const,
-            text: plainIntroText(screen, lang, studyTarget) ?? "",
+            parts: [
+              {
+                text: plainIntroText(screen, lang, studyTarget) ?? "",
+                semantic: "explanation" as const,
+              },
+            ],
           },
         ]
     : [];
@@ -350,17 +309,14 @@ export default function LearningV2SessionIntro({
       "")
     : "";
   const answered = selectedCorrectIndex !== null;
-  const answerShakeStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: answerShake.value }],
-  }));
+  const targetColor = introTargetTextColor(t, themeMode);
+  const ctaTextColor = introCtaTextColor(t);
 
   useEffect(() => {
     if (screens.length === 0) onComplete([]);
   }, [onComplete, screens.length]);
 
-  if (!screen) {
-    return null;
-  }
+  if (!screen) return null;
 
   const chooseAnswer = (choiceIndex: number) => {
     if (!question || answered) return;
@@ -391,18 +347,10 @@ export default function LearningV2SessionIntro({
     setWrongCount((value) => value + 1);
     setAttempts((value) => value + 1);
     void hapticError();
-    if (reducedMotion) return;
-    answerShake.value = withSequence(
-      withTiming(-7, { duration: 45, reduceMotion: ReduceMotion.System }),
-      withTiming(6, { duration: 55, reduceMotion: ReduceMotion.System }),
-      withTiming(-4, { duration: 55, reduceMotion: ReduceMotion.System }),
-      withTiming(0, { duration: 45, reduceMotion: ReduceMotion.System }),
-    );
   };
 
   const advance = () => {
     if (!question || !answered) return;
-    void hapticTap();
     if (isLast) {
       onComplete(
         stableTaskIds
@@ -427,37 +375,30 @@ export default function LearningV2SessionIntro({
     >
       <SafeAreaView style={styles.safe} edges={["top"]}>
         <View style={styles.header}>
-          <Pressable
-            accessibilityRole="button"
+          <PressableHybrid
+            testID="learning-v2-intro-close"
+            variant="icon"
             accessibilityLabel={copy.close}
             hitSlop={10}
-            onPressIn={() => void hapticTap()}
             onPress={onBack}
-            style={({ pressed }) => [
-              styles.closeButton,
+            style={styles.closeButton}
+            contentStyle={[
+              styles.closeButtonFace,
               { backgroundColor: t.bgCard, borderColor: t.border },
-              pressed && styles.pressed,
             ]}
           >
-            <Ionicons name="close" size={22} color={t.heroTextPrimary} />
-          </Pressable>
-          <View style={styles.headerCopy}>
-            <Text style={[styles.headerEyebrow, { color: t.heroTextMuted }]}>
-              LEARNING V2
+            <Ionicons name="close" size={22} color={t.textPrimary} />
+          </PressableHybrid>
+
+          <View style={styles.stageMeta}>
+            <Text style={[styles.stageLabel, { color: targetColor }]}>
+              {stageLabel}
             </Text>
-            <Text style={[styles.headerTitle, { color: t.heroTextPrimary }]}>
-              {copy.session} {sessionOrdinal}
-            </Text>
-          </View>
-          <View
-            accessibilityLabel={`${safeIndex + 1} из ${screens.length}`}
-            style={[styles.pageCounter, { backgroundColor: t.bgCard }]}
-          >
-            <Text style={[styles.pageCounterText, { color: t.textOnCard }]}>
-              {safeIndex + 1}
-            </Text>
-            <Text style={[styles.pageCounterMuted, { color: t.textMuted }]}>
-              /{screens.length}
+            <Text
+              accessibilityLabel={copy.progress(safeIndex + 1, screens.length)}
+              style={[styles.pageCounter, { color: t.textMuted }]}
+            >
+              {safeIndex + 1} / {screens.length}
             </Text>
           </View>
         </View>
@@ -465,11 +406,7 @@ export default function LearningV2SessionIntro({
         <View
           style={styles.progressRow}
           accessibilityRole="progressbar"
-          accessibilityValue={{
-            min: 1,
-            max: screens.length,
-            now: safeIndex + 1,
-          }}
+          accessibilityValue={{ min: 1, max: screens.length, now: safeIndex + 1 }}
         >
           {screens.map((entry, progressIndex) => (
             <View
@@ -477,9 +414,7 @@ export default function LearningV2SessionIntro({
               style={[
                 styles.progressSegment,
                 { backgroundColor: t.bgSurface2 },
-                progressIndex <= safeIndex && {
-                  backgroundColor: visual.accent,
-                },
+                progressIndex <= safeIndex && { backgroundColor: targetColor },
               ]}
             />
           ))}
@@ -489,8 +424,10 @@ export default function LearningV2SessionIntro({
           key={`intro-v2-${safeIndex}`}
           entering={
             reducedMotion
-              ? FadeIn.duration(1)
-              : FadeInDown.duration(300).reduceMotion(ReduceMotion.System)
+              ? undefined
+              : FadeInDown.duration(LUM.contentMs).reduceMotion(
+                  ReduceMotion.System,
+                )
           }
           style={styles.slide}
         >
@@ -504,169 +441,118 @@ export default function LearningV2SessionIntro({
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
           >
-            <View
-              style={[
-                styles.hero,
-                compact && styles.heroCompact,
-                {
-                  backgroundColor: visual.accentSoft,
-                  borderColor: `${visual.accent}4A`,
-                },
-              ]}
-            >
-              <View
-                style={[styles.heroGlow, { backgroundColor: visual.glow }]}
-              />
-              <View
-                style={[
-                  styles.orbitOuter,
-                  { borderColor: `${visual.accent}35` },
-                ]}
-              >
+            <View style={styles.readerColumn}>
+              <Text style={[styles.title, { color: t.textPrimary }]}>
+                {title}
+              </Text>
+              {!!subtitle && (
+                <Text style={[styles.subtitle, { color: t.textMuted }]}>
+                  {subtitle}
+                </Text>
+              )}
+
+              <View style={styles.knowledgeFlow}>
+                {lines.map((line, lineIndex) => {
+                  const text = lineText(line);
+                  if (line.type === "spacer") {
+                    return <View key={`${lineIndex}-spacer`} style={styles.spacer} />;
+                  }
+                  if (!text.trim()) return null;
+                  const parts = line.parts?.length
+                    ? line.parts
+                    : [{ text, semantic: "explanation" as const }];
+                  return (
+                    <IntroReaderParagraph
+                      key={`${lineIndex}-${text}`}
+                      lineIndex={lineIndex}
+                      parts={parts}
+                      targetColor={targetColor}
+                      theme={t}
+                      correctExampleLabel={copy.correctExample}
+                      wrongExampleLabel={copy.wrongExample}
+                    />
+                  );
+                })}
+              </View>
+
+              {question && (
                 <View
                   style={[
-                    styles.orbitInner,
-                    {
-                      borderColor: `${visual.accent}56`,
-                      backgroundColor: t.bgPrimary,
-                    },
+                    styles.questionPanel,
+                    { backgroundColor: t.bgCard, borderColor: t.border },
                   ]}
                 >
-                  <LinearGradient
-                    colors={[visual.accent, t.correct]}
-                    style={styles.heroIcon}
-                  >
-                    <Ionicons
-                      name={visual.icon}
-                      size={compact ? 28 : 34}
-                      color={t.correctText}
-                    />
-                  </LinearGradient>
-                </View>
-              </View>
-              <View
-                style={[
-                  styles.heroLabel,
-                  { backgroundColor: `${visual.accent}1E` },
-                ]}
-              >
-                <Text style={[styles.heroLabelText, { color: visual.accent }]}>
-                  {stageLabel}
-                </Text>
-              </View>
-            </View>
-
-            <Text style={[styles.title, { color: t.heroTextPrimary }]}>
-              {title}
-            </Text>
-            {!!subtitle && (
-              <Text style={[styles.subtitle, { color: t.heroTextMuted }]}>
-                {subtitle}
-              </Text>
-            )}
-
-            <View style={styles.knowledgePanel}>
-              {lines.map((line, lineIndex) => (
-                <RichLine
-                  key={`${safeIndex}-${lineIndex}-${lineText(line)}`}
-                  line={line}
-                  accent={visual.accent}
-                  theme={t}
-                />
-              ))}
-            </View>
-
-            {question && (
-              <Animated.View
-                style={[
-                  styles.questionPanel,
-                  { backgroundColor: t.bgCard, borderColor: t.border },
-                  answerShakeStyle,
-                ]}
-              >
-                <View style={styles.questionEyebrowRow}>
-                  <View
-                    style={[
-                      styles.questionNumber,
-                      { backgroundColor: `${visual.accent}20` },
-                    ]}
-                  >
-                    <Text
-                      style={[
-                        styles.questionNumberText,
-                        { color: visual.accent },
-                      ]}
-                    >
-                      {question.taskSlot}
+                  <View style={styles.questionEyebrowRow}>
+                    <Text style={[styles.questionEyebrow, { color: targetColor }]}>
+                      {copy.answerFirst}
+                    </Text>
+                    <Text style={[styles.questionNumber, { color: t.textMuted }]}>
+                      {question.taskSlot} / 3
                     </Text>
                   </View>
-                  <Text
-                    style={[styles.questionEyebrow, { color: t.textMuted }]}
-                  >
-                    {copy.answerFirst}
+                  <Text style={[styles.questionPrompt, { color: t.textOnCard }]}>
+                    {questionPrompt}
                   </Text>
-                </View>
-                <Text style={[styles.questionPrompt, { color: t.textOnCard }]}>
-                  {questionPrompt}
-                </Text>
-                <View style={styles.answerList}>
-                  {questionChoices.map((choice, choiceIndex) => {
-                    const correct = selectedCorrectIndex === choiceIndex;
-                    return (
-                      <Pressable
-                        key={`${question.questionId}-${choiceIndex}`}
-                        accessibilityRole="button"
-                        accessibilityState={{
-                          selected: correct,
-                          disabled: answered,
-                        }}
-                        disabled={answered}
-                        onPress={() => chooseAnswer(choiceIndex)}
-                        style={({ pressed }) => [
-                          styles.answerChoice,
-                          {
-                            backgroundColor: t.bgSurface2,
-                            borderColor: t.border,
-                          },
-                          correct && {
-                            backgroundColor: t.correct,
-                            borderColor: t.correct,
-                          },
-                          pressed && !answered && styles.answerChoicePressed,
-                        ]}
-                      >
-                        <Text
-                          style={[
-                            styles.answerChoiceText,
-                            { color: t.textOnCard },
-                            correct && { color: t.correctText },
+                  <View style={styles.answerList}>
+                    {questionChoices.map((choice, choiceIndex) => {
+                      const correct = selectedCorrectIndex === choiceIndex;
+                      return (
+                        <PressableHybrid
+                          key={`${question.questionId}-${choiceIndex}`}
+                          testID={`learning-v2-intro-answer-${choiceIndex}`}
+                          variant="card"
+                          accessibilityLabel={choice}
+                          accessibilityState={{ selected: correct, disabled: answered }}
+                          disabled={answered}
+                          withHaptic={false}
+                          onPress={() => chooseAnswer(choiceIndex)}
+                          style={styles.answerChoiceTouch}
+                          contentStyle={[
+                            styles.answerChoice,
+                            {
+                              backgroundColor: correct ? t.correct : t.bgSurface2,
+                              borderColor: correct ? t.correct : t.border,
+                            },
                           ]}
                         >
-                          {choice}
-                        </Text>
-                        {correct && (
-                          <Ionicons
-                            name="checkmark-circle"
-                            size={21}
-                            color={t.correctText}
-                          />
-                        )}
-                      </Pressable>
-                    );
-                  })}
+                          <Text
+                            style={[
+                              styles.answerChoiceText,
+                              { color: correct ? t.correctText : t.textOnCard },
+                            ]}
+                          >
+                            {choice}
+                          </Text>
+                          {correct && (
+                            <Ionicons
+                              name="checkmark-circle"
+                              size={21}
+                              color={t.correctText}
+                            />
+                          )}
+                        </PressableHybrid>
+                      );
+                    })}
+                  </View>
+                  {answered && (
+                    <Text
+                      accessibilityLiveRegion="polite"
+                      style={[styles.correctMessage, { color: t.correct }]}
+                    >
+                      {copy.correct}
+                    </Text>
+                  )}
+                  {!answered && wrongCount >= 2 && (
+                    <Text
+                      accessibilityLiveRegion="polite"
+                      style={[styles.explanation, { color: t.textMuted }]}
+                    >
+                      {questionExplanation}
+                    </Text>
+                  )}
                 </View>
-                {answered && (
-                  <Text style={[styles.correctMessage, { color: t.correct }]}>
-                    {copy.correct}
-                  </Text>
-                )}
-                {!answered && wrongCount >= 2 && (
-                  <Text style={[styles.explanation, { color: t.textMuted }]}>
-                    {questionExplanation}
-                  </Text>
-                )}
-              </Animated.View>
-            )}
+              )}
+            </View>
           </ScrollView>
         </Animated.View>
 
@@ -680,24 +566,24 @@ export default function LearningV2SessionIntro({
             },
           ]}
         >
-          <Pressable
+          <DuoPressable
             testID="learning-v2-intro-next"
-            accessibilityRole="button"
             accessibilityLabel={isLast ? copy.startPractice : copy.next}
             accessibilityState={{ disabled: !answered }}
             disabled={!answered}
             onPress={advance}
-            style={({ pressed }) => [
+            edgeColor={answered ? t.btnShadow : undefined}
+            edgeHeight={CHK.recoilShiftPx}
+            wrapStyle={styles.ctaWrap}
+            style={[
               styles.cta,
-              { backgroundColor: t.accent },
-              !answered && { backgroundColor: t.bgSurface2 },
-              pressed && answered && styles.pressed,
+              { backgroundColor: answered ? t.correct : t.bgSurface2 },
             ]}
           >
             <Text
               style={[
                 styles.ctaText,
-                { color: answered ? t.correctText : t.textMuted },
+                { color: answered ? ctaTextColor : t.textMuted },
               ]}
             >
               {isLast ? copy.startPractice : copy.next}
@@ -705,9 +591,9 @@ export default function LearningV2SessionIntro({
             <Ionicons
               name={isLast ? "play" : "arrow-forward"}
               size={20}
-              color={answered ? t.correctText : t.textMuted}
+              color={answered ? ctaTextColor : t.textMuted}
             />
-          </Pressable>
+          </DuoPressable>
         </View>
       </SafeAreaView>
     </LinearGradient>
@@ -715,238 +601,118 @@ export default function LearningV2SessionIntro({
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#0B1017" },
+  screen: { flex: 1 },
   safe: { flex: 1, overflow: "hidden" },
   header: {
-    minHeight: 62,
+    minHeight: 58,
     paddingHorizontal: 18,
     flexDirection: "row",
     alignItems: "center",
-    gap: 12,
+    gap: 14,
   },
-  closeButton: {
-    width: 46,
-    height: 46,
-    borderRadius: 17,
-    backgroundColor: "#1A2330",
+  closeButton: { minWidth: 44, minHeight: 44 },
+  closeButtonFace: {
+    width: 44,
+    height: 44,
+    borderRadius: 15,
     borderWidth: 1,
-    borderColor: "#2C3949",
     alignItems: "center",
     justifyContent: "center",
   },
-  headerCopy: { flex: 1 },
-  headerEyebrow: {
-    color: "#7E8B9A",
-    fontSize: 10,
-    lineHeight: 14,
-    fontWeight: "900",
-    letterSpacing: 1.8,
-  },
-  headerTitle: {
-    color: "#EDF3F8",
-    fontSize: 15,
-    lineHeight: 21,
-    fontWeight: "900",
-    marginTop: 1,
-  },
-  pageCounter: {
-    minWidth: 52,
-    height: 38,
-    paddingHorizontal: 11,
-    borderRadius: 15,
-    backgroundColor: "#1A2330",
+  stageMeta: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
   },
-  pageCounterText: { color: "#F6F9FB", fontSize: 14, fontWeight: "900" },
-  pageCounterMuted: { color: "#758293", fontSize: 12, fontWeight: "800" },
+  stageLabel: {
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: "700",
+    letterSpacing: 1.4,
+  },
+  pageCounter: { fontSize: 13, lineHeight: 18, fontWeight: "700" },
   progressRow: {
-    height: 5,
+    height: 4,
     marginHorizontal: 18,
-    marginTop: 6,
+    marginTop: 4,
     flexDirection: "row",
     gap: 6,
   },
-  progressSegment: {
-    flex: 1,
-    height: 5,
-    borderRadius: 5,
-    backgroundColor: "#263140",
-  },
+  progressSegment: { flex: 1, height: 4, borderRadius: 4 },
   slide: { flex: 1, minHeight: 0 },
   scroll: { flex: 1, minHeight: 0 },
-  scrollContent: { paddingHorizontal: 18, paddingTop: 22, paddingBottom: 24 },
-  scrollContentCompact: { paddingTop: 14 },
-  hero: {
-    height: 196,
-    borderRadius: 32,
-    borderWidth: 1,
-    overflow: "hidden",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  heroCompact: { height: 150 },
-  heroGlow: {
-    position: "absolute",
-    width: 240,
-    height: 240,
-    borderRadius: 120,
-  },
-  orbitOuter: {
-    width: 132,
-    height: 132,
-    borderRadius: 66,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  orbitInner: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#0B111A99",
-  },
-  heroIcon: {
-    width: 68,
-    height: 68,
-    borderRadius: 25,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.32,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 9 },
-  },
-  heroLabel: {
-    position: "absolute",
-    bottom: 15,
-    paddingHorizontal: 12,
-    paddingVertical: 7,
-    borderRadius: 999,
-  },
-  heroLabelText: {
-    fontSize: 10,
-    lineHeight: 14,
-    fontWeight: "900",
-    letterSpacing: 1.6,
-  },
+  scrollContent: { paddingHorizontal: 18, paddingTop: 24 },
+  scrollContentCompact: { paddingTop: 16 },
+  readerColumn: { width: "100%", maxWidth: 680, alignSelf: "center" },
   title: {
-    color: "#F7FAFC",
-    fontSize: 31,
-    lineHeight: 37,
-    fontWeight: "900",
-    letterSpacing: -0.8,
-    marginTop: 24,
+    fontSize: 28,
+    lineHeight: 34,
+    fontWeight: "700",
+    letterSpacing: -0.4,
   },
   subtitle: {
-    color: "#9DAABA",
     fontSize: 16,
-    lineHeight: 23,
-    fontWeight: "600",
-    marginTop: 8,
+    lineHeight: 25,
+    fontWeight: "400",
+    marginTop: 10,
   },
-  knowledgePanel: { marginTop: 20, gap: 10 },
-  line: {
-    minHeight: 30,
-    flexDirection: "row",
-    alignItems: "flex-start",
-    gap: 11,
-  },
-  featuredLine: {
-    minHeight: 58,
-    borderRadius: 19,
-    borderWidth: 1,
-    backgroundColor: "#151E29",
-    paddingHorizontal: 13,
-    paddingVertical: 12,
-  },
-  lineIcon: {
-    width: 32,
-    height: 32,
-    borderRadius: 11,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 1,
-  },
-  lineText: {
-    flex: 1,
-    color: "#EAF0F6",
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: "600",
-  },
-  formulaText: { fontSize: 17, lineHeight: 25, letterSpacing: 0.1 },
+  knowledgeFlow: { marginTop: 22, gap: 16 },
+  readerParagraph: { fontSize: 17, lineHeight: 28, fontWeight: "400" },
   spacer: { height: 4 },
   questionPanel: {
-    marginTop: 20,
+    marginTop: 26,
     borderRadius: 22,
     borderWidth: 1,
-    borderColor: "#334152",
-    backgroundColor: "#111923",
-    padding: 15,
+    padding: 16,
   },
-  questionEyebrowRow: { flexDirection: "row", alignItems: "center", gap: 9 },
-  questionNumber: {
-    width: 28,
-    height: 28,
-    borderRadius: 10,
+  questionEyebrowRow: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    gap: 12,
   },
-  questionNumberText: { fontSize: 12, fontWeight: "900" },
   questionEyebrow: {
-    color: "#9BA9B8",
-    fontSize: 11,
-    lineHeight: 15,
-    fontWeight: "900",
-    letterSpacing: 0.7,
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: "700",
+    letterSpacing: 0.6,
   },
+  questionNumber: { fontSize: 12, lineHeight: 17, fontWeight: "700" },
   questionPrompt: {
-    color: "#F4F7FA",
     fontSize: 17,
-    lineHeight: 24,
-    fontWeight: "900",
-    marginTop: 13,
+    lineHeight: 25,
+    fontWeight: "700",
+    marginTop: 12,
   },
-  answerList: { marginTop: 13, gap: 9 },
+  answerList: { marginTop: 14, gap: 10 },
+  answerChoiceTouch: { minHeight: 52 },
   answerChoice: {
-    minHeight: 50,
+    minHeight: 52,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "#354355",
-    backgroundColor: "#1A2430",
     paddingHorizontal: 14,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     gap: 10,
   },
-  answerChoicePressed: { opacity: 0.72, transform: [{ scale: 0.99 }] },
-  answerChoiceCorrect: { backgroundColor: "#CFFF45", borderColor: "#CFFF45" },
   answerChoiceText: {
     flex: 1,
-    color: "#ECF2F7",
-    fontSize: 15,
-    lineHeight: 21,
-    fontWeight: "800",
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: "700",
   },
-  answerChoiceTextCorrect: { color: "#07110A" },
   correctMessage: {
-    color: "#CFFF45",
-    fontSize: 13,
-    lineHeight: 19,
-    fontWeight: "900",
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: "700",
     marginTop: 12,
   },
   explanation: {
-    color: "#CBD5DF",
-    fontSize: 13,
-    lineHeight: 19,
-    fontWeight: "700",
+    fontSize: 14,
+    lineHeight: 21,
+    fontWeight: "400",
     marginTop: 12,
   },
   bottomBar: {
@@ -957,25 +723,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: "#202A37",
-    backgroundColor: "#0D131BF2",
   },
+  ctaWrap: { width: "100%", maxWidth: 680, alignSelf: "center" },
   cta: {
     minHeight: 58,
-    borderRadius: 20,
-    backgroundColor: "#CFFF45",
+    borderRadius: 19,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
   },
-  ctaDisabled: { backgroundColor: "#202A35" },
-  ctaText: {
-    color: "#07110A",
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: "900",
-  },
-  ctaTextDisabled: { color: "#66717F" },
-  pressed: { opacity: 0.8, transform: [{ scale: 0.985 }] },
+  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: "700" },
 });

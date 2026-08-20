@@ -17,11 +17,20 @@ test("Learning V2 uses a dedicated new intro renderer instead of the legacy less
 
   expect(intro).not.toContain("LessonArtBackdrop");
   expect(intro).not.toContain("IntroBlockCard");
-  expect(intro).not.toContain("DuoPressable");
-  expect(intro).toContain("const VISUALS:");
+  expect(intro).not.toContain("Интро сессии");
+  expect(intro).not.toContain("sessionOrdinal}");
+  expect(intro).not.toContain("styles.hero");
+  expect(intro).not.toContain("styles.featuredLine");
+  expect(intro).toContain("IntroReaderParagraph");
+  expect(intro).toContain('semantic === "targetCorrect"');
+  expect(intro).toContain('semantic === "targetWrong"');
+  expect(intro).toContain("DuoPressable");
+  expect(intro).toContain("PressableHybrid");
+  expect(intro).toContain("useStableSafeAreaInsets");
+  expect(intro).not.toContain("useSafeAreaInsets");
   expect(intro).toMatch(/ru:\s*['"]СМЫСЛ['"]/);
   expect(intro).toMatch(/ru:\s*['"]СХЕМА['"]/);
-  expect(intro).toMatch(/ru:\s*['"]ПРИМЕНЕНИЕ['"]/);
+  expect(intro).toMatch(/ru:\s*['"]ЛОВУШКА['"]/);
   expect(intro).toContain("learning-v2-intro-next");
   expect(intro).toContain("style={styles.scroll}");
   expect(intro).toContain("slide: { flex: 1, minHeight: 0 }");
@@ -40,12 +49,12 @@ test("each of the three intro pages contains its own question and practice begin
   expect(intro).toContain(
     'import { useTheme } from "../components/ThemeContext"',
   );
-  expect(intro).toContain("const { theme: t } = useTheme()");
+  expect(intro).toContain("const { theme: t, themeMode } = useTheme()");
   expect(intro).toContain(
     "colors={[t.bgGradient[0], t.bgPrimary, t.bgGradient[1]]}",
   );
-  expect(intro).toContain("backgroundColor: t.accent");
-  expect(intro).toContain("answered ? t.correctText : t.textMuted");
+  expect(intro).toContain("answered ? t.correct : t.bgSurface2");
+  expect(intro).toContain("answered ? ctaTextColor : t.textMuted");
   expect(route).toContain("const [cardIndex, setCardIndex] = useState(3)");
   expect(route).toContain("setCardIndex(3)");
   expect(route).not.toContain("cardIndex < 3");

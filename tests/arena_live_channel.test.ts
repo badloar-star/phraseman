@@ -1,4 +1,5 @@
 import {
+  ARENA_LIVE_LEGACY_SCHEMA_VERSION,
   ARENA_LIVE_SCHEMA_VERSION,
   arenaLivePublishPlan,
   arenaLiveWriteBudget,
@@ -9,6 +10,8 @@ import {
   type ArenaLiveTick,
 } from '../modules/arena/live_channel';
 import type { ArenaOpponentTick } from '../modules/arena/match_machine';
+import fs from 'node:fs';
+import path from 'node:path';
 import {
   arenaSearchingCount,
   arenaSearchingCountForms,
@@ -34,6 +37,11 @@ const tick = (taskIndex: number, correct = true, raceElapsedMs = 1_000): ArenaLi
   ({ taskIndex, correct, raceElapsedMs });
 
 describe('бюджет записей', () => {
+  it('публикатор сериализует optional matchStars в том же write', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'app/arena_client.ts'), 'utf8');
+    expect(source).toContain("...(Number.isInteger(tick.matchStars) ? { matchStars: tick.matchStars } : {})");
+  });
+
   it('первое закрытое задание публикуется', () => {
     const plan = arenaLivePublishPlan({
       publishedTaskIndexes: [], closedTicks: [tick(0)], finished: false, finishPublished: false,
@@ -119,6 +127,34 @@ describe('разбор чужой записи', () => {
     const seat = arenaParseLiveSeat(good, 10);
     expect(seat).not.toBeNull();
     expect(seat!.ticks).toEqual([{ taskIndex: 1, correct: true, raceElapsedMs: 900 }]);
+  });
+
+  it('v2 сохраняет только валидный неубывающий накопленный счёт', () => {
+    const seat = arenaParseLiveSeat({
+      schemaVersion: 'arena-live.v2',
+      ticks: [
+        { taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 3 },
+        { taskIndex: 1, correct: true, raceElapsedMs: 800, matchStars: 2 },
+        { taskIndex: 2, correct: true, raceElapsedMs: 700, matchStars: 3.5 },
+      ],
+      finished: false,
+      updatedAtMs: 1,
+    }, 5);
+
+    expect(seat?.ticks).toEqual([
+      { taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 3 },
+      { taskIndex: 1, correct: true, raceElapsedMs: 800 },
+      { taskIndex: 2, correct: true, raceElapsedMs: 700 },
+    ]);
+  });
+
+  it('legacy v1 остаётся читаемой во время миграции', () => {
+    expect(arenaParseLiveSeat({
+      schemaVersion: ARENA_LIVE_LEGACY_SCHEMA_VERSION,
+      ticks: [{ taskIndex: 0, correct: true, raceElapsedMs: 900 }],
+      finished: false,
+      updatedAtMs: 1,
+    }, 5)).not.toBeNull();
   });
 
   it('пусто и мусор дают null, а не падение', () => {
@@ -316,17 +352,21 @@ describe('что публикуется из состояния матча', () 
     startedAtWallMs: 0, finishedAtWallMs: null, abandoned: false,
   } as unknown as Parameters<typeof arenaClosedTicks>[0];
 
-  const withOutcomes = (outcomes: unknown[]) =>
-    ({ ...base, outcomes } as unknown as Parameters<typeof arenaClosedTicks>[0]);
+  const withOutcomes = (outcomes: unknown[], awardStars: readonly number[] = []) =>
+    ({
+      ...base,
+      outcomes,
+      awards: awardStars.map((stars) => ({ stars })),
+    } as unknown as Parameters<typeof arenaClosedTicks>[0]);
 
   it('обычное задание: «верно» берётся из статуса', () => {
     const ticks = arenaClosedTicks(withOutcomes([
       { taskIndex: 0, mode: 'guess_phrase', status: 'correct', raceElapsedMs: 900, firstAttemptPairs: 0, resolvedPairs: 0, answer: null },
       { taskIndex: 1, mode: 'fill_gap', status: 'wrong', raceElapsedMs: 8_000, firstAttemptPairs: 0, resolvedPairs: 0, answer: null },
-    ]));
+    ], [3, 2]));
     expect(ticks).toEqual([
-      { taskIndex: 0, correct: true, raceElapsedMs: 900 },
-      { taskIndex: 1, correct: false, raceElapsedMs: 8_000 },
+      { taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 3 },
+      { taskIndex: 1, correct: false, raceElapsedMs: 8_000, matchStars: 5 },
     ]);
   });
 

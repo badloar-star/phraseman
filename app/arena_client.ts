@@ -581,7 +581,7 @@ export function useArenaOpponentLive(matchId: string | null, opponentSeat: 'a' |
 export async function arenaPublishLiveTicks(input: Readonly<{
   matchId: string;
   seat: 'a' | 'b';
-  ticks: readonly Readonly<{ taskIndex: number; correct: boolean; raceElapsedMs: number }>[];
+  ticks: readonly Readonly<{ taskIndex: number; correct: boolean; raceElapsedMs: number; matchStars?: number }>[];
   finished: boolean;
 }>): Promise<boolean> {
   try {
@@ -595,6 +595,7 @@ export async function arenaPublishLiveTicks(input: Readonly<{
           taskIndex: tick.taskIndex,
           correct: tick.correct,
           raceElapsedMs: tick.raceElapsedMs,
+          ...(Number.isInteger(tick.matchStars) ? { matchStars: tick.matchStars } : {}),
         })),
         finished: input.finished,
         // Метка времени обязательна по правилам: по ней почасовая уборка

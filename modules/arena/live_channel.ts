@@ -1,5 +1,6 @@
 import type { ArenaOpponentTick, ArenaLocalMatchState } from './match_machine';
 import type { ArenaMatchPlanWire } from './duel_plan';
+import { arenaMatchStarCeiling } from './stars';
 
 /**
  * Живой прогресс соперника.
@@ -28,17 +29,19 @@ import type { ArenaMatchPlanWire } from './duel_plan';
 export const ARENA_LIVE_COLLECTION = 'arena_v2_match_live';
 /** Подколлекция мест за столом. Ключ — место, а не игрок: uid соперника спрятан. */
 export const ARENA_LIVE_SEATS = 'seats';
-export const ARENA_LIVE_SCHEMA_VERSION = 'arena-live.v1' as const;
+export const ARENA_LIVE_SCHEMA_VERSION = 'arena-live.v2' as const;
+export const ARENA_LIVE_LEGACY_SCHEMA_VERSION = 'arena-live.v1' as const;
 
 /** Что публикуется про одно закрытое задание. Ответ сюда НЕ попадает. */
 export type ArenaLiveTick = Readonly<{
   taskIndex: number;
   correct: boolean;
   raceElapsedMs: number;
+  matchStars?: number;
 }>;
 
 export type ArenaLiveSeatState = Readonly<{
-  schemaVersion: typeof ARENA_LIVE_SCHEMA_VERSION;
+  schemaVersion: typeof ARENA_LIVE_SCHEMA_VERSION | typeof ARENA_LIVE_LEGACY_SCHEMA_VERSION;
   /** Последнее закрытое задание. Ходов накапливать не нужно — важен последний. */
   ticks: readonly ArenaLiveTick[];
   finished: boolean;
@@ -85,10 +88,14 @@ function isRecord(value: unknown): value is Record<string, unknown> {
  */
 export function arenaParseLiveSeat(raw: unknown, taskCount: number): ArenaLiveSeatState | null {
   if (!isRecord(raw)) return null;
-  if (raw.schemaVersion !== ARENA_LIVE_SCHEMA_VERSION) return null;
+  const schemaVersion = raw.schemaVersion;
+  if (schemaVersion !== ARENA_LIVE_SCHEMA_VERSION && schemaVersion !== ARENA_LIVE_LEGACY_SCHEMA_VERSION) return null;
   const rawTicks = Array.isArray(raw.ticks) ? raw.ticks : [];
   const seen = new Set<number>();
-  const ticks: ArenaLiveTick[] = [];
+  const parsed: Array<Readonly<{
+    tick: ArenaLiveTick;
+    candidateMatchStars: unknown;
+  }>> = [];
   for (const item of rawTicks) {
     if (!isRecord(item)) continue;
     const taskIndex = Math.trunc(Number(item.taskIndex));
@@ -97,12 +104,24 @@ export function arenaParseLiveSeat(raw: unknown, taskCount: number): ArenaLiveSe
     if (!Number.isFinite(raceElapsedMs) || raceElapsedMs < 0) continue;
     if (seen.has(taskIndex)) continue;
     seen.add(taskIndex);
-    ticks.push({ taskIndex, correct: item.correct === true, raceElapsedMs });
+    parsed.push({
+      tick: { taskIndex, correct: item.correct === true, raceElapsedMs },
+      candidateMatchStars: item.matchStars,
+    });
   }
-  ticks.sort((left, right) => left.taskIndex - right.taskIndex);
+  parsed.sort((left, right) => left.tick.taskIndex - right.tick.taskIndex);
+  const ceiling = arenaMatchStarCeiling(taskCount);
+  let lastRetainedMatchStars = 0;
+  const ticks = parsed.map(({ tick, candidateMatchStars }) => {
+    if (schemaVersion !== ARENA_LIVE_SCHEMA_VERSION) return tick;
+    const matchStars = Number(candidateMatchStars);
+    if (!Number.isInteger(matchStars) || matchStars < lastRetainedMatchStars || matchStars > ceiling) return tick;
+    lastRetainedMatchStars = matchStars;
+    return { ...tick, matchStars };
+  });
   const updatedAtMs = Math.trunc(Number(raw.updatedAtMs));
   return {
-    schemaVersion: ARENA_LIVE_SCHEMA_VERSION,
+    schemaVersion,
     ticks,
     finished: raw.finished === true,
     updatedAtMs: Number.isFinite(updatedAtMs) ? updatedAtMs : 0,
@@ -130,11 +149,9 @@ export function arenaMergeOpponentTicks(
 ): readonly ArenaOpponentTick[] {
   const byIndex = new Map<number, ArenaOpponentTick>();
   for (const tick of liveTicks) {
-    byIndex.set(tick.taskIndex, {
-      taskIndex: tick.taskIndex,
-      correct: tick.correct,
-      raceElapsedMs: tick.raceElapsedMs,
-    });
+    // Structural typing keeps optional v2 display fields at runtime while the
+    // opponent wire is rolled forward in the next compatible layer.
+    byIndex.set(tick.taskIndex, tick);
   }
   for (const tick of planTicks) byIndex.set(tick.taskIndex, tick);
   return [...byIndex.values()].sort((left, right) => left.taskIndex - right.taskIndex);
@@ -180,11 +197,20 @@ export function arenaLiveWriteBudget(taskCount: number): number {
  * говорил бы одно, а счёт показывал другое.
  */
 export function arenaClosedTicks(state: ArenaLocalMatchState): readonly ArenaLiveTick[] {
-  return state.outcomes.map((outcome) => ({
-    taskIndex: outcome.taskIndex,
-    correct: outcome.mode === 'speed_match'
-      ? outcome.firstAttemptPairs > 0
-      : outcome.status === 'correct',
-    raceElapsedMs: Math.max(0, Math.trunc(outcome.raceElapsedMs)),
-  }));
+  const ceiling = arenaMatchStarCeiling(state.taskCount);
+  let matchStars = 0;
+  return state.outcomes.map((outcome, index) => {
+    matchStars = Math.min(
+      ceiling,
+      matchStars + Math.max(0, Math.trunc(state.awards[index]?.stars ?? 0)),
+    );
+    return {
+      taskIndex: outcome.taskIndex,
+      correct: outcome.mode === 'speed_match'
+        ? outcome.firstAttemptPairs > 0
+        : outcome.status === 'correct',
+      raceElapsedMs: Math.max(0, Math.trunc(outcome.raceElapsedMs)),
+      matchStars,
+    };
+  });
 }

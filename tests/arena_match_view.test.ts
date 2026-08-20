@@ -679,7 +679,7 @@ describe('почему матч не начался — словами, а не 
     const matchmaking = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8');
     const introBranch = source.indexOf('const shouldShowIntro =');
     const planWaitBranch = source.indexOf('if (!plan || !match || !hud)');
-    expect(matchmaking).toContain("params: { matchId, intro: '1' }");
+    expect(matchmaking).toContain("params: { matchId, prepared: '1' }");
     expect(introBranch).toBeGreaterThan(-1);
     expect(introBranch).toBeLessThan(planWaitBranch);
     expect(source).toContain('ready={introReady}');

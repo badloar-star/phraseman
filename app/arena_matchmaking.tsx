@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { BackHandler, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
@@ -137,6 +137,7 @@ export default function ArenaMatchmakingScreen() {
       if (result.matchId) {
         // Соперник найден — звук ровно один раз, до перехода на матч.
         playSound('opponentFound');
+        setError(null);
         setMatchId(result.matchId);
       }
       // Успех — счётчик осечек обнуляется: связь снова есть.
@@ -254,6 +255,12 @@ export default function ArenaMatchmakingScreen() {
     return () => { alive = false; };
   }, [entryRetryTick, matchId, mode, requestId, router]);
 
+  useEffect(() => {
+    if (!matchId) return undefined;
+    const subscription = BackHandler.addEventListener('hardwareBackPress', () => true);
+    return () => subscription.remove();
+  }, [matchId]);
+
   /**
    * Отмена поиска. Раньше здесь стоял `.finally(...)`: экран уходил домой
    * ДАЖЕ ЕСЛИ отмена не прошла. Игрок был уверен, что вышел из очереди, а
@@ -316,7 +323,7 @@ export default function ArenaMatchmakingScreen() {
    * развилка в JSX не проверяется тестом, а именно в ней и жила ошибка —
    * четыре разные причины показывались одним словом «Повторить».
    */
-  const searchFailure = error ? arenaSearchFailureCopy(error) : null;
+  const searchFailure = !matchId && error ? arenaSearchFailureCopy(error) : null;
   const assignedFailure = entryFailure ? arenaEntryFailureCopy(entryFailure) : null;
 
   const continueRankedSearch = () => {

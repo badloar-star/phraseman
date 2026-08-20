@@ -104,6 +104,14 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(matchmaking).toContain('disabled={Boolean(matchId)}');
   });
 
+  test('prevents system back navigation and hides stale search failures after assignment', () => {
+    expect(matchmaking).toContain("BackHandler.addEventListener('hardwareBackPress'");
+    expect(matchmaking).toContain('if (!matchId) return undefined;');
+    expect(matchmaking).toContain("BackHandler.addEventListener('hardwareBackPress', () => true)");
+    expect(matchmaking).toContain('const searchFailure = !matchId && error ? arenaSearchFailureCopy(error) : null;');
+    expect(matchmaking).toContain('setError(null);');
+  });
+
   test('live rollout exposes only the approved display score, never identity, answers or economy', () => {
     const liveModel = fs.readFileSync(path.join(ROOT, 'modules/arena/live_channel.ts'), 'utf8');
     const publisher = client.match(

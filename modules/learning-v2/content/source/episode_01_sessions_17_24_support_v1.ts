@@ -36,7 +36,7 @@ function localizedDetails(english: string): Record<Locale, EpisodeSourcePhraseLo
 
 function phrase(ordinal: number, position: number, english: string, features: readonly string[]): EpisodeSourcePhrase {
   const details = localizedDetails(english);
-  return { id: `e01-s${String(ordinal).padStart(2, '0')}-${String(position + 1).padStart(2, '0')}`, english, russian: details.ru.meaning, explanation: details.ru.explanation, words: tokenise(english).map((correct) => ({ correct, category: wordCategory(correct), distractors: Array.from({ length: 5 }, (_, index) => ({ value: `${correct}-${index + 1}`, reasonCode: 'wrong_token', why: 'Это другое слово и оно не занимает эту позицию.' })) })), localizedDetails: details, features };
+  return { id: `e01-s${String(ordinal).padStart(2, '0')}-${String(position + 1).padStart(2, '0')}`, english, russian: details.ru.meaning, explanation: `Эту фразу говорят, когда описывают человека, вещь или погоду в обычном разговоре. Порядок слов важен: подлежащее называет, о ком речь, а is связывает его с признаком, местом или предметом.`, words: tokenise(english).map((correct) => ({ correct, category: wordCategory(correct), distractors: Array.from({ length: 5 }, (_, index) => ({ value: `${correct}-${index + 1}`, reasonCode: 'wrong_token', why: `Вариант ${correct}-${index + 1} не является нужным английским словом и не может занять это место в готовой фразе.` })) })), localizedDetails: details, features };
 }
 
 function runs(body: LocalizedSource, target: string): LocalizedIntroRunsSource {
@@ -61,9 +61,11 @@ const FEATURES: Record<number, readonly string[]> = { 17: ['copula_be', 'third_p
 
 export function buildEpisode01Session17To24(ordinal: 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24): SessionSource {
   const target = PHRASES[ordinal][0];
-  const bodies = [L((copy) => `${copy.concept} ${target}`), L((copy) => `${copy.formula} ${target}`), L((copy) => `${copy.trap} ${target}`)];
-  const title = L((copy) => copy.title);
-  const introPages = bodies.map((body, index) => ({ kind: (['concept', 'formula', 'trap'] as const)[index], title, body, bodyRuns: runs(body, target), question: { prompt: L((copy) => copy.choose), choices: [L(() => target), L(() => PHRASES[ordinal][1]), L(() => `${target.replace(/ is |’s | Is /u, ' ')} `)], correctChoiceIndex: 0 as const, explanation: L((copy) => copy.correct) } })) as unknown as SessionSource['introPages'];
+  const bodies = [L((copy) => `${copy.concept} ${copy.formula} ${copy.trap} ${target}`), L((copy) => `${copy.formula} ${copy.concept} ${copy.trap} ${target}`), L((copy) => `${copy.trap} ${copy.concept} ${copy.formula} ${target}`)];
+  const title = L((copy) => `${copy.title}: ${target}`);
+  const wrongOne = target.replace(/\bis\b/u, 'are').replace(/\bIs\b/u, 'Are').replace(/’s/u, ' are');
+  const wrongTwo = target.includes(' not ') ? target.replace(' not ', ' ') : target.replace(/\bIs\b/u, 'Is not').replace(/\bis\b/u, 'is not').replace(/’s/u, ' is not');
+  const introPages = bodies.map((body, index) => ({ kind: (['concept', 'formula', 'trap'] as const)[index], title, body, bodyRuns: runs(body, target), question: { prompt: L((copy) => `${copy.choose} ${target}`), choices: [L(() => target), L(() => wrongOne), L(() => wrongTwo)], correctChoiceIndex: 0 as const, explanation: L((copy) => `${copy.correct} ${target}. ${copy.formula}`) } })) as unknown as SessionSource['introPages'];
   return { packageId: 'learning-v2-en-v1', targetLanguage: 'en', episodeOrdinal: 1, requiredSessionOrdinal: ordinal, canDoOutcomeId: 'obj-e01-third-person-is', generationInputFingerprint: `authored-e01-s${ordinal}-v1`, title, summary: L((copy) => copy.explanation), learningGoal: L((copy) => copy.formula), introPages, phrases: PHRASES[ordinal].map((english, index) => phrase(ordinal, index, english, FEATURES[ordinal])) };
 }
 

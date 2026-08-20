@@ -22,6 +22,7 @@ export type ArenaQuickResultEvent =
     type: 'sync';
     matchId: string;
     version: number;
+    state?: string;
     match?: ArenaMatch;
     viewerSeat?: 'a' | 'b';
     viewerReward?: ArenaMatchReward;
@@ -55,6 +56,10 @@ function coherentPresentation(
   return reward ? { match, reward, viewerSeat } : null;
 }
 
+function terminal(match: ArenaMatch | null | undefined): boolean {
+  return Boolean(match && (match.terminal || match.state === 'settled' || match.state === 'aborted'));
+}
+
 export function arenaQuickResultReduce(
   state: ArenaQuickResultState,
   event: ArenaQuickResultEvent,
@@ -67,16 +72,21 @@ export function arenaQuickResultReduce(
       ? incoming
       : state.latestLive;
     const quickKnown = state.quickKnown || incoming?.mode === 'quick';
-    const presentation = state.syncResolved && latestLive && latestLive.version >= state.versionFloor
-      ? coherentPresentation(latestLive, state.viewerSeat)
-      : null;
-    return { ...state, latestLive, quickKnown, presentation };
+    return { ...state, latestLive, quickKnown };
   }
 
   const viewerSeat = event.viewerSeat ?? state.viewerSeat;
   const syncMatch = event.match;
   const versionFloor = Math.max(state.versionFloor, event.version, syncMatch?.version ?? 0);
-  const syncPresentation = coherentPresentation(syncMatch, viewerSeat, event.viewerReward);
+  const terminalSync = terminal(syncMatch) || event.state === 'settled' || event.state === 'aborted';
+  const terminalMatch = terminal(syncMatch)
+    ? syncMatch
+    : terminalSync && state.latestLive && state.latestLive.version >= versionFloor
+      ? state.latestLive
+      : null;
+  const syncPresentation = terminalSync
+    ? coherentPresentation(terminalMatch, viewerSeat, event.viewerReward)
+    : null;
   if (syncPresentation) {
     return {
       ...state,
@@ -87,15 +97,12 @@ export function arenaQuickResultReduce(
       presentation: syncPresentation,
     };
   }
-  const livePresentation = state.latestLive && state.latestLive.version >= versionFloor
-    ? coherentPresentation(state.latestLive, viewerSeat)
-    : null;
   return {
     ...state,
     viewerSeat,
     quickKnown: state.quickKnown || syncMatch?.mode === 'quick',
     syncResolved: true,
     versionFloor,
-    presentation: livePresentation,
+    presentation: null,
   };
 }

@@ -30,6 +30,7 @@ import {
   arenaQuickResultInitialState,
   arenaQuickResultReduce,
 } from '../modules/arena/quick_result_state';
+import { arenaResultSurfaceKind } from '../modules/arena/result_surface_state';
 
 export default function ArenaResultsScreen() {
   const router = useRouter();
@@ -107,6 +108,7 @@ export default function ArenaResultsScreen() {
         type: 'sync',
         matchId,
         version: response.version,
+        state: String(response.state ?? ''),
         match: response.match,
         viewerSeat: response.viewerSeat,
         viewerReward: response.viewerReward,
@@ -126,6 +128,12 @@ export default function ArenaResultsScreen() {
     : null;
   const quickKnown = quickResultState.matchId === matchId && quickResultState.quickKnown;
   const match = quickPresentation?.match ?? live.value;
+  const surfaceKind = arenaResultSurfaceKind({
+    matchId,
+    match,
+    quickKnown,
+    quickReady: Boolean(quickPresentation),
+  });
   const effectiveViewerSeat = quickPresentation?.viewerSeat ?? viewerSeat;
   const privateReward = privateRewardState?.matchId === matchId ? privateRewardState.reward : undefined;
   const publicReward = effectiveViewerSeat ? match?.result?.rewards?.[effectiveViewerSeat] : undefined;
@@ -247,7 +255,27 @@ export default function ArenaResultsScreen() {
     />
   ) : null;
 
-  if (matchId && quickKnown && !quickPresentation) {
+  if (surfaceKind === 'neutral_pending' && matchId) {
+    return (
+      <ArenaScreen title={arenaText(lang, 'result')} subtitle={arenaText(lang, 'resultPending')} variant="results" onBack={() => router.replace('/arena' as never)}>
+        <View style={styles.pending}>
+          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: P.text }]}>
+            {arenaText(lang, 'resultPending')}
+          </Text>
+          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{arenaText(lang, 'resultPendingHint')}</Text>
+        </View>
+        <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}>
+          {arenaText(lang, 'reviewTitle')}
+        </V2Cta>
+        <V2Cta onPress={() => router.replace({
+          pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') },
+        } as never)}>{arenaText(lang, 'playAgain')}</V2Cta>
+        <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
+      </ArenaScreen>
+    );
+  }
+
+  if (surfaceKind === 'quick_pending' && matchId) {
     const quickPendingTitle = reportRejected
       ? arenaText(lang, 'reportRejected')
       : arenaText(lang, reportPending ? 'reportQueued' : 'awaitingRival');
@@ -273,7 +301,7 @@ export default function ArenaResultsScreen() {
     );
   }
 
-  if (matchId && quickPresentation && quickReward) {
+  if (surfaceKind === 'quick_ready' && matchId && quickPresentation && quickReward) {
     return (
       <ResultsSequence
         stars={0}

@@ -45,7 +45,7 @@ describe('quick result is authoritative XP-only', () => {
   it('mounts the shared sequence without season stars or client credit and preserves all Arena actions', () => {
     const results = fs.readFileSync(path.join(ROOT, 'app/arena_results.tsx'), 'utf8');
     const sequence = fs.readFileSync(path.join(ROOT, 'components/feedback/ResultsSequence.tsx'), 'utf8');
-    expect(results).toContain('quickPresentation && quickReward');
+    expect(results).toContain("surfaceKind === 'quick_ready'");
     expect(results).toContain('<ResultsSequence');
     expect(results).toContain('showStars={false}');
     expect(results).toContain('onCtaPrimary');
@@ -77,7 +77,9 @@ describe('quick result is authoritative XP-only', () => {
 
   it('keeps quick results on an honest pending surface until a coherent terminal pair exists', () => {
     const results = fs.readFileSync(path.join(ROOT, 'app/arena_results.tsx'), 'utf8');
-    expect(results).toContain('quickKnown && !quickPresentation');
+    expect(results).toContain("surfaceKind === 'neutral_pending'");
+    expect(results).toContain("surfaceKind === 'quick_pending'");
+    expect(results).toContain('arenaResultSurfaceKind({');
     expect(results).toContain("arenaText(lang, reportPending ? 'reportQueued' : 'awaitingRival')");
     expect(results).toContain('const match = quickPresentation?.match ?? live.value;');
     expect(results).toContain('const effectiveViewerSeat = quickPresentation?.viewerSeat ?? viewerSeat;');

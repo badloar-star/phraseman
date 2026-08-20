@@ -55,7 +55,7 @@ describe('quick result terminal presentation latch', () => {
     expect(state.presentation?.match.scores).toEqual({ a: 5, b: 2 });
   });
 
-  it('gates live fallback by sync resolution and rejects a terminal snapshot older than the sync version floor', () => {
+  it('does not treat an active sync as permission to present a public terminal listener reward', () => {
     const oldTerminal = match({
       state: 'settled', version: 9, result: { winnerUid: 'a', rewards: { a: publicReward } },
     });
@@ -72,10 +72,10 @@ describe('quick result terminal presentation latch', () => {
       state: 'settled', version: 11, result: { winnerUid: 'a', rewards: { a: publicReward } },
     });
     state = arenaQuickResultReduce(state, { type: 'live', matchId: 'match-1', match: currentTerminal });
-    expect(state.presentation).toEqual({ match: currentTerminal, reward: publicReward, viewerSeat: 'a' });
+    expect(state.presentation).toBeNull();
   });
 
-  it('accepts a newer coherent terminal live snapshot already queued when sync resolves', () => {
+  it('prefers a later private terminal sync after a public terminal listener arrived first', () => {
     const currentTerminal = match({
       state: 'settled', version: 11, result: { winnerUid: 'a', rewards: { a: publicReward } },
     });
@@ -84,24 +84,59 @@ describe('quick result terminal presentation latch', () => {
     state = arenaQuickResultReduce(state, {
       type: 'sync', matchId: 'match-1', version: 10, match: match({ state: 'task_active', version: 10 }), viewerSeat: 'a',
     });
-    expect(state.presentation).toEqual({ match: currentTerminal, reward: publicReward, viewerSeat: 'a' });
+    expect(state.presentation).toBeNull();
+
+    const privateTerminal = match({
+      state: 'settled', version: 12, result: { winnerUid: 'a', rewards: { a: publicReward } },
+    });
+    state = arenaQuickResultReduce(state, {
+      type: 'sync', matchId: 'match-1', version: 12, match: privateTerminal,
+      viewerSeat: 'a', viewerReward: privateReward,
+    });
+    expect(state.presentation).toEqual({ match: privateTerminal, reward: privateReward, viewerSeat: 'a' });
   });
 
-  it('freezes the first coherent presentation so a later private upgrade cannot replay XP or SFX', () => {
+  it('uses public reward only after a terminal sync proves a legacy response has no private breakdown', () => {
     const terminal = match({
       state: 'settled', version: 11, result: { winnerUid: 'a', rewards: { a: publicReward } },
     });
     let state = arenaQuickResultInitialState('match-1', 'a');
-    state = arenaQuickResultReduce(state, {
-      type: 'sync', matchId: 'match-1', version: 10, match: match({ state: 'task_active', version: 10 }), viewerSeat: 'a',
-    });
     state = arenaQuickResultReduce(state, { type: 'live', matchId: 'match-1', match: terminal });
+    state = arenaQuickResultReduce(state, {
+      type: 'sync', matchId: 'match-1', version: 11, match: terminal, viewerSeat: 'a',
+    });
     const firstPresentation = state.presentation;
+    expect(firstPresentation).toEqual({ match: terminal, reward: publicReward, viewerSeat: 'a' });
 
     state = arenaQuickResultReduce(state, {
       type: 'sync', matchId: 'match-1', version: 12, match: terminal, viewerSeat: 'a', viewerReward: privateReward,
     });
     expect(state.presentation).toBe(firstPresentation);
     expect(state.presentation?.reward).toBe(publicReward);
+  });
+
+  it('waits through active sync and freezes the first later terminal private presentation', () => {
+    let state = arenaQuickResultInitialState('match-1', 'a');
+    state = arenaQuickResultReduce(state, {
+      type: 'sync', matchId: 'match-1', version: 4,
+      match: match({ state: 'task_active', version: 4 }), viewerSeat: 'a',
+    });
+    expect(state.presentation).toBeNull();
+
+    const terminal = match({
+      state: 'settled', version: 5, result: { winnerUid: 'a', rewards: { a: publicReward } },
+    });
+    state = arenaQuickResultReduce(state, {
+      type: 'sync', matchId: 'match-1', version: 5, match: terminal,
+      viewerSeat: 'a', viewerReward: privateReward,
+    });
+    const frozen = state.presentation;
+    expect(frozen?.reward).toBe(privateReward);
+
+    state = arenaQuickResultReduce(state, {
+      type: 'sync', matchId: 'match-1', version: 6, match: terminal,
+      viewerSeat: 'a', viewerReward: publicReward,
+    });
+    expect(state.presentation).toBe(frozen);
   });
 });

@@ -250,22 +250,39 @@ export const arenaV2MatchFinish = (input: Readonly<{
   report: input.report,
 });
 
-/** Creates the native callable promise while the captured account owns the transition lock. */
-export function arenaV2MatchFinishDispatch(
-  input: Readonly<{ matchId: string; report: ArenaMatchReportWire }>,
+function reserveArenaCall<T>(
+  name: string,
+  payload: Record<string, unknown>,
   account: AccountGenerationToken,
-): Promise<ArenaNetworkDispatch<ArenaMatchFinishResponse> | null> {
+): Promise<ArenaNetworkDispatch<T> | null> {
   const ownerStableUid = account.phase === 'active' ? account.stableId : null;
   if (!ownerStableUid) return Promise.resolve(null);
   return arenaReserveAccountDispatch({
     isOwnerCurrent: () => isCurrentAccountGeneration(account, ownerStableUid),
     withTransitionLock: (work) => withAccountTransitionLock(async () => work()),
-    prepareDispatch: () => prepareArenaCall<ArenaMatchFinishResponse>('arenaV2MatchFinish', {
-      matchId: input.matchId,
-      reportId: input.matchId,
-      report: input.report,
-    }),
+    prepareDispatch: () => prepareArenaCall<T>(name, payload),
   });
+}
+
+/** Creates the native callable promise while the captured account owns the transition lock. */
+export function arenaV2MatchFinishDispatch(
+  input: Readonly<{ matchId: string; report: ArenaMatchReportWire }>,
+  account: AccountGenerationToken,
+): Promise<ArenaNetworkDispatch<ArenaMatchFinishResponse> | null> {
+  return reserveArenaCall<ArenaMatchFinishResponse>('arenaV2MatchFinish', {
+    matchId: input.matchId,
+    reportId: input.matchId,
+    report: input.report,
+  }, account);
+}
+
+export function arenaV2MatchSettleDispatch(
+  matchId: string,
+  account: AccountGenerationToken,
+): Promise<ArenaNetworkDispatch<MatchMutationResponse & { settled: boolean }> | null> {
+  return reserveArenaCall<MatchMutationResponse & { settled: boolean }>('arenaV2MatchSettle', {
+    matchId,
+  }, account);
 }
 
 export const arenaV2MatchSettle = (matchId: string) =>

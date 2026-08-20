@@ -29,3 +29,13 @@ export function arenaResultSurfaceKind(input: Readonly<{
   if (!terminal(input.match)) return 'neutral_pending';
   return input.match?.mode === 'quick' ? 'neutral_pending' : 'standard';
 }
+
+/** Only a known route or authoritative match may choose a replay queue. */
+export function arenaResultReplayMode(
+  routeMode: string | null,
+  match: ArenaMatch | null,
+): 'quick' | 'ranked' | null {
+  if (routeMode === 'quick' || routeMode === 'ranked') return routeMode;
+  if (match?.mode === 'quick' || match?.mode === 'ranked') return match.mode;
+  return null;
+}

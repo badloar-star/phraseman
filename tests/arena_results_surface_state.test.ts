@@ -1,5 +1,5 @@
 import type { ArenaMatch, ArenaMatchReward } from '../modules/arena/contract';
-import { arenaResultSurfaceKind } from '../modules/arena/result_surface_state';
+import { arenaResultReplayMode, arenaResultSurfaceKind } from '../modules/arena/result_surface_state';
 
 const reward: ArenaMatchReward = { starsEarned: 0, xpEarned: 12 };
 
@@ -36,5 +36,11 @@ describe('Arena results first-render surface', () => {
     expect(arenaResultSurfaceKind({
       matchId: 'm1', match: match('settled', 'ranked'), quickKnown: false, quickReady: false,
     })).toBe('standard');
+  });
+
+  it('never invents quick replay while mode is unresolved', () => {
+    expect(arenaResultReplayMode(null, null)).toBeNull();
+    expect(arenaResultReplayMode('quick', null)).toBe('quick');
+    expect(arenaResultReplayMode(null, match('settled', 'ranked'))).toBe('ranked');
   });
 });

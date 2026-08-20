@@ -12,12 +12,14 @@ export type ArenaQuickResultState = Readonly<{
   quickKnown: boolean;
   syncResolved: boolean;
   versionFloor: number;
+  terminalSyncRequestedVersion: number | null;
   latestLive: ArenaMatch | null;
   presentation: ArenaQuickResultPresentation | null;
 }>;
 
 export type ArenaQuickResultEvent =
   | Readonly<{ type: 'live'; matchId: string; match: ArenaMatch | null }>
+  | Readonly<{ type: 'terminal_sync_requested'; matchId: string; version: number }>
   | Readonly<{
     type: 'sync';
     matchId: string;
@@ -31,13 +33,15 @@ export type ArenaQuickResultEvent =
 export function arenaQuickResultInitialState(
   matchId: string | null,
   viewerSeat: 'a' | 'b' | null = null,
+  quickKnown = false,
 ): ArenaQuickResultState {
   return {
     matchId,
     viewerSeat,
-    quickKnown: false,
+    quickKnown,
     syncResolved: false,
     versionFloor: 0,
+    terminalSyncRequestedVersion: null,
     latestLive: null,
     presentation: null,
   };
@@ -65,6 +69,16 @@ export function arenaQuickResultReduce(
   event: ArenaQuickResultEvent,
 ): ArenaQuickResultState {
   if (!state.matchId || event.matchId !== state.matchId || state.presentation) return state;
+
+  if (event.type === 'terminal_sync_requested') {
+    return {
+      ...state,
+      terminalSyncRequestedVersion: Math.max(
+        state.terminalSyncRequestedVersion ?? 0,
+        event.version,
+      ),
+    };
+  }
 
   if (event.type === 'live') {
     const incoming = event.match;
@@ -105,4 +119,20 @@ export function arenaQuickResultReduce(
     versionFloor,
     presentation: null,
   };
+}
+
+/**
+ * Returns the exact terminal public version that needs one caller-private sync.
+ * Public listener data can wake the orchestrator but can never authorize XP
+ * presentation by itself.
+ */
+export function arenaQuickResultTerminalSyncVersion(
+  state: ArenaQuickResultState,
+): number | null {
+  if (!state.syncResolved || state.presentation) return null;
+  const live = state.latestLive;
+  if (!live || live.mode !== 'quick' || !terminal(live)) return null;
+  if (live.version < state.versionFloor) return null;
+  if ((state.terminalSyncRequestedVersion ?? 0) >= live.version) return null;
+  return live.version;
 }

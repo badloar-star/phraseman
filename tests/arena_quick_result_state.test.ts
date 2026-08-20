@@ -2,6 +2,7 @@ import type { ArenaMatch, ArenaMatchReward } from '../modules/arena/contract';
 import {
   arenaQuickResultInitialState,
   arenaQuickResultReduce,
+  arenaQuickResultTerminalSyncVersion,
 } from '../modules/arena/quick_result_state';
 
 function match(input: Partial<ArenaMatch> & Pick<ArenaMatch, 'state' | 'version'>): ArenaMatch {
@@ -37,6 +38,47 @@ const privateReward: ArenaMatchReward = {
 };
 
 describe('quick result terminal presentation latch', () => {
+  it('orchestrates active sync then terminal live into one private terminal sync and freezes it', () => {
+    let state = arenaQuickResultInitialState('match-1', 'a');
+    state = arenaQuickResultReduce(state, {
+      type: 'sync', matchId: 'match-1', version: 4,
+      match: match({ state: 'task_active', version: 4 }), viewerSeat: 'a',
+    });
+    expect(arenaQuickResultTerminalSyncVersion(state)).toBeNull();
+
+    const terminal = match({
+      state: 'settled', version: 5, result: { winnerUid: 'a', rewards: { a: publicReward } },
+    });
+    state = arenaQuickResultReduce(state, { type: 'live', matchId: 'match-1', match: terminal });
+    expect(arenaQuickResultTerminalSyncVersion(state)).toBe(5);
+    state = arenaQuickResultReduce(state, {
+      type: 'terminal_sync_requested', matchId: 'match-1', version: 5,
+    });
+    expect(arenaQuickResultTerminalSyncVersion(state)).toBeNull();
+    state = arenaQuickResultReduce(state, { type: 'live', matchId: 'match-1', match: terminal });
+    expect(arenaQuickResultTerminalSyncVersion(state)).toBeNull();
+
+    const privateTerminal = { ...terminal, version: 6 };
+    state = arenaQuickResultReduce(state, {
+      type: 'sync', matchId: 'match-1', version: 6, match: privateTerminal,
+      viewerSeat: 'a', viewerReward: privateReward,
+    });
+    const frozen = state.presentation;
+    expect(frozen?.reward).toBe(privateReward);
+    state = arenaQuickResultReduce(state, { type: 'live', matchId: 'match-1', match: terminal });
+    expect(state.presentation).toBe(frozen);
+  });
+
+  it('keeps terminal public live pending until an initial sync resolves', () => {
+    const terminal = match({
+      state: 'settled', version: 5, result: { winnerUid: 'a', rewards: { a: publicReward } },
+    });
+    let state = arenaQuickResultInitialState('match-1', 'a');
+    state = arenaQuickResultReduce(state, { type: 'live', matchId: 'match-1', match: terminal });
+    expect(arenaQuickResultTerminalSyncVersion(state)).toBeNull();
+    expect(state.presentation).toBeNull();
+  });
+
   it('uses terminal sync match and reward atomically despite stale active 0:0 listener snapshots', () => {
     let state = arenaQuickResultInitialState('match-1', 'a');
     state = arenaQuickResultReduce(state, { type: 'live', matchId: 'match-1', match: match({ state: 'task_active', version: 3 }) });

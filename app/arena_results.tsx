@@ -29,8 +29,9 @@ import { arenaQuickXpPresentation } from '../modules/arena/quick_result';
 import {
   arenaQuickResultInitialState,
   arenaQuickResultReduce,
+  arenaQuickResultTerminalSyncVersion,
 } from '../modules/arena/quick_result_state';
-import { arenaResultSurfaceKind } from '../modules/arena/result_surface_state';
+import { arenaResultReplayMode, arenaResultSurfaceKind } from '../modules/arena/result_surface_state';
 
 export default function ArenaResultsScreen() {
   const router = useRouter();
@@ -42,8 +43,9 @@ export default function ArenaResultsScreen() {
   const reactionLine = { lineHeight: 17 * fontScale };
   const pendingLine = { lineHeight: 20 * fontScale };
   const window = useWindowDimensions();
-  const params = useLocalSearchParams<{ matchId?: string; viewerSeat?: string; reportRejected?: string; motionVariant?: string }>();
+  const params = useLocalSearchParams<{ matchId?: string; mode?: string; viewerSeat?: string; reportRejected?: string; motionVariant?: string }>();
   const matchId = typeof params.matchId === 'string' ? params.matchId : null;
+  const routeMode = params.mode === 'quick' || params.mode === 'ranked' ? params.mode : null;
   const reportRejected = params.reportRejected === '1';
   // зачем: гибрид «Штамп ранга»/«Тихая ступень» (ArenaRankHybrid) включается
   // через ?motionVariant=hybrid — по умолчанию classic, ничего не меняется
@@ -66,11 +68,13 @@ export default function ArenaResultsScreen() {
     reward: ArenaMatchReward;
   }> | null>(null);
   const [quickResultState, setQuickResultState] = useState(() => (
-    arenaQuickResultInitialState(matchId, routeSeat)
+    arenaQuickResultInitialState(matchId, routeSeat, routeMode === 'quick')
   ));
+  const terminalSyncRequestsRef = useRef(new Set<string>());
   useEffect(() => {
-    setQuickResultState(arenaQuickResultInitialState(matchId, routeSeat));
-  }, [matchId, routeSeat]);
+    terminalSyncRequestsRef.current.clear();
+    setQuickResultState(arenaQuickResultInitialState(matchId, routeSeat, routeMode === 'quick'));
+  }, [matchId, routeMode, routeSeat]);
   const [equipped, setEquipped] = useState<Readonly<Record<string, string>>>({});
   const [reactionChosen, setReactionChosen] = useState<string | null>(null);
   const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(null);
@@ -123,11 +127,42 @@ export default function ArenaResultsScreen() {
       type: 'live', matchId, match: live.value,
     }));
   }, [live.value, matchId]);
+  const terminalSyncVersion = arenaQuickResultTerminalSyncVersion(quickResultState);
+  useEffect(() => {
+    if (!active || !matchId || terminalSyncVersion === null) return;
+    const requestKey = `${matchId}:${terminalSyncVersion}`;
+    if (terminalSyncRequestsRef.current.has(requestKey)) return;
+    terminalSyncRequestsRef.current.add(requestKey);
+    let alive = true;
+    setQuickResultState((previous) => arenaQuickResultReduce(previous, {
+      type: 'terminal_sync_requested', matchId, version: terminalSyncVersion,
+    }));
+    void arenaV2SyncMatch(matchId, terminalSyncVersion).then((response) => {
+      if (!alive) return;
+      setSyncState(String(response.state ?? ''));
+      if (response.viewerSeat) {
+        rememberArenaViewerSeat(matchId, response.viewerSeat);
+        setViewerSeat(response.viewerSeat);
+      }
+      if (response.viewerReward) setPrivateRewardState({ matchId, reward: response.viewerReward });
+      setQuickResultState((previous) => arenaQuickResultReduce(previous, {
+        type: 'sync',
+        matchId,
+        version: response.version,
+        state: String(response.state ?? ''),
+        match: response.match,
+        viewerSeat: response.viewerSeat,
+        viewerReward: response.viewerReward,
+      }));
+    }).catch(() => {});
+    return () => { alive = false; };
+  }, [active, matchId, terminalSyncVersion]);
   const quickPresentation = quickResultState.matchId === matchId
     ? quickResultState.presentation
     : null;
   const quickKnown = quickResultState.matchId === matchId && quickResultState.quickKnown;
   const match = quickPresentation?.match ?? live.value;
+  const replayMode = arenaResultReplayMode(routeMode, match);
   const surfaceKind = arenaResultSurfaceKind({
     matchId,
     match,
@@ -267,9 +302,12 @@ export default function ArenaResultsScreen() {
         <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}>
           {arenaText(lang, 'reviewTitle')}
         </V2Cta>
-        <V2Cta onPress={() => router.replace({
-          pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') },
-        } as never)}>{arenaText(lang, 'playAgain')}</V2Cta>
+        <V2Cta disabled={!replayMode} onPress={() => {
+          if (!replayMode) return;
+          router.replace({
+            pathname: '/arena_matchmaking', params: { mode: replayMode, requestId: createArenaRequestId('queue') },
+          } as never);
+        }}>{arenaText(lang, 'playAgain')}</V2Cta>
         <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
       </ArenaScreen>
     );

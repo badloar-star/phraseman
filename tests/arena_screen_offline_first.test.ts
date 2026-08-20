@@ -224,7 +224,7 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     const enabled = screen.getByTestId('arena-tab-match');
     expect(enabled.props.accessibilityState).toEqual({ disabled: false });
     expect(enabled.props.accessibilityHint).toBeUndefined();
-    fireEvent.press(enabled);
+    await fireEvent.press(enabled);
     expect(onMatch).toHaveBeenCalledTimes(1);
     await screen.unmount();
   });

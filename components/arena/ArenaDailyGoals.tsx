@@ -105,7 +105,7 @@ export function ArenaDailyGoals({ model }: { model: ArenaDailyGoalsModel | null 
           <Text numberOfLines={1} style={[styles.title, { color: P.text }]}>{arenaText(lang, 'goalsTitle')}</Text>
           <Text
             numberOfLines={1}
-            accessibilityLabel={model === null ? arenaText(lang, 'valueUnknown') : undefined}
+            accessibilityLabel={model === null ? `${arenaText(lang, 'goalsTitle')}: ${arenaText(lang, 'valueUnknown')}` : undefined}
             style={[styles.counter, { color: allComplete ? P.accent : P.muted }]}
           >
             {model === null ? '—' : model.completedCount} / {goals.length}

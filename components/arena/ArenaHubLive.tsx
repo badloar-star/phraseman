@@ -74,14 +74,14 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
               numberOfLines={1}
               adjustsFontSizeToFit
               minimumFontScale={0.75}
-              accessibilityLabel={rank ? undefined : arenaText(lang, 'valueUnknown')}
+              accessibilityLabel={rank ? undefined : `${arenaText(lang, 'ranks')}: ${arenaText(lang, 'valueUnknown')}`}
               style={[styles.rankName, { color: P.text }]}
             >
               {rank === null ? '—' : `${arenaText(lang, TIER_COPY[rank.tierIndex])} · ${ROMAN[rank.division]}`}
             </Text>
             <Text
               numberOfLines={1}
-              accessibilityLabel={rank ? undefined : arenaText(lang, 'valueUnknown')}
+              accessibilityLabel={rank ? undefined : `RP: ${arenaText(lang, 'valueUnknown')}`}
               style={[styles.rp, { color: P.muted }]}
             >
               {rank ? rank.rp : '—'}

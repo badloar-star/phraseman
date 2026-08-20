@@ -227,4 +227,31 @@ describe('Arena entry prefetch production singleton source contract', () => {
     expect(source).toContain('export const arenaEntryPrefetchStart = arenaEntryPrefetch.start;');
     expect(source).toContain('export const arenaEntryPrefetchPeek = arenaEntryPrefetch.peek;');
   });
+
+  test('keeps matchmaking visible until the shared prepared entry succeeds', () => {
+    const matchmaking = fs.readFileSync(path.resolve(__dirname, '../app/arena_matchmaking.tsx'), 'utf8');
+    const prefetchAt = matchmaking.indexOf('arenaEntryPrefetchStart(matchId)');
+    const navigationAt = matchmaking.indexOf("params: { matchId, prepared: '1' }");
+
+    expect(matchmaking).toContain("import { arenaEntryPrefetchStart } from './arena_entry_prefetch';");
+    expect(prefetchAt).toBeGreaterThan(0);
+    expect(navigationAt).toBeGreaterThan(prefetchAt);
+    expect(matchmaking).not.toContain("params: { matchId, intro: '1' }");
+    expect(matchmaking).toContain('let alive = true;');
+    expect(matchmaking).toContain('if (!alive) return;');
+  });
+
+  test('keeps an assigned match on the search card through entry failures', () => {
+    const matchmaking = fs.readFileSync(path.resolve(__dirname, '../app/arena_matchmaking.tsx'), 'utf8');
+
+    expect(matchmaking).toContain('const [entryFailure, setEntryFailure] = useState<ArenaEntryFailure | null>(null);');
+    expect(matchmaking).toContain('const [entryRetryTick, setEntryRetryTick] = useState(0);');
+    expect(matchmaking).toContain("reason instanceof ArenaNoOpponentError ? 'no_opponent' : arenaEntryFailure(reason)");
+    expect(matchmaking).toContain('const assignedFailure = entryFailure ? arenaEntryFailureCopy(entryFailure) : null;');
+    expect(matchmaking).toContain('setEntryRetryTick((tick) => tick + 1);');
+    expect(matchmaking).toContain("params: { mode: 'quick', requestId: createArenaRequestId('queue') }");
+    expect(matchmaking).toContain("{arenaText(lang, 'home')}");
+    const assignedFailureAt = matchmaking.indexOf('const assignedFailure =');
+    expect(matchmaking.slice(assignedFailureAt)).not.toContain('arenaV2QueueCancel');
+  });
 });

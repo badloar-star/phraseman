@@ -95,6 +95,15 @@ describe('Arena V2 listener and callable source contract', () => {
     }
   });
 
+  test('stops all queue work and cancellation once a match is assigned', () => {
+    expect(matchmaking).toContain('active && !matchId');
+    expect(matchmaking).toContain('if (!active || matchId) return;');
+    expect(matchmaking).toContain("if (!active || matchId || mode !== 'quick' || botDelayMs === null) return undefined;");
+    expect(matchmaking).toContain('if (matchId || cancellingRef.current) return;');
+    expect(matchmaking).toContain('backDisabled={Boolean(matchId)}');
+    expect(matchmaking).toContain('disabled={Boolean(matchId)}');
+  });
+
   test('live rollout exposes only the approved display score, never identity, answers or economy', () => {
     const liveModel = fs.readFileSync(path.join(ROOT, 'modules/arena/live_channel.ts'), 'utf8');
     const publisher = client.match(
@@ -222,10 +231,14 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(match).toContain('onBack={confirmForfeit}');
   });
 
-  test('keeps an in-flight match plan across a React remount', () => {
+  test('uses the shared entry-prefetch coordinator across matchmaking remounts', () => {
     const match = fs.readFileSync(path.join(ROOT, 'app/arena_match.tsx'), 'utf8');
-    expect(match).toContain('arenaMatchPlanRequests');
-    expect(match).toContain('arenaMatchPlanRequest(matchId)');
+    const entryPrefetch = fs.readFileSync(path.join(ROOT, 'app/arena_entry_prefetch.ts'), 'utf8');
+    expect(entryPrefetch).toContain('createArenaEntryPrefetch({');
+    expect(entryPrefetch).toContain('export const arenaEntryPrefetchStart = arenaEntryPrefetch.start;');
+    expect(entryPrefetch).toContain('export const arenaEntryPrefetchPeek = arenaEntryPrefetch.peek;');
+    // Task 4 removes the legacy consumer; this task only moves request ownership
+    // to the shared coordinator before the route is entered.
     expect(match).toContain('[active, matchId, plan, planError]');
   });
 

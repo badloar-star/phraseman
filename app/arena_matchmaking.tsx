@@ -7,7 +7,8 @@ import { ArenaSearchPulse } from '../components/arena/ArenaSearchPulse';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { arenaSearchingCountText, arenaText } from '../modules/arena/copy';
-import { arenaEntryFailure, arenaSearchFailureCopy, type ArenaEntryFailure } from '../modules/arena/duel_plan';
+import { arenaEntryFailure, arenaEntryFailureCopy, arenaSearchFailureCopy, type ArenaEntryFailure } from '../modules/arena/duel_plan';
+import { ArenaNoOpponentError } from '../modules/arena/entry_prefetch';
 import { ARENA_QUICK_FALLBACK_MAX_MS, ARENA_RANKED_HEARTBEAT_MS, type ArenaQueueMode } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
@@ -21,6 +22,7 @@ import {
   useArenaQueue,
 } from './arena_client';
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
+import { arenaEntryPrefetchStart } from './arena_entry_prefetch';
 
 const quickFallbackRequests = new Set<string>();
 
@@ -73,6 +75,8 @@ export default function ArenaMatchmakingScreen() {
   const [error, setError] = useState<ArenaEntryFailure | null>(null);
   /** Ручной повтор: меняет зависимость эффекта поиска и запускает его заново. */
   const [retryTick, setRetryTick] = useState(0);
+  const [entryFailure, setEntryFailure] = useState<ArenaEntryFailure | null>(null);
+  const [entryRetryTick, setEntryRetryTick] = useState(0);
   const [switchingMode, setSwitchingMode] = useState(false);
   const [rankedPresentationRestartedAtMs, setRankedPresentationRestartedAtMs] = useState<number | undefined>();
   /** Момент входа бота назначает сервер. Клиент только ждёт до него.
@@ -238,10 +242,17 @@ export default function ArenaMatchmakingScreen() {
     if (!matchId) return;
     quickFallbackRequests.delete(requestId);
     releaseImplicitQueueRequestId(mode, requestId);
-    // Столкновение начинается в первом кадре экрана матча. Пока оно идёт,
-    // оба клиента принимают дуэль и получают план без отдельного ожидания.
-    router.replace({ pathname: '/arena_match', params: { matchId, intro: '1' } } as never);
-  }, [matchId, mode, requestId, router]);
+    setEntryFailure(null);
+    let alive = true;
+    void arenaEntryPrefetchStart(matchId).then(() => {
+      if (!alive) return;
+      router.replace({ pathname: '/arena_match', params: { matchId, prepared: '1' } } as never);
+    }).catch((reason) => {
+      if (!alive) return;
+      setEntryFailure(reason instanceof ArenaNoOpponentError ? 'no_opponent' : arenaEntryFailure(reason));
+    });
+    return () => { alive = false; };
+  }, [entryRetryTick, matchId, mode, requestId, router]);
 
   /**
    * Отмена поиска. Раньше здесь стоял `.finally(...)`: экран уходил домой
@@ -273,7 +284,7 @@ export default function ArenaMatchmakingScreen() {
    * плата не с той стороны.
    */
   const cancel = useCallback(() => {
-    if (cancellingRef.current) return; // защита от двойного тапа
+    if (matchId || cancellingRef.current) return; // защита от двойного тапа и отмены назначенного матча
     cancellingRef.current = true;
     quickFallbackRequests.delete(requestId);
     setCancelFailed(false);
@@ -283,7 +294,7 @@ export default function ArenaMatchmakingScreen() {
     void arenaV2QueueCancel(requestId).catch(() => {
       setTimeout(() => { void arenaV2QueueCancel(requestId).catch(() => {}); }, 1500);
     });
-  }, [mode, requestId, router]);
+  }, [matchId, mode, requestId, router]);
 
   const switchToQuick = async () => {
     if (mode !== 'ranked' || switchingMode || matchId) return;
@@ -306,14 +317,22 @@ export default function ArenaMatchmakingScreen() {
    * четыре разные причины показывались одним словом «Повторить».
    */
   const searchFailure = error ? arenaSearchFailureCopy(error) : null;
+  const assignedFailure = entryFailure ? arenaEntryFailureCopy(entryFailure) : null;
 
   const continueRankedSearch = () => {
     setError(null);
     setRankedPresentationRestartedAtMs(now);
   };
 
+  const recoverNoOpponent = () => {
+    router.replace({
+      pathname: '/arena_matchmaking',
+      params: { mode: 'quick', requestId: createArenaRequestId('queue') },
+    } as never);
+  };
+
   return (
-    <ArenaScreen title={title} subtitle={arenaText(lang, 'searching')} variant="lobby" scroll={false} onBack={cancel}>
+    <ArenaScreen title={title} subtitle={arenaText(lang, 'searching')} variant="lobby" scroll={false} onBack={cancel} backDisabled={Boolean(matchId)}>
       <View style={styles.center}>
         <V2Card style={styles.card}>
           {/* зачем: системный спиннер одинаков во всех приложениях мира и на
@@ -336,13 +355,13 @@ export default function ArenaMatchmakingScreen() {
               ? arenaSearchingCountText(lang, searchingNow)
               : rankedPresentation === 'calm' ? arenaText(lang, 'rankedEmptyHint') : arenaText(lang, 'keepOpen')}
           </Text>
-          {mode === 'ranked' && rankedPresentation === 'quick_offer' ? (
+          {!matchId && mode === 'ranked' && rankedPresentation === 'quick_offer' ? (
             <View style={styles.offer}>
               <Text style={[styles.offerTitle, { color: P.text }]}>{arenaText(lang, 'rankedQuickOffer')}</Text>
               <V2Cta disabled={switchingMode} onPress={() => void switchToQuick()}>{arenaText(lang, 'switchToQuick')}</V2Cta>
             </View>
           ) : null}
-          {mode === 'ranked' && rankedPresentation === 'calm' ? (
+          {!matchId && mode === 'ranked' && rankedPresentation === 'calm' ? (
             <View style={styles.offer}>
               <V2Cta disabled={switchingMode} onPress={continueRankedSearch}>{arenaText(lang, 'continueSearch')}</V2Cta>
               <V2Cta tone="ghost" disabled={switchingMode} onPress={() => void switchToQuick()}>{arenaText(lang, 'switchToQuick')}</V2Cta>
@@ -369,9 +388,26 @@ export default function ArenaMatchmakingScreen() {
               ) : null}
             </View>
           ) : null}
+          {assignedFailure ? (
+            <View style={styles.failure}>
+              <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>
+                {arenaText(lang, assignedFailure.title)}
+              </Text>
+              <Text style={[styles.failureHint, failureHintLine, { color: P.muted }]}>{arenaText(lang, assignedFailure.hint)}</Text>
+              {assignedFailure.canRetry ? (
+                <V2Cta onPress={() => { setEntryFailure(null); setEntryRetryTick((tick) => tick + 1); }}>
+                  {arenaText(lang, 'retry')}
+                </V2Cta>
+              ) : null}
+              {entryFailure === 'no_opponent' ? (
+                <V2Cta onPress={recoverNoOpponent}>{arenaText(lang, 'switchToQuick')}</V2Cta>
+              ) : null}
+              <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
+            </View>
+          ) : null}
         </V2Card>
       </View>
-      <V2Cta tone="ghost" onPress={cancel}>{arenaText(lang, 'cancel')}</V2Cta>
+      <V2Cta tone="ghost" disabled={Boolean(matchId)} onPress={cancel}>{arenaText(lang, 'cancel')}</V2Cta>
     </ArenaScreen>
   );
 }

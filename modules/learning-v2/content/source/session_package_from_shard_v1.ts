@@ -9,7 +9,6 @@
 //   evaluator_capsule — правильные ответы, остаются на сервере
 //   evaluator_sidecar — разбор ошибок для подсказок
 //   auxiliary         — вспомогательное: сохранение фраз, объяснения
-import { createHash } from 'node:crypto';
 import {
   materializeLearningV2CourseSessionAuxiliaryChildV1,
   materializeLearningV2CourseSessionIntroChildV1,
@@ -22,6 +21,12 @@ import type { LearningV2GeneratedSessionShardV1 } from '../generator_session_sha
 // заполняет восемь полей полномочий, которых у ручного объекта не было.
 import { materializeLearningV2CourseSessionEvaluatorCapsuleChildV1 } from '../../runtime/course_session_evaluator_capsule_child_v1';
 import { v2LocalEvaluatorInputKindForFamilyV1 } from '../../runtime/local_evaluator_capsule_v1';
+// зачем sha256Utf8 вместо node:crypto (инцидент 2026-08-17): этот файл
+// вызывается из app/learning_v2_course_released_session_client_v3.ts прямо на
+// устройстве (бандл урока 1 без сети) — node:crypto недоступен в рантайме RN,
+// Metro падал с "Unable to resolve module node:crypto". sha256Utf8 — тот же
+// хеш, но чистый JS, уже используется остальными файлами этого модуля.
+import { sha256Utf8 } from '../../policies/decision_registry';
 
 /**
  * Соль для криптографического обязательства ответа. Контракт требует ровно
@@ -33,7 +38,7 @@ import { v2LocalEvaluatorInputKindForFamilyV1 } from '../../runtime/local_evalua
  * считала бы неизменный курс новым релизом на каждой публикации.
  */
 function saltFor(seed: string): string {
-  return createHash('sha256').update(`capsule-salt\n${seed}`).digest('hex');
+  return sha256Utf8(`capsule-salt\n${seed}`);
 }
 
 /**

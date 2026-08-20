@@ -1410,4 +1410,313 @@ export const EPISODE_01_SESSION_01_PHRASES: readonly EpisodeSourcePhrase[] =
       ],
       features: ['copula_be', 'first_person_singular', 'state_adjective'],
     },
+    {
+      id: 'e01-s01-i-am-home',
+      english: 'I am home',
+      russian: 'Я дома',
+      explanation:
+        'Снова признак места, как в самой первой фразе урока, только теперь это home — «дома». Так пишут родным, когда добрались.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Me не бывает подлежащим — только I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не называет человека.',
+            },
+            {
+              value: 'am',
+              reasonCode: 'verb_as_subject',
+              why: 'Am — глагол-связка, а на этом месте нужно подлежащее.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is идёт к he, she, it. К I — только am.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are идёт к you, we, they. К I — только am.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Be — начальная форма. В готовом предложении нужна личная: am.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — прошедшее время, «был». Здесь речь про сейчас.',
+            },
+            {
+              value: 'do',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Do не соединяет подлежащее с местом.',
+            },
+          ],
+        },
+        {
+          correct: 'home',
+          category: 'place',
+          distractors: [
+            {
+              value: 'house',
+              reasonCode: 'meaning_mismatch',
+              why: 'House — само здание. «Я дома» — это home, без здания.',
+            },
+            {
+              value: 'homes',
+              reasonCode: 'wrong_word_form',
+              why: 'После am здесь ставят home без окончания.',
+            },
+            {
+              value: 'hom',
+              reasonCode: 'spelling_invalid',
+              why: 'Пропущена буква e.',
+            },
+            {
+              value: 'home?',
+              reasonCode: 'punctuation_changes_intent',
+              why: 'Со знаком вопроса это уже вопрос, а не утверждение.',
+            },
+            {
+              value: 'here',
+              reasonCode: 'not_target_word',
+              why: 'I am here тоже верно, но здесь тренируем слово home.',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'adverb_place'],
+    },
+    {
+      id: 'e01-s01-i-am-fine',
+      english: 'I am fine',
+      russian: 'Я в порядке',
+      explanation:
+        'Ещё один честный короткий ответ, вместе с уже знакомым I am OK. Fine и OK значат почти одно и то же — оба говорят каждый день.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Подлежащее — только I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'am',
+              reasonCode: 'verb_as_subject',
+              why: 'Am — глагол-связка, а на этом месте нужно подлежащее.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не называет человека.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is — для he, she, it.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — для you, we, they.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Be — начальная форма, в предложении нужна личная: am.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — прошедшее время. Здесь речь про сейчас.',
+            },
+            {
+              value: 'feel',
+              reasonCode: 'wrong_verb_choice',
+              why: 'Здесь тренируем связку am.',
+            },
+          ],
+        },
+        {
+          correct: 'fine',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'find',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Find — «находить». Похоже на слух, смысл другой.',
+            },
+            {
+              value: 'finely',
+              reasonCode: 'wrong_word_class',
+              why: 'Finely — наречие. После am нужен признак: fine.',
+            },
+            {
+              value: 'finest',
+              reasonCode: 'wrong_word_form',
+              why: 'Finest — «самый лучший», это сравнение.',
+            },
+            {
+              value: 'fin',
+              reasonCode: 'spelling_invalid',
+              why: 'Fin — «плавник», не то слово.',
+            },
+            {
+              value: 'nine',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Nine — «девять».',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'state_adjective'],
+    },
+    {
+      id: 'e01-s01-i-am-hot',
+      english: 'I am hot',
+      russian: 'Мне жарко',
+      explanation:
+        'Противоположность I am cold из этого же урока. По-русски снова «мне жарко», по-английски — «я горячий/жаркий». Один и тот же приём, другой признак.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Соблазн сказать «мне» велик, но подлежащее — I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не называет человека.',
+            },
+            {
+              value: 'am',
+              reasonCode: 'verb_as_subject',
+              why: 'Am — глагол-связка, а на этом месте нужно слово-подлежащее.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is — для he, she, it.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — для you, we, they.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Нужна личная форма.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — про прошлое.',
+            },
+            {
+              value: 'feel',
+              reasonCode: 'wrong_verb_choice',
+              why: 'Здесь тренируем связку am.',
+            },
+          ],
+        },
+        {
+          correct: 'hot',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'hop',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Hop — «прыгать».',
+            },
+            {
+              value: 'hat',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Hat — «шляпа».',
+            },
+            {
+              value: 'hotter',
+              reasonCode: 'wrong_word_form',
+              why: 'Hotter — «жарче», нужно сравнение.',
+            },
+            {
+              value: 'hotly',
+              reasonCode: 'wrong_word_class',
+              why: 'Наречие. После am нужен признак.',
+            },
+            {
+              value: 'hoot',
+              reasonCode: 'wrong_word_class',
+              why: 'Hoot — «уханье совы».',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'state_adjective'],
+    },
   ]);

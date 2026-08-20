@@ -470,4 +470,166 @@ export const EPISODE_01_SESSION_06_PHRASES: readonly EpisodeSourcePhrase[] =
       ],
       features: ['third_person_pronoun', 'copula_be', 'possessive_my', 'noun_predicate'],
     },
+    {
+      id: 'e01-s06-he-is-an-actor',
+      english: 'He is an actor',
+      russian: 'Он актёр',
+      explanation:
+        'Actor начинается с гласного звука, поэтому вместо a встаёт an — их всего одна буква разницы, а правило простое: an перед гласным звуком, a перед согласным.',
+      words: [
+        {
+          correct: 'He',
+          category: 'pronoun',
+          distractors: [
+            { value: 'Him', reasonCode: 'object_pronoun_as_subject', why: 'Him — форма дополнения.' },
+            { value: 'His', reasonCode: 'possessive_as_subject', why: 'His — «его», принадлежность.' },
+            { value: 'She', reasonCode: 'gender_mismatch', why: 'She — «она».' },
+            { value: 'It', reasonCode: 'animacy_mismatch', why: 'It — про предмет, а не про человека.' },
+            { value: 'he', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
+          ],
+        },
+        {
+          correct: 'is',
+          category: 'to-be',
+          distractors: [
+            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
+            { value: 'are', reasonCode: 'agreement_person_mismatch', why: 'Are — к you, we, they.' },
+            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
+            { value: 'have', reasonCode: 'wrong_auxiliary', why: 'Профессию называют через быть.' },
+            { value: 'was', reasonCode: 'tense_mismatch', why: 'Was — про прошлое.' },
+          ],
+        },
+        {
+          correct: 'an',
+          category: 'article',
+          distractors: [
+            { value: 'a', reasonCode: 'article_form_mismatch', why: 'A ставят перед согласным звуком, а actor начинается с гласного.' },
+            { value: 'the', reasonCode: 'article_definiteness_wrong', why: 'The — про конкретного, известного.' },
+            { value: 'his', reasonCode: 'possessive_instead_of_article', why: 'His actor — «его актёр», другой смысл.' },
+            { value: 'one', reasonCode: 'numeral_instead_of_article', why: 'One — число «один».' },
+            { value: 'some', reasonCode: 'quantifier_instead_of_article', why: 'Some — «несколько».' },
+          ],
+        },
+        {
+          correct: 'actor',
+          category: 'noun',
+          distractors: [
+            { value: 'actors', reasonCode: 'number_mismatch', why: 'После an всегда единственное число.' },
+            { value: 'act', reasonCode: 'wrong_word_class', why: 'Act — «действие» или «действовать».' },
+            { value: 'acting', reasonCode: 'wrong_word_form', why: 'После артикля нужно существительное.' },
+            { value: 'actorr', reasonCode: 'spelling_invalid', why: 'Лишняя буква r.' },
+            { value: 'author', reasonCode: 'meaning_mismatch', why: 'Author — «автор», другая профессия.' },
+          ],
+        },
+      ],
+      features: ['third_person_pronoun', 'copula_be', 'indefinite_article', 'article_an', 'noun_predicate'],
+    },
+    {
+      id: 'e01-s06-she-is-an-engineer',
+      english: 'She is an engineer',
+      russian: 'Она инженер',
+      explanation:
+        'Ещё одна профессия на гласный звук — снова an, не a. Правило смотрит на звук в начале слова, а не на первую букву.',
+      words: [
+        {
+          correct: 'She',
+          category: 'pronoun',
+          distractors: [
+            { value: 'Her', reasonCode: 'object_pronoun_as_subject', why: 'Her — форма дополнения.' },
+            { value: 'He', reasonCode: 'gender_mismatch', why: 'He — «он», а речь идёт о женщине.' },
+            { value: 'Hers', reasonCode: 'possessive_as_subject', why: 'Hers заменяет предмет.' },
+            { value: 'It', reasonCode: 'animacy_mismatch', why: 'It — про предмет.' },
+            { value: 'she', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
+          ],
+        },
+        {
+          correct: 'is',
+          category: 'to-be',
+          distractors: [
+            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
+            { value: 'are', reasonCode: 'agreement_person_mismatch', why: 'Are — к you, we, they.' },
+            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
+            { value: 'have', reasonCode: 'wrong_auxiliary', why: 'Профессию называют через быть.' },
+            { value: 'was', reasonCode: 'tense_mismatch', why: 'Was — про прошлое.' },
+          ],
+        },
+        {
+          correct: 'an',
+          category: 'article',
+          distractors: [
+            { value: 'a', reasonCode: 'article_form_mismatch', why: 'A ставят перед согласным звуком, а engineer начинается с гласного.' },
+            { value: 'the', reasonCode: 'article_definiteness_wrong', why: 'The — про конкретного, известного.' },
+            { value: 'her', reasonCode: 'possessive_instead_of_article', why: 'Her engineer — «её инженер», другой смысл.' },
+            { value: 'one', reasonCode: 'numeral_instead_of_article', why: 'One — число «один».' },
+            { value: 'some', reasonCode: 'quantifier_instead_of_article', why: 'Some — «несколько».' },
+          ],
+        },
+        {
+          correct: 'engineer',
+          category: 'noun',
+          distractors: [
+            { value: 'engineers', reasonCode: 'number_mismatch', why: 'После an всегда единственное число.' },
+            { value: 'engine', reasonCode: 'wrong_word_class', why: 'Engine — «двигатель», не профессия.' },
+            { value: 'engineering', reasonCode: 'wrong_word_form', why: 'После артикля нужно существительное-профессия, а не процесс.' },
+            { value: 'enginer', reasonCode: 'spelling_invalid', why: 'Пропущена буква e.' },
+            { value: 'engineeer', reasonCode: 'spelling_invalid', why: 'Лишняя буква e.' },
+          ],
+        },
+      ],
+      features: ['third_person_pronoun', 'copula_be', 'indefinite_article', 'article_an', 'noun_predicate'],
+    },
+    {
+      id: 'e01-s06-it-is-a-cat',
+      english: 'It is a cat',
+      russian: 'Это кот',
+      explanation:
+        'Про животное, как и про предмет, говорят it — правило про he/she только для людей. Профессий у кота нет, зато есть та же схема с артиклем a.',
+      words: [
+        {
+          correct: 'It',
+          category: 'pronoun',
+          distractors: [
+            { value: 'He', reasonCode: 'animacy_mismatch', why: 'He — про человека, а не про животное в этом уроке.' },
+            { value: 'She', reasonCode: 'animacy_mismatch', why: 'She — про женщину.' },
+            { value: 'Its', reasonCode: 'possessive_as_subject', why: 'Its — «его» как принадлежность.' },
+            { value: 'This', reasonCode: 'wrong_word_choice', why: 'В этой фразе стоит именно it.' },
+            { value: 'it', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
+          ],
+        },
+        {
+          correct: 'is',
+          category: 'to-be',
+          distractors: [
+            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
+            { value: 'are', reasonCode: 'agreement_person_mismatch', why: 'Are — к you, we, they.' },
+            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
+            { value: 'was', reasonCode: 'tense_mismatch', why: 'Was — про прошлое.' },
+            { value: 'do', reasonCode: 'wrong_auxiliary', why: 'Со связкой do не ставят.' },
+          ],
+        },
+        {
+          correct: 'a',
+          category: 'article',
+          distractors: [
+            { value: 'an', reasonCode: 'article_form_mismatch', why: 'An нужен перед гласным звуком, а cat начинается с согласного.' },
+            { value: 'the', reasonCode: 'article_definiteness_wrong', why: 'The — про конкретного, известного кота.' },
+            { value: 'its', reasonCode: 'possessive_instead_of_article', why: 'Its cat — «его кот», другой смысл.' },
+            { value: 'one', reasonCode: 'numeral_instead_of_article', why: 'One — число «один».' },
+            { value: 'some', reasonCode: 'quantifier_instead_of_article', why: 'Some — «несколько».' },
+          ],
+        },
+        {
+          correct: 'cat',
+          category: 'noun',
+          distractors: [
+            { value: 'cats', reasonCode: 'number_mismatch', why: 'После a всегда единственное число.' },
+            { value: 'cot', reasonCode: 'near_homophone_confusion', why: 'Cot — «раскладушка».' },
+            { value: 'cut', reasonCode: 'near_homophone_confusion', why: 'Cut — «резать».' },
+            { value: 'car', reasonCode: 'near_homophone_confusion', why: 'Car — «машина».' },
+            { value: 'cap', reasonCode: 'near_homophone_confusion', why: 'Cap — «кепка».' },
+          ],
+        },
+      ],
+      features: ['third_person_pronoun', 'copula_be', 'indefinite_article', 'noun_predicate'],
+    },
   ]);

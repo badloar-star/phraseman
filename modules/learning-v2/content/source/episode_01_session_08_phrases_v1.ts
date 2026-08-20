@@ -650,4 +650,179 @@ export const EPISODE_01_SESSION_08_PHRASES: readonly EpisodeSourcePhrase[] =
         'noun_predicate',
       ],
     },
+
+    // ── Ещё повторение: лица вперемешку ───────────────────────────────────
+    {
+      id: 'e01-s08-we-are-not-late',
+      english: 'We are not late',
+      russian: 'Мы не опаздываем',
+      explanation:
+        'Множественное число we с отрицанием — то же правило, что и у одного человека, только связка are вместо am или is.',
+      words: [
+        {
+          correct: 'We',
+          category: 'pronoun',
+          distractors: [
+            { value: 'Us', reasonCode: 'object_pronoun_as_subject', why: 'Us не бывает подлежащим.' },
+            { value: 'Our', reasonCode: 'possessive_as_subject', why: 'Our — «наш».' },
+            { value: 'They', reasonCode: 'person_mismatch', why: 'They не включает говорящего.' },
+            { value: 'I', reasonCode: 'number_mismatch', why: 'I — один человек.' },
+            { value: 'we', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
+          ],
+        },
+        {
+          correct: 'are',
+          category: 'to-be',
+          distractors: [
+            { value: 'is', reasonCode: 'agreement_number_mismatch', why: 'Is — для одного.' },
+            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
+            { value: 'do', reasonCode: 'wrong_auxiliary', why: 'При связке do не ставят.' },
+            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
+            { value: 'were', reasonCode: 'tense_mismatch', why: 'Were — про прошлое.' },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            { value: 'no', reasonCode: 'negator_type_mismatch', why: 'Глагол отрицают через not.' },
+            { value: 'never', reasonCode: 'meaning_mismatch', why: 'Never — «никогда».' },
+            { value: "don't", reasonCode: 'wrong_auxiliary', why: 'При are do лишний.' },
+            { value: 'nor', reasonCode: 'wrong_word_class', why: 'Nor соединяет два отрицания.' },
+            { value: 'note', reasonCode: 'near_homophone_confusion', why: 'Note — «заметка».' },
+          ],
+        },
+        {
+          correct: 'late',
+          category: 'adjective',
+          distractors: [
+            { value: 'later', reasonCode: 'wrong_word_form', why: 'Later — «позже».' },
+            { value: 'lates', reasonCode: 'adjective_pluralized', why: 'Признаки не получают s.' },
+            { value: 'lately', reasonCode: 'wrong_word_class', why: 'Lately — «в последнее время».' },
+            { value: 'latest', reasonCode: 'wrong_word_form', why: 'Latest — «самый последний».' },
+            { value: 'let', reasonCode: 'near_homophone_confusion', why: 'Let — «позволить».' },
+          ],
+        },
+      ],
+      features: ['plural_pronoun', 'copula_be', 'negation_not', 'state_adjective'],
+    },
+    {
+      id: 'e01-s08-im-not-a-teacher',
+      english: "I'm not a teacher",
+      russian: 'Я не учитель',
+      explanation:
+        'Сокращение, отрицание и артикль вместе — три правила первой главы в одной короткой фразе.',
+      words: [
+        {
+          correct: "I'm",
+          category: 'to-be',
+          distractors: [
+            { value: 'Im', reasonCode: 'apostrophe_missing', why: 'Без апострофа это опечатка.' },
+            { value: "I'am", reasonCode: 'apostrophe_placement', why: 'Апостроф стоит не на том месте.' },
+            { value: "You're", reasonCode: 'person_mismatch', why: "You're относится к «ты»." },
+            { value: "He's", reasonCode: 'person_mismatch', why: "He's относится к «он»." },
+            { value: 'Am', reasonCode: 'contraction_missing', why: 'Без I это не сокращение.' },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            { value: 'no', reasonCode: 'negator_type_mismatch', why: 'Глагол отрицают через not.' },
+            { value: 'never', reasonCode: 'meaning_mismatch', why: 'Never — «никогда».' },
+            { value: "don't", reasonCode: 'wrong_auxiliary', why: 'При связке be do не ставят.' },
+            { value: 'nor', reasonCode: 'wrong_word_class', why: 'Nor соединяет два отрицания.' },
+            { value: 'note', reasonCode: 'near_homophone_confusion', why: 'Note — «заметка».' },
+          ],
+        },
+        {
+          correct: 'a',
+          category: 'article',
+          distractors: [
+            { value: 'an', reasonCode: 'article_form_mismatch', why: 'An — перед гласным звуком, teacher начинается с согласного.' },
+            { value: 'the', reasonCode: 'article_definiteness_wrong', why: 'The — про конкретного, известного.' },
+            { value: 'my', reasonCode: 'possessive_instead_of_article', why: 'My teacher — «мой учитель».' },
+            { value: 'one', reasonCode: 'numeral_instead_of_article', why: 'One — число «один».' },
+            { value: 'some', reasonCode: 'quantifier_instead_of_article', why: 'Some — «несколько».' },
+          ],
+        },
+        {
+          correct: 'teacher',
+          category: 'noun',
+          distractors: [
+            { value: 'teachers', reasonCode: 'number_mismatch', why: 'После a единственное число.' },
+            { value: 'teach', reasonCode: 'wrong_word_class', why: 'Teach — «учить», глагол.' },
+            { value: 'teaching', reasonCode: 'wrong_word_form', why: 'После артикля нужно существительное.' },
+            { value: 'techer', reasonCode: 'spelling_invalid', why: 'Пропущена буква a.' },
+            { value: 'student', reasonCode: 'meaning_mismatch', why: 'Student — «студент».' },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'negation_not', 'indefinite_article', 'noun_predicate', 'contraction'],
+    },
+    {
+      id: 'e01-s08-they-are-not-busy-now',
+      english: 'They are not busy now',
+      russian: 'Они сейчас не заняты',
+      explanation:
+        'Множественное число, отрицание и слово о времени в конце — всё вместе, без новых правил, только сборка старых.',
+      words: [
+        {
+          correct: 'They',
+          category: 'pronoun',
+          distractors: [
+            { value: 'Them', reasonCode: 'object_pronoun_as_subject', why: 'Them — форма дополнения.' },
+            { value: 'Their', reasonCode: 'possessive_as_subject', why: 'Their — «их» как принадлежность.' },
+            { value: 'We', reasonCode: 'person_mismatch', why: 'We включает говорящего.' },
+            { value: 'He', reasonCode: 'number_mismatch', why: 'He — один человек.' },
+            { value: 'they', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
+          ],
+        },
+        {
+          correct: 'are',
+          category: 'to-be',
+          distractors: [
+            { value: 'is', reasonCode: 'agreement_number_mismatch', why: 'Их несколько, значит are.' },
+            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
+            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
+            { value: 'were', reasonCode: 'tense_mismatch', why: 'Were — про прошлое.' },
+            { value: 'do', reasonCode: 'wrong_auxiliary', why: 'Со связкой do не ставят.' },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            { value: 'no', reasonCode: 'negator_type_mismatch', why: 'Глагол отрицают через not.' },
+            { value: 'never', reasonCode: 'meaning_mismatch', why: 'Never — «никогда».' },
+            { value: "don't", reasonCode: 'wrong_auxiliary', why: 'При are do лишний.' },
+            { value: 'nor', reasonCode: 'wrong_word_class', why: 'Nor соединяет два отрицания.' },
+            { value: 'note', reasonCode: 'near_homophone_confusion', why: 'Note — «заметка».' },
+          ],
+        },
+        {
+          correct: 'busy',
+          category: 'adjective',
+          distractors: [
+            { value: 'busies', reasonCode: 'adjective_pluralized', why: 'Признаки не получают s.' },
+            { value: 'bussy', reasonCode: 'spelling_invalid', why: 'Лишняя буква s.' },
+            { value: 'business', reasonCode: 'wrong_word_class', why: 'Business — «дело».' },
+            { value: 'busily', reasonCode: 'wrong_word_class', why: 'Наречие «деловито».' },
+            { value: 'bored', reasonCode: 'meaning_mismatch', why: 'Bored — «скучающий».' },
+          ],
+        },
+        {
+          correct: 'now',
+          category: 'adverb',
+          distractors: [
+            { value: 'know', reasonCode: 'homophone_confusion', why: 'Know — «знать», звучит одинаково.' },
+            { value: 'no', reasonCode: 'near_homophone_confusion', why: 'No — «нет».' },
+            { value: 'new', reasonCode: 'near_homophone_confusion', why: 'New — «новый».' },
+            { value: 'nowadays', reasonCode: 'wrong_word_form', why: 'Nowadays — «в наши дни».' },
+            { value: 'nov', reasonCode: 'spelling_invalid', why: 'Такого слова нет.' },
+          ],
+        },
+      ],
+      features: ['plural_pronoun', 'copula_be', 'negation_not', 'state_adjective', 'adverb_time'],
+    },
   ]);

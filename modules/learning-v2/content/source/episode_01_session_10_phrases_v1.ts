@@ -579,4 +579,168 @@ export const EPISODE_01_SESSION_10_PHRASES: readonly EpisodeSourcePhrase[] =
         'family_noun',
       ],
     },
+
+    // ── Ты не: You are not ────────────────────────────────────────────────
+    {
+      id: 'e01-s10-you-are-not-alone',
+      english: 'You are not alone',
+      russian: 'Ты не один',
+      explanation:
+        'Отрицание при you строится тем же способом, что и везде: not сразу после are. Признак alone не меняется, кто бы ни был рядом.',
+      words: [
+        {
+          correct: 'You',
+          category: 'pronoun',
+          distractors: [
+            { value: 'Your', reasonCode: 'possessive_as_subject', why: 'Your — «твой».' },
+            { value: 'I', reasonCode: 'person_mismatch', why: 'I — «я», а речь о собеседнике.' },
+            { value: 'Yours', reasonCode: 'possessive_as_subject', why: 'Yours заменяет предмет.' },
+            { value: 'U', reasonCode: 'chat_abbreviation', why: 'Форма из переписки.' },
+            { value: 'you', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
+          ],
+        },
+        {
+          correct: 'are',
+          category: 'to-be',
+          distractors: [
+            { value: 'is', reasonCode: 'agreement_person_mismatch', why: 'Is — к he, she, it.' },
+            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
+            { value: 'do', reasonCode: 'wrong_auxiliary', why: 'При связке do не ставят.' },
+            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
+            { value: 'were', reasonCode: 'tense_mismatch', why: 'Were — про прошлое.' },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            { value: 'no', reasonCode: 'negator_type_mismatch', why: 'Глагол отрицают через not.' },
+            { value: 'never', reasonCode: 'meaning_mismatch', why: 'Never — «никогда».' },
+            { value: "don't", reasonCode: 'wrong_auxiliary', why: 'При are do лишний.' },
+            { value: 'nor', reasonCode: 'wrong_word_class', why: 'Nor соединяет два отрицания.' },
+            { value: 'note', reasonCode: 'near_homophone_confusion', why: 'Note — «заметка».' },
+          ],
+        },
+        {
+          correct: 'alone',
+          category: 'adjective',
+          distractors: [
+            { value: 'alones', reasonCode: 'adjective_pluralized', why: 'Признаки не получают s.' },
+            { value: 'along', reasonCode: 'near_homophone_confusion', why: 'Along — «вдоль».' },
+            { value: 'lonely', reasonCode: 'meaning_mismatch', why: 'Lonely — «одинокий», про чувство, а не про наличие людей рядом.' },
+            { value: 'a lone', reasonCode: 'spelling_invalid', why: 'Пишется одним словом: alone.' },
+            { value: 'alon', reasonCode: 'spelling_invalid', why: 'Пропущена буква e.' },
+          ],
+        },
+      ],
+      features: ['second_person', 'copula_be', 'negation_not', 'state_adjective'],
+    },
+    {
+      id: 'e01-s10-youre-not-my-teacher',
+      english: "You're not my teacher",
+      russian: 'Ты не мой учитель',
+      explanation:
+        'Сокращение you\'re плюс отрицание плюс принадлежность — три знакомых правила подряд. Артикля нет: my опять занимает его место.',
+      words: [
+        {
+          correct: "You're",
+          category: 'to-be',
+          distractors: [
+            { value: 'Your', reasonCode: 'possessive_instead_of_contraction', why: 'Your — «твой», без апострофа это не связка.' },
+            { value: 'Youre', reasonCode: 'apostrophe_missing', why: 'Без апострофа это не сокращение.' },
+            { value: "I'm", reasonCode: 'person_mismatch', why: "I'm относится к «я»." },
+            { value: "They're", reasonCode: 'person_mismatch', why: "They're относится к «они»." },
+            { value: "You'r", reasonCode: 'spelling_invalid', why: 'Пропущена буква e.' },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            { value: 'no', reasonCode: 'negator_type_mismatch', why: 'Глагол отрицают через not.' },
+            { value: 'never', reasonCode: 'meaning_mismatch', why: 'Never — «никогда».' },
+            { value: "don't", reasonCode: 'wrong_auxiliary', why: 'При связке be do не ставят.' },
+            { value: 'nor', reasonCode: 'wrong_word_class', why: 'Nor соединяет два отрицания.' },
+            { value: 'note', reasonCode: 'near_homophone_confusion', why: 'Note — «заметка».' },
+          ],
+        },
+        {
+          correct: 'my',
+          category: 'possessive',
+          distractors: [
+            { value: 'mine', reasonCode: 'possessive_pronoun_before_noun', why: 'Mine стоит без существительного.' },
+            { value: 'me', reasonCode: 'pronoun_instead_of_possessive', why: 'Me — форма дополнения.' },
+            { value: 'I', reasonCode: 'pronoun_instead_of_possessive', why: 'Перед предметом нужно my.' },
+            { value: 'your', reasonCode: 'wrong_referent', why: 'Your — «твой», а учитель ваш.' },
+            { value: 'a my', reasonCode: 'article_with_possessive', why: 'Артикль и my вместе не ставят.' },
+          ],
+        },
+        {
+          correct: 'teacher',
+          category: 'noun',
+          distractors: [
+            { value: 'teachers', reasonCode: 'number_mismatch', why: 'Речь про одного человека.' },
+            { value: 'teach', reasonCode: 'wrong_word_class', why: 'Teach — «учить», глагол.' },
+            { value: 'teaching', reasonCode: 'wrong_word_form', why: 'Нужно название человека, а не действие.' },
+            { value: 'techer', reasonCode: 'spelling_invalid', why: 'Пропущена буква a.' },
+            { value: 'student', reasonCode: 'meaning_mismatch', why: 'Student — «студент».' },
+          ],
+        },
+      ],
+      features: ['second_person', 'copula_be', 'negation_not', 'possessive_my', 'noun_predicate', 'contraction'],
+    },
+    {
+      id: 'e01-s10-you-are-not-here',
+      english: 'You are not here',
+      russian: 'Тебя здесь нет',
+      explanation:
+        'Снова разница с русским: мы говорим «тебя нет», англичане — «ты не здесь». Подлежащее you остаётся на месте, отрицается только присутствие.',
+      words: [
+        {
+          correct: 'You',
+          category: 'pronoun',
+          distractors: [
+            { value: 'Your', reasonCode: 'possessive_as_subject', why: 'Your — «твой».' },
+            { value: 'I', reasonCode: 'person_mismatch', why: 'I — «я», а речь о собеседнике.' },
+            { value: 'Yours', reasonCode: 'possessive_as_subject', why: 'Yours заменяет предмет.' },
+            { value: 'He', reasonCode: 'person_mismatch', why: 'He — «он», третье лицо.' },
+            { value: 'you', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
+          ],
+        },
+        {
+          correct: 'are',
+          category: 'to-be',
+          distractors: [
+            { value: 'is', reasonCode: 'agreement_person_mismatch', why: 'Is — к he, she, it.' },
+            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
+            { value: 'do', reasonCode: 'wrong_auxiliary', why: 'При связке do не ставят.' },
+            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
+            { value: 'were', reasonCode: 'tense_mismatch', why: 'Were — про прошлое.' },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            { value: 'no', reasonCode: 'negator_type_mismatch', why: 'Глагол отрицают через not.' },
+            { value: 'never', reasonCode: 'meaning_mismatch', why: 'Never — «никогда».' },
+            { value: "don't", reasonCode: 'wrong_auxiliary', why: 'При are do лишний.' },
+            { value: 'nor', reasonCode: 'wrong_word_class', why: 'Nor соединяет два отрицания.' },
+            { value: 'note', reasonCode: 'near_homophone_confusion', why: 'Note — «заметка».' },
+          ],
+        },
+        {
+          correct: 'here',
+          category: 'adverb',
+          distractors: [
+            { value: 'hear', reasonCode: 'homophone_confusion', why: 'Hear — «слышать».' },
+            { value: 'there', reasonCode: 'deixis_opposite', why: 'There — «там».' },
+            { value: 'her', reasonCode: 'wrong_word_class', why: 'Her — «её».' },
+            { value: 'where', reasonCode: 'question_word_in_statement', why: 'Where — вопросительное слово.' },
+            { value: 'hair', reasonCode: 'near_homophone_confusion', why: 'Hair — «волосы».' },
+          ],
+        },
+      ],
+      features: ['second_person', 'copula_be', 'negation_not', 'adverb_place'],
+    },
   ]);

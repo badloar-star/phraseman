@@ -1358,4 +1358,313 @@ export const EPISODE_01_SESSION_03_PHRASES: readonly EpisodeSourcePhrase[] =
         'state_adjective',
       ],
     },
+    {
+      id: 'e01-s03-i-am-sad',
+      english: 'I am sad',
+      russian: 'Мне грустно',
+      explanation:
+        'Ещё один признак чувства через ту же схему: «я есть грустный», а не «мне грустно». В английском чувство — это то, чем ты являешься, а не то, что происходит с тобой.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Соблазн сказать «мне» велик, но подлежащее — I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не называет человека.',
+            },
+            {
+              value: 'am',
+              reasonCode: 'verb_as_subject',
+              why: 'Am — глагол-связка, а на этом месте нужно подлежащее.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is — для he, she, it.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — для you, we, they.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Be — начальная форма, нужна личная: am.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — прошедшее время «был». Здесь речь про сейчас.',
+            },
+            {
+              value: 'feel',
+              reasonCode: 'wrong_verb_choice',
+              why: 'Здесь тренируем связку am.',
+            },
+          ],
+        },
+        {
+          correct: 'sad',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'sat',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Sat — «сидел», прошедшее время глагола sit.',
+            },
+            {
+              value: 'sadly',
+              reasonCode: 'wrong_word_class',
+              why: 'Наречие «печально». После am нужен признак: sad.',
+            },
+            {
+              value: 'sadness',
+              reasonCode: 'wrong_word_class',
+              why: 'Sadness — «грусть», существительное.',
+            },
+            {
+              value: 'sader',
+              reasonCode: 'spelling_invalid',
+              why: 'Сравнение пишется с удвоением: sadder, и здесь оно не нужно.',
+            },
+            {
+              value: 'said',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Said — «сказал», совсем другое слово.',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'state_adjective'],
+    },
+    {
+      id: 'e01-s03-i-am-sleepy',
+      english: 'I am sleepy',
+      russian: 'Мне хочется спать',
+      explanation:
+        'Ещё одно состояние по той же схеме. Sleepy — это не «я сплю», а «я такой, что хочу спать»: признак, а не действие, поэтому нужна связка am.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Подлежащее — только I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не называет человека.',
+            },
+            {
+              value: 'am',
+              reasonCode: 'verb_as_subject',
+              why: 'Am — глагол-связка, а на этом месте нужно подлежащее.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is — для he, she, it.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — для you, we, they.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Be — начальная форма, нужна личная: am.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — прошедшее время. Здесь речь про сейчас.',
+            },
+            {
+              value: 'have',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Состояние выражают через быть, а не иметь.',
+            },
+          ],
+        },
+        {
+          correct: 'sleepy',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'sleep',
+              reasonCode: 'wrong_word_class',
+              why: 'Sleep — «спать», глагол. Признак — sleepy.',
+            },
+            {
+              value: 'sleeping',
+              reasonCode: 'wrong_word_form',
+              why: 'Sleeping — форма с -ing, это уже действие, а не признак.',
+            },
+            {
+              value: 'sleepily',
+              reasonCode: 'wrong_word_class',
+              why: 'Наречие. После am нужен признак.',
+            },
+            {
+              value: 'sleepy?',
+              reasonCode: 'punctuation_changes_intent',
+              why: 'Со знаком вопроса это уже вопрос, а не утверждение.',
+            },
+            {
+              value: 'steepy',
+              reasonCode: 'spelling_invalid',
+              why: 'Такого слова нет: правильно sleepy.',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'state_adjective'],
+    },
+    {
+      id: 'e01-s03-i-am-thirsty',
+      english: 'I am thirsty',
+      russian: 'Мне хочется пить',
+      explanation:
+        'Тот же приём, что и с hungry: жажда в английском — это признак, которым ты являешься, а не то, чего тебе хочется.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Подлежащее — только I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не называет человека.',
+            },
+            {
+              value: 'am',
+              reasonCode: 'verb_as_subject',
+              why: 'Am — глагол-связка, а на этом месте нужно подлежащее.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is — для he, she, it.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — для you, we, they.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Be — начальная форма, нужна личная: am.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — прошедшее время. Здесь речь про сейчас.',
+            },
+            {
+              value: 'do',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Do не соединяет «я» с признаком.',
+            },
+          ],
+        },
+        {
+          correct: 'thirsty',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'thirsy',
+              reasonCode: 'spelling_invalid',
+              why: 'Пропущена буква t: правильно thirsty.',
+            },
+            {
+              value: 'thirst',
+              reasonCode: 'wrong_word_class',
+              why: 'Thirst — «жажда», существительное.',
+            },
+            {
+              value: 'thirstily',
+              reasonCode: 'wrong_word_class',
+              why: 'Наречие. После am ставят признак.',
+            },
+            {
+              value: 'thirty',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Thirty — «тридцать». Похоже на слух, смысл другой.',
+            },
+            {
+              value: 'hungry',
+              reasonCode: 'meaning_mismatch',
+              why: 'Hungry — «голодный», другое состояние.',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'state_adjective'],
+    },
   ]);

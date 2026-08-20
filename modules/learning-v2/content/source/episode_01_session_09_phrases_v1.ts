@@ -503,4 +503,157 @@ export const EPISODE_01_SESSION_09_PHRASES: readonly EpisodeSourcePhrase[] =
       ],
       features: ['possessive_his_her', 'copula_be', 'proper_noun', 'noun_predicate'],
     },
+
+    // ── Ты есть: You are + признак / место ────────────────────────────────
+    {
+      id: 'e01-s09-you-are-ready',
+      english: 'You are ready',
+      russian: 'Ты готов',
+      explanation:
+        'Связка are обслуживает you точно так же, как we и they. Признак ready опять без изменений — он никогда не подстраивается под того, о ком речь.',
+      words: [
+        {
+          correct: 'You',
+          category: 'pronoun',
+          distractors: [
+            { value: 'Your', reasonCode: 'possessive_as_subject', why: 'Your — «твой».' },
+            { value: 'I', reasonCode: 'person_mismatch', why: 'I — «я», а речь о собеседнике.' },
+            { value: 'Yours', reasonCode: 'possessive_as_subject', why: 'Yours заменяет предмет.' },
+            { value: 'U', reasonCode: 'chat_abbreviation', why: 'Форма из переписки.' },
+            { value: 'you', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
+          ],
+        },
+        {
+          correct: 'are',
+          category: 'to-be',
+          distractors: [
+            { value: 'is', reasonCode: 'agreement_person_mismatch', why: 'Is — к he, she, it.' },
+            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
+            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
+            { value: 'were', reasonCode: 'tense_mismatch', why: 'Were — про прошлое.' },
+            { value: 'do', reasonCode: 'wrong_auxiliary', why: 'Со связкой do не ставят.' },
+          ],
+        },
+        {
+          correct: 'ready',
+          category: 'adjective',
+          distractors: [
+            { value: 'readys', reasonCode: 'adjective_pluralized', why: 'Признаки не получают s.' },
+            { value: 'read', reasonCode: 'near_homophone_confusion', why: 'Read — «читать».' },
+            { value: 'red', reasonCode: 'near_homophone_confusion', why: 'Red — «красный».' },
+            { value: 'already', reasonCode: 'wrong_word_class', why: 'Already — «уже».' },
+            { value: 'reader', reasonCode: 'wrong_word_class', why: 'Reader — «читатель».' },
+          ],
+        },
+      ],
+      features: ['second_person', 'copula_be', 'state_adjective'],
+    },
+    {
+      id: 'e01-s09-you-are-my-friend',
+      english: 'You are my friend',
+      russian: 'Ты мой друг',
+      explanation:
+        'Здесь you называют, кто есть собеседник, через принадлежность my. Артикль не нужен — my уже занял его место, вы знаете это правило.',
+      words: [
+        {
+          correct: 'You',
+          category: 'pronoun',
+          distractors: [
+            { value: 'Your', reasonCode: 'possessive_as_subject', why: 'Your — «твой».' },
+            { value: 'I', reasonCode: 'person_mismatch', why: 'I — «я», а речь о собеседнике.' },
+            { value: 'Yours', reasonCode: 'possessive_as_subject', why: 'Yours заменяет предмет.' },
+            { value: 'He', reasonCode: 'person_mismatch', why: 'He — «он», третье лицо.' },
+            { value: 'you', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
+          ],
+        },
+        {
+          correct: 'are',
+          category: 'to-be',
+          distractors: [
+            { value: 'is', reasonCode: 'agreement_person_mismatch', why: 'Is — к he, she, it.' },
+            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
+            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
+            { value: 'were', reasonCode: 'tense_mismatch', why: 'Were — про прошлое.' },
+            { value: 'have', reasonCode: 'wrong_auxiliary', why: 'Кто ты — говорят через быть.' },
+          ],
+        },
+        {
+          correct: 'my',
+          category: 'possessive',
+          distractors: [
+            { value: 'mine', reasonCode: 'possessive_pronoun_before_noun', why: 'Mine стоит без существительного.' },
+            { value: 'me', reasonCode: 'pronoun_instead_of_possessive', why: 'Me — форма дополнения.' },
+            { value: 'I', reasonCode: 'pronoun_instead_of_possessive', why: 'Перед предметом нужно my.' },
+            { value: 'your', reasonCode: 'wrong_referent', why: 'Your — «твой», а друг ваш.' },
+            { value: 'a my', reasonCode: 'article_with_possessive', why: 'Артикль и my вместе не ставят.' },
+          ],
+        },
+        {
+          correct: 'friend',
+          category: 'noun',
+          distractors: [
+            { value: 'friends', reasonCode: 'number_mismatch', why: 'Речь про одного человека.' },
+            { value: 'freind', reasonCode: 'spelling_invalid', why: 'Переставлены буквы.' },
+            { value: 'friendly', reasonCode: 'wrong_word_class', why: 'Friendly — «дружелюбный».' },
+            { value: 'frend', reasonCode: 'spelling_invalid', why: 'Пропущена буква i.' },
+            { value: 'friendship', reasonCode: 'wrong_word_class', why: 'Friendship — «дружба».' },
+          ],
+        },
+      ],
+      features: ['second_person', 'copula_be', 'possessive_my', 'noun_predicate'],
+    },
+    {
+      id: 'e01-s09-you-are-here-now',
+      english: 'You are here now',
+      russian: 'Ты уже здесь',
+      explanation:
+        'Место и время вместе, оба слова в конце фразы. Порядок тот же, что вы уже видели: сначала место, потом время.',
+      words: [
+        {
+          correct: 'You',
+          category: 'pronoun',
+          distractors: [
+            { value: 'Your', reasonCode: 'possessive_as_subject', why: 'Your — «твой».' },
+            { value: 'I', reasonCode: 'person_mismatch', why: 'I — «я», а речь о собеседнике.' },
+            { value: 'Yours', reasonCode: 'possessive_as_subject', why: 'Yours заменяет предмет.' },
+            { value: 'U', reasonCode: 'chat_abbreviation', why: 'Форма из переписки.' },
+            { value: 'you', reasonCode: 'capitalization_invalid', why: 'В начале предложения заглавная.' },
+          ],
+        },
+        {
+          correct: 'are',
+          category: 'to-be',
+          distractors: [
+            { value: 'is', reasonCode: 'agreement_person_mismatch', why: 'Is — к he, she, it.' },
+            { value: 'am', reasonCode: 'agreement_person_mismatch', why: 'Am — только к I.' },
+            { value: 'be', reasonCode: 'infinitive_not_finite', why: 'Нужна личная форма.' },
+            { value: 'were', reasonCode: 'tense_mismatch', why: 'Were — про прошлое.' },
+            { value: 'do', reasonCode: 'wrong_auxiliary', why: 'Со связкой do не ставят.' },
+          ],
+        },
+        {
+          correct: 'here',
+          category: 'adverb',
+          distractors: [
+            { value: 'hear', reasonCode: 'homophone_confusion', why: 'Hear — «слышать», звучит одинаково.' },
+            { value: 'there', reasonCode: 'deixis_opposite', why: 'There — «там».' },
+            { value: 'her', reasonCode: 'wrong_word_class', why: 'Her — «её», места не обозначает.' },
+            { value: 'where', reasonCode: 'question_word_in_statement', why: 'Where — вопросительное слово.' },
+            { value: 'hair', reasonCode: 'near_homophone_confusion', why: 'Hair — «волосы».' },
+          ],
+        },
+        {
+          correct: 'now',
+          category: 'adverb',
+          distractors: [
+            { value: 'know', reasonCode: 'homophone_confusion', why: 'Know — «знать», звучит одинаково.' },
+            { value: 'no', reasonCode: 'near_homophone_confusion', why: 'No — «нет».' },
+            { value: 'new', reasonCode: 'near_homophone_confusion', why: 'New — «новый».' },
+            { value: 'nowadays', reasonCode: 'wrong_word_form', why: 'Nowadays — «в наши дни».' },
+            { value: 'nov', reasonCode: 'spelling_invalid', why: 'Такого слова нет.' },
+          ],
+        },
+      ],
+      features: ['second_person', 'copula_be', 'adverb_place', 'adverb_time'],
+    },
   ]);

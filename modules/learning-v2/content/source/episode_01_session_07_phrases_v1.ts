@@ -532,4 +532,135 @@ export const EPISODE_01_SESSION_07_PHRASES: readonly EpisodeSourcePhrase[] =
         'noun_predicate',
       ],
     },
+
+    // ── Голосовая тренировка: знакомые фразы вслух ────────────────────────
+    {
+      id: 'e01-s07-im-ready-now',
+      english: "I'm ready now",
+      russian: 'Я уже готов',
+      explanation:
+        'Сокращение I\'m вместо I am — так говорят вслух почти всегда, полная форма звучит слишком официально. Скажите фразу вслух: «айм», слитно, без паузы.',
+      words: [
+        {
+          correct: "I'm",
+          category: 'to-be',
+          distractors: [
+            { value: 'Im', reasonCode: 'apostrophe_missing', why: 'Без апострофа это не сокращение, а опечатка.' },
+            { value: "I'am", reasonCode: 'apostrophe_placement', why: 'Апостроф стоит не на том месте: I\'m.' },
+            { value: "You're", reasonCode: 'person_mismatch', why: "You're — сокращение для «ты», а не для «я»." },
+            { value: "He's", reasonCode: 'person_mismatch', why: "He's — «он есть», не подходит к I." },
+            { value: "I'll", reasonCode: 'wrong_word_class', why: "I'll — «я буду», это про будущее." },
+          ],
+        },
+        {
+          correct: 'ready',
+          category: 'adjective',
+          distractors: [
+            { value: 'readys', reasonCode: 'adjective_pluralized', why: 'Признаки не получают s.' },
+            { value: 'read', reasonCode: 'near_homophone_confusion', why: 'Read — «читать».' },
+            { value: 'red', reasonCode: 'near_homophone_confusion', why: 'Red — «красный».' },
+            { value: 'already', reasonCode: 'wrong_word_class', why: 'Already — «уже», это наречие.' },
+            { value: 'reader', reasonCode: 'wrong_word_class', why: 'Reader — «читатель».' },
+          ],
+        },
+        {
+          correct: 'now',
+          category: 'adverb',
+          distractors: [
+            { value: 'know', reasonCode: 'homophone_confusion', why: 'Know — «знать», звучит одинаково.' },
+            { value: 'no', reasonCode: 'near_homophone_confusion', why: 'No — «нет».' },
+            { value: 'new', reasonCode: 'near_homophone_confusion', why: 'New — «новый».' },
+            { value: 'nowadays', reasonCode: 'wrong_word_form', why: 'Nowadays — «в наши дни».' },
+            { value: 'nov', reasonCode: 'spelling_invalid', why: 'Такого слова нет.' },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'state_adjective', 'adverb_time', 'contraction'],
+    },
+    {
+      id: 'e01-s07-im-not-sure',
+      english: "I'm not sure",
+      russian: 'Я не уверен',
+      explanation:
+        'Отрицание в сокращённой форме: not встаёт сразу после \'m, ничего больше не меняется. Проговорите фразу целиком несколько раз, не разбивая на отдельные слова.',
+      words: [
+        {
+          correct: "I'm",
+          category: 'to-be',
+          distractors: [
+            { value: 'Im', reasonCode: 'apostrophe_missing', why: 'Без апострофа это опечатка.' },
+            { value: "I'am", reasonCode: 'apostrophe_placement', why: 'Апостроф стоит не на том месте.' },
+            { value: "You're", reasonCode: 'person_mismatch', why: "You're относится к «ты»." },
+            { value: "It's", reasonCode: 'person_mismatch', why: "It's — «оно есть», не подходит к I." },
+            { value: 'Am', reasonCode: 'contraction_missing', why: 'Без I это не полная связка и не сокращение.' },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            { value: 'no', reasonCode: 'negator_type_mismatch', why: 'Глагол отрицают через not.' },
+            { value: 'never', reasonCode: 'meaning_mismatch', why: 'Never — «никогда».' },
+            { value: "don't", reasonCode: 'wrong_auxiliary', why: 'При связке be do не ставят.' },
+            { value: 'nor', reasonCode: 'wrong_word_class', why: 'Nor соединяет два отрицания.' },
+            { value: 'note', reasonCode: 'near_homophone_confusion', why: 'Note — «заметка».' },
+          ],
+        },
+        {
+          correct: 'sure',
+          category: 'adjective',
+          distractors: [
+            { value: 'sured', reasonCode: 'adjective_past_form', why: 'У признаков нет формы прошедшего времени.' },
+            { value: 'shure', reasonCode: 'spelling_invalid', why: 'Пишется без h: sure.' },
+            { value: 'surely', reasonCode: 'wrong_word_class', why: 'Surely — «конечно», наречие.' },
+            { value: 'sure’s', reasonCode: 'apostrophe_misuse', why: 'Апостроф признакам не нужен.' },
+            { value: 'sore', reasonCode: 'near_homophone_confusion', why: 'Sore — «болит».' },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'negation_not', 'state_adjective', 'contraction'],
+    },
+    {
+      id: 'e01-s07-im-a-teacher',
+      english: "I'm a teacher",
+      russian: 'Я учитель',
+      explanation:
+        'Сокращение плюс артикль перед профессией — оба правила уже знакомы. Проговорите вслух: связка и артикль звучат легко, почти незаметно, а вес фразы — на слове teacher.',
+      words: [
+        {
+          correct: "I'm",
+          category: 'to-be',
+          distractors: [
+            { value: 'Im', reasonCode: 'apostrophe_missing', why: 'Без апострофа это опечатка.' },
+            { value: "I'am", reasonCode: 'apostrophe_placement', why: 'Апостроф стоит не на том месте.' },
+            { value: "She's", reasonCode: 'person_mismatch', why: "She's относится к «она»." },
+            { value: "We're", reasonCode: 'person_mismatch', why: "We're относится к «мы»." },
+            { value: 'Am', reasonCode: 'contraction_missing', why: 'Без I это не сокращение.' },
+          ],
+        },
+        {
+          correct: 'a',
+          category: 'article',
+          distractors: [
+            { value: 'an', reasonCode: 'article_form_mismatch', why: 'An нужен перед гласным звуком, teacher начинается с согласного.' },
+            { value: 'the', reasonCode: 'article_definiteness_wrong', why: 'The — про конкретного, известного собеседнику.' },
+            { value: 'my', reasonCode: 'possessive_instead_of_article', why: 'My teacher — «мой учитель», другой смысл.' },
+            { value: 'one', reasonCode: 'numeral_instead_of_article', why: 'One — число «один».' },
+            { value: 'some', reasonCode: 'quantifier_instead_of_article', why: 'Some — «несколько».' },
+          ],
+        },
+        {
+          correct: 'teacher',
+          category: 'noun',
+          distractors: [
+            { value: 'teachers', reasonCode: 'number_mismatch', why: 'После a всегда единственное число.' },
+            { value: 'teach', reasonCode: 'wrong_word_class', why: 'Teach — «учить», глагол.' },
+            { value: 'teaching', reasonCode: 'wrong_word_form', why: 'После артикля нужно существительное.' },
+            { value: 'techer', reasonCode: 'spelling_invalid', why: 'Пропущена буква a.' },
+            { value: 'student', reasonCode: 'meaning_mismatch', why: 'Student — «студент», другая роль.' },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'indefinite_article', 'noun_predicate', 'contraction'],
+    },
   ]);

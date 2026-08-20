@@ -533,4 +533,89 @@ export const EPISODE_01_SESSION_05_PHRASES: readonly EpisodeSourcePhrase[] =
       ],
       features: ['fixed_expression', 'greeting', 'time_of_day', 'spoken_production'],
     },
+    {
+      id: 'e01-s05-please',
+      english: 'Please',
+      russian: 'Пожалуйста',
+      explanation:
+        'Одно слово превращает просьбу в вежливую. Ударение падает на весь слог целиком: «плиз», звук l — мягкий, кончик языка касается нёба сразу за зубами.',
+      words: [
+        {
+          correct: 'Please',
+          category: 'politeness',
+          distractors: [
+            { value: 'Pleas', reasonCode: 'spelling_invalid', why: 'Пропущена буква e: правильно please.' },
+            { value: 'Plese', reasonCode: 'spelling_invalid', why: 'Ошибка в написании.' },
+            { value: 'Pleased', reasonCode: 'wrong_word_form', why: 'Pleased — «доволен», уже другое слово.' },
+            { value: 'Plies', reasonCode: 'near_homophone_confusion', why: 'Plies — «слои», не про вежливость.' },
+            { value: 'Peace', reasonCode: 'near_homophone_confusion', why: 'Peace — «мир».' },
+          ],
+        },
+      ],
+      features: ['fixed_expression', 'politeness', 'spoken_production'],
+    },
+    {
+      id: 'e01-s05-sorry',
+      english: 'Sorry',
+      russian: 'Извините',
+      explanation:
+        'Короткое извинение на каждый день. Первый звук — не русское «с», а между «с» и «ш»: язык чуть дальше от зубов, чем в русском.',
+      words: [
+        {
+          correct: 'Sorry',
+          category: 'politeness',
+          distractors: [
+            { value: 'Sory', reasonCode: 'spelling_invalid', why: 'Пропущена буква r: правильно sorry.' },
+            { value: 'Sorri', reasonCode: 'spelling_invalid', why: 'Ошибка в написании.' },
+            { value: 'Sore', reasonCode: 'near_homophone_confusion', why: 'Sore — «болезненный».' },
+            { value: 'Story', reasonCode: 'near_homophone_confusion', why: 'Story — «история».' },
+            { value: 'Sorrow', reasonCode: 'wrong_word_class', why: 'Sorrow — «печаль», существительное, а не извинение.' },
+          ],
+        },
+      ],
+      features: ['fixed_expression', 'politeness', 'spoken_production'],
+    },
+    {
+      id: 'e01-s05-sorry-im-late',
+      english: 'Sorry, I’m late',
+      russian: 'Извините, я опоздал',
+      explanation:
+        'Живая фраза: короткое извинение плюс сокращение I’m, которое вы уже произносили. Сначала извинение — потом причина, порядок фиксированный.',
+      words: [
+        {
+          correct: 'Sorry',
+          category: 'politeness',
+          distractors: [
+            { value: 'Sory', reasonCode: 'spelling_invalid', why: 'Пропущена буква r.' },
+            { value: 'Please', reasonCode: 'not_target_word', why: 'Please — просьба, а здесь нужно извинение.' },
+            { value: 'Sore', reasonCode: 'near_homophone_confusion', why: 'Sore — «болезненный».' },
+            { value: 'Story', reasonCode: 'near_homophone_confusion', why: 'Story — «история».' },
+            { value: 'Sorrow', reasonCode: 'wrong_word_class', why: 'Sorrow — «печаль», существительное.' },
+          ],
+        },
+        {
+          correct: 'I’m',
+          category: 'contraction',
+          distractors: [
+            { value: 'I am', reasonCode: 'not_contracted', why: 'По смыслу верно, но здесь нужна короткая форма I’m.' },
+            { value: 'Im', reasonCode: 'missing_apostrophe', why: 'Без апострофа это не сокращение.' },
+            { value: 'You’re', reasonCode: 'person_mismatch', why: 'You’re — сокращение для you are.' },
+            { value: 'I’s', reasonCode: 'contraction_malformed', why: 'Такого сокращения не существует.' },
+            { value: 'I’ll', reasonCode: 'wrong_contraction', why: 'I’ll — это «I will», другое сокращение.' },
+          ],
+        },
+        {
+          correct: 'late',
+          category: 'adjective',
+          distractors: [
+            { value: 'later', reasonCode: 'wrong_word_form', why: 'Later — «позже».' },
+            { value: 'lately', reasonCode: 'wrong_word_class', why: 'Lately — «в последнее время».' },
+            { value: 'latest', reasonCode: 'wrong_word_form', why: 'Latest — «самый последний».' },
+            { value: 'let', reasonCode: 'near_homophone_confusion', why: 'Let — «позволить».' },
+            { value: 'light', reasonCode: 'meaning_mismatch', why: 'Light — «свет».' },
+          ],
+        },
+      ],
+      features: ['fixed_expression', 'politeness', 'copula_be', 'contraction_im', 'state_adjective', 'spoken_production'],
+    },
   ]);

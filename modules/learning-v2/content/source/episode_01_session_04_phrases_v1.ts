@@ -1570,4 +1570,282 @@ export const EPISODE_01_SESSION_04_PHRASES: readonly EpisodeSourcePhrase[] =
       ],
       features: ['question_word', 'copula_be', 'possessive_your', 'third_person_singular'],
     },
+    {
+      id: 'e01-s04-im-good-thanks',
+      english: 'I’m good, thanks',
+      russian: 'Хорошо, спасибо',
+      explanation:
+        'То же самое I am good, только слитно: I plus am превращаются в I’m. Апостроф стоит вместо пропущенной буквы a — так короче и естественнее звучит в разговоре.',
+      words: [
+        {
+          correct: 'I’m',
+          category: 'contraction',
+          distractors: [
+            {
+              value: 'I am',
+              reasonCode: 'not_contracted',
+              why: 'Верно по смыслу, но здесь нужна именно короткая форма I’m.',
+            },
+            {
+              value: 'Im',
+              reasonCode: 'missing_apostrophe',
+              why: 'Без апострофа это не сокращение, а ошибка написания.',
+            },
+            {
+              value: 'I,m',
+              reasonCode: 'wrong_punctuation_mark',
+              why: 'Здесь нужен апостроф, а не запятая.',
+            },
+            {
+              value: 'Am',
+              reasonCode: 'missing_subject',
+              why: 'Потеряно подлежащее I — осталась только связка.',
+            },
+            {
+              value: 'You’re',
+              reasonCode: 'person_mismatch',
+              why: 'You’re — сокращение для you are, а речь о себе.',
+            },
+          ],
+        },
+        {
+          correct: 'good',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'well',
+              reasonCode: 'register_mismatch',
+              why: 'I’m well тоже верно, но звучит официальнее. В жизни чаще good.',
+            },
+            {
+              value: 'goot',
+              reasonCode: 'spelling_invalid',
+              why: 'Ошибка в написании.',
+            },
+            {
+              value: 'better',
+              reasonCode: 'wrong_word_form',
+              why: 'Better — «лучше», нужно сравнение с чем-то.',
+            },
+            {
+              value: 'goods',
+              reasonCode: 'wrong_word_class',
+              why: 'Goods — «товары».',
+            },
+            {
+              value: 'best',
+              reasonCode: 'wrong_word_form',
+              why: 'Best — «самый лучший».',
+            },
+          ],
+        },
+        {
+          correct: 'thanks',
+          category: 'politeness',
+          distractors: [
+            {
+              value: 'thank',
+              reasonCode: 'form_mismatch_in_phrase',
+              why: 'Отдельно говорят thanks, с s. Без s только внутри Thank you.',
+            },
+            {
+              value: 'thank’s',
+              reasonCode: 'apostrophe_misuse',
+              why: 'Апостроф здесь не нужен.',
+            },
+            {
+              value: 'thinks',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Thinks — «думает».',
+            },
+            {
+              value: 'tanks',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Tanks — «баки», «танки».',
+            },
+            {
+              value: 'thanx',
+              reasonCode: 'chat_abbreviation',
+              why: 'Так пишут только в переписке.',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'contraction_im', 'state_adjective', 'politeness'],
+    },
+    {
+      id: 'e01-s04-im-ready',
+      english: 'I’m ready',
+      russian: 'Я готов',
+      explanation:
+        'В разговоре так говорят почти всегда — полное I am ready встретится разве что в книге. Слово ready после I’m не меняется, меняется только связка.',
+      words: [
+        {
+          correct: 'I’m',
+          category: 'contraction',
+          distractors: [
+            {
+              value: 'I am',
+              reasonCode: 'not_contracted',
+              why: 'По смыслу верно, но нужна короткая форма I’m.',
+            },
+            {
+              value: 'Im',
+              reasonCode: 'missing_apostrophe',
+              why: 'Без апострофа это не сокращение.',
+            },
+            {
+              value: 'I’ll',
+              reasonCode: 'wrong_contraction',
+              why: 'I’ll — это «I will», совсем другое сокращение.',
+            },
+            {
+              value: 'It’s',
+              reasonCode: 'person_mismatch',
+              why: 'It’s — про предмет, а не про себя.',
+            },
+            {
+              value: 'I’s',
+              reasonCode: 'contraction_malformed',
+              why: 'Такого сокращения не существует.',
+            },
+          ],
+        },
+        {
+          correct: 'ready',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'read',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Read — «читать».',
+            },
+            {
+              value: 'red',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Red — «красный».',
+            },
+            {
+              value: 'already',
+              reasonCode: 'wrong_word_class',
+              why: 'Already — «уже», это про время.',
+            },
+            {
+              value: 'readily',
+              reasonCode: 'wrong_word_class',
+              why: 'Readily — наречие «охотно», нужен признак.',
+            },
+            {
+              value: 'reader',
+              reasonCode: 'wrong_word_class',
+              why: 'Reader — «читатель».',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'contraction_im', 'state_adjective'],
+    },
+    {
+      id: 'e01-s04-im-not-sure',
+      english: 'I’m not sure',
+      russian: 'Я не уверен',
+      explanation:
+        'Отрицание встраивается после сокращения так же просто, как после полной формы: I’m plus not. Порядок слов не меняется, меняется только длина первого слова.',
+      words: [
+        {
+          correct: 'I’m',
+          category: 'contraction',
+          distractors: [
+            {
+              value: 'I am',
+              reasonCode: 'not_contracted',
+              why: 'По смыслу верно, но нужна короткая форма I’m.',
+            },
+            {
+              value: 'Im',
+              reasonCode: 'missing_apostrophe',
+              why: 'Без апострофа это не сокращение.',
+            },
+            {
+              value: 'I’m not',
+              reasonCode: 'extra_word_included',
+              why: 'Not — отдельное слово, отдельная ячейка, сюда его включать не нужно.',
+            },
+            {
+              value: 'I don’t',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Sure — не глагол, don’t тут не подходит.',
+            },
+            {
+              value: 'You’re',
+              reasonCode: 'person_mismatch',
+              why: 'You’re — сокращение для you are.',
+            },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            {
+              value: 'no',
+              reasonCode: 'negator_type_mismatch',
+              why: 'No отрицает существительное, признак — not.',
+            },
+            {
+              value: 'never',
+              reasonCode: 'meaning_mismatch',
+              why: 'Never — «никогда», это про частоту.',
+            },
+            {
+              value: 'nor',
+              reasonCode: 'wrong_word_class',
+              why: 'Nor соединяет два отрицания.',
+            },
+            {
+              value: 'note',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Note — «заметка».',
+            },
+            {
+              value: 'don’t',
+              reasonCode: 'wrong_auxiliary',
+              why: 'При I’m вспомогательный do лишний.',
+            },
+          ],
+        },
+        {
+          correct: 'sure',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'sur',
+              reasonCode: 'spelling_invalid',
+              why: 'В английском такого слова нет.',
+            },
+            {
+              value: 'shore',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Shore — «берег».',
+            },
+            {
+              value: 'surely',
+              reasonCode: 'wrong_word_class',
+              why: 'Surely — наречие «конечно».',
+            },
+            {
+              value: 'sugar',
+              reasonCode: 'meaning_mismatch',
+              why: 'Похожее начало, но это «сахар».',
+            },
+            {
+              value: 'sore',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Sore — «болезненный».',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'contraction_im', 'negation_not', 'state_adjective'],
+    },
   ]);

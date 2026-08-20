@@ -1109,4 +1109,416 @@ export const EPISODE_01_SESSION_02_PHRASES: readonly EpisodeSourcePhrase[] =
       ],
       features: ['fixed_expression', 'farewell', 'time_of_day'],
     },
+    {
+      id: 'e01-s02-i-am-not-hungry',
+      english: 'I am not hungry',
+      russian: 'Я не голоден',
+      explanation:
+        'Уже знакомый признак hungry, теперь с отрицанием. Not встаёт сразу после am — то же самое место, что и в любом другом отрицании со связкой.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Подлежащее — только I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'not',
+              reasonCode: 'negator_as_subject',
+              why: 'Not — частица отрицания, не подлежащее.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не называет человека.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is не сочетается с I.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — для you, we, they.',
+            },
+            {
+              value: 'do',
+              reasonCode: 'wrong_auxiliary',
+              why: 'С признаком отрицают через am not, а не do not.',
+            },
+            {
+              value: 'don’t',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Hungry — не глагол, вспомогательный do не нужен.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Нужна личная форма.',
+            },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            {
+              value: 'no',
+              reasonCode: 'negator_type_mismatch',
+              why: 'No отрицает существительное. Глагол-связку отрицают через not.',
+            },
+            {
+              value: 'don’t',
+              reasonCode: 'wrong_auxiliary',
+              why: 'При am вспомогательный do не нужен.',
+            },
+            {
+              value: 'never',
+              reasonCode: 'meaning_mismatch',
+              why: 'Never — «никогда», это про частоту.',
+            },
+            {
+              value: 'nor',
+              reasonCode: 'wrong_word_class',
+              why: 'Nor соединяет два отрицания, здесь оно одно.',
+            },
+            {
+              value: 'note',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Note — «заметка».',
+            },
+          ],
+        },
+        {
+          correct: 'hungry',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'hungery',
+              reasonCode: 'spelling_invalid',
+              why: 'Лишняя буква e.',
+            },
+            {
+              value: 'angry',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Angry — «злой». Отличается одной буквой.',
+            },
+            {
+              value: 'hunger',
+              reasonCode: 'wrong_word_class',
+              why: 'Hunger — «голод», существительное.',
+            },
+            {
+              value: 'hungrily',
+              reasonCode: 'wrong_word_class',
+              why: 'Наречие. После am ставят признак.',
+            },
+            {
+              value: 'happy',
+              reasonCode: 'meaning_mismatch',
+              why: 'Happy — «рад», другое состояние.',
+            },
+          ],
+        },
+      ],
+      features: [
+        'copula_be',
+        'first_person_singular',
+        'negation_not',
+        'state_adjective',
+      ],
+    },
+    {
+      id: 'e01-s02-i-am-not-here',
+      english: 'I am not here',
+      russian: 'Меня здесь нет',
+      explanation:
+        'Отрицание места вместо признака: not после am работает точно так же, здесь просто меняется here вместо busy или hungry. Так пишут в ответ на сообщение, когда человек уже ушёл.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Соблазн сказать «меня» велик, но подлежащее — I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'not',
+              reasonCode: 'negator_as_subject',
+              why: 'Not — частица отрицания, не подлежащее.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не называет человека.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is не сочетается с I.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — для you, we, they.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — прошедшее время. Здесь речь про сейчас.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Be — начальная форма, нужна личная: am.',
+            },
+            {
+              value: 'do',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Место отрицают через am not, а не do not.',
+            },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            {
+              value: 'no',
+              reasonCode: 'negator_type_mismatch',
+              why: 'No отрицает существительное. Глагол-связку отрицают через not.',
+            },
+            {
+              value: 'don’t',
+              reasonCode: 'wrong_auxiliary',
+              why: 'При am вспомогательный do не нужен.',
+            },
+            {
+              value: 'never',
+              reasonCode: 'meaning_mismatch',
+              why: 'Never — «никогда», это про частоту.',
+            },
+            {
+              value: 'nor',
+              reasonCode: 'wrong_word_class',
+              why: 'Nor соединяет два отрицания, здесь оно одно.',
+            },
+            {
+              value: 'note',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Note — «заметка».',
+            },
+          ],
+        },
+        {
+          correct: 'here',
+          category: 'place',
+          distractors: [
+            {
+              value: 'hear',
+              reasonCode: 'homophone_confusion',
+              why: 'Звучит одинаково, но hear — «слышать». Место — here.',
+            },
+            {
+              value: 'there',
+              reasonCode: 'deixis_opposite',
+              why: 'There — «там», противоположное направление.',
+            },
+            {
+              value: 'her',
+              reasonCode: 'wrong_word_class',
+              why: 'Her — «её». Не указывает на место.',
+            },
+            {
+              value: 'where',
+              reasonCode: 'question_word_in_statement',
+              why: 'Where — вопросительное «где». В утверждении не стоит.',
+            },
+            {
+              value: 'hair',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Hair — «волосы». Похоже на слух, смысл другой.',
+            },
+          ],
+        },
+      ],
+      features: ['copula_be', 'first_person_singular', 'negation_not', 'adverb_place'],
+    },
+    {
+      id: 'e01-s02-i-am-not-happy',
+      english: 'I am not happy',
+      russian: 'Я не рад',
+      explanation:
+        'Тот же признак happy, что и в уроке раньше, теперь с отрицанием. Порядок слов не меняется — not всегда сразу после am.',
+      words: [
+        {
+          correct: 'I',
+          category: 'pronoun',
+          distractors: [
+            {
+              value: 'me',
+              reasonCode: 'object_pronoun_as_subject',
+              why: 'Подлежащее — только I.',
+            },
+            {
+              value: 'my',
+              reasonCode: 'possessive_as_subject',
+              why: 'My — «мой», это принадлежность, а не тот, о ком речь.',
+            },
+            {
+              value: 'i',
+              reasonCode: 'capitalization_invalid',
+              why: 'Английское «я» всегда пишется заглавной буквой — I.',
+            },
+            {
+              value: 'not',
+              reasonCode: 'negator_as_subject',
+              why: 'Not — частица отрицания, не подлежащее.',
+            },
+            {
+              value: 'mine',
+              reasonCode: 'possessive_as_subject',
+              why: 'Mine не называет человека.',
+            },
+          ],
+        },
+        {
+          correct: 'am',
+          category: 'to-be',
+          distractors: [
+            {
+              value: 'is',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Is не сочетается с I.',
+            },
+            {
+              value: 'are',
+              reasonCode: 'agreement_person_mismatch',
+              why: 'Are — для you, we, they.',
+            },
+            {
+              value: 'was',
+              reasonCode: 'tense_mismatch',
+              why: 'Was — прошедшее время. Здесь речь про сейчас.',
+            },
+            {
+              value: 'be',
+              reasonCode: 'infinitive_not_finite',
+              why: 'Be — начальная форма, нужна личная: am.',
+            },
+            {
+              value: 'have',
+              reasonCode: 'wrong_auxiliary',
+              why: 'Радость отрицают через быть, а не иметь.',
+            },
+          ],
+        },
+        {
+          correct: 'not',
+          category: 'negation',
+          distractors: [
+            {
+              value: 'no',
+              reasonCode: 'negator_type_mismatch',
+              why: 'No отрицает существительное. Глагол-связку отрицают через not.',
+            },
+            {
+              value: 'don’t',
+              reasonCode: 'wrong_auxiliary',
+              why: 'При am вспомогательный do не нужен.',
+            },
+            {
+              value: 'never',
+              reasonCode: 'meaning_mismatch',
+              why: 'Never — «никогда», это про частоту.',
+            },
+            {
+              value: 'nor',
+              reasonCode: 'wrong_word_class',
+              why: 'Nor соединяет два отрицания, здесь оно одно.',
+            },
+            {
+              value: 'note',
+              reasonCode: 'near_homophone_confusion',
+              why: 'Note — «заметка».',
+            },
+          ],
+        },
+        {
+          correct: 'happy',
+          category: 'adjective',
+          distractors: [
+            {
+              value: 'happily',
+              reasonCode: 'wrong_word_class',
+              why: 'Наречие «счастливо». После am — признак.',
+            },
+            {
+              value: 'happiness',
+              reasonCode: 'wrong_word_class',
+              why: 'Существительное «счастье».',
+            },
+            {
+              value: 'hapy',
+              reasonCode: 'spelling_invalid',
+              why: 'Пропущена буква: happy.',
+            },
+            {
+              value: 'happier',
+              reasonCode: 'wrong_word_form',
+              why: 'Happier — «счастливее», нужно сравнение с чем-то.',
+            },
+            {
+              value: 'hungry',
+              reasonCode: 'meaning_mismatch',
+              why: 'Hungry — «голодный».',
+            },
+          ],
+        },
+      ],
+      features: [
+        'copula_be',
+        'first_person_singular',
+        'negation_not',
+        'state_adjective',
+      ],
+    },
   ]);

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   notice: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, padding: 12 },
   copy: { flex: 1, minWidth: 0 },
   title: { fontSize: 15, fontWeight: '900' },
-  body: { marginTop: 2, fontSize: 13, fontWeight: '600', lineHeight: 18 },
+  body: { marginTop: 2, fontSize: 13, fontWeight: '600' },
   retry: { minHeight: 44, flexShrink: 0, alignItems: 'center', justifyContent: 'center', borderRadius: 14, paddingHorizontal: 12 },
   retryText: { fontSize: 13, fontWeight: '900' },
 });

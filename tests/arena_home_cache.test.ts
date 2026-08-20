@@ -147,6 +147,30 @@ describe('экран Арены пользуется снимком', () => {
     expect(source).not.toContain('<ArenaStateCard state="loading"');
   });
 
+  it('первый кадр — нейтральный хаб без скелетона, а снимок не вытесняет свежий ответ', () => {
+    expect(source).toContain('arenaHubNeutral');
+    expect(source).toContain('arenaHubCached');
+    expect(source).toContain('arenaHubCurrent');
+    expect(source).not.toContain('ArenaHubSkeleton');
+    expect(source).not.toContain('SkeletonSwap');
+    expect(source).not.toContain('hubLoading');
+  });
+
+  it('даже без данных рисуются живые блоки и карточка Today с честным неизвестным прогрессом', () => {
+    expect(source).toContain('<ArenaHubLive model={hub} />');
+    expect(source).toContain('<ArenaDailyGoals model={hub.goals} />');
+    expect(source).toContain('value={today?.completedTasks ?? null}');
+    expect(source).toContain("subtitle={home?.profile.rankName ?? '—'}");
+  });
+
+  it('сетевой сбой показывает компактное офлайн-сообщение, а серверный — прежнюю карточку', () => {
+    expect(source).toContain('arenaHubFailure');
+    expect(source).toContain('ArenaConnectionNotice');
+    expect(source).toContain("baseFailure?.kind === 'offline'");
+    expect(source).toContain("baseFailure?.kind === 'server'");
+    expect(source).toContain("expansionFailure?.kind === 'server'");
+  });
+
   it('погашенные кнопки объяснены, а не молчат', () => {
     expect(source).toContain("'arenaNotDeployed'");
     expect(source).toContain("'arenaNotDeployedHint'");

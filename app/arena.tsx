@@ -2,16 +2,19 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
-import { triLang } from '../constants/i18n';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { ArenaDailyGoals } from '../components/arena/ArenaDailyGoals';
 import { ArenaHubLive } from '../components/arena/ArenaHubLive';
-import { ArenaHubSkeleton } from '../components/arena/ArenaHubSkeleton';
-import SkeletonSwap from '../components/feedback/SkeletonSwap';
 import { arenaHubModel } from '../modules/arena/hub_view';
+import {
+  arenaHubCached,
+  arenaHubCurrent,
+  arenaHubFailure,
+  arenaHubNeutral,
+} from '../modules/arena/hub_presentation';
 import {
   ArenaFeatureRow,
   ArenaProgress,
@@ -37,28 +40,9 @@ import { trackArenaTelemetry } from './arena_telemetry';
 import { useFeatureIntro } from '../hooks/use_feature_intro';
 import FeatureIntroModal from '../components/FeatureIntroModal';
 import { featureIntroById } from './feature_intro_registry';
+import { ArenaConnectionNotice } from '../components/arena/ArenaConnectionNotice';
 
 const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
-
-/**
- * Код отказа вызова Арены в пригодном для показа виде.
- *
- * зачем: сервер называет причину словами (`arena_disabled`,
- * `arena_client_update_required`, `account_delete_pending`,
- * `arena_config_incompatible:...`), но экран показывал одну и ту же карточку
- * на любой отказ, а сама ошибка нигде не сохранялась. Диагностика сводилась к
- * гаданию. Достаём код и показываем его человеку — короткой строкой, не
- * стеной текста.
- */
-function arenaErrorCode(e: unknown): string {
-  const raw = e as { code?: unknown; message?: unknown } | null | undefined;
-  const message = typeof raw?.message === 'string' ? raw.message : '';
-  const code = typeof raw?.code === 'string' ? raw.code : '';
-  // Firebase кладёт полезное в message, а в code — транспортный уровень
-  // ('functions/failed-precondition'), который ни о чём не говорит.
-  const useful = message || code;
-  return useful ? useful.slice(0, 80) : 'unknown';
-}
 
 export default function ArenaHubScreen() {
   const router = useRouter();
@@ -76,44 +60,42 @@ export default function ArenaHubScreen() {
    * поэтому экран открывается уже с данными, а свежие приезжают молча.
    */
   const warm = useMemo(() => arenaPeekHomeWarm(Date.now()), []);
-  const [home, setHome] = useState<ArenaHomeResponse | null>(
+  const [homeSlot, setHomeSlot] = useState(() => arenaHubCached(
+    arenaHubNeutral<ArenaHomeResponse>(),
     (warm?.home ?? null) as ArenaHomeResponse | null,
-  );
-  const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(
+  ));
+  const [expansionSlot, setExpansionSlot] = useState(() => arenaHubCached(
+    arenaHubNeutral<ArenaExpansionHome>(),
     (warm?.expansion ?? null) as ArenaExpansionHome | null,
-  );
-  const [baseError, setBaseError] = useState(false);
-  const [baseErrorCode, setBaseErrorCode] = useState<string | null>(null);
-  const [expansionError, setExpansionError] = useState(false);
+  ));
+  const [baseFailure, setBaseFailure] = useState<ReturnType<typeof arenaHubFailure> | null>(null);
+  const [expansionFailure, setExpansionFailure] = useState<ReturnType<typeof arenaHubFailure> | null>(null);
   const spinRequestIdRef = useRef(createArenaRequestId('spin'));
   const [spinBusy, setSpinBusy] = useState(false);
   const [history, setHistory] = useState<readonly unknown[]>([]);
   const [friends, setFriends] = useState<readonly ArenaFriendsBoardRow[]>([]);
 
+  const home = homeSlot.value;
+  const expansion = expansionSlot.value;
+
   const load = useCallback(() => {
-    setBaseError(false);
-    setBaseErrorCode(null);
-    setExpansionError(false);
+    setBaseFailure(null);
+    setExpansionFailure(null);
     void arenaV2Home().then((response) => {
-      setHome(response);
+      setHomeSlot(arenaHubCurrent(response));
       arenaRememberHomeWarm({ home: response, wallNowMs: Date.now(), store: warmStore });
     }).catch((e: unknown) => {
-      // зачем: отказ проглатывался молча — экран рисовал «Арена не включена
-      // на сервере» на ЛЮБУЮ ошибку, и настоящую причину нельзя было узнать
-      // ни с телефона, ни из логов. 2026-08-16 на поиск ушёл целый день, а
-      // причиной оказался гейт версии, потом помеченный на удаление аккаунт.
-      // Код ошибки нужен и в консоли Metro, и на самом экране.
-      const code = arenaErrorCode(e);
-      setBaseErrorCode(code);
-      setBaseError(true);
-      if (__DEV__) console.warn('[arena] arenaV2Home failed:', code, e);
+      const failure = arenaHubFailure(e);
+      setBaseFailure(failure);
+      if (__DEV__) console.warn('[arena] arenaV2Home failed:', failure.code, e);
     });
     void arenaExpansionHome().then((response) => {
-      setExpansion(response);
+      setExpansionSlot(arenaHubCurrent(response));
       arenaRememberHomeWarm({ expansion: response, wallNowMs: Date.now(), store: warmStore });
     }).catch((e: unknown) => {
-      setExpansionError(true);
-      if (__DEV__) console.warn('[arena] arenaExpansionHome failed:', arenaErrorCode(e), e);
+      const failure = arenaHubFailure(e);
+      setExpansionFailure(failure);
+      if (__DEV__) console.warn('[arena] arenaExpansionHome failed:', failure.code, e);
     });
     // Оба — разовые чтения при открытии. Прошедшие матчи не меняются, список
     // друзей меняется днями: держать на них подписку значит платить за
@@ -130,16 +112,13 @@ export default function ArenaHubScreen() {
    * если своё уже не пришло: свежее важнее вчерашнего.
    */
   useEffect(() => {
-    if (home && expansion) return;
     let alive = true;
     void arenaLoadHomeWarm(warmStore, Date.now()).then((stored) => {
       if (!alive || !stored) return;
-      setHome((current) => current ?? (stored.home as ArenaHomeResponse | null));
-      setExpansion((current) => current ?? (stored.expansion as ArenaExpansionHome | null));
+      setHomeSlot((current) => arenaHubCached(current, stored.home as ArenaHomeResponse | null));
+      setExpansionSlot((current) => arenaHubCached(current, stored.expansion as ArenaExpansionHome | null));
     }).catch(() => {});
     return () => { alive = false; };
-    // Только на открытии экрана: дальше данные приходят по сети.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent('hub', 'direct')); }, []);
 
@@ -169,17 +148,12 @@ export default function ArenaHubScreen() {
     return () => { alive = false; };
   }, [active]);
 
-  /**
-   * Скелетон показывается ТОЛЬКО когда нет вообще ничего: ни тёплого снимка
-   * (память), ни диск-кэша, ни ответа сети. Если warm-снимок есть — экран
-   * сразу рисует контент из него, скелетон не мигает ни на кадр (владелец:
-   * «видимой загрузки не должно быть нигде», где снимок есть).
-   */
-  const hubLoading = !home && !expansion && !warm;
-
   const activeQueue = home?.activeQueue?.status === 'waiting' ? home.activeQueue : null;
   const activeRun = expansion?.activeRun;
-  const baseEnabled = home?.availability.enabled === true && !baseError;
+  const offline = baseFailure?.kind === 'offline' || expansionFailure?.kind === 'offline';
+  const serverFailure = baseFailure?.kind === 'server';
+  const expansionServerFailure = expansionFailure?.kind === 'server';
+  const baseEnabled = home?.availability.enabled === true && !offline && !serverFailure;
   const today = expansion?.today;
   const todayAction = today?.state === 'in_progress' ? arenaExpansionText(lang, 'todayContinue') : arenaExpansionText(lang, 'todayStart');
 
@@ -203,8 +177,8 @@ export default function ArenaHubScreen() {
 
   const todayContent = (
     <>
-      {home ? <ArenaHubLive model={hub} /> : null}
-      {home ? <ArenaDailyGoals model={hub.goals} /> : null}
+      <ArenaHubLive model={hub} />
+      <ArenaDailyGoals model={hub.goals} />
       {activeRun ? (
         <ArenaFeatureRow
           accent
@@ -230,12 +204,8 @@ export default function ArenaHubScreen() {
           onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: activeQueue.mode, requestId: activeQueue.requestId, stableUid: activeQueue.stableUid } } as never)}
         />
       ) : null}
-      {/* Слово «Загрузка» здесь больше не показывается: первый кадр рисуется
-          прошлым снимком, а если снимка нет — просто ничего, а не надпись,
-          которую владелец видеть запретил. */}
-      {expansionError ? <ArenaStateNotice state="error" onRetry={load} /> : null}
-      {today ? (
-        <V2Card style={styles.todayCard}>
+      {expansionServerFailure ? <ArenaStateNotice state="error" onRetry={load} /> : null}
+      <V2Card style={styles.todayCard}>
           <View style={styles.todayHead}>
             <View style={styles.todayCopy}>
               <Text style={[styles.todayTitle, todayTitleLine, { color: P.text }]}>{arenaExpansionText(lang, 'todayTitle')}</Text>
@@ -245,14 +215,13 @@ export default function ArenaHubScreen() {
               <Text style={[styles.todayNumberText, { color: P.text }]}>10</Text>
             </View>
           </View>
-          <ArenaProgress value={today.completedTasks} max={10} label={arenaExpansionText(lang, 'todayTitle')} />
-          {today.state === 'complete' ? (
+          <ArenaProgress value={today?.completedTasks ?? null} max={10} label={arenaExpansionText(lang, 'todayTitle')} />
+          {today?.state === 'complete' ? (
             <Text accessibilityLiveRegion="polite" style={[styles.complete, { color: P.accent }]}>{arenaExpansionText(lang, 'todayComplete')}</Text>
           ) : (
-            <V2Cta disabled={!baseEnabled || !expansion.availability.today || today.state === 'unavailable'} onPress={() => router.push('/arena_today' as never)}>{todayAction}</V2Cta>
+            <V2Cta disabled={!baseEnabled || !expansion?.availability.today || !today || today.state === 'unavailable'} onPress={() => router.push('/arena_today' as never)}>{todayAction}</V2Cta>
           )}
-        </V2Card>
-      ) : null}
+      </V2Card>
       {/* зачем заголовок убран (владелец, 2026-08-16): экран и так открыт по
           кнопке «Играть» в таббаре — подпись над первым же пунктом повторяла
           название, под которым сюда пришли. */}
@@ -269,17 +238,12 @@ export default function ArenaHubScreen() {
     >
     <ArenaScreen
       title={arenaText(lang, 'title')}
-      subtitle={home?.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home?.profile.rank ?? 0) + 1}`}
+      subtitle={home?.profile.rankName ?? '—'}
       onBack={() => router.replace('/(tabs)/home' as never)}
       headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion ? expansion.wallet.walletStars : null} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
     >
-      {/*
-        Пока Арена не включена на сервере, все кнопки погашены — и без
-        объяснения это выглядит как поломка приложения. Владелец увидел ровно
-        это: «играть кнопки недоступны». Отказ вызова тут означает не «плохая
-        сеть», а «серверная часть ещё не развёрнута».
-      */}
-      {baseError ? (
+      {offline ? <ArenaConnectionNotice onRetry={load} /> : null}
+      {serverFailure ? (
         <ArenaStateCard
           state="unavailable"
           title={arenaText(lang, 'arenaNotDeployed')}
@@ -287,9 +251,7 @@ export default function ArenaHubScreen() {
           // единственная догадка, выданная за факт. Она увела диагностику
           // на целый день, пока сервер был полностью исправен. Показываем
           // то, что сервер действительно ответил.
-          body={baseErrorCode
-            ? `${arenaText(lang, 'arenaNotDeployedHint')}\n\n${baseErrorCode}`
-            : arenaText(lang, 'arenaNotDeployedHint')}
+          body={`${arenaText(lang, 'arenaNotDeployedHint')}\n\n${baseFailure?.code ?? ''}`.trim()}
         />
       ) : null}
       {/* Отчёт, застрявший из-за старой сборки, повторами не спасти: игроку
@@ -297,9 +259,7 @@ export default function ArenaHubScreen() {
           а он даже не узнает почему. */}
       {reportBlocked ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'reportBlocked')} body={arenaText(lang, 'reportBlockedHint')} /> : null}
       {home && !home.availability.enabled ? <ArenaStateCard state="unavailable" title={arenaText(lang, 'maintenance')} body={arenaText(lang, 'maintenanceHint')} /> : null}
-      <SkeletonSwap loading={hubLoading} skeleton={<ArenaHubSkeleton palette={P} />}>
-        {todayContent}
-      </SkeletonSwap>
+      {todayContent}
     </ArenaScreen>
     {arenaIntroDef ? (
       <FeatureIntroModal

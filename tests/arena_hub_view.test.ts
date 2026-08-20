@@ -1,6 +1,7 @@
 import {
   ARENA_HUB_FRIENDS_LIMIT,
   arenaHubFriends,
+  arenaHubActionBlock,
   arenaHubModel,
 } from '../modules/arena/hub_view';
 import { arenaText } from '../modules/arena/copy';
@@ -75,6 +76,10 @@ describe('цели дня на главном', () => {
   it('не выдумывает дневные цели без ключа сегодняшнего дня', () => {
     expect(arenaHubModel({ todayKey: '' }).goals).toBeNull();
     expect(arenaHubModel({}).goals).toBeNull();
+  });
+
+  it('не подменяет отсутствующие счётчики нулевыми целями', () => {
+    expect(arenaHubModel({ dailyDayKey: today, todayKey: today }).goals).toBeNull();
   });
 });
 
@@ -190,6 +195,19 @@ describe('модель целиком', () => {
     expect(model.lastMatch).toBeNull();
     expect(model.friends).toEqual([]);
     expect(model.searchingNow).toBeNull();
+  });
+});
+
+describe('причины блокировки действий хаба', () => {
+  it('prioritizes truthful global failures over feature state', () => {
+    expect(arenaHubActionBlock({ known: true, offline: true, modeEnabled: true })).toBe('offline');
+    expect(arenaHubActionBlock({ known: true, server: true, modeEnabled: true })).toBe('server');
+    expect(arenaHubActionBlock({ known: true, maintenance: true, modeEnabled: true })).toBe('maintenance');
+    expect(arenaHubActionBlock({ known: true, reportBlocked: true, modeEnabled: true })).toBe('report_blocked');
+    expect(arenaHubActionBlock({ known: false })).toBe('unknown');
+    expect(arenaHubActionBlock({ known: true, modeEnabled: false })).toBe('mode_disabled');
+    expect(arenaHubActionBlock({ known: true, modeEnabled: true, busy: true })).toBe('busy');
+    expect(arenaHubActionBlock({ known: true, modeEnabled: true })).toBe('ok');
   });
 });
 

@@ -19,9 +19,9 @@ import { hapticTap, hapticMediumImpact } from '../../hooks/use-haptics';
 /**
  * Собственный таббар Арены.
  *
- * Владелец (2026-08-12): внутри Арены свой таббар с крупной кнопкой «Матч» по
- * центру — по нажатию открывается выбор режима, как в «Карточках 2.1».
- * По бокам по две вкладки: Сегодня и Ранг слева, Топы и История справа.
+ * Владелец (2026-08-12, порядок обновлён 2026-08-16): три равные по смыслу
+ * кнопки — Рейтинг слева, Играть по центру (крупная), История справа. Каждая
+ * раскрывает список своих вариантов тем же жестом (см. ArenaHubChrome).
  *
  * Планка анимаций — «уровень Duolingo и лучше»: пружинная подсветка активной
  * вкладки, отдельная физика нажатия у центральной кнопки, дыхание кнопки в
@@ -115,11 +115,13 @@ function CenterMatchButton({
   onPress,
   reduceMotion,
   busy,
+  disabledHint,
 }: {
   label: string;
   onPress: () => void;
   reduceMotion: boolean;
   busy: boolean;
+  disabledHint?: string;
 }) {
   const P = useTournamentPalette();
   const press = useSharedValue(0);
@@ -162,6 +164,7 @@ function CenterMatchButton({
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={label}
+          accessibilityHint={disabledHint}
           testID="arena-tab-match"
           disabled={busy}
           onPressIn={() => { press.value = reduceMotion ? 0 : withTiming(1, { duration: 90 }); }}
@@ -182,6 +185,7 @@ function ArenaTabBarBase({
   active,
   matchLabel,
   matchBusy = false,
+  matchDisabledHint,
   onSelect,
   onMatch,
 }: {
@@ -189,6 +193,7 @@ function ArenaTabBarBase({
   active: ArenaTabKey;
   matchLabel: string;
   matchBusy?: boolean;
+  matchDisabledHint?: string;
   onSelect: (key: ArenaTabKey) => void;
   onMatch: () => void;
 }) {
@@ -226,6 +231,7 @@ function ArenaTabBarBase({
         <CenterMatchButton
           label={matchLabel}
           busy={matchBusy}
+          disabledHint={matchDisabledHint}
           reduceMotion={reduceMotion}
           onPress={play ? () => select(play.key) : onMatch}
         />

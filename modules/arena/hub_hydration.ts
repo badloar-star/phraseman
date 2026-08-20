@@ -1,6 +1,7 @@
 import { arenaHubCached, arenaHubCurrent, arenaHubFailure, arenaHubNeutral, type ArenaHubFailure, type ArenaHubSlot } from './hub_presentation';
 
 type RecordValue = Record<string, unknown>;
+type ArenaTodayState = 'available' | 'in_progress' | 'complete' | 'expired' | 'unavailable';
 
 export type ArenaHubWarmHome = Readonly<{
   ok: true;
@@ -24,7 +25,7 @@ export type ArenaHubWarmExpansion = Readonly<{
   ok: true;
   availability: Readonly<{ today: boolean; lab: boolean; ghost: boolean; rival: boolean; mastery: boolean; partner: boolean; store: boolean }>;
   wallet: Readonly<{ walletStars: number }>;
-  today: Readonly<{ completedTasks: number; state: 'available' | 'in_progress' | 'complete' | 'expired' | 'unavailable' }>;
+  today?: Readonly<{ completedTasks: number; state: ArenaTodayState }>;
   activeRun?: Readonly<{ runId: string; runKind: 'today' | 'ghost' }>;
 }>;
 
@@ -102,9 +103,29 @@ export function arenaWarmExpansion(value: unknown): ArenaHubWarmExpansion | null
     ok: true,
     availability: { today: value.availability.today as boolean, lab: value.availability.lab as boolean, ghost: value.availability.ghost as boolean, rival: value.availability.rival as boolean, mastery: value.availability.mastery as boolean, partner: value.availability.partner as boolean, store: value.availability.store as boolean },
     wallet: { walletStars: value.wallet.walletStars },
-    today: { completedTasks: value.today.completedTasks, state: value.today.state as ArenaHubWarmExpansion['today']['state'] },
+    today: { completedTasks: value.today.completedTasks, state: value.today.state as ArenaTodayState },
     ...(activeRun === undefined ? {} : { activeRun }),
   };
+}
+
+/** Projects an old warm snapshot onto a known UTC day without inventing daily state. */
+export function arenaWarmForDay(warm: Readonly<{ home?: unknown; expansion?: unknown }>, todayKey: string): Readonly<{
+  home: ArenaHubWarmHome | null;
+  expansion: ArenaHubWarmExpansion | null;
+}> {
+  const home = arenaWarmHome(warm.home);
+  const expansion = arenaWarmExpansion(warm.expansion);
+  const sameDay = home !== null
+    && home.profile.dailyDayKey === todayKey
+    && home.profile.todayKey === todayKey;
+  if (sameDay) return { home, expansion };
+  if (home === null) return { home: null, expansion };
+  const { dailyDayKey: _dailyDayKey, todayKey: _todayKey, dailyMatches: _dailyMatches, dailyFirstAnswers: _dailyFirstAnswers, dailyWins: _dailyWins, ...profile } = home.profile;
+  const nextExpansion = expansion === null ? null : (() => {
+    const { today: _today, activeRun: _activeRun, ...rest } = expansion;
+    return rest;
+  })();
+  return { home: { ...home, profile }, expansion: nextExpansion };
 }
 
 /** Monotonic request guard: stale responses and unmounted screens become no-ops. */
@@ -122,6 +143,7 @@ export function arenaHubRequestGate() {
 type ArenaHubHydrationOptions<Home extends ArenaHubWarmHome, Expansion extends ArenaHubWarmExpansion> = Readonly<{
   initialHome?: unknown;
   initialExpansion?: unknown;
+  todayKey?: string;
   fetchHome: () => Promise<Home>;
   fetchExpansion: () => Promise<Expansion>;
   remember: (value: Readonly<{ home?: Home; expansion?: Expansion }>) => void;
@@ -131,9 +153,11 @@ type ArenaHubHydrationOptions<Home extends ArenaHubWarmHome, Expansion extends A
 /** Small UI-agnostic coordinator for warm cache, parallel refresh, and unmount safety. */
 export function createArenaHubHydrationController<Home extends ArenaHubWarmHome, Expansion extends ArenaHubWarmExpansion>(options: ArenaHubHydrationOptions<Home, Expansion>) {
   const gate = arenaHubRequestGate();
+  const projectWarm = (warm: Readonly<{ home?: unknown; expansion?: unknown }>) => arenaWarmForDay(warm, options.todayKey ?? '');
+  const initialWarm = projectWarm({ home: options.initialHome, expansion: options.initialExpansion });
   let snapshot: ArenaHubHydrationSnapshot = {
-    home: arenaHubCached(arenaHubNeutral<ArenaHubWarmHome>(), arenaWarmHome(options.initialHome)),
-    expansion: arenaHubCached(arenaHubNeutral<ArenaHubWarmExpansion>(), arenaWarmExpansion(options.initialExpansion)),
+    home: arenaHubCached(arenaHubNeutral<ArenaHubWarmHome>(), initialWarm.home),
+    expansion: arenaHubCached(arenaHubNeutral<ArenaHubWarmExpansion>(), initialWarm.expansion),
     failure: { home: null, expansion: null },
   };
   const publish = () => { if (gate.mounted()) options.onSnapshot(snapshot); };
@@ -152,7 +176,8 @@ export function createArenaHubHydrationController<Home extends ArenaHubWarmHome,
     snapshot: () => snapshot,
     hydrate: (warm: Readonly<{ home?: unknown; expansion?: unknown }>) => {
       if (!gate.mounted()) return;
-      update({ ...snapshot, home: arenaHubCached(snapshot.home, arenaWarmHome(warm.home)), expansion: arenaHubCached(snapshot.expansion, arenaWarmExpansion(warm.expansion)) });
+      const projected = projectWarm(warm);
+      update({ ...snapshot, home: arenaHubCached(snapshot.home, projected.home), expansion: arenaHubCached(snapshot.expansion, projected.expansion) });
     },
     refresh: (): number | null => {
       const generation = gate.begin();

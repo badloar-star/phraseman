@@ -49,6 +49,28 @@ export type ArenaHubModel = Readonly<{
 /** Сколько строк друзей влезает на главный экран, не превращая его в список. */
 export const ARENA_HUB_FRIENDS_LIMIT = 3;
 
+export type ArenaHubBlockReason = 'ok' | 'unknown' | 'offline' | 'server' | 'maintenance' | 'report_blocked' | 'mode_disabled' | 'busy';
+
+/** One truthful blocking decision shared by hub actions. */
+export function arenaHubActionBlock(input: Readonly<{
+  known: boolean;
+  offline?: boolean;
+  server?: boolean;
+  maintenance?: boolean;
+  reportBlocked?: boolean;
+  modeEnabled?: boolean;
+  busy?: boolean;
+}>): ArenaHubBlockReason {
+  if (input.offline) return 'offline';
+  if (input.server) return 'server';
+  if (input.maintenance) return 'maintenance';
+  if (input.reportBlocked) return 'report_blocked';
+  if (!input.known) return 'unknown';
+  if (!input.modeEnabled) return 'mode_disabled';
+  if (input.busy) return 'busy';
+  return 'ok';
+}
+
 /**
  * Кусок таблицы друзей ВОКРУГ СЕБЯ, а не первые строки.
  *
@@ -93,6 +115,9 @@ export function arenaHubModel(input: Readonly<{
   const history = arenaHistoryRows(input.historyRaw ?? []);
   const summary = arenaHistorySummary(history);
   const searching = Math.trunc(Number(input.searchingNow));
+  const dailyCounts = [input.dailyMatches, input.dailyFirstAnswers, input.dailyWins];
+  const hasCompleteDailyCounts = dailyCounts.every((value) => typeof value === 'number'
+    && Number.isFinite(value) && Number.isInteger(value) && value >= 0);
 
   return {
     rank: view === null ? null : {
@@ -104,7 +129,7 @@ export function arenaHubModel(input: Readonly<{
       rpToNextRank: view.top ? 0 : Math.max(0, view.rpForRank - view.rpInRank),
       top: view.top,
     },
-    goals: typeof input.todayKey === 'string' && input.todayKey.length > 0
+    goals: hasCompleteDailyCounts && typeof input.todayKey === 'string' && input.todayKey.length > 0
       ? arenaDailyGoals({
         storedDayKey: input.dailyDayKey,
         todayKey: input.todayKey,

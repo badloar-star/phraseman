@@ -41,11 +41,15 @@ export function ArenaHubChrome({
   availability,
   activeMatchId,
   activeQueue,
+  matchBlocked = false,
+  matchBlockedHint,
 }: Readonly<{
   children: React.ReactNode;
   availability?: ArenaModeAvailability | null;
   activeMatchId?: string | null;
   activeQueue?: Readonly<{ status?: string; mode?: string; requestId?: string; stableUid?: string }> | null;
+  matchBlocked?: boolean;
+  matchBlockedHint?: string;
 }>) {
   const router = useRouter();
   /**
@@ -144,6 +148,7 @@ export function ArenaHubChrome({
   }, [openTab, router]);
 
   const onMatch = useCallback(() => {
+    if (matchBlocked) return;
     const action = arenaMatchButtonAction({
       enabled: resolvedAvailability?.enabled === true,
       activeMatchId: resolvedMatchId,
@@ -168,7 +173,7 @@ export function ArenaHubChrome({
      * нельзя.
      */
     setSheetOpen(true);
-  }, [resolvedMatchId, resolvedQueue, resolvedAvailability?.enabled, router]);
+  }, [matchBlocked, resolvedMatchId, resolvedQueue, resolvedAvailability?.enabled, router]);
 
   const onSelectTab = useCallback((key: ArenaTabKey) => {
     // «Играть» ведёт себя как прежде: недоигранный матч или очередь важнее
@@ -212,6 +217,8 @@ export function ArenaHubChrome({
         tabs={tabs}
         active={activeTab}
         matchLabel={arenaText(lang, 'matchCta')}
+        matchBusy={matchBlocked}
+        matchDisabledHint={matchBlockedHint}
         onSelect={onSelectTab}
         onMatch={onMatch}
       />

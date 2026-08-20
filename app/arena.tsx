@@ -8,7 +8,7 @@ import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { ArenaDailyGoals } from '../components/arena/ArenaDailyGoals';
 import { ArenaHubLive } from '../components/arena/ArenaHubLive';
-import { arenaHubModel } from '../modules/arena/hub_view';
+import { arenaHubActionBlock, arenaHubModel, type ArenaHubBlockReason } from '../modules/arena/hub_view';
 import {
   createArenaHubHydrationController,
   runArenaHubSpin,
@@ -29,6 +29,7 @@ import {
   arenaLoadHomeWarm,
   arenaPeekHomeWarm,
   arenaRememberHomeWarm,
+  arenaWarmDayKey,
 } from '../modules/arena/home_cache';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -62,6 +63,7 @@ export default function ArenaHubScreen() {
     hydrationControllerRef.current = createArenaHubHydrationController({
       initialHome: warm?.home,
       initialExpansion: warm?.expansion,
+      todayKey: arenaWarmDayKey(Date.now()),
       fetchHome: arenaV2Home,
       fetchExpansion: arenaExpansionHome,
       remember: (value) => arenaRememberHomeWarm({ ...value, wallNowMs: Date.now(), store: warmStore }),
@@ -144,12 +146,24 @@ export default function ArenaHubScreen() {
   const offline = baseFailure?.kind === 'offline' || expansionFailure?.kind === 'offline';
   const serverFailure = baseFailure?.kind === 'server';
   const expansionServerFailure = expansionFailure?.kind === 'server';
-  const baseEnabled = home?.availability.enabled === true && !offline && !serverFailure;
   const today = expansion?.today;
+  const blockHint = (reason: ArenaHubBlockReason) => {
+    if (reason === 'offline') return arenaText(lang, 'hubOfflineHint');
+    if (reason === 'server') return arenaText(lang, 'arenaNotDeployedHint');
+    if (reason === 'maintenance') return arenaText(lang, 'maintenanceHint');
+    if (reason === 'report_blocked') return arenaText(lang, 'reportBlockedHint');
+    if (reason === 'mode_disabled' || reason === 'busy') return arenaText(lang, 'modeOff');
+    return arenaText(lang, 'valueUnknown');
+  };
+  const baseBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
+  const quickBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: home?.availability.quickEnabled });
+  const todayBlock = arenaHubActionBlock({ known: expansion !== null && today !== undefined, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: expansion?.availability.today && today?.state !== 'unavailable' });
+  const walletBlock = arenaHubActionBlock({ known: expansion !== null, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked, modeEnabled: expansion?.availability.store });
+  const baseEnabled = baseBlock === 'ok';
   const offlineHint = offline ? arenaText(lang, 'hubOfflineHint') : undefined;
-  const quickDisabledHint = offlineHint ?? (!home ? arenaText(lang, 'valueUnknown') : undefined);
-  const todayDisabledHint = offlineHint ?? (!expansion || !today ? arenaText(lang, 'valueUnknown') : undefined);
-  const walletDisabledHint = offlineHint ?? (!expansion ? arenaText(lang, 'valueUnknown') : undefined);
+  const quickDisabledHint = quickBlock === 'ok' ? undefined : blockHint(quickBlock);
+  const todayDisabledHint = todayBlock === 'ok' ? undefined : blockHint(todayBlock);
+  const walletDisabledHint = walletBlock === 'ok' ? undefined : blockHint(walletBlock);
   const todayAction = today?.state === 'in_progress' ? arenaExpansionText(lang, 'todayContinue') : arenaExpansionText(lang, 'todayStart');
 
   /**
@@ -214,13 +228,13 @@ export default function ArenaHubScreen() {
           {today?.state === 'complete' ? (
             <Text accessibilityLiveRegion="polite" style={[styles.complete, { color: P.accent }]}>{arenaExpansionText(lang, 'todayComplete')}</Text>
           ) : (
-            <V2Cta accessibilityLabel={todayAction} accessibilityHint={todayDisabledHint} disabled={!baseEnabled || !expansion?.availability.today || !today || today.state === 'unavailable'} onPress={() => router.push('/arena_today' as never)}>{todayAction}</V2Cta>
+            <V2Cta accessibilityLabel={todayAction} accessibilityHint={todayDisabledHint} disabled={todayBlock !== 'ok'} onPress={() => router.push('/arena_today' as never)}>{todayAction}</V2Cta>
           )}
       </V2Card>
       {/* зачем заголовок убран (владелец, 2026-08-16): экран и так открыт по
           кнопке «Играть» в таббаре — подпись над первым же пунктом повторяла
           название, под которым сюда пришли. */}
-      <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabledHint={quickDisabledHint} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
+      <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabledHint={quickDisabledHint} disabled={quickBlock !== 'ok'} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
       {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabledHint={offlineHint} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => runArenaHubSpin({ controller: hydrationController, claim: () => arenaV2SpinClaim(spinRequestIdRef.current), onBusy: setSpinBusy, onAccepted: () => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); } })} /> : null}
     </>
   );
@@ -230,6 +244,8 @@ export default function ArenaHubScreen() {
       availability={home?.availability}
       activeMatchId={home?.activeMatch?.matchId ?? null}
       activeQueue={home?.activeQueue}
+      matchBlocked={!baseEnabled}
+      matchBlockedHint={baseEnabled ? undefined : blockHint(baseBlock)}
     >
     <ArenaScreen
       title={arenaText(lang, 'title')}
@@ -237,7 +253,7 @@ export default function ArenaHubScreen() {
         ? home.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home.profile.rank ?? 0) + 1}`
         : '—'}
       onBack={() => router.replace('/(tabs)/home' as never)}
-      headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion ? expansion.wallet.walletStars : null} disabledHint={walletDisabledHint} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
+      headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion ? expansion.wallet.walletStars : null} disabledHint={walletDisabledHint} disabled={walletBlock !== 'ok'} onPress={() => router.push('/arena_star_wallet' as never)} />}
     >
       {offline ? <ArenaConnectionNotice onRetry={load} /> : null}
       {serverFailure ? (

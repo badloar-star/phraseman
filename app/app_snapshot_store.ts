@@ -146,6 +146,30 @@ function preserveNewerProfile(
   return { ...patch, profile: current.profile };
 }
 
+function preserveAvatarDNASnapshotConsistency(
+  current: Readonly<AppSnapshot>,
+  patch: Partial<AppSnapshot>,
+): Partial<AppSnapshot> {
+  const customization = patch.customization;
+  if (!customization?.avatarDNA) return patch;
+  const avatarDNA = customization.avatarDNA;
+  const visibleProfile = patch.profile ?? current.profile;
+  if (!visibleProfile || visibleProfile.avatarDNA === avatarDNA) return patch;
+  if (
+    visibleProfile.avatarDNA
+    && visibleProfile.avatarDNA.ownerStableId !== avatarDNA.ownerStableId
+  ) {
+    return {
+      ...patch,
+      customization: { ...customization, avatarDNA: undefined },
+    };
+  }
+  return {
+    ...patch,
+    profile: { ...visibleProfile, avatarDNA },
+  };
+}
+
 export function getAppSnapshot(): Readonly<AppSnapshot> {
   return snapshot;
 }
@@ -172,7 +196,12 @@ export function subscribeAppSnapshot(listener: Listener): () => void {
 
 export function patchAppSnapshot(patchOrFn: Patch): void {
   const requestedPatch = typeof patchOrFn === 'function' ? patchOrFn(snapshot) : patchOrFn;
-  const patch = requestedPatch ? preserveNewerProfile(snapshot, requestedPatch) : requestedPatch;
+  const preservedPatch = requestedPatch
+    ? preserveNewerProfile(snapshot, requestedPatch)
+    : requestedPatch;
+  const patch = preservedPatch
+    ? preserveAvatarDNASnapshotConsistency(snapshot, preservedPatch)
+    : preservedPatch;
   if (!patch || !shallowPatchChanged(snapshot, patch)) return;
   snapshot = { ...snapshot, ...patch };
   emitSnapshotChanged();

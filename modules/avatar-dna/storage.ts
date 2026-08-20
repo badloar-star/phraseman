@@ -40,6 +40,14 @@ export type CommitAvatarDNAResult = Readonly<
 
 type UnknownRecord = Record<string, unknown>;
 
+const deepFreeze = <T>(value: T): T => {
+  if (value === null || typeof value !== 'object' || Object.isFrozen(value)) return value;
+  Reflect.ownKeys(value).forEach((key) => {
+    deepFreeze((value as Record<PropertyKey, unknown>)[key]);
+  });
+  return Object.freeze(value);
+};
+
 const hasExactKeys = (value: UnknownRecord, expected: readonly string[]): boolean => {
   const actual = Reflect.ownKeys(value);
   return actual.length === expected.length
@@ -94,8 +102,10 @@ export function avatarDNAStateStorageKey(
   accountGeneration: number,
 ): string {
   const owner = validateOwnerStableId(ownerStableId);
-  const generation = validateGeneration(accountGeneration);
-  return `${AVATAR_DNA_STATE_PREFIX}${encodeURIComponent(owner)}:${generation}`;
+  validateGeneration(accountGeneration);
+  // Account generation is a process-local in-flight fence and resets on cold
+  // start. The durable partition is the encoded stable owner identity only.
+  return `${AVATAR_DNA_STATE_PREFIX}${encodeURIComponent(owner)}`;
 }
 export function parseAvatarDNAStoredState(
   input: unknown,
@@ -114,7 +124,7 @@ export function parseAvatarDNAStoredState(
   try {
     const root = readExactRecord(input, STATE_KEYS);
     if (!root || root.schemaVersion !== 1) return null;
-    if (root.ownerStableId !== owner || root.accountGeneration !== generation) return null;
+    if (root.ownerStableId !== owner || !validPositiveSafeInteger(root.accountGeneration)) return null;
     if (!validPositiveSafeInteger(root.manifestVersion)) return null;
     if (!validNonNegativeSafeInteger(root.updatedAtMs)) return null;
     const lastGood = readExactRecord(root.lastGood, LAST_GOOD_KEYS);
@@ -123,7 +133,7 @@ export function parseAvatarDNAStoredState(
     const studio = validateRenderId(lastGood.studio);
     const confirmedDNA = parseAvatarDNA(root.confirmedDNA);
     const lastConfirmedDNA = parseAvatarDNA(root.lastConfirmedDNA);
-    return {
+    return deepFreeze({
       schemaVersion: 1,
       ownerStableId: owner,
       accountGeneration: generation,
@@ -132,7 +142,7 @@ export function parseAvatarDNAStoredState(
       manifestVersion: root.manifestVersion,
       lastGood: { portrait, studio },
       updatedAtMs: root.updatedAtMs,
-    };
+    });
   } catch {
     return null;
   }
@@ -217,6 +227,19 @@ export async function commitAvatarDNA(input: Readonly<{
       return { status: 'stale-account' } as const;
     }
     await AsyncStorage.setItem(key, JSON.stringify(state));
+    const afterWrite = captureAccountGeneration();
+    if (
+      afterWrite.generation !== accountGeneration
+      || !isCurrentAccountGeneration(afterWrite, ownerStableId)
+    ) {
+      try {
+        if (previousRaw === null) await AsyncStorage.removeItem(key);
+        else await AsyncStorage.setItem(key, previousRaw);
+      } catch {
+        throw new Error('avatar_dna_post_write_rollback_failed');
+      }
+      return { status: 'stale-account' } as const;
+    }
     return { status: 'committed' } as const;
   }));
 }

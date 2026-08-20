@@ -258,6 +258,49 @@ describe('app snapshot store contract', () => {
     expect(getAppSnapshot().profile?.avatarDNA).toBeUndefined();
   });
 
+  it('keeps a live profile and later local Avatar DNA projection consistent', () => {
+    const dna = starterAvatarDNA('starter_warm_01');
+    patchAppSnapshotFromAuthoritativeCloudProgress({
+      progressServerAuthoritative: true,
+      progress: { user_name: 'Live Ada', user_total_xp: '900', streak_count: '4' },
+    }, 500);
+    const avatarDNA = {
+      schemaVersion: 1 as const,
+      ownerStableId: 'u1',
+      accountGeneration: 4,
+      confirmedDNA: dna,
+      lastConfirmedDNA: dna,
+      manifestVersion: 1,
+      lastGood: { portrait: 'portrait_1', studio: 'studio_1' },
+      updatedAtMs: 600,
+    };
+    const customization = {
+      source: 'storage' as const,
+      updatedAt: 600,
+      activeAvatar: '18',
+      storedAuraSelection: null,
+      totalXp: 900,
+      level: 4,
+      shards: 7,
+      ownedAvatars: {},
+      ownedAuras: {},
+      giftedAvatarId: null,
+      giftedAuraId: null,
+      avatarDNA,
+    };
+
+    patchAppSnapshot({ customization });
+
+    expect(getAppSnapshot().profile).toMatchObject({
+      source: 'live',
+      totalXp: 900,
+      avatarDNA,
+    });
+    expect(getAppSnapshot().customization?.avatarDNA).toBe(
+      getAppSnapshot().profile?.avatarDNA,
+    );
+  });
+
   it('publishes avatar and aura choices to the visible profile immediately and can roll them back', () => {
     patchAppSnapshot({
       profile: {

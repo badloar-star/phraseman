@@ -14,12 +14,20 @@ import {
 import { isCurrentLevelGiftOpening } from '../app/level_gift_opening_guard';
 import fs from 'fs';
 import path from 'path';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   AVATAR_DNA_DRAFT_PREFIX,
   AVATAR_DNA_INVITATION_PREFIX,
   AVATAR_DNA_STATE_PREFIX,
   AVATAR_DNA_STYLE_OPERATION_PREFIX,
 } from '../constants/customization_storage_keys';
+
+jest.mock('@react-native-async-storage/async-storage');
+jest.mock('../app/user_id_policy', () => ({
+  clearArenaAuthUidCache: jest.fn(),
+  getAuthUserId: jest.fn(() => null),
+  getCanonicalUserId: jest.fn(async () => 'owner-a'),
+}));
 
 describe('account generation', () => {
   it('rejects callbacks from opening N after opening N+1 in the same account generation', () => {
@@ -151,6 +159,30 @@ describe('account generation', () => {
 
     const cloudSyncSource = fs.readFileSync(path.join(__dirname, '../app/cloud_sync.ts'), 'utf8');
     expect(cloudSyncSource).toContain('...CUSTOMIZATION_ACCOUNT_LOCAL_PREFIXES');
+  });
+
+  it('behaviorally wipes all four Avatar DNA prefix families and preserves unrelated device data', async () => {
+    await AsyncStorage.clear();
+    beginAccountGeneration('owner-a');
+    const ownerScope = encodeURIComponent('owner-a');
+    const dnaKeys = [
+      `${AVATAR_DNA_STATE_PREFIX}${ownerScope}`,
+      `${AVATAR_DNA_DRAFT_PREFIX}${ownerScope}`,
+      `${AVATAR_DNA_INVITATION_PREFIX}${ownerScope}`,
+      `${AVATAR_DNA_STYLE_OPERATION_PREFIX}${ownerScope}:operation-1`,
+    ];
+    await AsyncStorage.multiSet([
+      ...dnaKeys.map((key) => [key, 'sentinel'] as [string, string]),
+      ['unrelated_device_avatar_test_v1', 'keep-me'],
+    ]);
+    const { wipeLocalAccountData } = await import('../app/cloud_sync');
+
+    await wipeLocalAccountData();
+
+    await expect(AsyncStorage.multiGet(dnaKeys)).resolves.toEqual(
+      dnaKeys.map((key) => [key, null]),
+    );
+    await expect(AsyncStorage.getItem('unrelated_device_avatar_test_v1')).resolves.toBe('keep-me');
   });
 
 });

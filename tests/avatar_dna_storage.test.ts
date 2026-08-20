@@ -160,8 +160,8 @@ describe('Avatar DNA account-scoped storage', () => {
       confirmedDNA: dna, lastConfirmedDNA: dna, manifestVersion: 1,
       lastGood: { portrait: 'portrait_1', studio: 'studio_1' }, updatedAtMs: 1,
     })],
-    ['wrong generation', JSON.stringify({
-      schemaVersion: 1, ownerStableId: 'u1', accountGeneration: 2,
+    ['invalid stored generation', JSON.stringify({
+      schemaVersion: 1, ownerStableId: 'u1', accountGeneration: 0,
       confirmedDNA: dna, lastConfirmedDNA: dna, manifestVersion: 1,
       lastGood: { portrait: 'portrait_1', studio: 'studio_1' }, updatedAtMs: 1,
     })],
@@ -193,11 +193,92 @@ describe('Avatar DNA account-scoped storage', () => {
 
   it('encodes validated scope components without collisions or key injection', () => {
     expect(avatarDNAStateStorageKey('owner:1', 2)).not.toBe(
-      avatarDNAStateStorageKey('owner', 12),
+      avatarDNAStateStorageKey('owner', 2),
     );
     expect(avatarDNAStateStorageKey('owner:1', 2)).toContain('owner%3A1');
+    expect(avatarDNAStateStorageKey('owner:1', 2)).toBe(
+      avatarDNAStateStorageKey('owner:1', 99),
+    );
+    expect(avatarDNAStateStorageKey('owner:1', 2)).not.toMatch(/:2$/);
     expect(() => avatarDNAStateStorageKey(' owner ', 2)).toThrow('avatar_dna_scope_invalid');
     expect(() => avatarDNAStateStorageKey('', 2)).toThrow('avatar_dna_scope_invalid');
+  });
+
+  it('survives a process restart that resets the volatile account generation', async () => {
+    beginAccountGeneration('other-owner');
+    beginAccountGeneration('other-owner');
+    const savedGeneration = beginAccountGeneration('u1').generation;
+    await commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: savedGeneration, dna,
+      renderIds: { portrait: 'portrait_restart', studio: 'studio_restart' }, manifestVersion: 1,
+    });
+
+    __resetAccountGenerationForTests();
+    const restartedGeneration = beginAccountGeneration('u1').generation;
+    expect(restartedGeneration).toBe(1);
+
+    await expect(readAvatarDNAState('u1', restartedGeneration)).resolves.toMatchObject({
+      ownerStableId: 'u1',
+      accountGeneration: restartedGeneration,
+      confirmedDNA: dna,
+      lastGood: { portrait: 'portrait_restart', studio: 'studio_restart' },
+    });
+    await expect(readAvatarDNAState('u2', restartedGeneration)).resolves.toBeNull();
+  });
+
+  it('rolls back a completed native write when generation changes while setItem is pending', async () => {
+    const generation = beginAccountGeneration('u1').generation;
+    await commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: generation, dna,
+      renderIds: { portrait: 'portrait_before', studio: 'studio_before' }, manifestVersion: 1,
+    });
+    const key = avatarDNAStateStorageKey('u1', generation);
+    const previousRaw = await AsyncStorage.getItem(key);
+    let releaseWrite!: () => void;
+    let writeStarted!: () => void;
+    const pendingWrite = new Promise<void>((resolve) => { releaseWrite = resolve; });
+    const started = new Promise<void>((resolve) => { writeStarted = resolve; });
+    (AsyncStorage.setItem as jest.Mock).mockImplementationOnce(async (writeKey, raw) => {
+      writeStarted();
+      await pendingWrite;
+      await AsyncStorage.multiSet([[writeKey, raw]]);
+    });
+
+    const committing = commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: generation, dna: changedDNA(),
+      renderIds: { portrait: 'portrait_after', studio: 'studio_after' }, manifestVersion: 2,
+    });
+    await started;
+    beginAccountGeneration('u1');
+    releaseWrite();
+
+    await expect(committing).resolves.toEqual({ status: 'stale-account' });
+    await expect(AsyncStorage.getItem(key)).resolves.toBe(previousRaw);
+  });
+
+  it('removes a newly written root when owner changes during the native write', async () => {
+    const generation = beginAccountGeneration('u1').generation;
+    const key = avatarDNAStateStorageKey('u1', generation);
+    let releaseWrite!: () => void;
+    let writeStarted!: () => void;
+    const pendingWrite = new Promise<void>((resolve) => { releaseWrite = resolve; });
+    const started = new Promise<void>((resolve) => { writeStarted = resolve; });
+    (AsyncStorage.setItem as jest.Mock).mockImplementationOnce(async (writeKey, raw) => {
+      writeStarted();
+      await pendingWrite;
+      await AsyncStorage.multiSet([[writeKey, raw]]);
+    });
+
+    const committing = commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: generation, dna,
+      renderIds: { portrait: 'portrait_new', studio: 'studio_new' }, manifestVersion: 1,
+    });
+    await started;
+    beginAccountGeneration('u2');
+    releaseWrite();
+
+    await expect(committing).resolves.toEqual({ status: 'stale-account' });
+    await expect(AsyncStorage.getItem(key)).resolves.toBeNull();
   });
 
   it('never falls back from the current account to a previous account or generation', async () => {
@@ -228,7 +309,11 @@ describe('Avatar DNA account-scoped storage', () => {
     mutableDNA.base.skinToneId = 'skin_mutated';
 
     const first = await readAvatarDNAState('u1', generation);
-    (first?.confirmedDNA.base as { skinToneId: string }).skinToneId = 'skin_read_mutation';
+    expect(Object.isFrozen(first)).toBe(true);
+    expect(Object.isFrozen(first?.confirmedDNA.face.skinDetailIds)).toBe(true);
+    expect(() => {
+      (first?.confirmedDNA.base as { skinToneId: string }).skinToneId = 'skin_read_mutation';
+    }).toThrow();
     const second = await readAvatarDNAState('u1', generation);
 
     expect(second?.confirmedDNA.base.skinToneId).toBe(dna.base.skinToneId);

@@ -152,6 +152,49 @@ describe('customization snapshot', () => {
     );
   });
 
+  it('hydrates durable Avatar DNA after the process generation restarts at one', async () => {
+    const dna = starterAvatarDNA('starter_warm_01');
+    beginAccountGeneration('other-owner');
+    const savedGeneration = beginAccountGeneration('u1').generation;
+    await commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: savedGeneration, dna,
+      renderIds: { portrait: 'portrait_restart', studio: 'studio_restart' }, manifestVersion: 1,
+    });
+    __resetAccountGenerationForTests();
+    resetAppSnapshotForAccountSwitch();
+    const restartedGeneration = beginAccountGeneration('u1').generation;
+
+    await primeAppSnapshotFromStorage('en');
+
+    expect(getAppSnapshot().profile?.avatarDNA).toMatchObject({
+      ownerStableId: 'u1',
+      accountGeneration: restartedGeneration,
+      confirmedDNA: dna,
+      lastGood: { portrait: 'portrait_restart', studio: 'studio_restart' },
+    });
+  });
+
+  it('publishes deeply frozen DNA so profile and customization cannot mutate each other', async () => {
+    const dna = starterAvatarDNA('starter_warm_01');
+    const generation = beginAccountGeneration('u1').generation;
+    await commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: generation, dna,
+      renderIds: { portrait: 'portrait_frozen', studio: 'studio_frozen' }, manifestVersion: 1,
+    });
+    await primeAppSnapshotFromStorage('en');
+    const profileDNA = getAppSnapshot().profile?.avatarDNA;
+    const customizationDNA = getAppSnapshot().customization?.avatarDNA;
+
+    expect(Object.isFrozen(profileDNA)).toBe(true);
+    expect(Object.isFrozen(profileDNA?.confirmedDNA.base)).toBe(true);
+    expect(() => {
+      (customizationDNA?.confirmedDNA.base as { skinToneId: string }).skinToneId = 'skin_mutated';
+    }).toThrow();
+    expect(getAppSnapshot().profile?.avatarDNA?.confirmedDNA.base.skinToneId).toBe(
+      dna.base.skinToneId,
+    );
+  });
+
   it('omits corrupt Avatar DNA from the first snapshot without losing legacy profile state', async () => {
     const generation = beginAccountGeneration('u1').generation;
     await AsyncStorage.multiSet([

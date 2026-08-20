@@ -15,7 +15,7 @@ const PREPARED = {
   startedAtMs: 4_200,
   deadlineAtMs: 16_200,
   plan: PLAN,
-} as ArenaPreparedEntry;
+} satisfies ArenaPreparedEntry;
 
 type AcceptResponse = Readonly<{ state: string; viewerSeat?: 'a' | 'b' }>;
 
@@ -29,10 +29,23 @@ function deferred<T>() {
   return { promise, resolve, reject };
 }
 
+async function captureFailure(promise: Promise<unknown>): Promise<unknown> {
+  try {
+    await promise;
+  } catch (error) {
+    return error;
+  }
+  throw new Error('expected_request_failure');
+}
+
+function preparedFor(matchId: string): ArenaPreparedEntry {
+  return { ...PREPARED, plan: { ...PLAN, matchId } } satisfies ArenaPreparedEntry;
+}
+
 describe('Arena entry prefetch', () => {
   it('shares one strict-identical request while accepting, then loads one plan', async () => {
     const acceptResult = deferred<AcceptResponse>();
-    const seats: Array<'a' | 'b'> = [];
+    const seats: ('a' | 'b')[] = [];
     let planCalls = 0;
     const entry = createArenaEntryPrefetch({
       accept: () => acceptResult.promise,
@@ -47,9 +60,10 @@ describe('Arena entry prefetch', () => {
     expect(second).toBe(first);
     acceptResult.resolve({ state: 'active', viewerSeat: 'b' });
 
-    await expect(first).resolves.toBe(PREPARED);
-    expect((await first).startedAtMs).toBe(4_200);
-    expect((await first).deadlineAtMs).toBe(16_200);
+    const prepared = await first;
+    expect(prepared).toBe(PREPARED);
+    expect(prepared.startedAtMs).toBe(4_200);
+    expect(prepared.deadlineAtMs).toBe(16_200);
     expect(planCalls).toBe(1);
     expect(seats).toEqual(['b', 'a']);
     expect(entry.start('match-1')).toBe(first);
@@ -91,9 +105,11 @@ describe('Arena entry prefetch', () => {
     });
 
     expect(entry.peek('match-1')).toBeNull();
-    await expect(entry.start('match-1')).rejects.toThrow('network');
+    const failure = await captureFailure(entry.start('match-1'));
+    expect(failure).toBeInstanceOf(Error);
+    expect((failure as Error).message).toBe('network');
     expect(entry.peek('match-1')).toBeNull();
-    await expect(entry.start('match-1')).resolves.toBe(PREPARED);
+    expect(await entry.start('match-1')).toBe(PREPARED);
     expect(attempts).toBe(2);
     expect(entry.peek('match-1')).toBe(PREPARED);
   });
@@ -107,7 +123,9 @@ describe('Arena entry prefetch', () => {
       wait: async () => {},
     });
 
-    await expect(entry.start('match-1')).rejects.toThrow('arena_match_plan_invalid');
+    const failure = await captureFailure(entry.start('match-1'));
+    expect(failure).toBeInstanceOf(Error);
+    expect((failure as Error).message).toBe('arena_match_plan_invalid');
     expect(entry.peek('match-1')).toBeNull();
   });
 
@@ -122,8 +140,12 @@ describe('Arena entry prefetch', () => {
         wait: async (ms) => { now += ms; },
       });
 
-      await expect(entry.start(`match-${state}`)).rejects.toBeInstanceOf(ArenaNoOpponentError);
-      await expect(entry.start(`match-${state}-retry`)).rejects.toThrow('arena_match_no_opponent');
+      const failure = await captureFailure(entry.start(`match-${state}`));
+      expect(failure).toBeInstanceOf(ArenaNoOpponentError);
+      expect((failure as Error).message).toBe('arena_match_no_opponent');
+      const retryFailure = await captureFailure(entry.start(`match-${state}-retry`));
+      expect(retryFailure).toBeInstanceOf(ArenaNoOpponentError);
+      expect((retryFailure as Error).message).toBe('arena_match_no_opponent');
       expect(entry.peek(`match-${state}`)).toBeNull();
     }
   });
@@ -143,10 +165,46 @@ describe('Arena entry prefetch', () => {
     });
 
     const failed = entry.start('match-1');
-    await expect(failed).rejects.toThrow('clock unavailable');
+    const failure = await captureFailure(failed);
+    expect(failure).toBeInstanceOf(Error);
+    expect((failure as Error).message).toBe('clock unavailable');
     const retried = entry.start('match-1');
     expect(retried).not.toBe(failed);
-    await expect(retried).resolves.toBe(PREPARED);
+    expect(await retried).toBe(PREPARED);
     expect(entry.peek('match-1')).toBe(PREPARED);
+  });
+
+  it('bounds ready entries without evicting an in-flight request', async () => {
+    const tenthPlan = deferred<ArenaPreparedEntry>();
+    const preparedEntries = new Map<string, ArenaPreparedEntry>();
+    for (let index = 1; index <= 9; index += 1) {
+      const matchId = `match-${index}`;
+      preparedEntries.set(matchId, preparedFor(matchId));
+    }
+    const entry = createArenaEntryPrefetch({
+      accept: async () => ({ state: 'active' }),
+      loadPlan: async (matchId) => matchId === 'match-10'
+        ? tenthPlan.promise
+        : preparedEntries.get(matchId) ?? null,
+      rememberViewerSeat: () => {},
+      nowMs: () => 0,
+      wait: async () => {},
+    });
+
+    for (let index = 1; index <= 9; index += 1) {
+      await entry.start(`match-${index}`);
+    }
+    const inFlight = entry.start('match-10');
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(entry.start('match-10')).toBe(inFlight);
+    expect(entry.peek('match-1')).toBeNull();
+    for (let index = 2; index <= 9; index += 1) {
+      expect(entry.peek(`match-${index}`)).toBe(preparedEntries.get(`match-${index}`));
+    }
+
+    const preparedTenth = preparedFor('match-10');
+    tenthPlan.resolve(preparedTenth);
+    expect(await inFlight).toBe(preparedTenth);
   });
 });

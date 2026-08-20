@@ -1,6 +1,5 @@
 import {
   ARENA_ACCEPT_RETRY_MS,
-  ARENA_ACCEPT_WINDOW_MS,
   arenaEntryStep,
 } from './duel_plan';
 import type { ArenaMatchPlanWire } from './duel_plan';

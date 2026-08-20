@@ -195,6 +195,25 @@ describe('Arena hub hydration safety', () => {
     expect(onAccepted).not.toHaveBeenCalled();
   });
 
+  it('releases spin state without refreshing when the claim is rejected', async () => {
+    const claim = deferred<void>();
+    const controller = createArenaHubHydrationController({
+      fetchHome: async () => validHome,
+      fetchExpansion: async () => validExpansion,
+      remember: () => {},
+      onSnapshot: () => {},
+    });
+    const onBusy = jest.fn();
+    const onAccepted = jest.fn();
+    runArenaHubSpin({ controller, claim: () => claim.promise, onBusy, onAccepted });
+    claim.reject(new Error('claim failed'));
+    await flush();
+
+    expect(onBusy).toHaveBeenNthCalledWith(1, true);
+    expect(onBusy).toHaveBeenLastCalledWith(false);
+    expect(onAccepted).not.toHaveBeenCalled();
+  });
+
   it('wires validated warm values and latest-only responses into the screen', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena.tsx'), 'utf8');
     expect(source).toContain('createArenaHubHydrationController');

@@ -182,6 +182,8 @@ export function runArenaHubSpin(input: Readonly<{
   input.onBusy(true);
   void input.claim().then(() => {
     if (input.controller.mounted()) input.onAccepted();
+  }).catch(() => {
+    // The row has no error surface; preserve its existing silent failure policy.
   }).finally(() => {
     if (input.controller.mounted()) input.onBusy(false);
   });

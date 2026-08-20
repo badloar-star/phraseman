@@ -10,6 +10,7 @@ const valueFor = (name) => { const index = args.indexOf(name); return index < 0 
 const fixtureMode = args.includes('--fixture-mode');
 const catalogPath = valueFor('--catalog'); const rigPath = valueFor('--rig');
 const fail = (message) => { throw new Error(`avatar_catalog_invalid: ${message}`); };
+class AvatarManifestCycleError extends Error {}
 const slots = new Set(['background','outfit.back','hood.back','hair.back','body','outfit','ears','face','skin.detail','makeup','eyes','iris','brows','nose','mouth','facial.hair','hair.side','hair.front','eyewear','ear.accessory','mask','headwear.front','neck.accessory','outfit.front','aura','frame','foreground.fx']);
 const ids = /^[a-z][a-z0-9_.-]{1,79}$/; const fileSafe = /^[a-z0-9][a-z0-9_.-]*\.webp$/;
 const anchorNames = ['headTop','templeLeft','templeRight','eyeLineLeft','eyeLineRight','noseBridge','noseTip','mouthCenter','chin','earLeft','earRight','neckCenter','shoulderLeft','shoulderRight','torsoCenter'];
@@ -44,14 +45,13 @@ async function validateCatalogUnsafe(catalog, rig, { fixture = false, root = pro
   }
   const required = ['skin_03','face_01','body_01','eyes_01','iris_brown','brows_01','nose_01','mouth_01','hair_01','hair_brown','outfit_01','background_cream','hair_wavy_01','headwear.assassin_hood.01']; if (catalog.items.length !== required.length || required.some((id) => !itemIds.has(id)) || catalog.items.some((item) => item.id !== 'headwear.assassin_hood.01' && item.entitlement.kind !== 'free') || catalog.items.find((item) => item.id === 'headwear.assassin_hood.01')?.entitlement.kind !== 'reward') fail('required inventory');
   if (catalog.items.some((item) => item.conflicts.some((id) => !itemIds.has(id)))) fail('conflict reference'); const edges = new Map(catalog.items.map((item) => [item.id, item.conflicts])); const visiting = new Set(); const visited = new Set();
-  const visit = (id) => { if (visiting.has(id)) fail('avatar_manifest_cycle'); if (visited.has(id)) return; visiting.add(id); for (const next of edges.get(id) ?? []) visit(next); visiting.delete(id); visited.add(id); };
+  const visit = (id) => { if (visiting.has(id)) throw new AvatarManifestCycleError(); if (visited.has(id)) return; visiting.add(id); for (const next of edges.get(id) ?? []) visit(next); visiting.delete(id); visited.add(id); };
   for (const id of itemIds) visit(id);
 }
 
 export async function validateCatalog(catalog, rig, options = {}) {
   try { return await validateCatalogUnsafe(catalog, rig, options); } catch (error) {
-    if (error instanceof Error && error.message.includes('avatar_manifest_cycle')) throw error;
-    if (error instanceof Error && error.message.startsWith('avatar_catalog_invalid')) throw new Error('avatar_catalog_invalid');
+    if (error instanceof AvatarManifestCycleError) throw new Error('avatar_manifest_cycle');
     throw new Error('avatar_catalog_invalid');
   }
 }

@@ -47,7 +47,7 @@ describe('Avatar DNA catalog contract', () => {
   ])('CLI fixture mode rejects %s', (_name, mutate) => {
     const catalog = JSON.parse(JSON.stringify(canonicalCatalog)); mutate(catalog);
     const result = cliResult(catalog);
-    expect(result.status).not.toBe(0); expect(result.stderr).toContain('avatar_catalog_invalid');
+    expect(result.status).not.toBe(0); expect(result.stderr).toContain(_name === 'cycle' ? 'avatar_manifest_cycle' : 'avatar_catalog_invalid');
   });
 
   it.each([
@@ -119,6 +119,12 @@ describe('Avatar DNA catalog contract', () => {
     const hostile = new Proxy({}, { ownKeys: () => { throw new Error('hostile-detail'); } });
     expect(() => parseAvatarCatalog(hostile)).toThrow('avatar_catalog_invalid');
     expect(() => parseAvatarCatalog(hostile)).not.toThrow('hostile-detail');
+  });
+
+  it('does not forge a cycle from a hostile message getter', () => {
+    const hostileError = new Error(); Object.defineProperty(hostileError, 'message', { get: () => { throw new Error('avatar_manifest_cycle'); } });
+    const hostile = new Proxy({}, { ownKeys: () => { throw hostileError; } });
+    expect(() => parseAvatarCatalog(hostile)).toThrow('avatar_catalog_invalid');
   });
 
   it('normalizes hostile exported-validator failures outside Jest VM', () => {

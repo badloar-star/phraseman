@@ -18,6 +18,7 @@ const deepFreeze = <T>(value: T): T => {
   return value;
 };
 const parsedCatalogs = new WeakSet<object>();
+class AvatarManifestCycleError extends Error {}
 
 const parseAvatarCatalogUnsafe = (input: unknown): AvatarCatalogManifest => {
   if (!isRecord(input) || !exactKeys(input, ['catalogVersion','manifestVersion','rigIds','items']) || input.catalogVersion !== 1 || input.manifestVersion !== 1) throw new TypeError('avatar_catalog_invalid: version');
@@ -45,7 +46,7 @@ const parseAvatarCatalogUnsafe = (input: unknown): AvatarCatalogManifest => {
   if (items.some((item) => item.conflicts.some((conflict) => !itemIds.has(conflict)))) throw new TypeError('avatar_catalog_invalid: conflict reference');
   const visiting = new Set<string>(); const visited = new Set<string>();
   const visit = (id: string): void => {
-    if (visiting.has(id)) throw new TypeError('avatar_manifest_cycle');
+    if (visiting.has(id)) throw new AvatarManifestCycleError();
     if (visited.has(id)) return;
     visiting.add(id);
     const item = items.find((candidate) => candidate.id === id);
@@ -63,7 +64,7 @@ const parseAvatarCatalogUnsafe = (input: unknown): AvatarCatalogManifest => {
 
 export const parseAvatarCatalog = (input: unknown): AvatarCatalogManifest => {
   try { return parseAvatarCatalogUnsafe(input); } catch (error) {
-    if (error instanceof Error && error.message.includes('avatar_manifest_cycle')) throw new TypeError('avatar_manifest_cycle');
+    if (error instanceof AvatarManifestCycleError) throw new TypeError('avatar_manifest_cycle');
     throw new TypeError('avatar_catalog_invalid');
   }
 };

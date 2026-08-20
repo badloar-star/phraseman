@@ -148,9 +148,10 @@ describe('экран Арены пользуется снимком', () => {
   });
 
   it('первый кадр — нейтральный хаб без скелетона, а снимок не вытесняет свежий ответ', () => {
-    expect(source).toContain('arenaHubNeutral');
-    expect(source).toContain('arenaHubCached');
-    expect(source).toContain('arenaHubCurrent');
+    expect(source).toContain('createArenaHubHydrationController');
+    expect(source).toContain('initialHome: warm?.home');
+    expect(source).toContain('initialExpansion: warm?.expansion');
+    expect(source).toContain('hydrationController.hydrate(stored)');
     expect(source).not.toContain('ArenaHubSkeleton');
     expect(source).not.toContain('SkeletonSwap');
     expect(source).not.toContain('hubLoading');
@@ -168,7 +169,8 @@ describe('экран Арены пользуется снимком', () => {
   });
 
   it('сетевой сбой показывает компактное офлайн-сообщение, а серверный — прежнюю карточку', () => {
-    expect(source).toContain('arenaHubFailure');
+    expect(source).toContain('hydration.failure.home');
+    expect(source).toContain('hydration.failure.expansion');
     expect(source).toContain('ArenaConnectionNotice');
     expect(source).toContain("baseFailure?.kind === 'offline'");
     expect(source).toContain("baseFailure?.kind === 'server'");
@@ -176,9 +178,9 @@ describe('экран Арены пользуется снимком', () => {
   });
 
   it('повтор не скрывает отказ, пока его не сменит успешный ответ', () => {
-    expect(source).not.toContain('setBaseFailure(null);\n    setExpansionFailure(null);');
-    expect(source).toMatch(/arenaV2Home\(\)\.then\(\(response\) => \{\s+if \(!requestGateRef\.current\.current\(generation\)\) return;\s+setHomeSlot\(arenaHubCurrent\(response\)\);\s+setBaseFailure\(null\);/s);
-    expect(source).toMatch(/arenaExpansionHome\(\)\.then\(\(response\) => \{\s+if \(!requestGateRef\.current\.current\(generation\)\) return;\s+setExpansionSlot\(arenaHubCurrent\(response\)\);\s+setExpansionFailure\(null\);/s);
+    expect(source).toContain('const generation = hydrationController.refresh();');
+    expect(source).toContain('if (generation === null) return;');
+    expect(source).toContain('hydrationController.current(generation)');
   });
 
   it('погашенные кнопки объяснены, а не молчат', () => {

@@ -59,18 +59,9 @@ export default function ArenaMatchmakingScreen() {
   const params = useLocalSearchParams<{ mode?: string; requestId?: string; stableUid?: string }>();
   const mode: ArenaQueueMode = params.mode === 'ranked' ? 'ranked' : 'quick';
   const active = useRuntimeActive();
-  const explicitRequestId = typeof params.requestId === 'string' && params.requestId
+  const requestId = typeof params.requestId === 'string' && params.requestId
     ? params.requestId
-    : null;
-  const requestIdKey = explicitRequestId ? `explicit:${explicitRequestId}` : `implicit:${mode}`;
-  const requestIdRef = useRef<{ key: string; value: string } | null>(null);
-  if (requestIdRef.current?.key !== requestIdKey) {
-    requestIdRef.current = {
-      key: requestIdKey,
-      value: explicitRequestId ?? implicitQueueRequestId(mode),
-    };
-  }
-  const requestId = requestIdRef.current.value;
+    : implicitQueueRequestId(mode);
   const localStartedAtMsRef = useRef(Date.now());
   const now = useVisibleWallClock(active, 1_000);
   const [stableUid, setStableUid] = useState<string | null>(typeof params.stableUid === 'string' ? params.stableUid : null);
@@ -249,7 +240,7 @@ export default function ArenaMatchmakingScreen() {
   }, [queue.value, requestId]);
 
   useEffect(() => {
-    if (!active || !matchId) return;
+    if (!matchId) return;
     quickFallbackRequests.delete(requestId);
     releaseImplicitQueueRequestId(mode, requestId);
     setEntryFailure(null);
@@ -262,13 +253,13 @@ export default function ArenaMatchmakingScreen() {
       setEntryFailure(reason instanceof ArenaNoOpponentError ? 'no_opponent' : arenaEntryFailure(reason));
     });
     return () => { alive = false; };
-  }, [active, entryRetryTick, matchId, mode, requestId, router]);
+  }, [entryRetryTick, matchId, mode, requestId, router]);
 
   useEffect(() => {
-    if (!active || !matchId) return undefined;
+    if (!matchId) return undefined;
     const subscription = BackHandler.addEventListener('hardwareBackPress', () => true);
     return () => subscription.remove();
-  }, [active, matchId]);
+  }, [matchId]);
 
   /**
    * Отмена поиска. Раньше здесь стоял `.finally(...)`: экран уходил домой

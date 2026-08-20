@@ -10,15 +10,8 @@ import { ArenaDailyGoals } from '../components/arena/ArenaDailyGoals';
 import { ArenaHubLive } from '../components/arena/ArenaHubLive';
 import { arenaHubModel } from '../modules/arena/hub_view';
 import {
-  arenaHubCached,
-  arenaHubCurrent,
-  arenaHubFailure,
-  arenaHubNeutral,
-} from '../modules/arena/hub_presentation';
-import {
-  arenaHubRequestGate,
-  arenaWarmExpansion,
-  arenaWarmHome,
+  createArenaHubHydrationController,
+  runArenaHubSpin,
 } from '../modules/arena/hub_hydration';
 import {
   ArenaFeatureRow,
@@ -30,8 +23,7 @@ import {
 import { arenaText } from '../modules/arena/copy';
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
-import type { ArenaExpansionHome } from '../modules/arena/expansion_contract';
-import { arenaExpansionHome, arenaFetchMatchHistory, arenaFlushOutbox, arenaOutboxBlockedByUpdate, arenaV2FriendsBoard, arenaV2Home, arenaV2SpinClaim, createArenaRequestId, type ArenaFriendsBoardRow, type ArenaHomeResponse } from './arena_client';
+import { arenaExpansionHome, arenaFetchMatchHistory, arenaFlushOutbox, arenaOutboxBlockedByUpdate, arenaV2FriendsBoard, arenaV2Home, arenaV2SpinClaim, createArenaRequestId, type ArenaFriendsBoardRow } from './arena_client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   arenaLoadHomeWarm,
@@ -65,61 +57,44 @@ export default function ArenaHubScreen() {
    * поэтому экран открывается уже с данными, а свежие приезжают молча.
    */
   const warm = useMemo(() => arenaPeekHomeWarm(Date.now()), []);
-  const [homeSlot, setHomeSlot] = useState(() => arenaHubCached(
-    arenaHubNeutral<ArenaHomeResponse>(),
-    arenaWarmHome(warm?.home),
-  ));
-  const [expansionSlot, setExpansionSlot] = useState(() => arenaHubCached(
-    arenaHubNeutral<ArenaExpansionHome>(),
-    arenaWarmExpansion(warm?.expansion),
-  ));
-  const [baseFailure, setBaseFailure] = useState<ReturnType<typeof arenaHubFailure> | null>(null);
-  const [expansionFailure, setExpansionFailure] = useState<ReturnType<typeof arenaHubFailure> | null>(null);
+  const hydrationControllerRef = useRef<ReturnType<typeof createArenaHubHydrationController> | null>(null);
+  if (hydrationControllerRef.current === null) {
+    hydrationControllerRef.current = createArenaHubHydrationController({
+      initialHome: warm?.home,
+      initialExpansion: warm?.expansion,
+      fetchHome: arenaV2Home,
+      fetchExpansion: arenaExpansionHome,
+      remember: (value) => arenaRememberHomeWarm({ ...value, wallNowMs: Date.now(), store: warmStore }),
+      onSnapshot: (snapshot) => setHydration(snapshot),
+    });
+  }
+  const hydrationController = hydrationControllerRef.current;
+  const [hydration, setHydration] = useState(() => hydrationController.snapshot());
   const spinRequestIdRef = useRef(createArenaRequestId('spin'));
   const [spinBusy, setSpinBusy] = useState(false);
   const [history, setHistory] = useState<readonly unknown[]>([]);
   const [friends, setFriends] = useState<readonly ArenaFriendsBoardRow[]>([]);
-  const requestGateRef = useRef(arenaHubRequestGate());
 
-  const home = homeSlot.value;
-  const expansion = expansionSlot.value;
+  const home = hydration.home.value;
+  const expansion = hydration.expansion.value;
+  const baseFailure = hydration.failure.home;
+  const expansionFailure = hydration.failure.expansion;
 
   const load = useCallback(() => {
-    const generation = requestGateRef.current.begin();
-    void arenaV2Home().then((response) => {
-      if (!requestGateRef.current.current(generation)) return;
-      setHomeSlot(arenaHubCurrent(response));
-      setBaseFailure(null);
-      arenaRememberHomeWarm({ home: response, wallNowMs: Date.now(), store: warmStore });
-    }).catch((e: unknown) => {
-      if (!requestGateRef.current.current(generation)) return;
-      const failure = arenaHubFailure(e);
-      setBaseFailure(failure);
-      if (__DEV__) console.warn('[arena] arenaV2Home failed:', failure.code, e);
-    });
-    void arenaExpansionHome().then((response) => {
-      if (!requestGateRef.current.current(generation)) return;
-      setExpansionSlot(arenaHubCurrent(response));
-      setExpansionFailure(null);
-      arenaRememberHomeWarm({ expansion: response, wallNowMs: Date.now(), store: warmStore });
-    }).catch((e: unknown) => {
-      if (!requestGateRef.current.current(generation)) return;
-      const failure = arenaHubFailure(e);
-      setExpansionFailure(failure);
-      if (__DEV__) console.warn('[arena] arenaExpansionHome failed:', failure.code, e);
-    });
+    const generation = hydrationController.refresh();
+    if (generation === null) return;
     // Оба — разовые чтения при открытии. Прошедшие матчи не меняются, список
     // друзей меняется днями: держать на них подписку значит платить за
     // уведомления, которых не будет.
     void arenaFetchMatchHistory(10).then((rows) => {
-      if (requestGateRef.current.current(generation)) setHistory(rows);
-    }).catch(() => { if (requestGateRef.current.current(generation)) setHistory([]); });
+      if (hydrationController.current(generation)) setHistory(rows);
+    }).catch(() => { if (hydrationController.current(generation)) setHistory([]); });
     void arenaV2FriendsBoard().then((board) => {
-      if (requestGateRef.current.current(generation)) setFriends(board.rows);
+      if (hydrationController.current(generation)) setFriends(board.rows);
     }).catch(() => {});
-  }, []);
+  }, [hydrationController]);
 
-  useEffect(() => () => { requestGateRef.current.dispose(); }, []);
+  useEffect(() => () => { hydrationController.dispose(); }, [hydrationController]);
 
   useEffect(() => { if (active) load(); }, [active, load]);
 
@@ -132,11 +107,10 @@ export default function ArenaHubScreen() {
     let alive = true;
     void arenaLoadHomeWarm(warmStore, Date.now()).then((stored) => {
       if (!alive || !stored) return;
-      setHomeSlot((current) => arenaHubCached(current, arenaWarmHome(stored.home)));
-      setExpansionSlot((current) => arenaHubCached(current, arenaWarmExpansion(stored.expansion)));
+      hydrationController.hydrate(stored);
     }).catch(() => {});
     return () => { alive = false; };
-  }, []);
+  }, [hydrationController]);
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent('hub', 'direct')); }, []);
 
   /**
@@ -247,7 +221,7 @@ export default function ArenaHubScreen() {
           кнопке «Играть» в таббаре — подпись над первым же пунктом повторяла
           название, под которым сюда пришли. */}
       <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabledHint={quickDisabledHint} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
-      {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabledHint={offlineHint} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => { setSpinBusy(true); void arenaV2SpinClaim(spinRequestIdRef.current).then(() => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); }).finally(() => setSpinBusy(false)); }} /> : null}
+      {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabledHint={offlineHint} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => runArenaHubSpin({ controller: hydrationController, claim: () => arenaV2SpinClaim(spinRequestIdRef.current), onBusy: setSpinBusy, onAccepted: () => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); } })} /> : null}
     </>
   );
 

@@ -362,17 +362,13 @@ export function arenaRanksCompatible(
   return Math.abs(Math.trunc(leftRankIndex) - Math.trunc(rightRankIndex)) <= arenaRankWindow(mode);
 }
 
-/**
- * Владелец (2026-08-12): время на ответ сокращено примерно на четверть.
- * Медиана ответа около 7 секунд, запас всё равно остаётся, зато гонка
- * «кто ответил первым» становится острее — а она теперь определяет звёзды.
- */
+/** Полное окно ответа; чтение и countdown в него не входят. */
 export const ARENA_V2_ANSWER_MS = Object.freeze({
   guess_phrase: 8_000,
   fill_gap: 8_000,
   find_oddity: 10_000,
-  translate_build: 14_000,
-  speed_match: 18_000,
+  translate_build: 25_000,
+  speed_match: 30_000,
 } as const);
 
 export function arenaTaskDurationMs(mode: OwnerApprovedTournamentMode): number {

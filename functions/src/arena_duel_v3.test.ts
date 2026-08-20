@@ -169,6 +169,8 @@ describe('arenaPlanTask', () => {
   });
 
   it('проставляет окно ответа по режиму', () => {
+    expect(ARENA_ANSWER_MS.translate_build).toBe(25_000);
+    expect(ARENA_ANSWER_MS.speed_match).toBe(30_000);
     expect(arenaPlanTask(MATCH_ID, TASKS[2], 2)!.answerMs).toBe(ARENA_ANSWER_MS.translate_build);
     expect(arenaPlanTask(MATCH_ID, TASKS[4], 4)!.answerMs).toBe(ARENA_ANSWER_MS.speed_match);
   });

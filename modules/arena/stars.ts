@@ -28,13 +28,13 @@ export function arenaIsTaskMode(value: unknown): value is ArenaTaskMode {
 }
 
 
-/** Окно ответа по типу задания. Сокращено владельцем на четверть 2026-08-12. */
+/** Полное окно ответа по типу задания; immersive-режимам нужен запас на 1.5x шрифт. */
 export const ARENA_ANSWER_MS = Object.freeze({
   guess_phrase: 8_000,
   fill_gap: 8_000,
   find_oddity: 10_000,
-  translate_build: 14_000,
-  speed_match: 18_000,
+  translate_build: 25_000,
+  speed_match: 30_000,
 } as const);
 
 /**

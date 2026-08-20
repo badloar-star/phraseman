@@ -23,6 +23,11 @@ const MODES_10: readonly ArenaTaskMode[] = [
 ];
 const MODES_5 = MODES_10.slice(0, 5);
 
+it('даёт длинным immersive-заданиям новые полные окна ответа', () => {
+  expect(ARENA_ANSWER_MS.translate_build).toBe(25_000);
+  expect(ARENA_ANSWER_MS.speed_match).toBe(30_000);
+});
+
 type AwardInput = Parameters<typeof arenaAwardStars>[0];
 const award = (over: Partial<AwardInput> = {}) => arenaAwardStars({
   mode: 'guess_phrase',
@@ -139,7 +144,7 @@ describe('прогон матча', () => {
       firstAttemptPairs: 0, resolvedPairs: 0, answer: null,
     }));
     expect(dead.matchStars).toBe(0);
-    expect(dead.tieBreakElapsedMs).toBe(116_000);
+    expect(dead.tieBreakElapsedMs).toBe(MODES_10.reduce((sum, mode) => sum + ARENA_ANSWER_MS[mode], 0));
     expect(arenaResolveDuel(dead, dead).reason).toBe('draw');
   });
 });

@@ -80,7 +80,7 @@ Flattening to 40 is **+17.6 %** for the bottom band and **−16.7 %** for the to
 ```
 ARENA_TASK_COUNT       ranked/friend = 10, quick = 5
 ARENA_ANSWER_MS        guess_phrase 8000, fill_gap 8000, find_oddity 10000,
-                       translate_build 14000, speed_match 18000
+                       translate_build 25000, speed_match 30000
 ARENA_TIME_QUANTUM_MS  100
 ARENA_STARS_CORRECT       2
 ARENA_STARS_CORRECT_FIRST 3
@@ -159,7 +159,7 @@ export const ARENA_STARS_RULES_VERSION = 'arena-stars.v3' as const;
 
 export const ARENA_ANSWER_MS = Object.freeze({
   guess_phrase: 8_000, fill_gap: 8_000, find_oddity: 10_000,
-  translate_build: 14_000, speed_match: 18_000,
+  translate_build: 25_000, speed_match: 30_000,
 } as const);
 
 export const ARENA_TIME_QUANTUM_MS = 100;

@@ -23,6 +23,7 @@ import {
   arenaTaskCount,
   arenaQuickBotDelayMs,
   ARENA_DAILY_REWARD_MATCHES,
+  ARENA_V2_ANSWER_MS,
 } from './arena_v2_core';
 import { ARENA_STAR_POLICY } from './arena_stars_v3';
 
@@ -80,6 +81,8 @@ describe('Arena V2 pure product contract', () => {
     expect(ARENA_V2_ACCEPT_MS).toBe(12_000);
     expect(ARENA_V2_COUNTDOWN_MS).toBe(3_200);
     expect(ARENA_V2_REVEAL_MS).toBe(1_200);
+    expect(ARENA_V2_ANSWER_MS.translate_build).toBe(25_000);
+    expect(ARENA_V2_ANSWER_MS.speed_match).toBe(30_000);
     const selected = selectArenaTasks(pool(), 'match-seed', 19)!;
     expect(selected).toHaveLength(10);
     expect(selected.map((entry) => entry.mode)).toEqual(ARENA_V2_MODE_ORDER);

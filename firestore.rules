@@ -1445,6 +1445,8 @@ service cloud.firestore {
         allow write: if false;
       }
       match /arena_v2_receipts/{matchId} {
+        // xpBreakdown is private owner-visible settlement evidence. It is
+        // authored only by the Arena transaction and never exposed publicly.
         allow read: if userDocOwnerMatchesAuth(userId);
         allow write: if false;
       }

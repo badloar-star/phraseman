@@ -10,6 +10,8 @@ const readSource = (file: string): string => readFileSync(path.join(__dirname, f
 
 const source = readSource('arena_v2.ts');
 const core = readSource('arena_v2_core.ts');
+const rules = readFileSync(path.resolve(__dirname, '../../firestore.rules'), 'utf8');
+const jarvisContract = readSource('jarvis/jarvis_data_contract_guard.test.ts');
 
 describe('Arena V2 backend source contract', () => {
   it('marks a server-created bot seat accepted at match creation', () => {
@@ -54,7 +56,7 @@ describe('Arena V2 backend source contract', () => {
     expect(publicReward).not.toContain('spinAwarded');
     expect(publicReward).not.toContain('xpBreakdown');
     const privateReward = source.slice(
-      source.indexOf('const reward = {'),
+      source.indexOf('const reward = arenaV2ReceiptReward({'),
       source.indexOf('privateRewards[entry.uid] = reward;'),
     );
     expect(privateReward).toContain('xpBreakdown: settle.xpBreakdown');
@@ -158,6 +160,14 @@ describe('Arena V2 backend source contract', () => {
     expect(source).toContain("closeReason: 'friend_match'");
     expect(source).toContain("throw new HttpsError('failed-precondition', 'arena_invite_host_unavailable')");
     expect(source).not.toContain('randomInt(');
+  });
+
+  it('persists private reward receipts through the explicit fail-closed schema', () => {
+    expect(source).toContain("import { arenaV2ReceiptReward } from './arena_v2_receipt_contract'");
+    expect(source).toContain('const reward = arenaV2ReceiptReward({');
+    expect(rules).toContain('xpBreakdown is private owner-visible settlement evidence');
+    expect(jarvisContract).toContain("collection: 'arena_v2_receipts'");
+    expect(jarvisContract).toContain('private XP settlement evidence; never a Jarvis business metric');
   });
 
   it('publishes season and spin pearls as deterministic external facts only', () => {

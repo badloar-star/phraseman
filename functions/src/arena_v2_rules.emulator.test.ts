@@ -41,7 +41,21 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
       await setDoc(doc(db, 'arena_v2_matches/match-1/arena_v2_members', 'auth-b'), { seat: 'b', seatId: 'b' });
       await setDoc(doc(db, 'arena_v2_match_private', 'match-1'), { answers: {}, tasks: [{ secret: true }] });
       await setDoc(doc(db, 'users/stable-a/arena_v2_seasons', 'season-1'), { stars: 12 });
-      await setDoc(doc(db, 'users/stable-a/arena_v2_receipts', 'match-1'), { stars: 4 });
+      await setDoc(doc(db, 'users/stable-a/arena_v2_receipts', 'match-1'), {
+        matchId: 'match-1',
+        mode: 'quick',
+        outcome: 'win',
+        reward: {
+          xpEarned: 22,
+          xpBreakdown: {
+            schemaVersion: 'arena-xp-breakdown.v1',
+            baseXp: 10,
+            correctBonusXp: 12,
+            outcomeBonusXp: 0,
+            totalXp: 22,
+          },
+        },
+      });
       await setDoc(doc(db, 'users/stable-a/arena_v2_spin_credits', 'credit-1'), { status: 'available' });
       await setDoc(doc(db, 'users/stable-a/arena_v2_spin_results', 'request-1'), { reward: 'shards' });
       await setDoc(doc(db, 'users/stable-a/arena_v2_season_claims', 'season-1_1_free'), { status: 'claimed' });
@@ -105,6 +119,9 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
     await assertFails(updateDoc(doc(owner, 'arena_v2_queue', 'stable-a'), { status: 'matched' }));
     await assertFails(updateDoc(doc(owner, 'arena_v2_matches', 'match-1'), { state: 'settled' }));
     await assertFails(updateDoc(doc(owner, 'arena_v2_profiles', 'stable-a'), { rank: 23 }));
+    await assertFails(updateDoc(doc(owner, 'users/stable-a/arena_v2_receipts', 'match-1'), {
+      'reward.xpBreakdown.totalXp': 999,
+    }));
     await assertFails(setDoc(doc(owner, 'users/stable-a/arena_v2_match_labs', 'match-2'), { tasks: [] }));
     await assertFails(updateDoc(doc(owner, 'users/stable-a/arena_v2_match_labs', 'match-1'), { tasks: [] }));
     await assertFails(setDoc(doc(owner, 'arena_v2_invites', 'forged'), { toAuthUid: 'auth-b' }));

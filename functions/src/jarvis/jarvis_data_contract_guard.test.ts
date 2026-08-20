@@ -215,6 +215,11 @@ const ISOLATED_COLLECTION_CONTRACTS = [
     authority: 'server append-only external facts; read-only Jarvis money diagnostics',
   },
   {
+    collection: 'arena_v2_receipts',
+    writer: 'functions/src/arena_v2.ts',
+    authority: 'owner-read/server-write private XP settlement evidence; never a Jarvis business metric',
+  },
+  {
     collection: 'cosmetic_asset_archive_overrides',
     writer: 'functions Admin SDK cosmetic asset archive controls',
     authority: 'server-managed sale availability; not a Jarvis business projection',

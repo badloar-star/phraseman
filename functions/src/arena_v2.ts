@@ -7,6 +7,7 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import { appendExternalEconomyEvent } from './external_economy_events';
+import { arenaV2ReceiptReward } from './arena_v2_receipt_contract';
 import {
   type TournamentTask,
   applySpeedMatchAttempt,
@@ -1317,7 +1318,7 @@ async function settleMatch(
         + (spin.awarded ? 1 : 0),
       updatedAtMs: now,
     };
-    const reward = {
+    const reward = arenaV2ReceiptReward({
       starsEarned,
       xpEarned: settle.xpEarned,
       ...(settle.xpBreakdown ? { xpBreakdown: settle.xpBreakdown } : {}),
@@ -1330,7 +1331,7 @@ async function settleMatch(
       walletBalanceAfter: walletBefore + walletAward,
       masteryStarsEarned: masteryWalletAward,
       ...(spin.awarded ? { spinReceiptId: String(match.matchId) } : {}),
-    };
+    });
     privateRewards[entry.uid] = reward;
     rewards[publicSeat] = {
       starsEarned,

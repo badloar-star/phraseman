@@ -5,7 +5,10 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { render, userEvent } from '@testing-library/react-native';
 
-import FriendTogetherSheet from '../components/friends_together/FriendTogetherSheet';
+import FriendTogetherSheet, { friendshipLevelName } from '../components/friends_together/FriendTogetherSheet';
+
+let mockLang = 'ru';
+const mockPressableProps: Record<string, any> = {};
 
 jest.mock('../components/modal_fx/HybridSheetShell', () => {
   const mockReact = jest.requireActual('react');
@@ -18,8 +21,10 @@ jest.mock('../components/PressableHybrid', () => {
   const { Pressable } = jest.requireActual('react-native');
   return {
     __esModule: true,
-    default: ({ children, onPress, disabled, testID, accessibilityRole, accessibilityLabel, accessibilityState, style }: any) =>
-      mockReact.createElement(Pressable, { onPress, disabled, testID, accessibilityRole, accessibilityLabel, accessibilityState, style }, children),
+    default: ({ children, onPress, disabled, testID, accessibilityRole, accessibilityLabel, accessibilityState, style, variant }: any) => {
+      if (testID) mockPressableProps[testID] = { disabled, testID, accessibilityRole, accessibilityLabel, accessibilityState, style, variant };
+      return mockReact.createElement(Pressable, { onPress, disabled, testID, accessibilityRole, accessibilityLabel, accessibilityState, style }, children);
+    },
   };
 });
 
@@ -42,7 +47,7 @@ jest.mock('../components/ThemeContext', () => ({
   }),
 }));
 
-jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'ru' }) }));
+jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: mockLang }) }));
 jest.mock('../constants/i18n', () => ({ triLang: (lang: string, copy: Record<string, string>) => copy[lang] ?? copy.ru }));
 jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: () => null }));
 
@@ -57,6 +62,11 @@ function props(overrides: Record<string, unknown> = {}) {
 }
 
 describe('FriendTogetherSheet', () => {
+  beforeEach(() => {
+    mockLang = 'ru';
+    Object.keys(mockPressableProps).forEach((key) => delete mockPressableProps[key]);
+  });
+
   test('renders the complete together surface and invokes every available action', async () => {
     const value = props();
     const user = userEvent.setup();
@@ -75,6 +85,9 @@ describe('FriendTogetherSheet', () => {
       expect(actionStyle.width).toBe('100%');
       await user.press(action);
     }
+    expect(mockPressableProps['friend-together-sheet-nudge'].variant).toBe('primary');
+    expect(StyleSheet.flatten(mockPressableProps['friend-together-sheet-nudge'].style).backgroundColor).toBe('#C8FF00');
+    expect(StyleSheet.flatten(screen.getByTestId('friend-together-sheet-nudge-label').props.style).color).toBe('#07110A');
 
     expect(value.onNudge).toHaveBeenCalledTimes(1);
     expect(value.onGift).toHaveBeenCalledTimes(1);
@@ -98,5 +111,21 @@ describe('FriendTogetherSheet', () => {
     const action = screen.getByTestId('friend-together-sheet-nudge');
     expect(action.props.accessibilityState.disabled).toBe(true);
     expect(action.props.accessibilityLabel).toBe('Вы уже занимались сегодня');
+    expect(mockPressableProps['friend-together-sheet-nudge'].variant).toBe('secondary');
+    expect(StyleSheet.flatten(mockPressableProps['friend-together-sheet-nudge'].style).backgroundColor).toBe('#EFEFEF');
+    expect(StyleSheet.flatten(screen.getByTestId('friend-together-sheet-nudge-label').props.style).color).toBe('#555555');
+  });
+
+  test('localizes current and next friendship levels without leaking caller copy', async () => {
+    mockLang = 'es';
+    const screen = await render(<FriendTogetherSheet {...props()} />);
+    expect(screen.getByTestId('friend-together-sheet-level')).toHaveTextContent('Compañeros');
+    expect(screen.getByTestId('friend-together-sheet-next-level')).toHaveTextContent('Amigos');
+    expect(screen.queryByText('Приятели')).toBeNull();
+    expect(screen.queryByText('Друзья')).toBeNull();
+  });
+
+  test('returns level copy in another locale through the focused helper', () => {
+    expect(friendshipLevelName(5, 'pl' as any)).toBe('Najlepsi przyjaciele');
   });
 });

@@ -82,10 +82,7 @@ export function ArenaDailyGoals({ model }: { model: ArenaDailyGoalsModel | null 
    */
   const seenRef = useRef<number | null>(null);
   useEffect(() => {
-    if (model === null) {
-      seenRef.current = null;
-      return;
-    }
+    if (!model) return;
     const done = model.completedCount;
     if (seenRef.current === null) { seenRef.current = done; return; }
     if (done > seenRef.current) playSound('goalComplete');

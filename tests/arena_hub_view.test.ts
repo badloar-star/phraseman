@@ -217,8 +217,9 @@ describe('неизвестные значения в интерфейсе Аре
     const goals = readFileSync(resolve(__dirname, '../components/arena/ArenaDailyGoals.tsx'), 'utf8');
     const expansion = readFileSync(resolve(__dirname, '../components/arena/ArenaExpansionUI.tsx'), 'utf8');
 
-    expect(hub).toContain('model.rank === null');
     expect(hub).toContain("arenaText(lang, 'valueUnknown')");
+    expect(hub).toMatch(/<Text\s+numberOfLines=\{1\}[\s\S]*accessibilityLabel=\{rank \? undefined : arenaText\(lang, 'valueUnknown'\)\}[\s\S]*style=\{\[styles\.rankName/s);
+    expect(hub).not.toContain('accessibilityLabel={rankUnknown');
     expect(hub).toContain("rank === null ? '—'");
     expect(hub).toMatch(/\{rank \? .*rank\.rp.*: '—'\}/s);
     expect(hub).toContain('RankBar progress={rank?.progress ?? 0}');
@@ -226,7 +227,8 @@ describe('неизвестные значения в интерфейсе Аре
     expect(goals).toContain('ARENA_GOAL_ORDER');
     expect(goals).toContain('ARENA_GOAL_TARGETS');
     expect(goals).toContain("model === null ? '—'");
-    expect(goals).toContain('if (model === null)');
+    expect(goals).toContain('if (!model) return;');
+    expect(goals).not.toContain('seenRef.current = null');
     expect(goals).toContain('progress: 0');
     expect(goals).toContain('complete: false');
     expect(expansion).toContain('value: number | null');

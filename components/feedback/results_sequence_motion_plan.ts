@@ -18,7 +18,7 @@ export type ResultsSequenceMotionPlan = {
 
 export type ResultsSequenceAudioPlan = {
   medalSoundAtMs: null;
-  starSoundAtMs: readonly [number, number, number];
+  starSoundAtMs: readonly number[];
   xpStartAtMs: number;
   xpTickAtMs: readonly [number];
   xpCompleteAtMs: number;
@@ -32,6 +32,7 @@ export type ResultsSequenceAudioPlan = {
 
 export function getResultsSequenceAudioPlan(rewards: {
   activeGift: boolean;
+  showStars?: boolean;
   spinReward?: boolean;
   multiplier?: boolean;
   multiplierCount?: number;
@@ -39,9 +40,11 @@ export function getResultsSequenceAudioPlan(rewards: {
   // Every sound begins only after the previous completion sound has finished,
   // plus a short silence. This protects the single-slot SoundArbiter from
   // cutting a cue off while its matching visual is still on screen.
-  const starSoundAtMs: readonly [number, number, number] = [500, 940, 1500];
-  const xpStartAtMs = completionSoundEndsAt(starSoundAtMs[2], 'pm.complete.star_3_perfect')
-    + COMPLETION_SOUND_GAP_MS;
+  const showStars = rewards.showStars !== false;
+  const starSoundAtMs: readonly number[] = showStars ? [500, 940, 1500] : [];
+  const xpStartAtMs = showStars
+    ? completionSoundEndsAt(starSoundAtMs[2], 'pm.complete.star_3_perfect') + COMPLETION_SOUND_GAP_MS
+    : 500;
   const xpTickAtMs: readonly [number] = [
     completionSoundEndsAt(xpStartAtMs, 'pm.complete.xp_counter_start') + COMPLETION_SOUND_GAP_MS,
   ];

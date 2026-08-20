@@ -122,10 +122,14 @@ describe('Arena Expansion pure contracts', () => {
     expect(arenaRunEligibility('today', 'friend')).toMatchObject({ todayStars: true, mastery: true, spin: false });
     expect(arenaRunEligibility('ghost', 'quick')).toMatchObject({ baseStars: false, rating: false, mastery: false });
     expect(arenaRunEligibility('rival', 'ranked')).toMatchObject({ baseStars: false, rating: false, spin: false });
-    // D-07: быстрый матч звёзд не начисляет, но право на редкую награду и на
-    // зачёт дневных целей сохраняет.
+    // Новейшее решение владельца: quick выдаёт только XP. Факт матча остаётся
+    // в telemetry через profileOutcome, но spin/mastery/partner progression
+    // не должны превращаться в косвенную награду.
     expect(arenaRunEligibility('match', 'quick'))
-      .toMatchObject({ baseStars: false, rating: false, spin: true, mastery: true, partnerActivity: true });
+      .toMatchObject({
+        baseStars: false, rating: false, spin: false, mastery: false,
+        partnerActivity: false, profileOutcome: true,
+      });
     expect(arenaRunEligibility('match', 'ranked')).toMatchObject({ baseStars: true, rating: true, spin: true });
   });
 

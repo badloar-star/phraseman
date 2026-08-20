@@ -65,6 +65,17 @@ export type ArenaMatchReward = Readonly<{
   starsEarned: number;
   /** Опыт за матч. Считает и начисляет сервер в той же транзакции (D-69). */
   xpEarned?: number;
+  /**
+   * Авторитетная раскладка уже начисленного XP. Отсутствует при cap или на
+   * старом сервере; клиент не восстанавливает её из ответов/счёта.
+   */
+  xpBreakdown?: Readonly<{
+    schemaVersion: 'arena-xp-breakdown.v1';
+    baseXp: number;
+    correctBonusXp: number;
+    outcomeBonusXp: number;
+    totalXp: number;
+  }>;
   totalXpAfter?: number;
   seasonStarsAfter?: number;
   ratingDelta?: number;

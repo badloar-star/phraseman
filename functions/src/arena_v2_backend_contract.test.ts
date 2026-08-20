@@ -52,6 +52,12 @@ describe('Arena V2 backend source contract', () => {
     expect(publicReward).toContain('ratingDelta');
     expect(publicReward).not.toContain('seasonStarsAfter');
     expect(publicReward).not.toContain('spinAwarded');
+    expect(publicReward).not.toContain('xpBreakdown');
+    const privateReward = source.slice(
+      source.indexOf('const reward = {'),
+      source.indexOf('privateRewards[entry.uid] = reward;'),
+    );
+    expect(privateReward).toContain('xpBreakdown: settle.xpBreakdown');
   });
 
   it('returns and persists only the submitting viewer review before settlement', () => {

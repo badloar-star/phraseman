@@ -201,14 +201,13 @@ export function arenaRunEligibility(runKind: ArenaExpansionRunKind, mode: string
   };
   return {
     /**
-     * Звёзды в кошелёк начисляет только рейтинговый матч (D-07: «быстрый матч
-     * звёзды не начисляет, только опыт»). Право на редкую награду и на зачёт
-     * дневных целей быстрый матч при этом сохраняет — оно считается отдельным
-     * счётчиком, а не этим полем.
+      * Новейшее решение владельца: quick выдаёт только XP. Поэтому spin,
+      * mastery и partner progression доступны только ranked; profileOutcome
+      * остаётся telemetry факта матча, а не отдельной наградой.
      */
     rating: mode === 'ranked', baseStars: mode === 'ranked',
-    todayStars: false, spin: mode === 'quick' || mode === 'ranked',
-    mastery: mode === 'quick' || mode === 'ranked', partnerActivity: mode === 'quick' || mode === 'ranked',
+    todayStars: false, spin: mode === 'ranked',
+    mastery: mode === 'ranked', partnerActivity: mode === 'ranked',
     profileOutcome: true,
   };
 }

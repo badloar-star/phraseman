@@ -111,11 +111,12 @@ import {
   type StarOpRequest,
 } from './stars_ledger';
 import {
-  arenaMatchXp,
+  arenaMatchXpReward,
   arenaWeekKeyForMs,
   arenaXpEligible,
   arenaXpUserPatch,
   ARENA_XP_RULE_VERSION,
+  type ArenaXpBreakdown,
   type ArenaXpMode,
 } from './arena_xp';
 
@@ -1022,6 +1023,7 @@ async function settleMatch(
     dailyStarsBefore: number;
     starsEarned: number;
     xpEarned: number;
+    xpBreakdown?: ArenaXpBreakdown;
     dailyXpBefore: number;
     prepared: StarLedgerPrepared | null;
     userPatch: Record<string, unknown>;
@@ -1070,15 +1072,16 @@ async function settleMatch(
     const correctAnswers = Math.max(0, Math.trunc(Number(privateDoc.totals[entry.uid]?.correct ?? 0)));
     // Серии соперничеств сезонный документ не пишут, поэтому и опыт там не
     // начисляется: потолок было бы негде хранить.
-    const xpEarned = expansionRunKind !== 'rival' && arenaXpEligible(entry.uid)
-      ? arenaMatchXp({
+    const xpReward = expansionRunKind !== 'rival' && arenaXpEligible(entry.uid)
+      ? arenaMatchXpReward({
         mode: String(match.mode) as ArenaXpMode,
         correctAnswers,
         taskCount: privateDoc.tasks.length,
         outcome,
         dailyXpCredited: dailyXpBefore,
       })
-      : 0;
+      : { xpEarned: 0 };
+    const xpEarned = xpReward.xpEarned;
 
     /**
      * Ранг считается ЗДЕСЬ, в первой фазе, а не при записи профиля.
@@ -1186,6 +1189,7 @@ async function settleMatch(
       dailyStarsBefore,
       starsEarned,
       xpEarned,
+      ...(xpReward.breakdown ? { xpBreakdown: xpReward.breakdown } : {}),
       dailyXpBefore,
       prepared,
       userPatch: xpPatch?.patch ?? {},
@@ -1249,9 +1253,12 @@ async function settleMatch(
       additions: privateDoc.expansionFlags?.mastery === true ? additions : {},
       lifetimeThresholdStars: Number(existing.profile.masteryThresholdStarsLifetime ?? 0),
     });
-    const masteryWalletAward = privateDoc.expansionFlags?.mastery === true ? masteryApplied.walletAward : 0;
+    const masteryWalletAward = privateDoc.expansionFlags?.mastery === true && expansionEligibility.mastery
+      ? masteryApplied.walletAward : 0;
     const walletBefore = Math.max(0, Math.trunc(Number(existing.profile.starWalletBalance ?? 0)));
-    const walletAward = privateDoc.expansionFlags?.wallet === true ? starsEarned + masteryWalletAward : 0;
+    const walletRewardEligible = expansionEligibility.baseStars || expansionEligibility.mastery;
+    const walletAward = privateDoc.expansionFlags?.wallet === true && walletRewardEligible
+      ? starsEarned + masteryWalletAward : 0;
     const nextProfile = {
       ...profile,
       rating: ratingAfter,
@@ -1264,11 +1271,11 @@ async function settleMatch(
       draws: profile.draws + (expansionEligibility.profileOutcome && outcome === 'draw' ? 1 : 0),
       matches: profile.matches + (expansionEligibility.profileOutcome ? 1 : 0),
       spinPity: spin.pityAfter,
-      ...(privateDoc.expansionFlags?.wallet === true ? {
+      ...(privateDoc.expansionFlags?.wallet === true && walletRewardEligible ? {
         starWalletBalance: walletBefore + walletAward,
         lifetimeWalletStarsEarned: Math.max(0, Number(existing.profile.lifetimeWalletStarsEarned ?? 0)) + walletAward,
       } : {}),
-      ...(privateDoc.expansionFlags?.mastery === true ? {
+      ...(privateDoc.expansionFlags?.mastery === true && expansionEligibility.mastery ? {
         masteryThresholdStarsLifetime: Math.max(0, Number(existing.profile.masteryThresholdStarsLifetime ?? 0))
           + masteryWalletAward,
         mastery: masteryApplied.mastery,
@@ -1313,6 +1320,7 @@ async function settleMatch(
     const reward = {
       starsEarned,
       xpEarned: settle.xpEarned,
+      ...(settle.xpBreakdown ? { xpBreakdown: settle.xpBreakdown } : {}),
       totalXpAfter: settle.totalXpAfter,
       seasonStarsAfter: starsAfter,
       ratingDelta,
@@ -1421,6 +1429,7 @@ async function settleMatch(
       expireAt: timestamp(now + 400 * 24 * 60 * 60 * 1_000),
     });
     if (privateDoc.expansionFlags?.wallet === true && privateDoc.expansionFlags?.mastery === true
+      && expansionEligibility.mastery
       && masteryWalletAward > 0) tx.create(db.collection('users').doc(entry.uid)
       .collection(ARENA_EXPANSION_COLLECTIONS.starLedger).doc(`mastery_${match.matchId}`), {
       kind: 'mastery_thresholds', sourceId: String(match.matchId), delta: masteryWalletAward,

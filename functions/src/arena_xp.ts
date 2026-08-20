@@ -49,17 +49,30 @@ export const ARENA_XP_MATCH_CAP = 120;
 /** Потолок за сутки на игрока. */
 export const ARENA_XP_DAILY_CAP = 600;
 
-/**
- * Число правильных ответов ОБЯЗАНО быть пересчитано сервером из приватного
- * документа матча. Клиентское значение сюда не попадает никогда.
- */
-export function arenaMatchXp(input: Readonly<{
+export type ArenaXpBreakdown = Readonly<{
+  schemaVersion: 'arena-xp-breakdown.v1';
+  baseXp: number;
+  correctBonusXp: number;
+  outcomeBonusXp: number;
+  totalXp: number;
+}>;
+
+type ArenaMatchXpInput = Readonly<{
   mode: ArenaXpMode;
   correctAnswers: number;
   taskCount: number;
   outcome: ArenaXpOutcome;
   dailyXpCredited: number;
-}>): number {
+}>;
+
+/**
+ * Число правильных ответов ОБЯЗАНО быть пересчитано сервером из приватного
+ * документа матча. Клиентское значение сюда не попадает никогда.
+ */
+export function arenaMatchXpReward(input: ArenaMatchXpInput): Readonly<{
+  xpEarned: number;
+  breakdown?: ArenaXpBreakdown;
+}> {
   const taskCount = Math.max(0, Math.trunc(Number(input.taskCount) || 0));
   const correct = Math.max(0, Math.min(Math.trunc(Number(input.correctAnswers) || 0), taskCount));
   const base = ARENA_XP_BASE[input.mode] ?? 0;
@@ -67,10 +80,26 @@ export function arenaMatchXp(input: Readonly<{
   const outcomeBonus = input.mode === 'ranked' || input.mode === 'series'
     ? (ARENA_XP_OUTCOME[input.outcome] ?? 0)
     : 0;
-  const raw = base + perCorrect * correct + outcomeBonus;
+  const correctBonus = perCorrect * correct;
+  const raw = base + correctBonus + outcomeBonus;
   const capped = Math.min(raw, ARENA_XP_MATCH_CAP);
   const dailyRoom = ARENA_XP_DAILY_CAP - Math.max(0, Math.trunc(Number(input.dailyXpCredited) || 0));
-  return Math.max(0, Math.min(capped, dailyRoom));
+  const xpEarned = Math.max(0, Math.min(capped, dailyRoom));
+  if (xpEarned !== raw) return { xpEarned };
+  return {
+    xpEarned,
+    breakdown: {
+      schemaVersion: 'arena-xp-breakdown.v1',
+      baseXp: base,
+      correctBonusXp: correctBonus,
+      outcomeBonusXp: outcomeBonus,
+      totalXp: xpEarned,
+    },
+  };
+}
+
+export function arenaMatchXp(input: ArenaMatchXpInput): number {
+  return arenaMatchXpReward(input).xpEarned;
 }
 
 /** Боты опыта не получают и в лигах не участвуют. */

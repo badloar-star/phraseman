@@ -2,6 +2,7 @@ import {
   ARENA_XP_DAILY_CAP,
   ARENA_XP_MATCH_CAP,
   arenaMatchXp,
+  arenaMatchXpReward,
   arenaWeekKeyForMs,
   arenaXpEligible,
   arenaXpUserPatch,
@@ -30,6 +31,30 @@ describe('формула опыта Арены', () => {
       arenaMatchXp({ mode: 'quick', correctAnswers: 5, taskCount: 5, outcome, dailyXpCredited: 0 });
     expect(quick('win')).toBe(30);
     expect(quick('loss')).toBe(30);
+  });
+
+  it('возвращает авторитетную раскладку только когда её сумма равна начислению', () => {
+    expect(arenaMatchXpReward({
+      mode: 'quick', correctAnswers: 5, taskCount: 5, outcome: 'win', dailyXpCredited: 0,
+    })).toEqual({
+      xpEarned: 30,
+      breakdown: {
+        schemaVersion: 'arena-xp-breakdown.v1',
+        baseXp: 10,
+        correctBonusXp: 20,
+        outcomeBonusXp: 0,
+        totalXp: 30,
+      },
+    });
+  });
+
+  it('скрывает раскладку, если match или daily cap урезал начисление', () => {
+    expect(arenaMatchXpReward({
+      mode: 'ranked', correctAnswers: 100, taskCount: 100, outcome: 'win', dailyXpCredited: 0,
+    })).toEqual({ xpEarned: ARENA_XP_MATCH_CAP });
+    expect(arenaMatchXpReward({
+      mode: 'quick', correctAnswers: 5, taskCount: 5, outcome: 'loss', dailyXpCredited: 590,
+    })).toEqual({ xpEarned: 10 });
   });
 
   it('держит оба потолка', () => {

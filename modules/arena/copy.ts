@@ -187,6 +187,8 @@ const C = {
   wrong: ['Не совсем', 'Не зовсім', 'No del todo', 'Ainda não', 'Chưa đúng', 'Belum tepat', 'Tam değil', 'Nie tym razem'],
   inviteTtl: ['Действует 24 часа', 'Діє 24 години', 'Válida durante 24 horas', 'Válido por 24 horas', 'Có hiệu lực trong 24 giờ', 'Berlaku 24 jam', '24 saat geçerli', 'Ważne przez 24 godziny'],
   stars: ['Звёзды сезона', 'Зірки сезону', 'Estrellas de temporada', 'Estrelas da temporada', 'Sao mùa giải', 'Bintang musim', 'Sezon yıldızları', 'Gwiazdy sezonu'],
+  xpCorrectBonus: ['Правильные ответы', 'Правильні відповіді', 'Respuestas correctas', 'Respostas corretas', 'Câu trả lời đúng', 'Jawaban benar', 'Doğru cevaplar', 'Poprawne odpowiedzi'],
+  xpOutcomeBonus: ['Бонус за исход', 'Бонус за результат', 'Bono por resultado', 'Bônus pelo resultado', 'Thưởng kết quả', 'Bonus hasil', 'Sonuç bonusu', 'Bonus za wynik'],
   spins: ['Спины', 'Спіни', 'Giros', 'Giros', 'Lượt quay', 'Putaran', 'Çevirmeler', 'Losowania'],
   spinNow: ['Крутить спин', 'Крутити спін', 'Girar', 'Girar', 'Quay ngay', 'Putar sekarang', 'Çevir', 'Losuj'],
   spinReward: ['+{amount} жемчужин', '+{amount} перлин', '+{amount} perlas', '+{amount} pérolas', '+{amount} ngọc trai', '+{amount} mutiara', '+{amount} inci', '+{amount} pereł'],

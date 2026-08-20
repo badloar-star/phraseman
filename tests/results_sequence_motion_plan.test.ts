@@ -61,6 +61,14 @@ describe('results sequence motion plan', () => {
     }
   });
 
+  test('XP-only sequence skips the hidden star stage and starts after the badge', () => {
+    const plan = getResultsSequenceAudioPlan({ activeGift: false, showStars: false });
+
+    expect(plan.starSoundAtMs).toEqual([]);
+    expect(plan.xpStartAtMs).toBe(500);
+    expect(plan.startAtMs[0]).toBe(plan.xpStartAtMs);
+  });
+
   test('schedules each multiplier sound sequentially before the finale', () => {
     const plan = getResultsSequenceAudioPlan({ activeGift: false, multiplierCount: 3 });
 

@@ -24,6 +24,8 @@ import type { ArenaExpansionHome } from '../modules/arena/expansion_contract';
 import { useArenaSound } from '../hooks/use_arena_sound';
 import { arenaResultAnnounce, arenaResultHasAnnounce } from '../modules/arena/result_view';
 import { ArenaTierDownHybrid, ArenaTierUpHybrid } from '../components/arena/ArenaRankHybrid';
+import { ResultsSequence } from '../components/feedback/ResultsSequence';
+import { arenaQuickXpPresentation } from '../modules/arena/quick_result';
 
 export default function ArenaResultsScreen() {
   const router = useRouter();
@@ -54,7 +56,15 @@ export default function ArenaResultsScreen() {
   const live = useArenaMatch(matchId, active);
   const routeSeat = params.viewerSeat === 'a' || params.viewerSeat === 'b' ? params.viewerSeat : null;
   const [viewerSeat, setViewerSeat] = useState<'a' | 'b' | null>(() => routeSeat ?? peekArenaViewerSeat(matchId));
-  const [privateReward, setPrivateReward] = useState<ArenaMatchReward | undefined>();
+  const [privateRewardState, setPrivateRewardState] = useState<Readonly<{
+    matchId: string;
+    reward: ArenaMatchReward;
+  }> | null>(null);
+  const [privateSyncResolvedMatchId, setPrivateSyncResolvedMatchId] = useState<string | null>(null);
+  const [quickRewardLatch, setQuickRewardLatch] = useState<Readonly<{
+    matchId: string;
+    reward: ArenaMatchReward;
+  }> | null>(null);
   const [equipped, setEquipped] = useState<Readonly<Record<string, string>>>({});
   const [reactionChosen, setReactionChosen] = useState<string | null>(null);
   const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(null);
@@ -81,15 +91,37 @@ export default function ArenaResultsScreen() {
   }, [active, matchId]);
 
   useEffect(() => {
-    if (active && matchId) void arenaV2SyncMatch(matchId).then((response) => {
+    if (!active || !matchId) return;
+    let alive = true;
+    void arenaV2SyncMatch(matchId).then((response) => {
+      if (!alive) return;
       setSyncState(String(response.state ?? ''));
       if (response.viewerSeat) { rememberArenaViewerSeat(matchId, response.viewerSeat); setViewerSeat(response.viewerSeat); }
-      if (response.viewerReward) setPrivateReward(response.viewerReward);
-    }).catch(() => {});
+      if (response.viewerReward) setPrivateRewardState({ matchId, reward: response.viewerReward });
+    }).catch(() => {}).finally(() => {
+      if (alive) setPrivateSyncResolvedMatchId(matchId);
+    });
+    return () => { alive = false; };
   }, [active, matchId]);
   useEffect(() => { if (active) void Promise.all([arenaExpansionHome(), arenaV2Home()]).then(([home, base]) => { setExpansion(home); setEquipped(home.wallet.equippedBySlot); setBaseEnabled(base.availability.enabled); }).catch(() => { setExpansion(null); setBaseEnabled(false); }); }, [active]);
   const match = live.value;
-  const reward = privateReward ?? (viewerSeat ? match?.result?.rewards?.[viewerSeat] : undefined);
+  const privateReward = privateRewardState?.matchId === matchId ? privateRewardState.reward : undefined;
+  const publicReward = viewerSeat ? match?.result?.rewards?.[viewerSeat] : undefined;
+  useEffect(() => {
+    if (!matchId || match?.mode !== 'quick' || quickRewardLatch?.matchId === matchId) return;
+    const candidate = privateReward
+      ?? (privateSyncResolvedMatchId === matchId ? publicReward : undefined);
+    if (candidate) setQuickRewardLatch({ matchId, reward: candidate });
+  }, [match?.mode, matchId, privateReward, privateSyncResolvedMatchId, publicReward, quickRewardLatch?.matchId]);
+  const quickReward = quickRewardLatch?.matchId === matchId ? quickRewardLatch.reward : undefined;
+  const reward = match?.mode === 'quick' ? quickReward : privateReward ?? publicReward;
+  const quickXp = useMemo(() => arenaQuickXpPresentation(quickReward), [quickReward]);
+  const quickXpRewards = useMemo(() => quickXp.modifiers.length ? ({
+    multipliers: quickXp.modifiers.map((modifier) => ({
+      label: arenaText(lang, modifier.kind === 'correct' ? 'xpCorrectBonus' : 'xpOutcomeBonus'),
+      xpDelta: modifier.xpDelta,
+    })),
+  }) : undefined, [lang, quickXp.modifiers]);
   const players: readonly ArenaPlayer[] = useMemo(() => {
     if (!match) return [];
     if (match.result?.players?.length) return match.result.players;
@@ -119,6 +151,7 @@ export default function ArenaResultsScreen() {
   const outcomeToldRef = useRef(false);
   useEffect(() => {
     if (!match || outcomeToldRef.current) return;
+    if (match.mode === 'quick') return;
     if (match.state === 'aborted') return;
     if (!winner && match.state !== 'settled') return;
     outcomeToldRef.current = true;
@@ -171,6 +204,7 @@ export default function ArenaResultsScreen() {
 
   useEffect(() => {
     if (!active || reduceMotion || !match || winner !== viewerSeat || celebratedRef.current === match.matchId) return;
+    if (match.mode === 'quick') return;
     celebratedRef.current = match.matchId;
     fxRef.current?.confetti({ x: window.width / 2, y: Math.min(260, window.height * 0.3) }, [P.accent, P.gold, P.text]);
   }, [active, match, P.accent, P.gold, P.text, reduceMotion, viewerSeat, winner, window.height, window.width]);
@@ -197,6 +231,29 @@ export default function ArenaResultsScreen() {
     />
   ) : null;
 
+  if (matchId && match?.mode === 'quick' && reward) {
+    return (
+      <ResultsSequence
+        stars={0}
+        showStars={false}
+        xp={quickXp.baseXp}
+        rewards={quickXpRewards}
+        title={title}
+        subtitle={arenaText(lang, 'result')}
+        badge={players.length ? <ArenaPlayers players={players} active={active} animateScore /> : undefined}
+        intensity={winner === viewerSeat ? 'major' : 'milestone'}
+        onCtaPrimary={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}
+        ctaPrimaryLabel={arenaText(lang, 'reviewTitle')}
+        onCtaSecondary={() => router.replace({
+          pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') },
+        } as never)}
+        ctaSecondaryLabel={arenaText(lang, 'playAgain')}
+        onCtaTertiary={() => router.replace('/arena' as never)}
+        ctaTertiaryLabel={arenaText(lang, 'home')}
+      />
+    );
+  }
+
   return (
     <ArenaScreen title={arenaText(lang, 'result')} subtitle={title} variant="results" fxRef={fxRef} onBack={() => router.replace('/arena' as never)} overlay={rankScene}>
       {players.length ? <ArenaPlayers players={players} active={active} animateScore /> : null}
@@ -204,10 +261,10 @@ export default function ArenaResultsScreen() {
       <V2Card style={[styles.resultSurface, resultTheme ? { backgroundColor: resultTheme.backgroundColor, borderColor: resultTheme.borderColor, borderWidth: 1 } : null]}>
         {victoryStamp ? <Text style={[styles.stamp, { color: resultTheme?.foreground ?? P.text }]}>{victoryStamp}</Text> : null}
         <View style={styles.stats}>{players.map((player) => <ArenaStat key={player.uid} label={player.name} value={player.score} />)}</View>
-        <ArenaRewards reward={reward} starsLabel={arenaText(lang, 'stars')} />
+        {match?.mode !== 'quick' ? <ArenaRewards reward={reward} starsLabel={arenaText(lang, 'stars')} /> : null}
       </V2Card>
       {reactionPack ? <View style={styles.reactions}><Text style={[styles.reactionHint, reactionLine, { color: P.muted }]}>{arenaExpansionText(lang, 'localReaction')}</Text>{(equipped.reaction_pack === 'reactions_respect' ? ['reactionRespect', 'reactionWellPlayed'] as const : ['reactionComeback', 'reactionAgain'] as const).map((key) => <V2Cta key={key} tone="ghost" disabled={reactionChosen !== null} onPress={() => setReactionChosen(key)}>{arenaExpansionText(lang, reactionChosen === key ? 'ready' : key)}</V2Cta>)}</View> : null}
-      {reward?.spinAwarded && reward.spinReceiptId ? (
+      {match?.mode !== 'quick' && reward?.spinAwarded && reward.spinReceiptId ? (
         <SpinRewardPlaque amount={1} receiptId={reward.spinReceiptId} visible onComplete={() => {}} staticPresentation />
       ) : null}
       {match?.mode === 'series' ? <V2Card style={styles.seriesCard}><Text style={[styles.reactionHint, reactionLine, { color: P.muted }]}>{arenaExpansionText(lang, 'rivalryBody')}</Text><Text style={[styles.seriesScore, { color: P.gold }]}>{arenaExpansionText(lang, 'score').replace('{you}', String(seriesYou)).replace('{them}', String(seriesThem))}</Text></V2Card> : null}

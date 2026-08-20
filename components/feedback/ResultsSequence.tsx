@@ -98,6 +98,8 @@ function multiplierRewardsFromSignature(signature: string): readonly NormalizedM
 export interface ResultsSequenceProps {
   /** Число звёзд 0-3. */
   stars: number;
+  /** XP-only surfaces hide the whole star row instead of presenting zero stars. */
+  showStars?: boolean;
   xp: number;
   title: string;
   subtitle?: string;
@@ -111,6 +113,8 @@ export interface ResultsSequenceProps {
   ctaPrimaryLabel: string;
   onCtaSecondary?: () => void;
   ctaSecondaryLabel?: string;
+  onCtaTertiary?: () => void;
+  ctaTertiaryLabel?: string;
   /** 'quiet' — без конфетти-грозы (экзамены). */
   intensity?: ResultsIntensity;
 }
@@ -203,6 +207,7 @@ function RewardPill({
 
 export function ResultsSequence({
   stars,
+  showStars = true,
   xp,
   title,
   subtitle,
@@ -213,6 +218,8 @@ export function ResultsSequence({
   ctaPrimaryLabel,
   onCtaSecondary,
   ctaSecondaryLabel,
+  onCtaTertiary,
+  ctaTertiaryLabel,
   intensity = 'major',
 }: ResultsSequenceProps) {
   const { theme: t } = useTheme();
@@ -238,11 +245,12 @@ export function ResultsSequence({
   const audioPlan = useMemo(
     () => getResultsSequenceAudioPlan({
       activeGift: Boolean(activeGiftLabel),
+      showStars,
       spinReward: Boolean(spinReward?.receiptId),
       multiplier: Boolean(legacyMultiplierLabel),
       multiplierCount: multiplierRewards.length,
     }),
-    [activeGiftLabel, legacyMultiplierLabel, multiplierRewards.length, spinReward?.receiptId],
+    [activeGiftLabel, legacyMultiplierLabel, multiplierRewards.length, showStars, spinReward?.receiptId],
   );
 
   const clampedStars = Math.max(0, Math.min(3, Math.floor(stars)));
@@ -287,6 +295,11 @@ export function ResultsSequence({
     fk.cancelResultsSequenceAudio();
     onCtaSecondary?.();
   }, [onCtaSecondary]);
+
+  const handleCtaTertiary = useCallback(() => {
+    fk.cancelResultsSequenceAudio();
+    onCtaTertiary?.();
+  }, [onCtaTertiary]);
 
   // Прыжок в финальное состояние (тап-скип).
   // Первый тап по экрану — доигрывает анимацию до конца и разблокирует CTA.
@@ -381,17 +394,19 @@ export function ResultsSequence({
     if (motionPlan.playMilestones) push(() => fk.successHaptic(), T_BADGE + 40);
 
     // Звёзды по одной (только заполненные звучат восходящей нотой).
-    for (let i = 0; i < 3; i++) {
-      const at = audioPlan.starSoundAtMs[i];
-      push(() => {
-        starSVs[i].value = withSpring(1, { damping: 11, stiffness: 170 });
-        if (!motionPlan.playMilestones || i >= clampedStars) return;
-        const kind = (i === 0 ? 'star1' : i === 1 ? 'star2' : 'star3') as
-          | 'star1'
-          | 'star2'
-          | 'star3';
-        fk.milestone(kind, RESULTS_SEQUENCE_SOUND_OPTIONS);
-      }, at);
+    if (showStars) {
+      for (let i = 0; i < 3; i++) {
+        const at = audioPlan.starSoundAtMs[i];
+        push(() => {
+          starSVs[i].value = withSpring(1, { damping: 11, stiffness: 170 });
+          if (!motionPlan.playMilestones || i >= clampedStars) return;
+          const kind = (i === 0 ? 'star1' : i === 1 ? 'star2' : 'star3') as
+            | 'star1'
+            | 'star2'
+            | 'star3';
+          fk.milestone(kind, RESULTS_SEQUENCE_SOUND_OPTIONS);
+        }, at);
+      }
     }
 
     // XP-каунтер идёт на UI thread; звук старта и первое видимое состояние
@@ -474,6 +489,7 @@ export function ResultsSequence({
     xp,
     finalXp,
     multiplierRewardsSignature,
+    showStars,
     spinReward?.receiptId,
     xpProgress,
     xpRevealSV,
@@ -521,17 +537,19 @@ export function ResultsSequence({
           <Animated.View style={[styles.badgeSlot, badgeStyle]}>{badge}</Animated.View>
         ) : null}
 
-        <View style={styles.starsRow}>
-          {[0, 1, 2].map((i) => (
-            <Star
-              key={`rs-star-${i}`}
-              filled={i < clampedStars}
-              progress={starSVs[i]}
-              color={t.gold}
-              dim={t.border}
-            />
-          ))}
-        </View>
+        {showStars ? (
+          <View style={styles.starsRow}>
+            {[0, 1, 2].map((i) => (
+              <Star
+                key={`rs-star-${i}`}
+                filled={i < clampedStars}
+                progress={starSVs[i]}
+                color={t.gold}
+                dim={t.border}
+              />
+            ))}
+          </View>
+        ) : null}
 
         <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>
         {subtitle ? (
@@ -613,6 +631,19 @@ export function ResultsSequence({
             </Text>
           </TouchableOpacity>
         ) : null}
+        {onCtaTertiary && ctaTertiaryLabel ? (
+          <TouchableOpacity
+            activeOpacity={0.8}
+            disabled={!ctaReady}
+            onPress={handleCtaTertiary}
+            style={styles.ctaSecondary}
+            accessibilityRole="button"
+          >
+            <Text style={[styles.ctaSecondaryText, { color: t.textMuted }]}>
+              {ctaTertiaryLabel}
+            </Text>
+          </TouchableOpacity>
+        ) : null}
       </Animated.View>
     </Pressable>
   );
@@ -645,7 +676,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ctaPrimaryText: { fontSize: 17, fontWeight: '900', letterSpacing: 0.3 },
-  ctaSecondary: { height: 44, alignItems: 'center', justifyContent: 'center' },
+  ctaSecondary: { minHeight: 48, alignItems: 'center', justifyContent: 'center' },
   ctaSecondaryText: { fontSize: 15, fontWeight: '700' },
 });
 

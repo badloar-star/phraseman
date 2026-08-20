@@ -224,7 +224,7 @@ describe('Arena entry prefetch production singleton source contract', () => {
     expect(source).toContain('rememberViewerSeat: rememberArenaViewerSeat');
     expect(source).toContain('nowMs: () => Date.now()');
     expect(source).toContain('wait: (ms) => new Promise((resolve) => setTimeout(resolve, ms))');
-    expect(source).toContain('export const arenaEntryPrefetchStart');
-    expect(source).toContain('export const arenaEntryPrefetchPeek');
+    expect(source).toContain('export const arenaEntryPrefetchStart = arenaEntryPrefetch.start;');
+    expect(source).toContain('export const arenaEntryPrefetchPeek = arenaEntryPrefetch.peek;');
   });
 });

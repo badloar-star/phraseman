@@ -24,12 +24,9 @@ import { useTournamentPalette, v2motion } from '../components/tournament/tournam
 import { arenaText } from '../modules/arena/copy';
 import type { ArenaPlayer } from '../modules/arena/contract';
 import {
-  ARENA_ACCEPT_RETRY_MS,
   arenaEntryFailure,
   arenaEntryFailureCopy,
-  arenaEntryCountdownRemainingMs,
   type ArenaEntryFailure,
-  arenaEntryStep,
   arenaPlanTaskToPublic,
   type ArenaMatchPlanWire,
 } from '../modules/arena/duel_plan';
@@ -52,13 +49,10 @@ import {
   arenaExpansionHome,
   arenaMatchReportToWire,
   arenaV2Forfeit,
-  arenaV2MatchAccept,
   arenaV2MatchFinish,
-  arenaV2MatchPlan,
   arenaV2MatchSettle,
   arenaPublishLiveTicks,
   createArenaRequestId,
-  rememberArenaViewerSeat,
   useArenaOpponentLive,
 } from './arena_client';
 import {
@@ -67,36 +61,14 @@ import {
   withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
+import { arenaEntryPrefetchPeek, arenaEntryPrefetchStart } from './arena_entry_prefetch';
+import { ArenaNoOpponentError } from '../modules/arena/entry_prefetch';
 
 /**
- * Входной план уже запечатан сервером и идемпотентен. React может снять
- * первый экземпляр экрана, пока callable находится в полёте (особенно после
- * перехода matchmaking → match), и тогда успешный ответ терялся: сервер уже
- * отмечал duelVersion=3, а новый экран бесконечно показывал ожидание.
- * Один promise на matchId позволяет следующему экземпляру забрать тот же
- * успешный ответ без второго сетевого запроса.
+ * Matchmaking заранее запечатывает входной план. Экран синхронно забирает
+ * готовый результат, поэтому VS начинается с реальными игроками и полным
+ * отсчётом; прямой вход использует тот же идемпотентный координатор.
  */
-const arenaMatchPlanRequests = new Map<string, ReturnType<typeof arenaV2MatchPlan>>();
-
-function arenaMatchPlanRequest(matchId: string): ReturnType<typeof arenaV2MatchPlan> {
-  const current = arenaMatchPlanRequests.get(matchId);
-  if (current) return current;
-  const request = arenaV2MatchPlan(matchId).then((result) => {
-    if (!result) arenaMatchPlanRequests.delete(matchId);
-    return result;
-  }).catch((error) => {
-    arenaMatchPlanRequests.delete(matchId);
-    throw error;
-  });
-  arenaMatchPlanRequests.set(matchId, request);
-  // Матчей за один живой процесс немного, но кэш всё равно ограничен.
-  if (arenaMatchPlanRequests.size > 8) {
-    const oldest = arenaMatchPlanRequests.keys().next().value;
-    if (oldest && oldest !== matchId) arenaMatchPlanRequests.delete(oldest);
-  }
-  return request;
-}
-
 /**
  * Экран матча Арены.
  *
@@ -118,10 +90,10 @@ export default function ArenaMatchScreen() {
   const titleLine = { lineHeight: 26 * fontScale };
   const hintLine = { lineHeight: 20 * fontScale };
   const bigHintLine = { lineHeight: 21 * fontScale };
-  const params = useLocalSearchParams<{ matchId?: string; intro?: string }>();
+  const params = useLocalSearchParams<{ matchId?: string; prepared?: string }>();
   const matchId = typeof params.matchId === 'string' ? params.matchId : null;
-  const immediateIntro = params.intro === '1';
-  const introStartedAtMonoMsRef = useRef(arenaMonotonicNowMs());
+  const preparedEntry = matchId ? arenaEntryPrefetchPeek(matchId) : null;
+  const preparedRoute = params.prepared === '1' && Boolean(preparedEntry);
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
   const playSound = useArenaSound();
@@ -141,7 +113,7 @@ export default function ArenaMatchScreen() {
     setPlanScope({ stableUid: account.stableId, accountGeneration: account.generation });
   }, [matchId]);
 
-  const [plan, setPlan] = useState<ArenaMatchPlanWire | null>(null);
+  const [plan, setPlan] = useState<ArenaMatchPlanWire | null>(() => preparedEntry?.plan ?? null);
   const [planError, setPlanError] = useState(false);
   /**
    * Почему не вошли. Владелец (D-72): рейтинг без сети начать нельзя, и игрок
@@ -168,56 +140,26 @@ export default function ArenaMatchScreen() {
       .catch(() => {});
   }, [active]);
 
-  /* ---- вход в матч: принять, затем взять план ---- */
+  /* ---- прямой вход: забрать тот же подготовленный план ---- */
   useEffect(() => {
-    if (!matchId || plan || planError) return;
+    if (!active || !matchId || plan || planError) return;
     let alive = true;
     const entryAccount = planAccountRef.current;
     if (!entryAccount || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
-    const enteredAtMs = Date.now();
-    let timer: ReturnType<typeof setTimeout> | null = null;
-
-    // Пока ОБА не приняли дуэль, плана не существует — сервер откажет.
-    // Поэтому вход это короткий цикл, ограниченный окном принятия. Это не
-    // опрос хода матча: он длится секунды и только ДО старта, а во время
-    // самого матча к серверу не обращаются вовсе.
-    const attempt = () => {
-      if (!alive || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
-      void arenaV2MatchAccept(matchId)
-        .then((response) => {
-          if (!alive || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
-          if (response.viewerSeat) rememberArenaViewerSeat(matchId, response.viewerSeat);
-          const step = arenaEntryStep({
-            state: String(response.state ?? ''),
-            elapsedSinceEntryMs: Date.now() - enteredAtMs,
-          });
-          // Соперник не принял вызов. Это не ошибка сервера, и говорить о
-          // ней надо иначе, чем об отказе сети.
-          if (step === 'give_up') { setEntryFailure('no_opponent'); setPlanError(true); return; }
-          if (step === 'accept') {
-            timer = setTimeout(attempt, ARENA_ACCEPT_RETRY_MS);
-            return;
-          }
-          return arenaMatchPlanRequest(matchId).then((planned) => {
-            if (!alive || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
-            // Разбор закрытый: не сошёлся целиком — матч не начинаем вовсе.
-            if (!planned) { setPlanError(true); return; }
-            rememberArenaViewerSeat(matchId, planned.plan.viewerSeat);
-            setPlan(planned.plan);
-          });
-        })
-        .catch((reason) => {
-          if (!alive || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
-          setEntryFailure(arenaEntryFailure(reason));
-          setPlanError(true);
-        });
-    };
-    attempt();
-
-    return () => {
-      alive = false;
-      if (timer !== null) clearTimeout(timer);
-    };
+    void arenaEntryPrefetchStart(matchId)
+      .then((prepared) => {
+        if (alive && isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) {
+          setPlan(prepared.plan);
+        }
+      })
+      .catch((reason) => {
+        if (!alive || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
+        setEntryFailure(reason instanceof ArenaNoOpponentError
+          ? 'no_opponent'
+          : arenaEntryFailure(reason));
+        setPlanError(true);
+      });
+    return () => { alive = false; };
   }, [active, matchId, plan, planError, planScope]);
 
   /* ---- живой прогресс соперника ---- */
@@ -248,8 +190,9 @@ export default function ArenaMatchScreen() {
    * это проверяет сам модуль хранения.
    */
   const [restored, setRestored] = useState<ArenaLocalMatchState | null>(null);
-  const [restoreChecked, setRestoreChecked] = useState(false);
+  const [restoreChecked, setRestoreChecked] = useState(preparedRoute);
   useEffect(() => {
+    if (preparedRoute) return;
     if (!matchId) { setRestoreChecked(true); return; }
     const restoreAccount = planAccountRef.current;
     if (!planScope || !restoreAccount
@@ -273,7 +216,7 @@ export default function ArenaMatchScreen() {
         }
       });
     return () => { alive = false; };
-  }, [matchId, planScope]);
+  }, [matchId, planScope, preparedRoute]);
 
   /**
    * План подставляется в машину только когда проверка снимка закончилась:
@@ -285,12 +228,6 @@ export default function ArenaMatchScreen() {
       ? plan : null,
     ownerScope: planScope,
     restored,
-    countdownRemainingMs: immediateIntro && plan
-      ? arenaEntryCountdownRemainingMs(
-        plan.countdownMs,
-        arenaMonotonicNowMs() - introStartedAtMonoMsRef.current,
-      )
-      : undefined,
     opponentTicks,
   });
 
@@ -567,7 +504,7 @@ export default function ArenaMatchScreen() {
 
   const introReady = Boolean(plan && match && hud && match.phase.kind !== 'countdown');
   const shouldShowIntro = !introDone && (
-    immediateIntro || !plan || !match || !hud || match.phase.kind === 'countdown'
+    !plan || !match || !hud || match.phase.kind === 'countdown'
   );
 
   if (shouldShowIntro) {

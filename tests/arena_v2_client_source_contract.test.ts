@@ -248,8 +248,10 @@ describe('Arena V2 listener and callable source contract', () => {
     // И никакой досинхронизации посреди матча.
     expect(match).not.toContain('arenaV2SyncMatch');
     expect(match).not.toContain("arenaText(lang, 'serverCheck')");
-    // Сеть трогается ровно трижды: план, отчёт и — при необходимости — закрытие.
-    expect(match).toContain('arenaV2MatchPlan(matchId)');
+    // План приходит через общий entry-prefetch; экран не владеет вторым запросом.
+    expect(match).toContain('arenaEntryPrefetchStart(matchId)');
+    expect(match).not.toContain('arenaV2MatchPlan(matchId)');
+    expect(match).not.toContain('arenaV2MatchAccept(matchId)');
     expect(match).toContain('arenaV2MatchFinish(');
     expect(match).toContain('arenaV2MatchSettle(matchId)');
     expect(match).toContain("BackHandler.addEventListener('hardwareBackPress'");
@@ -262,8 +264,8 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(entryPrefetch).toContain('createArenaEntryPrefetch({');
     expect(entryPrefetch).toContain('export const arenaEntryPrefetchStart = arenaEntryPrefetch.start;');
     expect(entryPrefetch).toContain('export const arenaEntryPrefetchPeek = arenaEntryPrefetch.peek;');
-    // Task 4 removes the legacy consumer; this task only moves request ownership
-    // to the shared coordinator before the route is entered.
+    expect(match).toContain('const preparedEntry = matchId ? arenaEntryPrefetchPeek(matchId) : null;');
+    expect(match).not.toContain('arenaMatchPlanRequests');
     expect(match).toContain('[active, matchId, plan, planError, planScope]');
   });
 

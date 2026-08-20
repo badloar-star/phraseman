@@ -14,7 +14,6 @@ import {
   arenaCanStartOffline,
   arenaEntryFailure,
   arenaEntryFailureCopy,
-  arenaEntryCountdownRemainingMs,
   arenaSearchFailureCopy,
   arenaPlanTaskToPublic,
   type ArenaMatchPlanWire,
@@ -674,28 +673,31 @@ describe('почему матч не начался — словами, а не 
     expect(source).not.toContain('setError(String(reason))');
   });
 
-  /** После сведения игрок уже найден. Сетевое принятие и получение плана
-   * обязаны спрятаться внутри заставки столкновения, а не стать новым экраном. */
-  it('после сведения сразу запускает столкновение без экрана подготовки', () => {
+  /** После сведения игрок уже найден. Принятие и план заканчиваются под
+   * поисковой анимацией, а VS получает настоящие данные и полный отсчёт. */
+  it('prepared matchmaking enters VS with real data and the full countdown', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
     const matchmaking = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8');
     const introBranch = source.indexOf('const shouldShowIntro =');
     const planWaitBranch = source.indexOf('if (!plan || !match || !hud)');
     expect(matchmaking).toContain("params: { matchId, prepared: '1' }");
+    expect(source).toContain('const preparedEntry = matchId ? arenaEntryPrefetchPeek(matchId) : null;');
+    expect(source).toContain("const preparedRoute = params.prepared === '1' && Boolean(preparedEntry);");
+    expect(source).toContain('useState<ArenaMatchPlanWire | null>(() => preparedEntry?.plan ?? null)');
+    expect(source).toContain('useState(preparedRoute)');
+    expect(source).toContain('arenaEntryPrefetchStart(matchId)');
     expect(introBranch).toBeGreaterThan(-1);
     expect(introBranch).toBeLessThan(planWaitBranch);
     expect(source).toContain('ready={introReady}');
-    expect(source).toContain('countdownRemainingMs: immediateIntro');
+    expect(source).not.toContain('arenaMatchPlanRequests');
+    expect(source).not.toContain('arenaEntryCountdownRemainingMs');
+    expect(source).not.toContain('countdownRemainingMs: immediateIntro');
+    expect(source).not.toContain("params.intro === '1'");
     expect(source).toContain("name: arenaText(lang, 'opponent')");
     expect(source).not.toContain("arenaText(lang, 'preparingDuel')");
     expect(source).not.toContain("arenaText(lang, 'preparingDuelHint')");
     expect(source).not.toContain("arenaText(lang, 'waiting')");
-  });
-
-  it('тратит серверную подготовку из бюджета заставки, а не из первого задания', () => {
-    expect(arenaEntryCountdownRemainingMs(3_200, 0)).toBe(3_200);
-    expect(arenaEntryCountdownRemainingMs(3_200, 900)).toBe(2_300);
-    expect(arenaEntryCountdownRemainingMs(3_200, 9_000)).toBe(0);
+    expect(source).not.toContain("arenaText(lang, 'loading')");
   });
 
   it('финальный кадр столкновения ждёт готовность плана без перезапуска анимации', () => {
@@ -721,7 +723,8 @@ describe('почему матч не начался — словами, а не 
     // Старая развилка «в трёх ветках» не должна вернуться.
     expect(source).not.toContain("entryFailure === 'gated' ? 'maintenance' : 'retry'");
     // Соперник, не принявший вызов, называется своим именем.
-    expect(source).toContain("setEntryFailure('no_opponent')");
+    expect(source).toContain('reason instanceof ArenaNoOpponentError');
+    expect(source).toContain("? 'no_opponent'");
   });
 });
 

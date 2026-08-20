@@ -9,6 +9,7 @@ import {
   resetAppSnapshotForAccountSwitch,
   subscribeAppSnapshot,
 } from '../app/app_snapshot_store';
+import { starterAvatarDNA } from '../modules/avatar-dna/catalog';
 
 describe('app snapshot store contract', () => {
   beforeEach(() => {
@@ -220,7 +221,17 @@ describe('app snapshot store contract', () => {
   });
 
   it('clears account-scoped customization ownership and styles', () => {
+    const dna = starterAvatarDNA('starter_warm_01');
     patchAppSnapshot({
+      profile: {
+        source: 'storage', updatedAt: 100, name: 'Ada', avatar: '18', frame: '',
+        totalXp: 1250, level: 18, premiumActive: false, vipActive: false,
+        avatarDNA: {
+          schemaVersion: 1, ownerStableId: 'u1', accountGeneration: 4,
+          confirmedDNA: dna, lastConfirmedDNA: dna, manifestVersion: 1,
+          lastGood: { portrait: 'portrait_1', studio: 'studio_1' }, updatedAtMs: 90,
+        },
+      },
       customization: {
         source: 'storage',
         updatedAt: 100,
@@ -233,12 +244,18 @@ describe('app snapshot store contract', () => {
         ownedAuras: { 'aura-ember': true },
         giftedAvatarId: null,
         giftedAuraId: null,
+        avatarDNA: {
+          schemaVersion: 1, ownerStableId: 'u1', accountGeneration: 4,
+          confirmedDNA: dna, lastConfirmedDNA: dna, manifestVersion: 1,
+          lastGood: { portrait: 'portrait_1', studio: 'studio_1' }, updatedAtMs: 90,
+        },
       },
     });
 
     resetAppSnapshotForAccountSwitch();
 
     expect(getAppSnapshot().customization).toBeUndefined();
+    expect(getAppSnapshot().profile?.avatarDNA).toBeUndefined();
   });
 
   it('publishes avatar and aura choices to the visible profile immediately and can roll them back', () => {

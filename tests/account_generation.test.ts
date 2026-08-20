@@ -12,6 +12,14 @@ import {
   withAccountTransitionLock,
 } from '../app/account_generation';
 import { isCurrentLevelGiftOpening } from '../app/level_gift_opening_guard';
+import fs from 'fs';
+import path from 'path';
+import {
+  AVATAR_DNA_DRAFT_PREFIX,
+  AVATAR_DNA_INVITATION_PREFIX,
+  AVATAR_DNA_STATE_PREFIX,
+  AVATAR_DNA_STYLE_OPERATION_PREFIX,
+} from '../constants/customization_storage_keys';
 
 describe('account generation', () => {
   it('rejects callbacks from opening N after opening N+1 in the same account generation', () => {
@@ -126,6 +134,23 @@ describe('account generation', () => {
     release();
     await blocker;
     await queued;
+  });
+
+  it('registers all Avatar DNA account-local prefixes in scoped account cleanup', () => {
+    expect([
+      AVATAR_DNA_STATE_PREFIX,
+      AVATAR_DNA_DRAFT_PREFIX,
+      AVATAR_DNA_INVITATION_PREFIX,
+      AVATAR_DNA_STYLE_OPERATION_PREFIX,
+    ]).toEqual([
+      'avatar_dna_state_v1:',
+      'avatar_dna_draft_v1:',
+      'avatar_dna_invitation_v1:',
+      'avatar_dna_style_operation_v1:',
+    ]);
+
+    const cloudSyncSource = fs.readFileSync(path.join(__dirname, '../app/cloud_sync.ts'), 'utf8');
+    expect(cloudSyncSource).toContain('...CUSTOMIZATION_ACCOUNT_LOCAL_PREFIXES');
   });
 
 });

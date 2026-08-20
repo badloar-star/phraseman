@@ -79,7 +79,10 @@ import {
 import { DIAGNOSIS_TRAINING_IDS } from './personal_practice_training_ids';
 import { XP_LEVEL_RESTORE_250_TO_400_KEY } from './xp_level_restore';
 import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
-import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
+import {
+  CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
+  CUSTOMIZATION_ACCOUNT_LOCAL_PREFIXES,
+} from '../constants/customization_storage_keys';
 import {
   canonicalJsonV1,
   hashCanonicalBody,
@@ -582,6 +585,7 @@ const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
 ] as const;
 
 const ACCOUNT_LOCAL_KEY_PREFIXES = [
+  ...CUSTOMIZATION_ACCOUNT_LOCAL_PREFIXES,
   'personal_plan_day_runtime_v1:',
   'learning_v2_lesson1_progress:',
   'learning_v2_progress:',

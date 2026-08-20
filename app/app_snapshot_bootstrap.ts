@@ -28,6 +28,7 @@ import {
   hydrateReferralStateFromRaw,
 } from './referrals_cache';
 import { rememberLeagueStateSnapshot, sanitizeLeagueState } from './league_open_cache_policy';
+import { readAvatarDNAState, type AvatarDNAStoredState } from '../modules/avatar-dna/storage';
 
 const BOOT_PROFILE_KEYS = [
   'user_name',
@@ -108,6 +109,7 @@ function buildProfileSnapshot(
   values: Map<string, string | null>,
   now: number,
   vipSnapshot: VipStorageValues | null,
+  avatarDNA: AvatarDNAStoredState | null,
 ): AppSnapshotProfile {
   const totalXp = readInt(values.get('user_total_xp'));
   const vipUntil = Number(vipSnapshot?.vip_until ?? '0') || 0;
@@ -136,6 +138,7 @@ function buildProfileSnapshot(
     premiumPlan: values.get('premium_plan')?.trim().toLowerCase() || undefined,
     vipActive: vipUntil > now || vipLifetime,
     vipLifetime,
+    ...(avatarDNA ? { avatarDNA } : {}),
   };
 }
 
@@ -183,10 +186,9 @@ async function primeFriendsSnapshot(now: number): Promise<AppSnapshotFriends | n
 export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarget): Promise<void> {
   const now = Date.now();
   const accountGeneration = captureAccountGeneration();
-  const isAccountCurrent = () => (
-    !!accountGeneration.stableId
-    && isCurrentAccountGeneration(accountGeneration, accountGeneration.stableId)
-  );
+  const ownerStableId = accountGeneration.stableId;
+  if (!ownerStableId) return;
+  const isAccountCurrent = () => isCurrentAccountGeneration(accountGeneration, ownerStableId);
   if (!isAccountCurrent()) return;
   await migrateLegacyVipSnapshotOnce(accountGeneration).catch(() => false);
   if (!isAccountCurrent()) return;
@@ -204,17 +206,18 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
     BOOT_LEAGUE_STATE_KEY,
     REFERRAL_STATE_STORAGE_KEY,
   ];
-  const [storageRead, friends] = await Promise.all([
+  const [storageRead, friends, , avatarDNA] = await Promise.all([
     AsyncStorage.multiGet(keys).then(
       (pairs) => ({ ok: true as const, pairs }),
       () => ({ ok: false as const, pairs: [] as [string, string | null][] }),
     ),
     primeFriendsSnapshot(now),
     hydrateUserSettingsFromStorage().catch(() => {}),
-  ]).then(async ([storageResult, friendsSnapshot]) => [
-    storageResult,
-    friendsSnapshot,
-  ] as const);
+    readAvatarDNAState(
+      ownerStableId,
+      accountGeneration.generation,
+    ).catch(() => null),
+  ]);
 
   if (!isAccountCurrent()) return;
   // A failed storage read is not an empty account. Publishing defaults here
@@ -235,12 +238,12 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
     now,
   );
   if (!isAccountCurrent()) return;
-  const profile = buildProfileSnapshot(values, now, vipSnapshot);
+  const profile = buildProfileSnapshot(values, now, vipSnapshot, avatarDNA);
   if (!isAccountCurrent()) return;
   patchAppSnapshot({
     profile,
     progress: buildProgressSnapshot(values, studyTarget, now),
-    customization: buildCustomizationSnapshot(values, now, profile.level),
+    customization: buildCustomizationSnapshot(values, now, profile.level, avatarDNA ?? undefined),
     lessons: {
       source: 'storage',
       updatedAt: now,

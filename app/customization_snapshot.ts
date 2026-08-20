@@ -6,6 +6,7 @@ import {
   USER_AVATAR_AURA_KEY,
 } from '../constants/customization_storage_keys';
 import type { AppSnapshot } from './app_snapshot_store';
+import type { AvatarDNAStoredState } from '../modules/avatar-dna/storage';
 
 export type OwnedAvatars = Record<string, string>;
 export type OwnedAuras = Record<string, true>;
@@ -22,6 +23,7 @@ export interface CustomizationSnapshot {
   ownedAuras: OwnedAuras;
   giftedAvatarId: string | null;
   giftedAuraId: string | null;
+  avatarDNA?: AvatarDNAStoredState;
 }
 
 export interface CustomizationInitialState {
@@ -79,6 +81,7 @@ export function buildCustomizationSnapshot(
   values: ReadonlyMap<string, string | null>,
   updatedAt: number,
   level: number,
+  avatarDNA?: AvatarDNAStoredState,
 ): CustomizationSnapshot {
   const safeLevel = Math.max(1, Math.floor(Number(level) || 1));
   return {
@@ -93,6 +96,7 @@ export function buildCustomizationSnapshot(
     ownedAuras: parseOwnedAuras(values.get(AVATAR_AURA_OWNED_KEY)),
     giftedAvatarId: nonEmpty(values.get(CUSTOM_AVATAR_GIFT_OWNED_KEY)),
     giftedAuraId: nonEmpty(values.get(AVATAR_AURA_GIFT_OWNED_KEY)),
+    avatarDNA,
   };
 }
 
@@ -111,6 +115,7 @@ export function customizationSnapshotsEqual(
     && a.shards === b.shards
     && a.giftedAvatarId === b.giftedAvatarId
     && a.giftedAuraId === b.giftedAuraId
+    && JSON.stringify(a.avatarDNA) === JSON.stringify(b.avatarDNA)
     && stableRecord(a.ownedAvatars) === stableRecord(b.ownedAvatars)
     && stableRecord(a.ownedAuras) === stableRecord(b.ownedAuras);
 }
@@ -131,6 +136,7 @@ export function createCustomizationFallback(snapshot: Readonly<AppSnapshot>): Cu
     ownedAuras: {},
     giftedAvatarId: null,
     giftedAuraId: null,
+    avatarDNA: profile?.avatarDNA,
   };
 }
 

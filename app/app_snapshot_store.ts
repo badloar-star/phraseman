@@ -2,6 +2,7 @@ import { useRef, useSyncExternalStore } from 'react';
 import { getLevelFromXP } from '../constants/theme';
 import type { FriendEntry, FriendRequestEntry } from './firestore_friend_requests';
 import type { CustomizationSnapshot } from './customization_snapshot';
+import type { AvatarDNAStoredState } from '../modules/avatar-dna/storage';
 
 export const APP_SNAPSHOT_RESOURCE_LIMITS = {
   friendProfileMaxEntries: 240,
@@ -37,6 +38,7 @@ export interface AppSnapshotProfile extends AppSnapshotMeta {
    * «Plus» → «Pro» после reload().
    */
   vipLifetime?: boolean;
+  avatarDNA?: AvatarDNAStoredState;
 }
 
 export interface AppSnapshotProgress extends AppSnapshotMeta {
@@ -257,6 +259,7 @@ export function patchAppSnapshotFromAuthoritativeCloudProgress(
       premiumPlan: currentProfile?.premiumPlan,
       vipActive: currentProfile?.vipActive ?? false,
       vipLifetime: currentProfile?.vipLifetime,
+      avatarDNA: currentProfile?.avatarDNA,
     };
   }
   if (streak !== undefined) {

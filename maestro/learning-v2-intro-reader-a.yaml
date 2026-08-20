@@ -1,0 +1,47 @@
+appId: app.phraseman
+---
+- runFlow:
+    file: flows/learning_v2_intro_reader_theme.yaml
+    env:
+      THEME_MODE: indigo
+      SHOT_PREFIX: indigo
+- runFlow:
+    file: flows/learning_v2_intro_reader_theme.yaml
+    env:
+      THEME_MODE: sagePorcelain
+      SHOT_PREFIX: sage-porcelain
+- runFlow:
+    file: flows/learning_v2_intro_reader_theme.yaml
+    env:
+      THEME_MODE: olive
+      SHOT_PREFIX: olive
+- runFlow:
+    file: flows/learning_v2_intro_reader_theme.yaml
+    env:
+      THEME_MODE: midnight
+      SHOT_PREFIX: midnight
+- runFlow:
+    file: flows/learning_v2_intro_reader_theme.yaml
+    env:
+      THEME_MODE: ember
+      SHOT_PREFIX: ember
+- runFlow:
+    file: flows/learning_v2_intro_reader_theme.yaml
+    env:
+      THEME_MODE: aurora
+      SHOT_PREFIX: aurora
+- runFlow:
+    file: flows/learning_v2_intro_reader_theme.yaml
+    env:
+      THEME_MODE: volt
+      SHOT_PREFIX: volt
+- runFlow:
+    file: flows/learning_v2_intro_reader_theme.yaml
+    env:
+      THEME_MODE: dark
+      SHOT_PREFIX: dark
+- runFlow:
+    file: flows/learning_v2_intro_reader_theme.yaml
+    env:
+      THEME_MODE: gold
+      SHOT_PREFIX: gold

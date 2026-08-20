@@ -1,0 +1,47 @@
+appId: app.phraseman
+---
+- openLink: "phraseman:///learning-v2/intro-reader-fixture?theme=${THEME_MODE}&run=${SHOT_PREFIX}-reader-a-v2"
+- extendedWaitUntil:
+    visible:
+      id: "learning-v2-intro-fixture"
+    timeout: 90000
+- runFlow:
+    when:
+      visible: "DEV: боты «Вместе»"
+    commands:
+      - pressKey: Back
+- assertVisible:
+    id: "learning-v2-intro-reader-paragraph"
+- assertVisible:
+    id: "learning-v2-intro-next"
+- takeScreenshot: "qa-artifacts/learning-v2-intro-reader-a/${SHOT_PREFIX}-concept"
+- tapOn:
+    id: "learning-v2-intro-answer-2"
+    retryTapIfNoChange: true
+- extendedWaitUntil:
+    visible: "Верно"
+    timeout: 10000
+- tapOn:
+    id: "learning-v2-intro-next"
+    retryTapIfNoChange: true
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible: "СХЕМА"
+    timeout: 10000
+- takeScreenshot: "qa-artifacts/learning-v2-intro-reader-a/${SHOT_PREFIX}-formula"
+- tapOn:
+    id: "learning-v2-intro-answer-2"
+    retryTapIfNoChange: true
+- extendedWaitUntil:
+    visible: "Верно"
+    timeout: 10000
+- tapOn:
+    id: "learning-v2-intro-next"
+    retryTapIfNoChange: true
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible: "ЛОВУШКА"
+    timeout: 10000
+- takeScreenshot: "qa-artifacts/learning-v2-intro-reader-a/${SHOT_PREFIX}-trap"

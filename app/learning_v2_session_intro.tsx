@@ -373,7 +373,10 @@ export default function LearningV2SessionIntro({
       colors={[t.bgGradient[0], t.bgPrimary, t.bgGradient[1]]}
       style={[styles.screen, { backgroundColor: t.bgPrimary }]}
     >
-      <SafeAreaView style={styles.safe} edges={["top"]}>
+      <SafeAreaView
+        style={[styles.safe, { paddingTop: insets.top }]}
+        edges={[]}
+      >
         <View style={styles.header}>
           <PressableHybrid
             testID="learning-v2-intro-close"

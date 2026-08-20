@@ -28,6 +28,7 @@ test("Learning V2 uses a dedicated new intro renderer instead of the legacy less
   expect(intro).toContain("PressableHybrid");
   expect(intro).toContain("useStableSafeAreaInsets");
   expect(intro).not.toContain("useSafeAreaInsets");
+  expect(intro).toContain("paddingTop: insets.top");
   expect(intro).toMatch(/ru:\s*['"]СМЫСЛ['"]/);
   expect(intro).toMatch(/ru:\s*['"]СХЕМА['"]/);
   expect(intro).toMatch(/ru:\s*['"]ЛОВУШКА['"]/);

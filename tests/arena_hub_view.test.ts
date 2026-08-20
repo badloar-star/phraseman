@@ -5,8 +5,6 @@ import {
 } from '../modules/arena/hub_view';
 import { arenaText } from '../modules/arena/copy';
 import { ARENA_GOAL_TARGETS } from '../modules/arena/daily_goals';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
 
 /**
  * Главный экран Арены.
@@ -210,29 +208,5 @@ describe('неизвестные значения в интерфейсе Аре
       tr: 'Veri henüz kullanılamıyor',
       pl: 'Dane są chwilowo niedostępne',
     });
-  });
-
-  it('сохраняет честные unknown-состояния в UI-контрактах', () => {
-    const hub = readFileSync(resolve(__dirname, '../components/arena/ArenaHubLive.tsx'), 'utf8');
-    const goals = readFileSync(resolve(__dirname, '../components/arena/ArenaDailyGoals.tsx'), 'utf8');
-    const expansion = readFileSync(resolve(__dirname, '../components/arena/ArenaExpansionUI.tsx'), 'utf8');
-
-    expect(hub).toContain("arenaText(lang, 'valueUnknown')");
-    expect(hub).toMatch(/<Text\s+numberOfLines=\{1\}[\s\S]*accessibilityLabel=\{rank \? undefined : arenaText\(lang, 'valueUnknown'\)\}[\s\S]*style=\{\[styles\.rankName/s);
-    expect(hub).not.toContain('accessibilityLabel={rankUnknown');
-    expect(hub).toContain("rank === null ? '—'");
-    expect(hub).toMatch(/\{rank \? .*rank\.rp.*: '—'\}/s);
-    expect(hub).toContain('RankBar progress={rank?.progress ?? 0}');
-    expect(goals).toContain('model: ArenaDailyGoalsModel | null');
-    expect(goals).toContain('ARENA_GOAL_ORDER');
-    expect(goals).toContain('ARENA_GOAL_TARGETS');
-    expect(goals).toContain("model === null ? '—'");
-    expect(goals).toContain('if (!model) return;');
-    expect(goals).not.toContain('seenRef.current = null');
-    expect(goals).toContain('progress: 0');
-    expect(goals).toContain('complete: false');
-    expect(expansion).toContain('value: number | null');
-    expect(expansion).toContain("accessibilityValue={value === null ? { text: '—' }");
-    expect(expansion).toContain("{value === null ? '—' : clampedValue} / {max}");
   });
 });

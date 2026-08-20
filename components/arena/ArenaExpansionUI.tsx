@@ -9,6 +9,8 @@ import { V2Card, V2Cta } from '../tournament/tournament_v2_ui';
 import type { ArenaFeatureState, ArenaHubSection } from '../../modules/arena/expansion_contract';
 import { ARENA_HUB_SECTIONS } from '../../modules/arena/expansion_contract';
 import { useLang } from '../LangContext';
+import { arenaText } from '../../modules/arena/copy';
+import { arenaProgressView } from '../../modules/arena/progress_view';
 import { arenaExpansionText, type ArenaExpansionCopyKey } from '../../modules/arena/expansion_copy';
 import {
   arenaExpansionStateCopy,
@@ -61,17 +63,19 @@ export function ArenaSectionTabs({
  */
 export function ArenaWalletButton({ label, balance, onPress, disabled = false }: { label: string; balance: number | null; onPress: () => void; disabled?: boolean }) {
   const P = useTournamentPalette();
+  const { lang } = useLang();
+  const unknown = arenaText(lang, 'valueUnknown');
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={`${label}: ${balance === null ? '—' : balance}`}
+      accessibilityLabel={`${label}: ${balance === null ? unknown : balance}`}
       accessibilityState={{ disabled }}
       disabled={disabled}
       onPress={onPress}
       style={[styles.walletButton, { backgroundColor: P.gold, opacity: disabled ? 0.55 : 1 }]}
     >
       <Ionicons name="star" size={17} color={P.onGold} />
-      <Text style={[styles.walletValue, { color: P.onGold }]}>{balance === null ? '—' : balance}</Text>
+      <Text accessible={balance !== null} style={[styles.walletValue, { color: P.onGold }]}>{balance === null ? '—' : balance}</Text>
     </Pressable>
   );
 }
@@ -123,20 +127,23 @@ export function ArenaFeatureRow({
 
 export function ArenaProgress({ value, max, label }: { value: number | null; max: number; label: string }) {
   const P = useTournamentPalette();
-  const safeMax = Math.max(0, max);
-  const clampedValue = value === null ? null : Math.max(0, Math.min(safeMax, value));
-  const ratio = clampedValue !== null && safeMax > 0 ? clampedValue / safeMax : 0;
+  const { lang } = useLang();
+  const progress = arenaProgressView(value, max);
+  const unknown = arenaText(lang, 'valueUnknown');
+  const accessibilityValue = progress.value === null
+    ? { text: unknown }
+    : { min: 0, max: progress.max, now: progress.value };
   return (
     <View
       accessibilityRole="progressbar"
       accessibilityLabel={label}
-      accessibilityValue={value === null ? { text: '—' } : { min: 0, max: safeMax, now: clampedValue }}
+      accessibilityValue={accessibilityValue}
       style={styles.progressWrap}
     >
       <View style={[styles.progressTrack, { backgroundColor: P.elev2 }]}>
-        <View style={[styles.progressFill, { backgroundColor: P.accent, width: `${ratio * 100}%` }]} />
+        <View style={[styles.progressFill, { backgroundColor: P.accent, width: `${progress.ratio * 100}%` }]} />
       </View>
-      <Text style={[styles.progressText, { color: P.muted }]}>{value === null ? '—' : clampedValue} / {max}</Text>
+      <Text accessible={false} style={[styles.progressText, { color: P.muted }]}>{progress.value === null ? '—' : progress.value} / {progress.max}</Text>
     </View>
   );
 }

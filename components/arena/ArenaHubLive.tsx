@@ -79,14 +79,23 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
             >
               {rank === null ? '—' : `${arenaText(lang, TIER_COPY[rank.tierIndex])} · ${ROMAN[rank.division]}`}
             </Text>
-            <Text numberOfLines={1} style={[styles.rp, { color: P.muted }]}>{rank ? rank.rp : '—'}</Text>
+            <Text
+              numberOfLines={1}
+              accessibilityLabel={rank ? undefined : arenaText(lang, 'valueUnknown')}
+              style={[styles.rp, { color: P.muted }]}
+            >
+              {rank ? rank.rp : '—'}
+            </Text>
           </View>
           {rank?.top ? (
             <Text style={[styles.meta, { color: P.gold }]}>{arenaText(lang, 'rankTop')}</Text>
           ) : (
             <>
               <RankBar progress={rank?.progress ?? 0} reduceMotion={reduceMotion} />
-              <Text style={[styles.meta, { color: P.muted }]}>
+              <Text
+                accessibilityLabel={rank ? undefined : `${arenaText(lang, 'rankProgress')}: ${arenaText(lang, 'valueUnknown')}`}
+                style={[styles.meta, { color: P.muted }]}
+              >
                 {arenaText(lang, 'rankProgress')}: {rank === null ? '—' : rank.rpToNextRank}
               </Text>
             </>

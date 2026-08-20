@@ -4195,3 +4195,59 @@ Functions build и runtime parity — зелёные. Профильный Arena
 **48 наборов, 847 утверждений, 0 падений**. Штатный Bash runner на Windows
 передаёт Node путь `/c/...` и сам падает с `MODULE_NOT_FOUND`; это ограничение
 обвязки, а не тестов.
+
+---
+
+## Live-счёт и полноэкранные задания матча (2026-08-20)
+
+Владелец утвердил накопленные звёзды матча в live-канале. `matchStars` — только
+экранная подсказка: серверный исход, награды и конкурентный результат по этому
+полю не считаются и ему не доверяют. Переход совместимый: читатель принимает
+старый `schemaVersion: 1` и новый `schemaVersion: 2`, а новый необязательный
+счёт едет в той же записи seat-документа; частота и число Firestore writes не
+увеличены. Если точного значения нет, экран показывает `—`; для старого тика
+точное восстановление допускается только из достаточных данных, без ветвления
+по bot/human.
+
+Live-коллекция не является источником Jarvis: повторный поиск
+`arena_v2_match_live|matchStars|firstAttemptPairs` в `functions/src/jarvis/*.ts`
+дал **0 совпадений**, поэтому его data-contract в этой миграции не менялся.
+Firestore Rules и `STAGE2_SPEC.md` обновлены вместе с wire-контрактом; ответы,
+uid, баланс, сезонные награды и лишние верхнеуровневые поля по-прежнему
+запрещены.
+
+Полноэкранная раскладка применяется только к `speed_match` и
+`translate_build`. Обычный `translate_choice` остаётся карточкой. У пар и
+конструктора есть локализованные инструкции во всех восьми языках; нижние
+фишки имеют минимум 48 pt, а CTA конструктора находится вне внутреннего
+`ScrollView`. Высота строки инструкции умножается на системный font scale.
+
+### Фактические проверки
+
+- `npx jest --runTestsByPath tests/arena_live_channel.test.ts tests/arena_match_view.test.ts tests/arena_question_layout.test.ts tests/arena_v2_client_contract.test.ts tests/arena_v2_client_source_contract.test.ts tests/arena_callable_surface.test.ts --no-cache --runInBand --watchman=false` — **6/6 наборов, 158/158 тестов**, exit 0.
+- `functions: npx jest --runTestsByPath src/arena_duel_v3.test.ts src/arena_v2_core.test.ts --runInBand --watchman=false` — **2/2 набора, 83/83 теста**, exit 0.
+- `functions: npm run build` — TypeScript, копирование assets и runtime parity
+  завершились, exit 0.
+- `functions: npm run test:emulator:arena-v2-rules` — **1/1 набор, 7/7 тестов**,
+  exit 0; `PERMISSION_DENIED` в логе — ожидаемые отрицательные кейсы.
+- `bash tools/arena_tests/run.sh` — exit 1 до тестов: установленный Windows WSL
+  launcher сообщает, что ни одного дистрибутива нет. Свежая компиляция тем же
+  `tools/arena_tests/tsconfig.json` дала **49** arena suites и **0 неожиданных
+  TypeScript errors**; установленным PowerShell-эквивалентом jestlite получено
+  **49 наборов, 864 утверждения, 0 падений**, exit 0.
+- Отдельный RED полного harness после первой раскладки честно поймал числовой
+  `lineHeight` и старую текстовую проверку nullable score: **47 наборов, 823
+  утверждения, 2 падения**. После минимальной правки регрессии дали **41/41**,
+  layout/live focused gate — **97/97**, затем полный свежий harness — **864/864**.
+- `git diff --check` — exit 0; `git status --short` содержит многочисленные
+  существовавшие чужие изменения, принадлежащие другим потокам работы.
+
+Device smoke не объявляется пройденным. На момент проверки подключён только
+`emulator-5556`, а для live-счёта нужны два игрока. Deep link открыл карточку
+Арены, но после нажатия «В бой» уже работающий Metro вернул HTTP 500
+`UnableToResolveError` для `../modules/arena/question_layout` из
+`app/arena_match.tsx`. Скриншот и полный UI dump сохранены в
+`.codex-tmp/arena-live-score-immersive/2026-08-20-emulator-5556-after-cta.png`
+и соседнем `.xml`. Поэтому обновление счёта, неизвестный `—`, невыровненные
+пары, доступность нижних фишек и видимость CTA на 320 pt / 1.5× font на живых
+устройствах остаются обязательным release smoke, а не выводом из кода.

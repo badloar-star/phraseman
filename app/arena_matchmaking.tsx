@@ -238,7 +238,9 @@ export default function ArenaMatchmakingScreen() {
     if (!matchId) return;
     quickFallbackRequests.delete(requestId);
     releaseImplicitQueueRequestId(mode, requestId);
-    router.replace({ pathname: '/arena_match', params: { matchId } } as never);
+    // Столкновение начинается в первом кадре экрана матча. Пока оно идёт,
+    // оба клиента принимают дуэль и получают план без отдельного ожидания.
+    router.replace({ pathname: '/arena_match', params: { matchId, intro: '1' } } as never);
   }, [matchId, mode, requestId, router]);
 
   /**

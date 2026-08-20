@@ -38,11 +38,14 @@ function ArenaVersusIntroBase({
   you,
   opponent,
   goLabel,
+  ready = true,
   onDone,
 }: {
   you?: ArenaPlayer;
   opponent?: ArenaPlayer;
   goLabel: string;
+  /** Финальный кадр остаётся на экране, пока план матча ещё загружается. */
+  ready?: boolean;
   onDone: () => void;
 }) {
   const P = useTournamentPalette();
@@ -51,6 +54,7 @@ function ArenaVersusIntroBase({
   const { width } = useWindowDimensions();
   const [digit, setDigit] = useState<number | null>(null);
   const [go, setGo] = useState(false);
+  const [sequenceDone, setSequenceDone] = useState(false);
   const doneRef = useRef(false);
 
   const left = useSharedValue(0);
@@ -105,13 +109,17 @@ function ArenaVersusIntroBase({
     }, ENTER_MS + 3 * DIGIT_MS));
 
     timers.push(setTimeout(() => {
-      if (doneRef.current) return;
-      doneRef.current = true;
-      onDone();
+      setSequenceDone(true);
     }, ENTER_MS + 3 * DIGIT_MS + 380));
 
     return () => { timers.forEach(clearTimeout); };
-  }, [digitScale, flash, left, onDone, playSound, reduceMotion, right, vs]);
+  }, [digitScale, flash, left, playSound, reduceMotion, right, vs]);
+
+  useEffect(() => {
+    if (!ready || !sequenceDone || doneRef.current) return;
+    doneRef.current = true;
+    onDone();
+  }, [onDone, ready, sequenceDone]);
 
   // Узкий экран (320 pt) не вмещает две колонки по 108 pt плюс плашку VS:
   // ряд не переносится и не сжимается, крайние аватары просто уезжали за

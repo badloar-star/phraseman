@@ -14,6 +14,7 @@ import {
   arenaCanStartOffline,
   arenaEntryFailure,
   arenaEntryFailureCopy,
+  arenaEntryCountdownRemainingMs,
   arenaSearchFailureCopy,
   arenaPlanTaskToPublic,
   type ArenaMatchPlanWire,
@@ -671,19 +672,35 @@ describe('почему матч не начался — словами, а не 
     expect(source).not.toContain('setError(String(reason))');
   });
 
-  /** После сведения игрок уже найден. Пока оба клиента принимают дуэль и
-   * приезжает план, нельзя снова говорить, что мы всё ещё ищем второго. */
-  it('после сведения готовит дуэль, а не ждёт второго игрока', () => {
+  /** После сведения игрок уже найден. Сетевое принятие и получение плана
+   * обязаны спрятаться внутри заставки столкновения, а не стать новым экраном. */
+  it('после сведения сразу запускает столкновение без экрана подготовки', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
-    expect(source).toContain("arenaText(lang, 'preparingDuel')");
-    expect(source).toContain("arenaText(lang, 'preparingDuelHint')");
+    const matchmaking = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8');
+    const introBranch = source.indexOf('const shouldShowIntro =');
+    const planWaitBranch = source.indexOf('if (!plan || !match || !hud)');
+    expect(matchmaking).toContain("params: { matchId, intro: '1' }");
+    expect(introBranch).toBeGreaterThan(-1);
+    expect(introBranch).toBeLessThan(planWaitBranch);
+    expect(source).toContain('ready={introReady}');
+    expect(source).toContain('countdownRemainingMs: immediateIntro');
+    expect(source).toContain("name: arenaText(lang, 'opponent')");
+    expect(source).not.toContain("arenaText(lang, 'preparingDuel')");
+    expect(source).not.toContain("arenaText(lang, 'preparingDuelHint')");
     expect(source).not.toContain("arenaText(lang, 'waiting')");
-    expect(source).not.toContain("<View style={styles.center}><Text style={{ color: P.text }}>{arenaText(lang, 'loading')}</Text></View>");
-    for (const lang of LANGS) {
-      expect(arenaText(lang, 'preparingDuel').length).toBeGreaterThan(0);
-      expect(arenaText(lang, 'preparingDuelHint').length).toBeGreaterThan(0);
-      expect(arenaText(lang, 'preparingDuel')).not.toBe(arenaText(lang, 'waiting'));
-    }
+  });
+
+  it('тратит серверную подготовку из бюджета заставки, а не из первого задания', () => {
+    expect(arenaEntryCountdownRemainingMs(3_200, 0)).toBe(3_200);
+    expect(arenaEntryCountdownRemainingMs(3_200, 900)).toBe(2_300);
+    expect(arenaEntryCountdownRemainingMs(3_200, 9_000)).toBe(0);
+  });
+
+  it('финальный кадр столкновения ждёт готовность плана без перезапуска анимации', () => {
+    const source = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaVersusIntro.tsx'), 'utf8');
+    expect(source).toContain('if (!ready || !sequenceDone || doneRef.current) return;');
+    expect(source).toContain('setSequenceDone(true);');
+    expect(source).not.toContain('[digitScale, flash, left, onDone, playSound');
   });
 
   it('свершившийся ответ соперника не подписан глаголом кнопки', () => {

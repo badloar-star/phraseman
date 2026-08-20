@@ -27,6 +27,7 @@ import {
   ARENA_ACCEPT_RETRY_MS,
   arenaEntryFailure,
   arenaEntryFailureCopy,
+  arenaEntryCountdownRemainingMs,
   type ArenaEntryFailure,
   arenaEntryStep,
   arenaPlanTaskToPublic,
@@ -111,8 +112,10 @@ export default function ArenaMatchScreen() {
   const titleLine = { lineHeight: 26 * fontScale };
   const hintLine = { lineHeight: 20 * fontScale };
   const bigHintLine = { lineHeight: 21 * fontScale };
-  const params = useLocalSearchParams<{ matchId?: string }>();
+  const params = useLocalSearchParams<{ matchId?: string; intro?: string }>();
   const matchId = typeof params.matchId === 'string' ? params.matchId : null;
+  const immediateIntro = params.intro === '1';
+  const introStartedAtMonoMsRef = useRef(arenaMonotonicNowMs());
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
   const playSound = useArenaSound();
@@ -126,6 +129,7 @@ export default function ArenaMatchScreen() {
    */
   const [entryFailure, setEntryFailure] = useState<ArenaEntryFailure | null>(null);
   const [introDone, setIntroDone] = useState(false);
+  const finishIntro = useCallback(() => setIntroDone(true), []);
   const [sent, setSent] = useState(false);
   /**
    * Косметика входа — платная. При переписывании экрана она чуть не пропала:
@@ -239,6 +243,12 @@ export default function ArenaMatchScreen() {
   const match = useArenaLocalMatch({
     plan: restoreChecked ? plan : null,
     restored,
+    countdownRemainingMs: immediateIntro && plan
+      ? arenaEntryCountdownRemainingMs(
+        plan.countdownMs,
+        arenaMonotonicNowMs() - introStartedAtMonoMsRef.current,
+      )
+      : undefined,
     opponentTicks,
   });
 
@@ -408,6 +418,12 @@ export default function ArenaMatchScreen() {
     const scoredRival = { ...rival, score: rivalScore };
     return plan.viewerSeat === 'a' ? [scoredYou, scoredRival] : [scoredRival, scoredYou];
   }, [ownScore, plan, playerIdentities, rivalScore]);
+  const introYou: ArenaPlayer = playerIdentities.find((player) => player.uid === plan?.viewerSeat) ?? {
+    uid: 'a', name: arenaText(lang, 'you'), rank: 0, rating: 0, score: 0, correct: 0,
+  };
+  const introOpponent: ArenaPlayer = playerIdentities.find((player) => player.uid === plan?.opponent.seat) ?? {
+    uid: 'b', name: arenaText(lang, 'opponent'), rank: 0, rating: 0, score: 0, correct: 0,
+  };
 
   /**
    * Просрочка и звёзды звучат по ЗАКРЫТОМУ заданию, а не по фазе: фаза может
@@ -501,27 +517,12 @@ export default function ArenaMatchScreen() {
     );
   }
 
-  if (!plan || !match || !hud) {
-    /**
-     * Соперник уже найден матчмейкером. Здесь оба клиента принимают найденную
-     * дуэль и получают план, поэтому повторное «ждём второго игрока» было
-     * неправдой и выглядело как возврат обратно в поиск.
-     */
-    return (
-      <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
-        <View style={styles.center}>
-          <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, titleLine, { color: P.text }]}>
-            {arenaText(lang, 'preparingDuel')}
-          </Text>
-          <Text style={[styles.failureHint, hintLine, { color: P.muted }]}>{arenaText(lang, 'preparingDuelHint')}</Text>
-        </View>
-      </ArenaScreen>
-    );
-  }
+  const introReady = Boolean(plan && match && hud && match.phase.kind !== 'countdown');
+  const shouldShowIntro = !introDone && (
+    immediateIntro || !plan || !match || !hud || match.phase.kind === 'countdown'
+  );
 
-  // Заставка «ты против соперника» и отсчёт идут поверх уже загруженного
-  // матча: пока игрок её смотрит, готовиться больше не к чему.
-  if (!introDone && match.phase.kind === 'countdown') {
+  if (shouldShowIntro) {
     return (
       <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
         <Animated.View
@@ -532,13 +533,25 @@ export default function ArenaMatchScreen() {
             : entryTreatment === 'entry_crown' ? FadeInDown.duration(300)
             : FadeIn.duration(160)}
         >
-        <ArenaVersusIntro
-          you={playerIdentities.find((player) => player.uid === plan.viewerSeat)}
-          opponent={playerIdentities.find((player) => player.uid === plan.opponent.seat)}
-          goLabel={arenaText(lang, 'title')}
-          onDone={() => setIntroDone(true)}
-        />
+          <ArenaVersusIntro
+            you={introYou}
+            opponent={introOpponent}
+            goLabel={arenaText(lang, 'title')}
+            ready={introReady}
+            onDone={finishIntro}
+          />
         </Animated.View>
+      </ArenaScreen>
+    );
+  }
+
+  if (!plan || !match || !hud) {
+    // Защитная ветка типов: introDone выставляется только при готовых
+    // plan/match/hud, поэтому в штатном ходе она недостижима. Текста ожидания
+    // здесь намеренно нет — подготовка всегда живёт внутри столкновения.
+    return (
+      <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
+        <View style={styles.center} />
       </ArenaScreen>
     );
   }

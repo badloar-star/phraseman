@@ -153,7 +153,7 @@ export default function ArenaHubScreen() {
     if (reason === 'server') return arenaText(lang, 'arenaNotDeployedHint');
     if (reason === 'maintenance') return arenaText(lang, 'maintenanceHint');
     if (reason === 'report_blocked') return arenaText(lang, 'reportBlockedHint');
-    if (reason === 'busy') return arenaText(lang, 'spinInProgress');
+    if (reason === 'busy') return arenaText(lang, 'loading');
     if (reason === 'mode_disabled') return arenaText(lang, 'modeOff');
     return arenaText(lang, 'valueUnknown');
   };

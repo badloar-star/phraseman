@@ -936,6 +936,28 @@ describe('пары и конструктор занимают оставшеес
   });
 });
 
+describe('прогресс матча не забирает высоту у задания', () => {
+  it('flattened Arena override фиксирует полосу на 10 pt без flex growth', () => {
+    const match = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+    const tournament = fs.readFileSync(path.resolve(__dirname, '..', 'components/tournament/tournament_v2_ui.tsx'), 'utf8');
+    const baseFlex = Number(/segTrack:\s*\{\s*flex:\s*(\d+)/.exec(tournament)?.[1]);
+    const override = /matchProgress:\s*\{([^}]*)\}/.exec(match)?.[1] ?? '';
+    const flattened = Object.assign({}, ...[
+      { flex: baseFlex, height: 10 },
+      {
+        height: Number(/height:\s*(\d+)/.exec(override)?.[1]),
+        flexGrow: Number(/flexGrow:\s*(\d+)/.exec(override)?.[1]),
+        flexShrink: Number(/flexShrink:\s*(\d+)/.exec(override)?.[1]),
+      },
+    ]);
+    expect(flattened).toMatchObject({
+      height: 10,
+      flexGrow: 0,
+      flexShrink: 0,
+    });
+  });
+});
+
 /**
  * Крупный системный шрифт растягивает шапку матча: имя соперника и оговорка
  * про связь обязаны оставаться в пределах одной-двух строк, иначе шапка

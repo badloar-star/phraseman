@@ -576,7 +576,11 @@ export default function ArenaMatchScreen() {
       onBack={confirmForfeit}
     >
       <ArenaPlayers compact={immersive} players={players} active={active} animateScore />
-      <V2Segments total={hud.taskCount} done={Math.max(0, hud.taskOrdinal - 1)} />
+      <V2Segments
+        total={hud.taskCount}
+        done={Math.max(0, hud.taskOrdinal - 1)}
+        style={styles.matchProgress}
+      />
 
       {hud.task ? (
         <Animated.View
@@ -696,6 +700,7 @@ export default function ArenaMatchScreen() {
 }
 
 const styles = StyleSheet.create({
+  matchProgress: { height: 10, flexGrow: 0, flexShrink: 0 },
   center: { flex: 1, justifyContent: 'center', gap: 12 },
   // Высота строк задаётся на месте: она умножается на системный масштаб.
   failureTitle: { fontSize: 20, fontWeight: '900', textAlign: 'center' },

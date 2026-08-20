@@ -30,6 +30,14 @@ import { EPISODE_01_SESSION_21_SOURCE } from './episode_01_session_21_v1';
 import { EPISODE_01_SESSION_22_SOURCE } from './episode_01_session_22_v1';
 import { EPISODE_01_SESSION_23_SOURCE } from './episode_01_session_23_v1';
 import { EPISODE_01_SESSION_24_SOURCE } from './episode_01_session_24_v1';
+import { EPISODE_01_SESSION_25_SOURCE } from './episode_01_session_25_v1';
+import { EPISODE_01_SESSION_26_SOURCE } from './episode_01_session_26_v1';
+import { EPISODE_01_SESSION_27_SOURCE } from './episode_01_session_27_v1';
+import { EPISODE_01_SESSION_28_SOURCE } from './episode_01_session_28_v1';
+import { EPISODE_01_SESSION_29_SOURCE } from './episode_01_session_29_v1';
+import { EPISODE_01_SESSION_30_SOURCE } from './episode_01_session_30_v1';
+import { EPISODE_01_SESSION_31_SOURCE } from './episode_01_session_31_v1';
+import { EPISODE_01_SESSION_32_SOURCE } from './episode_01_session_32_v1';
 import {
   buildSessionShardFromSource,
   type SessionSource,
@@ -70,6 +78,14 @@ export const AUTHORED_EPISODE_01_SESSIONS: readonly SessionSource[] =
     EPISODE_01_SESSION_22_SOURCE,
     EPISODE_01_SESSION_23_SOURCE,
     EPISODE_01_SESSION_24_SOURCE,
+    EPISODE_01_SESSION_25_SOURCE,
+    EPISODE_01_SESSION_26_SOURCE,
+    EPISODE_01_SESSION_27_SOURCE,
+    EPISODE_01_SESSION_28_SOURCE,
+    EPISODE_01_SESSION_29_SOURCE,
+    EPISODE_01_SESSION_30_SOURCE,
+    EPISODE_01_SESSION_31_SOURCE,
+    EPISODE_01_SESSION_32_SOURCE,
   ]);
 
 /**

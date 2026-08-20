@@ -1,8 +1,14 @@
 import { hashCanonicalBody } from '../policies/decision_registry';
 import {
   assertLearningV2LocalizedEnvelope,
+  LEARNING_V2_INTERFACE_LOCALES,
   type LearningV2Localized,
 } from './generator_course_contract';
+import {
+  introRunsPlainTextV1,
+  validateLearningV2IntroRunsByLocaleV1,
+  type LearningV2IntroRunsByLocaleV1,
+} from './intro_semantic_runs_v1';
 
 /** The only voices the Learning V2 content generator may assign. */
 export const LEARNING_V2_OPENAI_TTS_VOICES = Object.freeze([
@@ -31,6 +37,8 @@ export type LearningV2GeneratedSessionIntroPage = Readonly<{
   kind: 'concept' | 'formula' | 'example' | 'trap' | 'tip';
   titleByLocale: LearningV2Localized<string>;
   bodyByLocale: LearningV2Localized<string>;
+  /** Optional explicit semantics; omission preserves legacy string rendering. */
+  bodyRunsByLocale?: LearningV2IntroRunsByLocaleV1;
   /** The canonical slot question rendered at the bottom of this same page. */
   question: LearningV2IntroCheckQuestion;
 }>;
@@ -268,6 +276,19 @@ export function validateLearningV2GeneratedSessionIntro(
       page.bodyByLocale,
       'intro_page_body',
     );
+    if (page.bodyRunsByLocale !== undefined) {
+      const runsByLocale = validateLearningV2IntroRunsByLocaleV1(
+        page.bodyRunsByLocale,
+      );
+      for (const locale of LEARNING_V2_INTERFACE_LOCALES) {
+        if (
+          introRunsPlainTextV1(runsByLocale[locale]) !==
+          page.bodyByLocale[locale]
+        ) {
+          throw new Error('learning_v2_generator_intro_runs_body_mismatch');
+        }
+      }
+    }
     const question = page.question;
     const id = clean(question.questionId, 'intro_question_id', 128);
     if (ids.has(id))

@@ -16,6 +16,11 @@ import {
   type LearningV2GeneratedSessionShardV1,
 } from '../generator_session_shard';
 import type { LearningV2GeneratedSessionIntro } from '../generator_session_contract';
+import {
+  introRunsPlainTextV1,
+  type LearningV2IntroRunsByLocaleV1,
+  type LearningV2IntroTextRunV1,
+} from '../intro_semantic_runs_v1';
 import { REQUIRED_SESSION_POLICY_V1 } from '../session_compiler';
 import type { V2ActivityFamily } from '../../contracts/activity';
 import type { V2SessionLearningFunction } from '../../contracts/session';
@@ -91,12 +96,46 @@ export interface SessionSourceIntroPage {
   readonly kind: 'concept' | 'formula' | 'example' | 'trap' | 'tip';
   readonly title: LocalizedSource;
   readonly body: LocalizedSource;
+  readonly bodyRuns?: LocalizedIntroRunsSource;
   readonly question: {
     readonly prompt: LocalizedSource;
     readonly choices: readonly [LocalizedSource, LocalizedSource, LocalizedSource];
     readonly correctChoiceIndex: 0 | 1 | 2;
     readonly explanation: LocalizedSource;
   };
+}
+
+export interface LocalizedIntroRunsSource {
+  readonly ru: readonly LearningV2IntroTextRunV1[];
+  readonly uk: readonly LearningV2IntroTextRunV1[];
+  readonly es: readonly LearningV2IntroTextRunV1[];
+  readonly rest?: Partial<
+    Record<LearningV2InterfaceLocale, readonly LearningV2IntroTextRunV1[]>
+  >;
+}
+
+function expandLocalizedIntroRuns(
+  source: LocalizedIntroRunsSource,
+): LearningV2IntroRunsByLocaleV1 {
+  const explicit: Partial<
+    Record<LearningV2InterfaceLocale, readonly LearningV2IntroTextRunV1[]>
+  > = {
+    ru: source.ru,
+    uk: source.uk,
+    es: source.es,
+    ...(source.rest ?? {}),
+  };
+  return Object.fromEntries(
+    LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+      locale,
+      explicit[locale] ?? [
+        {
+          text: `${UNTRANSLATED_MARKER}${introRunsPlainTextV1(source.ru)}`,
+          semantic: 'explanation' as const,
+        },
+      ],
+    ]),
+  ) as LearningV2IntroRunsByLocaleV1;
 }
 
 export interface SessionSource {
@@ -251,12 +290,16 @@ export function buildSessionShardFromSource(
 
   const introPages = source.introPages.map((page, index) => {
       const ordinal = (index + 1) as 1 | 2 | 3;
+      const bodyRunsByLocale = page.bodyRuns
+        ? expandLocalizedIntroRuns(page.bodyRuns)
+        : undefined;
       return {
         pageOrdinal: ordinal,
         pageId: `${sessionTemplateId}:intro-${ordinal}`,
         kind: page.kind,
         titleByLocale: expandLocalized(page.title),
         bodyByLocale: expandLocalized(page.body),
+        ...(bodyRunsByLocale ? { bodyRunsByLocale } : {}),
         question: {
           questionId: `${sessionTemplateId}:intro-q-${ordinal}`,
           requiredTaskSlot: ordinal,

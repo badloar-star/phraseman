@@ -59,7 +59,62 @@ const generatedIntro = () => ({
     "slots_1_2_3_embedded_in_intro_pages_not_repeated" as const,
 });
 
+const semanticRunsByLocale = (ordinal: 1 | 2 | 3) =>
+  localized((locale) => [
+    { text: `English needs a verb ${ordinal} (`, semantic: "explanation" as const },
+    { text: locale, semantic: "targetCorrect" as const },
+    { text: ").", semantic: "explanation" as const },
+  ] as const);
+
 describe("Learning V2 generator session contract", () => {
+  test("rejects semantic runs whose plain text differs from the canonical body", () => {
+    const candidate = generatedIntro();
+    const pages = candidate.pages.map((page) => ({
+      ...page,
+      bodyRunsByLocale: semanticRunsByLocale(page.pageOrdinal),
+    })) as unknown as typeof candidate.pages;
+    const broken = {
+      ...candidate,
+      pages: pages.map((page, index) =>
+        index === 0
+          ? {
+              ...page,
+              bodyRunsByLocale: localized((locale) => [
+                {
+                  text: `Different text (${locale}).`,
+                  semantic: "targetCorrect" as const,
+                },
+              ] as const),
+            }
+          : page,
+      ) as unknown as typeof candidate.pages,
+    };
+
+    expect(() =>
+      validateLearningV2GeneratedSessionIntro(broken as never),
+    ).toThrow("learning_v2_generator_intro_runs_body_mismatch");
+  });
+
+  test("rejects semantic roles outside the closed four-role vocabulary", () => {
+    const candidate = generatedIntro();
+    const broken = {
+      ...candidate,
+      pages: candidate.pages.map((page) => ({
+        ...page,
+        bodyRunsByLocale: localized((locale) => [
+          {
+            text: page.bodyByLocale[locale],
+            semantic: "highlight",
+          },
+        ]),
+      })) as unknown as typeof candidate.pages,
+    };
+
+    expect(() =>
+      validateLearningV2GeneratedSessionIntro(broken as never),
+    ).toThrow("learning_v2_intro_run_invalid");
+  });
+
   test("pins exactly four approved OpenAI voices and assigns them deterministically", () => {
     expect(LEARNING_V2_OPENAI_TTS_VOICES).toEqual([
       "ash",

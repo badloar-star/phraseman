@@ -77,6 +77,8 @@ type CtaProps = {
   style?: StyleProp<ViewStyle>;
   left?: React.ReactNode;
   right?: React.ReactNode;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
 };
 
 /**
@@ -84,7 +86,7 @@ type CtaProps = {
  * глубину — нажатие ощущается физически (эталон: translateY 4px за 120 мс).
  */
 export const V2Cta = memo(function V2Cta({
-  children, onPress, tone = 'accent', disabled, autoNext, style, left, right,
+  children, onPress, tone = 'accent', disabled, autoNext, style, left, right, accessibilityLabel, accessibilityHint,
 }: CtaProps) {
   const P = useTournamentPalette();
   const { themeMode } = useTheme();
@@ -126,6 +128,9 @@ export const V2Cta = memo(function V2Cta({
     <View style={[{ borderRadius: radius.md + 2, backgroundColor: disabled ? P.elev2 : shelf, paddingBottom: 5 }, style]}>
       <AnimatedPressable
         accessibilityRole="button"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityHint={disabled ? accessibilityHint : undefined}
+        accessibilityState={{ disabled: Boolean(disabled) }}
         disabled={disabled}
         onPress={handlePress}
         onPressIn={handlePressIn}

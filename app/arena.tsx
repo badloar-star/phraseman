@@ -16,6 +16,11 @@ import {
   arenaHubNeutral,
 } from '../modules/arena/hub_presentation';
 import {
+  arenaHubRequestGate,
+  arenaWarmExpansion,
+  arenaWarmHome,
+} from '../modules/arena/hub_hydration';
+import {
   ArenaFeatureRow,
   ArenaProgress,
   ArenaStateCard,
@@ -62,11 +67,11 @@ export default function ArenaHubScreen() {
   const warm = useMemo(() => arenaPeekHomeWarm(Date.now()), []);
   const [homeSlot, setHomeSlot] = useState(() => arenaHubCached(
     arenaHubNeutral<ArenaHomeResponse>(),
-    (warm?.home ?? null) as ArenaHomeResponse | null,
+    arenaWarmHome(warm?.home),
   ));
   const [expansionSlot, setExpansionSlot] = useState(() => arenaHubCached(
     arenaHubNeutral<ArenaExpansionHome>(),
-    (warm?.expansion ?? null) as ArenaExpansionHome | null,
+    arenaWarmExpansion(warm?.expansion),
   ));
   const [baseFailure, setBaseFailure] = useState<ReturnType<typeof arenaHubFailure> | null>(null);
   const [expansionFailure, setExpansionFailure] = useState<ReturnType<typeof arenaHubFailure> | null>(null);
@@ -74,25 +79,31 @@ export default function ArenaHubScreen() {
   const [spinBusy, setSpinBusy] = useState(false);
   const [history, setHistory] = useState<readonly unknown[]>([]);
   const [friends, setFriends] = useState<readonly ArenaFriendsBoardRow[]>([]);
+  const requestGateRef = useRef(arenaHubRequestGate());
 
   const home = homeSlot.value;
   const expansion = expansionSlot.value;
 
   const load = useCallback(() => {
+    const generation = requestGateRef.current.begin();
     void arenaV2Home().then((response) => {
+      if (!requestGateRef.current.current(generation)) return;
       setHomeSlot(arenaHubCurrent(response));
       setBaseFailure(null);
       arenaRememberHomeWarm({ home: response, wallNowMs: Date.now(), store: warmStore });
     }).catch((e: unknown) => {
+      if (!requestGateRef.current.current(generation)) return;
       const failure = arenaHubFailure(e);
       setBaseFailure(failure);
       if (__DEV__) console.warn('[arena] arenaV2Home failed:', failure.code, e);
     });
     void arenaExpansionHome().then((response) => {
+      if (!requestGateRef.current.current(generation)) return;
       setExpansionSlot(arenaHubCurrent(response));
       setExpansionFailure(null);
       arenaRememberHomeWarm({ expansion: response, wallNowMs: Date.now(), store: warmStore });
     }).catch((e: unknown) => {
+      if (!requestGateRef.current.current(generation)) return;
       const failure = arenaHubFailure(e);
       setExpansionFailure(failure);
       if (__DEV__) console.warn('[arena] arenaExpansionHome failed:', failure.code, e);
@@ -100,9 +111,15 @@ export default function ArenaHubScreen() {
     // Оба — разовые чтения при открытии. Прошедшие матчи не меняются, список
     // друзей меняется днями: держать на них подписку значит платить за
     // уведомления, которых не будет.
-    void arenaFetchMatchHistory(10).then(setHistory).catch(() => setHistory([]));
-    void arenaV2FriendsBoard().then((board) => setFriends(board.rows)).catch(() => {});
+    void arenaFetchMatchHistory(10).then((rows) => {
+      if (requestGateRef.current.current(generation)) setHistory(rows);
+    }).catch(() => { if (requestGateRef.current.current(generation)) setHistory([]); });
+    void arenaV2FriendsBoard().then((board) => {
+      if (requestGateRef.current.current(generation)) setFriends(board.rows);
+    }).catch(() => {});
   }, []);
+
+  useEffect(() => () => { requestGateRef.current.dispose(); }, []);
 
   useEffect(() => { if (active) load(); }, [active, load]);
 
@@ -115,8 +132,8 @@ export default function ArenaHubScreen() {
     let alive = true;
     void arenaLoadHomeWarm(warmStore, Date.now()).then((stored) => {
       if (!alive || !stored) return;
-      setHomeSlot((current) => arenaHubCached(current, stored.home as ArenaHomeResponse | null));
-      setExpansionSlot((current) => arenaHubCached(current, stored.expansion as ArenaExpansionHome | null));
+      setHomeSlot((current) => arenaHubCached(current, arenaWarmHome(stored.home)));
+      setExpansionSlot((current) => arenaHubCached(current, arenaWarmExpansion(stored.expansion)));
     }).catch(() => {});
     return () => { alive = false; };
   }, []);
@@ -154,6 +171,7 @@ export default function ArenaHubScreen() {
   const serverFailure = baseFailure?.kind === 'server';
   const expansionServerFailure = expansionFailure?.kind === 'server';
   const baseEnabled = home?.availability.enabled === true && !offline && !serverFailure;
+  const disabledHint = offline ? arenaText(lang, 'hubOfflineHint') : arenaText(lang, 'valueUnknown');
   const today = expansion?.today;
   const todayAction = today?.state === 'in_progress' ? arenaExpansionText(lang, 'todayContinue') : arenaExpansionText(lang, 'todayStart');
 
@@ -219,14 +237,14 @@ export default function ArenaHubScreen() {
           {today?.state === 'complete' ? (
             <Text accessibilityLiveRegion="polite" style={[styles.complete, { color: P.accent }]}>{arenaExpansionText(lang, 'todayComplete')}</Text>
           ) : (
-            <V2Cta disabled={!baseEnabled || !expansion?.availability.today || !today || today.state === 'unavailable'} onPress={() => router.push('/arena_today' as never)}>{todayAction}</V2Cta>
+            <V2Cta accessibilityLabel={todayAction} accessibilityHint={disabledHint} disabled={!baseEnabled || !expansion?.availability.today || !today || today.state === 'unavailable'} onPress={() => router.push('/arena_today' as never)}>{todayAction}</V2Cta>
           )}
       </V2Card>
       {/* зачем заголовок убран (владелец, 2026-08-16): экран и так открыт по
           кнопке «Играть» в таббаре — подпись над первым же пунктом повторяла
           название, под которым сюда пришли. */}
-      <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
-      {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => { setSpinBusy(true); void arenaV2SpinClaim(spinRequestIdRef.current).then(() => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); }).finally(() => setSpinBusy(false)); }} /> : null}
+      <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabledHint={disabledHint} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
+      {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabledHint={disabledHint} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => { setSpinBusy(true); void arenaV2SpinClaim(spinRequestIdRef.current).then(() => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); }).finally(() => setSpinBusy(false)); }} /> : null}
     </>
   );
 
@@ -242,7 +260,7 @@ export default function ArenaHubScreen() {
         ? home.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home.profile.rank ?? 0) + 1}`
         : '—'}
       onBack={() => router.replace('/(tabs)/home' as never)}
-      headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion ? expansion.wallet.walletStars : null} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
+      headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion ? expansion.wallet.walletStars : null} disabledHint={disabledHint} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
     >
       {offline ? <ArenaConnectionNotice onRetry={load} /> : null}
       {serverFailure ? (

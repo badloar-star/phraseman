@@ -61,7 +61,7 @@ export function ArenaSectionTabs({
  * утверждение «у тебя пусто», а не отсутствие ответа. Игрок, накопивший
  * тысячу звёзд, видел ноль и шёл проверять, не списали ли всё.
  */
-export function ArenaWalletButton({ label, balance, onPress, disabled = false }: { label: string; balance: number | null; onPress: () => void; disabled?: boolean }) {
+export function ArenaWalletButton({ label, balance, onPress, disabled = false, disabledHint }: { label: string; balance: number | null; onPress: () => void; disabled?: boolean; disabledHint?: string }) {
   const P = useTournamentPalette();
   const { lang } = useLang();
   const unknown = arenaText(lang, 'valueUnknown');
@@ -69,6 +69,7 @@ export function ArenaWalletButton({ label, balance, onPress, disabled = false }:
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={`${label}: ${balance === null ? unknown : balance}`}
+      accessibilityHint={disabled ? disabledHint : undefined}
       accessibilityState={{ disabled }}
       disabled={disabled}
       onPress={onPress}
@@ -88,6 +89,7 @@ export function ArenaFeatureRow({
   disabled = false,
   accent = false,
   badge,
+  disabledHint,
 }: Readonly<{
   title: string;
   body?: string;
@@ -96,6 +98,7 @@ export function ArenaFeatureRow({
   disabled?: boolean;
   accent?: boolean;
   badge?: string;
+  disabledHint?: string;
 }>) {
   const P = useTournamentPalette();
   const fontScale = useArenaFontScale();
@@ -107,6 +110,7 @@ export function ArenaFeatureRow({
         accessibilityRole="button"
         accessibilityState={{ disabled }}
         accessibilityLabel={[title, body, badge].filter(Boolean).join('. ')}
+        accessibilityHint={disabled ? disabledHint : undefined}
         disabled={disabled}
         onPress={onPress}
         style={[styles.feature, { backgroundColor: accent ? P.accent : P.elev, opacity: disabled ? 0.62 : 1 }]}

@@ -23,11 +23,6 @@ import {
 } from '../constants/customization_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
-jest.mock('../app/user_id_policy', () => ({
-  clearArenaAuthUidCache: jest.fn(),
-  getAuthUserId: jest.fn(() => null),
-  getCanonicalUserId: jest.fn(async () => 'owner-a'),
-}));
 
 describe('account generation', () => {
   it('rejects callbacks from opening N after opening N+1 in the same account generation', () => {
@@ -158,7 +153,8 @@ describe('account generation', () => {
     ]);
 
     const cloudSyncSource = fs.readFileSync(path.join(__dirname, '../app/cloud_sync.ts'), 'utf8');
-    expect(cloudSyncSource).toContain('...CUSTOMIZATION_ACCOUNT_LOCAL_PREFIXES');
+    expect(cloudSyncSource).toContain("from './customization_account_cleanup'");
+    expect(cloudSyncSource).toContain('clearCustomizationAccountLocalState()');
   });
 
   it('behaviorally wipes all four Avatar DNA prefix families and preserves unrelated device data', async () => {
@@ -175,9 +171,11 @@ describe('account generation', () => {
       ...dnaKeys.map((key) => [key, 'sentinel'] as [string, string]),
       ['unrelated_device_avatar_test_v1', 'keep-me'],
     ]);
-    const { wipeLocalAccountData } = await import('../app/cloud_sync');
+    const { clearCustomizationAccountLocalState } = await import(
+      '../app/customization_account_cleanup'
+    );
 
-    await wipeLocalAccountData();
+    await clearCustomizationAccountLocalState();
 
     await expect(AsyncStorage.multiGet(dnaKeys)).resolves.toEqual(
       dnaKeys.map((key) => [key, null]),

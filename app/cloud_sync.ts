@@ -81,8 +81,12 @@ import { XP_LEVEL_RESTORE_250_TO_400_KEY } from './xp_level_restore';
 import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
 import {
   CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
-  CUSTOMIZATION_ACCOUNT_LOCAL_PREFIXES,
 } from '../constants/customization_storage_keys';
+import {
+  clearCustomizationAccountLocalState,
+  customizationAccountLocalKeysFrom,
+  isCustomizationAccountLocalKey,
+} from './customization_account_cleanup';
 import {
   canonicalJsonV1,
   hashCanonicalBody,
@@ -585,7 +589,6 @@ const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
 ] as const;
 
 const ACCOUNT_LOCAL_KEY_PREFIXES = [
-  ...CUSTOMIZATION_ACCOUNT_LOCAL_PREFIXES,
   'personal_plan_day_runtime_v1:',
   'learning_v2_lesson1_progress:',
   'learning_v2_progress:',
@@ -645,6 +648,7 @@ async function collectAccountLocalDataKeys(): Promise<string[]> {
   return Array.from(new Set([
     ...accountLocalDataKeysForToday(),
     ...learningV2AccountLocalKeysFrom(allKeys),
+    ...customizationAccountLocalKeysFrom(allKeys),
     ...allKeys.filter(isVipSnapshotStorageKey),
   ]));
 }
@@ -3876,8 +3880,11 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
       if (residue.length > 0) throw new Error('account_wipe_incomplete');
     }
   };
-  const toRemove = accountKeys.filter((key) => !KEEP.has(key));
+  const toRemove = accountKeys.filter((key) => (
+    !KEEP.has(key) && !isCustomizationAccountLocalKey(key)
+  ));
   await removeExactly(toRemove);
+  await clearCustomizationAccountLocalState();
   // Generation-bound writers are the primary barrier. This final scan is
   // defense-in-depth for a callback that committed during the first removal.
   const lateLearningV2Keys = (await listLearningV2AccountLocalKeys())
@@ -3886,7 +3893,10 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   const knownAccountKeys = new Set(accountLocalDataKeysForToday());
   const finalResidue = (await listAllAccountLocalStorageKeys()).filter((key) =>
     !KEEP.has(key) && (
-      knownAccountKeys.has(key) || isLearningV2AccountLocalKey(key) || isVipSnapshotStorageKey(key)
+      knownAccountKeys.has(key)
+      || isLearningV2AccountLocalKey(key)
+      || isCustomizationAccountLocalKey(key)
+      || isVipSnapshotStorageKey(key)
     ));
   if (finalResidue.length > 0) throw new Error('account_wipe_incomplete');
   // Сбрасываем in-memory bookkeeping синка

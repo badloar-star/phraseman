@@ -10,6 +10,7 @@ import { parseAvatarDNA } from '../modules/avatar-dna/canonicalize';
 import {
   avatarDNAStateStorageKey,
   commitAvatarDNA,
+  parseAvatarDNAStoredState,
   readAvatarDNAState,
 } from '../modules/avatar-dna/storage';
 
@@ -25,6 +26,12 @@ describe('Avatar DNA account-scoped storage', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
     await AsyncStorage.clear();
+    (AsyncStorage.setItem as jest.Mock).mockReset().mockImplementation(
+      async (key: string, raw: string) => AsyncStorage.multiSet([[key, raw]]),
+    );
+    (AsyncStorage.removeItem as jest.Mock).mockReset().mockImplementation(
+      async (key: string) => AsyncStorage.multiRemove([key]),
+    );
     __resetAccountGenerationForTests();
   });
 
@@ -279,6 +286,121 @@ describe('Avatar DNA account-scoped storage', () => {
 
     await expect(committing).resolves.toEqual({ status: 'stale-account' });
     await expect(AsyncStorage.getItem(key)).resolves.toBeNull();
+  });
+
+  it('leaves an unreadable durable quarantine when restoring previous bytes fails', async () => {
+    const generation = beginAccountGeneration('u1').generation;
+    await commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: generation, dna,
+      renderIds: { portrait: 'portrait_before', studio: 'studio_before' }, manifestVersion: 1,
+    });
+    const key = avatarDNAStateStorageKey('u1', generation);
+    let releaseWrite!: () => void;
+    let writeStarted!: () => void;
+    const pendingWrite = new Promise<void>((resolve) => { releaseWrite = resolve; });
+    const started = new Promise<void>((resolve) => { writeStarted = resolve; });
+    let writeCount = 0;
+    (AsyncStorage.setItem as jest.Mock).mockImplementation(async (writeKey, raw) => {
+      writeCount += 1;
+      if (writeCount === 1) {
+        writeStarted();
+        await pendingWrite;
+        await AsyncStorage.multiSet([[writeKey, raw]]);
+      } else if (String(raw).includes('avatar_dna_quarantine_v1')) {
+        await AsyncStorage.multiSet([[writeKey, raw]]);
+      } else {
+        throw new Error('restore failed');
+      }
+    });
+
+    const committing = commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: generation, dna: changedDNA(),
+      renderIds: { portrait: 'portrait_after', studio: 'studio_after' }, manifestVersion: 2,
+    });
+    await started;
+    beginAccountGeneration('u1');
+    releaseWrite();
+
+    await expect(committing).rejects.toThrow('avatar_dna_storage_rollback_failed');
+    const quarantinedRaw = await AsyncStorage.getItem(key);
+    expect(quarantinedRaw).not.toBeNull();
+    expect(parseAvatarDNAStoredState(JSON.parse(quarantinedRaw!), 'u1', 1)).toBeNull();
+    __resetAccountGenerationForTests();
+    const restartedGeneration = beginAccountGeneration('u1').generation;
+    await expect(readAvatarDNAState('u1', restartedGeneration)).resolves.toBeNull();
+  });
+
+  it('leaves an unreadable durable quarantine when removing a new root fails', async () => {
+    const generation = beginAccountGeneration('u1').generation;
+    const key = avatarDNAStateStorageKey('u1', generation);
+    let releaseWrite!: () => void;
+    let writeStarted!: () => void;
+    const pendingWrite = new Promise<void>((resolve) => { releaseWrite = resolve; });
+    const started = new Promise<void>((resolve) => { writeStarted = resolve; });
+    let writeCount = 0;
+    (AsyncStorage.setItem as jest.Mock).mockImplementation(async (writeKey, raw) => {
+      writeCount += 1;
+      if (writeCount === 1) {
+        writeStarted();
+        await pendingWrite;
+        await AsyncStorage.multiSet([[writeKey, raw]]);
+      } else {
+        await AsyncStorage.multiSet([[writeKey, raw]]);
+      }
+    });
+    (AsyncStorage.removeItem as jest.Mock).mockRejectedValueOnce(new Error('remove failed'));
+
+    const committing = commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: generation, dna,
+      renderIds: { portrait: 'portrait_new', studio: 'studio_new' }, manifestVersion: 1,
+    });
+    await started;
+    beginAccountGeneration('u2');
+    releaseWrite();
+
+    await expect(committing).rejects.toThrow('avatar_dna_storage_rollback_failed');
+    const quarantinedRaw = await AsyncStorage.getItem(key);
+    expect(quarantinedRaw).not.toBeNull();
+    expect(parseAvatarDNAStoredState(JSON.parse(quarantinedRaw!), 'u1', 1)).toBeNull();
+    __resetAccountGenerationForTests();
+    const restartedGeneration = beginAccountGeneration('u1').generation;
+    await expect(readAvatarDNAState('u1', restartedGeneration)).resolves.toBeNull();
+  });
+
+  it('poisons same-process reads when quarantine and compensation both fail', async () => {
+    const generation = beginAccountGeneration('u1').generation;
+    await commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: generation, dna,
+      renderIds: { portrait: 'portrait_before', studio: 'studio_before' }, manifestVersion: 1,
+    });
+    const key = avatarDNAStateStorageKey('u1', generation);
+    let releaseWrite!: () => void;
+    let writeStarted!: () => void;
+    const pendingWrite = new Promise<void>((resolve) => { releaseWrite = resolve; });
+    const started = new Promise<void>((resolve) => { writeStarted = resolve; });
+    let writeCount = 0;
+    (AsyncStorage.setItem as jest.Mock).mockImplementation(async (writeKey, raw) => {
+      writeCount += 1;
+      if (writeCount === 1) {
+        writeStarted();
+        await pendingWrite;
+        await AsyncStorage.multiSet([[writeKey, raw]]);
+      } else {
+        throw new Error('quarantine or restore failed');
+      }
+    });
+
+    const committing = commitAvatarDNA({
+      ownerStableId: 'u1', accountGeneration: generation, dna: changedDNA(),
+      renderIds: { portrait: 'portrait_after', studio: 'studio_after' }, manifestVersion: 2,
+    });
+    await started;
+    beginAccountGeneration('u1');
+    releaseWrite();
+
+    await expect(committing).rejects.toThrow('avatar_dna_storage_rollback_failed');
+    await expect(readAvatarDNAState('u1', generation)).resolves.toBeNull();
+    expect(await AsyncStorage.getItem(key)).not.toBeNull();
   });
 
   it('never falls back from the current account to a previous account or generation', async () => {

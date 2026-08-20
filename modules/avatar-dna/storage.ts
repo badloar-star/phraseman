@@ -22,6 +22,11 @@ const STATE_KEYS = [
   'updatedAtMs',
 ] as const;
 const LAST_GOOD_KEYS = ['portrait', 'studio'] as const;
+const AVATAR_DNA_QUARANTINE_RAW = JSON.stringify({
+  schemaVersion: 0,
+  kind: 'avatar_dna_quarantine_v1',
+});
+const poisonedStateKeys = new Set<string>();
 
 export type AvatarDNAStoredState = Readonly<{
   schemaVersion: 1;
@@ -158,6 +163,7 @@ export async function readAvatarDNAState(
   } catch {
     return null;
   }
+  if (poisonedStateKeys.has(key)) return null;
   try {
     const raw = await AsyncStorage.getItem(key);
     if (raw === null) return null;
@@ -232,14 +238,22 @@ export async function commitAvatarDNA(input: Readonly<{
       afterWrite.generation !== accountGeneration
       || !isCurrentAccountGeneration(afterWrite, ownerStableId)
     ) {
+      poisonedStateKeys.add(key);
+      try {
+        await AsyncStorage.setItem(key, AVATAR_DNA_QUARANTINE_RAW);
+      } catch {
+        // Compensation still has a chance to restore/remove the canonical root.
+      }
       try {
         if (previousRaw === null) await AsyncStorage.removeItem(key);
         else await AsyncStorage.setItem(key, previousRaw);
       } catch {
-        throw new Error('avatar_dna_post_write_rollback_failed');
+        throw new Error('avatar_dna_storage_rollback_failed');
       }
+      poisonedStateKeys.delete(key);
       return { status: 'stale-account' } as const;
     }
+    poisonedStateKeys.delete(key);
     return { status: 'committed' } as const;
   }));
 }

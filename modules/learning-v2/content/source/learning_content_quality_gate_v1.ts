@@ -36,6 +36,8 @@ export type LearningV2ContentQualityIssueCode =
   | 'intro_locale_fallback'
   | 'intro_locale_not_independent'
   | 'intro_russian_reference_in_other_locale'
+  | 'intro_locale_service_tail'
+  | 'intro_learning_chronology'
   | 'phrase_count_invalid'
   | 'phrase_duplicate'
   | 'phrase_not_standalone'
@@ -111,6 +113,20 @@ const RUSSIAN_REFERENCE_BY_LOCALE: Readonly<Partial<Record<QualityLocale, RegExp
     tr: /rusça/iu,
     pl: /rosyjsk/iu,
   });
+
+const LEARNING_CHRONOLOGY_BY_LOCALE: Readonly<Record<QualityLocale, RegExp>> =
+  Object.freeze({
+    ru: /(?:знакомые|известные)\s+формы|как\s+(?:мы\s+)?(?:уже\s+)?(?:учили|проходили|разбирали)|уже\s+(?:изучали|проходили|разбирали)|(?:позже|дальше)\s+(?:разбер|узна|верн)/iu,
+    uk: /(?:знайомі|відомі)\s+форми|як\s+(?:ми\s+)?(?:вже\s+)?(?:вчили|проходили|розбирали)|вже\s+(?:вивчали|проходили|розбирали)|(?:пізніше|далі)\s+(?:розбер|дізна|поверн)/iu,
+    es: /\bformas\s+conocidas\b|\bcomo\s+(?:ya\s+)?(?:aprendimos|vimos|estudiamos)|\bya\s+(?:aprendimos|aprendiste|vimos|estudiamos)|\bmás\s+adelante\s+(?:veremos|aprenderás)/iu,
+    'pt-BR': /\bformas\s+conhecidas\b|\bcomo\s+(?:já\s+)?(?:aprendemos|vimos|estudamos)|\bjá\s+(?:aprendemos|aprendeu|vimos|estudamos)|\bmais\s+adiante\s+(?:veremos|você\s+aprenderá)/iu,
+    vi: /(?:các\s+)?dạng\s+quen\s+thuộc|như\s+(?:chúng\s+ta\s+)?đã\s+học|đã\s+(?:học|xem)\s+(?:trước|rồi)|sau\s+này\s+sẽ/iu,
+    id: /\bbentuk\s+yang\s+sudah\s+dikenal\b|\bseperti\s+yang\s+(?:sudah|telah)\s+dipelajari|\bsudah\s+kita\s+(?:pelajari|bahas)|\bnanti\s+(?:akan\s+)?(?:belajar|membahas)/iu,
+    tr: /\btanıdık\s+biçimler\b|\bdaha\s+önce\s+(?:öğrendiğimiz|gördüğümüz|işlediğimiz)|\bzaten\s+(?:öğrendik|gördük|işledik)|\bileride\s+(?:öğreneceğiz|göreceğiz)/iu,
+    pl: /\bznane\s+formy\b|\bjak\s+(?:już\s+)?(?:uczyliśmy|widzieliśmy|omawialiśmy)|\bjuż\s+(?:poznaliśmy|przerabialiśmy|omawialiśmy)|\bpóźniej\s+(?:poznamy|omówimy|wrócimy)/iu,
+  });
+
+const LEAKED_SERVICE_TAIL = /(?:^|[.!?]\s+)(?:For\s+example|Example)\s*(?::|—|-)\s*[«“"]?.+?\b(?:carries|has|expresses|means)\s+(?:this\s+)?(?:exact\s+)?(?:meaning|idea|sense)\b|\b(?:This\s+(?:phrase|example)|It)\s+(?:carries|has|expresses)\s+(?:this\s+)?(?:exact\s+)?(?:meaning|idea|sense)\b/iu;
 
 const FOREIGN_GRAMMAR = Object.freeze([
   /\b(?:was|were|will|would|did|does|doing|have been|has been)\b/iu,
@@ -197,6 +213,10 @@ function inspectLocalizedIntroField(
     }
     if (RUSSIAN_REFERENCE_BY_LOCALE[locale]?.test(text))
       add(issues, 'intro_russian_reference_in_other_locale', `${path}.${locale}`, 'Нерусская локаль не может объяснять английский через русский язык.');
+    if (LEAKED_SERVICE_TAIL.test(text))
+      add(issues, 'intro_locale_service_tail', `${path}.${locale}`, 'В ученический текст попала англоязычная служебная приписка генератора.');
+    if (LEARNING_CHRONOLOGY_BY_LOCALE[locale].test(text))
+      add(issues, 'intro_learning_chronology', `${path}.${locale}`, 'Интро должно сразу объяснять язык, а не описывать знакомый или уже пройденный материал.');
     if (!allowSharedTargetText) {
       const key = normalized(text);
       const duplicate = seen.get(key);

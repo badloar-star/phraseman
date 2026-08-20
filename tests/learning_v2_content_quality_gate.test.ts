@@ -174,6 +174,24 @@ describe('Learning V2 strict content quality gate', () => {
     );
   });
 
+  test('rejects leaked English service tails and learner chronology in intro copy', () => {
+    const source = candidate();
+    (source.introPages[0].body as { es: string }).es += ' For example — «I am here» means this exact idea.';
+    (source.introPages[1].body as { ru: string }).ru += ' Как мы уже учили раньше, эти формы нужно соединить.';
+    const report = evaluateLearningV2SessionContentQuality(source, approvedReceipt(source));
+    expect(report.ok).toBe(false);
+    expect(report.issues.map((issue: { code: string }) => issue.code)).toEqual(
+      expect.arrayContaining(['intro_locale_service_tail', 'intro_learning_chronology']),
+    );
+  });
+
+  test('does not confuse an immediate instruction with course chronology', () => {
+    const source = candidate();
+    (source.introPages[0].body as { ru: string }).ru += ' Теперь нужно выбрать форму, которая выражает этот смысл.';
+    const codes = evaluateLearningV2SessionContentQuality(source, approvedReceipt(source)).issues.map((issue) => issue.code);
+    expect(codes).not.toContain('intro_learning_chronology');
+  });
+
   test('rejects missing, stale, self-approved, or incomplete review receipts', () => {
     const source = candidate();
     expect(evaluateLearningV2SessionContentQuality(source).issues.map((issue: { code: string }) => issue.code)).toContain('quality_review_missing');

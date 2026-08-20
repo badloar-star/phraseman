@@ -3,7 +3,10 @@ import {
   arenaHubFriends,
   arenaHubModel,
 } from '../modules/arena/hub_view';
+import { arenaText } from '../modules/arena/copy';
 import { ARENA_GOAL_TARGETS } from '../modules/arena/daily_goals';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 /**
  * Главный экран Арены.
@@ -29,24 +32,28 @@ const friend = (stableUid: string, rating: number, you = false) => ({ stableUid,
 describe('карточка ранга', () => {
   it('показывает деление и остаток до следующего', () => {
     const model = arenaHubModel({ rating: 150 });
-    expect(model.rank.rp).toBe(150);
-    expect(model.rank.progress).toBeCloseTo(0.5, 3);
-    expect(model.rank.rpToNextRank).toBe(50);
+    expect(model.rank!.rp).toBe(150);
+    expect(model.rank!.progress).toBeCloseTo(0.5, 3);
+    expect(model.rank!.rpToNextRank).toBe(50);
   });
 
   it('на вершине не обещает следующего деления', () => {
     const model = arenaHubModel({ rating: 999_999 });
-    expect(model.rank.top).toBe(true);
-    expect(model.rank.rpToNextRank).toBe(0);
+    expect(model.rank!.top).toBe(true);
+    expect(model.rank!.rpToNextRank).toBe(0);
   });
 
-  it('мусор в очках не роняет экран', () => {
+  it('не выдумывает Bronze и ноль RP из неизвестного рейтинга', () => {
     for (const rating of [null, undefined, NaN, -100, 'много']) {
       const model = arenaHubModel({ rating });
-      expect(model.rank.rp).toBeGreaterThanOrEqual(0);
-      expect(model.rank.progress).toBeGreaterThanOrEqual(0);
-      expect(model.rank.progress).toBeLessThanOrEqual(1);
+      expect(model.rank).toBeNull();
     }
+  });
+
+  it('сохраняет реальный нулевой рейтинг известным', () => {
+    const model = arenaHubModel({ rating: 0 });
+    expect(model.rank).not.toBeNull();
+    expect(model.rank!.rp).toBe(0);
   });
 });
 
@@ -56,15 +63,20 @@ describe('цели дня на главном', () => {
       dailyDayKey: today, todayKey: today,
       dailyMatches: ARENA_GOAL_TARGETS.play, dailyFirstAnswers: 0, dailyWins: 0,
     });
-    expect(model.goals.goals[0].complete).toBe(true);
-    expect(model.goals.allComplete).toBe(false);
+    expect(model.goals!.goals[0].complete).toBe(true);
+    expect(model.goals!.allComplete).toBe(false);
   });
 
   it('вчерашние счётчики сегодня не считаются', () => {
     const model = arenaHubModel({
       dailyDayKey: '2026-08-12', todayKey: today, dailyMatches: 99, dailyFirstAnswers: 99, dailyWins: 99,
     });
-    expect(model.goals.completedCount).toBe(0);
+    expect(model.goals!.completedCount).toBe(0);
+  });
+
+  it('не выдумывает дневные цели без ключа сегодняшнего дня', () => {
+    expect(arenaHubModel({ todayKey: '' }).goals).toBeNull();
+    expect(arenaHubModel({}).goals).toBeNull();
   });
 });
 
@@ -175,10 +187,50 @@ describe('счётчик ищущих', () => {
 describe('модель целиком', () => {
   it('пустой вход даёт полную и безопасную модель', () => {
     const model = arenaHubModel({});
-    expect(model.rank.rp).toBe(0);
-    expect(model.goals.goals.length).toBe(3);
+    expect(model.rank).toBeNull();
+    expect(model.goals).toBeNull();
     expect(model.lastMatch).toBeNull();
     expect(model.friends).toEqual([]);
     expect(model.searchingNow).toBeNull();
+  });
+});
+
+describe('неизвестные значения в интерфейсе Арены', () => {
+  it('переводит неизвестное значение во всех поддерживаемых локалях', () => {
+    expect(Object.fromEntries(
+      (['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const)
+        .map((lang) => [lang, arenaText(lang, 'valueUnknown')]),
+    )).toEqual({
+      ru: 'Данные пока недоступны',
+      uk: 'Дані поки недоступні',
+      es: 'Datos no disponibles todavía',
+      'pt-BR': 'Dados ainda indisponíveis',
+      vi: 'Dữ liệu hiện chưa có',
+      id: 'Data belum tersedia',
+      tr: 'Veri henüz kullanılamıyor',
+      pl: 'Dane są chwilowo niedostępne',
+    });
+  });
+
+  it('сохраняет честные unknown-состояния в UI-контрактах', () => {
+    const hub = readFileSync(resolve(__dirname, '../components/arena/ArenaHubLive.tsx'), 'utf8');
+    const goals = readFileSync(resolve(__dirname, '../components/arena/ArenaDailyGoals.tsx'), 'utf8');
+    const expansion = readFileSync(resolve(__dirname, '../components/arena/ArenaExpansionUI.tsx'), 'utf8');
+
+    expect(hub).toContain('model.rank === null');
+    expect(hub).toContain("arenaText(lang, 'valueUnknown')");
+    expect(hub).toContain("rank === null ? '—'");
+    expect(hub).toMatch(/\{rank \? .*rank\.rp.*: '—'\}/s);
+    expect(hub).toContain('RankBar progress={rank?.progress ?? 0}');
+    expect(goals).toContain('model: ArenaDailyGoalsModel | null');
+    expect(goals).toContain('ARENA_GOAL_ORDER');
+    expect(goals).toContain('ARENA_GOAL_TARGETS');
+    expect(goals).toContain("model === null ? '—'");
+    expect(goals).toContain('if (model === null)');
+    expect(goals).toContain('progress: 0');
+    expect(goals).toContain('complete: false');
+    expect(expansion).toContain('value: number | null');
+    expect(expansion).toContain("accessibilityValue={value === null ? { text: '—' }");
+    expect(expansion).toContain("{value === null ? '—' : clampedValue} / {max}");
   });
 });

@@ -121,15 +121,22 @@ export function ArenaFeatureRow({
   );
 }
 
-export function ArenaProgress({ value, max, label }: { value: number; max: number; label: string }) {
+export function ArenaProgress({ value, max, label }: { value: number | null; max: number; label: string }) {
   const P = useTournamentPalette();
-  const ratio = max > 0 ? Math.max(0, Math.min(1, value / max)) : 0;
+  const safeMax = Math.max(0, max);
+  const clampedValue = value === null ? null : Math.max(0, Math.min(safeMax, value));
+  const ratio = clampedValue !== null && safeMax > 0 ? clampedValue / safeMax : 0;
   return (
-    <View accessibilityRole="progressbar" accessibilityLabel={label} accessibilityValue={{ min: 0, max, now: value }} style={styles.progressWrap}>
+    <View
+      accessibilityRole="progressbar"
+      accessibilityLabel={label}
+      accessibilityValue={value === null ? { text: '—' } : { min: 0, max: safeMax, now: clampedValue }}
+      style={styles.progressWrap}
+    >
       <View style={[styles.progressTrack, { backgroundColor: P.elev2 }]}>
         <View style={[styles.progressFill, { backgroundColor: P.accent, width: `${ratio * 100}%` }]} />
       </View>
-      <Text style={[styles.progressText, { color: P.muted }]}>{value} / {max}</Text>
+      <Text style={[styles.progressText, { color: P.muted }]}>{value === null ? '—' : clampedValue} / {max}</Text>
     </View>
   );
 }

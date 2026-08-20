@@ -34,8 +34,8 @@ export type ArenaHubFriend = Readonly<{
 }>;
 
 export type ArenaHubModel = Readonly<{
-  rank: ArenaHubRankCard;
-  goals: ArenaDailyGoals;
+  rank: ArenaHubRankCard | null;
+  goals: ArenaDailyGoals | null;
   /** Последний матч. `null`, пока их не было. */
   lastMatch: ArenaHistoryRow | null;
   /** Серия побед с последнего матча. */
@@ -86,13 +86,16 @@ export function arenaHubModel(input: Readonly<{
   friendsRaw?: readonly Readonly<{ stableUid: string; you: boolean; rating: number }>[];
   searchingNow?: unknown;
 }>): ArenaHubModel {
-  const view = arenaRankView(Number(input.rating) || 0);
+  const rating = input.rating;
+  const view = typeof rating === 'number' && Number.isFinite(rating) && rating >= 0
+    ? arenaRankView(rating)
+    : null;
   const history = arenaHistoryRows(input.historyRaw ?? []);
   const summary = arenaHistorySummary(history);
   const searching = Math.trunc(Number(input.searchingNow));
 
   return {
-    rank: {
+    rank: view === null ? null : {
       rp: view.rp,
       tierIndex: view.tierIndex,
       tierKey: view.tierKey,
@@ -101,13 +104,15 @@ export function arenaHubModel(input: Readonly<{
       rpToNextRank: view.top ? 0 : Math.max(0, view.rpForRank - view.rpInRank),
       top: view.top,
     },
-    goals: arenaDailyGoals({
-      storedDayKey: input.dailyDayKey,
-      todayKey: String(input.todayKey ?? ''),
-      matchesToday: input.dailyMatches,
-      firstAnswersToday: input.dailyFirstAnswers,
-      winsToday: input.dailyWins,
-    }),
+    goals: typeof input.todayKey === 'string' && input.todayKey.length > 0
+      ? arenaDailyGoals({
+        storedDayKey: input.dailyDayKey,
+        todayKey: input.todayKey,
+        matchesToday: input.dailyMatches,
+        firstAnswersToday: input.dailyFirstAnswers,
+        winsToday: input.dailyWins,
+      })
+      : null,
     lastMatch: history[0] ?? null,
     streak: summary.currentStreak,
     friends: arenaHubFriends(input.friendsRaw ?? []),

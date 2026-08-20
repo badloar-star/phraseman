@@ -16,7 +16,12 @@ import { useTournamentPalette } from '../tournament/tournament_theme';
 import { arenaText } from '../../modules/arena/copy';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useArenaSound } from '../../hooks/use_arena_sound';
-import type { ArenaDailyGoals as ArenaDailyGoalsModel, ArenaGoalKey } from '../../modules/arena/daily_goals';
+import {
+  ARENA_GOAL_ORDER,
+  ARENA_GOAL_TARGETS,
+  type ArenaDailyGoals as ArenaDailyGoalsModel,
+  type ArenaGoalKey,
+} from '../../modules/arena/daily_goals';
 
 /**
  * Три цели дня.
@@ -62,7 +67,7 @@ function GoalBar({ progress, complete, reduceMotion }: {
   );
 }
 
-export function ArenaDailyGoals({ model }: { model: ArenaDailyGoalsModel }) {
+export function ArenaDailyGoals({ model }: { model: ArenaDailyGoalsModel | null }) {
   const { lang } = useLang();
   const P = useTournamentPalette();
   const reduceMotion = useReduceMotion();
@@ -77,23 +82,40 @@ export function ArenaDailyGoals({ model }: { model: ArenaDailyGoalsModel }) {
    */
   const seenRef = useRef<number | null>(null);
   useEffect(() => {
+    if (model === null) {
+      seenRef.current = null;
+      return;
+    }
     const done = model.completedCount;
     if (seenRef.current === null) { seenRef.current = done; return; }
     if (done > seenRef.current) playSound('goalComplete');
     seenRef.current = done;
-  }, [model.completedCount, playSound]);
+  }, [model, playSound]);
+
+  const goals = model?.goals ?? ARENA_GOAL_ORDER.map((key) => ({
+    key,
+    done: 0,
+    target: ARENA_GOAL_TARGETS[key],
+    progress: 0,
+    complete: false,
+  }));
+  const allComplete = model?.allComplete ?? false;
 
   return (
     <Animated.View entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.duration(280)}>
       <V2Card pad={16} style={styles.card}>
         <View style={styles.head}>
           <Text numberOfLines={1} style={[styles.title, { color: P.text }]}>{arenaText(lang, 'goalsTitle')}</Text>
-          <Text numberOfLines={1} style={[styles.counter, { color: model.allComplete ? P.accent : P.muted }]}>
-            {model.completedCount} / {model.goals.length}
+          <Text
+            numberOfLines={1}
+            accessibilityLabel={model === null ? arenaText(lang, 'valueUnknown') : undefined}
+            style={[styles.counter, { color: allComplete ? P.accent : P.muted }]}
+          >
+            {model === null ? '—' : model.completedCount} / {goals.length}
           </Text>
         </View>
 
-        {model.goals.map((goal, index) => (
+        {goals.map((goal, index) => (
           <Animated.View
             key={goal.key}
             entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.delay(index * 60).duration(240)}
@@ -109,14 +131,14 @@ export function ArenaDailyGoals({ model }: { model: ArenaDailyGoalsModel }) {
                 {arenaText(lang, GOAL_COPY[goal.key])}
               </Text>
               <Text style={[styles.goalCount, { color: P.muted }]}>
-                {goal.done}/{goal.target}
+                {model === null ? '—' : goal.done}/{goal.target}
               </Text>
             </View>
             <GoalBar progress={goal.progress} complete={goal.complete} reduceMotion={reduceMotion} />
           </Animated.View>
         ))}
 
-        {model.allComplete ? (
+        {allComplete ? (
           <Text accessibilityLiveRegion="polite" style={[styles.done, { color: P.accent }]}>
             {arenaText(lang, 'goalsAllDone')}
           </Text>

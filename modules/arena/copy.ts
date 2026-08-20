@@ -113,6 +113,7 @@ const C = {
   goalAccuracy: ['Выиграть матч', 'Виграти матч', 'Ganar un duelo', 'Vencer um duelo', 'Thắng một trận', 'Menang duel', 'Bir maç kazan', 'Wygraj mecz'],
   goalsAllDone: ['Все цели дня выполнены', 'Усі цілі дня виконано', 'Todas las metas del día', 'Todas as metas do dia', 'Hoàn thành mục tiêu ngày', 'Semua target hari ini', 'Günün hedefleri tamam', 'Wszystkie cele dnia'],
   goalsTitle: ['Цели дня', 'Цілі дня', 'Metas del día', 'Metas do dia', 'Mục tiêu hôm nay', 'Target hari ini', 'Günün hedefleri', 'Cele dnia'],
+  valueUnknown: ['Данные пока недоступны', 'Дані поки недоступні', 'Datos no disponibles todavía', 'Dados ainda indisponíveis', 'Dữ liệu hiện chưa có', 'Data belum tersedia', 'Veri henüz kullanılamıyor', 'Dane są chwilowo niedostępne'],
   reviewTitle: ['Разбор матча', 'Розбір матчу', 'Análisis del duelo', 'Análise do duelo', 'Phân tích trận', 'Ulasan duel', 'Maç incelemesi', 'Analiza meczu'],
   reviewYourAnswer: ['Твой ответ', 'Твоя відповідь', 'Tu respuesta', 'Sua resposta', 'Câu trả lời của bạn', 'Jawabanmu', 'Cevabın', 'Twoja odpowiedź'],
   reviewCorrect: ['Правильно', 'Правильно', 'Correcto', 'Correto', 'Đáp án đúng', 'Yang benar', 'Doğrusu', 'Poprawnie'],

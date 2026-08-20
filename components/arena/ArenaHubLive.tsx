@@ -55,13 +55,18 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
   const { lang } = useLang();
   const P = useTournamentPalette();
   const reduceMotion = useReduceMotion();
+  const rank = model.rank;
+  const rankUnknown = model.rank === null;
 
   return (
     <>
       {/* Где я стою */}
       <Animated.View entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.duration(280)}>
         <V2Card pad={16} style={styles.card}>
-          <View style={styles.rankHead}>
+          <View
+            style={styles.rankHead}
+            accessibilityLabel={rankUnknown ? arenaText(lang, 'valueUnknown') : undefined}
+          >
             {/*
               Название ранга и число RP стоят в одной строке. Раньше ни одно из
               них не сжималось: длинное название («Бриллиант · III» при крупном
@@ -75,17 +80,17 @@ export function ArenaHubLive({ model }: { model: ArenaHubModel }) {
               minimumFontScale={0.75}
               style={[styles.rankName, { color: P.text }]}
             >
-              {arenaText(lang, TIER_COPY[model.rank.tierIndex])} · {ROMAN[model.rank.division]}
+              {rank === null ? '—' : `${arenaText(lang, TIER_COPY[rank.tierIndex])} · ${ROMAN[rank.division]}`}
             </Text>
-            <Text numberOfLines={1} style={[styles.rp, { color: P.muted }]}>{model.rank.rp}</Text>
+            <Text numberOfLines={1} style={[styles.rp, { color: P.muted }]}>{rank ? rank.rp : '—'}</Text>
           </View>
-          {model.rank.top ? (
+          {rank?.top ? (
             <Text style={[styles.meta, { color: P.gold }]}>{arenaText(lang, 'rankTop')}</Text>
           ) : (
             <>
-              <RankBar progress={model.rank.progress} reduceMotion={reduceMotion} />
+              <RankBar progress={rank?.progress ?? 0} reduceMotion={reduceMotion} />
               <Text style={[styles.meta, { color: P.muted }]}>
-                {arenaText(lang, 'rankProgress')}: {model.rank.rpToNextRank}
+                {arenaText(lang, 'rankProgress')}: {rank === null ? '—' : rank.rpToNextRank}
               </Text>
             </>
           )}

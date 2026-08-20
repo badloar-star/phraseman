@@ -9,6 +9,7 @@ import Constants from 'expo-constants';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser } from './cloud_sync';
 import { getVersionForServerGate } from './app_version';
+import { getStableId } from './stable_id';
 import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
 import type {
   ArenaMatch,
@@ -206,6 +207,8 @@ export type ArenaMatchFinishResponse = MatchMutationResponse & Readonly<{
   matchStars: number;
   starsDelta: number;
   settled: boolean;
+  /** Caller-only review rows returned immediately, before shared settlement. */
+  viewerReview?: readonly unknown[];
   /** Когда спросить о закрытии, если соперник ещё не сдал. Один раз, не опрос. */
   settleProbeAtMs?: number;
 }>;
@@ -638,12 +641,11 @@ export async function arenaFetchMatchHistory(limit = 30): Promise<readonly unkno
  * ровно дважды, максимум.
  */
 export async function arenaFetchMatchReview(matchId: string): Promise<readonly unknown[] | null> {
-  const authModule = await import('@react-native-firebase/auth');
-  const uid = authModule.default().currentUser?.uid;
-  if (!uid || !matchId) return null;
+  const stableUid = await getStableId();
+  if (!stableUid || !matchId) return null;
   const firestore = (await import('@react-native-firebase/firestore')).default;
   const ref = firestore()
-    .collection('users').doc(uid).collection('arena_v2_match_labs').doc(matchId);
+    .collection('users').doc(stableUid).collection('arena_v2_match_labs').doc(matchId);
   const read = async (): Promise<readonly unknown[] | null> => {
     const snapshot = await ref.get();
     if (!snapshot.exists) return null;

@@ -134,8 +134,8 @@ import {
   ARENA_LAB_TTL_MS,
   ARENA_MASTERY_SIGNATURE_TTL_MS,
   arenaApplyMasteryObservations,
+  arenaBuildViewerReviewSnapshot,
   arenaCanonicalTaskSignature,
-  arenaLabTask,
   arenaMasteryObservation,
   arenaRivalSeriesAfterGame,
   arenaRunEligibility,
@@ -1392,15 +1392,18 @@ async function settleMatch(
      * разбор.
      */
     {
-      const labTasks: Json[] = privateDoc.tasks.map((task, taskIndex) => ({ taskIndex,
-        ...arenaLabTask(task, privateDoc.answers[entry.uid]?.[String(taskIndex)] ?? {}) }));
-      tx.create(db.collection('users').doc(entry.uid).collection(ARENA_EXPANSION_COLLECTIONS.matchLabs)
+      const viewerLab = arenaBuildViewerReviewSnapshot({
+        matchId: String(match.matchId),
+        runKind: expansionRunKind,
+        createdAtMs: now,
+        tasks: privateDoc.tasks,
+        evidenceByTask: privateDoc.answers[entry.uid] ?? {},
+        summary: privateDoc.totals[entry.uid] ?? {},
+      });
+      tx.set(db.collection('users').doc(entry.uid).collection(ARENA_EXPANSION_COLLECTIONS.matchLabs)
         .doc(String(match.matchId)), {
-        schemaVersion: 'arena-match-lab.v1', matchId: String(match.matchId), runKind: expansionRunKind,
-        createdAtMs: now, tasks: labTasks,
-        retryTaskIndexes: labTasks.map((row, index) => row.correct === true ? -1 : index)
-          .filter((index) => index >= 0).slice(0, 3),
-        summary: privateDoc.totals[entry.uid], expireAt: timestamp(now + ARENA_LAB_TTL_MS),
+        ...viewerLab,
+        expireAt: timestamp(now + ARENA_LAB_TTL_MS),
       });
     }
     evidenceRows.forEach(({ ref, snap }) => {
@@ -2574,9 +2577,13 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
   const now = nowMs();
   const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
   const privateRef = db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId);
+  const viewerLabRef = db.collection('users').doc(who.stableUid)
+    .collection(ARENA_EXPANSION_COLLECTIONS.matchLabs).doc(matchId);
 
   const output = await db.runTransaction(async (tx) => {
-    const [matchSnap, privateSnap] = await Promise.all([tx.get(matchRef), tx.get(privateRef)]);
+    const [matchSnap, privateSnap, viewerLabSnap] = await Promise.all([
+      tx.get(matchRef), tx.get(privateRef), tx.get(viewerLabRef),
+    ]);
     if (!matchSnap.exists || !privateSnap.exists) throw new HttpsError('not-found', 'arena_match_missing');
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
@@ -2586,7 +2593,22 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     const stored = privateDoc.duelReports?.[who.stableUid];
     if (stored) {
       if (stored.reportId !== reportId) throw new HttpsError('already-exists', 'arena_report_conflict');
-      return { match, viewerSeat, report: stored, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid] };
+      const viewerLab = arenaBuildViewerReviewSnapshot({
+        matchId,
+        runKind: privateDoc.runKind ?? 'match',
+        createdAtMs: stored.receivedAtMs,
+        tasks: privateDoc.tasks,
+        evidenceByTask: privateDoc.answers[who.stableUid] ?? {},
+        summary: privateDoc.totals[who.stableUid] ?? {},
+      });
+      if (!viewerLabSnap.exists) tx.create(viewerLabRef, {
+        ...viewerLab,
+        expireAt: timestamp(stored.receivedAtMs + ARENA_LAB_TTL_MS),
+      });
+      return {
+        match, viewerSeat, report: stored, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid],
+        viewerReview: viewerLab.tasks,
+      };
     }
     if (match.state === 'accepting') throw new HttpsError('failed-precondition', 'arena_match_not_accepted');
     if (match.state === 'aborted') throw new HttpsError('failed-precondition', 'arena_match_aborted');
@@ -2624,6 +2646,14 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     arenaDuelStoreOutcomes(privateDoc, who.stableUid, reportId, outcomes,
       score.perTask.map((row) => row.stars), now, score.firstCount);
     refreshPublicTotals(match, privateDoc, privateDoc.tasks.length - 1);
+    const viewerLab = arenaBuildViewerReviewSnapshot({
+      matchId,
+      runKind: privateDoc.runKind ?? 'match',
+      createdAtMs: now,
+      tasks: privateDoc.tasks,
+      evidenceByTask: privateDoc.answers[who.stableUid] ?? {},
+      summary: privateDoc.totals[who.stableUid] ?? {},
+    });
 
     // Соперник-бот отчёт не присылает: его ходы уже выданы планом, поэтому он
     // сдаётся здесь же, из того же источника, что видел игрок.
@@ -2684,10 +2714,17 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
       await settleMatch(tx, matchRef, privateRef, match, privateDoc, now);
     } else {
       match.stateDeadlineAtMs = arenaSettleDeadlineMs(startedAtMs, privateDoc.tasks as { mode: ArenaTaskMode }[]);
+      if (!viewerLabSnap.exists) tx.create(viewerLabRef, {
+        ...viewerLab,
+        expireAt: timestamp(now + ARENA_LAB_TTL_MS),
+      });
       tx.set(matchRef, match);
       tx.set(privateRef, privateDoc);
     }
-    return { match, viewerSeat, report: entry, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid] };
+    return {
+      match, viewerSeat, report: entry, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid],
+      viewerReview: viewerLab.tasks,
+    };
   });
 
   const settled = output.match.state === 'settled';
@@ -2695,6 +2732,7 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     ...matchResponse(output.match, output.viewerSeat, output.viewerReward),
     matchStars: output.report.actualMatchStars,
     starsDelta: output.report.starsDelta,
+    viewerReview: output.viewerReview,
     settled,
     // Когда спросить о закрытии, если соперник ещё не сдал. Один вызов, не опрос.
     ...(settled ? {} : { settleProbeAtMs: arenaDuelSettleProbeAtMs(output.report.receivedAtMs) }),

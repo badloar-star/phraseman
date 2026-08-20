@@ -54,6 +54,22 @@ describe('Arena V2 backend source contract', () => {
     expect(publicReward).not.toContain('spinAwarded');
   });
 
+  it('returns and persists only the submitting viewer review before settlement', () => {
+    const finish = source.slice(
+      source.indexOf('export const arenaV2MatchFinish ='),
+      source.indexOf('export const arenaV2MatchSettle ='),
+    );
+    expect(finish).toContain('arenaBuildViewerReviewSnapshot({');
+    expect(finish).toContain('evidenceByTask: privateDoc.answers[who.stableUid] ?? {}');
+    expect(finish).toContain(".collection(ARENA_EXPANSION_COLLECTIONS.matchLabs).doc(matchId)");
+    expect(finish).toContain('viewerReview: viewerLab.tasks');
+    expect(finish).toContain('if (!viewerLabSnap.exists) tx.create(viewerLabRef');
+    expect(finish).not.toContain('privateDoc.answers[opponentStableUid]');
+    // Settlement may replace the reporter's early snapshot with the same
+    // canonical document; create would fail once the first reporter owns it.
+    expect(source).toContain('tx.set(db.collection(\'users\').doc(entry.uid).collection(ARENA_EXPANSION_COLLECTIONS.matchLabs)');
+  });
+
   /**
    * Инцидент 2026-08-16: конфиг стоял с minClientVersion '0.0.0' («подходит
    * любая сборка»), но версию клиента всё равно разбирали. Android присылал

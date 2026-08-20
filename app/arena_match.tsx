@@ -9,6 +9,7 @@ import { arenaClearMatch, arenaLoadMatch } from '../modules/arena/match_store';
 import type { ArenaLocalMatchState } from '../modules/arena/match_machine';
 import { arenaOutboxClassify } from '../modules/arena/result_outbox';
 import { arenaOutboxEnqueue, arenaOutboxRemove } from '../modules/arena/outbox_storage';
+import { arenaRememberScopedReview } from '../modules/arena/review_retry';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import { useLang } from '../components/LangContext';
@@ -61,6 +62,7 @@ import {
   rememberArenaViewerSeat,
   useArenaOpponentLive,
 } from './arena_client';
+import { getStableId, peekStableId } from './stable_id';
 
 /**
  * Входной план уже запечатан сервером и идемпотентен. React может снять
@@ -305,6 +307,16 @@ export default function ArenaMatchScreen() {
           matchId,
           report: arenaMatchReportToWire(report, plan.rulesVersion),
         });
+        if (Array.isArray(response.viewerReview)) {
+          const stableUid = peekStableId() ?? await getStableId().catch(() => null);
+          if (stableUid) arenaRememberScopedReview({
+            stableUid,
+            matchId,
+            rows: response.viewerReview,
+            wallNowMs: Date.now(),
+            store: AsyncStorage as unknown as ArenaKeyValueStore,
+          });
+        }
         await arenaOutboxRemove(AsyncStorage as unknown as ArenaKeyValueStore, matchId);
         await arenaClearMatch(AsyncStorage as unknown as ArenaKeyValueStore);
         // Соперник ещё не сдался: спрашиваем РОВНО ОДИН раз, когда истечёт

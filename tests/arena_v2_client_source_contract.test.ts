@@ -138,6 +138,24 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(results).toContain('privateReward ??');
   });
 
+  test('uses canonical stable identity and account-scoped immediate review cache', () => {
+    const match = fs.readFileSync(path.join(ROOT, 'app/arena_match.tsx'), 'utf8');
+    const review = fs.readFileSync(path.join(ROOT, 'app/arena_review.tsx'), 'utf8');
+    const fetchReview = client.slice(
+      client.indexOf('export async function arenaFetchMatchReview'),
+      client.indexOf('/** Host-only friend-duel handoff', client.indexOf('export async function arenaFetchMatchReview')),
+    );
+    expect(fetchReview).toContain('const stableUid = await getStableId()');
+    expect(fetchReview).toContain(".collection('users').doc(stableUid).collection('arena_v2_match_labs')");
+    expect(fetchReview).not.toContain('currentUser?.uid');
+    expect(client).toContain('viewerReview?: readonly unknown[]');
+    expect(match).toContain('response.viewerReview');
+    expect(match).toContain('arenaRememberScopedReview({');
+    expect(review).toContain('arenaPeekScopedReview(stableUid, matchId');
+    expect(review).toContain('arenaLoadScopedReview(warmStore, stableUid, matchId');
+    expect(review).not.toContain("arenaPeekWarm('review'");
+  });
+
   test('lets the owner consume an available Arena spin idempotently from the hub', () => {
     const hub = fs.readFileSync(path.join(ROOT, 'app/arena.tsx'), 'utf8');
     expect(hub).toContain('arenaV2SpinClaim(spinRequestIdRef.current)');

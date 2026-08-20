@@ -15,6 +15,7 @@ import {
   arenaTodayStars,
   arenaUtcWeekKey,
 } from './arena_expansion_core';
+import * as arenaExpansionRuntime from './arena_expansion_core';
 import type { TournamentTask } from './tournament_core';
 
 function task(overrides: Partial<TournamentTask> = {}): TournamentTask {
@@ -27,6 +28,27 @@ function task(overrides: Partial<TournamentTask> = {}): TournamentTask {
 }
 
 describe('Arena Expansion pure contracts', () => {
+  it('builds an idempotent viewer-only review snapshot without identity fields', () => {
+    const runtime = arenaExpansionRuntime as unknown as {
+      arenaBuildViewerReviewSnapshot(input: {
+        matchId: string; runKind: string; createdAtMs: number; tasks: readonly TournamentTask[];
+        evidenceByTask: Readonly<Record<string, Record<string, unknown>>>; summary: Record<string, unknown>;
+      }): Record<string, unknown> & { tasks: readonly Record<string, unknown>[] };
+    };
+    expect(typeof runtime.arenaBuildViewerReviewSnapshot).toBe('function');
+    const input = {
+      matchId: 'match-1', runKind: 'match', createdAtMs: 123,
+      tasks: [task()],
+      evidenceByTask: { '0': { correct: true, elapsedMs: 700, answerSnapshot: { selectedIndex: 0 } } },
+      summary: { correct: 1, submittedAnswers: 1 },
+    };
+    const first = runtime.arenaBuildViewerReviewSnapshot(input);
+    expect(runtime.arenaBuildViewerReviewSnapshot(input)).toEqual(first);
+    expect(first.tasks).toHaveLength(1);
+    expect(first.tasks[0]).toMatchObject({ taskIndex: 0, correct: true, elapsedMs: 700 });
+    const serialized = JSON.stringify(first);
+    expect(serialized).not.toMatch(/stableUid|authUid|opponent|participant/);
+  });
   it('creates four stable Today bands and lets a 20-minute run cross midnight', () => {
     expect([0, 5, 6, 11, 12, 17, 18, 23].map(arenaTodayBand)).toEqual([0, 0, 1, 1, 2, 2, 3, 3]);
     const start = Date.UTC(2026, 7, 11, 23, 55);

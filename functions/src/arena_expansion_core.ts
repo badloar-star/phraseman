@@ -277,6 +277,38 @@ export function arenaLabTask(task: TournamentTask, evidence: ArenaExpansionAnswe
   };
 }
 
+export function arenaBuildViewerReviewSnapshot(input: Readonly<{
+  matchId: string;
+  runKind: string;
+  createdAtMs: number;
+  tasks: readonly TournamentTask[];
+  evidenceByTask: Readonly<Record<string, ArenaExpansionAnswerEvidence>>;
+  summary: Readonly<Record<string, unknown>>;
+}>): Readonly<{
+  schemaVersion: 'arena-match-lab.v1';
+  matchId: string;
+  runKind: string;
+  createdAtMs: number;
+  tasks: readonly Record<string, unknown>[];
+  retryTaskIndexes: readonly number[];
+  summary: Readonly<Record<string, unknown>>;
+}> {
+  const tasks: Record<string, unknown>[] = input.tasks.map((task, taskIndex) => ({
+    taskIndex,
+    ...arenaLabTask(task, input.evidenceByTask[String(taskIndex)] ?? {}),
+  }));
+  return {
+    schemaVersion: 'arena-match-lab.v1',
+    matchId: input.matchId,
+    runKind: input.runKind,
+    createdAtMs: Math.max(0, Math.trunc(input.createdAtMs)),
+    tasks,
+    retryTaskIndexes: tasks.map((row, index) => row.correct === true ? -1 : index)
+      .filter((index) => index >= 0).slice(0, 3),
+    summary: input.summary,
+  };
+}
+
 function difficultyWeight(difficulty: number): number {
   return difficulty <= 1 ? 0.8 : difficulty >= 3 ? 1.2 : 1;
 }

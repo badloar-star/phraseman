@@ -105,6 +105,8 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
     await assertFails(updateDoc(doc(owner, 'arena_v2_queue', 'stable-a'), { status: 'matched' }));
     await assertFails(updateDoc(doc(owner, 'arena_v2_matches', 'match-1'), { state: 'settled' }));
     await assertFails(updateDoc(doc(owner, 'arena_v2_profiles', 'stable-a'), { rank: 23 }));
+    await assertFails(setDoc(doc(owner, 'users/stable-a/arena_v2_match_labs', 'match-2'), { tasks: [] }));
+    await assertFails(updateDoc(doc(owner, 'users/stable-a/arena_v2_match_labs', 'match-1'), { tasks: [] }));
     await assertFails(setDoc(doc(owner, 'arena_v2_invites', 'forged'), { toAuthUid: 'auth-b' }));
     await assertFails(setDoc(doc(owner, 'arena_v2_pair_limits', 'forged'), { count: 0 }));
   });

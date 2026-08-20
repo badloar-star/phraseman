@@ -19,10 +19,15 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { arenaCachedLoadView, arenaLoadState } from '../modules/arena/load_state';
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { arenaLoadWarm, arenaPeekWarm, arenaRememberWarm } from '../modules/arena/warm_cache';
+import {
+  arenaLoadScopedReview,
+  arenaPeekScopedReview,
+  arenaRememberScopedReview,
+} from '../modules/arena/review_retry';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { arenaFetchMatchReview } from './arena_client';
 import { safeRouterBack } from './navigation_back';
+import { getStableId, peekStableId } from './stable_id';
 
 /**
  * Разбор матча.
@@ -35,18 +40,6 @@ import { safeRouterBack } from './navigation_back';
  */
 const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
 
-/**
- * Снимок разбора хранится ВМЕСТЕ с идентификатором матча и берётся только для
- * него. Без этой проверки игрок открыл бы разбор нового матча и увидел
- * прошлый — это хуже пустого экрана: цифры выглядят настоящими.
- */
-function readReviewWarm(value: unknown, matchId: string): readonly unknown[] | null {
-  if (!value || typeof value !== 'object') return null;
-  if ((value as { matchId?: unknown }).matchId !== matchId) return null;
-  const rows = (value as { rows?: unknown }).rows;
-  return Array.isArray(rows) ? rows as readonly unknown[] : null;
-}
-
 export default function ArenaReviewScreen() {
   const router = useRouter();
   const { lang } = useLang();
@@ -55,29 +48,34 @@ export default function ArenaReviewScreen() {
   const reduceMotion = useReduceMotion();
   const params = useLocalSearchParams<{ matchId?: string }>();
   const matchId = typeof params.matchId === 'string' ? params.matchId : '';
+  const [stableUid, setStableUid] = useState<string | null>(() => peekStableId());
   const warmRows = useMemo(
-    () => readReviewWarm(arenaPeekWarm('review', Date.now()), matchId),
-    [matchId],
+    () => stableUid ? arenaPeekScopedReview(stableUid, matchId, Date.now()) : null,
+    [matchId, stableUid],
   );
   const [raw, setRaw] = useState<readonly unknown[] | null>(warmRows);
   const [loaded, setLoaded] = useState(warmRows !== null);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    if (!active || !matchId) return;
+    if (stableUid) return;
+    void getStableId().then(setStableUid).catch(() => setLoaded(true));
+  }, [stableUid]);
+
+  useEffect(() => {
+    if (!active || !matchId || !stableUid) return;
     void arenaFetchMatchReview(matchId)
       .then((rows) => {
         setRaw(rows);
         setFailed(false);
-        arenaRememberWarm({ key: 'review', value: { matchId, rows }, wallNowMs: Date.now(), store: warmStore });
+        if (rows) arenaRememberScopedReview({ stableUid, matchId, rows, wallNowMs: Date.now(), store: warmStore });
       })
       .catch(() => setFailed(true))
       .finally(() => setLoaded(true));
-    void arenaLoadWarm(warmStore, 'review', Date.now()).then((stored) => {
-      const rows = readReviewWarm(stored, matchId);
+    void arenaLoadScopedReview(warmStore, stableUid, matchId, Date.now()).then((rows) => {
       if (rows) setRaw((current) => current ?? rows);
     }).catch(() => {});
-  }, [active, matchId]);
+  }, [active, matchId, stableUid]);
 
   const rows = useMemo(() => arenaReviewRows(raw ?? []), [raw]);
   const summary = useMemo(() => arenaReviewSummary(rows), [rows]);

@@ -11,7 +11,7 @@ const selectorItems = (dna: AvatarDNA): readonly [string, string][] => [
 const hasOnly = (values: readonly string[], allowed: readonly string[]): boolean => values.every((value) => allowed.includes(value));
 const validOptionalSelectors = (dna: AvatarDNA): boolean =>
   dna.face.skinDetailIds.length === 0 && dna.face.makeupIds.length === 0 && dna.face.facialHairId === null
-  && dna.wearables.maskId === null && dna.wearables.eyewearId === null && dna.wearables.earAccessoryId === null && dna.wearables.neckAccessoryId === null
+  && (dna.wearables.headwearId === null || dna.wearables.headwearId === 'headwear.assassin_hood.01') && dna.wearables.maskId === null && dna.wearables.eyewearId === null && dna.wearables.earAccessoryId === null && dna.wearables.neckAccessoryId === null
   && dna.scene.auraId === null && dna.scene.frameId === null && dna.scene.foregroundFxId === null
   && hasOnly(dna.face.skinDetailIds, []) && hasOnly(dna.face.makeupIds, []);
 

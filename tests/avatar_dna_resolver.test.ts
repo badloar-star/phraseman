@@ -68,6 +68,11 @@ describe('Avatar DNA resolver', () => {
     expect(() => resolveAvatarDNA(chosen, avatarCatalog)).toThrow('avatar_catalog_invalid'); expect(chosen).toEqual(before);
   });
 
+  it.each(['hair_wavy_01', 'face_01'])('rejects non-headwear %s in headwear selector', (headwearId) => {
+    const chosen: any = JSON.parse(JSON.stringify(starterAvatarDNA('starter_warm_01'))); chosen.wearables.headwearId = headwearId; const before = JSON.parse(JSON.stringify(chosen));
+    expect(() => resolveAvatarDNA(chosen, avatarCatalog)).toThrow('avatar_catalog_invalid'); expect(chosen).toEqual(before);
+  });
+
   it('rejects a cyclic untrusted catalog and keeps parsed catalog immutable', () => {
     const cyclic = JSON.parse(JSON.stringify(require('../config/avatar-dna/catalog.v1.json')));
     cyclic.items[0].conflicts = [cyclic.items[1].id];

@@ -127,6 +127,11 @@ describe('Avatar DNA catalog contract', () => {
     expect(() => parseAvatarCatalog(hostile)).toThrow('avatar_catalog_invalid');
   });
 
+  it('does not access hostile error prototypes while normalizing', () => {
+    const hostile = new Proxy({}, { ownKeys: () => { throw new Proxy({}, { getPrototypeOf: () => { throw new Error('prototype-leak'); } }); } });
+    expect(() => parseAvatarCatalog(hostile)).toThrow('avatar_catalog_invalid');
+  });
+
   it('normalizes hostile exported-validator failures outside Jest VM', () => {
     const validator = path.join(root, 'scripts/avatar-dna/validate_catalog.mjs').replaceAll('\\', '/');
     const code = `import { pathToFileURL } from 'node:url'; import { validateCatalog } from '${pathToFileURL(validator).href}'; const hostile = new Proxy({}, { get(){ throw new Error('hostile-detail') } }); try { await validateCatalog(hostile, {}, { fixture: true }); process.exit(1); } catch (error) { process.exit(error instanceof Error && error.message.includes('avatar_catalog_invalid') && !error.message.includes('hostile-detail') ? 0 : 2); }`;

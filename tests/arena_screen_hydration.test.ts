@@ -15,7 +15,7 @@ const validExpansion = {
   ok: true,
   availability: { today: true, lab: true, ghost: true, rival: true, mastery: true, partner: true, store: true },
   wallet: { walletStars: 20 },
-  today: { completedTasks: 1, state: 'available' },
+  today: { completedTasks: 10, state: 'available' },
 };
 
 describe('Arena hub hydration safety', () => {
@@ -31,6 +31,7 @@ describe('Arena hub hydration safety', () => {
     expect(arenaWarmExpansion({ ...validExpansion, wallet: {} })).toBeNull();
     expect(arenaWarmExpansion({ ...validExpansion, wallet: { walletStars: -1 } })).toBeNull();
     expect(arenaWarmExpansion({ ...validExpansion, today: { completedTasks: 0, state: 'garbage' } })).toBeNull();
+    expect(arenaWarmExpansion({ ...validExpansion, today: { completedTasks: 11, state: 'available' } })).toBeNull();
     expect(arenaWarmExpansion(validExpansion)?.wallet.walletStars).toBe(20);
   });
 

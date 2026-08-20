@@ -33,7 +33,7 @@ export function arenaWarmExpansion(value: unknown): ArenaExpansionHome | null {
   if (!record(value) || value.ok !== true) return null;
   if (!booleans(value.availability, ['today', 'lab', 'ghost', 'rival', 'mastery', 'partner', 'store'])) return null;
   if (!record(value.wallet) || !count(value.wallet.walletStars)) return null;
-  if (!record(value.today) || !count(value.today.completedTasks)
+  if (!record(value.today) || !count(value.today.completedTasks) || value.today.completedTasks > 10
     || !['available', 'in_progress', 'complete', 'expired', 'unavailable'].includes(String(value.today.state))) return null;
   return value as ArenaExpansionHome;
 }

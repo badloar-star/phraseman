@@ -67,6 +67,11 @@ export interface LocalizedSource {
   readonly ru: string;
   readonly uk: string;
   readonly es: string;
+  readonly 'pt-BR'?: string;
+  readonly vi?: string;
+  readonly id?: string;
+  readonly tr?: string;
+  readonly pl?: string;
   /** Остальные локали — только когда переводчик реально их написал. */
   readonly rest?: Partial<Record<LearningV2InterfaceLocale, string>>;
 }
@@ -80,6 +85,11 @@ export function expandLocalized(
     ru: source.ru,
     uk: source.uk,
     es: source.es,
+    'pt-BR': source['pt-BR'],
+    vi: source.vi,
+    id: source.id,
+    tr: source.tr,
+    pl: source.pl,
     ...(source.rest ?? {}),
   };
   return Object.fromEntries(
@@ -109,6 +119,11 @@ export interface LocalizedIntroRunsSource {
   readonly ru: readonly LearningV2IntroTextRunV1[];
   readonly uk: readonly LearningV2IntroTextRunV1[];
   readonly es: readonly LearningV2IntroTextRunV1[];
+  readonly 'pt-BR'?: readonly LearningV2IntroTextRunV1[];
+  readonly vi?: readonly LearningV2IntroTextRunV1[];
+  readonly id?: readonly LearningV2IntroTextRunV1[];
+  readonly tr?: readonly LearningV2IntroTextRunV1[];
+  readonly pl?: readonly LearningV2IntroTextRunV1[];
   readonly rest?: Partial<
     Record<LearningV2InterfaceLocale, readonly LearningV2IntroTextRunV1[]>
   >;
@@ -123,6 +138,11 @@ function expandLocalizedIntroRuns(
     ru: source.ru,
     uk: source.uk,
     es: source.es,
+    'pt-BR': source['pt-BR'],
+    vi: source.vi,
+    id: source.id,
+    tr: source.tr,
+    pl: source.pl,
     ...(source.rest ?? {}),
   };
   return Object.fromEntries(
@@ -225,41 +245,89 @@ function cardCopy(
     FAMILY_INSTRUCTION[family] ?? FAMILY_INSTRUCTION.phrase_builder;
   // зачем: подсказка — это объяснение фразы из источника, а не «попробуйте ещё».
   // Владелец требует богатый разбор на каждой карточке.
-  const hint: LocalizedSource = {
+  const localized = phrase.localizedDetails;
+  const localeCopy = (
+    select: (details: NonNullable<EpisodeSourcePhrase['localizedDetails']>['ru']) => string,
+    legacy: LocalizedSource,
+  ): LocalizedSource =>
+    localized
+      ? {
+          ru: select(localized.ru),
+          uk: select(localized.uk),
+          es: select(localized.es),
+          rest: {
+            'pt-BR': select(localized['pt-BR']),
+            vi: select(localized.vi),
+            id: select(localized.id),
+            tr: select(localized.tr),
+            pl: select(localized.pl),
+          },
+        }
+      : legacy;
+  const hint = localeCopy((details) => details.explanation, {
     ru: phrase.explanation,
     uk: phrase.explanation,
     es: phrase.explanation,
-  };
+  });
   // Разбор ошибок: почему каждый неверный вариант неверен.
-  const errorLines = phrase.words
+  const legacyErrorLines = phrase.words
     .flatMap((word) =>
       word.distractors.map((entry) => `${entry.value} — ${entry.why}`),
     )
     .slice(0, 6)
     .join(' ');
   return {
-    instructionByLocale: expandLocalized(instruction),
+    instructionByLocale: expandLocalized(
+      localeCopy(
+        (details) => details.words[0]?.prompt ?? '',
+        instruction,
+      ),
+    ),
     hintByLocale: expandLocalized(hint),
-    successMessageByLocale: expandLocalized({
-      ru: `Верно: ${phrase.english}.`,
-      uk: `Правильно: ${phrase.english}.`,
-      es: `Correcto: ${phrase.english}.`,
-    }),
-    retryMessageByLocale: expandLocalized({
-      ru: 'Почти. Посмотрите на подсказку и попробуйте ещё раз.',
-      uk: 'Майже. Подивіться підказку і спробуйте ще раз.',
-      es: 'Casi. Mira la pista e inténtalo otra vez.',
-    }),
-    errorExplanationByLocale: expandLocalized({
-      ru: errorLines,
-      uk: errorLines,
-      es: errorLines,
-    }),
-    accessibilityLabelByLocale: expandLocalized({
-      ru: `Задание: ${phrase.english}. ${phrase.russian}.`,
-      uk: `Завдання: ${phrase.english}. ${phrase.russian}.`,
-      es: `Tarea: ${phrase.english}. ${phrase.russian}.`,
-    }),
+    successMessageByLocale: expandLocalized(
+      localeCopy(
+        (details) => `${phrase.english}. ${details.explanation}`,
+        {
+          ru: `Верно: ${phrase.english}.`,
+          uk: `Правильно: ${phrase.english}.`,
+          es: `Correcto: ${phrase.english}.`,
+        },
+      ),
+    ),
+    retryMessageByLocale: expandLocalized(
+      localeCopy(
+        (details) =>
+          details.distractors[0]?.reason ?? details.explanation,
+        {
+          ru: 'Почти. Посмотрите на подсказку и попробуйте ещё раз.',
+          uk: 'Майже. Подивіться підказку і спробуйте ще раз.',
+          es: 'Casi. Mira la pista e inténtalo otra vez.',
+        },
+      ),
+    ),
+    errorExplanationByLocale: expandLocalized(
+      localeCopy(
+        (details) =>
+          details.distractors
+            .map((entry) => `${entry.value} — ${entry.reason}`)
+            .join(' '),
+        {
+          ru: legacyErrorLines,
+          uk: legacyErrorLines,
+          es: legacyErrorLines,
+        },
+      ),
+    ),
+    accessibilityLabelByLocale: expandLocalized(
+      localeCopy(
+        (details) => `${phrase.english}. ${details.meaning}.`,
+        {
+          ru: `Задание: ${phrase.english}. ${phrase.russian}.`,
+          uk: `Завдання: ${phrase.english}. ${phrase.russian}.`,
+          es: `Tarea: ${phrase.english}. ${phrase.russian}.`,
+        },
+      ),
+    ),
   };
 }
 
@@ -337,9 +405,10 @@ export function buildSessionShardFromSource(
     const contentItemId = `content-${episodeId}-s${pad(sessionOrdinal)}-${pad(slot)}`;
     const targetText = phrase.english;
     const meaningFor = (locale: LearningV2InterfaceLocale): string =>
-      locale === 'ru'
+      phrase.localizedDetails?.[locale]?.meaning ??
+      (locale === 'ru'
         ? phrase.russian
-        : `${UNTRANSLATED_MARKER}${phrase.russian}`;
+        : `${UNTRANSLATED_MARKER}${phrase.russian}`);
     const contentItem = {
       schemaVersion: 'v2-content-item.v1' as const,
       contentItemId,

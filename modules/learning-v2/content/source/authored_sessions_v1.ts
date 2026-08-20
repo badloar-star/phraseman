@@ -21,6 +21,8 @@ import {
   type SessionSource,
 } from './session_shard_from_source_v1';
 import type { LearningV2GeneratedSessionShardV1 } from '../generator_session_shard';
+import { assertLearningV2SessionContentQuality } from './learning_content_quality_gate_v1';
+import { LEARNING_V2_CONTENT_QUALITY_REVIEW_RECEIPTS_V1 } from './learning_content_quality_review_receipts_v1';
 
 /**
  * Все написанные сессии урока 1, по порядку прохождения.
@@ -50,9 +52,13 @@ export const AUTHORED_EPISODE_01_SESSIONS: readonly SessionSource[] =
  * Считается лениво и на месте — файлы статические, обращений к сети нет.
  */
 export function authoredLearningV2SessionShards(): readonly LearningV2GeneratedSessionShardV1[] {
-  return AUTHORED_EPISODE_01_SESSIONS.map((source) =>
-    buildSessionShardFromSource(source),
-  );
+  return AUTHORED_EPISODE_01_SESSIONS.map((source) => {
+    assertLearningV2SessionContentQuality(
+      source,
+      LEARNING_V2_CONTENT_QUALITY_REVIEW_RECEIPTS_V1[source.requiredSessionOrdinal],
+    );
+    return buildSessionShardFromSource(source);
+  });
 }
 
 /** Сколько сессий урока написано на самом деле — для честного отчёта о готовности. */

@@ -11,7 +11,8 @@
 // Что НЕ проверяют существующие тесты: они смотрят на фразы и на карту сессий
 // по отдельности. Связь «интро ↔ фразы» не проверял никто.
 //
-// Полные правила: docs/v2/LESSON_DESIGN_RULES.ru.md, раздел 7.
+// Полные правила: docs/v2/LESSON_DESIGN_RULES.ru.md, раздел 7, и
+// docs/v2/LEARNING_CONTENT_STYLE_BIBLE.ru.md.
 import { AUTHORED_EPISODE_01_SESSIONS } from '../modules/learning-v2/content/source/authored_sessions_v1';
 
 const REQUIRED_LOCALES = Object.freeze([
@@ -26,6 +27,54 @@ const REQUIRED_LOCALES = Object.freeze([
 ]);
 
 const ALLOWED_KINDS = Object.freeze(['concept', 'formula', 'trap', 'tip']);
+
+const META_NARRATION_BY_LOCALE: Readonly<Record<string, readonly RegExp[]>> =
+  Object.freeze({
+    ru: [
+      /сесси|заняти|урок|глав[аеуы]|курс[аеуы]|экран|карточк/iu,
+      /(?:предыдущ|следующ)\w*\s+(?:сесси|заняти|урок|част|экран)|позже\s+(?:узна|разбер|верн)|уже\s+(?:учил|проход)/iu,
+    ],
+    uk: [
+      /сесі|занят|урок|глав[іи]|курс[іи]|екран|картк/iu,
+      /попередн|наступн|пізніше\s+(?:дізна|розбер|поверн)|вже\s+(?:вчил|проход)/iu,
+    ],
+    es: [
+      /\b(?:sesión|lección|capítulo|curso|pantalla|tarjeta)s?\b/iu,
+      /\b(?:sesión|lección)\s+(?:anterior|siguiente)\b/iu,
+    ],
+    'pt-BR': [
+      /\b(?:sessão|lição|capítulo|curso|tela|cartão|cartões)\b/iu,
+      /\b(?:sessão|lição)\s+(?:anterior|seguinte)\b/iu,
+    ],
+    vi: [
+      /(?:buổi\s+học|bài\s+học|chương\s+học|khóa\s+học|màn\s+hình|thẻ\s+học)/iu,
+      /(?:buổi|bài)\s+(?:trước|sau|tiếp\s+theo)/iu,
+    ],
+    id: [
+      /\b(?:sesi|pelajaran|bab|kursus|layar|kartu)\b/iu,
+      /\b(?:sesi|pelajaran)\s+(?:sebelumnya|berikutnya)\b/iu,
+    ],
+    tr: [
+      /\b(?:oturum|ders|kurs|ekran|kart)(?:u|ı|i|ü|lar|ler)?\b/iu,
+      /\b(?:önceki|sonraki|gelecek)\s+(?:oturum|ders|bölüm)\b/iu,
+    ],
+    pl: [
+      /\b(?:sesja|lekcja|rozdział|kurs|ekran|karta)(?:ch|mi|u|y|ę|ą)?\b/iu,
+      /\b(?:poprzednia|następna|przyszła)\s+(?:sesja|lekcja)\b/iu,
+    ],
+  });
+
+const RUSSIAN_LANGUAGE_REFERENCE_BY_LOCALE: Readonly<
+  Record<string, RegExp>
+> = Object.freeze({
+  uk: /російськ/iu,
+  es: /\brus[oa]s?\b/iu,
+  'pt-BR': /\bruss[oa]s?\b/iu,
+  vi: /tiếng\s+nga/iu,
+  id: /bahasa\s+rusia/iu,
+  tr: /rusça/iu,
+  pl: /rosyjsk/iu,
+});
 
 describe('интро-экраны сессии', () => {
   test('ровно три страницы в каждой сессии', () => {
@@ -140,7 +189,7 @@ describe('интро-экраны сессии', () => {
         const where = `сессия ${session.requiredSessionOrdinal}, страница ${index + 1}`;
         const check = (name: string, value: unknown): void => {
           if (typeof value !== 'object' || value === null) return;
-          const record = value as Record<string, unknown>;
+          const record = value as unknown as Record<string, unknown>;
           for (const locale of CYRILLIC_FORBIDDEN) {
             const text = String(record[locale] ?? '');
             if (/[Ѐ-ӿ]/.test(text)) {
@@ -157,6 +206,34 @@ describe('интро-экраны сессии', () => {
         check('тело', page.body);
         check('текст вопроса', page.question?.prompt);
         check('разбор ответа', page.question?.explanation);
+      });
+    }
+    expect(problems.join('\n')).toBe('');
+  });
+
+  test('интро учит сразу и не рассказывает о месте материала в программе', () => {
+    const problems: string[] = [];
+    for (const session of AUTHORED_EPISODE_01_SESSIONS) {
+      session.introPages.forEach((page, index) => {
+        const where = `сессия ${session.requiredSessionOrdinal}, страница ${index + 1}`;
+        const fields = [page.title, page.body, page.question?.prompt, page.question?.explanation];
+        for (const value of fields) {
+          if (typeof value !== 'object' || value === null) continue;
+          const record = value as unknown as Record<string, unknown>;
+          for (const locale of REQUIRED_LOCALES) {
+            const text = String(record[locale] ?? '');
+            const metaPattern = META_NARRATION_BY_LOCALE[locale]?.find((pattern) =>
+              pattern.test(text),
+            );
+            if (metaPattern) {
+              problems.push(`${where} · ${locale}: мета-рассказ «${text}»`);
+            }
+            const russianReference = RUSSIAN_LANGUAGE_REFERENCE_BY_LOCALE[locale];
+            if (russianReference?.test(text)) {
+              problems.push(`${where} · ${locale}: объяснение через русский язык`);
+            }
+          }
+        }
       });
     }
     expect(problems.join('\n')).toBe('');

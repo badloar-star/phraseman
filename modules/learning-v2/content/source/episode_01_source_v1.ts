@@ -48,8 +48,35 @@ export interface EpisodeSourcePhrase {
    */
   readonly explanation: string;
   readonly words: readonly EpisodeSourceWord[];
+  /**
+   * Полные самостоятельные learner-facing версии. Legacy sources могут пока
+   * не иметь этого поля; approved Learning V2 content обязан иметь все восемь.
+   */
+  readonly localizedDetails?: Readonly<
+    Record<
+      'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl',
+      EpisodeSourcePhraseLocalizedDetails
+    >
+  >;
   /** Грамматические признаки для валидатора и покрытия целей. */
   readonly features: readonly string[];
+}
+
+export interface EpisodeSourcePhraseLocalizedDetails {
+  readonly meaning: string;
+  readonly explanation: string;
+  readonly distractors: readonly {
+    readonly value: string;
+    readonly reason: string;
+  }[];
+  readonly words: readonly {
+    readonly correct: string;
+    readonly prompt: string;
+    readonly distractors: readonly {
+      readonly value: string;
+      readonly reason: string;
+    }[];
+  }[];
 }
 
 /**

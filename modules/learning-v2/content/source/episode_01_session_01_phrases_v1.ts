@@ -2,5 +2,5 @@
 // This is the exact phrase slice used by the approved session source.
 import { APPROVED_FIRST_TEN_PHRASE_SOURCES_V2 } from './approved_first_ten_source_v2';
 
-export const EPISODE_01_SESSION_08_PHRASES =
-  APPROVED_FIRST_TEN_PHRASE_SOURCES_V2[7];
+export const EPISODE_01_SESSION_01_PHRASES =
+  APPROVED_FIRST_TEN_PHRASE_SOURCES_V2[0];

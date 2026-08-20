@@ -22,6 +22,18 @@ describe('Arena hub hydration presentation', () => {
     expect(arenaHubCached(current, { version: 'warm' })).toBe(current);
   });
 
+  it('does not replace an installed cache with a newer cache', () => {
+    const cached = arenaHubCached(arenaHubNeutral<string>(), 'first cache');
+
+    expect(arenaHubCached(cached, 'newer cache')).toBe(cached);
+  });
+
+  it('does not install a null cache', () => {
+    const neutral = arenaHubNeutral<string>();
+
+    expect(arenaHubCached(neutral, null)).toBe(neutral);
+  });
+
   it('marks a loaded value current', () => {
     expect(arenaHubCurrent(42)).toEqual({ source: 'current', value: 42 });
   });
@@ -51,5 +63,20 @@ describe('Arena hub remote failure presentation', () => {
       code: 'functions/failed-precondition',
       message: 'arena_disabled',
     })).toEqual({ kind: 'server', code: 'arena_disabled' });
+  });
+
+  it('keeps primitive string transport diagnostics', () => {
+    expect(arenaHubFailure('Network timeout')).toEqual({
+      kind: 'offline',
+      code: 'Network timeout',
+    });
+  });
+
+  it('limits diagnostics to the first 80 characters', () => {
+    const message = 'x'.repeat(81);
+    const failure = arenaHubFailure(message);
+
+    expect(failure.code).toBe(message.slice(0, 80));
+    expect(failure.code).toHaveLength(80);
   });
 });

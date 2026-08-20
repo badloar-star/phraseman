@@ -1,14 +1,14 @@
 export type ArenaHubSource = 'neutral' | 'cached' | 'current';
 
-export type ArenaHubSlot<T> = {
+export type ArenaHubSlot<T> = Readonly<{
   source: ArenaHubSource;
   value: T | null;
-};
+}>;
 
-export type ArenaHubFailure = {
+export type ArenaHubFailure = Readonly<{
   kind: 'offline' | 'server';
   code: string;
-};
+}>;
 
 const ARENA_HUB_FAILURE_LIMIT = 80;
 const TRANSPORT_FAILURE = /unavailable|network|offline|failed to fetch|timeout|deadline-exceeded|econn/i;
@@ -28,7 +28,8 @@ export function arenaHubCurrent<T>(value: T): ArenaHubSlot<T> {
 
 export function arenaHubFailure(error: unknown): ArenaHubFailure {
   const details = error && typeof error === 'object' ? error as Record<string, unknown> : {};
-  const message = typeof details.message === 'string' ? details.message.trim() : '';
+  const rawError = typeof error === 'string' ? error.trim() : '';
+  const message = typeof details.message === 'string' ? details.message.trim() : rawError;
   const transportCode = typeof details.code === 'string' ? details.code.trim() : '';
   const code = (message || transportCode || 'arena_request_failed').slice(0, ARENA_HUB_FAILURE_LIMIT);
 

@@ -94,8 +94,9 @@ describe('Arena live channel matches the deployed rules', () => {
   });
 
   test('версия схемы в правилах совпадает с той, что пишет клиент', () => {
-    expect(rules).toContain("request.resource.data.schemaVersion == 'arena-live.v1'");
-    expect(read('modules/arena/live_channel.ts')).toContain("ARENA_LIVE_SCHEMA_VERSION = 'arena-live.v1'");
+    expect(rules).toContain("request.resource.data.schemaVersion in ['arena-live.v1', 'arena-live.v2']");
+    expect(read('modules/arena/live_channel.ts')).toContain("ARENA_LIVE_SCHEMA_VERSION = 'arena-live.v2'");
+    expect(read('modules/arena/live_channel.ts')).toContain("ARENA_LIVE_LEGACY_SCHEMA_VERSION = 'arena-live.v1'");
   });
 
   test('потолок отметок в правилах не ниже, чем заданий в матче', () => {

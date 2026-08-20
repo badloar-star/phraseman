@@ -95,6 +95,19 @@ describe('Arena V2 listener and callable source contract', () => {
     }
   });
 
+  test('live v2 exposes only the approved display score, never identity, answers or economy', () => {
+    const liveModel = fs.readFileSync(path.join(ROOT, 'modules/arena/live_channel.ts'), 'utf8');
+    const publisher = client.match(
+      /export async function arenaPublishLiveTicks[\s\S]*?(?=\/\*\*\s*\n \* Расписки матчей)/,
+    )?.[0] ?? '';
+    expect(liveModel).toContain('matchStars?: number;');
+    expect(publisher).toContain('{ matchStars: tick.matchStars }');
+    expect(publisher).not.toContain('firstAttemptPairs');
+    for (const forbidden of ['answer', 'stableUid', 'authUid', 'balance', 'seasonStars', 'starsEarned', 'isBot']) {
+      expect(publisher).not.toMatch(new RegExp(`\\b${forbidden}\\s*:`));
+    }
+  });
+
   test('keeps solved speed-match pairs visibly locked from the server verdict', () => {
     const question = fs.readFileSync(path.join(ROOT, 'components/arena/ArenaQuestion.tsx'), 'utf8');
     expect(question).toContain('Promise<boolean>');
@@ -140,7 +153,7 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(copy).not.toContain('Тренировочный соперник');
     expect(copy).toContain('Без рейтинга и наград');
     const matchSource = fs.readFileSync(path.join(ROOT, 'app/arena_match.tsx'), 'utf8');
-    expect(matchSource).toContain('<ArenaPlayers players={players} active={active} />');
+    expect(matchSource).toContain('<ArenaPlayers players={players} active={active} animateScore />');
     expect(matchSource).not.toContain('isBot');
     expect(matchSource).not.toContain("arenaText(lang, 'bot')");
     expect(fs.readFileSync(path.join(ROOT, 'app/arena_friend_duel.tsx'), 'utf8')).toContain("arenaText(lang, 'friendHint')");

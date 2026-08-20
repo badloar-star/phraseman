@@ -61,7 +61,7 @@ Flattening to 40 is **+17.6 %** for the bottom band and **−16.7 %** for the to
 | R12 | RP softener | **Rejected.** `ARENA_V2_RP_TABLE` is exactly zero-sum; +20/−12 injects 8 RP per close match into a ladder where `division = floor(rp/100)` drives content difficulty that no longer pays more stars. "A loss is not wasted" is delivered by star + XP credit, which decision 1 already guarantees. | Game-design's `-12` softener. |
 | R13 | Bot retune | **`median = ANSWER_MS × 0.55`, flat. Drop the division term from the median;** keep division in `baseAccuracy`. Clamp `[800, ANSWER_MS − 400]`. | Division-scaled median: quick pays XP `∝ matchStars`, so a faster bot at high division pays a stronger player *less* XP. Inversion. |
 | R14 | Bot concealment | **State the threat model honestly: decision 10 protects against the player in the UI, not against a proxy.** Once tasks + answers ship to the device, wire-level concealment is unachievable. Do the three things that work: delete all 4 live disclosure sites, ship the tick array under one neutral name in every payload, and **equalise settle latency with a fixed minimum dwell** so "results appear instantly ⟺ bot" stops being a signal. | "`opponentTimeline: null` for humans is indistinguishable" — non-null ⟺ bot is a perfect classifier. |
-| R15 | Live opponent signal | **Ship RTDB in stage 2** for the tick only (~30 lines, one `set` per answer, one `onChildAdded`). Zero Firestore cost. | Deferring it: killing the match listener while RTDB is stage 3 leaves human-vs-human with **no** opponent signal at all — decision 9 satisfied only for bots, in the mode where bots live. That is also a new bot tell. |
+| R15 | Live opponent signal | **Use the bounded Firestore seat channel.** `arena-live.v2` adds optional display-only cumulative `matchStars`; v1/v2 coexist during rollout and the `taskCount + 1` write ceiling is unchanged. | Deferring the live channel leaves human-vs-human with **no** opponent signal at all — decision 9 satisfied only for scripted ticks, which becomes a bot tell. |
 | R16 | Ranked + offline | **Ranked requires connectivity to START.** Offline completion is absolute for quick/friend. Ranked mid-match disconnection completes locally and uploads late; the match settles on the deadline; the late report banks stars/XP but never reopens outcome or RP. | "24 h late window for ranked" — it is dead code as written (`settleMatch` writes receipts for *both* seats, so the absent player's `tx.create` gate always throws by the time they reconnect) and it lets a player farm a frozen opponent. |
 | R17 | Idempotency key | **`(stableUid, matchId)`.** Delete the client-minted `reportId` and `finishToken` entirely. | Client-minted keys: they break on backup-restore, collide with the existing per-user receipt subcollection, and reinvent a stronger primitive that already ships. |
 | R18 | Outbox retry | **Failure-classed.** `offline`/`transient` never increment attempts and retry until the 7-day match TTL; `gated` holds indefinitely with a visible "update the app" prompt; `rejected` drops after 1 attempt. Cap eviction drops the **oldest**. | "dead after 5 attempts" ≈ 6.5 minutes — it deletes the result of a match played on a plane. Decision 6 inverted. |
@@ -391,10 +391,14 @@ export type ArenaOpponentTick = Readonly<{
   /** ms from THAT task's answer-window open — same scale as own raceElapsedMs. */
   raceElapsedMs: number;
   correct: boolean;
+  /** Optional display-only cumulative live total. Never used for settlement. */
+  matchStars?: number;
+  /** Scripted speed_match precision; omitted when the exact pair count is unknown. */
+  firstAttemptPairs?: number;
 }>;
 ```
 
-**MUST NOT appear on the wire:** opponent `stableUid`/`authUid`; `opponentKind`; `isBot` on any player projection; `botSeed`, `botSeedCommitment`, `botPlan`; any `points`/`score`/`scores` field (not even as `0`); reward preview, `starsEarned`, season balances, `spinPity`/`rollBps`; `arenaPublication` Merkle proofs; task-pool cursors; per-pair `explanation.wrongOptionReasons` and `explanation` (strip them — the client renders no explanations mid-match; this is most of the payload size and the answer to the 3G risk).
+**MUST NOT appear on the wire:** opponent `stableUid`/`authUid`; `opponentKind`; `isBot` on any player projection; `botSeed`, `botSeedCommitment`, `botPlan`; any authoritative `points`/`score`/`scores` field (not even as `0`); reward preview, `starsEarned`, season balances, `spinPity`/`rollBps`; `arenaPublication` Merkle proofs; task-pool cursors; per-pair `explanation.wrongOptionReasons` and `explanation` (strip them — the client renders no explanations mid-match; this is most of the payload size and the answer to the 3G risk). The sole score-shaped exception is optional cumulative `matchStars` on an `arena-live.v2` tick: it is display-only, non-authoritative, carries no entitlement and may be absent during the mixed v1/v2 rollout.
 
 **Budget:** `ARENA_PLAN_BUDGET_BYTES = ARENA_V2_PRIVATE_BUDGET_BYTES` (384 KB). It must be **≥** the private budget, never below — a plan that passes creation and fails at start after both players accepted is unacceptable. Validated at creation, not at start.
 
@@ -782,7 +786,7 @@ export type ArenaOpponentIndicator = Readonly<{
 }>;
 ```
 
-**Mid-match opponent star count is not rendered.** It does not exist without per-answer writes, which is exactly what was deleted. `V2Counter` shows the viewer's own stars; the opponent's slot shows the dot. This is an explicit product change from today's live `match.scores`.
+Both match-star totals are rendered. The viewer uses local `state.matchStars`; the opponent uses the greatest valid cumulative `arena-live.v2` `matchStars`. During mixed-version rollout, ordinary legacy/scripted ticks are folded only across the contiguous prefix where both outcomes are known. `speed_match` additionally requires exact `firstAttemptPairs`; without it the opponent total remains `—`, never a guessed zero. The field is display-only and settlement still recomputes both results from sealed tasks and reports.
 
 ### 9.6 Accessibility — one announcement
 
@@ -809,6 +813,10 @@ export type ArenaOpponentEvent = Readonly<{
   /** ms since THEIR answer window opened, clamped to that mode's budget. */
   raceElapsedMs: number;
   correct: boolean;
+  /** arena-live.v2 only: cumulative display total, never an entitlement. */
+  matchStars?: number;
+  /** scripted speed_match only, for an exact legacy fallback. */
+  firstAttemptPairs?: number;
   receivedAtMonoMs: number;
   finished?: boolean;
 }>;
@@ -826,16 +834,14 @@ export type ArenaOpponentFeedFactory = (input: Readonly<{
 }>) => ArenaOpponentFeed;
 ```
 
-`answeredAtMs` (a wall timestamp from a device whose clock you have just declared untrustworthy) and `starsTotal` (opponent private state that leaks their answer pattern) are **not** on the event. `raceElapsedMs` is the only competitive input, and it is the same quantity `first()` consumes on both devices and on the server.
+`answeredAtMs` (a wall timestamp from a device whose clock you have just declared untrustworthy), answers, identities, balances and reward projections are **not** on the event. `matchStars` is the only approved display-total field: a finite non-decreasing integer within the match ceiling, ignored by settlement. `raceElapsedMs` remains the competitive timing input used by `first()` on both devices and on the server.
 
 **Adapters:**
-- `app/arena_opponent_rtdb.ts` — `onChildAdded` at `arena_live/{matchId}/{opponentSeat}`; `publish` = `set()` + `onDisconnect().remove()`. Payload `{ e: raceElapsedMs, c: 0|1 }`, ~40 bytes, 10 writes/player/ranked match, zero Firestore cost.
-- `app/arena_opponent_scripted.ts` — `ticks.length > 0` ⇒ schedule one local `setTimeout(raceElapsedMs)` per task after that task's reading phase ends, emitting the identical event shape. Zero network, zero latency, works offline, fires at exactly the right moment.
-- `app/arena_opponent_noop.ts` — registry default and offline fallback.
+- `app/arena_client.ts` publishes `arena-live.v2` seat documents in `arena_v2_match_live/{matchId}/seats/{seat}`. New clients read v1 and v2; Rules accept both during rollout. The top-level field set is unchanged.
+- `modules/arena/live_channel.ts` permits at most one write per newly closed task plus one finish write. v2 adds `matchStars` inside the existing tick; it adds no listener, collection or write.
+- Scripted plan ticks use the same `ArenaOpponentTick` path. `speed_match` includes clamped `firstAttemptPairs`; other modes derive from `correct` and `raceElapsedMs`.
 
-Selection is inside the registry (`ticks.length > 0 ? scripted : rtdb`), never in the screen. `arena_match.tsx` imports only the registry and the type.
-
-**RTDB rules** (`database.rules.json`): the server writes `arena_live/{matchId}/seats/{authUid} = 'a'|'b'` at match creation. A client may write `arena_live/{matchId}/{seat}/**` iff `root.child('arena_live/'+matchId+'/seats/'+auth.uid).val() === seat`; both participants may read the whole match node. TTL cleanup rides on the existing hourly job.
+Selection and fallback are data-driven (`tick.matchStars ?? derivedKnownStars ?? null`), never based on `isBot` or opponent kind. Firestore Rules bind writes to the participant's opaque seat marker and reject extra top-level fields.
 
 ---
 
@@ -1017,9 +1023,9 @@ Owner decision: **stars are one global app currency.** `docs/arena/HANDOVER.md:3
 
 - **OWN-1 (R7)** — speed_match scores pairs matched **on the first attempt**, not "1 star per correct pair" literally. The literal rule makes speed_match a guaranteed 4 stars via ≤16 exhaustive taps in an 18 s window, more than any other task, requiring zero knowledge. The current server rule subtracts `wrongAttempts` (`arena_v2_core.ts:518`) precisely to prevent this, and the redesign deletes that subtraction.
 - **OWN-2 (R16)** — **ranked requires connectivity to start.** Decision 6 (offline completion) and ranked RP integrity cannot both be fully satisfied: if a report can arrive days late, either the opponent waits or the match settles without you. Offline completion stays absolute for quick/friend; ranked mid-match disconnection completes locally and settles on the deadline.
-- **OWN-3 (R15)** — RTDB ships in stage 2, not stage 3. Decision 7 defers it, but decision 9 is unimplementable without it once per-answer Firestore writes stop, and a bot-only indicator is the worst possible partial implementation.
+- **OWN-3 (R15, amended 2026-08-20)** — the existing bounded Firestore seat channel carries the live tick. Schema v2 adds only optional display `matchStars`; v1 remains accepted during rollout and the `taskCount + 1` write ceiling does not change.
 - **OWN-4 (R14)** — decision 10 is scoped to the UI, not the wire. Once tasks and answers ship to the device, wire-level bot concealment is unachievable. Do not later reject a design for failing a test it was never going to pass.
-- **OWN-5 (§9.5)** — the live opponent **star count** disappears from the match screen. Only a thinking/answered/finished dot remains. It cannot exist without per-answer writes.
+- **OWN-5 (§9.5, superseded 2026-08-20)** — the owner approved an exact-known live opponent star total. Unknown remains `—`; it is never coerced from a boolean speed result and never affects settlement.
 
 ---
 

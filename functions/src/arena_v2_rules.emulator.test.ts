@@ -118,13 +118,20 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
   it('lets a player write only into their own live seat and never into the opponent seat', async () => {
     const seatDoc = (db: ReturnType<ReturnType<typeof environment.authenticatedContext>['firestore']>, seatId: string) =>
       doc(db, `arena_v2_match_live/match-1/seats/${seatId}`);
-    const payload = { schemaVersion: 'arena-live.v1', ticks: [], finished: false, updatedAtMs: 1 };
+    const payload = {
+      schemaVersion: 'arena-live.v2',
+      ticks: [{ taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 3 }],
+      finished: false,
+      updatedAtMs: 1,
+    };
+    const legacyPayload = { schemaVersion: 'arena-live.v1', ticks: [], finished: false, updatedAtMs: 1 };
 
     const playerA = environment.authenticatedContext('auth-a').firestore();
     const playerB = environment.authenticatedContext('auth-b').firestore();
 
     await assertSucceeds(setDoc(seatDoc(playerA, 'a'), payload));
     await assertSucceeds(setDoc(seatDoc(playerB, 'b'), payload));
+    await assertSucceeds(setDoc(seatDoc(playerA, 'a'), legacyPayload));
 
     // Чужое место — отказ. Это главное утверждение всей проверки.
     await assertFails(setDoc(seatDoc(playerA, 'b'), payload));
@@ -161,6 +168,13 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
       finished: false,
       updatedAtMs: 1,
       answer: 'secret',
+    }));
+    await assertFails(setDoc(seat, {
+      schemaVersion: 'arena-live.v2',
+      ticks: [],
+      finished: false,
+      updatedAtMs: 1,
+      uid: 'auth-a',
     }));
   });
 

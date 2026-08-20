@@ -3285,7 +3285,7 @@ service cloud.firestore {
         // идентификатор игрока нельзя случайно опубликовать сопернику даже
         // при регрессии клиента.
         && request.resource.data.keys().hasOnly(['schemaVersion', 'ticks', 'finished', 'updatedAtMs'])
-        && request.resource.data.schemaVersion == 'arena-live.v1'
+        && request.resource.data.schemaVersion in ['arena-live.v1', 'arena-live.v2']
         && request.resource.data.ticks is list
         // Потолок на размер: канал живёт ровно столько, сколько матч, и
         // раздувать его нечем и незачем.

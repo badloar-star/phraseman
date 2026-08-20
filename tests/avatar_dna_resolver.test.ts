@@ -46,6 +46,14 @@ describe('Avatar DNA resolver', () => {
     expect(() => resolveAvatarDNA({ ...starter, hair: { ...starter.hair, styleId: 'hair_unknown' } }, avatarCatalog)).toThrow('avatar_catalog_invalid');
   });
 
+  it.each([
+    ['skinToneId', 'face_01'], ['faceBaseId', 'skin_03'], ['bodyBaseId', 'hair_01'], ['eyesId', 'iris_brown'], ['irisColorId', 'eyes_01'], ['styleId', 'hair_brown'], ['colorId', 'hair_01'], ['outfitId', 'hair_01'], ['backgroundId', 'outfit_01'],
+  ])('rejects selector-kind mismatch for %s', (field, replacement) => {
+    const chosen: any = JSON.parse(JSON.stringify(starterAvatarDNA('starter_warm_01'))); const before = JSON.parse(JSON.stringify(chosen));
+    if (field in chosen.base) chosen.base[field] = replacement; else if (field in chosen.face) chosen.face[field] = replacement; else if (field in chosen.hair) chosen.hair[field] = replacement; else if (field in chosen.wearables) chosen.wearables[field] = replacement; else chosen.scene[field] = replacement;
+    expect(() => resolveAvatarDNA(chosen, avatarCatalog)).toThrow('avatar_catalog_invalid'); expect(chosen).toEqual(before);
+  });
+
   it('rejects a cyclic untrusted catalog and keeps parsed catalog immutable', () => {
     const cyclic = JSON.parse(JSON.stringify(require('../config/avatar-dna/catalog.v1.json')));
     cyclic.items[0].conflicts = [cyclic.items[1].id];

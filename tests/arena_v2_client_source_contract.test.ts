@@ -253,7 +253,7 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(match).not.toContain('arenaV2MatchPlan(matchId)');
     expect(match).not.toContain('arenaV2MatchAccept(matchId)');
     expect(match).toContain('arenaV2MatchFinishDispatch(');
-    expect(match).toContain('arenaV2MatchSettle(matchId)');
+    expect(match).toContain('arenaScheduleMatchSettleProbe({');
     expect(match).toContain("BackHandler.addEventListener('hardwareBackPress'");
     expect(match).toContain('onBack={confirmForfeit}');
   });

@@ -1,19 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react-native';
+import { render, userEvent } from '@testing-library/react-native';
 
 import FriendListRow, { formatFriendRelationship } from '../components/friends_together/FriendListRow';
 
-let mockLang = 'ru';
+jest.unmock('react-native');
 
-jest.mock('react-native', () => ({
-  View: 'View',
-  Pressable: 'Pressable',
-  StyleSheet: {
-    flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style,
-  },
-}));
+let mockLang = 'ru';
 
 jest.mock('../components/ThemeContext', () => ({
   useTheme: () => ({
@@ -35,23 +29,20 @@ jest.mock('../constants/i18n', () => ({
   triLang: (lang: string, copy: Record<string, string>) => copy[lang] ?? copy.ru,
 }));
 
-jest.mock('../components/AvatarView', () => ({
-  __esModule: true,
-  default: () => null,
-}));
-
-jest.mock('react-native/Libraries/Components/View/View', () => {
+jest.mock('../components/AvatarView', () => {
   const mockReact = jest.requireActual('react');
+  const { View } = jest.requireActual('react-native');
   return {
     __esModule: true,
-    default: ({ children, ...props }: any) => mockReact.createElement('View', props, children),
+    default: () => mockReact.createElement(View, { testID: 'friend-avatar' }),
   };
 });
 
 jest.mock('../components/text-integrity', () => {
   const mockReact = jest.requireActual('react');
+  const { Text } = jest.requireActual('react-native');
   return {
-    FlowText: ({ children, ...props }: any) => mockReact.createElement('Text', props, children),
+    FlowText: ({ children, ...props }: any) => mockReact.createElement(Text, props, children),
   };
 });
 
@@ -100,10 +91,15 @@ describe.each(LOCALES)('FriendListRow in $lang', ({ lang, neutral, one, few, man
 
   it('keeps profile and details controls independent with localized distinct labels', async () => {
     const props = propsFor(14);
+    const user = userEvent.setup();
     const screen = await render(<FriendListRow {...props} />);
+    const profileTarget = screen.getByRole('button', { name: profile });
+    const detailsTarget = screen.getByRole('button', { name: details });
     const avatarTarget = screen.getByTestId('friend-row-avatar-friend-1');
     const bodyTarget = screen.getByTestId('friend-row-body-friend-1');
 
+    expect(profileTarget).toBe(avatarTarget);
+    expect(detailsTarget).toBe(bodyTarget);
     expect(avatarTarget.parent).toBe(bodyTarget.parent);
     expect(avatarTarget.props.accessibilityRole).toBe('button');
     expect(bodyTarget.props.accessibilityRole).toBe('button');
@@ -111,11 +107,11 @@ describe.each(LOCALES)('FriendListRow in $lang', ({ lang, neutral, one, few, man
     expect(bodyTarget.props.accessibilityLabel).toBe(details);
     expect(avatarTarget.props.accessibilityLabel).not.toBe(bodyTarget.props.accessibilityLabel);
 
-    await fireEvent.press(avatarTarget);
+    await user.press(profileTarget);
     expect(props.onOpenProfile).toHaveBeenCalledTimes(1);
     expect(props.onOpenDetails).not.toHaveBeenCalled();
 
-    await fireEvent.press(bodyTarget);
+    await user.press(detailsTarget);
     expect(props.onOpenDetails).toHaveBeenCalledTimes(1);
     expect(props.onOpenProfile).toHaveBeenCalledTimes(1);
 

@@ -58,7 +58,7 @@ describe('инициализация локального матча', () => {
     expect(hook).not.toContain('void arenaClearMatch(keyValue)');
     expect(screen).toContain('arenaDeliverFinishedMatch');
     expect(delivery.indexOf('const durable = await arenaOutboxEnqueue('))
-      .toBeLessThan(delivery.indexOf('response = await input.send();'));
+      .toBeLessThan(delivery.indexOf('response = await dispatch.networkPromise;'));
     expect(delivery).toContain('if (durable && input.isAlive() && input.isScopeCurrent(input.scope))');
     expect(delivery).toContain('await arenaClearMatchIfCurrent(');
   });

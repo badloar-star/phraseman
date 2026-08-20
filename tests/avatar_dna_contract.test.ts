@@ -8,6 +8,7 @@ import type {
   AvatarV2Projection,
   ResolvedAvatarDNA,
 } from '../modules/avatar-dna/contracts';
+import { AVATAR_ID } from '../modules/avatar-dna/contracts';
 
 const dna = {
   schemaVersion: 1,
@@ -69,6 +70,20 @@ describe('Avatar DNA v1 contract', () => {
     expect(parseAvatarDNA(value).base.starterPresetId).toBeNull();
   });
 
+  it('keeps ID validation private when the exported RegExp is mutated', () => {
+    const originalPrototype = Object.getPrototypeOf(AVATAR_ID);
+    Object.setPrototypeOf(AVATAR_ID, { test: () => true });
+    const value = copyDNA();
+    (value.base as Record<string, unknown>).starterPresetId = '../escape';
+
+    try {
+      expect(AVATAR_ID.test('../escape')).toBe(true);
+      expect(() => parseAvatarDNA(value)).toThrow('avatar_dna_invalid');
+    } finally {
+      Object.setPrototypeOf(AVATAR_ID, originalPrototype);
+    }
+  });
+
   it('canonicalizes deterministically and sorts multi-select arrays', () => {
     const unsorted = copyDNA();
     const face = unsorted.face as Record<string, unknown>;
@@ -109,6 +124,23 @@ describe('Avatar DNA v1 contract', () => {
     const value = copyDNA();
     mutate(value);
     expect(() => parseAvatarDNA(value)).toThrow('avatar_dna_invalid');
+  });
+
+  it.each([
+    ['symbol own keys', (value: Record<string, unknown>) => { Object.defineProperty(value, Symbol('extra'), { value: 'nope' }); }],
+    ['non-enumerable own keys', (value: Record<string, unknown>) => { Object.defineProperty(value, 'hidden', { value: 'nope' }); }],
+  ])('rejects %s', (_reason, mutate) => {
+    const value = copyDNA();
+    mutate(value);
+    expect(() => parseAvatarDNA(value)).toThrow('avatar_dna_invalid');
+  });
+
+  it('contains the sentinel for hostile proxy traps', () => {
+    const hostile = new Proxy({}, {
+      ownKeys: () => { throw { toString: () => { throw new Error('hostile'); } }; },
+    });
+
+    expect(() => parseAvatarDNA(hostile)).toThrow('avatar_dna_invalid');
   });
 });
 

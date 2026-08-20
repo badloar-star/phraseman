@@ -1,15 +1,17 @@
 import {
   AVATAR_DNA_RIG_ID,
   AVATAR_DNA_SCHEMA_VERSION,
-  AVATAR_ID,
   type AvatarDNA,
 } from './contracts';
 
 type UnknownRecord = Record<string, unknown>;
+const PRIVATE_AVATAR_ID = /^[a-z][a-z0-9_.-]{1,79}$/;
 
-const hasOnlyKeys = (value: UnknownRecord, keys: readonly string[]): boolean =>
-  Object.keys(value).every((key) => keys.includes(key))
-  && keys.every((key) => Object.prototype.hasOwnProperty.call(value, key));
+const hasOnlyKeys = (value: UnknownRecord, keys: readonly string[]): boolean => {
+  const ownKeys = Reflect.ownKeys(value);
+  return ownKeys.every((key) => typeof key === 'string' && keys.includes(key))
+    && keys.every((key) => Object.prototype.hasOwnProperty.call(value, key));
+};
 
 const readRecord = (value: unknown, label: string, keys: readonly string[]): UnknownRecord => {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) {
@@ -21,10 +23,20 @@ const readRecord = (value: unknown, label: string, keys: readonly string[]): Unk
 };
 
 const readId = (value: unknown, label: string): string => {
-  if (typeof value !== 'string' || !AVATAR_ID.test(value)) {
+  if (typeof value !== 'string' || !PRIVATE_AVATAR_ID.test(value)) {
     throw new TypeError(`${label} must be a valid avatar ID`);
   }
   return value;
+};
+
+const safeErrorDetail = (error: unknown): string => {
+  try {
+    if (typeof error === 'string') return error;
+    if (error instanceof Error && typeof error.message === 'string') return error.message;
+  } catch {
+    // Hostile values must never prevent the stable invalid-DNA sentinel.
+  }
+  return 'invalid input';
 };
 
 const readOptionalId = (value: unknown, label: string): string | null =>
@@ -94,8 +106,7 @@ export const parseAvatarDNA = (input: unknown): AvatarDNA => {
       },
     };
   } catch (error) {
-    const detail = error instanceof Error ? error.message : String(error);
-    throw new TypeError(`avatar_dna_invalid: ${detail}`);
+    throw new TypeError(`avatar_dna_invalid: ${safeErrorDetail(error)}`);
   }
 };
 

@@ -7,7 +7,6 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { isLightThemeMode } from '../constants/theme';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { hapticTap } from '../hooks/use-haptics';
 
 export type StatsPremiumBlurContext = 'stats' | 'heatmap' | 'patterns' | 'percentiles';
@@ -213,7 +212,7 @@ function StatsPremiumBlur({
         <View style={[styles.lockBadge, { backgroundColor: isLight ? 'rgba(255,255,255,0.92)' : 'rgba(20,16,8,0.85)' }]}>
           {/* зачем: на белом бейдже светлой темы яркое #FFD700 выцветает (~1.2:1);
               t.gold sagePorcelain — тёмная бронза #8B6320 (~4.7:1), замок остаётся премиумным */}
-          <Ionicons name="lock-closed" size={28} color={isLight ? t.gold : monoIcon(themeMode, '#FFD700')} />
+          <Ionicons name="lock-closed" size={28} color={isLight ? t.gold : '#FFD700'} />
         </View>
         <View style={styles.titleCtaBlock}>
           {/* зачем: подложка вуали форсированно тёмная (скримы плейсхолдера не зависят от темы),
@@ -230,7 +229,7 @@ function StatsPremiumBlur({
               style={styles.ctaGradient}
             >
               <View style={styles.ctaInner}>
-                <Ionicons name="diamond" size={18} color={monoIcon(themeMode, '#1a1208', MONO_ICON.onLight)} />
+                <Ionicons name="diamond" size={18} color={'#1a1208'} />
                 <Text style={[styles.ctaText, { fontSize: f.body }]}>{ctaLabel}</Text>
               </View>
             </LinearGradient>

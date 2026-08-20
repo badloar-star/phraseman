@@ -45,7 +45,6 @@ import { getLevelGiftRewardIcon } from '../../constants/levelGiftRewardIcons';
 import { getSocialFriendsIcon } from '../../constants/socialIconAssets';
 import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import { getLevelFromXP, getXPProgress, isLightThemeMode, type ThemeMode } from '../../constants/theme';
-import { monoIcon, MONO_ICON } from '../../constants/monoIcon';
 import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../../constants/oliveTheme';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -870,7 +869,7 @@ function FriendRow({
           {profile.streak > 0 && (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2 }}>
               <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={16} />
-              <Text style={{ fontSize: f.sub, color: monoIcon(themeMode, '#FF9500'), fontWeight: '700' }}>{profile.streak}</Text>
+              <Text style={{ fontSize: f.sub, color: '#FF9500', fontWeight: '700' }}>{profile.streak}</Text>
             </View>
           )}
         </View>
@@ -979,7 +978,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome, themeMod
         {profile.streak > 0 && (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, marginTop: 2 }}>
             <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={15} />
-            <Text style={{ fontSize: f.sub, color: monoIcon(themeMode, '#FF9500'), fontWeight: '700' }}>{profile.streak}</Text>
+            <Text style={{ fontSize: f.sub, color: '#FF9500', fontWeight: '700' }}>{profile.streak}</Text>
           </View>
         )}
       </View>
@@ -1073,7 +1072,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome, 
           {profile.streak > 0 && (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
               <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={15} />
-              <Text style={{ color: monoIcon(themeMode, '#FF9500'), fontSize: f.sub }}>
+              <Text style={{ color: '#FF9500', fontSize: f.sub }}>
                 {profile.streak} {triLang(lang as any, {
                   ru: 'дней подряд',
                   uk: 'днів поспіль',
@@ -1172,14 +1171,14 @@ function FriendQuestStartedModal({
             <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 82, height: 82 }}>
               <FriendsThemeIcon themeMode={themeMode} size={82} accessibilityLabel="Friend quest" />
             </View>
-            <Text accessibilityRole="header" style={{ color: themeMode === 'olive' ? modalChrome.text : monoIcon(themeMode, '#21170B', MONO_ICON.onLight), fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+            <Text accessibilityRole="header" style={{ color: themeMode === 'olive' ? modalChrome.text : '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
               {L('Совместная миссия началась', 'Спільна місія почалася', 'Friend quest started', 'Missão conjunta iniciada', 'Nhiệm vụ bạn bè bắt đầu', 'Quest teman dimulai', 'Arkadaş görevi başladı', 'Misja ze znajomym rozpoczęta')}
             </Text>
-            <Text style={{ color: themeMode === 'olive' ? modalChrome.mutedText : monoIcon(themeMode, '#4E3B1D', MONO_ICON.onLight), fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
+            <Text style={{ color: themeMode === 'olive' ? modalChrome.mutedText : '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
               {L('Наберите оба по 3000 XP за 24 часа и получите по 10 шардов и 1000 XP.', 'Наберіть обидва по 3000 XP за 24 години й отримайте по 10 шардів і 1000 XP.', 'Both of you need 3000 XP in 24 hours to earn 10 shards and 1000 XP each.', 'Ambos precisam de 3000 XP em 24 horas para ganhar 10 shards e 1000 XP.', 'Cả hai cần 3000 XP trong 24 giờ để nhận 10 shards và 1000 XP.', 'Kumpulkan masing-masing 3000 XP dalam 24 jam untuk mendapat 10 shard dan 1000 XP.', '24 saatte ikiniz de 3000 XP toplayın, 10 shard ve 1000 XP kazanın.', 'Zdobądźcie po 3000 XP w 24 godziny, aby dostać po 10 shardów i 1000 XP.')}
             </Text>
             <TouchableOpacity activeOpacity={0.86} onPress={onClose} style={{ minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: modalChrome.button }}>
-              <Text style={{ color: monoIcon(themeMode, '#241905', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
+              <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
                 {L('Вперёд', 'Уперед', 'Let’s go', 'Vamos', 'Bắt đầu', 'Mulai', 'Başla', 'Start')}
               </Text>
             </TouchableOpacity>
@@ -1206,16 +1205,16 @@ function FriendQuestCompletedModal({
         <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: modalChrome.panel, borderWidth: 0, borderColor: 'transparent', ...modalChrome.shadow }}>
           <LinearGradient colors={themeMode === 'olive' ? modalChrome.gradient : ['rgba(255,248,221,0.98)', 'rgba(52,199,89,0.24)']} style={{ padding: 22, gap: 14 }}>
             <View style={{ width: 66, height: 66, borderRadius: 22, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', backgroundColor: '#19351F' }}>
-              <Ionicons name="sparkles-outline" size={38} color={monoIcon(themeMode, '#B9F6C9')} />
+              <Ionicons name="sparkles-outline" size={38} color={'#B9F6C9'} />
             </View>
-                <Text accessibilityRole="header" style={{ color: themeMode === 'olive' ? modalChrome.text : monoIcon(themeMode, '#21170B', MONO_ICON.onLight), fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+                <Text accessibilityRole="header" style={{ color: themeMode === 'olive' ? modalChrome.text : '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
               {L('Миссия выполнена', 'Місію виконано', 'Quest complete', 'Missão concluída', 'Hoàn thành nhiệm vụ', 'Quest selesai', 'Görev tamamlandı', 'Misja wykonana')}
             </Text>
-            <Text style={{ color: themeMode === 'olive' ? modalChrome.mutedText : monoIcon(themeMode, '#4E3B1D', MONO_ICON.onLight), fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
+            <Text style={{ color: themeMode === 'olive' ? modalChrome.mutedText : '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
               {L('Награда начислена вам обоим: 10 шардов и 1000 XP.', 'Нагороду нараховано вам обом: 10 шардів і 1000 XP.', 'Reward granted to both of you: 10 shards and 1000 XP.', 'Recompensa enviada para ambos: 10 shards e 1000 XP.', 'Cả hai đã nhận thưởng: 10 shards và 1000 XP.', 'Hadiah untuk kalian berdua: 10 shard dan 1000 XP.', 'Ödül ikinize de verildi: 10 shard ve 1000 XP.', 'Nagroda dla was obojga: 10 shardów i 1000 XP.')}
             </Text>
             <TouchableOpacity activeOpacity={0.86} onPress={onClose} style={{ minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: themeMode === 'olive' ? modalChrome.button : '#34C759' }}>
-              <Text style={{ color: monoIcon(themeMode, '#071E0C', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
+              <Text style={{ color: '#071E0C', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
                 {L('Отлично', 'Чудово', 'Nice', 'Boa', 'Tuyệt', 'Mantap', 'Harika', 'Super')}
               </Text>
             </TouchableOpacity>
@@ -1356,8 +1355,8 @@ function AddFriendModal({
 
             {searchError && (
               <View testID="friends-search-error" style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                <Ionicons name="alert-circle-outline" size={16} color={monoIcon(themeMode, '#FF6B6B')} />
-                <Text style={{ color: monoIcon(themeMode, '#FF6B6B'), fontSize: f.sub }}>{searchError}</Text>
+                <Ionicons name="alert-circle-outline" size={16} color={'#FF6B6B'} />
+                <Text style={{ color: '#FF6B6B', fontSize: f.sub }}>{searchError}</Text>
               </View>
             )}
 
@@ -3539,27 +3538,27 @@ export default function FriendsTabScreen() {
                       {iconGiftId ? (
                         <Image source={getLevelGiftRewardIcon(iconGiftId, themeMode)} style={{ width: 56, height: 56 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Иконка подарка', uk: 'Іконка подарунка', es: 'Icono de regalo', 'pt-BR': 'Ícone de presente', vi: 'Biểu tượng quà tặng', id: 'Ikon hadiah', tr: 'Hediye simgesi', pl: 'Ikona prezentu' })} />
                       ) : (
-                        <Ionicons name="gift-outline" size={34} color={monoIcon(themeMode, '#4C3412', MONO_ICON.onLight)} />
+                        <Ionicons name="gift-outline" size={34} color={'#4C3412'} />
                       )}
                     </LinearGradient>
                   </View>
-                  <Text style={{ color: isOliveTheme ? OLIVE_RICH.champagneLight : monoIcon(themeMode, '#7A5518', MONO_ICON.onLight), fontSize: 11, fontWeight: '900', textTransform: 'uppercase', textAlign: 'center', letterSpacing: 0 }}>
+                  <Text style={{ color: isOliveTheme ? OLIVE_RICH.champagneLight : '#7A5518', fontSize: 11, fontWeight: '900', textTransform: 'uppercase', textAlign: 'center', letterSpacing: 0 }}>
                     {L('Подарок от друга', 'Подарунок від друга', 'Friend gift', 'Presente de amigo', 'Quà từ bạn bè', 'Hadiah teman', 'Arkadaş hediyesi', 'Prezent od znajomego')}
                   </Text>
-                  <Text accessibilityRole="header" style={{ color: isOliveTheme ? OLIVE_RICH.ivory : monoIcon(themeMode, '#21170B', MONO_ICON.onLight), fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+                  <Text accessibilityRole="header" style={{ color: isOliveTheme ? OLIVE_RICH.ivory : '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
                     {multi
                       ? L('Новые подарки', 'Нові подарунки', 'Regalos nuevos', 'Novos presentes', 'Quà mới', 'Hadiah baru', 'Yeni hediyeler', 'Nowe prezenty')
                       : L('Подарок получен', 'Подарунок отримано', 'Regalo recibido', 'Presente recebido', 'Đã nhận quà', 'Hadiah diterima', 'Hediye alındı', 'Prezent otrzymany')}
                   </Text>
                   <View style={{ borderRadius: 18, padding: 14, gap: 8, backgroundColor: isOliveTheme ? OLIVE_RICH.surface : 'rgba(255,255,255,0.54)', borderWidth: 0, borderColor: 'transparent' }}>
-                    <Text style={{ color: isOliveTheme ? OLIVE_RICH.ivory : monoIcon(themeMode, '#4E3B1D', MONO_ICON.onLight), fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
+                    <Text style={{ color: isOliveTheme ? OLIVE_RICH.ivory : '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 4, textAlign: 'center' }}>
                       {multi
                         ? L(`У тебя ${incomingGiftModal.gifts.length} новых подарка от друзей`, `У тебе ${incomingGiftModal.gifts.length} нових подарунки від друзів`, `Tienes ${incomingGiftModal.gifts.length} regalos nuevos de amigos`, `Você tem ${incomingGiftModal.gifts.length} presentes novos de amigos`, `Bạn có ${incomingGiftModal.gifts.length} quà mới từ bạn bè`, `Kamu punya ${incomingGiftModal.gifts.length} hadiah baru dari teman`, `Arkadaşlarından ${incomingGiftModal.gifts.length} yeni hediye var`, `Masz ${incomingGiftModal.gifts.length} nowe prezenty od znajomych`)
                         : L(`${from} подарил: ${gift}`, `${from} подарував: ${gift}`, `${from} te regaló: ${gift}`, `${from} deu um presente: ${gift}`, `${from} đã tặng: ${gift}`, `${from} memberi hadiah: ${gift}`, `${from} hediye verdi: ${gift}`, `${from} podarował: ${gift}`)}
                     </Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-                      <Ionicons name="albums-outline" size={15} color={isOliveTheme ? OLIVE_RICH.champagneLight : monoIcon(themeMode, '#8A641D', MONO_ICON.onLight)} />
-                      <Text style={{ color: isOliveTheme ? OLIVE_RICH.ivory : monoIcon(themeMode, '#8A641D', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
+                      <Ionicons name="albums-outline" size={15} color={isOliveTheme ? OLIVE_RICH.champagneLight : '#8A641D'} />
+                      <Text style={{ color: isOliveTheme ? OLIVE_RICH.ivory : '#8A641D', fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
                         {L('Сохранено в разделе «Подарки»', 'Збережено в розділі «Подарунки»', 'Saved in Gifts', 'Salvo em Presentes', 'Đã lưu trong Quà', 'Disimpan di Hadiah', 'Hediyeler bölümüne kaydedildi', 'Zapisano w Prezentach')}
                       </Text>
                     </View>
@@ -3576,7 +3575,7 @@ export default function FriendsTabScreen() {
                     onPress={handleIncomingGiftThanks}
                     style={{ minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: isOliveTheme ? OLIVE_RICH.surface : 'rgba(255,255,255,0.62)', borderWidth: 0, borderColor: 'transparent' }}
                   >
-                    <Text style={{ color: isOliveTheme ? OLIVE_RICH.ivory : monoIcon(themeMode, '#3D2B10', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                    <Text style={{ color: isOliveTheme ? OLIVE_RICH.ivory : '#3D2B10', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                       {L('Сказать спасибо', 'Сказати дякую', 'Say thanks', 'Agradecer', 'Cảm ơn', 'Ucapkan terima kasih', 'Teşekkür et', 'Podziękuj')}
                     </Text>
                   </TouchableOpacity>
@@ -3588,7 +3587,7 @@ export default function FriendsTabScreen() {
                       onPress={() => void handleIncomingGiftReply('chain_shield_1')}
                       style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: isOliveTheme ? OLIVE_RICH.raised : '#272015', borderWidth: 0, borderColor: 'transparent' }}
                     >
-                      <Text style={{ color: monoIcon(themeMode, '#FFF7DF'), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                      <Text style={{ color: '#FFF7DF', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                         {L('Ответить щитом', 'Відповісти щитом', 'Send shield', 'Enviar escudo', 'Gửi khiên', 'Kirim perisai', 'Kalkan gönder', 'Wyślij tarczę')}
                       </Text>
                     </TouchableOpacity>
@@ -3599,7 +3598,7 @@ export default function FriendsTabScreen() {
                       onPress={() => void handleIncomingGiftReply('xp_boost_2x_24h')}
                       style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: isOliveTheme ? OLIVE_RICH.champagne : '#D7A83B' }}
                     >
-                      <Text style={{ color: monoIcon(themeMode, '#241905', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                      <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                         {L('Отправить буст', 'Надіслати буст', 'Send boost', 'Enviar boost', 'Gửi boost', 'Kirim boost', 'Boost gönder', 'Wyślij boost')}
                       </Text>
                     </TouchableOpacity>
@@ -3616,7 +3615,7 @@ export default function FriendsTabScreen() {
                   activeOpacity={0.86}
                   style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: isOliveTheme ? OLIVE_RICH.raised : '#272015', borderWidth: 0, borderColor: 'transparent' }}
                 >
-                  <Text style={{ color: monoIcon(themeMode, '#FFF7DF'), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                  <Text style={{ color: '#FFF7DF', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                     {L('В подарки', 'До подарунків', 'Gifts', 'Presentes', 'Quà', 'Hadiah', 'Hediyeler', 'Prezenty')}
                   </Text>
                 </TouchableOpacity>
@@ -3626,7 +3625,7 @@ export default function FriendsTabScreen() {
                   activeOpacity={0.86}
                   style={{ flex: 1, minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: isOliveTheme ? OLIVE_RICH.champagne : '#D7A83B' }}
                 >
-                  <Text style={{ color: monoIcon(themeMode, '#241905', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                  <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
                     {L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}
                   </Text>
                 </TouchableOpacity>

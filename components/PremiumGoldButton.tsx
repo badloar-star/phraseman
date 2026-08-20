@@ -6,7 +6,6 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -122,7 +121,7 @@ function PremiumGoldButton({ active, f, paywallContext = 'no_energy', onPress, c
             {
               flex: 1,
               textAlign: 'center',
-              color: monoIcon(themeMode, '#1a1206', MONO_ICON.onLight),
+              color: '#1a1206',
               fontSize: f.body,
               textShadowColor: 'rgba(255,248,220,0.55)',
               textShadowOffset: { width: 0, height: 0.5 },

@@ -28,7 +28,6 @@ import GlassSurface from '../components/GlassSurface';
 import TapScale from '../components/TapScale';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
-import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
@@ -158,7 +157,7 @@ const SecretCell = React.memo(function SecretCell({
         accessibilityLabel={secret.en}
         fallback={
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Ionicons name="star" size={26} color={monoIcon(themeMode, SECRET_GOLD)} />
+            <Ionicons name="star" size={26} color={SECRET_GOLD} />
           </View>
         }
       />
@@ -269,7 +268,7 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
               : `${totalOwned}/${set.cards.length + 1}`}
           </Text>
         </View>
-        {complete && <Ionicons name="checkmark-circle" size={16} color={monoIcon(themeMode, SECRET_GOLD)} />}
+        {complete && <Ionicons name="checkmark-circle" size={16} color={SECRET_GOLD} />}
         <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={20} color={t.textSecond} />
       </TouchableOpacity>
 

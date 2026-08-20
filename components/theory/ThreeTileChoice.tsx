@@ -6,7 +6,6 @@ import { introText } from './theoryI18n';
 import type { Lang } from '../../constants/i18n';
 import type { IntroChoiceInteraction } from '../../app/lesson_data_types';
 import type { ThemeMode } from '../../constants/theme';
-import { monoIcon, MONO_ICON } from '../../constants/monoIcon';
 import type { TheoryDrillProgressState } from '../../app/theory_progress';
 
 /**
@@ -34,14 +33,11 @@ export default function ThreeTileChoice({
   lang,
   accent,
   theme,
-  themeMode,
   onSolved,
   initialProgress,
   onProgressChange,
 }: Props) {
-  // В теме business тёмный текст на ярких плашках обесцвечиваем (см. monoIcon).
-  const onBrightText = (color: string): string =>
-    themeMode ? monoIcon(themeMode, color, MONO_ICON.onLight) : color;
+  const onBrightText = (color: string): string => color;
   const [picked, setPicked] = useState<string | null>(() =>
     typeof initialProgress?.picked === 'string'
       ? initialProgress.picked

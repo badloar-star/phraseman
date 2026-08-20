@@ -7,7 +7,6 @@ import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
-import { monoIcon } from '../constants/monoIcon';
 import { openStoreReviewPage } from '../app/store_review';
 import { hasUserRated, markReviewPrompted, markReviewRated } from '../app/review_utils';
 import { recordVipSurveyReviewClickFromApp } from '../app/vip_survey';
@@ -100,7 +99,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
 
       <CascadeItem delay={isHybrid ? LUM.ladder[1] : 0} reduceMotion={!isHybrid || reduceMotion}>
         <View style={[styles.iconWrap, { backgroundColor: 'rgba(34,197,94,0.14)', borderRadius: 29, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }]}>
-          <Ionicons name="star" size={28} color={monoIcon(themeMode, '#22C55E')} />
+          <Ionicons name="star" size={28} color={'#22C55E'} />
         </View>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>

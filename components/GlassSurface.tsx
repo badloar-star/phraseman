@@ -7,8 +7,6 @@
  * без рамки — глубокий градиент экрана просвечивает, и это читается как «дорого».
  *
  * Поведение по темам (чтобы не сломать существующие языки дизайна):
- *  • Плоские «бизнес»-темы (isFlat) — их язык это волосяная линия и плоскость;
- *    GlassSurface НЕ навязывает стекло, а даёт плоскую заливку bgCard как раньше.
  *  • Светлые темы — прозрачная заливка на светлом фоне читается слабо, поэтому
  *    используем непрозрачные семантические поверхности и мягкую тему-тень.
  *  • Тёмные темы (dark/gold/cinema) — полупрозрачная тёмная заливка: фон
@@ -55,20 +53,7 @@ export default function GlassSurface({
   children,
   ...rest
 }: GlassSurfaceProps) {
-  const { theme: t, themeMode, isFlat } = useTheme();
-
-  // Плоские бизнес-темы: сохраняем их плоский язык — заливка bgCard без стекла.
-  if (isFlat) {
-    const flatStyle: ViewStyle = {
-      backgroundColor: t.bgCard,
-      borderRadius: radius,
-    };
-    return (
-      <View style={[flatStyle, style]} {...rest}>
-        {children}
-      </View>
-    );
-  }
+  const { theme: t, themeMode } = useTheme();
 
   // Светлые темы: непрозрачная семантическая поверхность + мягкая глубина.
   if (isLightThemeMode(themeMode)) {

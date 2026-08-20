@@ -95,30 +95,15 @@ interface SettingsIconTileProps {
  * верхним бликом и hairline-рамкой. Намеренно отличается от плоской
  * iOS-плитки: чуть круглее (0.32 против ~0.22 у Apple) + объём.
  */
-/** Моно-плитки для строгой темы «Бизнес»: один нейтральный серый градиент
- *  вместо цветной палитры — иконки настроек становятся чёрно-серо-белыми. */
-const SETTINGS_TILE_MONO: readonly [string, string] = ['#2C2C2C', '#1C1C1C'];
 const SETTINGS_TILE_OLIVE: readonly [string, string] = ['#2A301D', '#14180F'];
 
 export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIconTileProps) {
-  const { themeMode, theme, isFlat } = useTheme();
+  const { themeMode } = useTheme();
   const [top, bottom] = themeMode === 'olive'
     ? SETTINGS_TILE_OLIVE
-    : themeMode === 'business' || themeMode === 'businessLight'
-    ? SETTINGS_TILE_MONO
     : SETTINGS_TILE_COLORS[color];
   const radius = size * 0.32;
   const glyph = TILE_GLYPH_ALIAS[icon as string] ?? (icon as keyof typeof Ionicons.glyphMap);
-  // Плоский IG-режим: без плитки вовсе — тонкая outline-иконка в цвет текста.
-  if (isFlat) {
-    const outline = `${String(glyph)}-outline` as keyof typeof Ionicons.glyphMap;
-    const flatGlyph = outline in Ionicons.glyphMap ? outline : glyph;
-    return (
-      <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-        <Ionicons name={flatGlyph as any} size={Math.round(size * 0.78)} color={theme.textPrimary} />
-      </View>
-    );
-  }
   return (
     <View
       style={{

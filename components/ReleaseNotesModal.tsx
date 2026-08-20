@@ -30,7 +30,6 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { pickReleaseNotesTexts, type ReleaseNoteItem } from './release_notes_copy';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import { LUM } from '../constants/motionHybrid';
@@ -97,13 +96,13 @@ const ReleaseNoteRow = memo(function ReleaseNoteRow({
           { backgroundColor: item.reassuring ? 'rgba(249,215,122,0.16)' : 'rgba(143,180,255,0.14)' },
         ]}
       >
-        <Ionicons name={item.icon} size={17} color={monoIcon(themeMode as never, accent)} />
+        <Ionicons name={item.icon} size={17} color={accent} />
       </View>
       <View style={styles.rowText}>
-        <Text style={[styles.rowTitle, { fontSize: titleSize, color: monoIcon(themeMode as never, '#FFF4DC') }]}>
+        <Text style={[styles.rowTitle, { fontSize: titleSize, color: '#FFF4DC' }]}>
           {item.title}
         </Text>
-        <Text style={[styles.rowBody, { fontSize: bodySize, color: monoIcon(themeMode as never, '#C2D2E8') }]}>
+        <Text style={[styles.rowBody, { fontSize: bodySize, color: '#C2D2E8' }]}>
           {item.body}
         </Text>
       </View>
@@ -303,19 +302,19 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
           <View style={styles.hero}>
             <Animated.View style={[styles.iconHalo, iconAnimatedStyle]}>
               <LinearGradient colors={['#FFF1B8', '#F7C75F', '#D68A2E']} style={styles.iconBadge}>
-                <Ionicons name="sparkles" size={25} color={monoIcon(themeMode, '#172033', MONO_ICON.onLight)} />
+                <Ionicons name="sparkles" size={25} color={'#172033'} />
               </LinearGradient>
             </Animated.View>
             <View style={styles.releasePill}>
-              <Ionicons name="rocket-outline" size={14} color={monoIcon(themeMode, '#F9D77A')} />
-              <Text style={[styles.releasePillText, { fontSize: captionSize, color: monoIcon(themeMode, '#F9D77A') }]}>
+              <Ionicons name="rocket-outline" size={14} color={'#F9D77A'} />
+              <Text style={[styles.releasePillText, { fontSize: captionSize, color: '#F9D77A' }]}>
                 {versionLabel}
               </Text>
             </View>
-            <Text style={[styles.title, { fontSize: titleSize, color: monoIcon(themeMode, '#FFF7E3') }]}>
+            <Text style={[styles.title, { fontSize: titleSize, color: '#FFF7E3' }]}>
               {tx.title}
             </Text>
-            <Text style={[styles.subtitle, { fontSize: bodySize, color: monoIcon(themeMode, '#C8D6EA') }]}>
+            <Text style={[styles.subtitle, { fontSize: bodySize, color: '#C8D6EA' }]}>
               {tx.subtitle}
             </Text>
           </View>
@@ -327,7 +326,7 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
                 <FlowText
                   testID="release-notes-chip"
                   provenance="authored"
-                  style={[styles.chipText, { fontSize: captionSize, color: monoIcon(themeMode, '#DCE8FF') }]}
+                  style={[styles.chipText, { fontSize: captionSize, color: '#DCE8FF' }]}
                 >
                   {chip}
                 </FlowText>
@@ -350,7 +349,7 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
                 bodySize={bodySize}
               />
             ))}
-            <Text style={[styles.footer, { fontSize: captionSize, color: monoIcon(themeMode, '#93A6C0') }]}>
+            <Text style={[styles.footer, { fontSize: captionSize, color: '#93A6C0' }]}>
               {tx.footer}
             </Text>
           </ScrollView>
@@ -367,7 +366,7 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
             gradientStart={{ x: 0, y: 0 }}
             gradientEnd={{ x: 1, y: 1 }}
           >
-            <Text style={[styles.btnText, { fontSize: buttonSize, color: monoIcon(themeMode, '#121826', MONO_ICON.onLight) }]}>
+            <Text style={[styles.btnText, { fontSize: buttonSize, color: '#121826' }]}>
               {tx.cta}
             </Text>
           </DuoPressable>

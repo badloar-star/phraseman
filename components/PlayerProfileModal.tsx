@@ -53,7 +53,6 @@ import { noAndroidOutline } from '../constants/androidGlow';
 import { getLevelFromXP, isLightThemeMode } from '../constants/theme';
 import { getTitleString } from '../constants/titles';
 import { triLang, type Lang } from '../constants/i18n';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { pearlIconForTheme } from '../app/coin_icons';
 import { CLUBS, clubTierShortName } from '../app/league_engine';
 import { getCurrentMultiplierBreakdown, peekLastMultiplierBreakdown, MultiplierBreakdown } from '../app/xp_manager';
@@ -1855,7 +1854,7 @@ function PlayerProfileModalBody({
             <Ionicons
               name={likedThisProfile ? 'heart' : 'heart-outline'}
               size={16}
-              color={monoIcon(themeMode, '#FF2D55')}
+              color={'#FF2D55'}
             />
             <Text style={{ color: inkPrimary, fontSize: 13.5, fontWeight: '800' }} numberOfLines={1}>
               {activityLikeTotal.toLocaleString()}
@@ -1878,7 +1877,7 @@ function PlayerProfileModalBody({
           >
             {club.imageUri
               ? <Image source={club.imageUri} style={{ width: 28, height: 28, borderRadius: 6 }} contentFit="contain" accessibilityLabel={triLang(lang as Lang, { ru: 'Иконка лиги', uk: 'Іконка ліги', es: 'Icono de liga', 'pt-BR': 'Ícone da liga', vi: 'Biểu tượng giải đấu', id: 'Ikon liga', tr: 'Lig simgesi', pl: 'Ikona ligi' })} />
-              : <Ionicons name={club.ionIcon as any} size={26} color={monoIcon(themeMode, club.color)} />
+              : <Ionicons name={club.ionIcon as any} size={26} color={club.color} />
             }
             <Text style={{ color: inkPrimary, fontSize: 13.5, fontWeight: '700', flex: 1, minWidth: 0 }} numberOfLines={1}>
               {clubTierShortName(club, lang as Lang)}
@@ -2084,7 +2083,7 @@ function PlayerProfileModalBody({
                   backgroundColor: cardVisual.accentSoft,
                   shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, ...noAndroidOutline,
                 }}>
-                  <Ionicons name="book" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
+                  <Ionicons name="book" size={16} color={cardVisual.accent} />
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: inkPrimary, fontSize: 14, fontWeight: '700' }}>
@@ -2115,7 +2114,7 @@ function PlayerProfileModalBody({
                   backgroundColor: cardVisual.accentSoft,
                   shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, ...noAndroidOutline,
                 }}>
-                  <Ionicons name="shield-checkmark" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
+                  <Ionicons name="shield-checkmark" size={16} color={cardVisual.accent} />
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: inkPrimary, fontSize: 14, fontWeight: '700' }}>
@@ -2146,7 +2145,7 @@ function PlayerProfileModalBody({
                   backgroundColor: cardVisual.accentSoft,
                   shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, ...noAndroidOutline,
                 }}>
-                  <Ionicons name="compass" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
+                  <Ionicons name="compass" size={16} color={cardVisual.accent} />
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: inkPrimary, fontSize: 14, fontWeight: '700' }}>
@@ -2262,7 +2261,7 @@ function PlayerProfileModalBody({
                 activeOpacity={0.88}
                 style={{ borderRadius: 14, paddingVertical: 13, alignItems: 'center', backgroundColor: '#FACC15', opacity: upgradeBusy ? 0.7 : 1, flexDirection: 'row', justifyContent: 'center', gap: 8 }}
               >
-                <Text style={{ color: monoIcon(themeMode, '#1A1205', MONO_ICON.onLight), fontSize: f.bodyLg, fontWeight: '900' }}>
+                <Text style={{ color: '#1A1205', fontSize: f.bodyLg, fontWeight: '900' }}>
                   {triLang(lang as Lang, {
                     ru: `Улучшить · ${cardDef.cost}`,
                     uk: `Покращити · ${cardDef.cost}`,

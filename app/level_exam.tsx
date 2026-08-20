@@ -51,7 +51,6 @@ import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
 import { canShowReview } from './review_utils';
 import ReviewPromptModal from '../components/ReviewPromptModal';
-import { monoIcon } from '../constants/monoIcon';
 import { soundDirector } from '../modules/audio/sound_director';
 import LevelExamV2 from '../components/level-exam/LevelExamV2';
 
@@ -518,7 +517,7 @@ function FrenchLevelExamUnavailable({
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
             <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: oliveChrome?.raised ?? LX.card, borderWidth: 0, borderColor: oliveChrome?.border ?? LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
-              <Ionicons name="shield-checkmark-outline" size={38} color={monoIcon(themeMode, LX.gold)} />
+              <Ionicons name="shield-checkmark-outline" size={38} color={LX.gold} />
             </View>
             <Text style={{ color: oliveChrome?.ivory ?? '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
               {copy.title}
@@ -990,7 +989,7 @@ export default function LevelExam() {
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
             <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: oliveExamChrome?.raised ?? LX.card, borderWidth: 0, borderColor: oliveExamChrome?.border ?? LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
-              <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={38} color={monoIcon(themeMode, LX.gold)} />
+              <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={38} color={LX.gold} />
             </View>
             <Text style={{ color: oliveExamChrome?.ivory ?? '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
               {checking
@@ -1196,7 +1195,7 @@ export default function LevelExam() {
                     alignItems: 'center',
                   }}
                 >
-                  <Ionicons name="diamond-outline" size={26} color={monoIcon(themeMode, LX.gold)} />
+                  <Ionicons name="diamond-outline" size={26} color={LX.gold} />
                 </View>
                 <View style={{ flex: 1, paddingTop: 2 }}>
                   <Text style={{ color: oliveExamChrome?.ivory ?? '#FFFFFF', fontSize: f.h1, fontWeight: '800', lineHeight: Math.round(f.h1 * 1.15) }}>
@@ -1221,7 +1220,7 @@ export default function LevelExam() {
                       borderColor: LX.cardLine,
                     }}
                   >
-                    <Ionicons name={s.icon} size={18} color={monoIcon(themeMode, LX.gold)} style={{ marginBottom: 8 }} />
+                    <Ionicons name={s.icon} size={18} color={LX.gold} style={{ marginBottom: 8 }} />
                     <Text style={{ color: oliveExamChrome?.cta ?? LX.gold, fontSize: f.numMd, fontWeight: '800', marginBottom: 4 }}>{s.value}</Text>
                     <Text
                       style={{
@@ -1254,7 +1253,7 @@ export default function LevelExam() {
                     borderColor: oliveExamChrome?.border ?? LX.cardLine,
                   }}
                 >
-                  <Ionicons name="sparkles-outline" size={20} color={oliveExamChrome?.cta ?? monoIcon(themeMode, LX.gold)} style={{ marginTop: 2 }} />
+                  <Ionicons name="sparkles-outline" size={20} color={oliveExamChrome?.cta ?? LX.gold} style={{ marginTop: 2 }} />
                   <Text style={{ flex: 1, color: oliveExamChrome?.ivory ?? 'rgba(255,255,255,0.92)', fontSize: f.body, lineHeight: 21 }}>{premiumNote}</Text>
                 </View>
               ) : null}

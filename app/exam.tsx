@@ -64,7 +64,6 @@ import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from '
 import { lessonProgressKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime';
-import { monoIcon } from '../constants/monoIcon';
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
 const LINGMAN_EXAM_ENERGY = 8;
@@ -999,8 +998,8 @@ export default function ExamScreen() {
       <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20}}>
         {certificate && (
           <View style={{flexDirection:'row',alignItems:'center',gap:8,backgroundColor:'rgba(212,160,23,0.08)',borderRadius:10,padding:10,borderWidth:0,borderColor:'#d4a017',marginBottom:16}}>
-            <Ionicons name="information-circle" size={18} color={monoIcon(themeMode, '#FFD700')}/>
-            <Text style={{color:monoIcon(themeMode, '#FDE68A'),fontSize:f.sub,flex:1}}>
+            <Ionicons name="information-circle" size={18} color={'#FFD700'}/>
+            <Text style={{color:'#FDE68A',fontSize:f.sub,flex:1}}>
               {t3(
                 `Текущий результат: ${certificate.pct}%. Новый пересчёт — только при 80% и выше (награда в приложении).`,
                 `Поточний результат: ${certificate.pct}%. Новий перерахунок — лише за ≥ 80% (нагорода в застосунку).`,
@@ -1168,7 +1167,7 @@ export default function ExamScreen() {
           </Text>
         </View>
         <View style={{flexDirection:'row',alignItems:'center',gap:4,flexShrink:1}}>
-          <Ionicons name="bookmark" size={12} color={monoIcon(themeMode, '#D4A017')}/>
+          <Ionicons name="bookmark" size={12} color={'#D4A017'}/>
           <Text style={{color:sx.second,fontSize:f.sub}} numberOfLines={1}>
             {flagged.filter(Boolean).length} {t3('помеч.', 'позн.', 'marc.', 'marc.', 'đã đánh dấu', 'ditandai', 'işaretli', 'ozn.')}
           </Text>
@@ -1202,9 +1201,9 @@ export default function ExamScreen() {
                 <Text style={{color:t.textPrimary,fontSize:f.sub,fontWeight:'500'}} numberOfLines={1}>{examTopicForLang(qItem, lang)}</Text>
               </View>
               <View style={{flexDirection:'row',alignItems:'center',gap:6}}>
-                {isFlaggedItem && <Ionicons name="bookmark" size={16} color={monoIcon(themeMode, '#D4A017')}/>}
+                {isFlaggedItem && <Ionicons name="bookmark" size={16} color={'#D4A017'}/>}
                 {isAnswered
-                  ? <Ionicons name="checkmark-circle" size={18} color={monoIcon(themeMode, '#D4A017')}/>
+                  ? <Ionicons name="checkmark-circle" size={18} color={'#D4A017'}/>
                   : <Ionicons name="ellipse-outline" size={18} color={t.wrong}/>
                 }
               </View>
@@ -1367,8 +1366,8 @@ export default function ExamScreen() {
           // Имя указано — показываем сам диплом + кнопку шеринга.
           <View style={{backgroundColor:'#0a1620',borderRadius:18,padding:18,borderWidth:0,borderColor:'#d4a017',width:'100%',alignItems:'center',marginBottom:16}}>
             <View style={{flexDirection:'row',alignItems:'center',gap:8,marginBottom:12}}>
-              <Ionicons name="ribbon" size={22} color={monoIcon(themeMode, '#FFD700')}/>
-              <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.2}}>
+              <Ionicons name="ribbon" size={22} color={'#FFD700'}/>
+              <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.2}}>
                 PHRASEMAN B2
               </Text>
             </View>
@@ -1389,8 +1388,8 @@ export default function ExamScreen() {
               onPress={() => { void shareCertificate(); }}
               activeOpacity={0.85}
             >
-              <Ionicons name="share-outline" size={18} color={monoIcon(themeMode, '#FFD700')}/>
-              <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'700'}}>
+              <Ionicons name="share-outline" size={18} color={'#FFD700'}/>
+              <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'700'}}>
                 {t3('Поделиться наградой', 'Поділитися нагородою', 'Compartir diploma', 'Compartilhar diploma', 'Chia sẻ phần thưởng', 'Bagikan diploma', 'Diplomayı paylaş', 'Udostępnij dyplom')}
               </Text>
             </TouchableOpacity>
@@ -1399,7 +1398,7 @@ export default function ExamScreen() {
               onPress={() => setNameModalVisible(true)}
               activeOpacity={0.7}
             >
-              <Text style={{color:monoIcon(themeMode, '#FDE68A'),fontSize:f.sub,textDecorationLine:'underline'}}>
+              <Text style={{color:'#FDE68A',fontSize:f.sub,textDecorationLine:'underline'}}>
                 {t3('Изменить имя на награде', 'Змінити ім\u02BCя на нагороді', 'Cambiar nombre en el diploma', 'Alterar nome no diploma', 'Đổi tên trên phần thưởng', 'Ubah nama di diploma', 'Diplomadaki adı değiştir', 'Zmień imię na dyplomie')}
               </Text>
             </TouchableOpacity>
@@ -1414,12 +1413,12 @@ export default function ExamScreen() {
             style={{backgroundColor:'#0a1620',borderRadius:18,padding:20,borderWidth:0,borderColor:'#d4a017',width:'100%',alignItems:'center',marginBottom:16,gap:10}}
           >
             <View style={{flexDirection:'row',alignItems:'center',gap:8}}>
-              <Ionicons name="ribbon" size={22} color={monoIcon(themeMode, '#FFD700')}/>
-              <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.2}}>
+              <Ionicons name="ribbon" size={22} color={'#FFD700'}/>
+              <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.2}}>
                 PHRASEMAN B2
               </Text>
             </View>
-            <Text style={{color:monoIcon(themeMode, '#FDE68A'),fontSize:f.body,textAlign:'center',lineHeight:f.body*1.4}}>
+            <Text style={{color:'#FDE68A',fontSize:f.body,textAlign:'center',lineHeight:f.body*1.4}}>
               {t3(
                 'Укажите имя — и ваш сертификат появится здесь. Без имени награда не показывается.',
                 'Вкажіть ім\u02BCя — і ваш сертифікат з\u02BCявиться тут. Без імені нагорода не показується.',
@@ -1432,8 +1431,8 @@ export default function ExamScreen() {
               )}
             </Text>
             <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:8,backgroundColor:'#B8860B',borderRadius:12,paddingVertical:12,paddingHorizontal:18,borderWidth:0,borderColor:'#FFD700',width:'100%',marginTop:6}}>
-              <Ionicons name="create-outline" size={18} color={monoIcon(themeMode, '#FFD700')}/>
-              <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'700'}}>
+              <Ionicons name="create-outline" size={18} color={'#FFD700'}/>
+              <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'700'}}>
                 {t3('Указать имя на награде', 'Вказати ім\u02BCя на нагороді', 'Poner nombre en el diploma', 'Informar nome no diploma', 'Nhập tên trên phần thưởng', 'Masukkan nama di diploma', 'Diplomaya isim ekle', 'Podaj imię na dyplomie')}
               </Text>
             </View>
@@ -1512,8 +1511,8 @@ export default function ExamScreen() {
       </View>
       <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20,alignItems:'center'}}>
         <View style={{flexDirection:'row',alignItems:'center',gap:8,marginBottom:8}}>
-          <Ionicons name="ribbon" size={22} color={monoIcon(themeMode, '#FFD700')}/>
-          <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.4}}>
+          <Ionicons name="ribbon" size={22} color={'#FFD700'}/>
+          <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.4}}>
             PHRASEMAN ACADEMY
           </Text>
         </View>
@@ -1556,8 +1555,8 @@ export default function ExamScreen() {
               onPress={() => { void shareCertificate(); }}
               activeOpacity={0.85}
             >
-              <Ionicons name="share-outline" size={20} color={monoIcon(themeMode, '#FFD700')}/>
-              <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'800',letterSpacing:0.4}}>
+              <Ionicons name="share-outline" size={20} color={'#FFD700'}/>
+              <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'800',letterSpacing:0.4}}>
                 {t3('Поделиться наградой', 'Поділитися нагородою', 'Compartir diploma', 'Compartilhar diploma', 'Chia sẻ phần thưởng', 'Bagikan diploma', 'Diplomayı paylaş', 'Udostępnij dyplom')}
               </Text>
             </TouchableOpacity>
@@ -1594,8 +1593,8 @@ export default function ExamScreen() {
             onPress={() => setNameModalVisible(true)}
             style={{borderRadius:14,padding:24,borderWidth:0,borderColor:'#d4a017',backgroundColor:'#0a1620',width:'100%',alignItems:'center',gap:14}}
           >
-            <Ionicons name="ribbon" size={48} color={monoIcon(themeMode, '#FFD700')}/>
-            <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.h2,fontWeight:'800',textAlign:'center',letterSpacing:0.6}}>
+            <Ionicons name="ribbon" size={48} color={'#FFD700'}/>
+            <Text style={{color:'#FFD700',fontSize:f.h2,fontWeight:'800',textAlign:'center',letterSpacing:0.6}}>
               {t3(
                 'Награда готова — добавьте имя',
                 'Нагорода готова — додайте ім\u02BCя',
@@ -1607,7 +1606,7 @@ export default function ExamScreen() {
                 'Dyplom jest gotowy — dodaj imię',
               )}
             </Text>
-            <Text style={{color:monoIcon(themeMode, '#FDE68A'),fontSize:f.body,textAlign:'center',lineHeight:f.body*1.4}}>
+            <Text style={{color:'#FDE68A',fontSize:f.body,textAlign:'center',lineHeight:f.body*1.4}}>
               {t3(
                 `Ваш результат: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nУкажите имя — и сертификат появится ниже.`,
                 `Ваш результат: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nВкажіть ім\u02BCя — і сертифікат з\u02BCявиться нижче.`,
@@ -1620,8 +1619,8 @@ export default function ExamScreen() {
               )}
             </Text>
             <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:8,backgroundColor:'#B8860B',borderRadius:14,paddingVertical:14,paddingHorizontal:22,borderWidth:0,borderColor:'#FFD700',marginTop:6}}>
-              <Ionicons name="create-outline" size={18} color={monoIcon(themeMode, '#FFD700')}/>
-              <Text style={{color:monoIcon(themeMode, '#FFD700'),fontSize:f.bodyLg,fontWeight:'800'}}>
+              <Ionicons name="create-outline" size={18} color={'#FFD700'}/>
+              <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'800'}}>
                 {t3('Указать имя на награде', 'Вказати ім\u02BCя на нагороді', 'Poner nombre en el diploma', 'Informar nome no diploma', 'Nhập tên trên phần thưởng', 'Masukkan nama di diploma', 'Diplomaya isim ekle', 'Podaj imię na dyplomie')}
               </Text>
             </View>
@@ -1818,7 +1817,7 @@ export default function ExamScreen() {
             }}
             onPress={toggleFlag}
           >
-            <Ionicons name={isFlagged ? 'bookmark' : 'bookmark-outline'} size={20} color={monoIcon(themeMode, isFlagged ? '#D4A017' : t.textSecond)}/>
+            <Ionicons name={isFlagged ? 'bookmark' : 'bookmark-outline'} size={20} color={isFlagged ? '#D4A017' : t.textSecond}/>
           </TouchableOpacity>
           <TouchableOpacity
             style={{

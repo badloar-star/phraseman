@@ -27,7 +27,6 @@ import {
   lessonSupportContentAvailableForTarget,
 } from './lesson_support_target_gate';
 import { safeRouterBack } from './navigation_back';
-import { monoIcon } from '../constants/monoIcon';
 import fk from './feedback/feedback_kit';
 import VictoryBurst from '../components/feedback/VictoryBurst';
 import { theoryChapterDoneTitle, theoryChapterDoneSubtitle } from './feedback/feedback_i18n';
@@ -610,7 +609,7 @@ export default function LessonHelp() {
               opacity: xpAnim,
               transform: [{ translateY: xpAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
             }}>
-            <XpGainBadge amount={earnedXP} visible={xpShown} style={{ color: monoIcon(themeMode, '#F5A623'), fontSize: f.h2, fontWeight: '700' }} />
+            <XpGainBadge amount={earnedXP} visible={xpShown} style={{ color: '#F5A623', fontSize: f.h2, fontWeight: '700' }} />
           </Animated.View>
           )}
         </View>

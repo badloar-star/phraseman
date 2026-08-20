@@ -23,7 +23,6 @@ import {
 } from '../app/level_gift_system';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from '../app/events';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useEnergy } from './EnergyContext';
 import { useTheme } from './ThemeContext';
@@ -672,7 +671,7 @@ function LevelGiftModal({
                 borderColor: 'rgba(255,255,255,0.18)',
               }}
             >
-              <Text style={{ color: monoIcon(themeMode, '#CFC8EE'), fontSize: 22, lineHeight: 26, fontWeight: '800' }}>×</Text>
+              <Text style={{ color: '#CFC8EE', fontSize: 22, lineHeight: 26, fontWeight: '800' }}>×</Text>
             </TouchableOpacity>
           )}
 
@@ -923,11 +922,11 @@ function LevelGiftModal({
                 }}>
                   {energyBoostAlreadyActive ? (
                     <>
-                      <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
+                      <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                         {/* зачем: владелец запретил эмодзи в UI — префикс 🔄 убран, текст не менялся. */}
                         {triLang(lang, { ru: 'Буст заменён', uk: 'Буст замінено', es: 'Bono reemplazado', 'pt-BR': 'Bônus substituído', vi: 'Đã thay boost', id: 'Boost diganti', tr: 'Güçlendirme değiştirildi', pl: 'Bonus zastąpiony' })}
                       </Text>
-                      <Text style={{ color: monoIcon(themeMode, '#92400E', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
+                      <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                         {triLang(lang, {
                           ru: `Бусты энергии не суммируются — предыдущий заменён новым (+${n} до завтра)`,
                           uk: `Бусти енергії не сумуються — попередній замінено новим (+${n} до завтра)`,
@@ -942,11 +941,11 @@ function LevelGiftModal({
                     </>
                   ) : (
                     <>
-                      <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
+                      <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                         {/* зачем: владелец запретил эмодзи в UI — префикс ⚡ убран, текст не менялся. */}
                         {triLang(lang, { ru: 'Действует до полуночи', uk: 'Діє до опівночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Vale até meia-noite', vi: 'Có hiệu lực đến nửa đêm', id: 'Berlaku sampai tengah malam', tr: 'Gece yarısına kadar geçerli', pl: 'Działa do północy' })}
                       </Text>
-                      <Text style={{ color: monoIcon(themeMode, '#92400E', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
+                      <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                         {triLang(lang, {
                           ru: `Эти ${n} ед. энергии исчезнут в начале следующего дня`,
                           uk: `Ці ${n} од. енергії зникнуть на початку наступного дня`,
@@ -976,11 +975,11 @@ function LevelGiftModal({
                   borderColor: '#D97706',
                   alignItems: 'center',
                 }}>
-                  <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
+                  <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                     {/* зачем: владелец запретил эмодзи в UI — префикс 🔄 убран, текст не менялся. */}
                     {triLang(lang, { ru: 'Буст обновлён', uk: 'Буст оновлено', es: 'Bono actualizado', 'pt-BR': 'Bônus atualizado', vi: 'Boost đã cập nhật', id: 'Boost diperbarui', tr: 'Güçlendirme güncellendi', pl: 'Bonus zaktualizowany' })}
                   </Text>
-                  <Text style={{ color: monoIcon(themeMode, '#92400E', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
+                  <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                     {triLang(lang, {
                       ru: 'Бусты 2× XP не суммируются — активный буст заменён новым. Таймер запущен заново.',
                       uk: 'Бусти 2× XP не сумуються — активний буст замінено новим. Таймер запущено заново.',

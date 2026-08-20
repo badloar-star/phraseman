@@ -43,7 +43,6 @@ import { chooseDiagnosisForCategory } from './personal_practice_lesson_router';
 import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
 import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
 import { safeRouterBack } from './navigation_back';
-import { monoIcon } from '../constants/monoIcon';
 import { storageStudyTarget } from './target_storage_keys';
 import { captureAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
@@ -508,7 +507,7 @@ export default function PhraseAnalyticsScreen() {
                     style={[styles.gateIconBox, { borderColor: GATE_LUX.panelBorder }]}
                   >
                     <View style={[styles.gateIconInner, { borderColor: 'rgba(232,213,163,0.35)' }]}>
-                      <Ionicons name="diamond" size={24} color={monoIcon(themeMode, GATE_LUX.goldSoft)} />
+                      <Ionicons name="diamond" size={24} color={GATE_LUX.goldSoft} />
                     </View>
                   </LinearGradient>
                   <View style={{ flex: 1, marginLeft: 16 }}>
@@ -542,7 +541,7 @@ export default function PhraseAnalyticsScreen() {
                   {GATE_BENEFITS.map((row, i) => (
                     <View key={i} style={styles.gateBenefit}>
                       <View style={[styles.gateBenefitIcon, { backgroundColor: isLightGate ? GATE_LUX.iconRing : 'rgba(201,162,39,0.1)' }]}>
-                        <Ionicons name={row.icon} size={19} color={monoIcon(themeMode, isLightGate ? '#B8860B' : GATE_LUX.gold)} />
+                        <Ionicons name={row.icon} size={19} color={isLightGate ? '#B8860B' : GATE_LUX.gold} />
                       </View>
                       <Text style={[styles.gateBenefitText, { color: isLightGate ? t.textPrimary : '#ebe6dc', fontSize: f.body }]}>
                         {triLang(lang, { ru: row.ru, uk: row.uk, es: row.es, 'pt-BR': row.ptBR, vi: row.vi, id: row.id, tr: row.tr, pl: row.pl })}

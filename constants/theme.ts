@@ -222,45 +222,6 @@ export const LIGHT_SAKURA = {
   bgGradient:   ['#8A2A4E', '#3A0E1E', '#1A080E'] as unknown as [string, string],
 };
 
-// ─── MODERN MINIMAL (Apple-like) ─────────────────────────────────────────────
-// Neutral grayscale, generous whitespace, rounded cards, subtle contrast.
-export const MINIMAL_DARK = {
-  // Legacy minimalDark palette retained only for stored-data and asset compatibility.
-  bgPrimary:   '#0B0B0C',
-  bgCard:      '#121214',
-  bgSurface:   '#171717',
-  bgSurface2:  '#202024',
-  textPrimary: '#F5F5F5',
-  textOnCard:  '#F5F5F5',
-  textSecond:  '#6EA8FF',
-  textMuted:   '#A7ABB3',
-  textGhost:   '#747A84',
-  heroTextPrimary: '#F5F5F5',
-  heroTextMuted:   '#A7ABB3',
-  border:      'rgba(255,255,255,0.14)',
-  borderLight: '#2E2E33',
-  correct:     '#6EA8FF',
-  correctBg:   'rgba(110,168,255,0.18)',
-  wrong:       '#F26D6D',
-  wrongBg:     'rgba(242,109,109,0.16)',
-  gold:        '#E9B949',
-  goldBg:      'rgba(233,185,73,0.16)',
-  textOnGold:  '#1A1A1A',
-  accent:      '#6EA8FF',
-  accentBg:    'rgba(110,168,255,0.18)',
-  correctText: '#0E1A2F',
-  shadowDark:       'rgba(0,0,0,0.5)',
-  shadowLight:      'rgba(255,255,255,0.06)',
-  borderHighlight:  'rgba(255,255,255,0.14)',
-  isGlowEnabled:    false,
-  isGlossEnabled:   false,
-  btnShadow:   'rgba(0,0,0,0.45)',
-  cardShadow:  'rgba(0,0,0,0.42)',
-  glow:        'rgba(110,168,255,0.16)',
-  cardGradient: ['#1F2937', '#0B0B0C'] as [string, string],
-  bgGradient: ['#0B0B0C', '#010102'] as [string, string],
-};
-
 // ─── «ЧЁРНОЕ КИНО» (midnight/ember/aurora/volt) ──────────────────────────────
 // Чистый чёрный + двухцветный блум снизу (рисуется слоем CinemaBloom в
 // ScreenGradient). Палитры — constants/cinemaThemes.ts; здесь только маппинг
@@ -307,140 +268,6 @@ export const MIDNIGHT = buildCinemaTheme(CINEMA.midnight);
 export const EMBER    = buildCinemaTheme(CINEMA.ember);
 export const AURORA   = buildCinemaTheme(CINEMA.aurora);
 export const VOLT     = buildCinemaTheme(CINEMA.volt);
-
-// ─── «БИЗНЕС» (business) ─────────────────────────────────────────────────────
-// Инстаграм-язык, тёмный: чистый чёрный фон, БЕЗ карточек-контейнеров с
-// обводками — секции разделяются волосяными линиями (hairline). Никаких
-// градиентов, теней и объёма; тонкие иконки и тонкий текст. Единственный
-// цветной акцент — синий (ссылки/CTA/прогресс), ошибка — инстаграмный красный.
-// Обе business-темы включают ГЛОБАЛЬНЫЙ плоский режим — см. isFlatMode().
-export const BUSINESS = {
-  bgPrimary:   '#000000',
-  bgCard:      '#0A0A0A',
-  bgSurface:   '#121212',
-  bgSurface2:  '#1A1A1A',
-  textPrimary: '#F5F5F5',
-  textOnCard:  '#F5F5F5',
-  textSecond:  '#A8A8A8',
-  textMuted:   '#737373',
-  textGhost:   '#4D4D4D',
-  heroTextPrimary: '#F5F5F5',
-  heroTextMuted:   '#737373',
-  // Волосяные разделители вместо рамок контейнеров.
-  border:      'rgba(255,255,255,0.15)',
-  borderLight: '#262626',
-  // Верно/CTA: инстаграмный синий; кнопки «Продолжить» (через correct) — тоже.
-  correct:     '#0095F6',
-  correctBg:   'rgba(0,149,246,0.12)',
-  // Ошибка: инстаграмный красный.
-  wrong:       '#ED4956',
-  wrongBg:     'rgba(237,73,86,0.12)',
-  // XP / Уровень — нейтральный светлый (в этой теме нет «золота»).
-  gold:        '#E6E6E6',
-  goldBg:      'rgba(255,255,255,0.10)',
-  textOnGold:  '#000000',
-  // Прогресс / активный — синий.
-  accent:      '#0095F6',
-  accentBg:    'rgba(0,149,246,0.12)',
-  // Текст на залитых синих CTA — белый.
-  correctText: '#FFFFFF',
-  shadowDark:       'rgba(0,0,0,0)',
-  shadowLight:      'rgba(0,0,0,0)',
-  borderHighlight:  'rgba(255,255,255,0.15)',
-  isGlowEnabled:    false,
-  isGlossEnabled:   false,
-  btnShadow:   'rgba(0,0,0,0)',
-  cardShadow:  'rgba(0,0,0,0)',
-  glow:        'rgba(0,0,0,0)',
-  // Плоскость: «градиенты» вырождены в один цвет — карточки и фон без переливов.
-  cardGradient: ['#0A0A0A', '#0A0A0A'] as [string, string],
-  bgGradient:  ['#000000', '#000000'] as [string, string],
-};
-
-// ─── «БИЗНЕС СВЕТЛЫЙ» (businessLight) ────────────────────────────────────────
-// Инстаграм-язык, светлый: чистый белый фон, волосяные линии #DBDBDB вместо
-// рамок, тонкий тёмный текст #262626, серые подписи #8E8E8E, синий акцент.
-// Никаких теней, градиентов и объёма. Включает глобальный плоский режим.
-export const BUSINESS_LIGHT = {
-  bgPrimary:   '#FFFFFF',
-  bgCard:      '#FFFFFF',
-  bgSurface:   '#FAFAFA',
-  bgSurface2:  '#EFEFEF',
-  textPrimary: '#262626',
-  textOnCard:  '#262626',
-  textSecond:  '#555555',
-  textMuted:   '#8E8E8E',
-  textGhost:   '#C7C7C7',
-  heroTextPrimary: '#262626',
-  heroTextMuted:   '#8E8E8E',
-  // Волосяные разделители.
-  border:      '#DBDBDB',
-  borderLight: '#EFEFEF',
-  // Верно/CTA: инстаграмный синий.
-  correct:     '#0095F6',
-  correctBg:   'rgba(0,149,246,0.10)',
-  // Ошибка: инстаграмный красный.
-  wrong:       '#ED4956',
-  wrongBg:     'rgba(237,73,86,0.10)',
-  // XP / Уровень — нейтральный тёмный (без «золота»).
-  gold:        '#262626',
-  goldBg:      '#EFEFEF',
-  textOnGold:  '#262626',
-  // Прогресс / активный — синий.
-  accent:      '#0095F6',
-  accentBg:    'rgba(0,149,246,0.10)',
-  // Текст на залитых синих CTA — белый.
-  correctText: '#FFFFFF',
-  shadowDark:       'rgba(0,0,0,0)',
-  shadowLight:      'rgba(0,0,0,0)',
-  borderHighlight:  '#DBDBDB',
-  isGlowEnabled:    false,
-  isGlossEnabled:   false,
-  btnShadow:   'rgba(0,0,0,0)',
-  cardShadow:  'rgba(0,0,0,0)',
-  glow:        'rgba(0,0,0,0)',
-  cardGradient: ['#FFFFFF', '#FFFFFF'] as [string, string],
-  bgGradient:  ['#FFFFFF', '#FFFFFF'] as [string, string],
-};
-
-// Legacy candyBlue palette retained only for stored-data and asset compatibility.
-// Тёмная холодная синева + нежный «леденцовый» голубой акцент. На залитых
-// акцентом CTA — тёмный текст (UI Contrast Rule, как у lime/green тем).
-export const CANDY_BLUE = {
-  bgPrimary:   '#0B161B',
-  bgCard:      '#122229',
-  bgSurface:   '#16282F',
-  bgSurface2:  '#1C323B',
-  textPrimary: '#EAF4F8',
-  textOnCard:  '#EAF4F8',
-  textSecond:  '#9DB9C4',
-  textMuted:   '#7FA0AD',
-  textGhost:   '#4E6A76',
-  heroTextPrimary: '#EAF4F8',
-  heroTextMuted:   '#7FA0AD',
-  border:      'rgba(178,213,229,0.14)',
-  borderLight: '#24383F',
-  correct:     '#B2D5E5',
-  correctBg:   'rgba(178,213,229,0.16)',
-  wrong:       '#F26D6D',
-  wrongBg:     'rgba(242,109,109,0.14)',
-  gold:        '#FFC53D',
-  goldBg:      'rgba(255,197,61,0.14)',
-  textOnGold:  '#1A1408',
-  accent:      '#B2D5E5',
-  accentBg:    'rgba(178,213,229,0.14)',
-  correctText: '#07110A',
-  shadowDark:       'rgba(0,0,0,0.5)',
-  shadowLight:      'rgba(178,213,229,0.18)',
-  borderHighlight:  'rgba(178,213,229,0.14)',
-  isGlowEnabled:    false,
-  isGlossEnabled:   false,
-  btnShadow:   '#3A5A68',
-  cardShadow:  'rgba(0,0,0,0.45)',
-  glow:        'rgba(178,213,229,0.16)',
-  cardGradient: ['#122229', '#0E1C22'] as [string, string],
-  bgGradient: ['#0B161B', '#050C0F', '#010203'] as unknown as [string, string],
-};
 
 // ─── «ИНДИГО» (indigo) ───────────────────────────────────────────────────────
 // Тёмный индиго-сумрак + мягкий лавандовый акцент; на залитых CTA — тёмный
@@ -495,7 +322,7 @@ export const SAGE_PORCELAIN = {
   bgPrimary:'#DCE1D8', bgCard:'#FCFDF9', bgSurface:'#E1E5DC', bgSurface2:'#D1D9D1', textPrimary:'#17201D', textOnCard:'#17201D', textSecond:'#3C5A50', textMuted:'#52605A', textGhost:'#4E5D55', heroTextPrimary:'#17201D', heroTextMuted:'#52605A', border:'#CFD6CE', borderLight:'#BDC8BD', correct:'#2F6F4F', correctBg:'#DCEADF', wrong:'#A8464D', wrongBg:'#F2DFE0', gold:'#8B6320', goldBg:'#EEE5D1', textOnGold:'#FFFFFF', accent:'#315F50', accentBg:'#D9E9E1', correctText:'#FFFFFF', shadowDark:'#23322B', shadowLight:'rgba(252,253,249,0.78)', borderHighlight:'rgba(252,253,249,0.92)', isGlowEnabled:false, isGlossEnabled:false, btnShadow:'#264A3F', cardShadow:'rgba(35,50,43,0.14)', glow:'rgba(49,95,80,0.10)', cardGradient:['#FCFDF9','#F5F7F2'] as [string,string], bgGradient:['#E7EAE2','#D2D9CC'] as [string,string]
 };
 
-export type ThemeMode = 'dark' | 'gold' | 'olive' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo' | 'sagePorcelain';
+export type ThemeMode = 'dark' | 'gold' | 'olive' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'indigo' | 'sagePorcelain';
 export type Theme = typeof DARK;
 
 export function isLightThemeMode(mode: ThemeMode): boolean { return mode === 'sagePorcelain'; }
@@ -517,14 +344,10 @@ export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
 // Убеждаемся, что все темы соответствуют одному типу (compile-time check)
 const _checkGOLD:   Theme = GOLD         as any;
 const _checkOLIVE:  Theme = OLIVE        as any;
-const _checkMIND:   Theme = MINIMAL_DARK  as any;
 const _checkMIDNIGHT: Theme = MIDNIGHT as any;
 const _checkEMBER:    Theme = EMBER    as any;
 const _checkAURORA:   Theme = AURORA   as any;
 const _checkVOLT:     Theme = VOLT     as any;
-const _checkBUSINESS: Theme = BUSINESS as any;
-const _checkBUSINESS_LIGHT: Theme = BUSINESS_LIGHT as any;
-const _checkCANDY_BLUE: Theme = CANDY_BLUE as any;
 const _checkSAGE_PORCELAIN: Theme = SAGE_PORCELAIN as any;
 const _checkINDIGO: Theme = INDIGO as any;
 

@@ -22,7 +22,6 @@ import { useTheme } from './ThemeContext';
 import MotionModal from './MotionModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
-import { monoIcon } from '../constants/monoIcon';
 import { consumeVipCelebration } from '../app/vip_celebration_state';
 import {
   type AppMessageWithState,
@@ -786,7 +785,7 @@ function AppMessagesInbox({
                       </View>
                       {(message.reportReply?.coins ?? 0) > 0 && !message.reportReply?.claimed ? (
                         <View style={[styles.pollBadge, { borderColor: 'rgba(99,217,143,0.5)', backgroundColor: 'rgba(99,217,143,0.10)' }]}>
-                          <Ionicons name="diamond-outline" size={11} color={monoIcon(themeMode, '#63D98F')} />
+                          <Ionicons name="diamond-outline" size={11} color={'#63D98F'} />
                           <Text style={[styles.pollBadgeText, { color: '#63D98F' }]}>+{message.reportReply?.coins}</Text>
                         </View>
                       ) : null}
@@ -837,7 +836,7 @@ function AppMessagesInbox({
       <View style={[styles.pollCard, { backgroundColor: chrome.card, borderColor: chrome.border }]}>
         <View style={styles.pollHeader}>
           <View style={[styles.pollHeaderIcon, { backgroundColor: isDark ? '#263447' : '#E7EEF8' }]}>
-            <Ionicons name="stats-chart" size={15} color={monoIcon(themeMode, isDark ? '#93C5FD' : '#2563EB')} />
+            <Ionicons name="stats-chart" size={15} color={isDark ? '#93C5FD' : '#2563EB'} />
           </View>
           <View style={styles.pollHeaderText}>
             <Text style={[styles.pollLabel, { color: chrome.soft }]}>{copy.poll}</Text>
@@ -907,7 +906,7 @@ function AppMessagesInbox({
       <View style={[styles.vipSurveyCard, { backgroundColor: isDark ? '#182131' : '#F8FAFC', borderColor: 'rgba(99,217,143,0.30)' }]}>
         <View style={styles.vipSurveyCardTop}>
           <View style={[styles.vipSurveyIcon, { backgroundColor: 'rgba(99,217,143,0.14)' }]}>
-            <Ionicons name={reward.claimed ? 'checkmark-circle' : 'diamond'} size={18} color={monoIcon(themeMode, '#63D98F')} />
+            <Ionicons name={reward.claimed ? 'checkmark-circle' : 'diamond'} size={18} color={'#63D98F'} />
           </View>
           <View style={styles.vipSurveyTextWrap}>
             <Text style={[styles.vipSurveyTitle, { color: chrome.text }]}>
@@ -1000,7 +999,7 @@ function AppMessagesInbox({
                 },
               ]}
             >
-              <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? monoIcon(themeMode, '#63D98F') : chrome.muted} />
+              <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? '#63D98F' : chrome.muted} />
               <Text style={[styles.reactionText, { color: selected.reaction === 'like' ? '#63D98F' : chrome.muted }]}>{copy.like}</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -1014,7 +1013,7 @@ function AppMessagesInbox({
                 },
               ]}
             >
-              <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? monoIcon(themeMode, '#F87171') : chrome.muted} />
+              <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? '#F87171' : chrome.muted} />
               <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? '#F87171' : chrome.muted }]}>{copy.dislike}</Text>
             </TouchableOpacity>
           </View>}
@@ -1064,7 +1063,7 @@ function AppMessagesInbox({
                   },
                 ]}
               >
-                <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? monoIcon(themeMode, '#63D98F') : chrome.muted} />
+                <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? '#63D98F' : chrome.muted} />
                 <Text style={[styles.reactionText, { color: selected.reaction === 'like' ? '#63D98F' : chrome.muted }]}>{copy.like}</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -1078,7 +1077,7 @@ function AppMessagesInbox({
                   },
                 ]}
               >
-                <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? monoIcon(themeMode, '#F87171') : chrome.muted} />
+                <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? '#F87171' : chrome.muted} />
                 <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? '#F87171' : chrome.muted }]}>{copy.dislike}</Text>
               </TouchableOpacity>
             </View>

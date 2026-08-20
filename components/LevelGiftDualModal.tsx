@@ -24,7 +24,6 @@ import {
 } from '../app/level_gift_system';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from '../app/events';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useEnergy } from './EnergyContext';
 import { useTheme, type Fonts } from './ThemeContext';
@@ -950,7 +949,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       </TouchableOpacity>
                     )}
                   </View>
-                  <Text style={{ color: monoIcon(themeMode, PREM_LABEL_COLOR), fontSize: 10, lineHeight: 13, height: 26, marginTop: 6, textAlign: 'center', fontWeight: '800', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }} numberOfLines={2}>
+                  <Text style={{ color: PREM_LABEL_COLOR, fontSize: 10, lineHeight: 13, height: 26, marginTop: 6, textAlign: 'center', fontWeight: '800', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }} numberOfLines={2}>
                     {secondChestLabel(lang)}
                   </Text>
                   {opened.has('prem') && premGift ? (
@@ -1218,7 +1217,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
       backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '#0B1018' : 'rgba(0,0,0,0.15)',
       overflow: 'hidden',
     }}>
-      <Text style={{ color: premVisual ? monoIcon(themeMode, PREM_LABEL_COLOR) : t.textMuted, fontSize: 10, fontWeight: '800', marginBottom: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 8 : 4, textTransform: 'uppercase', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
+      <Text style={{ color: premVisual ? PREM_LABEL_COLOR : t.textMuted, fontSize: 10, fontWeight: '800', marginBottom: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 8 : 4, textTransform: 'uppercase', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
         {label} · {giftRarityUiLabel(rarity, lang)}
       </Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -1255,7 +1254,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
       )}
       {(g.id === 'xp_2x_24h' || g.id === 'xp_2x_48h') && meta.xpBoostAlreadyActive && (
         <View style={{ marginTop: 8, padding: 8, backgroundColor: '#FEF3C7', borderRadius: 8, borderWidth: 0, borderColor: '#D97706' }}>
-          <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
+          <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
             {triLang(lang, { ru: '2× буст обновлён', uk: '2× буст оновлено', es: 'Bono de XP ×2 actualizado', 'pt-BR': 'Bônus de XP ×2 atualizado', vi: 'Boost XP ×2 đã cập nhật', id: 'Boost XP ×2 diperbarui', tr: 'XP ×2 boost güncellendi', pl: 'Boost XP ×2 zaktualizowany' })}
           </Text>
         </View>
@@ -1284,7 +1283,7 @@ function EnergyNote({ f, g, lang, themeMode, energyBoostAlreadyActive }: {
     }}>
       {energyBoostAlreadyActive
         ? (
-            <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', fontWeight: '700' }}>
+            <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '700' }}>
               {triLang(lang, {
                 ru: `Буст заменён (+${n})`,
                 uk: `Буст замінено (+${n})`,
@@ -1298,7 +1297,7 @@ function EnergyNote({ f, g, lang, themeMode, energyBoostAlreadyActive }: {
             </Text>
           )
         : (
-            <Text style={{ color: monoIcon(themeMode, '#78350F', MONO_ICON.onLight), fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
+            <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
               {triLang(lang, { ru: 'До полуночи', uk: 'Діє до півночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Até meia-noite', vi: 'Đến nửa đêm', id: 'Sampai tengah malam', tr: 'Gece yarısına kadar', pl: 'Do północy' })}
             </Text>
           )}

@@ -13,7 +13,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import { useTheme } from './ThemeContext';
-import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
 import { animateNextLayoutTransition } from '../app/smooth_layout';
@@ -212,7 +211,7 @@ export default function PromoBanner({ motionVariant = 'classic' }: PromoBannerPr
     <Text
       numberOfLines={2}
       style={{
-        color: monoIcon(themeMode, '#f3e8ff'),
+        color: '#f3e8ff',
         fontSize: 13,
         lineHeight: 18,
         fontWeight: '800',
@@ -285,7 +284,7 @@ export default function PromoBanner({ motionVariant = 'classic' }: PromoBannerPr
             backgroundColor: pressed ? 'rgba(255,255,255,0.20)' : 'rgba(255,255,255,0.12)',
           })}
         >
-          <Ionicons name="close" size={20} color={monoIcon(themeMode, '#f3e8ff')} />
+          <Ionicons name="close" size={20} color={'#f3e8ff'} />
         </Pressable>
       </View>
     </Animated.View>

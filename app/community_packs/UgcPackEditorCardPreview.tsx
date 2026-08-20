@@ -2,7 +2,6 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
-import { monoIcon } from '../../constants/monoIcon';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
@@ -407,8 +406,8 @@ export default function UgcPackEditorCardPreview({
               }}
               style={styles.toolBtn}
             >
-              <Ionicons name="trash-outline" size={18} color={monoIcon(themeMode, '#f87171')} />
-              <Text style={[styles.toolTxt, { color: monoIcon(themeMode, '#f87171') }]}>
+              <Ionicons name="trash-outline" size={18} color={'#f87171'} />
+              <Text style={[styles.toolTxt, { color: '#f87171' }]}>
                 {triLang(lang, {
                   uk: 'Видалити',
                   ru: 'Удалить',

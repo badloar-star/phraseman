@@ -17,7 +17,6 @@ import {
   recordReviewPromoClick,
 } from '../app/global_broadcast_modal';
 import { triLang } from '../constants/i18n';
-import { monoIcon } from '../constants/monoIcon';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import DuoPressable from './DuoPressable';
 

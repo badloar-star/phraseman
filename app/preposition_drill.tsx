@@ -39,7 +39,6 @@ import {
   vocabularyContentAvailableForTarget,
 } from './vocabulary_target_gate';
 import { safeRouterBack } from './navigation_back';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { glassFill } from '../components/GlassSurface';
 
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -76,7 +75,7 @@ function FrenchPrepositionDrillUnavailable({ lang, onBack }: { lang: Lang; onBac
         activeOpacity={0.82}
         style={{ marginTop: 8, alignSelf: 'center', backgroundColor: sx.second, borderRadius: 14, paddingHorizontal: 26, paddingVertical: 13 }}
       >
-        <Text style={{ color: monoIcon(themeMode, '#06111f', MONO_ICON.onLight), fontSize: f.bodyLg, fontWeight: '800' }}>
+        <Text style={{ color: '#06111f', fontSize: f.bodyLg, fontWeight: '800' }}>
           {copy.action}
         </Text>
       </TouchableOpacity>

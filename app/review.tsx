@@ -62,7 +62,6 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient } from '../constants/theme';
-import { monoIcon } from '../constants/monoIcon';
 import XpGainBadge from '../components/XpGainBadge';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
@@ -1407,7 +1406,7 @@ export default function ReviewScreen() {
           </View>
           {totalXP > 0 && (
             <View style={{ marginTop: 20, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 12, alignItems: 'center' }}>
-              <XpGainBadge amount={totalXP} visible={true} style={{ color: monoIcon(themeMode, '#F5A623'), fontSize: f.numMd, fontWeight: '800' }} />
+              <XpGainBadge amount={totalXP} visible={true} style={{ color: '#F5A623', fontSize: f.numMd, fontWeight: '800' }} />
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
                 {triLang(lang, {
                   ru: 'заработано за повторение',
@@ -1875,7 +1874,7 @@ export default function ReviewScreen() {
               {shouldShowBurnHint && (
                 <Animated.Text
                   style={{
-                    color: monoIcon(themeMode, '#FFB38A'),
+                    color: '#FFB38A',
                     fontSize: f.caption,
                     textAlign: 'center',
                     opacity: burnHintAnim,
@@ -1917,7 +1916,7 @@ export default function ReviewScreen() {
                 }}
               >
                 <Text style={{ fontSize: f.bodyLg }}>🔥</Text>
-                <Text style={{ color: monoIcon(themeMode, '#FF6B2B'), fontSize: isCompactPracticeLayout ? f.body : f.bodyLg, fontWeight: '700' }}>
+                <Text style={{ color: '#FF6B2B', fontSize: isCompactPracticeLayout ? f.body : f.bodyLg, fontWeight: '700' }}>
                   {triLang(lang, {
                     ru: 'Сжечь карточку',
                     uk: 'Спалити картку',

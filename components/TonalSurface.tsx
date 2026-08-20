@@ -51,22 +51,11 @@ function TonalSurface({
   style,
   ...rest
 }: TonalSurfaceProps) {
-  const { theme: t, isFlat } = useTheme();
+  const { theme: t } = useTheme();
   const baseColor = backgroundColor ?? (tone === 'raised' ? t.bgSurface : t.bgCard);
   const colors = gradientColors ?? ([t.cardGradient[0], alpha(t.bgCard, 0.92), t.cardGradient[1]] as const);
   const locations = gradientLocations ?? (gradientColors ? undefined : ([0, 0.5, 1] as const));
   const [glowTop, glowMid] = glowOpacity(tone);
-
-  if (isFlat) {
-    return (
-      <View
-        style={[{ backgroundColor: baseColor, borderRadius: radius }, style]}
-        {...rest}
-      >
-        {children}
-      </View>
-    );
-  }
 
   return (
     <View

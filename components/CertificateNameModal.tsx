@@ -14,7 +14,6 @@ import {
 } from 'react-native';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
-import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { LINGMAN_CERT_NAME_MAX_LEN, sanitizeCertName } from '../app/exam_certificate';
@@ -62,7 +61,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
     <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }]}>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
         <View style={[styles.ribbon, { borderColor: '#d4a017' }]}>
-          <Text style={{ color: monoIcon(themeMode, '#d4a017'), fontSize: f.label, fontWeight: '700', letterSpacing: 1.4 }}>
+          <Text style={{ color: '#d4a017', fontSize: f.label, fontWeight: '700', letterSpacing: 1.4 }}>
             PHRASEMAN B2
           </Text>
         </View>
@@ -141,7 +140,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
           onPress={handleSave}
           activeOpacity={0.85}
         >
-          <Text style={{ color: monoIcon(themeMode, '#FFD700'), fontSize: f.bodyLg, fontWeight: '700', letterSpacing: 0.4 }}>
+          <Text style={{ color: '#FFD700', fontSize: f.bodyLg, fontWeight: '700', letterSpacing: 0.4 }}>
             {triLang(lang as Lang, {
               ru: 'Сохранить и выдать сертификат',
               uk: 'Зберегти і видати сертифікат',

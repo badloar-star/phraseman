@@ -19,7 +19,6 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import { useEnergy } from '../components/EnergyContext';
@@ -80,9 +79,9 @@ type FormKey = typeof FORM_SEQ[number];
 function formRowMeta(lang: Lang, themeMode: ThemeMode): Record<FormKey, { label: string; color: string; bg: string }> {
   const sv = stringsForLang(lang).verbs;
   return {
-    base: { label: `V1 · ${sv.base}`, color: monoIcon(themeMode, '#4CAF50'), bg: 'rgba(76,175,80,0.14)' },
-    past: { label: `V2 · ${sv.past}`, color: monoIcon(themeMode, '#4A9EFF'), bg: 'rgba(74,158,255,0.14)' },
-    pp:   { label: `V3 · ${sv.pp}`, color: monoIcon(themeMode, '#C084FC'), bg: 'rgba(192,132,252,0.14)' },
+    base: { label: `V1 · ${sv.base}`, color: '#4CAF50', bg: 'rgba(76,175,80,0.14)' },
+    past: { label: `V2 · ${sv.past}`, color: '#4A9EFF', bg: 'rgba(74,158,255,0.14)' },
+    pp:   { label: `V3 · ${sv.pp}`, color: '#C084FC', bg: 'rgba(192,132,252,0.14)' },
   };
 }
 
@@ -1055,7 +1054,7 @@ function FrenchIrregularVerbsUnavailable({ lang, onBack }: { lang: Lang; onBack:
         activeOpacity={0.82}
         style={{ marginTop: 8, alignSelf: 'center', backgroundColor: sx.second, borderRadius: 14, paddingHorizontal: 26, paddingVertical: 13 }}
       >
-        <Text style={{ color: monoIcon(themeMode, '#06111f', MONO_ICON.onLight), fontSize: f.bodyLg, fontWeight: '800' }}>
+        <Text style={{ color: '#06111f', fontSize: f.bodyLg, fontWeight: '800' }}>
           {copy.action}
         </Text>
       </TouchableOpacity>

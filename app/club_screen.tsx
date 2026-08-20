@@ -58,7 +58,6 @@ import { getTitleString } from '../constants/titles';
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import { getCanonicalUserId } from './user_id_policy';
 import { getXPProgress, getLevelFromXP, isLightThemeMode, screenTextOnGradient, type ThemeMode } from '../constants/theme';
-import { monoIcon } from '../constants/monoIcon';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import {
@@ -359,7 +358,7 @@ function LeagueIcon({
     <LeagueIconImageWithFallback
       source={imageUri}
       iconName={iconName}
-      color={monoIcon(themeMode ?? 'dark', locked ? '#7A7A7A' : (active ? league.color : '#7F8793'))}
+      color={locked ? '#7A7A7A' : (active ? league.color : '#7F8793')}
       size={size}
       opacity={locked ? 0.55 : (active ? 1 : 0.65)}
       contentOffset={contentOffset}
@@ -368,7 +367,7 @@ function LeagueIcon({
     <Ionicons
       name={iconName}
       size={Math.max(14, Math.round(size * 0.8))}
-      color={monoIcon(themeMode ?? 'dark', locked ? '#7A7A7A' : (active ? league.color : '#7F8793'))}
+      color={locked ? '#7A7A7A' : (active ? league.color : '#7F8793')}
     />
   );
 
@@ -1268,9 +1267,9 @@ export default function ClubScreen() {
     accent: t.accent,
     accentText: t.correctText,
     outline: t.border,
-    positive: monoIcon(themeMode, hubIsLight ? '#1F7A44' : '#34C759'),
-    negative: monoIcon(themeMode, hubIsLight ? '#B03A44' : '#FF5B6C'),
-    warning: monoIcon(themeMode, hubIsLight ? '#8A6410' : '#FFD43B'),
+    positive: hubIsLight ? '#1F7A44' : '#34C759',
+    negative: hubIsLight ? '#B03A44' : '#FF5B6C',
+    warning: hubIsLight ? '#8A6410' : '#FFD43B',
     isLight: hubIsLight,
     bone: hubIsLight ? 'rgba(23,32,29,0.09)' : 'rgba(255,255,255,0.07)',
     boneShine: hubIsLight ? 'rgba(23,32,29,0.04)' : 'rgba(255,255,255,0.16)',

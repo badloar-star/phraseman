@@ -31,7 +31,6 @@ import { memberNameStatusStyle } from '../components/premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
-import { monoIcon } from '../constants/monoIcon';
 import { buttonForegroundForBackground, isLightSurface, readableOn } from '../constants/color_contrast';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
@@ -980,9 +979,9 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                         name={(isPromo ? 'trending-up' : isDemo ? 'trending-down' : 'flag') as any}
                         size={12}
                         color={isDemo
-                          ? monoIcon(themeMode, ink('#FF6B6B', 4.5))
+                          ? ink('#FF6B6B', 4.5)
                           : isPromo
-                            ? monoIcon(themeMode, ink('#34C759', 4.5))
+                            ? ink('#34C759', 4.5)
                             : (onLight ? readableOn(t.gold, t.bgSurface, 4.5) : t.gold)}
                       />
                       <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700' }}>

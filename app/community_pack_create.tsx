@@ -25,7 +25,6 @@ import { triLang, type Lang } from '../constants/i18n';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useTheme } from '../components/ThemeContext';
-import { monoIcon } from '../constants/monoIcon';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { flashcardsCommunityPacksAvailableForTarget } from './flashcards_target_gate';
@@ -895,7 +894,7 @@ export default function CommunityPackCreateScreen() {
           </View>
           <ContentWrap>
             <View style={styles.formHorizontalInset}>
-              <Text style={{ color: monoIcon(themeMode, '#f87171'), marginTop: 20 }}>{loadErr}</Text>
+              <Text style={{ color: '#f87171', marginTop: 20 }}>{loadErr}</Text>
             </View>
           </ContentWrap>
         </SafeAreaView>

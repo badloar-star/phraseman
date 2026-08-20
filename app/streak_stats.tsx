@@ -18,7 +18,6 @@ import StatsCardArtSurface from '../components/StatsCardArtSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { monoIcon, MONO_ICON, isBusinessMode } from '../constants/monoIcon';
 import { streakCalendarShortWeekdays, streakChartScrubHint, streakWeeklyExperienceLabel, streakWeekRowShort, streakWagerTierDaysLabel, streakProtectionStatusLabel, } from '../constants/streak_stats_i18n';
 import { LEAGUES } from './league_engine';
 import { clearFinishedWager, getEffectiveWagerStake, loadWager, placeWager, wagerDaysLeft, WagerState, WAGER_TIERS } from './streak_wager';
@@ -1259,7 +1258,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
         const resultColor = won ? '#34C759' : '#FF3B30';
         return (<StatsCardArtSurface name="wager" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={16} scrim="stats" testID="wager-result-card" style={[{ borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 0, borderColor: wagerBorder }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
         <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: resultColor + '22', alignItems: 'center', justifyContent: 'center' }}>
-          <Ionicons name={won ? 'trophy' : 'close-circle'} size={22} color={monoIcon(themeMode, resultColor, won ? MONO_ICON.light : MONO_ICON.muted)}/>
+          <Ionicons name={won ? 'trophy' : 'close-circle'} size={22} color={resultColor}/>
         </View>
         <View style={{ flex: 1 }}>
           {won ? (<View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 4 }}>
@@ -2374,7 +2373,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
     /** Минуты этой недели минус минуты прошлой; null — прошлая неделя пустая (нечего сравнивать). */
     weekDeltaMinutes: number | null;
 }) {
-    const isBusiness = isBusinessMode(themeMode);
+    const isBusiness = false;
     const scoreAccent = isGoldTheme ? GOLD_RICH.champagne : isBusiness ? t.accent : metrics.scoreColor;
     const scoreSoftBg = isGoldTheme ? GOLD_RICH.wash : isBusiness ? t.accentBg : metrics.scoreColor + '24';
     const scoreBorder = isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'practiceBalance', 'medium');

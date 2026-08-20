@@ -268,7 +268,7 @@ const SHOW_SOUND_SETTINGS = false;
 export default function SettingsMain() {
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
-  const { theme: t, isDark, themeMode, fontSize, setFontSize, f, isFlat: isFlatUi } = useTheme();
+  const { theme: t, isDark, themeMode, fontSize, setFontSize, f } = useTheme();
   /**
    * Ocean / Sakura — это «светлые карточки на тёмном цветном фоне». Темы
    * рассчитаны на отрисовку контента ВНУТРИ светлой карточки (`t.bgCard`),
@@ -1478,8 +1478,7 @@ export default function SettingsMain() {
             onPress={() => router.push('/settings_themes' as any)}
           />
 
-          {/* РАЗМЕР ШРИФТА — в плоском IG-режиме типографика фиксирована, настройка скрыта */}
-          {isFlatUi ? null : (
+          {/* РАЗМЕР ШРИФТА */}
           <SettingsCustomRow>
             {/* зачем: подпись-значение под названием убрана (запрет владельца) —
                 текущий размер и так виден по выбранной плитке ниже. */}
@@ -1541,7 +1540,6 @@ export default function SettingsMain() {
               ))}
             </View>
           </SettingsCustomRow>
-          )}
 
           {/* Тактильный отклик — глобальный */}
           <SettingsRow

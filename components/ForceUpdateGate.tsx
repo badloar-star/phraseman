@@ -5,7 +5,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
 import { getStableId } from '../app/stable_id';
@@ -292,13 +291,13 @@ export default function ForceUpdateGate() {
             marginBottom: 16,
           }}
         >
-          <Ionicons name="phone-portrait-outline" size={28} color={monoIcon(themeMode, '#4338ca', MONO_ICON.onLight)} />
+          <Ionicons name="phone-portrait-outline" size={28} color={'#4338ca'} />
         </View>
 
         <Text style={{ color: '#fff', fontSize: 22, lineHeight: 28, fontWeight: '800', marginBottom: 10 }}>
           {gate.title}
         </Text>
-        <Text style={{ color: monoIcon(themeMode, '#cbd5e1'), fontSize: 15, lineHeight: 22, marginBottom: 18 }}>
+        <Text style={{ color: '#cbd5e1', fontSize: 15, lineHeight: 22, marginBottom: 18 }}>
           {gate.body}
         </Text>
 
@@ -334,7 +333,7 @@ export default function ForceUpdateGate() {
               backgroundColor: pressed ? '#26324a' : 'transparent',
             })}
           >
-            <Text style={{ color: monoIcon(themeMode, '#9ca3af'), fontSize: 14, fontWeight: '700' }}>
+            <Text style={{ color: '#9ca3af', fontSize: 14, fontWeight: '700' }}>
               {triLang(lang as Lang, {
                 ru: 'Позже',
                 uk: 'Пізніше',

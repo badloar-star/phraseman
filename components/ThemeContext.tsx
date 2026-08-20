@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, GOLD, OLIVE, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, SAGE_PORCELAIN, Theme, ThemeMode, isLightThemeMode } from '../constants/theme';
+import { DARK, GOLD, OLIVE, MIDNIGHT, EMBER, AURORA, VOLT, INDIGO, SAGE_PORCELAIN, Theme, ThemeMode, isLightThemeMode } from '../constants/theme';
 import { sagePorcelainShadow } from '../constants/sagePorcelainChrome';
 import { goldShadow } from '../constants/goldTheme';
 import { oliveShadow } from '../constants/oliveTheme';
@@ -169,12 +169,6 @@ interface ThemeCtx {
   setFontSize:  (s: FontSize) => void;
   /** Множник розміру інтерфейсу від вікна (~0.82–1.22); шрифти f і ds вже помножені */
   uiScale:      number;
-  /**
-   * Плоский «инстаграм»-режим (темы business/businessLight): без теней и
-   * градиентов, волосяные разделители вместо рамок, тонкие иконки/текст,
-   * фиксированная типографика (масштаб и размер шрифта не применяются).
-   */
-  isFlat:       boolean;
   f:            Fonts;   // готовые размеры шрифтов, использовать везде как f.body, f.h2 и тд
   ds: {
     spacing: { xs: number; sm: number; md: number; lg: number; xl: number; xxl: number };
@@ -204,7 +198,6 @@ const ThemeContext = createContext<ThemeCtx>({
   fontSize:     'medium',
   setFontSize:  () => {},
   uiScale:      1,
-  isFlat:       false,
   f:            createFonts(FONT_SCALE.medium),
   ds: {
     spacing: { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 },
@@ -223,14 +216,10 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   dark: DARK,
   gold: GOLD,
   olive: OLIVE,
-  minimalDark: MINIMAL_DARK,
   midnight: MIDNIGHT,
   ember: EMBER,
   aurora: AURORA,
   volt: VOLT,
-  business: BUSINESS,
-  businessLight: BUSINESS_LIGHT,
-  candyBlue: CANDY_BLUE,
   indigo: INDIGO,
   sagePorcelain: SAGE_PORCELAIN,
 };
@@ -256,9 +245,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // выходе с экрана тем (cleanup на unmount экрана).
   const [previewThemeMode, setPreviewThemeMode] = useState<ThemeMode | null>(null);
   const effectiveThemeMode = previewThemeMode ?? themeMode;
-  // Плоский IG-режим: масштаб интерфейса не применяется, типографика фиксирована.
-  const isFlat = effectiveThemeMode === 'business' || effectiveThemeMode === 'businessLight';
-  const uiScale = isFlat ? 1 : windowUiScale;
+  const uiScale = windowUiScale;
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
   const [goldThemeUnlocked, setGoldThemeUnlocked] = useState(false);
   const [premiumThemeAccess, setPremiumThemeAccess] = useState(false);
@@ -387,8 +374,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const f = useMemo(
-    () => createFonts(FONT_SCALE[isFlat ? 'medium' : fontSize] * uiScale),
-    [fontSize, uiScale, isFlat],
+    () => createFonts(FONT_SCALE[fontSize] * uiScale),
+    [fontSize, uiScale],
   );
   const theme = useMemo(() => THEME_MAP[effectiveThemeMode], [effectiveThemeMode]);
   const isDark = !isLightThemeMode(effectiveThemeMode);
@@ -396,48 +383,33 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const ds = useMemo(() => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));
     const isLuxuryTheme = effectiveThemeMode === 'gold';
-    const radiusBase = isFlat
-      // IG-плоскость: меньше скругления, плашки компактнее.
-      ? { md: 8, lg: 10, xl: 12, xxl: 16 }
-      : isLuxuryTheme
-        ? { md: 10, lg: 12, xl: 14, xxl: 18 }
-        : { md: 12, lg: 16, xl: 20, xxl: 24 };
-    const noShadow = {
-      shadowColor: 'transparent',
-      shadowOffset: { width: 0, height: 0 },
-      shadowOpacity: 0,
-      shadowRadius: 0,
-      elevation: 0,
-    };
+    const radiusBase = isLuxuryTheme
+      ? { md: 10, lg: 12, xl: 14, xxl: 18 }
+      : { md: 12, lg: 16, xl: 20, xxl: 24 };
     return {
-      spacing: isFlat
-        ? { xs: 4, sm: 8, md: 10, lg: 14, xl: 20, xxl: 28 }
-        : { xs: px(4), sm: px(8), md: px(12), lg: px(16), xl: px(24), xxl: px(32) },
+      spacing: { xs: px(4), sm: px(8), md: px(12), lg: px(16), xl: px(24), xxl: px(32) },
       radius: { md: px(radiusBase.md), lg: px(radiusBase.lg), xl: px(radiusBase.xl), xxl: px(radiusBase.xxl) },
-      inputHeight: isFlat ? 44 : Math.max(44, px(52)),
-      buttonHeight: isFlat ? 44 : Math.max(44, px(52)),
+      inputHeight: Math.max(44, px(52)),
+      buttonHeight: Math.max(44, px(52)),
       fontFamily: APP_FONT_FAMILY,
-      shadow: isFlat
-        // Плоский режим: никакого объёма — теней нет вовсе.
-        ? { soft: noShadow, medium: noShadow }
-        : {
-          soft: {
-            shadowColor: '#000',
-            shadowOffset: { width: 0, height: Math.max(1, px(isLuxuryTheme ? 4 : 2)) },
-            shadowOpacity: isLuxuryTheme ? 0.42 : isDark ? 0.22 : 0.1,
-            shadowRadius: isLuxuryTheme ? Math.max(8, px(12)) : Math.max(4, px(8)),
-            elevation: Math.max(1, px(isLuxuryTheme ? 5 : 2)),
-          },
-          medium: {
-            shadowColor: '#000',
-            shadowOffset: { width: 0, height: Math.max(2, px(isLuxuryTheme ? 8 : 6)) },
-            shadowOpacity: isLuxuryTheme ? 0.56 : isDark ? 0.28 : 0.14,
-            shadowRadius: isLuxuryTheme ? Math.max(14, px(22)) : Math.max(8, px(16)),
-            elevation: Math.max(2, px(isLuxuryTheme ? 10 : 6)),
-          },
+      shadow: {
+        soft: {
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: Math.max(1, px(isLuxuryTheme ? 4 : 2)) },
+          shadowOpacity: isLuxuryTheme ? 0.42 : isDark ? 0.22 : 0.1,
+          shadowRadius: isLuxuryTheme ? Math.max(8, px(12)) : Math.max(4, px(8)),
+          elevation: Math.max(1, px(isLuxuryTheme ? 5 : 2)),
         },
+        medium: {
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: Math.max(2, px(isLuxuryTheme ? 8 : 6)) },
+          shadowOpacity: isLuxuryTheme ? 0.56 : isDark ? 0.28 : 0.14,
+          shadowRadius: isLuxuryTheme ? Math.max(14, px(22)) : Math.max(8, px(16)),
+          elevation: Math.max(2, px(isLuxuryTheme ? 10 : 6)),
+        },
+      },
     };
-  }, [uiScale, isDark, effectiveThemeMode, isFlat]);
+  }, [uiScale, isDark, effectiveThemeMode]);
 
   const value = useMemo<ThemeCtx>(
     () => ({
@@ -457,11 +429,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       fontSize,
       setFontSize,
       uiScale,
-      isFlat,
       f,
       ds,
     }),
-    [theme, isDark, statusBarLight, effectiveThemeMode, themeMode, previewThemeMode, goldThemeUnlocked, midnightGrandfathered, toggle, setThemeMode, fontSize, setFontSize, uiScale, isFlat, f, ds],
+    [theme, isDark, statusBarLight, effectiveThemeMode, themeMode, previewThemeMode, goldThemeUnlocked, midnightGrandfathered, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
   );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

@@ -13,7 +13,6 @@ import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { glassFill } from '../components/GlassSurface';
 import { triLang } from '../constants/i18n';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { hapticSuccess, hapticError, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { getVerifiedPremiumStatus } from './premium_guard';
@@ -459,8 +458,8 @@ export default function ProblemCoach() {
                 <Text style={[styles.optionText, { color: optionColor, fontSize: f.body }]}>
                   {option.text}
                 </Text>
-                {hasAnswered && isRight && <Ionicons name="checkmark-circle" size={20} color={monoIcon(themeMode, '#34D399')} />}
-                {hasAnswered && !isRight && isSelected && <Ionicons name="close-circle" size={20} color={monoIcon(themeMode, '#FF5B5B', MONO_ICON.muted)} />}
+                {hasAnswered && isRight && <Ionicons name="checkmark-circle" size={20} color={'#34D399'} />}
+                {hasAnswered && !isRight && isSelected && <Ionicons name="close-circle" size={20} color={'#FF5B5B'} />}
               </TouchableOpacity>
             );
           })}
@@ -470,7 +469,7 @@ export default function ProblemCoach() {
           <>
             <View style={[styles.feedbackBox, { backgroundColor: softColor, borderColor }]}>
               <View style={[styles.feedbackIconBox, { backgroundColor: softColor, borderColor }]}>
-                <Ionicons name={feedback.correct ? 'checkmark-circle-outline' : 'alert-circle-outline'} size={24} color={monoIcon(themeMode, mainColor, feedback.correct ? MONO_ICON.light : MONO_ICON.muted)} />
+                <Ionicons name={feedback.correct ? 'checkmark-circle-outline' : 'alert-circle-outline'} size={24} color={mainColor} />
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={[styles.feedbackTitle, { color: mainColor, fontSize: f.sub }]}>

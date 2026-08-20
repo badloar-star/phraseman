@@ -2,8 +2,8 @@ import {
   ARENA_ACCEPT_RETRY_MS,
   ARENA_ACCEPT_WINDOW_MS,
   arenaEntryStep,
-  type ArenaMatchPlanWire,
 } from './duel_plan';
+import type { ArenaMatchPlanWire } from './duel_plan';
 
 export type ArenaPreparedEntry = Readonly<{
   ok: true;
@@ -19,7 +19,7 @@ export type ArenaEntryAcceptResponse = Readonly<{
 
 export type ArenaEntryPrefetchDependencies = Readonly<{
   accept: (matchId: string) => Promise<ArenaEntryAcceptResponse>;
-  loadPlan: (matchId: string) => Promise<ArenaMatchPlanWire | null>;
+  loadPlan: (matchId: string) => Promise<ArenaPreparedEntry | null>;
   rememberViewerSeat: (matchId: string, seat: 'a' | 'b') => void;
   nowMs: () => number;
   wait: (ms: number) => Promise<void>;
@@ -55,9 +55,8 @@ export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
   };
 
   const prepare = async (matchId: string): Promise<ArenaPreparedEntry> => {
-    const startedAtMs = deps.nowMs();
-    const deadlineAtMs = startedAtMs + ARENA_ACCEPT_WINDOW_MS;
     try {
+      const startedAtMs = deps.nowMs();
       while (true) {
         const accepted = await deps.accept(matchId);
         if (accepted.viewerSeat) deps.rememberViewerSeat(matchId, accepted.viewerSeat);
@@ -72,14 +71,13 @@ export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
           continue;
         }
 
-        const plan = await deps.loadPlan(matchId);
-        if (!plan) throw new Error('arena_match_plan_invalid');
-        deps.rememberViewerSeat(matchId, plan.viewerSeat);
+        const planned = await deps.loadPlan(matchId);
+        if (!planned) throw new Error('arena_match_plan_invalid');
+        deps.rememberViewerSeat(matchId, planned.plan.viewerSeat);
 
-        const entry: ArenaPreparedEntry = { ok: true, startedAtMs, deadlineAtMs, plan };
-        ready.set(matchId, entry);
+        ready.set(matchId, planned);
         pruneReady();
-        return entry;
+        return planned;
       }
     } catch (error) {
       forget(matchId);
@@ -92,7 +90,7 @@ export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
       const existing = requests.get(matchId);
       if (existing) return existing;
 
-      const request = prepare(matchId);
+      const request = Promise.resolve().then(() => prepare(matchId));
       requests.set(matchId, request);
       return request;
     },

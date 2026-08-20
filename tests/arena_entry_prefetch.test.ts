@@ -4,6 +4,8 @@ import {
   type ArenaPreparedEntry,
 } from '../modules/arena/entry_prefetch';
 import type { ArenaMatchPlanWire } from '../modules/arena/duel_plan';
+import fs from 'fs';
+import path from 'path';
 
 const PLAN = {
   matchId: 'match-1',
@@ -209,5 +211,20 @@ describe('Arena entry prefetch', () => {
       await inFlight;
     }
     expect(await inFlight).toBe(preparedTenth);
+  });
+});
+
+describe('Arena entry prefetch production singleton source contract', () => {
+  test('wires one coordinator to the production match APIs', () => {
+    const source = fs.readFileSync(path.resolve(__dirname, '../app/arena_entry_prefetch.ts'), 'utf8');
+
+    expect(source.match(/createArenaEntryPrefetch\(\{/g)).toHaveLength(1);
+    expect(source).toContain('accept: arenaV2MatchAccept');
+    expect(source).toContain('loadPlan: arenaV2MatchPlan');
+    expect(source).toContain('rememberViewerSeat: rememberArenaViewerSeat');
+    expect(source).toContain('nowMs: () => Date.now()');
+    expect(source).toContain('wait: (ms) => new Promise((resolve) => setTimeout(resolve, ms))');
+    expect(source).toContain('export const arenaEntryPrefetchStart');
+    expect(source).toContain('export const arenaEntryPrefetchPeek');
   });
 });

@@ -55,6 +55,18 @@ describe('Arena chrome layout source contract', () => {
   });
 });
 
+describe('Arena screen back lock source contract', () => {
+  const screen = read('components/arena/ArenaScreen.tsx');
+
+  test('allows callers to disable the actual header back control without changing its default', () => {
+    expect(screen).toContain('backDisabled = false');
+    expect(screen).toContain('backDisabled?: boolean;');
+    expect(screen).toContain('disabled={backDisabled}');
+    expect(screen).toContain('accessibilityState={{ disabled: backDisabled }}');
+    expect(screen).toContain('onPress={onBack ?? (() => safeRouterBack(router, navigationFallbackForPath(pathname) as never))}');
+  });
+});
+
 describe('Arena visible-loading ban', () => {
   test('экран рангов не показывает слово «Загрузка»', () => {
     // Владелец: видимой загрузки нет нигде. Блок «рядом с тобой» показывал её

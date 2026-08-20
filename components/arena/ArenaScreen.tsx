@@ -18,6 +18,7 @@ export function ArenaScreen({
   variant = 'hub',
   scroll = true,
   onBack,
+  backDisabled = false,
   fxRef,
   headerRight,
   overlay,
@@ -28,6 +29,7 @@ export function ArenaScreen({
   variant?: TournamentBackdropVariant;
   scroll?: boolean;
   onBack?: () => void;
+  backDisabled?: boolean;
   fxRef?: React.Ref<TournamentFxApi>;
   headerRight?: React.ReactNode;
   /**
@@ -52,9 +54,11 @@ export function ArenaScreen({
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={arenaText(lang, 'back')}
+          accessibilityState={{ disabled: backDisabled }}
+          disabled={backDisabled}
           hitSlop={8}
           onPress={onBack ?? (() => safeRouterBack(router, navigationFallbackForPath(pathname) as never))}
-          style={[styles.back, { backgroundColor: P.elev }]}
+          style={[styles.back, backDisabled ? styles.backDisabled : null, { backgroundColor: P.elev }]}
         >
           <Ionicons name="chevron-back" size={25} color={P.text} />
         </Pressable>
@@ -114,6 +118,7 @@ const styles = StyleSheet.create({
   contentFixed: { flex: 1 },
   header: { minHeight: 68, flexDirection: 'row', alignItems: 'center', gap: 12 },
   back: { width: 44, height: 44, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  backDisabled: { opacity: 0.45 },
   heading: { flex: 1 },
   title: { fontSize: 28, fontWeight: '900', letterSpacing: -0.7 },
   subtitle: { marginTop: 2, fontSize: 14, fontWeight: '600' },

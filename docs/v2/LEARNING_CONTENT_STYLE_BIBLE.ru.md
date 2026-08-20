@@ -66,12 +66,12 @@
 
 ## 4. Одна страница — одна мысль
 
-| Слабее | Эталон |
-|---|---|
-| «Глагол-связка to be» | «В английском нельзя молчать посередине» |
-| «Согласование первого лица» | «К слову I подходит только am» |
-| «Отрицательная форма» | «Not встаёт сразу после am» |
-| «Инверсия в вопросе» | «В вопросе связка выходит вперёд» |
+| Слабее                      | Эталон                                   |
+| --------------------------- | ---------------------------------------- |
+| «Глагол-связка to be»       | «В английском нельзя молчать посередине» |
+| «Согласование первого лица» | «К слову I подходит только am»           |
+| «Отрицательная форма»       | «Not встаёт сразу после am»              |
+| «Инверсия в вопросе»        | «В вопросе связка выходит вперёд»        |
 
 Термин допустим только после понятного объяснения и только если помогает.
 
@@ -95,16 +95,16 @@
 Нерусская версия не является переводом русской. Она заново объясняет ту же
 английскую закономерность через устройство языка конкретного ученика.
 
-| Язык | Естественная опора для `I am` |
-|---|---|
-| `ru` | связка в настоящем часто пропускается: «я здесь» |
-| `uk` | теперішня зв’язка часто нульова: «я тут» |
-| `es` | `estar` меняется по лицу, местоимение часто опускается |
-| `pt-BR` | `estar` меняется по лицу, `eu` может опускаться |
-| `vi` | признак может быть сказуемым без `là`, место выражается через `ở` |
-| `id` | признак может стоять без связки, место часто вводится через `di` |
-| `tr` | лицо выражается окончанием: `buradayım`, `hazırım` |
-| `pl` | `jestem` уже несёт первое лицо, поэтому `ja` часто избыточно |
+| Язык    | Естественная опора для `I am`                                     |
+| ------- | ----------------------------------------------------------------- |
+| `ru`    | связка в настоящем часто пропускается: «я здесь»                  |
+| `uk`    | теперішня зв’язка часто нульова: «я тут»                          |
+| `es`    | `estar` меняется по лицу, местоимение часто опускается            |
+| `pt-BR` | `estar` меняется по лицу, `eu` может опускаться                   |
+| `vi`    | признак может быть сказуемым без `là`, место выражается через `ở` |
+| `id`    | признак может стоять без связки, место часто вводится через `di`  |
+| `tr`    | лицо выражается окончанием: `buradayım`, `hazırım`                |
+| `pl`    | `jestem` уже несёт первое лицо, поэтому `ja` часто избыточно      |
 
 Абсолютно запрещено в нерусском тексте: упоминать устройство русского,
 сохранять русскую логику там, где её нет, копировать русское объяснение с
@@ -124,7 +124,7 @@
 
 **FORMULA — К слову I прикреплена форма am.** Когда человек говорит о себе и начинает с I, следующим элементом становится am. Дальше можно назвать место — here, home — или состояние: ready, tired, calm. Последнее слово будет меняться, а опора I am останется прежней. Не нужно переводить am как отдельное русское слово и не нужно искать ему красивую пару: его задача — грамматически соединить человека с описанием. Если после I сразу появляется here или ready, связь потеряна. Удобнее запоминать не два разрозненных слова, а один устойчивый старт I am, который уже готов принять новое значение.
 
-**Вопрос:** Что поставить: I ___ ready? — am / ничего / not.
+**Вопрос:** Что поставить: I \_\_\_ ready? — am / ничего / not.
 
 **Разбор:** I am ready. После I нужна связка am, затем идёт состояние ready.
 
@@ -144,7 +144,7 @@
 
 **FORMULA — Після I завжди стоїть am.** Коли мовець називає себе словом I, потрібна форма am. Далі додається знайомий зміст: here для місця, ready або tired для стану. Початок I am працює як один блок, а останнє слово можна змінювати. Не намагайтеся добирати для am окреме українське «є» в кожному перекладі — його граматична робота важливіша за буквальний відповідник. Якщо англійське речення перескочило від I одразу до ознаки, воно втратило зв’язок.
 
-**Вопрос:** Що вставити: I ___ ready? — am / нічого / not.
+**Вопрос:** Що вставити: I \_\_\_ ready? — am / нічого / not.
 
 **Разбор:** I am ready. Слово I вимагає форми am.
 
@@ -164,7 +164,7 @@
 
 **FORMULA — Con I, la forma es siempre am.** El español elige entre soy y estoy según el tipo de descripción. En estas frases inglesas no haces esa elección: con I usas am tanto para un lugar como para un estado — I am here, I am ready, I am tired. Lo que cambia es la palabra final, no la unión I am. Tampoco puedes copiar la omisión del pronombre español: am ready no es una oración completa en el inglés estándar. Aprende I am como el punto de partida visible y después coloca la información que quieres comunicar.
 
-**Вопрос:** ¿Qué falta en I ___ ready? — am / is / nada.
+**Вопрос:** ¿Qué falta en I \_\_\_ ready? — am / is / nada.
 
 **Разбор:** I am ready. Con el sujeto I corresponde am.
 
@@ -184,7 +184,7 @@
 
 **FORMULA — I pede am em lugar e estado.** O português alterna sou e estou conforme o sentido. Nessas frases inglesas, com I a forma é am tanto para localização quanto para condição: I am here, I am ready, I am tired. Não é preciso escolher entre duas cópulas inglesas. Também não se pode omitir I como fazemos em «estou pronto». O bloco I am fica estável e a última palavra carrega a informação nova.
 
-**Вопрос:** O que completa I ___ ready? — am / is / nada.
+**Вопрос:** O que completa I \_\_\_ ready? — am / is / nada.
 
 **Разбор:** I am ready. Com I, a cópula correta é am.
 
@@ -204,7 +204,7 @@
 
 **FORMULA — Sau I là am.** Khi người nói dùng I để chỉ chính mình, dạng đi cùng là am. Sau đó có thể là nơi chốn như here, home hoặc trạng thái như ready, tired, safe. Từ cuối thay đổi nhưng I am giữ nguyên. Am không cần được dịch thành một từ tiếng Việt riêng; vai trò của nó là hoàn chỉnh cấu trúc tiếng Anh. Nếu nhảy thẳng từ I sang tính từ, câu sẽ thiếu cầu nối.
 
-**Вопрос:** Điền vào chỗ trống: I ___ ready? — am / is / không cần từ nào.
+**Вопрос:** Điền vào chỗ trống: I \_\_\_ ready? — am / is / không cần từ nào.
 
 **Разбор:** I am ready. I luôn đi với am trong cấu trúc này.
 
@@ -224,7 +224,7 @@
 
 **FORMULA — I selalu berpasangan dengan am.** Jika pembicara menyebut dirinya dengan I, bentuk penghubungnya adalah am. Setelah itu, tambahkan tempat atau keadaan: here, home, ready, tired. Bagian terakhir dapat berubah, tetapi I am tetap. Tidak perlu mencari terjemahan Indonesia satu kata untuk am; fungsi tata bahasanya lebih penting daripada terjemahan harfiah. Jika here atau ready langsung mengikuti I, penghubungnya hilang.
 
-**Вопрос:** Isi bagian kosong: I ___ ready? — am / is / tidak perlu kata.
+**Вопрос:** Isi bagian kosong: I \_\_\_ ready? — am / is / tidak perlu kata.
 
 **Разбор:** I am ready. Subjek I membutuhkan bentuk am.
 
@@ -244,7 +244,7 @@
 
 **FORMULA — I ile kullanılan biçim am’dir.** Kendinizden I diye söz ettiğinizde ardından am gelir. Sonra yer veya durum eklenir: here, home, ready, tired. Türkçede “evdeyim” ile “yorgunum” farklı ek biçimleri gibi görünse de İngilizcede ikisi aynı I am çatısını kullanır: I am home, I am tired. Am için her cümlede ayrı bir Türkçe sözcük aramayın; onun görevi İngilizce yapıyı tamamlamaktır.
 
-**Вопрос:** I ___ ready boşluğuna ne gelir? — am / is / hiçbir şey.
+**Вопрос:** I \_\_\_ ready boşluğuna ne gelir? — am / is / hiçbir şey.
 
 **Разбор:** I am ready. I öznesi am ile eşleşir.
 
@@ -264,7 +264,7 @@
 
 **FORMULA — Po I zawsze pojawia się am.** Gdy mówca nazywa siebie za pomocą I, używa formy am. Potem dodaje miejsce lub stan: I am home, I am ready, I am tired. Ostatnie słowo się zmienia, ale początek I am pozostaje taki sam. Nie wolno opuszczać I na wzór polskiego „jestem gotowy”, ponieważ standardowe angielskie zdanie wymaga jawnego podmiotu. Nie trzeba też tłumaczyć am osobnym polskim słowem za każdym razem — liczy się jego funkcja w konstrukcji.
 
-**Вопрос:** Co wstawić: I ___ ready? — am / is / nic.
+**Вопрос:** Co wstawić: I \_\_\_ ready? — am / is / nic.
 
 **Разбор:** I am ready. Podmiot I łączy się z formą am.
 
@@ -402,3 +402,55 @@ npm run learning-v2:content-gate
 локалей для погоды, предметов, местоположения, ощущений человека и семейных
 фраз, включая отрицания. Если такой тест или общий content gate красный,
 материал остаётся `HOLD`, независимо от количества уже написанных файлов.
+
+### Поверхностная форма проверяется после сборки всей фразы
+
+Правильные отдельные слова не гарантируют правильную готовую фразу. После
+смысловой локализации обязательно проверяются регистр, число, лицо, гармония
+гласных, отрицание и вопросительная частица уже в окончательной строке.
+
+- Польское отрицание начинается `Nie jesteś`, а не `Nie Jesteś`: заглавная
+  буква принадлежит началу предложения, не глаголу после `Nie`.
+- В турецком гармония проверяется по реально присоединяемому окончанию и с
+  учётом слов-исключений: `Hazırlar mı?`, `Yorgunlar mı?`, `Meşguller mi?`,
+  `Hazır değiller.` Механический выбор только по последней букве основы
+  запрещён.
+- Лицо и число нельзя оставлять неявными, если локаль от этого делает смысл
+  двусмысленным: pt-BR использует явное `Você` там, где фраза учит `you`;
+  вьетнамское значение `friends` сохраняет множественное `bạn bè`.
+
+Каждый такой случай закрепляется тестом на точную итоговую строку, а не только
+проверкой наличия словаря или locale-ключа.
+
+### Сокращение объясняется как единая форма
+
+`isn’t` и `aren’t` уже содержат соответственно `is/are + not`. Запрещено
+писать, будто `not` в такой записи стоит «отдельно». Для `we’re/they’re`
+объяснение обязано называть сохранённую форму `are` и функцию апострофа.
+Регрессия проверяет не общую длину объяснения, а наличие этой точной связи.
+
+### Различие дистракторов должно быть смысловым, не строковым
+
+Пять причин не становятся разными только потому, что в один шаблон подставлены
+пять токенов. Для каждой альтернативы указывается её собственная функция или
+значение и затем противопоставляется функции правильного токена. Например,
+`very` усиливает признак, `also` добавляет «тоже», `too` может означать «тоже»
+или чрезмерность, `really` подтверждает, `quite` задаёт степень; ни одно из них
+не создаёт отрицание `not`. Тест обязан проверять смысловое различие, а не
+только уникальность строк.
+
+Глосса правильного слова берётся из конкретной готовой фразы с её лицом,
+числом и родом, а не из общей словарной формы. Нельзя объяснять `ready` как
+«готовы/listos/prontos» внутри `He isn’t ready` со значением «Он не готов / Él
+no está listo / Ele não está pronto». Регрессия требует, чтобы каждая причина
+содержала точный локализованный смысл текущей фразы.
+
+### Запрещён общий каркас интро, включая скрытый генератор
+
+Недостаточно заменить заголовок, формулу и пример внутри одного длинного
+`longBody`/`introBody`. Нельзя генерировать восемь тем через `Array.from`,
+чередование двух общих предложений или универсальный финальный абзац. Для
+каждой темы и каждой роли `concept / formula / trap` пишется отдельная
+предметная мысль во всех восьми локалях. Любые слова «сессия», «урок» и их
+эквиваленты (`session`, `sessão`, `buổi`, `sesi`, `oturum`, `sesja`) запрещены
+в ученическом интро независимо от языка.

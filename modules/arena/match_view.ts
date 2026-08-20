@@ -132,9 +132,11 @@ export function arenaResolvedPairs(state: ArenaLocalMatchState): readonly number
  *
  * A transmitted cumulative value wins. Older/scripted ticks are folded only
  * over the contiguous prefix where both sides' outcomes are precise enough.
- * Legacy `correct: false` cannot distinguish wrong, timeout, or broken, so it
- * ends the exact-known prefix; a boolean speed-board result is never promoted
- * into a guessed pair count.
+ * Legacy ordinary-task `correct: false` cannot distinguish wrong, timeout, or
+ * broken, so it ends the exact-known prefix. A speed board is different:
+ * exact `firstAttemptPairs` is authoritative for this display fallback and
+ * its less precise boolean is ignored; without the pair count no score is
+ * guessed.
  */
 export function arenaOpponentMatchStars(
   plan: ArenaMatchPlanWire,
@@ -158,7 +160,6 @@ export function arenaOpponentMatchStars(
     const viewer = viewerByTask.get(taskIndex);
     const rival = state.opponentByTask[taskIndex];
     if (!task || !viewer || !rival) break;
-    if (!rival.correct) break;
 
     let firstAttemptPairs = 0;
     if (task.mode === 'speed_match') {
@@ -166,6 +167,8 @@ export function arenaOpponentMatchStars(
         || (rival.firstAttemptPairs as number) < 0
         || (rival.firstAttemptPairs as number) > ARENA_SPEED_MATCH_PAIRS) break;
       firstAttemptPairs = rival.firstAttemptPairs as number;
+    } else if (!rival.correct) {
+      break;
     }
     const viewerCorrect = viewer.mode === 'speed_match'
       ? viewer.firstAttemptPairs > 0

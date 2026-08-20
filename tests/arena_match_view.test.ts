@@ -189,6 +189,32 @@ describe('точный live-счёт соперника', () => {
     expect(arenaOpponentMatchStars(speedPlan, state)).toBe(4);
   });
 
+  for (const firstAttemptPairs of [0, 1, 3, 4]) {
+    it(`для пар считает точные ${firstAttemptPairs}/4 даже при legacy correct:false`, () => {
+      const speedPlan = {
+        ...PLAN,
+        tasks: [{ ...PLAN.tasks[4], taskIndex: 0 }, ...PLAN.tasks.slice(1)],
+      } as ArenaMatchPlanWire;
+      const state = stateWith({
+        0: { taskIndex: 0, correct: false, raceElapsedMs: 900, firstAttemptPairs },
+      }, [viewerOutcome('speed_match', 2)]);
+      expect(arenaOpponentMatchStars(speedPlan, state)).toBe(firstAttemptPairs);
+    });
+  }
+
+  it('для точных пар не доверяет противоречащему boolean correct', () => {
+    const speedPlan = {
+      ...PLAN,
+      tasks: [{ ...PLAN.tasks[4], taskIndex: 0 }, ...PLAN.tasks.slice(1)],
+    } as ArenaMatchPlanWire;
+    expect(arenaOpponentMatchStars(speedPlan, stateWith({
+      0: { taskIndex: 0, correct: true, raceElapsedMs: 900, firstAttemptPairs: 0 },
+    }, [viewerOutcome('speed_match', 2)]))).toBe(0);
+    expect(arenaOpponentMatchStars(speedPlan, stateWith({
+      0: { taskIndex: 0, correct: false, raceElapsedMs: 900, firstAttemptPairs: 4 },
+    }, [viewerOutcome('speed_match', 2)]))).toBe(4);
+  });
+
   it('не угадывает счёт пар из boolean correct', () => {
     const speedPlan = {
       ...PLAN,
@@ -198,6 +224,21 @@ describe('точный live-счёт соперника', () => {
       0: { taskIndex: 0, correct: true, raceElapsedMs: 900 },
     }, [viewerOutcome('speed_match', 2)]);
     expect(arenaOpponentMatchStars(speedPlan, state)).toBeNull();
+  });
+
+  it('не считает пары без firstAttemptPairs или с небезопасным значением', () => {
+    const speedPlan = {
+      ...PLAN,
+      tasks: [{ ...PLAN.tasks[4], taskIndex: 0 }, ...PLAN.tasks.slice(1)],
+    } as ArenaMatchPlanWire;
+    for (const firstAttemptPairs of [-1, 2.5, 5, undefined]) {
+      const tick = firstAttemptPairs === undefined
+        ? { taskIndex: 0, correct: false, raceElapsedMs: 900 }
+        : { taskIndex: 0, correct: false, raceElapsedMs: 900, firstAttemptPairs };
+      expect(arenaOpponentMatchStars(speedPlan, stateWith({ 0: tick }, [
+        viewerOutcome('speed_match', 2),
+      ]))).toBeNull();
+    }
   });
 
   it('не превращает ambiguous correct:false в точный wrong', () => {

@@ -1,6 +1,6 @@
 # Achievement Shelf Theme Materials and Category Dock
 
-**Status:** Approved by owner on 2026-08-20
+**Status:** Revised native UI podium approved by owner on 2026-08-20
 
 **Surface:** Existing stack route `/achievements_screen`
 
@@ -10,17 +10,19 @@
 
 Make the achievement showcase feel native to every interface theme and replace the noisy top category chips with one centered bottom control that expands its category list upward like the Cards section.
 
-## Theme-aware showcase
+## Theme-aware native UI podium
 
-The showcase must not carry a permanent brown-and-gold palette. Its large surfaces and materials come from the active `Theme` tokens, so every current and future theme is supported without a mode-by-mode asset table:
+The showcase must not imitate a photographed display cabinet or carry a permanent brown-and-gold palette. It is built entirely from React Native views and gradients. Its large surfaces and materials come from the active `Theme` tokens, so every current and future theme is supported without a mode-by-mode asset table:
 
-- outer lacquer/frame: `bgCard` and `bgSurface2`;
-- inner display cavity: `bgSurface` and `bgPrimary`;
-- rail/metal edge: `accent`, `borderHighlight`, and a restrained `textPrimary` highlight;
-- spotlight: a low-opacity mix derived from `textPrimary` and `accent`;
+- open stage: `bgCard`, `bgSurface2`, `bgSurface`, and `bgPrimary`;
+- podium top plane and front lip: layered theme surfaces with a restrained `borderHighlight` edge;
+- podium accent line: `accent` at low prominence rather than a permanent gold rail;
+- local halo behind the selected trophy: compact low-opacity ellipses derived from `accent` and `textPrimary`;
 - outline and shadow: `border`, `cardShadow`, and `shadowDark`.
 
-The existing DALL-E showcase image remains one statically required asset, but it is converted to neutral monochrome and rendered only as low-opacity physical texture. It must not contribute a visible wood, brass, or gold color cast. This avoids one bundled raster per theme and automatically covers newly added themes.
+The DALL-E showcase image, `ExpoImage` layer, ceiling lamp, rectangular light beam, enclosed cavity, and full-width metal rail are removed. No replacement raster is generated. The podium uses three or four shallow rounded layers to imply a top plane, front lip, edge highlight, and grounded shadow. It must read as an interface element rather than a picture inserted into the interface.
+
+The stage is shorter than the former 300-point cabinet. The selected trophy remains the visual hero; neighboring trophies remain partially visible at the horizontal edges. The halo is deliberately smaller than the selected trophy's carousel cell so its bounds never read as a rectangular overlay.
 
 The achievement itself may keep its collectible artwork and color. Category color must not fill large showcase or detail-card surfaces. The detail card uses theme surfaces and theme accent; category identity may remain as a small icon or restrained marker.
 
@@ -69,11 +71,11 @@ The menu is not a full-width bottom sheet. It deliberately reuses the light, anc
 
 - The dock is an absolute sibling of the existing scroll content inside the screen safe area.
 - Scroll content receives enough bottom padding so the detail card and report button are never hidden behind the dock.
-- The existing horizontal trophy carousel, fixed spotlight, detail modal, pearl claim, sharing, entry routes, and absence of an Achievements bottom-tab destination remain unchanged.
+- The existing horizontal trophy carousel, detail modal, pearl claim, sharing, entry routes, and absence of an Achievements bottom-tab destination remain unchanged.
 
 ## Components and data flow
 
-1. A pure theme-material resolver converts the current `Theme` into showcase material colors and opacity values.
+1. A pure theme-material resolver converts the current `Theme` into stage, podium, halo, edge, and shadow values.
 2. `AchievementShelfCarousel` consumes those materials instead of hard-coded brass/brown values.
 3. A focused `AchievementCategoryDock` owns open/close animation, scrim, accessibility, and the upward menu.
 4. `AchievementsScreen` owns `shelfCategory`, supplies available categories, and updates the filtered shelf when the dock selects a value.
@@ -83,6 +85,7 @@ No achievement definitions, retirement flags, reward accounting, storage keys, o
 ## Verification
 
 - Pure tests cover theme-material derivation and ensure theme tokens drive all large surfaces.
+- Source contracts verify there is no `ExpoImage`, DALL-E backdrop import, or rectangular spotlight in the carousel, and that the native podium layers are present.
 - Source/runtime contracts verify that the old top filter is gone, the centered dock and upward menu are present, and `/achievements_screen` is still absent from the bottom tabs.
 - Focused achievement shelf, modal, motion-hybrid, and TypeScript checks run after implementation.
-- Visual review checks one dark theme, Gold/Olive, one bright theme such as Volt, and one light theme to confirm the texture never imposes brown/gold and the dock remains legible.
+- Visual review checks one dark theme, Gold/Olive, one bright theme such as Volt, and one light theme to confirm the podium reads as native UI, the halo has no visible rectangular bounds, and the dock remains legible.

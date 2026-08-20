@@ -8,6 +8,7 @@
     "premetro:dev": "npm run assets:verify:boons",
     "pretest": "npm run assets:verify:boons",
     "assets:verify:boons": "node scripts/verify_weekly_boon_assets.mjs",
+    "assets:audit:themes": "node scripts/theme_assets/audit-theme-assets.mjs --root . --out-dir .codex-tmp/theme-assets-v2/audit",
     "english-test:generate": "node scripts/generate_english_test_assets.mjs",
     "english-test:check": "node scripts/generate_english_test_assets.mjs --check",
     "english-test:deploy": "firebase deploy --project phraseman-ea0b3 --only functions:english-test:englishTestApi,functions:english-test:adminEnglishTestAnalytics,hosting:knowlywww --non-interactive",

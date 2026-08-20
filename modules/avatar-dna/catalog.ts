@@ -21,7 +21,7 @@ const parsedCatalogs = new WeakSet<object>();
 export const parseAvatarCatalog = (input: unknown): AvatarCatalogManifest => {
   if (!isRecord(input) || !exactKeys(input, ['catalogVersion','manifestVersion','rigIds','items']) || input.catalogVersion !== 1 || input.manifestVersion !== 1) throw new TypeError('avatar_catalog_invalid: version');
   const rigIds = asArray(input.rigIds, 'rigIds').map((value) => asString(value, 'rigId'));
-  if (!rigIds.includes('human_v1')) throw new TypeError('avatar_catalog_invalid: rig');
+  if (rigIds.length !== 1 || rigIds[0] !== 'human_v1') throw new TypeError('avatar_catalog_invalid: rig');
   const ids = new Set<string>(); const layerIds = new Set<string>();
   const items = asArray(input.items, 'items').map((value): AvatarItemManifest => {
     if (!isRecord(value) || !exactKeys(value, ['id','assetVersion','rigIds','category','entitlement','layers','occludes','conflicts','restoresOnRemove'])) throw new TypeError('avatar_catalog_invalid: item');
@@ -37,7 +37,7 @@ export const parseAvatarCatalog = (input: unknown): AvatarCatalogManifest => {
     });
     const occludes = asArray(value.occludes, 'occludes').map((slot) => asString(slot, 'occlude') as AvatarSlot); if (occludes.some((slot) => !slots.has(slot))) throw new TypeError('avatar_catalog_invalid: occlude');
     const conflicts = asArray(value.conflicts, 'conflicts').map((conflict) => asString(conflict, 'conflict'));
-    if (!Number.isInteger(value.assetVersion) || value.assetVersion !== 1 || !['base','face','hair','look','scene'].includes(String(value.category)) || typeof value.restoresOnRemove !== 'boolean' || itemRigs.length === 0 || itemRigs.some((rig) => !rigIds.includes(rig))) throw new TypeError('avatar_catalog_invalid: item metadata');
+    if (!Number.isInteger(value.assetVersion) || value.assetVersion !== 1 || !['base','face','hair','look','scene'].includes(String(value.category)) || typeof value.restoresOnRemove !== 'boolean' || itemRigs.length !== 1 || itemRigs[0] !== 'human_v1') throw new TypeError('avatar_catalog_invalid: item metadata');
     return { id, assetVersion: value.assetVersion as number, rigIds: itemRigs, category: value.category as AvatarItemManifest['category'], entitlement: { kind: entitlement.kind as AvatarItemManifest['entitlement']['kind'], ...(typeof entitlement.rarity === 'string' ? { rarity: entitlement.rarity } : {}) }, layers, occludes, conflicts, restoresOnRemove: value.restoresOnRemove };
   });
   const itemIds = new Set(items.map((item) => item.id));

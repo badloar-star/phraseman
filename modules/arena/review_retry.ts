@@ -11,6 +11,16 @@ type ArenaScopedReviewEntry = Readonly<{
   rows: readonly unknown[];
 }>;
 
+/**
+ * Process-local account generation is a race fence only. It is deliberately
+ * not serialized: the durable cache remains keyed by canonical stableUid so a
+ * later generation of the same account can reuse its own review safely.
+ */
+export type ArenaReviewAccountScope = Readonly<{
+  stableUid: string;
+  accountGeneration: number;
+}>;
+
 const scopedReviewMemory = new Map<string, ArenaScopedReviewEntry>();
 
 function scopedReviewKey(stableUid: string, matchId: string): string {
@@ -40,7 +50,7 @@ function scopedReviewUsable(
 }
 
 export function arenaRememberScopedReview(input: Readonly<{
-  stableUid: string;
+  scope: ArenaReviewAccountScope;
   matchId: string;
   rows: readonly unknown[];
   wallNowMs: number;
@@ -48,40 +58,40 @@ export function arenaRememberScopedReview(input: Readonly<{
 }>): void {
   const entry: ArenaScopedReviewEntry = {
     schemaVersion: ARENA_SCOPED_REVIEW_SCHEMA,
-    stableUid: input.stableUid,
+    stableUid: input.scope.stableUid,
     matchId: input.matchId,
     savedAtWallMs: Math.trunc(input.wallNowMs),
     rows: input.rows,
   };
-  scopedReviewMemory.set(scopedReviewKey(input.stableUid, input.matchId), entry);
+  scopedReviewMemory.set(scopedReviewKey(input.scope.stableUid, input.matchId), entry);
   if (input.store) {
     void input.store.setItem(
-      scopedReviewStorageKey(input.stableUid, input.matchId),
+      scopedReviewStorageKey(input.scope.stableUid, input.matchId),
       JSON.stringify(entry),
     ).catch(() => {});
   }
 }
 
 export function arenaPeekScopedReview(
-  stableUid: string,
+  scope: ArenaReviewAccountScope,
   matchId: string,
   wallNowMs: number,
 ): readonly unknown[] | null {
-  const entry = scopedReviewMemory.get(scopedReviewKey(stableUid, matchId));
-  return entry ? scopedReviewUsable(entry, stableUid, matchId, wallNowMs)?.rows ?? null : null;
+  const entry = scopedReviewMemory.get(scopedReviewKey(scope.stableUid, matchId));
+  return entry ? scopedReviewUsable(entry, scope.stableUid, matchId, wallNowMs)?.rows ?? null : null;
 }
 
 export async function arenaLoadScopedReview(
   store: ArenaKeyValueStore,
-  stableUid: string,
+  scope: ArenaReviewAccountScope,
   matchId: string,
   wallNowMs: number,
 ): Promise<readonly unknown[] | null> {
-  const memory = arenaPeekScopedReview(stableUid, matchId, wallNowMs);
+  const memory = arenaPeekScopedReview(scope, matchId, wallNowMs);
   if (memory) return memory;
   let raw: string | null;
   try {
-    raw = await store.getItem(scopedReviewStorageKey(stableUid, matchId));
+    raw = await store.getItem(scopedReviewStorageKey(scope.stableUid, matchId));
   } catch {
     return null;
   }
@@ -92,10 +102,25 @@ export async function arenaLoadScopedReview(
   } catch {
     return null;
   }
-  const usable = scopedReviewUsable(parsed, stableUid, matchId, wallNowMs);
+  const usable = scopedReviewUsable(parsed, scope.stableUid, matchId, wallNowMs);
   if (!usable) return null;
-  scopedReviewMemory.set(scopedReviewKey(stableUid, matchId), usable);
+  scopedReviewMemory.set(scopedReviewKey(scope.stableUid, matchId), usable);
   return usable.rows;
+}
+
+/** Accepts an async review completion only while its captured account/screen is current. */
+export async function arenaAwaitScopedReview(input: Readonly<{
+  scope: ArenaReviewAccountScope;
+  request: () => Promise<readonly unknown[] | null>;
+  isCurrent: (scope: ArenaReviewAccountScope) => boolean;
+  isAlive: () => boolean;
+  accept: (rows: readonly unknown[]) => void;
+}>): Promise<'accepted' | 'empty' | 'stale'> {
+  const rows = await input.request();
+  if (!input.isAlive() || !input.isCurrent(input.scope)) return 'stale';
+  if (rows === null) return 'empty';
+  input.accept(rows);
+  return 'accepted';
 }
 
 /** Только для тестов и account lifecycle reset. */

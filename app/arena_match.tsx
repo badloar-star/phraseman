@@ -62,7 +62,7 @@ import {
   rememberArenaViewerSeat,
   useArenaOpponentLive,
 } from './arena_client';
-import { getStableId, peekStableId } from './stable_id';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 
 /**
  * Входной план уже запечатан сервером и идемпотентен. React может снять
@@ -121,6 +121,8 @@ export default function ArenaMatchScreen() {
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
   const playSound = useArenaSound();
+  const mountedRef = useRef(true);
+  useEffect(() => () => { mountedRef.current = false; }, []);
 
   const [plan, setPlan] = useState<ArenaMatchPlanWire | null>(null);
   const [planError, setPlanError] = useState(false);
@@ -286,6 +288,11 @@ export default function ArenaMatchScreen() {
     // React-состоянии и TypeScript справедливо не переносит его narrowing
     // внутрь отложенной функции.
     const report = match.report;
+    const finishAccount = captureAccountGeneration();
+    const finishScope = finishAccount.phase === 'active' && finishAccount.stableId
+      ? { stableUid: finishAccount.stableId, accountGeneration: finishAccount.generation }
+      : null;
+    if (!finishScope) return;
     setSent(true);
     void (async () => {
       // Сначала durable intent, потом сеть. Если процесс погибнет в любой
@@ -301,16 +308,21 @@ export default function ArenaMatchScreen() {
         await arenaClearMatch(AsyncStorage as unknown as ArenaKeyValueStore);
       }
 
+      // Account A may have been replaced while the durable write awaited.
+      // Never submit A's report with B's auth context.
+      if (!isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) return;
+
       let rejected = false;
       try {
         const response = await arenaV2MatchFinish({
           matchId,
           report: arenaMatchReportToWire(report, plan.rulesVersion),
         });
-        if (Array.isArray(response.viewerReview)) {
-          const stableUid = peekStableId() ?? await getStableId().catch(() => null);
-          if (stableUid) arenaRememberScopedReview({
-            stableUid,
+        if (Array.isArray(response.viewerReview)
+          && mountedRef.current
+          && isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) {
+          arenaRememberScopedReview({
+            scope: finishScope,
             matchId,
             rows: response.viewerReview,
             wallNowMs: Date.now(),
@@ -324,7 +336,11 @@ export default function ArenaMatchScreen() {
         // хартбит, от которого растёт счёт за базу.
         if (!response.settled && typeof response.settleProbeAtMs === 'number') {
           const waitMs = Math.max(0, response.settleProbeAtMs - Date.now());
-          setTimeout(() => { void arenaV2MatchSettle(matchId).catch(() => {}); }, waitMs);
+          setTimeout(() => {
+            if (isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) {
+              void arenaV2MatchSettle(matchId).catch(() => {});
+            }
+          }, waitMs);
         }
       } catch (reason) {
         const failure = arenaOutboxClassify(reason);
@@ -338,10 +354,12 @@ export default function ArenaMatchScreen() {
         // его записать не удалось, финальный снимок намеренно остаётся на
         // диске и при следующем входе создаст тот же отчёт заново.
       } finally {
-        router.replace({
-          pathname: '/arena_results',
-          params: rejected ? { matchId, reportRejected: '1' } : { matchId },
-        } as never);
+        if (mountedRef.current && isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) {
+          router.replace({
+            pathname: '/arena_results',
+            params: rejected ? { matchId, reportRejected: '1' } : { matchId },
+          } as never);
+        }
       }
     })();
   }, [matchId, match?.report, plan, router, sent]);

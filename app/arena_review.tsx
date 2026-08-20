@@ -20,14 +20,21 @@ import { arenaCachedLoadView, arenaLoadState } from '../modules/arena/load_state
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  arenaAwaitScopedReview,
   arenaLoadScopedReview,
   arenaPeekScopedReview,
   arenaRememberScopedReview,
+  type ArenaReviewAccountScope,
 } from '../modules/arena/review_retry';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { arenaFetchMatchReview } from './arena_client';
 import { safeRouterBack } from './navigation_back';
-import { getStableId, peekStableId } from './stable_id';
+import { getStableId } from './stable_id';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+} from './account_generation';
 
 /**
  * Разбор матча.
@@ -48,34 +55,71 @@ export default function ArenaReviewScreen() {
   const reduceMotion = useReduceMotion();
   const params = useLocalSearchParams<{ matchId?: string }>();
   const matchId = typeof params.matchId === 'string' ? params.matchId : '';
-  const [stableUid, setStableUid] = useState<string | null>(() => peekStableId());
+  const [account, setAccount] = useState(() => captureAccountGeneration());
+  const reviewScope = useMemo<ArenaReviewAccountScope | null>(() => (
+    account.phase === 'active' && account.stableId
+      ? { stableUid: account.stableId, accountGeneration: account.generation }
+      : null
+  ), [account.generation, account.phase, account.stableId]);
   const warmRows = useMemo(
-    () => stableUid ? arenaPeekScopedReview(stableUid, matchId, Date.now()) : null,
-    [matchId, stableUid],
+    () => reviewScope ? arenaPeekScopedReview(reviewScope, matchId, Date.now()) : null,
+    [matchId, reviewScope],
   );
   const [raw, setRaw] = useState<readonly unknown[] | null>(warmRows);
   const [loaded, setLoaded] = useState(warmRows !== null);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    if (stableUid) return;
-    void getStableId().then(setStableUid).catch(() => setLoaded(true));
-  }, [stableUid]);
+    const subscription = subscribeAccountGeneration(setAccount);
+    return () => subscription.remove();
+  }, []);
 
   useEffect(() => {
-    if (!active || !matchId || !stableUid) return;
-    void arenaFetchMatchReview(matchId)
-      .then((rows) => {
+    if (account.phase !== 'uninitialized') return;
+    void getStableId()
+      .then(() => setAccount(captureAccountGeneration()))
+      .catch(() => setLoaded(true));
+  }, [account.phase]);
+
+  // A new identity/generation or match must never inherit the previous
+  // screen's rows, loaded bit, or failure bit while its own reads are pending.
+  useEffect(() => {
+    setRaw(warmRows);
+    setLoaded(warmRows !== null);
+    setFailed(false);
+  }, [account.generation, matchId, reviewScope?.stableUid, warmRows]);
+
+  useEffect(() => {
+    if (!active || !matchId || !reviewScope) return;
+    let alive = true;
+    const requestAccount = account;
+    const isCurrent = (scope: ArenaReviewAccountScope) => (
+      isCurrentAccountGeneration(requestAccount, scope.stableUid)
+    );
+    void arenaAwaitScopedReview({
+      scope: reviewScope,
+      request: () => arenaFetchMatchReview(reviewScope, matchId),
+      isCurrent,
+      isAlive: () => alive,
+      accept: (rows) => {
         setRaw(rows);
         setFailed(false);
-        if (rows) arenaRememberScopedReview({ stableUid, matchId, rows, wallNowMs: Date.now(), store: warmStore });
-      })
-      .catch(() => setFailed(true))
-      .finally(() => setLoaded(true));
-    void arenaLoadScopedReview(warmStore, stableUid, matchId, Date.now()).then((rows) => {
-      if (rows) setRaw((current) => current ?? rows);
+        arenaRememberScopedReview({ scope: reviewScope, matchId, rows, wallNowMs: Date.now(), store: warmStore });
+      },
+    }).catch(() => {
+      if (alive && isCurrent(reviewScope)) setFailed(true);
+    }).finally(() => {
+      if (alive && isCurrent(reviewScope)) setLoaded(true);
+    });
+    void arenaAwaitScopedReview({
+      scope: reviewScope,
+      request: () => arenaLoadScopedReview(warmStore, reviewScope, matchId, Date.now()),
+      isCurrent,
+      isAlive: () => alive,
+      accept: (rows) => setRaw((current) => current ?? rows),
     }).catch(() => {});
-  }, [active, matchId, stableUid]);
+    return () => { alive = false; };
+  }, [account, active, matchId, reviewScope]);
 
   const rows = useMemo(() => arenaReviewRows(raw ?? []), [raw]);
   const summary = useMemo(() => arenaReviewSummary(rows), [rows]);

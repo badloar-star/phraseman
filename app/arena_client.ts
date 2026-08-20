@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { arenaOutboxFlush, arenaOutboxHasMatch, arenaOutboxList } from '../modules/arena/outbox_storage';
 import { arenaOutboxHasGated } from '../modules/arena/result_outbox';
-import { arenaReadReviewWithRetry } from '../modules/arena/review_retry';
+import { arenaReadReviewWithRetry, type ArenaReviewAccountScope } from '../modules/arena/review_retry';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useEffect, useRef, useState } from 'react';
 import * as Crypto from 'expo-crypto';
@@ -9,7 +9,6 @@ import Constants from 'expo-constants';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser } from './cloud_sync';
 import { getVersionForServerGate } from './app_version';
-import { getStableId } from './stable_id';
 import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
 import type {
   ArenaMatch,
@@ -640,12 +639,14 @@ export async function arenaFetchMatchHistory(limit = 30): Promise<readonly unkno
  * повтор закрывает окно гонки, не превращаясь в опрос по кругу — читаем
  * ровно дважды, максимум.
  */
-export async function arenaFetchMatchReview(matchId: string): Promise<readonly unknown[] | null> {
-  const stableUid = await getStableId();
-  if (!stableUid || !matchId) return null;
+export async function arenaFetchMatchReview(
+  scope: ArenaReviewAccountScope,
+  matchId: string,
+): Promise<readonly unknown[] | null> {
+  if (!scope.stableUid || !matchId) return null;
   const firestore = (await import('@react-native-firebase/firestore')).default;
   const ref = firestore()
-    .collection('users').doc(stableUid).collection('arena_v2_match_labs').doc(matchId);
+    .collection('users').doc(scope.stableUid).collection('arena_v2_match_labs').doc(matchId);
   const read = async (): Promise<readonly unknown[] | null> => {
     const snapshot = await ref.get();
     if (!snapshot.exists) return null;

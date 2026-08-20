@@ -145,14 +145,23 @@ describe('Arena V2 listener and callable source contract', () => {
       client.indexOf('export async function arenaFetchMatchReview'),
       client.indexOf('/** Host-only friend-duel handoff', client.indexOf('export async function arenaFetchMatchReview')),
     );
-    expect(fetchReview).toContain('const stableUid = await getStableId()');
-    expect(fetchReview).toContain(".collection('users').doc(stableUid).collection('arena_v2_match_labs')");
+    expect(fetchReview).toContain('scope: ArenaReviewAccountScope');
+    expect(fetchReview).toContain(".collection('users').doc(scope.stableUid).collection('arena_v2_match_labs')");
+    expect(fetchReview).not.toContain('getStableId()');
     expect(fetchReview).not.toContain('currentUser?.uid');
     expect(client).toContain('viewerReview?: readonly unknown[]');
     expect(match).toContain('response.viewerReview');
+    expect(match.indexOf('const finishAccount = captureAccountGeneration()'))
+      .toBeLessThan(match.indexOf('await arenaV2MatchFinish({'));
+    expect(match).toContain('isCurrentAccountGeneration(finishAccount, finishScope.stableUid)');
     expect(match).toContain('arenaRememberScopedReview({');
-    expect(review).toContain('arenaPeekScopedReview(stableUid, matchId');
-    expect(review).toContain('arenaLoadScopedReview(warmStore, stableUid, matchId');
+    expect(review).toContain('subscribeAccountGeneration');
+    expect(review).toContain('arenaAwaitScopedReview({');
+    expect(review).toContain('arenaPeekScopedReview(reviewScope, matchId');
+    expect(review).toContain('arenaLoadScopedReview(warmStore, reviewScope, matchId');
+    expect(review).toContain('setRaw(warmRows);');
+    expect(review).toContain('setLoaded(warmRows !== null);');
+    expect(review).toContain('setFailed(false);');
     expect(review).not.toContain("arenaPeekWarm('review'");
   });
 

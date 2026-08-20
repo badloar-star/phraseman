@@ -685,6 +685,8 @@ describe('почему матч не начался — словами, а не 
     expect(source).toContain("const preparedRoute = params.prepared === '1' && Boolean(preparedEntry);");
     expect(source).toContain('useState<ArenaMatchPlanWire | null>(() => preparedEntry?.plan ?? null)');
     expect(source).toContain('useState(preparedRoute)');
+    expect(source).toContain('if (preparedRoute) {');
+    expect(source).toContain('setRestoreChecked(true);');
     expect(source).toContain('arenaEntryPrefetchStart(matchId)');
     expect(introBranch).toBeGreaterThan(-1);
     expect(introBranch).toBeLessThan(planWaitBranch);

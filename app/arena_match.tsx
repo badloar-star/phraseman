@@ -192,7 +192,10 @@ export default function ArenaMatchScreen() {
   const [restored, setRestored] = useState<ArenaLocalMatchState | null>(null);
   const [restoreChecked, setRestoreChecked] = useState(preparedRoute);
   useEffect(() => {
-    if (preparedRoute) return;
+    if (preparedRoute) {
+      setRestoreChecked(true);
+      return;
+    }
     if (!matchId) { setRestoreChecked(true); return; }
     const restoreAccount = planAccountRef.current;
     if (!planScope || !restoreAccount

@@ -60,6 +60,33 @@ type CandidateData = Readonly<{
 
 const candidate = candidateJson as unknown as CandidateData;
 
+/**
+ * Явные поправки владельца поверх неизменяемого архива 1–10.
+ *
+ * Архив и его SHA остаются историческим доказательством того, что именно было
+ * одобрено. Очевидные опечатки при этом не должны попадать ученику и не должны
+ * возвращаться при повторном импорте. Каждая поправка здесь адресная и покрыта
+ * регрессионным тестом.
+ */
+export const APPROVED_FIRST_TEN_OWNER_ERRATA_V3 = Object.freeze({
+  'ru/01/11/meaning': 'Мне жарко',
+});
+
+function applyOwnerErrata(
+  locale: Locale,
+  sessionIndex: number,
+  phraseIndex: number,
+  details: CandidatePracticeDetails,
+): CandidatePracticeDetails {
+  if (locale === 'ru' && sessionIndex === 0 && phraseIndex === 10) {
+    return {
+      ...details,
+      meaning: APPROVED_FIRST_TEN_OWNER_ERRATA_V3['ru/01/11/meaning'],
+    };
+  }
+  return details;
+}
+
 function localized(select: (locale: Locale) => string): LocalizedSource {
   return {
     ru: select('ru'),
@@ -201,7 +228,12 @@ function buildPhrase(sessionIndex: number, phraseIndex: number): EpisodeSourcePh
   const localizedDetails = Object.fromEntries(
     LOCALES.map((locale) => [
       locale,
-      candidate.practiceDetails[locale][sessionIndex][phraseIndex],
+      applyOwnerErrata(
+        locale,
+        sessionIndex,
+        phraseIndex,
+        candidate.practiceDetails[locale][sessionIndex][phraseIndex],
+      ),
     ]),
   ) as Record<Locale, CandidatePracticeDetails>;
   const russian = localizedDetails.ru;

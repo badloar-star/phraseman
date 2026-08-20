@@ -102,4 +102,10 @@ export function assertApprovedFirstTenSession(
   expect(source.phrases.map((phrase) => phrase.english).join('\n')).not.toMatch(
     /^(?:he|she|it|we|they)\b/im,
   );
+
+  if (ordinal === 1) {
+    const hot = source.phrases.find((phrase) => phrase.english === 'I am hot');
+    expect(hot?.localizedDetails?.ru.meaning).toBe('Мне жарко');
+    expect(JSON.stringify(hot)).not.toContain('Я мне жарко');
+  }
 }

@@ -19,6 +19,7 @@ const COMPONENT_FILES = [
   'FriendTogetherSheet.tsx',
   'FriendLevelUpModal.tsx',
   'FriendsChestModal.tsx',
+  'FriendListRow.tsx',
 ];
 
 function readComponent(name: string): string {
@@ -60,7 +61,7 @@ describe('friends_together UI contract', () => {
 
   test.each(COMPONENT_FILES)('%s routes user-facing strings through triLang with all 8 keys', (file) => {
     const source = readComponent(file);
-    const calls = [...source.matchAll(/triLang\(lang as any,\s*\{([^}]*)\}\)/gs)];
+    const calls = [...source.matchAll(/triLang\(lang(?: as any)?,\s*\{([^}]*)\}\)/gs)];
     expect(calls.length).toBeGreaterThan(0);
     for (const call of calls) {
       const body = call[1];
@@ -123,5 +124,17 @@ describe('friends_together UI contract', () => {
   test('_layout.tsx calls syncFriendsPushPrefIfChanged once at boot', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app/_layout.tsx'), 'utf8');
     expect(source).toContain('syncFriendsPushPrefIfChanged');
+  });
+
+  test('FriendTogetherSheet keeps the large vertical details surface contract', () => {
+    const source = readComponent('FriendTogetherSheet.tsx');
+    expect(source).toContain('together: FriendTogetherDisplay | null');
+    expect(source).toContain('<ScrollView');
+    expect(source).toContain("flexDirection: 'column'");
+    expect(source).toContain('minHeight: 52');
+    expect(source).toContain('friend-together-sheet-high-five');
+    expect(source).toContain('friend-together-sheet-delete');
+    expect(source).not.toContain('numberOfLines');
+    expect(source).not.toContain("flexDirection: 'row',\n    gap: 8,\n    marginTop: 20");
   });
 });

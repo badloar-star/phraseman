@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { V2Card, V2Chip, V2Cta, type ChipVerdict } from '../tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../tournament/tournament_theme';
@@ -7,7 +7,10 @@ import { adaptArenaTask, encodeArenaSelection } from '../../modules/arena/task_a
 import type { ArenaPublicTask } from '../../modules/arena/contract';
 import { useArenaFontScale } from '../../hooks/use_arena_font_scale';
 import { useArenaSound } from '../../hooks/use_arena_sound';
-import { arenaQuestionLayout } from '../../modules/arena/question_layout';
+import {
+  arenaQuestionLayout,
+  arenaQuestionViewportLayout,
+} from '../../modules/arena/question_layout';
 import { useLang } from '../LangContext';
 import { arenaText } from '../../modules/arena/copy';
 
@@ -24,6 +27,8 @@ type Props = Readonly<{
 export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, onSpeedAttempt, onMatchingComplete }: Props) {
   const P = useTournamentPalette();
   const { lang } = useLang();
+  const { height: windowHeight, fontScale: systemFontScale } = useWindowDimensions();
+  const viewport = arenaQuestionViewportLayout(windowHeight, systemFontScale);
   // Высота строки числом не растёт вместе с системным шрифтом — сам вопрос
   // при полуторном кегле наезжал строка на строку. См. use_arena_font_scale.
   const fontScale = useArenaFontScale();
@@ -64,7 +69,13 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
             </Text>
           </>
         ) : null}
-        <View style={styles.matchGrid}>
+        <ScrollView
+          style={styles.matchGridScroll}
+          contentContainerStyle={[styles.matchGrid, viewport.compactHeight && styles.matchGridCompact]}
+          showsVerticalScrollIndicator={viewport.compactHeight}
+          nestedScrollEnabled
+          bounces={false}
+        >
           <View style={styles.column}>
             {view.left.map((item, index) => (
               <V2Chip
@@ -111,7 +122,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
               </V2Chip>
             ))}
           </View>
-        </View>
+        </ScrollView>
       </View>
     );
   }
@@ -131,7 +142,13 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
             </Text>
           </>
         ) : null}
-        <View style={[styles.answerTray, { backgroundColor: P.elev }]}>
+        <ScrollView
+          style={[styles.answerTrayScroll, { maxHeight: viewport.answerTrayMaxHeight, backgroundColor: P.elev }]}
+          contentContainerStyle={styles.answerTray}
+          showsVerticalScrollIndicator={viewport.compactHeight}
+          nestedScrollEnabled
+          bounces={false}
+        >
           {tokens.map((index, tokenIndex) => (
             <V2Chip
               key={`${index}-${tokenIndex}`}
@@ -142,7 +159,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
               {view.tokens[index]}
             </V2Chip>
           ))}
-        </View>
+        </ScrollView>
         <ScrollView
           style={styles.builderScroll}
           contentContainerStyle={styles.builder}
@@ -234,9 +251,12 @@ const styles = StyleSheet.create({
   optionsScroll: { flexShrink: 1 },
   builderScroll: { flex: 1, minHeight: 0 },
   builder: { gap: 12 },
-  answerTray: { minHeight: 68, borderRadius: 18, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 7, padding: 10 },
+  answerTrayScroll: { flexShrink: 1, minHeight: 68, borderRadius: 18 },
+  answerTray: { minHeight: 68, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 7, padding: 10 },
   tokenCloud: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, justifyContent: 'center' },
-  matchGrid: { flex: 1, minHeight: 0, flexDirection: 'row', gap: 10 },
+  matchGridScroll: { flex: 1, minHeight: 0 },
+  matchGrid: { flexGrow: 1, flexDirection: 'row', gap: 10 },
+  matchGridCompact: { gap: 8 },
   column: { flex: 1, gap: 8, justifyContent: 'space-between' },
   touchChip: { minHeight: 48 },
   matched: { flexDirection: 'row', alignItems: 'center', gap: 5 },

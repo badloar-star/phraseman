@@ -821,14 +821,38 @@ describe('пары и конструктор занимают оставшеес
     expect(question).toContain('immersive: { flex: 1');
   });
 
-  it('кнопка конструктора остаётся вне его ScrollView, а фишки не мельче 44 pt', () => {
+  it('доска пар ограничена остатком экрана и прокручивается внутри', () => {
+    const matchingBranch = question.slice(
+      question.indexOf("if (view.type === 'matching')"),
+      question.indexOf("if (view.type === 'builder')"),
+    );
+    expect(matchingBranch).toContain('<ScrollView');
+    expect(matchingBranch).toContain('style={styles.matchGridScroll}');
+    expect(matchingBranch).toContain('contentContainerStyle={[styles.matchGrid');
+    expect(matchingBranch).toContain('nestedScrollEnabled');
+    expect(question).toContain('matchGridScroll: { flex: 1, minHeight: 0 }');
+  });
+
+  it('лоток ответа ограничен по высоте и прокручивается, не выталкивая CTA', () => {
+    const builderStart = question.indexOf("if (view.type === 'builder')");
+    const builderEnd = question.indexOf('const selected = choice !== null');
+    const builderBranch = question.slice(builderStart, builderEnd);
+    expect(question).toContain('useWindowDimensions');
+    expect(question).toContain('arenaQuestionViewportLayout(windowHeight, systemFontScale)');
+    expect(builderBranch).toContain('style={[styles.answerTrayScroll, { maxHeight: viewport.answerTrayMaxHeight');
+    expect(builderBranch).toContain('contentContainerStyle={styles.answerTray}');
+    expect(builderBranch).toContain('nestedScrollEnabled');
+    expect(builderBranch.indexOf('<V2Cta')).toBeGreaterThan(builderBranch.lastIndexOf('</ScrollView>'));
+  });
+
+  it('кнопка конструктора остаётся вне его ScrollView, а фишки не мельче 48 pt', () => {
     const builderStart = question.indexOf("if (view.type === 'builder')");
     const builderEnd = question.indexOf('const selected = choice !== null');
     const builderBranch = question.slice(builderStart, builderEnd);
     expect(builderBranch.indexOf('</ScrollView>')).toBeGreaterThan(0);
-    expect(builderBranch.indexOf('<V2Cta')).toBeGreaterThan(builderBranch.indexOf('</ScrollView>'));
+    expect(builderBranch.indexOf('<V2Cta')).toBeGreaterThan(builderBranch.lastIndexOf('</ScrollView>'));
     const touchHeight = Number(/touchChip:\s*\{\s*minHeight:\s*(\d+)/.exec(question)?.[1]);
-    expect(touchHeight).toBeGreaterThanOrEqual(44);
+    expect(touchHeight).toBeGreaterThanOrEqual(48);
   });
 
   it('компактный блок игроков включается только для immersive-заданий', () => {

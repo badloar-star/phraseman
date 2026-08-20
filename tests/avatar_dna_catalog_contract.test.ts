@@ -1,8 +1,9 @@
 import { execFileSync, spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import sharp from 'sharp';
 import { parseAvatarCatalog } from '../modules/avatar-dna/catalog';
 
@@ -23,6 +24,17 @@ describe('Avatar DNA catalog contract', () => {
     expect(output).toContain('avatar-dna catalog: PASS');
   });
 
+  it('executes a copied validator from a URL-special workspace path', () => {
+    const temp = path.join(root, '.codex-tmp', 'avatar dna # %');
+    mkdirSync(temp, { recursive: true });
+    const copy = path.join(temp, 'validate_catalog.mjs');
+    writeFileSync(copy, readFileSync(path.join(root, 'scripts/avatar-dna/validate_catalog.mjs')));
+    try {
+      const result = spawnSync(process.execPath, [copy, '--catalog', 'missing.json', '--rig', 'missing.json', '--fixture-mode'], { cwd: root, encoding: 'utf8' });
+      expect(result.status).not.toBe(0); expect(result.stderr).toContain('avatar_catalog_invalid');
+    } finally { rmSync(temp, { recursive: true, force: true }); }
+  });
+
   it('has the exact closed rig and catalog inventory', () => {
     expect(Object.keys(canonicalRig.anchors).sort()).toEqual(['chin','earLeft','earRight','eyeLineLeft','eyeLineRight','headTop','mouthCenter','neckCenter','noseBridge','noseTip','shoulderLeft','shoulderRight','templeLeft','templeRight','torsoCenter']);
     expect(Object.keys(canonicalRig.safePolygons).sort()).toEqual(['face.safe','head.safe']);
@@ -39,7 +51,7 @@ describe('Avatar DNA catalog contract', () => {
   });
 
   it.each([
-    ['duplicate item ID', (c: any, _r: any) => { c.items[1].id = c.items[0].id; }], ['missing entitlement', (c: any, _r: any) => { delete c.items[0].entitlement; }], ['negative z', (c: any, _r: any) => { c.items[1].layers[0].z = -1; }], ['extra safe polygon', (_c: any, r: any) => { r.safePolygons.extra = [[0, 0], [1, 0], [1, 1]]; }], ['anchor outside bounds', (_c: any, r: any) => { r.anchors.headTop = [1.1, 0]; }], ['polygon outside bounds', (_c: any, r: any) => { r.safePolygons['face.safe'][0] = [-0.1, 0]; }], ['portrait crop outside bounds', (_c: any, r: any) => { r.portraitCrop[0] = 2; }], ['studio crop outside bounds', (_c: any, r: any) => { r.studioCrop[0] = -1; }], ['runtime dimensions', (_c: any, r: any) => { r.runtime.width = 511; }], ['canvas dimensions', (_c: any, r: any) => { r.canvas.width = 2047; }],
+    ['duplicate item ID', (c: any, _r: any) => { c.items[1].id = c.items[0].id; }], ['missing entitlement', (c: any, _r: any) => { delete c.items[0].entitlement; }], ['negative z', (c: any, _r: any) => { c.items[1].layers[0].z = -1; }], ['extra safe polygon', (_c: any, r: any) => { r.safePolygons.extra = [[0, 0], [1, 0], [1, 1]]; }], ['anchor outside bounds', (_c: any, r: any) => { r.anchors.headTop = [1.1, 0]; }], ['polygon outside bounds', (_c: any, r: any) => { r.safePolygons['face.safe'][0] = [-0.1, 0]; }], ['zero-area polygon', (_c: any, r: any) => { r.safePolygons['head.safe'] = [[0, 0], [0.5, 0.5], [1, 1]]; }], ['portrait crop outside bounds', (_c: any, r: any) => { r.portraitCrop[0] = 2; }], ['portrait crop overflow', (_c: any, r: any) => { r.portraitCrop = [0.8, 0, 0.3, 0.2]; }], ['studio zero crop', (_c: any, r: any) => { r.studioCrop[2] = 0; }], ['studio crop outside bounds', (_c: any, r: any) => { r.studioCrop[0] = -1; }], ['runtime dimensions', (_c: any, r: any) => { r.runtime.width = 511; }], ['canvas dimensions', (_c: any, r: any) => { r.canvas.width = 2047; }],
   ])('CLI fixture mode rejects %s', (_name, mutate) => {
     const catalog = JSON.parse(JSON.stringify(canonicalCatalog)); const rig = JSON.parse(JSON.stringify(canonicalRig)); mutate(catalog, rig);
     const result = cliResult(catalog, rig); expect(result.status).not.toBe(0); expect(result.stderr).toContain('avatar_catalog_invalid');
@@ -67,6 +79,19 @@ describe('Avatar DNA catalog contract', () => {
     } finally { rmSync(temp, { recursive: true, force: true }); }
   });
 
+  it('CLI non-fixture rejects an asset-root junction escape when supported', async () => {
+    const rootTemp = mkdtempSync(path.join(os.tmpdir(), 'avatar-root-')); const outside = mkdtempSync(path.join(os.tmpdir(), 'avatar-outside-'));
+    try {
+      const catalog = JSON.parse(JSON.stringify(canonicalCatalog)); const outsideAssets = path.join(outside, 'avatar-dna'); const configDir = path.join(rootTemp, 'config', 'avatar-dna');
+      mkdirSync(outsideAssets, { recursive: true }); mkdirSync(configDir, { recursive: true });
+      for (const layer of catalog.items.flatMap((item: any) => item.layers)) { const image = await sharp({ create: { width: 512, height: 512, channels: 4, background: '#123456' } }).webp().toBuffer(); writeFileSync(path.join(outsideAssets, layer.file), image); layer.bytes = image.length; layer.sha256 = createHash('sha256').update(image).digest('hex'); }
+      try { mkdirSync(path.join(rootTemp, 'assets'), { recursive: true }); symlinkSync(outsideAssets, path.join(rootTemp, 'assets', 'avatar-dna'), process.platform === 'win32' ? 'junction' : 'dir'); } catch (error: any) { if (error?.code === 'EPERM' || error?.code === 'ENOTSUP') return; throw error; }
+      const catalogFile = path.join(configDir, 'catalog.json'); const rigFile = path.join(configDir, 'rig.json'); writeFileSync(catalogFile, JSON.stringify(catalog)); writeFileSync(rigFile, JSON.stringify(canonicalRig));
+      const result = spawnSync(process.execPath, [path.join(root, 'scripts/avatar-dna/validate_catalog.mjs'), '--catalog', catalogFile, '--rig', rigFile], { cwd: root, encoding: 'utf8' });
+      expect(result.status).not.toBe(0); expect(result.stderr).toContain('avatar_catalog_invalid');
+    } finally { rmSync(rootTemp, { recursive: true, force: true }); rmSync(outside, { recursive: true, force: true }); }
+  });
+
   it.each(['unknown root key', 'missing entitlement', 'unsafe file path', 'duplicate item', 'unknown slot', 'invalid z', 'unknown clip'])('rejects %s at the runtime boundary', (kind) => {
     const catalog = require('../config/avatar-dna/catalog.v1.json');
     const mutable = JSON.parse(JSON.stringify(catalog));
@@ -89,4 +114,18 @@ describe('Avatar DNA catalog contract', () => {
     expect(() => parseAvatarCatalog(missing)).toThrow('avatar_catalog_invalid');
     expect(() => parseAvatarCatalog(conflict)).toThrow('avatar_catalog_invalid');
   });
+
+  it('normalizes hostile catalog proxy failures', () => {
+    const hostile = new Proxy({}, { ownKeys: () => { throw new Error('hostile-detail'); } });
+    expect(() => parseAvatarCatalog(hostile)).toThrow('avatar_catalog_invalid');
+    expect(() => parseAvatarCatalog(hostile)).not.toThrow('hostile-detail');
+  });
+
+  it('normalizes hostile exported-validator failures outside Jest VM', () => {
+    const validator = path.join(root, 'scripts/avatar-dna/validate_catalog.mjs').replaceAll('\\', '/');
+    const code = `import { pathToFileURL } from 'node:url'; import { validateCatalog } from '${pathToFileURL(validator).href}'; const hostile = new Proxy({}, { get(){ throw new Error('hostile-detail') } }); try { await validateCatalog(hostile, {}, { fixture: true }); process.exit(1); } catch (error) { process.exit(error instanceof Error && error.message.includes('avatar_catalog_invalid') && !error.message.includes('hostile-detail') ? 0 : 2); }`;
+    const result = spawnSync(process.execPath, ['--input-type=module', '-e', code], { cwd: root, encoding: 'utf8' });
+    expect(result.status).toBe(0);
+  });
+
 });

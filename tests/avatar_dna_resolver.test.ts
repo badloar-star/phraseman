@@ -1,7 +1,10 @@
 import { avatarCatalog, starterAvatarDNA } from '../modules/avatar-dna/catalog';
-import { resolveAvatarDNA } from '../modules/avatar-dna/resolver';
+import { compareAvatarLayers, resolveAvatarDNA } from '../modules/avatar-dna/resolver';
 
 describe('Avatar DNA resolver', () => {
+  it('uses ordinal code-unit ordering for equal-z punctuation IDs', () => {
+    expect([{ id: 'a-1', z: 5 }, { id: 'a.1', z: 5 }, { id: 'a_1', z: 5 }].sort(compareAvatarLayers).map((layer) => layer.id)).toEqual(['a-1', 'a.1', 'a_1']);
+  });
   it('returns the exact free starter DNA', () => {
     expect(starterAvatarDNA('starter_warm_01')).toEqual({
       schemaVersion: 1, rigId: 'human_v1',

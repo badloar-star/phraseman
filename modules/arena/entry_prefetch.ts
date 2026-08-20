@@ -16,7 +16,14 @@ export type ArenaEntryAcceptResponse = Readonly<{
   viewerSeat?: 'a' | 'b';
 }>;
 
+export type ArenaEntryAccountScope = Readonly<{
+  stableId: string;
+  generation: number;
+}>;
+
 export type ArenaEntryPrefetchDependencies = Readonly<{
+  captureAccountScope: () => ArenaEntryAccountScope | null;
+  isAccountScopeCurrent: (scope: ArenaEntryAccountScope) => boolean;
   accept: (matchId: string) => Promise<ArenaEntryAcceptResponse>;
   loadPlan: (matchId: string) => Promise<ArenaPreparedEntry | null>;
   rememberViewerSeat: (matchId: string, seat: 'a' | 'b') => void;
@@ -33,31 +40,62 @@ export class ArenaNoOpponentError extends Error {
   }
 }
 
+export class ArenaEntryAccountChangedError extends Error {
+  readonly failure = 'account_changed' as const;
+
+  constructor() {
+    super('arena_entry_account_changed');
+    this.name = 'ArenaEntryAccountChangedError';
+  }
+}
+
 const MAX_READY_ENTRIES = 8;
 
 export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
   const requests = new Map<string, Promise<ArenaPreparedEntry>>();
   const ready = new Map<string, ArenaPreparedEntry>();
+  const completed = new Map<string, true>();
 
-  const forget = (matchId: string) => {
-    requests.delete(matchId);
-    ready.delete(matchId);
+  const scopedKey = (matchId: string, scope: ArenaEntryAccountScope) =>
+    `${scope.generation}:${scope.stableId.length}:${scope.stableId}:${matchId}`;
+
+  const currentScope = (): ArenaEntryAccountScope | null => {
+    const scope = deps.captureAccountScope();
+    return scope && deps.isAccountScopeCurrent(scope) ? scope : null;
   };
 
-  const pruneReady = () => {
-    while (ready.size > MAX_READY_ENTRIES) {
-      const oldestMatchId = ready.keys().next().value as string | undefined;
-      if (!oldestMatchId) return;
-      ready.delete(oldestMatchId);
-      requests.delete(oldestMatchId);
+  const assertCurrentScope = (scope: ArenaEntryAccountScope): void => {
+    if (!deps.isAccountScopeCurrent(scope)) throw new ArenaEntryAccountChangedError();
+  };
+
+  const forget = (key: string) => {
+    requests.delete(key);
+    ready.delete(key);
+    completed.delete(key);
+  };
+
+  const pruneCompleted = () => {
+    while (completed.size > MAX_READY_ENTRIES) {
+      const oldestKey = completed.keys().next().value as string | undefined;
+      if (!oldestKey) return;
+      completed.delete(oldestKey);
+      ready.delete(oldestKey);
+      requests.delete(oldestKey);
     }
   };
 
-  const prepare = async (matchId: string): Promise<ArenaPreparedEntry> => {
+  const prepare = async (
+    matchId: string,
+    scope: ArenaEntryAccountScope,
+    key: string,
+  ): Promise<ArenaPreparedEntry> => {
     try {
+      assertCurrentScope(scope);
       const startedAtMs = deps.nowMs();
       while (true) {
+        assertCurrentScope(scope);
         const accepted = await deps.accept(matchId);
+        assertCurrentScope(scope);
         if (accepted.viewerSeat) deps.rememberViewerSeat(matchId, accepted.viewerSeat);
 
         const step = arenaEntryStep({
@@ -67,35 +105,52 @@ export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
         if (step === 'give_up') throw new ArenaNoOpponentError();
         if (step === 'accept') {
           await deps.wait(ARENA_ACCEPT_RETRY_MS);
+          assertCurrentScope(scope);
           continue;
         }
 
         const planned = await deps.loadPlan(matchId);
+        assertCurrentScope(scope);
         if (!planned) throw new Error('arena_match_plan_invalid');
         deps.rememberViewerSeat(matchId, planned.plan.viewerSeat);
 
-        ready.set(matchId, planned);
-        pruneReady();
+        ready.set(key, planned);
+        completed.delete(key);
+        completed.set(key, true);
+        pruneCompleted();
         return planned;
       }
     } catch (error) {
-      forget(matchId);
+      forget(key);
       throw error;
     }
   };
 
   return {
     start(matchId: string): Promise<ArenaPreparedEntry> {
-      const existing = requests.get(matchId);
+      const scope = currentScope();
+      if (!scope) return Promise.reject(new ArenaEntryAccountChangedError());
+      const key = scopedKey(matchId, scope);
+      const existing = requests.get(key);
       if (existing) return existing;
 
-      const request = Promise.resolve().then(() => prepare(matchId));
-      requests.set(matchId, request);
+      const request = Promise.resolve().then(() => prepare(matchId, scope, key));
+      requests.set(key, request);
       return request;
     },
 
     peek(matchId: string): ArenaPreparedEntry | null {
-      return ready.get(matchId) ?? null;
+      const scope = currentScope();
+      return scope ? ready.get(scopedKey(matchId, scope)) ?? null : null;
+    },
+
+    claim(matchId: string): ArenaPreparedEntry | null {
+      const scope = currentScope();
+      if (!scope) return null;
+      const key = scopedKey(matchId, scope);
+      const prepared = ready.get(key) ?? null;
+      if (prepared) ready.delete(key);
+      return prepared;
     },
   };
 }

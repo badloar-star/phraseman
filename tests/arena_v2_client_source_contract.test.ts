@@ -47,6 +47,14 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(matchmaking).not.toContain("useRef(createArenaRequestId('queue'))");
   });
 
+  test('pins the queue request id across renders and renews it for a changed route', () => {
+    expect(matchmaking).toContain('const requestIdKey = explicitRequestId ? `explicit:${explicitRequestId}` : `implicit:${mode}`;');
+    expect(matchmaking).toContain('const requestIdRef = useRef<{ key: string; value: string } | null>(null);');
+    expect(matchmaking).toContain('if (requestIdRef.current?.key !== requestIdKey) {');
+    expect(matchmaking).toContain('value: explicitRequestId ?? implicitQueueRequestId(mode),');
+    expect(matchmaking).toContain('const requestId = requestIdRef.current.value;');
+  });
+
   test('renews a long quick-search lease without changing its request id', () => {
     expect(matchmaking).toContain('const [leaseRefreshTick, setLeaseRefreshTick]');
     expect(matchmaking).toContain('Math.min(botDelayMs, 40_000)');
@@ -106,10 +114,19 @@ describe('Arena V2 listener and callable source contract', () => {
 
   test('prevents system back navigation and hides stale search failures after assignment', () => {
     expect(matchmaking).toContain("BackHandler.addEventListener('hardwareBackPress'");
-    expect(matchmaking).toContain('if (!matchId) return undefined;');
+    expect(matchmaking).toContain('if (!active || !matchId) return undefined;');
     expect(matchmaking).toContain("BackHandler.addEventListener('hardwareBackPress', () => true)");
     expect(matchmaking).toContain('const searchFailure = !matchId && error ? arenaSearchFailureCopy(error) : null;');
     expect(matchmaking).toContain('setError(null);');
+  });
+
+  test('cancels assigned-match navigation and system-back interception when blurred', () => {
+    const prefetchEffect = matchmaking.match(/useEffect\(\(\) => \{\s*if \(!active \|\| !matchId\) return;[\s\S]*?\}, \[active, entryRetryTick, matchId, mode, requestId, router\]\);/)?.[0];
+    const backEffect = matchmaking.match(/useEffect\(\(\) => \{\s*if \(!active \|\| !matchId\) return undefined;[\s\S]*?\}, \[active, matchId\]\);/)?.[0];
+    expect(prefetchEffect).toContain('let alive = true;');
+    expect(prefetchEffect).toContain('return () => { alive = false; };');
+    expect(backEffect).toContain("BackHandler.addEventListener('hardwareBackPress', () => true)");
+    expect(backEffect).toContain('return () => subscription.remove();');
   });
 
   test('live rollout exposes only the approved display score, never identity, answers or economy', () => {
@@ -231,8 +248,10 @@ describe('Arena V2 listener and callable source contract', () => {
     // И никакой досинхронизации посреди матча.
     expect(match).not.toContain('arenaV2SyncMatch');
     expect(match).not.toContain("arenaText(lang, 'serverCheck')");
-    // Сеть трогается ровно трижды: план, отчёт и — при необходимости — закрытие.
-    expect(match).toContain('arenaV2MatchPlan(matchId)');
+    // План приходит через общий entry-prefetch; экран не владеет вторым запросом.
+    expect(match).toContain('arenaEntryPrefetchStart(matchId)');
+    expect(match).not.toContain('arenaV2MatchPlan(matchId)');
+    expect(match).not.toContain('arenaV2MatchAccept(matchId)');
     expect(match).toContain('arenaV2MatchFinishDispatch(');
     expect(match).toContain('arenaV2MatchSettle(matchId)');
     expect(match).toContain("BackHandler.addEventListener('hardwareBackPress'");
@@ -244,10 +263,10 @@ describe('Arena V2 listener and callable source contract', () => {
     const entryPrefetch = fs.readFileSync(path.join(ROOT, 'app/arena_entry_prefetch.ts'), 'utf8');
     expect(entryPrefetch).toContain('createArenaEntryPrefetch({');
     expect(entryPrefetch).toContain('export const arenaEntryPrefetchStart = arenaEntryPrefetch.start;');
-    expect(entryPrefetch).toContain('export const arenaEntryPrefetchPeek = arenaEntryPrefetch.peek;');
-    // Task 4 removes the legacy consumer; this task only moves request ownership
-    // to the shared coordinator before the route is entered.
-    expect(match).toContain('[active, matchId, plan, planError, planScope]');
+    expect(entryPrefetch).toContain('export const arenaEntryPrefetchClaim = arenaEntryPrefetch.claim;');
+    expect(match).toContain('arenaEntryPrefetchClaim(matchId)');
+    expect(match).not.toContain('arenaMatchPlanRequests');
+    expect(match).toContain('[active, matchId, plan, planError, planScope, restoreChecked, restored]');
   });
 
   /** Точный таймер живёт в хуке — единственном месте с эффектами. */

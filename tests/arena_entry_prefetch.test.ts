@@ -1,6 +1,8 @@
 import {
+  ArenaEntryAccountChangedError,
   ArenaNoOpponentError,
   createArenaEntryPrefetch,
+  type ArenaEntryAccountScope,
   type ArenaPreparedEntry,
 } from '../modules/arena/entry_prefetch';
 import type { ArenaMatchPlanWire } from '../modules/arena/duel_plan';
@@ -18,6 +20,16 @@ const PREPARED = {
   deadlineAtMs: 16_200,
   plan: PLAN,
 } satisfies ArenaPreparedEntry;
+
+const ACCOUNT_A = { stableId: 'account-a', generation: 1 } satisfies ArenaEntryAccountScope;
+
+function fixedAccountScope(account: ArenaEntryAccountScope = ACCOUNT_A) {
+  return {
+    captureAccountScope: () => account,
+    isAccountScopeCurrent: (candidate: ArenaEntryAccountScope) =>
+      candidate.stableId === account.stableId && candidate.generation === account.generation,
+  };
+}
 
 type AcceptResponse = Readonly<{ state: string; viewerSeat?: 'a' | 'b' }>;
 
@@ -50,6 +62,7 @@ describe('Arena entry prefetch', () => {
     const seats: ('a' | 'b')[] = [];
     let planCalls = 0;
     const entry = createArenaEntryPrefetch({
+      ...fixedAccountScope(),
       accept: () => acceptResult.promise,
       loadPlan: async () => { planCalls += 1; return PREPARED; },
       rememberViewerSeat: (_matchId, seat) => seats.push(seat),
@@ -76,6 +89,7 @@ describe('Arena entry prefetch', () => {
     let accepts = 0;
     const waits: number[] = [];
     const entry = createArenaEntryPrefetch({
+      ...fixedAccountScope(),
       accept: async () => {
         accepts += 1;
         return accepts === 1 ? { state: 'accepting', viewerSeat: 'a' } : { state: 'active', viewerSeat: 'b' };
@@ -95,6 +109,7 @@ describe('Arena entry prefetch', () => {
   it('peeks only a successfully prepared entry and evicts a failed request for retry', async () => {
     let attempts = 0;
     const entry = createArenaEntryPrefetch({
+      ...fixedAccountScope(),
       accept: async () => ({ state: 'active', viewerSeat: 'a' }),
       loadPlan: async () => {
         attempts += 1;
@@ -116,8 +131,73 @@ describe('Arena entry prefetch', () => {
     expect(entry.peek('match-1')).toBe(PREPARED);
   });
 
+  it('fences an in-flight account A request before it can cache or remember data under B', async () => {
+    let current = ACCOUNT_A;
+    const accepted = deferred<AcceptResponse>();
+    const seats: ('a' | 'b')[] = [];
+    let planCalls = 0;
+    const entry = createArenaEntryPrefetch({
+      captureAccountScope: () => current,
+      isAccountScopeCurrent: (candidate) =>
+        candidate.stableId === current.stableId && candidate.generation === current.generation,
+      accept: () => accepted.promise,
+      loadPlan: async () => { planCalls += 1; return PREPARED; },
+      rememberViewerSeat: (_matchId, seat) => seats.push(seat),
+      nowMs: () => 0,
+      wait: async () => {},
+    });
+
+    const requestA = entry.start('match-1');
+    current = { stableId: 'account-b', generation: 2 };
+    accepted.resolve({ state: 'active', viewerSeat: 'a' });
+
+    const failure = await captureFailure(requestA);
+    expect(failure).toBeInstanceOf(ArenaEntryAccountChangedError);
+    expect(planCalls).toBe(0);
+    expect(seats).toEqual([]);
+    expect(entry.peek('match-1')).toBeNull();
+    expect(entry.claim('match-1')).toBeNull();
+  });
+
+  it('scopes ready entries by account and consumes the prepared bypass only once', async () => {
+    let current: ArenaEntryAccountScope = ACCOUNT_A;
+    let acceptCalls = 0;
+    const entry = createArenaEntryPrefetch({
+      captureAccountScope: () => current,
+      isAccountScopeCurrent: (candidate) =>
+        candidate.stableId === current.stableId && candidate.generation === current.generation,
+      accept: async () => { acceptCalls += 1; return { state: 'active', viewerSeat: 'a' }; },
+      loadPlan: async () => PREPARED,
+      rememberViewerSeat: () => {},
+      nowMs: () => 0,
+      wait: async () => {},
+    });
+
+    const requestA = entry.start('match-1');
+    await requestA;
+    expect(entry.claim('match-1')).toBe(PREPARED);
+    expect(entry.claim('match-1')).toBeNull();
+    expect(entry.peek('match-1')).toBeNull();
+    expect(entry.start('match-1')).toBe(requestA);
+    expect(acceptCalls).toBe(1);
+
+    await entry.start('match-2');
+    expect(entry.peek('match-2')).toBe(PREPARED);
+
+    current = { stableId: 'account-b', generation: 2 };
+    expect(entry.peek('match-1')).toBeNull();
+    expect(entry.claim('match-1')).toBeNull();
+    expect(entry.peek('match-2')).toBeNull();
+    expect(entry.claim('match-2')).toBeNull();
+    const requestB = entry.start('match-1');
+    expect(requestB).not.toBe(requestA);
+    await requestB;
+    expect(acceptCalls).toBe(3);
+  });
+
   it('rejects and does not cache a null plan', async () => {
     const entry = createArenaEntryPrefetch({
+      ...fixedAccountScope(),
       accept: async () => ({ state: 'active' }),
       loadPlan: async () => null,
       rememberViewerSeat: () => {},
@@ -135,6 +215,7 @@ describe('Arena entry prefetch', () => {
     for (const state of ['accepting', 'aborted', 'settled']) {
       let now = state === 'accepting' ? 12_000 : 0;
       const entry = createArenaEntryPrefetch({
+        ...fixedAccountScope(),
         accept: async () => ({ state }),
         loadPlan: async () => PREPARED,
         rememberViewerSeat: () => {},
@@ -155,6 +236,7 @@ describe('Arena entry prefetch', () => {
   it('evicts an initial clock failure so a later start can prepare the match', async () => {
     let clockCalls = 0;
     const entry = createArenaEntryPrefetch({
+      ...fixedAccountScope(),
       accept: async () => ({ state: 'active', viewerSeat: 'a' }),
       loadPlan: async () => PREPARED,
       rememberViewerSeat: () => {},
@@ -184,6 +266,7 @@ describe('Arena entry prefetch', () => {
       preparedEntries.set(matchId, preparedFor(matchId));
     }
     const entry = createArenaEntryPrefetch({
+      ...fixedAccountScope(),
       accept: async () => ({ state: 'active' }),
       loadPlan: async (matchId) => matchId === 'match-10'
         ? tenthPlan.promise
@@ -222,10 +305,12 @@ describe('Arena entry prefetch production singleton source contract', () => {
     expect(source).toContain('accept: arenaV2MatchAccept');
     expect(source).toContain('loadPlan: arenaV2MatchPlan');
     expect(source).toContain('rememberViewerSeat: rememberArenaViewerSeat');
+    expect(source).toContain('captureAccountScope: currentArenaEntryAccountScope');
+    expect(source).toContain('isAccountScopeCurrent: isArenaEntryAccountScopeCurrent');
     expect(source).toContain('nowMs: () => Date.now()');
     expect(source).toContain('wait: (ms) => new Promise((resolve) => setTimeout(resolve, ms))');
     expect(source).toContain('export const arenaEntryPrefetchStart = arenaEntryPrefetch.start;');
-    expect(source).toContain('export const arenaEntryPrefetchPeek = arenaEntryPrefetch.peek;');
+    expect(source).toContain('export const arenaEntryPrefetchClaim = arenaEntryPrefetch.claim;');
   });
 
   test('keeps matchmaking visible until the shared prepared entry succeeds', () => {

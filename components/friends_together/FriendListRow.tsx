@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import AvatarView from '../AvatarView';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity';
-import { triLang } from '../../constants/i18n';
+import { type Lang, triLang } from '../../constants/i18n';
 
 export interface FriendListRowProps {
   friendUid: string;
@@ -19,6 +19,34 @@ export interface FriendListRowProps {
   onOpenDetails: () => void;
 }
 
+function slavicDayWord(days: number, singular: string, few: string, many: string): string {
+  const lastTwo = days % 100;
+  const last = days % 10;
+  if (last === 1 && lastTwo !== 11) return singular;
+  if (last >= 2 && last <= 4 && (lastTwo < 12 || lastTwo > 14)) return few;
+  return many;
+}
+
+export function formatFriendRelationship(lang: Lang, daysTogether: number | null): string {
+  if (daysTogether === null) {
+    return triLang(lang, {
+      ru: 'В друзьях', uk: 'У друзях', es: 'En tus amistades', 'pt-BR': 'Na sua lista de amizades',
+      vi: 'Trong danh sách bạn bè', id: 'Dalam daftar teman', tr: 'Arkadaş listende', pl: 'Wśród znajomych',
+    });
+  }
+
+  return triLang(lang, {
+    ru: `${daysTogether} ${slavicDayWord(daysTogether, 'день', 'дня', 'дней')} вместе`,
+    uk: `${daysTogether} ${slavicDayWord(daysTogether, 'день', 'дні', 'днів')} разом`,
+    es: `${daysTogether} ${daysTogether === 1 ? 'día' : 'días'} de amistad`,
+    'pt-BR': `${daysTogether} ${daysTogether === 1 ? 'dia' : 'dias'} de amizade`,
+    vi: `${daysTogether} ngày cùng nhau`,
+    id: `${daysTogether} hari bersama`,
+    tr: `${daysTogether} gün birlikte`,
+    pl: `${daysTogether} ${slavicDayWord(daysTogether, 'dzień', 'dni', 'dni')} razem`,
+  });
+}
+
 function FriendListRow({
   friendUid,
   friendName,
@@ -29,17 +57,9 @@ function FriendListRow({
   onOpenProfile,
   onOpenDetails,
 }: FriendListRowProps) {
-  const { theme: t } = useTheme();
+  const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const relationship = daysTogether === null
-    ? triLang(lang, {
-      ru: 'Ваш друг', uk: 'Ваш друг', es: 'Tu amigo', 'pt-BR': 'Seu amigo',
-      vi: 'Bạn của bạn', id: 'Teman Anda', tr: 'Arkadaşınız', pl: 'Twój znajomy',
-    })
-    : triLang(lang, {
-      ru: `${daysTogether} дней вместе`, uk: `${daysTogether} днів разом`, es: `${daysTogether} días juntos`, 'pt-BR': `${daysTogether} dias juntos`,
-      vi: `${daysTogether} ngày cùng nhau`, id: `${daysTogether} hari bersama`, tr: `${daysTogether} gün birlikte`, pl: `${daysTogether} dni razem`,
-    });
+  const relationship = formatFriendRelationship(lang, daysTogether);
   const profileLabel = triLang(lang, {
     ru: `Открыть профиль ${friendName}`, uk: `Відкрити профіль ${friendName}`, es: `Abrir el perfil de ${friendName}`, 'pt-BR': `Abrir o perfil de ${friendName}`,
     vi: `Mở hồ sơ của ${friendName}`, id: `Buka profil ${friendName}`, tr: `${friendName} profilini aç`, pl: `Otwórz profil ${friendName}`,
@@ -68,10 +88,10 @@ function FriendListRow({
         style={styles.bodyTarget}
       >
         <View style={styles.identity}>
-          <FlowText testID={`friend-row-name-${friendUid}`} provenance="user" style={[styles.name, { color: t.textPrimary }]}>
+          <FlowText testID={`friend-row-name-${friendUid}`} provenance="user" style={[styles.name, { color: t.textPrimary, fontSize: Math.max(16, f.body) }]}>
             {friendName}
           </FlowText>
-          <FlowText testID={`friend-row-relationship-${friendUid}`} provenance="authored" style={[styles.relationship, { color: t.textSecond }]}>
+          <FlowText testID={`friend-row-relationship-${friendUid}`} provenance="authored" style={[styles.relationship, { color: t.textSecond, fontSize: Math.max(14, f.sub) }]}>
             {relationship}
           </FlowText>
         </View>
@@ -83,7 +103,7 @@ function FriendListRow({
 
 export default memo(FriendListRow);
 
-const styles = StyleSheet.create({
+const styles = {
   card: {
     minHeight: 84,
     borderRadius: 18,
@@ -113,11 +133,9 @@ const styles = StyleSheet.create({
     gap: 3,
   },
   name: {
-    fontSize: 16,
     fontWeight: '700',
   },
   relationship: {
-    fontSize: 14,
     fontWeight: '400',
   },
-});
+} as const;

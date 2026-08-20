@@ -185,8 +185,8 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(fetchReview).not.toContain('currentUser?.uid');
     expect(client).toContain('viewerReview?: readonly unknown[]');
     expect(match).toContain('response.viewerReview');
-    expect(match.indexOf('const finishAccount = captureAccountGeneration()'))
-      .toBeLessThan(match.indexOf('await arenaV2MatchFinish({'));
+    expect(match.indexOf('const finishAccount = planAccountRef.current'))
+      .toBeLessThan(match.indexOf('send: () => arenaV2MatchFinish({'));
     expect(match).toContain('isCurrentAccountGeneration(finishAccount, finishScope.stableUid)');
     expect(match).toContain('arenaRememberScopedReview({');
     expect(review).toContain('subscribeAccountGeneration');
@@ -264,7 +264,7 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(entryPrefetch).toContain('export const arenaEntryPrefetchPeek = arenaEntryPrefetch.peek;');
     // Task 4 removes the legacy consumer; this task only moves request ownership
     // to the shared coordinator before the route is entered.
-    expect(match).toContain('[active, matchId, plan, planError]');
+    expect(match).toContain('[active, matchId, plan, planError, planScope]');
   });
 
   /** Точный таймер живёт в хуке — единственном месте с эффектами. */

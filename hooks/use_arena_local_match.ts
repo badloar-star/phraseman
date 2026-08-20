@@ -16,6 +16,7 @@ import { arenaMonotonicEpochId, arenaMonotonicNowMs } from '../modules/arena/mon
 import { arenaAnswerIsCorrect, arenaPairIsCorrect, type ArenaAnswerCheckTask } from '../modules/arena/answer_check';
 import { arenaMachinePlan, type ArenaMatchPlanWire, type ArenaPlanTaskWire } from '../modules/arena/duel_plan';
 import { arenaSaveMatch, type ArenaKeyValueStore } from '../modules/arena/match_store';
+import type { ArenaOutboxOwnerScope } from '../modules/arena/result_outbox';
 import { arenaPendingOpponentTicks } from '../modules/arena/live_channel';
 
 /**
@@ -77,6 +78,8 @@ function checkTask(task: ArenaPlanTaskWire): ArenaAnswerCheckTask {
 
 export type UseArenaLocalMatchInput = Readonly<{
   plan: ArenaMatchPlanWire | null;
+  /** Аккаунт, которому принадлежит локальный снимок и итог матча. */
+  ownerScope: ArenaOutboxOwnerScope | null;
   /** Снимок с диска. Передаётся один раз — матч продолжается с него. */
   restored?: ArenaLocalMatchState | null;
   /** Сколько осталось от отсчёта на момент входа в экран. */
@@ -92,7 +95,7 @@ export type UseArenaLocalMatchInput = Readonly<{
 }>;
 
 export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMatchApi | null {
-  const { plan, restored, countdownRemainingMs, store, opponentTicks } = input;
+  const { plan, ownerScope, restored, countdownRemainingMs, store, opponentTicks } = input;
   const keyValue = store ?? (AsyncStorage as unknown as ArenaKeyValueStore);
 
   const initial = useMemo(() => {
@@ -205,12 +208,12 @@ export function useArenaLocalMatch(input: UseArenaLocalMatchInput): ArenaLocalMa
 
   /* ---- снимок на каждой границе задания, а не на каждом кадре ---- */
   useEffect(() => {
-    if (!plan || !state || state.matchId !== plan.matchId) return;
+    if (!plan || !ownerScope || !state || state.matchId !== plan.matchId) return;
     const key = `${state.phase}:${state.taskIndex}`;
     if (key === savedPhaseRef.current) return;
     savedPhaseRef.current = key;
-    void arenaSaveMatch(keyValue, plan, state, Date.now());
-  }, [plan, state, keyValue]);
+    void arenaSaveMatch(keyValue, ownerScope, plan, state, Date.now());
+  }, [plan, ownerScope, state, keyValue]);
 
   /* ---- отчёт ровно один раз ---- */
   useEffect(() => {

@@ -20,17 +20,23 @@ import type { ArenaMatchReport } from './match_machine';
  * закрывается просрочкой, звёзды за восстановленное время не начисляются.
  */
 
-export const ARENA_OUTBOX_SCHEMA_VERSION = 'arena-outbox.v2' as const;
+export const ARENA_OUTBOX_SCHEMA_VERSION = 'arena-outbox.v3' as const;
 export const ARENA_OUTBOX_MAX = 20;
 /** Совпадает со сроком жизни документа матча: позже расчёт всё равно невозможен. */
 export const ARENA_OUTBOX_TTL_MS = 7 * 24 * 60 * 60 * 1_000;
-export const ARENA_OUTBOX_INDEX_KEY = 'arena.outbox.v2.index';
-export const ARENA_OUTBOX_ENTRY_PREFIX = 'arena.outbox.v2.';
+export const ARENA_OUTBOX_INDEX_PREFIX = 'arena.outbox.v3.index.';
+export const ARENA_OUTBOX_ENTRY_PREFIX = 'arena.outbox.v3.entry.';
+
+export type ArenaOutboxOwnerScope = Readonly<{
+  stableUid: string;
+  accountGeneration: number;
+}>;
 
 export type ArenaOutboxFailure = 'offline' | 'transient' | 'gated' | 'rejected';
 
 export type ArenaOutboxEntry = Readonly<{
   schemaVersion: typeof ARENA_OUTBOX_SCHEMA_VERSION;
+  ownerStableUid: string;
   matchId: string;
   report: ArenaMatchReport;
   /**
@@ -164,17 +170,33 @@ export function arenaOutboxEvict(
   };
 }
 
-export function arenaOutboxEntryKey(matchId: string): string {
-  return `${ARENA_OUTBOX_ENTRY_PREFIX}${matchId}`;
+function scopeKey(scope: ArenaOutboxOwnerScope): string {
+  const stableUid = scope.stableUid.trim();
+  if (!stableUid || stableUid.length > 256 || !Number.isSafeInteger(scope.accountGeneration)) {
+    throw new Error('arena_outbox_owner_scope_invalid');
+  }
+  return encodeURIComponent(stableUid);
+}
+
+export function arenaOutboxIndexKey(scope: ArenaOutboxOwnerScope): string {
+  return `${ARENA_OUTBOX_INDEX_PREFIX}${scopeKey(scope)}`;
+}
+
+export function arenaOutboxEntryKey(scope: ArenaOutboxOwnerScope, matchId: string): string {
+  const safeMatchId = matchId.trim();
+  if (!safeMatchId || safeMatchId.length > 256) throw new Error('arena_outbox_match_id_invalid');
+  return `${ARENA_OUTBOX_ENTRY_PREFIX}${scopeKey(scope)}.${encodeURIComponent(safeMatchId)}`;
 }
 
 export function arenaOutboxMakeEntry(
+  scope: ArenaOutboxOwnerScope,
   report: ArenaMatchReport,
   wallNowMs: number,
   rulesVersion = '',
 ): ArenaOutboxEntry {
   return {
     schemaVersion: ARENA_OUTBOX_SCHEMA_VERSION,
+    ownerStableUid: scope.stableUid.trim(),
     matchId: report.matchId,
     report,
     rulesVersion,

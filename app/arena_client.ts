@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as Crypto from 'expo-crypto';
 import Constants from 'expo-constants';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { ensureAnonUser } from './cloud_sync';
 import { getVersionForServerGate } from './app_version';
 import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
@@ -673,8 +674,13 @@ export function useArenaProfile(stableUid: string | null, active: boolean) {
  * часа на диске и никуда не денется.
  */
 export async function arenaFlushOutbox(): Promise<number> {
+  const account = captureAccountGeneration();
+  if (account.phase !== 'active' || !account.stableId) return 0;
+  const scope = { stableUid: account.stableId, accountGeneration: account.generation };
   const result = await arenaOutboxFlush(AsyncStorage as unknown as ArenaKeyValueStore, {
+    scope,
     wallNowMs: Date.now(),
+    isScopeCurrent: (candidate) => isCurrentAccountGeneration(account, candidate.stableUid),
     send: async (entry) => {
       await arenaV2MatchFinish({
         matchId: entry.matchId,
@@ -688,7 +694,10 @@ export async function arenaFlushOutbox(): Promise<number> {
 /** Ждёт ли отчёт об этом матче отправки — чтобы экран результата не врал. */
 export async function arenaOutboxPending(matchId: string | null): Promise<boolean> {
   if (!matchId) return false;
-  return arenaOutboxHasMatch(AsyncStorage as unknown as ArenaKeyValueStore, matchId);
+  const account = captureAccountGeneration();
+  if (account.phase !== 'active' || !account.stableId) return false;
+  const scope = { stableUid: account.stableId, accountGeneration: account.generation };
+  return arenaOutboxHasMatch(AsyncStorage as unknown as ArenaKeyValueStore, scope, matchId);
 }
 
 /**
@@ -701,7 +710,12 @@ export async function arenaOutboxPending(matchId: string | null): Promise<boolea
  */
 export async function arenaOutboxBlockedByUpdate(): Promise<boolean> {
   try {
-    return arenaOutboxHasGated(await arenaOutboxList(AsyncStorage as unknown as ArenaKeyValueStore));
+    const account = captureAccountGeneration();
+    if (account.phase !== 'active' || !account.stableId) return false;
+    const scope = { stableUid: account.stableId, accountGeneration: account.generation };
+    return arenaOutboxHasGated(
+      await arenaOutboxList(AsyncStorage as unknown as ArenaKeyValueStore, scope),
+    );
   } catch {
     return false;
   }

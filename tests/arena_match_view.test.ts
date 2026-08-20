@@ -55,11 +55,13 @@ describe('инициализация локального матча', () => {
   test('не удаляет финальный снимок до долговечной записи отчёта', () => {
     const hook = fs.readFileSync(path.join(process.cwd(), 'hooks/use_arena_local_match.ts'), 'utf8');
     const screen = fs.readFileSync(path.join(process.cwd(), 'app/arena_match.tsx'), 'utf8');
+    const delivery = fs.readFileSync(path.join(process.cwd(), 'modules/arena/finish_delivery.ts'), 'utf8');
     expect(hook).not.toContain('void arenaClearMatch(keyValue)');
-    expect(screen.indexOf('const durable = await arenaOutboxEnqueue('))
-      .toBeLessThan(screen.indexOf('const response = await arenaV2MatchFinish('));
-    expect(screen).toContain('if (durable) {');
-    expect(screen).toContain('await arenaClearMatch(AsyncStorage as unknown as ArenaKeyValueStore);');
+    expect(screen).toContain('arenaDeliverFinishedMatch');
+    expect(delivery.indexOf('const durable = await arenaOutboxEnqueue('))
+      .toBeLessThan(delivery.indexOf('response = await input.send();'));
+    expect(delivery).toContain('if (durable && input.isAlive() && input.isScopeCurrent(input.scope))');
+    expect(delivery).toContain('await arenaClearMatchIfCurrent(');
   });
 });
 

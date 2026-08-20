@@ -5,13 +5,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Animated, { FadeIn, FadeInDown, SlideInRight, ZoomIn } from 'react-native-reanimated';
 
 import { arenaTaskRenderable } from '../modules/arena/task_adapter';
-import { arenaClearMatch, arenaLoadMatch } from '../modules/arena/match_store';
-import type { ArenaLocalMatchState } from '../modules/arena/match_machine';
-import { arenaOutboxClassify } from '../modules/arena/result_outbox';
-import { arenaOutboxEnqueue, arenaOutboxRemove } from '../modules/arena/outbox_storage';
+import { arenaLoadMatch } from '../modules/arena/match_store';
+import type { ArenaLocalMatchState, ArenaMatchReport } from '../modules/arena/match_machine';
+import type { ArenaOutboxOwnerScope } from '../modules/arena/result_outbox';
+import { arenaDeliverFinishedMatch } from '../modules/arena/finish_delivery';
 import { arenaRememberScopedReview } from '../modules/arena/review_retry';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
-import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaPlayers } from '../components/arena/ArenaPlayers';
@@ -62,7 +61,12 @@ import {
   rememberArenaViewerSeat,
   useArenaOpponentLive,
 } from './arena_client';
-import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 
 /**
  * Входной план уже запечатан сервером и идемпотентен. React может снять
@@ -123,6 +127,19 @@ export default function ArenaMatchScreen() {
   const playSound = useArenaSound();
   const mountedRef = useRef(true);
   useEffect(() => () => { mountedRef.current = false; }, []);
+  const planAccountRef = useRef<AccountGenerationToken | null>(null);
+  const [planScope, setPlanScope] = useState<ArenaOutboxOwnerScope | null>(null);
+
+  useEffect(() => {
+    const account = captureAccountGeneration();
+    if (account.phase !== 'active' || !account.stableId) {
+      planAccountRef.current = null;
+      setPlanScope(null);
+      return;
+    }
+    planAccountRef.current = account;
+    setPlanScope({ stableUid: account.stableId, accountGeneration: account.generation });
+  }, [matchId]);
 
   const [plan, setPlan] = useState<ArenaMatchPlanWire | null>(null);
   const [planError, setPlanError] = useState(false);
@@ -155,6 +172,8 @@ export default function ArenaMatchScreen() {
   useEffect(() => {
     if (!matchId || plan || planError) return;
     let alive = true;
+    const entryAccount = planAccountRef.current;
+    if (!entryAccount || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
     const enteredAtMs = Date.now();
     let timer: ReturnType<typeof setTimeout> | null = null;
 
@@ -163,10 +182,10 @@ export default function ArenaMatchScreen() {
     // опрос хода матча: он длится секунды и только ДО старта, а во время
     // самого матча к серверу не обращаются вовсе.
     const attempt = () => {
-      if (!alive) return;
+      if (!alive || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
       void arenaV2MatchAccept(matchId)
         .then((response) => {
-          if (!alive) return;
+          if (!alive || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
           if (response.viewerSeat) rememberArenaViewerSeat(matchId, response.viewerSeat);
           const step = arenaEntryStep({
             state: String(response.state ?? ''),
@@ -180,7 +199,7 @@ export default function ArenaMatchScreen() {
             return;
           }
           return arenaMatchPlanRequest(matchId).then((planned) => {
-            if (!alive) return;
+            if (!alive || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
             // Разбор закрытый: не сошёлся целиком — матч не начинаем вовсе.
             if (!planned) { setPlanError(true); return; }
             rememberArenaViewerSeat(matchId, planned.plan.viewerSeat);
@@ -188,7 +207,7 @@ export default function ArenaMatchScreen() {
           });
         })
         .catch((reason) => {
-          if (!alive) return;
+          if (!alive || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
           setEntryFailure(arenaEntryFailure(reason));
           setPlanError(true);
         });
@@ -199,7 +218,7 @@ export default function ArenaMatchScreen() {
       alive = false;
       if (timer !== null) clearTimeout(timer);
     };
-  }, [active, matchId, plan, planError]);
+  }, [active, matchId, plan, planError, planScope]);
 
   /* ---- живой прогресс соперника ---- */
   const live = useArenaOpponentLive(matchId, plan?.opponent.seat ?? null, active && Boolean(plan));
@@ -232,20 +251,39 @@ export default function ArenaMatchScreen() {
   const [restoreChecked, setRestoreChecked] = useState(false);
   useEffect(() => {
     if (!matchId) { setRestoreChecked(true); return; }
+    const restoreAccount = planAccountRef.current;
+    if (!planScope || !restoreAccount
+      || !isCurrentAccountGeneration(restoreAccount, planScope.stableUid)) return;
     let alive = true;
-    void arenaLoadMatch(AsyncStorage as unknown as ArenaKeyValueStore, Date.now(), matchId)
-      .then((stored) => { if (alive && stored) setRestored(stored.state); })
+    void arenaLoadMatch(
+      AsyncStorage as unknown as ArenaKeyValueStore,
+      planScope,
+      Date.now(),
+      matchId,
+    )
+      .then((stored) => {
+        if (alive && stored && isCurrentAccountGeneration(restoreAccount, planScope.stableUid)) {
+          setRestored(stored.state);
+        }
+      })
       .catch(() => {})
-      .finally(() => { if (alive) setRestoreChecked(true); });
+      .finally(() => {
+        if (alive && isCurrentAccountGeneration(restoreAccount, planScope.stableUid)) {
+          setRestoreChecked(true);
+        }
+      });
     return () => { alive = false; };
-  }, [matchId]);
+  }, [matchId, planScope]);
 
   /**
    * План подставляется в машину только когда проверка снимка закончилась:
    * иначе матч успел бы начаться с нуля и затереть восстановленное состояние.
    */
   const match = useArenaLocalMatch({
-    plan: restoreChecked ? plan : null,
+    plan: restoreChecked && planAccountRef.current && planScope
+      && isCurrentAccountGeneration(planAccountRef.current, planScope.stableUid)
+      ? plan : null,
+    ownerScope: planScope,
     restored,
     countdownRemainingMs: immediateIntro && plan
       ? arenaEntryCountdownRemainingMs(
@@ -288,36 +326,29 @@ export default function ArenaMatchScreen() {
     // React-состоянии и TypeScript справедливо не переносит его narrowing
     // внутрь отложенной функции.
     const report = match.report;
-    const finishAccount = captureAccountGeneration();
-    const finishScope = finishAccount.phase === 'active' && finishAccount.stableId
-      ? { stableUid: finishAccount.stableId, accountGeneration: finishAccount.generation }
-      : null;
-    if (!finishScope) return;
+    const finishAccount = planAccountRef.current;
+    const finishScope = planScope;
+    if (!finishAccount || !finishScope) return;
     setSent(true);
     void (async () => {
-      // Сначала durable intent, потом сеть. Если процесс погибнет в любой
-      // точке ниже, либо outbox уже содержит отчёт, либо финальный снимок всё
-      // ещё восстановит тот же отчёт с тем же matchId.
-      const durable = await arenaOutboxEnqueue(
-        AsyncStorage as unknown as ArenaKeyValueStore,
-        report as ArenaMatchReport,
-        Date.now(),
-        plan.rulesVersion,
-      );
-      if (durable) {
-        await arenaClearMatch(AsyncStorage as unknown as ArenaKeyValueStore);
-      }
-
-      // Account A may have been replaced while the durable write awaited.
-      // Never submit A's report with B's auth context.
-      if (!isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) return;
-
-      let rejected = false;
-      try {
-        const response = await arenaV2MatchFinish({
+      const delivery = await arenaDeliverFinishedMatch({
+        store: AsyncStorage as unknown as ArenaKeyValueStore,
+        scope: finishScope,
+        report: report as ArenaMatchReport,
+        rulesVersion: plan.rulesVersion,
+        wallNowMs: Date.now(),
+        isAlive: () => mountedRef.current,
+        isScopeCurrent: (scope) => isCurrentAccountGeneration(finishAccount, scope.stableUid),
+        withTransitionLock: (work) => withAccountTransitionLock(async () => work()),
+        send: () => arenaV2MatchFinish({
           matchId,
           report: arenaMatchReportToWire(report, plan.rulesVersion),
-        });
+        }),
+      });
+      if (delivery.status === 'stale') return;
+      const rejected = delivery.status === 'rejected';
+      if (delivery.status === 'sent') {
+        const response = delivery.response;
         if (Array.isArray(response.viewerReview)
           && mountedRef.current
           && isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) {
@@ -329,40 +360,27 @@ export default function ArenaMatchScreen() {
             store: AsyncStorage as unknown as ArenaKeyValueStore,
           });
         }
-        await arenaOutboxRemove(AsyncStorage as unknown as ArenaKeyValueStore, matchId);
-        await arenaClearMatch(AsyncStorage as unknown as ArenaKeyValueStore);
         // Соперник ещё не сдался: спрашиваем РОВНО ОДИН раз, когда истечёт
         // окно ожидания. Опрос по кругу здесь запрещён — он и есть тот самый
         // хартбит, от которого растёт счёт за базу.
         if (!response.settled && typeof response.settleProbeAtMs === 'number') {
           const waitMs = Math.max(0, response.settleProbeAtMs - Date.now());
           setTimeout(() => {
-            if (isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) {
+            if (mountedRef.current
+              && isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) {
               void arenaV2MatchSettle(matchId).catch(() => {});
             }
           }, waitMs);
         }
-      } catch (reason) {
-        const failure = arenaOutboxClassify(reason);
-        // Отказ по существу дослать нельзя: сервер не примет его и завтра.
-        if (failure === 'rejected') {
-          rejected = true;
-          await arenaOutboxRemove(AsyncStorage as unknown as ArenaKeyValueStore, matchId);
-          await arenaClearMatch(AsyncStorage as unknown as ArenaKeyValueStore);
-        }
-        // При временном отказе durable outbox уже владеет отчётом. Если даже
-        // его записать не удалось, финальный снимок намеренно остаётся на
-        // диске и при следующем входе создаст тот же отчёт заново.
-      } finally {
-        if (mountedRef.current && isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) {
-          router.replace({
-            pathname: '/arena_results',
-            params: rejected ? { matchId, reportRejected: '1' } : { matchId },
-          } as never);
-        }
+      }
+      if (mountedRef.current && isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) {
+        router.replace({
+          pathname: '/arena_results',
+          params: rejected ? { matchId, reportRejected: '1' } : { matchId },
+        } as never);
       }
     })();
-  }, [matchId, match?.report, plan, router, sent]);
+  }, [matchId, match?.report, plan, planScope, router, sent]);
 
   /* ---- выход ---- */
   const forfeitNow = useCallback(() => {

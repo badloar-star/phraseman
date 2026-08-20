@@ -1,6 +1,7 @@
 import type { ArenaLocalMatchState } from './match_machine';
 import { ARENA_LOCAL_SCHEMA_VERSION } from './match_machine';
 import { arenaParseMatchPlan, type ArenaMatchPlanWire } from './duel_plan';
+import type { ArenaOutboxOwnerScope } from './result_outbox';
 
 /**
  * Сохранение идущего матча.
@@ -19,8 +20,8 @@ import { arenaParseMatchPlan, type ArenaMatchPlanWire } from './duel_plan';
  * просрочкой.
  */
 
-export const ARENA_MATCH_STORE_SCHEMA_VERSION = 'arena-match-store.v1' as const;
-export const ARENA_MATCH_STORE_KEY = 'arena.match.v1.current';
+export const ARENA_MATCH_STORE_SCHEMA_VERSION = 'arena-match-store.v2' as const;
+export const ARENA_MATCH_STORE_KEY = 'arena.match.v2.current';
 
 /**
  * Дольше этого сохранённый матч не имеет смысла: серверный документ живёт
@@ -30,6 +31,7 @@ export const ARENA_MATCH_STORE_TTL_MS = 30 * 60 * 1_000;
 
 export type ArenaStoredMatch = Readonly<{
   schemaVersion: typeof ARENA_MATCH_STORE_SCHEMA_VERSION;
+  ownerStableUid: string;
   plan: ArenaMatchPlanWire;
   state: ArenaLocalMatchState;
   savedAtWallMs: number;
@@ -65,6 +67,7 @@ export function arenaDecodeStoredMatch(raw: string | null): ArenaStoredMatch | n
   }
   if (!isRecord(parsed)) return null;
   if (parsed.schemaVersion !== ARENA_MATCH_STORE_SCHEMA_VERSION) return null;
+  if (typeof parsed.ownerStableUid !== 'string' || !parsed.ownerStableUid.trim()) return null;
 
   const plan = arenaParseMatchPlan(parsed.plan);
   if (!plan) return null;
@@ -84,6 +87,7 @@ export function arenaDecodeStoredMatch(raw: string | null): ArenaStoredMatch | n
 
   return {
     schemaVersion: ARENA_MATCH_STORE_SCHEMA_VERSION,
+    ownerStableUid: parsed.ownerStableUid,
     plan,
     state: state as unknown as ArenaLocalMatchState,
     savedAtWallMs: Math.trunc(savedAtWallMs),
@@ -91,12 +95,14 @@ export function arenaDecodeStoredMatch(raw: string | null): ArenaStoredMatch | n
 }
 
 export function arenaEncodeStoredMatch(
+  scope: ArenaOutboxOwnerScope,
   plan: ArenaMatchPlanWire,
   state: ArenaLocalMatchState,
   savedAtWallMs: number,
 ): string {
   const snapshot: ArenaStoredMatch = {
     schemaVersion: ARENA_MATCH_STORE_SCHEMA_VERSION,
+    ownerStableUid: scope.stableUid,
     plan,
     state,
     savedAtWallMs: Math.trunc(savedAtWallMs),
@@ -112,10 +118,12 @@ export function arenaEncodeStoredMatch(
  */
 export function arenaStoredMatchUsable(
   stored: ArenaStoredMatch | null,
+  scope: ArenaOutboxOwnerScope,
   nowWallMs: number,
   expectedMatchId?: string,
 ): boolean {
   if (!stored) return false;
+  if (stored.ownerStableUid !== scope.stableUid) return false;
   if (expectedMatchId && stored.plan.matchId !== expectedMatchId) return false;
   const ageMs = Math.max(0, nowWallMs - stored.savedAtWallMs);
   return ageMs < ARENA_MATCH_STORE_TTL_MS;
@@ -130,12 +138,15 @@ export function arenaStoredMatchUsable(
  */
 export async function arenaSaveMatch(
   store: ArenaKeyValueStore,
+  scope: ArenaOutboxOwnerScope,
   plan: ArenaMatchPlanWire,
   state: ArenaLocalMatchState,
   nowWallMs: number,
 ): Promise<boolean> {
   try {
-    await store.setItem(ARENA_MATCH_STORE_KEY, arenaEncodeStoredMatch(plan, state, nowWallMs));
+    await withMatchStorageLock(async () => {
+      await store.setItem(ARENA_MATCH_STORE_KEY, arenaEncodeStoredMatch(scope, plan, state, nowWallMs));
+    });
     return true;
   } catch {
     return false;
@@ -144,24 +155,67 @@ export async function arenaSaveMatch(
 
 export async function arenaLoadMatch(
   store: ArenaKeyValueStore,
+  scope: ArenaOutboxOwnerScope,
   nowWallMs: number,
   expectedMatchId?: string,
 ): Promise<ArenaStoredMatch | null> {
   let raw: string | null = null;
   try {
-    raw = await store.getItem(ARENA_MATCH_STORE_KEY);
+    raw = await withMatchStorageLock(() => store.getItem(ARENA_MATCH_STORE_KEY));
   } catch {
     return null;
   }
   const stored = arenaDecodeStoredMatch(raw);
-  return arenaStoredMatchUsable(stored, nowWallMs, expectedMatchId) ? stored : null;
+  return arenaStoredMatchUsable(stored, scope, nowWallMs, expectedMatchId) ? stored : null;
 }
 
-export async function arenaClearMatch(store: ArenaKeyValueStore): Promise<void> {
+let matchStorageTail: Promise<void> = Promise.resolve();
+
+async function withMatchStorageLock<T>(work: () => Promise<T>): Promise<T> {
+  const previous = matchStorageTail;
+  let release!: () => void;
+  matchStorageTail = new Promise<void>((resolve) => { release = resolve; });
+  await previous;
   try {
-    await store.removeItem(ARENA_MATCH_STORE_KEY);
-  } catch {
-    // Неудалённый снимок безвреден: он либо протухнет по сроку, либо будет
-    // отброшен при разборе. Ронять на этом ход матча незачем.
+    return await work();
+  } finally {
+    release();
   }
 }
+
+function storedHeaderMatches(raw: string | null, scope: ArenaOutboxOwnerScope, matchId: string): boolean {
+  if (!raw) return false;
+  try {
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    const plan = parsed?.plan as Record<string, unknown> | undefined;
+    return parsed?.schemaVersion === ARENA_MATCH_STORE_SCHEMA_VERSION
+      && parsed?.ownerStableUid === scope.stableUid
+      && plan?.matchId === matchId;
+  } catch {
+    return false;
+  }
+}
+
+/** Compare-delete: a late completion can never erase another owner/match. */
+export async function arenaClearMatchIfCurrent(
+  store: ArenaKeyValueStore,
+  scope: ArenaOutboxOwnerScope,
+  matchId: string,
+  isScopeCurrent: (scope: ArenaOutboxOwnerScope) => boolean,
+): Promise<boolean> {
+  try {
+    return await withMatchStorageLock(async () => {
+      if (!isScopeCurrent(scope)) return false;
+      const raw = await store.getItem(ARENA_MATCH_STORE_KEY);
+      if (!isScopeCurrent(scope) || !storedHeaderMatches(raw, scope, matchId)) return false;
+      await store.removeItem(ARENA_MATCH_STORE_KEY);
+      return true;
+    });
+  } catch {
+    // Неудалённый снимок безвреден: он либо протухнет, либо не пройдёт scope.
+    return false;
+  }
+}
+
+/** Compatibility name, now carrying the same mandatory compare-delete contract. */
+export const arenaClearMatch = arenaClearMatchIfCurrent;

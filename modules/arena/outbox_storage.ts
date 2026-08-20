@@ -1,15 +1,16 @@
 import type { ArenaKeyValueStore } from './match_store';
 import type { ArenaMatchReport } from './match_machine';
 import {
-  ARENA_OUTBOX_INDEX_KEY,
   ARENA_OUTBOX_SCHEMA_VERSION,
   arenaOutboxAfterFailure,
   arenaOutboxClassify,
   arenaOutboxDue,
   arenaOutboxEntryKey,
+  arenaOutboxIndexKey,
   arenaOutboxEvict,
   arenaOutboxMakeEntry,
   type ArenaOutboxEntry,
+  type ArenaOutboxOwnerScope,
 } from './result_outbox';
 
 /**
@@ -44,7 +45,10 @@ function parseIndex(raw: string | null): readonly string[] {
 }
 
 /** Разбор закрытый: непонятная запись выбрасывается, а не чинится догадками. */
-export function arenaOutboxDecodeEntry(raw: string | null): ArenaOutboxEntry | null {
+export function arenaOutboxDecodeEntry(
+  raw: string | null,
+  scope: ArenaOutboxOwnerScope,
+): ArenaOutboxEntry | null {
   if (!raw) return null;
   let parsed: unknown;
   try {
@@ -54,6 +58,7 @@ export function arenaOutboxDecodeEntry(raw: string | null): ArenaOutboxEntry | n
   }
   if (!isRecord(parsed)) return null;
   if (parsed.schemaVersion !== ARENA_OUTBOX_SCHEMA_VERSION) return null;
+  if (parsed.ownerStableUid !== scope.stableUid) return null;
   const matchId = typeof parsed.matchId === 'string' ? parsed.matchId : '';
   const report = parsed.report;
   if (!matchId || !isRecord(report)) return null;
@@ -63,6 +68,7 @@ export function arenaOutboxDecodeEntry(raw: string | null): ArenaOutboxEntry | n
   const lastFailure = parsed.lastFailure;
   return {
     schemaVersion: ARENA_OUTBOX_SCHEMA_VERSION,
+    ownerStableUid: scope.stableUid,
     matchId,
     report: report as unknown as ArenaMatchReport,
     rulesVersion: typeof parsed.rulesVersion === 'string' ? parsed.rulesVersion : '',
@@ -76,17 +82,18 @@ export function arenaOutboxDecodeEntry(raw: string | null): ArenaOutboxEntry | n
 
 export async function arenaOutboxList(
   store: ArenaKeyValueStore,
+  scope: ArenaOutboxOwnerScope,
 ): Promise<readonly ArenaOutboxEntry[]> {
   let index: readonly string[] = [];
   try {
-    index = parseIndex(await store.getItem(ARENA_OUTBOX_INDEX_KEY));
+    index = parseIndex(await store.getItem(arenaOutboxIndexKey(scope)));
   } catch {
     return [];
   }
   const entries: ArenaOutboxEntry[] = [];
   for (const matchId of index) {
     try {
-      const entry = arenaOutboxDecodeEntry(await store.getItem(arenaOutboxEntryKey(matchId)));
+      const entry = arenaOutboxDecodeEntry(await store.getItem(arenaOutboxEntryKey(scope, matchId)), scope);
       if (entry) entries.push(entry);
     } catch {
       // Одна нечитаемая запись не должна прятать остальные.
@@ -95,8 +102,12 @@ export async function arenaOutboxList(
   return entries;
 }
 
-async function writeIndex(store: ArenaKeyValueStore, entries: readonly ArenaOutboxEntry[]): Promise<void> {
-  await store.setItem(ARENA_OUTBOX_INDEX_KEY, JSON.stringify(entries.map((entry) => entry.matchId)));
+async function writeIndex(
+  store: ArenaKeyValueStore,
+  scope: ArenaOutboxOwnerScope,
+  entries: readonly ArenaOutboxEntry[],
+): Promise<void> {
+  await store.setItem(arenaOutboxIndexKey(scope), JSON.stringify(entries.map((entry) => entry.matchId)));
 }
 
 /**
@@ -105,19 +116,20 @@ async function writeIndex(store: ArenaKeyValueStore, entries: readonly ArenaOutb
  */
 export async function arenaOutboxEnqueue(
   store: ArenaKeyValueStore,
+  scope: ArenaOutboxOwnerScope,
   report: ArenaMatchReport,
   wallNowMs: number,
   rulesVersion = '',
 ): Promise<boolean> {
   try {
-    const entry = arenaOutboxMakeEntry(report, wallNowMs, rulesVersion);
-    const existing = (await arenaOutboxList(store)).filter((row) => row.matchId !== entry.matchId);
+    const entry = arenaOutboxMakeEntry(scope, report, wallNowMs, rulesVersion);
+    const existing = (await arenaOutboxList(store, scope)).filter((row) => row.matchId !== entry.matchId);
     const { keep, dropped } = arenaOutboxEvict([...existing, entry], wallNowMs);
-    await store.setItem(arenaOutboxEntryKey(entry.matchId), JSON.stringify(entry));
-    await writeIndex(store, keep);
+    await store.setItem(arenaOutboxEntryKey(scope, entry.matchId), JSON.stringify(entry));
+    await writeIndex(store, scope, keep);
     for (const matchId of dropped) {
       if (matchId === entry.matchId) continue;
-      try { await store.removeItem(arenaOutboxEntryKey(matchId)); } catch { /* протухшее и так не читается */ }
+      try { await store.removeItem(arenaOutboxEntryKey(scope, matchId)); } catch { /* протухшее и так не читается */ }
     }
     return true;
   } catch {
@@ -127,10 +139,12 @@ export async function arenaOutboxEnqueue(
 
 export async function arenaOutboxSave(
   store: ArenaKeyValueStore,
+  scope: ArenaOutboxOwnerScope,
   entry: ArenaOutboxEntry,
 ): Promise<void> {
   try {
-    await store.setItem(arenaOutboxEntryKey(entry.matchId), JSON.stringify(entry));
+    if (entry.ownerStableUid !== scope.stableUid) return;
+    await store.setItem(arenaOutboxEntryKey(scope, entry.matchId), JSON.stringify(entry));
   } catch {
     // Не сохранившийся повтор означает лишнюю попытку позже, а не потерю.
   }
@@ -138,12 +152,13 @@ export async function arenaOutboxSave(
 
 export async function arenaOutboxRemove(
   store: ArenaKeyValueStore,
+  scope: ArenaOutboxOwnerScope,
   matchId: string,
 ): Promise<void> {
   try {
-    const rest = (await arenaOutboxList(store)).filter((entry) => entry.matchId !== matchId);
-    await writeIndex(store, rest);
-    await store.removeItem(arenaOutboxEntryKey(matchId));
+    const rest = (await arenaOutboxList(store, scope)).filter((entry) => entry.matchId !== matchId);
+    await writeIndex(store, scope, rest);
+    await store.removeItem(arenaOutboxEntryKey(scope, matchId));
   } catch {
     // Осталась в индексе — попробуем ещё раз при следующей отправке.
   }
@@ -179,6 +194,8 @@ export type ArenaOutboxFlushResult = Readonly<{
 export async function arenaOutboxFlush(
   store: ArenaKeyValueStore,
   input: Readonly<{
+    scope: ArenaOutboxOwnerScope;
+    isScopeCurrent(scope: ArenaOutboxOwnerScope): boolean;
     send(entry: ArenaOutboxEntry): Promise<void>;
     wallNowMs: number;
   }>,
@@ -186,21 +203,37 @@ export async function arenaOutboxFlush(
   const sent: string[] = [];
   const kept: string[] = [];
   const dropped: string[] = [];
-  const due = arenaOutboxDueEntries(await arenaOutboxList(store), input.wallNowMs);
+  const due = arenaOutboxDueEntries(await arenaOutboxList(store, input.scope), input.wallNowMs);
+
+  if (!input.isScopeCurrent(input.scope)) {
+    return { sent, kept: due.map((entry) => entry.matchId), dropped };
+  }
 
   for (const entry of due) {
+    if (!input.isScopeCurrent(input.scope)) {
+      kept.push(entry.matchId);
+      continue;
+    }
     try {
       await input.send(entry);
-      await arenaOutboxRemove(store, entry.matchId);
+      if (!input.isScopeCurrent(input.scope)) {
+        kept.push(entry.matchId);
+        break;
+      }
+      await arenaOutboxRemove(store, input.scope, entry.matchId);
       sent.push(entry.matchId);
     } catch (error) {
+      if (!input.isScopeCurrent(input.scope)) {
+        kept.push(entry.matchId);
+        break;
+      }
       const failure = arenaOutboxClassify(error);
       const next = arenaOutboxAfterFailure(entry, failure, input.wallNowMs);
       if (!next) {
-        await arenaOutboxRemove(store, entry.matchId);
+        await arenaOutboxRemove(store, input.scope, entry.matchId);
         dropped.push(entry.matchId);
       } else {
-        await arenaOutboxSave(store, next);
+        await arenaOutboxSave(store, input.scope, next);
         kept.push(entry.matchId);
       }
       // Сети нет — остальные тоже не уйдут. Прекращаем, а не долбим сервер.
@@ -213,7 +246,8 @@ export async function arenaOutboxFlush(
 /** Ждёт ли отправки отчёт именно об этом матче. */
 export async function arenaOutboxHasMatch(
   store: ArenaKeyValueStore,
+  scope: ArenaOutboxOwnerScope,
   matchId: string,
 ): Promise<boolean> {
-  return (await arenaOutboxList(store)).some((entry) => entry.matchId === matchId);
+  return (await arenaOutboxList(store, scope)).some((entry) => entry.matchId === matchId);
 }

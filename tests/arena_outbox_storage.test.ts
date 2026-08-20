@@ -7,9 +7,16 @@ import {
   arenaOutboxHasMatch,
   arenaOutboxList,
 } from '../modules/arena/outbox_storage';
-import { ARENA_OUTBOX_ENTRY_PREFIX, ARENA_OUTBOX_INDEX_KEY } from '../modules/arena/result_outbox';
+import {
+  arenaOutboxEntryKey,
+  arenaOutboxIndexKey,
+  type ArenaOutboxOwnerScope,
+} from '../modules/arena/result_outbox';
 import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
+
+const SCOPE: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 1 };
+const currentScope = () => true;
 
 /**
  * Очередь отправки результатов.
@@ -56,47 +63,49 @@ describe('отчёт переживает потерю сети', () => {
     const store = fakeStore();
     // Версия правил хранится рядом: досылка может случиться через сутки, когда
     // плана матча на руках уже нет и взять её будет неоткуда.
-    expect(await arenaOutboxEnqueue(store, report('m1'), 1_000, 'arena-stars.v3')).toBe(true);
-    const entries = await arenaOutboxList(store);
+    expect(await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'arena-stars.v3')).toBe(true);
+    const entries = await arenaOutboxList(store, SCOPE);
     expect(entries).toHaveLength(1);
     expect(entries[0].matchId).toBe('m1');
     expect(entries[0].rulesVersion).toBe('arena-stars.v3');
-    expect(await arenaOutboxHasMatch(store, 'm1')).toBe(true);
+    expect(await arenaOutboxHasMatch(store, SCOPE, 'm1')).toBe(true);
   });
 
   it('один и тот же матч не кладётся дважды', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, report('m1'), 1_000, 'v');
-    await arenaOutboxEnqueue(store, report('m1'), 2_000, 'v');
-    expect(await arenaOutboxList(store)).toHaveLength(1);
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 2_000, 'v');
+    expect(await arenaOutboxList(store, SCOPE)).toHaveLength(1);
   });
 
   it('нечитаемая запись не прячет остальные', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, report('m1'), 1_000, 'v');
-    await arenaOutboxEnqueue(store, report('m2'), 1_000, 'v');
-    store.data.set(`${ARENA_OUTBOX_ENTRY_PREFIX}m1`, '{ это не json');
-    const entries = await arenaOutboxList(store);
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m2'), 1_000, 'v');
+    store.data.set(arenaOutboxEntryKey(SCOPE, 'm1'), '{ это не json');
+    const entries = await arenaOutboxList(store, SCOPE);
     expect(entries).toHaveLength(1);
     expect(entries[0].matchId).toBe('m2');
   });
 
   it('чужая схема отбрасывается целиком', () => {
-    expect(arenaOutboxDecodeEntry(JSON.stringify({ schemaVersion: 'arena-outbox.v1', matchId: 'm' }))).toBeNull();
-    expect(arenaOutboxDecodeEntry('не json')).toBeNull();
-    expect(arenaOutboxDecodeEntry(null)).toBeNull();
+    expect(arenaOutboxDecodeEntry(JSON.stringify({ schemaVersion: 'arena-outbox.v1', matchId: 'm' }), SCOPE)).toBeNull();
+    expect(arenaOutboxDecodeEntry('не json', SCOPE)).toBeNull();
+    expect(arenaOutboxDecodeEntry(null, SCOPE)).toBeNull();
   });
 });
 
 describe('досылка', () => {
   it('успешная отправка убирает запись и из индекса, и с диска', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, report('m1'), 1_000, 'v');
-    const result = await arenaOutboxFlush(store, { send: async () => {}, wallNowMs: 2_000 });
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
+    const result = await arenaOutboxFlush(store, {
+      scope: SCOPE, isScopeCurrent: currentScope, send: async () => {}, wallNowMs: 2_000,
+    });
     expect(result.sent).toEqual(['m1']);
-    expect(await arenaOutboxList(store)).toHaveLength(0);
-    expect(store.data.get(`${ARENA_OUTBOX_ENTRY_PREFIX}m1`)).toBeUndefined();
-    expect(store.data.get(ARENA_OUTBOX_INDEX_KEY)).toBe('[]');
+    expect(await arenaOutboxList(store, SCOPE)).toHaveLength(0);
+    expect(store.data.get(arenaOutboxEntryKey(SCOPE, 'm1'))).toBeUndefined();
+    expect(store.data.get(arenaOutboxIndexKey(SCOPE))).toBe('[]');
   });
 
   /**
@@ -105,14 +114,16 @@ describe('досылка', () => {
    */
   it('нет сети — запись остаётся ждать', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
     const result = await arenaOutboxFlush(store, {
+      scope: SCOPE,
+      isScopeCurrent: currentScope,
       send: async () => { throw new Error('network request failed'); },
       wallNowMs: 2_000,
     });
     expect(result.kept).toEqual(['m1']);
     expect(result.dropped).toHaveLength(0);
-    const entries = await arenaOutboxList(store);
+    const entries = await arenaOutboxList(store, SCOPE);
     expect(entries).toHaveLength(1);
     // Попытки тратит только настоящий отказ сервера.
     expect(entries[0].attempts).toBe(0);
@@ -121,10 +132,12 @@ describe('досылка', () => {
 
   it('без сети остальные отчёты не долбят сервер', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, report('m1'), 1_000, 'v');
-    await arenaOutboxEnqueue(store, report('m2'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m2'), 1_000, 'v');
     let calls = 0;
     await arenaOutboxFlush(store, {
+      scope: SCOPE,
+      isScopeCurrent: currentScope,
       send: async () => { calls += 1; throw new Error('network request failed'); },
       wallNowMs: 2_000,
     });
@@ -133,28 +146,37 @@ describe('досылка', () => {
 
   it('отказ по существу выбрасывает запись — сервер не примет её и завтра', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
     const result = await arenaOutboxFlush(store, {
+      scope: SCOPE,
+      isScopeCurrent: currentScope,
       send: async () => { throw new Error('arena_match_missing'); },
       wallNowMs: 2_000,
     });
     expect(result.dropped).toEqual(['m1']);
-    expect(await arenaOutboxList(store)).toHaveLength(0);
+    expect(await arenaOutboxList(store, SCOPE)).toHaveLength(0);
   });
 
   it('временный отказ тратит попытку и отодвигает следующую', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
     await arenaOutboxFlush(store, {
+      scope: SCOPE,
+      isScopeCurrent: currentScope,
       send: async () => { throw new Error('deadline-exceeded'); },
       wallNowMs: 2_000,
     });
-    const entries = await arenaOutboxList(store);
+    const entries = await arenaOutboxList(store, SCOPE);
     expect(entries[0].attempts).toBe(1);
     expect(entries[0].nextAttemptAtWallMs).toBeGreaterThan(2_000);
     // И пока не пришло время — отправка не повторяется.
     let calls = 0;
-    await arenaOutboxFlush(store, { send: async () => { calls += 1; }, wallNowMs: 2_100 });
+    await arenaOutboxFlush(store, {
+      scope: SCOPE,
+      isScopeCurrent: currentScope,
+      send: async () => { calls += 1; },
+      wallNowMs: 2_100,
+    });
     expect(calls).toBe(0);
   });
 });
@@ -168,7 +190,7 @@ describe('очередь действительно подключена', () =>
 
   it('экран матча кладёт непрошедший отчёт в очередь', () => {
     const source = read('app/arena_match.tsx');
-    expect(source).toContain('arenaOutboxEnqueue');
+    expect(source).toContain('arenaDeliverFinishedMatch');
     // Старый комментарий обещал очередь, которой не было.
     expect(source).not.toContain('очередь отправки дошлёт его');
   });

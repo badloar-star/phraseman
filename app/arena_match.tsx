@@ -53,7 +53,7 @@ import {
   arenaMatchReportToWire,
   arenaV2Forfeit,
   arenaV2MatchAccept,
-  arenaV2MatchFinish,
+  arenaV2MatchFinishDispatch,
   arenaV2MatchPlan,
   arenaV2MatchSettle,
   arenaPublishLiveTicks,
@@ -340,10 +340,10 @@ export default function ArenaMatchScreen() {
         isAlive: () => mountedRef.current,
         isScopeCurrent: (scope) => isCurrentAccountGeneration(finishAccount, scope.stableUid),
         withTransitionLock: (work) => withAccountTransitionLock(async () => work()),
-        send: () => arenaV2MatchFinish({
+        reserveDispatch: () => arenaV2MatchFinishDispatch({
           matchId,
           report: arenaMatchReportToWire(report, plan.rulesVersion),
-        }),
+        }, finishAccount),
       });
       if (delivery.status === 'stale') return;
       const rejected = delivery.status === 'rejected';

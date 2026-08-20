@@ -169,7 +169,7 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(client).toContain('viewerReview?: readonly unknown[]');
     expect(match).toContain('response.viewerReview');
     expect(match.indexOf('const finishAccount = planAccountRef.current'))
-      .toBeLessThan(match.indexOf('send: () => arenaV2MatchFinish({'));
+      .toBeLessThan(match.indexOf('reserveDispatch: () => arenaV2MatchFinishDispatch({'));
     expect(match).toContain('isCurrentAccountGeneration(finishAccount, finishScope.stableUid)');
     expect(match).toContain('arenaRememberScopedReview({');
     expect(review).toContain('subscribeAccountGeneration');
@@ -233,7 +233,7 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(match).not.toContain("arenaText(lang, 'serverCheck')");
     // Сеть трогается ровно трижды: план, отчёт и — при необходимости — закрытие.
     expect(match).toContain('arenaV2MatchPlan(matchId)');
-    expect(match).toContain('arenaV2MatchFinish(');
+    expect(match).toContain('arenaV2MatchFinishDispatch(');
     expect(match).toContain('arenaV2MatchSettle(matchId)');
     expect(match).toContain("BackHandler.addEventListener('hardwareBackPress'");
     expect(match).toContain('onBack={confirmForfeit}');

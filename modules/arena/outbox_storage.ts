@@ -59,6 +59,8 @@ export function arenaOutboxDecodeEntry(
   if (!isRecord(parsed)) return null;
   if (parsed.schemaVersion !== ARENA_OUTBOX_SCHEMA_VERSION) return null;
   if (parsed.ownerStableUid !== scope.stableUid) return null;
+  if (!Number.isSafeInteger(parsed.ownerGeneration)
+    || parsed.ownerGeneration !== scope.accountGeneration) return null;
   const matchId = typeof parsed.matchId === 'string' ? parsed.matchId : '';
   const report = parsed.report;
   if (!matchId || !isRecord(report)) return null;
@@ -69,6 +71,7 @@ export function arenaOutboxDecodeEntry(
   return {
     schemaVersion: ARENA_OUTBOX_SCHEMA_VERSION,
     ownerStableUid: scope.stableUid,
+    ownerGeneration: scope.accountGeneration,
     matchId,
     report: report as unknown as ArenaMatchReport,
     rulesVersion: typeof parsed.rulesVersion === 'string' ? parsed.rulesVersion : '',
@@ -111,6 +114,47 @@ async function writeIndex(
 }
 
 /**
+ * Rebinds rows to a new process generation only for the exact same stable UID.
+ *
+ * Generation is intentionally metadata, not part of storage keys: a process
+ * restart must not orphan a durable report. Callers must invoke adoption while
+ * holding the account-transition lock and after checking the captured owner.
+ * Existing v3 rows without generation are accepted only through this explicit
+ * same-owner migration path; ordinary reads remain fail-closed.
+ */
+export async function arenaOutboxAdoptOwnerGeneration(
+  store: ArenaKeyValueStore,
+  scope: ArenaOutboxOwnerScope,
+): Promise<number> {
+  let index: readonly string[];
+  try {
+    index = parseIndex(await store.getItem(arenaOutboxIndexKey(scope)));
+  } catch {
+    return 0;
+  }
+  let adopted = 0;
+  for (const matchId of index) {
+    try {
+      const key = arenaOutboxEntryKey(scope, matchId);
+      const raw = await store.getItem(key);
+      if (!raw) continue;
+      const parsed: unknown = JSON.parse(raw);
+      if (!isRecord(parsed)
+        || parsed.schemaVersion !== ARENA_OUTBOX_SCHEMA_VERSION
+        || parsed.ownerStableUid !== scope.stableUid) continue;
+      const candidate = { ...parsed, ownerGeneration: scope.accountGeneration };
+      const decoded = arenaOutboxDecodeEntry(JSON.stringify(candidate), scope);
+      if (!decoded) continue;
+      await store.setItem(key, JSON.stringify(decoded));
+      adopted += 1;
+    } catch {
+      // One corrupt row remains quarantined without hiding valid owner rows.
+    }
+  }
+  return adopted;
+}
+
+/**
  * Кладёт отчёт в очередь. Возвращает `false`, только если запись не удалась
  * физически: тогда отчёт действительно потерян, и врать об этом нельзя.
  */
@@ -143,7 +187,8 @@ export async function arenaOutboxSave(
   entry: ArenaOutboxEntry,
 ): Promise<void> {
   try {
-    if (entry.ownerStableUid !== scope.stableUid) return;
+    if (entry.ownerStableUid !== scope.stableUid
+      || entry.ownerGeneration !== scope.accountGeneration) return;
     await store.setItem(arenaOutboxEntryKey(scope, entry.matchId), JSON.stringify(entry));
   } catch {
     // Не сохранившийся повтор означает лишнюю попытку позже, а не потерю.

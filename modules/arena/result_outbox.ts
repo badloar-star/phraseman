@@ -37,6 +37,8 @@ export type ArenaOutboxFailure = 'offline' | 'transient' | 'gated' | 'rejected';
 export type ArenaOutboxEntry = Readonly<{
   schemaVersion: typeof ARENA_OUTBOX_SCHEMA_VERSION;
   ownerStableUid: string;
+  /** Process generation that last adopted this stable-owner row. */
+  ownerGeneration: number;
   matchId: string;
   report: ArenaMatchReport;
   /**
@@ -197,6 +199,7 @@ export function arenaOutboxMakeEntry(
   return {
     schemaVersion: ARENA_OUTBOX_SCHEMA_VERSION,
     ownerStableUid: scope.stableUid.trim(),
+    ownerGeneration: scope.accountGeneration,
     matchId: report.matchId,
     report,
     rulesVersion,

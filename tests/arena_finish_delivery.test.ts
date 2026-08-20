@@ -61,7 +61,7 @@ describe('finished Arena report delivery', () => {
         current = B;
         return value;
       },
-      send,
+      reserveDispatch: async () => ({ networkPromise: send() }),
     });
 
     expect(result.status).toBe('stale');
@@ -83,7 +83,7 @@ describe('finished Arena report delivery', () => {
       isAlive: () => true,
       isScopeCurrent: (scope) => scope === current,
       withTransitionLock: async (work) => work(),
-      send: () => response.promise,
+      reserveDispatch: async () => ({ networkPromise: response.promise }),
     });
     await new Promise<void>((resolve) => setImmediate(resolve));
 
@@ -110,7 +110,7 @@ describe('finished Arena report delivery', () => {
       isAlive: () => alive,
       isScopeCurrent: () => true,
       withTransitionLock: async (work) => work(),
-      send: () => response.promise,
+      reserveDispatch: async () => ({ networkPromise: response.promise }),
     });
     await new Promise<void>((resolve) => setImmediate(resolve));
     alive = false;
@@ -134,7 +134,7 @@ describe('finished Arena report delivery', () => {
       isAlive: () => true,
       isScopeCurrent: (scope) => scope === A,
       withTransitionLock: async (work) => work(),
-      send: async () => ({ settled: true }),
+      reserveDispatch: async () => ({ networkPromise: Promise.resolve({ settled: true }) }),
     })).resolves.toMatchObject({ status: 'sent', response: { settled: true } });
 
     expect(await arenaOutboxList(store, A)).toEqual([]);

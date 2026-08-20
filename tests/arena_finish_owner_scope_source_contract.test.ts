@@ -14,8 +14,9 @@ describe('Arena finish owner-scope wiring', () => {
   it('uses the account-transition lock only around durable local commits', () => {
     const delivery = read('modules/arena/finish_delivery.ts');
     expect(delivery).toContain('withTransitionLock');
-    expect(delivery).toContain('await input.send()');
-    expect(delivery.indexOf('await input.send()')).toBeGreaterThan(delivery.indexOf('withTransitionLock'));
+    expect(delivery).toContain('const dispatch = await input.reserveDispatch();');
+    expect(delivery).toContain('response = await dispatch.networkPromise;');
+    expect(delivery.indexOf('await dispatch.networkPromise')).toBeGreaterThan(delivery.indexOf('withTransitionLock'));
   });
 
   it('flush captures one explicit current owner and fences the callable', () => {

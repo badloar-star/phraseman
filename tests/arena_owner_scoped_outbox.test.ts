@@ -2,6 +2,7 @@ import {
   arenaOutboxEnqueue,
   arenaOutboxFlush,
   arenaOutboxList,
+  arenaOutboxAdoptOwnerGeneration,
 } from '../modules/arena/outbox_storage';
 import {
   arenaOutboxEntryKey,
@@ -59,9 +60,26 @@ describe('Arena result outbox is durably owner-scoped', () => {
     expect(store.data.has(arenaOutboxIndexKey(A))).toBe(true);
     expect(store.data.has(arenaOutboxEntryKey(A, 'm1'))).toBe(true);
     expect(await arenaOutboxList(store, A)).toEqual([
-      expect.objectContaining({ ownerStableUid: 'account-a', matchId: 'm1' }),
+      expect.objectContaining({
+        ownerStableUid: 'account-a', ownerGeneration: 1, matchId: 'm1',
+      }),
     ]);
     expect(await arenaOutboxList(store, B)).toEqual([]);
+  });
+
+  it('keeps keys restart-compatible but requires explicit same-owner generation adoption', async () => {
+    const store = fakeStore();
+    const restartedA: ArenaOutboxOwnerScope = { stableUid: A.stableUid, accountGeneration: 9 };
+    await arenaOutboxEnqueue(store, A, report('m1'), 1_000, 'v');
+
+    expect(arenaOutboxIndexKey(restartedA)).toBe(arenaOutboxIndexKey(A));
+    expect(arenaOutboxEntryKey(restartedA, 'm1')).toBe(arenaOutboxEntryKey(A, 'm1'));
+    expect(await arenaOutboxList(store, restartedA)).toEqual([]);
+
+    await expect(arenaOutboxAdoptOwnerGeneration(store, restartedA)).resolves.toBe(1);
+    expect(await arenaOutboxList(store, restartedA)).toEqual([
+      expect.objectContaining({ ownerStableUid: 'account-a', ownerGeneration: 9, matchId: 'm1' }),
+    ]);
   });
 
   it('does not call the server when A switched out before the callable boundary', async () => {

@@ -9,6 +9,7 @@ import {
   arenaOutboxClassify,
   type ArenaOutboxOwnerScope,
 } from './result_outbox';
+import type { ArenaNetworkDispatch } from './account_dispatch';
 
 type TransitionLock = <T>(work: () => Promise<T>) => Promise<T>;
 
@@ -34,7 +35,7 @@ export async function arenaDeliverFinishedMatch<Response>(input: Readonly<{
   isAlive(): boolean;
   isScopeCurrent(scope: ArenaOutboxOwnerScope): boolean;
   withTransitionLock: TransitionLock;
-  send(): Promise<Response>;
+  reserveDispatch(): Promise<ArenaNetworkDispatch<Response> | null>;
 }>): Promise<ArenaFinishDeliveryResult<Response>> {
   await input.withTransitionLock(async () => {
     if (!input.isAlive() || !input.isScopeCurrent(input.scope)) return false;
@@ -58,9 +59,12 @@ export async function arenaDeliverFinishedMatch<Response>(input: Readonly<{
 
   if (!input.isAlive() || !input.isScopeCurrent(input.scope)) return { status: 'stale' };
 
+  const dispatch = await input.reserveDispatch();
+  if (!dispatch) return { status: 'stale' };
+
   let response: Response;
   try {
-    response = await input.send();
+    response = await dispatch.networkPromise;
   } catch (error) {
     if (!input.isAlive() || !input.isScopeCurrent(input.scope)) return { status: 'stale' };
     if (arenaOutboxClassify(error) !== 'rejected') return { status: 'queued' };

@@ -1,13 +1,27 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { arenaOutboxFlush, arenaOutboxHasMatch, arenaOutboxList } from '../modules/arena/outbox_storage';
+import {
+  arenaOutboxAdoptOwnerGeneration,
+  arenaOutboxFlush,
+  arenaOutboxHasMatch,
+  arenaOutboxList,
+} from '../modules/arena/outbox_storage';
 import { arenaOutboxHasGated } from '../modules/arena/result_outbox';
+import {
+  arenaReserveAccountDispatch,
+  type ArenaNetworkDispatch,
+} from '../modules/arena/account_dispatch';
 import { arenaReadReviewWithRetry, type ArenaReviewAccountScope } from '../modules/arena/review_retry';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useEffect, useRef, useState } from 'react';
 import * as Crypto from 'expo-crypto';
 import Constants from 'expo-constants';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 import { ensureAnonUser } from './cloud_sync';
 import { getVersionForServerGate } from './app_version';
 import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
@@ -87,7 +101,10 @@ type MatchMutationResponse = Readonly<{
   viewerReward?: ArenaMatchReward;
 }>;
 
-async function callArena<T>(name: string, payload: Record<string, unknown> = {}): Promise<T> {
+async function prepareArenaCall<T>(
+  name: string,
+  payload: Record<string, unknown> = {},
+): Promise<() => Promise<T>> {
   await ensureAnonUser().catch(() => null);
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const { getApp } = await import('@react-native-firebase/app');
@@ -99,8 +116,13 @@ async function callArena<T>(name: string, payload: Record<string, unknown> = {})
     nativeAppVersion: Constants.nativeAppVersion,
     expoConfig: Constants.expoConfig,
   });
-  const result = await httpsCallable(getFunctions(getApp(), REGION), name)({ ...payload, clientVersion });
-  return result.data as T;
+  const callable = httpsCallable(getFunctions(getApp(), REGION), name);
+  return () => callable({ ...payload, clientVersion }).then((result) => result.data as T);
+}
+
+async function callArena<T>(name: string, payload: Record<string, unknown> = {}): Promise<T> {
+  const dispatch = await prepareArenaCall<T>(name, payload);
+  return dispatch();
 }
 
 export function createArenaRequestId(prefix = 'arena'): string {
@@ -227,6 +249,24 @@ export const arenaV2MatchFinish = (input: Readonly<{
   reportId: input.matchId,
   report: input.report,
 });
+
+/** Creates the native callable promise while the captured account owns the transition lock. */
+export function arenaV2MatchFinishDispatch(
+  input: Readonly<{ matchId: string; report: ArenaMatchReportWire }>,
+  account: AccountGenerationToken,
+): Promise<ArenaNetworkDispatch<ArenaMatchFinishResponse> | null> {
+  const ownerStableUid = account.phase === 'active' ? account.stableId : null;
+  if (!ownerStableUid) return Promise.resolve(null);
+  return arenaReserveAccountDispatch({
+    isOwnerCurrent: () => isCurrentAccountGeneration(account, ownerStableUid),
+    withTransitionLock: (work) => withAccountTransitionLock(async () => work()),
+    prepareDispatch: () => prepareArenaCall<ArenaMatchFinishResponse>('arenaV2MatchFinish', {
+      matchId: input.matchId,
+      reportId: input.matchId,
+      report: input.report,
+    }),
+  });
+}
 
 export const arenaV2MatchSettle = (matchId: string) =>
   callArena<MatchMutationResponse & { settled: boolean }>('arenaV2MatchSettle', { matchId });
@@ -677,15 +717,23 @@ export async function arenaFlushOutbox(): Promise<number> {
   const account = captureAccountGeneration();
   if (account.phase !== 'active' || !account.stableId) return 0;
   const scope = { stableUid: account.stableId, accountGeneration: account.generation };
+  const adopted = await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(account, scope.stableUid)) return false;
+    await arenaOutboxAdoptOwnerGeneration(AsyncStorage as unknown as ArenaKeyValueStore, scope);
+    return isCurrentAccountGeneration(account, scope.stableUid);
+  });
+  if (!adopted) return 0;
   const result = await arenaOutboxFlush(AsyncStorage as unknown as ArenaKeyValueStore, {
     scope,
     wallNowMs: Date.now(),
     isScopeCurrent: (candidate) => isCurrentAccountGeneration(account, candidate.stableUid),
     send: async (entry) => {
-      await arenaV2MatchFinish({
+      const dispatch = await arenaV2MatchFinishDispatch({
         matchId: entry.matchId,
         report: arenaMatchReportToWire(entry.report, entry.rulesVersion),
-      });
+      }, account);
+      if (!dispatch) throw new Error('arena_account_scope_stale');
+      await dispatch.networkPromise;
     },
   });
   return result.sent.length;
@@ -697,6 +745,12 @@ export async function arenaOutboxPending(matchId: string | null): Promise<boolea
   const account = captureAccountGeneration();
   if (account.phase !== 'active' || !account.stableId) return false;
   const scope = { stableUid: account.stableId, accountGeneration: account.generation };
+  const adopted = await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(account, scope.stableUid)) return false;
+    await arenaOutboxAdoptOwnerGeneration(AsyncStorage as unknown as ArenaKeyValueStore, scope);
+    return isCurrentAccountGeneration(account, scope.stableUid);
+  });
+  if (!adopted) return false;
   return arenaOutboxHasMatch(AsyncStorage as unknown as ArenaKeyValueStore, scope, matchId);
 }
 
@@ -713,6 +767,12 @@ export async function arenaOutboxBlockedByUpdate(): Promise<boolean> {
     const account = captureAccountGeneration();
     if (account.phase !== 'active' || !account.stableId) return false;
     const scope = { stableUid: account.stableId, accountGeneration: account.generation };
+    const adopted = await withAccountTransitionLock(async () => {
+      if (!isCurrentAccountGeneration(account, scope.stableUid)) return false;
+      await arenaOutboxAdoptOwnerGeneration(AsyncStorage as unknown as ArenaKeyValueStore, scope);
+      return isCurrentAccountGeneration(account, scope.stableUid);
+    });
+    if (!adopted) return false;
     return arenaOutboxHasGated(
       await arenaOutboxList(AsyncStorage as unknown as ArenaKeyValueStore, scope),
     );

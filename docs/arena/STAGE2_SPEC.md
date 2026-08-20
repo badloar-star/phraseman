@@ -61,7 +61,7 @@ Flattening to 40 is **+17.6 %** for the bottom band and **−16.7 %** for the to
 | R12 | RP softener | **Rejected.** `ARENA_V2_RP_TABLE` is exactly zero-sum; +20/−12 injects 8 RP per close match into a ladder where `division = floor(rp/100)` drives content difficulty that no longer pays more stars. "A loss is not wasted" is delivered by star + XP credit, which decision 1 already guarantees. | Game-design's `-12` softener. |
 | R13 | Bot retune | **`median = ANSWER_MS × 0.55`, flat. Drop the division term from the median;** keep division in `baseAccuracy`. Clamp `[800, ANSWER_MS − 400]`. | Division-scaled median: quick pays XP `∝ matchStars`, so a faster bot at high division pays a stronger player *less* XP. Inversion. |
 | R14 | Bot concealment | **State the threat model honestly: decision 10 protects against the player in the UI, not against a proxy.** Once tasks + answers ship to the device, wire-level concealment is unachievable. Do the three things that work: delete all 4 live disclosure sites, ship the tick array under one neutral name in every payload, and **equalise settle latency with a fixed minimum dwell** so "results appear instantly ⟺ bot" stops being a signal. | "`opponentTimeline: null` for humans is indistinguishable" — non-null ⟺ bot is a perfect classifier. |
-| R15 | Live opponent signal | **Use the bounded Firestore seat channel.** `arena-live.v2` adds optional display-only cumulative `matchStars`; v1/v2 coexist during rollout and the `taskCount + 1` write ceiling is unchanged. | Deferring the live channel leaves human-vs-human with **no** opponent signal at all — decision 9 satisfied only for scripted ticks, which becomes a bot tell. |
+| R15 | Live opponent signal | **Use the bounded Firestore seat channel.** Readers accept `arena-live.v1` and v2, but the mixed-version writer deliberately remains on v1 and adds optional display-only cumulative `matchStars` inside the tick: installed v1 readers ignore that key, while a v2 document would be rejected before parsing. The `taskCount + 1` write ceiling is unchanged. | Deferring the live channel leaves human-vs-human with **no** opponent signal at all — decision 9 satisfied only for scripted ticks, which becomes a bot tell. |
 | R16 | Ranked + offline | **Ranked requires connectivity to START.** Offline completion is absolute for quick/friend. Ranked mid-match disconnection completes locally and uploads late; the match settles on the deadline; the late report banks stars/XP but never reopens outcome or RP. | "24 h late window for ranked" — it is dead code as written (`settleMatch` writes receipts for *both* seats, so the absent player's `tx.create` gate always throws by the time they reconnect) and it lets a player farm a frozen opponent. |
 | R17 | Idempotency key | **`(stableUid, matchId)`.** Delete the client-minted `reportId` and `finishToken` entirely. | Client-minted keys: they break on backup-restore, collide with the existing per-user receipt subcollection, and reinvent a stronger primitive that already ships. |
 | R18 | Outbox retry | **Failure-classed.** `offline`/`transient` never increment attempts and retry until the 7-day match TTL; `gated` holds indefinitely with a visible "update the app" prompt; `rejected` drops after 1 attempt. Cap eviction drops the **oldest**. | "dead after 5 attempts" ≈ 6.5 minutes — it deletes the result of a match played on a plane. Decision 6 inverted. |
@@ -813,7 +813,7 @@ export type ArenaOpponentEvent = Readonly<{
   /** ms since THEIR answer window opened, clamped to that mode's budget. */
   raceElapsedMs: number;
   correct: boolean;
-  /** arena-live.v2 only: cumulative display total, never an entitlement. */
+  /** Additive v1/v2 rollout field: cumulative display total, never an entitlement. */
   matchStars?: number;
   /** scripted speed_match only, for an exact legacy fallback. */
   firstAttemptPairs?: number;
@@ -834,14 +834,14 @@ export type ArenaOpponentFeedFactory = (input: Readonly<{
 }>) => ArenaOpponentFeed;
 ```
 
-`answeredAtMs` (a wall timestamp from a device whose clock you have just declared untrustworthy), answers, identities, balances and reward projections are **not** on the event. `matchStars` is the only approved display-total field: a finite non-decreasing integer within the match ceiling, ignored by settlement. `raceElapsedMs` remains the competitive timing input used by `first()` on both devices and on the server.
+`answeredAtMs` (a wall timestamp from a device whose clock you have just declared untrustworthy), answers, identities, balances and reward projections are **not** on the event. Every tick has exactly required `taskIndex`/`correct`/`raceElapsedMs` plus optional `matchStars`; Rules validate all ten possible list positions, reject any other nested key, require integer bounds `taskIndex: 0..9`, `raceElapsedMs: 0..600000`, `matchStars: 0..40`, and require `correct` to be boolean. `matchStars` is a finite non-decreasing display total within the match ceiling and is ignored by settlement. `raceElapsedMs` remains the competitive timing input used by `first()` on both devices and on the server.
 
 **Adapters:**
-- `app/arena_client.ts` publishes `arena-live.v2` seat documents in `arena_v2_match_live/{matchId}/seats/{seat}`. New clients read v1 and v2; Rules accept both during rollout. The top-level field set is unchanged.
-- `modules/arena/live_channel.ts` permits at most one write per newly closed task plus one finish write. v2 adds `matchStars` inside the existing tick; it adds no listener, collection or write.
+- `app/arena_client.ts` publishes `arena-live.v1` seat documents in `arena_v2_match_live/{matchId}/seats/{seat}` until the installed-client floor accepts v2. New clients read v1 and v2 and read a strictly typed `matchStars` from either; installed v1 clients keep reading the required tick fields and ignore additive `matchStars`. Rules accept both versions during rollout. The top-level field set is unchanged.
+- `modules/arena/live_channel.ts` permits at most one write per newly closed task plus one finish write. The additive `matchStars` travels inside the existing tick; it adds no listener, collection or write.
 - Scripted plan ticks use the same `ArenaOpponentTick` path. `speed_match` includes clamped `firstAttemptPairs`; other modes derive from `correct` and `raceElapsedMs`.
 
-Selection and fallback are data-driven (`tick.matchStars ?? derivedKnownStars ?? null`), never based on `isBot` or opponent kind. Firestore Rules bind writes to the participant's opaque seat marker and reject extra top-level fields.
+Selection and fallback are data-driven (`tick.matchStars ?? derivedKnownStars ?? null`), never based on `isBot` or opponent kind. Firestore Rules bind writes to the participant's opaque seat marker and reject extra top-level and nested tick fields.
 
 ---
 
@@ -1023,7 +1023,7 @@ Owner decision: **stars are one global app currency.** `docs/arena/HANDOVER.md:3
 
 - **OWN-1 (R7)** — speed_match scores pairs matched **on the first attempt**, not "1 star per correct pair" literally. The literal rule makes speed_match a guaranteed 4 stars via ≤16 exhaustive taps in an 18 s window, more than any other task, requiring zero knowledge. The current server rule subtracts `wrongAttempts` (`arena_v2_core.ts:518`) precisely to prevent this, and the redesign deletes that subtraction.
 - **OWN-2 (R16)** — **ranked requires connectivity to start.** Decision 6 (offline completion) and ranked RP integrity cannot both be fully satisfied: if a report can arrive days late, either the opponent waits or the match settles without you. Offline completion stays absolute for quick/friend; ranked mid-match disconnection completes locally and settles on the deadline.
-- **OWN-3 (R15, amended 2026-08-20)** — the existing bounded Firestore seat channel carries the live tick. Schema v2 adds only optional display `matchStars`; v1 remains accepted during rollout and the `taskCount + 1` write ceiling does not change.
+- **OWN-3 (R15, amended 2026-08-20)** — the existing bounded Firestore seat channel carries the live tick. During the mixed installed-client rollout the writer remains on schema v1 and adds only optional display `matchStars` inside the tick; new readers and Rules accept v1/v2, installed v1 readers ignore the additive key, and the `taskCount + 1` write ceiling does not change.
 - **OWN-4 (R14)** — decision 10 is scoped to the UI, not the wire. Once tasks and answers ship to the device, wire-level bot concealment is unachievable. Do not later reject a design for failing a test it was never going to pass.
 - **OWN-5 (§9.5, superseded 2026-08-20)** — the owner approved an exact-known live opponent star total. Unknown remains `—`; it is never coerced from a boolean speed result and never affects settlement.
 

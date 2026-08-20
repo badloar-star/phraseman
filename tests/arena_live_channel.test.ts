@@ -2,6 +2,7 @@ import {
   ARENA_LIVE_LEGACY_SCHEMA_VERSION,
   ARENA_LIVE_SCHEMA_VERSION,
   arenaLivePublishPlan,
+  arenaLiveWritePayload,
   arenaLiveWriteBudget,
   arenaMergeOpponentTicks,
   arenaParseLiveSeat,
@@ -39,7 +40,30 @@ const tick = (taskIndex: number, correct = true, raceElapsedMs = 1_000): ArenaLi
 describe('бюджет записей', () => {
   it('публикатор сериализует optional matchStars в том же write', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app/arena_client.ts'), 'utf8');
-    expect(source).toContain("...(Number.isInteger(tick.matchStars) ? { matchStars: tick.matchStars } : {})");
+    const liveModel = fs.readFileSync(path.join(process.cwd(), 'modules/arena/live_channel.ts'), 'utf8');
+    expect(source).toContain('arenaLiveWritePayload({');
+    expect(liveModel).toContain("...(Number.isInteger(tick.matchStars) ? { matchStars: tick.matchStars } : {})");
+  });
+
+  it('новый writer остаётся читаемым установленным v1-reader', () => {
+    const payload = arenaLiveWritePayload({
+      ticks: [{ taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 3 }],
+      finished: false,
+      updatedAtMs: 123,
+    });
+    // Семантика уже установленного reader: v2 целиком отвергается, а
+    // неизвестные ключи внутри v1-тика игнорируются.
+    const installedV1Read = (raw: typeof payload) => raw.schemaVersion === 'arena-live.v1'
+      ? raw.ticks.map((row: ArenaLiveTick) => ({
+        taskIndex: row.taskIndex,
+        correct: row.correct,
+        raceElapsedMs: row.raceElapsedMs,
+      }))
+      : null;
+
+    expect(payload.schemaVersion).toBe(ARENA_LIVE_LEGACY_SCHEMA_VERSION);
+    expect(payload.ticks[0]).toEqual({ taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 3 });
+    expect(installedV1Read(payload)).toEqual([{ taskIndex: 0, correct: true, raceElapsedMs: 900 }]);
   });
 
   it('первое закрытое задание публикуется', () => {
@@ -129,23 +153,49 @@ describe('разбор чужой записи', () => {
     expect(seat!.ticks).toEqual([{ taskIndex: 1, correct: true, raceElapsedMs: 900 }]);
   });
 
-  it('v2 сохраняет только валидный неубывающий накопленный счёт', () => {
-    const seat = arenaParseLiveSeat({
-      schemaVersion: 'arena-live.v2',
-      ticks: [
-        { taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 3 },
-        { taskIndex: 1, correct: true, raceElapsedMs: 800, matchStars: 2 },
-        { taskIndex: 2, correct: true, raceElapsedMs: 700, matchStars: 3.5 },
-      ],
-      finished: false,
-      updatedAtMs: 1,
-    }, 5);
+  it('v1 и v2 сохраняют только валидный неубывающий накопленный счёт', () => {
+    for (const schemaVersion of ['arena-live.v1', 'arena-live.v2'] as const) {
+      const seat = arenaParseLiveSeat({
+        schemaVersion,
+        ticks: [
+          { taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 3 },
+          { taskIndex: 1, correct: true, raceElapsedMs: 800, matchStars: 2 },
+          { taskIndex: 2, correct: true, raceElapsedMs: 700, matchStars: 3.5 },
+        ],
+        finished: false,
+        updatedAtMs: 1,
+      }, 5);
 
-    expect(seat?.ticks).toEqual([
-      { taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 3 },
-      { taskIndex: 1, correct: true, raceElapsedMs: 800 },
-      { taskIndex: 2, correct: true, raceElapsedMs: 700 },
-    ]);
+      expect(seat?.ticks).toEqual([
+        { taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 3 },
+        { taskIndex: 1, correct: true, raceElapsedMs: 800 },
+        { taskIndex: 2, correct: true, raceElapsedMs: 700 },
+      ]);
+    }
+  });
+
+  it('не приводит null, boolean и string к числам или boolean', () => {
+    const invalidTicks = [
+      { taskIndex: null, correct: true, raceElapsedMs: 900 },
+      { taskIndex: true, correct: true, raceElapsedMs: 900 },
+      { taskIndex: '0', correct: true, raceElapsedMs: 900 },
+      { taskIndex: 0, correct: null, raceElapsedMs: 900 },
+      { taskIndex: 0, correct: 'true', raceElapsedMs: 900 },
+      { taskIndex: 0, correct: true, raceElapsedMs: null },
+      { taskIndex: 0, correct: true, raceElapsedMs: false },
+      { taskIndex: 0, correct: true, raceElapsedMs: '900' },
+    ];
+    const seat = arenaParseLiveSeat({ ...good, ticks: invalidTicks }, 5);
+    expect(seat?.ticks).toEqual([]);
+
+    for (const matchStars of [null, true, '3']) {
+      const scoreSeat = arenaParseLiveSeat({
+        ...good,
+        ticks: [{ taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars }],
+      }, 5);
+      expect(scoreSeat?.ticks).toEqual([{ taskIndex: 0, correct: true, raceElapsedMs: 900 }]);
+    }
+    expect(arenaParseLiveSeat({ ...good, updatedAtMs: '1' }, 5)?.updatedAtMs).toBe(0);
   });
 
   it('legacy v1 остаётся читаемой во время миграции', () => {

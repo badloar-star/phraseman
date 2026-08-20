@@ -120,6 +120,15 @@ describe('Arena live channel matches the deployed rules', () => {
   test('живой канал не пропускает ответы и произвольные поля', () => {
     expect(rules).toContain("request.resource.data.keys().hasOnly(['schemaVersion', 'ticks', 'finished', 'updatedAtMs'])");
     expect(rules).toContain('request.resource.data.finished is bool');
+    expect(rules).toContain('function arenaLiveTickOk(tick, schemaVersion)');
+    expect(rules).toContain("tick.keys().hasAll(['taskIndex', 'correct', 'raceElapsedMs'])");
+    expect(rules).toContain("tick.keys().hasOnly(['taskIndex', 'correct', 'raceElapsedMs', 'matchStars'])");
+    expect(rules).toContain('tick.taskIndex >= 0 && tick.taskIndex < 10');
+    expect(rules).toContain('tick.raceElapsedMs >= 0 && tick.raceElapsedMs <= 600000');
+    expect(rules).toContain('tick.matchStars >= 0 && tick.matchStars <= 40');
+    for (let index = 0; index < 10; index += 1) {
+      expect(rules).toContain(`ticks.size() <= ${index} || arenaLiveTickOk(ticks[${index}], schemaVersion)`);
+    }
   });
 });
 

@@ -48,6 +48,38 @@ export type ArenaLiveSeatState = Readonly<{
   updatedAtMs: number;
 }>;
 
+export type ArenaLiveWritePayload = Readonly<{
+  schemaVersion: typeof ARENA_LIVE_LEGACY_SCHEMA_VERSION;
+  ticks: readonly ArenaLiveTick[];
+  finished: boolean;
+  updatedAtMs: number;
+}>;
+
+/**
+ * Wire payload for the mixed-version rollout.
+ *
+ * Installed v1 readers reject a v2 seat document before inspecting its ticks,
+ * but ignore additive keys inside a v1 tick. Keep the writer on v1 until the
+ * installed floor understands v2; new readers accept both versions.
+ */
+export function arenaLiveWritePayload(input: Readonly<{
+  ticks: readonly ArenaLiveTick[];
+  finished: boolean;
+  updatedAtMs: number;
+}>): ArenaLiveWritePayload {
+  return {
+    schemaVersion: ARENA_LIVE_LEGACY_SCHEMA_VERSION,
+    ticks: input.ticks.map((tick) => ({
+      taskIndex: tick.taskIndex,
+      correct: tick.correct,
+      raceElapsedMs: tick.raceElapsedMs,
+      ...(Number.isInteger(tick.matchStars) ? { matchStars: tick.matchStars } : {}),
+    })),
+    finished: input.finished,
+    updatedAtMs: input.updatedAtMs,
+  };
+}
+
 /* ----------------------------- публикация -------------------------------- */
 
 /**
@@ -98,14 +130,15 @@ export function arenaParseLiveSeat(raw: unknown, taskCount: number): ArenaLiveSe
   }>> = [];
   for (const item of rawTicks) {
     if (!isRecord(item)) continue;
-    const taskIndex = Math.trunc(Number(item.taskIndex));
-    const raceElapsedMs = Math.trunc(Number(item.raceElapsedMs));
-    if (!Number.isInteger(taskIndex) || taskIndex < 0 || taskIndex >= taskCount) continue;
-    if (!Number.isFinite(raceElapsedMs) || raceElapsedMs < 0) continue;
+    const taskIndex = item.taskIndex;
+    const raceElapsedMs = item.raceElapsedMs;
+    if (typeof taskIndex !== 'number' || !Number.isInteger(taskIndex) || taskIndex < 0 || taskIndex >= taskCount) continue;
+    if (typeof raceElapsedMs !== 'number' || !Number.isInteger(raceElapsedMs) || raceElapsedMs < 0) continue;
+    if (typeof item.correct !== 'boolean') continue;
     if (seen.has(taskIndex)) continue;
     seen.add(taskIndex);
     parsed.push({
-      tick: { taskIndex, correct: item.correct === true, raceElapsedMs },
+      tick: { taskIndex, correct: item.correct, raceElapsedMs },
       candidateMatchStars: item.matchStars,
     });
   }
@@ -113,13 +146,14 @@ export function arenaParseLiveSeat(raw: unknown, taskCount: number): ArenaLiveSe
   const ceiling = arenaMatchStarCeiling(taskCount);
   let lastRetainedMatchStars = 0;
   const ticks = parsed.map(({ tick, candidateMatchStars }) => {
-    if (schemaVersion !== ARENA_LIVE_SCHEMA_VERSION) return tick;
-    const matchStars = Number(candidateMatchStars);
-    if (!Number.isInteger(matchStars) || matchStars < lastRetainedMatchStars || matchStars > ceiling) return tick;
+    const matchStars = candidateMatchStars;
+    if (typeof matchStars !== 'number' || !Number.isInteger(matchStars) || matchStars < lastRetainedMatchStars || matchStars > ceiling) return tick;
     lastRetainedMatchStars = matchStars;
     return { ...tick, matchStars };
   });
-  const updatedAtMs = Math.trunc(Number(raw.updatedAtMs));
+  const updatedAtMs = typeof raw.updatedAtMs === 'number' && Number.isFinite(raw.updatedAtMs)
+    ? Math.trunc(raw.updatedAtMs)
+    : 0;
   return {
     schemaVersion,
     ticks,

@@ -95,16 +95,22 @@ describe('Arena V2 listener and callable source contract', () => {
     }
   });
 
-  test('live v2 exposes only the approved display score, never identity, answers or economy', () => {
+  test('live rollout exposes only the approved display score, never identity, answers or economy', () => {
     const liveModel = fs.readFileSync(path.join(ROOT, 'modules/arena/live_channel.ts'), 'utf8');
     const publisher = client.match(
       /export async function arenaPublishLiveTicks[\s\S]*?(?=\/\*\*\s*\n \* Расписки матчей)/,
     )?.[0] ?? '';
+    const serializer = liveModel.match(
+      /export function arenaLiveWritePayload[\s\S]*?(?=\/\* ----------------------------- публикация)/,
+    )?.[0] ?? '';
     expect(liveModel).toContain('matchStars?: number;');
-    expect(publisher).toContain('{ matchStars: tick.matchStars }');
+    expect(publisher).toContain('arenaLiveWritePayload({');
+    expect(serializer).toContain('schemaVersion: ARENA_LIVE_LEGACY_SCHEMA_VERSION');
+    expect(serializer).toContain('{ matchStars: tick.matchStars }');
     expect(publisher).not.toContain('firstAttemptPairs');
+    const publicWire = `${publisher}\n${serializer}`;
     for (const forbidden of ['answer', 'stableUid', 'authUid', 'balance', 'seasonStars', 'starsEarned', 'isBot']) {
-      expect(publisher).not.toMatch(new RegExp(`\\b${forbidden}\\s*:`));
+      expect(publicWire).not.toMatch(new RegExp(`\\b${forbidden}\\s*:`));
     }
   });
 

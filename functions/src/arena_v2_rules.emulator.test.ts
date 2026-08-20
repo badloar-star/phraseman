@@ -124,7 +124,12 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
       finished: false,
       updatedAtMs: 1,
     };
-    const legacyPayload = { schemaVersion: 'arena-live.v1', ticks: [], finished: false, updatedAtMs: 1 };
+    const legacyPayload = {
+      schemaVersion: 'arena-live.v1',
+      ticks: [{ taskIndex: 0, correct: false, raceElapsedMs: 1_200 }],
+      finished: false,
+      updatedAtMs: 1,
+    };
 
     const playerA = environment.authenticatedContext('auth-a').firestore();
     const playerB = environment.authenticatedContext('auth-b').firestore();
@@ -176,6 +181,78 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
       updatedAtMs: 1,
       uid: 'auth-a',
     }));
+  });
+
+  it('rejects private and extra fields nested inside v1 and v2 live ticks', async () => {
+    const playerA = environment.authenticatedContext('auth-a').firestore();
+    const seat = doc(playerA, 'arena_v2_match_live/match-1/seats/a');
+    const payload = (schemaVersion: 'arena-live.v1' | 'arena-live.v2', ticks: readonly Record<string, unknown>[]) => ({
+      schemaVersion,
+      ticks,
+      finished: false,
+      updatedAtMs: 1,
+    });
+    const safeTick = { taskIndex: 0, correct: true, raceElapsedMs: 900 };
+
+    for (const privateTick of [
+      { ...safeTick, answer: 'secret' },
+      { ...safeTick, uid: 'auth-a' },
+      { ...safeTick, extra: true },
+    ]) {
+      await assertFails(setDoc(seat, payload('arena-live.v1', [privateTick])));
+      await assertFails(setDoc(seat, payload('arena-live.v2', [privateTick])));
+    }
+
+    // Установленный v1-reader игнорирует неизвестное поле, поэтому additive
+    // matchStars в v1 сохраняет индикатор во время смешанного rollout.
+    await assertSucceeds(setDoc(seat, payload('arena-live.v1', [{ ...safeTick, matchStars: 3 }])));
+
+    // Проверяется не только первый элемент: приватное поле в десятом тике
+    // обязано быть столь же запрещено, как в первом.
+    const tenTicks = Array.from({ length: 10 }, (_, taskIndex) => ({
+      taskIndex,
+      correct: true,
+      raceElapsedMs: 900,
+      matchStars: taskIndex * 4,
+    }));
+    await assertFails(setDoc(seat, payload('arena-live.v2', [
+      ...tenTicks.slice(0, 9),
+      { ...tenTicks[9], answer: 'last-tick-secret' },
+    ])));
+  });
+
+  it('rejects missing, malformed and out-of-bounds live tick fields', async () => {
+    const playerA = environment.authenticatedContext('auth-a').firestore();
+    const seat = doc(playerA, 'arena_v2_match_live/match-1/seats/a');
+    const payload = (tick: Record<string, unknown>) => ({
+      schemaVersion: 'arena-live.v2',
+      ticks: [tick],
+      finished: false,
+      updatedAtMs: 1,
+    });
+    const safeTick = { taskIndex: 0, correct: true, raceElapsedMs: 900 };
+    const invalidTicks: readonly Record<string, unknown>[] = [
+      { correct: true, raceElapsedMs: 900 },
+      { taskIndex: 0, raceElapsedMs: 900 },
+      { taskIndex: 0, correct: true },
+      { ...safeTick, taskIndex: '0' },
+      { ...safeTick, taskIndex: 0.5 },
+      { ...safeTick, taskIndex: -1 },
+      { ...safeTick, taskIndex: 10 },
+      { ...safeTick, correct: 1 },
+      { ...safeTick, raceElapsedMs: '900' },
+      { ...safeTick, raceElapsedMs: 0.5 },
+      { ...safeTick, raceElapsedMs: -1 },
+      { ...safeTick, raceElapsedMs: 600_001 },
+      { ...safeTick, matchStars: '3' },
+      { ...safeTick, matchStars: 0.5 },
+      { ...safeTick, matchStars: -1 },
+      { ...safeTick, matchStars: 41 },
+    ];
+
+    for (const invalidTick of invalidTicks) {
+      await assertFails(setDoc(seat, payload(invalidTick)));
+    }
   });
 
   it('keeps sealed expansion evidence and shared social roots unreadable', async () => {

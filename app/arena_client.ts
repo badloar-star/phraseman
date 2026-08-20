@@ -38,8 +38,8 @@ import { arenaParseMatchPlan, type ArenaMatchPlanWire } from '../modules/arena/d
 import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import {
   ARENA_LIVE_COLLECTION,
-  ARENA_LIVE_SCHEMA_VERSION,
   ARENA_LIVE_SEATS,
+  arenaLiveWritePayload,
 } from '../modules/arena/live_channel';
 
 const REGION = 'us-central1';
@@ -589,19 +589,13 @@ export async function arenaPublishLiveTicks(input: Readonly<{
     await firestore()
       .collection(ARENA_LIVE_COLLECTION)
       .doc(`${input.matchId}/${ARENA_LIVE_SEATS}/${input.seat}`)
-      .set({
-        schemaVersion: ARENA_LIVE_SCHEMA_VERSION,
-        ticks: input.ticks.map((tick) => ({
-          taskIndex: tick.taskIndex,
-          correct: tick.correct,
-          raceElapsedMs: tick.raceElapsedMs,
-          ...(Number.isInteger(tick.matchStars) ? { matchStars: tick.matchStars } : {}),
-        })),
+      .set(arenaLiveWritePayload({
+        ticks: input.ticks,
         finished: input.finished,
         // Метка времени обязательна по правилам: по ней почасовая уборка
         // находит протухшие каналы, иначе документы остались бы навсегда.
         updatedAtMs: Date.now(),
-      }, { merge: true });
+      }), { merge: true });
     return true;
   } catch {
     return false;

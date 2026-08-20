@@ -3258,6 +3258,37 @@ service cloud.firestore {
         allow write: if false;
       }
     }
+    function arenaLiveTickOk(tick, schemaVersion) {
+      return schemaVersion in ['arena-live.v1', 'arena-live.v2']
+        && tick is map
+        && tick.keys().hasAll(['taskIndex', 'correct', 'raceElapsedMs'])
+        // matchStars is additive in v1 so already-installed v1 readers keep
+        // accepting the document while ignoring the unknown display field.
+        && tick.keys().hasOnly(['taskIndex', 'correct', 'raceElapsedMs', 'matchStars'])
+        && tick.taskIndex is int
+        && tick.taskIndex >= 0 && tick.taskIndex < 10
+        && tick.correct is bool
+        && tick.raceElapsedMs is int
+        && tick.raceElapsedMs >= 0 && tick.raceElapsedMs <= 600000
+        && (!tick.keys().hasAny(['matchStars']) || (
+          tick.matchStars is int
+          && tick.matchStars >= 0 && tick.matchStars <= 40
+        ));
+    }
+    function arenaLiveTicksOk(ticks, schemaVersion) {
+      return ticks is list
+        && ticks.size() <= 10
+        && (ticks.size() <= 0 || arenaLiveTickOk(ticks[0], schemaVersion))
+        && (ticks.size() <= 1 || arenaLiveTickOk(ticks[1], schemaVersion))
+        && (ticks.size() <= 2 || arenaLiveTickOk(ticks[2], schemaVersion))
+        && (ticks.size() <= 3 || arenaLiveTickOk(ticks[3], schemaVersion))
+        && (ticks.size() <= 4 || arenaLiveTickOk(ticks[4], schemaVersion))
+        && (ticks.size() <= 5 || arenaLiveTickOk(ticks[5], schemaVersion))
+        && (ticks.size() <= 6 || arenaLiveTickOk(ticks[6], schemaVersion))
+        && (ticks.size() <= 7 || arenaLiveTickOk(ticks[7], schemaVersion))
+        && (ticks.size() <= 8 || arenaLiveTickOk(ticks[8], schemaVersion))
+        && (ticks.size() <= 9 || arenaLiveTickOk(ticks[9], schemaVersion));
+    }
     /**
      * Живой прогресс соперника во время матча.
      *
@@ -3284,12 +3315,10 @@ service cloud.firestore {
         // Канал не принимает произвольные поля. В частности, ответ или
         // идентификатор игрока нельзя случайно опубликовать сопернику даже
         // при регрессии клиента.
+        && request.resource.data.keys().hasAll(['schemaVersion', 'ticks', 'finished', 'updatedAtMs'])
         && request.resource.data.keys().hasOnly(['schemaVersion', 'ticks', 'finished', 'updatedAtMs'])
         && request.resource.data.schemaVersion in ['arena-live.v1', 'arena-live.v2']
-        && request.resource.data.ticks is list
-        // Потолок на размер: канал живёт ровно столько, сколько матч, и
-        // раздувать его нечем и незачем.
-        && request.resource.data.ticks.size() <= 10
+        && arenaLiveTicksOk(request.resource.data.ticks, request.resource.data.schemaVersion)
         // Метка времени обязательна: по ней почасовая уборка находит
         // протухшие каналы. Без неё документ остался бы навсегда.
         && request.resource.data.finished is bool

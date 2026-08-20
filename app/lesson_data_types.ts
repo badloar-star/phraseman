@@ -218,9 +218,16 @@ export type IntroTextTone =
   | "formula"
   | "code";
 
+export type IntroTextSemantic =
+  | "explanation"
+  | "targetCorrect"
+  | "targetWrong"
+  | "nativeGloss";
+
 export type IntroTextPart = {
   text: string;
   tone?: IntroTextTone;
+  semantic?: IntroTextSemantic;
 };
 
 export type IntroLine = {

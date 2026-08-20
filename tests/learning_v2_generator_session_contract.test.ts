@@ -249,9 +249,47 @@ describe("Learning V2 generator session contract", () => {
     expect(screens[0].titleES).toContain("(es)");
     expect(screens[0].titlePtBr).toContain("(pt-BR)");
     expect(screens[0].linesPl?.[0].parts?.[0].text).toContain("(pl)");
+    expect(screens[0].linesRU?.[1].parts).toEqual([
+      {
+        text: "English needs a verb 1 (ru).",
+        semantic: "explanation",
+      },
+    ]);
     expect(screens[0].titleRU).not.toBe(screens[0].titlePl);
     expect(
       screens.map((screen) => screen.learningV2EmbeddedQuestion?.taskSlot),
     ).toEqual([1, 2, 3]);
+  });
+
+  test("preserves supplied intro run order, whitespace, punctuation and semantics in the packaged adapter", () => {
+    const candidate = generatedIntro();
+    const withRuns = {
+      ...candidate,
+      pages: candidate.pages.map((page) => ({
+        ...page,
+        bodyRunsByLocale: semanticRunsByLocale(page.pageOrdinal),
+      })) as unknown as typeof candidate.pages,
+    };
+    const screens = adaptLearningV2GeneratedSessionIntroToLessonScreens({
+      intro: withRuns,
+      lessonId: 1,
+      sessionOrdinal: 1,
+      topicAccent: {
+        accent: "#70D6FF",
+        soft: "#173446",
+        accentOnLight: "#075C78",
+      },
+    });
+
+    expect(screens[0].linesRU?.[1].parts).toEqual([
+      { text: "English needs a verb 1 (", semantic: "explanation" },
+      { text: "ru", semantic: "targetCorrect" },
+      { text: ").", semantic: "explanation" },
+    ]);
+    expect(screens[0].linesPl?.[1].parts).toEqual([
+      { text: "English needs a verb 1 (", semantic: "explanation" },
+      { text: "pl", semantic: "targetCorrect" },
+      { text: ").", semantic: "explanation" },
+    ]);
   });
 });

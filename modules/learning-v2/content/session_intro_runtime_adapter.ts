@@ -105,7 +105,20 @@ export function adaptLearningV2GeneratedSessionIntroToLessonScreens(
       type: KIND_TO_LINE[page.kind],
       parts: [{ text: page.titleByLocale[locale], tone: 'strong' }],
     },
-    { type: 'text', parts: [{ text: page.bodyByLocale[locale] }] },
+    {
+      type: 'text',
+      parts: page.bodyRunsByLocale
+        ? page.bodyRunsByLocale[locale].map((run) => ({
+            text: run.text,
+            semantic: run.semantic,
+          }))
+        : [
+            {
+              text: page.bodyByLocale[locale],
+              semantic: 'explanation' as const,
+            },
+          ],
+    },
   ];
   const localizedLines = (
     page: LearningV2GeneratedSessionIntro['pages'][number],

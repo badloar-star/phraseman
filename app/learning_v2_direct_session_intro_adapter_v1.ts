@@ -87,7 +87,17 @@ export function adaptLearningV2DirectSessionIntroV1(
         [
           {
             type: page.kind === "formula" ? "formula" : "text",
-            parts: [{ text: page.bodyByLocale[locale] }],
+            parts: page.bodyRunsByLocale
+              ? page.bodyRunsByLocale[locale].map((run) => ({
+                  text: run.text,
+                  semantic: run.semantic,
+                }))
+              : [
+                  {
+                    text: page.bodyByLocale[locale],
+                    semantic: "explanation" as const,
+                  },
+                ],
           },
         ] satisfies IntroLine[],
       ]),

@@ -19,15 +19,11 @@ const THEME_BANNERS: Record<ThemeMode, number> = {
   dark: require('../assets/images/settings/referral_theme/invite-dark-v2.webp'),
   gold: require('../assets/images/settings/referral_theme/invite-gold-v2.webp'),
   olive: require('../assets/images/settings/referral_theme/invite-olive-v2.webp'),
-  minimalDark: require('../assets/images/settings/referral_theme/invite-indigo-v2.webp'),
-  business: require('../assets/images/settings/referral_theme/invite-business-v2.webp'),
-  businessLight: require('../assets/images/settings/referral_theme/invite-businessLight-v2.webp'),
   sagePorcelain: require('../assets/images/settings/referral_theme/invite-sagePorcelain-v2.webp'),
   midnight: require('../assets/images/settings/referral_theme/invite-midnight-v2.webp'),
   ember: require('../assets/images/settings/referral_theme/invite-ember-v2.webp'),
   aurora: require('../assets/images/settings/referral_theme/invite-aurora-v2.webp'),
   volt: require('../assets/images/settings/referral_theme/invite-volt-v2.webp'),
-  candyBlue: require('../assets/images/settings/referral_theme/invite-indigo-v2.webp'),
   indigo: require('../assets/images/settings/referral_theme/invite-indigo-v2.webp'),
 };
 

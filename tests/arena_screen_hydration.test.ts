@@ -157,7 +157,7 @@ describe('Arena hub hydration safety', () => {
 
     expect(controller.snapshot().home.value?.profile.rank).toBe(7);
     expect(controller.snapshot().expansion.value?.wallet.walletStars).toBe(77);
-    expect(remembered).toHaveLength(2);
+    expect(remembered).toHaveLength(3);
     controller.hydrate({ home: validHome, expansion: validExpansion });
     expect(controller.snapshot().home.value?.profile.rank).toBe(7);
   });

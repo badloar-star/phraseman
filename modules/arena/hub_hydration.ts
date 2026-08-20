@@ -92,8 +92,9 @@ export function arenaWarmExpansion(value: unknown): ArenaHubWarmExpansion | null
   if (!record(value) || value.ok !== true) return null;
   if (!booleans(value.availability, ['today', 'lab', 'ghost', 'rival', 'mastery', 'partner', 'store'])) return null;
   if (!record(value.wallet) || !count(value.wallet.walletStars)) return null;
-  if (!record(value.today) || !count(value.today.completedTasks) || value.today.completedTasks > 10
-    || !['available', 'in_progress', 'complete', 'expired', 'unavailable'].includes(String(value.today.state))) return null;
+  if (value.today !== undefined && (!record(value.today) || !count(value.today.completedTasks) || value.today.completedTasks > 10
+    || !['available', 'in_progress', 'complete', 'expired', 'unavailable'].includes(String(value.today.state)))) return null;
+  if (value.activeRun !== undefined && value.today === undefined) return null;
   let activeRun: ArenaHubWarmExpansion['activeRun'];
   if (value.activeRun !== undefined) {
     if (!record(value.activeRun) || typeof value.activeRun.runId !== 'string' || (value.activeRun.runKind !== 'today' && value.activeRun.runKind !== 'ghost')) return null;
@@ -103,7 +104,7 @@ export function arenaWarmExpansion(value: unknown): ArenaHubWarmExpansion | null
     ok: true,
     availability: { today: value.availability.today as boolean, lab: value.availability.lab as boolean, ghost: value.availability.ghost as boolean, rival: value.availability.rival as boolean, mastery: value.availability.mastery as boolean, partner: value.availability.partner as boolean, store: value.availability.store as boolean },
     wallet: { walletStars: value.wallet.walletStars },
-    today: { completedTasks: value.today.completedTasks, state: value.today.state as ArenaTodayState },
+    ...(value.today === undefined ? {} : { today: { completedTasks: Number(value.today.completedTasks), state: value.today.state as ArenaTodayState } }),
     ...(activeRun === undefined ? {} : { activeRun }),
   };
 }
@@ -171,15 +172,26 @@ export function createArenaHubHydrationController<Home extends ArenaHubWarmHome,
   };
   const publish = () => { if (gate.mounted()) options.onSnapshot(snapshot); };
   const update = (next: ArenaHubHydrationSnapshot) => { snapshot = next; publish(); };
+  let accepted: Readonly<{ generation: number; home?: Home; expansion?: Expansion }> | null = null;
+  const rememberHalf = (generation: number, half: Readonly<{ home?: Home; expansion?: Expansion }>) => {
+    if (!gate.current(generation)) return;
+    const pending = accepted?.generation === generation ? accepted : { generation };
+    accepted = { ...pending, ...half };
+    options.remember(half);
+    if (accepted.home && accepted.expansion) {
+      options.remember({ home: accepted.home, expansion: accepted.expansion });
+      accepted = null;
+    }
+  };
   const acceptHome = (generation: number, response: Home) => {
     if (!gate.current(generation)) return;
     update({ ...snapshot, home: arenaHubCurrent(response), failure: { ...snapshot.failure, home: null } });
-    options.remember({ home: response });
+    rememberHalf(generation, { home: response });
   };
   const acceptExpansion = (generation: number, response: Expansion) => {
     if (!gate.current(generation)) return;
     update({ ...snapshot, expansion: arenaHubCurrent(response), failure: { ...snapshot.failure, expansion: null } });
-    options.remember({ expansion: response });
+    rememberHalf(generation, { expansion: response });
   };
   return {
     snapshot: () => snapshot,
@@ -191,6 +203,7 @@ export function createArenaHubHydrationController<Home extends ArenaHubWarmHome,
     refresh: (): number | null => {
       const generation = gate.begin();
       if (generation === null) return null;
+      accepted = null;
       void options.fetchHome().then((response) => acceptHome(generation, response)).catch((error: unknown) => {
         if (gate.current(generation)) update({ ...snapshot, failure: { ...snapshot.failure, home: arenaHubFailure(error) } });
       });

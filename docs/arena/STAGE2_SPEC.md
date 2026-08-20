@@ -786,7 +786,7 @@ export type ArenaOpponentIndicator = Readonly<{
 }>;
 ```
 
-Both match-star totals are rendered. The viewer uses local `state.matchStars`; the opponent uses the greatest valid cumulative `arena-live.v2` `matchStars`. During mixed-version rollout, ordinary legacy/scripted ticks are folded only across the contiguous prefix where both outcomes are known. `speed_match` additionally requires exact `firstAttemptPairs`; without it the opponent total remains `—`, never a guessed zero. The field is display-only and settlement still recomputes both results from sealed tasks and reports.
+Both match-star totals are rendered. The viewer uses local `state.matchStars`; the opponent uses the greatest valid cumulative v1/v2 `matchStars`. During mixed-version rollout, ordinary legacy/scripted ticks are folded only across the contiguous prefix where both outcomes are known. Legacy `correct:false` does not reveal whether the task was wrong, timed out, or broken, so it ends that prefix and every later total remains unknown; it is never treated as an exact `wrong` or allowed to reset/continue a derived combo. `speed_match` additionally requires exact `firstAttemptPairs`; without it the opponent total remains `—`, never a guessed zero. The field is display-only and settlement still recomputes both results from sealed tasks and reports.
 
 ### 9.6 Accessibility — one announcement
 

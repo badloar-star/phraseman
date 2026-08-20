@@ -150,8 +150,8 @@ describe('серия', () => {
 });
 
 describe('точный live-счёт соперника', () => {
-  const viewerOutcome = (mode: typeof MODES[number], firstAttemptPairs = 0) => ({
-    taskIndex: 0,
+  const viewerOutcome = (mode: typeof MODES[number], firstAttemptPairs = 0, taskIndex = 0) => ({
+    taskIndex,
     mode,
     status: 'correct' as const,
     raceElapsedMs: 1_000,
@@ -198,6 +198,28 @@ describe('точный live-счёт соперника', () => {
       0: { taskIndex: 0, correct: true, raceElapsedMs: 900 },
     }, [viewerOutcome('speed_match', 2)]);
     expect(arenaOpponentMatchStars(speedPlan, state)).toBeNull();
+  });
+
+  it('не превращает ambiguous correct:false в точный wrong', () => {
+    expect(arenaOpponentMatchStars(PLAN, stateWith({
+      0: { taskIndex: 0, correct: false, raceElapsedMs: 900 },
+      1: { taskIndex: 1, correct: true, raceElapsedMs: 850 },
+    }, [
+      viewerOutcome('guess_phrase'),
+      viewerOutcome('fill_gap', 0, 1),
+    ]))).toBeNull();
+  });
+
+  it('останавливает fallback на первом ambiguous false и не продолжает combo', () => {
+    expect(arenaOpponentMatchStars(PLAN, stateWith({
+      0: { taskIndex: 0, correct: true, raceElapsedMs: 900 },
+      1: { taskIndex: 1, correct: false, raceElapsedMs: 850 },
+      2: { taskIndex: 2, correct: true, raceElapsedMs: 800 },
+    }, [
+      viewerOutcome('guess_phrase'),
+      viewerOutcome('fill_gap', 0, 1),
+      viewerOutcome('find_oddity', 0, 2),
+    ]))).toBe(3);
   });
 
   it('HUD отдаёт тот же счёт', () => {

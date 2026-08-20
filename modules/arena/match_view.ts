@@ -131,8 +131,10 @@ export function arenaResolvedPairs(state: ArenaLocalMatchState): readonly number
  * Exact-known rival score for the live HUD.
  *
  * A transmitted cumulative value wins. Older/scripted ticks are folded only
- * over the contiguous prefix where both sides' outcomes are precise enough;
- * a boolean speed-board result is never promoted into a guessed pair count.
+ * over the contiguous prefix where both sides' outcomes are precise enough.
+ * Legacy `correct: false` cannot distinguish wrong, timeout, or broken, so it
+ * ends the exact-known prefix; a boolean speed-board result is never promoted
+ * into a guessed pair count.
  */
 export function arenaOpponentMatchStars(
   plan: ArenaMatchPlanWire,
@@ -156,6 +158,7 @@ export function arenaOpponentMatchStars(
     const viewer = viewerByTask.get(taskIndex);
     const rival = state.opponentByTask[taskIndex];
     if (!task || !viewer || !rival) break;
+    if (!rival.correct) break;
 
     let firstAttemptPairs = 0;
     if (task.mode === 'speed_match') {
@@ -171,7 +174,7 @@ export function arenaOpponentMatchStars(
       mode: task.mode,
       status: task.mode === 'speed_match'
         ? (firstAttemptPairs > 0 ? 'correct' : 'wrong')
-        : (rival.correct ? 'correct' : 'wrong'),
+        : 'correct',
       raceElapsedMs: rival.raceElapsedMs,
       firstAttemptPairs,
       opponentRaceElapsedMs: viewer.raceElapsedMs,

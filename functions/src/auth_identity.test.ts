@@ -5,6 +5,7 @@ import {
   linkStableAuthUid,
   resolveStableUidForAuth,
 } from './auth_identity';
+import { accountDeletePermanentDenialId } from './account_delete_job';
 
 type DocData = Record<string, unknown>;
 type Store = Record<string, Record<string, DocData | undefined>>;
@@ -24,6 +25,7 @@ function makeDbStub(initial: Store = {}, options: DbStubOptions = {}) {
     identity_cleanup_candidates: { ...(initial.identity_cleanup_candidates ?? {}) },
     account_deletion_auth_markers: { ...(initial.account_deletion_auth_markers ?? {}) },
     account_deletion_tombstones: { ...(initial.account_deletion_tombstones ?? {}) },
+    account_deletion_permanent_denials: { ...(initial.account_deletion_permanent_denials ?? {}) },
     jarvis_growth_daily: { ...(initial.jarvis_growth_daily ?? {}) },
   };
   const sets: { path: string; data: DocData; options: unknown }[] = [];
@@ -323,7 +325,7 @@ describe('linkStableAuthUid', () => {
       'auth-user-race',
     )).rejects.toMatchObject({
       code: 'failed-precondition',
-      message: 'account_delete_pending',
+      message: 'identity_retired',
     });
     expect(store.users['stable-user-race']).toEqual({
       firebaseAuthUid: 'old-auth',
@@ -618,7 +620,7 @@ describe('ensureAuthLinkDoc', () => {
       'stable-link-race',
     )).rejects.toMatchObject({
       code: 'failed-precondition',
-      message: 'account_delete_pending',
+      message: 'identity_retired',
     });
     expect(store.auth_links['auth-link-race']).toBeUndefined();
     expect(sets).toEqual([]);
@@ -786,7 +788,7 @@ describe('resolveStableUidForAuth', () => {
         { repairLinks: false },
       )).rejects.toMatchObject({
         code: 'failed-precondition',
-        message: 'account_delete_pending',
+        message: 'identity_retired',
       });
       expect(sets).toEqual([]);
     },
@@ -1001,7 +1003,7 @@ describe('resolveStableUidForAuth', () => {
     expect(outcome).toEqual({
       status: 'rejected',
       code: 'failed-precondition',
-      message: 'account_delete_pending',
+      message: 'identity_retired',
     });
   });
 
@@ -1026,7 +1028,7 @@ describe('resolveStableUidForAuth', () => {
     expect(outcome).toEqual({
       status: 'rejected',
       code: 'failed-precondition',
-      message: 'account_delete_pending',
+      message: 'identity_retired',
     });
   });
 
@@ -1348,7 +1350,12 @@ describe('ensureStableLinkForAuth', () => {
 
     const result = await ensureStableLinkForAuth(db as any, 'anon-auth-1', 'stable-new-1', 'anonymous');
 
-    expect(result).toEqual({ ok: true, stableUid: 'stable-new-1', authUid: 'anon-auth-1' });
+    expect(result).toEqual({
+      ok: true,
+      stableUid: 'stable-new-1',
+      authUid: 'anon-auth-1',
+      identityReady: true,
+    });
     expect(store.users['stable-new-1']).toEqual({
       firebaseAuthUid: 'anon-auth-1',
       updatedAt: 1_777_000_000_000,
@@ -1384,6 +1391,7 @@ describe('ensureStableLinkForAuth', () => {
       ok: true,
       stableUid: 'stable-new-provider',
       authUid: 'google-auth-new',
+      identityReady: true,
     });
     expect(store.users['stable-new-provider']).toEqual({
       firebaseAuthUid: 'google-auth-new',
@@ -1430,6 +1438,7 @@ describe('ensureStableLinkForAuth', () => {
       ok: true,
       stableUid: 'fresh-anonymous-same-id',
       authUid: 'fresh-anonymous-same-id',
+      identityReady: true,
     });
     expect(store.users['fresh-anonymous-same-id']).toMatchObject({
       firebaseAuthUid: 'fresh-anonymous-same-id',
@@ -1459,7 +1468,12 @@ describe('ensureStableLinkForAuth', () => {
       },
     );
 
-    expect(result).toEqual({ ok: true, stableUid: 'stable-new-apple', authUid: 'apple-auth-new' });
+    expect(result).toEqual({
+      ok: true,
+      stableUid: 'stable-new-apple',
+      authUid: 'apple-auth-new',
+      identityReady: true,
+    });
     expect(store.users['stable-new-apple']).toMatchObject({
       firebaseAuthUid: 'apple-auth-new',
       linkedAuth: { provider: 'apple', providerUid: 'apple-auth-new' },
@@ -1582,6 +1596,7 @@ describe('ensureStableLinkForAuth', () => {
       ok: true,
       stableUid: 'stable-authoritative',
       authUid: 'google-auth-race',
+      identityReady: true,
     });
     expect(store.users['stable-requested']).toBeUndefined();
     expect(store.auth_links['google-auth-race']).toMatchObject({
@@ -1605,7 +1620,7 @@ describe('ensureStableLinkForAuth', () => {
       ensureStableLinkForAuth(db as any, 'anon-auth-deleting', 'stable-deleting', 'anonymous'),
     ).rejects.toMatchObject({
       code: 'failed-precondition',
-      message: 'account_delete_pending',
+      message: 'identity_retired',
     });
     expect(store.users['stable-deleting']).toBeUndefined();
     expect(store.auth_links['anon-auth-deleting']).toBeUndefined();
@@ -1631,7 +1646,7 @@ describe('ensureStableLinkForAuth', () => {
       ),
     ).rejects.toMatchObject({
       code: 'failed-precondition',
-      message: 'account_delete_pending',
+      message: 'identity_retired',
     });
     expect(store.users['stable-race-delete']).toBeUndefined();
     expect(store.auth_links['anon-auth-race-delete']).toBeUndefined();
@@ -1655,7 +1670,12 @@ describe('ensureStableLinkForAuth', () => {
 
     const result = await ensureStableLinkForAuth(db as any, 'google-auth-1', 'local-stable', 'google.com');
 
-    expect(result).toEqual({ ok: true, stableUid: 'remote-stable', authUid: 'google-auth-1' });
+    expect(result).toEqual({
+      ok: true,
+      stableUid: 'remote-stable',
+      authUid: 'google-auth-1',
+      identityReady: true,
+    });
     expect(store.auth_links['google-auth-1']).toMatchObject({
       stable_id: 'remote-stable',
       providerUid: 'google-auth-1',
@@ -1698,6 +1718,7 @@ describe('ensureStableLinkForAuth', () => {
       ok: true,
       stableUid: 'google-hidden-c',
       authUid: 'google-hidden-owner',
+      identityReady: true,
     });
     expect(store.auth_links['google-hidden-owner']).toMatchObject({
       stable_id: 'google-hidden-c',
@@ -1748,7 +1769,7 @@ describe('ensureStableLinkForAuth', () => {
       authUid,
       'new-local-race-stable',
       'google.com',
-    )).resolves.toEqual({ ok: true, stableUid: canonicalStableId, authUid });
+    )).resolves.toEqual({ ok: true, stableUid: canonicalStableId, authUid, identityReady: true });
     expect(store.users[canonicalStableId]).toMatchObject({
       firebaseAuthUid: authUid,
       linkedAuth: { providerUid: authUid, provider: 'google' },
@@ -1861,7 +1882,12 @@ describe('ensureStableLinkForAuth', () => {
 
     const result = await ensureStableLinkForAuth(db as any, 'google-auth-1', 'local-stable', 'google.com');
 
-    expect(result).toEqual({ ok: true, stableUid: 'remote-stable', authUid: 'google-auth-1' });
+    expect(result).toEqual({
+      ok: true,
+      stableUid: 'remote-stable',
+      authUid: 'google-auth-1',
+      identityReady: true,
+    });
     expect(store.auth_links['google-auth-1']).toMatchObject({
       stable_id: 'remote-stable',
       providerUid: 'google-auth-1',
@@ -1889,7 +1915,12 @@ describe('ensureStableLinkForAuth', () => {
       devicePlatform: 'android',
     });
 
-    expect(result).toEqual({ ok: true, stableUid: 'stable-1', authUid: 'google-auth-1' });
+    expect(result).toEqual({
+      ok: true,
+      stableUid: 'stable-1',
+      authUid: 'google-auth-1',
+      identityReady: true,
+    });
     expect(store.auth_links['google-auth-1']).toMatchObject({
       stable_id: 'stable-1',
       providerUid: 'google-auth-1',
@@ -1940,7 +1971,7 @@ describe('ensureStableLinkForAuth', () => {
       { email: 'race@example.invalid' },
     )).rejects.toMatchObject({
       code: 'failed-precondition',
-      message: 'account_delete_pending',
+      message: 'identity_retired',
     });
     expect(store.users['stable-provider-race']).toEqual({
       firebaseAuthUid: 'provider-auth-race',
@@ -1970,6 +2001,7 @@ describe('ensureStableLinkForAuth', () => {
       ok: true,
       stableUid: 'stable-provider-atomic',
       authUid: 'provider-auth-atomic',
+      identityReady: true,
     });
     expect(store.users['stable-provider-atomic']).toMatchObject({
       firebaseAuthUid: 'provider-auth-atomic',
@@ -2066,8 +2098,98 @@ describe('ensureStableLinkForAuth', () => {
       ensureStableLinkForAuth(db as any, 'deleted-auth', 'deleted-auth', 'google.com'),
     ).rejects.toMatchObject({
       code: 'failed-precondition',
-      message: 'account_delete_pending',
+      message: 'identity_retired',
     });
     expect(sets).toEqual([]);
+  });
+
+  it.each([
+    [
+      'auth marker',
+      'auth' as const,
+      'retired-auth-marker',
+      'retired-stable-marker',
+      'account_deletion_auth_markers',
+      'retired-auth-marker',
+    ],
+    [
+      'auth permanent denial',
+      'auth' as const,
+      'retired-auth-denial',
+      'retired-stable-auth-denial',
+      'account_deletion_permanent_denials',
+      accountDeletePermanentDenialId('retired-auth-denial'),
+    ],
+    [
+      'stable tombstone',
+      'stable' as const,
+      'retired-auth-tombstone',
+      'retired-stable-tombstone',
+      'account_deletion_tombstones',
+      'retired-stable-tombstone',
+    ],
+    [
+      'stable permanent denial',
+      'stable' as const,
+      'retired-auth-stable-denial',
+      'retired-stable-denial',
+      'account_deletion_permanent_denials',
+      accountDeletePermanentDenialId('retired-stable-denial'),
+    ],
+  ])('returns a structured identity_retired error for a %s', async (
+    _label,
+    subject,
+    authUid,
+    stableUid,
+    collectionName,
+    documentId,
+  ) => {
+    const { db, sets } = makeDbStub({
+      [collectionName]: {
+        [documentId]: { status: 'permanent' },
+      },
+    });
+
+    let caught: unknown;
+    try {
+      await ensureStableLinkForAuth(db as any, authUid, stableUid, 'anonymous');
+    } catch (error) {
+      caught = error;
+    }
+
+    expect(caught).toMatchObject({
+      code: 'failed-precondition',
+      message: 'identity_retired',
+      details: {
+        subject,
+        recovery: 'create_fresh_anonymous',
+      },
+    });
+    const details = (caught as { details?: unknown })?.details;
+    expect(details).toEqual({ subject, recovery: 'create_fresh_anonymous' });
+    expect(JSON.stringify(details)).not.toContain(authUid);
+    expect(JSON.stringify(details)).not.toContain(stableUid);
+    expect(sets).toEqual([]);
+  });
+
+  it('reports identityReady only after the exact user and auth-link identity pair exists', async () => {
+    const authUid = 'ready-auth';
+    const stableUid = 'ready-stable';
+    const { db, store } = makeDbStub({
+      users: {
+        [stableUid]: { firebaseAuthUid: authUid, updatedAt: 111 },
+      },
+    });
+
+    const result = await ensureStableLinkForAuth(
+      db as any,
+      authUid,
+      stableUid,
+      'google.com',
+    );
+
+    expect(store.users[stableUid]).toMatchObject({ firebaseAuthUid: authUid });
+    expect(store.auth_links[authUid]).toMatchObject({ stable_id: stableUid });
+    expect(result).toEqual({ ok: true, stableUid, authUid, identityReady: true });
   });
 });

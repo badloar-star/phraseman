@@ -10,7 +10,7 @@ import {
 } from '../app/account_generation';
 
 const mockCallable = jest.fn(async () => ({
-  data: { ok: true, stableUid: 'stable-a', authUid: 'provider-a' },
+  data: { ok: true, stableUid: 'stable-a', authUid: 'provider-a', identityReady: true },
 }));
 const mockSetStableId = jest.fn<Promise<void>, [string]>(async () => undefined);
 
@@ -45,6 +45,37 @@ describe('cloud sync identity anchor', () => {
     await ensureStableAuthLinkForStableIdDetailed('stable-a', undefined, { requireAuthoritative: true });
 
     expect(mockCallable).toHaveBeenCalledTimes(2);
+  });
+
+  it.each([
+    ['identity_retired', 'identity_retired'],
+    ['account_delete_pending', 'identity_retired'],
+  ])('classifies failed-precondition %s as %s', (message, expected) => {
+    expect(__cloudSyncTestHooks.classifyCloudAccessFailure({
+      code: 'functions/failed-precondition',
+      message,
+    }, true)).toBe(expected);
+  });
+
+  it('opens the authoritative identity gate only when the server confirms identityReady', async () => {
+    await expect(ensureStableAuthLinkForStableIdDetailed(
+      'stable-a',
+      undefined,
+      { requireAuthoritative: true },
+    )).resolves.toMatchObject({ ok: true, source: 'callable' });
+
+    mockCallable.mockResolvedValueOnce({
+      data: { ok: true, stableUid: 'stable-a', authUid: 'provider-a' },
+    } as any);
+    await expect(ensureStableAuthLinkForStableIdDetailed(
+      'stable-a',
+      undefined,
+      { requireAuthoritative: true },
+    )).resolves.toMatchObject({
+      ok: false,
+      source: 'callable',
+      failure: 'identity_unavailable',
+    });
   });
 
   it('wipes account-scoped storage before adopting a different server canonical id', async () => {

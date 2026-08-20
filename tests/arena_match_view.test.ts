@@ -825,12 +825,15 @@ describe('до любого варианта ответа можно дотян�
    * отправки за край. Игрок собирал перевод — и не мог его отправить, то есть
    * терял задание, сделав всё правильно.
    */
-  it('в сборщике перевода прокручивается банк, а кнопка отправки остаётся', () => {
-    expect(source).toContain('contentContainerStyle={styles.builder}');
-    // Кнопка отправки живёт СНАРУЖИ прокрутки.
-    const scrollEnd = source.lastIndexOf('</ScrollView>');
-    const ctaStart = source.indexOf('<V2Cta', scrollEnd);
-    expect(ctaStart).toBeGreaterThan(scrollEnd);
+  it('в сборщике перевода весь task прокручивается, поэтому кнопка достижима', () => {
+    const builderStart = source.indexOf("if (view.type === 'builder')");
+    const builderEnd = source.indexOf('const selected = choice !== null');
+    const builderBranch = source.slice(builderStart, builderEnd);
+    expect(builderBranch).toContain('style={styles.immersiveScroll}');
+    const ctaStart = builderBranch.indexOf('<V2Cta');
+    const outerScrollEnd = builderBranch.lastIndexOf('</ScrollView>');
+    expect(ctaStart).toBeGreaterThan(0);
+    expect(ctaStart).toBeLessThan(outerScrollEnd);
   });
 });
 
@@ -846,7 +849,7 @@ describe('пары и конструктор занимают оставшеес
     }
   });
 
-  it('immersive-ветки не завёрнуты в V2Card и растут по высоте', () => {
+  it('immersive-ветки не завёрнуты в V2Card и ограничены реальным остатком', () => {
     const matchingBranch = question.slice(
       question.indexOf("if (view.type === 'matching')"),
       question.indexOf("if (view.type === 'builder')"),
@@ -855,26 +858,32 @@ describe('пары и конструктор занимают оставшеес
       question.indexOf("if (view.type === 'builder')"),
       question.indexOf('const selected = choice !== null'),
     );
-    expect(matchingBranch).toContain('style={styles.immersive}');
-    expect(builderBranch).toContain('style={styles.immersive}');
+    expect(matchingBranch).toContain('style={styles.immersiveScroll}');
+    expect(builderBranch).toContain('style={styles.immersiveScroll}');
+    expect(matchingBranch).toContain('contentContainerStyle={styles.immersiveContent}');
+    expect(builderBranch).toContain('contentContainerStyle={styles.immersiveContent}');
     expect(matchingBranch).not.toContain('<V2Card');
     expect(builderBranch).not.toContain('<V2Card');
-    expect(question).toContain('immersive: { flex: 1');
+    expect(question).toContain('immersiveScroll: { flex: 1, minHeight: 0 }');
+    expect(question).toContain('immersiveContent: { flexGrow: 1');
+    expect(match).toContain('question: { flex: 1');
   });
 
-  it('доска пар ограничена остатком экрана и прокручивается внутри', () => {
+  it('последняя правая пара достижима через внешний task scroll при 320 pt / 1.5x', () => {
     const matchingBranch = question.slice(
       question.indexOf("if (view.type === 'matching')"),
       question.indexOf("if (view.type === 'builder')"),
     );
-    expect(matchingBranch).toContain('<ScrollView');
-    expect(matchingBranch).toContain('style={styles.matchGridScroll}');
-    expect(matchingBranch).toContain('contentContainerStyle={[styles.matchGrid');
+    expect(matchingBranch).toContain('style={styles.immersiveScroll}');
+    expect(matchingBranch).toContain('<View style={[styles.matchGrid');
     expect(matchingBranch).toContain('nestedScrollEnabled');
-    expect(question).toContain('matchGridScroll: { flex: 1, minHeight: 0 }');
+    const lastPairMap = matchingBranch.indexOf('view.right.map');
+    const outerScrollEnd = matchingBranch.lastIndexOf('</ScrollView>');
+    expect(lastPairMap).toBeGreaterThan(0);
+    expect(lastPairMap).toBeLessThan(outerScrollEnd);
   });
 
-  it('лоток ответа ограничен по высоте и прокручивается, не выталкивая CTA', () => {
+  it('лоток ограничен, а CTA достижим внутри внешнего task scroll при остатке 46 pt', () => {
     const builderStart = question.indexOf("if (view.type === 'builder')");
     const builderEnd = question.indexOf('const selected = choice !== null');
     const builderBranch = question.slice(builderStart, builderEnd);
@@ -883,15 +892,23 @@ describe('пары и конструктор занимают оставшеес
     expect(builderBranch).toContain('style={[styles.answerTrayScroll, { maxHeight: viewport.answerTrayMaxHeight');
     expect(builderBranch).toContain('contentContainerStyle={styles.answerTray}');
     expect(builderBranch).toContain('nestedScrollEnabled');
-    expect(builderBranch.indexOf('<V2Cta')).toBeGreaterThan(builderBranch.lastIndexOf('</ScrollView>'));
+    const trayStart = builderBranch.indexOf('style={[styles.answerTrayScroll');
+    const trayEnd = builderBranch.indexOf('</ScrollView>', trayStart);
+    const ctaStart = builderBranch.indexOf('<V2Cta');
+    const outerScrollEnd = builderBranch.lastIndexOf('</ScrollView>');
+    expect(trayStart).toBeGreaterThan(0);
+    expect(trayEnd).toBeLessThan(ctaStart);
+    expect(ctaStart).toBeLessThan(outerScrollEnd);
+    expect(builderBranch.match(/<ScrollView/g)).toHaveLength(2);
   });
 
-  it('кнопка конструктора остаётся вне его ScrollView, а фишки не мельче 48 pt', () => {
+  it('кнопка конструктора вне внутреннего tray scroll, а фишки не мельче 48 pt', () => {
     const builderStart = question.indexOf("if (view.type === 'builder')");
     const builderEnd = question.indexOf('const selected = choice !== null');
     const builderBranch = question.slice(builderStart, builderEnd);
-    expect(builderBranch.indexOf('</ScrollView>')).toBeGreaterThan(0);
-    expect(builderBranch.indexOf('<V2Cta')).toBeGreaterThan(builderBranch.lastIndexOf('</ScrollView>'));
+    const trayEnd = builderBranch.indexOf('</ScrollView>', builderBranch.indexOf('answerTrayScroll'));
+    expect(trayEnd).toBeGreaterThan(0);
+    expect(builderBranch.indexOf('<V2Cta')).toBeGreaterThan(trayEnd);
     const touchHeight = Number(/touchChip:\s*\{\s*minHeight:\s*(\d+)/.exec(question)?.[1]);
     expect(touchHeight).toBeGreaterThanOrEqual(48);
   });

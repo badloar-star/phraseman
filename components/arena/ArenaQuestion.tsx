@@ -57,7 +57,13 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
 
   if (view.type === 'matching') {
     return (
-      <View style={styles.immersive}>
+      <ScrollView
+        style={styles.immersiveScroll}
+        contentContainerStyle={styles.immersiveContent}
+        showsVerticalScrollIndicator={viewport.compactHeight}
+        nestedScrollEnabled
+        bounces={false}
+      >
         <Text style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</Text>
         {instruction ? (
           <>
@@ -69,13 +75,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
             </Text>
           </>
         ) : null}
-        <ScrollView
-          style={styles.matchGridScroll}
-          contentContainerStyle={[styles.matchGrid, viewport.compactHeight && styles.matchGridCompact]}
-          showsVerticalScrollIndicator={viewport.compactHeight}
-          nestedScrollEnabled
-          bounces={false}
-        >
+        <View style={[styles.matchGrid, viewport.compactHeight && styles.matchGridCompact]}>
           <View style={styles.column}>
             {view.left.map((item, index) => (
               <V2Chip
@@ -122,15 +122,21 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
               </V2Chip>
             ))}
           </View>
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     );
   }
 
   if (view.type === 'builder') {
     const selected = tokens.length > 0;
     return (
-      <View style={styles.immersive}>
+      <ScrollView
+        style={styles.immersiveScroll}
+        contentContainerStyle={styles.immersiveContent}
+        showsVerticalScrollIndicator={viewport.compactHeight}
+        nestedScrollEnabled
+        bounces={false}
+      >
         <Text style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</Text>
         {instruction ? (
           <>
@@ -160,12 +166,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
             </V2Chip>
           ))}
         </ScrollView>
-        <ScrollView
-          style={styles.builderScroll}
-          contentContainerStyle={styles.builder}
-          showsVerticalScrollIndicator={false}
-          bounces={false}
-        >
+        <View style={styles.builder}>
           <View style={styles.tokenCloud}>
             {view.tokens.map((token, index) => (
               <V2Chip
@@ -179,14 +180,14 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
               </V2Chip>
             ))}
           </View>
-        </ScrollView>
+        </View>
         <V2Cta
           disabled={!selected || locked}
           onPress={() => onSubmit(encodeArenaSelection(view, tokens))}
         >
           {submitLabel}
         </V2Cta>
-      </View>
+      </ScrollView>
     );
   }
 
@@ -240,7 +241,8 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
 
 const styles = StyleSheet.create({
   card: { gap: 16 },
-  immersive: { flex: 1, minHeight: 0, gap: 10 },
+  immersiveScroll: { flex: 1, minHeight: 0 },
+  immersiveContent: { flexGrow: 1, gap: 10, paddingBottom: 2 },
   // Высота строки задаётся на месте: она умножается на системный масштаб.
   prompt: { fontSize: 22, fontWeight: '900', textAlign: 'center' },
   promptImmersive: { fontSize: 19 },
@@ -249,13 +251,11 @@ const styles = StyleSheet.create({
   // Прокрутка занимает только то место, что осталось: таймер и счёт выше
   // остаются на экране при любой длине вариантов.
   optionsScroll: { flexShrink: 1 },
-  builderScroll: { flex: 1, minHeight: 0 },
   builder: { gap: 12 },
   answerTrayScroll: { flexShrink: 1, minHeight: 68, borderRadius: 18 },
   answerTray: { minHeight: 68, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 7, padding: 10 },
   tokenCloud: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, justifyContent: 'center' },
-  matchGridScroll: { flex: 1, minHeight: 0 },
-  matchGrid: { flexGrow: 1, flexDirection: 'row', gap: 10 },
+  matchGrid: { flexDirection: 'row', gap: 10 },
   matchGridCompact: { gap: 8 },
   column: { flex: 1, gap: 8, justifyContent: 'space-between' },
   touchChip: { minHeight: 48 },

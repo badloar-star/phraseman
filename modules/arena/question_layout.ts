@@ -15,9 +15,10 @@ export function arenaQuestionLayout(mode: ArenaTaskMode): Readonly<{
 /**
  * Height-only responsive contract for the two immersive tasks.
  *
- * At 320 pt landscape (and when the system font is 1.5x) the task keeps its
- * HUD and CTA outside bounded internal scroll regions. The tray cannot shrink
- * below 68 pt: one 48 pt chip plus its vertical padding must remain tappable.
+ * This whole-window signal only tunes the nested answer tray and indicator;
+ * reachability comes from ArenaQuestion's outer ScrollView, which is bounded
+ * by the actual remaining question height. The tray cannot shrink below 68
+ * pt: one 48 pt chip plus its vertical padding must remain tappable.
  */
 export function arenaQuestionViewportLayout(
   windowHeight: number,

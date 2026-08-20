@@ -177,8 +177,8 @@ describe('экран Арены пользуется снимком', () => {
 
   it('повтор не скрывает отказ, пока его не сменит успешный ответ', () => {
     expect(source).not.toContain('setBaseFailure(null);\n    setExpansionFailure(null);');
-    expect(source).toMatch(/arenaV2Home\(\)\.then\(\(response\) => \{\s+setHomeSlot\(arenaHubCurrent\(response\)\);\s+setBaseFailure\(null\);/s);
-    expect(source).toMatch(/arenaExpansionHome\(\)\.then\(\(response\) => \{\s+setExpansionSlot\(arenaHubCurrent\(response\)\);\s+setExpansionFailure\(null\);/s);
+    expect(source).toMatch(/arenaV2Home\(\)\.then\(\(response\) => \{\s+if \(!requestGateRef\.current\.current\(generation\)\) return;\s+setHomeSlot\(arenaHubCurrent\(response\)\);\s+setBaseFailure\(null\);/s);
+    expect(source).toMatch(/arenaExpansionHome\(\)\.then\(\(response\) => \{\s+if \(!requestGateRef\.current\.current\(generation\)\) return;\s+setExpansionSlot\(arenaHubCurrent\(response\)\);\s+setExpansionFailure\(null\);/s);
   });
 
   it('погашенные кнопки объяснены, а не молчат', () => {

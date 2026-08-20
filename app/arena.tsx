@@ -171,8 +171,11 @@ export default function ArenaHubScreen() {
   const serverFailure = baseFailure?.kind === 'server';
   const expansionServerFailure = expansionFailure?.kind === 'server';
   const baseEnabled = home?.availability.enabled === true && !offline && !serverFailure;
-  const disabledHint = offline ? arenaText(lang, 'hubOfflineHint') : arenaText(lang, 'valueUnknown');
   const today = expansion?.today;
+  const offlineHint = offline ? arenaText(lang, 'hubOfflineHint') : undefined;
+  const quickDisabledHint = offlineHint ?? (!home ? arenaText(lang, 'valueUnknown') : undefined);
+  const todayDisabledHint = offlineHint ?? (!expansion || !today ? arenaText(lang, 'valueUnknown') : undefined);
+  const walletDisabledHint = offlineHint ?? (!expansion ? arenaText(lang, 'valueUnknown') : undefined);
   const todayAction = today?.state === 'in_progress' ? arenaExpansionText(lang, 'todayContinue') : arenaExpansionText(lang, 'todayStart');
 
   /**
@@ -237,14 +240,14 @@ export default function ArenaHubScreen() {
           {today?.state === 'complete' ? (
             <Text accessibilityLiveRegion="polite" style={[styles.complete, { color: P.accent }]}>{arenaExpansionText(lang, 'todayComplete')}</Text>
           ) : (
-            <V2Cta accessibilityLabel={todayAction} accessibilityHint={disabledHint} disabled={!baseEnabled || !expansion?.availability.today || !today || today.state === 'unavailable'} onPress={() => router.push('/arena_today' as never)}>{todayAction}</V2Cta>
+            <V2Cta accessibilityLabel={todayAction} accessibilityHint={todayDisabledHint} disabled={!baseEnabled || !expansion?.availability.today || !today || today.state === 'unavailable'} onPress={() => router.push('/arena_today' as never)}>{todayAction}</V2Cta>
           )}
       </V2Card>
       {/* зачем заголовок убран (владелец, 2026-08-16): экран и так открыт по
           кнопке «Играть» в таббаре — подпись над первым же пунктом повторяла
           название, под которым сюда пришли. */}
-      <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabledHint={disabledHint} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
-      {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabledHint={disabledHint} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => { setSpinBusy(true); void arenaV2SpinClaim(spinRequestIdRef.current).then(() => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); }).finally(() => setSpinBusy(false)); }} /> : null}
+      <ArenaFeatureRow accent icon="play" title={arenaText(lang, 'quick')} body={arenaText(lang, 'quickHint')} disabledHint={quickDisabledHint} disabled={!baseEnabled || !home?.availability.quickEnabled} onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') } } as never)} />
+      {(home?.profile.spinsAvailable ?? 0) > 0 ? <ArenaFeatureRow icon="sparkles" title={arenaText(lang, 'spinNow')} body={`${home?.profile.spinsAvailable ?? 0}`} disabledHint={offlineHint} disabled={!baseEnabled || !home?.availability.spinEnabled || spinBusy} onPress={() => { setSpinBusy(true); void arenaV2SpinClaim(spinRequestIdRef.current).then(() => { spinRequestIdRef.current = createArenaRequestId('spin'); load(); }).finally(() => setSpinBusy(false)); }} /> : null}
     </>
   );
 
@@ -260,7 +263,7 @@ export default function ArenaHubScreen() {
         ? home.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home.profile.rank ?? 0) + 1}`
         : '—'}
       onBack={() => router.replace('/(tabs)/home' as never)}
-      headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion ? expansion.wallet.walletStars : null} disabledHint={disabledHint} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
+      headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion ? expansion.wallet.walletStars : null} disabledHint={walletDisabledHint} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
     >
       {offline ? <ArenaConnectionNotice onRetry={load} /> : null}
       {serverFailure ? (

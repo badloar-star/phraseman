@@ -11,6 +11,10 @@ function finiteNumber(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value);
 }
 
+function count(value: unknown): value is number {
+  return finiteNumber(value) && Number.isInteger(value) && value >= 0;
+}
+
 function booleans(value: unknown, keys: readonly string[]): value is RecordValue {
   return record(value) && keys.every((key) => typeof value[key] === 'boolean');
 }
@@ -19,7 +23,7 @@ function booleans(value: unknown, keys: readonly string[]): value is RecordValue
 export function arenaWarmHome(value: unknown): ArenaHomeResponse | null {
   if (!record(value) || value.ok !== true) return null;
   if (!booleans(value.availability, ['enabled', 'quickEnabled', 'rankedEnabled', 'friendEnabled', 'rewardsEnabled', 'spinEnabled'])) return null;
-  if (!record(value.profile) || !finiteNumber(value.profile.rating) || !finiteNumber(value.profile.rank) || !finiteNumber(value.profile.spinsAvailable)) return null;
+  if (!record(value.profile) || !count(value.profile.rating) || !count(value.profile.rank) || !count(value.profile.spinsAvailable)) return null;
   if (value.profile.rankName !== undefined && typeof value.profile.rankName !== 'string') return null;
   return value as ArenaHomeResponse;
 }
@@ -28,8 +32,9 @@ export function arenaWarmHome(value: unknown): ArenaHomeResponse | null {
 export function arenaWarmExpansion(value: unknown): ArenaExpansionHome | null {
   if (!record(value) || value.ok !== true) return null;
   if (!booleans(value.availability, ['today', 'lab', 'ghost', 'rival', 'mastery', 'partner', 'store'])) return null;
-  if (!record(value.wallet) || !finiteNumber(value.wallet.walletStars)) return null;
-  if (!record(value.today) || !finiteNumber(value.today.completedTasks) || typeof value.today.state !== 'string') return null;
+  if (!record(value.wallet) || !count(value.wallet.walletStars)) return null;
+  if (!record(value.today) || !count(value.today.completedTasks)
+    || !['available', 'in_progress', 'complete', 'expired', 'unavailable'].includes(String(value.today.state))) return null;
   return value as ArenaExpansionHome;
 }
 

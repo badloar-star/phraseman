@@ -23,9 +23,14 @@ describe('Arena hub hydration safety', () => {
     expect(arenaWarmHome({})).toBeNull();
     expect(arenaWarmHome({ ...validHome, profile: {} })).toBeNull();
     expect(arenaWarmHome({ ...validHome, availability: { enabled: true } })).toBeNull();
+    expect(arenaWarmHome({ ...validHome, profile: { ...validHome.profile, rating: -1 } })).toBeNull();
+    expect(arenaWarmHome({ ...validHome, profile: { ...validHome.profile, rank: 1.5 } })).toBeNull();
+    expect(arenaWarmHome({ ...validHome, profile: { ...validHome.profile, spinsAvailable: -1 } })).toBeNull();
     expect(arenaWarmHome(validHome)?.profile.rank).toBe(3);
     expect(arenaWarmExpansion({})).toBeNull();
     expect(arenaWarmExpansion({ ...validExpansion, wallet: {} })).toBeNull();
+    expect(arenaWarmExpansion({ ...validExpansion, wallet: { walletStars: -1 } })).toBeNull();
+    expect(arenaWarmExpansion({ ...validExpansion, today: { completedTasks: 0, state: 'garbage' } })).toBeNull();
     expect(arenaWarmExpansion(validExpansion)?.wallet.walletStars).toBe(20);
   });
 
@@ -43,5 +48,6 @@ describe('Arena hub hydration safety', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena.tsx'), 'utf8');
     expect(source).toContain('arenaWarmHome');
     expect(source).toContain('arenaHubRequestGate');
+    expect(source).toContain('quickDisabledHint');
   });
 });

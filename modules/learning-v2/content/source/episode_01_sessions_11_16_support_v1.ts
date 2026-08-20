@@ -48,15 +48,28 @@ function renderMeaning(locale: Locale, english: string): string {
   const negative = /\bnot\b/.test(clean);
   const complement = clean.replace(/^(?:Are you|Am I|You’re|You are|I am)(?: not)?\s*/, '');
   const c = COMPLEMENTS[locale][complement] ?? complement;
-  const neg = negative ? 'not ' : '';
-  if (locale === 'ru') return question ? `${subject === 'I' ? 'Я' : 'Ты'} ${negative ? 'не ' : ''}${c}?` : `${subject === 'I' ? 'Я' : 'Ты'} ${negative ? 'не ' : ''}${c}.`;
-  if (locale === 'uk') return question ? `${subject === 'I' ? 'Я' : 'Ти'} ${negative ? 'не ' : ''}${c}?` : `${subject === 'I' ? 'Я' : 'Ти'} ${negative ? 'не ' : ''}${c}.`;
-  if (locale === 'es') return question ? `¿${negative ? 'No ' : ''}${subject === 'I' ? 'estoy' : 'estás'} ${c}?` : `${negative ? 'No ' : ''}${subject === 'I' ? 'estoy' : 'estás'} ${c}.`;
-  if (locale === 'pt-BR') return question ? `${subject === 'I' ? 'Estou' : 'Você está'} ${negative ? 'não ' : ''}${c}?` : `${subject === 'I' ? 'Eu não estou' : 'Você não está'} ${c}.`;
+  if (locale === 'ru') {
+    if (subject === 'I' && !question && !negative && complement === 'cold') return 'Мне холодно.';
+    if (subject === 'I' && !question && !negative && complement === 'warm') return 'Мне тепло.';
+    return question ? `${subject === 'I' ? 'Я' : 'Ты'} ${negative ? 'не ' : ''}${c}?` : `${subject === 'I' ? 'Я' : 'Ты'} ${negative ? 'не ' : ''}${c}.`;
+  }
+  if (locale === 'uk') {
+    if (subject === 'I' && !question && !negative && complement === 'cold') return 'Мені холодно.';
+    if (subject === 'I' && !question && !negative && complement === 'warm') return 'Мені тепло.';
+    return question ? `${subject === 'I' ? 'Я' : 'Ти'} ${negative ? 'не ' : ''}${c}?` : `${subject === 'I' ? 'Я' : 'Ти'} ${negative ? 'не ' : ''}${c}.`;
+  }
+  if (locale === 'es') return question ? `¿${negative ? 'No ' : ''}${subject === 'I' ? 'estoy' : 'estás'} ${c}?` : negative ? `No ${subject === 'I' ? 'estoy' : 'estás'} ${c}.` : `${subject === 'I' ? 'Estoy' : 'Estás'} ${c}.`;
+  if (locale === 'pt-BR') return question ? `${subject === 'I' ? 'Estou' : 'Você está'} ${negative ? 'não ' : ''}${c}?` : negative ? `${subject === 'I' ? 'Eu não estou' : 'Você não está'} ${c}.` : `${subject === 'I' ? 'Estou' : 'Você está'} ${c}.`;
   if (locale === 'vi') return question ? `${subject === 'I' ? 'Tôi' : 'Bạn'} ${negative ? 'không ' : ''}${c} phải không?` : `${subject === 'I' ? 'Tôi' : 'Bạn'} ${negative ? 'không ' : ''}${c}.`;
   if (locale === 'id') return question ? `Apakah ${subject === 'I' ? 'saya' : 'kamu'} ${negative ? 'tidak ' : ''}${c}?` : `${subject === 'I' ? 'Saya' : 'Kamu'} ${negative ? 'tidak ' : ''}${c}.`;
-  if (locale === 'tr') return question ? `${subject === 'I' ? 'Ben' : 'Sen'} ${c} ${negative ? 'değil ' : ''}${subject === 'I' ? 'miyim' : 'misin'}?` : `${subject === 'I' ? 'Ben' : 'Sen'} ${c}${negative ? ' değil' : ''}.`;
-  return question ? `Czy ${subject === 'I' ? 'jestem' : 'jesteś'} ${negative ? 'nie ' : ''}${c}?` : `${negative ? 'Nie ' : ''}${subject === 'I' ? 'jestem' : 'jesteś'} ${c}.`;
+  if (locale === 'tr') return question ? `${subject === 'I' ? 'Ben' : 'Sen'} ${c} ${negative ? 'değil ' : ''}${turkishQuestionEnding(c, subject === 'I')}?` : `${subject === 'I' ? 'Ben' : 'Sen'} ${c}${negative ? ' değil' : ''}.`;
+  return question ? `Czy ${subject === 'I' ? 'jestem' : 'jesteś'} ${negative ? 'nie ' : ''}${c}?` : `${negative ? 'Nie ' : ''}${subject === 'I' ? 'Jestem' : 'Jesteś'} ${c}.`;
+}
+
+function turkishQuestionEnding(complement: string, firstPerson: boolean): string {
+  const vowel = [...complement].reverse().find((char) => 'aeıioöuü'.includes(char)) ?? 'i';
+  const back = 'aıou'.includes(vowel);
+  return firstPerson ? (back ? 'mıyım' : 'miyim') : (back ? 'mısın' : 'misin');
 }
 
 const DISTRACTORS: Record<string, readonly string[]> = {
@@ -103,8 +116,19 @@ function phraseExplanation(locale: Locale, english: string): string {
 }
 
 function wordReason(locale: Locale, correct: string, alternative: string, english: string): string {
+  const kind = /^(I|You|you)$/u.test(correct) ? 'pronoun' : /^(am|are|Are|Am)$/u.test(correct) ? 'be' : /^(at|in|on|the)$/u.test(correct) ? 'place' : correct === 'not' ? 'negation' : 'meaning';
+  const why: Record<Locale, Record<string, string>> = {
+    ru: { pronoun: 'меняет человека, о котором говорят', be: 'даёт неверную форму связки для этого подлежащего', place: 'ломает готовое сочетание места', negation: 'меняет утверждение и отрицание', meaning: 'называет другой признак или другое место' },
+    uk: { pronoun: 'змінює того, про кого говорять', be: 'дає неправильну форму зв’язки для цього підмета', place: 'ламає готове поєднання місця', negation: 'змінює твердження й заперечення', meaning: 'називає іншу ознаку або інше місце' },
+    es: { pronoun: 'cambia la persona de la que se habla', be: 'da una forma de be incorrecta para ese sujeto', place: 'rompe el complemento de lugar completo', negation: 'cambia entre afirmación y negación', meaning: 'nombra otra cualidad u otro lugar' },
+    'pt-BR': { pronoun: 'muda a pessoa de quem se fala', be: 'dá uma forma de be errada para esse sujeito', place: 'quebra o complemento de lugar completo', negation: 'muda afirmação e negação', meaning: 'nomeia outra característica ou outro lugar' },
+    vi: { pronoun: 'đổi người được nói đến', be: 'dùng dạng be sai cho chủ ngữ này', place: 'làm sai cụm địa điểm hoàn chỉnh', negation: 'đổi câu khẳng định thành phủ định hoặc ngược lại', meaning: 'gọi một đặc điểm hoặc địa điểm khác' },
+    id: { pronoun: 'mengubah orang yang dibicarakan', be: 'memakai bentuk be yang salah untuk subjek ini', place: 'merusak pelengkap tempat yang utuh', negation: 'mengubah pernyataan dan penyangkalan', meaning: 'menyebut sifat atau tempat lain' },
+    tr: { pronoun: 'sözü edilen kişiyi değiştirir', be: 'bu özne için yanlış be biçimini verir', place: 'tam yer ifadesini bozar', negation: 'bildirim ile olumsuzluğu değiştirir', meaning: 'başka bir özellik ya da yer söyler' },
+    pl: { pronoun: 'zmienia osobę, o której mowa', be: 'daje złą formę be dla tego podmiotu', place: 'psuje pełne określenie miejsca', negation: 'zmienia twierdzenie w przeczenie albo odwrotnie', meaning: 'nazywa inną cechę albo miejsce' },
+  };
   const text: Record<Locale, string> = {
-    ru: `«${alternative}» не подходит вместо «${correct}» в «${english}»: изменится человек, форма связки или названное место.`, uk: `«${alternative}» не підходить замість «${correct}» у «${english}»: зміниться особа, форма зв’язки або назване місце.`, es: `«${alternative}» no sirve en lugar de «${correct}» en «${english}»: cambiaría la persona, be o el lugar indicado.`, 'pt-BR': `«${alternative}» não serve no lugar de «${correct}» em «${english}»: mudaria a pessoa, be ou o lugar indicado.`, vi: `«${alternative}» không thay cho «${correct}» trong «${english}»: nó đổi người, dạng be hoặc địa điểm.`, id: `«${alternative}» tidak menggantikan «${correct}» dalam «${english}»: orang, bentuk be, atau tempatnya berubah.`, tr: `«${alternative}», «${english}» içinde «${correct}» yerine gelemez; kişi, be biçimi ya da yer değişir.`, pl: `«${alternative}» nie pasuje zamiast «${correct}» w «${english}»: zmieniłaby się osoba, be albo wskazane miejsce.`,
+    ru: `«${alternative}» не подходит вместо «${correct}» в «${english}», потому что ${why.ru[kind]}.`, uk: `«${alternative}» не підходить замість «${correct}» у «${english}», бо ${why.uk[kind]}.`, es: `«${alternative}» no sirve en lugar de «${correct}» en «${english}» porque ${why.es[kind]}.`, 'pt-BR': `«${alternative}» não serve no lugar de «${correct}» em «${english}» porque ${why['pt-BR'][kind]}.`, vi: `«${alternative}» không thay cho «${correct}» trong «${english}» vì nó ${why.vi[kind]}.`, id: `«${alternative}» tidak menggantikan «${correct}» dalam «${english}» karena ${why.id[kind]}.`, tr: `«${alternative}», «${english}» içinde «${correct}» yerine gelemez; çünkü ${why.tr[kind]}.`, pl: `«${alternative}» nie pasuje zamiast «${correct}» w «${english}», ponieważ ${why.pl[kind]}.`,
   };
   return text[locale];
 }
@@ -128,7 +152,7 @@ function phrase(ordinal: number, index: number, english: string, features: reado
 
 function runs(body: LocalizedSource, targets: readonly string[]): LocalizedIntroRunsSource {
   return Object.fromEntries(LOCALES.map((locale) => {
-    const text = body[locale];
+    const text = body[locale] ?? '';
     const term = targets.find((target) => text.includes(target));
     if (!term) return [ { text, semantic: 'explanation' } ];
     const [before, after] = text.split(term);
@@ -147,6 +171,8 @@ const SESSION_PHRASES: Record<number, readonly string[]> = {
 
 const FEATURES: Record<number, readonly string[]> = { 11: ['copula_be', 'second_person', 'question_inversion'], 12: ['copula_be', 'first_person_singular', 'question_inversion'], 13: ['copula_be', 'second_person', 'contraction_youre', 'negation_not'], 14: ['copula_be', 'first_person_singular', 'second_person', 'place_noun', 'preposition_place'], 15: ['copula_be', 'first_person_singular', 'second_person', 'question_inversion', 'spoken_production'], 16: ['copula_be', 'first_person_singular', 'second_person', 'question_inversion', 'contraction_youre', 'place_noun'] };
 
+SESSION_PHRASES[16] = ['I am here.', 'You are here.', 'Are you here?', 'Am I here?', "You’re here.", 'I am not ready.', 'You are not ready.', 'Are you ready?', 'Am I ready?', "You’re not ready.", 'I am cold.', 'I am warm.', 'Are you on the bus?', 'Am I okay?', "You’re all right."];
+
 const TOPIC: Record<number, Record<Locale, string>> = {
   11: { ru: 'Здесь вы спрашиваете собеседника через Are you, поэтому связка выходит вперёд.', uk: 'Тут ви питаєте співрозмовника через Are you, тому зв’язка виходить уперед.', es: 'Aquí preguntas a la otra persona con Are you, por eso be sale delante.', 'pt-BR': 'Aqui você pergunta à outra pessoa com Are you, por isso be vem primeiro.', vi: 'Ở đây bạn hỏi người đối diện bằng Are you, vì vậy be đứng đầu.', id: 'Di sini kamu bertanya kepada lawan bicara dengan Are you, jadi be berada di depan.', tr: 'Burada karşıdakine Are you ile sorarsınız; bu yüzden be öne gelir.', pl: 'Tutaj pytasz rozmówcę przez Are you, więc be wychodzi na początek.' },
   12: { ru: 'Здесь вопрос направлен на себя: Am I ставит am перед I.', uk: 'Тут запитання спрямоване на себе: Am I ставить am перед I.', es: 'Aquí la pregunta es sobre ti: Am I coloca am antes de I.', 'pt-BR': 'Aqui a pergunta é sobre você: Am I coloca am antes de I.', vi: 'Ở đây câu hỏi nói về chính bạn: Am I đặt am trước I.', id: 'Di sini pertanyaan tentang diri sendiri: Am I menempatkan am sebelum I.', tr: 'Burada soru kendinizledir: Am I, am biçimini I önüne koyar.', pl: 'Tutaj pytanie dotyczy ciebie: Am I stawia am przed I.' },
@@ -156,13 +182,39 @@ const TOPIC: Record<number, Record<Locale, string>> = {
   16: { ru: 'Здесь соединяются знакомые I и you, вопросы, сокращение и места без новой формы.', uk: 'Тут поєднуються знайомі I та you, запитання, скорочення й місця без нової форми.', es: 'Aquí unes I y you conocidos, preguntas, la contracción y lugares sin forma nueva.', 'pt-BR': 'Aqui você junta I e you conhecidos, perguntas, contração e lugares sem forma nova.', vi: 'Ở đây bạn kết hợp I và you quen thuộc, câu hỏi, dạng ngắn và địa điểm mà không có dạng mới.', id: 'Di sini kamu menggabungkan I dan you, pertanyaan, bentuk singkat, dan tempat tanpa bentuk baru.', tr: 'Burada I ve you, sorular, kısa biçim ve yerler yeni bir biçim olmadan birleşir.', pl: 'Tutaj łączysz znane I i you, pytania, skrót i miejsca bez nowej formy.' },
 };
 
+const QUIZ_PROMPT: Record<Locale, (meaning: string) => string> = {
+  ru: (meaning) => `Какая английская фраза значит: «${meaning}»?`, uk: (meaning) => `Яка англійська фраза означає: «${meaning}»?`, es: (meaning) => `¿Qué frase inglesa significa «${meaning}»?`, 'pt-BR': (meaning) => `Qual frase em inglês significa «${meaning}»?`, vi: (meaning) => `Câu tiếng Anh nào có nghĩa là «${meaning}»?`, id: (meaning) => `Kalimat bahasa Inggris mana yang berarti «${meaning}»?`, tr: (meaning) => `Hangi İngilizce cümle «${meaning}» anlamına gelir?`, pl: (meaning) => `Które angielskie zdanie znaczy „${meaning}”?`,
+};
+
+function wrongChoices(english: string): readonly [string, string] {
+  const bare = english.replace(/[?!.]/g, '');
+  if (bare.startsWith('Are you ')) {
+    const rest = bare.slice('Are you '.length);
+    return [`You are ${rest}.`, `Are I ${rest}?`];
+  }
+  if (bare.startsWith('Am I ')) {
+    const rest = bare.slice('Am I '.length);
+    return [`I am ${rest}.`, `Am you ${rest}?`];
+  }
+  if (bare.startsWith('You’re ')) {
+    const rest = bare.slice('You’re '.length);
+    return [`I’m ${rest}.`, rest.startsWith('not ') ? `You’re ${rest.slice(4)}.` : `You’re not ${rest}.`];
+  }
+  if (bare.startsWith('You are ')) {
+    const rest = bare.slice('You are '.length);
+    return [`I am ${rest}.`, `You are not ${rest}.`];
+  }
+  const rest = bare.slice('I am '.length);
+  return [`You are ${rest}.`, `I am not ${rest}.`];
+}
+
 function introBody(locale: Locale, ordinal: number, page: 0 | 1 | 2, target: string): string {
   return `${TOPIC[ordinal][locale]} ${BODY[locale][page]} ${COPY[locale].explain} ${COPY[locale].right} ${target}`;
 }
 
 export function buildEpisode01Session11To16(ordinal: 11 | 12 | 13 | 14 | 15 | 16): SessionSource {
   const target = SESSION_PHRASES[ordinal][0];
-  const title = localized((locale) => `${COPY[locale].title}: ${target}`);
+  const title = localized((locale) => TOPIC[ordinal][locale]);
   const body1 = localized((locale) => introBody(locale, ordinal, 0, target));
   const body2 = localized((locale) => introBody(locale, ordinal, 1, target));
   const body3 = localized((locale) => introBody(locale, ordinal, 2, target));
@@ -172,9 +224,9 @@ export function buildEpisode01Session11To16(ordinal: 11 | 12 | 13 | 14 | 15 | 16
     body,
     bodyRuns: runs(body, [target]),
     question: {
-      prompt: localized((locale) => COPY[locale].choose),
-      choices: [title, localized(() => target), localized(() => SESSION_PHRASES[ordinal][1])],
-      correctChoiceIndex: 1 as const,
+      prompt: localized((locale) => QUIZ_PROMPT[locale](renderMeaning(locale, target))),
+      choices: [localized(() => target), localized(() => wrongChoices(target)[0]), localized(() => wrongChoices(target)[1])],
+      correctChoiceIndex: 0 as const,
       explanation: localized((locale) => `${COPY[locale].right} ${target}. ${COPY[locale].explain}`),
     },
   })) as unknown as SessionSource['introPages'];
@@ -188,7 +240,7 @@ export function buildEpisode01Session11To16(ordinal: 11 | 12 | 13 | 14 | 15 | 16
 
 export function assertAuthoredSessionContract(source: SessionSource, ordinal: number, kind: SessionKind, taught?: string): void {
   expect(source.requiredSessionOrdinal).toBe(ordinal); expect(source.phrases).toHaveLength(15); expect(source.introPages.map((page) => page.kind)).toEqual(['concept', 'formula', 'trap']);
-  source.introPages.forEach((page) => LOCALES.forEach((locale) => { expect(page.title[locale]).toBeTruthy(); expect(page.bodyRuns?.[locale].map((run) => run.text).join('')).toBe(page.body[locale]); }));
+  source.introPages.forEach((page) => LOCALES.forEach((locale) => { expect(page.title[locale]).toBeTruthy(); expect(page.bodyRuns?.[locale]?.map((run) => run.text).join('')).toBe(page.body[locale]); }));
   source.phrases.forEach((item) => { expect(item.words.length).toBeGreaterThan(0); item.words.forEach((word) => expect(new Set(word.distractors.map((entry) => entry.value)).size).toBe(5)); LOCALES.forEach((locale) => expect(item.localizedDetails?.[locale]).toBeDefined()); });
   if (taught) expect(source.phrases.some((item) => item.features.includes(taught))).toBe(true); expect(kind).toBeTruthy();
 }

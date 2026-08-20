@@ -1,9 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 
 import { ArenaProgress, ArenaWalletButton } from '../components/arena/ArenaExpansionUI';
 import { ArenaHubLive } from '../components/arena/ArenaHubLive';
 import { ArenaDailyGoals } from '../components/arena/ArenaDailyGoals';
+import { ArenaConnectionNotice } from '../components/arena/ArenaConnectionNotice';
 import type { ArenaDailyGoals as ArenaDailyGoalsModel } from '../modules/arena/daily_goals';
 import type { ArenaHubModel } from '../modules/arena/hub_view';
 
@@ -26,7 +27,9 @@ jest.mock('../modules/arena/copy', () => ({
   arenaText: (_lang: string, key: string) => key === 'valueUnknown' ? 'Данные пока недоступны'
     : key === 'ranks' ? 'Ранги' : key === 'rankProgress' ? 'До следующего деления'
       : key === 'goalPlay' ? 'Сыграть матчи' : key === 'goalSpeed' ? 'Ответить первым'
-        : key === 'goalAccuracy' ? 'Выиграть матч' : key === 'goalsTitle' ? 'Цели дня' : key,
+        : key === 'goalAccuracy' ? 'Выиграть матч' : key === 'goalsTitle' ? 'Цели дня'
+          : key === 'hubOffline' ? 'Нет подключения' : key === 'hubOfflineHint' ? 'Свежие данные появятся, когда вернётся сеть. Для матча нужна сеть.'
+            : key === 'retry' ? 'Повторить' : key,
 }));
 jest.mock('../modules/arena/expansion_contract', () => ({ ARENA_HUB_SECTIONS: [] }));
 jest.mock('../modules/arena/expansion_copy', () => ({ arenaExpansionText: () => '' }));
@@ -120,5 +123,20 @@ describe('Arena unknown-value rendering', () => {
     await screen.rerender(h(ArenaDailyGoals, { model: { ...goals(2) } }));
     await screen.rerender(h(ArenaDailyGoals, { model: goals(1) }));
     expect(mockPlaySound).toHaveBeenCalledTimes(1);
+  });
+
+  it('announces the localized offline notice and retries on request', async () => {
+    const onRetry = jest.fn();
+    const screen = await render(h(ArenaConnectionNotice, { onRetry }));
+    const retry = screen.getByRole('button', { name: 'Повторить' });
+
+    expect(screen.getByTestId('arena-hub-offline').props.accessibilityLiveRegion).toBe('polite');
+    expect(screen.getByText('Нет подключения')).toBeTruthy();
+    expect(screen.getByText('Свежие данные появятся, когда вернётся сеть. Для матча нужна сеть.')).toBeTruthy();
+    expect(screen.getByText('Повторить').props.style).toEqual(expect.arrayContaining([
+      expect.objectContaining({ color: '#111' }),
+    ]));
+    fireEvent.press(retry);
+    expect(onRetry).toHaveBeenCalledTimes(1);
   });
 });

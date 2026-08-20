@@ -118,6 +118,9 @@ describe("Learning V2 direct session learner child contracts", () => {
     expect(parsed.questionPolicy).toBe(
       "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
     );
+    expect(
+      parsed.pages.every((page) => !("bodyRunsByLocale" in page)),
+    ).toBe(true);
     expect(JSON.stringify(parsed)).not.toMatch(
       /correct|accepted|answerKey|salt|commitment/iu,
     );

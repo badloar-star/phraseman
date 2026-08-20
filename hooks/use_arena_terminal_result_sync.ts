@@ -31,7 +31,7 @@ export function useArenaTerminalResultSync<Response>(input: Readonly<{
     return () => { mountedRef.current = false; };
   }, []);
 
-  const scopeKey = `${active ? 'active' : 'inactive'}:${accountKey}:${matchId ?? ''}`;
+  const scopeKey = `${accountKey}:${matchId ?? ''}`;
   const currentScopeRef = useRef(scopeKey);
   currentScopeRef.current = scopeKey;
   const requestedRef = useRef(new Set<string>());

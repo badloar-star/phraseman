@@ -110,6 +110,31 @@ describe('Arena terminal private-sync hook lifecycle', () => {
     expect(accepted).not.toHaveBeenCalled();
   });
 
+  it('accepts an already-dispatched response while inactive without foreground recovery', async () => {
+    const pending = deferred<string>();
+    const request = jest.fn(() => pending.promise);
+    const accepted = jest.fn();
+    type Props = Readonly<{ active: boolean }>;
+    const hook = await renderHook((props: Props) => useArenaTerminalResultSync({
+      active: props.active,
+      matchId: 'm1',
+      accountKey: 'A:1',
+      terminalSyncVersion: 5,
+      request,
+      onRequested: jest.fn(),
+      onResolved: accepted,
+    }), { initialProps: { active: true }, wrapper: strictWrapper });
+    await act(async () => { await Promise.resolve(); });
+    expect(request).toHaveBeenCalledTimes(1);
+
+    await hook.rerender({ active: false });
+    await act(async () => { pending.resolve('private'); await pending.promise; });
+
+    expect(accepted).toHaveBeenCalledTimes(1);
+    expect(accepted).toHaveBeenCalledWith('private');
+    expect(request).toHaveBeenCalledTimes(1);
+  });
+
   it.each([
     ['match', { matchId: 'm2', accountKey: 'A:1' }],
     ['account', { matchId: 'm1', accountKey: 'B:2' }],

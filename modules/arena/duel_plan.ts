@@ -293,17 +293,6 @@ export const ARENA_ACCEPT_WINDOW_MS = 12_000;
 /** Пауза между попытками войти в матч, пока второй игрок ещё не принял. */
 export const ARENA_ACCEPT_RETRY_MS = 1_200;
 
-/**
- * Сколько серверного отсчёта оставить после уже проигранной части заставки.
- * Поиск заканчивается столкновением сразу; принятие дуэли и загрузка плана
- * идут параллельно и не имеют права добавлять отдельный экран ожидания.
- */
-export function arenaEntryCountdownRemainingMs(countdownMs: number, introElapsedMs: number): number {
-  const countdown = Number.isFinite(countdownMs) ? Math.max(0, Math.trunc(countdownMs)) : 0;
-  const elapsed = Number.isFinite(introElapsedMs) ? Math.max(0, Math.trunc(introElapsedMs)) : 0;
-  return Math.max(0, countdown - elapsed);
-}
-
 export type ArenaEntryStep = 'accept' | 'plan' | 'give_up';
 
 /**

@@ -1,4 +1,4 @@
-import { starterAvatarDNA } from '../modules/avatar-dna/catalog';
+import { avatarCatalog, starterAvatarDNA } from '../modules/avatar-dna/catalog';
 import { resolveAvatarDNA } from '../modules/avatar-dna/resolver';
 
 describe('Avatar DNA resolver', () => {
@@ -13,7 +13,7 @@ describe('Avatar DNA resolver', () => {
   it('resolves a hood without changing the stored hair choice', () => {
     const chosen = starterAvatarDNA('starter_warm_01');
     const withHood = { ...chosen, hair: { ...chosen.hair, styleId: 'hair_wavy_01' }, wearables: { ...chosen.wearables, headwearId: 'headwear.assassin_hood.01' } };
-    const resolved = resolveAvatarDNA(withHood);
+    const resolved = resolveAvatarDNA(withHood, avatarCatalog);
 
     expect(resolved.chosenDNA).toEqual(withHood);
     expect(resolved.chosenDNA).not.toBe(withHood);
@@ -25,13 +25,22 @@ describe('Avatar DNA resolver', () => {
 
   it('restores the stored hair choice when the hood is removed', () => {
     const starter = starterAvatarDNA('starter_warm_01');
-    const resolved = resolveAvatarDNA({ ...starter, hair: { ...starter.hair, styleId: 'hair_wavy_01' } });
+    const resolved = resolveAvatarDNA({ ...starter, hair: { ...starter.hair, styleId: 'hair_wavy_01' } }, avatarCatalog);
     expect(resolved.effectiveDNA.hair.styleId).toBe('hair_wavy_01');
     expect(resolved.visibilityPlan.hiddenSlots).not.toContain('hair.front');
   });
 
   it('fails closed for unknown selected items', () => {
     const starter = starterAvatarDNA('starter_warm_01');
-    expect(() => resolveAvatarDNA({ ...starter, hair: { ...starter.hair, styleId: 'hair_unknown' } })).toThrow('avatar_catalog_invalid');
+    expect(() => resolveAvatarDNA({ ...starter, hair: { ...starter.hair, styleId: 'hair_unknown' } }, avatarCatalog)).toThrow('avatar_catalog_invalid');
+  });
+
+  it('rejects a cyclic untrusted catalog and keeps parsed catalog immutable', () => {
+    const cyclic = JSON.parse(JSON.stringify(require('../config/avatar-dna/catalog.v1.json')));
+    cyclic.items[0].conflicts = [cyclic.items[1].id];
+    cyclic.items[1].conflicts = [cyclic.items[0].id];
+    expect(() => resolveAvatarDNA(starterAvatarDNA('starter_warm_01'), cyclic)).toThrow('avatar_manifest_cycle');
+    expect(() => { (avatarCatalog.items[0] as { id: string }).id = 'evil'; }).toThrow();
+    expect(avatarCatalog.items[0].id).toBe('skin_03');
   });
 });

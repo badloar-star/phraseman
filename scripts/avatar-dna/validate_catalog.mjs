@@ -12,19 +12,20 @@ const slots = new Set(['background','outfit.back','hood.back','hair.back','body'
 const ids = /^[a-z][a-z0-9_.-]{1,79}$/; const fileSafe = /^[a-z0-9][a-z0-9_.-]*\.webp$/;
 const anchorNames = ['headTop','templeLeft','templeRight','eyeLineLeft','eyeLineRight','noseBridge','noseTip','mouthCenter','chin','earLeft','earRight','neckCenter','shoulderLeft','shoulderRight','torsoCenter'];
 const point = (p) => Array.isArray(p) && p.length === 2 && p.every((n) => typeof n === 'number' && n >= 0 && n <= 1);
+const exact = (value, keys) => value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === keys.length && keys.every((key) => Object.hasOwn(value, key));
 const json = (path) => { try { return JSON.parse(readFileSync(path, 'utf8')); } catch { fail('invalid json'); } };
 
 export async function validateCatalog(catalog, rig, { fixture = false, root = process.cwd() } = {}) {
-  if (!catalog || catalog.catalogVersion !== 1 || catalog.manifestVersion !== 1 || !Array.isArray(catalog.rigIds) || !catalog.rigIds.includes('human_v1')) fail('catalog version or rig');
-  if (!rig || rig.rigId !== 'human_v1' || !rig.canvas || rig.canvas.width !== 2048 || rig.canvas.height !== 2048 || !rig.runtime || rig.runtime.width !== 512 || rig.runtime.height !== 512 || !rig.portrait || rig.portrait.width !== 256 || rig.portrait.height !== 256 || !rig.thumbnail || rig.thumbnail.width !== 192 || rig.thumbnail.height !== 192) fail('wrong dimensions');
+  if (!exact(catalog, ['catalogVersion','manifestVersion','rigIds','items']) || catalog.catalogVersion !== 1 || catalog.manifestVersion !== 1 || !Array.isArray(catalog.rigIds) || catalog.rigIds.length !== 1 || catalog.rigIds[0] !== 'human_v1') fail('catalog version or rig');
+  if (!exact(rig, ['rigId','canvas','runtime','portrait','thumbnail','anchors','safePolygons','portraitCrop','studioCrop']) || rig.rigId !== 'human_v1' || !exact(rig.canvas, ['width','height']) || rig.canvas.width !== 2048 || rig.canvas.height !== 2048 || !exact(rig.runtime, ['width','height']) || rig.runtime.width !== 512 || rig.runtime.height !== 512 || !exact(rig.portrait, ['width','height']) || rig.portrait.width !== 256 || rig.portrait.height !== 256 || !exact(rig.thumbnail, ['width','height']) || rig.thumbnail.width !== 192 || rig.thumbnail.height !== 192) fail('wrong dimensions');
   if (!rig.anchors || anchorNames.length !== Object.keys(rig.anchors).length || anchorNames.some((name) => !point(rig.anchors[name])) || !rig.safePolygons || !['face.safe','head.safe'].every((name) => Array.isArray(rig.safePolygons[name]) && rig.safePolygons[name].length >= 3 && rig.safePolygons[name].every(point)) || !point(rig.portraitCrop?.slice(0, 2)) || !Array.isArray(rig.portraitCrop) || rig.portraitCrop.length !== 4 || !rig.portraitCrop.every((n) => typeof n === 'number' && n >= 0 && n <= 1) || !Array.isArray(rig.studioCrop) || rig.studioCrop.length !== 4 || !rig.studioCrop.every((n) => typeof n === 'number' && n >= 0 && n <= 1)) fail('invalid rig geometry');
   if (!Array.isArray(catalog.items)) fail('items'); const itemIds = new Set(); const layerIds = new Set();
   for (const item of catalog.items) {
-    if (!item || !ids.test(item.id) || itemIds.has(item.id) || !Array.isArray(item.rigIds) || !item.rigIds.includes(rig.rigId) || !item.entitlement || !['starter','purchase','reward'].includes(item.entitlement.kind)) fail('item or entitlement'); itemIds.add(item.id);
+    if (!exact(item, ['id','assetVersion','rigIds','category','entitlement','layers','occludes','conflicts','restoresOnRemove']) || !ids.test(item.id) || itemIds.has(item.id) || item.assetVersion !== 1 || !Array.isArray(item.rigIds) || item.rigIds.length === 0 || item.rigIds.some((id) => id !== rig.rigId) || !['base','face','hair','look','scene'].includes(item.category) || !exact(item.entitlement, typeof item.entitlement?.rarity === 'string' ? ['kind','rarity'] : ['kind']) || !['starter','purchase','reward'].includes(item.entitlement.kind) || typeof item.restoresOnRemove !== 'boolean') fail('item or entitlement'); itemIds.add(item.id);
     if (!Array.isArray(item.layers) || !Array.isArray(item.occludes) || !Array.isArray(item.conflicts)) fail('item arrays');
     if (item.occludes.some((slot) => !slots.has(slot)) || item.conflicts.some((id) => !ids.test(id))) fail('unknown slot or conflict');
     for (const layer of item.layers) {
-      if (!layer || !ids.test(layer.id) || layerIds.has(layer.id) || !slots.has(layer.slot) || !Number.isInteger(layer.z) || layer.z < 0 || layer.z > 179 || typeof layer.file !== 'string' || !fileSafe.test(layer.file) || isAbsolute(layer.file) || layer.file.includes('\\') || layer.file.includes('..') || layer.file.includes('://')) fail('unsafe or invalid layer'); layerIds.add(layer.id);
+      if (!exact(layer, typeof layer?.clip === 'string' ? ['id','slot','z','file','clip'] : ['id','slot','z','file']) || !ids.test(layer.id) || layerIds.has(layer.id) || !slots.has(layer.slot) || !Number.isInteger(layer.z) || layer.z < 0 || layer.z > 179 || typeof layer.file !== 'string' || !fileSafe.test(layer.file) || isAbsolute(layer.file) || layer.file.includes('\\') || layer.file.includes('..') || layer.file.includes('://') || (layer.clip !== undefined && !Object.hasOwn(rig.safePolygons, layer.clip))) fail('unsafe or invalid layer'); layerIds.add(layer.id);
       if (!fixture) {
         const imagePath = resolve(root, 'assets', 'avatar-dna', layer.file); const assetRoot = resolve(root, 'assets', 'avatar-dna') + sep;
         if (!imagePath.startsWith(assetRoot) || !existsSync(imagePath)) fail('missing runtime file');
@@ -34,6 +35,7 @@ export async function validateCatalog(catalog, rig, { fixture = false, root = pr
       }
     }
   }
+  const required = ['skin_03','face_01','body_01','eyes_01','iris_brown','brows_01','nose_01','mouth_01','hair_01','hair_brown','outfit_01','background_cream','hair_wavy_01','headwear.assassin_hood.01']; if (catalog.items.length === 0 || required.some((id) => !itemIds.has(id))) fail('required inventory');
   const edges = new Map(catalog.items.map((item) => [item.id, item.conflicts.filter((id) => itemIds.has(id))])); const visiting = new Set(); const visited = new Set();
   const visit = (id) => { if (visiting.has(id)) fail('avatar_manifest_cycle'); if (visited.has(id)) return; visiting.add(id); for (const next of edges.get(id) ?? []) visit(next); visiting.delete(id); visited.add(id); };
   for (const id of itemIds) visit(id);

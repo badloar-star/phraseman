@@ -9,7 +9,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 
 type ArenaDisplayedPlayer = Omit<ArenaPlayer, 'score'> & Readonly<{ score: number | null }>;
 
-function Player({ player, active, animateScore }: { player?: ArenaDisplayedPlayer; active: boolean; animateScore: boolean }) {
+function Player({ player, active, animateScore, compact }: { player?: ArenaDisplayedPlayer; active: boolean; animateScore: boolean; compact: boolean }) {
   const P = useTournamentPalette();
   const reduceMotion = useReduceMotion();
   const knownScore = typeof player?.score === 'number' ? player.score : null;
@@ -20,9 +20,9 @@ function Player({ player, active, animateScore }: { player?: ArenaDisplayedPlaye
    * десять точек — узнаётся он и меньшим, а имя соперника читать надо.
    */
   const { width } = useWindowDimensions();
-  const avatarSize = width < 360 ? 34 : 44;
+  const avatarSize = compact || width < 360 ? 34 : 44;
   return (
-    <View style={styles.player}>
+    <View style={[styles.player, compact ? styles.playerCompact : null]}>
       <AvatarView avatar={player?.avatar} auraId={player?.aura} size={avatarSize} animateAura={false} ownerActive={active} />
       <View style={styles.copy}>
         {/* Длинное имя обязано обрезаться многоточием, а не выталкивать счёт
@@ -38,20 +38,22 @@ function Player({ player, active, animateScore }: { player?: ArenaDisplayedPlaye
   );
 }
 
-export function ArenaPlayers({ players, active, animateScore = false }: { players: readonly ArenaDisplayedPlayer[]; active: boolean; animateScore?: boolean }) {
+export function ArenaPlayers({ players, active, animateScore = false, compact = false }: { players: readonly ArenaDisplayedPlayer[]; active: boolean; animateScore?: boolean; compact?: boolean }) {
   const P = useTournamentPalette();
   return (
-    <View style={[styles.root, { backgroundColor: P.elev }]}>
-      <Player player={players[0]} active={active} animateScore={animateScore} />
+    <View style={[styles.root, compact ? styles.rootCompact : null, { backgroundColor: P.elev }]}>
+      <Player player={players[0]} active={active} animateScore={animateScore} compact={compact} />
       <Text accessibilityElementsHidden style={[styles.vs, { color: P.accent }]}>VS</Text>
-      <Player player={players[1]} active={active} animateScore={animateScore} />
+      <Player player={players[1]} active={active} animateScore={animateScore} compact={compact} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   root: { minHeight: 86, borderRadius: 22, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, gap: 8 },
-  player: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: 7, minWidth: 0 },
+  rootCompact: { minHeight: 60, borderRadius: 18, paddingHorizontal: 10, gap: 6 },
+  player: { minHeight: 48, flex: 1, flexDirection: 'row', alignItems: 'center', gap: 7, minWidth: 0 },
+  playerCompact: { gap: 5 },
   copy: { flex: 1, minWidth: 0 },
   name: { fontSize: 14, fontWeight: '800' },
   vs: { fontSize: 13, fontWeight: '900' },

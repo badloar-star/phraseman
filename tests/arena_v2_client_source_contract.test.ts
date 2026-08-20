@@ -153,7 +153,7 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(copy).not.toContain('Тренировочный соперник');
     expect(copy).toContain('Без рейтинга и наград');
     const matchSource = fs.readFileSync(path.join(ROOT, 'app/arena_match.tsx'), 'utf8');
-    expect(matchSource).toContain('<ArenaPlayers players={players} active={active} animateScore />');
+    expect(matchSource).toContain('<ArenaPlayers compact={immersive} players={players} active={active} animateScore />');
     expect(matchSource).not.toContain('isBot');
     expect(matchSource).not.toContain("arenaText(lang, 'bot')");
     expect(fs.readFileSync(path.join(ROOT, 'app/arena_friend_duel.tsx'), 'utf8')).toContain("arenaText(lang, 'friendHint')");

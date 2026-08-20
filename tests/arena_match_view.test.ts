@@ -771,6 +771,50 @@ describe('до любого варианта ответа можно дотян�
   });
 });
 
+describe('пары и конструктор занимают оставшееся поле', () => {
+  const question = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaQuestion.tsx'), 'utf8');
+  const match = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+  const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[];
+
+  it('даёт короткую инструкцию на всех восьми языках', () => {
+    for (const lang of langs) {
+      expect(arenaText(lang, 'matchInstruction').trim()).not.toBe('');
+      expect(arenaText(lang, 'builderInstruction').trim()).not.toBe('');
+    }
+  });
+
+  it('immersive-ветки не завёрнуты в V2Card и растут по высоте', () => {
+    const matchingBranch = question.slice(
+      question.indexOf("if (view.type === 'matching')"),
+      question.indexOf("if (view.type === 'builder')"),
+    );
+    const builderBranch = question.slice(
+      question.indexOf("if (view.type === 'builder')"),
+      question.indexOf('const selected = choice !== null'),
+    );
+    expect(matchingBranch).toContain('style={styles.immersive}');
+    expect(builderBranch).toContain('style={styles.immersive}');
+    expect(matchingBranch).not.toContain('<V2Card');
+    expect(builderBranch).not.toContain('<V2Card');
+    expect(question).toContain('immersive: { flex: 1');
+  });
+
+  it('кнопка конструктора остаётся вне его ScrollView, а фишки не мельче 44 pt', () => {
+    const builderStart = question.indexOf("if (view.type === 'builder')");
+    const builderEnd = question.indexOf('const selected = choice !== null');
+    const builderBranch = question.slice(builderStart, builderEnd);
+    expect(builderBranch.indexOf('</ScrollView>')).toBeGreaterThan(0);
+    expect(builderBranch.indexOf('<V2Cta')).toBeGreaterThan(builderBranch.indexOf('</ScrollView>'));
+    const touchHeight = Number(/touchChip:\s*\{\s*minHeight:\s*(\d+)/.exec(question)?.[1]);
+    expect(touchHeight).toBeGreaterThanOrEqual(44);
+  });
+
+  it('компактный блок игроков включается только для immersive-заданий', () => {
+    expect(match).toContain('const immersive = hud?.mode ? arenaQuestionLayout(hud.mode).immersive : false;');
+    expect(match).toContain('compact={immersive}');
+  });
+});
+
 /**
  * Крупный системный шрифт растягивает шапку матча: имя соперника и оговорка
  * про связь обязаны оставаться в пределах одной-двух строк, иначе шапка

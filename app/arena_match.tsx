@@ -33,6 +33,7 @@ import {
   type ArenaMatchPlanWire,
 } from '../modules/arena/duel_plan';
 import { arenaAwardLines, arenaMatchHud } from '../modules/arena/match_view';
+import { arenaQuestionLayout } from '../modules/arena/question_layout';
 import { useArenaLocalMatch } from '../hooks/use_arena_local_match';
 import {
   arenaClosedTicks,
@@ -380,6 +381,7 @@ export default function ArenaMatchScreen() {
 
   const ownScore = hud?.matchStars ?? 0;
   const rivalScore = hud?.opponentMatchStars ?? null;
+  const immersive = hud?.mode ? arenaQuestionLayout(hud.mode).immersive : false;
   const playerIdentities: readonly ArenaPlayer[] = useMemo(() => {
     if (!plan) return [];
     const you: ArenaPlayer = {
@@ -560,23 +562,25 @@ export default function ArenaMatchScreen() {
       scroll={false}
       onBack={confirmForfeit}
     >
-      <ArenaPlayers players={players} active={active} animateScore />
+      <ArenaPlayers compact={immersive} players={players} active={active} animateScore />
       <V2Segments total={hud.taskCount} done={Math.max(0, hud.taskOrdinal - 1)} />
 
       {hud.task ? (
         <Animated.View
           key={hud.task.taskId}
-          entering={reduceMotion ? FadeIn.duration(120) : SlideInRight.duration(v2motion.taskSwapMs)}
+          entering={immersive ? undefined : reduceMotion ? FadeIn.duration(120) : SlideInRight.duration(v2motion.taskSwapMs)}
           style={styles.question}
         >
           <View style={styles.hudRow}>
             {hud.timer ? (
-              <ArenaTimerRing
-                durationMs={hud.timer.durationMs}
-                elapsedMs={hud.timer.elapsedMs}
-                paused={!active}
-              />
-            ) : <View style={styles.timerHole} />}
+                  <ArenaTimerRing
+                    durationMs={hud.timer.durationMs}
+                    elapsedMs={hud.timer.elapsedMs}
+                    size={immersive ? 62 : 84}
+                    stroke={immersive ? 6 : 7}
+                    paused={!active}
+                  />
+                ) : <View style={[styles.timerHole, immersive ? styles.timerHoleCompact : null]} />}
             <View style={styles.hudSide}>
               <ArenaComboMeter streak={hud.combo.streak} bonusLabel={`+1★`} size="compact" />
               {/* Индикатор соперника. Владелец: загорается СРАЗУ, как тот ответил. */}
@@ -689,6 +693,7 @@ const styles = StyleSheet.create({
   hudRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   hudSide: { flex: 1, alignItems: 'flex-end', gap: 6 },
   timerHole: { width: 84, height: 84 },
+  timerHoleCompact: { width: 62, height: 62 },
   rival: { fontSize: 13, fontWeight: '800' },
   awardBox: { gap: 2, alignItems: 'center' },
   awardHead: { fontSize: 20, fontWeight: '900' },

@@ -7,6 +7,9 @@ import { adaptArenaTask, encodeArenaSelection } from '../../modules/arena/task_a
 import type { ArenaPublicTask } from '../../modules/arena/contract';
 import { useArenaFontScale } from '../../hooks/use_arena_font_scale';
 import { useArenaSound } from '../../hooks/use_arena_sound';
+import { arenaQuestionLayout } from '../../modules/arena/question_layout';
+import { useLang } from '../LangContext';
+import { arenaText } from '../../modules/arena/copy';
 
 type Props = Readonly<{
   task: ArenaPublicTask;
@@ -20,6 +23,7 @@ type Props = Readonly<{
 
 export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, onSpeedAttempt, onMatchingComplete }: Props) {
   const P = useTournamentPalette();
+  const { lang } = useLang();
   // Высота строки числом не растёт вместе с системным шрифтом — сам вопрос
   // при полуторном кегле наезжал строка на строку. См. use_arena_font_scale.
   const fontScale = useArenaFontScale();
@@ -30,6 +34,8 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
   const playSound = useArenaSound();
   const promptStyle = { color: P.text, lineHeight: 29 * fontScale };
   const view = useMemo(() => adaptArenaTask(task), [task]);
+  const layout = arenaQuestionLayout(view.mode);
+  const instruction = layout.instructionKey ? arenaText(lang, layout.instructionKey) : null;
   const [choice, setChoice] = useState<number | null>(null);
   const [tokens, setTokens] = useState<number[]>([]);
   const [left, setLeft] = useState<number | null>(null);
@@ -46,12 +52,29 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
 
   if (view.type === 'matching') {
     return (
-      <V2Card style={styles.card}>
-        <Text style={[styles.prompt, promptStyle]}>{view.prompt}</Text>
+      <View style={styles.immersive}>
+        <Text style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</Text>
+        {instruction ? (
+          <>
+            {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- the approved immersive instruction is intentionally capped at two wrapped lines */}
+            <Text accessibilityLiveRegion="polite" numberOfLines={2}
+              style={[styles.instruction, { color: P.muted }]}
+            >
+              {instruction}
+            </Text>
+          </>
+        ) : null}
         <View style={styles.matchGrid}>
           <View style={styles.column}>
             {view.left.map((item, index) => (
-              <V2Chip key={`${item}-${index}`} selected={left === index} disabled={locked || matchedLeft.has(index)} onPress={() => setLeft(index)}>
+              <V2Chip
+                key={`${item}-${index}`}
+                style={styles.touchChip}
+                selected={left === index}
+                disabled={locked || matchedLeft.has(index)}
+                accessibilityLabel={item}
+                onPress={() => setLeft(index)}
+              >
                 {matchedLeft.has(index)
                   ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><Text numberOfLines={2} ellipsizeMode="tail" style={[styles.matchedText, { color: P.text }]}>{item}</Text></View>
                   // Длинное слово на доске пар не должно растягивать колонку:
@@ -64,7 +87,9 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
             {view.right.map((item, index) => (
               <V2Chip
                 key={`${item}-${index}`}
+                style={styles.touchChip}
                 disabled={locked || left === null || matchedRight.has(index)}
+                accessibilityLabel={item}
                 onPress={() => {
                   if (left === null) return;
                   const pairIndex = left;
@@ -87,15 +112,72 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
             ))}
           </View>
         </View>
-      </V2Card>
+      </View>
     );
   }
 
-  const selected = view.type === 'choices' ? choice !== null : tokens.length > 0;
+  if (view.type === 'builder') {
+    const selected = tokens.length > 0;
+    return (
+      <View style={styles.immersive}>
+        <Text style={[styles.prompt, styles.promptImmersive, promptStyle]}>{view.prompt}</Text>
+        {instruction ? (
+          <>
+            {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- the approved immersive instruction is intentionally capped at two wrapped lines */}
+            <Text accessibilityLiveRegion="polite" numberOfLines={2}
+              style={[styles.instruction, { color: P.muted }]}
+            >
+              {instruction}
+            </Text>
+          </>
+        ) : null}
+        <View style={[styles.answerTray, { backgroundColor: P.elev }]}>
+          {tokens.map((index, tokenIndex) => (
+            <V2Chip
+              key={`${index}-${tokenIndex}`}
+              style={styles.touchChip}
+              accessibilityLabel={view.tokens[index]}
+              onPress={() => !locked && setTokens((old) => old.filter((_, itemIndex) => itemIndex !== tokenIndex))}
+            >
+              {view.tokens[index]}
+            </V2Chip>
+          ))}
+        </View>
+        <ScrollView
+          style={styles.builderScroll}
+          contentContainerStyle={styles.builder}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+        >
+          <View style={styles.tokenCloud}>
+            {view.tokens.map((token, index) => (
+              <V2Chip
+                key={`${token}-${index}`}
+                style={styles.touchChip}
+                disabled={locked || tokens.includes(index)}
+                accessibilityLabel={token}
+                onPress={() => setTokens((old) => [...old, index])}
+              >
+                {token}
+              </V2Chip>
+            ))}
+          </View>
+        </ScrollView>
+        <V2Cta
+          disabled={!selected || locked}
+          onPress={() => onSubmit(encodeArenaSelection(view, tokens))}
+        >
+          {submitLabel}
+        </V2Cta>
+      </View>
+    );
+  }
+
+  const selected = choice !== null;
   return (
     <V2Card style={styles.card}>
       <Text style={[styles.prompt, promptStyle]}>{view.prompt}</Text>
-      {view.type === 'choices' ? (
+      {(
         /**
          * Варианты прокручиваются, если не помещаются.
          *
@@ -130,28 +212,6 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
             );
           })}
         </ScrollView>
-      ) : (
-        /**
-         * Поднос ответа и банк слов прокручиваются ВМЕСТЕ, а кнопка отправки
-         * остаётся снаружи. Иначе при длинных словах банк вырастал и выдавливал
-         * кнопку за край: игрок собрал перевод и не мог его отправить — то есть
-         * терял задание, сделав всё правильно.
-         */
-        <ScrollView
-          style={styles.optionsScroll}
-          contentContainerStyle={styles.builder}
-          showsVerticalScrollIndicator={false}
-          bounces={false}
-        >
-          <View style={[styles.answerTray, { backgroundColor: P.elev }]}>
-            {tokens.map((index) => <V2Chip key={`${index}-${tokens.indexOf(index)}`} onPress={() => !locked && setTokens((old) => old.filter((_, i) => i !== old.indexOf(index)))}>{view.tokens[index]}</V2Chip>)}
-          </View>
-          <View style={styles.tokenCloud}>
-            {view.tokens.map((token, index) => (
-              <V2Chip key={`${token}-${index}`} disabled={locked || tokens.includes(index)} onPress={() => setTokens((old) => [...old, index])}>{token}</V2Chip>
-            ))}
-          </View>
-        </ScrollView>
       )}
       <V2Cta
         disabled={!selected || locked}
@@ -163,17 +223,22 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
 
 const styles = StyleSheet.create({
   card: { gap: 16 },
+  immersive: { flex: 1, minHeight: 0, gap: 10 },
   // Высота строки задаётся на месте: она умножается на системный масштаб.
   prompt: { fontSize: 22, fontWeight: '900', textAlign: 'center' },
+  promptImmersive: { fontSize: 19 },
+  instruction: { fontSize: 13, fontWeight: '700', lineHeight: 18, textAlign: 'center' },
   options: { gap: 10 },
   // Прокрутка занимает только то место, что осталось: таймер и счёт выше
   // остаются на экране при любой длине вариантов.
   optionsScroll: { flexShrink: 1 },
+  builderScroll: { flex: 1, minHeight: 0 },
   builder: { gap: 12 },
   answerTray: { minHeight: 68, borderRadius: 18, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 7, padding: 10 },
   tokenCloud: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, justifyContent: 'center' },
-  matchGrid: { flexDirection: 'row', gap: 10 },
-  column: { flex: 1, gap: 8 },
+  matchGrid: { flex: 1, minHeight: 0, flexDirection: 'row', gap: 10 },
+  column: { flex: 1, gap: 8, justifyContent: 'space-between' },
+  touchChip: { minHeight: 48 },
   matched: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   // Отгаданная пара стоит в строке рядом со значком. Без сжатия длинное слово
   // на экране в 320 pt вылезало за край фишки: колонка узкая, а строка в ряду

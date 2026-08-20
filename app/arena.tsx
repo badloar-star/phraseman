@@ -79,10 +79,9 @@ export default function ArenaHubScreen() {
   const expansion = expansionSlot.value;
 
   const load = useCallback(() => {
-    setBaseFailure(null);
-    setExpansionFailure(null);
     void arenaV2Home().then((response) => {
       setHomeSlot(arenaHubCurrent(response));
+      setBaseFailure(null);
       arenaRememberHomeWarm({ home: response, wallNowMs: Date.now(), store: warmStore });
     }).catch((e: unknown) => {
       const failure = arenaHubFailure(e);
@@ -91,6 +90,7 @@ export default function ArenaHubScreen() {
     });
     void arenaExpansionHome().then((response) => {
       setExpansionSlot(arenaHubCurrent(response));
+      setExpansionFailure(null);
       arenaRememberHomeWarm({ expansion: response, wallNowMs: Date.now(), store: warmStore });
     }).catch((e: unknown) => {
       const failure = arenaHubFailure(e);
@@ -238,7 +238,9 @@ export default function ArenaHubScreen() {
     >
     <ArenaScreen
       title={arenaText(lang, 'title')}
-      subtitle={home?.profile.rankName ?? '—'}
+      subtitle={home
+        ? home.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home.profile.rank ?? 0) + 1}`
+        : '—'}
       onBack={() => router.replace('/(tabs)/home' as never)}
       headerRight={<ArenaWalletButton label={arenaExpansionText(lang, 'wallet')} balance={expansion ? expansion.wallet.walletStars : null} disabled={!baseEnabled || !expansion?.availability.store} onPress={() => router.push('/arena_star_wallet' as never)} />}
     >

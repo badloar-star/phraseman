@@ -160,7 +160,11 @@ describe('экран Арены пользуется снимком', () => {
     expect(source).toContain('<ArenaHubLive model={hub} />');
     expect(source).toContain('<ArenaDailyGoals model={hub.goals} />');
     expect(source).toContain('value={today?.completedTasks ?? null}');
-    expect(source).toContain("subtitle={home?.profile.rankName ?? '—'}");
+    expect(source).toContain("? home.profile.rankName ?? `${arenaText(lang, 'ranks')} ${(home.profile.rank ?? 0) + 1}`");
+    expect(source).toContain(": '—'}");
+    expect(source).not.toMatch(/\{\s*home\s*\?\s*<ArenaHubLive/);
+    expect(source).not.toMatch(/\{\s*home\s*\?\s*<ArenaDailyGoals/);
+    expect(source).not.toMatch(/\{\s*today\s*\?\s*<V2Card/);
   });
 
   it('сетевой сбой показывает компактное офлайн-сообщение, а серверный — прежнюю карточку', () => {
@@ -169,6 +173,12 @@ describe('экран Арены пользуется снимком', () => {
     expect(source).toContain("baseFailure?.kind === 'offline'");
     expect(source).toContain("baseFailure?.kind === 'server'");
     expect(source).toContain("expansionFailure?.kind === 'server'");
+  });
+
+  it('повтор не скрывает отказ, пока его не сменит успешный ответ', () => {
+    expect(source).not.toContain('setBaseFailure(null);\n    setExpansionFailure(null);');
+    expect(source).toMatch(/arenaV2Home\(\)\.then\(\(response\) => \{\s+setHomeSlot\(arenaHubCurrent\(response\)\);\s+setBaseFailure\(null\);/s);
+    expect(source).toMatch(/arenaExpansionHome\(\)\.then\(\(response\) => \{\s+setExpansionSlot\(arenaHubCurrent\(response\)\);\s+setExpansionFailure\(null\);/s);
   });
 
   it('погашенные кнопки объяснены, а не молчат', () => {

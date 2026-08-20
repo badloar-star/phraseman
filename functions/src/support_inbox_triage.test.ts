@@ -89,6 +89,10 @@ jest.mock('./admin_alerts', () => ({
 
 jest.mock('./jarvis/telegram_send', () => ({
   sendJarvisDigest: (...args: unknown[]) => mockSendJarvisDigest(...args),
+  sendJarvisDigestMessage: async (...args: unknown[]) => (
+    await mockSendJarvisDigest(...args) ? 101 : null
+  ),
+  expireJarvisCardButtons: async () => true,
 }));
 
 jest.mock('nodemailer', () => ({
@@ -371,11 +375,10 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect(store.get('support_inbox/m-owner-status-wins')?.autoReply).toBeUndefined();
   });
 
-  // зачем: раньше guarded-тема заканчивалась тишиной — клиент не получал
-  // ничего, а письмо навсегда оседало в attention_required. Теперь Джарвис
-  // по-прежнему не выдумывает факты, но обязательно отвечает промежуточным
-  // ответом, который ничего не утверждает о продукте.
-  test('a billing case answers with a holding reply instead of leaving the customer in silence', async () => {
+  // зачем: коммит 3fb844fe7 запретил шаблонные ответы клиенту. Для оплаты,
+  // аккаунта и других guarded-тем Джарвис обязан остановиться, показать
+  // владельцу исходное письмо и не выдавать заготовку за осмысленный ответ.
+  test('a billing case escalates to the owner without preparing or sending a canned reply', async () => {
     mockOpenAiChat.mockResolvedValueOnce({
       text: JSON.stringify({ isSpam: false, confidence: 0.95, reason: 'вопрос по оплате' }),
       promptTokens: 50, completionTokens: 20,
@@ -389,20 +392,16 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     // Guarded-тема не доходит до писателя: единственный вызов модели — антиспам.
     expect(mockOpenAiChat).toHaveBeenCalledTimes(1);
     expect(store.get('support_inbox/m3')?.autoReply).toMatchObject({
-      state: 'awaiting_approval', grounded: false, holding: true, reason: 'guarded_billing',
+      state: 'attention_required', grounded: false, holding: false, reason: 'guarded_billing',
     });
     const draft = String(store.get('support_inbox/m3')?.draftReply ?? '');
-    expect(draft).toMatch(/человек из команды|не решаем автоматически/iu);
-    // Промежуточный ответ ничего не утверждает о покупке.
-    expect(draft).not.toMatch(/мы (?:проверили|вернули|исправили)/iu);
-    expect([...store.keys()].some((path) => path.startsWith('support_telegram_reviews/'))).toBe(true);
-    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
-    const digest = mockSendJarvisDigest.mock.calls[0][0] as { text?: string; keyboard?: unknown };
-    const text = String(digest.text ?? '');
-    expect(text).toContain('Промежуточный ответ Джарвиса');
-    expect(text).not.toContain('Готового ответа нет');
-    expect(digest.keyboard).toBeTruthy();
-    expect(mockSendTelegramAlert).not.toHaveBeenCalled();
+    expect(draft).toBe('');
+    expect([...store.keys()].some((path) => path.startsWith('support_telegram_reviews/'))).toBe(false);
+    expect(mockSendJarvisDigest).not.toHaveBeenCalled();
+    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
+    const text = String(mockSendTelegramAlert.mock.calls[0]?.[1] ?? '');
+    expect(text).toContain('Не знаю, как ответить');
+    expect(text).toContain('Клиенту пока ничего не отправлено');
   });
 
   test('manual admin generation also refuses to save a guarded holding reply as ready', async () => {
@@ -727,26 +726,19 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     }));
 
     expect(mockOpenAiChat).toHaveBeenCalledTimes(5);
-    // Исчерпанная авто-доработка больше не означает молчание: не подтверждённый
-    // фактами текст выбрасывается, но клиент получает промежуточный ответ.
+    // Неподтверждённый текст выбрасывается целиком: после 3fb844fe7 клиенту
+    // не отправляется шаблон, а владелец получает исходное письмо для ответа.
     expect(store.get('support_inbox/m-auto-repair-exhausted')).toMatchObject({
       autoReply: {
-        state: 'awaiting_approval', grounded: false, holding: true,
+        state: 'attention_required', grounded: false, holding: false,
         reason: 'auto_repair_exhausted_review_rejected',
       },
     });
     const exhaustedDraft = String(store.get('support_inbox/m-auto-repair-exhausted')?.draftReply ?? '');
-    // зачем проверка по СМЫСЛУ, а не по фразе (2026-08-16): заглушки
-    // переписаны развёрнуто, и точная формулировка ушла. Тест обязан
-    // держать обещание «этим займётся человек», а не конкретные слова —
-    // иначе он ломается при каждой редактуре текста.
-    expect(exhaustedDraft).toMatch(/a person from the team|the team will/iu);
-    expect(exhaustedDraft).not.toContain('Open Lessons');
-    expect([...store.keys()].some((path) => path.startsWith('support_telegram_reviews/'))).toBe(true);
-    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
-    const text = String((mockSendJarvisDigest.mock.calls[0][0] as { text?: string }).text ?? '');
-    expect(text).toContain('Промежуточный ответ Джарвиса');
-    expect(text).not.toContain('Готового ответа нет');
+    expect(exhaustedDraft).toBe('');
+    expect([...store.keys()].some((path) => path.startsWith('support_telegram_reviews/'))).toBe(false);
+    expect(mockSendJarvisDigest).not.toHaveBeenCalled();
+    expect(mockSendTelegramAlert).toHaveBeenCalledTimes(1);
   });
 
   test('instruction save uses CAS: same expected revision can win only once', async () => {
@@ -1191,11 +1183,9 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     expect([...store.keys()].some((path) => path.startsWith('support_reply_operations/'))).toBe(false);
   });
 
-  // зачем: письмо, заблокированное старой политикой, оставалось в
-  // attention_required навсегда — его никто не переоткрывал, и клиент не
-  // получал ничего. Теперь ретрай-крон возвращает такой backlog в работу
-  // сразу, в этом же прогоне.
-  test('retry cron re-opens a message parked by an older policy and answers it in the same run', async () => {
+  // Старый backlog перепроверяется текущей политикой, но guarded-письмо
+  // остаётся у владельца без выдуманного holding-ответа.
+  test('retry cron rechecks an older guarded message without reviving canned replies', async () => {
     store.set('admin_config/support_inbox', {
       autoReplyMode: 'live_guarded', autoReplyRevision: 2, autoReplyDailyCap: 20,
       autoReplyPerSenderDailyCap: 3, signature: 'Phraseman Support', signatureRevision: 1,
@@ -1214,21 +1204,15 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     await runSupportAutoReplyRetryCron(Date.now());
 
     expect(store.get('support_inbox/m-stuck-old-policy')?.autoReply).toMatchObject({
-      state: 'awaiting_approval', holding: true, reason: 'guarded_billing',
+      state: 'attention_required', holding: false, reason: 'guarded_billing',
     });
-    expect(String(store.get('support_inbox/m-stuck-old-policy')?.draftReply ?? '')).toMatch(/человек из команды|не решаем автоматически/iu);
-    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
+    expect(String(store.get('support_inbox/m-stuck-old-policy')?.draftReply ?? '')).toBe('');
+    expect(mockSendJarvisDigest).not.toHaveBeenCalled();
   });
 
-  // зачем это поведение поменялось (владелец, 2026-08-16: "он обязан
-  // готовить ВСЕГДА человеческий ответ и информировать меня, без
-  // исключений"): раньше unresolved conversation identity был единственным
-  // случаем, оставленным в attention_required навсегда — Telegram показывал
-  // пустоту вместо текста. Теперь этот backlog переоткрывается точно так же,
-  // как guarded-темы выше: holding-текст готовится, автоотправка при этом
-  // остаётся выключена (это проверяется отдельно, юнит-тестами preview и
-  // autoSendEligible в support_telegram_review.test.ts).
-  test('retry cron re-opens a message blocked by an unresolved conversation identity, with a prepared holding reply', async () => {
+  // Неоднозначная личность получателя — ещё одна причина не готовить шаблон:
+  // владелец видит письмо, а клиенту ничего не уходит до ручной проверки.
+  test('retry cron keeps an unresolved conversation with the owner and no canned reply', async () => {
     store.set('admin_config/support_inbox', {
       autoReplyMode: 'live_guarded', autoReplyRevision: 2, autoReplyDailyCap: 20,
       autoReplyPerSenderDailyCap: 3, signature: 'Phraseman Support', signatureRevision: 1,
@@ -1248,14 +1232,12 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
     await runSupportAutoReplyRetryCron(Date.now());
 
     expect(store.get('support_inbox/m-stuck-mismatch')?.autoReply).toMatchObject({
-      state: 'awaiting_approval', holding: true, reason: 'conversation_sender_mismatch',
+      state: 'attention_required', holding: false, reason: 'conversation_sender_mismatch',
     });
-    expect(String(store.get('support_inbox/m-stuck-mismatch')?.draftReply ?? '')).toContain('the right person');
+    expect(String(store.get('support_inbox/m-stuck-mismatch')?.draftReply ?? '')).toBe('');
     const review = [...store.entries()].find(([path]) => path.startsWith('support_telegram_reviews/'))?.[1];
-    // Автоотправка не назначена — только владелец может решить отправить,
-    // проверив цепочку переписки вручную.
-    expect(review?.autoSendAtMs ?? null).toBeNull();
-    expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
+    expect(review).toBeUndefined();
+    expect(mockSendJarvisDigest).not.toHaveBeenCalled();
   });
 
   test('retry cron spends no council budget when a message has no authoritative conversation head', async () => {
@@ -1565,6 +1547,83 @@ describe('supportInboxOnNewMail — full trigger wiring, not just its pure parts
 
     expect(mockSendTelegramAlert).toHaveBeenCalledTimes(2);
     expect(store.get('support_inbox/m-retry')?.ownerNotification).toMatchObject({ state: 'delivered', attempts: 2 });
+  });
+
+  describe('Telegram resume-bot button for an owner-managed conversation', () => {
+    const conversationId = 'known_client_thread_1';
+    const messageDocId = 'm-known-client-returned';
+    const nowMs = 1_800_000_000_000;
+
+    test('the familiar-client alert includes one scoped "trust the bot again" button', async () => {
+      store.set(`support_conversations/${conversationId}`, {
+        ownerTookOverAtMs: nowMs - 60_000,
+        latestInboundMessageDocId: messageDocId,
+        headRevision: 2,
+      });
+      store.set(`support_inbox/${messageDocId}`, {
+        status: 'new', triageState: 'kept', mailCategory: 'human',
+        conversationId, conversationRevision: 2,
+        fromName: '<Ольга>', fromEmail: 'olga@example.test',
+        subject: 'Новый вопрос <после паузы>', bodyText: 'Подскажите, как продолжить занятие?',
+        autoReply: { state: 'pending', attempts: 0 },
+        ownerNotification: { state: 'pending', attempts: 0, updatedAt: new Date(nowMs).toISOString() },
+      });
+
+      await expect(deliverSupportOwnerAlert({
+        db: fakeDb(), messageDocId, botToken: 'token', text: 'generic inbox notice', nowMs,
+      })).resolves.toBe('delivered');
+
+      expect(mockSendTelegramAlert).not.toHaveBeenCalled();
+      expect(mockSendJarvisDigest).toHaveBeenCalledTimes(1);
+      const sent = mockSendJarvisDigest.mock.calls[0][0] as {
+        text?: string;
+        keyboard?: { inline_keyboard?: Array<Array<{ text?: string; callback_data?: string }>> };
+      };
+      expect(sent.text).toContain('Ольга');
+      expect(sent.text).toContain('Новый вопрос &lt;после паузы&gt;');
+      expect(sent.text).toContain('бот не отвечает');
+      const rows = sent.keyboard?.inline_keyboard ?? [];
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toHaveLength(1);
+      expect(rows[0][0]?.text).toMatch(/Снова доверить боту/u);
+      expect(rows[0][0]?.callback_data).toMatch(/^jv1:a:[A-Za-z0-9_-]{32,}$/);
+    });
+
+    test('one owner press clears the conversation silence atomically and cannot be replayed', async () => {
+      store.set(`support_conversations/${conversationId}`, {
+        ownerTookOverAtMs: nowMs - 60_000,
+        latestInboundMessageDocId: messageDocId,
+        headRevision: 2,
+      });
+      store.set(`support_inbox/${messageDocId}`, {
+        status: 'new', triageState: 'kept', mailCategory: 'human',
+        conversationId, conversationRevision: 2,
+        autoReply: { state: 'pending', attempts: 0 },
+      });
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { issueApprovalToken } = require('./jarvis/approval_store');
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { supportResumeBotTokenDepartment } = require('./support_telegram_review');
+      const issued = await issueApprovalToken({
+        db: fakeDb(), decisionHash: 'resume-known-client-thread-1',
+        department: supportResumeBotTokenDepartment(conversationId), action: 'approve',
+        ownerTelegramUserId: '1', ownerTelegramChatId: '1', nowMs,
+      });
+
+      await expect(handleSupportTelegramAction({
+        db: fakeDb(), nonce: issued.nonce, requestedAction: 'approve',
+        fromTelegramUserId: '1', fromTelegramChatId: '1', nowMs: nowMs + 1,
+      })).resolves.toMatchObject({ ok: true });
+      expect(store.get(`support_conversations/${conversationId}`)?.ownerTookOverAtMs).toBe(0);
+      expect(store.get(`support_inbox/${messageDocId}`)?.autoReply).toMatchObject({
+        state: 'retry', nextAttemptAtMs: 0, reason: 'owner_resumed_bot',
+      });
+
+      await expect(handleSupportTelegramAction({
+        db: fakeDb(), nonce: issued.nonce, requestedAction: 'approve',
+        fromTelegramUserId: '1', fromTelegramChatId: '1', nowMs: nowMs + 2,
+      })).resolves.toMatchObject({ ok: false, reason: 'already_used' });
+    });
   });
 
   test('stops automatic owner-alert retries after the bounded attempt cap', async () => {

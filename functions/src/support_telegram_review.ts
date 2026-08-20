@@ -200,6 +200,31 @@ function escapeTelegramHtml(value: unknown): string {
   return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+function escapeTelegramHtmlClamped(value: unknown, maxChars: number): string {
+  let escaped = '';
+  for (const character of String(value ?? '')) {
+    const piece = escapeTelegramHtml(character);
+    if (escaped.length + piece.length > maxChars - 1) return `${escaped}…`;
+    escaped += piece;
+  }
+  return escaped;
+}
+
+function supportTelegramEmailHeader(input: {
+  readonly fromName?: string;
+  readonly fromEmail?: string;
+  readonly subject?: string;
+}): readonly string[] {
+  const fromName = String(input.fromName ?? '').trim();
+  const fromEmail = String(input.fromEmail ?? '').trim();
+  const from = fromName && fromEmail ? `${fromName} <${fromEmail}>` : fromName || fromEmail || 'клиент';
+  const subject = String(input.subject ?? '').trim();
+  return Object.freeze([
+    `<b>От:</b> ${escapeTelegramHtmlClamped(from, 260)}`,
+    ...(subject ? [`<b>Тема:</b> ${escapeTelegramHtmlClamped(subject, 200)}`] : []),
+  ]);
+}
+
 const TELEGRAM_SAFE_FINAL_TEXT_MAX = 2_900;
 const TELEGRAM_SENSITIVE = /(?:\b(?:\d[ -]*?){13,19}\b|\b\d{4,8}\b|\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b|(?:api[_ -]?key|password|парол|код подтверждения|verification code|bearer)\s*[:=]\s*\S+)/i;
 
@@ -293,20 +318,44 @@ export function buildSupportAttentionRequiredNotice(input: {
   } else if (code === 'model_unavailable') {
     explanation = 'Модель сейчас недоступна.';
   }
-  const from = String(input.fromName ?? '').trim() || String(input.fromEmail ?? '').trim() || 'клиент';
-  const subject = String(input.subject ?? '').trim();
   const body = String(input.bodyText ?? '').trim();
   return [
     '🤷 <b>Не знаю, как ответить</b>',
     '',
     explanation,
     '',
-    `<b>От:</b> ${escapeTelegramHtml(from)}`,
-    ...(subject ? [`<b>Тема:</b> ${escapeTelegramHtml(subject)}`] : []),
+    ...supportTelegramEmailHeader(input),
     '',
     body ? escapeTelegramHtml(clampSupportAttentionBody(body)) : '<i>(тело письма пустое)</i>',
     '',
     '<i>Клиенту пока ничего не отправлено. Ответьте прямо в Gmail — систему учит на ваших живых ответах.</i>',
+  ].join('\n');
+}
+
+/**
+ * Уведомление о новом письме в разговоре, который владелец раньше забрал себе.
+ *
+ * Клиентский текст показывается прямо в Telegram, но кнопка меняет только
+ * состояние разговора: она не отправляет письмо и не обходит обычные проверки
+ * качества. После нажатия текущее письмо забирает штатный retry-крон.
+ */
+export function buildSupportOwnerTakenOverNotice(input: {
+  readonly fromName?: string;
+  readonly fromEmail?: string;
+  readonly subject?: string;
+  readonly bodyText?: string;
+}): string {
+  const body = String(input.bodyText ?? '').trim();
+  return [
+    '👤 <b>Снова написал знакомый клиент</b>',
+    '',
+    'Вы уже отвечали этому клиенту лично, поэтому бот не отвечает и не вмешивается в вашу переписку.',
+    '',
+    ...supportTelegramEmailHeader(input),
+    '',
+    body ? escapeTelegramHtmlClamped(body, 1_700) : '<i>(тело письма пустое)</i>',
+    '',
+    '<i>Клиенту пока ничего не отправлено. Если теперь можно вернуть разговор автоматике, нажмите кнопку ниже.</i>',
   ].join('\n');
 }
 
@@ -331,6 +380,9 @@ export function buildSupportTelegramReviewPreview(input: {
   readonly customerIssue?: string;
   readonly holding?: boolean;
   readonly identityUnresolved?: boolean;
+  readonly fromName?: string;
+  readonly fromEmail?: string;
+  readonly subject?: string;
   /** Текст написал владелец руками, а не модель. */
   readonly ownerManual?: boolean;
 }): { readonly text: string; readonly approvable: boolean; readonly violations: readonly string[] } {
@@ -391,6 +443,7 @@ export function buildSupportTelegramReviewPreview(input: {
         : input.holding
           ? ['', 'Подтверждённого ответа по существу не нашлось, поэтому клиент получит честный промежуточный ответ — без выдуманных фактов. Обращение останется у вас в «Gmail Support Inbox» для полноценного ответа.']
           : []),
+      ...(input.holding ? ['', ...supportTelegramEmailHeader(input)] : []),
       '',
       '<b>Полный текст письма вместе с подписью:</b>',
       escapeTelegramHtml(finalText),

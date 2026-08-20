@@ -54,6 +54,26 @@ describe('Jarvis approval webhook core — refuse anything that is not provably 
     expect(result.answerText).toMatch(/принято|подтвержд/i);
   });
 
+  test('plainly confirms that a support conversation was returned to bot automation', async () => {
+    const consume = jest.fn(async () => ({
+      ok: true as const,
+      doc: {
+        department: 'support_email_resume:known_client_thread_1',
+        action: 'approve' as const,
+        decisionHash: 'resume-known-client-thread-1',
+      },
+    }));
+    const result = await handleApprovalCallback({
+      body: update(),
+      providedSecret: OWNER_CONFIG.webhookSecret,
+      config: OWNER_CONFIG,
+      consume,
+      nowMs: NOW,
+    });
+
+    expect(result.answerText).toMatch(/бот снова|возвращено.*очеред/iu);
+  });
+
   test('a successful approve carries messageEdit with department/action/outcome for the transport to render', async () => {
     const consume = jest.fn(async () => ({
       ok: true as const,

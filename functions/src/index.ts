@@ -518,7 +518,7 @@ export const supportOwnerAlertRetryCron = functions.scheduler.onSchedule(
     region: "us-central1",
     memory: "256MiB",
     timeoutSeconds: 120,
-    secrets: [ADMIN_ALERT_BOT_TOKEN],
+    secrets: [ADMIN_ALERT_BOT_TOKEN, JARVIS_TELEGRAM_CONFIG],
   },
   async () => {
     await runSupportOwnerAlertRetryCron();

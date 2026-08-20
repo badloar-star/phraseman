@@ -2,6 +2,7 @@ import { buildApprovalToken } from './jarvis/approval_token';
 import {
   buildSupportTelegramReviewPreview,
   buildSupportAttentionRequiredNotice,
+  buildSupportOwnerTakenOverNotice,
   buildSupportSendCancelledNotice,
   formatSupportTelegramReview,
   parseSupportReviewApprovalToken,
@@ -113,6 +114,58 @@ describe('support Telegram review contract', () => {
     expect(ungrounded).toMatchObject({ approvable: false });
     expect(ungrounded.text).toContain('Ответ не готов');
     expect(ungrounded.text).not.toContain('перепишите ответ');
+  });
+
+  test('holding preview identifies the incoming message by sender and subject', () => {
+    const input = {
+      finalText: 'Здравствуйте! Здесь нужна ручная проверка, чтобы не дать вам неточный ответ. Человек из команды посмотрит вашу ситуацию и напишет в эту же переписку, обычно в течение рабочего дня. Если можете добавить подробностей, напишите их в ответ — так поможем точнее.',
+      draftRevision: 6,
+      customerReady: true,
+      customerIssue: 'Не могу войти в аккаунт после смены телефона.',
+      holding: true,
+      fromName: '<Ольга>',
+      fromEmail: 'olga@example.test',
+      subject: 'Доступ <аккаунт>',
+    };
+
+    const preview = buildSupportTelegramReviewPreview(input);
+
+    expect(preview.approvable).toBe(true);
+    expect(preview.text).toContain('<b>От:</b> &lt;Ольга&gt;');
+    expect(preview.text).toContain('olga@example.test');
+    expect(preview.text).toContain('<b>Тема:</b> Доступ &lt;аккаунт&gt;');
+  });
+
+  test('holding preview stays below the Telegram limit with maximum escaped headers', () => {
+    const sentence = 'Здравствуйте! Здесь нужна ручная проверка, чтобы дать точный ответ по вашему вопросу и ничего не придумывать. ';
+    const preview = buildSupportTelegramReviewPreview({
+      finalText: sentence.repeat(30).slice(0, 2_800),
+      draftRevision: 7,
+      customerReady: true,
+      customerIssue: 'Не могу войти в аккаунт после смены телефона.',
+      holding: true,
+      fromName: '<'.repeat(200),
+      fromEmail: 'sender@example.test',
+      subject: '<'.repeat(500),
+    });
+
+    expect(preview.approvable).toBe(true);
+    expect(preview.text.length).toBeLessThan(4_096);
+  });
+
+  test('owner-taken-over notice escapes untrusted mail and stays below Telegram limit', () => {
+    const text = buildSupportOwnerTakenOverNotice({
+      fromName: '<Ольга>',
+      fromEmail: 'olga@example.test',
+      subject: '<script>'.repeat(100),
+      bodyText: '<b>не разметка клиента</b> & '.repeat(500),
+    });
+
+    expect(text).toContain('&lt;Ольга&gt;');
+    expect(text).not.toContain('<script>');
+    expect(text).not.toContain('<b>не разметка клиента</b>');
+    expect(text).toContain('бот не отвечает');
+    expect(text.length).toBeLessThan(4_096);
   });
 
   // зачем этот блок переписан (владелец, 2026-08-17: «не должно быть

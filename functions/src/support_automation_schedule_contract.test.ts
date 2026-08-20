@@ -19,7 +19,8 @@ describe('support automation schedules', () => {
   test('schedules bounded owner-alert retries with the Telegram secret', () => {
     const body = declaration('supportOwnerAlertRetryCron');
     expect(body).toMatch(/schedule:\s*["']every 10 minutes["']/);
-    expect(body).toContain('secrets: [ADMIN_ALERT_BOT_TOKEN]');
+    expect(body).toContain('ADMIN_ALERT_BOT_TOKEN');
+    expect(body).toContain('JARVIS_TELEGRAM_CONFIG');
     expect(body).toContain('runSupportOwnerAlertRetryCron()');
   });
 

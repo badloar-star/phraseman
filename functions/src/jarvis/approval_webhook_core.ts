@@ -1,4 +1,5 @@
 import { timingSafeEqual } from 'node:crypto';
+import { isSupportEmailDepartment } from '../support_telegram_review';
 import { parseCallbackData, type ApprovalAction, type ApprovalRejectReason } from './approval_token';
 import { parseCommand, type JarvisCommand } from './commands';
 
@@ -197,7 +198,8 @@ export async function handleApprovalCallback(
   // startsWith('support_email:') вообще не узнавал cancel-токен.
   const department = String(outcome.doc.department ?? '');
   const isSupportCancel = department.startsWith('support_email_cancel:');
-  const isSupport = department.startsWith('support_email:') || isSupportCancel;
+  const isSupportResume = department.startsWith('support_email_resume:');
+  const isSupport = isSupportEmailDepartment(department);
   // зачем «отправляю» вместо «поставлен в очередь отправки» (владелец,
   // 2026-08-17: «я одобрил, но сообщение не отправилось»): прежний текст
   // звучал как гарантия доставки, а отправка идёт следующим шагом и может не
@@ -205,7 +207,9 @@ export async function handleApprovalCallback(
   // «поставлен в очередь» и считал дело закрытым, хотя письмо не ушло.
   // Про исход теперь сообщает отдельное уведомление, поэтому здесь честнее
   // сказать «начал», а не «сделал».
-  const answerText = isSupportCancel
+  const answerText = isSupportResume
+    ? 'Бот снова подключён к этому разговору. Текущее письмо возвращено в очередь поддержки.'
+    : isSupportCancel
     ? 'Отправка отменена. Письмо осталось в «Gmail Support Inbox».'
     : isSupport
       ? (parsed.action === 'approve' ? 'Отправляю — сообщу, когда письмо уйдёт.' : 'Пришлите ваши правки следующим сообщением.')

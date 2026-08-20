@@ -81,15 +81,18 @@ import {
   SUPPORT_TELEGRAM_AUTO_SEND_DELAY_MS,
   SUPPORT_TELEGRAM_JOB_LEASE_MS,
   buildSupportAttentionRequiredNotice,
+  buildSupportOwnerTakenOverNotice,
   buildSupportSendCancelledNotice,
   buildSupportTelegramReviewPreview,
   isSupportEmailDepartment,
+  parseSupportResumeBotToken,
   parseSupportReviewApprovalToken,
   supportDraftHash,
   supportEditSessionId,
   supportTelegramJobLeaseOwns,
   supportReviewTokenDepartment,
   supportReviewCancelTokenDepartment,
+  supportResumeBotTokenDepartment,
   type SupportTelegramReviewDoc,
   type SupportTelegramJobDoc,
 } from './support_telegram_review';
@@ -1411,7 +1414,7 @@ const OWNER_STYLE_KEEP_LIMIT = 60;
  * свой же образец, а не создаст дубль. Идемпотентно при повторных прогонах
  * крона (а он гоняет с overlap по UID и вполне может увидеть письмо дважды).
  */
-async function rememberOwnerStyleExample(
+export async function rememberOwnerStyleExample(
   db: FirebaseFirestore.Firestore,
   messageDocId: string,
   ownerReply: string | undefined,
@@ -1422,7 +1425,7 @@ async function rememberOwnerStyleExample(
     const messageSnap = await db.collection(INBOX_COLLECTION).doc(messageDocId).get();
     if (!messageSnap.exists) return false;
     const message = messageSnap.data() as SupportInboxDoc;
-    const question = `${message.subject ?? ''}\n${message.bodyText ?? ''}`.trim();
+    const question = supportIssueText(message);
     if (!isUsableOwnerStyleExample({ question, answer })) return false;
     await db.collection(SUPPORT_OWNER_STYLE_COLLECTION).doc(messageDocId).set({
       question: question.slice(0, 2_000),
@@ -3480,6 +3483,9 @@ async function prepareSupportTelegramReview(input: {
       holding: input.holding === true,
       identityUnresolved: supportReasonHasUnresolvedIdentity(input.reason),
       ownerManual: input.doc.draftOrigin === 'owner_manual',
+      fromName: input.doc.fromName,
+      fromEmail: input.doc.fromEmail,
+      subject: input.doc.subject,
     });
     const notificationLeaseId = randomUUID();
     const notificationLeaseExpiresAtMs = input.nowMs + SUPPORT_TELEGRAM_JOB_LEASE_MS;
@@ -4201,6 +4207,44 @@ export async function handleSupportTelegramAction(input: {
     });
     if (!verdict.ok) return verdict;
     if (verdict.doc.action !== input.requestedAction) return { ok: false, reason: 'unknown_nonce' };
+    const resume = parseSupportResumeBotToken(verdict.doc);
+    if (resume) {
+      const conversationRef = input.db.collection(SUPPORT_CONVERSATION_COLLECTION).doc(resume.conversationId);
+      const conversationSnap = await tx.get(conversationRef);
+      const conversation = conversationSnap.exists ? conversationSnap.data() : null;
+      const latestMessageDocId = String(conversation?.latestInboundMessageDocId ?? '').trim();
+      const latestMessageRef = latestMessageDocId
+        ? input.db.collection(INBOX_COLLECTION).doc(latestMessageDocId)
+        : null;
+      const latestMessageSnap = latestMessageRef ? await tx.get(latestMessageRef) : null;
+      const latestMessage = latestMessageSnap?.exists ? latestMessageSnap.data() as SupportInboxDoc : null;
+
+      // Токен погашается и при уже снятой метке: две доставленные карточки не
+      // должны оставлять бесконечно живую кнопку после первого успешного клика.
+      tx.update(tokenRef, { usedAtMs: input.nowMs });
+      if (!conversationSnap.exists || !ownerHasTakenOverConversation(conversation)) {
+        return { ok: false, reason: 'already_used' };
+      }
+      tx.set(conversationRef, { ownerTookOverAtMs: 0 }, { merge: true });
+      if (latestMessageRef && latestMessage
+        && latestMessage.status === 'new'
+        && latestMessage.triageState === 'kept'
+        && latestMessage.conversationId === resume.conversationId
+        && ['pending', 'retry', 'processing', 'paused'].includes(String(latestMessage.autoReply?.state ?? ''))) {
+        tx.set(latestMessageRef, {
+          autoReply: {
+            ...(latestMessage.autoReply ?? {}),
+            state: 'retry',
+            nextAttemptAtMs: 0,
+            leaseId: null,
+            leaseExpiresAtMs: null,
+            reason: 'owner_resumed_bot',
+            updatedAt: new Date(input.nowMs).toISOString(),
+          },
+        }, { merge: true });
+      }
+      return { ok: true, doc: verdict.doc };
+    }
     const parsed = parseSupportReviewApprovalToken(verdict.doc);
     if (!parsed) return { ok: false, reason: 'unknown_nonce' };
     const reviewId = verdict.doc.decisionHash;
@@ -6480,7 +6524,60 @@ export async function deliverSupportOwnerAlert(input: {
   const claim = await claimSupportOwnerAlert(input.db, input.messageDocId, nowMs);
   if (!claim) return 'skipped';
   const ref = input.db.collection(INBOX_COLLECTION).doc(input.messageDocId);
-  const delivered = await sendTelegramAlert(input.botToken, input.text);
+  let delivered = false;
+  try {
+    const messageSnap = await ref.get();
+    const message = messageSnap.exists ? messageSnap.data() as SupportInboxDoc : null;
+    const conversationId = String(message?.conversationId ?? '').trim();
+    const conversationSnap = conversationId
+      ? await input.db.collection(SUPPORT_CONVERSATION_COLLECTION).doc(conversationId).get()
+      : null;
+    const owner = parseOwnerConfig(JARVIS_TELEGRAM_CONFIG.value());
+    if (message && conversationId && owner
+      && conversationSnap?.exists
+      && ownerHasTakenOverConversation(conversationSnap.data())) {
+      const issued = await issueApprovalToken({
+        db: input.db,
+        decisionHash: createHash('sha256')
+          .update(`support-resume|${conversationId}|${input.messageDocId}`, 'utf8')
+          .digest('hex'),
+        decisionTopicKey: `support-resume:${conversationId}`,
+        department: supportResumeBotTokenDepartment(conversationId),
+        action: 'approve',
+        ownerTelegramUserId: owner.ownerTelegramUserId,
+        ownerTelegramChatId: owner.ownerTelegramChatId,
+        nowMs,
+        ttlMs: SUPPORT_TELEGRAM_APPROVAL_TTL_MS,
+      });
+      const keyboard: InlineKeyboard = Object.freeze({
+        inline_keyboard: Object.freeze([
+          Object.freeze([
+            Object.freeze({ text: '🤖 Снова доверить боту', callback_data: issued.callbackData }),
+          ]),
+        ]),
+      });
+      const sentMessageId = await sendJarvisDigestMessage({
+        botToken: input.botToken,
+        chatId: owner.ownerTelegramChatId,
+        text: buildSupportOwnerTakenOverNotice({
+          fromName: message.fromName,
+          fromEmail: message.fromEmail,
+          subject: message.subject,
+          bodyText: message.bodyText,
+        }),
+        keyboard,
+      });
+      delivered = sentMessageId !== null;
+    } else {
+      delivered = await sendTelegramAlert(input.botToken, input.text);
+    }
+  } catch (error) {
+    logger.warn('support_owner_notification_prepare_failed', {
+      messageDocId: input.messageDocId,
+      errorCode: supportAutoErrorCode(error),
+    });
+    delivered = false;
+  }
   if (delivered) {
     await input.db.runTransaction(async (tx) => {
       const snap = await tx.get(ref);

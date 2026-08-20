@@ -24,6 +24,7 @@ import {
   candidateOpenThreadDocIdsForOwnerReply,
   ownerHasTakenOverConversation,
   supportIssueText,
+  rememberOwnerStyleExample,
   type RawEmail,
 } from './support_inbox';
 
@@ -495,5 +496,46 @@ describe('supportIssueText — вопрос письма без процитир
 
   test('пустой документ не роняет разбор', () => {
     expect(() => supportIssueText({})).not.toThrow();
+  });
+});
+
+describe('rememberOwnerStyleExample — обучающий вопрос без старых цитат', () => {
+  test('сохраняет новый вопрос, но не процитированную переписку', async () => {
+    const writes: Array<Record<string, unknown>> = [];
+    const message = {
+      subject: 'Не могу войти',
+      bodyText: [
+        'После смены телефона не могу войти в свой аккаунт. Помогите восстановить доступ.',
+        '',
+        'среда, 29 июля 2026 г. в 18:03 +07:00 от support.phraseman@gmail.com <support.phraseman@gmail.com>:',
+        '>Раньше вы спрашивали про оплату Plus из России.',
+      ].join('\n'),
+    };
+    const db = {
+      collection(name: string) {
+        return {
+          doc() {
+            if (name === 'support_inbox') {
+              return { get: async () => ({ exists: true, data: () => message }) };
+            }
+            if (name === 'support_owner_style_examples') {
+              return { set: async (value: Record<string, unknown>) => { writes.push(value); } };
+            }
+            throw new Error(`unexpected collection: ${name}`);
+          },
+        };
+      },
+    };
+
+    const saved = await rememberOwnerStyleExample(
+      db as unknown as FirebaseFirestore.Firestore,
+      'message-1',
+      'Здравствуйте! Помогу восстановить доступ. Напишите, пожалуйста, адрес аккаунта и модель телефона, на котором вход перестал работать. После этого проверю данные и подскажу точный следующий шаг.',
+    );
+
+    expect(saved).toBe(true);
+    expect(writes).toHaveLength(1);
+    expect(writes[0].question).toContain('После смены телефона');
+    expect(writes[0].question).not.toContain('оплату Plus');
   });
 });

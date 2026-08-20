@@ -191,20 +191,23 @@ describe('Arena entry prefetch', () => {
       wait: async () => {},
     });
 
-    for (let index = 1; index <= 9; index += 1) {
-      await entry.start(`match-${index}`);
-    }
     const inFlight = entry.start('match-10');
-    await Promise.resolve();
-    await Promise.resolve();
-    expect(entry.start('match-10')).toBe(inFlight);
-    expect(entry.peek('match-1')).toBeNull();
-    for (let index = 2; index <= 9; index += 1) {
-      expect(entry.peek(`match-${index}`)).toBe(preparedEntries.get(`match-${index}`));
-    }
-
     const preparedTenth = preparedFor('match-10');
-    tenthPlan.resolve(preparedTenth);
+    try {
+      await Promise.resolve();
+      await Promise.resolve();
+      for (let index = 1; index <= 9; index += 1) {
+        await entry.start(`match-${index}`);
+      }
+      expect(entry.peek('match-1')).toBeNull();
+      for (let index = 2; index <= 9; index += 1) {
+        expect(entry.peek(`match-${index}`)).toBe(preparedEntries.get(`match-${index}`));
+      }
+      expect(entry.start('match-10')).toBe(inFlight);
+    } finally {
+      tenthPlan.resolve(preparedTenth);
+      await inFlight;
+    }
     expect(await inFlight).toBe(preparedTenth);
   });
 });

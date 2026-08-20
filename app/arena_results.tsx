@@ -26,6 +26,10 @@ import { arenaResultAnnounce, arenaResultHasAnnounce } from '../modules/arena/re
 import { ArenaTierDownHybrid, ArenaTierUpHybrid } from '../components/arena/ArenaRankHybrid';
 import { ResultsSequence } from '../components/feedback/ResultsSequence';
 import { arenaQuickXpPresentation } from '../modules/arena/quick_result';
+import {
+  arenaQuickResultInitialState,
+  arenaQuickResultReduce,
+} from '../modules/arena/quick_result_state';
 
 export default function ArenaResultsScreen() {
   const router = useRouter();
@@ -60,11 +64,12 @@ export default function ArenaResultsScreen() {
     matchId: string;
     reward: ArenaMatchReward;
   }> | null>(null);
-  const [privateSyncResolvedMatchId, setPrivateSyncResolvedMatchId] = useState<string | null>(null);
-  const [quickRewardLatch, setQuickRewardLatch] = useState<Readonly<{
-    matchId: string;
-    reward: ArenaMatchReward;
-  }> | null>(null);
+  const [quickResultState, setQuickResultState] = useState(() => (
+    arenaQuickResultInitialState(matchId, routeSeat)
+  ));
+  useEffect(() => {
+    setQuickResultState(arenaQuickResultInitialState(matchId, routeSeat));
+  }, [matchId, routeSeat]);
   const [equipped, setEquipped] = useState<Readonly<Record<string, string>>>({});
   const [reactionChosen, setReactionChosen] = useState<string | null>(null);
   const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(null);
@@ -98,22 +103,33 @@ export default function ArenaResultsScreen() {
       setSyncState(String(response.state ?? ''));
       if (response.viewerSeat) { rememberArenaViewerSeat(matchId, response.viewerSeat); setViewerSeat(response.viewerSeat); }
       if (response.viewerReward) setPrivateRewardState({ matchId, reward: response.viewerReward });
-    }).catch(() => {}).finally(() => {
-      if (alive) setPrivateSyncResolvedMatchId(matchId);
-    });
+      setQuickResultState((previous) => arenaQuickResultReduce(previous, {
+        type: 'sync',
+        matchId,
+        version: response.version,
+        match: response.match,
+        viewerSeat: response.viewerSeat,
+        viewerReward: response.viewerReward,
+      }));
+    }).catch(() => {});
     return () => { alive = false; };
   }, [active, matchId]);
   useEffect(() => { if (active) void Promise.all([arenaExpansionHome(), arenaV2Home()]).then(([home, base]) => { setExpansion(home); setEquipped(home.wallet.equippedBySlot); setBaseEnabled(base.availability.enabled); }).catch(() => { setExpansion(null); setBaseEnabled(false); }); }, [active]);
-  const match = live.value;
-  const privateReward = privateRewardState?.matchId === matchId ? privateRewardState.reward : undefined;
-  const publicReward = viewerSeat ? match?.result?.rewards?.[viewerSeat] : undefined;
   useEffect(() => {
-    if (!matchId || match?.mode !== 'quick' || quickRewardLatch?.matchId === matchId) return;
-    const candidate = privateReward
-      ?? (privateSyncResolvedMatchId === matchId ? publicReward : undefined);
-    if (candidate) setQuickRewardLatch({ matchId, reward: candidate });
-  }, [match?.mode, matchId, privateReward, privateSyncResolvedMatchId, publicReward, quickRewardLatch?.matchId]);
-  const quickReward = quickRewardLatch?.matchId === matchId ? quickRewardLatch.reward : undefined;
+    if (!matchId) return;
+    setQuickResultState((previous) => arenaQuickResultReduce(previous, {
+      type: 'live', matchId, match: live.value,
+    }));
+  }, [live.value, matchId]);
+  const quickPresentation = quickResultState.matchId === matchId
+    ? quickResultState.presentation
+    : null;
+  const quickKnown = quickResultState.matchId === matchId && quickResultState.quickKnown;
+  const match = quickPresentation?.match ?? live.value;
+  const effectiveViewerSeat = quickPresentation?.viewerSeat ?? viewerSeat;
+  const privateReward = privateRewardState?.matchId === matchId ? privateRewardState.reward : undefined;
+  const publicReward = effectiveViewerSeat ? match?.result?.rewards?.[effectiveViewerSeat] : undefined;
+  const quickReward = quickPresentation?.reward;
   const reward = match?.mode === 'quick' ? quickReward : privateReward ?? publicReward;
   const quickXp = useMemo(() => arenaQuickXpPresentation(quickReward), [quickReward]);
   const quickXpRewards = useMemo(() => quickXp.modifiers.length ? ({
@@ -127,14 +143,14 @@ export default function ArenaResultsScreen() {
     if (match.result?.players?.length) return match.result.players;
     return match.players.map((player) => ({
       ...player,
-      name: player.uid === viewerSeat ? arenaText(lang, 'you') : player.name,
+      name: player.uid === effectiveViewerSeat ? arenaText(lang, 'you') : player.name,
     }));
-  }, [lang, match, viewerSeat]);
+  }, [effectiveViewerSeat, lang, match]);
   const winner = match?.result?.winnerUid;
   const title = match?.state === 'aborted'
     ? arenaText(lang, 'cancelledMatch')
-    : winner && viewerSeat
-      ? (winner === viewerSeat ? arenaText(lang, 'victory') : arenaText(lang, 'defeat'))
+    : winner && effectiveViewerSeat
+      ? (winner === effectiveViewerSeat ? arenaText(lang, 'victory') : arenaText(lang, 'defeat'))
       : arenaText(lang, 'draw');
   /**
    * Исход звучит ОДИН раз, по появлению итога, а не по перерисовке экрана:
@@ -155,7 +171,7 @@ export default function ArenaResultsScreen() {
     if (match.state === 'aborted') return;
     if (!winner && match.state !== 'settled') return;
     outcomeToldRef.current = true;
-    playSound(!winner ? 'resultDraw' : winner === viewerSeat ? 'resultWin' : 'resultLoss');
+    playSound(!winner ? 'resultDraw' : winner === effectiveViewerSeat ? 'resultWin' : 'resultLoss');
     // Звёзды приземляются в кошелёк отдельным звуком: это другое событие, и
     // игрок должен услышать, что начисление действительно случилось.
     if (Number(reward?.starsEarned ?? 0) > 0) playSound('starLand');
@@ -166,19 +182,19 @@ export default function ArenaResultsScreen() {
     if (Array.isArray((reward as { tierRewards?: unknown[] } | undefined)?.tierRewards)) {
       playSound('rewardUnlock');
     }
-  }, [match, playSound, reward, viewerSeat, winner]);
+  }, [effectiveViewerSeat, match, playSound, reward, winner]);
 
   const resultTheme = arenaResultTheme(equipped.result_theme);
   const titleCosmetic = arenaStoreItemTitle(lang, equipped.title);
-  const victoryStamp = winner === viewerSeat ? arenaStoreItemTitle(lang, equipped.victory_stamp) : null;
+  const victoryStamp = winner === effectiveViewerSeat ? arenaStoreItemTitle(lang, equipped.victory_stamp) : null;
   const reactionPack = arenaStoreItemTitle(lang, equipped.reaction_pack);
   const series = match?.seriesId
     ? expansion?.rivalries.find((item) => item.rivalryId === match.seriesId)
     : undefined;
-  const seriesYou = series?.viewerWins ?? (viewerSeat === 'b'
+  const seriesYou = series?.viewerWins ?? (effectiveViewerSeat === 'b'
     ? match?.result?.seriesSummary?.winsB
     : match?.result?.seriesSummary?.winsA) ?? 0;
-  const seriesThem = series?.opponentWins ?? (viewerSeat === 'b'
+  const seriesThem = series?.opponentWins ?? (effectiveViewerSeat === 'b'
     ? match?.result?.seriesSummary?.winsA
     : match?.result?.seriesSummary?.winsB) ?? 0;
   const incomingRivalOffer = Boolean(match?.rivalOffer && viewerSeat
@@ -203,11 +219,11 @@ export default function ArenaResultsScreen() {
   };
 
   useEffect(() => {
-    if (!active || reduceMotion || !match || winner !== viewerSeat || celebratedRef.current === match.matchId) return;
+    if (!active || reduceMotion || !match || winner !== effectiveViewerSeat || celebratedRef.current === match.matchId) return;
     if (match.mode === 'quick') return;
     celebratedRef.current = match.matchId;
     fxRef.current?.confetti({ x: window.width / 2, y: Math.min(260, window.height * 0.3) }, [P.accent, P.gold, P.text]);
-  }, [active, match, P.accent, P.gold, P.text, reduceMotion, viewerSeat, winner, window.height, window.width]);
+  }, [active, effectiveViewerSeat, match, P.accent, P.gold, P.text, reduceMotion, winner, window.height, window.width]);
 
   const rankScene = motionVariant === 'hybrid' && !rankSceneDismissed && announce.rank.kind === 'tier_up' ? (
     <ArenaTierUpHybrid
@@ -231,7 +247,33 @@ export default function ArenaResultsScreen() {
     />
   ) : null;
 
-  if (matchId && match?.mode === 'quick' && reward) {
+  if (matchId && quickKnown && !quickPresentation) {
+    const quickPendingTitle = reportRejected
+      ? arenaText(lang, 'reportRejected')
+      : arenaText(lang, reportPending ? 'reportQueued' : 'awaitingRival');
+    const quickPendingHint = reportRejected
+      ? arenaText(lang, 'reportRejectedHint')
+      : arenaText(lang, reportPending ? 'reportQueuedHint' : 'awaitingRivalHint');
+    return (
+      <ArenaScreen title={arenaText(lang, 'result')} subtitle={quickPendingTitle} variant="results" onBack={() => router.replace('/arena' as never)}>
+        <View style={styles.pending}>
+          <Text accessibilityLiveRegion="polite" style={[styles.pendingTitle, { color: reportRejected ? P.danger : P.text }]}>
+            {quickPendingTitle}
+          </Text>
+          <Text style={[styles.pendingHint, pendingLine, { color: P.muted }]}>{quickPendingHint}</Text>
+        </View>
+        <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}>
+          {arenaText(lang, 'reviewTitle')}
+        </V2Cta>
+        <V2Cta onPress={() => router.replace({
+          pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') },
+        } as never)}>{arenaText(lang, 'playAgain')}</V2Cta>
+        <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
+      </ArenaScreen>
+    );
+  }
+
+  if (matchId && quickPresentation && quickReward) {
     return (
       <ResultsSequence
         stars={0}
@@ -241,7 +283,7 @@ export default function ArenaResultsScreen() {
         title={title}
         subtitle={arenaText(lang, 'result')}
         badge={players.length ? <ArenaPlayers players={players} active={active} animateScore /> : undefined}
-        intensity={winner === viewerSeat ? 'major' : 'milestone'}
+        intensity={winner === effectiveViewerSeat ? 'major' : 'milestone'}
         onCtaPrimary={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}
         ctaPrimaryLabel={arenaText(lang, 'reviewTitle')}
         onCtaSecondary={() => router.replace({

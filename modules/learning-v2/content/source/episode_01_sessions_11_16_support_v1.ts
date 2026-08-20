@@ -49,13 +49,19 @@ function renderMeaning(locale: Locale, english: string): string {
   const complement = clean.replace(/^(?:Are you|Am I|You’re|You are|I am)(?: not)?\s*/, '');
   const c = COMPLEMENTS[locale][complement] ?? complement;
   if (locale === 'ru') {
-    if (subject === 'I' && !question && !negative && complement === 'cold') return 'Мне холодно.';
-    if (subject === 'I' && !question && !negative && complement === 'warm') return 'Мне тепло.';
+    if (complement === 'cold' || complement === 'warm') {
+      const experiencer = subject === 'I' ? 'Мне' : 'Тебе';
+      const temperature = complement === 'cold' ? 'холодно' : 'тепло';
+      return `${experiencer} ${negative ? 'не ' : ''}${temperature}${question ? '?' : '.'}`;
+    }
     return question ? `${subject === 'I' ? 'Я' : 'Ты'} ${negative ? 'не ' : ''}${c}?` : `${subject === 'I' ? 'Я' : 'Ты'} ${negative ? 'не ' : ''}${c}.`;
   }
   if (locale === 'uk') {
-    if (subject === 'I' && !question && !negative && complement === 'cold') return 'Мені холодно.';
-    if (subject === 'I' && !question && !negative && complement === 'warm') return 'Мені тепло.';
+    if (complement === 'cold' || complement === 'warm') {
+      const experiencer = subject === 'I' ? 'Мені' : 'Тобі';
+      const temperature = complement === 'cold' ? 'холодно' : 'тепло';
+      return `${experiencer} ${negative ? 'не ' : ''}${temperature}${question ? '?' : '.'}`;
+    }
     return question ? `${subject === 'I' ? 'Я' : 'Ти'} ${negative ? 'не ' : ''}${c}?` : `${subject === 'I' ? 'Я' : 'Ти'} ${negative ? 'не ' : ''}${c}.`;
   }
   if (locale === 'es') return question ? `¿${negative ? 'No ' : ''}${subject === 'I' ? 'estoy' : 'estás'} ${c}?` : negative ? `No ${subject === 'I' ? 'estoy' : 'estás'} ${c}.` : `${subject === 'I' ? 'Estoy' : 'Estás'} ${c}.`;

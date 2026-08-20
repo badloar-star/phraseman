@@ -61,6 +61,27 @@ test('temperature meanings stay impersonal in Russian and Ukrainian', () => {
   expect(warm?.localizedDetails?.uk.meaning).toBe('Мені тепло.');
 });
 
+test('temperature meanings use the experiencer for I and you in statements and questions', () => {
+  const samples = [
+    EPISODE_01_SESSION_11_SOURCE.phrases.find((phrase) => phrase.english === 'Are you cold?'),
+    EPISODE_01_SESSION_11_SOURCE.phrases.find((phrase) => phrase.english === 'Are you warm?'),
+    EPISODE_01_SESSION_12_SOURCE.phrases.find((phrase) => phrase.english === 'Am I cold?'),
+    EPISODE_01_SESSION_12_SOURCE.phrases.find((phrase) => phrase.english === 'Am I warm?'),
+    EPISODE_01_SESSION_13_SOURCE.phrases.find((phrase) => phrase.english === 'You’re cold.'),
+    EPISODE_01_SESSION_13_SOURCE.phrases.find((phrase) => phrase.english === 'You’re warm.'),
+  ];
+  const expected = {
+    ru: ['Тебе холодно?', 'Тебе тепло?', 'Мне холодно?', 'Мне тепло?', 'Тебе холодно.', 'Тебе тепло.'],
+    uk: ['Тобі холодно?', 'Тобі тепло?', 'Мені холодно?', 'Мені тепло?', 'Тобі холодно.', 'Тобі тепло.'],
+  } as const;
+
+  Object.entries(expected).forEach(([locale, meanings]) => {
+    samples.forEach((phrase, index) => {
+      expect(phrase?.localizedDetails?.[locale as 'ru' | 'uk'].meaning).toBe(meanings[index]);
+    });
+  });
+});
+
 test('intro questions have one grounded English answer and typed word reasons', () => {
   const source = EPISODE_01_SESSION_14_SOURCE;
   source.introPages.forEach((page) => {

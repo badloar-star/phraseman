@@ -1,6 +1,13 @@
 import type { ArenaLocalMatchState, ArenaOpponentTick } from './match_machine';
 import type { ArenaLocalPhase } from './local_clock';
-import { ARENA_COMBO_THRESHOLD, type ArenaStarAward, type ArenaTaskMode } from './stars';
+import {
+  ARENA_COMBO_THRESHOLD,
+  ARENA_SPEED_MATCH_PAIRS,
+  arenaAwardStars,
+  arenaMatchStarCeiling,
+  type ArenaStarAward,
+  type ArenaTaskMode,
+} from './stars';
 import type { ArenaMatchPlanWire, ArenaPlanTaskWire } from './duel_plan';
 
 /**
@@ -49,6 +56,8 @@ export type ArenaMatchHud = Readonly<{
   combo: ArenaComboView;
   opponent: ArenaOpponentSignal;
   matchStars: number;
+  /** Display-only exact-known rival total. null is intentionally rendered as —. */
+  opponentMatchStars: number | null;
   /** Награда за только что закрытое задание. Только в фазе показа результата. */
   award: ArenaStarAward | null;
   /** Сколько звёзд отправить в кошелёк анимацией. Ноль — не запускать вовсе. */
@@ -118,6 +127,64 @@ export function arenaResolvedPairs(state: ArenaLocalMatchState): readonly number
     .sort((left, right) => left - right);
 }
 
+/**
+ * Exact-known rival score for the live HUD.
+ *
+ * A transmitted cumulative value wins. Older/scripted ticks are folded only
+ * over the contiguous prefix where both sides' outcomes are precise enough;
+ * a boolean speed-board result is never promoted into a guessed pair count.
+ */
+export function arenaOpponentMatchStars(
+  plan: ArenaMatchPlanWire,
+  state: ArenaLocalMatchState,
+): number | null {
+  const ceiling = arenaMatchStarCeiling(plan.tasks.length);
+  let transmitted: number | null = null;
+  for (const tick of Object.values(state.opponentByTask)) {
+    const value = tick.matchStars;
+    if (!Number.isInteger(value) || (value as number) < 0 || (value as number) > ceiling) continue;
+    transmitted = transmitted === null ? value as number : Math.max(transmitted, value as number);
+  }
+  if (transmitted !== null) return transmitted;
+
+  const viewerByTask = new Map(state.outcomes.map((outcome) => [outcome.taskIndex, outcome]));
+  let comboRun = 0;
+  let score = 0;
+  let known = false;
+  for (let taskIndex = 0; taskIndex < plan.tasks.length; taskIndex += 1) {
+    const task = plan.tasks[taskIndex];
+    const viewer = viewerByTask.get(taskIndex);
+    const rival = state.opponentByTask[taskIndex];
+    if (!task || !viewer || !rival) break;
+
+    let firstAttemptPairs = 0;
+    if (task.mode === 'speed_match') {
+      if (!Number.isInteger(rival.firstAttemptPairs)
+        || (rival.firstAttemptPairs as number) < 0
+        || (rival.firstAttemptPairs as number) > ARENA_SPEED_MATCH_PAIRS) break;
+      firstAttemptPairs = rival.firstAttemptPairs as number;
+    }
+    const viewerCorrect = viewer.mode === 'speed_match'
+      ? viewer.firstAttemptPairs > 0
+      : viewer.status === 'correct';
+    const award = arenaAwardStars({
+      mode: task.mode,
+      status: task.mode === 'speed_match'
+        ? (firstAttemptPairs > 0 ? 'correct' : 'wrong')
+        : (rival.correct ? 'correct' : 'wrong'),
+      raceElapsedMs: rival.raceElapsedMs,
+      firstAttemptPairs,
+      opponentRaceElapsedMs: viewer.raceElapsedMs,
+      opponentCorrect: viewerCorrect,
+      comboRunBefore: comboRun,
+    });
+    comboRun = award.comboRunAfter;
+    score = Math.min(ceiling, score + award.stars);
+    known = true;
+  }
+  return known ? score : null;
+}
+
 export function arenaMatchHud(
   plan: ArenaMatchPlanWire,
   state: ArenaLocalMatchState,
@@ -137,6 +204,7 @@ export function arenaMatchHud(
     combo: arenaComboView(state.comboRun),
     opponent: arenaOpponentSignal(state, monoNowMs),
     matchStars: state.matchStars,
+    opponentMatchStars: arenaOpponentMatchStars(plan, state),
     award,
     // Звёзды летят только в момент показа результата и только если они есть:
     // пустой полёт нуля звёзд читается как насмешка.

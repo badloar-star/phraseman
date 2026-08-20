@@ -7,12 +7,50 @@ import { getOrCreateArenaSubmissionId, pruneArenaSubmissionIds } from '../module
 import { arenaRankedElapsedMs, arenaRankedWaitPresentation } from '../modules/arena/matchmaking_state';
 import { ARENA_RANKED_COPY_KEYS, arenaText } from '../modules/arena/copy';
 import type { Lang } from '../constants/i18n';
+import { arenaParseMatchPlan } from '../modules/arena/duel_plan';
 
 function task(mode: ArenaPublicTask['mode'], payload: Record<string, unknown>): ArenaPublicTask {
   return { taskId: `task-${mode}`, mode, kind: mode === 'speed_match' ? 'match' : 'choice', isVoice: false, difficulty: 2, payload };
 }
 
 describe('Arena V2 client contract', () => {
+  const planWithTicks = (opponentTicks: readonly unknown[]) => arenaParseMatchPlan({
+    schemaVersion: 'arena-match-plan.v2',
+    rulesVersion: 'arena-stars.v3',
+    matchId: 'm-wire',
+    mode: 'quick',
+    viewerSeat: 'a',
+    taskCount: 1,
+    countdownMs: 3_200,
+    readingMs: 1_500,
+    revealMs: 1_200,
+    rules: {
+      starsCorrect: 2, starsCorrectFirst: 3, starsPerPair: 1, comboThreshold: 3,
+      comboBonus: 1, timeQuantumMs: 100, starPolicy: 'none', awardsRankPoints: false,
+      matchStarCeiling: 4,
+    },
+    tasks: [{
+      taskId: 'pairs-0', taskIndex: 0, mode: 'speed_match', kind: 'match', difficulty: 2,
+      answerMs: 18_000, payload: { prompt: 'Match', items: [], rightOptions: [] },
+      answerFingerprints: ['fp'],
+    }],
+    opponent: { seat: 'b', name: 'Rival', rank: 0 },
+    opponentTicks,
+    liveChannelPath: 'arenaLive/m-wire',
+    planHash: 'hash',
+    issuedAtMs: 1,
+  });
+
+  test('keeps only valid optional firstAttemptPairs without rejecting the plan', () => {
+    expect(planWithTicks([{ taskIndex: 0, correct: true, raceElapsedMs: 900, firstAttemptPairs: 4 }])
+      ?.opponentTicks[0].firstAttemptPairs).toBe(4);
+    for (const invalid of [5, -1, 1.5]) {
+      const parsed = planWithTicks([{ taskIndex: 0, correct: true, raceElapsedMs: 900, firstAttemptPairs: invalid }]);
+      expect(parsed).not.toBeNull();
+      expect(parsed?.opponentTicks[0]).not.toHaveProperty('firstAttemptPairs');
+    }
+  });
+
   test('keeps the canonical five modes followed by the same five modes', () => {
     expect(ARENA_DUEL_BLUEPRINT).toEqual([...ARENA_TASK_MODES, ...ARENA_TASK_MODES]);
     expect(seededArenaBlueprint(1)).toEqual(ARENA_DUEL_BLUEPRINT);

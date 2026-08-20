@@ -43,6 +43,10 @@ export type ArenaOpponentTick = Readonly<{
   taskIndex: number;
   correct: boolean;
   raceElapsedMs: number;
+  /** Display-only cumulative live score; never used for settlement. */
+  matchStars?: number;
+  /** Scripted speed board precision; absent means the exact score is unknown. */
+  firstAttemptPairs?: number;
 }>;
 
 export type ArenaMatchPlanTask = Readonly<{

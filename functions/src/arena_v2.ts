@@ -30,6 +30,7 @@ import {
   arenaDecisiveTaskIndex,
   arenaMatchPlanRules,
   arenaNormalizeReport,
+  arenaOpponentFirstAttemptPairs,
   arenaPlanHash,
   arenaPlanTask,
   arenaScoreReport,
@@ -2409,7 +2410,13 @@ function arenaDuelOpponentTicks(privateDoc: MatchPrivate): ArenaOpponentTickWire
       ? Math.trunc(Number(plan.matchedPairs ?? 0)) > 0
       : plan.correct === true && plan.timedOut !== true;
     const elapsed = plan.timedOut ? window : Math.max(0, Math.min(window, Math.trunc(Number(plan.elapsedMs ?? window))));
-    return { taskIndex, raceElapsedMs: elapsed, correct };
+    const firstAttemptPairs = arenaOpponentFirstAttemptPairs(mode, plan.matchedPairs);
+    return {
+      taskIndex,
+      raceElapsedMs: elapsed,
+      correct,
+      ...(firstAttemptPairs === undefined ? {} : { firstAttemptPairs }),
+    };
   });
 }
 

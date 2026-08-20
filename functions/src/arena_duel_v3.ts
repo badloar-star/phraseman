@@ -108,7 +108,19 @@ export type ArenaOpponentTickWire = Readonly<{
   taskIndex: number;
   raceElapsedMs: number;
   correct: boolean;
+  firstAttemptPairs?: number;
 }>;
+
+/** Exact pair count for a scripted speed tick; other modes omit the field. */
+export function arenaOpponentFirstAttemptPairs(
+  mode: ArenaTaskMode,
+  matchedPairs: unknown,
+): number | undefined {
+  if (mode !== 'speed_match') return undefined;
+  const numeric = Number(matchedPairs);
+  if (!Number.isFinite(numeric)) return 0;
+  return Math.max(0, Math.min(ARENA_SPEED_MATCH_PAIRS, Math.trunc(numeric)));
+}
 
 export type ArenaSubmittedOutcome = Readonly<{
   taskIndex: number;

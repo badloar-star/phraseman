@@ -346,24 +346,6 @@ export default function ArenaMatchScreen() {
     return () => subscription.remove();
   }, [active, confirmForfeit]);
 
-  const players: readonly ArenaPlayer[] = useMemo(() => {
-    if (!plan) return [];
-    const you: ArenaPlayer = {
-      uid: plan.viewerSeat, name: arenaText(lang, 'you'), rank: 0, rating: 0, score: 0, correct: 0,
-    };
-    const rival: ArenaPlayer = {
-      uid: plan.opponent.seat,
-      name: plan.opponent.name || arenaText(lang, 'opponent'),
-      ...(plan.opponent.avatar ? { avatar: plan.opponent.avatar } : {}),
-      ...(plan.opponent.aura ? { aura: plan.opponent.aura } : {}),
-      rank: plan.opponent.rank,
-      rating: 0,
-      score: 0,
-      correct: 0,
-    };
-    return plan.viewerSeat === 'a' ? [you, rival] : [rival, you];
-  }, [lang, plan]);
-
   /* ---- звуки, привязанные к смене состояния ---- */
   const lastTaskRef = useRef(-1);
   const lastComboRef = useRef(0);
@@ -395,6 +377,35 @@ export default function ArenaMatchScreen() {
     () => (plan && match ? arenaMatchHud(plan, match.state, match.phase, arenaMonotonicNowMs()) : null),
     [plan, match],
   );
+
+  const ownScore = hud?.matchStars ?? 0;
+  const rivalScore = hud?.opponentMatchStars ?? null;
+  const playerIdentities: readonly ArenaPlayer[] = useMemo(() => {
+    if (!plan) return [];
+    const you: ArenaPlayer = {
+      uid: plan.viewerSeat, name: arenaText(lang, 'you'), rank: 0, rating: 0, score: 0, correct: 0,
+    };
+    const rival: ArenaPlayer = {
+      uid: plan.opponent.seat,
+      name: plan.opponent.name || arenaText(lang, 'opponent'),
+      ...(plan.opponent.avatar ? { avatar: plan.opponent.avatar } : {}),
+      ...(plan.opponent.aura ? { aura: plan.opponent.aura } : {}),
+      rank: plan.opponent.rank,
+      rating: 0,
+      score: 0,
+      correct: 0,
+    };
+    return plan.viewerSeat === 'a' ? [you, rival] : [rival, you];
+  }, [lang, plan]);
+  const players = useMemo(() => {
+    if (!plan) return [];
+    const you = playerIdentities.find((player) => player.uid === plan.viewerSeat);
+    const rival = playerIdentities.find((player) => player.uid === plan.opponent.seat);
+    if (!you || !rival) return [];
+    const scoredYou = { ...you, score: ownScore };
+    const scoredRival = { ...rival, score: rivalScore };
+    return plan.viewerSeat === 'a' ? [scoredYou, scoredRival] : [scoredRival, scoredYou];
+  }, [ownScore, plan, playerIdentities, rivalScore]);
 
   /**
    * Просрочка и звёзды звучат по ЗАКРЫТОМУ заданию, а не по фазе: фаза может
@@ -520,8 +531,8 @@ export default function ArenaMatchScreen() {
             : FadeIn.duration(160)}
         >
         <ArenaVersusIntro
-          you={players.find((player) => player.uid === plan.viewerSeat)}
-          opponent={players.find((player) => player.uid === plan.opponent.seat)}
+          you={playerIdentities.find((player) => player.uid === plan.viewerSeat)}
+          opponent={playerIdentities.find((player) => player.uid === plan.opponent.seat)}
           goLabel={arenaText(lang, 'title')}
           onDone={() => setIntroDone(true)}
         />
@@ -549,7 +560,7 @@ export default function ArenaMatchScreen() {
       scroll={false}
       onBack={confirmForfeit}
     >
-      <ArenaPlayers players={players} active={active} />
+      <ArenaPlayers players={players} active={active} animateScore />
       <V2Segments total={hud.taskCount} done={Math.max(0, hud.taskOrdinal - 1)} />
 
       {hud.task ? (

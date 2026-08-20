@@ -14,6 +14,7 @@ import {
   arenaDecisiveTaskIndex,
   arenaMatchBudgetMs,
   arenaMatchPlanRules,
+  arenaOpponentFirstAttemptPairs,
   arenaNormalizeReport,
   arenaPlanHash,
   arenaPlanTask,
@@ -29,6 +30,15 @@ import { ARENA_ANSWER_MS, ARENA_SPEED_MATCH_PAIRS } from './arena_stars_v3';
 import { validateTournamentTask, type TournamentTask } from './tournament_core';
 
 const MATCH_ID = 'arena_match_smoke_1';
+
+describe('scripted opponent pair projection', () => {
+  it('projects and clamps the real matchedPairs count only for speed tasks', () => {
+    expect(arenaOpponentFirstAttemptPairs('speed_match', 4)).toBe(4);
+    expect(arenaOpponentFirstAttemptPairs('speed_match', 99)).toBe(4);
+    expect(arenaOpponentFirstAttemptPairs('speed_match', -3)).toBe(0);
+    expect(arenaOpponentFirstAttemptPairs('guess_phrase', 4)).toBeUndefined();
+  });
+});
 
 function choiceTask(taskId: string, mode: string, correctIndex: number): TournamentTask {
   return {

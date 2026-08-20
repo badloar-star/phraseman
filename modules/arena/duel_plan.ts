@@ -179,7 +179,16 @@ function parseTicks(raw: unknown, taskCount: number): readonly ArenaOpponentTick
     const taskIndex = finiteInt(item.taskIndex, 0, taskCount - 1);
     const raceElapsedMs = finiteInt(item.raceElapsedMs, 0, 600_000);
     if (taskIndex === null || raceElapsedMs === null) return null;
-    ticks.push({ taskIndex, raceElapsedMs, correct: item.correct === true });
+    const firstAttemptPairs = Number(item.firstAttemptPairs);
+    const validFirstAttemptPairs = Number.isInteger(firstAttemptPairs)
+      && firstAttemptPairs >= 0
+      && firstAttemptPairs <= 4;
+    ticks.push({
+      taskIndex,
+      raceElapsedMs,
+      correct: item.correct === true,
+      ...(validFirstAttemptPairs ? { firstAttemptPairs } : {}),
+    });
   }
   return ticks;
 }

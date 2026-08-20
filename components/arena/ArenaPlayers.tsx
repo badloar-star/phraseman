@@ -7,10 +7,13 @@ import type { ArenaPlayer } from '../../modules/arena/contract';
 import { useCountUp } from '../league/leagueStatusShared';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 
-function Player({ player, active, animateScore }: { player?: ArenaPlayer; active: boolean; animateScore: boolean }) {
+type ArenaDisplayedPlayer = Omit<ArenaPlayer, 'score'> & Readonly<{ score: number | null }>;
+
+function Player({ player, active, animateScore }: { player?: ArenaDisplayedPlayer; active: boolean; animateScore: boolean }) {
   const P = useTournamentPalette();
   const reduceMotion = useReduceMotion();
-  const shownScore = useCountUp(player?.score ?? 0, reduceMotion || !animateScore);
+  const knownScore = typeof player?.score === 'number' ? player.score : null;
+  const shownScore = useCountUp(knownScore ?? 0, reduceMotion || !animateScore);
   /**
    * На узком экране в одну строку не помещаются два аватара, два имени, счёт
    * и «VS»: имени оставалось несколько букв до многоточия. Аватар отдаёт ему
@@ -28,12 +31,14 @@ function Player({ player, active, animateScore }: { player?: ArenaPlayer; active
       </View>
       {/* Про игрока, которого ещё нет, счёт неизвестен. Ноль здесь — это
           утверждение, а не отсутствие данных. */}
-      {player ? <V2Counter value={shownScore} /> : <Text style={[styles.name, { color: P.muted }]}>—</Text>}
+      {player && knownScore !== null
+        ? <V2Counter value={shownScore} />
+        : <Text style={[styles.name, { color: P.muted }]}>—</Text>}
     </View>
   );
 }
 
-export function ArenaPlayers({ players, active, animateScore = false }: { players: readonly ArenaPlayer[]; active: boolean; animateScore?: boolean }) {
+export function ArenaPlayers({ players, active, animateScore = false }: { players: readonly ArenaDisplayedPlayer[]; active: boolean; animateScore?: boolean }) {
   const P = useTournamentPalette();
   return (
     <View style={[styles.root, { backgroundColor: P.elev }]}>

@@ -2,6 +2,7 @@ import {
   arenaAwardLines,
   arenaComboView,
   arenaMatchHud,
+  arenaOpponentMatchStars,
   arenaOpponentSignal,
   arenaResolvedPairs,
 } from '../modules/arena/match_view';
@@ -145,6 +146,77 @@ describe('серия', () => {
   it('мусор и отрицательное не ломают', () => {
     expect(arenaComboView(-5).streak).toBe(0);
     expect(arenaComboView(2.9).streak).toBe(2);
+  });
+});
+
+describe('точный live-счёт соперника', () => {
+  const viewerOutcome = (mode: typeof MODES[number], firstAttemptPairs = 0) => ({
+    taskIndex: 0,
+    mode,
+    status: 'correct' as const,
+    raceElapsedMs: 1_000,
+    firstAttemptPairs,
+    resolvedPairs: mode === 'speed_match' ? 4 : 0,
+    answer: null,
+  });
+
+  const stateWith = (
+    ticks: ArenaLocalMatchState['opponentByTask'],
+    outcomes: ArenaLocalMatchState['outcomes'] = [],
+  ): ArenaLocalMatchState => ({ ...init(), opponentByTask: ticks, outcomes });
+
+  it('берёт наибольший валидный переданный итог и не даёт ему убывать', () => {
+    expect(arenaOpponentMatchStars(PLAN, stateWith({
+      0: { taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 7 },
+      1: { taskIndex: 1, correct: true, raceElapsedMs: 800, matchStars: 5 },
+    }))).toBe(7);
+  });
+
+  it('вычисляет точный fallback для обычного задания', () => {
+    expect(arenaOpponentMatchStars(PLAN, stateWith({
+      0: { taskIndex: 0, correct: true, raceElapsedMs: 900 },
+    }, [viewerOutcome('guess_phrase')]))).toBe(3);
+  });
+
+  it('для пар использует точное firstAttemptPairs', () => {
+    const speedPlan = {
+      ...PLAN,
+      tasks: [{ ...PLAN.tasks[4], taskIndex: 0 }, ...PLAN.tasks.slice(1)],
+    } as ArenaMatchPlanWire;
+    const state = stateWith({
+      0: { taskIndex: 0, correct: true, raceElapsedMs: 900, firstAttemptPairs: 4 },
+    }, [viewerOutcome('speed_match', 2)]);
+    expect(arenaOpponentMatchStars(speedPlan, state)).toBe(4);
+  });
+
+  it('не угадывает счёт пар из boolean correct', () => {
+    const speedPlan = {
+      ...PLAN,
+      tasks: [{ ...PLAN.tasks[4], taskIndex: 0 }, ...PLAN.tasks.slice(1)],
+    } as ArenaMatchPlanWire;
+    const state = stateWith({
+      0: { taskIndex: 0, correct: true, raceElapsedMs: 900 },
+    }, [viewerOutcome('speed_match', 2)]);
+    expect(arenaOpponentMatchStars(speedPlan, state)).toBeNull();
+  });
+
+  it('HUD отдаёт тот же счёт', () => {
+    const state = stateWith({
+      0: { taskIndex: 0, correct: true, raceElapsedMs: 900, matchStars: 7 },
+    });
+    expect(arenaMatchHud(PLAN, state, arenaLocalPhase(state, MONO0), MONO0).opponentMatchStars).toBe(7);
+  });
+
+  it('экран передаёт оба live-значения, а неизвестное рисует чертой', () => {
+    const screen = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+    const players = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaPlayers.tsx'), 'utf8');
+    expect(screen).toContain('const ownScore = hud?.matchStars ?? 0;');
+    expect(screen).toContain('const rivalScore = hud?.opponentMatchStars ?? null;');
+    expect(screen).toContain('score: ownScore');
+    expect(screen).toContain('score: rivalScore');
+    expect(players).toContain("typeof player?.score === 'number'");
+    expect(players).toContain("knownScore !== null");
+    expect(players).not.toContain('player?.score ?? 0');
   });
 });
 

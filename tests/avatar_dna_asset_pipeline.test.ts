@@ -11,6 +11,7 @@ const ROOT = path.resolve(__dirname, '..');
 const BUILD = path.join(ROOT, 'scripts/avatar-dna/build_bundle.mjs');
 const PUBLISH = path.join(ROOT, 'scripts/avatar-dna/publish_assets.mjs');
 const CONTACT = path.join(ROOT, 'scripts/avatar-dna/build_contact_sheet.mjs');
+const PREPARE_CHROMA = path.join(ROOT, 'scripts/avatar-dna/prepare_chroma_source.mjs');
 const RIG = path.join(ROOT, 'config/avatar-dna/human_v1.rig.json');
 
 type LayerFixture = { id: string; slot: string; file: string; clip?: string };
@@ -158,5 +159,26 @@ describe('Avatar DNA deterministic asset pipeline', () => {
     expect(run(CONTACT, ['--catalog', catalog, '--assets', target, '--out', qa]).ok).toBe(true);
     expect(fs.statSync(path.join(qa, 'avatar-dna-v1-contact-sheet.webp')).size).toBeGreaterThan(0);
     expect(JSON.parse(fs.readFileSync(path.join(qa, 'avatar-dna-v1-contact-sheet.json'), 'utf8')).items).toHaveLength(1);
+  });
+
+  it('turns a bounded chroma render into a genuine 2048px RGBA source without green edge spill', async () => {
+    const input = path.join(fixtureRoot, 'chroma.png');
+    const output = path.join(fixtureRoot, 'prepared.png');
+    await sharp({ create: { width: 512, height: 512, channels: 3, background: '#00ff00' } })
+      .composite([{ input: await sharp({ create: { width: 240, height: 320, channels: 4, background: '#c94b20' } }).png().toBuffer(), left: 136, top: 96 }])
+      .png()
+      .toFile(input);
+    const preparation = run(PREPARE_CHROMA, ['--input', input, '--output', output, '--key', '#00ff00']);
+    expect(preparation.output).toContain('avatar-dna chroma: PASS');
+    const { data, info } = await sharp(output).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+    expect(info).toMatchObject({ width: 2048, height: 2048, channels: 4 });
+    expect(data[3]).toBe(0);
+    const center = ((1024 * info.width) + 1024) * 4;
+    expect(data[center + 3]).toBe(255);
+    let greenSpillPixels = 0;
+    for (let offset = 0; offset < data.length; offset += 4) {
+      if (data[offset + 3] > 0 && data[offset + 1] > Math.max(data[offset], data[offset + 2]) + 4) greenSpillPixels += 1;
+    }
+    expect(greenSpillPixels).toBe(0);
   });
 });

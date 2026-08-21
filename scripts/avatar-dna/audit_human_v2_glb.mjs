@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseMakeHumanObj } from './lib/makehuman_obj.mjs';
 import { loadRelativeMorphDeltas, TARGET_ORDER } from './lib/morph_recipe.mjs';
-import { makeIrisSurface, makeLatLongEllipsoid } from './lib/ellipsoid_mesh.mjs';
+import { makeIrisSurface, makeLatLongEllipsoid, makeScleraWithAperture } from './lib/ellipsoid_mesh.mjs';
 import { assertManifestBytes, CANONICAL_STREAM_SHA256, MATERIAL_CONFIG_SHA256 } from './build_human_v2_cc0_glb.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -94,7 +94,8 @@ function exactSchema(gltf, bin, errors) {
   for (let index = 0; index < (primitive?.targets?.length || 0); index += 1) if (!hasKeys(primitive.targets[index], ['POSITION']) || primitive.targets[index].POSITION !== 4 + index) bad();
   for (let index = 1; index < (gltf.meshes?.length || 0); index += 1) {
     const eye = gltf.meshes[index]; const isIris = eye?.name?.endsWith('_iris');
-    if (!hasKeys(eye, ['extras','name','primitives']) || !hasKeys(eye?.extras, isIris ? ['anchor','angularSegments','helperBounds','helperGroup','irisOffsetTowardCamera','pupilRing','radialSegments','radii'] : ['anchor','helperBounds','helperGroup','radii']) || eye?.primitives?.length !== (isIris ? 2 : 1)) bad();
+    const extras = isIris ? ['anchor','angularSegments','helperBounds','helperGroup','irisOffsetTowardCamera','pupilRing','radialSegments','radii','rimOffset'] : eye?.name?.endsWith('_sclera') ? ['anchor','apertureOffset','apertureRadii','helperBounds','helperGroup','radii'] : ['anchor','helperBounds','helperGroup','radii','surfaceCenter'];
+    if (!hasKeys(eye, ['extras','name','primitives']) || !hasKeys(eye?.extras, extras) || eye?.primitives?.length !== (isIris ? 2 : 1)) bad();
     for (const eyePrimitive of eye?.primitives || []) if (!hasKeys(eyePrimitive, ['attributes','indices','material']) || !hasKeys(eyePrimitive.attributes, ['NORMAL','POSITION'])) bad();
   }
   for (const material of gltf.materials || []) { const extras = material?.name === 'material_cornea' ? ['alphaMode','doubleSided','name','pbrMetallicRoughness'] : ['name','pbrMetallicRoughness']; if (!hasKeys(material, extras) || !hasKeys(material?.pbrMetallicRoughness, ['baseColorFactor','metallicFactor','roughnessFactor'])) bad(); }
@@ -158,7 +159,8 @@ function validatePrimitiveTriangles(position, indices, errors, code) {
 }
 
 const materialColor = (hex, alpha = 1) => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255, alpha];
-function equalNumbers(actual, expected) { return Array.isArray(actual) && actual.length === expected.length && actual.every((value, index) => Math.abs(value - expected[index]) < 1e-7); }
+function equalNumbers(actual, expected) { return Array.isArray(actual) && actual.length === expected.length && actual.every((value, index) => typeof value === 'number' && Number.isFinite(value) && typeof expected[index] === 'number' && Number.isFinite(expected[index]) && Math.abs(value - expected[index]) < 1e-7); }
+const finiteVec3 = value => Array.isArray(value) && value.length === 3 && value.every(item => typeof item === 'number' && Number.isFinite(item));
 async function auditEyesAndMaterials(gltf, bin, errors) {
   let config;
   try { const bytes = await readFile(path.join(ROOT, 'config', 'avatar-dna', 'human_v2_materials.v1.json')); if (createHash('sha256').update(bytes).digest('hex') !== MATERIAL_CONFIG_SHA256) throw new Error(); config = JSON.parse(bytes); } catch { err(errors, 'material_provenance_unavailable'); return; }
@@ -175,21 +177,25 @@ async function auditEyesAndMaterials(gltf, bin, errors) {
     const helperGroup = `joint-${side === 'left' ? 'l' : 'r'}-eye`;
     const parts = { sclera: meshes.get(`avatar_eye_${side}_sclera`), iris: meshes.get(`avatar_eye_${side}_iris`), cornea: meshes.get(`avatar_eye_${side}_cornea`) };
     if (Object.values(parts).some(value => !value)) { err(errors, 'missing_eye_mesh'); continue; }
+    const sourcePositions = sourceBody.groups?.[helperGroup]?.sourcePositions || [], helperMin = [0,1,2].map(axis => Math.min(...sourcePositions.map(position => position[axis]))), helperMax = [0,1,2].map(axis => Math.max(...sourcePositions.map(position => position[axis]))), helperCenter = helperMin.map((value, axis) => (value + helperMax[axis]) / 2);
+    const irisExtras = parts.iris.extras, scleraExtras = parts.sclera.extras, corneaExtras = parts.cornea.extras;
+    if (!finiteVec3(irisExtras?.radii) || irisExtras?.radialSegments !== 5 || irisExtras?.angularSegments !== 16 || irisExtras?.pupilRing !== 2 || irisExtras?.irisOffsetTowardCamera !== 0.138 || irisExtras?.rimOffset !== 0.126 || !finiteVec3(scleraExtras?.radii) || !equalNumbers(scleraExtras?.apertureRadii, [0.092,0.092]) || scleraExtras?.apertureOffset !== 0.126 || !finiteVec3(corneaExtras?.surfaceCenter) || !finiteVec3(corneaExtras?.radii)) { err(errors, 'invalid_eye_metadata'); continue; }
     for (const [part, mesh] of Object.entries(parts)) {
       const expectedRadii = part === 'sclera' ? [0.165,0.175,0.145] : part === 'iris' ? [0.092,0.092,0.012] : [0.168,0.178,0.151];
-      const positions = sourceBody.groups?.[helperGroup]?.sourcePositions || [], minimum = [0,1,2].map(axis => Math.min(...positions.map(position => position[axis]))), maximum = [0,1,2].map(axis => Math.max(...positions.map(position => position[axis]))), helperCenter = minimum.map((value, axis) => (value + maximum[axis]) / 2), expectedAnchor = part === 'iris' ? [helperCenter[0],helperCenter[1],helperCenter[2]+0.138] : helperCenter;
-      if (mesh.extras?.helperGroup !== helperGroup || !equalNumbers(mesh.extras?.radii, expectedRadii) || !equalNumbers(mesh.extras?.helperBounds?.min, minimum) || !equalNumbers(mesh.extras?.helperBounds?.max, maximum) || !equalNumbers(mesh.extras?.anchor, expectedAnchor)) err(errors, 'invalid_eye_anchor');
+      const expectedAnchor = helperCenter;
+      if (mesh.extras?.helperGroup !== helperGroup || !equalNumbers(mesh.extras?.radii, expectedRadii) || !equalNumbers(mesh.extras?.helperBounds?.min, helperMin) || !equalNumbers(mesh.extras?.helperBounds?.max, helperMax) || !equalNumbers(mesh.extras?.anchor, expectedAnchor)) err(errors, 'invalid_eye_anchor');
       for (const primitive of mesh.primitives || []) {
         const position = reader(gltf, bin, primitive.attributes?.POSITION, errors), normal = reader(gltf, bin, primitive.attributes?.NORMAL, errors), index = reader(gltf, bin, primitive.indices, errors);
         if (!expectAccessor(position,{componentType:5126,type:'VEC3',count:position?.accessor.count},errors,'invalid_eye_geometry') || !expectAccessor(normal,{componentType:5126,type:'VEC3',count:normal?.accessor.count},errors,'invalid_eye_geometry') || !expectAccessor(index,{componentType:5125,type:'SCALAR',count:index?.accessor.count},errors,'invalid_eye_geometry')) continue;
         finite(position, errors); finite(normal, errors); validatePrimitiveTriangles(position, index, errors, 'degenerate_eye_triangle');
         for (const stream of [position, normal, index]) if (!stream || !hasKeys(stream.accessor, ['bufferView','componentType','count','max','min','type']) || !equalNumbers(stream.accessor.min, decodedRange(stream).min) || !equalNumbers(stream.accessor.max, decodedRange(stream).max)) err(errors, 'invalid_eye_accessor_metadata');
         if (part !== 'iris') {
-          const expected = makeLatLongEllipsoid({ center: expectedAnchor, radii: expectedRadii });
+          const expected = part === 'sclera' ? makeScleraWithAperture({ center: expectedAnchor, radii: expectedRadii }) : makeLatLongEllipsoid({ center: mesh.extras.surfaceCenter, radii: expectedRadii });
           if (!position?.bytes().equals(Buffer.from(expected.positions.buffer)) || !normal?.bytes().equals(Buffer.from(expected.normals.buffer)) || !index?.bytes().equals(Buffer.from(expected.indices.buffer))) err(errors, 'invalid_eye_geometry');
         }
       }
     }
+    if (parts.sclera.primitives?.[0]?.material !== byName.get('material_sclera')?.index || parts.cornea.primitives?.[0]?.material !== byName.get('material_cornea')?.index) err(errors, 'invalid_eye_material_binding');
     const iris = parts.iris;
     if (iris.primitives?.length !== 2 || iris.primitives[0]?.material !== byName.get('material_iris')?.index || iris.primitives[1]?.material !== byName.get('material_pupil')?.index || iris.primitives[0]?.attributes?.POSITION !== iris.primitives[1]?.attributes?.POSITION || iris.primitives[0]?.attributes?.NORMAL !== iris.primitives[1]?.attributes?.NORMAL) err(errors, 'invalid_iris_partition');
     else {
@@ -197,11 +203,16 @@ async function auditEyesAndMaterials(gltf, bin, errors) {
       const firstTriangles = new Set(), secondTriangles = new Set();
       for (const [source, target] of [[first, firstTriangles], [second, secondTriangles]]) for (let index = 0; source && index < source.accessor.count; index += 3) target.add([source.read(index,0),source.read(index+1,0),source.read(index+2,0)].sort((a,b)=>a-b).join(','));
       if (!firstTriangles.size || !secondTriangles.size || [...firstTriangles].some(key => secondTriangles.has(key))) err(errors, 'invalid_iris_partition');
-      const expected = makeIrisSurface({ center: iris.extras.anchor, radii: [0.092,0.092,0.012], radialSegments: iris.extras.radialSegments, angularSegments: iris.extras.angularSegments, pupilRing: iris.extras.pupilRing });
+      const expected = makeIrisSurface({ center: helperCenter, radii: [0.092,0.092,0.012], radialSegments: iris.extras.radialSegments, angularSegments: iris.extras.angularSegments, pupilRing: iris.extras.pupilRing });
       const position = reader(gltf, bin, iris.primitives[0].attributes.POSITION, errors), normal = reader(gltf, bin, iris.primitives[0].attributes.NORMAL, errors);
       if (!position?.bytes().equals(Buffer.from(expected.positions.buffer)) || !normal?.bytes().equals(Buffer.from(expected.normals.buffer)) || !first?.bytes().equals(Buffer.from(expected.annulus.buffer)) || !second?.bytes().equals(Buffer.from(expected.pupil.buffer))) err(errors, 'invalid_iris_partition');
+      if (iris.extras?.irisOffsetTowardCamera !== 0.138 || iris.extras?.rimOffset !== 0.126 || Math.abs(position?.read(0, 2) - (helperCenter[2] + 0.138)) > 1e-7) err(errors, 'invalid_eye_anchor');
+      const corneaPosition = reader(gltf, bin, parts.cornea.primitives?.[0]?.attributes?.POSITION, errors); let clearance = Infinity;
+      for (let row = 0; position && row < position.accessor.count; row += 1) { const x = position.read(row, 0) - parts.cornea.extras.surfaceCenter[0], y = position.read(row, 1) - parts.cornea.extras.surfaceCenter[1], z = position.read(row, 2); const normalized = x*x/(0.168*0.168) + y*y/(0.178*0.178); const surface = parts.cornea.extras.surfaceCenter[2] + 0.151 * Math.sqrt(Math.max(0, 1 - normalized)); clearance = Math.min(clearance, surface - z); if (normalized > 1 || surface - z <= 1e-5) err(errors, 'iris_cornea_penetration'); }
+      if (!Number.isFinite(clearance) || clearance <= 1e-5 || !corneaPosition) err(errors, 'iris_cornea_penetration');
+      const scleraPosition = reader(gltf, bin, parts.sclera.primitives?.[0]?.attributes?.POSITION, errors); const aperture = parts.sclera.extras;
+      if (!equalNumbers(aperture.apertureRadii, [0.092,0.092]) || aperture.apertureOffset !== 0.126 || !scleraPosition || !Array.from({length:16}, (_, index) => index).every(index => Math.abs(scleraPosition.read(index, 2) - (helperCenter[2] + 0.126)) < 1e-7)) err(errors, 'invalid_sclera_aperture');
     }
-    if (iris.extras?.irisOffsetTowardCamera !== 0.138) err(errors, 'invalid_eye_anchor');
   }
 }
 

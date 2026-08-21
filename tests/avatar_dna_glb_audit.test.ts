@@ -79,9 +79,36 @@ describe("human_v2 CC0 GLB", () => {
         ["duplicate", json => { json.materials[1].name = "material_skin"; }, "invalid_material"],
         ["anchor", json => { json.meshes.find((mesh: any) => mesh.name === "avatar_eye_left_sclera").extras.radii[0] = 0.25; }, "invalid_eye_anchor"],
         ["partition", json => { const iris = json.meshes.find((mesh: any) => mesh.name === "avatar_eye_right_iris"); iris.primitives[1].material = iris.primitives[0].material; }, "invalid_iris_partition"],
+        ["sclera-material", json => { const sclera = json.meshes.find((mesh: any) => mesh.name === "avatar_eye_left_sclera"); sclera.primitives[0].material = json.materials.findIndex((material: any) => material.name === "material_skin"); }, "invalid_eye_material_binding"],
+        ["cornea-material", json => { const cornea = json.meshes.find((mesh: any) => mesh.name === "avatar_eye_right_cornea"); cornea.primitives[0].material = json.materials.findIndex((material: any) => material.name === "material_skin"); }, "invalid_eye_material_binding"],
       ];
       for (const [name, mutate, expected] of cases) { const file = path.join(directory, `${name}.glb`); writeFileSync(file, rewriteJson(bytes, mutate)); expect(runAudit(file).errors).toContain(expected); }
     } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
+  it("keeps the iris apex at +0.138 inside a cornea with a positive analytic clearance and a sclera aperture", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const source = path.join(directory, "eyes.glb"); execFileSync(process.execPath, [build, "--output", source], { cwd: root });
+      const { json } = gltfLayout(readFileSync(source)); const iris = json.meshes.find((mesh: any) => mesh.name === "avatar_eye_left_iris"), sclera = json.meshes.find((mesh: any) => mesh.name === "avatar_eye_left_sclera");
+      const irisPosition = json.accessors[iris.primitives[0].attributes.POSITION];
+      expect(irisPosition.max[2] - iris.extras.anchor[2]).toBeCloseTo(0.138, 6);
+      expect(iris.extras.rimOffset).toBe(0.126);
+      expect(sclera.extras).toMatchObject({ apertureRadii: [0.092, 0.092], apertureOffset: 0.126 });
+      expect(runAudit(source)).toMatchObject({ ok: true });
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
+  it("rejects non-finite or non-canonical eye generator inputs before generating vertices", () => {
+    const helper = path.join(root, "scripts/avatar-dna/lib/ellipsoid_mesh.mjs").replace(/\\/g, "/");
+    const code = `import {makeLatLongEllipsoid,makeIrisSurface} from 'file:///${helper}'; const invalid=[()=>makeLatLongEllipsoid({center:['0',0,0],radii:[1,1,1]}),()=>makeLatLongEllipsoid({center:[NaN,0,0],radii:[1,1,1]}),()=>makeLatLongEllipsoid({center:[0,0,0],radii:[1,1,1],longitudeSegments:16.5}),()=>makeLatLongEllipsoid({center:[0,0,0],radii:[1,1,1],latitudeSegments:1e309}),()=>makeIrisSurface({center:[0,0,0],radii:[.1,.1,.01],pupilRing:3})]; console.log(invalid.map(fn=>{try{fn();return 'bad'}catch{return 'ok'}}).join(','));`;
+    expect(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }).trim()).toBe("ok,ok,ok,ok,ok");
+  });
+
+  it("generates canonical single-pole meshes with unit normals, outward winding, and disjoint iris partitions", () => {
+    const helper = path.join(root, "scripts/avatar-dna/lib/ellipsoid_mesh.mjs").replace(/\\/g, "/");
+    const code = `import {makeLatLongEllipsoid,makeIrisSurface} from 'file:///${helper}'; const sphere=makeLatLongEllipsoid({center:[0,0,0],radii:[1,1,1]}),iris=makeIrisSurface({center:[0,0,0],radii:[.092,.092,.012]}); let normals=true,winding=true; for(let i=0;i<sphere.normals.length;i+=3) normals &&= Math.abs(Math.hypot(sphere.normals[i],sphere.normals[i+1],sphere.normals[i+2])-1)<1e-6; for(let i=0;i<sphere.indices.length;i+=3){const a=sphere.indices[i]*3,b=sphere.indices[i+1]*3,c=sphere.indices[i+2]*3,ux=sphere.positions[b]-sphere.positions[a],uy=sphere.positions[b+1]-sphere.positions[a+1],uz=sphere.positions[b+2]-sphere.positions[a+2],vx=sphere.positions[c]-sphere.positions[a],vy=sphere.positions[c+1]-sphere.positions[a+1],vz=sphere.positions[c+2]-sphere.positions[a+2]; winding &&= ux*(vy*sphere.normals[a+2]-vz*sphere.normals[a+1])+uy*(vz*sphere.normals[a]-vx*sphere.normals[a+2])+uz*(vx*sphere.normals[a+1]-vy*sphere.normals[a])>0;} const triangles=x=>{const s=new Set;for(let i=0;i<x.length;i+=3)s.add([x[i],x[i+1],x[i+2]].sort((a,b)=>a-b).join(','));return s};const a=triangles(iris.annulus),p=triangles(iris.pupil);console.log(JSON.stringify({sphereVertices:sphere.positions.length/3,sphereIndices:sphere.indices.length,irisVertices:iris.positions.length/3,irisIndices:iris.annulus.length+iris.pupil.length,normals,winding,overlap:[...a].some(v=>p.has(v))}));`;
+    expect(JSON.parse(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }))).toEqual({ sphereVertices: 146, sphereIndices: 864, irisVertices: 81, irisIndices: 432, normals: true, winding: true, overlap: false });
   });
 
   it("rejects degenerate eye triangles, duplicate node names, and forged eye stream metadata", () => {

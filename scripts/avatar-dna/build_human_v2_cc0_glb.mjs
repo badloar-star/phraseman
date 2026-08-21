@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseMakeHumanObj } from './lib/makehuman_obj.mjs';
 import { loadRelativeMorphDeltas, TARGET_ORDER } from './lib/morph_recipe.mjs';
-import { makeIrisSurface, makeLatLongEllipsoid } from './lib/ellipsoid_mesh.mjs';
+import { makeIrisSurface, makeLatLongEllipsoid, makeScleraWithAperture } from './lib/ellipsoid_mesh.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const MANIFEST_SHA256 = 'ea7948dd62fbe987cc16fc3751a71c07c17db787db1637d6d7eb5526582545a6';
@@ -117,15 +117,15 @@ export async function buildHumanV2Cc0Glb(options = {}) {
   });
   for (const side of ['left','right']) {
     const helperGroup = `joint-${side === 'left' ? 'l' : 'r'}-eye`, anchor = helperBounds(body.groups[helperGroup]);
-    const sclera = makeLatLongEllipsoid({center:anchor.center,radii:[0.165,0.175,0.145]});
-    const irisCenter=[anchor.center[0],anchor.center[1],anchor.center[2]+0.138], iris=makeIrisSurface({center:irisCenter,radii:[0.092,0.092,0.012]});
-    const cornea = makeLatLongEllipsoid({center:anchor.center,radii:[0.168,0.178,0.151]});
+    const sclera = makeScleraWithAperture({center:anchor.center,radii:[0.165,0.175,0.145]});
+    const iris=makeIrisSurface({center:anchor.center,radii:[0.092,0.092,0.012]});
+    const corneaCenter=[anchor.center[0],anchor.center[1],anchor.center[2]+0.04], cornea = makeLatLongEllipsoid({center:corneaCenter,radii:[0.168,0.178,0.151]});
     const addSurface=(name,surface,material,extras={})=>{const position=accessor(surface.positions,5126,'VEC3',typedBounds(surface.positions,3)),normalAccessor=accessor(surface.normals,5126,'VEC3',typedBounds(surface.normals,3)),index=accessor(surface.indices,5125,'SCALAR',typedBounds(surface.indices,1));meshes.push({name,primitives:[{attributes:{POSITION:position,NORMAL:normalAccessor},indices:index,material}],extras});nodes.push({name,mesh:meshes.length-1});};
     const provenance={helperGroup,helperBounds:{min:anchor.min,max:anchor.max},anchor:anchor.center};
-    addSurface(`avatar_eye_${side}_sclera`,sclera,materialIndex.material_sclera,{...provenance,radii:[0.165,0.175,0.145]});
+    addSurface(`avatar_eye_${side}_sclera`,sclera,materialIndex.material_sclera,{...provenance,radii:[0.165,0.175,0.145],apertureRadii:sclera.apertureRadii,apertureOffset:sclera.apertureOffset});
     const ip=accessor(iris.positions,5126,'VEC3',typedBounds(iris.positions,3)),inorm=accessor(iris.normals,5126,'VEC3',typedBounds(iris.normals,3)),annulus=accessor(iris.annulus,5125,'SCALAR',typedBounds(iris.annulus,1)),pupil=accessor(iris.pupil,5125,'SCALAR',typedBounds(iris.pupil,1));
-    meshes.push({name:`avatar_eye_${side}_iris`,primitives:[{attributes:{POSITION:ip,NORMAL:inorm},indices:annulus,material:materialIndex.material_iris},{attributes:{POSITION:ip,NORMAL:inorm},indices:pupil,material:materialIndex.material_pupil}],extras:{...provenance,anchor:irisCenter,radii:[0.092,0.092,0.012],irisOffsetTowardCamera:0.138,pupilRing:iris.pupilRing,radialSegments:iris.radialSegments,angularSegments:iris.angularSegments}}); nodes.push({name:`avatar_eye_${side}_iris`,mesh:meshes.length-1});
-    addSurface(`avatar_eye_${side}_cornea`,cornea,materialIndex.material_cornea,{...provenance,radii:[0.168,0.178,0.151]});
+    meshes.push({name:`avatar_eye_${side}_iris`,primitives:[{attributes:{POSITION:ip,NORMAL:inorm},indices:annulus,material:materialIndex.material_iris},{attributes:{POSITION:ip,NORMAL:inorm},indices:pupil,material:materialIndex.material_pupil}],extras:{...provenance,radii:[0.092,0.092,0.012],irisOffsetTowardCamera:iris.apexOffset,rimOffset:iris.rimOffset,pupilRing:iris.pupilRing,radialSegments:iris.radialSegments,angularSegments:iris.angularSegments}}); nodes.push({name:`avatar_eye_${side}_iris`,mesh:meshes.length-1});
+    addSurface(`avatar_eye_${side}_cornea`,cornea,materialIndex.material_cornea,{...provenance,radii:[0.168,0.178,0.151],surfaceCenter:corneaCenter});
   }
   const gltf={asset:{version:'2.0',generator:'phraseman-avatar-dna-cc0-v1'},scene:0,scenes:[{name:'human_v2_scene',nodes:nodes.map((_,index)=>index)}],nodes,meshes,materials,accessors,bufferViews:views,buffers:[{byteLength:chunks.reduce((n,c)=>n+c.length,0)}]};
   const json=pad(Buffer.from(JSON.stringify(gltf),'utf8'),0x20), bin=Buffer.concat(chunks), total=12+8+json.length+8+bin.length, header=Buffer.alloc(12); header.writeUInt32LE(0x46546c67,0);header.writeUInt32LE(2,4);header.writeUInt32LE(total,8); const jsonHeader=Buffer.alloc(8);jsonHeader.writeUInt32LE(json.length,0);jsonHeader.writeUInt32LE(0x4e4f534a,4); const binHeader=Buffer.alloc(8);binHeader.writeUInt32LE(bin.length,0);binHeader.writeUInt32LE(0x004e4942,4);

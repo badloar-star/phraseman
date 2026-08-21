@@ -28,6 +28,38 @@ const AVATAR_DNA_QUARANTINE_RAW = JSON.stringify({
 });
 const poisonedStateKeys = new Set<string>();
 
+async function writeRawVerified(key: string, raw: string): Promise<boolean> {
+  const attempts = [
+    () => AsyncStorage.setItem(key, raw),
+    () => AsyncStorage.multiSet([[key, raw]]),
+  ];
+  for (const attempt of attempts) {
+    try {
+      await attempt();
+      if (await AsyncStorage.getItem(key) === raw) return true;
+    } catch {
+      // Try the independent batch primitive before declaring storage unavailable.
+    }
+  }
+  return false;
+}
+
+async function removeRawVerified(key: string): Promise<boolean> {
+  const attempts = [
+    () => AsyncStorage.removeItem(key),
+    () => AsyncStorage.multiRemove([key]),
+  ];
+  for (const attempt of attempts) {
+    try {
+      await attempt();
+      if (await AsyncStorage.getItem(key) === null) return true;
+    } catch {
+      // Try the independent batch primitive before declaring storage unavailable.
+    }
+  }
+  return false;
+}
+
 export type AvatarDNAStoredState = Readonly<{
   schemaVersion: 1;
   ownerStableId: string;
@@ -239,15 +271,13 @@ export async function commitAvatarDNA(input: Readonly<{
       || !isCurrentAccountGeneration(afterWrite, ownerStableId)
     ) {
       poisonedStateKeys.add(key);
-      try {
-        await AsyncStorage.setItem(key, AVATAR_DNA_QUARANTINE_RAW);
-      } catch {
-        // Compensation still has a chance to restore/remove the canonical root.
-      }
-      try {
-        if (previousRaw === null) await AsyncStorage.removeItem(key);
-        else await AsyncStorage.setItem(key, previousRaw);
-      } catch {
+      await writeRawVerified(key, AVATAR_DNA_QUARANTINE_RAW);
+      const compensated = previousRaw === null
+        ? await removeRawVerified(key)
+        : await writeRawVerified(key, previousRaw);
+      if (!compensated) {
+        // A verified quarantine, when storage permits it, is restart-safe. The
+        // in-process poison also blocks this process from adopting the stale root.
         throw new Error('avatar_dna_storage_rollback_failed');
       }
       poisonedStateKeys.delete(key);

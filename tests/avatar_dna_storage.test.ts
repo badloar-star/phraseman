@@ -288,7 +288,7 @@ describe('Avatar DNA account-scoped storage', () => {
     await expect(AsyncStorage.getItem(key)).resolves.toBeNull();
   });
 
-  it('leaves an unreadable durable quarantine when restoring previous bytes fails', async () => {
+  it('falls back to a batch write when restoring previous bytes fails', async () => {
     const generation = beginAccountGeneration('u1').generation;
     await commitAvatarDNA({
       ownerStableId: 'u1', accountGeneration: generation, dna,
@@ -321,16 +321,16 @@ describe('Avatar DNA account-scoped storage', () => {
     beginAccountGeneration('u1');
     releaseWrite();
 
-    await expect(committing).rejects.toThrow('avatar_dna_storage_rollback_failed');
-    const quarantinedRaw = await AsyncStorage.getItem(key);
-    expect(quarantinedRaw).not.toBeNull();
-    expect(parseAvatarDNAStoredState(JSON.parse(quarantinedRaw!), 'u1', 1)).toBeNull();
-    __resetAccountGenerationForTests();
-    const restartedGeneration = beginAccountGeneration('u1').generation;
-    await expect(readAvatarDNAState('u1', restartedGeneration)).resolves.toBeNull();
+    await expect(committing).resolves.toEqual({ status: 'stale-account' });
+    const restoredRaw = await AsyncStorage.getItem(key);
+    expect(restoredRaw).not.toBeNull();
+    expect(parseAvatarDNAStoredState(JSON.parse(restoredRaw!), 'u1', 1)?.lastGood).toEqual({
+      portrait: 'portrait_before',
+      studio: 'studio_before',
+    });
   });
 
-  it('leaves an unreadable durable quarantine when removing a new root fails', async () => {
+  it('falls back to a batch remove when removing a new root fails', async () => {
     const generation = beginAccountGeneration('u1').generation;
     const key = avatarDNAStateStorageKey('u1', generation);
     let releaseWrite!: () => void;
@@ -358,13 +358,8 @@ describe('Avatar DNA account-scoped storage', () => {
     beginAccountGeneration('u2');
     releaseWrite();
 
-    await expect(committing).rejects.toThrow('avatar_dna_storage_rollback_failed');
-    const quarantinedRaw = await AsyncStorage.getItem(key);
-    expect(quarantinedRaw).not.toBeNull();
-    expect(parseAvatarDNAStoredState(JSON.parse(quarantinedRaw!), 'u1', 1)).toBeNull();
-    __resetAccountGenerationForTests();
-    const restartedGeneration = beginAccountGeneration('u1').generation;
-    await expect(readAvatarDNAState('u1', restartedGeneration)).resolves.toBeNull();
+    await expect(committing).resolves.toEqual({ status: 'stale-account' });
+    await expect(AsyncStorage.getItem(key)).resolves.toBeNull();
   });
 
   it('poisons same-process reads when quarantine and compensation both fail', async () => {
@@ -385,6 +380,9 @@ describe('Avatar DNA account-scoped storage', () => {
         writeStarted();
         await pendingWrite;
         await AsyncStorage.multiSet([[writeKey, raw]]);
+        (AsyncStorage.multiSet as jest.Mock)
+          .mockRejectedValueOnce(new Error('batch quarantine failed'))
+          .mockRejectedValueOnce(new Error('batch restore failed'));
       } else {
         throw new Error('quarantine or restore failed');
       }

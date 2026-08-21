@@ -42,7 +42,7 @@ describe('Avatar DNA resolver', () => {
     expect(resolved.chosenDNA).not.toBe(withHood);
     expect(resolved.visibilityPlan.hiddenSlots).toEqual(['hair.front', 'ears']);
     expect(resolved.layers.map((layer) => layer.id)).toEqual([
-      'background.cream', 'hood.assassin.back', 'hair.2.back.mask', 'hair.2.back.shading', 'body.base.1', 'outfit.1', 'face.base.1', 'eyes.1', 'iris.brown', 'brows.1', 'nose.1', 'mouth.1', 'hood.assassin.shadow', 'hood.assassin.front',
+      'background.cream', 'hood.assassin.back', 'hair.2.back.mask', 'hair.2.back.shading', 'body.base.1.mask', 'body.base.1.shading', 'outfit.1', 'face.base.1.mask', 'face.base.1.shading', 'eyes.1', 'iris.brown', 'brows.1', 'nose.1', 'mouth.1', 'hood.assassin.shadow', 'hood.assassin.front',
     ]);
   });
 
@@ -58,7 +58,8 @@ describe('Avatar DNA resolver', () => {
     catalog.items.find((item: any) => item.id === 'skin_03').swatchHex = '#d4936a';
     catalog.items.find((item: any) => item.id === 'hair_brown').swatchHex = '#5b2b18';
     const resolved = resolveAvatarDNA(starterAvatarDNA('starter_warm_01'), catalog);
-    expect(resolved.layers.find((layer) => layer.id === 'face.base.1')?.tintColor).toBe('#d4936a');
+    expect(resolved.layers.find((layer) => layer.id === 'face.base.1.mask')?.tintColor).toBe('#d4936a');
+    expect(resolved.layers.find((layer) => layer.id === 'face.base.1.shading')?.tintColor).toBeUndefined();
     expect(resolved.layers.filter((layer) => layer.id.startsWith('hair.1.') && layer.tintColor).map((layer) => layer.tintColor)).toEqual(['#5b2b18', '#5b2b18']);
     expect(resolved.layers.find((layer) => layer.id === 'outfit.1')?.tintColor).toBeUndefined();
   });

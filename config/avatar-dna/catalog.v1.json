@@ -113,11 +113,17 @@
       },
       "layers": [
         {
-          "id": "face.base.1",
+          "id": "face.base.1.mask",
           "slot": "face",
           "z": 70,
-          "file": "face-base.webp",
+          "file": "face-mask.webp",
           "tintFrom": "skinTone"
+        },
+        {
+          "id": "face.base.1.shading",
+          "slot": "face",
+          "z": 71,
+          "file": "face-shading.webp"
         }
       ],
       "occludes": [],
@@ -136,11 +142,17 @@
       },
       "layers": [
         {
-          "id": "face.base.2",
+          "id": "face.base.2.mask",
           "slot": "face",
           "z": 70,
-          "file": "face-base.webp",
+          "file": "face-mask.webp",
           "tintFrom": "skinTone"
+        },
+        {
+          "id": "face.base.2.shading",
+          "slot": "face",
+          "z": 71,
+          "file": "face-shading.webp"
         }
       ],
       "occludes": [],
@@ -159,11 +171,17 @@
       },
       "layers": [
         {
-          "id": "face.base.3",
+          "id": "face.base.3.mask",
           "slot": "face",
           "z": 70,
-          "file": "face-base.webp",
+          "file": "face-mask.webp",
           "tintFrom": "skinTone"
+        },
+        {
+          "id": "face.base.3.shading",
+          "slot": "face",
+          "z": 71,
+          "file": "face-shading.webp"
         }
       ],
       "occludes": [],
@@ -182,11 +200,17 @@
       },
       "layers": [
         {
-          "id": "face.base.4",
+          "id": "face.base.4.mask",
           "slot": "face",
           "z": 70,
-          "file": "face-base.webp",
+          "file": "face-mask.webp",
           "tintFrom": "skinTone"
+        },
+        {
+          "id": "face.base.4.shading",
+          "slot": "face",
+          "z": 71,
+          "file": "face-shading.webp"
         }
       ],
       "occludes": [],
@@ -205,11 +229,17 @@
       },
       "layers": [
         {
-          "id": "body.base.1",
+          "id": "body.base.1.mask",
           "slot": "body",
           "z": 40,
-          "file": "body-base.webp",
+          "file": "body-mask.webp",
           "tintFrom": "skinTone"
+        },
+        {
+          "id": "body.base.1.shading",
+          "slot": "body",
+          "z": 41,
+          "file": "body-shading.webp"
         }
       ],
       "occludes": [],
@@ -228,11 +258,17 @@
       },
       "layers": [
         {
-          "id": "body.base.2",
+          "id": "body.base.2.mask",
           "slot": "body",
           "z": 40,
-          "file": "body-base.webp",
+          "file": "body-mask.webp",
           "tintFrom": "skinTone"
+        },
+        {
+          "id": "body.base.2.shading",
+          "slot": "body",
+          "z": 41,
+          "file": "body-shading.webp"
         }
       ],
       "occludes": [],

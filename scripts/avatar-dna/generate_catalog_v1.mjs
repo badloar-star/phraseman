@@ -19,8 +19,8 @@ export const catalogV1 = {
   rigIds: ['human_v1'],
   items: [
     ...numbered('skin_', 6).map((id, index) => item(id, 'base', [], { swatchHex: skinSwatches[index] })),
-    ...numbered('face_', 4).map((id, index) => item(id, 'base', [layer(`face.base.${index + 1}`, 'face', 70, 'face-base.webp', { tintFrom: 'skinTone' })])),
-    ...numbered('body_', 2).map((id, index) => item(id, 'base', [layer(`body.base.${index + 1}`, 'body', 40, 'body-base.webp', { tintFrom: 'skinTone' })])),
+    ...numbered('face_', 4).map((id, index) => item(id, 'base', [layer(`face.base.${index + 1}.mask`, 'face', 70, 'face-mask.webp', { tintFrom: 'skinTone' }), layer(`face.base.${index + 1}.shading`, 'face', 71, 'face-shading.webp')])),
+    ...numbered('body_', 2).map((id, index) => item(id, 'base', [layer(`body.base.${index + 1}.mask`, 'body', 40, 'body-mask.webp', { tintFrom: 'skinTone' }), layer(`body.base.${index + 1}.shading`, 'body', 41, 'body-shading.webp')])),
     ...numbered('eyes_', 6).map((id, index) => item(id, 'face', [layer(`eyes.${index + 1}`, 'eyes', 75, 'eyes.webp', { clip: 'face.safe' })])),
     ...irisEntries.map(([id, name], index) => item(id, 'face', [layer(`iris.${name}`, 'iris', 76, 'iris.webp', { clip: 'face.safe' })], { swatchHex: ['#5b341f','#7b6435','#46704c','#47749b','#6f777c','#a66b24'][index] })),
     ...numbered('brows_', 4).map((id, index) => item(id, 'face', [layer(`brows.${index + 1}`, 'brows', 77, 'brows.webp', { clip: 'face.safe' })])),

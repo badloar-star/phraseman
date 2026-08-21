@@ -101,6 +101,21 @@ describe('Avatar DNA deterministic asset pipeline', () => {
     expect(run(BUILD, buildArgs()).ok).toBe(false);
   });
 
+  it('keeps resized runtime alpha inside the safe polygon at its boundary', async () => {
+    const face = await sharp({ create: { width: 1020, height: 1120, channels: 4, background: '#8f5538ff' } }).png().toBuffer();
+    await sharp({ create: { width: 2048, height: 2048, channels: 4, background: '#00000000' } }).composite([{ input: face, left: 514, top: 412 }]).png().toFile(path.join(sourceDir, 'face.png'));
+    fs.writeFileSync(manifestPath, JSON.stringify({ bundleVersion: 1, items: [{ id: 'face.fixture', assetVersion: 1, layers: [{ id: 'face.fixture.layer', slot: 'face', file: 'face.png', clip: 'face.safe' }] }] }));
+    expect(run(BUILD, buildArgs()).ok).toBe(true);
+    const runtime = path.join(outDir, 'face.fixture', '1', 'face.webp');
+    const { data, info } = await sharp(runtime).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+    let outsideAlphaPixels = 0;
+    for (let y = 0; y < info.height; y += 1) for (let x = 0; x < info.width; x += 1) {
+      const inside = (x + 0.5) / info.width >= 0.25 && (x + 0.5) / info.width <= 0.75 && (y + 0.5) / info.height >= 0.2 && (y + 0.5) / info.height <= 0.75;
+      if (!inside && data[((y * info.width) + x) * 4 + 3] > 0) outsideAlphaPixels += 1;
+    }
+    expect(outsideAlphaPixels).toBe(0);
+  });
+
   it('rejects edge halo pixels', async () => {
     await writeLayer('hair-front.png', { halo: true });
     expect(run(BUILD, buildArgs()).ok).toBe(false);
@@ -224,5 +239,6 @@ describe('Avatar DNA deterministic asset pipeline', () => {
     expect(maskColorViolations).toBe(0);
     expect(darkTexturePixels).toBeGreaterThan(0);
     expect(lightTexturePixels).toBeGreaterThan(0);
+    expect(run(PREPARE_TINT, ['--input', input, '--mask', mask, '--shading', shading, '--shadow-strength', '2']).ok).toBe(false);
   });
 });

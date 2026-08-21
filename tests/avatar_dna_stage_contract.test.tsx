@@ -49,7 +49,8 @@ describe('AvatarDNAStage', () => {
 
   it('passes resolved swatch tint to static image layers', async () => {
     const view = await render(<AvatarDNAStage dna={dna} camera="portrait" size={128} />);
-    expect(view.getByTestId('avatar-layer-face.base.1').props.tintColor).toBe('#d4936a');
+    expect(view.getByTestId('avatar-layer-face.base.1.mask').props.tintColor).toBe('#d4936a');
+    expect(view.getByTestId('avatar-layer-face.base.1.shading').props.tintColor).toBeUndefined();
     expect(view.getByTestId('avatar-layer-hair.1.front.mask').props.tintColor).toBe('#5b2b18');
     expect(view.getByTestId('avatar-layer-hair.1.front.shading').props.tintColor).toBeUndefined();
     expect(view.getByTestId('avatar-layer-outfit.1').props.tintColor).toBeUndefined();

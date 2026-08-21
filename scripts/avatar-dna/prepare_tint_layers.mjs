@@ -10,8 +10,9 @@ const fail = (reason) => { throw new Error(`avatar_tint_layers_invalid: ${reason
 const luminance = (r, g, b) => Math.round((r * 0.2126) + (g * 0.7152) + (b * 0.0722));
 const percentile = (values, ratio) => values[Math.min(values.length - 1, Math.floor(values.length * ratio))];
 
-export async function prepareTintLayers({ input, mask, shading }) {
+export async function prepareTintLayers({ input, mask, shading, shadowStrength = 0.62, highlightStrength = 0.42 }) {
   if (![input, mask, shading].every((value) => typeof value === 'string' && value.length > 0)) fail('arguments');
+  if (![shadowStrength, highlightStrength].every((value) => typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 1)) fail('strength');
   const image = sharp(path.resolve(input), { failOn: 'error' });
   const metadata = await image.metadata();
   if (metadata.format !== 'png' || !metadata.width || !metadata.height || metadata.width < 64 || metadata.height < 64) fail('source');
@@ -30,7 +31,7 @@ export async function prepareTintLayers({ input, mask, shading }) {
     const tone = luminance(data[offset], data[offset + 1], data[offset + 2]);
     const isShadow = tone < pivot; const range = isShadow ? Math.max(1, pivot - low) : Math.max(1, high - pivot);
     const strength = Math.min(1, Math.abs(tone - pivot) / range);
-    const textureAlpha = Math.round(sourceAlpha * strength * (isShadow ? 0.62 : 0.42));
+    const textureAlpha = Math.round(sourceAlpha * strength * (isShadow ? shadowStrength : highlightStrength));
     shadingPixels[offset] = isShadow ? 0 : 240;
     shadingPixels[offset + 1] = isShadow ? 0 : 226;
     shadingPixels[offset + 2] = isShadow ? 0 : 214;
@@ -44,7 +45,8 @@ export async function prepareTintLayers({ input, mask, shading }) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
-  prepareTintLayers({ input: valueFor('--input'), mask: valueFor('--mask'), shading: valueFor('--shading') })
+  const shadowArg = valueFor('--shadow-strength'); const highlightArg = valueFor('--highlight-strength');
+  prepareTintLayers({ input: valueFor('--input'), mask: valueFor('--mask'), shading: valueFor('--shading'), shadowStrength: shadowArg === undefined ? undefined : Number(shadowArg), highlightStrength: highlightArg === undefined ? undefined : Number(highlightArg) })
     .then(({ width, height }) => console.log(`avatar-dna tint layers: PASS (${width}x${height})`))
     .catch((error) => { console.error(error instanceof Error ? error.message : 'avatar_tint_layers_invalid'); process.exitCode = 1; });
 }

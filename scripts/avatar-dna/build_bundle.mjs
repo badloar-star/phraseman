@@ -54,6 +54,47 @@ async function inspectSource(filePath, rig, clip) {
   if (alphaRight - alphaLeft + 1 < 32 || alphaBottom - alphaTop + 1 < 32) fail('unreadable 64px portrait');
 }
 
+const clipRuntimeLayer = async (filePath, rig, clip) => {
+  const resized = await sharp(filePath)
+    .resize(rig.runtime.width, rig.runtime.height, { fit: 'fill' })
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const polygon = clip ? rig.safePolygons?.[clip] : null;
+  if (clip && !Array.isArray(polygon)) fail('unknown safe polygon');
+  if (polygon) {
+    for (let y = 0; y < resized.info.height; y += 1) for (let x = 0; x < resized.info.width; x += 1) {
+      if (pointInPolygon((x + 0.5) / resized.info.width, (y + 0.5) / resized.info.height, polygon)) continue;
+      const offset = (y * resized.info.width + x) * 4;
+      resized.data[offset] = 0;
+      resized.data[offset + 1] = 0;
+      resized.data[offset + 2] = 0;
+      resized.data[offset + 3] = 0;
+    }
+  }
+  return sharp(resized.data, {
+    raw: {
+      width: resized.info.width,
+      height: resized.info.height,
+      channels: 4,
+    },
+  }).webp({ quality: 72, alphaQuality: 100, effort: 6 }).toBuffer();
+};
+
+const inspectRuntimeLayer = async (webp, rig, clip) => {
+  const { data, info } = await sharp(webp).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  if (info.width !== rig.runtime.width || info.height !== rig.runtime.height) fail('wrong runtime dimension');
+  const polygon = clip ? rig.safePolygons?.[clip] : null;
+  if (clip && !Array.isArray(polygon)) fail('unknown safe polygon');
+  if (polygon) {
+    for (let y = 0; y < info.height; y += 1) for (let x = 0; x < info.width; x += 1) {
+      const offset = (y * info.width + x) * 4;
+      if (data[offset + 3] > 0 && !pointInPolygon((x + 0.5) / info.width, (y + 0.5) / info.height, polygon)) fail('runtime alpha outside safe polygon');
+    }
+  }
+  return { data, info };
+};
+
 const assertPairs = (layers) => {
   const slots = new Set(layers.map((layer) => layer.slot));
   if (slots.has('hair.back') !== slots.has('hair.front')) fail('missing hair front/back layer');
@@ -103,11 +144,11 @@ export async function buildBundle({ source, manifest, rig: rigPath, out }) {
       const sourcePath = path.resolve(sourceRoot, layer.file);
       if (path.dirname(sourcePath) !== sourceRoot) fail('unsafe source path');
       await inspectSource(sourcePath, rig, layer.clip);
-      const webp = await sharp(sourcePath).resize(rig.runtime.width, rig.runtime.height, { fit: 'fill' }).webp({ quality: 72, alphaQuality: 100, effort: 6 }).toBuffer();
+      const webp = await clipRuntimeLayer(sourcePath, rig, layer.clip);
       const outputFile = layer.file.replace(/\.png$/, '.webp');
       const outputPath = path.join(itemOut, outputFile);
       await writeFile(outputPath, webp);
-      const { data, info } = await sharp(webp).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+      const { data, info } = await inspectRuntimeLayer(webp, rig, layer.clip);
       files.push({ file: outputFile, bytes: webp.length, sha256: sha256(webp), width: info.width, height: info.height, pixelBounds: alphaBounds(data, info.width, info.height) });
       layerBuffers.push(webp);
     }

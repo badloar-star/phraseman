@@ -188,8 +188,8 @@ function presetSize(preset: FcModePreset | null | undefined): number {
 /**
  * Маршрут «Тренировки» раздела «Карточки» (FIX владельца, 2026-08-13).
  *
- * БЫЛО: пункт вёл в `/trainer_words_session` — это тренажёр «Моя практика»
- * (повторение ошибок и SRS-очередь), отдельная функция с главного экрана.
+ * Исторически пункт вёл в отдельный удалённый тренажёр вместо режима карточек.
+ * для повторения ошибок, отдельная функция с главного экрана.
  * СТАЛО: «Тренировка» — самостоятельный режим раздела карточек: выбор наборов
  * → свайп «правильно / неправильно» (свайп вправо/влево + кнопки-дублёры),
  * то есть экран `flashcards_swipe`. Экран сам показывает выбор наборов, а
@@ -220,6 +220,9 @@ export function buildFcTrainRoute(
   opts?: { fromPicker?: boolean },
 ): FcTabRouteTarget {
   const decks = realDecks(preset);
+  if (option === 'errors') {
+    return { pathname: '/mistake_practice_session', params: {} };
+  }
   const deckParam = deckRouteParam(decks);
 
   if (option === 'listen') {
@@ -249,6 +252,9 @@ export function buildFcTrainRoute(
 /** Режим `mode_prefs`, из которого читается пресет быстрого старта пункта. */
 export function fcTrainOptionPresetMode(option: FcTrainOption): FcPresetMode {
   if (option === 'listen') return 'listening';
+  // «Ошибки» не использует карточные пресеты. Значение нужно только как
+  // безопасный fallback для старых универсальных вызывающих мест.
+  if (option === 'errors') return 'trainer';
   if (option === 'speak') return 'speaking';
   if (option === 'blitz') return 'blitz';
   return 'trainer';

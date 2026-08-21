@@ -80,6 +80,7 @@ import {
   type SpeakingSessionState,
   type SpeakingTask,
 } from './flashcards/speaking_session_logic';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 
 /** Акцент режима (words #4A9EFF / phrases #40C080 / listening #9C6ADE / blitz #FF8A3D). */
 const ACCENT = '#22B8A8';
@@ -99,7 +100,7 @@ function saveSpeakingPrefs(prefs: SpeakingPrefs): void {
     .catch(() => {});
 }
 
-// Fisher-Yates (паттерн trainer_words_session)
+// Fisher-Yates: единое перемешивание карточек.
 function shuffleArr<T>(a: readonly T[]): T[] {
   const r = [...a];
   for (let i = r.length - 1; i > 0; i--) {

@@ -48,7 +48,7 @@ import { type AllPercentiles } from './leaderboard_stats';
 import { loadLifetimeProfileStats, type LifetimeProfileStats } from './lifetime_profile_stats';
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
 import { ALL_ACHIEVEMENTS, achievementNameForLang, loadAchievementStates } from './achievements';
-import { getTrainerDashboard } from './trainer_store';
+import { loadMistakePracticeInsights } from './mistake_practice_insights';
 import CefrLine from '../components/journal/CefrLine';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import AchievementArt from '../components/AchievementArt';
@@ -1052,7 +1052,7 @@ let recentAchievementIdsPeek: string[] | null = null;
 
 /** зачем: тот же peek-паттерн для «Прочность памяти»/CEFR-строки (MemoryGauge,
  * CefrLine) — totalTracked/masteredCount/dueToday читаются из локального
- * trainer_store (AsyncStorage, без сети) в useFocusEffect ниже; peek не даёт
+ * журнал ошибок (AsyncStorage, без сети) в useFocusEffect ниже; peek не даёт
  * модулям стартовать с нулей на повторных открытиях экрана в этой сессии. */
 interface JournalMemorySnapshot {
     totalTracked: number;
@@ -3326,12 +3326,12 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     }, []));
     // зачем: MemoryGauge/CefrLine (журнал) — getTrainerDashboard читает только
     // локальный AsyncStorage тренажёра (уже используется на других экранах:
-    // signal_bus, trainer_practice_prefetch, weekly_review_briefing), НИКАКИХ
+    // signal_bus, mistake-practice bootstrap, weekly_review_briefing), НИКАКИХ
     // новых чтений Firestore. words+phrases — та же выборка, что
     // и trainerPracticeDue в statsCache, для согласованности «фраз под риском».
     useFocusEffect(useCallback(() => {
         let cancelled = false;
-        void getTrainerDashboard(studyTarget)
+        void loadMistakePracticeInsights(studyTarget === 'fr' ? 'fr' : 'en')
             .then((dash) => {
                 if (cancelled) return;
                 const snapshot: JournalMemorySnapshot = {

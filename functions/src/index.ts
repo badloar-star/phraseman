@@ -217,6 +217,10 @@ const {
   resolveLearningV2WalletRewardReceipt,
 } = require("./learning_v2_wallet_reward_callable");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { grantMistakeCorrectionReward } = require("./mistake_practice_wallet_reward");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { mistakePracticeSyncEvents } = require("./mistake_practice_event_sync");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   authorizeLearningV2CourseUnlock,
   resolveLearningV2CourseUnlockReceipt,
@@ -379,6 +383,8 @@ exports.adminGetCoinExchangeCenter = adminGetCoinExchangeCenter;
 exports.resolveLearningV2WalletRewardReceipt =
   resolveLearningV2WalletRewardReceipt;
 exports.getLearningV2AccountBinding = getLearningV2AccountBinding;
+exports.grantMistakeCorrectionReward = grantMistakeCorrectionReward;
+exports.mistakePracticeSyncEvents = mistakePracticeSyncEvents;
 exports.authorizeLearningV2CourseUnlock = authorizeLearningV2CourseUnlock;
 exports.resolveLearningV2CourseUnlockReceipt =
   resolveLearningV2CourseUnlockReceipt;

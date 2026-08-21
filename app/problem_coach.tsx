@@ -17,7 +17,7 @@ import { hapticSuccess, hapticError, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { isFeatureFreeForEveryone } from './feature_gates';
-import { logMistake } from './mistake_log';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { getDiagnosisTrainingForTarget } from './diagnosis_trainings';
 import {
   applyDiagnosisAnswer,
@@ -81,11 +81,11 @@ export default function ProblemCoach() {
       const hasPremium = await getVerifiedPremiumStatus();
       if (cancelled) return;
       if (!personalPracticeCoachEnabledForTarget(studyTarget)) {
-        router.replace('/trainer' as any);
+        router.replace('/flashcards_collection' as any);
         return;
       }
       if (!diagnosisTraining) {
-        router.replace('/trainer' as any);
+        router.replace('/flashcards_collection' as any);
         return;
       }
       // «Пульт»: если разбор ошибки переведён в «Фри» — замок/лимит сняты для всех.
@@ -112,7 +112,7 @@ export default function ProblemCoach() {
 
   const handleBack = () => {
     hapticTap();
-    safeRouterBack(router, '/trainer' as any);
+    safeRouterBack(router, '/flashcards_collection' as any);
   };
 
   const handleSelect = (idx: number) => {
@@ -171,7 +171,7 @@ export default function ProblemCoach() {
 
   const handleStartConsolidation = () => {
     if (!diagnosisTraining) {
-      router.replace('/trainer' as any);
+      router.replace('/flashcards_collection' as any);
       return;
     }
     hapticTap();
@@ -182,7 +182,7 @@ export default function ProblemCoach() {
       studyTarget,
       sourceLocale,
     });
-    safeRouterBack(router, '/trainer' as any);
+    safeRouterBack(router, '/flashcards_collection' as any);
   };
 
   if (!accessChecked || !diagnosisTraining) {

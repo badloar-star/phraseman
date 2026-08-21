@@ -100,7 +100,7 @@ describe('progress_events engine', () => {
 
   it('compares bounded FNV candidates canonically and reads the legacy bonus ledger before writes', () => {
     const source = readFileSync(join(__dirname, 'progress_events.ts'), 'utf8');
-    expect(source).toContain(".where('fingerprint', '==', eventFingerprint)\n    .limit(16)");
+    expect(source).toMatch(/\.where\('fingerprint', '==', eventFingerprint\)\r?\n\s+\.limit\(16\)/);
     expect(source).toContain('candidateHasSameProgressSemantics(event, candidate.data())');
     expect(source).toContain('legacyLevelUpBonusRef ? tx.get(legacyLevelUpBonusRef)');
     expect(source).toContain("legacyBonusClaimState === 'corrupt'");

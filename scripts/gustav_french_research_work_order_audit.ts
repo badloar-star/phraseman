@@ -154,7 +154,7 @@ function taskSet(clusterId: string): ResearchTask[] {
     },
     {
       id: `${clusterId}:practice_and_quiz_policy`,
-      title: 'Define quiz and My Practice research policy',
+      title: 'Define quiz and Mistake Practice research policy',
       requiredInputs: ['quiz source graph refs', 'personal practice source graph refs', 'target isolation blockers'],
       requiredOutputs: ['quizDistractorPolicy', 'personalPracticePolicy'],
       canProduceFrenchOutput: false,
@@ -334,7 +334,7 @@ async function main(): Promise<void> {
         'RU and UK prompt comparison is missing',
         'source graph refs are missing',
         'quiz distractor policy is not single-correct-answer safe',
-        'My Practice state cannot be target-scoped',
+        'Mistake Practice state cannot be target-scoped',
         'French translated output appears during research',
       ],
       canProduceFrenchOutput: false,
@@ -422,7 +422,7 @@ async function main(): Promise<void> {
     notes: [
       'This audit creates research work orders only; it does not create fr_research_pack.json.',
       'Every work order is research-only and explicitly forbids French translated output.',
-      'The work order binds each French grammar cluster to RU/UK prompt comparison, source graph refs, trusted references, quiz policy and My Practice policy.',
+      'The work order binds each French grammar cluster to RU/UK prompt comparison, source graph refs, trusted references, quiz policy and Mistake Practice policy.',
       'French translation remains blocked until readiness generation blockers are removed and a real accepted research pack exists.',
     ],
   };

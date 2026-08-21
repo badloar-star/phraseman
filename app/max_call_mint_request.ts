@@ -21,7 +21,7 @@ import {
 } from './ai_dialog_scenarios';
 import { buildCompanionMemory } from './ai_companion_memory';
 import type { DialogMemory } from './ai_dialog_client';
-import { getTrainerCounts, getTrainerPremiumItems } from './trainer_store';
+import { loadMistakePracticeInsights } from './mistake_practice_insights';
 import { peekHomeScreenHydration } from './home_screen_hydration';
 import { getLessonData } from './lesson_data_all';
 import { lessonGrammarEntry } from './lesson_grammar_map';
@@ -119,16 +119,6 @@ export async function buildMintExtras(
       // Память недоступна (чистый профиль/сбой стора) — компаньон без памяти.
     }
   }
-  if (format === 'trial') {
-    // Ветвление пробника companion/scenario делает сервер по SRS≥порога:
-    // шлём дешёвый локальный счётчик SRS-элементов (getTrainerCounts — кэш).
-    try {
-      const counts = await getTrainerCounts();
-      extras.srsCount = Object.values(counts).reduce((sum, n) => sum + Math.max(0, n), 0);
-    } catch {
-      // Счётчик не доехал — сервер применит scenario-ветку по умолчанию.
-    }
-  }
   return extras;
 }
 
@@ -183,14 +173,10 @@ export async function buildLearnerSnapshot(cefr: string | undefined): Promise<st
     }
   } catch {}
   try {
-    const counts = await getTrainerCounts();
-    const due = Object.values(counts).reduce((sum, n) => sum + Math.max(0, n), 0);
-    lines.push(`trainer cards due today: ${due}`);
-  } catch {}
-  try {
-    const weak = await getTrainerPremiumItems('weak', 6);
-    const words = weak.map((i) => i.key.trim()).filter((k) => k !== '');
-    if (words.length > 0) lines.push(`weak words/phrases (from the trainer): ${words.join(', ')}`);
+    const insights = await loadMistakePracticeInsights(studyTarget);
+    lines.push(`mistakes ready to practise: ${insights.dueWords + insights.duePhrases}`);
+    const words = insights.topMistakes.slice(0, 6).map((item) => item.phrase.trim()).filter(Boolean);
+    if (words.length > 0) lines.push(`frequent mistakes to revisit naturally: ${words.join(', ')}`);
   } catch {}
   if (cefr) lines.push(`level in the app: ${cefr}`);
   // зачем: владелец 2026-08-17 — «а план обучения у тутора есть или от фонаря?».

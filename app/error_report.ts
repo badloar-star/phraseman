@@ -38,7 +38,7 @@ async function isErrorReportThrottled(now: number): Promise<boolean> {
  *   "flashcard_give_up"          → grep "give up" в flashcards
  *   "exam_lesson_3_q5"           → exam lesson 3, вопрос 5
  *   "theory_lesson_7"            → lesson_help.tsx, lessonId=7
- *   "review_she_insisted"        → grep phrase в active_recall data
+ *   "review_she_insisted"        → grep phrase в mistake-practice events
  */
 export const ERROR_REPORT_COMMENT_MIN_LEN = 10;
 export const ERROR_REPORT_FREE_TEXT_CATEGORY = 'free_text';

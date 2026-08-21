@@ -60,6 +60,7 @@ import {
   type LearningV2SessionNetworkIntent,
 } from "../../../app/learning_v2_session_network_quiet";
 import { getStableId } from "../../../app/stable_id";
+import { captureCurrentAccountObjectiveAttempt } from "../../../app/mistake_practice_capture";
 import { useStableSafeAreaInsets } from "../../../app/stable_safe_area_metrics";
 import LearningV2SessionIntro from "../../../app/learning_v2_session_intro";
 import LearningV2DirectSessionPlayerV1 from "../../../app/learning_v2_direct_session_player_v1";

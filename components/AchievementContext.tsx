@@ -1,9 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Achievement } from '../app/achievements';
 import { emitAppEvent } from '../app/events';
-import { captureAccountGeneration } from '../app/account_generation';
-import { onFirstAchievement } from '../app/avatar_dna_invitation';
-import { AvatarDNAInvitationHost } from './avatar-dna/AvatarDNAInvitationHost';
 
 // H-TOASTQ: верхняя граница жизни одного тоста-достижения. showingRef сбрасывается
 // в false ТОЛЬКО через dismissCurrent → showNext, а dismissCurrent зовёт рендерер
@@ -109,15 +106,6 @@ export function AchievementProvider({ children }: { children: React.ReactNode })
     if (currentToastRef.current?.id === achievement.id || queuedIdsRef.current.has(achievement.id)) {
       return;
     }
-    const account = captureAccountGeneration();
-    if (account.phase === 'active' && account.stableId) {
-      // Invitation persistence is deliberately detached from the achievement
-      // toast and lesson flow: storage/network slowness cannot block either.
-      void onFirstAchievement({
-        stableId: account.stableId,
-        generation: account.generation,
-      });
-    }
     if (!showingRef.current) {
       showingRef.current = true;
       currentToastRef.current = achievement;
@@ -179,7 +167,6 @@ export function AchievementProvider({ children }: { children: React.ReactNode })
   return (
     <AchievementContext.Provider value={contextValue}>
       {children}
-      <AvatarDNAInvitationHost />
     </AchievementContext.Provider>
   );
 }

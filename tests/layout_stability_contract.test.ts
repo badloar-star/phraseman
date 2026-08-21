@@ -183,7 +183,7 @@ describe('layout stability contract (первый кадр = финальная 
    */
   describe('перечисленные разделы открываются статично (без анимаций входа)', () => {
     const staticScreens = [
-      'app/trainer.tsx',
+      'app/mistake_practice_session.tsx',
       'app/(tabs)/lessons.tsx',
       'app/flashcards_collection.tsx',
       'app/flashcards/FlashcardsCategoryHub.tsx',

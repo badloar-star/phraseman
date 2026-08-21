@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import { isMojibake } from "../app/trainer_store";
 
 jest.mock("../app/config", () => ({
   IS_EXPO_GO: true,
@@ -17,20 +16,6 @@ jest.mock("../app/lifetime_profile_stats", () => ({
 }));
 
 describe("reported user data integrity", () => {
-  it("recognizes Cyrillic mojibake from legacy trainer records", () => {
-    expect(
-      isMojibake(
-        "\u00d0\u00a3 \u00d0\u00bc\u00d0\u00b5\u00d1\u008f \u00d0\u00b5\u00d1\u0081\u00d1\u0082\u00d1\u008c",
-      ),
-    ).toBe(true);
-    expect(
-      isMojibake(
-        "\u0423 \u043c\u0435\u043d\u044f \u0435\u0441\u0442\u044c \u0441\u043b\u043e\u0432\u043e",
-      ),
-    ).toBe(false);
-    expect(isMojibake("a\u00f1o")).toBe(false);
-  });
-
   it("keeps a pronunciation-only override separate from visible lesson text", () => {
     const audioSource = fs.readFileSync(
       path.join(__dirname, "..", "hooks", "use-audio.ts"),

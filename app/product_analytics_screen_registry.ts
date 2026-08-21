@@ -14,8 +14,7 @@ const STATIC_SCREEN_NAMES = [
   'preposition_drill', 'privacy_screen', 'problem_coach', 'promo_code_entry',
   'referrals', 'review', 'settings_edu', 'settings_language',
   'settings_notifications', 'settings_themes', 'shards_shop', 'streak_stats', 'terms_screen',
-  'top_helpers', 'trainer', 'trainer_phrases_session',
-  'trainer_words_session',
+  'top_helpers', 'mistake_practice_session',
 ] as const;
 
 const EXACT_SCREEN_IDS: Readonly<Record<string, string>> = Object.freeze({

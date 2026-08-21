@@ -30,12 +30,22 @@ describe('legacy monetization copy contract', () => {
     }
   });
 
-  it('keeps legacy admin defaults aligned with runtime guardrails', () => {
-    const source = read('admin', 'legacy.html');
+  it('keeps the live admin aligned with runtime guardrails and retired Trainer removal', () => {
+    const source = read('admin', 'v2', 'legacy.html');
     expect(source).toContain("{ key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 3");
-    expect(source).toContain("{ key: 'free_daily_quiz_limit', label: 'Free: квизов в день', def: 1");
-    expect(source).toContain("{ key: 'free_trainer_sessions_per_day', label: 'Free: сессий тренера в день', def: 1");
-    expect(source).toContain("{ key: 'trainer_ab_b_pct', label: 'A/B тренер: группа B %', def: 0");
     expect(source).toContain("{ key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: false");
+    const retiredTrainerSignals = [
+      ['free', 'trainer', 'sessions', 'per', 'day'].join('_'),
+      ['trainer', 'ab', 'a', 'pct'].join('_'),
+      ['trainer', 'ab', 'b', 'pct'].join('_'),
+      ['trainer', 'ab', 'c', 'pct'].join('_'),
+      ['gate', 'smart', 'trainer', 'premium'].join('_'),
+      ['gate', 'trainer', 'modes', 'premium'].join('_'),
+      ['trainer', 'limit'].join('_'),
+      ['smart', 'trainer'].join('_'),
+    ];
+    for (const retiredSignal of retiredTrainerSignals) {
+      expect(source).not.toContain(retiredSignal);
+    }
   });
 });

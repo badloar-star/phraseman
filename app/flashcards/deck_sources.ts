@@ -2,7 +2,7 @@
  * cards-2.0 (E8): источники карточек для «Тренировать эту колоду» (§3.7 мастер-плана).
  *
  * Words-сессия тренера умеет принимать параметр ?deck= и брать карточки не из
- * trainer_store, а из выбранной колоды:
+ * очереди ошибок, а из выбранной колоды:
  *  - 'saved'     — сохранённые (flashcards_v1, hooks/use-flashcards);
  *  - 'custom'    — «Мои карточки» (custom_flashcards_v2, очередь custom_cards_store);
  *  - 'pack:<id>' — купленный набор маркета (bundled-паки + кэш built-cards).
@@ -12,8 +12,7 @@
  * раньше. Карточки нескольких колод объединяются, дубликаты по стабильному id
  * убираются, порядок перемешивается (`loadDeckCardsMulti`).
  *
- * SRS-запись в trainer_store для deck-сессий НЕ делается (§3.7): прогресс сессии
- * локален, а ошибки уходят в active_recall_items с source 'custom'/'pack' —
+ * Прогресс deck-сессии локален, а реальные ошибки уходят в единый журнал —
  * так кастомные карточки попадают в очередь review (замена удалённого practice).
  *
  * Чистые билдеры вынесены отдельно от загрузчика — юнит-тесты в node
@@ -23,7 +22,7 @@ import { loadFlashcards, type Flashcard } from '../../hooks/use-flashcards';
 import { listCustomCards } from './custom_cards_store';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './types';
 import { splitDeckParam } from './deck_selection';
-import type { MistakeSource } from '../active_recall';
+export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam' | 'custom' | 'pack';
 
 /** Карточка deck-сессии: EN + перевод локали показа + все переводы для recall-записи. */
 export type DeckCard = {
@@ -93,7 +92,7 @@ export function parseDeckParam(raw: string | readonly string[] | undefined | nul
   return parseDeckParams(raw)[0] ?? null;
 }
 
-/** Источник записи ошибки в active_recall_items для deck-сессии (§3.7). */
+/** Источник записи ошибки для deck-сессии. */
 export function mistakeSourceForDeck(deck: DeckRef): MistakeSource {
   return deck.kind === 'pack' ? 'pack' : 'custom';
 }
@@ -170,7 +169,7 @@ export function shuffleDeckCards(cards: readonly DeckCard[], rnd: () => number =
 
 /**
  * Ложный перевод для механики «перевод верный?» — из ЭТОЙ ЖЕ колоды и в той же
- * локали, что показ (паттерн trainer_words_session FIX(cards-2.0)).
+ * локали, что показ (единый контракт карточек FIX(cards-2.0)).
  */
 export function pickDeckDecoy(
   correctShown: string,
@@ -237,7 +236,7 @@ export async function loadDeckCards(deck: DeckRef, lang: FlashcardContentLang): 
 /**
  * cards-2.1 (§6): карточки НЕСКОЛЬКИХ колод одной объединённой колодой.
  * Колоды грузятся параллельно, каждая карточка помечается источником
- * ('pack' / 'custom' — для записи ошибок в active_recall), дубликаты по
+ * ('pack' / 'custom' — для идентичности ошибки), дубликаты по
  * стабильному id убираются, результат перемешивается (лимит размера — на
  * стороне сессии). Ошибка отдельной колоды не роняет остальные.
  */

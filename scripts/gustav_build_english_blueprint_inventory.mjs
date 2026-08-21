@@ -81,16 +81,6 @@ const FEATURE_SURFACES = [
     frenchBuildRule: 'preserve drill intent; implement French verb/conjugation practice instead of English irregular-verb copying',
   },
   {
-    id: 'personal_practice_active_recall',
-    sourcePaths: [
-      path.join(ROOT, 'app', 'personal_practice_lesson_router.ts'),
-      path.join(ROOT, 'app', 'personal_practice_target_gate.ts'),
-      path.join(ROOT, 'app', 'trainer_practice_prefetch.ts'),
-    ],
-    requiredMarkers: ['practice'],
-    frenchBuildRule: 'copy practice routing contracts; source practice from French banks and target-aware mistake history',
-  },
-  {
     id: 'flashcards_collection_cards',
     sourcePaths: [
       path.join(ROOT, 'app', 'flashcards_collection.tsx'),

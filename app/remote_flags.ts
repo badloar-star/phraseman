@@ -2,7 +2,7 @@
 // remote_flags.ts — Remote Config layer (admin-tunable runtime knobs)
 //
 // Single source of truth for every value we want to change WITHOUT a release:
-// free-tier limits, energy economy, trainer A/B split, and the paywall variant
+// free-tier limits, energy economy, and the paywall variant
 // split. Resolution order (highest priority first):
 //
 //   1. Firestore override   (admin/v2/legacy.html → remote_config/* → cached foreground polling)
@@ -26,10 +26,6 @@ export type RemoteNumberKey =
   | 'free_lesson_limit'
   | 'max_energy'
   | 'energy_recovery_interval_ms'
-  | 'free_trainer_sessions_per_day'
-  | 'trainer_ab_a_pct'
-  | 'trainer_ab_b_pct'
-  | 'trainer_ab_c_pct'
   | 'onboarding_ab_welcome_pct'
   | 'onboarding_ab_builder_pct'
   | 'paywall_v2_pct'
@@ -39,7 +35,6 @@ export type RemoteNumberKey =
   | 'league_sync_force_interval_ms'
   | 'league_startup_registration_interval_ms'
   | 'auth_link_cache_ttl_ms'
-  | 'avatar_dna_rollout_pct'
   // Экономика (вынесено из хардкодов для крутки баланса без релиза):
   // стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10 в home.tsx).
   | 'streak_freeze_cost_shards';
@@ -57,7 +52,6 @@ export type RemoteBoolKey =
   | 'soft_upsell_streak_enabled'
   | 'soft_upsell_repeated_training_enabled'
   | 'referral_enabled'
-  | 'avatar_dna_enabled'
   // Мастер-флаг «Рулетка Plus + реферальная программа». Живёт в numbers
   // (remote_config/app.numbers.referral_roulette_enabled) — туда его пишут
   // adminSetReferralRouletteEnabled и скрипты; сервер читает тот же ключ.
@@ -116,8 +110,6 @@ export type RemoteBoolKey =
   | 'gate_speaking_premium'
   | 'gate_ai_dialog_premium'
   | 'gate_ai_voice_call'
-  | 'gate_smart_trainer_premium'
-  | 'gate_trainer_modes_premium'
   | 'gate_diagnosis_training_premium'
   | 'gate_stats_premium'
   | 'gate_flashcards_premium'
@@ -222,21 +214,10 @@ export type RemoteTextKey =
   | 'youtube_channel_url'
   | 'onboarding_enabled_steps_v1';
 
-/**
- * Default free trainer sessions per day. Exported for call sites that need the
- * baseline without resolving Remote Config (e.g. trainer_session.ts fallback).
- * Kept in sync with DEFAULT_NUMBERS.free_trainer_sessions_per_day below.
- */
-export const FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT = 1;
-
 const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   free_lesson_limit: 3,
   max_energy: 5,
   energy_recovery_interval_ms: 10 * 60 * 1000,
-  free_trainer_sessions_per_day: 1,
-  trainer_ab_a_pct: 0,
-  trainer_ab_b_pct: 0,
-  trainer_ab_c_pct: 0,
   onboarding_ab_welcome_pct: 0,
   onboarding_ab_builder_pct: 0,
   paywall_v2_pct: 100,
@@ -246,7 +227,6 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   league_sync_force_interval_ms: 6 * 60 * 60 * 1000,
   league_startup_registration_interval_ms: 24 * 60 * 60 * 1000,
   auth_link_cache_ttl_ms: 7 * 24 * 60 * 60 * 1000,
-  avatar_dna_rollout_pct: 0,
   streak_freeze_cost_shards: 10,
 };
 
@@ -268,9 +248,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // экстренно выключить). ВНИМАНИЕ: для рабочих ссылок-приглашений нужна
   // задеплоенная invite-страница — иначе ссылки будут битыми.
   referral_enabled: true,
-  // Безопасный sell-switch: новый редактор невидим до явного включения и
-  // отдельного поэтапного процента. Старый экран Студии при этом не меняется.
-  avatar_dna_enabled: false,
   // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
   // (boolean), подхват — спец-веткой в applyRemoteConfigSnapshot ниже.
   referral_roulette_enabled: true,
@@ -343,8 +320,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // единственный гейт будет пейвол». Дефолт TRUE = линия открыта без записи в
   // «Пульте»; выключает только явный false оттуда. Потребитель: app/max_voice_flags.ts.
   gate_ai_voice_call: true,
-  gate_smart_trainer_premium: true,
-  gate_trainer_modes_premium: true,
   gate_diagnosis_training_premium: true,
   gate_stats_premium: true,
   gate_flashcards_premium: true,
@@ -413,10 +388,6 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   // Product invariant: base capacity is exactly 5; level 50 adds the sixth slot.
   max_energy: { min: 5, max: 5 },
   energy_recovery_interval_ms: { min: 10_000, max: 24 * 60 * 60 * 1000 },
-  free_trainer_sessions_per_day: { min: 0, max: 99 },
-  trainer_ab_a_pct: { min: 0, max: 100 },
-  trainer_ab_b_pct: { min: 0, max: 100 },
-  trainer_ab_c_pct: { min: 0, max: 100 },
   onboarding_ab_welcome_pct: { min: 0, max: 100 },
   onboarding_ab_builder_pct: { min: 0, max: 100 },
   paywall_v2_pct: { min: 0, max: 100 },
@@ -426,15 +397,10 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   league_sync_force_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   league_startup_registration_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   auth_link_cache_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
-  avatar_dna_rollout_pct: { min: 0, max: 100 },
   streak_freeze_cost_shards: { min: 0, max: 9999 },
 };
 
 const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
-  free_trainer_sessions_per_day: process.env.EXPO_PUBLIC_FREE_TRAINER_SESSIONS,
-  trainer_ab_a_pct: process.env.EXPO_PUBLIC_TRAINER_AB_A,
-  trainer_ab_b_pct: process.env.EXPO_PUBLIC_TRAINER_AB_B,
-  trainer_ab_c_pct: process.env.EXPO_PUBLIC_TRAINER_AB_C,
   onboarding_ab_welcome_pct: process.env.EXPO_PUBLIC_ONBOARDING_AB_WELCOME,
   onboarding_ab_builder_pct: process.env.EXPO_PUBLIC_ONBOARDING_AB_BUILDER,
   paywall_v2_pct: process.env.EXPO_PUBLIC_PAYWALL_V2_PCT,
@@ -611,7 +577,6 @@ export function hasRemoteConfigSnapshotApplied(): boolean {
 export const getFreeLessonLimit = () => getRemoteNumber('free_lesson_limit');
 export const getMaxEnergy = () => getRemoteNumber('max_energy');
 export const getEnergyRecoveryIntervalMs = () => getRemoteNumber('energy_recovery_interval_ms');
-export const getFreeTrainerSessionsPerDay = () => getRemoteNumber('free_trainer_sessions_per_day');
 export const getPaywallV2Pct = () => getRemoteNumber('paywall_v2_pct');
 export const getLeagueXpPromotionThreshold = () => getRemoteNumber('league_xp_promotion_threshold');
 export const getLeagueSyncMinDelta = () => getRemoteNumber('league_sync_min_delta');
@@ -622,11 +587,6 @@ export const getAuthLinkCacheTtlMs = () => getRemoteNumber('auth_link_cache_ttl_
 /** Стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10). Дефолт 10. */
 export const getStreakFreezeCostShards = () => getRemoteNumber('streak_freeze_cost_shards');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
-export const isAvatarDNAEnabled = (stableId: string | null): boolean => (
-  getRemoteBool('avatar_dna_enabled')
-  && Boolean(stableId)
-  && isInRolloutBucket(stableId as string, 'avatar-dna-v1', getRemoteNumber('avatar_dna_rollout_pct'))
-);
 export const isReferralRouletteEnabled = () => getRemoteBool('referral_roulette_enabled');
 export const isReferralRouletteEmergencyStopped = () => getRemoteBool('referral_roulette_emergency_stop');
 
@@ -933,8 +893,7 @@ export const getMaintenanceCampaignId = () => getRemoteText('maintenance_campaig
 export const isLessonsPremiumGated = () => getRemoteBool('gate_lessons_premium');
 export const isSpeakingPremiumGated = () => getRemoteBool('gate_speaking_premium');
 export const isAiDialogPremiumGated = () => getRemoteBool('gate_ai_dialog_premium');
-export const isSmartTrainerPremiumGated = () => getRemoteBool('gate_smart_trainer_premium');
-export const isTrainerModesPremiumGated = () => getRemoteBool('gate_trainer_modes_premium');
+export const isPersonalPlanPremiumGated = () => getRemoteBool('gate_personal_plan_premium');
 export const isDiagnosisTrainingPremiumGated = () => getRemoteBool('gate_diagnosis_training_premium');
 export const isStatsPremiumGated = () => getRemoteBool('gate_stats_premium');
 export const isFlashcardsPremiumGated = () => getRemoteBool('gate_flashcards_premium');
@@ -979,25 +938,7 @@ export function getMaintenanceText(lang: string): string {
   return getRemoteText('maintenance_ru');
 }
 
-/**
- * Deterministic A/B group for a user (stable across launches unless the split
- * config changes). djb2 hash of `${userId}:${salt}` → bucket by cumulative pct.
- * Groups: 'A' | 'B' | 'C'. Defaults to 'B' (2 sessions) if all pcts are zero.
- */
-export type TrainerAbGroup = 'A' | 'B' | 'C';
 export type OnboardingAbVariant = 'current';
-
-export function getTrainerAbGroup(userId: string): TrainerAbGroup {
-  const a = getRemoteNumber('trainer_ab_a_pct');
-  const b = getRemoteNumber('trainer_ab_b_pct');
-  const c = getRemoteNumber('trainer_ab_c_pct');
-  const total = a + b + c;
-  if (total <= 0) return 'B';
-  const bucket = hashToUnit(`${userId}:trainer_sessions_ab`) * total;
-  if (bucket < a) return 'A';
-  if (bucket < a + b) return 'B';
-  return 'C';
-}
 
 /**
  * Deprecated onboarding A/B compatibility helper. The old branches
@@ -1021,53 +962,6 @@ function hashToUnit(input: string): number {
     h = ((h << 5) + h + input.charCodeAt(i)) >>> 0;
   }
   return (h % 100000) / 100000;
-}
-
-// ── Trainer A/B effective sessions (cached per user) ────────────────────────
-// Merged from the env-based remote_flags during branch integration: builds on
-// the Remote Config getters above (getTrainerAbGroup / getFreeTrainerSessionsPerDay)
-// instead of duplicating the resolution logic.
-
-const TRAINER_AB_CACHE_KEY = 'trainer_sessions_ab_group_v1';
-
-/** Sessions/day for a given A/B group. A=1, B=2, C=3. */
-export function trainerSessionsForGroup(group: TrainerAbGroup): number {
-  switch (group) {
-    case 'A': return 1;
-    case 'B': return 2;
-    case 'C': return 3;
-  }
-}
-
-/**
- * Effective free trainer sessions/day for a user: if an A/B split is configured,
- * resolve a stable group by userId; otherwise fall back to the flat per-day value.
- * The chosen group is cached in AsyncStorage and invalidated when the Remote
- * Config signature changes, so the group never sticks across experiment changes.
- */
-export async function getEffectiveFreeTrainerSessions(userId: string | null): Promise<number> {
-  const hasAbSplit =
-    getRemoteNumber('trainer_ab_a_pct') +
-      getRemoteNumber('trainer_ab_b_pct') +
-      getRemoteNumber('trainer_ab_c_pct') >
-    0;
-
-  if (!hasAbSplit || !userId) return getFreeTrainerSessionsPerDay();
-
-  const sig = getRemoteConfigSignature();
-  let group: TrainerAbGroup | null = null;
-  const cached = await AsyncStorage.getItem(TRAINER_AB_CACHE_KEY).catch(() => null);
-  if (cached) {
-    const [cachedSig, cachedGroup] = cached.split('|');
-    if (cachedSig === sig && (cachedGroup === 'A' || cachedGroup === 'B' || cachedGroup === 'C')) {
-      group = cachedGroup;
-    }
-  }
-  if (!group) {
-    group = getTrainerAbGroup(userId);
-    await AsyncStorage.setItem(TRAINER_AB_CACHE_KEY, `${sig}|${group}`).catch(() => {});
-  }
-  return trainerSessionsForGroup(group);
 }
 
 /** Test-only reset. */

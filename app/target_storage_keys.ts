@@ -14,7 +14,7 @@ export const TARGET_KEY_DOMAINS = [
   'lesson_session_local',
   'lesson_rewards',
   'level_exams',
-  'trainer_practice',
+  'mistake_practice',
   'personal_practice',
   'cloud_sync',
   'daily_phrase',
@@ -73,7 +73,6 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^user_stats_v1$/,
   /^stats_daily_breakdown_v1$/,
   /^irregular_verbs_global$/,
-  /^irregular_verbs_srs_v1$/,
   /^lingman_certificate_v1$/,
   /^custom_flashcards_v2$/,
   /^flashcard_delete_hint_seen$/,
@@ -83,10 +82,6 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^achievement_flashcards_view_streak_v1$/,
   /^achievement_flashcards_source_set_v1$/,
   /^achievement_share_count$/,
-  /^achievement_trainer_correct_count$/,
-  /^achievement_active_recall_correct_count$/,
-  /^achievement_trainer_correct_streak_v1$/,
-  /^achievement_trainer_perfect_session_count$/,
   /^community_owned_pack_ids_v1$/,
   /^community_local_author_packs_v1$/,
   new RegExp(`^${FLASHCARDS_MARKET_DEV_OWNED_KEY}$`),
@@ -103,16 +98,13 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^level_exam_[^:]+_(?:passed|available|pct|best_pct|pass_count|attempt_count|medal_tier)$/,
   /^shards_5perfect_milestone_.+$/,
   /^shards_topic_[^:]+_granted$/,
-  /^(?:lesson_progress|lesson_words|lesson_session|trainer_store|mistake_log|active_recall|flashcards|level_exam|certificate|personal_practice)_v1(?:$|::)/,
-  /^active_recall_items$/,
-  /^trainer_free_session_v1$/,
-  /^trainer_session_entry_v1$/,
+  /^(?:lesson_progress|lesson_words|lesson_session|flashcards|level_exam|certificate|personal_practice)_v1(?:$|::)/,
   /^diagnosis_training_progress_v1:.+$/,
   /^diagnosis_training_free_access_v1$/,
   /^resolved_personal_trainings_v1$/,
   /^pos_mastery_v1$/,
 ];
-const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|trainer_practice|cloud_sync|daily_phrase|flashcards|quiz_session|quiz_achievements|target_stats|achievements)_v2::(?:en|fr)(?:::|$)|personal_practice_v2::(?:en|fr)::(?:ru|uk)(?:::|$))/;
+const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|mistake_practice|cloud_sync|daily_phrase|flashcards|quiz_session|quiz_achievements|target_stats|achievements)_v2::(?:en|fr)(?:::|$)|personal_practice_v2::(?:en|fr)::(?:ru|uk)(?:::|$))/;
 
 function assertMember<T extends string>(value: string, allowed: readonly T[], label: string): T {
   if ((allowed as readonly string[]).includes(value)) return value as T;
@@ -219,11 +211,6 @@ export function lessonIrregularShardsGrantedKey(lessonId: string | number, study
 
 export function irregularVerbsGlobalKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('irregular_verbs_global', 'lesson_progress', studyTarget);
-}
-
-/** SRS-состояние неправильных глаголов (streak + nextDue по каждой base). */
-export function irregularVerbsSrsKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('irregular_verbs_srs_v1', 'lesson_progress', studyTarget);
 }
 
 export function lessonPrepositionProgressKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {
@@ -432,24 +419,84 @@ export function grammarHintSeenKey(hintKey: string, studyTarget?: RuntimeStudyTa
   return scopedOrLegacyKey(hintKey, 'lesson_session_local', studyTarget);
 }
 
-export function trainerStoreKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('trainer_store_v1', 'trainer_practice', studyTarget);
+function mistakePracticeOwnerStorageId(accountScope: string, kind: string): string {
+  const owner = String(accountScope ?? '').trim();
+  if (!owner) throw new Error('mistake_practice_account_scope_required');
+  return `owner:${encodeURIComponent(owner)}:${kind}`;
 }
 
-export function trainerFreeSessionKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('trainer_free_session_v1', 'trainer_practice', studyTarget);
+export function mistakePracticeEventsKey(
+  accountScope: string,
+  studyTarget?: RuntimeStudyTarget,
+): string {
+  return targetKey(
+    'mistake_practice',
+    storageStudyTarget(studyTarget),
+    mistakePracticeOwnerStorageId(accountScope, 'events_v2'),
+  );
 }
 
-export function trainerSessionEntryKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('trainer_session_entry_v1', 'trainer_practice', studyTarget);
+export function mistakePracticeEventChunkKey(
+  accountScope: string,
+  studyTarget: RuntimeStudyTarget,
+  chunkId: string,
+): string {
+  if (!/^[a-f0-9]{64}$/.test(chunkId)) throw new Error('mistake_practice_chunk_id_invalid');
+  return targetKey(
+    'mistake_practice',
+    storageStudyTarget(studyTarget),
+    mistakePracticeOwnerStorageId(accountScope, `event_chunk_v1:${chunkId}`),
+  );
 }
 
-export function mistakeLogKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('mistake_log_v1', 'trainer_practice', studyTarget);
+export function mistakePracticeManifestPageKey(
+  accountScope: string,
+  studyTarget: RuntimeStudyTarget,
+  pageId: string,
+): string {
+  if (!/^[a-f0-9]{64}$/.test(pageId)) throw new Error('mistake_practice_page_id_invalid');
+  return targetKey(
+    'mistake_practice',
+    storageStudyTarget(studyTarget),
+    mistakePracticeOwnerStorageId(accountScope, `manifest_page_v1:${pageId}`),
+  );
+}
+
+export function mistakePracticeProjectionKey(
+  accountScope: string,
+  studyTarget?: RuntimeStudyTarget,
+): string {
+  return targetKey(
+    'mistake_practice',
+    storageStudyTarget(studyTarget),
+    mistakePracticeOwnerStorageId(accountScope, 'projection_v2'),
+  );
+}
+
+export function mistakePracticeSessionKey(
+  accountScope: string,
+  studyTarget?: RuntimeStudyTarget,
+): string {
+  return targetKey(
+    'mistake_practice',
+    storageStudyTarget(studyTarget),
+    mistakePracticeOwnerStorageId(accountScope, 'session_v2'),
+  );
+}
+
+export function mistakePracticePreferencesKey(
+  accountScope: string,
+  studyTarget?: RuntimeStudyTarget,
+): string {
+  return targetKey(
+    'mistake_practice',
+    storageStudyTarget(studyTarget),
+    mistakePracticeOwnerStorageId(accountScope, 'preferences_v2'),
+  );
 }
 
 export function weeklyReviewStorageKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('weekly_review_v1', 'trainer_practice', studyTarget);
+  return scopedOrLegacyKey('weekly_review_v1', 'mistake_practice', studyTarget);
 }
 
 export function weeklyReviewV2StorageKey(
@@ -461,38 +508,18 @@ export function weeklyReviewV2StorageKey(
   if (!normalizedScope) throw new Error('weekly_review_account_scope_required');
   const normalizedLang = String(lang ?? '').trim() || 'ru';
   return targetKey(
-    'trainer_practice',
+    'mistake_practice',
     storageStudyTarget(studyTarget),
     `weekly_review_v2:${normalizedScope}:${normalizedLang}`,
   );
 }
 
 export function statsInsightsStorageKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('stats_insights_v1', 'trainer_practice', studyTarget);
-}
-
-export function activeRecallItemsKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('active_recall_items', 'trainer_practice', studyTarget);
-}
-
-export function trainerAchievementCorrectCountKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('achievement_trainer_correct_count', 'trainer_practice', studyTarget);
-}
-
-export function activeRecallAchievementCorrectCountKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('achievement_active_recall_correct_count', 'trainer_practice', studyTarget);
-}
-
-export function trainerAchievementCorrectStreakKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('achievement_trainer_correct_streak_v1', 'trainer_practice', studyTarget);
-}
-
-export function trainerAchievementPerfectSessionCountKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('achievement_trainer_perfect_session_count', 'trainer_practice', studyTarget);
+  return scopedOrLegacyKey('stats_insights_v1', 'target_stats', studyTarget);
 }
 
 export function posMasteryKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('pos_mastery_v1', 'trainer_practice', studyTarget);
+  return scopedOrLegacyKey('pos_mastery_v1', 'target_stats', studyTarget);
 }
 
 export function personalPracticeTrainingProgressKey(

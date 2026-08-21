@@ -81,7 +81,7 @@ type AdapterId =
   | 'lesson_reward_idempotency'
   | 'level_exam_certificate_store'
   | 'quiz_progress_store'
-  | 'trainer_practice_store'
+  | 'mistake_practice_store'
   | 'personal_practice_store'
   | 'flashcards_target_store'
   | 'achievement_progress_store'
@@ -333,7 +333,7 @@ async function main(): Promise<void> {
   const unknownKeys = keysMatching(records, [/^<unknown>$/]);
   const lessonTests = [/lesson/, /unlocked_lessons/];
   const quizTests = [/quiz/];
-  const trainerTests = [/trainer/, /active_recall/, /mistake_log/, /preposition/, /prep_drill/];
+  const mistakePracticeTests = [/mistake_practice/, /preposition/, /prep_drill/];
   const flashcardTests = [/flashcard/, /irregular_verbs/];
   const achievementTests = [/achievement/];
   const examTests = [/level_exam/, /certificate/];
@@ -377,7 +377,7 @@ async function main(): Promise<void> {
       ownerArea: 'storage',
       dependsOn: ['production_study_target'],
       productModules: ['app/target_storage_keys.ts'],
-      coveredSurfaceDomains: ['lesson_runtime', 'quiz', 'trainer_practice', 'flashcards', 'achievements', 'progress_stats'],
+      coveredSurfaceDomains: ['lesson_runtime', 'quiz', 'mistake_practice', 'flashcards', 'achievements', 'progress_stats'],
       sourceFiles: unique((targetPlan.domains ?? []).flatMap((domain) => domain.fileTouchpoints?.map((t) => t.sourcePath) ?? [])),
       storageKeys: unique(records.filter((record) => record.targetNamespaceRequired).map(stableRecordKey)).slice(0, 40),
       cloudActions: [],
@@ -388,7 +388,7 @@ async function main(): Promise<void> {
       ],
       testsRequired: [
         'Key builder returns distinct keys for en/fr for every target-sensitive domain.',
-        'Raw storage guard fails on a new flat lesson/trainer/quiz key outside migration adapters.',
+        'Raw storage guard fails on a new flat lesson/mistake-practice/quiz key outside migration adapters.',
       ],
       rollbackNotes: [
         'Keep helper additive first; do not delete legacy keys until migration confidence is recorded.',
@@ -406,8 +406,8 @@ async function main(): Promise<void> {
       ownerArea: 'storage',
       dependsOn: ['target_storage_key_builder'],
       productModules: ['app/legacy_english_progress_migration.ts'],
-      coveredSurfaceDomains: ['lesson_list', 'lesson_runtime', 'quiz', 'trainer_practice', 'flashcards'],
-      sourceFiles: filesForStorageKeys(records, [/lesson/, /quiz/, /trainer/, /active_recall/, /flashcard/, /level_exam/]),
+      coveredSurfaceDomains: ['lesson_list', 'lesson_runtime', 'quiz', 'mistake_practice', 'flashcards'],
+      sourceFiles: filesForStorageKeys(records, [/lesson/, /quiz/, /mistake_practice/, /flashcard/, /level_exam/]),
       storageKeys: unique(records.filter((record) => record.targetNamespaceRequired).map(stableRecordKey)).slice(0, 40),
       cloudActions: ['legacy flat keys map to en target only'],
       implementationSteps: [
@@ -416,7 +416,7 @@ async function main(): Promise<void> {
         'Make fr target reads fail closed when only legacy English keys exist.',
       ],
       testsRequired: [
-        'Existing English user keeps lesson, quiz, trainer and flashcard state after migration.',
+        'Existing English user keeps lesson, quiz, mistake-practice and flashcard state after migration.',
         'French user sees empty target state even when legacy English progress exists.',
       ],
       rollbackNotes: [
@@ -568,31 +568,31 @@ async function main(): Promise<void> {
       ],
     }),
     adapter({
-      id: 'trainer_practice_store',
+      id: 'mistake_practice_store',
       phase: 'P3',
       status: 'HOLD',
       risk: 'blocker',
-      ownerArea: 'trainer',
+      ownerArea: 'personal_practice',
       dependsOn: ['target_storage_key_builder'],
-      productModules: ['app/target_practice_store.ts', 'app/trainer_store.ts', 'app/mistake_log.ts', 'app/active_recall.ts'],
-      coveredSurfaceDomains: ['trainer_practice'],
-      sourceFiles: filesForDomains(surfaceEntries, ['trainer_practice']),
-      storageKeys: keysMatching(records, trainerTests),
-      cloudActions: cloudActionsFor(cloud, trainerTests).concat(localDecisionsFor(localCloud, trainerTests)),
+      productModules: ['app/mistake_practice_store.ts', 'app/mistake_practice_cloud_transport.ts'],
+      coveredSurfaceDomains: ['mistake_practice'],
+      sourceFiles: filesForDomains(surfaceEntries, ['mistake_practice']),
+      storageKeys: keysMatching(records, mistakePracticeTests),
+      cloudActions: cloudActionsFor(cloud, mistakePracticeTests).concat(localDecisionsFor(localCloud, mistakePracticeTests)),
       implementationSteps: [
-        'Move trainer_store, mistake_log and active_recall queues under studyTarget.',
+        'Keep immutable mistake events under owner and studyTarget.',
         'Keep sourceLocale feedback separate from target practice state.',
-        'Expose one practice store consumed by trainer and My Practice surfaces.',
+        'Expose one journal consumed by Cards Errors and Learning V2.',
       ],
       testsRequired: [
-        'French trainer queue never reads English active_recall_items.',
-        'French mistake log survives ru/uk sourceLocale switch without duplicating target items.',
+        'French Mistake Practice never reads English events.',
+        'Mistake events survive ru/uk sourceLocale switch without duplication.',
       ],
       rollbackNotes: [
-        'Keep legacy trainer_store_v1 and mistake_log_v1 mapped to en only.',
+        'The immutable v2 journal is additive and does not import retired practice stores.',
       ],
       blockers: [
-        'Trainer and mistake logs carry target-language material.',
+        'Mistake Practice events carry target-language material.',
       ],
     }),
     adapter({
@@ -601,7 +601,7 @@ async function main(): Promise<void> {
       status: 'HOLD',
       risk: 'blocker',
       ownerArea: 'personal_practice',
-      dependsOn: ['trainer_practice_store'],
+      dependsOn: ['mistake_practice_store'],
       productModules: ['app/personal_practice_store.ts', 'app/diagnostic_store.ts'],
       coveredSurfaceDomains: ['personal_practice'],
       sourceFiles: filesForDomains(surfaceEntries, ['personal_practice']),
@@ -657,7 +657,7 @@ async function main(): Promise<void> {
       status: 'HOLD',
       risk: 'blocker',
       ownerArea: 'achievements',
-      dependsOn: ['lesson_progress_store', 'quiz_progress_store', 'trainer_practice_store', 'flashcards_target_store'],
+      dependsOn: ['lesson_progress_store', 'quiz_progress_store', 'mistake_practice_store', 'flashcards_target_store'],
       productModules: ['app/achievement_progress_store.ts', 'app/achievements.ts', 'app/achievements_screen.tsx'],
       coveredSurfaceDomains: ['achievements'],
       sourceFiles: filesForDomains(surfaceEntries, ['achievements']),
@@ -685,7 +685,7 @@ async function main(): Promise<void> {
       status: 'HOLD',
       risk: 'blocker',
       ownerArea: 'stats',
-      dependsOn: ['lesson_progress_store', 'quiz_progress_store', 'trainer_practice_store'],
+      dependsOn: ['lesson_progress_store', 'quiz_progress_store', 'mistake_practice_store'],
       productModules: ['app/target_stats_store.ts', 'app/lifetime_profile_stats.ts', 'app/stats_daily_breakdown.ts'],
       coveredSurfaceDomains: ['progress_stats'],
       sourceFiles: filesForDomains(surfaceEntries, ['progress_stats']).concat(filesForStorageKeys(records, statsTests)),
@@ -713,7 +713,7 @@ async function main(): Promise<void> {
       status: 'HOLD',
       risk: 'blocker',
       ownerArea: 'cloud',
-      dependsOn: ['lesson_progress_store', 'quiz_progress_store', 'trainer_practice_store', 'flashcards_target_store', 'achievement_progress_store', 'target_stats_store'],
+      dependsOn: ['lesson_progress_store', 'quiz_progress_store', 'mistake_practice_store', 'flashcards_target_store', 'achievement_progress_store', 'target_stats_store'],
       productModules: ['app/cloud_sync.ts', 'app/auth_provider.ts'],
       coveredSurfaceDomains: ['cloud_sync'],
       sourceFiles: filesForDomains(surfaceEntries, ['cloud_sync']),
@@ -742,9 +742,9 @@ async function main(): Promise<void> {
       status: 'HOLD',
       risk: 'blocker',
       ownerArea: 'ui',
-      dependsOn: ['production_study_target', 'lesson_progress_store', 'quiz_progress_store', 'trainer_practice_store', 'flashcards_target_store', 'achievement_progress_store'],
-      productModules: ['app/_layout.tsx', 'app/(tabs)/home.tsx', 'app/(tabs)/lessons.tsx', 'app/lesson1.tsx', 'app/quizzes.tsx', 'app/trainer.tsx', 'app/flashcards.tsx'],
-      coveredSurfaceDomains: ['home_dashboard', 'lesson_list', 'lesson_runtime', 'quiz', 'trainer_practice', 'flashcards', 'achievements', 'progress_stats'],
+      dependsOn: ['production_study_target', 'lesson_progress_store', 'quiz_progress_store', 'mistake_practice_store', 'flashcards_target_store', 'achievement_progress_store'],
+      productModules: ['app/_layout.tsx', 'app/(tabs)/home.tsx', 'app/(tabs)/lessons.tsx', 'app/lesson1.tsx', 'app/quizzes.tsx', 'app/mistake_practice_session.tsx', 'app/flashcards.tsx'],
+      coveredSurfaceDomains: ['home_dashboard', 'lesson_list', 'lesson_runtime', 'quiz', 'mistake_practice', 'flashcards', 'achievements', 'progress_stats'],
       sourceFiles: unique(surfaceEntries.filter((surface) => surface.userFacing && surface.blockers.length > 0).map((surface) => surface.sourcePath)).slice(0, 40),
       storageKeys: [],
       cloudActions: [],
@@ -829,9 +829,9 @@ async function main(): Promise<void> {
       id: 'P3',
       title: 'Target local stores for learning surfaces',
       status: 'HOLD',
-      adapters: ['lesson_progress_store', 'lesson_session_store', 'lesson_reward_idempotency', 'level_exam_certificate_store', 'quiz_progress_store', 'trainer_practice_store', 'personal_practice_store', 'flashcards_target_store'],
+      adapters: ['lesson_progress_store', 'lesson_session_store', 'lesson_reward_idempotency', 'level_exam_certificate_store', 'quiz_progress_store', 'mistake_practice_store', 'personal_practice_store', 'flashcards_target_store'],
       exitCriteria: [
-        'Lessons, quizzes, trainer, My Practice and flashcards use target-aware store APIs.',
+        'Lessons, quizzes, Mistake Practice and flashcards use target-aware store APIs.',
         'Route-level target switch tests pass for en/fr.',
       ],
     },

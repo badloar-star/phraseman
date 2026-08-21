@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { ACHIEVEMENT_ES } from './achievements_es_locale';
-import { commitShardCreditOperation, getShardsBalance } from './shards_system';
 import { registerXP } from './xp_manager';
 import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
@@ -16,7 +15,6 @@ import { accountScopeKey } from './account_scope_key';
 import {
   achievementStateKey,
   achievementLessonMarathonDayKey,
-  activeRecallAchievementCorrectCountKey,
   comboAchievementCounterKey,
   achievementLessonPerfectPassesKey,
   dailyPhraseAchievementReadCountKey,
@@ -33,9 +31,6 @@ import {
   lessonProgressKey,
   shareAchievementCounterKey,
   storageStudyTarget,
-  trainerAchievementCorrectCountKey,
-  trainerAchievementCorrectStreakKey,
-  trainerAchievementPerfectSessionCountKey,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 
@@ -1406,33 +1401,37 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   },
   // ── Арена (расширение) ────────────────────────────────────────────────────
 
-  // ── Тренер / Active Recall ────────────────────────────────────────────────
+  // ── Исправление ошибок ───────────────────────────────────────────────────
   {
-    id: 'trainer_session', icon:'🧘', category:'special', xp:50,
-    nameRu:'Первая тренировка',  nameUk:'Перше тренування',
-    descRu:'Пройди первую сессию в режиме «Моя практика».', descUk:'Пройди першу сесію в режимі «Моя практика».',
+    id: 'mistake_corrected_first', icon:'🩹', category:'special', xp:50,
+    nameRu:'Первая поправка', nameUk:'Перше виправлення',
+    descRu:'Полностью исправь первую реальную ошибку.', descUk:'Повністю виправ першу реальну помилку.',
   },
   {
-    id: 'trainer_100_correct', icon:'🧠', category:'special', xp:200,
-    nameRu:'Стальная память',  nameUk:'Сталева пам\'ять',
-    descRu:'100 правильных ответов суммарно в «Моей практике». Эти слова уже часть тебя.', descUk:'100 правильних відповідей загалом у «Моїй практиці». Ці слова вже частина тебе.',
+    id: 'mistake_corrected_10', icon:'🧠', category:'special', xp:180,
+    nameRu:'Десять исправлений', nameUk:'Десять виправлень',
+    descRu:'Исправь 10 разных ошибок.', descUk:'Виправ 10 різних помилок.',
+  },
+  {
+    id: 'mistake_corrected_50', icon:'🧩', category:'special', xp:500,
+    nameRu:'Пятьдесят исправлений', nameUk:'П\'ятдесят виправлень',
+    descRu:'Исправь 50 разных ошибок.', descUk:'Виправ 50 різних помилок.',
     secret: true,
   },
   {
-    id: 'trainer_7_days', icon:'📅', category:'special', xp:260,
-    nameRu:'Неделя практики', nameUk:'Тиждень практики',
-    descRu:'Семь дней подряд дай хотя бы один верный ответ в тренировке.', descUk:'Сім днів поспіль дай хоча б одну правильну відповідь у тренуванні.',
+    id: 'mistake_voice_corrected_first', icon:'🎙️', category:'special', xp:120,
+    nameRu:'Голос поправлен', nameUk:'Голос виправлено',
+    descRu:'Исправь первую ошибку произношения.', descUk:'Виправ першу помилку вимови.',
   },
   {
-    id: 'trainer_500_correct', icon:'🏋️', category:'special', xp:600,
-    nameRu:'Пятьсот точных', nameUk:'П\'ятсот точних',
-    descRu:'500 правильных ответов суммарно в тренировках.', descUk:'500 правильних відповідей загалом у тренуваннях.',
-    secret: true,
+    id: 'mistake_success_7_days', icon:'📅', category:'special', xp:260,
+    nameRu:'Семь дней точности', nameUk:'Сім днів точності',
+    descRu:'В семь разных дней дай самостоятельный верный ответ.', descUk:'У сім різних днів дай самостійну правильну відповідь.',
   },
   {
-    id: 'trainer_perfect_session', icon:'💯', category:'special', xp:180,
-    nameRu:'Чистая сессия', nameUk:'Чиста сесія',
-    descRu:'Заверши тренировку из 5+ вопросов без ошибки.', descUk:'Заверши тренування з 5+ питань без помилки.',
+    id: 'mistake_perfect_session', icon:'💯', category:'special', xp:180,
+    nameRu:'Чистое исправление', nameUk:'Чисте виправлення',
+    descRu:'Заверши сессию из 5+ ошибок без нового промаха.', descUk:'Заверши сесію з 5+ помилок без нового промаху.',
   },
 
   // ── Кастомизация ──────────────────────────────────────────────────────────
@@ -1553,11 +1552,6 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   { id: 'social_gift_100', icon:'💝', category:'special', xp:1500, nameRu:'100 подарков', nameUk:'100 подарунків', descRu:'Отправь 100 подарков друзьям.', descUk:'Надішли 100 подарунків друзям.', secret:true },
   { id: 'social_likes_25', icon:'❤️', category:'special', xp:450, nameRu:'25 лайков', nameUk:'25 лайків', descRu:'Получи 25 лайков от друзей на свои достижения.', descUk:'Отримай 25 лайків від друзів на свої досягнення.', secret:true },
   { id: 'social_likes_100', icon:'💗', category:'special', xp:1200, nameRu:'100 лайков', nameUk:'100 лайків', descRu:'Получи 100 лайков от друзей на свои достижения.', descUk:'Отримай 100 лайків від друзів на свої досягнення.', secret:true },
-  { id: 'trainer_1000_correct', icon:'🧠', category:'special', xp:1000, nameRu:'1000 точных', nameUk:'1000 точних', descRu:'1000 правильных ответов в тренировках. Память уже не та — она лучше.', descUk:'1000 правильних відповідей загалом у тренуваннях.', secret:true },
-  { id: 'trainer_2500_correct', icon:'🏋️', category:'special', xp:1800, nameRu:'2500 точных', nameUk:'2500 точних', descRu:'2500 правильных ответов. Эти слова уже часть тебя.', descUk:'2500 правильних відповідей загалом у тренуваннях.', secret:true },
-  { id: 'trainer_10000_correct', icon:'👑', category:'special', xp:4500, nameRu:'10000 точных', nameUk:'10000 точних', descRu:'10 000 правильных ответов в тренировках. Это уже энциклопедия.', descUk:'10000 правильних відповідей загалом у тренуваннях.', secret:true },
-  { id: 'trainer_perfect_10_sessions', icon:'💯', category:'special', xp:600, nameRu:'10 чистых тренировок', nameUk:'10 чистих тренувань', descRu:'10 раз заверши тренировку из 5+ вопросов без ошибки.', descUk:'10 разів заверши тренування з 5+ питань без помилки.', secret:true },
-  { id: 'trainer_perfect_50_sessions', icon:'🏆', category:'special', xp:1600, nameRu:'50 чистых тренировок', nameUk:'50 чистих тренувань', descRu:'50 раз заверши тренировку из 5+ вопросов без ошибки.', descUk:'50 разів заверши тренування з 5+ питань без помилки.', secret:true },
   { id: 'pack_10_purchased', icon:'📚', category:'special', xp:450, nameRu:'10 наборов', nameUk:'10 наборів', descRu:'10 наборов карточек в коллекции.', descUk:'10 наборів карток у колекції.', secret:true },
   { id: 'pack_25_purchased', icon:'📦', category:'special', xp:1000, nameRu:'25 наборов', nameUk:'25 наборів', descRu:'25 наборов карточек в коллекции.', descUk:'25 наборів карток у колекції.', secret:true },
   { id: 'share_achievement_10', icon:'📣', category:'special', xp:250, nameRu:'10 громких побед', nameUk:'10 гучних перемог', descRu:'Поделись 10 разблокированными достижениями.', descUk:'Поділись 10 розблокованими досягненнями.', secret:true },
@@ -1590,8 +1584,7 @@ const isTargetAchievement = (id: string): boolean => {
     id.startsWith('combo_') ||
     id.startsWith('exam_') ||
     id.startsWith('flashcards_') ||
-    id.startsWith('recall_') ||
-    id.startsWith('trainer_') ||
+    id.startsWith('mistake_') ||
     id.startsWith('daily_phrase') ||
     id.startsWith('daily_task') ||
     id.startsWith('daily_all') ||
@@ -2180,27 +2173,6 @@ const backfillAchievementsFromLocalState = async (
   if (!force && (await AsyncStorage.getItem(ACHIEVEMENT_BACKFILL_KEY)) === '1') return;
   if (!isCurrentAccountGeneration(accountToken)) return;
 
-  const [trainerCorrect, legacyRecallCorrect] = await Promise.all([
-    readStoredCounter(trainerAchievementCorrectCountKey(studyTarget)),
-    readStoredCounter(activeRecallAchievementCorrectCountKey(studyTarget)),
-  ]);
-  if (!isCurrentAccountGeneration(accountToken)) return;
-  const practiceCorrect = Math.max(trainerCorrect, legacyRecallCorrect);
-  if (practiceCorrect > 0) {
-    await Promise.all([
-      setStoredCounterAtLeast(trainerAchievementCorrectCountKey(studyTarget), practiceCorrect, accountToken),
-      setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(studyTarget), practiceCorrect, accountToken),
-    ]);
-    if (!isCurrentAccountGeneration(accountToken)) return;
-    if (practiceCorrect >= 1) unlock('recall_first');
-    if (practiceCorrect >= 50) unlock('recall_50');
-    if (practiceCorrect >= 100) unlock('trainer_100_correct');
-    if (practiceCorrect >= 500) unlock('trainer_500_correct');
-    if (practiceCorrect >= 1000) unlock('trainer_1000_correct');
-    if (practiceCorrect >= 2500) unlock('trainer_2500_correct');
-    if (practiceCorrect >= 10000) unlock('trainer_10000_correct');
-  }
-
   const eventTargets = achievementProgressTargetsForEvent(studyTarget);
   const savedCards = await readStoredObjectLists(eventTargets.map(flashcardsSavedKey));
   if (!isCurrentAccountGeneration(accountToken)) return;
@@ -2337,11 +2309,6 @@ const backfillAchievementsFromLocalState = async (
   if (gifts >= 25) unlock('social_gift_25');
   if (gifts >= 100) unlock('social_gift_100');
 
-  const perfectSessions = await readStoredCounter(trainerAchievementPerfectSessionCountKey(studyTarget));
-  if (!isCurrentAccountGeneration(accountToken)) return;
-  if (perfectSessions >= 10) unlock('trainer_perfect_10_sessions');
-  if (perfectSessions >= 50) unlock('trainer_perfect_50_sessions');
-
   const shares = await readStoredCounter(shareAchievementCounterKey(studyTarget));
   if (!isCurrentAccountGeneration(accountToken)) return;
   if (shares >= 10) unlock('share_achievement_10');
@@ -2370,7 +2337,6 @@ export type AchievementEvent =
   | { type: 'flashcard_flipped'; count?: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'flashcard_viewed'; count?: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'daily_phrase'; action: 'read' | 'save'; studyTarget?: RuntimeStudyTarget }
-  | { type: 'active_recall'; correct?: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'shards'; balance: number }
   | { type: 'shards_spent'; amount: number }
   | { type: 'energy_refill' }
@@ -2381,8 +2347,7 @@ export type AchievementEvent =
   | { type: 'friend_added';   totalFriends: number }
   | { type: 'gift_sent' }
   | { type: 'achievement_liked'; likeTotal?: number }
-  | { type: 'trainer_correct'; correct: number; studyTarget?: RuntimeStudyTarget }
-  | { type: 'trainer_session_result'; correct: number; wrong: number; total: number; studyTarget?: RuntimeStudyTarget }
+  | { type: 'mistake_practice_progress'; corrected: number; voiceCorrected: number; independentDays: number; perfectSession?: boolean; studyTarget?: RuntimeStudyTarget }
   | { type: 'avatar_custom_set' }
   | { type: 'profile_theme_set' }
   | { type: 'pack_purchased';  totalPacks: number; studyTarget?: RuntimeStudyTarget }
@@ -2675,15 +2640,6 @@ export const checkAchievements = async (
         }
         break;
       }
-      case 'active_recall': {
-        const key = activeRecallAchievementCorrectCountKey(event.studyTarget);
-        const add = Math.max(1, Math.floor(event.correct ?? 1));
-        const next = await bumpStoredCounter(key, add, operationToken);
-        if (!isCurrentAccountGeneration(operationToken)) return [];
-        if (next >= 1) u('recall_first');
-        if (next >= 50) u('recall_50');
-        break;
-      }
       case 'shards': {
         if (event.balance >= 100) u('shards_100');
         if (event.balance >= 250) u('shards_250');
@@ -2779,34 +2735,13 @@ export const checkAchievements = async (
         if ((event.likeTotal ?? 0) >= 100) u('social_likes_100');
         break;
       }
-      case 'trainer_correct': {
-        const trainerKey = trainerAchievementCorrectCountKey(event.studyTarget);
-        const add = Math.max(1, Math.floor(event.correct));
-        const next = await bumpStoredCounter(trainerKey, add, operationToken);
-        if (!isCurrentAccountGeneration(operationToken)) return [];
-        await setStoredCounterAtLeast(activeRecallAchievementCorrectCountKey(event.studyTarget), next, operationToken);
-        if (!isCurrentAccountGeneration(operationToken)) return [];
-        if (next >= 1)   u('recall_first');
-        if (next >= 50)  u('recall_50');
-        if (next >= 100) u('trainer_100_correct');
-        if (next >= 500) u('trainer_500_correct');
-        if (next >= 1000) u('trainer_1000_correct');
-        if (next >= 2500) u('trainer_2500_correct');
-        if (next >= 10000) u('trainer_10000_correct');
-        {
-          const streak = await bumpConsecutiveDayStreak(trainerAchievementCorrectStreakKey(event.studyTarget), operationToken);
-          if (streak >= 7) u('trainer_7_days');
-        }
-        break;
-      }
-      case 'trainer_session_result': {
-        if (event.total > 0) u('trainer_session');
-        if (event.total >= 5 && event.wrong <= 0 && event.correct >= event.total) {
-          u('trainer_perfect_session');
-          const perfectSessions = await bumpStoredCounter(trainerAchievementPerfectSessionCountKey(event.studyTarget), 1, operationToken);
-          if (perfectSessions >= 10) u('trainer_perfect_10_sessions');
-          if (perfectSessions >= 50) u('trainer_perfect_50_sessions');
-        }
+      case 'mistake_practice_progress': {
+        if (event.corrected >= 1) u('mistake_corrected_first');
+        if (event.corrected >= 10) u('mistake_corrected_10');
+        if (event.corrected >= 50) u('mistake_corrected_50');
+        if (event.voiceCorrected >= 1) u('mistake_voice_corrected_first');
+        if (event.independentDays >= 7) u('mistake_success_7_days');
+        if (event.perfectSession) u('mistake_perfect_session');
         break;
       }
       case 'avatar_custom_set': {
@@ -2966,59 +2901,9 @@ export const claimAchievementShardReward = async (
   achievementId: string,
   accountToken?: AccountGenerationToken,
 ): Promise<boolean> => {
-  const operationToken = accountToken ?? captureAccountGeneration();
-  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return false;
-  return enqueueAchievementOperation(operationToken, async () => {
-  const states = await loadAchievementStatesInternal(operationToken, true);
-  if (!isCurrentAccountGeneration(operationToken)) return false;
-  const state = states.find(x => x.id === achievementId);
-  if (!state || state.unlockedAt === null || state.shardClaimed) return false;
-  const ownerStableId = operationToken.stableId ?? '';
-  const pending = await readAchievementPayoutPending(ownerStableId, operationToken);
-  if (!pending || !isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
-  const payoutOpId = pending[achievementId] ?? achievementPayoutOpId(ownerStableId, achievementId);
-  if (!pending[achievementId]) {
-    pending[achievementId] = payoutOpId;
-    const pendingEntries = Object.entries(pending).slice(-ACHIEVEMENT_SHARD_PAYOUT_PENDING_LIMIT);
-    const journaled = await commitAchievementStoragePairs([[
-      achievementPayoutPendingKey(ownerStableId),
-      JSON.stringify(Object.fromEntries(pendingEntries)),
-    ]], operationToken);
-    if (!journaled || !isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
-  }
-
-  // зачем: владелец вернул награду за достижения — экран всё это время обещал
-  // «+1 жемчужина» и показывал кнопку «Получить», но выплата была обнулена
-  // экономикой «Монеты и Звёзды», и игрок жал кнопку впустую. Теперь код
-  // совпадает с обещанием на экране: ровно +1 жемчужина за достижение.
-  const ACHIEVEMENT_SHARD_PAYOUT = 1 as number;
-  if (ACHIEVEMENT_SHARD_PAYOUT <= 0) return true;
-
-  state.shardClaimed = true;
-  delete pending[achievementId];
-  const payout = await commitShardCreditOperation({
-    amount: ACHIEVEMENT_SHARD_PAYOUT,
-    reason: `achievement:${achievementId}`,
-    operationId: payoutOpId,
-    grant: { kind: 'achievement_reward', subjectId: achievementId },
-    localWrites: [
-      ...achievementStatePairs(states),
-      [achievementPayoutPendingKey(ownerStableId), JSON.stringify(pending)],
-    ],
-  });
-  if (
-    !isCurrentAccountGeneration(operationToken, ownerStableId)
-    || (payout.status !== 'applied' && payout.status !== 'already-applied')
-  ) return false;
-    try {
-      const balance = await getShardsBalance();
-      if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return false;
-      emitAppEvent('shards_balance_updated', { balance });
-    } catch (e) {
-      if (__DEV__) console.warn('[achievements]', e);
-    }
-    return true;
-  }, false);
+  void achievementId;
+  void accountToken;
+  return false;
 };
 
 export const hasPendingShardReward = (state: AchievementState | undefined): boolean =>

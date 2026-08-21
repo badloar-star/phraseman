@@ -27477,18 +27477,6 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     // Haptics
     const haptics = {'✅ Включена': users.filter(u=>u.haptics!==false&&u.haptics!=='false').length, '❌ Выключена': users.filter(u=>u.haptics===false||u.haptics==='false').length};
 
-    // Active recall items
-    const arBuckets = {'0':0,'1-10':0,'11-30':0,'31-50':0,'50+':0};
-    users.forEach(u => {
-      const items = tryJson(u.raw?.active_recall_items, []);
-      const cnt = Array.isArray(items) ? items.length : 0;
-      if(cnt===0) arBuckets['0']++;
-      else if(cnt<=10) arBuckets['1-10']++;
-      else if(cnt<=30) arBuckets['11-30']++;
-      else if(cnt<=50) arBuckets['31-50']++;
-      else arBuckets['50+']++;
-    });
-
     // ── Новые метрики из user_stats_v1 ──────────────────────────────────────────
     const sn = usersWithStats.length;
 
@@ -27633,10 +27621,6 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       <div class="chart-card">
         <h3>📳 Вибрация (Haptics)</h3>
         ${barChart(haptics, Math.max(...Object.values(haptics)), '#f97316')}
-      </div>
-      <div class="chart-card">
-        <h3>🔁 Active Recall — карточек на повторение</h3>
-        ${barChart(arBuckets, Math.max(...Object.values(arBuckets)), '#818cf8')}
       </div>
       ${sn > 0 ? `
       <div class="chart-card">
@@ -30897,12 +30881,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     { key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 3, min: 1, max: 32 },
     { key: 'max_energy', label: 'База энергии (до уровня 50)', def: 5, min: 5, max: 5 },
     { key: 'energy_recovery_interval_ms', label: 'Восст. энергии (мс)', def: 600000, min: 10000, max: 86400000 },
-    { key: 'free_trainer_sessions_per_day', label: 'Free: сессий тренера в день', def: 1, min: 0, max: 99 },
-    { key: 'trainer_ab_a_pct', label: 'A/B тренер: группа A %', def: 0, min: 0, max: 100 },
-    { key: 'trainer_ab_b_pct', label: 'A/B тренер: группа B %', def: 0, min: 0, max: 100 },
-    { key: 'trainer_ab_c_pct', label: 'A/B тренер: группа C %', def: 0, min: 0, max: 100 },
     { key: 'paywall_v2_pct', label: 'АРХИВ: paywall_v2_pct (не управляет новым пейволом)', def: 100, min: 0, max: 100 },
-    { key: 'avatar_dna_rollout_pct', label: 'Студия персонажа: доля пользователей, %', def: 0, min: 0, max: 100 },
     { key: 'league_xp_promotion_threshold', label: 'Лиги: XP для перехода вверх', def: 1000, min: 1, max: 1000000 },
     { key: 'streak_freeze_cost_shards', label: 'Серия: цена заморозки (осколки)', def: 10, min: 0, max: 9999 },
     { key: 'collectibles_drop_chance_pct', label: 'Карточки: шанс дропа, % (0–100)', def: 15, min: 0, max: 100 },
@@ -30918,7 +30897,6 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   ];
   const RC_BOOL_FIELDS = [
     { key: 'referral_enabled', label: 'Реферальная программа включена', def: true },
-    { key: 'avatar_dna_enabled', label: 'Студия персонажа включена', def: false },
     { key: 'ai_global_disable', label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ (галочка = ИИ выключен у всех)', def: false },
     { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
     { key: 'collectibles_enabled', label: '«Сокровищница» (коллекционные) включена', def: true },
@@ -34764,8 +34742,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   const CTX_RU = {
     no_energy: 'Кончилась энергия', course_after_lesson3: 'Дальше по курсу', lesson_b1: 'Уроки B1',
     flashcard_limit: 'Лимит карточек', flashcard_training: 'Тренировка карточек', flashcard_autoplay: 'Автовоспроизведение карточек',
-    streak: 'Серия', theme: 'Темы оформления', club: 'Клуб', trainer: 'Тренажёр', trainer_limit: 'Лимит тренажёра',
-    smart_trainer: 'Умный микс', dialog_limit: 'Лимит диалогов', dialog_locked_level: 'Диалог — уровень заблокирован',
+    streak: 'Серия', theme: 'Темы оформления', club: 'Клуб', dialog_limit: 'Лимит диалогов', dialog_locked_level: 'Диалог — уровень заблокирован',
     dialog_analysis: 'Разбор диалога', ai_voice_input: 'Голосовой ввод в диалоге', speaking: 'Говорение',
     diagnosis_training: 'Персональная тренировка', mastery: 'Мастерство', stats: 'Статистика', heatmap: 'Карта активности',
     patterns: 'Паттерны ошибок', percentiles: 'Перцентили', intro_ended: 'Конец пробного доступа',

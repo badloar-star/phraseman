@@ -38,7 +38,10 @@ describe('WeeklyReviewCard V2 states', () => {
     expect(card).toContain('review.priorities.map');
     expect(card).toContain('review.plan.map');
     expect(card).toContain('routeForWeeklyReviewAction(actionKind, recommendationId)');
-    expect(card).toContain("actionKind === 'repeat_due_words' && recommendationId === 'due:words'");
+    expect(card).toContain("actionKind === 'open_mistake_practice' && recommendationId === 'mistakes:ready'");
+    expect(card).toContain("pathname: '/mistake_practice_session', params: { length: '5' }");
+    expect(card).not.toContain("pathname: '/trainer_words_session'");
+    expect(card).not.toContain("pathname: '/trainer_phrases_session'");
     expect(card).toContain("actionKind === 'open_personal_training' && recommendationId.startsWith('diagnosis:')");
     expect(card).not.toContain('accessibilityState={{ expanded }}');
     expect(card).not.toContain('setExpanded((value) => !value)');

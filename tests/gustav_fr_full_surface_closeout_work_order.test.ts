@@ -73,7 +73,6 @@ describe('Gustav French full surface closeout work order', () => {
       'standard_quizzes',
       'arena_questions',
       'prepositions_conjugation',
-      'personal_practice_active_recall',
       'flashcards_marketplace',
       'collectible_cards',
       'daily_phrases',
@@ -165,35 +164,6 @@ describe('Gustav French full surface closeout work order', () => {
       totalRuntimeItems: 640,
       conjugationVerbs: 32,
     });
-
-    const personalPractice = workOrder.surfaces.find((surface: { id: string }) => surface.id === 'personal_practice_active_recall');
-    expect(personalPractice.counts).toMatchObject({
-      englishDiagnosisTrainingIds: 56,
-      englishDiagnosisRegistryBranches: 56,
-      nativeBankCandidateRows: 56,
-      nativeBankReadyForLlmReview: true,
-      nativeBankRowsWithEnglishIdReuse: 0,
-      nativeBankReviewRequestRows: 56,
-      nativeBankReviewRequestsReady: true,
-      nativeBankExternalReviewBatches: 3,
-      nativeBankDecisionRows: 0,
-      nativeBankMissingDecisionRows: 56,
-      nativeBankImportDryRunReady: false,
-      mistakeTaxonomyRows: 56,
-      mistakeTaxonomyReadyForLlmReview: true,
-      mistakeTaxonomyRowsWithEnglishIdReuse: 0,
-      mistakeTaxonomyReviewRequestRows: 56,
-      mistakeTaxonomyReviewRequestsReady: true,
-      mistakeTaxonomyExternalReviewBatches: 3,
-      mistakeTaxonomyDecisionRows: 0,
-      mistakeTaxonomyMissingDecisionRows: 56,
-      mistakeTaxonomyImportDryRunReady: false,
-    });
-    expect(personalPractice.remainingBlockers).toEqual(expect.arrayContaining([
-      'french_personal_practice_native_bank_llm_review',
-      'french_personal_practice_mistake_taxonomy_llm_review',
-      'ru_uk_personal_practice_prompt_review',
-    ]));
 
     const ai = workOrder.surfaces.find((surface: { id: string }) => surface.id === 'ai_prompt_surfaces');
     expect(ai.counts).toMatchObject({

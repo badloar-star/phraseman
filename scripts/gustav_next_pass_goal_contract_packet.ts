@@ -1738,7 +1738,7 @@ function remoteServerObjectVerificationGoals(): PassGoal[] {
         'Remote verify live handoff reports liveVerifyCommandReady=true, postVerifyChainReady=true, expectedRemoteObjects=36 and expectedHashChecks=36 without printing secrets or opening production writes.',
         'Remote verify PASS completion simulation reports simulatedRequirementsMissing=0, simulatedRequirementsProductionLocked=5 and simulatedNextGate=exact_approval_artifacts.',
         'Post-remote-verify transition reports afterRemoteVerifyExpectedMissing=0, afterRemoteVerifyExpectedLocked=5 and afterRemoteVerifyNextGate=exact_approval_artifacts.',
-        'French app surface parity reports remotePackSurfaces=6/6 and challenge/trainer surfaces covered by navigation/state guards, not missing course-pack surfaces.',
+        'French app surface parity reports remotePackSurfaces=6/6 and challenge/mistake-practice surfaces covered by navigation/state guards, not missing course-pack surfaces.',
         'Remote verify reports readyForRuntimeDownloadActivation=true with foundObjects=36 and hashCheckedObjects=36.',
         'All remote size/hash mismatch counts are zero and upload execution remains dry-run/no-start.',
         'P46/P47/P59-P64 can no longer be blocked by missing French remote object verification.',

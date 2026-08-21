@@ -13,8 +13,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { TranscriptTurn } from './max_call_transcript';
 import { computeVoiceCallMetrics } from './max_voice_metrics';
 import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
-import { recordPhraseMistake } from './trainer_store';
-import { peekHomeScreenHydration } from './home_screen_hydration';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { trackEvent } from './analytics';
 import {
   callPremiumDialogReview,
   type PremiumDialogReviewCorrection,
@@ -332,6 +332,76 @@ export default function MaxVoiceReview() {
   return (
     <ScreenGradient>
       <SafeAreaView testID="max-voice-review-screen" style={{ flex: 1 }}>
+  const firstCorrection = corrections[0];
+  const orderedCorrections = firstCorrection ? [firstCorrection, ...corrections.slice(1)] : corrections;
+  const topFocus = orderedCorrections.find((correction) =>
+    correction.kind === 'fix'
+    && correction.corrected.trim().length > 0
+    && correction.corrected.length <= 100
+  ) ?? null;
+  const reachedMastery = Math.max(
+    result.tutor?.goal?.mastery ?? 0,
+    result.tutor?.goalProgress?.goalId === result.tutor?.goal?.id
+      ? (result.tutor?.goalProgress?.mastery ?? 0)
+      : 0,
+  );
+  const victory = praise.trim() || (reachedMastery >= 3
+    ? triLang(lang, {
+      ru: 'Цель урока выполнена', uk: 'Мету уроку виконано', es: 'Objetivo completado',
+      'pt-BR': 'Objetivo concluído', vi: 'Đã hoàn thành mục tiêu', id: 'Tujuan selesai',
+      tr: 'Hedef tamamlandı', pl: 'Cel ukończony',
+    })
+    : triLang(lang, {
+      ru: 'Разговор завершён', uk: 'Розмову завершено', es: 'Conversación completada',
+      'pt-BR': 'Conversa concluída', vi: 'Cuộc trò chuyện đã hoàn thành', id: 'Percakapan selesai',
+      tr: 'Konuşma tamamlandı', pl: 'Rozmowa zakończona',
+    }));
+
+  const practiceTopFocus = async () => {
+    if (!topFocus || practiceOpening) return;
+    hapticTap();
+    setPracticeOpening(true);
+    const index = Math.max(0, corrections.indexOf(topFocus));
+    const practicePrompt = triLang(lang, {
+      ru: `Исправь фразу: “${topFocus.original}”.${topFocus.note ? ` Подсказка: ${topFocus.note}` : ''}`,
+      uk: `Виправ фразу: “${topFocus.original}”.${topFocus.note ? ` Підказка: ${topFocus.note}` : ''}`,
+      es: `Corrige la frase: “${topFocus.original}”.${topFocus.note ? ` Pista: ${topFocus.note}` : ''}`,
+      'pt-BR': `Corrija a frase: “${topFocus.original}”.${topFocus.note ? ` Dica: ${topFocus.note}` : ''}`,
+      vi: `Sửa câu: “${topFocus.original}”.${topFocus.note ? ` Gợi ý: ${topFocus.note}` : ''}`,
+      id: `Perbaiki kalimat: “${topFocus.original}”.${topFocus.note ? ` Petunjuk: ${topFocus.note}` : ''}`,
+      tr: `Cümleyi düzelt: “${topFocus.original}”.${topFocus.note ? ` İpucu: ${topFocus.note}` : ''}`,
+      pl: `Popraw zdanie: „${topFocus.original}”.${topFocus.note ? ` Wskazówka: ${topFocus.note}` : ''}`,
+    });
+    void trackEvent('max_tutor_review_practice_started', {
+      kind: topFocus.kind,
+      cefr: result.cefr ?? 'unknown',
+    });
+    try {
+      const captured = await captureCurrentAccountObjectiveAttempt({
+        attemptId: `voice-review:${result.sessionId ?? 'local'}:${index}`,
+        studyTarget: result.studyTarget === 'fr' ? 'fr' : 'en',
+        verdict: 'wrong',
+        objective: true,
+        content: {
+          sourceKind: 'voice_review',
+          sourceId: `${result.sessionId ?? 'local'}:${index}`,
+          canonicalTarget: topFocus.corrected,
+          sourceMeaning: practicePrompt,
+        },
+        facet: { kind: 'form', expected: topFocus.corrected },
+      });
+      if (captured.kind !== 'captured') {
+        setPracticeOpening(false);
+        return;
+      }
+      router.push({
+        pathname: '/mistake_practice_session',
+        params: { focusMistakeId: captured.mistakeId, returnTo: 'max_voice_review' },
+      } as any);
+    } catch {
+      setPracticeOpening(false);
+    }
+  };
         {/* Шапка */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 14 }}>
           <TouchableOpacity

@@ -34,14 +34,6 @@ import { MOTION_SCALE } from '../constants/motion';
 import { loadSettings } from './settings_edu';
 import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb, acceptedFormsFor, portionsForVerbs } from './irregular_verbs_data';
 import { buildIrregularVerbOptions, ensureCompleteIrregularVerbOptions } from './irregular_verb_options';
-import {
-  loadVerbSrs,
-  recordVerbPass,
-  seedSrsFromLegacyCounts,
-  summarizeVerbSrs,
-  daysUntilDue,
-  type VerbSrsMap,
-} from './irregular_verbs_srs';
 import VerbLetterBank from '../components/VerbLetterBank';
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
@@ -49,8 +41,7 @@ import { addShards } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import AddToFlashcard from '../components/AddToFlashcard';
-import { recordWordMistake, activateWordForTrainer } from './trainer_store';
-import { logMistake } from './mistake_log';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { irregularVerbsGlobalKey, lessonIrregularShardsGrantedKey, type RuntimeStudyTarget } from './target_storage_keys';
 import {
@@ -432,19 +423,22 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, initSrs, onUpdate, onRese
 
       // Тренер: считаем ошибки на глагол; при 2-й — активируем в очереди
       const vKey = verb.base;
-      logMistake(vKey, lessonId ?? 0, 'lesson_words', 'wrong_pick', {
-        tokenText: correct,
-        expected: correct,
-        picked: word,
-        rawCategory: 'irregular_verbs',
-      }, studyTarget);
-      const prevVerbCount = verbMistakeCountRef.current[vKey] ?? 0;
-      const newVerbCount = prevVerbCount + 1;
-      verbMistakeCountRef.current[vKey] = newVerbCount;
-      if (newVerbCount === 2) {
-        void activateWordForTrainer(vKey, verb.ru, verb.uk, lessonId ?? 0, 'irregular_verbs', undefined, studyTarget);
-      } else {
-        void recordWordMistake(vKey, verb.ru, verb.uk, lessonId ?? 0, 'irregular_verbs', undefined, studyTarget);
+      if (studyTarget === 'en' || studyTarget === 'fr') {
+        void captureCurrentAccountObjectiveAttempt({
+          attemptId: `irregular:${studyTarget}:${lessonId ?? 0}:${pos}:${step}:${vKey}:${word}`,
+          studyTarget: studyTarget === 'fr' ? 'fr' : 'en',
+          verdict: 'wrong',
+          objective: true,
+          content: {
+            sourceKind: 'irregular_verb',
+            sourceId: `${vKey}:${form}`,
+            canonicalTarget: correct,
+            sourceMeaning: verb.ru,
+            lessonId: String(lessonId ?? 0),
+            distractors: activeOptions,
+          },
+          facet: { kind: 'form', expected: correct },
+        }).catch(() => {});
       }
 
       // Тратим энергию при ошибке

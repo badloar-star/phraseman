@@ -108,15 +108,13 @@ describe('стаггер появления кнопок (§5.2)', () => {
 
 describe('маршруты пунктов «Тренировка» (§5.2)', () => {
   /**
-   * FIX владельца (2026-08-13): «Тренировка» раздела карточек — это НЕ тренажёр
-   * «Моя практика» (`/trainer_words_session`, повторение ошибок и SRS-очередь),
-   * а свайп-режим «правильно / неправильно» с выбором наборов.
+   * FIX владельца (2026-08-13): «Тренировка» раздела карточек — это
+   * свайп-режим «правильно / неправильно» с выбором наборов.
    */
   it('«Тренировка» ведёт в свайп-режим карточек, а не в тренажёр «Моя практика»', () => {
     expect(FC_TRAIN_ROUTE).toBe('/flashcards_swipe');
     expect(buildFcTrainRoute('train', null).pathname).toBe('/flashcards_swipe');
     expect(buildFcTrainRoute('train', preset(['saved'])).pathname).toBe('/flashcards_swipe');
-    expect(buildFcTrainRoute('train', null).pathname).not.toBe('/trainer_words_session');
   });
 
   it('без пресета: тренировка — все наборы, слушание — сохранённые, блиц — дефолт', () => {
@@ -152,7 +150,7 @@ describe('маршруты пунктов «Тренировка» (§5.2)', () 
   });
 
   it('каждый пункт читает свой пресет из mode_prefs', () => {
-    expect(FC_TRAIN_OPTIONS.map(fcTrainOptionPresetMode)).toEqual(['trainer', 'listening', 'speaking', 'blitz']);
+    expect(FC_TRAIN_OPTIONS.map(fcTrainOptionPresetMode)).toEqual(['trainer', 'trainer', 'listening', 'speaking', 'blitz']);
   });
 
   /**

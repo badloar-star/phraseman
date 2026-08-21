@@ -992,7 +992,7 @@ function buildUnresolved(graphParts: {
       id: 'SG-007',
       severity: 'blocker',
       title: 'Personal practice diagnosis registry was not extracted',
-      detail: 'My Practice cannot be generated or adapted until diagnosis trainings are linked in the source graph.',
+      detail: 'Mistake Practice cannot be generated or adapted until diagnosis content is linked in the source graph.',
       sourceRefs: [{ file: 'app/diagnosis_trainings.ts', line: 1, provenance: 'runtime' }],
     });
   }

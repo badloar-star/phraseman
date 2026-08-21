@@ -96,6 +96,40 @@ describe('MAX Voice review server wiring', () => {
     expect(session).not.toContain('VoiceEqualizer');
     expect(session).not.toContain('Соединяем…');
     expect(session).toContain('haloRef.current?.setMicLevel(level)');
+
+  it('prioritizes one victory and one validated practice action before detailed corrections', () => {
+    expect(screen).toContain('Главная победа');
+    expect(screen).toContain('Один фокус на завтра');
+    expect(screen).toContain('Потренировать эту фразу');
+    expect(screen.indexOf('Главная победа')).toBeLessThan(screen.lastIndexOf('Разбор твоих фраз'));
+    expect(screen).toContain("trackEvent('max_tutor_review_practice_started'");
+    expect(screen).toContain('corrections[0]');
+    expect(screen).toContain("correction.kind === 'fix'");
+    expect(screen).toContain('correction.corrected.trim().length > 0');
+    expect(screen).toContain('correction.corrected.length <= 100');
+    expect(screen).toContain('topFocus ? (');
+  });
+
+  it('opens a focused one-phrase practice session instead of the generic five-error queue', () => {
+    expect(screen).toContain('focusMistakeId: captured.mistakeId');
+    expect(screen).not.toContain("pathname: '/mistake_practice_session', params: { length: '5' }");
+    expect(screen).toContain('const [practiceOpening, setPracticeOpening] = useState(false)');
+    expect(screen).toContain('disabled={practiceOpening}');
+    expect(screen).toContain('accessibilityState={{ busy: practiceOpening, disabled: practiceOpening }}');
+    expect(screen).toContain('const practicePrompt = triLang(lang, {');
+    expect(screen).toContain('topFocus.original');
+    expect(screen).toContain('sourceMeaning: practicePrompt');
+    expect(screen).not.toContain('sourceMeaning: topFocus.note');
+    expect(screen).toContain("returnTo: 'max_voice_review'");
+  });
+
+  it('persists every assigned tutor-homework item into account-scoped practice idempotently', () => {
+    expect(screen).toContain('homeworkSavedForRef');
+    expect(screen).toContain('result.tutor?.homeworkItems ?? []');
+    expect(screen).toContain('captureCurrentAccountObjectiveAttempt({');
+    expect(screen).toContain("attemptId: `max-tutor-homework:${result.sessionId ?? 'local'}:${index}`");
+    expect(screen).toContain("sourceKind: 'voice_review'");
+  });
     expect(halo).toContain('const FEATHER_LAYERS = [');
     expect(halo).toContain('useSharedValue(1)');
     expect(halo).toContain('useReduceMotion()');

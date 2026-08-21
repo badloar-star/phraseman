@@ -22,7 +22,7 @@ type SurfaceDomain =
   | 'lesson_completion'
   | 'lesson_support'
   | 'quiz'
-  | 'trainer_practice'
+  | 'mistake_practice'
   | 'personal_practice'
   | 'flashcards'
   | 'achievements'
@@ -236,7 +236,7 @@ function domainFor(sourcePath: string, targetKeys: string[]): SurfaceDomain {
   if (file.includes('lesson_help') || file.includes('hint')) return 'lesson_support';
   if (file.includes('achievement')) return 'achievements';
   if (file.includes('quiz') || keys.includes('quiz_')) return 'quiz';
-  if (file.includes('trainer') || file.includes('active_recall') || file.includes('mistake_log')) return 'trainer_practice';
+  if (file.includes('mistake_practice')) return 'mistake_practice';
   if (file.includes('diagnostic') || file.includes('diagnosis') || file.includes('problem_coach')) return 'personal_practice';
   if (file.includes('flashcard') || keys.includes('flashcard')) return 'flashcards';
   if (file.includes('progress_map') || file.includes('stats') || file.includes('analytics') || keys.includes('daily_stats')) return 'progress_stats';
@@ -288,8 +288,8 @@ function buildEntry(input: {
   if (markers.usesDevStudyTargetLang) {
     blockers.push('Surface touches dev StudyTargetLang or Spanish content gates; production French must not inherit this path.');
   }
-  if (domain === 'trainer_practice' || domain === 'personal_practice') {
-    if (targetRecords.length > 0 || /diagnostic|diagnosis|mistake|active_recall|trainer_store/.test(input.text)) {
+  if (domain === 'mistake_practice' || domain === 'personal_practice') {
+    if (targetRecords.length > 0 || /diagnostic|diagnosis|mistake_practice/.test(input.text)) {
       blockers.push('Practice surface needs target-prefixed diagnosis/practice ids and sourceLocale-separated feedback.');
     }
   }
@@ -304,7 +304,7 @@ function buildEntry(input: {
     ? 'blocker'
     : targetRecords.length > 0
       ? 'high'
-      : userFacing && (domain === 'lesson_runtime' || domain === 'quiz' || domain === 'trainer_practice' || domain === 'flashcards')
+      : userFacing && (domain === 'lesson_runtime' || domain === 'quiz' || domain === 'mistake_practice' || domain === 'flashcards')
         ? 'high'
         : markers.directAsyncStorageOps > 0
           ? 'medium'
@@ -322,7 +322,7 @@ function buildEntry(input: {
   if (markers.usesDevStudyTargetLang) {
     requiredBeforeFrench.add('Remove, rename or isolate dev StudyTargetLang before enabling French production target.');
   }
-  if (domain === 'trainer_practice' || domain === 'personal_practice') {
+  if (domain === 'mistake_practice' || domain === 'personal_practice') {
     requiredBeforeFrench.add('Prefix practice/diagnosis ids with studyTarget and keep localized feedback under sourceLocale.');
   }
   if (domain === 'cloud_sync') {
@@ -335,7 +335,7 @@ function buildEntry(input: {
   const tests = new Set<string>();
   if (targetRecords.length > 0) tests.add(`${input.sourcePath}: en progress and fr progress render independently.`);
   if (userFacing) tests.add(`${input.sourcePath}: sourceLocale switch changes copy only, not studyTarget state.`);
-  if (domain === 'trainer_practice' || domain === 'personal_practice') tests.add(`${input.sourcePath}: French My Practice never reads English trainer/mistake state.`);
+  if (domain === 'mistake_practice' || domain === 'personal_practice') tests.add(`${input.sourcePath}: French Mistake Practice never reads English mistake state.`);
   if (domain === 'cloud_sync') tests.add(`${input.sourcePath}: cloud restore does not hydrate fr from legacy English payload.`);
   if (tests.size === 0) tests.add(`${input.sourcePath}: covered by global route smoke test.`);
 

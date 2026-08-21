@@ -246,7 +246,7 @@ const JOBS = [
   { out: 'home_menu/{v}/home-{v}-lessons-lite.avif', w: 192, h: 192, kind: 'glyph', m: M.book },
   { out: 'home_menu/{v}/home-{v}-practice-lite.avif', w: 192, h: 192, kind: 'glyph', m: M.dumbbell },
   { out: 'home_menu/{v}/home-{v}-shop-lite.avif', w: 192, h: 192, kind: 'glyph', m: M.shoppingBag },
-  // Моя практика — темы тренажёров.
+  // Ошибки — темы адаптивной отработки.
   { out: 'trainer_theme_icons/{v}/analytics.webp', w: 256, h: 256, kind: 'glyph', m: M.barChart },
   { out: 'trainer_theme_icons/{v}/phrases.webp', w: 256, h: 256, kind: 'glyph', m: M.phrases },
   { out: 'trainer_theme_icons/{v}/words.webp', w: 256, h: 256, kind: 'glyph', m: M.words },

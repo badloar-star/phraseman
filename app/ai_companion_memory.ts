@@ -7,8 +7,8 @@
  *
  * В MVP-1 summary пустой (rolling-резюме прошлых бесед — fast-follow).
  */
-import { getTrainerPremiumItems } from './trainer_store';
-import type { RuntimeStudyTarget } from './target_storage_keys';
+import { loadMistakePracticeInsights } from './mistake_practice_insights';
+import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import type { DialogMemory } from './ai_dialog_client';
 
 const WEAK_WORDS_LIMIT = 5;
@@ -35,8 +35,11 @@ export async function buildCompanionMemory(
 ): Promise<DialogMemory> {
   let weakWords: string[] | undefined;
   try {
-    const items = await getTrainerPremiumItems('weak', WEAK_WORDS_LIMIT, studyTarget);
-    const words = items.map((i) => i.key.trim()).filter((k) => k.length > 0);
+    const insights = await loadMistakePracticeInsights(storageStudyTarget(studyTarget));
+    const words = insights.topMistakes
+      .slice(0, WEAK_WORDS_LIMIT)
+      .map((item) => item.phrase.trim())
+      .filter((key) => key.length > 0);
     if (words.length > 0) weakWords = words;
   } catch {
     // SRS недоступна — продолжаем без слабых слов, это не критично.

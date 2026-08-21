@@ -2,23 +2,35 @@ import {
   buildWeeklyReviewBriefing,
   type BuildBriefingDependencies,
 } from '../app/weekly_review_briefing';
-import type { MistakeEntry } from '../app/mistake_log';
 import type { PhraseAnalyticsResult } from '../app/phrase_analytics';
+import type { MistakePracticeInsights } from '../app/mistake_practice_insights';
 
 const NOW = Date.parse('2026-07-13T12:00:00.000Z');
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-function mistake(phrase: string, ageDays: number, lessonId = 1): MistakeEntry {
-  return {
-    phrase,
-    lessonId,
-    mode: 'lesson_words',
-    what: 'wrong_pick',
-    tokenText: 'have',
-    rawCategory: 'verb',
-    ts: NOW - ageDays * DAY_MS,
-  };
-}
+const INSIGHTS: MistakePracticeInsights = {
+  active: 12,
+  corrected: 2,
+  correctedPhrases: 1,
+  hidden: 0,
+  overdue: 4,
+  totalTracked: 31,
+  dueWords: 5,
+  duePhrases: 7,
+  mistakeCount7d: 5,
+  mistakeCountPrevious7d: 2,
+  mistakeCount30d: 8,
+  uniqueMistakes7d: 4,
+  uniqueMistakes30d: 6,
+  frequentFacets: [{ facet: 'form', count: 8 }],
+  topMistakes: Array.from({ length: 6 }, (_, index) => ({
+    mistakeId: `mistake-${index}`,
+    phrase: index === 0 ? 'I have a dog' : `Phrase ${index}`,
+    count: index === 0 ? 3 : 1,
+    facet: 'form' as const,
+    lessonId: '1',
+  })),
+};
 
 const ANALYTICS: PhraseAnalyticsResult = {
   categoryStats: [{
@@ -97,26 +109,6 @@ function dependencies(overrides: Partial<BuildBriefingDependencies> = {}): Build
       insights: [],
       goal: { goal: 180, chosen: false, activeDays: 7, remainingDays: 173, forecastDate: null, requiredDaysPerWeek: 4, onTrack: false },
     }),
-    loadTrainer: async () => ({
-      due: { words: 5, phrases: 7, arena: 0 },
-      totalDue: 12,
-      overdue: 4,
-      totalTracked: 31,
-      active: 20,
-      future: 8,
-      archived: 3,
-      archivedPhrases: 2,
-      hardestQueue: 'phrases',
-      hardestMistakes: 7,
-      hardestCategory: 'verb',
-      hardestCategoryMistakes: 8,
-      hardestCategoryPriority: 78,
-      hardestCategoryRecovery: 12,
-      memoryScore: 55,
-      posMasteryXp: 10,
-      posMasteryTop: [],
-      nextQueue: 'phrases',
-    }),
     loadResolvedTrainings: async () => ({}) as never,
     ...overrides,
   };
@@ -181,13 +173,13 @@ describe('weekly review briefing V2', () => {
       lang: 'ru',
       studyTarget: 'en',
       isPremium: true,
-      deps: dependencies({ loadTrainer: async () => { throw new Error('disk unavailable'); } }),
+      deps: dependencies({ loadMistakeInsights: async () => { throw new Error('disk unavailable'); } }),
     });
 
     expect(result).toMatchObject({
       status: 'error',
       errorCode: 'weekly_review_source_failed',
-      coverage: { failedSources: ['trainer'] },
+      coverage: { failedSources: ['mistakes', 'practice'] },
     });
   });
 });

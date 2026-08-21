@@ -87,7 +87,7 @@ const GUARDS = [
     guardId: 'PRACTICE_ID_PREFIX_GUARD',
     blockerText: 'Practice surface needs target-prefixed diagnosis/practice ids and sourceLocale-separated feedback.',
     requiredContract: 'Practice, diagnosis and trainer ids must be prefixed by studyTarget while localized feedback remains under sourceLocale.',
-    acceptanceGate: 'French My Practice never reads English trainer or mistake state.',
+    acceptanceGate: 'French Mistake Practice never reads English mistake state.',
   },
   {
     guardId: 'DEV_STUDY_TARGET_ISOLATION_GUARD',

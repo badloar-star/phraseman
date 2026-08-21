@@ -13,10 +13,7 @@ const ROOT = path.resolve(__dirname, '..');
 /** Файлы/директории домена карточек, где импорт запрещён. */
 const CARD_DOMAIN_TARGETS = [
   'app/flashcards',
-  'app/review.tsx',
-  'app/trainer_words_session.tsx',
-  'app/trainer_phrases_session.tsx',
-  'app/trainer_arena_session.tsx',
+  'app/mistake_practice_session.tsx',
   'app/pack_opening.tsx',
   'app/flashcards_collection.tsx',
   'app/flashcards_card_editor.tsx',
@@ -47,7 +44,7 @@ describe('домен карточек не импортирует exclusive_shor
   it('целевые файлы домена существуют (санити)', () => {
     expect(files.length).toBeGreaterThanOrEqual(10);
     expect(files.some((f) => f.endsWith('SoundService.ts'))).toBe(true);
-    expect(files.some((f) => f.endsWith('review.tsx'))).toBe(true);
+    expect(files.some((f) => f.endsWith('mistake_practice_session.tsx'))).toBe(true);
   });
 
   it.each(CARD_DOMAIN_TARGETS)('%s — без импорта exclusive_short_sfx', (target) => {

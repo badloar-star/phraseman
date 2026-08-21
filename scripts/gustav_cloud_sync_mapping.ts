@@ -138,9 +138,7 @@ function isTargetLearningKey(entry: Pick<CloudSyncMappingEntry, 'key' | 'keyPatt
     key === 'unlocked_lessons' ||
     key.startsWith('level_exam_') ||
     key === 'lingman_certificate_v1' ||
-    key === 'active_recall_items' ||
-    key.includes('trainer') ||
-    key.includes('active_recall') ||
+    key.includes('mistake_practice') ||
     key.includes('diagnostic') ||
     key.includes('irregular_verbs') ||
     key === 'flashcards' ||
@@ -232,8 +230,6 @@ function classify(entry: Pick<CloudSyncMappingEntry, 'key' | 'keyPattern'>): Omi
     key.includes('quiz_hard') ||
     key.includes('achievement_flashcards') ||
     key.includes('achievement_daily_phrase') ||
-    key.includes('achievement_trainer') ||
-    key.includes('achievement_active_recall') ||
     key === 'achievements_state'
   ) {
     return global(

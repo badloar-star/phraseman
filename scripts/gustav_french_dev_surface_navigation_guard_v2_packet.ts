@@ -35,7 +35,7 @@ type Report = {
     targetLocale: 'fr';
     mode: 'dev_surface_visible_content_fail_closed';
     visibleSurfaceParityReady: boolean;
-    trainerSessionSelfGatesReady: boolean;
+    mistakePracticeTargetScopeReady: boolean;
     aiDialogSourceGatesReady: boolean;
     destinationSelfGatesReady: boolean;
     challengeSurfaceGuardsReady: boolean;
@@ -160,7 +160,7 @@ function writeMarkdown(filePath: string, report: Report): void {
     `- Run: ${report.runId}`,
     `- Mode: ${report.summary.mode}`,
     `- Visible surface parity ready: ${report.summary.visibleSurfaceParityReady}`,
-    `- Trainer session self gates ready: ${report.summary.trainerSessionSelfGatesReady}`,
+    `- Mistake practice target scope ready: ${report.summary.mistakePracticeTargetScopeReady}`,
     `- AI dialog source gates ready: ${report.summary.aiDialogSourceGatesReady}`,
     `- Destination self gates ready: ${report.summary.destinationSelfGatesReady}`,
     `- Challenge surface guards ready/probes: ${report.summary.challengeSurfaceGuardsReady}/${report.summary.challengeSurfaceProbes}`,
@@ -201,10 +201,8 @@ function main(): void {
     quizzes: path.join(repoRoot, 'app/(tabs)/quizzes.tsx'),
     diagnostic: path.join(repoRoot, 'app/diagnostic_test.tsx'),
     flashcards: path.join(repoRoot, 'app/flashcards.tsx'),
-    trainer: path.join(repoRoot, 'app/trainer.tsx'),
-    trainerWordsSession: path.join(repoRoot, 'app/trainer_words_session.tsx'),
-    trainerPhrasesSession: path.join(repoRoot, 'app/trainer_phrases_session.tsx'),
-    trainerArenaSession: path.join(repoRoot, 'app/trainer_arena_session.tsx'),
+    mistakePracticeSession: path.join(repoRoot, 'app/mistake_practice_session.tsx'),
+    mistakePracticeStore: path.join(repoRoot, 'app/mistake_practice_store.ts'),
     aiDialogTargetGate: path.join(repoRoot, 'app/ai_dialog_target_gate.ts'),
     aiDialogHome: path.join(repoRoot, 'app/ai_dialog_home.tsx'),
     aiDialogSession: path.join(repoRoot, 'app/ai_dialog_session.tsx'),
@@ -232,16 +230,9 @@ function main(): void {
   probeContains({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quizzes_self_gate', expected: 'Quizzes screen keeps level select visible but source-gated for French.', pattern: '<LevelSelect sourceGated={frenchQuizBlocked}' });
   probeContains({ probes, findings, repoRoot, filePath: files.diagnostic, id: 'diagnostic_self_gate', expected: 'Diagnostic screen has a French unavailable source gate.', pattern: 'FrenchDiagnosticUnavailable' });
   probeContains({ probes, findings, repoRoot, filePath: files.flashcards, id: 'flashcards_self_gate', expected: 'Flashcards hub has a French flashcard source gate.', pattern: 'flashcardsSourceGatedContentAvailableForTarget' });
-  probeContains({ probes, findings, repoRoot, filePath: files.trainer, id: 'trainer_self_gate', expected: 'Trainer hub has a French trainer source gate.', pattern: 'trainerSessionContentAvailableForTarget(studyTarget)' });
-  for (const [fileKey, filePath] of [
-    ['trainer_words_session', files.trainerWordsSession],
-    ['trainer_phrases_session', files.trainerPhrasesSession],
-    ['trainer_arena_session', files.trainerArenaSession],
-  ] as const) {
-    probeContains({ probes, findings, repoRoot, filePath, id: `${fileKey}_source_gate`, expected: `${fileKey} must self-gate before loading trainer content for French.`, pattern: 'trainerSessionContentAvailableForTarget(studyTarget)' });
-    probeContains({ probes, findings, repoRoot, filePath, id: `${fileKey}_gate_copy`, expected: `${fileKey} must show French trainer gate copy when blocked.`, pattern: 'frenchTrainerGateCopy(lang)' });
-    probeContains({ probes, findings, repoRoot, filePath, id: `${fileKey}_gate_branch`, expected: `${fileKey} must branch on !trainerGateOpen.`, pattern: 'if (!trainerGateOpen)' });
-  }
+  probeContains({ probes, findings, repoRoot, filePath: files.mistakePracticeSession, id: 'mistake_practice_supported_targets', expected: 'Mistake practice explicitly supports both shipped study targets.', pattern: "studyTarget !== 'en' && studyTarget !== 'fr'" });
+  probeContains({ probes, findings, repoRoot, filePath: files.mistakePracticeSession, id: 'mistake_practice_session_target_scope', expected: 'Mistake practice loads its journal with the active study target.', pattern: 'loadMistakeEventJournal({ accountScope: scope, studyTarget })' });
+  probeContains({ probes, findings, repoRoot, filePath: files.mistakePracticeStore, id: 'mistake_practice_store_target_scope', expected: 'Mistake practice stores independent target journals.', pattern: 'mistakePracticeEventsKey(input.studyTarget)' });
   probeContains({ probes, findings, repoRoot, filePath: files.aiDialogTargetGate, id: 'ai_dialog_target_gate_exists', expected: 'AI dialog domain must have an explicit French source gate.', pattern: 'french_ai_dialog_source_gate' });
   probeContains({ probes, findings, repoRoot, filePath: files.aiDialogTargetGate, id: 'ai_dialog_required_prompt_contract', expected: 'AI dialog French gate must require a prompt contract before activation.', pattern: 'french_ai_dialog_prompt_contract' });
   probeContains({ probes, findings, repoRoot, filePath: files.aiDialogTargetGate, id: 'ai_dialog_blocked_routes', expected: 'AI dialog gate must enumerate direct blocked routes.', pattern: "blockedRoutes: ['/ai_dialog_home', '/ai_dialog_session', '/ai_companion_session']" });
@@ -261,34 +252,26 @@ function main(): void {
   probeContains({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quiz_thematic_challenges_visible_while_source_gated', expected: 'French dev quiz themes/challenge categories must remain visible while their starts are blocked by the source gate.', pattern: '() => getAvailableThematicQuizCategories(studyTarget)' });
   probeAbsent({ probes, findings, repoRoot, filePath: files.quizzes, id: 'quiz_no_source_gate_category_hide', expected: 'French source gate must not hide thematic quiz/challenge categories.', pattern: 'sourceGated ? [] : getAvailableThematicQuizCategories(studyTarget)' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'parity_test_guarded', expected: 'A narrow Jest contract covers visible French dev surfaces while unavailable French content remains source-gated.', pattern: 'keeps active English surfaces visible for French dev while source-gating missing French content' });
-  probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'trainer_session_test_guarded', expected: 'A narrow Jest contract covers direct trainer session self-gates.', pattern: 'keeps every direct trainer session screen behind the French trainer source gate' });
-  probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'admin_shortcut_test_guarded', expected: 'A narrow Jest contract covers admin trainer QA shortcut gates.', pattern: 'source-gates admin trainer QA shortcuts before they can deep-link into French trainer sessions' });
+  probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'mistake_practice_test_guarded', expected: 'A narrow Jest contract covers target-scoped mistake practice.', pattern: 'keeps mistake practice target-scoped and explicitly supports French' });
   probeContains({ probes, findings, repoRoot, filePath: files.tests, id: 'ai_dialog_test_guarded', expected: 'A narrow Jest contract covers AI dialog source gates.', pattern: 'source-gates AI dialog routes before French can use English scenarios or prompts' });
 
   const visibleSurfaceParityReady = probes
     .filter((probe) => probe.id.startsWith('home_') || probe.id.startsWith('lesson_menu_'))
     .every((probe) => probe.passed);
-  const trainerSessionSelfGatesReady = probes
-    .filter((probe) => probe.id.startsWith('trainer_'))
+  const mistakePracticeTargetScopeReady = probes
+    .filter((probe) => probe.id.startsWith('mistake_practice_'))
     .every((probe) => probe.passed);
   const aiDialogSourceGatesReady = probes
     .filter((probe) => probe.id.startsWith('ai_dialog_') || probe.id.startsWith('ai_companion_') || probe.id.startsWith('dialogs_tab_content_'))
     .every((probe) => probe.passed);
   const destinationSelfGatesReady = probes
-    .filter((probe) => ['quizzes_self_gate', 'diagnostic_self_gate', 'flashcards_self_gate', 'trainer_self_gate'].includes(probe.id))
+    .filter((probe) => ['quizzes_self_gate', 'diagnostic_self_gate', 'flashcards_self_gate', 'mistake_practice_supported_targets'].includes(probe.id))
     .every((probe) => probe.passed);
   const challengeSurfaceProbeIds = [
     'home_quizzes_visible',
     'quiz_thematic_challenges_visible_while_source_gated',
     'quiz_no_source_gate_category_hide',
     'dialogs_tab_content_challenges_visible',
-  ];
-  const arenaSurfaceProbeIds = [
-    'trainer_arena_session_source_gate',
-    'trainer_arena_session_gate_copy',
-    'trainer_arena_session_gate_branch',
-    'admin_trainer_arena_shortcut_wrapped',
-    'admin_no_direct_arena_session_push',
   ];
   const challengeSurfaceProbes = probes.filter((probe) => challengeSurfaceProbeIds.includes(probe.id));
   const arenaSurfaceProbes = probes.filter((probe) => arenaSurfaceProbeIds.includes(probe.id));
@@ -303,9 +286,6 @@ function main(): void {
     .every((probe) => probe.passed);
   if (!challengeSurfaceGuardsReady) {
     addFinding(findings, 'blocker', 'challenge_surface_guards_not_ready', 'French challenge surfaces must remain visible and source-gated without requiring an extra remote-pack surface.');
-  }
-  if (!arenaSurfaceGuardsReady) {
-    addFinding(findings, 'blocker', 'arena_surface_guards_not_ready', 'French arena trainer surfaces must self-gate and admin shortcuts must not deep-link around the gate.');
   }
 
   const finalBlockers = findings.filter((finding) => finding.severity === 'blocker').length;
@@ -333,7 +313,7 @@ function main(): void {
       targetLocale: 'fr',
       mode: 'dev_surface_visible_content_fail_closed',
       visibleSurfaceParityReady,
-      trainerSessionSelfGatesReady,
+      mistakePracticeTargetScopeReady,
       aiDialogSourceGatesReady,
       destinationSelfGatesReady,
       challengeSurfaceGuardsReady,
@@ -357,7 +337,7 @@ function main(): void {
       serverUploadStartedByThisScript: false,
     },
     nextPassPlan: [
-      'Expand this guard to any remaining admin/tester shortcuts that can deep-link into trainer, flashcards, diagnostic or quizzes.',
+      'Expand this guard to any remaining shortcuts that can deep-link into mistake practice, flashcards, diagnostic or quizzes.',
       'Connect this packet to readiness evidence after exact approval remains separate from activation.',
       'Keep production activation HOLD until explicit approval receipt, hash lock, runtime/server/rollback gates and downloadable packs pass.',
     ],

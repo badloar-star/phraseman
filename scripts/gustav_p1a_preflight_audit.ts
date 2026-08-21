@@ -91,7 +91,6 @@ const FORBIDDEN_RAW_KEY_PATTERNS = [
   'lesson{lessonId}_intro_shown',
   'lesson{lessonId}_preposition_progress',
   'last_opened_lesson',
-  'active_recall_items',
   'smart_review_queue',
   'custom_flashcards_v2',
   'flashcards_progress_v1',

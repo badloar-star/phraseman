@@ -13,7 +13,11 @@ import {
   type PhraseAnalyticsResult,
   type PosCoverageAudit,
 } from './phrase_analytics';
-import { getMistakeLogDebugSnapshot, type MistakeLogDebugSnapshot } from './mistake_log';
+import {
+  loadMistakePracticeInsights,
+  type MistakePracticeInsights,
+} from './mistake_practice_insights';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 
@@ -73,7 +77,7 @@ function CompactRows({ rows }: { rows: Array<{ label: string; value: string | nu
   );
 }
 
-function runtimeRows(snapshot: MistakeLogDebugSnapshot | null) {
+function runtimeRows(snapshot: MistakePracticeInsights | null) {
   if (!snapshot) return [];
   return [
     { label: 'total events', value: snapshot.total },
@@ -100,13 +104,13 @@ export default function PosAnalyticsAuditScreen() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const audit = useMemo<PosCoverageAudit>(() => auditPhrasePosCoverage(), []);
-  const [snapshot, setSnapshot] = useState<MistakeLogDebugSnapshot | null>(null);
+  const [snapshot, setSnapshot] = useState<MistakePracticeInsights | null>(null);
   const [analytics, setAnalytics] = useState<PhraseAnalyticsResult | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     void Promise.all([
-      getMistakeLogDebugSnapshot(30),
+      loadMistakePracticeInsights(studyTarget === 'fr' ? 'fr' : 'en'),
       computePhraseAnalytics(),
     ]).then(([nextSnapshot, nextAnalytics]) => {
       if (cancelled) return;

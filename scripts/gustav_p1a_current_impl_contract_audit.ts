@@ -478,7 +478,6 @@ function main(): void {
 
   const rawGuardExamples = [
     'lesson_progress_v1',
-    'active_recall_items',
     'diagnosis_training_progress_v1:article_a_an',
     'custom_flashcards_v2',
     'achievement_quiz_total_count',
@@ -518,7 +517,7 @@ function main(): void {
     'P1A-TARGET-KEY-DISTINCTNESS': ["targetKey('lesson_progress', 'en'", "targetKey('lesson_progress', 'fr'"],
     'P1A-SOURCE-TARGET-KEY-SHAPE': ["sourceTargetKey('personal_practice', 'fr', 'ru'", "sourceTargetKey('personal_practice', 'fr', 'uk'"],
     'P1A-LEGACY-ENGLISH-FALLBACK-LIMIT': ["legacyEnglishKey('lesson_progress'", "not.toContain('fr')"],
-    'P1A-RAW-KEY-GUARD': ["assertTargetKey('lesson_progress_v1')", "assertTargetKey('active_recall_items')"],
+    'P1A-RAW-KEY-GUARD': ["assertTargetKey('lesson_progress_v1')"],
   };
   const testsByPath = new Map<string, string>([
     [surfaceTestPath, surfaceTestSource],

@@ -83,6 +83,7 @@ import {
 } from './flashcards_target_gate';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 type SourceKind = 'saved' | 'custom' | 'official' | 'community';
 type Phase = 'select' | 'play';
 

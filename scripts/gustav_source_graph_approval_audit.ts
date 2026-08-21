@@ -146,7 +146,7 @@ function renderMarkdown(audit: ApprovalAudit): string {
     `- Quizzes: ${audit.summary.quizzes}`,
     `- Flashcards: ${audit.summary.flashcards}`,
     `- Daily phrases: ${audit.summary.dailyPhrases}`,
-    `- My Practice nodes: ${audit.summary.personalPracticeNodes}`,
+    `- Mistake Practice nodes: ${audit.summary.personalPracticeNodes}`,
     `- Runtime-generated phrase refs: ${audit.summary.runtimeGeneratedPhraseRefs}`,
     `- SourceLocale/target confusions: ${audit.summary.sourceLocaleTargetConfusions}`,
     `- Unsupported unresolved blockers: ${audit.summary.unsupportedUnresolvedBlockers}`,

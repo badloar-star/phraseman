@@ -16,7 +16,7 @@ describe('Home runtime animation ownership', () => {
   });
 
   it('keeps WeeklyReviewCard activity ownership explicit', () => {
-    // Карточка снята с экрана практики (редизайн «Моя практика»), но компонент
+    // Карточка снята с главного экрана, но компонент
     // сохраняет контракт: активность всегда приходит явным пропом, без фоновых циклов.
     const weekly = read('app/WeeklyReviewCard.tsx');
     expect(weekly).toContain('active: boolean');

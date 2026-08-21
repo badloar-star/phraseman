@@ -39,9 +39,10 @@ import { hapticSuccess } from '../hooks/use-haptics';
 import { STORE_URL, ENABLE_DEV_TOOLS } from './config';
 import { oskolokImageForPackShards } from './oskolok';
 import { buildAchievementShareMessage } from './achievement_share';
+import { achievementShelfInitialId } from './achievement_shelf_model';
+import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insights';
 import {
   achievementLessonPerfectPassesKey,
-  activeRecallAchievementCorrectCountKey,
   comboAchievementCounterKey,
   dailyPhraseAchievementReadCountKey,
   dailyPhraseAchievementSaveCountKey,
@@ -54,8 +55,6 @@ import {
   lessonPassCountKey,
   lessonProgressKey,
   shareAchievementCounterKey,
-  trainerAchievementCorrectCountKey,
-  trainerAchievementPerfectSessionCountKey,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 
@@ -101,7 +100,9 @@ interface AchievementStats {
   xp: number;
   level: number;
   weeklyXP: number;
-  recallCorrect: number;
+  mistakeCorrected: number;
+  mistakeVoiceCorrected: number;
+  mistakeIndependentDays: number;
   shards: number;
   shardsSpent: number;
   comboBest: number;
@@ -115,7 +116,6 @@ interface AchievementStats {
   leagueChampion: number;
   leagueDiamondWeeks: number;
   giftsSent: number;
-  trainerPerfectSessions: number;
   packsOwned: number;
   shareCount: number;
 }
@@ -133,7 +133,9 @@ const emptyAchievementStats = (): AchievementStats => ({
   xp: 0,
   level: 1,
   weeklyXP: 0,
-  recallCorrect: 0,
+  mistakeCorrected: 0,
+  mistakeVoiceCorrected: 0,
+  mistakeIndependentDays: 0,
   shards: 0,
   shardsSpent: 0,
   comboBest: 0,
@@ -147,7 +149,6 @@ const emptyAchievementStats = (): AchievementStats => ({
   leagueChampion: 0,
   leagueDiamondWeeks: 0,
   giftsSent: 0,
-  trainerPerfectSessions: 0,
   packsOwned: 0,
   shareCount: 0,
 });
@@ -190,36 +191,15 @@ const readFlashcardsViewStreakAcrossTargets = async (): Promise<string> => {
   return String(best);
 };
 
-const readTrainerPracticeCorrectAcrossTargets = async (): Promise<string> => {
-  const rows = await AsyncStorage.multiGet(
-    ACHIEVEMENT_PROGRESS_TARGETS.flatMap((studyTarget) => [
-      activeRecallAchievementCorrectCountKey(studyTarget),
-      trainerAchievementCorrectCountKey(studyTarget),
-    ]),
+const readMistakeAchievementProgress = async () => {
+  const rows = await Promise.all(
+    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => getMistakePracticeAchievementSnapshot(studyTarget)),
   );
-  const byTarget = new Map<RuntimeStudyTarget, { recall: number; trainer: number }>();
-  ACHIEVEMENT_PROGRESS_TARGETS.forEach((studyTarget) => byTarget.set(studyTarget, { recall: 0, trainer: 0 }));
-  for (const [key, raw] of rows) {
-    const value = parseInt(raw || '0', 10) || 0;
-    const studyTarget = ACHIEVEMENT_PROGRESS_TARGETS.find((target) =>
-      key === activeRecallAchievementCorrectCountKey(target) || key === trainerAchievementCorrectCountKey(target),
-    );
-    if (!studyTarget) continue;
-    const bucket = byTarget.get(studyTarget) ?? { recall: 0, trainer: 0 };
-    if (key === activeRecallAchievementCorrectCountKey(studyTarget)) bucket.recall = value;
-    if (key === trainerAchievementCorrectCountKey(studyTarget)) bucket.trainer = value;
-    byTarget.set(studyTarget, bucket);
-  }
-  const total = [...byTarget.values()].reduce((sum, bucket) => sum + Math.max(bucket.recall, bucket.trainer), 0);
-  return String(total);
-};
-
-const readTrainerPerfectSessionsAcrossTargets = async (): Promise<string> => {
-  const rows = await AsyncStorage.multiGet(
-    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => trainerAchievementPerfectSessionCountKey(studyTarget)),
-  );
-  const total = rows.reduce((sum, [, raw]) => sum + (parseInt(raw || '0', 10) || 0), 0);
-  return String(total);
+  return rows.reduce((total, row) => ({
+    corrected: total.corrected + row.corrected,
+    voiceCorrected: total.voiceCorrected + row.voiceCorrected,
+    independentDays: total.independentDays + row.independentDays,
+  }), { corrected: 0, voiceCorrected: 0, independentDays: 0 });
 };
 
 const readDailyPhraseCounterAcrossTargets = async (
@@ -233,18 +213,17 @@ const readDailyPhraseCounterAcrossTargets = async (
 async function loadAchievementStats(): Promise<AchievementStats> {
   try {
     const [
-      streakRaw, loginRaw, xpRaw, recallRaw, trainerRaw, shardsRaw, shardsSpentRaw, comboBestRaw,
+      streakRaw, loginRaw, xpRaw, mistakeProgress, shardsRaw, shardsSpentRaw, comboBestRaw,
       dailyPhraseReadsRaw, dailyPhraseSavesRaw,
       flashcardsSavedRaw, flashcardsFlipsRaw, flashcardsViewRaw, energyRefillsRaw,
        leagueTop3Raw, leagueChampionRaw, leagueDiamondWeeksRaw, giftsRaw,
-      trainerPerfectRaw, packStorageRows, shareRaw,
+      packStorageRows, shareRaw,
       weeklyRaw, weeklyPeakRaw,
     ] = await Promise.all([
       AsyncStorage.getItem('streak_count'),
       AsyncStorage.getItem('login_bonus_v1'),
       AsyncStorage.getItem('user_total_xp'),
-      readTrainerPracticeCorrectAcrossTargets(),
-      '0',
+      readMistakeAchievementProgress(),
       AsyncStorage.getItem('shards_balance'),
       AsyncStorage.getItem('achievement_shards_spent_total'),
       readComboBestAcrossTargets(),
@@ -258,7 +237,6 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       AsyncStorage.getItem('achievement_league_champion_count'),
       AsyncStorage.getItem('achievement_league_diamond_week_streak_v1'),
       AsyncStorage.getItem('achievement_gift_sent_count'),
-      readTrainerPerfectSessionsAcrossTargets(),
       AsyncStorage.multiGet(
         ACHIEVEMENT_PROGRESS_TARGETS.flatMap((studyTarget) => [
           flashcardsOwnedPacksKey(studyTarget),
@@ -274,7 +252,6 @@ async function loadAchievementStats(): Promise<AchievementStats> {
     const xp = parseInt(xpRaw || '0') || 0;
     const level = getLevelFromXP(xp);
     const weeklyXP = Math.max(parseInt(weeklyRaw || '0') || 0, parseInt(weeklyPeakRaw || '0') || 0);
-    const recallCorrect = Math.max(parseInt(recallRaw || '0') || 0, parseInt(trainerRaw || '0') || 0);
     const shards = parseInt(shardsRaw || '0') || 0;
     const shardsSpent = parseInt(shardsSpentRaw || '0') || 0;
     let loginDays = 0;
@@ -365,7 +342,9 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       xp,
       level,
       weeklyXP,
-      recallCorrect,
+      mistakeCorrected: mistakeProgress.corrected,
+      mistakeVoiceCorrected: mistakeProgress.voiceCorrected,
+      mistakeIndependentDays: mistakeProgress.independentDays,
       shards,
       shardsSpent,
       comboBest: parseInt(comboBestRaw || '0') || 0,
@@ -379,7 +358,6 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       leagueChampion: parseInt(leagueChampionRaw || '0') || 0,
       leagueDiamondWeeks: readJsonStreak(leagueDiamondWeeksRaw),
       giftsSent: parseInt(giftsRaw || '0') || 0,
-      trainerPerfectSessions: parseInt(trainerPerfectRaw || '0') || 0,
       packsOwned: packSet.size,
       shareCount: parseInt(shareRaw || '0') || 0,
     };
@@ -416,13 +394,11 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   if (id === 'level_50') return [Math.min(stats.level, 50), 50];
   if (id === 'weekly_xp_5000') return [Math.min(stats.weeklyXP, 5000), 5000];
   if (id === 'weekly_xp_10000') return [Math.min(stats.weeklyXP, 10000), 10000];
-  if (id === 'recall_first') return [Math.min(stats.recallCorrect, 1), 1];
-  if (id === 'recall_50') return [Math.min(stats.recallCorrect, 50), 50];
-  if (id === 'trainer_100_correct') return [Math.min(stats.recallCorrect, 100), 100];
-  if (id === 'trainer_500_correct') return [Math.min(stats.recallCorrect, 500), 500];
-  if (id === 'trainer_1000_correct') return [Math.min(stats.recallCorrect, 1000), 1000];
-  if (id === 'trainer_2500_correct') return [Math.min(stats.recallCorrect, 2500), 2500];
-  if (id === 'trainer_10000_correct') return [Math.min(stats.recallCorrect, 10000), 10000];
+  if (id === 'mistake_corrected_first') return [Math.min(stats.mistakeCorrected, 1), 1];
+  if (id === 'mistake_corrected_10') return [Math.min(stats.mistakeCorrected, 10), 10];
+  if (id === 'mistake_corrected_50') return [Math.min(stats.mistakeCorrected, 50), 50];
+  if (id === 'mistake_voice_corrected_first') return [Math.min(stats.mistakeVoiceCorrected, 1), 1];
+  if (id === 'mistake_success_7_days') return [Math.min(stats.mistakeIndependentDays, 7), 7];
   if (id.startsWith('shards_spent_')) {
     const n = parseInt(id.replace('shards_spent_', ''));
     if (!isNaN(n)) return [Math.min(stats.shardsSpent, n), n];
@@ -459,8 +435,6 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   if (id === 'social_gift_10') return [Math.min(stats.giftsSent, 10), 10];
   if (id === 'social_gift_25') return [Math.min(stats.giftsSent, 25), 25];
   if (id === 'social_gift_100') return [Math.min(stats.giftsSent, 100), 100];
-  if (id === 'trainer_perfect_10_sessions') return [Math.min(stats.trainerPerfectSessions, 10), 10];
-  if (id === 'trainer_perfect_50_sessions') return [Math.min(stats.trainerPerfectSessions, 50), 50];
   if (id === 'pack_5_purchased') return [Math.min(stats.packsOwned, 5), 5];
   if (id === 'pack_10_purchased') return [Math.min(stats.packsOwned, 10), 10];
   if (id === 'pack_25_purchased') return [Math.min(stats.packsOwned, 25), 25];
@@ -560,9 +534,6 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   league_boost_x3:    'flash',
   social_gift_10:     'gift',
   social_likes_5:     'heart',
-  trainer_7_days:     'calendar',
-  trainer_500_correct: 'barbell',
-  trainer_perfect_session: 'checkmark-done-circle',
   gem_all_complete:   'trophy',
 };
 

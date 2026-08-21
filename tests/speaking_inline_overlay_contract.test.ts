@@ -11,7 +11,7 @@ describe('inline speaking surface contract', () => {
   const hostResult = fs.existsSync(path.join(root, 'components', 'SpeakingInlineResultStars.tsx'))
     ? read('components/SpeakingInlineResultStars.tsx')
     : '';
-  const trainer = read('app/trainer_phrases_session.tsx');
+  const mistakePractice = read('app/mistake_practice_session.tsx');
   const lesson = read('app/lesson1.tsx');
 
   it('uses one fixed normal-flow slot instead of guessed overlay offsets', () => {
@@ -23,16 +23,15 @@ describe('inline speaking surface contract', () => {
     expect(panel).toContain("if (presentation === 'inline')");
     expect(panel).not.toContain('inlineOverlay');
     expect(panel).not.toContain('overlayStyle');
-    expect(trainer).not.toContain('overlayStyle={{ bottom:');
+    expect(mistakePractice).not.toContain('overlayStyle={{ bottom:');
     expect(lesson).not.toContain('overlayStyle={{ bottom:');
   });
 
-  it('mounts the panel inside the stable slot on both learner surfaces', () => {
-    for (const source of [trainer, lesson]) {
-      expect(source).toContain('<SpeakingInlineSlot');
-      expect(source).toContain('presentation="inline"');
-    }
-    expect(trainer.indexOf('<SpeakingInlineSlot')).toBeLessThan(trainer.indexOf('presentation="inline"'));
+  it('mounts the lesson panel in the stable slot and keeps mistake practice in normal flow', () => {
+    expect(lesson).toContain('<SpeakingInlineSlot');
+    expect(lesson).toContain('presentation="inline"');
+    expect(mistakePractice).toContain('presentation="inline"');
+    expect(mistakePractice).toContain('<View style={styles.speechArea}>');
     expect(lesson.indexOf('<SpeakingInlineSlot')).toBeLessThan(lesson.indexOf('presentation="inline"'));
     expect(lesson).toContain('<SpeakingInlineSlot variant="lesson"');
     expect(lesson).toContain('marginTop: linkedSliceCompact ? 14 : 18');
@@ -50,7 +49,8 @@ describe('inline speaking surface contract', () => {
     expect(button).toContain('inlineHold.onStart()');
     expect(button).toContain('inlineHold?.onEnd()');
     expect(button).toContain('onPress={inlineHold ? undefined : onPress}');
-    expect(trainer).toContain('inlineHold={{');
+    expect(mistakePractice).toContain('onPressIn={() => setSpeechHeld(true)}');
+    expect(mistakePractice).toContain('onPressOut={() => setSpeechHeld(false)}');
     expect(lesson).toContain('onPressIn={startSpeakingHold}');
     expect(lesson).toContain('onPressOut={endSpeakingHold}');
   });
@@ -104,14 +104,13 @@ describe('inline speaking surface contract', () => {
     expect(hostResult).toContain('inlineSpeakingResultColor');
     expect(panel).not.toContain('styles.inlineResultPhrase');
     expect(panel).not.toContain('styles.inlineStars');
-    for (const source of [lesson, trainer]) {
-      expect(source).toContain('<SpeakingInlineResultStars');
-    }
+    expect(lesson).toContain('<SpeakingInlineResultStars');
     expect(lesson.indexOf('testID="lesson1-answer-divider"')).toBeLessThan(
       lesson.indexOf('testID="lesson1-speaking-score-below-divider"'),
     );
     expect(lesson).toContain('onScore={handleSpeakingScore}');
-    expect(trainer).toContain('onScore={handleSpeakingScore}');
+    expect(mistakePractice).toContain('onScore={({ score }) => {');
+    expect(mistakePractice).toContain('classifyMistakeVoiceVerdict');
   });
 
   it('shows result only through phrase color and stars, without humorous verdict copy', () => {

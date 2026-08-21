@@ -25,8 +25,7 @@ export type FeatureGate =
   | 'lessons'
   | 'speaking'
   | 'ai_dialog'
-  | 'smart_trainer'
-  | 'trainer_modes'
+  | 'personal_plan'
   | 'diagnosis_training'
   | 'stats'
   | 'flashcards'
@@ -41,8 +40,7 @@ const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
   lessons: 'gate_lessons_premium',
   speaking: 'gate_speaking_premium',
   ai_dialog: 'gate_ai_dialog_premium',
-  smart_trainer: 'gate_smart_trainer_premium',
-  trainer_modes: 'gate_trainer_modes_premium',
+  personal_plan: 'gate_personal_plan_premium',
   diagnosis_training: 'gate_diagnosis_training_premium',
   stats: 'gate_stats_premium',
   flashcards: 'gate_flashcards_premium',

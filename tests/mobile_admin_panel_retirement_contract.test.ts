@@ -69,7 +69,6 @@ const retiredOrphanFiles = [
 
 const retiredAdminOnlySymbols: Record<string, readonly string[]> = {
   'app/achievements.ts': ['unlockAllAchievements', 'devSeedAchievementsSmoke'],
-  'app/active_recall.ts': ['seedAdminTestReviewSession', 'ADMIN_TEST_BENCH'],
   'app/activity_365_analytics.ts': ['devSeedActivity365Scenario'],
   'app/app_messages.ts': ['seedLocalVipSurveyTestMessage'],
   'app/intro_full_access.ts': ['resetIntroFullAccessForAdmin'],
@@ -79,7 +78,6 @@ const retiredAdminOnlySymbols: Record<string, readonly string[]> = {
   'app/premium_trial_eligibility.ts': ['resetTrialCooldownForTesting', 'getTrialStatusLineForTesters'],
   'app/services/league_chest_rewards.ts': ['revokeLeagueGoldThemeReward'],
   'app/survey_client.ts': ['adminWriteShardSurvey', 'TEST_SHARD_SURVEYS'],
-  'app/trainer_store.ts': ['devSeedTrainerScenario', 'TrainerDevScenario'],
   'constants/avatars.ts': ['unlockAllFrames'],
   'components/SpeakingPanel.tsx': ['previewStatus', 'previewScore', 'previewHoldMode'],
 };

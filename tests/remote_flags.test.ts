@@ -5,7 +5,6 @@ import {
   getFreeLessonLimit,
   getPaywallV2Pct,
   getLeagueXpPromotionThreshold,
-  getTrainerAbGroup,
   getOnboardingAbVariant,
   getPaywallVariant,
   getRemoteConfigSignature,
@@ -40,7 +39,6 @@ import {
   getFlagRolloutPct,
   isFlagEnabledForUser,
   isInRolloutBucket,
-  isAvatarDNAEnabled,
   matchesPromoSegment,
   __resetRemoteFlagsForTest,
 } from '../app/remote_flags';
@@ -56,10 +54,6 @@ describe('remote_flags', () => {
       expect(getRemoteNumber('max_energy')).toBe(5);
       expect(getRemoteNumber('energy_recovery_interval_ms')).toBe(10 * 60 * 1000);
       expect(getRemoteBool('intro_full_access_enabled')).toBe(false);
-      expect(getRemoteNumber('free_trainer_sessions_per_day')).toBe(1);
-      expect(getRemoteNumber('trainer_ab_a_pct')).toBe(0);
-      expect(getRemoteNumber('trainer_ab_b_pct')).toBe(0);
-      expect(getRemoteNumber('trainer_ab_c_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_welcome_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_builder_pct')).toBe(0);
       expect(getPaywallV2Pct()).toBe(100);
@@ -77,21 +71,10 @@ describe('remote_flags', () => {
       expect(getManualUpdateTargetBuild()).toBe('');
       expect(getPromoBannerCampaignId()).toBe('');
       expect(getMaintenanceCampaignId()).toBe('');
-      expect(getRemoteBool('avatar_dna_enabled')).toBe(false);
-      expect(getRemoteNumber('avatar_dna_rollout_pct')).toBe(0);
-      expect(isAvatarDNAEnabled('u1')).toBe(false);
     });
   });
 
   describe('snapshot override', () => {
-    it('requires both the Avatar DNA bool and the dedicated stable rollout bucket', () => {
-      applyRemoteConfigSnapshot({ bools: { avatar_dna_enabled: true }, numbers: { avatar_dna_rollout_pct: 100 } });
-      expect(isAvatarDNAEnabled('u1')).toBe(true);
-      applyRemoteConfigSnapshot({ bools: { avatar_dna_enabled: false }, numbers: { avatar_dna_rollout_pct: 100 } });
-      expect(isAvatarDNAEnabled('u1')).toBe(false);
-      applyRemoteConfigSnapshot({ bools: { avatar_dna_enabled: true }, numbers: { avatar_dna_rollout_pct: 0 } });
-      expect(isAvatarDNAEnabled('u1')).toBe(false);
-    });
     it('treats weekly review V2 as a boolean kill-switch, not a client rollout bucket', () => {
       applyRemoteConfigSnapshot({
         bools: { weekly_review_ai_v2_enabled: true },
@@ -159,9 +142,8 @@ describe('remote_flags', () => {
     it('a later snapshot fully replaces an earlier one', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 12 } });
       expect(getFreeLessonLimit()).toBe(12);
-      applyRemoteConfigSnapshot({ numbers: { free_trainer_sessions_per_day: 9 } });
+      applyRemoteConfigSnapshot({ numbers: { max_energy: 5 } });
       expect(getFreeLessonLimit()).toBe(3);
-      expect(getRemoteNumber('free_trainer_sessions_per_day')).toBe(9);
     });
   });
 
@@ -221,40 +203,6 @@ describe('remote_flags', () => {
       // повторный снапшот без ключа возвращает дефолт (полная замена)
       applyRemoteConfigSnapshot({ bools: { referral_enabled: true } });
       expect(isPaywallTimersEnabled()).toBe(true);
-    });
-  });
-
-  describe('getTrainerAbGroup', () => {
-    it('is deterministic for the same user', () => {
-      applyRemoteConfigSnapshot({ numbers: { trainer_ab_a_pct: 33, trainer_ab_b_pct: 33, trainer_ab_c_pct: 34 } });
-      const g1 = getTrainerAbGroup('user-123');
-      const g2 = getTrainerAbGroup('user-123');
-      expect(g1).toBe(g2);
-      expect(['A', 'B', 'C']).toContain(g1);
-    });
-
-    it('defaults to B when all pcts are zero', () => {
-      applyRemoteConfigSnapshot({ numbers: { trainer_ab_a_pct: 0, trainer_ab_b_pct: 0, trainer_ab_c_pct: 0 } });
-      expect(getTrainerAbGroup('any-user')).toBe('B');
-    });
-
-    it('puts everyone in A when a=100', () => {
-      applyRemoteConfigSnapshot({ numbers: { trainer_ab_a_pct: 100, trainer_ab_b_pct: 0, trainer_ab_c_pct: 0 } });
-      expect(getTrainerAbGroup('u1')).toBe('A');
-      expect(getTrainerAbGroup('u2')).toBe('A');
-    });
-
-    it('roughly honors the split across many users', () => {
-      applyRemoteConfigSnapshot({ numbers: { trainer_ab_a_pct: 50, trainer_ab_b_pct: 50, trainer_ab_c_pct: 0 } });
-      let a = 0;
-      let b = 0;
-      for (let i = 0; i < 2000; i += 1) {
-        const g = getTrainerAbGroup(`user-${i}`);
-        if (g === 'A') a += 1;
-        else if (g === 'B') b += 1;
-      }
-      expect(a).toBeGreaterThan(800);
-      expect(b).toBeGreaterThan(800);
     });
   });
 

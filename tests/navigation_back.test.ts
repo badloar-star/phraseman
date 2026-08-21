@@ -90,12 +90,12 @@ describe('safeRouterBack', () => {
     const router = makeRouter(true);
 
     navigation.rememberNavigationPath('/(tabs)/home');
-    navigation.rememberNavigationPath('/trainer');
+    navigation.rememberNavigationPath('/flashcards');
     navigation.rememberNavigationPath('/lingman_videos');
     navigation.safeRouterBack(router, '/(tabs)/home' as any);
 
     expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
-    expect(router.dismissTo).not.toHaveBeenCalledWith('/trainer');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/flashcards');
   });
 
   it('returns from a child screen to its previous screen inside the same section', () => {
@@ -103,11 +103,11 @@ describe('safeRouterBack', () => {
     const router = makeRouter(true);
 
     navigation.rememberNavigationPath('/(tabs)/home');
-    navigation.rememberNavigationPath('/trainer');
-    navigation.rememberNavigationPath('/trainer_words_session');
-    navigation.safeRouterBack(router, '/trainer' as any);
+    navigation.rememberNavigationPath('/flashcards');
+    navigation.rememberNavigationPath('/mistake_practice_session');
+    navigation.safeRouterBack(router, '/flashcards' as any);
 
-    expect(router.dismissTo).toHaveBeenCalledWith('/trainer');
+    expect(router.dismissTo).toHaveBeenCalledWith('/flashcards');
     expect(router.dismissTo).not.toHaveBeenCalledWith('/(tabs)/home');
   });
 
@@ -116,11 +116,11 @@ describe('safeRouterBack', () => {
     const router = makeRouter(true);
 
     navigation.rememberNavigationPath('/(tabs)/home');
-    navigation.rememberNavigationPath('/trainer');
-    navigation.rememberNavigationPath('/shards_shop?source=trainer');
+    navigation.rememberNavigationPath('/flashcards');
+    navigation.rememberNavigationPath('/shards_shop?source=mistake_practice');
     navigation.safeRouterBack(router, '/(tabs)/home' as any);
 
-    expect(router.dismissTo).toHaveBeenCalledWith('/trainer');
+    expect(router.dismissTo).toHaveBeenCalledWith('/flashcards');
     expect(router.dismissTo).not.toHaveBeenCalledWith('/(tabs)/home');
   });
 
@@ -129,12 +129,12 @@ describe('safeRouterBack', () => {
     const router = makeRouter(true);
 
     navigation.rememberNavigationPath('/(tabs)/home');
-    navigation.rememberNavigationPath('/trainer');
+    navigation.rememberNavigationPath('/flashcards');
     navigation.rememberNavigationPath('/future_section_without_policy');
     navigation.safeRouterBack(router, '/(tabs)/home' as any);
 
     expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
-    expect(router.dismissTo).not.toHaveBeenCalledWith('/trainer');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/flashcards');
   });
 
   it('preserves an object fallback and all of its identity params across a section boundary', () => {
@@ -142,26 +142,26 @@ describe('safeRouterBack', () => {
     const router = makeRouter(true);
     const fallback = { pathname: '/lesson_menu', params: { id: '7' } } as any;
 
-    navigation.rememberNavigationPath('/trainer');
+    navigation.rememberNavigationPath('/flashcards');
     navigation.rememberNavigationPath('/hint?id=7');
     navigation.safeRouterBack(router, fallback);
 
     expect(router.dismissTo).toHaveBeenCalledWith(fallback);
-    expect(router.dismissTo).not.toHaveBeenCalledWith('/trainer');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/flashcards');
   });
 
   it('keeps nested Settings navigation inside the Settings section', () => {
     const navigation = loadNavigationBack();
     const router = makeRouter(true);
 
-    navigation.rememberNavigationPath('/trainer');
+    navigation.rememberNavigationPath('/flashcards');
     navigation.rememberNavigationPath('/(tabs)/settings');
     navigation.rememberNavigationPath('/settings_language');
     navigation.rememberNavigationPath('/language_welcome');
     navigation.safeRouterBack(router, '/settings_language' as any);
 
     expect(router.dismissTo).toHaveBeenCalledWith('/settings_language');
-    expect(router.dismissTo).not.toHaveBeenCalledWith('/trainer');
+    expect(router.dismissTo).not.toHaveBeenCalledWith('/flashcards');
   });
 
   it('does not native-dismiss a direct Settings deep link onto a foreign underlay', () => {
@@ -320,9 +320,9 @@ describe('safeRouterBack', () => {
     const router = makeDismissableRouter();
 
     navigation.rememberNavigationPath('/(tabs)/home');
-    navigation.rememberNavigationPath('/trainer_words_session');
+    navigation.rememberNavigationPath('/mistake_practice_session');
     navigation.markNextNavigationAsReplace();
-    navigation.rememberNavigationPath('/premium_modal?context=trainer_limit');
+    navigation.rememberNavigationPath('/premium_modal?context=mistake_practice');
 
     navigation.dismissPaywallModal(router, '/(tabs)/home' as any);
 
@@ -336,9 +336,9 @@ describe('safeRouterBack', () => {
     const router = makeDismissableRouter();
 
     navigation.rememberNavigationPath('/(tabs)/home');
-    navigation.rememberNavigationPath('/trainer_phrases_session');
+    navigation.rememberNavigationPath('/mistake_practice_session');
     navigation.markNextNavigationAsReplace();
-    navigation.rememberNavigationPath('/paywall_a?context=trainer_limit');
+    navigation.rememberNavigationPath('/paywall_a?context=mistake_practice');
 
     navigation.dismissPaywallModal(router, '/(tabs)/home' as any);
 

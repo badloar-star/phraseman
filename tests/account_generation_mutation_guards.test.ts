@@ -72,13 +72,6 @@ import {
   peekFlashcardsCache,
 } from '../hooks/use-flashcards';
 import { peekCustomCardsCache, readCustomCards } from '../app/flashcards/storage';
-import {
-  clearMistakeLog,
-  compactMistakeLog,
-  __getMistakeLogPendingRegistrySizeForTests,
-  flushMistakeLog,
-  logMistake,
-} from '../app/mistake_log';
 
 type Deferred<T> = {
   promise: Promise<T>;

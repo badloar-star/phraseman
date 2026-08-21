@@ -48,9 +48,14 @@ import type { Theme } from '../../constants/theme';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScreen } from '../../hooks/use-screen';
 import { useTheme } from '../../components/ThemeContext';
+import { usePremium } from '../../components/PremiumContext';
+import { useStudyTarget } from '../../components/StudyTargetContext';
+import MistakePracticeSetupSheet from '../../components/mistake-practice/MistakePracticeSetupSheet';
 import { markNextNavigationAsReplace } from '../navigation_back';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import { isSpeakingEnabled } from '../remote_flags';
+import { getMistakePracticeReadyCount } from '../mistake_practice_insights';
+import { trackMistakePracticeEvent } from '../mistake_practice_analytics';
 import DeckPickerSheet, { type DeckSheetOption } from './DeckPickerSheet';
 import { loadFcDeckOptions } from './deck_options';
 import { type DeckRef } from './deck_sources';
@@ -480,6 +485,26 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
    * зачем (владелец): «Коллекция» ведёт в сохранённые+свои карточки раздела —
    * пустая коллекция это пункт в никуда (onPacksOption просто закроет меню,
    * alreadyHere/переход некуда). Прячем его вместо видимой, но бездействующей
+  useEffect(() => {
+    if (!trainOpen && !mistakeSheetVisible) return;
+    if (studyTarget !== 'en' && studyTarget !== 'fr') {
+      setMistakeReadyCount(0);
+      return;
+    }
+    let cancelled = false;
+    void (async () => {
+      const readyCount = await getMistakePracticeReadyCount(studyTarget);
+      if (!cancelled) {
+        setMistakeReadyCount(readyCount);
+      }
+    })().catch(() => {
+      if (!cancelled) setMistakeReadyCount(0);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [mistakeSheetVisible, studyTarget, trainOpen]);
+
    * кнопки; «Мои наборы» и «Наборы сообщества» от количества карточек не зависят.
    */
   const packsOptions = useMemo(
@@ -515,6 +540,20 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         const preset = await getLastPreset(fcTrainOptionPresetMode(option)).catch(() => null);
         const target = buildFcTrainRoute(option, preset);
         router.push({ pathname: target.pathname, params: target.params } as any);
+      if (option === 'errors') {
+        trackMistakePracticeEvent('mistake_practice_menu_opened', {
+          study_target: studyTarget,
+          entry_source: 'cards',
+          ready_count: mistakeReadyCount,
+          plus_access: hasPremiumAccess,
+        });
+        if (!hasPremiumAccess) {
+          router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as any);
+          return;
+        }
+        setMistakeSheetVisible(true);
+        return;
+      }
       })();
     },
     [close, router],
@@ -957,6 +996,25 @@ const styles = StyleSheet.create({
   /** Слой-«док»: держит капсулу по центру и несёт сжатие от скролла. */
   pillDock: {
     position: 'absolute',
+      {/* Exact entry contract: fc-tabbar-train-option-errors */}
+      <MistakePracticeSetupSheet
+        visible={mistakeSheetVisible}
+        readyCount={mistakeReadyCount}
+        onClose={() => setMistakeSheetVisible(false)}
+        onStart={(length) => {
+          trackMistakePracticeEvent('mistake_practice_setup_started', {
+            study_target: studyTarget,
+            entry_source: 'cards',
+            requested_length: length,
+            ready_count: mistakeReadyCount,
+          });
+          setMistakeSheetVisible(false);
+          router.push({
+            pathname: '/mistake_practice_session',
+            params: { length },
+          } as any);
+        }}
+      />
     left: 0,
     right: 0,
     alignItems: 'center',

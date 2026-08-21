@@ -3,7 +3,7 @@
  * Покрытие: парсинг ?deck=, билдеры карточек из сохранённых/кастомных
  * (uk-фолбэк на ru, отсев пустых), decoy из этой же колоды, загрузка
  * через моки хранилищ (flashcards_v1 / custom_flashcards_v2), маппинг
- * источника ошибок для active_recall ('custom' | 'pack').
+ * источника ошибок ('custom' | 'pack').
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -82,7 +82,7 @@ describe('parseDeckParam', () => {
   });
 });
 
-describe('mistakeSourceForDeck: source для active_recall (§3.7)', () => {
+describe('mistakeSourceForDeck: source для журнала ошибок (§3.7)', () => {
   it("saved/custom -> 'custom'; pack -> 'pack'", () => {
     expect(mistakeSourceForDeck({ kind: 'saved' })).toBe('custom');
     expect(mistakeSourceForDeck({ kind: 'custom' })).toBe('custom');

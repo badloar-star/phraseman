@@ -101,6 +101,123 @@ describe('Learning V2 app Owner Repository runtime', () => {
   it('keeps one account-global wallet across a server generation rollover', async () => {
     const memory = memoryStorage();
     const token4 = beginAccountGeneration(binding.stableUid);
+  it('atomically commits one client-authoritative mistake correction star and replays after crash', async () => {
+    const token = beginAccountGeneration(binding.stableUid);
+    const memory = memoryStorage();
+    const dependencies = {
+      storage: createLearningV2OwnerRepositoryAsyncStorage(binding, token, memory),
+      accountToken: token,
+      resolveAccountBinding: async () => binding,
+    };
+    const compositeBase = {
+      schemaVersion: 'mistake-correction-wallet-composite.v1' as const,
+      accountScopeHash: binding.economicAccountScopeHash,
+      mistakeId: `mistake:v1:${'b'.repeat(64)}`,
+      cycleId: `mistake-cycle:v1:${'c'.repeat(64)}`,
+      studyTarget: 'en' as const,
+      correctionEventId: `mistake-practice:v1:${'d'.repeat(64)}`,
+      correctionEventFingerprint: 'e'.repeat(64),
+      rewardVersion: 1 as const,
+    };
+    const composite = {
+      ...compositeBase,
+      rewardKey: `mistake-correction:v1:${sha256Utf8(canonicalJsonV1({
+        mistakeId: compositeBase.mistakeId,
+        cycleId: compositeBase.cycleId,
+        studyTarget: compositeBase.studyTarget,
+        rewardVersion: 1,
+      }))}`,
+    };
+    const applied = await commitMistakeCorrectionWalletComposite(composite, dependencies);
+    expect(applied.status).toBe('applied');
+    expect(applied.appliedReceipt).toMatchObject({
+      amountSubunits: 10_000,
+      authorizedOperation: { authority: 'client_authoritative_composite' },
+    });
+    const writesBeforeCrashRetry = memory.values.size;
+    const replay = await commitMistakeCorrectionWalletComposite(composite, dependencies);
+    expect(replay.status).toBe('replayed');
+    expect(replay.appliedReceipt).toEqual(applied.appliedReceipt);
+    expect(memory.values.size).toBe(writesBeforeCrashRetry);
+  });
+
+  it('rejects an immutable correction composite captured for another mounted owner', async () => {
+    const token = beginAccountGeneration(binding.stableUid);
+    const memory = memoryStorage();
+    const base = {
+      schemaVersion: 'mistake-correction-wallet-composite.v1' as const,
+      accountScopeHash: 'f'.repeat(64),
+      mistakeId: `mistake:v1:${'b'.repeat(64)}`,
+      cycleId: `mistake-cycle:v1:${'c'.repeat(64)}`,
+      studyTarget: 'en' as const,
+      correctionEventId: `mistake-practice:v1:${'d'.repeat(64)}`,
+      correctionEventFingerprint: 'e'.repeat(64),
+      rewardVersion: 1 as const,
+    };
+    await expect(commitMistakeCorrectionWalletComposite({
+      ...base,
+      rewardKey: `mistake-correction:v1:${sha256Utf8(canonicalJsonV1({
+        mistakeId: base.mistakeId,
+        cycleId: base.cycleId,
+        studyTarget: base.studyTarget,
+        rewardVersion: 1,
+      }))}`,
+    }, {
+      storage: createLearningV2OwnerRepositoryAsyncStorage(binding, token, memory),
+      accountToken: token,
+      resolveAccountBinding: async () => binding,
+    })).rejects.toThrow('mistake_correction_wallet_composite_owner_mismatch');
+    expect([...memory.values.values()].join('\n')).not.toContain(base.mistakeId);
+  });
+
+  it('settles a historical protected correction grant without adding a second star', async () => {
+    const token = beginAccountGeneration(binding.stableUid);
+    const memory = memoryStorage();
+    const mistakeId = `mistake:v1:${'b'.repeat(64)}`;
+    const cycleId = `mistake-cycle:v1:${'c'.repeat(64)}`;
+    const studyTarget = 'en' as const;
+    const legacyId = `mistake-correction:${hashCanonicalBody({
+      schemaVersion: 'mistake-correction-wallet-reward.v1',
+      mistakeId, cycleId, studyTarget, rewardVersion: 1,
+    })}`;
+    const legacy = materializeServerWalletRewardReceiptCandidate({
+      rewardId: legacyId,
+      operationId: legacyId,
+      accountScopeHash: binding.economicAccountScopeHash,
+      accountGeneration: binding.accountGeneration,
+      amountSubunits: 10_000,
+      operationReason: 'repeat_session',
+      origin: { kind: 'course', courseId: 'mistake-practice', studyTarget, requiredSessionOrdinal: 1 },
+    });
+    const dependencies = {
+      storage: createLearningV2OwnerRepositoryAsyncStorage(binding, token, memory),
+      accountToken: token,
+      resolveAccountBinding: async () => binding,
+      resolveRewardReceipt: async () => legacy.encoded,
+    };
+    const first = await commitLearningV2ServerWalletReward({
+      schemaVersion: 'learning-v2-server-wallet-reward-request.v1',
+      rewardId: legacy.receipt.rewardId,
+      rewardFingerprint: legacy.receipt.rewardFingerprint,
+    }, dependencies);
+    const compositeBase = {
+      schemaVersion: 'mistake-correction-wallet-composite.v1' as const,
+      accountScopeHash: binding.economicAccountScopeHash,
+      mistakeId, cycleId, studyTarget,
+      correctionEventId: `mistake-practice:v1:${'d'.repeat(64)}`,
+      correctionEventFingerprint: 'e'.repeat(64), rewardVersion: 1 as const,
+    };
+    const replay = await commitMistakeCorrectionWalletComposite({
+      ...compositeBase,
+      rewardKey: `mistake-correction:v1:${sha256Utf8(canonicalJsonV1({
+        mistakeId, cycleId, studyTarget, rewardVersion: 1,
+      }))}`,
+    }, dependencies);
+    expect(first.snapshot.walletState.balanceSubunits).toBe(10_000);
+    expect(replay.status).toBe('replayed');
+    expect(replay.snapshot.walletState.balanceSubunits).toBe(10_000);
+  });
+
     const first = materializeServerWalletRewardReceiptCandidate({
       rewardId: 'cx:rollover-first',
       operationId: 'coin-exchange:rollover-first',

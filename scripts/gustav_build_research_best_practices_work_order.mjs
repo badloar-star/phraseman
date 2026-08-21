@@ -22,7 +22,7 @@ const FEATURE_SOURCE_MAP = {
   mistake_explanations: ['tv5monde_grammar', 'le_robert_conjugation', 'le_robert_dictionary'],
   compass_ai: ['tv5monde_apprendre', 'tv5monde_grammar', 'phraseman_english_feature_atlas'],
   personal_practice: ['coe_cefr_companion_2020', 'tv5monde_apprendre', 'le_robert_dictionary'],
-  srs_review: ['le_robert_dictionary', 'phraseman_english_feature_atlas'],
+  mistake_practice: ['le_robert_dictionary', 'phraseman_english_feature_atlas'],
   flashcards: ['le_robert_dictionary', 'tv5monde_apprendre'],
   community_card_packs: ['le_robert_dictionary', 'phraseman_english_feature_atlas'],
   daily_phrase: ['tv5monde_apprendre', 'le_robert_dictionary'],

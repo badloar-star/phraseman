@@ -32,7 +32,7 @@ export type ProgressEventType =
   | 'verb_learned'
   | 'preposition_drill_answer'
   | 'preposition_drill_perfect'
-  | 'review_answer'
+  | 'mistake_practice_answer'
   | 'diagnostic_test'
   // зачем: порядок обязан совпадать с PROGRESS_EVENT_TYPES в functions/src/progress_events.ts —
   // tests/progress_event_type_contract сверяет списки как упорядоченные, чтобы новый тип события

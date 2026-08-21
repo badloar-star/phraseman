@@ -18,7 +18,6 @@ const DAILY_PHRASE_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generat
 const STORAGE_CLOUD_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'storage', 'fr_storage_cloud_isolation_bridge_gate_v1.json');
 const GRAMMAR_DRILL_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'grammar', 'fr_grammar_drill_global_readiness_bridge_gate_v1.json');
 const AI_PROMPT_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'ai_prompts', 'fr_ai_prompt_parity_gate_v1.json');
-const PERSONAL_PRACTICE_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'personal_practice', 'fr_personal_practice_active_recall_global_readiness_bridge_gate_v1.json');
 const CORE_LESSON_DELIVERY_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'core_lessons_32', 'fr_core_lesson_delivery_closeout_bridge_gate_v1.json');
 const ADMIN_BRIDGE_GATE_PATH = path.join(ROOT, 'docs', 'gustav', 'generated', 'fr', 'admin', 'fr_admin_global_readiness_bridge_gate_v1.json');
 
@@ -82,16 +81,6 @@ const BACKLOG = [
       'tests/gustav_fr_vocab_drill_parity_gate.test.ts',
     ],
     productionBlockers: ['FRENCH_THEORY_32_NOT_PROVEN', 'FRENCH_INTROS_32_NOT_PROVEN', 'FRENCH_VOCAB_NATIVE_BANK_NOT_PROVEN'],
-  },
-  {
-    id: 'personal_practice_active_recall',
-    relatedParitySurfaces: ['personal_practice_active_recall'],
-    priority: 5,
-    why: 'Personal practice must train French weak spots with target-scoped storage and sourceLocale-safe prompts.',
-    exactFiles: ['app/personal_practice_target_gate.ts', 'app/active_recall.ts', 'app/review.tsx'],
-    exactScripts: [],
-    exactTests: [],
-    productionBlockers: ['FRENCH_PERSONAL_PRACTICE_NATIVE_BANK_NOT_COMPLETE', 'PROBLEM_COACH_ROUTE_STILL_HOLD'],
   },
   {
     id: 'flashcards_and_marketplace_cards',
@@ -287,7 +276,6 @@ function main() {
     const isClosedCollectibleBridge = item.id === 'collectible_cards' && collectibleBridgeReady;
     const isClosedGrammarDrillBridge = item.id === 'prepositions_and_conjugation_drills' && grammarDrillBridgeReady;
     const isClosedAiPromptBridge = item.id === 'ai_prompt_surfaces' && aiPromptBridgeReady;
-    const isClosedPersonalPracticeBridge = item.id === 'personal_practice_active_recall' && personalPracticeBridgeReady;
     const isClosedDailyPhraseBridge = item.id === 'daily_phrases' && dailyPhraseBridgeReady;
     const isClosedStorageCloudBridge = item.id === 'storage_cloud_runtime_isolation' && storageCloudBridgeReady;
     const isClosedAdminBridge = item.id === 'admin_surfaces' &&
@@ -410,15 +398,6 @@ function main() {
                     'FRENCH_AI_PROMPTS_NOT_ALL_MATERIALIZED',
                     'REJECTED_FRESH_AI_TEXT_RETURN_NOT_PROVEN_BLOCKED_EVERYWHERE',
                   ]
-                : [],
-            }
-        : item.id === 'personal_practice_active_recall'
-          ? {
-              artifact: rel(PERSONAL_PRACTICE_BRIDGE_GATE_PATH),
-              status: personalPracticeBridgeGate?.status ?? 'MISSING',
-              localSurfaceReady: personalPracticeBridgeReady,
-              closedLocalBlockers: personalPracticeBridgeReady
-                ? ['FRENCH_PERSONAL_PRACTICE_ACTIVE_RECALL_NOT_BRIDGED']
                 : [],
             }
         : item.id === 'admin_surfaces'

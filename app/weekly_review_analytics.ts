@@ -44,8 +44,7 @@ const SOURCES = new Set<ResultSource>(['none', 'cache', 'replay', 'provider']);
 const ERRORS = new Set<ErrorCode>(['offline', 'not_ready', 'app_check_unavailable', 'provider_failed', 'unknown']);
 const LATENCIES = new Set<LatencyBucket>(['under_1s', '1_3s', '3_10s', '10s_plus']);
 const ACTIONS = new Set<WeeklyReviewActionKind>([
-  'repeat_due_words',
-  'repeat_due_phrases',
+  'open_mistake_practice',
   'open_personal_training',
   'continue_lesson',
 ]);

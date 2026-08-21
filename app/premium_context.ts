@@ -18,10 +18,6 @@ export type PremiumContext =
   | 'streak'
   | 'theme'
   | 'club'
-  /** Trainer premium modes paywall. */
-  | 'trainer'
-  /** Trainer daily session limit reached. */
-  | 'trainer_limit'
   /** AI dialogue daily free limit reached. */
   | 'dialog_limit'
   | 'dialog_locked_level'
@@ -29,6 +25,8 @@ export type PremiumContext =
   | 'ai_voice_input'
   /** Speaking mode — произнести фразу вслух (микрофон + распознавание). */
   | 'speaking'
+  /** Personal practice of captured learner errors. */
+  | 'mistake_practice'
   /** Personalized diagnosis training after the one free try. */
   | 'diagnosis_training'
   /** Mastery — повторное прохождение урока за осколки либо безлимит на Premium. */
@@ -42,8 +40,6 @@ export type PremiumContext =
   | 'intro_ended'
   /** After-win апсейл после повышения уровня (план #3). */
   | 'level_up'
-  /** Умный микс тренажёра — lock-preview вместо мгновенного редиректа (план #11). */
-  | 'smart_trainer'
   /** Истёк платный Premium — карточка возврата (EntitlementExpiredHost). */
   | 'premium_expired'
   /** Истёк VIP (реферальный/подарочный) — карточка возврата. */
@@ -76,13 +72,12 @@ export const PREMIUM_CONTEXT_VALUES = [
   'streak',
   'theme',
   'club',
-  'trainer',
-  'trainer_limit',
   'dialog_limit',
   'dialog_locked_level',
   'dialog_analysis',
   'ai_voice_input',
   'speaking',
+  'mistake_practice',
   'diagnosis_training',
   'mastery',
   'stats',
@@ -91,7 +86,6 @@ export const PREMIUM_CONTEXT_VALUES = [
   'percentiles',
   'intro_ended',
   'level_up',
-  'smart_trainer',
   'premium_expired',
   'vip_expired',
   'notification_upsell',

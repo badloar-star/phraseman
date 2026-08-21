@@ -1,9 +1,4 @@
 import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
-import { getMistakeEntryCategory, loadMistakeLog } from './mistake_log';
-import {
-  getPersonalTrainingResolvedAt,
-  loadResolvedPersonalTrainings,
-} from './diagnosis_training_progress';
 import type {
   PersonalInsight,
   PhraseAnalyticsResult,
@@ -11,6 +6,8 @@ import type {
   WordCategoryStat,
 } from './phrase_analytics';
 import type { RuntimeSourceLocale } from './target_storage_keys';
+import { loadMistakeEventJournal } from './mistake_practice_store';
+import { getStableId } from './stable_id';
 
 const FRENCH_ANALYTICS_WINDOW_DAYS = 30;
 const FRENCH_ANALYTICS_WINDOW_MS = FRENCH_ANALYTICS_WINDOW_DAYS * 24 * 60 * 60 * 1000;

@@ -74,6 +74,11 @@ import ForceUpdateGate from '../components/ForceUpdateGate';
 import OfflineBanner from '../components/OfflineBanner';
 import PromoBanner from '../components/PromoBanner';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
+import { cleanupRetiredMistakePracticeStorage } from './mistake_practice_legacy_cleanup';
+import {
+  readOnboardingNotificationChoice,
+  shouldPromptForOnboardingNotifications,
+} from './onboarding_notification_choice';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
@@ -166,7 +171,6 @@ import { primeSurveyOfferCacheFromStorage } from './survey_offer_cache';
 import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
 import { hydrateYoutubeChannelPreference } from './youtube_channel_preference';
 import { hydrateStatsCacheFromStorage } from './statsCache';
-import { primeTrainerPracticeSnapshotFromStorage } from './trainer_practice_persist';
 import { primeRemoteConfigCacheFromStorage } from './remote_config_client';
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
@@ -1181,6 +1185,9 @@ function GlobalLevelUpHandler() {
             if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
             dismissingLevelUpRef.current = false;
             setLevelUpTransitioning(false);
+  useEffect(() => {
+    void cleanupRetiredMistakePracticeStorage().catch(() => {});
+  }, []);
             setShowLevelUp(true);
             return;
           }
@@ -2590,10 +2597,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const startupLocalHydration = Promise.all([
         primeAppSnapshotFromStorage(studyTarget).catch(() => {}),
         primeSurveyOfferCacheFromStorage().catch(() => {}),
-        // зачем: та же беда была у «Моей практики» — её кэш жил в памяти всего 2 минуты,
-        // поэтому раздел открывался с нулями и после холодного старта, и просто через
-        // 3 минуты. Поднимаем дисковый снапшот здесь, до входа в раздел.
-        primeTrainerPracticeSnapshotFromStorage().catch(() => {}),
         // зачем: общий снапшот остальных экранов (стрик, рефералы, топ помощников,
         // аналитика, план, разбор, подписка, видео, сезон). Владелец потребовал, чтобы
         // НИ ОДИН экран не показывал скелетон. Это ОДНО чтение диска на все экраны
@@ -2957,6 +2960,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // Снимаем оверлей онбординга ПОСЛЕ того, как replace на /home закоммитится. Иначе,
     // если под оверлеем активен маршрут пейвола, при мгновенном setShow(false) он мелькает один
     // кадр до перехода на главную. Небольшая отсрочка убирает мелькание (оверлей держит экран,
+      <Stack.Screen name="mistake_practice_session" />
     // пока навигация не встала на /home).
     setTimeout(() => {
       setShow(false);
@@ -3269,13 +3273,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="terms_screen" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="lingman_videos" />
       <Stack.Screen name="lingman_playlist" />
-      <Stack.Screen name="trainer" />
-      <Stack.Screen name="trainer_words_session" />
       <Stack.Screen name="flashcards_listening_session" />
       <Stack.Screen name="flashcards_speaking_session" />
       <Stack.Screen name="flashcards_blitz_session" />
       <Stack.Screen name="flashcards_voice_picker" />
-      <Stack.Screen name="trainer_phrases_session" />
       <Stack.Screen name="phrase_analytics_screen" />
       <Stack.Screen name="problem_coach" />
     </Stack>

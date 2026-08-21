@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // phrase_analytics.ts — движок персональной аналитики ошибок
 //
-// Агрегирует mistake_log → данные уроков → категории слов → инсайты юзера.
+// Агрегирует новый журнал ошибок → данные уроков → категории слов → инсайты юзера.
 // Используется в: Statistics (premium), Trainer 2.0 (умный выбор фраз).
 //
 // Архитектура:
@@ -10,7 +10,6 @@
 //   генерируем PersonalInsights с живыми текстами
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { loadMistakeLog, type MistakeEntry } from './mistake_log';
 import { getLessonData } from './lesson_data_all';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, LESSON_NAMES_ES, lessonNamesForLang } from '../constants/lessons';
 import { DebugLogger } from './debug-logger';
@@ -21,6 +20,9 @@ import {
   loadResolvedPersonalTrainings,
 } from './diagnosis_training_progress';
 import type { PhraseWindowSummary } from './weekly_review_types';
+import { loadMistakeEventJournal } from './mistake_practice_store';
+import { getStableId } from './stable_id';
+import { storageStudyTarget } from './target_storage_keys';
 
 // ── Типы ─────────────────────────────────────────────────────────────────────
 
@@ -987,7 +989,7 @@ export function getTopCategoryForPhrases(
 
 /**
  * Возвращает грамматические категории для одной фразы.
- * Используется фильтрацией фраз по категории в active_recall.
+ * Используется фильтрацией фраз по категории в аналитике ошибок.
  */
 export function getPhraseCategories(phrase: string): WordCategory[] {
   buildPhraseIndex();

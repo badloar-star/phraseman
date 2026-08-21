@@ -2640,7 +2640,7 @@ async function main(): Promise<void> {
     statusOf(inputs.generatedSupportIsolation) === 'PASS';
   const blockedRecommendedWork = inputs.sourceGraph
     ? [
-        'Resolve target-safe migration adapters for storage, cloud sync, achievements, lessons, quiz, trainer, flashcards and My Practice surfaces.',
+        'Resolve target-safe migration adapters for storage, cloud sync, achievements, lessons, quiz, flashcards and Mistake Practice surfaces.',
         sourceGraphInputApproved
           ? 'Source graph input is approved; next remove target-isolation blockers in storage, cloud sync, achievements and user-facing surfaces.'
           : inputs.lesson916ApprovalAudit && statusOf(inputs.lesson916ApprovalAudit) === 'PASS'
@@ -2665,7 +2665,7 @@ async function main(): Promise<void> {
     : [
         'Build exact migration adapter plan for lesson, quiz, trainer, flashcard and achievement surfaces.',
         'Implement source graph extractor for English base inventory.',
-        'Define My Practice target-prefix contract and trainer/mistake-log target store plan.',
+        'Define Mistake Practice owner/target journal contract.',
       ];
 
   const report: Report = {

@@ -10,6 +10,8 @@ import { createHash } from 'crypto';
 import { accountDeletePermanentDenialId } from './account_delete_job';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { materializeMistakePracticeEventRecord } from './mistake_practice_event_sync';
+import { canonicalJsonV1 } from '../../modules/learning-v2/policies/decision_registry';
 
 const NOW = 1_777_000_000_000;
 const FUTURE = NOW + 30 * 24 * 60 * 60 * 1000; // +30d
@@ -255,7 +257,7 @@ describe('mergeShards', () => {
 describe('Level Spin merge integration contract', () => {
   it('marks both identities pending, schedules Spin migration, and clears only after union', () => {
     const source = readFileSync(join(__dirname, 'auth_merge.ts'), 'utf8');
-    expect(source).toContain("tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'level_spins']");
+    expect(source).toContain("tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'level_spins', 'mistake_practice_events']");
     expect(source).toContain('levelSpinMergePending: true');
     expect(source).toContain('migrateLevelSpinAccountMerge');
     expect(source).toContain('levelSpinMergePending: false');
@@ -639,6 +641,76 @@ describe('mergeStableAccounts', () => {
     expect(store['users/loser/level_spin_results']?.[requestId]).toMatchObject({ baseGiftId: 'xp_250' });
   });
 
+  it('owner-rematerializes the union of winner and loser mistake events before completing merge', async () => {
+    const eventFor = (eventId: string, target = 'en') => ({
+      eventId, mistakeId: `mistake:v1:${'a'.repeat(64)}`,
+      cycleId: `mistake-cycle:v1:${'b'.repeat(64)}`, type: 'captured',
+      occurredAtMs: eventId === 'winner-event' ? 1 : 2, studyTarget: target,
+      payload: { canonicalTarget: eventId },
+    });
+    const winnerRecord = materializeMistakePracticeEventRecord({
+      stableUid: 'winner', studyTarget: 'en', event: eventFor('winner-event'),
+    });
+    const loserRecord = materializeMistakePracticeEventRecord({
+      stableUid: 'loser', studyTarget: 'en', event: eventFor('loser-event'),
+    });
+    const idFor = (owner: string, eventId: string) => `mp_${createHash('sha256').update(canonicalJsonV1({
+      ownerStableUid: owner, studyTarget: 'en', eventId,
+    })).digest('hex')}`;
+    const { db, store } = makeDbStub({
+      users: {
+        winner: { levelSpinMergePending: true },
+        loser: { levelSpinMergePending: true, identityHidden: true, canonicalStableId: 'winner' },
+      },
+      account_merge_outbox: {
+        mergeMistakes: {
+          winnerStableId: 'winner', loserStableId: 'loser', status: 'pending',
+          tasks: ['mistake_practice_events'],
+        },
+      },
+      'users/winner/progress_events': { [idFor('winner', 'winner-event')]: winnerRecord as any },
+      'users/loser/progress_events': { [idFor('loser', 'loser-event')]: loserRecord as any },
+    });
+    await expect(processAccountMergeOutboxJob(db as any, 'mergeMistakes', NOW))
+      .resolves.toMatchObject({ status: 'completed' });
+    expect(store['users/winner/progress_events'][idFor('winner', 'winner-event')]).toBeDefined();
+    expect(store['users/winner/progress_events'][idFor('winner', 'loser-event')])
+      .toMatchObject({ ownerStableUid: 'winner', event: { eventId: 'loser-event' } });
+    expect(store['users/loser/progress_events'][idFor('loser', 'loser-event')]).toBeDefined();
+  });
+
+  it('keeps merge pending and preserves both sides on a same-id mistake event conflict', async () => {
+    const event = (canonicalTarget: string) => ({
+      eventId: 'same-event', mistakeId: `mistake:v1:${'a'.repeat(64)}`,
+      cycleId: `mistake-cycle:v1:${'b'.repeat(64)}`, type: 'captured', occurredAtMs: 1,
+      studyTarget: 'en', payload: { canonicalTarget },
+    });
+    const winnerRecord = materializeMistakePracticeEventRecord({ stableUid: 'winner', studyTarget: 'en', event: event('winner') });
+    const loserRecord = materializeMistakePracticeEventRecord({ stableUid: 'loser', studyTarget: 'en', event: event('loser') });
+    const idFor = (owner: string) => `mp_${createHash('sha256').update(canonicalJsonV1({
+      ownerStableUid: owner, studyTarget: 'en', eventId: 'same-event',
+    })).digest('hex')}`;
+    const { db, store } = makeDbStub({
+      users: {
+        winner: { levelSpinMergePending: true },
+        loser: { levelSpinMergePending: true, identityHidden: true, canonicalStableId: 'winner' },
+      },
+      account_merge_outbox: {
+        mergeMistakeConflict: {
+          winnerStableId: 'winner', loserStableId: 'loser', status: 'pending',
+          tasks: ['mistake_practice_events'],
+        },
+      },
+      'users/winner/progress_events': { [idFor('winner')]: winnerRecord as any },
+      'users/loser/progress_events': { [idFor('loser')]: loserRecord as any },
+    });
+    await expect(processAccountMergeOutboxJob(db as any, 'mergeMistakeConflict', NOW))
+      .rejects.toThrow('mistake_practice_event_conflict');
+    expect(store.account_merge_outbox.mergeMistakeConflict).toMatchObject({ status: 'pending' });
+    expect(store['users/winner/progress_events'][idFor('winner')]).toEqual(winnerRecord);
+    expect(store['users/loser/progress_events'][idFor('loser')]).toEqual(loserRecord);
+  });
+
   it('leases and idempotently completes merge outbox receipt repointing', async () => {
     const bulkReceipts = Object.fromEntries(Array.from({ length: 101 }, (_, index) => [
       `bulk-${index}`,
@@ -861,6 +933,153 @@ describe('mergeStableAccounts', () => {
   it('merges two stable ids into the higher-XP one and hides the loser', async () => {
     const { db, store } = makeDbStub({
       users: {
+  it.each([
+    ['left', 'right', 10, 1],
+    ['right', 'left', 1, 10],
+  ] as const)(
+    'copies both immutable mistake histories before returning when %s wins over %s',
+    async (expectedWinner, expectedLoser, leftXp, rightXp) => {
+      const recordFor = (owner: string, eventId: string) => materializeMistakePracticeEventRecord({
+        stableUid: owner,
+        studyTarget: 'en',
+        event: {
+          eventId, mistakeId: `mistake:v1:${'a'.repeat(64)}`,
+          cycleId: `mistake-cycle:v1:${'b'.repeat(64)}`, type: 'captured',
+          occurredAtMs: eventId === 'left-event' ? 1 : 2, studyTarget: 'en',
+          payload: { canonicalTarget: eventId },
+        },
+      });
+      const idFor = (owner: string, eventId: string) => `mp_${createHash('sha256').update(canonicalJsonV1({
+        ownerStableUid: owner, studyTarget: 'en', eventId,
+      })).digest('hex')}`;
+      const { db, store } = makeDbStub({
+        users: {
+          left: { firebaseAuthUid: 'auth-mistakes', progress: { user_total_xp: String(leftXp) } },
+          right: { firebaseAuthUid: 'auth-mistakes', progress: { user_total_xp: String(rightXp) } },
+        },
+        'users/left/progress_events': { [idFor('left', 'left-event')]: recordFor('left', 'left-event') as any },
+        'users/right/progress_events': { [idFor('right', 'right-event')]: recordFor('right', 'right-event') as any },
+      });
+      const result = await mergeStableAccounts(db as any, 'auth-mistakes', 'left', 'right', NOW);
+      expect(result.canonicalStableId).toBe(expectedWinner);
+      expect(store[`users/${expectedWinner}/progress_events`][idFor(expectedWinner, 'left-event')])
+        .toMatchObject({ ownerStableUid: expectedWinner });
+      expect(store[`users/${expectedWinner}/progress_events`][idFor(expectedWinner, 'right-event')])
+        .toMatchObject({ ownerStableUid: expectedWinner });
+      expect(store[`users/${expectedLoser}/progress_events`]).toBeDefined();
+      expect(store.users[expectedWinner]?.mistakePracticeMergePending).toBe(false);
+      expect(store.users[expectedLoser]?.mistakePracticeMergePending).toBe(false);
+    },
+  );
+
+  it.each([
+    ['left', 'right', 10, 1],
+    ['right', 'left', 1, 10],
+  ] as const)(
+    'publishes %s over %s only after a complete 51-event paged union',
+    async (expectedWinner, expectedLoser, leftXp, rightXp) => {
+      const idFor = (owner: string, eventId: string) => `mp_${createHash('sha256').update(canonicalJsonV1({
+        ownerStableUid: owner, studyTarget: 'en', eventId,
+      })).digest('hex')}`;
+      const loserEvents = Object.fromEntries(Array.from({ length: 51 }, (_, index) => {
+        const event = {
+          eventId: `${expectedLoser}-page-${String(index).padStart(3, '0')}`,
+          mistakeId: `mistake:v1:${'a'.repeat(64)}`,
+          cycleId: `mistake-cycle:v1:${'b'.repeat(64)}`,
+          type: 'captured', occurredAtMs: index + 1, studyTarget: 'en',
+          payload: { canonicalTarget: `${expectedLoser}-${index}` },
+        };
+        return [idFor(expectedLoser, event.eventId), materializeMistakePracticeEventRecord({
+          stableUid: expectedLoser, studyTarget: 'en', event,
+        }) as any];
+      }));
+      const publicationSnapshots: boolean[] = [];
+      let storeRef: Store;
+      const { db, store, queryLog } = makeDbStub({
+        users: {
+          left: { firebaseAuthUid: 'auth-page', progress: { user_total_xp: String(leftXp) } },
+          right: { firebaseAuthUid: 'auth-page', progress: { user_total_xp: String(rightXp) } },
+        },
+        [`users/${expectedLoser}/progress_events`]: loserEvents,
+      }, {
+        afterQueryGetAny: (collection) => {
+          if (collection === `users/${expectedLoser}/progress_events`) {
+            publicationSnapshots.push(Boolean(
+              storeRef.auth_links['auth-page']?.stable_id || storeRef.users[expectedLoser]?.identityHidden,
+            ));
+          }
+        },
+      });
+      storeRef = store;
+
+      await expect(mergeStableAccounts(db as any, 'auth-page', 'left', 'right', NOW))
+        .resolves.toMatchObject({ canonicalStableId: expectedWinner, mergedFromStableId: expectedLoser });
+      expect(publicationSnapshots.length).toBeGreaterThanOrEqual(2);
+      expect(publicationSnapshots.slice(0, 2)).toEqual([false, false]);
+      expect(store.auth_links['auth-page']).toMatchObject({ stable_id: expectedWinner });
+      expect(store.users[expectedLoser]).toMatchObject({
+        identityHidden: true, canonicalStableId: expectedWinner,
+      });
+      expect(Object.keys(store[`users/${expectedWinner}/progress_events`] ?? {})).toHaveLength(51);
+      expect(queryLog.filter((entry) =>
+        entry.collection === `users/${expectedLoser}/progress_events` && entry.limit === 50,
+      ).length).toBeGreaterThanOrEqual(2);
+    },
+  );
+
+  it.each([
+    ['left', 'right', 10, 1],
+    ['right', 'left', 1, 10],
+  ] as const)(
+    'does not publish or hide either identity when paged %s-over-%s mistake union times out',
+    async (expectedWinner, expectedLoser, leftXp, rightXp) => {
+      const eventFor = (owner: string, index: number) => ({
+        eventId: `${owner}-event-${String(index).padStart(3, '0')}`,
+        mistakeId: `mistake:v1:${'a'.repeat(64)}`,
+        cycleId: `mistake-cycle:v1:${'b'.repeat(64)}`,
+        type: 'captured', occurredAtMs: index + 1, studyTarget: 'en',
+        payload: { canonicalTarget: `${owner}-${index}` },
+      });
+      const idFor = (owner: string, eventId: string) => `mp_${createHash('sha256').update(canonicalJsonV1({
+        ownerStableUid: owner, studyTarget: 'en', eventId,
+      })).digest('hex')}`;
+      const loserEvents = Object.fromEntries(Array.from({ length: 51 }, (_, index) => {
+        const event = eventFor(expectedLoser, index);
+        return [idFor(expectedLoser, event.eventId), materializeMistakePracticeEventRecord({
+          stableUid: expectedLoser, studyTarget: 'en', event,
+        }) as any];
+      }));
+      let publicationObservedBeforeCopy = false;
+      const { db, store } = makeDbStub({
+        users: {
+          left: { firebaseAuthUid: 'auth-timeout', progress: { user_total_xp: String(leftXp) } },
+          right: { firebaseAuthUid: 'auth-timeout', progress: { user_total_xp: String(rightXp) } },
+        },
+        [`users/${expectedLoser}/progress_events`]: loserEvents,
+      }, {
+        afterQueryGetAny: (collection) => {
+          if (collection !== `users/${expectedLoser}/progress_events`) return;
+          publicationObservedBeforeCopy = Boolean(
+            store.auth_links['auth-timeout']?.stable_id
+            || store.users[expectedLoser]?.identityHidden
+            || store.account_identity_owner_map[expectedLoser]?.canonicalStableId,
+          );
+          throw new Error('copy_timeout');
+        },
+      });
+
+      await expect(mergeStableAccounts(db as any, 'auth-timeout', 'left', 'right', NOW))
+        .rejects.toThrow('copy_timeout');
+      expect(publicationObservedBeforeCopy).toBe(false);
+      expect(store.auth_links['auth-timeout']).toBeUndefined();
+      expect(store.users[expectedLoser]?.identityHidden).not.toBe(true);
+      expect(store.users[expectedLoser]?.canonicalStableId).toBeUndefined();
+      expect(store.account_identity_owner_map[expectedLoser]).toBeUndefined();
+      expect(store.users[expectedWinner]?.mistakePracticeMergePending).toBe(true);
+      expect(store.users[expectedLoser]?.mistakePracticeMergePending).toBe(true);
+    },
+  );
+
         'stable-tablet': {
           firebaseAuthUid: 'google-1',
           progress: { user_total_xp: '6812', streak_count: '2' },

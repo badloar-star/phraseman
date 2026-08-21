@@ -30,8 +30,9 @@ export function routeForWeeklyReviewAction(
   actionKind: WeeklyReviewActionKind,
   recommendationId: string,
 ): VerifiedRoute | null {
-  if (actionKind === 'repeat_due_words' && recommendationId === 'due:words') return { pathname: '/trainer_words_session' };
-  if (actionKind === 'repeat_due_phrases' && recommendationId === 'due:phrases') return { pathname: '/trainer_phrases_session' };
+  if (actionKind === 'open_mistake_practice' && recommendationId === 'mistakes:ready') {
+    return { pathname: '/mistake_practice_session', params: { length: '5' } };
+  }
   if (actionKind === 'open_personal_training' && recommendationId.startsWith('diagnosis:')) {
     const microDiagnosisId = recommendationId.slice('diagnosis:'.length);
     return /^[a-z0-9_-]{1,80}$/.test(microDiagnosisId)

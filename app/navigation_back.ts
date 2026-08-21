@@ -57,9 +57,6 @@ const SECTION_ROOTS: ReadonlyMap<string, NavigationSection> = new Map([
   ['/(tabs)/journal', 'lessons'],
   ['/lessons_list', 'lessons'],
 
-  ['/trainer', 'practice'],
-  ['/review', 'practice'],
-
   ['/flashcards', 'flashcards'],
   ['/ai_dialog_home', 'dialogs'],
   ['/lingman_videos', 'lingman'],
@@ -108,7 +105,6 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/top_helpers',
   '/settings_edu',
   '/flashcards_voice_picker',
-  '/trainer_words_session',
   '/problem_coach',
   '/survey_screen',
   '/ai_dialog_briefing',
@@ -246,8 +242,7 @@ function fixedChildSection(pathname: string): NavigationSection | null {
   ) return 'lessons';
 
   if (
-    pathname === '/trainer_phrases_session'
-    || pathname === '/phrase_analytics_screen'
+    pathname === '/phrase_analytics_screen'
     || pathname === '/_pos_analytics_audit'
     || pathname === '/pos_analytics_audit'
   ) return 'practice';
@@ -258,6 +253,7 @@ function fixedChildSection(pathname: string): NavigationSection | null {
     || pathname === '/pack_opening'
   ) return 'flashcards';
 
+    || pathname === '/mistake_practice_session'
   if (pathname.startsWith('/lingman_')) return 'lingman';
   if (pathname.startsWith('/arena_')) return 'arena';
   if (pathname.startsWith('/tournament_')) return 'tournaments';
@@ -296,7 +292,7 @@ function sourceSectionHint(href: string): NavigationSection | null {
   const params = new URLSearchParams(href.slice(q + 1));
   const hint = `${params.get('source') ?? ''} ${params.get('from') ?? ''} ${params.get('returnTo') ?? ''}`.toLowerCase();
   if (/settings/.test(hint)) return 'settings';
-  if (/trainer|practice|diagnos/.test(hint)) return 'practice';
+  if (/mistake|practice|diagnos/.test(hint)) return 'practice';
   if (/flash|card|pack/.test(hint)) return 'flashcards';
   if (/lesson|dialog|max_call/.test(hint)) return 'lessons';
   if (/arena/.test(hint)) return 'arena';
@@ -510,7 +506,7 @@ export function dismissPaywallModal(
 function fallbackForSection(section: NavigationSection | null): string {
   switch (section) {
     case 'lessons': return '/lessons_list';
-    case 'practice': return '/trainer';
+    case 'practice': return '/flashcards_collection';
     /**
      * FIX (владелец, 2026-08-16): разделы карточек были зациклены сами на себя.
      * `/flashcards` — не хаб над ними, а СОСЕД по нижнему таббару карточек

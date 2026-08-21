@@ -3,8 +3,7 @@ export const WEEKLY_REVIEW_MIN_MISTAKES = 5;
 
 export type WeeklyReviewActionKind =
   | 'open_personal_training'
-  | 'repeat_due_words'
-  | 'repeat_due_phrases'
+  | 'open_mistake_practice'
   | 'continue_lesson';
 
 export interface WeeklyReviewV2 {
@@ -26,7 +25,7 @@ export interface WeeklyReviewV2 {
 }
 
 export type WeeklyReviewSnapshotStatus = 'ready' | 'insufficient' | 'partial' | 'error';
-export type WeeklyReviewSnapshotSource = 'mistakes' | 'activity' | 'trainer';
+export type WeeklyReviewSnapshotSource = 'mistakes' | 'activity' | 'practice';
 
 export interface SourceCoverage {
   ready: number;

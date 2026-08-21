@@ -54,13 +54,6 @@ const SURFACE_PLANS = {
     nextBuildScripts: ['new scripts/gustav_build_fr_conjugation_drill_gate.mjs'],
     productionBlockers: ['FRENCH_CONJUGATION_DRILL_NOT_MATERIALIZED'],
   },
-  personal_practice_active_recall: {
-    copyProductContract: ['practice routing', 'active recall session shape', 'mistake adapter isolation'],
-    rebuildNatively: ['French practice banks', 'French mistake patterns', 'French spaced review prompts'],
-    currentFrenchArtifacts: [],
-    nextBuildScripts: ['new scripts/gustav_build_fr_personal_practice_parity_gate.mjs'],
-    productionBlockers: ['FRENCH_PERSONAL_PRACTICE_NOT_PROVEN_AS_NATIVE_BANK'],
-  },
   flashcards_collection_cards: {
     copyProductContract: ['flashcard pack shape', 'collection/marketplace surface', 'audio/card metadata contract'],
     rebuildNatively: ['French decks', 'French cultural/contextual examples', 'French collection cards'],

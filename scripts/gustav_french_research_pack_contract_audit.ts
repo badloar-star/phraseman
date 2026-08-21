@@ -361,7 +361,7 @@ async function main(): Promise<void> {
     },
     {
       id: 'personal_practice_mapping',
-      title: 'My Practice diagnosis to French remediation',
+      title: 'Mistake Practice diagnosis to French remediation',
       requiredSourceIds: ['tv5monde_grammar', 'oqlf_vitrine_linguistique'],
       mustDecide: ['diagnosis node mapping', 'personalized lesson trigger', 'target-scoped state', 'no cross-language leakage'],
     },
@@ -396,7 +396,7 @@ async function main(): Promise<void> {
     'Every batch must compare English source meaning against RU and UK prompts before French output.',
     'Every French rule decision must include a learner-level note and a lesson-order decision.',
     'Every quiz decision must prove one correct answer and plausible distractors.',
-    'Every My Practice decision must prove target-scoped diagnosis and remediation state.',
+    'Every Mistake Practice decision must prove target-scoped diagnosis and remediation state.',
     'Every uncertainty must block the translation batch until resolved or explicitly deferred.',
   ];
   const rejectedShortcutPolicies = [
@@ -405,7 +405,7 @@ async function main(): Promise<void> {
     'Do not rely on a single dictionary for grammar decisions.',
     'Do not accept English word order as French structure without proof.',
     'Do not generate quizzes before distractor policy is signed off.',
-    'Do not generate My Practice lessons before personal-practice mapping is target-safe.',
+    'Do not generate Mistake Practice exercises before personal-practice mapping is target-safe.',
     'Do not create production files or generated_content_audit.json during research.',
   ];
 

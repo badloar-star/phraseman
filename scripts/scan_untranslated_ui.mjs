@@ -105,9 +105,10 @@ function walk(dir, out = []) {
  * ложные срабатывания, из-за которых сторожу перестают верить.
  */
 function stripLegal(source) {
+  const mask = (value) => value.replace(/[^\r\n]/g, ' ');
   let src = source
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/^[ \t]*\/\/.*$/gm, '');
+    .replace(/\/\*[\s\S]*?\*\//g, mask)
+    .replace(/^[ \t]*\/\/.*$/gm, mask);
 
   for (const name of TRANSLATORS) {
     let result = '';
@@ -121,6 +122,7 @@ function stripLegal(source) {
       result += src.slice(cursor, found);
       const open = src.indexOf('(', found);
       if (open < 0) {
+        result += mask(src.slice(found, found + name.length));
         cursor = found + name.length;
         continue;
       }
@@ -133,6 +135,7 @@ function stripLegal(source) {
           if (depth === 0) { i += 1; break; }
         }
       }
+      result += mask(src.slice(found, i));
       cursor = i;
     }
     src = result;
@@ -211,13 +214,44 @@ function addedUntranslatedLines() {
       encoding: 'utf8',
     });
     const hits = [];
+    let maskedLines = null;
+    let newLineNumber = 0;
     for (const line of out.split('\n')) {
-      // Только добавленные строки; «+++ b/file» — заголовок, не содержимое.
-      if (!line.startsWith('+') || line.startsWith('+++')) continue;
-      const added = line.slice(1);
-      if (PAIRED_TRANSLATION.test(added)) continue;
-      const found = added.match(CYRILLIC_LITERAL);
-      if (found) hits.push(...found);
+      const fileHeader = line.match(/^\+\+\+ b\/(.+)$/);
+      if (fileHeader) {
+        const rel = fileHeader[1];
+        if (CONTENT_FILES.some((re) => re.test(rel))) {
+          maskedLines = null;
+          continue;
+        }
+        const stagedSource = execFileSync('git', ['show', `:${rel}`], {
+          cwd: ROOT,
+          encoding: 'utf8',
+        });
+        maskedLines = isTranslationDictionary(stagedSource)
+          ? null
+          : stripLegal(stagedSource).split('\n');
+        continue;
+      }
+
+      const hunkHeader = line.match(/^@@ -\d+(?:,\d+)? \+(\d+)(?:,\d+)? @@/);
+      if (hunkHeader) {
+        newLineNumber = Number(hunkHeader[1]);
+        continue;
+      }
+
+      // Проверяем добавленную строку в маске целого staged-файла. Так комментарии
+      // и многострочные triLang-вызовы получают ту же трактовку, что полный scan().
+      if (line.startsWith('+') && !line.startsWith('+++')) {
+        const added = maskedLines?.[newLineNumber - 1] ?? '';
+        if (!PAIRED_TRANSLATION.test(added)) {
+          const found = added.match(CYRILLIC_LITERAL);
+          if (found) hits.push(...found);
+        }
+        newLineNumber += 1;
+        continue;
+      }
+      if (!line.startsWith('-') && !line.startsWith('\\')) newLineNumber += 1;
     }
     return hits;
   } catch {

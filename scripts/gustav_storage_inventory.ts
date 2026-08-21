@@ -1096,8 +1096,6 @@ function classifyKey(input: {
 
   if (
     key.includes('achievement_quiz') ||
-    key.includes('achievement_trainer') ||
-    key.includes('achievement_active_recall') ||
     key.includes('achievement_flashcards') ||
     key.includes('achievement_daily_phrase') ||
     key.includes('quiz_hard') ||
@@ -1139,27 +1137,6 @@ function classifyKey(input: {
   }
 
   if (
-    source === 'app/trainer_session.ts' &&
-    (
-      key === 'trainer_free_session_v1' ||
-      key === 'trainer_session_entry_v1'
-    )
-  ) {
-    return {
-      scope: 'legacy_english',
-      learningState: true,
-      targetNamespaceRequired: false,
-      risk: 'medium',
-      confidence: 'high',
-      notes: [
-        'Reviewed legacy English trainer session key; runtime reads/writes through trainerFreeSessionKey/trainerSessionEntryKey and the French trainer source gate.',
-      ],
-    };
-  }
-
-  if (
-    key.includes('trainer_store') ||
-    key.includes('active_recall') ||
     key.includes('mistake') ||
     key.includes('diagnostic') ||
     key.includes('fifty_fifty') ||
@@ -1184,8 +1161,6 @@ function classifyKey(input: {
     key.includes('quiz_nav_level') ||
     key.includes('achievement_lesson_') ||
     key.includes('achievement_quiz') ||
-    key.includes('achievement_trainer') ||
-    key.includes('achievement_active_recall') ||
     key.includes('achievement_flashcards') ||
     key.includes('achievement_daily_phrase') ||
     key.includes('quiz_hard') ||
@@ -1196,7 +1171,7 @@ function classifyKey(input: {
     key === 'flashcards' ||
     key === 'flashcards_v1'
   ) {
-    const isBlocker = key.includes('trainer_store') || key.includes('lesson') || key.includes('unlocked_lessons');
+    const isBlocker = key.includes('mistake_practice') || key.includes('lesson') || key.includes('unlocked_lessons');
     notes.push('Target-sensitive learning state; must be reviewed before multi-target integration.');
     if (input.cloudSyncKey) notes.push('This key is cloud-synced and needs cloud merge/restore review.');
     if (input.operation === 'cloudSync') {

@@ -67,8 +67,6 @@ import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId }
 import EnergyIcon from '../../components/EnergyIcon';
 import { StreakChainIcon } from '../../components/StreakChainIcon';
 import { loadAllMedals, countMedals } from '../medal_utils';
-import { getTrainerTotalDue } from '../trainer_store';
-import { prefetchTrainerPracticeSnapshot } from '../trainer_practice_prefetch';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import SurveyTaskCard from '../../components/SurveyTaskCard';
@@ -498,7 +496,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const { theme: t, isDark, f, themeMode } = useTheme();
     const { s, lang } = useLang();
     const { studyTarget } = useStudyTarget();
-    const trainerPracticeSourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
     const insets = useStableSafeAreaInsets();
     const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
     const topFadeScroll = useTopFadeScroll();
@@ -588,18 +585,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         notifyFirstHomeFrameReady();
     }, [notifyFirstHomeFrameReady]);
-    useEffect(() => {
-        if (!homeRuntimeActive) return undefined;
-        const task = InteractionManager.runAfterInteractions(() => {
-            void prefetchTrainerPracticeSnapshot({
-                studyTarget,
-                sourceLocale: trainerPracticeSourceLocale,
-            });
-        });
-        return () => {
-            task.cancel();
-        };
-    }, [homeRuntimeActive, studyTarget, trainerPracticeSourceLocale]);
     const appSnapshot = useAppSnapshotSelector((snapshot) => ({
         profile: snapshot.profile,
         progress: snapshot.progress,
@@ -1851,10 +1836,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // Полный расчёт: при смене ISO-недели создаст pending и сохранит state.
                 // Если remote недоступен — функция сама перейдет на локальный state.
                 leagueOpenPromise,
-                // SRS-счётчик считается из локального стора (AsyncStorage, без сети) —
-                // дёшево и безопасно, поэтому показываем реальное число и в проде,
-                // а не всегда 0. При сбое — пустой массив (подпись «Ошибки под контролем»).
-                getTrainerTotalDue(studyTarget).then(n => Array(n).fill(null)).catch(() => []),
                 loadAllMedals(studyTarget),
                 isRepairEligible(),
                 AsyncStorage.multiGet(['login_bonus_pending', 'comeback_pending', 'weekly_pb_v1']),
@@ -2406,9 +2387,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     vi: 'Luyện tập', id: 'Latihan', tr: 'Pratik', pl: 'Praktyka',
                 }),
                 onPress: () => {
-                    // Прогреваем снапшот тренажёра до навигации — первый кадр без спиннера.
-                    void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale });
-                    go('/trainer');
+                    hapticTap();
+                    nav.push({
+                            pathname: '/max_call_prestart',
+                        params: { format: 'tutor', cefr: guessLearnerCefr() },
+                    } as never);
                 },
             },
             {

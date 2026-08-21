@@ -26,7 +26,7 @@ export type WeeklyReviewActivitySnapshotSource = SourceError | {
   reviews7d: number;
 };
 
-export type WeeklyReviewTrainerSnapshotSource = SourceError | {
+export type WeeklyReviewPracticeSnapshotSource = SourceError | {
   status: 'ready';
   dueWords: number;
   duePhrases: number;
@@ -37,7 +37,7 @@ export type WeeklyReviewTrainerSnapshotSource = SourceError | {
 export interface WeeklyReviewSnapshotSources {
   mistakes: WeeklyReviewMistakeSnapshotSource;
   activity: WeeklyReviewActivitySnapshotSource;
-  trainer: WeeklyReviewTrainerSnapshotSource;
+  practice: WeeklyReviewPracticeSnapshotSource;
 }
 
 function count(value: unknown): number {
@@ -67,10 +67,10 @@ export function buildWeeklyReviewSnapshot(
   const coverage = buildCoverage(sources);
   const mistakes = sources.mistakes.status === 'ready' ? sources.mistakes : null;
   const activity = sources.activity.status === 'ready' ? sources.activity : null;
-  const trainer = sources.trainer.status === 'ready' ? sources.trainer : null;
+  const practice = sources.practice.status === 'ready' ? sources.practice : null;
   const mistakeCount30d = count(mistakes?.total30d);
-  const dueWords = count(trainer?.dueWords);
-  const duePhrases = count(trainer?.duePhrases);
+  const dueWords = count(practice?.dueWords);
+  const duePhrases = count(practice?.duePhrases);
   const status: WeeklyReviewSnapshot['status'] = !mistakes
     ? 'error'
     : coverage.failed > 0
@@ -85,7 +85,7 @@ export function buildWeeklyReviewSnapshot(
     count(activity?.activeDays30d),
     count(activity?.weekXp),
     dueWords + duePhrases,
-    count(trainer?.totalTracked),
+    count(practice?.totalTracked),
   ];
 
   return {
@@ -106,9 +106,9 @@ export function buildWeeklyReviewSnapshot(
     reviews7d: count(activity?.reviews7d),
     dueWords,
     duePhrases,
-    overdue: count(trainer?.overdue),
+    overdue: count(practice?.overdue),
     totalDue: dueWords + duePhrases,
-    totalTracked: count(trainer?.totalTracked),
+    totalTracked: count(practice?.totalTracked),
     sourceCoverage: coverage,
   };
 }

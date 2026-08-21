@@ -46,7 +46,8 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
-// cards-2.0 (E13): XP-буст ×1.5 за perfect session карточек (§4) — только trainer/review
+import { isFriendsTogetherEnabled } from './friends_together/together_config';
+// cards-2.0 (E13): XP-буст ×1.5 за идеальную сессию карточек (§4).
 // stationary_clubs feature удалён — мультипликатор фиксирован 1.
 
 /** Уровень клуба недели (очки группы): +0.1 к множителю за каждый шаг от базового. */
@@ -105,8 +106,7 @@ export type XPSource =
   | 'verb_learned'
   | 'preposition_drill_answer'    // Правильный ответ в тренажёре предлогов (+2)
   | 'preposition_drill_perfect'   // Идеальное прохождение тренажёра предлогов (+10, разово на урок)
-  | 'review_answer'
-  | 'trainer_answer'   // Верный ответ в сессии тренера карточек (+5, паритет с review — Cards 2.0 §3.6)
+  | 'mistake_practice_answer'
   | 'diagnostic_test'
   | 'daily_login_bonus'
   | 'daily_phrase_quest'
@@ -146,7 +146,7 @@ function progressEventTypeForSource(source: XPSource): ProgressEventType | null 
     case 'verb_learned':
     case 'preposition_drill_answer':
     case 'preposition_drill_perfect':
-    case 'review_answer':
+    case 'mistake_practice_answer':
     case 'diagnostic_test':
     case 'daily_login_bonus':
     case 'daily_phrase_quest':
@@ -477,7 +477,7 @@ export const registerXP = async (
 
     // 1. Множители применяются к заработку (уроки, тренировки, сундуки, ежедневные задания)
     // К ставкам и выигрышам по ставкам множители не применяются.
-    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'trainer_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_phrase_quest'].includes(source);
+    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'mistake_practice_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_phrase_quest', 'plan_task_complete'].includes(source);
 
     if (isEarnedXP && amount > 0) {
       // А) Клуб: XP-буст + уровень клуба недели (один множитель в UI и при начислении)

@@ -53,8 +53,7 @@ import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collect
 import { safeRouterBack } from './navigation_back';
 import { lessonWordRecognitionPrompt } from './lesson_words_spanish_gloss';
 import { LESSON_WORD_ES_BY_EN } from './lesson_words_es_by_en';
-import { logMistake } from './mistake_log';
-import { recordWordMistake, activateWordForTrainer } from './trainer_store';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { bumpStatsDaily } from './stats_daily_breakdown';
@@ -3035,15 +3034,22 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         };
         logMistake(current.word.en, lessonId, 'lesson_words', 'wrong_pick', mistakeMeta, studyTarget);
         wrongMistakesRef.current.push({ phrase: current.word.en, ...mistakeMeta });
-        // Тренер: считаем ошибки; при 2-й — активируем слово в очереди
-        const wKey = current.word.en;
-        const prevCount = wordMistakeCountRef.current[wKey] ?? 0;
-        const newCount = prevCount + 1;
-        wordMistakeCountRef.current[wKey] = newCount;
-        if (newCount === 2) {
-          void activateWordForTrainer(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos, current.word.es, studyTarget);
-        } else {
-          void recordWordMistake(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos, current.word.es, studyTarget);
+        if (studyTarget === 'en' || studyTarget === 'fr') {
+          void captureCurrentAccountObjectiveAttempt({
+            attemptId: `lesson-words:${studyTarget}:${lessonId}:${qIdx}:${current.word.en}:${current.roundIndex}:${opt}`,
+            studyTarget: studyTarget === 'fr' ? 'fr' : 'en',
+            verdict: 'wrong',
+            objective: true,
+            content: {
+              sourceKind: 'lesson_word',
+              sourceId: `${lessonId}:${current.word.en}`,
+              canonicalTarget: current.word.en,
+              sourceMeaning: current.word.ru,
+              lessonId: String(lessonId),
+              distractors: current.options,
+            },
+            facet: { kind: 'meaning', expected: current.word.en },
+          }).catch(() => {});
         }
         const resetCard = buildQueueItem(current.word, current.roundIndex);
         newQueue.splice(liveIndex, 1);

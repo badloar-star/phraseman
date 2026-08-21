@@ -87,7 +87,7 @@ type DomainName =
   | 'lesson_session_local'
   | 'lesson_rewards'
   | 'level_exams'
-  | 'trainer_practice'
+  | 'mistake_practice'
   | 'personal_practice'
   | 'achievements'
   | 'cloud_sync'
@@ -201,14 +201,12 @@ function domainForRecord(record: { key?: string; keyPattern?: string; sourcePath
   }
   if (id.startsWith('level_exam_') || id === 'lingman_certificate_v1') return 'level_exams';
   if (
-    id.includes('trainer_store') ||
-    id.includes('active_recall') ||
-    id.includes('mistake_log') ||
+    id.includes('mistake_practice') ||
     id.includes('preposition_progress') ||
     id.includes('prep_drill_perfect') ||
     id.includes('pos_mastery')
   ) {
-    return 'trainer_practice';
+    return 'mistake_practice';
   }
   if (id.includes('diagnostic') || id.includes('open_diagnostic') || id.includes('personal_practice')) return 'personal_practice';
   if (id.includes('achievement') || id === 'achievements_state') return 'achievements';
@@ -561,31 +559,26 @@ async function main(): Promise<void> {
       ],
     }),
     makeDomain({
-      domain: 'trainer_practice',
+      domain: 'mistake_practice',
       records,
-      productModule: 'app/target_practice_store.ts',
+      productModule: 'app/mistake_practice_store.ts',
       proposedApi: [
-        'getTrainerQueue(studyTarget)',
-        'saveTrainerQueue(studyTarget, queue)',
-        'appendMistake(studyTarget, item)',
-        'getActiveRecallItems(studyTarget)',
+        'loadMistakeEventJournal(accountScope, studyTarget)',
+        'appendMistakeEvent(accountScope, studyTarget, event)',
+        'mergeMistakeEvents(accountScope, studyTarget, events)',
       ],
       storageShape: [
-        'trainer_store_v2::{studyTarget}',
-        'mistake_log_v2::{studyTarget}',
-        'active_recall_v2::{studyTarget}',
+        'mistake_practice_v2::{studyTarget}::{accountScope}',
       ],
       blockers: [
-        'Trainer, active recall and mistake log carry target words, phrases and grammar categories.',
-        'My Practice depends on this store and would otherwise mix English and French diagnosis data.',
+        'Mistake Practice events carry target words, phrases and grammar categories.',
       ],
       requiredBeforeFrench: [
-        'Create target buckets for trainer_store_v1, mistake_log_v1 and active recall.',
-        'Prefix all diagnosis ids with studyTarget before personalization.',
+        'Keep every mistake journal physically scoped by owner and studyTarget.',
       ],
       tests: [
-        'English mistake log is invisible in French My Practice.',
-        'French trainer queue survives sourceLocale ru -> uk switch.',
+        'English mistakes are invisible in French Mistake Practice.',
+        'A late account-A append cannot write into account B.',
       ],
     }),
     makeDomain({

@@ -132,12 +132,12 @@ const REQUIREMENTS: Requirement[] = [
     requiredAdapters: [
       'cloud_sync_target_buckets',
       'lesson_session_store',
-      'trainer_practice_store',
+      'mistake_practice_store',
       'personal_practice_store',
       'flashcards_target_store',
     ],
     requiredTestEvidence: ['Cloud restore', 'French trainer', 'fr:<id>', 'French flashcard'],
-    requiredFileEvidence: ['lesson_session_store', 'trainer_store', 'personal_practice_store', 'flashcards/target_storage'],
+    requiredFileEvidence: ['lesson_session_store', 'mistake_practice_store', 'personal_practice_store', 'flashcards/target_storage'],
     note: 'Local/cloud decisions need concrete stores for local-only target state and synced target state.',
   },
   {

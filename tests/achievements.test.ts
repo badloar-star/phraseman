@@ -17,6 +17,7 @@ jest.mock('../app/storage_mutex', () => ({
 
 jest.mock('../app/shards_system', () => ({
   addShardsRaw: jest.fn(async (amount: number) => amount),
+  commitShardCreditOperation: jest.fn(async () => ({ status: 'applied', balanceAfter: 0 })),
   getShardsBalance: jest.fn(async () => 0),
 }));
 
@@ -28,7 +29,7 @@ import {
   loadAchievementStatesForTarget,
   markAchievementsNotified,
 } from '../app/achievements';
-import { addShardsRaw } from '../app/shards_system';
+import { commitShardCreditOperation } from '../app/shards_system';
 import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
 import { MAX_LEVEL } from '../constants/theme';
 import {
@@ -54,6 +55,14 @@ describe('achievements', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
     jest.clearAllMocks();
+    (commitShardCreditOperation as jest.Mock).mockImplementation(async (input: {
+      localWrites?: readonly (readonly [string, string])[];
+    }) => {
+      if (input.localWrites?.length) {
+        await AsyncStorage.multiSet(input.localWrites.map(([key, value]) => [key, value]));
+      }
+      return { status: 'applied', balanceAfter: 1 };
+    });
     __resetAccountGenerationForTests();
     beginAccountGeneration('achievements-test-account');
   });
@@ -90,7 +99,7 @@ describe('achievements', () => {
 
     expect(AsyncStorage.getItem).not.toHaveBeenCalled();
     expect(AsyncStorage.setItem).not.toHaveBeenCalled();
-    expect(addShardsRaw).not.toHaveBeenCalled();
+    expect(commitShardCreditOperation).not.toHaveBeenCalled();
   });
 
   it('discards an omitted-token exported read when account A switches to B', async () => {
@@ -117,15 +126,10 @@ describe('achievements', () => {
     (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(statesRead);
     beginAccountGeneration('account-a');
 
-    const claim = claimAchievementShardReward(id);
-    for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
-      await Promise.resolve();
-    }
-    beginAccountGeneration('account-b');
-    release(JSON.stringify([{ id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false }]));
-
-    await expect(claim).resolves.toBe(false);
-    expect(addShardsRaw).not.toHaveBeenCalled();
+    await expect(claimAchievementShardReward(id)).resolves.toBe(false);
+    expect(AsyncStorage.getItem).not.toHaveBeenCalled();
+    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+    expect(commitShardCreditOperation).not.toHaveBeenCalled();
   });
 
   it('does not mark account A notifications after a deferred read resolves under account B', async () => {
@@ -249,28 +253,7 @@ describe('achievements', () => {
     expect(source).not.toContain('ALL_ACHIEVEMENTS.length');
   });
 
-  // зачем: владелец вернул награду за достижения — экран всё время обещал
-  // «+1 жемчужина», а выплата была обнулена и кнопка «Получить» работала
-  // впустую. Тест закрепляет, что обещание на экране совпадает с начислением.
-  it('grants exactly +1 pearl per achievement and marks it claimed', async () => {
-    const id = ALL_ACHIEVEMENTS[0].id;
-    await AsyncStorage.setItem('achievements_v1', JSON.stringify([
-      { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
-    ]));
-
-    await expect(claimAchievementShardReward(id)).resolves.toBe(true);
-
-    expect(addShardsRaw).toHaveBeenCalledTimes(1);
-    expect(addShardsRaw).toHaveBeenCalledWith(1, `achievement:${id}`, expect.objectContaining({
-      showEarnModal: false,
-      skipServerAwait: true,
-      accountToken: expect.objectContaining({ stableId: 'achievements-test-account', phase: 'active' }),
-    }));
-    const stored = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
-    expect(stored.find((s: { id: string }) => s.id === id)?.shardClaimed).toBe(true);
-  });
-
-  it('does not double-pay when the same achievement is claimed twice', async () => {
+  it('does not grant a pearl for a historical unclaimed achievement', async () => {
     const id = ALL_ACHIEVEMENTS[0].id;
     await AsyncStorage.setItem('achievements_v1', JSON.stringify([
       { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
@@ -278,40 +261,9 @@ describe('achievements', () => {
 
     await expect(claimAchievementShardReward(id)).resolves.toBe(true);
     await expect(claimAchievementShardReward(id)).resolves.toBe(false);
-    expect(addShardsRaw).toHaveBeenCalledTimes(1);
-  });
-
-  it('keeps a durable pending payout and retries the same id after a switch before payout confirmation', async () => {
-    const id = ALL_ACHIEVEMENTS[0].id;
-    await AsyncStorage.setItem('achievements_v1', JSON.stringify([
-      { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
-    ]));
-    let releasePayout!: (value: number) => void;
-    (addShardsRaw as jest.Mock).mockReturnValueOnce(new Promise<number>((resolve) => { releasePayout = resolve; }));
-    beginAccountGeneration('account-a');
-
-    const first = claimAchievementShardReward(id);
-    for (let i = 0; i < 30 && (addShardsRaw as jest.Mock).mock.calls.length === 0; i += 1) await Promise.resolve();
-    expect(addShardsRaw).toHaveBeenCalledTimes(1);
-    const firstOptions = (addShardsRaw as jest.Mock).mock.calls[0][2];
-    expect(firstOptions.idempotencyKey).toMatch(/^achievement:/);
-    const pendingKey = (await AsyncStorage.getAllKeys())
-      .find((key) => key.startsWith('achievement_shard_payout_pending_v1:'));
-    expect(pendingKey).toBeTruthy();
-
-    beginAccountGeneration('account-b');
-    releasePayout(1);
-    await expect(first).resolves.toBe(false);
-    const afterSwitch = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
-    expect(afterSwitch.find((state: { id: string }) => state.id === id)?.shardClaimed).toBe(false);
-
-    beginAccountGeneration('account-a');
-    (addShardsRaw as jest.Mock).mockResolvedValueOnce(1);
-    await expect(claimAchievementShardReward(id)).resolves.toBe(true);
-    const retryOptions = (addShardsRaw as jest.Mock).mock.calls[1][2];
-    expect(retryOptions.idempotencyKey).toBe(firstOptions.idempotencyKey);
-    const afterRetry = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
-    expect(afterRetry.find((state: { id: string }) => state.id === id)?.shardClaimed).toBe(true);
+    expect(commitShardCreditOperation).not.toHaveBeenCalled();
+    const stored = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
+    expect(stored.find((s: { id: string }) => s.id === id)?.shardClaimed).toBe(false);
   });
 
   it('updates the achievement reward modal before the claim promise finishes', () => {
@@ -474,7 +426,13 @@ describe('achievements', () => {
       await checkAchievements({ type: 'flashcard_viewed', count: 1 });
     }
     jest.useRealTimers();
-    await checkAchievements({ type: 'active_recall', correct: 50 });
+    await checkAchievements({
+      type: 'mistake_practice_progress',
+      corrected: 50,
+      voiceCorrected: 1,
+      independentDays: 7,
+      perfectSession: true,
+    });
 
     await checkAchievements({ type: 'wager_win_streak', count: 10 });
     await checkAchievements({ type: 'streak_freeze_used' });
@@ -493,16 +451,6 @@ describe('achievements', () => {
       await checkAchievements({ type: 'league_boost', multiplier: 2 });
     }
     await checkAchievements({ type: 'league_boost', multiplier: 3 });
-    jest.useFakeTimers().setSystemTime(new Date('2026-05-01T12:00:00'));
-    for (let i = 0; i < 7; i += 1) {
-      jest.setSystemTime(new Date(2026, 4, 1 + i, 12, 0, 0));
-      await checkAchievements({ type: 'trainer_correct', correct: 1 });
-    }
-    jest.useRealTimers();
-    await checkAchievements({ type: 'trainer_correct', correct: 9993 });
-    for (let i = 0; i < 50; i += 1) {
-      await checkAchievements({ type: 'trainer_session_result', correct: 5, wrong: 0, total: 5 });
-    }
     await checkAchievements({ type: 'avatar_custom_set' });
     await checkAchievements({ type: 'profile_theme_set' });
     await checkAchievements({ type: 'pack_purchased', totalPacks: 25 });
@@ -518,17 +466,31 @@ describe('achievements', () => {
     expect(missing).toEqual([]);
   });
 
-  it('unlocks recall milestones from the live trainer_correct event', async () => {
-    await checkAchievements({ type: 'trainer_correct', correct: 50 });
+  it('unlocks mistake milestones from corrected identities', async () => {
+    await checkAchievements({
+      type: 'mistake_practice_progress',
+      corrected: 10,
+      voiceCorrected: 1,
+      independentDays: 7,
+    });
 
     const unlocked = await unlockedIds();
-    expect(unlocked.has('recall_first')).toBe(true);
-    expect(unlocked.has('recall_50')).toBe(true);
-    expect(unlocked.has('trainer_session')).toBe(false);
+    expect(unlocked.has('mistake_corrected_first')).toBe(true);
+    expect(unlocked.has('mistake_corrected_10')).toBe(true);
+    expect(unlocked.has('mistake_voice_corrected_first')).toBe(true);
+    expect(unlocked.has('mistake_success_7_days')).toBe(true);
+    expect(unlocked.has('mistake_corrected_50')).toBe(false);
 
-    await checkAchievements({ type: 'trainer_session_result', correct: 3, wrong: 2, total: 5 });
+    await checkAchievements({
+      type: 'mistake_practice_progress',
+      corrected: 50,
+      voiceCorrected: 1,
+      independentDays: 7,
+      perfectSession: true,
+    });
     const afterSession = await unlockedIds();
-    expect(afterSession.has('trainer_session')).toBe(true);
+    expect(afterSession.has('mistake_corrected_50')).toBe(true);
+    expect(afterSession.has('mistake_perfect_session')).toBe(true);
   });
 
   it('backfills newly added progress achievements from existing local state', async () => {
@@ -542,7 +504,6 @@ describe('achievements', () => {
       ['flashcards_owned_packs_v1', JSON.stringify(['official_1', 'official_2', 'official_3'])],
       ['community_owned_pack_ids_v1', JSON.stringify(['community_1', 'community_2'])],
       ['shards_lifetime_spent_v1', '125'],
-      ['achievement_trainer_correct_count', '100'],
     ]);
 
     await checkAchievements({ type: 'backfill' });
@@ -554,8 +515,6 @@ describe('achievements', () => {
     expect(unlocked.has('pack_purchased')).toBe(true);
     expect(unlocked.has('pack_5_purchased')).toBe(true);
     expect(unlocked.has('shards_spent_100')).toBe(true);
-    expect(unlocked.has('recall_50')).toBe(true);
-    expect(unlocked.has('trainer_100_correct')).toBe(true);
   });
 
   it('backfills common achievements from isolated French target stores', async () => {

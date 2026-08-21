@@ -37,12 +37,6 @@ import { bumpStatsDaily } from './stats_daily_breakdown';
 import { getCurrentMultiplierBreakdown, getLessonDifficultyMultiplier, registerXP } from './xp_manager';
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { useEffectivePlatformOS } from './platform_ui_preview';
-// [SRS] Модуль интервального повторения (active_recall.ts).
-// recordMistake() вызывается при каждом неверном ответе в уроке.
-// Фраза попадает в AsyncStorage ('active_recall_items') с алгоритмом SM-2:
-//   interval=1 день, easeFactor=2.5. При повторных ошибках easeFactor снижается.
-// Связь: review.tsx — getDueItems(..., { commitSessionOverflow: true }).
-// Связь: home.tsx — countDueItemsToday() на бейдже.
 import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import TapScale from '../components/TapScale';
@@ -61,8 +55,8 @@ import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
 import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
 import ComboRing from '../components/feedback/ComboRing';
-import { recordMistake } from './active_recall';
-import { logMistake } from './mistake_log';
+import { captureObjectiveAttempt } from './mistake_practice_capture';
+import { getStableId } from './stable_id';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
 import {
   lessonTeachingNoteSeenStorageKey,
@@ -72,7 +66,6 @@ import {
   shouldShowLessonTeachingNote,
   type ResolvedLessonTeachingNote,
 } from './lesson_teaching_notes';
-import { recordPhraseMistake } from './trainer_store';
 import { checkCoachToastNeededWithAnalytics, coachToastDecisionToRouteParams } from './coach_toast_trigger';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
@@ -2922,7 +2915,6 @@ export default function LessonScreen() {
       // Если фраза новая — добавляется с nextDue = завтра.
       {
         const stRm = studyTargetRef.current;
-        // Аналитический лог ошибки (mistake_log.ts)
         const analyticsPhraseKey = phraseCanonicalAnswer(phrase, stRm);
         // Тренер: записываем фразу с errorWord (слово на котором ошибся)
         {

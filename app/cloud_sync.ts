@@ -61,7 +61,6 @@ import {
   projectCloudLeagueStateSnapshot,
 } from './league_open_cache_policy';
 import { clearScreenSnapshots } from './screen_snapshot_store';
-import { clearTrainerPracticeSnapshotOnDisk } from './trainer_practice_persist';
 import {
   invalidatePersonalPlanStateCache,
   withPersonalPlanStateStorageLock,
@@ -98,7 +97,6 @@ import {
 // класс бага, что «чужие пиксели после смены аккаунта»).
 const LEGACY_TODAY_ACCOUNT_STORAGE_KEYS = ['today_recommendation_history_v1'] as const;
 import {
-  activeRecallItemsKey,
   achievementStateKey,
   achievementLessonPerfectPassesKey,
   comboAchievementCounterKey,
@@ -153,11 +151,6 @@ import {
   lingmanExamAvailableKey,
   masteryFinishedOnceKey,
   masteryReplayCountKey,
-  mistakeLogKey,
-  mistakePracticeEventsKey,
-  mistakePracticePreferencesKey,
-  mistakePracticeProjectionKey,
-  mistakePracticeSessionKey,
   personalPracticeFreeAccessKey,
   personalPracticeTrainingProgressKey,
   posMasteryKey,
@@ -166,16 +159,14 @@ import {
   retiredCompetitiveModeStorageKeysForWipe,
   resolvedPersonalTrainingsKey,
   shareAchievementCounterKey,
-  activeRecallAchievementCorrectCountKey,
-  trainerAchievementCorrectCountKey,
-  trainerAchievementCorrectStreakKey,
-  trainerAchievementPerfectSessionCountKey,
-  trainerStoreKey,
   unlockedLessonsKey,
   userStatsKey,
   statsDailyBreakdownKey,
 } from './target_storage_keys';
-import { mergeMistakeEventJournalRaw } from './mistake_practice_cloud_merge';
+import {
+  restoreMistakePracticeEvents,
+  uploadMistakePracticeEvents,
+} from './mistake_practice_cloud_transport';
 import {
   LEGACY_FREE_LESSON_MIGRATION_COMPLETE,
   LEGACY_FREE_LESSON_MIN,
@@ -192,7 +183,6 @@ const LESSON_SESSION_FIELDS = ['cellIndex', 'phraseOrder', 'errorReplayQueue', '
 const GRAMMAR_HINT_STORAGE_IDS = ['grammar_hint_articles', 'grammar_hint_some_any'] as const;
 
 export const FRENCH_TARGET_SYNC_KEYS = [
-  mistakePracticeEventsKey('fr'),
   unlockedLessonsKey('fr'),
   legacyFreeLessonCapKey('fr'),
   legacyFreeLessonMigrationKey('fr'),
@@ -210,13 +200,6 @@ export const FRENCH_TARGET_SYNC_KEYS = [
   userStatsKey('fr'),
   statsDailyBreakdownKey('fr'),
   irregularVerbsGlobalKey('fr'),
-  trainerStoreKey('fr'),
-  activeRecallAchievementCorrectCountKey('fr'),
-  trainerAchievementCorrectCountKey('fr'),
-  trainerAchievementCorrectStreakKey('fr'),
-  trainerAchievementPerfectSessionCountKey('fr'),
-  mistakeLogKey('fr'),
-  activeRecallItemsKey('fr'),
   posMasteryKey('fr'),
   flashcardsSavedKey('fr'),
   customFlashcardsKey('fr'),
@@ -325,14 +308,9 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   // `fc_deck_best_stars_v1` больше нет ни в SYNC_KEYS, ни в merge-стратегиях.
   // «Вместе»: active_days_v1 мержится OR по датам между устройствами (см. функцию выше).
   active_days_v1: mergeActiveDaysRestoreValue,
-  [mistakePracticeEventsKey('en')]: mergeMistakeEventJournalRaw,
-  [mistakePracticeEventsKey('fr')]: mergeMistakeEventJournalRaw,
 };
 
 export const SYNC_KEYS = [
-  mistakePracticeEventsKey('en'),
-  // cards-2.0: очередь ошибок Тренера переживает переустановку.
-  'trainer_store_v1',
   // ── Идентичность и базовый прогресс ────────────────────────────────────────
   'user_total_xp',
   'user_prev_xp',
@@ -383,10 +361,6 @@ export const SYNC_KEYS = [
   'flashcards_v1',
   'achievements_state',
   // ── Прогресс достижений (отдельные счётчики до момента unlock) ───────────
-  'achievement_active_recall_correct_count',
-  'achievement_trainer_correct_count',
-  'achievement_trainer_correct_streak_v1',
-  'achievement_trainer_perfect_session_count',
   'helpful_error_reports_confirmed_v1',
   'achievement_daily_phrase_read_count',
   'achievement_daily_phrase_save_count',
@@ -398,7 +372,6 @@ export const SYNC_KEYS = [
   'achievement_energy_refill_count',
   'achievement_league_boost_count',
   'achievement_gift_sent_count',
-  'active_recall_items',
   'onboarding_done',
   'lang',
   'app_lang',
@@ -594,6 +567,7 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'learning_v2_progress:',
   'v2:outbox:v1:',
   'v2:outbox:v2:',
+  'mistake_practice_v2::',
   'v2:required-session-local-commit:v1:',
   'v2:required-session-local-commit:v2:',
   'v2:required-session-local-commit:v3:',
@@ -655,9 +629,6 @@ async function collectAccountLocalDataKeys(): Promise<string[]> {
 
 export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()): string[] {
   const localOnlyTargetKeys = SYNC_STUDY_TARGETS.flatMap((target) => [
-    mistakePracticeProjectionKey(target),
-    mistakePracticeSessionKey(target),
-    mistakePracticePreferencesKey(target),
     fiftyFiftyUsageKey(todayKey, target),
     lessonBonusHintsKey(todayKey, target),
     diagnosticOpenFlagKey(target),
@@ -1281,9 +1252,6 @@ const LEGACY_FREE_LESSON_MIGRATION_RESTORE_KEYS = new Set<string>([
 // values (gift_xp_multiplier, wager_discount, weekly_xp which resets weekly).
 export const MONOTONIC_COUNTER_RESTORE_KEYS = [
   'achievement_quiz_total_count',
-  'achievement_trainer_correct_count',
-  'achievement_trainer_perfect_session_count',
-  'achievement_active_recall_correct_count',
   'achievement_flashcards_flip_count',
   'achievement_flashcards_saved_count',
   'achievement_daily_phrase_read_count',
@@ -2663,6 +2631,10 @@ async function doSyncToCloud(): Promise<void> {
     // K3: проиграть офлайн-очередь атомарных дельт осколков (идемпотентно по opId).
     await resumePendingShardDeltas().catch(() => {});
     if (!isSyncGenerationCurrent()) return;
+    for (const target of SYNC_STUDY_TARGETS) {
+      await uploadMistakePracticeEvents({ accountScope: uid, studyTarget: target });
+      if (!isSyncGenerationCurrent()) return;
+    }
     await repairDevSeededStreakInStorage();
     if (!isSyncGenerationCurrent()) return;
     const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
@@ -3418,6 +3390,16 @@ async function restoreAndMigrateFromCloudResult(
     );
   }
 }
+    for (const target of SYNC_STUDY_TARGETS) {
+      await restoreMistakePracticeEvents({ accountScope: uid, studyTarget: target });
+      if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
+      // Lazy require avoids cloud_sync -> rewards -> xp_manager -> cloud_sync initialization cycle.
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { flushPendingMistakeCorrectionRewards } = require('./mistake_practice_rewards') as
+        typeof import('./mistake_practice_rewards');
+      await flushPendingMistakeCorrectionRewards({ accountScope: uid, studyTarget: target });
+      if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
+    }
 
 // ── Восстановить прогресс из облака ─────────────────────────────────────────
 // Вызывается при старте приложения ПОСЛЕ того как определён uid.
@@ -3913,7 +3895,6 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   clearCachedLeagueStateSnapshot();
   // зачем: ключ снапшота практики содержит только target+язык, БЕЗ uid — без сброса
   // следующий вошедший увидел бы на первом кадре чужую статистику ошибок.
-  clearTrainerPracticeSnapshotOnDisk();
   // зачем: общий снапшот экранов (стрик, рефералы, топ, аналитика и др.) поднимается
   // в память при старте и синхронно рисует первый кадр — при wipe его надо стереть
   // вместе с остальным, иначе на диске останутся чужие цифры.

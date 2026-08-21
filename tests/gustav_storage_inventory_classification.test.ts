@@ -63,14 +63,6 @@ describe('Gustav storage inventory classification', () => {
     expect(unknownText).not.toContain('pct at ');
 
     expect(inventory.records.find((record) => record.key === 'daily_phrase_v3')?.scope).toBe('legacy_english');
-    expect(inventory.records.find((record) => record.key === 'trainer_free_session_v1')?.scope).toBe('legacy_english');
-    expect(inventory.records.find((record) => (
-      record.key === 'active_recall_items' &&
-      record.sourcePath === 'app/cloud_sync.ts'
-    ))).toMatchObject({
-      scope: 'legacy_english',
-      targetNamespaceRequired: false,
-    });
     expect(inventory.records.find((record) => (
       record.key === 'lingman_certificate_v1' &&
       record.sourcePath === 'app/exam_certificate.ts'

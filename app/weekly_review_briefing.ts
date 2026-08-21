@@ -6,7 +6,6 @@ import { triLang, type Lang } from '../constants/i18n';
 import { loadActivity365Analytics, summarizeActivityWindow, type Activity365Analytics } from './activity_365_analytics';
 import { loadResolvedPersonalTrainings } from './diagnosis_training_progress';
 import { getDiagnosisTrainingForTarget } from './diagnosis_trainings';
-import { loadMistakeLog, type MistakeEntry } from './mistake_log';
 import { chooseAvailableDiagnosisForCategory } from './personal_practice_lesson_router';
 import {
   computePhraseAnalytics,
@@ -16,7 +15,10 @@ import {
   type WordCategoryStat,
 } from './phrase_analytics';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
-import { getTrainerDashboard, type TrainerDashboard } from './trainer_store';
+import {
+  loadMistakePracticeInsights,
+  type MistakePracticeInsights,
+} from './mistake_practice_insights';
 import { CATEGORY_LABEL_COPY } from './weekly_review_category_labels';
 import { buildWeeklyReviewSnapshot } from './weekly_review_snapshot';
 import {
@@ -38,19 +40,17 @@ type ResolvedTrainings = Awaited<ReturnType<typeof loadResolvedPersonalTrainings
 
 export interface BuildBriefingDependencies {
   nowMs: () => number;
-  loadMistakeEntries: (studyTarget?: RuntimeStudyTarget) => Promise<MistakeEntry[]>;
+  loadMistakeInsights: (studyTarget?: RuntimeStudyTarget) => Promise<MistakePracticeInsights>;
   computeAnalytics: () => Promise<PhraseAnalyticsResult>;
   loadActivity: () => Promise<Activity365Analytics>;
-  loadTrainer: (studyTarget?: RuntimeStudyTarget) => Promise<TrainerDashboard>;
   loadResolvedTrainings: (studyTarget?: RuntimeStudyTarget) => Promise<ResolvedTrainings>;
 }
 
 const DEFAULT_DEPS: BuildBriefingDependencies = {
   nowMs: Date.now,
-  loadMistakeEntries: loadMistakeLog,
+  loadMistakeInsights: (studyTarget) => loadMistakePracticeInsights(storageStudyTarget(studyTarget)),
   computeAnalytics: computePhraseAnalytics,
   loadActivity: loadActivity365Analytics,
-  loadTrainer: (studyTarget) => getTrainerDashboard(studyTarget),
   loadResolvedTrainings: (studyTarget) => loadResolvedPersonalTrainings({ studyTarget }),
 };
 
@@ -98,7 +98,7 @@ function lessonTitle(lessonId: number, lang: Lang): string {
   return sanitizeWeeklyReviewLearningText(lessonNamesForLang(lang)[lessonId - 1] ?? `Lesson ${lessonId}`, 120);
 }
 
-function coverageFor(statuses: Record<'mistakes' | 'activity' | 'trainer', boolean>): SourceCoverage {
+function coverageFor(statuses: Record<'mistakes' | 'activity' | 'practice', boolean>): SourceCoverage {
   const readySources = (Object.keys(statuses) as Array<keyof typeof statuses>).filter((key) => statuses[key]);
   const failedSources = (Object.keys(statuses) as Array<keyof typeof statuses>).filter((key) => !statuses[key]);
   return {
@@ -135,7 +135,7 @@ function recommendationFor(
 function buildRecommendations(
   weakStats: WordCategoryStat[],
   weakLessons: LessonMistakeStat[],
-  trainer: TrainerDashboard,
+  practice: MistakePracticeInsights,
   resolved: ResolvedTrainings,
   studyTarget: RuntimeStudyTarget | undefined,
   lang: Lang,
@@ -148,17 +148,11 @@ function buildRecommendations(
     recommendations.push(item);
   };
   for (const stat of weakStats) push(recommendationFor(stat, resolved, studyTarget, lang));
-  if (trainer.due.words > 0) push({
-    recommendationId: 'due:words',
-    actionKind: 'repeat_due_words',
-    label: lang === 'uk' ? 'Повторити слова' : 'Повторить слова',
-    routePayload: { queue: 'words' },
-  });
-  if (trainer.due.phrases > 0) push({
-    recommendationId: 'due:phrases',
-    actionKind: 'repeat_due_phrases',
-    label: lang === 'uk' ? 'Повторити фрази' : 'Повторить фразы',
-    routePayload: { queue: 'phrases' },
+  if (practice.dueWords + practice.duePhrases >= 5) push({
+    recommendationId: 'mistakes:ready',
+    actionKind: 'open_mistake_practice',
+    label: lang === 'uk' ? 'Виправити помилки' : 'Исправить ошибки',
+    routePayload: { length: 5 },
   });
   const lesson = weakLessons.find((item) => item.lessonId > 0);
   if (lesson) push({
@@ -170,33 +164,12 @@ function buildRecommendations(
   return recommendations.slice(0, 8);
 }
 
-function phraseRows(entries: readonly MistakeEntry[], nowMs: number) {
-  const dayMs = 24 * 60 * 60 * 1000;
-  const current = new Map<string, number>();
-  const previous = new Map<string, number>();
-  const all = new Map<string, { phrase: string; count: number }>();
-  for (const entry of entries.filter((item) => item.ts >= nowMs - 30 * dayMs && item.ts <= nowMs)) {
-    const phrase = sanitizeWeeklyReviewLearningText(entry.phrase, 160);
-    const key = phrase.toLocaleLowerCase();
-    if (!key) continue;
-    const row = all.get(key) ?? { phrase, count: 0 };
-    row.count += 1;
-    all.set(key, row);
-    if (entry.ts >= nowMs - 7 * dayMs) current.set(key, (current.get(key) ?? 0) + 1);
-    else if (entry.ts >= nowMs - 14 * dayMs) previous.set(key, (previous.get(key) ?? 0) + 1);
-  }
-  return Array.from(all.entries())
-    .sort((a, b) => b[1].count - a[1].count || a[0].localeCompare(b[0]))
-    .slice(0, 10)
-    .map(([key, row]) => {
-      const currentCount = current.get(key) ?? 0;
-      const previousCount = previous.get(key) ?? 0;
-      return {
-        phrase: row.phrase,
-        count: row.count,
-        trend: (currentCount > previousCount ? 'up' : currentCount < previousCount ? 'down' : 'flat') as 'up' | 'flat' | 'down',
-      };
-    });
+function phraseRows(insights: MistakePracticeInsights) {
+  return insights.topMistakes.map((item) => ({
+    phrase: sanitizeWeeklyReviewLearningText(item.phrase, 160),
+    count: item.count,
+    trend: 'flat' as const,
+  }));
 }
 
 function nonEmptyEvidence(entries: Array<[string, number | string | string[]]>): Record<string, number | string | string[]> {
@@ -211,29 +184,27 @@ export async function buildWeeklyReviewBriefing(
   const deps = options.deps ?? DEFAULT_DEPS;
   const nowMs = deps.nowMs();
   const target = storageStudyTarget(options.studyTarget);
-  const [mistakesSettled, analyticsSettled, activitySettled, trainerSettled, resolvedSettled] = await Promise.allSettled([
-    deps.loadMistakeEntries(options.studyTarget),
+  const [mistakesSettled, analyticsSettled, activitySettled, resolvedSettled] = await Promise.allSettled([
+    deps.loadMistakeInsights(options.studyTarget),
     deps.computeAnalytics(),
     deps.loadActivity(),
-    deps.loadTrainer(options.studyTarget),
     deps.loadResolvedTrainings(options.studyTarget),
   ]);
 
   const entries = mistakesSettled.status === 'fulfilled' ? mistakesSettled.value : [];
   const windows = summarizePhraseMistakeWindows(entries, nowMs);
   const activity = activitySettled.status === 'fulfilled' ? activitySettled.value : null;
-  const trainer = trainerSettled.status === 'fulfilled' ? trainerSettled.value : null;
   const activity7 = activity ? summarizeActivityWindow(activity.days, 7, nowMs) : null;
   const activity30 = activity ? summarizeActivityWindow(activity.days, 30, nowMs) : null;
   const coverage = coverageFor({
     mistakes: mistakesSettled.status === 'fulfilled' && analyticsSettled.status === 'fulfilled',
     activity: activitySettled.status === 'fulfilled',
-    trainer: trainerSettled.status === 'fulfilled',
+    practice: mistakesSettled.status === 'fulfilled',
   });
   const snapshot = buildWeeklyReviewSnapshot({
     mistakes: mistakesSettled.status === 'fulfilled'
       ? { status: 'ready', total7d: windows.last7.mistakes, total30d: windows.last30.mistakes, uniquePhrases: windows.last30.uniquePhrases }
-      : { status: 'error', errorCode: 'mistake_log_unavailable' },
+      : { status: 'error', errorCode: 'mistake_practice_unavailable' },
     activity: activity7 && activity30 && activity
       ? {
         status: 'ready', activeDays7d: activity7.activeDays, activeDays30d: activity30.activeDays,
@@ -242,12 +213,12 @@ export async function buildWeeklyReviewBriefing(
         reviews7d: activity7.reviews,
       }
       : { status: 'error', errorCode: 'activity_unavailable' },
-    trainer: trainer
-      ? { status: 'ready', dueWords: trainer.due.words, duePhrases: trainer.due.phrases, overdue: trainer.overdue, totalTracked: trainer.totalTracked }
-      : { status: 'error', errorCode: 'trainer_store_unavailable' },
+    practice: insights
+      ? { status: 'ready', dueWords: insights.dueWords, duePhrases: insights.duePhrases, overdue: insights.overdue, totalTracked: insights.totalTracked }
+      : { status: 'error', errorCode: 'mistake_practice_unavailable' },
   });
 
-  if (coverage.failed > 0 || analyticsSettled.status !== 'fulfilled' || resolvedSettled.status !== 'fulfilled' || !activity || !trainer) {
+  if (coverage.failed > 0 || analyticsSettled.status !== 'fulfilled' || resolvedSettled.status !== 'fulfilled' || !activity || !insights) {
     return { status: 'error', snapshot, coverage, errorCode: 'weekly_review_source_failed' };
   }
   if (snapshot.status === 'insufficient') return { status: 'insufficient', snapshot, coverage };
@@ -277,7 +248,7 @@ export async function buildWeeklyReviewBriefing(
     pct: stat.pct,
     mistakeCount: stat.mistakeCount,
   }));
-  const recommendations = buildRecommendations(weakStats, analytics.lessonStats, trainer, resolvedSettled.value, options.studyTarget, options.lang);
+  const recommendations = buildRecommendations(weakStats, analytics.lessonStats, insights, resolvedSettled.value, options.studyTarget, options.lang);
   const activityWeek = activity7!;
   const activityMonth = activity30!;
   const topMistakePhrases = phraseRows(entries, nowMs);
@@ -289,9 +260,9 @@ export async function buildWeeklyReviewBriefing(
     ['mistakes.last30.recoveredPhrases', windows.last30.recoveredPhrases],
     ['mistakes.weakCategories', weakCategories.map((item) => item.category)],
     ['mistakes.weakLessons', weakLessons.map((item) => String(item.lessonId))],
-    ['practice.dueWords', trainer.due.words],
-    ['practice.duePhrases', trainer.due.phrases],
-    ['practice.overdue', trainer.overdue],
+    ['practice.dueWords', insights.dueWords],
+    ['practice.duePhrases', insights.duePhrases],
+    ['practice.overdue', insights.overdue],
     ['effort.activeDays7d', activityWeek.activeDays],
     ['effort.activeDays30d', activityMonth.activeDays],
     ['effort.currentStreak', activity.currentStreak],
@@ -314,10 +285,10 @@ export async function buildWeeklyReviewBriefing(
       topMistakePhrases,
     },
     practice: {
-      dueWords: trainer.due.words,
-      duePhrases: trainer.due.phrases,
-      overdue: trainer.overdue,
-      totalTracked: trainer.totalTracked,
+      dueWords: insights.dueWords,
+      duePhrases: insights.duePhrases,
+      overdue: insights.overdue,
+      totalTracked: insights.totalTracked,
       completed7d: activityWeek.reviews,
       accuracy7d: null,
       accuracyDelta: null,

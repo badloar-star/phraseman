@@ -113,7 +113,7 @@ function saveListeningPrefs(prefs: ListeningPrefs): void {
     .catch(() => {});
 }
 
-// Fisher-Yates (паттерн trainer_words_session)
+// Fisher-Yates: единое перемешивание карточек.
 function shuffleArr<T>(a: readonly T[]): T[] {
   const r = [...a];
   for (let i = r.length - 1; i > 0; i--) {
@@ -540,7 +540,7 @@ export default function FlashcardsListeningSession() {
     />
   );
 
-  // ── Заголовок по набору (паттерн trainer_words_session E8) ────────────────
+  // ── Заголовок по набору ───────────────────────────────────────────────────
   const deckTitle = useMemo(() => {
     // cards-2.1: несколько наборов — «2 набора», один — как раньше
     if (deckRefs.length > 1) return decksCountLabel(lang, deckRefs.length);

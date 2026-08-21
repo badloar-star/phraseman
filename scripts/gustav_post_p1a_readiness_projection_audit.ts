@@ -145,7 +145,7 @@ function projectionFor(check: Record<string, unknown>): Projection {
     },
     'RDY-060': {
       p1aCoverage: 'none',
-      reason: 'P1A does not modify user-facing routes, lesson runtimes, trainer, flashcards, achievements, progress or My Practice surfaces.',
+      reason: 'P1A does not modify user-facing routes, lesson runtimes, flashcards, achievements, progress or Mistake Practice surfaces.',
     },
     'RDY-080': {
       p1aCoverage: 'not_applicable',

@@ -36,7 +36,7 @@ import { loadSettings } from './settings_edu';
 import { shuffle } from './utils_shuffle';
 import { isCorrectAnswer } from '../constants/contractions';
 import { registerXP } from './xp_manager';
-import { recordMistakeFromDiagnostic } from './active_recall';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';

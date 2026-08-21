@@ -29,11 +29,8 @@ import { getPremiumCourseLevel, markPremiumCourseLevelReached, unlockLesson } fr
 import { addShards, awardOneTime } from './shards_system';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import GoldBevel from '../components/GoldBevel';
-import { buildLevelExamEnglish, buildLevelExamHintPair, recordMistake } from './active_recall';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
-import { logMistake } from './mistake_log';
-import { resolveChoiceMistakeToken, resolvePhraseMistakeToken } from './mistake_token_resolver';
-import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { getCourseLevelIndex, getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { useEnergy } from '../components/EnergyContext';

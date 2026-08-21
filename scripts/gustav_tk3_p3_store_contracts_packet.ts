@@ -101,25 +101,23 @@ const CONTRACT_SPECS = [
     ],
   },
   {
-    id: 'trainer_practice_store',
-    domain: 'trainer_practice',
-    adapter: 'trainer_practice_store',
-    keyPattern: /active_recall|mistake|trainer/,
+    id: 'mistake_practice_store',
+    domain: 'mistake_practice',
+    adapter: 'mistake_practice_store',
+    keyPattern: /mistake_practice/,
     apiContract: [
-      'readTrainerPracticeState(studyTarget)',
-      'writeTrainerPracticeState(studyTarget, patch)',
-      'readMistakeLog(studyTarget)',
-      'appendMistakeLogEntry(studyTarget, entry)',
+      'loadMistakeEventJournal(accountScope, studyTarget)',
+      'appendMistakeEvent(accountScope, studyTarget, event)',
+      'mergeMistakeEvents(accountScope, studyTarget, events)',
     ],
     legacyEnglishCompatibility:
-      'Legacy trainer and active recall state remains English-only compatibility state until an approved adapter exists.',
+      'Retired practice stores are cleanup-only and are never imported into Mistake Practice.',
     frenchFailClosedBehavior:
-      'French trainer, active recall and mistake diagnosis state must not reuse English buckets or English word diagnostics.',
+      'French Mistake Practice must not reuse English buckets or English diagnostics.',
     acceptanceTests: [
-      'English trainer state remains readable from legacy storage.',
-      'French trainer state starts empty when its study-target bucket is absent.',
-      'French mistake entries do not appear in English trainer or My Practice diagnostics.',
-      'Cloud restore maps active recall state to progress/targets/{studyTarget}.',
+      'French Mistake Practice starts empty when its study-target bucket is absent.',
+      'French mistake entries do not appear in English Mistake Practice.',
+      'Cloud restore preserves owner and studyTarget for immutable events.',
     ],
   },
   {

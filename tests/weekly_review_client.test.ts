@@ -13,7 +13,7 @@ const snapshot: WeeklyReviewSnapshot = {
   activeDays7d: 4, activeDays30d: 12, currentStreak: 3, longestStreak: 5,
   weekXp: 120, weekMinutes: 40, lessons7d: 2, reviews7d: 3,
   dueWords: 4, duePhrases: 2, overdue: 1, totalDue: 6, totalTracked: 20,
-  sourceCoverage: { ready: 3, failed: 0, total: 3, readySources: ['mistakes', 'activity', 'trainer'], failedSources: [] },
+  sourceCoverage: { ready: 3, failed: 0, total: 3, readySources: ['mistakes', 'activity', 'practice'], failedSources: [] },
 };
 
 const briefing: WeeklyReviewBriefingV2 = {
@@ -27,7 +27,7 @@ const briefing: WeeklyReviewBriefingV2 = {
   },
   practice: { dueWords: 4, duePhrases: 2, overdue: 1, totalTracked: 20, completed7d: 5, accuracy7d: null, accuracyDelta: null },
   effort: { activeDays7d: 4, activeDays30d: 12, currentStreak: 3, longestStreak: 5, weekXp: 120, weekMinutes: 40, lessons7d: 2, reviews7d: 3 },
-  recommendations: [{ recommendationId: 'due:words', actionKind: 'repeat_due_words', label: 'Повторить слова', routePayload: { queue: 'words' } }],
+  recommendations: [{ recommendationId: 'due:mistakes', actionKind: 'open_mistake_practice', label: 'Исправить ошибки', routePayload: { length: '5' } }],
   evidenceRegistry: { 'practice.dueWords': 4 },
   coverage: snapshot.sourceCoverage,
 };
@@ -37,7 +37,7 @@ const review: WeeklyReviewV2 = {
   headline: 'Точный следующий шаг', summary: 'Повторение уже укрепляет материал.',
   patterns: [{ title: 'Глаголы', explanation: 'Сигнал повторяется.', evidenceRefs: ['practice.dueWords'] }],
   improvements: [], priorities: [{ title: 'Повторить', reason: 'Это актуально.', evidenceRefs: ['practice.dueWords'] }],
-  plan: [{ order: 1, actionKind: 'repeat_due_words', recommendationId: 'due:words', evidenceRefs: ['practice.dueWords'], expectedOutcome: 'Закрепить слова.' }],
+  plan: [{ order: 1, actionKind: 'open_mistake_practice', recommendationId: 'due:mistakes', evidenceRefs: ['practice.dueWords'], expectedOutcome: 'Исправить ошибки.' }],
   confidence: 'high', coverageNote: 'Все источники доступны.',
 };
 

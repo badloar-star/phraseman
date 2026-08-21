@@ -72,22 +72,6 @@ const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
     { t: 'p', d: 'M24 27 V34' },
     { t: 'p', d: 'M16 39 H32' },
   ],
-  trainer: [
-    { t: 'c', cx: 24, cy: 24, r: 16 },
-    { t: 'c', cx: 24, cy: 24, r: 9 },
-    { t: 'c', cx: 24, cy: 24, r: 2.5, fill: true },
-  ],
-  trainer_limit: [
-    { t: 'p', d: 'M14 29 C8.7 29 8.7 19 14 19 C20 19 28 29 34 29 C39.3 29 39.3 19 34 19 C28 19 20 29 14 29 Z' },
-  ],
-  smart_trainer: [
-    { t: 'c', cx: 24, cy: 24, r: 4.5 },
-    { t: 'c', cx: 10, cy: 12, r: 2.5 },
-    { t: 'c', cx: 38, cy: 12, r: 2.5 },
-    { t: 'c', cx: 10, cy: 36, r: 2.5 },
-    { t: 'c', cx: 38, cy: 36, r: 2.5 },
-    { t: 'p', d: 'M13 14.5 L20.5 20.5 M35 14.5 L27.5 20.5 M13 33.5 L20.5 27.5 M35 33.5 L27.5 27.5', o: 0.7 },
-  ],
   dialog_limit: [
     { t: 'p', d: DIALOG_BUBBLE },
     { t: 'c', cx: 17, cy: 21, r: 1.8, fill: true },
@@ -116,6 +100,10 @@ const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
     { t: 'p', d: 'M32 6 a25 25 0 0 1 0 36', o: 0.5 },
   ],
   diagnosis_training: [{ t: 'p', d: 'M6 24 H14 L19 13 L26 35 L31 24 H42' }],
+  mistake_practice: [
+    { t: 'c', cx: 24, cy: 24, r: 16 },
+    { t: 'p', d: 'M17 24 L22 29 L32 18' },
+  ],
   mastery: [
     { t: 'c', cx: 24, cy: 20, r: 10 },
     { t: 'p', d: 'M18 28 L14 42 L24 36 L34 42 L30 28', o: 0.7 },

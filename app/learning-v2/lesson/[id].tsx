@@ -43,6 +43,10 @@ import { getStableId } from "../../../app/stable_id";
 import { useLang } from "../../../components/LangContext";
 import { useStudyTarget } from "../../../components/StudyTargetContext";
 import { useTheme } from "../../../components/ThemeContext";
+import { usePremium } from "../../../components/PremiumContext";
+import MistakePracticeLoopNode from "../../../components/mistake-practice/MistakePracticeLoopNode";
+import { trackMistakePracticeEvent } from "../../../app/mistake_practice_analytics";
+import { loadLearningV2MistakeLoopCount } from "../../../app/learning_v2_mistake_loop_runtime";
 import {
   ensureLearningV2CompletionBackgroundSchedulerInstalled,
   enterLearningV2InteractiveSurface,
@@ -662,6 +666,37 @@ export default function LearningV2LessonMap() {
   const previousWalletFingerprintRef = useRef<string | null>(null);
   const walletPulse = useSharedValue(1);
   const walletPulseStyle = useAnimatedStyle(() => ({
+
+  useEffect(() => {
+    if (!isMapFocused || (studyTarget !== "en" && studyTarget !== "fr")) {
+      if (studyTarget !== "en" && studyTarget !== "fr") setMistakeLoopCount(0);
+      return;
+    }
+    let cancelled = false;
+    void (async () => {
+      const count = await loadLearningV2MistakeLoopCount({
+        studyTarget,
+        lessonId: mistakeLessonId,
+      });
+      if (!cancelled && count !== null) {
+        setMistakeLoopCount(count);
+        if (count >= 5) {
+          trackMistakePracticeEvent('mistake_practice_loop_available', {
+            study_target: studyTarget,
+            entry_source: 'learning_v2',
+            lesson_id: mistakeLessonId,
+            ready_count: count,
+            plus_access: hasPremiumAccess,
+          });
+        }
+      }
+    })().catch(() => {
+      if (!cancelled) setMistakeLoopCount(0);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [hasPremiumAccess, isMapFocused, mistakeLessonId, params.resultSessionId, studyTarget]);
     transform: [{ scale: walletPulse.value }],
   }));
   const returnReward = useMemo(() => {
@@ -1072,6 +1107,29 @@ export default function LearningV2LessonMap() {
         }
         renderItem={({ item }) => {
           if (item.kind === "session") {
+            {mistakeLoopCount >= 5 ? (
+              <MistakePracticeLoopNode
+                count={mistakeLoopCount}
+                locked={!hasPremiumAccess}
+                onPress={() => {
+                  if (!hasPremiumAccess) {
+                    router.push({ pathname: "/premium_modal", params: { context: 'mistake_practice' } } as never);
+                    return;
+                  }
+                  trackMistakePracticeEvent('mistake_practice_loop_started', {
+                    study_target: studyTarget,
+                    entry_source: 'learning_v2',
+                    lesson_id: mistakeLessonId,
+                    ready_count: mistakeLoopCount,
+                    plus_access: true,
+                  });
+                  router.push({
+                    pathname: '/mistake_practice_session',
+                    params: { length: '5', lessonId: mistakeLessonId },
+                  } as never);
+                }}
+              />
+            ) : null}
             const pathIndex = pathIndexByItemId.get(item.id) ?? 0;
             return (
               <Node

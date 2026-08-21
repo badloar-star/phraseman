@@ -45,18 +45,14 @@ describe('Gustav French dev surface parity', () => {
     expect(lessonMenu).not.toContain('hideEnglishOnlyAuxiliary');
   });
 
-  it('keeps every direct trainer session screen behind the French trainer source gate', () => {
-    const trainerSessionFiles = [
-      read('app/trainer_words_session.tsx'),
-      read('app/trainer_phrases_session.tsx'),
-    ];
+  it('keeps mistake practice target-scoped and explicitly supports French', () => {
+    const session = read('app/mistake_practice_session.tsx');
+    const store = read('app/mistake_practice_store.ts');
 
-    for (const source of trainerSessionFiles) {
-      expect(source).toContain('trainerSessionContentAvailableForTarget(studyTarget)');
-      expect(source).toContain('frenchTrainerGateCopy(lang)');
-      expect(source).toContain('if (!trainerGateOpen)');
-      expect(source).toContain("router.replace('/trainer' as any)");
-    }
+    expect(session).toContain("studyTarget !== 'en' && studyTarget !== 'fr'");
+    expect(session).toContain('loadMistakeEventJournal({ accountScope: scope, studyTarget })');
+    expect(store).toContain('mistakePracticeEventsKey(input.studyTarget)');
+    expect(store).toContain('input.event.studyTarget !== input.studyTarget');
   });
 
 

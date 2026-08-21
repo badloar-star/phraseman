@@ -1,10 +1,8 @@
 import {
   assertTargetKey,
-  activeRecallAchievementCorrectCountKey,
   achievementLessonMarathonDayKey,
   achievementLessonPerfectPassesKey,
   comboAchievementCounterKey,
-  activeRecallItemsKey,
   customFlashcardsKey,
   dailyPhraseAchievementReadCountKey,
   dailyPhraseAchievementSaveCountKey,
@@ -69,10 +67,6 @@ import {
   storageSourceLocale,
   storageStudyTarget,
   targetKey,
-  trainerAchievementCorrectCountKey,
-  trainerAchievementCorrectStreakKey,
-  trainerAchievementPerfectSessionCountKey,
-  trainerStoreKey,
   type TargetKeyDomain,
   unlockedLessonsKey,
   userStatsKey,
@@ -104,7 +98,6 @@ describe('target storage key contract', () => {
   it('rejects empty ids and raw target-sensitive keys', () => {
     expect(() => targetKey('lesson_progress', 'fr', '')).toThrow(/Empty target key id/);
     expect(() => assertTargetKey('lesson_progress_v1')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('active_recall_items')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('diagnosis_training_progress_v1:article_a_an')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('diagnosis_training_free_access_v1')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('resolved_personal_trainings_v1')).toThrow(/Raw target-sensitive key/);
@@ -156,10 +149,6 @@ describe('target storage key contract', () => {
     expect(() => assertTargetKey('flashcards_market_built_cards_v1')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('flashcards_market_dev_active_pack_v1')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('flashcards_opened_packs_v1')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('achievement_trainer_correct_count')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('achievement_active_recall_correct_count')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('achievement_trainer_correct_streak_v1')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('achievement_trainer_perfect_session_count')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('prep_drill_perfect_8')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('level_exam_A1_passed')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('level_exam_A1_medal_tier')).toThrow(/Raw target-sensitive key/);
@@ -233,19 +222,11 @@ describe('target storage key contract', () => {
     expect(grammarHintSeenKey('grammar_hint_articles', 'en')).toBe('grammar_hint_articles');
     expect(grammarHintSeenKey('grammar_hint_articles', 'fr')).toBe('lesson_session_local_v2::fr::grammar_hint_articles');
     expect(prepositionDrillPerfectKey(8, 'fr')).toBe('lesson_rewards_v2::fr::prep_drill_perfect_8');
-    expect(trainerStoreKey('fr')).toBe('trainer_practice_v2::fr::trainer_store_v1');
-    expect(mistakeLogKey('fr')).toBe('trainer_practice_v2::fr::mistake_log_v1');
-    expect(activeRecallItemsKey('fr')).toBe('trainer_practice_v2::fr::active_recall_items');
-    expect(trainerAchievementCorrectCountKey('en')).toBe('achievement_trainer_correct_count');
-    expect(trainerAchievementCorrectCountKey('fr')).toBe('trainer_practice_v2::fr::achievement_trainer_correct_count');
-    expect(activeRecallAchievementCorrectCountKey('fr')).toBe('trainer_practice_v2::fr::achievement_active_recall_correct_count');
-    expect(trainerAchievementCorrectStreakKey('fr')).toBe('trainer_practice_v2::fr::achievement_trainer_correct_streak_v1');
-    expect(trainerAchievementPerfectSessionCountKey('fr')).toBe('trainer_practice_v2::fr::achievement_trainer_perfect_session_count');
     expect(dailyPhraseAchievementReadCountKey('en')).toBe('achievement_daily_phrase_read_count');
     expect(dailyPhraseAchievementReadCountKey('fr')).toBe('daily_phrase_v2::fr::achievement_daily_phrase_read_count');
     expect(dailyPhraseAchievementSaveCountKey('fr')).toBe('daily_phrase_v2::fr::achievement_daily_phrase_save_count');
     expect(posMasteryKey('en')).toBe('pos_mastery_v1');
-    expect(posMasteryKey('fr')).toBe('trainer_practice_v2::fr::pos_mastery_v1');
+    expect(posMasteryKey('fr')).toBe('target_stats_v2::fr::pos_mastery_v1');
     expect(personalPracticeTrainingProgressKey('article_a_an', 'en', 'uk')).toBe('diagnosis_training_progress_v1:article_a_an');
     expect(personalPracticeTrainingProgressKey('article_a_an', 'fr', 'ru')).toBe('personal_practice_v2::fr::ru::diagnosis_training_progress_v1%3Aarticle_a_an');
     expect(personalPracticeTrainingProgressKey('article_a_an', 'fr', 'uk')).toBe('personal_practice_v2::fr::uk::diagnosis_training_progress_v1%3Aarticle_a_an');

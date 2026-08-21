@@ -150,6 +150,7 @@ service cloud.firestore {
     }
 
     function newDocHasNoServerIdentityWrites() {
+        'mistakePracticeMergePending',
       return !request.resource.data.keys().hasAny(serverOwnedUserIdentityFields());
     }
 

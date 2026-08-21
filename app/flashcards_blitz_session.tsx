@@ -71,6 +71,7 @@ import { getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mo
 import { commitBlitzScore, getBlitzBest } from './flashcards/blitz_record';
 import { safeRouterBack } from './navigation_back';
 import { summarizeSession, type SessionAnswerEvent, type SessionOutcomeSummary } from './flashcards/session_queue';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 
 /** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050 / listening #9C6ADE). */
 const ACCENT = '#FF8A3D';
@@ -88,7 +89,7 @@ type ResultState = {
   isRecord: boolean;
 };
 
-// Fisher-Yates (паттерн trainer_words_session)
+// Fisher-Yates: единое перемешивание карточек.
 function shuffleArr<T>(a: readonly T[]): T[] {
   const r = [...a];
   for (let i = r.length - 1; i > 0; i--) {

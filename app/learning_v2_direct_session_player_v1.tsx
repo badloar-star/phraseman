@@ -56,6 +56,7 @@ import {
 import type { V2LocalEvaluatorResponseV1 } from "../modules/learning-v2/runtime/local_evaluator_capsule_v1";
 import { learningV2CourseSessionVoiceResponseV1 } from "../modules/learning-v2/runtime/course_session_voice_response_v1";
 import { getStableId } from "./stable_id";
+import { captureCurrentAccountObjectiveAttempt } from "./mistake_practice_capture";
 import { safeRouterBack } from "./navigation_back";
 import {
   prepareCurrentLearningV2CourseSessionV3,

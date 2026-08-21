@@ -1,7 +1,7 @@
 // cards-2.0 (E7): единая очередь записи `custom_flashcards_v2`.
 //
 // ВСЕ записи юзерской библиотеки карточек идут через одну mutex-очередь
-// (functional-update, по образцу `app/trainer_store.ts:91` / `hooks/use-flashcards.ts`) —
+// (functional-update, по образцу `hooks/use-flashcards.ts`) —
 // иначе параллельные операции (undo-восстановление + создание карточки,
 // быстрые свайпы удаления) теряют данные: последний setItem перетирает предыдущий.
 //

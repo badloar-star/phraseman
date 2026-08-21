@@ -351,7 +351,7 @@ async function main(): Promise<void> {
     'Readiness generation blockers must be zero.',
     'Target-safe storage architecture must be implemented and verified.',
     'Cloud sync must separate global, source-locale and study-target state.',
-    'Achievement, stats, trainer, quiz, flashcard and My Practice state must be target-scoped.',
+    'Achievement, stats, quiz, flashcard and Mistake Practice state must be target-scoped.',
     'Generated French content audit schema must exist before any production apply.',
     'Research pack must be attached before first French translation batch.',
     'Per-domain translation agents must sign off on grammar, naturalness, source-locale parity and runtime shape.',

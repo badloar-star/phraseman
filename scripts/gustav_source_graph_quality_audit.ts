@@ -153,7 +153,7 @@ function renderMarkdown(audit: QualityAudit): string {
     `- Quizzes: ${audit.summary.quizzes}`,
     `- Flashcards: ${audit.summary.flashcards}`,
     `- Daily phrases: ${audit.summary.dailyPhrases}`,
-    `- My Practice nodes: ${audit.summary.personalPracticeNodes}`,
+    `- Mistake Practice nodes: ${audit.summary.personalPracticeNodes}`,
     `- General quiz items: ${audit.summary.generalQuizItems}`,
     `- Generated files: ${audit.summary.generatedFiles}`,
     `- Generated phrase entries: ${audit.summary.generatedPhraseEntries}`,
@@ -340,8 +340,8 @@ async function main(): Promise<void> {
     pushFinding(findings, {
       id: 'SGQ-040',
       severity: 'blocker',
-      title: 'My Practice diagnosis nodes have unresolved source files',
-      detail: `${personalPracticeSourceGaps.length} My Practice nodes point to missing source files.`,
+      title: 'Mistake Practice diagnosis nodes have unresolved source files',
+      detail: `${personalPracticeSourceGaps.length} Mistake Practice nodes point to missing source files.`,
       sourceRefs: personalPracticeSourceGaps.slice(0, 20).flatMap((node) => refs(node)),
     });
   }
@@ -396,7 +396,7 @@ async function main(): Promise<void> {
         ...(generatedSupportFiles.length > 0 && !generatedSupportIsolationPass
           ? ['Prove generated ES L2 support files do not define French curriculum structure.']
           : []),
-        'Run pedagogical review over extracted lessons, quizzes, flashcards, daily phrases and My Practice nodes.',
+        'Run pedagogical review over extracted lessons, quizzes, flashcards, daily phrases and Mistake Practice nodes.',
         'Keep sourceLocale ru/uk prompts separate from studyTarget fr output.',
       ];
   const checks = 22

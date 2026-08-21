@@ -294,8 +294,6 @@ export type SourceTargetKeyDomain = typeof SOURCE_TARGET_KEY_DOMAINS[number];
 const SEP = '::';
 const RAW_TARGET_KEY_PATTERNS = [
   'lesson_progress_v1',
-  'trainer_store_v1',
-  'mistake_log_v1',
   'flashcards_v1',
 ];
 

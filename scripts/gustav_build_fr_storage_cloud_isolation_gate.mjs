@@ -153,7 +153,7 @@ function main() {
   }
 
   const directLegacyRiskNotes = [];
-  for (const legacy of ['unlocked_lessons', 'lesson1_progress', 'level_exam_A1_passed', 'trainer_store_v1']) {
+  for (const legacy of ['unlocked_lessons', 'lesson1_progress', 'level_exam_A1_passed']) {
     if (cloudSyncSource.includes(`'${legacy}'`)) {
       directLegacyRiskNotes.push(`${legacy} remains in legacy English/cloud scope`);
     }

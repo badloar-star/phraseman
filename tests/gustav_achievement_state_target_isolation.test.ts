@@ -5,7 +5,6 @@ import {
   loadAchievementStatesForTarget,
 } from '../app/achievements';
 import {
-  activeRecallAchievementCorrectCountKey,
   achievementLessonMarathonDayKey,
   achievementStateKey,
   comboAchievementCounterKey,
@@ -17,9 +16,6 @@ import {
   flashcardsAchievementViewStreakKey,
   lessonProgressKey,
   shareAchievementCounterKey,
-  trainerAchievementCorrectCountKey,
-  trainerAchievementCorrectStreakKey,
-  trainerAchievementPerfectSessionCountKey,
 } from '../app/target_storage_keys';
 import {
   __resetAccountGenerationForTests,
@@ -155,36 +151,24 @@ describe('Gustav achievement state target isolation', () => {
     expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'flashcards_view_7_days')?.unlockedAt).toBeNull();
   });
 
-  it('keeps French trainer and recall achievement evidence out of legacy English storage', async () => {
-    await AsyncStorage.multiSet([
-      ['achievement_trainer_correct_count', '10000'],
-      ['achievement_active_recall_correct_count', '10000'],
-      ['achievement_trainer_correct_streak_v1', JSON.stringify({ day: '2026-05-22', streak: 7 })],
-      ['achievement_trainer_perfect_session_count', '50'],
-    ]);
-
-    await checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget: 'fr' });
-    await checkAchievements({ type: 'active_recall', correct: 1, studyTarget: 'fr' });
-    await checkAchievements({ type: 'trainer_session_result', correct: 5, wrong: 0, total: 5, studyTarget: 'fr' });
+  it('keeps French mistake-practice achievements out of English state', async () => {
+    await checkAchievements({
+      type: 'mistake_practice_progress',
+      corrected: 1,
+      voiceCorrected: 1,
+      independentDays: 7,
+      perfectSession: true,
+      studyTarget: 'fr',
+    });
 
     const legacy = JSON.parse(await AsyncStorage.getItem('achievements_v1') ?? '[]');
     const french = JSON.parse(await AsyncStorage.getItem(achievementStateKey('fr')) ?? '[]');
 
-    expect(await AsyncStorage.getItem('achievement_trainer_correct_count')).toBe('10000');
-    expect(await AsyncStorage.getItem('achievement_active_recall_correct_count')).toBe('10000');
-    expect(await AsyncStorage.getItem('achievement_trainer_perfect_session_count')).toBe('50');
-    expect(await AsyncStorage.getItem(trainerAchievementCorrectCountKey('fr'))).toBe('1');
-    expect(await AsyncStorage.getItem(activeRecallAchievementCorrectCountKey('fr'))).toBe('2');
-    expect(JSON.parse(await AsyncStorage.getItem(trainerAchievementCorrectStreakKey('fr')) ?? '{}').streak).toBe(1);
-    expect(await AsyncStorage.getItem(trainerAchievementPerfectSessionCountKey('fr'))).toBe('1');
-    expect(legacy.find((s: { id: string }) => s.id === 'trainer_10000_correct')).toBeUndefined();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'recall_first')?.unlockedAt).not.toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'trainer_session')?.unlockedAt).not.toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'trainer_perfect_session')?.unlockedAt).not.toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'recall_50')?.unlockedAt).toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'trainer_10000_correct')?.unlockedAt).toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'trainer_7_days')?.unlockedAt).toBeNull();
-    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'trainer_perfect_10_sessions')?.unlockedAt).toBeNull();
+    expect(legacy.find((s: { id: string }) => s.id === 'mistake_corrected_first')).toBeUndefined();
+    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'mistake_corrected_first')?.unlockedAt).not.toBeNull();
+    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'mistake_voice_corrected_first')?.unlockedAt).not.toBeNull();
+    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'mistake_success_7_days')?.unlockedAt).not.toBeNull();
+    expect(french.find((s: { id: string; unlockedAt: string | null }) => s.id === 'mistake_perfect_session')?.unlockedAt).not.toBeNull();
   });
 
   it('keeps French daily phrase achievement counters out of legacy English storage', async () => {

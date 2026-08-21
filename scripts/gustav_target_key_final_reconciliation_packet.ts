@@ -84,9 +84,9 @@ const COVERAGE: Record<string, { coveredBy: string[]; coverageRule: string }> = 
     coveredBy: ['TK3_P3_STORE_CONTRACTS', 'TK5_SURFACE_AND_RAW_GUARDS'],
     coverageRule: 'Exam and certificate store contract isolates proof state by study target.',
   },
-  trainer_practice: {
+  mistake_practice: {
     coveredBy: ['TK3_P3_STORE_CONTRACTS', 'TK5_SURFACE_AND_RAW_GUARDS'],
-    coverageRule: 'Trainer, active recall and mistake diagnosis contracts isolate target practice state.',
+    coverageRule: 'Mistake Practice contracts isolate owner and target event state.',
   },
   personal_practice: {
     coveredBy: ['TK3_P3_STORE_CONTRACTS', 'TK5_SURFACE_AND_RAW_GUARDS'],

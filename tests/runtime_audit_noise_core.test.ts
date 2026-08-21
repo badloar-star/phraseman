@@ -8,7 +8,6 @@ describe('core runtime audit markers', () => {
     const files = [
       'app/user_id_policy.ts',
       'app/pos_workout_engine.ts',
-      'app/mistake_log.ts',
       'app/source_locales.ts',
       'app/lesson_data_types.ts',
     ];

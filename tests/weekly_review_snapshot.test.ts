@@ -16,7 +16,7 @@ const READY_SOURCES: WeeklyReviewSnapshotSources = {
     lessons7d: 3,
     reviews7d: 4,
   },
-  trainer: {
+  practice: {
     status: 'ready',
     dueWords: 5,
     duePhrases: 7,
@@ -49,7 +49,7 @@ describe('weekly review local snapshot', () => {
 
     expect(buildWeeklyReviewSnapshot({
       ...READY_SOURCES,
-      trainer: { status: 'error', errorCode: 'trainer_store_unavailable' },
+      practice: { status: 'error', errorCode: 'mistake_practice_unavailable' },
     })).toMatchObject({
       status: 'partial',
       sourceCoverage: { ready: 2, failed: 1, total: 3 },
@@ -60,7 +60,7 @@ describe('weekly review local snapshot', () => {
   it('returns error when the required mistake source is unavailable', () => {
     expect(buildWeeklyReviewSnapshot({
       ...READY_SOURCES,
-      mistakes: { status: 'error', errorCode: 'mistake_log_unavailable' },
+      mistakes: { status: 'error', errorCode: 'mistake_practice_unavailable' },
     })).toMatchObject({
       status: 'error',
       mistakeCount30d: 0,

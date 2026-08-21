@@ -13,7 +13,7 @@ import { checkStreakLossPending, getMyWeekPoints } from './hall_of_fame_utils';
 import { loadLeagueState } from './league_engine';
 import { getShardsBalance } from './shards_system';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
-import { getTrainerCounts } from './trainer_store';
+import { getMistakePracticeReadyCount } from './mistake_practice_insights';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
 import { readCachedLevelSpinBalance } from './level_reward_spins_client';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
@@ -66,9 +66,9 @@ export interface StatsPreloadData {
   engineLeagueId: number | null;
   myName: string;
   streakAtRisk: boolean;
-  /** Только слова + фразы. CTA в тренажер показываем с 5+. */
-  trainerPracticeDue: number;
-  /** Scope for trainerPracticeDue only; XP, streak, daily stats and achievements stay shared. */
+  /** Готовые слова и фразы новой системы ошибок. */
+  mistakePracticeDue: number;
+  /** Scope for mistakePracticeDue only; XP, streak, daily stats and achievements stay shared. */
   studyTarget: StatsCacheStudyTarget;
   pendingGiftCount: number;
   /** true once a successful preload has completed */
@@ -100,7 +100,7 @@ const DEFAULT_CACHE: StatsPreloadData = {
   engineLeagueId: null,
   myName: '',
   streakAtRisk: false,
-  trainerPracticeDue: 0,
+  mistakePracticeDue: 0,
   studyTarget: 'en',
   pendingGiftCount: 0,
   loaded: false,
@@ -192,7 +192,7 @@ function normalizeStatsCache(value: Partial<StatsPreloadData> | null | undefined
     weekPoints: Math.max(0, Math.floor(Number(value?.weekPoints) || 0)),
     engineLeagueId: value?.engineLeagueId == null ? null : Math.max(0, Math.floor(Number(value.engineLeagueId) || 0)),
     myName: String(value?.myName ?? ''),
-    trainerPracticeDue: Math.max(0, Math.floor(Number(value?.trainerPracticeDue) || 0)),
+    mistakePracticeDue: Math.max(0, Math.floor(Number(value?.mistakePracticeDue) || 0)),
     studyTarget: storageStudyTarget(value?.studyTarget),
     pendingGiftCount: Math.max(0, Math.floor(Number(value?.pendingGiftCount) || 0)),
     loaded: value?.loaded === true,
@@ -314,7 +314,7 @@ export function getStatsCache(studyTarget?: RuntimeStudyTarget): StatsPreloadDat
   if (_cache.studyTarget === target) return _cache;
   return {
     ..._cache,
-    trainerPracticeDue: 0,
+    mistakePracticeDue: 0,
     studyTarget: target,
   };
 }
@@ -376,7 +376,7 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
   const target = storageStudyTarget(studyTarget);
   const spinAccountToken = captureAccountGeneration();
   const spinOwner = spinAccountToken.stableId;
-  const [clubM, gm, giftXpBank, shardsBalance, wp, { willLose }, ls, trainerCounts, legacyPendingGiftCount, cachedSpinBalance] = await Promise.all([
+  const [clubM, gm, giftXpBank, shardsBalance, wp, { willLose }, ls, mistakePracticeDue, legacyPendingGiftCount, cachedSpinBalance] = await Promise.all([
     getXPMultiplier(),
     readGiftMultiplier(),
     readGiftXpBank(),
@@ -384,7 +384,7 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
     getMyWeekPoints(),
     checkStreakLossPending(),
     loadLeagueState(),
-    getTrainerCounts(target),
+    getMistakePracticeReadyCount(target).catch(() => 0),
     loadPendingLevelGiftCount().catch(() => readPendingLevelGiftCountCache()),
     spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
       ? readCachedLevelSpinBalance(spinOwner)
@@ -430,7 +430,7 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
     engineLeagueId: ls != null ? ls.leagueId : null,
     myName: name || '',
     streakAtRisk: willLose && !freezeIsActive,
-    trainerPracticeDue: trainerCounts.words + trainerCounts.phrases,
+    mistakePracticeDue,
     studyTarget: target,
     pendingGiftCount: legacyPendingGiftCount + spinBalance,
     loaded: true,

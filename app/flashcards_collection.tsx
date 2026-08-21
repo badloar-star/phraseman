@@ -283,7 +283,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   }, [searchInput]);
 
   const { isPremium } = usePremium();
-  // E13: карта «силы слова» (active_recall_items + trainer_store_v1) — только чтение
+  // Карта «силы слова» строится из проекции нового журнала ошибок.
   const [strengthMap, setStrengthMap] = useState<WordStrengthMap | null>(null);
   useFocusEffect(
     useCallback(() => {
@@ -560,7 +560,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     return null;
   }, [packDeeplink, activeFilter, activeCat]);
 
-  const startDeckSession = useCallback((mode: 'trainer' | 'listening') => {
+  const startDeckSession = useCallback((mode: 'blitz' | 'listening') => {
     if (!trainDeckId) return;
     fcHaptic('tap');
     void (async () => {
@@ -568,12 +568,12 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
       const preset = await getLastPreset(mode).catch(() => null);
       const size = preset?.size ?? FC_DEFAULT_SESSION_SIZE;
       router.push({
-        pathname: mode === 'trainer' ? '/trainer_words_session' : '/flashcards_listening_session',
+        pathname: mode === 'blitz' ? '/flashcards_blitz_session' : '/flashcards_listening_session',
         params: { deck: trainDeckId, size: String(size) },
       } as any);
     })();
   }, [trainDeckId, router]);
-  const startDeckTraining = useCallback(() => startDeckSession('trainer'), [startDeckSession]);
+  const startDeckTraining = useCallback(() => startDeckSession('blitz'), [startDeckSession]);
   const startDeckListening = useCallback(() => startDeckSession('listening'), [startDeckSession]);
 
   /** Набор уже у пользователя (куплен / добавлен / он его автор). */

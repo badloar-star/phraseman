@@ -2729,12 +2729,6 @@ export async function signOutCurrentProvider(): Promise<void> {
     const { clearCachedLeagueStateSnapshot } = await import('./league_open_cache_policy');
     clearCachedLeagueStateSnapshot();
   } catch { /* ignore */ }
-  // зачем: снапшот «Моей практики» ключуется только target+языком, без uid, поэтому
-  // после выхода его тоже надо стереть — иначе первый кадр покажет чужую статистику.
-  try {
-    const { clearTrainerPracticeSnapshotOnDisk } = await import('./trainer_practice_persist');
-    clearTrainerPracticeSnapshotOnDisk();
-  } catch { /* ignore */ }
   // зачем: общий снапшот экранов рисует первый кадр синхронно, поэтому после выхода
   // его надо убрать — иначе следующий вошедший на общем девайсе увидит чужие цифры
   // (та же защита, что у снапшота практики выше).

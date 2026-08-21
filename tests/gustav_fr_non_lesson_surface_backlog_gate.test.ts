@@ -44,7 +44,6 @@ describe('Gustav French non-lesson surface backlog gate', () => {
       'lesson_theory_intro_vocab',
       'standard_quiz_banks',
       'arena_question_banks',
-      'personal_practice_active_recall',
       'flashcards_and_marketplace_cards',
       'collectible_cards',
       'prepositions_and_conjugation_drills',
@@ -166,17 +165,6 @@ describe('Gustav French non-lesson surface backlog gate', () => {
     });
     expect(aiPrompts.productionBlockers).toEqual([
       'AI_PROMPT_ADMIN_OBSERVABILITY_STILL_HOLD',
-      'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD',
-    ]);
-    const personalPractice = gate.queue.find((item: { id: string }) => item.id === 'personal_practice_active_recall');
-    expect(personalPractice.bridgeGate).toMatchObject({
-      status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD',
-      localSurfaceReady: true,
-      closedLocalBlockers: ['FRENCH_PERSONAL_PRACTICE_ACTIVE_RECALL_NOT_BRIDGED'],
-    });
-    expect(personalPractice.productionBlockers).toEqual([
-      'FRENCH_PERSONAL_PRACTICE_NATIVE_DIAGNOSIS_BANK_STILL_HOLD',
-      'PROBLEM_COACH_ROUTE_STILL_HOLD',
       'GLOBAL_FRENCH_ACTIVATION_STILL_HOLD',
     ]);
     const adminSurfaces = gate.queue.find((item: { id: string }) => item.id === 'admin_surfaces');

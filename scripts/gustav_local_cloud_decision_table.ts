@@ -182,8 +182,7 @@ function decideKey(key: string, evidence: DecisionEntry['evidence'], cloudEntrie
   if (
     lower.includes('achievement_') ||
     lower === 'quiz_hard_count' ||
-    lower.includes('trainer_store') ||
-    lower.includes('mistake_log') ||
+    lower.includes('mistake_practice') ||
     lower.includes('preposition_progress') ||
     lower.includes('prep_drill_perfect') ||
     lower.includes('bonus_granted') ||

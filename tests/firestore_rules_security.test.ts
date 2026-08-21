@@ -229,6 +229,7 @@ describe("firestore.rules security baseline", () => {
     "identityMergedAt",
     "identityCleanupAt",
     "identityCleanupReason",
+    "mistakePracticeMergePending",
   ] as const;
 
   test("identity rule parser accepts the current rules", () => {

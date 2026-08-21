@@ -20,6 +20,7 @@ describe('resolveAvatar3DPlan', () => {
     expect(Object.keys(plan.morphWeights)).toEqual(AVATAR_3D_GLB_MORPH_IDS);
     expect(Object.values(plan.morphWeights).every((weight) => Number.isFinite(weight) && weight >= 0)).toBe(true);
     expect(plan.morphWeights.head_width_decr * plan.morphWeights.head_width_incr).toBe(0);
+    for (const parameter of ['head_width', 'jaw_width', 'eye_size', 'eye_spacing', 'nose_width', 'nose_projection', 'mouth_width', 'upper_lip_volume', 'lower_lip_volume'] as const) expect(plan.morphWeights[`${parameter}_decr`] * plan.morphWeights[`${parameter}_incr`]).toBe(0);
     expect(plan.materialParams).toEqual({ skinTone: '#D4936A', hairColor: '#5B2B18', irisColor: '#5B2B18' });
   });
 
@@ -79,5 +80,16 @@ describe('resolveAvatar3DPlan', () => {
     expect(Object.isFrozen(first.morphWeights)).toBe(true);
     expect(Object.isFrozen(first.visibleMeshIds)).toBe(true);
     expect(first.morphWeights).not.toBe(second.morphWeights);
+  });
+
+  it('rejects non-string coercible colors', () => {
+    expect(() => resolveAvatar3DPlan({ ...base, skinTone: new String('#D4936A') } as any)).toThrow('avatar_3d_color_invalid');
+    expect(() => resolveAvatar3DPlan({ ...base, hairColor: { toString: () => '#5B2B18' } } as any)).toThrow('avatar_3d_color_invalid');
+  });
+
+  it('gives equivalent weights to distinct identities with matching composed values', () => {
+    const masculineSoft = resolveAvatar3DPlan(base);
+    const feminineHeart = resolveAvatar3DPlan({ ...base, presentationId: 'feminine', facePresetId: 'face.heart', userMorphOffsets: { head_width: 0.08, jaw_width: 0.4, eye_size: -0.15, eye_spacing: -0.01, nose_width: 0.16, nose_projection: 0.05, mouth_width: 0.05, upper_lip_volume: -0.14, lower_lip_volume: -0.14 } });
+    for (const target of AVATAR_3D_GLB_MORPH_IDS) expect(feminineHeart.morphWeights[target]).toBeCloseTo(masculineSoft.morphWeights[target]);
   });
 });

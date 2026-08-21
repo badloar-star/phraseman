@@ -66,6 +66,7 @@ export const AvatarDNAStage = memo(function AvatarDNAStage({
           key={layer.id}
           testID={`avatar-layer-${layer.id}`}
           source={{ uri: layer.file }}
+          tintColor={layer.tintColor}
           contentFit="fill"
           cachePolicy="memory-disk"
           pointerEvents="none"

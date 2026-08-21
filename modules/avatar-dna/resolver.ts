@@ -23,10 +23,17 @@ export const resolveAvatarDNA = (input: unknown, catalogInput: unknown): Resolve
   const selected = selectedIds.map((id) => catalog.items.find((item) => item.id === id));
   if (selected.some((item) => !item || !item.rigIds.includes(chosenDNA.rigId))) throw new TypeError('avatar_catalog_invalid: unknown or incompatible item');
   const items = selected as AvatarItemManifest[];
+  const skinTint = items.find((item) => item.id === chosenDNA.base.skinToneId)?.swatchHex;
+  const hairTint = items.find((item) => item.id === chosenDNA.hair.colorId)?.swatchHex;
   const selectedSet = new Set(items.map((item) => item.id));
   if (items.some((item) => item.conflicts.some((id) => selectedSet.has(id)))) throw new TypeError('avatar_catalog_invalid: conflict');
   const hiddenSlots = [...new Set(items.flatMap((item) => item.occludes))];
-  const layers = items.flatMap((item) => item.layers).filter((layer) => !hiddenSlots.includes(layer.slot)).map((layer) => ({ ...layer })).sort(compareAvatarLayers);
+  const layers = items.flatMap((item) => item.layers).filter((layer) => !hiddenSlots.includes(layer.slot)).map((layer) => {
+    const { tintFrom, ...resolvedLayer } = layer;
+    const tintColor = tintFrom === 'skinTone' ? skinTint : tintFrom === 'hairColor' ? hairTint : undefined;
+    if (tintFrom && !tintColor) throw new TypeError('avatar_catalog_invalid: missing tint swatch');
+    return { ...resolvedLayer, ...(tintColor ? { tintColor } : {}) };
+  }).sort(compareAvatarLayers);
   const effectiveDNA = parseAvatarDNA(chosenDNA);
   return { chosenDNA: parseAvatarDNA(chosenDNA), effectiveDNA, visibilityPlan: { hiddenSlots }, layers };
 };

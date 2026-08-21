@@ -11,6 +11,8 @@ export type AvatarSlot =
   | 'eyewear' | 'ear.accessory' | 'mask' | 'headwear.front'
   | 'neck.accessory' | 'outfit.front' | 'aura' | 'frame' | 'foreground.fx';
 
+export type AvatarTintSource = 'skinTone' | 'hairColor';
+
 export type AvatarDNAConflictNotice = Readonly<{
   kind: 'occlusion' | 'conflict';
   hiddenSlots: readonly AvatarSlot[];
@@ -66,6 +68,11 @@ export type AvatarLayerRecord = Readonly<{
   z: number;
   file: string;
   clip?: string;
+  tintFrom?: AvatarTintSource;
+}>;
+
+export type ResolvedAvatarLayerRecord = Readonly<Omit<AvatarLayerRecord, 'tintFrom'> & {
+  tintColor?: string;
 }>;
 
 export type AvatarItemEntitlement = Readonly<{
@@ -79,6 +86,7 @@ export type AvatarItemManifest = Readonly<{
   rigIds: readonly string[];
   category: AvatarCategory;
   entitlement: AvatarItemEntitlement;
+  swatchHex?: string;
   layers: readonly AvatarLayerRecord[];
   occludes: readonly AvatarSlot[];
   conflicts: readonly string[];
@@ -98,7 +106,7 @@ export type ResolvedAvatarDNA = Readonly<{
   visibilityPlan: Readonly<{
     hiddenSlots: readonly AvatarSlot[];
   }>;
-  layers: readonly AvatarLayerRecord[];
+  layers: readonly ResolvedAvatarLayerRecord[];
 }>;
 
 export type AvatarV2Projection = Readonly<{

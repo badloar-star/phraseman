@@ -44,6 +44,18 @@ describe('Avatar DNA resolver', () => {
     expect(resolved.visibilityPlan.hiddenSlots).not.toContain('hair.front');
   });
 
+  it('applies selected skin and hair swatches only to layers that declare a tint source', () => {
+    const catalog = JSON.parse(JSON.stringify(require('../config/avatar-dna/catalog.v1.json')));
+    catalog.items.find((item: any) => item.id === 'skin_03').swatchHex = '#d4936a';
+    catalog.items.find((item: any) => item.id === 'hair_brown').swatchHex = '#5b2b18';
+    catalog.items.find((item: any) => item.id === 'face_01').layers[0].tintFrom = 'skinTone';
+    catalog.items.find((item: any) => item.id === 'hair_01').layers.forEach((layer: any) => { layer.tintFrom = 'hairColor'; });
+    const resolved = resolveAvatarDNA(starterAvatarDNA('starter_warm_01'), catalog);
+    expect(resolved.layers.find((layer) => layer.id === 'face.base.01')?.tintColor).toBe('#d4936a');
+    expect(resolved.layers.filter((layer) => layer.id.startsWith('hair.starter.')).map((layer) => layer.tintColor)).toEqual(['#5b2b18', '#5b2b18']);
+    expect(resolved.layers.find((layer) => layer.id === 'outfit.starter.01')?.tintColor).toBeUndefined();
+  });
+
   it('fails closed for unknown selected items', () => {
     const starter = starterAvatarDNA('starter_warm_01');
     expect(() => resolveAvatarDNA({ ...starter, hair: { ...starter.hair, styleId: 'hair_unknown' } }, avatarCatalog)).toThrow('avatar_catalog_invalid');

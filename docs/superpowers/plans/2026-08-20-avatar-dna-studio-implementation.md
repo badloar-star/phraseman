@@ -649,16 +649,16 @@ Expected: FAIL because builder/contact-sheet/publisher do not exist.
 
 - [ ] **Step 4: Create the exact starter art inventory with built-in `image_gen`**
 
-Use `config/avatar-dna/style-lock.md` and `human_v1.rig.json` as references. Generate individual source sheets for these closed v1 IDs:
+Use `config/avatar-dna/style-lock.md` and `human_v1.rig.json` as references. Generate category atlases and split them into these closed v1 families. Every visual family has ten independent shape/style variants; color swatches remain tint parameters and do not multiply source anatomy:
 
 - 2 starter presets;
-- 6 skin tones, 4 face bases and 2 body bases;
-- 6 eyes, 6 iris colors, 4 brows, 4 noses, 4 mouths, 4 skin details, 4 makeup items and 2 facial-hair items;
-- 8 hairstyles × 5 tintable hair colors;
-- 8 outfits;
-- 4 backgrounds;
-- 4 headwear items including the compound assassin hood;
-- 2 masks, 2 eyewear, 2 ear accessories and 2 neck accessories.
+- 10 skin tones, 10 face bases and 10 body bases;
+- 10 eyes, 10 iris colors, 10 brows, 10 noses, 10 mouths, 10 skin details, 10 makeup items and 10 facial-hair items;
+- 10 hairstyles × 10 tintable hair colors;
+- 10 outfits and 10 backgrounds;
+- 10 headwear items including the compound assassin hood;
+- 10 masks, 10 eyewear, 10 ear accessories and 10 neck accessories;
+- 10 auras, 10 frames and 10 foreground effects.
 
 Prompt contract: warm premium stylized 3D, expressive plausible eyes, soft sculpted face, cream/terracotta light, same orthographic front pose, no text, no camera change, no extra anatomy, preserve rig-guide silhouette. Every generation result goes to `.codex-tmp/avatar-dna/sources/<itemId>/` and is segmented by the deterministic builder. Generate one bounded item family per fresh or compacted Codex task, export results immediately and keep checkpoints file-based; never accumulate a large in-thread base64 batch.
 
@@ -672,7 +672,7 @@ node scripts/codex-safe-run.mjs -- node scripts/avatar-dna/build_contact_sheet.m
 npx jest --runTestsByPath tests/avatar_dna_asset_pipeline.test.ts tests/avatar_dna_catalog_contract.test.ts tests/avatar_dna_resolver.test.ts --no-cache --runInBand
 ```
 
-Expected: short summaries report PASS; full logs remain in `.codex-tmp`; contact sheet covers all skin tones, both starter presets, hood/mask/eyewear conflicts and portrait/studio crops. Owner approval of the contact sheet is a blocking human gate.
+Expected: short summaries report PASS; full logs remain in `.codex-tmp`; inventory sheets cover all ten assets in every visual family. Cross-combination sheets must include all ten aligned core combinations plus separate compatible passes for all masks and all eyewear, every skin tone, both starter presets, hood/mask/eyewear conflicts and portrait/studio crops. Owner approval of both inventory and cross-combination sheets is a blocking human gate.
 
 - [ ] **Step 6: Publish immutable files and commit**
 

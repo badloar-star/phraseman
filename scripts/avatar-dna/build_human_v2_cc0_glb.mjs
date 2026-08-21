@@ -1,6 +1,6 @@
-import { lstat, mkdir, readFile, realpath, rename, unlink, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, open, readFile, realpath, rename, unlink } from 'node:fs/promises';
 import { Buffer } from 'node:buffer';
-import { createHash } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseMakeHumanObj } from './lib/makehuman_obj.mjs';
@@ -40,11 +40,18 @@ export function assertManifestBytes(bytes) {
   if (createHash('sha256').update(bytes).digest('hex') !== MANIFEST_SHA256) throw new Error('pinned source manifest provenance mismatch');
 }
 export async function validateWritableOutputPath(output, allowedRoot) {
-  const destination = validateOutputPath(output, allowedRoot); await mkdir(allowedRoot, { recursive: true });
-  const allowed = await realpath(allowedRoot); const parent = path.dirname(destination);
-  await mkdir(parent, { recursive: true });
-  for (let current = parent; ; current = path.dirname(current)) { const stat = await lstat(current); if (stat.isSymbolicLink() || !path.resolve(await realpath(current)).startsWith(allowed + path.sep) && path.resolve(await realpath(current)) !== allowed) throw new Error('output path escapes allowed root'); if (path.resolve(current) === path.resolve(allowedRoot)) break; }
-  try { if ((await lstat(destination)).isSymbolicLink()) throw new Error('output path is a symbolic link'); } catch (error) { if (error?.code !== 'ENOENT') throw error; }
+  const destination = validateOutputPath(output, allowedRoot); const rootPath = path.resolve(allowedRoot); const rootStat = await lstat(rootPath);
+  if (!rootStat.isDirectory() || rootStat.isSymbolicLink()) throw new Error('allowed output root is not a real directory');
+  const allowed = await realpath(rootPath); const relative = path.relative(rootPath, path.dirname(destination));
+  let current = rootPath;
+  for (const component of relative.split(path.sep).filter(Boolean)) {
+    const next = path.join(current, component);
+    try { await lstat(next); } catch (error) { if (error?.code !== 'ENOENT') throw error; await mkdir(next); }
+    const stat = await lstat(next); const resolved = await realpath(next);
+    if (!stat.isDirectory() || stat.isSymbolicLink() || (resolved !== allowed && !resolved.startsWith(allowed + path.sep))) throw new Error('output path escapes allowed root');
+    current = next;
+  }
+  try { const stat = await lstat(destination); if (stat.isSymbolicLink() || !stat.isFile()) throw new Error('output destination is not a regular file'); } catch (error) { if (error?.code !== 'ENOENT') throw error; }
   return destination;
 }
 async function verifyProvenance(vendor) {
@@ -70,7 +77,10 @@ export async function buildHumanV2Cc0Glb(options = {}) {
   const accessors=[{bufferView:p,componentType:5126,count:body.positions.length,type:'VEC3',min:baseBounds.min,max:baseBounds.max},{bufferView:n,componentType:5126,count:body.positions.length,type:'VEC3'},{bufferView:uv,componentType:5126,count:body.positions.length,type:'VEC2'},{bufferView:ix,componentType:5125,count:indices.length,type:'SCALAR'},...morphViews.map(bufferView=>({bufferView,componentType:5126,count:body.positions.length,type:'VEC3'}))];
   const gltf={asset:{version:'2.0',generator:'phraseman-avatar-dna-cc0-v1'},scene:0,scenes:[{name:'human_v2_scene',nodes:[0]}],nodes:[{name:'human_v2',mesh:0}],meshes:[{name:'avatar_body_base',primitives:[{attributes:{POSITION:0,NORMAL:1,TEXCOORD_0:2},indices:3,material:0,targets:morphViews.map((_,i)=>({POSITION:4+i}))}],weights:Array(18).fill(0),extras:{targetNames:TARGET_ORDER}}],materials:[{name:'material_skin',pbrMetallicRoughness:{baseColorFactor:[0.72,0.42,0.28,1],metallicFactor:0,roughnessFactor:0.72}}],accessors,bufferViews:views,buffers:[{byteLength:chunks.reduce((n,c)=>n+c.length,0)}]};
   const json=pad(Buffer.from(JSON.stringify(gltf),'utf8'),0x20), bin=Buffer.concat(chunks), total=12+8+json.length+8+bin.length, header=Buffer.alloc(12); header.writeUInt32LE(0x46546c67,0);header.writeUInt32LE(2,4);header.writeUInt32LE(total,8); const jsonHeader=Buffer.alloc(8);jsonHeader.writeUInt32LE(json.length,0);jsonHeader.writeUInt32LE(0x4e4f534a,4); const binHeader=Buffer.alloc(8);binHeader.writeUInt32LE(bin.length,0);binHeader.writeUInt32LE(0x004e4942,4);
-  const temporary = path.join(path.dirname(destination), `.${path.basename(destination)}.tmp-${process.pid}`); await writeFile(temporary,Buffer.concat([header,jsonHeader,json,binHeader,bin])); await validateWritableOutputPath(destination, allowedOutputRoot); await rename(temporary, destination).catch(async error => { await unlink(temporary).catch(() => {}); throw error; }); return destination;
+  const temporaryName = input.temporaryName || `.${path.basename(destination)}.tmp-${randomBytes(16).toString('hex')}`;
+  if (path.basename(temporaryName) !== temporaryName) throw new Error('temporary output name is invalid');
+  const temporary = path.join(path.dirname(destination), temporaryName); let handle;
+  try { handle = await open(temporary, 'wx'); await handle.writeFile(Buffer.concat([header,jsonHeader,json,binHeader,bin])); await handle.sync(); await handle.close(); handle = null; await validateWritableOutputPath(destination, allowedOutputRoot); await rename(temporary, destination); return destination; } finally { await handle?.close().catch(() => {}); await unlink(temporary).catch(() => {}); }
 }
 export default buildHumanV2Cc0Glb;
 if (process.argv[1] === fileURLToPath(import.meta.url)) { const at=process.argv.indexOf('--output'); if (at !== -1 && (!process.argv[at+1] || at+2 !== process.argv.length)) { process.stdout.write(JSON.stringify({ok:false,errors:['invalid_cli_arguments']})); process.exitCode=1; } else { const output=at===-1?undefined:process.argv[at+1]; buildHumanV2Cc0Glb({output}).then(file=>process.stdout.write(`${file}\n`)).catch(error=>{process.stdout.write(JSON.stringify({ok:false,errors:['build_failed'],message:error.message}));process.exitCode=1;}); } }

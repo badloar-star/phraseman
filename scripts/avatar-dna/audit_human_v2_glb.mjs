@@ -1,9 +1,11 @@
 import { createHash } from 'node:crypto';
+import { Buffer } from 'node:buffer';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseMakeHumanObj } from './lib/makehuman_obj.mjs';
 import { loadRelativeMorphDeltas, TARGET_ORDER } from './lib/morph_recipe.mjs';
+import { assertManifestBytes, CANONICAL_STREAM_SHA256 } from './build_human_v2_cc0_glb.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const GLB_MAGIC = 0x46546c67, JSON_CHUNK = 0x4e4f534a, BIN_CHUNK = 0x004e4942;
@@ -99,6 +101,8 @@ function exactSchema(gltf, bin, errors) {
 
 async function canonical() {
   const vendor = path.join(ROOT, 'tools', 'avatar-dna', 'vendor', 'makehuman-v1.3.0');
+  const manifest = await readFile(path.join(ROOT, 'config', 'avatar-dna', 'human_v2_cc0_source.v1.json'));
+  assertManifestBytes(manifest);
   const body = parseMakeHumanObj(await readFile(path.join(vendor, 'makehuman', 'data', '3dobjs', 'base.obj'), 'utf8'));
   const positions = new Float32Array(body.positions.flat()), normals = new Float32Array(positions.length);
   for (const [a, b, c] of body.triangles) {
@@ -107,7 +111,9 @@ async function canonical() {
   }
   for (let index = 0; index < normals.length; index += 3) { const length = Math.hypot(normals[index], normals[index + 1], normals[index + 2]) || 1; normals[index] /= length; normals[index + 1] /= length; normals[index + 2] /= length; }
   const morphs = await loadRelativeMorphDeltas({ recipePath: path.join(ROOT, 'config', 'avatar-dna', 'human_v2_style.v1.json'), targetsRoot: vendor, sourceVertexIndex: body.sourceVertexIndex, sourceVertexCount: body.sourcePositions.length });
-  return { positions: Buffer.from(positions.buffer), normals: Buffer.from(normals.buffer), uvs: Buffer.from(new Float32Array(body.uvs.flat()).buffer), indices: Buffer.from(new Uint32Array(body.triangles.flat()).buffer), morphs: morphs.map(value => Buffer.from(value.buffer)) };
+  const streams = [Buffer.from(positions.buffer), Buffer.from(normals.buffer), Buffer.from(new Float32Array(body.uvs.flat()).buffer), Buffer.from(new Uint32Array(body.triangles.flat()).buffer), ...morphs.map(value => Buffer.from(value.buffer))];
+  if (streams.some((stream, index) => createHash('sha256').update(stream).digest('hex') !== CANONICAL_STREAM_SHA256[index])) throw new Error('canonical geometry oracle mismatch');
+  return { positions: streams[0], normals: streams[1], uvs: streams[2], indices: streams[3], morphs: streams.slice(4) };
 }
 
 function triangles(positions, indices, errors) {
@@ -157,7 +163,8 @@ export async function auditHumanV2Glb(input) {
     if (!sameArray(targetNames, TARGET_ORDER) || new Set(targetNames || []).size !== TARGET_ORDER.length) err(errors, 'missing_required_named_morphs');
     if (!Array.isArray(mesh.weights) || mesh.weights.length !== TARGET_ORDER.length || mesh.weights.some(weight => weight !== 0)) err(errors, 'invalid_default_weights');
     if (!Array.isArray(primitive.targets) || primitive.targets.length !== TARGET_ORDER.length) err(errors, 'invalid_morph_target');
-    const expected = await canonical();
+    let expected;
+    try { expected = await canonical(); } catch { return { ok: false, errors: [...errors, 'source_provenance_unavailable'], message: 'canonical source or provenance is unavailable', summary }; }
     if (shapeOk && positions && !positions.bytes().equals(expected.positions)) err(errors, 'canonical_position_mismatch');
     if (shapeOk && normals && !normals.bytes().equals(expected.normals)) err(errors, 'canonical_normal_mismatch');
     if (shapeOk && uvs && !uvs.bytes().equals(expected.uvs)) err(errors, 'canonical_uv_mismatch');
@@ -170,6 +177,6 @@ export async function auditHumanV2Glb(input) {
     }
     if (summary.maxAbsDelta > 1) err(errors, 'unreasonable_morph_delta');
     return { ok: errors.length === 0, errors, summary };
-  } catch { err(errors, 'invalid_glb_structure'); return { ok: false, errors, summary }; }
+  } catch { err(errors, 'internal_audit_error'); return { ok: false, errors, message: 'internal auditor error', summary }; }
 }
 if (process.argv[1] === fileURLToPath(import.meta.url)) auditHumanV2Glb(process.argv[2]).then(result => { process.stdout.write(JSON.stringify(result)); process.exitCode = result.ok ? 0 : 1; });

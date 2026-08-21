@@ -2,7 +2,6 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { tmpdir } from "node:os";
 
 const root = path.resolve(__dirname, "..");
 const audit = path.join(root, "scripts/avatar-dna/audit_human_v2_glb.mjs");
@@ -125,7 +124,7 @@ describe("human_v2 CC0 GLB", () => {
     try {
       const original = path.join(directory, "original.glb"); execFileSync(process.execPath, [build, "--output", original], { cwd: root });
       const bytes = readFileSync(original); const layout = gltfLayout(bytes); const primitive = layout.json.meshes[0].primitives[0];
-      const jsonCases: Array<[string, (json: any) => void, string]> = [
+      const jsonCases: [string, (json: any) => void, string][] = [
         ["scene", json => { json.scene = 2; }, "invalid_scene_reference"],
         ["node", json => { json.nodes[0].mesh = 3; }, "invalid_node_reference"],
         ["node-transform", json => { json.nodes[0].translation = [0, 0, 0]; }, "invalid_node_transform"],
@@ -159,7 +158,7 @@ describe("human_v2 CC0 GLB", () => {
     const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
     try {
       const original = path.join(directory, "original.glb"); execFileSync(process.execPath, [build, "--output", original], { cwd: root }); const bytes = readFileSync(original);
-      const cases: Array<[string, (json: any) => void]> = [
+      const cases: [string, (json: any) => void][] = [
         ["asset", json => { json.asset.extra = true; }], ["scene", json => { json.scenes[0].extra = true; }], ["node", json => { json.nodes[0].extra = true; }],
         ["mesh", json => { json.meshes[0].extra = true; }], ["primitive", json => { json.meshes[0].primitives[0].extra = true; }], ["target", json => { json.meshes[0].primitives[0].targets[0].extra = true; }],
         ["material", json => { json.materials[0].extra = true; }], ["pbr", json => { json.materials[0].pbrMetallicRoughness.extra = true; }], ["buffer", json => { json.buffers[0].extra = true; }],
@@ -167,5 +166,17 @@ describe("human_v2 CC0 GLB", () => {
       ];
       for (const [name, mutate] of cases) { const file = path.join(directory, `${name}.glb`); writeFileSync(file, rewriteJson(bytes, mutate)); expect(runAudit(file).errors).toContain("unexpected_json_schema"); }
     } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
+  it("pins the source manifest and independent geometry oracle", () => {
+    const builderModule = build.replace(/\\/g, "/");
+    const code = `import {assertCanonicalStreams,assertManifestBytes} from 'file:///${builderModule}'; import {Buffer} from 'node:buffer'; for (const test of [() => assertManifestBytes(Buffer.from('tampered')), () => assertCanonicalStreams([Buffer.alloc(1)])]) { try { test(); console.log('accepted'); } catch { console.log('rejected'); } }`;
+    expect(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }).trim().split(/\s+/)).toEqual(["rejected", "rejected"]);
+  });
+
+  it("rejects an isolated junction escape before writing an output", () => {
+    const builderModule = build.replace(/\\/g, "/");
+    const code = `import {mkdtemp, mkdir, rm, symlink} from 'node:fs/promises'; import {tmpdir} from 'node:os'; import path from 'node:path'; import {validateWritableOutputPath} from 'file:///${builderModule}'; const base=await mkdtemp(path.join(tmpdir(),'avatar-dna-safe-')); const outside=await mkdtemp(path.join(tmpdir(),'avatar-dna-out-')); try { const root=path.join(base,'root'); await mkdir(root); await symlink(outside,path.join(root,'jump'),'junction'); try { await validateWritableOutputPath(path.join(root,'jump','escape.glb'),root); console.log('accepted'); } catch { console.log('rejected'); } } finally { await rm(base,{recursive:true,force:true}); await rm(outside,{recursive:true,force:true}); }`;
+    expect(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }).trim()).toBe("rejected");
   });
 });

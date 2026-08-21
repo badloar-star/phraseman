@@ -285,4 +285,45 @@ describe("human_v2 CC0 GLB", () => {
     const code = `import {access, mkdtemp, mkdir, rm, symlink} from 'node:fs/promises'; import {tmpdir} from 'node:os'; import path from 'node:path'; import {buildHumanV2Cc0Glb} from 'file:///${builderModule}'; const base=await mkdtemp(path.join(tmpdir(),'avatar-dna-exclusive-')); const outside=await mkdtemp(path.join(tmpdir(),'avatar-dna-out-')); try { const root=path.join(base,'root'); await mkdir(root); const temp='.out.glb.tmp-fixed'; await symlink(outside,path.join(root,temp),'junction'); try { await buildHumanV2Cc0Glb({output:path.join(root,'out.glb'),allowedOutputRoot:root,temporaryName:temp}); console.log('accepted'); } catch { console.log('rejected'); } try { await access(path.join(outside,'out.glb')); console.log('written'); } catch { console.log('clean'); } } finally { await rm(base,{recursive:true,force:true}); await rm(outside,{recursive:true,force:true}); }`;
     expect(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { cwd: root, encoding: "utf8" }).trim().split(/\s+/)).toEqual(["rejected", "clean"]);
   });
+
+  it("builds deterministic project hair and garments with auditable bindings", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const output = path.join(directory, "hair-and-clothes.glb");
+      execFileSync(process.execPath, [build, "--output", output], { cwd: root });
+      const result = runAudit(output);
+      expect(result.ok).toBe(true);
+      expect(result.summary.meshNames).toEqual(expect.arrayContaining([
+        "avatar_hair_wave", "avatar_hair_crop", "avatar_outfit_terra", "avatar_hood_assassin",
+      ]));
+      const layout = gltfLayout(readFileSync(output));
+      const meshes = new Map<string, any>(layout.json.meshes.map((mesh: any) => [mesh.name, mesh]));
+      expect(meshes.get("avatar_hair_wave").extras.familyCounts).toEqual([9, 7, 5]);
+      expect(meshes.get("avatar_hair_crop").extras.familyCounts).toEqual([10, 8]);
+      expect(meshes.get("avatar_outfit_terra").extras.surfaceOffset).toBe(0.032);
+      expect(meshes.get("avatar_hood_assassin").extras.ringSegments).toBeGreaterThanOrEqual(12);
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
+  it("rejects hair and garment provenance attacks", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const original = path.join(directory, "original.glb");
+      execFileSync(process.execPath, [build, "--output", original], { cwd: root });
+      const bytes = readFileSync(original);
+      const cases: [string, (json: any) => void, string][] = [
+        ["missing-hair", json => { json.meshes = json.meshes.filter((mesh: any) => mesh.name !== "avatar_hair_wave"); json.nodes = json.nodes.filter((node: any) => node.name !== "avatar_hair_wave"); json.scenes[0].nodes = json.nodes.map((_: any, index: number) => index); json.nodes.forEach((node: any, index: number) => { node.mesh = index; }); }, "missing_project_mesh"],
+        ["hair-clearance", json => { json.meshes.find((mesh: any) => mesh.name === "avatar_hair_wave").extras.minScalpClearance = 0; }, "hair_scalp_penetration"],
+        ["outfit-offset", json => { json.meshes.find((mesh: any) => mesh.name === "avatar_outfit_terra").extras.surfaceOffset = 0.01; }, "invalid_garment_offset"],
+        ["outfit-material", json => { json.meshes.find((mesh: any) => mesh.name === "avatar_outfit_terra").primitives[0].material = 0; }, "invalid_garment_material"],
+      ];
+      for (const [name, mutate, expected] of cases) { const file = path.join(directory, `${name}.glb`); writeFileSync(file, rewriteJson(bytes, mutate)); expect(runAudit(file).errors).toContain(expected); }
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
+  it("keeps primitive constructors and randomness out of the production avatar builder path", () => {
+    const production = ["build_human_v2_cc0_glb.mjs", "lib/tapered_clump_mesh.mjs", "lib/fitted_garment_mesh.mjs"]
+      .map(file => readFileSync(path.join(root, "scripts", "avatar-dna", file), "utf8")).join("\n");
+    expect(production).not.toMatch(/SphereGeometry|CapsuleGeometry|TorusGeometry|BoxGeometry|ConeGeometry|Math\\.random/);
+  });
 });

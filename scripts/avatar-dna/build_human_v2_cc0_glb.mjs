@@ -6,10 +6,13 @@ import { fileURLToPath } from 'node:url';
 import { parseMakeHumanObj } from './lib/makehuman_obj.mjs';
 import { loadRelativeMorphDeltas, TARGET_ORDER } from './lib/morph_recipe.mjs';
 import { makeIrisSurface, makeLatLongEllipsoid, makeScleraWithAperture } from './lib/ellipsoid_mesh.mjs';
+import { makeHeadProxyFromBody, makeTaperedClumpHair } from './lib/tapered_clump_mesh.mjs';
+import { makeAssassinHood, makeFittedTerraGarment } from './lib/fitted_garment_mesh.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export const MANIFEST_SHA256 = 'ea7948dd62fbe987cc16fc3751a71c07c17db787db1637d6d7eb5526582545a6';
 export const MATERIAL_CONFIG_SHA256 = 'b4739d2fcfc0e44cf1ee6b19890bf62b0706c4a77a5955bda0eb9e9e8d3d75c8';
+export const HAIR_CONFIG_SHA256 = '320eba85331049648e8ee47eef774770519f98bb2ac82fc18331ad7adb8b35f8';
 export const CANONICAL_STREAM_SHA256 = [
   '1a7f3e39d7464e6c27ebf5204f18343c679aa6bd603872db2a9de366040f82a9','c4211b5e56ec96fb4da2c3d5dac23e64057354b07ee5f12c07a8c505a171526e','eea12628449c9583b0193cd3d7534c920dfc6fe8380d7c5b44a19c44edcb91be','4c29f318e20b87a2c0ddce3689fa0ab285ee390fc02e5f3a017736df772a3661',
   'e07e7fb9505a5f5aeceb3e9fde4e14380b0c97a82943f72a16434407084abf8b','251c21e16d8beaa3a0ecf3d365e8add9b733141e07ed59b983e9da1995f436dc','e0da7a3dc92ac4c15fba557bbb9f85c7750462017e64615e66d5df748ce804ca','c750ff8fd52e8c536f5cf678c124f92bd18879437a9351fcf516ab1fa1e97a85','9dcf5c9d351e40d833785992d294deaaf3544282a78dd2edfa65fed22e6a4cd5','589dae00e4a0ccfa7370ba52ea314bc2b4ef514066bc044b776ea15f2ff0da40','00a25f1f4f8322dfb07e325257839bbeddd3191bee6cafb5ec6c538a38a6625e','5686426ce59544732f6efb05365a93f988bf827e884a64ef7eaff6044f33b1e8','8e8685cc83768c8a7d0a8ebf801ed7ae9407537da5051d90cd2972c9d99decb7','d6d8083262ea77f3fa5039e284be9f8a18725d73dd61b516afe5f2dd3370a74e','ffff5fe9a3c6127a3d6af095329a115bbaa6a230d4137f82d2a7c0101e7b2677','943c6533967f3c34b9573477ba0095e06bfbc5ae91006bd3e0f4fcfbd8cd0e9f','e242d5f9f290d54220aafac073dca6e55b23afa9fb55b96550f22e02244072ba','eb4d58b1fb4a89ff266eb6c738f048e45af8d8129318a25515f353598ec6c880','63f58208f0f0dcb0a939e7638fc7ab389158c4a3623180d7d3a2575d1c77b021','42644dc587cbeaeb196541a0f5b8b721607f5c98b9f3d22dc600a882f6475b9c','c978ed6b1c0fe70afa3c27b666c507d06d05c6548f7beabd7f76660db4d3e332','0dc01faa62479647e949fa56b885f720965d7f3953a9059d7b7f826e9a24b5e2',
@@ -81,7 +84,9 @@ async function verifyProvenance(vendor) {
   for (const file of manifest.files.filter(file => file.destination !== 'LICENSE.ASSETS.md')) { const bytes = await readFile(path.join(vendor, file.destination)); if (bytes.length !== file.bytes || createHash('sha256').update(bytes).digest('hex') !== file.sha256) throw new Error(`pinned source provenance mismatch: ${file.destination}`); }
   const materials = await readFile(path.join(root, 'config', 'avatar-dna', 'human_v2_materials.v1.json'));
   if (createHash('sha256').update(materials).digest('hex') !== MATERIAL_CONFIG_SHA256) throw new Error('pinned material provenance mismatch');
-  return JSON.parse(materials.toString('utf8'));
+  const hair = await readFile(path.join(root, 'config', 'avatar-dna', 'human_v2_hair.v1.json'));
+  if (createHash('sha256').update(hair).digest('hex') !== HAIR_CONFIG_SHA256) throw new Error('pinned hair provenance mismatch');
+  return { materials: JSON.parse(materials.toString('utf8')), hair: JSON.parse(hair.toString('utf8')) };
 }
 const colorFactor = (hex, alpha = 1) => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255, alpha];
 const typedBounds = (typed, width) => { const min = Array(width).fill(Infinity), max = Array(width).fill(-Infinity); for (let index = 0; index < typed.length; index += width) for (let axis = 0; axis < width; axis += 1) { min[axis] = Math.min(min[axis], typed[index + axis]); max[axis] = Math.max(max[axis], typed[index + axis]); } return { min, max }; };
@@ -98,7 +103,7 @@ export async function buildHumanV2Cc0Glb(options = {}) {
   const trustedOutputAnchor = input.trustedOutputAnchor || (input.allowedOutputRoot ? undefined : root);
   const destination = await validateWritableOutputPath(input.output || path.join(allowedOutputRoot, 'human_v2_cc0_candidate.glb'), allowedOutputRoot, { trustedOutputAnchor });
   const vendor = path.join(root, 'tools', 'avatar-dna', 'vendor', 'makehuman-v1.3.0');
-  const materialConfig = await verifyProvenance(vendor);
+  const provenance = await verifyProvenance(vendor), materialConfig = provenance.materials, hairConfig = provenance.hair;
   const body = parseMakeHumanObj(await readFile(path.join(vendor, 'makehuman', 'data', '3dobjs', 'base.obj'), 'utf8'));
   const positions = new Float32Array(body.positions.flat()), uvs = new Float32Array(body.uvs.flat()), normal = normals(body.positions, body.triangles);
   const indices = new Uint32Array(body.triangles.flat()); const morphs = await loadRelativeMorphDeltas({ recipePath:path.join(root,'config','avatar-dna','human_v2_style.v1.json'), targetsRoot:vendor, sourceVertexIndex:body.sourceVertexIndex, sourceVertexCount:body.sourcePositions.length });
@@ -127,6 +132,22 @@ export async function buildHumanV2Cc0Glb(options = {}) {
     meshes.push({name:`avatar_eye_${side}_iris`,primitives:[{attributes:{POSITION:ip,NORMAL:inorm},indices:annulus,material:materialIndex.material_iris},{attributes:{POSITION:ip,NORMAL:inorm},indices:pupil,material:materialIndex.material_pupil}],extras:{...provenance,radii:[0.092,0.092,0.012],apertureRadius:iris.apertureRadius,irisOffsetTowardCamera:iris.apexOffset,rimOffset:iris.rimOffset,pupilRing:iris.pupilRing,radialSegments:iris.radialSegments,angularSegments:iris.angularSegments}}); nodes.push({name:`avatar_eye_${side}_iris`,mesh:meshes.length-1});
     addSurface(`avatar_eye_${side}_cornea`,cornea,materialIndex.material_cornea,{...provenance,radii:[0.168,0.178,0.151],surfaceCenter:corneaCenter});
   }
+  const addGeneratedSurface = (name, surface, material, extras) => {
+    const position = accessor(surface.positions, 5126, 'VEC3', typedBounds(surface.positions, 3));
+    const normalAccessor = accessor(surface.normals, 5126, 'VEC3', typedBounds(surface.normals, 3));
+    const index = accessor(surface.indices, 5125, 'SCALAR', typedBounds(surface.indices, 1));
+    meshes.push({ name, primitives: [{ attributes: { POSITION: position, NORMAL: normalAccessor }, indices: index, material }], extras });
+    nodes.push({ name, mesh: meshes.length - 1 });
+  };
+  const headProxy = makeHeadProxyFromBody(body);
+  for (const style of ['wave', 'crop']) {
+    const hair = makeTaperedClumpHair({ proxy: headProxy, families: hairConfig[style].families, minimumScalpClearance: hairConfig.minimumScalpClearance, lengthSegments: hairConfig.lengthSegments, radialSegments: hairConfig.radialSegments });
+    addGeneratedSurface(`avatar_hair_${style}`, hair, materialIndex.material_hair, { generator: hairConfig.generator, style, familyCounts: hairConfig[style].families.map(family => family.count), lengthSegments: hair.lengthSegments, radialSegments: hair.radialSegments, minScalpClearance: hairConfig.minimumScalpClearance, headProxy, configSha256: HAIR_CONFIG_SHA256 });
+  }
+  const terra = makeFittedTerraGarment({ positions: body.positions, normals: normal, triangles: body.triangles, sourceVertexIndex: body.sourceVertexIndex });
+  addGeneratedSurface('avatar_outfit_terra', terra, materialIndex.material_cloth, { generator: 'fitted-garment-v1', sourceTriangleCount: terra.sourceTriangleCount, sourceTriangleHash: terra.sourceTriangleHash, surfaceOffset: terra.surfaceOffset, torsoBounds: terra.torsoBounds, configSha256: HAIR_CONFIG_SHA256 });
+  const neck = helperBounds(body.groups['joint-neck']).center, hood = makeAssassinHood({ proxy: headProxy, neckAnchor: neck });
+  addGeneratedSurface('avatar_hood_assassin', hood, materialIndex.material_cloth, { generator: 'hood-swept-rings-v1', ringSegments: hood.ringSegments, radialSegments: hood.radialSegments, anchor: hood.anchor, headProxy, configSha256: HAIR_CONFIG_SHA256 });
   const gltf={asset:{version:'2.0',generator:'phraseman-avatar-dna-cc0-v1'},scene:0,scenes:[{name:'human_v2_scene',nodes:nodes.map((_,index)=>index)}],nodes,meshes,materials,accessors,bufferViews:views,buffers:[{byteLength:chunks.reduce((n,c)=>n+c.length,0)}]};
   const json=pad(Buffer.from(JSON.stringify(gltf),'utf8'),0x20), bin=Buffer.concat(chunks), total=12+8+json.length+8+bin.length, header=Buffer.alloc(12); header.writeUInt32LE(0x46546c67,0);header.writeUInt32LE(2,4);header.writeUInt32LE(total,8); const jsonHeader=Buffer.alloc(8);jsonHeader.writeUInt32LE(json.length,0);jsonHeader.writeUInt32LE(0x4e4f534a,4); const binHeader=Buffer.alloc(8);binHeader.writeUInt32LE(bin.length,0);binHeader.writeUInt32LE(0x004e4942,4);
   const temporaryName = input.temporaryName || `.${path.basename(destination)}.tmp-${randomBytes(16).toString('hex')}`;

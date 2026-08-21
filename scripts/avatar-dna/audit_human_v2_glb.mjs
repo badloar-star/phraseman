@@ -6,14 +6,16 @@ import { fileURLToPath } from 'node:url';
 import { parseMakeHumanObj } from './lib/makehuman_obj.mjs';
 import { loadRelativeMorphDeltas, TARGET_ORDER } from './lib/morph_recipe.mjs';
 import { makeIrisSurface, makeLatLongEllipsoid, makeScleraWithAperture } from './lib/ellipsoid_mesh.mjs';
-import { assertManifestBytes, CANONICAL_STREAM_SHA256, MATERIAL_CONFIG_SHA256 } from './build_human_v2_cc0_glb.mjs';
+import { makeHeadProxyFromBody, makeTaperedClumpHair } from './lib/tapered_clump_mesh.mjs';
+import { makeAssassinHood, makeFittedTerraGarment } from './lib/fitted_garment_mesh.mjs';
+import { assertManifestBytes, CANONICAL_STREAM_SHA256, HAIR_CONFIG_SHA256, MATERIAL_CONFIG_SHA256 } from './build_human_v2_cc0_glb.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const GLB_MAGIC = 0x46546c67, JSON_CHUNK = 0x4e4f534a, BIN_CHUNK = 0x004e4942;
 const COMPONENT_BYTES = { 5121: 1, 5123: 2, 5125: 4, 5126: 4 }, TYPE_COMPONENTS = { SCALAR: 1, VEC2: 2, VEC3: 3 };
 const VERTICES = 14517, INDICES = 80268, BOUNDS = { min: [-4.9627, -8.1676, -1.0154], max: [4.9627, 8.4913, 3.2147] };
 const ROOT_KEYS = ['accessors', 'asset', 'bufferViews', 'buffers', 'materials', 'meshes', 'nodes', 'scene', 'scenes'];
-const REQUIRED_MESHES = ['avatar_body_base','avatar_eye_left_sclera','avatar_eye_left_iris','avatar_eye_left_cornea','avatar_eye_right_sclera','avatar_eye_right_iris','avatar_eye_right_cornea'];
+const REQUIRED_MESHES = ['avatar_body_base','avatar_eye_left_sclera','avatar_eye_left_iris','avatar_eye_left_cornea','avatar_eye_right_sclera','avatar_eye_right_iris','avatar_eye_right_cornea','avatar_hair_wave','avatar_hair_crop','avatar_outfit_terra','avatar_hood_assassin'];
 const REQUIRED_MATERIALS = ['material_skin','material_sclera','material_iris','material_pupil','material_cornea','material_hair','material_cloth'];
 const IRIS_APERTURE_RADIUS = 0.092;
 const err = (errors, code) => { if (!errors.includes(code)) errors.push(code); };
@@ -61,7 +63,7 @@ function graph(gltf, errors) {
   if (gltf.scene !== 0 || gltf.scenes?.length !== 1 || gltf.scenes?.[0]?.name !== 'human_v2_scene' || !sameArray(gltf.scenes?.[0]?.nodes, (gltf.nodes || []).map((_, index) => index))) err(errors, 'invalid_scene_reference');
   if (!gltf.nodes?.length || gltf.nodes.some((entry, index) => !entry || !isUint(entry.mesh) || entry.mesh !== index || entry.mesh >= gltf.meshes.length || entry.name !== gltf.meshes[index]?.name || 'weights' in entry || 'children' in entry || 'skin' in entry) || new Set(gltf.nodes.map(node => node?.name)).size !== gltf.nodes.length || new Set(gltf.meshes.map(mesh => mesh?.name)).size !== gltf.meshes.length) err(errors, 'invalid_node_reference');
   if (gltf.nodes?.some(node => !sameArray(Object.keys(node).sort(), ['mesh', 'name']))) err(errors, 'invalid_node_transform');
-  if (gltf.meshes?.length !== REQUIRED_MESHES.length || gltf.materials?.length !== REQUIRED_MATERIALS.length || gltf.textures?.length || gltf.images?.length || gltf.samplers?.length) err(errors, 'invalid_reference_graph');
+  if (gltf.meshes?.length !== REQUIRED_MESHES.length || !sameArray((gltf.meshes || []).map(mesh => mesh?.name), REQUIRED_MESHES) || gltf.materials?.length !== REQUIRED_MATERIALS.length || gltf.textures?.length || gltf.images?.length || gltf.samplers?.length) err(errors, 'invalid_reference_graph');
   if (gltf.buffers?.length !== 1) err(errors, 'invalid_bin_length');
   const names = gltf.materials?.map(material => material?.name) || [];
   if (!sameArray(names, REQUIRED_MATERIALS) || new Set(names).size !== REQUIRED_MATERIALS.length || gltf.materials.some(material => !material || material.pbrMetallicRoughness?.baseColorTexture || material.normalTexture || material.occlusionTexture || material.emissiveTexture)) err(errors, 'invalid_material');
@@ -93,12 +95,19 @@ function exactSchema(gltf, bin, errors) {
   if (!hasKeys(mesh, ['extras', 'name', 'primitives', 'weights']) || mesh?.name !== 'avatar_body_base' || !sameArray(mesh?.weights, Array(18).fill(0)) || !hasKeys(mesh?.extras, ['targetNames']) || !sameArray(mesh?.extras?.targetNames, TARGET_ORDER) || mesh?.primitives?.length !== 1) bad();
   if (!hasKeys(primitive, ['attributes', 'indices', 'material', 'targets']) || primitive?.indices !== 3 || primitive?.material !== 0 || !hasKeys(primitive?.attributes, ['NORMAL', 'POSITION', 'TEXCOORD_0']) || primitive?.attributes?.POSITION !== 0 || primitive?.attributes?.NORMAL !== 1 || primitive?.attributes?.TEXCOORD_0 !== 2 || primitive?.targets?.length !== 18) bad();
   for (let index = 0; index < (primitive?.targets?.length || 0); index += 1) if (!hasKeys(primitive.targets[index], ['POSITION']) || primitive.targets[index].POSITION !== 4 + index) bad();
-  for (let index = 1; index < (gltf.meshes?.length || 0); index += 1) {
+  for (let index = 1; index < 7; index += 1) {
     const eye = gltf.meshes[index]; const isIris = eye?.name?.endsWith('_iris');
     const extras = isIris ? ['anchor','angularSegments','apertureRadius','helperBounds','helperGroup','irisOffsetTowardCamera','pupilRing','radialSegments','radii','rimOffset'] : eye?.name?.endsWith('_sclera') ? ['anchor','apertureOffset','apertureRadii','helperBounds','helperGroup','radii'] : ['anchor','helperBounds','helperGroup','radii','surfaceCenter'];
     if (!hasKeys(eye, ['extras','name','primitives']) || !hasKeys(eye?.extras, extras) || eye?.primitives?.length !== (isIris ? 2 : 1)) bad();
     for (const eyePrimitive of eye?.primitives || []) if (!hasKeys(eyePrimitive, ['attributes','indices','material']) || !hasKeys(eyePrimitive.attributes, ['NORMAL','POSITION'])) bad();
   }
+  const project = {
+    avatar_hair_wave: ['configSha256','familyCounts','generator','headProxy','lengthSegments','minScalpClearance','radialSegments','style'],
+    avatar_hair_crop: ['configSha256','familyCounts','generator','headProxy','lengthSegments','minScalpClearance','radialSegments','style'],
+    avatar_outfit_terra: ['configSha256','generator','sourceTriangleCount','sourceTriangleHash','surfaceOffset','torsoBounds'],
+    avatar_hood_assassin: ['anchor','configSha256','generator','headProxy','radialSegments','ringSegments'],
+  };
+  for (const [name, keys] of Object.entries(project)) { const candidate = gltf.meshes?.find(entry => entry?.name === name); if (!hasKeys(candidate, ['extras','name','primitives']) || !hasKeys(candidate?.extras, keys) || candidate?.primitives?.length !== 1 || !hasKeys(candidate?.primitives?.[0], ['attributes','indices','material']) || !hasKeys(candidate?.primitives?.[0]?.attributes, ['NORMAL','POSITION'])) bad(); }
   for (const material of gltf.materials || []) { const extras = material?.name === 'material_cornea' ? ['alphaMode','doubleSided','name','pbrMetallicRoughness'] : ['name','pbrMetallicRoughness']; if (!hasKeys(material, extras) || !hasKeys(material?.pbrMetallicRoughness, ['baseColorFactor','metallicFactor','roughnessFactor'])) bad(); }
   if (!hasKeys(gltf.buffers?.[0], ['byteLength']) || gltf.buffers?.[0]?.byteLength !== bin.length) bad();
   for (const view of gltf.bufferViews || []) if (!hasKeys(view, ['buffer','byteLength','byteOffset'])) bad();
@@ -228,6 +237,52 @@ async function auditEyesAndMaterials(gltf, bin, errors) {
   }
 }
 
+async function auditProjectHairAndGarments(gltf, bin, errors) {
+  let hairConfig, body;
+  try {
+    const bytes = await readFile(path.join(ROOT, 'config', 'avatar-dna', 'human_v2_hair.v1.json'));
+    if (createHash('sha256').update(bytes).digest('hex') !== HAIR_CONFIG_SHA256) throw new Error('hair config hash');
+    hairConfig = JSON.parse(bytes.toString('utf8'));
+    body = parseMakeHumanObj(await readFile(path.join(ROOT, 'tools', 'avatar-dna', 'vendor', 'makehuman-v1.3.0', 'makehuman', 'data', '3dobjs', 'base.obj'), 'utf8'));
+  } catch { err(errors, 'hair_config_provenance_unavailable'); return; }
+  const meshes = new Map((gltf.meshes || []).map(mesh => [mesh?.name, mesh]));
+  const materialIndex = new Map((gltf.materials || []).map((material, index) => [material?.name, index]));
+  const normal = new Float32Array(body.positions.length * 3);
+  for (const [a,b,c] of body.triangles) { const p=body.positions[a],q=body.positions[b],r=body.positions[c], x=(q[1]-p[1])*(r[2]-p[2])-(q[2]-p[2])*(r[1]-p[1]), y=(q[2]-p[2])*(r[0]-p[0])-(q[0]-p[0])*(r[2]-p[2]), z=(q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0]); for (const index of [a,b,c]) { normal[index*3]+=x; normal[index*3+1]+=y; normal[index*3+2]+=z; } }
+  for (let index=0; index<normal.length; index+=3) { const length=Math.hypot(normal[index],normal[index+1],normal[index+2]) || 1; normal[index]/=length; normal[index+1]/=length; normal[index+2]/=length; }
+  const proxy = makeHeadProxyFromBody(body);
+  const expectSurface = (name, expected, code, material) => {
+    const mesh = meshes.get(name), primitive = mesh?.primitives?.[0];
+    if (!mesh || !primitive) { err(errors, 'missing_project_mesh'); return; }
+    if (primitive.material !== materialIndex.get(material)) err(errors, material === 'material_cloth' ? 'invalid_garment_material' : 'invalid_hair_material');
+    const position = reader(gltf, bin, primitive.attributes?.POSITION, errors), normalAccessor = reader(gltf, bin, primitive.attributes?.NORMAL, errors), index = reader(gltf, bin, primitive.indices, errors);
+    if (!position || !normalAccessor || !index || position.accessor.count !== expected.positions.length / 3 || normalAccessor.accessor.count !== expected.normals.length / 3 || index.accessor.count !== expected.indices.length) { err(errors, code); return; }
+    finite(position, errors); finite(normalAccessor, errors); validatePrimitiveTriangles(position, index, errors, code);
+    if (code === 'invalid_hair_geometry' || code === 'invalid_hood_geometry') for (let row = 0; row < index.accessor.count; row += 3) {
+      const a = index.read(row, 0), b = index.read(row + 1, 0), c = index.read(row + 2, 0), ux = position.read(b, 0) - position.read(a, 0), uy = position.read(b, 1) - position.read(a, 1), uz = position.read(b, 2) - position.read(a, 2), vx = position.read(c, 0) - position.read(a, 0), vy = position.read(c, 1) - position.read(a, 1), vz = position.read(c, 2) - position.read(a, 2), face = [uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx], outward = [normalAccessor.read(a, 0) + normalAccessor.read(b, 0) + normalAccessor.read(c, 0), normalAccessor.read(a, 1) + normalAccessor.read(b, 1) + normalAccessor.read(c, 1), normalAccessor.read(a, 2) + normalAccessor.read(b, 2) + normalAccessor.read(c, 2)];
+      if (face[0] * outward[0] + face[1] * outward[1] + face[2] * outward[2] <= 0) err(errors, code);
+    }
+    if (!position.bytes().equals(Buffer.from(expected.positions.buffer)) || !normalAccessor.bytes().equals(Buffer.from(expected.normals.buffer)) || !index.bytes().equals(Buffer.from(expected.indices.buffer))) err(errors, code);
+  };
+  for (const style of ['wave','crop']) {
+    const mesh = meshes.get(`avatar_hair_${style}`), expected = makeTaperedClumpHair({ proxy, families: hairConfig[style].families, minimumScalpClearance: hairConfig.minimumScalpClearance, lengthSegments: hairConfig.lengthSegments, radialSegments: hairConfig.radialSegments });
+    if (!mesh) { err(errors, 'missing_project_mesh'); continue; }
+    if (mesh.extras?.generator !== hairConfig.generator || mesh.extras?.style !== style || !sameArray(mesh.extras?.familyCounts, hairConfig[style].families.map(family => family.count)) || mesh.extras?.lengthSegments !== 12 || mesh.extras?.radialSegments !== 7 || mesh.extras?.configSha256 !== HAIR_CONFIG_SHA256 || mesh.extras?.minScalpClearance !== hairConfig.minimumScalpClearance || JSON.stringify(mesh.extras?.headProxy) !== JSON.stringify(proxy)) err(errors, 'invalid_hair_metadata');
+    if (!(mesh.extras?.minScalpClearance >= .006)) err(errors, 'hair_scalp_penetration');
+    expectSurface(`avatar_hair_${style}`, expected, 'invalid_hair_geometry', 'material_hair');
+  }
+  const terra = makeFittedTerraGarment({ positions: body.positions, normals: normal, triangles: body.triangles, sourceVertexIndex: body.sourceVertexIndex });
+  const outfit = meshes.get('avatar_outfit_terra');
+  if (!outfit) err(errors, 'missing_project_mesh');
+  else if (outfit.extras?.generator !== 'fitted-garment-v1' || outfit.extras?.surfaceOffset !== .032 || outfit.extras?.sourceTriangleCount !== terra.sourceTriangleCount || outfit.extras?.sourceTriangleHash !== terra.sourceTriangleHash || JSON.stringify(outfit.extras?.torsoBounds) !== JSON.stringify(terra.torsoBounds) || outfit.extras?.configSha256 !== HAIR_CONFIG_SHA256) err(errors, 'invalid_garment_offset');
+  expectSurface('avatar_outfit_terra', terra, 'invalid_garment_geometry', 'material_cloth');
+  const neck = (() => { const points=body.groups['joint-neck'].sourcePositions, min=[0,1,2].map(axis=>Math.min(...points.map(point=>point[axis]))), max=[0,1,2].map(axis=>Math.max(...points.map(point=>point[axis]))); return min.map((value,axis)=>(value+max[axis])/2); })();
+  const hood = makeAssassinHood({ proxy, neckAnchor: neck }), hoodMesh = meshes.get('avatar_hood_assassin');
+  if (!hoodMesh) err(errors, 'missing_project_mesh');
+  else if (hoodMesh.extras?.generator !== 'hood-swept-rings-v1' || hoodMesh.extras?.ringSegments !== hood.ringSegments || hoodMesh.extras?.radialSegments !== hood.radialSegments || !equalNumbers(hoodMesh.extras?.anchor, hood.anchor) || JSON.stringify(hoodMesh.extras?.headProxy) !== JSON.stringify(proxy) || hoodMesh.extras?.configSha256 !== HAIR_CONFIG_SHA256) err(errors, 'invalid_hood_metadata');
+  expectSurface('avatar_hood_assassin', hood, 'invalid_hood_geometry', 'material_cloth');
+}
+
 export async function auditHumanV2Glb(input) {
   const errors = []; let bytes;
   try { bytes = Buffer.isBuffer(input) ? input : await readFile(input); } catch { return { ok: false, errors: ['unreadable_input'], summary: null }; }
@@ -238,7 +293,7 @@ export async function auditHumanV2Glb(input) {
     collectionContract(gltf, bin, errors);
     exactSchema(gltf, bin, errors);
     const mesh = gltf.meshes?.[0], primitive = mesh?.primitives?.[0]; summary.meshNames = (gltf.meshes || []).map(value => value?.name);
-    if (!mesh || gltf.meshes?.length !== REQUIRED_MESHES.length || mesh.name !== 'avatar_body_base' || mesh.primitives?.length !== 1 || !primitive) { err(errors, 'invalid_body_mesh'); err(errors, 'missing_required_named_morphs'); err(errors, 'primitive_fixture_detected'); return { ok: false, errors, summary }; }
+    if (!mesh || mesh.name !== 'avatar_body_base' || mesh.primitives?.length !== 1 || !primitive) { err(errors, 'invalid_body_mesh'); err(errors, 'missing_required_named_morphs'); err(errors, 'primitive_fixture_detected'); return { ok: false, errors, summary }; }
     if (primitive.mode !== undefined && primitive.mode !== 4) err(errors, 'invalid_primitive_mode');
     if (primitive.material !== 0) err(errors, 'invalid_material');
     accessorMetadata(gltf, primitive, errors);
@@ -263,6 +318,7 @@ export async function auditHumanV2Glb(input) {
       if (!morph.bytes().equals(expected.morphs[index])) err(errors, 'morph_signature_mismatch');
     }
     await auditEyesAndMaterials(gltf, bin, errors);
+    await auditProjectHairAndGarments(gltf, bin, errors);
     if (summary.maxAbsDelta > 1) err(errors, 'unreasonable_morph_delta');
     return { ok: errors.length === 0, errors, summary };
   } catch { err(errors, 'internal_audit_error'); return { ok: false, errors, message: 'internal auditor error', summary }; }

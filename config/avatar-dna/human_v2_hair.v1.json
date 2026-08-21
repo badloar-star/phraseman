@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "generator": "tapered-clump-v1",
+  "minimumScalpClearance": 0.006,
+  "lengthSegments": 12,
+  "radialSegments": 7,
+  "wave": {
+    "families": [
+      { "count": 9, "azimuth": -2.55, "elevation": 0.24, "sweep": 0.46, "lift": 0.42, "rootRadius": 0.072 },
+      { "count": 7, "azimuth": -1.15, "elevation": 0.46, "sweep": 0.58, "lift": 0.56, "rootRadius": 0.068 },
+      { "count": 5, "azimuth": 0.15, "elevation": 0.58, "sweep": 0.34, "lift": 0.48, "rootRadius": 0.064 }
+    ]
+  },
+  "crop": {
+    "families": [
+      { "count": 10, "azimuth": -2.7, "elevation": 0.20, "sweep": 0.20, "lift": 0.24, "rootRadius": 0.061 },
+      { "count": 8, "azimuth": -1.05, "elevation": 0.50, "sweep": 0.16, "lift": 0.28, "rootRadius": 0.057 }
+    ]
+  }
+}

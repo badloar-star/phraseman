@@ -19,8 +19,10 @@ describe('Avatar DNA Studio structure', () => {
     expected.forEach((file) => expect(fs.existsSync(path.join(root, file))).toBe(true));
 
     const catalog = read('components/avatar-dna/AvatarDNACatalog.tsx');
+    const editor = read('components/avatar-dna/AvatarDNAEditor.tsx');
     expect((catalog.match(/\bFlatList\b/g) ?? [])).toHaveLength(2); // import + one render
     expect(catalog).toContain('numColumns={3}');
+    expect(editor).not.toContain('ScrollView');
     const tabs = read('components/avatar-dna/AvatarDNATabs.tsx');
     ['base', 'face', 'hair', 'look', 'scene'].forEach((id) => expect(tabs).toContain(`'${id}'`));
   });

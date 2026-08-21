@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useReducer, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import { PRESS, LUM, CHK } from '../../constants/motionHybrid';
 import { avatarDNACopy } from '../../app/avatar_dna_copy';
@@ -43,13 +43,12 @@ export function AvatarDNAEditor({ initialDNA, lang, reduceMotion = false, onClos
       <Pressable accessibilityRole="button" accessibilityLabel={copy.undo} accessibilityState={{ disabled: state.past.length === 0 }} disabled={state.past.length === 0} onPress={() => dispatch({ type: 'undo' })} style={iconStyle}><Text style={[styles.iconSmall, { color: state.past.length ? t.textPrimary : t.textMuted }]}>↶</Text></Pressable>
       <Pressable accessibilityRole="button" accessibilityLabel={copy.redo} accessibilityState={{ disabled: state.future.length === 0 }} disabled={state.future.length === 0} onPress={() => dispatch({ type: 'redo' })} style={iconStyle}><Text style={[styles.iconSmall, { color: state.future.length ? t.textPrimary : t.textMuted }]}>↷</Text></Pressable>
     </View>
-    <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+    <AvatarDNACatalog category={category} dna={state.present.chosenDNA} copy={copy} reduceMotion={reduceMotion} onSelect={selectItem} header={<>
       <AvatarDNAHero dna={state.present.chosenDNA} camera={camera} copy={copy} onCameraChange={setCamera} />
       <AvatarDNATabs value={category} copy={copy} onChange={setCategory} />
       <AvatarDNAConflictNotice notice={state.present.notice} copy={copy} onUndo={() => dispatch({ type: 'undo' })} onDismiss={() => dispatch({ type: 'dismiss-notice' })} />
-      <AvatarDNACatalog category={category} dna={state.present.chosenDNA} copy={copy} reduceMotion={reduceMotion} onSelect={selectItem} />
       <View testID="avatar-dna-motion-mode" style={styles.motionMarker}><Text>{reduceMotion ? 'reduced' : 'full'}</Text></View>
-    </ScrollView>
+    </>} />
     <View style={[styles.bottom, { backgroundColor: t.bgPrimary }]}>
       <Pressable accessibilityRole="button" accessibilityLabel={copy.save} accessibilityState={{ disabled: saving }} disabled={saving} onPress={() => { void save(); }} style={({ pressed }) => [styles.save, { backgroundColor: t.correct, transform: [{ scale: pressed && !reduceMotion ? PRESS.scale.primary : 1 }] }]}><Text testID="avatar-dna-save-label" style={[styles.saveLabel, { color: t.correctText }]}>{copy.save}</Text></Pressable>
     </View>
@@ -59,6 +58,6 @@ export function AvatarDNAEditor({ initialDNA, lang, reduceMotion = false, onClos
 const styles = StyleSheet.create({
   root: { flex: 1 }, topBar: { minHeight: 64, paddingHorizontal: 14, paddingTop: 8, flexDirection: 'row', alignItems: 'center', gap: 8 },
   iconButton: { minWidth: 44, minHeight: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' }, icon: { fontSize: 28, lineHeight: 30 }, iconSmall: { fontSize: 24, lineHeight: 28, fontWeight: '800' },
-  title: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '900', textAlign: 'center' }, scroll: { paddingBottom: 116 }, motionMarker: { position: 'absolute', width: 1, height: 1, opacity: 0 },
+  title: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '900', textAlign: 'center' }, motionMarker: { position: 'absolute', width: 1, height: 1, opacity: 0 },
   bottom: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 18 }, save: { minHeight: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center', shadowColor: '#577D13', shadowOpacity: 0.24, shadowRadius: 10, shadowOffset: { width: 0, height: 5 }, elevation: 4 }, saveLabel: { fontSize: 17, lineHeight: 22, fontWeight: '900' },
 });

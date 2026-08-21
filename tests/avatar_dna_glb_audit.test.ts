@@ -67,7 +67,7 @@ describe("human_v2 CC0 GLB", () => {
   it("rejects canonical GLB metadata tampering with stable codes", () => {
     const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
     try { const original=path.join(directory,"o.glb");execFileSync(process.execPath,[build,"--output",original],{cwd:root});const bytes=readFileSync(original);
-      const cases: any[] = [["count", (j:any) => { j.accessors[j.meshes[0].primitives[0].attributes.POSITION].count = 3; }, "invalid_glb_structure"], ["material", (j:any) => { j.meshes[0].primitives[0].material = 999; }, "invalid_material"], ["buffer", (j:any) => { j.buffers[0].byteLength = 1; }, "invalid_bin_length"], ["short", (j:any) => { const a=j.accessors[j.meshes[0].primitives[0].targets[0].POSITION]; j.bufferViews[a.bufferView].byteLength=4; }, "invalid_accessor"], ["type", (j:any) => { j.accessors[j.meshes[0].primitives[0].targets[0].POSITION].componentType=5121; }, "invalid_morph_target"], ["names", (j:any) => { j.meshes[0].extras.targetNames.reverse(); }, "missing_required_named_morphs"], ["stride", (j:any) => { const a=j.accessors[j.meshes[0].primitives[0].attributes.POSITION]; j.bufferViews[a.bufferView].byteStride=1; }, "invalid_accessor"]];
+      const cases: any[] = [["count", (j:any) => { j.accessors[j.meshes[0].primitives[0].attributes.POSITION].count = 3; }, "invalid_base_geometry"], ["material", (j:any) => { j.meshes[0].primitives[0].material = 999; }, "invalid_material"], ["buffer", (j:any) => { j.buffers[0].byteLength = 1; }, "invalid_bin_length"], ["short", (j:any) => { const a=j.accessors[j.meshes[0].primitives[0].targets[0].POSITION]; j.bufferViews[a.bufferView].byteLength=4; }, "invalid_accessor"], ["type", (j:any) => { j.accessors[j.meshes[0].primitives[0].targets[0].POSITION].componentType=5121; }, "invalid_morph_target"], ["names", (j:any) => { j.meshes[0].extras.targetNames.reverse(); }, "missing_required_named_morphs"], ["stride", (j:any) => { const a=j.accessors[j.meshes[0].primitives[0].attributes.POSITION]; j.bufferViews[a.bufferView].byteStride=1; }, "invalid_accessor"]];
       for(const [name,mutate,code] of cases){const file=path.join(directory,`${name}.glb`);writeFileSync(file,rewriteJson(bytes,mutate));expect(runAudit(file).errors).toContain(code)}
     } finally {rmSync(directory,{recursive:true,force:true})}
   });
@@ -92,5 +92,50 @@ describe("human_v2 CC0 GLB", () => {
     const builderModule = build.replace(/\\/g, "/");
     const code = `import {validateOutputPath} from 'file:///${builderModule}'; for (const output of ['C:/fake/package.json','C:/fake/.codex-tmp/avatar-dna/../escape.glb','C:/fake/.codex-tmp/avatar-dna-ok/file.glb']) { try { validateOutputPath(output,'C:/fake/.codex-tmp/avatar-dna'); console.log('ok'); } catch { console.log('reject'); } }`;
     expect(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }).trim().split(/\s+/)).toEqual(["reject", "reject", "reject"]);
+  });
+
+  it("uses the exported library audit and detects every canonical geometry byte stream", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const original = path.join(directory, "original.glb");
+      execFileSync(process.execPath, [build, "--output", original], { cwd: root });
+      const bytes = readFileSync(original);
+      const layout = gltfLayout(bytes);
+      const primitive = layout.json.meshes[0].primitives[0];
+      const mutateBinary = (accessorIndex: number, mutate: (copy: Buffer, offset: number) => void, name: string) => {
+        const copy = Buffer.from(bytes); const accessor = layout.json.accessors[accessorIndex]; const view = layout.json.bufferViews[accessor.bufferView];
+        mutate(copy, layout.binOffset + (view.byteOffset || 0) + (accessor.byteOffset || 0));
+        const file = path.join(directory, `${name}.glb`); writeFileSync(file, copy); return file;
+      };
+      const position = mutateBinary(primitive.attributes.POSITION, (copy, offset) => copy.writeFloatLE(copy.readFloatLE(offset + 24) + 0.25, offset + 24), "position");
+      const normal = mutateBinary(primitive.attributes.NORMAL, (copy, offset) => copy.writeFloatLE(copy.readFloatLE(offset + 16) + 0.25, offset + 16), "normal");
+      const uv = mutateBinary(primitive.attributes.TEXCOORD_0, (copy, offset) => copy.writeFloatLE(copy.readFloatLE(offset + 12) + 0.25, offset + 12), "uv");
+      const winding = mutateBinary(primitive.indices, (copy, offset) => { const first = copy.readUInt32LE(offset); copy.writeUInt32LE(copy.readUInt32LE(offset + 4), offset); copy.writeUInt32LE(first, offset + 4); }, "winding");
+      const code = `import {auditHumanV2Glb} from 'file:///${audit.replace(/\\/g, "/")}'; const file=process.argv[1]; auditHumanV2Glb(file).then(result=>console.log(JSON.stringify(result)));`;
+      const direct = (file: string) => JSON.parse(execFileSync(process.execPath, ["--input-type=module", "--eval", code, file], { encoding: "utf8" }));
+      expect(direct(position).errors).toContain("canonical_position_mismatch");
+      expect(direct(normal).errors).toContain("canonical_normal_mismatch");
+      expect(direct(uv).errors).toContain("canonical_uv_mismatch");
+      expect(direct(winding).errors).toContain("canonical_topology_mismatch");
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
+  it("rejects malformed scene graph, primitive mode, textures, nonfinite normals, and zeroed morphs", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const original = path.join(directory, "original.glb"); execFileSync(process.execPath, [build, "--output", original], { cwd: root });
+      const bytes = readFileSync(original); const layout = gltfLayout(bytes); const primitive = layout.json.meshes[0].primitives[0];
+      const jsonCases: Array<[string, (json: any) => void, string]> = [
+        ["scene", json => { json.scene = 2; }, "invalid_scene_reference"],
+        ["node", json => { json.nodes[0].mesh = 3; }, "invalid_node_reference"],
+        ["mode", json => { json.meshes[0].primitives[0].mode = 1; }, "invalid_primitive_mode"],
+        ["texture", json => { json.textures = [{ source: 9 }]; }, "invalid_texture_reference"],
+      ];
+      for (const [name, mutate, expected] of jsonCases) { const file = path.join(directory, `${name}.glb`); writeFileSync(file, rewriteJson(bytes, mutate)); expect(runAudit(file).errors).toContain(expected); }
+      const normal = Buffer.from(bytes); const normalAccessor = layout.json.accessors[primitive.attributes.NORMAL]; const normalView = layout.json.bufferViews[normalAccessor.bufferView]; normal.writeFloatLE(Number.NaN, layout.binOffset + (normalView.byteOffset || 0) + (normalAccessor.byteOffset || 0)); const normalFile = path.join(directory, "nan-normal.glb"); writeFileSync(normalFile, normal); expect(runAudit(normalFile).errors).toContain("nonfinite_accessor");
+      const zeroed = Buffer.from(bytes);
+      for (const target of primitive.targets) { const accessor = layout.json.accessors[target.POSITION]; const view = layout.json.bufferViews[accessor.bufferView]; zeroed.fill(0, layout.binOffset + (view.byteOffset || 0) + (accessor.byteOffset || 0), layout.binOffset + (view.byteOffset || 0) + (accessor.byteOffset || 0) + accessor.count * 12); }
+      const zeroedFile = path.join(directory, "zeroed-morphs.glb"); writeFileSync(zeroedFile, zeroed); expect(runAudit(zeroedFile).errors).toContain("morph_signature_mismatch");
+    } finally { rmSync(directory, { recursive: true, force: true }); }
   });
 });

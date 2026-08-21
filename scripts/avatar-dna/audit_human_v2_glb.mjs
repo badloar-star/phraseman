@@ -4,12 +4,123 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseMakeHumanObj } from './lib/makehuman_obj.mjs';
 import { loadRelativeMorphDeltas, TARGET_ORDER } from './lib/morph_recipe.mjs';
-const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..','..'), SIZE={5120:1,5121:1,5122:2,5123:2,5125:4,5126:4}, WIDTH={SCALAR:1,VEC2:2,VEC3:3};
-process.on('unhandledRejection',()=>{if(process.argv[1]===fileURLToPath(import.meta.url)){process.stdout.write(JSON.stringify({ok:false,errors:['invalid_glb_structure'],summary:null}));process.exitCode=1}});
-const err=(a,x)=>{if(!a.includes(x))a.push(x)}; const integer=x=>Number.isInteger(x)&&x>=0;
-function chunks(b,e){if(b.length<20||b.readUInt32LE(0)!==0x46546c67||b.readUInt32LE(4)!==2||b.readUInt32LE(8)!==b.length){err(e,'invalid_glb_header');return}let o=12,c=[];while(o+8<=b.length){let n=b.readUInt32LE(o),t=b.readUInt32LE(o+4);o+=8;if(n%4||o+n>b.length){err(e,'invalid_glb_chunk');return}c.push([t,b.subarray(o,o+n)]);o+=n}if(o!==b.length||c.length!==2||c[0][0]!==0x4e4f534a||c[1][0]!==0x004e4942){err(e,'invalid_glb_chunk_order');return}try{return{g:JSON.parse(c[0][1].toString().trim()),bin:c[1][1]}}catch{err(e,'invalid_glb_json')}}
-function decode(g,bin,i,e){let a=g.accessors?.[i],v=g.bufferViews?.[a?.bufferView],n=WIDTH[a?.type],s=SIZE[a?.componentType];if(!a||!v||!integer(a.count)||!integer(a.byteOffset||0)||!n||!s||a.sparse||a.normalized){err(e,'invalid_accessor');return}let stride=v.byteStride||n*s;if(v.buffer!==0||!integer(v.byteOffset||0)||!integer(v.byteLength)||!integer(stride)||stride<n*s||stride%s||((v.byteOffset||0)%s)||a.componentType!==5126&&a.componentType!==5121&&a.componentType!==5123&&a.componentType!==5125||a.count&&((a.byteOffset||0)+(a.count-1)*stride+n*s>v.byteLength)||(v.byteOffset||0)+v.byteLength>bin.length){err(e,'invalid_accessor');return}let out=[];for(let j=0;j<a.count;j++){let p=(v.byteOffset||0)+(a.byteOffset||0)+j*stride,row=[];for(let k=0;k<n;k++)row.push(a.componentType===5126?bin.readFloatLE(p+k*4):a.componentType===5125?bin.readUInt32LE(p+k*4):a.componentType===5123?bin.readUInt16LE(p+k*2):bin.readUInt8(p+k));out.push(row)}return{a,out,raw:Buffer.concat(out.map(r=>{let x=Buffer.alloc(n*s);r.forEach((v,k)=>a.componentType===5126?x.writeFloatLE(v,k*4):a.componentType===5125?x.writeUInt32LE(v,k*4):a.componentType===5123?x.writeUInt16LE(v,k*2):x.writeUInt8(v,k));return x}))}}
-async function expected(){let vendor=path.join(ROOT,'tools/avatar-dna/vendor/makehuman-v1.3.0'),body=parseMakeHumanObj(await readFile(path.join(vendor,'makehuman/data/3dobjs/base.obj'),'utf8'));return loadRelativeMorphDeltas({recipePath:path.join(ROOT,'config/avatar-dna/human_v2_style.v1.json'),targetsRoot:vendor,sourceVertexIndex:body.sourceVertexIndex,sourceVertexCount:body.sourcePositions.length})}
-export async function auditHumanV2Glb(input){let e=[],b;try{b=Buffer.isBuffer(input)?input:await readFile(input)}catch{ return {ok:false,errors:['unreadable_input'],summary:null}}let s={vertexCount:0,triangleCount:0,morphCount:0,meshNames:[],targetNames:[],maxAbsDelta:0,bounds:null,sha256:createHash('sha256').update(b).digest('hex')},p=chunks(b,e);if(!p)return{ok:false,errors:e,summary:s};let {g,bin}=p;if(g.asset?.version!=='2.0'||g.buffers?.length!==1||g.buffers[0]?.byteLength>bin.length||bin.length-g.buffers[0]?.byteLength>3||!bin.subarray(g.buffers[0]?.byteLength||0).every(x=>x===0))err(e,'invalid_bin_length');let m=g.meshes||[];s.meshNames=m.map(x=>x?.name);let mesh=m.length===1&&m[0],q=mesh?.primitives?.length===1&&mesh.primitives[0];if(!mesh||mesh.name!=='avatar_body_base'||!q){err(e,'invalid_body_mesh');err(e,'missing_required_named_morphs');err(e,'primitive_fixture_detected');return{ok:false,errors:e,summary:s}}if(!g.materials?.[q.material]||g.materials[q.material].name!=='material_skin')err(e,'invalid_material');let pos=decode(g,bin,q.attributes?.POSITION,e),nor=decode(g,bin,q.attributes?.NORMAL,e),uv=decode(g,bin,q.attributes?.TEXCOORD_0,e),ind=decode(g,bin,q.indices,e);const exact=(x,t,n,c)=>{if(!x||x.a.componentType!==c||x.a.type!==t||x.a.count!==n)err(e,'invalid_base_geometry')};exact(pos,'VEC3',14517,5126);exact(nor,'VEC3',14517,5126);exact(uv,'VEC2',14517,5126);exact(ind,'SCALAR',80268,ind?.a.componentType);s.vertexCount=pos?.out.length||0;s.triangleCount=(ind?.out.length||0)/3;if(pos){let lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];for(let r of pos.out)r.forEach((v,i)=>{if(!Number.isFinite(v))err(e,'nonfinite_accessor');lo[i]=Math.min(lo[i],v);hi[i]=Math.max(hi[i],v)});s.bounds={min:lo,max:hi};let want=[[-4.9627,-8.1676,-1.0154],[4.9627,8.4913,3.2147]];if(lo.some((v,i)=>Math.abs(v-want[0][i])>1e-4)||hi.some((v,i)=>Math.abs(v-want[1][i])>1e-4))err(e,'neutral_bounds_mismatch')}for(let x of [...(nor?.out||[]),...(uv?.out||[])])if(x.some(v=>!Number.isFinite(v)))err(e,'nonfinite_accessor');if(ind&&pos)for(let i=0;i<ind.out.length;i+=3){let z=ind.out.slice(i,i+3).map(x=>x[0]);if(z.some(x=>x>=14517)){err(e,'index_out_of_range');continue}let a=pos.out[z[0]],c=pos.out[z[1]],d=pos.out[z[2]],u=c.map((x,j)=>x-a[j]),v=d.map((x,j)=>x-a[j]);if(Math.hypot(u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0])<1e-12)err(e,'degenerate_triangle')}
- let names=mesh.extras?.targetNames;s.targetNames=Array.isArray(names)?names:[];s.morphCount=q.targets?.length||0;if(JSON.stringify(names)!==JSON.stringify(TARGET_ORDER)||new Set(names||[]).size!==18)err(e,'missing_required_named_morphs');if(!Array.isArray(mesh.weights)||mesh.weights.length!==18||mesh.weights.some(x=>x!==0))err(e,'invalid_default_weights');if((g.nodes||[]).some(x=>x.weights))err(e,'node_weights_override');let exp=await expected();for(let i=0;i<18;i++){let t=q.targets?.[i];if(!t||Object.keys(t).length!==1||t.POSITION===undefined){err(e,'invalid_morph_target');continue}let d=decode(g,bin,t.POSITION,e);if(!d||d.a.componentType!==5126||d.a.type!=='VEC3'||d.a.count!==14517){err(e,'invalid_morph_target');continue}if(d.out.some(r=>r.some(x=>!Number.isFinite(x))))err(e,'nonfinite_accessor');s.maxAbsDelta=Math.max(s.maxAbsDelta,...d.out.flat().map(Math.abs));if(!d.raw.equals(Buffer.from(exp[i].buffer)))err(e,'morph_signature_mismatch')}if(s.maxAbsDelta>1)err(e,'unreasonable_morph_delta');return{ok:!e.length,errors:e,summary:s}}
-if(process.argv[1]===fileURLToPath(import.meta.url)){auditHumanV2Glb(process.argv[2]).then(x=>{process.stdout.write(JSON.stringify(x));process.exitCode=x.ok?0:1})}
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+const GLB_MAGIC = 0x46546c67, JSON_CHUNK = 0x4e4f534a, BIN_CHUNK = 0x004e4942;
+const COMPONENT_BYTES = { 5121: 1, 5123: 2, 5125: 4, 5126: 4 }, TYPE_COMPONENTS = { SCALAR: 1, VEC2: 2, VEC3: 3 };
+const VERTICES = 14517, INDICES = 80268, BOUNDS = { min: [-4.9627, -8.1676, -1.0154], max: [4.9627, 8.4913, 3.2147] };
+const err = (errors, code) => { if (!errors.includes(code)) errors.push(code); };
+const isUint = value => Number.isInteger(value) && value >= 0;
+const sameArray = (a, b) => Array.isArray(a) && a.length === b.length && a.every((value, index) => value === b[index]);
+
+function parseGlb(bytes, errors) {
+  if (bytes.length < 20 || bytes.readUInt32LE(0) !== GLB_MAGIC || bytes.readUInt32LE(4) !== 2 || bytes.readUInt32LE(8) !== bytes.length) { err(errors, 'invalid_glb_header'); return null; }
+  const chunks = []; let offset = 12;
+  while (offset + 8 <= bytes.length) {
+    const length = bytes.readUInt32LE(offset), type = bytes.readUInt32LE(offset + 4); offset += 8;
+    if (length % 4 || offset + length > bytes.length) { err(errors, 'invalid_glb_chunk'); return null; }
+    chunks.push({ type, bytes: bytes.subarray(offset, offset + length) }); offset += length;
+  }
+  if (offset !== bytes.length || chunks.length !== 2 || chunks[0].type !== JSON_CHUNK || chunks[1].type !== BIN_CHUNK) { err(errors, 'invalid_glb_chunk_order'); return null; }
+  try { return { gltf: JSON.parse(chunks[0].bytes.toString('utf8').trim()), bin: chunks[1].bytes }; } catch { err(errors, 'invalid_glb_json'); return null; }
+}
+
+function reader(gltf, bin, index, errors) {
+  const accessor = gltf.accessors?.[index], view = gltf.bufferViews?.[accessor?.bufferView], componentBytes = COMPONENT_BYTES[accessor?.componentType], width = TYPE_COMPONENTS[accessor?.type];
+  const accessorOffset = accessor?.byteOffset ?? 0, viewOffset = view?.byteOffset ?? 0;
+  if (!accessor || !view || !isUint(index) || !isUint(accessor.count) || !isUint(accessorOffset) || !isUint(viewOffset) || !componentBytes || !width || accessor.sparse || accessor.normalized || view.buffer !== 0 || !isUint(view.byteLength)) { err(errors, 'invalid_accessor'); return null; }
+  const elementBytes = componentBytes * width, stride = view.byteStride ?? elementBytes;
+  if (!isUint(stride) || stride < elementBytes || stride % componentBytes || viewOffset % componentBytes || accessorOffset % componentBytes || accessorOffset + (accessor.count ? (accessor.count - 1) * stride + elementBytes : 0) > view.byteLength || viewOffset + view.byteLength > bin.length) { err(errors, 'invalid_accessor'); return null; }
+  const read = (element, component) => {
+    const at = viewOffset + accessorOffset + element * stride + component * componentBytes;
+    if (accessor.componentType === 5121) return bin.readUInt8(at);
+    if (accessor.componentType === 5123) return bin.readUInt16LE(at);
+    if (accessor.componentType === 5125) return bin.readUInt32LE(at);
+    return bin.readFloatLE(at);
+  };
+  const bytes = () => { const result = Buffer.alloc(accessor.count * elementBytes); for (let row = 0; row < accessor.count; row += 1) bin.copy(result, row * elementBytes, viewOffset + accessorOffset + row * stride, viewOffset + accessorOffset + row * stride + elementBytes); return result; };
+  return { accessor, width, read, bytes };
+}
+
+function expectAccessor(value, expected, errors, code = 'invalid_base_geometry') {
+  if (!value || value.accessor.componentType !== expected.componentType || value.accessor.type !== expected.type || value.accessor.count !== expected.count) { err(errors, code); return false; }
+  return true;
+}
+function finite(value, errors) { if (value) for (let row = 0; row < value.accessor.count; row += 1) for (let column = 0; column < value.width; column += 1) if (!Number.isFinite(value.read(row, column))) err(errors, 'nonfinite_accessor'); }
+
+function graph(gltf, errors) {
+  if (gltf.asset?.version !== '2.0' || ['scenes', 'nodes', 'meshes', 'materials', 'accessors', 'bufferViews', 'buffers'].some(key => !Array.isArray(gltf[key]))) err(errors, 'invalid_glb_structure');
+  if (gltf.scene !== 0 || gltf.scenes?.length !== 1 || gltf.scenes?.[0]?.name !== 'human_v2_scene' || !sameArray(gltf.scenes?.[0]?.nodes, [0])) err(errors, 'invalid_scene_reference');
+  const node = gltf.nodes?.[0];
+  if (gltf.nodes?.length !== 1 || !node || node.name !== 'human_v2' || node.mesh !== 0 || 'weights' in node || 'children' in node || 'skin' in node || gltf.nodes.some(entry => !entry || !isUint(entry.mesh) || entry.mesh >= gltf.meshes.length)) err(errors, 'invalid_node_reference');
+  if (gltf.meshes?.length !== 1 || gltf.materials?.length !== 1 || gltf.textures?.length || gltf.images?.length || gltf.samplers?.length) err(errors, 'invalid_reference_graph');
+  if (gltf.buffers?.length !== 1) err(errors, 'invalid_bin_length');
+  const material = gltf.materials?.[0];
+  if (!material || material.name !== 'material_skin' || material.pbrMetallicRoughness?.baseColorTexture || material.normalTexture || material.occlusionTexture || material.emissiveTexture) err(errors, 'invalid_material');
+  for (const texture of gltf.textures || []) if (!isUint(texture?.source) || texture.source >= (gltf.images?.length || 0) || (texture.sampler !== undefined && (!isUint(texture.sampler) || texture.sampler >= (gltf.samplers?.length || 0)))) err(errors, 'invalid_texture_reference');
+}
+
+async function canonical() {
+  const vendor = path.join(ROOT, 'tools', 'avatar-dna', 'vendor', 'makehuman-v1.3.0');
+  const body = parseMakeHumanObj(await readFile(path.join(vendor, 'makehuman', 'data', '3dobjs', 'base.obj'), 'utf8'));
+  const positions = new Float32Array(body.positions.flat()), normals = new Float32Array(positions.length);
+  for (const [a, b, c] of body.triangles) {
+    const p = body.positions[a], q = body.positions[b], r = body.positions[c], ux = q[0] - p[0], uy = q[1] - p[1], uz = q[2] - p[2], vx = r[0] - p[0], vy = r[1] - p[1], vz = r[2] - p[2], x = uy * vz - uz * vy, y = uz * vx - ux * vz, z = ux * vy - uy * vx;
+    for (const index of [a, b, c]) { normals[index * 3] += x; normals[index * 3 + 1] += y; normals[index * 3 + 2] += z; }
+  }
+  for (let index = 0; index < normals.length; index += 3) { const length = Math.hypot(normals[index], normals[index + 1], normals[index + 2]) || 1; normals[index] /= length; normals[index + 1] /= length; normals[index + 2] /= length; }
+  const morphs = await loadRelativeMorphDeltas({ recipePath: path.join(ROOT, 'config', 'avatar-dna', 'human_v2_style.v1.json'), targetsRoot: vendor, sourceVertexIndex: body.sourceVertexIndex, sourceVertexCount: body.sourcePositions.length });
+  return { positions: Buffer.from(positions.buffer), normals: Buffer.from(normals.buffer), uvs: Buffer.from(new Float32Array(body.uvs.flat()).buffer), indices: Buffer.from(new Uint32Array(body.triangles.flat()).buffer), morphs: morphs.map(value => Buffer.from(value.buffer)) };
+}
+
+function triangles(positions, indices, errors) {
+  for (let index = 0; index < indices.accessor.count; index += 3) {
+    const vertices = [indices.read(index, 0), indices.read(index + 1, 0), indices.read(index + 2, 0)];
+    if (vertices.some(vertex => vertex >= VERTICES)) { err(errors, 'index_out_of_range'); continue; }
+    const p = vertices.map(vertex => [positions.read(vertex, 0), positions.read(vertex, 1), positions.read(vertex, 2)]), ux = p[1][0] - p[0][0], uy = p[1][1] - p[0][1], uz = p[1][2] - p[0][2], vx = p[2][0] - p[0][0], vy = p[2][1] - p[0][1], vz = p[2][2] - p[0][2];
+    if (Math.hypot(uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx) < 1e-12) err(errors, 'degenerate_triangle');
+  }
+}
+function bounds(positions, errors, summary) {
+  const min = [Infinity, Infinity, Infinity], max = [-Infinity, -Infinity, -Infinity];
+  for (let row = 0; row < positions.accessor.count; row += 1) for (let axis = 0; axis < 3; axis += 1) { const value = positions.read(row, axis); min[axis] = Math.min(min[axis], value); max[axis] = Math.max(max[axis], value); }
+  summary.bounds = { min, max };
+  if (min.some((value, index) => Math.abs(value - BOUNDS.min[index]) > 1e-4) || max.some((value, index) => Math.abs(value - BOUNDS.max[index]) > 1e-4)) err(errors, 'neutral_bounds_mismatch');
+}
+
+export async function auditHumanV2Glb(input) {
+  const errors = []; let bytes;
+  try { bytes = Buffer.isBuffer(input) ? input : await readFile(input); } catch { return { ok: false, errors: ['unreadable_input'], summary: null }; }
+  const summary = { vertexCount: 0, triangleCount: 0, morphCount: 0, meshNames: [], targetNames: [], maxAbsDelta: 0, bounds: null, sha256: createHash('sha256').update(bytes).digest('hex') };
+  try {
+    const parsed = parseGlb(bytes, errors); if (!parsed) return { ok: false, errors, summary };
+    const { gltf, bin } = parsed; graph(gltf, errors);
+    if (gltf.buffers?.[0]?.byteLength !== bin.length) err(errors, 'invalid_bin_length');
+    const mesh = gltf.meshes?.[0], primitive = mesh?.primitives?.[0]; summary.meshNames = (gltf.meshes || []).map(value => value?.name);
+    if (!mesh || gltf.meshes?.length !== 1 || mesh.name !== 'avatar_body_base' || mesh.primitives?.length !== 1 || !primitive) { err(errors, 'invalid_body_mesh'); err(errors, 'missing_required_named_morphs'); err(errors, 'primitive_fixture_detected'); return { ok: false, errors, summary }; }
+    if (primitive.mode !== undefined && primitive.mode !== 4) err(errors, 'invalid_primitive_mode');
+    if (primitive.material !== 0) err(errors, 'invalid_material');
+    const positions = reader(gltf, bin, primitive.attributes?.POSITION, errors), normals = reader(gltf, bin, primitive.attributes?.NORMAL, errors), uvs = reader(gltf, bin, primitive.attributes?.TEXCOORD_0, errors), indices = reader(gltf, bin, primitive.indices, errors);
+    const shapeOk = expectAccessor(positions, { componentType: 5126, type: 'VEC3', count: VERTICES }, errors) & expectAccessor(normals, { componentType: 5126, type: 'VEC3', count: VERTICES }, errors) & expectAccessor(uvs, { componentType: 5126, type: 'VEC2', count: VERTICES }, errors) & expectAccessor(indices, { componentType: 5125, type: 'SCALAR', count: INDICES }, errors);
+    summary.vertexCount = positions?.accessor.count || 0; summary.triangleCount = (indices?.accessor.count || 0) / 3; finite(positions, errors); finite(normals, errors); finite(uvs, errors);
+    if (positions) bounds(positions, errors, summary); if (positions && indices && indices.accessor.count % 3 === 0) triangles(positions, indices, errors);
+    const targetNames = mesh.extras?.targetNames; summary.targetNames = Array.isArray(targetNames) ? targetNames : []; summary.morphCount = primitive.targets?.length || 0;
+    if (!sameArray(targetNames, TARGET_ORDER) || new Set(targetNames || []).size !== TARGET_ORDER.length) err(errors, 'missing_required_named_morphs');
+    if (!Array.isArray(mesh.weights) || mesh.weights.length !== TARGET_ORDER.length || mesh.weights.some(weight => weight !== 0)) err(errors, 'invalid_default_weights');
+    if (!Array.isArray(primitive.targets) || primitive.targets.length !== TARGET_ORDER.length) err(errors, 'invalid_morph_target');
+    const expected = await canonical();
+    if (shapeOk && positions && !positions.bytes().equals(expected.positions)) err(errors, 'canonical_position_mismatch');
+    if (shapeOk && normals && !normals.bytes().equals(expected.normals)) err(errors, 'canonical_normal_mismatch');
+    if (shapeOk && uvs && !uvs.bytes().equals(expected.uvs)) err(errors, 'canonical_uv_mismatch');
+    if (shapeOk && indices && !indices.bytes().equals(expected.indices)) err(errors, 'canonical_topology_mismatch');
+    for (let index = 0; index < TARGET_ORDER.length; index += 1) {
+      const target = primitive.targets?.[index]; if (!target || Object.keys(target).length !== 1 || !isUint(target.POSITION)) { err(errors, 'invalid_morph_target'); continue; }
+      const morph = reader(gltf, bin, target.POSITION, errors); if (!expectAccessor(morph, { componentType: 5126, type: 'VEC3', count: VERTICES }, errors, 'invalid_morph_target')) continue;
+      finite(morph, errors); for (let row = 0; row < morph.accessor.count; row += 1) for (let column = 0; column < 3; column += 1) summary.maxAbsDelta = Math.max(summary.maxAbsDelta, Math.abs(morph.read(row, column)));
+      if (!morph.bytes().equals(expected.morphs[index])) err(errors, 'morph_signature_mismatch');
+    }
+    if (summary.maxAbsDelta > 1) err(errors, 'unreasonable_morph_delta');
+    return { ok: errors.length === 0, errors, summary };
+  } catch { err(errors, 'invalid_glb_structure'); return { ok: false, errors, summary }; }
+}
+if (process.argv[1] === fileURLToPath(import.meta.url)) auditHumanV2Glb(process.argv[2]).then(result => { process.stdout.write(JSON.stringify(result)); process.exitCode = result.ok ? 0 : 1; });

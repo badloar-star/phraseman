@@ -134,6 +134,9 @@ describe("human_v2 CC0 GLB", () => {
         ["color", json => { json.meshes[0].primitives[0].attributes.COLOR_0 = 999; }, "invalid_primitive_attributes"],
         ["position-min", json => { json.accessors[json.meshes[0].primitives[0].attributes.POSITION].min = [-999, -999, -999]; }, "invalid_position_bounds_metadata"],
         ["position-max", json => { json.accessors[json.meshes[0].primitives[0].attributes.POSITION].max = [999, 999, 999]; }, "invalid_position_bounds_metadata"],
+        ["external-bin", json => { json.buffers[0].uri = "external.bin"; }, "invalid_bin_length"],
+        ["dead-accessor", json => { json.accessors.push({ bufferView: 999, componentType: 5126, count: 1, type: "SCALAR" }); }, "invalid_collection_cardinality"],
+        ["dead-view", json => { json.bufferViews.push({ buffer: 999, byteOffset: 0, byteLength: 4 }); }, "invalid_collection_cardinality"],
       ];
       for (const [name, mutate, expected] of jsonCases) { const file = path.join(directory, `${name}.glb`); writeFileSync(file, rewriteJson(bytes, mutate)); expect(runAudit(file).errors).toContain(expected); }
       const normal = Buffer.from(bytes); const normalAccessor = layout.json.accessors[primitive.attributes.NORMAL]; const normalView = layout.json.bufferViews[normalAccessor.bufferView]; normal.writeFloatLE(Number.NaN, layout.binOffset + (normalView.byteOffset || 0) + (normalAccessor.byteOffset || 0)); const normalFile = path.join(directory, "nan-normal.glb"); writeFileSync(normalFile, normal); expect(runAudit(normalFile).errors).toContain("nonfinite_accessor");

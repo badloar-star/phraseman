@@ -60,6 +60,19 @@ function graph(gltf, errors) {
   if (!material || material.name !== 'material_skin' || material.pbrMetallicRoughness?.baseColorTexture || material.normalTexture || material.occlusionTexture || material.emissiveTexture) err(errors, 'invalid_material');
   for (const texture of gltf.textures || []) if (!isUint(texture?.source) || texture.source >= (gltf.images?.length || 0) || (texture.sampler !== undefined && (!isUint(texture.sampler) || texture.sampler >= (gltf.samplers?.length || 0)))) err(errors, 'invalid_texture_reference');
 }
+function collectionContract(gltf, bin, errors) {
+  const buffers = gltf.buffers || [], views = gltf.bufferViews || [], accessors = gltf.accessors || [];
+  if (buffers.length !== 1 || !sameArray(Object.keys(buffers[0] || {}).sort(), ['byteLength']) || buffers[0]?.byteLength !== bin.length) err(errors, 'invalid_bin_length');
+  if (views.length !== 22 || accessors.length !== 22) err(errors, 'invalid_collection_cardinality');
+  for (let index = 0; index < views.length; index += 1) {
+    const view = views[index];
+    if (!view || !sameArray(Object.keys(view).sort(), ['buffer', 'byteLength', 'byteOffset']) || view.buffer !== 0 || !isUint(view.byteOffset) || !isUint(view.byteLength) || view.byteOffset + view.byteLength > bin.length) err(errors, 'invalid_buffer_view');
+  }
+  for (let index = 0; index < accessors.length; index += 1) {
+    const accessor = accessors[index]; const expected = index === 0 ? ['bufferView', 'componentType', 'count', 'max', 'min', 'type'] : ['bufferView', 'componentType', 'count', 'type'];
+    if (!accessor || !sameArray(Object.keys(accessor).sort(), expected)) err(errors, 'invalid_accessor_metadata');
+  }
+}
 
 async function canonical() {
   const vendor = path.join(ROOT, 'tools', 'avatar-dna', 'vendor', 'makehuman-v1.3.0');
@@ -106,7 +119,7 @@ export async function auditHumanV2Glb(input) {
   try {
     const parsed = parseGlb(bytes, errors); if (!parsed) return { ok: false, errors, summary };
     const { gltf, bin } = parsed; graph(gltf, errors);
-    if (gltf.buffers?.[0]?.byteLength !== bin.length) err(errors, 'invalid_bin_length');
+    collectionContract(gltf, bin, errors);
     const mesh = gltf.meshes?.[0], primitive = mesh?.primitives?.[0]; summary.meshNames = (gltf.meshes || []).map(value => value?.name);
     if (!mesh || gltf.meshes?.length !== 1 || mesh.name !== 'avatar_body_base' || mesh.primitives?.length !== 1 || !primitive) { err(errors, 'invalid_body_mesh'); err(errors, 'missing_required_named_morphs'); err(errors, 'primitive_fixture_detected'); return { ok: false, errors, summary }; }
     if (primitive.mode !== undefined && primitive.mode !== 4) err(errors, 'invalid_primitive_mode');
@@ -126,7 +139,7 @@ export async function auditHumanV2Glb(input) {
     if (shapeOk && uvs && !uvs.bytes().equals(expected.uvs)) err(errors, 'canonical_uv_mismatch');
     if (shapeOk && indices && !indices.bytes().equals(expected.indices)) err(errors, 'canonical_topology_mismatch');
     for (let index = 0; index < TARGET_ORDER.length; index += 1) {
-      const target = primitive.targets?.[index]; if (!target || Object.keys(target).length !== 1 || !isUint(target.POSITION)) { err(errors, 'invalid_morph_target'); continue; }
+      const target = primitive.targets?.[index]; if (!target || Object.keys(target).length !== 1 || target.POSITION !== 4 + index) { err(errors, 'invalid_morph_target'); continue; }
       const morph = reader(gltf, bin, target.POSITION, errors); if (!expectAccessor(morph, { componentType: 5126, type: 'VEC3', count: VERTICES }, errors, 'invalid_morph_target')) continue;
       finite(morph, errors); for (let row = 0; row < morph.accessor.count; row += 1) for (let column = 0; column < 3; column += 1) summary.maxAbsDelta = Math.max(summary.maxAbsDelta, Math.abs(morph.read(row, column)));
       if (!morph.bytes().equals(expected.morphs[index])) err(errors, 'morph_signature_mismatch');

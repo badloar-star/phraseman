@@ -16,6 +16,15 @@ describe('Avatar DNA resolver', () => {
     });
   });
 
+  it('provides a distinct second starter preset on the same rig', () => {
+    const second = starterAvatarDNA('starter_warm_02');
+    expect(second.base).toEqual({ starterPresetId: 'starter_warm_02', skinToneId: 'skin_03', faceBaseId: 'face_02', bodyBaseId: 'body_02' });
+    expect(second.face).toMatchObject({ eyesId: 'eyes_02', irisColorId: 'iris_brown', browsId: 'brows_02', noseId: 'nose_02', mouthId: 'mouth_02' });
+    expect(second.hair).toEqual({ styleId: 'hair_02', colorId: 'hair_brown' });
+    expect(second.wearables.outfitId).toBe('outfit_02');
+    expect(second.rigId).toBe('human_v1');
+  });
+
   it('rejects selected item conflicts without mutating chosen DNA', () => {
     const chosen = starterAvatarDNA('starter_warm_01'); const before = JSON.parse(JSON.stringify(chosen));
     const catalog = JSON.parse(JSON.stringify(require('../config/avatar-dna/catalog.v1.json')));
@@ -26,21 +35,21 @@ describe('Avatar DNA resolver', () => {
 
   it('resolves a hood without changing the stored hair choice', () => {
     const chosen = starterAvatarDNA('starter_warm_01');
-    const withHood = { ...chosen, hair: { ...chosen.hair, styleId: 'hair_wavy_01' }, wearables: { ...chosen.wearables, headwearId: 'headwear.assassin_hood.01' } };
+    const withHood = { ...chosen, hair: { ...chosen.hair, styleId: 'hair_02' }, wearables: { ...chosen.wearables, headwearId: 'headwear.assassin_hood.01' } };
     const resolved = resolveAvatarDNA(withHood, avatarCatalog);
 
     expect(resolved.chosenDNA).toEqual(withHood);
     expect(resolved.chosenDNA).not.toBe(withHood);
     expect(resolved.visibilityPlan.hiddenSlots).toEqual(['hair.front', 'ears']);
     expect(resolved.layers.map((layer) => layer.id)).toEqual([
-      'background.cream', 'hood.assassin.back', 'hair.wavy.back', 'body.base.01', 'outfit.starter.01', 'face.base.01', 'eyes.01', 'iris.brown', 'brows.01', 'nose.01', 'mouth.01', 'hood.assassin.shadow', 'hood.assassin.front',
+      'background.cream', 'hood.assassin.back', 'hair.2.back', 'body.base.1', 'outfit.1', 'face.base.1', 'eyes.1', 'iris.brown', 'brows.1', 'nose.1', 'mouth.1', 'hood.assassin.shadow', 'hood.assassin.front',
     ]);
   });
 
   it('restores the stored hair choice when the hood is removed', () => {
     const starter = starterAvatarDNA('starter_warm_01');
-    const resolved = resolveAvatarDNA({ ...starter, hair: { ...starter.hair, styleId: 'hair_wavy_01' } }, avatarCatalog);
-    expect(resolved.effectiveDNA.hair.styleId).toBe('hair_wavy_01');
+    const resolved = resolveAvatarDNA({ ...starter, hair: { ...starter.hair, styleId: 'hair_02' } }, avatarCatalog);
+    expect(resolved.effectiveDNA.hair.styleId).toBe('hair_02');
     expect(resolved.visibilityPlan.hiddenSlots).not.toContain('hair.front');
   });
 
@@ -51,9 +60,9 @@ describe('Avatar DNA resolver', () => {
     catalog.items.find((item: any) => item.id === 'face_01').layers[0].tintFrom = 'skinTone';
     catalog.items.find((item: any) => item.id === 'hair_01').layers.forEach((layer: any) => { layer.tintFrom = 'hairColor'; });
     const resolved = resolveAvatarDNA(starterAvatarDNA('starter_warm_01'), catalog);
-    expect(resolved.layers.find((layer) => layer.id === 'face.base.01')?.tintColor).toBe('#d4936a');
-    expect(resolved.layers.filter((layer) => layer.id.startsWith('hair.starter.')).map((layer) => layer.tintColor)).toEqual(['#5b2b18', '#5b2b18']);
-    expect(resolved.layers.find((layer) => layer.id === 'outfit.starter.01')?.tintColor).toBeUndefined();
+    expect(resolved.layers.find((layer) => layer.id === 'face.base.1')?.tintColor).toBe('#d4936a');
+    expect(resolved.layers.filter((layer) => layer.id.startsWith('hair.1.')).map((layer) => layer.tintColor)).toEqual(['#5b2b18', '#5b2b18']);
+    expect(resolved.layers.find((layer) => layer.id === 'outfit.1')?.tintColor).toBeUndefined();
   });
 
   it('fails closed for unknown selected items', () => {
@@ -80,7 +89,7 @@ describe('Avatar DNA resolver', () => {
     expect(() => resolveAvatarDNA(chosen, avatarCatalog)).toThrow('avatar_catalog_invalid'); expect(chosen).toEqual(before);
   });
 
-  it.each(['hair_wavy_01', 'face_01'])('rejects non-headwear %s in headwear selector', (headwearId) => {
+  it.each(['hair_02', 'face_01'])('rejects non-headwear %s in headwear selector', (headwearId) => {
     const chosen: any = JSON.parse(JSON.stringify(starterAvatarDNA('starter_warm_01'))); chosen.wearables.headwearId = headwearId; const before = JSON.parse(JSON.stringify(chosen));
     expect(() => resolveAvatarDNA(chosen, avatarCatalog)).toThrow('avatar_catalog_invalid'); expect(chosen).toEqual(before);
   });
@@ -91,6 +100,6 @@ describe('Avatar DNA resolver', () => {
     cyclic.items[1].conflicts = [cyclic.items[0].id];
     expect(() => resolveAvatarDNA(starterAvatarDNA('starter_warm_01'), cyclic)).toThrow('avatar_manifest_cycle');
     expect(() => { (avatarCatalog.items[0] as { id: string }).id = 'evil'; }).toThrow();
-    expect(avatarCatalog.items[0].id).toBe('skin_03');
+    expect(avatarCatalog.items[0].id).toBe('skin_01');
   });
 });

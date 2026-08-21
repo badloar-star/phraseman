@@ -9,7 +9,7 @@ const initialDNA = () => {
   const starter = starterAvatarDNA('starter_warm_01');
   return parseAvatarDNA({
     ...starter,
-    hair: { ...starter.hair, styleId: 'hair_wavy_01' },
+    hair: { ...starter.hair, styleId: 'hair_02' },
   });
 };
 
@@ -22,7 +22,7 @@ describe('Avatar DNA editor reducer', () => {
       itemId: 'headwear.assassin_hood.01',
     });
 
-    expect(next.present.chosenDNA.hair.styleId).toBe('hair_wavy_01');
+    expect(next.present.chosenDNA.hair.styleId).toBe('hair_02');
     expect(next.present.resolved.visibilityPlan.hiddenSlots).toEqual(['hair.front', 'ears']);
     expect(next.present.notice).toEqual({
       kind: 'occlusion',
@@ -58,7 +58,7 @@ describe('Avatar DNA editor reducer', () => {
     });
 
     expect(unhooded.present.chosenDNA.wearables.headwearId).toBeNull();
-    expect(unhooded.present.chosenDNA.hair.styleId).toBe('hair_wavy_01');
+    expect(unhooded.present.chosenDNA.hair.styleId).toBe('hair_02');
     expect(unhooded.present.resolved.visibilityPlan.hiddenSlots).toEqual([]);
     expect(unhooded.present.notice).toBeNull();
   });

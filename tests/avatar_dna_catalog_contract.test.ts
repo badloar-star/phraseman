@@ -11,6 +11,7 @@ describe('Avatar DNA catalog contract', () => {
   const root = path.resolve(__dirname, '..');
   const canonicalCatalog = require('../config/avatar-dna/catalog.v1.json');
   const canonicalRig = require('../config/avatar-dna/human_v1.rig.json');
+  const layeredItem = (catalog: any, index = 0) => catalog.items.filter((item: any) => item.layers.length > 0)[index];
   const cliResult = (catalog: unknown, rig: unknown = canonicalRig) => {
     const temp = mkdtempSync(path.join(os.tmpdir(), 'avatar-dna-cli-'));
     try {
@@ -22,6 +23,15 @@ describe('Avatar DNA catalog contract', () => {
   it('validates the canonical fixture catalog', () => {
     const output = execFileSync(process.execPath, ['scripts/avatar-dna/validate_catalog.mjs', '--catalog', 'config/avatar-dna/catalog.v1.json', '--rig', 'config/avatar-dna/human_v1.rig.json', '--fixture-mode'], { cwd: root, encoding: 'utf8' });
     expect(output).toContain('avatar-dna catalog: PASS');
+  });
+
+  it('reproduces the checked-in closed catalog deterministically', () => {
+    const temp = mkdtempSync(path.join(os.tmpdir(), 'avatar-dna-generated-'));
+    const output = path.join(temp, 'catalog.v1.json');
+    try {
+      execFileSync(process.execPath, ['scripts/avatar-dna/generate_catalog_v1.mjs', '--out', output], { cwd: root, encoding: 'utf8' });
+      expect(JSON.parse(readFileSync(output, 'utf8'))).toEqual(canonicalCatalog);
+    } finally { rmSync(temp, { recursive: true, force: true }); }
   });
 
   it('executes a copied validator from a URL-special workspace path', () => {
@@ -38,12 +48,23 @@ describe('Avatar DNA catalog contract', () => {
   it('has the exact closed rig and catalog inventory', () => {
     expect(Object.keys(canonicalRig.anchors).sort()).toEqual(['chin','earLeft','earRight','eyeLineLeft','eyeLineRight','headTop','mouthCenter','neckCenter','noseBridge','noseTip','shoulderLeft','shoulderRight','templeLeft','templeRight','torsoCenter']);
     expect(Object.keys(canonicalRig.safePolygons).sort()).toEqual(['face.safe','head.safe']);
-    expect(canonicalCatalog.items.map((item: { id: string }) => item.id).sort()).toEqual(['background_cream','body_01','brows_01','eyes_01','face_01','hair_01','hair_brown','hair_wavy_01','headwear.assassin_hood.01','iris_brown','mouth_01','nose_01','outfit_01','skin_03']);
-    expect(canonicalCatalog.items.filter((item: { id: string }) => item.id !== 'headwear.assassin_hood.01').every((item: { entitlement: unknown }) => JSON.stringify(item.entitlement) === JSON.stringify({ kind: 'free' }))).toBe(true);
+    const numbered = (prefix: string, count: number) => Array.from({ length: count }, (_, index) => `${prefix}${String(index + 1).padStart(2, '0')}`);
+    const expected = [
+      ...numbered('skin_', 6), ...numbered('face_', 4), ...numbered('body_', 2), ...numbered('eyes_', 6),
+      'iris_brown','iris_hazel','iris_green','iris_blue','iris_gray','iris_amber', ...numbered('brows_', 4),
+      ...numbered('nose_', 4), ...numbered('mouth_', 4), ...numbered('skin_detail_', 4), ...numbered('makeup_', 4),
+      ...numbered('facial_hair_', 2), ...numbered('hair_', 8), 'hair_black','hair_dark_brown','hair_brown','hair_auburn','hair_blonde',
+      ...numbered('outfit_', 8), 'background_cream','background_terracotta','background_olive','background_sunset',
+      'headwear.cap.01','headwear.beanie.01','headwear.flower_crown.01','headwear.assassin_hood.01',
+      'mask.domino.01','mask.festival.01','eyewear.round.01','eyewear.cat_eye.01',
+      'ear_accessory.stud.01','ear_accessory.hoop.01','neck_accessory.scarf.01','neck_accessory.pendant.01',
+    ].sort();
+    expect(canonicalCatalog.items.map((item: { id: string }) => item.id).sort()).toEqual(expected);
+    expect(canonicalCatalog.items).toHaveLength(83);
   });
 
   it.each([
-    ['unknown root', (c: any) => { c.extra = true; }], ['extra rig', (c: any) => { c.rigIds.push('other'); }], ['duplicate item rig', (c: any) => { c.items[0].rigIds.push('human_v1'); }], ['extra item rig', (c: any) => { c.items[0].rigIds.push('other'); }], ['missing item', (c: any) => { c.items.pop(); }], ['extra item', (c: any) => { c.items.push(JSON.parse(JSON.stringify(c.items[0]))); c.items.at(-1).id = 'extra_item'; }], ['starter entitlement', (c: any) => { c.items[0].entitlement.kind = 'reward'; }], ['hood entitlement', (c: any) => { c.items.at(-1).entitlement.kind = 'free'; }], ['unresolved conflict', (c: any) => { c.items[0].conflicts = ['missing.item']; }], ['cycle', (c: any) => { c.items[0].conflicts = [c.items[1].id]; c.items[1].conflicts = [c.items[0].id]; }], ['duplicate layer', (c: any) => { c.items[2].layers[0].id = c.items[1].layers[0].id; }], ['unknown slot', (c: any) => { c.items[1].layers[0].slot = 'bad.slot'; }], ['unknown clip', (c: any) => { c.items[1].layers[0].clip = 'bad.safe'; }], ['path traversal', (c: any) => { c.items[1].layers[0].file = '../x.webp'; }], ['absolute path', (c: any) => { c.items[1].layers[0].file = '/x.webp'; }], ['windows path', (c: any) => { c.items[1].layers[0].file = 'C:\\x.webp'; }], ['url path', (c: any) => { c.items[1].layers[0].file = 'https://x/y.webp'; }], ['z out of range', (c: any) => { c.items[1].layers[0].z = 180; }], ['z fractional', (c: any) => { c.items[1].layers[0].z = 1.5; }], ['invalid bytes', (c: any) => { c.items[1].layers[0].bytes = 0; c.items[1].layers[0].sha256 = 'a'.repeat(64); }], ['invalid hash', (c: any) => { c.items[1].layers[0].bytes = 1; c.items[1].layers[0].sha256 = 'A'.repeat(64); }], ['partial hash', (c: any) => { c.items[1].layers[0].bytes = 1; }],
+    ['unknown root', (c: any) => { c.extra = true; }], ['extra rig', (c: any) => { c.rigIds.push('other'); }], ['duplicate item rig', (c: any) => { c.items[0].rigIds.push('human_v1'); }], ['extra item rig', (c: any) => { c.items[0].rigIds.push('other'); }], ['missing item', (c: any) => { c.items.pop(); }], ['extra item', (c: any) => { c.items.push(JSON.parse(JSON.stringify(c.items[0]))); c.items.at(-1).id = 'extra_item'; }], ['starter entitlement', (c: any) => { c.items[0].entitlement.kind = 'reward'; }], ['hood entitlement', (c: any) => { c.items.find((item: any) => item.id === 'headwear.assassin_hood.01').entitlement.kind = 'free'; }], ['unresolved conflict', (c: any) => { c.items[0].conflicts = ['missing.item']; }], ['cycle', (c: any) => { c.items[0].conflicts = [c.items[1].id]; c.items[1].conflicts = [c.items[0].id]; }], ['duplicate layer', (c: any) => { layeredItem(c, 1).layers[0].id = layeredItem(c).layers[0].id; }], ['unknown slot', (c: any) => { layeredItem(c).layers[0].slot = 'bad.slot'; }], ['unknown clip', (c: any) => { layeredItem(c).layers[0].clip = 'bad.safe'; }], ['path traversal', (c: any) => { layeredItem(c).layers[0].file = '../x.webp'; }], ['absolute path', (c: any) => { layeredItem(c).layers[0].file = '/x.webp'; }], ['windows path', (c: any) => { layeredItem(c).layers[0].file = 'C:\\x.webp'; }], ['url path', (c: any) => { layeredItem(c).layers[0].file = 'https://x/y.webp'; }], ['z out of range', (c: any) => { layeredItem(c).layers[0].z = 180; }], ['z fractional', (c: any) => { layeredItem(c).layers[0].z = 1.5; }], ['invalid bytes', (c: any) => { layeredItem(c).layers[0].bytes = 0; layeredItem(c).layers[0].sha256 = 'a'.repeat(64); }], ['invalid hash', (c: any) => { layeredItem(c).layers[0].bytes = 1; layeredItem(c).layers[0].sha256 = 'A'.repeat(64); }], ['partial hash', (c: any) => { layeredItem(c).layers[0].bytes = 1; }],
   ])('CLI fixture mode rejects %s', (_name, mutate) => {
     const catalog = JSON.parse(JSON.stringify(canonicalCatalog)); mutate(catalog);
     const result = cliResult(catalog);
@@ -51,7 +72,7 @@ describe('Avatar DNA catalog contract', () => {
   });
 
   it.each([
-    ['duplicate item ID', (c: any, _r: any) => { c.items[1].id = c.items[0].id; }], ['missing entitlement', (c: any, _r: any) => { delete c.items[0].entitlement; }], ['negative z', (c: any, _r: any) => { c.items[1].layers[0].z = -1; }], ['invalid swatch', (c: any, _r: any) => { c.items[0].swatchHex = 'green'; }], ['invalid tint source', (c: any, _r: any) => { c.items[1].layers[0].tintFrom = 'outfit'; }], ['extra safe polygon', (_c: any, r: any) => { r.safePolygons.extra = [[0, 0], [1, 0], [1, 1]]; }], ['anchor outside bounds', (_c: any, r: any) => { r.anchors.headTop = [1.1, 0]; }], ['polygon outside bounds', (_c: any, r: any) => { r.safePolygons['face.safe'][0] = [-0.1, 0]; }], ['zero-area polygon', (_c: any, r: any) => { r.safePolygons['head.safe'] = [[0, 0], [0.5, 0.5], [1, 1]]; }], ['portrait crop outside bounds', (_c: any, r: any) => { r.portraitCrop[0] = 2; }], ['portrait crop overflow', (_c: any, r: any) => { r.portraitCrop = [0.8, 0, 0.3, 0.2]; }], ['studio zero crop', (_c: any, r: any) => { r.studioCrop[2] = 0; }], ['studio crop outside bounds', (_c: any, r: any) => { r.studioCrop[0] = -1; }], ['runtime dimensions', (_c: any, r: any) => { r.runtime.width = 511; }], ['canvas dimensions', (_c: any, r: any) => { r.canvas.width = 2047; }],
+    ['duplicate item ID', (c: any, _r: any) => { c.items[1].id = c.items[0].id; }], ['missing entitlement', (c: any, _r: any) => { delete c.items[0].entitlement; }], ['negative z', (c: any, _r: any) => { layeredItem(c).layers[0].z = -1; }], ['invalid swatch', (c: any, _r: any) => { c.items[0].swatchHex = 'green'; }], ['invalid tint source', (c: any, _r: any) => { layeredItem(c).layers[0].tintFrom = 'outfit'; }], ['extra safe polygon', (_c: any, r: any) => { r.safePolygons.extra = [[0, 0], [1, 0], [1, 1]]; }], ['anchor outside bounds', (_c: any, r: any) => { r.anchors.headTop = [1.1, 0]; }], ['polygon outside bounds', (_c: any, r: any) => { r.safePolygons['face.safe'][0] = [-0.1, 0]; }], ['zero-area polygon', (_c: any, r: any) => { r.safePolygons['head.safe'] = [[0, 0], [0.5, 0.5], [1, 1]]; }], ['portrait crop outside bounds', (_c: any, r: any) => { r.portraitCrop[0] = 2; }], ['portrait crop overflow', (_c: any, r: any) => { r.portraitCrop = [0.8, 0, 0.3, 0.2]; }], ['studio zero crop', (_c: any, r: any) => { r.studioCrop[2] = 0; }], ['studio crop outside bounds', (_c: any, r: any) => { r.studioCrop[0] = -1; }], ['runtime dimensions', (_c: any, r: any) => { r.runtime.width = 511; }], ['canvas dimensions', (_c: any, r: any) => { r.canvas.width = 2047; }],
   ])('CLI fixture mode rejects %s', (_name, mutate) => {
     const catalog = JSON.parse(JSON.stringify(canonicalCatalog)); const rig = JSON.parse(JSON.stringify(canonicalRig)); mutate(catalog, rig);
     const result = cliResult(catalog, rig); expect(result.status).not.toBe(0); expect(result.stderr).toContain('avatar_catalog_invalid');
@@ -100,11 +121,11 @@ describe('Avatar DNA catalog contract', () => {
     const mutable = JSON.parse(JSON.stringify(catalog));
     if (kind === 'unknown root key') mutable.extra = true;
     if (kind === 'missing entitlement') delete mutable.items[0].entitlement;
-    if (kind === 'unsafe file path') mutable.items[1].layers[0].file = '../escape.webp';
+    if (kind === 'unsafe file path') layeredItem(mutable).layers[0].file = '../escape.webp';
     if (kind === 'duplicate item') mutable.items[1].id = mutable.items[0].id;
-    if (kind === 'unknown slot') mutable.items[1].layers[0].slot = 'unknown';
-    if (kind === 'invalid z') mutable.items[1].layers[0].z = 180;
-    if (kind === 'unknown clip') mutable.items[1].layers[0].clip = 'missing.safe';
+    if (kind === 'unknown slot') layeredItem(mutable).layers[0].slot = 'unknown';
+    if (kind === 'invalid z') layeredItem(mutable).layers[0].z = 180;
+    if (kind === 'unknown clip') layeredItem(mutable).layers[0].clip = 'missing.safe';
     expect(() => parseAvatarCatalog(mutable)).toThrow('avatar_catalog_invalid');
   });
 

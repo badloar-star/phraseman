@@ -55,9 +55,10 @@ const parseAvatarCatalogUnsafe = (input: unknown): AvatarCatalogManifest => {
     visiting.delete(id); visited.add(id);
   };
   items.forEach((item) => visit(item.id));
-  const required = ['skin_03','face_01','body_01','eyes_01','iris_brown','brows_01','nose_01','mouth_01','hair_01','hair_brown','outfit_01','background_cream','hair_wavy_01','headwear.assassin_hood.01'];
+  const required = ['skin_03','face_01','face_02','body_01','body_02','eyes_01','eyes_02','iris_brown','brows_01','brows_02','nose_01','nose_02','mouth_01','mouth_02','hair_01','hair_02','hair_brown','outfit_01','outfit_02','background_cream','headwear.assassin_hood.01'];
   if (items.length === 0 || required.some((id) => !itemIds.has(id))) throw new TypeError('avatar_catalog_invalid: required inventory');
-  if (items.length !== required.length || items.some((item) => item.id !== 'headwear.assassin_hood.01' && item.entitlement.kind !== 'free') || items.find((item) => item.id === 'headwear.assassin_hood.01')?.entitlement.kind !== 'reward') throw new TypeError('avatar_catalog_invalid: canonical entitlement');
+  const cosmetic = (id: string): boolean => /^(headwear\.|mask\.|eyewear\.|ear_accessory\.|neck_accessory\.)/.test(id);
+  if (items.length !== 83 || items.some((item) => cosmetic(item.id) ? item.entitlement.kind === 'free' : item.entitlement.kind !== 'free')) throw new TypeError('avatar_catalog_invalid: canonical entitlement');
   const parsed = deepFreeze({ catalogVersion: 1 as const, manifestVersion: 1 as const, rigIds: [...rigIds], items });
   parsedCatalogs.add(parsed);
   return parsed;
@@ -75,6 +76,7 @@ export const isParsedAvatarCatalog = (value: unknown): value is AvatarCatalogMan
 export const avatarCatalog = parseAvatarCatalog(source);
 export const getCatalogItem = (id: string): AvatarItemManifest | undefined => avatarCatalog.items.find((item) => item.id === id);
 export const starterAvatarDNA = (presetId: string): AvatarDNA => {
-  if (presetId !== 'starter_warm_01') throw new TypeError('avatar_catalog_invalid: starter preset');
-  return parseAvatarDNA({ schemaVersion: 1, rigId: 'human_v1', base: { starterPresetId: presetId, skinToneId: 'skin_03', faceBaseId: 'face_01', bodyBaseId: 'body_01' }, face: { eyesId: 'eyes_01', irisColorId: 'iris_brown', browsId: 'brows_01', noseId: 'nose_01', mouthId: 'mouth_01', skinDetailIds: [], makeupIds: [], facialHairId: null }, hair: { styleId: 'hair_01', colorId: 'hair_brown' }, wearables: { outfitId: 'outfit_01', headwearId: null, maskId: null, eyewearId: null, earAccessoryId: null, neckAccessoryId: null }, scene: { backgroundId: 'background_cream', auraId: null, frameId: null, foregroundFxId: null } });
+  if (presetId !== 'starter_warm_01' && presetId !== 'starter_warm_02') throw new TypeError('avatar_catalog_invalid: starter preset');
+  const variant = presetId === 'starter_warm_01' ? '01' : '02';
+  return parseAvatarDNA({ schemaVersion: 1, rigId: 'human_v1', base: { starterPresetId: presetId, skinToneId: 'skin_03', faceBaseId: `face_${variant}`, bodyBaseId: `body_${variant}` }, face: { eyesId: `eyes_${variant}`, irisColorId: 'iris_brown', browsId: `brows_${variant}`, noseId: `nose_${variant}`, mouthId: `mouth_${variant}`, skinDetailIds: [], makeupIds: [], facialHairId: null }, hair: { styleId: `hair_${variant}`, colorId: 'hair_brown' }, wearables: { outfitId: `outfit_${variant}`, headwearId: null, maskId: null, eyewearId: null, earAccessoryId: null, neckAccessoryId: null }, scene: { backgroundId: 'background_cream', auraId: null, frameId: null, foregroundFxId: null } });
 };

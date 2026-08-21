@@ -118,13 +118,13 @@ export async function buildHumanV2Cc0Glb(options = {}) {
   for (const side of ['left','right']) {
     const helperGroup = `joint-${side === 'left' ? 'l' : 'r'}-eye`, anchor = helperBounds(body.groups[helperGroup]);
     const sclera = makeScleraWithAperture({center:anchor.center,radii:[0.165,0.175,0.145]});
-    const iris=makeIrisSurface({center:anchor.center,radii:[0.092,0.092,0.012]});
-    const corneaCenter=[anchor.center[0],anchor.center[1],anchor.center[2]+0.04], cornea = makeLatLongEllipsoid({center:corneaCenter,radii:[0.168,0.178,0.151]});
+    const iris=makeIrisSurface({center:anchor.center,radii:[0.092,0.092,0.012],apertureRadius:sclera.apertureRadii[0]});
+    const corneaCenter=anchor.center, cornea = makeLatLongEllipsoid({center:corneaCenter,radii:[0.168,0.178,0.151]});
     const addSurface=(name,surface,material,extras={})=>{const position=accessor(surface.positions,5126,'VEC3',typedBounds(surface.positions,3)),normalAccessor=accessor(surface.normals,5126,'VEC3',typedBounds(surface.normals,3)),index=accessor(surface.indices,5125,'SCALAR',typedBounds(surface.indices,1));meshes.push({name,primitives:[{attributes:{POSITION:position,NORMAL:normalAccessor},indices:index,material}],extras});nodes.push({name,mesh:meshes.length-1});};
     const provenance={helperGroup,helperBounds:{min:anchor.min,max:anchor.max},anchor:anchor.center};
     addSurface(`avatar_eye_${side}_sclera`,sclera,materialIndex.material_sclera,{...provenance,radii:[0.165,0.175,0.145],apertureRadii:sclera.apertureRadii,apertureOffset:sclera.apertureOffset});
     const ip=accessor(iris.positions,5126,'VEC3',typedBounds(iris.positions,3)),inorm=accessor(iris.normals,5126,'VEC3',typedBounds(iris.normals,3)),annulus=accessor(iris.annulus,5125,'SCALAR',typedBounds(iris.annulus,1)),pupil=accessor(iris.pupil,5125,'SCALAR',typedBounds(iris.pupil,1));
-    meshes.push({name:`avatar_eye_${side}_iris`,primitives:[{attributes:{POSITION:ip,NORMAL:inorm},indices:annulus,material:materialIndex.material_iris},{attributes:{POSITION:ip,NORMAL:inorm},indices:pupil,material:materialIndex.material_pupil}],extras:{...provenance,radii:[0.092,0.092,0.012],irisOffsetTowardCamera:iris.apexOffset,rimOffset:iris.rimOffset,pupilRing:iris.pupilRing,radialSegments:iris.radialSegments,angularSegments:iris.angularSegments}}); nodes.push({name:`avatar_eye_${side}_iris`,mesh:meshes.length-1});
+    meshes.push({name:`avatar_eye_${side}_iris`,primitives:[{attributes:{POSITION:ip,NORMAL:inorm},indices:annulus,material:materialIndex.material_iris},{attributes:{POSITION:ip,NORMAL:inorm},indices:pupil,material:materialIndex.material_pupil}],extras:{...provenance,radii:[0.092,0.092,0.012],apertureRadius:iris.apertureRadius,irisOffsetTowardCamera:iris.apexOffset,rimOffset:iris.rimOffset,pupilRing:iris.pupilRing,radialSegments:iris.radialSegments,angularSegments:iris.angularSegments}}); nodes.push({name:`avatar_eye_${side}_iris`,mesh:meshes.length-1});
     addSurface(`avatar_eye_${side}_cornea`,cornea,materialIndex.material_cornea,{...provenance,radii:[0.168,0.178,0.151],surfaceCenter:corneaCenter});
   }
   const gltf={asset:{version:'2.0',generator:'phraseman-avatar-dna-cc0-v1'},scene:0,scenes:[{name:'human_v2_scene',nodes:nodes.map((_,index)=>index)}],nodes,meshes,materials,accessors,bufferViews:views,buffers:[{byteLength:chunks.reduce((n,c)=>n+c.length,0)}]};

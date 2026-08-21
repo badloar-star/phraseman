@@ -111,6 +111,13 @@ describe("human_v2 CC0 GLB", () => {
     expect(JSON.parse(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }))).toEqual({ sphereVertices: 146, sphereIndices: 864, irisVertices: 81, irisIndices: 432, normals: true, winding: true, overlap: false });
   });
 
+  it("matches iris analytic outward normals and keeps the smooth sclera aperture below the edge bound", () => {
+    const helper = path.join(root, "scripts/avatar-dna/lib/ellipsoid_mesh.mjs").replace(/\\/g, "/");
+    const code = `import {makeIrisSurface,makeScleraWithAperture} from 'file:///${helper}';const a=.092,iris=makeIrisSurface({center:[0,0,0],radii:[.092,.092,.012],apertureRadius:a}),sclera=makeScleraWithAperture({center:[0,0,0],radii:[.165,.175,.145]});let minDot=1,maxEdge=0;for(let i=0;i<iris.positions.length;i+=3){const x=iris.positions[i],y=iris.positions[i+1],z=(iris.positions[i+2]-.138+.012)/.012,ax=x/(a*a),ay=y/(a*a),az=z/.012,l=Math.hypot(ax,ay,az),d=(iris.normals[i]*ax+iris.normals[i+1]*ay+iris.normals[i+2]*az)/l;minDot=Math.min(minDot,d)}for(let i=0;i<sclera.indices.length;i+=3)for(const [u,v]of [[0,1],[1,2],[2,0]]){const a0=sclera.indices[i+u]*3,b0=sclera.indices[i+v]*3;maxEdge=Math.max(maxEdge,Math.hypot(sclera.positions[a0]-sclera.positions[b0],sclera.positions[a0+1]-sclera.positions[b0+1],sclera.positions[a0+2]-sclera.positions[b0+2]))}console.log(JSON.stringify({minDot,maxEdge,sv:sclera.positions.length/3,si:sclera.indices.length,rim:sclera.positions[2]}));`;
+    const result = JSON.parse(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }));
+    expect(result.minDot).toBeGreaterThanOrEqual(0.9999); expect(result.maxEdge).toBeLessThanOrEqual(0.09); expect(result.sv).toBe(161); expect(result.si).toBe(912); expect(result.rim).toBeCloseTo(0.126, 6);
+  });
+
   it("rejects degenerate eye triangles, duplicate node names, and forged eye stream metadata", () => {
     const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
     try {

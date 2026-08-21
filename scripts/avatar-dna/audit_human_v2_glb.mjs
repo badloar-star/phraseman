@@ -15,6 +15,7 @@ const VERTICES = 14517, INDICES = 80268, BOUNDS = { min: [-4.9627, -8.1676, -1.0
 const ROOT_KEYS = ['accessors', 'asset', 'bufferViews', 'buffers', 'materials', 'meshes', 'nodes', 'scene', 'scenes'];
 const REQUIRED_MESHES = ['avatar_body_base','avatar_eye_left_sclera','avatar_eye_left_iris','avatar_eye_left_cornea','avatar_eye_right_sclera','avatar_eye_right_iris','avatar_eye_right_cornea'];
 const REQUIRED_MATERIALS = ['material_skin','material_sclera','material_iris','material_pupil','material_cornea','material_hair','material_cloth'];
+const IRIS_APERTURE_RADIUS = 0.092;
 const err = (errors, code) => { if (!errors.includes(code)) errors.push(code); };
 const isUint = value => Number.isInteger(value) && value >= 0;
 const sameArray = (a, b) => Array.isArray(a) && a.length === b.length && a.every((value, index) => value === b[index]);
@@ -94,7 +95,7 @@ function exactSchema(gltf, bin, errors) {
   for (let index = 0; index < (primitive?.targets?.length || 0); index += 1) if (!hasKeys(primitive.targets[index], ['POSITION']) || primitive.targets[index].POSITION !== 4 + index) bad();
   for (let index = 1; index < (gltf.meshes?.length || 0); index += 1) {
     const eye = gltf.meshes[index]; const isIris = eye?.name?.endsWith('_iris');
-    const extras = isIris ? ['anchor','angularSegments','helperBounds','helperGroup','irisOffsetTowardCamera','pupilRing','radialSegments','radii','rimOffset'] : eye?.name?.endsWith('_sclera') ? ['anchor','apertureOffset','apertureRadii','helperBounds','helperGroup','radii'] : ['anchor','helperBounds','helperGroup','radii','surfaceCenter'];
+    const extras = isIris ? ['anchor','angularSegments','apertureRadius','helperBounds','helperGroup','irisOffsetTowardCamera','pupilRing','radialSegments','radii','rimOffset'] : eye?.name?.endsWith('_sclera') ? ['anchor','apertureOffset','apertureRadii','helperBounds','helperGroup','radii'] : ['anchor','helperBounds','helperGroup','radii','surfaceCenter'];
     if (!hasKeys(eye, ['extras','name','primitives']) || !hasKeys(eye?.extras, extras) || eye?.primitives?.length !== (isIris ? 2 : 1)) bad();
     for (const eyePrimitive of eye?.primitives || []) if (!hasKeys(eyePrimitive, ['attributes','indices','material']) || !hasKeys(eyePrimitive.attributes, ['NORMAL','POSITION'])) bad();
   }
@@ -179,7 +180,7 @@ async function auditEyesAndMaterials(gltf, bin, errors) {
     if (Object.values(parts).some(value => !value)) { err(errors, 'missing_eye_mesh'); continue; }
     const sourcePositions = sourceBody.groups?.[helperGroup]?.sourcePositions || [], helperMin = [0,1,2].map(axis => Math.min(...sourcePositions.map(position => position[axis]))), helperMax = [0,1,2].map(axis => Math.max(...sourcePositions.map(position => position[axis]))), helperCenter = helperMin.map((value, axis) => (value + helperMax[axis]) / 2);
     const irisExtras = parts.iris.extras, scleraExtras = parts.sclera.extras, corneaExtras = parts.cornea.extras;
-    if (!finiteVec3(irisExtras?.radii) || irisExtras?.radialSegments !== 5 || irisExtras?.angularSegments !== 16 || irisExtras?.pupilRing !== 2 || irisExtras?.irisOffsetTowardCamera !== 0.138 || irisExtras?.rimOffset !== 0.126 || !finiteVec3(scleraExtras?.radii) || !equalNumbers(scleraExtras?.apertureRadii, [0.092,0.092]) || scleraExtras?.apertureOffset !== 0.126 || !finiteVec3(corneaExtras?.surfaceCenter) || !finiteVec3(corneaExtras?.radii)) { err(errors, 'invalid_eye_metadata'); continue; }
+    if (!finiteVec3(irisExtras?.radii) || irisExtras?.apertureRadius !== IRIS_APERTURE_RADIUS || irisExtras?.radialSegments !== 5 || irisExtras?.angularSegments !== 16 || irisExtras?.pupilRing !== 2 || irisExtras?.irisOffsetTowardCamera !== 0.138 || irisExtras?.rimOffset !== 0.126 || !finiteVec3(scleraExtras?.radii) || !equalNumbers(scleraExtras?.apertureRadii, [IRIS_APERTURE_RADIUS,IRIS_APERTURE_RADIUS]) || scleraExtras?.apertureOffset !== 0.126 || !finiteVec3(corneaExtras?.surfaceCenter) || !finiteVec3(corneaExtras?.radii) || !equalNumbers(corneaExtras?.surfaceCenter, helperCenter)) { err(errors, 'invalid_eye_metadata'); continue; }
     for (const [part, mesh] of Object.entries(parts)) {
       const expectedRadii = part === 'sclera' ? [0.165,0.175,0.145] : part === 'iris' ? [0.092,0.092,0.012] : [0.168,0.178,0.151];
       const expectedAnchor = helperCenter;
@@ -203,15 +204,18 @@ async function auditEyesAndMaterials(gltf, bin, errors) {
       const firstTriangles = new Set(), secondTriangles = new Set();
       for (const [source, target] of [[first, firstTriangles], [second, secondTriangles]]) for (let index = 0; source && index < source.accessor.count; index += 3) target.add([source.read(index,0),source.read(index+1,0),source.read(index+2,0)].sort((a,b)=>a-b).join(','));
       if (!firstTriangles.size || !secondTriangles.size || [...firstTriangles].some(key => secondTriangles.has(key))) err(errors, 'invalid_iris_partition');
-      const expected = makeIrisSurface({ center: helperCenter, radii: [0.092,0.092,0.012], radialSegments: iris.extras.radialSegments, angularSegments: iris.extras.angularSegments, pupilRing: iris.extras.pupilRing });
+      const expected = makeIrisSurface({ center: helperCenter, radii: [0.092,0.092,0.012], apertureRadius: iris.extras.apertureRadius, radialSegments: iris.extras.radialSegments, angularSegments: iris.extras.angularSegments, pupilRing: iris.extras.pupilRing });
       const position = reader(gltf, bin, iris.primitives[0].attributes.POSITION, errors), normal = reader(gltf, bin, iris.primitives[0].attributes.NORMAL, errors);
       if (!position?.bytes().equals(Buffer.from(expected.positions.buffer)) || !normal?.bytes().equals(Buffer.from(expected.normals.buffer)) || !first?.bytes().equals(Buffer.from(expected.annulus.buffer)) || !second?.bytes().equals(Buffer.from(expected.pupil.buffer))) err(errors, 'invalid_iris_partition');
       if (iris.extras?.irisOffsetTowardCamera !== 0.138 || iris.extras?.rimOffset !== 0.126 || Math.abs(position?.read(0, 2) - (helperCenter[2] + 0.138)) > 1e-7) err(errors, 'invalid_eye_anchor');
       const corneaPosition = reader(gltf, bin, parts.cornea.primitives?.[0]?.attributes?.POSITION, errors); let clearance = Infinity;
-      for (let row = 0; position && row < position.accessor.count; row += 1) { const x = position.read(row, 0) - parts.cornea.extras.surfaceCenter[0], y = position.read(row, 1) - parts.cornea.extras.surfaceCenter[1], z = position.read(row, 2); const normalized = x*x/(0.168*0.168) + y*y/(0.178*0.178); const surface = parts.cornea.extras.surfaceCenter[2] + 0.151 * Math.sqrt(Math.max(0, 1 - normalized)); clearance = Math.min(clearance, surface - z); if (normalized > 1 || surface - z <= 1e-5) err(errors, 'iris_cornea_penetration'); }
+      for (let row = 0; position && row < position.accessor.count; row += 1) { const localX = position.read(row, 0) - helperCenter[0], localY = position.read(row, 1) - helperCenter[1], x = position.read(row, 0) - parts.cornea.extras.surfaceCenter[0], y = position.read(row, 1) - parts.cornea.extras.surfaceCenter[1], z = position.read(row, 2), zSphere = (z - helperCenter[2] - 0.138 + 0.012) / 0.012; const normalized = x*x/(0.168*0.168) + y*y/(0.178*0.178); const surface = parts.cornea.extras.surfaceCenter[2] + 0.151 * Math.sqrt(Math.max(0, 1 - normalized)); clearance = Math.min(clearance, surface - z); const analytic = [localX/(IRIS_APERTURE_RADIUS*IRIS_APERTURE_RADIUS), localY/(IRIS_APERTURE_RADIUS*IRIS_APERTURE_RADIUS), zSphere/0.012], length = Math.hypot(...analytic), dot = (normal.read(row,0)*analytic[0]+normal.read(row,1)*analytic[1]+normal.read(row,2)*analytic[2]) / length; if (normalized > 1 || surface - z <= 1e-5) err(errors, 'iris_cornea_penetration'); if (!Number.isFinite(dot) || dot < 0.9999) err(errors, 'invalid_iris_normals'); }
       if (!Number.isFinite(clearance) || clearance <= 1e-5 || !corneaPosition) err(errors, 'iris_cornea_penetration');
       const scleraPosition = reader(gltf, bin, parts.sclera.primitives?.[0]?.attributes?.POSITION, errors); const aperture = parts.sclera.extras;
-      if (!equalNumbers(aperture.apertureRadii, [0.092,0.092]) || aperture.apertureOffset !== 0.126 || !scleraPosition || !Array.from({length:16}, (_, index) => index).every(index => Math.abs(scleraPosition.read(index, 2) - (helperCenter[2] + 0.126)) < 1e-7)) err(errors, 'invalid_sclera_aperture');
+      if (!equalNumbers(aperture.apertureRadii, [IRIS_APERTURE_RADIUS,IRIS_APERTURE_RADIUS]) || aperture.apertureOffset !== 0.126 || !scleraPosition || !Array.from({length:16}, (_, index) => index).every(index => Math.abs(scleraPosition.read(index, 2) - (helperCenter[2] + 0.126)) < 1e-7)) err(errors, 'invalid_sclera_aperture');
+      const scleraIndices = reader(gltf, bin, parts.sclera.primitives?.[0]?.indices, errors); let maxScleraEdge = 0;
+      for (let index = 0; scleraPosition && scleraIndices && index < scleraIndices.accessor.count; index += 3) for (const [left, right] of [[0,1],[1,2],[2,0]]) { const a = scleraIndices.read(index + left, 0), b = scleraIndices.read(index + right, 0), dx = scleraPosition.read(a,0) - scleraPosition.read(b,0), dy = scleraPosition.read(a,1) - scleraPosition.read(b,1), dz = scleraPosition.read(a,2) - scleraPosition.read(b,2); maxScleraEdge = Math.max(maxScleraEdge, Math.hypot(dx,dy,dz)); }
+      if (!scleraPosition || !scleraIndices || scleraPosition.accessor.count !== 161 || scleraIndices.accessor.count !== 912 || maxScleraEdge > 0.09) err(errors, 'invalid_sclera_aperture');
     }
   }
 }

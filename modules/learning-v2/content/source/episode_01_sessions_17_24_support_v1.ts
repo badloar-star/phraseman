@@ -29,9 +29,10 @@ const turkishQuestionParticle = (word: string): 'mı' | 'mi' | 'mu' | 'mü' => {
 function localizedDetails(english: string): Record<Locale, EpisodeSourcePhraseLocalizedDetails> {
   return Object.fromEntries(LOCALES.map((locale) => {
     const words = tokenise(english);
+    const meaning = translateMeaning(locale, english);
     return [locale, {
-      meaning: translateMeaning(locale, english),
-      explanation: localizedExplanation(locale, english, translateMeaning(locale, english)),
+      meaning,
+      explanation: localizedExplanation(locale, english, meaning),
       distractors: wordAlternatives(words[0] ?? 'is').map((value) => ({ value, reason: localizedReason(locale, words[0] ?? 'is', value) })),
       words: words.map((word) => ({ correct: word, prompt: wordPrompt(locale, english, word), distractors: wordAlternatives(word).map((value) => ({ value, reason: localizedReason(locale, word, value) })) })),
     }];
@@ -83,14 +84,13 @@ function localizedReason(locale: Locale, correct: string, alternative: string): 
     uk: { pronoun: `«${alternative}» називає іншу особу, а тут потрібне саме «${correct}».`, copula: `«${alternative}» не є потрібною формою зв’язки; тут потрібне «${correct}».`, negation: `«${alternative}» не заперечує зміст; заперечення дає саме «${correct}».`, word: `«${alternative}» змінює потрібний зміст; тут має стояти «${correct}».` },
     es: { pronoun: `«${alternative}» nombra a otra persona; aquí hace falta «${correct}».`, copula: `«${alternative}» no es la cópula correcta; aquí se necesita «${correct}».`, negation: `«${alternative}» no niega la idea; la negación es «${correct}».`, word: `«${alternative}» cambia el sentido; en este lugar va «${correct}».` },
     'pt-BR': { pronoun: `«${alternative}» aponta outra pessoa; aqui é preciso «${correct}».`, copula: `«${alternative}» não é a cópula correta; aqui se usa «${correct}».`, negation: `«${alternative}» não nega a ideia; a negação é «${correct}».`, word: `«${alternative}» muda o sentido; nesta posição vai «${correct}».` },
-    vi: { pronoun: `«${alternative}» chỉ người khác; ở đây cần «${correct}».`, copula: `«${alternative}» không phải dạng nối đúng; ở đây cần «${correct}».`, negation: `«${alternative}» không phủ định ý; từ phủ định là «${correct}».`, word: `«${alternative}» đổi nghĩa; vị trí này cần «${correct}».` },
+    vi: { pronoun: `«${alternative}» chỉ một người hoặc nhóm khác với chủ thể cần nói; ở đây phải dùng «${correct}».`, copula: `«${alternative}» không khớp với chủ thể hoặc cấu trúc đang dùng; ngay vị trí này phải là «${correct}».`, negation: `«${alternative}» không tạo nghĩa phủ định; câu cần «${correct}» để bác bỏ đặc điểm được nêu.`, word: `«${alternative}» gọi một trạng thái, nơi chốn hoặc sự vật khác; ý đang nói cần chính xác từ «${correct}».` },
     id: { pronoun: `«${alternative}» menunjuk orang lain; di sini diperlukan «${correct}».`, copula: `«${alternative}» bukan bentuk penghubung yang benar; di sini perlu «${correct}».`, negation: `«${alternative}» tidak menyangkal makna; penyangkalannya adalah «${correct}».`, word: `«${alternative}» mengubah arti; posisi ini memerlukan «${correct}».` },
     tr: { pronoun: `«${alternative}» başka bir kişiyi gösterir; burada «${correct}» gerekir.`, copula: `«${alternative}» doğru bağlayıcı biçim değildir; burada «${correct}» gerekir.`, negation: `«${alternative}» anlamı olumsuz yapmaz; olumsuzluk «${correct}» ile kurulur.`, word: `«${alternative}» anlamı değiştirir; bu yerde «${correct}» gerekir.` },
     pl: { pronoun: `«${alternative}» wskazuje inną osobę; tutaj potrzebne jest «${correct}».`, copula: `«${alternative}» nie jest właściwą formą łącznika; tutaj potrzebne jest «${correct}».`, negation: `«${alternative}» nie przeczy znaczeniu; przeczenie tworzy «${correct}».`, word: `«${alternative}» zmienia sens; w tym miejscu potrzebne jest «${correct}».` },
   };
   const contrast = localizedContrast(locale, correct, alternative);
-  const suffix: Record<Locale, string> = { ru: ' Это меняет точный смысл готовой фразы.', uk: ' Це змінює точний зміст готової фрази.', es: ' Eso cambia el sentido preciso de la frase completa.', 'pt-BR': ' Isso muda o sentido exato da frase completa.', vi: ' Vì vậy nghĩa chính xác của cả câu sẽ đổi.', id: ' Karena itu arti tepat dari seluruh kalimat berubah.', tr: ' Böylece bütün cümlenin kesin anlamı değişir.', pl: ' Przez to zmienia się dokładny sens całego zdania.' };
-  return `${contrast || text[locale][category]}${suffix[locale]}`;
+  return contrast || text[locale][category];
 }
 
 const wordAlternatives = (word: string): readonly string[] => {

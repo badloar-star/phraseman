@@ -46,6 +46,7 @@ export type LearningV2ContentQualityIssueCode =
   | 'phrase_word_alignment_invalid'
   | 'phrase_distractors_invalid'
   | 'distractor_reason_too_thin'
+  | 'generic_feedback_template'
   | 'quality_review_missing'
   | 'quality_review_stale'
   | 'quality_review_rejected'
@@ -128,6 +129,21 @@ const LEARNING_CHRONOLOGY_BY_LOCALE: Readonly<Record<QualityLocale, RegExp>> =
 
 const LEAKED_SERVICE_TAIL = /(?:^|[.!?]\s+)(?:For\s+example|Example)\s*(?::|—|-)\s*[«“"]?.+?\b(?:carries|has|expresses|means)\s+(?:this\s+)?(?:exact\s+)?(?:meaning|idea|sense)\b|\b(?:This\s+(?:phrase|example)|It)\s+(?:carries|has|expresses)\s+(?:this\s+)?(?:exact\s+)?(?:meaning|idea|sense)\b/iu;
 
+// Owner lock, 2026-08-20: these sentences are not explanations. They are a
+// generic generator tail that hides which alternative was chosen and what it
+// actually does. Keep every locale here so the same template cannot return as
+// a translation in later lessons.
+const FORBIDDEN_GENERIC_FEEDBACK = Object.freeze([
+  /Это меняет точный смысл готовой фразы\./iu,
+  /Це змінює точний зміст готової фрази\./iu,
+  /Eso cambia el sentido preciso de la frase completa\./iu,
+  /Isso muda o sentido exato da frase completa\./iu,
+  /Vì vậy nghĩa chính xác của cả câu sẽ đổi\./iu,
+  /Karena itu arti tepat dari seluruh kalimat berubah\./iu,
+  /Böylece bütün cümlenin kesin anlamı değişir\./iu,
+  /Przez to zmienia się dokładny sens całego zdania\./iu,
+]);
+
 const FOREIGN_GRAMMAR = Object.freeze([
   /\b(?:was|were|will|would|did|does|doing|have been|has been)\b/iu,
   /present_simple|past_|future|going_to|continuous|irregular|third_person_s$/iu,
@@ -144,6 +160,34 @@ function add(
   message: string,
 ): void {
   issues.push({ code, path, message });
+}
+
+function inspectForbiddenGenericFeedback(
+  value: unknown,
+  path: string,
+  issues: LearningV2ContentQualityIssue[],
+): void {
+  if (typeof value === 'string') {
+    if (FORBIDDEN_GENERIC_FEEDBACK.some((pattern) => pattern.test(value)))
+      add(
+        issues,
+        'generic_feedback_template',
+        path,
+        'Запрещена универсальная приписка о «точном смысле»: назовите выбранную альтернативу и её конкретную смысловую или грамматическую ошибку.',
+      );
+    return;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item, index) =>
+      inspectForbiddenGenericFeedback(item, `${path}[${index}]`, issues),
+    );
+    return;
+  }
+  if (value && typeof value === 'object') {
+    Object.entries(value).forEach(([key, item]) =>
+      inspectForbiddenGenericFeedback(item, path ? `${path}.${key}` : key, issues),
+    );
+  }
 }
 
 function sentenceCount(value: string): number {
@@ -349,6 +393,7 @@ export function evaluateLearningV2SessionContentQuality(
   receipt?: LearningV2ContentQualityReviewReceipt,
 ): LearningV2ContentQualityReport {
   const issues: LearningV2ContentQualityIssue[] = [];
+  inspectForbiddenGenericFeedback(source, '', issues);
   inspectIntro(source, issues);
   inspectPhrases(source, issues);
   inspectReceipt(source, receipt, issues);

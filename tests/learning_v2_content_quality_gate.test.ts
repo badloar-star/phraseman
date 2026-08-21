@@ -265,6 +265,29 @@ describe("Learning V2 strict content quality gate", () => {
     );
   });
 
+  test.each([
+    ["ru", "Это меняет точный смысл готовой фразы."],
+    ["uk", "Це змінює точний зміст готової фрази."],
+    ["es", "Eso cambia el sentido preciso de la frase completa."],
+    ["pt-BR", "Isso muda o sentido exato da frase completa."],
+    ["vi", "Vì vậy nghĩa chính xác của cả câu sẽ đổi."],
+    ["id", "Karena itu arti tepat dari seluruh kalimat berubah."],
+    ["tr", "Böylece bütün cümlenin kesin anlamı değişir."],
+    ["pl", "Przez to zmienia się dokładny sens całego zdania."],
+  ] as const)(
+    "rejects the forbidden generic meaning template in %s",
+    (_locale, forbiddenCopy) => {
+      const source = candidate();
+      (source.phrases[0] as { explanation: string }).explanation =
+        forbiddenCopy;
+      const codes = evaluateLearningV2SessionContentQuality(
+        source,
+        approvedReceipt(source),
+      ).issues.map((issue) => issue.code);
+      expect(codes).toContain("generic_feedback_template");
+    },
+  );
+
   test("rejects leaked English service tails and learner chronology in intro copy", () => {
     const source = candidate();
     (source.introPages[0].body as { es: string }).es +=

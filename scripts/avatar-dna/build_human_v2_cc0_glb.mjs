@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseMakeHumanObj } from './lib/makehuman_obj.mjs';
@@ -21,14 +22,24 @@ function normals(positions, triangles) {
   for (let i=0;i<result.length;i+=3) { const d=Math.hypot(result[i],result[i+1],result[i+2]) || 1; result[i]/=d; result[i+1]/=d; result[i+2]/=d; }
   return result;
 }
-function assertOutput(output) {
-  const absolute = path.resolve(output); const temporary = absolute.includes(`${path.sep}.codex-tmp${path.sep}`) || absolute.startsWith(path.resolve(path.dirname(process.env.TEMP || process.env.TMP || root)) + path.sep);
-  if (!absolute.startsWith(root + path.sep) && !temporary) throw new Error('output must be inside the repository or an explicit temporary directory');
+export function validateOutputPath(output, allowedRoot) {
+  const absolute = path.resolve(output); const allowed = path.resolve(allowedRoot);
+  if (absolute === allowed || !absolute.startsWith(allowed + path.sep)) throw new Error('output must be contained by the explicit allowed output root');
   return absolute;
 }
-export async function buildHumanV2Cc0Glb(output = path.join(root, '.codex-tmp', 'avatar-dna', 'human_v2_cc0_candidate.glb')) {
-  const destination = assertOutput(output);
+async function verifyProvenance(vendor) {
+  const manifest = JSON.parse(await readFile(path.join(root, 'config', 'avatar-dna', 'human_v2_cc0_source.v1.json'), 'utf8'));
+  const byDestination = new Map(manifest.files.map(file => [file.destination, file]));
+  const style = await readFile(path.join(root, 'config', 'avatar-dna', 'human_v2_style.v1.json'));
+  if (createHash('sha256').update(style).digest('hex') !== '45beb0b962be02b7f0a9cb0c06bf8b248155de5337fd3b495e15217554ef8c54') throw new Error('pinned style provenance mismatch');
+  for (const file of manifest.files.filter(file => file.destination !== 'LICENSE.ASSETS.md')) { const bytes = await readFile(path.join(vendor, file.destination)); if (bytes.length !== file.bytes || createHash('sha256').update(bytes).digest('hex') !== file.sha256) throw new Error(`pinned source provenance mismatch: ${file.destination}`); }
+}
+export async function buildHumanV2Cc0Glb(options = {}) {
+  const input = typeof options === 'string' ? { output: options } : options;
+  const allowedOutputRoot = input.allowedOutputRoot || path.join(root, '.codex-tmp', 'avatar-dna');
+  const destination = validateOutputPath(input.output || path.join(allowedOutputRoot, 'human_v2_cc0_candidate.glb'), allowedOutputRoot);
   const vendor = path.join(root, 'tools', 'avatar-dna', 'vendor', 'makehuman-v1.3.0');
+  await verifyProvenance(vendor);
   const body = parseMakeHumanObj(await readFile(path.join(vendor, 'makehuman', 'data', '3dobjs', 'base.obj'), 'utf8'));
   const positions = new Float32Array(body.positions.flat()), uvs = new Float32Array(body.uvs.flat()), normal = normals(body.positions, body.triangles);
   const indices = new Uint32Array(body.triangles.flat()); const morphs = await loadRelativeMorphDeltas({ recipePath:path.join(root,'config','avatar-dna','human_v2_style.v1.json'), targetsRoot:vendor, sourceVertexIndex:body.sourceVertexIndex, sourceVertexCount:body.sourcePositions.length });
@@ -40,4 +51,4 @@ export async function buildHumanV2Cc0Glb(output = path.join(root, '.codex-tmp', 
   await mkdir(path.dirname(destination),{recursive:true}); await writeFile(destination,Buffer.concat([header,jsonHeader,json,binHeader,bin])); return destination;
 }
 export default buildHumanV2Cc0Glb;
-if (process.argv[1] === fileURLToPath(import.meta.url)) { const at=process.argv.indexOf('--output'); if (at !== -1 && (!process.argv[at+1] || at+2 !== process.argv.length)) throw new Error('usage: --output <path>'); const output=at===-1?undefined:process.argv[at+1]; buildHumanV2Cc0Glb(output).then(file=>process.stdout.write(`${file}\n`)); }
+if (process.argv[1] === fileURLToPath(import.meta.url)) { const at=process.argv.indexOf('--output'); if (at !== -1 && (!process.argv[at+1] || at+2 !== process.argv.length)) { process.stdout.write(JSON.stringify({ok:false,errors:['invalid_cli_arguments']})); process.exitCode=1; } else { const output=at===-1?undefined:process.argv[at+1]; buildHumanV2Cc0Glb({output}).then(file=>process.stdout.write(`${file}\n`)).catch(error=>{process.stdout.write(JSON.stringify({ok:false,errors:['build_failed'],message:error.message}));process.exitCode=1;}); } }

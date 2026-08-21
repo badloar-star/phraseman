@@ -32,7 +32,7 @@ describe("human_v2 CC0 GLB", () => {
   });
 
   it("builds the neutral MakeHuman body deterministically with the exact morph ABI", () => {
-    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna-glb-"));
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
     try {
       const first = path.join(directory, "one.glb");
       const second = path.join(directory, "two.glb");
@@ -50,7 +50,7 @@ describe("human_v2 CC0 GLB", () => {
   });
 
   it("rejects malformed headers and nonzero morph defaults from binary GLB data", () => {
-    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna-glb-"));
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
     try {
       const original = path.join(directory, "original.glb"); execFileSync(process.execPath, [build, "--output", original], { cwd: root });
       const badHeader = Buffer.from(readFileSync(original)); badHeader.writeUInt32LE(0, 0); const headerFile = path.join(directory, "header.glb"); writeFileSync(headerFile, badHeader);
@@ -64,7 +64,16 @@ describe("human_v2 CC0 GLB", () => {
     } finally { rmSync(directory, { recursive: true, force: true }); }
   });
 
+  it("rejects canonical GLB metadata tampering with stable codes", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try { const original=path.join(directory,"o.glb");execFileSync(process.execPath,[build,"--output",original],{cwd:root});const bytes=readFileSync(original);
+      const cases: any[] = [["count", (j:any) => { j.accessors[j.meshes[0].primitives[0].attributes.POSITION].count = 3; }, "invalid_glb_structure"], ["material", (j:any) => { j.meshes[0].primitives[0].material = 999; }, "invalid_material"], ["buffer", (j:any) => { j.buffers[0].byteLength = 1; }, "invalid_bin_length"], ["short", (j:any) => { const a=j.accessors[j.meshes[0].primitives[0].targets[0].POSITION]; j.bufferViews[a.bufferView].byteLength=4; }, "invalid_accessor"], ["type", (j:any) => { j.accessors[j.meshes[0].primitives[0].targets[0].POSITION].componentType=5121; }, "invalid_morph_target"], ["names", (j:any) => { j.meshes[0].extras.targetNames.reverse(); }, "missing_required_named_morphs"], ["stride", (j:any) => { const a=j.accessors[j.meshes[0].primitives[0].attributes.POSITION]; j.bufferViews[a.bufferView].byteStride=1; }, "invalid_accessor"]];
+      for(const [name,mutate,code] of cases){const file=path.join(directory,`${name}.glb`);writeFileSync(file,rewriteJson(bytes,mutate));expect(runAudit(file).errors).toContain(code)}
+    } finally {rmSync(directory,{recursive:true,force:true})}
+  });
+
   it("merges bilateral maps, preserves asymmetric branches, and duplicates seam deltas", () => {
+    // Binary mutators live in the preceding auditor test; source-map behavior is independent.
     const recipeModule = path.join(root, "scripts/avatar-dna/lib/morph_recipe.mjs").replace(/\\/g, "/");
     const code = `import {mergeTargetMaps,expandTargetMap} from 'file:///${recipeModule}'; const decrement=expandTargetMap(mergeTargetMaps([new Map([[1,[1,2,3]]])]),[1,0,1]); const increment=expandTargetMap(mergeTargetMaps([new Map([[1,[4,5,6]]]),new Map([[1,[7,8,9]]])]),[1]); console.log(JSON.stringify({decrement:[...decrement],increment:[...increment]}));`;
     const result = JSON.parse(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }));
@@ -77,5 +86,11 @@ describe("human_v2 CC0 GLB", () => {
     const legacy = readFileSync(path.join(root, "scripts/avatar-dna/build_human_v2_base_glb.mjs"), "utf8");
     expect(legacy).toContain("buildHumanV2Cc0Glb");
     expect(legacy).not.toMatch(/SphereGeometry|CapsuleGeometry|CylinderGeometry|TorusGeometry/);
+  });
+
+  it("rejects outputs outside the explicit temporary build root", () => {
+    const builderModule = build.replace(/\\/g, "/");
+    const code = `import {validateOutputPath} from 'file:///${builderModule}'; for (const output of ['C:/fake/package.json','C:/fake/.codex-tmp/avatar-dna/../escape.glb','C:/fake/.codex-tmp/avatar-dna-ok/file.glb']) { try { validateOutputPath(output,'C:/fake/.codex-tmp/avatar-dna'); console.log('ok'); } catch { console.log('reject'); } }`;
+    expect(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }).trim().split(/\s+/)).toEqual(["reject", "reject", "reject"]);
   });
 });

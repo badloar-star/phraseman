@@ -1,4 +1,4 @@
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import fsp from 'node:fs/promises';
@@ -76,6 +76,25 @@ test('locks the exact complete MakeHuman packet and its vendored bytes', async (
   expect(await validate(manifest)).toMatchObject({ status: 0, stderr: '' });
 }, 60_000);
 
+test('marks every pinned MakeHuman source file as binary', () => {
+  const vendorPrefix = 'tools/avatar-dna/vendor/makehuman-v1.3.0/';
+  const result = spawnSync('git', ['check-attr', '-z', 'binary', 'text', '--stdin'], {
+    cwd: root,
+    encoding: 'utf8',
+    input: `${expectedFiles.map(entry => `${vendorPrefix}${entry.destination}`).join('\0')}\0`,
+  });
+
+  expect(result.status).toBe(0);
+  const attributes = result.stdout.split('\0').filter(Boolean);
+  expect(attributes).toHaveLength(expectedFiles.length * 6);
+  for (let index = 0; index < attributes.length; index += 6) {
+    expect(attributes[index + 1]).toBe('binary');
+    expect(attributes[index + 2]).toBe('set');
+    expect(attributes[index + 4]).toBe('text');
+    expect(attributes[index + 5]).toBe('unset');
+  }
+});
+
 test('production validator rejects path, URL, and mapping bypasses', async () => {
   for (const source of ['/absolute.target', 'https://example.test/x', 'http:127.0.0.1/x', 'head\\x.target', '../x.target', 'head/../x.target', 'head/%2e%2e/x.target', 'head/%2E%2E/x.target', 'head/x.target?query', 'head/x.target#fragment']) {
     const copy = structuredClone(manifest);
@@ -85,6 +104,12 @@ test('production validator rejects path, URL, and mapping bypasses', async () =>
   const wrongMapping = structuredClone(manifest);
   wrongMapping.files[2].source = 'makehuman/data/targets/head/other.target';
   expect((await validate(wrongMapping)).status).toBe(1);
+
+  const nullEntry = structuredClone(manifest);
+  nullEntry.files[2] = null;
+  const result = await validate(nullEntry);
+  expect(result.status).toBe(1);
+  expect(result.stderr).toContain('Unsafe or invalid manifest entry');
 }, 60_000);
 
 test('production downloader accepts only exact bytes and rejects unsafe responses', async () => {
@@ -96,6 +121,8 @@ test('production downloader accepts only exact bytes and rejects unsafe response
       case '/slow': setTimeout(() => response.end('abc'), 100); return;
       case '/bad': response.writeHead(500); response.end(); return;
       case '/wrong-length': response.writeHead(200, { 'content-length': '4' }); response.end('abcd'); return;
+      case '/wrong-hash': response.writeHead(200, { 'content-length': '3' }); response.end('abd'); return;
+      case '/undersize': response.writeHead(200); response.end('ab'); return;
       case '/gzip':
         response.writeHead(200, {
           'content-encoding': 'gzip',
@@ -115,8 +142,19 @@ test('production downloader accepts only exact bytes and rejects unsafe response
     { sourceUrl: `http://127.0.0.1:${port}${route}`, destination: path.join(directory, `${route.slice(1)}.bin`), entry, timeoutMs },
   );
   try {
-    for (const route of ['/redirect', '/oversize', '/bad', '/wrong-length']) expect((await run(route)).status).toBe(1);
-    expect((await run('/slow', 10)).status).toBe(1);
+    for (const [route, timeoutMs] of [
+      ['/redirect', 1_000],
+      ['/oversize', 1_000],
+      ['/bad', 1_000],
+      ['/wrong-length', 1_000],
+      ['/wrong-hash', 1_000],
+      ['/undersize', 1_000],
+      ['/slow', 10],
+    ] as const) {
+      expect((await run(route, timeoutMs)).status).toBe(1);
+      expect(fs.existsSync(path.join(directory, `${route.slice(1)}.bin`))).toBe(false);
+      expect(fs.readdirSync(directory).filter(name => name.startsWith('.'))).toEqual([]);
+    }
     expect(await run('/ok')).toMatchObject({ status: 0, stderr: '' });
     expect(await run('/gzip')).toMatchObject({ status: 0, stderr: '' });
     expect(await fsp.readFile(path.join(directory, 'ok.bin'), 'utf8')).toBe('abc');

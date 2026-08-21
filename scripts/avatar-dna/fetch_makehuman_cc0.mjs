@@ -39,7 +39,9 @@ function isValidFile(bytes, entry) {
 }
 
 function isValidEntry(entry, destinations) {
-  return isSafeRelativePath(entry.source)
+  return entry !== null
+    && typeof entry === 'object'
+    && isSafeRelativePath(entry.source)
     && isSafeRelativePath(entry.destination)
     && Number.isSafeInteger(entry.bytes)
     && entry.bytes > 0

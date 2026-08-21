@@ -6,8 +6,19 @@ const DECIMAL_FLOAT = /^[+-]?(?:(?:\d+(?:\.\d*)?)|(?:\.\d+))(?:[eE][+-]?\d+)?$/;
 const NONNEGATIVE_DECIMAL_INTEGER = /^\d+$/;
 
 function targetEntry(target, index) {
-  if (target instanceof Map) return target.get(index);
-  return target?.[index];
+  return target.get(index);
+}
+
+function validateTargetMap(target, name) {
+  if (!(target instanceof Map)) throw new Error(`MakeHuman target ${name} must be a Map`);
+  for (const [sourceIndex, delta] of target) {
+    if (!Number.isSafeInteger(sourceIndex) || sourceIndex < 0) {
+      throw new Error(`MakeHuman target ${name} has an invalid source index`);
+    }
+    if (!Array.isArray(delta) || delta.length !== 3 || !delta.every(Number.isFinite)) {
+      throw new Error(`MakeHuman target ${name} entry ${sourceIndex} must be a canonical tuple [dx, dy, dz]`);
+    }
+  }
 }
 
 /** Parses MakeHuman's `index dx dz dy` sparse offset format into canonical XYZ. */
@@ -39,17 +50,20 @@ export function applySignedTargetPair(basePositions, sourceVertexIndex, decremen
     throw new Error('MakeHuman target base positions and source indices must be aligned arrays');
   }
   if (!Number.isFinite(weight)) throw new Error('MakeHuman target weight must be finite');
+  validateTargetMap(decrementTarget, 'decrementTarget');
+  validateTargetMap(incrementTarget, 'incrementTarget');
   const target = weight < 0 ? decrementTarget : incrementTarget;
   const multiplier = Math.abs(weight);
   return basePositions.map((position, outputIndex) => {
     if (!Array.isArray(position) || position.length !== 3 || !position.every(Number.isFinite)) {
       throw new Error('MakeHuman target base position must contain three finite values');
     }
-    const delta = targetEntry(target, sourceVertexIndex[outputIndex]);
-    if (delta === undefined) return [...position];
-    if (!Array.isArray(delta) || delta.length !== 3 || !delta.every(Number.isFinite)) {
-      throw new Error('MakeHuman target offset must contain three finite values');
+    const sourceIndex = sourceVertexIndex[outputIndex];
+    if (!Number.isSafeInteger(sourceIndex) || sourceIndex < 0) {
+      throw new Error(`MakeHuman target sourceVertexIndex[${outputIndex}] must be a nonnegative safe integer`);
     }
+    const delta = targetEntry(target, sourceIndex);
+    if (delta === undefined) return [...position];
     return position.map((value, coordinate) => value + delta[coordinate] * multiplier);
   });
 }

@@ -6,7 +6,7 @@ const ROOT = path.resolve(__dirname, '..');
 const OBJ_MODULE = path.join(ROOT, 'scripts/avatar-dna/lib/makehuman_obj.mjs').replaceAll('\\', '/');
 const TARGET_MODULE = path.join(ROOT, 'scripts/avatar-dna/lib/makehuman_target.mjs').replaceAll('\\', '/');
 
-function invoke(kind: 'obj' | 'target' | 'apply', payload: unknown) {
+function invoke(kind: 'obj' | 'target' | 'apply' | 'isolation', payload: unknown) {
   const code = `
     import { parseMakeHumanObj } from ${JSON.stringify(`file:///${OBJ_MODULE}`)};
     import { parseMakeHumanTarget, applySignedTargetPair } from ${JSON.stringify(`file:///${TARGET_MODULE}`)};
@@ -15,7 +15,18 @@ function invoke(kind: 'obj' | 'target' | 'apply', payload: unknown) {
       ? parseMakeHumanObj(payload.text)
       : payload.kind === 'target'
         ? [...parseMakeHumanTarget(payload.text, payload.vertexCount).entries()]
-        : applySignedTargetPair(payload.basePositions, payload.sourceVertexIndex, new Map(payload.decrementTarget), new Map(payload.incrementTarget), payload.weight);
+        : payload.kind === 'apply'
+          ? applySignedTargetPair(payload.basePositions, payload.sourceVertexIndex, payload.rawTargets ? payload.decrementTarget : new Map(payload.decrementTarget), payload.rawTargets ? payload.incrementTarget : new Map(payload.incrementTarget), payload.weight)
+          : (() => {
+              const mesh = parseMakeHumanObj(payload.text);
+              mesh.positions[0][0] = 99;
+              mesh.uvs[0][0] = 77;
+              const positionViewsAreIndependent = mesh.positions[3][0] === 0 && mesh.sourcePositions[0][0] === 0 && mesh.groups['joint-head'].sourcePositions[0][0] === 0;
+              const uvViewsAreIndependent = mesh.uvs[1][0] === 0 && mesh.uvs[2][0] === 0;
+              mesh.sourcePositions[0][0] = 55;
+              mesh.groups['joint-head'].sourcePositions[0][0] = 44;
+              return { positionViewsAreIndependent, uvViewsAreIndependent, sourceDoesNotAliasExpanded: mesh.positions[3][0] === 0, helperDoesNotAliasSource: mesh.sourcePositions[0][0] === 55 };
+            })();
     const result = payload.kind === 'apply' ? { output, basePositions: payload.basePositions } : output;
     process.stdout.write(JSON.stringify(result));
   `;
@@ -61,6 +72,20 @@ f 1 3/3 4
   expect(mesh.groups['joint-r-eye'].sourceVertexIndices).toEqual([0, 1, 2, 3]);
   expect(mesh.groups['joint-head'].sourcePositions).toEqual([[0, 0, 0], [1, 0, 0], [1, 1, 0]]);
   expect(mesh.groups.body.sourceVertexIndices).toEqual([0, 1, 2, 3]);
+});
+
+test('keeps repeated group references ordered and unique', () => {
+  const mesh = invoke('obj', { text: 'v 0 0 0\nv 1 0 0\nv 0 1 0\ng joint-head\nf 1 2 3\nf 3 2 1' });
+  expect(mesh.groups['joint-head'].sourceVertexIndices).toEqual([0, 1, 2]);
+});
+
+test('returns independent tuples for expanded, source, UV, and helper group views', () => {
+  expect(invoke('isolation', { text: 'v 0 0 0\nv 1 0 0\nv 0 1 0\nvt 0 0\nvt 1 0\ng joint-head\nf 1 2 3\ng body\nf 1/1 2/1 3/1\nf 1/2 2/1 3/1' })).toEqual({
+    positionViewsAreIndependent: true,
+    uvViewsAreIndependent: true,
+    sourceDoesNotAliasExpanded: true,
+    helperDoesNotAliasSource: true,
+  });
 });
 
 test('rejects malformed required OBJ records with contextual line numbers', () => {
@@ -115,17 +140,33 @@ test('applies signed target pairs literally without mutation across UV seam dupl
   expect(positive.basePositions).toEqual(basePositions);
 });
 
+test('rejects invalid target wiring before applying signed target pairs', () => {
+  const base = [[0, 0, 0]];
+  const validTarget = [[0, [1, 2, 3]]];
+  expect(() => invoke('apply', { basePositions: base, sourceVertexIndex: [], decrementTarget: validTarget, incrementTarget: validTarget, weight: 1 })).toThrow(/aligned arrays/);
+  expect(() => invoke('apply', { basePositions: base, sourceVertexIndex: [-1], decrementTarget: validTarget, incrementTarget: validTarget, weight: 1 })).toThrow(/sourceVertexIndex\[0\]/);
+  expect(() => invoke('apply', { basePositions: base, sourceVertexIndex: [0.5], decrementTarget: validTarget, incrementTarget: validTarget, weight: 1 })).toThrow(/sourceVertexIndex\[0\]/);
+  expect(() => invoke('apply', { basePositions: [[Number.NaN, 0, 0]], sourceVertexIndex: [0], decrementTarget: validTarget, incrementTarget: validTarget, weight: 1 })).toThrow(/base position/);
+  expect(() => invoke('apply', { basePositions: base, sourceVertexIndex: [0], decrementTarget: validTarget, incrementTarget: [[0, [1, Number.NaN, 3]]], weight: 1 })).toThrow(/incrementTarget.*canonical tuple/);
+  expect(() => invoke('apply', { basePositions: base, sourceVertexIndex: [0], decrementTarget: [[0.5, [1, 2, 3]]], incrementTarget: validTarget, weight: 1 })).toThrow(/decrementTarget has an invalid source index/);
+  expect(() => invoke('apply', { basePositions: base, sourceVertexIndex: [0], decrementTarget: [], incrementTarget: [], rawTargets: true, weight: 1 })).toThrow(/decrementTarget must be a Map/);
+  expect(() => invoke('apply', { basePositions: base, sourceVertexIndex: [0], decrementTarget: validTarget, incrementTarget: validTarget, weight: Number.POSITIVE_INFINITY })).toThrow(/weight must be finite/);
+});
+
 test('smoke parses the pinned MakeHuman base and target packet structurally', () => {
   const basePath = path.join(ROOT, 'tools/avatar-dna/vendor/makehuman-v1.3.0/makehuman/data/3dobjs/base.obj');
   const targetPath = path.join(ROOT, 'tools/avatar-dna/vendor/makehuman-v1.3.0/head/head-scale-horiz-decr.target');
   const mesh = invoke('obj', { text: fs.readFileSync(basePath, 'utf8') });
   expect(mesh.positions.length).toBeGreaterThan(0);
+  expect(mesh.sourcePositions).toHaveLength(19158);
+  expect(mesh.positions).toHaveLength(14517);
   expect(mesh.positions.length).toBe(mesh.uvs.length);
   expect(mesh.positions.length).toBe(mesh.sourceVertexIndex.length);
-  expect(mesh.triangles.length).toBeGreaterThan(0);
+  expect(mesh.triangles).toHaveLength(26756);
+  expect(Object.keys(mesh.groups)).toHaveLength(139);
   for (const group of ['body', 'joint-l-eye', 'joint-r-eye', 'joint-head']) expect(mesh.groups[group].sourceVertexIndices.length).toBeGreaterThan(0);
   for (const triangle of mesh.triangles) for (const index of triangle) expect(index).toBeGreaterThanOrEqual(0), expect(index).toBeLessThan(mesh.positions.length);
   const target = invoke('target', { text: fs.readFileSync(targetPath, 'utf8'), vertexCount: mesh.sourcePositions.length });
-  expect(target.length).toBeGreaterThan(0);
+  expect(target).toHaveLength(5210);
   for (const [index] of target) expect(index).toBeLessThan(mesh.sourcePositions.length);
 }, 30_000);

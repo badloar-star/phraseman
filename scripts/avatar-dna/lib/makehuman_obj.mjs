@@ -39,7 +39,7 @@ export function parseMakeHumanObj(text) {
 
   const sourcePositions = [];
   const sourceUvs = [];
-  const groups = Object.create(null);
+  const groupMembers = Object.create(null);
   const positions = [];
   const uvs = [];
   const sourceVertexIndex = [];
@@ -48,14 +48,14 @@ export function parseMakeHumanObj(text) {
   let activeGroups = [];
 
   const group = (name) => {
-    if (!groups[name]) groups[name] = { sourceVertexIndices: [], sourcePositions: [] };
-    return groups[name];
+    if (!groupMembers[name]) groupMembers[name] = { sourceVertexIndices: [], seenSourceVertexIndices: new Set() };
+    return groupMembers[name];
   };
   const recordGroupVertex = (name, sourceIndex) => {
     const entry = group(name);
-    if (!entry.sourceVertexIndices.includes(sourceIndex)) {
+    if (!entry.seenSourceVertexIndices.has(sourceIndex)) {
+      entry.seenSourceVertexIndices.add(sourceIndex);
       entry.sourceVertexIndices.push(sourceIndex);
-      entry.sourcePositions.push(sourcePositions[sourceIndex]);
     }
   };
   const expandedIndex = (corner) => {
@@ -64,8 +64,8 @@ export function parseMakeHumanObj(text) {
     if (existing !== undefined) return existing;
     const index = positions.length;
     expandedVertexBySourceAndUv.set(key, index);
-    positions.push(sourcePositions[corner.positionIndex]);
-    uvs.push(corner.uvIndex === null ? [0, 0] : sourceUvs[corner.uvIndex]);
+    positions.push([...sourcePositions[corner.positionIndex]]);
+    uvs.push(corner.uvIndex === null ? [0, 0] : [...sourceUvs[corner.uvIndex]]);
     sourceVertexIndex.push(corner.positionIndex);
     return index;
   };
@@ -108,5 +108,12 @@ export function parseMakeHumanObj(text) {
     for (let index = 1; index < face.length - 1; index += 1) triangles.push([face[0], face[index], face[index + 1]]);
   }
 
-  return { positions, uvs, triangles, sourceVertexIndex, groups, sourcePositions };
+  const groups = Object.create(null);
+  for (const [name, entry] of Object.entries(groupMembers)) {
+    groups[name] = {
+      sourceVertexIndices: [...entry.sourceVertexIndices],
+      sourcePositions: entry.sourceVertexIndices.map(sourceIndex => [...sourcePositions[sourceIndex]]),
+    };
+  }
+  return { positions, uvs, triangles, sourceVertexIndex, groups, sourcePositions: sourcePositions.map(position => [...position]) };
 }

@@ -9,9 +9,12 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 const GLB_MAGIC = 0x46546c67, JSON_CHUNK = 0x4e4f534a, BIN_CHUNK = 0x004e4942;
 const COMPONENT_BYTES = { 5121: 1, 5123: 2, 5125: 4, 5126: 4 }, TYPE_COMPONENTS = { SCALAR: 1, VEC2: 2, VEC3: 3 };
 const VERTICES = 14517, INDICES = 80268, BOUNDS = { min: [-4.9627, -8.1676, -1.0154], max: [4.9627, 8.4913, 3.2147] };
+const ROOT_KEYS = ['accessors', 'asset', 'bufferViews', 'buffers', 'materials', 'meshes', 'nodes', 'scene', 'scenes'];
+const VIEW_LENGTHS = [174204, 174204, 116136, 321072, ...Array(18).fill(174204)];
 const err = (errors, code) => { if (!errors.includes(code)) errors.push(code); };
 const isUint = value => Number.isInteger(value) && value >= 0;
 const sameArray = (a, b) => Array.isArray(a) && a.length === b.length && a.every((value, index) => value === b[index]);
+const hasKeys = (value, keys) => !!value && sameArray(Object.keys(value).sort(), [...keys].sort());
 
 function parseGlb(bytes, errors) {
   if (bytes.length < 20 || bytes.readUInt32LE(0) !== GLB_MAGIC || bytes.readUInt32LE(4) !== 2 || bytes.readUInt32LE(8) !== bytes.length) { err(errors, 'invalid_glb_header'); return null; }
@@ -73,6 +76,26 @@ function collectionContract(gltf, bin, errors) {
     if (!accessor || !sameArray(Object.keys(accessor).sort(), expected)) err(errors, 'invalid_accessor_metadata');
   }
 }
+function exactSchema(gltf, bin, errors) {
+  const bad = () => err(errors, 'unexpected_json_schema');
+  if (!hasKeys(gltf, ROOT_KEYS) || !hasKeys(gltf.asset, ['generator', 'version']) || gltf.asset.version !== '2.0' || gltf.asset.generator !== 'phraseman-avatar-dna-cc0-v1') bad();
+  if (!hasKeys(gltf.scenes?.[0], ['name', 'nodes']) || gltf.scenes?.[0]?.name !== 'human_v2_scene' || !sameArray(gltf.scenes?.[0]?.nodes, [0])) bad();
+  if (!hasKeys(gltf.nodes?.[0], ['mesh', 'name']) || gltf.nodes?.[0]?.name !== 'human_v2' || gltf.nodes?.[0]?.mesh !== 0) bad();
+  const mesh = gltf.meshes?.[0], primitive = mesh?.primitives?.[0];
+  if (!hasKeys(mesh, ['extras', 'name', 'primitives', 'weights']) || mesh?.name !== 'avatar_body_base' || !sameArray(mesh?.weights, Array(18).fill(0)) || !hasKeys(mesh?.extras, ['targetNames']) || !sameArray(mesh?.extras?.targetNames, TARGET_ORDER) || mesh?.primitives?.length !== 1) bad();
+  if (!hasKeys(primitive, ['attributes', 'indices', 'material', 'targets']) || primitive?.indices !== 3 || primitive?.material !== 0 || !hasKeys(primitive?.attributes, ['NORMAL', 'POSITION', 'TEXCOORD_0']) || primitive?.attributes?.POSITION !== 0 || primitive?.attributes?.NORMAL !== 1 || primitive?.attributes?.TEXCOORD_0 !== 2 || primitive?.targets?.length !== 18) bad();
+  for (let index = 0; index < (primitive?.targets?.length || 0); index += 1) if (!hasKeys(primitive.targets[index], ['POSITION']) || primitive.targets[index].POSITION !== 4 + index) bad();
+  const material = gltf.materials?.[0], pbr = material?.pbrMetallicRoughness;
+  if (!hasKeys(material, ['name', 'pbrMetallicRoughness']) || material?.name !== 'material_skin' || !hasKeys(pbr, ['baseColorFactor', 'metallicFactor', 'roughnessFactor']) || !sameArray(pbr?.baseColorFactor, [0.72, 0.42, 0.28, 1]) || pbr?.metallicFactor !== 0 || pbr?.roughnessFactor !== 0.72) bad();
+  if (!hasKeys(gltf.buffers?.[0], ['byteLength']) || gltf.buffers?.[0]?.byteLength !== bin.length || bin.length !== 3921288) bad();
+  let offset = 0;
+  for (let index = 0; index < (gltf.bufferViews?.length || 0); index += 1) { const view = gltf.bufferViews[index]; if (!hasKeys(view, ['buffer', 'byteLength', 'byteOffset']) || view.buffer !== 0 || view.byteOffset !== offset || view.byteLength !== VIEW_LENGTHS[index]) bad(); offset += VIEW_LENGTHS[index] || 0; }
+  for (let index = 0; index < (gltf.accessors?.length || 0); index += 1) {
+    const accessor = gltf.accessors[index], expected = index === 0 ? ['bufferView', 'componentType', 'count', 'max', 'min', 'type'] : ['bufferView', 'componentType', 'count', 'type'];
+    const componentType = index === 3 ? 5125 : 5126, type = index === 2 ? 'VEC2' : index === 3 ? 'SCALAR' : 'VEC3', count = index === 3 ? INDICES : VERTICES;
+    if (!hasKeys(accessor, expected) || accessor?.bufferView !== index || accessor?.componentType !== componentType || accessor?.type !== type || accessor?.count !== count || (index === 0 && (!sameArray(accessor.min, BOUNDS.min) || !sameArray(accessor.max, BOUNDS.max)))) bad();
+  }
+}
 
 async function canonical() {
   const vendor = path.join(ROOT, 'tools', 'avatar-dna', 'vendor', 'makehuman-v1.3.0');
@@ -120,6 +143,7 @@ export async function auditHumanV2Glb(input) {
     const parsed = parseGlb(bytes, errors); if (!parsed) return { ok: false, errors, summary };
     const { gltf, bin } = parsed; graph(gltf, errors);
     collectionContract(gltf, bin, errors);
+    exactSchema(gltf, bin, errors);
     const mesh = gltf.meshes?.[0], primitive = mesh?.primitives?.[0]; summary.meshNames = (gltf.meshes || []).map(value => value?.name);
     if (!mesh || gltf.meshes?.length !== 1 || mesh.name !== 'avatar_body_base' || mesh.primitives?.length !== 1 || !primitive) { err(errors, 'invalid_body_mesh'); err(errors, 'missing_required_named_morphs'); err(errors, 'primitive_fixture_detected'); return { ok: false, errors, summary }; }
     if (primitive.mode !== undefined && primitive.mode !== 4) err(errors, 'invalid_primitive_mode');

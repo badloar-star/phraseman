@@ -137,12 +137,35 @@ describe("human_v2 CC0 GLB", () => {
         ["external-bin", json => { json.buffers[0].uri = "external.bin"; }, "invalid_bin_length"],
         ["dead-accessor", json => { json.accessors.push({ bufferView: 999, componentType: 5126, count: 1, type: "SCALAR" }); }, "invalid_collection_cardinality"],
         ["dead-view", json => { json.bufferViews.push({ buffer: 999, byteOffset: 0, byteLength: 4 }); }, "invalid_collection_cardinality"],
+        ["animation", json => { json.animations = [{ channels: [], samplers: [] }]; }, "unexpected_json_schema"],
+        ["skin", json => { json.skins = [{ joints: [] }]; }, "unexpected_json_schema"],
+        ["camera", json => { json.cameras = [{ type: "perspective", perspective: { yfov: 1, znear: 0.1 } }]; }, "unexpected_json_schema"],
+        ["extension", json => { json.extensionsRequired = ["KHR_materials_unlit"]; }, "unexpected_json_schema"],
+        ["generator", json => { json.asset.generator = "tampered"; }, "unexpected_json_schema"],
+        ["pbr", json => { json.materials[0].pbrMetallicRoughness.roughnessFactor = 0.1; }, "unexpected_json_schema"],
+        ["mesh-extension", json => { json.meshes[0].extensions = { KHR_mesh_quantization: {} }; }, "unexpected_json_schema"],
+        ["primitive-extension", json => { json.meshes[0].primitives[0].extensions = { KHR_materials_unlit: {} }; }, "unexpected_json_schema"],
+        ["timestamp", json => { json.timestamp = "2026-08-21T00:00:00Z"; }, "unexpected_json_schema"],
       ];
       for (const [name, mutate, expected] of jsonCases) { const file = path.join(directory, `${name}.glb`); writeFileSync(file, rewriteJson(bytes, mutate)); expect(runAudit(file).errors).toContain(expected); }
       const normal = Buffer.from(bytes); const normalAccessor = layout.json.accessors[primitive.attributes.NORMAL]; const normalView = layout.json.bufferViews[normalAccessor.bufferView]; normal.writeFloatLE(Number.NaN, layout.binOffset + (normalView.byteOffset || 0) + (normalAccessor.byteOffset || 0)); const normalFile = path.join(directory, "nan-normal.glb"); writeFileSync(normalFile, normal); expect(runAudit(normalFile).errors).toContain("nonfinite_accessor");
       const zeroed = Buffer.from(bytes);
       for (const target of primitive.targets) { const accessor = layout.json.accessors[target.POSITION]; const view = layout.json.bufferViews[accessor.bufferView]; zeroed.fill(0, layout.binOffset + (view.byteOffset || 0) + (accessor.byteOffset || 0), layout.binOffset + (view.byteOffset || 0) + (accessor.byteOffset || 0) + accessor.count * 12); }
       const zeroedFile = path.join(directory, "zeroed-morphs.glb"); writeFileSync(zeroedFile, zeroed); expect(runAudit(zeroedFile).errors).toContain("morph_signature_mismatch");
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
+  it("rejects generic unknown keys at every canonical JSON level", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const original = path.join(directory, "original.glb"); execFileSync(process.execPath, [build, "--output", original], { cwd: root }); const bytes = readFileSync(original);
+      const cases: Array<[string, (json: any) => void]> = [
+        ["asset", json => { json.asset.extra = true; }], ["scene", json => { json.scenes[0].extra = true; }], ["node", json => { json.nodes[0].extra = true; }],
+        ["mesh", json => { json.meshes[0].extra = true; }], ["primitive", json => { json.meshes[0].primitives[0].extra = true; }], ["target", json => { json.meshes[0].primitives[0].targets[0].extra = true; }],
+        ["material", json => { json.materials[0].extra = true; }], ["pbr", json => { json.materials[0].pbrMetallicRoughness.extra = true; }], ["buffer", json => { json.buffers[0].extra = true; }],
+        ["view", json => { json.bufferViews[0].extra = true; }], ["accessor", json => { json.accessors[0].extra = true; }], ["extras", json => { json.meshes[0].extras.extra = true; }],
+      ];
+      for (const [name, mutate] of cases) { const file = path.join(directory, `${name}.glb`); writeFileSync(file, rewriteJson(bytes, mutate)); expect(runAudit(file).errors).toContain("unexpected_json_schema"); }
     } finally { rmSync(directory, { recursive: true, force: true }); }
   });
 });

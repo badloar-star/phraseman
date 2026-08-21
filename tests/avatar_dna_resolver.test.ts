@@ -2,6 +2,16 @@ import { avatarCatalog, starterAvatarDNA } from '../modules/avatar-dna/catalog';
 import { compareAvatarLayers, resolveAvatarDNA } from '../modules/avatar-dna/resolver';
 
 describe('Avatar DNA resolver', () => {
+  const twoDigits = (index: number): string => String(index + 1).padStart(2, '0');
+  const irisNames = ['brown','hazel','green','blue','gray','amber','violet','teal','honey','black'] as const;
+  const hairColors = ['black','dark_brown','brown','auburn','blonde','platinum','red','rose','blue','green'] as const;
+  const backgrounds = ['cream','terracotta','olive','sunset','sky','lavender','forest','ocean','night','studio'] as const;
+  const headwear = ['cap','beanie','flower_crown','assassin_hood','bucket_hat','beret','tiara','cowboy_hat','turban','cat_ears'] as const;
+  const masks = ['domino','festival','fox','phantom','cyber','masquerade','oni','bandana','star','lace'] as const;
+  const eyewear = ['round','cat_eye','aviator','square','heart','monocle','visor','goggles','half_moon','rimless'] as const;
+  const earAccessories = ['stud','hoop','drop','pearl','star','feather','cuff','lightning','flower','chain'] as const;
+  const neckAccessories = ['scarf','pendant','choker','bow','bandana','beads','medallion','collar','tie','chain'] as const;
+
   it('uses ordinal code-unit ordering for equal-z punctuation IDs', () => {
     expect([{ id: 'a-1', z: 5 }, { id: 'a.1', z: 5 }, { id: 'a_1', z: 5 }].sort(compareAvatarLayers).map((layer) => layer.id)).toEqual(['a-1', 'a.1', 'a_1']);
   });
@@ -65,6 +75,58 @@ describe('Avatar DNA resolver', () => {
     expect(resolved.layers.find((layer) => layer.id === 'iris.brown.mask')?.tintColor).toBe('#47749b');
     expect(resolved.layers.find((layer) => layer.id === 'iris.brown.shading')?.tintColor).toBeUndefined();
     expect(resolved.layers.find((layer) => layer.id === 'outfit.1')?.tintColor).toBeUndefined();
+  });
+
+  it('resolves all ten independent face, body, hair, outfit and scene variants', () => {
+    for (let index = 0; index < 10; index += 1) {
+      const suffix = twoDigits(index);
+      const starter = starterAvatarDNA('starter_warm_01');
+      const chosen = {
+        ...starter,
+        base: { ...starter.base, skinToneId: `skin_${suffix}`, faceBaseId: `face_${suffix}`, bodyBaseId: `body_${suffix}` },
+        face: {
+          ...starter.face,
+          eyesId: `eyes_${suffix}`,
+          irisColorId: `iris_${irisNames[index]}`,
+          browsId: `brows_${suffix}`,
+          noseId: `nose_${suffix}`,
+          mouthId: `mouth_${suffix}`,
+          skinDetailIds: [`skin_detail_${suffix}`],
+          makeupIds: [`makeup_${suffix}`],
+          facialHairId: `facial_hair_${suffix}`,
+        },
+        hair: { styleId: `hair_${suffix}`, colorId: `hair_${hairColors[index]}` },
+        wearables: {
+          ...starter.wearables,
+          outfitId: `outfit_${suffix}`,
+          headwearId: index === 3 ? null : `headwear.${headwear[index]}.01`,
+          earAccessoryId: `ear_accessory.${earAccessories[index]}.01`,
+          neckAccessoryId: `neck_accessory.${neckAccessories[index]}.01`,
+        },
+        scene: {
+          backgroundId: `background_${backgrounds[index]}`,
+          auraId: `aura_${suffix}`,
+          frameId: `frame_${suffix}`,
+          foregroundFxId: `foreground_fx_${suffix}`,
+        },
+      };
+      const resolved = resolveAvatarDNA(chosen, avatarCatalog);
+      expect(resolved.chosenDNA).toEqual(chosen);
+      expect(resolved.layers.map((entry) => entry.id)).toEqual(expect.arrayContaining([
+        `face.base.${index + 1}.mask`, `body.base.${index + 1}.mask`, `eyes.${index + 1}`,
+        `brows.${index + 1}`, `nose.${index + 1}`, `mouth.${index + 1}`, `outfit.${index + 1}`,
+      ]));
+    }
+  });
+
+  it('resolves every mask and eyewear variant in separate compatible combinations', () => {
+    for (let index = 0; index < 10; index += 1) {
+      const starter = starterAvatarDNA('starter_warm_01');
+      const withMask = { ...starter, wearables: { ...starter.wearables, maskId: `mask.${masks[index]}.01` } };
+      const withEyewear = { ...starter, wearables: { ...starter.wearables, eyewearId: `eyewear.${eyewear[index]}.01` } };
+      expect(resolveAvatarDNA(withMask, avatarCatalog).layers.some((entry) => entry.id === `mask.${masks[index]}.01.front`)).toBe(true);
+      expect(resolveAvatarDNA(withEyewear, avatarCatalog).layers.some((entry) => entry.id === `eyewear.${eyewear[index]}.01.front`)).toBe(true);
+    }
   });
 
   it('fails closed for unknown selected items', () => {

@@ -49,9 +49,12 @@ async function validateCatalogUnsafe(catalog, rig, { fixture = false, root = pro
       }
     }
   }
-  const required = ['skin_03','face_01','face_02','body_01','body_02','eyes_01','eyes_02','iris_brown','brows_01','brows_02','nose_01','nose_02','mouth_01','mouth_02','hair_01','hair_02','hair_brown','outfit_01','outfit_02','background_cream','headwear.assassin_hood.01'];
-  const cosmetic = (id) => /^(headwear\.|mask\.|eyewear\.|ear_accessory\.|neck_accessory\.)/.test(id);
-  if (catalog.items.length !== 83 || required.some((id) => !itemIds.has(id)) || catalog.items.some((item) => cosmetic(item.id) ? item.entitlement.kind === 'free' : item.entitlement.kind !== 'free')) fail('required inventory');
+  const starterFreeIds = ['skin_03','face_01','face_02','body_01','body_02','eyes_01','eyes_02','iris_brown','brows_01','brows_02','nose_01','nose_02','mouth_01','mouth_02','hair_01','hair_02','hair_brown','outfit_01','outfit_02','background_cream'];
+  const required = [...starterFreeIds, 'headwear.assassin_hood.01'];
+  const starterFree = new Set(starterFreeIds); const allowedRarities = new Set(['common','uncommon','rare','epic']);
+  const invalidEntitlement = catalog.items.some((item) => (starterFree.has(item.id) && item.entitlement.kind !== 'free') || (item.entitlement.kind === 'free' ? item.entitlement.rarity !== undefined : !allowedRarities.has(item.entitlement.rarity)));
+  const hood = catalog.items.find((item) => item.id === 'headwear.assassin_hood.01');
+  if (catalog.items.length !== 230 || required.some((id) => !itemIds.has(id)) || invalidEntitlement || hood?.entitlement.kind !== 'reward' || hood.entitlement.rarity !== 'rare') fail('required inventory');
   if (catalog.items.some((item) => item.conflicts.some((id) => !itemIds.has(id)))) fail('conflict reference'); const edges = new Map(catalog.items.map((item) => [item.id, item.conflicts])); const visiting = new Set(); const visited = new Set();
   const visit = (id) => { if (visiting.has(id)) throw INTERNAL_CYCLE; if (visited.has(id)) return; visiting.add(id); for (const next of edges.get(id) ?? []) visit(next); visiting.delete(id); visited.add(id); };
   for (const id of itemIds) visit(id);

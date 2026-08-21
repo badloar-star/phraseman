@@ -55,10 +55,17 @@ const parseAvatarCatalogUnsafe = (input: unknown): AvatarCatalogManifest => {
     visiting.delete(id); visited.add(id);
   };
   items.forEach((item) => visit(item.id));
-  const required = ['skin_03','face_01','face_02','body_01','body_02','eyes_01','eyes_02','iris_brown','brows_01','brows_02','nose_01','nose_02','mouth_01','mouth_02','hair_01','hair_02','hair_brown','outfit_01','outfit_02','background_cream','headwear.assassin_hood.01'];
+  const starterFreeIds = ['skin_03','face_01','face_02','body_01','body_02','eyes_01','eyes_02','iris_brown','brows_01','brows_02','nose_01','nose_02','mouth_01','mouth_02','hair_01','hair_02','hair_brown','outfit_01','outfit_02','background_cream'];
+  const required = [...starterFreeIds, 'headwear.assassin_hood.01'];
   if (items.length === 0 || required.some((id) => !itemIds.has(id))) throw new TypeError('avatar_catalog_invalid: required inventory');
-  const cosmetic = (id: string): boolean => /^(headwear\.|mask\.|eyewear\.|ear_accessory\.|neck_accessory\.)/.test(id);
-  if (items.length !== 83 || items.some((item) => cosmetic(item.id) ? item.entitlement.kind === 'free' : item.entitlement.kind !== 'free')) throw new TypeError('avatar_catalog_invalid: canonical entitlement');
+  const starterFree = new Set(starterFreeIds);
+  const allowedRarities = new Set(['common','uncommon','rare','epic']);
+  const invalidEntitlement = items.some((item) =>
+    (starterFree.has(item.id) && item.entitlement.kind !== 'free')
+    || (item.entitlement.kind === 'free' ? item.entitlement.rarity !== undefined : !allowedRarities.has(String(item.entitlement.rarity)))
+  );
+  const hood = items.find((item) => item.id === 'headwear.assassin_hood.01');
+  if (items.length !== 230 || invalidEntitlement || hood?.entitlement.kind !== 'reward' || hood.entitlement.rarity !== 'rare') throw new TypeError('avatar_catalog_invalid: canonical entitlement');
   const parsed = deepFreeze({ catalogVersion: 1 as const, manifestVersion: 1 as const, rigIds: [...rigIds], items });
   parsedCatalogs.add(parsed);
   return parsed;

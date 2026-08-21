@@ -19,7 +19,7 @@
       "occludes": [],
       "conflicts": [],
       "restoresOnRemove": false,
-      "swatchHex": "#f5c6a5"
+      "swatchHex": "#f8d8c1"
     },
     {
       "id": "skin_02",
@@ -35,7 +35,7 @@
       "occludes": [],
       "conflicts": [],
       "restoresOnRemove": false,
-      "swatchHex": "#e9ad83"
+      "swatchHex": "#f5c6a5"
     },
     {
       "id": "skin_03",
@@ -67,7 +67,7 @@
       "occludes": [],
       "conflicts": [],
       "restoresOnRemove": false,
-      "swatchHex": "#b8734f"
+      "swatchHex": "#c8845e"
     },
     {
       "id": "skin_05",
@@ -83,7 +83,7 @@
       "occludes": [],
       "conflicts": [],
       "restoresOnRemove": false,
-      "swatchHex": "#8f5538"
+      "swatchHex": "#b8734f"
     },
     {
       "id": "skin_06",
@@ -99,7 +99,71 @@
       "occludes": [],
       "conflicts": [],
       "restoresOnRemove": false,
+      "swatchHex": "#a86748"
+    },
+    {
+      "id": "skin_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#8f5538"
+    },
+    {
+      "id": "skin_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#79462f"
+    },
+    {
+      "id": "skin_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
       "swatchHex": "#623824"
+    },
+    {
+      "id": "skin_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#45291d"
     },
     {
       "id": "face_01",
@@ -167,7 +231,8 @@
       ],
       "category": "base",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -196,7 +261,8 @@
       ],
       "category": "base",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -208,6 +274,186 @@
         },
         {
           "id": "face.base.4.shading",
+          "slot": "face",
+          "z": 71,
+          "file": "face-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "face_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "face.base.5.mask",
+          "slot": "face",
+          "z": 70,
+          "file": "face-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "face.base.5.shading",
+          "slot": "face",
+          "z": 71,
+          "file": "face-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "face_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "face.base.6.mask",
+          "slot": "face",
+          "z": 70,
+          "file": "face-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "face.base.6.shading",
+          "slot": "face",
+          "z": 71,
+          "file": "face-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "face_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "face.base.7.mask",
+          "slot": "face",
+          "z": 70,
+          "file": "face-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "face.base.7.shading",
+          "slot": "face",
+          "z": 71,
+          "file": "face-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "face_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "face.base.8.mask",
+          "slot": "face",
+          "z": 70,
+          "file": "face-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "face.base.8.shading",
+          "slot": "face",
+          "z": 71,
+          "file": "face-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "face_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "face.base.9.mask",
+          "slot": "face",
+          "z": 70,
+          "file": "face-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "face.base.9.shading",
+          "slot": "face",
+          "z": 71,
+          "file": "face-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "face_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "face.base.10.mask",
+          "slot": "face",
+          "z": 70,
+          "file": "face-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "face.base.10.shading",
           "slot": "face",
           "z": 71,
           "file": "face-shading.webp"
@@ -276,6 +522,246 @@
       "restoresOnRemove": false
     },
     {
+      "id": "body_03",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "body.base.3.mask",
+          "slot": "body",
+          "z": 40,
+          "file": "body-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "body.base.3.shading",
+          "slot": "body",
+          "z": 41,
+          "file": "body-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "body_04",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "body.base.4.mask",
+          "slot": "body",
+          "z": 40,
+          "file": "body-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "body.base.4.shading",
+          "slot": "body",
+          "z": 41,
+          "file": "body-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "body_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "body.base.5.mask",
+          "slot": "body",
+          "z": 40,
+          "file": "body-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "body.base.5.shading",
+          "slot": "body",
+          "z": 41,
+          "file": "body-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "body_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "body.base.6.mask",
+          "slot": "body",
+          "z": 40,
+          "file": "body-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "body.base.6.shading",
+          "slot": "body",
+          "z": 41,
+          "file": "body-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "body_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "body.base.7.mask",
+          "slot": "body",
+          "z": 40,
+          "file": "body-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "body.base.7.shading",
+          "slot": "body",
+          "z": 41,
+          "file": "body-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "body_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "body.base.8.mask",
+          "slot": "body",
+          "z": 40,
+          "file": "body-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "body.base.8.shading",
+          "slot": "body",
+          "z": 41,
+          "file": "body-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "body_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "body.base.9.mask",
+          "slot": "body",
+          "z": 40,
+          "file": "body-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "body.base.9.shading",
+          "slot": "body",
+          "z": 41,
+          "file": "body-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "body_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "base",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "body.base.10.mask",
+          "slot": "body",
+          "z": 40,
+          "file": "body-mask.webp",
+          "tintFrom": "skinTone"
+        },
+        {
+          "id": "body.base.10.shading",
+          "slot": "body",
+          "z": 41,
+          "file": "body-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
       "id": "eyes_01",
       "assetVersion": 1,
       "rigIds": [
@@ -329,7 +815,8 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -352,7 +839,8 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -375,7 +863,8 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "uncommon"
       },
       "layers": [
         {
@@ -398,11 +887,108 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "uncommon"
       },
       "layers": [
         {
           "id": "eyes.6",
+          "slot": "eyes",
+          "z": 75,
+          "file": "eyes.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "eyes_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "eyes.7",
+          "slot": "eyes",
+          "z": 75,
+          "file": "eyes.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "eyes_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "eyes.8",
+          "slot": "eyes",
+          "z": 75,
+          "file": "eyes.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "eyes_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "eyes.9",
+          "slot": "eyes",
+          "z": 75,
+          "file": "eyes.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "eyes_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "eyes.10",
           "slot": "eyes",
           "z": 75,
           "file": "eyes.webp",
@@ -606,6 +1192,134 @@
       "swatchHex": "#a66b24"
     },
     {
+      "id": "iris_violet",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [
+        {
+          "id": "iris.violet.mask",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-mask.webp",
+          "clip": "face.safe",
+          "tintFrom": "irisColor"
+        },
+        {
+          "id": "iris.violet.shading",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-shading.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#73558d"
+    },
+    {
+      "id": "iris_teal",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [
+        {
+          "id": "iris.teal.mask",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-mask.webp",
+          "clip": "face.safe",
+          "tintFrom": "irisColor"
+        },
+        {
+          "id": "iris.teal.shading",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-shading.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#2f7b7b"
+    },
+    {
+      "id": "iris_honey",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [
+        {
+          "id": "iris.honey.mask",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-mask.webp",
+          "clip": "face.safe",
+          "tintFrom": "irisColor"
+        },
+        {
+          "id": "iris.honey.shading",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-shading.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#bd852d"
+    },
+    {
+      "id": "iris_black",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [
+        {
+          "id": "iris.black.mask",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-mask.webp",
+          "clip": "face.safe",
+          "tintFrom": "irisColor"
+        },
+        {
+          "id": "iris.black.shading",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-shading.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#231f20"
+    },
+    {
       "id": "brows_01",
       "assetVersion": 1,
       "rigIds": [
@@ -659,7 +1373,8 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -682,11 +1397,156 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
           "id": "brows.4",
+          "slot": "brows",
+          "z": 77,
+          "file": "brows.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "brows_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "brows.5",
+          "slot": "brows",
+          "z": 77,
+          "file": "brows.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "brows_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "brows.6",
+          "slot": "brows",
+          "z": 77,
+          "file": "brows.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "brows_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "brows.7",
+          "slot": "brows",
+          "z": 77,
+          "file": "brows.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "brows_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "brows.8",
+          "slot": "brows",
+          "z": 77,
+          "file": "brows.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "brows_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "brows.9",
+          "slot": "brows",
+          "z": 77,
+          "file": "brows.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "brows_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "brows.10",
           "slot": "brows",
           "z": 77,
           "file": "brows.webp",
@@ -751,7 +1611,8 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -774,11 +1635,156 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
           "id": "nose.4",
+          "slot": "nose",
+          "z": 78,
+          "file": "nose.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "nose_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "nose.5",
+          "slot": "nose",
+          "z": 78,
+          "file": "nose.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "nose_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "nose.6",
+          "slot": "nose",
+          "z": 78,
+          "file": "nose.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "nose_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "nose.7",
+          "slot": "nose",
+          "z": 78,
+          "file": "nose.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "nose_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "nose.8",
+          "slot": "nose",
+          "z": 78,
+          "file": "nose.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "nose_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "nose.9",
+          "slot": "nose",
+          "z": 78,
+          "file": "nose.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "nose_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "nose.10",
           "slot": "nose",
           "z": 78,
           "file": "nose.webp",
@@ -843,7 +1849,8 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -866,11 +1873,156 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
           "id": "mouth.4",
+          "slot": "mouth",
+          "z": 79,
+          "file": "mouth.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "mouth_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "mouth.5",
+          "slot": "mouth",
+          "z": 79,
+          "file": "mouth.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "mouth_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "mouth.6",
+          "slot": "mouth",
+          "z": 79,
+          "file": "mouth.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "mouth_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "mouth.7",
+          "slot": "mouth",
+          "z": 79,
+          "file": "mouth.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "mouth_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "mouth.8",
+          "slot": "mouth",
+          "z": 79,
+          "file": "mouth.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "mouth_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "mouth.9",
+          "slot": "mouth",
+          "z": 79,
+          "file": "mouth.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false
+    },
+    {
+      "id": "mouth_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "mouth.10",
           "slot": "mouth",
           "z": 79,
           "file": "mouth.webp",
@@ -935,7 +2087,8 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -958,11 +2111,156 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
           "id": "skin.detail.4",
+          "slot": "skin.detail",
+          "z": 82,
+          "file": "skin-detail.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "skin_detail_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "skin.detail.5",
+          "slot": "skin.detail",
+          "z": 82,
+          "file": "skin-detail.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "skin_detail_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "skin.detail.6",
+          "slot": "skin.detail",
+          "z": 82,
+          "file": "skin-detail.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "skin_detail_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "skin.detail.7",
+          "slot": "skin.detail",
+          "z": 82,
+          "file": "skin-detail.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "skin_detail_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "skin.detail.8",
+          "slot": "skin.detail",
+          "z": 82,
+          "file": "skin-detail.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "skin_detail_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "skin.detail.9",
+          "slot": "skin.detail",
+          "z": 82,
+          "file": "skin-detail.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "skin_detail_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "skin.detail.10",
           "slot": "skin.detail",
           "z": 82,
           "file": "skin-detail.webp",
@@ -1027,7 +2325,8 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -1050,11 +2349,156 @@
       ],
       "category": "face",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
           "id": "makeup.4",
+          "slot": "makeup",
+          "z": 88,
+          "file": "makeup.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "makeup_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "makeup.5",
+          "slot": "makeup",
+          "z": 88,
+          "file": "makeup.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "makeup_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "makeup.6",
+          "slot": "makeup",
+          "z": 88,
+          "file": "makeup.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "makeup_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "makeup.7",
+          "slot": "makeup",
+          "z": 88,
+          "file": "makeup.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "makeup_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "makeup.8",
+          "slot": "makeup",
+          "z": 88,
+          "file": "makeup.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "makeup_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "makeup.9",
+          "slot": "makeup",
+          "z": 88,
+          "file": "makeup.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "makeup_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "makeup.10",
           "slot": "makeup",
           "z": 88,
           "file": "makeup.webp",
@@ -1101,6 +2545,198 @@
       "layers": [
         {
           "id": "facial.hair.2",
+          "slot": "facial.hair",
+          "z": 90,
+          "file": "facial-hair.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "facial_hair_03",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "facial.hair.3",
+          "slot": "facial.hair",
+          "z": 90,
+          "file": "facial-hair.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "facial_hair_04",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "facial.hair.4",
+          "slot": "facial.hair",
+          "z": 90,
+          "file": "facial-hair.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "facial_hair_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "facial.hair.5",
+          "slot": "facial.hair",
+          "z": 90,
+          "file": "facial-hair.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "facial_hair_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "facial.hair.6",
+          "slot": "facial.hair",
+          "z": 90,
+          "file": "facial-hair.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "facial_hair_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "facial.hair.7",
+          "slot": "facial.hair",
+          "z": 90,
+          "file": "facial-hair.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "facial_hair_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "facial.hair.8",
+          "slot": "facial.hair",
+          "z": 90,
+          "file": "facial-hair.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "facial_hair_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "facial.hair.9",
+          "slot": "facial.hair",
+          "z": 90,
+          "file": "facial-hair.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "facial_hair_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "face",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "facial.hair.10",
           "slot": "facial.hair",
           "z": 90,
           "file": "facial-hair.webp",
@@ -1203,7 +2839,8 @@
       ],
       "category": "hair",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -1245,7 +2882,8 @@
       ],
       "category": "hair",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -1287,7 +2925,8 @@
       ],
       "category": "hair",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "uncommon"
       },
       "layers": [
         {
@@ -1329,7 +2968,8 @@
       ],
       "category": "hair",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "uncommon"
       },
       "layers": [
         {
@@ -1371,7 +3011,8 @@
       ],
       "category": "hair",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "rare"
       },
       "layers": [
         {
@@ -1413,7 +3054,8 @@
       ],
       "category": "hair",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "rare"
       },
       "layers": [
         {
@@ -1438,6 +3080,92 @@
         },
         {
           "id": "hair.8.front.shading",
+          "slot": "hair.front",
+          "z": 81,
+          "file": "hair-front-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "hair_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "hair",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "hair.9.back.mask",
+          "slot": "hair.back",
+          "z": 30,
+          "file": "hair-back-mask.webp",
+          "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.9.back.shading",
+          "slot": "hair.back",
+          "z": 31,
+          "file": "hair-back-shading.webp"
+        },
+        {
+          "id": "hair.9.front.mask",
+          "slot": "hair.front",
+          "z": 80,
+          "file": "hair-front-mask.webp",
+          "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.9.front.shading",
+          "slot": "hair.front",
+          "z": 81,
+          "file": "hair-front-shading.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "hair_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "hair",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "hair.10.back.mask",
+          "slot": "hair.back",
+          "z": 30,
+          "file": "hair-back-mask.webp",
+          "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.10.back.shading",
+          "slot": "hair.back",
+          "z": 31,
+          "file": "hair-back-shading.webp"
+        },
+        {
+          "id": "hair.10.front.mask",
+          "slot": "hair.front",
+          "z": 80,
+          "file": "hair-front-mask.webp",
+          "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.10.front.shading",
           "slot": "hair.front",
           "z": 81,
           "file": "hair-front-shading.webp"
@@ -1528,6 +3256,86 @@
       "swatchHex": "#c59456"
     },
     {
+      "id": "hair_platinum",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "hair",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#ded1bd"
+    },
+    {
+      "id": "hair_red",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "hair",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#a83524"
+    },
+    {
+      "id": "hair_rose",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "hair",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#a95769"
+    },
+    {
+      "id": "hair_blue",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "hair",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#335c87"
+    },
+    {
+      "id": "hair_green",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "hair",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": false,
+      "swatchHex": "#416b50"
+    },
+    {
       "id": "outfit_01",
       "assetVersion": 1,
       "rigIds": [
@@ -1579,7 +3387,8 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -1601,7 +3410,8 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -1623,7 +3433,8 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "uncommon"
       },
       "layers": [
         {
@@ -1645,7 +3456,8 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "uncommon"
       },
       "layers": [
         {
@@ -1667,7 +3479,8 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "rare"
       },
       "layers": [
         {
@@ -1689,11 +3502,58 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "rare"
       },
       "layers": [
         {
           "id": "outfit.8",
+          "slot": "outfit",
+          "z": 60,
+          "file": "outfit.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "outfit_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "outfit.9",
+          "slot": "outfit",
+          "z": 60,
+          "file": "outfit.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "outfit_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "outfit.10",
           "slot": "outfit",
           "z": 60,
           "file": "outfit.webp"
@@ -1755,7 +3615,8 @@
       ],
       "category": "scene",
       "entitlement": {
-        "kind": "free"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -1777,11 +3638,150 @@
       ],
       "category": "scene",
       "entitlement": {
-        "kind": "free"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
           "id": "background.sunset",
+          "slot": "background",
+          "z": 0,
+          "file": "background.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "background_sky",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "background.sky",
+          "slot": "background",
+          "z": 0,
+          "file": "background.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "background_lavender",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "background.lavender",
+          "slot": "background",
+          "z": 0,
+          "file": "background.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "background_forest",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "background.forest",
+          "slot": "background",
+          "z": 0,
+          "file": "background.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "background_ocean",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "background.ocean",
+          "slot": "background",
+          "z": 0,
+          "file": "background.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "background_night",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "background.night",
+          "slot": "background",
+          "z": 0,
+          "file": "background.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "background_studio",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "background.studio",
           "slot": "background",
           "z": 0,
           "file": "background.webp"
@@ -1799,7 +3799,7 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "reward",
+        "kind": "purchase",
         "rarity": "common"
       },
       "layers": [
@@ -1823,7 +3823,7 @@
       "category": "look",
       "entitlement": {
         "kind": "reward",
-        "rarity": "uncommon"
+        "rarity": "common"
       },
       "layers": [
         {
@@ -1848,11 +3848,153 @@
       "category": "look",
       "entitlement": {
         "kind": "purchase",
-        "rarity": "rare"
+        "rarity": "uncommon"
       },
       "layers": [
         {
           "id": "headwear.flower_crown.01.front",
+          "slot": "headwear.front",
+          "z": 150,
+          "file": "headwear-front.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "headwear.bucket_hat.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "headwear.bucket_hat.01.front",
+          "slot": "headwear.front",
+          "z": 150,
+          "file": "headwear-front.webp"
+        }
+      ],
+      "occludes": [
+        "hair.front"
+      ],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "headwear.beret.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "headwear.beret.01.front",
+          "slot": "headwear.front",
+          "z": 150,
+          "file": "headwear-front.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "headwear.tiara.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "headwear.tiara.01.front",
+          "slot": "headwear.front",
+          "z": 150,
+          "file": "headwear-front.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "headwear.cowboy_hat.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "headwear.cowboy_hat.01.front",
+          "slot": "headwear.front",
+          "z": 150,
+          "file": "headwear-front.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "headwear.turban.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "headwear.turban.01.front",
+          "slot": "headwear.front",
+          "z": 150,
+          "file": "headwear-front.webp"
+        }
+      ],
+      "occludes": [
+        "hair.front"
+      ],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "headwear.cat_ears.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "headwear.cat_ears.01.front",
           "slot": "headwear.front",
           "z": 150,
           "file": "headwear-front.webp"
@@ -1901,8 +4043,24 @@
       "conflicts": [
         "mask.domino.01",
         "mask.festival.01",
+        "mask.fox.01",
+        "mask.phantom.01",
+        "mask.cyber.01",
+        "mask.masquerade.01",
+        "mask.oni.01",
+        "mask.bandana.01",
+        "mask.star.01",
+        "mask.lace.01",
         "eyewear.round.01",
-        "eyewear.cat_eye.01"
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
       ],
       "restoresOnRemove": true
     },
@@ -1914,8 +4072,8 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "reward",
-        "rarity": "uncommon"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -1929,7 +4087,15 @@
       "occludes": [],
       "conflicts": [
         "eyewear.round.01",
-        "eyewear.cat_eye.01"
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
       ],
       "restoresOnRemove": true
     },
@@ -1942,7 +4108,7 @@
       "category": "look",
       "entitlement": {
         "kind": "reward",
-        "rarity": "rare"
+        "rarity": "common"
       },
       "layers": [
         {
@@ -1956,7 +4122,295 @@
       "occludes": [],
       "conflicts": [
         "eyewear.round.01",
-        "eyewear.cat_eye.01"
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
+      ],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "mask.fox.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "mask.fox.01.front",
+          "slot": "mask",
+          "z": 130,
+          "file": "mask.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [
+        "eyewear.round.01",
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
+      ],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "mask.phantom.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "mask.phantom.01.front",
+          "slot": "mask",
+          "z": 130,
+          "file": "mask.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [
+        "eyewear.round.01",
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
+      ],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "mask.cyber.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "mask.cyber.01.front",
+          "slot": "mask",
+          "z": 130,
+          "file": "mask.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [
+        "eyewear.round.01",
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
+      ],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "mask.masquerade.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "mask.masquerade.01.front",
+          "slot": "mask",
+          "z": 130,
+          "file": "mask.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [
+        "eyewear.round.01",
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
+      ],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "mask.oni.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "mask.oni.01.front",
+          "slot": "mask",
+          "z": 130,
+          "file": "mask.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [
+        "eyewear.round.01",
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
+      ],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "mask.bandana.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "mask.bandana.01.front",
+          "slot": "mask",
+          "z": 130,
+          "file": "mask.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [
+        "eyewear.round.01",
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
+      ],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "mask.star.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "mask.star.01.front",
+          "slot": "mask",
+          "z": 130,
+          "file": "mask.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [
+        "eyewear.round.01",
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
+      ],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "mask.lace.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "mask.lace.01.front",
+          "slot": "mask",
+          "z": 130,
+          "file": "mask.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [
+        "eyewear.round.01",
+        "eyewear.cat_eye.01",
+        "eyewear.aviator.01",
+        "eyewear.square.01",
+        "eyewear.heart.01",
+        "eyewear.monocle.01",
+        "eyewear.visor.01",
+        "eyewear.goggles.01",
+        "eyewear.half_moon.01",
+        "eyewear.rimless.01"
       ],
       "restoresOnRemove": true
     },
@@ -1993,11 +4447,203 @@
       "category": "look",
       "entitlement": {
         "kind": "reward",
-        "rarity": "uncommon"
+        "rarity": "common"
       },
       "layers": [
         {
           "id": "eyewear.cat_eye.01.front",
+          "slot": "eyewear",
+          "z": 120,
+          "file": "eyewear.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "eyewear.aviator.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "eyewear.aviator.01.front",
+          "slot": "eyewear",
+          "z": 120,
+          "file": "eyewear.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "eyewear.square.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "eyewear.square.01.front",
+          "slot": "eyewear",
+          "z": 120,
+          "file": "eyewear.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "eyewear.heart.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "eyewear.heart.01.front",
+          "slot": "eyewear",
+          "z": 120,
+          "file": "eyewear.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "eyewear.monocle.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "eyewear.monocle.01.front",
+          "slot": "eyewear",
+          "z": 120,
+          "file": "eyewear.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "eyewear.visor.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "eyewear.visor.01.front",
+          "slot": "eyewear",
+          "z": 120,
+          "file": "eyewear.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "eyewear.goggles.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "eyewear.goggles.01.front",
+          "slot": "eyewear",
+          "z": 120,
+          "file": "eyewear.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "eyewear.half_moon.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "eyewear.half_moon.01.front",
+          "slot": "eyewear",
+          "z": 120,
+          "file": "eyewear.webp",
+          "clip": "face.safe"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "eyewear.rimless.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "eyewear.rimless.01.front",
           "slot": "eyewear",
           "z": 120,
           "file": "eyewear.webp",
@@ -2016,7 +4662,7 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "reward",
+        "kind": "purchase",
         "rarity": "common"
       },
       "layers": [
@@ -2039,12 +4685,196 @@
       ],
       "category": "look",
       "entitlement": {
+        "kind": "reward",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "ear.accessory.hoop.01",
+          "slot": "ear.accessory",
+          "z": 110,
+          "file": "ear-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "ear_accessory.drop.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
         "kind": "purchase",
         "rarity": "uncommon"
       },
       "layers": [
         {
-          "id": "ear.accessory.hoop.01",
+          "id": "ear.accessory.drop.01",
+          "slot": "ear.accessory",
+          "z": 110,
+          "file": "ear-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "ear_accessory.pearl.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "ear.accessory.pearl.01",
+          "slot": "ear.accessory",
+          "z": 110,
+          "file": "ear-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "ear_accessory.star.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "ear.accessory.star.01",
+          "slot": "ear.accessory",
+          "z": 110,
+          "file": "ear-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "ear_accessory.feather.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "ear.accessory.feather.01",
+          "slot": "ear.accessory",
+          "z": 110,
+          "file": "ear-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "ear_accessory.cuff.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "ear.accessory.cuff.01",
+          "slot": "ear.accessory",
+          "z": 110,
+          "file": "ear-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "ear_accessory.lightning.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "ear.accessory.lightning.01",
+          "slot": "ear.accessory",
+          "z": 110,
+          "file": "ear-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "ear_accessory.flower.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "ear.accessory.flower.01",
+          "slot": "ear.accessory",
+          "z": 110,
+          "file": "ear-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "ear_accessory.chain.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "ear.accessory.chain.01",
           "slot": "ear.accessory",
           "z": 110,
           "file": "ear-accessory.webp"
@@ -2062,8 +4892,8 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "reward",
-        "rarity": "uncommon"
+        "kind": "purchase",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -2085,8 +4915,8 @@
       ],
       "category": "look",
       "entitlement": {
-        "kind": "purchase",
-        "rarity": "rare"
+        "kind": "reward",
+        "rarity": "common"
       },
       "layers": [
         {
@@ -2094,6 +4924,874 @@
           "slot": "neck.accessory",
           "z": 125,
           "file": "neck-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "neck_accessory.choker.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "neck.accessory.choker.01",
+          "slot": "neck.accessory",
+          "z": 125,
+          "file": "neck-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "neck_accessory.bow.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "neck.accessory.bow.01",
+          "slot": "neck.accessory",
+          "z": 125,
+          "file": "neck-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "neck_accessory.bandana.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "neck.accessory.bandana.01",
+          "slot": "neck.accessory",
+          "z": 125,
+          "file": "neck-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "neck_accessory.beads.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "neck.accessory.beads.01",
+          "slot": "neck.accessory",
+          "z": 125,
+          "file": "neck-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "neck_accessory.medallion.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "neck.accessory.medallion.01",
+          "slot": "neck.accessory",
+          "z": 125,
+          "file": "neck-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "neck_accessory.collar.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "neck.accessory.collar.01",
+          "slot": "neck.accessory",
+          "z": 125,
+          "file": "neck-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "neck_accessory.tie.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "neck.accessory.tie.01",
+          "slot": "neck.accessory",
+          "z": 125,
+          "file": "neck-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "neck_accessory.chain.01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "look",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "neck.accessory.chain.01",
+          "slot": "neck.accessory",
+          "z": 125,
+          "file": "neck-accessory.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "aura_01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [
+        {
+          "id": "aura.1",
+          "slot": "aura",
+          "z": 160,
+          "file": "aura.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "aura_02",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [
+        {
+          "id": "aura.2",
+          "slot": "aura",
+          "z": 160,
+          "file": "aura.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "aura_03",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "aura.3",
+          "slot": "aura",
+          "z": 160,
+          "file": "aura.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "aura_04",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "aura.4",
+          "slot": "aura",
+          "z": 160,
+          "file": "aura.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "aura_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "aura.5",
+          "slot": "aura",
+          "z": 160,
+          "file": "aura.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "aura_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "aura.6",
+          "slot": "aura",
+          "z": 160,
+          "file": "aura.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "aura_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "aura.7",
+          "slot": "aura",
+          "z": 160,
+          "file": "aura.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "aura_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "aura.8",
+          "slot": "aura",
+          "z": 160,
+          "file": "aura.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "aura_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "aura.9",
+          "slot": "aura",
+          "z": 160,
+          "file": "aura.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "aura_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "aura.10",
+          "slot": "aura",
+          "z": 160,
+          "file": "aura.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "frame_01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [
+        {
+          "id": "frame.1",
+          "slot": "frame",
+          "z": 170,
+          "file": "frame.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "frame_02",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [
+        {
+          "id": "frame.2",
+          "slot": "frame",
+          "z": 170,
+          "file": "frame.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "frame_03",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "frame.3",
+          "slot": "frame",
+          "z": 170,
+          "file": "frame.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "frame_04",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "frame.4",
+          "slot": "frame",
+          "z": 170,
+          "file": "frame.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "frame_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "frame.5",
+          "slot": "frame",
+          "z": 170,
+          "file": "frame.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "frame_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "frame.6",
+          "slot": "frame",
+          "z": 170,
+          "file": "frame.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "frame_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "frame.7",
+          "slot": "frame",
+          "z": 170,
+          "file": "frame.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "frame_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "frame.8",
+          "slot": "frame",
+          "z": 170,
+          "file": "frame.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "frame_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "frame.9",
+          "slot": "frame",
+          "z": 170,
+          "file": "frame.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "frame_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "frame.10",
+          "slot": "frame",
+          "z": 170,
+          "file": "frame.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "foreground_fx_01",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [
+        {
+          "id": "foreground.fx.1",
+          "slot": "foreground.fx",
+          "z": 175,
+          "file": "foreground-fx.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "foreground_fx_02",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "free"
+      },
+      "layers": [
+        {
+          "id": "foreground.fx.2",
+          "slot": "foreground.fx",
+          "z": 175,
+          "file": "foreground-fx.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "foreground_fx_03",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "foreground.fx.3",
+          "slot": "foreground.fx",
+          "z": 175,
+          "file": "foreground-fx.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "foreground_fx_04",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "common"
+      },
+      "layers": [
+        {
+          "id": "foreground.fx.4",
+          "slot": "foreground.fx",
+          "z": 175,
+          "file": "foreground-fx.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "foreground_fx_05",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "foreground.fx.5",
+          "slot": "foreground.fx",
+          "z": 175,
+          "file": "foreground-fx.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "foreground_fx_06",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "uncommon"
+      },
+      "layers": [
+        {
+          "id": "foreground.fx.6",
+          "slot": "foreground.fx",
+          "z": 175,
+          "file": "foreground-fx.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "foreground_fx_07",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "foreground.fx.7",
+          "slot": "foreground.fx",
+          "z": 175,
+          "file": "foreground-fx.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "foreground_fx_08",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "rare"
+      },
+      "layers": [
+        {
+          "id": "foreground.fx.8",
+          "slot": "foreground.fx",
+          "z": 175,
+          "file": "foreground-fx.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "foreground_fx_09",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "purchase",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "foreground.fx.9",
+          "slot": "foreground.fx",
+          "z": 175,
+          "file": "foreground-fx.webp"
+        }
+      ],
+      "occludes": [],
+      "conflicts": [],
+      "restoresOnRemove": true
+    },
+    {
+      "id": "foreground_fx_10",
+      "assetVersion": 1,
+      "rigIds": [
+        "human_v1"
+      ],
+      "category": "scene",
+      "entitlement": {
+        "kind": "reward",
+        "rarity": "epic"
+      },
+      "layers": [
+        {
+          "id": "foreground.fx.10",
+          "slot": "foreground.fx",
+          "z": 175,
+          "file": "foreground-fx.webp"
         }
       ],
       "occludes": [],

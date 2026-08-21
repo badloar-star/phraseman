@@ -49,18 +49,22 @@ describe('Avatar DNA catalog contract', () => {
     expect(Object.keys(canonicalRig.anchors).sort()).toEqual(['chin','earLeft','earRight','eyeLineLeft','eyeLineRight','headTop','mouthCenter','neckCenter','noseBridge','noseTip','shoulderLeft','shoulderRight','templeLeft','templeRight','torsoCenter']);
     expect(Object.keys(canonicalRig.safePolygons).sort()).toEqual(['face.safe','head.safe']);
     const numbered = (prefix: string, count: number) => Array.from({ length: count }, (_, index) => `${prefix}${String(index + 1).padStart(2, '0')}`);
+    const named = (prefix: string, names: readonly string[]) => names.map((name) => `${prefix}${name}.01`);
     const expected = [
-      ...numbered('skin_', 6), ...numbered('face_', 4), ...numbered('body_', 2), ...numbered('eyes_', 6),
-      'iris_brown','iris_hazel','iris_green','iris_blue','iris_gray','iris_amber', ...numbered('brows_', 4),
-      ...numbered('nose_', 4), ...numbered('mouth_', 4), ...numbered('skin_detail_', 4), ...numbered('makeup_', 4),
-      ...numbered('facial_hair_', 2), ...numbered('hair_', 8), 'hair_black','hair_dark_brown','hair_brown','hair_auburn','hair_blonde',
-      ...numbered('outfit_', 8), 'background_cream','background_terracotta','background_olive','background_sunset',
-      'headwear.cap.01','headwear.beanie.01','headwear.flower_crown.01','headwear.assassin_hood.01',
-      'mask.domino.01','mask.festival.01','eyewear.round.01','eyewear.cat_eye.01',
-      'ear_accessory.stud.01','ear_accessory.hoop.01','neck_accessory.scarf.01','neck_accessory.pendant.01',
+      ...numbered('skin_', 10), ...numbered('face_', 10), ...numbered('body_', 10), ...numbered('eyes_', 10),
+      ...['brown','hazel','green','blue','gray','amber','violet','teal','honey','black'].map((name) => `iris_${name}`), ...numbered('brows_', 10),
+      ...numbered('nose_', 10), ...numbered('mouth_', 10), ...numbered('skin_detail_', 10), ...numbered('makeup_', 10),
+      ...numbered('facial_hair_', 10), ...numbered('hair_', 10), ...['black','dark_brown','brown','auburn','blonde','platinum','red','rose','blue','green'].map((name) => `hair_${name}`),
+      ...numbered('outfit_', 10), ...['cream','terracotta','olive','sunset','sky','lavender','forest','ocean','night','studio'].map((name) => `background_${name}`),
+      ...named('headwear.', ['cap','beanie','flower_crown','assassin_hood','bucket_hat','beret','tiara','cowboy_hat','turban','cat_ears']),
+      ...named('mask.', ['domino','festival','fox','phantom','cyber','masquerade','oni','bandana','star','lace']),
+      ...named('eyewear.', ['round','cat_eye','aviator','square','heart','monocle','visor','goggles','half_moon','rimless']),
+      ...named('ear_accessory.', ['stud','hoop','drop','pearl','star','feather','cuff','lightning','flower','chain']),
+      ...named('neck_accessory.', ['scarf','pendant','choker','bow','bandana','beads','medallion','collar','tie','chain']),
+      ...numbered('aura_', 10), ...numbered('frame_', 10), ...numbered('foreground_fx_', 10),
     ].sort();
     expect(canonicalCatalog.items.map((item: { id: string }) => item.id).sort()).toEqual(expected);
-    expect(canonicalCatalog.items).toHaveLength(83);
+    expect(canonicalCatalog.items).toHaveLength(230);
   });
 
   it.each([

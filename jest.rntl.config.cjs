@@ -14,6 +14,7 @@ module.exports = {
     '<rootDir>/tests/learning_v2_intro_reader_a.test.tsx',
     '<rootDir>/tests/avatar_dna_stage_contract.test.tsx',
     '<rootDir>/tests/avatar_view_v2_fallback.test.tsx',
+    '<rootDir>/tests/avatar_dna_studio_accessibility.test.tsx',
   ],
   setupFilesAfterEnv: ['<rootDir>/tests/setup_jest_write_guard.js'],
   transformIgnorePatterns: [

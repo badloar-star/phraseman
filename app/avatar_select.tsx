@@ -126,6 +126,7 @@ import {
 } from '../components/customization/CustomizationControls';
 import { AvatarEditorSheet } from '../components/customization/AvatarEditorSheet';
 import { CustomizationPurchaseConfirmModal } from '../components/customization/CustomizationPurchaseConfirmModal';
+import { avatarDNACopy } from './avatar_dna_copy';
 
 const GRID_GAP = 10;
 const GRID_PAD = 16;
@@ -794,11 +795,26 @@ export default function AvatarSelect() {
         onEdit={selectedAvatar ? openEditor : null}
         editLabel={copy.editAvatar}
       />
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={avatarDNACopy(lang).createCharacter}
+        onPress={() => router.push('/avatar_dna_studio' as any)}
+        style={[styles.avatarDNAEntry, { backgroundColor: t.bgSurface, borderColor: withAlpha(t.accent, '55') }]}
+      >
+        <View style={[styles.avatarDNAEntryMark, { backgroundColor: withAlpha(t.accent, '20') }]}>
+          <Text style={[styles.avatarDNAEntryMarkText, { color: t.accent }]}>A</Text>
+        </View>
+        <View style={styles.avatarDNAEntryCopy}>
+          <Text style={[styles.avatarDNAEntryTitle, { color: t.textPrimary }]}>{avatarDNACopy(lang).createCharacter}</Text>
+          <Text style={[styles.avatarDNAEntrySubtitle, { color: t.textSecond }]}>{avatarDNACopy(lang).title}</Text>
+        </View>
+        <Ionicons name="chevron-forward" size={22} color={t.accent} />
+      </Pressable>
       <View style={styles.controls}>
         <CustomizationTabs value={activeTab} onChange={handleTabChange} avatarsLabel={copy.avatars} aurasLabel={copy.auras} />
       </View>
     </View>
-  ), [insets.top, t, copy, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, stageAuraLabel, focused, appState, selectedAvatar, openEditor, activeTab, handleTabChange]);
+  ), [insets.top, t, copy, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, stageAuraLabel, focused, appState, selectedAvatar, openEditor, activeTab, handleTabChange, lang, router]);
 
   // зачем: сцена «передаёт» превью в закреплённый бар при скролле — образ всегда на
   // глазах, пока листаешь каталог (главная боль старого экрана). Интерполяции живут на
@@ -926,6 +942,10 @@ export default function AvatarSelect() {
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
+  avatarDNAEntry: { minHeight: 76, marginHorizontal: 16, marginBottom: 12, borderWidth: 1, borderRadius: 22, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  avatarDNAEntryMark: { width: 50, height: 50, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  avatarDNAEntryMarkText: { fontSize: 24, lineHeight: 28, fontWeight: '900' },
+  avatarDNAEntryCopy: { flex: 1 }, avatarDNAEntryTitle: { fontSize: 16, lineHeight: 21, fontWeight: '900' }, avatarDNAEntrySubtitle: { fontSize: 12, lineHeight: 17, fontWeight: '700', marginTop: 2 },
   topBar: {
     position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10,
     flexDirection: 'row', alignItems: 'center', gap: 10,

@@ -3236,6 +3236,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="referrals" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="promo_code_entry" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="avatar_select" />
+      <Stack.Screen name="avatar_dna_studio" options={{ headerShown: false }} />
       <Stack.Screen name="flashcards" />
       {/* Cards 2.1 §5.3: каталог наборов сообщества — правая позиция таббара раздела */}
       <Stack.Screen name="flashcards_packs" />

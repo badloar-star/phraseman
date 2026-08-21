@@ -57,7 +57,7 @@ const parseAvatarCatalogUnsafe = (input: unknown): AvatarCatalogManifest => {
   const required = ['skin_03','face_01','body_01','eyes_01','iris_brown','brows_01','nose_01','mouth_01','hair_01','hair_brown','outfit_01','background_cream','hair_wavy_01','headwear.assassin_hood.01'];
   if (items.length === 0 || required.some((id) => !itemIds.has(id))) throw new TypeError('avatar_catalog_invalid: required inventory');
   if (items.length !== required.length || items.some((item) => item.id !== 'headwear.assassin_hood.01' && item.entitlement.kind !== 'free') || items.find((item) => item.id === 'headwear.assassin_hood.01')?.entitlement.kind !== 'reward') throw new TypeError('avatar_catalog_invalid: canonical entitlement');
-  const parsed = deepFreeze({ catalogVersion: 1 as const, rigIds: [...rigIds], items });
+  const parsed = deepFreeze({ catalogVersion: 1 as const, manifestVersion: 1 as const, rigIds: [...rigIds], items });
   parsedCatalogs.add(parsed);
   return parsed;
 };

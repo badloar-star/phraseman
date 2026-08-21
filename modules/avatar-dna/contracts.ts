@@ -87,6 +87,7 @@ export type AvatarItemManifest = Readonly<{
 
 export type AvatarCatalogManifest = Readonly<{
   catalogVersion: 1;
+  manifestVersion: 1;
   rigIds: readonly string[];
   items: readonly AvatarItemManifest[];
 }>;

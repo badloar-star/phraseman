@@ -39,6 +39,7 @@ export type RemoteNumberKey =
   | 'league_sync_force_interval_ms'
   | 'league_startup_registration_interval_ms'
   | 'auth_link_cache_ttl_ms'
+  | 'avatar_dna_rollout_pct'
   // Экономика (вынесено из хардкодов для крутки баланса без релиза):
   // стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10 в home.tsx).
   | 'streak_freeze_cost_shards';
@@ -56,6 +57,7 @@ export type RemoteBoolKey =
   | 'soft_upsell_streak_enabled'
   | 'soft_upsell_repeated_training_enabled'
   | 'referral_enabled'
+  | 'avatar_dna_enabled'
   // Мастер-флаг «Рулетка Plus + реферальная программа». Живёт в numbers
   // (remote_config/app.numbers.referral_roulette_enabled) — туда его пишут
   // adminSetReferralRouletteEnabled и скрипты; сервер читает тот же ключ.
@@ -244,6 +246,7 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   league_sync_force_interval_ms: 6 * 60 * 60 * 1000,
   league_startup_registration_interval_ms: 24 * 60 * 60 * 1000,
   auth_link_cache_ttl_ms: 7 * 24 * 60 * 60 * 1000,
+  avatar_dna_rollout_pct: 0,
   streak_freeze_cost_shards: 10,
 };
 
@@ -265,6 +268,9 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // экстренно выключить). ВНИМАНИЕ: для рабочих ссылок-приглашений нужна
   // задеплоенная invite-страница — иначе ссылки будут битыми.
   referral_enabled: true,
+  // Безопасный sell-switch: новый редактор невидим до явного включения и
+  // отдельного поэтапного процента. Старый экран Студии при этом не меняется.
+  avatar_dna_enabled: false,
   // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
   // (boolean), подхват — спец-веткой в applyRemoteConfigSnapshot ниже.
   referral_roulette_enabled: true,
@@ -420,6 +426,7 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   league_sync_force_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   league_startup_registration_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   auth_link_cache_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
+  avatar_dna_rollout_pct: { min: 0, max: 100 },
   streak_freeze_cost_shards: { min: 0, max: 9999 },
 };
 
@@ -615,6 +622,11 @@ export const getAuthLinkCacheTtlMs = () => getRemoteNumber('auth_link_cache_ttl_
 /** Стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10). Дефолт 10. */
 export const getStreakFreezeCostShards = () => getRemoteNumber('streak_freeze_cost_shards');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
+export const isAvatarDNAEnabled = (stableId: string | null): boolean => (
+  getRemoteBool('avatar_dna_enabled')
+  && Boolean(stableId)
+  && isInRolloutBucket(stableId as string, 'avatar-dna-v1', getRemoteNumber('avatar_dna_rollout_pct'))
+);
 export const isReferralRouletteEnabled = () => getRemoteBool('referral_roulette_enabled');
 export const isReferralRouletteEmergencyStopped = () => getRemoteBool('referral_roulette_emergency_stop');
 

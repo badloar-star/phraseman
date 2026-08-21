@@ -29,6 +29,9 @@ export type AppEventMap = {
   loyalty_gift_changed: undefined;
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
+  avatar_dna_invitation_requested: { source: 'first_achievement' };
+  avatar_dna_sync_requested: { ownerStableId: string; accountGeneration: number };
+  avatar_dna_saved: { ownerStableId: string };
   account_deleted: undefined;
   /** После restoreFromCloud / мерджа user_name с облака — обновить профиль в UI. */
   cloud_profile_hydrated: undefined;

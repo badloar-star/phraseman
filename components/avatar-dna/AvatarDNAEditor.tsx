@@ -1,4 +1,4 @@
-import React, { useMemo, useReducer, useState } from 'react';
+import React, { useEffect, useMemo, useReducer, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import { PRESS, LUM, CHK } from '../../constants/motionHybrid';
@@ -19,15 +19,19 @@ type Props = Readonly<{
   reduceMotion?: boolean;
   onClose: () => void;
   onSave: (dna: AvatarDNA) => void | Promise<void>;
+  onDirtyChange?: (dirty: boolean) => void;
+  onDraftChange?: (dna: AvatarDNA) => void;
 }>;
 
-export function AvatarDNAEditor({ initialDNA, lang, reduceMotion = false, onClose, onSave }: Props) {
+export function AvatarDNAEditor({ initialDNA, lang, reduceMotion = false, onClose, onSave, onDirtyChange, onDraftChange }: Props) {
   const { theme: t } = useTheme();
   const copy = useMemo(() => avatarDNACopy(lang), [lang]);
   const [state, dispatch] = useReducer(avatarDNAEditorReducer, undefined, () => createAvatarDNAEditorState(initialDNA, 'free'));
   const [category, setCategory] = useState<AvatarCategory>('base');
   const [camera, setCamera] = useState<AvatarCamera>('studio');
   const [saving, setSaving] = useState(false);
+  useEffect(() => { onDirtyChange?.(state.dirty); }, [onDirtyChange, state.dirty]);
+  useEffect(() => { onDraftChange?.(state.present.chosenDNA); }, [onDraftChange, state.present.chosenDNA]);
   const iconStyle = [styles.iconButton, { backgroundColor: t.bgSurface }];
   const selectItem = (item: AvatarItemManifest) => dispatch({ type: 'select-item', category: item.category, itemId: item.id });
   const save = async () => { if (saving) return; setSaving(true); try { await onSave(state.present.chosenDNA); } finally { setSaving(false); } };

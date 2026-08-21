@@ -40,6 +40,7 @@ import {
   getFlagRolloutPct,
   isFlagEnabledForUser,
   isInRolloutBucket,
+  isAvatarDNAEnabled,
   matchesPromoSegment,
   __resetRemoteFlagsForTest,
 } from '../app/remote_flags';
@@ -76,10 +77,21 @@ describe('remote_flags', () => {
       expect(getManualUpdateTargetBuild()).toBe('');
       expect(getPromoBannerCampaignId()).toBe('');
       expect(getMaintenanceCampaignId()).toBe('');
+      expect(getRemoteBool('avatar_dna_enabled')).toBe(false);
+      expect(getRemoteNumber('avatar_dna_rollout_pct')).toBe(0);
+      expect(isAvatarDNAEnabled('u1')).toBe(false);
     });
   });
 
   describe('snapshot override', () => {
+    it('requires both the Avatar DNA bool and the dedicated stable rollout bucket', () => {
+      applyRemoteConfigSnapshot({ bools: { avatar_dna_enabled: true }, numbers: { avatar_dna_rollout_pct: 100 } });
+      expect(isAvatarDNAEnabled('u1')).toBe(true);
+      applyRemoteConfigSnapshot({ bools: { avatar_dna_enabled: false }, numbers: { avatar_dna_rollout_pct: 100 } });
+      expect(isAvatarDNAEnabled('u1')).toBe(false);
+      applyRemoteConfigSnapshot({ bools: { avatar_dna_enabled: true }, numbers: { avatar_dna_rollout_pct: 0 } });
+      expect(isAvatarDNAEnabled('u1')).toBe(false);
+    });
     it('treats weekly review V2 as a boolean kill-switch, not a client rollout bucket', () => {
       applyRemoteConfigSnapshot({
         bools: { weekly_review_ai_v2_enabled: true },

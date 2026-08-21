@@ -127,6 +127,7 @@ import {
 import { AvatarEditorSheet } from '../components/customization/AvatarEditorSheet';
 import { CustomizationPurchaseConfirmModal } from '../components/customization/CustomizationPurchaseConfirmModal';
 import { avatarDNACopy } from './avatar_dna_copy';
+import { isAvatarDNAEnabled } from './remote_flags';
 
 const GRID_GAP = 10;
 const GRID_PAD = 16;
@@ -391,12 +392,29 @@ export default function AvatarSelect() {
   const [busy, setBusy] = useState(false);
   const [editorAvatar, setEditorAvatar] = useState<CustomAvatarDef | null>(null);
   const [cosmeticCatalogRevision, setCosmeticCatalogRevision] = useState(0);
+  const [avatarDNAEnabled, setAvatarDNAEnabled] = useState(false);
 
   useEffect(() => {
     const subscription = onAppEvent('cosmetic_asset_catalog_changed', () => {
       setCosmeticCatalogRevision((current) => current + 1);
     });
     return () => subscription.remove();
+  }, []);
+  useEffect(() => {
+    let active = true;
+    const refresh = () => {
+      void getStableId().then((stableId) => {
+        if (active) setAvatarDNAEnabled(isAvatarDNAEnabled(stableId));
+      }).catch(() => {
+        if (active) setAvatarDNAEnabled(false);
+      });
+    };
+    refresh();
+    const subscription = onAppEvent('remote_config_changed', refresh);
+    return () => {
+      active = false;
+      subscription.remove();
+    };
   }, []);
   const [editorGradientId, setEditorGradientId] = useState(CUSTOM_AVATAR_GRADIENTS[0].id);
   const [editorLogoColor, setEditorLogoColor] = useState<CustomAvatarLogoColor>('black');
@@ -795,7 +813,7 @@ export default function AvatarSelect() {
         onEdit={selectedAvatar ? openEditor : null}
         editLabel={copy.editAvatar}
       />
-      <Pressable
+      {avatarDNAEnabled ? <Pressable
         accessibilityRole="button"
         accessibilityLabel={avatarDNACopy(lang).createCharacter}
         onPress={() => router.push('/avatar_dna_studio' as any)}
@@ -809,12 +827,12 @@ export default function AvatarSelect() {
           <Text style={[styles.avatarDNAEntrySubtitle, { color: t.textSecond }]}>{avatarDNACopy(lang).title}</Text>
         </View>
         <Ionicons name="chevron-forward" size={22} color={t.accent} />
-      </Pressable>
+      </Pressable> : null}
       <View style={styles.controls}>
         <CustomizationTabs value={activeTab} onChange={handleTabChange} avatarsLabel={copy.avatars} aurasLabel={copy.auras} />
       </View>
     </View>
-  ), [insets.top, t, copy, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, stageAuraLabel, focused, appState, selectedAvatar, openEditor, activeTab, handleTabChange, lang, router]);
+  ), [insets.top, t, copy, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, stageAuraLabel, focused, appState, selectedAvatar, openEditor, activeTab, handleTabChange, lang, router, avatarDNAEnabled]);
 
   // зачем: сцена «передаёт» превью в закреплённый бар при скролле — образ всегда на
   // глазах, пока листаешь каталог (главная боль старого экрана). Интерполяции живут на

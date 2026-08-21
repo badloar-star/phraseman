@@ -58,7 +58,7 @@ function finite(value, errors) { if (value) for (let row = 0; row < value.access
 function graph(gltf, errors) {
   if (gltf.asset?.version !== '2.0' || ['scenes', 'nodes', 'meshes', 'materials', 'accessors', 'bufferViews', 'buffers'].some(key => !Array.isArray(gltf[key]))) err(errors, 'invalid_glb_structure');
   if (gltf.scene !== 0 || gltf.scenes?.length !== 1 || gltf.scenes?.[0]?.name !== 'human_v2_scene' || !sameArray(gltf.scenes?.[0]?.nodes, (gltf.nodes || []).map((_, index) => index))) err(errors, 'invalid_scene_reference');
-  if (!gltf.nodes?.length || gltf.nodes.some((entry, index) => !entry || !isUint(entry.mesh) || entry.mesh !== index || entry.mesh >= gltf.meshes.length || 'weights' in entry || 'children' in entry || 'skin' in entry)) err(errors, 'invalid_node_reference');
+  if (!gltf.nodes?.length || gltf.nodes.some((entry, index) => !entry || !isUint(entry.mesh) || entry.mesh !== index || entry.mesh >= gltf.meshes.length || entry.name !== gltf.meshes[index]?.name || 'weights' in entry || 'children' in entry || 'skin' in entry) || new Set(gltf.nodes.map(node => node?.name)).size !== gltf.nodes.length || new Set(gltf.meshes.map(mesh => mesh?.name)).size !== gltf.meshes.length) err(errors, 'invalid_node_reference');
   if (gltf.nodes?.some(node => !sameArray(Object.keys(node).sort(), ['mesh', 'name']))) err(errors, 'invalid_node_transform');
   if (gltf.meshes?.length !== REQUIRED_MESHES.length || gltf.materials?.length !== REQUIRED_MATERIALS.length || gltf.textures?.length || gltf.images?.length || gltf.samplers?.length) err(errors, 'invalid_reference_graph');
   if (gltf.buffers?.length !== 1) err(errors, 'invalid_bin_length');
@@ -145,6 +145,18 @@ function accessorMetadata(gltf, primitive, errors) {
   }
 }
 
+function decodedRange(value) { const min = Array(value.width).fill(Infinity), max = Array(value.width).fill(-Infinity); for (let row = 0; row < value.accessor.count; row += 1) for (let axis = 0; axis < value.width; axis += 1) { const item = value.read(row, axis); min[axis] = Math.min(min[axis], item); max[axis] = Math.max(max[axis], item); } return { min, max }; }
+function validatePrimitiveTriangles(position, indices, errors, code) {
+  if (!position || !indices || indices.accessor.count % 3) { err(errors, code); return; }
+  for (let offset = 0; offset < indices.accessor.count; offset += 3) {
+    const triangle = [indices.read(offset, 0), indices.read(offset + 1, 0), indices.read(offset + 2, 0)];
+    if (triangle.some(vertex => !Number.isInteger(vertex) || vertex < 0 || vertex >= position.accessor.count)) { err(errors, 'index_out_of_range'); err(errors, code); continue; }
+    const a = [position.read(triangle[0], 0), position.read(triangle[0], 1), position.read(triangle[0], 2)], b = [position.read(triangle[1], 0), position.read(triangle[1], 1), position.read(triangle[1], 2)], c = [position.read(triangle[2], 0), position.read(triangle[2], 1), position.read(triangle[2], 2)];
+    const ux = b[0] - a[0], uy = b[1] - a[1], uz = b[2] - a[2], vx = c[0] - a[0], vy = c[1] - a[1], vz = c[2] - a[2];
+    if (Math.hypot(uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx) <= 1e-12) err(errors, code);
+  }
+}
+
 const materialColor = (hex, alpha = 1) => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255, alpha];
 function equalNumbers(actual, expected) { return Array.isArray(actual) && actual.length === expected.length && actual.every((value, index) => Math.abs(value - expected[index]) < 1e-7); }
 async function auditEyesAndMaterials(gltf, bin, errors) {
@@ -170,7 +182,8 @@ async function auditEyesAndMaterials(gltf, bin, errors) {
       for (const primitive of mesh.primitives || []) {
         const position = reader(gltf, bin, primitive.attributes?.POSITION, errors), normal = reader(gltf, bin, primitive.attributes?.NORMAL, errors), index = reader(gltf, bin, primitive.indices, errors);
         if (!expectAccessor(position,{componentType:5126,type:'VEC3',count:position?.accessor.count},errors,'invalid_eye_geometry') || !expectAccessor(normal,{componentType:5126,type:'VEC3',count:normal?.accessor.count},errors,'invalid_eye_geometry') || !expectAccessor(index,{componentType:5125,type:'SCALAR',count:index?.accessor.count},errors,'invalid_eye_geometry')) continue;
-        finite(position, errors); finite(normal, errors); if (!index || index.accessor.count % 3) err(errors,'invalid_eye_geometry');
+        finite(position, errors); finite(normal, errors); validatePrimitiveTriangles(position, index, errors, 'degenerate_eye_triangle');
+        for (const stream of [position, normal, index]) if (!stream || !hasKeys(stream.accessor, ['bufferView','componentType','count','max','min','type']) || !equalNumbers(stream.accessor.min, decodedRange(stream).min) || !equalNumbers(stream.accessor.max, decodedRange(stream).max)) err(errors, 'invalid_eye_accessor_metadata');
         if (part !== 'iris') {
           const expected = makeLatLongEllipsoid({ center: expectedAnchor, radii: expectedRadii });
           if (!position?.bytes().equals(Buffer.from(expected.positions.buffer)) || !normal?.bytes().equals(Buffer.from(expected.normals.buffer)) || !index?.bytes().equals(Buffer.from(expected.indices.buffer))) err(errors, 'invalid_eye_geometry');

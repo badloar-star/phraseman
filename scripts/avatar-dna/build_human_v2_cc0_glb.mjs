@@ -84,6 +84,7 @@ async function verifyProvenance(vendor) {
   return JSON.parse(materials.toString('utf8'));
 }
 const colorFactor = (hex, alpha = 1) => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255, alpha];
+const typedBounds = (typed, width) => { const min = Array(width).fill(Infinity), max = Array(width).fill(-Infinity); for (let index = 0; index < typed.length; index += width) for (let axis = 0; axis < width; axis += 1) { min[axis] = Math.min(min[axis], typed[index + axis]); max[axis] = Math.max(max[axis], typed[index + axis]); } return { min, max }; };
 const helperBounds = (group) => {
   const points = group.sourcePositions;
   const min = [0, 1, 2].map(axis => Math.min(...points.map(point => point[axis])));
@@ -107,7 +108,7 @@ export async function buildHumanV2Cc0Glb(options = {}) {
   const accessor = (typed, componentType, type, minMax = null) => { const entry={bufferView:add(typed),componentType,count:typed.length / (type === 'VEC3' ? 3 : type === 'VEC2' ? 2 : 1),type}; if(minMax) {entry.min=minMax.min;entry.max=minMax.max;} accessors.push(entry); return accessors.length-1; };
   const p=accessor(positions,5126,'VEC3',bounds(body.positions)), n=accessor(normal,5126,'VEC3'), uv=accessor(uvs,5126,'VEC2'), ix=accessor(indices,5125,'SCALAR'); const morphAccessors=morphs.map(value=>accessor(value,5126,'VEC3'));
   const meshes=[{name:'avatar_body_base',primitives:[{attributes:{POSITION:p,NORMAL:n,TEXCOORD_0:uv},indices:ix,material:0,targets:morphAccessors.map(POSITION=>({POSITION}))}],weights:Array(18).fill(0),extras:{targetNames:TARGET_ORDER}}];
-  const nodes=[{name:'human_v2_body',mesh:0}];
+  const nodes=[{name:'avatar_body_base',mesh:0}];
   const materialNames = materialConfig.materials.map(material => material.name);
   const materialIndex = Object.fromEntries(materialNames.map((name,index)=>[name,index]));
   const materials = materialConfig.materials.map(material => {
@@ -119,10 +120,10 @@ export async function buildHumanV2Cc0Glb(options = {}) {
     const sclera = makeLatLongEllipsoid({center:anchor.center,radii:[0.165,0.175,0.145]});
     const irisCenter=[anchor.center[0],anchor.center[1],anchor.center[2]+0.138], iris=makeIrisSurface({center:irisCenter,radii:[0.092,0.092,0.012]});
     const cornea = makeLatLongEllipsoid({center:anchor.center,radii:[0.168,0.178,0.151]});
-    const addSurface=(name,surface,material,extras={})=>{const position=accessor(surface.positions,5126,'VEC3'),normalAccessor=accessor(surface.normals,5126,'VEC3'),index=accessor(surface.indices,5125,'SCALAR');meshes.push({name,primitives:[{attributes:{POSITION:position,NORMAL:normalAccessor},indices:index,material}],extras});nodes.push({name,mesh:meshes.length-1});};
+    const addSurface=(name,surface,material,extras={})=>{const position=accessor(surface.positions,5126,'VEC3',typedBounds(surface.positions,3)),normalAccessor=accessor(surface.normals,5126,'VEC3',typedBounds(surface.normals,3)),index=accessor(surface.indices,5125,'SCALAR',typedBounds(surface.indices,1));meshes.push({name,primitives:[{attributes:{POSITION:position,NORMAL:normalAccessor},indices:index,material}],extras});nodes.push({name,mesh:meshes.length-1});};
     const provenance={helperGroup,helperBounds:{min:anchor.min,max:anchor.max},anchor:anchor.center};
     addSurface(`avatar_eye_${side}_sclera`,sclera,materialIndex.material_sclera,{...provenance,radii:[0.165,0.175,0.145]});
-    const ip=accessor(iris.positions,5126,'VEC3'),inorm=accessor(iris.normals,5126,'VEC3'),annulus=accessor(iris.annulus,5125,'SCALAR'),pupil=accessor(iris.pupil,5125,'SCALAR');
+    const ip=accessor(iris.positions,5126,'VEC3',typedBounds(iris.positions,3)),inorm=accessor(iris.normals,5126,'VEC3',typedBounds(iris.normals,3)),annulus=accessor(iris.annulus,5125,'SCALAR',typedBounds(iris.annulus,1)),pupil=accessor(iris.pupil,5125,'SCALAR',typedBounds(iris.pupil,1));
     meshes.push({name:`avatar_eye_${side}_iris`,primitives:[{attributes:{POSITION:ip,NORMAL:inorm},indices:annulus,material:materialIndex.material_iris},{attributes:{POSITION:ip,NORMAL:inorm},indices:pupil,material:materialIndex.material_pupil}],extras:{...provenance,anchor:irisCenter,radii:[0.092,0.092,0.012],irisOffsetTowardCamera:0.138,pupilRing:iris.pupilRing,radialSegments:iris.radialSegments,angularSegments:iris.angularSegments}}); nodes.push({name:`avatar_eye_${side}_iris`,mesh:meshes.length-1});
     addSurface(`avatar_eye_${side}_cornea`,cornea,materialIndex.material_cornea,{...provenance,radii:[0.168,0.178,0.151]});
   }

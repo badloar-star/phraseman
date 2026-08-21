@@ -84,6 +84,17 @@ describe("human_v2 CC0 GLB", () => {
     } finally { rmSync(directory, { recursive: true, force: true }); }
   });
 
+  it("rejects degenerate eye triangles, duplicate node names, and forged eye stream metadata", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const source = path.join(directory, "eyes.glb"); execFileSync(process.execPath, [build, "--output", source], { cwd: root });
+      const bytes = readFileSync(source), layout = gltfLayout(bytes), sclera = layout.json.meshes.find((mesh: any) => mesh.name === "avatar_eye_left_sclera").primitives[0];
+      const duplicate = path.join(directory, "duplicate-node.glb"); writeFileSync(duplicate, rewriteJson(bytes, json => { json.nodes[1].name = json.nodes[0].name; })); expect(runAudit(duplicate).errors).toContain("invalid_node_reference");
+      const forged = path.join(directory, "forged-eye-metadata.glb"); writeFileSync(forged, rewriteJson(bytes, json => { const position = json.accessors[json.meshes.find((mesh: any) => mesh.name === "avatar_eye_left_sclera").primitives[0].attributes.POSITION]; position.max[0] += 1; const normal = json.accessors[json.meshes.find((mesh: any) => mesh.name === "avatar_eye_left_sclera").primitives[0].attributes.NORMAL]; normal.min[1] -= 1; })); expect(runAudit(forged).errors).toContain("invalid_eye_accessor_metadata");
+      const degenerate = Buffer.from(bytes), indexAccessor = layout.json.accessors[sclera.indices], indexView = layout.json.bufferViews[indexAccessor.bufferView], offset = layout.binOffset + indexView.byteOffset + (indexAccessor.byteOffset || 0); degenerate.writeUInt32LE(degenerate.readUInt32LE(offset), offset + 4); const degenerateFile = path.join(directory, "degenerate-eye.glb"); writeFileSync(degenerateFile, degenerate); expect(runAudit(degenerateFile).errors).toContain("degenerate_eye_triangle");
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
   it("rejects malformed headers and nonzero morph defaults from binary GLB data", () => {
     const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
     try {

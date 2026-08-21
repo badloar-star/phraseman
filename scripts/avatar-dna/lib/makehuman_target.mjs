@@ -2,6 +2,9 @@ function fail(lineNumber, message) {
   throw new Error(`MakeHuman target${lineNumber === null ? '' : ` line ${lineNumber}`}: ${message}`);
 }
 
+const DECIMAL_FLOAT = /^[+-]?(?:(?:\d+(?:\.\d*)?)|(?:\.\d+))(?:[eE][+-]?\d+)?$/;
+const NONNEGATIVE_DECIMAL_INTEGER = /^\d+$/;
+
 function targetEntry(target, index) {
   if (target instanceof Map) return target.get(index);
   return target?.[index];
@@ -18,10 +21,11 @@ export function parseMakeHumanTarget(text, vertexCount) {
     if (!line) continue;
     const tokens = line.split(/\s+/);
     if (tokens.length !== 4) fail(lineNumber, 'requires exactly index dx dz dy');
-    if (!/^[+-]?\d+$/.test(tokens[0])) fail(lineNumber, 'index is malformed');
+    if (!NONNEGATIVE_DECIMAL_INTEGER.test(tokens[0])) fail(lineNumber, 'index is malformed');
     const index = Number(tokens[0]);
     if (index < 0 || index >= vertexCount) fail(lineNumber, 'index is out of range');
     if (offsets.has(index)) fail(lineNumber, 'duplicate index');
+    if (tokens.slice(1).some(token => !DECIMAL_FLOAT.test(token))) fail(lineNumber, 'offset contains a malformed number');
     const [dx, dz, dy] = tokens.slice(1).map(Number);
     if (![dx, dz, dy].every(Number.isFinite)) fail(lineNumber, 'offset contains a non-finite number');
     offsets.set(index, [dx, -dy, dz]);

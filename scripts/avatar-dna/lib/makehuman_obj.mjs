@@ -2,15 +2,19 @@ function fail(lineNumber, message) {
   throw new Error(`MakeHuman OBJ line ${lineNumber}: ${message}`);
 }
 
+const DECIMAL_FLOAT = /^[+-]?(?:(?:\d+(?:\.\d*)?)|(?:\.\d+))(?:[eE][+-]?\d+)?$/;
+const SIGNED_DECIMAL_INTEGER = /^[+-]?\d+$/;
+
 function finiteNumbers(tokens, count, lineNumber, record) {
   if (tokens.length !== count) fail(lineNumber, `${record} requires exactly ${count} numeric values`);
+  if (tokens.some(token => !DECIMAL_FLOAT.test(token))) fail(lineNumber, `${record} contains a malformed number`);
   const values = tokens.map(Number);
   if (values.some(value => !Number.isFinite(value))) fail(lineNumber, `${record} contains a non-finite number`);
   return values;
 }
 
 function resolveIndex(token, count, lineNumber, label) {
-  if (!/^[+-]?\d+$/.test(token)) fail(lineNumber, `${label} index is malformed`);
+  if (!SIGNED_DECIMAL_INTEGER.test(token)) fail(lineNumber, `${label} index is malformed`);
   const raw = Number(token);
   if (raw === 0) fail(lineNumber, `${label} index must not be zero`);
   const resolved = raw > 0 ? raw - 1 : count + raw;
@@ -88,7 +92,13 @@ export function parseMakeHumanObj(text) {
       for (const name of activeGroups) group(name);
       continue;
     }
-    if (record !== 'f') continue;
+    if (record === 's') {
+      if (values.length !== 1 || (values[0] !== 'off' && !/^\d+$/.test(values[0]))) {
+        fail(lineNumber, 's must be exactly "off" or a nonnegative integer');
+      }
+      continue;
+    }
+    if (record !== 'f') fail(lineNumber, `unsupported record ${record}`);
 
     if (values.length < 3) fail(lineNumber, 'face requires at least three corners');
     const corners = values.map(value => parseCorner(value, sourcePositions.length, sourceUvs.length, lineNumber));

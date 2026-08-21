@@ -11,11 +11,12 @@ function invoke(kind: 'obj' | 'target' | 'apply', payload: unknown) {
     import { parseMakeHumanObj } from ${JSON.stringify(`file:///${OBJ_MODULE}`)};
     import { parseMakeHumanTarget, applySignedTargetPair } from ${JSON.stringify(`file:///${TARGET_MODULE}`)};
     const payload = JSON.parse(process.env.PAYLOAD);
-    const result = payload.kind === 'obj'
+    const output = payload.kind === 'obj'
       ? parseMakeHumanObj(payload.text)
       : payload.kind === 'target'
         ? [...parseMakeHumanTarget(payload.text, payload.vertexCount).entries()]
         : applySignedTargetPair(payload.basePositions, payload.sourceVertexIndex, new Map(payload.decrementTarget), new Map(payload.incrementTarget), payload.weight);
+    const result = payload.kind === 'apply' ? { output, basePositions: payload.basePositions } : output;
     process.stdout.write(JSON.stringify(result));
   `;
   const result = spawnSync(process.execPath, ['--input-type=module', '--eval', code], {
@@ -65,11 +66,20 @@ f 1 3/3 4
 test('rejects malformed required OBJ records with contextual line numbers', () => {
   expectFailure('obj', { text: 'v 0 0 nope' }, 1);
   expectFailure('obj', { text: 'v 0 0 0\nvt 0 nope' }, 2);
-  expectFailure('obj', { text: 'v 0 0 0\ng body\nf 0' }, 3);
-  expectFailure('obj', { text: 'v 0 0 0\ng body\nf 2' }, 3);
-  expectFailure('obj', { text: 'v 0 0 0\ng body\nf 1//' }, 3);
+  expect(() => invoke('obj', { text: 'v 0 0 0\ng body\nf 0 1 1' })).toThrow('MakeHuman OBJ line 3: position index must not be zero');
+  expect(() => invoke('obj', { text: 'v 0 0 0\ng body\nf 2 1 1' })).toThrow('MakeHuman OBJ line 3: position index is out of range');
+  expect(() => invoke('obj', { text: 'v 0 0 0\ng body\nf 1// 1 1' })).toThrow('MakeHuman OBJ line 3: face corner is malformed');
   expectFailure('obj', { text: 'v 0 0 0\ng body\nf 1/1/1' }, 3);
   expectFailure('obj', { text: 'v 0 0 0\ng body\nf 1 1' }, 3);
+});
+
+test('uses strict decimal grammar and rejects unknown OBJ records', () => {
+  expect(invoke('obj', { text: 'v -1 +1.0 .5\nv 0 1. 1e-3\nvt .5 -1e-3\ng body\nf 1/1 2/1 1/1\ns off' }).positions).toHaveLength(2);
+  expect(() => invoke('obj', { text: 'v 0x10 0 0' })).toThrow('MakeHuman OBJ line 1: v contains a malformed number');
+  expect(() => invoke('obj', { text: 'v 0 0 0\nvt 0b1 0' })).toThrow('MakeHuman OBJ line 2: vt contains a malformed number');
+  expect(() => invoke('obj', { text: 'v 1e 0 0' })).toThrow('MakeHuman OBJ line 1: v contains a malformed number');
+  expect(() => invoke('obj', { text: 'ff 1 2 3' })).toThrow('MakeHuman OBJ line 1: unsupported record ff');
+  expect(() => invoke('obj', { text: 's nonsense extra' })).toThrow('MakeHuman OBJ line 1: s must be exactly "off" or a nonnegative integer');
 });
 
 test('parses MakeHuman sparse target offsets and rejects invalid target records', () => {
@@ -80,6 +90,8 @@ test('parses MakeHuman sparse target offsets and rejects invalid target records'
   expectFailure('target', { text: '1 1 NaN 2', vertexCount: 4 }, 1);
   expectFailure('target', { text: '1 1 3', vertexCount: 4 }, 1);
   expectFailure('target', { text: '1 1 3 2 extra', vertexCount: 4 }, 1);
+  expect(() => invoke('target', { text: '0 0x10 0 0', vertexCount: 4 })).toThrow('MakeHuman target line 1: offset contains a malformed number');
+  expect(() => invoke('target', { text: '0 1e 0 0', vertexCount: 4 })).toThrow('MakeHuman target line 1: offset contains a malformed number');
   expect(() => invoke('target', { text: '', vertexCount: 0 })).toThrow(/vertexCount/);
 });
 
@@ -91,10 +103,16 @@ test('applies signed target pairs literally without mutation across UV seam dupl
     decrementTarget: [[0, [1, 2, 3]]],
     incrementTarget: [[0, [4, 5, 6]]],
   };
-  expect(invoke('apply', { ...payload, weight: 0 })).toEqual(basePositions);
+  const zero = invoke('apply', { ...payload, weight: 0 });
+  expect(zero.output).toEqual(basePositions);
+  expect(zero.basePositions).toEqual(basePositions);
   expect(basePositions).toEqual([[0, 0, 0], [1, 1, 1], [2, 2, 2]]);
-  expect(invoke('apply', { ...payload, weight: -0.5 })).toEqual([[0.5, 1, 1.5], [1, 1, 1], [2.5, 3, 3.5]]);
-  expect(invoke('apply', { ...payload, weight: 1.25 })).toEqual([[5, 6.25, 7.5], [1, 1, 1], [7, 8.25, 9.5]]);
+  const negative = invoke('apply', { ...payload, weight: -0.5 });
+  expect(negative.output).toEqual([[0.5, 1, 1.5], [1, 1, 1], [2.5, 3, 3.5]]);
+  expect(negative.basePositions).toEqual(basePositions);
+  const positive = invoke('apply', { ...payload, weight: 1.25 });
+  expect(positive.output).toEqual([[5, 6.25, 7.5], [1, 1, 1], [7, 8.25, 9.5]]);
+  expect(positive.basePositions).toEqual(basePositions);
 });
 
 test('smoke parses the pinned MakeHuman base and target packet structurally', () => {

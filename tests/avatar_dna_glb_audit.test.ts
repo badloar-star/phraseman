@@ -180,6 +180,18 @@ describe("human_v2 CC0 GLB", () => {
     expect(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }).trim().split(/\s+/)).toEqual(["rejected", "clean"]);
   });
 
+  it("creates a missing output root only by walking from an explicit trusted anchor", () => {
+    const builderModule = build.replace(/\\/g, "/");
+    const code = `import {mkdtemp, lstat, rm} from 'node:fs/promises'; import {tmpdir} from 'node:os'; import path from 'node:path'; import {validateWritableOutputPath} from 'file:///${builderModule}'; const base=await mkdtemp(path.join(tmpdir(),'avatar-dna-anchor-')); try { const allowed=path.join(base,'.codex-tmp','avatar-dna'); const output=await validateWritableOutputPath(path.join(allowed,'candidate.glb'),allowed,{trustedOutputAnchor:base}); console.log(path.basename(output)); console.log((await lstat(allowed)).isDirectory()?'directory':'bad'); } finally { await rm(base,{recursive:true,force:true}); }`;
+    expect(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }).trim().split(/\s+/)).toEqual(["candidate.glb", "directory"]);
+  });
+
+  it("rejects an ancestor junction before it can create an outside allowed root", () => {
+    const builderModule = build.replace(/\\/g, "/");
+    const code = `import {access, mkdtemp, mkdir, rm, symlink} from 'node:fs/promises'; import {tmpdir} from 'node:os'; import path from 'node:path'; import {validateWritableOutputPath} from 'file:///${builderModule}'; const base=await mkdtemp(path.join(tmpdir(),'avatar-dna-ancestor-')); const outside=await mkdtemp(path.join(tmpdir(),'avatar-dna-out-')); try { const anchor=path.join(base,'root'); await mkdir(anchor); await symlink(outside,path.join(anchor,'.codex-tmp'),'junction'); const allowed=path.join(anchor,'.codex-tmp','avatar-dna'); try { await validateWritableOutputPath(path.join(allowed,'candidate.glb'),allowed,{trustedOutputAnchor:anchor}); console.log('accepted'); } catch { console.log('rejected'); } try { await access(path.join(outside,'avatar-dna')); console.log('created'); } catch { console.log('clean'); } } finally { await rm(base,{recursive:true,force:true}); await rm(outside,{recursive:true,force:true}); }`;
+    expect(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }).trim().split(/\s+/)).toEqual(["rejected", "clean"]);
+  });
+
   it("uses exclusive temporary creation when an adversarial temp link already exists", () => {
     const builderModule = build.replace(/\\/g, "/");
     const code = `import {access, mkdtemp, mkdir, rm, symlink} from 'node:fs/promises'; import {tmpdir} from 'node:os'; import path from 'node:path'; import {buildHumanV2Cc0Glb} from 'file:///${builderModule}'; const base=await mkdtemp(path.join(tmpdir(),'avatar-dna-exclusive-')); const outside=await mkdtemp(path.join(tmpdir(),'avatar-dna-out-')); try { const root=path.join(base,'root'); await mkdir(root); const temp='.out.glb.tmp-fixed'; await symlink(outside,path.join(root,temp),'junction'); try { await buildHumanV2Cc0Glb({output:path.join(root,'out.glb'),allowedOutputRoot:root,temporaryName:temp}); console.log('accepted'); } catch { console.log('rejected'); } try { await access(path.join(outside,'out.glb')); console.log('written'); } catch { console.log('clean'); } } finally { await rm(base,{recursive:true,force:true}); await rm(outside,{recursive:true,force:true}); }`;

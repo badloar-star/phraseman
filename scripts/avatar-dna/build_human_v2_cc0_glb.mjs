@@ -39,9 +39,25 @@ export function assertCanonicalStreams(streams) {
 export function assertManifestBytes(bytes) {
   if (createHash('sha256').update(bytes).digest('hex') !== MANIFEST_SHA256) throw new Error('pinned source manifest provenance mismatch');
 }
-export async function validateWritableOutputPath(output, allowedRoot) {
-  const destination = validateOutputPath(output, allowedRoot); const rootPath = path.resolve(allowedRoot); const rootStat = await lstat(rootPath);
-  if (!rootStat.isDirectory() || rootStat.isSymbolicLink()) throw new Error('allowed output root is not a real directory');
+async function ensureRealDirectory(anchor, directory) {
+  const anchorPath = path.resolve(anchor), directoryPath = path.resolve(directory); const anchorStat = await lstat(anchorPath);
+  if (!anchorStat.isDirectory() || anchorStat.isSymbolicLink()) throw new Error('trusted output anchor is not a real directory');
+  const trusted = await realpath(anchorPath); const relative = path.relative(anchorPath, directoryPath);
+  if (relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) throw new Error('allowed output root escapes trusted anchor');
+  let current = anchorPath;
+  for (const component of relative.split(path.sep).filter(Boolean)) {
+    const next = path.join(current, component);
+    try { await lstat(next); } catch (error) { if (error?.code !== 'ENOENT') throw error; await mkdir(next); }
+    const stat = await lstat(next); const resolved = await realpath(next);
+    if (!stat.isDirectory() || stat.isSymbolicLink() || (resolved !== trusted && !resolved.startsWith(trusted + path.sep))) throw new Error('output path escapes trusted anchor');
+    current = next;
+  }
+  return directoryPath;
+}
+export async function validateWritableOutputPath(output, allowedRoot, options = {}) {
+  const destination = validateOutputPath(output, allowedRoot); const rootPath = path.resolve(allowedRoot);
+  if (options.trustedOutputAnchor) await ensureRealDirectory(options.trustedOutputAnchor, rootPath);
+  else { const rootStat = await lstat(rootPath); if (!rootStat.isDirectory() || rootStat.isSymbolicLink()) throw new Error('custom allowed output root must already be a real directory'); }
   const allowed = await realpath(rootPath); const relative = path.relative(rootPath, path.dirname(destination));
   let current = rootPath;
   for (const component of relative.split(path.sep).filter(Boolean)) {
@@ -65,7 +81,8 @@ async function verifyProvenance(vendor) {
 export async function buildHumanV2Cc0Glb(options = {}) {
   const input = typeof options === 'string' ? { output: options } : options;
   const allowedOutputRoot = input.allowedOutputRoot || path.join(root, '.codex-tmp', 'avatar-dna');
-  const destination = await validateWritableOutputPath(input.output || path.join(allowedOutputRoot, 'human_v2_cc0_candidate.glb'), allowedOutputRoot);
+  const trustedOutputAnchor = input.trustedOutputAnchor || (input.allowedOutputRoot ? undefined : root);
+  const destination = await validateWritableOutputPath(input.output || path.join(allowedOutputRoot, 'human_v2_cc0_candidate.glb'), allowedOutputRoot, { trustedOutputAnchor });
   const vendor = path.join(root, 'tools', 'avatar-dna', 'vendor', 'makehuman-v1.3.0');
   await verifyProvenance(vendor);
   const body = parseMakeHumanObj(await readFile(path.join(vendor, 'makehuman', 'data', '3dobjs', 'base.obj'), 'utf8'));
@@ -80,7 +97,7 @@ export async function buildHumanV2Cc0Glb(options = {}) {
   const temporaryName = input.temporaryName || `.${path.basename(destination)}.tmp-${randomBytes(16).toString('hex')}`;
   if (path.basename(temporaryName) !== temporaryName) throw new Error('temporary output name is invalid');
   const temporary = path.join(path.dirname(destination), temporaryName); let handle;
-  try { handle = await open(temporary, 'wx'); await handle.writeFile(Buffer.concat([header,jsonHeader,json,binHeader,bin])); await handle.sync(); await handle.close(); handle = null; await validateWritableOutputPath(destination, allowedOutputRoot); await rename(temporary, destination); return destination; } finally { await handle?.close().catch(() => {}); await unlink(temporary).catch(() => {}); }
+  try { handle = await open(temporary, 'wx'); await handle.writeFile(Buffer.concat([header,jsonHeader,json,binHeader,bin])); await handle.sync(); await handle.close(); handle = null; await validateWritableOutputPath(destination, allowedOutputRoot, { trustedOutputAnchor }); await rename(temporary, destination); return destination; } finally { await handle?.close().catch(() => {}); await unlink(temporary).catch(() => {}); }
 }
 export default buildHumanV2Cc0Glb;
 if (process.argv[1] === fileURLToPath(import.meta.url)) { const at=process.argv.indexOf('--output'); if (at !== -1 && (!process.argv[at+1] || at+2 !== process.argv.length)) { process.stdout.write(JSON.stringify({ok:false,errors:['invalid_cli_arguments']})); process.exitCode=1; } else { const output=at===-1?undefined:process.argv[at+1]; buildHumanV2Cc0Glb({output}).then(file=>process.stdout.write(`${file}\n`)).catch(error=>{process.stdout.write(JSON.stringify({ok:false,errors:['build_failed'],message:error.message}));process.exitCode=1;}); } }

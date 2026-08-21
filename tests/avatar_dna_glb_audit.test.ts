@@ -326,4 +326,42 @@ describe("human_v2 CC0 GLB", () => {
       .map(file => readFileSync(path.join(root, "scripts", "avatar-dna", file), "utf8")).join("\n");
     expect(production).not.toMatch(/SphereGeometry|CapsuleGeometry|TorusGeometry|BoxGeometry|ConeGeometry|Math\\.random/);
   });
+
+  it("keeps every decoded first hair ring at physical scalp clearance and includes an auditable scalp cap", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const output = path.join(directory, "root-clearance.glb"); execFileSync(process.execPath, [build, "--output", output], { cwd: root });
+      const layout = gltfLayout(readFileSync(output)); const hair = layout.json.meshes.find((mesh: any) => mesh.name === "avatar_hair_wave");
+      expect(hair.extras.scapCapTriangleCount).toBeGreaterThan(100);
+      expect(hair.extras.rootRingClearance.min).toBeGreaterThanOrEqual(0.006);
+      expect(hair.extras.rootRingClearance.max).toBeLessThan(0.03);
+      const shifted = path.join(directory, "shifted-root.glb");
+      writeFileSync(shifted, rewriteJson(readFileSync(output), json => { json.meshes.find((mesh: any) => mesh.name === "avatar_hair_wave").extras.rootRingClearance.min = 0; }));
+      expect(runAudit(shifted).errors).toContain("hair_root_clearance_violation");
+      const binary = Buffer.from(readFileSync(output)); const positionAccessor = layout.json.accessors[hair.primitives[0].attributes.POSITION]; const positionView = layout.json.bufferViews[positionAccessor.bufferView];
+      binary.writeFloatLE(0, layout.binOffset + positionView.byteOffset + (positionAccessor.byteOffset || 0));
+      const physical = path.join(directory, "physical-root-penetration.glb"); writeFileSync(physical, binary);
+      expect(runAudit(physical).errors).toContain("hair_root_clearance_violation");
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
+  it("binds Terra to the shoulder-bounded torso and validates its outward offset", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const output = path.join(directory, "torso.glb"); execFileSync(process.execPath, [build, "--output", output], { cwd: root });
+      const mesh = gltfLayout(readFileSync(output)).json.meshes.find((entry: any) => entry.name === "avatar_outfit_terra");
+      expect(mesh.extras.lateralLimit).toBeLessThanOrEqual(1.9);
+      expect(mesh.extras.inwardTriangleCount).toBe(0);
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
+  it("parallel-transports the hair frame with minimal rotation and no tangent twist", () => {
+    const module = path.join(root, "scripts/avatar-dna/lib/tapered_clump_mesh.mjs").replace(/\\/g, "/");
+    const code = `import {parallelTransportFrame} from 'file:///${module}'; const n=parallelTransportFrame([0,1,0],[0,0,1],[1,0,0]); const a=parallelTransportFrame([0,1,0],[0,0,1],[0,0,-1]); console.log(JSON.stringify({n,a}));`;
+    const { n, a } = JSON.parse(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }));
+    expect(n).toEqual(expect.arrayContaining([0, 1, 0]));
+    expect(Math.hypot(...n)).toBeCloseTo(1, 8);
+    expect(Math.abs(n[0])).toBeLessThan(1e-8);
+    expect(Math.hypot(...a)).toBeCloseTo(1, 8);
+  });
 });

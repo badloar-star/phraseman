@@ -5,6 +5,7 @@
   "lengthSegments": 12,
   "radialSegments": 7,
   "wave": {
+    "coverage": { "azimuthStart": -2.9, "azimuthEnd": 0.7, "elevationMin": 0.08, "elevationMax": 1.34, "azimuthSegments": 20, "elevationSegments": 7 },
     "families": [
       { "count": 9, "azimuth": -2.55, "elevation": 0.24, "sweep": 0.46, "lift": 0.42, "rootRadius": 0.072 },
       { "count": 7, "azimuth": -1.15, "elevation": 0.46, "sweep": 0.58, "lift": 0.56, "rootRadius": 0.068 },
@@ -12,6 +13,7 @@
     ]
   },
   "crop": {
+    "coverage": { "azimuthStart": -2.75, "azimuthEnd": 0.55, "elevationMin": 0.16, "elevationMax": 1.30, "azimuthSegments": 18, "elevationSegments": 7 },
     "families": [
       { "count": 10, "azimuth": -2.7, "elevation": 0.20, "sweep": 0.20, "lift": 0.24, "rootRadius": 0.061 },
       { "count": 8, "azimuth": -1.05, "elevation": 0.50, "sweep": 0.16, "lift": 0.28, "rootRadius": 0.057 }

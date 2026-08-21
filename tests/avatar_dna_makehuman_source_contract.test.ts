@@ -6,6 +6,7 @@ import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { gzipSync } from 'node:zlib';
 
 const root = path.resolve(__dirname, '..');
 const manifestPath = path.join(root, 'config/avatar-dna/human_v2_cc0_source.v1.json');
@@ -87,6 +88,7 @@ test('production validator rejects path, URL, and mapping bypasses', async () =>
 }, 60_000);
 
 test('production downloader accepts only exact bytes and rejects unsafe responses', async () => {
+  const compressedOk = gzipSync(Buffer.from('abc'));
   const server = http.createServer((request, response) => {
     switch (request.url) {
       case '/redirect': response.writeHead(302, { location: '/ok' }); response.end(); return;
@@ -94,6 +96,13 @@ test('production downloader accepts only exact bytes and rejects unsafe response
       case '/slow': setTimeout(() => response.end('abc'), 100); return;
       case '/bad': response.writeHead(500); response.end(); return;
       case '/wrong-length': response.writeHead(200, { 'content-length': '4' }); response.end('abcd'); return;
+      case '/gzip':
+        response.writeHead(200, {
+          'content-encoding': 'gzip',
+          'content-length': String(compressedOk.length),
+        });
+        response.end(compressedOk);
+        return;
       default: response.writeHead(200, { 'content-length': '3' }); response.end('abc');
     }
   });
@@ -109,7 +118,9 @@ test('production downloader accepts only exact bytes and rejects unsafe response
     for (const route of ['/redirect', '/oversize', '/bad', '/wrong-length']) expect((await run(route)).status).toBe(1);
     expect((await run('/slow', 10)).status).toBe(1);
     expect(await run('/ok')).toMatchObject({ status: 0, stderr: '' });
+    expect(await run('/gzip')).toMatchObject({ status: 0, stderr: '' });
     expect(await fsp.readFile(path.join(directory, 'ok.bin'), 'utf8')).toBe('abc');
+    expect(await fsp.readFile(path.join(directory, 'gzip.bin'), 'utf8')).toBe('abc');
   } finally {
     await new Promise<void>((resolve, reject) => server.close(error => error ? reject(error) : resolve()));
     await fsp.rm(directory, { recursive: true, force: true });

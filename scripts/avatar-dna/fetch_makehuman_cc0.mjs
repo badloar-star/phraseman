@@ -82,7 +82,9 @@ export function validateManifest(manifest) {
 
 async function streamVerifiedResponse(response, temporary, entry) {
   const contentLength = response.headers.get('content-length');
-  if (contentLength !== null
+  const contentEncoding = response.headers.get('content-encoding');
+  const identityEncoding = contentEncoding === null || contentEncoding.toLowerCase() === 'identity';
+  if (identityEncoding && contentLength !== null
     && (!/^\d+$/.test(contentLength) || Number(contentLength) !== entry.bytes)) {
     throw new Error(`Content-Length mismatch: ${contentLength}`);
   }

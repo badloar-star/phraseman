@@ -4,6 +4,10 @@
   "version": "1.5.53",
   "scripts": {
     "start": "node scripts/canonical_workspace_guard.mjs && cross-env NODE_OPTIONS=--max-old-space-size=12288 expo start",
+    "avatar-dna:source": "node scripts/avatar-dna/fetch_makehuman_cc0.mjs",
+    "avatar-dna:build": "node scripts/avatar-dna/build_human_v2_cc0_glb.mjs",
+    "avatar-dna:audit": "node scripts/avatar-dna/audit_human_v2_glb.mjs .codex-tmp/avatar-dna/human_v2_cc0_candidate.glb",
+    "avatar-dna:verify": "npm run avatar-dna:source && npm run avatar-dna:build && npm run avatar-dna:audit && npx jest --runTestsByPath tests/avatar_dna_makehuman_source_contract.test.ts tests/avatar_dna_makehuman_parser.test.ts tests/avatar_dna_style_recipe.test.ts tests/avatar_dna_3d_resolver.test.ts tests/avatar_dna_glb_audit.test.ts --no-cache --runInBand",
     "prestart": "npm run assets:verify:boons",
     "premetro:dev": "npm run assets:verify:boons",
     "pretest": "npm run assets:verify:boons",

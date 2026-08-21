@@ -425,10 +425,18 @@
       },
       "layers": [
         {
-          "id": "iris.brown",
+          "id": "iris.brown.mask",
           "slot": "iris",
           "z": 76,
-          "file": "iris.webp",
+          "file": "iris-mask.webp",
+          "clip": "face.safe",
+          "tintFrom": "irisColor"
+        },
+        {
+          "id": "iris.brown.shading",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-shading.webp",
           "clip": "face.safe"
         }
       ],
@@ -449,10 +457,18 @@
       },
       "layers": [
         {
-          "id": "iris.hazel",
+          "id": "iris.hazel.mask",
           "slot": "iris",
           "z": 76,
-          "file": "iris.webp",
+          "file": "iris-mask.webp",
+          "clip": "face.safe",
+          "tintFrom": "irisColor"
+        },
+        {
+          "id": "iris.hazel.shading",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-shading.webp",
           "clip": "face.safe"
         }
       ],
@@ -473,10 +489,18 @@
       },
       "layers": [
         {
-          "id": "iris.green",
+          "id": "iris.green.mask",
           "slot": "iris",
           "z": 76,
-          "file": "iris.webp",
+          "file": "iris-mask.webp",
+          "clip": "face.safe",
+          "tintFrom": "irisColor"
+        },
+        {
+          "id": "iris.green.shading",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-shading.webp",
           "clip": "face.safe"
         }
       ],
@@ -497,10 +521,18 @@
       },
       "layers": [
         {
-          "id": "iris.blue",
+          "id": "iris.blue.mask",
           "slot": "iris",
           "z": 76,
-          "file": "iris.webp",
+          "file": "iris-mask.webp",
+          "clip": "face.safe",
+          "tintFrom": "irisColor"
+        },
+        {
+          "id": "iris.blue.shading",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-shading.webp",
           "clip": "face.safe"
         }
       ],
@@ -521,10 +553,18 @@
       },
       "layers": [
         {
-          "id": "iris.gray",
+          "id": "iris.gray.mask",
           "slot": "iris",
           "z": 76,
-          "file": "iris.webp",
+          "file": "iris-mask.webp",
+          "clip": "face.safe",
+          "tintFrom": "irisColor"
+        },
+        {
+          "id": "iris.gray.shading",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-shading.webp",
           "clip": "face.safe"
         }
       ],
@@ -545,10 +585,18 @@
       },
       "layers": [
         {
-          "id": "iris.amber",
+          "id": "iris.amber.mask",
           "slot": "iris",
           "z": 76,
-          "file": "iris.webp",
+          "file": "iris-mask.webp",
+          "clip": "face.safe",
+          "tintFrom": "irisColor"
+        },
+        {
+          "id": "iris.amber.shading",
+          "slot": "iris",
+          "z": 76,
+          "file": "iris-shading.webp",
           "clip": "face.safe"
         }
       ],

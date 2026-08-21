@@ -53,6 +53,8 @@ describe('AvatarDNAStage', () => {
     expect(view.getByTestId('avatar-layer-face.base.1.shading').props.tintColor).toBeUndefined();
     expect(view.getByTestId('avatar-layer-hair.1.front.mask').props.tintColor).toBe('#5b2b18');
     expect(view.getByTestId('avatar-layer-hair.1.front.shading').props.tintColor).toBeUndefined();
+    expect(view.getByTestId('avatar-layer-iris.brown.mask').props.tintColor).toBe('#5b341f');
+    expect(view.getByTestId('avatar-layer-iris.brown.shading').props.tintColor).toBeUndefined();
     expect(view.getByTestId('avatar-layer-outfit.1').props.tintColor).toBeUndefined();
   });
 

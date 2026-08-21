@@ -11,7 +11,7 @@ export type AvatarSlot =
   | 'eyewear' | 'ear.accessory' | 'mask' | 'headwear.front'
   | 'neck.accessory' | 'outfit.front' | 'aura' | 'frame' | 'foreground.fx';
 
-export type AvatarTintSource = 'skinTone' | 'hairColor';
+export type AvatarTintSource = 'skinTone' | 'hairColor' | 'irisColor';
 
 export type AvatarDNAConflictNotice = Readonly<{
   kind: 'occlusion' | 'conflict';

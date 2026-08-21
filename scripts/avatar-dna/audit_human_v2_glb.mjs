@@ -22,6 +22,16 @@ const err = (errors, code) => { if (!errors.includes(code)) errors.push(code); }
 const isUint = value => Number.isInteger(value) && value >= 0;
 const sameArray = (a, b) => Array.isArray(a) && a.length === b.length && a.every((value, index) => value === b[index]);
 const hasKeys = (value, keys) => !!value && sameArray(Object.keys(value).sort(), [...keys].sort());
+const coverageModulo = value => ((value % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+function independentCoverageMargins(proxy, style, clearance) {
+  let worstAzimuthMargin = Infinity, worstElevationMargin = Infinity;
+  for (const family of style.families) for (let member = 0; member < family.count; member += 1) {
+    const fraction = (member + .5) / family.count, azimuth = family.azimuth + (fraction - .5) * family.sweep, elevation = family.elevation, radius = family.rootRadius + clearance, width = coverageModulo(style.coverage.azimuthEnd - style.coverage.azimuthStart), fromStart = coverageModulo(azimuth - style.coverage.azimuthStart), toEnd = coverageModulo(style.coverage.azimuthEnd - azimuth), azimuthMetric = Math.abs(Math.cos(elevation)) * Math.hypot(proxy.radii[0] * Math.sin(azimuth), proxy.radii[2] * Math.cos(azimuth)), elevationMetric = Math.hypot(proxy.radii[0] * Math.sin(elevation) * Math.cos(azimuth), proxy.radii[1] * Math.cos(elevation), proxy.radii[2] * Math.sin(elevation) * Math.sin(azimuth)), azimuthMargin = (fromStart <= width + 1e-10 ? Math.min(fromStart, toEnd) : -Infinity) - Math.asin(Math.min(.95, radius / azimuthMetric)), elevationMargin = Math.min(elevation - style.coverage.elevationMin, style.coverage.elevationMax - elevation) - Math.asin(Math.min(.95, radius / elevationMetric));
+    if (!(azimuthMargin >= 0 && elevationMargin >= 0)) return null;
+    worstAzimuthMargin = Math.min(worstAzimuthMargin, azimuthMargin); worstElevationMargin = Math.min(worstElevationMargin, elevationMargin);
+  }
+  return { worstAzimuthMargin, worstElevationMargin };
+}
 
 function parseGlb(bytes, errors) {
   if (bytes.length < 20 || bytes.readUInt32LE(0) !== GLB_MAGIC || bytes.readUInt32LE(4) !== 2 || bytes.readUInt32LE(8) !== bytes.length) { err(errors, 'invalid_glb_header'); return null; }
@@ -102,8 +112,8 @@ function exactSchema(gltf, bin, errors) {
     for (const eyePrimitive of eye?.primitives || []) if (!hasKeys(eyePrimitive, ['attributes','indices','material']) || !hasKeys(eyePrimitive.attributes, ['NORMAL','POSITION'])) bad();
   }
   const project = {
-    avatar_hair_wave: ['clumpCount','configSha256','coverage','familyCounts','generator','headProxy','lengthSegments','minScalpClearance','radialSegments','rootRingClearance','scapCapTriangleCount','scapCapVertexCount','style','tubeVertexCount'],
-    avatar_hair_crop: ['clumpCount','configSha256','coverage','familyCounts','generator','headProxy','lengthSegments','minScalpClearance','radialSegments','rootRingClearance','scapCapTriangleCount','scapCapVertexCount','style','tubeVertexCount'],
+    avatar_hair_wave: ['clumpCount','configSha256','coverage','coverageMargin','familyCounts','generator','headProxy','lengthSegments','minScalpClearance','radialSegments','rootRingClearance','scapCapTriangleCount','scapCapVertexCount','style','tubeVertexCount'],
+    avatar_hair_crop: ['clumpCount','configSha256','coverage','coverageMargin','familyCounts','generator','headProxy','lengthSegments','minScalpClearance','radialSegments','rootRingClearance','scapCapTriangleCount','scapCapVertexCount','style','tubeVertexCount'],
     avatar_outfit_terra: ['configSha256','generator','inwardTriangleCount','lateralLimit','sourceTriangleCount','sourceTriangleHash','sourceTriangleIndices','sourceVertexIndices','surfaceOffset','torsoBounds'],
     avatar_hood_assassin: ['anchor','configSha256','generator','headProxy','radialSegments','ringSegments'],
   };
@@ -268,7 +278,8 @@ async function auditProjectHairAndGarments(gltf, bin, errors) {
   for (const style of ['wave','crop']) {
     const mesh = meshes.get(`avatar_hair_${style}`), expected = makeTaperedClumpHair({ proxy, families: hairConfig[style].families, coverage: hairConfig[style].coverage, minimumScalpClearance: hairConfig.minimumScalpClearance, lengthSegments: hairConfig.lengthSegments, radialSegments: hairConfig.radialSegments });
     if (!mesh) { err(errors, 'missing_project_mesh'); continue; }
-    if (mesh.extras?.generator !== hairConfig.generator || mesh.extras?.style !== style || !sameArray(mesh.extras?.familyCounts, hairConfig[style].families.map(family => family.count)) || mesh.extras?.lengthSegments !== 12 || mesh.extras?.radialSegments !== 7 || mesh.extras?.configSha256 !== HAIR_CONFIG_SHA256 || mesh.extras?.minScalpClearance !== hairConfig.minimumScalpClearance || mesh.extras?.clumpCount !== expected.clumpCount || mesh.extras?.tubeVertexCount !== expected.clumpCount * 85 || mesh.extras?.scapCapVertexCount !== expected.cap.vertexCount || mesh.extras?.scapCapTriangleCount !== expected.cap.triangleCount || JSON.stringify(mesh.extras?.coverage) !== JSON.stringify(hairConfig[style].coverage) || JSON.stringify(mesh.extras?.headProxy) !== JSON.stringify(proxy)) err(errors, 'invalid_hair_metadata');
+    const coverageMargin = independentCoverageMargins(proxy, hairConfig[style], hairConfig.minimumScalpClearance);
+    if (!coverageMargin || mesh.extras?.generator !== hairConfig.generator || mesh.extras?.style !== style || !sameArray(mesh.extras?.familyCounts, hairConfig[style].families.map(family => family.count)) || mesh.extras?.lengthSegments !== 12 || mesh.extras?.radialSegments !== 7 || mesh.extras?.configSha256 !== HAIR_CONFIG_SHA256 || mesh.extras?.minScalpClearance !== hairConfig.minimumScalpClearance || mesh.extras?.clumpCount !== expected.clumpCount || mesh.extras?.tubeVertexCount !== expected.clumpCount * 85 || mesh.extras?.scapCapVertexCount !== expected.cap.vertexCount || mesh.extras?.scapCapTriangleCount !== expected.cap.triangleCount || !equalNumbers([mesh.extras?.coverageMargin?.worstAzimuthMargin, mesh.extras?.coverageMargin?.worstElevationMargin], [coverageMargin?.worstAzimuthMargin, coverageMargin?.worstElevationMargin]) || JSON.stringify(mesh.extras?.coverage) !== JSON.stringify(hairConfig[style].coverage) || JSON.stringify(mesh.extras?.headProxy) !== JSON.stringify(proxy)) err(errors, 'invalid_hair_metadata');
     if (!(mesh.extras?.minScalpClearance >= .006)) err(errors, 'hair_scalp_penetration');
     expectSurface(`avatar_hair_${style}`, expected, 'invalid_hair_geometry', 'material_hair');
     const primitive = mesh.primitives?.[0], position = reader(gltf, bin, primitive?.attributes?.POSITION, errors), rootClearance = { min: Infinity, max: -Infinity };

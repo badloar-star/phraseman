@@ -21,6 +21,21 @@ export function parallelTransportFrame(normal, tangentA, tangentB) {
   return unit(sub(rotated, scale(b, dot(rotated, b))));
 }
 const signedClearance = (proxy, point) => (Math.hypot((point[0] - proxy.center[0]) / proxy.radii[0], (point[1] - proxy.center[1]) / proxy.radii[1], (point[2] - proxy.center[2]) / proxy.radii[2]) - 1) * Math.min(...proxy.radii);
+const TAU = Math.PI * 2, modulo = value => ((value % TAU) + TAU) % TAU;
+const angularMargin = (coverage, angle) => { const width = modulo(coverage.azimuthEnd - coverage.azimuthStart), fromStart = modulo(angle - coverage.azimuthStart), toEnd = modulo(coverage.azimuthEnd - angle); return fromStart <= width + 1e-10 ? Math.min(fromStart, toEnd) : -Infinity; };
+/** Ensures every circular root footprint lies within the configured ellipsoid cap, including wrap-around ranges. */
+export function assertCoverageContainsRootFootprints(proxy, style, clearance = .006) {
+  let worstAzimuthMargin = Infinity, worstElevationMargin = Infinity;
+  for (const family of style.families) for (let member = 0; member < family.count; member += 1) {
+    const fraction = (member + .5) / family.count, azimuth = family.azimuth + (fraction - .5) * family.sweep, elevation = family.elevation, radius = family.rootRadius + clearance;
+    const azimuthMetric = Math.abs(Math.cos(elevation)) * Math.hypot(proxy.radii[0] * Math.sin(azimuth), proxy.radii[2] * Math.cos(azimuth));
+    const elevationMetric = Math.hypot(proxy.radii[0] * Math.sin(elevation) * Math.cos(azimuth), proxy.radii[1] * Math.cos(elevation), proxy.radii[2] * Math.sin(elevation) * Math.sin(azimuth));
+    const azimuthFootprint = Math.asin(Math.min(.95, radius / azimuthMetric)), elevationFootprint = Math.asin(Math.min(.95, radius / elevationMetric)), azimuthMargin = angularMargin(style.coverage, azimuth) - azimuthFootprint, elevationMargin = Math.min(elevation - style.coverage.elevationMin, style.coverage.elevationMax - elevation) - elevationFootprint;
+    if (!(azimuthMargin >= 0 && elevationMargin >= 0)) throw new Error('hair root footprint escapes configured coverage');
+    worstAzimuthMargin = Math.min(worstAzimuthMargin, azimuthMargin); worstElevationMargin = Math.min(worstElevationMargin, elevationMargin);
+  }
+  return { worstAzimuthMargin, worstElevationMargin };
+}
 function appendScalpCap({ positions, normals, indices, proxy, coverage, clearance }) {
   const start = positions.length / 3, rings = coverage.elevationSegments + 1, segments = coverage.azimuthSegments;
   for (let elevationIndex = 0; elevationIndex < rings; elevationIndex += 1) {

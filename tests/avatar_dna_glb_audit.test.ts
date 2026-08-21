@@ -364,4 +364,11 @@ describe("human_v2 CC0 GLB", () => {
     expect(Math.abs(n[0])).toBeLessThan(1e-8);
     expect(Math.hypot(...a)).toBeCloseTo(1, 8);
   });
+
+  it("covers every crop root's full angular and elevation footprint, not just its centre", () => {
+    const module = path.join(root, "scripts/avatar-dna/lib/tapered_clump_mesh.mjs").replace(/\\/g, "/");
+    const config = path.join(root, "config/avatar-dna/human_v2_hair.v1.json").replace(/\\/g, "/");
+    const code = `import {readFile} from 'node:fs/promises'; import {assertCoverageContainsRootFootprints,makeHeadProxyFromBody} from 'file:///${module}'; import {parseMakeHumanObj} from 'file:///${path.join(root, "scripts/avatar-dna/lib/makehuman_obj.mjs").replace(/\\/g, "/")}'; const body=parseMakeHumanObj(await readFile('${path.join(root, "tools/avatar-dna/vendor/makehuman-v1.3.0/makehuman/data/3dobjs/base.obj").replace(/\\/g, "/")}','utf8')); const cfg=JSON.parse(await readFile('${config}','utf8')); const proxy=makeHeadProxyFromBody(body); const valid=assertCoverageContainsRootFootprints(proxy,cfg.crop); const narrow=structuredClone(cfg.crop); narrow.coverage.azimuthStart=-2.79; let rejected=false; try{assertCoverageContainsRootFootprints(proxy,narrow)}catch{rejected=true}; console.log(JSON.stringify({valid,rejected}));`;
+    expect(JSON.parse(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }))).toMatchObject({ rejected: true });
+  });
 });

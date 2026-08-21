@@ -13,7 +13,7 @@
     ]
   },
   "crop": {
-    "coverage": { "azimuthStart": -2.75, "azimuthEnd": 0.55, "elevationMin": 0.16, "elevationMax": 1.30, "azimuthSegments": 18, "elevationSegments": 7 },
+    "coverage": { "azimuthStart": -2.92, "azimuthEnd": 0.70, "elevationMin": 0.11, "elevationMax": 1.36, "azimuthSegments": 18, "elevationSegments": 7 },
     "families": [
       { "count": 10, "azimuth": -2.7, "elevation": 0.20, "sweep": 0.20, "lift": 0.24, "rootRadius": 0.061 },
       { "count": 8, "azimuth": -1.05, "elevation": 0.50, "sweep": 0.16, "lift": 0.28, "rootRadius": 0.057 }

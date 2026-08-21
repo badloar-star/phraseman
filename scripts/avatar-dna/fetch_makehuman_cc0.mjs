@@ -13,10 +13,17 @@ const isSafeRelativePath = (value) => typeof value === 'string'
   && value.length > 0
   && !path.isAbsolute(value)
   && !value.includes('\\')
+  && !value.includes('?')
+  && !value.includes('#')
   && value.split('/').every((segment) => segment.length > 0 && segment !== '.' && segment !== '..');
 
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const validFile = (bytes, entry) => bytes.length === entry.bytes && digest(bytes) === entry.sha256;
+const expectedSource = (destination) => (
+  destination === 'LICENSE.ASSETS.md' || destination === 'makehuman/data/3dobjs/base.obj'
+    ? destination
+    : `makehuman/data/targets/${destination}`
+);
 
 const readExisting = async (destination) => {
   try {
@@ -37,13 +44,20 @@ const main = async () => {
   }
 
   const destinations = new Set();
+  const pinnedBaseUrl = new URL(baseUrl);
   let verified = 0;
   let downloaded = 0;
   for (const entry of manifest.files) {
     if (!isSafeRelativePath(entry.source) || !isSafeRelativePath(entry.destination)
       || !Number.isSafeInteger(entry.bytes) || entry.bytes <= 0 || !/^[a-f0-9]{64}$/.test(entry.sha256)
-      || destinations.has(entry.destination)) {
+      || destinations.has(entry.destination) || entry.source !== expectedSource(entry.destination)) {
       throw new Error(`Unsafe or invalid manifest entry: ${JSON.stringify(entry)}`);
+    }
+    const sourceUrl = new URL(entry.source, pinnedBaseUrl);
+    if (sourceUrl.origin !== pinnedBaseUrl.origin
+      || !sourceUrl.pathname.startsWith(pinnedBaseUrl.pathname)
+      || sourceUrl.search || sourceUrl.hash || sourceUrl.href !== `${baseUrl}${entry.source}`) {
+      throw new Error(`Unsafe source URL: ${entry.source}`);
     }
     destinations.add(entry.destination);
 
@@ -59,7 +73,7 @@ const main = async () => {
     await mkdir(path.dirname(destination), { recursive: true });
     const temporary = path.join(path.dirname(destination), `.${path.basename(destination)}.${randomUUID()}.tmp`);
     try {
-      const response = await fetch(new URL(entry.source, baseUrl));
+      const response = await fetch(sourceUrl);
       if (!response.ok) throw new Error(`Download failed for ${entry.source}: HTTP ${response.status}`);
       const bytes = Buffer.from(await response.arrayBuffer());
       if (!validFile(bytes, entry)) throw new Error(`Downloaded file does not match manifest: ${entry.source}`);

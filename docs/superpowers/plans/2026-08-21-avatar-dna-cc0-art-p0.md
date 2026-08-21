@@ -65,6 +65,14 @@
 - `app/_admin_avatar_dna_3d_p0.tsx` — внутренний экран сравнения.
 - `package.json` — узкие команды fetch/build/audit/test.
 
+## Morph ABI correction (P0, обязательная архитектура)
+
+P0 GLB uses 18 one-sided basis targets, not six composite recipe targets. The exact ordered ABI is:
+
+`head_width_decr`, `head_width_incr`, `jaw_width_decr`, `jaw_width_incr`, `eye_size_decr`, `eye_size_incr`, `eye_spacing_decr`, `eye_spacing_incr`, `nose_width_decr`, `nose_width_incr`, `nose_projection_decr`, `nose_projection_incr`, `mouth_width_decr`, `mouth_width_incr`, `upper_lip_volume_decr`, `upper_lip_volume_incr`, `lower_lip_volume_decr`, `lower_lip_volume_incr`.
+
+For every signed dimension `d`, calculate `x = clamp(base[d] + presentation[p][d] + face[f][d] + userOffset[d], min[d], max[d])`, then `decr = max(-x, 0)` and `incr = max(x, 0)`, normalizing `-0` to `0`. Sum all layers first, clamp once, then branch; exactly one branch is active. Neutral GLB positions remain neutral MakeHuman positions.
+
 ## Task 1: Закрепить и проверить CC0 source packet
 
 **Files:**
@@ -181,17 +189,33 @@
 
   ```ts
   export type PresentationId = 'masculine' | 'feminine';
-  export type NamedMorphId =
-    | 'phraseman_base'
-    | 'presentation_masculine'
-    | 'presentation_feminine'
-    | 'face_soft'
-    | 'face_heart'
-    | 'face_strong';
-  export type NamedMorphWeights = Readonly<Record<NamedMorphId, number>>;
+  export type SignedMorphId =
+    | 'head_width' | 'jaw_width' | 'eye_size' | 'eye_spacing'
+    | 'nose_width' | 'nose_projection' | 'mouth_width'
+    | 'upper_lip_volume' | 'lower_lip_volume';
+  export const SIGNED_MORPH_IDS = [
+    'head_width', 'jaw_width', 'eye_size', 'eye_spacing', 'nose_width',
+    'nose_projection', 'mouth_width', 'upper_lip_volume', 'lower_lip_volume',
+  ] as const;
+  export type GlbMorphId =
+    | 'head_width_decr' | 'head_width_incr' | 'jaw_width_decr' | 'jaw_width_incr'
+    | 'eye_size_decr' | 'eye_size_incr' | 'eye_spacing_decr' | 'eye_spacing_incr'
+    | 'nose_width_decr' | 'nose_width_incr' | 'nose_projection_decr' | 'nose_projection_incr'
+    | 'mouth_width_decr' | 'mouth_width_incr' | 'upper_lip_volume_decr' | 'upper_lip_volume_incr'
+    | 'lower_lip_volume_decr' | 'lower_lip_volume_incr';
+  export const GLB_MORPH_IDS = [
+    'head_width_decr', 'head_width_incr', 'jaw_width_decr', 'jaw_width_incr',
+    'eye_size_decr', 'eye_size_incr', 'eye_spacing_decr', 'eye_spacing_incr',
+    'nose_width_decr', 'nose_width_incr', 'nose_projection_decr', 'nose_projection_incr',
+    'mouth_width_decr', 'mouth_width_incr', 'upper_lip_volume_decr', 'upper_lip_volume_incr',
+    'lower_lip_volume_decr', 'lower_lip_volume_incr',
+  ] as const;
+  export type GlbMorphWeights = Readonly<Record<GlbMorphId, number>>;
   ```
 
-- [ ] В resolver порядок сложения сделать явным: `base + presentation + faceShape + user sliders`, затем единый clamp. Цвета и волосы не должны менять геометрию лица.
+- [ ] DNA содержит dense `userMorphOffsets` плюс `presentationId` и `irisColor`; render plan содержит exact `GlbMorphWeights`. Style JSON фиксирует exact `parameterOrder`, `targetOrder`, `bounds`, dense base/presentation/face vectors и signed-pair source mapping, без missing или extra keys.
+
+- [ ] В resolver порядок сложения сделать явным: `base + presentation + faceShape + user sliders`, затем единый clamp и branch formula из Morph ABI correction. Цвета и волосы не должны менять геометрию лица.
 
 - [ ] Выполнить `npx jest tests/avatar_dna_style_recipe.test.ts tests/avatar_dna_3d_resolver.test.ts --runInBand`. Ожидается PASS.
 
@@ -207,8 +231,7 @@
 
 - [ ] Написать падающий test auditor на известный текущий primitive GLB: результат обязан быть FAIL с причинами `missing_required_named_morphs` и `primitive_fixture_detected`.
 
-- [ ] Реализовать композицию sparse targets в шесть glTF morph targets:
-  `phraseman_base`, `presentation_masculine`, `presentation_feminine`, `face_soft`, `face_heart`, `face_strong`.
+- [ ] Реализовать композицию sparse targets в 18 ordered relative `POSITION` targets по ABI: one-sided decrement/increment target для каждого из девяти signed dimensions. `eye_size` branches merge left/right scale files; `eye_spacing` decrement merges left/right trans-in files and increment merges left/right trans-out files.
 
 - [ ] Нормали вычислять после base recipe; morph target normals не экспортировать в P0. Индексы body и порядок вершин должны быть идентичны во всех target deltas.
 
@@ -217,7 +240,8 @@
 - [ ] Auditor обязан проверить:
   - glTF 2.0, JSON/BIN chunks и выравнивание;
   - один канонический body primitive;
-  - все шесть morph names;
+  - exact count/order/names in `mesh.extras.targetNames` (18), target accessor count equal to base vertex count, finite relative deltas, explicit 18 zero mesh weights and no node override;
+  - forbidden composite names `phraseman_base`, `presentation_*`, `face_*` are absent; base is not baked into canonical `POSITION`; normals are calculated on the neutral reference;
   - конечные positions/normals, ненулевую площадь треугольников;
   - отсутствие mesh names из текущего fixture и недопустимых огромных bounds;
   - material/mesh/texture references в диапазоне.
@@ -304,6 +328,8 @@
 
 - [ ] Написать failing test: manifest обязан содержать `artifactId`, `sourceCommit`, `sourceManifestSha256`, `builderVersion`, `glbSha256`, `meshNames`, `morphNames`, `materialNames` и `status: 'art_candidate'`.
 
+- [ ] Manifest additionally contains `morphContractVersion: 'signed-pairs-v1'`, ordered `parameterNames`, ordered `morphNames` (the exact 18 ABI names), and `styleConfigSha256`.
+
 - [ ] Builder после успешного audit должен писать GLB во временный output; отдельный publish step копирует его в assets и обновляет manifest только если audit PASS.
 
 - [ ] Зафиксировать обязательные mesh names:
@@ -327,6 +353,8 @@
 
 - [ ] Написать failing contract test, запрещающий выбор presentation через сравнение чисел и доступ к morph influence только по magic index.
 
+- [ ] On every DNA change, map/clear/assign all 18 names, validate finite directional caps and pair mutual exclusion; only the body receives weights. Use no recipe-name or magic-index access. The variable type is `GlbMorphWeights`.
+
 - [ ] После загрузки построить map `morphTargetDictionary name → index`. Каждый обязательный name должен существовать; отсутствующий name показывает существующий safe fallback и пишет единственную диагностическую ошибку.
 
   Единственно допустимый способ получения индекса в scene:
@@ -348,6 +376,8 @@
   - `threeQuarter` для проверки носа, jaw, волос и hood clipping.
 
 - [ ] Выполнить `npx jest tests/avatar_dna_named_morph_runtime.test.ts tests/avatar_dna_human_v2_scene_contract.test.ts tests/avatar_dna_3d_stage_contract.test.ts --runInBand`. Ожидается PASS.
+
+- [ ] Add tests for asymmetric pairs, cross-zero sum-before-branch, clamp edges, zero on both branches, pair mutual exclusion, exact order/default zero, and CPU expected positions versus GLB. Separate eyeballs must follow `eye_size`/`eye_spacing` through node transforms or correctives; device gates cover hair/hood clipping at extremes.
 
 ## Task 9: Сделать внутренний comparison screen и performance probe
 

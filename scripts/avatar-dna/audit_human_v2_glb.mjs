@@ -53,6 +53,7 @@ function graph(gltf, errors) {
   if (gltf.scene !== 0 || gltf.scenes?.length !== 1 || gltf.scenes?.[0]?.name !== 'human_v2_scene' || !sameArray(gltf.scenes?.[0]?.nodes, [0])) err(errors, 'invalid_scene_reference');
   const node = gltf.nodes?.[0];
   if (gltf.nodes?.length !== 1 || !node || node.name !== 'human_v2' || node.mesh !== 0 || 'weights' in node || 'children' in node || 'skin' in node || gltf.nodes.some(entry => !entry || !isUint(entry.mesh) || entry.mesh >= gltf.meshes.length)) err(errors, 'invalid_node_reference');
+  if (!node || !sameArray(Object.keys(node).sort(), ['mesh', 'name'])) err(errors, 'invalid_node_transform');
   if (gltf.meshes?.length !== 1 || gltf.materials?.length !== 1 || gltf.textures?.length || gltf.images?.length || gltf.samplers?.length) err(errors, 'invalid_reference_graph');
   if (gltf.buffers?.length !== 1) err(errors, 'invalid_bin_length');
   const material = gltf.materials?.[0];
@@ -87,6 +88,16 @@ function bounds(positions, errors, summary) {
   summary.bounds = { min, max };
   if (min.some((value, index) => Math.abs(value - BOUNDS.min[index]) > 1e-4) || max.some((value, index) => Math.abs(value - BOUNDS.max[index]) > 1e-4)) err(errors, 'neutral_bounds_mismatch');
 }
+function accessorMetadata(gltf, primitive, errors) {
+  const attributes = primitive.attributes || {};
+  if (!sameArray(Object.keys(attributes).sort(), ['NORMAL', 'POSITION', 'TEXCOORD_0']) || attributes.POSITION !== 0 || attributes.NORMAL !== 1 || attributes.TEXCOORD_0 !== 2) err(errors, 'invalid_primitive_attributes');
+  const position = gltf.accessors?.[attributes.POSITION];
+  if (!position || !sameArray(position.min, BOUNDS.min) || !sameArray(position.max, BOUNDS.max)) err(errors, 'invalid_position_bounds_metadata');
+  for (const index of [attributes.NORMAL, attributes.TEXCOORD_0, primitive.indices, ...(primitive.targets || []).map(target => target?.POSITION)]) {
+    const accessor = gltf.accessors?.[index];
+    if (!accessor || 'min' in accessor || 'max' in accessor) err(errors, 'invalid_accessor_metadata');
+  }
+}
 
 export async function auditHumanV2Glb(input) {
   const errors = []; let bytes;
@@ -100,6 +111,7 @@ export async function auditHumanV2Glb(input) {
     if (!mesh || gltf.meshes?.length !== 1 || mesh.name !== 'avatar_body_base' || mesh.primitives?.length !== 1 || !primitive) { err(errors, 'invalid_body_mesh'); err(errors, 'missing_required_named_morphs'); err(errors, 'primitive_fixture_detected'); return { ok: false, errors, summary }; }
     if (primitive.mode !== undefined && primitive.mode !== 4) err(errors, 'invalid_primitive_mode');
     if (primitive.material !== 0) err(errors, 'invalid_material');
+    accessorMetadata(gltf, primitive, errors);
     const positions = reader(gltf, bin, primitive.attributes?.POSITION, errors), normals = reader(gltf, bin, primitive.attributes?.NORMAL, errors), uvs = reader(gltf, bin, primitive.attributes?.TEXCOORD_0, errors), indices = reader(gltf, bin, primitive.indices, errors);
     const shapeOk = expectAccessor(positions, { componentType: 5126, type: 'VEC3', count: VERTICES }, errors) & expectAccessor(normals, { componentType: 5126, type: 'VEC3', count: VERTICES }, errors) & expectAccessor(uvs, { componentType: 5126, type: 'VEC2', count: VERTICES }, errors) & expectAccessor(indices, { componentType: 5125, type: 'SCALAR', count: INDICES }, errors);
     summary.vertexCount = positions?.accessor.count || 0; summary.triangleCount = (indices?.accessor.count || 0) / 3; finite(positions, errors); finite(normals, errors); finite(uvs, errors);

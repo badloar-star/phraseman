@@ -128,8 +128,12 @@ describe("human_v2 CC0 GLB", () => {
       const jsonCases: Array<[string, (json: any) => void, string]> = [
         ["scene", json => { json.scene = 2; }, "invalid_scene_reference"],
         ["node", json => { json.nodes[0].mesh = 3; }, "invalid_node_reference"],
+        ["node-transform", json => { json.nodes[0].translation = [0, 0, 0]; }, "invalid_node_transform"],
         ["mode", json => { json.meshes[0].primitives[0].mode = 1; }, "invalid_primitive_mode"],
         ["texture", json => { json.textures = [{ source: 9 }]; }, "invalid_texture_reference"],
+        ["color", json => { json.meshes[0].primitives[0].attributes.COLOR_0 = 999; }, "invalid_primitive_attributes"],
+        ["position-min", json => { json.accessors[json.meshes[0].primitives[0].attributes.POSITION].min = [-999, -999, -999]; }, "invalid_position_bounds_metadata"],
+        ["position-max", json => { json.accessors[json.meshes[0].primitives[0].attributes.POSITION].max = [999, 999, 999]; }, "invalid_position_bounds_metadata"],
       ];
       for (const [name, mutate, expected] of jsonCases) { const file = path.join(directory, `${name}.glb`); writeFileSync(file, rewriteJson(bytes, mutate)); expect(runAudit(file).errors).toContain(expected); }
       const normal = Buffer.from(bytes); const normalAccessor = layout.json.accessors[primitive.attributes.NORMAL]; const normalView = layout.json.bufferViews[normalAccessor.bufferView]; normal.writeFloatLE(Number.NaN, layout.binOffset + (normalView.byteOffset || 0) + (normalAccessor.byteOffset || 0)); const normalFile = path.join(directory, "nan-normal.glb"); writeFileSync(normalFile, normal); expect(runAudit(normalFile).errors).toContain("nonfinite_accessor");

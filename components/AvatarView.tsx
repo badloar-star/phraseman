@@ -10,9 +10,13 @@ import AvatarAura from './AvatarAura';
 import { getLevelAvatarMaterial } from '../constants/avatar_level_materials';
 import type { LevelAvatarMaterial } from '../constants/avatar_level_materials';
 import LevelAvatarMaterialOverlay from './LevelAvatarMaterialOverlay';
+import { AvatarDNAStage } from './avatar-dna/AvatarDNAStage';
+import type { AvatarDNA, AvatarV2Projection } from '../modules/avatar-dna/contracts';
 
 interface Props {
   avatar?: string | null;
+  avatarV2?: AvatarV2Projection | null;
+  localDNA?: AvatarDNA | null;
   totalXP?: number;
   level?: number;
   size?: number;
@@ -67,28 +71,43 @@ function AvatarImageWithFallback({
   );
 }
 
-function AvatarView({ avatar, totalXP, level, size = 44, style, auraId, animateAura = true, ownerActive }: Props) {
+function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, style, auraId, animateAura = true, ownerActive }: Props) {
   const resolvedLevel = level ?? (totalXP !== undefined ? getLevelFromXP(totalXP) : 1);
   const customAvatar = parseCustomAvatarValue(avatar);
-  if (customAvatar) {
-    return (
-      <AvatarAura auraId={auraId} size={size} style={style} animate={animateAura} ownerActive={ownerActive}>
-        <CustomAvatarBadge value={avatar} size={size} />
-      </AvatarAura>
-    );
-  }
   const avatarIndex = avatar && /^\d+$/.test(avatar) ? parseInt(avatar) : resolvedLevel;
   const avatarDef = getAvatarByIndex(avatarIndex);
   const avatarImage = avatarDef?.image;
   const fallbackLevel = avatarImage ? resolvedLevel : avatarIndex;
   const material = getLevelAvatarMaterial(avatarIndex);
+  const portraitUrl = avatarV2?.state === 'ready' ? avatarV2.portraitUrl : null;
+  const [failedPortraitUrl, setFailedPortraitUrl] = React.useState<string | null>(null);
+
+  let content: React.ReactNode;
+  if (portraitUrl && portraitUrl !== failedPortraitUrl) {
+    content = (
+      <Image
+        testID="avatar-v2-image"
+        source={{ uri: portraitUrl }}
+        style={{ width: size, height: size }}
+        contentFit="contain"
+        cachePolicy="memory-disk"
+        accessibilityLabel="Avatar"
+        onError={() => setFailedPortraitUrl(portraitUrl)}
+      />
+    );
+  } else if (localDNA) {
+    content = <AvatarDNAStage dna={localDNA} camera="portrait" size={size} />;
+  } else if (customAvatar) {
+    content = <CustomAvatarBadge value={avatar} size={size} />;
+  } else {
+    content = avatarImage
+      ? <AvatarImageWithFallback source={avatarImage} size={size} fallbackLevel={fallbackLevel} overlayLevel={avatarIndex} tint={avatarDef?.tint} material={material} />
+      : <LevelBadge level={fallbackLevel} size={size} />;
+  }
 
   return (
     <AvatarAura auraId={auraId} size={size} style={style} animate={animateAura} ownerActive={ownerActive}>
-      {avatarImage
-        ? <AvatarImageWithFallback source={avatarImage} size={size} fallbackLevel={fallbackLevel} overlayLevel={avatarIndex} tint={avatarDef?.tint} material={material} />
-        : <LevelBadge level={fallbackLevel} size={size} />
-      }
+      {content}
     </AvatarAura>
   );
 }

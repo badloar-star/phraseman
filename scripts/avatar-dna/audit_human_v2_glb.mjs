@@ -5,14 +5,16 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseMakeHumanObj } from './lib/makehuman_obj.mjs';
 import { loadRelativeMorphDeltas, TARGET_ORDER } from './lib/morph_recipe.mjs';
-import { assertManifestBytes, CANONICAL_STREAM_SHA256 } from './build_human_v2_cc0_glb.mjs';
+import { makeIrisSurface, makeLatLongEllipsoid } from './lib/ellipsoid_mesh.mjs';
+import { assertManifestBytes, CANONICAL_STREAM_SHA256, MATERIAL_CONFIG_SHA256 } from './build_human_v2_cc0_glb.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const GLB_MAGIC = 0x46546c67, JSON_CHUNK = 0x4e4f534a, BIN_CHUNK = 0x004e4942;
 const COMPONENT_BYTES = { 5121: 1, 5123: 2, 5125: 4, 5126: 4 }, TYPE_COMPONENTS = { SCALAR: 1, VEC2: 2, VEC3: 3 };
 const VERTICES = 14517, INDICES = 80268, BOUNDS = { min: [-4.9627, -8.1676, -1.0154], max: [4.9627, 8.4913, 3.2147] };
 const ROOT_KEYS = ['accessors', 'asset', 'bufferViews', 'buffers', 'materials', 'meshes', 'nodes', 'scene', 'scenes'];
-const VIEW_LENGTHS = [174204, 174204, 116136, 321072, ...Array(18).fill(174204)];
+const REQUIRED_MESHES = ['avatar_body_base','avatar_eye_left_sclera','avatar_eye_left_iris','avatar_eye_left_cornea','avatar_eye_right_sclera','avatar_eye_right_iris','avatar_eye_right_cornea'];
+const REQUIRED_MATERIALS = ['material_skin','material_sclera','material_iris','material_pupil','material_cornea','material_hair','material_cloth'];
 const err = (errors, code) => { if (!errors.includes(code)) errors.push(code); };
 const isUint = value => Number.isInteger(value) && value >= 0;
 const sameArray = (a, b) => Array.isArray(a) && a.length === b.length && a.every((value, index) => value === b[index]);
@@ -55,48 +57,50 @@ function finite(value, errors) { if (value) for (let row = 0; row < value.access
 
 function graph(gltf, errors) {
   if (gltf.asset?.version !== '2.0' || ['scenes', 'nodes', 'meshes', 'materials', 'accessors', 'bufferViews', 'buffers'].some(key => !Array.isArray(gltf[key]))) err(errors, 'invalid_glb_structure');
-  if (gltf.scene !== 0 || gltf.scenes?.length !== 1 || gltf.scenes?.[0]?.name !== 'human_v2_scene' || !sameArray(gltf.scenes?.[0]?.nodes, [0])) err(errors, 'invalid_scene_reference');
-  const node = gltf.nodes?.[0];
-  if (gltf.nodes?.length !== 1 || !node || node.name !== 'human_v2' || node.mesh !== 0 || 'weights' in node || 'children' in node || 'skin' in node || gltf.nodes.some(entry => !entry || !isUint(entry.mesh) || entry.mesh >= gltf.meshes.length)) err(errors, 'invalid_node_reference');
-  if (!node || !sameArray(Object.keys(node).sort(), ['mesh', 'name'])) err(errors, 'invalid_node_transform');
-  if (gltf.meshes?.length !== 1 || gltf.materials?.length !== 1 || gltf.textures?.length || gltf.images?.length || gltf.samplers?.length) err(errors, 'invalid_reference_graph');
+  if (gltf.scene !== 0 || gltf.scenes?.length !== 1 || gltf.scenes?.[0]?.name !== 'human_v2_scene' || !sameArray(gltf.scenes?.[0]?.nodes, (gltf.nodes || []).map((_, index) => index))) err(errors, 'invalid_scene_reference');
+  if (!gltf.nodes?.length || gltf.nodes.some((entry, index) => !entry || !isUint(entry.mesh) || entry.mesh !== index || entry.mesh >= gltf.meshes.length || 'weights' in entry || 'children' in entry || 'skin' in entry)) err(errors, 'invalid_node_reference');
+  if (gltf.nodes?.some(node => !sameArray(Object.keys(node).sort(), ['mesh', 'name']))) err(errors, 'invalid_node_transform');
+  if (gltf.meshes?.length !== REQUIRED_MESHES.length || gltf.materials?.length !== REQUIRED_MATERIALS.length || gltf.textures?.length || gltf.images?.length || gltf.samplers?.length) err(errors, 'invalid_reference_graph');
   if (gltf.buffers?.length !== 1) err(errors, 'invalid_bin_length');
-  const material = gltf.materials?.[0];
-  if (!material || material.name !== 'material_skin' || material.pbrMetallicRoughness?.baseColorTexture || material.normalTexture || material.occlusionTexture || material.emissiveTexture) err(errors, 'invalid_material');
+  const names = gltf.materials?.map(material => material?.name) || [];
+  if (!sameArray(names, REQUIRED_MATERIALS) || new Set(names).size !== REQUIRED_MATERIALS.length || gltf.materials.some(material => !material || material.pbrMetallicRoughness?.baseColorTexture || material.normalTexture || material.occlusionTexture || material.emissiveTexture)) err(errors, 'invalid_material');
   for (const texture of gltf.textures || []) if (!isUint(texture?.source) || texture.source >= (gltf.images?.length || 0) || (texture.sampler !== undefined && (!isUint(texture.sampler) || texture.sampler >= (gltf.samplers?.length || 0)))) err(errors, 'invalid_texture_reference');
 }
 function collectionContract(gltf, bin, errors) {
   const buffers = gltf.buffers || [], views = gltf.bufferViews || [], accessors = gltf.accessors || [];
   if (buffers.length !== 1 || !sameArray(Object.keys(buffers[0] || {}).sort(), ['byteLength']) || buffers[0]?.byteLength !== bin.length) err(errors, 'invalid_bin_length');
-  if (views.length !== 22 || accessors.length !== 22) err(errors, 'invalid_collection_cardinality');
+  if (views.length < 22 || accessors.length < 22) err(errors, 'invalid_collection_cardinality');
   for (let index = 0; index < views.length; index += 1) {
     const view = views[index];
     if (!view || !sameArray(Object.keys(view).sort(), ['buffer', 'byteLength', 'byteOffset']) || view.buffer !== 0 || !isUint(view.byteOffset) || !isUint(view.byteLength) || view.byteOffset + view.byteLength > bin.length) err(errors, 'invalid_buffer_view');
   }
-  for (let index = 0; index < accessors.length; index += 1) {
-    const accessor = accessors[index]; const expected = index === 0 ? ['bufferView', 'componentType', 'count', 'max', 'min', 'type'] : ['bufferView', 'componentType', 'count', 'type'];
-    if (!accessor || !sameArray(Object.keys(accessor).sort(), expected)) err(errors, 'invalid_accessor_metadata');
+  for (const accessor of accessors) if (!accessor || !['bufferView','componentType','count','max','min','type'].every(key => key in accessor || !['bufferView','componentType','count','type'].includes(key)) || Object.keys(accessor).some(key => !['bufferView','componentType','count','max','min','type'].includes(key))) err(errors, 'invalid_accessor_metadata');
+  const usedAccessors = new Set();
+  for (const mesh of gltf.meshes || []) for (const primitive of mesh?.primitives || []) {
+    for (const index of Object.values(primitive.attributes || {})) usedAccessors.add(index);
+    usedAccessors.add(primitive.indices); for (const target of primitive.targets || []) for (const index of Object.values(target || {})) usedAccessors.add(index);
   }
+  const usedViews = new Set([...usedAccessors].map(index => accessors[index]?.bufferView));
+  if (usedAccessors.size !== accessors.length || usedViews.size !== views.length || [...usedAccessors].some(index => !isUint(index) || index >= accessors.length) || [...usedViews].some(index => !isUint(index) || index >= views.length)) err(errors, 'invalid_collection_cardinality');
 }
 function exactSchema(gltf, bin, errors) {
   const bad = () => err(errors, 'unexpected_json_schema');
   if (!hasKeys(gltf, ROOT_KEYS) || !hasKeys(gltf.asset, ['generator', 'version']) || gltf.asset.version !== '2.0' || gltf.asset.generator !== 'phraseman-avatar-dna-cc0-v1') bad();
-  if (!hasKeys(gltf.scenes?.[0], ['name', 'nodes']) || gltf.scenes?.[0]?.name !== 'human_v2_scene' || !sameArray(gltf.scenes?.[0]?.nodes, [0])) bad();
-  if (!hasKeys(gltf.nodes?.[0], ['mesh', 'name']) || gltf.nodes?.[0]?.name !== 'human_v2' || gltf.nodes?.[0]?.mesh !== 0) bad();
+  if (!hasKeys(gltf.scenes?.[0], ['name', 'nodes']) || gltf.scenes?.[0]?.name !== 'human_v2_scene') bad();
+  if (gltf.nodes?.some(node => !hasKeys(node, ['mesh', 'name']))) bad();
   const mesh = gltf.meshes?.[0], primitive = mesh?.primitives?.[0];
   if (!hasKeys(mesh, ['extras', 'name', 'primitives', 'weights']) || mesh?.name !== 'avatar_body_base' || !sameArray(mesh?.weights, Array(18).fill(0)) || !hasKeys(mesh?.extras, ['targetNames']) || !sameArray(mesh?.extras?.targetNames, TARGET_ORDER) || mesh?.primitives?.length !== 1) bad();
   if (!hasKeys(primitive, ['attributes', 'indices', 'material', 'targets']) || primitive?.indices !== 3 || primitive?.material !== 0 || !hasKeys(primitive?.attributes, ['NORMAL', 'POSITION', 'TEXCOORD_0']) || primitive?.attributes?.POSITION !== 0 || primitive?.attributes?.NORMAL !== 1 || primitive?.attributes?.TEXCOORD_0 !== 2 || primitive?.targets?.length !== 18) bad();
   for (let index = 0; index < (primitive?.targets?.length || 0); index += 1) if (!hasKeys(primitive.targets[index], ['POSITION']) || primitive.targets[index].POSITION !== 4 + index) bad();
-  const material = gltf.materials?.[0], pbr = material?.pbrMetallicRoughness;
-  if (!hasKeys(material, ['name', 'pbrMetallicRoughness']) || material?.name !== 'material_skin' || !hasKeys(pbr, ['baseColorFactor', 'metallicFactor', 'roughnessFactor']) || !sameArray(pbr?.baseColorFactor, [0.72, 0.42, 0.28, 1]) || pbr?.metallicFactor !== 0 || pbr?.roughnessFactor !== 0.72) bad();
-  if (!hasKeys(gltf.buffers?.[0], ['byteLength']) || gltf.buffers?.[0]?.byteLength !== bin.length || bin.length !== 3921288) bad();
-  let offset = 0;
-  for (let index = 0; index < (gltf.bufferViews?.length || 0); index += 1) { const view = gltf.bufferViews[index]; if (!hasKeys(view, ['buffer', 'byteLength', 'byteOffset']) || view.buffer !== 0 || view.byteOffset !== offset || view.byteLength !== VIEW_LENGTHS[index]) bad(); offset += VIEW_LENGTHS[index] || 0; }
-  for (let index = 0; index < (gltf.accessors?.length || 0); index += 1) {
-    const accessor = gltf.accessors[index], expected = index === 0 ? ['bufferView', 'componentType', 'count', 'max', 'min', 'type'] : ['bufferView', 'componentType', 'count', 'type'];
-    const componentType = index === 3 ? 5125 : 5126, type = index === 2 ? 'VEC2' : index === 3 ? 'SCALAR' : 'VEC3', count = index === 3 ? INDICES : VERTICES;
-    if (!hasKeys(accessor, expected) || accessor?.bufferView !== index || accessor?.componentType !== componentType || accessor?.type !== type || accessor?.count !== count || (index === 0 && (!sameArray(accessor.min, BOUNDS.min) || !sameArray(accessor.max, BOUNDS.max)))) bad();
+  for (let index = 1; index < (gltf.meshes?.length || 0); index += 1) {
+    const eye = gltf.meshes[index]; const isIris = eye?.name?.endsWith('_iris');
+    if (!hasKeys(eye, ['extras','name','primitives']) || !hasKeys(eye?.extras, isIris ? ['anchor','angularSegments','helperBounds','helperGroup','irisOffsetTowardCamera','pupilRing','radialSegments','radii'] : ['anchor','helperBounds','helperGroup','radii']) || eye?.primitives?.length !== (isIris ? 2 : 1)) bad();
+    for (const eyePrimitive of eye?.primitives || []) if (!hasKeys(eyePrimitive, ['attributes','indices','material']) || !hasKeys(eyePrimitive.attributes, ['NORMAL','POSITION'])) bad();
   }
+  for (const material of gltf.materials || []) { const extras = material?.name === 'material_cornea' ? ['alphaMode','doubleSided','name','pbrMetallicRoughness'] : ['name','pbrMetallicRoughness']; if (!hasKeys(material, extras) || !hasKeys(material?.pbrMetallicRoughness, ['baseColorFactor','metallicFactor','roughnessFactor'])) bad(); }
+  if (!hasKeys(gltf.buffers?.[0], ['byteLength']) || gltf.buffers?.[0]?.byteLength !== bin.length) bad();
+  for (const view of gltf.bufferViews || []) if (!hasKeys(view, ['buffer','byteLength','byteOffset'])) bad();
+  for (const accessor of gltf.accessors || []) if (!Object.keys(accessor || {}).every(key => ['bufferView','componentType','count','max','min','type'].includes(key))) bad();
 }
 
 async function canonical() {
@@ -141,6 +145,53 @@ function accessorMetadata(gltf, primitive, errors) {
   }
 }
 
+const materialColor = (hex, alpha = 1) => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255, alpha];
+function equalNumbers(actual, expected) { return Array.isArray(actual) && actual.length === expected.length && actual.every((value, index) => Math.abs(value - expected[index]) < 1e-7); }
+async function auditEyesAndMaterials(gltf, bin, errors) {
+  let config;
+  try { const bytes = await readFile(path.join(ROOT, 'config', 'avatar-dna', 'human_v2_materials.v1.json')); if (createHash('sha256').update(bytes).digest('hex') !== MATERIAL_CONFIG_SHA256) throw new Error(); config = JSON.parse(bytes); } catch { err(errors, 'material_provenance_unavailable'); return; }
+  const byName = new Map((gltf.materials || []).map((material, index) => [material.name, { material, index }]));
+  for (const expected of config.materials) {
+    const found = byName.get(expected.name)?.material, pbr = found?.pbrMetallicRoughness;
+    if (!found || !pbr || pbr.metallicFactor !== 0 || pbr.roughnessFactor !== expected.roughness || !equalNumbers(pbr.baseColorFactor, materialColor(expected.color, expected.opacity ?? 1))) { err(errors, 'invalid_material'); if (expected.name !== 'material_cornea') err(errors, 'unexpected_json_schema'); }
+    if (expected.name === 'material_cornea' && (found?.alphaMode !== 'BLEND' || found?.doubleSided !== true || pbr?.baseColorFactor?.[3] !== 0.17)) err(errors, 'opaque_cornea');
+  }
+  const meshes = new Map((gltf.meshes || []).map(mesh => [mesh?.name, mesh]));
+  let sourceBody;
+  try { sourceBody = parseMakeHumanObj(await readFile(path.join(ROOT, 'tools', 'avatar-dna', 'vendor', 'makehuman-v1.3.0', 'makehuman', 'data', '3dobjs', 'base.obj'), 'utf8')); } catch { err(errors, 'source_provenance_unavailable'); return; }
+  for (const side of ['left', 'right']) {
+    const helperGroup = `joint-${side === 'left' ? 'l' : 'r'}-eye`;
+    const parts = { sclera: meshes.get(`avatar_eye_${side}_sclera`), iris: meshes.get(`avatar_eye_${side}_iris`), cornea: meshes.get(`avatar_eye_${side}_cornea`) };
+    if (Object.values(parts).some(value => !value)) { err(errors, 'missing_eye_mesh'); continue; }
+    for (const [part, mesh] of Object.entries(parts)) {
+      const expectedRadii = part === 'sclera' ? [0.165,0.175,0.145] : part === 'iris' ? [0.092,0.092,0.012] : [0.168,0.178,0.151];
+      const positions = sourceBody.groups?.[helperGroup]?.sourcePositions || [], minimum = [0,1,2].map(axis => Math.min(...positions.map(position => position[axis]))), maximum = [0,1,2].map(axis => Math.max(...positions.map(position => position[axis]))), helperCenter = minimum.map((value, axis) => (value + maximum[axis]) / 2), expectedAnchor = part === 'iris' ? [helperCenter[0],helperCenter[1],helperCenter[2]+0.138] : helperCenter;
+      if (mesh.extras?.helperGroup !== helperGroup || !equalNumbers(mesh.extras?.radii, expectedRadii) || !equalNumbers(mesh.extras?.helperBounds?.min, minimum) || !equalNumbers(mesh.extras?.helperBounds?.max, maximum) || !equalNumbers(mesh.extras?.anchor, expectedAnchor)) err(errors, 'invalid_eye_anchor');
+      for (const primitive of mesh.primitives || []) {
+        const position = reader(gltf, bin, primitive.attributes?.POSITION, errors), normal = reader(gltf, bin, primitive.attributes?.NORMAL, errors), index = reader(gltf, bin, primitive.indices, errors);
+        if (!expectAccessor(position,{componentType:5126,type:'VEC3',count:position?.accessor.count},errors,'invalid_eye_geometry') || !expectAccessor(normal,{componentType:5126,type:'VEC3',count:normal?.accessor.count},errors,'invalid_eye_geometry') || !expectAccessor(index,{componentType:5125,type:'SCALAR',count:index?.accessor.count},errors,'invalid_eye_geometry')) continue;
+        finite(position, errors); finite(normal, errors); if (!index || index.accessor.count % 3) err(errors,'invalid_eye_geometry');
+        if (part !== 'iris') {
+          const expected = makeLatLongEllipsoid({ center: expectedAnchor, radii: expectedRadii });
+          if (!position?.bytes().equals(Buffer.from(expected.positions.buffer)) || !normal?.bytes().equals(Buffer.from(expected.normals.buffer)) || !index?.bytes().equals(Buffer.from(expected.indices.buffer))) err(errors, 'invalid_eye_geometry');
+        }
+      }
+    }
+    const iris = parts.iris;
+    if (iris.primitives?.length !== 2 || iris.primitives[0]?.material !== byName.get('material_iris')?.index || iris.primitives[1]?.material !== byName.get('material_pupil')?.index || iris.primitives[0]?.attributes?.POSITION !== iris.primitives[1]?.attributes?.POSITION || iris.primitives[0]?.attributes?.NORMAL !== iris.primitives[1]?.attributes?.NORMAL) err(errors, 'invalid_iris_partition');
+    else {
+      const first = reader(gltf, bin, iris.primitives[0].indices, errors), second = reader(gltf, bin, iris.primitives[1].indices, errors);
+      const firstTriangles = new Set(), secondTriangles = new Set();
+      for (const [source, target] of [[first, firstTriangles], [second, secondTriangles]]) for (let index = 0; source && index < source.accessor.count; index += 3) target.add([source.read(index,0),source.read(index+1,0),source.read(index+2,0)].sort((a,b)=>a-b).join(','));
+      if (!firstTriangles.size || !secondTriangles.size || [...firstTriangles].some(key => secondTriangles.has(key))) err(errors, 'invalid_iris_partition');
+      const expected = makeIrisSurface({ center: iris.extras.anchor, radii: [0.092,0.092,0.012], radialSegments: iris.extras.radialSegments, angularSegments: iris.extras.angularSegments, pupilRing: iris.extras.pupilRing });
+      const position = reader(gltf, bin, iris.primitives[0].attributes.POSITION, errors), normal = reader(gltf, bin, iris.primitives[0].attributes.NORMAL, errors);
+      if (!position?.bytes().equals(Buffer.from(expected.positions.buffer)) || !normal?.bytes().equals(Buffer.from(expected.normals.buffer)) || !first?.bytes().equals(Buffer.from(expected.annulus.buffer)) || !second?.bytes().equals(Buffer.from(expected.pupil.buffer))) err(errors, 'invalid_iris_partition');
+    }
+    if (iris.extras?.irisOffsetTowardCamera !== 0.138) err(errors, 'invalid_eye_anchor');
+  }
+}
+
 export async function auditHumanV2Glb(input) {
   const errors = []; let bytes;
   try { bytes = Buffer.isBuffer(input) ? input : await readFile(input); } catch { return { ok: false, errors: ['unreadable_input'], summary: null }; }
@@ -151,7 +202,7 @@ export async function auditHumanV2Glb(input) {
     collectionContract(gltf, bin, errors);
     exactSchema(gltf, bin, errors);
     const mesh = gltf.meshes?.[0], primitive = mesh?.primitives?.[0]; summary.meshNames = (gltf.meshes || []).map(value => value?.name);
-    if (!mesh || gltf.meshes?.length !== 1 || mesh.name !== 'avatar_body_base' || mesh.primitives?.length !== 1 || !primitive) { err(errors, 'invalid_body_mesh'); err(errors, 'missing_required_named_morphs'); err(errors, 'primitive_fixture_detected'); return { ok: false, errors, summary }; }
+    if (!mesh || gltf.meshes?.length !== REQUIRED_MESHES.length || mesh.name !== 'avatar_body_base' || mesh.primitives?.length !== 1 || !primitive) { err(errors, 'invalid_body_mesh'); err(errors, 'missing_required_named_morphs'); err(errors, 'primitive_fixture_detected'); return { ok: false, errors, summary }; }
     if (primitive.mode !== undefined && primitive.mode !== 4) err(errors, 'invalid_primitive_mode');
     if (primitive.material !== 0) err(errors, 'invalid_material');
     accessorMetadata(gltf, primitive, errors);
@@ -175,6 +226,7 @@ export async function auditHumanV2Glb(input) {
       finite(morph, errors); for (let row = 0; row < morph.accessor.count; row += 1) for (let column = 0; column < 3; column += 1) summary.maxAbsDelta = Math.max(summary.maxAbsDelta, Math.abs(morph.read(row, column)));
       if (!morph.bytes().equals(expected.morphs[index])) err(errors, 'morph_signature_mismatch');
     }
+    await auditEyesAndMaterials(gltf, bin, errors);
     if (summary.maxAbsDelta > 1) err(errors, 'unreasonable_morph_delta');
     return { ok: errors.length === 0, errors, summary };
   } catch { err(errors, 'internal_audit_error'); return { ok: false, errors, message: 'internal auditor error', summary }; }

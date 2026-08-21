@@ -1,0 +1,18 @@
+{
+  "version": "human-v2-materials-v1",
+  "materials": [
+    { "name": "material_skin", "color": "#D4936A", "roughness": 0.58 },
+    { "name": "material_sclera", "color": "#FFF8F1", "roughness": 0.38 },
+    { "name": "material_iris", "color": "#6A3A16", "roughness": 0.34 },
+    { "name": "material_pupil", "color": "#120B08", "roughness": 0.42 },
+    { "name": "material_cornea", "color": "#FFFFFF", "roughness": 0.08, "opacity": 0.17, "alphaMode": "BLEND", "doubleSided": true },
+    { "name": "material_hair", "color": "#4B2415", "roughness": 0.42 },
+    { "name": "material_cloth", "color": "#B84C31", "roughness": 0.82 }
+  ],
+  "comparisonLighting": {
+    "ambient": 1.15,
+    "key": { "intensity": 2.1, "position": [-2.4, 3.4, 4.2], "color": "#FFF2E4" },
+    "fill": { "intensity": 0.72, "position": [3.1, 1.4, 2.2], "color": "#FFE0CC" },
+    "rim": { "intensity": 0.46, "position": [0, 3, -3], "color": "#FFF7ED" }
+  }
+}

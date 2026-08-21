@@ -48,6 +48,42 @@ describe("human_v2 CC0 GLB", () => {
     } finally { rmSync(directory, { recursive: true, force: true }); }
   });
 
+  it("builds separate helper-anchored eye meshes, transparent corneas, and a split iris/pupil surface", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const candidate = path.join(directory, "eyes.glb");
+      execFileSync(process.execPath, [build, "--output", candidate], { cwd: root });
+      const { json } = gltfLayout(readFileSync(candidate));
+      const meshes = new Map<string, any>(json.meshes.map((mesh: any) => [mesh.name, mesh]));
+      for (const side of ["left", "right"]) {
+        expect(meshes.get(`avatar_eye_${side}_sclera`)).toBeDefined();
+        expect(meshes.get(`avatar_eye_${side}_cornea`)).toBeDefined();
+        const iris = meshes.get(`avatar_eye_${side}_iris`);
+        expect(iris?.primitives).toHaveLength(2);
+        expect(iris.primitives.map((primitive: any) => json.materials[primitive.material].name)).toEqual(["material_iris", "material_pupil"]);
+      }
+      const cornea = json.materials.find((material: any) => material.name === "material_cornea");
+      expect(cornea).toMatchObject({ alphaMode: "BLEND", doubleSided: true, pbrMetallicRoughness: { baseColorFactor: [1, 1, 1, 0.17], metallicFactor: 0, roughnessFactor: 0.08 } });
+      expect(runAudit(candidate)).toMatchObject({ ok: true, summary: { meshNames: expect.arrayContaining(["avatar_eye_left_sclera", "avatar_eye_left_iris", "avatar_eye_left_cornea", "avatar_eye_right_sclera", "avatar_eye_right_iris", "avatar_eye_right_cornea"]) } });
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
+  it("rejects eye material, helper-anchor, and iris partition tampering", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try {
+      const source = path.join(directory, "eyes.glb");
+      execFileSync(process.execPath, [build, "--output", source], { cwd: root });
+      const bytes = readFileSync(source);
+      const cases: [string, (json: any) => void, string][] = [
+        ["opaque", json => { json.materials.find((material: any) => material.name === "material_cornea").alphaMode = "OPAQUE"; }, "opaque_cornea"],
+        ["duplicate", json => { json.materials[1].name = "material_skin"; }, "invalid_material"],
+        ["anchor", json => { json.meshes.find((mesh: any) => mesh.name === "avatar_eye_left_sclera").extras.radii[0] = 0.25; }, "invalid_eye_anchor"],
+        ["partition", json => { const iris = json.meshes.find((mesh: any) => mesh.name === "avatar_eye_right_iris"); iris.primitives[1].material = iris.primitives[0].material; }, "invalid_iris_partition"],
+      ];
+      for (const [name, mutate, expected] of cases) { const file = path.join(directory, `${name}.glb`); writeFileSync(file, rewriteJson(bytes, mutate)); expect(runAudit(file).errors).toContain(expected); }
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+
   it("rejects malformed headers and nonzero morph defaults from binary GLB data", () => {
     const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
     try {

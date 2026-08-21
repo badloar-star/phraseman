@@ -4,6 +4,14 @@ const finiteVec3 = (value, label) => { if (!Array.isArray(value) || value.length
 const exactSegments = (value, expected, label) => { if (!Number.isSafeInteger(value) || value !== expected) throw new Error(`invalid_${label}`); return value; };
 const unit = (x, y, z) => { const length = Math.hypot(x, y, z); if (!Number.isFinite(length) || length <= 0) throw new Error('invalid_normal'); return [x / length, y / length, z / length]; };
 const pushPoint = (positions, normals, center, radii, x, y, z) => { positions.push(center[0] + radii[0] * x, center[1] + radii[1] * y, center[2] + radii[2] * z); normals.push(...unit(x / radii[0], y / radii[1], z / radii[2])); };
+const topologyNormals = (positions, indices, center) => {
+  const normals = new Float64Array(positions.length);
+  for (let index = 0; index < indices.length; index += 3) { const a = indices[index] * 3, b = indices[index + 1] * 3, c = indices[index + 2] * 3, ux = positions[b] - positions[a], uy = positions[b + 1] - positions[a + 1], uz = positions[b + 2] - positions[a + 2], vx = positions[c] - positions[a], vy = positions[c + 1] - positions[a + 1], vz = positions[c + 2] - positions[a + 2], x = uy * vz - uz * vy, y = uz * vx - ux * vz, z = ux * vy - uy * vx; for (const vertex of [a, b, c]) { normals[vertex] += x; normals[vertex + 1] += y; normals[vertex + 2] += z; } }
+  let outward = 0; for (let index = 0; index < positions.length; index += 3) outward += normals[index] * (positions[index] - center[0]) + normals[index + 1] * (positions[index + 1] - center[1]) + normals[index + 2] * (positions[index + 2] - center[2]);
+  const sign = outward < 0 ? -1 : 1, result = [];
+  for (let index = 0; index < normals.length; index += 3) result.push(...unit(sign * normals[index], sign * normals[index + 1], sign * normals[index + 2]));
+  return new Float32Array(result);
+};
 
 export function makeLatLongEllipsoid({ center, radii, longitudeSegments = 16, latitudeSegments = 10 }) {
   finiteVec3(center, 'center'); finiteVec3(radii, 'radii'); exactSegments(longitudeSegments, ELLIPSOID_LONGITUDE_SEGMENTS, 'longitude_segments'); exactSegments(latitudeSegments, ELLIPSOID_LATITUDE_SEGMENTS, 'latitude_segments'); if (radii.some(value => !(value > 0))) throw new Error('invalid_ellipsoid_parameters');
@@ -38,5 +46,5 @@ export function makeScleraWithAperture({ center, radii, apertureRadii = [0.092, 
   const ringStart = ring => ring * angularSegments;
   for (let ring = 0; ring < latitudeRings - 1; ring += 1) for (let angle = 0; angle < angularSegments; angle += 1) { const next = (angle + 1) % angularSegments, a = ringStart(ring) + angle, b = ringStart(ring + 1) + angle, c = ringStart(ring) + next, d = ringStart(ring + 1) + next; indices.push(a, b, c, c, b, d); }
   const finalRing = ringStart(latitudeRings - 1); for (let angle = 0; angle < angularSegments; angle += 1) indices.push(finalRing + angle, back, finalRing + (angle + 1) % angularSegments);
-  return { positions: new Float32Array(positions), normals: new Float32Array(normals), indices: new Uint32Array(indices), aperture, apertureRadii, apertureOffset, latitudeRings };
+  return { positions: new Float32Array(positions), normals: topologyNormals(positions, indices, center), indices: new Uint32Array(indices), aperture, apertureRadii, apertureOffset, latitudeRings };
 }

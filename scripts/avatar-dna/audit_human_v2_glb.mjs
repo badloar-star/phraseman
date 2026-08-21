@@ -158,6 +158,13 @@ function validatePrimitiveTriangles(position, indices, errors, code) {
     if (Math.hypot(uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx) <= 1e-12) err(errors, code);
   }
 }
+function validateScleraTopologyNormals(position, normal, indices, center, errors) {
+  if (!position || !normal || !indices) { err(errors, 'invalid_sclera_normals'); return; }
+  const accumulated = new Float64Array(position.accessor.count * 3);
+  for (let offset = 0; offset < indices.accessor.count; offset += 3) { const ids = [indices.read(offset,0),indices.read(offset+1,0),indices.read(offset+2,0)]; if (ids.some(id => id >= position.accessor.count)) { err(errors, 'invalid_sclera_normals'); continue; } const a = ids[0], b = ids[1], c = ids[2], ux = position.read(b,0)-position.read(a,0), uy=position.read(b,1)-position.read(a,1), uz=position.read(b,2)-position.read(a,2), vx=position.read(c,0)-position.read(a,0), vy=position.read(c,1)-position.read(a,1), vz=position.read(c,2)-position.read(a,2), x=uy*vz-uz*vy,y=uz*vx-ux*vz,z=ux*vy-uy*vx, outward=x*((position.read(a,0)+position.read(b,0)+position.read(c,0))/3-center[0])+y*((position.read(a,1)+position.read(b,1)+position.read(c,1))/3-center[1])+z*((position.read(a,2)+position.read(b,2)+position.read(c,2))/3-center[2]); if (outward <= 0) err(errors, 'invalid_sclera_winding'); for (const id of ids) { accumulated[id*3]+=x;accumulated[id*3+1]+=y;accumulated[id*3+2]+=z; } }
+  let orientation=0; for(let row=0;row<position.accessor.count;row+=1) orientation+=accumulated[row*3]*(position.read(row,0)-center[0])+accumulated[row*3+1]*(position.read(row,1)-center[1])+accumulated[row*3+2]*(position.read(row,2)-center[2]); const sign=orientation<0?-1:1;
+  for(let row=0;row<position.accessor.count;row+=1){const x=sign*accumulated[row*3],y=sign*accumulated[row*3+1],z=sign*accumulated[row*3+2],length=Math.hypot(x,y,z),actualLength=Math.hypot(normal.read(row,0),normal.read(row,1),normal.read(row,2)),dot=(normal.read(row,0)*x+normal.read(row,1)*y+normal.read(row,2)*z)/(actualLength*length);if(!Number.isFinite(dot)||Math.abs(actualLength-1)>1e-5||dot<.9999)err(errors,'invalid_sclera_normals');}
+}
 
 const materialColor = (hex, alpha = 1) => [parseInt(hex.slice(1, 3), 16) / 255, parseInt(hex.slice(3, 5), 16) / 255, parseInt(hex.slice(5, 7), 16) / 255, alpha];
 function equalNumbers(actual, expected) { return Array.isArray(actual) && actual.length === expected.length && actual.every((value, index) => typeof value === 'number' && Number.isFinite(value) && typeof expected[index] === 'number' && Number.isFinite(expected[index]) && Math.abs(value - expected[index]) < 1e-7); }
@@ -216,6 +223,7 @@ async function auditEyesAndMaterials(gltf, bin, errors) {
       const scleraIndices = reader(gltf, bin, parts.sclera.primitives?.[0]?.indices, errors); let maxScleraEdge = 0;
       for (let index = 0; scleraPosition && scleraIndices && index < scleraIndices.accessor.count; index += 3) for (const [left, right] of [[0,1],[1,2],[2,0]]) { const a = scleraIndices.read(index + left, 0), b = scleraIndices.read(index + right, 0), dx = scleraPosition.read(a,0) - scleraPosition.read(b,0), dy = scleraPosition.read(a,1) - scleraPosition.read(b,1), dz = scleraPosition.read(a,2) - scleraPosition.read(b,2); maxScleraEdge = Math.max(maxScleraEdge, Math.hypot(dx,dy,dz)); }
       if (!scleraPosition || !scleraIndices || scleraPosition.accessor.count !== 161 || scleraIndices.accessor.count !== 912 || maxScleraEdge > 0.09) err(errors, 'invalid_sclera_aperture');
+      validateScleraTopologyNormals(scleraPosition, reader(gltf, bin, parts.sclera.primitives?.[0]?.attributes?.NORMAL, errors), scleraIndices, helperCenter, errors);
     }
   }
 }

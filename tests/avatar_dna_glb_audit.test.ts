@@ -118,6 +118,13 @@ describe("human_v2 CC0 GLB", () => {
     expect(result.minDot).toBeGreaterThanOrEqual(0.9999); expect(result.maxEdge).toBeLessThanOrEqual(0.09); expect(result.sv).toBe(161); expect(result.si).toBe(912); expect(result.rim).toBeCloseTo(0.126, 6);
   });
 
+  it("uses geometry-derived smooth outward normals on every sclera vertex including the +X aperture rim", () => {
+    const helper = path.join(root, "scripts/avatar-dna/lib/ellipsoid_mesh.mjs").replace(/\\/g, "/");
+    const code = `import {makeScleraWithAperture} from 'file:///${helper}';const m=makeScleraWithAperture({center:[0,0,0],radii:[.165,.175,.145]}),n=new Float64Array(m.positions.length);for(let i=0;i<m.indices.length;i+=3){const a=m.indices[i]*3,b=m.indices[i+1]*3,c=m.indices[i+2]*3,ux=m.positions[b]-m.positions[a],uy=m.positions[b+1]-m.positions[a+1],uz=m.positions[b+2]-m.positions[a+2],vx=m.positions[c]-m.positions[a],vy=m.positions[c+1]-m.positions[a+1],vz=m.positions[c+2]-m.positions[a+2],x=uy*vz-uz*vy,y=uz*vx-ux*vz,z=ux*vy-uy*vx;for(const v of[a,b,c]){n[v]+=x;n[v+1]+=y;n[v+2]+=z}}let min=1,plusX=0;for(let i=0;i<n.length;i+=3){const d=(m.normals[i]*n[i]+m.normals[i+1]*n[i+1]+m.normals[i+2]*n[i+2])/Math.hypot(n[i],n[i+1],n[i+2]);min=Math.min(min,d);if(i===0)plusX=d}console.log(JSON.stringify({min,plusX,unit:Math.hypot(m.normals[0],m.normals[1],m.normals[2])}));`;
+    const result = JSON.parse(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }));
+    expect(result.min).toBeGreaterThanOrEqual(0.9999); expect(result.plusX).toBeGreaterThanOrEqual(0.9999); expect(result.unit).toBeCloseTo(1, 6);
+  });
+
   it("rejects degenerate eye triangles, duplicate node names, and forged eye stream metadata", () => {
     const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
     try {

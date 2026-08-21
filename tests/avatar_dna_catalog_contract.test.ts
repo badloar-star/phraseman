@@ -61,20 +61,23 @@ describe('Avatar DNA catalog contract', () => {
     const temp = mkdtempSync(path.join(os.tmpdir(), 'avatar-dna-images-'));
     try {
       const catalog = JSON.parse(JSON.stringify(canonicalCatalog));
-      const assetDir = path.join(temp, 'assets', 'avatar-dna'); const configDir = path.join(temp, 'config', 'avatar-dna');
+      const assetDir = path.join(temp, 'published'); const configDir = path.join(temp, 'config', 'avatar-dna');
       mkdirSync(assetDir, { recursive: true }); mkdirSync(configDir, { recursive: true });
-      for (const layer of catalog.items.flatMap((item: any) => item.layers)) {
-        const file = path.join(assetDir, layer.file); const image = await sharp({ create: { width: 512, height: 512, channels: 4, background: '#336699' } }).webp().toBuffer();
-        writeFileSync(file, image); layer.bytes = image.length; layer.sha256 = createHash('sha256').update(image).digest('hex');
+      for (const item of catalog.items) {
+        const itemDir = path.join(assetDir, item.id, String(item.assetVersion)); mkdirSync(itemDir, { recursive: true });
+        for (const layer of item.layers) {
+          const file = path.join(itemDir, layer.file); const image = await sharp({ create: { width: 512, height: 512, channels: 4, background: '#336699' } }).webp().toBuffer();
+          writeFileSync(file, image); layer.bytes = image.length; layer.sha256 = createHash('sha256').update(image).digest('hex');
+        }
       }
-      const target = catalog.items.find((item: any) => item.layers.length).layers[0];
+      const targetItem = catalog.items.find((item: any) => item.layers.length); const target = targetItem.layers[0]; const targetFile = () => path.join(assetDir, targetItem.id, String(targetItem.assetVersion), target.file);
       if (scenario === 'missing file') target.file = 'missing.webp';
-      if (scenario === 'png bytes named webp') { const image = await sharp({ create: { width: 512, height: 512, channels: 4, background: '#336699' } }).png().toBuffer(); writeFileSync(path.join(assetDir, target.file), image); target.bytes = image.length; target.sha256 = createHash('sha256').update(image).digest('hex'); }
-      if (scenario === 'wrong dimensions') { const image = await sharp({ create: { width: 256, height: 256, channels: 4, background: '#336699' } }).webp().toBuffer(); writeFileSync(path.join(assetDir, target.file), image); target.bytes = image.length; target.sha256 = createHash('sha256').update(image).digest('hex'); }
+      if (scenario === 'png bytes named webp') { const image = await sharp({ create: { width: 512, height: 512, channels: 4, background: '#336699' } }).png().toBuffer(); writeFileSync(targetFile(), image); target.bytes = image.length; target.sha256 = createHash('sha256').update(image).digest('hex'); }
+      if (scenario === 'wrong dimensions') { const image = await sharp({ create: { width: 256, height: 256, channels: 4, background: '#336699' } }).webp().toBuffer(); writeFileSync(targetFile(), image); target.bytes = image.length; target.sha256 = createHash('sha256').update(image).digest('hex'); }
       if (scenario === 'bytes mismatch') target.bytes += 1;
       if (scenario === 'sha mismatch') target.sha256 = '0'.repeat(64);
       const catalogFile = path.join(configDir, 'catalog.json'); const rigFile = path.join(configDir, 'rig.json'); writeFileSync(catalogFile, JSON.stringify(catalog)); writeFileSync(rigFile, JSON.stringify(canonicalRig));
-      const result = spawnSync(process.execPath, [path.join(root, 'scripts/avatar-dna/validate_catalog.mjs'), '--catalog', catalogFile, '--rig', rigFile], { cwd: root, encoding: 'utf8' });
+      const result = spawnSync(process.execPath, [path.join(root, 'scripts/avatar-dna/validate_catalog.mjs'), '--catalog', catalogFile, '--rig', rigFile, '--assets', assetDir], { cwd: root, encoding: 'utf8' });
       if (scenario === 'valid') expect(result.status).toBe(0); else expect(result.status).not.toBe(0);
     } finally { rmSync(temp, { recursive: true, force: true }); }
   });

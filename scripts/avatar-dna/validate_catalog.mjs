@@ -8,7 +8,7 @@ import sharp from 'sharp';
 const args = process.argv.slice(2);
 const valueFor = (name) => { const index = args.indexOf(name); return index < 0 ? undefined : args[index + 1]; };
 const fixtureMode = args.includes('--fixture-mode');
-const catalogPath = valueFor('--catalog'); const rigPath = valueFor('--rig');
+const catalogPath = valueFor('--catalog'); const rigPath = valueFor('--rig'); const assetsPath = valueFor('--assets');
 const fail = (message) => { throw new Error(`avatar_catalog_invalid: ${message}`); };
 const INTERNAL_CYCLE = Object.freeze({});
 const slots = new Set(['background','outfit.back','hood.back','hair.back','body','outfit','ears','face','skin.detail','makeup','eyes','iris','brows','nose','mouth','facial.hair','hair.side','hair.front','eyewear','ear.accessory','mask','headwear.front','neck.accessory','outfit.front','aura','frame','foreground.fx']);
@@ -20,7 +20,7 @@ const crop = (value) => Array.isArray(value) && value.length === 4 && value.ever
 const exact = (value, keys) => value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === keys.length && keys.every((key) => Object.hasOwn(value, key));
 const json = (path) => { try { return JSON.parse(readFileSync(path, 'utf8')); } catch { fail('invalid json'); } };
 
-async function validateCatalogUnsafe(catalog, rig, { fixture = false, root = process.cwd() } = {}) {
+async function validateCatalogUnsafe(catalog, rig, { fixture = false, root = process.cwd(), assetsRoot } = {}) {
   if (!exact(catalog, ['catalogVersion','manifestVersion','rigIds','items']) || catalog.catalogVersion !== 1 || catalog.manifestVersion !== 1 || !Array.isArray(catalog.rigIds) || catalog.rigIds.length !== 1 || catalog.rigIds[0] !== 'human_v1') fail('catalog version or rig');
   if (!exact(rig, ['rigId','canvas','runtime','portrait','thumbnail','anchors','safePolygons','portraitCrop','studioCrop']) || rig.rigId !== 'human_v1' || !exact(rig.canvas, ['width','height']) || rig.canvas.width !== 2048 || rig.canvas.height !== 2048 || !exact(rig.runtime, ['width','height']) || rig.runtime.width !== 512 || rig.runtime.height !== 512 || !exact(rig.portrait, ['width','height']) || rig.portrait.width !== 256 || rig.portrait.height !== 256 || !exact(rig.thumbnail, ['width','height']) || rig.thumbnail.width !== 192 || rig.thumbnail.height !== 192) fail('wrong dimensions');
   if (!rig.anchors || anchorNames.length !== Object.keys(rig.anchors).length || anchorNames.some((name) => !point(rig.anchors[name])) || !rig.safePolygons || Object.keys(rig.safePolygons).length !== 2 || !['face.safe','head.safe'].every((name) => Array.isArray(rig.safePolygons[name]) && rig.safePolygons[name].length >= 3 && rig.safePolygons[name].every(point) && polygonArea(rig.safePolygons[name]) > 0) || !crop(rig.portraitCrop) || !crop(rig.studioCrop)) fail('invalid rig geometry');
@@ -33,10 +33,15 @@ async function validateCatalogUnsafe(catalog, rig, { fixture = false, root = pro
       const layerKeys = ['id','slot','z','file', ...(typeof layer?.clip === 'string' ? ['clip'] : []), ...(layer?.bytes !== undefined ? ['bytes'] : []), ...(layer?.sha256 !== undefined ? ['sha256'] : [])];
       if (!exact(layer, layerKeys) || !ids.test(layer.id) || layerIds.has(layer.id) || !slots.has(layer.slot) || !Number.isInteger(layer.z) || layer.z < 0 || layer.z > 179 || typeof layer.file !== 'string' || !fileSafe.test(layer.file) || isAbsolute(layer.file) || layer.file.includes('\\') || layer.file.includes('..') || layer.file.includes('://') || (layer.clip !== undefined && !Object.hasOwn(rig.safePolygons, layer.clip)) || (layer.bytes !== undefined && (!Number.isInteger(layer.bytes) || layer.bytes <= 0)) || (layer.sha256 !== undefined && (typeof layer.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(layer.sha256))) || ((layer.bytes === undefined) !== (layer.sha256 === undefined))) fail('unsafe or invalid layer'); layerIds.add(layer.id);
       if (!fixture) {
-        if (layer.bytes === undefined || layer.sha256 === undefined) fail('missing runtime metadata'); const imagePath = resolve(root, 'assets', 'avatar-dna', layer.file); const assetRoot = resolve(root, 'assets', 'avatar-dna') + sep;
-        if (!imagePath.startsWith(assetRoot)) fail('unsafe runtime file');
-        const [realRoot, realAssetRoot, realFile] = await Promise.all([realpath(root), realpath(resolve(root, 'assets', 'avatar-dna')), realpath(imagePath)]);
-        if (!realAssetRoot.startsWith(realRoot + sep) || !realFile.startsWith(realAssetRoot + sep)) fail('unsafe runtime file');
+        if (layer.bytes === undefined || layer.sha256 === undefined) fail('missing runtime metadata');
+        const configuredAssetRoot = resolve(assetsRoot ?? resolve(root, 'assets', 'avatar-dna'));
+        const imagePath = assetsRoot === undefined
+          ? resolve(configuredAssetRoot, layer.file)
+          : resolve(configuredAssetRoot, item.id, String(item.assetVersion), layer.file);
+        if (!imagePath.startsWith(configuredAssetRoot + sep)) fail('unsafe runtime file');
+        const [realAssetRoot, realFile] = await Promise.all([realpath(configuredAssetRoot), realpath(imagePath)]);
+        if (!realFile.startsWith(realAssetRoot + sep)) fail('unsafe runtime file');
+        if (assetsRoot === undefined) { const realRoot = await realpath(root); if (!realAssetRoot.startsWith(realRoot + sep)) fail('unsafe runtime file'); }
         const buffer = await readFile(realFile); const meta = await sharp(buffer).metadata(); if (meta.format !== 'webp' || meta.width !== rig.runtime.width || meta.height !== rig.runtime.height) fail('runtime file metadata');
         if (buffer.length !== layer.bytes) fail('file bytes mismatch');
         if (createHash('sha256').update(buffer).digest('hex') !== layer.sha256) fail('file hash mismatch');
@@ -57,5 +62,5 @@ export async function validateCatalog(catalog, rig, options = {}) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  try { if (!catalogPath || !rigPath) fail('missing arguments'); await validateCatalog(json(catalogPath), json(rigPath), { fixture: fixtureMode, root: dirname(resolve(catalogPath, '..', '..')) }); console.log('avatar-dna catalog: PASS'); } catch (error) { console.error(error instanceof Error ? error.message : 'avatar_catalog_invalid'); process.exitCode = 1; }
+  try { if (!catalogPath || !rigPath) fail('missing arguments'); await validateCatalog(json(catalogPath), json(rigPath), { fixture: fixtureMode, root: dirname(resolve(catalogPath, '..', '..')), assetsRoot: assetsPath }); console.log('avatar-dna catalog: PASS'); } catch (error) { console.error(error instanceof Error ? error.message : 'avatar_catalog_invalid'); process.exitCode = 1; }
 }

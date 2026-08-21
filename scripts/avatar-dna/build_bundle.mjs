@@ -32,6 +32,16 @@ const alphaBounds = (data, width, height) => {
   return count === 0 ? null : { left, top, right, bottom, width: right - left + 1, height: bottom - top + 1, alphaPixels: count };
 };
 
+const hasOpaqueWhiteNeighbor = (data, width, height, x, y) => {
+  for (let nearbyY = Math.max(0, y - 3); nearbyY <= Math.min(height - 1, y + 3); nearbyY += 1) {
+    for (let nearbyX = Math.max(0, x - 3); nearbyX <= Math.min(width - 1, x + 3); nearbyX += 1) {
+      const offset = (nearbyY * width + nearbyX) * 4;
+      if (data[offset + 3] >= 96 && data[offset] > 220 && data[offset + 1] > 220 && data[offset + 2] > 220) return true;
+    }
+  }
+  return false;
+};
+
 async function inspectSource(filePath, rig, clip) {
   const image = sharp(filePath, { failOn: 'error' });
   const metadata = await image.metadata();
@@ -41,16 +51,18 @@ async function inspectSource(filePath, rig, clip) {
   if (clip && !Array.isArray(polygon)) fail('unknown safe polygon');
   let alphaCount = 0;
   let alphaLeft = info.width; let alphaTop = info.height; let alphaRight = -1; let alphaBottom = -1;
+  const whiteEdgeCandidates = [];
   for (let y = 0; y < info.height; y += 1) for (let x = 0; x < info.width; x += 1) {
     const offset = (y * info.width + x) * 4;
     const alpha = data[offset + 3];
     if (alpha === 0) continue;
     alphaCount += 1;
     alphaLeft = Math.min(alphaLeft, x); alphaTop = Math.min(alphaTop, y); alphaRight = Math.max(alphaRight, x); alphaBottom = Math.max(alphaBottom, y);
-    if (alpha < 16 && data[offset] > 245 && data[offset + 1] > 245 && data[offset + 2] > 245) fail('edge halo');
+    if (alpha < 16 && data[offset] > 245 && data[offset + 1] > 245 && data[offset + 2] > 245) whiteEdgeCandidates.push([x, y]);
     if (polygon && !pointInPolygon((x + 0.5) / info.width, (y + 0.5) / info.height, polygon)) fail('alpha outside safe polygon');
   }
   if (alphaCount === 0) fail('empty layer');
+  if (whiteEdgeCandidates.some(([x, y]) => !hasOpaqueWhiteNeighbor(data, info.width, info.height, x, y))) fail('edge halo');
   if (alphaRight - alphaLeft + 1 < 32 || alphaBottom - alphaTop + 1 < 32) fail('unreadable 64px portrait');
 }
 
@@ -143,7 +155,12 @@ export async function buildBundle({ source, manifest, rig: rigPath, out }) {
     for (const layer of item.layers) {
       const sourcePath = path.resolve(sourceRoot, layer.file);
       if (path.dirname(sourcePath) !== sourceRoot) fail('unsafe source path');
-      await inspectSource(sourcePath, rig, layer.clip);
+      try {
+        await inspectSource(sourcePath, rig, layer.clip);
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'avatar_asset_invalid';
+        throw new Error(`${message}: ${item.id}/${layer.id}`);
+      }
       const webp = await clipRuntimeLayer(sourcePath, rig, layer.clip);
       const outputFile = layer.file.replace(/\.png$/, '.webp');
       const outputPath = path.join(itemOut, outputFile);

@@ -121,6 +121,13 @@ describe('Avatar DNA deterministic asset pipeline', () => {
     expect(run(BUILD, buildArgs()).ok).toBe(false);
   });
 
+  it('allows antialiased white edges when they belong to an opaque white surface', async () => {
+    const eye = Buffer.from('<svg width="2048" height="2048" xmlns="http://www.w3.org/2000/svg"><ellipse cx="1024" cy="900" rx="420" ry="220" fill="white"/></svg>');
+    await sharp(eye).png().toFile(path.join(sourceDir, 'hair-back.png'));
+    await sharp(eye).png().toFile(path.join(sourceDir, 'hair-front.png'));
+    expect(run(BUILD, buildArgs()).ok).toBe(true);
+  });
+
   it('rejects a wrong source dimension', async () => {
     await sharp({ create: { width: 1024, height: 1024, channels: 4, background: { r: 1, g: 1, b: 1, alpha: 1 } } }).png().toFile(path.join(sourceDir, 'hair-front.png'));
     expect(run(BUILD, buildArgs()).ok).toBe(false);

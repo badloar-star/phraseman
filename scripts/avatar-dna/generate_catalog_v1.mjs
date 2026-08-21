@@ -30,8 +30,10 @@ export const catalogV1 = {
     ...numbered('makeup_', 4).map((id, index) => item(id, 'face', [layer(`makeup.${index + 1}`, 'makeup', 88, 'makeup.webp', { clip: 'face.safe' })], { restoresOnRemove: true })),
     ...numbered('facial_hair_', 2).map((id, index) => item(id, 'face', [layer(`facial.hair.${index + 1}`, 'facial.hair', 90, 'facial-hair.webp', { clip: 'face.safe' })], { restoresOnRemove: true })),
     ...numbered('hair_', 8).map((id, index) => item(id, 'hair', [
-      layer(`hair.${index + 1}.back`, 'hair.back', 30, 'hair-back.webp', { tintFrom: 'hairColor' }),
-      layer(`hair.${index + 1}.front`, 'hair.front', 80, 'hair-front.webp', { tintFrom: 'hairColor' }),
+      layer(`hair.${index + 1}.back.mask`, 'hair.back', 30, 'hair-back-mask.webp', { tintFrom: 'hairColor' }),
+      layer(`hair.${index + 1}.back.shading`, 'hair.back', 31, 'hair-back-shading.webp'),
+      layer(`hair.${index + 1}.front.mask`, 'hair.front', 80, 'hair-front-mask.webp', { tintFrom: 'hairColor' }),
+      layer(`hair.${index + 1}.front.shading`, 'hair.front', 81, 'hair-front-shading.webp'),
     ], { restoresOnRemove: true })),
     ...hairSwatches.map(([id, swatchHex]) => item(id, 'hair', [], { swatchHex })),
     ...numbered('outfit_', 8).map((id, index) => item(id, 'look', [layer(`outfit.${index + 1}`, 'outfit', 60, 'outfit.webp')], { restoresOnRemove: true })),

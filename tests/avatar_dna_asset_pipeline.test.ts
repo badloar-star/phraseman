@@ -12,6 +12,7 @@ const BUILD = path.join(ROOT, 'scripts/avatar-dna/build_bundle.mjs');
 const PUBLISH = path.join(ROOT, 'scripts/avatar-dna/publish_assets.mjs');
 const CONTACT = path.join(ROOT, 'scripts/avatar-dna/build_contact_sheet.mjs');
 const PREPARE_CHROMA = path.join(ROOT, 'scripts/avatar-dna/prepare_chroma_source.mjs');
+const PREPARE_TINT = path.join(ROOT, 'scripts/avatar-dna/prepare_tint_layers.mjs');
 const RIG = path.join(ROOT, 'config/avatar-dna/human_v1.rig.json');
 
 type LayerFixture = { id: string; slot: string; file: string; clip?: string };
@@ -180,5 +181,48 @@ describe('Avatar DNA deterministic asset pipeline', () => {
       if (data[offset + 3] > 0 && data[offset + 1] > Math.max(data[offset], data[offset + 2]) + 4) greenSpillPixels += 1;
     }
     expect(greenSpillPixels).toBe(0);
+  });
+
+  it('fits a prepared source inside a declared rig safe area without changing the canvas', async () => {
+    const input = path.join(fixtureRoot, 'wide-chroma.png');
+    const output = path.join(fixtureRoot, 'wide-fitted.png');
+    await sharp({ create: { width: 512, height: 512, channels: 3, background: '#00ff00' } })
+      .composite([{ input: await sharp({ create: { width: 492, height: 460, channels: 4, background: '#6a321e' } }).png().toBuffer(), left: 10, top: 20 }])
+      .png()
+      .toFile(input);
+    const preparation = run(PREPARE_CHROMA, ['--input', input, '--output', output, '--key', '#00ff00', '--rig', RIG, '--clip', 'head.safe']);
+    expect(preparation.output).toContain('avatar-dna chroma: PASS');
+    const { data, info } = await sharp(output).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+    let left = info.width; let top = info.height; let right = -1; let bottom = -1;
+    for (let y = 0; y < info.height; y += 1) for (let x = 0; x < info.width; x += 1) {
+      if (data[((y * info.width) + x) * 4 + 3] === 0) continue;
+      left = Math.min(left, x); top = Math.min(top, y); right = Math.max(right, x); bottom = Math.max(bottom, y);
+    }
+    expect(left).toBeGreaterThanOrEqual(Math.ceil(0.18 * 2048));
+    expect(right).toBeLessThan(Math.floor(0.82 * 2048));
+    expect(top).toBeGreaterThanOrEqual(Math.ceil(0.08 * 2048));
+    expect(bottom).toBeLessThan(Math.floor(0.78 * 2048));
+  });
+
+  it('separates a detailed source into a tint mask and independent highlight/shadow texture', async () => {
+    const input = path.join(fixtureRoot, 'tint-source.png');
+    const mask = path.join(fixtureRoot, 'tint-mask.png');
+    const shading = path.join(fixtureRoot, 'tint-shading.png');
+    const dark = await sharp({ create: { width: 256, height: 512, channels: 4, background: '#30180fff' } }).png().toBuffer();
+    const light = await sharp({ create: { width: 256, height: 512, channels: 4, background: '#d79a6aff' } }).png().toBuffer();
+    await sharp({ create: { width: 512, height: 512, channels: 4, background: '#00000000' } }).composite([{ input: dark, left: 0, top: 0 }, { input: light, left: 256, top: 0 }]).png().toFile(input);
+    expect(run(PREPARE_TINT, ['--input', input, '--mask', mask, '--shading', shading]).output).toContain('avatar-dna tint layers: PASS');
+    const maskPixels = await sharp(mask).ensureAlpha().raw().toBuffer();
+    const shadingPixels = await sharp(shading).ensureAlpha().raw().toBuffer();
+    let maskColorViolations = 0; let darkTexturePixels = 0; let lightTexturePixels = 0;
+    for (let offset = 0; offset < maskPixels.length; offset += 4) {
+      if (maskPixels[offset + 3] > 0 && (maskPixels[offset] !== 0 || maskPixels[offset + 1] !== 0 || maskPixels[offset + 2] !== 0)) maskColorViolations += 1;
+      if (shadingPixels[offset + 3] === 0) continue;
+      if (shadingPixels[offset] === 0) darkTexturePixels += 1;
+      if (shadingPixels[offset] > 200) lightTexturePixels += 1;
+    }
+    expect(maskColorViolations).toBe(0);
+    expect(darkTexturePixels).toBeGreaterThan(0);
+    expect(lightTexturePixels).toBeGreaterThan(0);
   });
 });

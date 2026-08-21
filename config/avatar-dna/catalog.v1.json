@@ -1039,18 +1039,30 @@
       },
       "layers": [
         {
-          "id": "hair.1.back",
+          "id": "hair.1.back.mask",
           "slot": "hair.back",
           "z": 30,
-          "file": "hair-back.webp",
+          "file": "hair-back-mask.webp",
           "tintFrom": "hairColor"
         },
         {
-          "id": "hair.1.front",
+          "id": "hair.1.back.shading",
+          "slot": "hair.back",
+          "z": 31,
+          "file": "hair-back-shading.webp"
+        },
+        {
+          "id": "hair.1.front.mask",
           "slot": "hair.front",
           "z": 80,
-          "file": "hair-front.webp",
+          "file": "hair-front-mask.webp",
           "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.1.front.shading",
+          "slot": "hair.front",
+          "z": 81,
+          "file": "hair-front-shading.webp"
         }
       ],
       "occludes": [],
@@ -1069,18 +1081,30 @@
       },
       "layers": [
         {
-          "id": "hair.2.back",
+          "id": "hair.2.back.mask",
           "slot": "hair.back",
           "z": 30,
-          "file": "hair-back.webp",
+          "file": "hair-back-mask.webp",
           "tintFrom": "hairColor"
         },
         {
-          "id": "hair.2.front",
+          "id": "hair.2.back.shading",
+          "slot": "hair.back",
+          "z": 31,
+          "file": "hair-back-shading.webp"
+        },
+        {
+          "id": "hair.2.front.mask",
           "slot": "hair.front",
           "z": 80,
-          "file": "hair-front.webp",
+          "file": "hair-front-mask.webp",
           "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.2.front.shading",
+          "slot": "hair.front",
+          "z": 81,
+          "file": "hair-front-shading.webp"
         }
       ],
       "occludes": [],
@@ -1099,18 +1123,30 @@
       },
       "layers": [
         {
-          "id": "hair.3.back",
+          "id": "hair.3.back.mask",
           "slot": "hair.back",
           "z": 30,
-          "file": "hair-back.webp",
+          "file": "hair-back-mask.webp",
           "tintFrom": "hairColor"
         },
         {
-          "id": "hair.3.front",
+          "id": "hair.3.back.shading",
+          "slot": "hair.back",
+          "z": 31,
+          "file": "hair-back-shading.webp"
+        },
+        {
+          "id": "hair.3.front.mask",
           "slot": "hair.front",
           "z": 80,
-          "file": "hair-front.webp",
+          "file": "hair-front-mask.webp",
           "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.3.front.shading",
+          "slot": "hair.front",
+          "z": 81,
+          "file": "hair-front-shading.webp"
         }
       ],
       "occludes": [],
@@ -1129,18 +1165,30 @@
       },
       "layers": [
         {
-          "id": "hair.4.back",
+          "id": "hair.4.back.mask",
           "slot": "hair.back",
           "z": 30,
-          "file": "hair-back.webp",
+          "file": "hair-back-mask.webp",
           "tintFrom": "hairColor"
         },
         {
-          "id": "hair.4.front",
+          "id": "hair.4.back.shading",
+          "slot": "hair.back",
+          "z": 31,
+          "file": "hair-back-shading.webp"
+        },
+        {
+          "id": "hair.4.front.mask",
           "slot": "hair.front",
           "z": 80,
-          "file": "hair-front.webp",
+          "file": "hair-front-mask.webp",
           "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.4.front.shading",
+          "slot": "hair.front",
+          "z": 81,
+          "file": "hair-front-shading.webp"
         }
       ],
       "occludes": [],
@@ -1159,18 +1207,30 @@
       },
       "layers": [
         {
-          "id": "hair.5.back",
+          "id": "hair.5.back.mask",
           "slot": "hair.back",
           "z": 30,
-          "file": "hair-back.webp",
+          "file": "hair-back-mask.webp",
           "tintFrom": "hairColor"
         },
         {
-          "id": "hair.5.front",
+          "id": "hair.5.back.shading",
+          "slot": "hair.back",
+          "z": 31,
+          "file": "hair-back-shading.webp"
+        },
+        {
+          "id": "hair.5.front.mask",
           "slot": "hair.front",
           "z": 80,
-          "file": "hair-front.webp",
+          "file": "hair-front-mask.webp",
           "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.5.front.shading",
+          "slot": "hair.front",
+          "z": 81,
+          "file": "hair-front-shading.webp"
         }
       ],
       "occludes": [],
@@ -1189,18 +1249,30 @@
       },
       "layers": [
         {
-          "id": "hair.6.back",
+          "id": "hair.6.back.mask",
           "slot": "hair.back",
           "z": 30,
-          "file": "hair-back.webp",
+          "file": "hair-back-mask.webp",
           "tintFrom": "hairColor"
         },
         {
-          "id": "hair.6.front",
+          "id": "hair.6.back.shading",
+          "slot": "hair.back",
+          "z": 31,
+          "file": "hair-back-shading.webp"
+        },
+        {
+          "id": "hair.6.front.mask",
           "slot": "hair.front",
           "z": 80,
-          "file": "hair-front.webp",
+          "file": "hair-front-mask.webp",
           "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.6.front.shading",
+          "slot": "hair.front",
+          "z": 81,
+          "file": "hair-front-shading.webp"
         }
       ],
       "occludes": [],
@@ -1219,18 +1291,30 @@
       },
       "layers": [
         {
-          "id": "hair.7.back",
+          "id": "hair.7.back.mask",
           "slot": "hair.back",
           "z": 30,
-          "file": "hair-back.webp",
+          "file": "hair-back-mask.webp",
           "tintFrom": "hairColor"
         },
         {
-          "id": "hair.7.front",
+          "id": "hair.7.back.shading",
+          "slot": "hair.back",
+          "z": 31,
+          "file": "hair-back-shading.webp"
+        },
+        {
+          "id": "hair.7.front.mask",
           "slot": "hair.front",
           "z": 80,
-          "file": "hair-front.webp",
+          "file": "hair-front-mask.webp",
           "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.7.front.shading",
+          "slot": "hair.front",
+          "z": 81,
+          "file": "hair-front-shading.webp"
         }
       ],
       "occludes": [],
@@ -1249,18 +1333,30 @@
       },
       "layers": [
         {
-          "id": "hair.8.back",
+          "id": "hair.8.back.mask",
           "slot": "hair.back",
           "z": 30,
-          "file": "hair-back.webp",
+          "file": "hair-back-mask.webp",
           "tintFrom": "hairColor"
         },
         {
-          "id": "hair.8.front",
+          "id": "hair.8.back.shading",
+          "slot": "hair.back",
+          "z": 31,
+          "file": "hair-back-shading.webp"
+        },
+        {
+          "id": "hair.8.front.mask",
           "slot": "hair.front",
           "z": 80,
-          "file": "hair-front.webp",
+          "file": "hair-front-mask.webp",
           "tintFrom": "hairColor"
+        },
+        {
+          "id": "hair.8.front.shading",
+          "slot": "hair.front",
+          "z": 81,
+          "file": "hair-front-shading.webp"
         }
       ],
       "occludes": [],

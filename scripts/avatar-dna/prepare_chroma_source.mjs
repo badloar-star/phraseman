@@ -1,5 +1,5 @@
 import { Buffer } from 'node:buffer';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import sharp from 'sharp';
@@ -17,8 +17,27 @@ const parseKey = (value) => {
 const distance = (r, g, b, key) => Math.hypot(r - key[0], g - key[1], b - key[2]);
 const smoothstep = (value) => value * value * (3 - (2 * value));
 
-export async function prepareChromaSource({ input, output, key = '#00ff00' }) {
+const fitInsideSafeArea = async (rgba, width, height, rigPath, clip) => {
+  const rig = JSON.parse(await readFile(path.resolve(rigPath), 'utf8'));
+  const polygon = rig?.safePolygons?.[clip];
+  if (!Array.isArray(polygon) || polygon.length < 3 || polygon.some((point) => !Array.isArray(point) || point.length !== 2 || point.some((value) => typeof value !== 'number' || value < 0 || value > 1))) fail('safe area');
+  const xs = polygon.map((point) => point[0]); const ys = polygon.map((point) => point[1]);
+  const safeLeft = Math.ceil(Math.min(...xs) * width) + 1; const safeTop = Math.ceil(Math.min(...ys) * height) + 1;
+  const safeRight = Math.floor(Math.max(...xs) * width) - 1; const safeBottom = Math.floor(Math.max(...ys) * height) - 1;
+  const targetWidth = safeRight - safeLeft; const targetHeight = safeBottom - safeTop;
+  if (targetWidth < 32 || targetHeight < 32) fail('safe area');
+  const trimmed = await sharp(rgba, { raw: { width, height, channels: 4 } }).trim({ background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
+  const fitted = await sharp(trimmed).resize(targetWidth, targetHeight, { fit: 'inside', withoutEnlargement: false }).png().toBuffer();
+  const metadata = await sharp(fitted).metadata();
+  if (!metadata.width || !metadata.height) fail('fit');
+  const left = safeLeft + Math.floor((targetWidth - metadata.width) / 2);
+  const top = safeTop + Math.floor((targetHeight - metadata.height) / 2);
+  return sharp({ create: { width, height, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } }).composite([{ input: fitted, left, top }]).png({ compressionLevel: 9, adaptiveFiltering: true }).toBuffer();
+};
+
+export async function prepareChromaSource({ input, output, key = '#00ff00', rig, clip }) {
   if (typeof input !== 'string' || input.length === 0 || typeof output !== 'string' || output.length === 0) fail('arguments');
+  if ((rig === undefined) !== (clip === undefined)) fail('fit arguments');
   const keyRgb = parseKey(key);
   const source = sharp(path.resolve(input), { failOn: 'error' }).removeAlpha().toColourspace('srgb');
   const metadata = await source.metadata();
@@ -48,14 +67,18 @@ export async function prepareChromaSource({ input, output, key = '#00ff00' }) {
   }
   if (opaquePixels < 2048) fail('empty subject');
   await mkdir(path.dirname(path.resolve(output)), { recursive: true });
-  await sharp(rgba, { raw: { width: info.width, height: info.height, channels: 4 } })
-    .png({ compressionLevel: 9, adaptiveFiltering: true })
-    .toFile(path.resolve(output));
+  if (rig && clip) {
+    await sharp(await fitInsideSafeArea(rgba, info.width, info.height, rig, clip)).toFile(path.resolve(output));
+  } else {
+    await sharp(rgba, { raw: { width: info.width, height: info.height, channels: 4 } })
+      .png({ compressionLevel: 9, adaptiveFiltering: true })
+      .toFile(path.resolve(output));
+  }
   return { width: info.width, height: info.height, opaquePixels };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
-  prepareChromaSource({ input: valueFor('--input'), output: valueFor('--output'), key: valueFor('--key') ?? '#00ff00' })
+  prepareChromaSource({ input: valueFor('--input'), output: valueFor('--output'), key: valueFor('--key') ?? '#00ff00', rig: valueFor('--rig'), clip: valueFor('--clip') })
     .then(({ width, height }) => console.log(`avatar-dna chroma: PASS (${width}x${height})`))
     .catch((error) => { console.error(error instanceof Error ? error.message : 'avatar_chroma_invalid'); process.exitCode = 1; });
 }

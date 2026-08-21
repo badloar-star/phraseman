@@ -3,6 +3,7 @@ import path from 'path';
 import { execFileSync } from 'child_process';
 
 const manifestPath = path.resolve(__dirname, '../config/avatar-dna/human_v2_cc0_source.v1.json');
+const fetcherPath = path.resolve(__dirname, '../scripts/avatar-dna/fetch_makehuman_cc0.mjs');
 const commit = '1f508f6083b2f823dab15de924b3bde72e08d77c';
 const safeRelativePath = (value: unknown): value is string =>
   typeof value === 'string'
@@ -48,6 +49,8 @@ test('pins the complete, safe MakeHuman CC0 source packet', () => {
 });
 
 test('rejects URL-boundary bypasses and incorrect MakeHuman source mappings', () => {
+  expect(fs.readFileSync(fetcherPath, 'utf8')).toContain("!segment.includes(':')");
+
   for (const unsafePath of [
     'https://example.test/file.target',
     'http:127.0.0.1/file.target',

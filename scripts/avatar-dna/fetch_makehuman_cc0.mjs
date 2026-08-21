@@ -15,7 +15,7 @@ const isSafeRelativePath = (value) => typeof value === 'string'
   && !value.includes('\\')
   && !value.includes('?')
   && !value.includes('#')
-  && value.split('/').every((segment) => segment.length > 0 && segment !== '.' && segment !== '..');
+  && value.split('/').every((segment) => segment.length > 0 && segment !== '.' && segment !== '..' && !segment.includes(':'));
 
 const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
 const validFile = (bytes, entry) => bytes.length === entry.bytes && digest(bytes) === entry.sha256;

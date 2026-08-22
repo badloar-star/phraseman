@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import Reanimated, {
   cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from 'react-native-reanimated';
-import { useReduceMotion } from '../hooks/use_reduce_motion';
+} from "react-native-reanimated";
 
 /**
  * Премиальное раскрытие узла карты Learning V2.
@@ -27,20 +26,22 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
  * Каскад собран без `withDelay`: задержка задана полем `delay` внутри
  * `withTiming`. Эффект тот же (волна раскрытия), примитив — разрешённый.
  */
-const REVEAL_STEP_MS = 18;
-const REVEAL_MAX_DELAY_MS = 130;
-const REVEAL_DURATION_MS = 260;
+const FIRST_FRAME_OPACITY = 0.88;
+const REVEAL_STEP_MS = 4;
+const REVEAL_MAX_DELAY_MS = 24;
+const REVEAL_DURATION_MS = 150;
 
 export default function LearningV2InlineNodeReveal({
   index,
   height,
+  reduceMotion,
   children,
 }: Readonly<{
   index: number;
   height: number;
+  reduceMotion: boolean;
   children: React.ReactNode;
 }>) {
-  const reduceMotion = useReduceMotion();
   const progress = useSharedValue(reduceMotion ? 1 : 0);
 
   useEffect(() => {
@@ -70,7 +71,7 @@ export default function LearningV2InlineNodeReveal({
       // Захватываются только числа (hold), что worklet-безопасно.
       // out-cubic — тот же характер, что у остальных входов приложения.
       easing: (t: number) => {
-        'worklet';
+        "worklet";
         if (t <= hold) return 0;
         const p = (t - hold) / (1 - hold);
         return 1 - Math.pow(1 - p, 3);
@@ -80,16 +81,19 @@ export default function LearningV2InlineNodeReveal({
   }, [index, progress, reduceMotion]);
 
   const style = useAnimatedStyle(() => ({
-    opacity: progress.value,
+    opacity: FIRST_FRAME_OPACITY + progress.value * (1 - FIRST_FRAME_OPACITY),
     transform: [
-      { translateY: (1 - progress.value) * 14 },
-      { scale: 0.94 + progress.value * 0.06 },
+      { translateY: (1 - progress.value) * 6 },
+      { scale: 0.985 + progress.value * 0.015 },
     ],
   }));
 
   return (
     <Reanimated.View
-      style={[{ height, alignItems: 'center', justifyContent: 'center' }, style]}
+      style={[
+        { height, alignItems: "center", justifyContent: "center" },
+        style,
+      ]}
     >
       {children}
     </Reanimated.View>

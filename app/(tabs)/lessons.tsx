@@ -5,7 +5,13 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
-import { View, Text, TouchableOpacity, Animated } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Animated,
+  InteractionManager,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // зачем: FadeInDown и withDelay остались без потребителей после снятия входного
 // каскада глав и «наливания» кольца прогресса — вкладка открывается статично.
@@ -69,6 +75,7 @@ import type { ThemeMode } from "../../constants/theme";
 import GoldBevel from "../../components/GoldBevel";
 import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS } from "../config";
 import { hapticTap } from "../../hooks/use-haptics";
+import { useReduceMotionPreference } from "../../hooks/use_reduce_motion";
 import { useTabContentBottomPad } from "../../hooks/use-tab-content-bottom-pad";
 import { useRuntimeActive } from "../../hooks/use_runtime_active";
 import LearningV2InlineNodeReveal from "../../components/LearningV2InlineNodeReveal";
@@ -80,6 +87,19 @@ import EnergyBar from "../../components/EnergyBar";
 import DialogsTabContent from "../../components/DialogsTabContent";
 import PlusBadge from "../../components/PlusBadge";
 import { isAiDialogEnabled } from "../ai_dialog_flags";
+import { readAnyPersonalPlanState } from "../personal_plan_state";
+import {
+  PERSONAL_PLAN_SUNSET_AT_MS,
+  resolvePersonalPlanPremiumProbe,
+  resolvePersonalPlanSunsetAccess,
+} from "../personal_plan_sunset";
+import { readPersonalPlanSunsetEffectiveNow } from "../personal_plan_sunset_clock";
+import { onAppEvent } from "../events";
+import { shouldGateFeature } from "../feature_gates";
+import {
+  getVerifiedPremiumAccessStatus,
+  invalidatePremiumCache,
+} from "../premium_guard";
 import {
   COURSE_LEVEL_RANGES,
   getCourseLevelForLesson,
@@ -100,11 +120,12 @@ import {
 } from "../lessons_tab_state";
 import { getHomeMenuImages } from "../home_menu_icons";
 import { useStableSafeAreaInsets } from "../stable_safe_area_metrics";
-import { animateNextLayoutTransition } from "../smooth_layout";
+import { animateNextLayoutShiftWithoutEntryFade } from "../smooth_layout";
 import { peekCurrentExamBestPct } from "../exam_best_pct_overlay";
 import { noAndroidOutline } from "../../constants/androidGlow";
 import {
-  buildLearningV2CourseAccordionMapModelV1,
+  buildLearningV2CourseAccordionMapFromPreparedProgressV1,
+  prepareLearningV2CourseAccordionProgressV1,
   type LearningV2AccordionSessionStateV1,
   type LearningV2CourseAccordionRowV1,
 } from "../../modules/learning-v2/map/course_accordion_map_model_v1";
@@ -176,17 +197,11 @@ const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
     B1: "#9E9D69",
     B2: "#77815B",
   },
-  minimalDark: {
-    A1: "#D7E7FF",
-    A2: "#6EA8FF",
-    B1: "#9CA3AF",
-    B2: "#A78BFA",
-  },
   // ─── «Чёрное кино» (midnight/ember/aurora/volt) ──────────────────────────
   // Обложки уроков в тон спектру каждой темы (см. constants/cinemaThemes.ts):
   // 4 «голоса» спектра на A1→B2, светлые и насыщенные (далее darkenHex красит
   // фон карточки, lessonAccent=bg — обводку/текст/прогресс). Та же логика, что
-  // у dark (Форест) / minimalDark (Графит).
+  // у dark (Форест) / indigo.
   midnight: {
     A1: "#8FA0FF", // accent — электрик-синий
     A2: "#B79CFF", // second — сине-фиолетовый
@@ -230,12 +245,6 @@ const EXAM_META_BY_THEME: Record<string, typeof EXAM_META_SKETCH> = {
     A2: { bg: "#1B2013", accent: "#E3CC88" },
     B1: { bg: "#161B11", accent: "#C9A84C" },
     B2: { bg: "#11150D", accent: "#B9BF96" },
-  },
-  minimalDark: {
-    A1: { bg: "#1D2636", accent: "#D7E7FF" },
-    A2: { bg: "#161F2E", accent: "#6EA8FF" },
-    B1: { bg: "#171B24", accent: "#9CA3AF" },
-    B2: { bg: "#151827", accent: "#A78BFA" },
   },
   dark: {
     A1: { bg: "#344637", accent: "#E2F4E3" },
@@ -299,7 +308,7 @@ function lessonToneFactor(num: number): number {
   const [firstLesson] = COURSE_LEVEL_RANGES[level];
   return LESSON_TONE_STEPS[(num - firstLesson) % LESSON_TONE_STEPS.length] ?? 1;
 }
-function bookPalette(num: number, themeMode = "minimalDark"): string {
+function bookPalette(num: number, themeMode = "indigo"): string {
   const palette = LESSON_LEVEL_PALETTES[themeMode] ?? PALETTE_SKETCH;
   const base = palette[cefrKey(num)] ?? PALETTE_SKETCH[cefrKey(num)];
   return scaleHex(base, lessonToneFactor(num));
@@ -598,6 +607,7 @@ interface LessonCardProps {
   textMuted: string;
   learningV2?: boolean;
   learningV2Expanded?: boolean;
+  onLearningV2PressIn?: (lessonOrdinal: number) => void;
   onLearningV2Press?: (lessonOrdinal: number) => void;
 }
 
@@ -643,6 +653,7 @@ const LessonCard = React.memo(function LessonCard({
   textMuted,
   learningV2 = false,
   learningV2Expanded = false,
+  onLearningV2PressIn,
   onLearningV2Press,
 }: LessonCardProps) {
   const isSagePorcelainCard = _themeMode === "sagePorcelain";
@@ -687,378 +698,384 @@ const LessonCard = React.memo(function LessonCard({
       duration: 110,
       easing: Easing.out(Easing.quad),
     });
-  }, [pressProgress]);
+    if (learningV2) onLearningV2PressIn?.(num);
+  }, [learningV2, num, onLearningV2PressIn, pressProgress]);
   const onCardPressOut = useCallback(() => {
     pressProgress.value = withSpring(0, { damping: 18, stiffness: 260 });
   }, [pressProgress]);
   return (
     <Reanimated.View style={pressStyle}>
-    <Animated.View
-      style={{
-        marginTop: 5,
-        marginHorizontal: 14,
-        borderRadius: cardRadius,
-        transform: [{ scale: scaleAnim ?? 1 }],
-        shadowColor: isGoldTheme ? "#000" : darkenHexCached(bg, 0.28),
-        shadowOffset: { width: 0, height: isCurrent ? 7 : isUnlocked ? 4 : 2 },
-        shadowOpacity: USE_ELITE_LESSONS_MAP
-          ? isCurrent
-            ? 0.2
-            : isUnlocked
-              ? 0.11
-              : 0.05
-          : useSketchLessonVisual
-            ? isUnlocked
-              ? 0.14
-              : 0.08
-            : isUnlocked
-              ? 0.28
-              : 0.15,
-        shadowRadius: USE_ELITE_LESSONS_MAP
-          ? isCurrent
-            ? 14
-            : isUnlocked
-              ? 9
-              : 4
-          : useSketchLessonVisual
-            ? isUnlocked
-              ? 10
-              : 5
-            : isUnlocked
-              ? 8
-              : 4,
-        elevation: isCurrent ? 8 : isUnlocked ? 6 : 2,
-        ...(isGoldTheme
-          ? goldShadow(isCurrent ? 2 : 1)
-          : isOliveTheme
-            ? oliveShadow(isCurrent ? 2 : 1)
-            : {}),
-        ...{},
-      }}
-    >
-      <TouchableOpacity
-        testID={`lessons-row-${num}`}
-        accessibilityState={
-          learningV2 ? { expanded: learningV2Expanded } : undefined
-        }
-        activeOpacity={0.82}
-        onPressIn={onCardPressIn}
-        onPressOut={onCardPressOut}
-        onPress={() => {
-          hapticTap();
-          if (learningV2) {
-            onLearningV2Press?.(num);
-            return;
-          }
-          const access = resolveLessonAccess({
-            lessonId: num,
-            unlocked: isUnlocked,
-            isPremium,
-            devMode: effectiveDevContentUnlock,
-            noLimits,
-            legacyFreeLessonCap,
-          });
-          if (access === "available") {
-            void prefetchLessonMenuCache(num, studyTarget);
-            router.push({ pathname: "/lesson_menu", params: { id: num } });
-          } else if (access === "premium_required") {
-            openLessonPaywall(num);
-          } else if (levelLockedByExam && prevLessonLevel) {
-            setGateModal({
-              kind: "levelGate",
-              level: lessonLevel,
-              prevLevel: prevLessonLevel,
-            });
-          } else {
-            setGateModal({ kind: "lesson", prevNum: num - 1 });
-          }
-        }}
+      <Animated.View
         style={{
-          height: BOOK_H,
+          marginTop: 5,
+          marginHorizontal: 14,
           borderRadius: cardRadius,
-          overflow: "hidden",
-          backgroundColor: isUnlocked ? "transparent" : lockedCardBaseColor,
-          borderWidth: isOliveTheme
-            ? 0
-            : isGoldTheme || isSagePorcelainCard
-              ? 1
-              : USE_ELITE_LESSONS_MAP
-                ? 1
-                : useSketchLessonVisual && isUnlocked
-                  ? 1.5
-                  : 0,
-          borderColor: isGoldTheme
+          transform: [{ scale: scaleAnim ?? 1 }],
+          shadowColor: isGoldTheme ? "#000" : darkenHexCached(bg, 0.28),
+          shadowOffset: {
+            width: 0,
+            height: isCurrent ? 7 : isUnlocked ? 4 : 2,
+          },
+          shadowOpacity: USE_ELITE_LESSONS_MAP
             ? isCurrent
-              ? GOLD_RICH.hairlineStrong
+              ? 0.2
               : isUnlocked
-                ? goldHairline
-                : GOLD_RICH.hairlineQuiet
-            : isSagePorcelainCard
-              ? rgbaHexCached(
-                  lessonAccent,
-                  isCurrent ? 0.56 : isUnlocked ? 0.38 : 0.26,
-                )
-              : USE_ELITE_LESSONS_MAP
-                ? rgbaHexCached(
-                    lessonAccent,
-                    isCurrent ? 0.7 : isUnlocked ? 0.36 : 0.16,
-                  )
-                : useSketchLessonVisual && isUnlocked
-                  ? rgbaHexCached(lessonAccent, 0.44)
-                  : "transparent",
+                ? 0.11
+                : 0.05
+            : useSketchLessonVisual
+              ? isUnlocked
+                ? 0.14
+                : 0.08
+              : isUnlocked
+                ? 0.28
+                : 0.15,
+          shadowRadius: USE_ELITE_LESSONS_MAP
+            ? isCurrent
+              ? 14
+              : isUnlocked
+                ? 9
+                : 4
+            : useSketchLessonVisual
+              ? isUnlocked
+                ? 10
+                : 5
+              : isUnlocked
+                ? 8
+                : 4,
+          elevation: isCurrent ? 8 : isUnlocked ? 6 : 2,
+          ...(isGoldTheme
+            ? goldShadow(isCurrent ? 2 : 1)
+            : isOliveTheme
+              ? oliveShadow(isCurrent ? 2 : 1)
+              : {}),
+          ...{},
         }}
       >
-        {/* Card background */}
-        {isUnlocked ? (
-          <LinearGradient
-            colors={
-              isGoldTheme
-                ? isCurrent
-                  ? goldCardGradient("selected")
-                  : lessonGoldLevel.card
-                : isOliveTheme
-                  ? isCurrent
-                    ? OLIVE_GRADIENTS.selectedPanel
-                    : OLIVE_GRADIENTS.raisedPanel
-                  : isSagePorcelainCard
-                    ? [bg, lightenHex(bg, 1.08), lightenHex(bg, 1.14)]
-                    : [
-                        darkenHexCached(bg, 0.52),
-                        darkBg,
-                        darkenHexCached(bg, 0.38),
-                      ]
+        <TouchableOpacity
+          testID={`lessons-row-${num}`}
+          accessibilityState={
+            learningV2 ? { expanded: learningV2Expanded } : undefined
+          }
+          activeOpacity={0.82}
+          onPressIn={onCardPressIn}
+          onPressOut={onCardPressOut}
+          onPress={() => {
+            hapticTap();
+            if (learningV2) {
+              onLearningV2Press?.(num);
+              return;
             }
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-            start={{ x: 0, y: 1 }}
-            end={{ x: 1, y: 0 }}
-            style={cardLayerStyle}
-          />
-        ) : levelLockedByExam ? (
-          <LinearGradient
-            colors={
-              isGoldTheme
-                ? goldCardGradient("muted")
-                : isOliveTheme
-                  ? OLIVE_GRADIENTS.quietPanel
-                  : isSagePorcelainCard
-                    ? [lightenHex(bg, 1.04), bg, lightenHex(bg, 1.1)]
-                    : [
-                        darkenHexCached(bg, 0.36),
-                        darkenHexCached(bg, 0.31),
-                        darkenHexCached(bg, 0.26),
-                      ]
+            const access = resolveLessonAccess({
+              lessonId: num,
+              unlocked: isUnlocked,
+              isPremium,
+              devMode: effectiveDevContentUnlock,
+              noLimits,
+              legacyFreeLessonCap,
+            });
+            if (access === "available") {
+              void prefetchLessonMenuCache(num, studyTarget);
+              router.push({ pathname: "/lesson_menu", params: { id: num } });
+            } else if (access === "premium_required") {
+              openLessonPaywall(num);
+            } else if (levelLockedByExam && prevLessonLevel) {
+              setGateModal({
+                kind: "levelGate",
+                level: lessonLevel,
+                prevLevel: prevLessonLevel,
+              });
+            } else {
+              setGateModal({ kind: "lesson", prevNum: num - 1 });
             }
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-            start={{ x: 0, y: 1 }}
-            end={{ x: 1, y: 0 }}
-            style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}
-          />
-        ) : (
-          <LinearGradient
-            colors={
-              isGoldTheme
-                ? GOLD_GRADIENTS.mutedPanel
-                : isSagePorcelainCard
-                  ? [lightenHex(bg, 1.02), bg, lightenHex(bg, 1.08)]
-                  : [
-                      darkenHexCached(bg, 0.3),
-                      darkenHexCached(bg, 0.25),
-                      darkenHexCached(bg, 0.2),
-                    ]
-            }
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-            start={{ x: 0, y: 1 }}
-            end={{ x: 1, y: 0 }}
-            style={cardLayerStyle}
-          />
-        )}
-        {isGoldTheme && (
-          <LinearGradient
-            colors={[
-              rgbaHexCached(lessonAccent, isUnlocked ? 0.22 : 0.08),
-              "rgba(0,0,0,0)",
-              rgbaHexCached(lessonAccent, isCurrent ? 0.2 : 0.1),
-            ]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={cardLayerStyle}
-          />
-        )}
-        {isGoldTheme && (
-          <GoldBevel
-            radius={cardRadius}
-            intensity={isCurrent ? "strong" : isUnlocked ? "normal" : "quiet"}
-          />
-        )}
-        {/* Progress fill */}
-        {showLessonProgressFill && (
-          <LinearGradient
-            colors={
-              isGoldTheme
-                ? ([goldAntique, goldBright, lessonAccent] as [
-                    string,
-                    string,
-                    string,
-                  ])
-                : [bg, lightenHex(bg, 1.28)]
-            }
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              bottom: 0,
-              width: `${progPct}%`,
-              opacity: isGoldTheme
-                ? levelLockedByExam
-                  ? 0.16
-                  : 0.22
-                : levelLockedByExam
-                  ? 0.28
-                  : 1,
-              borderTopLeftRadius: cardRadius,
-              borderBottomLeftRadius: cardRadius,
-              borderTopRightRadius: cardRadius,
-              borderBottomRightRadius: cardRadius,
-            }}
-          />
-        )}
-        {/* Subtle inner highlight on filled part top edge */}
-        {showLessonProgressFill && (
-          <View
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              width: `${progPct}%`,
-              height: 1.5,
-              // зачем: на светлой sagePorcelain белая кромка прогресса невидима —
-              // тонируем акцентом урока, как границу карточки выше.
-              backgroundColor: isGoldTheme
+          }}
+          style={{
+            height: BOOK_H,
+            borderRadius: cardRadius,
+            overflow: "hidden",
+            backgroundColor: isUnlocked ? "transparent" : lockedCardBaseColor,
+            borderWidth: isOliveTheme
+              ? 0
+              : isGoldTheme || isSagePorcelainCard
+                ? 1
+                : USE_ELITE_LESSONS_MAP
+                  ? 1
+                  : useSketchLessonVisual && isUnlocked
+                    ? 1.5
+                    : 0,
+            borderColor: isGoldTheme
+              ? isCurrent
                 ? GOLD_RICH.hairlineStrong
-                : isSagePorcelainCard
-                  ? rgbaHexCached(lessonAccent, 0.38)
-                  : useSketchLessonVisual
-                    ? "rgba(255,255,255,0.45)"
-                    : "rgba(255,255,255,0.3)",
-              opacity: levelLockedByExam ? 0.24 : 1,
-              borderTopLeftRadius: cardRadius,
-              borderTopRightRadius: cardRadius,
-            }}
-          />
-        )}
-        {/* Content */}
-        <View
-          style={{ flex: 1, justifyContent: "center", paddingHorizontal: 18 }}
+                : isUnlocked
+                  ? goldHairline
+                  : GOLD_RICH.hairlineQuiet
+              : isSagePorcelainCard
+                ? rgbaHexCached(
+                    lessonAccent,
+                    isCurrent ? 0.56 : isUnlocked ? 0.38 : 0.26,
+                  )
+                : USE_ELITE_LESSONS_MAP
+                  ? rgbaHexCached(
+                      lessonAccent,
+                      isCurrent ? 0.7 : isUnlocked ? 0.36 : 0.16,
+                    )
+                  : useSketchLessonVisual && isUnlocked
+                    ? rgbaHexCached(lessonAccent, 0.44)
+                    : "transparent",
+          }}
         >
+          {/* Card background */}
+          {isUnlocked ? (
+            <LinearGradient
+              colors={
+                isGoldTheme
+                  ? isCurrent
+                    ? goldCardGradient("selected")
+                    : lessonGoldLevel.card
+                  : isOliveTheme
+                    ? isCurrent
+                      ? OLIVE_GRADIENTS.selectedPanel
+                      : OLIVE_GRADIENTS.raisedPanel
+                    : isSagePorcelainCard
+                      ? [bg, lightenHex(bg, 1.08), lightenHex(bg, 1.14)]
+                      : [
+                          darkenHexCached(bg, 0.52),
+                          darkBg,
+                          darkenHexCached(bg, 0.38),
+                        ]
+              }
+              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+              start={{ x: 0, y: 1 }}
+              end={{ x: 1, y: 0 }}
+              style={cardLayerStyle}
+            />
+          ) : levelLockedByExam ? (
+            <LinearGradient
+              colors={
+                isGoldTheme
+                  ? goldCardGradient("muted")
+                  : isOliveTheme
+                    ? OLIVE_GRADIENTS.quietPanel
+                    : isSagePorcelainCard
+                      ? [lightenHex(bg, 1.04), bg, lightenHex(bg, 1.1)]
+                      : [
+                          darkenHexCached(bg, 0.36),
+                          darkenHexCached(bg, 0.31),
+                          darkenHexCached(bg, 0.26),
+                        ]
+              }
+              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+              start={{ x: 0, y: 1 }}
+              end={{ x: 1, y: 0 }}
+              style={[cardLayerStyle, { opacity: isGoldTheme ? 0.68 : 1 }]}
+            />
+          ) : (
+            <LinearGradient
+              colors={
+                isGoldTheme
+                  ? GOLD_GRADIENTS.mutedPanel
+                  : isSagePorcelainCard
+                    ? [lightenHex(bg, 1.02), bg, lightenHex(bg, 1.08)]
+                    : [
+                        darkenHexCached(bg, 0.3),
+                        darkenHexCached(bg, 0.25),
+                        darkenHexCached(bg, 0.2),
+                      ]
+              }
+              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+              start={{ x: 0, y: 1 }}
+              end={{ x: 1, y: 0 }}
+              style={cardLayerStyle}
+            />
+          )}
+          {isGoldTheme && (
+            <LinearGradient
+              colors={[
+                rgbaHexCached(lessonAccent, isUnlocked ? 0.22 : 0.08),
+                "rgba(0,0,0,0)",
+                rgbaHexCached(lessonAccent, isCurrent ? 0.2 : 0.1),
+              ]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={cardLayerStyle}
+            />
+          )}
+          {isGoldTheme && (
+            <GoldBevel
+              radius={cardRadius}
+              intensity={isCurrent ? "strong" : isUnlocked ? "normal" : "quiet"}
+            />
+          )}
+          {/* Progress fill */}
+          {showLessonProgressFill && (
+            <LinearGradient
+              colors={
+                isGoldTheme
+                  ? ([goldAntique, goldBright, lessonAccent] as [
+                      string,
+                      string,
+                      string,
+                    ])
+                  : [bg, lightenHex(bg, 1.28)]
+              }
+              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={{
+                position: "absolute",
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: `${progPct}%`,
+                opacity: isGoldTheme
+                  ? levelLockedByExam
+                    ? 0.16
+                    : 0.22
+                  : levelLockedByExam
+                    ? 0.28
+                    : 1,
+                borderTopLeftRadius: cardRadius,
+                borderBottomLeftRadius: cardRadius,
+                borderTopRightRadius: cardRadius,
+                borderBottomRightRadius: cardRadius,
+              }}
+            />
+          )}
+          {/* Subtle inner highlight on filled part top edge */}
+          {showLessonProgressFill && (
+            <View
+              style={{
+                position: "absolute",
+                left: 0,
+                top: 0,
+                width: `${progPct}%`,
+                height: 1.5,
+                // зачем: на светлой sagePorcelain белая кромка прогресса невидима —
+                // тонируем акцентом урока, как границу карточки выше.
+                backgroundColor: isGoldTheme
+                  ? GOLD_RICH.hairlineStrong
+                  : isSagePorcelainCard
+                    ? rgbaHexCached(lessonAccent, 0.38)
+                    : useSketchLessonVisual
+                      ? "rgba(255,255,255,0.45)"
+                      : "rgba(255,255,255,0.3)",
+                opacity: levelLockedByExam ? 0.24 : 1,
+                borderTopLeftRadius: cardRadius,
+                borderTopRightRadius: cardRadius,
+              }}
+            />
+          )}
+          {/* Content */}
           <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              marginBottom: 4,
-            }}
+            style={{ flex: 1, justifyContent: "center", paddingHorizontal: 18 }}
           >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: 4,
+              }}
+            >
+              <Text
+                style={{
+                  color: useDarkMetaText
+                    ? LESSON_CARD_OPEN_META_TEXT
+                    : lessonMetaColor,
+                  fontSize: f.label,
+                  fontWeight: "700",
+                  letterSpacing: 0.8,
+                  ...(useDarkMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW),
+                }}
+                maxFontSizeMultiplier={1}
+              >
+                {triLang(lang, {
+                  ru: `УРОК ${num}`,
+                  uk: `УРОК ${num}`,
+                  es: `LECCIÓN ${num}`,
+                  "pt-BR": `LIÇÃO ${num}`,
+                  vi: `BÀI ${num}`,
+                  id: `PELAJARAN ${num}`,
+                  tr: `DERS ${num}`,
+                  pl: `LEKCJA ${num}`,
+                })}
+              </Text>
+              <View
+                style={{ flexDirection: "row", alignItems: "center", gap: 6 }}
+              >
+                {premiumRequired ? (
+                  <PlusBadge
+                    themeMode={_themeMode}
+                    label={triLang(lang, {
+                      ru: "Plus",
+                      uk: "Plus",
+                      es: "Plus",
+                      "pt-BR": "Plus",
+                      vi: "Plus",
+                      id: "Plus",
+                      tr: "Plus",
+                      pl: "Plus",
+                    })}
+                  />
+                ) : !isUnlocked ? (
+                  <Ionicons
+                    name="lock-closed"
+                    size={14}
+                    color={
+                      isGoldTheme
+                        ? rgbaHexCached(lessonAccent, 0.64)
+                        : lockedCardHasLightFill
+                          ? darkenHexCached(bg, 0.4)
+                          : "rgba(255,255,255,0.55)"
+                    }
+                    style={LESSON_CARD_ACCENT_TEXT_SHADOW}
+                  />
+                ) : USE_ELITE_LESSONS_MAP && isComplete ? (
+                  <Ionicons
+                    name="checkmark-circle"
+                    size={18}
+                    color={lessonAccent}
+                    style={LESSON_CARD_ACCENT_TEXT_SHADOW}
+                  />
+                ) : progPct > 0 ? (
+                  <Text
+                    style={{
+                      // зачем: процент красился в rgbaHex(lessonAccent) — а lessonAccent === bg
+                      // карточки, то есть цветом фона по фону: читалась только чёрная тень
+                      // под глифом («размыто» на всех темах). Берём тот же контрастный цвет,
+                      // что и метка «УРОК N» слева, и тень оставляем лишь светлому тексту.
+                      color: useDarkMetaText
+                        ? LESSON_CARD_OPEN_META_TEXT
+                        : lessonMetaColor,
+                      fontSize: f.label,
+                      fontWeight: "800",
+                      ...(useDarkMetaText
+                        ? {}
+                        : LESSON_CARD_ACCENT_TEXT_SHADOW),
+                    }}
+                    maxFontSizeMultiplier={1}
+                  >
+                    {progPct}%
+                  </Text>
+                ) : null}
+              </View>
+            </View>
+            {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — текст уже
+                переносится на 2 строки (numberOfLines={2}), этого достаточно, guard-ok */}
             <Text
               style={{
-                color: useDarkMetaText
-                  ? LESSON_CARD_OPEN_META_TEXT
-                  : lessonMetaColor,
-                fontSize: f.label,
+                color: lessonTextColor,
+                fontSize: f.body,
                 fontWeight: "700",
-                letterSpacing: 0.8,
-                ...(useDarkMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW),
+                ...(isSagePorcelainCard ? {} : LESSON_CARD_WHITE_TEXT_SHADOW),
               }}
+              numberOfLines={2}
               maxFontSizeMultiplier={1}
             >
-              {triLang(lang, {
-                ru: `УРОК ${num}`,
-                uk: `УРОК ${num}`,
-                es: `LECCIÓN ${num}`,
-                "pt-BR": `LIÇÃO ${num}`,
-                vi: `BÀI ${num}`,
-                id: `PELAJARAN ${num}`,
-                tr: `DERS ${num}`,
-                pl: `LEKCJA ${num}`,
-              })}
+              {name}
             </Text>
-            <View
-              style={{ flexDirection: "row", alignItems: "center", gap: 6 }}
-            >
-              {premiumRequired ? (
-                <PlusBadge
-                  themeMode={_themeMode}
-                  label={triLang(lang, {
-                    ru: "Plus",
-                    uk: "Plus",
-                    es: "Plus",
-                    "pt-BR": "Plus",
-                    vi: "Plus",
-                    id: "Plus",
-                    tr: "Plus",
-                    pl: "Plus",
-                  })}
-                />
-              ) : !isUnlocked ? (
-                <Ionicons
-                  name="lock-closed"
-                  size={14}
-                  color={
-                    isGoldTheme
-                      ? rgbaHexCached(lessonAccent, 0.64)
-                      : lockedCardHasLightFill
-                        ? darkenHexCached(bg, 0.4)
-                        : "rgba(255,255,255,0.55)"
-                  }
-                  style={LESSON_CARD_ACCENT_TEXT_SHADOW}
-                />
-              ) : USE_ELITE_LESSONS_MAP && isComplete ? (
-                <Ionicons
-                  name="checkmark-circle"
-                  size={18}
-                  color={lessonAccent}
-                  style={LESSON_CARD_ACCENT_TEXT_SHADOW}
-                />
-              ) : progPct > 0 ? (
-                <Text
-                  style={{
-                    // зачем: процент красился в rgbaHex(lessonAccent) — а lessonAccent === bg
-                    // карточки, то есть цветом фона по фону: читалась только чёрная тень
-                    // под глифом («размыто» на всех темах). Берём тот же контрастный цвет,
-                    // что и метка «УРОК N» слева, и тень оставляем лишь светлому тексту.
-                    color: useDarkMetaText
-                      ? LESSON_CARD_OPEN_META_TEXT
-                      : lessonMetaColor,
-                    fontSize: f.label,
-                    fontWeight: "800",
-                    ...(useDarkMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW),
-                  }}
-                  maxFontSizeMultiplier={1}
-                >
-                  {progPct}%
-                </Text>
-              ) : null}
-            </View>
           </View>
-          {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — текст уже
-                переносится на 2 строки (numberOfLines={2}), этого достаточно, guard-ok */}
-          <Text
-            style={{
-              color: lessonTextColor,
-              fontSize: f.body,
-              fontWeight: "700",
-              ...(isSagePorcelainCard ? {} : LESSON_CARD_WHITE_TEXT_SHADOW),
-            }}
-            numberOfLines={2}
-            maxFontSizeMultiplier={1}
-          >
-            {name}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    </Animated.View>
+        </TouchableOpacity>
+      </Animated.View>
     </Reanimated.View>
   );
 });
@@ -1140,213 +1157,278 @@ function learningV2SessionOutcomeTitle(
   });
 }
 
-function LearningV2InlineMap({
-  lessonOrdinal,
-  rows,
+type LearningV2InlineMapRowV1 = Extract<
+  LearningV2CourseAccordionRowV1,
+  { kind: "chapter" | "session" }
+>;
+
+const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
+  row,
+  lang,
   theme,
   fonts,
+  reduceMotion,
   onSessionPress,
 }: Readonly<{
-  lessonOrdinal: number;
-  rows: readonly LearningV2CourseAccordionRowV1[];
+  row: LearningV2InlineMapRowV1;
+  lang: Lang;
   theme: ReturnType<typeof useTheme>["theme"];
   fonts: ReturnType<typeof useTheme>["f"];
+  reduceMotion: boolean;
   onSessionPress: (
     lessonOrdinal: number,
     sessionOrdinal: number,
     state: LearningV2AccordionSessionStateV1,
   ) => void;
 }>) {
-  // зачем: каскад считается по ВИДИМЫМ узлам (заголовки глав тоже в потоке),
-  // иначе индексы прыгали бы и «волна» раскрытия шла рвано.
-  const revealIndexById = useMemo(() => {
-    const map = new Map<string, number>();
-    let visible = 0;
-    for (const row of rows) {
-      if (row.kind === "lesson") continue;
-      map.set(row.id, visible);
-      visible += 1;
-    }
-    return map;
-  }, [rows]);
+  if (row.kind === "chapter") {
+    return (
+      <View
+        style={{
+          marginHorizontal: 14,
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 10,
+          paddingTop: row.chapterOrdinal === 1 ? 14 : 20,
+          paddingBottom: 10,
+        }}
+      >
+        <Text
+          style={{
+            color: theme.accent,
+            fontSize: fonts.label,
+            fontWeight: "900",
+            letterSpacing: 1.2,
+          }}
+        >
+          {triLang(lang, {
+            ru: "ГЛАВА",
+            uk: "РОЗДІЛ",
+            es: "CAPÍTULO",
+            "pt-BR": "CAPÍTULO",
+            vi: "CHƯƠNG",
+            id: "BAB",
+            tr: "BÖLÜM",
+            pl: "ROZDZIAŁ",
+          })}{" "}
+          {row.chapterOrdinal}
+        </Text>
+        <View
+          style={{ height: 1, flex: 1, backgroundColor: theme.border }}
+        />
+      </View>
+    );
+  }
+
+  const current = row.state === "current";
+  const completed = row.state === "completed";
+  const accessible = current || completed;
+  const checkpoint =
+    row.role === "chapter_checkpoint" || row.role === "final_exam";
+  const label =
+    row.role === "final_exam"
+      ? triLang(lang, {
+          ru: "Итоговый экзамен",
+          uk: "Підсумковий іспит",
+          es: "Examen final",
+          "pt-BR": "Prova final",
+          vi: "Bài thi cuối",
+          id: "Ujian akhir",
+          tr: "Final sınavı",
+          pl: "Egzamin końcowy",
+        })
+      : row.role === "chapter_checkpoint"
+        ? triLang(lang, {
+            ru: "Проверка главы",
+            uk: "Перевірка розділу",
+            es: "Repaso del capítulo",
+            "pt-BR": "Revisão do capítulo",
+            vi: "Kiểm tra chương",
+            id: "Cek bab",
+            tr: "Bölüm kontrolü",
+            pl: "Sprawdzian rozdziału",
+          })
+        : `${triLang(lang, {
+            ru: "Сессия",
+            uk: "Сесія",
+            es: "Sesión",
+            "pt-BR": "Sessão",
+            vi: "Buổi",
+            id: "Sesi",
+            tr: "Oturum",
+            pl: "Sesja",
+          })} ${row.sessionOrdinal}`;
+  const wave = [-72, -34, 20, 70, 86, 52, 4, -48][
+    (row.sessionOrdinal - 1) % 8
+  ];
+  const nodeSize = checkpoint ? 64 : current ? 66 : 54;
+  const revealIndex = row.sessionOrdinal + row.chapterOrdinal - 1;
+
   return (
     <View
-      testID={`learning-v2-inline-map-${lessonOrdinal}`}
+      testID={`learning-v2-inline-map-row-${row.lessonOrdinal}-${row.sessionOrdinal}`}
       style={{
         marginHorizontal: 14,
-        paddingTop: 12,
-        paddingBottom: 18,
+        paddingBottom: row.sessionOrdinal === 56 ? 18 : 0,
       }}
     >
-      {rows.map((row) => {
-        if (row.kind === "lesson") return null;
-        if (row.kind === "chapter") {
-          return (
+      <LearningV2InlineNodeReveal
+        index={revealIndex}
+        height={checkpoint ? 104 : 82}
+        reduceMotion={reduceMotion}
+      >
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel={`${label}, ${
+            accessible
+              ? triLang(lang, {
+                  ru: "доступна",
+                  uk: "доступна",
+                  es: "disponible",
+                  "pt-BR": "disponível",
+                  vi: "đang mở",
+                  id: "terbuka",
+                  tr: "açık",
+                  pl: "dostępna",
+                })
+              : triLang(lang, {
+                  ru: "закрыта",
+                  uk: "закрита",
+                  es: "bloqueada",
+                  "pt-BR": "bloqueada",
+                  vi: "đang khoá",
+                  id: "terkunci",
+                  tr: "kilitli",
+                  pl: "zablokowana",
+                })
+          }`}
+          disabled={!accessible}
+          activeOpacity={0.78}
+          onPress={() =>
+            onSessionPress(row.lessonOrdinal, row.sessionOrdinal, row.state)
+          }
+          style={{
+            width: nodeSize,
+            height: nodeSize,
+            borderRadius: checkpoint ? 20 : nodeSize / 2,
+            transform: [{ translateX: wave }],
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: current
+              ? theme.accent
+              : completed
+                ? theme.correct
+                : theme.bgSurface2,
+            borderWidth: current || checkpoint ? 2 : 1,
+            borderColor: current ? theme.borderHighlight : theme.border,
+            opacity: row.state === "locked" ? 0.7 : 1,
+            shadowColor: current ? theme.accent : theme.cardShadow,
+            shadowOpacity: current ? 0.28 : 0.08,
+            shadowRadius: current ? 12 : 4,
+            shadowOffset: { width: 0, height: 4 },
+          }}
+        >
+          <Ionicons
+            name={
+              checkpoint
+                ? "trophy"
+                : LEARNING_V2_SESSION_STATE_ICON[row.state]
+            }
+            size={checkpoint ? 27 : current ? 27 : 20}
+            color={
+              current || completed
+                ? theme.correctText
+                : checkpoint
+                  ? theme.gold
+                  : theme.textMuted
+            }
+          />
+          {!checkpoint ? (
             <View
-              key={row.id}
               style={{
-                flexDirection: "row",
+                position: "absolute",
+                right: -5,
+                bottom: -4,
+                minWidth: 22,
+                height: 22,
+                borderRadius: 11,
+                paddingHorizontal: 4,
                 alignItems: "center",
-                gap: 10,
-                paddingTop: row.chapterOrdinal === 1 ? 2 : 20,
-                paddingBottom: 10,
+                justifyContent: "center",
+                backgroundColor: theme.bgCard,
+                borderWidth: 1,
+                borderColor: theme.border,
               }}
             >
               <Text
                 style={{
-                  color: theme.accent,
-                  fontSize: fonts.label,
+                  color: accessible ? theme.textPrimary : theme.textMuted,
+                  fontSize: 10,
                   fontWeight: "900",
-                  letterSpacing: 1.2,
                 }}
               >
-                ГЛАВА {row.chapterOrdinal}
+                {row.sessionOrdinal}
               </Text>
-              <View
-                style={{
-                  height: 1,
-                  flex: 1,
-                  backgroundColor: theme.border,
-                }}
-              />
             </View>
-          );
-        }
-        const current = row.state === "current";
-        const completed = row.state === "completed";
-        const accessible = current || completed;
-        const checkpoint =
-          row.role === "chapter_checkpoint" || row.role === "final_exam";
-        const label =
-          row.role === "final_exam"
-            ? "Итоговый экзамен"
-            : row.role === "chapter_checkpoint"
-              ? "Проверка главы"
-              : `Сессия ${row.sessionOrdinal}`;
-        const wave = [-72, -34, 20, 70, 86, 52, 4, -48][
-          (row.sessionOrdinal - 1) % 8
-        ];
-        const nodeSize = checkpoint ? 64 : current ? 66 : 54;
-        return (
-          <LearningV2InlineNodeReveal
-            key={row.id}
-            index={revealIndexById.get(row.id) ?? 0}
-            height={checkpoint ? 104 : 82}
+          ) : null}
+        </TouchableOpacity>
+        {checkpoint ? (
+          <View
+            pointerEvents="none"
+            style={{
+              position: "absolute",
+              left: wave >= 0 ? 14 : undefined,
+              right: wave < 0 ? 14 : undefined,
+              maxWidth: 132,
+            }}
           >
-            <TouchableOpacity
-              accessibilityRole="button"
-              accessibilityLabel={`${label}, ${accessible ? "доступна" : "закрыта"}`}
-              disabled={!accessible}
-              activeOpacity={0.78}
-              onPress={() =>
-                onSessionPress(row.lessonOrdinal, row.sessionOrdinal, row.state)
-              }
+            <Text
               style={{
-                width: nodeSize,
-                height: nodeSize,
-                borderRadius: checkpoint ? 20 : nodeSize / 2,
-                transform: [{ translateX: wave }],
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: current
-                  ? theme.accent
-                  : completed
-                    ? theme.correct
-                    : theme.bgSurface2,
-                borderWidth: current || checkpoint ? 2 : 1,
-                borderColor: current ? theme.borderHighlight : theme.border,
-                opacity: row.state === "locked" ? 0.7 : 1,
-                shadowColor: current ? theme.accent : theme.cardShadow,
-                shadowOpacity: current ? 0.28 : 0.08,
-                shadowRadius: current ? 12 : 4,
-                shadowOffset: { width: 0, height: 4 },
+                color: theme.accent,
+                fontSize: fonts.label,
+                fontWeight: "900",
+                textAlign: wave >= 0 ? "left" : "right",
               }}
             >
-              <Ionicons
-                name={
-                  checkpoint
-                    ? "trophy"
-                    : LEARNING_V2_SESSION_STATE_ICON[row.state]
-                }
-                size={checkpoint ? 27 : current ? 27 : 20}
-                color={
-                  current || completed
-                    ? theme.correctText
-                    : checkpoint
-                      ? theme.gold
-                      : theme.textMuted
-                }
-              />
-              {!checkpoint ? (
-                <View
-                  style={{
-                    position: "absolute",
-                    right: -5,
-                    bottom: -4,
-                    minWidth: 22,
-                    height: 22,
-                    borderRadius: 11,
-                    paddingHorizontal: 4,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: theme.bgCard,
-                    borderWidth: 1,
-                    borderColor: theme.border,
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: accessible ? theme.textPrimary : theme.textMuted,
-                      fontSize: 10,
-                      fontWeight: "900",
-                    }}
-                  >
-                    {row.sessionOrdinal}
-                  </Text>
-                </View>
-              ) : null}
-            </TouchableOpacity>
-            {checkpoint ? (
-              <View
-                pointerEvents="none"
-                style={{
-                  position: "absolute",
-                  left: wave >= 0 ? 14 : undefined,
-                  right: wave < 0 ? 14 : undefined,
-                  maxWidth: 132,
-                }}
-              >
-                <Text
-                  style={{
-                    color: theme.accent,
-                    fontSize: fonts.label,
-                    fontWeight: "900",
-                    textAlign: wave >= 0 ? "left" : "right",
-                  }}
-                >
-                  {label}
-                </Text>
-                <Text
-                  style={{
-                    color: theme.textMuted,
-                    fontSize: Math.max(10, fonts.label - 1),
-                    fontWeight: "600",
-                    marginTop: 2,
-                    textAlign: wave >= 0 ? "left" : "right",
-                  }}
-                >
-                  {row.role === "final_exam"
-                    ? "Весь материал урока"
-                    : `Глава ${row.chapterOrdinal}`}
-                </Text>
-              </View>
-            ) : null}
-          </LearningV2InlineNodeReveal>
-        );
-      })}
+              {label}
+            </Text>
+            <Text
+              style={{
+                color: theme.textMuted,
+                fontSize: Math.max(10, fonts.label - 1),
+                fontWeight: "600",
+                marginTop: 2,
+                textAlign: wave >= 0 ? "left" : "right",
+              }}
+            >
+              {row.role === "final_exam"
+                ? triLang(lang, {
+                    ru: "Весь материал урока",
+                    uk: "Увесь матеріал уроку",
+                    es: "Todo el material de la lección",
+                    "pt-BR": "Todo o conteúdo da lição",
+                    vi: "Toàn bộ bài học",
+                    id: "Seluruh materi pelajaran",
+                    tr: "Dersin tüm içeriği",
+                    pl: "Cały materiał lekcji",
+                  })
+                : `${triLang(lang, {
+                    ru: "Глава",
+                    uk: "Розділ",
+                    es: "Capítulo",
+                    "pt-BR": "Capítulo",
+                    vi: "Chương",
+                    id: "Bab",
+                    tr: "Bölüm",
+                    pl: "Rozdział",
+                  })} ${row.chapterOrdinal}`}
+            </Text>
+          </View>
+        ) : null}
+      </LearningV2InlineNodeReveal>
     </View>
   );
-}
+});
 
 // ── Глава-аккордеон ──────────────────────────────────────────────────────────
 const AnimatedChapterCircle = Reanimated.createAnimatedComponent(Circle);
@@ -1680,6 +1762,7 @@ export default function LessonsTab({
   const topFadeScroll = useTopFadeScroll();
   const { goHome, focusTick, runtimeOwnerId } = useTabNav();
   const { theme: t, f, themeMode } = useTheme();
+  const learningV2ReduceMotionPreference = useReduceMotionPreference();
   const insets = useStableSafeAreaInsets();
   const listBottomPad = isRetainedTab
     ? tabContentBottomPad
@@ -1706,7 +1789,11 @@ export default function LessonsTab({
   const [legacyFreeLessonCap, setLegacyFreeLessonCap] = useState(
     () => boot?.legacyFreeLessonCap ?? FREE_LESSON_LIMIT,
   );
-  const { hasPremiumAccess: isPremium, devLocalPlusOverride } = usePremium();
+  const {
+    hasPremiumAccess: isPremium,
+    devLocalPlusOverride,
+    accessResolved,
+  } = usePremium();
   const {
     devContentUnlock: effectiveDevContentUnlock,
     noLimits: effectiveNoLimits,
@@ -1720,6 +1807,13 @@ export default function LessonsTab({
     },
     devLocalPlusOverride,
   );
+  const planAccess = useFeatureAccess("personal_plan");
+  const personalPlanFeatureRequiresPremium = shouldGateFeature(
+    "personal_plan",
+    false,
+  );
+  const [personalPlanSunsetTabVisible, setPersonalPlanSunsetTabVisible] =
+    useState(false);
   const dialogAccess = useFeatureAccess("ai_dialog");
   const [scores, setScores] = useState<number[]>(
     () => boot?.scores ?? new Array(32).fill(0),
@@ -1866,28 +1960,74 @@ export default function LessonsTab({
       };
     }, [learningV2CatalogLocator, learningV2WarmupEnabled]),
   );
+  const learningV2ProjectionScopeKey = useMemo(
+    () =>
+      `${captureAccountGeneration().generation}:${studyTarget}:${_overlayIdentityEpoch}`,
+    [_overlayIdentityEpoch, studyTarget],
+  );
+  const learningV2PreparedProgress = useMemo(
+    () =>
+      prepareLearningV2CourseAccordionProgressV1({
+        completedSessionIds: learningV2Progress.completedSessionIds,
+        currentSessionId: learningV2Progress.currentSessionId,
+      }),
+    [
+      learningV2Progress.completedSessionIds,
+      learningV2Progress.currentSessionId,
+    ],
+  );
   const learningV2Accordion = useMemo(
     () =>
-      buildLearningV2CourseAccordionMapModelV1({
+      buildLearningV2CourseAccordionMapFromPreparedProgressV1({
+        projectionScopeKey: learningV2ProjectionScopeKey,
         expandedLessonOrdinal: expandedLearningV2Lesson,
-        completedSessionIds: learningV2Progress.completedSessionIds,
-        currentSessionId:
-          expandedLearningV2Lesson === null
-            ? null
-            : learningV2Progress.currentSessionId,
+        preparedProgress: learningV2PreparedProgress,
       }),
-    [expandedLearningV2Lesson, learningV2Progress],
+    [
+      expandedLearningV2Lesson,
+      learningV2PreparedProgress,
+      learningV2ProjectionScopeKey,
+    ],
   );
-  const toggleLearningV2Lesson = useCallback((lessonOrdinal: number) => {
-    // зачем: карта сессий вставляется/убирается ПРЯМО В ПОТОКЕ списка — без этого
-    // соседние карточки телепортировались вниз одним кадром. Переход планируется
-    // ДО setState (контракт animateNextLayoutTransition) и стоит 0 мс ожидания:
-    // сдвиг соседей едет плавно, а сами узлы каскадом доводит Reanimated.
-    animateNextLayoutTransition(240);
-    setExpandedLearningV2Lesson((current) =>
-      current === lessonOrdinal ? null : lessonOrdinal,
+  const prepareLearningV2Lesson = useCallback(
+    (lessonOrdinal: number) => {
+      buildLearningV2CourseAccordionMapFromPreparedProgressV1({
+        projectionScopeKey: learningV2ProjectionScopeKey,
+        expandedLessonOrdinal: lessonOrdinal,
+        preparedProgress: learningV2PreparedProgress,
+      });
+    },
+    [learningV2PreparedProgress, learningV2ProjectionScopeKey],
+  );
+  useEffect(() => {
+    if (page !== "v2") return undefined;
+    const currentLessonMatch = /^lesson-(\d{2}):session:/.exec(
+      learningV2Progress.currentSessionId ?? "",
     );
-  }, []);
+    const parsedLessonOrdinal = Number(currentLessonMatch?.[1] ?? 1);
+    const likelyLessonOrdinal =
+      parsedLessonOrdinal >= 1 && parsedLessonOrdinal <= 32
+        ? parsedLessonOrdinal
+        : 1;
+    const task = InteractionManager.runAfterInteractions(() => {
+      prepareLearningV2Lesson(likelyLessonOrdinal);
+    });
+    return () => task.cancel();
+  }, [learningV2Progress.currentSessionId, page, prepareLearningV2Lesson]);
+  const toggleLearningV2Lesson = useCallback(
+    (lessonOrdinal: number) => {
+      // Новые строки обязаны быть видимы уже на первом кадре. Поэтому анимируем
+      // только сдвиг существующих карточек, без create-opacity для вставки.
+      // Пока системная настройка движения не прочитана, ведём себя консервативно.
+      if (learningV2ReduceMotionPreference === false) {
+        animateNextLayoutShiftWithoutEntryFade(160);
+      }
+      setExpandedLearningV2Lesson((current) =>
+        current === lessonOrdinal ? null : lessonOrdinal,
+      );
+    },
+    [learningV2ReduceMotionPreference],
+  );
   const selectedLearningV2CatalogSession = selectedLearningV2Session
     ? (learningV2Catalog?.lessons[selectedLearningV2Session.lessonOrdinal - 1]
         ?.sessions[selectedLearningV2Session.sessionOrdinal - 1] ?? null)
@@ -1906,6 +2046,30 @@ export default function LessonsTab({
           selectedLearningV2Session.sessionOrdinal,
         )
       : "");
+  const handleLearningV2SessionPress = useCallback(
+    (
+      selectedLesson: number,
+      sessionOrdinal: number,
+      state: LearningV2AccordionSessionStateV1,
+    ) => {
+      if (state !== "current" && state !== "completed") return;
+      void preloadCurrentLearningV2CourseReleasedSessionV2({
+        environment: learningV2Catalog?.environment ?? "production",
+        targetLanguage: studyTarget,
+        studyTarget,
+        learnerSourceLocale: lang,
+        seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
+        lessonOrdinal: selectedLesson,
+        sessionOrdinal,
+      }).catch(() => undefined);
+      setSelectedLearningV2Session({
+        lessonOrdinal: selectedLesson,
+        sessionOrdinal,
+        state,
+      });
+    },
+    [lang, learningV2Catalog, studyTarget],
+  );
   const handleLessonsBack = useCallback(() => {
     if (page !== "lessons") {
       if (!isRetainedTab && initialPage === "v2") {
@@ -1921,6 +2085,155 @@ export default function LessonsTab({
     }
     safeRouterBack(router, HOME_BACK_FALLBACK as any);
   }, [goHome, initialPage, isRetainedTab, page, router]);
+  useFocusEffect(
+    useCallback(() => {
+      let alive = true;
+      let timer: ReturnType<typeof setTimeout> | null = null;
+      let refreshInFlight = false;
+      let refreshRequested = false;
+
+      const clearEligibilityTimer = (): void => {
+        if (timer === null) return;
+        clearTimeout(timer);
+        timer = null;
+      };
+
+      const scheduleEligibilityRefresh = (effectiveNowMs: number): void => {
+        clearEligibilityTimer();
+        if (!alive) return;
+        const remainingMs = PERSONAL_PLAN_SUNSET_AT_MS - effectiveNowMs;
+        if (remainingMs <= 0) return;
+        timer = setTimeout(
+          () => {
+            void refreshEligibility();
+          },
+          Math.min(remainingMs, 60_000),
+        );
+      };
+
+      const refreshEligibility = async (): Promise<void> => {
+        if (!alive) return;
+        if (refreshInFlight) {
+          refreshRequested = true;
+          return;
+        }
+        refreshInFlight = true;
+        clearEligibilityTimer();
+        let effectiveNowMs = Date.now();
+        let shouldPoll = false;
+        try {
+          const state = await readAnyPersonalPlanState();
+          const localAccess = resolvePersonalPlanSunsetAccess({
+            hasOriginalFeatureAccess: true,
+            savedState: state,
+            nowMs: effectiveNowMs,
+          });
+          if (localAccess.status !== "allowed") {
+            if (alive) setPersonalPlanSunsetTabVisible(false);
+            return;
+          }
+          shouldPoll = true;
+          effectiveNowMs = await readPersonalPlanSunsetEffectiveNow();
+          if (!alive) return;
+          const access = resolvePersonalPlanSunsetAccess({
+            hasOriginalFeatureAccess: true,
+            savedState: state,
+            nowMs: effectiveNowMs,
+          });
+          const allowed = access.status === "allowed";
+          shouldPoll = allowed;
+          setPersonalPlanSunsetTabVisible(allowed);
+        } catch {
+          if (alive) setPersonalPlanSunsetTabVisible(false);
+        } finally {
+          refreshInFlight = false;
+          if (!alive) return;
+          if (refreshRequested) {
+            refreshRequested = false;
+            void refreshEligibility();
+            return;
+          }
+          if (shouldPoll) scheduleEligibilityRefresh(effectiveNowMs);
+        }
+      };
+
+      const requestEligibilityRefresh = (): void => {
+        void refreshEligibility();
+      };
+      const subscriptions = [
+        onAppEvent("personal_plan_updated", requestEligibilityRefresh),
+        onAppEvent("cloud_profile_hydrated", requestEligibilityRefresh),
+        onAppEvent("auth_provider_linked", requestEligibilityRefresh),
+        onAppEvent("account_deleted", requestEligibilityRefresh),
+      ];
+      setPersonalPlanSunsetTabVisible(false);
+      void refreshEligibility();
+      return () => {
+        alive = false;
+        clearEligibilityTimer();
+        for (const subscription of subscriptions) subscription.remove();
+      };
+    }, []),
+  );
+  const openLearningRoute = useCallback(() => {
+    hapticTap();
+    if (!personalPlanSunsetTabVisible) return;
+    void (async () => {
+      try {
+        const state = await readAnyPersonalPlanState();
+        const effectiveNowMs = await readPersonalPlanSunsetEffectiveNow();
+        const access = resolvePersonalPlanSunsetAccess({
+          hasOriginalFeatureAccess: true,
+          savedState: state,
+          nowMs: effectiveNowMs,
+        });
+        if (access.status !== "allowed" || !state) {
+          setPersonalPlanSunsetTabVisible(false);
+          return;
+        }
+        const premiumProbe = resolvePersonalPlanPremiumProbe({
+          mode: "premium-required",
+          accessResolved,
+          featureRequiresPremium: personalPlanFeatureRequiresPremium,
+          featureAccess: planAccess,
+        });
+        let verifiedPlanAccess = premiumProbe === "allowed";
+        if (!verifiedPlanAccess) {
+          invalidatePremiumCache();
+          verifiedPlanAccess = await getVerifiedPremiumAccessStatus().catch(
+            () => false,
+          );
+        }
+        const decisionNowMs = await readPersonalPlanSunsetEffectiveNow();
+        const finalAccess = resolvePersonalPlanSunsetAccess({
+          hasOriginalFeatureAccess: true,
+          savedState: state,
+          nowMs: decisionNowMs,
+        });
+        if (finalAccess.status !== "allowed") {
+          setPersonalPlanSunsetTabVisible(false);
+          return;
+        }
+        if (!verifiedPlanAccess) {
+          openPremiumPaywall(router, { context: "personal_plan" });
+          return;
+        }
+        router.push(
+          (state.status === "completed"
+            ? "/personal_plan_complete"
+            : "/personal_plan") as any,
+        );
+      } catch {
+        setPersonalPlanSunsetTabVisible(false);
+      }
+    })();
+  }, [
+    accessResolved,
+    personalPlanFeatureRequiresPremium,
+    personalPlanSunsetTabVisible,
+    planAccess,
+    router,
+  ]);
   const openDialogs = useCallback(() => {
     if (page === "dialogs") return;
     hapticTap();
@@ -2092,6 +2405,20 @@ export default function LessonsTab({
         name: string;
       }
     | {
+        kind: "v2_chapter";
+        row: Extract<
+          LearningV2CourseAccordionRowV1,
+          { kind: "chapter" }
+        >;
+      }
+    | {
+        kind: "v2_session";
+        row: Extract<
+          LearningV2CourseAccordionRowV1,
+          { kind: "session" }
+        >;
+      }
+    | {
         kind: "exam";
         level: CourseLevel;
       }
@@ -2101,9 +2428,31 @@ export default function LessonsTab({
   const listData: ListItem[] = useMemo(() => {
     const data: ListItem[] = [];
     if (page === "v2") {
-      lessons.forEach((name, index) => {
-        data.push({ kind: "lesson", index, name });
-      });
+      for (const row of learningV2Accordion.rows) {
+        if (row.kind === "lesson") {
+          const index = row.lessonOrdinal - 1;
+          data.push({
+            kind: "lesson",
+            index,
+            name:
+              lessons[index] ??
+              `${triLang(lang, {
+                ru: "Урок",
+                uk: "Урок",
+                es: "Lección",
+                "pt-BR": "Lição",
+                vi: "Bài",
+                id: "Pelajaran",
+                tr: "Ders",
+                pl: "Lekcja",
+              })} ${row.lessonOrdinal}`,
+          });
+        } else if (row.kind === "chapter") {
+          data.push({ kind: "v2_chapter", row });
+        } else {
+          data.push({ kind: "v2_session", row });
+        }
+      }
       return data;
     }
     const headers: [number, CourseLevel][] = [
@@ -2131,7 +2480,7 @@ export default function LessonsTab({
       if (num === 32) data.push({ kind: "attestation" });
     });
     return data;
-  }, [lessons, page, themeMode]);
+  }, [lang, learningV2Accordion.rows, lessons, page, themeMode]);
   const currentLessonNum = useMemo(() => {
     const idx = unlockedLessons.findIndex(
       (unlocked, i) => unlocked && (progCounts[i] ?? 0) < 50,
@@ -2572,6 +2921,7 @@ export default function LessonsTab({
         textMuted={t.textMuted}
         learningV2={page === "v2"}
         learningV2Expanded={expandedLearningV2Lesson === num}
+        onLearningV2PressIn={prepareLearningV2Lesson}
         onLearningV2Press={toggleLearningV2Lesson}
       />
     );
@@ -2642,7 +2992,7 @@ export default function LessonsTab({
             </View>
           </View>
 
-          {/* Переключатель страниц: Уроки | Диалоги */}
+          {/* Переключатель страниц: Уроки | Маршрут | Диалоги */}
           <View
             style={{
               flexDirection: "row",
@@ -2668,6 +3018,32 @@ export default function LessonsTab({
                 }
               }}
             />
+            {personalPlanSunsetTabVisible ? (
+              <TabUnderlineButton
+                label={triLang(lang, {
+                  ru: "Маршрут",
+                  uk: "Маршрут",
+                  es: "Ruta",
+                  "pt-BR": "Rota",
+                  vi: "Lộ trình",
+                  id: "Rute",
+                  tr: "Rota",
+                  pl: "Trasa",
+                })}
+                active={false}
+                color={t.textPrimary}
+                mutedColor={t.textMuted}
+                accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+                fontSize={f.body}
+                themeMode={themeMode}
+                plusBadge={
+                  personalPlanFeatureRequiresPremium &&
+                  (!accessResolved || !planAccess)
+                }
+                plusBadgeLabel="Plus"
+                onPress={openLearningRoute}
+              />
+            ) : null}
             {dialogsEnabled ? (
               <TabUnderlineButton
                 label={triLang(lang, {
@@ -2757,6 +3133,8 @@ export default function LessonsTab({
               keyExtractor={(item, index) =>
                 item.kind === "lesson"
                   ? `l-${item.index + 1}`
+                  : item.kind === "v2_chapter" || item.kind === "v2_session"
+                    ? item.row.id
                   : item.kind === "header"
                     ? `h-${item.label}-${index}`
                     : item.kind === "exam"
@@ -2844,6 +3222,20 @@ export default function LessonsTab({
               }
               renderItem={({ item, index: i }) => {
                 const scaleAnim = itemAnims[i];
+                if (
+                  item.kind === "v2_chapter" ||
+                  item.kind === "v2_session"
+                ) {
+                  return (
+                    <LearningV2InlineMapRow
+                      row={item.row}
+                      theme={t}
+                      fonts={f}
+                      reduceMotion={learningV2ReduceMotionPreference !== false}
+                      onSessionPress={handleLearningV2SessionPress}
+                    />
+                  );
+                }
                 if (item.kind === "attestation") {
                   const attestationAccent = isGoldTheme ? goldBright : t.accent;
                   const attestationColors = isGoldTheme
@@ -3094,55 +3486,7 @@ export default function LessonsTab({
                 if (item.kind === "exam")
                   return renderExamCard(item.level) as React.ReactElement;
                 if (item.kind === "lesson") {
-                  const lessonOrdinal = item.index + 1;
-                  const lessonCard = renderLessonCard(
-                    item,
-                  ) as React.ReactElement;
-                  if (
-                    page !== "v2" ||
-                    expandedLearningV2Lesson !== lessonOrdinal
-                  ) {
-                    return lessonCard;
-                  }
-                  const inlineRows = learningV2Accordion.rows.filter(
-                    (row) => row.lessonOrdinal === lessonOrdinal,
-                  );
-                  return (
-                    <View>
-                      {lessonCard}
-                      <LearningV2InlineMap
-                        lessonOrdinal={lessonOrdinal}
-                        rows={inlineRows}
-                        theme={t}
-                        fonts={f}
-                        onSessionPress={(
-                          selectedLesson,
-                          sessionOrdinal,
-                          state,
-                        ) => {
-                          if (state !== "current" && state !== "completed") {
-                            return;
-                          }
-                          void preloadCurrentLearningV2CourseReleasedSessionV2({
-                            environment:
-                              learningV2Catalog?.environment ?? "production",
-                            targetLanguage: studyTarget,
-                            studyTarget,
-                            learnerSourceLocale: lang,
-                            seasonId:
-                              learningV2Catalog?.seasonId ?? "learning-v2",
-                            lessonOrdinal: selectedLesson,
-                            sessionOrdinal,
-                          }).catch(() => undefined);
-                          setSelectedLearningV2Session({
-                            lessonOrdinal: selectedLesson,
-                            sessionOrdinal,
-                            state,
-                          });
-                        }}
-                      />
-                    </View>
-                  );
+                  return renderLessonCard(item) as React.ReactElement;
                 }
                 return null;
                 /* Legacy accordion renderer retained below only until the next general cleanup.

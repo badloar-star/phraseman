@@ -12,11 +12,11 @@
 //  - реальное планирование напоминания
 // ════════════════════════════════════════════════════════════════════════════
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { Alert, AppState } from 'react-native';
+import { Alert, AppState, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import * as Crypto from 'expo-crypto';
-import Purchases, { PURCHASES_ERROR_CODE, type PurchasesPackage } from 'react-native-purchases';
+import Purchases, { INTRO_ELIGIBILITY_STATUS, PURCHASES_ERROR_CODE, type PurchasesPackage } from 'react-native-purchases';
 
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { isLifetimeButtonEnabled, isPaywallTimersEnabled } from './remote_flags';
@@ -28,7 +28,8 @@ import {
   revenueCatPremiumMetadata,
 } from './premium_revenuecat_state';
 import { computeSavingsPct, computePerDayString } from './paywall_pricing';
-import { getTrialInfo, trialDaysOrDefault, type TrialInfo } from './paywall_trial_info';
+import { getTrialInfo, type TrialEligibility, type TrialInfo } from './paywall_trial_info';
+import { readOnboardingNotificationChoice } from './onboarding_notification_choice';
 import { activateUrgencyIfNeeded, getUrgencyState, getDoubledPrice, type UrgencyState } from './paywall_urgency';
 import { shouldShowExitTrialOffer } from './paywall_trial_offer';
 import { logPaywallFunnel } from './paywall_funnel';
@@ -54,11 +55,18 @@ import { createPaywallAnalyticsImpression, paywallImpressionParams, type Paywall
 import { trackProductOperationFailure } from './product_operation_analytics';
 import { claimInitialInventoryResolution, classifyPaywallInventory } from './paywall_inventory_analytics';
 import { triLang, type Lang } from '../constants/i18n';
-import { emitAppEvent, onAppEvent } from './events';
+import { actionToastTri, emitAppEvent, onAppEvent } from './events';
+import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
 import { markCelebrationPending } from './premium_celebration_state';
 import { useEnergy } from '../components/EnergyContext';
 import { invalidatePremiumCache } from './premium_guard';
 import { resumeLessonAfterPremium } from './paywall_lesson_continuation';
+import { activatePendingPersonalPlanAfterPremium } from './personal_plan_activation';
+import type { PersonalPlanState } from './personal_plan_state';
+import {
+  hasCurrentPersonalPlanSunsetAccess,
+  personalPlanPostPremiumRoute,
+} from './personal_plan_post_premium';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -89,11 +97,15 @@ type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; 
  * Во всех остальных точках входа (после урока, энергия, профиль, win-back) Pro
  * остаётся: там пользователь уже вовлечён и разовая покупка уместна.
  */
-const LIFETIME_HIDDEN_SOURCES: ReadonlySet<string> = new Set(['onboarding']);
+const LIFETIME_HIDDEN_SOURCES: ReadonlySet<string> = new Set(['onboarding', 'onboarding_plan']);
+
+// Онбординг уже содержит собственный финальный экран и после покупки сразу
+// отдаёт управление приложению. Празднование Plus здесь стало бы вторым экраном
+// после подтверждённой покупки, что прямо запрещено контрактом онбординга.
+const ONBOARDING_PURCHASE_SOURCES = new Set(['onboarding', 'onboarding_plan']);
 
 /** Exit-intent триал-оффер показываем не чаще одного раза на устройство. */
 const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
-const ONBOARDING_TRIAL_REMINDER_CHOICE_KEY = 'onboarding_trial_reminder_choice_v1';
 
 /**
  * Покупка ушла на внешнее подтверждение (iOS «Ask to Buy» у ребёнка, банковское
@@ -205,6 +217,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const [impression] = useState(() => suppliedImpression ?? createPaywallAnalyticsImpression(Crypto.randomUUID));
   const [selected, setSelected] = useState<PaywallPlan>('yearly');
   const [packages, setPackages] = useState<PremiumPackages>({});
+  const [introEligibility, setIntroEligibility] = useState<Record<string, TrialEligibility>>({});
   const packagesRef = useRef<PremiumPackages>({});
   const offeringsLoadInFlightRef = useRef(false);
   const [loading, setLoading] = useState(false);
@@ -265,9 +278,36 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         await initRevenueCat();
         const o = await Purchases.getOfferings();
         const resolvedPackages = resolvePremiumPackages(o.current?.availablePackages ?? []);
+        let resolvedEligibility: Record<string, TrialEligibility> = {};
+        if (Platform.OS === 'ios') {
+          const productIds = [resolvedPackages.monthly, resolvedPackages.yearly]
+            .map((item) => item?.product.identifier)
+            .filter((value): value is string => Boolean(value));
+          if (productIds.length > 0) {
+            try {
+              const statuses = await Purchases.checkTrialOrIntroductoryPriceEligibility(productIds);
+              resolvedEligibility = Object.fromEntries(productIds.map((productId) => {
+                const status = statuses[productId]?.status;
+                if (status === INTRO_ELIGIBILITY_STATUS.INTRO_ELIGIBILITY_STATUS_ELIGIBLE) {
+                  return [productId, 'eligible'];
+                }
+                if (
+                  status === INTRO_ELIGIBILITY_STATUS.INTRO_ELIGIBILITY_STATUS_INELIGIBLE
+                  || status === INTRO_ELIGIBILITY_STATUS.INTRO_ELIGIBILITY_STATUS_NO_INTRO_OFFER_EXISTS
+                ) {
+                  return [productId, 'ineligible'];
+                }
+                return [productId, 'unknown'];
+              }));
+            } catch {
+              resolvedEligibility = Object.fromEntries(productIds.map((productId) => [productId, 'unknown']));
+            }
+          }
+        }
         if (!deadRef.dead) {
           packagesRef.current = resolvedPackages;
           setPackages(resolvedPackages);
+          setIntroEligibility(resolvedEligibility);
         }
         return { ok: true, resolvedPackages };
       } catch {
@@ -377,13 +417,19 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const selectedPkg = selected === 'lifetime'
     ? (lifetimeAvailable ? lifetimePkg : undefined)
     : selected === 'yearly' ? packages.yearly : packages.monthly;
-  const trial: TrialInfo = useMemo(() => getTrialInfo(selectedPkg), [selectedPkg]);
+  const selectedProductId = selectedPkg?.product.identifier;
+  const selectedEligibility = selectedProductId ? introEligibility[selectedProductId] ?? 'unknown' : 'unknown';
+  const trial: TrialInfo = useMemo(
+    () => getTrialInfo(selectedPkg, selectedEligibility),
+    [selectedEligibility, selectedPkg],
+  );
   // В dev-бандле тест-меню может форсить триал-режим (_force_trial_ui=1), чтобы
   // увидеть trust-бейдж/exit-оффер/таймлайн без стора. В сторе forceTrialUI=false.
   const devForceTrial = DEV_IAP_BYPASS && forceTrialUI === true;
-  const subscriptionTrialDays = trial.hasTrial ? trialDaysOrDefault(trial) : devForceTrial ? 3 : null;
+  const subscriptionTrialDays = trial.hasTrial ? trial.days : devForceTrial ? 3 : null;
   const trialDays = selected === 'lifetime' ? null : subscriptionTrialDays;
-  const ctaDisabled = purchasing || loading || restoring || (!DEV_IAP_BYPASS && !selectedPkg);
+  const selectedAvailable = DEV_IAP_BYPASS || Boolean(selectedPkg);
+  const ctaDisabled = purchasing || loading || restoring || !selectedAvailable;
 
   // «Будущая» цена выбранного плана (×2 из реальной цены стора) — ТОЛЬКО для
   // отображения в PaywallPriceUrgency; в Purchases никогда не уходит.
@@ -409,8 +455,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     if (!(await refillToMax(isCurrent))) return false;
 
     try {
-      await AsyncStorage.setItem('onboarding_step', 'name');
-      await AsyncStorage.removeItem('onboarding_done');
+      await persistPortableProgressRegister('onboarding_step', 'name');
+      await persistPortableProgressRegister('onboarding_done', null);
       emitAppEvent('onboarding_paywall_completed');
       return true;
     } catch {
@@ -444,37 +490,39 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     operationRef.current = 'purchase';
     const operationAccount = captureAccountGeneration();
     const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);
+    let activatedPersonalPlan: PersonalPlanState | null = null;
     setPurchasing(true);
     void trackEvent('purchase_started', { context, source, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
     try {
+      if (
+        context === 'personal_plan'
+        && source !== 'onboarding_plan'
+        && !(await hasCurrentPersonalPlanSunsetAccess())
+      ) {
+        markNextNavigationAsReplace();
+        router.replace(personalPlanPostPremiumRoute(false) as any);
+        return;
+      }
       await initRevenueCat(isOperationAccountCurrent);
       if (!(await syncRevenueCatIdentity(isOperationAccountCurrent))) {
-        Alert.alert(
-          triLang(lang, {
-            ru: 'Ошибка подключения',
-            uk: 'Помилка з’єднання',
-            es: 'Error de conexión',
-            'pt-BR': 'Erro de conexão',
-            vi: 'Lỗi kết nối',
-            id: 'Kesalahan koneksi',
-            tr: 'Bağlantı hatası',
-            pl: 'Błąd połączenia',
-          }),
-          triLang(lang, {
-            ru: 'Не удалось связаться с магазином. Попробуй позже.',
-            uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
-            es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
-            'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
-            vi: 'Không liên hệ được với cửa hàng. Hãy thử lại sau.',
-            id: 'Tidak bisa menghubungi toko. Coba lagi nanti.',
-            tr: 'Mağazaya bağlanılamadı. Daha sonra tekrar dene.',
-            pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
-          }),
-        );
+        // зачем: голый системный Alert не годится для фирменного фидбека — владелец
+        // попросил заменить на тост-механизм (тот же, что в shards_shop/coin_exchange).
+        // Ошибка обязана остаться видимой, а не молча уйти в тишину.
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Не удалось связаться с магазином. Попробуй позже.',
+          uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
+          es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
+          'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
+          vi: 'Không liên hệ được với cửa hàng. Hãy thử lại sau.',
+          id: 'Tidak bisa menghubungi toko. Coba lagi nanti.',
+          tr: 'Mağazaya bağlanılamadı. Daha sonra tekrar dene.',
+          pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
+        }));
         void trackEvent('purchase_failed', { context, plan: selected, paywall: variant, error: 'identity_sync', ...paywallImpressionParams(impression) });
         return;
       }
-      const pkgTrial = getTrialInfo(pkg);
+      const pkgEligibility = introEligibility[pkg.product.identifier] ?? 'unknown';
+      const pkgTrial = getTrialInfo(pkg, pkgEligibility);
       const purchaseResult = await runRevenueCatOperationForGeneration(
         operationAccount,
         () => Purchases.purchasePackage(pkg), // RAW пакет — цена стора без изменений
@@ -508,8 +556,16 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         );
         if (!persisted || !isCommitCurrent()) return false;
         if (!(await refillToMax(isCommitCurrent))) return false;
+        if (context === 'personal_plan') {
+          activatedPersonalPlan = await activatePendingPersonalPlanAfterPremium();
+          if (!isCommitCurrent()) return false;
+        }
         // Разовая покупка Phraseman Pro (lifetime) → синяя Pro-анимация; подписка → жёлтый Plus.
-        await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
+        // В онбординге после подтверждения сразу открывается приложение — без
+        // дополнительного экрана празднования поверх первого домашнего кадра.
+        if (!ONBOARDING_PURCHASE_SOURCES.has(source)) {
+          await markCelebrationPending(null, confirmedPlan === 'lifetime' ? 'pro' : 'premium');
+        }
         if (!isCommitCurrent()) return false;
         emitAppEvent('premium_activated');
         return isCommitCurrent();
@@ -524,13 +580,14 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // ставим напоминание за день до списания. Обещание таймлайна = правда.
         void (async () => {
           try {
-            const reminderChoice = source === 'onboarding'
-              ? await AsyncStorage.getItem(ONBOARDING_TRIAL_REMINDER_CHOICE_KEY).catch(() => null)
+            const reminderChoice = ONBOARDING_PURCHASE_SOURCES.has(source)
+              ? await readOnboardingNotificationChoice()
               : null;
-            if (reminderChoice === 'skip') return;
+            if (reminderChoice === 'skip' || reminderChoice === 'blocked') return;
             const granted = await requestNotificationPermission();
             if (!granted) return;
-            const days = trialDaysOrDefault(pkgTrial);
+            const days = pkgTrial.days;
+            if (!days) return;
             const price = storePriceTrim(pkg.product.priceString);
             const ok = await scheduleTrialEndReminder(
               days,
@@ -568,7 +625,21 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         if (activated.status !== 'ok' || !activated.value) return;
         return;
       }
+      // onboarding_plan is rendered inside CleanOnboarding, not as a route modal.
+      // premium_activated above lets that component finish its own flow; dismissing
+      // here would mutate an unrelated native-stack entry and can flash another screen.
+      if (source === 'onboarding_plan') return;
       if (!isOperationAccountCurrent()) return;
+      if (context === 'personal_plan' && source !== 'onboarding_plan') {
+        const hasActivatedOrExistingPlan = activatedPersonalPlan
+          ? await hasCurrentPersonalPlanSunsetAccess(activatedPersonalPlan)
+          : await hasCurrentPersonalPlanSunsetAccess();
+        if (!isOperationAccountCurrent()) return;
+        const personalPlanRoute = personalPlanPostPremiumRoute(hasActivatedOrExistingPlan);
+        markNextNavigationAsReplace();
+        router.replace(personalPlanRoute as any);
+        return;
+      }
       if (resumeLessonAfterPremium(router, resumeLessonId)) return;
       dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
     } catch (err: unknown) {
@@ -620,7 +691,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       operationRef.current = null;
       setPurchasing(false);
     }
-  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, refillToMax, finishOnboardingPaywallFlow, impression, resumeLessonId]);
+  }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, refillToMax, finishOnboardingPaywallFlow, impression, introEligibility, resumeLessonId]);
 
   // ── восстановление ─────────────────────────────────────────────────────────
   const handleRestore = useCallback(async () => {
@@ -630,32 +701,32 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     operationRef.current = 'restore';
     const operationAccount = captureAccountGeneration();
     const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);
+    let activatedPersonalPlan: PersonalPlanState | null = null;
     setRestoring(true);
     try {
+      if (
+        context === 'personal_plan'
+        && source !== 'onboarding_plan'
+        && !(await hasCurrentPersonalPlanSunsetAccess())
+      ) {
+        markNextNavigationAsReplace();
+        router.replace(personalPlanPostPremiumRoute(false) as any);
+        return;
+      }
       await initRevenueCat(isOperationAccountCurrent);
       if (!(await syncRevenueCatIdentity(isOperationAccountCurrent))) {
-        Alert.alert(
-          triLang(lang, {
-            ru: 'Ошибка подключения',
-            uk: 'Помилка з’єднання',
-            es: 'Error de conexión',
-            'pt-BR': 'Erro de conexão',
-            vi: 'Lỗi kết nối',
-            id: 'Kesalahan koneksi',
-            tr: 'Bağlantı hatası',
-            pl: 'Błąd połączenia',
-          }),
-          triLang(lang, {
-            ru: 'Не удалось связаться с магазином. Попробуй позже.',
-            uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
-            es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
-            'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
-            vi: 'Không liên hệ được với cửa hàng. Hãy thử lại sau.',
-            id: 'Tidak bisa menghubungi toko. Coba lagi nanti.',
-            tr: 'Mağazaya bağlanılamadı. Daha sonra tekrar dene.',
-            pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
-          }),
-        );
+        // зачем: тот же фирменный тост вместо системного Alert, что и в purchase —
+        // ошибка подключения к стору при восстановлении обязана остаться видимой.
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Не удалось связаться с магазином. Попробуй позже.',
+          uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
+          es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
+          'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
+          vi: 'Không liên hệ được với cửa hàng. Hãy thử lại sau.',
+          id: 'Tidak bisa menghubungi toko. Coba lagi nanti.',
+          tr: 'Mağazaya bağlanılamadı. Daha sonra tekrar dene.',
+          pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
+        }));
         return;
       }
       const restoreResult = await runRevenueCatOperationForGeneration(
@@ -687,14 +758,35 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           );
           if (!persisted || !isCommitCurrent()) return false;
           if (!(await refillToMax(isCommitCurrent))) return false;
+          if (context === 'personal_plan') {
+            activatedPersonalPlan = await activatePendingPersonalPlanAfterPremium();
+            if (!isCommitCurrent()) return false;
+          }
           // То же празднование, что при покупке: без него после переустановки
           // юзер не понимал, что доступ вернулся, и порой оформлял заново.
-          await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium');
+          // Исключение — онбординг: его контракт завершает восстановление сразу
+          // входом в приложение, без ещё одного экрана.
+          if (!ONBOARDING_PURCHASE_SOURCES.has(source)) {
+            await markCelebrationPending(null, plan === 'lifetime' ? 'pro' : 'premium');
+          }
           if (!isCommitCurrent()) return false;
           emitAppEvent('premium_activated');
           return isCommitCurrent();
         });
         if (applied.status !== 'ok' || !applied.value) return;
+        // зачем: раньше восстановление молча активировало премиум и закрывало пейвол —
+        // владелец попросил короткое видимое подтверждение ДО навигации/закрытия,
+        // тем же тост-механизмом. Логику активации/навигации ниже не трогаем.
+        emitAppEvent('action_toast', actionToastTri('success', {
+          ru: 'Покупки восстановлены',
+          uk: 'Покупки відновлено',
+          es: 'Compras restauradas',
+          'pt-BR': 'Compras restauradas',
+          vi: 'Đã khôi phục giao dịch mua',
+          id: 'Pembelian dipulihkan',
+          tr: 'Satın alımlar geri yüklendi',
+          pl: 'Zakupy przywrócone',
+        }));
         void trackEvent('subscription_restored', { context, paywall: variant });
         logPaywallFunnel('restore_completed', { variant, context, plan });
         if (source === 'onboarding') {
@@ -706,56 +798,47 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           if (activated.status !== 'ok' || !activated.value) return;
           return;
         }
+        if (source === 'onboarding_plan') return;
         if (!isOperationAccountCurrent()) return;
+        if (context === 'personal_plan' && source !== 'onboarding_plan') {
+          const hasActivatedOrExistingPlan = activatedPersonalPlan
+            ? await hasCurrentPersonalPlanSunsetAccess(activatedPersonalPlan)
+            : await hasCurrentPersonalPlanSunsetAccess();
+          if (!isOperationAccountCurrent()) return;
+          const personalPlanRoute = personalPlanPostPremiumRoute(hasActivatedOrExistingPlan);
+          markNextNavigationAsReplace();
+          router.replace(personalPlanRoute as any);
+          return;
+        }
         if (resumeLessonAfterPremium(router, resumeLessonId)) return;
         dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
       } else {
-        Alert.alert(
-          triLang(lang, {
-            ru: 'Покупки не найдены',
-            uk: 'Покупки не знайдено',
-            es: 'No se encontraron compras',
-            'pt-BR': 'Compras não encontradas',
-            vi: 'Không tìm thấy giao dịch mua',
-            id: 'Pembelian tidak ditemukan',
-            tr: 'Satın alma bulunamadı',
-            pl: 'Nie znaleziono zakupów',
-          }),
-          triLang(lang, {
-            ru: 'Активных подписок не обнаружено.',
-            uk: 'Активних підписок не знайдено.',
-            es: 'No hay suscripciones activas.',
-            'pt-BR': 'Nenhuma assinatura ativa encontrada.',
-            vi: 'Không có gói đăng ký đang hoạt động.',
-            id: 'Tidak ada langganan aktif.',
-            tr: 'Aktif abonelik bulunamadı.',
-            pl: 'Nie znaleziono aktywnych subskrypcji.',
-          }),
-        );
+        // зачем: «активных покупок нет» — честная и ожидаемая ошибка (не баг), но
+        // обязана остаться видимой пользователю. Системный Alert → фирменный тост.
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Активных подписок не обнаружено.',
+          uk: 'Активних підписок не знайдено.',
+          es: 'No hay suscripciones activas.',
+          'pt-BR': 'Nenhuma assinatura ativa encontrada.',
+          vi: 'Không có gói đăng ký đang hoạt động.',
+          id: 'Tidak ada langganan aktif.',
+          tr: 'Aktif abonelik bulunamadı.',
+          pl: 'Nie znaleziono aktywnych subskrypcji.',
+        }));
       }
     } catch {
-      Alert.alert(
-        triLang(lang, {
-          ru: 'Ошибка',
-          uk: 'Помилка',
-          es: 'Error',
-          'pt-BR': 'Erro',
-          vi: 'Lỗi',
-          id: 'Error',
-          tr: 'Hata',
-          pl: 'Błąd',
-        }),
-        triLang(lang, {
-          ru: 'Не удалось восстановить покупки. Попробуй позже.',
-          uk: 'Не вдалося відновити покупки. Спробуй пізніше.',
-          es: 'No se pudieron restaurar las compras. Inténtalo más tarde.',
-          'pt-BR': 'Não foi possível restaurar as compras. Tente mais tarde.',
-          vi: 'Không khôi phục được giao dịch mua. Hãy thử lại sau.',
-          id: 'Tidak bisa memulihkan pembelian. Coba lagi nanti.',
-          tr: 'Satın alımlar geri yüklenemedi. Daha sonra tekrar dene.',
-          pl: 'Nie udało się przywrócić zakupów. Spróbuj później.',
-        }),
-      );
+      // зачем: сбой самого восстановления (сеть/стор) — тот же тост-механизм,
+      // ошибка не должна тонуть молча.
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось восстановить покупки. Попробуй позже.',
+        uk: 'Не вдалося відновити покупки. Спробуй пізніше.',
+        es: 'No se pudieron restaurar las compras. Inténtalo más tarde.',
+        'pt-BR': 'Não foi possível restaurar as compras. Tente mais tarde.',
+        vi: 'Không khôi phục được giao dịch mua. Hãy thử lại sau.',
+        id: 'Tidak bisa memulihkan pembelian. Coba lagi nanti.',
+        tr: 'Satın alımlar geri yüklenemedi. Daha sonra tekrar dene.',
+        pl: 'Nie udało się przywrócić zakupów. Spróbuj później.',
+      }));
     } finally {
       operationRef.current = null;
       setRestoring(false);
@@ -777,8 +860,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     if (source === 'onboarding') {
       void (async () => {
         try {
-          await AsyncStorage.setItem('onboarding_step', 'name');
-          await AsyncStorage.removeItem('onboarding_done');
+          await persistPortableProgressRegister('onboarding_step', 'name');
+          await persistPortableProgressRegister('onboarding_done', null);
         } catch { /* best-effort */ }
         // НЕ навигируем на '/(tabs)/home'. Слушатель в _layout по этому событию
         // синхронно поднимает непрозрачный онбординг-оверлей (absoluteFill, zIndex 50) —
@@ -793,8 +876,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   }, [router, context, source, variant, selected, lang, impression]);
 
   // Exit-intent оффер триала: при попытке уйти с high-value контекста, когда в
-  // сторе реально есть бесплатный триал, мягко спрашиваем «может, всё-таки 3 дня
-  // бесплатно?» — без давления, с честным «платить не нужно, отмени за день».
+  // сторе реально есть бесплатный триал, мягко напоминаем о подтверждённом числе
+  // бесплатных дней — без давления и без синтетической длительности.
   // Показываем ОДИН раз на устройство (кулдаун-ключ), и только если триал есть в
   // сторе — иначе это была бы пустая всплывашка. Не в онбординге.
   // зачем: владелец увидел на экране СИСТЕМНЫЙ Alert вместо нашей модалки —
@@ -836,7 +919,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           if (!devForceTrial) await AsyncStorage.setItem(EXIT_TRIAL_OFFER_SEEN_KEY, '1').catch(() => {});
         } catch { /* при сбое чтения — просто закрываем без оффера */ doClose(reason); return; }
         void trackEvent('paywall_exit_offer_shown', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
-        const days = trialDays ?? 3;
+        const days = trialDays;
+        if (!days) { doClose(reason); return; }
         setExitOffer({
           title: triLang(lang, {
             ru: `Точно уходишь? ${days} дня доступа — бесплатно`,
@@ -897,7 +981,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     yearlyPrice, monthlyPrice, yearlyPerMonth, monthlyPerMonth,
     lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,
-    trial, trialDays, ctaDisabled,
+    trial, trialDays, ctaDisabled, selectedAvailable,
     urgency, futurePrice,
     handlePurchase, handleRestore, handleClose,
     exitOffer,

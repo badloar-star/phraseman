@@ -79,6 +79,7 @@ import { useReduceMotionPreference } from "../../hooks/use_reduce_motion";
 import { useTabContentBottomPad } from "../../hooks/use-tab-content-bottom-pad";
 import { useRuntimeActive } from "../../hooks/use_runtime_active";
 import LearningV2InlineNodeReveal from "../../components/LearningV2InlineNodeReveal";
+import LearningV2MapNode from "../../components/LearningV2MapNode";
 import { getExamMedalTier, getEarnedDots } from "../medal_utils";
 import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
@@ -1168,6 +1169,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   theme,
   fonts,
   reduceMotion,
+  runtimeActive,
   onSessionPress,
 }: Readonly<{
   row: LearningV2InlineMapRowV1;
@@ -1175,6 +1177,8 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   theme: ReturnType<typeof useTheme>["theme"];
   fonts: ReturnType<typeof useTheme>["f"];
   reduceMotion: boolean;
+  /** useRuntimeActive(ownerVisible) таба «Уроки» — гейт дыхания текущего узла. */
+  runtimeActive: boolean;
   onSessionPress: (
     lessonOrdinal: number,
     sessionOrdinal: number,
@@ -1261,7 +1265,16 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   const wave = [-72, -34, 20, 70, 86, 52, 4, -48][
     (row.sessionOrdinal - 1) % 8
   ];
-  const nodeSize = checkpoint ? 64 : current ? 66 : 54;
+  // зачем: «плоский объём как у Duolingo» (владелец, 22.08) — площадка-эллипс
+  // шире, чем выше, + цоколь 6px; размеры согласованы с макетом каталога движения.
+  const nodeW = checkpoint ? 66 : current ? 70 : 58;
+  const nodeH = checkpoint ? 56 : current ? 58 : 48;
+  const nodeR = checkpoint ? 20 : nodeH / 2;
+  const faceColor = current
+    ? theme.accent
+    : completed
+      ? theme.correct
+      : theme.bgSurface2;
   const revealIndex = row.sessionOrdinal + row.chapterOrdinal - 1;
 
   return (
@@ -1277,8 +1290,16 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
         height={checkpoint ? 104 : 82}
         reduceMotion={reduceMotion}
       >
-        <TouchableOpacity
-          accessibilityRole="button"
+        <LearningV2MapNode
+          state={row.state}
+          width={nodeW}
+          height={nodeH}
+          radius={nodeR}
+          faceColor={faceColor}
+          haloColor={current ? theme.accent : undefined}
+          accessible={accessible}
+          active={runtimeActive}
+          reduceMotion={reduceMotion}
           accessibilityLabel={`${label}, ${
             accessible
               ? triLang(lang, {
@@ -1302,76 +1323,44 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
                   pl: "zablokowana",
                 })
           }`}
-          disabled={!accessible}
-          activeOpacity={0.78}
           onPress={() =>
             onSessionPress(row.lessonOrdinal, row.sessionOrdinal, row.state)
           }
           style={{
-            width: nodeSize,
-            height: nodeSize,
-            borderRadius: checkpoint ? 20 : nodeSize / 2,
             transform: [{ translateX: wave }],
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: current
-              ? theme.accent
-              : completed
-                ? theme.correct
-                : theme.bgSurface2,
-            borderWidth: current || checkpoint ? 2 : 1,
-            borderColor: current ? theme.borderHighlight : theme.border,
-            opacity: row.state === "locked" ? 0.7 : 1,
-            shadowColor: current ? theme.accent : theme.cardShadow,
-            shadowOpacity: current ? 0.28 : 0.08,
-            shadowRadius: current ? 12 : 4,
-            shadowOffset: { width: 0, height: 4 },
+            opacity: row.state === "locked" ? 0.78 : 1,
           }}
         >
-          <Ionicons
-            name={
-              checkpoint
-                ? "trophy"
-                : LEARNING_V2_SESSION_STATE_ICON[row.state]
-            }
-            size={checkpoint ? 27 : current ? 27 : 20}
-            color={
-              current || completed
-                ? theme.correctText
-                : checkpoint
-                  ? theme.gold
-                  : theme.textMuted
-            }
-          />
-          {!checkpoint ? (
-            <View
+          {checkpoint ? (
+            <Ionicons
+              name="trophy"
+              size={26}
+              color={accessible ? theme.correctText : theme.gold}
+            />
+          ) : completed ? (
+            <Ionicons
+              name={LEARNING_V2_SESSION_STATE_ICON.completed}
+              size={22}
+              color={theme.correctText}
+            />
+          ) : row.state === "locked" ? (
+            <Ionicons
+              name={LEARNING_V2_SESSION_STATE_ICON.locked}
+              size={18}
+              color={theme.textMuted}
+            />
+          ) : (
+            <Text
               style={{
-                position: "absolute",
-                right: -5,
-                bottom: -4,
-                minWidth: 22,
-                height: 22,
-                borderRadius: 11,
-                paddingHorizontal: 4,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: theme.bgCard,
-                borderWidth: 1,
-                borderColor: theme.border,
+                color: current ? theme.correctText : theme.textPrimary,
+                fontSize: current ? 22 : 16,
+                fontWeight: "700",
               }}
             >
-              <Text
-                style={{
-                  color: accessible ? theme.textPrimary : theme.textMuted,
-                  fontSize: 10,
-                  fontWeight: "900",
-                }}
-              >
-                {row.sessionOrdinal}
-              </Text>
-            </View>
-          ) : null}
-        </TouchableOpacity>
+              {row.sessionOrdinal}
+            </Text>
+          )}
+        </LearningV2MapNode>
         {checkpoint ? (
           <View
             pointerEvents="none"
@@ -3229,9 +3218,11 @@ export default function LessonsTab({
                   return (
                     <LearningV2InlineMapRow
                       row={item.row}
+                      lang={lang}
                       theme={t}
                       fonts={f}
                       reduceMotion={learningV2ReduceMotionPreference !== false}
+                      runtimeActive={lessonsRuntimeActive}
                       onSessionPress={handleLearningV2SessionPress}
                     />
                   );

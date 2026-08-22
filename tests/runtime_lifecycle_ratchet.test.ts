@@ -100,7 +100,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'app/lesson_intro_screens.tsx': runtime('Intro hint and CTA loops require focused foreground runtime.', ['!lessonIntroRuntimeActive || allRevealed', '!lessonIntroRuntimeActive || !ctaReady']),
   'app/level_gifts_inventory.tsx': guarded('Spin pulse runs only on the focused foreground inventory and cancels on blur.'),
   'app/pack_opening.tsx': runtime('Card pulse receives runtime activity from the screen owner.', ['active={packOpeningRuntimeActive}', 'if (!active || flipped)', 'loop.stop()']),
-  'app/review.tsx': { owner: 'transient_mount', reason: 'Particle and burn loops exist only inside bounded feedback components that unmount when the effect ends.', requiredTokens: ['i === index && burning &&', '<BurnCardEffect', 'cancelAnimation(rotate)'] },
   'app/shards_shop.tsx': guarded('Shop loops already use screen focus plus AppState and explicit cancellation.'),
   'app/streak_stats.tsx': runtime('Stats spin pulse runs only while the stats screen is focused in the foreground.', ['statsRuntimeActive && spinBalance > 0', 'cancelAnimation(spinButtonPulse)']),
   'app/voice_equalizer.tsx': {
@@ -152,6 +151,11 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // запрещает). Пульс микрофона всё равно пломбируем: живёт только в фазе
   // active при активном рантайме, вне её — loop.stop() и сброс масштаба.
   'components/learning-v2-lab/ModeDemoPlayer.tsx': runtime('Lab mic pulse runs only during the active phase on focused foreground runtime and resets on stop.', ["if (phase !== 'active' || !runtimeActive)", 'loop.stop()', 'pulse.setValue(1)']),
+  // зачем 2026-08-22: дыхание текущего узла карты Learning V2 (spec mock 08,
+  // владелец утвердил в каталоге движения). Гало живёт только при active-пропе,
+  // который lessons.tsx собирает из useRuntimeActive(ownerVisible) — честный
+  // сигнал видимости таба; reduce motion держит статичный кадр.
+  'components/LearningV2MapNode.tsx': owned('Map node halo breathes only while the Lessons tab owns the runtime (active prop from useRuntimeActive) with reduced motion off; otherwise the value is cancelled and pinned static.', ['if (!active || reduceMotion)', 'cancelAnimation(halo)']),
   'components/PlayerProfileModal.tsx': owned('Profile shimmer exists only while a player is present.', ['if (!player)', 'return () => loop.stop()']),
   'components/PremiumCelebrationModal.tsx': owned('Celebration motion is visible-only and cancels Reanimated values while hidden.', ['if (!visible)', 'cancelAnimation(ringSpin)']),
   'components/PremiumGoldButton.tsx': runtime('Gold CTA shine requires focused foreground runtime plus explicit owner visibility.', ['active: boolean', 'active && premiumButtonRuntimeActive', '!buttonAnimationActive', 'anim.stop()']),

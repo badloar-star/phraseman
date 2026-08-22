@@ -132,44 +132,42 @@
   .replay:hover { filter: brightness(1.08); }
   .replay:active { transform: scale(0.97); }
 
-  /* ── Узлы карты — объёмные, с бликом, нижней гранью и тенью (решение владельца 22.08) ── */
+  /* ── Узлы карты: плоский объём как у Duolingo (решение владельца 22.08) ──
+     Цельная яркая площадка-эллипс + сплошной цоколь того же цвета темнее,
+     видимый снизу на 6px. Без градиентов, бликов и рамок. Нажатие опускает
+     площадку на цоколь целиком. В CSS цоколь — box-shadow 0 6px 0 без блюра. */
   .node {
-    width: 54px; height: 54px;
+    --face: #2b3155;
+    --plate: #171b31;
+    width: 58px; height: 48px;
     border-radius: 50%;
-    background: linear-gradient(180deg, #2a3054 0%, #1b2038 100%);
+    background: var(--face);
     display: flex; align-items: center; justify-content: center;
     color: var(--muted);
     font-weight: 800;
     position: relative;
     box-shadow:
-      inset 0 2px 0 rgba(255, 255, 255, .10),
-      inset 0 -5px 0 #10132a,
-      0 9px 18px rgba(4, 6, 18, .5);
-    transition: box-shadow calc(120ms * var(--k)) ease;
+      0 6px 0 var(--plate),
+      0 14px 18px rgba(4, 6, 18, .35);
+    transition:
+      transform calc(120ms * var(--k)) cubic-bezier(.23,1,.32,1),
+      box-shadow calc(120ms * var(--k)) cubic-bezier(.23,1,.32,1);
   }
   .node.done {
-    background: linear-gradient(180deg, #62e99a 0%, #38cd6f 100%);
+    --face: #45d47f;
+    --plate: #29a35c;
     color: var(--correct-ink);
-    box-shadow:
-      inset 0 2px 0 rgba(255, 255, 255, .38),
-      inset 0 -5px 0 #17aa56,
-      0 10px 20px rgba(35, 160, 90, .32);
   }
   .node.current {
-    width: 66px; height: 66px;
-    background: linear-gradient(180deg, #97a3ff 0%, #6373f6 100%);
+    --face: #7c8cff;
+    --plate: #4e5cdb;
+    width: 70px; height: 58px;
     color: #0b0e1b;
-    box-shadow:
-      inset 0 2px 0 rgba(255, 255, 255, .42),
-      inset 0 -6px 0 #4353d6,
-      0 13px 28px rgba(85, 99, 232, .5);
   }
   .node.locked {
-    opacity: .72;
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, .06),
-      inset 0 -4px 0 #0e1126,
-      0 6px 12px rgba(4, 6, 18, .4);
+    --face: #232849;
+    --plate: #141830;
+    opacity: .8;
   }
   .node svg { display: block; }
 
@@ -179,8 +177,8 @@
     font: 800 11px/1 "Manrope", sans-serif; letter-spacing: .14em;
     color: var(--accent); align-self: flex-start;
   }
-  .mapcol .node { width: 46px; height: 46px; font-size: 14px; }
-  .mapcol .node.current { width: 56px; height: 56px; }
+  .mapcol .node { width: 50px; height: 42px; font-size: 14px; }
+  .mapcol .node.current { width: 60px; height: 50px; }
   .reveal-item { opacity: .88; transform: translateY(6px) scale(.96); }
   .played .reveal-item {
     opacity: 1; transform: none;
@@ -222,7 +220,7 @@
   .hint.show { opacity: 1; transform: translate(-50%, 0); }
 
   /* A4 — звёзды на пройденных узлах */
-  .ministars { position: absolute; left: 50%; bottom: -15px; transform: translateX(-50%); display: flex; gap: 2px; }
+  .ministars { position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%); display: flex; gap: 2px; }
   .ministar { color: var(--gold); font-size: 12px; line-height: 1; opacity: 0; transform: scale(.4); }
   .ministar.dim { color: #3a4060; opacity: 0; }
   .stars-in .ministar {
@@ -246,14 +244,11 @@
   .wallet.bump { animation: wbump calc(360ms * var(--k)) cubic-bezier(.38,.70,.125,1); }
   @keyframes wbump { 0% { transform: scale(1); } 45% { transform: scale(1.16); } 100% { transform: scale(1); } }
   .scene .node.sceneA { position: absolute; left: 46px; bottom: 108px; }
-  .scene .node.sceneB { position: absolute; left: 150px; bottom: 34px; width: 56px; height: 56px; }
+  .scene .node.sceneB { position: absolute; left: 150px; bottom: 34px; }
   .scene .node.sceneB.pop {
-    background: linear-gradient(180deg, #97a3ff 0%, #6070f4 100%);
+    --face: #7c8cff;
+    --plate: #4e5cdb;
     color: #0b0e1b;
-    box-shadow:
-      inset 0 2px 0 rgba(255, 255, 255, .42),
-      inset 0 -6px 0 #4353d6,
-      0 13px 28px rgba(85, 99, 232, .5);
     animation: npop calc(420ms * var(--k)) cubic-bezier(.38,.70,.125,1);
   }
   @keyframes npop { 0% { transform: scale(.7); } 55% { transform: scale(1.1); } 100% { transform: scale(1); } }
@@ -284,21 +279,13 @@
   }
   .sheet .cta:active { transform: scale(0.97); }
 
-  /* A7 / B1 — нажатия: объёмный узел физически вжимается в свою нижнюю грань */
-  .press {
-    transition:
-      transform calc(120ms * var(--k)) cubic-bezier(.23,1,.32,1),
-      box-shadow calc(120ms * var(--k)) cubic-bezier(.23,1,.32,1);
-    cursor: pointer;
-  }
-  .press:active {
-    transform: translateY(2px) scale(.96);
-  }
-  .node.current.press:active {
+  /* A7 / B1 — нажатия: площадка опускается на цоколь, как у Duolingo */
+  .press { cursor: pointer; }
+  .node.press:active {
+    transform: translateY(6px);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, .3),
-      inset 0 -3px 0 #4353d6,
-      0 6px 14px rgba(85, 99, 232, .4);
+      0 0 0 var(--plate),
+      0 6px 10px rgba(4, 6, 18, .3);
   }
   .cta-demo {
     font: 800 16px/1 "Manrope", sans-serif;
@@ -433,8 +420,9 @@
     <h2>А. Карта урока</h2>
     <p class="groupnote">Инлайн-карта из 56 сессий под карточкой урока. Раскрытие уже работает по новой спеке;
       остальное — премиальный слой из спеки mock&nbsp;08, который предлагается перенести в инлайн-карту.
-      Узлы объёмные, как физические кнопки, по решению владельца от 22.08: верхний блик,
-      плотная нижняя грань и тень на карту; нажатие вдавливает узел в его грань.</p>
+      Узлы объёмные в духе Duolingo, по решению владельца от 22.08: плоская яркая площадка
+      и сплошной цоколь того же цвета темнее, без бликов и градиентов; нажатие опускает
+      площадку на цоколь. Цвета, размеры и иконки наши, из темы приложения.</p>
 
     <!-- A1 -->
     <article class="card">
@@ -604,11 +592,10 @@
           <span class="chip state-new">предложение</span>
           <span class="chip src">спека mock 08</span>
           <span class="chip">120 ms</span>
-          <span class="chip">вниз 2px + scale 0.96</span>
-          <span class="chip">грань сжимается</span>
+          <span class="chip">вниз на цоколь, 6px</span>
         </div>
-        <p>Узел объёмный, поэтому нажатие физическое: он опускается на свою нижнюю грань,
-          грань сжимается, тень уменьшается. Отпускаешь, и он упруго встаёт обратно.
+        <p>Нажатие физическое, как у Duolingo: площадка опускается на цоколь на всю его
+          высоту, тень прижимается. Отпускаешь, и кнопка мгновенно встаёт обратно.
           В коде это PressableHybrid вместо голого TouchableOpacity. Подержи узел нажатым.</p>
       </div>
     </article>

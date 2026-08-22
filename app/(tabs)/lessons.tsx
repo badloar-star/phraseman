@@ -2035,13 +2035,97 @@ export default function LessonsTab({
           selectedLearningV2Session.sessionOrdinal,
         )
       : "");
+  // зачем: «спокойный отказ» закрытого узла (спека mock 08, макет A3) — тап по
+  // закрытой сессии называет точную предпосылку вместо мёртвой тишины. Плашка
+  // абсолютная (нет сдвига layout), живёт 2.2с, reduce motion показывает сразу.
+  const [learningV2DenialHint, setLearningV2DenialHint] = useState<
+    string | null
+  >(null);
+  const learningV2DenialHintTimers = useRef<{
+    hide: ReturnType<typeof setTimeout> | null;
+    unmount: ReturnType<typeof setTimeout> | null;
+  }>({ hide: null, unmount: null });
+  const learningV2DenialHintProgress = useSharedValue(0);
+  const learningV2DenialHintStyle = useAnimatedStyle(() => ({
+    opacity: learningV2DenialHintProgress.value,
+    transform: [{ translateY: (1 - learningV2DenialHintProgress.value) * 8 }],
+  }));
+  const clearLearningV2DenialHintTimers = useCallback(() => {
+    const timers = learningV2DenialHintTimers.current;
+    if (timers.hide) clearTimeout(timers.hide);
+    if (timers.unmount) clearTimeout(timers.unmount);
+    timers.hide = null;
+    timers.unmount = null;
+  }, []);
+  useEffect(() => clearLearningV2DenialHintTimers, [clearLearningV2DenialHintTimers]);
+  const showLearningV2DenialHint = useCallback(
+    (text: string) => {
+      clearLearningV2DenialHintTimers();
+      setLearningV2DenialHint(text);
+      const instant = learningV2ReduceMotionPreference !== false;
+      learningV2DenialHintProgress.value = withTiming(1, {
+        duration: instant ? 1 : 200,
+        easing: Easing.bezier(0.23, 1, 0.32, 1),
+      });
+      learningV2DenialHintTimers.current.hide = setTimeout(() => {
+        learningV2DenialHintProgress.value = withTiming(0, {
+          duration: instant ? 1 : 200,
+          easing: Easing.bezier(0.23, 1, 0.32, 1),
+        });
+        learningV2DenialHintTimers.current.unmount = setTimeout(
+          () => setLearningV2DenialHint(null),
+          instant ? 16 : 220,
+        );
+      }, 2200);
+    },
+    [
+      clearLearningV2DenialHintTimers,
+      learningV2DenialHintProgress,
+      learningV2ReduceMotionPreference,
+    ],
+  );
   const handleLearningV2SessionPress = useCallback(
     (
       selectedLesson: number,
       sessionOrdinal: number,
       state: LearningV2AccordionSessionStateV1,
     ) => {
-      if (state !== "current" && state !== "completed") return;
+      if (state !== "current" && state !== "completed") {
+        const currentRow = learningV2Accordion.rows.find(
+          (mapRow) =>
+            mapRow.kind === "session" &&
+            mapRow.lessonOrdinal === selectedLesson &&
+            mapRow.state === "current",
+        );
+        const currentOrdinal =
+          currentRow && currentRow.kind === "session"
+            ? currentRow.sessionOrdinal
+            : null;
+        showLearningV2DenialHint(
+          currentOrdinal !== null
+            ? triLang(lang, {
+                ru: `Сначала пройди сессию ${currentOrdinal}`,
+                uk: `Спочатку пройди сесію ${currentOrdinal}`,
+                es: `Primero completa la sesión ${currentOrdinal}`,
+                "pt-BR": `Primeiro conclua a sessão ${currentOrdinal}`,
+                vi: `Hãy hoàn thành buổi ${currentOrdinal} trước`,
+                id: `Selesaikan dulu sesi ${currentOrdinal}`,
+                tr: `Önce ${currentOrdinal}. oturumu tamamla`,
+                pl: `Najpierw ukończ sesję ${currentOrdinal}`,
+              })
+            : triLang(lang, {
+                ru: "Пока закрыто",
+                uk: "Поки закрито",
+                es: "Aún bloqueada",
+                "pt-BR": "Ainda bloqueada",
+                vi: "Chưa mở",
+                id: "Masih terkunci",
+                tr: "Şimdilik kilitli",
+                pl: "Na razie zablokowana",
+              }),
+        );
+        return;
+      }
       void preloadCurrentLearningV2CourseReleasedSessionV2({
         environment: learningV2Catalog?.environment ?? "production",
         targetLanguage: studyTarget,
@@ -2057,7 +2141,13 @@ export default function LessonsTab({
         state,
       });
     },
-    [lang, learningV2Catalog, studyTarget],
+    [
+      lang,
+      learningV2Accordion.rows,
+      learningV2Catalog,
+      showLearningV2DenialHint,
+      studyTarget,
+    ],
   );
   const handleLessonsBack = useCallback(() => {
     if (page !== "lessons") {
@@ -3521,6 +3611,46 @@ export default function LessonsTab({
               }}
             />
           </BouncyWrap>
+          {learningV2DenialHint !== null ? (
+            <Reanimated.View
+              pointerEvents="none"
+              accessibilityLiveRegion="polite"
+              style={[
+                {
+                  position: "absolute",
+                  left: 24,
+                  right: 24,
+                  bottom: 96,
+                  alignItems: "center",
+                },
+                learningV2DenialHintStyle,
+              ]}
+            >
+              <View
+                style={{
+                  backgroundColor: t.bgCard,
+                  borderRadius: 14,
+                  paddingHorizontal: 18,
+                  paddingVertical: 12,
+                  shadowColor: t.cardShadow,
+                  shadowOpacity: 0.35,
+                  shadowRadius: 14,
+                  shadowOffset: { width: 0, height: 6 },
+                  elevation: 6,
+                }}
+              >
+                <Text
+                  style={{
+                    color: t.textPrimary,
+                    fontSize: 14.5,
+                    fontWeight: "700",
+                  }}
+                >
+                  {learningV2DenialHint}
+                </Text>
+              </View>
+            </Reanimated.View>
+          ) : null}
         </View>
       </ScreenGradient>
       <ThemedChoiceModal
@@ -3534,8 +3664,26 @@ export default function LessonsTab({
           {
             label:
               selectedLearningV2Session?.state === "completed"
-                ? "Повторить"
-                : "Начать",
+                ? triLang(lang, {
+                    ru: "Повторить",
+                    uk: "Повторити",
+                    es: "Repetir",
+                    "pt-BR": "Repetir",
+                    vi: "Luyện lại",
+                    id: "Ulangi",
+                    tr: "Tekrarla",
+                    pl: "Powtórz",
+                  })
+                : triLang(lang, {
+                    ru: "Начать",
+                    uk: "Почати",
+                    es: "Empezar",
+                    "pt-BR": "Começar",
+                    vi: "Bắt đầu",
+                    id: "Mulai",
+                    tr: "Başla",
+                    pl: "Zacznij",
+                  }),
             onPress: () => {
               const selected = selectedLearningV2Session;
               if (!selected) return;
@@ -3564,7 +3712,16 @@ export default function LessonsTab({
             },
           },
           {
-            label: "Не сейчас",
+            label: triLang(lang, {
+              ru: "Не сейчас",
+              uk: "Не зараз",
+              es: "Ahora no",
+              "pt-BR": "Agora não",
+              vi: "Để sau",
+              id: "Nanti saja",
+              tr: "Şimdi değil",
+              pl: "Nie teraz",
+            }),
             variant: "secondary" as const,
             onPress: () => setSelectedLearningV2Session(null),
           },

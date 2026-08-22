@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, {
   Easing,
@@ -75,8 +75,32 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
 }: Props) {
   const pressY = useSharedValue(0);
   const denialScale = useSharedValue(1);
+  const popScale = useSharedValue(1);
   const halo = useSharedValue(0);
   const showHalo = state === 'current' && Boolean(haloColor);
+  const previousState = useRef<LearningV2MapNodeStateV1 | null>(null);
+
+  // зачем: возвращение из пройденной сессии меняет состояния узлов на месте —
+  // спека mock 08 требует «выстрел» нового current (scale .7→1.1→1, 420мс) и
+  // мягкую посадку узла, ставшего done. Pop только на СМЕНЕ состояния после
+  // маунта: вход строк уже анимирует LearningV2InlineNodeReveal.
+  useEffect(() => {
+    const prev = previousState.current;
+    previousState.current = state;
+    if (prev === null || prev === state || reduceMotion) return;
+    if (state === 'current') {
+      popScale.value = 0.7;
+      popScale.value = withSequence(
+        withTiming(1.1, { duration: 230, easing: PRESS_EASE }),
+        withTiming(1, { duration: 190, easing: PRESS_EASE }),
+      );
+    } else if (state === 'completed') {
+      popScale.value = withSequence(
+        withTiming(1.08, { duration: 150, easing: PRESS_EASE }),
+        withTiming(1, { duration: 170, easing: PRESS_EASE }),
+      );
+    }
+  }, [popScale, reduceMotion, state]);
 
   useEffect(() => {
     if (!showHalo) return undefined;
@@ -100,6 +124,9 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
 
   const faceStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: pressY.value }, { scale: denialScale.value }],
+  }));
+  const popStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: popScale.value }],
   }));
   const haloStyle = useAnimatedStyle(() => ({
     opacity: (0.55 + halo.value * 0.45) * 0.3,
@@ -146,46 +173,49 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
       testID={testID}
       style={[{ width, height: height + PLATE_H }, style]}
     >
-      {showHalo ? (
-        <Animated.View
+      <Animated.View style={[styles.body, popStyle]}>
+        {showHalo ? (
+          <Animated.View
+            pointerEvents="none"
+            style={[
+              styles.halo,
+              {
+                left: -10,
+                right: -10,
+                top: -10,
+                bottom: PLATE_H - 10,
+                borderRadius: radius + 10,
+                backgroundColor: haloColor,
+              },
+              haloStyle,
+            ]}
+          />
+        ) : null}
+        <View
           pointerEvents="none"
           style={[
-            styles.halo,
-            {
-              left: -10,
-              right: -10,
-              top: -10,
-              bottom: PLATE_H - 10,
-              borderRadius: radius + 10,
-              backgroundColor: haloColor,
-            },
-            haloStyle,
+            styles.plate,
+            { top: PLATE_H, height, borderRadius: radius, backgroundColor: faceColor },
           ]}
-        />
-      ) : null}
-      <View
-        pointerEvents="none"
-        style={[
-          styles.plate,
-          { top: PLATE_H, height, borderRadius: radius, backgroundColor: faceColor },
-        ]}
-      >
-        <View style={styles.plateShade} />
-      </View>
-      <Animated.View
-        style={[
-          styles.face,
-          { height, borderRadius: radius, backgroundColor: faceColor },
-          faceStyle,
-        ]}
-      >
-        {children}
+        >
+          <View style={styles.plateShade} />
+        </View>
+        <Animated.View
+          style={[
+            styles.face,
+            { height, borderRadius: radius, backgroundColor: faceColor },
+            faceStyle,
+          ]}
+        >
+          {children}
+        </Animated.View>
       </Animated.View>
     </Pressable>
   );
 });
 
 const styles = StyleSheet.create({
+  body: { flex: 1 },
   halo: { position: 'absolute' },
   plate: {
     position: 'absolute',

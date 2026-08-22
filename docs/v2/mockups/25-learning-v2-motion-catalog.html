@@ -1,0 +1,956 @@
+<title>Каталог движения Learning V2</title>
+<!-- зачем: владелец попросил видеть все анимации Learning V2 живыми макетами до внедрения.
+     Формат файла — фрагмент под Artifact-просмотр (без собственных doctype/html/head/body);
+     локально в браузере тоже открывается. Числа и кривые взяты из:
+     docs/v2/LEARNING_V2_LESSON_MAP_RN_SPEC_2026-08-02.md (карта, mock 08)
+     docs/v2/04-activity-catalog-and-storyboards.md (активности)
+     docs/superpowers/specs/2026-08-21-learning-v2-instant-map-expansion-design.md (раскрытие). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  :root {
+    --k: 1;                 /* множитель скорости: 1 обычная, 5 замедленно, 0.01 reduced */
+    --bg: #0e1120;
+    --surface: #171b2e;
+    --surface2: #212747;
+    --stage: #121527;
+    --ink: #eceef8;
+    --muted: #9198b4;
+    --accent: #7c8cff;
+    --accent-deep: #5563e8;
+    --gold: #f2c14e;
+    --correct: #4ade80;
+    --correct-ink: #07110a;
+    --wrong: #f87171;
+    --shadow: 0 18px 48px rgba(4, 6, 18, .55);
+    --shadow-soft: 0 8px 24px rgba(4, 6, 18, .38);
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: linear-gradient(180deg, #0b0e1b 0%, var(--bg) 22%, #10142a 100%);
+    color: var(--ink);
+    font-family: "Manrope", "Segoe UI", system-ui, sans-serif;
+    line-height: 1.6;
+    padding: 48px 20px 96px;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; }
+
+  header.hero { margin-bottom: 40px; }
+  .hero h1 {
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  .hero p.lead {
+    margin-top: 14px;
+    max-width: 62ch;
+    color: var(--muted);
+    font-size: 16.5px;
+  }
+  .hero p.lead b { color: var(--ink); font-weight: 600; }
+
+  .global-controls {
+    margin-top: 22px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .toggle {
+    font: 600 14px/1 "Manrope", sans-serif;
+    color: var(--ink);
+    background: var(--surface);
+    border: 0;
+    border-radius: 999px;
+    padding: 11px 18px;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: transform calc(120ms * var(--k)) cubic-bezier(.23,1,.32,1), background 160ms ease;
+  }
+  .toggle:active { transform: scale(0.97); }
+  .toggle[aria-pressed="true"] { background: var(--accent-deep); }
+  .toggle:focus-visible, .replay:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  section.group { margin-top: 56px; }
+  .group > h2 {
+    font-size: 22px; font-weight: 800; letter-spacing: -0.01em;
+  }
+  .group > p.groupnote { color: var(--muted); margin-top: 6px; max-width: 70ch; }
+
+  .card {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 0;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  @media (max-width: 780px) { .card { grid-template-columns: 1fr; } }
+
+  .stage {
+    background: var(--stage);
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 26px 20px;
+    overflow: hidden;
+  }
+  .notes { padding: 24px 26px 22px; display: flex; flex-direction: column; gap: 12px; }
+  .notes h3 { font-size: 18.5px; font-weight: 800; letter-spacing: -0.01em; }
+  .notes p { color: var(--muted); font-size: 15px; max-width: 58ch; }
+  .notes p b { color: var(--ink); font-weight: 600; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font: 500 12px/1 "JetBrains Mono", monospace;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: var(--surface2);
+    color: var(--ink);
+  }
+  .chip.src { color: var(--muted); }
+  .chip.state-live { background: rgba(74, 222, 128, .16); color: var(--correct); }
+  .chip.state-new { background: rgba(124, 140, 255, .18); color: var(--accent); }
+  .chip.state-bad { background: rgba(248, 113, 113, .16); color: var(--wrong); }
+
+  .replay {
+    align-self: flex-start;
+    margin-top: 4px;
+    font: 700 14px/1 "Manrope", sans-serif;
+    color: #fff;
+    background: var(--accent-deep);
+    border: 0; border-radius: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: transform calc(120ms * var(--k)) cubic-bezier(.23,1,.32,1), filter 160ms ease;
+  }
+  .replay:hover { filter: brightness(1.08); }
+  .replay:active { transform: scale(0.97); }
+
+  /* ── Узлы карты ─────────────────────────────────────────────── */
+  .node {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+    font-weight: 800;
+    position: relative;
+    box-shadow: var(--shadow-soft);
+  }
+  .node.done { background: var(--correct); color: var(--correct-ink); }
+  .node.current {
+    width: 66px; height: 66px;
+    background: var(--accent);
+    color: #0b0e1b;
+    box-shadow: 0 0 0 0 rgba(124,140,255,.0), 0 10px 26px rgba(85, 99, 232, .45);
+  }
+  .node.locked { opacity: .68; }
+  .node svg { display: block; }
+
+  /* A1 — раскрытие карты */
+  .mapcol { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .mapcol .chapterlab {
+    font: 800 11px/1 "Manrope", sans-serif; letter-spacing: .14em;
+    color: var(--accent); align-self: flex-start;
+  }
+  .mapcol .node { width: 46px; height: 46px; font-size: 14px; }
+  .mapcol .node.current { width: 56px; height: 56px; }
+  .reveal-item { opacity: .88; transform: translateY(6px) scale(.96); }
+  .played .reveal-item {
+    opacity: 1; transform: none;
+    transition:
+      opacity calc(150ms * var(--k)) cubic-bezier(.23,1,.32,1),
+      transform calc(150ms * var(--k)) cubic-bezier(.23,1,.32,1);
+    transition-delay: calc(var(--i) * 4ms * var(--k));
+  }
+  .zig-l { align-self: flex-start; margin-left: 44px; }
+  .zig-r { align-self: flex-end; margin-right: 44px; }
+
+  /* A2 — дыхание текущего узла */
+  .halo::before {
+    content: "";
+    position: absolute; inset: -10px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(124,140,255,.38), rgba(124,140,255,0) 72%);
+    animation: breathe calc(2400ms * var(--k)) ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%   { transform: scale(1);    opacity: .55; }
+    50%  { transform: scale(1.14); opacity: 1; }
+    100% { transform: scale(1);    opacity: .55; }
+  }
+  .halo-paused .halo::before { animation-play-state: paused; opacity: .7; transform: scale(1.06); }
+
+  /* A3 — отказ заблокированного */
+  .denial { transition: transform calc(240ms * var(--k)) cubic-bezier(.23,1,.32,1); cursor: pointer; }
+  .denial.denied { transform: scale(.96); }
+  .hint {
+    position: absolute; left: 50%; bottom: 26px; transform: translate(-50%, 6px);
+    background: var(--surface2); color: var(--ink);
+    font-size: 13.5px; font-weight: 600;
+    padding: 10px 16px; border-radius: 12px;
+    opacity: 0; pointer-events: none;
+    transition: opacity calc(200ms * var(--k)) ease, transform calc(200ms * var(--k)) cubic-bezier(.23,1,.32,1);
+    white-space: nowrap;
+  }
+  .hint.show { opacity: 1; transform: translate(-50%, 0); }
+
+  /* A4 — звёзды на пройденных узлах */
+  .ministars { position: absolute; left: 50%; bottom: -15px; transform: translateX(-50%); display: flex; gap: 2px; }
+  .ministar { color: var(--gold); font-size: 12px; line-height: 1; opacity: 0; transform: scale(.4); }
+  .ministar.dim { color: #3a4060; opacity: 0; }
+  .stars-in .ministar {
+    opacity: 1; transform: scale(1);
+    transition: opacity calc(160ms * var(--k)) cubic-bezier(.23,1,.32,1), transform calc(160ms * var(--k)) cubic-bezier(.23,1,.32,1);
+    transition-delay: calc(var(--i) * 60ms * var(--k));
+  }
+  .stars-in .ministar.dim { opacity: .9; }
+
+  /* A5 — сцена завершения */
+  .scene { position: relative; width: 100%; height: 240px; }
+  .wallet {
+    position: absolute; top: 6px; right: 8px;
+    display: flex; align-items: center; gap: 7px;
+    background: var(--surface2);
+    padding: 9px 14px; border-radius: 999px;
+    font: 800 15px/1 "Manrope", sans-serif;
+    box-shadow: var(--shadow-soft);
+  }
+  .wallet .wstar { color: var(--gold); font-size: 15px; }
+  .wallet.bump { animation: wbump calc(360ms * var(--k)) cubic-bezier(.38,.70,.125,1); }
+  @keyframes wbump { 0% { transform: scale(1); } 45% { transform: scale(1.16); } 100% { transform: scale(1); } }
+  .scene .node.sceneA { position: absolute; left: 46px; bottom: 108px; }
+  .scene .node.sceneB { position: absolute; left: 150px; bottom: 34px; width: 56px; height: 56px; background: var(--surface2); color: var(--muted); }
+  .scene .node.sceneB.pop {
+    background: var(--accent); color: #0b0e1b;
+    animation: npop calc(420ms * var(--k)) cubic-bezier(.38,.70,.125,1);
+  }
+  @keyframes npop { 0% { transform: scale(.7); } 55% { transform: scale(1.1); } 100% { transform: scale(1); } }
+  .flystar { position: absolute; color: var(--gold); font-size: 20px; line-height: 1; pointer-events: none; opacity: 0; }
+
+  /* A6 — шторка узла */
+  .sheetstage { align-items: flex-end; padding: 0; }
+  .phone { width: 100%; height: 250px; position: relative; overflow: hidden; }
+  .sheet {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: var(--surface2);
+    border-radius: 24px 24px 0 0;
+    padding: 20px 22px 22px;
+    transform: translateY(105%);
+    transition: transform calc(320ms * var(--k)) cubic-bezier(.38,.70,.125,1);
+    box-shadow: 0 -14px 40px rgba(4,6,18,.5);
+  }
+  .sheet.open { transform: translateY(0); }
+  .sheet h4 { font-size: 17px; font-weight: 800; }
+  .sheet .meta { color: var(--muted); font-size: 13.5px; margin-top: 3px; }
+  .sheet .cta {
+    margin-top: 14px; width: 100%;
+    font: 800 15px/1 "Manrope", sans-serif;
+    color: #fff; background: var(--accent-deep);
+    border: 0; border-radius: 14px; padding: 15px;
+    cursor: pointer;
+    transition: transform calc(120ms * var(--k)) cubic-bezier(.23,1,.32,1);
+  }
+  .sheet .cta:active { transform: scale(0.97); }
+
+  /* A7 / B1 — нажатия */
+  .press { transition: transform calc(120ms * var(--k)) cubic-bezier(.23,1,.32,1); cursor: pointer; }
+  .press:active { transform: scale(.94); }
+  .cta-demo {
+    font: 800 16px/1 "Manrope", sans-serif;
+    color: var(--correct-ink);
+    background: var(--correct);
+    border: 0; border-radius: 16px;
+    padding: 17px 44px;
+    cursor: pointer;
+    transition: transform calc(120ms * var(--k)) cubic-bezier(.23,1,.32,1);
+  }
+  .cta-demo:active { transform: scale(.97); }
+
+  /* B2 — выбор варианта */
+  .opts { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 270px; }
+  .opt {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface2);
+    color: var(--ink);
+    font: 600 15px/1.3 "Manrope", sans-serif;
+    text-align: left;
+    border: 0; border-radius: 14px;
+    padding: 15px 16px;
+    cursor: pointer;
+    transition:
+      background calc(140ms * var(--k)) ease,
+      transform calc(120ms * var(--k)) cubic-bezier(.23,1,.32,1);
+  }
+  .opt:active { transform: scale(.98); }
+  .opt.sel { background: var(--accent-deep); color: #fff; }
+  .opt .tick { opacity: 0; transform: scale(.6); transition: opacity calc(140ms * var(--k)) ease, transform calc(140ms * var(--k)) cubic-bezier(.23,1,.32,1); }
+  .opt.sel .tick { opacity: 1; transform: scale(1); }
+
+  /* B3 — nudge против тряски */
+  .duostage { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; }
+  .duostage .half { background: var(--surface); border-radius: 14px; padding: 14px; }
+  .duostage .half .lab { font: 800 10.5px/1 "Manrope", sans-serif; letter-spacing: .1em; margin-bottom: 10px; }
+  .duostage .half .lab.bad { color: var(--wrong); }
+  .duostage .half .lab.good { color: var(--correct); }
+  .mini-opts { display: flex; flex-direction: column; gap: 8px; }
+  .mini-opt {
+    background: var(--surface2); border-radius: 10px;
+    font: 600 13px/1.2 "Manrope", sans-serif;
+    padding: 10px 12px; color: var(--ink);
+  }
+  .shakeall.play { animation: shakeX calc(200ms * var(--k)) ease-in-out; }
+  @keyframes shakeX {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  .nudge-one.play {
+    animation: nudge calc(260ms * var(--k)) cubic-bezier(.23,1,.32,1);
+  }
+  @keyframes nudge {
+    0%, 100% { transform: translateX(0); opacity: 1; }
+    30% { transform: translateX(-3px); opacity: .85; }
+    60% { transform: translateX(3px); }
+  }
+
+  /* B4 — панель объяснения */
+  .qcol { width: 100%; max-width: 280px; display: flex; flex-direction: column; gap: 10px; }
+  .qphrase { font: 800 17px/1.35 "Manrope", sans-serif; }
+  .qphrase .t { color: var(--accent); }
+  .fb-slot { min-height: 74px; display: flex; align-items: stretch; }
+  .fb {
+    flex: 1;
+    background: rgba(248, 113, 113, .12);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13.5px; color: var(--ink);
+    opacity: 0; transform: translateY(8px);
+    transition: opacity calc(200ms * var(--k)) ease, transform calc(200ms * var(--k)) cubic-bezier(.23,1,.32,1);
+  }
+  .fb.show { opacity: 1; transform: translateY(0); }
+  .fb b { color: var(--wrong); }
+
+  /* B5 — переход между заданиями */
+  .taskswap { position: relative; width: 100%; max-width: 280px; height: 150px; }
+  .taskcard {
+    position: absolute; inset: 0;
+    background: var(--surface2);
+    border-radius: 16px;
+    padding: 18px;
+    display: flex; flex-direction: column; gap: 8px; justify-content: center;
+    font: 600 15px/1.4 "Manrope", sans-serif;
+    transition: opacity calc(110ms * var(--k)) ease, transform calc(110ms * var(--k)) cubic-bezier(.23,1,.32,1);
+  }
+  .taskcard .small { color: var(--muted); font-size: 12.5px; font-weight: 600; }
+  .taskcard.gone { opacity: 0; transform: translateX(-26px); pointer-events: none; }
+  .taskcard.next { opacity: 0; transform: translateX(26px); pointer-events: none; }
+  .taskcard.next.in { opacity: 1; transform: translateX(0); pointer-events: auto; }
+
+  /* B6 — финал сессии */
+  .finale { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .bigstars { display: flex; gap: 14px; }
+  .bigstar { font-size: 44px; line-height: 1; color: #3a4060; transform: scale(.5); }
+  .finale-play .bigstar {
+    color: var(--gold); transform: scale(1);
+    transition: color calc(170ms * var(--k)) ease, transform calc(170ms * var(--k)) cubic-bezier(.38,.70,.125,1);
+    transition-delay: calc(var(--i) * 180ms * var(--k));
+  }
+  .finale-cap { font: 800 17px/1 "Manrope", sans-serif; opacity: 0; transform: translateY(6px); }
+  .finale-play .finale-cap {
+    opacity: 1; transform: none;
+    transition: opacity calc(150ms * var(--k)) ease, transform calc(150ms * var(--k)) cubic-bezier(.23,1,.32,1);
+    transition-delay: calc(540ms * var(--k));
+  }
+
+  footer { margin-top: 64px; color: var(--muted); font-size: 13.5px; max-width: 72ch; }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root { --k: 0.01; }
+    .halo::before { animation: none; opacity: .7; transform: scale(1.06); }
+  }
+  :root[data-reduced="1"] .halo::before { animation: none; opacity: .7; transform: scale(1.06); }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <h1>Каталог движения Learning&nbsp;V2</h1>
+    <p class="lead">Живые макеты всех анимаций карты уроков и плеера заданий, собранные из утверждённых спецификаций.
+      Раздел&nbsp;А частично уже в продакшене, раздел&nbsp;Б целиком ждёт реализации.
+      Каждое демо повторяется кнопкой; <b>«Замедлить 5×»</b> помогает рассмотреть тайминги,
+      <b>«Reduced motion»</b> показывает поведение при отключённой анимации.</p>
+    <div class="global-controls">
+      <button class="toggle" id="slowToggle" aria-pressed="false">Замедлить 5×</button>
+      <button class="toggle" id="rmToggle" aria-pressed="false">Reduced motion</button>
+    </div>
+  </header>
+
+  <section class="group" id="map">
+    <h2>А. Карта урока</h2>
+    <p class="groupnote">Инлайн-карта из 56 сессий под карточкой урока. Раскрытие уже работает по новой спеке;
+      остальное — премиальный слой из спеки mock&nbsp;08, который предлагается перенести в инлайн-карту.</p>
+
+    <!-- A1 -->
+    <article class="card">
+      <div class="stage">
+        <div class="mapcol" id="revealMap">
+          <span class="chapterlab reveal-item" style="--i:0">ГЛАВА 1</span>
+          <div class="node done reveal-item zig-l" style="--i:1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="node done reveal-item zig-r" style="--i:2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="node current reveal-item" style="--i:3">3</div>
+          <div class="node reveal-item zig-l" style="--i:4">4</div>
+          <div class="node locked reveal-item zig-r" style="--i:5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2.5" fill="currentColor"/><path d="M8 10V7a4 4 0 118 0v3" stroke="currentColor" stroke-width="2.4"/></svg></div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Раскрытие карты</h3>
+        <div class="chips">
+          <span class="chip state-live">уже в проде</span>
+          <span class="chip">150 ms / узел</span>
+          <span class="chip">задержка ≤ 24 ms</span>
+          <span class="chip">opacity от 0.88</span>
+        </div>
+        <p>Карта отвечает в тот же кадр: первый кадр уже видим (непрозрачность 0.88, лёгкий сдвиг),
+          волна доводит узлы до финала за 150&nbsp;мс. Ничего не «грузится» — карта <b>раскрывается</b>.
+          Все узлы кликабельны с первого кадра.</p>
+        <button class="replay" data-demo="reveal">Повторить</button>
+      </div>
+    </article>
+
+    <!-- A2 -->
+    <article class="card">
+      <div class="stage" id="haloStage">
+        <div class="node current halo">5</div>
+      </div>
+      <div class="notes">
+        <h3>Дыхание текущего узла</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">спека mock 08</span>
+          <span class="chip">2400 ms</span>
+          <span class="chip">ease-in-out</span>
+          <span class="chip">scale 1 → 1.14 → 1</span>
+        </div>
+        <p>Гало вокруг текущей сессии медленно дышит и отвечает на вопрос «куда идти дальше» без единого слова.
+          Цикл живёт только на активном экране: при уходе приложения в фон или блюре экрана анимация
+          останавливается (в макете — при скрытии вкладки). Reduced motion: статичное гало на 0.7 прозрачности.</p>
+        <button class="replay" data-demo="halo">Перезапустить</button>
+      </div>
+    </article>
+
+    <!-- A3 -->
+    <article class="card">
+      <div class="stage">
+        <div class="node locked denial" id="denialNode" role="button" tabindex="0" aria-label="Сессия 6, закрыта">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2.5" fill="currentColor"/><path d="M8 10V7a4 4 0 118 0v3" stroke="currentColor" stroke-width="2.4"/></svg>
+        </div>
+        <div class="hint" id="denialHint">Сначала пройди сессию 5</div>
+      </div>
+      <div class="notes">
+        <h3>Спокойный отказ закрытого узла</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">спека mock 08</span>
+          <span class="chip">240 ms</span>
+          <span class="chip">scale 1 → .96 → 1</span>
+          <span class="chip">без тряски</span>
+        </div>
+        <p>Сейчас тап по закрытому узлу уходит в пустоту. По спеке узел мягко «прожимается»
+          и называет точное условие открытия. Никакого красного, никакой вибрации:
+          отказ спокойный и информативный. Нажми на узел в макете.</p>
+        <button class="replay" data-demo="denial">Показать отказ</button>
+      </div>
+    </article>
+
+    <!-- A4 -->
+    <article class="card">
+      <div class="stage">
+        <div style="display:flex; gap:38px;" id="starsRow">
+          <div class="node done" style="position:relative;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="ministars"><span class="ministar" style="--i:0">★</span><span class="ministar" style="--i:1">★</span><span class="ministar" style="--i:2">★</span></span>
+          </div>
+          <div class="node done" style="position:relative;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="ministars"><span class="ministar" style="--i:0">★</span><span class="ministar" style="--i:1">★</span><span class="ministar dim" style="--i:2">★</span></span>
+          </div>
+          <div class="node done" style="position:relative;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="ministars"><span class="ministar" style="--i:0">★</span><span class="ministar dim" style="--i:1">★</span><span class="ministar dim" style="--i:2">★</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Звёзды на пройденных узлах</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">спека mock 08</span>
+          <span class="chip">160 ms / звезда</span>
+          <span class="chip">каскад 60 ms</span>
+        </div>
+        <p>Пройденный узел показывает результат: до трёх маленьких звёзд под кружком.
+          Пустая звезда тусклая, заработанная золотая. Карта сразу отвечает,
+          где стоит вернуться и улучшить результат.</p>
+        <button class="replay" data-demo="ministars">Повторить</button>
+      </div>
+    </article>
+
+    <!-- A5 -->
+    <article class="card">
+      <div class="stage">
+        <div class="scene" id="scene">
+          <div class="wallet" id="wallet"><span class="wstar">★</span><span id="walletCount">12</span></div>
+          <div class="node current sceneA" id="sceneNode">5</div>
+          <div class="node sceneB" id="sceneNext">6</div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Финал на карте: звёзды летят в баланс</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">спека mock 08</span>
+          <span class="chip">полёт 620 ms</span>
+          <span class="chip">каскад 90 ms</span>
+          <span class="chip">bump 360 ms</span>
+          <span class="chip">новый узел 420 ms</span>
+        </div>
+        <p>Составная сцена после пройденной сессии: заработанные звёзды по дуге улетают в баланс
+          (кривая .33,.52,.25,.99), кошелёк отвечает упругим «bump» (scale 1 → 1.16 → 1),
+          узел становится пройденным, а следующий <b>выстреливает</b> в состояние «текущий»
+          (scale .7 → 1.1 → 1). Reduced motion: без полёта, баланс просто обновляется.</p>
+        <button class="replay" data-demo="scene">Проиграть сцену</button>
+      </div>
+    </article>
+
+    <!-- A6 -->
+    <article class="card">
+      <div class="stage sheetstage">
+        <div class="phone">
+          <div class="sheet" id="sheet">
+            <h4>Сессия 5 · Вопросы с you</h4>
+            <div class="meta">Примерно 6 минут · 12 заданий</div>
+            <button class="cta">Начать</button>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Шторка узла</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">спека mock 08</span>
+          <span class="chip">320 ms</span>
+          <span class="chip">cubic-bezier(.38,.70,.125,1)</span>
+        </div>
+        <p>Тап по доступному узлу поднимает шторку с названием, временем и одним действием.
+          Финальная геометрия фиксирована: контент внутри не прыгает после появления.</p>
+        <button class="replay" data-demo="sheet">Открыть / закрыть</button>
+      </div>
+    </article>
+
+    <!-- A7 -->
+    <article class="card">
+      <div class="stage">
+        <div class="node current press" tabindex="0" role="button" aria-label="Сессия 5, доступна">5</div>
+      </div>
+      <div class="notes">
+        <h3>Нажатие узла</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">спека mock 08</span>
+          <span class="chip">120 ms</span>
+          <span class="chip">scale 0.94</span>
+          <span class="chip">cubic-bezier(.23,1,.32,1)</span>
+        </div>
+        <p>Каждый тап получает мгновенный физический ответ ещё до открытия шторки.
+          В коде это PressableHybrid вместо голого TouchableOpacity. Подержи узел нажатым.</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="group" id="player">
+    <h2>Б. Внутри задания</h2>
+    <p class="groupnote">Плеер сессии сегодня работает без анимационного слоя: переходы мгновенные,
+      обратная связь появляется без движения. Ниже весь слой из каталога активностей.</p>
+
+    <!-- B1 -->
+    <article class="card">
+      <div class="stage">
+        <button class="cta-demo">Проверить</button>
+      </div>
+      <div class="notes">
+        <h3>Нажатие главной кнопки</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">каталог 04</span>
+          <span class="chip">~120 ms</span>
+          <span class="chip">scale 0.97</span>
+        </div>
+        <p>Кнопка отвечает на палец сразу: лёгкое сжатие на нажатии, возврат на отпускании.
+          На яркой заливке текст всегда тёмный. Подержи кнопку нажатой.</p>
+      </div>
+    </article>
+
+    <!-- B2 -->
+    <article class="card">
+      <div class="stage">
+        <div class="opts" id="opts">
+          <button class="opt"><span>Are you tired?</span><span class="tick">✓</span></button>
+          <button class="opt"><span>Is you tired?</span><span class="tick">✓</span></button>
+          <button class="opt"><span>Do you tired?</span><span class="tick">✓</span></button>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Выбор варианта</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">каталог 04</span>
+          <span class="chip">140 ms</span>
+          <span class="chip">заливка + чек</span>
+        </div>
+        <p>Выбор подтверждается заливкой и галочкой за 140&nbsp;мс, без рамок и без прыжков высоты.
+          Повторный тап снимает выбор. Потыкай варианты.</p>
+      </div>
+    </article>
+
+    <!-- B3 -->
+    <article class="card">
+      <div class="stage">
+        <div class="duostage">
+          <div class="half">
+            <div class="lab bad">СЕЙЧАС: ТРЯСЁТСЯ ВСЁ</div>
+            <div class="mini-opts shakeall" id="shakeAll">
+              <div class="mini-opt">Are you tired?</div>
+              <div class="mini-opt">Is you tired?</div>
+              <div class="mini-opt">Do you tired?</div>
+            </div>
+          </div>
+          <div class="half">
+            <div class="lab good">ПО СПЕКЕ: ТОЛЬКО ОШИБКА</div>
+            <div class="mini-opts">
+              <div class="mini-opt">Are you tired?</div>
+              <div class="mini-opt nudge-one" id="nudgeOne">Is you tired?</div>
+              <div class="mini-opt">Do you tired?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Ответ на ошибку: точечный nudge</h3>
+        <div class="chips">
+          <span class="chip state-bad">анти-паттерн в проде</span>
+          <span class="chip src">каталог 04</span>
+          <span class="chip">260 ms</span>
+          <span class="chip">только transform / opacity</span>
+        </div>
+        <p>Сейчас при ошибке трясётся вся зона ответов, спека это прямо запрещает.
+          Разрешён единственный жест: короткий прозрачный сдвиг <b>самого неверного варианта</b>,
+          без красной рамки и без наказания. Reduced motion заменяет его коротким crossfade.</p>
+        <button class="replay" data-demo="nudge">Сравнить</button>
+      </div>
+    </article>
+
+    <!-- B4 -->
+    <article class="card">
+      <div class="stage">
+        <div class="qcol">
+          <div class="qphrase">Ты устал? <span class="t">___ you tired?</span></div>
+          <div class="fb-slot">
+            <div class="fb" id="fb"><b>Is</b> кажется похожим, но в вопросе с you связка меняется:
+              you всегда идёт с are. Are you tired?</div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Панель объяснения ошибки</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">каталог 04</span>
+          <span class="chip">200 ms</span>
+          <span class="chip">opacity + translateY 8</span>
+          <span class="chip">место зарезервировано</span>
+        </div>
+        <p>Объяснение появляется мягким подъёмом в <b>заранее зарезервированное</b> место:
+          контент выше не сдвигается ни на пиксель. Спека требует 180–220&nbsp;мс.</p>
+        <button class="replay" data-demo="fb">Показать / скрыть</button>
+      </div>
+    </article>
+
+    <!-- B5 -->
+    <article class="card">
+      <div class="stage">
+        <div class="taskswap">
+          <div class="taskcard" id="taskA">
+            <span class="small">Задание 4 из 12</span>
+            <span>Собери фразу: <b>Are you at home?</b></span>
+          </div>
+          <div class="taskcard next" id="taskB">
+            <span class="small">Задание 5 из 12</span>
+            <span>Послушай и выбери ответ</span>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Переход к следующему заданию</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">каталог 04</span>
+          <span class="chip">220 ms всего</span>
+          <span class="chip">уход 110 + приход 110</span>
+        </div>
+        <p>Сейчас задания сменяются мгновенным скачком. По спеке предыдущее уходит влево с затуханием,
+          следующее приезжает справа; суммарно 200–240&nbsp;мс, только transform и opacity.</p>
+        <button class="replay" data-demo="swap">Сменить задание</button>
+      </div>
+    </article>
+
+    <!-- B6 -->
+    <article class="card">
+      <div class="stage">
+        <div class="finale" id="finale">
+          <div class="bigstars">
+            <span class="bigstar" style="--i:0">★</span>
+            <span class="bigstar" style="--i:1">★</span>
+            <span class="bigstar" style="--i:2">★</span>
+          </div>
+          <div class="finale-cap">Сессия пройдена</div>
+        </div>
+      </div>
+      <div class="notes">
+        <h3>Финал сессии</h3>
+        <div class="chips">
+          <span class="chip state-new">предложение</span>
+          <span class="chip src">каталог 04</span>
+          <span class="chip">170 ms / звезда</span>
+          <span class="chip">вся сцена ≤ 700 ms</span>
+        </div>
+        <p>Звёзды загораются по одной с упругим появлением, итог подписывается в конце.
+          Сцена редкая, поэтому ей можно чуть больше праздника, но она укладывается в 700&nbsp;мс
+          и не задерживает переход к карте. Сейчас в боевом плеере финала нет вообще.</p>
+        <button class="replay" data-demo="finale">Проиграть</button>
+      </div>
+    </article>
+  </section>
+
+  <footer>
+    Источники чисел: спека карты от 02.08 (mock 08), каталог активностей 04, спека мгновенного
+    раскрытия от 21.08. Все демо используют только transform и opacity; бесконечный цикл один
+    (дыхание узла) и останавливается на неактивной вкладке. Файл живёт в
+    docs/v2/mockups/25-learning-v2-motion-catalog.html.
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var slow = false, reduced = false;
+
+  function k() { return reduced ? 0.01 : (slow ? 5 : 1); }
+  function applyK() {
+    root.style.setProperty("--k", String(k()));
+    root.dataset.reduced = reduced ? "1" : "0";
+  }
+
+  document.getElementById("slowToggle").addEventListener("click", function () {
+    slow = !slow;
+    this.setAttribute("aria-pressed", String(slow));
+    applyK();
+  });
+  document.getElementById("rmToggle").addEventListener("click", function () {
+    reduced = !reduced;
+    this.setAttribute("aria-pressed", String(reduced));
+    applyK();
+  });
+
+  /* A1 — раскрытие */
+  var revealMap = document.getElementById("revealMap");
+  function playReveal() {
+    revealMap.classList.remove("played");
+    void revealMap.offsetWidth;
+    revealMap.classList.add("played");
+  }
+  playReveal();
+
+  /* A2 — гало: пауза на скрытой вкладке, как гейт по AppState */
+  var haloStage = document.getElementById("haloStage");
+  document.addEventListener("visibilitychange", function () {
+    haloStage.classList.toggle("halo-paused", document.hidden);
+  });
+  function restartHalo() {
+    var n = haloStage.querySelector(".halo");
+    n.classList.remove("halo");
+    void n.offsetWidth;
+    n.classList.add("halo");
+  }
+
+  /* A3 — отказ */
+  var denialNode = document.getElementById("denialNode");
+  var denialHint = document.getElementById("denialHint");
+  var denialTimer = null;
+  function playDenial() {
+    denialNode.classList.add("denied");
+    denialHint.classList.add("show");
+    setTimeout(function () { denialNode.classList.remove("denied"); }, 240 * k());
+    clearTimeout(denialTimer);
+    denialTimer = setTimeout(function () { denialHint.classList.remove("show"); }, 1800);
+  }
+  denialNode.addEventListener("click", playDenial);
+  denialNode.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); playDenial(); }
+  });
+
+  /* A4 — мини-звёзды */
+  var starsRow = document.getElementById("starsRow");
+  function playMinistars() {
+    starsRow.classList.remove("stars-in");
+    void starsRow.offsetWidth;
+    starsRow.classList.add("stars-in");
+  }
+  playMinistars();
+
+  /* A5 — сцена завершения */
+  var scene = document.getElementById("scene");
+  var wallet = document.getElementById("wallet");
+  var walletCount = document.getElementById("walletCount");
+  var sceneNode = document.getElementById("sceneNode");
+  var sceneNext = document.getElementById("sceneNext");
+  var scenePlaying = false;
+  var CHECK_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  function resetScene() {
+    sceneNode.className = "node current sceneA";
+    sceneNode.textContent = "5";
+    sceneNext.className = "node sceneB";
+    sceneNext.textContent = "6";
+    walletCount.textContent = "12";
+  }
+  function playScene() {
+    if (scenePlaying) return;           // защита от двойного тапа
+    scenePlaying = true;
+    resetScene();
+    var K = k();
+    var sceneRect = scene.getBoundingClientRect();
+    var from = sceneNode.getBoundingClientRect();
+    var to = wallet.getBoundingClientRect();
+    var x0 = from.left - sceneRect.left + from.width / 2 - 10;
+    var y0 = from.top - sceneRect.top + from.height / 2 - 10;
+    var dx = (to.left - sceneRect.left + to.width / 2 - 10) - x0;
+    var dy = (to.top - sceneRect.top + to.height / 2 - 10) - y0;
+    var flights = reduced ? 0 : 3;
+    for (var i = 0; i < flights; i++) {
+      (function (i) {
+        var s = document.createElement("span");
+        s.className = "flystar";
+        s.textContent = "★";
+        s.style.left = x0 + "px";
+        s.style.top = y0 + "px";
+        scene.appendChild(s);
+        var anim = s.animate([
+          { transform: "translate(0,0) scale(1)", opacity: 1 },
+          { transform: "translate(" + dx * 0.5 + "px," + (dy * 0.5 - 46) + "px) scale(1.08)", opacity: 1, offset: 0.55 },
+          { transform: "translate(" + dx + "px," + dy + "px) scale(.55)", opacity: .9 }
+        ], {
+          duration: 620 * K,
+          delay: i * 90 * K,
+          easing: "cubic-bezier(.33,.52,.25,.99)",
+          fill: "forwards"
+        });
+        anim.onfinish = function () {
+          s.remove();
+          walletCount.textContent = String(12 + i + 1);
+          if (i === flights - 1) {
+            wallet.classList.remove("bump");
+            void wallet.offsetWidth;
+            wallet.classList.add("bump");
+          }
+        };
+      })(i);
+    }
+    var afterFlights = reduced ? 0 : (620 + 2 * 90) * K;
+    setTimeout(function () {
+      if (reduced) walletCount.textContent = "15";
+      sceneNode.className = "node done sceneA";
+      sceneNode.innerHTML = CHECK_SVG;
+      sceneNext.classList.add("pop");
+      setTimeout(function () { scenePlaying = false; }, 420 * K + 60);
+    }, afterFlights + 40);
+  }
+
+  /* A6 — шторка */
+  var sheet = document.getElementById("sheet");
+  function toggleSheet() { sheet.classList.toggle("open"); }
+  setTimeout(toggleSheet, 500);
+
+  /* B2 — выбор варианта */
+  document.getElementById("opts").addEventListener("click", function (e) {
+    var btn = e.target.closest(".opt");
+    if (!btn) return;
+    var was = btn.classList.contains("sel");
+    this.querySelectorAll(".opt").forEach(function (o) { o.classList.remove("sel"); });
+    if (!was) btn.classList.add("sel");
+  });
+
+  /* B3 — nudge против тряски */
+  var shakeAll = document.getElementById("shakeAll");
+  var nudgeOne = document.getElementById("nudgeOne");
+  function playNudge() {
+    [shakeAll, nudgeOne].forEach(function (el) {
+      el.classList.remove("play");
+      void el.offsetWidth;
+      el.classList.add("play");
+    });
+  }
+
+  /* B4 — панель объяснения */
+  var fb = document.getElementById("fb");
+  function toggleFb() { fb.classList.toggle("show"); }
+
+  /* B5 — смена задания */
+  var taskA = document.getElementById("taskA");
+  var taskB = document.getElementById("taskB");
+  var swapped = false;
+  function playSwap() {
+    if (!swapped) {
+      taskA.classList.add("gone");
+      setTimeout(function () { taskB.classList.add("in"); }, 110 * k());
+    } else {
+      taskB.classList.remove("in");
+      setTimeout(function () { taskA.classList.remove("gone"); }, 110 * k());
+    }
+    swapped = !swapped;
+  }
+
+  /* B6 — финал */
+  var finale = document.getElementById("finale");
+  function playFinale() {
+    finale.classList.remove("finale-play");
+    void finale.offsetWidth;
+    finale.classList.add("finale-play");
+  }
+  playFinale();
+
+  var demos = {
+    reveal: playReveal,
+    halo: restartHalo,
+    denial: playDenial,
+    ministars: playMinistars,
+    scene: playScene,
+    sheet: toggleSheet,
+    nudge: playNudge,
+    fb: toggleFb,
+    swap: playSwap,
+    finale: playFinale
+  };
+  document.querySelectorAll(".replay").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var fn = demos[btn.dataset.demo];
+      if (fn) fn();
+    });
+  });
+})();
+</script>

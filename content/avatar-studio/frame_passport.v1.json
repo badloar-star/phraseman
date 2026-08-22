@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "canvas": { "width": 1024, "height": 1280 },
+  "background": "#F7EFE4",
+  "anchor": {
+    "pupilLineY": 0.38,
+    "faceCenterX": 0.5,
+    "headHeightFrac": 0.42
+  },
+  "safeMargins": { "top": 0.04, "sides": 0.05, "bottom": 0.0 },
+  "style": "semi-realistic stylized 3D character, Pixar-like proportions, soft studio light from upper-left, matte skin, clean single-color background, no outlines, no text, no watermark",
+  "pose": "three-quarter-body bust, facing camera, shoulders visible, arms down, gentle closed-mouth smile, eyes looking straight at camera",
+  "slots": {
+    "hair":      { "locked": [ { "ellipse": [0.5, 0.455, 0.09, 0.085] }, { "rect": [0, 0.62, 1, 0.38] } ] },
+    "headwear":  { "locked": [ { "ellipse": [0.5, 0.455, 0.09, 0.085] }, { "rect": [0, 0.62, 1, 0.38] } ] },
+    "outfit":    { "locked": [ { "rect": [0, 0, 1, 0.50] } ] },
+    "accessory": { "locked": [] },
+    "eyes":      { "locked": [ { "rect": [0, 0, 1, 0.30] }, { "rect": [0, 0.48, 1, 0.52] } ] },
+    "skin":      { "locked": [] },
+    "emotion":   { "locked": [ { "rect": [0, 0.58, 1, 0.42] }, { "rect": [0, 0, 1, 0.20] } ] },
+    "base":      { "locked": [] }
+  },
+  "matrixP0": {
+    "bases": ["base_m", "base_f"],
+    "hairStyles": 6,
+    "hairColorsByRecolor": 4,
+    "outfits": 6,
+    "headwear": ["hood"],
+    "skinTones": 3,
+    "emotions": ["smile", "joy", "surprise", "sad", "determined", "wink"],
+    "estimatedGenerations": "~44-50 on the full matrix; colors are deterministic recolors, not generations"
+  }
+}

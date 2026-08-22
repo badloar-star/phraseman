@@ -205,6 +205,18 @@ Payment/analytics services setup for the funnel: `content/marketing/PAYMENTS_SET
 
 VIRAL is self-contained in `content/marketing/` — any AI, any session continues from those files.
 
+## AVATAR STUDIO — asset pipeline for the in-app avatar customizer (FOURTH pipeline)
+
+If the user says **"АВАТАР"**, "подними аватар", "новая причёска/одежда/глаза/аксессуар
+для аватара" — **read `content/avatar-studio/AVATAR_STUDIO.md` FIRST** and follow it.
+2.5D whole-render approach (layered cutouts were REJECTED by the owner). Every asset is an
+image-EDIT of the canonical base render (`base/base_m.png` boy / `base_f.png` girl), framed by
+`frame_passport.v1.json`, and enters `catalog/` ONLY through
+`scripts/check_render.mjs` → PASS (`--accept`). Never weaken the check to admit a bad asset.
+
+AVATAR STUDIO is self-contained in `content/avatar-studio/` — any AI, any session continues
+from those files.
+
 > Project-wide engineering rules also live in `AGENTS.md`.
 
 ## Performance Bible (MANDATORY for any new screen/feature/UI change)

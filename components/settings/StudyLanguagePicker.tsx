@@ -28,6 +28,31 @@ import {
   shouldGateExtraLanguage,
 } from '../../app/study_languages';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
+import { actionToastTri, emitAppEvent } from '../../app/events';
+
+// зачем (аудит 2026-08-22): тост подтверждения переключения языка обучения —
+// нужно имя языка на всех 8 языках интерфейса, а не только паре ru/uk, для
+// которой уже есть studyTargetLabelForSourceUiLang (используется в остальном
+// экране). Собственные имена языков узнаваемы в любом UI-языке.
+const STUDY_TARGET_NATIVE_NAME: Record<StudyTargetLang, string> = {
+  en: 'English',
+  es: 'Español',
+  fr: 'Français',
+};
+
+function switchedLanguageToastCopy(target: StudyTargetLang) {
+  const name = STUDY_TARGET_NATIVE_NAME[target];
+  return {
+    ru: `Теперь учишь ${name}`,
+    uk: `Тепер вчиш ${name}`,
+    es: `Ahora estás aprendiendo ${name}`,
+    'pt-BR': `Agora você está aprendendo ${name}`,
+    vi: `Bây giờ bạn đang học ${name}`,
+    id: `Sekarang kamu belajar ${name}`,
+    tr: `Artık ${name} öğreniyorsun`,
+    pl: `Teraz uczysz się: ${name}`,
+  } as const;
+}
 
 /** Качественные иконки языков (512×512, те же, что в онбординге). */
 const RELEASE_LANGUAGE_FLAG_ASSETS: Record<'en', ImageSourcePropType> = {
@@ -105,6 +130,9 @@ export default function StudyLanguagePicker({
         setBusy(true);
         try {
           await applyStudyLanguageSelection(code, lang);
+          // зачем (аудит 2026-08-22): переключение раньше было полностью молчаливым —
+          // весь контент приложения менялся без единого подтверждения пользователю.
+          emitAppEvent('action_toast', actionToastTri('success', switchedLanguageToastCopy(code)));
           await onSwitched();
           await reloadStarted();
         } finally {

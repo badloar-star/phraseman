@@ -171,6 +171,31 @@
   }
   .node svg { display: block; }
 
+  /* ── Карта слушает активную тему приложения (решение владельца 22.08).
+     В макете четыре примерные палитры; в проде цвета берутся из constants/theme.ts,
+     цоколь = цвет площадки + 32% чёрного, без ручных копий палитр. ── */
+  [data-apptheme="sage"] #map .stage { background: #eef3ec; }
+  [data-apptheme="sage"] #map .chapterlab { color: #2e8a6d; }
+  [data-apptheme="sage"] #map .node { --face: #dde6da; --plate: #b9c6b6; color: #66755f; }
+  [data-apptheme="sage"] #map .node.done { --face: #3fbe72; --plate: #2e9457; color: #06280f; }
+  [data-apptheme="sage"] #map .node.current { --face: #34a98c; --plate: #267c67; color: #04241b; }
+  [data-apptheme="sage"] #map .node.locked { --face: #e2e9df; --plate: #c2cebf; color: #93a08e; }
+  [data-apptheme="sage"] #map .hint { background: #ffffff; color: #1d2a20; }
+
+  [data-apptheme="volt"] #map .stage { background: #10140c; }
+  [data-apptheme="volt"] #map .chapterlab { color: #c6f432; }
+  [data-apptheme="volt"] #map .node { --face: #232a1a; --plate: #141a0e; }
+  [data-apptheme="volt"] #map .node.done { --face: #45d47f; --plate: #29a35c; }
+  [data-apptheme="volt"] #map .node.current { --face: #c6f432; --plate: #93bc1f; color: #0b1103; }
+  [data-apptheme="volt"] #map .node.locked { --face: #1c2214; --plate: #10150b; }
+
+  [data-apptheme="gold"] #map .stage { background: #14110a; }
+  [data-apptheme="gold"] #map .chapterlab { color: #f2c14e; }
+  [data-apptheme="gold"] #map .node { --face: #2a2417; --plate: #18140c; }
+  [data-apptheme="gold"] #map .node.done { --face: #45d47f; --plate: #29a35c; }
+  [data-apptheme="gold"] #map .node.current { --face: #f2c14e; --plate: #be9330; color: #0a0702; }
+  [data-apptheme="gold"] #map .node.locked { --face: #211c11; --plate: #131008; }
+
   /* A1 — раскрытие карты */
   .mapcol { display: flex; flex-direction: column; align-items: center; gap: 14px; }
   .mapcol .chapterlab {
@@ -414,6 +439,12 @@
       <button class="toggle" id="slowToggle" aria-pressed="false">Замедлить 5×</button>
       <button class="toggle" id="rmToggle" aria-pressed="false">Reduced motion</button>
     </div>
+    <div class="global-controls" id="themeRow" role="group" aria-label="Тема приложения">
+      <button class="toggle theme-chip" data-theme="indigo" aria-pressed="true">Индиго</button>
+      <button class="toggle theme-chip" data-theme="sage" aria-pressed="false">Нефрит</button>
+      <button class="toggle theme-chip" data-theme="volt" aria-pressed="false">Лайм</button>
+      <button class="toggle theme-chip" data-theme="gold" aria-pressed="false">Золото</button>
+    </div>
   </header>
 
   <section class="group" id="map">
@@ -422,7 +453,8 @@
       остальное — премиальный слой из спеки mock&nbsp;08, который предлагается перенести в инлайн-карту.
       Узлы объёмные в духе Duolingo, по решению владельца от 22.08: плоская яркая площадка
       и сплошной цоколь того же цвета темнее, без бликов и градиентов; нажатие опускает
-      площадку на цоколь. Цвета, размеры и иконки наши, из темы приложения.</p>
+      площадку на цоколь. Карта слушает активную тему интерфейса: переключи тему сверху
+      и фон, узлы и подписи перекрасятся. В проде цвета берутся из токенов темы.</p>
 
     <!-- A1 -->
     <article class="card">
@@ -794,6 +826,17 @@
     reduced = !reduced;
     this.setAttribute("aria-pressed", String(reduced));
     applyK();
+  });
+
+  var themeRow = document.getElementById("themeRow");
+  themeRow.addEventListener("click", function (e) {
+    var chip = e.target.closest(".theme-chip");
+    if (!chip) return;
+    if (chip.dataset.theme === "indigo") root.removeAttribute("data-apptheme");
+    else root.setAttribute("data-apptheme", chip.dataset.theme);
+    themeRow.querySelectorAll(".theme-chip").forEach(function (c) {
+      c.setAttribute("aria-pressed", String(c === chip));
+    });
   });
 
   /* A1 — раскрытие */

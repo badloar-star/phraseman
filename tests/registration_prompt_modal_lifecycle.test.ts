@@ -65,6 +65,8 @@ jest.mock('../app/events', () => ({ emitAppEvent: (...args: unknown[]) => mockEm
 jest.mock('../app/cloud_sync', () => ({
   fetchAuthRecoveryHint: jest.fn(async () => null),
   restoreFromCloudDetailed: jest.fn(async () => 'restored'),
+  // зачем: модалка при открытии прогревает callable-функции входа (2026-08-22).
+  warmAuthSignInCallables: jest.fn(),
 }));
 jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'stable-test') }));
 jest.mock('../app/stable_safe_area_metrics', () => ({
@@ -280,7 +282,7 @@ test('provider success after hide or unmount starts no marker write and no modal
   await screen.unmount();
 });
 
-test('45-second slow state is announced and close invalidates only modal continuations', async () => {
+test('slow state is announced after the threshold and close invalidates only modal continuations', async () => {
   const signIn = deferred<any>();
   mockSignInWithProvider.mockReturnValueOnce(signIn.promise);
   const announce = jest.spyOn(AccessibilityInfo, 'announceForAccessibility').mockImplementation(() => {});
@@ -301,7 +303,8 @@ test('45-second slow state is announced and close invalidates only modal continu
     await Promise.resolve();
   });
   await act(() => {
-    jest.advanceTimersByTime(45_000);
+    // зачем: порог «вход идёт медленно» опущен 45с → 8с (ускорение входа 2026-08-22).
+    jest.advanceTimersByTime(8_000);
   });
 
   expect(screen.getByTestId('auth-prompt-slow')).toBeTruthy();

@@ -82,7 +82,13 @@ import { LinearGradient } from './SafeLinearGradient';
 import PressableHybrid from './PressableHybrid';
 import { LUM } from '../constants/motionHybrid';
 
-const SIGN_IN_SLOW_THRESHOLD_MS = 45_000;
+// зачем: владелец 2026-08-22 — было 45 с: почти минута на занятой кнопке без
+// обратной связи и без выхода. После ускорения входа (тёплый authEnsureStableLink,
+// прогрев, параллельный refresh токена) нормальный вход укладывается в секунды,
+// поэтому подсказка «вход занимает больше времени» и аварийный выход из модалки
+// включаются через 8 с. Задача входа остаётся авторитетной (Promise.race нет),
+// повторный тап держит authOperationGate — контракт stable_link не тронут.
+const SIGN_IN_SLOW_THRESHOLD_MS = 8_000;
 
 function waitForAuthPromptBusyFrame(): Promise<void> {
   return new Promise((resolve) => {

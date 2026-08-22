@@ -144,7 +144,9 @@ export type CleanOnboardingStep =
 // согласий ДО пейвола) — иначе восстановленный шаг встал бы на устаревшую
 // последовательность.
 export const CLEAN_ONBOARDING_FLOW_VERSION = 'clean_minimal_wow_flow_2026_08_17b';
-const ONBOARDING_AUTH_UI_TIMEOUT_MS = 45_000;
+// зачем: владелец 2026-08-22 — было 45 с без обратной связи. После ускорения
+// входа подсказка «Вход всё ещё выполняется» появляется уже через 8 с.
+const ONBOARDING_AUTH_UI_TIMEOUT_MS = 8_000;
 
 async function withOnboardingAuthUiDeadline<T>(task: Promise<T>): Promise<T> {
   let timer: ReturnType<typeof setTimeout> | null = null;

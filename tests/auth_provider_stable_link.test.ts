@@ -389,7 +389,7 @@ describe('auth provider stable-id linking', () => {
     expect(registrationPromptSource).not.toContain('Promise.race([');
     expect(registrationPromptSource).not.toContain('signin_deadline-exceeded');
     expect(registrationPromptSource).toContain('const result = await signInWithProvider(provider, {');
-    expect(registrationPromptSource).toContain('const SIGN_IN_SLOW_THRESHOLD_MS = 45_000');
+    expect(registrationPromptSource).toContain('const SIGN_IN_SLOW_THRESHOLD_MS = 8_000');
     expect(registrationPromptSource).toContain("from './auth_prompt_attempt_lifecycle'");
     expect(registrationPromptSource).toContain('attemptLifecycleRef');
     expect(registrationPromptSource).toContain('attemptLifecycle.startAttempt()');

@@ -27,6 +27,7 @@ module.exports = {
     '^expo-constants$': '<rootDir>/tests/__mocks__/expo-constants.js',
     '^expo-secure-store$': '<rootDir>/tests/__mocks__/expo-secure-store.js',
     '^expo-crypto$': '<rootDir>/tests/__mocks__/expo-crypto.js',
+    '^expo-haptics$': '<rootDir>/tests/__mocks__/expo-haptics.js',
   },
   forceExit: true,
   maxWorkers: 1,

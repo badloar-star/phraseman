@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, BackHandler, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Animated, { FadeIn, FadeInDown, SlideInRight, ZoomIn } from 'react-native-reanimated';
@@ -8,10 +8,16 @@ import { arenaTaskRenderable } from '../modules/arena/task_adapter';
 import { arenaLoadMatch } from '../modules/arena/match_store';
 import type { ArenaLocalMatchState, ArenaMatchReport } from '../modules/arena/match_machine';
 import type { ArenaOutboxOwnerScope } from '../modules/arena/result_outbox';
-import { arenaDeliverFinishedMatch } from '../modules/arena/finish_delivery';
+import {
+  arenaDeliverFinishedMatch,
+  type ArenaFinishDeliveryResult,
+} from '../modules/arena/finish_delivery';
 import { arenaRememberScopedReview } from '../modules/arena/review_retry';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useLang } from '../components/LangContext';
+import { useTheme } from '../components/ThemeContext';
+import HybridAlertShell from '../components/modal_fx/HybridAlertShell';
+import DuoPressable from '../components/DuoPressable';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaPlayers } from '../components/arena/ArenaPlayers';
 import { ArenaQuestion } from '../components/arena/ArenaQuestion';
@@ -19,10 +25,10 @@ import { ArenaTimerRing } from '../components/arena/ArenaTimerRing';
 import { ArenaComboMeter } from '../components/arena/ArenaComboMeter';
 import { ArenaStarFlight } from '../components/arena/ArenaStarFlight';
 import { ArenaVersusIntro } from '../components/arena/ArenaVersusIntro';
-import { V2Card, V2Cta, V2Segments } from '../components/tournament/tournament_v2_ui';
+import { V2Cta, V2Segments } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette, v2motion } from '../components/tournament/tournament_theme';
 import { arenaText } from '../modules/arena/copy';
-import type { ArenaPlayer } from '../modules/arena/contract';
+import type { ArenaMatch, ArenaMatchReward, ArenaPlayer } from '../modules/arena/contract';
 import {
   arenaEntryFailure,
   arenaEntryFailureCopy,
@@ -33,6 +39,7 @@ import {
 import { arenaAwardLines, arenaMatchHud } from '../modules/arena/match_view';
 import { arenaQuestionLayout } from '../modules/arena/question_layout';
 import { useArenaLocalMatch } from '../hooks/use_arena_local_match';
+import { useArenaTerminalResultSync } from '../hooks/use_arena_terminal_result_sync';
 import {
   arenaClosedTicks,
   arenaLivePublishPlan,
@@ -48,11 +55,16 @@ import { useArenaSound } from '../hooks/use_arena_sound';
 import {
   arenaExpansionHome,
   arenaMatchReportToWire,
+  arenaRetryQueuedFinish,
   arenaV2Forfeit,
   arenaV2MatchFinishDispatch,
+  arenaV2SyncMatchDispatch,
   arenaPublishLiveTicks,
   createArenaRequestId,
+  useArenaMatch,
   useArenaOpponentLive,
+  type ArenaMatchFinishResponse,
+  type ArenaQueuedFinishRetryResult,
 } from './arena_client';
 import {
   captureAccountGeneration,
@@ -64,6 +76,11 @@ import {
 import { arenaScheduleMatchSettleProbe } from './arena_settle_probe';
 import { arenaEntryPrefetchClaim, arenaEntryPrefetchStart } from './arena_entry_prefetch';
 import { ArenaNoOpponentError } from '../modules/arena/entry_prefetch';
+import {
+  arenaRememberResultHandoff,
+  arenaResultHandoffReady,
+} from '../modules/arena/result_handoff';
+import { arenaFinishRetryDelay } from '../modules/arena/finish_retry';
 
 /**
  * Matchmaking заранее запечатывает входной план. Экран синхронно забирает
@@ -122,12 +139,21 @@ function ArenaMatchGenerationScreen({
   const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
+  const { theme: t, f } = useTheme();
+  // зачем: три голых Alert.alert (выход из матча, ошибка сохранения отчёта,
+  // отчёт отклонён) заменены на один стилизованный HybridAlertShell —
+  // владелец запретил системные алерты в Арене. Логика кнопок 1:1.
+  const [matchAlert, setMatchAlert] = useState<
+    | { kind: 'leave' }
+    | { kind: 'storageFailed' }
+    | { kind: 'rejected' }
+    | null
+  >(null);
   // Высота строки числом не растёт вместе с системным шрифтом: при крупном
   // кегле объяснения наезжали строка на строку. См. use_arena_font_scale.
   const fontScale = useArenaFontScale();
   const titleLine = { lineHeight: 26 * fontScale };
   const hintLine = { lineHeight: 20 * fontScale };
-  const bigHintLine = { lineHeight: 21 * fontScale };
   const [preparedEntry] = useState(() => params.prepared === '1' && matchId
     ? arenaEntryPrefetchClaim(matchId)
     : null);
@@ -165,6 +191,7 @@ function ArenaMatchGenerationScreen({
   const [introDone, setIntroDone] = useState(false);
   const finishIntro = useCallback(() => setIntroDone(true), []);
   const [sent, setSent] = useState(false);
+  const [finishQueued, setFinishQueued] = useState(false);
   /**
    * Косметика входа — платная. При переписывании экрана она чуть не пропала:
    * раньше она красила карточку принятия дуэли, а карточки больше нет — дуэль
@@ -205,6 +232,7 @@ function ArenaMatchGenerationScreen({
 
   /* ---- живой прогресс соперника ---- */
   const live = useArenaOpponentLive(matchId, plan?.opponent.seat ?? null, active && Boolean(plan));
+  const terminalLive = useArenaMatch(matchId, active && sent);
   const liveSeat = useMemo(
     () => (plan ? arenaParseLiveSeat(live.value, plan.tasks.length) : null),
     [live.value, plan],
@@ -299,6 +327,83 @@ function ArenaMatchGenerationScreen({
     });
   }, [matchId, plan, match]);
 
+  const resultOpenedRef = useRef(false);
+  const openCoherentResult = useCallback((response: Readonly<{
+    settled?: boolean;
+    match?: ArenaMatch;
+    viewerSeat?: 'a' | 'b';
+    viewerReward?: ArenaMatchReward;
+  }>) => {
+    const resultAccount = planAccountRef.current;
+    if (!matchId || !plan || !planScope || !resultAccount || resultOpenedRef.current) return false;
+    if (!mountedRef.current || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) return false;
+    if (!arenaResultHandoffReady(response, plan.mode)) return false;
+
+    const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
+    arenaRememberResultHandoff({
+      ownerKey,
+      matchId,
+      match: response.match,
+      viewerSeat: response.viewerSeat,
+      ...(response.viewerReward ? { viewerReward: response.viewerReward } : {}),
+    });
+    resultOpenedRef.current = true;
+    router.replace({
+      pathname: '/arena_results',
+      params: {
+        matchId,
+        mode: plan.mode,
+        viewerSeat: response.viewerSeat,
+        ownerGeneration: String(resultAccount.generation),
+      },
+    } as never);
+    return true;
+  }, [matchId, plan, planScope, router]);
+
+  const handleFinishDelivery = useCallback((delivery:
+    | ArenaFinishDeliveryResult<ArenaMatchFinishResponse>
+    | ArenaQueuedFinishRetryResult
+  ) => {
+    if (delivery.status === 'stale') return;
+    const finishAccount = planAccountRef.current;
+    if (!matchId || !planScope || !finishAccount || !mountedRef.current
+      || !isCurrentAccountGeneration(finishAccount, planScope.stableUid)) return;
+
+    if (delivery.status === 'queued' || delivery.status === 'kept') {
+      setFinishQueued(true);
+      return;
+    }
+    setFinishQueued(false);
+    if (delivery.status === 'storage_failed') {
+      setMatchAlert({ kind: 'storageFailed' });
+      return;
+    }
+    if (delivery.status === 'sent') {
+      const response = delivery.response;
+      if (Array.isArray(response.viewerReview)) {
+        arenaRememberScopedReview({
+          scope: planScope,
+          matchId,
+          rows: response.viewerReview,
+          wallNowMs: Date.now(),
+          store: AsyncStorage as unknown as ArenaKeyValueStore,
+        });
+      }
+      if (!response.settled && typeof response.settleProbeAtMs === 'number') {
+        arenaScheduleMatchSettleProbe({
+          matchId,
+          dueAtMs: response.settleProbeAtMs,
+          account: finishAccount,
+        });
+      }
+      openCoherentResult(response);
+      return;
+    }
+    if (delivery.status === 'rejected' || delivery.status === 'dropped') {
+      setMatchAlert({ kind: 'rejected' });
+    }
+  }, [matchId, openCoherentResult, planScope]);
+
   /* ---- отчёт: тоже один запрос ---- */
   useEffect(() => {
     if (!matchId || !plan || !match?.report || sent) return;
@@ -325,39 +430,65 @@ function ArenaMatchGenerationScreen({
           report: arenaMatchReportToWire(report, plan.rulesVersion),
         }, finishAccount),
       });
-      if (delivery.status === 'stale') return;
-      const rejected = delivery.status === 'rejected';
-      if (delivery.status === 'sent') {
-        const response = delivery.response;
-        if (Array.isArray(response.viewerReview)
-          && mountedRef.current
-          && isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) {
-          arenaRememberScopedReview({
-            scope: finishScope,
-            matchId,
-            rows: response.viewerReview,
-            wallNowMs: Date.now(),
-            store: AsyncStorage as unknown as ArenaKeyValueStore,
-          });
-        }
-        if (!response.settled && typeof response.settleProbeAtMs === 'number') {
-          arenaScheduleMatchSettleProbe({
-            matchId,
-            dueAtMs: response.settleProbeAtMs,
-            account: finishAccount,
-          });
-        }
-      }
-      if (mountedRef.current && isCurrentAccountGeneration(finishAccount, finishScope.stableUid)) {
-        router.replace({
-          pathname: '/arena_results',
-          params: rejected
-            ? { matchId, mode: plan.mode, reportRejected: '1' }
-            : { matchId, mode: plan.mode },
-        } as never);
-      }
+      handleFinishDelivery(delivery);
     })();
-  }, [matchId, match?.report, plan, planScope, router, sent]);
+  }, [handleFinishDelivery, matchId, match?.report, plan, planScope, sent]);
+
+  useEffect(() => {
+    if (!active || !finishQueued || !matchId) return undefined;
+    let alive = true;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    let attempt = 0;
+    const schedule = () => {
+      const delayMs = arenaFinishRetryDelay(attempt);
+      attempt += 1;
+      if (delayMs === null) return;
+      timer = setTimeout(() => {
+        void (async () => {
+          const retryAccount = planAccountRef.current;
+          if (!retryAccount) return;
+          const retry = await arenaRetryQueuedFinish(matchId, retryAccount)
+            .catch((): ArenaQueuedFinishRetryResult => ({ status: 'kept' }));
+          if (!alive) return;
+          handleFinishDelivery(retry);
+          if (retry.status === 'kept') schedule();
+        })();
+      }, delayMs);
+    };
+    schedule();
+    return () => {
+      alive = false;
+      if (timer) clearTimeout(timer);
+    };
+  }, [active, finishQueued, handleFinishDelivery, matchId]);
+
+  useArenaTerminalResultSync({
+    active: active && sent && Boolean(planScope),
+    matchId,
+    accountKey: planScope
+      ? `${planScope.accountGeneration}:${planScope.stableUid}`
+      : '',
+    terminalSyncVersion: terminalLive.value?.terminal && !resultOpenedRef.current
+      ? terminalLive.value.version
+      : null,
+    request: async (matchId, version) => {
+      const resultAccount = planAccountRef.current;
+      if (!planScope || !resultAccount
+        || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) {
+        throw new Error('arena_account_scope_stale');
+      }
+      const dispatch = await arenaV2SyncMatchDispatch(matchId, version, resultAccount);
+      if (!dispatch) throw new Error('arena_account_scope_stale');
+      return dispatch.networkPromise;
+    },
+    onRequested: () => {},
+    onResolved: (response) => {
+      openCoherentResult({
+        ...response,
+        settled: response.state === 'settled' || response.state === 'aborted',
+      });
+    },
+  });
 
   /* ---- выход ---- */
   const forfeitNow = useCallback(() => {
@@ -367,11 +498,8 @@ function ArenaMatchGenerationScreen({
   }, [match, matchId, router]);
 
   const confirmForfeit = useCallback(() => {
-    Alert.alert(arenaText(lang, 'leaveTitle'), arenaText(lang, 'leaveBody'), [
-      { text: arenaText(lang, 'stay'), style: 'cancel' },
-      { text: arenaText(lang, 'leaveConfirm'), style: 'destructive', onPress: forfeitNow },
-    ]);
-  }, [forfeitNow, lang]);
+    setMatchAlert({ kind: 'leave' });
+  }, []);
 
   useEffect(() => {
     if (!active) return undefined;
@@ -414,9 +542,13 @@ function ArenaMatchGenerationScreen({
     [plan, match],
   );
 
+  const finishedTask = match?.state.phase === 'finished' && plan
+    ? plan.tasks[Math.min(match.state.taskIndex, plan.tasks.length - 1)] ?? null
+    : null;
+  const visibleTask = hud?.task ?? finishedTask;
   const ownScore = hud?.matchStars ?? 0;
   const rivalScore = hud?.opponentMatchStars ?? null;
-  const immersive = hud?.mode ? arenaQuestionLayout(hud.mode).immersive : false;
+  const immersive = visibleTask?.mode ? arenaQuestionLayout(visibleTask.mode).immersive : false;
   const playerIdentities: readonly ArenaPlayer[] = useMemo(() => {
     if (!plan) return [];
     const you: ArenaPlayer = {
@@ -443,12 +575,8 @@ function ArenaMatchGenerationScreen({
     const scoredRival = { ...rival, score: rivalScore };
     return plan.viewerSeat === 'a' ? [scoredYou, scoredRival] : [scoredRival, scoredYou];
   }, [ownScore, plan, playerIdentities, rivalScore]);
-  const introYou: ArenaPlayer = playerIdentities.find((player) => player.uid === plan?.viewerSeat) ?? {
-    uid: 'a', name: arenaText(lang, 'you'), rank: 0, rating: 0, score: 0, correct: 0,
-  };
-  const introOpponent: ArenaPlayer = playerIdentities.find((player) => player.uid === plan?.opponent.seat) ?? {
-    uid: 'b', name: arenaText(lang, 'opponent'), rank: 0, rating: 0, score: 0, correct: 0,
-  };
+  const introYou = playerIdentities.find((player) => player.uid === plan?.viewerSeat);
+  const introOpponent = playerIdentities.find((player) => player.uid === plan?.opponent.seat);
 
   /**
    * Просрочка и звёзды звучат по ЗАКРЫТОМУ заданию, а не по фазе: фаза может
@@ -476,8 +604,8 @@ function ArenaMatchGenerationScreen({
    * задания бросает исключение, и внутри отрисовки оно уносит весь матч.
    */
   const taskRenderable = useMemo(
-    () => (hud?.task ? arenaTaskRenderable(arenaPlanTaskToPublic(hud.task)) : true),
-    [hud?.task],
+    () => (visibleTask ? arenaTaskRenderable(arenaPlanTaskToPublic(visibleTask)) : true),
+    [visibleTask],
   );
 
   // Сломанное задание закрывается как пропущенное — ровно один раз на задание.
@@ -502,6 +630,87 @@ function ArenaMatchGenerationScreen({
     playSound(correct ? 'pairMatch' : 'pairMiss');
     return Promise.resolve(correct);
   }, [match, playSound]);
+
+  // зачем: один шелл на все три сценария (выход/ошибка сохранения/отказ) —
+  // BackHandler может дёрнуть confirmForfeit на любом из трёх ранних return,
+  // поэтому шелл рендерится в каждом из них через этот общий узел.
+  const matchAlertNode = (
+    <HybridAlertShell
+      visible={matchAlert !== null}
+      onRequestClose={() => setMatchAlert(null)}
+      testID="arena-match-alert"
+      shadowColor={matchAlert?.kind === 'leave' ? t.wrong : t.accent}
+    >
+      {matchAlert?.kind === 'leave' ? (
+        <View style={[styles.alertBody, { backgroundColor: t.bgCard }]}>
+          <Text accessibilityRole="header" style={[styles.alertTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
+            {arenaText(lang, 'leaveTitle')}
+          </Text>
+          <Text style={[styles.alertText, { color: t.textSecond, fontSize: f.body }]}>
+            {arenaText(lang, 'leaveBody')}
+          </Text>
+          <DuoPressable
+            testID="arena-match-leave-confirm"
+            onPress={() => { setMatchAlert(null); forfeitNow(); }}
+            edgeColor={t.wrong}
+            style={[styles.alertPrimary, { backgroundColor: t.wrong }]}
+          >
+            <Text style={[styles.alertButtonText, { color: '#FFFFFF' }]}>{arenaText(lang, 'leaveConfirm')}</Text>
+          </DuoPressable>
+          <DuoPressable
+            testID="arena-match-leave-stay"
+            onPress={() => setMatchAlert(null)}
+            edgeColor={t.bgSurface2}
+            style={[styles.alertSecondary, { backgroundColor: t.bgSurface2 }]}
+          >
+            <Text style={[styles.alertButtonText, { color: t.textPrimary }]}>{arenaText(lang, 'stay')}</Text>
+          </DuoPressable>
+        </View>
+      ) : matchAlert?.kind === 'storageFailed' ? (
+        <View style={[styles.alertBody, { backgroundColor: t.bgCard }]}>
+          <Text accessibilityRole="header" style={[styles.alertTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
+            {arenaText(lang, 'reportStorageFailed')}
+          </Text>
+          <Text style={[styles.alertText, { color: t.textSecond, fontSize: f.body }]}>
+            {arenaText(lang, 'reportStorageFailedHint')}
+          </Text>
+          <DuoPressable
+            testID="arena-match-storage-retry"
+            onPress={() => { setMatchAlert(null); setSent(false); }}
+            edgeColor={t.accent}
+            style={[styles.alertPrimary, { backgroundColor: t.accent }]}
+          >
+            <Text style={[styles.alertButtonText, { color: t.correctText }]}>{arenaText(lang, 'retry')}</Text>
+          </DuoPressable>
+          <DuoPressable
+            testID="arena-match-storage-home"
+            onPress={() => { setMatchAlert(null); router.replace('/arena' as never); }}
+            edgeColor={t.bgSurface2}
+            style={[styles.alertSecondary, { backgroundColor: t.bgSurface2 }]}
+          >
+            <Text style={[styles.alertButtonText, { color: t.textPrimary }]}>{arenaText(lang, 'home')}</Text>
+          </DuoPressable>
+        </View>
+      ) : matchAlert?.kind === 'rejected' ? (
+        <View style={[styles.alertBody, { backgroundColor: t.bgCard }]}>
+          <Text accessibilityRole="header" style={[styles.alertTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
+            {arenaText(lang, 'reportRejected')}
+          </Text>
+          <Text style={[styles.alertText, { color: t.textSecond, fontSize: f.body }]}>
+            {arenaText(lang, 'reportRejectedHint')}
+          </Text>
+          <DuoPressable
+            testID="arena-match-rejected-home"
+            onPress={() => { setMatchAlert(null); router.replace('/arena' as never); }}
+            edgeColor={t.accent}
+            style={[styles.alertPrimary, { backgroundColor: t.accent }]}
+          >
+            <Text style={[styles.alertButtonText, { color: t.correctText }]}>{arenaText(lang, 'home')}</Text>
+          </DuoPressable>
+        </View>
+      ) : null}
+    </HybridAlertShell>
+  );
 
   if (planError) {
     /**
@@ -543,11 +752,15 @@ function ArenaMatchGenerationScreen({
   }
 
   const introReady = Boolean(plan && match && hud && match.phase.kind !== 'countdown');
-  const shouldShowIntro = !introDone && (
-    !plan || !match || !hud || match.phase.kind === 'countdown'
+  // VS starts only after the sealed plan and both real identities are ready.
+  // A restored match continues from its persisted phase instead of replaying
+  // a full intro over an already-running local timer.
+  const shouldShowIntro = !introDone && !restored && Boolean(
+    plan && match && hud && match.phase.kind === 'countdown'
+      && introYou && introOpponent,
   );
 
-  if (shouldShowIntro) {
+  if (shouldShowIntro && introYou && introOpponent) {
     return (
       <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
         <Animated.View
@@ -571,9 +784,9 @@ function ArenaMatchGenerationScreen({
   }
 
   if (!plan || !match || !hud) {
-    // Защитная ветка типов: introDone выставляется только при готовых
-    // plan/match/hud, поэтому в штатном ходе она недостижима. Текста ожидания
-    // здесь намеренно нет — подготовка всегда живёт внутри столкновения.
+    // Защитная ветка пока прямой вход ждёт план. Текста ожидания здесь
+    // намеренно нет: поиск остаётся на предыдущем экране, а VS не монтируется
+    // до готовности реальных данных.
     return (
       <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
         <View style={styles.center} />
@@ -581,7 +794,6 @@ function ArenaMatchGenerationScreen({
     );
   }
 
-  const opponentAnswered = hud.opponent.kind === 'answered';
   /**
    * Живой канал соперника молчит из-за СВЯЗИ, а не потому, что соперник ничего
    * не делает. Без этой оговорки игрок читает пустое место как «соперник
@@ -603,13 +815,13 @@ function ArenaMatchGenerationScreen({
       <ArenaPlayers compact={immersive} players={players} active={active} animateScore />
       <V2Segments
         total={hud.taskCount}
-        done={Math.max(0, hud.taskOrdinal - 1)}
+        done={match.state.phase === 'finished' ? hud.taskCount : Math.max(0, hud.taskOrdinal - 1)}
         style={styles.matchProgress}
       />
 
-      {hud.task ? (
+      {visibleTask ? (
         <Animated.View
-          key={hud.task.taskId}
+          key={visibleTask.taskId}
           entering={immersive ? undefined : reduceMotion ? FadeIn.duration(120) : SlideInRight.duration(v2motion.taskSwapMs)}
           style={styles.question}
         >
@@ -625,31 +837,15 @@ function ArenaMatchGenerationScreen({
                 ) : <View style={[styles.timerHole, immersive ? styles.timerHoleCompact : null]} />}
             <View style={styles.hudSide}>
               <ArenaComboMeter streak={hud.combo.streak} bonusLabel={`+1★`} size="compact" />
-              {/* Индикатор соперника. Владелец: загорается СРАЗУ, как тот ответил. */}
               {rivalUnseen ? (
+                // eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- authored connectivity hint is capped at two lines so the live question remains visible
                 <Text
                   numberOfLines={2}
-                  ellipsizeMode="tail"
                   style={[styles.rival, { color: P.muted }]}
                   accessibilityLiveRegion="polite"
                 >
                   {arenaText(lang, 'rivalUnseen')}
                 </Text>
-              ) : null}
-              {opponentAnswered ? (
-                <Animated.View entering={FadeIn.duration(140)}>
-                  {/* Имя соперника плюс отметка ответа: при крупном системном
-                      шрифте это обязано остаться одной строкой, иначе шапка
-                      растёт и выдавливает само задание. */}
-                  <Text
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                    style={[styles.rival, { color: P.gold }]}
-                    accessibilityLiveRegion="polite"
-                  >
-                    {plan.opponent.name || arenaText(lang, 'opponent')} · {arenaText(lang, 'opponentAnsweredBadge')}
-                  </Text>
-                </Animated.View>
               ) : null}
             </View>
           </View>
@@ -676,8 +872,8 @@ function ArenaMatchGenerationScreen({
 
           {taskRenderable ? (
             <ArenaQuestion
-              task={arenaPlanTaskToPublic(hud.task)}
-              locked={!hud.interactive}
+              task={arenaPlanTaskToPublic(visibleTask)}
+              locked={match.state.phase === 'finished' || !hud.interactive}
               submitLabel={arenaText(lang, 'submit')}
               onSubmit={onSubmit}
               onSpeedAttempt={onSpeedAttempt}
@@ -710,16 +906,7 @@ function ArenaMatchGenerationScreen({
 
           {hud.starsToFly > 0 ? <ArenaStarFlight amount={hud.starsToFly} /> : null}
         </Animated.View>
-      ) : (
-        <View style={styles.center}>
-          <V2Card style={styles.doneCard}>
-            <Text style={[styles.big, { color: P.text }]}>{hud.matchStars}★</Text>
-            {/* Матч доигран, идёт отправка итога. «Загрузка» здесь неправда:
-                считать уже нечего, счёт на экране. */}
-            <Text style={[styles.hint, bigHintLine, { color: P.muted }]}>{arenaText(lang, 'sendingResult')}</Text>
-          </V2Card>
-        </View>
-      )}
+      ) : null}
     </ArenaScreen>
   );
 }
@@ -741,7 +928,4 @@ const styles = StyleSheet.create({
   awardBox: { gap: 2, alignItems: 'center' },
   awardHead: { fontSize: 20, fontWeight: '900' },
   awardLine: { fontSize: 12, fontWeight: '700' },
-  doneCard: { gap: 10, alignItems: 'center' },
-  big: { fontSize: 34, fontWeight: '900', textAlign: 'center' },
-  hint: { fontSize: 15, fontWeight: '600', textAlign: 'center' },
 });

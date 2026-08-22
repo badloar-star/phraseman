@@ -8,7 +8,6 @@ import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useLang } from '../components/LangContext';
 import { ArenaStateCard, ArenaStateNotice } from '../components/arena/ArenaExpansionUI';
 import { ArenaScreen, ArenaStat } from '../components/arena/ArenaScreen';
-import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -18,6 +17,8 @@ import { arenaStoreItemTitle } from '../modules/arena/expansion_store_copy';
 import { arenaFeatureOpenEvent, arenaStoreActionEvent } from '../modules/arena/telemetry';
 import { trackArenaTelemetry } from './arena_telemetry';
 import { arenaCosmeticDefinition } from '../modules/arena/arena_cosmetics';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { mergeLevelSpinServerStars } from './level_spin_star_grants';
 import { ARENA_LOCALIZED_STORE_ITEM_IDS, type ArenaStoreItemId } from '../modules/arena/expansion_store_copy';
 import { arenaExpansionHome, arenaStarEquip, arenaStarPurchase, arenaStarStore, arenaV2SpinClaim, arenaV2SpinStatus, createArenaRequestId } from './arena_client';
 
@@ -71,11 +72,14 @@ export default function ArenaStarWalletScreen() {
   const purchaseIds = useRef(new Map<string, string>());
   const spinId = useRef<string | null>(null);
   const load = useCallback(() => {
+    const accountToken = captureAccountGeneration();
+    const ownerStableId = accountToken.stableId?.trim();
     // Снимок уже нарисован — состояние загрузки нужно только когда рисовать
     // нечего, иначе экран мигал бы пустотой поверх готового содержимого.
     setState((current) => (current === 'ready' ? current : 'loading'));
     setActionError(null);
-    void Promise.all([arenaExpansionHome(), arenaStarStore(), arenaV2SpinStatus().catch(() => ({ ok: true as const, spinsAvailable: 0 }))]).then(([home, response, spin]) => {
+    void Promise.all([arenaExpansionHome(), arenaStarStore(), arenaV2SpinStatus().catch(() => ({ ok: true as const, spinsAvailable: 0 }))]).then(async ([home, response, spin]) => {
+      if (!ownerStableId || !isCurrentAccountGeneration(accountToken, ownerStableId)) return;
       if (!home.availability.store) { setState('unavailable'); return; }
       const next = { ...response, wallet: home.wallet };
       setStore(next);
@@ -104,9 +108,18 @@ export default function ArenaStarWalletScreen() {
     if (store.wallet.walletStars < item.priceStars) { setState('insufficient'); return; }
     const requestId = purchaseIds.current.get(item.sku) ?? createArenaRequestId('star_purchase');
     purchaseIds.current.set(item.sku, requestId);
+    const accountToken = captureAccountGeneration();
+    const ownerStableId = accountToken.stableId?.trim();
+    if (!ownerStableId || !isCurrentAccountGeneration(accountToken, ownerStableId)) return;
     setBusySku(item.sku);
     trackArenaTelemetry(arenaStoreActionEvent('purchase', item.sku as ArenaStoreItemId, item.slot, item.priceStars));
-    void arenaStarPurchase(item.sku, store.catalogVersion, requestId).then(() => {
+    void arenaStarPurchase(item.sku, store.catalogVersion, requestId).then(async (response) => {
+      if (!isCurrentAccountGeneration(accountToken, ownerStableId)) return;
+      await mergeLevelSpinServerStars(accountToken, {
+        stars: response.balanceAfter,
+        ...(response.starsSeq !== undefined ? { starsSeq: response.starsSeq } : {}),
+      });
+      if (!isCurrentAccountGeneration(accountToken, ownerStableId)) return;
       purchaseIds.current.delete(item.sku);
       setState('success');
       void load();
@@ -141,7 +154,6 @@ export default function ArenaStarWalletScreen() {
   </View> : null;
 
   return (
-    <ArenaHubChrome>
     <ArenaScreen title={arenaExpansionText(lang, 'wallet')} subtitle={arenaExpansionText(lang, 'store')} scroll={false}>
       <FlatList
         data={store?.items ?? []}
@@ -152,7 +164,6 @@ export default function ArenaStarWalletScreen() {
         renderItem={({ item }) => { const wired = Boolean(arenaStoreItemTitle(lang, item.sku)) && arenaCosmeticDefinition(item.sku)?.slot === item.slot; return <V2Card style={styles.item}><View style={[styles.itemIcon, { backgroundColor: P.elev2 }]}><Ionicons name={item.icon ?? 'shield'} size={25} color={P.gold} /></View><View style={styles.flex}><Text style={[styles.title, { color: P.text }]}>{arenaStoreItemTitle(lang, item.sku) ?? arenaExpansionText(lang, 'unavailable')}</Text><Text style={[styles.price, { color: P.gold }]}>{item.priceStars}</Text></View><View style={styles.itemAction}>{item.equipped ? <Text style={[styles.owned, { color: P.accent }]}>{arenaExpansionText(lang, 'equipped')}</Text> : item.owned ? <V2Cta tone="ghost" disabled={!wired || busySku === item.sku} onPress={() => equip(item)}>{arenaExpansionText(lang, 'equip')}</V2Cta> : <V2Cta disabled={!wired || !item.available || busySku === item.sku} onPress={() => purchase(item)}>{arenaExpansionText(lang, 'buy').replace('{amount}', String(item.priceStars))}</V2Cta>}</View></V2Card>; }}
       />
     </ArenaScreen>
-    </ArenaHubChrome>
   );
 }
 

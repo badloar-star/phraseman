@@ -7,20 +7,18 @@ import { arenaLoadWarm, arenaPeekWarm, arenaRememberWarm } from '../modules/aren
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { ArenaHubChrome } from '../components/arena/ArenaHubChrome';
 import { V2Card } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
 import { arenaText } from '../modules/arena/copy';
-import { ARENA_TIER_KEYS, arenaRankView } from '../modules/arena/rank_engine';
+import { arenaRankView } from '../modules/arena/rank_engine';
 import { arenaCachedLoadView, arenaLoadState } from '../modules/arena/load_state';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import {
   arenaV2FriendsBoard,
-  arenaV2Home,
   type ArenaFriendsBoardRow,
-  type ArenaHomeResponse,
 } from './arena_client';
+import { peekFriendsTabSwrWarm } from './friends_tab_swr_warm';
 
 const TIER_COPY = [
   'tierBronze', 'tierSilver', 'tierGold', 'tierPlatinum',
@@ -59,9 +57,17 @@ export default function ArenaTopsScreen() {
    * ночь не переписываются, и вчерашняя таблица честнее пустого экрана.
    */
   const warm = useMemo(() => readTopsWarm(arenaPeekWarm('tops', Date.now())), []);
+  const friendsWarm = useMemo(() => peekFriendsTabSwrWarm(), []);
+  const friendNameByUid = useMemo(() => {
+    const names = new Map<string, string>();
+    for (const friend of friendsWarm?.friends ?? []) {
+      const name = friendsWarm?.profiles[friend.uid]?.name ?? friend.displayName;
+      if (name?.trim()) names.set(friend.uid, name.trim());
+    }
+    return names;
+  }, [friendsWarm]);
   const [rows, setRows] = useState<readonly ArenaFriendsBoardRow[]>(warm?.rows ?? []);
   const [percentile, setPercentile] = useState<number | null>(warm?.percentile ?? null);
-  const [home, setHome] = useState<ArenaHomeResponse | null>(null);
   const [loaded, setLoaded] = useState(Boolean(warm));
   const [failed, setFailed] = useState(false);
 
@@ -87,7 +93,6 @@ export default function ArenaTopsScreen() {
       setRows((current) => (current.length ? current : parsed.rows));
       setPercentile((current) => (current === null ? parsed.percentile : current));
     }).catch(() => {});
-    void arenaV2Home().then(setHome).catch(() => {});
   }, [active]);
 
   const you = useMemo(() => rows.find((row) => row.you) ?? null, [rows]);
@@ -100,12 +105,7 @@ export default function ArenaTopsScreen() {
   const boardView = arenaCachedLoadView({ state, cachedCount: rows.length, volatile: true });
 
   return (
-    <ArenaHubChrome
-      availability={home?.availability}
-      activeMatchId={home?.activeMatch?.matchId ?? null}
-      activeQueue={home?.activeQueue}
-    >
-      <ArenaScreen title={arenaText(lang, 'topsTab')} variant="table">
+    <ArenaScreen title={arenaText(lang, 'topsTab')} variant="table">
         <Animated.View entering={reduceMotion ? FadeIn.duration(120) : FadeInDown.duration(280)}>
           <V2Card pad={16} style={styles.head}>
             {/*
@@ -150,6 +150,10 @@ export default function ArenaTopsScreen() {
 
         {rows.map((row, index) => {
           const view = arenaRankView(row.rating);
+          const fallbackSuffix = row.stableUid.slice(-4).toUpperCase();
+          const playerName = row.you
+            ? arenaText(lang, 'you')
+            : friendNameByUid.get(row.stableUid) ?? `${arenaText(lang, 'friend')} · ${fallbackSuffix}`;
           return (
             <Animated.View
               key={row.stableUid}
@@ -164,10 +168,10 @@ export default function ArenaTopsScreen() {
                 </View>
                 <View style={styles.copy}>
                   <Text style={[styles.name, { color: row.you ? P.accent : P.text }]}>
-                    {row.you ? arenaText(lang, 'you') : arenaText(lang, TIER_COPY[view.tierIndex])}
+                    {playerName}
                   </Text>
                   <Text style={[styles.meta, { color: P.muted }]}>
-                    {ARENA_TIER_KEYS[view.tierIndex]} · {row.wins}/{row.losses}
+                    {arenaText(lang, TIER_COPY[view.tierIndex])} · {row.wins}/{row.losses}
                   </Text>
                 </View>
                 <Text style={[styles.rating, { color: P.text }]}>{row.rating}</Text>
@@ -175,8 +179,7 @@ export default function ArenaTopsScreen() {
             </Animated.View>
           );
         })}
-      </ArenaScreen>
-    </ArenaHubChrome>
+    </ArenaScreen>
   );
 }
 

@@ -1,46 +1,65 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { PixelRatio, Pressable, Share, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useRouter } from 'expo-router';
-import { useLang } from '../components/LangContext';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import AvatarView from '../components/AvatarView';
+import HybridSheetShell from '../components/modal_fx/HybridSheetShell';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
-import { arenaText } from '../modules/arena/copy';
-import { arenaV2InviteCreate, createArenaRequestId, rememberArenaViewerSeat, useArenaProfile } from './arena_client';
-import { peekFriendsTabSwrWarm, startFriendsTabSwrPrime, type FriendsTabWarmSnapshot } from './friends_tab_swr_warm';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useLang } from '../components/LangContext';
+import { arenaText } from '../modules/arena/copy';
+import {
+  arenaV2DevFriendBotCreate,
+  arenaV2InviteCancel,
+  arenaV2InviteCreate,
+  arenaV2InviteReady,
+  arenaV2InviteStatus,
+  createArenaRequestId,
+} from './arena_client';
+import { peekFriendsTabSwrWarm, startFriendsTabSwrPrime, type FriendsTabWarmSnapshot } from './friends_tab_swr_warm';
+import { getCanonicalUserId } from './user_id_policy';
 
-/**
- * Системный масштаб шрифта — для высоты строки.
- *
- * В React Native крупный системный шрифт увеличивает `fontSize`, но `lineHeight`
- * задан числом и остаётся прежним: строки наезжают друг на друга и обрезаются.
- * Высота строки умножается на масштаб, поэтому при обычном размере вёрстка та
- * же, а при увеличении — правильная.
- *
- * На главных экранах Арены то же самое делает хук `useArenaFontScale`: он
- * реагирует на смену настройки на ходу. Здесь взято значение на момент
- * загрузки модуля — стили лежат в `StyleSheet`, а часть строк рисуется внутри
- * колбэков списка, где хук вызвать нельзя. Разница видна только если менять
- * системный шрифт, не выходя из приложения.
- */
-const FONT_SCALE = PixelRatio.getFontScale();
+const ACTIVE_INVITE_KEY = 'arena_friend_invite_active_v2';
+type SelectedFriend = { uid: string; name: string; avatar?: string; aura?: string };
+type StoredInvite = { inviteId: string; requestId: string; selected: SelectedFriend; expiresAtMs: number };
 
+const remainingLabel = (deadline: number, now: number) => {
+  const seconds = Math.max(0, Math.ceil((deadline - now) / 1000));
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+};
 
 export default function ArenaFriendDuelScreen() {
   const router = useRouter();
-  const { lang } = useLang();
+  const params = useLocalSearchParams<{ friendStableUid?: string; friendName?: string; friendAvatar?: string; devBot?: string }>();
   const P = useTournamentPalette();
+  const { lang } = useLang();
   const active = useRuntimeActive();
   const [friends, setFriends] = useState<FriendsTabWarmSnapshot | null>(() => peekFriendsTabSwrWarm());
-  const [friendId, setFriendId] = useState('');
-  const [inviteId, setInviteId] = useState<string | null>(null);
-  const [stableUid, setStableUid] = useState<string | null>(null);
+  const [selected, setSelected] = useState<SelectedFriend | null>(() => typeof params.friendStableUid === 'string' ? {
+    uid: params.friendStableUid,
+    name: typeof params.friendName === 'string' ? params.friendName : 'Друг',
+    avatar: typeof params.friendAvatar === 'string' ? params.friendAvatar : undefined,
+  } : null);
+  const [pickerOpen, setPickerOpen] = useState(() => typeof params.friendStableUid !== 'string');
+  const [invite, setInvite] = useState<StoredInvite | null>(null);
+  const [now, setNow] = useState(Date.now());
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState(false);
-  const requestId = useRef(createArenaRequestId('invite')).current;
-  const profile = useArenaProfile(stableUid, active && Boolean(inviteId));
+  const [error, setError] = useState('');
+  const requestIdRef = useRef(createArenaRequestId('friend_invite'));
+  /**
+   * На первом входе picker открыт нативным Modal поверх всего экрана. Он
+   * перехватывает и системную кнопку, и тап по видимой стрелке попадает в backdrop.
+   * Первое закрытие поэтому выходит в Арену; picker, открытый повторно для
+   * смены уже выбранного друга, только закрывается.
+   */
+  const pickerCloseIntentRef = useRef<'stay' | 'leave'>(typeof params.friendStableUid === 'string' ? 'stay' : 'leave');
+  const leaveFriendDuel = useCallback(() => router.replace('/arena' as never), [router]);
+  const closeFriendPicker = useCallback(() => {
+    setPickerOpen(false);
+    if (pickerCloseIntentRef.current === 'leave') router.replace('/arena' as never);
+  }, [router]);
 
   useEffect(() => {
     if (!active) return;
@@ -50,98 +69,152 @@ export default function ArenaFriendDuelScreen() {
   }, [active]);
 
   useEffect(() => {
-    const matchId = profile.value?.activeMatchId;
-    if (!matchId) return;
-    rememberArenaViewerSeat(matchId, 'a');
-    router.replace({ pathname: '/arena_match', params: { matchId, viewerSeat: 'a' } } as never);
-  }, [profile.value?.activeMatchId, router]);
+    let cancelled = false;
+    void getCanonicalUserId().then(async (uid) => {
+      if (!uid) return;
+      const raw = await AsyncStorage.getItem(`${ACTIVE_INVITE_KEY}:${uid}`).catch(() => null);
+      if (cancelled || !raw) return;
+      try {
+        const stored = JSON.parse(raw) as StoredInvite;
+        if (stored.inviteId && stored.requestId && stored.selected?.uid) {
+          requestIdRef.current = stored.requestId;
+          setSelected(stored.selected);
+          setInvite(stored);
+          setPickerOpen(false);
+        }
+      } catch { /* corrupted DEV/session state is ignored */ }
+    });
+    return () => { cancelled = true; };
+  }, []);
 
-  const create = () => {
-    if (!friendId.trim() || busy) return;
+  const clearStored = useCallback(async () => {
+    const uid = await getCanonicalUserId().catch(() => null);
+    if (uid) await AsyncStorage.removeItem(`${ACTIVE_INVITE_KEY}:${uid}`).catch(() => {});
+  }, []);
+
+  const finishStatus = useCallback((status: Awaited<ReturnType<typeof arenaV2InviteStatus>>) => {
+    if (status.status === 'matched' && status.matchId) {
+      void clearStored();
+      router.replace({ pathname: '/arena_match', params: { matchId: status.matchId, viewerSeat: status.viewerSeat } } as never);
+      return true;
+    }
+    if (['declined', 'cancelled', 'expired'].includes(status.status)) {
+      void clearStored();
+      requestIdRef.current = createArenaRequestId('friend_invite');
+      setInvite(null);
+      setError(status.status === 'declined' ? 'Сегодня без драмы' : status.status === 'expired' ? 'Время вызова вышло' : 'Вызов отменён');
+      return true;
+    }
+    return false;
+  }, [clearStored, router]);
+
+  useEffect(() => {
+    if (!active || !invite) return;
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const poll = async () => {
+      try {
+        const status = await arenaV2InviteReady(invite.inviteId);
+        if (cancelled || finishStatus(status)) return;
+      } catch { /* bounded focused poll retries */ }
+      if (!cancelled) timer = setTimeout(poll, 1500);
+    };
+    void poll();
+    return () => { cancelled = true; if (timer) clearTimeout(timer); };
+  }, [active, finishStatus, invite]);
+
+  useEffect(() => {
+    if (!active || !invite) return;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const tick = () => { setNow(Date.now()); timer = setTimeout(tick, 1000); };
+    tick();
+    return () => { if (timer) clearTimeout(timer); };
+  }, [active, invite]);
+
+  const create = async () => {
+    if (!selected || busy) return;
+    setBusy(true); setError('');
+    try {
+      const result = await arenaV2InviteCreate(selected.uid, requestIdRef.current);
+      const stored: StoredInvite = { inviteId: result.inviteId, requestId: requestIdRef.current, selected, expiresAtMs: result.expiresAtMs };
+      setInvite(stored);
+      const uid = await getCanonicalUserId().catch(() => null);
+      if (uid) await AsyncStorage.setItem(`${ACTIVE_INVITE_KEY}:${uid}`, JSON.stringify(stored));
+      const ready = await arenaV2InviteReady(result.inviteId);
+      finishStatus(ready);
+    } catch { setError(`${arenaText(lang, 'inviteFailed')}. ${arenaText(lang, 'inviteFailedHint')}`); }
+    finally { setBusy(false); }
+  };
+
+  const cancel = async () => {
+    if (!invite || busy) return;
     setBusy(true);
-    setError(false);
-    void arenaV2InviteCreate(friendId.trim(), requestId)
-      .then((result) => { setStableUid(result.stableUid); setInviteId(result.inviteId); })
-      .catch(() => setError(true))
-      .finally(() => setBusy(false));
+    try {
+      await arenaV2InviteCancel(invite.inviteId);
+      await clearStored();
+      requestIdRef.current = createArenaRequestId('friend_invite');
+      setInvite(null);
+      setError('Вызов отменён');
+    }
+    catch { setError('Не удалось отменить. Повторить?'); }
+    finally { setBusy(false); }
   };
-  const share = () => {
-    if (!inviteId) return;
-    const url = `phraseman://arena/invite/${encodeURIComponent(inviteId)}`;
-    void Share.share({ message: url }).catch(() => {});
+
+  const startDevBot = async () => {
+    if (busy) return;
+    setPickerOpen(false); setBusy(true); setError('DEV-бот принимает вызов…');
+    try {
+      const result = await arenaV2DevFriendBotCreate(createArenaRequestId('dev_friend_bot'));
+      router.replace({ pathname: '/arena_match', params: { matchId: result.matchId, viewerSeat: result.viewerSeat } } as never);
+    } catch { setError('DEV-бот недоступен: запусти Functions emulator'); }
+    finally { setBusy(false); }
   };
+
+  const devBotStartedRef = useRef(false);
+  useEffect(() => {
+    if (params.devBot !== '1' || devBotStartedRef.current) return;
+    devBotStartedRef.current = true;
+    void startDevBot();
+    // startDevBot intentionally runs once for the deep-linked DEV scenario.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.devBot]);
 
   return (
-    <ArenaScreen title={arenaText(lang, 'inviteTitle')} variant="tickets">
-      <Text style={[styles.friendHint, { color: P.muted }]}>{arenaText(lang, 'friendHint')}</Text>
+    <ArenaScreen title="Дуэль с другом" variant="tickets" onBack={leaveFriendDuel}>
       <V2Card style={styles.card}>
-        <Text style={[styles.label, { color: P.text }]}>{arenaText(lang, 'selectFriend')}</Text>
-        <View style={styles.friendList}>
+        {selected ? <View style={styles.selected}><AvatarView avatar={selected.avatar} auraId={selected.aura} size={64} animateAura={false} ownerActive={active} /><Text style={[styles.name, { color: P.text }]}>{selected.name}</Text></View> : null}
+        {invite ? <><Text testID="arena-friend-invite-countdown" style={[styles.countdown, { color: P.accent }]}>{remainingLabel(invite.expiresAtMs, now)}</Text><V2Cta tone="ghost" disabled={busy} onPress={cancel}>Отменить вызов</V2Cta></> : <><V2Cta tone="ghost" disabled={busy} onPress={() => { pickerCloseIntentRef.current = 'stay'; setPickerOpen(true); }}>{selected ? 'Выбрать другого' : 'Выбрать друга'}</V2Cta>{selected ? <V2Cta accessibilityHint={arenaText(lang, 'friendHint')} disabled={busy} onPress={create}>Бросить вызов</V2Cta> : null}</>}
+        {error ? <Text accessibilityLiveRegion="polite" style={[styles.error, { color: P.muted }]}>{error}</Text> : null}
+      </V2Card>
+
+      <HybridSheetShell visible={pickerOpen} onClose={closeFriendPicker} closeLabel="Закрыть" testID="arena-friend-picker">
+        {({ requestDismiss }) => <View style={styles.picker}>
+          <Text style={[styles.pickerTitle, { color: P.text }]}>Кому бросить вызов?</Text>
+          <ScrollView style={styles.pickerScroll} contentContainerStyle={styles.pickerRows} showsVerticalScrollIndicator={false}>
           {(friends?.friends ?? []).map((friend) => {
             const profile = friends?.profiles[friend.uid];
-            const selected = friendId === friend.uid;
-            return (
-              <Pressable
-                key={friend.uid}
-                accessibilityRole="button"
-                accessibilityState={{ selected }}
-                accessibilityLabel={profile?.name ?? friend.displayName ?? arenaText(lang, 'friend')}
-                onPress={() => setFriendId(friend.uid)}
-                style={[styles.friendRow, { backgroundColor: selected ? P.accent : P.elev }]}
-              >
-                <AvatarView avatar={profile?.avatar} auraId={profile?.aura} size={44} animateAura={false} ownerActive={active} />
-                <Text style={[styles.friendName, { color: selected ? P.okInk : P.text }]}>{profile?.name ?? friend.displayName ?? arenaText(lang, 'friend')}</Text>
-              </Pressable>
-            );
+            const name = profile?.name ?? friend.displayName ?? 'Друг';
+            return <Pressable key={friend.uid} accessibilityRole="button" accessibilityLabel={name} onPress={() => { pickerCloseIntentRef.current = 'stay'; setSelected({ uid: friend.uid, name, avatar: profile?.avatar, aura: profile?.aura }); requestDismiss(); }} style={[styles.row, { backgroundColor: P.elev }]}><AvatarView avatar={profile?.avatar} auraId={profile?.aura} size={44} animateAura={false} ownerActive={active} /><Text style={[styles.rowName, { color: P.text }]}>{name}</Text></Pressable>;
           })}
-          {(friends?.friends ?? []).length === 0 ? <Text style={[styles.empty, { color: P.muted }]}>{arenaText(lang, 'noFriends')}</Text> : null}
-        </View>
-        <Text style={[styles.fallback, { color: P.muted }]}>{arenaText(lang, 'friendId')}</Text>
-        <TextInput
-          accessibilityLabel={arenaText(lang, 'friendId')}
-          autoCapitalize="none"
-          autoCorrect={false}
-          value={friendId}
-          onChangeText={setFriendId}
-          editable={!busy && !inviteId}
-          style={[styles.input, { backgroundColor: P.elev, color: P.text }]}
-        />
-        {!inviteId ? <V2Cta disabled={!friendId.trim() || busy} onPress={create}>{arenaText(lang, 'createInvite')}</V2Cta> : (
-          <>
-            <Text accessibilityLiveRegion="polite" style={[styles.ready, { color: P.text }]}>{arenaText(lang, 'inviteReady')}</Text>
-            <Text style={[styles.fallback, { color: P.muted }]}>{arenaText(lang, 'inviteTtl')}</Text>
-            <Text selectable style={[styles.code, { color: P.accent }]}>{inviteId}</Text>
-            <V2Cta onPress={share}>{arenaText(lang, 'share')}</V2Cta>
-          </>
-        )}
-        {/* Раньше здесь краснело одно слово «Повторить»: игрок не знал,
-            ушло приглашение или нет, и слал его повторно вслепую. */}
-        {error ? (
-          <View style={styles.failure}>
-            <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>{arenaText(lang, 'inviteFailed')}</Text>
-            <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'inviteFailedHint')}</Text>
-          </View>
-        ) : null}
-      </V2Card>
-      <V2Cta tone="ghost" onPress={() => router.push('/arena_invite' as never)}>{arenaText(lang, 'join')}</V2Cta>
+          {__DEV__ ? <Pressable testID="arena-friend-dev-bot" accessibilityRole="button" accessibilityLabel="DEV-бот" onPress={() => { pickerCloseIntentRef.current = 'stay'; requestDismiss(); void startDevBot(); }} style={[styles.row, { backgroundColor: P.elev }]}><View style={[styles.botAvatar, { backgroundColor: P.accent }]}><Text style={{ color: P.okInk, fontWeight: '900' }}>BOT</Text></View><Text style={[styles.rowName, { color: P.text }]}>DEV-бот</Text></Pressable> : null}
+          </ScrollView>
+        </View>}
+      </HybridSheetShell>
     </ArenaScreen>
   );
 }
 
 const styles = StyleSheet.create({
   card: { gap: 14 },
-  label: { fontSize: 16, fontWeight: '800' },
-  friendHint: { fontSize: 14, fontWeight: '700', textAlign: 'center' },
-  friendList: { gap: 8 },
-  friendRow: { minHeight: 56, borderRadius: 17, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  friendName: { flex: 1, fontSize: 15, fontWeight: '800' },
-  empty: { minHeight: 44, textAlignVertical: 'center', textAlign: 'center', fontSize: 14, fontWeight: '600' },
-  fallback: { fontSize: 12, fontWeight: '700' },
-  input: { minHeight: 52, borderRadius: 16, paddingHorizontal: 14, fontSize: 16, fontWeight: '700' },
-  ready: { fontSize: 20, fontWeight: '900', textAlign: 'center' },
-  code: { fontSize: 15, fontWeight: '800', textAlign: 'center' },
-  error: { textAlign: 'center', fontWeight: '700' },
-  failure: { gap: 4 },
-  failureTitle: { fontSize: 16, fontWeight: '900', textAlign: 'center' },
-  failureHint: { fontSize: 13, lineHeight: 19 * FONT_SCALE, fontWeight: '600', textAlign: 'center' },
+  selected: { alignItems: 'center', gap: 10 },
+  name: { fontSize: 22, fontWeight: '900', textAlign: 'center' },
+  countdown: { fontSize: 34, fontWeight: '900', textAlign: 'center', fontVariant: ['tabular-nums'] },
+  error: { fontSize: 15, fontWeight: '700', textAlign: 'center' },
+  picker: { gap: 10, paddingBottom: 4 },
+  pickerScroll: { maxHeight: 480 },
+  pickerRows: { gap: 10, paddingBottom: 4 },
+  pickerTitle: { fontSize: 22, fontWeight: '900', textAlign: 'center', marginBottom: 6 },
+  row: { minHeight: 60, borderRadius: 16, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  rowName: { flex: 1, fontSize: 16, fontWeight: '800' },
+  botAvatar: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
 });

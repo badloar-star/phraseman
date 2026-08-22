@@ -1,97 +1,141 @@
-import React, { useState } from 'react';
-import { PixelRatio, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useLang } from '../components/LangContext';
+import AvatarView from '../components/AvatarView';
+import HybridAlertShell from '../components/modal_fx/HybridAlertShell';
+import DuoPressable from '../components/DuoPressable';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
+import { V2Card } from '../components/tournament/tournament_v2_ui';
 import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import { useTheme } from '../components/ThemeContext';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useLang } from '../components/LangContext';
 import { arenaText } from '../modules/arena/copy';
-import { arenaV2InviteAccept, arenaV2InviteDecline } from './arena_client';
-
-/**
- * Системный масштаб шрифта — для высоты строки.
- *
- * В React Native крупный системный шрифт увеличивает `fontSize`, но `lineHeight`
- * задан числом и остаётся прежним: строки наезжают друг на друга и обрезаются.
- * Высота строки умножается на масштаб, поэтому при обычном размере вёрстка та
- * же, а при увеличении — правильная.
- *
- * На главных экранах Арены то же самое делает хук `useArenaFontScale`: он
- * реагирует на смену настройки на ходу. Здесь взято значение на момент
- * загрузки модуля — стили лежат в `StyleSheet`, а часть строк рисуется внутри
- * колбэков списка, где хук вызвать нельзя. Разница видна только если менять
- * системный шрифт, не выходя из приложения.
- */
-const FONT_SCALE = PixelRatio.getFontScale();
-
+import { arenaV2InviteAccept, arenaV2InviteDecline, arenaV2InviteReady, arenaV2InviteStatus, type ArenaFriendInviteStatus } from './arena_client';
 
 export default function ArenaInviteScreen() {
   const router = useRouter();
-  const { lang } = useLang();
-  const P = useTournamentPalette();
   const params = useLocalSearchParams<{ inviteId?: string }>();
-  const [inviteId, setInviteId] = useState(typeof params.inviteId === 'string' ? params.inviteId : '');
+  const inviteId = typeof params.inviteId === 'string' ? params.inviteId.trim() : '';
+  const active = useRuntimeActive();
+  const P = useTournamentPalette();
+  const { theme: t, f } = useTheme();
+  const { lang } = useLang();
+  const [status, setStatus] = useState<ArenaFriendInviteStatus | null>(null);
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState(false);
-  const accept = () => {
-    if (!inviteId.trim() || busy) return;
+  const [error, setError] = useState('');
+  const [now, setNow] = useState(Date.now());
+  const readyRequestedRef = useRef('');
+
+  const handleStatus = useCallback((next: ArenaFriendInviteStatus) => {
+    setStatus((current) => current ? { ...current, ...next } : next);
+    if (next.status === 'matched' && next.matchId) {
+      router.replace({ pathname: '/arena_match', params: { matchId: next.matchId, viewerSeat: next.viewerSeat } } as never);
+      return true;
+    }
+    if (['declined', 'cancelled', 'expired'].includes(next.status)) {
+      setError(next.status === 'expired' ? 'Время вызова вышло' : next.status === 'cancelled' ? 'Вызов отменён' : 'Сегодня без драмы');
+    }
+    return false;
+  }, [router]);
+
+  useEffect(() => {
+    if (!active || !inviteId) { if (!inviteId) router.replace('/arena' as never); return; }
+    let cancelled = false;
+    void arenaV2InviteStatus(inviteId).then((next) => { if (!cancelled) handleStatus(next); }).catch(() => { if (!cancelled) setError('Вызов больше недоступен'); });
+    return () => { cancelled = true; };
+  }, [active, handleStatus, inviteId, router]);
+
+  useEffect(() => {
+    if (!active || !inviteId || status?.status !== 'pending') return;
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const poll = async () => {
+      try {
+        const next = await arenaV2InviteStatus(inviteId);
+        if (cancelled || handleStatus(next)) return;
+      } catch { /* retry only while focused */ }
+      if (!cancelled) timer = setTimeout(poll, 1500);
+    };
+    timer = setTimeout(poll, 1500);
+    return () => { cancelled = true; if (timer) clearTimeout(timer); };
+  }, [active, handleStatus, inviteId, status?.status]);
+
+  useEffect(() => {
+    if (!active || !inviteId || status?.status !== 'accepted') return;
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const poll = async () => {
+      try {
+        const next = readyRequestedRef.current === inviteId
+          ? await arenaV2InviteStatus(inviteId)
+          : await arenaV2InviteReady(inviteId);
+        readyRequestedRef.current = inviteId;
+        if (cancelled || handleStatus(next)) return;
+      } catch { /* retry only while focused */ }
+      if (!cancelled) timer = setTimeout(poll, 1500);
+    };
+    void poll();
+    return () => { cancelled = true; if (timer) clearTimeout(timer); };
+  }, [active, handleStatus, inviteId, status?.status]);
+
+  useEffect(() => {
+    if (!active || status?.status !== 'accepted') return;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const tick = () => { setNow(Date.now()); timer = setTimeout(tick, 1000); };
+    tick();
+    return () => { if (timer) clearTimeout(timer); };
+  }, [active, status?.status]);
+
+  const accept = async () => {
+    if (!inviteId || busy) return;
+    setBusy(true); setError('');
+    try {
+      const accepted = await arenaV2InviteAccept(inviteId);
+      if (handleStatus(accepted)) return;
+      const ready = await arenaV2InviteReady(inviteId);
+      handleStatus(ready);
+    } catch { setError(`${arenaText(lang, 'joinFailed')}. ${arenaText(lang, 'joinFailedHint')}`); }
+    finally { setBusy(false); }
+  };
+
+  const decline = async () => {
+    if (!inviteId || busy) return;
     setBusy(true);
-    setError(false);
-    void arenaV2InviteAccept(inviteId.trim())
-      .then((result) => router.replace({ pathname: '/arena_match', params: { matchId: result.matchId, viewerSeat: result.viewerSeat } } as never))
-      .catch(() => { setError(true); setBusy(false); });
+    try { await arenaV2InviteDecline(inviteId); router.replace('/arena' as never); }
+    catch { setError(`${arenaText(lang, 'declineFailed')}. ${arenaText(lang, 'declineFailedHint')}`); setBusy(false); }
   };
-  /**
-   * Отказ от приглашения. Раньше экран уходил домой ЧЕРЕЗ `finally` — то есть
-   * и тогда, когда отказ не дошёл. Гость был уверен, что отказался, а хозяин
-   * продолжал ждать ответа, которого уже никто не пришлёт.
-   */
-  const [declineFailed, setDeclineFailed] = useState(false);
-  const decline = () => {
-    if (!inviteId.trim()) return router.replace('/arena' as never);
-    setDeclineFailed(false);
-    void arenaV2InviteDecline(inviteId.trim())
-      .then(() => router.replace('/arena' as never))
-      .catch(() => setDeclineFailed(true));
-  };
+
+  const seconds = Math.max(0, Math.ceil((Number(status?.rendezvousExpiresAtMs ?? 0) - now) / 1000));
   return (
-    <ArenaScreen title={arenaText(lang, 'join')} variant="tickets" onBack={() => router.replace('/arena' as never)}>
-      <V2Card style={styles.card}>
-        <Text style={[styles.label, { color: P.text }]}>{arenaText(lang, 'inviteTitle')}</Text>
-        <TextInput
-          accessibilityLabel={arenaText(lang, 'inviteTitle')}
-          autoCapitalize="none"
-          autoCorrect={false}
-          value={inviteId}
-          onChangeText={setInviteId}
-          editable={!busy}
-          style={[styles.input, { backgroundColor: P.elev, color: P.text }]}
-        />
-        <V2Cta disabled={!inviteId.trim() || busy} onPress={accept}>{arenaText(lang, 'join')}</V2Cta>
-        <V2Cta tone="ghost" onPress={decline}>{arenaText(lang, 'decline')}</V2Cta>
-        {declineFailed ? (
-          <View style={styles.failure}>
-            <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>{arenaText(lang, 'declineFailed')}</Text>
-            <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'declineFailedHint')}</Text>
-          </View>
-        ) : null}
-        {error ? (
-          <View style={styles.failure}>
-            <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, { color: P.text }]}>{arenaText(lang, 'joinFailed')}</Text>
-            <Text style={[styles.failureHint, { color: P.muted }]}>{arenaText(lang, 'joinFailedHint')}</Text>
-          </View>
-        ) : null}
-      </V2Card>
+    <ArenaScreen title="Дуэль" variant="tickets" onBack={() => router.replace('/arena' as never)}>
+      {status?.status === 'accepted' ? <V2Card style={styles.waiting}>
+        <AvatarView avatar={status.counterpartAvatar} size={72} animateAura={false} ownerActive={active} />
+        <Text style={[styles.name, { color: P.text }]}>{status.counterpartName || 'Друг'}</Text>
+        <Text testID="arena-rendezvous-countdown" style={[styles.timer, { color: P.accent }]}>{Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, '0')}</Text>
+      </V2Card> : null}
+      {error ? <Text accessibilityLiveRegion="polite" style={[styles.error, { color: P.muted }]}>{error}</Text> : null}
+      <HybridAlertShell visible={status?.status === 'pending'} onRequestClose={() => router.replace('/arena' as never)} testID="arena-friend-invite-modal" shadowColor={t.accent}>
+        <View style={[styles.modal, { backgroundColor: t.bgCard }]}>
+          <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{`${status?.counterpartName || 'Друг'} бросает вызов`}</Text>
+          <Text style={[styles.body, { color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }]}>10 заданий</Text>
+          <DuoPressable testID="arena-friend-invite-accept" disabled={busy} onPress={() => { void accept(); }} edgeColor={t.accent} style={[styles.primary, { backgroundColor: t.accent }]}><Text style={[styles.button, { color: t.correctText }]}>Проверим</Text></DuoPressable>
+          <DuoPressable testID="arena-friend-invite-decline" disabled={busy} onPress={() => { void decline(); }} edgeColor={t.bgSurface2} style={[styles.secondary, { backgroundColor: t.bgSurface2 }]}><Text style={[styles.button, { color: t.textPrimary }]}>Сегодня без драмы</Text></DuoPressable>
+        </View>
+      </HybridAlertShell>
     </ArenaScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  card: { gap: 14 },
-  label: { fontSize: 20, fontWeight: '900', textAlign: 'center' },
-  input: { minHeight: 52, borderRadius: 16, paddingHorizontal: 14, fontSize: 16, fontWeight: '700' },
-  error: { textAlign: 'center', fontWeight: '700' },
-  failure: { gap: 4 },
-  failureTitle: { fontSize: 16, fontWeight: '900', textAlign: 'center' },
-  failureHint: { fontSize: 13, lineHeight: 19 * FONT_SCALE, fontWeight: '600', textAlign: 'center' },
+  waiting: { alignItems: 'center', gap: 12 },
+  name: { fontSize: 22, fontWeight: '900', textAlign: 'center' },
+  timer: { fontSize: 34, fontWeight: '900', fontVariant: ['tabular-nums'] },
+  error: { fontSize: 15, fontWeight: '700', textAlign: 'center' },
+  modal: { padding: 24 },
+  title: { fontWeight: '700', textAlign: 'center' },
+  body: { marginTop: 14, marginBottom: 22, textAlign: 'center' },
+  primary: { minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  secondary: { minHeight: 52, marginTop: 10, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  button: { fontSize: 16, fontWeight: '700' },
 });

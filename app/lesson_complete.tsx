@@ -711,6 +711,10 @@ export default function LessonComplete() {
     studyTarget: softUpsellStudyTarget,
   };
   const repeatOpeningRef = useRef(false);
+  // зачем (аудит 2026-08-22): «Следующий урок» ждала 2 await (премиум-статус +
+  // лимит бесплатных уроков) без защиты от двойного тапа — сосед «Повторить»
+  // уже был защищён тем же паттерном (ref-гейт + видимое состояние).
+  const nextOpeningRef = useRef(false);
   const premiumBannerAnim = useRef(new Animated.Value(0)).current;
   const premiumBannerNextLesson = useRef(0);
   const softUpsell = useSoftUpsellOpportunity({
@@ -1240,28 +1244,37 @@ export default function LessonComplete() {
   }, [lessonId]);
 
   const goNext = () => {
+    if (nextOpeningRef.current) return;
     const next = lessonId + 1;
     if (next <= 32) {
+      nextOpeningRef.current = true;
       void (async () => {
-        const premium = await getVerifiedPremiumStatus().catch(() => false);
-        const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
-        if (requiresPremiumForLesson(next, legacyFreeLessonCap) && !premium) {
-          // Экран результата остаётся единственным: для закрытого урока сразу открываем
-          // существующий путь Plus, без промежуточного баннера на завершении урока.
+        try {
+          const premium = await getVerifiedPremiumStatus().catch(() => false);
+          const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
+          if (requiresPremiumForLesson(next, legacyFreeLessonCap) && !premium) {
+            // Экран результата остаётся единственным: для закрытого урока сразу открываем
+            // существующий путь Plus, без промежуточного баннера на завершении урока.
+            markNextNavigationAsReplace();
+            router.replace({
+              pathname: '/premium_modal',
+              params: {
+                context: lessonPaywallContext(next),
+                lessons_done: String(lessonId),
+                ...lessonPurchaseContinuationParams(next),
+              },
+            } as any);
+            return;
+          }
+          await prefetchLessonMenuCache(next, studyTarget);
           markNextNavigationAsReplace();
-          router.replace({
-            pathname: '/premium_modal',
-            params: {
-              context: lessonPaywallContext(next),
-              lessons_done: String(lessonId),
-              ...lessonPurchaseContinuationParams(next),
-            },
-          } as any);
-          return;
+          router.replace({ pathname: '/lessons_list', params: { id: next } });
+        } finally {
+          // Экран уходит по replace в любой ветке — сброс не нужен для повторного
+          // тапа НА ЭТОМ экране, но снимаем гейт на случай, если навигация не
+          // произошла (например, router выбросил синхронно).
+          nextOpeningRef.current = false;
         }
-        await prefetchLessonMenuCache(next, studyTarget);
-        markNextNavigationAsReplace();
-        router.replace({ pathname: '/lessons_list', params: { id: next } });
       })();
     } else {
       markNextNavigationAsReplace();

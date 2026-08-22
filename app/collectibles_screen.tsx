@@ -33,7 +33,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { onAppEvent } from './events';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import {
   COLLECTIBLE_RARITY_COLORS,
   COLLECTIBLE_RARITY_LABELS,
@@ -271,7 +271,6 @@ const SetAccordionRow = React.memo(function SetAccordionRow({
         {complete && <Ionicons name="checkmark-circle" size={16} color={SECRET_GOLD} />}
         <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={20} color={t.textSecond} />
       </TouchableOpacity>
-
       {expanded && (
         <View
           style={{
@@ -624,6 +623,16 @@ export default function CollectiblesScreen() {
     setExpandedSet((prev) => (prev === setId ? null : setId));
   }, []);
 
+  // зачем (аудит 2026-08-22): если kill-switch выключается, пока игрок уже на
+  // этом экране (повторный вход через useFocusEffect), null рисовал тупик —
+  // пустой экран без хедера и кнопки назад. Уводим на главную вместо пустоты.
+  useEffect(() => {
+    if (!collectiblesEnabled) {
+      markNextNavigationAsReplace();
+      router.replace('/(tabs)/home' as any);
+    }
+  }, [collectiblesEnabled, router]);
+
   // Kill-switch из Remote Config (collectibles_enabled, дефолт true).
   if (!collectiblesEnabled) {
     return null;
@@ -692,7 +701,7 @@ export default function CollectiblesScreen() {
           {!loaded ? (
             // Первая загрузка инвентаря из хранилища: пустой фон без текста,
             // чтобы не мелькало «здесь появятся карточки» до прихода данных.
-            <View style={{ flex: 1 }} />
+            (<View style={{ flex: 1 }} />)
           ) : ownedCount === 0 ? (
             <CollectiblesEmptyStateMotion
               theme={t}
@@ -723,7 +732,7 @@ export default function CollectiblesScreen() {
             // Сетов мало (≤30) → виртуализация не нужна. Обычный ScrollView
             // корректно работает с LayoutAnimation (FlatList оставлял «дыру»
             // под раскрытым сетом, пока пересчитывал позиции виртуализации).
-            <ScrollView
+            (<ScrollView
               contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
               showsVerticalScrollIndicator={false}
             >
@@ -742,11 +751,10 @@ export default function CollectiblesScreen() {
                   themeMode={themeMode}
                 />
               ))}
-            </ScrollView>
+            </ScrollView>)
           )}
         </ContentWrap>
       </SafeAreaView>
-
       <CardDetailModal
         target={detail}
         onClose={() => setDetail(null)}

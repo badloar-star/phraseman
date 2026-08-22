@@ -387,7 +387,7 @@ export default function LearningV2SessionIntro({
             style={styles.closeButton}
             contentStyle={[
               styles.closeButtonFace,
-              { backgroundColor: t.bgCard, borderColor: t.border },
+              { backgroundColor: t.bgCard },
             ]}
           >
             <Ionicons name="close" size={22} color={t.textPrimary} />
@@ -482,7 +482,7 @@ export default function LearningV2SessionIntro({
                 <View
                   style={[
                     styles.questionPanel,
-                    { backgroundColor: t.bgCard, borderColor: t.border },
+                    { backgroundColor: t.bgCard },
                   ]}
                 >
                   <View style={styles.questionEyebrowRow}>
@@ -514,7 +514,6 @@ export default function LearningV2SessionIntro({
                             styles.answerChoice,
                             {
                               backgroundColor: correct ? t.correct : t.bgSurface2,
-                              borderColor: correct ? t.correct : t.border,
                             },
                           ]}
                         >
@@ -614,11 +613,12 @@ const styles = StyleSheet.create({
     gap: 14,
   },
   closeButton: { minWidth: 44, minHeight: 44 },
+  // зачем: владелец запретил обводки контейнеров — кнопка, панель вопроса и
+  // варианты разделяются тоном (bgCard/bgSurface2 на градиенте экрана), не рамкой.
   closeButtonFace: {
     width: 44,
     height: 44,
     borderRadius: 15,
-    borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -666,7 +666,6 @@ const styles = StyleSheet.create({
   questionPanel: {
     marginTop: 26,
     borderRadius: 22,
-    borderWidth: 1,
     padding: 16,
   },
   questionEyebrowRow: {
@@ -693,7 +692,6 @@ const styles = StyleSheet.create({
   answerChoice: {
     minHeight: 52,
     borderRadius: 16,
-    borderWidth: 1,
     paddingHorizontal: 14,
     flexDirection: "row",
     alignItems: "center",

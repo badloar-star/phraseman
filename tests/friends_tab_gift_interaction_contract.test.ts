@@ -16,16 +16,111 @@ function extract(source: string, startMarker: string, endMarker: string): string
 }
 
 describe('friends tab gift interaction contract', () => {
-  it('keeps friend row profile, gift, and delete as separate touch targets', () => {
+  it('uses the approved minimal friend row routes', () => {
     const source = read('app/(tabs)/friends.tsx');
-    const friendRow = extract(source, 'function FriendRow', 'function RequestRow');
 
-    expect(friendRow).toContain('testID={`friend-row-${profile.uid}`}');
-    expect(friendRow).toContain('testID={`friend-row-profile-${profile.uid}`}');
-    expect(friendRow).toContain('testID={`friend-gift-${profile.uid}`}');
-    expect(friendRow).toContain('testID={`friend-delete-${profile.uid}`}');
-    expect(friendRow).toContain('style={{ width: 44, height: 44');
-    expect(friendRow).not.toContain('accessible={false}');
+    expect(source).toContain("import FriendListRow from '../../components/friends_together/FriendListRow';");
+    // зачем (аудит скорости 2026-08-22): renderItem раньше создавал новую
+    // стрелочную обёртку на КАЖДЫЙ item при каждом рендере экрана — ломало
+    // React.memo(FriendListRow). Теперь передаются стабильные by-uid обёртки
+    // (useCallback с ref-lookup профиля), которые внутри всё равно зовут
+    // openProfile(profile)/openFriendSheet(profile) — маршрут тот же.
+    expect(source).toContain('onOpenProfile={openProfileByUid}');
+    expect(source).toContain('onOpenDetails={openFriendSheetByUid}');
+    expect(source).toContain('const openProfileByUid = useCallback((friendUid: string) => {');
+    expect(source).toContain('if (profile) openProfile(profile);');
+    expect(source).toContain('const openFriendSheetByUid = useCallback((friendUid: string) => {');
+    expect(source).toContain('if (profile) openFriendSheet(profile);');
+  });
+
+  it('removes dense inline row actions after moving them into the details sheet', () => {
+    const source = read('app/(tabs)/friends.tsx');
+    expect(source).not.toContain('function FriendRow(');
+    expect(source).not.toContain('function HighFiveButton(');
+    expect(source).not.toContain('friend-row-actions-');
+    expect(source).not.toContain('friend-together-incoming-');
+    expect(source).not.toContain('friend-together-gift-ready-');
+    expect(source).not.toContain('testID={`friend-together-nudge-${profile.uid}`}');
+    expect(source).not.toContain('testID={`friend-high-five-${profile.uid}`}');
+    expect(source).not.toContain('testID={`friend-gift-${profile.uid}`}');
+    expect(source).not.toContain('testID={`friend-delete-${profile.uid}`}');
+  });
+
+  it('keeps every sheet action on the established friend handlers', () => {
+    const source = read('app/(tabs)/friends.tsx');
+    const sheet = extract(source, '{togetherSheetSession !== null && (() => {', "{friendsTogetherPolicy.enabled && levelUpModal");
+
+    expect(source).toContain('openGiftPicker(action.profile);');
+    expect(sheet).toContain('handleHighFive(friendProfile)');
+    expect(source).toContain('handleDeleteConfirm(action.profile.uid, action.profile.name);');
+    expect(sheet).toContain('handleNudgeFriend');
+    expect(sheet).toContain('handleDevNudge');
+    expect(sheet).toContain("queueFirstFriendSheetAction(current, { kind: 'duel', profile: friendProfile })");
+    expect(source).toContain("pathname: '/arena_friend_duel'");
+    expect(source).toContain('friendStableUid: action.profile.uid');
+  });
+
+  it('keeps sheet availability and selected-friend cleanup independent from Together UI', () => {
+    const source = read('app/(tabs)/friends.tsx');
+
+    expect(source).toContain('{togetherSheetSession !== null && (() => {');
+    expect(source).toContain('const togetherDisplay = pair && friendsTogetherUiEnabled');
+    expect(source).toContain('isCurrentFriendSheetMember(session.uid, friends, currentDevBots)');
+    expect(source).toContain('createFriendSheetSession(profile)');
+    expect(source).toContain('resolveFriendSheetProfile(sheetSession, sortedFriends)');
+  });
+
+  it('uses current membership instead of the profile cache for selected-friend cleanup', () => {
+    const source = read('app/(tabs)/friends.tsx');
+    const cleanupEffect = source.indexOf('isCurrentFriendSheetMember(session.uid, friends, currentDevBots)');
+    const cleanupSlice = source.slice(cleanupEffect, cleanupEffect + 420);
+
+    expect(cleanupEffect).toBeGreaterThan(source.indexOf('const devBots = devBotsState.bots;'));
+    expect(source.slice(cleanupEffect - 120, cleanupEffect + 280)).not.toContain('profiles[');
+    expect(cleanupSlice.indexOf('setPendingTogetherSheetAction(null);')).toBeGreaterThanOrEqual(0);
+    expect(cleanupSlice.indexOf('setPendingTogetherSheetAction(null);')).toBeLessThan(
+      cleanupSlice.indexOf('if (!session.visible) return;'),
+    );
+  });
+
+  it('transitions gift and delete only after the details sheet has closed its modal guard', () => {
+    const source = read('app/(tabs)/friends.tsx');
+    const sheet = extract(source, '{togetherSheetSession !== null && (() => {', "{friendsTogetherPolicy.enabled && levelUpModal");
+
+    expect(source).toContain('const [pendingTogetherSheetAction, setPendingTogetherSheetAction]');
+    expect(source).toContain('const action = pendingTogetherSheetAction;');
+    expect(source).toContain('if (togetherSheetSession !== null || modalWedgeActive) return;');
+    expect(source).toContain('openGiftPicker(action.profile);');
+    expect(source).toContain('handleDeleteConfirm(action.profile.uid, action.profile.name);');
+    expect(source).toContain("pathname: '/arena_friend_duel'");
+    expect(source).toContain('friendStableUid: action.profile.uid');
+    expect(sheet).toContain("queueFirstFriendSheetAction(current, { kind: 'gift', profile: friendProfile })");
+    expect(sheet).toContain("queueFirstFriendSheetAction(current, { kind: 'delete', profile: friendProfile })");
+    expect(sheet).toContain("queueFirstFriendSheetAction(current, { kind: 'duel', profile: friendProfile })");
+    expect(sheet).toContain('requestDismiss();');
+    expect(sheet).toContain('onDismissed={() => setTogetherSheetSession(current => completeFriendSheetSession(current, friendUid))}');
+  });
+
+  it('reacts when every modal wedge clears so a queued sheet action cannot stall', () => {
+    const source = read('app/(tabs)/friends.tsx');
+    const guard = extract(source, 'const modalWedgeActive =', '  // ── Derived');
+    const pendingEffect = extract(source, 'useEffect(() => {\n    const action = pendingTogetherSheetAction;', '  // ── Derived');
+
+    for (const modalState of [
+      'selectedPlayer !== null',
+      'deleteTarget !== null',
+      'giftTarget !== null',
+      'incomingGiftModal !== null',
+      'friendQuestStarted !== null',
+      'friendQuestCompleted !== null',
+      'addModalOpen',
+      'togetherSheetSession !== null',
+    ]) {
+      expect(guard).toContain(modalState);
+    }
+    expect(guard).toContain('modalWedgeGuardRef.current = modalWedgeActive;');
+    expect(pendingEffect).toContain('if (togetherSheetSession !== null || modalWedgeActive) return;');
+    expect(pendingEffect).toMatch(/}, \[[^\]]*modalWedgeActive[^\]]*\]\);/);
   });
 
   it('sends gifts from the sheet without opening a second confirm modal', () => {
@@ -37,7 +132,8 @@ describe('friends tab gift interaction contract', () => {
     expect(requestSendGift).toContain('const target = giftTarget;');
     expect(requestSendGift).not.toContain('await getShardsBalance()');
     expect(requestSendGift).toContain('const knownBalance = peekLastKnownShardsBalance();');
-    expect(requestSendGift).toContain('knownBalance !== null && warmBalance < gift.costShards');
+    expect(requestSendGift).toContain('const giftCost = giftCostForTarget(gift, target.uid);');
+    expect(requestSendGift).toContain('knownBalance !== null && warmBalance < giftCost');
     expect(requestSendGift).toContain('void handleSendGift(giftId, target, knownBalance ?? Number.MAX_SAFE_INTEGER).finally');
   });
 
@@ -65,20 +161,15 @@ describe('friends tab gift interaction contract', () => {
     expect(handleSendGift).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
   });
 
-  it('stops known-offline sends before closing the sheet, showing success, or calling the server', () => {
+  it('queues known-offline sends before background server delivery', () => {
     const source = read('app/(tabs)/friends.tsx');
     const handleSendGift = extract(source, 'const handleSendGift = async', 'const requestSendGift');
     const requestSendGift = extract(source, 'const requestSendGift = (giftId: FriendGiftId) => {', 'const incomingReplyTarget');
-    const handleOffline = handleSendGift.indexOf("if (getNetStatus() === 'offline')");
-    const requestOffline = requestSendGift.indexOf("if (getNetStatus() === 'offline')");
 
-    expect(handleOffline).toBeGreaterThanOrEqual(0);
-    expect(handleOffline).toBeLessThan(handleSendGift.indexOf('setGiftTarget(null);'));
-    expect(handleOffline).toBeLessThan(handleSendGift.indexOf("type: 'success'"));
-    expect(handleOffline).toBeLessThan(handleSendGift.indexOf('enqueueFriendGiftSend({'));
-    expect(requestOffline).toBeGreaterThanOrEqual(0);
-    expect(requestOffline).toBeLessThan(requestSendGift.indexOf('const warmBalance ='));
-    expect(source).toContain('Нет интернета. Подключись к сети и попробуй ещё раз.');
+    expect(handleSendGift).not.toContain("getNetStatus() === 'offline'");
+    expect(requestSendGift).not.toContain("getNetStatus() === 'offline'");
+    expect(handleSendGift).toContain('enqueueFriendGiftSend({');
+    expect(source).not.toContain('Нет интернета. Подключись к сети и попробуй ещё раз.');
   });
 
   it('does not claim an ambiguous network failure was uncharged', () => {
@@ -104,8 +195,7 @@ describe('friends tab gift interaction contract', () => {
     );
 
     expect(handler).not.toContain('await getShardsBalance()');
-    expect(handler).toContain("if (getNetStatus() === 'offline')");
-    expect(handler.indexOf("if (getNetStatus() === 'offline')")).toBeLessThan(handler.indexOf('setIncomingGiftModal(null);'));
+    expect(handler).not.toContain("getNetStatus() === 'offline'");
     expect(handler).toContain('const knownBalance = peekLastKnownShardsBalance();');
     expect(handler).toContain('setIncomingGiftModal(null);');
     expect(handler).toContain('void handleSendGift(giftId, target, knownBalance ?? Number.MAX_SAFE_INTEGER).finally');

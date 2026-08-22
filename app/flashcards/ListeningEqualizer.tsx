@@ -34,6 +34,7 @@ import Reanimated, {
   type SharedValue,
 } from 'react-native-reanimated';
 import { useFcReduceMotion } from './PhraseCard';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { isLowPowerEffective } from './low_power';
 import {
   EQ_DEFAULT_BARS,
@@ -171,8 +172,13 @@ export default function ListeningEqualizer({
   const a11yReduceMotion = useFcReduceMotion();
   const effReduceMotion = reduceMotion ?? a11yReduceMotion;
   const effLowPower = lowPower ?? isLowPowerEffective();
+  // зачем (аудит скорости 2026-08-22): withRepeat(-1) полос жил, пока playing=true,
+  // даже когда экран не в фокусе или приложение в фоне (озвучка может продолжаться) —
+  // Performance Bible требует гейт фокус+AppState для вечных анимаций. Вне фокуса
+  // полосы плавно опадают в статичное положение, при возврате оживают сами.
+  const runtimeActive = useRuntimeActive();
 
-  const mode = equalizerMotionMode({ playing, reduceMotion: effReduceMotion, lowPower: effLowPower });
+  const mode = equalizerMotionMode({ playing: playing && runtimeActive, reduceMotion: effReduceMotion, lowPower: effLowPower });
   const bars = useMemo(() => equalizerBars(barCount), [barCount]);
 
   // Общий драйвер упрощённого режима: одна пила 0→1 на все полосы.

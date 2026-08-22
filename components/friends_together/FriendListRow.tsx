@@ -7,6 +7,8 @@ import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity';
 import { type Lang, triLang } from '../../constants/i18n';
+import type { FriendSocialEvent } from '../../app/friend_social_events';
+import FriendEventMarker from './FriendEventMarker';
 
 export interface FriendListRowProps {
   friendUid: string;
@@ -15,8 +17,14 @@ export interface FriendListRowProps {
   totalXp: number;
   auraId?: string;
   daysTogether: number | null;
-  onOpenProfile: () => void;
-  onOpenDetails: () => void;
+  // зачем (аудит скорости 2026-08-22): колбэки принимают friendUid, а не готовое
+  // замыкание — так родитель (FriendsTabScreen) передаёт СТАБИЛЬНЫЕ ссылки
+  // (useCallback с пустыми deps + ref-lookup) вместо новой стрелочной функции
+  // на каждый item при каждом рендере, что раньше ломало React.memo ниже.
+  onOpenProfile: (friendUid: string) => void;
+  onOpenDetails: (friendUid: string) => void;
+  event?: FriendSocialEvent | null;
+  onOpenEvent?: (friendUid: string, event: FriendSocialEvent) => void;
 }
 
 function slavicDayWord(days: number, singular: string, few: string, many: string): string {
@@ -56,10 +64,18 @@ function FriendListRow({
   daysTogether,
   onOpenProfile,
   onOpenDetails,
+  event = null,
+  onOpenEvent,
 }: FriendListRowProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const relationship = formatFriendRelationship(lang, daysTogether);
+  // Локальные обёртки-с-аргументом: сам компонент под memo, поэтому создание
+  // этих замыканий на его собственный рендер (а не на рендер списка) безвредно —
+  // они не участвуют в сравнении пропсов и не размножаются на N строк.
+  const handleOpenProfile = () => onOpenProfile(friendUid);
+  const handleOpenDetails = () => onOpenDetails(friendUid);
+  const handleOpenEvent = onOpenEvent && event ? () => onOpenEvent(friendUid, event) : undefined;
   const profileLabel = triLang(lang, {
     ru: `Открыть профиль ${friendName}`, uk: `Відкрити профіль ${friendName}`, es: `Abrir el perfil de ${friendName}`, 'pt-BR': `Abrir o perfil de ${friendName}`,
     vi: `Mở hồ sơ của ${friendName}`, id: `Buka profil ${friendName}`, tr: `${friendName} profilini aç`, pl: `Otwórz profil ${friendName}`,
@@ -73,16 +89,18 @@ function FriendListRow({
     <View style={[styles.card, { backgroundColor: t.bgSurface }]}>
       <Pressable
         testID={`friend-row-avatar-${friendUid}`}
-        onPress={onOpenProfile}
+        onPress={handleOpenProfile}
         accessibilityRole="button"
         accessibilityLabel={profileLabel}
         style={styles.avatarTarget}
       >
-        <AvatarView avatar={avatar} totalXP={totalXp} auraId={auraId} size={56} animateAura={false} />
+        <View style={event ? [styles.eventRing, { shadowColor: event.kind === 'duel_invite' ? t.wrong : t.accent }] : undefined}>
+          <AvatarView avatar={avatar} totalXP={totalXp} auraId={auraId} size={56} animateAura={false} />
+        </View>
       </Pressable>
       <Pressable
         testID={`friend-row-body-${friendUid}`}
-        onPress={onOpenDetails}
+        onPress={handleOpenDetails}
         accessibilityRole="button"
         accessibilityLabel={detailsLabel}
         style={styles.bodyTarget}
@@ -95,7 +113,9 @@ function FriendListRow({
             {relationship}
           </FlowText>
         </View>
-        <Ionicons name="chevron-forward" size={20} color={t.textMuted} accessible={false} importantForAccessibility="no" />
+        {event && handleOpenEvent
+          ? <FriendEventMarker event={event} onPress={handleOpenEvent} />
+          : <Ionicons name="chevron-forward" size={20} color={t.textMuted} accessible={false} importantForAccessibility="no" />}
       </Pressable>
     </View>
   );
@@ -117,6 +137,13 @@ const styles = {
     minHeight: 68,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  eventRing: {
+    borderRadius: 30,
+    shadowOpacity: 0.72,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 0 },
+    elevation: 8,
   },
   bodyTarget: {
     flex: 1,

@@ -525,6 +525,12 @@ export function subscribeToFriends(
         .collection('users')
         .doc(myUid)
         .collection('friends')
+        // зачем (аудит скорости 2026-08-22): collection-onSnapshot без limit —
+        // тот же класс, что ронял Android с OutOfMemoryError в app_messages
+        // (см. AGENTS.md → Firestore Thread-Leak Invariant: collection-листенеры
+        // ВСЕГДА с limit()). 500 — заведомо выше реального числа друзей,
+        // страхует только патологический рост коллекции.
+        .limit(500)
         .onSnapshot(
           (snap: {
             docs: Array<{ id: string; data: () => Record<string, unknown> }>;
@@ -589,6 +595,10 @@ export function subscribeToIncomingRequests(
         .doc(myUid)
         .collection('friend_requests')
         .where('status', '==', 'pending')
+        // зачем (аудит скорости 2026-08-22): предел на размер снапшота — where
+        // фильтрует историю, но не ограничивает рост числа pending-заявок;
+        // инвариант «collection-листенеры ВСЕГДА с limit()» (AGENTS.md).
+        .limit(200)
         .onSnapshot(
           (snap: { docs: Array<{ id: string; data: () => Record<string, unknown> }> }) => {
             if (cancelled) return;

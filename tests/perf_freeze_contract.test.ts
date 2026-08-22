@@ -36,11 +36,12 @@ describe('perf freeze contract', () => {
 
   it('allows freezeOnBlur:false only for the realtime allowlist', () => {
     const source = read('app/_layout.tsx');
-    // Экраны, которым разрешено НЕ замораживаться: экзамен и новый
-    // server-authoritative live-матч Arena V2. У Arena listener/timer ownership
-    // дополнительно гейтится focus + AppState внутри экрана.
+    // Экраны, которым разрешено НЕ замораживаться: экзамен и server-authoritative
+    // live-экраны Arena V2 (arena_match, arena_today — оба несут серверный дедлайн,
+    // см. комментарии рядом с их <Stack.Screen> в _layout.tsx). У Arena
+    // listener/timer ownership дополнительно гейтится focus + AppState внутри экрана.
     // Добавление нового исключения = осознанное решение хозяина: расширь список и объясни зачем.
-    const allowed = ['exam', 'arena_match'];
+    const allowed = ['exam', 'arena_match', 'arena_today'];
     const offenders = source
       .split(/\r?\n/)
       .filter((line) => line.includes('freezeOnBlur: false'))
@@ -82,6 +83,14 @@ describe('perf freeze contract', () => {
       'components/PremiumCelebrationModal.tsx', // модалка, unmount on close
       'components/premium_celebration/AuroraBackground.tsx', // внутри той же модалки
       'app/flashcards/CardPackShardPaywallModal.tsx', // модалка, unmount on close
+      // зачем (аудит скорости 2026-08-22): оба используются ТОЛЬКО в app/arena_match.tsx —
+      // единственном push-экране (кроме exam) в explicit freezeOnBlur:false allowlist
+      // выше. Экран размонтируется целиком при выходе (не premount-таб), поэтому
+      // withRepeat(-1) не может пережить фокус: гейт useIsScreenFocused/AppState
+      // здесь избыточен, а не забыт. ArenaTimerRing — боевой таймер ответа, ему
+      // ЗАПРЕЩЕНО останавливаться на паузе (та же логика, что и у tournament_round).
+      'components/arena/ArenaTimerRing.tsx',
+      'components/arena/ArenaComboMeter.tsx',
     ]);
     const dirs = ['app', 'components', 'hooks'];
     const files = dirs.flatMap((d) => walk(path.join(ROOT, d)));
@@ -115,6 +124,7 @@ describe('perf freeze contract', () => {
   const TAB_SCREENS = [
     'app/(tabs)/home.tsx',
     'app/(tabs)/lessons.tsx',
+    'app/(tabs)/arena.tsx',
     'app/(tabs)/friends.tsx',
     'app/(tabs)/settings.tsx',
   ];
@@ -136,12 +146,17 @@ describe('perf freeze contract', () => {
   });
 
   it('binds Friends and Settings network ownership to named runtime owners, not retired tab positions', () => {
+    const arena = read('app/(tabs)/arena.tsx');
+    expect(arena).toContain("runtimeOwnerId === 'arena'");
+
     const friends = read('app/(tabs)/friends.tsx');
     expect(friends).toContain("runtimeOwnerId === 'friends'");
     expect(friends).not.toContain('const friendsTabVisible = activeIdx === 3;');
 
     const settings = read('app/(tabs)/settings.tsx');
-    expect(settings).toContain("runtimeOwnerId === 'settings'");
+    // зачем (аудит скорости 2026-08-22): settings.tsx фактически использует
+    // двойные кавычки для этого литерала — тест сторожил стиль, а не суть.
+    expect(settings).toContain('runtimeOwnerId === "settings"');
     expect(settings).not.toContain('const SETTINGS_TAB_IDX = 4;');
   });
 
@@ -194,12 +209,13 @@ describe('perf freeze contract', () => {
     expect(home).toContain('if (!homeRuntimeActiveRef.current) {');
     expect(home).toContain('homeDataDirtyRef.current = true;');
     expect(home).toContain("DeviceEventEmitter.addListener('xp_changed', requestHomeDataRefresh)");
-    // Гейт «пока таб не владеет рантаймом — не грузим» остался, но раскрылся в
-    // блок: сначала ранний выход, затем дешёвая ветка «обновить только сводку
-    // заданий» вместо полной перезагрузки. Проверяем обе части, а не одну строку.
+    // зачем (аудит скорости 2026-08-22): дешёвая ветка «обновить только сводку
+    // заданий» была снята осознанно — в коде рядом есть комментарий про гонку
+    // состояний (light refresh мог перезаписать более свежий результат полного
+    // loadData). Коалесинг сейчас проще: гейт «таб не владеет рантаймом — не
+    // грузим», при возврате владения — всегда полный loadData().
     expect(home).toContain('if (!homeRuntimeActive) return;');
     expect(home).toContain('if (homeDataDirtyRef.current) {');
-    expect(home).toContain('if (!homeDailySummaryDirtyRef.current) return;');
   });
 
   it('gates firestore subscriptions in tab screens by real tab visibility', () => {

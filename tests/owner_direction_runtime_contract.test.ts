@@ -59,7 +59,12 @@ describe('owner runtime direction contract', () => {
   it('keeps root startup identity and onboarding storage reads batched', () => {
     const source = read('app/_layout.tsx');
     const start = source.indexOf('const bootstrap = async () => {');
-    const end = source.indexOf('let handledByReferrer = false;', start);
+    // зачем (аудит скорости 2026-08-22): маркер конца среза сменился —
+    // handledByReferrer убран вместе с блокирующим ожиданием Play Install
+    // Referrer перед setReady(true) (было до 2с лишней задержки сплэша на
+    // первом запуске Android; сам колбэк всегда резолвился false, поток
+    // управления от него не зависел — захват кода реферала остался фоновым).
+    const end = source.indexOf('setShow(willShowOnboarding);', start);
     expect(start).toBeGreaterThanOrEqual(0);
     expect(end).toBeGreaterThan(start);
     const startupLocalBlock = source.slice(start, end);
@@ -176,13 +181,26 @@ describe('owner runtime direction contract', () => {
       // six-second timeout instead and gameplay uses the shared wall clock.
       'app/arena_matchmaking.tsx': 1,
       // Remote refresh and boost countdown both stop on blur/background through runtimeActive.
-      'app/club_screen.tsx': 2,
+      'app/club_screen.tsx': 1,
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
       // и дополнительно очищается при unmount.
       'app/exam.tsx': 1,
-      // Minute-level voucher expiry refresh, gated by focus and active AppState.
-      'app/flashcards/FlashcardsCategoryHub.tsx': 1,
+      // Тик раунда карточек (5/с): setState только на смену секунды (жалоба
+      // владельца на дёргание 2026-08-16 уже исправлена), останавливается по
+      // roundId и на unmount. Раунд — push-экран, freezeOnBlur:true.
+      'app/flashcards_blitz_session.tsx': 1,
       'app/foreground_usage_ms.ts': 1,
+      // Живой звонок MAX: heartbeat (30с, биллинг минут) и статы уровня голоса
+      // (250мс, локальный WebRTC getStats — НЕ сеть). Оба стартуют только в
+      // activate() (звонок реально идёт) и чистятся при завершении/unmount.
+      'app/max_call_client.ts': 2,
+      // Звонок MAX: подсказка-тайминг (только фаза listening), флаш буфера
+      // транскрипта (250мс, один setState на снапшот) и минутная пилюля (1с) —
+      // все три живут только пока экран звонка на месте, чистятся на unmount.
+      'app/max_call_session.tsx': 3,
+      // Дедлайн доступа к плану («закат»): секундный тик локального отображения
+      // времени, гейтован alive/unmount; не сеть — время держит peekPersonalPlanSunsetEffectiveNow.
+      'app/personal_plan.tsx': 1,
       'app/shards_shop.tsx': 1,
       // Секундный отсчёт до серверного дедлайна фазы — под гвардом active,
       // который хаб питает видимостью таба (см. useTournamentRoom).
@@ -201,19 +219,35 @@ describe('owner runtime direction contract', () => {
       // sites but create at most one live interval for all current subscribers.
       // Интервал стартует ТОЛЬКО на переднем плане (AppState-гвард, 2026-07-27).
       'app/visible_wall_clock.ts': 3,
-      // Конечный 16мс XP count-up, очищается при завершении и unmount.
-      // зачем 2026-08-16: гибрид «Световод + Чекан» стал единственной реализацией
-      // (project_motion_program.md) — таймер живёт в Hybrid-файле, точка входа
-      // components/DialogVictoryCelebration.tsx стала тонкой обёрткой без setInterval.
-      'components/DialogVictoryCelebrationHybrid.tsx': 1,
+      // Голосовой эквалайзер MAX: watchdog (2 Гц) — только «ожил ли idle-луп»,
+      // ни одного setState в самом тике; активен только пока owner === active.
+      'app/voice_equalizer.tsx': 1,
+      // зачем (аудит скорости 2026-08-22): DialogVictoryCelebrationHybrid.tsx
+      // больше НЕ в этом списке — 2026-08-17 XP count-up переехал с
+      // setInterval(16мс)+setState на useSharedValue на UI-потоке (комментарий
+      // в файле), ре-рендеров JS-потока во время салюта/пружин теперь ноль.
       'components/GiftExpiryCountdown.tsx': 1,
+      // Секундный тик боевого таймера ответа (кольцо на UI-потоке через
+      // reanimated) + 250мс тик подписи секунд под ним — оба живут только
+      // внутри app/arena_match.tsx (freezeOnBlur:false allowlist выше,
+      // компонент размонтируется целиком при выходе с боя).
+      'components/arena/ArenaTimerRing.tsx': 2,
       // Три внутренних scheduler-тика одного shared countdown store; подписчики
       // не создают свои интервалы, а последний unsubscribe останавливает clock.
       'components/energy_countdown_clock.ts': 3,
+      // Секундный тик приглашения на дуэль в ленте «Вместе»: гейтован
+      // useRuntimeActive() (аудит скорости 2026-08-22) — спит вне фокуса/фона.
+      'components/friends_together/FriendEventMarker.tsx': 1,
       // Wall-clock exam deadline remains honest; only the visible UI tick sleeps off-screen/background.
       'components/level-exam/LevelExamV2.tsx': 1,
+      // Полминутный пересчёт «сколько до открытия сундука» в тизере ленты;
+      // визуальный отсчёт, не сеть, гейтован visible при монтировании.
+      'components/league/LeagueChestScanTeaser.tsx': 1,
       // Конечный 16мс XP count-up результата, очищается по достижении цели/unmount.
       'components/HomeTheoAdvisorCard.tsx': 1,
+      // Секундный отсчёт дневной квоты MAX-звонков; активен только пока
+      // runningSinceMs задан (звонок реально идёт), останавливается на unmount.
+      'components/max/MaxDailyQuotaMeter.tsx': 1,
       // Отсчёт жизни кода восстановления — уже под `screenFocused &&
       // recoveryAppActive`, вне модалки не тикает.
       'components/RegistrationPromptModal.tsx': 1,
@@ -261,7 +295,11 @@ describe('owner runtime direction contract', () => {
     ]);
     expect(source).toContain('const [[, savedAvSnap], [, savedFrSnap], [, savedAuraSnap]] = await AsyncStorage.multiGet');
     expect(source).toContain('setUserAvatar(avatarSnap)');
-    expect(source).toContain('setUserAvatarAura(normalizeAvatarAuraId(savedAuraSnap) ?? null)');
+    // зачем (аудит скорости 2026-08-22): логика доросла до приоритета живого
+    // профиля (liveProfileVisuals) над локальным кэшем — суть проверки (одно
+    // чтение AsyncStorage, один setState) сохранена, обновлена только строка.
+    expect(source).toContain('const auraSnap = liveProfileVisuals?.aura ?? normalizeAvatarAuraId(savedAuraSnap) ?? null');
+    expect(source).toContain('setUserAvatarAura(auraSnap)');
     expect(source).toContain('setUserFrame(frameSnap)');
     expect(source).not.toContain("AsyncStorage.multiGet(['user_avatar', 'user_frame'])");
   });
@@ -269,7 +307,11 @@ describe('owner runtime direction contract', () => {
   it('keeps Home loadData local storage reads batched on hot path', () => {
     const source = read('app/(tabs)/home.tsx');
 
-    expect(source).toContain('const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, activePlanState, planSnapshot, premiumSignalPairs] = await Promise.all([');
+    // зачем (аудит скорости 2026-08-22): состав кортежа сместился — streak/XP
+    // переехали в personalProgress (hydratePersonalProgress), появился
+    // premiumSignalPairs. Суть проверки (один Promise.all, не последовательные
+    // await) сохранена, обновлён состав под факт.
+    expect(source).toContain('const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, premiumSignalPairs, personalProgress] = await Promise.all([');
     expect(source).toContain("const homeStorage = new Map(homeStoragePairs)");
     expect(source).toContain("const name = homeStorage.get('user_name') ?? null");
     expect(source).toContain("const lastStreakShownRaw = homeStorage.get('streak_last_shown') ?? null");
@@ -298,9 +340,11 @@ describe('owner runtime direction contract', () => {
 
   it('keeps Firestore onSnapshot call sites owner-reviewed so live listeners stay intentional', () => {
     const allowlist: Record<string, number> = {
-      // Arena listeners удалены вместе с фичей; монитор удаления аккаунта —
-      // новый intentional live-listener.
       'app/app_messages.ts': 3,
+      // Arena V2: doc-листенер (НЕ collection — потоковой утечки не создаёт,
+      // см. AGENTS.md → Firestore Thread-Leak Invariant) на конкретный документ
+      // боя/лобби; гейтован параметром active, отписывается на cleanup.
+      'app/arena_client.ts': 1,
       'app/firestore_friend_requests.ts': 2,
       'app/league_group_boosts.ts': 2,
       'app/remote_account_deletion_monitor.ts': 1,
@@ -442,7 +486,11 @@ describe('owner runtime direction contract', () => {
     expect(xpManager).toContain('await reserveLocalProgressEvent(progressEventRequest?.eventId)');
     expect(xpManager).toContain('markCloudSyncPending();');
     expect(xpManager).not.toContain('syncToCloud(');
-    expect(xpManager).toContain("await storageSetString('user_total_xp', String(newTotal))");
+    // зачем (аудит скорости 2026-08-22): запись переехала за общий портативный
+    // writer modules/phone-state (persistLegacyPersonalProgressScalar) — тот же
+    // класс миграции, что закрыл баг «чужие пиксели после смены аккаунта».
+    // Монотонность (Math.max) и XP-лок сохранены, изменился только вызов записи.
+    expect(xpManager).toContain("await persistLegacyPersonalProgressScalar(AsyncStorage, 'user_total_xp', newTotal)");
     expect(xpManager).toContain('Math.max(0, currentTotal + finalDelta)');
     expect(xpManager).toContain("emitAppEvent('xp_changed')");
 
@@ -709,7 +757,10 @@ describe('owner runtime direction contract', () => {
     expect(friendQuests).toContain('callerXp: number,');
     expect(friendQuests).toContain("const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null)");
     expect(friendQuests).toContain('const nextXp = Math.max(localXp, serverXp)');
-    expect(friendQuests).toContain("AsyncStorage.setItem('user_total_xp', String(nextXp))");
+    // зачем (аудит скорости 2026-08-22): запись переехала за тот же портативный
+    // writer modules/phone-state, что и xp_manager (см. проверку выше) — суть
+    // (монотонная запись, не бездумный AsyncStorage.setItem) сохранена.
+    expect(friendQuests).toContain("await persistLegacyPersonalProgressScalar(AsyncStorage, 'user_total_xp', nextXp)");
     expect(friendQuests).toContain('await withAccountTransitionLock(async (): Promise<void> => {');
     expect(friendQuests).not.toContain("AsyncStorage.setItem('user_total_xp', String(res.data.callerXp))");
 
@@ -893,7 +944,11 @@ describe('owner runtime direction contract', () => {
     const leagueClient = read('app/services/league_chest_rewards.ts');
     const packTrial = read('app/flashcards/pack_trial_gift.ts');
 
-    expect(clubScreen).toContain('const CLUB_REMOTE_REFRESH_MS = 45_000;');
+    // зачем (аудит скорости 2026-08-22): 45_000 — отменённое правило (инцидент
+    // 2026-08-17, см. AGENTS.md → «ЛИГИ: КЭШ 6 ЧАСОВ»): TTL занизили с 6 часов
+    // до 45 секунд, экран перечитывал Firestore каждые 45с при открытом клубе.
+    // Актуальный, охраняемый guard_league_refresh_ttl.mjs инвариант — 6 часов.
+    expect(clubScreen).toContain('const CLUB_REMOTE_REFRESH_MS = 6 * 60 * 60 * 1000;');
     expect(layout).toContain('const LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS = 64;');
     expect(layout).toContain('while (leagueBonusAvailableReservedThisSession.size > LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS)');
     expect(leagueClient).toContain('LOCAL_REWARD_EFFECT_KEY_PREFIX');
@@ -949,7 +1004,10 @@ describe('owner runtime direction contract', () => {
     const successToast = friendsTab.indexOf("type: 'success'", durableEnqueue);
 
     expect(friendsTab).toContain('enqueueFriendGiftSend');
-    expect(friendsTab).toContain("if (getNetStatus() === 'offline')");
+    // зачем (аудит скорости 2026-08-22): явная UI-проверка сети убрана —
+    // офлайн/retry теперь целиком инкапсулированы в outbox (kind === 'network'
+    // ниже), UI просто ставит операцию в очередь и закрывает лист сразу.
+    // Это ближе к принципу «телефон главный», а не откат инварианта.
     expect(durableEnqueue).toBeGreaterThan(-1);
     expect(friendsTab.indexOf('setGiftTarget(null);', durableEnqueue)).toBeGreaterThan(durableEnqueue);
     expect(successToast).toBeGreaterThan(durableEnqueue);

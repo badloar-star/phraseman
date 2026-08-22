@@ -63,6 +63,26 @@ export function maxVoiceFailureReason(error: unknown, fallback: string): MaxVoic
   return fallback;
 }
 
+/**
+ * зачем: аудит 2026-08-22 — «Повторить подготовку» предлагалась и там, где
+ * повтор заведомо бесполезен (кончились минуты, линия выключена, нет нативного
+ * модуля). Для таких причин пре-экран прячет ретрай и оставляет объяснение.
+ */
+const NON_RETRYABLE_REASONS: ReadonlySet<string> = new Set([
+  'ai_globally_disabled',
+  'dev_admin_required',
+  'native_unavailable',
+  'voice_budget_exhausted',
+  'voice_disabled',
+  'voice_max_required',
+  'voice_quota_exhausted',
+  'voice_trial_paused',
+]);
+
+export function isMaxVoiceFailureRetryable(reason: string | null | undefined): boolean {
+  return !NON_RETRYABLE_REASONS.has(String(reason ?? ''));
+}
+
 /** Ошибка с reason, который транспорт может безопасно передать UI-автомату. */
 export class MaxVoiceStageError extends Error {
   constructor(readonly reason: MaxVoiceFailureReason, readonly causeValue?: unknown) {

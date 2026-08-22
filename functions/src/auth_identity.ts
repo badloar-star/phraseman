@@ -1665,7 +1665,18 @@ export async function ensureStableLinkForAuth(
   return { ok: true, stableUid, authUid, identityReady: true };
 }
 
-export const authEnsureStableLink = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+export const authEnsureStableLink = onCall({
+  // зачем: владелец 2026-08-22 — вход через Google висел 10–30 с. Этот callable
+  // стоит в серийной цепочке КАЖДОГО входа, а холодный старт добавлял 3–10 с
+  // (плюс клиентские ретраи по таймауту). Один тёплый инстанс (~$2–3/мес)
+  // убирает главный тормоз входа.
+  ...HOT_CALLABLE_OPTIONS,
+  minInstances: 1,
+}, async (request) => {
+  // зачем: прогрев с экрана входа (warmAuthSignInCallables, 2026-08-22). Ветка
+  // стоит ДО auth-чека: смысл вызова — только поднять контейнер, пока юзер
+  // выбирает аккаунт в окне Google. Firestore не трогаем, данных не отдаём.
+  if (request.data?.warmup === true) return { ok: true, warm: true };
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   if (!request.app) {
     console.warn(JSON.stringify({
@@ -1792,6 +1803,8 @@ export async function stampAnonOwnershipForAuth(
 }
 
 export const authStampAnonOwnership = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  // зачем: прогрев с экрана входа — см. warmup-ветку authEnsureStableLink.
+  if (request.data?.warmup === true) return { ok: true, warm: true };
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   if (!request.app) {
     console.warn(JSON.stringify({

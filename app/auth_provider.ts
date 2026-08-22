@@ -1570,11 +1570,23 @@ async function runSignInWithProvider(
     return handleAccountDeletePendingAuth(provider, pendingDelete);
   }
 
-  if (typeof firebaseUserForTokenRefresh?.getIdToken === 'function') {
+  // зачем: владелец 2026-08-22 — ускорение входа. Обновление токена и чтение
+  // auth_links не зависят друг от друга (правило чтения auth_links проверяет
+  // только request.auth.uid, не claims токена) — пускаем ПАРАЛЛЕЛЬНО вместо
+  // очереди: −1–2 с на каждом входе. Токен обязан быть свежим ДО стадии
+  // authEnsureStableLink (claim sign_in_provider) — await стоит сразу после
+  // link-lookup ниже; ошибка рефреша пробрасывается там же, как раньше.
+  let tokenRefreshFailed = false;
+  let tokenRefreshError: unknown = null;
+  const tokenRefreshDone: Promise<void> = (async () => {
+    if (typeof firebaseUserForTokenRefresh?.getIdToken !== 'function') return;
     // linkWithCredential may leave the cached callable token carrying the old
     // anonymous sign_in_provider claim. Force refresh before authEnsureStableLink.
     await firebaseUserForTokenRefresh.getIdToken(true);
-  }
+  })().catch((e: unknown) => {
+    tokenRefreshFailed = true;
+    tokenRefreshError = e;
+  });
 
   // 3. Lookup auth_links → link OR auto-merge by XP
   let localStableId = await getStableId();
@@ -1599,6 +1611,11 @@ async function runSignInWithProvider(
   } catch {
     remoteStableId = null;
   }
+
+  // Точка синхронизации параллельного рефреша токена (см. комментарий выше):
+  // дальше идут только callable-вызовы, которым нужен свежий claim.
+  await tokenRefreshDone;
+  if (tokenRefreshFailed) throw tokenRefreshError;
 
   type Outcome =
     | { kind: 'linked_existing' }

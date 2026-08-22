@@ -1577,6 +1577,9 @@ export async function repointReferralOnMerge(
 }
 
 export const authMergeStableAccounts = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  // зачем: прогрев с экрана входа — см. warmup-ветку authEnsureStableLink
+  // (auth_identity.ts). Только boot контейнера, без Firestore и без данных.
+  if (request.data?.warmup === true) return { ok: true, warm: true };
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   if (!request.app) {
     // App Check warm-up (H9): observe attestation token presence before enforcing.

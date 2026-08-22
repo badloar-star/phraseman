@@ -101,6 +101,8 @@ function copy(lang: Lang) {
     details: triLang(lang, { ru: 'Детали', uk: 'Деталі', es: 'Detalles', 'pt-BR': 'Detalhes', vi: 'Chi tiết', id: 'Detail', tr: 'Ayrıntılar', pl: 'Szczegóły' }),
     hideDetails: triLang(lang, { ru: 'Скрыть детали', uk: 'Сховати деталі', es: 'Ocultar detalles', 'pt-BR': 'Ocultar detalhes', vi: 'Ẩn chi tiết', id: 'Sembunyikan detail', tr: 'Ayrıntıları gizle', pl: 'Ukryj szczegóły' }),
     pending: triLang(lang, { ru: 'Разбор будет готов после подключения', uk: 'Розбір буде готовий після підключення', es: 'El análisis estará listo cuando vuelvas a conectarte', 'pt-BR': 'A análise ficará pronta após a conexão', vi: 'Bản đánh giá sẽ sẵn sàng khi có kết nối', id: 'Ulasan akan siap setelah terhubung', tr: 'Değerlendirme bağlantıdan sonra hazır olacak', pl: 'Podsumowanie będzie gotowe po połączeniu' }),
+    pendingLong: triLang(lang, { ru: 'Разбор готовится дольше обычного. Он сохранится и появится здесь — можно вернуться позже.', uk: 'Розбір готується довше, ніж зазвичай. Він збережеться і з’явиться тут — можна повернутися пізніше.', es: 'El análisis está tardando más de lo habitual. Se guardará y aparecerá aquí; puedes volver más tarde.', 'pt-BR': 'A análise está demorando mais que o normal. Ela será salva e aparecerá aqui; você pode voltar depois.', vi: 'Bản đánh giá đang mất nhiều thời gian hơn bình thường. Nó sẽ được lưu và hiện ở đây — bạn có thể quay lại sau.', id: 'Ulasan memakan waktu lebih lama dari biasanya. Ulasan akan tersimpan dan muncul di sini — kamu bisa kembali nanti.', tr: 'Değerlendirme normalden uzun sürüyor. Kaydedilecek ve burada görünecek — daha sonra dönebilirsin.', pl: 'Podsumowanie przygotowuje się dłużej niż zwykle. Zapisze się i pojawi tutaj — możesz wrócić później.' }),
+    endedBackground: triLang(lang, { ru: 'Разговор завершился, потому что приложение свернулось', uk: 'Розмова завершилася, бо застосунок згорнувся', es: 'La conversación terminó porque la app pasó a segundo plano', 'pt-BR': 'A conversa terminou porque o app foi para segundo plano', vi: 'Cuộc trò chuyện kết thúc vì ứng dụng chạy nền', id: 'Percakapan berakhir karena aplikasi berpindah ke latar belakang', tr: 'Uygulama arka plana alındığı için konuşma sona erdi', pl: 'Rozmowa zakończyła się, bo aplikacja przeszła w tło' }),
     temporary: triLang(lang, { ru: 'Временно на этом устройстве', uk: 'Тимчасово на цьому пристрої', es: 'Temporalmente en este dispositivo', 'pt-BR': 'Temporariamente neste dispositivo', vi: 'Tạm thời trên thiết bị này', id: 'Sementara di perangkat ini', tr: 'Geçici olarak bu cihazda', pl: 'Tymczasowo na tym urządzeniu' }),
     transcript: triLang(lang, { ru: 'Текст разговора', uk: 'Текст розмови', es: 'Texto de la conversación', 'pt-BR': 'Texto da conversa', vi: 'Nội dung cuộc trò chuyện', id: 'Teks percakapan', tr: 'Konuşma metni', pl: 'Tekst rozmowy' }),
     speakingTime: triLang(lang, { ru: 'Ты говорил', uk: 'Ти говорив', es: 'Hablaste', 'pt-BR': 'Você falou', vi: 'Bạn đã nói', id: 'Kamu berbicara', tr: 'Sen konuştun', pl: 'Mówiłeś' }),
@@ -134,6 +136,10 @@ export default function MaxVoiceReview() {
   const [transcriptOpen, setTranscriptOpen] = useState(false);
   const [practiceOpening, setPracticeOpening] = useState(false);
   const [reloadTick, setReloadTick] = useState(0);
+  // зачем: аудит 2026-08-22 — «ожидание» опрашивало сервер каждые 3с вечно;
+  // после минуты переходим в ручной режим с честным объяснением и кнопкой.
+  const [slowPending, setSlowPending] = useState(false);
+  const pendingSinceRef = useRef<number | null>(null);
   const readyAnnouncedRef = useRef<string | null>(null);
   const readyTitleRef = useRef<Text>(null);
 
@@ -161,13 +167,19 @@ export default function MaxVoiceReview() {
           return;
         }
         setReviewState({ kind: 'pending', envelope });
+        if (pendingSinceRef.current === null) pendingSinceRef.current = Date.now();
         const outcome = await drainOneMaxFinalize(accountKey, envelope.sessionId);
         if (cancelled) return;
         if (outcome.status === 'ready') {
           setReviewState({ kind: 'ready', receipt: outcome.receipt });
           return;
         }
-        retryTimer = setTimeout(() => setReloadTick((value) => value + 1), 3_000);
+        if (Date.now() - pendingSinceRef.current > 60_000) {
+          // Авто-опрос ограничен минутой; дальше — ручная кнопка «Проверить ещё раз».
+          setSlowPending(true);
+        } else {
+          retryTimer = setTimeout(() => setReloadTick((value) => value + 1), 3_000);
+        }
       } catch {
         if (!cancelled) setReviewState({ kind: 'error' });
       }
@@ -313,6 +325,12 @@ export default function MaxVoiceReview() {
     ? projection.goal.masteryAfter > projection.goal.masteryBefore
     : false;
 
+  // зачем: аудит 2026-08-22 — урок, оборванный сворачиванием приложения,
+  // выглядел как нормально завершённый; человек не понимал, почему он короткий.
+  const endedInBackground = (reviewState.kind === 'ready'
+    ? reviewState.receipt.endReason
+    : pendingRequest?.endReason ?? localResult?.endReason) === 'background';
+
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
@@ -330,10 +348,29 @@ export default function MaxVoiceReview() {
               {projection?.hero || c.completed}
             </Text>
             {goalImproved ? <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800', marginTop: 10 }} maxFontSizeMultiplier={2}>{c.goalProgress}</Text> : null}
+            {endedInBackground ? (
+              <Text testID="max-voice-review-background-note" style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', marginTop: 10 }} maxFontSizeMultiplier={2}>{c.endedBackground}</Text>
+            ) : null}
             {reviewState.kind === 'pending' ? (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 14 }}>
-                <ActivityIndicator size="small" color={t.accent} />
-                <Text accessibilityLiveRegion="polite" style={{ flex: 1, color: t.textSecond, fontSize: f.body, fontWeight: '700' }} maxFontSizeMultiplier={2}>{c.pending}</Text>
+              <View style={{ marginTop: 14 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                  {slowPending ? null : <ActivityIndicator size="small" color={t.accent} />}
+                  <Text accessibilityLiveRegion="polite" style={{ flex: 1, color: t.textSecond, fontSize: f.body, fontWeight: '700', lineHeight: Math.round(f.body * 1.4) }} maxFontSizeMultiplier={2}>
+                    {slowPending ? c.pendingLong : c.pending}
+                  </Text>
+                </View>
+                {slowPending ? (
+                  <TouchableOpacity
+                    testID="max-voice-review-recheck"
+                    accessibilityRole="button"
+                    accessibilityLabel={c.retry}
+                    accessibilityHint={c.retryHint}
+                    onPress={() => { hapticTap(); setReloadTick((value) => value + 1); }}
+                    style={{ minHeight: 48, borderRadius: 14, backgroundColor: t.bgCard, marginTop: 12, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 }}
+                  >
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>{c.retry}</Text>
+                  </TouchableOpacity>
+                ) : null}
               </View>
             ) : null}
           </View>
@@ -359,7 +396,10 @@ export default function MaxVoiceReview() {
                 <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900', marginTop: 4 }} maxFontSizeMultiplier={2}>{projection.correction.target}</Text>
                 <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 10 }} maxFontSizeMultiplier={2}>{projection.correction.explanation}</Text>
                 <TouchableOpacity testID="max-voice-review-practice" accessibilityRole="button" accessibilityLabel={c.practice} accessibilityHint={c.practiceHint} accessibilityState={{ busy: practiceOpening, disabled: practiceOpening }} disabled={practiceOpening} onPress={() => void practiceCorrection()} style={{ minHeight: 54, borderRadius: 16, backgroundColor: t.accent, marginTop: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 }}>
-                  <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900', textAlign: 'center' }} maxFontSizeMultiplier={2}>{c.practice}</Text>
+                  {/* зачем: аудит 2026-08-22 — busy был только в accessibility, зрячий не видел отклика */}
+                  {practiceOpening
+                    ? <ActivityIndicator size="small" color={t.correctText} />
+                    : <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900', textAlign: 'center' }} maxFontSizeMultiplier={2}>{c.practice}</Text>}
                 </TouchableOpacity>
               </>
             ) : <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 12 }} maxFontSizeMultiplier={2}>{projection ? c.noFix : c.pending}</Text>}

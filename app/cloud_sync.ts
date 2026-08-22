@@ -2022,6 +2022,36 @@ function callable<TReq, TRes>(name: string, options?: CallableOptions) {
   return typedHttpsCallable<TReq, TRes>(getFunctions(getApp(), 'us-central1'), name, options);
 }
 
+// ── Прогрев callable-функций входа ────────────────────────────────────────────
+let lastAuthWarmupAtMs = 0;
+const AUTH_WARMUP_THROTTLE_MS = 10 * 60_000;
+
+/**
+ * зачем: владелец 2026-08-22 — вход через Google висел 10–30 с из-за холодных
+ * стартов серверных функций в серийной цепочке входа. Экран входа открыт →
+ * юзер ещё читает/выбирает аккаунт в окне Google (5–15 с), а контейнеры трёх
+ * функций пути входа уже поднимаются (warmup-ветка на сервере: без auth, без
+ * Firestore). У authEnsureStableLink есть minInstances:1 — пинг хеджирует
+ * занятый тёплый инстанс. Троттл 10 мин: повторные открытия экрана не жгут
+ * вызовы (Firebase-экономия); сам вызов — копейки ($0.40 за миллион).
+ * Fire-and-forget: любой сбой прогрева не влияет на вход.
+ */
+export function warmAuthSignInCallables(): void {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  const nowMs = Date.now();
+  if (nowMs - lastAuthWarmupAtMs < AUTH_WARMUP_THROTTLE_MS) return;
+  lastAuthWarmupAtMs = nowMs;
+  const names = ['authEnsureStableLink', 'authStampAnonOwnership', 'authMergeStableAccounts'];
+  for (const name of names) {
+    try {
+      const fn = callable<{ warmup: true }, { warm?: boolean }>(name);
+      void fn({ warmup: true }).catch(() => {});
+    } catch {
+      /* прогрев best-effort */
+    }
+  }
+}
+
 export async function ensureStableAuthLinkForStableIdDetailed(
   stableIdRaw: string,
   metadata?: StableAuthLinkMetadata,

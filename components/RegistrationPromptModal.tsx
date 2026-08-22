@@ -43,7 +43,7 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { logEvent } from '../app/firebase';
-import { fetchAuthRecoveryHint, restoreFromCloudDetailed, type AuthRecoveryHint } from '../app/cloud_sync';
+import { fetchAuthRecoveryHint, restoreFromCloudDetailed, warmAuthSignInCallables, type AuthRecoveryHint } from '../app/cloud_sync';
 import { getStableId } from '../app/stable_id';
 import { emitAppEvent } from '../app/events';
 import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
@@ -289,6 +289,14 @@ function RegistrationPromptModal({
   useLayoutEffect(() => {
     attemptLifecycle.setVisible(visible);
   }, [attemptLifecycle, visible]);
+
+  // зачем: владелец 2026-08-22 — прогрев серверных функций входа при открытии
+  // модалки: пока юзер выбирает провайдера и аккаунт в окне Google, контейнеры
+  // уже подняты — холодный старт (3–10 с) не попадает в цепочку входа.
+  // Троттл и fire-and-forget внутри warmAuthSignInCallables.
+  useEffect(() => {
+    if (visible) warmAuthSignInCallables();
+  }, [visible]);
 
   useEffect(() => {
     recoveryGenerationRef.current += 1;
@@ -1916,6 +1924,7 @@ function RegistrationPromptModal({
                 accessibilityState={{ disabled: (loadingProvider !== null && !signInSlow) || !recoveryDismissAllowed }}
                 variant="secondary"
                 style={[styles.laterButton, { opacity: recoveryDismissAllowed ? 1 : 0.45 }]}
+                contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
                 testID="auth-prompt-later"
               >
                 <Text style={[styles.laterText, { color: t.textMuted, fontSize: f.body }]}>

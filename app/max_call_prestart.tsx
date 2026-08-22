@@ -17,7 +17,7 @@ import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
 import { loadMaxVoiceNative } from './max_webrtc_module';
-import { maxVoiceFailureMessage, maxVoiceFailureReason } from './max_voice_error';
+import { isMaxVoiceFailureRetryable, maxVoiceFailureMessage, maxVoiceFailureReason } from './max_voice_error';
 import {
   initialMintRequest,
   performMaxVoiceMint,
@@ -445,7 +445,9 @@ function MaxCallPrestartContent() {
               </Text>
             ) : null}
 
-            {prepState === 'failed' ? (
+            {/* зачем: аудит 2026-08-22 — при неретраебельной причине (минуты
+                кончились, линия выключена) кнопка повтора лишь дразнила. */}
+            {prepState === 'failed' && isMaxVoiceFailureRetryable(preflightReason) ? (
               <>
                 <TouchableOpacity
                   testID="max-preflight-retry-button"
@@ -655,26 +657,28 @@ function MaxCallPrestartContent() {
                   </Text>
                 ) : null}
               </View>
-              <TouchableOpacity
-                testID="max-preflight-retry-button"
-                accessibilityRole="button"
-                accessibilityLabel={a11y.retryLabel}
-                accessibilityHint={a11y.retryHint}
-                onPress={retryPreparation}
-                style={{
-                  minHeight: 48,
-                  backgroundColor: t.bgSurface,
-                  borderRadius: 14,
-                  paddingHorizontal: 18,
-                  marginBottom: 10,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Повторить подготовку', uk: 'Повторити підготовку', es: 'Reintentar preparación', 'pt-BR': 'Tentar preparar novamente', vi: 'Thử chuẩn bị lại', id: 'Coba siapkan lagi', tr: 'Hazırlamayı tekrar dene', pl: 'Spróbuj przygotować ponownie' })}
-                </Text>
-              </TouchableOpacity>
+              {isMaxVoiceFailureRetryable(preflightReason) ? (
+                <TouchableOpacity
+                  testID="max-preflight-retry-button"
+                  accessibilityRole="button"
+                  accessibilityLabel={a11y.retryLabel}
+                  accessibilityHint={a11y.retryHint}
+                  onPress={retryPreparation}
+                  style={{
+                    minHeight: 48,
+                    backgroundColor: t.bgSurface,
+                    borderRadius: 14,
+                    paddingHorizontal: 18,
+                    marginBottom: 10,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                    {triLang(lang, { ru: 'Повторить подготовку', uk: 'Повторити підготовку', es: 'Reintentar preparación', 'pt-BR': 'Tentar preparar novamente', vi: 'Thử chuẩn bị lại', id: 'Coba siapkan lagi', tr: 'Hazırlamayı tekrar dene', pl: 'Spróbuj przygotować ponownie' })}
+                  </Text>
+                </TouchableOpacity>
+              ) : null}
               {/* зачем: владелец 2026-08-22 — «радио-режим» (walkie-talkie фолбэк)
                   убран совсем; при сбое подготовки остаётся только «Повторить». */}
             </>

@@ -1,6 +1,6 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(__dirname, "..");
@@ -22,6 +22,10 @@ const gltfLayout = (source: Buffer) => {
   const jsonLength = source.readUInt32LE(12); const json = JSON.parse(source.subarray(20, 20 + jsonLength).toString("utf8").trim());
   return { json, binOffset: 20 + jsonLength + 8 };
 };
+
+// зачем: mkdtempSync не создаёт родителей, а .codex-tmp/ в gitignore — в чистом
+// чекауте тесты обязаны сами подготовить временную папку, не полагаясь на её наличие.
+beforeAll(() => { mkdirSync(path.join(root, ".codex-tmp", "avatar-dna"), { recursive: true }); });
 
 describe("human_v2 CC0 GLB", () => {
   it("rejects the old primitive fixture with its required diagnostic codes", () => {
@@ -370,5 +374,14 @@ describe("human_v2 CC0 GLB", () => {
     const config = path.join(root, "config/avatar-dna/human_v2_hair.v1.json").replace(/\\/g, "/");
     const code = `import {readFile} from 'node:fs/promises'; import {assertCoverageContainsRootFootprints,makeHeadProxyFromBody} from 'file:///${module}'; import {parseMakeHumanObj} from 'file:///${path.join(root, "scripts/avatar-dna/lib/makehuman_obj.mjs").replace(/\\/g, "/")}'; const body=parseMakeHumanObj(await readFile('${path.join(root, "tools/avatar-dna/vendor/makehuman-v1.3.0/makehuman/data/3dobjs/base.obj").replace(/\\/g, "/")}','utf8')); const cfg=JSON.parse(await readFile('${config}','utf8')); const proxy=makeHeadProxyFromBody(body); const valid=assertCoverageContainsRootFootprints(proxy,cfg.crop); const narrow=structuredClone(cfg.crop); narrow.coverage.azimuthStart=-2.79; let rejected=false; try{assertCoverageContainsRootFootprints(proxy,narrow)}catch{rejected=true}; console.log(JSON.stringify({valid,rejected}));`;
     expect(JSON.parse(execFileSync(process.execPath, ["--input-type=module", "--eval", code], { encoding: "utf8" }))).toMatchObject({ rejected: true });
+  });
+
+  it("welds Terra by source vertex identity with no expanded-OBJ seam splits", () => {
+    const directory = mkdtempSync(path.join(root, ".codex-tmp", "avatar-dna", "test-"));
+    try { const output=path.join(directory,"weld.glb"); execFileSync(process.execPath,[build,"--output",output],{cwd:root}); const mesh=gltfLayout(readFileSync(output)).json.meshes.find((item:any)=>item.name==="avatar_outfit_terra"); expect(new Set(mesh.extras.sourceVertexIndices).size).toBe(mesh.extras.sourceVertexIndices.length); expect(mesh.extras.inwardTriangleCount).toBe(0); } finally { rmSync(directory,{recursive:true,force:true}); }
+  });
+
+  it("rejects welded-Terra seam, offset, and winding tampering", () => {
+    const directory=mkdtempSync(path.join(root,".codex-tmp","avatar-dna","test-")); try { const output=path.join(directory,"terra.glb");execFileSync(process.execPath,[build,"--output",output],{cwd:root});const bytes=readFileSync(output),layout=gltfLayout(bytes),mesh=layout.json.meshes.find((item:any)=>item.name==="avatar_outfit_terra");const seam=path.join(directory,"seam.glb");writeFileSync(seam,rewriteJson(bytes,(json:any)=>{const item=json.meshes.find((entry:any)=>entry.name==="avatar_outfit_terra");item.extras.sourceVertexIndices[1]=item.extras.sourceVertexIndices[0]}));expect(runAudit(seam).errors).toContain("garment_split_seam");const shifted=Buffer.from(bytes),accessor=layout.json.accessors[mesh.primitives[0].attributes.POSITION],view=layout.json.bufferViews[accessor.bufferView];shifted.writeFloatLE(99,layout.binOffset+view.byteOffset+(accessor.byteOffset||0));const physical=path.join(directory,"offset.glb");writeFileSync(physical,shifted);expect(runAudit(physical).errors).toContain("invalid_garment_offset");const indexAccessor=layout.json.accessors[mesh.primitives[0].indices],indexView=layout.json.bufferViews[indexAccessor.bufferView],indexAt=layout.binOffset+(indexView.byteOffset||0)+(indexAccessor.byteOffset||0),flipped=Buffer.from(bytes),firstIndex=flipped.readUInt32LE(indexAt),secondIndex=flipped.readUInt32LE(indexAt+4);flipped.writeUInt32LE(secondIndex,indexAt);flipped.writeUInt32LE(firstIndex,indexAt+4);const winding=path.join(directory,"winding.glb");writeFileSync(winding,flipped);expect(runAudit(winding).errors).toContain("invalid_garment_winding"); }finally{rmSync(directory,{recursive:true,force:true});}
   });
 });

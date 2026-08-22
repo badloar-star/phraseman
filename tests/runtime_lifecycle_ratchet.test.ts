@@ -83,7 +83,15 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
     requiredTokens: ['if (!pulse || !CLUB_ENTRY_REPEATING_MOTION_ENABLED)', 'return () => anim.stop()'],
   },
   'app/flashcards/CardPackShardPaywallModal.tsx': owned('Paywall motion follows the visible prop and is stopped by effect cleanup.', ['if (visible) {', 'cancelAnimation(ctaPulse)']),
-  'app/flashcards/FlashcardListItem.tsx': guarded('Flashcard nudge uses screen focus and AppState.'),
+  // зачем 2026-08-22: подсказка-шеврон переписана (E2) — вечный цикл заменён на
+  // ОГРАНИЧЕННЫЙ Animated.loop с iterations: 2, только первая карточка списка и
+  // одноразовый флаг fc_hint_flags_v1. Гард AppState стал не нужен: цикл не
+  // может пережить фокус — он заканчивается сам и глушится в cleanup эффекта.
+  'app/flashcards/FlashcardListItem.tsx': {
+    owner: 'bounded',
+    reason: 'Chevron nudge is a bounded two-iteration loop on the first card only, sealed by the one-shot chevron_nudge hint flag and stopped in effect cleanup.',
+    requiredTokens: ['{ iterations: 2 }', 'itemIdx !== 0', "setHintFlag('chevron_nudge')", 'hintLoopRef.current.stop()'],
+  },
   // Cards 2.1 §1–§5: хаб-CTA с бесконечным пульсом удалён вместе с hero/сундуками,
   // а пульс подсказки удаления переехал из контейнера коллекции в CollectionListView.
   'app/flashcards/CollectionListView.tsx': owned(
@@ -102,15 +110,21 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'app/pack_opening.tsx': runtime('Card pulse receives runtime activity from the screen owner.', ['active={packOpeningRuntimeActive}', 'if (!active || flipped)', 'loop.stop()']),
   'app/shards_shop.tsx': guarded('Shop loops already use screen focus plus AppState and explicit cancellation.'),
   'app/streak_stats.tsx': runtime('Stats spin pulse runs only while the stats screen is focused in the foreground.', ['statsRuntimeActive && spinBalance > 0', 'cancelAnimation(spinButtonPulse)']),
+  // зачем 2026-08-22: эквалайзер переписан под императивный setSample-путь —
+  // idle-луп стал управляемым ресурсом (startIdle/stopIdle на ref'ах). Гард не
+  // ослаб: луп включается только при active и без rawSample-пропа, а cleanup
+  // эффекта зовёт stopIdle, который останавливает каждый Animated.loop.
   'app/voice_equalizer.tsx': {
     owner: 'owner_prop',
-    reason: 'Equalizer loop is controlled by its active recording prop.',
-    requiredTokens: ['active: boolean', 'if (levelDriven || !active) return', 'return () => loops.forEach((loop) => loop.stop())'],
+    reason: 'Equalizer idle loop is controlled by its active recording prop: it starts only in the active non-prop-driven effect and effect cleanup calls stopIdle which stops every loop.',
+    requiredTokens: ['active: boolean', 'if (levelDriven || !active) return', 'loops.forEach((loop) => loop.stop())', 'stopIdle();'],
   },
   'components/AiTypingBubble.tsx': runtime('Typing animation requires focused foreground runtime.', ['typingRuntimeActive && !reduceMotion', 'stop()']),
   'components/AppMessagesInbox.tsx': guarded('Inbox motion uses navigation focus and AppState.'),
   'components/AvatarAura.tsx': guarded('Reference implementation uses screen focus and AppState.'),
-  'components/BoonActivatedModal.tsx': owned('Activated boon motion follows visibility and stops on cleanup.', ['if (!visible) {', '.stop()']),
+  // зачем 2026-08-22: у классик-варианта модалки лупы теперь стартуют только при
+  // visible И isClassic (гибридный вариант лупов не держит) — гард стал строже.
+  'components/BoonActivatedModal.tsx': owned('Activated boon classic loops follow visibility plus the classic variant and stop on cleanup.', ['if (!visible || !isClassic)', 'floatLoop.current?.stop()', 'shimmerLoop.current?.stop()']),
   'components/BoonChestModal.tsx': owned('Boon chest unmounts when hidden and stops running motion.', ['if (!visible) return null', '.stop()']),
   'components/CleanOnboarding.tsx': guarded('Onboarding breathing loop uses screen focus and AppState.'),
   'components/CollectibleArtFrame.tsx': guarded('Collectible effects use screen focus and AppState.'),
@@ -119,7 +133,9 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // Друзья видима и приложение активно (useRuntimeActive(ownerVisible)), иначе гасится.
   'components/friends_together/FriendsChestCard.tsx': runtime('Weekly friends chest idle rock runs only while the Friends tab owns the runtime.', ['useRuntimeActive(ownerVisible)', 'cancelAnimation(rock)']),
   'components/HomeTheoAdvisorCard.tsx': guarded('Theo card float uses screen focus and AppState.'),
-  'components/LeagueBonusAvailableModal.tsx': owned('League bonus modal unmounts while hidden.', ['if (!visible || !availability) return null', 'if (!visible) return']),
+  // зачем 2026-08-22: glow-луп остался только у классик-варианта (гибрид без него) —
+  // гард строже прежнего: visible И isClassic, плюс stop() в cleanup.
+  'components/LeagueBonusAvailableModal.tsx': owned('League bonus modal unmounts while hidden; the classic glow loop additionally requires the classic variant and stops on cleanup.', ['if (!visible || !availability) return null', 'if (!visible || !isClassic) return', 'glowLoop.stop()']),
   'components/LeagueChestOpenModal.tsx': owned('League chest motion is visible-only and unmounts while hidden.', ['if (!visible) return null', 'if (!visible) return']),
   'components/LevelGiftDualModal.tsx': owned('Dual gift loops are guarded by visible phase and stopped on cleanup.', ['if (!visible', 'idleAll.current?.stop()']),
   'components/LevelGiftModal.tsx': owned('Gift loops are guarded by visibility and stopped whenever hidden.', ['if (!visible || !gift)', 'idleLoop.current?.stop()']),
@@ -136,12 +152,42 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // файлах уже настоящие (useRuntimeActive + cancel/stop) — здесь фиксируем их
   // дословными токенами, чтобы следующий мерж не потерял гард незаметно.
   // AuraRenderer пока не подключён ни одним экраном (графт aura-native-lab).
+  // зачем 2026-08-22 (та же логика, что legacyAllowlist в perf_freeze_contract):
+  // ArenaComboMeter и ArenaTimerRing живут ТОЛЬКО в app/arena_match.tsx — push-экране,
+  // который размонтируется целиком при выходе (не premount-таб), поэтому withRepeat(-1)
+  // не может пережить фокус; гейт useIsScreenFocused/AppState здесь избыточен, а не забыт.
+  // ArenaTimerRing — боевой таймер ответа: замирает только по paused-пропу владельца.
+  'components/arena/ArenaComboMeter.tsx': {
+    owner: 'transient_mount',
+    reason: 'Combo breathe lives only inside the fully-unmounting arena_match screen, starts only while the bonus is active and is cancelled on every effect re-run.',
+    requiredTokens: ['if (!active || reduceMotion) return', 'cancelAnimation(breathe)'],
+  },
+  // ArenaSearchPulse живёт только на экране поиска соперника (arena_matchmaking) —
+  // тоже push-экран, размонтируется при выходе; каждая клетка гасит свой цикл в cleanup.
+  'components/arena/ArenaSearchPulse.tsx': {
+    owner: 'transient_mount',
+    reason: 'Search-wave cells exist only while the matchmaking search screen is mounted; every cell cancels its shared value on unmount and reduced motion renders a still grid.',
+    requiredTokens: ['still={reduceMotion}', 'return () => cancelAnimation(value)'],
+  },
+  'components/arena/ArenaTimerRing.tsx': {
+    owner: 'transient_mount',
+    reason: 'Alarm pulse lives only inside the fully-unmounting arena_match screen, is owned by the paused prop and cancelled together with its timer in effect cleanup.',
+    requiredTokens: ['if (paused || reduceMotion) return', 'clearTimeout(timer); cancelAnimation(alarm);'],
+  },
   'components/avatar-aura/AuraRenderer.tsx': runtime('Aura ambient loop runs only on focused foreground runtime granted by its owner and respects reduced motion; inactive auras freeze at their static phase.', ['useRuntimeActive(ownerVisible)', 'if (!ambientActive)', 'cancelAnimation(phase)']),
   'components/collectibles/CollectiblesEmptyStateMotion.tsx': runtime('Empty-collection drift sleeps off-screen/background and cancels every shared value.', ['if (reduceMotion || !runtimeActive)', 'values.forEach((value) => cancelAnimation(value))']),
   // Волна переписана мержем (AudioWaveformBase): вместо старого if (!active) гард
   // стал строже — пауза/фон/чужой экран/reduce-motion глушат цикл, а active
   // владельца входит в useRuntimeActive(active). Токены обновлены, не ослаблены.
   'components/flashcards/AudioWaveform.tsx': runtime('Waveform bars run only while audio actually plays on focused foreground runtime with reduced motion off; every loop is stopped on cleanup.', ['if (!playing || !runtimeActive || reduceMotion)', 'loop.stop()']),
+  // зачем 2026-08-22: гибридный орб MAX (Главная и пре-экран звонка). Все три
+  // слоя дышат только при useRuntimeActive(ownerVisible) и выключенном reduce
+  // motion; иначе фазы прибиты к статичному кадру, и каждый проход эффекта
+  // начинается с cancelAnimation всех shared values.
+  'components/home/MaxHomeOrb.tsx': runtime(
+    'Orb layers breathe only while the owner grants visibility on focused foreground runtime with reduced motion off; inactive phases are pinned to the static frame and every shared value is cancelled.',
+    ['useRuntimeActive(ownerVisible)', 'if (!runtimeActive || reduceMotion)', 'cancelAnimation(shellPhase)'],
+  ),
   'components/league/LeagueCompetitionScene.tsx': guarded('League beams, emblem float and confetti loops use screen focus and AppState.'),
   'components/league/LeagueMyPositionBar.tsx': guarded('My-position rank glow loop uses screen focus and AppState.'),
   'components/league/LeagueChestTeaserModal.tsx': owned('Chest teaser rays and bob run only while the modal is visible and stop on cleanup.', ['if (!visible) return null', 'if (!visible) return']),
@@ -161,6 +207,14 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/PremiumGoldButton.tsx': runtime('Gold CTA shine requires focused foreground runtime plus explicit owner visibility.', ['active: boolean', 'active && premiumButtonRuntimeActive', '!buttonAnimationActive', 'anim.stop()']),
   'components/ProfileCardMotionFx.tsx': guarded('Profile card loops use screen focus and AppState.'),
   'components/ReleaseNotesModal.tsx': owned('Release notes loops run only while visible and stop on cleanup.', ['if (!visible)', 'glowLoop.stop()']),
+  // зачем 2026-08-22: пульс-приглашение кнопки «в карточки» (владелец, 2026-08-17).
+  // Живёт только до первого сохранения (pulse-проп владельца) и только на видимом
+  // сфокусированном экране: экраны в табах не размонтируются, поэтому без
+  // useIsScreenFocused цикл крутился бы в фоне.
+  'components/SaveToCardsButton.tsx': owned(
+    'Invite glow runs only while the owner pulse prop asks for it on a focused screen with reduced motion off, and is cancelled both when inactive and in effect cleanup.',
+    ['const focused = useIsScreenFocused()', 'pulse && !saved && !disabled && !reduceMotion && focused', 'return () => cancelAnimation(glow)'],
+  ),
   'components/ScreenGradient.tsx': {
     owner: 'disabled',
     reason: 'Continuous gradient motion is disabled by its production flag.',
@@ -168,7 +222,9 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   },
   'components/ShineOverlay.tsx': guarded('Shine overlay uses screen focus and AppState.'),
   'components/SkeletonShimmer.tsx': guarded('Skeleton shimmer uses screen focus and AppState.'),
-  'components/WeeklyBoonDetailModal.tsx': owned('Boon detail float follows visibility and stops on cleanup.', ['if (!visible)', 'floatLoop.current?.stop()']),
+  // зачем 2026-08-22: float-луп остался только у классик-варианта (гибрид без него) —
+  // гард строже прежнего: visible И isClassic, stop() и при выключении, и в cleanup.
+  'components/WeeklyBoonDetailModal.tsx': owned('Boon detail classic float follows visibility plus the classic variant and stops on cleanup.', ['if (!visible || !isClassic)', 'floatLoop.current?.stop()']),
   'components/onboarding_aha/SpeechBeat.tsx': guarded('Microphone pulse uses screen focus and AppState.'),
   'components/onboarding_aha/TypewriterText.tsx': guarded('Cursor loop uses screen focus and AppState.'),
   'components/paywall/PaywallMotion.tsx': guarded('Paywall motion loops use screen focus and AppState.'),

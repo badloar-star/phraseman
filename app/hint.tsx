@@ -27,6 +27,8 @@ import { getTheoryContent, hasTheoryContent, type LessonTheoryContent } from './
 import { legacyRuUk } from '../constants/i18n';
 import { registerXP } from './xp_manager';
 import { lessonTheorySectionsSeenKey, lessonTheoryXpClaimedKey } from './target_storage_keys';
+import SkeletonBlock from '../components/SkeletonShimmer';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 function L(
   lang: Lang,
@@ -110,6 +112,32 @@ function buildTheorySections(content: LessonTheoryContent, lang: Lang): TheorySe
   });
 }
 
+// зачем (аудит 2026-08-22): скелетон повторяет геометрию TheoryLessonView
+// (шапка с назад, заголовок, пара текстовых блоков, XP-кнопка снизу), чтобы
+// первый кадр не отличался от финального — без прыжка при гидрации claim-флага.
+function TheoryLessonSkeleton() {
+  const { theme: t } = useTheme();
+  const insets = useStableSafeAreaInsets();
+  return (
+    <ScreenGradient>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ paddingTop: insets.top, paddingHorizontal: 20, gap: 20 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 8 }}>
+            <SkeletonBlock width={28} height={28} borderRadius={14} />
+            <SkeletonBlock width="55%" height={20} borderRadius={10} />
+          </View>
+          <SkeletonBlock width="100%" height={96} borderRadius={18} />
+          <SkeletonBlock width="100%" height={96} borderRadius={18} />
+          <SkeletonBlock width="70%" height={16} borderRadius={8} />
+        </View>
+        <View style={{ marginTop: 'auto', paddingHorizontal: 20, paddingBottom: Math.max(20, insets.bottom + 16) }}>
+          <SkeletonBlock width="100%" height={54} borderRadius={16} />
+        </View>
+      </SafeAreaView>
+    </ScreenGradient>
+  );
+}
+
 function LessonTheoryNew({ lessonId }: { lessonId: number }) {
   const router = useRouter();
   const { theme: t } = useTheme();
@@ -179,13 +207,10 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
   }, [claimStorageKey, lessonId, studyTarget, lang]);
 
   if (!claimHydrated) {
-    return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: t.textMuted }}>...</Text>
-        </SafeAreaView>
-      </ScreenGradient>
-    );
+    // зачем (аудит 2026-08-22): голый «...» по центру мигал вместо финальной
+    // геометрии экрана теории (шапка + заголовок + блоки + XP-кнопка) — первый
+    // кадр должен держать ту же раскладку, что и TheoryLessonView.
+    return <TheoryLessonSkeleton />;
   }
 
   return (

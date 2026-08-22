@@ -1,14 +1,16 @@
-import React, { useEffect, useState, memo, useCallback, useMemo, useRef } from 'react';
+import React, { useEffect, useState, memo, useCallback, useMemo } from 'react';
 import {
-  View, Text, SectionList, TouchableOpacity, Modal, Pressable, Image, ScrollView, useWindowDimensions,
+  View, Text, SectionList, TouchableOpacity, Pressable, Image, ScrollView, useWindowDimensions,
   InteractionManager,
   Share,
+  StyleSheet,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image as ExpoImage } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getPersonalProgressSnapshot, hydratePersonalProgress } from './personal_progress_store';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -16,8 +18,13 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import TapScale from '../components/TapScale';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+import AchievementShelfCarousel from '../components/achievements/AchievementShelfCarousel';
+import AchievementCategoryDock from '../components/achievements/AchievementCategoryDock';
+import type { AchievementCategoryOption } from '../components/achievements/AchievementCategoryDock';
+import HybridAlertShell from '../components/modal_fx/HybridAlertShell';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { glassFill } from '../components/GlassSurface';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { safeRouterBack } from './navigation_back';
 import {
@@ -25,8 +32,6 @@ import {
   loadAchievementStates,
   Achievement,
   AchievementState,
-  claimAchievementShardReward,
-  hasPendingShardReward,
   achievementNameForLang,
   achievementDescForLang,
   checkAchievements,
@@ -34,33 +39,15 @@ import {
 // зачем: секция «Ближайшие награды» удалена с экрана — импорт больше не нужен здесь
 // (achievement_nearest.ts остаётся, у него свой тест-файл achievement_nearest.test.ts)
 import { triLang, type Lang } from '../constants/i18n';
-import { getLevelFromXP, type ThemeMode } from '../constants/theme';
-import { hapticSuccess } from '../hooks/use-haptics';
+import type { ThemeMode } from '../constants/theme';
 import { STORE_URL, ENABLE_DEV_TOOLS } from './config';
-import { oskolokImageForPackShards } from './oskolok';
 import { buildAchievementShareMessage } from './achievement_share';
 import { achievementShelfInitialId } from './achievement_shelf_model';
-import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insights';
-import {
-  achievementLessonPerfectPassesKey,
-  comboAchievementCounterKey,
-  dailyPhraseAchievementReadCountKey,
-  dailyPhraseAchievementSaveCountKey,
-  flashcardsAchievementFlipCountKey,
-  flashcardsAchievementSavedCountKey,
-  flashcardsAchievementViewStreakKey,
-  flashcardsCommunityOwnedPacksKey,
-  flashcardsMarketDevOwnedPacksKey,
-  flashcardsOwnedPacksKey,
-  lessonPassCountKey,
-  lessonProgressKey,
-  shareAchievementCounterKey,
-  type RuntimeStudyTarget,
-} from './target_storage_keys';
+import type { RuntimeStudyTarget } from './target_storage_keys';
+import { loadConfirmedLeagueAchievementEvidence } from './league_engine';
 
 const GRID_GAP = 10;
 const GRID_SIDE_PADDING = 36;
-const ACHIEVEMENT_PROGRESS_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr'];
 const sectionHighlightStyle = {
   position: 'absolute' as const,
   top: 0,
@@ -89,68 +76,18 @@ type AchievementGridMetrics = ReturnType<typeof getAchievementGridMetrics>;
 
 interface AchievementStats {
   streak: number;
-  loginDays: number;
-  lessons: number;
-  perfectLessons: number;
-  lessons2x: number;
-  lessons3x: number;
-  lessons5x: number;
-  perfectLessons2x: number;
-  b2PerfectLessons: number;
   xp: number;
-  level: number;
-  weeklyXP: number;
-  mistakeCorrected: number;
-  mistakeVoiceCorrected: number;
-  mistakeIndependentDays: number;
   shards: number;
-  shardsSpent: number;
-  comboBest: number;
-  dailyPhraseReads: number;
-  dailyPhraseSaves: number;
-  flashcardsSaved: number;
-  flashcardsFlips: number;
-  flashcardsViewStreak: number;
-  energyRefills: number;
-  leagueTop3: number;
   leagueChampion: number;
   leagueDiamondWeeks: number;
-  giftsSent: number;
-  packsOwned: number;
-  shareCount: number;
 }
 
 const emptyAchievementStats = (): AchievementStats => ({
   streak: 0,
-  loginDays: 0,
-  lessons: 0,
-  perfectLessons: 0,
-  lessons2x: 0,
-  lessons3x: 0,
-  lessons5x: 0,
-  perfectLessons2x: 0,
-  b2PerfectLessons: 0,
   xp: 0,
-  level: 1,
-  weeklyXP: 0,
-  mistakeCorrected: 0,
-  mistakeVoiceCorrected: 0,
-  mistakeIndependentDays: 0,
   shards: 0,
-  shardsSpent: 0,
-  comboBest: 0,
-  dailyPhraseReads: 0,
-  dailyPhraseSaves: 0,
-  flashcardsSaved: 0,
-  flashcardsFlips: 0,
-  flashcardsViewStreak: 0,
-  energyRefills: 0,
-  leagueTop3: 0,
   leagueChampion: 0,
   leagueDiamondWeeks: 0,
-  giftsSent: 0,
-  packsOwned: 0,
-  shareCount: 0,
 });
 
 const readJsonStreak = (raw: string | null, key = 'streak'): number => {
@@ -160,296 +97,48 @@ const readJsonStreak = (raw: string | null, key = 'streak'): number => {
   } catch { return 0; }
 };
 
-const readJsonStringListLength = (raw: string | null): number => {
-  try {
-    const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed.filter(x => typeof x === 'string').length : 0;
-  } catch { return 0; }
-};
-
-const readComboBestAcrossTargets = async (): Promise<string> => {
-  const rows = await AsyncStorage.multiGet(
-    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => comboAchievementCounterKey(studyTarget)),
-  );
-  const best = rows.reduce((max, [, raw]) => Math.max(max, parseInt(raw || '0', 10) || 0), 0);
-  return String(best);
-};
-
-const readFlashcardsCounterAcrossTargets = async (
-  keyForTarget: (studyTarget: RuntimeStudyTarget) => string,
-): Promise<string> => {
-  const rows = await AsyncStorage.multiGet(ACHIEVEMENT_PROGRESS_TARGETS.map(keyForTarget));
-  const total = rows.reduce((sum, [, raw]) => sum + (parseInt(raw || '0', 10) || 0), 0);
-  return String(total);
-};
-
-const readFlashcardsViewStreakAcrossTargets = async (): Promise<string> => {
-  const rows = await AsyncStorage.multiGet(
-    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => flashcardsAchievementViewStreakKey(studyTarget)),
-  );
-  const best = rows.reduce((max, [, raw]) => Math.max(max, readJsonStreak(raw)), 0);
-  return String(best);
-};
-
-const readMistakeAchievementProgress = async () => {
-  const rows = await Promise.all(
-    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => getMistakePracticeAchievementSnapshot(studyTarget)),
-  );
-  return rows.reduce((total, row) => ({
-    corrected: total.corrected + row.corrected,
-    voiceCorrected: total.voiceCorrected + row.voiceCorrected,
-    independentDays: total.independentDays + row.independentDays,
-  }), { corrected: 0, voiceCorrected: 0, independentDays: 0 });
-};
-
-const readDailyPhraseCounterAcrossTargets = async (
-  keyForTarget: (studyTarget: RuntimeStudyTarget) => string,
-): Promise<string> => {
-  const rows = await AsyncStorage.multiGet(ACHIEVEMENT_PROGRESS_TARGETS.map(keyForTarget));
-  const total = rows.reduce((sum, [, raw]) => sum + (parseInt(raw || '0', 10) || 0), 0);
-  return String(total);
-};
-
 async function loadAchievementStats(): Promise<AchievementStats> {
   try {
+    await hydratePersonalProgress();
+    const personalProgress = getPersonalProgressSnapshot();
     const [
-      streakRaw, loginRaw, xpRaw, mistakeProgress, shardsRaw, shardsSpentRaw, comboBestRaw,
-      dailyPhraseReadsRaw, dailyPhraseSavesRaw,
-      flashcardsSavedRaw, flashcardsFlipsRaw, flashcardsViewRaw, energyRefillsRaw,
-       leagueTop3Raw, leagueChampionRaw, leagueDiamondWeeksRaw, giftsRaw,
-      packStorageRows, shareRaw,
-      weeklyRaw, weeklyPeakRaw,
+      shardsRaw, leagueChampionRaw, leagueDiamondWeeksRaw,
     ] = await Promise.all([
-      AsyncStorage.getItem('streak_count'),
-      AsyncStorage.getItem('login_bonus_v1'),
-      AsyncStorage.getItem('user_total_xp'),
-      readMistakeAchievementProgress(),
       AsyncStorage.getItem('shards_balance'),
-      AsyncStorage.getItem('achievement_shards_spent_total'),
-      readComboBestAcrossTargets(),
-      readDailyPhraseCounterAcrossTargets(dailyPhraseAchievementReadCountKey),
-      readDailyPhraseCounterAcrossTargets(dailyPhraseAchievementSaveCountKey),
-      readFlashcardsCounterAcrossTargets(flashcardsAchievementSavedCountKey),
-      readFlashcardsCounterAcrossTargets(flashcardsAchievementFlipCountKey),
-      readFlashcardsViewStreakAcrossTargets(),
-      AsyncStorage.getItem('achievement_energy_refill_count'),
-      AsyncStorage.getItem('achievement_league_top3_count'),
       AsyncStorage.getItem('achievement_league_champion_count'),
       AsyncStorage.getItem('achievement_league_diamond_week_streak_v1'),
-      AsyncStorage.getItem('achievement_gift_sent_count'),
-      AsyncStorage.multiGet(
-        ACHIEVEMENT_PROGRESS_TARGETS.flatMap((studyTarget) => [
-          flashcardsOwnedPacksKey(studyTarget),
-          flashcardsCommunityOwnedPacksKey(studyTarget),
-          flashcardsMarketDevOwnedPacksKey(studyTarget),
-        ]),
-      ),
-      readFlashcardsCounterAcrossTargets(shareAchievementCounterKey),
-      AsyncStorage.getItem('week_points'),
-      AsyncStorage.getItem('week_xp_peak_best_v1'),
     ]);
-    const streak = parseInt(streakRaw || '0') || 0;
-    const xp = parseInt(xpRaw || '0') || 0;
-    const level = getLevelFromXP(xp);
-    const weeklyXP = Math.max(parseInt(weeklyRaw || '0') || 0, parseInt(weeklyPeakRaw || '0') || 0);
+    const streak = personalProgress.streakCount;
+    const xp = personalProgress.totalXp;
     const shards = parseInt(shardsRaw || '0') || 0;
-    const shardsSpent = parseInt(shardsSpentRaw || '0') || 0;
-    let loginDays = 0;
-    try { loginDays = loginRaw ? JSON.parse(loginRaw).consecutiveDays || 0 : 0; } catch {}
-    let lessons = 0, perfectLessons = 0, b2PerfectLessons = 0;
-    try {
-      const lessonIds = Array.from({ length: 32 }, (_, i) => i + 1);
-      const lessonKeys = lessonIds.flatMap((lessonId) =>
-        ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => lessonProgressKey(lessonId, studyTarget)),
-      );
-      const lessonEntries = await AsyncStorage.multiGet(lessonKeys);
-      const lessonMap = Object.fromEntries(lessonEntries);
-      for (const lessonId of lessonIds) {
-        let completed = false;
-        let perfect = false;
-        for (const studyTarget of ACHIEVEMENT_PROGRESS_TARGETS) {
-          const saved = lessonMap[lessonProgressKey(lessonId, studyTarget)];
-          if (!saved) continue;
-          const p: string[] = JSON.parse(saved);
-          const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-          if (correct >= 45) {
-            if (p.filter(x => x === 'wrong').length === 0) {
-              perfect = true;
-            }
-            completed = true;
-          }
-        }
-        if (completed) lessons++;
-        if (perfect) {
-          perfectLessons++;
-          if (lessonId >= 29 && lessonId <= 32) b2PerfectLessons++;
-        }
-      }
-    } catch {}
-    let lessons2x = 0, lessons3x = 0, lessons5x = 0, perfectLessons2x = 0;
-    try {
-      const lessonIds = Array.from({ length: 32 }, (_, i) => i + 1);
-      const passKeys = lessonIds.flatMap((lessonId) =>
-        ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => lessonPassCountKey(lessonId, studyTarget)),
-      );
-      const perfectPassKeys = lessonIds.flatMap((lessonId) =>
-        ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) =>
-          achievementLessonPerfectPassesKey(lessonId, studyTarget),
-        ),
-      );
-      const [passEntries, perfectPassEntries] = await Promise.all([
-        AsyncStorage.multiGet(passKeys),
-        AsyncStorage.multiGet(perfectPassKeys),
-      ]);
-      const passMap = Object.fromEntries(passEntries);
-      for (const lessonId of lessonIds) {
-        const n = Math.max(
-          ...ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) =>
-            parseInt(passMap[lessonPassCountKey(lessonId, studyTarget)] || '0', 10) || 0,
-          ),
-        );
-        if (n >= 2) lessons2x++;
-        if (n >= 3) lessons3x++;
-        if (n >= 5) lessons5x++;
-      }
-      const perfectPassMap = Object.fromEntries(perfectPassEntries);
-      for (const lessonId of lessonIds) {
-        const n = Math.max(
-          ...ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) =>
-            readJsonStringListLength(perfectPassMap[achievementLessonPerfectPassesKey(lessonId, studyTarget)]),
-          ),
-        );
-        if (n >= 2) perfectLessons2x++;
-      }
-    } catch {}
-    const packSet = new Set<string>();
-    packStorageRows.map(([, raw]) => raw).forEach(raw => {
-      try {
-        const parsed = raw ? JSON.parse(raw) : [];
-        if (Array.isArray(parsed)) parsed.forEach(x => { if (typeof x === 'string') packSet.add(x); });
-      } catch {}
-    });
     return {
       streak,
-      loginDays,
-      lessons,
-      perfectLessons,
-      lessons2x,
-      lessons3x,
-      lessons5x,
-      perfectLessons2x,
-      b2PerfectLessons,
       xp,
-      level,
-      weeklyXP,
-      mistakeCorrected: mistakeProgress.corrected,
-      mistakeVoiceCorrected: mistakeProgress.voiceCorrected,
-      mistakeIndependentDays: mistakeProgress.independentDays,
       shards,
-      shardsSpent,
-      comboBest: parseInt(comboBestRaw || '0') || 0,
-      dailyPhraseReads: parseInt(dailyPhraseReadsRaw || '0') || 0,
-      dailyPhraseSaves: parseInt(dailyPhraseSavesRaw || '0') || 0,
-      flashcardsSaved: parseInt(flashcardsSavedRaw || '0') || 0,
-      flashcardsFlips: parseInt(flashcardsFlipsRaw || '0') || 0,
-      flashcardsViewStreak: readJsonStreak(flashcardsViewRaw),
-      energyRefills: parseInt(energyRefillsRaw || '0') || 0,
-      leagueTop3: parseInt(leagueTop3Raw || '0') || 0,
       leagueChampion: parseInt(leagueChampionRaw || '0') || 0,
       leagueDiamondWeeks: readJsonStreak(leagueDiamondWeeksRaw),
-      giftsSent: parseInt(giftsRaw || '0') || 0,
-      packsOwned: packSet.size,
-      shareCount: parseInt(shareRaw || '0') || 0,
     };
   } catch { return emptyAchievementStats(); }
 }
 
 function getAchievementProgress(id: string, stats: AchievementStats): [number, number] | null {
-  if (id.startsWith('streak_') && !id.includes('repair')) {
+  if (id.startsWith('streak_')) {
     const n = parseInt(id.replace('streak_', ''));
     if (!isNaN(n)) return [Math.min(stats.streak, n), n];
   }
-  if (id.startsWith('login_')) {
-    const n = parseInt(id.replace('login_', ''));
-    if (!isNaN(n)) return [Math.min(stats.loginDays, n), n];
-  }
-  if (id.startsWith('lesson_') && !id.includes('perfect') && id !== 'lesson_all') {
-    const n = parseInt(id.replace('lesson_', ''));
-    if (!isNaN(n)) return [Math.min(stats.lessons, n), n];
-  }
-  if (id === 'lesson_all') return [Math.min(stats.lessons, 32), 32];
-  if (id === 'lesson_all_2x') return [Math.min(stats.lessons2x, 32), 32];
-  if (id === 'lesson_all_3x') return [Math.min(stats.lessons3x, 32), 32];
-  if (id === 'lesson_all_5x') return [Math.min(stats.lessons5x, 32), 32];
-  if (id === 'lesson_perfect') return [Math.min(stats.perfectLessons, 1), 1];
-  if (id === 'lesson_perfect3') return [Math.min(stats.perfectLessons, 3), 3];
-  if (id === 'lesson_perfect10') return [Math.min(stats.perfectLessons, 10), 10];
-  if (id === 'lesson_all_perfect') return [Math.min(stats.perfectLessons, 32), 32];
-  if (id === 'lesson_all_perfect_2x') return [Math.min(stats.perfectLessons2x, 32), 32];
-  if (id === 'lesson_b2_perfect') return [Math.min(stats.b2PerfectLessons, 4), 4];
   if (id.startsWith('xp_')) {
     const n = parseInt(id.replace('xp_', ''));
     if (!isNaN(n)) return [Math.min(stats.xp, n), n];
-  }
-  if (id === 'level_50') return [Math.min(stats.level, 50), 50];
-  if (id === 'weekly_xp_5000') return [Math.min(stats.weeklyXP, 5000), 5000];
-  if (id === 'weekly_xp_10000') return [Math.min(stats.weeklyXP, 10000), 10000];
-  if (id === 'mistake_corrected_first') return [Math.min(stats.mistakeCorrected, 1), 1];
-  if (id === 'mistake_corrected_10') return [Math.min(stats.mistakeCorrected, 10), 10];
-  if (id === 'mistake_corrected_50') return [Math.min(stats.mistakeCorrected, 50), 50];
-  if (id === 'mistake_voice_corrected_first') return [Math.min(stats.mistakeVoiceCorrected, 1), 1];
-  if (id === 'mistake_success_7_days') return [Math.min(stats.mistakeIndependentDays, 7), 7];
-  if (id.startsWith('shards_spent_')) {
-    const n = parseInt(id.replace('shards_spent_', ''));
-    if (!isNaN(n)) return [Math.min(stats.shardsSpent, n), n];
   }
   if (id.startsWith('shards_')) {
     const n = parseInt(id.replace('shards_', ''));
     if (!isNaN(n)) return [Math.min(stats.shards, n), n];
   }
-  if (id.startsWith('combo_')) {
-    const n = parseInt(id.replace('combo_', ''));
-    if (!isNaN(n)) return [Math.min(stats.comboBest, n), n];
-  }
-  if (id === 'daily_phrase_read_30') return [Math.min(stats.dailyPhraseReads, 30), 30];
-  if (id === 'daily_phrase_save_30') return [Math.min(stats.dailyPhraseSaves, 30), 30];
-  if (id === 'daily_phrase_save_100') return [Math.min(stats.dailyPhraseSaves, 100), 100];
-  if (id === 'flashcards_save_25') return [Math.min(stats.flashcardsSaved, 25), 25];
-  if (id === 'flashcards_save_50') return [Math.min(stats.flashcardsSaved, 50), 50];
-  if (id === 'flashcards_save_100') return [Math.min(stats.flashcardsSaved, 100), 100];
-  if (id === 'flashcards_save_250') return [Math.min(stats.flashcardsSaved, 250), 250];
-  if (id === 'flashcards_flip_100') return [Math.min(stats.flashcardsFlips, 100), 100];
-  if (id === 'flashcards_flip_500') return [Math.min(stats.flashcardsFlips, 500), 500];
-  if (id === 'flashcards_flip_1000') return [Math.min(stats.flashcardsFlips, 1000), 1000];
-  if (id === 'flashcards_view_7_days') return [Math.min(stats.flashcardsViewStreak, 7), 7];
-  if (id === 'flashcards_view_14_days') return [Math.min(stats.flashcardsViewStreak, 14), 14];
-  if (id === 'flashcards_view_30_days') return [Math.min(stats.flashcardsViewStreak, 30), 30];
-  if (id === 'energy_refill_5') return [Math.min(stats.energyRefills, 5), 5];
-  if (id === 'energy_refill_10') return [Math.min(stats.energyRefills, 10), 10];
-  if (id === 'energy_refill_25') return [Math.min(stats.energyRefills, 25), 25];
-  if (id === 'league_top3_5') return [Math.min(stats.leagueTop3, 5), 5];
   if (id === 'league_champion_5') return [Math.min(stats.leagueChampion, 5), 5];
   if (id === 'league_champion_10') return [Math.min(stats.leagueChampion, 10), 10];
   if (id === 'league_diamond_4_weeks') return [Math.min(stats.leagueDiamondWeeks, 4), 4];
-  if (id === 'social_gift_5') return [Math.min(stats.giftsSent, 5), 5];
-  if (id === 'social_gift_10') return [Math.min(stats.giftsSent, 10), 10];
-  if (id === 'social_gift_25') return [Math.min(stats.giftsSent, 25), 25];
-  if (id === 'social_gift_100') return [Math.min(stats.giftsSent, 100), 100];
-  if (id === 'pack_5_purchased') return [Math.min(stats.packsOwned, 5), 5];
-  if (id === 'pack_10_purchased') return [Math.min(stats.packsOwned, 10), 10];
-  if (id === 'pack_25_purchased') return [Math.min(stats.packsOwned, 25), 25];
-  if (id === 'share_achievement_10') return [Math.min(stats.shareCount, 10), 10];
   return null;
 }
-
-/** Квизовые достижения доступны всем; Premium-подсказка для них отключена. */
-// Лейбл уровня для медалей (gem_*)
-const GEM_LEVEL_LABEL: Record<string, string> = {
-  gem_a1_ruby: 'A1', gem_a1_emerald: 'A1', gem_a1_diamond: 'A1', gem_a1_obsidian: 'A1', gem_a1_mythic: 'A1',
-  gem_a2_ruby: 'A2', gem_a2_emerald: 'A2', gem_a2_diamond: 'A2', gem_a2_obsidian: 'A2', gem_a2_mythic: 'A2',
-  gem_b1_ruby: 'B1', gem_b1_emerald: 'B1', gem_b1_diamond: 'B1', gem_b1_obsidian: 'B1', gem_b1_mythic: 'B1',
-  gem_b2_ruby: 'B2', gem_b2_emerald: 'B2', gem_b2_diamond: 'B2', gem_b2_obsidian: 'B2', gem_b2_mythic: 'B2',
-};
 
 // ── PNG-изображения для каждого достижения ───────────────────────────────────
 // зачем: раньше здесь лежала ВТОРАЯ копия реестра арта (190 require) — тот же
@@ -470,18 +159,6 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   streak_200:         'diamond-outline',
   streak_365:         'star',
   streak_500:         'crown',
-  streak_repair:      'refresh-circle',
-  perfect_week:       'checkmark-circle',
-  lesson_1:           'book',
-  lesson_3:           'book-outline',
-  lesson_5:           'book',
-  lesson_10:          'school',
-  lesson_15:          'library-outline',
-  lesson_20:          'library',
-  lesson_all:         'trophy',
-  lesson_perfect:     'checkmark-done',
-  lesson_perfect3:    'checkmark-done-circle',
-  lesson_all_perfect: 'ribbon',
   xp_100:             'flash-outline',
   xp_250:             'flash',
   xp_500:             'flash',
@@ -492,49 +169,10 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   xp_20000:           'planet',
   xp_50000:           'nuclear',
   xp_100000:          'trophy',
-  wager_win:          'dice',
-  personal_best:      'trending-up',
-  combo_3:            'git-merge',
-  combo_10:           'radio-button-on',
-  combo_20:           'shield',
-  combo_50:           'flash',
-  combo_100:          'nuclear',
-  daily_phrase_first: 'chatbubble-ellipses',
-  daily_phrase_save:  'file-tray-full',
-  login_7:            'calendar',
-  login_14:           'calendar-outline',
-  login_30:           'calendar-number',
-  login_60:           'calendar-number-outline',
-  login_365:          'earth',
   comeback:           'rocket',
-  diagnosis:          'flask',
-  night_owl:          'moon',
-  early_bird:         'sunny',
-  exam_first:         'document-text',
-  exam_ace:           'ribbon',
-  flashcards_session: 'layers',
-  flashcards_save_25: 'file-tray-full',
-  flashcards_save_50: 'albums',
-  flashcards_flip_100: 'sync-circle',
-  flashcards_view_7_days: 'calendar',
-  flashcards_sources_4: 'git-network',
-  recall_first:       'bulb',
-  recall_50:          'library',
   shards_100:         'diamond',
-  shards_spent_100:   'diamond-outline',
-  energy_refill_first: 'flash',
-  energy_refill_5:    'battery-full',
-  league_result_first: 'flag',
-  league_top3:        'podium',
   league_champion:    'trophy',
-  league_promoted:    'trending-up',
   league_diamond:     'diamond',
-  league_boost_first: 'rocket',
-  league_boost_5:     'speedometer',
-  league_boost_x3:    'flash',
-  social_gift_10:     'gift',
-  social_likes_5:     'heart',
-  gem_all_complete:   'trophy',
 };
 
 // ── Цвет категории ────────────────────────────────────────────────────────────
@@ -563,7 +201,6 @@ const CAT_ICON_IMAGE: Record<string, any> = {
   xp:      require('../assets/images/achievement_categories/achievement-category-xp.webp'),
   combo:   require('../assets/images/achievement_categories/achievement-category-combo.webp'),
   special: require('../assets/images/achievement_categories/achievement-category-special.webp'),
-  medal:   require('../assets/images/achievements/gem_all_complete.webp'),
 };
 const CAT_LABEL_RU: Record<string, string> = {
   streak: 'Цепочка', lessons: 'Уроки', xp: 'Опыт',
@@ -599,6 +236,27 @@ const CAT_LABEL_PL: Record<string, string> = {
 };
 
 const CATEGORIES = ['streak', 'lessons', 'xp', 'combo', 'special', 'medal'] as const;
+type ShelfCategory = 'all' | Achievement['category'];
+
+function achievementShelfCategoryLabel(category: ShelfCategory, lang: Lang): string {
+  if (category === 'all') {
+    return triLang(lang, {
+      ru: 'Все', uk: 'Усі', es: 'Todas', 'pt-BR': 'Todas',
+      vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie',
+    });
+  }
+
+  return triLang(lang, {
+    ru: CAT_LABEL_RU[category],
+    uk: CAT_LABEL_UK[category],
+    es: CAT_LABEL_ES[category],
+    'pt-BR': CAT_LABEL_PTBR[category],
+    vi: CAT_LABEL_VI[category],
+    id: CAT_LABEL_ID[category],
+    tr: CAT_LABEL_TR[category],
+    pl: CAT_LABEL_PL[category],
+  });
+}
 const ACHIEVEMENT_DATE_LOCALES: Record<Lang, string> = {
   ru: 'ru-RU',
   uk: 'uk-UA',
@@ -693,7 +351,6 @@ type GridCellProps = {
   t: any;
   f: any;
   isDark: boolean;
-  gold: string;
   shieldW: number;
   shieldOuter: number;
   onSelect: (achievement: Achievement) => void;
@@ -711,7 +368,6 @@ const AchievementGridCell = memo(function AchievementGridCell({
   t,
   f,
   isDark,
-  gold,
   shieldW,
   shieldOuter,
   onSelect,
@@ -736,27 +392,6 @@ const AchievementGridCell = memo(function AchievementGridCell({
       }}
     >
       <View style={{ position: 'relative' }}>
-        {unlocked && hasPendingShardReward(state) && (
-          <View
-            style={{
-              position: 'absolute',
-              top: -4,
-              right: -2,
-              zIndex: 4,
-              minWidth: 20,
-              height: 20,
-              borderRadius: 10,
-              backgroundColor: t.correct,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderWidth: 0,
-              borderColor: t.bgCard,
-              paddingHorizontal: 3,
-            }}
-          >
-            <Text style={{ fontSize: 11, fontWeight: '900', color: t.correctText }}>+1</Text>
-          </View>
-        )}
         <BadgeShield
           unlocked={unlocked}
           inProgress={inProgress}
@@ -766,7 +401,6 @@ const AchievementGridCell = memo(function AchievementGridCell({
           maskBg={t.bgPrimary}
           achievementId={a.id}
           isDark={isDark}
-          gold={gold}
         />
       </View>
 
@@ -899,12 +533,10 @@ function CategoryIconImageWithFallback({
 function BadgeShieldInner({
   unlocked, inProgress, color, iconName, size, achievementId,
   isDark,
-  gold,
 }: {
   unlocked: boolean; inProgress: boolean; color: string;
   iconName: string; size: number; maskBg?: string; achievementId?: string;
   isDark: boolean;
-  gold: string;
 }) {
   const W      = size;
   const BODY_H = Math.round(W * 0.88);
@@ -920,7 +552,6 @@ function BadgeShieldInner({
   // в Storage, поэтому источник берём через achievementImageSource — она вернёт
   // либо бандл-ресурс, либо {uri} из прогретого дискового кэша.
   const specificImage = achievementId ? achievementImageSource(achievementId) : null;
-  const levelLabel = achievementId ? GEM_LEVEL_LABEL[achievementId] : null;
 
   if (specificImage) {
     return (
@@ -934,20 +565,6 @@ function BadgeShieldInner({
           iconColor={iconColor}
           opacity={isLocked ? 0.20 : inProgress ? 0.50 : 1}
         />
-        {levelLabel && (
-          <View style={{
-            position: 'absolute', bottom: 2,
-            backgroundColor: isLocked ? '#33333388' : inProgress ? '#00000066' : '#000000AA',
-            borderRadius: 4, paddingHorizontal: 4, paddingVertical: 1,
-          }}>
-            <Text style={{
-              color: isLocked ? '#666' : inProgress ? '#aaa' : gold,
-              fontSize: Math.max(8, Math.round(W * 0.22)),
-              fontWeight: '900',
-              letterSpacing: 0.5,
-            }}>{levelLabel}</Text>
-          </View>
-        )}
       </View>
     );
   }
@@ -981,7 +598,7 @@ export const BadgeShield = memo(BadgeShieldInner);
 
 // ── Модальное окно ────────────────────────────────────────────────────────────
 function AchievementModal({
-  achievement, state, stats, t, f, isDark, themeMode, onClose, onShardClaimed, revealLockedDetails, studyTarget,
+  achievement, state, stats, t, f, isDark, themeMode, onClose, revealLockedDetails, studyTarget,
 }: {
   achievement: Achievement;
   state: AchievementState | undefined;
@@ -990,15 +607,12 @@ function AchievementModal({
   isDark: boolean;
   themeMode: ThemeMode;
   onClose: () => void;
-  onShardClaimed: (achievementId: string) => void;
   revealLockedDetails: boolean;
   studyTarget: RuntimeStudyTarget;
 }) {
-  const shardClaimTapGuardRef = useRef(false);
   const { lang } = useLang();
   const { width: screenW, height: screenH } = useWindowDimensions();
   const unlocked = !!state?.unlockedAt;
-  const pendingShard = hasPendingShardReward(state);
   const color    = achievementCategoryColor(achievement.category);
   const iconName = ACHIEVEMENT_ICON[achievement.id] ?? 'star';
   const name     = achievementNameForLang(achievement, lang);
@@ -1009,7 +623,6 @@ function AchievementModal({
     : null;
   const progPct  = prog ? Math.round((prog[0] / (prog[1] || 1)) * 100) : 0;
 
-  const modalWidth = Math.min(560, Math.max(220, screenW - 32));
   const modalMaxHeight = Math.max(240, screenH - 48);
   const modalPad = screenW < 360 ? 18 : 24;
 
@@ -1018,166 +631,164 @@ function AchievementModal({
     const dateLocale = ACHIEVEMENT_DATE_LOCALES[lang];
     return d.toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' });
   };
+  const obtainedLabel = triLang(lang, { ru: 'Получено', uk: 'Отримано', es: 'Obtenido', 'pt-BR': 'Obtido', vi: 'Đã nhận', id: 'Diperoleh', tr: 'Alındı', pl: 'Zdobyto' });
+  const shareLabel = triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' });
+  const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
 
   return (
-    <Modal transparent animationType="fade" onRequestClose={onClose}>
-      <Pressable style={{ flex: 1, backgroundColor: '#00000088', justifyContent: 'center', alignItems: 'center', padding: 16 }} onPress={onClose}>
-        <Pressable onPress={e => e.stopPropagation()} style={{ width: modalWidth, maxHeight: modalMaxHeight }}>
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, width: '100%', maxHeight: modalMaxHeight, overflow: 'hidden', position: 'relative' }}>
-            <ScrollView
-              keyboardShouldPersistTaps="handled"
-              decelerationRate="normal"
-              showsVerticalScrollIndicator
-              contentContainerStyle={{ padding: modalPad, alignItems: 'center', gap: 12 }}
-            >
-            {/* Shield */}
+    <HybridAlertShell
+      visible
+      onRequestClose={onClose}
+      shadowColor={t.shadowDark}
+      backdropColor="rgba(0,0,0,0.72)"
+      testID="achievement-dossier-backdrop"
+    >
+      <View
+        testID="achievement-award-dossier"
+        style={{
+          backgroundColor: t.bgCard,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: t.borderHighlight,
+          width: '100%',
+          maxHeight: modalMaxHeight,
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+      >
+        <TapScale
+          testID="achievement-close-secondary"
+          accessibilityRole="button"
+          accessibilityLabel={closeLabel}
+          scaleTo={0.94}
+          onPress={onClose}
+          style={{
+            position: 'absolute', top: 12, right: 12, zIndex: 3,
+            width: 44, height: 44, borderRadius: 15, backgroundColor: t.bgCard,
+            borderWidth: StyleSheet.hairlineWidth, borderColor: t.borderHighlight,
+            alignItems: 'center', justifyContent: 'center',
+          }}
+        >
+          <Ionicons name="close" size={21} color={t.textPrimary} />
+        </TapScale>
+
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          decelerationRate="normal"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ padding: modalPad, alignItems: 'stretch', gap: 16 }}
+        >
+          <LinearGradient
+            testID="achievement-dossier-hero"
+            colors={[t.bgSurface2, t.bgCard]}
+            start={{ x: 0.1, y: 0 }}
+            end={{ x: 0.9, y: 1 }}
+            style={{
+              minHeight: 190,
+              borderRadius: 20,
+              borderWidth: StyleSheet.hairlineWidth,
+              borderColor: t.borderHighlight,
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+            }}
+          >
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute', left: 26, right: 26, bottom: 22, height: 10,
+                borderRadius: 5, backgroundColor: t.bgSurface,
+                borderTopWidth: 1, borderTopColor: t.borderHighlight,
+                shadowColor: t.shadowDark, shadowOffset: { width: 0, height: 5 },
+                shadowOpacity: 0.22, shadowRadius: 8, elevation: 3,
+              }}
+            />
             <BadgeShield
               unlocked={unlocked}
               inProgress={!unlocked && showLockedDetails}
               color={color}
               iconName={iconName}
-              size={72}
-              maskBg={t.bgCard}
+              size={132}
+              maskBg={t.bgSurface2}
               achievementId={achievement.id}
               isDark={isDark}
-              gold={t.gold}
             />
+          </LinearGradient>
 
-            {/* Name */}
-            <Text style={{ color: unlocked ? color : t.textMuted, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 4 }}>
+          <View style={{ gap: 8 }}>
+            {unlocked && state?.unlockedAt && (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: color }} />
+                <Ionicons name="calendar-outline" size={15} color={t.textMuted} />
+                <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
+                  {obtainedLabel} · {formatDate(state.unlockedAt)}
+                </Text>
+              </View>
+            )}
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: Math.round(f.h2 * 1.08) }}>
               {unlocked || showLockedDetails ? name : triLang(lang, {
-                ru: 'Секретное достижение',
-                uk: 'Секретне досягнення',
-                es: 'Logro secreto',
-                'pt-BR': 'Conquista secreta',
-                vi: 'Thành tựu bí mật',
-                id: 'Pencapaian rahasia',
-                tr: 'Gizli başarı',
-                pl: 'Tajne osiągnięcie',
+                ru: 'Секретное достижение', uk: 'Секретне досягнення', es: 'Logro secreto',
+                'pt-BR': 'Conquista secreta', vi: 'Thành tựu bí mật', id: 'Pencapaian rahasia',
+                tr: 'Gizli başarı', pl: 'Tajne osiągnięcie',
               })}
             </Text>
-
-            {/* Description */}
-            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22 }}>
+            <Text
+              testID="achievement-dossier-description"
+              style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', lineHeight: Math.round(f.body * 1.5) }}
+            >
               {unlocked || showLockedDetails ? desc : triLang(lang, {
-                ru: 'Разблокируй, чтобы узнать',
-                uk: 'Розблокуй, щоб дізнатись',
-                es: 'Desbloquéalo para descubrirlo',
-                'pt-BR': 'Desbloqueie para descobrir',
-                vi: 'Mở khóa để xem',
-                id: 'Buka untuk mengetahui',
-                tr: 'Öğrenmek için aç',
+                ru: 'Разблокируй, чтобы узнать', uk: 'Розблокуй, щоб дізнатись',
+                es: 'Desbloquéalo para descubrirlo', 'pt-BR': 'Desbloqueie para descobrir',
+                vi: 'Mở khóa để xem', id: 'Buka untuk mengetahui', tr: 'Öğrenmek için aç',
                 pl: 'Odblokuj, aby zobaczyć',
               })}
             </Text>
-
-            {/* Date unlocked */}
-            {unlocked && state?.unlockedAt && (
-              <View style={{ backgroundColor: color + '22', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 6 }}>
-                <Text style={{ color, fontSize: f.sub, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Получено', uk: 'Отримано', es: 'Obtenido', 'pt-BR': 'Obtido', vi: 'Đã nhận', id: 'Diperoleh', tr: 'Alındı', pl: 'Zdobyto' })} {formatDate(state.unlockedAt)}
-                </Text>
-              </View>
-            )}
-
-            {/* +1 осколок — выдача вручную */}
-            {unlocked && (
-              <View style={{
-                width: '100%',
-                backgroundColor: pendingShard ? t.correct + '18' : t.bgSurface2,
-                borderRadius: 14,
-                padding: 14,
-                alignItems: 'center',
-                gap: 10,
-                borderWidth: pendingShard ? 1 : 0,
-                borderColor: pendingShard ? t.correct + '55' : 'transparent',
-              }}>
-                {/* зачем: RU-интерфейс называет валюту «жемчужина» (constants/shard_plurals.ts),
-                    а здесь оставалось украинское «перлина» — оно протекало в русский экран. */}
-                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Жемчужина', uk: 'Перлина', es: 'Perla', 'pt-BR': 'Pérola', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnci', pl: 'Perła' })} />
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {triLang(lang, { ru: '+1 жемчужина', uk: '+1 перлина', es: '+1 perla', 'pt-BR': '+1 pérola', vi: '+1 ngọc trai', id: '+1 mutiara', tr: '+1 inci', pl: '+1 perła' })}
-                </Text>
-                {pendingShard ? (
-                  <TapScale
-                    onPress={() => {
-                      if (shardClaimTapGuardRef.current) return;
-                      shardClaimTapGuardRef.current = true;
-                      onShardClaimed(achievement.id);
-                      void hapticSuccess();
-                      void claimAchievementShardReward(achievement.id).finally(() => {
-                        shardClaimTapGuardRef.current = false;
-                      });
-                    }}
-                    style={{
-                      backgroundColor: t.correct,
-                      borderRadius: 12,
-                      paddingVertical: 12,
-                      paddingHorizontal: 28,
-                    }}
-                  >
-                    <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
-                      {triLang(lang, { ru: 'Получить', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}
-                    </Text>
-                  </TapScale>
-                ) : (
-                  <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Жемчужина получена', uk: 'Перлину отримано', es: 'Perla reclamada', 'pt-BR': 'Pérola recebida', vi: 'Đã nhận ngọc trai', id: 'Mutiara diklaim', tr: 'İnci alındı', pl: 'Perła odebrana' })}
-                  </Text>
-                )}
-              </View>
-            )}
-
-            {/* Progress bar */}
-            {prog && prog[1] > 0 && (
-              <View style={{ width: '100%', gap: 6 }}>
-                <View style={{ height: 8, backgroundColor: t.bgSurface2, borderRadius: 4, overflow: 'hidden' }}>
-                  <View style={{ height: 8, width: `${progPct}%` as any, backgroundColor: color, borderRadius: 4 }} />
-                </View>
-                <Text style={{ color: t.textGhost, fontSize: f.sub, textAlign: 'center' }}>
-                  {prog[0]} / {prog[1]}
-                  {prog[1] - prog[0] > 0 && progPct > 0 && (
-                    `  ·  ${triLang(lang, { ru: 'ещё', uk: 'ще', es: 'faltan', 'pt-BR': 'faltam', vi: 'còn', id: 'lagi', tr: 'kaldı', pl: 'jeszcze' })} ${prog[1] - prog[0]}`
-                  )}
-                </Text>
-              </View>
-            )}
-
-            {/* Share (only for unlocked) */}
-            {unlocked && (
-              <>
-              <TapScale
-                style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 4 }}
-                onPress={async () => {
-                  const msg = buildAchievementShareMessage(lang, name, STORE_URL);
-                  const result = await Share.share({ message: msg }).catch(() => null);
-                  if (result?.action === 'sharedAction') {
-                    void checkAchievements({ type: 'achievement_shared', studyTarget });
-                  }
-                }}
-              >
-                <Ionicons name="share-outline" size={16} color={t.textSecond}/>
-                <Text style={{ color: t.textSecond, fontSize: f.sub }}>
-                  {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' })}
-                </Text>
-              </TapScale>
-              </>
-            )}
-
-            {/* Close */}
-            <TapScale
-              onPress={onClose}
-              style={{ backgroundColor: t.bgSurface2, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 32, marginTop: 4 }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
-              </Text>
-            </TapScale>
-            </ScrollView>
           </View>
-        </Pressable>
-      </Pressable>
-    </Modal>
+
+          {prog && prog[1] > 0 && (
+            <View style={{ width: '100%', gap: 9, backgroundColor: t.bgSurface2, borderRadius: 15, padding: 14, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border }}>
+              <View style={{ height: 8, backgroundColor: t.bgSurface, borderRadius: 4, overflow: 'hidden' }}>
+                <View style={{ height: 8, width: `${progPct}%` as any, backgroundColor: color, borderRadius: 4 }} />
+              </View>
+              <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
+                {prog[0]} / {prog[1]}
+                {prog[1] - prog[0] > 0 && progPct > 0 && (
+                  `  ·  ${triLang(lang, { ru: 'ещё', uk: 'ще', es: 'faltan', 'pt-BR': 'faltam', vi: 'còn', id: 'lagi', tr: 'kaldı', pl: 'jeszcze' })} ${prog[1] - prog[0]}`
+                )}
+              </Text>
+            </View>
+          )}
+
+          {unlocked && (
+            <TapScale
+              testID="achievement-share-primary"
+              accessibilityRole="button"
+              accessibilityLabel={shareLabel}
+              scaleTo={0.97}
+              style={{
+                width: '100%', minHeight: 56, backgroundColor: t.bgSurface2, borderRadius: 17,
+                borderWidth: StyleSheet.hairlineWidth, borderColor: t.borderHighlight,
+                paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 11,
+              }}
+              onPress={async () => {
+                const msg = buildAchievementShareMessage(lang, name, STORE_URL);
+                const result = await Share.share({ message: msg }).catch(() => null);
+                if (result?.action === 'sharedAction') {
+                  void checkAchievements({ type: 'achievement_shared', studyTarget });
+                }
+              }}
+            >
+              <View style={{ width: 36, height: 36, borderRadius: 12, backgroundColor: t.accentBg, alignItems: 'center', justifyContent: 'center' }}>
+                <Ionicons name="share-outline" size={19} color={t.accent} />
+              </View>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', flex: 1 }}>
+                {shareLabel}
+              </Text>
+              <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
+            </TapScale>
+          )}
+        </ScrollView>
+      </View>
+    </HybridAlertShell>
   );
 }
 
@@ -1193,7 +804,6 @@ type AccordionSectionProps = {
   t: any;
   f: any;
   isDark: boolean;
-  gold: string;
   onSelect: (a: Achievement) => void;
   revealLockedDetails: boolean;
   themeMode: ThemeMode;
@@ -1210,7 +820,6 @@ const AccordionSection = memo(function AccordionSection({
   t,
   f,
   isDark,
-  gold,
   onSelect,
   revealLockedDetails,
   themeMode,
@@ -1292,7 +901,6 @@ const AccordionSection = memo(function AccordionSection({
                   t={t}
                   f={f}
                   isDark={isDark}
-                  gold={gold}
                   shieldW={gridMetrics.shieldW}
                   shieldOuter={gridMetrics.shieldOuter}
                   onSelect={onSelect}
@@ -1315,35 +923,57 @@ export default function AchievementsScreen() {
   const { lang }        = useLang();
   const { studyTarget } = useStudyTarget();
   const { width: screenW } = useWindowDimensions();
-  const gold            = t.gold;
   const gridMetrics = useMemo(() => getAchievementGridMetrics(screenW), [screenW]);
   const isUK = lang === 'uk';
 
   const [states, setStates]   = useState<AchievementState[]>([]);
+  // зачем (аудит 2026-08-22): states стартует пустым массивом, и до прихода
+  // loadAchievementStates() полка ложно показывала «Пока нет наград» даже
+  // игроку с десятками наград. Паттерн — как в collectibles_screen: держим
+  // «загружено хоть раз» отдельно от «пусто по-настоящему».
+  const [achievementsLoaded, setAchievementsLoaded] = useState(false);
   const [stats, setStats]     = useState<AchievementStats>(emptyAchievementStats());
   const [selected, setSelected] = useState<Achievement | null>(null);
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [devShowAllAchievements, setDevShowAllAchievements] = useState(false);
+  const [shelfCategory, setShelfCategory] = useState<ShelfCategory>('all');
+  const [shelfSelectedId, setShelfSelectedId] = useState<string | null>(null);
 
   useEffect(() => {
-    checkAchievements({ type: 'backfill', studyTarget })
-      .then(() => loadAchievementStates())
-      .then(setStates)
+    let cancelled = false;
+    void (async () => {
+      const leagueHistory = await loadConfirmedLeagueAchievementEvidence().catch(() => []);
+      if (leagueHistory.length > 0) {
+        await checkAchievements({ type: 'league_history', results: leagueHistory });
+      }
+      await checkAchievements({ type: 'backfill', studyTarget });
+      return loadAchievementStates();
+    })()
+      .then((nextStates) => {
+        if (!cancelled) {
+          setStates(nextStates);
+          setAchievementsLoaded(true);
+        }
+      })
       .catch(() => {
-        loadAchievementStates().then(setStates);
+        void loadAchievementStates().then((nextStates) => {
+          if (!cancelled) {
+            setStates(nextStates);
+            setAchievementsLoaded(true);
+          }
+        });
       });
     const interaction = InteractionManager.runAfterInteractions(() => {
       loadAchievementStats().then(setStats);
     });
-    return () => interaction.cancel();
+    return () => {
+      cancelled = true;
+      interaction.cancel();
+    };
   }, [studyTarget]);
 
   const onSelectAchievement = useCallback((a: Achievement) => {
     setSelected(a);
-  }, []);
-
-  const onShardClaimedUpdate = useCallback((achievementId: string) => {
-    setStates(prev => prev.map(s => (s.id === achievementId ? { ...s, shardClaimed: true } : s)));
   }, []);
 
   const stateMap = useMemo(() => new Map(states.map(s => [s.id, s])), [states]);
@@ -1351,6 +981,136 @@ export default function AchievementsScreen() {
   const visibleAchievementDefinitions = useMemo(() =>
     ALL_ACHIEVEMENTS.filter(isVisibleAchievement),
   []);
+  const earnedAchievements = useMemo(
+    () => visibleAchievementDefinitions.filter((achievement) =>
+      showAllAchievements || !!stateMap.get(achievement.id)?.unlockedAt,
+    ),
+    [showAllAchievements, stateMap, visibleAchievementDefinitions],
+  );
+  const shelfCategories = useMemo(
+    () => CATEGORIES.filter((category) =>
+      earnedAchievements.some((achievement) => achievement.category === category),
+    ),
+    [earnedAchievements],
+  );
+  const shelfCategoryOptions = useMemo<AchievementCategoryOption<ShelfCategory>[]>(
+    () => (['all', ...shelfCategories] as ShelfCategory[]).map((category) => ({
+      id: category,
+      label: achievementShelfCategoryLabel(category, lang),
+      icon: category === 'all' ? 'layers-outline' : CAT_ICON[category],
+    })),
+    [lang, shelfCategories],
+  );
+  const shelfAchievements = useMemo(
+    () => shelfCategory === 'all'
+      ? earnedAchievements
+      : earnedAchievements.filter((achievement) => achievement.category === shelfCategory),
+    [earnedAchievements, shelfCategory],
+  );
+
+  useEffect(() => {
+    if (shelfCategory === 'all' || shelfCategories.includes(shelfCategory)) return;
+    setShelfCategory('all');
+  }, [shelfCategories, shelfCategory]);
+
+  useEffect(() => {
+    if (shelfAchievements.some((achievement) => achievement.id === shelfSelectedId)) return;
+    setShelfSelectedId(achievementShelfInitialId(shelfAchievements, stateMap));
+  }, [shelfAchievements, shelfSelectedId, stateMap]);
+
+  const renderShelfTrophy = useCallback((achievement: Achievement, size: number) => {
+    const state = stateMap.get(achievement.id);
+    const unlocked = !!state?.unlockedAt;
+    const color = achievementCategoryColor(achievement.category, themeMode);
+    const iconName = ACHIEVEMENT_ICON[achievement.id] ?? CAT_ICON[achievement.category];
+
+    return (
+      <View style={{ width: size, alignItems: 'center' }}>
+        <BadgeShield
+          unlocked={unlocked}
+          inProgress={!unlocked}
+          color={color}
+          iconName={iconName}
+          size={size}
+          maskBg={t.bgPrimary}
+          achievementId={achievement.id}
+          isDark={isDark}
+        />
+      </View>
+    );
+  }, [isDark, stateMap, t.bgPrimary, themeMode]);
+
+  const renderShelfDetail = useCallback((achievement: Achievement) => {
+    const state = stateMap.get(achievement.id);
+    const markerColor = achievementCategoryColor(achievement.category, themeMode);
+    const plaqueIcon = ACHIEVEMENT_ICON[achievement.id] ?? CAT_ICON[achievement.category];
+    const unlockedAt = state?.unlockedAt
+      ? new Date(state.unlockedAt).toLocaleDateString(ACHIEVEMENT_DATE_LOCALES[lang], {
+        day: 'numeric', month: 'long', year: 'numeric',
+      })
+      : null;
+
+    return (
+      <LinearGradient
+        testID="achievement-gallery-plaque"
+        colors={[t.bgCard, t.bgSurface2]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={{
+          minHeight: 148, borderRadius: 20, paddingHorizontal: 18, paddingVertical: 17,
+          borderWidth: StyleSheet.hairlineWidth, borderColor: t.borderHighlight, gap: 12,
+          shadowColor: t.shadowDark, shadowOffset: { width: 0, height: 7 }, shadowOpacity: 0.12,
+          shadowRadius: 14, elevation: 3, overflow: 'hidden',
+        }}
+      >
+        <View
+          pointerEvents="none"
+          style={{
+            position: 'absolute', left: 18, right: 18, top: 0, height: 1,
+            backgroundColor: t.borderHighlight,
+          }}
+        />
+        <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 11 }}>
+          <View
+            testID="achievement-gallery-plaque-marker"
+            style={{
+              width: 42, height: 42, borderRadius: 14, backgroundColor: t.bgSurface,
+              borderWidth: StyleSheet.hairlineWidth, borderColor: markerColor + '4D',
+              alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            <Ionicons name={plaqueIcon as any} size={19} color={markerColor} />
+          </View>
+          <Text style={{ color: t.textPrimary, fontSize: f.h3, lineHeight: Math.round(f.h3 * 1.14), fontWeight: '900', flex: 1, paddingTop: 2 }}>
+            {achievementNameForLang(achievement, lang)}
+          </Text>
+          <View
+            testID="achievement-gallery-plaque-open"
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+            style={{
+              minWidth: 44, minHeight: 44, borderRadius: 14, backgroundColor: t.bgSurface,
+              borderWidth: StyleSheet.hairlineWidth, borderColor: t.borderHighlight,
+              alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            <Ionicons name="open-outline" size={20} color={t.accent} />
+          </View>
+        </View>
+        <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', lineHeight: Math.round(f.body * 1.5) }}>
+          {achievementDescForLang(achievement, lang)}
+        </Text>
+        {unlockedAt && (
+          <View style={{ alignSelf: 'flex-start', minHeight: 32, borderRadius: 11, backgroundColor: t.bgSurface, paddingHorizontal: 11, paddingVertical: 7, flexDirection: 'row', alignItems: 'center', gap: 7, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border }}>
+            <Ionicons name="calendar-outline" size={15} color={t.textMuted} />
+            <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800' }}>
+              {unlockedAt}
+            </Text>
+          </View>
+        )}
+      </LinearGradient>
+    );
+  }, [f.body, f.h3, f.sub, lang, stateMap, t.accent, t.bgCard, t.bgSurface, t.bgSurface2, t.border, t.borderHighlight, t.shadowDark, t.textMuted, t.textPrimary, t.textSecond, themeMode]);
   // зачем: nearestAchievements (питал удалённую секцию «Ближайшие награды») больше не нужен
   const achievementSections = useMemo((): AchievementListSection[] => {
     const sections = CATEGORIES.flatMap(cat => {
@@ -1443,33 +1203,29 @@ export default function AchievementsScreen() {
           </View>
         </View>
 
-        {/* Аккордеон-список категорий */}
-        <SectionList<AchievementListSection, { key: string; data: AchievementListSection[] }>
-          sections={[{ key: 'cats', data: achievementSections }]}
-          keyExtractor={item => item.key}
-          removeClippedSubviews={false}
-          renderItem={({ item }) => (
-            <AccordionSection
-              section={item}
-              isOpen={openCategory === item.key}
-              onToggle={() => handleToggle(item.key)}
-              gridMetrics={gridMetrics}
-              stateMap={stateMap}
-              stats={stats}
-              lang={lang}
-              t={t}
-              f={f}
-              isDark={isDark}
-              gold={gold}
-              onSelect={onSelectAchievement}
-              revealLockedDetails={showAllAchievements}
-              themeMode={themeMode}
-            />
-          )}
-          contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, gap: 0 }}
+        <ScrollView
           showsVerticalScrollIndicator={false}
-          stickySectionHeadersEnabled={false}
-          ListEmptyComponent={(
+          contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 128, gap: 16 }}
+        >
+          {!achievementsLoaded ? (
+            // зачем (аудит 2026-08-22): пока states не загружены, полка молчит
+            // скелетоном той же геометрии карусели — не «Пока нет наград» ложью.
+            <View style={{ flexDirection: 'row', gap: 12, paddingVertical: 12 }}>
+              <SkeletonBlock width={96} height={116} borderRadius={16} />
+              <SkeletonBlock width={96} height={116} borderRadius={16} />
+              <SkeletonBlock width={96} height={116} borderRadius={16} />
+            </View>
+          ) : shelfAchievements.length > 0 ? (
+            <AchievementShelfCarousel
+              items={shelfAchievements}
+              selectedId={shelfSelectedId}
+              viewportWidth={Math.max(280, Math.min(screenW - 32, 608))}
+              onSelected={(achievement) => setShelfSelectedId(achievement.id)}
+              onOpen={onSelectAchievement}
+              renderTrophy={renderShelfTrophy}
+              renderDetail={renderShelfDetail}
+            />
+          ) : (
             <View style={{ paddingVertical: 48, alignItems: 'center', gap: 10 }}>
               <Ionicons name="trophy-outline" size={42} color={t.textGhost} />
               <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
@@ -1477,27 +1233,38 @@ export default function AchievementsScreen() {
               </Text>
             </View>
           )}
-          ListFooterComponent={(
-            <View style={{ alignItems: 'center', paddingVertical: 20 }}>
-              <ReportErrorButton
-                screen="achievements"
-                dataId="achievements_grid"
-                dataText={triLang(lang, {
-                  ru: 'Достижения',
-                  uk: 'Досягнення',
-                  es: 'Logros',
-                  'pt-BR': 'Conquistas',
-                  vi: 'Thành tựu',
-                  id: 'Pencapaian',
-                  tr: 'Başarılar',
-                  pl: 'Osiągnięcia',
-                })}
-              />
-            </View>
-          )}
-        />
+
+          <View style={{ alignItems: 'center', paddingVertical: 20 }}>
+            <ReportErrorButton
+              screen="achievements"
+              dataId="achievements_shelf"
+              dataText={triLang(lang, {
+                ru: 'Достижения', uk: 'Досягнення', es: 'Logros', 'pt-BR': 'Conquistas',
+                vi: 'Thành tựu', id: 'Pencapaian', tr: 'Başarılar', pl: 'Osiągnięcia',
+              })}
+            />
+          </View>
+        </ScrollView>
 
       </ContentWrap>
+
+      <AchievementCategoryDock
+        options={shelfCategoryOptions}
+        selectedId={shelfCategory}
+        onSelect={setShelfCategory}
+        openLabel={triLang(lang, {
+          ru: 'Выбрать категорию достижений', uk: 'Обрати категорію досягнень',
+          es: 'Elegir categoría de logros', 'pt-BR': 'Escolher categoria de conquistas',
+          vi: 'Chọn hạng mục thành tựu', id: 'Pilih kategori pencapaian',
+          tr: 'Başarı kategorisini seç', pl: 'Wybierz kategorię osiągnięć',
+        })}
+        closeLabel={triLang(lang, {
+          ru: 'Закрыть выбор категорий', uk: 'Закрити вибір категорій',
+          es: 'Cerrar categorías', 'pt-BR': 'Fechar categorias',
+          vi: 'Đóng danh mục', id: 'Tutup kategori',
+          tr: 'Kategorileri kapat', pl: 'Zamknij kategorie',
+        })}
+      />
 
       {/* Модальное окно */}
       {selected && isVisibleAchievement(selected) && (
@@ -1509,7 +1276,6 @@ export default function AchievementsScreen() {
           isDark={isDark}
           themeMode={themeMode}
           onClose={() => setSelected(null)}
-          onShardClaimed={onShardClaimedUpdate}
           revealLockedDetails={showAllAchievements}
           studyTarget={studyTarget}
         />

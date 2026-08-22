@@ -52,6 +52,7 @@ import { diagnosticLastKey, diagnosticOpenFlagKey, lessonProgressKey, storageStu
 import { loadFrenchRemoteDiagnosticQuestions } from './french_diagnostic_remote_runtime';
 import { getHomeMenuImages } from './home_menu_icons';
 import { glassFill } from '../components/GlassSurface';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
 
 const TIMER_SEC = 30;
 
@@ -964,6 +965,10 @@ export default function DiagnosticTest() {
   const diagnosticUi = useMemo(() => diagnosticUiCopy(lang), [lang]);
   const { isUnlimited, spendOne } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
+  // зачем (аудит 2026-08-22): выход посреди диагностики был мгновенным без
+  // предупреждения — попытка терялась молча. Подтверждение по образцу
+  // level_exam.tsx (exitExamConfirm/ThemedConfirmModal).
+  const [exitDiagnosticConfirm, setExitDiagnosticConfirm] = useState(false);
 
   const [phase,       setPhase]    = useState<Phase>('intro');
   const [questions, setQuestions]  = useState<Question[]>(() => (frenchDiagnosticBlocked || isFrenchDiagnostic ? [] : pickQuestions()));
@@ -1010,6 +1015,32 @@ export default function DiagnosticTest() {
   const answersRef  = useRef<boolean[]>([]);
   const userNameRef = useRef<string>('');
   const diagnosticAttemptIdRef = useRef<string>(makeDiagnosticAttemptId());
+
+  const captureDiagnosticWrong = (question: Question, questionIndex: number, mode: string) => {
+    if (studyTarget !== 'en' && studyTarget !== 'fr') return;
+    const correctAnswer = question.answer || question.opts[question.correct] || '';
+    void captureCurrentAccountObjectiveAttempt({
+      attemptId: `diagnostic:${diagnosticAttemptIdRef.current}:${questionIndex}:${mode}`,
+      studyTarget,
+      verdict: 'wrong',
+      objective: true,
+      content: {
+        sourceKind: 'diagnostic_test',
+        sourceId: `${question.level}:${question.phrase}`,
+        canonicalTarget: correctAnswer,
+        sourceMeaning: question.hintRU,
+        tokens: question.words ?? question.answer?.split(/\s+/),
+        distractors: question.opts,
+      },
+      facet: {
+        kind: question.type === 'build' ? 'word_order'
+          : question.type === 'match' ? 'meaning'
+            : question.type === 'type' || question.type === 'fill' ? 'missing_token'
+              : 'form',
+        expected: correctAnswer,
+      },
+    }).catch(() => {});
+  };
 
   const awardDiagnosticAnswerXp = (question: Question, questionIndex: number, mode: string) => {
     registerXP(2, 'diagnostic_test', userNameRef.current || '', lang, undefined, {
@@ -1301,7 +1332,7 @@ export default function DiagnosticTest() {
     stopQuestionTimer();
     answersRef.current = [...answersRef.current, false];
     const qq = questions[idx];
-    if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
+    if (qq) captureDiagnosticWrong(qq, idx, 'timeout');
     if (hapticsOn) void hapticError();
     // зачем: тактильный отклик на истечение уже был, звука не было — вопрос
     // засчитывался неверным беззвучно. Ставим рядом с хаптикой, чтобы оба
@@ -1316,8 +1347,7 @@ export default function DiagnosticTest() {
     stopQuestionTimer();
     setChosen(-1);
     answersRef.current = [...answersRef.current, false];
-    const qq = questions[idx];
-    if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
+    // Ручной пропуск без ответа не является объективной ошибкой.
     scheduleDiagnosticAdvance(score, 900);
   };
   handleSkipRef.current = handleSkip;
@@ -1346,7 +1376,7 @@ export default function DiagnosticTest() {
     }
     if (!isRight) {
       const qq = questions[idx];
-      if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
+      if (qq) captureDiagnosticWrong(qq, idx, 'choice');
     }
     if (autoAdvance) scheduleDiagnosticAdvance(ns, 1500);
   };
@@ -1374,7 +1404,7 @@ export default function DiagnosticTest() {
     }
     if (!isRight) {
       const qq = questions[idx];
-      if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
+      if (qq) captureDiagnosticWrong(qq, idx, 'type');
     }
     if (autoAdvance) scheduleDiagnosticAdvance(ns, 1500);
   };
@@ -1401,7 +1431,7 @@ export default function DiagnosticTest() {
     }
     if (!isRight) {
       const qq = questions[idx];
-      if (qq) void recordMistakeFromDiagnostic(qq, studyTarget);
+      if (qq) captureDiagnosticWrong(qq, idx, 'build');
     }
     if (autoAdvance) scheduleDiagnosticAdvance(ns, 1500);
   };
@@ -1709,19 +1739,20 @@ export default function DiagnosticTest() {
   const continueButtonLabel = `${diagnosticUi.continue} →`;
 
   return (
+    <>
     <ScreenGradient artBackdrop="diagnosticTest">
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15 }}>
           {isFromOnboarding ? (
-            <TapScale onPress={() => { AsyncStorage.removeItem(diagnosticOpenFlagKey(studyTarget)); router.replace('/(tabs)/home' as any); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+            <TapScale onPress={() => { hapticTap(); setExitDiagnosticConfirm(true); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
               <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '600' }}>
                 {diagnosticUi.cancel}
               </Text>
             </TapScale>
           ) : (
-            <TapScale onPress={() => safeRouterBack(router)}>
+            <TapScale onPress={() => { hapticTap(); setExitDiagnosticConfirm(true); }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
           )}
@@ -2007,5 +2038,30 @@ export default function DiagnosticTest() {
       </SafeAreaView>
     </KeyboardAvoidingView>
     </ScreenGradient>
+    <ThemedConfirmModal
+      visible={exitDiagnosticConfirm}
+      title={triLang(lang, {
+        ru: 'Выйти?', uk: 'Вийти?', es: '¿Salir del test?', 'pt-BR': 'Sair do teste?',
+        vi: 'Thoát bài kiểm tra?', id: 'Keluar dari tes?', tr: "Testten çıkılsın mı?", pl: 'Wyjść z testu?',
+      })}
+      message={triLang(lang, {
+        ru: 'Результат теста не сохранится', uk: 'Результат тесту не збережеться', es: 'El resultado del test no se guardará.', 'pt-BR': 'O resultado deste teste não será salvo.',
+        vi: 'Kết quả bài kiểm tra này sẽ không được lưu.', id: 'Hasil tes ini tidak akan disimpan.', tr: 'Bu testin sonucu kaydedilmeyecek.', pl: 'Wynik tego testu nie zostanie zapisany.',
+      })}
+      cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
+      confirmLabel={triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir', 'pt-BR': 'Sair', vi: 'Thoát', id: 'Keluar', tr: 'Çık', pl: 'Wyjdź' })}
+      onCancel={() => setExitDiagnosticConfirm(false)}
+      onConfirm={() => {
+        setExitDiagnosticConfirm(false);
+        if (isFromOnboarding) {
+          AsyncStorage.removeItem(diagnosticOpenFlagKey(studyTarget));
+          router.replace('/(tabs)/home' as any);
+        } else {
+          safeRouterBack(router);
+        }
+      }}
+      confirmVariant="accent"
+    />
+    </>
   );
 }

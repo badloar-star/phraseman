@@ -59,7 +59,6 @@ import { getMyWeekPoints } from './hall_of_fame_utils';
 import { getCanonicalUserId } from './user_id_policy';
 import { getXPProgress, getLevelFromXP, isLightThemeMode, screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
-import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import {
   loadPrevRank, savePrevRank, computeRankDelta,
   KEY_CLUB_PREV_RANK, RankDelta,
@@ -407,7 +406,6 @@ export default function ClubScreen() {
     ? GOLD_RICH.metalGold
       : LEAGUE_CROWN_NICK_COLOR;
   const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
-  const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const initialLeagueStateRef = useRef<LeagueState | null | undefined>(undefined);
@@ -428,6 +426,11 @@ export default function ClubScreen() {
   // зачем: пункт 3 — pull-to-refresh на список лиги. Дёргает loadData({ forceRemote: true }) —
   // тот же путь, что уже используется остальным экраном, никакой новой Firestore-логики.
   const [leagueRefreshing, setLeagueRefreshing] = useState(false);
+  // зачем (аудит 2026-08-22): при холодном старте без кэша упавшая сеть глотала
+  // ошибку в catch, и игрок висел на вечном скелетоне без объяснения и кнопки
+  // «повторить». Флаг поднимается только при провале загрузки ДО первой
+  // гидрации; любые реальные данные (applyLeagueOpen) его гасят.
+  const [leagueLoadFailed, setLeagueLoadFailed] = useState(false);
   const [rankDelta, setRankDelta] = useState<RankDelta | null>(null);
   const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
   const deferredLeagueResultRef = useRef<LeagueResult | null>(null);
@@ -596,6 +599,10 @@ export default function ClubScreen() {
       deferredLeagueResultRef.current = null;
       void checkAchievements({
         type: 'league_result',
+        weekId: result.weekId,
+        points: result.points,
+        prevLeagueId: result.prevLeagueId,
+        confirmed: result.confirmed,
         myRank: result.myRank,
         totalInGroup: result.totalInGroup,
         promoted: result.promoted,
@@ -633,6 +640,8 @@ export default function ClubScreen() {
       // [...safeGroup] / .sort упадут TypeError и глобальный ErrorBoundary уронит всё приложение.
       const safeGroup = Array.isArray(state.group) ? state.group : [];
       setGroup(safeGroup);
+      // Реальные данные пришли — состояние ошибки загрузки больше не актуально.
+      setLeagueLoadFailed(false);
       // зачем: скелетон снимается ЛЮБЫМИ реальными данными, а не только кэшем.
       // Раньше setLocalLeagueHydrated(true) стоял в одной ветке — кэшевой. При
       // первом входе без кэша данные приходили из сети сюда, флаг оставался false,
@@ -751,7 +760,11 @@ export default function ClubScreen() {
           .then(({ state, result }) => {
             if (isMountedRef.current) applyLeagueOpen(state, result, true);
           })
-          .catch(() => {});
+          .catch(() => {
+            // зачем: провал догоняющей загрузки после таймаута раньше был немым —
+            // без кэша это оставляло вечный скелетон. Флаг включает карточку ошибки.
+            if (isMountedRef.current) setLeagueLoadFailed(true);
+          });
       } else {
         const { state, result } = await leagueWork;
         if (!isMountedRef.current) return;
@@ -762,6 +775,11 @@ export default function ClubScreen() {
       if (__DEV__) {
         console.warn('[club_screen] load failed:', e);
       }
+      // зачем (аудит 2026-08-22): ошибка уходила только в dev-консоль. Если игрок
+      // ещё не увидел данных (нет кэша), показываем карточку ошибки с «повторить»
+      // вместо вечного скелетона. При живом кэше флаг безвреден: рендер ошибки
+      // включается только при !localLeagueHydrated.
+      if (isMountedRef.current) setLeagueLoadFailed(true);
     }
   }, [lang]);
 
@@ -784,6 +802,10 @@ export default function ClubScreen() {
     deferredLeagueResultRef.current = null;
     void checkAchievements({
       type: 'league_result',
+      weekId: result.weekId,
+      points: result.points,
+      prevLeagueId: result.prevLeagueId,
+      confirmed: result.confirmed,
       myRank: result.myRank,
       totalInGroup: result.totalInGroup,
       promoted: result.promoted,
@@ -1587,6 +1609,40 @@ export default function ClubScreen() {
             onOpenProfile={openLeagueMemberProfile}
             chestReady={leagueChestReady}
           />
+        ) : leagueLoadFailed ? (
+          // зачем (аудит 2026-08-22, находка «вечный скелетон без сети»): без кэша
+          // и без ответа сервера игрок раньше видел скелетон бесконечно. Явная
+          // карточка с кнопкой «повторить» — тот же тональный стиль без обводки,
+          // что и пустое состояние ниже.
+          <View style={{
+            borderRadius: 20,
+            padding: 20,
+            gap: 12,
+            alignItems: 'center',
+            backgroundColor: glassFill(t.bgSurface, 0.56),
+          }}>
+            <Ionicons name="cloud-offline-outline" size={28} color={t.textMuted} />
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: 'Не получилось загрузить лигу', uk: 'Не вдалося завантажити лігу', es: 'No se pudo cargar la liga', 'pt-BR': 'Não foi possível carregar a liga',
+                vi: 'Không tải được giải đấu', id: 'Gagal memuat liga', tr: 'Lig yüklenemedi', pl: 'Nie udało się wczytać ligi',
+              })}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: 'Проверьте соединение и попробуйте ещё раз', uk: 'Перевірте з’єднання і спробуйте ще раз', es: 'Comprueba tu conexión e inténtalo de nuevo', 'pt-BR': 'Verifique sua conexão e tente novamente',
+                vi: 'Kiểm tra kết nối và thử lại', id: 'Periksa koneksi Anda dan coba lagi', tr: 'Bağlantınızı kontrol edip tekrar deneyin', pl: 'Sprawdź połączenie i spróbuj ponownie',
+              })}
+            </Text>
+            <TapScale
+              onPress={() => { hapticTap(); setLeagueLoadFailed(false); void loadData({ forceRemote: true }); }}
+              style={{ minHeight: 44, minWidth: 120, borderRadius: 14, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent }}
+            >
+              <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '700' }}>
+                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+              </Text>
+            </TapScale>
+          </View>
         ) : (
           <LeagueHubSkeleton palette={hubPalette} />
         )}
@@ -1607,7 +1663,6 @@ export default function ClubScreen() {
               model={hubBonusMissionModel}
               lang={lang}
               palette={hubPalette}
-              giftImage={leagueBonusGiftImage}
               renderContributorAvatar={renderLeagueMemberAvatar}
               onClaim={() => { void claimLeagueChestReward(); }}
               onBoost={handleBuyGroupBoost}

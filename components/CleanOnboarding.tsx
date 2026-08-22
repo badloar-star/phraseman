@@ -49,6 +49,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { getDeviceBootstrapLocale, triLang, type Lang } from '../constants/i18n';
 import AccountDeletedNotice from './AccountDeletedNotice';
 import { consumeAccountDeletedNotice } from '../app/account_deleted_notice';
+import { warmAuthSignInCallables } from '../app/cloud_sync';
 import { noAndroidOutline, softShadow } from '../constants/androidGlow';
 import { ENABLE_DEV_STUDY_TARGET_LANG, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 // зачем: онбординг подтверждает только факт «есть ли 16» (self-attestation), года
@@ -2118,6 +2119,14 @@ function CleanOnboarding({
     isAppleSignInAvailable().then((ok) => { if (active) setAppleAvailable(ok); }).catch(() => { if (active) setAppleAvailable(false); });
     return () => { active = false; };
   }, []);
+
+  // зачем: владелец 2026-08-22 — прогрев серверных функций входа, пока юзер ещё
+  // читает welcome («уже есть аккаунт») или сейф-экран privacy: к моменту тапа
+  // по Google контейнеры подняты, холодный старт (3–10 с) не попадает в цепочку
+  // входа. Троттл 10 мин и fire-and-forget внутри warmAuthSignInCallables.
+  useEffect(() => {
+    if (step === 'welcome' || step === 'privacy') warmAuthSignInCallables();
+  }, [step]);
 
   const handleAuth = useCallback(async (provider: AuthProviderId) => {
     if (authLoading) return;

@@ -68,6 +68,20 @@ describe('MAX tutor live board', () => {
     expect(changed.notice?.expiresAtMs).toBe(4_000);
   });
 
+  it('keeps the two-second topic confirmation when the learner starts speaking', () => {
+    const changed = reduceTutorLiveUi(initialTutorLiveUiState('Work'), {
+      type: 'set_topic',
+      topic: 'Weekend plans',
+      mode: 'guided',
+      nowMs: 2_000,
+    });
+
+    const speaking = reduceTutorLiveUi(changed, { type: 'speech_started' });
+
+    expect(speaking.board).toBeNull();
+    expect(speaking.notice).toEqual({ text: 'Weekend plans', expiresAtMs: 4_000 });
+  });
+
   it('expires boards and notices independently', () => {
     const board = normalizeTutorBoard({
       kind: 'hint',

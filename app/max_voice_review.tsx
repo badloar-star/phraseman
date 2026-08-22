@@ -1,86 +1,68 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import {
+  AccessibilityInfo,
+  ActivityIndicator,
+  findNodeHandle,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
-import { useTheme } from '../components/ThemeContext';
+import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
-import { hapticTap } from '../hooks/use-haptics';
+import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
-import type { TranscriptTurn } from './max_call_transcript';
-import { computeVoiceCallMetrics } from './max_voice_metrics';
-import { getScenarioById, dialogScenarioTitle } from './ai_dialog_scenarios';
-import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { hapticTap } from '../hooks/use-haptics';
 import { trackEvent } from './analytics';
+import type { TranscriptTurn } from './max_call_transcript';
+import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import {
-  callPremiumDialogReview,
-  type PremiumDialogReviewCorrection,
-} from './ai_dialog_client';
+  drainOneMaxFinalize,
+  readLastMaxVoiceReviewReceipt,
+  readMaxVoiceReviewReceipt,
+} from './max_voice_finalize_client';
+import { listPendingMaxFinalize } from './max_voice_finalize_outbox';
+import type {
+  MaxVoiceFinalizeEnvelopeV1,
+  MaxVoiceReviewReceiptV1,
+} from './max_voice_finalize_types';
+import { projectMaxReview } from './max_voice_review_projection';
+import { getStableId } from './stable_id';
 
-/**
- * Экран пост-разбора MAX-звонка (спека, раздел 8; МАКС ПЛАН §6.2).
- *
- * Композиция: транскрипт звонка, метрики computeVoiceCallMetrics, длительность
- * и остаток минут — считаются ЦЕЛИКОМ локально, мгновенно, без сети. Секция
- * «Разбор твоих фраз» — единственная часть, которая зовёт сервер
- * (premiumDialogReview, mode:'voice'): один вызов на звонок, при провале тихо
- * остаётся в состоянии «скоро появится» — отсутствие разбора не должно ронять
- * экран или пугать ошибкой посреди практики.
- */
-
-/** Итог звонка, который экран сессии передаёт разбору. */
+/** The local handoff is temporary; the durable receipt is the review source of truth. */
 export interface MaxCallResult {
   history: TranscriptTurn[];
   durationSec: number;
-  /** Секунды речи юзера (по speech_started/stopped) — вход метрик и XP-заявки. */
   speechSec: number;
   format: 'scenario' | 'companion' | 'trial' | 'tutor';
   scenarioId?: string;
-  /** Учитель: имя, домашка и тема на завтра (из инструментов урока). */
   tutor?: {
     name: string;
     homework: string[];
     nextTopic: string;
-    /** Просьба ученика, как говорить ('' — не просил). */
     languagePreference: string;
-    /** Флаги безопасности учителя за урок (flag_safety) — уходят в журнал. */
     safetyFlags: { kind: string; note: string }[];
-    /** Домашка со значениями (для карточек тренажёра). */
     homeworkItems: { text: string; meaning: string }[];
-    /** Итоги повторения речи (mark_phrase_result) — двигают интервалы в памяти учителя. */
-    phraseResults: { text: string; ok: boolean }[];
-    /** Итог сцены-задачи ('' — сцены не было). */
+    phraseResults: { text: string; result: 'pass' | 'needs_work' | 'uncertain' | 'invalid' }[];
     sceneOutcome: string;
-    /** Прогресс по текущей цели за урок (mark_goal_progress). */
-    goalProgress: { goalId: string; mastery: number } | null;
-    /** Цель, над которой работали, и карта «done/total» на момент звонка. */
-    goal: { id: string; level: string; title: { en: string; ru: string; uk: string }; mastery: number } | null;
-    goalsDone: number;
-    goalsTotal: number;
+    goalProgress: { goalId: string; mastery: number; evidence?: 'scene' | 'novel_context'; sceneId?: string } | null;
+    goal: { id: string; level: string; title: { en: string; ru: string; uk: string } & Partial<Record<Lang, string>>; mastery: number; sceneIds: string[] } | null;
     lessonsSoFar: number;
   };
-  /** CEFR звонка — прокидывается в «Позвонить ещё раз», чтобы не терять уровень. */
   cefr?: string;
-  /** Сохраняет защищённый admin DEV-контекст для «Позвонить ещё раз». */
   devMode?: boolean;
-  /** Изучаемый язык звонка ('en' | 'fr') — разбор судит именно его. */
   studyTarget?: string;
-  /** Серверный id сессии звонка — дедуп сейфти-журнала с мгновенными репортами. */
   sessionId?: string;
   personaName: string;
   endReason: 'completed' | 'capped' | 'dropped' | 'background' | 'failed';
-  /** Остаток дневных секунд MAX после звонка; null — сервер не сообщил. */
   dayRemainingSec: number | null;
 }
 
-// Передача результата между экранами через модульный стор, а не router-параметры:
-// транскрипт звонка легко превышает лимиты URL-параметров expo-router, а
-// глобальный стейт-менеджер ради одного хендофа — оверкилл. Экран сессии пишет
-// сюда перед навигацией; повторный вход в разбор без нового звонка показывает
-// последний результат (это желаемое поведение «вернуться к разбору»).
 let lastMaxCallResult: MaxCallResult | null = null;
 
 export function setLastMaxCallResult(result: MaxCallResult): void {
@@ -91,774 +73,346 @@ export function getLastMaxCallResult(): MaxCallResult | null {
   return lastMaxCallResult;
 }
 
+type ReviewState =
+  | { kind: 'loading' }
+  | { kind: 'ready'; receipt: MaxVoiceReviewReceiptV1 }
+  | { kind: 'pending'; envelope: MaxVoiceFinalizeEnvelopeV1 }
+  | { kind: 'empty' }
+  | { kind: 'error' };
+
 function formatDuration(totalSec: number): string {
-  const sec = Math.max(0, Math.round(totalSec));
-  const m = Math.floor(sec / 60);
-  const s = sec % 60;
-  return `${m}:${String(s).padStart(2, '0')}`;
+  const seconds = Math.max(0, Math.round(totalSec));
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 }
 
-function minutesLeftLabel(lang: Lang, minutes: number): string {
-  return triLang(lang, {
-    ru: `Осталось сегодня: ${minutes} мин`,
-    uk: `Залишилось сьогодні: ${minutes} хв`,
-    es: `Te quedan hoy: ${minutes} min`,
-    'pt-BR': `Restam hoje: ${minutes} min`,
-    vi: `Còn lại hôm nay: ${minutes} phút`,
-    id: `Sisa hari ini: ${minutes} mnt`,
-    tr: `Bugün kalan: ${minutes} dk`,
-    pl: `Zostało dzisiaj: ${minutes} min`,
-  });
+function copy(lang: Lang) {
+  return {
+    title: triLang(lang, { ru: 'Разбор разговора', uk: 'Розбір розмови', es: 'Análisis de la conversación', 'pt-BR': 'Análise da conversa', vi: 'Đánh giá cuộc trò chuyện', id: 'Ulasan percakapan', tr: 'Konuşma değerlendirmesi', pl: 'Podsumowanie rozmowy' }),
+    completed: triLang(lang, { ru: 'Разговор завершён', uk: 'Розмову завершено', es: 'Conversación completada', 'pt-BR': 'Conversa concluída', vi: 'Đã hoàn thành cuộc trò chuyện', id: 'Percakapan selesai', tr: 'Konuşma tamamlandı', pl: 'Rozmowa zakończona' }),
+    worked: triLang(lang, { ru: 'Что получилось', uk: 'Що вдалося', es: 'Lo que salió bien', 'pt-BR': 'O que deu certo', vi: 'Điều bạn làm tốt', id: 'Yang sudah bagus', tr: 'İyi yaptıkların', pl: 'Co poszło dobrze' }),
+    fix: triLang(lang, { ru: 'Что поправить', uk: 'Що виправити', es: 'Qué corregir', 'pt-BR': 'O que corrigir', vi: 'Điều cần sửa', id: 'Yang perlu diperbaiki', tr: 'Neyi düzeltmeli', pl: 'Co poprawić' }),
+    said: triLang(lang, { ru: 'Ты сказал', uk: 'Ти сказав', es: 'Dijiste', 'pt-BR': 'Você disse', vi: 'Bạn đã nói', id: 'Kamu berkata', tr: 'Şunu söyledin', pl: 'Powiedziałeś' }),
+    say: triLang(lang, { ru: 'Лучше сказать', uk: 'Краще сказати', es: 'Mejor di', 'pt-BR': 'Melhor dizer', vi: 'Nên nói', id: 'Lebih baik katakan', tr: 'Şöyle söyle', pl: 'Lepiej powiedzieć' }),
+    noFix: triLang(lang, { ru: 'Критичной ошибки для отдельной тренировки нет.', uk: 'Критичної помилки для окремого тренування немає.', es: 'No hay un error importante que practicar por separado.', 'pt-BR': 'Não há um erro importante para praticar separadamente.', vi: 'Không có lỗi quan trọng nào cần luyện riêng.', id: 'Tidak ada kesalahan penting yang perlu dilatih terpisah.', tr: 'Ayrı çalışılması gereken önemli bir hata yok.', pl: 'Nie ma ważnego błędu do osobnego ćwiczenia.' }),
+    practice: triLang(lang, { ru: 'Потренировать эту фразу', uk: 'Потренувати цю фразу', es: 'Practicar esta frase', 'pt-BR': 'Praticar esta frase', vi: 'Luyện câu này', id: 'Latih kalimat ini', tr: 'Bu ifadeyi çalış', pl: 'Przećwicz to zdanie' }),
+    tomorrow: triLang(lang, { ru: 'Что делать завтра', uk: 'Що робити завтра', es: 'Qué hacer mañana', 'pt-BR': 'O que fazer amanhã', vi: 'Ngày mai làm gì', id: 'Yang dilakukan besok', tr: 'Yarın ne yapmalı', pl: 'Co zrobić jutro' }),
+    targetPhrase: triLang(lang, { ru: 'Целевая фраза', uk: 'Цільова фраза', es: 'Frase objetivo', 'pt-BR': 'Frase-alvo', vi: 'Câu mục tiêu', id: 'Frasa target', tr: 'Hedef ifade', pl: 'Fraza docelowa' }),
+    next: triLang(lang, { ru: 'Следующий разговор', uk: 'Наступна розмова', es: 'Próxima conversación', 'pt-BR': 'Próxima conversa', vi: 'Cuộc trò chuyện tiếp theo', id: 'Percakapan berikutnya', tr: 'Sonraki konuşma', pl: 'Następna rozmowa' }),
+    details: triLang(lang, { ru: 'Детали', uk: 'Деталі', es: 'Detalles', 'pt-BR': 'Detalhes', vi: 'Chi tiết', id: 'Detail', tr: 'Ayrıntılar', pl: 'Szczegóły' }),
+    hideDetails: triLang(lang, { ru: 'Скрыть детали', uk: 'Сховати деталі', es: 'Ocultar detalles', 'pt-BR': 'Ocultar detalhes', vi: 'Ẩn chi tiết', id: 'Sembunyikan detail', tr: 'Ayrıntıları gizle', pl: 'Ukryj szczegóły' }),
+    pending: triLang(lang, { ru: 'Разбор будет готов после подключения', uk: 'Розбір буде готовий після підключення', es: 'El análisis estará listo cuando vuelvas a conectarte', 'pt-BR': 'A análise ficará pronta após a conexão', vi: 'Bản đánh giá sẽ sẵn sàng khi có kết nối', id: 'Ulasan akan siap setelah terhubung', tr: 'Değerlendirme bağlantıdan sonra hazır olacak', pl: 'Podsumowanie będzie gotowe po połączeniu' }),
+    temporary: triLang(lang, { ru: 'Временно на этом устройстве', uk: 'Тимчасово на цьому пристрої', es: 'Temporalmente en este dispositivo', 'pt-BR': 'Temporariamente neste dispositivo', vi: 'Tạm thời trên thiết bị này', id: 'Sementara di perangkat ini', tr: 'Geçici olarak bu cihazda', pl: 'Tymczasowo na tym urządzeniu' }),
+    transcript: triLang(lang, { ru: 'Текст разговора', uk: 'Текст розмови', es: 'Texto de la conversación', 'pt-BR': 'Texto da conversa', vi: 'Nội dung cuộc trò chuyện', id: 'Teks percakapan', tr: 'Konuşma metni', pl: 'Tekst rozmowy' }),
+    speakingTime: triLang(lang, { ru: 'Ты говорил', uk: 'Ти говорив', es: 'Hablaste', 'pt-BR': 'Você falou', vi: 'Bạn đã nói', id: 'Kamu berbicara', tr: 'Sen konuştun', pl: 'Mówiłeś' }),
+    duration: triLang(lang, { ru: 'Длительность разговора', uk: 'Тривалість розмови', es: 'Duración de la conversación', 'pt-BR': 'Duração da conversa', vi: 'Thời lượng cuộc trò chuyện', id: 'Durasi percakapan', tr: 'Konuşma süresi', pl: 'Czas rozmowy' }),
+    goalProgress: triLang(lang, { ru: 'Цель использована увереннее', uk: 'Ціль використано впевненіше', es: 'Usaste el objetivo con más seguridad', 'pt-BR': 'Você usou o objetivo com mais confiança', vi: 'Bạn đã dùng mục tiêu tự tin hơn', id: 'Kamu memakai tujuan dengan lebih yakin', tr: 'Hedefi daha güvenli kullandın', pl: 'Cel został użyty pewniej' }),
+    retry: triLang(lang, { ru: 'Проверить ещё раз', uk: 'Перевірити ще раз', es: 'Comprobar de nuevo', 'pt-BR': 'Verificar novamente', vi: 'Kiểm tra lại', id: 'Periksa lagi', tr: 'Tekrar kontrol et', pl: 'Sprawdź ponownie' }),
+    home: triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Ir al inicio', 'pt-BR': 'Ir ao início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfa', pl: 'Strona główna' }),
+    callAgain: triLang(lang, { ru: 'Позвонить ещё раз', uk: 'Подзвонити ще раз', es: 'Llamar otra vez', 'pt-BR': 'Ligar de novo', vi: 'Gọi lại', id: 'Telepon lagi', tr: 'Tekrar ara', pl: 'Zadzwoń ponownie' }),
+    missing: triLang(lang, { ru: 'Разбор этого разговора не найден.', uk: 'Розбір цієї розмови не знайдено.', es: 'No se encontró el análisis de esta conversación.', 'pt-BR': 'A análise desta conversa não foi encontrada.', vi: 'Không tìm thấy bản đánh giá cuộc trò chuyện này.', id: 'Ulasan percakapan ini tidak ditemukan.', tr: 'Bu konuşmanın değerlendirmesi bulunamadı.', pl: 'Nie znaleziono podsumowania tej rozmowy.' }),
+    closeHint: triLang(lang, { ru: 'Закрывает разбор и возвращает на главную.', uk: 'Закриває розбір і повертає на головну.', es: 'Cierra el análisis y vuelve al inicio.', 'pt-BR': 'Fecha a análise e volta ao início.', vi: 'Đóng đánh giá và về trang chính.', id: 'Menutup ulasan dan kembali ke beranda.', tr: 'Değerlendirmeyi kapatıp ana sayfaya döner.', pl: 'Zamyka podsumowanie i wraca na stronę główną.' }),
+    retryHint: triLang(lang, { ru: 'Снова проверяет, готов ли разбор.', uk: 'Знову перевіряє, чи готовий розбір.', es: 'Comprueba de nuevo si el análisis está listo.', 'pt-BR': 'Verifica novamente se a análise está pronta.', vi: 'Kiểm tra lại xem đánh giá đã sẵn sàng chưa.', id: 'Memeriksa lagi apakah ulasan sudah siap.', tr: 'Değerlendirmenin hazır olup olmadığını tekrar denetler.', pl: 'Ponownie sprawdza, czy podsumowanie jest gotowe.' }),
+    practiceHint: triLang(lang, { ru: 'Открывает короткую тренировку этой фразы.', uk: 'Відкриває коротке тренування цієї фрази.', es: 'Abre una práctica breve de esta frase.', 'pt-BR': 'Abre uma prática curta desta frase.', vi: 'Mở bài luyện ngắn cho câu này.', id: 'Membuka latihan singkat untuk kalimat ini.', tr: 'Bu ifade için kısa alıştırmayı açar.', pl: 'Otwiera krótkie ćwiczenie tego zdania.' }),
+    detailsHint: triLang(lang, { ru: 'Показывает время и временный текст разговора, если он ещё обрабатывается.', uk: 'Показує час і тимчасовий текст розмови, якщо він ще обробляється.', es: 'Muestra tiempos y el texto temporal mientras se procesa.', 'pt-BR': 'Mostra tempos e o texto temporário durante o processamento.', vi: 'Hiện thời gian và nội dung tạm thời khi đang xử lý.', id: 'Menampilkan waktu dan teks sementara saat masih diproses.', tr: 'İşleme sürerken süreleri ve geçici metni gösterir.', pl: 'Pokazuje czas i tymczasowy tekst podczas przetwarzania.' }),
+    transcriptHint: triLang(lang, { ru: 'Разворачивает временный текст только на этом устройстве.', uk: 'Розгортає тимчасовий текст лише на цьому пристрої.', es: 'Despliega el texto temporal guardado solo en este dispositivo.', 'pt-BR': 'Expande o texto temporário salvo só neste dispositivo.', vi: 'Mở nội dung tạm thời chỉ lưu trên thiết bị này.', id: 'Membuka teks sementara yang hanya ada di perangkat ini.', tr: 'Yalnızca bu cihazdaki geçici metni açar.', pl: 'Rozwija tymczasowy tekst zapisany tylko na tym urządzeniu.' }),
+    callAgainHint: triLang(lang, { ru: 'Открывает подготовку нового разговора с MAX.', uk: 'Відкриває підготовку нової розмови з MAX.', es: 'Abre la preparación de una nueva conversación con MAX.', 'pt-BR': 'Abre a preparação de uma nova conversa com o MAX.', vi: 'Mở phần chuẩn bị cho cuộc trò chuyện mới với MAX.', id: 'Membuka persiapan percakapan baru dengan MAX.', tr: 'MAX ile yeni konuşma hazırlığını açar.', pl: 'Otwiera przygotowanie nowej rozmowy z MAX.' }),
+  };
 }
-
-type ReviewFetchState = 'idle' | 'loading' | 'loaded' | 'error';
 
 export default function MaxVoiceReview() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
-  const result = getLastMaxCallResult();
+  const params = useLocalSearchParams<{ sessionId?: string }>();
+  const localResult = getLastMaxCallResult();
+  const requestedSessionId = typeof params.sessionId === 'string' && params.sessionId.trim()
+    ? params.sessionId.trim()
+    : localResult?.sessionId ?? '';
+  const c = useMemo(() => copy(lang), [lang]);
+  const [reviewState, setReviewState] = useState<ReviewState>({ kind: 'loading' });
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const [transcriptOpen, setTranscriptOpen] = useState(false);
-  const [reviewState, setReviewState] = useState<ReviewFetchState>('idle');
-  const [praise, setPraise] = useState('');
-  // Совет на следующий разговор — сервер его отдаёт с первого дня, экран
-  // звонка его не показывал (владелец 2026-08-16: «разбор ничего не разбирает»).
-  const [tip, setTip] = useState('');
-  // Карта целей после разбора: сервер вернул свежий счёт (goalsDone/goalsTotal).
-  const [goalsAfter, setGoalsAfter] = useState<{ done: number; total: number } | null>(null);
-  const [corrections, setCorrections] = useState<PremiumDialogReviewCorrection[]>([]);
-  // Один запрос на результат звонка: смена звонка (новый result) отпускает
-  // защёлку, но StrictMode/ре-рендер того же result не должны дублировать вызов.
-  const requestedForRef = useRef<TranscriptTurn[] | null>(null);
+  const [practiceOpening, setPracticeOpening] = useState(false);
+  const [reloadTick, setReloadTick] = useState(0);
+  const readyAnnouncedRef = useRef<string | null>(null);
+  const readyTitleRef = useRef<Text>(null);
 
-  const scenarioTitle = useMemo(() => {
-    if (!result?.scenarioId) return '';
-    const scenario = getScenarioById(result.scenarioId);
-    return scenario ? dialogScenarioTitle(scenario, lang) : '';
-  }, [result?.scenarioId, lang]);
-
-  const metrics = useMemo(() => {
-    if (!result) return null;
-    // Weak words из SRS подключит серверная voice-ветка ревью; локальный разбор
-    // честно считает без них (weakWordsUsed останется пустым, секции нет).
-    return computeVoiceCallMetrics(result.history, {
-      speechSec: result.speechSec,
-      weakWords: [],
-      durationSec: result.durationSec,
-    });
-  }, [result]);
-
-  // Разбор фраз (premiumDialogReview, mode:'voice') — один вызов на звонок.
-  // Молчаливые/однословные звонки (0 реплик юзера) не шлём: сервер всё равно
-  // отклонит history_required, а тратить попытку незачем.
   useEffect(() => {
-    if (!result) return;
-    const userTurns = result.history.filter((turn) => turn.role === 'user');
-    if (userTurns.length === 0) return;
-    if (requestedForRef.current === result.history) return;
-    requestedForRef.current = result.history;
-
     let cancelled = false;
-    setReviewState('loading');
-    const scenario = result.scenarioId ? getScenarioById(result.scenarioId) : undefined;
-
-    callPremiumDialogReview({
-      history: result.history.map((turn) => ({
-        role: turn.role,
-        content: turn.text,
-      })),
-      cefr: result.cefr,
-      interfaceLang: lang,
-      scenarioId: result.scenarioId,
-      goalEn: scenario?.goalEn,
-      ...(result.studyTarget ? { studyTarget: result.studyTarget } : {}),
-      ...(result.sessionId ? { sessionId: result.sessionId } : {}),
-      // Учитель: разбор ещё и обновляет память учителя (факты, ошибки, домашка, тема).
-      mode: result.format === 'tutor' ? 'tutor' : 'voice',
-      ...(result.format === 'tutor'
-        ? {
-            homework: result.tutor?.homework ?? [],
-            nextTopic: result.tutor?.nextTopic ?? '',
-            ...(result.tutor?.languagePreference ? { languagePreference: result.tutor.languagePreference } : {}),
-            ...((result.tutor?.safetyFlags?.length ?? 0) > 0 ? { safetyFlags: result.tutor?.safetyFlags } : {}),
-            ...((result.tutor?.phraseResults?.length ?? 0) > 0 ? { phraseResults: result.tutor?.phraseResults } : {}),
-            ...(result.tutor?.sceneOutcome ? { sceneOutcome: result.tutor.sceneOutcome } : {}),
-            ...(result.tutor?.goalProgress ? { goalProgress: result.tutor.goalProgress } : {}),
-          }
-        : {}),
-    })
-      .then((res) => {
-        if (cancelled) return;
-        setPraise(res.praise);
-        setCorrections(res.corrections);
-        setTip(typeof res.tip === 'string' ? res.tip : '');
-        const tm = (res as unknown as { tutorMemory?: { goalsDone?: number; goalsTotal?: number } }).tutorMemory;
-        if (tm && typeof tm.goalsDone === 'number' && typeof tm.goalsTotal === 'number' && tm.goalsTotal > 0) {
-          setGoalsAfter({ done: tm.goalsDone, total: tm.goalsTotal });
-        }
-        setReviewState('loaded');
-      })
-      .catch(() => {
-        // Тихий фолбэк: секция остаётся в состоянии «скоро появится» ниже.
-        if (!cancelled) setReviewState('error');
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [result, lang]);
-
-  // Домашка → тренажёр (решение владельца 2026-08-17): фразы учителя со значениями
-  // становятся карточками SRS на завтра. Один раз на результат, локально, без сети.
-  const homeworkSavedForRef = useRef<MaxCallResult['history'] | null>(null);
-  useEffect(() => {
-    if (!result || result.format !== 'tutor') return;
-    const items = result.tutor?.homeworkItems ?? [];
-    if (items.length === 0 || homeworkSavedForRef.current === result.history) return;
-    homeworkSavedForRef.current = result.history;
-    const lessonId = Math.max(1, peekHomeScreenHydration()?.lastLessonId ?? 1);
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
     void (async () => {
-      for (const item of items) {
-        try {
-          // Значение — на языке интерфейса; кладём его в оба «родных» поля карточки
-          // (ru/uk выбираются по языку), для es — отдельное поле.
-          await recordPhraseMistake(item.text, item.meaning, item.meaning, lessonId, undefined, undefined, lang === 'es' ? item.meaning : undefined);
-        } catch {
-          // Тренажёр недоступен — домашка всё равно видна на экране и в памяти учителя.
+      try {
+        const accountKey = await getStableId();
+        const exact = requestedSessionId
+          ? await readMaxVoiceReviewReceipt(accountKey, requestedSessionId)
+          : await readLastMaxVoiceReviewReceipt(accountKey);
+        if (cancelled) return;
+        if (exact) {
+          setReviewState({ kind: 'ready', receipt: exact });
+          return;
         }
+
+        const pending = await listPendingMaxFinalize(accountKey);
+        const envelope = requestedSessionId
+          ? pending.find((item) => item.sessionId === requestedSessionId)
+          : pending[pending.length - 1];
+        if (!envelope) {
+          setReviewState({ kind: 'empty' });
+          return;
+        }
+        setReviewState({ kind: 'pending', envelope });
+        const outcome = await drainOneMaxFinalize(accountKey, envelope.sessionId);
+        if (cancelled) return;
+        if (outcome.status === 'ready') {
+          setReviewState({ kind: 'ready', receipt: outcome.receipt });
+          return;
+        }
+        retryTimer = setTimeout(() => setReloadTick((value) => value + 1), 3_000);
+      } catch {
+        if (!cancelled) setReviewState({ kind: 'error' });
       }
     })();
-  }, [result, lang]);
+    return () => {
+      cancelled = true;
+      if (retryTimer) clearTimeout(retryTimer);
+    };
+  }, [requestedSessionId, reloadTick]);
 
-  const goBack = () => {
+  useEffect(() => {
+    if (reviewState.kind !== 'ready' || readyAnnouncedRef.current === reviewState.receipt.sessionId) return;
+    readyAnnouncedRef.current = reviewState.receipt.sessionId;
+    const frame = requestAnimationFrame(() => {
+      const node = findNodeHandle(readyTitleRef.current);
+      if (node) AccessibilityInfo.setAccessibilityFocus(node);
+      else void AccessibilityInfo.announceForAccessibility(c.title);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [c.title, reviewState]);
+
+  const homeworkSavedForRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!localResult || localResult.format !== 'tutor') return;
+    const sessionId = localResult.sessionId ?? 'local';
+    if (homeworkSavedForRef.current === sessionId) return;
+    homeworkSavedForRef.current = sessionId;
+    void Promise.all((localResult.tutor?.homeworkItems ?? []).map(async (item, index) => {
+      try {
+        await captureCurrentAccountObjectiveAttempt({
+          attemptId: `max-tutor-homework:${sessionId}:${index}`,
+          studyTarget: localResult.studyTarget === 'fr' ? 'fr' : 'en',
+          verdict: 'wrong',
+          objective: true,
+          content: {
+            sourceKind: 'voice_review',
+            sourceId: `${sessionId}:homework:${index}`,
+            canonicalTarget: item.text,
+            ...(item.meaning ? { sourceMeaning: item.meaning } : {}),
+          },
+          facet: { kind: 'form', expected: item.text },
+        });
+      } catch {
+        // One local practice-item failure must not block the review.
+      }
+    }));
+  }, [localResult]);
+
+  const projection = reviewState.kind === 'ready' ? projectMaxReview(reviewState.receipt) : null;
+  const pendingRequest = reviewState.kind === 'pending' ? reviewState.envelope.request : null;
+  const durationSec = projection?.durationSec ?? pendingRequest?.durationSec ?? localResult?.durationSec ?? 0;
+  const speechSec = reviewState.kind === 'ready'
+    ? reviewState.receipt.speechSec ?? localResult?.speechSec ?? null
+    : pendingRequest?.speechSec ?? localResult?.speechSec ?? null;
+  const pendingHistory = reviewState.kind === 'pending' ? reviewState.envelope.request.history : [];
+  const activeSessionId = projection?.sessionId ?? (reviewState.kind === 'pending'
+    ? reviewState.envelope.sessionId
+    : requestedSessionId);
+
+  const goHome = () => {
     hapticTap();
-    // Review — терминальный экран звонка. История может всё ещё содержать
-    // max_call_session в состоянии connecting, поэтому назад только replace.
-    router.replace('/ai_dialog_home' as any);
+    router.replace('/(tabs)/home' as any);
   };
 
   const callAgain = () => {
     hapticTap();
-    // Прокидываем параметры прошедшего звонка: без них prestart падал бы на
-    // дефолты (format='scenario', scenarioId='coffee') и «ещё раз» звонил бы
-    // не туда. Прямой заход без результата — честные дефолты prestart.
-    const params: Record<string, string> = {};
-    if (result) {
-      params.format = result.format;
-      if (result.scenarioId) params.scenarioId = result.scenarioId;
-      if (result.cefr) params.cefr = result.cefr;
-      if (result.devMode) params.devMode = '1';
+    const nextParams: Record<string, string> = {};
+    if (localResult) {
+      nextParams.format = localResult.format;
+      if (localResult.scenarioId) nextParams.scenarioId = localResult.scenarioId;
+      if (localResult.cefr) nextParams.cefr = localResult.cefr;
+      if (localResult.devMode) nextParams.devMode = '1';
     }
-    router.replace({ pathname: '/max_call_prestart', params } as any);
+    router.replace({ pathname: '/max_call_prestart', params: nextParams } as any);
   };
 
-  // Нет результата (прямой заход по маршруту/перезапуск процесса) — пустое
-  // состояние без падения: разбор существует только после звонка.
-  if (!result || !metrics) {
+  const practiceCorrection = async () => {
+    const correction = projection?.correction;
+    if (!correction || practiceOpening) return;
+    hapticTap();
+    setPracticeOpening(true);
+    try {
+      const captured = await captureCurrentAccountObjectiveAttempt({
+        attemptId: `max-review-correction:${activeSessionId}`,
+        studyTarget: localResult?.studyTarget === 'fr' ? 'fr' : 'en',
+        verdict: 'wrong',
+        objective: true,
+        content: {
+          sourceKind: 'voice_review',
+          sourceId: `${activeSessionId}:correction`,
+          canonicalTarget: correction.target,
+          sourceMeaning: correction.explanation,
+        },
+        facet: { kind: 'form', expected: correction.target },
+      });
+      void trackEvent('max_tutor_review_practice_started', { session_id: activeSessionId });
+      router.push({
+        pathname: '/mistake_practice_session',
+        params: {
+          focusMistakeId: captured.mistakeId,
+          returnTo: 'max_voice_review',
+          maxReviewSessionId: activeSessionId,
+        },
+      } as any);
+    } catch {
+      setPracticeOpening(false);
+    }
+  };
+
+  const card = { backgroundColor: glassFill(t.bgSurface, 0.48), borderRadius: 20, padding: 18, marginTop: 14 } as const;
+
+  if (reviewState.kind === 'loading') {
     return (
       <ScreenGradient>
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-          <Ionicons name="call-outline" size={34} color={t.textMuted} />
-          <Text
-            style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 12 }}
-            maxFontSizeMultiplier={1.2}
-          >
-            {triLang(lang, {
-              ru: 'Разбор появится после звонка',
-              uk: 'Розбір з’явиться після дзвінка',
-              es: 'El análisis aparecerá después de la llamada',
-              'pt-BR': 'A análise aparecerá após a ligação',
-              vi: 'Phân tích sẽ xuất hiện sau cuộc gọi',
-              id: 'Ulasan akan muncul setelah panggilan',
-              tr: 'Analiz aramadan sonra görünecek',
-              pl: 'Analiza pojawi się po rozmowie',
-            })}
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14 }}>
+          <ActivityIndicator size="large" color={t.accent} />
+          <Text style={{ color: t.textSecond, fontSize: f.bodyLg, fontWeight: '800' }}>{c.title}</Text>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  if (reviewState.kind === 'empty' || reviewState.kind === 'error') {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, padding: 24, alignItems: 'center', justifyContent: 'center' }}>
+          <Ionicons name="document-text-outline" size={40} color={t.textMuted} />
+          <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900', textAlign: 'center', marginTop: 16 }} maxFontSizeMultiplier={2}>
+            {reviewState.kind === 'error' ? c.pending : c.missing}
           </Text>
-          <TouchableOpacity
-            accessibilityRole="button"
-            onPress={callAgain}
-            style={{
-              marginTop: 18,
-              backgroundColor: t.accent,
-              borderRadius: 14,
-              paddingVertical: 12,
-              paddingHorizontal: 22,
-            }}
-          >
-            <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-              {triLang(lang, {
-                ru: 'Позвонить',
-                uk: 'Подзвонити',
-                es: 'Llamar',
-                'pt-BR': 'Ligar',
-                vi: 'Gọi',
-                id: 'Telepon',
-                tr: 'Ara',
-                pl: 'Zadzwoń',
-              })}
-            </Text>
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={c.retry} accessibilityHint={c.retryHint} onPress={() => setReloadTick((value) => value + 1)} style={{ minHeight: 52, justifyContent: 'center', paddingHorizontal: 22, marginTop: 18, borderRadius: 16, backgroundColor: t.accent }}>
+            <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>{c.retry}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={c.home} accessibilityHint={c.closeHint} onPress={goHome} style={{ minHeight: 48, justifyContent: 'center', paddingHorizontal: 20, marginTop: 8 }}>
+            <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800' }}>{c.home}</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
     );
   }
 
-  const dayRemainingMin =
-    result.dayRemainingSec === null ? null : Math.max(0, Math.floor(result.dayRemainingSec / 60));
-
-  const statCard = (icon: string, value: string, label: string) => (
-    <View
-      key={label}
-      style={{
-        flexBasis: '47%',
-        flexGrow: 1,
-        backgroundColor: glassFill(t.bgSurface, 0.46),
-        borderRadius: 14,
-        padding: 12,
-      }}
-    >
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-        <Ionicons name={icon as any} size={14} color={t.accent} />
-        <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
-          {value}
-        </Text>
-      </View>
-      <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 4 }} maxFontSizeMultiplier={1.2}>
-        {label}
-      </Text>
-    </View>
-  );
+  const goalImproved = projection?.goal
+    ? projection.goal.masteryAfter > projection.goal.masteryBefore
+    : false;
 
   return (
     <ScreenGradient>
-      <SafeAreaView testID="max-voice-review-screen" style={{ flex: 1 }}>
-  const firstCorrection = corrections[0];
-  const orderedCorrections = firstCorrection ? [firstCorrection, ...corrections.slice(1)] : corrections;
-  const topFocus = orderedCorrections.find((correction) =>
-    correction.kind === 'fix'
-    && correction.corrected.trim().length > 0
-    && correction.corrected.length <= 100
-  ) ?? null;
-  const reachedMastery = Math.max(
-    result.tutor?.goal?.mastery ?? 0,
-    result.tutor?.goalProgress?.goalId === result.tutor?.goal?.id
-      ? (result.tutor?.goalProgress?.mastery ?? 0)
-      : 0,
-  );
-  const victory = praise.trim() || (reachedMastery >= 3
-    ? triLang(lang, {
-      ru: 'Цель урока выполнена', uk: 'Мету уроку виконано', es: 'Objetivo completado',
-      'pt-BR': 'Objetivo concluído', vi: 'Đã hoàn thành mục tiêu', id: 'Tujuan selesai',
-      tr: 'Hedef tamamlandı', pl: 'Cel ukończony',
-    })
-    : triLang(lang, {
-      ru: 'Разговор завершён', uk: 'Розмову завершено', es: 'Conversación completada',
-      'pt-BR': 'Conversa concluída', vi: 'Cuộc trò chuyện đã hoàn thành', id: 'Percakapan selesai',
-      tr: 'Konuşma tamamlandı', pl: 'Rozmowa zakończona',
-    }));
-
-  const practiceTopFocus = async () => {
-    if (!topFocus || practiceOpening) return;
-    hapticTap();
-    setPracticeOpening(true);
-    const index = Math.max(0, corrections.indexOf(topFocus));
-    const practicePrompt = triLang(lang, {
-      ru: `Исправь фразу: “${topFocus.original}”.${topFocus.note ? ` Подсказка: ${topFocus.note}` : ''}`,
-      uk: `Виправ фразу: “${topFocus.original}”.${topFocus.note ? ` Підказка: ${topFocus.note}` : ''}`,
-      es: `Corrige la frase: “${topFocus.original}”.${topFocus.note ? ` Pista: ${topFocus.note}` : ''}`,
-      'pt-BR': `Corrija a frase: “${topFocus.original}”.${topFocus.note ? ` Dica: ${topFocus.note}` : ''}`,
-      vi: `Sửa câu: “${topFocus.original}”.${topFocus.note ? ` Gợi ý: ${topFocus.note}` : ''}`,
-      id: `Perbaiki kalimat: “${topFocus.original}”.${topFocus.note ? ` Petunjuk: ${topFocus.note}` : ''}`,
-      tr: `Cümleyi düzelt: “${topFocus.original}”.${topFocus.note ? ` İpucu: ${topFocus.note}` : ''}`,
-      pl: `Popraw zdanie: „${topFocus.original}”.${topFocus.note ? ` Wskazówka: ${topFocus.note}` : ''}`,
-    });
-    void trackEvent('max_tutor_review_practice_started', {
-      kind: topFocus.kind,
-      cefr: result.cefr ?? 'unknown',
-    });
-    try {
-      const captured = await captureCurrentAccountObjectiveAttempt({
-        attemptId: `voice-review:${result.sessionId ?? 'local'}:${index}`,
-        studyTarget: result.studyTarget === 'fr' ? 'fr' : 'en',
-        verdict: 'wrong',
-        objective: true,
-        content: {
-          sourceKind: 'voice_review',
-          sourceId: `${result.sessionId ?? 'local'}:${index}`,
-          canonicalTarget: topFocus.corrected,
-          sourceMeaning: practicePrompt,
-        },
-        facet: { kind: 'form', expected: topFocus.corrected },
-      });
-      if (captured.kind !== 'captured') {
-        setPracticeOpening(false);
-        return;
-      }
-      router.push({
-        pathname: '/mistake_practice_session',
-        params: { focusMistakeId: captured.mistakeId, returnTo: 'max_voice_review' },
-      } as any);
-    } catch {
-      setPracticeOpening(false);
-    }
-  };
-        {/* Шапка */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 14 }}>
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityLabel="Back"
-            onPress={goBack}
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: 22,
-              backgroundColor: t.bgCard,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginRight: 12,
-            }}
-          >
-            <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ minHeight: 58, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16 }}>
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={c.home} accessibilityHint={c.closeHint} onPress={goHome} style={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard }}>
+            <Ionicons name="close" size={22} color={t.textPrimary} />
           </TouchableOpacity>
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>
-              {triLang(lang, {
-                ru: 'Разбор звонка',
-                uk: 'Розбір дзвінка',
-                es: 'Análisis de la llamada',
-                'pt-BR': 'Análise da ligação',
-                vi: 'Phân tích cuộc gọi',
-                id: 'Ulasan panggilan',
-                tr: 'Arama analizi',
-                pl: 'Analiza rozmowy',
-              })}
-            </Text>
-            {(scenarioTitle !== '' || result.personaName !== '') && (
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }}>
-                {[result.personaName, scenarioTitle].filter(Boolean).join(' · ')}
-              </Text>
-            )}
-          </View>
+          <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h3, fontWeight: '900', marginLeft: 12 }} maxFontSizeMultiplier={2}>{c.title}</Text>
         </View>
 
-        <ScrollView contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 28 }}>
-          {/* Длительность + остаток минут дня */}
-          <View
-            style={{
-              backgroundColor: glassFill(t.bgSurface, 0.46),
-              borderRadius: 16,
-              padding: 14,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 12,
-            }}
-          >
-            <View
-              style={{
-                width: 48,
-                height: 48,
-                borderRadius: 24,
-                backgroundColor: t.accentBg,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Ionicons name="call" size={22} color={t.accent} />
-            </View>
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
-                {formatDuration(result.durationSec)}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} maxFontSizeMultiplier={1.2}>
-                {dayRemainingMin !== null
-                  ? minutesLeftLabel(lang, dayRemainingMin)
-                  : triLang(lang, {
-                      ru: 'Разговор завершён',
-                      uk: 'Розмову завершено',
-                      es: 'Conversación terminada',
-                      'pt-BR': 'Conversa encerrada',
-                      vi: 'Cuộc trò chuyện đã kết thúc',
-                      id: 'Percakapan selesai',
-                      tr: 'Konuşma tamamlandı',
-                      pl: 'Rozmowa zakończona',
-                    })}
-              </Text>
-            </View>
-          </View>
-
-          {/* Метрики речи (локальные, computeVoiceCallMetrics) */}
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 12 }}>
-            {statCard(
-              'mic-outline',
-              formatDuration(metrics.speechSec),
-              triLang(lang, {
-                ru: 'Ты говорил',
-                uk: 'Ти говорив',
-                es: 'Hablaste',
-                'pt-BR': 'Você falou',
-                vi: 'Bạn đã nói',
-                id: 'Kamu bicara',
-                tr: 'Konuştun',
-                pl: 'Mówiłeś',
-              }),
-            )}
-            {statCard(
-              'chatbubbles-outline',
-              String(metrics.userTurns),
-              triLang(lang, {
-                ru: 'Твоих реплик',
-                uk: 'Твоїх реплік',
-                es: 'Tus intervenciones',
-                'pt-BR': 'Suas falas',
-                vi: 'Lượt nói của bạn',
-                id: 'Ucapanmu',
-                tr: 'Konuşma sıran',
-                pl: 'Twoich wypowiedzi',
-              }),
-            )}
-            {statCard(
-              'book-outline',
-              String(metrics.uniqueWords),
-              triLang(lang, {
-                ru: 'Слов в речи',
-                uk: 'Слів у мовленні',
-                es: 'Palabras usadas',
-                'pt-BR': 'Palavras usadas',
-                vi: 'Từ đã dùng',
-                id: 'Kata dipakai',
-                tr: 'Kullanılan kelime',
-                pl: 'Użytych słów',
-              }),
-            )}
-            {statCard(
-              'trending-up-outline',
-              String(metrics.longestTurnWords),
-              triLang(lang, {
-                ru: 'Самая длинная фраза',
-                uk: 'Найдовша фраза',
-                es: 'Frase más larga',
-                'pt-BR': 'Frase mais longa',
-                vi: 'Câu dài nhất',
-                id: 'Kalimat terpanjang',
-                tr: 'En uzun cümle',
-                pl: 'Najdłuższe zdanie',
-              }),
-            )}
-          </View>
-
-          {/* Учитель: речевая цель урока и карта «N из 60» (ступень 2 плана обучения) */}
-          {result.format === 'tutor' && result.tutor?.goal && (
-            <View
-              testID="max-voice-review-tutor-goal"
-              style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 14, marginTop: 12 }}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                <Ionicons name="flag-outline" size={15} color={t.accent} />
-                <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '900', flex: 1 }} maxFontSizeMultiplier={1.2}>
-                  {triLang(lang, { ru: 'Цель урока', uk: 'Мета уроку', es: 'Objetivo de la clase', 'pt-BR': 'Objetivo da aula', vi: 'Mục tiêu buổi học', id: 'Tujuan pelajaran', tr: 'Ders hedefi', pl: 'Cel lekcji' })}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.2}>
-                  {`${goalsAfter?.done ?? result.tutor.goalsDone} / ${goalsAfter?.total ?? result.tutor.goalsTotal}`}
-                </Text>
-              </View>
-              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', marginTop: 8 }} maxFontSizeMultiplier={1.2}>
-                {`${result.tutor.goal.level} · ${lang === 'ru' ? result.tutor.goal.title.ru : lang === 'uk' ? result.tutor.goal.title.uk : result.tutor.goal.title.en}`}
-              </Text>
-              <View style={{ flexDirection: 'row', gap: 6, marginTop: 8 }}>
-                {[1, 2, 3].map((step) => {
-                  const reached = Math.max(result.tutor?.goal?.mastery ?? 0, result.tutor?.goalProgress?.goalId === result.tutor?.goal?.id ? (result.tutor?.goalProgress?.mastery ?? 0) : 0);
-                  return <View key={`gm-${step}`} style={{ flex: 1, height: 6, borderRadius: 3, backgroundColor: step <= reached ? t.accent : glassFill(t.bgSurface, 0.8) }} />;
-                })}
-              </View>
-            </View>
-          )}
-
-          {/* Учитель: домашка на завтра и обещанная тема — то, что учитель сказал голосом, теперь на глазах */}
-          {result.format === 'tutor' && ((result.tutor?.homework.length ?? 0) > 0 || (result.tutor?.nextTopic ?? '') !== '') && (
-            <View
-              testID="max-voice-review-tutor-homework"
-              style={{
-                backgroundColor: glassFill(t.bgSurface, 0.46),
-                borderRadius: 16,
-                padding: 14,
-                marginTop: 12,
-              }}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                <Ionicons name="book-outline" size={15} color={t.gold} />
-                <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
-                  {triLang(lang, {
-                    ru: 'Домашка на завтра',
-                    uk: 'Домашка на завтра',
-                    es: 'Tarea para mañana',
-                    'pt-BR': 'Tarefa para amanhã',
-                    vi: 'Bài tập cho ngày mai',
-                    id: 'PR untuk besok',
-                    tr: 'Yarına ödev',
-                    pl: 'Zadanie na jutro',
-                  })}
-                </Text>
-              </View>
-              {(result.tutor?.homework ?? []).map((phrase, i) => (
-                <Text
-                  key={`hw-${i}`}
-                  style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', marginTop: i === 0 ? 8 : 6, lineHeight: Math.round(f.sub * 1.4) }}
-                  maxFontSizeMultiplier={1.2}
-                >
-                  {phrase}
-                </Text>
-              ))}
-              {(result.tutor?.nextTopic ?? '') !== '' && (
-                <Text
-                  style={{ color: t.textMuted, fontSize: f.sub, marginTop: 10, lineHeight: Math.round(f.sub * 1.4) }}
-                  maxFontSizeMultiplier={1.2}
-                >
-                  {triLang(lang, {
-                    ru: `Завтра: ${result.tutor?.nextTopic}`,
-                    uk: `Завтра: ${result.tutor?.nextTopic}`,
-                    es: `Mañana: ${result.tutor?.nextTopic}`,
-                    'pt-BR': `Amanhã: ${result.tutor?.nextTopic}`,
-                    vi: `Ngày mai: ${result.tutor?.nextTopic}`,
-                    id: `Besok: ${result.tutor?.nextTopic}`,
-                    tr: `Yarın: ${result.tutor?.nextTopic}`,
-                    pl: `Jutro: ${result.tutor?.nextTopic}`,
-                  })}
-                </Text>
-              )}
-            </View>
-          )}
-
-          {/* Разбор фраз — premiumDialogReview(mode:'voice'|'tutor'), МАКС ПЛАН §6.2 */}
-          <View
-            // Состояние в testID: смоук-тест (и скриншот) должны однозначно
-            // отличать «сервер ответил» от «ещё грузится»/«отвалился», а не
-            // угадывать по тексту, который переведён на 8 языков.
-            testID={`max-voice-review-corrections-${reviewState}`}
-            style={{
-              backgroundColor: glassFill(t.bgSurface, 0.46),
-              borderRadius: 16,
-              padding: 14,
-              marginTop: 12,
-            }}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              <Ionicons name="school-outline" size={15} color={t.accent} />
-              <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
-                {triLang(lang, {
-                  ru: 'Разбор твоих фраз',
-                  uk: 'Розбір твоїх фраз',
-                  es: 'Análisis de tus frases',
-                  'pt-BR': 'Análise das suas frases',
-                  vi: 'Phân tích câu của bạn',
-                  id: 'Ulasan kalimatmu',
-                  tr: 'Cümlelerinin analizi',
-                  pl: 'Analiza twoich zdań',
-                })}
-              </Text>
-              {reviewState === 'loading' && (
-                <ActivityIndicator size="small" color={t.accent} style={{ marginLeft: 4 }} />
-              )}
-            </View>
-
-            {reviewState === 'loaded' ? (
-              <View style={{ marginTop: 8 }}>
-                {praise !== '' && (
-                  <Text
-                    style={{ color: t.textPrimary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) }}
-                    maxFontSizeMultiplier={1.2}
-                  >
-                    {praise}
-                  </Text>
-                )}
-                {corrections.map((c, i) => (
-                  <View
-                    key={`corr-${i}`}
-                    style={{
-                      marginTop: 10,
-                      paddingTop: i === 0 && praise === '' ? 0 : 10,
-                      borderTopWidth: i === 0 ? 0 : 1,
-                      borderTopColor: t.border,
-                    }}
-                  >
-                    <Text
-                      // polish — реплика была верной: не зачёркиваем, просто
-                      // показываем «как сказал бы носитель» рядом.
-                      style={{
-                        color: t.textMuted,
-                        fontSize: f.sub,
-                        textDecorationLine: c.kind === 'polish' ? 'none' : 'line-through',
-                      }}
-                      maxFontSizeMultiplier={1.2}
-                    >
-                      {c.original}
-                    </Text>
-                    <Text
-                      style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', marginTop: 2 }}
-                      maxFontSizeMultiplier={1.2}
-                    >
-                      {c.corrected}
-                    </Text>
-                    {c.note !== '' && (
-                      <Text
-                        style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}
-                        maxFontSizeMultiplier={1.2}
-                      >
-                        {c.note}
-                      </Text>
-                    )}
-                  </View>
-                ))}
-                {tip !== '' && (
-                  <View
-                    style={{
-                      marginTop: 12,
-                      flexDirection: 'row',
-                      alignItems: 'flex-start',
-                      gap: 8,
-                      backgroundColor: glassFill(t.bgSurface, 0.6),
-                      borderRadius: 12,
-                      padding: 10,
-                    }}
-                  >
-                    <Ionicons name="bulb-outline" size={16} color={t.gold} style={{ marginTop: 1 }} />
-                    <Text
-                      style={{ color: t.textPrimary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), flex: 1 }}
-                      maxFontSizeMultiplier={1.2}
-                    >
-                      {tip}
-                    </Text>
-                  </View>
-                )}
-                {corrections.length === 0 && praise === '' && (
-                  <Text
-                    style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4, lineHeight: Math.round(f.sub * 1.4) }}
-                    maxFontSizeMultiplier={1.2}
-                  >
-                    {triLang(lang, {
-                      ru: 'Ошибок не найдено — отличная речь!',
-                      uk: 'Помилок не знайдено — чудова мова!',
-                      es: '¡No se encontraron errores — muy bien!',
-                      'pt-BR': 'Nenhum erro encontrado — muito bem!',
-                      vi: 'Không tìm thấy lỗi — nói rất tốt!',
-                      id: 'Tidak ada kesalahan ditemukan — bagus sekali!',
-                      tr: 'Hata bulunamadı — harika konuştun!',
-                      pl: 'Nie znaleziono błędów — świetna mowa!',
-                    })}
-                  </Text>
-                )}
-              </View>
-            ) : (
-              <Text
-                style={{ color: t.textMuted, fontSize: f.sub, marginTop: 8, lineHeight: Math.round(f.sub * 1.4) }}
-                maxFontSizeMultiplier={1.2}
-              >
-                {reviewState === 'loading'
-                  ? triLang(lang, {
-                      ru: 'Разбираем твою речь…',
-                      uk: 'Розбираємо твою мову…',
-                      es: 'Analizando tu conversación…',
-                      'pt-BR': 'Analisando sua conversa…',
-                      vi: 'Đang phân tích cuộc trò chuyện của bạn…',
-                      id: 'Menganalisis percakapanmu…',
-                      tr: 'Konuşman analiz ediliyor…',
-                      pl: 'Analizujemy twoją rozmowę…',
-                    })
-                  : triLang(lang, {
-                      ru: 'Подробный разбор фраз с исправлениями скоро появится здесь — после следующего обновления.',
-                      uk: 'Докладний розбір фраз із виправленнями скоро з’явиться тут — після наступного оновлення.',
-                      es: 'El análisis detallado con correcciones aparecerá aquí pronto, tras la próxima actualización.',
-                      'pt-BR': 'A análise detalhada com correções aparecerá aqui em breve, após a próxima atualização.',
-                      vi: 'Phân tích chi tiết kèm sửa lỗi sẽ sớm xuất hiện tại đây sau bản cập nhật tới.',
-                      id: 'Ulasan terperinci dengan koreksi akan segera muncul di sini setelah pembaruan berikutnya.',
-                      tr: 'Düzeltmelerle ayrıntılı analiz bir sonraki güncellemeden sonra burada olacak.',
-                      pl: 'Szczegółowa analiza z poprawkami pojawi się tu wkrótce, po następnej aktualizacji.',
-                    })}
-              </Text>
-            )}
-          </View>
-
-          {/* Полный транскрипт — раскрываемый */}
-          <TouchableOpacity
-            accessibilityRole="button"
-            onPress={() => {
-              hapticTap();
-              setTranscriptOpen((v) => !v);
-            }}
-            style={{
-              backgroundColor: glassFill(t.bgSurface, 0.46),
-              borderRadius: 16,
-              padding: 14,
-              marginTop: 12,
-            }}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name="document-text-outline" size={15} color={t.accent} />
-              <Text
-                style={{ color: t.accent, fontSize: f.label, fontWeight: '900', flex: 1, marginLeft: 6 }}
-                maxFontSizeMultiplier={1.2}
-              >
-                {triLang(lang, {
-                  ru: 'Полный транскрипт',
-                  uk: 'Повний транскрипт',
-                  es: 'Transcripción completa',
-                  'pt-BR': 'Transcrição completa',
-                  vi: 'Bản ghi đầy đủ',
-                  id: 'Transkrip lengkap',
-                  tr: 'Tam transkript',
-                  pl: 'Pełny zapis rozmowy',
-                })}
-              </Text>
-              <Ionicons name={transcriptOpen ? 'chevron-up' : 'chevron-down'} size={16} color={t.textMuted} />
-            </View>
-            {transcriptOpen && (
-              <View style={{ marginTop: 10 }}>
-                {result.history.map((turn, i) => (
-                  <Text
-                    key={`turn-${i}`}
-                    style={{
-                      color: turn.role === 'user' ? t.textPrimary : t.textMuted,
-                      fontSize: f.sub,
-                      marginTop: i === 0 ? 0 : 6,
-                      lineHeight: Math.round(f.sub * 1.4),
-                    }}
-                    maxFontSizeMultiplier={1.2}
-                  >
-                    {`${turn.role === 'user' ? '· ' : ''}${turn.text}`}
-                  </Text>
-                ))}
-              </View>
-            )}
-          </TouchableOpacity>
-
-          {/* Позвонить ещё раз */}
-          <TouchableOpacity
-            accessibilityRole="button"
-            onPress={callAgain}
-            style={{
-              marginTop: 18,
-              backgroundColor: t.accent,
-              borderRadius: 16,
-              paddingVertical: 14,
-              alignItems: 'center',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              gap: 8,
-            }}
-          >
-            <Ionicons name="call" size={18} color={t.correctText} />
-            <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }} maxFontSizeMultiplier={1.2}>
-              {triLang(lang, {
-                ru: 'Позвонить ещё раз',
-                uk: 'Подзвонити ще раз',
-                es: 'Llamar otra vez',
-                'pt-BR': 'Ligar de novo',
-                vi: 'Gọi lại lần nữa',
-                id: 'Telepon lagi',
-                tr: 'Tekrar ara',
-                pl: 'Zadzwoń jeszcze raz',
-              })}
+        <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
+          <View testID="max-voice-review-hero" style={{ ...card, marginTop: 8, backgroundColor: t.accentBg }}>
+            <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase' }} maxFontSizeMultiplier={2}>{c.completed}</Text>
+            <Text ref={readyTitleRef} accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: Math.round(f.h2 * 1.25), marginTop: 8 }} maxFontSizeMultiplier={2}>
+              {projection?.hero || c.completed}
             </Text>
+            {goalImproved ? <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800', marginTop: 10 }} maxFontSizeMultiplier={2}>{c.goalProgress}</Text> : null}
+            {reviewState.kind === 'pending' ? (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 14 }}>
+                <ActivityIndicator size="small" color={t.accent} />
+                <Text accessibilityLiveRegion="polite" style={{ flex: 1, color: t.textSecond, fontSize: f.body, fontWeight: '700' }} maxFontSizeMultiplier={2}>{c.pending}</Text>
+              </View>
+            ) : null}
+          </View>
+
+          <View testID="max-voice-review-worked" style={card}>
+            <Text style={{ color: t.accent, fontSize: f.h3, fontWeight: '900' }} maxFontSizeMultiplier={2}>{c.worked}</Text>
+            {(projection?.worked ?? []).map((item, index) => (
+              <View key={`worked-${index}`} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10, marginTop: 12 }}>
+                <Ionicons name="checkmark-circle" size={22} color={t.accent} />
+                <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', lineHeight: Math.round(f.bodyLg * 1.38) }} maxFontSizeMultiplier={2}>{item}</Text>
+              </View>
+            ))}
+            {!projection ? <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 10 }}>{c.pending}</Text> : null}
+          </View>
+
+          <View testID="max-voice-review-fix" style={card}>
+            <Text style={{ color: t.gold, fontSize: f.h3, fontWeight: '900' }} maxFontSizeMultiplier={2}>{c.fix}</Text>
+            {projection?.correction ? (
+              <>
+                <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', marginTop: 14, textTransform: 'uppercase' }} maxFontSizeMultiplier={2}>{c.said}</Text>
+                <Text style={{ color: t.textSecond, fontSize: f.bodyLg, marginTop: 4, textDecorationLine: 'line-through' }} maxFontSizeMultiplier={2}>{projection.correction.said}</Text>
+                <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', marginTop: 14, textTransform: 'uppercase' }} maxFontSizeMultiplier={2}>{c.say}</Text>
+                <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900', marginTop: 4 }} maxFontSizeMultiplier={2}>{projection.correction.target}</Text>
+                <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 10 }} maxFontSizeMultiplier={2}>{projection.correction.explanation}</Text>
+                <TouchableOpacity testID="max-voice-review-practice" accessibilityRole="button" accessibilityLabel={c.practice} accessibilityHint={c.practiceHint} accessibilityState={{ busy: practiceOpening, disabled: practiceOpening }} disabled={practiceOpening} onPress={() => void practiceCorrection()} style={{ minHeight: 54, borderRadius: 16, backgroundColor: t.accent, marginTop: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 }}>
+                  <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900', textAlign: 'center' }} maxFontSizeMultiplier={2}>{c.practice}</Text>
+                </TouchableOpacity>
+              </>
+            ) : <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 12 }} maxFontSizeMultiplier={2}>{projection ? c.noFix : c.pending}</Text>}
+          </View>
+
+          <View testID="max-voice-review-tomorrow" style={card}>
+            <Text style={{ color: t.accent, fontSize: f.h3, fontWeight: '900' }} maxFontSizeMultiplier={2}>{c.tomorrow}</Text>
+            {(projection?.tomorrowActions ?? []).map((action, index) => (
+              <View key={`tomorrow-${index}`} testID={`max-voice-review-tomorrow-action-${index}`} style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start', marginTop: 14 }}>
+                <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: t.accent, alignItems: 'center', justifyContent: 'center' }}><Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>{index + 1}</Text></View>
+                <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', lineHeight: Math.round(f.bodyLg * 1.38) }} maxFontSizeMultiplier={2}>{action}</Text>
+              </View>
+            ))}
+            {projection?.targetPhrase ? (
+              <View testID="max-voice-review-target-phrase" style={{ borderRadius: 16, backgroundColor: t.accentBg, padding: 14, marginTop: 18 }}>
+                <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase' }} maxFontSizeMultiplier={2}>{c.targetPhrase}</Text>
+                <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900', marginTop: 6 }} maxFontSizeMultiplier={2}>{projection.targetPhrase}</Text>
+              </View>
+            ) : null}
+            {projection?.nextConversation ? (
+              <View testID="max-voice-review-next-topic" style={{ borderTopWidth: 1, borderTopColor: t.border, paddingTop: 14, marginTop: 16 }}>
+                <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase' }} maxFontSizeMultiplier={2}>{c.next}</Text>
+                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800', marginTop: 5 }} maxFontSizeMultiplier={2}>{projection.nextConversation}</Text>
+              </View>
+            ) : null}
+            {!projection ? <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 12 }}>{c.pending}</Text> : null}
+          </View>
+
+          <TouchableOpacity testID="max-voice-review-details-toggle" accessibilityRole="button" accessibilityLabel={detailsOpen ? c.hideDetails : c.details} accessibilityHint={c.detailsHint} accessibilityState={{ expanded: detailsOpen }} onPress={() => { hapticTap(); setDetailsOpen((value) => !value); }} style={{ minHeight: 54, marginTop: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+            <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '900' }}>{detailsOpen ? c.hideDetails : c.details}</Text>
+            <Ionicons name={detailsOpen ? 'chevron-up' : 'chevron-down'} size={18} color={t.textSecond} />
           </TouchableOpacity>
+
+          {detailsOpen ? (
+            <View testID="max-voice-review-details" style={card}>
+              <View style={{ flexDirection: 'row', gap: 12 }}>
+                {speechSec !== null ? <View style={{ flex: 1 }}><Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{formatDuration(speechSec)}</Text><Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 4 }} maxFontSizeMultiplier={2}>{c.speakingTime}</Text></View> : null}
+                <View style={{ flex: 1 }}><Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{formatDuration(durationSec)}</Text><Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 4 }} maxFontSizeMultiplier={2}>{c.duration}</Text></View>
+              </View>
+              {reviewState.kind === 'pending' && pendingHistory.length > 0 ? (
+                <View style={{ marginTop: 18 }}>
+                  <TouchableOpacity accessibilityRole="button" accessibilityLabel={c.transcript} accessibilityHint={c.transcriptHint} accessibilityState={{ expanded: transcriptOpen }} onPress={() => setTranscriptOpen((value) => !value)} style={{ minHeight: 48, flexDirection: 'row', alignItems: 'center' }}>
+                    <View style={{ flex: 1 }}><Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>{c.transcript}</Text><Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>{c.temporary}</Text></View>
+                    <Ionicons name={transcriptOpen ? 'chevron-up' : 'chevron-down'} size={18} color={t.textMuted} />
+                  </TouchableOpacity>
+                  {transcriptOpen ? <View testID="max-voice-review-transcript-content" style={{ marginTop: 8 }}>{pendingHistory.map((turn, index) => <Text key={`transcript-${index}`} style={{ color: turn.role === 'user' ? t.textPrimary : t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.45), marginTop: index === 0 ? 0 : 8 }} maxFontSizeMultiplier={2}>{turn.text}</Text>)}</View> : null}
+                </View>
+              ) : null}
+            </View>
+          ) : null}
+
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={c.home} accessibilityHint={c.closeHint} onPress={goHome} style={{ minHeight: 52, borderRadius: 16, borderWidth: 1, borderColor: t.border, marginTop: 18, alignItems: 'center', justifyContent: 'center' }}><Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '900' }}>{c.home}</Text></TouchableOpacity>
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={c.callAgain} accessibilityHint={c.callAgainHint} onPress={callAgain} style={{ minHeight: 58, borderRadius: 18, backgroundColor: t.accent, marginTop: 10, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'center' }}><Ionicons name="call" size={20} color={t.correctText} /><Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '900' }}>{c.callAgain}</Text></TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     </ScreenGradient>

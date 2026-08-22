@@ -1,10 +1,10 @@
 // Сборка запроса maxVoiceMint и callable-обвязка MAX-звонка.
 //
 // Зачем отдельный модуль: минт теперь делают ДВА экрана — пре-экран
-// (max_call_prestart, заранее, чтобы тап «Позвонить» соединял мгновенно —
+// (max_call_session; прежний prestart теперь лишь совместимый route-alias —
 // владелец 2026-08-16) и экран звонка (max_call_session, если заготовки нет
 // или это ре-минт реконнекта). Промпт-поля (personaName/personaRole/
-// scenarioBlock/memoryBlock/srsCount) обязаны собираться ОДИНАКОВО в обоих
+// scenarioBlock/memoryBlock) обязаны собираться ОДИНАКОВО в обоих
 // местах — сервер строит instructions из них и по scenarioId ничего не
 // резолвит. Здесь — единственная реализация.
 
@@ -36,6 +36,12 @@ import {
   type MaxVoiceMintResponse,
 } from './max_call_client';
 import { MaxVoiceStageError, maxVoiceFailureReason } from './max_voice_error';
+import {
+  maxTutorPreviewKey,
+  parseMaxTutorPreview,
+  primeMaxTutorPreview,
+  type MaxTutorPreview,
+} from './max_tutor_preview';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -87,7 +93,7 @@ export function formatMemoryBlock(memory: DialogMemory): string {
   const lines: string[] = ['WHAT YOU REMEMBER ABOUT THIS LEARNER'];
   if (memory.profile) lines.push(memory.profile);
   if (memory.weakWords && memory.weakWords.length > 0) {
-    // Слабые слова вплетаются в вопросы (замкнутый SRS-цикл, спека §8).
+    // Слабые места из новой системы ошибок вплетаются в вопросы естественно.
     lines.push(`Words to weave naturally into your questions: ${memory.weakWords.join(', ')}.`);
   }
   if (memory.summary) lines.push(memory.summary);
@@ -96,7 +102,7 @@ export function formatMemoryBlock(memory: DialogMemory): string {
 
 /**
  * Промпт-поля минта по формату звонка. Никогда не бросает: минт без памяти /
- * без srsCount хуже минта без звонка — сервер деградирует к дефолтам сам.
+ * без памяти хуже минта без звонка — сервер деградирует к дефолтам сам.
  */
 export async function buildMintExtras(
   format: MaxVoiceMintRequest['format'],
@@ -161,7 +167,10 @@ export function tutorSceneBlock(id: string): string | null {
  * Снимок ученика для промпта учителя: только то, о чём учитель может честно
  * сказать (имя, серия, уроки, тренажёр, слабые слова). Никогда не бросает.
  */
-export async function buildLearnerSnapshot(cefr: string | undefined): Promise<string> {
+export async function buildLearnerSnapshot(
+  cefr: string | undefined,
+  studyTarget: 'en' | 'fr' = 'en',
+): Promise<string> {
   const lines: string[] = [];
   try {
     const home = peekHomeScreenHydration();
@@ -250,6 +259,34 @@ export async function performMaxVoiceMint(
 }
 
 /**
+ * Bounded, read-only lesson preview prefetch. Unlike premint this never creates
+ * a provider token or voice reservation, so Home may safely warm it on focus.
+ */
+export function prefetchMaxTutorPreview(
+  params: MaxCallParams,
+  nowMs = Date.now(),
+): Promise<MaxTutorPreview | null> {
+  const key = maxTutorPreviewKey(params);
+  return primeMaxTutorPreview(key, async () => {
+    const raw = await maxVoiceCallable<unknown>('maxVoicePreflight')({
+      format: 'tutor',
+      cefr: params.cefr,
+      interfaceLang: params.interfaceLang ?? 'ru',
+      studyTarget: params.studyTarget ?? 'en',
+    });
+    const envelope = raw && typeof raw === 'object' ? raw as Record<string, unknown> : {};
+    const preview = parseMaxTutorPreview(envelope.tutorPreview, params.interfaceLang ?? 'ru');
+    if (!preview) return null;
+    return {
+      ...preview,
+      ...(envelope.limits && typeof envelope.limits === 'object'
+        ? { limits: envelope.limits as Record<string, unknown> }
+        : {}),
+    };
+  }, nowMs);
+}
+
+/**
  * Промпт-поля учителя: язык, каталог сцен под уровень, снимок ученика.
  * Ротация каталога — по дню (сегодня одни сцены, завтра другие).
  */
@@ -261,7 +298,7 @@ export async function buildTutorMintExtras(params: MaxCallParams): Promise<Parti
     interfaceLang: params.interfaceLang ?? 'ru',
     studyTarget: params.studyTarget ?? 'en',
     sceneCatalog: renderTutorSceneCatalog(tutorSceneItems(cefr, daySeed)),
-    learnerSnapshot: await buildLearnerSnapshot(cefr),
+    learnerSnapshot: await buildLearnerSnapshot(cefr, params.studyTarget === 'fr' ? 'fr' : 'en'),
   };
 }
 

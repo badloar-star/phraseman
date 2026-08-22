@@ -12,6 +12,7 @@ import {
   MAX_CALL_END_AFTER_AUDIO_MAX_MS,
   MAX_CALL_GREETING_HOLD_MAX_MS,
   MAX_CALL_ICE_GATHER_TIMEOUT_MS,
+  MAX_CALL_REMOTE_TRACK_GRACE_MS,
   MAX_CALL_START_TIMEOUT_MS,
   completeLocalOfferSdp,
   type MaxCallDeps,
@@ -149,6 +150,8 @@ const ZERO_USAGE: VoiceUsageTotals = {
   audioInputTokens: 0,
   audioOutputTokens: 0,
   cachedTokens: 0,
+  textInputTokens: 0,
+  textOutputTokens: 0,
   textTokens: 0,
 };
 
@@ -270,6 +273,19 @@ describe('happy-path: idle → … → active на моках deps', () => {
     ]);
   });
 
+  it('запрашивает следующий ответ в том же событии, где речь ученика остановилась', async () => {
+    const h = makeHarness();
+    await connect(h);
+    dcMessage(h, { type: 'response.created' });
+    dcMessage(h, { type: 'response.done', response: {} });
+    h.dc.send.mockClear();
+
+    dcMessage(h, { type: 'input_audio_buffer.speech_stopped' });
+
+    const sent = h.dc.send.mock.calls.map(([raw]) => JSON.parse(raw as string) as { type: string });
+    expect(sent.filter((event) => event.type === 'response.create')).toHaveLength(1);
+  });
+
   it('битый JSON и неизвестные события — тихий no-op, не throw', async () => {
     const h = makeHarness();
     const client = await connect(h);
@@ -292,6 +308,8 @@ describe('happy-path: idle → … → active на моках deps', () => {
       audioInputTokens: 50,
       audioOutputTokens: 50,
       cachedTokens: 10,
+      textInputTokens: 5,
+      textOutputTokens: 20,
       textTokens: 25,
     });
   });
@@ -325,7 +343,14 @@ describe('heartbeat 30с на fake timers', () => {
     expect(h.deps.heartbeat).toHaveBeenLastCalledWith({
       sessionId: 'sess-1',
       elapsedSec: 60,
-      usage: { audioInputTokens: 40, audioOutputTokens: 25, cachedTokens: 0, textTokens: 15 },
+      usage: {
+        audioInputTokens: 40,
+        audioOutputTokens: 25,
+        cachedTokens: 0,
+        textInputTokens: 15,
+        textOutputTokens: 0,
+        textTokens: 15,
+      },
     });
   });
 
@@ -341,6 +366,19 @@ describe('heartbeat 30с на fake timers', () => {
 });
 
 describe('идемпотентный teardown', () => {
+  it('отчитывает задержку первого реального звука MAX, а не первого heartbeat', async () => {
+    const h = makeHarness();
+    const client = await connect(h);
+
+    jest.advanceTimersByTime(650);
+    dcMessage(h, { type: 'output_audio_buffer.started' });
+    await client.end('completed');
+
+    expect(h.deps.end).toHaveBeenCalledWith(expect.objectContaining({
+      firstRemoteAudioLatencyMs: 650,
+    }));
+  });
+
   it('закрывает каждый ресурс один раз и один раз отчитывается end', async () => {
     const h = makeHarness();
     const client = await connect(h);
@@ -517,6 +555,28 @@ describe('barge-in по разделу 4 спеки', () => {
     expect(h.localTrack.enabled).toBe(true); // приветствие отзвучало — микрофон открыт
   });
 
+  it('оставляет микрофон открытым во время реплики ИИ для голосового barge-in', async () => {
+    const h = makeHarness();
+    await connect(h);
+
+    // Приветствие без аудио завершилось — обычный ход ученика, микрофон открыт.
+    dcMessage(h, usageDone({}, {}));
+    expect(h.localTrack.enabled).toBe(true);
+
+    // Обычная реплика ИИ не имеет права закрывать uplink: иначе
+    // semantic VAD не услышит реальный голос ученика и голосовой barge-in
+    // станет невозможен. Эхо фильтруют native WebRTC + Realtime far_field.
+    dcMessage(h, { type: 'response.created' });
+    expect(h.localTrack.enabled).toBe(true);
+
+    dcMessage(h, { type: 'output_audio_buffer.started' });
+    dcMessage(h, usageDone({}, { audio_tokens: 40 }));
+    expect(h.localTrack.enabled).toBe(true);
+
+    dcMessage(h, { type: 'output_audio_buffer.stopped' });
+    expect(h.localTrack.enabled).toBe(true);
+  });
+
   it('снимает удержание, если аудио доиграло раньше response.done или приветствие без аудио', async () => {
     const h = makeHarness();
     await connect(h);
@@ -567,6 +627,8 @@ describe('barge-in по разделу 4 спеки', () => {
   it('sendWrapUp шлёт серверный wrapUpText как conversation-item + response.create', async () => {
     const h = makeHarness();
     const client = await connect(h);
+    dcMessage(h, { type: 'response.created', response: {} });
+    dcMessage(h, { type: 'response.done', response: {} });
     client.sendWrapUp();
 
     const sent = h.dc.send.mock.calls.map(([raw]) => JSON.parse(raw as string) as Record<string, unknown>);
@@ -583,10 +645,43 @@ describe('barge-in по разделу 4 спеки', () => {
     const greeting = sent.find((event) => event.type === 'response.create');
     expect(greeting).toMatchObject({
       type: 'response.create',
-      response: { max_output_tokens: 600 },
+      response: { max_output_tokens: 600, output_modalities: ['audio'] },
     });
     expect(JSON.stringify(greeting)).toContain('Begin speaking immediately');
     expect(JSON.stringify(greeting)).toContain('Never announce turns');
+  });
+
+  it('после появления remote audio track повторно включает слышимый speaker route', async () => {
+    const h = makeHarness();
+    await connect(h);
+    const routeCallsBeforeTrack = h.inCall.setForceSpeakerphoneOn.mock.calls.length;
+    const remoteTrack: MediaStreamTrackLike = { enabled: false, stop: jest.fn(), kind: 'audio' };
+    const remoteStream = {
+      getTracks: () => [remoteTrack],
+      getAudioTracks: () => [remoteTrack],
+    };
+
+    h.pc.ontrack?.({ track: remoteTrack, streams: [remoteStream] });
+
+    expect(remoteTrack.enabled).toBe(true);
+    expect(h.inCall.setForceSpeakerphoneOn).toHaveBeenCalledTimes(routeCallsBeforeTrack + 1);
+    expect(h.inCall.setForceSpeakerphoneOn).toHaveBeenLastCalledWith(true);
+
+    dcMessage(h, { type: 'output_audio_buffer.started' });
+    expect(h.inCall.setForceSpeakerphoneOn).toHaveBeenCalledTimes(routeCallsBeforeTrack + 2);
+  });
+
+  it('если output-аудио началось без remote track, один раз запускает контролируемый reconnect', async () => {
+    const h = makeHarness();
+    const client = await connect(h);
+
+    dcMessage(h, { type: 'output_audio_buffer.started' });
+    jest.advanceTimersByTime(MAX_CALL_REMOTE_TRACK_GRACE_MS - 1);
+    expect(client.phase()).toBe('active');
+
+    jest.advanceTimersByTime(1);
+    expect(client.phase()).toBe('reconnecting');
+    expect(h.uiEvents.filter((event) => event.type === 'reconnect_started')).toHaveLength(1);
   });
 });
 
@@ -682,7 +777,7 @@ describe('reconnect-чейн (спека §1 max_call_reconnect)', () => {
     expect(h.localTrack.enabled).toBe(false); // юзер мьютился — мьют выжил
   });
 
-  it('кап чейна из limits исчерпан → failed(reconnect_exhausted) + сеттлмент dropped', async () => {
+  it('исчерпание авто-реконнекта остаётся видимым и сохраняет ручную попытку', async () => {
     const h = makeHarness();
     h.mintResponse.limits = { reconnectChainMax: { auto: 0, manual: 1 } };
     const client = await connect(h);
@@ -691,11 +786,15 @@ describe('reconnect-чейн (спека §1 max_call_reconnect)', () => {
     await jest.advanceTimersByTimeAsync(RECONNECT_GRACE_MS);
     await flushAsync();
 
-    expect(client.phase()).toBe('failed');
+    expect(client.phase()).toBe('reconnect_failed');
     expect(h.uiEvents).toContainEqual({ type: 'fail', reason: 'reconnect_exhausted' });
     expect(h.deps.mint).toHaveBeenCalledTimes(1); // ре-минт даже не пытался
-    expect(h.deps.end).toHaveBeenCalledTimes(1);
-    expect((h.deps.end as jest.Mock).mock.calls[0][0]).toMatchObject({ endReason: 'dropped' });
+    expect(h.deps.end).not.toHaveBeenCalled();
+
+    client.retryReconnect();
+    await flushAsync();
+    expect(h.deps.mint).toHaveBeenCalledTimes(2);
+    expect(client.phase()).toBe('active');
   });
 
   it('провал ре-минта жжёт попытки чейна и завершается failed по исчерпании', async () => {
@@ -712,9 +811,10 @@ describe('reconnect-чейн (спека §1 max_call_reconnect)', () => {
     await jest.advanceTimersByTimeAsync(RECONNECT_GRACE_MS);
     await flushAsync(30);
 
-    // 1 свежий минт + 2 auto-попытки (дефолтный кап) — и честный failed.
+    // 1 свежий минт + 2 auto-попытки (дефолтный кап) — и честный terminal UI.
     expect(mintMock).toHaveBeenCalledTimes(3);
-    expect(client.phase()).toBe('failed');
+    expect(client.phase()).toBe('reconnect_failed');
+    expect(h.deps.end).not.toHaveBeenCalled();
   });
 });
 
@@ -768,12 +868,14 @@ describe('учитель: function calling, system notes, endAfterAudio', () => 
   it('sendToolResult шлёт function_call_output и response.create (respond=false — без него)', async () => {
     const h = makeHarness();
     const client = await connect(h);
+    dcMessage(h, { type: 'response.created', response: {} });
+    dcMessage(h, { type: 'response.done', response: {} });
     const before = h.dc.send.mock.calls.length;
     client.sendToolResult('c1', { ok: true });
     client.sendToolResult('c2', 'bye', { respond: false });
     const sent = sentBy(h).slice(before);
     expect(sent[0]).toMatchObject({ type: 'conversation.item.create', item: { type: 'function_call_output', call_id: 'c1', output: '{"ok":true}' } });
-    expect(sent[1]).toEqual({ type: 'response.create' });
+    expect(sent[1]).toEqual({ type: 'response.create', response: { output_modalities: ['audio'] } });
     expect(sent[2]).toMatchObject({ item: { call_id: 'c2', output: 'bye' } });
     expect(sent).toHaveLength(3);
   });
@@ -781,6 +883,8 @@ describe('учитель: function calling, system notes, endAfterAudio', () => 
   it('sendSystemNote — system-сообщение + response.create (или без него)', async () => {
     const h = makeHarness();
     const client = await connect(h);
+    dcMessage(h, { type: 'response.created', response: {} });
+    dcMessage(h, { type: 'response.done', response: {} });
     const before = h.dc.send.mock.calls.length;
     client.sendSystemNote('TIME NOTE: lesson length 10 minutes', { respond: false });
     client.sendSystemNote('TIME NOTE: about 2 minutes left');
@@ -790,6 +894,24 @@ describe('учитель: function calling, system notes, endAfterAudio', () => 
     expect(sent[1]).toMatchObject({ type: 'conversation.item.create', item: { role: 'system' } });
     expect(sent[2]).toMatchObject({ type: 'response.create' });
     expect(sent).toHaveLength(3);
+  });
+
+  it('очередит tool/system response до response.done и конца output-аудио', async () => {
+    const h = makeHarness();
+    const client = await connect(h);
+    dcMessage(h, { type: 'response.created', response: {} });
+    dcMessage(h, { type: 'output_audio_buffer.started' });
+    const before = sentBy(h).filter((event) => event.type === 'response.create').length;
+
+    client.sendToolResult('tool-wait', { ok: true });
+    client.sendSystemNote('TIME NOTE: finish the current activity');
+    expect(sentBy(h).filter((event) => event.type === 'response.create')).toHaveLength(before);
+
+    dcMessage(h, { type: 'response.done', response: {} });
+    expect(sentBy(h).filter((event) => event.type === 'response.create')).toHaveLength(before);
+
+    dcMessage(h, { type: 'output_audio_buffer.stopped' });
+    expect(sentBy(h).filter((event) => event.type === 'response.create')).toHaveLength(before + 1);
   });
 
   it('endAfterAudio: пока учитель договаривает — ждём конца аудио, микрофон закрыт; потом end(completed) один раз', async () => {

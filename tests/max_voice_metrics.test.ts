@@ -84,7 +84,7 @@ describe('computeVoiceCallMetrics: weak words', () => {
       ...NO_OPTS,
       weakWords: ['receipt', 'change', 'discount'],
     });
-    // «discount» не звучал; порядок и написание — как в исходном списке SRS.
+    // «discount» не звучал; порядок и написание — как в исходном списке ошибок.
     expect(m.weakWordsUsed).toEqual(['receipt', 'change']);
   });
 
@@ -96,7 +96,7 @@ describe('computeVoiceCallMetrics: weak words', () => {
     expect(m.weakWordsUsed).toEqual(['cappuccino']);
   });
 
-  it('фразы из SRS матчатся целиком; слова ассистента зачёт не дают', () => {
+  it('фразы из истории ошибок матчатся целиком; слова ассистента зачёт не дают', () => {
     const history = [ai('You could say: I would like a refund.'), user('I would like a refund!')];
     expect(
       computeVoiceCallMetrics(history, { ...NO_OPTS, weakWords: ['would like'] }).weakWordsUsed,

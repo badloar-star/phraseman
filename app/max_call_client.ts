@@ -21,6 +21,7 @@ import type {
 } from './max_webrtc_module';
 import type { MaxCallUiEvent } from './max_call_ui_state';
 import type { TranscriptTurn } from './max_call_transcript';
+import type { Lang } from '../constants/i18n';
 import type { MaxCallSfx } from './max_call_sfx';
 import { parseAudioLevels, type AudioLevelSample } from './max_call_audio_level';
 import {
@@ -71,6 +72,12 @@ export const MAX_CALL_ICE_GATHER_TIMEOUT_MS = 1_000;
  * таймер снимает удержание даже если серверные события не пришли.
  */
 export const MAX_CALL_GREETING_HOLD_MAX_MS = 20_000;
+/**
+ * Realtime сообщает начало output-аудио отдельно от WebRTC ontrack. Если
+ * аудио уже «играет», а remote track так и не появился, транспорт поднялся
+ * наполовину: один контролируемый reconnect лучше вечного немого урока.
+ */
+export const MAX_CALL_REMOTE_TRACK_GRACE_MS = 750;
 
 export async function completeLocalOfferSdp(
   connection: RtcPeerConnectionLike,
@@ -116,6 +123,7 @@ export type MaxCallPhase =
   | 'configuring'
   | 'active'
   | 'reconnecting'
+  | 'reconnect_failed'
   | 'ending'
   | 'ended'
   | 'failed';
@@ -144,6 +152,10 @@ export interface VoiceUsageTotals {
   audioInputTokens: number;
   audioOutputTokens: number;
   cachedTokens: number;
+  /** Новые клиенты разделяют текст по направлению; optional для старых callers. */
+  textInputTokens?: number;
+  textOutputTokens?: number;
+  /** Совместимый total для старых серверов/сохранённых документов. */
   textTokens: number;
 }
 
@@ -160,8 +172,6 @@ export interface MaxVoiceMintRequest {
   scenarioBlock?: string;
   /** COMPANION-память (buildCompanionMemory → текстовый блок) для companion-формата. */
   memoryBlock?: string;
-  /** Дешёвый счётчик SRS-элементов — ветвление пробника companion/scenario на сервере. */
-  srsCount?: number;
   /** Защищённый тестовый вход из DEV Hub; сервер принимает только admin claim. */
   devMode?: boolean;
   /** Ре-минт reconnect-чейна: id прежней сессии (перенос остатка резерва). */
@@ -191,16 +201,14 @@ export interface MaxVoiceTutorInfo {
     duePhrases: string[];
     scenesDone: number;
     scenesTotal: number;
-    /** Текущая речевая цель карты (null — все закрыты) и счёт «14 / 60». */
-    goal: { id: string; level: string; title: { en: string; ru: string; uk: string }; mastery: number } | null;
-    goalsDone: number;
-    goalsTotal: number;
+    /** Текущая речевая цель карты (null — все закрыты). */
+    goal: { id: string; level: string; title: { en: string; ru: string; uk: string } & Partial<Record<Lang, string>>; mastery: number; sceneIds: string[] } | null;
     /** Ступень 3: ближайшие уроки (тип + цель), детерминированный план сервера. */
-    upcoming: Array<{
+    upcoming: {
       ordinal: number;
       lessonType: 'new_material' | 'review_and_scene' | 'free_talk';
-      goal: { id: string; level: string; title: { en: string; ru: string; uk: string } } | null;
-    }>;
+      goal: { id: string; level: string; title: { en: string; ru: string; uk: string } & Partial<Record<Lang, string>> } | null;
+    }[];
   };
 }
 
@@ -280,8 +288,6 @@ function parseTutorPlan(p: Record<string, unknown>): NonNullable<MaxVoiceTutorIn
     scenesDone: n(p.scenesDone),
     scenesTotal: n(p.scenesTotal),
     goal: parseTutorGoal(p.goal),
-    goalsDone: n(p.goalsDone),
-    goalsTotal: n(p.goalsTotal),
     upcoming: Array.isArray(p.upcoming)
       ? p.upcoming.slice(0, 7).flatMap((item) => {
           const o = (item ?? {}) as Record<string, unknown>;
@@ -304,6 +310,9 @@ function parseTutorGoal(g: unknown): NonNullable<MaxVoiceTutorInfo['plan']>['goa
     level: str(o.level) || 'A1',
     title: { en: str(title.en), ru: str(title.ru), uk: str(title.uk) },
     mastery: typeof o.mastery === 'number' && Number.isFinite(o.mastery) ? Math.min(3, Math.max(0, Math.floor(o.mastery))) : 0,
+    sceneIds: Array.isArray(o.sceneIds)
+      ? o.sceneIds.filter((item): item is string => typeof item === 'string' && item.trim() !== '').slice(0, 8)
+      : [],
   };
 }
 
@@ -379,6 +388,8 @@ export interface MaxCallDeps {
     endReason: MaxCallServerEndReason;
     elapsedSec: number;
     usage: VoiceUsageTotals;
+    /** От активации транспорта до первого фактически начавшегося звука MAX. */
+    firstRemoteAudioLatencyMs?: number;
   }): Promise<unknown>;
   /**
    * SDP-обмен: POST offer.sdp с ephemeral-токеном → answer.sdp. Инжектится,
@@ -424,14 +435,17 @@ export interface MaxCallClient {
   setMuted(muted: boolean): void;
   /**
    * Ручной barge-in (кнопка стоп): response.cancel + output_audio_buffer.clear
-   * + remote-трек тихий на 300мс. Серверный barge-in (semantic_vad) — основной
-   * путь и в этом методе не нуждается.
+   * + remote-трек тихий на 300мс. Автоматический VAD-barge-in на сервере
+   * выключен: он путал эхо громкой связи с учеником и обрывал фразы MAX.
    */
   bargeIn(): void;
   /** Отправить серверный wrapUpText как [WRAP_UP] conversation-item + response. */
   sendWrapUp(): void;
-  /** Одноразовый response.create с инструкцией подсказки (кап injected-токенов). */
-  sendHintResponse(instructions: string, maxOutputTokens?: number): void;
+  /**
+   * Одноразовый response.create с инструкцией подсказки (кап injected-токенов).
+   * false означает, что канал/предыдущий ответ ещё не готовы принять запрос.
+   */
+  sendHintResponse(instructions: string, maxOutputTokens?: number): boolean;
   /**
    * Trusted-заметка учителю (TIME NOTE / Reminder): system-сообщение +
    * response.create, чтобы учитель отреагировал голосом.
@@ -439,6 +453,8 @@ export interface MaxCallClient {
   sendSystemNote(text: string, opts?: { respond?: boolean }): void;
   /** Ответ на вызов инструмента: function_call_output (+ response.create по умолчанию). */
   sendToolResult(callId: string, output: unknown, opts?: { respond?: boolean }): void;
+  /** One learner-owned retry after automatic reconnect attempts are exhausted. */
+  retryReconnect(): void;
   /**
    * Мягкое завершение: дождаться, пока договорит и ДОИГРАЕТ аудио (или таймер),
    * и только потом end(). Для end_call учителя после прощания.
@@ -469,20 +485,34 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   let dc: RtcDataChannelLike | null = null;
   let localStream: MediaStreamLike | null = null;
   let remoteTrack: MediaStreamTrackLike | null = null;
+  // Удерживаем remote MediaStream живым: на части нативных WebRTC-сборок одного
+  // JS-ref на track недостаточно для стабильного воспроизведения после ontrack.
+  let remoteStream: MediaStreamLike | null = null;
   let mint: MaxVoiceMintResponse | null = null;
   let startedAtMs: number | null = null;
-  const usage: VoiceUsageTotals = {
+  const usage: VoiceUsageTotals & { textInputTokens: number; textOutputTokens: number } = {
     audioInputTokens: 0,
     audioOutputTokens: 0,
     cachedTokens: 0,
+    textInputTokens: 0,
+    textOutputTokens: 0,
     textTokens: 0,
   };
   let inCallStarted = false;
+  // Realtime принимает только один response за раз. Локальный pending закрывает
+  // короткое окно между dc.send(response.create) и серверным response.created.
+  // VAD только фиксирует границы хода: default response ждёт, пока предыдущая
+  // генерация закончится И её output-аудио действительно доиграет.
+  let responseActive = false;
+  let responseRequestPending = false;
+  let defaultResponseQueued = false;
 
   let heartbeatTimer: ReturnType<typeof setInterval> | null = null;
   let statsTimer: ReturnType<typeof setInterval> | null = null;
   let bargeTimer: ReturnType<typeof setTimeout> | null = null;
   let connectTimer: ReturnType<typeof setTimeout> | null = null;
+  let remoteTrackTimer: ReturnType<typeof setTimeout> | null = null;
+  let remoteTrackRecoveryUsed = false;
   let statsInFlight = false;
 
   // Reconnect-чейн (спека §1 max_call_reconnect): исходный запрос — для
@@ -510,6 +540,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
   // Мягкое завершение (end_call учителя): ждём конца аудио, потом end().
   let remoteAudioPlaying = false;
+  let firstRemoteAudioLatencyMs: number | null = null;
   let endAfterAudioReason: MaxCallEndReason | null = null;
   let endAfterAudioTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -601,8 +632,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       inCallStarted = true;
       // media:'audio' по умолчанию выбирает receiver/earpiece. Для тренажёра
       // нужен слышимый hands-free маршрут на встроенный громкий динамик.
-      try { deps.native.InCallManager.setForceSpeakerphoneOn?.(true); } catch {}
-      try { deps.native.InCallManager.setSpeakerphoneOn?.(true); } catch {}
+      ensureSpeakerRoute();
       try { deps.native.InCallManager.setKeepScreenOn?.(true); } catch {}
       try {
         deps.sfx?.audioSessionAcquired();
@@ -615,6 +645,37 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       try { deps.native.InCallManager.stop(); } catch {}
       inCallStarted = false;
     }
+  }
+
+  /**
+   * WebRTC может повторно выбрать AVAudioSession/AudioManager после answer SDP
+   * и ontrack. Поэтому speaker route применяется не только перед соединением,
+   * но и после появления remote track и фактического старта output-аудио.
+   */
+  function ensureSpeakerRoute(): void {
+    if (!inCallStarted || isTornDown()) return;
+    try { deps.native.InCallManager.setForceSpeakerphoneOn?.(true); } catch {}
+    try { deps.native.InCallManager.setSpeakerphoneOn?.(true); } catch {}
+  }
+
+  function clearRemoteTrackTimer(): void {
+    if (remoteTrackTimer === null) return;
+    clearTimeout(remoteTrackTimer);
+    remoteTrackTimer = null;
+  }
+
+  function recoverMissingRemoteTrackOnce(): void {
+    if (remoteTrack || remoteTrackRecoveryUsed || phase !== 'active' || isTornDown()) return;
+    remoteTrackRecoveryUsed = true;
+    beginReconnect();
+  }
+
+  function armRemoteTrackRecovery(): void {
+    if (remoteTrack || remoteTrackTimer !== null || remoteTrackRecoveryUsed || phase !== 'active') return;
+    remoteTrackTimer = setTimeout(() => {
+      remoteTrackTimer = null;
+      recoverMissingRemoteTrackOnce();
+    }, MAX_CALL_REMOTE_TRACK_GRACE_MS);
   }
 
   /**
@@ -637,9 +698,12 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     const output = u.output_token_details;
     add(input, 'audio_tokens', 'audioInputTokens');
     add(input, 'cached_tokens', 'cachedTokens');
-    add(input, 'text_tokens', 'textTokens');
+    add(input, 'text_tokens', 'textInputTokens');
     add(output, 'audio_tokens', 'audioOutputTokens');
-    add(output, 'text_tokens', 'textTokens');
+    add(output, 'text_tokens', 'textOutputTokens');
+    // Старые серверы и уже существующая аналитика читают общий textTokens.
+    // Новая серверная цена использует split и не считает этот total повторно.
+    usage.textTokens = usage.textInputTokens + usage.textOutputTokens;
   }
 
   function handleDcMessage(raw: unknown): void {
@@ -661,12 +725,21 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         return;
       case 'input_audio_buffer.speech_stopped':
         emitUi({ type: 'speech_stopped' });
+        queueDefaultResponse();
         return;
       case 'response.created':
+        responseActive = true;
+        responseRequestPending = false;
         emitUi({ type: 'response_created' });
         return;
       case 'output_audio_buffer.started':
+        if (firstRemoteAudioLatencyMs === null && startedAtMs !== null) {
+          firstRemoteAudioLatencyMs = Math.max(0, deps.now() - startedAtMs);
+        }
         remoteAudioPlaying = true;
+        if (remoteTrack) remoteTrack.enabled = true;
+        ensureSpeakerRoute();
+        armRemoteTrackRecovery();
         if (greetingHold) greetingAudioStarted = true;
         emitUi({ type: 'audio_out_started' });
         return;
@@ -675,12 +748,14 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         noteGreetingAudioStopped();
         emitUi({ type: 'audio_out_stopped' });
         finishEndAfterAudioIfDue();
+        flushQueuedDefaultResponse();
         return;
       case 'output_audio_buffer.cleared':
         remoteAudioPlaying = false;
         noteGreetingAudioStopped();
         emitUi({ type: 'audio_out_cleared' });
         finishEndAfterAudioIfDue();
+        flushQueuedDefaultResponse();
         return;
       // Учитель вызвал инструмент: аргументы приходят одним событием по завершении.
       case 'response.function_call_arguments.done': {
@@ -700,6 +775,8 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         return;
       }
       case 'response.done':
+        responseActive = false;
+        responseRequestPending = false;
         accumulateUsage(message);
         if (greetingHold) {
           greetingResponseDone = true;
@@ -708,6 +785,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
           if (!greetingAudioStarted || greetingAudioStopped) releaseGreetingHold();
         }
         emitUi({ type: 'response_done' });
+        flushQueuedDefaultResponse();
         return;
       // Транскрипт ИИ: оба имени события (версии Realtime API расходятся).
       case 'response.output_audio_transcript.delta':
@@ -732,6 +810,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       case 'error':
         // 'already has active response' и прочие гонки — тихий no-op (спека §1):
         // сервер сам разрулил, клиенту реагировать не на что.
+        responseRequestPending = false;
         return;
       default:
         return; // Неизвестные события Realtime — вперёд-совместимый шум.
@@ -801,15 +880,38 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     beginGreetingHold();
     // Realtime не начинает говорить только из-за instructions: первый ответ
     // нужно запросить явно после открытия data channel.
-    dcSend({
-      type: 'response.create',
-      response: {
+    requestResponse({
         // Учитель получает свою инструкцию приветствия от сервера (языковая
         // политика уровня); ролевые сцены — прежнее короткое приветствие.
         instructions: mint?.tutor?.greetingInstructions || INITIAL_GREETING_INSTRUCTIONS,
         max_output_tokens: INJECTED_MAX_TOKENS,
+    });
+  }
+
+  function requestResponse(response?: Record<string, unknown>): boolean {
+    if (isTornDown() || responseActive || responseRequestPending || remoteAudioPlaying) return false;
+    const sent = dcSend({
+      type: 'response.create',
+      response: {
+        ...(response ?? {}),
+        // Транскрипт приходит и для output-аудио; явный режим не позволяет
+        // будущему server/default профилю незаметно превратить MAX в текст.
+        output_modalities: ['audio'],
       },
     });
+    if (sent) responseRequestPending = true;
+    return sent;
+  }
+
+  function flushQueuedDefaultResponse(): void {
+    if (!defaultResponseQueued) return;
+    if (requestResponse()) defaultResponseQueued = false;
+  }
+
+  function queueDefaultResponse(): void {
+    if (isTornDown()) return;
+    defaultResponseQueued = true;
+    flushQueuedDefaultResponse();
   }
 
   function finishEndAfterAudioIfDue(): void {
@@ -926,12 +1028,12 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     if (isTornDown() || phase !== 'reconnecting' || reminting) return;
     const prevMint = mint;
     if (!prevMint || !startReq || !chain) {
-      await fail('reconnect_exhausted');
+      showReconnectFailed('reconnect_exhausted');
       return;
     }
     const caps = reconnectCapsFromLimits(prevMint.limits);
     if (!canReconnect(chain, kind, caps)) {
-      await fail('reconnect_exhausted');
+      showReconnectFailed('reconnect_exhausted');
       return;
     }
     chain = nextChain(chain, kind);
@@ -956,6 +1058,8 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     } catch {}
     localStream = null;
     remoteTrack = null;
+    remoteStream = null;
+    clearRemoteTrackTimer();
 
     try {
       // Summary собирается локально по шаблону (без AI): сеть уже подвела,
@@ -1031,10 +1135,43 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     }
   }
 
+  function showReconnectFailed(reason: string): void {
+    if (isTornDown()) return;
+    reminting = false;
+    if (graceTimer !== null) {
+      clearTimeout(graceTimer);
+      graceTimer = null;
+    }
+    if (connectTimer !== null) {
+      clearTimeout(connectTimer);
+      connectTimer = null;
+    }
+    applyTrackMute(true);
+    setPhase('reconnect_failed');
+    emitUi({ type: 'fail', reason });
+  }
+
+  function retryReconnect(): void {
+    if (phase !== 'reconnect_failed' || !mint || !chain) return;
+    const caps = reconnectCapsFromLimits(mint.limits);
+    if (!canReconnect(chain, 'manual', caps)) return;
+    setPhase('reconnecting');
+    emitUi({ type: 'reconnect_started' });
+    void doRemint('manual');
+  }
+
   function wirePeerConnection(connection: RtcPeerConnectionLike): void {
     connection.ontrack = (event) => {
       if (connection !== pc) return; // событие от уже похороненного PC — шум
-      if (event?.track) remoteTrack = event.track;
+      const incomingTrack = event?.track;
+      if (!incomingTrack || (incomingTrack.kind && incomingTrack.kind !== 'audio')) return;
+      remoteStream = event.streams?.[0] ?? null;
+      // Предпочитаем трек сохранённого stream: сам stream остаётся достижимым
+      // весь звонок и не может быть собран JS-движком после callback ontrack.
+      remoteTrack = remoteStream?.getAudioTracks?.()[0] ?? incomingTrack;
+      remoteTrack.enabled = true;
+      clearRemoteTrackTimer();
+      ensureSpeakerRoute();
     };
     connection.oniceconnectionstatechange = () => {
       if (connection !== pc) return; // stale PC после ре-минта
@@ -1065,6 +1202,11 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   /** ICE и data channel сходятся в один контролируемый reconnect-путь. */
   function beginReconnect(): void {
     if (phase !== 'active') return;
+    // response.done мог потеряться вместе с линией. После восстановления UI
+    // начинает новый ход, поэтому старый локальный lock не должен жить вечно.
+    responseActive = false;
+    responseRequestPending = false;
+    defaultResponseQueued = false;
     setPhase('reconnecting');
     emitUi({ type: 'reconnect_started' });
     try {
@@ -1122,6 +1264,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       endAfterAudioTimer = null;
     }
     endAfterAudioReason = null;
+    clearRemoteTrackTimer();
     try {
       dc?.close();
     } catch {}
@@ -1139,6 +1282,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     } catch {}
     localStream = null;
     remoteTrack = null;
+    remoteStream = null;
     const shouldPlayEndCue = inCallStarted && startedAtMs !== null;
     if (inCallStarted) {
       try {
@@ -1181,6 +1325,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
           endReason: toServerEndReason(reason),
           elapsedSec: finalElapsed,
           usage: { ...usage },
+          ...(firstRemoteAudioLatencyMs === null ? {} : { firstRemoteAudioLatencyMs }),
         })).catch(() => {
           // Недоотчитавшуюся сессию дожмёт серверный watchdog по heartbeat.
         });
@@ -1348,10 +1493,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         content: [{ type: 'input_text', text: mint.wrapUpText }],
       },
     });
-    dcSend({
-      type: 'response.create',
-      response: { max_output_tokens: INJECTED_MAX_TOKENS },
-    });
+    queueDefaultResponse();
     emitUi({ type: 'wrap_up' });
   }
 
@@ -1361,10 +1503,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       type: 'conversation.item.create',
       item: { type: 'message', role: 'system', content: [{ type: 'input_text', text }] },
     });
-    if (opts?.respond !== false) {
-      // Гонку с активным response сервер вернёт error-событием — оно no-op.
-      dcSend({ type: 'response.create', response: { max_output_tokens: INJECTED_MAX_TOKENS } });
-    }
+    if (opts?.respond !== false) queueDefaultResponse();
   }
 
   function sendToolResult(callId: string, output: unknown, opts?: { respond?: boolean }): void {
@@ -1377,16 +1516,12 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         output: typeof output === 'string' ? output : JSON.stringify(output ?? {}),
       },
     });
-    if (opts?.respond !== false) dcSend({ type: 'response.create' });
+    if (opts?.respond !== false) queueDefaultResponse();
   }
 
-  function sendHintResponse(instructions: string, maxOutputTokens = INJECTED_MAX_TOKENS): void {
-    if (isTornDown()) return;
-    // Гонку с активным response сервер вернёт error-событием — оно no-op.
-    dcSend({
-      type: 'response.create',
-      response: { instructions, max_output_tokens: maxOutputTokens },
-    });
+  function sendHintResponse(instructions: string, maxOutputTokens = INJECTED_MAX_TOKENS): boolean {
+    if (isTornDown() || defaultResponseQueued) return false;
+    return requestResponse({ instructions, max_output_tokens: maxOutputTokens });
   }
 
   return {
@@ -1401,6 +1536,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     sendHintResponse,
     sendSystemNote,
     sendToolResult,
+    retryReconnect,
     endAfterAudio,
     end,
   };

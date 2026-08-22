@@ -13,6 +13,8 @@
 //
 // Ноль React/нативных импортов — модуль детерминирован и покрыт юнит-тестами.
 
+import { MAX_CALL_ORB_HYBRID } from '../constants/motionHybrid';
+
 /** Один нормализованный тик уровней звука. `null` = данных нет (fallback UI). */
 export interface AudioLevelSample {
   /** Уровень микрофона юзера (media-source.audioLevel), 0..1 или null. */
@@ -39,6 +41,27 @@ function clamp01OrNull(value: unknown): number | null {
   const n = finiteOrNull(value);
   if (n === null) return null;
   return n < 0 ? 0 : n > 1 ? 1 : n;
+}
+
+function clamp01(value: number): number {
+  return value < 0 ? 0 : value > 1 ? 1 : value;
+}
+
+/** Сглаженная огибающая голоса MAX: без рывка на каждом отдельном слове. */
+export function smoothRemoteAudioLevel(previous: number, remote: number): number {
+  const safePrevious = Number.isFinite(previous) ? clamp01(previous) : 0;
+  const safeRemote = Number.isFinite(remote) ? clamp01(remote) : 0;
+  return safePrevious * 0.72 + safeRemote * 0.28;
+}
+
+/** Чистая проекция уровня remote-аудио в масштаб сферы; микрофон не участвует. */
+export function orbScale(
+  sample: AudioLevelSample,
+  previous = 0,
+  reduceMotion = false,
+): number {
+  if (reduceMotion || sample.remote === null || !Number.isFinite(sample.remote)) return 1;
+  return 1 + smoothRemoteAudioLevel(previous, sample.remote) * MAX_CALL_ORB_HYBRID.audioScaleMax;
 }
 
 /**

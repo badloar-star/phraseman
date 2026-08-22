@@ -71,7 +71,6 @@ export interface MaxVoiceConfig {
   monthlyVoiceSecMax: number;
   trialCallSec: number;
   trialRefreshDays: number;
-  trialSrsThreshold: number;
   trialMode: VoiceTrialMode;
   maxResponseOutputTokens: Record<VoiceCefr, number> & { injected: number };
   vadEagerness: Record<VoiceCefr, VadEagerness>;
@@ -122,7 +121,6 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   monthlyVoiceSecMax: 172_800,
   trialCallSec: 180,
   trialRefreshDays: 30,
-  trialSrsThreshold: 15,
   trialMode: 'auto',
   // зачем: владелец 2026-08-16 — «она очень часто не договаривает до конца,
   // будто обрывается». max_output_tokens в Realtime считает АУДИО-токены
@@ -131,12 +129,12 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   // держит промпт; поэтому 25–50 с речи, а не 6–8. injected (приветствие,
   // подсказка, прощание) — 40 с: прощание в два хода не должно рваться.
   maxResponseOutputTokens: { A1: 500, A2: 600, B1: 800, B2: 1000, injected: 800 },
-  // зачем: владелец 2026-08-16 — ИИ «начинает говорить, обрывает сама и снова
-  // говорит». При eagerness=high semantic VAD считал паузу ученика концом
-  // реплики, отвечал, ученик продолжал — ответ рвался, и так по кругу.
-  // Новичкам (A1/A2) нужна терпеливая VAD (low), B1/B2 — medium; interrupt_response
-  // в минте по-прежнему держит живой barge-in голосом.
-  vadEagerness: { A1: 'low', A2: 'low', B1: 'medium', B2: 'medium' },
+  // semantic_vad low может держать законченную фразу до 8 с — пользователь уже
+  // всё сказал, а экран всё ещё пишет «Слушаю». Medium оставляет новичкам паузу
+  // до 4 с, high ограничивает уверенную речь B1/B2 двумя секундами. При этом
+  // interrupt_response выключен в минте, поэтому ложный VAD от громкой связи
+  // не обрывает незаконченную реплику MAX.
+  vadEagerness: { A1: 'medium', A2: 'medium', B1: 'high', B2: 'high' },
   truncationRetentionRatio: 0.8,
   pruneMode: 'retention',
   reinjectEveryTurns: 9,
@@ -277,7 +275,6 @@ export function clampMaxVoiceConfig(raw: unknown): MaxVoiceConfig {
     monthlyVoiceSecMax: clampInt(r.monthlyVoiceSecMax, 60, 172_800, d.monthlyVoiceSecMax),
     trialCallSec: clampInt(r.trialCallSec, 30, HARD_MAX_SESSION_SEC, d.trialCallSec),
     trialRefreshDays: clampInt(r.trialRefreshDays, 1, 365, d.trialRefreshDays),
-    trialSrsThreshold: clampInt(r.trialSrsThreshold, 0, 500, d.trialSrsThreshold),
     trialMode: pickEnum(r.trialMode, ['auto', 'scenario', 'companion'] as const, d.trialMode),
     maxResponseOutputTokens: {
       ...cefrMap(tokens, tokenCap, d.maxResponseOutputTokens),

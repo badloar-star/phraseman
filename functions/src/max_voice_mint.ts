@@ -22,7 +22,7 @@ import { resolvePremiumAccess } from './premium_status';
 import { aiGloballyDisabled } from './remote_gates';
 import { resolveMaxVoiceConfig, type MaxVoiceConfig } from './max_voice_config';
 import {
-  TUTOR_GREETING_INSTRUCTIONS,
+  tutorGreetingInstructionsFor,
   TUTOR_TOOLS,
   asVoiceCefr,
   buildVoiceInstructions,
@@ -33,17 +33,17 @@ import {
   loadTutorAppDigest,
   readTutorMemory,
   renderTutorMemoryBlock,
+  selectTutorLessonType,
   tutorLessonTypeFor,
 } from './max_voice_tutor_memory';
-import { resolveStudyTarget, studyTargetName } from './ai_language_contract';
 import {
-  CAN_DO_GOALS_TOTAL,
   canDoProgress,
   levelFromMastery,
   pickNextGoal,
   planUpcomingLessons,
   renderCanDoGoalBlock,
 } from './max_voice_can_do_goals';
+import { buildTutorPreview } from './max_voice_tutor_preview';
 import {
   VOICE_QUOTA_COLLECTION,
   releaseVoiceReservation,
@@ -52,6 +52,12 @@ import {
   transferReserve,
   voiceQuotaDocId,
 } from './max_voice_quota';
+import {
+  MAX_VOICE_OPS_EVENT_SCHEMA,
+  maxVoiceOpsLevel,
+  maxVoiceOpsLocale,
+  recordMaxVoiceOpsOnce,
+} from './max_voice_ops';
 
 // Идемпотентный бутстрап: модуль может грузиться и напрямую (targeted deploy),
 // и через lib/index.js — паттерн premium_dialog.ts.
@@ -246,17 +252,6 @@ export function resolveTrialState(
 
 export type VoiceTrialVariant = 'companion' | 'scenario';
 
-/**
- * Ветвление пробника: SRS ≥ порога И уровень ≥ A2 → companion (есть о чём
- * говорить), иначе кофейный сценарий с Mia. trialMode из конфига — рычаг A/B.
- */
-export function chooseTrialVariant(config: MaxVoiceConfig, srsCount: number, cefr: string): VoiceTrialVariant {
-  if (config.trialMode === 'companion') return 'companion';
-  if (config.trialMode === 'scenario') return 'scenario';
-  const level = asVoiceCefr(cefr);
-  return srsCount >= config.trialSrsThreshold && level !== 'A1' ? 'companion' : 'scenario';
-}
-
 /** Персона и сцена дефолтного пробника (сценарная ветка): кофейня с Mia. */
 export const TRIAL_PERSONA_NAME = 'Mia';
 export const TRIAL_PERSONA_ROLE = 'a friendly barista at a cozy coffee shop';
@@ -418,9 +413,10 @@ export const maxVoicePreflight = onCall({
   }
 
   const nowMs = Date.now();
+  const data = (request.data ?? {}) as Record<string, unknown>;
   const ctx = await resolveVoiceGates(
     request.auth.uid,
-    (request.data ?? {}) as Record<string, unknown>,
+    data,
     nowMs,
     request.auth.token?.admin === true,
   );
@@ -429,6 +425,16 @@ export const maxVoicePreflight = onCall({
     console.warn('max_voice_preflight rejected', { reason: 'voice_quota_exhausted', dayRemainingSec, monthRemainingSec });
     throw new HttpsError('resource-exhausted', 'voice_quota_exhausted');
   }
+  const format = formatOf(data, ctx.access, ctx.trialVariant);
+  const tutorPreview = format === 'tutor'
+    ? buildTutorPreview({
+        memory: await readTutorMemory(ctx.db, ctx.authUid, ctx.stableUid),
+        cefr: asVoiceCefr(data.cefr),
+        interfaceLang: text(data.interfaceLang, 8),
+        tutorName: ctx.config.tutorName,
+        nowMs,
+      })
+    : null;
 
   return {
     ok: true,
@@ -436,6 +442,7 @@ export const maxVoicePreflight = onCall({
     access: ctx.access,
     trialVariant: ctx.trialVariant,
     degradeMode: ctx.config.degradeMode,
+    ...(tutorPreview ? { tutorPreview } : {}),
     limits: {
       dayRemainingSec,
       monthRemainingSec,
@@ -475,6 +482,9 @@ function clientSecretBody(args: ClientSecretArgs, profile: ProviderMintProfile):
     type: 'realtime',
     model: args.config.model,
     instructions: args.instructions,
+    // Текстовая транскрипция output-аудио приходит отдельными событиями и не
+    // является гарантией, что модель действительно синтезирует голос.
+    output_modalities: ['audio'],
     audio: { output: { voice } },
   };
 
@@ -496,8 +506,15 @@ function clientSecretBody(args: ClientSecretArgs, profile: ProviderMintProfile):
         turn_detection: {
           type: 'semantic_vad',
           eagerness: args.config.vadEagerness[args.cefr],
-          create_response: true,
-          interrupt_response: true,
+          // Ответ создаёт клиент после speech_stopped, но только когда текущая
+          // генерация завершена и её output-аудио доиграло. При сочетании
+          // create_response:true + interrupt_response:false провайдер прямо
+          // допускает потерю нового ответа, если предыдущий ещё активен.
+          create_response: false,
+          // Не обрываем незаконченную фразу MAX по одному VAD start. На
+          // громкой связи даже после AEC/far_field возможен ложный speech_start;
+          // Клиент создаёт ответ сам после подтверждённого speech_stopped.
+          interrupt_response: false,
           // idle_timeout_ms здесь намеренно НЕТ: OpenAI принимает его только
           // для server_vad, а semantic_vad с этим полем отклоняет весь mint.
         },
@@ -736,6 +753,19 @@ export const maxVoiceMint = onCall({
     }
   }
 
+  const opsMarkerRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid));
+  const recordMintStage = (stage: 'mint_requested' | 'quota_reserved' | 'reconnect_attempt' | 'mint_succeeded' | 'mint_failed', extra: Record<string, unknown> = {}) => (
+    recordMaxVoiceOpsOnce(db, {
+      markerRef: opsMarkerRef,
+      markerId: sessionId,
+      event: { schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage, ...extra },
+      nowMs: Date.now(),
+    }).catch(() => undefined)
+  );
+  await recordMintStage('mint_requested');
+  await recordMintStage('quota_reserved');
+  if (reconnectOf) await recordMintStage('reconnect_attempt');
+
   // Оценка стоимости — в дневной счётчик бюджета (сторно вернёт сеттлмент).
   // Reconnect бюджет НЕ двигает: перенесённые секунды уже забюджетированы
   // исходным минтом, повторный резерв задваивал бы дневной estUsd.
@@ -760,6 +790,15 @@ export const maxVoiceMint = onCall({
     ? levelFromMastery(tutorMemory.goalMastery, cefr)
     : cefr;
   const currentGoal = tutorMemory ? pickNextGoal(tutorMemory.goalMastery, goalLevel) : null;
+  const tutorPreview = tutorMemory
+    ? buildTutorPreview({
+        memory: tutorMemory,
+        cefr,
+        interfaceLang: text(data.interfaceLang, 8),
+        tutorName: config.tutorName,
+        nowMs,
+      })
+    : null;
   const goalBlock = tutorMemory && currentGoal && goalProgressNow
     ? renderCanDoGoalBlock(currentGoal, tutorMemory.goalMastery, goalProgressNow)
     : '';
@@ -774,7 +813,7 @@ export const maxVoiceMint = onCall({
     ...(isTutor
       ? {
           learnerLangName: learnerLangNameFor(text(data.interfaceLang, 8)),
-          targetLangName: studyTargetName(resolveStudyTarget(data.studyTarget)),
+          targetLangName: 'English',
           appDigest,
           sceneCatalog: text(data.sceneCatalog, 2000),
           learnerSnapshot: text(data.learnerSnapshot, 2400),
@@ -803,6 +842,7 @@ export const maxVoiceMint = onCall({
     const refundedSec = released && !released.alreadySettled ? released.refundedSec : 0;
     await refundVoiceBudgetEstimate(db, (refundedSec / 60) * VOICE_EST_COST_USD_PER_MIN, Date.now())
       .catch(() => {});
+    await recordMintStage('mint_failed');
     if (!reconnectOf) {
       // Сбой провайдера — не поведение пользователя: слот rate limit
       // возвращается целиком (floor 0). Reconnect слота не занимал.
@@ -812,6 +852,12 @@ export const maxVoiceMint = onCall({
     console.error('max_voice_mint provider exception', String((error as Error)?.message ?? error).slice(0, 500));
     throw new HttpsError('unavailable', 'voice_provider_failed');
   }
+
+  await recordMintStage('mint_succeeded', {
+    latencyMs: Math.max(0, Date.now() - nowMs),
+    locale: maxVoiceOpsLocale(data.interfaceLang),
+    level: maxVoiceOpsLevel(cefr),
+  });
 
   if (ctx.access === 'trial' && !reconnectOf) {
     await markVoiceTrialUsed(db, { authUid, stableUid, nowMs }).catch(() => {});
@@ -846,23 +892,28 @@ export const maxVoiceMint = onCall({
       ? {
           tutor: {
             name: config.tutorName,
-            greetingInstructions: TUTOR_GREETING_INSTRUCTIONS,
+            greetingInstructions: tutorGreetingInstructionsFor(maxSeconds),
             lessonsSoFar: tutorMemory?.callCount ?? 0,
             homework: tutorMemory?.homework ?? [],
             nextTopic: tutorMemory?.nextTopic ?? '',
+            ...(tutorPreview ? { preview: tutorPreview } : {}),
             // План сегодняшнего урока для экрана «Учитель»: тип урока и сколько
             // фраз созрело для повторения речи (ступень 1 плана обучения).
             plan: {
-              lessonType: tutorLessonTypeFor(tutorMemory?.callCount ?? 0),
+              lessonType: tutorMemory ? selectTutorLessonType(tutorMemory, nowMs) : 'new_material',
               duePhrases: tutorMemory ? duePhrases(tutorMemory, nowMs).map((p) => p.text) : [],
               scenesDone: tutorMemory?.scenesDone ?? 0,
               scenesTotal: tutorMemory?.scenesTotal ?? 0,
               // Карта речевых целей: текущая цель + «14 из 60».
               goal: currentGoal
-                ? { id: currentGoal.id, level: currentGoal.level, title: currentGoal.title, mastery: tutorMemory?.goalMastery[currentGoal.id] ?? 0 }
+                ? {
+                    id: currentGoal.id,
+                    level: currentGoal.level,
+                    title: currentGoal.title,
+                    mastery: tutorMemory?.goalMastery[currentGoal.id] ?? 0,
+                    sceneIds: currentGoal.sceneIds,
+                  }
                 : null,
-              goalsDone: goalProgressNow?.done ?? 0,
-              goalsTotal: CAN_DO_GOALS_TOTAL,
               // Ступень 3: ближайшие уроки (тип + цель) для экрана «Учитель».
               upcoming: tutorMemory
                 ? planUpcomingLessons(tutorMemory.goalMastery, goalLevel, tutorMemory.callCount, 5, tutorLessonTypeFor)

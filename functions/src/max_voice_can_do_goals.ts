@@ -1,3 +1,5 @@
+import { B2_CAN_DO_GOALS } from './max_voice_can_do_goals_b2';
+
 // ═══════════════════════════════════════════════════════════════════════════
 // max_voice_can_do_goals.ts — карта речевых целей учителя (ступень 2 плана
 // обучения, решение владельца 2026-08-17: «~60 целей до B1, прогресс виден»).
@@ -9,17 +11,21 @@
 //
 // Единый источник — сервер: минт выбирает текущую цель и кладёт её в промпт и в
 // ответ (клиент показывает «14 / 60 до B1»), разбор пишет mastery в память.
-// Английский — язык курса по умолчанию; для французского курса цели те же по
-// смыслу (учитель адаптирует фразы сам), это осознанное упрощение v1.
+// Текущий MAX-учитель преподаёт только английский. Будущие языки обязаны
+// получить собственные фразы/грамматику, а не перевод этой карты моделью на лету.
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type CanDoLevel = 'A1' | 'A2' | 'B1';
+export type CanDoLevel = 'A1' | 'A2' | 'B1' | 'B2';
+
+export const MAX_TEXT_LANGS = ['en', 'ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+export type MaxTextLanguage = typeof MAX_TEXT_LANGS[number];
+export type LocalizedMaxText = Readonly<Record<MaxTextLanguage, string>>;
 
 export interface CanDoGoal {
   id: string;
   level: CanDoLevel;
   /** Короткое название для ученика (интерфейс). */
-  title: { en: string; ru: string; uk: string };
+  title: LocalizedMaxText;
   /** Формулировка для учителя: что ученик должен уметь после закрытия цели. */
   canDo: string;
   /** Опорные фразы (материал урока и повторения). */
@@ -40,9 +46,20 @@ const G = (
   phrases: string[],
   grammar: string,
   sceneIds: string[] = [],
-): CanDoGoal => ({ id, level, title: { en, ru, uk }, canDo, phrases, grammar, sceneIds });
+): CanDoGoal => ({
+  id,
+  level,
+  // English is the target-language label and therefore the safe authored
+  // fallback for catalog rows that predate the expanded UI locale set. It is
+  // never replaced with Russian for another interface language.
+  title: { en, ru, uk, es: en, 'pt-BR': en, vi: en, id: en, tr: en, pl: en },
+  canDo,
+  phrases,
+  grammar,
+  sceneIds,
+});
 
-/** 60 целей: 20 × A1, 22 × A2, 18 × B1. Порядок = порядок прохождения. */
+/** 78 целей: 20 × A1, 22 × A2, 18 × B1, 18 × B2. */
 export const CAN_DO_GOALS: readonly CanDoGoal[] = Object.freeze([
   // ── A1 (20) ────────────────────────────────────────────────────────────────
   G('a1_greet', 'A1', 'Greet and say goodbye', 'Поздороваться и попрощаться', 'Привітатися й попрощатися',
@@ -229,11 +246,12 @@ export const CAN_DO_GOALS: readonly CanDoGoal[] = Object.freeze([
   G('b1_presentation', 'B1', 'Speak for a minute', 'Говорить минуту без остановки', 'Говорити хвилину без зупинки',
     'speak for about a minute on a familiar topic with a clear structure',
     ["I'd like to talk about …", 'There are three things I want to mention.', 'First of all, … Secondly, …', 'To sum up, …'], 'gerund', ['surprise_guest_speech']),
+  ...B2_CAN_DO_GOALS,
 ]);
 
 export const CAN_DO_GOALS_TOTAL = CAN_DO_GOALS.length;
 
-const LEVEL_ORDER: readonly CanDoLevel[] = ['A1', 'A2', 'B1'];
+const LEVEL_ORDER: readonly CanDoLevel[] = ['A1', 'A2', 'B1', 'B2'];
 
 export function canDoGoalById(id: string): CanDoGoal | undefined {
   return CAN_DO_GOALS.find((g) => g.id === id);
@@ -261,7 +279,7 @@ export function parseCanDoMastery(value: unknown): CanDoMastery {
  * уже умеет по эвристике), но учитываются в счётчике как «пропущенные».
  */
 export function pickNextGoal(mastery: CanDoMastery, level: string): CanDoGoal | null {
-  const start = Math.max(0, LEVEL_ORDER.indexOf((level === 'B2' ? 'B1' : level) as CanDoLevel));
+  const start = Math.max(0, LEVEL_ORDER.indexOf(level as CanDoLevel));
   for (let i = start; i < LEVEL_ORDER.length; i += 1) {
     const goal = CAN_DO_GOALS.find((g) => g.level === LEVEL_ORDER[i] && (mastery[g.id] ?? 0) < 3);
     if (goal) return goal;
@@ -272,7 +290,7 @@ export function pickNextGoal(mastery: CanDoMastery, level: string): CanDoGoal | 
 /** Прогресс для UI: закрыто (mastery 3) / всего, и сколько закрыто на уровне цели. */
 export function canDoProgress(mastery: CanDoMastery): { done: number; total: number; byLevel: Record<CanDoLevel, { done: number; total: number }> } {
   const byLevel: Record<CanDoLevel, { done: number; total: number }> = {
-    A1: { done: 0, total: 0 }, A2: { done: 0, total: 0 }, B1: { done: 0, total: 0 },
+    A1: { done: 0, total: 0 }, A2: { done: 0, total: 0 }, B1: { done: 0, total: 0 }, B2: { done: 0, total: 0 },
   };
   let done = 0;
   for (const g of CAN_DO_GOALS) {
@@ -288,25 +306,26 @@ export function canDoProgress(mastery: CanDoMastery): { done: number; total: num
  */
 export function levelFromMastery(mastery: CanDoMastery, fallback: string): CanDoLevel {
   const p = canDoProgress(mastery);
-  for (const level of LEVEL_ORDER) {
+  const floor = LEVEL_ORDER.includes(fallback as CanDoLevel) ? fallback as CanDoLevel : 'A1';
+  const floorIndex = LEVEL_ORDER.indexOf(floor);
+  for (let i = floorIndex; i < LEVEL_ORDER.length; i += 1) {
+    const level = LEVEL_ORDER[i];
     const { done, total } = p.byLevel[level];
     if (total > 0 && done / total < 0.8) return level;
   }
-  return 'B1';
-  // fallback используется только когда целей ещё нет — см. вызывающий.
-  void fallback;
+  return 'B2';
 }
 
 /** Блок цели для промпта учителя (в хвост памяти). */
-export function renderCanDoGoalBlock(goal: CanDoGoal, mastery: CanDoMastery, progress: ReturnType<typeof canDoProgress>): string {
+export function renderCanDoGoalBlock(goal: CanDoGoal, mastery: CanDoMastery, _progress: ReturnType<typeof canDoProgress>): string {
   const m = mastery[goal.id] ?? 0;
   const lines = [
     'CURRENT SPEAKING GOAL (the learner\'s progress map; lead them to close it)',
     `Goal ${goal.id} (${goal.level}): the learner can ${goal.canDo}. Mastery so far: ${m}/3.`,
     `Target phrases: ${goal.phrases.join(' | ')}. Grammar focus: ${goal.grammar}.`,
     goal.sceneIds.length > 0 ? `Check it in a scene task, e.g. start_scene("${goal.sceneIds[0]}").` : 'Check it with a mini role-play you invent.',
-    'At the end of the lesson call mark_goal_progress(goal_id, mastery 0-3): 1 = tried with help, 2 = mostly independent, 3 = confident and correct — then the next goal opens.',
-    `Progress map: ${progress.done} of ${progress.total} goals closed (A1 ${progress.byLevel.A1.done}/${progress.byLevel.A1.total}, A2 ${progress.byLevel.A2.done}/${progress.byLevel.A2.total}, B1 ${progress.byLevel.B1.done}/${progress.byLevel.B1.total}). Mention it briefly when it changes.`,
+    'At the end call mark_goal_progress: 1 = tried with help, 2 = mostly independent, 3 = independent transfer after prior evidence plus a relevant completed scene (or a changed-context mini role-play when no scene is catalogued).',
+    'Do not announce an aggregate count of completed goals. Keep the learner focused on the one current speaking goal.',
   ];
   return lines.join('\n');
 }

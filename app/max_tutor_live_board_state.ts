@@ -114,6 +114,10 @@ export function reduceTutorLiveUi(
       return board === state.board && notice === state.notice ? state : { ...state, board, notice };
     }
     case 'speech_started':
+      // Речь ученика убирает только учебную подсказку. Подтверждение новой темы
+      // живёт собственные две секунды, иначе быстрый ответ стирает его до того,
+      // как ученик успеет увидеть, что MAX действительно переключился.
+      return state.board === null ? state : { ...state, board: null };
     case 'reconnecting':
     case 'background':
     case 'ended':

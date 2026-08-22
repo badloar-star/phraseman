@@ -14,7 +14,7 @@
  * ИИ замолчал, пока тот продолжает говорить из jitter-буфера.
  */
 
-/** Фазы экрана звонка. `ended`/`failed` — терминальные, из них выхода нет. */
+/** Фазы экрана звонка. `ended` — единственная терминальная UI-фаза. */
 export type MaxCallUiPhase =
   | 'connecting'
   | 'connected_greeting'
@@ -24,8 +24,8 @@ export type MaxCallUiPhase =
   | 'barge_in'
   | 'reconnecting'
   | 'wrapping_up'
-  | 'ended'
-  | 'failed';
+  | 'failed'
+  | 'ended';
 
 /** События: серверные (data channel) + клиентские (reconnect, таймеры, кнопки). */
 export type MaxCallUiEvent =
@@ -39,8 +39,10 @@ export type MaxCallUiEvent =
   | { type: 'audio_out_cleared' }
   | { type: 'response_done' }
   | { type: 'reconnect_started' }
+  | { type: 'transport_lost' }
   | { type: 'reconnected' }
   | { type: 'wrap_up' }
+  | { type: 'learner_end_requested' }
   | { type: 'end' }
   | { type: 'fail'; reason: string }
   | { type: 'barge_in_optimistic' }
@@ -48,8 +50,6 @@ export type MaxCallUiEvent =
 
 export interface MaxCallUiState {
   phase: MaxCallUiPhase;
-  /** Причина провала — только в 'failed', иначе null. */
-  failReason: string | null;
   /** Чьи бары красит эквалайзер: turn-taking читается периферийным зрением. */
   eqOwner: 'user' | 'ai' | 'idle';
   /**
@@ -58,11 +58,12 @@ export interface MaxCallUiState {
    * ломает сценарий (и жжёт токены на response, который никто не услышит).
    */
   allowHintTimer: boolean;
+  /** Stable machine-readable failure shown until the learner chooses. */
+  failureCode?: string;
 }
 
 export const MAX_CALL_UI_INITIAL: MaxCallUiState = {
   phase: 'connecting',
-  failReason: null,
   eqOwner: 'idle',
   allowHintTimer: false,
 };
@@ -89,7 +90,6 @@ const ACTIVE_PHASES: readonly MaxCallUiPhase[] = [
 function make(phase: MaxCallUiPhase, eqOwner: MaxCallUiState['eqOwner']): MaxCallUiState {
   return {
     phase,
-    failReason: null,
     eqOwner,
     allowHintTimer: HINT_ALLOWED_PHASES.includes(phase),
   };
@@ -101,22 +101,30 @@ function make(phase: MaxCallUiPhase, eqOwner: MaxCallUiState['eqOwner']): MaxCal
  * UI, ни дёргать лишний рендер. Никогда не бросает.
  */
 export function reduceMaxCallUi(state: MaxCallUiState, event: MaxCallUiEvent): MaxCallUiState {
-  // Терминальные фазы поглощают всё: после ended/failed любые хвостовые
+  // Терминальная фаза поглощает всё: после ended любые хвостовые
   // события сети (дозвучавший response.done, поздний reconnect) — шум.
-  if (state.phase === 'ended' || state.phase === 'failed') return state;
+  if (state.phase === 'ended') return state;
+
+  if (state.phase === 'failed') {
+    if (event.type === 'end') return make('ended', 'idle');
+    if (event.type === 'reconnect_started' || event.type === 'transport_lost') return make('reconnecting', 'idle');
+    return state;
+  }
 
   // Глобальные переходы — валидны из любой нетерминальной фазы.
   switch (event.type) {
     case 'fail':
-      return { phase: 'failed', failReason: event.reason, eqOwner: 'idle', allowHintTimer: false };
+      return { phase: 'failed', eqOwner: 'idle', allowHintTimer: false, failureCode: event.reason };
     case 'end':
-      return { phase: 'ended', failReason: null, eqOwner: 'idle', allowHintTimer: false };
+      return { phase: 'ended', eqOwner: 'idle', allowHintTimer: false };
     case 'reconnect_started':
+    case 'transport_lost':
       // Обрыв возможен в любой момент разговора; в connecting свой fail-путь.
       if (state.phase === 'reconnecting') return state;
       if (!ACTIVE_PHASES.includes(state.phase)) return state;
       return make('reconnecting', 'idle');
     case 'wrap_up':
+    case 'learner_end_requested':
       // Прощание — только из живого разговора; во время реконнекта клиент
       // перепошлёт [WRAP_UP] после восстановления линии.
       if (state.phase === 'wrapping_up' || state.phase === 'reconnecting') return state;
@@ -151,8 +159,9 @@ export function reduceMaxCallUi(state: MaxCallUiState, event: MaxCallUiEvent): M
           if (state.eqOwner === 'ai') return state;
           return make('listening', 'user');
         case 'speech_started':
-          // Юзер перебил приветствие (interrupt_response включён) — его ход.
-          return make('listening', 'user');
+          // Авто-interrupt выключен: VAD-start (включая эхо) не имеет права
+          // открыть следующий ход, пока приветствие физически звучит.
+          return state;
         default:
           return state;
       }
@@ -191,8 +200,10 @@ export function reduceMaxCallUi(state: MaxCallUiState, event: MaxCallUiEvent): M
     case 'ai_speaking':
       switch (event.type) {
         case 'speech_started':
-          // Серверный barge-in (semantic_vad) — основной путь.
-          return make('barge_in', 'user');
+          // Авто-interrupt выключен на сервере: VAD-start во время вывода может
+          // быть эхом громкой связи. Ждём фактического stopped/cleared, иначе
+          // hint-таймер запустит следующую реплику поверх ещё звучащей.
+          return state;
         case 'barge_in_optimistic':
           // Локальный оптимизм (RTT>300мс или тихий remote-трек); подтверждение
           // либо придёт speech_started'ом, либо barge_in_timeout откатит.

@@ -3,6 +3,7 @@ import path from 'path';
 import { SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
 import {
   TUTOR_GREETING_INSTRUCTIONS,
+  tutorGreetingInstructionsFor,
   TUTOR_TOOLS,
   VOICE_COMPANION_BLOCK,
   VOICE_REGULATED_ADVICE_HARD_STOP,
@@ -247,7 +248,39 @@ describe('tutor instructions', () => {
       cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian', targetLangName: 'English',
     });
     expect(instr).toContain('The learning goal and conversation topic are separate');
+    expect(instr).toContain('If the learner asks to return to the lesson plan, current goal, or guided topic');
+    expect(JSON.stringify(TUTOR_TOOLS)).toContain('switch back from free talk to the lesson');
     expect(instr).toContain('Never show a recast when recognition is uncertain');
+  });
+
+  it('адаптирует один ясный план к фактическому времени и не перегружает начало', () => {
+    const instr = buildVoiceInstructions({
+      cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Ukrainian',
+    });
+    expect(instr).toContain('QUICK SLOT (up to 4 minutes)');
+    expect(instr).toContain('FOCUSED LESSON (5-15 minutes)');
+    expect(instr).toContain('EXTENDED PRACTICE (more than 15 minutes)');
+    expect(instr).toContain('say the available time and your compact plan once');
+    expect(instr).not.toContain('for every phrase in PHRASES DUE');
+    expect(instr).toContain('ONE primary communicative goal');
+    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('available lesson time and the compact plan');
+    expect(tutorGreetingInstructionsFor(180)).toContain('3 minutes');
+    expect(tutorGreetingInstructionsFor(180)).toContain('QUICK SLOT');
+    expect(tutorGreetingInstructionsFor(600)).toContain('FOCUSED LESSON');
+    expect(tutorGreetingInstructionsFor(2700)).toContain('EXTENDED PRACTICE');
+  });
+
+  it('использует лестницу исправлений и оставляет ученику один осмысленный выбор', () => {
+    const instr = buildVoiceInstructions({
+      cefr: 'B1', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Polish',
+    });
+    expect(instr).toContain('CORRECTION LADDER');
+    expect(instr).toContain('do not correct every learner turn');
+    expect(instr).toContain('uncertain recognition');
+    expect(instr).toContain('offer at most ONE meaningful choice');
+    expect(instr).not.toContain('YOU decide what happens next');
+    expect(instr).not.toContain('Отлично!');
+    expect(instr).not.toContain('говори по-русски');
   });
 
   it('статичный префикс учителя: имя, уровень, родной язык; языковая политика A1 = учить на родном', () => {
@@ -262,6 +295,8 @@ describe('tutor instructions', () => {
     expect(instr).toContain('level A1, native language Polish');
     expect(instr).toContain('A1: TEACH IN Polish');
     expect(instr).toContain('YOU own the clock');
+    expect(instr).toContain('If the learner asks to stop, finish, end, or hang up');
+    expect(JSON.stringify(TUTOR_TOOLS)).toContain('learner asks to stop or end');
     expect(instr).toContain('end_call(): ONLY after your complete goodbye');
     expect(instr).toContain(VOICE_REGULATED_ADVICE_HARD_STOP);
     expect(instr.trim().endsWith(VOICE_UNTRUSTED_ANCHOR)).toBe(true);
@@ -310,18 +345,15 @@ describe('tutor instructions', () => {
     expect(instr).toContain('This applies even when YOU bring up the example, not only when the learner does');
   });
 
-  it('изучаемый язык подставляется (французский курс) и учитель не переключается на другой язык по просьбе', () => {
+  it('MAX пока преподаёт только английский, даже если устаревший клиент прислал французский target', () => {
     const fr = buildVoiceInstructions({
       cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian', targetLangName: 'French',
     });
-    expect(fr).toContain('personal French TEACHER');
+    expect(fr).toContain('personal English TEACHER');
     expect(fr).toContain('level A2, native language Russian');
-    expect(fr).toContain('ONE COURSE PER LESSON: the learner is studying French');
+    expect(fr).toContain('ONE COURSE PER LESSON: the learner is studying English');
     expect(fr).toContain('other languages can be chosen as a separate study language in the app settings');
-    // В собственном тексте учителя английский остаётся только в примере про смену курса
-    // (общие SAFETY-блоки ниже — дословный контракт с premium_dialog, их не трогаем).
-    const own = fr.slice(0, fr.indexOf('\nSAFETY\n'));
-    expect(own.split('English').length - 1).toBe(1);
+    expect(fr).not.toContain('personal French TEACHER');
   });
 
   it('SAFETY PLAYBOOK: кризис, секс/флирт, травля, насилие/незаконное, несовершеннолетние, политика, инъекции — вежливый отказ и возврат к уроку', () => {
@@ -370,7 +402,13 @@ describe('tutor instructions', () => {
     expect(a).toContain("THE LEARNER'S WISH WINS");
     expect(a).toContain('set_language_preference');
     expect(TUTOR_GREETING_INSTRUCTIONS).toContain('LANGUAGE POLICY');
-    expect(learnerLangNameFor('pt-BR')).toBe('Brazilian Portuguese');
-    expect(learnerLangNameFor('zz')).toBe('Russian');
+    expect([
+      learnerLangNameFor('ru'), learnerLangNameFor('uk'), learnerLangNameFor('es'), learnerLangNameFor('pt-BR'),
+      learnerLangNameFor('vi'), learnerLangNameFor('id'), learnerLangNameFor('tr'), learnerLangNameFor('pl'),
+    ]).toEqual([
+      'Russian', 'Ukrainian', 'Spanish', 'Brazilian Portuguese',
+      'Vietnamese', 'Indonesian', 'Turkish', 'Polish',
+    ]);
+    expect(learnerLangNameFor('zz')).toBe('English');
   });
 });

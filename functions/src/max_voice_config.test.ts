@@ -32,6 +32,15 @@ afterEach(() => {
 });
 
 describe('clampMaxVoiceConfig', () => {
+  it('keeps turn detection responsive without cutting off beginner pauses', () => {
+    expect(MAX_VOICE_CONFIG_DEFAULTS.vadEagerness).toEqual({
+      A1: 'medium',
+      A2: 'medium',
+      B1: 'high',
+      B2: 'high',
+    });
+  });
+
   it('returns full defaults for missing/garbage input', () => {
     expect(clampMaxVoiceConfig(undefined)).toEqual(MAX_VOICE_CONFIG_DEFAULTS);
     expect(clampMaxVoiceConfig(null)).toEqual(MAX_VOICE_CONFIG_DEFAULTS);
@@ -62,7 +71,6 @@ describe('clampMaxVoiceConfig', () => {
       monthlyVoiceSecMax: -1,
       trialCallSec: 10_000,
       trialRefreshDays: 0,
-      trialSrsThreshold: -3,
       truncationRetentionRatio: 42,
       reinjectEveryTurns: 500,
       hintMaxPerSession: 999,
@@ -82,7 +90,6 @@ describe('clampMaxVoiceConfig', () => {
     expect(cfg.monthlyVoiceSecMax).toBe(60);
     expect(cfg.trialCallSec).toBe(HARD_MAX_SESSION_SEC);
     expect(cfg.trialRefreshDays).toBe(1);
-    expect(cfg.trialSrsThreshold).toBe(0);
     expect(cfg.truncationRetentionRatio).toBe(1);
     expect(cfg.reinjectEveryTurns).toBe(50);
     expect(cfg.hintMaxPerSession).toBe(20);
@@ -109,7 +116,7 @@ describe('clampMaxVoiceConfig', () => {
     expect(cfg.maxResponseOutputTokens.B1).toBe(250);
     expect(cfg.maxResponseOutputTokens.injected).toBe(800);
     expect(cfg.vadEagerness.A1).toBe('high');
-    expect(cfg.vadEagerness.B2).toBe('medium'); // дефолт B2 — medium (мусор → дефолт)
+    expect(cfg.vadEagerness.B2).toBe('high'); // мусор → быстрый безопасный дефолт B2
     expect(cfg.hintDelaySec.A1).toBe(3);
     expect(cfg.hintDelaySec.B2).toBe(60);
   });

@@ -37,7 +37,7 @@ function tokenize(text: string): string[] {
   return matched ?? [];
 }
 
-// Экранируем weak word для регэкспа: фразы из SRS приходят как есть и могут
+// Экранируем weak word для регэкспа: фразы из истории ошибок могут
 // содержать спецсимволы — падать на `new RegExp` в пост-разборе нельзя.
 function escapeRegExp(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -82,7 +82,7 @@ export function computeVoiceCallMetrics(
     if (seenWeak.has(key)) continue;
     seenWeak.add(key);
     // Граница слова обязательна: weak word «cap» не должно засчитываться из-за
-    // «cappuccino» — иначе SRS-петля получает ложные «закрытые» слова.
+    // «cappuccino» — иначе отчёт получает ложные «закрытые» слова.
     const re = new RegExp(`\\b${escapeRegExp(trimmed)}\\b`, 'i');
     if (re.test(userText)) weakWordsUsed.push(trimmed);
   }

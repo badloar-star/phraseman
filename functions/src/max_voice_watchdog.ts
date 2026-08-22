@@ -27,8 +27,13 @@ import {
   refundVoiceBudgetEstimate,
   runMaxVoiceProviderProbe,
 } from './max_voice_mint';
-import { sanitizeVoiceUsage, writeVoiceBillingRow } from './max_voice_session_end';
+import { estimateVoiceCostUsd, sanitizeVoiceUsage, writeVoiceBillingRow } from './max_voice_session_end';
 import { resolveMaxVoiceConfig } from './max_voice_config';
+import {
+  MAX_VOICE_OPS_EVENT_SCHEMA,
+  recordMaxVoiceOpsOnce,
+  type MaxVoiceOpsEventV1,
+} from './max_voice_ops';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -119,6 +124,12 @@ export async function runMaxVoiceWatchdogOnce(db: Firestore, nowMs: number = Dat
           // наступит — иначе брошенные минты надували бы лестницу до конца дня.
           await refundVoiceBudgetEstimate(db, (result.refundedSec / 60) * VOICE_EST_COST_USD_PER_MIN, nowMs)
             .catch(() => {});
+          for (const event of [
+            { schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'watchdog_end' },
+            { schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'watchdog_settled' },
+          ] as MaxVoiceOpsEventV1[]) {
+            await recordMaxVoiceOpsOnce(db, { markerRef: doc.ref, markerId: sessionId, event, nowMs }).catch(() => undefined);
+          }
         }
       } else {
         const result = await settleVoiceSession(db, {
@@ -139,6 +150,7 @@ export async function runMaxVoiceWatchdogOnce(db: Firestore, nowMs: number = Dat
           try {
             const config = await resolveMaxVoiceConfig(db);
             const chain = (data.reconnectChain ?? {}) as Record<string, unknown>;
+            const usage = sanitizeVoiceUsage(data.usageTotals);
             await writeVoiceBillingRow(db, {
               uid: stableUid,
               authUid,
@@ -146,7 +158,7 @@ export async function runMaxVoiceWatchdogOnce(db: Firestore, nowMs: number = Dat
               callGroupId: str(chain.rootId) || sessionId,
               model: config.model,
               seconds: result.chargedSec,
-              usage: sanitizeVoiceUsage(data.usageTotals),
+              usage,
               endReason: 'watchdog',
               channel: 'realtime',
               // Сценарий/уровень/вариант пробника в доке квоты не хранятся —
@@ -156,8 +168,34 @@ export async function runMaxVoiceWatchdogOnce(db: Firestore, nowMs: number = Dat
               trialVariant: null,
               clientSpeechSec: 0,
               xpAwarded: 0,
+              sessionStartedAtMs: voiceSessionClockStartMs(data),
               nowMs,
             });
+            const { estCostUsd } = estimateVoiceCostUsd(usage, result.chargedSec);
+            const events: MaxVoiceOpsEventV1[] = [
+              {
+                schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+                stage: 'call_failed',
+                durationSec: result.chargedSec,
+                endReason: 'dropped',
+                providerUsage: {
+                  audioInputTokens: usage.audioInputTokens,
+                  audioOutputTokens: usage.audioOutputTokens,
+                  cachedTokens: usage.cachedTokens,
+                  textTokens: usage.textTokens,
+                  estimatedCostMicros: Math.max(0, Math.round(estCostUsd * 1_000_000)),
+                },
+              },
+              { schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'watchdog_end' },
+              { schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'quota_settled' },
+              { schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'watchdog_settled' },
+            ];
+            if (usage.audioOutputTokens === 0) {
+              events.push({ schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'no_remote_audio' });
+            }
+            for (const event of events) {
+              await recordMaxVoiceOpsOnce(db, { markerRef: doc.ref, markerId: sessionId, event, nowMs }).catch(() => undefined);
+            }
           } catch (e) {
             console.error('max_voice_watchdog billing row failed', doc.id, e);
           }

@@ -10,6 +10,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
+import { MAX_CALL_HYBRID } from '../constants/motionHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 /**
@@ -52,11 +53,6 @@ type MaxCallHaloProps = {
   children?: React.ReactNode;
 };
 
-/** Насколько голос может раздуть ауру при максимальной громкости речи. */
-const MIC_PULSE_MAX = 0.18;
-/** Дыхание: амплитуда и период из спеки (1→1.04 за 1200мс в одну сторону). */
-const BREATH_SCALE = 1.04;
-const BREATH_HALF_MS = 1200;
 /**
  * Ступени настоящего feather: снаружи почти прозрачный широкий свет, к ядру
  * плотность растёт. Перекрытие alpha-слоёв даёт мягкий край без bitmap blur.
@@ -75,7 +71,7 @@ function clamp01(v: number): number {
 }
 
 export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function MaxCallHalo(
-  { color, breathing, size = 96, children },
+  { color, breathing, size = MAX_CALL_HYBRID.coreSize, children },
   ref,
 ) {
   const reduceMotion = useReduceMotion();
@@ -92,15 +88,18 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
     if (breathing && !reduceMotion) {
       breath.value = withRepeat(
         withSequence(
-          withTiming(BREATH_SCALE, { duration: BREATH_HALF_MS, easing: Easing.inOut(Easing.ease) }),
-          withTiming(1, { duration: BREATH_HALF_MS, easing: Easing.inOut(Easing.ease) }),
+          withTiming(MAX_CALL_HYBRID.breathScale, {
+            duration: MAX_CALL_HYBRID.breathHalfMs,
+            easing: Easing.inOut(Easing.ease),
+          }),
+          withTiming(1, { duration: MAX_CALL_HYBRID.breathHalfMs, easing: Easing.inOut(Easing.ease) }),
         ),
         -1,
         false,
       );
     } else {
       cancelAnimation(breath);
-      breath.value = withTiming(1, { duration: 200 });
+      breath.value = withTiming(1, { duration: MAX_CALL_HYBRID.settleMs });
     }
     return () => {
       cancelAnimation(breath);
@@ -113,14 +112,15 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
       setMicLevel(level: number | null) {
         // Reduce motion / нет данных → кольцо спокойно возвращается к базе.
         if (reduceMotionRef.current || level === null || !Number.isFinite(level)) {
-          micPulse.value = withTiming(1, { duration: 160 });
+          micPulse.value = withTiming(1, { duration: MAX_CALL_HYBRID.micResetMs });
           return;
         }
-        // Атака быстрее, чем спад: голос ощущается живым, но аура не дребезжит.
-        const target = 1 + clamp01(level) * MIC_PULSE_MAX;
+        // Оба перехода длиннее 250-мс тика статов: следующие слоги мягко
+        // перенаправляют уже идущее движение вместо отдельных толчков.
+        const target = 1 + clamp01(level) * MAX_CALL_HYBRID.micPulseMax;
         micPulse.value = withTiming(target, {
-          duration: target > micPulse.value ? 110 : 260,
-          easing: Easing.out(Easing.quad),
+          duration: target > micPulse.value ? MAX_CALL_HYBRID.micAttackMs : MAX_CALL_HYBRID.micReleaseMs,
+          easing: Easing.inOut(Easing.quad),
         });
       },
     }),
@@ -135,7 +135,10 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
     const raw = breath.value * micPulse.value;
     return { transform: [{ scale: 1 + (raw - 1) * 0.22 }] };
   });
-  const outerSize = Math.round(size * 2.05);
+  const scale = size / MAX_CALL_HYBRID.coreSize;
+  const outerSize = Math.round(MAX_CALL_HYBRID.containerSize * scale);
+  const outerRingSize = Math.round(MAX_CALL_HYBRID.outerRingSize * scale);
+  const innerRingSize = Math.round(MAX_CALL_HYBRID.innerRingSize * scale);
 
   return (
     <View
@@ -172,8 +175,69 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
             />
           );
         })}
+        <View
+          style={{
+            position: 'absolute',
+            left: (outerSize - outerRingSize) / 2,
+            top: (outerSize - outerRingSize) / 2,
+            width: outerRingSize,
+            height: outerRingSize,
+            borderRadius: outerRingSize / 2,
+            borderWidth: MAX_CALL_HYBRID.ringStrokePx,
+            borderColor: color,
+            opacity: MAX_CALL_HYBRID.outerRingOpacity,
+          }}
+        />
+        <View
+          style={{
+            position: 'absolute',
+            left: (outerSize - innerRingSize) / 2,
+            top: (outerSize - innerRingSize) / 2,
+            width: innerRingSize,
+            height: innerRingSize,
+            borderRadius: innerRingSize / 2,
+            borderWidth: MAX_CALL_HYBRID.ringStrokePx,
+            borderColor: MAX_CALL_HYBRID.innerRingColor,
+            opacity: MAX_CALL_HYBRID.innerRingOpacity,
+          }}
+        />
       </Animated.View>
-      <Animated.View style={coreTransformStyle}>{children}</Animated.View>
+      <Animated.View
+        style={[
+          {
+            width: size,
+            height: size,
+            borderRadius: size / 2,
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          coreTransformStyle,
+        ]}
+      >
+        <View
+          style={{
+            position: 'absolute',
+            width: size,
+            height: size,
+            borderRadius: size / 2,
+            backgroundColor: color,
+            opacity: MAX_CALL_HYBRID.coreOpacity,
+          }}
+        />
+        <View
+          style={{
+            position: 'absolute',
+            width: MAX_CALL_HYBRID.highlightWidth * scale,
+            height: MAX_CALL_HYBRID.highlightHeight * scale,
+            top: MAX_CALL_HYBRID.highlightTop * scale,
+            left: MAX_CALL_HYBRID.highlightLeft * scale,
+            borderRadius: MAX_CALL_HYBRID.highlightHeight * scale,
+            backgroundColor: '#FFFFFF',
+            opacity: MAX_CALL_HYBRID.highlightOpacity,
+          }}
+        />
+        {children}
+      </Animated.View>
     </View>
   );
 });

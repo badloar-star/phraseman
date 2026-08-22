@@ -3,7 +3,7 @@
 // Учитель (OpenAI Realtime, format 'tutor') вызывает функции через data channel:
 //   start_scene(scene_id)  → сцена из ai_dialog_scenarios (сервер сцен не знает)
 //   end_scene()            → назад к роли учителя
-//   mark_phrase_result(phrase, ok) → повторение речи: сказал/не смог (двигает интервал в памяти)
+//   mark_phrase_result(phrase, result) → уверенный/неуверенный итог устной попытки
 //   assign_homework(phrases, meanings) → 2–3 фразы на завтра + значения (память + тренажёр)
 //   set_next_topic(topic)  → тема следующего урока
 //   set_language_preference(mode) → «говори со мной по-английски / по-русски» — на будущие уроки
@@ -26,7 +26,7 @@ export interface TutorSceneItem {
 
 /** Сколько сцен показываем учителю в промпте (короткий список — дешевле и точнее). */
 export const TUTOR_SCENE_CATALOG_LIMIT = 14;
-export const TUTOR_HOMEWORK_MAX = 4;
+export const TUTOR_HOMEWORK_MAX = 3;
 export const TUTOR_HOMEWORK_PHRASE_MAX_CHARS = 80;
 
 const CEFR_RANK: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
@@ -86,6 +86,8 @@ export interface TutorToolRunnerDeps {
   onLiveBoard?(payload: TutorBoardToolPayload): void;
   onLiveTopic?(payload: { topic: string; mode: TutorConversationMode }): void;
   onEndCall?(): void;
+  /** Текущая серверная проекция цели; нужна, чтобы UI не показывал ложный скачок mastery. */
+  currentGoal?(): { id: string; mastery: number; sceneIds?: string[] } | null;
 }
 
 export type TutorLanguagePreference = 'more_target' | 'more_native' | 'default';
@@ -105,10 +107,20 @@ export interface TutorHomeworkItem {
 
 export interface TutorPhraseResult {
   text: string;
-  ok: boolean;
+  result: TutorSpeechResult;
 }
 
+export type TutorSpeechResult = 'pass' | 'needs_work' | 'uncertain' | 'invalid';
+const TUTOR_SPEECH_RESULTS = new Set<TutorSpeechResult>(['pass', 'needs_work', 'uncertain', 'invalid']);
+
 export type TutorSceneOutcome = 'done' | 'partial' | 'skipped';
+
+export interface TutorGoalProgress {
+  goalId: string;
+  mastery: number;
+  evidence?: 'scene' | 'novel_context';
+  sceneId?: string;
+}
 
 export interface TutorToolRunner {
   handle(name: string, args: Record<string, unknown>): TutorToolResult;
@@ -121,7 +133,7 @@ export interface TutorToolRunner {
   /** Итог последней сцены-задачи ('' — сцены не было). */
   sceneOutcome(): TutorSceneOutcome | '';
   /** Прогресс по текущей речевой цели (mark_goal_progress); null — не отмечал. */
-  goalProgress(): { goalId: string; mastery: number } | null;
+  goalProgress(): TutorGoalProgress | null;
   nextTopic(): string;
   /** Просьба ученика за урок, как говорить; '' — не просил (память не трогать). */
   languagePreference(): TutorLanguagePreference | '';
@@ -146,7 +158,8 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
   let homeworkMeanings: string[] = [];
   const phraseResults: TutorPhraseResult[] = [];
   let sceneOutcome: TutorSceneOutcome | '' = '';
-  let goalProgress: { goalId: string; mastery: number } | null = null;
+  let completedSceneId = '';
+  let goalProgress: TutorGoalProgress | null = null;
   let nextTopic = '';
   let languagePreference: TutorLanguagePreference | '' = '';
   const safetyFlags: TutorSafetyFlag[] = [];
@@ -181,9 +194,13 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
       }
       case 'end_scene': {
         const had = activeScene !== null;
+        const endedSceneId = activeScene?.id ?? '';
         activeScene = null;
         const outcome = String(args.outcome ?? '').trim();
-        if (had) sceneOutcome = outcome === 'done' || outcome === 'partial' || outcome === 'skipped' ? outcome : 'partial';
+        if (had) {
+          sceneOutcome = outcome === 'done' || outcome === 'partial' || outcome === 'skipped' ? outcome : 'partial';
+          completedSceneId = endedSceneId;
+        }
         try { deps.onSceneChange?.(null); } catch {}
         return {
           output: had
@@ -195,11 +212,23 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
       case 'mark_phrase_result': {
         const text = cleanPhrase(args.phrase);
         if (!text) return { output: 'Empty phrase; nothing recorded.', respond: false };
-        const ok = args.ok === true;
+        const raw = String(args.result ?? '').trim();
+        // Старые уже открытые realtime-сессии могли прислать boolean `ok`.
+        const result: TutorSpeechResult | null = TUTOR_SPEECH_RESULTS.has(raw as TutorSpeechResult)
+          ? raw as TutorSpeechResult
+          : typeof args.ok === 'boolean'
+            ? (args.ok ? 'pass' : 'needs_work')
+            : null;
+        if (!result) return { output: 'Unknown speech result; record nothing and clarify with the learner.', respond: false };
         const idx = phraseResults.findIndex((r) => r.text.toLowerCase() === text.toLowerCase());
-        if (idx >= 0) phraseResults[idx] = { text, ok }; else phraseResults.push({ text, ok });
+        if (idx >= 0) phraseResults[idx] = { text, result }; else phraseResults.push({ text, result });
         // Тихо: учитель уже отреагировал вслух; response.create не нужен.
-        return { output: ok ? 'Recorded: said correctly.' : 'Recorded: needs more practice.', respond: false };
+        const output = result === 'pass'
+          ? 'Recorded: confident pass.'
+          : result === 'needs_work'
+            ? 'Recorded: confident needs work.'
+            : 'Recorded as neutral: do not correct or penalize; clarify naturally if useful.';
+        return { output, respond: false };
       }
       case 'assign_homework': {
         const raw = Array.isArray(args.phrases) ? args.phrases : [];
@@ -213,13 +242,23 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         if (unique.length === 0) {
           return { output: 'No phrases received. Say 2-3 short phrases aloud and call assign_homework again with them (and their meanings).', respond: true };
         }
+        if (unique.some((item) => item.meaning === '')) {
+          return { output: 'Every homework phrase needs a meaning in the learner\'s native language. Nothing was saved; provide all meanings and call assign_homework again.', respond: true };
+        }
+        const passed = new Set(
+          phraseResults.filter((item) => item.result === 'pass').map((item) => item.text.toLowerCase()),
+        );
+        if (unique.some((item) => !passed.has(item.text.toLowerCase()))) {
+          return {
+            output: 'Homework must contain only phrases the learner confidently practised in this lesson (mark_phrase_result = pass). Nothing was saved.',
+            respond: true,
+          };
+        }
         homework = unique.map((u) => u.text);
         homeworkMeanings = unique.map((u) => u.meaning);
         try { deps.onHomework?.(homework); } catch {}
-        const missing = unique.filter((u) => u.meaning === '').length;
         return {
-          output: `Homework saved (${unique.length}): ${homework.join(' | ')}. It will be shown to the learner after the lesson and added to their Trainer.` +
-            (missing ? ` ${missing} phrase(s) have no meaning — call assign_homework again with "meanings" in the learner's native language if you can.` : ''),
+          output: `Homework saved (${unique.length}): ${homework.join(' | ')}. It will be shown to the learner after the lesson and added to their Trainer.`,
           respond: true,
         };
       }
@@ -275,7 +314,41 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         const goalId = cleanPhrase(args.goal_id).slice(0, 40);
         const n = Number(args.mastery);
         if (!goalId || !Number.isFinite(n)) return { output: 'Need goal_id and mastery 0-3.', respond: false };
-        goalProgress = { goalId, mastery: Math.min(3, Math.max(0, Math.floor(n))) };
+        const current = deps.currentGoal?.() ?? null;
+        if (current && current.id !== goalId) {
+          return { output: `This is not the current goal. Record only ${current.id}.`, respond: false };
+        }
+        const requested = Math.min(3, Math.max(0, Math.floor(n)));
+        const currentMastery = current?.mastery ?? 0;
+        let mastery = Math.min(requested, currentMastery + 1);
+        if (mastery >= 3) {
+          const evidence = String(args.transfer_evidence ?? '').trim();
+          const approvedScenes = current?.sceneIds ?? [];
+          if (approvedScenes.length > 0) {
+            const relevantSceneDone = evidence === 'scene'
+              && sceneOutcome === 'done'
+              && approvedScenes.includes(completedSceneId);
+            if (!relevantSceneDone) {
+              goalProgress = { goalId, mastery: 2 };
+              return {
+                output: `Mastery 3 needs a completed approved transfer scene for this goal (${approvedScenes.join(', ')}). Mastery 2 recorded.`,
+                respond: false,
+              };
+            }
+            goalProgress = { goalId, mastery, evidence: 'scene', sceneId: completedSceneId };
+            return { output: `Goal ${goalId} mastery ${mastery}/3 recorded.`, respond: false };
+          }
+          if (evidence !== 'novel_context') {
+            goalProgress = { goalId, mastery: 2 };
+            return {
+              output: 'Mastery 3 needs a lower-support mini role-play in a new context. Mastery 2 recorded.',
+              respond: false,
+            };
+          }
+          goalProgress = { goalId, mastery, evidence: 'novel_context' };
+          return { output: `Goal ${goalId} mastery ${mastery}/3 recorded.`, respond: false };
+        }
+        goalProgress = { goalId, mastery };
         return { output: `Goal ${goalId} mastery ${goalProgress.mastery}/3 recorded.`, respond: false };
       }
       case 'set_language_preference': {

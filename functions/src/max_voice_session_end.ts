@@ -26,6 +26,11 @@ import {
   voiceSessionClockStartMs,
 } from './max_voice_quota';
 import { VOICE_EST_COST_USD_PER_MIN, refundVoiceBudgetEstimate, utcDayKey } from './max_voice_mint';
+import {
+  MAX_VOICE_OPS_EVENT_SCHEMA,
+  recordMaxVoiceOpsOnce,
+  type MaxVoiceOpsEventV1,
+} from './max_voice_ops';
 
 if (!admin.apps.length) admin.initializeApp();
 
@@ -37,14 +42,15 @@ export const VOICE_BILLING_COLLECTION = 'voice_call_billing';
  * Дата прайс-листа, по которому посчитан estCostUsd, — пишется в каждую
  * billing-запись, чтобы дневная сверка с Usage API знала, чем считали.
  */
-export const VOICE_PRICE_TABLE_DATE = '2026-08-13';
+export const VOICE_PRICE_TABLE_DATE = '2026-08-21';
 
 /** $/1M токенов gpt-realtime-2.1-mini + $/мин транскрипции входа. */
 export const VOICE_PRICES = {
   audioInputPerM: 10,
   audioOutputPerM: 20,
   cachedPerM: 0.3,
-  textPerM: 0.6,
+  textInputPerM: 0.6,
+  textOutputPerM: 2.4,
   transcriptionPerMin: 0.006,
 } as const;
 
@@ -82,17 +88,30 @@ export interface VoiceUsageTotals {
   audioInputTokens: number;
   audioOutputTokens: number;
   cachedTokens: number;
+  /** Optional only at the boundary: old clients/documents sent total alone. */
+  textInputTokens?: number;
+  textOutputTokens?: number;
   textTokens: number;
 }
 
+export type SanitizedVoiceUsageTotals = VoiceUsageTotals & {
+  textInputTokens: number;
+  textOutputTokens: number;
+};
+
 /** Клиент шлёт НАКОПЛЕННЫЕ суммы из response.done — санитизация вниз в int ≥0. */
-export function sanitizeVoiceUsage(raw: unknown): VoiceUsageTotals {
+export function sanitizeVoiceUsage(raw: unknown): SanitizedVoiceUsageTotals {
   const u = (raw ?? {}) as Record<string, unknown>;
+  const textInputTokens = nonNegInt(u.textInputTokens);
+  const textOutputTokens = nonNegInt(u.textOutputTokens);
   return {
     audioInputTokens: nonNegInt(u.audioInputTokens),
     audioOutputTokens: nonNegInt(u.audioOutputTokens),
     cachedTokens: nonNegInt(u.cachedTokens),
-    textTokens: nonNegInt(u.textTokens),
+    textInputTokens,
+    textOutputTokens,
+    // Не уменьшаем legacy total: старый сервер/док мог знать только его.
+    textTokens: Math.max(nonNegInt(u.textTokens), textInputTokens + textOutputTokens),
   };
 }
 
@@ -101,12 +120,21 @@ export function estimateVoiceCostUsd(usage: VoiceUsageTotals, chargedSec: number
   estCostUsd: number;
   transcriptionCostUsd: number;
 } {
+  const normalized = sanitizeVoiceUsage(usage);
+  // Старый клиент присылал только общий textTokens. Направление восстановить
+  // нельзя, поэтому остаток оцениваем по более дорогой output-цене: финансовый
+  // отчёт может быть консервативным, но не должен снова недосчитывать расход.
+  const legacyUnsplitTextTokens = Math.max(
+    0,
+    normalized.textTokens - normalized.textInputTokens - normalized.textOutputTokens,
+  );
   const transcriptionCostUsd = (Math.max(0, chargedSec) / 60) * VOICE_PRICES.transcriptionPerMin;
   const tokensUsd =
-    (usage.audioInputTokens / 1_000_000) * VOICE_PRICES.audioInputPerM +
-    (usage.audioOutputTokens / 1_000_000) * VOICE_PRICES.audioOutputPerM +
-    (usage.cachedTokens / 1_000_000) * VOICE_PRICES.cachedPerM +
-    (usage.textTokens / 1_000_000) * VOICE_PRICES.textPerM;
+    (normalized.audioInputTokens / 1_000_000) * VOICE_PRICES.audioInputPerM +
+    (normalized.audioOutputTokens / 1_000_000) * VOICE_PRICES.audioOutputPerM +
+    (normalized.cachedTokens / 1_000_000) * VOICE_PRICES.cachedPerM +
+    (normalized.textInputTokens / 1_000_000) * VOICE_PRICES.textInputPerM +
+    ((normalized.textOutputTokens + legacyUnsplitTextTokens) / 1_000_000) * VOICE_PRICES.textOutputPerM;
   return { estCostUsd: tokensUsd + transcriptionCostUsd, transcriptionCostUsd };
 }
 
@@ -227,6 +255,7 @@ export interface VoiceBillingRowArgs {
   trialVariant: 'companion' | 'scenario' | null;
   clientSpeechSec: number;
   xpAwarded: number;
+  sessionStartedAtMs: number;
   nowMs: number;
 }
 
@@ -237,7 +266,8 @@ export interface VoiceBillingRowArgs {
  * недосчитывает потраченные токены).
  */
 export async function writeVoiceBillingRow(db: Firestore, row: VoiceBillingRowArgs): Promise<void> {
-  const { estCostUsd, transcriptionCostUsd } = estimateVoiceCostUsd(row.usage, row.seconds);
+  const usage = sanitizeVoiceUsage(row.usage);
+  const { estCostUsd, transcriptionCostUsd } = estimateVoiceCostUsd(usage, row.seconds);
   await db.collection(VOICE_BILLING_COLLECTION).doc().set({
     uid: row.uid,
     authUid: row.authUid,
@@ -245,10 +275,12 @@ export async function writeVoiceBillingRow(db: Firestore, row: VoiceBillingRowAr
     callGroupId: row.callGroupId,
     model: row.model,
     seconds: row.seconds,
-    audioInputTokens: row.usage.audioInputTokens,
-    audioOutputTokens: row.usage.audioOutputTokens,
-    cachedTokens: row.usage.cachedTokens,
-    textTokens: row.usage.textTokens,
+    audioInputTokens: usage.audioInputTokens,
+    audioOutputTokens: usage.audioOutputTokens,
+    cachedTokens: usage.cachedTokens,
+    textInputTokens: usage.textInputTokens,
+    textOutputTokens: usage.textOutputTokens,
+    textTokens: usage.textTokens,
     transcriptionCostUsd,
     estCostUsd,
     priceTableDate: VOICE_PRICE_TABLE_DATE,
@@ -259,6 +291,7 @@ export async function writeVoiceBillingRow(db: Firestore, row: VoiceBillingRowAr
     endReason: row.endReason,
     clientSpeechSec: row.clientSpeechSec,
     xpAwarded: row.xpAwarded,
+    sessionStartedAtMs: row.sessionStartedAtMs,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     createdAtMs: row.nowMs,
   });
@@ -275,42 +308,60 @@ export interface VoiceHeartbeatUsageArgs {
   nowMs?: number;
 }
 
+type VoiceHeartbeatLifecycleResult = Readonly<{
+  alive: boolean;
+  firstHeartbeat: boolean;
+  reconnectAttempted: boolean;
+  connectionLatencyMs: number;
+}>;
+
+async function recordVoiceHeartbeatLifecycle(db: Firestore, args: VoiceHeartbeatUsageArgs): Promise<VoiceHeartbeatLifecycleResult> {
+  const now = args.nowMs ?? Date.now();
+  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
+  return db.runTransaction(async (tx) => {
+    const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
+    if (text(data.activeSessionId, 80) !== text(args.sessionId, 80) || num(data.reservedSec) <= 0) {
+      return { alive: false, firstHeartbeat: false, reconnectAttempted: false, connectionLatencyMs: 0 };
+    }
+    const firstHeartbeat = num(data.activatedAtMs) <= 0;
+    const stages = data.maxVoiceOpsStages && typeof data.maxVoiceOpsStages === 'object'
+      ? data.maxVoiceOpsStages as Record<string, unknown>
+      : {};
+    const prev = sanitizeVoiceUsage(data.usageTotals);
+    const reported = sanitizeVoiceUsage(args.usage);
+    const activatedAtMs = firstHeartbeat
+      ? Math.min(now, Math.max(num(data.sessionStartedAtMs, now), now - nonNegInt(args.elapsedSec) * 1000))
+      : num(data.activatedAtMs);
+    tx.set(ref, {
+      activatedAtMs,
+      lastHeartbeatMs: now,
+      lastHeartbeatElapsedSec: Math.max(nonNegInt(data.lastHeartbeatElapsedSec), nonNegInt(args.elapsedSec)),
+      usageTotals: sanitizeVoiceUsage({
+        audioInputTokens: Math.max(prev.audioInputTokens, reported.audioInputTokens),
+        audioOutputTokens: Math.max(prev.audioOutputTokens, reported.audioOutputTokens),
+        cachedTokens: Math.max(prev.cachedTokens, reported.cachedTokens),
+        textInputTokens: Math.max(prev.textInputTokens, reported.textInputTokens),
+        textOutputTokens: Math.max(prev.textOutputTokens, reported.textOutputTokens),
+        textTokens: Math.max(prev.textTokens, reported.textTokens),
+      }),
+      updatedAtMs: now,
+    }, { merge: true });
+    return {
+      alive: true,
+      firstHeartbeat,
+      reconnectAttempted: stages.reconnect_attempt === args.sessionId,
+      connectionLatencyMs: Math.max(0, now - num(data.sessionStartedAtMs, now)),
+    };
+  });
+}
+
 /**
  * Отметка heartbeat + usage-аккумулятор в доке квоты. Аккумулируем через max():
  * клиент шлёт накопленные суммы, так что повтор/out-of-order пакет не откатывает
  * и не задваивает счётчики. Чужая/закрытая сессия → false (ничего не воскрешаем).
  */
 export async function recordVoiceHeartbeatUsage(db: Firestore, args: VoiceHeartbeatUsageArgs): Promise<boolean> {
-  const now = args.nowMs ?? Date.now();
-  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
-  return db.runTransaction(async (tx) => {
-    const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
-    if (text(data.activeSessionId, 80) !== text(args.sessionId, 80) || num(data.reservedSec) <= 0) {
-      return false;
-    }
-    const prev = sanitizeVoiceUsage(data.usageTotals);
-    // Первый heartbeat = активация звонка: клиент шлёт его сразу после «алло»
-    // (elapsedSec 0). Часы разговора стартуют отсюда, а не от минта — простой
-    // pre-mint на пре-экране не списывается. Клиентский elapsed сдвигает старт
-    // только НАЗАД в пределах [минт, now] (старый клиент, шлющий первый
-    // heartbeat через 30с, честно учитывается), вперёд сдвинуть нельзя.
-    const activatedAtMs = num(data.activatedAtMs) > 0
-      ? num(data.activatedAtMs)
-      : Math.min(now, Math.max(num(data.sessionStartedAtMs, now), now - nonNegInt(args.elapsedSec) * 1000));
-    tx.set(ref, {
-      activatedAtMs,
-      lastHeartbeatMs: now,
-      lastHeartbeatElapsedSec: Math.max(nonNegInt(data.lastHeartbeatElapsedSec), nonNegInt(args.elapsedSec)),
-      usageTotals: {
-        audioInputTokens: Math.max(prev.audioInputTokens, args.usage.audioInputTokens),
-        audioOutputTokens: Math.max(prev.audioOutputTokens, args.usage.audioOutputTokens),
-        cachedTokens: Math.max(prev.cachedTokens, args.usage.cachedTokens),
-        textTokens: Math.max(prev.textTokens, args.usage.textTokens),
-      },
-      updatedAtMs: now,
-    }, { merge: true });
-    return true;
-  });
+  return (await recordVoiceHeartbeatLifecycle(db, args)).alive;
 }
 
 export const maxVoiceHeartbeat = onCall({
@@ -331,14 +382,34 @@ export const maxVoiceHeartbeat = onCall({
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
-  const alive = await recordVoiceHeartbeatUsage(db, {
+  const lifecycle = await recordVoiceHeartbeatLifecycle(db, {
     authUid,
     stableUid,
     sessionId,
     elapsedSec: nonNegInt(data.elapsedSec),
     usage: sanitizeVoiceUsage(data.usage),
   });
-  return { ok: true, alive };
+  if (lifecycle.alive && lifecycle.firstHeartbeat) {
+    const markerRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid));
+    const recordStage = (event: MaxVoiceOpsEventV1) => recordMaxVoiceOpsOnce(db, {
+      markerRef,
+      markerId: sessionId,
+      event,
+    }).catch(() => undefined);
+    await recordStage({ schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'call_started' });
+    await recordStage({
+      schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+      stage: 'call_connected',
+    });
+    if (lifecycle.reconnectAttempted) {
+      await recordStage({
+        schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+        stage: 'reconnect_recovered',
+        latencyMs: lifecycle.connectionLatencyMs,
+      });
+    }
+  }
+  return { ok: true, alive: lifecycle.alive };
 });
 
 // ── Session end ─────────────────────────────────────────────────────────────
@@ -369,7 +440,8 @@ export const maxVoiceSessionEnd = onCall({
 
   // Снимок квоты ДО сеттлмента: серверный факт секунд и корень reconnect-чейна
   // (callGroupId) живут именно там. После settle они уже стёрты.
-  const quotaSnap = await db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid)).get();
+  const quotaRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid));
+  const quotaSnap = await quotaRef.get();
   const quotaData = (quotaSnap.data() ?? {}) as Record<string, unknown>;
   // Часы разговора: activatedAtMs (первый heartbeat), без него — минт.
   const startedAtMs = voiceSessionClockStartMs(quotaData);
@@ -401,12 +473,14 @@ export const maxVoiceSessionEnd = onCall({
   // пакет не обнуляет расход, а финальный отчёт не может занизить heartbeat'ы.
   const heartbeatUsage = sanitizeVoiceUsage(quotaData.usageTotals);
   const reportedUsage = sanitizeVoiceUsage(data.usage);
-  const usage: VoiceUsageTotals = {
+  const usage: SanitizedVoiceUsageTotals = sanitizeVoiceUsage({
     audioInputTokens: Math.max(heartbeatUsage.audioInputTokens, reportedUsage.audioInputTokens),
     audioOutputTokens: Math.max(heartbeatUsage.audioOutputTokens, reportedUsage.audioOutputTokens),
     cachedTokens: Math.max(heartbeatUsage.cachedTokens, reportedUsage.cachedTokens),
+    textInputTokens: Math.max(heartbeatUsage.textInputTokens, reportedUsage.textInputTokens),
+    textOutputTokens: Math.max(heartbeatUsage.textOutputTokens, reportedUsage.textOutputTokens),
     textTokens: Math.max(heartbeatUsage.textTokens, reportedUsage.textTokens),
-  };
+  });
 
   const endReason = asVoiceEndReason(data.endReason);
   const settle = await settleVoiceSession(db, {
@@ -480,8 +554,47 @@ export const maxVoiceSessionEnd = onCall({
     trialVariant: trialVariantRaw === 'companion' || trialVariantRaw === 'scenario' ? trialVariantRaw : null,
     clientSpeechSec,
     xpAwarded,
+    sessionStartedAtMs: startedAtMs,
     nowMs,
   });
+
+  const opsEndReason = endReason === 'watchdog' ? 'dropped' : endReason;
+  const completedNormally = endReason === 'completed' || endReason === 'capped';
+  const { estCostUsd } = estimateVoiceCostUsd(usage, settle.chargedSec);
+  const opsEvents: MaxVoiceOpsEventV1[] = [
+    {
+      schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+      stage: completedNormally ? 'call_completed' : 'call_failed',
+      durationSec: settle.chargedSec,
+      endReason: opsEndReason,
+      providerUsage: {
+        audioInputTokens: usage.audioInputTokens,
+        audioOutputTokens: usage.audioOutputTokens,
+        cachedTokens: usage.cachedTokens,
+        textTokens: usage.textTokens,
+        estimatedCostMicros: Math.max(0, Math.round(estCostUsd * 1_000_000)),
+      },
+    },
+    { schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'quota_settled' },
+  ];
+  if (completedNormally) opsEvents.push({ schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'explicit_user_end' });
+  const firstRemoteAudioLatency = Number(data.firstRemoteAudioLatencyMs);
+  if (
+    data.firstRemoteAudioLatencyMs !== undefined
+    && Number.isFinite(firstRemoteAudioLatency)
+    && firstRemoteAudioLatency >= 0
+  ) {
+    opsEvents.push({
+      schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+      stage: 'first_remote_audio',
+      latencyMs: Math.min(Math.floor(firstRemoteAudioLatency), 600_000),
+    });
+  }
+  if (nonNegInt(data.transcriptWordCount) === 0) opsEvents.push({ schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'empty_transcript' });
+  if (usage.audioOutputTokens === 0) opsEvents.push({ schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'no_remote_audio' });
+  for (const event of opsEvents) {
+    await recordMaxVoiceOpsOnce(db, { markerRef: quotaRef, markerId: sessionId, event, nowMs }).catch(() => undefined);
+  }
 
   return {
     ok: true,

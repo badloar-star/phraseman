@@ -236,6 +236,8 @@ describe('контракт: usage клиента ↔ sanitizeVoiceUsage серв
       audioInputTokens: 900,
       audioOutputTokens: 550,
       cachedTokens: 80,
+      textInputTokens: 10,
+      textOutputTokens: 14,
       textTokens: 24,
     });
 
@@ -249,6 +251,8 @@ describe('контракт: usage клиента ↔ sanitizeVoiceUsage серв
       audioInputTokens: 0,
       audioOutputTokens: 0,
       cachedTokens: 0,
+      textInputTokens: 0,
+      textOutputTokens: 0,
       textTokens: 0,
     });
   });

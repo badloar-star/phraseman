@@ -37,6 +37,8 @@ export interface HintTimer {
   onPhase(phase: string, nowMs: number): void;
   /** Ученик заговорил — тишины больше нет, отсчёт сбрасывается. */
   onSpeechStarted(): void;
+  /** Ученик закончил реплику; новый отсчёт начнётся только со следующего listening. */
+  onSpeechStopped(): void;
   /**
    * Опрос «пора ли помогать». Возвращает вид подсказки не чаще одного раза на
    * порог: сама выдача инкрементит счётчик и перевзводит отсчёт, поэтому
@@ -55,6 +57,7 @@ export function createHintTimer(cfg: HintTimerConfig): HintTimer {
   // новая тишина после речи ученика начинает цикл заново с 'first'.
   let nextKind: HintKind = 'first';
   let fired = 0;
+  let speechActive = false;
 
   const disarm = (): void => {
     armedAtMs = null;
@@ -63,7 +66,7 @@ export function createHintTimer(cfg: HintTimerConfig): HintTimer {
 
   return {
     onPhase(phase: string, nowMs: number): void {
-      if (phase === 'listening') {
+      if (phase === 'listening' && !speechActive) {
         // Повторное 'listening' при уже взведённом таймере — no-op: дубль
         // события не должен бесконечно отодвигать подсказку.
         if (armedAtMs === null) {
@@ -76,7 +79,12 @@ export function createHintTimer(cfg: HintTimerConfig): HintTimer {
     },
 
     onSpeechStarted(): void {
+      speechActive = true;
       disarm();
+    },
+
+    onSpeechStopped(): void {
+      speechActive = false;
     },
 
     due(nowMs: number): HintKind | null {

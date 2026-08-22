@@ -1,6 +1,8 @@
 import {
   createAudioLevelFanout,
+  orbScale,
   parseAudioLevels,
+  smoothRemoteAudioLevel,
   type AudioLevelSample,
 } from '../app/max_call_audio_level';
 
@@ -27,6 +29,14 @@ function toMapLikeReport(entries: Record<string, unknown>[]): unknown {
 }
 
 describe('max_call_audio_level', () => {
+  it('smooths remote energy with the bounded 72/28 EMA and ignores mic energy for orb scale', () => {
+    expect(smoothRemoteAudioLevel(0.5, 1)).toBeCloseTo(0.64);
+    expect(smoothRemoteAudioLevel(0.5, 9)).toBeCloseTo(0.64);
+    expect(orbScale({ remote: 0.7, mic: 0, rttMs: null })).toBeGreaterThan(
+      orbScale({ remote: 0, mic: 0.7, rttMs: null }),
+    );
+    expect(orbScale({ remote: null, mic: 1, rttMs: null })).toBe(1);
+  });
   describe('parseAudioLevels: оба формата статов', () => {
     it('парсит массив RTCStats-подобных объектов', () => {
       expect(parseAudioLevels(ARRAY_STATS)).toEqual({

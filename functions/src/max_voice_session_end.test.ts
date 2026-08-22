@@ -106,9 +106,11 @@ import {
   VOICE_XP_FLOOR_MIN_AUDIO_TOKENS,
   computeVoiceXp,
   detectSpeechDrift,
+  estimateVoiceCostUsd,
   maxVoiceHeartbeat as heartbeatRaw,
   maxVoiceSessionEnd as endRaw,
   recordVoiceHeartbeatUsage,
+  sanitizeVoiceUsage,
 } from './max_voice_session_end';
 
 let currentConfig: MaxVoiceConfig = clampMaxVoiceConfig({ gate_ai_voice_call: true });
@@ -137,7 +139,14 @@ function liveQuota(overrides: DocData = {}): void {
     expiresAtMs: NOW + 300_000,
     lastHeartbeatMs: NOW - 10_000,
     reconnectChain: { rootId: 'root-1', count: 1, gapSecTotal: 10 },
-    usageTotals: { audioInputTokens: 2000, audioOutputTokens: 3000, cachedTokens: 500, textTokens: 100 },
+    usageTotals: {
+      audioInputTokens: 2000,
+      audioOutputTokens: 3000,
+      cachedTokens: 500,
+      textInputTokens: 40,
+      textOutputTokens: 60,
+      textTokens: 100,
+    },
     ...overrides,
   });
 }
@@ -154,7 +163,14 @@ const END_DATA: DocData = {
   clientSpeechSec: 90,
   repliesCount: 6,
   transcriptWordCount: 400,
-  usage: { audioInputTokens: 2100, audioOutputTokens: 2900, cachedTokens: 600, textTokens: 100 },
+  usage: {
+    audioInputTokens: 2100,
+    audioOutputTokens: 2900,
+    cachedTokens: 600,
+    textInputTokens: 50,
+    textOutputTokens: 50,
+    textTokens: 100,
+  },
   endReason: 'completed',
   scenarioId: 'coffee_shop',
   cefr: 'B1',
@@ -208,7 +224,9 @@ describe('maxVoiceSessionEnd — settlement', () => {
       audioInputTokens: 2100,
       audioOutputTokens: 3000,
       cachedTokens: 600,
-      textTokens: 100,
+      textInputTokens: 50,
+      textOutputTokens: 60,
+      textTokens: 110,
       priceTableDate: VOICE_PRICE_TABLE_DATE,
       scenarioId: 'coffee_shop',
       cefr: 'B1',
@@ -358,6 +376,47 @@ describe('maxVoiceSessionEnd — settlement', () => {
       .rejects.toMatchObject({ code: 'unauthenticated' });
     await expect(sessionEnd({ auth: { uid: AUTH }, data: { ...END_DATA, sessionId: '' } }))
       .rejects.toMatchObject({ code: 'invalid-argument', message: 'session_id_required' });
+  });
+});
+
+describe('MAX voice text-token billing', () => {
+  it('prices input and output text tokens separately', () => {
+    const usage = sanitizeVoiceUsage({
+      audioInputTokens: 0,
+      audioOutputTokens: 0,
+      cachedTokens: 0,
+      textInputTokens: 1_000_000,
+      textOutputTokens: 1_000_000,
+      textTokens: 2_000_000,
+    });
+    const result = estimateVoiceCostUsd(usage, 0);
+    expect(result.estCostUsd).toBeCloseTo(
+      VOICE_PRICES.textInputPerM + VOICE_PRICES.textOutputPerM,
+      10,
+    );
+  });
+
+  it('prices legacy unsplit textTokens conservatively as output tokens', () => {
+    const legacy = sanitizeVoiceUsage({ textTokens: 1_000_000 });
+    expect(legacy).toMatchObject({
+      textInputTokens: 0,
+      textOutputTokens: 0,
+      textTokens: 1_000_000,
+    });
+    expect(estimateVoiceCostUsd(legacy, 0).estCostUsd)
+      .toBeCloseTo(VOICE_PRICES.textOutputPerM, 10);
+  });
+
+  it('normalizes a stale compatible total so split tokens are never omitted', () => {
+    expect(sanitizeVoiceUsage({
+      textInputTokens: 70,
+      textOutputTokens: 50,
+      textTokens: 100,
+    })).toMatchObject({
+      textInputTokens: 70,
+      textOutputTokens: 50,
+      textTokens: 120,
+    });
   });
 });
 

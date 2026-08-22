@@ -62,10 +62,10 @@ describe('buildTutorSceneCatalog', () => {
 });
 
 describe('createTutorToolRunner', () => {
-  function makeRunner() {
+  function makeRunner(currentGoal: { id: string; mastery: number; sceneIds?: string[] } | null = null) {
     const events: string[] = [];
     const liveBoards: TutorBoardToolPayload[] = [];
-    const liveTopics: Array<{ topic: string; mode: TutorConversationMode }> = [];
+    const liveTopics: { topic: string; mode: TutorConversationMode }[] = [];
     const runner = createTutorToolRunner({
       scenes: buildTutorSceneCatalog(ALL, 'A2'),
       sceneBlock: (id) => (ALL.some((s) => s.id === id && s.active) ? `SCENARIO ${id}` : null),
@@ -75,6 +75,7 @@ describe('createTutorToolRunner', () => {
       onLiveBoard: (payload) => liveBoards.push(payload),
       onLiveTopic: (payload) => liveTopics.push(payload),
       onEndCall: () => events.push('end'),
+      currentGoal: () => currentGoal,
     });
     return { runner, events, liveBoards, liveTopics };
   }
@@ -110,16 +111,20 @@ describe('createTutorToolRunner', () => {
     expect(events).toEqual(['scene:a1_one', 'scene:none', 'scene:none']);
   });
 
-  it('assign_homework: чистит, дедупит без регистра, режет до 4; пустой список — просьба повторить', () => {
+  it('assign_homework: чистит, дедупит и сохраняет максимум 3 полные пары', () => {
     const { runner, events } = makeRunner();
+    for (const phrase of ['I would like a coffee', 'How much is it?', 'One', 'Two', 'Three']) {
+      runner.handle('mark_phrase_result', { phrase, result: 'pass' });
+    }
     const res = runner.handle('assign_homework', {
       phrases: ['  I would like a coffee ', 'i would like a COFFEE', 'How much is it?', '', 'One', 'Two', 'Three'],
+      meanings: ['Я хотел бы кофе', 'дубль', 'Сколько это стоит?', '', 'Один', 'Два', 'Три'],
     });
     expect(res.respond).toBe(true);
-    expect(runner.homework()).toEqual(['I would like a coffee', 'How much is it?', 'One', 'Two']);
-    expect(events).toEqual(['hw:I would like a coffee|How much is it?|One|Two']);
+    expect(runner.homework()).toEqual(['I would like a coffee', 'How much is it?', 'One']);
+    expect(events).toEqual(['hw:I would like a coffee|How much is it?|One']);
     expect(runner.handle('assign_homework', { phrases: [] }).output).toContain('No phrases received');
-    expect(runner.homework()).toHaveLength(4); // прежняя домашка не стёрта пустым вызовом
+    expect(runner.homework()).toHaveLength(3); // прежняя домашка не стёрта пустым вызовом
   });
 
   it('set_next_topic сохраняет тему; end_call — без response и с сигналом экрану', () => {
@@ -205,25 +210,85 @@ describe('createTutorToolRunner', () => {
     ]);
   });
 
-  it('mark_phrase_result: результаты повторения собираются (последний по фразе побеждает), без response', () => {
+  it('mark_phrase_result: хранит четыре состояния речи; последнее по фразе побеждает', () => {
     const { runner } = makeRunner();
-    expect(runner.handle('mark_phrase_result', { phrase: 'I would like a coffee', ok: false }).respond).toBe(false);
-    runner.handle('mark_phrase_result', { phrase: 'i would like a COFFEE', ok: true });
-    runner.handle('mark_phrase_result', { phrase: 'How much is it?', ok: true });
-    runner.handle('mark_phrase_result', { phrase: '', ok: true });
+    expect(runner.handle('mark_phrase_result', { phrase: 'I would like a coffee', result: 'uncertain' }).respond).toBe(false);
+    runner.handle('mark_phrase_result', { phrase: 'i would like a COFFEE', result: 'pass' });
+    runner.handle('mark_phrase_result', { phrase: 'How much is it?', result: 'needs_work' });
+    runner.handle('mark_phrase_result', { phrase: 'The line broke', result: 'invalid' });
+    runner.handle('mark_phrase_result', { phrase: '', result: 'pass' });
     expect(runner.phraseResults()).toEqual([
-      { text: 'i would like a COFFEE', ok: true },
-      { text: 'How much is it?', ok: true },
+      { text: 'i would like a COFFEE', result: 'pass' },
+      { text: 'How much is it?', result: 'needs_work' },
+      { text: 'The line broke', result: 'invalid' },
     ]);
   });
 
-  it('assign_homework со значениями → homeworkItems для тренажёра; end_scene(outcome) → sceneOutcome', () => {
+  it('mark_phrase_result отклоняет неизвестное состояние вместо ложной ошибки', () => {
     const { runner } = makeRunner();
-    runner.handle('assign_homework', { phrases: ['I would like tea', 'See you tomorrow'], meanings: ['Я хотел бы чай'] });
+    expect(runner.handle('mark_phrase_result', { phrase: 'Hello', result: 'maybe' }).output).toContain('Unknown speech result');
+    expect(runner.phraseResults()).toEqual([]);
+  });
+
+  it('mark_goal_progress не показывает ложное закрытие до накопленных доказательств и подходящей сцены', () => {
+    const first = makeRunner({ id: 'a1_greet', mastery: 0, sceneIds: ['a1_one'] }).runner;
+    first.handle('mark_goal_progress', { goal_id: 'a1_greet', mastery: 3 });
+    expect(first.goalProgress()).toEqual({ goalId: 'a1_greet', mastery: 1 });
+    expect(first.handle('mark_goal_progress', { goal_id: 'a1_intro', mastery: 3 }).output).toContain('current goal');
+
+    const unrelated = makeRunner({ id: 'a1_greet', mastery: 2, sceneIds: ['a1_one'] }).runner;
+    unrelated.handle('start_scene', { scene_id: 'a2_one' });
+    unrelated.handle('end_scene', { outcome: 'done' });
+    expect(unrelated.handle('mark_goal_progress', {
+      goal_id: 'a1_greet', mastery: 3, transfer_evidence: 'scene',
+    }).output).toContain('approved transfer scene');
+    expect(unrelated.goalProgress()).toEqual({ goalId: 'a1_greet', mastery: 2 });
+
+    const transfer = makeRunner({ id: 'a1_greet', mastery: 2, sceneIds: ['a1_one'] }).runner;
+    transfer.handle('start_scene', { scene_id: 'a1_one' });
+    transfer.handle('end_scene', { outcome: 'done' });
+    transfer.handle('mark_goal_progress', { goal_id: 'a1_greet', mastery: 3, transfer_evidence: 'scene' });
+    expect(transfer.goalProgress()).toEqual({ goalId: 'a1_greet', mastery: 3, evidence: 'scene', sceneId: 'a1_one' });
+
+    const invented = makeRunner({ id: 'a1_family', mastery: 2, sceneIds: [] }).runner;
+    invented.handle('mark_goal_progress', { goal_id: 'a1_family', mastery: 3, transfer_evidence: 'novel_context' });
+    expect(invented.goalProgress()).toEqual({ goalId: 'a1_family', mastery: 3, evidence: 'novel_context' });
+  });
+
+  it('assign_homework без значения отклоняется целиком; полные пары уходят в тренажёр', () => {
+    const { runner } = makeRunner();
+    runner.handle('mark_phrase_result', { phrase: 'I would like tea', result: 'pass' });
+    runner.handle('mark_phrase_result', { phrase: 'See you tomorrow', result: 'pass' });
+    expect(runner.handle('assign_homework', {
+      phrases: ['I would like tea', 'See you tomorrow'], meanings: ['Я хотел бы чай'],
+    }).output).toContain('Every homework phrase needs a meaning');
+    expect(runner.homeworkItems()).toEqual([]);
+    runner.handle('assign_homework', {
+      phrases: ['I would like tea', 'See you tomorrow'], meanings: ['Я хотел бы чай', 'До завтра'],
+    });
     expect(runner.homeworkItems()).toEqual([
       { text: 'I would like tea', meaning: 'Я хотел бы чай' },
-      { text: 'See you tomorrow', meaning: '' },
+      { text: 'See you tomorrow', meaning: 'До завтра' },
     ]);
+  });
+
+  it('assign_homework принимает только уверенно отработанные фразы и не портит прежнюю домашку', () => {
+    const { runner } = makeRunner();
+    runner.handle('mark_phrase_result', { phrase: 'I can help', result: 'pass' });
+    runner.handle('assign_homework', { phrases: ['I can help'], meanings: ['Я могу помочь'] });
+
+    runner.handle('mark_phrase_result', { phrase: 'I need help', result: 'needs_work' });
+    const rejected = runner.handle('assign_homework', {
+      phrases: ['I can help', 'I need help', 'A brand new line'],
+      meanings: ['Я могу помочь', 'Мне нужна помощь', 'Новая фраза'],
+    });
+
+    expect(rejected.output).toContain('confidently practised');
+    expect(runner.homeworkItems()).toEqual([{ text: 'I can help', meaning: 'Я могу помочь' }]);
+  });
+
+  it('end_scene(outcome) сохраняет результат переноса', () => {
+    const { runner } = makeRunner();
     expect(runner.sceneOutcome()).toBe('');
     runner.handle('start_scene', { scene_id: 'a2_one' });
     runner.handle('end_scene', { outcome: 'done' });

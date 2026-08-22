@@ -384,6 +384,8 @@ describe('E2E: полный успешный звонок от старта до
       audioInputTokens: 400,
       audioOutputTokens: 300,
       cachedTokens: 50,
+      textInputTokens: 12,
+      textOutputTokens: 8,
       textTokens: 20, // 12 input + 8 output
     });
 
@@ -412,6 +414,8 @@ describe('E2E: полный успешный звонок от старта до
       audioInputTokens: 400,
       audioOutputTokens: 300,
       cachedTokens: 50,
+      textInputTokens: 12,
+      textOutputTokens: 8,
       textTokens: 20,
     });
 
@@ -446,6 +450,31 @@ describe('E2E: полный успешный звонок от старта до
 // ── 2. Barge-in ─────────────────────────────────────────────────────────────
 
 describe('E2E: перебивание ИИ (barge-in)', () => {
+  it('очередит ответ на речь ученика до полного окончания текущего аудио MAX', async () => {
+    const h = createHarness();
+    await bringUpCall(h);
+    const dc = h.pc().dc;
+
+    // Приветствие уже запросило один response.create и сейчас звучит.
+    dc.deliver({ type: 'response.created', response: {} });
+    dc.deliver({ type: 'output_audio_buffer.started' });
+    expect(dc.sentOfType('response.create')).toHaveLength(1);
+
+    // Ученик начал и закончил реплику на хвосте MAX. Новый ответ нельзя
+    // создавать ни поверх активной генерации, ни поверх доигрывающего буфера.
+    dc.deliver({ type: 'input_audio_buffer.speech_started' });
+    dc.deliver({ type: 'input_audio_buffer.speech_stopped' });
+    expect(dc.sentOfType('response.create')).toHaveLength(1);
+
+    dc.deliver({ type: 'response.done', response: {} });
+    expect(dc.sentOfType('response.create')).toHaveLength(1);
+
+    dc.deliver({ type: 'output_audio_buffer.stopped' });
+    expect(dc.sentOfType('response.create')).toHaveLength(2);
+
+    await h.client.end();
+  });
+
   it('шлёт cancel+clear и мгновенно глушит голос ИИ, возвращая звук через 300мс', async () => {
     const h = createHarness();
     await bringUpCall(h);
@@ -485,6 +514,7 @@ describe('E2E: потеря сети', () => {
     const h = createHarness();
     await bringUpCall(h);
     const micTrack = h.streams[0].tracks[0];
+    h.pc().dc.deliver({ type: 'response.created', response: {} });
 
     h.pc().setIce('disconnected');
     expect(h.client.phase()).toBe('reconnecting');
@@ -499,6 +529,9 @@ describe('E2E: потеря сети', () => {
     expect(h.client.phase()).toBe('active');
     expect(micTrack.enabled).toBe(true);
     expect(uiTypes(h)).toContain('reconnected');
+    // Потерянный response.done старой линии не должен навсегда блокировать
+    // подсказки/повтор фразы после восстановления соединения.
+    expect(h.client.sendHintResponse('Hint after reconnect.', 64)).toBe(true);
     // Главное: НИКАКОГО второго минта — деньги за новую сессию не потрачены.
     expect(h.mintCalls).toHaveLength(1);
 
@@ -650,11 +683,14 @@ describe('E2E: потеря сети', () => {
     h.advance(RECONNECT_GRACE_MS);
     await flush();
 
-    expect(h.client.phase()).toBe('failed');
+    expect(h.client.phase()).toBe('reconnect_failed');
     expect(h.mintCalls).toHaveLength(2); // третьего минта не было
     const fail = h.uiEvents.find((e) => e.type === 'fail');
     expect(fail).toBeDefined();
-    // Даже упав, звонок обязан отчитаться серверу — иначе резерв висит до watchdog.
+    // Терминальный экран остаётся видимым: сеттлмент происходит после явного
+    // «завершить», а не маскирует потерю связи автоматическим выходом.
+    expect(h.endCalls).toHaveLength(0);
+    await h.client.end('dropped');
     expect(h.endCalls).toHaveLength(1);
     expect(h.endCalls[0].endReason).toBe('dropped'); // 'failed' → 'dropped' на границе
   });
@@ -803,11 +839,34 @@ describe('E2E: wrap-up и подсказки', () => {
     const h = createHarness();
     await bringUpCall(h);
 
-    h.client.sendHintResponse('Give a gentle hint in English.', 120);
+    // Приветствие завершено: только после response.done можно просить отдельное
+    // воспроизведение подсказки.
+    h.pc().dc.deliver({ type: 'response.done', response: {} });
+
+    expect(h.client.sendHintResponse('Give a gentle hint in English.', 120)).toBe(true);
     const responses = h.pc().dc.sentOfType('response.create');
     const resp = responses[responses.length - 1];
     expect((resp.response as Record<string, unknown>).instructions).toBe('Give a gentle hint in English.');
     expect((resp.response as Record<string, unknown>).max_output_tokens).toBe(120);
+
+    await h.client.end();
+  });
+
+  it('не посылает повтор подсказки поверх активного или уже запрошенного ответа', async () => {
+    const h = createHarness();
+    await bringUpCall(h);
+    const dc = h.pc().dc;
+
+    dc.deliver({ type: 'response.done', response: {} });
+    expect(h.client.sendHintResponse('Replay once.', 64)).toBe(true);
+    const afterFirst = dc.sentOfType('response.create').length;
+    expect(h.client.sendHintResponse('Replay twice.', 64)).toBe(false);
+    expect(dc.sentOfType('response.create')).toHaveLength(afterFirst);
+
+    dc.deliver({ type: 'response.created', response: {} });
+    expect(h.client.sendHintResponse('Replay while active.', 64)).toBe(false);
+    dc.deliver({ type: 'response.done', response: {} });
+    expect(h.client.sendHintResponse('Replay after done.', 64)).toBe(true);
 
     await h.client.end();
   });
@@ -873,6 +932,8 @@ describe('E2E: устойчивость к мусору в data channel', () => 
       audioInputTokens: 100, // -500 проигнорировано, не вычлось
       audioOutputTokens: 50,
       cachedTokens: 0,
+      textInputTokens: 0,
+      textOutputTokens: 0,
       textTokens: 0,
     });
     await h.client.end();

@@ -17,8 +17,10 @@ const ALL_EVENTS: MaxCallUiEvent[] = [
   { type: 'audio_out_cleared' },
   { type: 'response_done' },
   { type: 'reconnect_started' },
+  { type: 'transport_lost' },
   { type: 'reconnected' },
   { type: 'wrap_up' },
+  { type: 'learner_end_requested' },
   { type: 'end' },
   { type: 'fail', reason: 'x' },
   { type: 'barge_in_optimistic' },
@@ -45,8 +47,8 @@ function reach(phase: MaxCallUiPhase): MaxCallUiState {
     ],
     reconnecting: [{ type: 'connected' }, { type: 'response_done' }, { type: 'reconnect_started' }],
     wrapping_up: [{ type: 'connected' }, { type: 'response_done' }, { type: 'wrap_up' }],
+    failed: [{ type: 'fail', reason: 'network' }],
     ended: [{ type: 'connected' }, { type: 'end' }],
-    failed: [{ type: 'fail', reason: 'boom' }],
   };
   const state = run(chains[phase]);
   expect(state.phase).toBe(phase);
@@ -57,7 +59,6 @@ describe('max_call_ui_state: допустимые переходы', () => {
   it('начальное состояние — connecting без hint-таймера', () => {
     expect(MAX_CALL_UI_INITIAL).toEqual({
       phase: 'connecting',
-      failReason: null,
       eqOwner: 'idle',
       allowHintTimer: false,
     });
@@ -124,16 +125,16 @@ describe('max_call_ui_state: допустимые переходы', () => {
     expect(s).toMatchObject({ phase: 'listening', eqOwner: 'user' });
   });
 
-  it('юзер перебивает приветствие — сцена сразу его', () => {
-    const s = reduceMaxCallUi(reach('connected_greeting'), { type: 'speech_started' });
-    expect(s).toMatchObject({ phase: 'listening', eqOwner: 'user' });
+  it('speech_started не обрывает приветствие до конца его аудио', () => {
+    const greeting = reach('connected_greeting');
+    expect(reduceMaxCallUi(greeting, { type: 'speech_started' })).toBe(greeting);
   });
 });
 
 describe('max_call_ui_state: barge-in', () => {
-  it('серверный speech_started во время речи ИИ → barge_in с эквалайзером юзера', () => {
+  it('speech_started во время речи ИИ не открывает следующий ход до конца аудио', () => {
     const s = reduceMaxCallUi(reach('ai_speaking'), { type: 'speech_started' });
-    expect(s).toMatchObject({ phase: 'barge_in', eqOwner: 'user' });
+    expect(s).toMatchObject({ phase: 'ai_speaking', eqOwner: 'ai' });
   });
 
   it('оптимистичный barge-in без подтверждения откатывается таймаутом в ai_speaking', () => {
@@ -192,7 +193,7 @@ describe('max_call_ui_state: out-of-order события — no-op, не throw',
   it('никакая пара (фаза × событие) не бросает', () => {
     const phases: MaxCallUiPhase[] = [
       'connecting', 'connected_greeting', 'listening', 'thinking', 'ai_speaking',
-      'barge_in', 'reconnecting', 'wrapping_up', 'ended', 'failed',
+      'barge_in', 'reconnecting', 'wrapping_up', 'failed', 'ended',
     ];
     for (const phase of phases) {
       const base = reach(phase);
@@ -237,10 +238,22 @@ describe('max_call_ui_state: reconnect и wrap-up блокируют hint-тай
     const s = reduceMaxCallUi(reach('ai_speaking'), { type: 'reconnect_started' });
     expect(s).toMatchObject({ phase: 'reconnecting', eqOwner: 'idle', allowHintTimer: false });
   });
+
+  it('transport_lost показывает reconnecting сразу, без промежуточного thinking', () => {
+    expect(reduceMaxCallUi(reach('listening'), { type: 'transport_lost' })).toMatchObject({
+      phase: 'reconnecting', eqOwner: 'idle', allowHintTimer: false,
+    });
+  });
+
+  it('явная просьба ученика завершить разговор не может оставить listening', () => {
+    expect(reduceMaxCallUi(reach('listening'), { type: 'learner_end_requested' })).toMatchObject({
+      phase: 'wrapping_up', allowHintTimer: false,
+    });
+  });
 });
 
 describe('max_call_ui_state: терминальные состояния', () => {
-  it('fail из любой нетерминальной фазы фиксирует причину', () => {
+  it('fail остаётся видимым до выбора ученика и сохраняет причину', () => {
     for (const phase of [
       'connecting', 'connected_greeting', 'listening', 'thinking',
       'ai_speaking', 'barge_in', 'reconnecting', 'wrapping_up',
@@ -248,11 +261,17 @@ describe('max_call_ui_state: терминальные состояния', () =>
       const s = reduceMaxCallUi(reach(phase), { type: 'fail', reason: 'ice_failed' });
       expect(s).toEqual({
         phase: 'failed',
-        failReason: 'ice_failed',
         eqOwner: 'idle',
         allowHintTimer: false,
+        failureCode: 'ice_failed',
       });
     }
+  });
+
+  it('из failed можно явно начать реконнект или завершить', () => {
+    const failed = reach('failed');
+    expect(reduceMaxCallUi(failed, { type: 'reconnect_started' }).phase).toBe('reconnecting');
+    expect(reduceMaxCallUi(failed, { type: 'end' }).phase).toBe('ended');
   });
 
   it('ended поглощает все события (включая fail) без изменений', () => {
@@ -262,12 +281,4 @@ describe('max_call_ui_state: терминальные состояния', () =>
     }
   });
 
-  it('failed поглощает все события и не теряет причину', () => {
-    const failed = reach('failed');
-    for (const ev of ALL_EVENTS) {
-      const after = reduceMaxCallUi(failed, ev);
-      expect(after).toBe(failed);
-      expect(after.failReason).toBe('boom');
-    }
-  });
 });

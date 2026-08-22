@@ -4,68 +4,36 @@ import path from 'path';
 const read = (relativePath: string) => fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
 
 /**
- * MAX Voice post-call review (МАКС ПЛАН §6.2): `max_voice_review.tsx` wires the
- * corrections section to `premiumDialogReview(mode:'voice')` instead of the
- * former local-only stub. Full RN-Firebase mocking is heavy for this codebase
- * (see ai_dialog_entitlement_readiness_contract.test.ts) — this is a source-text
- * contract test in the same spirit: verify the wiring exists, the payload shape
- * is correct, and a fetch failure cannot crash the review screen.
+ * MAX review is driven only by the idempotent private finalizer receipt. The
+ * screen must never start the retired transcript-review callable itself.
  */
 describe('MAX Voice review server wiring', () => {
   const screen = read('app/max_voice_review.tsx');
-  const client = read('app/ai_dialog_client.ts');
-  const server = read('functions/src/premium_dialog_review.ts');
+  const finalizer = read('app/max_voice_finalize_client.ts');
 
-  it('screen calls callPremiumDialogReview with mode:voice and a mapped transcript', () => {
-    expect(screen).toContain("import {\n  callPremiumDialogReview,\n  type PremiumDialogReviewCorrection,\n} from './ai_dialog_client';");
-    // Учитель шлёт mode 'tutor', остальные звонки — 'voice'.
-    expect(screen).toContain("mode: result.format === 'tutor' ? 'tutor' : 'voice'");
-    // TranscriptTurn {role,text} must be mapped to DialogChatTurn {role,content} —
-    // the raw TranscriptTurn shape is NOT a valid request payload.
-    expect(screen).toContain('role: turn.role,\n        content: turn.text,');
+  it('loads and retries the durable finalizer without calling the legacy transcript review', () => {
+    expect(screen).toContain('readMaxVoiceReviewReceipt');
+    expect(screen).toContain('drainOneMaxFinalize');
+    expect(screen).not.toContain('callPremiumDialogReview');
+    expect(finalizer).toContain("maxVoiceCallable<unknown>('maxVoiceFinalize')");
   });
 
-  it('only requests a review when the call actually has learner turns', () => {
-    const guard = screen.indexOf("const userTurns = result.history.filter((turn) => turn.role === 'user');");
-    expect(guard).toBeGreaterThan(-1);
-    const earlyReturn = screen.indexOf('if (userTurns.length === 0) return;', guard);
-    expect(earlyReturn).toBeGreaterThan(guard);
+  it('keeps a pending local transcript temporary and hides it after a receipt exists', () => {
+    expect(screen).toContain('Временно на этом устройстве');
+    expect(screen).toContain("reviewState.kind === 'pending'");
+    expect(screen).not.toContain("premiumDialogReview");
   });
 
-  it('never dedupes across different calls or crashes the screen on fetch failure', () => {
-    // requestedForRef keyed by the specific history array reference: a fresh
-    // call (fresh result.history) must NOT be skipped by a stale ref check.
-    expect(screen).toContain('requestedForRef.current = result.history;');
-    // Failure sets an 'error' state, not a thrown/unhandled rejection.
-    const catchBlock = screen.indexOf('.catch(() => {');
-    expect(catchBlock).toBeGreaterThan(-1);
-    expect(screen.slice(catchBlock, catchBlock + 150)).toContain("setReviewState('error')");
-  });
-
-  it('client request type carries an optional mode field forwarded verbatim to the callable', () => {
-    // 'tutor' — разбор урока с учителем (память учителя обновляет сервер).
-    expect(client).toContain("mode?: 'text' | 'voice' | 'tutor';");
-    // The whole `req` object (including mode) is passed straight into fn(req) —
-    // no field allowlist that would silently drop `mode` before it reaches the server.
-    expect(client).toContain('fn(req)');
-  });
-
-  it('client cache key includes mode so text and voice reviews of the same transcript never collide', () => {
-    const key = client.slice(
-      client.indexOf('function premiumDialogReviewRequestKey'),
-      client.indexOf('function premiumDialogReviewRequestKey') + 400,
-    );
-    expect(key).toContain('mode: req.mode');
-  });
-
-  it('server accepts mode and threads it into the prompt builder without changing the text-mode default', () => {
-    expect(server).toContain('export function asReviewMode(value: unknown): DialogReviewMode');
-    expect(server).toContain("const mode = asReviewMode(data.mode);");
-    expect(server).toContain('buildReviewSystemPrompt(cefr, learnerLangName, goalEn, studyTarget, mode)');
+  it('does not present unsupported pronunciation or proficiency claims', () => {
+    expect(screen.toLocaleLowerCase()).not.toContain('pronunciation score');
+    expect(screen).not.toContain('metrics.uniqueWords');
+    expect(screen).not.toContain('metrics.longestTurnWords');
+    expect(screen).not.toContain('goalsAfter');
   });
 
   it('back leaves the terminal call flow instead of reviving stale connecting screen', () => {
-    expect(screen).toContain("router.replace('/ai_dialog_home' as any)");
+    expect(screen).toContain("router.replace('/(tabs)/home' as any)");
+    expect(screen).not.toContain("router.replace('/ai_dialog_home' as any)");
     expect(screen).not.toContain('safeRouterBack');
   });
 
@@ -77,37 +45,51 @@ describe('MAX Voice review server wiring', () => {
     expect(session).not.toContain('END_CONFIRM_WINDOW_MS');
   });
 
-  it('opens call immediately with a reactive feather orb and no equalizer/loading label', () => {
+  it('preloads the call before opening the reactive feather orb', () => {
     const prestart = read('app/max_call_prestart.tsx');
     const session = read('app/max_call_session.tsx');
     const halo = read('app/max_call_halo.tsx');
-    const startAt = prestart.indexOf('const startCall');
-    const handler = prestart.slice(startAt, prestart.indexOf('return (', startAt));
 
-    expect(handler).not.toContain('await ');
-    expect(handler).not.toContain('setRequesting');
-    // зачем: владелец 2026-08-16 — соединение мгновенное. Настоящий минт
-    // стартует ЗАРАНЕЕ на пре-экране (заготовка), тап только передаёт её
-    // экрану звонка (handoff) — никакого warmup-пинга и ожидания сети на тапе.
     expect(prestart).toContain('beginPremint(');
-    expect(handler).toContain('markPremintHandoff(key)');
-    expect(prestart).not.toContain('warmupPing');
+    expect(prestart).toContain('markPremintHandoff(key)');
+    expect(prestart).toContain("pathname: '/max_call_session'");
     expect(session).toContain('claimPremint(key)');
     expect(session).not.toContain('VoiceEqualizer');
     expect(session).not.toContain('Соединяем…');
     expect(session).toContain('haloRef.current?.setMicLevel(level)');
+    expect(halo).toContain('const FEATHER_LAYERS = [');
+    expect(halo).toContain('useSharedValue(1)');
+    expect(halo).toContain('useReduceMotion()');
+    expect(prestart).toContain("studyTarget: format === 'tutor' ? 'en' : studyTarget");
+    expect(session).toContain("studyTarget: isTutor ? 'en' : studyTarget");
+  });
 
-  it('prioritizes one victory and one validated practice action before detailed corrections', () => {
-    expect(screen).toContain('Главная победа');
-    expect(screen).toContain('Один фокус на завтра');
+  it('presents a calm worked, fix, tomorrow narrative before collapsed details', () => {
+    expect(screen).toContain('testID="max-voice-review-worked"');
+    expect(screen).toContain('testID="max-voice-review-fix"');
+    expect(screen).toContain('testID="max-voice-review-tomorrow"');
+    expect(screen).toContain('testID="max-voice-review-details-toggle"');
+    expect(screen).toContain('const [detailsOpen, setDetailsOpen] = useState(false)');
+    expect(screen.indexOf('max-voice-review-worked')).toBeLessThan(screen.indexOf('max-voice-review-fix'));
+    expect(screen.indexOf('max-voice-review-fix')).toBeLessThan(screen.indexOf('max-voice-review-tomorrow'));
+    expect(screen.indexOf('max-voice-review-tomorrow')).toBeLessThan(screen.indexOf('max-voice-review-details-toggle'));
+    expect(screen).toContain('Что получилось');
+    expect(screen).toContain('Что поправить');
+    expect(screen).toContain('Что делать завтра');
     expect(screen).toContain('Потренировать эту фразу');
-    expect(screen.indexOf('Главная победа')).toBeLessThan(screen.lastIndexOf('Разбор твоих фраз'));
+    expect(screen).toContain('{projection.correction.said}');
+    expect(screen).toContain('{projection.correction.target}');
+    expect(screen).toContain("reviewState.kind === 'loading'");
+    expect(screen).toContain('max-voice-review-details');
+    expect(screen).toContain('Текст разговора');
     expect(screen).toContain("trackEvent('max_tutor_review_practice_started'");
-    expect(screen).toContain('corrections[0]');
-    expect(screen).toContain("correction.kind === 'fix'");
-    expect(screen).toContain('correction.corrected.trim().length > 0');
-    expect(screen).toContain('correction.corrected.length <= 100');
-    expect(screen).toContain('topFocus ? (');
+    expect(screen).toContain('projectMaxReview(reviewState.receipt)');
+    expect(screen).toContain('projection?.tomorrowActions ?? []');
+    expect(screen).toContain('AccessibilityInfo.announceForAccessibility');
+    expect(screen).toContain('accessibilityState={{ expanded: transcriptOpen }}');
+    expect(screen).toContain('max-voice-review-transcript-content');
+    expect(screen).toContain('max-voice-review-target-phrase');
+    expect(screen).toContain('max-voice-review-next-topic');
   });
 
   it('opens a focused one-phrase practice session instead of the generic five-error queue', () => {
@@ -116,22 +98,17 @@ describe('MAX Voice review server wiring', () => {
     expect(screen).toContain('const [practiceOpening, setPracticeOpening] = useState(false)');
     expect(screen).toContain('disabled={practiceOpening}');
     expect(screen).toContain('accessibilityState={{ busy: practiceOpening, disabled: practiceOpening }}');
-    expect(screen).toContain('const practicePrompt = triLang(lang, {');
-    expect(screen).toContain('topFocus.original');
-    expect(screen).toContain('sourceMeaning: practicePrompt');
-    expect(screen).not.toContain('sourceMeaning: topFocus.note');
+    expect(screen).toContain('canonicalTarget: correction.target');
+    expect(screen).toContain('sourceMeaning: correction.explanation');
     expect(screen).toContain("returnTo: 'max_voice_review'");
+    expect(screen).toContain('maxReviewSessionId: activeSessionId');
   });
 
   it('persists every assigned tutor-homework item into account-scoped practice idempotently', () => {
     expect(screen).toContain('homeworkSavedForRef');
-    expect(screen).toContain('result.tutor?.homeworkItems ?? []');
+    expect(screen).toContain('localResult.tutor?.homeworkItems ?? []');
     expect(screen).toContain('captureCurrentAccountObjectiveAttempt({');
-    expect(screen).toContain("attemptId: `max-tutor-homework:${result.sessionId ?? 'local'}:${index}`");
+    expect(screen).toContain('attemptId: `max-tutor-homework:${sessionId}:${index}`');
     expect(screen).toContain("sourceKind: 'voice_review'");
-  });
-    expect(halo).toContain('const FEATHER_LAYERS = [');
-    expect(halo).toContain('useSharedValue(1)');
-    expect(halo).toContain('useReduceMotion()');
   });
 });

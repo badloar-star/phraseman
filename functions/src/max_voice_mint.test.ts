@@ -308,18 +308,17 @@ describe('rate limit — 60 fresh mints/hour, reconnects excluded', () => {
 
 // зачем: владелец 2026-08-16 снял гейт подписки до релиза, поэтому ветка
 // «пробник» (access: 'trial') сейчас НЕДОСТИЖИМА — все получают полный доступ.
-// Логика ветвления пробника сохранена в коде (chooseTrialVariant/resolveTrialState)
-// и вернётся вместе с пейволом; тесты здесь сторожат новое поведение: израсходованный
+// Тесты здесь сторожат новое поведение: израсходованный
 // пробник больше никого не закрывает, а звонок идёт по обычному сценарному капу.
 describe('trial branch is bypassed until the paywall ships', () => {
   it('gives a practiced learner a full call instead of a trial variant', async () => {
-    const res = await callMint({ srsCount: 20, cefr: 'B1' });
+    const res = await callMint({ cefr: 'B1' });
     expect(res.trialVariant).toBeNull();
     expect(res.ok).toBe(true);
   });
 
   it('does not stamp trialUsedAtMs and does not use the trial cap', async () => {
-    const res = await callMint({ srsCount: 3, cefr: 'A1' });
+    const res = await callMint({ cefr: 'A1' });
     expect(res.trialVariant).toBeNull();
     // Сценарный кап 300 + 20 хвоста, а не пробниковые 180 + 20.
     expect(res.limits.reservedSec).toBe(320);
@@ -328,7 +327,7 @@ describe('trial branch is bypassed until the paywall ships', () => {
 
   it('a recently used trial no longer refuses access', async () => {
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
-    await expect(callMint({ srsCount: 3 })).resolves.toMatchObject({ ok: true, trialVariant: null });
+    await expect(callMint({})).resolves.toMatchObject({ ok: true, trialVariant: null });
   });
 });
 
@@ -525,6 +524,7 @@ describe('server-pinned session config (section 4)', () => {
     const primary = JSON.parse(fetchMock.mock.calls[0][1].body);
     const compatibility = JSON.parse(fetchMock.mock.calls[1][1].body);
     expect(primary.session.audio.input.turn_detection.type).toBe('semantic_vad');
+    expect(primary.session.output_modalities).toEqual(['audio']);
     expect(primary.session.max_output_tokens).toBe(600); // A2: ~30с речи (аудио-токены ≈20/с)
     expect(primary.session.audio.input.noise_reduction).toEqual({ type: 'far_field' });
     expect(compatibility).toMatchObject({
@@ -536,6 +536,7 @@ describe('server-pinned session config (section 4)', () => {
       },
     });
     expect(compatibility.session.audio.input).toBeUndefined();
+    expect(compatibility.session.output_modalities).toEqual(['audio']);
     expect(compatibility.session.max_output_tokens).toBeUndefined();
     expect(compatibility.session.truncation).toBeUndefined();
     // Один пользовательский mint: ни резерв, ни rate slot не дублируются.
@@ -567,6 +568,7 @@ describe('server-pinned session config (section 4)', () => {
     expect(body.session).toMatchObject({
       type: 'realtime',
       model: 'gpt-realtime-2.1-mini',
+      output_modalities: ['audio'],
       // GA-имя поля (client_secrets, session type 'realtime') — max_output_tokens;
       // max_response_output_tokens было в deprecated-бете.
       // зачем: max_output_tokens считает аудио-токены (~20/с) — 120 обрезало реплику
@@ -580,9 +582,14 @@ describe('server-pinned session config (section 4)', () => {
     expect(body.session.audio.input.noise_reduction).toEqual({ type: 'far_field' });
     expect(body.session.audio.input.turn_detection).toEqual({
       type: 'semantic_vad',
-      eagerness: 'low', // A1: терпеливая VAD — новичок думает с паузами, ответ не рвётся
-      create_response: true,
-      interrupt_response: true,
+      eagerness: 'medium', // A1: паузы допустимы, но завершённая фраза не ждёт до 8 секунд
+      // Клиент сам создаёт ответ после speech_stopped, когда предыдущая реплика
+      // действительно закончила и генерацию, и воспроизведение.
+      create_response: false,
+      // Голос/эхо во время ответа не обрывают незаконченную фразу MAX.
+      // Реальный пользователь всё ещё распознаётся, а новый ответ создаётся
+      // после завершения текущего хода.
+      interrupt_response: false,
     });
     // OpenAI поддерживает idle_timeout_ms только в server_vad. Это поле в
     // semantic_vad превращает весь client_secrets request в HTTP 400.
@@ -662,6 +669,22 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
     await expect(preflight({ auth: { uid: AUTH }, data: {} }))
       .resolves.toMatchObject({ ok: true, allowed: true, access: 'max' });
   });
+
+  it('returns a read-only tutor preview without minting or reserving a call', async () => {
+    docs.set(`voice_tutor_memory/${voiceTutorMemoryDocId(AUTH, STABLE)}`, { callCount: 3, goalMastery: {} });
+    const res = await preflight({
+      auth: { uid: AUTH },
+      data: { format: 'tutor', cefr: 'A1', interfaceLang: 'ru', studyTarget: 'en' },
+    });
+
+    expect(res.tutorPreview).toMatchObject({
+      lessonOrdinal: 4,
+      lessonType: 'new_material',
+      displayTitle: 'Первый контакт',
+    });
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(docs.get(QUOTA_PATH)).toBeUndefined();
+  });
 });
 
 // ── Учитель (формат 'tutor', вариант A — владелец 2026-08-16) ────────────────
@@ -694,7 +717,7 @@ describe("format 'tutor' — личный учитель", () => {
     const body = lastFetchBody();
     expect(body.session.audio.output).toEqual({ voice: 'cedar' }); // tutorVoice, не голос сцен
     expect(body.session.tools.map((t: DocData) => t.name)).toEqual([
-      'start_scene', 'end_scene', 'mark_phrase_result', 'assign_homework', 'set_next_topic', 'mark_goal_progress', 'set_language_preference', 'flag_safety', 'end_call',
+      'start_scene', 'end_scene', 'mark_phrase_result', 'assign_homework', 'set_next_topic', 'show_tutor_board', 'set_live_topic', 'mark_goal_progress', 'set_language_preference', 'flag_safety', 'end_call',
     ]);
     expect(body.session.tool_choice).toBe('auto');
     const instr: string = body.session.instructions;
@@ -718,22 +741,26 @@ describe("format 'tutor' — личный учитель", () => {
       nextTopic: 'weekend plans',
     });
     expect(String(res.tutor.greetingInstructions)).toContain('LANGUAGE POLICY');
-    // Карта целей: A1 → первая цель a1_greet, «0 из 60», блок цели в промпте.
+    expect(String(res.tutor.greetingInstructions)).toContain('10 minutes');
+    expect(String(res.tutor.greetingInstructions)).toContain('FOCUSED LESSON');
+    // Карта целей: A1 → первая цель a1_greet; агрегат ученику не показываем.
     expect(instr).toContain('CURRENT SPEAKING GOAL');
     expect(instr).toContain('a1_greet');
-    expect(res.tutor.plan.goal).toMatchObject({ id: 'a1_greet', level: 'A1', mastery: 0 });
-    expect(res.tutor.plan.goalsDone).toBe(0);
-    expect(res.tutor.plan.goalsTotal).toBe(60);
+    expect(res.tutor.plan.goal).toMatchObject({ id: 'a1_greet', level: 'A1', mastery: 0, sceneIds: ['first_meeting'] });
+    expect(res.tutor.plan).not.toHaveProperty('goalsDone');
+    expect(res.tutor.plan).not.toHaveProperty('goalsTotal');
     expect(res.tutor.plan.lessonType).toBe('new_material'); // callCount 3 → 3 % 3 = 0
+    expect(res.tutor.preview).toMatchObject({ lessonOrdinal: 4, displayTitle: 'Перший контакт' });
   });
 
-  it('первый урок без памяти и без устава: встроенная выжимка продукта, память «первый урок»', async () => {
+  it('первый урок без памяти и без устава: MAX остаётся английским учителем для устаревшего studyTarget=fr', async () => {
     mockResolvePremium.mockResolvedValue(true as never);
     okProvider();
     __resetTutorCharterCacheForTests(); // выжимка устава кэшируется на инстанс 1ч
     const res = await callMint({ format: 'tutor', cefr: 'B1', interfaceLang: 'ru', studyTarget: 'fr' });
     const instr: string = lastFetchBody().session.instructions;
-    expect(instr).toContain('personal French TEACHER'); // изучаемый язык из studyTarget
+    expect(instr).toContain('personal English TEACHER');
+    expect(instr).not.toContain('personal French TEACHER');
     expect(instr).toContain('FIRST lesson');
     expect(instr).toContain('Trainer (flashcards)'); // TUTOR_APP_DIGEST_FALLBACK
     expect(instr).toContain('native language Russian');

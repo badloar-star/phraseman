@@ -9,6 +9,7 @@ import {
   buildReconnectSummary,
   type ReconnectChainState,
 } from '../app/max_call_reconnect';
+import { isMaxEndIntent } from '../app/max_voice_copy';
 import type { TranscriptTurn } from '../app/max_call_transcript';
 
 const CAPS = { auto: 2, manual: 1 };
@@ -145,5 +146,30 @@ describe('buildReconnectSummary (template, no AI)', () => {
     const summary = buildReconnectSummary(history, { maxChars: Number.NaN });
     expect(summary).toContain('You: Hello there');
     expect(summary.length).toBeLessThanOrEqual(RECONNECT_SUMMARY_MAX_CHARS);
+  });
+});
+
+describe('explicit learner end intent', () => {
+  it.each([
+    'Finish the conversation.',
+    'Please, end the call now',
+    'Давай закончим!',
+    'Нам надо закончить разговор.',
+    'Будь ласка, закінчи розмову',
+    'Por favor, termina la conversación',
+    'Por favor, encerre a conversa',
+    'Lütfen konuşmayı bitir',
+    'Proszę, zakończ rozmowę',
+  ])('accepts a completed explicit command: %s', (text) => {
+    expect(isMaxEndIntent(text)).toBe(true);
+  });
+
+  it.each([
+    'I need to finish my work before the call.',
+    'Мы закончили работу вчера.',
+    'How do I say finish the conversation?',
+    'She wants to stop smoking.',
+  ])('does not substring-match ordinary discussion: %s', (text) => {
+    expect(isMaxEndIntent(text)).toBe(false);
   });
 });

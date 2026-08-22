@@ -57,11 +57,25 @@ describe('max_call_hint_timer', () => {
       expect(t.firedCount()).toBe(0);
     });
 
+    it('не перевзводится, если аудио MAX закончилось, а ученик всё ещё говорит', () => {
+      const t = createHintTimer(CFG);
+      t.onPhase('ai_speaking', 0);
+      t.onSpeechStarted();
+
+      // output_audio_buffer.stopped переводит UI в listening, хотя начавшаяся
+      // на хвосте MAX реплика ученика ещё продолжается.
+      t.onPhase('listening', 1_000);
+
+      expect(t.due(100_000)).toBeNull();
+      expect(t.firedCount()).toBe(0);
+    });
+
     it('после речи новая тишина отсчитывается с нового listening и снова с first', () => {
       const t = createHintTimer(CFG);
       t.onPhase('listening', 0);
       expect(t.due(8_000)).toBe('first'); // уже была первая подсказка
       t.onSpeechStarted(); // ученик ответил
+      t.onSpeechStopped();
       t.onPhase('listening', 20_000); // и снова замолчал
       expect(t.due(27_999)).toBeNull();
       expect(t.due(28_000)).toBe('first'); // цикл начинается заново
@@ -110,6 +124,7 @@ describe('max_call_hint_timer', () => {
         t.onPhase('listening', now);
         expect(t.due(now + 8_000)).toBe('first');
         t.onSpeechStarted();
+        t.onSpeechStopped();
         now += 30_000;
       }
       t.onPhase('listening', now);

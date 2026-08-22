@@ -68,6 +68,23 @@ describe('parseMintResponse: оба написания ключей', () => {
     expect(parsed.trialVariant).toBeNull();
     expect(parsed.limits).toBeUndefined();
   });
+
+  it('сохраняет разрешённые сцены текущей цели для проверки переноса на клиенте', () => {
+    const parsed = parseMintResponse({
+      value: 'x', session_id: 's', max_seconds: 60,
+      tutor: {
+        name: 'Max',
+        plan: {
+          goal: {
+            id: 'a1_greet', level: 'A1', mastery: 2,
+            title: { en: 'Greet', ru: 'Поздороваться', uk: 'Привітатися' },
+            sceneIds: ['first_meeting', 'coffee', 42],
+          },
+        },
+      },
+    });
+    expect(parsed.tutor?.plan?.goal?.sceneIds).toEqual(['first_meeting', 'coffee']);
+  });
 });
 
 describe('toServerEndReason: серверный словарь причин', () => {

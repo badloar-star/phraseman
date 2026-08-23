@@ -70,9 +70,9 @@ jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: () 
 function props(overrides: Record<string, unknown> = {}) {
   return {
     visible: true, onClose: jest.fn(), friendName: 'Друг', friendUid: 'friend-1', friendAvatar: 'friend', friendTotalXp: 900, myAvatar: 'me', myTotalXp: 1200,
-    weeklyXp: 120, streak: 7, rank: 2, highFived: false,
+    streak: 7, highFived: false,
     together: { days: 14, level: 2, progressPercent: 66, nextLevelName: 'Напарники', nudged: false, learnedToday: false, incomingNudge: true, giftReady: true },
-    onNudge: jest.fn(), onGift: jest.fn(), onHighFive: jest.fn(), onDuel: jest.fn(), onDelete: jest.fn(),
+    onNudge: jest.fn(), onGift: jest.fn(), onHighFive: jest.fn(), onDelete: jest.fn(),
     ...overrides,
   };
 }
@@ -89,14 +89,15 @@ describe('FriendTogetherSheet', () => {
     const user = userEvent.setup();
     const screen = await render(<FriendTogetherSheet {...value} />);
 
-    expect(screen.getByTestId('friend-together-sheet-weekly-xp')).toBeTruthy();
     expect(screen.getByTestId('friend-together-sheet-streak')).toBeTruthy();
-    expect(screen.getByTestId('friend-together-sheet-rank')).toBeTruthy();
+    expect(screen.queryByTestId('friend-together-sheet-weekly-xp')).toBeNull();
+    expect(screen.queryByTestId('friend-together-sheet-rank')).toBeNull();
+    expect(screen.queryByTestId('friend-together-sheet-status-gift')).toBeNull();
+    expect(screen.queryByTestId('friend-together-sheet-duel')).toBeNull();
     expect(screen.getByTestId('friend-together-sheet-status-nudge')).toBeTruthy();
-    expect(screen.getByTestId('friend-together-sheet-status-gift')).toBeTruthy();
     expect(mockShellProps.backdropAccessible).toBe(false);
 
-    for (const id of ['nudge', 'gift', 'high-five', 'duel', 'delete']) {
+    for (const id of ['nudge', 'gift', 'high-five', 'delete']) {
       const action = screen.getByTestId(`friend-together-sheet-${id}`);
       const actionStyle = StyleSheet.flatten(action.props.style);
       expect(actionStyle.minHeight).toBeGreaterThanOrEqual(52);
@@ -107,18 +108,17 @@ describe('FriendTogetherSheet', () => {
     expect(StyleSheet.flatten(mockPressableProps['friend-together-sheet-nudge'].style).backgroundColor).toBe('#C8FF00');
     expect(StyleSheet.flatten(screen.getByTestId('friend-together-sheet-nudge-label').props.style).color).toBe('#07110A');
 
-    expect(value.onNudge).toHaveBeenCalledTimes(1);
-    expect(value.onGift).toHaveBeenCalledTimes(1);
-    expect(value.onHighFive).toHaveBeenCalledTimes(1);
-    expect(value.onDuel).toHaveBeenCalledTimes(1);
-    expect(value.onDelete).toHaveBeenCalledTimes(1);
+    expect(value.onNudge).toHaveBeenCalledWith();
+    expect(value.onGift).toHaveBeenCalledWith(mockRequestDismiss);
+    expect(value.onHighFive).toHaveBeenCalledWith();
+    expect(value.onDelete).toHaveBeenCalledWith(mockRequestDismiss);
     await user.press(screen.getByTestId('friend-together-sheet-close'));
     expect(mockRequestDismiss).toHaveBeenCalledTimes(1);
     expect(value.onClose).not.toHaveBeenCalled();
   });
 
   test('omits together-only content and nudge when no together model exists', async () => {
-    const screen = await render(<FriendTogetherSheet {...props({ together: null, onNudge: null, onDuel: null })} />);
+    const screen = await render(<FriendTogetherSheet {...props({ together: null, onNudge: null })} />);
     expect(screen.queryByTestId('friend-together-sheet-progress')).toBeNull();
     expect(screen.queryByTestId('friend-together-sheet-nudge')).toBeNull();
     expect(screen.queryByTestId('friend-together-sheet-together-hero')).toBeNull();

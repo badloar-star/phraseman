@@ -86,6 +86,12 @@ import {
 import { saveLearningV2CourseSessionPhraseToCardsV1 } from "./learning_v2_course_session_save_card_v1";
 import { adaptLearningV2DirectSessionIntroV1 } from "./learning_v2_direct_session_intro_adapter_v1";
 import LearningV2SessionIntro from "./learning_v2_session_intro";
+import LearningV2CheckpointSeal from "../components/LearningV2CheckpointSeal";
+import LearningV2CheckpointOutcome, {
+  type LearningV2CheckpointSkillRow,
+} from "../components/LearningV2CheckpointOutcome";
+import { learningV2CheckpointCopy } from "./learning_v2_checkpoint_copy";
+import { learningV2CourseSessionRoleV1 } from "../modules/learning-v2/content/course_topology_v1";
 import { learningV2SessionCopy } from "./learning_v2_session_copy";
 import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
 
@@ -258,6 +264,14 @@ export default function LearningV2DirectSessionPlayerV1() {
   // после релиза мы бы не увидели, где люди бросают занятие. Отсчёт начинается
   // с первого готового кадра; длительность уходит грубым бакетом, не точным
   // таймлайном человека.
+  // зачем (спека SB-14, макет 26): проверка главы — отдельный сценарий, а не
+  // обычное занятие со значком. Роль берём из топологии курса, а не угадываем.
+  const sessionRole =
+    sessionOrdinal !== null ? learningV2CourseSessionRoleV1(sessionOrdinal) : null;
+  const isCheckpoint =
+    sessionRole === "chapter_checkpoint" || sessionRole === "final_exam";
+  const checkpointCopy = useMemo(() => learningV2CheckpointCopy(lang), [lang]);
+  const [checkpointEntryDone, setCheckpointEntryDone] = useState(false);
   const sessionStartedAtRef = useRef<number | null>(null);
   const sessionStageRef = useRef<"intro" | "practice" | "finale">("intro");
   const telemetryStartSentRef = useRef(false);
@@ -381,8 +395,10 @@ export default function LearningV2DirectSessionPlayerV1() {
     locale: runSummary?.targetLanguage ?? studyTarget,
     onTranscript: onLocalTranscript,
   });
+  // зачем (SB-14): на проверке главы разбора после ошибки нет — он был бы
+  // подсказкой. Человек видит итог в конце, а не по ходу.
   const wrongExplanation =
-    wrongCount >= 2 && auxiliary
+    !isCheckpoint && wrongCount >= 2 && auxiliary
       ? (lastWrongResponseId
           ? auxiliary.responseFeedbackById?.[lastWrongResponseId]?.[lang]
           : null) ?? auxiliary.secondErrorExplanationByLocale[lang]
@@ -734,6 +750,69 @@ export default function LearningV2DirectSessionPlayerV1() {
       </View>
     );
   }
+  if (finaleStars !== null && isCheckpoint) {
+    // Проверка главы завершается умениями, а не оценкой: спека SB-14 прямо
+    // запрещает красное «провалено» и снятие уже заработанного.
+    const rows: LearningV2CheckpointSkillRow[] = [
+      {
+        id: "confirmed",
+        label: checkpointCopy.confirmed,
+        state: "confirmed" as const,
+      },
+      ...(finaleStars < 3
+        ? [
+            {
+              id: "review",
+              label: checkpointCopy.review,
+              state: "review" as const,
+            },
+          ]
+        : []),
+    ];
+    return (
+      <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
+        <LearningV2CheckpointSeal
+          progress={1}
+          ringColor={t.gold}
+          trackColor={t.bgSurface2}
+          faceColor={t.bgCard}
+          glyphColor={t.gold}
+          reduceMotion={reducedMotion}
+          play
+        />
+        <Text style={[styles.checkpointTitle, { color: t.textPrimary }]}>
+          {checkpointCopy.outcomeTitle}
+        </Text>
+        <View style={styles.checkpointRows}>
+          <LearningV2CheckpointOutcome
+            rows={rows}
+            surfaceColor={t.bgSurface2}
+            textColor={t.textPrimary}
+            confirmedColor={t.correct}
+            reviewColor={t.gold}
+            reduceMotion={reducedMotion}
+          />
+        </View>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={checkpointCopy.done}
+          onPress={() => {
+            void hapticTap();
+            safeRouterBack(router, "/learning-v2/course");
+          }}
+          style={({ pressed }) => [
+            styles.checkpointCta,
+            { backgroundColor: t.accent, opacity: pressed ? 0.86 : 1 },
+          ]}
+        >
+          <Text style={[styles.checkpointCtaText, { color: t.correctText }]}>
+            {checkpointCopy.done}
+          </Text>
+        </Pressable>
+      </View>
+    );
+  }
+
   if (finaleStars !== null) {
     // Празднование поверх пустого экрана сессии: прогресс и звёзды уже
     // записаны, сцена только показывает результат и уводит на карту.
@@ -830,6 +909,48 @@ export default function LearningV2DirectSessionPlayerV1() {
         >
           <Text style={[styles.retryText, { color: t.correctText }]}>
             {copy.retry}
+          </Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  if (isCheckpoint && !checkpointEntryDone) {
+    const chapter = Math.ceil((sessionOrdinal ?? 8) / 8);
+    const isFinal = sessionRole === "final_exam";
+    return (
+      <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
+        <LearningV2CheckpointSeal
+          progress={1}
+          ringColor={t.gold}
+          trackColor={t.bgSurface2}
+          faceColor={t.bgCard}
+          glyphColor={t.gold}
+          reduceMotion={reducedMotion}
+          play
+        />
+        <Text style={[styles.checkpointTitle, { color: t.textPrimary }]}>
+          {isFinal ? checkpointCopy.finalTitle : checkpointCopy.entryTitle(chapter)}
+        </Text>
+        <Text style={[styles.checkpointBody, { color: t.textMuted }]}>
+          {isFinal ? checkpointCopy.finalBody : checkpointCopy.entryBody}
+        </Text>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={checkpointCopy.start}
+          onPress={() => {
+            void hapticTap();
+            sessionStageRef.current = "practice";
+            setCheckpointEntryDone(true);
+            setIntroDone(true);
+          }}
+          style={({ pressed }) => [
+            styles.checkpointCta,
+            { backgroundColor: t.accent, opacity: pressed ? 0.86 : 1 },
+          ]}
+        >
+          <Text style={[styles.checkpointCtaText, { color: t.correctText }]}>
+            {checkpointCopy.start}
           </Text>
         </Pressable>
       </View>
@@ -1407,6 +1528,31 @@ export default function LearningV2DirectSessionPlayerV1() {
 }
 
 const styles = StyleSheet.create({
+  // Проверка главы: собственная типографика входа (макет 26).
+  checkpointTitle: {
+    fontSize: 22,
+    fontWeight: "700",
+    textAlign: "center",
+    marginTop: 22,
+  },
+  checkpointBody: {
+    fontSize: 15,
+    lineHeight: 23,
+    fontWeight: "400",
+    textAlign: "center",
+    marginTop: 10,
+    maxWidth: 320,
+  },
+  checkpointCta: {
+    marginTop: 26,
+    minHeight: 54,
+    borderRadius: 16,
+    paddingHorizontal: 30,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  checkpointCtaText: { fontSize: 16, fontWeight: "700" },
+  checkpointRows: { width: "100%", alignItems: "center", marginTop: 18 },
   screen: { flex: 1 },
   center: {
     flex: 1,

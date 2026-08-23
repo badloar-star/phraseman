@@ -187,6 +187,9 @@ function parseTicks(raw: unknown, taskCount: number): readonly ArenaOpponentTick
       taskIndex,
       raceElapsedMs,
       correct: item.correct === true,
+      // зачем: точный исход приходит только у сценарного соперника — по нему
+      // счёт соперника считается насквозь, не обрываясь на его ошибке.
+      ...(item.exact === true ? { exact: true as const } : {}),
       ...(validFirstAttemptPairs ? { firstAttemptPairs } : {}),
     });
   }
@@ -293,7 +296,7 @@ export const ARENA_ACCEPT_WINDOW_MS = 12_000;
 /** Пауза между попытками войти в матч, пока второй игрок ещё не принял. */
 export const ARENA_ACCEPT_RETRY_MS = 1_200;
 
-export type ArenaEntryStep = 'accept' | 'plan' | 'give_up';
+export type ArenaEntryStep = 'accept' | 'plan' | 'give_up' | 'terminal';
 
 /**
  * Что делать при входе в матч.
@@ -310,7 +313,7 @@ export function arenaEntryStep(input: Readonly<{
   state: string;
   elapsedSinceEntryMs: number;
 }>): ArenaEntryStep {
-  if (input.state === 'aborted' || input.state === 'settled') return 'give_up';
+  if (input.state === 'aborted' || input.state === 'settled') return 'terminal';
   if (input.state === 'accepting') {
     return input.elapsedSinceEntryMs < ARENA_ACCEPT_WINDOW_MS ? 'accept' : 'give_up';
   }

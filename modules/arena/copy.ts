@@ -1,5 +1,6 @@
 import { triLang, type Lang } from '../../constants/i18n';
 import { arenaSearchingCount, arenaSearchingCountForms } from './searching_copy';
+import type { ArenaStarLineReason } from './stars';
 
 const C = {
   title: ['Арена', 'Арена', 'Arena', 'Arena', 'Đấu trường', 'Arena', 'Arena', 'Arena'],
@@ -206,6 +207,19 @@ const C = {
   friendHint: ['Без рейтинга и наград', 'Без рейтингу й нагород', 'Sin rango ni recompensas', 'Sem ranking nem recompensas', 'Không xếp hạng hay phần thưởng', 'Tanpa peringkat dan hadiah', 'Derece ve ödül yok', 'Bez rankingu i nagród'],
   correct: ['Верно', 'Правильно', 'Correcto', 'Correto', 'Đúng', 'Benar', 'Doğru', 'Dobrze'],
   wrong: ['Не совсем', 'Не зовсім', 'No del todo', 'Ainda não', 'Chưa đúng', 'Belum tepat', 'Tam değil', 'Nie tym razem'],
+  // зачем (2026-08-23): просрочка — не ошибка. Раньше на истёкшем времени
+  // писалось «Не совсем», и игрок читал это как «ответил неправильно», хотя
+  // он вообще не отвечал (владелец: «когда заканчивается время то написано
+  // "не совсем"»). Отдельная строка честно называет причину нуля звёзд.
+  timeUp: ['Время вышло', 'Час вийшов', 'Se acabó el tiempo', 'O tempo acabou', 'Hết giờ', 'Waktu habis', 'Süre doldu', 'Czas minął'],
+  taskSkipped: ['Задание пропущено', 'Завдання пропущено', 'Ejercicio omitido', 'Exercício ignorado', 'Đã bỏ qua', 'Soal dilewati', 'Görev atlandı', 'Zadanie pominięte'],
+  // зачем (2026-08-23): разбор награды печатал сырые служебные имена причин —
+  // игрок читал в интерфейсе «base_correct» и «combo». Это переводы тех же
+  // причин; ключи совпадают с `ArenaStarLineReason` в stars.ts.
+  awardBaseCorrect: ['Верный ответ', 'Правильна відповідь', 'Respuesta correcta', 'Resposta correta', 'Trả lời đúng', 'Jawaban benar', 'Doğru cevap', 'Poprawna odpowiedź'],
+  awardBasePairs: ['Собранные пары', 'Зібрані пари', 'Parejas formadas', 'Pares formados', 'Cặp đã ghép', 'Pasangan cocok', 'Eşleşen çiftler', 'Dopasowane pary'],
+  awardFirst: ['Ответил первым', 'Відповів першим', 'Respondiste primero', 'Você respondeu primeiro', 'Trả lời trước', 'Menjawab lebih dulu', 'İlk cevaplayan', 'Odpowiedź jako pierwszy'],
+  awardCombo: ['Серия без ошибок', 'Серія без помилок', 'Racha sin fallos', 'Sequência sem erros', 'Chuỗi không sai', 'Rentetan tanpa salah', 'Hatasız seri', 'Seria bez błędów'],
   inviteTtl: ['Действует 10 минут', 'Діє 10 хвилин', 'Válida durante 10 minutos', 'Válido por 10 minutos', 'Có hiệu lực trong 10 phút', 'Berlaku 10 menit', '10 dakika geçerli', 'Ważne przez 10 minut'],
   stars: ['Руны сезона', 'Руни сезону', 'Runas de temporada', 'Runas da temporada', 'Rune mùa giải', 'Rune musim', 'Sezon rünleri', 'Runy sezonu'],
   xpCorrectBonus: ['Правильные ответы', 'Правильні відповіді', 'Respuestas correctas', 'Respostas corretas', 'Câu trả lời đúng', 'Jawaban benar', 'Doğru cevaplar', 'Poprawne odpowiedzi'],
@@ -240,6 +254,25 @@ export type ArenaCopyKey = keyof typeof C;
 export function arenaText(lang: Lang, key: ArenaCopyKey): string {
   const [ru, uk, es, ptBR, vi, id, tr, pl] = C[key];
   return triLang(lang, { ru, uk, es, 'pt-BR': ptBR, vi, id, tr, pl });
+}
+
+/**
+ * Человеческое название строки в разборе награды.
+ *
+ * зачем (2026-08-23): экран печатал служебный идентификатор причины как есть,
+ * и игрок видел «base_correct · combo». Соответствие живёт здесь, а не в
+ * разметке, чтобы полноту переводов проверял тест, а не глаз.
+ */
+export function arenaAwardReasonText(lang: Lang, reason: ArenaStarLineReason): string {
+  switch (reason) {
+    case 'base_correct': return arenaText(lang, 'awardBaseCorrect');
+    case 'base_pairs': return arenaText(lang, 'awardBasePairs');
+    case 'first': return arenaText(lang, 'awardFirst');
+    case 'combo': return arenaText(lang, 'awardCombo');
+    case 'timeout': return arenaText(lang, 'timeUp');
+    case 'broken': return arenaText(lang, 'taskSkipped');
+    case 'wrong': return arenaText(lang, 'wrong');
+  }
 }
 
 /**

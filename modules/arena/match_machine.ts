@@ -47,6 +47,12 @@ export type ArenaOpponentTick = Readonly<{
   matchStars?: number;
   /** Scripted speed board precision; absent means the exact score is unknown. */
   firstAttemptPairs?: number;
+  /**
+   * Исход задания известен точно (сценарный соперник-бот): `correct: false`
+   * означает именно неверный ответ или просрочку, а не «мы не знаем».
+   * У живого соперника флага нет — там ложь неотличима от незнания.
+   */
+  exact?: true;
 }>;
 
 export type ArenaMatchPlanTask = Readonly<{

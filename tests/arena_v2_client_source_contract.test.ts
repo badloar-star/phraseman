@@ -6,10 +6,33 @@ const ROOT = path.resolve(__dirname, '..');
 describe('Arena V2 listener and callable source contract', () => {
   const client = fs.readFileSync(path.join(ROOT, 'app/arena_client.ts'), 'utf8');
   const matchmaking = fs.readFileSync(path.join(ROOT, 'app/arena_matchmaking.tsx'), 'utf8');
+  const friendDuel = fs.readFileSync(path.join(ROOT, 'app/arena_friend_duel.tsx'), 'utf8');
+  const friendInvite = fs.readFileSync(path.join(ROOT, 'app/arena_invite.tsx'), 'utf8');
+
+  test('restored friend challenges renew host readiness and terminal challenges get a fresh request id', () => {
+    expect(friendDuel).toContain('const status = await arenaV2InviteReady(invite.inviteId);');
+    expect(friendDuel).toContain("requestIdRef.current = createArenaRequestId('friend_invite');");
+    expect(friendDuel.match(/requestIdRef\.current = createArenaRequestId\('friend_invite'\);/g)).toHaveLength(2);
+  });
+
+  test('the visible back affordance leaves an empty friend duel instead of only hiding its native picker', () => {
+    expect(friendDuel).toContain("useRef<'stay' | 'leave'>(typeof params.friendStableUid === 'string' ? 'stay' : 'leave')");
+    expect(friendDuel).toContain("if (pickerCloseIntentRef.current === 'leave') router.replace('/arena' as never);");
+    expect(friendDuel).toContain('onBack={leaveFriendDuel}');
+    expect(friendDuel).toContain('onClose={closeFriendPicker}');
+    expect(friendDuel).toContain("pickerCloseIntentRef.current = 'stay'; setSelected(");
+  });
+
+  test('keeps the approved invite copy exact and observes pending cancellation or expiry live', () => {
+    expect(friendInvite).toContain('>10 заданий</Text>');
+    expect(friendInvite).not.toContain('Победит тот');
+    expect(friendInvite).toContain("status?.status !== 'pending'");
+    expect(friendInvite).toContain('const next = await arenaV2InviteStatus(inviteId);');
+  });
 
   test('listens only to an owner queue doc and one public match doc', () => {
     expect(client).toContain("useArenaDocument<ArenaTicket>('arena_v2_queue', stableUid, active)");
-    expect(client).toContain("useArenaDocument<ArenaMatch>('arena_v2_matches', matchId, active)");
+    expect(client).toContain("useArenaDocument<ArenaMatch>('arena_v2_matches', matchId, active, ownerScopeKey)");
     expect(client).not.toMatch(/\.where\(|collectionGroup\(/);
   });
 
@@ -31,13 +54,10 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(matchmaking).toContain('ARENA_RANKED_HEARTBEAT_MS');
   });
 
-  test('switches ranked to quick only after cancellation and with a new request id', () => {
-    const cancelAt = matchmaking.indexOf('await arenaV2QueueCancel(requestId)');
-    const newIdAt = matchmaking.indexOf("createArenaRequestId('queue')", cancelAt);
-    const replaceAt = matchmaking.indexOf("mode: 'quick'", newIdAt);
-    expect(cancelAt).toBeGreaterThan(0);
-    expect(newIdAt).toBeGreaterThan(cancelAt);
-    expect(replaceAt).toBeGreaterThan(newIdAt);
+  test('never replaces a continuing ranked search with a mode-switch prompt', () => {
+    expect(matchmaking).not.toContain('switchToQuick');
+    expect(matchmaking).not.toContain("arenaText(lang, 'switchToQuick')");
+    expect(matchmaking).not.toContain("arenaText(lang, 'continueSearch')");
   });
 
   test('keeps one queue request id across a Strict Mode remount', () => {
@@ -72,13 +92,15 @@ describe('Arena V2 listener and callable source contract', () => {
       expect(deps).toContain('mode');
     }
     expect(matchmaking).toContain('leaseRefreshTick');
-    expect(matchmaking).toContain('botRetryTick');
+    expect(matchmaking).toContain('botRetryAtMs');
   });
 
   test('does not show an awaiting-rival promise after sync confirms a terminal match', () => {
     const results = fs.readFileSync(path.join(ROOT, 'app/arena_results.tsx'), 'utf8');
-    expect(results).toContain("setSyncState(String(response.state ?? ''))");
-    expect(results).toContain("syncState !== 'settled' && syncState !== 'aborted'");
+    expect(results).toContain("type: 'sync'");
+    expect(results).toContain('arenaQuickResultReduce(previous');
+    expect(results).not.toContain("arenaText(lang, 'awaitingRival')");
+    expect(results).not.toContain("arenaText(lang, 'reportQueued')");
   });
 
   test('never follows a cached matched ticket from an older search', () => {
@@ -86,20 +108,24 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(matchmaking).toContain('if (queue.value?.requestId === requestId) adoptBotSchedule(queue.value)');
   });
 
-  test('uses presentation thresholds without a new listener or ranked polling loop', () => {
-    expect(matchmaking).toContain("rankedPresentation === 'quick_offer'");
-    expect(matchmaking).toContain("rankedPresentation === 'calm'");
-    // Экран ПОИСКА соперника часы сохраняет: там секундный тик уместен, он
-    // рисует ожидание, а не отбирает время у ответа.
-    expect(matchmaking).toContain('useVisibleWallClock(active, 1_000)');
+  test('keeps one uninterrupted search surface without timeout copy or manual recovery', () => {
+    expect(matchmaking).not.toContain("rankedPresentation === 'quick_offer'");
+    expect(matchmaking).not.toContain("rankedPresentation === 'calm'");
+    expect(matchmaking).not.toContain('arenaSearchFailureCopy');
+    expect(matchmaking).not.toContain('arenaEntryFailureCopy');
+    expect(matchmaking).not.toContain("arenaText(lang, 'entryGone')");
+    expect(matchmaking).not.toContain("arenaText(lang, 'rankedEmpty')");
+    expect(matchmaking).not.toContain("arenaText(lang, 'retry')");
+    expect(matchmaking).toContain('resumeSearchAfterAssignedMatch');
+    expect(matchmaking).toContain('arenaReplacementBotDelayMs(Math.random())');
     expect(matchmaking.match(/useArenaQueue\(/g)).toHaveLength(1);
     expect(matchmaking.match(/setInterval\(/g)).toHaveLength(1);
   });
 
   test('never transports answer fingerprints to Arena screens', () => {
     expect(client).not.toContain('answerFingerprints');
-    for (const file of ['arena.tsx', 'arena_matchmaking.tsx', 'arena_match.tsx', 'arena_results.tsx']) {
-      expect(fs.readFileSync(path.join(ROOT, 'app', file), 'utf8')).not.toContain('answerFingerprints');
+    for (const file of ['app/arena_matchmaking.tsx', 'app/arena_match.tsx', 'app/arena_results.tsx', 'components/arena/ArenaHubSurface.tsx']) {
+      expect(fs.readFileSync(path.join(ROOT, file), 'utf8')).not.toContain('answerFingerprints');
     }
   });
 
@@ -112,19 +138,18 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(matchmaking).toContain('disabled={Boolean(matchId)}');
   });
 
-  test('prevents system back navigation and hides stale search failures after assignment', () => {
+  test('prevents system back navigation while an assigned match is prepared', () => {
     expect(matchmaking).toContain("BackHandler.addEventListener('hardwareBackPress'");
     expect(matchmaking).toContain('if (!active || !matchId) return undefined;');
     expect(matchmaking).toContain("BackHandler.addEventListener('hardwareBackPress', () => true)");
-    expect(matchmaking).toContain('const searchFailure = !matchId && error ? arenaSearchFailureCopy(error) : null;');
-    expect(matchmaking).toContain('setError(null);');
+    expect(matchmaking).not.toContain('const searchFailure =');
   });
 
   test('cancels assigned-match navigation and system-back interception when blurred', () => {
-    const prefetchEffect = matchmaking.match(/useEffect\(\(\) => \{\s*if \(!active \|\| !matchId\) return;[\s\S]*?\}, \[active, entryRetryTick, matchId, mode, requestId, router\]\);/)?.[0];
     const backEffect = matchmaking.match(/useEffect\(\(\) => \{\s*if \(!active \|\| !matchId\) return undefined;[\s\S]*?\}, \[active, matchId\]\);/)?.[0];
-    expect(prefetchEffect).toContain('let alive = true;');
-    expect(prefetchEffect).toContain('return () => { alive = false; };');
+    expect(matchmaking).toContain('let alive = true;');
+    expect(matchmaking).toContain('alive = false;');
+    expect(matchmaking).toContain('clearTimeout(retryTimer)');
     expect(backEffect).toContain("BackHandler.addEventListener('hardwareBackPress', () => true)");
     expect(backEffect).toContain('return () => subscription.remove();');
   });
@@ -187,7 +212,10 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(match).toContain('response.viewerReview');
     expect(match.indexOf('const finishAccount = planAccountRef.current'))
       .toBeLessThan(match.indexOf('reserveDispatch: () => arenaV2MatchFinishDispatch({'));
-    expect(match).toContain('isCurrentAccountGeneration(finishAccount, finishScope.stableUid)');
+    expect(match).toContain('isCurrentAccountGeneration(finishAccount, scope.stableUid)');
+    expect(match).toContain('isCurrentAccountGeneration(finishAccount, planScope.stableUid)');
+    expect(match).toContain('handleFinishDelivery(delivery);');
+    expect(match).toContain('handleFinishDelivery(retry);');
     expect(match).toContain('arenaRememberScopedReview({');
     expect(review).toContain('subscribeAccountGeneration');
     expect(review).toContain('arenaAwaitScopedReview({');
@@ -199,11 +227,22 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(review).not.toContain("arenaPeekWarm('review'");
   });
 
-  test('lets the owner consume an available Arena spin idempotently from the hub', () => {
-    const hub = fs.readFileSync(path.join(ROOT, 'app/arena.tsx'), 'utf8');
-    expect(hub).toContain('arenaV2SpinClaim(spinRequestIdRef.current)');
-    expect(hub).toContain("createArenaRequestId('spin')");
-    expect(hub).toContain("arenaText(lang, 'spinNow')");
+  /**
+   * Владелец (2026-08-23): спин в приложении ОДИН — общий каталог подарков
+   * (`local_level_spins.ts`). Отдельная рулетка Арены удалена; спин за победу
+   * в рейтинге выдаётся сам на экране результата матча по `spinReceiptId`
+   * (= matchId), поэтому забирать его вручную из кошелька больше негде.
+   */
+  test('keeps the separate Arena spin roulette deleted from the client', () => {
+    const hub = fs.readFileSync(path.join(ROOT, 'components/arena/ArenaHubSurface.tsx'), 'utf8');
+    const wallet = fs.readFileSync(path.join(ROOT, 'app/arena_star_wallet.tsx'), 'utf8');
+    const results = fs.readFileSync(path.join(ROOT, 'app/arena_results.tsx'), 'utf8');
+    expect(hub).not.toContain('arenaV2SpinClaim');
+    expect(wallet).not.toContain('arenaV2SpinClaim');
+    expect(wallet).not.toContain('arenaV2SpinStatus');
+    // Общий спин выдаётся из результата матча, идемпотентно по matchId.
+    expect(results).toContain('grantLocalArenaRankedWinSpin');
+    expect(results).toContain('reward.spinReceiptId');
   });
 
   /**
@@ -220,7 +259,11 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(copy).not.toContain('Тренировочный соперник');
     expect(copy).toContain('Без рейтинга и наград');
     const matchSource = fs.readFileSync(path.join(ROOT, 'app/arena_match.tsx'), 'utf8');
-    expect(matchSource).toContain('<ArenaPlayers compact={immersive} players={players} active={active} animateScore />');
+    expect(matchSource).toContain('<ArenaPlayers compact={immersive} players={players} active={active} animateScore answeredUid={rivalAnsweredUid} />');
+    // Отметка «ответил» говорит про ФАКТ хода, а не про его верность: тик
+    // приходит, пока игрок ещё отвечает на то же задание, и «верно/неверно»
+    // соперника было бы подсказкой ответа.
+    expect(matchSource).not.toContain('hud?.opponent.correct');
     expect(matchSource).not.toContain('isBot');
     expect(matchSource).not.toContain("arenaText(lang, 'bot')");
     expect(fs.readFileSync(path.join(ROOT, 'app/arena_friend_duel.tsx'), 'utf8')).toContain("arenaText(lang, 'friendHint')");
@@ -245,8 +288,14 @@ describe('Arena V2 listener and callable source contract', () => {
     // Никаких часов с периодическим тиком на экране матча.
     expect(match).not.toContain('useVisibleWallClock');
     expect(match).not.toContain('setInterval(');
-    // И никакой досинхронизации посреди матча.
-    expect(match).not.toContain('arenaV2SyncMatch');
+    // И никакой досинхронизации посреди матча. После локального отчёта
+    // разрешён один terminal-only sync, но его callable обязан создаваться
+    // под захваченным владельцем через account-transition reservation.
+    expect(match).not.toContain('arenaV2SyncMatch(');
+    expect(match).toContain('useArenaTerminalResultSync({');
+    expect(match).toContain('arenaV2SyncMatchDispatch(matchId, version, resultAccount)');
+    expect(client).toContain('export function arenaV2SyncMatchDispatch(');
+    expect(client).toContain("return reserveArenaCall<MatchMutationResponse>('arenaV2SyncMatch',");
     expect(match).not.toContain("arenaText(lang, 'serverCheck')");
     // План приходит через общий entry-prefetch; экран не владеет вторым запросом.
     expect(match).toContain('arenaEntryPrefetchStart(matchId)');

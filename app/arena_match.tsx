@@ -27,7 +27,7 @@ import { ArenaStarFlight } from '../components/arena/ArenaStarFlight';
 import { ArenaVersusIntro } from '../components/arena/ArenaVersusIntro';
 import { V2Cta, V2Segments } from '../components/ui/v2_ui';
 import { useTournamentPalette, v2motion } from '../components/ui/v2_theme';
-import { arenaText } from '../modules/arena/copy';
+import { arenaAwardReasonText, arenaText } from '../modules/arena/copy';
 import type { ArenaMatch, ArenaMatchReward, ArenaPlayer } from '../modules/arena/contract';
 import {
   arenaEntryFailure,
@@ -73,6 +73,7 @@ import {
   withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
+import { grantLocalArenaRankedWinSpin } from './local_level_spins';
 import { arenaScheduleMatchSettleProbe } from './arena_settle_probe';
 import { arenaEntryPrefetchClaim, arenaEntryPrefetchStart } from './arena_entry_prefetch';
 import { ArenaNoOpponentError } from '../modules/arena/entry_prefetch';
@@ -80,6 +81,7 @@ import {
   arenaRememberResultHandoff,
   arenaResultHandoffReady,
 } from '../modules/arena/result_handoff';
+import { arenaResultPreview } from '../modules/arena/result_preview';
 import { arenaFinishRetryDelay } from '../modules/arena/finish_retry';
 
 /**
@@ -335,11 +337,20 @@ function ArenaMatchGenerationScreen({
     viewerReward?: ArenaMatchReward;
   }>) => {
     const resultAccount = planAccountRef.current;
-    if (!matchId || !plan || !planScope || !resultAccount || resultOpenedRef.current) return false;
+    if (!matchId || !plan || !planScope || !resultAccount) return false;
     if (!mountedRef.current || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) return false;
     if (!arenaResultHandoffReady(response, plan.mode)) return false;
 
     const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
+    // зачем (2026-08-23): спин за ranked-победу выдаём ЗДЕСЬ, до перехода на
+    // экран результата. Сервер больше не хранит кредит Арены (его разыгрывает
+    // общий подарочный спин), поэтому если ждать монтирования экрана, награда
+    // терялась бы у игрока, который закрыл приложение сразу после матча.
+    // Функция идемпотентна по matchId, так что дубль с экрана результата
+    // второй спин не создаст.
+    if (response.viewerReward?.spinAwarded && response.viewerReward.spinReceiptId) {
+      void grantLocalArenaRankedWinSpin(response.viewerReward.spinReceiptId, resultAccount);
+    }
     arenaRememberResultHandoff({
       ownerKey,
       matchId,
@@ -347,6 +358,12 @@ function ArenaMatchGenerationScreen({
       viewerSeat: response.viewerSeat,
       ...(response.viewerReward ? { viewerReward: response.viewerReward } : {}),
     });
+    // зачем (2026-08-23): экран результата мог открыться РАНЬШЕ этого ответа —
+    // по локальному итогу, чтобы игрок не ждал сеть. Тогда переходить некуда,
+    // но снимок с наградами всё равно обязан лечь: экран его подхватит и
+    // заменит предпросмотр авторитетными числами. Раньше ранний выход стоял
+    // до записи снимка, и поздняя награда просто терялась бы.
+    if (resultOpenedRef.current) return true;
     resultOpenedRef.current = true;
     router.replace({
       pathname: '/arena_results',
@@ -359,6 +376,40 @@ function ArenaMatchGenerationScreen({
     } as never);
     return true;
   }, [matchId, plan, planScope, router]);
+
+  /**
+   * Открывает результат по ЛОКАЛЬНОМУ итогу, не дожидаясь сервера.
+   *
+   * Владелец (2026-08-23): «после последнего вопроса очень долго загружается
+   * экран завершения — сделай его прогретым ещё во время последнего ответа».
+   * Матч считается на устройстве, поэтому свой счёт известен сразу; сервер
+   * нужен только для наград и ранга, и они догоняют следом.
+   */
+  const openPreviewResult = useCallback(() => {
+    const resultAccount = planAccountRef.current;
+    if (!matchId || !plan || !planScope || !resultAccount || resultOpenedRef.current) return;
+    if (!mountedRef.current || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) return;
+    // Быстрый матч намеренно исключён: его кульминация — сцена начисления XP
+    // (`ResultsSequence`), и она рисуется только по ответу сервера. Открыть
+    // сначала черновой кадр, а потом подменить его целой сценой — заметный
+    // скачок, который хуже короткого ожидания.
+    if (plan.mode === 'quick') return;
+    const preview = match ? arenaResultPreview(plan, match.state) : null;
+    if (!preview) return;
+
+    const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
+    arenaRememberResultHandoff({ ownerKey, matchId, viewerSeat: plan.viewerSeat, preview });
+    resultOpenedRef.current = true;
+    router.replace({
+      pathname: '/arena_results',
+      params: {
+        matchId,
+        mode: plan.mode,
+        viewerSeat: plan.viewerSeat,
+        ownerGeneration: String(resultAccount.generation),
+      },
+    } as never);
+  }, [match, matchId, plan, planScope, router]);
 
   const handleFinishDelivery = useCallback((delivery:
     | ArenaFinishDeliveryResult<ArenaMatchFinishResponse>
@@ -433,6 +484,19 @@ function ArenaMatchGenerationScreen({
       handleFinishDelivery(delivery);
     })();
   }, [handleFinishDelivery, matchId, match?.report, plan, planScope, sent]);
+
+  /**
+   * Переход на результат СРАЗУ после последнего задания, не дожидаясь сети.
+   *
+   * Стоит отдельным эффектом от отправки отчёта намеренно: отправка живёт
+   * внутри async-цепочки и может задержаться на диске, а кадр обязан смениться
+   * в тот же момент, когда матч закрылся. Награды догоняют и заменяют
+   * предпросмотр, когда ответ сервера приедет (`openCoherentResult`).
+   */
+  useEffect(() => {
+    if (match?.state.phase !== 'finished') return;
+    openPreviewResult();
+  }, [match?.state.phase, openPreviewResult]);
 
   useEffect(() => {
     if (!active || !finishQueued || !matchId) return undefined;
@@ -575,6 +639,15 @@ function ArenaMatchGenerationScreen({
     const scoredRival = { ...rival, score: rivalScore };
     return plan.viewerSeat === 'a' ? [scoredYou, scoredRival] : [scoredRival, scoredYou];
   }, [ownScore, plan, playerIdentities, rivalScore]);
+  // зачем (2026-08-23): факт хода соперника сообщался только звуком, а он у
+  // большинства выключен — против бота экран выглядел безжизненным («в арене
+  // мы не ждём бота когда он ответит?»). Сигнал уже считался в HUD
+  // (`hud.opponent`), но экран его не читал. Метка держится, пока открыто то
+  // же задание, и снимается сама со сменой задания.
+  const rivalAnsweredUid = plan
+    && (hud?.opponent.kind === 'answered' || hud?.opponent.kind === 'finished')
+    ? plan.opponent.seat
+    : null;
   const introYou = playerIdentities.find((player) => player.uid === plan?.viewerSeat);
   const introOpponent = playerIdentities.find((player) => player.uid === plan?.opponent.seat);
 
@@ -812,7 +885,7 @@ function ArenaMatchGenerationScreen({
       scroll={false}
       onBack={confirmForfeit}
     >
-      <ArenaPlayers compact={immersive} players={players} active={active} animateScore />
+      <ArenaPlayers compact={immersive} players={players} active={active} animateScore answeredUid={rivalAnsweredUid} />
       <V2Segments
         total={hud.taskCount}
         done={match.state.phase === 'finished' ? hud.taskCount : Math.max(0, hud.taskOrdinal - 1)}
@@ -891,14 +964,23 @@ function ArenaMatchGenerationScreen({
           {hud.award ? (
             <Animated.View entering={FadeInDown.duration(180)} style={styles.awardBox}>
               <Text style={[styles.awardHead, { color: hud.award.stars > 0 ? P.accent : P.danger }]}>
-                {hud.award.stars > 0 ? `+${hud.award.stars}★` : arenaText(lang, 'wrong')}
+                {hud.award.stars > 0
+                  ? `+${hud.award.stars}★`
+                  // зачем (2026-08-23): ноль звёзд бывает по трём причинам, и
+                  // раньше все три подписывались «Не совсем» — обвинением в
+                  // ошибке даже там, где игрок просто не успел. Причину знает
+                  // сам расчёт награды (`headline`), она уже считалась, но её
+                  // никто не читал.
+                  : arenaText(lang, hud.award.headline.key === 'starTimeout' ? 'timeUp'
+                    : hud.award.headline.key === 'starBroken' ? 'taskSkipped'
+                    : 'wrong')}
               </Text>
               {arenaAwardLines(hud.award).map((line, index) => (
                 <Text
                   key={`${line.reason}-${index}`}
                   style={[styles.awardLine, { color: line.state === 'earned' ? P.text : P.muted }]}
                 >
-                  {line.state === 'earned' ? `+${line.stars}★` : `—`} · {line.reason}
+                  {line.state === 'earned' ? `+${line.stars}★` : `—`} · {arenaAwardReasonText(lang, line.reason)}
                 </Text>
               ))}
             </Animated.View>

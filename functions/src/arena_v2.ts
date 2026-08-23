@@ -2531,10 +2531,11 @@ function arenaDuelEntryMode(mode: unknown): ArenaEntryMode {
  */
 function arenaDuelOpponentTicks(privateDoc: MatchPrivate): ArenaOpponentTickWire[] {
   if (!privateDoc.botPlan) return [];
-  return privateDoc.tasks.map((task, taskIndex) => {
+  return privateDoc.tasks.map((task, taskIndex): ArenaOpponentTickWire => {
     const plan = privateDoc.botPlan?.[String(taskIndex)];
     const mode = task.mode as ArenaTaskMode;
     const window = ARENA_ANSWER_MS[mode] ?? ARENA_V2_ANSWER_MS;
+    // Плана на задание нет — исход бота неизвестен, `exact` не ставим.
     if (!plan) return { taskIndex, raceElapsedMs: window, correct: false };
     const correct = mode === 'speed_match'
       ? Math.trunc(Number(plan.matchedPairs ?? 0)) > 0
@@ -2545,6 +2546,9 @@ function arenaDuelOpponentTicks(privateDoc: MatchPrivate): ArenaOpponentTickWire
       taskIndex,
       raceElapsedMs: elapsed,
       correct,
+      // Сценарий бота известен целиком, включая просрочки: помечаем исход
+      // точным, чтобы счёт соперника не обрывался на первой его ошибке.
+      exact: true,
       ...(firstAttemptPairs === undefined ? {} : { firstAttemptPairs }),
     };
   });

@@ -25,6 +25,7 @@ import {
   type ArenaLocalMatchState,
 } from '../modules/arena/match_machine';
 import { arenaLocalPhase } from '../modules/arena/local_clock';
+import { arenaResultPreview } from '../modules/arena/result_preview';
 import { ARENA_ANSWER_MS, ARENA_COMBO_THRESHOLD } from '../modules/arena/stars';
 import { arenaTaskRenderable } from '../modules/arena/task_adapter';
 import * as fs from 'fs';
@@ -263,6 +264,29 @@ describe('точный live-счёт соперника', () => {
       viewerOutcome('fill_gap', 0, 1),
       viewerOutcome('find_oddity', 0, 2),
     ]))).toBe(3);
+  });
+
+  /**
+   * Регрессия 2026-08-23 (владелец: «почему-то не видно счёт бота»).
+   * Ошибка СЦЕНАРНОГО соперника исход не размывает — она известна точно, — и
+   * подсчёт обязан идти дальше, а не гаснуть до конца матча.
+   */
+  it('точный false соперника не обрывает счёт и сбрасывает только серию', () => {
+    expect(arenaOpponentMatchStars(PLAN, stateWith({
+      0: { taskIndex: 0, correct: true, raceElapsedMs: 900, exact: true },
+      1: { taskIndex: 1, correct: false, raceElapsedMs: 850, exact: true },
+      2: { taskIndex: 2, correct: true, raceElapsedMs: 800, exact: true },
+    }, [
+      viewerOutcome('guess_phrase'),
+      viewerOutcome('fill_gap', 0, 1),
+      viewerOutcome('find_oddity', 0, 2),
+    ]))).not.toBeNull();
+  });
+
+  it('точный false сам по себе звёзд не приносит', () => {
+    expect(arenaOpponentMatchStars(PLAN, stateWith({
+      0: { taskIndex: 0, correct: false, raceElapsedMs: 900, exact: true },
+    }, [viewerOutcome('guess_phrase')]))).toBe(0);
   });
 
   it('HUD отдаёт тот же счёт', () => {
@@ -522,8 +546,8 @@ describe('вход в матч', () => {
   });
 
   it('матч уже кончился или отменён — плана не просим', () => {
-    expect(arenaEntryStep({ state: 'aborted', elapsedSinceEntryMs: 0 })).toBe('give_up');
-    expect(arenaEntryStep({ state: 'settled', elapsedSinceEntryMs: 0 })).toBe('give_up');
+    expect(arenaEntryStep({ state: 'aborted', elapsedSinceEntryMs: 0 })).toBe('terminal');
+    expect(arenaEntryStep({ state: 'settled', elapsedSinceEntryMs: 0 })).toBe('terminal');
   });
 
   it('пустое состояние не заставляет ждать вечно', () => {
@@ -664,12 +688,12 @@ describe('почему матч не начался — словами, а не 
     }
   });
 
-  it('экран поиска берёт слова из развилки, а не краснеет глаголом', () => {
+  it('экран поиска вообще не показывает ветки отказа', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8');
-    expect(source).toContain('arenaSearchFailureCopy');
-    expect(source).not.toContain("styles.error, { color: P.danger }]}>{arenaText(lang, 'retry')");
-    // Причина хранится разобранной, а не сырым текстом ошибки, который всё
-    // равно никогда не показывался.
+    expect(source).not.toContain('arenaSearchFailureCopy');
+    expect(source).not.toContain("arenaText(lang, 'retry')");
+    expect(source).not.toContain("arenaText(lang, 'entryGone')");
+    expect(source).toContain("title={arenaText(lang, 'searching')}");
     expect(source).not.toContain('setError(String(reason))');
   });
 
@@ -696,11 +720,15 @@ describe('почему матч не начался — словами, а не 
     expect(introBranch).toBeGreaterThan(-1);
     expect(introBranch).toBeLessThan(planWaitBranch);
     expect(source).toContain('ready={introReady}');
+    expect(source).toContain('const shouldShowIntro = !introDone && !restored && Boolean(');
+    expect(source).toContain("plan && match && hud && match.phase.kind === 'countdown'");
+    expect(source).not.toContain("uid: 'a', name: arenaText(lang, 'you')");
+    expect(source).not.toContain("uid: 'b', name: arenaText(lang, 'opponent')");
     expect(source).not.toContain('arenaMatchPlanRequests');
     expect(source).not.toContain('arenaEntryCountdownRemainingMs');
     expect(source).not.toContain('countdownRemainingMs: immediateIntro');
     expect(source).not.toContain("params.intro === '1'");
-    expect(source).toContain("name: arenaText(lang, 'opponent')");
+    expect(source).toContain("name: plan.opponent.name || arenaText(lang, 'opponent')");
     expect(source).not.toContain("arenaText(lang, 'preparingDuel')");
     expect(source).not.toContain("arenaText(lang, 'preparingDuelHint')");
     expect(source).not.toContain("arenaText(lang, 'waiting')");
@@ -714,14 +742,15 @@ describe('почему матч не начался — словами, а не 
     expect(source).not.toContain('[digitScale, flash, left, onDone, playSound');
   });
 
-  it('свершившийся ответ соперника не подписан глаголом кнопки', () => {
+  it('не возвращает текстовую плашку ответа соперника', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
-    expect(source).toContain("arenaText(lang, 'opponentAnsweredBadge')");
+    expect(source).not.toContain("const opponentAnswered = hud.opponent.kind === 'answered';");
+    expect(source).not.toContain('testID="arena-opponent-answered"');
+    expect(source).not.toContain("arenaText(lang, 'opponentAnsweredBadge')");
     expect(source).not.toContain("arenaText(lang, 'opponent')} · {arenaText(lang, 'submit')}");
-    for (const lang of LANGS) {
-      expect(arenaText(lang, 'opponentAnsweredBadge').length).toBeGreaterThan(0);
-      expect(arenaText(lang, 'opponentAnsweredBadge')).not.toBe(arenaText(lang, 'submit'));
-    }
+    // Короткий невидимый звуковой сигнал может остаться: владелец запретил
+    // именно загромождающий HUD текст.
+    expect(source).toContain("playSound('opponentAnswered')");
   });
 
   it('экран матча берёт слова из этой развилки, а не решает сам', () => {
@@ -775,25 +804,22 @@ describe('сломанное задание не уносит матч', () => {
   });
 });
 
-/**
- * Отмена поиска уходила домой ДАЖЕ ЕСЛИ отмена не прошла: игрок был уверен,
- * что вышел из очереди, а сервер продолжал его искать. В рейтинге это кончалось
- * матчем, который начался без него, то есть поражением ни за что.
- */
-describe('отмена поиска не притворяется удавшейся', () => {
+describe('отмена не добавляет сообщений на единую поверхность поиска', () => {
   const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8');
-  const langs = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[];
 
-  it('домой уходим только после успешной отмены', () => {
+  it('уходит сразу, а сетевую отмену догоняет без отдельной плашки', () => {
     expect(source).not.toContain("arenaV2QueueCancel(requestId).finally(() => router.replace('/arena' as never))");
-    expect(source).toContain('cancelFailed');
+    expect(source.indexOf("router.replace('/arena' as never)")).toBeLessThan(source.indexOf('void arenaV2QueueCancel(requestId)'));
+    expect(source).not.toContain('cancelFailed');
   });
+});
 
-  it('игроку сказано, что он всё ещё в очереди и что она отпустит сама', () => {
-    for (const lang of langs) {
-      expect(arenaText(lang, 'cancelFailed').length).toBeGreaterThan(0);
-      expect(arenaText(lang, 'cancelFailedHint').length).toBeGreaterThan(0);
-    }
+describe('компактная серия ответов', () => {
+  it('использует отдельное компактное свечение, чтобы огонь не выходил за экран', () => {
+    const combo = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaComboMeter.tsx'), 'utf8');
+    expect(combo).toContain("size === 'compact' ? styles.glowCompact : null");
+    expect(combo).toMatch(/holderCompact:\s*\{[^}]*width:\s*72/);
+    expect(combo).toMatch(/glowCompact:\s*\{[^}]*width:\s*56/);
   });
 });
 
@@ -906,7 +932,7 @@ describe('пары и конструктор занимают оставшеес
     expect(matchingBranch).toContain('style={styles.immersiveScroll}');
     expect(matchingBranch).toContain('<View style={[styles.matchGrid');
     expect(matchingBranch).toContain('nestedScrollEnabled');
-    const lastPairMap = matchingBranch.indexOf('view.right.map');
+    const lastPairMap = matchingBranch.indexOf('view.right[index]');
     const outerScrollEnd = matchingBranch.lastIndexOf('</ScrollView>');
     expect(lastPairMap).toBeGreaterThan(0);
     expect(lastPairMap).toBeLessThan(outerScrollEnd);
@@ -943,7 +969,7 @@ describe('пары и конструктор занимают оставшеес
   });
 
   it('компактный блок игроков включается только для immersive-заданий', () => {
-    expect(match).toContain('const immersive = hud?.mode ? arenaQuestionLayout(hud.mode).immersive : false;');
+    expect(match).toContain('const immersive = visibleTask?.mode ? arenaQuestionLayout(visibleTask.mode).immersive : false;');
     expect(match).toContain('compact={immersive}');
   });
 });
@@ -951,7 +977,7 @@ describe('пары и конструктор занимают оставшеес
 describe('прогресс матча не забирает высоту у задания', () => {
   it('flattened Arena override фиксирует полосу на 10 pt без flex growth', () => {
     const match = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
-    const tournament = fs.readFileSync(path.resolve(__dirname, '..', 'components/tournament/tournament_v2_ui.tsx'), 'utf8');
+    const tournament = fs.readFileSync(path.resolve(__dirname, '..', 'components/ui/v2_ui.tsx'), 'utf8');
     const baseFlex = Number(/segTrack:\s*\{\s*flex:\s*(\d+)/.exec(tournament)?.[1]);
     const override = /matchProgress:\s*\{([^}]*)\}/.exec(match)?.[1] ?? '';
     const flattened = Object.assign({}, ...[
@@ -971,18 +997,86 @@ describe('прогресс матча не забирает высоту у за
 });
 
 /**
- * Крупный системный шрифт растягивает шапку матча: имя соперника и оговорка
- * про связь обязаны оставаться в пределах одной-двух строк, иначе шапка
- * выдавливает само задание.
+ * Крупный системный шрифт растягивает шапку матча: оговорка про связь обязана
+ * оставаться в пределах двух строк, иначе шапка выдавливает само задание.
  */
 describe('шапка матча не растёт от длинного текста', () => {
   const screen = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
 
-  it('имя соперника — одна строка', () => {
-    expect(screen).toContain('numberOfLines={1}');
+  it('шапка не растёт из-за текста ответа соперника', () => {
+    expect(screen).not.toContain('testID="arena-opponent-answered"');
+    expect(screen).not.toContain('opponentAnsweredBadge');
   });
 
   it('оговорка про связь — не больше двух строк', () => {
     expect(screen).toContain('numberOfLines={2}');
+  });
+});
+
+/**
+ * Предварительный итог: экран результата открывается СРАЗУ после последнего
+ * задания, не дожидаясь сервера (владелец 2026-08-23: «очень долго загружается
+ * экран завершения»). Здесь проверяется главное свойство — предпросмотр не
+ * врёт: без точного счёта соперника он молчит об исходе.
+ */
+describe('предварительный итог матча', () => {
+  const finished = (
+    ticks: ArenaLocalMatchState['opponentByTask'],
+    matchStars: number,
+    tieBreakElapsedMs = 5_000,
+  ): ArenaLocalMatchState => ({
+    ...arenaLocalMatchInit(MACHINE, {
+      monoNowMs: MONO0, wallNowMs: WALL0, monoEpochId: 'e1', countdownRemainingMs: COUNTDOWN,
+    }),
+    phase: 'finished',
+    matchStars,
+    tieBreakElapsedMs,
+    opponentByTask: ticks,
+  });
+
+  it('до конца матча ничего не отдаёт', () => {
+    const running = arenaLocalMatchInit(MACHINE, {
+      monoNowMs: MONO0, wallNowMs: WALL0, monoEpochId: 'e1', countdownRemainingMs: COUNTDOWN,
+    });
+    expect(arenaResultPreview(PLAN, running)).toBeNull();
+  });
+
+  it('молчит об исходе, пока счёт соперника неизвестен', () => {
+    const preview = arenaResultPreview(PLAN, finished({}, 9));
+    expect(preview?.viewerStars).toBe(9);
+    expect(preview?.opponentStars).toBeNull();
+    // Главное свойство: без точного счёта соперника исход НЕ объявляется —
+    // иначе сервер мог бы опровергнуть уже показанную «победу».
+    expect(preview?.outcome).toBeNull();
+  });
+
+  it('объявляет исход, когда счёт соперника известен точно', () => {
+    const ticks = Object.fromEntries(PLAN.tasks.map((task, taskIndex) => [taskIndex, {
+      taskIndex, correct: false, raceElapsedMs: 900, exact: true as const,
+      ...(task.mode === 'speed_match' ? { firstAttemptPairs: 0 } : {}),
+    }]));
+    // Свои исходы нужны не для красоты: счёт соперника считается в сравнении
+    // с нашим временем («кто ответил первым»), и без них подсчёт честно
+    // останавливается — см. arenaOpponentMatchStars.
+    const outcomes = PLAN.tasks.map((task, taskIndex) => ({
+      taskIndex,
+      mode: task.mode,
+      status: 'correct' as const,
+      raceElapsedMs: 1_000,
+      firstAttemptPairs: task.mode === 'speed_match' ? 4 : 0,
+      resolvedPairs: task.mode === 'speed_match' ? 4 : 0,
+      answer: null,
+    }));
+    const state = { ...finished(ticks, 9), outcomes };
+    const preview = arenaResultPreview(PLAN, state);
+    expect(preview?.opponentStars).toBe(0);
+    expect(preview?.outcome).toBe('win');
+  });
+
+  it('несёт личность соперника: на экране результата плана уже нет', () => {
+    const preview = arenaResultPreview(PLAN, finished({}, 4));
+    expect(preview?.opponentName).toBe('Соперник');
+    expect(preview?.opponentSeat).toBe('b');
+    expect(preview?.viewerSeat).toBe('a');
   });
 });

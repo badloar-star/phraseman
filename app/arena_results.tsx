@@ -58,6 +58,13 @@ const TIER_COPY = [
 ] as const;
 const ROMAN_DIVISION: Record<1 | 2 | 3, string> = { 1: 'I', 2: 'II', 3: 'III' };
 
+/**
+ * Счёт соперника до ответа сервера может быть неизвестен: `null` означает
+ * именно «неизвестно», а не ноль. `ArenaPlayers` это уже умеет и рисует
+ * прочерк; `ArenaStat` получает прочерк явной строкой на месте вызова.
+ */
+type ArenaDisplayedPlayer = Omit<ArenaPlayer, 'score'> & Readonly<{ score: number | null }>;
+
 const styles = StyleSheet.create({
   announce: { gap: 4, alignItems: 'center' },
   announceHead: { fontSize: 20, fontWeight: '900', textAlign: 'center' },
@@ -137,6 +144,14 @@ export default function ArenaResultsScreen() {
   useEffect(() => {
     if (initialHandoff && matchId) arenaForgetResultHandoff(resultAccountKey, matchId);
   }, [initialHandoff, matchId, resultAccountKey]);
+  /**
+   * Локальный итог, с которым экран открылся до ответа сервера.
+   *
+   * Живёт в состоянии, а не в ref: он участвует в отрисовке и обязан пережить
+   * перерисовки. Обнуляется вместе со сменой матча/аккаунта — ниже, в том же
+   * эффекте, что сбрасывает остальной кадр.
+   */
+  const [preview, setPreview] = useState(() => initialHandoff?.preview ?? null);
   const [viewerSeat, setViewerSeat] = useState<'a' | 'b' | null>(
     () => resultOwnerCurrent
       ? routeSeat ?? initialHandoff?.viewerSeat ?? peekArenaViewerSeat(matchId)
@@ -154,7 +169,11 @@ export default function ArenaResultsScreen() {
       routeSeat ?? initialHandoff?.viewerSeat ?? null,
       routeMode === 'quick',
     );
-    return initialHandoff && matchId
+    // зачем (2026-08-23): снимок теперь приходит и БЕЗ авторитетного матча —
+    // сразу после последнего задания, чтобы экран не ждал сеть. Пока `match`
+    // не приехал, синхронизировать нечем: `preview` рисует кадр отдельно, а
+    // источником быстрого исхода остаётся только ответ сервера.
+    return initialHandoff?.match && matchId
       ? arenaQuickResultReduce(initial, {
         type: 'sync',
         matchId,
@@ -175,6 +194,7 @@ export default function ArenaResultsScreen() {
       setQuickResultState(arenaQuickResultInitialState(matchId, null, routeMode === 'quick'));
       return;
     }
+    setPreview(initialHandoff?.preview ?? null);
     setViewerSeat(routeSeat ?? initialHandoff?.viewerSeat ?? peekArenaViewerSeat(matchId));
     setPrivateRewardState(initialHandoff?.viewerReward
       ? { matchId: initialHandoff.matchId, reward: initialHandoff.viewerReward }
@@ -184,7 +204,7 @@ export default function ArenaResultsScreen() {
       routeSeat ?? initialHandoff?.viewerSeat ?? null,
       routeMode === 'quick',
     );
-    setQuickResultState(initialHandoff && matchId
+    setQuickResultState(initialHandoff?.match && matchId
       ? arenaQuickResultReduce(initial, {
         type: 'sync',
         matchId,
@@ -324,25 +344,54 @@ export default function ArenaResultsScreen() {
       xpDelta: modifier.xpDelta,
     })),
   }) : undefined, [lang, quickXp.modifiers]);
-  const players: readonly ArenaPlayer[] = useMemo(() => {
-    if (!match) return [];
+  const players: readonly ArenaDisplayedPlayer[] = useMemo(() => {
+    if (!match) {
+      // зачем (2026-08-23): экран открывается СРАЗУ после последнего задания,
+      // ещё до ответа сервера — иначе игрок несколько секунд смотрел на
+      // погашенный вопрос. Пока авторитетного матча нет, строку игроков рисует
+      // локальный предпросмотр: счёт свой известен точно, счёт соперника —
+      // когда известен (у молчащего живого соперника остаётся прочерк).
+      if (!preview) return [];
+      const you: ArenaDisplayedPlayer = {
+        uid: preview.viewerSeat, name: arenaText(lang, 'you'),
+        rank: 0, rating: 0, score: preview.viewerStars, correct: 0,
+      };
+      const rival: ArenaDisplayedPlayer = {
+        uid: preview.opponentSeat,
+        name: preview.opponentName || arenaText(lang, 'opponent'),
+        ...(preview.opponentAvatar ? { avatar: preview.opponentAvatar } : {}),
+        ...(preview.opponentAura ? { aura: preview.opponentAura } : {}),
+        rank: preview.opponentRank,
+        rating: 0,
+        score: preview.opponentStars,
+        correct: 0,
+      };
+      return preview.viewerSeat === 'a' ? [you, rival] : [rival, you];
+    }
     if (match.result?.players?.length) return match.result.players;
     return match.players.map((player) => ({
       ...player,
       name: player.uid === effectiveViewerSeat ? arenaText(lang, 'you') : player.name,
     }));
-  }, [effectiveViewerSeat, lang, match]);
+  }, [effectiveViewerSeat, lang, match, preview]);
   // Соперник = тот игрок, который не мы. Имя берём как показано на экране.
   const opponentForReport = useMemo(
     () => players.find((player) => player.uid !== effectiveViewerSeat) ?? null,
     [effectiveViewerSeat, players],
   );
   const winner = match?.result?.winnerUid;
-  const title = match?.state === 'aborted'
+  // Пока авторитетного матча нет, заголовок берётся из предпросмотра — и
+  // ТОЛЬКО если исход посчитан однозначно. Иначе экран промолчал бы «Ничья»,
+  // которую сервер потом опроверг бы: ложный итог хуже отсутствующего.
+  const previewTitle = !match && preview?.outcome
+    ? arenaText(lang, preview.outcome === 'win' ? 'victory'
+      : preview.outcome === 'loss' ? 'defeat' : 'draw')
+    : null;
+  const title = previewTitle ?? (match?.state === 'aborted'
     ? arenaText(lang, 'cancelledMatch')
     : winner && effectiveViewerSeat
       ? (winner === effectiveViewerSeat ? arenaText(lang, 'victory') : arenaText(lang, 'defeat'))
-      : arenaText(lang, 'draw');
+      : arenaText(lang, 'draw'));
   /**
    * Исход звучит ОДИН раз, по появлению итога, а не по перерисовке экрана:
    * экран результата перерисовывается несколько раз, пока догружаются
@@ -431,10 +480,15 @@ export default function ArenaResultsScreen() {
 
   if (!resultOwnerCurrent) return null;
 
-  if ((surfaceKind === 'neutral_pending' || surfaceKind === 'quick_pending') && matchId) {
+  if ((surfaceKind === 'neutral_pending' || surfaceKind === 'quick_pending') && matchId && !preview) {
     // Этот route в нормальном ходе открывается только с атомарным handoff из
     // матча. Если старый deep link всё же пришёл раньше данных, не показываем
     // отдельный «ждём/отправляем» экран между игрой и исходом.
+    //
+    // зачем (2026-08-23): с локальным предпросмотром пустого кадра больше нет —
+    // экран открывается сразу после последнего задания и рисует свой счёт, а
+    // награды и ранг догоняют. Без предпросмотра (старый deep link) поведение
+    // прежнее.
     return null;
   }
 
@@ -468,7 +522,11 @@ export default function ArenaResultsScreen() {
       {titleCosmetic ? <Text style={[styles.cosmeticTitle, { color: P.gold }]}>{titleCosmetic}</Text> : null}
       <V2Card style={[styles.resultSurface, resultTheme ? { backgroundColor: resultTheme.backgroundColor, borderColor: resultTheme.borderColor, borderWidth: 1 } : null]}>
         {victoryStamp ? <Text style={[styles.stamp, { color: resultTheme?.foreground ?? P.text }]}>{victoryStamp}</Text> : null}
-        <View style={styles.stats}>{players.map((player) => <ArenaStat key={player.uid} label={player.name} value={player.score} />)}</View>
+        <View style={styles.stats}>{players.map((player) => (
+          // Прочерк, а не ноль: ноль здесь был бы утверждением «соперник не
+          // набрал ничего», хотя счёт просто ещё не известен.
+          <ArenaStat key={player.uid} label={player.name} value={player.score ?? '—'} />
+        ))}</View>
         {match?.mode !== 'quick' ? <ArenaRewards reward={reward} starsLabel={arenaText(lang, 'stars')} /> : null}
         {/* зачем: жалоба на игрока жила только в карточке профиля, а из Арены
             она не открывается — пожаловаться на оскорбительный ник было

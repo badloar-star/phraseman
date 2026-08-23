@@ -167,7 +167,12 @@ export function arenaOpponentMatchStars(
         || (rival.firstAttemptPairs as number) < 0
         || (rival.firstAttemptPairs as number) > ARENA_SPEED_MATCH_PAIRS) break;
       firstAttemptPairs = rival.firstAttemptPairs as number;
-    } else if (!rival.correct) {
+    } else if (!rival.correct && !rival.exact) {
+      // зачем (2026-08-23): ошибка соперника больше не гасит его счёт. Раньше
+      // любой `correct: false` обрывал подсчёт, потому что у ЖИВОГО соперника
+      // он не отличает «ответил неверно» от «мы не знаем». У сценарного бота
+      // исход известен точно (`exact`), и обрывать нечего — иначе после первой
+      // же его ошибки игрок до конца матча видел прочерк вместо счёта.
       break;
     }
     const viewerCorrect = viewer.mode === 'speed_match'
@@ -177,7 +182,7 @@ export function arenaOpponentMatchStars(
       mode: task.mode,
       status: task.mode === 'speed_match'
         ? (firstAttemptPairs > 0 ? 'correct' : 'wrong')
-        : 'correct',
+        : rival.correct ? 'correct' : 'wrong',
       raceElapsedMs: rival.raceElapsedMs,
       firstAttemptPairs,
       opponentRaceElapsedMs: viewer.raceElapsedMs,

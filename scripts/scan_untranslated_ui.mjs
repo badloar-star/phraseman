@@ -62,6 +62,20 @@ const CONTENT_FILES = [
 const PAIRED_TRANSLATION = /\b\w+(UK|Uk|_uk|EN|En|_en|ES|Es|_es)\s*:/;
 
 /**
+ * Строка сама по себе — словарь локалей: { ru: 'Форест', uk: 'Форест', es: 'Bosque', ... }.
+ *
+ * зачем (2026-08-23): isTranslationDictionary требует `ru: {` — то есть
+ * ВЛОЖЕННЫЙ объект на локаль. Но названия языков и тем записаны плоско
+ * (ru: 'Русский', uk: 'Українська', …), и сторож считал их забытым текстом:
+ * 4 ложных срабатывания в settings.tsx на 'Русский', 'Українська', 'Форест'.
+ * Всплывали они только в однострочной записи объекта — при разбивке по строкам
+ * прятались, из-за чего база молча зависела от форматирования файла, и откат
+ * чужого переформатирования выглядел как «стало больше непереведённых».
+ * Признак перевода: рядом с ru: в той же строке стоит ключ другой локали.
+ */
+const INLINE_LOCALE_MAP = /(^|[{,]\s*)['"]?ru['"]?\s*:\s*['"][^'"]*['"]\s*,\s*['"]?(uk|en|es|pl|tr|vi|id|pt-BR)['"]?\s*:/;
+
+/**
  * Файл — сам словарь переводов: русский в нём и есть перевод.
  *
  * зачем распознавать по содержимому, а не списком имён: словари появляются
@@ -166,6 +180,7 @@ function scanFile(file) {
   const hits = [];
   for (const line of stripped.split('\n')) {
     if (PAIRED_TRANSLATION.test(line)) continue;
+    if (INLINE_LOCALE_MAP.test(line)) continue;
     const found = line.match(CYRILLIC_LITERAL);
     if (found) hits.push(...found);
   }
@@ -254,7 +269,10 @@ function addedUntranslatedLines() {
       // и многострочные triLang-вызовы получают ту же трактовку, что полный scan().
       if (line.startsWith('+') && !line.startsWith('+++')) {
         const added = maskedLines?.[newLineNumber - 1] ?? '';
-        if (!PAIRED_TRANSLATION.test(added)) {
+        // зачем INLINE_LOCALE_MAP здесь тоже: полное сканирование и проверка
+        // «добавленных строк» обязаны трактовать код одинаково, иначе сторож
+        // молча отказывает на строке, которую сам же считает переведённой.
+        if (!PAIRED_TRANSLATION.test(added) && !INLINE_LOCALE_MAP.test(added)) {
           const found = added.match(CYRILLIC_LITERAL);
           if (found) hits.push(...found);
         }

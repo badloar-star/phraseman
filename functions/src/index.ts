@@ -1168,8 +1168,13 @@ export {
   adminRunV2E1Compilation,
 } from "./content_factory/v2_e1_compilation_worker";
 // зачем (владелец, 2026-08-23): кнопка публикации курса в админке
-// (admin/v2/legacy.html) звала adminPublishAuthoredLearningV2Course, но
-// функция нигде не экспортировалась — эндпоинта не существовало, и
-// одобренный материал физически не мог доехать до людей без пересборки
-// приложения. Это и есть доставка без OTA: опубликовал — приложение видит.
-export { adminPublishAuthoredLearningV2Course } from "./content_factory/learning_v2_publish_authored_course_v1";
+// (admin/v2/legacy.html) зовёт adminPublishAuthoredLearningV2Course — это
+// доставка контента без OTA: опубликовал, и приложение видит новый материал.
+//
+// ЭКСПОРТА ЗДЕСЬ НЕТ НАМЕРЕННО. Функция живёт в кодовой базе `content`
+// (functions-content/index.ts) — её вынесли туда коммитом 478b03750, чтобы
+// основной бандл похудел с 380 до 140 МБ. Позже эту же функцию по незнанию
+// добавили и сюда, из-за чего Firebase отказывался деплоить ВСЁ разом:
+// «More than one codebase claims following functions». Имя эндпоинта не
+// изменилось, поэтому кнопка в админке работает как прежде.
+// Возвращать экспорт сюда нельзя — снова сломается деплой всех функций.

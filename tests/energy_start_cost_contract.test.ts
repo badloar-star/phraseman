@@ -86,6 +86,8 @@ describe('энергия платится за старт активности',
       'app/arena_friend_duel.tsx',
       'app/arena_invite.tsx',
       'app/flashcards_swipe.tsx',
+      // Аудит нашёл дыру: отмена поиска матча съедала единицу без возврата.
+      'app/arena_matchmaking.tsx',
     ]) {
       expect(read(file)).toContain('refundOne');
     }
@@ -104,7 +106,17 @@ describe('энергия платится за старт активности',
     // isUnlimited в deps меняется асинхронно и может переключаться обратно
     // (например в 22:00, когда истекает «вечер без лимитов») — без латча
     // каждое переключение снимало ещё единицу в том же раунде.
-    expect(read('app/flashcards_blitz_session.tsx')).toContain('blitzChargedRoundRef');
+    const blitz = read('app/flashcards_blitz_session.tsx');
+    expect(blitz).toContain('blitzChargedRoundRef');
+    // Важен ПОРЯДОК: латч занимается ПОСЛЕ проверки безлимита. Иначе раунд,
+    // начатый в «вечер без лимитов», остаётся неоплаченным навсегда — латч
+    // занят, а при снятии безлимита эффект уже выходит через return.
+    const gate = blitz.slice(
+      blitz.indexOf('const blitzChargedRoundRef'),
+      blitz.indexOf('// ── Старт/рестарт раунда'),
+    );
+    expect(gate.indexOf('if (blitzEnergyUnlimited)'))
+      .toBeLessThan(gate.indexOf('blitzChargedRoundRef.current = roundId'));
   });
 
   it('анимация списания шлётся из единой точки траты', () => {

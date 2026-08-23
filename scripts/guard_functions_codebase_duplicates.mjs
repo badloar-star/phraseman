@@ -29,47 +29,80 @@ const repositoryRoot = path.resolve(
   '..',
 );
 
-/** Entry-файл кодовой базы: сначала исходник, потом привычные варианты. */
+/**
+ * Entry-файл кодовой базы.
+ *
+ * зачем .js тоже: functions-english-test собран как JS (main: index.js).
+ * Первая редакция искала только .ts и молча пропускала эту базу целиком — а она
+ * экспортирует четыре функции, и дубль с ними сторож бы не увидел (аудит).
+ */
 function resolveEntrySource(sourceDir) {
   const candidates = [
     path.join(sourceDir, 'src', 'index.ts'),
     path.join(sourceDir, 'index.ts'),
+    path.join(sourceDir, 'src', 'index.js'),
+    path.join(sourceDir, 'index.js'),
   ];
   return candidates.find((candidate) => fs.existsSync(candidate)) ?? null;
 }
 
+/** Заменяет содержимое на пробелы, сохраняя переводы строк. */
+function blank(text) {
+  return text.replace(/[^\r\n]/g, ' ');
+}
+
 /**
- * Имена экспортов верхнего уровня.
+ * Имена экспортов верхнего уровня и «непрозрачные» реэкспорты.
  *
  * зачем регулярками, а не разбором TypeScript: сторож обязан быть мгновенным и
- * работать в pre-commit без компиляции. Нас интересуют только имена, а формы
- * объявления в этих файлах ограничены `export { … } from …` и `export const …`.
+ * работать в pre-commit без компиляции. Нас интересуют только имена.
+ *
+ * Маскируем не только комментарии, но и строковые литералы: `export const fake`
+ * внутри строки — не экспорт, а ложное срабатывание (аудит 2026-08-23).
  */
-function collectExportedNames(filePath) {
+function collectExports(filePath) {
   const source = fs.readFileSync(filePath, 'utf8');
-  // Комментарии маскируем: имя функции в пояснении не должно считаться экспортом.
   const masked = source
-    .replace(/\/\*[\s\S]*?\*\//g, (block) => block.replace(/[^\r\n]/g, ' '))
-    .replace(/^[ \t]*\/\/.*$/gm, (line) => line.replace(/[^\r\n]/g, ' '));
+    .replace(/\/\*[\s\S]*?\*\//g, blank)
+    .replace(/^[ \t]*\/\/.*$/gm, blank)
+    .replace(/'(?:[^'\\\n]|\\.)*'/g, blank)
+    .replace(/"(?:[^"\\\n]|\\.)*"/g, blank)
+    .replace(/`(?:[^`\\]|\\.)*`/g, blank);
 
   const names = new Set();
 
   for (const match of masked.matchAll(/export\s*\{([^}]*)\}/g)) {
     for (const piece of match[1].split(',')) {
       // Учитываем `foo as bar` — наружу уходит `bar`.
-      const name = piece.includes(' as ')
-        ? piece.split(' as ').pop()
-        : piece;
+      const name = piece.includes(' as ') ? piece.split(' as ').pop() : piece;
       const clean = name.trim();
       if (clean && clean !== 'default') names.add(clean);
     }
   }
 
-  for (const match of masked.matchAll(/export\s+(?:const|function|async\s+function)\s+([A-Za-z0-9_$]+)/g)) {
+  // let/var/class тоже объявляют экспорт — первая редакция знала только
+  // const/function и пропустила бы такой дубль.
+  const declaration =
+    /export\s+(?:const|let|var|class|function|async\s+function)\s+([A-Za-z0-9_$]+)/g;
+  for (const match of masked.matchAll(declaration)) {
     names.add(match[1]);
   }
 
-  return names;
+  // CommonJS: functions-english-test объявляет функции как `exports.name = ...`.
+  // Без этой ветки база читалась «пустой», и дубль с её четырьмя функциями
+  // сторож не ловил (проверено эмпирически при аудите 2026-08-23).
+  const commonJs = /^[ \t]*(?:module\.)?exports\.([A-Za-z0-9_$]+)\s*=/gm;
+  for (const match of masked.matchAll(commonJs)) {
+    names.add(match[1]);
+  }
+
+  // `export * from './x'` не называет имён, поэтому сверить их нельзя. Молчать
+  // здесь опаснее всего: именно так дубль вернётся незаметно. Сообщаем о таких
+  // местах отдельно — проверка по ним неполна, и автор должен это знать.
+  const wildcards = [...masked.matchAll(/export\s+\*\s+from\s+['"]([^'"]+)['"]/g)]
+    .map((match) => match[1]);
+
+  return { names, wildcards };
 }
 
 function readCodebases() {
@@ -89,17 +122,22 @@ function readCodebases() {
 }
 
 const owners = new Map();
-const skipped = [];
+const missingEntry = [];
+const opaque = [];
 
 for (const { codebase, sourceDir } of readCodebases()) {
   const entryFile = resolveEntrySource(sourceDir);
   if (!entryFile) {
-    skipped.push(codebase);
+    missingEntry.push(codebase);
     continue;
   }
-  for (const name of collectExportedNames(entryFile)) {
+  const { names, wildcards } = collectExports(entryFile);
+  for (const name of names) {
     if (!owners.has(name)) owners.set(name, []);
     owners.get(name).push(codebase);
+  }
+  for (const target of wildcards) {
+    opaque.push(`${codebase} → export * from '${target}'`);
   }
 }
 
@@ -121,9 +159,12 @@ if (duplicates.length > 0) {
   console.error('продолжают работать — правится только место объявления.');
   process.exitCode = 1;
 } else {
-  const checked = owners.size;
-  console.log(`OK: экспорты кодовых баз не пересекаются (${checked} функций).`);
-  if (skipped.length > 0) {
-    console.log(`   Без entry-файла, пропущены: ${skipped.join(', ')}`);
+  console.log(`OK: экспорты кодовых баз не пересекаются (${owners.size} функций).`);
+  if (missingEntry.length > 0) {
+    console.log(`   Без entry-файла, НЕ ПРОВЕРЕНЫ: ${missingEntry.join(', ')}`);
+  }
+  if (opaque.length > 0) {
+    console.log('   Непрозрачные реэкспорты (имена не видны, проверка неполна):');
+    for (const line of opaque) console.log(`     ${line}`);
   }
 }

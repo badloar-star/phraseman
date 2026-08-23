@@ -270,9 +270,17 @@ export default function FlashcardsBlitzSession() {
   useEffect(() => {
     if (loading || !canStartBlitz(pool.length)) return;
     if (blitzChargedRoundRef.current === roundId) return;
+
+    // зачем: при безлимите латч НЕ занимаем. Первая редакция ставила его до
+    // этой проверки — и раунд, начатый в «вечер без лимитов» (или пока
+    // runLoad ещё не отдал живой статус), оставался неоплаченным навсегда:
+    // в 22:00 окно истекало, эффект перезапускался, но латч был уже занят и
+    // выходил через return. Раунд проходился бесплатно (аудит 2026-08-23).
+    // Порядок как в preposition_drill: сначала проверки, потом латч.
+    if (blitzEnergyUnlimited) { setEnergyGate('ok'); return; }
+
     blitzChargedRoundRef.current = roundId;
     setEnergyGate('checking');
-    if (blitzEnergyUnlimited) { setEnergyGate('ok'); return; }
     let cancelled = false;
     void spendBlitzEnergy().then((ok) => {
       if (cancelled) return;

@@ -84,8 +84,10 @@ export default function ArenaMatchmakingScreen() {
   // Старт поиска матча = 1 ⚡ (владелец 2026-08-23: единая экономика — платим за
   // ПОПЫТКУ). Гейт стоит ДО подписки на очередь (energyGate ниже), чтобы при
   // отказе человек вообще не попадал в очередь матчмейкинга на сервере.
-  const { isUnlimited: arenaEnergyUnlimited, spendOne: spendArenaMatchEnergy } = useEnergy();
+  const { isUnlimited: arenaEnergyUnlimited, spendOne: spendArenaMatchEnergy, refundOne: refundArenaMatchEnergy } = useEnergy();
   const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
+  /** Плата за вход в очередь состоялась — при отмене поиска её возвращаем. */
+  const energyChargedRef = useRef(false);
   const queue = useArenaQueue(stableUid, active && !matchId && energyGate === 'ok');
   const playSound = useArenaSound();
 
@@ -94,6 +96,8 @@ export default function ArenaMatchmakingScreen() {
     let cancelled = false;
     void spendArenaMatchEnergy().then((ok) => {
       if (cancelled) return;
+      // Помним факт оплаты: отмена поиска обязана вернуть единицу (см. cancel).
+      if (ok) energyChargedRef.current = true;
       setEnergyGate(ok ? 'ok' : 'denied');
     });
     return () => { cancelled = true; };
@@ -287,12 +291,19 @@ export default function ArenaMatchmakingScreen() {
     cancellingRef.current = true;
     quickFallbackRequests.delete(requestId);
     releaseImplicitQueueRequestId(mode, requestId);
+    // зачем: человек ушёл из очереди, не сыграв — матча не было, значит и
+    // платы быть не должно. Без возврата отмена поиска стоила 1 ⚡ впустую
+    // (аудит 2026-08-23: единственная из четырёх точек Арены без возврата).
+    if (energyChargedRef.current) {
+      energyChargedRef.current = false;
+      void refundArenaMatchEnergy();
+    }
     router.replace('/arena' as never);
     // Сеть — вдогонку. Один повтор: сеть на телефоне моргает чаще, чем падает.
     void arenaV2QueueCancel(requestId).catch(() => {
       setTimeout(() => { void arenaV2QueueCancel(requestId).catch(() => {}); }, 1500);
     });
-  }, [matchId, mode, requestId, router]);
+  }, [matchId, mode, refundArenaMatchEnergy, requestId, router]);
 
   const elapsedLabel = useMemo(() => {
     const seconds = Math.max(0, Math.floor((now - queueAttemptStartedAtMsRef.current) / 1_000));

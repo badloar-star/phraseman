@@ -17,6 +17,8 @@
 //   • сказать, откуда   → «I live in Madrid» (город) вместо «I’m from Spain».
 // Can-do эпизода («поздороваться, назвать себя, завершить знакомство») сохранён.
 
+import type { LearningV2InterfaceLocale } from '../generator_course_contract';
+
 /** Разбор одного слова фразы — как в эталоне app/lesson_data_*. */
 export interface EpisodeSourceWord {
   /** Правильное слово в этой позиции. */
@@ -32,6 +34,15 @@ export interface EpisodeSourceWord {
 
 export interface EpisodeSourceDistractor {
   readonly value: string;
+  /** Конкретный класс правдоподобной ловушки из owner contract СТАРТ В2. */
+  readonly trapType?:
+    | 'grammar'
+    | 'semantic_neighbor'
+    | 'collocation_pragmatics'
+    | 'phonetic'
+    | 'orthographic'
+    | 'l1_transfer'
+    | 'phrase_assembly';
   /** Машинный код причины — попадает в rejectedAnswers.reasonCode. */
   readonly reasonCode: string;
   /** Человеческое объяснение на русском: почему так нельзя. */
@@ -52,10 +63,22 @@ export interface EpisodeSourcePhrase {
    * Полные самостоятельные learner-facing версии. Legacy sources могут пока
    * не иметь этого поля; approved Learning V2 content обязан иметь все восемь.
    */
+  /*
+   * зачем Partial по общему списку локалей, а не ручное перечисление восьми
+   * (2026-08-23): здесь дублировался список языков объяснения, и добавление
+   * девятой локали 'en' для испанского курса не доходило до этого типа —
+   * проекция падала с TS7053 на phrase.localizedDetails[locale]. Список
+   * локалей должен жить в ОДНОМ месте (LEARNING_V2_INTERFACE_LOCALES), иначе
+   * каждая новая локаль требует правки в неизвестном числе копий.
+   *
+   * Partial, потому что у английского курса локаль 'en' остаётся пустой
+   * (англоязычный интерфейс, изучающий английский, — вырожденная пара), а у
+   * испанского пустой остаётся 'es'. Отсутствующая локаль подхватывается
+   * обычным UNTRANSLATED_MARKER, а не молчаливой подменой русским.
+   */
   readonly localizedDetails?: Readonly<
-    Record<
-      'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl',
-      EpisodeSourcePhraseLocalizedDetails
+    Partial<
+      Record<LearningV2InterfaceLocale, EpisodeSourcePhraseLocalizedDetails>
     >
   >;
   /** Грамматические признаки для валидатора и покрытия целей. */
@@ -68,6 +91,7 @@ export interface EpisodeSourcePhraseLocalizedDetails {
   readonly distractors: readonly {
     readonly value: string;
     readonly reason: string;
+    readonly trapType?: EpisodeSourceDistractor['trapType'];
   }[];
   readonly words: readonly {
     readonly correct: string;
@@ -75,6 +99,7 @@ export interface EpisodeSourcePhraseLocalizedDetails {
     readonly distractors: readonly {
       readonly value: string;
       readonly reason: string;
+      readonly trapType?: EpisodeSourceDistractor['trapType'];
     }[];
   }[];
 }

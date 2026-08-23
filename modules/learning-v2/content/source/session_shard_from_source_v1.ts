@@ -411,24 +411,42 @@ function cardCopy(
   // зачем: подсказка — это объяснение фразы из источника, а не «попробуйте ещё».
   // Владелец требует богатый разбор на каждой карточке.
   const localized = phrase.localizedDetails;
+  // зачем необязательные локали (2026-08-23): localizedDetails стал Partial по
+  // общему списку локалей — у английского курса пустует 'en', у испанского
+  // 'es'. Раньше тип обещал все восемь и код читал их напрямую; с девятой
+  // локалью это стало ложью. Незаполненная локаль теперь пропускается и
+  // подхватывается обычным UNTRANSLATED_MARKER в expandLocalized, а не роняет
+  // сборку и не подменяется молча русским текстом.
   const localeCopy = (
-    select: (details: NonNullable<EpisodeSourcePhrase['localizedDetails']>['ru']) => string,
+    select: (
+      details: NonNullable<
+        NonNullable<EpisodeSourcePhrase['localizedDetails']>['ru']
+      >,
+    ) => string,
     legacy: LocalizedSource,
-  ): LocalizedSource =>
-    localized
-      ? {
-          ru: select(localized.ru),
-          uk: select(localized.uk),
-          es: select(localized.es),
-          rest: {
-            'pt-BR': select(localized['pt-BR']),
-            vi: select(localized.vi),
-            id: select(localized.id),
-            tr: select(localized.tr),
-            pl: select(localized.pl),
-          },
-        }
-      : legacy;
+  ): LocalizedSource => {
+    if (!localized) return legacy;
+    const pick = (
+      locale: LearningV2InterfaceLocale,
+    ): string | undefined => {
+      const details = localized[locale];
+      return details ? select(details) : undefined;
+    };
+    return {
+      ru: pick('ru') ?? legacy.ru,
+      uk: pick('uk') ?? legacy.uk,
+      es: pick('es') ?? legacy.es,
+      rest: Object.fromEntries(
+        LEARNING_V2_INTERFACE_LOCALES.flatMap((locale) => {
+          if (locale === 'ru' || locale === 'uk' || locale === 'es') return [];
+          const value = pick(locale);
+          return value === undefined
+            ? []
+            : [[locale, value] as [LearningV2InterfaceLocale, string]];
+        }),
+      ),
+    };
+  };
   const hint = localeCopy((details) => details.explanation, {
     ru: phrase.explanation,
     uk: phrase.explanation,

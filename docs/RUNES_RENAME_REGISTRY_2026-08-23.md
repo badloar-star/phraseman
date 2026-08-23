@@ -85,3 +85,53 @@
 - статичные счётчики — всегда **ᚠ** (решение владельца 23.08);
 - анимация начисления — 5–8 РАЗНЫХ случайных глифов (прямое требование владельца);
 - цвет — из токенов темы, золотой не хардкодить.
+
+---
+
+## Статус выполнения (2026-08-23)
+
+### Сделано
+
+| Файл | Что |
+|---|---|
+| `constants/runes.ts` | НОВЫЙ: 15 глифов футарка, `RUNE_GLYPH_PRIMARY` = ᚠ, `pickRuneGlyphs` (разные символы), `runeWord`/`runeAmount` на 8 локалей |
+| `components/RuneGlyph.tsx` | НОВЫЙ: глиф для статичных счётчиков, цвет из токенов темы |
+| `components/LearningV2StarFlight.tsx` → `LearningV2RuneFlight.tsx` | полёт 6 РАЗНЫХ рун вместо 3 одинаковых звёзд |
+| `app/(tabs)/lessons.tsx` | чип баланса: глиф вместо `Ionicons star`, a11y со склонением |
+| `app/coin_exchange.tsx` | «Биржа»: курс, коридор, оценка, плейсхолдер, тост — расширено с 3 до 8 локалей |
+| `app/shards_shop.tsx` | вход на «Биржу» (8 локалей) |
+| `tests/runes_currency_copy.test.ts` | НОВЫЙ: 11 тестов — блок Unicode Runic, отсутствие повторов в полёте, славянские склонения, все 8 локалей |
+
+### ЗАБЛОКИРОВАНО — файлы редактирует параллельная сессия
+
+На 23.08 09:46 следующие файлы имеют чужие незакоммиченные изменения, причём
+правки затрагивают ТЕ ЖЕ строки про валюту (проверено `git diff`):
+
+`app/stars_view.ts` · `app/level_gift_system.ts` · `app/season_pass.tsx` ·
+`components/SeasonRewardInfoModal.tsx` · `app/tournament_round.tsx` ·
+`app/tournament_results.tsx` · `app/(tabs)/tournaments.tsx` ·
+`app/tournament_season.tsx` · `app/learning-v2/lesson/[id].tsx` ·
+`components/arena/ArenaStarFlight.tsx` · `components/arena/ArenaExpansionUI.tsx` ·
+`app/shard_earn_ui.ts` · `components/league/LeagueResultHybrid.tsx` ·
+`components/dev/motion_showcase/showcase_copy.ts`
+
+Пример пересечения: в `app/stars_view.ts` параллельная сессия переписывает шапку
+файла ровно про «звезда — одна общая валюта».
+
+Правка поверх означала бы затирание чужой работы. Раздел A реестра остаётся
+планом для этих файлов — доделать, когда дерево освободится.
+
+### Сторож локализации
+
+`node scripts/scan_untranslated_ui.mjs --report` → 2548 строк в 99 файлах.
+Рост с 2422 создан параллельной сессией (`app/(tabs)/friends.tsx` и др.);
+pre-commit хук на каждом коммите подтверждал: «твой диф не добавил ни одной
+непереведённой строки».
+
+### Тесты
+
+`tests/runes_currency_copy.test.ts` — 11/11 зелёные.
+`tests/learning_v2_star_source_separation.test.ts`, `tests/coin_exchange_wallet_outbox.test.ts` — зелёные.
+`tests/lessons_tab_locale_runtime.test.ts` — 2 падения, ПРЕДШЕСТВУЮЩИЕ этой работе
+(тест ждёт одинарные кавычки, файл переформатирован на двойные другой сессией;
+проверено на коммите до правок).

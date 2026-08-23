@@ -439,27 +439,12 @@ export async function transferReserve(db: Firestore, args: VoiceTransferArgs): P
   });
 }
 
-export interface VoiceHeartbeatArgs {
-  authUid: string;
-  stableUid: string;
-  sessionId: string;
-  nowMs?: number;
-}
-
-/**
- * Отметка heartbeat (каждые 30с с клиента). Только для живой своей сессии,
- * иначе тихий no-op — heartbeat не должен воскрешать закрытые резервы.
- */
-export async function recordVoiceHeartbeat(db: Firestore, args: VoiceHeartbeatArgs): Promise<boolean> {
-  const now = args.nowMs ?? Date.now();
-  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
-  return db.runTransaction(async (tx) => {
-    const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
-    if (str(data.activeSessionId) !== str(args.sessionId) || num(data.reservedSec) <= 0) return false;
-    tx.set(ref, { lastHeartbeatMs: now, updatedAtMs: now }, { merge: true });
-    return true;
-  });
-}
+// зачем (P1-14, 2026-08-23): recordVoiceHeartbeat + VoiceHeartbeatArgs удалены —
+// мёртвый путь. Прод отмечает heartbeat через recordVoiceHeartbeatLifecycle
+// в max_voice_session_end.ts; здешнюю функцию не вызывал ни клиент, ни другой
+// серверный модуль, ни index.ts — только собственный тест. Живой путь умеет
+// больше (lifecycle-результат), и наличие второй, более слабой реализации на
+// тот же документ voice_call_quotas — приглашение случайно позвать не ту.
 
 export interface VoiceTrialArgs {
   authUid: string;

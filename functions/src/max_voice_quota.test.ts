@@ -3,7 +3,6 @@ import {
   VOICE_CONFIRMED_GAP_WINDOW_SEC,
   VOICE_RESERVE_EXPIRY_GRACE_SEC,
   VOICE_DEAD_SESSION_SILENCE_MS,
-  recordVoiceHeartbeat,
   releaseVoiceReservation,
   reserveVoiceSeconds,
   settleVoiceSession,
@@ -464,18 +463,3 @@ describe('transferReserve', () => {
   });
 });
 
-describe('recordVoiceHeartbeat', () => {
-  it('stamps lastHeartbeatMs for the live own session only', async () => {
-    const { db, state } = makeDb(liveDoc());
-
-    await expect(recordVoiceHeartbeat(db, {
-      authUid: AUTH, stableUid: STABLE, sessionId: 's1', nowMs: NOW,
-    })).resolves.toBe(true);
-    expect(state.data!.lastHeartbeatMs).toBe(NOW);
-
-    await expect(recordVoiceHeartbeat(db, {
-      authUid: AUTH, stableUid: STABLE, sessionId: 'ghost', nowMs: NOW + 1,
-    })).resolves.toBe(false);
-    expect(state.data!.lastHeartbeatMs).toBe(NOW); // призрак ничего не воскресил
-  });
-});

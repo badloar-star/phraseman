@@ -154,9 +154,57 @@ export const AUTHORED_EPISODE_01_SESSIONS: readonly SessionSource[] =
  * Считается лениво и на месте — файлы статические, обращений к сети нет.
  */
 export function authoredLearningV2SessionShards(): readonly LearningV2GeneratedSessionShardV1[] {
-  return AUTHORED_EPISODE_01_SESSIONS.map(buildPlayableShard).filter(
-    (shard): shard is LearningV2GeneratedSessionShardV1 => shard !== null,
-  );
+  const shards: LearningV2GeneratedSessionShardV1[] = [];
+  // зачем непрерывный префикс, а не все годные подряд (владелец, 2026-08-23):
+  // карта курса открывает сессии строго по порядку и про дырки не знает. Готовы
+  // 1-14 и 17-40, но 15-16 недописаны — показав 17-ю, мы бы упёрли человека в
+  // стену на 15-й. Отдаём ровно то, что проходится подряд; остальное ждёт,
+  // пока пропуск закроют.
+  for (const source of AUTHORED_EPISODE_01_SESSIONS) {
+    const shard = buildPlayableShard(source);
+    if (!shard) break;
+    shards.push(shard);
+  }
+  return Object.freeze(shards);
+}
+
+// зачем ленивый потолок (аудит 2026-08-23): наивная версия считала границу
+// ПОЛНОСТЬЮ на каждый вызов — открытие первой сессии строило и валидировало
+// пятнадцать штук подряд и стоило 3.1 с вместо 33 мс. Это было бы хуже
+// исходной поломки: экран замирал бы на несколько секунд.
+//
+// Здесь два правила. Первое: для конкретной сессии достаточно убедиться, что
+// играбельны все ПРЕДЫДУЩИЕ — для первой сессии это ноль работы. Второе:
+// найденная граница запоминается, потому что источники статические.
+let cachedCeiling: number | null = null;
+
+/** До какой сессии урок проходится подряд, без стены. */
+function contiguousPlayableCeiling(): number {
+  if (cachedCeiling !== null) return cachedCeiling;
+  let ceiling = 0;
+  for (const source of AUTHORED_EPISODE_01_SESSIONS) {
+    if (buildPlayableShard(source) === null) break;
+    ceiling = source.requiredSessionOrdinal;
+  }
+  cachedCeiling = ceiling;
+  return ceiling;
+}
+
+/**
+ * Играбельна ли сессия с учётом непрерывности — без вычисления всей границы.
+ * Стоимость равна числу сессий ДО запрошенной, а не длине всего урока.
+ */
+function isWithinContiguousPrefix(sessionOrdinal: number): boolean {
+  if (cachedCeiling !== null) return sessionOrdinal <= cachedCeiling;
+  for (const source of AUTHORED_EPISODE_01_SESSIONS) {
+    if (source.requiredSessionOrdinal >= sessionOrdinal) break;
+    if (buildPlayableShard(source) === null) {
+      // Нашли стену раньше запрошенной сессии — это и есть точная граница.
+      cachedCeiling = source.requiredSessionOrdinal - 1;
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -168,8 +216,9 @@ export function authoredLearningV2SessionShards(): readonly LearningV2GeneratedS
  * Человек видел «Сессия недоступна» на материале, который давно готов.
  */
 export function playableAuthoredLearningV2Sessions(): readonly SessionSource[] {
+  const ceiling = contiguousPlayableCeiling();
   return AUTHORED_EPISODE_01_SESSIONS.filter(
-    (source) => buildPlayableShard(source) !== null,
+    (source) => source.requiredSessionOrdinal <= ceiling,
   );
 }
 
@@ -249,7 +298,11 @@ export function authoredLearningV2SessionShard(
   const source = AUTHORED_EPISODE_01_SESSIONS.find(
     (candidate) => candidate.requiredSessionOrdinal === sessionOrdinal,
   );
-  return source ? buildPlayableShard(source) : null;
+  if (!source) return null;
+  // Сначала сама сессия: если она не готова, соседей проверять незачем.
+  const shard = buildPlayableShard(source);
+  if (!shard) return null;
+  return isWithinContiguousPrefix(sessionOrdinal) ? shard : null;
 }
 
 /** Сколько сессий сейчас реально играбельны — честное число для отчётов. */

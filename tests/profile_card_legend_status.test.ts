@@ -9,10 +9,10 @@ function read(...parts: string[]) {
 
 // Фаза 4 (статус V Platinum): золотое имя владельца V в списках + тост «праздника
 // легенды». app/arena_leaderboard.tsx в рабочем дереве отсутствует (арена выведена
-// из эксплуатации) — контракт покрывает 3 живых списка; если файл вернётся, золото
-// надо повторить и там (см. tests/profile_card_badge_layout_contract.test.ts).
+// из эксплуатации), борд «Топ хелперов» удалён по заданию владельца 2026-08-23 —
+// контракт покрывает 2 живых списка; если экраны вернутся, золото надо повторить
+// и там (см. tests/profile_card_badge_layout_contract.test.ts).
 const LIST_FILES: { name: string; source: string }[] = [
-  { name: 'top_helpers', source: read('app', 'top_helpers.tsx') },
   { name: 'friends', source: read('app', '(tabs)', 'friends.tsx') },
   { name: 'club_screen', source: read('app', 'club_screen.tsx') },
 ];

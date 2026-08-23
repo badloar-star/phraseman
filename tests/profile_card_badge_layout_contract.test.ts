@@ -10,11 +10,6 @@ function read(...parts: string[]) {
 describe('profile card badge compact list layout', () => {
   const compactRows = [
     {
-      name: 'top helpers',
-      source: read('app', 'top_helpers.tsx'),
-      expectedBadge: '<ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} style={{ marginTop: 3 }} />',
-    },
-    {
       name: 'friends',
       source: read('app', '(tabs)', 'friends.tsx'),
       expectedBadge: '<ProfileCardBadge level={profile.profileCardLevel} theme={profile.profileCardTheme} style={{ marginTop: 3 }} />',

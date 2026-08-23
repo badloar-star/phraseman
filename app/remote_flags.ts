@@ -124,11 +124,6 @@ export type RemoteBoolKey =
   | 'gate_energy_premium'
   // Гейт добавления второго и последующих языков обучения (1 язык — фри).
   | 'gate_extra_languages_premium'
-  // Раздел «Топ хелперов» (борд топ-репортёров багов) в настройках. Дефолт TRUE =
-  // kill-switch: борд показывается, админ может выключить его в «Пульте» живьём
-  // (onSnapshot), без релиза — тогда пункт в настройках прячется и сам экран отдаёт
-  // заглушку. Данные борда — публичная проекция top_helpers/{uid}.
-  | 'top_helpers_enabled'
   // Приветственный подарок «3 дня полного доступа» для НОВЫХ юзеров (72ч intro).
   // Дефолт TRUE = kill-switch: новые получают подарок и приветственный модал как
   // сейчас. Админ ставит false в «Пульте» → НОВЫЕ юзеры больше не получают ни
@@ -348,9 +343,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_mastery_premium: true,
   gate_energy_premium: true,
   gate_extra_languages_premium: true,
-  // Борд «Топ хелперов»: дефолт true = kill-switch (показывается как сейчас). Админ
-  // ставит false в «Пульте» → раздел прячется у всех живьём (onSnapshot), без релиза.
-  top_helpers_enabled: true,
   // Подарок «3 дня полного доступа» новым юзерам: безопасный дефолт false.
   // Админ может явно включить его в «Пульте»; при false
   // новые юзеры больше НЕ получают подарок/модал живьём (onSnapshot), без релиза.
@@ -900,8 +892,6 @@ export const isLeagueStartupRegistrationEnabled = () => getRemoteBool('league_st
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
 /** Раздел «Идеи» в настройках (год премиума за идею). Дефолт false — sell-switch. */
 export const isIdeasEnabled = () => getRemoteBool('ideas_enabled');
-/** Борд «Топ хелперов» в настройках (топ-репортёры багов). Дефолт true — kill-switch. */
-export const isTopHelpersEnabled = () => getRemoteBool('top_helpers_enabled');
 /**
  * Подарок «3 дня полного доступа» новым юзерам (72ч intro). Дефолт false:
  * новые юзеры не получают ни подарок, ни приветственный модал. Включение из

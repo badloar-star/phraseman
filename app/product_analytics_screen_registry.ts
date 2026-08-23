@@ -1,8 +1,7 @@
 const STATIC_SCREEN_NAMES = [
   'achievements_screen', 'avatar_select', 'club_screen',
   'arena', 'arena_friend_duel', 'arena_invite', 'arena_match', 'arena_matchmaking',
-  'arena_ghost_duel', 'arena_mastery_map', 'arena_match_lab', 'arena_partner',
-  'arena_ranks', 'arena_results', 'arena_rivalries', 'arena_season_pass',
+  'arena_ranks', 'arena_results', 'arena_season_pass',
   'arena_star_wallet', 'arena_today',
   'collectibles_screen', 'community_pack_create', 'diagnostic_test', 'exam', 'flashcards',
   'flashcards_audio', 'flashcards_collection', 'flashcards_swipe', 'hint', 'language_welcome',
@@ -12,9 +11,9 @@ const STATIC_SCREEN_NAMES = [
   'paywall_d', 'paywall_e', 'paywall_f', 'paywall_g',
   'phrase_analytics_screen', 'premium_modal',
   'preposition_drill', 'privacy_screen', 'problem_coach', 'promo_code_entry',
-  'referrals', 'review', 'settings_edu', 'settings_language',
+  'referrals', 'settings_edu', 'settings_language',
   'settings_notifications', 'settings_themes', 'shards_shop', 'streak_stats', 'terms_screen',
-  'top_helpers', 'mistake_practice_session',
+  'mistake_practice_session',
 ] as const;
 
 const EXACT_SCREEN_IDS: Readonly<Record<string, string>> = Object.freeze({

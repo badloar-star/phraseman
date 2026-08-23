@@ -455,7 +455,6 @@ const RU = {
   tournament_results_detail: 'реальный экран (без roomId — пустое состояние)',
   tournament_tickets_title: 'Турнир · билеты',
   referrals_title: 'Друзья и рефералы',
-  top_helpers_title: 'Топ помощников',
 
   // ── screens_flashcards ──
   screens_flashcards_section_title: 'Экраны · карточки',

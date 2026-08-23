@@ -56,7 +56,6 @@ describe('navigation back underlay', () => {
       'settings_language',
       'privacy_settings',
       'ideas_submit',
-      'top_helpers',
       'account_details',
       'referrals',
       'promo_code_entry',
@@ -70,7 +69,6 @@ describe('navigation back underlay', () => {
     expect(settings).not.toContain("pathname: '/premium_modal',\n        params: {\n          manage: '1'");
     expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'promo_code_entry.tsx'), 'utf8')).toContain("source === 'settings' ? '/(tabs)/settings'");
     expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'referrals.tsx'), 'utf8')).toContain("params.source === 'settings' ? '/(tabs)/settings'");
-    expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'top_helpers.tsx'), 'utf8')).toContain("source === 'settings' ? '/(tabs)/settings'");
     expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'manage_subscription.tsx'), 'utf8')).toContain("? '/(tabs)/settings'");
     const navigationBack = fs.readFileSync(path.join(__dirname, '..', 'app', 'navigation_back.ts'), 'utf8');
     expect(navigationBack).toContain("'/settings_edu',");

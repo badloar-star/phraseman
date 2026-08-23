@@ -2,7 +2,7 @@
 // зачем: каждый пункт запускает РЕАЛЬНУЮ поверхность приложения (не бутафорию).
 // Шард пополняется независимо от других (мультиагентная параллель без конфликтов).
 // Полный список маршрутов подраздела: все arena_*.tsx, лига/клубы (club_screen),
-// турниры (tournament_*), друзья (referrals), top_helpers — взяты из app/ (grep +
+// турниры (tournament_*), друзья (referrals) — взяты из app/ (grep +
 // export default), ничего не выборочно.
 import type { ShowcaseSection } from '../types';
 import { cs } from '../showcase_copy';
@@ -18,21 +18,16 @@ export const SECTION: ShowcaseSection = {
     { id: 'arena-ranks', title: cs('arena_ranks_title'), kind: 'route', route: '/arena_ranks', detail: cs('real_screen') },
     { id: 'arena-tops', title: cs('arena_tops_title'), kind: 'route', route: '/arena_tops', detail: cs('real_screen') },
     { id: 'arena-history', title: cs('arena_history_title'), kind: 'route', route: '/arena_history', detail: cs('real_screen') },
-    { id: 'arena-rivalries', title: cs('arena_rivalries_title'), kind: 'route', route: '/arena_rivalries', detail: cs('real_screen') },
     { id: 'arena-star-wallet', title: cs('arena_star_wallet_title'), kind: 'route', route: '/arena_star_wallet', detail: cs('real_screen') },
     { id: 'arena-season-pass', title: cs('arena_season_pass_title'), kind: 'route', route: '/arena_season_pass', detail: cs('real_screen') },
-    { id: 'arena-mastery-map', title: cs('arena_mastery_map_title'), kind: 'route', route: '/arena_mastery_map', detail: cs('real_screen') },
 
     // — Арена: матчи и режимы —
     { id: 'arena-matchmaking', title: cs('arena_matchmaking_title'), kind: 'route', route: '/arena_matchmaking', detail: cs('arena_matchmaking_detail') },
     { id: 'arena-match', title: cs('arena_match_title'), kind: 'route', route: '/arena_match', detail: cs('arena_match_detail') },
-    { id: 'arena-match-lab', title: cs('arena_match_lab_title'), kind: 'route', route: '/arena_match_lab', detail: cs('arena_match_lab_detail') },
     { id: 'arena-results', title: cs('arena_results_title'), kind: 'route', route: '/arena_results', detail: cs('arena_results_detail') },
     { id: 'arena-review', title: cs('arena_review_title'), kind: 'route', route: '/arena_review', detail: cs('arena_review_detail') },
     { id: 'arena-friend-duel', title: cs('arena_friend_duel_title'), kind: 'route', route: '/arena_friend_duel', detail: cs('real_screen') },
-    { id: 'arena-ghost-duel', title: cs('arena_ghost_duel_title'), kind: 'route', route: '/arena_ghost_duel', detail: cs('arena_ghost_duel_detail') },
     { id: 'arena-invite', title: cs('arena_invite_title'), kind: 'route', route: '/arena_invite', detail: cs('real_screen') },
-    { id: 'arena-partner', title: cs('arena_partner_title'), kind: 'route', route: '/arena_partner', detail: cs('real_screen') },
 
     // — Лига / клубы —
     { id: 'club-screen', title: cs('club_screen_title'), kind: 'route', route: '/club_screen', detail: cs('real_screen') },
@@ -48,6 +43,5 @@ export const SECTION: ShowcaseSection = {
 
     // — Друзья / рефералы / помощники —
     { id: 'referrals', title: cs('referrals_title'), kind: 'route', route: '/referrals', detail: cs('real_screen') },
-    { id: 'top-helpers', title: cs('top_helpers_title'), kind: 'route', route: '/top_helpers', detail: cs('real_screen') },
   ],
 };

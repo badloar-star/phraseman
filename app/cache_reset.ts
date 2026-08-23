@@ -45,6 +45,9 @@ const STATIC_CACHE_KEYS = [
   'arena_top100_remote_at_v1',
   'arena_rating_screen_cache_v1',
   'club_remote_refresh_at_v2',
+  // зачем ключи живут без экрана: борд «Топ хелперов» удалён 2026-08-23, но у
+  // существующих пользователей его снапшот уже лежит в хранилище — без очистки
+  // этот мусор остался бы навсегда.
   'top_helpers_snapshot_v2',
   'top_helpers_remote_at_v2',
 

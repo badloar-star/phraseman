@@ -120,6 +120,7 @@ import { createDisposableAdoption } from './disposable_adoption';
 import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
 import ActionToast from '../components/ActionToast';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
+import EnergySpendFlightHost from '../components/EnergySpendFlightHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
@@ -2893,7 +2894,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
-      <Stack.Screen name="top_helpers" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Protected guard={ENABLE_TOURNAMENTS}>
         {/* зачем 2026-08-23 (владелец): турниры выключены фулл, экраны
             заархивированы в _archive/tournaments — Expo Router ищет экраны по
@@ -3274,6 +3274,11 @@ export default function RootLayout() {
                     <ActionToast />
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
+                    {/* зачем: анимация списания 1 ⚡ за старт активности —
+                        глобальная, потому что точек списания девять, и на
+                        половине экранов (Арена, флешкарты, диалоги) счётчика
+                        энергии нет вовсе. Экраны только шлют событие. */}
+                    <EnergySpendFlightHost />
                     <EntitlementExpiredHost />
                     <ReferralWelcomeHost />
                     <MysteryMondayHost />

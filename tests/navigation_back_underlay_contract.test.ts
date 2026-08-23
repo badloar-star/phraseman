@@ -29,7 +29,6 @@ const DIRECT_DISMISS_ALLOWLIST = new Set([
   path.join('app', 'navigation_back.ts'),
   path.join('app', 'flashcards_collection.tsx'),
   path.join('app', 'lesson1.tsx'),
-  path.join('app', 'tournament_navigation.ts'),
 ]);
 
 describe('navigation back underlay', () => {
@@ -58,7 +57,6 @@ describe('navigation back underlay', () => {
       'privacy_settings',
       'ideas_submit',
       'top_helpers',
-      'tournament_tickets',
       'account_details',
       'referrals',
       'promo_code_entry',

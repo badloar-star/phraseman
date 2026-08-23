@@ -32,12 +32,12 @@ import {
   V2Card,
   V2Counter,
   V2Segments,
-} from '../components/tournament/tournament_v2_ui';
+} from '../components/ui/v2_ui';
 import { isTournamentBotPlayer, tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
-import { T, formatTimeLeft, hexToRgba, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
+import { T, formatTimeLeft, hexToRgba, radius, type, useTournamentPalette, type TournamentPalette} from '../components/ui/v2_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
-import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
-import { TournamentFxHost, type TournamentFxApi } from '../components/tournament/TournamentFx';
+import { TournamentBackdrop } from '../components/ui/V2Backdrop';
+import { TournamentFxHost, type TournamentFxApi } from '../components/ui/V2Fx';
 import {
   isRoundState, leaveTournament, resolveTournamentLobbyRoute, resolveTournamentRoomIdParam,
   resolveTournamentExitStatus,

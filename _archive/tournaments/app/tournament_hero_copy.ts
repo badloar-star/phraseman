@@ -12,7 +12,7 @@
 // остаётся одним акцентом на экран, без микро-текста под заголовком.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { formatTimeLeft } from '../components/tournament/tournament_theme';
+import { formatTimeLeft } from '../components/ui/v2_theme';
 
 export type TournamentHeroCopy = {
   /** Строка над крупным значением. */

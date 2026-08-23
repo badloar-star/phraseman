@@ -34,10 +34,10 @@ import {
   radius,
   useTournamentPalette,
   type TournamentV2,
-} from '../components/tournament/tournament_theme';
-import { V2Card, V2Counter, V2Cta } from '../components/tournament/tournament_v2_ui';
-import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
-import { StarGlyph } from '../components/tournament/TournamentFx';
+} from '../components/ui/v2_theme';
+import { V2Card, V2Counter, V2Cta } from '../components/ui/v2_ui';
+import { TournamentBackdrop } from '../components/ui/V2Backdrop';
+import { StarGlyph } from '../components/ui/V2Fx';
 import { TournamentAudioButton } from '../components/tournament/TournamentAudioButton';
 import ReportErrorButton from '../components/ReportErrorButton';
 import {

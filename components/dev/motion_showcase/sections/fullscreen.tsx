@@ -10,7 +10,6 @@ import PersonalAdminMessageModal from '../../../PersonalAdminMessageModal';
 import VipSurveyModal from '../../../VipSurveyModal';
 import VipSurveyReviewPromptModal from '../../../VipSurveyReviewPromptModal';
 import AppMessagesInbox from '../../../AppMessagesInbox';
-import { TournamentWelcomeModal } from '../../../tournament/TournamentWelcomeModal';
 import type { AppMessageWithState } from '../../../../app/app_messages';
 import { cs } from '../showcase_copy';
 
@@ -105,15 +104,6 @@ export const SECTION: ShowcaseSection = {
       note: cs('global_broadcast_modal_note'),
     },
     {
-      id: 'tournament_welcome_modal',
-      title: cs('tournament_welcome_modal_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <TournamentWelcomeModal visible={visible} onClose={onClose} />
-      ),
-    },
-    {
       id: 'personal_admin_message_modal',
       title: cs('personal_admin_message_modal_title'),
       detail: cs('personal_admin_message_modal_detail'),
@@ -142,6 +132,7 @@ export const SECTION: ShowcaseSection = {
     },
     {
       id: 'vip_survey_modal_hybrid',
+      approval: 'pending',
       title: cs('vip_survey_modal_hybrid_title'),
       detail: cs('real_component'),
       kind: 'render',

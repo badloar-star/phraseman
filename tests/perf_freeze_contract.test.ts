@@ -178,10 +178,6 @@ describe('perf freeze contract', () => {
     // freezeOnBlur stops rendering only; a JS interval survives unless the
     // screen itself passes foreground ownership to the timer.  These screens
     // stay on the native stack while users browse elsewhere.
-    const tournamentSeason = read('app/tournament_season.tsx');
-    expect(tournamentSeason).toContain("import { useRuntimeActive } from '../hooks/use_runtime_active'");
-    expect(tournamentSeason).toContain('const tournamentSeasonRuntimeActive = useRuntimeActive();');
-    expect(tournamentSeason).toContain('tournamentSeasonRuntimeActive,');
 
     const shardsShop = read('app/shards_shop.tsx');
     expect(shardsShop).toContain("import { useRuntimeActive } from '../hooks/use_runtime_active'");
@@ -234,42 +230,14 @@ describe('perf freeze contract', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('keeps the tournament room subscription gated by a visibility flag', () => {
-    // Хук общий для пяти экранов турнира. Push-экраны гейтит навигация
-    // (freezeOnBlur:true), а хаб-таб обязан передать свою видимость сам —
-    // поэтому параметр гварда должен существовать и реально гасить подписку.
-    const client = read('app/tournament_client.ts');
-    expect(client).toMatch(/export function useTournamentRoom\([^)]*active/);
-    // Гвард проверяем ИМЕННО в теле подписки, а не «где-нибудь в файле»:
-    // в модуле есть и другие `if (!active) return;` (таймер, будильник), и
-    // проверка по всему файлу пропустила бы удаление гварда с onSnapshot —
-    // ровно того, что грело телефон. Убеждаемся, что между стартом эффекта
-    // подписки и вызовом onSnapshot стоит выход по невидимости.
-    const subscribeBody = client.slice(
-      client.indexOf('export function useTournamentRoom'),
-      client.indexOf('.onSnapshot('),
-    );
-    expect(subscribeBody).toContain('if (!active) return;');
-    // …и что гвард попал в зависимости эффекта — иначе смена видимости не
-    // поднимет подписку обратно и экран «залипнет» на старых данных.
-    expect(client).toMatch(/\[roomId, attempt, active\]/);
-    // Хаб обязан передавать настоящую видимость экрана, а не константу.
-    const hub = read('app/(tabs)/tournaments.tsx');
-    expect(hub).toMatch(/useTournamentRoom\(roomId,\s*runtimeActive\)/);
-    // Гвард питается фокусом экрана (хаб — push поверх `(tabs)`), а не `true`.
-    expect(hub).toContain('useRuntimeActive(screenFocused)');
-  });
-
   it('catches up instantly when a gated screen becomes visible again', () => {
     // Экономия не должна стоить свежести: гвард гасит таймеры, поэтому при
     // ВОЗВРАТЕ на экран данные обязаны пересчитаться сразу, а не через секунду
     // (иначе первый кадр показывает состояние, замороженное в момент ухода —
     // прямое нарушение Performance Bible про первый кадр).
-    const hub = read('app/(tabs)/tournaments.tsx');
-    expect(hub).toMatch(/if \(!runtimeActive\) return;[\s\S]{0,400}?const refreshClock = \(\) => \{[\s\S]{0,120}?setTick\(\(value\) => value \+ 1\);/);
-    expect(hub).toMatch(/refreshClock\(\);[\s\S]{0,80}?setInterval\(refreshClock, 1000\)/);
-    // Тот же принцип в общем отсчёте: значение считается ДО setInterval.
-    const countdown = read('components/tournament/TournamentCountdown.tsx');
+    // зачем 2026-08-23: турнирный хаб заархивирован (турниры выключены фулл);
+    // правило про пересчёт ДО setInterval сторожим на живом общем отсчёте.
+    const countdown = read('components/ui/V2Countdown.tsx');
     expect(countdown).toMatch(/if \(compute\(\) <= 0\) return;[\s\S]{0,120}?setInterval/);
   });
 });

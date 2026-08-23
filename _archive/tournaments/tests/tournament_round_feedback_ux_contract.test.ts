@@ -4,7 +4,7 @@ import path from 'node:path';
 const root = path.resolve(__dirname, '..');
 const round = readFileSync(path.join(root, 'app/tournament_round.tsx'), 'utf8');
 const countdown = readFileSync(
-  path.join(root, 'components/tournament/TournamentCountdown.tsx'),
+  path.join(root, 'components/ui/V2Countdown.tsx'),
   'utf8',
 );
 const client = readFileSync(path.join(root, 'app/tournament_client.ts'), 'utf8');

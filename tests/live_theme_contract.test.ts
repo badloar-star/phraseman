@@ -20,7 +20,7 @@ const THEME_MAP_FILES = [
   "app/personal_plan_task_visuals.ts",
   "app/season_pass_theme_backgrounds.ts",
   "components/ReferralInviteBannerArt.tsx",
-  "components/tournament/tournament_theme_assets.ts",
+  "components/ui/v2_theme_assets.ts",
   "constants/generatedThemeIconAssets.ts",
   "constants/socialIconAssets.ts",
   "constants/streakIconAssets.ts",

@@ -4,7 +4,7 @@ import path from 'node:path';
 const root = path.resolve(__dirname, '..');
 const round = readFileSync(path.join(root, 'app/tournament_round.tsx'), 'utf8');
 const ui = readFileSync(
-  path.join(root, 'components/tournament/tournament_v2_ui.tsx'),
+  path.join(root, 'components/ui/v2_ui.tsx'),
   'utf8',
 );
 
@@ -50,7 +50,7 @@ describe('tournament round visual fidelity', () => {
   // точки; отсчёт 3-2-1 появляется только на последних трёх секундах.
   test('timer is a clean ring: no inner dots, digits only in the final three seconds', () => {
     const timer = readFileSync(
-      path.join(root, 'components/tournament/TournamentCountdown.tsx'),
+      path.join(root, 'components/ui/V2Countdown.tsx'),
       'utf8',
     );
     expect(timer).not.toContain('strokeDasharray="1.5 4"');

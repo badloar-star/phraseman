@@ -50,7 +50,6 @@ describe('collectible drop overlay contract', () => {
     expect(source).toContain('outcome={collectibleDropVisible ? shownCardDrop : null}');
 
     for (const relativePath of [
-      'app/tournament_results.tsx',
       'app/lesson_words.tsx',
       'app/lesson_irregular_verbs.tsx',
       'app/preposition_drill.tsx',
@@ -76,7 +75,6 @@ describe('collectible drop overlay contract', () => {
       'app/lesson_irregular_verbs.tsx',
       'app/lesson_words.tsx',
       'app/preposition_drill.tsx',
-      'app/tournament_results.tsx',
     ].sort());
   });
 
@@ -84,7 +82,6 @@ describe('collectible drop overlay contract', () => {
     // Турнир/словарь/глаголы/предлоги закрываются один раз — dailyScoped:false,
     // иначе один и тот же раздел давал бы карточку каждый день заново.
     const points: Array<[string, string]> = [
-      ['app/tournament_results.tsx', "maybeRollCollectibleDrop('tournament'"],
       ['app/lesson_words.tsx', "maybeRollCollectibleDrop('vocab'"],
       ['app/lesson_irregular_verbs.tsx', "maybeRollCollectibleDrop('verbs'"],
       ['app/preposition_drill.tsx', "maybeRollCollectibleDrop('prep'"],

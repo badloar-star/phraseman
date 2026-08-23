@@ -37,12 +37,12 @@ import {
   type,
   useTournamentPalette,
   type TournamentV2,
-} from '../components/tournament/tournament_theme';
-import { StarGlyph } from '../components/tournament/TournamentFx';
-import { V2Counter } from '../components/tournament/tournament_v2_ui';
+} from '../components/ui/v2_theme';
+import { StarGlyph } from '../components/ui/V2Fx';
+import { V2Counter } from '../components/ui/v2_ui';
 import { isTournamentBotPlayer, tournamentAvatarLevel, tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
-import { TournamentBackdrop } from '../components/tournament/TournamentBackdrop';
+import { TournamentBackdrop } from '../components/ui/V2Backdrop';
 import {
   hasTournamentTableSettledScores, isRoundState, orderTournamentPlayersForDisplay, resolveTournamentDisplayRoundNo, resolveTournamentRoomIdParam, shouldTableEnterRound, tournamentSharedPlacement, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';

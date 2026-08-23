@@ -23,7 +23,7 @@ import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useTheme } from '../ThemeContext';
 import { TABBAR_HYBRID } from '../../constants/motionHybrid';
-import { getTournamentThemeAssets } from '../tournament/tournament_theme_assets';
+import { getTournamentThemeAssets } from './v2_theme_assets';
 import { useTournamentPalette } from './v2_theme';
 
 export type TournamentBackdropVariant =

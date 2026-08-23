@@ -81,10 +81,10 @@ import {
   markTournamentWelcomeSeen,
   peekTournamentWelcomeSeen,
 } from '../tournament_welcome_seen';
-import { Sheet } from '../../components/tournament/tournament_ui';
+import { Sheet } from '../../components/ui/v2_sheet';
 import { TournamentWelcomeModal } from '../../components/tournament/TournamentWelcomeModal';
 import { getTournamentThemeAssets } from '../../components/tournament/tournament_theme_assets';
-import { useCountdown } from '../../components/tournament/TournamentCountdown';
+import { useCountdown } from '../../components/ui/V2Countdown';
 import {
   METAL,
   formatTimeLeft,
@@ -92,14 +92,14 @@ import {
   radius,
   useTournamentPalette,
   type TournamentV2,
-} from '../../components/tournament/tournament_theme';
-import { StarGlyph } from '../../components/tournament/TournamentFx';
+} from '../../components/ui/v2_theme';
+import { StarGlyph } from '../../components/ui/V2Fx';
 import {
   V2Card,
   V2Counter,
   V2Cta,
   V2RatingRow,
-} from '../../components/tournament/tournament_v2_ui';
+} from '../../components/ui/v2_ui';
 import {
   isRoundState,
   isTableState,

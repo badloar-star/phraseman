@@ -21,7 +21,7 @@ const SLOTS = ["backdrop", "podium", "weekly-bank", "season-rewards"] as const;
 
 describe("Tournament per-theme visual kits", () => {
   it("wires backdrop, podium, weekly-bank, and season-rewards assets for every selectable theme", () => {
-    const source = read("components/tournament/tournament_theme_assets.ts");
+    const source = read("components/ui/v2_theme_assets.ts");
 
     for (const theme of SELECTABLE_THEMES) {
       for (const slot of SLOTS) {
@@ -42,7 +42,7 @@ describe("Tournament per-theme visual kits", () => {
   });
 
   it("renders theme art through one guarded, accessibility-hidden backdrop primitive", () => {
-    const source = read("components/tournament/TournamentBackdrop.tsx");
+    const source = read("components/ui/V2Backdrop.tsx");
 
     for (const variant of [
       "hub",

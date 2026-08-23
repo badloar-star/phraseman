@@ -15,7 +15,7 @@ import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import { redirectSystemPath } from './+native-intent';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, AppState, BackHandler, Easing, InteractionManager, LogBox, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, BackHandler, Easing, InteractionManager, LogBox, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -25,18 +25,8 @@ import { EnergyProvider } from '../components/EnergyContext';
 import { LangProvider, useLang } from '../components/LangContext';
 import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
-import LevelGiftDualModal from '../components/LevelGiftDualModal';
-import LevelGiftModal from '../components/LevelGiftModal';
 import LevelUpThresholdModal from '../components/LevelUpThresholdModal';
 import {
-  loadUnclaimedDualGifts,
-  loadUnclaimedGifts,
-  saveUnclaimedDualGift,
-  saveUnclaimedGift,
-  type PremPair,
-} from './level_gift_inventory';
-import {
-  acknowledgePendingLevelUpShown,
   repairPendingLevelUpRewards,
   retryPendingLevelUpRewards,
 } from './level_up_reward_reconciler';
@@ -60,7 +50,6 @@ import {
 } from './level_up_account_guard';
 import { isCurrentAccountGeneration } from './account_generation';
 import { getStableId } from './stable_id';
-import { acquireLevelGiftDisplay, reserveLevelGiftForDisplay, type GiftDef } from './level_gift_system';
 import Onboarding from '../components/onboarding';
 import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
 import { PremiumProvider, usePremium } from '../components/PremiumContext';
@@ -74,23 +63,24 @@ import ForceUpdateGate from '../components/ForceUpdateGate';
 import OfflineBanner from '../components/OfflineBanner';
 import PromoBanner from '../components/PromoBanner';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
-import { cleanupRetiredMistakePracticeStorage } from './mistake_practice_legacy_cleanup';
-import {
-  readOnboardingNotificationChoice,
-  shouldPromptForOnboardingNotifications,
-} from './onboarding_notification_choice';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { getInstalledAppVersion } from './app_version';
-import { ENABLE_ARENA, ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
+import { ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { subscribeNetStatus } from './net_status';
 import { resumePendingOnboardingFunnel } from './onboarding_funnel';
+import { cleanupRetiredMistakePracticeStorage } from './mistake_practice_legacy_cleanup';
+import {
+  readOnboardingNotificationChoice,
+  shouldPromptForOnboardingNotifications,
+} from './onboarding_notification_choice';
 import { resumePendingAgeConsent } from './age_consent_cloud';
+import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
 import { checkAchievements, getPendingNotifications } from './achievements';
 import {
   ensureAnonUser,
@@ -115,6 +105,7 @@ import { initRevenueCat } from './revenuecat_init';
 import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
 import { hydrateAiExplainConsentFromStorage } from './ai_explain_consent';
 import { hydrateAiDialogConsentFromStorage } from './ai_dialog_consent';
+import { hydrateAiVoiceConsentFromStorage } from './max_voice_consent';
 import { hydrateAgeGateFromStorage } from './age_gate';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
@@ -140,6 +131,7 @@ import BoonActivatedHost from '../components/BoonActivatedHost';
 import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
+import PhoneStateRecoveryScreen from '../components/PhoneStateRecoveryScreen';
 import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 import {
   consumeRemoteAccountDeletionNotice,
@@ -158,6 +150,7 @@ import { emitAppEvent, onAppEvent } from './events';
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
 import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { primeAllLessonsFromStorageOnAppLaunch } from './lesson_screen_bootstrap';
 import { hydrateUserSettingsFromStorage } from './user_settings_store';
@@ -172,6 +165,9 @@ import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
 import { hydrateYoutubeChannelPreference } from './youtube_channel_preference';
 import { hydrateStatsCacheFromStorage } from './statsCache';
 import { primeRemoteConfigCacheFromStorage } from './remote_config_client';
+import { ensurePhoneStateSyncLifecycleInstalled } from './phone_state_sync_lifecycle';
+import { bootstrapPhoneState } from './phone_state_bootstrap';
+import { installPhoneStateProductionRuntime } from './phone_state_runtime';
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
@@ -286,6 +282,8 @@ LogBox.ignoreLogs([
   '[Reanimated] Reduced motion setting is enabled on this device.',
   'This method is deprecated (as well as all React Native Firebase namespaced API)',
 ]);
+
+installPhoneStateProductionRuntime();
 
 const DEV_RUNTIME_LOG_DROP_PATTERNS = [
   'This method is deprecated (as well as all React Native Firebase namespaced API)',
@@ -508,10 +506,11 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
 
   if (!visible) return null;
 
-  const glyphScale = Animated.add(
-    glyphIn.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1] }),
-    pulse.interpolate({ inputRange: [0, 1], outputRange: [0, 0.055] }),
-  );
+  // Keep these transforms on separate native nodes. Animated.add can retain a
+  // reference to an already removed interpolation when the startup overlay is
+  // hidden, which produces an Android New Architecture race on first launch.
+  const glyphEnterScale = glyphIn.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1] });
+  const glyphPulseScale = pulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.055] });
   const wordTranslateY = wordIn.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
   const subTranslateY = subIn.interpolate({ inputRange: [0, 1], outputRange: [6, 0] });
   const shineX = shine.interpolate({
@@ -521,12 +520,14 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
 
   return (
     <View pointerEvents="none" style={styles.startupSplashAnimatedRoot}>
-      <Animated.View style={{ opacity: glyphIn, transform: [{ scale: glyphScale }] }}>
-        <Image
-          source={require('../assets/images/splash-glyph.webp')}
-          contentFit="contain"
-          style={{ width: SPLASH_GLYPH_SIZE, height: SPLASH_GLYPH_SIZE }}
-        />
+      <Animated.View style={{ opacity: glyphIn, transform: [{ scale: glyphEnterScale }] }}>
+        <Animated.View style={[styles.startupSplashGlyphPulse, { transform: [{ scale: glyphPulseScale }] }]}>
+          <Image
+            source={require('../assets/images/splash-glyph.webp')}
+            contentFit="contain"
+            style={{ width: SPLASH_GLYPH_SIZE, height: SPLASH_GLYPH_SIZE }}
+          />
+        </Animated.View>
       </Animated.View>
 
       <Animated.View
@@ -576,37 +577,6 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
     </View>
   );
 }
-
-const LEVELUP_CONGRATS_RU = [
-  'Поздравляем! Твой прогресс впечатляет!',
-  'Ты неудержим! Продолжай в том же духе!',
-  'Новый уровень — новые горизонты! 🚀',
-  'Вот это прогресс! Гордись собой!',
-  'Ты растёшь с каждым днём! 🌟',
-  'Невероятно! Твой English становится мощнее!',
-  'Уровень получен заслуженно — ты работал!',
-  'Прогресс виден невооружённым глазом! 💪',
-];
-const LEVELUP_CONGRATS_UK = [
-  'Вітаємо! Твій прогрес вражає!',
-  'Ти невтримний! Продовжуй у тому ж дусі!',
-  'Новий рівень — нові горизонти! 🚀',
-  'Ось це прогрес! Пишайся собою!',
-  'Ти зростаєш з кожним днем! 🌟',
-  'Неймовірно! Твоя англійська стає потужнішою!',
-  'Рівень отримано заслужено — ти працював!',
-  'Прогрес видно неозброєним оком! 💪',
-];
-const LEVELUP_CONGRATS_ES = [
-  '¡Enhorabuena! ¡Tu progreso impresiona!',
-  '¡No paras! Sigue así.',
-  '¡Nuevo nivel, nuevas metas! 🚀',
-  '¡Vaya avance! Sigue así.',
-  '¡Creces cada día! 🌟',
-  '¡Increíble! Tu inglés se fortalece.',
-  'Te lo has ganado con la práctica.',
-  '¡El progreso se nota a simple vista! 💪',
-];
 
 function levelSpinCreditId(level: number): string {
   return `level_spin_v1_${String(level).padStart(3, '0')}`;
@@ -672,7 +642,10 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
       if (Math.max(0, Math.round(loginBonusResult.finalDelta || 0)) > 0) {
         // Сохранить бонус для отображения на Home
         await AsyncStorage.setItem('login_bonus_pending', JSON.stringify({ xp: bonusXP, cycle: consecutive }));
-        await AsyncStorage.setItem('login_bonus_v1', JSON.stringify({ lastDate: today, consecutiveDays: consecutive }));
+        await persistPortableProgressRegister(
+          'login_bonus_v1',
+          JSON.stringify({ lastDate: today, consecutiveDays: consecutive }),
+        );
 
         // Ачивки за логин
         checkAchievements({ type: 'login', consecutiveDays: consecutive }).catch(() => {});
@@ -711,7 +684,6 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
       if (lastActive <= threshold) {
         await AsyncStorage.setItem('comeback_active', today);
         await AsyncStorage.setItem('comeback_pending', 'true');
-        checkAchievements({ type: 'comeback' }).catch(() => {});
       }
     }
 
@@ -788,39 +760,14 @@ function GlobalLevelUpHandler() {
   const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
 
   const [showLevelUp, setShowLevelUp] = useState(false);
-  const [showGiftModal, setShowGiftModal] = useState(false);
-  /**
-   * Удержание слота арбитра в окне перехода level-up → подарок. Между setShowLevelUp(false)
-   * и setShowGiftModal(true) остается только безопасная native-пауза 180-260мс; серверные
-   * начисления уходят фоном. Без этого флага арбитр отдал бы слот любому ждущему тосту.
-   */
+  /** Удерживает слот арбитра, пока Spin-финализация завершает durable acknowledge. */
   const [levelUpTransitioning, setLevelUpTransitioning] = useState(false);
-  /** Премиум: два сундука (F2P + premium) вместо одного */
-  const [levelGiftDualMode, setLevelGiftDualMode] = useState(false);
-  const [currentIsSpin, setCurrentIsSpin] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentAccountLevel, setCurrentAccountLevel] = useState(0);
   const [userName, setUserName] = useState('');
-  // Reconciler сохраняет подарок до постановки уровня в очередь. Здесь держим
-  // точный single/dual entitlement, чтобы модал не выполнял повторный розыгрыш.
-  const [giftPreRolled, setGiftPreRolled] = useState<GiftDef | undefined>(undefined);
-  const [giftPreRolledPair, setGiftPreRolledPair] = useState<PremPair | undefined>(undefined);
-
   const queueRef    = useRef<number[]>([]);
-  const singleGiftsRef = useRef<Record<number, GiftDef>>({});
-  const dualGiftsRef = useRef<Record<number, PremPair>>({});
-  const spinLevelsRef = useRef<Set<number>>(new Set());
   const isShowingRef = useRef(false);
   const dismissingLevelUpRef = useRef(false);
-  const giftOpenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const giftOpenInteractionRef = useRef<ReturnType<typeof InteractionManager.runAfterInteractions> | null>(null);
-  // Страховка слота: если переход level-up → подарок «завис» (подарок не открылся/не
-  // закрылся штатно — напр. Android-back в обход onGiftClose или сбой в цепочке выше),
-  // levelUpTransitioning остался бы true НАВСЕГДА → слот арбитра занят, и всё ниже по
-  // приоритету (праздники, leagueResult, ВСЕ тосты) заморожено до перезапуска (levelUp
-  // не force-evictable, сторож его не выселяет). Этот таймер принудительно завершает
-  // зависший переход. Окно = заведомо больше штатного перехода (await-ы + 180-260мс).
-  const levelUpTransitionGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   /** Сериализация flush: двойной await getItem до removeItem давал дубликаты уровня в queueRef. */
   const flushQueueBusyRef = useRef(false);
@@ -830,33 +777,15 @@ function GlobalLevelUpHandler() {
   const modalLevelRef = useRef(0);
 
   const resetLevelUpChainForAccountChange = useCallback(() => {
-    if (giftOpenTimerRef.current) {
-      clearTimeout(giftOpenTimerRef.current);
-      giftOpenTimerRef.current = null;
-    }
-    giftOpenInteractionRef.current?.cancel();
-    giftOpenInteractionRef.current = null;
-    if (levelUpTransitionGuardRef.current) {
-      clearTimeout(levelUpTransitionGuardRef.current);
-      levelUpTransitionGuardRef.current = null;
-    }
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
     queueRef.current = [];
-    singleGiftsRef.current = {};
-    dualGiftsRef.current = {};
-    spinLevelsRef.current = new Set();
     queuedAccountTokenRef.current = null;
     modalAccountTokenRef.current = null;
     modalLevelRef.current = 0;
     isShowingRef.current = false;
     dismissingLevelUpRef.current = false;
     setShowLevelUp(false);
-    setShowGiftModal(false);
     setLevelUpTransitioning(false);
-    setLevelGiftDualMode(false);
-    setCurrentIsSpin(false);
-    setGiftPreRolled(undefined);
-    setGiftPreRolledPair(undefined);
     setCurrentLevel(0);
     setCurrentAccountLevel(0);
     setUserName('');
@@ -873,93 +802,11 @@ function GlobalLevelUpHandler() {
     dismissingLevelUpRef.current = false;
     setLevelUpTransitioning(false);
     const lvl = queueRef.current[0];
-    if (spinLevelsRef.current.has(lvl)) {
-      setGiftPreRolledPair(undefined);
-      setGiftPreRolled(undefined);
-      setLevelGiftDualMode(false);
-      setCurrentIsSpin(true);
-      modalAccountTokenRef.current = accountToken;
-      modalLevelRef.current = lvl;
-      setCurrentLevel(lvl);
-      setShowLevelUp(true);
-      return;
-    }
-    setCurrentIsSpin(false);
-    let savedPair = dualGiftsRef.current[lvl];
-    let savedGift = singleGiftsRef.current[lvl];
-    // Refresh every receipt before display. Besides reconnecting offline rolls, this
-    // lets the server migrate stale/retired rewards to the canonical safe gift.
-    if (savedPair) {
-      try {
-        savedPair = {
-          f2p: await reserveLevelGiftForDisplay(lvl, 'f2p', { premiumSafe: true, studyTarget }),
-          prem: await reserveLevelGiftForDisplay(lvl, 'premium', { studyTarget }),
-        };
-        if (!isLevelUpAccountTokenCurrent(accountToken)) {
-          resetLevelUpChainForAccountChange();
-          return;
-        }
-        await saveUnclaimedDualGift(lvl, savedPair, accountToken);
-        const persistedPair = (await loadUnclaimedDualGifts())[lvl];
-        if (persistedPair?.f2p.id !== savedPair.f2p.id
-          || persistedPair?.prem.id !== savedPair.prem.id
-          || persistedPair?.f2p.levelGiftReservation?.reservationId !== savedPair.f2p.levelGiftReservation?.reservationId
-          || persistedPair?.prem.levelGiftReservation?.reservationId !== savedPair.prem.levelGiftReservation?.reservationId) {
-          isShowingRef.current = false;
-          return;
-        }
-        dualGiftsRef.current[lvl] = savedPair;
-      } catch {
-        isShowingRef.current = false;
-        return;
-      }
-    } else if (savedGift) {
-      try {
-        savedGift = await reserveLevelGiftForDisplay(lvl, 'f2p', { studyTarget });
-        if (!isLevelUpAccountTokenCurrent(accountToken)) {
-          resetLevelUpChainForAccountChange();
-          return;
-        }
-        await saveUnclaimedGift(lvl, savedGift, accountToken);
-        const persistedGift = (await loadUnclaimedGifts())[lvl];
-        if (persistedGift?.id !== savedGift.id
-          || persistedGift?.levelGiftReservation?.reservationId !== savedGift.levelGiftReservation?.reservationId) {
-          isShowingRef.current = false;
-          return;
-        }
-        singleGiftsRef.current[lvl] = savedGift;
-      } catch {
-        isShowingRef.current = false;
-        return;
-      }
-    }
-    const displayGift = savedPair?.f2p ?? savedGift;
-    if (!displayGift) { isShowingRef.current = false; return; }
-    const displayStatus = await acquireLevelGiftDisplay(lvl, displayGift, studyTarget);
-    if (!isLevelUpAccountTokenCurrent(accountToken)) {
-      resetLevelUpChainForAccountChange();
-      return;
-    }
-    if (displayStatus === 'unavailable') {
-      // Offline/server failure: retain the durable queue and inventory for a truthful retry.
-      isShowingRef.current = false;
-      return;
-    }
-    if (displayStatus === 'already_displayed') {
-      queueRef.current.shift();
-      await acknowledgePendingLevelUpShown(lvl);
-      isShowingRef.current = false;
-      if (queueRef.current.length > 0) queueMicrotask(() => { void showNext(); });
-      return;
-    }
-    setGiftPreRolledPair(savedPair ?? undefined);
-    setGiftPreRolled(savedPair ? undefined : savedGift ?? undefined);
-    setLevelGiftDualMode(!!savedPair);
     modalAccountTokenRef.current = accountToken;
     modalLevelRef.current = lvl;
     setCurrentLevel(lvl);
     setShowLevelUp(true);
-  }, [resetLevelUpChainForAccountChange, studyTarget]);
+  }, [resetLevelUpChainForAccountChange]);
 
   const drainLevelUpBonusOutbox = useCallback(async () => {
     try {
@@ -1003,36 +850,20 @@ function GlobalLevelUpHandler() {
         if (!isLevelUpAccountTokenCurrent(flushToken)) return;
         await repairPendingLevelUpRewards({ premium: !!hasPremiumAccess, studyTarget });
         if (!isLevelUpAccountTokenCurrent(flushToken)) return;
-        const raw = await AsyncStorage.getItem('pending_level_up_queue');
-        if (!isLevelUpAccountTokenCurrent(flushToken)) return;
-        let arr: number[] = [];
-        try { arr = raw ? JSON.parse(raw) : []; } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
-        if (!Array.isArray(arr)) arr = [];
-        const [spinLevels, singleMap, dualMap, [[, name], [, xpRaw]]] = await Promise.all([
+        const [spinLevels, [[, name], [, xpRaw]]] = await Promise.all([
           loadPendingLevelSpinLevelUps(),
-          loadUnclaimedGifts(),
-          loadUnclaimedDualGifts(),
           AsyncStorage.multiGet(['user_name', 'user_total_xp']),
         ]);
         if (!isLevelUpAccountTokenCurrent(flushToken)) return;
 
-        const durableLegacyLevels = [...new Set(arr)]
-          .filter((level) => Number.isInteger(level) && level > 0)
-          .filter((lvl) => {
-            const savedPair = dualMap[lvl];
-            const savedGift = singleMap[lvl];
-            return (!!savedPair || !!savedGift) && !(savedPair && savedGift);
-          });
+        // Runtime level-up presentation is Spin-only. Legacy single/dual gifts
+        // stay durable in Gifts inventory but no longer enter the global overlay queue.
         // PENDING_LEVEL_SPIN_LEVEL_UP_QUEUE_KEY is loaded through the account-scoped queue module.
-        spinLevelsRef.current = new Set(spinLevels);
-        const durableLevels = [...new Set([...durableLegacyLevels, ...spinLevels])].sort((a, b) => a - b);
         const activeLevel = isShowingRef.current ? queueRef.current[0] : undefined;
         queueRef.current = activeLevel
-          ? [activeLevel, ...durableLevels.filter((level) => level !== activeLevel)]
-          : durableLevels;
+          ? [activeLevel, ...spinLevels.filter((level) => level !== activeLevel)]
+          : spinLevels;
         queuedAccountTokenRef.current = flushToken;
-        singleGiftsRef.current = singleMap;
-        dualGiftsRef.current = dualMap;
         if (name) setUserName(name);
         setCurrentAccountLevel(getLevelFromXP(parseInt(xpRaw || '0', 10) || 0));
 
@@ -1073,8 +904,6 @@ function GlobalLevelUpHandler() {
     return () => {
       clearTimeout(t);
       sub.remove();
-      if (giftOpenTimerRef.current) clearTimeout(giftOpenTimerRef.current);
-      giftOpenInteractionRef.current?.cancel();
     };
   }, [drainLevelUpBonusOutbox, flushQueue]);
 
@@ -1156,10 +985,41 @@ function GlobalLevelUpHandler() {
     return () => task.cancel();
   }, [themeMode]);
 
+  const showLevelFiveUpsellAfterFinalSpin = useCallback((
+    completedLevel: number,
+    accountToken: AccountGenerationToken,
+  ) => {
+    // Existing one-time free-user conversion moment, now bound to the final
+    // Spin receipt instead of the retired gift-modal close callback.
+    void withAccountTransitionLock(async () => {
+      if (!isLevelUpAccountTokenCurrent(accountToken)) return;
+      try {
+        if (completedLevel !== 5 || hasPremiumAccess) return;
+        const prem = await getVerifiedPremiumStatus().catch(() => false);
+        if (!isLevelUpAccountTokenCurrent(accountToken)) return;
+        const introState = await getIntroFullAccessState().catch(() => null);
+        if (!isLevelUpAccountTokenCurrent(accountToken)) return;
+        if (introState?.expiredUnseen === true) return;
+        const [{ canShowAfterWinUpsell, markAfterWinUpsellShown }, { trackEvent }] = await Promise.all([
+          import('./after_win_upsell_gate'),
+          import('./analytics'),
+        ]);
+        if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
+        if (!isLevelUpAccountTokenCurrent(accountToken)) return;
+        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
+        // Navigation first: a failed push must not consume the cooldown.
+        globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
+        await markAfterWinUpsellShown(Date.now());
+        await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
+        void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
+      } catch { /* no-op */ }
+    });
+  }, [hasPremiumAccess]);
+
   const finalizeSpinLevelUp = () => {
     const accountToken = modalAccountTokenRef.current;
     const level = modalLevelRef.current;
-    if (!currentIsSpin || !accountToken || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
+    if (!accountToken || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
     if (!Number.isInteger(level) || level <= 0 || dismissingLevelUpRef.current) return;
     dismissingLevelUpRef.current = true;
     setLevelUpTransitioning(true);
@@ -1185,19 +1045,14 @@ function GlobalLevelUpHandler() {
             if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
             dismissingLevelUpRef.current = false;
             setLevelUpTransitioning(false);
-  useEffect(() => {
-    void cleanupRetiredMistakePracticeStorage().catch(() => {});
-  }, []);
             setShowLevelUp(true);
             return;
           }
           if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-          spinLevelsRef.current.delete(level);
           queueRef.current = queueRef.current.filter((queuedLevel) => queuedLevel !== level);
           modalAccountTokenRef.current = null;
           modalLevelRef.current = 0;
           dismissingLevelUpRef.current = false;
-          setCurrentIsSpin(false);
           void drainLevelUpBonusOutbox();
           setShowLevelUp(false);
           setLevelUpTransitioning(false);
@@ -1205,6 +1060,7 @@ function GlobalLevelUpHandler() {
             queueMicrotask(() => { void showNext(); });
           } else {
             isShowingRef.current = false;
+            showLevelFiveUpsellAfterFinalSpin(level, accountToken);
           }
         })();
       });
@@ -1212,176 +1068,17 @@ function GlobalLevelUpHandler() {
     scheduledStateUpdatesRef.current.push({ cancel: () => clearTimeout(exitTimer) });
   };
 
-  const dismissLevelUp = () => {
-    const accountToken = modalAccountTokenRef.current;
-    if (!accountToken || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-    if (dismissingLevelUpRef.current) return;
-    dismissingLevelUpRef.current = true;
-    // Держим слот арбитра на весь переход level-up → подарок (см. levelUpTransitioning).
-    setLevelUpTransitioning(true);
-    // зачем: гибрид (LevelUpThresholdModalHybrid) ведёт свой собственный выход
-    // (reanimated), Animated.Value-гейт больше не нужен — но порядок операций
-    // (тот же 300мс зазор перед начислением XP и открытием подарка) сохраняем
-    // таймером, чтобы колбэки прогресса не сдвинулись и не начали гонку с
-    // закрытием Modal.
-    const exitTimer = setTimeout(() => {
-      if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-      scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
-        setShowLevelUp(false);
-        giftOpenInteractionRef.current = InteractionManager.runAfterInteractions(() => {
-          giftOpenInteractionRef.current = null;
-          if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-          // Android can keep the closing Modal's native window alive for a beat.
-          // Opening the gift Modal immediately after level-up caused stuck touches/ANR.
-          giftOpenTimerRef.current = setTimeout(() => {
-            giftOpenTimerRef.current = null;
-            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-            setShowGiftModal(true);
-          }, Platform.OS === 'android' ? 260 : 180);
-        });
-        void (async () => {
-          if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-          try {
-            const name = (await AsyncStorage.getItem('user_name')) || userName;
-            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-            const l: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
-            await registerXP(100, 'level_up_bonus', name, l, undefined, {
-              eventId: [
-                'level_up',
-                safeProgressEventPart(currentLevel),
-                'bonus',
-              ].join(':'),
-              payload: {
-                level: currentLevel,
-              },
-              accountToken,
-            });
-            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-            await withAccountTransitionLock(async () => {
-              if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-              await tryGrantPremiumMonthlyWagerFromLevelUp();
-            });
-          } catch {
-            /* background level-up extras must never delay the gift */
-          }
-        });
-      });
-    }, 300);
-    scheduledStateUpdatesRef.current.push({ cancel: () => clearTimeout(exitTimer) });
-  };
-
-  const onGiftClose = (_claimed: boolean) => {
-    const accountToken = modalAccountTokenRef.current;
-    if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-    setShowGiftModal(false);
-    dismissingLevelUpRef.current = false;
-    // Переход завершён — отпускаем слот арбитра.
-    setLevelUpTransitioning(false);
-    queueRef.current = queueRef.current.slice(1);
-    modalAccountTokenRef.current = null;
-    modalLevelRef.current = 0;
-    if (queueRef.current.length > 0) {
-      queueMicrotask(showNext);
-    } else {
-      isShowingRef.current = false;
-      // План #3: after-win апсейл после ПОЛНОГО завершения празднования level-up.
-      // Гард не даёт спамить (кулдаун + не дублировать сегодняшний пейвол).
-      void withAccountTransitionLock(async () => {
-        if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-        try {
-          // This standard level-up paywall is a one-time free-user moment:
-          // exactly after reaching level 5, never before or after.
-          if (currentLevel !== 5 || hasPremiumAccess) return;
-          const prem = await getVerifiedPremiumStatus().catch(() => false);
-          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-          // Не показываем поверх модалки конца интро — она важнее (главный момент конверсии).
-          const introState = await getIntroFullAccessState().catch(() => null);
-          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-          if (introState?.expiredUnseen === true) return;
-          const [{ canShowAfterWinUpsell, markAfterWinUpsellShown }, { trackEvent }] = await Promise.all([
-            import('./after_win_upsell_gate'),
-            import('./analytics'),
-          ]);
-          if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
-          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
-          // Сначала навигация: если push упадёт — гейт не «сгорит» впустую.
-          globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
-          await markAfterWinUpsellShown(Date.now());
-          await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
-          void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
-        } catch { /* no-op */ }
-      });
-    }
-  };
-
   const newTitleDef = getTitleForLevel(currentLevel);
   const isNewTitle  = newTitleDef.minLevel === currentLevel;
   const titleColor  = getTitleColor(currentLevel, isDark);
   const levelUpOverlayVisible = useOverlayVisible(
     'levelUp',
-    !tournamentInterruptionProtected && (showLevelUp || showGiftModal || levelUpTransitioning),
+    !tournamentInterruptionProtected && (showLevelUp || levelUpTransitioning),
   );
   const isCatchUpLevelReward = currentAccountLevel > currentLevel;
   const levelUpKickerText = isCatchUpLevelReward
     ? (lang === 'uk' ? 'Нагорода за рівень' : lang === 'es' ? 'Recompensa de nivel' : 'Награда за уровень')
     : (lang === 'uk' ? 'Новий рівень' : lang === 'es' ? 'Nuevo nivel' : 'Новый уровень');
-  const levelUpMessageText = currentIsSpin
-    ? ''
-    : isCatchUpLevelReward
-    ? (lang === 'uk'
-      ? `Це твоя нагорода за рівень ${currentLevel}. Забирай подарунок.`
-      : lang === 'es'
-        ? `Esta es tu recompensa del nivel ${currentLevel}. Recoge tu regalo.`
-        : `Это твоя награда за уровень ${currentLevel}. Забирай подарок.`)
-    : (() => {
-      const pool = lang === 'uk' ? LEVELUP_CONGRATS_UK : lang === 'es' ? LEVELUP_CONGRATS_ES : LEVELUP_CONGRATS_RU;
-      return pool[currentLevel % pool.length];
-    })();
-
-  const acknowledgeNativeLevelUpShown = useCallback(() => {
-    const accountToken = modalAccountTokenRef.current;
-    const shownLevel = modalLevelRef.current;
-    void withAccountTransitionLock(async () => {
-      if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-      if (!Number.isInteger(shownLevel) || shownLevel <= 0) return;
-      await acknowledgePendingLevelUpShown(shownLevel);
-    });
-  }, []);
-
-  // СТОРОЖ перехода level-up → подарок (анти-залипание слота арбитра).
-  // Опасное состояние: levelUpTransitioning=true, но НИ одна модалка не видна
-  // (showLevelUp=false И showGiftModal=false). В норме это длится доли секунды
-  // (await registerXP/премиум + таймер 180-260мс). Если же подарок не открылся/не
-  // закрылся штатно (Android-back в обход onGiftClose, сбой в цепочке) — флаг застрял
-  // бы навсегда, слот не освобождается, и всё ниже по приоритету заморожено до
-  // перезапуска. По истечении заведомо большого окна принудительно завершаем переход.
-  useEffect(() => {
-    const stuckBetween = levelUpTransitioning && !showLevelUp && !showGiftModal;
-    if (!stuckBetween) {
-      if (levelUpTransitionGuardRef.current) {
-        clearTimeout(levelUpTransitionGuardRef.current);
-        levelUpTransitionGuardRef.current = null;
-      }
-      return;
-    }
-    if (levelUpTransitionGuardRef.current) return; // уже взведён
-    levelUpTransitionGuardRef.current = setTimeout(() => {
-      levelUpTransitionGuardRef.current = null;
-      // Если подарок к этому моменту так и не показался — считаем переход сорванным,
-      // отпускаем слот. Если показался (showGiftModal стал true) — stuckBetween уже
-      // false и таймер был снят выше, сюда не попадём.
-      dismissingLevelUpRef.current = false;
-      setLevelUpTransitioning(false);
-    }, 4000);
-    return () => {
-      if (levelUpTransitionGuardRef.current) {
-        clearTimeout(levelUpTransitionGuardRef.current);
-        levelUpTransitionGuardRef.current = null;
-      }
-    };
-  }, [levelUpTransitioning, showLevelUp, showGiftModal]);
-
   return (
     <>
       {/* Variant B — Threshold. Reward state and queue lifecycle stay owned by GlobalLevelUpHandler. */}
@@ -1401,7 +1098,7 @@ function GlobalLevelUpHandler() {
           tr: 'SEVİYE ' + currentLevel,
           pl: 'POZIOM ' + currentLevel,
         })}
-        message={levelUpMessageText}
+        message={''}
         xpLabel={triLang(lang, {
           ru: 'Бонус уровня',
           uk: 'Бонус рівня',
@@ -1446,8 +1143,8 @@ function GlobalLevelUpHandler() {
           tr: 'Artık günde ' + amount + ' enerji',
           pl: 'Teraz masz ' + amount + ' energii dziennie',
         })}
-        spinReward={currentIsSpin}
-        spinReceiptId={currentIsSpin ? levelSpinCreditId(currentLevel) : ''}
+        spinReward
+        spinReceiptId={levelSpinCreditId(currentLevel)}
         continueLabel={triLang(lang, {
           ru: 'Готово',
           uk: 'Готово',
@@ -1459,37 +1156,13 @@ function GlobalLevelUpHandler() {
           pl: 'Gotowe',
         })}
         onShow={() => {
-          if (!currentIsSpin) acknowledgeNativeLevelUpShown();
           soundDirector.request('pm.reward.level_up', {
             scope: 'level-up-modal',
             dedupeKey: String(currentLevel),
           });
         }}
-        onContinue={currentIsSpin ? finalizeSpinLevelUp : dismissLevelUp}
+        onContinue={finalizeSpinLevelUp}
       />
-      {levelGiftDualMode ? (
-        <LevelGiftDualModal
-          visible={levelUpOverlayVisible && showGiftModal}
-          level={currentLevel}
-          userName={userName}
-          lang={lang}
-          onClose={onGiftClose}
-          deliveryMode="inventory"
-          preRolledPair={giftPreRolledPair}
-          studyTarget={studyTarget}
-        />
-      ) : (
-        <LevelGiftModal
-          visible={levelUpOverlayVisible && showGiftModal}
-          level={currentLevel}
-          userName={userName}
-          lang={lang}
-          onClose={onGiftClose}
-          deliveryMode="inventory"
-          preRolledGift={giftPreRolled}
-          studyTarget={studyTarget}
-        />
-      )}
     </>
   );
 }
@@ -1501,6 +1174,7 @@ const BAN_CACHE_TTL_MS = 30 * 60 * 1000;
 // Вынесено в дочерний компонент чтобы иметь доступ к LangContext + AchievementContext
 function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [ready, setReady]           = useState(false);
+  const reduceMotion = useReduceMotion();
   const [rootNavigationReady, setRootNavigationReady] = useState(false);
   const [isBanned, setIsBanned]     = useState(false);
   const [showOnboarding, setShow]   = useState(false);
@@ -1522,6 +1196,21 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   /** Скрываем RN Modal до ухода в стор — на Android иначе зависания System UI при возврате. */
   const [updateModalHiddenForStore, setUpdateModalHiddenForStore] = useState(false);
   const awaitingStoreReturnRef = useRef(false);
+  useEffect(() => {
+    void cleanupRetiredMistakePracticeStorage().catch(() => {});
+  }, []);
+  useEffect(() => {
+    if (!ready) return undefined;
+    let cancelled = false;
+    let uninstall: (() => void) | undefined;
+    void import('./max_voice_finalize_boot').then(({ installMaxVoiceFinalizeBootDrain }) => {
+      if (!cancelled) uninstall = installMaxVoiceFinalizeBootDrain();
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+      uninstall?.();
+    };
+  }, [ready]);
   useEffect(() => {
     // Load the completion transport only after the root has committed. This
     // installs its lifecycle/connectivity scheduler on every app launch without
@@ -1596,7 +1285,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const { studyTarget } = useStudyTarget();
   const { isPremium, isVip } = usePremium();
   const { showAchievement } = useAchievement();
-  const { theme: tTheme, themeMode } = useTheme();
+  const { theme: tTheme, themeMode, statusBarLight } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
@@ -1695,33 +1384,48 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, []);
 
   useEffect(() => {
+    if (!ready || !firstContentReady) return;
+    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+    const token = accountGeneration;
+    let cancelled = false;
+    let uninstallSync: (() => void) | undefined;
+    // Identity repair has already published this active generation. Bootstrap
+    // resolves the provider anchor again inside its serialized boundary before
+    // opening/importing; failures remain background-only and never block UI.
+    void bootstrapPhoneState({ stableUid: token.stableId!, runtimeToken: token })
+      .catch(() => false)
+      .then(async () => {
+        if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
+        await import('./level_spin_star_grants')
+          .then(({ recoverAndHydrateLevelSpinStarGrants }) => (
+            recoverAndHydrateLevelSpinStarGrants(token)
+          ))
+          .catch(() => undefined);
+        if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
+        // The lifecycle additionally requires a matching hydrated runtime and
+        // explicit rollout capability. Default remains off.
+        uninstallSync = ensurePhoneStateSyncLifecycleInstalled({
+          stableUid: token.stableId!,
+        });
+      });
+    return () => {
+      cancelled = true;
+      uninstallSync?.();
+    };
+  }, [accountGeneration, firstContentReady, ready]);
+
+  useEffect(() => {
     if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;
     if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
     const token = accountGeneration;
     let cancelled = false;
-    void refreshAppMessagesSnapshotOnce({ force: true, minIntervalMs: 0 })
+    void refreshAppMessagesSnapshotOnce()
       .then((snapshot) => {
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         setPersonalAdminMessage(pickNextLoginPersonalMessage(snapshot));
       })
       .catch(() => {});
     return () => { cancelled = true; };
-  }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, isBanned, ready]);
-
-  useEffect(() => {
-    if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;
-    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
-    const token = accountGeneration;
-    const flush = () => {
-      if (!isCurrentAccountGeneration(token, token.stableId)) return;
-      void import('./friend_gift_outbox')
-        .then(({ resumePendingFriendGiftSends }) => resumePendingFriendGiftSends({ accountToken: token }))
-        .catch(() => { /* exact request remains durable until the next online pass */ });
-    };
-    flush();
-    return subscribeNetStatus((online) => {
-      if (online) flush();
-    });
   }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, isBanned, ready]);
 
   useEffect(() => {
@@ -2425,18 +2129,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
               startupAuthRecoveryOfferedRef.current = true;
               setStartupAuthRecoveryVisible(true);
             }
-          } else if (recoveryPresentation === 'cloud_unavailable_toast') {
-            emitAppEvent('action_toast', {
-              type: 'info',
-              messageRu: 'Облако сейчас недоступно. Откройте приложение позже, чтобы повторить восстановление.',
-              messageUk: 'Хмара зараз недоступна. Відкрийте застосунок пізніше, щоб повторити відновлення.',
-              messageEs: 'La nube no está disponible ahora. Abre la aplicación más tarde para volver a intentar la restauración.',
-              messagePtBr: 'A nuvem está indisponível no momento. Abra o aplicativo mais tarde para tentar restaurar novamente.',
-              messageVi: 'Đám mây hiện không khả dụng. Hãy mở lại ứng dụng sau để thử khôi phục lần nữa.',
-              messageId: 'Cloud sedang tidak tersedia. Buka aplikasi lagi nanti untuk mencoba pemulihan kembali.',
-              messageTr: 'Bulut şu anda kullanılamıyor. Geri yüklemeyi yeniden denemek için uygulamayı daha sonra açın.',
-              messagePl: 'Chmura jest teraz niedostępna. Otwórz aplikację później, aby ponowić przywracanie.',
-            });
           }
         }
         await ensureStableAuthLink().catch(() => false);
@@ -2627,6 +2319,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         hydrateAiExplainConsentFromStorage().catch(() => {}),
         // Согласие на AI-диалоги — гидрируем ДО первого входа в диалог.
         hydrateAiDialogConsentFromStorage().catch(() => {}),
+        // Согласие на голос MAX — до любых preview/premint/microphone side effects.
+        hydrateAiVoiceConsentFromStorage().catch(() => {}),
         // Возрастная группа — для безопасного режима (фичи-гейты) с первого кадра.
         hydrateAgeGateFromStorage().catch(() => {}),
       ]);
@@ -2659,32 +2353,31 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
         const val = forceOnboardingForQA ? null : (startupIdentity.get('onboarding_done') ?? null);
 
-        let handledByReferrer = false;
+        // зачем (аудит скорости 2026-08-22): ожидание Play Install Referrer
+        // (await с гонкой setTimeout 2000мс) стояло ДО setReady(true) и держало
+        // сплэш до 2 секунд дольше на первом запуске Android. Колбэк при этом
+        // ВСЕГДА резолвился false — управление потоком от него не зависело,
+        // а код реферала и так уходит в фон через captureReferralCodeIfNew.
+        // Оставляем захват кода фоновым, первый кадр больше не ждёт сеть Play.
         if (!val && Platform.OS === 'android' && !IS_EXPO_GO) {
-          handledByReferrer = await new Promise<boolean>((resolve) => {
-            const t = setTimeout(() => resolve(false), 2000);
-            try {
-              PlayInstallReferrer.getInstallReferrerInfo((details: any, error: any) => {
-                clearTimeout(t);
-                if (!error && details?.installReferrer) {
-                  const ir = String(details.installReferrer);
-                  const refM = ir.match(/(?:^|[&])ref=([A-Z0-9]{4,12})/i);
-                  if (refM?.[1]) {
-                    void import('./referral_bootstrap')
-                      .then((m) => m.captureReferralCodeIfNew(refM[1].trim().toUpperCase(), 'play_install'))
-                      .catch(() => {});
-                  }
+          try {
+            PlayInstallReferrer.getInstallReferrerInfo((details: any, error: any) => {
+              if (!error && details?.installReferrer) {
+                const ir = String(details.installReferrer);
+                const refM = ir.match(/(?:^|[&])ref=([A-Z0-9]{4,12})/i);
+                if (refM?.[1]) {
+                  void import('./referral_bootstrap')
+                    .then((m) => m.captureReferralCodeIfNew(refM[1].trim().toUpperCase(), 'play_install'))
+                    .catch(() => {});
                 }
-                resolve(false);
-              });
-            } catch {
-              clearTimeout(t);
-              resolve(false);
-            }
-          });
+              }
+            });
+          } catch {
+            // Модуль реферера недоступен (нестандартная сборка) — не критично.
+          }
         }
 
-        const willShowOnboarding = forceOnboardingForQA || (!handledByReferrer && !val);
+        const willShowOnboarding = forceOnboardingForQA || !val;
         onboardingPathRef.current = willShowOnboarding;
 	        if (willShowOnboarding) {
 	          deferLessonPrimeRef.current = true;
@@ -2692,9 +2385,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             shouldPrimeLessonsAfterReveal = true;
 	        }
 
-        if (!handledByReferrer) {
-          setShow(willShowOnboarding);
-        }
+        setShow(willShowOnboarding);
       } catch (e) {
         if (__DEV__) console.warn('[_layout]', e);
       }
@@ -2759,6 +2450,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         run.then((achievementBalance) => checkAchievements({ type: 'shards', balance: achievementBalance })).catch(() => {});
       }
     });
+    const subForeground = onAppEvent('foreground_usage_changed', ({ totalMs }) => {
+      void checkAchievements({ type: 'foreground_usage', totalMs });
+    });
     const subDelete = onAppEvent('account_deleted', () => {
       // После первого онбординга refs = true; без сброса повторное завершение
       // (Apple/Google/«Позже» на шаге auth) вызывает handleOnboardingDone → ранний return → экран не уходит.
@@ -2781,6 +2475,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       runHeavyInitRef.current = null;
       sub.remove();
       subShards.remove();
+      subForeground.remove();
       subDelete.remove();
       remoteConfigUnsub?.();
     };
@@ -2935,20 +2630,27 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // Онбординг завершён — сбрасываем разовый флаг «стартовать с имени», чтобы
     // следующий (QA-reset / новый пользователь) показ шёл штатным резолвом A/B.
     setOnboardingStartAtName(false);
-    const hasPaidOrVipAfterOnboarding = await hasVerifiedRealPremiumOrVip();
-    if (!hasPaidOrVipAfterOnboarding) {
-      await startIntroFullAccessAfterOnboarding(Date.now(), lang);
-      emitAppEvent('intro_full_access_changed');
+    // Всё, что освобождает интерфейс, выполняется до любых сетевых/entitlement
+    // ожиданий. Даже если RevenueCat, VIP-проверка или intro grant зависнут,
+    // сохранённый onboarding_done уже приводит пользователя на Home.
+    try {
+      void AsyncStorage.setItem('xp_migration_v2', '1').catch(() => {});
+      armPostOnboardingGoldBridge();
+      if (firstContentReadyTimerRef.current) {
+        clearTimeout(firstContentReadyTimerRef.current);
+        firstContentReadyTimerRef.current = null;
+      }
+      setFirstContentReady(true);
+      router.replace('/(tabs)/home' as any);
+      setTimeout(() => router.replace('/(tabs)/home' as any), 120);
+    } finally {
+      // Снимаем оверлей ПОСЛЕ commit навигации. finally гарантирует выход даже
+      // при синхронной ошибке подготовки Home.
+      setTimeout(() => {
+        setShow(false);
+        emitAppEvent('onboarding_completed');
+      }, 60);
     }
-    await AsyncStorage.setItem('xp_migration_v2', '1');
-    armPostOnboardingGoldBridge();
-    if (firstContentReadyTimerRef.current) {
-      clearTimeout(firstContentReadyTimerRef.current);
-      firstContentReadyTimerRef.current = null;
-    }
-    setFirstContentReady(true);
-    router.replace('/(tabs)/home' as any);
-    setTimeout(() => router.replace('/(tabs)/home' as any), 120);
     // зачем: тёплое приветствие строго один раз за жизнь аккаунта — не
     // используем отдельный гард, чтобы приветствие не повторялось в той же установке.
     void (async () => {
@@ -2957,38 +2659,35 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       await AsyncStorage.setItem('pm_app_welcome_played_v1', '1').catch(() => {});
       soundDirector.request('pm.app.welcome', { scope: 'onboarding-welcome' });
     })();
-    // Снимаем оверлей онбординга ПОСЛЕ того, как replace на /home закоммитится. Иначе,
-    // если под оверлеем активен маршрут пейвола, при мгновенном setShow(false) он мелькает один
-    // кадр до перехода на главную. Небольшая отсрочка убирает мелькание (оверлей держит экран,
-      <Stack.Screen name="mistake_practice_session" />
-    // пока навигация не встала на /home).
-    setTimeout(() => {
-      setShow(false);
-      // Home уже смонтирован под полноэкранным онбордингом, но до этого события
-      // намеренно не запускает тяжёлые storage/Firestore-загрузки и анимации.
-      // CleanOnboarding дождался записи onboarding_done до onDone; будим Home
-      // только после снятия корневого оверлея, когда экран действительно видим.
-      emitAppEvent('onboarding_completed');
-    }, 60);
     // Не показываем тутор энергии на «Главной» одновременно с этим листом (ждём «Позже» или возврат с урока)
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
     // UX-003: Запрашиваем пуш-разрешение в конце онбординга (не раньше — иначе система не даст
     // повторного шанса). Делаем до paywall/welcome, но с небольшой задержкой, чтобы анимация
     // закрытия онбординга завершилась до появления системного диалога.
     void (async () => {
+      const notificationChoice = await readOnboardingNotificationChoice();
       const already = await isNotificationPermissionGranted().catch(() => false);
-      if (!already) {
+      if (!already && shouldPromptForOnboardingNotifications(notificationChoice)) {
         await new Promise<void>((r) => setTimeout(r, 600));
         await requestNotificationPermissionWithFallback().catch(() => {});
       }
     })();
-    const showIntroGift = !hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome().catch(() => false);
-    if (showIntroGift) {
-      // зачем: было 320ms — pm.app.welcome (2.3s, играет выше) не успевал
-      // отзвучать до открытия модалки, получалось два «приветствия» подряд.
-      setTimeout(() => setIntroFullAccessModal('welcome'), 1800);
-    }
-  }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, router]);
+    // Entitlement и подарок — полезная, но необязательная пост-обработка. Она не
+    // имеет права держать корневой оверлей или навигацию.
+    void (async () => {
+      const hasPaidOrVipAfterOnboarding = await hasVerifiedRealPremiumOrVip().catch(() => true);
+      if (!hasPaidOrVipAfterOnboarding) {
+        await startIntroFullAccessAfterOnboarding(Date.now(), lang).catch(() => false);
+        emitAppEvent('intro_full_access_changed');
+      }
+      const showIntroGift = !hasPaidOrVipAfterOnboarding
+        && await shouldShowIntroFullAccessWelcome().catch(() => false);
+      if (showIntroGift) {
+        // pm.app.welcome (2.3s) должен закончиться до открытия модалки.
+        setTimeout(() => setIntroFullAccessModal('welcome'), 1800);
+      }
+    })();
+  }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, lang, router]);
 
   const handleOnboardingIntroFullAccessStart = useCallback(async () => {
     await startIntroFullAccessAfterOnboarding(Date.now(), lang);
@@ -3030,8 +2729,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       setShow(true);
       void (async () => {
         try {
-          await AsyncStorage.setItem('onboarding_step', 'name');
-          await AsyncStorage.removeItem('onboarding_done');
+          await persistPortableProgressRegister('onboarding_step', 'name');
+          await persistPortableProgressRegister('onboarding_done', null);
         } catch { /* best-effort: paywall_purchase уже записал эти ключи */ }
       })();
     });
@@ -3119,6 +2818,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     : screenFadeEnabled
       ? ({ animation: 'fade', animationDuration: 140 } as const)
       : ({ animation: 'none', animationDuration: 0 } as const);
+  // Три пункта нижнего Cards-таба — соседи одного уровня. Боковой push визуально
+  // делал их родителем/ребёнком; короткий crossfade сохраняет неподвижным таббар.
+  const cardsSiblingAnimationOptions = useMemo(
+    () => reduceMotion
+      ? ({ animation: 'none', animationDuration: 0 } as const)
+      : ({ animation: 'fade', animationDuration: 140 } as const),
+    [reduceMotion],
+  );
   const pushScreenAnimationOptions = defaultScreenAnimationOptions;
   const bottomModalAnimationOptions = ENABLE_SCREEN_TRANSITIONS
     ? ({ animation: 'slide_from_bottom' } as const)
@@ -3181,46 +2888,50 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="settings_themes" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="settings_language" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="privacy_settings" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="max_memory_settings" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="ideas_submit" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
       <Stack.Screen name="top_helpers" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Protected guard={ENABLE_TOURNAMENTS}>
-        <Stack.Screen name="tournament_lobby" />
-        <Stack.Screen name="tournament_round" />
-        <Stack.Screen name="tournament_table" />
-        <Stack.Screen name="tournament_results" />
-        <Stack.Screen name="tournament_review" />
-        <Stack.Screen name="tournament_season" />
-        <Stack.Screen name="tournament_tickets" options={SECTION_SHEET_STACK_OPTIONS} />
+        {/* зачем 2026-08-23 (владелец): турниры выключены фулл, экраны
+            заархивированы в _archive/tournaments — Expo Router ищет экраны по
+            файлам, поэтому регистрации без файлов сломали бы навигацию.
+            Возврат = вернуть файлы из архива и эти строки. */}
       </Stack.Protected>
-      <Stack.Protected guard={ENABLE_ARENA}>
-        <Stack.Screen name="arena" />
-        <Stack.Screen name="arena_matchmaking" />
-        {/* Live server deadlines must continue while the native route is
-            covered; the screen itself stops listeners/timers on background. */}
-        <Stack.Screen name="arena_match" options={{ freezeOnBlur: false, gestureEnabled: false }} />
-        <Stack.Screen name="arena_results" />
-        <Stack.Screen name="arena_friend_duel" />
-        <Stack.Screen name="arena_invite" />
-        <Stack.Screen name="arena_ranks" />
-        <Stack.Screen name="arena_season_pass" />
-        {/* Expansion details stay callable-driven and do not add collection
-            listeners to the Hub. Today owns a server deadline, so native blur
-            must not freeze its reconciliation lifecycle. */}
-        <Stack.Screen name="arena_today" options={{ freezeOnBlur: false, gestureEnabled: false }} />
-        <Stack.Screen name="arena_match_lab" />
-        <Stack.Screen name="arena_ghost_duel" />
-        <Stack.Screen name="arena_rivalries" />
-        <Stack.Screen name="arena_mastery_map" />
-        <Stack.Screen name="arena_partner" />
-        <Stack.Screen name="arena_star_wallet" />
-      </Stack.Protected>
+      <Stack.Screen name="arena_matchmaking" />
+      {/* Arena is a permanent product surface. Live server deadlines continue
+          while the native route is covered; screens stop their own listeners. */}
+      <Stack.Screen name="arena_match" options={{ freezeOnBlur: false, gestureEnabled: false }} />
+      <Stack.Screen name="arena_results" />
+      <Stack.Screen name="arena_friend_duel" />
+      <Stack.Screen name="arena_invite" />
+      <Stack.Screen name="arena_ranks" />
+      <Stack.Screen name="arena_season_pass" />
+      {/* Expansion details stay callable-driven and do not add collection
+          listeners to the Hub. Today owns a server deadline, so native blur
+          must not freeze its reconciliation lifecycle. */}
+      <Stack.Screen name="arena_today" options={{ freezeOnBlur: false, gestureEnabled: false }} />
+      <Stack.Screen name="arena_star_wallet" />
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
       <Stack.Screen name="survey_screen" />
+      <Stack.Screen name="personal_plan" options={{ headerShown: false }} />
+      <Stack.Screen name="personal_plan_quiz" options={{ headerShown: false }} />
+      <Stack.Screen name="personal_plan_complete" options={{ headerShown: false }} />
+      <Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />
+      <Stack.Screen name="personal_plan_task_done" options={{ headerShown: false, ...bottomModalAnimationOptions, presentation: 'modal', gestureEnabled: true }} />
+      <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
+      <Stack.Screen name="personal_plan_stats_screen" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
+      <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
+      {ENABLE_DEV_TOOLS ? (
+        <>
+          <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
+          <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
+        </>
+      ) : null}
       {/* Диспетчер после готовности root-навигации делает replace на нужный пейвол.
           Сам он без анимации и с paywall-подложкой, чтобы native-stack не показывал чёрный кадр. */}
       <Stack.Screen name="premium_modal" options={SECTION_SHEET_STACK_OPTIONS} />
@@ -3241,22 +2952,18 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="promo_code_entry" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="avatar_dna_studio" options={{ headerShown: false }} />
-      <Stack.Screen name="flashcards" />
+      <Stack.Screen name="flashcards" options={cardsSiblingAnimationOptions} />
       {/* Cards 2.1 §5.3: каталог наборов сообщества — правая позиция таббара раздела */}
-      <Stack.Screen name="flashcards_packs" />
+      <Stack.Screen name="flashcards_packs" options={cardsSiblingAnimationOptions} />
       {/* Cards 2.1 §5.3: «Мои наборы» — второй раздел всплывашки «Наборы» */}
-      <Stack.Screen name="flashcards_my_packs" />
+      <Stack.Screen name="flashcards_my_packs" options={cardsSiblingAnimationOptions} />
       <Stack.Screen name="flashcards_audio" />
       <Stack.Screen name="flashcards_collection" />
       <Stack.Screen name="flashcards_swipe" />
       <Stack.Screen name="flashcards_card_editor" />
       <Stack.Screen name="community_pack_create" />
-      {/* зачем: bottomModalAnimationOptions осталась мёртвой после удаления
-          personal_plan_task_done (0b3c60c67) — контракт навигации требует, чтобы
-          опции нижних модалок реально применялись, а не хардкодились по экранам.
-          Спред восстановлен здесь; собственное намерение экрана сохранено явной
-          перебивкой ПОСЛЕ спреда: открытие пака держит свою анимацию внутри
-          экрана, поэтому вход остаётся мгновенным. */}
+      {/* Открытие пака держит свою анимацию внутри экрана, поэтому вход остаётся
+          мгновенным после общих опций нижней модалки. */}
       <Stack.Screen name="pack_opening" options={{ presentation: 'modal', ...bottomModalAnimationOptions, animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="shards_shop" />
       <Stack.Screen name="coin_exchange" />
@@ -3265,7 +2972,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="achievements_screen" />
       <Stack.Screen name="collectibles_screen" />
       <Stack.Screen name="level_exam" />
-      <Stack.Screen name="review" />
       {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES.map((name) => (
           <Stack.Screen key={name} name={name} />
         ))}
@@ -3276,6 +2982,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="flashcards_listening_session" />
       <Stack.Screen name="flashcards_speaking_session" />
       <Stack.Screen name="flashcards_blitz_session" />
+      <Stack.Screen name="mistake_practice_session" />
       <Stack.Screen name="flashcards_voice_picker" />
       <Stack.Screen name="phrase_analytics_screen" />
       <Stack.Screen name="problem_coach" />
@@ -3286,12 +2993,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     defaultScreenAnimationOptions,
     pushScreenAnimationOptions,
     bottomModalAnimationOptions,
+    cardsSiblingAnimationOptions,
   ]);
 
   return (
     // Фон корня — константа темы: сплэш закрывает старт отдельным оверлеем,
     // а перекраска фона по асинхронным флагам давала «чёрный кадр».
     <View style={{ flex: 1, backgroundColor: tTheme.bgPrimary }}>
+    {/* Системные области прозрачны глобально: фон каждого экрана рисуется до краёв,
+        а safe-area остаётся внутренним отступом контента на самих экранах. */}
+    <StatusBar
+      barStyle={statusBarLight ? 'light-content' : 'dark-content'}
+      backgroundColor="transparent"
+      translucent
+    />
     <ProductAnalyticsRuntimeObserver studyTarget={studyTarget} />
     <MaintenanceGate />
     <PromoBanner />
@@ -3488,6 +3203,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  startupSplashGlyphPulse: {
+    width: SPLASH_GLYPH_SIZE,
+    height: SPLASH_GLYPH_SIZE,
+  },
   startupSplashSubtitle: {
     marginTop: 10,
     fontSize: 15,
@@ -3538,10 +3257,10 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
     <ErrorBoundary>
       <SafeAreaProvider initialMetrics={stableInitialWindowMetrics}>
-      <ThemeProvider>
-        <LangProvider>
-          <StudyTargetProvider>
-          <PremiumProvider>
+      <PremiumProvider>
+        <ThemeProvider>
+          <LangProvider>
+            <StudyTargetProvider>
             <EnergyProvider>
               <AchievementProvider>
                 <OverlayArbiterProvider>
@@ -3565,13 +3284,14 @@ export default function RootLayout() {
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />
                     <ThemedBlockingAlertHost />
+                    <PhoneStateRecoveryScreen />
                 </OverlayArbiterProvider>
               </AchievementProvider>
             </EnergyProvider>
-          </PremiumProvider>
-          </StudyTargetProvider>
-        </LangProvider>
-      </ThemeProvider>
+            </StudyTargetProvider>
+          </LangProvider>
+        </ThemeProvider>
+      </PremiumProvider>
       </SafeAreaProvider>
     </ErrorBoundary>
     </GestureHandlerRootView>

@@ -25,9 +25,9 @@ const SCREENS = [
 ] as const;
 
 const COMPONENTS = [
-  'components/tournament/tournament_theme.ts',
-  'components/tournament/tournament_ui.tsx',
-  'components/tournament/TournamentCountdown.tsx',
+  'components/ui/v2_theme.ts',
+  'components/ui/v2_sheet.tsx',
+  'components/ui/V2Countdown.tsx',
   'components/tournament/TournamentEdgeState.tsx',
 ] as const;
 
@@ -99,7 +99,7 @@ describe('экраны режима «Турниры»', () => {
   });
 
   it('токены совпадают с утверждённым прототипом', () => {
-    const theme = read('components/tournament/tournament_theme.ts');
+    const theme = read('components/ui/v2_theme.ts');
     // Ключевые цвета из docs/design/tournaments/prototype/src/data/players.ts.
     expect(theme).toContain("bg: '#070C08'");
     expect(theme).toContain("card: '#101710'");
@@ -117,7 +117,7 @@ describe('экраны режима «Турниры»', () => {
   });
 
   it('единый формат времени вынесен в один хелпер', () => {
-    const theme = read('components/tournament/tournament_theme.ts');
+    const theme = read('components/ui/v2_theme.ts');
     expect(theme).toContain('export function formatTimeLeft');
     // <1ч → MM:SS, <24ч → H:MM:SS, ≥24ч → «Nд» + H:MM.
     expect(theme).toMatch(/days >= 1/);
@@ -247,7 +247,7 @@ describe('экраны режима «Турниры»', () => {
 
   it('хаптик только на управляющих кнопках, не на плитках', () => {
     // Правило владельца: клик-звук/вибрация на кнопках, не на карточках.
-    const ui = read('components/tournament/tournament_ui.tsx');
+    const ui = read('components/ui/v2_sheet.tsx');
     expect(ui).toContain('Haptics.impactAsync');
 
     const lobby = read('app/tournament_lobby.tsx');
@@ -483,7 +483,7 @@ describe('экраны режима «Турниры»', () => {
     expect(home).toContain('useTournamentPalette()');
     expect(home).toContain('makeStyles(P)');
     // Сам хук обязан собирать палитру из активной темы приложения.
-    const theme = read('components/tournament/tournament_theme.ts');
+    const theme = read('components/ui/v2_theme.ts');
     expect(theme).toContain('tournamentV2FromTheme(theme, themeMode)');
     expect(theme).toContain('useTheme()');
   });

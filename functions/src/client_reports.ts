@@ -11,11 +11,14 @@ import {
 
 const REGION = 'us-central1';
 const RATE_COLLECTION = 'client_report_rate_limits';
+/** Приватный документ матча Арены: там лежит seatByStableUid и маркер бота. */
+const ARENA_MATCH_PRIVATE = 'arena_v2_match_private';
 const HOUR_MS = 60 * 60 * 1000;
 const DAY_MS = 24 * HOUR_MS;
 
 type ClientReportKind =
   | 'user_report'
+  | 'arena_opponent_report'
   | 'community_pack_report'
   | 'error_report'
   | 'app_error'
@@ -31,6 +34,9 @@ type ReportConfig = {
 
 const REPORT_CONFIG: Record<ClientReportKind, ReportConfig> = {
   user_report: { collection: 'user_reports', max: 5, windowMs: HOUR_MS },
+  // зачем: жалоба на ник соперника в Арене лжёт в ту же очередь
+  // user_reports, но приходит без uid: клиент его не знает (и не должен).
+  arena_opponent_report: { collection: 'user_reports', max: 5, windowMs: HOUR_MS },
   community_pack_report: { collection: 'community_pack_reports', max: 5, windowMs: HOUR_MS },
   error_report: { collection: 'error_reports', max: 10, windowMs: HOUR_MS },
   app_error: { collection: 'app_errors', max: 20, windowMs: HOUR_MS },
@@ -114,6 +120,26 @@ function buildReportDoc(
       // главная) — 'profile' покрывает всё, что не leaderboard, вместо
       // молчаливого fallback на 'leaderboard' в админской статистике жалоб.
       screen: enumText(payload.screen, ['leaderboard', 'profile'] as const, 'leaderboard'),
+      reporterUid: stableUid,
+      reporterAuthUid: authUid,
+      reporterName: text(payload.reporterName, 120) || 'unknown',
+      status: 'new',
+    };
+  }
+
+  // зачем: жалоба из боя Арены. reportedUid сюда уже подставил сервер
+  // (resolveArenaOpponent) — клиент uid соперника не знает и не передаёт.
+  if (kind === 'arena_opponent_report') {
+    const reportedUid = text(payload.reportedUid, 180);
+    if (!reportedUid) throw new HttpsError('invalid-argument', 'reported_uid_required');
+    return {
+      ...base,
+      reportedUid,
+      reportedName: text(payload.reportedName, 120),
+      reason: enumText(payload.reason, ['offensive_nickname'] as const, 'offensive_nickname'),
+      // Отдельный экран, чтобы в админке было видно: жалоба пришла из боя.
+      screen: 'arena_match',
+      matchId: text(payload.matchId, 180),
       reporterUid: stableUid,
       reporterAuthUid: authUid,
       reporterName: text(payload.reporterName, 120) || 'unknown',
@@ -223,6 +249,39 @@ function buildReportDoc(
   };
 }
 
+/**
+ * Кто был соперником в матче Арены.
+ *
+ * зачем: uid чужого игрока намеренно НЕ уходит в клиент (в план матча падают
+ * только место a/b, имя и аватар), поэтому пожаловаться на оскорбительный ник
+ * из боя было физически нечем. Клиент шлёт matchId + место соперника, а uid
+ * находит сервер — приватность сохраняется, жалоба становится возможной.
+ *
+ * Жалующийся обязан сам быть участником этого матча, иначе по чужому matchId
+ * можно было бы заваливать жалобами кого угодно.
+ */
+async function resolveArenaOpponent(
+  db: admin.firestore.Firestore,
+  matchId: string,
+  opponentSeat: 'a' | 'b',
+  reporterStableUid: string,
+): Promise<{ uid: string; isBot: boolean }> {
+  const snap = await db.collection(ARENA_MATCH_PRIVATE).doc(matchId).get();
+  if (!snap.exists) throw new HttpsError('not-found', 'arena_match_not_found');
+  const data = snap.data() || {};
+  const seatByStableUid = asRecord(data.seatByStableUid);
+  // Жалующийся должен сидеть в этом матче — иначе это чужой матч.
+  if (!seatByStableUid[reporterStableUid]) {
+    throw new HttpsError('permission-denied', 'arena_not_a_participant');
+  }
+  const opponentUid = Object.keys(seatByStableUid)
+    .find((uid) => seatByStableUid[uid] === opponentSeat && uid !== reporterStableUid);
+  if (!opponentUid) throw new HttpsError('not-found', 'arena_opponent_not_found');
+  // Бот — не человек: ник ему выдал сам сервер из своего пула, жаловаться не на кого.
+  const isBot = Boolean(data.botSeed) || opponentUid.startsWith('bot_');
+  return { uid: opponentUid, isBot };
+}
+
 export const submitClientReport = onCall({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK,
@@ -241,7 +300,20 @@ export const submitClientReport = onCall({
   const stableUid = await resolveStableUidForAuth(db, authUid);
   const payload = asRecord(request.data?.payload);
   const now = Date.now();
-  const doc = buildReportDoc(kind, payload, stableUid, authUid, now);
+  // зачем: в Арене клиент не знает uid соперника (сервер его намеренно не шлёт),
+  // поэтому находим сами по matchId + месту. Жалоба на бота отклоняется:
+  // ник ему выдал сервер, наказывать некого.
+  const resolvedPayload = kind === 'arena_opponent_report'
+    ? await (async () => {
+      const matchId = text(payload.matchId, 180);
+      if (!matchId) throw new HttpsError('invalid-argument', 'match_id_required');
+      const seat = enumText(payload.opponentSeat, ['a', 'b'] as const, 'a');
+      const opponent = await resolveArenaOpponent(db, matchId, seat, stableUid);
+      if (opponent.isBot) throw new HttpsError('failed-precondition', 'arena_opponent_is_bot');
+      return { ...payload, reportedUid: opponent.uid };
+    })()
+    : payload;
+  const doc = buildReportDoc(kind, resolvedPayload, stableUid, authUid, now);
   const rateRef = db.collection(RATE_COLLECTION).doc(rateDocId(kind, authUid, stableUid));
   const reportRef = db.collection(config.collection).doc();
 

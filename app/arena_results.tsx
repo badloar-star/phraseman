@@ -11,6 +11,7 @@ import { SpinRewardPlaque } from '../components/SpinRewardPlaque';
 import { captureAccountGeneration } from './account_generation';
 import { grantLocalArenaRankedWinSpin } from './local_level_spins';
 import { arenaText } from '../modules/arena/copy';
+import ArenaReportOpponentButton from '../components/ArenaReportOpponentButton';
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
 import type { ArenaMatchReward, ArenaPlayer } from '../modules/arena/contract';
@@ -331,6 +332,11 @@ export default function ArenaResultsScreen() {
       name: player.uid === effectiveViewerSeat ? arenaText(lang, 'you') : player.name,
     }));
   }, [effectiveViewerSeat, lang, match]);
+  // Соперник = тот игрок, который не мы. Имя берём как показано на экране.
+  const opponentForReport = useMemo(
+    () => players.find((player) => player.uid !== effectiveViewerSeat) ?? null,
+    [effectiveViewerSeat, players],
+  );
   const winner = match?.result?.winnerUid;
   const title = match?.state === 'aborted'
     ? arenaText(lang, 'cancelledMatch')
@@ -464,6 +470,20 @@ export default function ArenaResultsScreen() {
         {victoryStamp ? <Text style={[styles.stamp, { color: resultTheme?.foreground ?? P.text }]}>{victoryStamp}</Text> : null}
         <View style={styles.stats}>{players.map((player) => <ArenaStat key={player.uid} label={player.name} value={player.score} />)}</View>
         {match?.mode !== 'quick' ? <ArenaRewards reward={reward} starsLabel={arenaText(lang, 'stars')} /> : null}
+        {/* зачем: жалоба на игрока жила только в карточке профиля, а из Арены
+            она не открывается — пожаловаться на оскорбительный ник было
+            физически нечем. Ставим сюда, а не в бой: там таймер, и случайный
+            тап стоил бы матча. Бота отсеивает сервер — клиент про бота не
+            знает намеренно (он не раскрывается в интерфейсе). */}
+        {matchId && effectiveViewerSeat && opponentForReport ? (
+          <ArenaReportOpponentButton
+            matchId={matchId}
+            opponentSeat={opponentForReport.uid === 'a' ? 'a' : 'b'}
+            opponentName={opponentForReport.name}
+            lang={lang}
+            tone={P.muted}
+          />
+        ) : null}
       </V2Card>
       {reactionPack ? <View style={styles.reactions}><Text style={[styles.reactionHint, reactionLine, { color: P.muted }]}>{arenaExpansionText(lang, 'localReaction')}</Text>{(equipped.reaction_pack === 'reactions_respect' ? ['reactionRespect', 'reactionWellPlayed'] as const : ['reactionComeback', 'reactionAgain'] as const).map((key) => <V2Cta key={key} tone="ghost" disabled={reactionChosen !== null} onPress={() => setReactionChosen(key)}>{arenaExpansionText(lang, reactionChosen === key ? 'ready' : key)}</V2Cta>)}</View> : null}
       {match?.mode !== 'quick' && reward?.spinAwarded && reward.spinReceiptId ? (

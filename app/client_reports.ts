@@ -6,6 +6,7 @@ const FUNCTIONS_REGION = 'us-central1';
 
 export type ClientReportKind =
   | 'user_report'
+  | 'arena_opponent_report'
   | 'community_pack_report'
   | 'error_report'
   | 'app_error'

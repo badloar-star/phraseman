@@ -114,3 +114,43 @@ export const submitPackReport = async (params: {
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }
+
+/**
+ * Пожаловаться на ник соперника прямо из боя Арены.
+ *
+ * зачем: uid соперника в клиент намеренно не приходит (в плане матча только
+ * место a/b, имя и аватар), поэтому обычная жалоба на игрока здесь невозможна.
+ * Шлём matchId + место — uid находит сервер. Жалоба на бота отклоняется им же.
+ *
+ * Троттл общий с жалобами на игрока: 30 секунд между отправками.
+ */
+export const submitArenaOpponentReport = async (params: {
+  matchId: string;
+  opponentSeat: 'a' | 'b';
+  opponentName: string;
+}): Promise<'sent' | 'throttled' | 'failed'> => {
+  const now = Date.now();
+  if (await isReportThrottled(now)) return 'throttled';
+
+  const [reporterName, appVersion] = await Promise.all([
+    AsyncStorage.getItem('user_name'),
+    Promise.resolve(Constants.expoConfig?.version ?? 'unknown'),
+  ]);
+
+  try {
+    await submitClientReportCallable('arena_opponent_report', {
+      matchId: params.matchId,
+      opponentSeat: params.opponentSeat,
+      reportedName: params.opponentName,
+      reason: 'offensive_nickname',
+      reporterName: reporterName ?? 'unknown',
+      platform: Platform.OS,
+      appVersion,
+    });
+  } catch {
+    return 'failed';
+  }
+
+  await markReportSent(now);
+  return 'sent';
+};

@@ -217,10 +217,11 @@ describe('owner runtime direction contract', () => {
       // в файле), ре-рендеров JS-потока во время салюта/пружин теперь ноль.
       'components/GiftExpiryCountdown.tsx': 1,
       // Секундный тик боевого таймера ответа (кольцо на UI-потоке через
-      // reanimated) + 250мс тик подписи секунд под ним — оба живут только
-      // внутри app/arena_match.tsx (freezeOnBlur:false allowlist выше,
-      // компонент размонтируется целиком при выходе с боя).
-      'components/arena/ArenaTimerRing.tsx': 2,
+      // reanimated) — живёт только внутри app/arena_match.tsx (freezeOnBlur:false
+      // allowlist выше, компонент размонтируется целиком при выходе с боя).
+      // было 2: второй тик (250мс, подпись секунд) ушёл вместе с цифрами
+      // отсчёта по решению владельца 2026-08-23 — остался только индикатор.
+      'components/arena/ArenaTimerRing.tsx': 1,
       // Три внутренних scheduler-тика одного shared countdown store; подписчики
       // не создают свои интервалы, а последний unsubscribe останавливает clock.
       'components/energy_countdown_clock.ts': 3,

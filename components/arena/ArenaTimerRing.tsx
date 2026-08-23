@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo } from 'react';
-import { StyleSheet, Text, View, StyleProp, type TextStyle } from 'react-native';
+import { View } from 'react-native';
 import Animated, {
   useAnimatedProps,
   useAnimatedStyle,
@@ -12,7 +12,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
-import { useTournamentPalette } from '../tournament/tournament_theme';
+import { useTournamentPalette } from '../ui/v2_theme';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useArenaSound } from '../../hooks/use_arena_sound';
 
@@ -21,7 +21,12 @@ import { useArenaSound } from '../../hooks/use_arena_sound';
  *
  * Владелец (2026-08-12): вместо голой цифры — кольцо и полоса, с нарастанием
  * напряжения. Кольцо тает против часовой стрелки, цвет уходит от акцентного к
- * тревожному, на последних трёх секундах добавляется пульс и цифра дышит.
+ * тревожному, на последних трёх секундах добавляется пульс.
+ *
+ * зачем: владелец (2026-08-23) убрал отсчёт секунд цифрами — остаётся только
+ * индикатор. Цифра тикала раз в 250 мс через setState и была единственным
+ * источником перерисовок этого узла; без неё таймер живёт целиком на UI-потоке
+ * и не даёт ни одного JS-кадра за задание.
  *
  * Анимация целиком на UI-потоке: прогресс считается один раз при монтировании
  * из длительности задания, дальше JS не участвует — ни одного кадра не теряется
@@ -133,11 +138,6 @@ function ArenaTimerRingBase({
     transform: [{ scale: 1 + alarm.value * 0.07 }],
   }));
 
-  const digitStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: 1 + alarm.value * 0.1 }],
-    color: interpolateColor(progress.value, [0, 0.18, 1], [P.danger, P.danger, P.text]),
-  }));
-
   return (
     <Animated.View style={[{ width: size, height: size }, pulseStyle]}>
       <Svg width={size} height={size}>
@@ -162,55 +162,8 @@ function ArenaTimerRingBase({
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
         />
       </Svg>
-      <View style={styles.center} pointerEvents="none">
-        <ArenaTimerDigits durationMs={total} elapsedMs={startAt} paused={paused} style={digitStyle} />
-      </View>
     </Animated.View>
   );
 }
 
-/**
- * Цифра секунд. Отдельный компонент: перерисовывается раз в секунду и не тянет
- * за собой перерисовку кольца, которое живёт на UI-потоке.
- */
-function ArenaTimerDigits({
-  durationMs,
-  elapsedMs,
-  paused,
-  style,
-}: {
-  durationMs: number;
-  elapsedMs: number;
-  paused: boolean;
-  /**
-   * Стиль для Animated.Text, а не для Animated.View: он несёт `color`, поэтому
-   * его тип обязан быть текстовым. `ReturnType<typeof useAnimatedStyle>` здесь
-   * разъезжается с типом свойства и роняет проверку типов.
-   */
-  style: StyleProp<TextStyle>;
-}) {
-  const [seconds, setSeconds] = React.useState(
-    () => Math.max(0, Math.ceil((durationMs - elapsedMs) / 1_000)),
-  );
-
-  useEffect(() => {
-    if (paused) return;
-    const startedAt = Date.now() - elapsedMs;
-    const tick = () => {
-      const left = Math.max(0, Math.ceil((durationMs - (Date.now() - startedAt)) / 1_000));
-      setSeconds(left);
-    };
-    tick();
-    const interval = setInterval(tick, 250);
-    return () => clearInterval(interval);
-  }, [durationMs, elapsedMs, paused]);
-
-  return <Animated.Text style={[styles.digits, style]}>{seconds}</Animated.Text>;
-}
-
 export const ArenaTimerRing = memo(ArenaTimerRingBase);
-
-const styles = StyleSheet.create({
-  center: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
-  digits: { fontSize: 27, fontWeight: '900', fontVariant: ['tabular-nums'] },
-});

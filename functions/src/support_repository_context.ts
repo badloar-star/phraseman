@@ -41,7 +41,20 @@ function loadBundledSnapshot(): SupportRepositorySnapshot {
   }
 }
 
-const snapshot = loadBundledSnapshot();
+/*
+ * зачем: 2026-08-23 — снимок весит 17 МБ и раньше парсился на ВЕРХНЕМ УРОВНЕ
+ * модуля. Cloud Functions gen2 при старте любого контейнера грузит index.js со
+ * ВСЕМИ функциями, поэтому эти ~40 МБ RSS платили все 33 функции с лимитом
+ * 256 MiB: замер загрузки index.js давал 360 МБ, и maxVoiceFinalize физически
+ * не стартовала («Memory limit of 256 MiB exceeded»). Теперь снимок читается
+ * при первом обращении и кэшируется — платят только функции поддержки.
+ */
+let cachedSnapshot: SupportRepositorySnapshot | null = null;
+
+export function bundledSupportSnapshot(): SupportRepositorySnapshot {
+  if (cachedSnapshot === null) cachedSnapshot = loadBundledSnapshot();
+  return cachedSnapshot;
+}
 const WORD_RE = /[\p{L}\p{N}_-]{3,}/gu;
 const STOP_WORDS = new Set([
   'this', 'that', 'with', 'from', 'have', 'your', 'what', 'which', 'where', 'when', 'how',
@@ -100,7 +113,7 @@ function validateSnapshot(input: SupportRepositorySnapshot): { trustworthy: bool
 
 export function retrieveSupportRepositoryContext(
   query: unknown,
-  inputSnapshot: SupportRepositorySnapshot = snapshot,
+  inputSnapshot: SupportRepositorySnapshot = bundledSupportSnapshot(),
   limit = 8,
 ): SupportRepositoryContext {
   const tokens = tokenizeSupportQuery(query);

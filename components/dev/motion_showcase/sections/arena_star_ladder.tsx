@@ -88,6 +88,18 @@ export const SECTION: ShowcaseSection = {
       render: () => <StarBeatDemo ratingAfter={23} ratingDelta={1} isDraw={false} />,
     },
     {
+      id: 'arena-star-beat-win-rank-up-hybrid',
+      title: cs('arena_beat_win_rank_up_title'),
+      // зачем: краевой случай — победа, дожимающая третью звезду (Золото III
+      // 2/3 → Золото II 0/3). Ряд обнуляется одновременно с ударом; отдельная
+      // проверка нужна, потому что именно здесь beatIndex раньше уходил в -1
+      // и удар (звук/вспышка) молча не срабатывал — см. ArenaResultStarBeat.tsx.
+      detail: cs('arena_beat_win_rank_up_detail'),
+      approval: 'accepted',
+      kind: 'render',
+      render: () => <StarBeatDemo ratingAfter={9} ratingDelta={1} isDraw={false} />,
+    },
+    {
       id: 'arena-star-beat-loss-hybrid',
       title: cs('arena_beat_loss_title'),
       detail: cs('arena_beat_loss_detail'),

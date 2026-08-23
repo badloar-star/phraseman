@@ -742,7 +742,10 @@ describe("format 'tutor' — личный учитель", () => {
     });
     expect(String(res.tutor.greetingInstructions)).toContain('LANGUAGE POLICY');
     expect(String(res.tutor.greetingInstructions)).toContain('10 minutes');
-    expect(String(res.tutor.greetingInstructions)).toContain('FOCUSED LESSON');
+    // Владелец 2026-08-23: план урока в приветствии запрещён — учитель знает
+    // бюджет времени для себя, но первым ходом только здоровается.
+    expect(String(res.tutor.greetingInstructions)).toContain('never say it now');
+    expect(String(res.tutor.greetingInstructions)).not.toContain('FOCUSED LESSON');
     // Карта целей: A1 → первая цель a1_greet; агрегат ученику не показываем.
     expect(instr).toContain('CURRENT SPEAKING GOAL');
     expect(instr).toContain('a1_greet');

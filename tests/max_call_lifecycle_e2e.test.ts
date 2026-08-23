@@ -450,11 +450,10 @@ describe('E2E: полный успешный звонок от старта до
 // ── 2. Barge-in ─────────────────────────────────────────────────────────────
 
 describe('E2E: перебивание ИИ (barge-in)', () => {
-  it('НЕ отвечает на «речь», начавшуюся пока MAX говорил — это эхо громкой связи', async () => {
+  it('НЕ отвечает на эхо громкой связи: у него пустой транскрипт', async () => {
     // Живой звонок владельца 2026-08-23: «говорит, обрывает на половине и снова
-    // говорит то же самое». Остаток эха из динамика доходит до VAD как речь
-    // ученика; раньше клиент ставил на неё ответ в очередь, MAX начинал
-    // реплику заново — и цикл повторялся.
+    // говорит то же самое». Остаток эха из динамика доходит до VAD как речь.
+    // Отличаем эхо от речи НЕ по времени, а по содержанию: у эха слов нет.
     const h = createHarness();
     await bringUpCall(h);
     const dc = h.pc().dc;
@@ -463,15 +462,41 @@ describe('E2E: перебивание ИИ (barge-in)', () => {
     dc.deliver({ type: 'output_audio_buffer.started' });
     expect(dc.sentOfType('response.create')).toHaveLength(1);
 
-    // «Речь» пришла ПОВЕРХ звучащего аудио MAX — подозрение на эхо.
     dc.deliver({ type: 'input_audio_buffer.speech_started' });
     dc.deliver({ type: 'input_audio_buffer.speech_stopped' });
+    dc.deliver({ type: 'response.done', response: {} });
+    dc.deliver({ type: 'output_audio_buffer.stopped' });
+    // Транскрипт пустой → это был шум/эхо, ответ снимается.
+    dc.deliver({ type: 'conversation.item.input_audio_transcription.completed', transcript: '' });
     expect(dc.sentOfType('response.create')).toHaveLength(1);
+
+    await h.client.end();
+  });
+
+  it('реплика, начатая ПОКА MAX говорил, не теряется — ответ уходит после его аудио', async () => {
+    // зачем (владелец 2026-08-23): «он меня не слушает, моей реплики вообще не
+    // появляется». MAX говорит длинно, и попытка вставить слово раньше
+    // выбрасывалась насовсем. Теперь она ждёт конца его речи и получает ответ.
+    const h = createHarness();
+    await bringUpCall(h);
+    const dc = h.pc().dc;
+
+    dc.deliver({ type: 'response.created', response: {} });
+    dc.deliver({ type: 'output_audio_buffer.started' });
+    expect(dc.sentOfType('response.create')).toHaveLength(1);
+
+    // Ученик заговорил поверх речи MAX — настоящая речь, со словами.
+    dc.deliver({ type: 'input_audio_buffer.speech_started' });
+    dc.deliver({ type: 'input_audio_buffer.speech_stopped' });
+    dc.deliver({
+      type: 'conversation.item.input_audio_transcription.completed',
+      transcript: 'wait, I have a question',
+    });
 
     dc.deliver({ type: 'response.done', response: {} });
     dc.deliver({ type: 'output_audio_buffer.stopped' });
-    // Ключевое: после окончания аудио НОВОГО ответа нет — MAX не отвечает сам себе.
-    expect(dc.sentOfType('response.create')).toHaveLength(1);
+    // Ключевое: реплика НЕ потеряна — ответ ушёл, как только MAX замолчал.
+    expect(dc.sentOfType('response.create')).toHaveLength(2);
 
     await h.client.end();
   });

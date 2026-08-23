@@ -350,7 +350,11 @@ export default function MaxCallSession() {
   const [boardListenPending, setBoardListenPending] = useState(false);
   const boardListenPendingRef = useRef(false);
   const [turns, setTurns] = useState<TranscriptTurn[]>([]);
-  const [ccEnabled, setCcEnabled] = useState(true);
+  // зачем (владелец 2026-08-23): «убери полностью субтитры». Бегущая строка
+  // речи MAX перетягивала внимание на чтение вместо слушания и показывала только
+  // ЕГО реплики (своих ученик не видел). Полный текст разговора с обеими
+  // сторонами остаётся в шторке транскрипта по кнопке — там он и нужен.
+  const [ccEnabled, setCcEnabled] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [muted, setMuted] = useState(false);
   const [hardAtMs, setHardAtMs] = useState<number | null>(null);
@@ -1303,11 +1307,30 @@ export default function MaxCallSession() {
               />
             </MaxCallHalo>
           )}
-          {phase !== 'failed' && hint !== '' && (
+          {/* зачем (владелец 2026-08-23): «пока идёт загрузка, пускай на экране
+              будет написано, какая цель — что мы сегодня должны делать». Ждать
+              первую фразу молча незачем: показываем цель урока, а не статус связи. */}
+          {phase === 'connecting' && isTutor && tutorGoal.title !== '' ? (
+            <Text
+              accessibilityLiveRegion="polite"
+              style={{
+                color: t.textSecond,
+                fontSize: f.body,
+                fontWeight: '700',
+                marginTop: 14,
+                marginHorizontal: 32,
+                textAlign: 'center',
+                lineHeight: Math.round(f.body * 1.35),
+              }}
+              maxFontSizeMultiplier={2}
+            >
+              {tutorGoal.title}
+            </Text>
+          ) : phase !== 'failed' && hint !== '' ? (
             <Text accessibilityLiveRegion="polite" style={{ color: t.textMuted, fontSize: f.caption, marginTop: 14 }} maxFontSizeMultiplier={2}>
               {hint}
             </Text>
-          )}
+          ) : null}
         </View>
 
         {/* Две строки MAX не скроллятся и появляются в темпе реального аудио. */}
@@ -1480,19 +1503,49 @@ export default function MaxCallSession() {
                 </TouchableOpacity>
               </View>
               <ScrollView>
+                {/* зачем (владелец 2026-08-23): «я не вижу своих реплик, надо
+                    чтобы они были тоже». Реплики ученика в буфере были, но шли
+                    без подписи и почти тем же тоном — со стороны выглядело, будто
+                    их нет. Разводим стороны: своя речь прижата вправо и окрашена
+                    акцентом, речь учителя — слева. */}
                 {turns.map((turn, i) => (
-                  <Text
+                  <View
                     key={`sheet-${i}`}
                     style={{
-                      color: turn.role === 'user' ? t.textSecond : t.textPrimary,
-                      fontSize: f.sub,
-                      marginTop: i === 0 ? 0 : 8,
-                      lineHeight: Math.round(f.sub * 1.4),
+                      alignSelf: turn.role === 'user' ? 'flex-end' : 'flex-start',
+                      maxWidth: '86%',
+                      marginTop: i === 0 ? 0 : 10,
                     }}
-                    maxFontSizeMultiplier={2}
                   >
-                    {turn.text}
-                  </Text>
+                    <Text
+                      style={{
+                        color: turn.role === 'user' ? t.accent : t.textMuted,
+                        fontSize: f.caption,
+                        fontWeight: '800',
+                        marginBottom: 2,
+                        textAlign: turn.role === 'user' ? 'right' : 'left',
+                      }}
+                      maxFontSizeMultiplier={2}
+                    >
+                      {turn.role === 'user'
+                        ? triLang(lang, {
+                            ru: 'Вы', uk: 'Ви', es: 'Tú', 'pt-BR': 'Você',
+                            vi: 'Bạn', id: 'Anda', tr: 'Sen', pl: 'Ty',
+                          })
+                        : personaName}
+                    </Text>
+                    <Text
+                      style={{
+                        color: t.textPrimary,
+                        fontSize: f.sub,
+                        lineHeight: Math.round(f.sub * 1.4),
+                        textAlign: turn.role === 'user' ? 'right' : 'left',
+                      }}
+                      maxFontSizeMultiplier={2}
+                    >
+                      {turn.text}
+                    </Text>
+                  </View>
                 ))}
               </ScrollView>
             </View>

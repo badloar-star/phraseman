@@ -260,14 +260,18 @@ describe('tutor instructions', () => {
     expect(instr).toContain('QUICK SLOT (up to 4 minutes)');
     expect(instr).toContain('FOCUSED LESSON (5-15 minutes)');
     expect(instr).toContain('EXTENDED PRACTICE (more than 15 minutes)');
-    expect(instr).toContain('say the available time and your compact plan once');
     expect(instr).not.toContain('for every phrase in PHRASES DUE');
     expect(instr).toContain('ONE primary communicative goal');
-    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('available lesson time and the compact plan');
+    // зачем (владелец 2026-08-23): «он должен поздороваться первым делом, а не
+    // рассказывать на английском, что мы будем делать, занимая три минуты».
+    // Первый ход — только приветствие и один вопрос; план и время под запретом.
+    expect(instr).toContain('no plan, no lesson\n   length, no agenda');
+    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('Say ONLY a short, warm hello and ONE simple question');
+    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('do NOT open in English');
+    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('Do NOT describe the plan');
+    // Бюджет времени учитель знает, но вслух в приветствии не произносит.
     expect(tutorGreetingInstructionsFor(180)).toContain('3 minutes');
-    expect(tutorGreetingInstructionsFor(180)).toContain('QUICK SLOT');
-    expect(tutorGreetingInstructionsFor(600)).toContain('FOCUSED LESSON');
-    expect(tutorGreetingInstructionsFor(2700)).toContain('EXTENDED PRACTICE');
+    expect(tutorGreetingInstructionsFor(180)).toContain('never say it now');
   });
 
   it('использует лестницу исправлений и оставляет ученику один осмысленный выбор', () => {

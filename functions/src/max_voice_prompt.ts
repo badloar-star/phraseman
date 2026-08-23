@@ -240,9 +240,11 @@ Use their name naturally afterwards, never ask these again later. If they brush 
 move on.
 
 LESSON FLOW (one coherent lesson, adapted to the trusted lesson-length TIME NOTE)
-1. Opening: greet by name if known. In one short sentence say the available time and your compact plan once.
-   Keep ONE primary communicative goal; memory, weak words and syllabus support it, never become separate
-   activities.
+1. Opening: greet by name if known and ask ONE simple question, then LISTEN. Nothing else — no plan, no lesson
+   length, no agenda, no teaching in the first turn. Let them answer first; a lesson starts as a conversation,
+   not as a briefing. Only after they have spoken at least once may you name today's focus, and then in a single
+   short sentence. Keep ONE primary communicative goal; memory, weak words and syllabus support it, never become
+   separate activities.
 2. Time budget from the trusted "TIME NOTE: lesson length N minutes":
    - QUICK SLOT (up to 4 minutes): one target phrase, at most ONE due/homework retrieval in a tiny real
      situation, then one unaided short use. No full scene.
@@ -464,22 +466,29 @@ export const TUTOR_TOOLS = Object.freeze([
  * Инструкция первого ответа учителя (клиент шлёт её в response.create после
  * открытия data channel). Приветствие — по языковой политике уровня.
  */
+// зачем (владелец 2026-08-23): «он должен поздороваться первым делом, а не
+// рассказывать на английском двадцать минут, что мы будем делать — и сам этой
+// же репликой занимает три минуты». Прежний текст начинался с «Start the lesson
+// now (in the language of this course)» — модель слушала ПЕРВУЮ команду и валила
+// новичка английским, а требование плана и времени раздувало реплику.
+// Теперь первый ход — только короткое живое приветствие на ЯЗЫКЕ УЧЕНИКА и один
+// простой вопрос. План, время и цель придут позже, когда диалог уже начался.
 export const TUTOR_GREETING_INSTRUCTIONS =
-  'Start the lesson now (in the language of this course per LEARNER). Greet the learner warmly by name if you know it, following the LANGUAGE POLICY for ' +
-  'their level (A1/A2: mostly in their native language). State the available lesson time and the compact plan once. Then either ' +
-  "check one priority homework phrase or announce today's single focus in one sentence and ask ONE simple question. " +
-  'Two or three short sentences total, then listen.';
+  'This is the very first moment of the call. Say ONLY a short, warm hello and ONE simple question, then STOP and listen. ' +
+  'Follow the LANGUAGE POLICY for their level: at A1/A2 speak in the learner\'s native language — do NOT open in English. ' +
+  'Greet them by name if you know it. ' +
+  'Maximum TWO short sentences, under eight seconds. ' +
+  'Do NOT describe the plan, do NOT list what you will do today, do NOT state the lesson length, do NOT teach anything yet. ' +
+  'Just make them feel welcome and invite them to answer.';
 
 /** Первый ответ получает точный бюджет ещё до отдельной TIME NOTE от клиента. */
 export function tutorGreetingInstructionsFor(maxSeconds: number): string {
   const safeSeconds = Number.isFinite(maxSeconds) ? Math.max(1, maxSeconds) : 60;
   const minutes = Math.max(1, Math.round(safeSeconds / 60));
-  const band = minutes <= 4
-    ? 'QUICK SLOT: one useful phrase, one short unaided use, no full scene.'
-    : minutes <= 15
-      ? 'FOCUSED LESSON: one goal, up to two retrievals, then a short transfer if time remains.'
-      : 'EXTENDED PRACTICE: one goal developed through guided practice, a scene, and natural conversation.';
-  return `${TUTOR_GREETING_INSTRUCTIONS} Trusted available time: ${minutes} minutes. Say this time and the compact plan once. ${band}`;
+  // Бюджет времени учитель ЗНАЕТ, но в приветствии его НЕ произносит: владелец
+  // 2026-08-23 — «говорит, что у нас десять минут, и сам этой же репликой
+  // занимает три». Время и план всплывут позже, по ходу урока и по TIME NOTE.
+  return `${TUTOR_GREETING_INSTRUCTIONS} (For your own planning only, never say it now: the lesson is ${minutes} minutes.)`;
 }
 
 /** Явные делимитеры недоверенного блока: модель видит его границы и статус. */

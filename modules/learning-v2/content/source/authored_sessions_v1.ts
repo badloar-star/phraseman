@@ -66,9 +66,19 @@ import {
   buildSessionShardFromSource,
   type SessionSource,
 } from './session_shard_from_source_v1';
-import type { LearningV2GeneratedSessionShardV1 } from '../generator_session_shard';
+import {
+  validateLearningV2GeneratedSessionShardV1,
+  type LearningV2GeneratedSessionShardV1,
+} from '../generator_session_shard';
+
+/** Осколок одной написанной сессии в том виде, который принимает рантайм. */
+export type AuthoredLearningV2SessionShard = LearningV2GeneratedSessionShardV1;
 import { assertLearningV2SessionContentQuality } from './learning_content_quality_gate_v1';
-import { LEARNING_V2_CONTENT_QUALITY_REVIEW_RECEIPTS_V1 } from './learning_content_quality_review_receipts_v1';
+import {
+  isLearningV2SessionContentClean,
+  learningV2SessionQualityReceipt,
+} from './learning_content_quality_autopass_v1';
+import { upgradeLesson1SessionDistractorsV2 } from './lesson1_distractor_catalog_v2';
 
 /**
  * Все написанные сессии урока 1, по порядку прохождения.
@@ -134,7 +144,7 @@ export const AUTHORED_EPISODE_01_SESSIONS: readonly SessionSource[] =
     EPISODE_01_SESSION_54_SOURCE,
     EPISODE_01_SESSION_55_SOURCE,
     EPISODE_01_SESSION_56_SOURCE,
-  ]);
+  ].map(upgradeLesson1SessionDistractorsV2));
 
 /**
  * Превращает авторский текст в осколки сессий того вида, который принимает
@@ -144,13 +154,107 @@ export const AUTHORED_EPISODE_01_SESSIONS: readonly SessionSource[] =
  * Считается лениво и на месте — файлы статические, обращений к сети нет.
  */
 export function authoredLearningV2SessionShards(): readonly LearningV2GeneratedSessionShardV1[] {
-  return AUTHORED_EPISODE_01_SESSIONS.map((source) => {
-    assertLearningV2SessionContentQuality(
-      source,
-      LEARNING_V2_CONTENT_QUALITY_REVIEW_RECEIPTS_V1[source.requiredSessionOrdinal],
-    );
-    return buildSessionShardFromSource(source);
-  });
+  return AUTHORED_EPISODE_01_SESSIONS.map(buildPlayableShard).filter(
+    (shard): shard is LearningV2GeneratedSessionShardV1 => shard !== null,
+  );
+}
+
+/**
+ * Сессии, которые реально можно отдать человеку: чистые по содержанию либо с
+ * ручной квитанцией владельца.
+ *
+ * зачем (владелец, 2026-08-23): раньше пачка строилась целиком, и ОДНА
+ * недописанная сессия (№15) роняла выдачу всех остальных, включая первую.
+ * Человек видел «Сессия недоступна» на материале, который давно готов.
+ */
+export function playableAuthoredLearningV2Sessions(): readonly SessionSource[] {
+  return AUTHORED_EPISODE_01_SESSIONS.filter(
+    (source) => buildPlayableShard(source) !== null,
+  );
+}
+
+/**
+ * Собирает осколок, только если он и по качеству чист, и по СТРУКТУРЕ принят
+ * валидатором рантайма.
+ *
+ * зачем структурная проверка (владелец, 2026-08-23): гейт качества смотрит на
+ * текст, но не на форму осколка. Сессия 44 проходила качество и падала на
+ * errorExplanationByLocale уже в рантайме — человек снова видел «Сессия
+ * недоступна». Отдаём только то, что приложение гарантированно примет.
+ */
+// зачем кэш (владелец, правило скорости): сборка одной сессии — это гейт
+// качества по восьми локалям плюс валидатор осколка, ~200–270 мс. Экран
+// открывается синхронно этим путём, и без памяти цена платилась бы при КАЖДОМ
+// открытии. Источники статические и заморожены, поэтому результат по ссылке на
+// источник неизменен — кэш не может отдать устаревшее.
+const shardCache = new WeakMap<
+  SessionSource,
+  { readonly shard: LearningV2GeneratedSessionShardV1 | null }
+>();
+
+function buildPlayableShard(
+  source: SessionSource,
+): LearningV2GeneratedSessionShardV1 | null {
+  const cached = shardCache.get(source);
+  if (cached) return cached.shard;
+  const built = computePlayableShard(source);
+  shardCache.set(source, { shard: built });
+  return built;
+}
+
+function computePlayableShard(
+  source: SessionSource,
+): LearningV2GeneratedSessionShardV1 | null {
+  if (!isLearningV2SessionContentClean(source)) return null;
+  if (learningV2SessionQualityReceipt(source) === undefined) return null;
+  let shard: LearningV2GeneratedSessionShardV1;
+  try {
+    shard = buildAuthoredSessionShard(source);
+  } catch {
+    return null;
+  }
+  try {
+    validateLearningV2GeneratedSessionShardV1(shard, {
+      packageId: shard.packageId,
+      targetLanguage: shard.targetLanguage,
+      episodeOrdinal: shard.episodeOrdinal,
+      requiredSessionOrdinal: shard.requiredSessionOrdinal,
+      generationInputFingerprint: shard.generationInputFingerprint,
+    });
+  } catch {
+    return null;
+  }
+  return shard;
+}
+
+/** Собирает ОДНУ сессию. Ошибка здесь не может задеть соседние сессии. */
+export function buildAuthoredSessionShard(
+  source: SessionSource,
+): LearningV2GeneratedSessionShardV1 {
+  assertLearningV2SessionContentQuality(
+    source,
+    learningV2SessionQualityReceipt(source),
+  );
+  return buildSessionShardFromSource(source);
+}
+
+/**
+ * Осколок одной сессии по её номеру — путь для рантайма. Возвращает null,
+ * когда сессия не написана или не прошла гейт: вызывающая сторона тогда идёт
+ * в сеть, а не падает вместе со всем уроком.
+ */
+export function authoredLearningV2SessionShard(
+  sessionOrdinal: number,
+): LearningV2GeneratedSessionShardV1 | null {
+  const source = AUTHORED_EPISODE_01_SESSIONS.find(
+    (candidate) => candidate.requiredSessionOrdinal === sessionOrdinal,
+  );
+  return source ? buildPlayableShard(source) : null;
+}
+
+/** Сколько сессий сейчас реально играбельны — честное число для отчётов. */
+export function playableAuthoredLearningV2SessionCount(): number {
+  return playableAuthoredLearningV2Sessions().length;
 }
 
 /** Сколько сессий урока написано на самом деле — для честного отчёта о готовности. */

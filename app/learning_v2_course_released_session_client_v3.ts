@@ -45,7 +45,10 @@ import {
   type LearningV2CourseSessionEvaluatorCapsuleChildV1,
 } from "../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
 import { materializeLearningV2CourseSessionAudioChildV1 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
-import { authoredLearningV2SessionShards } from "../modules/learning-v2/content/source/authored_sessions_v1";
+import {
+  authoredLearningV2SessionShard,
+  type AuthoredLearningV2SessionShard,
+} from "../modules/learning-v2/content/source/authored_sessions_v1";
 import { buildSessionChildBodiesFromShard } from "../modules/learning-v2/content/source/session_package_from_shard_v1";
 
 export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3 =
@@ -730,16 +733,16 @@ export async function hydrateLearningV2CourseReleasedSessionCacheV3(): Promise<v
 const BUNDLED_RELEASE_ID = "bundled-lesson-01" as const;
 const BUNDLED_FINGERPRINT = "0".repeat(64);
 
+// зачем (владелец, 2026-08-23): раньше здесь строилась ВСЯ пачка из 56 сессий
+// ради одной. Это и лишняя работа на открытии экрана, и — главное — падение
+// любой недописанной сессии закрывало доступ ко всем готовым. Теперь строится
+// ровно запрошенная, а неготовая просто возвращает null и уходит в сеть.
 function bundledShardFor(
   lessonOrdinal: number,
   sessionOrdinal: number,
-): ReturnType<typeof authoredLearningV2SessionShards>[number] | null {
+): AuthoredLearningV2SessionShard | null {
   if (lessonOrdinal !== 1) return null;
-  const shards = authoredLearningV2SessionShards();
-  return (
-    shards.find((shard) => shard.requiredSessionOrdinal === sessionOrdinal) ??
-    null
-  );
+  return authoredLearningV2SessionShard(sessionOrdinal);
 }
 
 /**

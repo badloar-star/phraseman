@@ -1158,3 +1158,9 @@ export {
   adminSeedV2E1DemoSource,
   adminRunV2E1Compilation,
 } from "./content_factory/v2_e1_compilation_worker";
+// зачем (владелец, 2026-08-23): кнопка публикации курса в админке
+// (admin/v2/legacy.html) звала adminPublishAuthoredLearningV2Course, но
+// функция нигде не экспортировалась — эндпоинта не существовало, и
+// одобренный материал физически не мог доехать до людей без пересборки
+// приложения. Это и есть доставка без OTA: опубликовал — приложение видит.
+export { adminPublishAuthoredLearningV2Course } from "./content_factory/learning_v2_publish_authored_course_v1";

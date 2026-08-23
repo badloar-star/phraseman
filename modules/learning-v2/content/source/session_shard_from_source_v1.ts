@@ -10,7 +10,6 @@ import {
   type LearningV2Localized,
 } from '../generator_course_contract';
 import {
-  LEARNING_V2_SESSION_CARD_PURPOSES,
   learningV2GeneratedMeaningSourceHash,
   type LearningV2GeneratedSessionCardV1,
   type LearningV2GeneratedSessionShardV1,
@@ -21,10 +20,24 @@ import {
   type LearningV2IntroRunsByLocaleV1,
   type LearningV2IntroTextRunV1,
 } from '../intro_semantic_runs_v1';
-import { REQUIRED_SESSION_POLICY_V1 } from '../session_compiler';
 import type { V2ActivityFamily } from '../../contracts/activity';
 import type { V2SessionLearningFunction } from '../../contracts/session';
 import type { EpisodeSourcePhrase } from './episode_01_source_v1';
+import { lesson1SessionChoreographyV1 } from './lesson1_session_choreography_v1';
+import { hashCanonicalBody } from '../../policies/decision_registry';
+
+const HEX64_RE = /^[0-9a-f]{64}$/;
+
+// зачем (владелец, 2026-08-23): файлы-помощники сессий 11–56 проставляли
+// отпечаток строкой-заглушкой вида `authored-e01-s11-v2`. Валидатор рантайма
+// требует 64-hex и отвергал КАЖДУЮ такую сессию — второй, независимый от
+// review-квитанций блокер, из-за которого готовый материал не доезжал до
+// экрана. Нормализуем в одном месте: уже валидный отпечаток остаётся как есть,
+// заглушка детерминированно превращается в хэш от самой строки — значение
+// стабильно между сборками, клиентом и сервером.
+function normalizedGenerationInputFingerprint(raw: string): string {
+  return HEX64_RE.test(raw) ? raw : hashCanonicalBody({ authoredFingerprintLabel: raw });
+}
 
 const FAMILY_FUNCTION: Readonly<
   Record<V2ActivityFamily, V2SessionLearningFunction>
@@ -158,6 +171,81 @@ function expandLocalizedIntroRuns(
   ) as LearningV2IntroRunsByLocaleV1;
 }
 
+function introTermBoundary(text: string, start: number, term: string): boolean {
+  const word = /[\p{L}\p{N}_]/u;
+  const before = start > 0 ? text[start - 1] : '';
+  const after = text[start + term.length] ?? '';
+  return !(word.test(term[0] ?? '') && word.test(before)) &&
+    !(word.test(term[term.length - 1] ?? '') && word.test(after));
+}
+
+/**
+ * Visual semantics never author or rewrite copy. They only ensure that every
+ * occurrence of an explicitly authored English example receives the same
+ * semantic styling as the first occurrence. Multiword learner answers are
+ * safe evidence; single words are expanded only when the author already
+ * marked that exact word in bodyRuns.
+ */
+function completeAuthoredIntroRuns(
+  page: SessionSourceIntroPage,
+  phrases: readonly EpisodeSourcePhrase[],
+): LearningV2IntroRunsByLocaleV1 | undefined {
+  if (!page.bodyRuns) return undefined;
+  const authored = expandLocalizedIntroRuns(page.bodyRuns);
+  const expandedBody = expandLocalized(page.body);
+  const expandedChoices = [
+    expandLocalized(page.question.choices[0]),
+    expandLocalized(page.question.choices[1]),
+    expandLocalized(page.question.choices[2]),
+  ] as const;
+  return Object.fromEntries(LEARNING_V2_INTERFACE_LOCALES.map((locale) => {
+    const body = expandedBody[locale];
+    const semantics = new Map<string, LearningV2IntroTextRunV1['semantic']>();
+    for (const run of authored[locale]) {
+      if (run.semantic !== 'explanation' && run.semantic !== 'nativeGloss') {
+        semantics.set(run.text, run.semantic);
+      }
+    }
+    const correctChoice = expandedChoices[page.question.correctChoiceIndex][locale];
+    const choices = expandedChoices.map((choice) => choice[locale]);
+    const authoredExamples = [
+      ...phrases.map((phrase) => phrase.english),
+      ...choices,
+    ];
+    for (const example of authoredExamples) {
+      if (example.length < 4 || !/[\s?!.'’]/u.test(example)) continue;
+      semantics.set(
+        example,
+        example === correctChoice || phrases.some((phrase) => phrase.english === example)
+          ? 'targetCorrect'
+          : 'targetWrong',
+      );
+    }
+    const terms = [...semantics.keys()]
+      .filter(Boolean)
+      .sort((left, right) => right.length - left.length || left.localeCompare(right));
+    const runs: LearningV2IntroTextRunV1[] = [];
+    let cursor = 0;
+    while (cursor < body.length) {
+      const term = terms.find(
+        (candidate) => body.startsWith(candidate, cursor) && introTermBoundary(body, cursor, candidate),
+      );
+      if (term) {
+        runs.push({ text: term, semantic: semantics.get(term) ?? 'explanation' });
+        cursor += term.length;
+        continue;
+      }
+      let end = cursor + 1;
+      while (end < body.length && !terms.some(
+        (candidate) => body.startsWith(candidate, end) && introTermBoundary(body, end, candidate),
+      )) end += 1;
+      runs.push({ text: body.slice(cursor, end), semantic: 'explanation' });
+      cursor = end;
+    }
+    return [locale, runs];
+  })) as unknown as LearningV2IntroRunsByLocaleV1;
+}
+
 export interface SessionSource {
   readonly packageId: string;
   readonly targetLanguage: string;
@@ -196,38 +284,107 @@ const FAMILY_INSTRUCTION: Readonly<Record<string, LocalizedSource>> =
       ru: 'Послушайте и выберите то, что услышали.',
       uk: 'Послухайте й оберіть те, що почули.',
       es: 'Escucha y elige lo que oíste.',
+      'pt-BR': 'Ouça e escolha o que você ouviu.',
+      vi: 'Hãy nghe và chọn điều bạn vừa nghe.',
+      id: 'Dengarkan dan pilih yang Anda dengar.',
+      tr: 'Dinleyin ve duyduğunuzu seçin.',
+      pl: 'Posłuchaj i wybierz to, co słyszysz.',
     },
     phrase_builder: {
       ru: 'Соберите фразу из слов.',
       uk: 'Складіть фразу зі слів.',
       es: 'Forma la frase con las palabras.',
+      'pt-BR': 'Monte a frase com as palavras.',
+      vi: 'Hãy ghép các từ thành câu.',
+      id: 'Susun kalimat dari kata-kata.',
+      tr: 'Sözcüklerden cümleyi kurun.',
+      pl: 'Ułóż zdanie z wyrazów.',
     },
     speed_match: {
       ru: 'Быстро подберите правильное слово.',
       uk: 'Швидко доберіть правильне слово.',
       es: 'Elige rápido la palabra correcta.',
+      'pt-BR': 'Escolha rapidamente a palavra certa.',
+      vi: 'Hãy nhanh chóng chọn từ đúng.',
+      id: 'Pilih kata yang tepat dengan cepat.',
+      tr: 'Doğru sözcüğü hızla seçin.',
+      pl: 'Szybko wybierz właściwe słowo.',
     },
     sound_contrast: {
       ru: 'Различите похожие по звучанию слова.',
       uk: 'Розрізніть схожі за звучанням слова.',
       es: 'Distingue las palabras que suenan parecido.',
+      'pt-BR': 'Diferencie as palavras com sons parecidos.',
+      vi: 'Hãy phân biệt những từ có âm gần giống nhau.',
+      id: 'Bedakan kata-kata yang terdengar mirip.',
+      tr: 'Benzer sesli sözcükleri ayırt edin.',
+      pl: 'Rozróżnij podobnie brzmiące słowa.',
     },
     context_gap_grammar: {
       ru: 'Поставьте нужную форму по смыслу.',
       uk: 'Поставте потрібну форму за змістом.',
       es: 'Pon la forma correcta según el sentido.',
+      'pt-BR': 'Complete com a forma adequada ao sentido.',
+      vi: 'Hãy điền dạng phù hợp với ý nghĩa.',
+      id: 'Isilah dengan bentuk yang sesuai makna.',
+      tr: 'Anlama uygun biçimi yerleştirin.',
+      pl: 'Wstaw formę pasującą do znaczenia.',
     },
     listen_build_dictation: {
       ru: 'Послушайте и восстановите фразу.',
       uk: 'Послухайте й відновіть фразу.',
       es: 'Escucha y reconstruye la frase.',
+      'pt-BR': 'Ouça e reconstrua a frase.',
+      vi: 'Hãy nghe và ghép lại câu.',
+      id: 'Dengarkan dan susun kembali kalimatnya.',
+      tr: 'Dinleyin ve cümleyi yeniden kurun.',
+      pl: 'Posłuchaj i odtwórz zdanie.',
     },
     scripted_repeat_compare: {
       ru: 'Повторите вслух и сравните с образцом.',
       uk: 'Повторіть уголос і порівняйте зі зразком.',
       es: 'Repite en voz alta y compara con el modelo.',
+      'pt-BR': 'Repita em voz alta e compare com o modelo.',
+      vi: 'Hãy lặp lại thành tiếng và so sánh với mẫu.',
+      id: 'Ucapkan dengan lantang dan bandingkan dengan contoh.',
+      tr: 'Sesli tekrar edin ve örnekle karşılaştırın.',
+      pl: 'Powtórz na głos i porównaj ze wzorem.',
     },
   });
+
+/**
+ * Keeps the learned phrase visible once and only once in positive feedback.
+ * Editorial explanations may already begin with the phrase; the projection
+ * must not prepend it again or add a full stop after an existing question mark.
+ */
+export function learningV2SingleTargetSuccessV1(
+  target: string,
+  explanation: string,
+): string {
+  const cleanTarget = target.normalize('NFC').trim();
+  const targetKey = cleanTarget.toLocaleLowerCase('en');
+  let remainder = explanation.normalize('NFC').trim();
+  if (
+    remainder.slice(0, cleanTarget.length).toLocaleLowerCase('en') === targetKey
+  ) {
+    remainder = remainder
+      .slice(cleanTarget.length)
+      .trimStart()
+      .replace(/^[.!?]+\s*/u, '');
+  }
+  // A later example sentence can repeat the exact target even after the
+  // opening has been deduplicated. Drop that redundant sentence as a unit;
+  // deleting only the phrase would leave broken copy such as "— and I am...".
+  remainder = (remainder.match(/[^.!?]+(?:[.!?]+|$)/gu) ?? [remainder])
+    .filter((sentence) => !sentence.toLocaleLowerCase('en').includes(targetKey))
+    .join(' ')
+    .replace(/\s+/gu, ' ')
+    .trim();
+  if (!remainder) return cleanTarget;
+  return /^[—–:;,]/u.test(remainder)
+    ? `${cleanTarget} ${remainder}`
+    : `${cleanTarget} — ${remainder}`;
+}
 
 function cardCopy(
   phrase: EpisodeSourcePhrase,
@@ -277,16 +434,14 @@ function cardCopy(
     .slice(0, 6)
     .join(' ');
   return {
-    instructionByLocale: expandLocalized(
-      localeCopy(
-        (details) => details.words[0]?.prompt ?? '',
-        instruction,
-      ),
-    ),
+    instructionByLocale: expandLocalized(instruction),
     hintByLocale: expandLocalized(hint),
     successMessageByLocale: expandLocalized(
       localeCopy(
-        (details) => `${phrase.english}. ${details.explanation}`,
+        (details) => learningV2SingleTargetSuccessV1(
+          phrase.english,
+          details.explanation,
+        ),
         {
           ru: `Верно: ${phrase.english}.`,
           uk: `Правильно: ${phrase.english}.`,
@@ -332,12 +487,11 @@ function cardCopy(
 }
 
 /**
- * Сколько фраз в одной сессии. Слоты 1–3 привязаны к вопросам интро,
- * 4–15 — практика. Итого 15 заданий: контракт пакета требует 14–18.
- * Одно число на весь проект — иначе части разойдутся молча.
+ * Авторский inventory одной сессии. Это не число interactions: rapid и voice
+ * используют один и тот же банк с разным количеством диагностических касаний.
  */
 export const SESSION_PHRASE_COUNT_V1 = 15 as const;
-/** Практических карточек: всё, что после трёх слотов интро. */
+/** Исторический standard-профиль: rapid/voice получают число из choreography. */
 export const SESSION_PRACTICE_CARD_COUNT_V1 = SESSION_PHRASE_COUNT_V1 - 3;
 
 export function buildSessionShardFromSource(
@@ -352,15 +506,15 @@ export function buildSessionShardFromSource(
     );
   const episodeId = `episode-${pad(source.episodeOrdinal)}`;
   const sessionOrdinal = source.requiredSessionOrdinal;
+  const generationInputFingerprint = normalizedGenerationInputFingerprint(
+    source.generationInputFingerprint,
+  );
   const sessionTemplateId = `${episodeId}:session-${pad(sessionOrdinal)}`;
-  const policy = REQUIRED_SESSION_POLICY_V1[sessionOrdinal - 1];
-  if (!policy) throw new Error('session_source_ordinal_out_of_policy');
+  const choreography = lesson1SessionChoreographyV1(sessionOrdinal);
 
   const introPages = source.introPages.map((page, index) => {
       const ordinal = (index + 1) as 1 | 2 | 3;
-      const bodyRunsByLocale = page.bodyRuns
-        ? expandLocalizedIntroRuns(page.bodyRuns)
-        : undefined;
+      const bodyRunsByLocale = completeAuthoredIntroRuns(page, source.phrases);
       return {
         pageOrdinal: ordinal,
         pageId: `${sessionTemplateId}:intro-${ordinal}`,
@@ -399,9 +553,11 @@ export function buildSessionShardFromSource(
       'slots_1_2_3_embedded_in_intro_pages_not_repeated',
   };
 
-  const cards = source.phrases.map((phrase, index) => {
+  const cards = choreography.steps.map((step, index) => {
     const slot = index + 1;
-    const family = policy.families[index % policy.families.length];
+    const phrase = source.phrases[step.sourcePhraseIndex];
+    if (!phrase) throw new Error('session_source_choreography_phrase_missing');
+    const family = step.family;
     const contentItemId = `content-${episodeId}-s${pad(sessionOrdinal)}-${pad(slot)}`;
     const targetText = phrase.english;
     const meaningFor = (locale: LearningV2InterfaceLocale): string =>
@@ -413,7 +569,7 @@ export function buildSessionShardFromSource(
       schemaVersion: 'v2-content-item.v1' as const,
       contentItemId,
       episodeId,
-      intentId: phrase.id,
+      intentId: `${phrase.id}:contact-${pad(slot)}`,
       target: {
         locale: source.targetLanguage,
         text: targetText,
@@ -431,7 +587,7 @@ export function buildSessionShardFromSource(
             targetText,
             locale,
             meaning,
-            generationInputFingerprint: source.generationInputFingerprint,
+            generationInputFingerprint,
           }),
         };
       }),
@@ -453,17 +609,12 @@ export function buildSessionShardFromSource(
     return {
       cardId: `card-${episodeId}-s${pad(sessionOrdinal)}-${pad(slot)}`,
       taskSlot: slot,
-      purpose: LEARNING_V2_SESSION_CARD_PURPOSES[index],
+      purpose: step.purpose,
       activityId: `activity-${episodeId}-s${pad(sessionOrdinal)}-${pad(slot)}-${family}`,
       family,
       learningFunction: FAMILY_FUNCTION[family],
-      support: policy.support,
-      promptNovelty:
-        policy.zone === 'understand'
-          ? ('trained' as const)
-          : policy.zone === 'use'
-            ? ('varied' as const)
-            : ('novel' as const),
+      support: choreography.support,
+      promptNovelty: choreography.promptNovelty,
       promptId: `prompt-${episodeId}-${pad(sessionOrdinal)}-${pad(slot)}`,
       introQuestionId:
         slot <= 3 ? intro.pages[slot - 1].question.questionId : null,
@@ -492,9 +643,9 @@ export function buildSessionShardFromSource(
     sessionId: `session-${episodeId}-${pad(sessionOrdinal)}`,
     sessionTemplateId,
     canDoOutcomeId: source.canDoOutcomeId,
-    zone: policy.zone,
-    support: policy.support,
-    generationInputFingerprint: source.generationInputFingerprint,
+    zone: choreography.zone,
+    support: choreography.support,
+    generationInputFingerprint,
     interfaceLocales: LEARNING_V2_INTERFACE_LOCALES,
     contentKinds: LEARNING_V2_REQUIRED_CONTENT_KINDS,
     intro: intro as never,

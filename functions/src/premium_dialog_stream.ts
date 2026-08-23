@@ -11,11 +11,13 @@ import {
 } from './openai_dialog_model_config';
 import { resolveRemoteBool, aiGloballyDisabled } from './remote_gates';
 import { resolveStudyTarget } from './ai_language_contract';
+// SAFETY_SYSTEM_INSTRUCTION здесь больше не нужен: он входит в системный промпт
+// внутри renderGlobalRules (стабильный префикс, кэш OpenAI). Импортировать его
+// сюда снова — верный признак, что кто-то опять клеит safety в хвост.
 import {
   evaluateSafety,
   moderateUserText,
   recordSafetyFlag,
-  SAFETY_SYSTEM_INSTRUCTION,
 } from './ai_safety';
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import {

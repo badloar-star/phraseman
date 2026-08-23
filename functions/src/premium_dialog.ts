@@ -309,10 +309,16 @@ KEY PHRASES: wrap 1-3 of the MOST useful {TARGET_LANG} phrases in double square 
 
 Output ONLY your spoken reply. No stage directions, no markdown, except the [[...]] markers.`;
 
-const SCENARIO_BLOCK = `MODE: SCENARIO ROLEPLAY.
-You are playing the role of: {ROLE}.
-The setting: {SETTING}.{PERSONA}
-The learner's goal in this scenario: {GOAL_EN}.
+/**
+ * Правила отыгрыша, НЕ зависящие от конкретной сцены (роль/место/цель).
+ *
+ * зачем: живут в стабильном префиксе рядом с GLOBAL_RULES и safety — вместе они
+ * дают >1024 токенов, что включает кэш промпта OpenAI (−50% на этой части).
+ * Замер до разделения: префикс был 942 токена и до порога НЕ дотягивал, кэш не
+ * включался бы вовсе. Всё, что меняется от сценария к сценарию, лежит ниже в
+ * SCENARIO_SCENE — иначе префикс перестал бы быть байт-в-байт одинаковым.
+ */
+const SCENARIO_STYLE = `SCENARIO ROLEPLAY STYLE (applies to every scene):
 - If the chat history already contains an assistant opener, continue from the learner's message; do not greet again.
 - Speak from inside the scene as your character. NEVER describe the scenario from outside, NEVER say "the learner", and NEVER repeat the setting as narration.
 - Stay in character. Show personality and mood through TONE, warmth and reactions — never through harder words or longer sentences. Even a difficult or impatient character speaks at level {CEFR}, in {TARGET_LANG}, in short simple sentences.
@@ -320,6 +326,12 @@ The learner's goal in this scenario: {GOAL_EN}.
 - RUDENESS / INSULTS: if they are rude, hostile, or insult you ("you are fat", "shut up", swearing), do NOT brush it off, pretend it was a compliment, or stay cheerful. Get noticeably cooler and shorter and set a boundary in simple {TARGET_LANG} ("That's not kind." / "Please don't talk to me like that."). Stay at level {CEFR}, in {TARGET_LANG}; warmth visibly drops. Never insult back; get firmer each rude turn.
 - Drive toward the goal in 5-8 exchanges, then close the scene. Do NOT drag it out.
 - If they get stuck or silent, give a gentle in-character hint that models a possible answer.`;
+
+/** Изменчивая часть сцены: роль, место, персона, цель. Всегда ПОСЛЕ префикса. */
+const SCENARIO_SCENE = `MODE: SCENARIO ROLEPLAY.
+You are playing the role of: {ROLE}.
+The setting: {SETTING}.{PERSONA}
+The learner's goal in this scenario: {GOAL_EN}.`;
 
 /** Блок характера персонажа. Пусто, если у сценария нет персоны. */
 function personaBlock(persona: string): string {
@@ -330,14 +342,17 @@ function personaBlock(persona: string): string {
 export function buildScenarioSystemPrompt(cefr: string, data: PremiumDialogRequest): string {
   const interfaceLang = asInterfaceLang(data.interfaceLang);
   const studyTarget = resolveStudyTarget(data.studyTarget);
-  const block = SCENARIO_BLOCK
+  // Стиль отыгрыша — часть стабильного префикса (кэш), сцена — изменчивый хвост.
+  const style = SCENARIO_STYLE
+    .replace(/\{CEFR\}/g, cefr)
+    .replace(/\{TARGET_LANG\}/g, studyTargetName(studyTarget));
+  const scene = SCENARIO_SCENE
     .replace('{ROLE}', text(data.role, 120) || 'a friendly barista')
     .replace('{SETTING}', text(data.setting, 200) || 'a cozy coffee shop')
     .replace('{PERSONA}', personaBlock(text(data.persona, 400)))
-    .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price')
-    .replace(/\{CEFR\}/g, cefr)
-    .replace(/\{TARGET_LANG\}/g, studyTargetName(studyTarget));
-  return `${renderGlobalRules(cefr, interfaceLang, studyTarget)}\n\n${block}${gameBlock(data, cefr, interfaceLang, studyTarget)}${cefrReinjection(cefr, studyTarget)}`;
+    .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price');
+  const prefix = `${renderGlobalRules(cefr, interfaceLang, studyTarget)}\n\n${style}`;
+  return `${prefix}\n\n${scene}${gameBlock(data, cefr, interfaceLang, studyTarget)}${cefrReinjection(cefr, studyTarget)}`;
 }
 
 // ── «Диалог как игра»: цель · терпение · исход ──────────────────────────────

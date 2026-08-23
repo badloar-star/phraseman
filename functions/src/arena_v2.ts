@@ -90,7 +90,6 @@ import {
   arenaRanksCompatible,
   ARENA_DAILY_REWARD_MATCHES,
   arenaRareSpin,
-  arenaStarDeltaForOutcome,
   arenaSeasonLevelUnlocked,
   arenaSeasonReward,
   arenaSeasonStars,
@@ -1266,11 +1265,19 @@ async function settleMatch(
     const rollBps = spinKey
       ? createHmac('sha256', spinKey).update(`${match.matchId}|${entry.uid}|${season.seasonId}`).digest().readUInt32BE(0) % 10_000
       : -1;
+    const opponentKind = privateDoc.participantStableUids.some((uid) => uid.startsWith('bot_')) ? 'bot' : 'human';
+    // зачем: гарантия спина за ranked-победу над человеком не зависит от
+    // HMAC-роллa (rollBps >= 0 требовал ключ окружения) — только от того, что
+    // это реальная победа; сама проверка исхода живёт внутри arenaRareSpin.
+    // quick-режим не тронут, там rollBps остаётся обязательным условием шанса.
+    const isRankedHumanWin = match.mode === 'ranked' && opponentKind === 'human' && outcome === 'win';
     const spin = arenaRareSpin({
       mode: match.mode,
-      opponentKind: privateDoc.participantStableUids.some((uid) => uid.startsWith('bot_')) ? 'bot' : 'human',
+      opponentKind,
+      outcome,
       rewardEligible: expansionEligibility.spin && !forcedWinnerStableUid
-        && dailyRewardMatchesBefore < ARENA_DAILY_REWARD_MATCHES && rollBps >= 0,
+        && dailyRewardMatchesBefore < ARENA_DAILY_REWARD_MATCHES
+        && (isRankedHumanWin || rollBps >= 0),
       submittedAnswers: privateDoc.totals[entry.uid]?.submittedAnswers ?? 0,
       dropsToday: sameDay ? Math.max(0, Math.trunc(Number(seasonData.spinDropsToday ?? 0))) : 0,
       rollBps,
@@ -3514,18 +3521,18 @@ export const arenaV2SeasonClaim = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     ])).sort((left, right) => Number(left) - Number(right));
     tx.set(seasonRef, { [field]: claimed, updatedAtMs: now }, { merge: true });
     tx.create(claimRef, claim);
+    // зачем (владелец, 23.08): trek-награда за уровень трека Арены больше не
+    // заводит свой кредит в spinCredits — эта коллекция и её отдельный
+    // розыгрыш убраны целиком (единственный спин в приложении живёт в разделе
+    // «Подарки», см. local_level_spins.ts). Для `spin_credit` сервер только
+    // подтверждает право на приз: `claim.reward.kind === 'spin_credit'`
+    // уходит клиенту, а тот выдаёт локальный кредит подарочного спина по
+    // ключу `claimRef.id` — тот же паттерн, что для ranked-победы.
     if (reward.kind === 'shards') {
       appendExternalEconomyEvent(tx, userRef, {
         source: 'arena_v2_season', eventId: claimRef.id, ownerStableId: who.stableUid,
         delta: reward.amount, reason: 'arena_v2_season_reward', kind: 'competition_arena_season_reward',
         subjectId: claimRef.id, payload: { seasonId, level, side }, createdAtMs: now,
-      });
-    } else {
-      tx.create(db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.spinCredits)
-        .doc(`season_${seasonId}_${level}_${side}`), {
-        creditId: `season_${seasonId}_${level}_${side}`, source: 'arena_season', status: 'available', createdAtMs: now,
-        expiresAtMs: now + 365 * 24 * 60 * 60 * 1_000,
-        expireAt: timestamp(now + 365 * 24 * 60 * 60 * 1_000),
       });
     }
     return claim;
@@ -3533,56 +3540,16 @@ export const arenaV2SeasonClaim = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
   return { ok: true, ...output };
 });
 
-export const arenaV2SpinStatus = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
-  const who = await arenaActor(request, 'spin');
-  const now = nowMs();
-  const credits = await db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.spinCredits)
-    .where('status', '==', 'available').where('expiresAtMs', '>', now).limit(50).get();
-  return { ok: true, spinsAvailable: credits.size };
-});
-
-export const arenaV2SpinClaim = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
-  const who = await arenaActor(request, 'spin');
-  const requestId = safeId(request.data?.requestId, 'request_id');
-  const key = String(process.env.ARENA_V2_SPIN_HMAC_KEY ?? '').trim();
-  if (!key) throw new HttpsError('failed-precondition', 'arena_spin_key_unavailable');
-  const resultRef = db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.spinResults).doc(requestId);
-  const userRef = db.collection('users').doc(who.stableUid);
-  const existing = await resultRef.get();
-  if (existing.exists) return { ok: true, ...existing.data() };
-  const now = nowMs();
-  const availableQuery = db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.spinCredits)
-    .where('status', '==', 'available')
-    .where('expiresAtMs', '>', now)
-    .orderBy('expiresAtMs', 'asc')
-    .limit(1);
-  const output = await db.runTransaction(async (tx) => {
-    const [resultSnap, availableSnap] = await Promise.all([
-      tx.get(resultRef), tx.get(availableQuery),
-    ]);
-    if (resultSnap.exists) return resultSnap.data()!;
-    if (availableSnap.empty) throw new HttpsError('failed-precondition', 'arena_spin_unavailable');
-    const credit = availableSnap.docs[0];
-    const creditRef = credit.ref;
-    const creditExpiry = Number(credit.data()?.expiresAtMs
-      ?? credit.data()?.expireAt?.toMillis?.() ?? 0);
-    if (creditExpiry <= now) throw new HttpsError('failed-precondition', 'arena_spin_credit_expired');
-    const roll = createHmac('sha256', key)
-      .update(`${who.stableUid}|${creditRef.id}|${requestId}`).digest().readUInt32BE(0) % 100;
-    const amount = roll < 70 ? 5 : roll < 95 ? 10 : 20;
-    const reward = { kind: 'shards', amount };
-    const result = { receiptId: requestId, creditId: creditRef.id, reward, claimedAtMs: now };
-    tx.set(creditRef, { status: 'consumed', consumedAtMs: now, resultId: requestId }, { merge: true });
-    tx.create(resultRef, result);
-    appendExternalEconomyEvent(tx, userRef, {
-      source: 'arena_v2_spin', eventId: requestId, ownerStableId: who.stableUid,
-      delta: amount, reason: 'arena_v2_spin_reward', kind: 'competition_arena_spin_reward',
-      subjectId: creditRef.id, payload: { creditId: creditRef.id }, createdAtMs: now,
-    });
-    return result;
-  });
-  return { ok: true, ...output };
-});
+// зачем (владелец, 23.08): убраны arenaV2SpinStatus/arenaV2SpinClaim — Арена
+// больше не разыгрывает свой отдельный приз (жемчужины 5/10/20). Владелец
+// прямо запретил параллельные спины: в приложении существует ОДИН спин,
+// доступный из раздела «Подарки» (local_level_spins.ts). Право на спин от
+// Арены сервер теперь только подтверждает (`reward.spinAwarded` в ответе
+// settleMatch, `reward.kind === 'spin_credit'` в ответе arenaV2SeasonClaim);
+// сам розыгрыш приза клиент выполняет локально тем же общим каталогом, что
+// и за уровень/сессию. Коллекции `arena_v2_spin_credits`/`spinResults`
+// остаются в Firestore как исторический хвост — новых записей в них больше
+// не появится, чистить не обязательно.
 
 async function reconcileOrphanMatch(matchId: string, now: number): Promise<void> {
   const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);

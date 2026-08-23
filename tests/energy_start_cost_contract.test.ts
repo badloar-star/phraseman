@@ -149,6 +149,34 @@ describe('энергия платится за старт активности',
     expect(read('app/club_boosts.ts')).not.toContain("def?.type === 'energy'");
   });
 
+  it('админ-команда drain/fill применяется на живом пути загрузки', () => {
+    // Третий аудит 2026-08-23: команда доезжала до телефона через синк и
+    // НИКОГДА не применялась — единственный применитель жил внутри
+    // energy_system.getEnergyState, у которого не осталось боевых вызовов.
+    // Админка молча врала, что энергия изменена.
+    const context = read('components/EnergyContext.tsx');
+    expect(context).toContain('applyAdminEnergyCommand');
+    const runLoad = context.slice(
+      context.indexOf('const runLoad = useCallback'),
+      context.indexOf('const load = useCallback'),
+    );
+    expect(runLoad).toContain('await applyAdminEnergyCommand()');
+    expect(read('app/energy_system.ts')).toContain('export async function applyAdminEnergyCommand');
+  });
+
+  it('возврат идёт в тот же пул, откуда была трата', () => {
+    // spendOne тратит бонус первым (сгорает в полночь). Возврат «всегда в
+    // базу» отмывал бонус в вечную базу, а при полной базе терял единицу об
+    // потолок. Маркер пула обязателен.
+    const context = read('components/EnergyContext.tsx');
+    expect(context).toContain('lastSpendPoolRef');
+    const refund = context.slice(
+      context.indexOf('const refundOne = useCallback'),
+      context.indexOf('const spendAmount = useCallback'),
+    );
+    expect(refund).toContain("pool === 'bonus'");
+  });
+
   it('ускорения восстановления совпадают на клиенте и сервере', () => {
     // Сервер кладёт значение в награду, клиент им же валидирует: разойдутся —
     // сундук выдаст не то, что обещан.

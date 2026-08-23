@@ -5,7 +5,7 @@ import { AppState, DeviceEventEmitter, InteractionManager } from 'react-native';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { readBonusEnergy, BONUS_ENERGY_KEY } from '../app/level_gift_system';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from '../app/premium_guard';
-import { formatTimeUntilRecovery, getRecoveryIntervalMs, secondsUntilEnergyFull } from '../app/energy_system';
+import { applyAdminEnergyCommand, formatTimeUntilRecovery, getRecoveryIntervalMs, secondsUntilEnergyFull } from '../app/energy_system';
 import { readLeagueChestEnergyOverrideMs } from '../app/services/league_chest_rewards';
 import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs } from '../app/boons/boon_effects_energy';
 import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
@@ -272,6 +272,19 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
    * трата просто не проходит, пока статус неизвестен.
    */
   const energyReadyRef = useRef(false);
+  /**
+   * Из какого пула ушла последняя единица spendOne: 'bonus' или 'base'.
+   *
+   * зачем (аудит 2026-08-23, третий проход): spendOne тратит СНАЧАЛА бонус
+   * (он сгорает в полночь), а первый refundOne возвращал всегда в базу. Две
+   * беды разом: сгорающий бонус конвертировался в вечную базу (открыл поиск
+   * матча — отменил — бонус «отмыт»), а при полной базе возвращённая единица
+   * упиралась в потолок и ПРОПАДАЛА. Возврат обязан идти в тот же пул.
+   * Маркер, а не возврат значения из spendOne: сигнатуру Promise<boolean>
+   * читают девять экранов, а refund в наших потоках всегда следует сразу за
+   * своей тратой в том же JS-потоке.
+   */
+  const lastSpendPoolRef = useRef<'bonus' | 'base' | null>(null);
   const restoreTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const loadRunnerRef = useRef<(() => Promise<void>) | null>(null);
   const syncEnergyPushRef = useRef<(() => Promise<void>) | null>(null);
@@ -279,6 +292,11 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // ── Load and apply recovery ────────────────────────────────────────────────
   const runLoad = useCallback(async () => {
     try {
+      // Разовая команда админки (drain/fill) применяется ДО чтения состояния —
+      // иначе она никогда не применяется вовсе: прежний носитель
+      // (energy_system.getEnergyState) не имел живых вызовов, и админка молча
+      // врала, что энергия изменена (аудит 2026-08-23). Идемпотентно по `at`.
+      await applyAdminEnergyCommand();
       const [unlimited, dynMax, recoveryMs, bonusState] = await Promise.all([readUnlimited(), readDynMax(), readRecoveryIntervalMs(), readBonusEnergy()]);
       const bonus = bonusState?.amount ?? 0;
       bonusRef.current = bonus;
@@ -455,6 +473,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
 
     // Spend from bonus first (it expires tomorrow, use it before base energy)
     if (bonusRef.current > 0) {
+      lastSpendPoolRef.current = 'bonus';
       const newBonus = bonusRef.current - 1;
       bonusRef.current = newBonus;
       setBonusEnergy(newBonus);
@@ -474,6 +493,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       return true;
     }
 
+    lastSpendPoolRef.current = 'base';
     const now = Date.now();
     // Start fresh recovery timer when spending from full
     const newLastRecovery = energyRef.current >= dynMaxRef.current ? now : lastRecoveryRef.current;
@@ -502,6 +522,36 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // ── Refund 1 energy (старт не состоялся) ──────────────────────────────────
   const refundOne = useCallback(async (): Promise<void> => {
     if (isUnlimitedRef.current) return;
+
+    const pool = lastSpendPoolRef.current;
+    lastSpendPoolRef.current = null;
+
+    // Единица ушла из бонусного пула — туда и возвращается, ПОКА бонус жив
+    // (не истёк в полночь между тратой и возвратом; тогда честный фолбэк —
+    // база). Так сгорающий бонус не «отмывается» в вечную базу, а возврат при
+    // полной базе не пропадает об потолок.
+    if (pool === 'bonus') {
+      try {
+        const raw = await AsyncStorage.getItem(BONUS_ENERGY_KEY);
+        if (raw) {
+          const b = JSON.parse(raw) as { amount?: number; expiresAt?: number };
+          if (Number(b?.expiresAt) > Date.now()) {
+            const restored = Math.max(0, Math.floor(Number(b?.amount) || 0)) + 1;
+            await AsyncStorage.setItem(BONUS_ENERGY_KEY, JSON.stringify({ ...b, amount: restored }));
+            bonusRef.current = restored;
+            setBonusEnergy(restored);
+            void syncEnergyPushRef.current?.();
+            return;
+          }
+        } else if (bonusRef.current === 0) {
+          // Трата последней бонусной единицы удалила ключ целиком — восстановить
+          // нечего без expiresAt. Скатываемся в базу ниже: единица не пропадает.
+        }
+      } catch {
+        // Битое хранилище бонуса — не глотаем единицу, возвращаем в базу.
+      }
+    }
+
     // Потолок соблюдаем: возврат не может поднять базу выше максимума.
     const capped = Math.min(energyRef.current + 1, dynMaxRef.current);
     if (capped === energyRef.current) return;

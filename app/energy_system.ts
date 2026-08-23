@@ -119,7 +119,12 @@ const ADMIN_ENERGY_COMMAND_APPLIED_KEY = 'admin_energy_command_applied_at';
 type AdminEnergyCommand = { op?: 'drain' | 'fill'; at?: number };
 
 /** Применяет разовую админ-команду к energy_state, если она новее уже применённой. */
-async function applyAdminEnergyCommand(): Promise<void> {
+// зачем export (аудит 2026-08-23, третий проход): единственным вызывающим был
+// getEnergyState, а его боевые вызовы исчезли задолго до переделки энергии —
+// команда админки drain/fill доезжала до телефона и НИКОГДА не применялась.
+// Теперь её зовёт EnergyContext.runLoad — живой путь каждой загрузки.
+// Функция идемпотентна по метке `at`, повторные вызовы безопасны.
+export async function applyAdminEnergyCommand(): Promise<void> {
   try {
     const raw = await AsyncStorage.getItem(ADMIN_ENERGY_COMMAND_KEY);
     if (!raw) return;

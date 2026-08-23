@@ -2457,7 +2457,7 @@ function FlashcardsSwipeScreen() {
     if (!textToSpeak) return;
     void hapticTap();
     // Не форсируем voice: '' — иначе теряется выбранный пользователем TTS-голос и
-    // предзаписанный «fable»-клип, из-за чего озвучка звучала «странно» (голос
+    // предзаписанный «echo»-клип, из-за чего озвучка звучала «странно» (голос
     // движка по умолчанию). Даём speak() самому взять settings.speechVoiceId и
     // при наличии — качественный клип.
     audio.speak(textToSpeak, undefined, { language: 'en-US' });

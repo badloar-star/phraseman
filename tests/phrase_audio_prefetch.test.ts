@@ -155,6 +155,61 @@ describe('prefetchPhraseAudio', () => {
     expect(downloads).toContain('фраза 11');
   });
 
+  it('пустой вызов НЕ отменяет уже идущую пачку', async () => {
+    // Экран часто зовёт предзагрузку в момент, когда фразы ещё не пришли.
+    // Такой пустой вызов не должен убивать полезную очередь.
+    const gate: { release: (() => void) | null } = { release: null };
+    ensureImpl = async (text: string) => {
+      downloads.push(text);
+      if (text === 'фраза 0') await new Promise<void>((r) => { gate.release = r; });
+      return true;
+    };
+
+    prefetchPhraseAudio(Array.from({ length: 10 }, (_, i) => `фраза ${i}`), { netInfo: wifi });
+    await flush();
+    prefetchPhraseAudio([], { netInfo: wifi });
+    gate.release?.();
+    await flush();
+
+    expect(downloads).toHaveLength(10);
+  });
+
+  it('список без единого клипа тоже не отменяет идущую пачку', async () => {
+    const gate: { release: (() => void) | null } = { release: null };
+    ensureImpl = async (text: string) => {
+      downloads.push(text);
+      if (text === 'фраза 0') await new Promise<void>((r) => { gate.release = r; });
+      return true;
+    };
+
+    prefetchPhraseAudio(Array.from({ length: 10 }, (_, i) => `фраза ${i}`), { netInfo: wifi });
+    await flush();
+    prefetchPhraseAudio(['нет-клипа 1', 'нет-клипа 2'], { netInfo: wifi });
+    gate.release?.();
+    await flush();
+
+    expect(downloads).toHaveLength(10);
+  });
+
+  it('огромный раздел режется потолком, и усечение ВИДНО вызывающему коду', async () => {
+    // Словарь — 992 слова. Молча загрузить начало и промолчать нельзя:
+    // вызывающий должен знать, что предзагружен не весь раздел.
+    const texts = Array.from({ length: 500 }, (_, i) => `фраза ${i}`);
+    const handle = prefetchPhraseAudio(texts, { netInfo: wifi });
+    await flush();
+
+    expect(handle.truncated).toBeGreaterThan(0);
+    expect(handle.planned + handle.truncated).toBe(500);
+    expect(downloads.length).toBe(handle.planned);
+  });
+
+  it('раздел, влезающий в потолок, не считается усечённым', async () => {
+    const handle = prefetchPhraseAudio(Array.from({ length: 20 }, (_, i) => `фраза ${i}`), { netInfo: wifi });
+    await flush();
+    expect(handle.truncated).toBe(0);
+    expect(handle.planned).toBe(20);
+  });
+
   it('без NetInfo считает сеть недорогой — иначе предзагрузка молча отключилась бы', async () => {
     const texts = Array.from({ length: 12 }, (_, i) => `фраза ${i}`);
     prefetchPhraseAudio(texts, { netInfo: null });

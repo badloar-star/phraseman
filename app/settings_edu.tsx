@@ -236,7 +236,7 @@ export default function SettingsEdu() {
                     const rate = normalizeSpeechRate(v);
                     update('speechRate', rate);
                     stopAudio();
-                    // Preview the real OpenAI "fable" clip (this exact phrase has
+                    // Preview the real OpenAI "echo" clip (this exact phrase has
                     // one in PHRASE_AUDIO_URL_MAP) so the user hears the actual
                     // app voice and its true loudness, not the robotic expo-speech
                     // voice. Reverts to TTS automatically if the clip is missing.

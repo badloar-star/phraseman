@@ -37,11 +37,26 @@ const CELLULAR_LIMIT = 8;
 // Одновременных загрузок. Столько же, сколько в предзагрузке Learning V2:
 // больше — заметно отбирает канал у интерактивных запросов.
 const CONCURRENCY = 3;
-// Потолок на пачку: страховка от «раздел на тысячу фраз» — экран мог позвать
-// с неожиданно длинным списком.
+// Потолок на пачку: страховка от «раздел на тысячу фраз» — словарь, например,
+// это 992 слова. Качаем начало (человек идёт по порядку), остальное подтянется
+// обычным путём по нажатию.
 const MAX_BATCH = 120;
+// Потолок по трафику. Одного счётчика файлов мало: клипы разные — слово ~8 КБ,
+// длинная фраза квиза до 129 КБ, и 120 тяжёлых клипов дали бы ~15 МБ фоном без
+// ведома человека. Оцениваем по среднему размеру корпуса (44 КБ) и режем пачку
+// по объёму раньше, чем по счётчику.
+const AVG_CLIP_BYTES = 44 * 1024;
+const MAX_BATCH_BYTES = 3 * 1024 * 1024;
+const MAX_BATCH_BY_BYTES = Math.floor(MAX_BATCH_BYTES / AVG_CLIP_BYTES);
 
-export type PhraseAudioPrefetchHandle = Readonly<{ cancel: () => void }>;
+export type PhraseAudioPrefetchHandle = Readonly<{
+  cancel: () => void;
+  /** Сколько клипов реально поставлено в очередь. */
+  planned: number;
+  /** Сколько фраз раздела НЕ попало в пачку из-за потолка. Никакого молчаливого
+   *  усечения: вызывающий код видит, что предзагружен не весь раздел. */
+  truncated: number;
+}>;
 
 type NetInfoLike = Readonly<{
   fetch: () => Promise<Readonly<{
@@ -78,19 +93,29 @@ async function isExpensiveConnection(netInfo: NetInfoLike | null): Promise<boole
   }
 }
 
+export type PhraseAudioPrefetchPlan = Readonly<{
+  items: readonly { text: string; url: string }[];
+  /** Сколько фраз отброшено потолком пачки. >0 — часть раздела не предзагружена. */
+  truncated: number;
+}>;
+
 /** Убираем дубли и то, для чего в карте нет клипа — качать нечего. */
-function planUrls(texts: readonly string[]): { text: string; url: string }[] {
+function planUrls(texts: readonly string[]): PhraseAudioPrefetchPlan {
+  const cap = Math.min(MAX_BATCH, MAX_BATCH_BY_BYTES);
   const seen = new Set<string>();
-  const plan: { text: string; url: string }[] = [];
+  const items: { text: string; url: string }[] = [];
+  let considered = 0;
+
   for (const text of texts) {
     if (typeof text !== 'string' || !text.trim()) continue;
     const url = getPhraseAudioUrl(text);
     if (!url || seen.has(url)) continue;
     seen.add(url);
-    plan.push({ text, url });
-    if (plan.length >= MAX_BATCH) break;
+    considered += 1;
+    if (items.length < cap) items.push({ text, url });
   }
-  return plan;
+
+  return Object.freeze({ items, truncated: Math.max(0, considered - items.length) });
 }
 
 /**
@@ -106,22 +131,25 @@ export function prefetchPhraseAudio(
   texts: readonly string[],
   options: Readonly<{ netInfo?: NetInfoLike | null }> = {},
 ): PhraseAudioPrefetchHandle {
+  // План строим ДО смены поколения. Иначе пустой вызов (экран отрисовался
+  // раньше, чем пришли фразы) молча обрывал бы уже идущую полезную пачку —
+  // качать нечего, а прошлую очередь мы при этом убили.
+  const plan = planUrls(texts);
+  if (plan.items.length === 0 || getNetStatus() === 'offline') {
+    return Object.freeze({ cancel: () => {}, planned: 0, truncated: plan.truncated });
+  }
+
   // Новая пачка обесценивает прошлую: экран сменился — прошлые файлы не нужны.
   activeGeneration += 1;
   const generation = activeGeneration;
   const isCurrent = () => generation === activeGeneration;
-
-  const plan = planUrls(texts);
-  if (plan.length === 0 || getNetStatus() === 'offline') {
-    return Object.freeze({ cancel: () => {} });
-  }
 
   void (async () => {
     const netInfo = options.netInfo !== undefined ? options.netInfo : loadNetInfo();
     const expensive = await isExpensiveConnection(netInfo);
     if (!isCurrent()) return;
 
-    const queue = expensive ? plan.slice(0, CELLULAR_LIMIT) : plan;
+    const queue = expensive ? plan.items.slice(0, CELLULAR_LIMIT) : plan.items;
 
     // Голова — последовательно и вне лизинга: это то, что человек услышит
     // первым, ей нельзя ждать в общей фоновой очереди.
@@ -162,6 +190,8 @@ export function prefetchPhraseAudio(
     cancel: () => {
       if (generation === activeGeneration) activeGeneration += 1;
     },
+    planned: plan.items.length,
+    truncated: plan.truncated,
   });
 }
 

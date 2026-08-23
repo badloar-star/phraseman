@@ -167,7 +167,7 @@ export function useAudio() {
       : settingsVoice ||
         (language.toLowerCase().startsWith('en') ? (peekEnVoiceId() ?? '').trim() : '');
 
-    // Prefer the high-quality OpenAI "fable" clip when one exists for this exact
+    // Prefer the high-quality OpenAI "echo" clip when one exists for this exact
     // text, the language is English (clips are EN-only), and the caller did not
     // force a specific system voice. Falls back to expo-speech on any miss/error.
     const isEnglish = language.toLowerCase().startsWith('en');

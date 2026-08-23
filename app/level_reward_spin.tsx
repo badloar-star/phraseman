@@ -111,29 +111,37 @@ export default function LevelRewardSpinScreen() {
     void acknowledgeLocalLevelSpin(requestId).catch(() => {});
   }, [receipt?.requestId]);
 
-  const handleRewardPreviewClaim = useCallback(async () => {
+  // зачем: владелец (2026-08-23) — раздел спина НЕ должен закрываться после
+  // получения подарка. Раньше «ГОТОВО» уводило в «Подарки» даже при остатке
+  // спинов: человек крутил, его выкидывало, он возвращался руками. Теперь
+  // модалка гаснет, экран остаётся, барабан сам сбрасывается на receipt=null.
+  const settleRewardPreview = useCallback(async (requestId: string | null) => {
     if (resultActionBusyRef.current) return;
     const accountToken = captureAccountGeneration();
-    const requestId = receipt?.requestId;
-    if (!requestId || !isCurrentAccountGeneration(accountToken)) return;
+    if (!isCurrentAccountGeneration(accountToken)) return;
     resultActionBusyRef.current = true;
+    // Оптимистично: модалка гаснет мгновенно, журнал догоняет фоном —
+    // награда уже сохранена локально в момент claim, ждать нечего.
+    setRewardPreviewVisible(false);
+    setReceipt(null);
+    setPhase((balance ?? 0) > 0 ? 'idle' : 'empty');
     try {
-      // The reward was durably saved in the device journal at claim time.
-      // This finalizes the one winner modal and takes the player to Gifts.
-      await acknowledgeLocalLevelSpin(requestId);
-      if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
-      setRewardPreviewVisible(false);
-      setReceipt(null);
-      safeRouterBack(router, '/level_gifts_inventory' as never);
+      if (requestId) await acknowledgeLocalLevelSpin(requestId);
+    } catch {
+      // Журнал переживёт: recoverLocalLevelSpin подберёт неподтверждённый чек
+      // при следующем входе. Экран из-за этого ломать нельзя.
     } finally {
       resultActionBusyRef.current = false;
     }
-  }, [receipt?.requestId, router]);
+  }, [balance]);
+
+  const handleRewardPreviewClaim = useCallback(() => {
+    void settleRewardPreview(receipt?.requestId ?? null);
+  }, [receipt?.requestId, settleRewardPreview]);
 
   const handleRewardPreviewClose = useCallback(() => {
-    setRewardPreviewVisible(false);
-    safeRouterBack(router, '/level_gifts_inventory' as never);
-  }, [router]);
+    void settleRewardPreview(receipt?.requestId ?? null);
+  }, [receipt?.requestId, settleRewardPreview]);
 
   const handleResultAction = useCallback(async () => {
     if (resultActionBusyRef.current) return;
@@ -150,14 +158,16 @@ export default function LevelRewardSpinScreen() {
         await run(false);
         return;
       }
-      safeRouterBack(router, '/level_gifts_inventory' as never);
+      // зачем: спинов больше нет — но экран всё равно остаётся открытым.
+      // Уход отсюда делает только стрелка «Назад» в шапке.
+      setPhase('empty');
     } catch {
       if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
       setPhase((balance ?? 0) > 0 ? 'idle' : 'empty');
     } finally {
       resultActionBusyRef.current = false;
     }
-  }, [balance, receipt, router, run]);
+  }, [balance, receipt, run]);
 
   return (
     <SafeAreaView

@@ -264,9 +264,17 @@ function AiDialogSession() {
   const voiceInputGenerationRef = useRef(0);
   const voiceInputSessionRef = useRef(0);
   const holdPressActiveRef = useRef(false);
-  // Последний распознанный текст: голосовой ввод «зажми и продиктуй» вставляет
-  // его в поле по завершении записи (авто-отправки нет — только ручная кнопка).
+  // Последний распознанный текст: голосовой ввод «зажми и продиктуй» отправляет
+  // его АВТОМАТИЧЕСКИ, как только палец отпущен и движок закончил распознавание.
   const latestTranscriptRef = useRef('');
+  // true — палец отпустили НАМЕРЕННО (а не отмена: уход с экрана, фон, ошибка).
+  // зачем: владелец просил «отпустил микрофон — реплика сразу ушла». Отправлять
+  // можно ТОЛЬКО по осознанному отпусканию, иначе свёрнутое приложение или уход
+  // назад молча слали бы реплику и съедали дневную квоту.
+  const voiceAutoSendArmedRef = useRef(false);
+  // Свежая ссылка на send: startVoiceInput объявлен ВЫШЕ send, прямой вызов дал бы
+  // «used before declaration». Ref обновляется на каждый рендер и всегда актуален.
+  const sendRef = useRef<(text: string) => void>(() => {});
   // Watchdog против молчащего распознавателя (как в SpeakingPanel): Android-сервис
   // может принять start() и не прислать НИ start, НИ result, НИ error — без
   // таймера кнопка микрофона зависла бы в «Слушаю…» навсегда.
@@ -323,6 +331,14 @@ function AiDialogSession() {
   const [verdictHidden, setVerdictHidden] = useState(false);
   // Подсказка «Что сделать дальше» над полем ввода: свёрнута по умолчанию.
   const [hintOpen, setHintOpen] = useState(false);
+  // Кнопка подсказки СКРЫТА, пока человек не застрял: появляется после 3 ходов
+  // подряд без новой выполненной цели сценария и дальше остаётся видна всегда.
+  // зачем: владелец просил не показывать её сразу — новичок и так справляется
+  // без подсказок, а постоянно видимая кнопка отвлекает и намекает на сложность.
+  // Не gameEnabled (нет objectives, например companion) → подсказка ни к чему
+  // не привязана и видна как раньше.
+  const [hintVisible, setHintVisible] = useState(!gameEnabled);
+  const stuckTurnsRef = useRef(0);
 
   // Открыть/скрыть перевод реплики i. Первый показ новой реплики тратит лимит и
   // зовёт сервер; дальше флип идёт из кэша мгновенно. Безлимитно — владелец
@@ -496,6 +512,17 @@ function AiDialogSession() {
       restoreLoudPlaybackMode();
       cleanupVoiceInputListeners();
       if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
+      // АВТООТПРАВКА: движок закончил, финальный текст уже в latest.
+      // зачем: владелец просил «отпустил микрофон — реплика сразу ушла», раньше
+      // приходилось дополнительно жать стрелку. Отправляем ТОЛЬКО если палец
+      // отпустили намеренно (armed) — отмена, уход с экрана и фон сюда не
+      // попадают: там поднимается voiceInputSessionRef и isCurrentSession() уже
+      // отсёк бы вызов. Пустой текст (не расслышало) молча возвращает микрофон.
+      if (!voiceAutoSendArmedRef.current) return;
+      voiceAutoSendArmedRef.current = false;
+      const spoken = latest.trim();
+      if (!spoken) return;
+      sendRef.current(spoken);
     });
     const errorSub = speechModule.addListener('error', () => {
       if (!isCurrentSession()) return;
@@ -696,9 +723,20 @@ function AiDialogSession() {
         setObjectivesMet((prev) => {
           const next = new Set(prev);
           ts.objectivesMet.forEach((id) => next.add(id));
+          // Прогресс есть, если этот ход добавил хотя бы одну НОВУЮ цель —
+          // не по факту непустого списка (он накопительный от сервера и был бы
+          // непустым в любом последующем ходе, даже без нового прогресса).
+          if (next.size > prev.size) stuckTurnsRef.current = 0;
+          else stuckTurnsRef.current += 1;
           return next;
         });
+      } else {
+        stuckTurnsRef.current += 1;
       }
+      // зачем: владелец просил показывать подсказку только после 3 ходов подряд
+      // без прогресса — не сразу и не по первой же неудаче. Once shown, стоит
+      // видимой всегда (setHintVisible(false) здесь не бывает).
+      if (stuckTurnsRef.current >= 3) setHintVisible(true);
       if (isTerminalOutcome(ts.outcome)) {
         setOutcome(ts.outcome);
         setCharacterReaction(ts.characterReaction);
@@ -818,11 +856,17 @@ function AiDialogSession() {
     [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, userExchanges, buildHistory, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState],
   );
 
-  // Голосовой ввод «зажми и продиктуй»: держим кнопку, пока говорим, распознанный
-  // текст живёт в поле — отправка всегда ручная (кнопка отправки/Enter).
+  // Держим ссылку свежей: обработчик 'end' голосового ввода объявлен ВЫШЕ send и
+  // зовёт его через этот ref (см. voiceAutoSendArmedRef).
+  sendRef.current = (spoken: string) => void send(spoken);
+
+  // Голосовой ввод «зажми и продиктуй»: держим кнопку, пока говорим. Отпустил —
+  // распознанная реплика уходит САМА, без нажатия стрелки (требование владельца).
   const handleMicPressIn = useCallback(() => {
     if (sending || ended) return;
     holdPressActiveRef.current = true;
+    // Новое зажатие обнуляет взвод от прошлой попытки.
+    voiceAutoSendArmedRef.current = false;
     latestTranscriptRef.current = '';
     void startVoiceInput();
   }, [sending, ended, startVoiceInput]);
@@ -833,6 +877,8 @@ function AiDialogSession() {
     voiceInputGenerationRef.current += 1;
     clearRecognizerWatchdog();
     if (voiceInputStatusRef.current === 'requesting') {
+      // Отпустили ДО начала слушания — говорить было нечего, отправлять нечего.
+      voiceAutoSendArmedRef.current = false;
       voiceInputSessionRef.current += 1;
       cleanupVoiceInputListeners();
       try {
@@ -844,7 +890,13 @@ function AiDialogSession() {
       setVoiceInputStatus('idle');
       return;
     }
-    if (voiceInputStatusRef.current !== 'listening') return;
+    if (voiceInputStatusRef.current !== 'listening') {
+      voiceAutoSendArmedRef.current = false;
+      return;
+    }
+    // Осознанное отпускание во время слушания — единственный случай, когда
+    // распознанный текст улетает сам (см. обработчик 'end').
+    voiceAutoSendArmedRef.current = true;
     setVoiceInputStatus('finishing');
     try {
       speechModule?.stop();
@@ -1498,6 +1550,10 @@ function AiDialogSession() {
 
                   {isUser ? (
                     // Пузырь пользователя — цветной, справа, с тенью и «хвостиком».
+                    // зачем (аудит 2026-08-23): flexShrink рядом с пузырём собеседника
+                    // защищает от Android-бага (maxWidth без flexShrink внутри row
+                    // схлопывает текст в нулевую ширину) — тот же родитель-row, та же
+                    // защита нужна и здесь, иначе своя реплика могла бы пропасть.
                     <View
                       style={{
                         backgroundColor: t.accent,
@@ -1506,6 +1562,7 @@ function AiDialogSession() {
                         paddingHorizontal: 16,
                         paddingVertical: 11,
                         maxWidth: '82%',
+                        flexShrink: 1,
                         shadowColor: t.shadowDark,
                         shadowOpacity: 0.25,
                         shadowRadius: 6,
@@ -1984,7 +2041,11 @@ function AiDialogSession() {
               {/* Подсказка тренера «Что сделать дальше»: свёрнутая пилюля над полем
                   ввода. Текст берётся из каталога сценария — раскрытие мгновенное,
                   без сети. зачем: застрявший новичок получает следующий шаг в один
-                  тап, не выходя из диалога. */}
+                  тап, не выходя из диалога.
+                  Кнопка СКРЫТА, пока человек не застрял (см. hintVisible/
+                  stuckTurnsRef выше) — новичок, который и так справляется,
+                  не должен видеть намёк на сложность с первого сообщения. */}
+              {hintVisible && (
               <View style={{ marginBottom: 8 }}>
                 <TouchableOpacity
                   onPress={() => {
@@ -2046,6 +2107,7 @@ function AiDialogSession() {
                   </Text>
                 )}
               </View>
+              )}
               <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
               <TextInput
                 value={input}
@@ -2358,9 +2420,19 @@ function AiDialogSession() {
 // снаружи, а не внутри компонента: внутри несколько точек отправки (send/retry),
 // одна внешняя точка входа надёжнее.
 export default function AiDialogSessionRoute() {
+  // зачем (аудит 2026-08-23): «Ещё раз» в полноэкранном финале делает
+  // router.replace на тот же маршрут с новым/тем же scenarioId — expo-router
+  // переиспользует уже смонтированный компонент, а весь игровой state
+  // (mood/objectivesMet/outcome/ended/xpAwarded/verdictHidden/messages/…)
+  // объявлен через useState без привязки к scenario.id и ничем не сбрасывался.
+  // Итог: после «Ещё раз» экран мог тут же показать старый вердикт или чужое
+  // настроение. key=scenarioId форсирует полный ремаунт — самый безопасный
+  // фикс, без риска гонок между десятком независимых стейтов/эффектов.
+  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
+  const sessionKey = `${params.scenarioId ?? ''}:${params.lessonId ?? ''}`;
   return (
     <AiDialogConsentGate>
-      <AiDialogSession />
+      <AiDialogSession key={sessionKey} />
     </AiDialogConsentGate>
   );
 }

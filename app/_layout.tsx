@@ -2659,32 +2659,31 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
         const val = forceOnboardingForQA ? null : (startupIdentity.get('onboarding_done') ?? null);
 
-        let handledByReferrer = false;
+        // зачем (аудит скорости 2026-08-22): ожидание Play Install Referrer
+        // (await с гонкой setTimeout 2000мс) стояло ДО setReady(true) и держало
+        // сплэш до 2 секунд дольше на первом запуске Android. Колбэк при этом
+        // ВСЕГДА резолвился false — управление потоком от него не зависело,
+        // а код реферала и так уходит в фон через captureReferralCodeIfNew.
+        // Оставляем захват кода фоновым, первый кадр больше не ждёт сеть Play.
         if (!val && Platform.OS === 'android' && !IS_EXPO_GO) {
-          handledByReferrer = await new Promise<boolean>((resolve) => {
-            const t = setTimeout(() => resolve(false), 2000);
-            try {
-              PlayInstallReferrer.getInstallReferrerInfo((details: any, error: any) => {
-                clearTimeout(t);
-                if (!error && details?.installReferrer) {
-                  const ir = String(details.installReferrer);
-                  const refM = ir.match(/(?:^|[&])ref=([A-Z0-9]{4,12})/i);
-                  if (refM?.[1]) {
-                    void import('./referral_bootstrap')
-                      .then((m) => m.captureReferralCodeIfNew(refM[1].trim().toUpperCase(), 'play_install'))
-                      .catch(() => {});
-                  }
+          try {
+            PlayInstallReferrer.getInstallReferrerInfo((details: any, error: any) => {
+              if (!error && details?.installReferrer) {
+                const ir = String(details.installReferrer);
+                const refM = ir.match(/(?:^|[&])ref=([A-Z0-9]{4,12})/i);
+                if (refM?.[1]) {
+                  void import('./referral_bootstrap')
+                    .then((m) => m.captureReferralCodeIfNew(refM[1].trim().toUpperCase(), 'play_install'))
+                    .catch(() => {});
                 }
-                resolve(false);
-              });
-            } catch {
-              clearTimeout(t);
-              resolve(false);
-            }
-          });
+              }
+            });
+          } catch {
+            // Модуль реферера недоступен (нестандартная сборка) — не критично.
+          }
         }
 
-        const willShowOnboarding = forceOnboardingForQA || (!handledByReferrer && !val);
+        const willShowOnboarding = forceOnboardingForQA || !val;
         onboardingPathRef.current = willShowOnboarding;
 	        if (willShowOnboarding) {
 	          deferLessonPrimeRef.current = true;
@@ -2692,9 +2691,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             shouldPrimeLessonsAfterReveal = true;
 	        }
 
-        if (!handledByReferrer) {
-          setShow(willShowOnboarding);
-        }
+        setShow(willShowOnboarding);
       } catch (e) {
         if (__DEV__) console.warn('[_layout]', e);
       }

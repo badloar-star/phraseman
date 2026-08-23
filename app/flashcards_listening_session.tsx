@@ -42,6 +42,7 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { triLang } from '../constants/i18n';
 import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
 import { flashcardContentLang } from './spanish_content_gate';
@@ -774,6 +775,18 @@ export default function FlashcardsListeningSession() {
               >
                 <Ionicons name="settings-outline" size={20} color={t.textMuted} />
               </TouchableOpacity>
+              {/* зачем: слушание — единственный режим, где ошибка чаще в ОЗВУЧКЕ,
+                  а не в тексте (в форме репорта для этого есть отдельная категория
+                  «звук и произношение»), и сообщить о ней было негде. */}
+              <ReportErrorButton
+                screen="flashcards_listening"
+                dataId={`flashcard_${card.id ?? 'unknown'}`}
+                dataText={`EN: ${card.en}
+RU: ${card.translation}`}
+                variant="icon-flag"
+                accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+                testID="fc-listen-report"
+              />
             </View>
           </View>
 

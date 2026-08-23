@@ -46,6 +46,7 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { triLang } from '../constants/i18n';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -818,6 +819,21 @@ export default function FlashcardsBlitzSession() {
               >
                 <Ionicons name="albums-outline" size={20} color={t.textMuted} />
               </TouchableOpacity>
+              {/* зачем: блиц показывает английскую фразу и переводы-дистракторы,
+                  то есть контент, в котором бывает ошибка, — а пожаловаться было
+                  негде (в свайпе флаг есть, здесь его забыли). Флаг только когда
+                  вопрос на экране: жаловаться на пустоту не на что. */}
+              {question ? (
+                <ReportErrorButton
+                  screen="flashcards_blitz"
+                  dataId={`flashcard_${question.card.id ?? 'unknown'}`}
+                  dataText={`EN: ${question.card.en}
+RU: ${question.card.translation}`}
+                  variant="icon-flag"
+                  accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+                  testID="fc-blitz-report"
+                />
+              ) : null}
             </View>
           </View>
 

@@ -42,6 +42,7 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
+import ReportErrorButton from '../components/ReportErrorButton';
 import SpeakingPanel, { buildSpeakingPanelTheme, type SpeakingPanelStatus } from '../components/SpeakingPanel';
 import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
 import SpeakingInlineResultStars from '../components/SpeakingInlineResultStars';
@@ -594,6 +595,20 @@ export default function FlashcardsSpeakingSession() {
         >
           <Ionicons name="albums-outline" size={20} color={t.textMuted} />
         </TouchableOpacity>
+        {/* зачем: говорение сверяет речь с эталонной фразой card.en — если эталон
+            неверен, «попасть» в него нельзя в принципе, и человек застревает.
+            Флаг только в живом состоянии: в скелетоне карточки ещё нет. */}
+        {interactive && card ? (
+          <ReportErrorButton
+            screen="flashcards_speaking"
+            dataId={`flashcard_${card.id ?? 'unknown'}`}
+            dataText={`EN: ${card.en}
+RU: ${card.translation}`}
+            variant="icon-flag"
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
+            testID="fc-speak-report"
+          />
+        ) : null}
       </View>
     </View>
   );

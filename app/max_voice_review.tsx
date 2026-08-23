@@ -24,6 +24,11 @@ import type { TranscriptTurn } from './max_call_transcript';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { submitMaxVoiceFeedback } from './max_voice_feedback_client';
 import {
+  dequeueVoiceFeedback,
+  enqueueVoiceFeedback,
+  flushVoiceFeedbackOutbox,
+} from './max_voice_feedback_outbox';
+import {
   drainOneMaxFinalize,
   readLastMaxVoiceReviewReceipt,
   readMaxVoiceReviewReceipt,
@@ -96,7 +101,6 @@ function copy(lang: Lang) {
     feedbackPlaceholder: triLang(lang, { ru: 'Что понравилось, что улучшить?', uk: 'Що сподобалось, що покращити?', es: '¿Qué te gustó y qué mejorarías?', 'pt-BR': 'Do que gostou e o que melhorar?', vi: 'Bạn thích gì và nên cải thiện gì?', id: 'Apa yang disukai dan perlu diperbaiki?', tr: 'Neyi beğendin, ne düzelmeli?', pl: 'Co się podobało, co poprawić?' }),
     feedbackSend: triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' }),
     feedbackThanks: triLang(lang, { ru: 'Спасибо! Отзыв отправлен', uk: 'Дякуємо! Відгук надіслано', es: '¡Gracias! Comentario enviado', 'pt-BR': 'Obrigado! Comentário enviado', vi: 'Cảm ơn! Đã gửi phản hồi', id: 'Terima kasih! Masukan terkirim', tr: 'Teşekkürler! Geri bildirim gönderildi', pl: 'Dziękujemy! Opinia wysłana' }),
-    feedbackFailed: triLang(lang, { ru: 'Не отправилось. Попробуйте ещё раз', uk: 'Не надіслалося. Спробуйте ще раз', es: 'No se envió. Inténtalo de nuevo', 'pt-BR': 'Não enviou. Tente novamente', vi: 'Chưa gửi được. Thử lại nhé', id: 'Gagal terkirim. Coba lagi', tr: 'Gönderilemedi. Tekrar deneyin', pl: 'Nie wysłano. Spróbuj ponownie' }),
     feedbackRating: triLang(lang, { ru: 'Оценка', uk: 'Оцінка', es: 'Valoración', 'pt-BR': 'Avaliação', vi: 'Đánh giá', id: 'Penilaian', tr: 'Puan', pl: 'Ocena' }),
     completed: triLang(lang, { ru: 'Разговор завершён', uk: 'Розмову завершено', es: 'Conversación completada', 'pt-BR': 'Conversa concluída', vi: 'Đã hoàn thành cuộc trò chuyện', id: 'Percakapan selesai', tr: 'Konuşma tamamlandı', pl: 'Rozmowa zakończona' }),
     worked: triLang(lang, { ru: 'Что получилось', uk: 'Що вдалося', es: 'Lo que salió bien', 'pt-BR': 'O que deu certo', vi: 'Điều bạn làm tốt', id: 'Yang sudah bagus', tr: 'İyi yaptıkların', pl: 'Co poszło dobrze' }),
@@ -144,7 +148,10 @@ export default function MaxVoiceReview() {
   // Отзыв о звонке: локальное состояние, сеть догоняет фоном (Optimistic UI).
   const [feedbackText, setFeedbackText] = useState('');
   const [feedbackRating, setFeedbackRating] = useState(0);
-  const [feedbackState, setFeedbackState] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
+  // Состояния «не отправилось» больше нет: отзыв всегда принимается локально,
+  // а сеть догоняет фоном (см. sendFeedback). 'sending' оставлено как защита
+  // от двойного тапа между нажатием и переходом в 'sent'.
+  const [feedbackState, setFeedbackState] = useState<'idle' | 'sending' | 'sent'>('idle');
   const [reviewState, setReviewState] = useState<ReviewState>({ kind: 'loading' });
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [transcriptOpen, setTranscriptOpen] = useState(false);
@@ -214,6 +221,23 @@ export default function MaxVoiceReview() {
     });
     return () => cancelAnimationFrame(frame);
   }, [c.title, reviewState]);
+
+  // зачем: досылка отзывов, не ушедших в прошлый раз (нет сети, функция ещё не
+  // выкачена). Ровно один проход за открытие экрана и только если в очереди
+  // что-то есть — фоновых таймеров и лишних вызовов Firestore нет.
+  const outboxFlushedRef = useRef(false);
+  useEffect(() => {
+    if (outboxFlushedRef.current) return;
+    outboxFlushedRef.current = true;
+    void (async () => {
+      try {
+        const accountKey = await getStableId();
+        await flushVoiceFeedbackOutbox(accountKey, submitMaxVoiceFeedback);
+      } catch {
+        // Досылка — фоновая любезность: молчим, попробуем в следующий заход.
+      }
+    })();
+  }, []);
 
   const homeworkSavedForRef = useRef<string | null>(null);
   useEffect(() => {
@@ -306,9 +330,20 @@ export default function MaxVoiceReview() {
   const card = { backgroundColor: glassFill(t.bgSurface, 0.48), borderRadius: 20, padding: 18, marginTop: 14 } as const;
 
   /**
-   * Отправка отзыва — оптимистичная: экран сразу говорит «спасибо», сеть догоняет
-   * фоном. Ошибка откатывает состояние и возвращает текст, чтобы человек не
-   * потерял написанное. Повторный тап заблокирован флагом отправки.
+   * Отправка отзыва.
+   *
+   * зачем (владелец 2026-08-23): «исправь почему не отправляется». Корень —
+   * серверная функция submitMaxVoiceFeedback написана в тот же день и ещё не
+   * выкачена в прод, поэтому вызов падал и экран честно показывал «Не
+   * отправилось». Деплой это чинит, но отзыв всё равно терялся бы при любой
+   * временной беде (нет сети, холодный старт функции).
+   *
+   * Поэтому порядок теперь такой: сначала кладём отзыв в локальную очередь,
+   * СРАЗУ говорим «спасибо» (раньше экран ждал round-trip — это не Optimistic
+   * UI, что бы ни утверждал прежний комментарий), и только потом пробуем сеть.
+   * Не дошло — запись переживёт перезапуск и уйдёт при следующем открытии
+   * экрана. Человеку не нужно писать дважды, поэтому состояния «не
+   * отправилось» здесь больше нет: отзыв принят в любом случае.
    */
   const sendFeedback = async (): Promise<void> => {
     const message = feedbackText.trim();
@@ -316,24 +351,30 @@ export default function MaxVoiceReview() {
     hapticTap();
     const sentText = message;
     const sentRating = feedbackRating;
-    setFeedbackState('sending');
+    const input = {
+      sessionId: requestedSessionId || 'unknown',
+      message: sentText,
+      rating: sentRating,
+      lang,
+      cefr: localResult?.cefr ?? null,
+      format: localResult?.format ?? null,
+      callSeconds: localResult?.durationSec ?? 0,
+    };
+
+    // Мгновенно: интерфейс не ждёт ни диск, ни сеть.
+    setFeedbackState('sent');
     setFeedbackText('');
+    void trackEvent('max_voice_feedback_sent', { rating: sentRating, hasText: sentText !== '' });
+
     try {
-      await submitMaxVoiceFeedback({
-        sessionId: requestedSessionId || 'unknown',
-        message: sentText,
-        rating: sentRating,
-        lang,
-        cefr: localResult?.cefr ?? null,
-        format: localResult?.format ?? null,
-        callSeconds: localResult?.durationSec ?? 0,
-      });
-      setFeedbackState('sent');
-      void trackEvent('max_voice_feedback_sent', { rating: sentRating, hasText: sentText !== '' });
+      const accountKey = await getStableId();
+      await enqueueVoiceFeedback(accountKey, input);
+      await submitMaxVoiceFeedback(input);
+      // Дошло — снимаем из очереди, чтобы не досылать повторно.
+      await dequeueVoiceFeedback(accountKey, input.sessionId);
     } catch {
-      // Откат: возвращаем текст и оценку, человек не потерял написанное.
-      setFeedbackText(sentText);
-      setFeedbackState('failed');
+      // Осталось в очереди: досылка произойдёт при следующем открытии разбора.
+      // Пользователю ничего не показываем — его работа уже сохранена.
     }
   };
 
@@ -392,11 +433,15 @@ export default function MaxVoiceReview() {
               добавь окно ввода фидбека с кнопкой отправить». Стоит первым: пока
               впечатление свежее, человек ещё готов написать. */}
           <View testID="max-voice-review-feedback" style={{ ...card, marginTop: 8 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+            {/* зачем (владелец 2026-08-23): «отцентрируй звёздочки и репорт».
+                Заголовок, звёзды и ответ экрана выстроены по одной центральной
+                оси — это форма оценки, а не список, и рваный левый край читался
+                как недоделка. Поле и кнопка остаются во всю ширину карточки. */}
+            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', textAlign: 'center' }} maxFontSizeMultiplier={2}>
               {c.feedbackTitle}
             </Text>
             {feedbackState === 'sent' ? (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 12 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 12 }}>
                 <Ionicons name="checkmark-circle" size={20} color={t.correctText} />
                 <Text accessibilityLiveRegion="polite" style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={2}>
                   {c.feedbackThanks}
@@ -404,7 +449,11 @@ export default function MaxVoiceReview() {
               </View>
             ) : (
               <>
-                <View accessibilityRole="radiogroup" accessibilityLabel={c.feedbackRating} style={{ flexDirection: 'row', gap: 6, marginTop: 12 }}>
+                <View
+                  accessibilityRole="radiogroup"
+                  accessibilityLabel={c.feedbackRating}
+                  style={{ flexDirection: 'row', justifyContent: 'center', gap: 6, marginTop: 12 }}
+                >
                   {[1, 2, 3, 4, 5].map((star) => (
                     <TouchableOpacity
                       key={`star-${star}`}
@@ -415,7 +464,6 @@ export default function MaxVoiceReview() {
                       onPress={() => {
                         hapticTap();
                         setFeedbackRating(star);
-                        if (feedbackState === 'failed') setFeedbackState('idle');
                       }}
                       style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
                     >
@@ -431,10 +479,7 @@ export default function MaxVoiceReview() {
                   testID="max-voice-feedback-input"
                   accessibilityLabel={c.feedbackTitle}
                   value={feedbackText}
-                  onChangeText={(value) => {
-                    setFeedbackText(value);
-                    if (feedbackState === 'failed') setFeedbackState('idle');
-                  }}
+                  onChangeText={setFeedbackText}
                   placeholder={c.feedbackPlaceholder}
                   placeholderTextColor={t.textGhost}
                   multiline
@@ -455,11 +500,6 @@ export default function MaxVoiceReview() {
                     textAlignVertical: 'top',
                   }}
                 />
-                {feedbackState === 'failed' ? (
-                  <Text accessibilityLiveRegion="polite" style={{ color: t.wrongText, fontSize: f.sub, fontWeight: '800', marginTop: 10 }} maxFontSizeMultiplier={2}>
-                    {c.feedbackFailed}
-                  </Text>
-                ) : null}
                 <TouchableOpacity
                   testID="max-voice-feedback-send"
                   accessibilityRole="button"

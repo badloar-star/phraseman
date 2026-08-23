@@ -91,7 +91,7 @@ describe('MAX tutor live components', () => {
         lang="ru"
       />,
     );
-    expect(view.getByText('Свободный разговор')).toBeTruthy();
+    expect(view.getByText(/Свободный разговор/)).toBeTruthy();
     expect(view.getByText('Weekend plans')).toBeTruthy();
     expect(view.queryByText('hidden')).toBeNull();
     expect(view.queryByText('hidden scene')).toBeNull();
@@ -108,7 +108,7 @@ describe('MAX tutor live components', () => {
         lang="ru"
       />,
     );
-    expect(view.getByText('Сценка')).toBeTruthy();
+    expect(view.getByText(/Сценка/)).toBeTruthy();
     expect(view.getByText('Перенос встречи')).toBeTruthy();
     expect(view.queryByText('Вежливо предложить другое время')).toBeNull();
   });

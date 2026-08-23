@@ -53,8 +53,54 @@ export function projectMaxReview(receipt: MaxVoiceReviewReceiptV1): MaxReviewPro
   };
 }
 
+/**
+ * Третье лицо → «вы» в уже сохранённых разборах.
+ *
+ * зачем (владелец 2026-08-23): «на экране завершения не должно быть написано
+ * Learner, там должно быть "вы" и склонение текста соответственно». Источник
+ * лечится на сервере (метка говорящего в транскрипте + промпт), но разборы,
+ * записанные ДО этой правки, лежат в Firestore навсегда и переписать их
+ * нечем — правим на чтении, здесь.
+ *
+ * Глагол обязан согласоваться: «Learner выбрал имя» → «Вы выбрали имя».
+ * Прошедшее время в русском выдаёт род окончанием (-л/-ла/-ло), у «вы» его
+ * быть не должно, поэтому меняем и подлежащее, и следующий за ним глагол.
+ */
+// Границы слова: в JS `\b` считается по [A-Za-z0-9_] и с кириллицей НЕ даёт
+// границу — «Ученик» и «ученика» просто не находились. Явные lookaround по
+// «не-букве» работают одинаково для обоих алфавитов.
+const NOT_BEFORE = '(?<![\\p{L}\\p{N}])';
+const NOT_AFTER = '(?![\\p{L}\\p{N}])';
+const SUBJECT = '(?:Learners?|The learner|[Уу]ченик|[Уу]ченица|[Сс]тудент|[Сс]тудентка|[Уу]чащийся)';
+const OBLIQUE = '(?:ученика|ученику|учеником|ученике|студента|студенту|студентом|студенте)';
+
+/** «поздоровался/поздоровалась» → «поздоровались» (возвратный глагол). */
+const SUBJECT_REFLEXIVE_VERB = new RegExp(
+  `${NOT_BEFORE}${SUBJECT}${NOT_AFTER}\\s+(\\p{L}+?)(?:лся|лась|лось)${NOT_AFTER}`,
+  'gu',
+);
+/** «выбрал/выбрала» → «выбрали» (обычный глагол прошедшего времени). */
+const SUBJECT_PLAIN_VERB = new RegExp(
+  `${NOT_BEFORE}${SUBJECT}${NOT_AFTER}\\s+(\\p{L}+?)(?:ла|ло|л)${NOT_AFTER}`,
+  'gu',
+);
+const SUBJECT_ALONE = new RegExp(`${NOT_BEFORE}${SUBJECT}${NOT_AFTER}`, 'gu');
+const SUBJECT_OBLIQUE = new RegExp(`${NOT_BEFORE}${OBLIQUE}${NOT_AFTER}`, 'giu');
+/** «Вы» строчное только в середине предложения, не после точки и не в начале. */
+const MID_SENTENCE_YOU = /(?<=[^.!?\n][  ,;:—-]\s*)(?<![\p{L}\p{N}])Вы(?![\p{L}\p{N}])/gu;
+
+export function humanizeReviewSubject(value: string): string {
+  return value
+    .replace(SUBJECT_REFLEXIVE_VERB, (_match, stem: string) => `Вы ${stem}лись`)
+    .replace(SUBJECT_PLAIN_VERB, (_match, stem: string) => `Вы ${stem}ли`)
+    // Косвенные падежи раньше подлежащего: «ученику» не должно стать «Вы».
+    .replace(SUBJECT_OBLIQUE, 'вас')
+    .replace(SUBJECT_ALONE, 'Вы')
+    .replace(MID_SENTENCE_YOU, 'вы');
+}
+
 export function compactReviewText(value: string, maxChars: number): string {
-  const normalized = value.trim().replace(/\s+/gu, ' ');
+  const normalized = humanizeReviewSubject(value).trim().replace(/\s+/gu, ' ');
   if (normalized.length <= maxChars) return normalized;
   const budget = Math.max(2, Math.floor(maxChars) - 1);
   const head = normalized.slice(0, budget);

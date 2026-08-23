@@ -79,11 +79,28 @@ describe('MAX tutor live-board call integration', () => {
     expect(session).toMatch(/event\.type === 'response_done'[\s\S]{0,180}event\.type === 'reconnect_started'/);
   });
 
+  // зачем (владелец 2026-08-23): «убери вот эту плашку вверху MAX». Двухстрочная
+  // плашка «Дневной запас MAX» из шапки удалена — она не влезала в слот 116px,
+  // подпись переносилась, а число («2 мин») выезжало за экран. Само ПРАВИЛО
+  // осталось: дневной запас продолжает убывать на глазах и по-прежнему не может
+  // пережить жёсткий дедлайн звонка — теперь это делает компактная пилюля,
+  // считающая по наиболее раннему из двух дедлайнов. Полная плашка с полосой
+  // живёт на пре-экране (app/max_call_prestart.tsx) — там для неё есть место.
   it('shows the decreasing daily MAX allowance while preserving the hard call deadline', () => {
-    expect(session).toContain("import MaxDailyQuotaMeter from '../components/max/MaxDailyQuotaMeter'");
     expect(session).toContain('dailyQuotaFromLimits(mint.limits)');
-    expect(session).toContain('<MaxDailyQuotaMeter');
     expect(session).toContain('setHardAtMs(deadlines.hardAtMs)');
+    // Пилюля шапки обязана учитывать дневной запас, а не только сессию.
+    expect(session).toContain('setHeaderDeadlineAtMs(');
+    expect(session).toMatch(/Math\.min\(deadlines\.hardAtMs,\s*dayEndsAtMs\)/);
+    expect(session).toContain('hardAtMs={headerDeadlineAtMs}');
+    // Шапка звонка больше не носит двухстрочную плашку запаса.
+    expect(session).not.toContain('<MaxDailyQuotaMeter');
+  });
+
+  it('keeps the full daily allowance meter on the call pre-screen', () => {
+    const prestart = fs.readFileSync(path.join(__dirname, '../app/max_call_prestart.tsx'), 'utf8');
+    expect(prestart).toContain('<MaxDailyQuotaMeter');
+    expect(prestart).toContain('variant="hero"');
   });
 
   it('routes tutor audio levels to the full MAX sphere without removing other call personas', () => {

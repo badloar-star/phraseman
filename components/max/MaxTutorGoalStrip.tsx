@@ -1,4 +1,3 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { Text, View } from 'react-native';
 
@@ -43,51 +42,57 @@ export function MaxTutorGoalStrip({ mode, title, currentTopic, sceneTitle, maste
     tr: `Hedef ilerlemesi: 3 üzerinden ${safeMastery}`, pl: `Postęp celu: ${safeMastery} z 3`,
   });
 
+  const kindLabel = isFreeTalk ? freeTalk : cleanSceneTitle ? sceneLabel : goalLabel;
+
   return (
+    // зачем (владелец 2026-08-23): «плашку цель урока измени так, чтобы на неё
+    // не падал весь акцент, она тянет слишком много внимания на себя». Была
+    // карточка: заливка + обводка + акцентный медальон 34px + заголовок 16px/800.
+    // По весу она спорила со сферой MAX, хотя это тихая справка «что мы учим».
+    // Стало: одна строка без фона и без обводки (обводки контейнеров запрещены),
+    // приглушённым тоном, «Цель урока ·» ведёт как подпись, а не как заголовок.
+    // Разделяем тоном и размером, а не рамкой — как принято в проекте.
     <View
       testID="max-tutor-goal-strip"
       accessibilityLiveRegion="polite"
+      accessibilityLabel={contextTitle === '' ? kindLabel : `${kindLabel}: ${contextTitle}`}
       style={{
-        minHeight: 58,
-        borderRadius: 18,
-        borderWidth: 1,
-        borderColor: t.border,
-        backgroundColor: t.bgSurface,
-        paddingHorizontal: 14,
-        paddingVertical: 10,
+        // Высота фиксирована: цель приходит не сразу, и без резерва строка
+        // выталкивала бы сферу вниз (контракт «первый кадр = финальная геометрия»).
+        minHeight: 28,
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 10,
+        gap: 8,
       }}
     >
-      <View
-        style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: t.accentBg, alignItems: 'center', justifyContent: 'center' }}
+      <Text
+        numberOfLines={1}
+        style={{ flex: 1, color: t.textMuted, fontSize: f.sub, fontWeight: '600' }}
+        maxFontSizeMultiplier={1.6}
       >
-        <Ionicons
-          name={isFreeTalk ? 'chatbubbles-outline' : cleanSceneTitle ? 'people-outline' : 'sparkles-outline'}
-          size={18}
-          color={t.accent}
-        />
-      </View>
-      <View style={{ flex: 1 }}>
-        <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', textTransform: 'uppercase' }}>
-          {isFreeTalk ? freeTalk : cleanSceneTitle ? sceneLabel : goalLabel}
-        </Text>
-        {contextTitle !== '' ? (
-          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800', marginTop: 2 }}>
-            {contextTitle}
-          </Text>
-        ) : null}
-      </View>
+        {contextTitle === '' ? kindLabel : (
+          <>
+            {`${kindLabel} · `}
+            {/* Само название чуть плотнее по тону: читается первым внутри строки,
+                но не превращает справку в заголовок экрана. */}
+            <Text style={{ color: t.textSecond, fontWeight: '800' }}>{contextTitle}</Text>
+          </>
+        )}
+      </Text>
       {!isFreeTalk ? (
         <View
           accessibilityLabel={progressLabel}
-          style={{ flexDirection: 'row', gap: 4, minWidth: 44, justifyContent: 'flex-end' }}
+          style={{ flexDirection: 'row', gap: 4, justifyContent: 'flex-end' }}
         >
           {[1, 2, 3].map((step) => (
             <View
               key={step}
-              style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: step <= safeMastery ? t.accent : t.border }}
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: 3,
+                backgroundColor: step <= safeMastery ? t.accent : t.textGhost,
+              }}
             />
           ))}
         </View>

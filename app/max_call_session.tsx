@@ -17,7 +17,6 @@ import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
 import { MaxTutorGoalStrip } from '../components/max/MaxTutorGoalStrip';
 import { MaxTutorLiveBoard } from '../components/max/MaxTutorLiveBoard';
-import MaxDailyQuotaMeter from '../components/max/MaxDailyQuotaMeter';
 import { MaxCallOrb, type MaxCallOrbRef } from '../components/max/MaxCallOrb';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -80,7 +79,7 @@ import {
   pillTone,
 } from './max_call_quota_view';
 import { MaxCallHalo, type MaxCallHaloRef } from './max_call_halo';
-import { dailyQuotaFromLimits, type MaxDailyQuotaStart } from './max_call_daily_quota';
+import { dailyQuotaFromLimits } from './max_call_daily_quota';
 import {
   LIVE_CAPTION_INITIAL,
   liveCaptionChunkDelayMs,
@@ -359,7 +358,8 @@ export default function MaxCallSession() {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [muted, setMuted] = useState(false);
   const [hardAtMs, setHardAtMs] = useState<number | null>(null);
-  const [dailyQuota, setDailyQuota] = useState<MaxDailyQuotaStart | null>(null);
+  /** Дедлайн пилюли в шапке: min(конец сессии, конец дневного запаса). */
+  const [headerDeadlineAtMs, setHeaderDeadlineAtMs] = useState<number | null>(null);
   const [connectionRetryTick, setConnectionRetryTick] = useState(0);
   const maxOrbLayers = useMemo(() => getMaxHomeOrbLayers(themeMode), [themeMode]);
 
@@ -746,7 +746,9 @@ export default function MaxCallSession() {
     startedAtRef.current = startedAt;
     const mint = clientRef.current?.mintResult();
     if (!mint) return;
-    setDailyQuota(dailyQuotaFromLimits(mint.limits));
+    // зачем: квота нужна только чтобы вычислить дедлайн пилюли. Держать её в
+    // состоянии смысла нет — это лишний ре-рендер сцены звонка на ровном месте.
+    const quota = dailyQuotaFromLimits(mint.limits);
     // Таймер подсказок: пороги из limits минта (hintDelaySec per-CEFR,
     // hintMaxPerSession), вторая подсказка через +10с (спека §1).
     hintTimerRef.current = createHintTimer({
@@ -761,6 +763,15 @@ export default function MaxCallSession() {
       graceTailSec: GRACE_TAIL_SEC,
     });
     setHardAtMs(deadlines.hardAtMs);
+    // зачем (владелец 2026-08-23): «убери вот эту плашку вверху MAX». Раньше
+    // шапка показывала ЛИБО двухстрочную плашку дневного запаса, ЛИБО пилюлю
+    // сессии. Теперь всегда одна пилюля, а дедлайн для неё — наиболее ранний
+    // из двух: кончится раньше день — тикаем по дню, раньше сессия — по сессии.
+    // Пессимистично, как и весь расчёт квоты (см. max_call_quota_view).
+    const dayEndsAtMs = quota === null ? null : startedAt + quota.startRemainingSec * 1000;
+    setHeaderDeadlineAtMs(
+      dayEndsAtMs === null ? deadlines.hardAtMs : Math.min(deadlines.hardAtMs, dayEndsAtMs),
+    );
     if (isTutor) {
       if (mint.tutor?.name) setTutorName(mint.tutor.name);
       const plan = mint.tutor?.plan;
@@ -1231,26 +1242,19 @@ export default function MaxCallSession() {
               </Text>
             )}
           </View>
-          {dailyQuota ? (
-            <View style={{ width: 116, flexShrink: 0 }}>
-              <MaxDailyQuotaMeter
-                startRemainingSec={dailyQuota.startRemainingSec}
-                maxSec={dailyQuota.maxSec}
-                runningSinceMs={startedAtRef.current}
-                variant="compact"
-                lang={lang}
-              />
-            </View>
-          ) : (
-            <MinutesPill
-              hardAtMs={hardAtMs}
-              minutesWord={minutesWord}
-              colors={{ normal: t.textMuted, amber: t.gold, red: t.wrong }}
-              fontSize={f.caption}
-              // Старые/частичные limits: сохраняем безопасный session countdown.
-              onLowMinutes={() => sfxRef.current?.midCall('low_minutes')}
-            />
-          )}
+          {/* зачем (владелец 2026-08-23): «убери вот эту плашку вверху MAX».
+              Двухстрочная плашка «Дневной запас MAX» жила в слоте 116px —
+              подпись переносилась, а число («2 мин») выезжало за экран. Вместо
+              неё одна компактная пилюля: она и так тикает вниз по остатку дня,
+              потому что дедлайн берётся по наиболее раннему из двух пределов.
+              Полный дневной запас с полосой остался на пре-экране звонка. */}
+          <MinutesPill
+            hardAtMs={headerDeadlineAtMs}
+            minutesWord={minutesWord}
+            colors={{ normal: t.textMuted, amber: t.gold, red: t.wrong }}
+            fontSize={f.caption}
+            onLowMinutes={() => sfxRef.current?.midCall('low_minutes')}
+          />
         </View>
 
         {isTutor && (

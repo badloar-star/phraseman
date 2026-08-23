@@ -578,8 +578,13 @@ function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalize
       try {
         await enforceRateLimit(authUid, stableUid);
         const model = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
+        // зачем (владелец 2026-08-23): «на экране завершения не должно быть
+        // написано Learner, там должно быть "вы"». Промпт уже требовал второго
+        // лица, но реплики ученика были помечены «Learner:», и модель списывала
+        // это имя прямо в текст разбора («Learner выбрал имя»). Метка говорящего
+        // — тоже часть промпта: зовём ученика «You», и списывать нечего.
         const transcript = request.history
-          .map((turn) => `${turn.role === 'user' ? 'Learner' : 'MAX'}: ${turn.text}`)
+          .map((turn) => `${turn.role === 'user' ? 'You' : 'MAX'}: ${turn.text}`)
           .join('\n');
         const response = await fetch(OPENAI_CHAT_URL, {
           method: 'POST',

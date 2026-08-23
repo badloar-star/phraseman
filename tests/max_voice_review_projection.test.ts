@@ -1,5 +1,6 @@
 import {
   compactReviewText,
+  humanizeReviewSubject,
   projectMaxReview,
   projectReviewHighlight,
   resolveTomorrowPlan,
@@ -140,5 +141,39 @@ describe('MAX review projection', () => {
       detailsActions: [],
       nextTopic: 'Работа',
     });
+  });
+});
+
+// зачем (владелец 2026-08-23): «на экране завершения не должно быть написано
+// leaner, там должно быть "вы" и склонение текста соответственно». Источник
+// починен на сервере (метка говорящего в транскрипте больше не «Learner»), но
+// разборы, записанные ДО правки, лежат в Firestore и переписать их нечем —
+// поэтому текст нормализуется на чтении, в проекции.
+describe('humanizeReviewSubject', () => {
+  it('заменяет третье лицо на «вы» и согласует глагол', () => {
+    expect(humanizeReviewSubject('Learner выбрал имя.')).toBe('Вы выбрали имя.');
+    expect(humanizeReviewSubject('Learner выбрала имя.')).toBe('Вы выбрали имя.');
+    expect(humanizeReviewSubject('Ученик поздоровался уверенно.')).toBe('Вы поздоровались уверенно.');
+    expect(humanizeReviewSubject('Ученица справилась с заданием.')).toBe('Вы справились с заданием.');
+  });
+
+  it('не трогает MAX и уже правильные формулировки', () => {
+    expect(humanizeReviewSubject('MAX предложил фразу.')).toBe('MAX предложил фразу.');
+    expect(humanizeReviewSubject('Вы держались уверенно.')).toBe('Вы держались уверенно.');
+  });
+
+  it('склоняет косвенные падежи и не путает их с подлежащим', () => {
+    expect(humanizeReviewSubject('У ученика получилось попрощаться.')).toBe('У вас получилось попрощаться.');
+  });
+
+  it('пишет «вы» строчным в середине предложения и заглавным в начале', () => {
+    expect(humanizeReviewSubject('Хорошо, что Learner попросил повторить.'))
+      .toBe('Хорошо, что вы попросили повторить.');
+    expect(humanizeReviewSubject('MAX предложил фразу. Learner повторил её.'))
+      .toBe('MAX предложил фразу. Вы повторили её.');
+  });
+
+  it('нормализация встроена в общий путь показа текста разбора', () => {
+    expect(compactReviewText('Learner выбрал имя.', 180)).toBe('Вы выбрали имя.');
   });
 });

@@ -1,3 +1,6 @@
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
 import {
   finalizeMaxVoiceRequest,
   maxVoiceReviewSystemPrompt,
@@ -251,6 +254,15 @@ describe('maxVoiceReviewSystemPrompt', () => {
     expect(prompt).toContain('"вы сказали…"');
     expect(prompt).toContain('never in third person about "the learner"/"ученик"/"the student"');
     expect(prompt).toContain('Use the polite second-person form where the language has one');
+  });
+
+  // зачем (владелец 2026-08-23, повторно): промпта мало. Реплики ученика были
+  // помечены «Learner:», и модель списывала это имя прямо в разбор («Learner
+  // выбрал имя»). Метка говорящего — тоже часть промпта, поэтому сторожим её.
+  it('labels the learner turns as "You" so the model cannot copy a third-person name', () => {
+    const source = readFileSync(join(__dirname, 'max_voice_finalize.ts'), 'utf8');
+    expect(source).toContain("turn.role === 'user' ? 'You' : 'MAX'");
+    expect(source).not.toContain("? 'Learner' :");
   });
 
   it('interpolates cefr and the target language name for every supported locale', () => {

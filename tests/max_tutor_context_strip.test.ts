@@ -18,8 +18,11 @@ jest.mock('../components/ThemeContext', () => ({
     theme: {
       accent: '#8EEA63', accentBg: 'rgba(142,234,99,0.12)', bgSurface: '#17241A',
       border: '#385044', textPrimary: '#F0F7F2', textMuted: '#91A397',
+      // Полоса цели рисуется тоном: без этих токенов стаб молча отдал бы
+      // undefined и тест перестал бы отражать реальный экран.
+      textSecond: '#C7D8CC', textGhost: '#506A5C',
     },
-    f: { body: 14, bodyLg: 16, label: 12 },
+    f: { body: 14, bodyLg: 16, label: 12, sub: 14 },
   }),
 }));
 jest.mock('@expo/vector-icons/Ionicons', () => {
@@ -39,7 +42,11 @@ describe('MAX tutor context strip', () => {
       lang: 'ru',
     }));
 
-    expect(view.getByText('Цель урока')).toBeTruthy();
+    // зачем (владелец 2026-08-23): «плашка цель урока не должна тянуть весь
+    // акцент». Карточку с медальоном заменила одна тихая строка «Цель урока ·
+    // <название>», поэтому метка теперь живёт внутри строки, а не отдельным
+    // заголовком. Проверяем смысл (метка + название рядом), а не старую вёрстку.
+    expect(view.getByText(/Цель урока/)).toBeTruthy();
     expect(view.getByText('Вежливо предложить другое время')).toBeTruthy();
     expect(view.queryByText('Weekend plans')).toBeNull();
     expect(view.getByTestId('max-tutor-goal-strip').props.accessibilityLiveRegion).toBe('polite');
@@ -55,7 +62,7 @@ describe('MAX tutor context strip', () => {
       lang: 'ru',
     }));
 
-    expect(view.getByText('Свободный разговор')).toBeTruthy();
+    expect(view.getByText(/Свободный разговор/)).toBeTruthy();
     expect(view.getByText('Weekend plans')).toBeTruthy();
     expect(view.queryByText('hidden goal')).toBeNull();
     expect(view.queryByText('hidden scene')).toBeNull();
@@ -71,7 +78,7 @@ describe('MAX tutor context strip', () => {
       lang: 'ru',
     }));
 
-    expect(view.getByText('Сценка')).toBeTruthy();
+    expect(view.getByText(/Сценка/)).toBeTruthy();
     expect(view.getByText('Перенос встречи')).toBeTruthy();
     expect(view.queryByText('Вежливо предложить другое время')).toBeNull();
   });

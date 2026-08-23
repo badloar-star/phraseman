@@ -320,7 +320,7 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['them', 'their', 'there', 'he', 'she'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'be', 'been', 'being'], category: 'to-be' },
-      { text: 'outside', correct: 'outside', distractors: ['inside', 'upside', 'offside', 'beside', 'onside'], category: 'adverb' }
+      { text: 'outside', correct: 'outside', distractors: ['outsides', 'outsided', 'upside', 'offside', 'onside'], category: 'adverb' }
     ],
   },
   {
@@ -394,7 +394,7 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['way', 'us', 'our', 'west', 'wet'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'be', 'been', 'being'], category: 'to-be' },
-      { text: 'inside', correct: 'inside', distractors: ['outside', 'upside', 'offside', 'beside', 'onside'], category: 'adverb' }
+      { text: 'inside', correct: 'inside', distractors: ['insides', 'insided', 'upside', 'offside', 'onside'], category: 'adverb' }
     ],
   },
   {
@@ -555,7 +555,7 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'mine', 'eye', 'hi'], category: 'pronoun' },
       { text: 'am', correct: 'am', distractors: ['is', 'are', 'be', 'been', 'being'], category: 'to-be' },
-      { text: 'outside', correct: 'outside', distractors: ['inside', 'upside', 'offside', 'beside', 'onside'], category: 'adverb' }
+      { text: 'outside', correct: 'outside', distractors: ['outsides', 'outsided', 'upside', 'offside', 'onside'], category: 'adverb' }
     ],
   },
   {
@@ -593,7 +593,7 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['his', 'him', 'she', 'they', 'we'], category: 'pronoun' },
       { text: 'is', correct: 'is', distractors: ['am', 'are', 'be', 'been', 'being'], category: 'to-be' },
-      { text: 'inside', correct: 'inside', distractors: ['outside', 'upside', 'offside', 'beside', 'onside'], category: 'adverb' }
+      { text: 'inside', correct: 'inside', distractors: ['insides', 'insided', 'upside', 'offside', 'onside'], category: 'adverb' }
     ],
   },
   {
@@ -1366,7 +1366,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'Is', correct: 'Is', distractors: ['am', 'are', 'be', 'been', 'being'], category: 'to-be' },
       { text: 'she', correct: 'she', distractors: ['her', 'he', 'they', 'we', 'it'], category: 'pronoun' },
-      { text: 'outside', correct: 'outside', distractors: ['inside', 'upside', 'offside', 'beside', 'onside'], category: 'adverb' }
+      { text: 'outside', correct: 'outside', distractors: ['outsides', 'outsided', 'upside', 'offside', 'onside'], category: 'adverb' }
     ],
   },
   {
@@ -1667,7 +1667,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'mine', 'eye', 'hi'], category: 'pronoun' },
       { text: 'am', correct: 'am', distractors: ['is', 'are', 'be', 'been', 'being'], category: 'to-be' },
       { text: 'not', correct: 'not', distractors: ['no', 'nor', 'net', 'note', 'nut'], category: 'adverb' },
-      { text: 'outside', correct: 'outside', distractors: ['inside', 'upside', 'offside', 'beside', 'onside'], category: 'adverb' }
+      { text: 'outside', correct: 'outside', distractors: ['outsides', 'outsided', 'upside', 'offside', 'onside'], category: 'adverb' }
     ],
   },
   {
@@ -1704,7 +1704,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'Is', correct: 'Is', distractors: ['am', 'are', 'be', 'been', 'being'], category: 'to-be' },
       { text: 'he', correct: 'he', distractors: ['his', 'him', 'she', 'they', 'we'], category: 'pronoun' },
-      { text: 'inside', correct: 'inside', distractors: ['outside', 'upside', 'offside', 'beside', 'onside'], category: 'adverb' }
+      { text: 'inside', correct: 'inside', distractors: ['insides', 'insided', 'upside', 'offside', 'onside'], category: 'adverb' }
     ],
   },
   {
@@ -1741,7 +1741,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'Are', correct: 'Are', distractors: ['am', 'is', 'be', 'been', 'being'], category: 'to-be' },
       { text: 'you', correct: 'you', distractors: ['your', 'yours', 'u', 'ye', 'yew'], category: 'pronoun' },
-      { text: 'inside', correct: 'inside', distractors: ['outside', 'upside', 'offside', 'beside', 'onside'], category: 'adverb' }
+      { text: 'inside', correct: 'inside', distractors: ['insides', 'insided', 'upside', 'offside', 'onside'], category: 'adverb' }
     ],
   },
   {
@@ -1780,7 +1780,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
       { text: 'She', correct: 'She', distractors: ['her', 'he', 'they', 'we', 'it'], category: 'pronoun' },
       { text: 'is', correct: 'is', distractors: ['am', 'are', 'be', 'been', 'being'], category: 'to-be' },
       { text: 'not', correct: 'not', distractors: ['no', 'nor', 'net', 'note', 'nut'], category: 'adverb' },
-      { text: 'outside', correct: 'outside', distractors: ['inside', 'upside', 'offside', 'beside', 'onside'], category: 'adverb' }
+      { text: 'outside', correct: 'outside', distractors: ['outsides', 'outsided', 'upside', 'offside', 'onside'], category: 'adverb' }
     ],
   },
   {
@@ -6676,7 +6676,7 @@ export const LESSON_7_PHRASES: LessonPhrase[] = [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'having', 'gave', 'hate'] },
       { text: 'a', correct: 'a', distractors: ['an', 'the', 'at', 'and', 'as'] },
-      { text: 'charger', correct: 'charger', distractors: ['charge', 'charter', 'changer', 'chapter', 'chargers'] }
+      { text: 'charger', correct: 'charger', distractors: ['chargerr', 'charter', 'changer', 'chapter', 'chargers'] }
     ],
   },
   {
@@ -6697,7 +6697,7 @@ export const LESSON_7_PHRASES: LessonPhrase[] = [
       { text: 'you', correct: 'you', distractors: ['your', 'we', 'I', 'me', 'they'] },
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'having', 'gave', 'hate'] },
       { text: 'a', correct: 'a', distractors: ['an', 'the', 'at', 'and', 'as'] },
-      { text: 'charger', correct: 'charger', distractors: ['charge', 'charter', 'changer', 'chapter', 'chargers'] }
+      { text: 'charger', correct: 'charger', distractors: ['chargerr', 'charter', 'changer', 'chapter', 'chargers'] }
     ],
   },
   {

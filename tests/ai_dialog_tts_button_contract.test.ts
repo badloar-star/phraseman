@@ -5,14 +5,22 @@ describe('ai dialog TTS button contract', () => {
   const scenarioSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'ai_dialog_session.tsx'), 'utf8');
   const companionSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'ai_companion_session.tsx'), 'utf8');
 
-  it('keeps speaker controls large enough to tap reliably', () => {
+  it('не озвучивает реплику целиком — звучит только ключевая фраза', () => {
+    // зачем (владелец 2026-08-23): «убери "Послушать фразу" в диалоге, потому что
+    // он повторяет не фразу, а текст своей реплики». Кнопка-динамик у реплики и
+    // тап по обычному тексту читали ВСЮ реплику (stripMarkers(m.text)) — убраны
+    // из обоих экранов диалога.
     for (const source of [scenarioSource, companionSource]) {
-      // Метка озвучки локализована (ru/uk/es) через triLang, а не сырой строкой.
-      expect(source).toContain("ru: 'Озвучить реплику'");
-      expect(source).toContain('width: 44');
-      expect(source).toContain('minHeight: 44');
-      expect(source).toContain('justifyContent: \'center\'');
-      expect(source).toContain('volume-medium-outline');
+      expect(source).not.toContain('volume-medium-outline');
+      expect(source).not.toContain('speak(stripMarkers(m.text)');
+    }
+  });
+
+  it('учебная озвучка ключевой фразы сохранена — звучит именно фраза', () => {
+    // Подчёркнутая ключевая фраза остаётся кликабельной: speak(seg.text) читает
+    // саму фразу, а не реплику вокруг неё. Это учебная суть экрана.
+    for (const source of [scenarioSource, companionSource]) {
+      expect(source).toContain('speak(seg.text, undefined');
       expect(source).toContain("voice: ''");
     }
   });

@@ -4,7 +4,7 @@
  *
  * Отличия от сценарного ai_dialog_session.tsx:
  * - режим 'companion' (открытый разговор, без роли/цели сценария);
- * - Компас «знает» ученика — память (профиль + слабые слова из SRS) собирается
+ * - Компас «знает» ученика — память (профиль + слабые места из «Ошибок») собирается
  *   на первом ходу через buildCompanionMemory и уходит в premium_dialog;
  * - НЕТ teaser-обрыва на N ходов (это друг, а не задание) — лимит держит
  *   free-счётчик диалогов/день, как и раньше;
@@ -45,7 +45,7 @@ import {
   type DialogMemory,
 } from './ai_dialog_client';
 import { buildCompanionMemory } from './ai_companion_memory';
-import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
+import { parseKeyPhrases } from './ai_dialog_markup';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { trackEvent } from './analytics';
 import { triLang } from '../constants/i18n';
@@ -338,49 +338,14 @@ function AiCompanionSession() {
                               {seg.text}
                             </Text>
                           ) : (
-                            <Text
-                              key={si}
-                              onPress={() => {
-                                hapticTap();
-                                void trackEvent('ai_dialog_tts_used', { scenarioId: 'companion' });
-                                speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
-                              }}
-                            >
-                              {seg.text}
-                            </Text>
+                            // зачем (владелец 2026-08-23): тап по обычному тексту
+                            // озвучивал ВСЮ реплику целиком — «он повторяет не фразу,
+                            // а текст своей реплики». Озвучка осталась только у
+                            // ключевых фраз выше: там звучит именно фраза.
+                            <Text key={si}>{seg.text}</Text>
                           ),
                         )}
                       </Text>
-                      <TouchableOpacity
-                        onPress={() => {
-                          hapticTap();
-                          void trackEvent('ai_dialog_tts_used', { scenarioId: 'companion' });
-                          speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
-                        }}
-                        activeOpacity={0.6}
-                        accessibilityRole="button"
-                        accessibilityLabel={triLang(lang, {
-                          ru: 'Озвучить реплику',
-                          uk: 'Озвучити репліку',
-                          es: 'Reproducir frase',
-                          'pt-BR': 'Reproduzir fala',
-                          vi: 'Phát câu trả lời',
-                          id: 'Putar ucapan',
-                          tr: 'Repliği seslendir',
-                          pl: 'Odtwórz kwestię',
-                        })}
-                        style={{
-                          width: 44,
-                          minHeight: 44,
-                          flexShrink: 0,
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          marginTop: -8,
-                          marginRight: -10,
-                        }}
-                      >
-                        <Ionicons name="volume-medium-outline" size={20} color={t.textSecond} />
-                      </TouchableOpacity>
                     </View>
                   )}
                 </View>

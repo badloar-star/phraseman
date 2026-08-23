@@ -1571,53 +1571,14 @@ function AiDialogSession() {
                                     {seg.text}
                                   </Text>
                                 ) : (
-                                  // Обычный текст: тап озвучивает всю реплику (как раньше).
-                                  <Text
-                                    key={si}
-                                    onPress={() => {
-                                      if (voiceInputStatus === 'requesting' || voiceInputStatus === 'listening') return;
-                                      hapticTap();
-                                      void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
-                                      speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
-                                    }}
-                                  >
-                                    {seg.text}
-                                  </Text>
+                                  // зачем (владелец 2026-08-23): тап по обычному тексту
+                                  // озвучивал ВСЮ реплику — «он повторяет не фразу, а
+                                  // текст своей реплики». Озвучка осталась только у
+                                  // ключевых фраз выше: там звучит именно фраза.
+                                  <Text key={si}>{seg.text}</Text>
                                 ),
                               )}
                             </Text>
-                            <TouchableOpacity
-                              onPress={() => {
-                                if (voiceInputStatus === 'requesting' || voiceInputStatus === 'listening') return;
-                                hapticTap();
-                                void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
-                                speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
-                              }}
-                              activeOpacity={0.6}
-                              disabled={voiceInputStatus === 'requesting' || voiceInputStatus === 'listening'}
-                              accessibilityRole="button"
-                              accessibilityLabel={triLang(lang, {
-                                ru: 'Озвучить реплику',
-                                uk: 'Озвучити репліку',
-                                es: 'Reproducir frase',
-                                'pt-BR': 'Reproduzir fala',
-                                vi: 'Phát câu trả lời',
-                                id: 'Putar ucapan',
-                                tr: 'Repliği seslendir',
-                                pl: 'Odtwórz kwestię',
-                              })}
-                              style={{
-                                width: 44,
-                                minHeight: 44,
-                                flexShrink: 0,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                marginTop: -8,
-                                marginRight: -10,
-                              }}
-                            >
-                              <Ionicons name="volume-medium-outline" size={20} color={t.textSecond} />
-                            </TouchableOpacity>
                           </>
                         )}
                       </View>

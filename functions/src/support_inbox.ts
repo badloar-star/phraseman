@@ -6713,6 +6713,11 @@ export const supportInboxOnNewMail = onDocumentCreated(
   {
     document: `${INBOX_COLLECTION}/{messageDocId}`,
     region: REGION,
+    // зачем: 2026-08-23 — на дефолтных 256 MiB функция падала прямо во время
+    // обработки письма («Memory limit of 256 MiB exceeded with 260-269 MiB
+    // used», логи 20.08): старт любого контейнера грузит index.js со всеми
+    // 240 функциями (~340 МБ RSS), а разбор письма добавляет сверху.
+    memory: '512MiB',
     secrets: [ADMIN_ALERT_BOT_TOKEN, SUPPORT_OPENAI_API_KEY, GMAIL_SUPPORT_APP_PASSWORD, JARVIS_TELEGRAM_CONFIG],
   },
   async (event) => {

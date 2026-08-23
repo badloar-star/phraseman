@@ -26,6 +26,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from '../app/events';
 import { incrementEnergyZeroCount } from '../app/paywall_personalization';
 import PremiumGoldButton from './PremiumGoldButton';
+import {
+  energyRefillShardCost,
+  refillEnergyWithShards,
+  toastEnergyRefilledWithShards,
+} from '../app/energy_shard_refill';
+import { peekLastKnownShardsBalance, getShardsBalance } from '../app/shards_system';
+import {
+  ruKnowledgeShardsAccusativeAfterNumber,
+  ukKnowledgeShardsAccusativeAfterNumber,
+  ruKnowledgeShardsGenitiveAfterNumber,
+  ukKnowledgeShardsGenitiveAfterNumber,
+} from '../constants/shard_plurals';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visibility';
 import { triLang, type Lang } from '../constants/i18n';
@@ -65,30 +77,6 @@ export const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     subtitleColor: '#F4D986',
   },
   olive: { glow: '#C9A84C', borderColor: 'rgba(201,168,76,0.18)', surfaceColors: ['rgba(31,35,20,0.92)', 'rgba(13,15,11,0.94)', 'rgba(5,6,4,0.96)'], cardGlowColors: ['rgba(201,168,76,0.18)', 'rgba(142,170,114,0.07)', 'transparent'], titleColor: '#F4ECD8', subtitleColor: '#CFC5AB' },
-  minimalDark: {
-    glow: '#6EA8FF',
-    borderColor: 'rgba(110,168,255,0.32)',
-    surfaceColors: ['rgba(19,24,33,0.90)', 'rgba(12,15,22,0.94)', 'rgba(5,6,9,0.96)'],
-    cardGlowColors: ['rgba(110,168,255,0.20)', 'rgba(167,139,250,0.08)', 'transparent'],
-    titleColor: '#F5F7FB',
-    subtitleColor: '#A7C7FF',
-  },
-  business: {
-    glow: '#0095F6',
-    borderColor: 'rgba(255,255,255,0.12)',
-    surfaceColors: ['rgba(18,18,18,0.90)', 'rgba(10,10,10,0.94)', 'rgba(0,0,0,0.96)'],
-    cardGlowColors: ['rgba(0,149,246,0.10)', 'rgba(0,149,246,0.05)', 'transparent'],
-    titleColor: '#F5F5F5',
-    subtitleColor: '#737373',
-  },
-  businessLight: {
-    glow: '#0095F6',
-    borderColor: 'rgba(0,0,0,0.10)',
-    surfaceColors: ['rgba(255,255,255,0.98)', 'rgba(250,250,250,0.96)', 'rgba(239,239,239,0.98)'],
-    cardGlowColors: ['rgba(0,149,246,0.10)', 'rgba(0,149,246,0.05)', 'transparent'],
-    titleColor: '#262626',
-    subtitleColor: '#8E8E8E',
-  },
   midnight: {
     glow: '#8FA0FF',
     borderColor: 'rgba(143,160,255,0.34)',
@@ -120,14 +108,6 @@ export const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     cardGlowColors: ['rgba(168,232,30,0.22)', 'rgba(168,232,30,0.08)', 'transparent'],
     titleColor: '#FFFFFF',
     subtitleColor: '#BFC6A3',
-  },
-  candyBlue: {
-    glow: '#B2D5E5',
-    borderColor: 'rgba(178,213,229,0.34)',
-    surfaceColors: ['rgba(18,34,41,0.90)', 'rgba(11,22,27,0.94)', 'rgba(1,2,3,0.96)'],
-    cardGlowColors: ['rgba(178,213,229,0.22)', 'rgba(178,213,229,0.08)', 'transparent'],
-    titleColor: '#EAF4F8',
-    subtitleColor: '#9DB9C4',
   },
   indigo: {
     glow: '#C8C3FF',
@@ -232,7 +212,7 @@ function NoEnergyModal({
   const router = useRouter();
   const { theme: t, themeMode, f } = useTheme();
   const art = NO_ENERGY_MODAL_CHROME[themeMode] ?? NO_ENERGY_MODAL_CHROME.dark;
-  const graphiteRadius = themeMode === 'minimalDark';
+  const graphiteRadius = themeMode === 'indigo';
   const modalRadius = graphiteRadius ? 8 : 22;
   const buttonRadius = graphiteRadius ? 6 : 14;
   const paywallCardBg = t.bgCard;
@@ -263,6 +243,86 @@ function NoEnergyModal({
     pendingPremiumContextRef.current = paywallContext;
     (onBeforeOpenPremium ?? onClose)();
   };
+
+  // ── Покупка полного заряда за жемчужины ────────────────────────────────────
+  // зачем: владелец 2026-08-23. refillEnergyWithShards была написана целиком, но
+  // не вызывалась НИОТКУДА — канал существовал только в коде, игрок его не видел.
+  // Владелец решил включить: это даёт жемчужинам применение и смягчает ожидание
+  // тем, кто не покупает подписку.
+  const shardCost = energyRefillShardCost(maxEnergy);
+  // peek — синхронный снимок без сети: кнопка видна в ПЕРВОМ кадре, без прыжка.
+  const [shardBalance, setShardBalance] = useState<number>(() => peekLastKnownShardsBalance() ?? 0);
+  const [refilling, setRefilling] = useState(false);
+  const refillLatchRef = useRef(false);
+
+  useEffect(() => {
+    if (!modalVisible) return;
+    let cancelled = false;
+    void getShardsBalance().then((value) => {
+      if (!cancelled) setShardBalance(value);
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [modalVisible]);
+
+  // База уже полна → покупать нечего (бонусные слоты refill не трогает).
+  const canBuyEnergy = !isUnlimited && (qaForceShardCta || energy < maxEnergy);
+  const enoughShards = shardBalance >= shardCost;
+
+  const buyEnergyWithShards = useCallback(async () => {
+    // Латч + state: двойной тап не спишет жемчужины дважды.
+    if (refillLatchRef.current) return;
+    refillLatchRef.current = true;
+    setRefilling(true);
+    try {
+      const result = await refillEnergyWithShards({
+        maxEnergy,
+        baseEnergy: energy,
+        isUnlimited,
+      });
+      if (result.ok) {
+        toastEnergyRefilledWithShards();
+        // guard-ok: это НЕ понижение баланса, а синхронизация отображения после
+        // уже совершённого списания. Авторитетный дебет сделал
+        // commitShardCompositeOperation (жемчужины client-owned по дизайну:
+        // «server cannot approve, reject, reconcile, or roll back» — см.
+        // shards_system.ts). Без этой строки цифра в окне осталась бы старой
+        // до следующего чтения. Класс бага лиги здесь неприменим: там сервер
+        // был источником истины, тут — клиент.
+        setShardBalance((value) => Math.max(0, value - result.spent));
+        await reload();
+        onClose();
+        return;
+      }
+      // Отказ — показываем причину и оставляем окно открытым, чтобы человек
+      // мог выбрать «Плюс» или подождать.
+      emitAppEvent('action_toast', {
+        type: result.reason === 'insufficient_shards' ? 'info' : 'error',
+        messageRu:
+          result.reason === 'insufficient_shards'
+            ? 'Не хватает жемчужин.'
+            : result.reason === 'already_full'
+              ? 'Энергия уже полная.'
+              : 'Не получилось восстановить энергию.',
+        messageUk:
+          result.reason === 'insufficient_shards'
+            ? 'Не вистачає перлин.'
+            : result.reason === 'already_full'
+              ? 'Енергія вже повна.'
+              : 'Не вдалося відновити енергію.',
+        messageEs:
+          result.reason === 'insufficient_shards'
+            ? 'No tienes suficientes perlas.'
+            : result.reason === 'already_full'
+              ? 'La energía ya está llena.'
+              : 'No se pudo recuperar la energía.',
+      });
+      // Баланс мог разойтись с локальным снимком — перечитываем.
+      void getShardsBalance().then(setShardBalance).catch(() => {});
+    } finally {
+      refillLatchRef.current = false;
+      setRefilling(false);
+    }
+  }, [energy, isUnlimited, maxEnergy, onClose, reload]);
 
   /** Android: Modal.onDismiss из JS по сути не вызывает колбэк — ждём снятия окна и только потом переходим. */
   useEffect(() => {
@@ -511,6 +571,7 @@ function NoEnergyModal({
                 (onBackHome ?? onClose)();
               }}
               style={styles.hybridLaterBtn}
+              contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
             >
               <Text style={{ fontSize: f.body, color: t.textMuted }}>{laterLabel}</Text>
             </PressableHybrid>
@@ -643,7 +704,57 @@ function NoEnergyModal({
             onPress={openPremiumAfterClose}
             shellStyle={{ marginTop: 4 }}
           />
+          {canBuyEnergy ? (
+            <TouchableOpacity
+              testID="no-energy-buy-with-shards"
+              accessibilityRole="button"
+              accessibilityState={{ disabled: refilling || !enoughShards, busy: refilling }}
+              disabled={refilling || !enoughShards}
+              onPress={() => {
+                hapticTap();
+                void buyEnergyWithShards();
+              }}
+              activeOpacity={0.7}
+              style={{
+                marginTop: 8,
+                minHeight: 52,
+                borderRadius: buttonRadius,
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingHorizontal: 16,
+                // Тоном, не обводкой (правило владельца): поверхность на ступень
+                // тише золотой кнопки Плюса — второе по важности действие.
+                backgroundColor: t.bgSurface2,
+                opacity: enoughShards ? 1 : 0.55,
+              }}
+            >
+              <Text style={{ fontSize: f.body, fontWeight: '700', color: t.textPrimary }}>
+                {enoughShards
+                  ? triLang(lang, {
+                      ru: `Восстановить за ${shardCost} ${ruKnowledgeShardsAccusativeAfterNumber(shardCost)}`,
+                      uk: `Відновити за ${shardCost} ${ukKnowledgeShardsAccusativeAfterNumber(shardCost)}`,
+                      es: `Recargar por ${shardCost} perlas`,
+                      'pt-BR': `Recarregar por ${shardCost} pérolas`,
+                      vi: `Hồi phục với ${shardCost} ngọc`,
+                      id: `Isi ulang seharga ${shardCost} mutiara`,
+                      tr: `${shardCost} inci karşılığında doldur`,
+                      pl: `Odnów za ${shardCost} pereł`,
+                    })
+                  : triLang(lang, {
+                      ru: `Не хватает ${shardCost - shardBalance} ${ruKnowledgeShardsGenitiveAfterNumber(shardCost - shardBalance)}`,
+                      uk: `Не вистачає ${shardCost - shardBalance} ${ukKnowledgeShardsGenitiveAfterNumber(shardCost - shardBalance)}`,
+                      es: `Faltan ${shardCost - shardBalance} perlas`,
+                      'pt-BR': `Faltam ${shardCost - shardBalance} pérolas`,
+                      vi: `Thiếu ${shardCost - shardBalance} ngọc`,
+                      id: `Kurang ${shardCost - shardBalance} mutiara`,
+                      tr: `${shardCost - shardBalance} inci eksik`,
+                      pl: `Brakuje ${shardCost - shardBalance} pereł`,
+                    })}
+              </Text>
+            </TouchableOpacity>
+          ) : null}
           <TouchableOpacity
+            accessibilityRole="button"
             onPress={() => {
               hapticTap();
               if (onGotIt) {

@@ -1,10 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
-import { getVerifiedPremiumStatus } from './premium_guard';
-import { isFeatureFreeForEveryone } from './feature_gates';
 import { readLeagueChestEnergyOverrideMs } from './services/league_chest_rewards';
 import { getMaxEnergy, getEnergyRecoveryIntervalMs } from './remote_flags';
-import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs } from './boons/boon_effects_energy';
+import { readBoonEnergyOverrideMs } from './boons/boon_effects_energy';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { captureAccountGeneration } from './account_generation';
 import { readGiftAccountValue, removeGiftAccountValue } from './gift_account_storage';
@@ -15,7 +13,6 @@ export interface EnergyState {
 }
 
 const ENERGY_STORAGE_KEY = 'energy_state';
-const ENERGY_PER_LESSON = 1;
 /** Build-time default; runtime uses remote-tunable getEnergyRecoveryIntervalMs(). */
 // зачем: владелец 2026-08-23 — 30 минут за единицу. Энергия теперь тратится
 // только за СТАРТ активности (не за ошибки), поэтому трата редкая и медленное
@@ -210,52 +207,16 @@ export async function checkAndRecover(): Promise<EnergyState> {
   }
 }
 
-/**
- * Потратить энергию.
- * Возвращает true если энергия была потрачена успешно, false если энергии недостаточно.
- * Премиум игроки не тратят энергию.
+/*
+ * spendEnergy УДАЛЁН (владелец 2026-08-23).
+ *
+ * зачем: функция не вызывалась НИОТКУДА — весь боевой UI ходит через
+ * EnergyContext.spendOne/spendAmount. При этом она дублировала логику трат и уже
+ * разошлась с ней: в EnergyContext есть проверка isTesterNoLimitsActive(),
+ * которой здесь не было. Живой дубль-источник истины про деньги игрока — прямой
+ * путь к расхождению балансов, поэтому ветка снята целиком, а не оставлена
+ * «на всякий случай». Нужна трата энергии — бери useEnergy().spendOne().
  */
-export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<boolean> {
-  try {
-    // «Пульт»: если энергия переведена в «Фри» — лимит снят для всех (безлимит,
-    // как у премиума), пейвол no_energy не показываем.
-    if (isFeatureFreeForEveryone('energy')) return true;
-
-    // Weekly Boon «окно без энергии»: в активный вечерний час буднего дня
-    // энергия не тратится у всех (как безлимит, но только на окно).
-    if (isEnergyFreeWindowActive()) return true;
-
-    // Премиум: энергия не тратится (единая верифицированная проверка)
-    const isPremium = await getVerifiedPremiumStatus();
-    if (isPremium) return true;
-
-    // Тестерский режим: энергия не тратится
-    const testerEnergyDisabled = await AsyncStorage.getItem('tester_energy_disabled');
-    if (testerEnergyDisabled === 'true') return true;
-
-    const state = await checkAndRecover();
-
-    if (state.current < amount) {
-      // Энергии недостаточно
-      return false;
-    }
-
-    const effectiveMax = await getEffectiveMaxEnergyValue();
-    const newState: EnergyState = {
-      ...state,
-      current: state.current - amount,
-      // Сбрасываем таймер восстановления при первой трате с максимума,
-      // чтобы countdown показывал корректное время (а не 0)
-      lastRecoveryTime: state.current >= effectiveMax ? Date.now() : state.lastRecoveryTime,
-    };
-
-    await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(newState));
-    return true;
-  } catch (error) {
-    DebugLogger.error('energy_system.ts:spendEnergy', error, 'critical');
-    return false;
-  }
-}
 
 /**
  * Восстановить энергию вручную (например, при покупке в премиум или за достижения).

@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { getEffectiveMaxEnergyValue } from './energy_system';
 import { getEnergyRecoveryIntervalMs } from './remote_flags';
+import { TURBO_REGEN_FACTOR } from './boons/boon_effects_energy';
 import { reviveStreak } from './streak_revive';
 import { addOwnedPackId } from './flashcards/marketplace';
 import { unlockRandomCustomAvatarGift, type GiftCosmeticUnlock } from './level_gift_system';
@@ -173,7 +174,10 @@ export async function applySeasonRewardLocal(
     case 'turbo_regen':
       return commitIncrementalSeasonGift(idempotencyKey, async () => {
         const base = getEnergyRecoveryIntervalMs();
-        const recoveryMs = Math.max(1000, Math.floor(base / 2));
+        // зачем: коэффициент берём из boon_effects_energy — сезонная награда и
+        // бон дня пишут ОДИН ключ boon_energy_override_v1, и раздельные числа
+        // разъехались бы (аудит 2026-08-23 нашёл это дублирование).
+        const recoveryMs = Math.max(1000, Math.floor(base * TURBO_REGEN_FACTOR));
         const now = new Date();
         const expiresAt = Date.UTC(
           now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0, 0,

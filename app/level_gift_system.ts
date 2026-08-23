@@ -188,7 +188,7 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
   },
   energy_plus1: {
     title: { 'pt-BR': '+1 energia até meia-noite', vi: '+1 năng lượng đến nửa đêm', id: '+1 energi sampai tengah malam', tr: 'Gece yarısına kadar +1 enerji', pl: '+1 energia do północy' },
-    desc: { 'pt-BR': 'Um espaço extra de energia até meia-noite (substitui o bônus anterior, não acumula)', vi: 'Một ô năng lượng thưởng đến nửa đêm (thay thế bonus trước, không cộng dồn)', id: 'Satu slot energi bonus sampai tengah malam (mengganti bonus sebelumnya, tidak menumpuk)', tr: 'Gece yarısına kadar bir bonus enerji yuvası (önceki bonusun yerine geçer, birikmez)', pl: 'Jeden dodatkowy slot energii do północy (zastępuje poprzedni bonus, nie kumuluje się)' },
+    desc: { 'pt-BR': 'Um espaço extra de energia até meia-noite (acumula com outros bônus)', vi: 'Một ô năng lượng thưởng đến nửa đêm (cộng dồn với các bonus khác)', id: 'Satu slot energi bonus sampai tengah malam (menumpuk dengan bonus lain)', tr: 'Gece yarısına kadar bir bonus enerji yuvası (diğer bonuslarla birikir)', pl: 'Jeden dodatkowy slot energii do północy (kumuluje się z innymi bonusami)' },
   },
   xp_50: {
     title: { 'pt-BR': '+50 XP', vi: '+50 XP', id: '+50 XP', tr: '+50 XP', pl: '+50 XP' },
@@ -494,9 +494,13 @@ const GIFT_F2P: GiftDef[] = [
   {
     id: 'energy_plus1', rarity: 'common', icon: '⚡', weight: 8,
     titleRU: '+1 к энергии до полуночи', titleUK: '+1 до енергії до півночі', titleES: '+1 energía hasta medianoche',
-    descRU: 'Один бонус-слот энергии до полуночи (не суммируется с предыдущим бонусом — заменяет)',
-    descUK: 'Один бонус-слот енергії до півночі (не додається до попереднього — замінює)',
-    descES: 'Un hueco extra de energía hasta medianoche (no se acumula con el anterior; lo sustituye)',
+    // зачем: владелец 2026-08-23 — описание врало. Оно обещало «заменяет, не
+    // суммируется», а applyEnergyBonusN всегда СКЛАДЫВАЛ с уже активным бонусом
+    // (existing.amount + n). Владелец подтвердил: правда — код, суммирование
+    // выгоднее игроку. Текст приведён к фактическому поведению.
+    descRU: 'Один бонус-слот энергии до полуночи (суммируется с другими бонусами)',
+    descUK: 'Один бонус-слот енергії до півночі (додається до інших бонусів)',
+    descES: 'Un hueco extra de energía hasta medianoche (se acumula con otros bonos)',
   },
   {
     id: 'xp_50', rarity: 'common', icon: '✨', weight: 7,

@@ -8,7 +8,6 @@ import {
   getActiveBoosts,
   getActiveBoostById,
   getXPMultiplier,
-  hasEnergyBoost,
   getBoostTimeRemaining,
   formatBoostTimeRemaining,
   getBoostDef,
@@ -336,38 +335,6 @@ describe('Club Boosts System', () => {
 
       const multiplier = await getXPMultiplier();
       expect(multiplier).toBe(1.0);
-    });
-  });
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // ENERGY BOOST
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  describe('Energy Boost', () => {
-    test('should return false when no energy boost', async () => {
-      mockAsyncStorage.getItem.mockResolvedValue(null);
-      mockAsyncStorage.setItem.mockResolvedValue(undefined);
-
-      const has = await hasEnergyBoost();
-      expect(has).toBe(false);
-    });
-
-    test('should return false when no energy boost (only XP boost)', async () => {
-      const now = Date.now();
-      const mockBoosts = {
-        xp_2x_2h_250xp: {
-          id: 'xp_2x_2h_250xp',
-          activatedBy: 'TestPlayer',
-          activatedAt: now,
-          durationMs: 2 * 60 * 60 * 1000,
-        },
-      };
-
-      mockAsyncStorage.getItem.mockResolvedValue(JSON.stringify(mockBoosts));
-      mockAsyncStorage.setItem.mockResolvedValue(undefined);
-
-      const has = await hasEnergyBoost();
-      expect(has).toBe(false);
     });
   });
 

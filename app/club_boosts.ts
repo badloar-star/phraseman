@@ -38,7 +38,7 @@ export interface BoostDef {
   cost: number; // стоимость
   costCurrency: 'xp' | 'shards'; // валюта стоимости
   icon: string;
-  type: 'xp' | 'energy'; // тип буста
+  type: 'xp'; // тип буста (энергетических бустов в каталоге нет — см. 2026-08-23)
 }
 
 export interface ActiveBoost {
@@ -204,30 +204,11 @@ export async function activateBoost(
 
     const now = Date.now();
 
-    // Для энергии - только одна активация
-    if (boostDef.type === 'energy') {
-      const data = await AsyncStorage.getItem(ACTIVE_BOOSTS_KEY);
-      const boosts = data ? JSON.parse(data) : {};
-
-      // Удаляем предыдущую энергию буст если есть
-      for (const key of Object.keys(boosts)) {
-        const boost = boosts[key] as ActiveBoost;
-        const def = CLUB_BOOSTS.find(b => b.id === boost.id);
-        if (def?.type === 'energy') {
-          delete boosts[key];
-        }
-      }
-
-      boosts[boostId] = {
-        id: boostId,
-        activatedBy: playerName,
-        activatedAt: now,
-        durationMs: boostDef.durationMs,
-      };
-
-      await AsyncStorage.setItem(ACTIVE_BOOSTS_KEY, JSON.stringify(boosts));
-    } else {
-      // Для XP бустов добавляем новый
+    // зачем: ветка «для энергии — только одна активация» удалена (владелец
+    // 2026-08-23). В каталоге CLUB_BOOSTS не существует ни одного буста с
+    // type: 'energy' — код был мёртвым с самого начала и вводил в заблуждение,
+    // будто клуб умеет бустить энергию. Остаётся единственный реальный путь.
+    {
       const data = await AsyncStorage.getItem(ACTIVE_BOOSTS_KEY);
       const boosts = data ? JSON.parse(data) : {};
 
@@ -320,22 +301,6 @@ export async function getXPMultiplier(): Promise<number> {
   } catch (error) {
     DebugLogger.error('club_boosts.ts:getXPMultiplier', error, 'warning');
     return 1.0;
-  }
-}
-
-/**
- * Проверить есть ли активный буст энергии
- */
-export async function hasEnergyBoost(): Promise<boolean> {
-  try {
-    const activeBoosts = await getActiveBoosts();
-    return activeBoosts.some(b => {
-      const def = CLUB_BOOSTS.find(d => d.id === b.id);
-      return def?.type === 'energy';
-    });
-  } catch (error) {
-    DebugLogger.error('club_boosts.ts:hasEnergyBoost', error, 'warning');
-    return false;
   }
 }
 

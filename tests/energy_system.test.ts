@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   getEnergyState,
   checkAndRecover,
-  spendEnergy,
   addEnergy,
   resetEnergyToMax,
   getTimeUntilNextRecovery,
@@ -108,38 +107,6 @@ describe('Energy System', () => {
     });
   });
 
-  describe('spendEnergy', () => {
-    it('should spend energy if available', async () => {
-      const currentState: EnergyState = {
-        current: 3,
-        lastRecoveryTime: Date.now(),
-      };
-      (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
-      (AsyncStorage.multiGet as jest.Mock).mockResolvedValue([
-        ['premium_active', 'false'],
-        ['premium_expiry', '0'],
-      ]);
-      (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
-
-      const result = await spendEnergy(1);
-
-      expect(result).toBe(true);
-      expect(AsyncStorage.setItem).toHaveBeenCalled();
-    });
-
-    it('should not spend energy if unavailable', async () => {
-      const currentState: EnergyState = {
-        current: 0,
-        lastRecoveryTime: Date.now(),
-      };
-      (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
-
-      const result = await spendEnergy(1);
-
-      expect(result).toBe(false);
-    });
-  });
-
   describe('addEnergy', () => {
     it('should add energy up to max', async () => {
       const currentState: EnergyState = {
@@ -225,10 +192,15 @@ describe('Energy System', () => {
     });
 
     it('should preserve partial recovery progress after completed intervals', async () => {
+      // зачем: считаем от фактического интервала, а не от «25 минут» — при базе
+      // 30 минут прежний хардкод давал 0 циклов вместо 2 и тест ловил смену
+      // правила как поломку кода.
+      const interval = getRecoveryIntervalMs();
       const now = Date.now();
       const currentState: EnergyState = {
         current: 1,
-        lastRecoveryTime: now - 25 * 60 * 1000, // 2 cycles + 5 min remainder
+        // Ровно 2 полных цикла + половина третьего (остаток не должен теряться).
+        lastRecoveryTime: now - (2 * interval + Math.floor(interval / 2)),
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
       (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
@@ -236,7 +208,7 @@ describe('Energy System', () => {
       const result = await checkAndRecover();
 
       expect(result.current).toBe(3);
-      expect(result.lastRecoveryTime).toBe(currentState.lastRecoveryTime + 20 * 60 * 1000);
+      expect(result.lastRecoveryTime).toBe(currentState.lastRecoveryTime + 2 * interval);
     });
 
     it('should not recover energy before a full interval has passed', async () => {

@@ -1,5 +1,6 @@
 import { DeviceEventEmitter } from 'react-native';
 import type { PlannedTriLangCopy } from '../constants/i18n';
+import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import type { SoundEventId } from '../modules/audio/sound_events';
 
@@ -16,6 +17,13 @@ export type AppEventMap = {
   xp_updated: { total: number; delta: number };
   level_up_pending: undefined;
   energy_reload: undefined;
+  /**
+   * Энергия списана за СТАРТ активности (владелец 2026-08-23: платим за вход).
+   * Глобальный оверлей рисует улетающую вверх молнию, чтобы списание было
+   * видно на любом экране — в том числе там, где счётчика энергии нет в шапке
+   * (Арена, флешкарты, диалоги). Payload — сколько единиц ушло.
+   */
+  energy_spent_on_start: { amount: number };
   premium_activated: undefined;
   premium_deactivated: undefined;
   vip_activated: undefined;
@@ -29,6 +37,9 @@ export type AppEventMap = {
   loyalty_gift_changed: undefined;
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
+  avatar_dna_invitation_requested: { source: 'first_achievement' };
+  avatar_dna_sync_requested: { ownerStableId: string; accountGeneration: number };
+  avatar_dna_saved: { ownerStableId: string };
   account_deleted: undefined;
   /** После restoreFromCloud / мерджа user_name с облака — обновить профиль в UI. */
   cloud_profile_hydrated: undefined;
@@ -76,10 +87,13 @@ export type AppEventMap = {
     reason?: string;
     eligibleAchievementBalance?: number;
   };
+  /** Durable foreground tracker flush; achievement evaluator reuses the same five-minute cadence. */
+  foreground_usage_changed: { totalMs: number };
   /** 48-год ваучер на безкоштовний паккарток виданий (з преміум-подарунка / broadcast) */
   pack_trial_gift_set: undefined;
   /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
   pack_trial_gift_consumed: undefined;
+  personal_plan_updated: { planId?: string; taskId?: string; snapshot?: PersonalPlanHomeSnapshot } | undefined;
   energy_purchased_shards: undefined;
   /** Цепочка только что обнулена, доступен оффер восстановления (24ч). home.tsx показывает модалку. */
   streak_revive_offer: { lostStreak: number; missedDays?: number };
@@ -98,9 +112,8 @@ export type AppEventMap = {
     /** Optional exact semantic cue; the visible ActionToast remains the playback trigger. */
     soundEventId?: SoundEventId;
     /**
-     * зачем: витрина движения показывает гибрид «Световод + Чекан» РЯДОМ с
-     * боевым видом, не заменяя его. Поле dev-only — боевые эмиты его не
-     * передают, default остаётся 'classic'.
+     * Production default is hybrid when the field is omitted. DEV Hub and QA
+     * can still pass an explicit variant; `classic` is the rollback path.
      */
     motionVariant?: 'classic' | 'hybrid';
     messageRu: string;
@@ -151,6 +164,8 @@ export type AppEventMap = {
    * игрока — оба места держат сердце в согласии через это событие, без лишних чтений.
    */
   profile_like_changed: { targetUid: string; liked: boolean };
+  /** Тап по push о новом подарке: глобальный host немедленно обходит 5-минутный throttle. */
+  friend_gift_push_opened: undefined;
 };
 
 /** RU + UK + ES для `action_toast` без дублирования полей. */

@@ -311,9 +311,14 @@ export default function ArenaMatchmakingScreen() {
   }
 
   if (energyGate === 'checking') {
-    // Ничего не рендерим до решения по энергии — иначе поисковый пульс мигает
-    // на кадр и тут же гаснет, если энергии не хватило.
-    return <ArenaScreen title={arenaText(lang, 'searching')} variant="lobby" scroll={false} />;
+    // Пустой экран до решения по энергии — иначе поисковый пульс мигает на
+    // кадр и тут же гаснет, если энергии не хватило. ArenaScreen требует
+    // children, поэтому отдаём пустой View, а не самозакрывающийся тег.
+    return (
+      <ArenaScreen title={arenaText(lang, 'searching')} variant="lobby" scroll={false}>
+        <View />
+      </ArenaScreen>
+    );
   }
 
   return (

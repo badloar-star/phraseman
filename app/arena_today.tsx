@@ -28,6 +28,7 @@ import {
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 
 export default function ArenaTodayScreen() {
   const router = useRouter();
@@ -50,7 +51,7 @@ export default function ArenaTodayScreen() {
   const [verdict, setVerdict] = useState<'correct' | 'wrong' | null>(null);
   // Старт «Задания дня» = 1 ⚡ (владелец 2026-08-23: единая экономика — платим
   // за ПОПЫТКУ, ошибки внутри задания энергию больше не трогают).
-  const { isUnlimited: arenaEnergyUnlimited, spendOne: spendArenaTodayEnergy } = useEnergy();
+  const { isUnlimited: arenaEnergyUnlimited, spendOne: spendArenaTodayEnergy, refundOne: refundArenaTodayEnergy } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const ids = useRef(new Map<string, string>());
   const deadlineSyncs = useRef(new Set<string>());
@@ -126,14 +127,14 @@ export default function ArenaTodayScreen() {
       // и не трогает состояние загрузки, пользователь может пополнить и нажать снова.
       void spendArenaTodayEnergy().then((ok) => {
         if (!ok) { setNoEnergyOpen(true); return; }
-        beginArenaTodayMatch();
+        beginArenaTodayMatch(true);
       });
       return;
     }
-    beginArenaTodayMatch();
+    beginArenaTodayMatch(false);
   };
 
-  const beginArenaTodayMatch = () => {
+  const beginArenaTodayMatch = (energyCharged: boolean) => {
     setSubmitting(true);
     trackArenaTelemetry(arenaActionEvent('today', 'start', 'mixed'));
     const requestId = startRequestId.current ?? createArenaRequestId('today');
@@ -143,7 +144,12 @@ export default function ArenaTodayScreen() {
       setMatch(response.match);
       setHardExpiresAtMs(response.hardExpiresAtMs);
       setStatus(response.match.terminal ? 'complete' : 'ready');
-    }).catch(() => setStatus('error')).finally(() => setSubmitting(false));
+    }).catch(() => {
+      // зачем: задание не стартовало (нет сети / отказ сервера) — входа не
+      // случилось, плата возвращается.
+      if (energyCharged) void refundArenaTodayEnergy();
+      setStatus('error');
+    }).finally(() => setSubmitting(false));
   };
   const submit = (answer: unknown) => {
     if (!match || submitting || match.state !== 'task_active') return;
@@ -200,7 +206,13 @@ export default function ArenaTodayScreen() {
   );
   if (!match) return (
     <ArenaScreen title={screenTitle} subtitle={arenaExpansionText(lang, 'todayBody')}>
-      <V2Card style={styles.startCard}><ArenaProgress value={0} max={10} label={arenaExpansionText(lang, 'todayTitle')} /><Text style={[styles.body, bodyLine, { color: P.muted }]}>{arenaExpansionText(lang, 'todayBody')}</Text><V2Cta disabled={submitting} onPress={start}>{arenaExpansionText(lang, 'todayStart')}</V2Cta></V2Card>
+      <V2Card style={styles.startCard}><ArenaProgress value={0} max={10} label={arenaExpansionText(lang, 'todayTitle')} /><Text style={[styles.body, bodyLine, { color: P.muted }]}>{arenaExpansionText(lang, 'todayBody')}</Text>
+        <View style={styles.ctaWrap}>
+          <V2Cta disabled={submitting} onPress={start}>{arenaExpansionText(lang, 'todayStart')}</V2Cta>
+          {/* Цена входа видна до нажатия (владелец 2026-08-23). */}
+          <EnergyCostBadge testID="arena-today-energy-cost" />
+        </View>
+      </V2Card>
       <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
     </ArenaScreen>
   );
@@ -223,6 +235,8 @@ export default function ArenaTodayScreen() {
 
 const styles = StyleSheet.create({
   startCard: { gap: 16 },
+  // Обёртка — якорь для углового бейджа «−1 ⚡».
+  ctaWrap: { position: 'relative' },
   body: { fontSize: 15, fontWeight: '700', textAlign: 'center' },
   question: { flex: 1, justifyContent: 'center', gap: 8 },
   center: { flex: 1, justifyContent: 'center' },

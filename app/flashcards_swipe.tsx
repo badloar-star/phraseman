@@ -27,6 +27,7 @@ import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { FlowText } from '../components/text-integrity/FlowText';
@@ -908,7 +909,7 @@ function FlashcardsSwipeScreen() {
   const [loadError, setLoadError] = useState('');
   // Старт тренировки карточек = 1 ⚡ (владелец 2026-08-23: единая экономика —
   // платим за ПОПЫТКУ, ошибки внутри свайп-тренировки энергию не трогают).
-  const { isUnlimited: swipeEnergyUnlimited, spendOne: spendSwipeEnergy } = useEnergy();
+  const { isUnlimited: swipeEnergyUnlimited, spendOne: spendSwipeEnergy, refundOne: refundSwipeEnergy } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const [phase, setPhase] = useState<Phase>('select');
   const [trainingCards, setTrainingCards] = useState<TrainingCard[]>([]);
@@ -1902,9 +1903,11 @@ function FlashcardsSwipeScreen() {
       return;
     }
     if (selectedSources.length === 0 || starting) return;
+    let energyCharged = false;
     if (!swipeEnergyUnlimited) {
       const ok = await spendSwipeEnergy();
       if (!ok) { setNoEnergyOpen(true); return; }
+      energyCharged = true;
     }
     draftRestoreAttemptedRef.current = true;
     void hapticTap();
@@ -1915,6 +1918,9 @@ function FlashcardsSwipeScreen() {
       memoryRef.current = memory;
       const { cards, info } = await buildSessionCards(selectedSources, memory);
       if (cards.length === 0) {
+        // зачем: тренировка не началась (в наборах нет подходящих карточек) —
+        // плата за вход возвращается.
+        if (energyCharged) void refundSwipeEnergy();
         setLoadError(
           triLang(lang, {
             ru: 'В выбранных наборах нет карточек с переводом.',
@@ -1956,7 +1962,7 @@ function FlashcardsSwipeScreen() {
     } finally {
       setStarting(false);
     }
-  }, [buildPromptQueue, buildSessionCards, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, requestedSessionSize, selectedSources, spendSwipeEnergy, starting, studyTarget, swipeEnergyUnlimited]);
+  }, [buildPromptQueue, buildSessionCards, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, requestedSessionSize, selectedSources, refundSwipeEnergy, spendSwipeEnergy, starting, studyTarget, swipeEnergyUnlimited]);
 
   useEffect(() => {
     if (draftRestoreAttemptedRef.current) return;
@@ -2600,27 +2606,34 @@ function FlashcardsSwipeScreen() {
           ? { label: text.startNoSelection, icon: 'albums-outline' as const }
           : null;
     return (
-      <DuoPressable
-        onPress={startSession}
-        disabled={startBlockReason != null}
-        edgeColor={t.accent}
-        wrapStyle={{ width: '100%' }}
-        style={[
-          styles.heroStart,
-          {
-            // marginTop из heroStart нужен, когда кнопка стоит в потоке под
-            // блоком выше. В закреплённой панели он даёт лишний зазор.
-            marginTop: 0,
-            backgroundColor: startBlockReason ? t.bgSurface2 : t.accent,
-            opacity: startBlockReason ? 0.72 : 1,
-          },
-        ]}
-      >
-        <Ionicons name={startBlockReason?.icon ?? 'play'} size={20} color={t.correctText} />
-        <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
-          {startBlockReason?.label ?? text.start}
-        </Text>
-      </DuoPressable>
+      <View style={{ position: 'relative', width: '100%' }}>
+        <DuoPressable
+          onPress={startSession}
+          disabled={startBlockReason != null}
+          edgeColor={t.accent}
+          wrapStyle={{ width: '100%' }}
+          style={[
+            styles.heroStart,
+            {
+              // marginTop из heroStart нужен, когда кнопка стоит в потоке под
+              // блоком выше. В закреплённой панели он даёт лишний зазор.
+              marginTop: 0,
+              backgroundColor: startBlockReason ? t.bgSurface2 : t.accent,
+              opacity: startBlockReason ? 0.72 : 1,
+            },
+          ]}
+        >
+          <Ionicons name={startBlockReason?.icon ?? 'play'} size={20} color={t.correctText} />
+          <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
+            {startBlockReason?.label ?? text.start}
+          </Text>
+        </DuoPressable>
+        {/* Цена входа видна до нажатия. Когда старт заблокирован (нет выбора,
+            идёт загрузка) — бейдж не рисуем: списания не будет. */}
+        {startBlockReason == null ? (
+          <EnergyCostBadge testID="flashcards-swipe-energy-cost" />
+        ) : null}
+      </View>
     );
   };
 

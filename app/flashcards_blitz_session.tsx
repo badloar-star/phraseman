@@ -259,8 +259,18 @@ export default function FlashcardsBlitzSession() {
 
   // Ровно одно списание на каждый roundId (первый заход и каждый рестарт «Ещё
   // разок»). Пока не решено — стартовый эффект ниже ждёт (см. energyGate).
+  //
+  // зачем ref-латч по roundId, а не только deps: аудит 2026-08-23 нашёл, что
+  // blitzEnergyUnlimited в deps приводил к ПОВТОРНОМУ списанию в том же раунде.
+  // Флаг меняется асинхронно (холодный старт: false → true у подписчика) и
+  // может переключаться обратно — например в 22:00, когда истекает «вечер без
+  // лимитов». Каждое такое переключение перезапускало эффект и снимало ещё
+  // единицу. Латч помнит, за какой roundId уже заплачено.
+  const blitzChargedRoundRef = useRef<number | null>(null);
   useEffect(() => {
     if (loading || !canStartBlitz(pool.length)) return;
+    if (blitzChargedRoundRef.current === roundId) return;
+    blitzChargedRoundRef.current = roundId;
     setEnergyGate('checking');
     if (blitzEnergyUnlimited) { setEnergyGate('ok'); return; }
     let cancelled = false;

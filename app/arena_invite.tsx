@@ -14,6 +14,7 @@ import { arenaText } from '../modules/arena/copy';
 import { arenaV2InviteAccept, arenaV2InviteDecline, arenaV2InviteReady, arenaV2InviteStatus, type ArenaFriendInviteStatus } from './arena_client';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 
 export default function ArenaInviteScreen() {
   const router = useRouter();
@@ -27,7 +28,7 @@ export default function ArenaInviteScreen() {
   const [busy, setBusy] = useState(false);
   // Принятие вызова друга = 1 ⚡ у принимающего (владелец 2026-08-23: единая
   // экономика, платим за ПОПЫТКУ — списание в accept() ниже).
-  const { isUnlimited: inviteEnergyUnlimited, spendOne: spendInviteEnergy } = useEnergy();
+  const { isUnlimited: inviteEnergyUnlimited, spendOne: spendInviteEnergy, refundOne: refundInviteEnergy } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const [error, setError] = useState('');
   const [now, setNow] = useState(Date.now());
@@ -95,9 +96,11 @@ export default function ArenaInviteScreen() {
 
   const accept = async () => {
     if (!inviteId || busy) return;
+    let energyCharged = false;
     if (!inviteEnergyUnlimited) {
       const ok = await spendInviteEnergy();
       if (!ok) { setNoEnergyOpen(true); return; }
+      energyCharged = true;
     }
     setBusy(true); setError('');
     try {
@@ -105,7 +108,12 @@ export default function ArenaInviteScreen() {
       if (handleStatus(accepted)) return;
       const ready = await arenaV2InviteReady(inviteId);
       handleStatus(ready);
-    } catch { setError(`${arenaText(lang, 'joinFailed')}. ${arenaText(lang, 'joinFailedHint')}`); }
+    } catch {
+      // зачем: вызов не принят (нет сети / отказ сервера) — входа не случилось,
+      // плата возвращается. Иначе теряется единица за чужую сетевую ошибку.
+      if (energyCharged) void refundInviteEnergy();
+      setError(`${arenaText(lang, 'joinFailed')}. ${arenaText(lang, 'joinFailedHint')}`);
+    }
     finally { setBusy(false); }
   };
 
@@ -129,7 +137,7 @@ export default function ArenaInviteScreen() {
         <View style={[styles.modal, { backgroundColor: t.bgCard }]}>
           <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{`${status?.counterpartName || 'Друг'} бросает вызов`}</Text>
           <Text style={[styles.body, { color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }]}>10 заданий</Text>
-          <DuoPressable testID="arena-friend-invite-accept" disabled={busy} onPress={() => { void accept(); }} edgeColor={t.accent} style={[styles.primary, { backgroundColor: t.accent }]}><Text style={[styles.button, { color: t.correctText }]}>Проверим</Text></DuoPressable>
+          <View style={styles.ctaWrap}><DuoPressable testID="arena-friend-invite-accept" disabled={busy} onPress={() => { void accept(); }} edgeColor={t.accent} style={[styles.primary, { backgroundColor: t.accent }]}><Text style={[styles.button, { color: t.correctText }]}>Проверим</Text></DuoPressable><EnergyCostBadge testID="arena-invite-energy-cost" /></View>
           <DuoPressable testID="arena-friend-invite-decline" disabled={busy} onPress={() => { void decline(); }} edgeColor={t.bgSurface2} style={[styles.secondary, { backgroundColor: t.bgSurface2 }]}><Text style={[styles.button, { color: t.textPrimary }]}>Сегодня без драмы</Text></DuoPressable>
         </View>
       </HybridAlertShell>
@@ -144,6 +152,8 @@ const styles = StyleSheet.create({
   timer: { fontSize: 34, fontWeight: '900', fontVariant: ['tabular-nums'] },
   error: { fontSize: 15, fontWeight: '700', textAlign: 'center' },
   modal: { padding: 24 },
+  // Якорь для углового бейджа «−1 ⚡».
+  ctaWrap: { position: 'relative' },
   title: { fontWeight: '700', textAlign: 'center' },
   body: { marginTop: 14, marginBottom: 22, textAlign: 'center' },
   primary: { minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },

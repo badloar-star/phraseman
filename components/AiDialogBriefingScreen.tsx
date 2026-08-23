@@ -26,6 +26,7 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import ScreenGradient from './ScreenGradient';
 import PressableScale from './feedback/PressableScale';
+import EnergyCostBadge from './EnergyCostBadge';
 import { triLang } from '../constants/i18n';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 
@@ -188,7 +189,9 @@ export default function AiDialogBriefingScreen({
               </>
             )}
 
-            <Reanimated.View entering={enterAt(220)}>
+            <Reanimated.View entering={enterAt(220)} style={{ position: 'relative' }}>
+              {/* Цена входа видна до нажатия (владелец 2026-08-23). */}
+              <EnergyCostBadge testID="ai-dialog-briefing-energy-cost" />
               <PressableScale
                 onPress={onStart}
                 accessibilityRole="button"

@@ -36,6 +36,7 @@ import { normalizeSafeAreaBottomInset } from "../hooks/use-screen";
 import { hapticTap } from "../hooks/use-haptics";
 import { useTheme } from "./ThemeContext";
 import TonalSurface from "./TonalSurface";
+import EnergyCostBadge from "./EnergyCostBadge";
 
 const SHEET_HIDDEN = 420;
 
@@ -176,15 +177,19 @@ export default function LearningV2SessionOutcomeSheet({
                 {message}
               </Text>
 
-              <TouchableOpacity
-                accessibilityRole="button"
-                onPress={handlePrimaryPress}
-                style={[styles.primaryButton, { backgroundColor: t.accent }]}
-              >
-                <Text style={[styles.primaryLabel, { color: t.correctText, fontSize: f.body }]}>
-                  {primaryLabel}
-                </Text>
-              </TouchableOpacity>
+              <View style={styles.primaryWrap}>
+                <TouchableOpacity
+                  accessibilityRole="button"
+                  onPress={handlePrimaryPress}
+                  style={[styles.primaryButton, { backgroundColor: t.accent }]}
+                >
+                  <Text style={[styles.primaryLabel, { color: t.correctText, fontSize: f.body }]}>
+                    {primaryLabel}
+                  </Text>
+                </TouchableOpacity>
+                {/* Цена входа видна ДО нажатия — списание не должно быть сюрпризом. */}
+                <EnergyCostBadge testID="learning-v2-session-energy-cost" />
+              </View>
 
               <TouchableOpacity
                 accessibilityRole="button"
@@ -240,6 +245,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     minHeight: 52,
   },
+  // Обёртка нужна, чтобы угловой бейдж позиционировался от кнопки, а не от шторки.
+  primaryWrap: { position: "relative" },
   primaryButton: {
     height: 56,
     borderRadius: 20,

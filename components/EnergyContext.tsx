@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../app/personal_progress_store';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, DeviceEventEmitter, InteractionManager } from 'react-native';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
@@ -13,6 +14,7 @@ import type { Lang } from '../constants/i18n';
 import { energyCountdownClock } from './energy_countdown_clock';
 import { getMaxEnergy as getConfiguredBaseEnergy } from '../app/remote_flags';
 import { isFeatureFreeForEveryone } from '../app/feature_gates';
+import { emitAppEvent } from '../app/events';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
@@ -54,6 +56,17 @@ export interface EnergyContextValue {
   spendOne: () => Promise<boolean>;  // returns false if no energy
   /** Spend N units: bonus first, then base. Returns false if total available < n (atomic). */
   spendAmount: (n: number) => Promise<boolean>;
+  /**
+   * Вернуть 1 единицу, если оплаченный старт НЕ состоялся (упала сеть, сервер
+   * отказал, экран закрылся до входа).
+   *
+   * зачем: владелец 2026-08-23 — энергия платится за ВХОД. Если входа не
+   * случилось, плата обязана вернуться: иначе игрок теряет заряд за чужую
+   * сетевую ошибку. Возвращаем в БАЗУ (не в бонус) — бонусные слоты живут до
+   * полуночи, и «воскрешать» истёкший бонус было бы неверно; потолок базы
+   * ограничивает возврат сам по себе.
+   */
+  refundOne: () => Promise<void>;
   reload: () => Promise<void>;       // force re-read (call after tester toggle)
   refillToMax: (isCurrent?: () => boolean) => Promise<boolean>; // immediate account-safe Premium refill
   /** First AsyncStorage load finished — safe to gate screens on real energy+bonus (not defaults). */
@@ -73,6 +86,7 @@ const EnergyContext = createContext<EnergyContextValue>({
   restoringPremium: false,
   spendOne: async () => true,
   spendAmount: async () => true,
+  refundOne: async () => {},
   reload: async () => {},
   refillToMax: async () => true,
   energyReady: false,
@@ -203,8 +217,8 @@ async function readAndRecoverState(dynMax: number, recoveryMs: number): Promise<
 /** Читает текущий максимум энергии из уровня пользователя */
 async function readDynMax(): Promise<number> {
   try {
-    const xpRaw = await AsyncStorage.getItem('user_total_xp');
-    const xp = parseInt(xpRaw || '0') || 0;
+    await hydratePersonalProgress();
+    const xp = getPersonalProgressSnapshot().totalXp;
     return getMaxEnergyForLevel(getLevelFromXP(xp), getConfiguredBaseEnergy());
   } catch {
     return MAX_ENERGY;
@@ -246,6 +260,18 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const recoveryMsRef = useRef(getRecoveryIntervalMs(0));
   const lastRecoveryRef = useRef(Date.now());
   const isUnlimitedRef = useRef(false);
+  /**
+   * Прочитан ли реальный статус (премиум / тестер / окно без лимитов) из
+   * хранилища. До этого момента isUnlimitedRef держит placeholder `false`.
+   *
+   * зачем: аудит 2026-08-23 нашёл класс бага — экраны списывали энергию сразу
+   * при монтировании, и на холодном старте (пока идёт runLoad) у ПОДПИСЧИКА
+   * снималась единица, которой у него сниматься не должно вовсе. Ждать
+   * energyReady на каждом из одиннадцати экранов — значит добавить задержку
+   * до первого тапа везде. Дешевле и надёжнее закрыть дыру в одной точке:
+   * трата просто не проходит, пока статус неизвестен.
+   */
+  const energyReadyRef = useRef(false);
   const restoreTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const loadRunnerRef = useRef<(() => Promise<void>) | null>(null);
   const syncEnergyPushRef = useRef<(() => Promise<void>) | null>(null);
@@ -328,6 +354,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       }
     } catch {
     } finally {
+      energyReadyRef.current = true;
       setEnergyReady(true);
       // B2: обновляем peek-кеш последним известным значением после каждого
       // успешного load — следующий маунт провайдера (навигация назад/вперёд,
@@ -406,8 +433,25 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
 
   // ── Spend 1 energy ─────────────────────────────────────────────────────────
   const spendOne = useCallback(async (): Promise<boolean> => {
+    // зачем: пока статус не прочитан, isUnlimitedRef держит placeholder `false`
+    // — и трата прошла бы у премиума, тестера и в «вечер без лимитов». Ждём
+    // первое живое чтение и только потом решаем. Возврат true = «проходи»:
+    // отказывать нельзя, иначе на холодном старте активность не запустится.
+    // load() коалесцирован: параллельные вызовы ждут один и тот же прогон,
+    // лишних чтений хранилища не будет.
+    if (!energyReadyRef.current) {
+      await load();
+    }
     if (isUnlimitedRef.current) return true;
     if (bonusRef.current <= 0 && energyRef.current <= 0) return false;
+
+    // зачем: владелец 2026-08-23 — «при начале мы должны видеть анимацию
+    // отнятия 1 единицы». Событие шлём ЗДЕСЬ, в единственной общей точке
+    // траты, а не в девяти экранах по отдельности: так анимация появляется
+    // всюду сама и не может «забыться» в новой активности.
+    // Шлём синхронно, до записи в хранилище — картинка должна отзываться
+    // на нажатие мгновенно, запись догоняет.
+    emitAppEvent('energy_spent_on_start', { amount: 1 });
 
     // Spend from bonus first (it expires tomorrow, use it before base energy)
     if (bonusRef.current > 0) {
@@ -453,11 +497,32 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     void syncEnergyPushRef.current?.();
 
     return true;
+  }, [load]);
+
+  // ── Refund 1 energy (старт не состоялся) ──────────────────────────────────
+  const refundOne = useCallback(async (): Promise<void> => {
+    if (isUnlimitedRef.current) return;
+    // Потолок соблюдаем: возврат не может поднять базу выше максимума.
+    const capped = Math.min(energyRef.current + 1, dynMaxRef.current);
+    if (capped === energyRef.current) return;
+
+    energyRef.current = capped;
+    setEnergy(capped);
+
+    const state: StoredEnergy = { current: capped, lastRecoveryTime: lastRecoveryRef.current };
+    await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+    writePeekEnergy(capped, dynMaxRef.current);
+    // Баланс вырос — пуш о полном восстановлении мог стать неактуальным.
+    void syncEnergyPushRef.current?.();
   }, []);
 
   // ── Spend N energy (bonus first, then base) in one pass ───────────────────
   const spendAmount = useCallback(async (n: number): Promise<boolean> => {
     if (n <= 0) return true;
+    // Та же защита, что в spendOne: не тратим по placeholder-статусу.
+    if (!energyReadyRef.current) {
+      await load();
+    }
     if (isUnlimitedRef.current) return true;
     if (bonusRef.current + energyRef.current < n) return false;
 
@@ -465,6 +530,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     const nFromBase = n - takeB;
     const e = energyRef.current;
     if (e < nFromBase) return false;
+
+    // Та же анимация списания, что и в spendOne (экзамены ходят сюда).
+    emitAppEvent('energy_spent_on_start', { amount: n });
 
     const newBonus = bonusRef.current - takeB;
     const newE = e - nFromBase;
@@ -505,7 +573,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     void syncEnergyPushRef.current?.();
 
     return true;
-  }, []);
+  }, [load]);
 
   // ── Sync energy-full push с текущим состоянием ──────────────────────────────
   // Безлимит/полная энергия → отменяем пуш. Иначе планируем на момент полного
@@ -561,6 +629,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     setIsUnlimited(true);
     setTimeUntilNextMs(0);
     setRecoveryEndsAtMs(0);
+    energyReadyRef.current = true;
     setEnergyReady(true);
     writePeekEnergy(fullEnergy, fullEnergy);
 
@@ -585,11 +654,11 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo<EnergyContextValue>(() => ({
     energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
-    spendOne, spendAmount, reload, refillToMax, energyReady,
+    spendOne, spendAmount, refundOne, reload, refillToMax, energyReady,
   }), [
     energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
-    spendOne, spendAmount, reload, refillToMax, energyReady,
+    spendOne, spendAmount, refundOne, reload, refillToMax, energyReady,
   ]);
 
   return (

@@ -15,7 +15,8 @@ export type SeasonRewardKind =
   | 'club_totem'        // +10% всей группе лиги на день
   | 'golden_lesson'     // следующий урок ×3 XP + гарантированный дроп
   | 'collection_magnet' // 24ч двойной шанс дропа коллекции
-  | 'turbo_regen'       // энергия восстанавливается ×2 до конца дня
+  | 'turbo_regen'       // энергия восстанавливается на треть быстрее до конца дня
+                        // (TURBO_REGEN_FACTOR в boons/boon_effects_energy.ts)
   | 'tournament_ticket' // вход в турнир без ставки
   | 'time_machine'      // чинит вчерашнюю дыру серии
   | 'friend_shield'     // отправить другу щит серии (+1 день chain_shield)

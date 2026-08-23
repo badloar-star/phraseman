@@ -22,6 +22,7 @@ import { peekFriendsTabSwrWarm, startFriendsTabSwrPrime, type FriendsTabWarmSnap
 import { getCanonicalUserId } from './user_id_policy';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import EnergyCostBadge from '../components/EnergyCostBadge';
 
 const ACTIVE_INVITE_KEY = 'arena_friend_invite_active_v2';
 type SelectedFriend = { uid: string; name: string; avatar?: string; aura?: string };
@@ -51,7 +52,7 @@ export default function ArenaFriendDuelScreen() {
   const [error, setError] = useState('');
   // Вызов друга = 1 ⚡ у инициатора (владелец 2026-08-23: единая экономика,
   // платим за ПОПЫТКУ — списание в create() ниже, до сетевого вызова).
-  const { isUnlimited: duelEnergyUnlimited, spendOne: spendDuelEnergy } = useEnergy();
+  const { isUnlimited: duelEnergyUnlimited, spendOne: spendDuelEnergy, refundOne: refundDuelEnergy } = useEnergy();
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const requestIdRef = useRef(createArenaRequestId('friend_invite'));
   /**
@@ -139,9 +140,11 @@ export default function ArenaFriendDuelScreen() {
 
   const create = async () => {
     if (!selected || busy) return;
+    let energyCharged = false;
     if (!duelEnergyUnlimited) {
       const ok = await spendDuelEnergy();
       if (!ok) { setNoEnergyOpen(true); return; }
+      energyCharged = true;
     }
     setBusy(true); setError('');
     try {
@@ -152,7 +155,13 @@ export default function ArenaFriendDuelScreen() {
       if (uid) await AsyncStorage.setItem(`${ACTIVE_INVITE_KEY}:${uid}`, JSON.stringify(stored));
       const ready = await arenaV2InviteReady(result.inviteId);
       finishStatus(ready);
-    } catch { setError(`${arenaText(lang, 'inviteFailed')}. ${arenaText(lang, 'inviteFailedHint')}`); }
+    } catch {
+      // зачем: вызов не создан (нет сети / отказ сервера) — значит входа не
+      // случилось, и плата обязана вернуться. Иначе игрок теряет единицу за
+      // чужую сетевую ошибку.
+      if (energyCharged) void refundDuelEnergy();
+      setError(`${arenaText(lang, 'inviteFailed')}. ${arenaText(lang, 'inviteFailedHint')}`);
+    }
     finally { setBusy(false); }
   };
 
@@ -193,7 +202,7 @@ export default function ArenaFriendDuelScreen() {
     <ArenaScreen title="Дуэль с другом" variant="tickets" onBack={leaveFriendDuel}>
       <V2Card style={styles.card}>
         {selected ? <View style={styles.selected}><AvatarView avatar={selected.avatar} auraId={selected.aura} size={64} animateAura={false} ownerActive={active} /><Text style={[styles.name, { color: P.text }]}>{selected.name}</Text></View> : null}
-        {invite ? <><Text testID="arena-friend-invite-countdown" style={[styles.countdown, { color: P.accent }]}>{remainingLabel(invite.expiresAtMs, now)}</Text><V2Cta tone="ghost" disabled={busy} onPress={cancel}>Отменить вызов</V2Cta></> : <><V2Cta tone="ghost" disabled={busy} onPress={() => { pickerCloseIntentRef.current = 'stay'; setPickerOpen(true); }}>{selected ? 'Выбрать другого' : 'Выбрать друга'}</V2Cta>{selected ? <V2Cta accessibilityHint={arenaText(lang, 'friendHint')} disabled={busy} onPress={create}>Бросить вызов</V2Cta> : null}</>}
+        {invite ? <><Text testID="arena-friend-invite-countdown" style={[styles.countdown, { color: P.accent }]}>{remainingLabel(invite.expiresAtMs, now)}</Text><V2Cta tone="ghost" disabled={busy} onPress={cancel}>Отменить вызов</V2Cta></> : <><V2Cta tone="ghost" disabled={busy} onPress={() => { pickerCloseIntentRef.current = 'stay'; setPickerOpen(true); }}>{selected ? 'Выбрать другого' : 'Выбрать друга'}</V2Cta>{selected ? <View style={styles.ctaWrap}><V2Cta accessibilityHint={arenaText(lang, 'friendHint')} disabled={busy} onPress={create}>Бросить вызов</V2Cta><EnergyCostBadge testID="arena-duel-energy-cost" /></View> : null}</>}
         {error ? <Text accessibilityLiveRegion="polite" style={[styles.error, { color: P.muted }]}>{error}</Text> : null}
       </V2Card>
 
@@ -217,6 +226,8 @@ export default function ArenaFriendDuelScreen() {
 
 const styles = StyleSheet.create({
   card: { gap: 14 },
+  // Якорь для углового бейджа «−1 ⚡».
+  ctaWrap: { position: 'relative' },
   selected: { alignItems: 'center', gap: 10 },
   name: { fontSize: 22, fontWeight: '900', textAlign: 'center' },
   countdown: { fontSize: 34, fontWeight: '900', textAlign: 'center', fontVariant: ['tabular-nums'] },

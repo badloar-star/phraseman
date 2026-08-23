@@ -17,7 +17,8 @@ export type BoonId =
   | 'double_xp' // чт: ×2 XP
   | 'flashcard_friday' // пт: 48ч триал случайного пака карточек
   | 'speaking_saturday' // сб: открыт speaking-гейт на день
-  | 'turbo_regen'; // 2× восстановление энергии за день
+  | 'turbo_regen'; // восстановление энергии на треть быстрее за день
+                   // (TURBO_REGEN_FACTOR в boon_effects_energy.ts)
 
 /** Полный список всех известных бонусов (для валидации/админки/итераций). */
 export const ALL_BOON_IDS: readonly BoonId[] = [

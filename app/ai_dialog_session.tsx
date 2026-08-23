@@ -17,6 +17,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -178,6 +180,30 @@ function AiDialogSession() {
   // «Фри» снимает замок, но НЕ выдаёт премиум-квоту реплик.
   const dialogAccess = useFeatureAccess('ai_dialog');
   const router = useRouter();
+  // Вход в диалог = 1 ⚡ (владелец 2026-08-23: платим за старт активности).
+  //
+  // зачем ЗДЕСЬ, а не только на брифинге: брифинг показывается лишь при ПЕРВОМ
+  // прохождении сценария (hasSeenAiDialogIntro в DialogsTabContent), дальше
+  // человек попадает прямо сюда — и до аудита 2026-08-23 все повторные диалоги
+  // были бесплатными. Диалог — самая дорогая активность (LLM + TTS), так что
+  // это был и обход экономики, и прямые деньги. Гейт в самой сессии закрывает
+  // заодно и прямые ссылки на /ai_dialog_session.
+  //
+  // Латч живёт на монтирование: родительский маршрут даёт key=scenarioId, то
+  // есть на каждый новый диалог компонент пересоздаётся и платится честно.
+  const { isUnlimited: dialogEnergyUnlimited, spendOne: spendDialogEnergy, energyReady: dialogEnergyReady } = useEnergy();
+  const [dialogNoEnergy, setDialogNoEnergy] = useState(false);
+  const dialogEntryChargedRef = useRef(false);
+  useEffect(() => {
+    // energyReady обязателен: до первого чтения из хранилища контекст отдаёт
+    // placeholder (isUnlimited=false, energy=MAX) — списали бы у подписчика.
+    if (!dialogEnergyReady || dialogEntryChargedRef.current) return;
+    dialogEntryChargedRef.current = true;
+    if (dialogEnergyUnlimited) return;
+    void spendDialogEnergy().then((ok) => {
+      if (!ok) setDialogNoEnergy(true);
+    });
+  }, [dialogEnergyReady, dialogEnergyUnlimited, spendDialogEnergy]);
   const { speak, stop: stopSpeaking } = useAudio();
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadSpeechRecognitionModule() : null), []);
   const recordingAudio = useManagedRecordingAudio(() => {
@@ -2225,6 +2251,11 @@ function AiDialogSession() {
           </View>
         )}
       </SafeAreaView>
+      {/* Не хватило энергии на вход — закрытие уводит с экрана диалога. */}
+      <NoEnergyModal
+        visible={dialogNoEnergy}
+        onClose={() => { setDialogNoEnergy(false); onBack(); }}
+      />
     </ScreenGradient>
   );
 }

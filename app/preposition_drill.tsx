@@ -138,13 +138,12 @@ export default function PrepositionDrillScreen() {
   const xpOpacity = useRef(new Animated.Value(0)).current;
 
   // ── Энергия ────────────────────────────────────────────────────────────────
-  // Поведение (см. lesson_words.tsx / lesson_irregular_verbs.tsx):
-  //   • при ошибке (не премиум) — тратим 1 энергию;
-  //   • если на входе энергии 0 — сразу показываем модал;
-  //   • при попадании в 0 во время сессии — модал с задержкой 800 мс
-  //     (даём отрисовать "Неверно" + объяснение);
-  //   • при закрытии модала, если энергия так и не восстановилась
-  //     (через осколки или премиум) — выходим из тренажёра.
+  // Поведение с 2026-08-23 (единое правило владельца, см. lesson_words.tsx /
+  // lesson_irregular_verbs.tsx):
+  //   • 1 ⚡ списывается ОДИН РАЗ при входе в тренажёр;
+  //   • ошибки внутри сессии энергию НЕ трогают вообще;
+  //   • не хватило на входе — модал, и тренажёр не начинается;
+  //   • закрытие модала = выход (вход не был оплачен).
   const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
   const energyRef = useRef(energy);
   const energyUnlimitedRef = useRef(energyUnlimited);

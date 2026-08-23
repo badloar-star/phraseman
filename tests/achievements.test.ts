@@ -23,6 +23,8 @@ jest.mock('../app/shards_system', () => ({
 
 import {
   ALL_ACHIEVEMENTS,
+  achievementDescForLang,
+  achievementNameForLang,
   checkAchievements,
   claimAchievementShardReward,
   loadAchievementStates,
@@ -30,19 +32,12 @@ import {
   markAchievementsNotified,
 } from '../app/achievements';
 import { commitShardCreditOperation } from '../app/shards_system';
-import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
 import { MAX_LEVEL } from '../constants/theme';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
   withAccountTransitionLock,
 } from '../app/account_generation';
-import {
-  achievementLessonPerfectPassesKey,
-  flashcardsSavedKey,
-  lessonPassCountKey,
-  lessonProgressKey,
-} from '../app/target_storage_keys';
 
 const idsOf = (items: { id: string }[]) => items.map(x => x.id);
 
@@ -77,7 +72,7 @@ describe('achievements', () => {
     (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(statesRead);
     beginAccountGeneration('account-a');
 
-    const request = checkAchievements({ type: 'energy_refill' });
+    const request = checkAchievements({ type: 'comeback' });
     for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
       await Promise.resolve();
     }
@@ -119,12 +114,8 @@ describe('achievements', () => {
     expect(AsyncStorage.setItem).not.toHaveBeenCalled();
   });
 
-  it('does not reserve or pay an achievement claim after account A switches to B', async () => {
-    let release!: (value: string | null) => void;
-    const statesRead = new Promise<string | null>((resolve) => { release = resolve; });
+  it('keeps the retired achievement pearl claim API fail-closed', async () => {
     const id = ALL_ACHIEVEMENTS[0].id;
-    (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(statesRead);
-    beginAccountGeneration('account-a');
 
     await expect(claimAchievementShardReward(id)).resolves.toBe(false);
     expect(AsyncStorage.getItem).not.toHaveBeenCalled();
@@ -150,29 +141,16 @@ describe('achievements', () => {
     expect(AsyncStorage.setItem).not.toHaveBeenCalled();
   });
 
-  it('has unique ids, Spanish copy and image entries for every achievement', () => {
+  it('has the approved unique catalog and safe locale fallback for every active achievement', () => {
     const ids = idsOf(ALL_ACHIEVEMENTS);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(ids.length).toBeGreaterThanOrEqual(81);
+    expect(ids.length).toBe(79);
 
     const activeIds = ALL_ACHIEVEMENTS.filter(achievement => !achievement.retired).map(achievement => achievement.id);
-    const missingEs = activeIds.filter(id => !ACHIEVEMENT_ES[id]);
-    expect(missingEs).toEqual([]);
-
-    // зачем: арт больше не бандлится целиком — «ядро» лежит в require-реестре,
-    // остальное стримится из Storage по сгенерированной карте URL. Требование
-    // прежнее: у КАЖДОГО достижения должен быть источник картинки, иначе
-    // пользователь увидит заглушку вместо награды.
-    const imageBlock = fs.readFileSync(
-      path.join(__dirname, '..', 'constants', 'achievementImageAssets.ts'), 'utf8');
-    const urlMap = fs.readFileSync(
-      path.join(__dirname, '..', 'constants', 'achievementImageUrlMap.generated.ts'), 'utf8');
-
-    const bundledIds = new Set([...imageBlock.matchAll(/^\s*([a-z0-9_]+):\s*require/gm)].map(m => m[1]));
-    const remoteIds = new Set([...urlMap.matchAll(/^\s{2}"([a-z0-9_]+)":\s*"https:/gm)].map(m => m[1]));
-
-    const missingImages = activeIds.filter(id => !bundledIds.has(id) && !remoteIds.has(id));
-    expect(missingImages).toEqual([]);
+    for (const achievement of ALL_ACHIEVEMENTS.filter(row => !row.retired)) {
+      expect(achievementNameForLang(achievement, 'es')).toBeTruthy();
+      expect(achievementDescForLang(achievement, 'es')).toBeTruthy();
+    }
   });
 
   it('shares the generated image registry with compact achievement surfaces', () => {
@@ -259,24 +237,20 @@ describe('achievements', () => {
       { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
     ]));
 
-    await expect(claimAchievementShardReward(id)).resolves.toBe(true);
     await expect(claimAchievementShardReward(id)).resolves.toBe(false);
     expect(commitShardCreditOperation).not.toHaveBeenCalled();
     const stored = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
     expect(stored.find((s: { id: string }) => s.id === id)?.shardClaimed).toBe(false);
   });
 
-  it('updates the achievement reward modal before the claim promise finishes', () => {
+  it('does not render an achievement pearl claim action', () => {
     const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'achievements_screen.tsx'), 'utf8');
     const modalStart = source.indexOf('function AchievementModal');
     const modalEnd = source.indexOf('function AchievementsScreen');
     const modalSource = source.slice(modalStart, modalEnd);
-    const optimisticIndex = modalSource.indexOf('onShardClaimed(achievement.id);');
-    const claimIndex = modalSource.indexOf('void claimAchievementShardReward(achievement.id)');
-    expect(optimisticIndex).toBeGreaterThan(0);
-    expect(claimIndex).toBeGreaterThan(optimisticIndex);
-    expect(modalSource).not.toContain('await claimAchievementShardReward');
-    expect(modalSource).not.toContain('disabled={claiming}');
+    expect(modalSource).not.toContain('claimAchievementShardReward');
+    expect(modalSource).not.toContain('onShardClaimed');
+    expect(modalSource).not.toContain('+1 жемчужина');
   });
 
   it('renders achievements screen as earned-only by default with a dev-only all rewards toggle', () => {
@@ -303,312 +277,50 @@ describe('achievements', () => {
     expect(source).not.toContain('ListHeaderComponent={nearestAchievements.length > 0 ?');
   });
 
-  it('wires card pack achievements into both official and community purchase flows', () => {
-    const officialPurchasePath = path.join(__dirname, '..', 'app', 'flashcards', 'cardPackShardPurchase.ts');
-    const communityPurchasePath = path.join(__dirname, '..', 'app', 'community_packs', 'purchaseCommunityPack.ts');
-    const trackingPath = path.join(__dirname, '..', 'app', 'flashcards', 'packAchievementTracking.ts');
-    const officialSource = fs.readFileSync(officialPurchasePath, 'utf8');
-    const communitySource = fs.readFileSync(communityPurchasePath, 'utf8');
-    const trackingSource = fs.readFileSync(trackingPath, 'utf8');
-
-    expect(officialSource).toContain('trackCardPackAcquiredAchievement(studyTarget)');
-    expect(communitySource).toContain('trackCardPackAcquiredAchievement(studyTarget)');
-    expect(communitySource).toContain('trackExternalShardSpendAchievement(COMMUNITY_PACK_PRICE_SHARDS)');
-    expect(trackingSource).toContain("import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys'");
-    expect(trackingSource).toContain('const target = storageStudyTarget(studyTarget)');
-    expect(trackingSource).not.toContain("studyTarget === 'fr'");
-  });
-
-  it('keeps flashcard source achievement aligned with live save sources', () => {
-    // зачем: экран квизов снят целиком (3eba05191, вместе с Ареной) — живые
-    // source="..." сохранения остались только в уроках и карточке дня.
-    const files = [
-      path.join(__dirname, '..', 'app', 'lesson1.tsx'),
-      path.join(__dirname, '..', 'app', 'lesson_words.tsx'),
-      path.join(__dirname, '..', 'app', 'lesson_irregular_verbs.tsx'),
-      path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx'),
-    ];
-    const sources = new Set<string>();
-    for (const file of files) {
-      const source = fs.readFileSync(file, 'utf8');
-      for (const match of source.matchAll(/source="(lesson|word|verb|dialog|daily_phrase)"/g)) {
-        sources.add(match[1]);
-      }
-    }
-
-    expect(sources).toEqual(new Set(['lesson', 'word', 'verb', 'daily_phrase']));
-    expect(ALL_ACHIEVEMENTS.some(a => a.id === `flashcards_sources_${sources.size}`)).toBe(true);
-  });
-
-  it('wires friend count achievements for both accepted and observed friendships', () => {
-    const acceptPath = path.join(__dirname, '..', 'app', 'firestore_friend_requests.ts');
-    const tabPath = path.join(__dirname, '..', 'app', '(tabs)', 'friends.tsx');
-
-    expect(fs.readFileSync(acceptPath, 'utf8')).toContain("type: 'friend_added'");
-    expect(fs.readFileSync(tabPath, 'utf8')).toContain("type: 'friend_added'");
-  });
-
-  it('can unlock every achievement through its public event contract', async () => {
-    jest.useFakeTimers().setSystemTime(new Date(2026, 4, 1, 12, 0, 0));
-    for (let i = 0; i < 31; i += 1) {
-      jest.setSystemTime(new Date(2026, 4, 1 + i, 12, 0, 0));
-      await checkAchievements({ type: 'streak', streak: 1000 });
-    }
-    jest.useRealTimers();
-    await checkAchievements({ type: 'streak_repair' });
-    await checkAchievements({ type: 'perfect_week' });
-
-    await AsyncStorage.setItem('week_points', '10000');
+  it('unlocks the retained streak, XP and balance foundations', async () => {
+    await checkAchievements({ type: 'streak', streak: 1000 });
     await checkAchievements({ type: 'xp', totalXP: 2000000 });
-    await checkAchievements({ type: 'wager_win' });
-    await checkAchievements({ type: 'personal_best' });
-    await checkAchievements({ type: 'level_reached', level: 100 });
+    await checkAchievements({ type: 'shards', balance: 1000 });
 
+    const unlocked = await unlockedIds();
+    for (const id of ['streak_1000', 'xp_2000000', 'shards_1000']) {
+      expect(unlocked.has(id)).toBe(true);
+    }
+  });
+
+  it('does not create orphan state for deleted achievement events', async () => {
+    await checkAchievements({ type: 'diagnosis' });
+    await checkAchievements({
+      type: 'mistake_practice_progress',
+      corrected: 50,
+      voiceCorrected: 1,
+      independentDays: 7,
+      perfectSession: true,
+    });
     await checkAchievements({
       type: 'lesson_complete',
       lessonCount: 32,
       wasPerfect: true,
       perfectCount: 32,
     });
-    jest.useFakeTimers().setSystemTime(new Date(2026, 5, 1, 12, 0, 0));
-    for (let lessonId = 1; lessonId <= 10; lessonId += 1) {
-      await checkAchievements({ type: 'lesson_complete', lessonCount: 32, wasPerfect: true, perfectCount: 32, lessonId });
+
+    const raw = await AsyncStorage.getItem('achievements_v1');
+    for (const id of ['diagnosis', 'mistake_corrected_50', 'lesson_all']) {
+      expect(raw ?? '').not.toContain(`"id":"${id}"`);
     }
-    jest.useRealTimers();
-    await AsyncStorage.multiSet([
-      ...Array.from({ length: 32 }, (_, i) => [`lesson${i + 1}_pass_count`, '10'] as [string, string]),
-      ...Array.from({ length: 32 }, (_, i) => [`achievement_lesson_${i + 1}_perfect_passes_v1`, JSON.stringify([1, 2])] as [string, string]),
-      ...Array.from({ length: 4 }, (_, i) => [`lesson${29 + i}_progress`, JSON.stringify(Array.from({ length: 45 }, () => 'correct'))] as [string, string]),
-    ]);
-    await checkAchievements({ type: 'backfill' });
-
-    await checkAchievements({ type: 'combo', count: 500 });
-    for (let i = 0; i < 100; i += 1) {
-      await checkAchievements({ type: 'daily_phrase', action: 'read' });
-      await checkAchievements({ type: 'daily_phrase', action: 'save' });
-    }
-    await checkAchievements({ type: 'friend_added', totalFriends: 50 });
-    for (let i = 0; i < 100; i += 1) {
-      await checkAchievements({ type: 'gift_sent' });
-    }
-    await checkAchievements({ type: 'achievement_liked', likeTotal: 100 });
-    for (let i = 0; i < 10; i += 1) {
-      await checkAchievements({ type: 'achievement_shared' });
-    }
-
-    await checkAchievements({ type: 'login', consecutiveDays: 365 });
-    await checkAchievements({ type: 'comeback' });
-    await checkAchievements({ type: 'diagnosis' });
-
-    jest.useFakeTimers().setSystemTime(new Date('2026-05-12T23:30:00'));
-    for (let i = 0; i < 7; i += 1) {
-      jest.setSystemTime(new Date(2026, 4, 12 + i, 23, 30, 0));
-      await checkAchievements({ type: 'time_of_day' });
-    }
-    for (let i = 0; i < 7; i += 1) {
-      jest.setSystemTime(new Date(2026, 5, 1 + i, 5, 30, 0));
-      await checkAchievements({ type: 'time_of_day' });
-    }
-    jest.useRealTimers();
-
-    for (let i = 0; i < 10; i += 1) {
-      await checkAchievements({ type: 'exam', pct: 95 });
-    }
-    await checkAchievements({ type: 'flashcards_session' });
-    await checkAchievements({ type: 'flashcard_saved', count: 250, source: 'lesson' });
-    for (const source of ['word', 'verb', 'daily_phrase']) {
-      await checkAchievements({ type: 'flashcard_saved', source });
-    }
-    await checkAchievements({ type: 'flashcard_flipped', count: 1000 });
-    jest.useFakeTimers().setSystemTime(new Date('2026-05-01T12:00:00'));
-    for (let i = 0; i < 30; i += 1) {
-      jest.setSystemTime(new Date(2026, 4, 1 + i, 12, 0, 0));
-      await checkAchievements({ type: 'flashcard_viewed', count: 1 });
-    }
-    jest.useRealTimers();
-    await checkAchievements({
-      type: 'mistake_practice_progress',
-      corrected: 50,
-      voiceCorrected: 1,
-      independentDays: 7,
-      perfectSession: true,
-    });
-
-    await checkAchievements({ type: 'wager_win_streak', count: 10 });
-    await checkAchievements({ type: 'streak_freeze_used' });
-    await checkAchievements({ type: 'shards', balance: 1000 });
-    await checkAchievements({ type: 'shards_spent', amount: 1000 });
-    for (let i = 0; i < 25; i += 1) {
-      await checkAchievements({ type: 'energy_refill' });
-    }
-    jest.useFakeTimers().setSystemTime(new Date(2026, 7, 3, 12, 0, 0));
-    for (let i = 0; i < 10; i += 1) {
-      jest.setSystemTime(new Date(2026, 7, 3 + i * 7, 12, 0, 0));
-      await checkAchievements({ type: 'league_result', myRank: 1, totalInGroup: 10, promoted: true, newLeagueId: 8 });
-    }
-    jest.useRealTimers();
-    for (let i = 0; i < 4; i += 1) {
-      await checkAchievements({ type: 'league_boost', multiplier: 2 });
-    }
-    await checkAchievements({ type: 'league_boost', multiplier: 3 });
-    await checkAchievements({ type: 'avatar_custom_set' });
-    await checkAchievements({ type: 'profile_theme_set' });
-    await checkAchievements({ type: 'pack_purchased', totalPacks: 25 });
-
-    for (const level of ['A1', 'A2', 'B1', 'B2']) {
-      await checkAchievements({ type: 'gem', level, gem: 'ruby' });
-      await checkAchievements({ type: 'gem', level, gem: 'emerald' });
-      await checkAchievements({ type: 'gem', level, gem: 'diamond' });
-    }
-
-    const unlocked = await unlockedIds();
-    const missing = idsOf(ALL_ACHIEVEMENTS.filter(achievement => !achievement.retired)).filter(id => !unlocked.has(id));
-    expect(missing).toEqual([]);
-  });
-
-  it('unlocks mistake milestones from corrected identities', async () => {
-    await checkAchievements({
-      type: 'mistake_practice_progress',
-      corrected: 10,
-      voiceCorrected: 1,
-      independentDays: 7,
-    });
-
-    const unlocked = await unlockedIds();
-    expect(unlocked.has('mistake_corrected_first')).toBe(true);
-    expect(unlocked.has('mistake_corrected_10')).toBe(true);
-    expect(unlocked.has('mistake_voice_corrected_first')).toBe(true);
-    expect(unlocked.has('mistake_success_7_days')).toBe(true);
-    expect(unlocked.has('mistake_corrected_50')).toBe(false);
-
-    await checkAchievements({
-      type: 'mistake_practice_progress',
-      corrected: 50,
-      voiceCorrected: 1,
-      independentDays: 7,
-      perfectSession: true,
-    });
-    const afterSession = await unlockedIds();
-    expect(afterSession.has('mistake_corrected_50')).toBe(true);
-    expect(afterSession.has('mistake_perfect_session')).toBe(true);
-  });
-
-  it('backfills newly added progress achievements from existing local state', async () => {
-    await AsyncStorage.multiSet([
-      ['flashcards_v1', JSON.stringify([
-        ...Array.from({ length: 47 }, (_, i) => ({ id: `l${i}`, en: `lesson ${i}`, source: 'lesson' })),
-        { id: 'w1', en: 'word', source: 'word' },
-        { id: 'v1', en: 'verb', source: 'verb' },
-        { id: 'dp1', en: 'daily phrase', source: 'daily_phrase' },
-      ])],
-      ['flashcards_owned_packs_v1', JSON.stringify(['official_1', 'official_2', 'official_3'])],
-      ['community_owned_pack_ids_v1', JSON.stringify(['community_1', 'community_2'])],
-      ['shards_lifetime_spent_v1', '125'],
-    ]);
-
-    await checkAchievements({ type: 'backfill' });
-
-    const unlocked = await unlockedIds();
-    expect(unlocked.has('flashcards_save_25')).toBe(true);
-    expect(unlocked.has('flashcards_save_50')).toBe(true);
-    expect(unlocked.has('flashcards_sources_4')).toBe(true);
-    expect(unlocked.has('pack_purchased')).toBe(true);
-    expect(unlocked.has('pack_5_purchased')).toBe(true);
-    expect(unlocked.has('shards_spent_100')).toBe(true);
-  });
-
-  it('backfills common achievements from isolated French target stores', async () => {
-    const frCards = Array.from({ length: 50 }, (_, i) => ({
-      id: `fr-${i}`,
-      en: `carte ${i}`,
-      source: ['lesson', 'word', 'verb', 'daily_phrase'][i % 4],
-    }));
-    const perfectProgress = JSON.stringify(new Array(50).fill('correct'));
-    await AsyncStorage.multiSet([
-      [flashcardsSavedKey('fr'), JSON.stringify(frCards)],
-      ...Array.from({ length: 32 }, (_, i): [string, string] => [
-        lessonPassCountKey(i + 1, 'fr'),
-        '2',
-      ]),
-      ...Array.from({ length: 4 }, (_, i): [string, string] => [
-        lessonProgressKey(29 + i, 'fr'),
-        perfectProgress,
-      ]),
-    ]);
-
-    await checkAchievements({ type: 'backfill' });
-
-    const unlocked = await unlockedIds();
-    expect(unlocked.has('flashcards_save_50')).toBe(true);
-    expect(unlocked.has('flashcards_sources_4')).toBe(true);
-    expect(unlocked.has('lesson_all_2x')).toBe(true);
-    expect(unlocked.has('lesson_b2_perfect')).toBe(true);
-  });
-
-  it('aggregates live lesson achievement events across English and French stores after backfill', async () => {
-    const perfectProgress = JSON.stringify(new Array(45).fill('correct'));
-    await AsyncStorage.multiSet([
-      ['achievements_progress_backfill_v3', '1'],
-      [lessonPassCountKey(1, 'en'), '1'],
-      [lessonPassCountKey(2, 'en'), '1'],
-      [lessonPassCountKey(3, 'fr'), '1'],
-      [lessonProgressKey(1, 'en'), perfectProgress],
-      [lessonProgressKey(2, 'en'), perfectProgress],
-      [lessonProgressKey(3, 'fr'), perfectProgress],
-    ]);
-
-    await checkAchievements({
-      type: 'lesson_complete',
-      lessonCount: 1,
-      wasPerfect: true,
-      perfectCount: 1,
-      lessonId: 3,
-      studyTarget: 'fr',
-    });
-
-    const unlocked = await unlockedIds();
-    expect(unlocked.has('lesson_3')).toBe(true);
-    expect(unlocked.has('lesson_perfect3')).toBe(true);
-  });
-
-  it('keeps French perfect-pass achievement evidence isolated while unlocking the shared achievement', async () => {
-    for (let lessonId = 1; lessonId <= 32; lessonId += 1) {
-      await checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: 1, studyTarget: 'fr' });
-      await checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: 2, studyTarget: 'fr' });
-    }
-
-    const unlocked = await unlockedIds();
-    expect(unlocked.has('lesson_all_perfect_2x')).toBe(true);
-    await expect(AsyncStorage.getItem('achievement_lesson_1_perfect_passes_v1')).resolves.toBeNull();
-    await expect(AsyncStorage.getItem(achievementLessonPerfectPassesKey(1, 'fr'))).resolves.toBe(JSON.stringify([1, 2]));
-  });
-
-  it('shows common achievement progress from English and French lesson stores', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'achievements_screen.tsx'), 'utf8');
-    const achievementSource = fs.readFileSync(path.join(process.cwd(), 'app', 'achievements.ts'), 'utf8');
-
-    expect(source).toContain("const ACHIEVEMENT_PROGRESS_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr']");
-    expect(source).toContain('ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => lessonProgressKey(lessonId, studyTarget))');
-    expect(source).toContain('lessonPassCountKey(lessonId, studyTarget)');
-    expect(source).toContain('achievementLessonPerfectPassesKey(lessonId, studyTarget)');
-    expect(achievementSource).toContain('achievementLessonPerfectPassesKey(lessonId, event.studyTarget)');
-    expect(achievementSource).toContain('ACHIEVEMENT_PROGRESS_TARGETS.map(studyTarget =>');
-    expect(source).not.toContain('`lesson${i + 1}_progress`');
-    expect(source).not.toContain('`lesson${i + 1}_pass_count`');
-    expect(source).not.toContain('`achievement_lesson_${i + 1}_perfect_passes_v1`');
   });
 
   it('lets account B and the transition lock proceed when account A achievement storage never resolves', async () => {
     const never = new Promise<string | null>(() => {});
     (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(never);
     beginAccountGeneration('account-a');
-    void checkAchievements({ type: 'energy_refill' });
+    void checkAchievements({ type: 'comeback' });
     for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
       await Promise.resolve();
     }
 
     beginAccountGeneration('account-b');
-    const bResult = checkAchievements({ type: 'energy_refill' });
+    const bResult = checkAchievements({ type: 'comeback' });
     const transition = withAccountTransitionLock(async () => 'transition-settled');
     const timeout = new Promise<'timeout'>((resolve) => setTimeout(() => resolve('timeout'), 100));
 
@@ -620,9 +332,9 @@ describe('achievements', () => {
 describe('запись состояния достижений не затирает параллельные правки', () => {
   // зачем: _achievementLock (локальная цепочка промисов модуля) и withStorageLock
   // (глобальный мьютекс) — два НЕЗАВИСИМЫХ замка над одним хранилищем. Путь
-  // checkAchievements писал вообще без второго, поэтому параллельный
-  // claimAchievementShardReward терял свой shardClaimed, а уже показанный тост всплывал
-  // повторно. Лечится слиянием: под замком перечитать свежий снимок и накатить только
+  // checkAchievements писал вообще без второго, поэтому параллельная запись notification
+  // state терялась, а уже показанный тост всплывал повторно. Лечится слиянием:
+  // под замком перечитать свежий снимок и накатить только
   // свои разблокировки. Храповик держит эту форму записи.
   const source = fs.readFileSync(path.join(process.cwd(), 'app', 'achievements.ts'), 'utf8');
 

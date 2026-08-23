@@ -1845,8 +1845,8 @@ function PersonalPlanExerciseScreen() {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { playCorrect } = useCorrectSound();
-  // зачем: владелец попросил, чтобы ошибки в персональных заданиях тратили энергию и
-  // блокировали экран при 0 — точно так же, как в уроках.
+  // зачем: с 2026-08-23 энергия платится за ВХОД в задание, а ошибки внутри её
+  // не трогают — единое правило владельца, как в уроках и тренировках.
   // Премиум/тестер обходят списание внутри spendOne (isUnlimited).
   const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
   const energyRef = useRef({ energy, bonusEnergy, energyUnlimited });

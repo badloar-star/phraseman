@@ -496,6 +496,68 @@ describe('E2E: перебивание ИИ (barge-in)', () => {
     await h.client.end();
   });
 
+  it('оборванный лимитом ход договаривается, а не бросается на полуслове', async () => {
+    // зачем (владелец 2026-08-23): «он начнёт говорить, а потом не договорит».
+    // max_output_tokens рвёт речь жёстко (status incomplete), и раньше MAX просто
+    // замолкал посреди фразы и ждал ученика.
+    const h = createHarness();
+    await bringUpCall(h);
+    const dc = h.pc().dc;
+
+    dc.deliver({ type: 'response.created', response: {} });
+    dc.deliver({ type: 'output_audio_buffer.started' });
+    dc.deliver({ type: 'output_audio_buffer.stopped' });
+    dc.deliver({
+      type: 'response.done',
+      response: { status: 'incomplete', status_details: { reason: 'max_output_tokens' } },
+    });
+
+    const sent = dc.sentOfType('response.create');
+    expect(sent).toHaveLength(2);
+    expect(JSON.stringify(sent[1])).toContain('cut off mid-sentence');
+
+    await h.client.end();
+  });
+
+  it('договаривает только один раз подряд — цепочки догово́рок нет', async () => {
+    const h = createHarness();
+    await bringUpCall(h);
+    const dc = h.pc().dc;
+
+    const truncated = {
+      type: 'response.done',
+      response: { status: 'incomplete', status_details: { reason: 'max_output_tokens' } },
+    };
+    dc.deliver({ type: 'response.created', response: {} });
+    dc.deliver({ type: 'output_audio_buffer.started' });
+    dc.deliver({ type: 'output_audio_buffer.stopped' });
+    dc.deliver(truncated);
+    expect(dc.sentOfType('response.create')).toHaveLength(2);
+
+    // Вторая обрезка подряд: ход отдаётся ученику, а не новой догово́рке.
+    dc.deliver({ type: 'response.created', response: {} });
+    dc.deliver({ type: 'output_audio_buffer.started' });
+    dc.deliver({ type: 'output_audio_buffer.stopped' });
+    dc.deliver(truncated);
+    expect(dc.sentOfType('response.create')).toHaveLength(2);
+
+    await h.client.end();
+  });
+
+  it('обычный законченный ответ догово́рку не запускает', async () => {
+    const h = createHarness();
+    await bringUpCall(h);
+    const dc = h.pc().dc;
+
+    dc.deliver({ type: 'response.created', response: {} });
+    dc.deliver({ type: 'output_audio_buffer.started' });
+    dc.deliver({ type: 'output_audio_buffer.stopped' });
+    dc.deliver({ type: 'response.done', response: { status: 'completed' } });
+    expect(dc.sentOfType('response.create')).toHaveLength(1);
+
+    await h.client.end();
+  });
+
   it('шлёт cancel+clear и мгновенно глушит голос ИИ, возвращая звук через 300мс', async () => {
     const h = createHarness();
     await bringUpCall(h);

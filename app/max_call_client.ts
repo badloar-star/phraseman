@@ -543,6 +543,8 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   let remoteAudioPlaying = false;
   /** Речь во входном буфере началась, пока MAX ещё говорил → подозрение на эхо. */
   let speechStartedDuringOutput = false;
+  /** Догово́рка после обрыва по лимиту — не чаще одной подряд (защита от цепочки). */
+  let finishTruncatedUsed = false;
   let firstRemoteAudioLatencyMs: number | null = null;
   let endAfterAudioReason: MaxCallEndReason | null = null;
   let endAfterAudioTimer: ReturnType<typeof setTimeout> | null = null;
@@ -741,6 +743,9 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
           speechStartedDuringOutput = false;
           return;
         }
+        // Ученик заговорил — цепочка догово́рок разорвана, следующий обрыв
+        // снова имеет право быть договорённым.
+        finishTruncatedUsed = false;
         queueDefaultResponse();
         return;
       case 'response.created':
@@ -792,7 +797,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         } catch {}
         return;
       }
-      case 'response.done':
+      case 'response.done': {
         responseActive = false;
         responseRequestPending = false;
         accumulateUsage(message);
@@ -803,8 +808,15 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
           if (!greetingAudioStarted || greetingAudioStopped) releaseGreetingHold();
         }
         emitUi({ type: 'response_done' });
+        // зачем (владелец 2026-08-23): «он начнёт говорить, а потом не договорит».
+        // max_output_tokens — это ЖЁСТКИЙ обрыв: при достижении лимита Realtime
+        // присылает status:"incomplete" и речь замолкает на полуслове, а MAX
+        // молча ждёт ученика. Кап поднят обратно до запаса, но если обрыв всё же
+        // случился — просим договорить начатую мысль одной короткой фразой.
+        if (wasIncompleteByTokenLimit(message) && requestFinishTruncatedTurn()) return;
         flushQueuedDefaultResponse();
         return;
+      }
       // Транскрипт ИИ: оба имени события (версии Realtime API расходятся).
       case 'response.output_audio_transcript.delta':
       case 'response.audio_transcript.delta': {
@@ -1543,6 +1555,36 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       },
     });
     if (opts?.respond !== false) queueDefaultResponse();
+  }
+
+  /**
+   * Ответ оборвался ровно по лимиту токенов? Realtime помечает такой response
+   * status:"incomplete" + status_details.reason:"max_output_tokens". Любой другой
+   * incomplete (фильтр контента, отмена, обрыв линии) договаривать НЕЛЬЗЯ.
+   */
+  function wasIncompleteByTokenLimit(message: Record<string, unknown>): boolean {
+    const response = message.response as Record<string, unknown> | undefined;
+    if (!response || response.status !== 'incomplete') return false;
+    const details = response.status_details as Record<string, unknown> | undefined;
+    return details?.reason === 'max_output_tokens';
+  }
+
+  /**
+   * Просим договорить оборванную мысль ОДИН раз подряд: две подряд обрезки
+   * означают, что учитель всё равно многословен — тогда ход отдаётся ученику,
+   * а не превращается в цепочку догово́рок.
+   */
+  function requestFinishTruncatedTurn(): boolean {
+    if (isTornDown() || finishTruncatedUsed || defaultResponseQueued) return false;
+    const sent = requestResponse({
+      instructions:
+        'Your previous turn was cut off mid-sentence by a length limit. Finish that thought now in ONE short '
+        + 'sentence, in the same language and tone, then stop and listen. Do not restart, do not repeat what you '
+        + 'already said, and do not add a new topic or question.',
+      max_output_tokens: INJECTED_MAX_TOKENS,
+    });
+    if (sent) finishTruncatedUsed = true;
+    return sent;
   }
 
   function sendHintResponse(instructions: string, maxOutputTokens = INJECTED_MAX_TOKENS): boolean {

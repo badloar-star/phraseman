@@ -525,7 +525,7 @@ describe('server-pinned session config (section 4)', () => {
     const compatibility = JSON.parse(fetchMock.mock.calls[1][1].body);
     expect(primary.session.audio.input.turn_detection.type).toBe('semantic_vad');
     expect(primary.session.output_modalities).toEqual(['audio']);
-    expect(primary.session.max_output_tokens).toBe(400); // A2: ~20с речи (аудио-токены ≈20/с)
+    expect(primary.session.max_output_tokens).toBe(600); // A2: ~30с речи (аудио-токены ≈20/с)
     expect(primary.session.audio.input.noise_reduction).toEqual({ type: 'far_field' });
     expect(compatibility).toMatchObject({
       expires_after: { anchor: 'created_at', seconds: 120 },
@@ -573,7 +573,7 @@ describe('server-pinned session config (section 4)', () => {
       // max_response_output_tokens было в deprecated-бете.
       // зачем: max_output_tokens считает аудио-токены (~20/с) — 120 обрезало реплику
       // на 6-й секунде; 500 = ~25с речи, краткость держит промпт, не кап.
-      max_output_tokens: 360, // A1
+      max_output_tokens: 500, // A1
       truncation: { type: 'retention_ratio', retention_ratio: 0.8 },
     });
     expect(body.session.max_response_output_tokens).toBeUndefined();

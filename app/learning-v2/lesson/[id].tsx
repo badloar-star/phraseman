@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import RuneGlyph from "../../components/RuneGlyph";
+import { runeWord } from "../../constants/runes";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, {
   useEffect,
@@ -91,10 +93,11 @@ import { preloadCurrentLearningV2ActivityReleasedSessionV1 } from "../../../app/
 import { parseLearningV2ActivityAuxiliaryRouteScopeV1 } from "../../../app/use_learning_v2_activity_auxiliary_session_v1";
 import { lessonNamesForStudyTarget } from "../../../app/lesson_titles_for_study_target";
 import {
-  LEARNING_V2_COURSE_LESSON_COUNT_V1,
-  LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
-  LEARNING_V2_LESSON_SESSION_COUNT_V1,
-  learningV2CourseSessionIdV1,
+      LEARNING_V2_COURSE_LESSON_COUNT_V1,
+      LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
+      LEARNING_V2_LESSON_SESSION_COUNT_V1,
+      learningV2CourseLessonIdV1,
+      learningV2CourseSessionIdV1,
   learningV2CourseSessionRoleV1,
 } from "../../../modules/learning-v2/content/course_topology_v1";
 
@@ -618,6 +621,7 @@ export default function LearningV2LessonMap() {
   const { id } = params;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const { hasPremiumAccess } = usePremium();
   const { theme: t, f } = useTheme();
   const parsedLessonOrdinal = Math.trunc(Number(id ?? 1));
   const lessonOrdinal = Number.isFinite(parsedLessonOrdinal)
@@ -661,11 +665,9 @@ export default function LearningV2LessonMap() {
   const [walletBalance, setWalletBalance] = useState(
     peekCurrentLearningV2WalletBalance,
   );
+  const [mistakeLoopCount, setMistakeLoopCount] = useState(0);
+  const mistakeLessonId = learningV2CourseLessonIdV1(lessonOrdinal);
   const isMapFocused = useIsScreenFocused();
-  const navigationLatchRef = useRef(false);
-  const previousWalletFingerprintRef = useRef<string | null>(null);
-  const walletPulse = useSharedValue(1);
-  const walletPulseStyle = useAnimatedStyle(() => ({
 
   useEffect(() => {
     if (!isMapFocused || (studyTarget !== "en" && studyTarget !== "fr")) {
@@ -697,6 +699,10 @@ export default function LearningV2LessonMap() {
       cancelled = true;
     };
   }, [hasPremiumAccess, isMapFocused, mistakeLessonId, params.resultSessionId, studyTarget]);
+  const navigationLatchRef = useRef(false);
+  const previousWalletFingerprintRef = useRef<string | null>(null);
+  const walletPulse = useSharedValue(1);
+  const walletPulseStyle = useAnimatedStyle(() => ({
     transform: [{ scale: walletPulse.value }],
   }));
   const returnReward = useMemo(() => {
@@ -968,8 +974,8 @@ export default function LearningV2LessonMap() {
                 accessibilityLiveRegion="polite"
                 accessibilityLabel={
                   walletStars === null
-                    ? "Подтверждённый баланс звёзд ещё не создан"
-                    : `Подтверждённый баланс: ${walletStarsLabel} звёзд`
+                    ? "Подтверждённый баланс рун ещё не создан"
+                    : `Подтверждённый баланс: ${walletStarsLabel} ${runeWord("ru", Math.round(walletStars))}`
                 }
                 style={[
                   styles.wallet,
@@ -977,7 +983,7 @@ export default function LearningV2LessonMap() {
                   walletPulseStyle,
                 ]}
               >
-                <Ionicons name="star" size={16} color={t.gold} />
+                <RuneGlyph size={16} color={t.gold} />
                 <Text style={[styles.walletText, { color: t.textPrimary }]}>
                   {walletStarsLabel}
                 </Text>
@@ -1103,10 +1109,6 @@ export default function LearningV2LessonMap() {
                 />
               </View>
             </View>
-          </>
-        }
-        renderItem={({ item }) => {
-          if (item.kind === "session") {
             {mistakeLoopCount >= 5 ? (
               <MistakePracticeLoopNode
                 count={mistakeLoopCount}
@@ -1130,6 +1132,10 @@ export default function LearningV2LessonMap() {
                 }}
               />
             ) : null}
+          </>
+        }
+        renderItem={({ item }) => {
+          if (item.kind === "session") {
             const pathIndex = pathIndexByItemId.get(item.id) ?? 0;
             return (
               <Node

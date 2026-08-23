@@ -115,6 +115,11 @@ describe('owner runtime direction contract', () => {
 
   it('keeps immediate forceNow cloud sync call sites owner-reviewed', () => {
     const allowlist: Record<string, number> = {
+      // зачем 2026-08-23 (владелец): турниры выключены ФУЛЛ, их экраны уехали
+      // в _archive/tournaments. Записи турнирных файлов убраны из реестра —
+      // сторож считает вызовы по ЖИВЫМ файлам, а несуществующие роняли его
+      // с ENOENT. Разбор каждого турнирного тика сохранён в истории git.
+
       // Two account-boundary syncs are deliberate: pre-swap preservation and
       // post-link recovery after RevenueCat/auth restoration.
       'app/auth_provider.ts': 2,
@@ -173,9 +178,6 @@ describe('owner runtime direction contract', () => {
       // турнирный движок и арена приехали 27.07 МИМО этого ревью — реестр не
       // обновляли, поэтому восемь новых тиков не заметил никто. Каждый разобран
       // и либо загарден, либо признан осознанным исключением.
-      // Один тик хаба под гвардом видимости таба (runtimeOwnerId), пересчёт
-      // состояния окна; на невидимом табе спит.
-      'app/(tabs)/tournaments.tsx': 1,
       // Arena V2 ranked queue heartbeat (15 s). It is active only while the
       // matchmaking push screen owns focus + foreground; Quick uses one
       // six-second timeout instead and gameplay uses the shared wall clock.
@@ -202,19 +204,6 @@ describe('owner runtime direction contract', () => {
       // времени, гейтован alive/unmount; не сеть — время держит peekPersonalPlanSunsetEffectiveNow.
       'app/personal_plan.tsx': 1,
       'app/shards_shop.tsx': 1,
-      // Секундный отсчёт до серверного дедлайна фазы — под гвардом active,
-      // который хаб питает видимостью таба (см. useTournamentRoom).
-      'app/tournament_client.ts': 1,
-      // Тик лобби под `everyoneArrived || !runtimeActive` — спит на неактивном
-      // экране и когда все уже собрались.
-      'app/tournament_lobby.tsx': 1,
-      // Конечный count-up «долетающих» жемчужин (~700мс), сам себя гасит.
-      'app/tournament_results.tsx': 1,
-      // ОСОЗНАННОЕ ИСКЛЮЧЕНИЕ: боевой таймер ответа. Гвард по видимости здесь
-      // ЗАПРЕЩЁН — пауза подарила бы игроку лишнее время на ответ, это дыра в
-      // честности турнира. Экран живёт под freezeOnBlur:true и размонтируется
-      // при выходе; таймер сам останавливается на нуле.
-      'app/tournament_round.tsx': 1,
       // Shared visible wall-clock factory/type/wiring contain three textual call
       // sites but create at most one live interval for all current subscribers.
       // Интервал стартует ТОЛЬКО на переднем плане (AppState-гвард, 2026-07-27).
@@ -256,7 +245,7 @@ describe('owner runtime direction contract', () => {
       'components/youtube/YoutubePremiereHero.tsx': 1,
       // Общий секундный отсчёт турнира: считает от целевого момента, поэтому
       // гвард видимости не ломает точность (при возврате догоняет сразу).
-      'components/tournament/TournamentCountdown.tsx': 1,
+      'components/ui/V2Countdown.tsx': 1,
     };
     const found: Record<string, number> = {};
 
@@ -357,7 +346,6 @@ describe('owner runtime direction contract', () => {
       // каждую запись, поэтому обе гейтятся: комната — параметром active (хаб
       // питает его видимостью таба), реакции — только на push-экранах лобби и
       // раунда под freezeOnBlur:true, которые размонтируются при выходе.
-      'app/tournament_client.ts': 2,
       'components/PremiumContext.tsx': 1,
     };
     const found: Record<string, number> = {};

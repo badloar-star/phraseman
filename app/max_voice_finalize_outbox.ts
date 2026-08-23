@@ -114,6 +114,9 @@ function assertRequest(request: unknown): asserts request is MaxVoiceFinalizeReq
     assertText(row.text, 'max_finalize_homework_invalid', MAX_VOICE_FINALIZE_MAX_TURN_CHARS);
     assertText(row.meaning, 'max_finalize_homework_invalid', MAX_VOICE_FINALIZE_MAX_TURN_CHARS);
   }
+  if (evidence.endedByTutor !== undefined && typeof evidence.endedByTutor !== 'boolean') {
+    throw new Error('max_finalize_tutor_evidence_invalid');
+  }
   if (evidence.nextTopic !== undefined) assertText(evidence.nextTopic, 'max_finalize_next_topic_invalid', 1_000);
   if (evidence.languagePreference !== undefined) {
     assertText(evidence.languagePreference, 'max_finalize_language_preference_invalid', 1_000);

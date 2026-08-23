@@ -48,6 +48,50 @@ describe('MAX daily content-free operations', () => {
       .toEqual(expect.objectContaining({ callsCompleted: 1, callDurationBuckets: { '3to10m': 1 }, endReasons: { completed: 1 } }));
   });
 
+  test('lesson_quality maps discipline flags to bounded counters without any text', () => {
+    const delta = maxVoiceOpsDeltaForEvent({
+      schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+      stage: 'lesson_quality',
+      lesson: {
+        endedByTutor: true,
+        homeworkAssigned: true,
+        goalAdvanced: false,
+        sceneDone: true,
+        tutorSafetyFlagged: false,
+        languagePreferenceSet: true,
+        phrasePass: 3,
+        phraseTotal: 5,
+      },
+    });
+    expect(delta).toEqual({
+      lessonsFinalized: 1,
+      lessonsEndedByTutor: 1,
+      lessonsWithHomework: 1,
+      lessonsSceneDone: 1,
+      lessonsWithLanguagePreference: 1,
+      phraseResultsPass: 3,
+      phraseResultsTotal: 5,
+    });
+    // Потолок фраз держит мусорный клиент; отрицательные значения отклоняются.
+    const capped = maxVoiceOpsDeltaForEvent({
+      schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+      stage: 'lesson_quality',
+      lesson: {
+        endedByTutor: false, homeworkAssigned: false, goalAdvanced: true, sceneDone: false,
+        tutorSafetyFlagged: true, languagePreferenceSet: false, phrasePass: 10_000, phraseTotal: 10_000,
+      },
+    });
+    expect(capped.phraseResultsPass).toBe(200);
+    expect(capped.phraseResultsTotal).toBe(200);
+    expect(capped.lessonsGoalAdvanced).toBe(1);
+    expect(capped.lessonsTutorSafetyFlagged).toBe(1);
+    expect(() => maxVoiceOpsDeltaForEvent({
+      schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+      stage: 'lesson_quality',
+      lesson: { endedByTutor: false, homeworkAssigned: false, goalAdvanced: false, sceneDone: false, tutorSafetyFlagged: false, languagePreferenceSet: false, phrasePass: -1, phraseTotal: 1 },
+    })).toThrow();
+  });
+
   test('does not confuse transport connection with the first audible MAX output', () => {
     expect(maxVoiceOpsDeltaForEvent({
       schemaVersion: 'max-voice-ops-event.v1',

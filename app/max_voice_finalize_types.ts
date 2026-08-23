@@ -32,6 +32,8 @@ export interface MaxVoiceFinalizeRequestV1 {
     readonly homeworkItems: readonly { readonly text: string; readonly meaning: string }[];
     readonly languagePreference?: string;
     readonly safetyFlags: readonly { readonly kind: string; readonly note: string }[];
+    /** Учитель сам вызвал end_call — телеметрия дисциплины боевой модели (2026-08-22). */
+    readonly endedByTutor?: boolean;
   };
 }
 

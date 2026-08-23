@@ -12,6 +12,12 @@ const SCALAR_KEYS = [
   'reviewsFailed', 'finalizationRetries', 'memoryUpdatesSucceeded', 'memoryUpdatesFailed',
   'sensitiveMemoryCandidatesRejected', 'quotaReservations', 'quotaSettlements',
   'watchdogSettlements', 'impossibleSequences',
+  // зачем: владелец 2026-08-22 — телеметрия дисциплины БОЕВОЙ модели учителя
+  // (симуляция показала слабые места слабой модели; проверяем настоящую).
+  // Только счётчики за урок, никакого текста — приватность как у всего ops.
+  'lessonsFinalized', 'lessonsEndedByTutor', 'lessonsWithHomework', 'lessonsGoalAdvanced',
+  'lessonsSceneDone', 'lessonsTutorSafetyFlagged', 'lessonsWithLanguagePreference',
+  'phraseResultsPass', 'phraseResultsTotal',
 ] as const;
 const END_REASONS = ['completed', 'capped', 'dropped', 'background', 'failed'] as const;
 const PREPARATION_BUCKETS = ['lt1s', '1to3s', '3to8s', 'gte8s'] as const;
@@ -56,6 +62,15 @@ export interface MaxVoiceOpsDailyV1 {
   readonly quotaSettlements: number;
   readonly watchdogSettlements: number;
   readonly impossibleSequences: number;
+  readonly lessonsFinalized: number;
+  readonly lessonsEndedByTutor: number;
+  readonly lessonsWithHomework: number;
+  readonly lessonsGoalAdvanced: number;
+  readonly lessonsSceneDone: number;
+  readonly lessonsTutorSafetyFlagged: number;
+  readonly lessonsWithLanguagePreference: number;
+  readonly phraseResultsPass: number;
+  readonly phraseResultsTotal: number;
   readonly endReasons: CounterRecord<typeof END_REASONS>;
   readonly preparationLatencyBuckets: CounterRecord<typeof PREPARATION_BUCKETS>;
   readonly firstAudioLatencyBuckets: CounterRecord<typeof FIRST_AUDIO_BUCKETS>;
@@ -92,7 +107,20 @@ export type MaxVoiceOpsStage =
   | 'finalization_queued' | 'finalization_retryable' | 'finalization_terminal'
   | 'review_ready' | 'review_failed'
   | 'memory_update_succeeded' | 'memory_update_failed' | 'sensitive_memory_candidate_rejected'
-  | 'quota_reserved' | 'quota_settled' | 'watchdog_settled';
+  | 'quota_reserved' | 'quota_settled' | 'watchdog_settled'
+  | 'lesson_quality';
+
+/** Счётчики дисциплины учителя за один урок (стадия lesson_quality). Только числа/флаги. */
+export interface MaxVoiceOpsLessonQuality {
+  readonly endedByTutor: boolean;
+  readonly homeworkAssigned: boolean;
+  readonly goalAdvanced: boolean;
+  readonly sceneDone: boolean;
+  readonly tutorSafetyFlagged: boolean;
+  readonly languagePreferenceSet: boolean;
+  readonly phrasePass: number;
+  readonly phraseTotal: number;
+}
 
 export interface MaxVoiceOpsEventV1 {
   readonly schemaVersion: typeof MAX_VOICE_OPS_EVENT_SCHEMA;
@@ -103,6 +131,7 @@ export interface MaxVoiceOpsEventV1 {
   readonly level?: typeof LEVELS[number];
   readonly endReason?: typeof END_REASONS[number];
   readonly providerUsage?: Partial<CounterRecord<typeof PROVIDER_KEYS>>;
+  readonly lesson?: MaxVoiceOpsLessonQuality;
 }
 
 export function maxVoiceOpsLocale(value: unknown): typeof LOCALES[number] | undefined {
@@ -207,7 +236,11 @@ const STAGE_COUNTER: Readonly<Record<MaxVoiceOpsStage, typeof SCALAR_KEYS[number
   memory_update_succeeded: 'memoryUpdatesSucceeded', memory_update_failed: 'memoryUpdatesFailed',
   sensitive_memory_candidate_rejected: 'sensitiveMemoryCandidatesRejected',
   quota_reserved: 'quotaReservations', quota_settled: 'quotaSettlements', watchdog_settled: 'watchdogSettlements',
+  lesson_quality: 'lessonsFinalized',
 };
+
+/** Потолок фраз за урок — защита от мусорного клиента (в уроке их единицы). */
+const LESSON_PHRASE_MAX = 200;
 
 export function maxVoiceOpsDeltaForEvent(event: MaxVoiceOpsEventV1): MaxVoiceOpsDelta {
   if (event.schemaVersion !== MAX_VOICE_OPS_EVENT_SCHEMA || !(event.stage in STAGE_COUNTER)) throw new Error('max_ops_event_invalid');
@@ -223,6 +256,18 @@ export function maxVoiceOpsDeltaForEvent(event: MaxVoiceOpsEventV1): MaxVoiceOps
     delta.reconnectRecoveryBuckets = { [latencyBucket(event.latencyMs ?? 0, [2_000, 5_000, 15_000], RECONNECT_BUCKETS)]: 1 };
   } else if (event.stage === 'review_ready') {
     delta.finalizeLatencyBuckets = { [latencyBucket(event.latencyMs ?? 0, [5_000, 15_000, 60_000], FINALIZE_BUCKETS)]: 1 };
+  } else if (event.stage === 'lesson_quality') {
+    const lesson = event.lesson;
+    if (lesson) {
+      if (lesson.endedByTutor === true) delta.lessonsEndedByTutor = 1;
+      if (lesson.homeworkAssigned === true) delta.lessonsWithHomework = 1;
+      if (lesson.goalAdvanced === true) delta.lessonsGoalAdvanced = 1;
+      if (lesson.sceneDone === true) delta.lessonsSceneDone = 1;
+      if (lesson.tutorSafetyFlagged === true) delta.lessonsTutorSafetyFlagged = 1;
+      if (lesson.languagePreferenceSet === true) delta.lessonsWithLanguagePreference = 1;
+      delta.phraseResultsPass = Math.min(LESSON_PHRASE_MAX, count(lesson.phrasePass));
+      delta.phraseResultsTotal = Math.min(LESSON_PHRASE_MAX, count(lesson.phraseTotal));
+    }
   } else if (event.stage === 'call_completed' || event.stage === 'call_failed') {
     delta.callDurationBuckets = { [latencyBucket((event.durationSec ?? 0) * 1_000, [60_000, 180_000, 600_000], DURATION_BUCKETS)]: 1 };
     if (event.endReason && (END_REASONS as readonly string[]).includes(event.endReason)) delta.endReasons = { [event.endReason]: 1 };
@@ -265,6 +310,7 @@ const PREREQUISITE: Partial<Record<MaxVoiceOpsStage, MaxVoiceOpsStage>> = {
   review_ready: 'finalization_queued', review_failed: 'finalization_queued',
   memory_update_succeeded: 'finalization_queued', memory_update_failed: 'finalization_queued',
   quota_settled: 'quota_reserved', watchdog_settled: 'quota_reserved',
+  lesson_quality: 'finalization_queued',
 };
 
 export async function recordMaxVoiceOpsOnce(db: Firestore, input: {

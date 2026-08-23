@@ -134,6 +134,10 @@ export async function getMaxVoiceOpsDashboard(request: RequestShape, deps: MaxVo
     'reviewsFailed', 'finalizationRetries', 'memoryUpdatesSucceeded', 'memoryUpdatesFailed',
     'sensitiveMemoryCandidatesRejected', 'quotaReservations', 'quotaSettlements',
     'watchdogSettlements', 'impossibleSequences',
+    // зачем: владелец 2026-08-22 — дисциплина учителя в панели (доли уроков).
+    'lessonsFinalized', 'lessonsEndedByTutor', 'lessonsWithHomework', 'lessonsGoalAdvanced',
+    'lessonsSceneDone', 'lessonsTutorSafetyFlagged', 'lessonsWithLanguagePreference',
+    'phraseResultsPass', 'phraseResultsTotal',
   ] as const;
   const totals = Object.fromEntries(scalarKeys.map((key) => [key, rows.reduce((sum, row) => sum + row[key], 0)])) as Record<typeof scalarKeys[number], number>;
   const newestUpdateMs = rows.reduce((latest, row) => Math.max(latest, row.updatedAtMs), 0);

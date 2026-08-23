@@ -75,6 +75,8 @@ interface FinalizeRequest {
     homeworkItems: { text: string; meaning: string }[];
     languagePreference?: string;
     safetyFlags: { kind: string; note: string }[];
+    /** Учитель сам вызвал end_call (телеметрия дисциплины боевой модели, 2026-08-22). */
+    endedByTutor?: boolean;
   };
 }
 
@@ -117,6 +119,8 @@ interface MaxVoiceFinalizeMemoryUpdate {
   goalId: string;
   sceneOutcome: string;
   goalProgress: FinalizeRequest['goalProgress'] | null;
+  endedByTutor: boolean;
+  tutorSafetyFlagged: boolean;
   nowMs: number;
   sessionStartedAtMs: number;
   sensitiveRejectedCount: number;
@@ -279,7 +283,10 @@ function parseFinalizeData(raw: unknown): ParsedFinalizeData {
     };
   }
   const evidenceRaw = object(requestRaw.tutorEvidence, 'max_finalize_tutor_evidence_invalid');
-  onlyKeys(evidenceRaw, ['nextTopic', 'homeworkItems', 'languagePreference', 'safetyFlags']);
+  onlyKeys(evidenceRaw, ['nextTopic', 'homeworkItems', 'languagePreference', 'safetyFlags', 'endedByTutor']);
+  if (evidenceRaw.endedByTutor !== undefined && typeof evidenceRaw.endedByTutor !== 'boolean') {
+    throw new HttpsError('invalid-argument', 'max_finalize_tutor_evidence_invalid');
+  }
   if (!Array.isArray(evidenceRaw.homeworkItems) || evidenceRaw.homeworkItems.length > 6) {
     throw new HttpsError('invalid-argument', 'max_finalize_homework_invalid');
   }
@@ -324,6 +331,7 @@ function parseFinalizeData(raw: unknown): ParsedFinalizeData {
         // зачем: аудит 2026-08-22 — флаги учителя уходят в reviewSafety (журнал
         // safety_flags + Telegram); раньше они здесь молча выбрасывались.
         safetyFlags,
+        ...(evidenceRaw.endedByTutor === undefined ? {} : { endedByTutor: evidenceRaw.endedByTutor === true }),
       },
     },
   };
@@ -435,6 +443,8 @@ export async function finalizeMaxVoiceRequest(
       goalId: data.request.goalId ?? '',
       sceneOutcome: data.request.sceneOutcome ?? '',
       goalProgress: data.request.goalProgress ?? null,
+      endedByTutor: data.request.tutorEvidence.endedByTutor === true,
+      tutorSafetyFlagged: data.request.tutorEvidence.safetyFlags.length > 0,
       nowMs,
       sessionStartedAtMs: Math.floor(number(ownership.sessionStartedAtMs)),
       sensitiveRejectedCount: Math.max(0, rawMemoryProjection.facts.length - acceptedFacts.length),
@@ -671,6 +681,25 @@ function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalize
         stage: 'review_ready',
         latencyMs: Math.max(0, Date.now() - args.receipt.completedAtMs),
       });
+      if (args.memoryUpdate.isTutor) {
+        // зачем: владелец 2026-08-22 — дисциплина боевой модели (end_call,
+        // домашка, цель, флаги) как счётчики в ops; текст не пишется, дедуп
+        // по sessionId живёт внутри recordMaxVoiceOpsOnce.
+        await recordStage(args.receipt.sessionId, {
+          schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA,
+          stage: 'lesson_quality',
+          lesson: {
+            endedByTutor: args.memoryUpdate.endedByTutor,
+            homeworkAssigned: args.memoryUpdate.homework.length > 0,
+            goalAdvanced: result.goal !== null && result.goal.masteryAfter > result.goal.masteryBefore,
+            sceneDone: args.memoryUpdate.sceneOutcome === 'done',
+            tutorSafetyFlagged: args.memoryUpdate.tutorSafetyFlagged,
+            languagePreferenceSet: Boolean(args.memoryUpdate.languagePreference),
+            phrasePass: args.memoryUpdate.phraseResults.filter((item) => item.result === 'pass').length,
+            phraseTotal: args.memoryUpdate.phraseResults.length,
+          },
+        });
+      }
       if (memoryApplied) {
         await recordStage(args.receipt.sessionId, { schemaVersion: MAX_VOICE_OPS_EVENT_SCHEMA, stage: 'memory_update_succeeded' });
       }

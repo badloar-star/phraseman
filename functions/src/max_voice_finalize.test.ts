@@ -183,6 +183,24 @@ describe('MAX durable finalizer', () => {
     });
   });
 
+  it('carries tutor discipline telemetry flags into the memory update', async () => {
+    const h = harness();
+    const payload = input('session-telemetry');
+    const request = (payload.data as { request: { tutorEvidence: Record<string, unknown> } }).request;
+    request.tutorEvidence.endedByTutor = true;
+    request.tutorEvidence.safetyFlags = [{ kind: 'harassment', note: 'rude twice' }];
+    await finalizeMaxVoiceRequest(payload, h.deps);
+    expect(h.memoryUpdates[0]).toMatchObject({ endedByTutor: true, tutorSafetyFlagged: true });
+
+    const plain = await finalizeMaxVoiceRequest(input('session-telemetry-2'), h.deps);
+    expect(plain).toEqual(expect.objectContaining({ status: 'ready' }));
+    expect(h.memoryUpdates[1]).toMatchObject({ endedByTutor: false, tutorSafetyFlagged: false });
+
+    const bad = input('session-telemetry-3');
+    (bad.data as { request: { tutorEvidence: Record<string, unknown> } }).request.tutorEvidence.endedByTutor = 'yes';
+    await expect(finalizeMaxVoiceRequest(bad, h.deps)).rejects.toMatchObject({ code: 'invalid-argument' });
+  });
+
   it('rejects malformed goal progress and scene outcome', async () => {
     const h = harness();
     const badMastery = input('session-bad-goal');

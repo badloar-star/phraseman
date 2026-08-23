@@ -371,6 +371,7 @@ export default function MaxCallSession() {
   const hintTimerRef = useRef<HintTimer | null>(null);
   // Инструменты учителя (сцены/домашка/тема/end_call) — исполняются локально.
   const tutorRunnerRef = useRef<TutorToolRunner | null>(null);
+  const tutorEndedByToolRef = useRef(false);
   const tutorGoalContextRef = useRef<{ id: string; mastery: number; sceneIds: string[] } | null>(null);
   const tutorNoteTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   // Заметка времени, отложенная до паузы учителя (см. sendTutorNoteWhenQuiet).
@@ -479,6 +480,8 @@ export default function MaxCallSession() {
           });
         },
         onEndCall: () => {
+          // зачем: телеметрия 2026-08-22 — дисциплина end_call боевой модели.
+          tutorEndedByToolRef.current = true;
           // Учитель попрощался: даём аудио доиграть и завершаем сами — ученику
           // не нужно вешать трубку.
           endReasonRef.current = 'completed';
@@ -920,6 +923,7 @@ export default function MaxCallSession() {
             homeworkItems: tutor?.homeworkItems ?? [],
             ...(tutor?.languagePreference ? { languagePreference: tutor.languagePreference } : {}),
             safetyFlags: tutor?.safetyFlags ?? [],
+            ...(isTutor && tutorEndedByToolRef.current ? { endedByTutor: true } : {}),
           },
         },
       };

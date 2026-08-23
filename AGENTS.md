@@ -1,5 +1,37 @@
 # Project Rules
 
+## ⛔ LEARNING V2: СНАЧАЛА `СТАРТ В2` (владелец, 2026-08-21)
+
+При любом запросе найти, продолжить, написать, изменить, проверить или показать
+работу по Learning V2 исполнитель обязан **до любых действий** полностью
+прочитать `docs/v2/СТАРТ В2.md` и пройти указанный там маршрут чтения. Этот файл
+фиксирует обязательные правила интро, типов сессий и заданий, восьми локалей,
+диагностических дистракторов, feedback, owner-макета, gates и защиты от ухода от
+спецификации.
+
+Во время authoring каждые 10 минут или после каждой готовой сессии (что раньше)
+выполняется короткий drift-check. После каждых пяти сессий, любой новой ошибки,
+решения владельца, compaction, restart или handoff полностью перечитывается
+применимый набор документов из `СТАРТ В2`. Без `ON TRACK` работа не
+продолжается; drift-check не является PASS и не заменяет независимое review.
+
+## ⛔ LEARNING V2 ИСПАНСКИЙ: СНАЧАЛА `СТАРТ ES` (владелец, 2026-08-23)
+
+Испанский — независимый, параллельный target-language контур Learning V2. При
+любом запросе найти, продолжить, написать, изменить, проверить или показать
+работу по испанскому курсу исполнитель обязан **до любых действий** полностью
+прочитать `docs/v2/СТАРТ ES.md` и пройти указанный там маршрут чтения (который
+сам ссылается на общую дисциплину `docs/v2/СТАРТ В2.md`, не дублируя её).
+
+Испанская и английская сессии могут работать одновременно в одном рабочем
+дереве. Испанская сессия никогда не редактирует файлы, чьё имя начинается с
+`episode_01_`, и никогда не редактирует английский экспорт
+`LESSON1_AUTHORING_REGISTRY_V1` — только `authoringRegistryForTargetLanguage
+("es")` и файлы своего собственного контура. Машинная проверка:
+`npm run learning-v2:es-authoring-preflight` для испанского,
+`npm run learning-v2:lesson1-authoring-preflight` для английского — команды
+не пересекаются и не влияют друг на друга.
+
 ## ⛔ Economy Constitution — client authority, no orphan debits (owner, 2026-08-13)
 
 This is a permanent architecture boundary for every current and future economy
@@ -419,6 +451,7 @@ Root causes fixed on 2026-07-02 (see `PERF_MASTER_PLAN.md`): frozen-background n
 - The custom tab slider (`app/(tabs)/_layout.tsx`) freezes invisible tabs via `react-freeze` (`ENABLE_TAB_FREEZE`). Never render tab content that must stay "hot" while hidden; use gated timers instead.
 - Freeze stops renders, NOT timers/subscriptions. Any `setInterval`/`onSnapshot`/`Animated.loop`/`withRepeat(-1)` in screen code must be gated by `useIsScreenFocused()` (from `hooks/use_is_screen_focused.ts`) + an `AppState` listener attached only while the loop runs — copy the pattern from `components/AvatarAura.tsx`.
 - Infinite animations (`withRepeat(..., -1)`, `Animated.loop`) are allowed unguarded only inside modals that unmount on close, or dev/lab screens. The contract test ratchets the current file list; new unguarded files fail CI.
+- Fixing that ratchet (`tests/runtime_lifecycle_ratchet.test.ts`): run `npm run guard:motion-ratchet` FIRST. The jest suite takes ~110s and fails on the FIRST mismatched entry, hiding every later one (incidents 2026-08-02 and 2026-08-22 both turned into chains of two-minute runs); the guard reads the same registry out of the test file and prints ALL breakages in one second. Fix everything it lists, then run jest once as the final check. When a token no longer matches, read the source before touching anything — in practice the guard was rewritten *stricter*, not lost, so the fix is usually resealing the registry token, never deleting the check.
 - Module-level caches must have an eviction policy (max entries and/or TTL) — pattern: `pruneFriendsProfileCache` in `app/friends_tab_swr_warm.ts`. A bare growing `Record`/`Map` singleton is a leak.
 - New `setInterval` call sites must tick at >=1000ms, clean up on unmount/blur, and be added to the allowlist test `tests/owner_direction_runtime_contract.test.ts` consciously.
 

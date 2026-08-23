@@ -715,10 +715,11 @@ export const maxVoiceFinalize = onCall({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
   timeoutSeconds: 60,
-  // зачем: 2026-08-23 — контейнер падал на старте (Memory limit 256 MiB exceeded,
-  // 258-277 MiB): в бандл функций входит 17 МБ support_repo_context.json.
-  // Функция физически не запускалась в проде — разборы и safety-скан не работали.
-  memory: '512MiB',
+  // зачем: 2026-08-23 — функция вернулась на 256 MiB после переезда в кодбазу
+  // functions-max. Причиной падения («Memory limit of 256 MiB exceeded») был не
+  // её код, а старт общей кодбазы: он грузил 240 функций (370 МБ). Своя кодбаза
+  // грузит 12 функций = 78 МБ, запас к лимиту трёхкратный.
+  memory: '256MiB',
   maxInstances: 20,
   secrets: [OPENAI_API_KEY],
 }, async (request) => {

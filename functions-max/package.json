@@ -1,0 +1,21 @@
+{
+  "name": "phraseman-functions-max",
+  "version": "1.0.0",
+  "description": "MAX voice tutor codebase. Отдельная кодбаза, чтобы старт функции не грузил все 240 функций основного бандла (~370 МБ RSS, 2.2 с).",
+  "engines": {
+    "node": "22"
+  },
+  "main": "lib/functions-max/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"tests live in the main codebase\" && exit 0"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.10.0",
+    "firebase-functions": "^7.2.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "private": true
+}

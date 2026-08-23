@@ -340,3 +340,6 @@ functions/src/generated/support_repo_context.json
 
 # Временный бриф контент-конвейера (scripts/content_pipeline_brief.mjs)
 .content-brief.md
+
+# Сборка отдельной кодбазы MAX (functions-max/index.ts компилируется в lib/).
+/functions-max/lib/

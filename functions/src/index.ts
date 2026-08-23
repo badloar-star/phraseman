@@ -160,19 +160,7 @@ const { premiumDialogReview } = require("./premium_dialog_review");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { maxVoiceConfigAdmin } = require("./max_voice_config");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { maxVoicePreflight, maxVoiceMint } = require("./max_voice_mint");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
-  maxVoiceHeartbeat,
-  maxVoiceSessionEnd,
-} = require("./max_voice_session_end");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
-  maxVoiceWatchdog,
-  maxVoiceProviderHealth,
-} = require("./max_voice_watchdog");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { maxVoiceSafetyReport } = require("./max_voice_safety");
+const { adminWarmInstanceGauge } = require("./warm_instance_gauge");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require("./weekly_review");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -336,13 +324,8 @@ exports.premiumDialogSend = premiumDialogSend;
 exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.premiumDialogReview = premiumDialogReview;
 exports.maxVoiceConfigAdmin = maxVoiceConfigAdmin;
-exports.maxVoicePreflight = maxVoicePreflight;
-exports.maxVoiceMint = maxVoiceMint;
-exports.maxVoiceHeartbeat = maxVoiceHeartbeat;
-exports.maxVoiceSessionEnd = maxVoiceSessionEnd;
-exports.maxVoiceWatchdog = maxVoiceWatchdog;
-exports.maxVoiceProviderHealth = maxVoiceProviderHealth;
-exports.maxVoiceSafetyReport = maxVoiceSafetyReport;
+// зачем: шкала «когда можно отключать тёплый инстанс» в Пульте админки (2026-08-22).
+exports.adminWarmInstanceGauge = adminWarmInstanceGauge;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
@@ -719,6 +702,14 @@ export { adminSubscriptionAnalytics } from "./admin_subscription_analytics";
 export { adminMonthlyDecisionPack } from "./admin_monthly_decision_pack";
 export { adminGetAnalyticsSnapshot } from "./admin_analytics";
 export { adminGetRevenueCatOverviewMetrics } from "./admin_revenuecat_overview";
+// зачем: 2026-08-23 — боевые функции MAX (12 шт.) переехали в отдельную
+// кодбазу functions-max: старт этой кодбасы грузит 240 функций (370 МБ,
+// 2.2 с), а MAX-кодбаза — только свои 12 (78 МБ, 0.44 с). Админские
+// maxVoiceConfigAdmin и adminGetMaxVoiceOpsDashboard остались здесь, рядом
+// с остальной админкой. Правки в functions/src/max_voice_* попадают в обе
+// сборки: functions-max компилирует те же исходники (rootDir "..").
+export { adminGetMaxVoiceOpsDashboard } from "./max_voice_ops_dashboard";
+export { adminListShardRefunds } from "./admin_shard_refunds";
 export { adminGetAnalyticsTrends } from "./admin_analytics_trends";
 export { adminGetDirectorDigest } from "./admin_director_digest";
 export { adminGenerateDirectorDigestAudio } from "./admin_director_digest_audio";
@@ -812,6 +803,9 @@ export {
 export {
   adminListGlobalBroadcasts,
   adminPublishGlobalBroadcast,
+  adminDeactivateGlobalBroadcast,
+  adminScrubGlobalBroadcastMetadata,
+  adminVerifyGlobalBroadcastPrivacyReadiness,
   adminDeactivateGlobalBroadcasts,
 } from "./admin_global_broadcast";
 export {
@@ -890,11 +884,13 @@ export {
 export { recordAgeConsentSnapshot } from "./record_age_consent_snapshot";
 export { recordAiExplainConsent } from "./record_ai_explain_consent";
 export { recordAiDialogConsent } from "./record_ai_dialog_consent";
+export { recordAiVoiceConsent } from "./record_ai_voice_consent";
 
 export { revenueCatShardsWebhook } from "./revenuecat_shards";
 export { revenueCatPremiumReconcileMine } from "./revenuecat_reconcile";
 
 export { adminPushJobCreated, adminPushJobsCron } from "./admin_push_jobs";
+export { adminUserBriefs } from "./admin_user_briefs";
 
 // ── Веб-оплата Premium с сайта (квиз-воронка /start/): Stripe + PayPal ────────
 export {
@@ -905,6 +901,8 @@ export {
   webOrderStatus,
   webPrices,
   adminCreateGiftCertificateBatch,
+  adminGetGiftCertificateBatchOperation,
+  adminCancelGiftCertificateBatchOperation,
   adminListGiftCertificates,
   adminDeleteGiftCertificate,
   adminGetGiftCertificateDownload,
@@ -968,6 +966,10 @@ export {
   arenaV2InviteCreate,
   arenaV2InviteAccept,
   arenaV2InviteDecline,
+  arenaV2InviteCancel,
+  arenaV2InviteReady,
+  arenaV2InviteStatus,
+  arenaV2DevFriendBotCreate,
   arenaV2FriendsBoard,
   arenaV2SeasonClaim,
   arenaV2SpinStatus,
@@ -1073,11 +1075,12 @@ export {
   friendsNudge,
 } from "./friends_together";
 export { publicProfileProjectMine } from "./public_profile_projection";
-export { adminActivateTelegramPremiumOrder } from "./telegram_premium_admin";
+export { adminActivateTelegramPremiumOrder, adminInspectTelegramPromoCode } from "./telegram_premium_admin";
 
 // Authenticated, server-authoritative one-time onboarding access grant.
 export { introFullAccessClaim } from "./gift_access";
 export { globalBroadcastClaim } from "./global_broadcast_claim";
+export { globalBroadcastListActive } from "./global_broadcast_public";
 export {
   levelRewardSpinStatus,
   levelRewardSpinClaim,
@@ -1085,6 +1088,7 @@ export {
   levelRewardSpinDelivery,
 } from "./level_reward_spins";
 export { levelRewardSpinEnrollV1 } from "./level_spin_enrollment";
+export { levelSpinStarGrant } from "./level_spin_star_grant";
 
 // ── Season Pass: клеймы, расходники, щит другу, покупка платной дорожки ──
 export {
@@ -1106,6 +1110,10 @@ export {
   adminSetReferralRouletteEmergencyStop,
   adminReferralHealth,
 } from "./admin_referrals";
+export {
+  adminRepairPendingReferralPurchase,
+  adminResumePendingReferralPurchaseRepair,
+} from "./admin_referral_purchase_repair";
 
 // Learning V2: генерация юнитов (E1 vertical slice) — очередь плана + воркер
 export {

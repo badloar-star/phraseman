@@ -1872,7 +1872,7 @@ export default function ShardsShopScreen() {
                 </View>
               );
             })}
-            {/* Вход на «Биржу» — обмен монет на звёзды (спека §6).
+            {/* Вход на «Биржу» — обмен монет на руны (спека §6).
                 зачем: фича скрыта из публичной сборки по решению владельца, но код/маршрут
                 остаются рабочими для dev/QA — тот же флаг, что и остальные dev-only входы. */}
             {false && ENABLE_DEV_TOOLS && (
@@ -1883,14 +1883,14 @@ export default function ShardsShopScreen() {
                 withHaptic
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, {
-                  ru: 'Биржа: обмен жемчуга на звёзды',
-                  uk: 'Біржа: обмін перлин на зірки',
-                  es: 'Intercambio: cambia perlas por estrellas',
-                  'pt-BR': 'Câmbio: troque pérolas por estrelas',
-                  vi: 'Sàn giao dịch: đổi xu lấy sao',
-                  id: 'Bursa: tukar koin dengan bintang',
-                  tr: 'Borsa: jetonları yıldızla değiştir',
-                  pl: 'Giełda: wymień monety na gwiazdki',
+                  ru: 'Биржа: обмен жемчуга на руны',
+                  uk: 'Біржа: обмін перлин на руни',
+                  es: 'Intercambio: cambia perlas por runas',
+                  'pt-BR': 'Câmbio: troque pérolas por runas',
+                  vi: 'Sàn giao dịch: đổi xu lấy rune',
+                  id: 'Bursa: tukar koin dengan rune',
+                  tr: 'Borsa: jetonları rünle değiştir',
+                  pl: 'Giełda: wymień monety na runy',
                 })}
                 style={{ width: '100%' }}
               >

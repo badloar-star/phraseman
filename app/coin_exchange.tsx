@@ -1,5 +1,5 @@
 /**
- * coin_exchange.tsx — «Биржа»: обмен монет на звёзды (односторонний).
+ * coin_exchange.tsx — «Биржа»: обмен монет на руны (односторонний).
  * Экономика: docs/plans/2026-07-20-coins-stars-economy-plan.ru.md §6.
  * Курс глобальный, динамический, пересчёт раз в сутки на сервере; клиент курс НЕ считает.
  * Обмен сервер-авторитетный: результат показываем только из ответа callable.
@@ -21,6 +21,8 @@ import { useScreen } from '../hooks/use-screen';
 import ContentWrap from '../components/ContentWrap';
 import TapScale from '../components/TapScale';
 import { triLang } from '../constants/i18n';
+import { runeWord } from '../constants/runes';
+import RuneGlyph from '../components/RuneGlyph';
 import { emitAppEvent, onAppEvent } from './events';
 import { getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { coinIconForBalance } from './coin_icons';
@@ -142,9 +144,9 @@ export default function CoinExchangeScreen() {
       await loadShardsFromCloud().catch(() => {});
       emitAppEvent('action_toast', {
         type: 'success',
-        messageRu: `Обмен выполнен: +${result.starsGranted} звёзд (курс ${result.rateUsed})`,
-        messageUk: `Обмін виконано: +${result.starsGranted} зірок (курс ${result.rateUsed})`,
-        messageEs: `Cambio realizado: +${result.starsGranted} estrellas (tasa ${result.rateUsed})`,
+        messageRu: `Обмен выполнен: +${result.starsGranted} ${runeWord('ru', result.starsGranted)} (курс ${result.rateUsed})`,
+        messageUk: `Обмін виконано: +${result.starsGranted} ${runeWord('uk', result.starsGranted)} (курс ${result.rateUsed})`,
+        messageEs: `Cambio realizado: +${result.starsGranted} ${runeWord('es', result.starsGranted)} (tasa ${result.rateUsed})`,
       });
       setCoinsInput('');
       void fetchCoinExchangeQuote().then((fresh) => { if (fresh) setQuote(fresh); });
@@ -212,19 +214,31 @@ export default function CoinExchangeScreen() {
                 <Text
                   style={{ color: t.textPrimary, fontSize: 26, fontWeight: '900', marginTop: 8, textAlign: 'center' }}
                   accessibilityLabel={triLang(lang, {
-                    ru: `1 жемчужина = ${quote.rate} звёзд`,
-                    uk: `1 перлина = ${quote.rate} зірок`,
-                    es: `1 moneda = ${quote.rate} estrellas`,
+                    ru: `1 жемчужина = ${quote.rate} ${runeWord('ru', quote.rate)}`,
+                    uk: `1 перлина = ${quote.rate} ${runeWord('uk', quote.rate)}`,
+                    es: `1 moneda = ${quote.rate} ${runeWord('es', quote.rate)}`,
+                    'pt-BR': `1 pérola = ${quote.rate} ${runeWord('pt-BR', quote.rate)}`,
+                    vi: `1 xu = ${quote.rate} ${runeWord('vi', quote.rate)}`,
+                    id: `1 koin = ${quote.rate} ${runeWord('id', quote.rate)}`,
+                    tr: `1 jeton = ${quote.rate} ${runeWord('tr', quote.rate)}`,
+                    pl: `1 perła = ${quote.rate} ${runeWord('pl', quote.rate)}`,
                   })}
                 >
                   {triLang(lang, { ru: '1 жемчужина = ', uk: '1 перлина = ', es: '1 perla = ' })}
-                  <Text style={{ color: t.accent }}>{quote.rate} ⭐</Text>
+                  <Text style={{ color: t.accent }}>
+                    {quote.rate} <RuneGlyph size={22} color={t.accent} />
+                  </Text>
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 8, textAlign: 'center' }}>
                   {triLang(lang, {
-                    ru: `Коридор курса: ${quote.corridorMin}–${quote.corridorMax} звёзд за жемчужину`,
-                    uk: `Коридор курсу: ${quote.corridorMin}–${quote.corridorMax} зірок за перлину`,
-                    es: `Corredor: ${quote.corridorMin}–${quote.corridorMax} estrellas por moneda`,
+                    ru: `Коридор курса: ${quote.corridorMin}–${quote.corridorMax} рун за жемчужину`,
+                    uk: `Коридор курсу: ${quote.corridorMin}–${quote.corridorMax} рун за перлину`,
+                    es: `Corredor: ${quote.corridorMin}–${quote.corridorMax} runas por perla`,
+                    'pt-BR': `Corredor: ${quote.corridorMin}–${quote.corridorMax} runas por pérola`,
+                    vi: `Biên độ: ${quote.corridorMin}–${quote.corridorMax} rune mỗi xu`,
+                    id: `Koridor: ${quote.corridorMin}–${quote.corridorMax} rune per koin`,
+                    tr: `Aralık: jeton başına ${quote.corridorMin}–${quote.corridorMax} rün`,
+                    pl: `Korytarz: ${quote.corridorMin}–${quote.corridorMax} run za perłę`,
                   })}
                 </Text>
                 {nextRecalcLabel ? (
@@ -337,14 +351,24 @@ export default function CoinExchangeScreen() {
             >
               {coinsAmount > 0 && quote
                 ? triLang(lang, {
-                    ru: `Вы получите ≈ ${starsEstimate} звёзд`,
-                    uk: `Ви отримаєте ≈ ${starsEstimate} зірок`,
-                    es: `Recibirás ≈ ${starsEstimate} estrellas`,
+                    ru: `Вы получите ≈ ${starsEstimate} ${runeWord('ru', starsEstimate)}`,
+                    uk: `Ви отримаєте ≈ ${starsEstimate} ${runeWord('uk', starsEstimate)}`,
+                    es: `Recibirás ≈ ${starsEstimate} ${runeWord('es', starsEstimate)}`,
+                    'pt-BR': `Você receberá ≈ ${starsEstimate} ${runeWord('pt-BR', starsEstimate)}`,
+                    vi: `Bạn sẽ nhận ≈ ${starsEstimate} ${runeWord('vi', starsEstimate)}`,
+                    id: `Kamu akan menerima ≈ ${starsEstimate} ${runeWord('id', starsEstimate)}`,
+                    tr: `≈ ${starsEstimate} ${runeWord('tr', starsEstimate)} alacaksın`,
+                    pl: `Otrzymasz ≈ ${starsEstimate} ${runeWord('pl', starsEstimate)}`,
                   })
                 : triLang(lang, {
-                    ru: 'Введите количество жемчужин — покажем оценку в звёздах.',
-                    uk: 'Введіть кількість перлин — покажемо оцінку в зірках.',
-                    es: 'Introduce la cantidad de perlas: mostraremos la estimación en estrellas.',
+                    ru: 'Введите количество жемчужин — покажем оценку в рунах.',
+                    uk: 'Введіть кількість перлин — покажемо оцінку в рунах.',
+                    es: 'Introduce la cantidad de perlas: mostraremos la estimación en runas.',
+                    'pt-BR': 'Digite a quantidade de pérolas: mostraremos a estimativa em runas.',
+                    vi: 'Nhập số xu — chúng tôi sẽ hiển thị ước tính bằng rune.',
+                    id: 'Masukkan jumlah koin — kami tampilkan perkiraan dalam rune.',
+                    tr: 'Jeton miktarını gir — rün cinsinden tahmini gösterelim.',
+                    pl: 'Podaj liczbę pereł — pokażemy szacunek w runach.',
                   })}
             </Text>
             <TapScale

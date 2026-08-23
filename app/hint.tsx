@@ -18,6 +18,7 @@ import {
 import { safeRouterBack } from './navigation_back';
 import BouncyScrollView from '../components/BouncyScrollView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ReportErrorButton from '../components/ReportErrorButton';
 import TheoryLessonView, {
   type TheorySection,
   type TheoryBlock,
@@ -1581,6 +1582,15 @@ export default function HintScreen() {
             </Text>
           </TonalSurface>
         ) : hint.render(t, lang, f)}
+        {/* зачем: у экрана две ветки. Через TheoryLessonView флаг есть, а
+            «Шпаргалка» рисует правило урока напрямую — и там пожаловаться
+            было нельзя, хотя контент тот же грамматический. */}
+        <ReportErrorButton
+          screen="lesson_hint"
+          dataId={`lesson_hint_${lessonId}`}
+          dataText={hintTitle}
+          testID="lesson-hint-report"
+        />
         <TouchableOpacity
           style={{ backgroundColor: t.bgSurface, borderRadius: 14, padding: 16, alignItems: 'center', marginTop: 8 }}
           onPress={() => safeRouterBack(router, '/(tabs)/home' as any)}

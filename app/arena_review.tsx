@@ -6,9 +6,11 @@ import Animated, { FadeIn, FadeInDown, FadeInRight } from 'react-native-reanimat
 
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
-import { V2Card, V2Cta } from '../components/tournament/tournament_v2_ui';
-import { useTournamentPalette } from '../components/tournament/tournament_theme';
+import { V2Card, V2Cta } from '../components/ui/v2_ui';
+import { useTournamentPalette } from '../components/ui/v2_theme';
 import { arenaText } from '../modules/arena/copy';
+import ReportErrorButton from '../components/ReportErrorButton';
+import { triLang } from '../constants/i18n';
 import {
   arenaReviewRows,
   arenaReviewSummary,
@@ -197,6 +199,17 @@ function ReviewCard({ row, index, reduceMotion }: {
           <Ionicons name={icon} size={22} color={tone} />
           <Text style={[styles.prompt, { color: P.text }]}>{row.prompt}</Text>
           <Text style={[styles.index, { color: P.muted }]}>{row.taskIndex + 1}</Text>
+          {/* зачем: разбор — единственное место, где задание боя видно
+              спокойно, без таймера. Если задание оказалось неверным, именно
+              здесь человек это понимает — и здесь же должен мочь сказать. */}
+          <ReportErrorButton
+            screen="arena_review"
+            dataId={`arena_task_${row.taskId || row.taskIndex}`}
+            dataText={row.prompt}
+            variant="icon-flag"
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку в завданні', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan pada latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w zadaniu' })}
+            testID="arena-review-report"
+          />
         </View>
 
         {/* Что ответил игрок. Пусто — значит не ответил, и так и написано. */}

@@ -22,6 +22,7 @@ import { LinearGradient } from "../components/SafeLinearGradient";
 import { useStudyTarget } from "../components/StudyTargetContext";
 import { useTheme } from "../components/ThemeContext";
 import { triLang, type Lang } from "../constants/i18n";
+import ReportErrorButton from "../components/ReportErrorButton";
 import { CHK, LUM } from "../constants/motionHybrid";
 import { hapticError, hapticSuccess } from "../hooks/use-haptics";
 import type { RequiredSessionTaskCompletionInputV3 } from "../modules/learning-v2/progress/required_session_completion_envelope";
@@ -29,6 +30,10 @@ import {
   introCtaTextColor,
   introTargetTextColor,
 } from "./learning_v2_intro_theme";
+import {
+  introPartRole,
+  type IntroPartRole,
+} from "./learning_v2_intro_semantic_bridge";
 import type {
   IntroLine,
   IntroTextPart,
@@ -160,11 +165,46 @@ const stringsFor = (lang: Lang) => ({
   ] as const,
 });
 
+/**
+ * Цвет и вес куска по его роли.
+ *
+ * зачем: до 2026-08-23 экран красил только по полю `semantic`, которого в
+ * контенте нет ни разу — 61,5% разметки доезжало серым текстом. Теперь роль
+ * приходит из моста над `tone`, а палитра берётся из токенов темы (не хардкод),
+ * иначе цвета ломались бы на светлой теме sagePorcelain.
+ */
+function rolePresentation(
+  role: IntroPartRole,
+  theme: ReturnType<typeof useTheme>["theme"],
+  targetColor: string,
+): { color: string; fontWeight: "400" | "700"; strike: boolean; size: number } {
+  switch (role) {
+    case "target":
+      return { color: targetColor, fontWeight: "700", strike: false, size: 18 };
+    case "targetWrong":
+      return { color: theme.wrong, fontWeight: "700", strike: true, size: 18 };
+    case "gloss":
+      return { color: theme.textMuted, fontWeight: "400", strike: false, size: 17 };
+    case "markerCorrect":
+      return { color: theme.correct, fontWeight: "700", strike: false, size: 17 };
+    case "markerWarning":
+      return { color: theme.gold, fontWeight: "700", strike: false, size: 17 };
+    case "formula":
+      return { color: theme.textSecond, fontWeight: "700", strike: false, size: 17 };
+    case "emphasis":
+      return { color: theme.textOnCard, fontWeight: "700", strike: false, size: 17 };
+    case "plain":
+    default:
+      return { color: theme.textOnCard, fontWeight: "400", strike: false, size: 17 };
+  }
+}
+
 function IntroReaderParagraph({
   lineIndex,
   parts,
   targetColor,
   theme,
+  nativeScriptIsCyrillic,
   correctExampleLabel,
   wrongExampleLabel,
 }: Readonly<{
@@ -172,6 +212,7 @@ function IntroReaderParagraph({
   parts: readonly IntroTextPart[];
   targetColor: string;
   theme: ReturnType<typeof useTheme>["theme"];
+  nativeScriptIsCyrillic: boolean;
   correctExampleLabel: string;
   wrongExampleLabel: string;
 }>) {
@@ -188,33 +229,24 @@ function IntroReaderParagraph({
       ]}
     >
       {parts.map((part, index) => {
-        const target = part.semantic === "targetCorrect";
-        const wrong = part.semantic === "targetWrong";
-        const gloss = part.semantic === "nativeGloss";
-        const emphasizedLegacy = !part.semantic && part.tone === "strong";
+        const role = introPartRole(part, nativeScriptIsCyrillic);
+        const look = rolePresentation(role, theme, targetColor);
         return (
           <Text
             key={`${index}-${part.text}`}
             testID={`learning-v2-intro-part-${lineIndex}-${index}`}
             accessibilityLabel={
-              wrong
+              role === "targetWrong"
                 ? `${part.text}, ${wrongExampleLabel}`
-                : target
+                : role === "target"
                   ? `${part.text}, ${correctExampleLabel}`
                   : part.text
             }
             style={{
-              color: wrong
-                ? theme.wrong
-                : target
-                  ? targetColor
-                  : gloss
-                    ? theme.textMuted
-                    : theme.textOnCard,
-              fontSize: target || wrong ? 18 : 17,
-              fontWeight:
-                target || wrong || emphasizedLegacy ? "700" : "400",
-              textDecorationLine: wrong ? "line-through" : "none",
+              color: look.color,
+              fontSize: look.size,
+              fontWeight: look.fontWeight,
+              textDecorationLine: look.strike ? "line-through" : "none",
             }}
           >
             {part.text}
@@ -300,6 +332,9 @@ export default function LearningV2SessionIntro({
     : [];
   const isLast = safeIndex === screens.length - 1;
   const compact = height < 720;
+  // зачем: алфавитная развилка «латиница = изучаемый язык» верна только там, где
+  // родной язык кириллический. Для es/pt-BR/vi/id/tr/pl родной сам на латинице.
+  const nativeScriptIsCyrillic = lang === "ru" || lang === "uk";
   const question = screen?.learningV2EmbeddedQuestion;
   const questionPrompt = question?.promptByLocale[lang] ?? "";
   const questionChoices = question?.choicesByLocale[lang] ?? [];
@@ -404,6 +439,17 @@ export default function LearningV2SessionIntro({
               {safeIndex + 1} / {screens.length}
             </Text>
           </View>
+          {/* зачем: вступление показывает объяснение и встроенный проверочный
+              вопрос с вариантами — тот же контент, что в lesson_intro_screens,
+              где флаг есть, а здесь его забыли. */}
+          <ReportErrorButton
+            screen="learning_v2_intro"
+            dataId={`learning_v2_intro_${lessonId}_${safeIndex}`}
+            dataText={questionPrompt || stageLabel}
+            variant="icon-flag"
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в объяснении', uk: 'Повідомити про помилку в поясненні', es: 'Informar de un error en la explicación', 'pt-BR': 'Relatar erro na explicação', vi: 'Báo lỗi trong phần giải thích', id: 'Laporkan kesalahan pada penjelasan', tr: 'Açıklamadaki hatayı bildir', pl: 'Zgłoś błąd w wyjaśnieniu' })}
+            testID="learning-v2-intro-report"
+          />
         </View>
 
         <View
@@ -471,6 +517,7 @@ export default function LearningV2SessionIntro({
                       parts={parts}
                       targetColor={targetColor}
                       theme={t}
+                      nativeScriptIsCyrillic={nativeScriptIsCyrillic}
                       correctExampleLabel={copy.correctExample}
                       wrongExampleLabel={copy.wrongExample}
                     />

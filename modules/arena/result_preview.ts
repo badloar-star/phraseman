@@ -1,3 +1,4 @@
+import type { ArenaEntryMode } from './contract';
 import type { ArenaMatchPlanWire } from './duel_plan';
 import type { ArenaLocalMatchState } from './match_machine';
 import { arenaResolveDuel, type ArenaDuelOutcome } from './stars';
@@ -31,6 +32,8 @@ import { arenaOpponentMatchStars } from './match_view';
  */
 export type ArenaResultPreview = Readonly<{
   matchId: string;
+  /** Режим матча: до ответа сервера только он объясняет, какие кнопки внизу. */
+  mode: ArenaEntryMode;
   viewerSeat: 'a' | 'b';
   opponentSeat: 'a' | 'b';
   /** Имя и облик соперника: на экране результата плана уже нет. */
@@ -70,6 +73,11 @@ export function arenaResultPreview(
   state: ArenaLocalMatchState,
 ): ArenaResultPreview | null {
   if (state.phase !== 'finished') return null;
+  // Сдача тоже доводит матч до `finished`, но она не итог игры: сдавшийся уже
+  // отправлен на главную, и подсовывать ему экран результата значит отменять
+  // его собственное решение выйти. Правило живёт здесь, а не на экране, чтобы
+  // его сторожил тест и оно действовало для любого вызывающего.
+  if (state.abandoned) return null;
 
   const opponentStars = arenaOpponentMatchStars(plan, state);
   const opponentElapsedMs = opponentTieBreakElapsedMs(plan, state);
@@ -85,6 +93,7 @@ export function arenaResultPreview(
 
   return {
     matchId: plan.matchId,
+    mode: plan.mode,
     viewerSeat: plan.viewerSeat,
     opponentSeat: plan.opponent.seat,
     opponentName: plan.opponent.name,

@@ -55,7 +55,12 @@ describe('quick result is authoritative XP-only', () => {
     expect(sequence).toContain('showStars?: boolean');
     expect(sequence).toContain('onCtaTertiary?: () => void');
     expect(sequence).toContain('ctaTertiaryLabel?: string');
-    expect(results).toContain("match?.mode !== 'quick' ? <ArenaRewards");
+    // Свойство, а не написание: в быстром матче не показываются ни руны, ни
+    // спин — там своя сцена начисления XP. Источник режима с 2026-08-23 —
+    // `effectiveMode` (матч, а до его прихода локальный предпросмотр D-74),
+    // потому что иначе нижние блоки прыгали бы при раннем открытии экрана.
+    expect(results).toContain("const effectiveMode = match?.mode ?? preview?.mode ?? null;");
+    expect(results).toContain("effectiveMode !== 'quick' ? <ArenaRewards");
     expect(results).toContain("match?.mode !== 'quick' && reward?.spinAwarded");
   });
 
@@ -75,12 +80,14 @@ describe('quick result is authoritative XP-only', () => {
     expect(results).toContain('arenaQuickXpPresentation(quickReward)');
   });
 
-  it('keeps quick results on an honest pending surface until a coherent terminal pair exists', () => {
+  it('keeps pending state invisible and mounts only a coherent terminal result', () => {
     const results = fs.readFileSync(path.join(ROOT, 'app/arena_results.tsx'), 'utf8');
     expect(results).toContain("surfaceKind === 'neutral_pending'");
     expect(results).toContain("surfaceKind === 'quick_pending'");
     expect(results).toContain('arenaResultSurfaceKind({');
-    expect(results).toContain("arenaText(lang, reportPending ? 'reportQueued' : 'awaitingRival')");
+    expect(results).toContain('arenaPeekResultHandoff');
+    expect(results).toContain('return null;');
+    expect(results).not.toContain("arenaText(lang, reportPending ? 'reportQueued' : 'awaitingRival')");
     expect(results).toContain('const match = quickPresentation?.match ?? live.value;');
     expect(results).toContain('const effectiveViewerSeat = quickPresentation?.viewerSeat ?? viewerSeat;');
   });

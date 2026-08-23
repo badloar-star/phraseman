@@ -205,6 +205,11 @@ const C = {
   selectFriend: ['Выбери друга', 'Обери друга', 'Elige un amigo', 'Escolha um amigo', 'Chọn một người bạn', 'Pilih teman', 'Bir arkadaş seç', 'Wybierz znajomego'],
   noFriends: ['Здесь появятся твои друзья', 'Тут з’являться твої друзі', 'Aquí aparecerán tus amigos', 'Seus amigos aparecerão aqui', 'Bạn bè sẽ xuất hiện ở đây', 'Temanmu akan muncul di sini', 'Arkadaşların burada görünecek', 'Tutaj pojawią się znajomi'],
   friendHint: ['Без рейтинга и наград', 'Без рейтингу й нагород', 'Sin rango ni recompensas', 'Sem ranking nem recompensas', 'Không xếp hạng hay phần thưởng', 'Tanpa peringkat dan hadiah', 'Derece ve ödül yok', 'Bez rankingu i nagród'],
+  // зачем (2026-08-23): подпись для СКРИНРИДЕРА к отметке «ответил» у аватара
+  // соперника. Видимого текста не добавляет — запрет владельца был на
+  // загромождающий HUD текст (`opponentAnsweredBadge`), а не на сам сигнал.
+  // Голая галочка иначе озвучивалась бы бессмысленным символом.
+  rivalMovedA11y: ['Соперник ответил', 'Суперник відповів', 'El rival ha respondido', 'O adversário respondeu', 'Đối thủ đã trả lời', 'Lawan sudah menjawab', 'Rakip cevapladı', 'Rywal odpowiedział'],
   correct: ['Верно', 'Правильно', 'Correcto', 'Correto', 'Đúng', 'Benar', 'Doğru', 'Dobrze'],
   wrong: ['Не совсем', 'Не зовсім', 'No del todo', 'Ainda não', 'Chưa đúng', 'Belum tepat', 'Tam değil', 'Nie tym razem'],
   // зачем (2026-08-23): просрочка — не ошибка. Раньше на истёкшем времени

@@ -165,6 +165,20 @@ function ArenaMatchGenerationScreen({
   const playSound = useArenaSound();
   const mountedRef = useRef(true);
   useEffect(() => () => { mountedRef.current = false; }, []);
+  /**
+   * Доставка отчёта переживает уход с экрана.
+   *
+   * зачем (2026-08-23): с ранним переходом на результат (D-74) экран матча
+   * размонтируется РАНЬШЕ, чем отчёт доедет до диска. Если сторожить доставку
+   * по `mountedRef`, первая же проверка `isAlive()` провалится, отчёт не ляжет
+   * даже в очередь — и игрок не получит ни звёзд, ни рейтинга за сыгранный
+   * матч, причём безвозвратно: `arenaFlushOutbox` чинит только то, что в
+   * очередь ПОПАЛО.
+   *
+   * Флаг не гаснет никогда: единственная причина бросить доставку — чужой
+   * аккаунт, а это отдельно и строго сторожит `isScopeCurrent`.
+   */
+  const deliveryAliveRef = useRef(true);
   const planAccountRef = useRef<AccountGenerationToken | null>(
     accountGeneration.phase === 'active' && accountGeneration.stableId
       ? accountGeneration
@@ -338,7 +352,10 @@ function ArenaMatchGenerationScreen({
   }>) => {
     const resultAccount = planAccountRef.current;
     if (!matchId || !plan || !planScope || !resultAccount) return false;
-    if (!mountedRef.current || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) return false;
+    // Живость экрана здесь НЕ проверяется намеренно: с ранним переходом (D-74)
+    // экран матча к этому моменту уже размонтирован в норме, а спин и снимок
+    // с наградами обязаны лечь всё равно. Чужой аккаунт по-прежнему отсекается.
+    if (!isCurrentAccountGeneration(resultAccount, planScope.stableUid)) return false;
     if (!arenaResultHandoffReady(response, plan.mode)) return false;
 
     const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
@@ -364,6 +381,11 @@ function ArenaMatchGenerationScreen({
     // заменит предпросмотр авторитетными числами. Раньше ранний выход стоял
     // до записи снимка, и поздняя награда просто терялась бы.
     if (resultOpenedRef.current) return true;
+    // Переходить можно только с живого экрана матча. Мёртвый экран без
+    // открытого результата означает, что игрок ушёл сам (сдался, вышел на
+    // главную) — выдёргивать его на экран итога из другого места приложения
+    // нельзя. Снимок и награды выше уже записаны, они не потеряются.
+    if (!mountedRef.current) return true;
     resultOpenedRef.current = true;
     router.replace({
       pathname: '/arena_results',
@@ -394,6 +416,7 @@ function ArenaMatchGenerationScreen({
     // сначала черновой кадр, а потом подменить его целой сценой — заметный
     // скачок, который хуже короткого ожидания.
     if (plan.mode === 'quick') return;
+    // Сдача из предпросмотра исключена в самом модуле (`arenaResultPreview`).
     const preview = match ? arenaResultPreview(plan, match.state) : null;
     if (!preview) return;
 
@@ -417,16 +440,24 @@ function ArenaMatchGenerationScreen({
   ) => {
     if (delivery.status === 'stale') return;
     const finishAccount = planAccountRef.current;
-    if (!matchId || !planScope || !finishAccount || !mountedRef.current
+    if (!matchId || !planScope || !finishAccount
       || !isCurrentAccountGeneration(finishAccount, planScope.stableUid)) return;
 
+    // зачем (2026-08-23): экран матча мог уже размонтироваться — с ранним
+    // переходом на результат (D-74) это норма, а не ошибка. Показывать что-то
+    // на мёртвом экране нельзя (React ругается и это бессмысленно), но НАГРАДЫ
+    // и снимок для результата обязаны доехать. Поэтому здесь расходятся два
+    // рода действий: setState — только на живом экране, побочные эффекты —
+    // всегда.
+    const screenAlive = mountedRef.current;
+
     if (delivery.status === 'queued' || delivery.status === 'kept') {
-      setFinishQueued(true);
+      if (screenAlive) setFinishQueued(true);
       return;
     }
-    setFinishQueued(false);
+    if (screenAlive) setFinishQueued(false);
     if (delivery.status === 'storage_failed') {
-      setMatchAlert({ kind: 'storageFailed' });
+      if (screenAlive) setMatchAlert({ kind: 'storageFailed' });
       return;
     }
     if (delivery.status === 'sent') {
@@ -451,7 +482,7 @@ function ArenaMatchGenerationScreen({
       return;
     }
     if (delivery.status === 'rejected' || delivery.status === 'dropped') {
-      setMatchAlert({ kind: 'rejected' });
+      if (screenAlive) setMatchAlert({ kind: 'rejected' });
     }
   }, [matchId, openCoherentResult, planScope]);
 
@@ -473,7 +504,7 @@ function ArenaMatchGenerationScreen({
         report: report as ArenaMatchReport,
         rulesVersion: plan.rulesVersion,
         wallNowMs: Date.now(),
-        isAlive: () => mountedRef.current,
+        isAlive: () => deliveryAliveRef.current,
         isScopeCurrent: (scope) => isCurrentAccountGeneration(finishAccount, scope.stableUid),
         withTransitionLock: (work) => withAccountTransitionLock(async () => work()),
         reserveDispatch: () => arenaV2MatchFinishDispatch({
@@ -644,8 +675,11 @@ function ArenaMatchGenerationScreen({
   // мы не ждём бота когда он ответит?»). Сигнал уже считался в HUD
   // (`hud.opponent`), но экран его не читал. Метка держится, пока открыто то
   // же задание, и снимается сама со сменой задания.
-  const rivalAnsweredUid = plan
-    && (hud?.opponent.kind === 'answered' || hud?.opponent.kind === 'finished')
+  // Только 'answered': про ТЕКУЩЕЕ задание от соперника пришёл ход. Ветку
+  // 'finished' сюда нельзя — она возвращается и когда просто закончился матч,
+  // причём даже если соперник не сыграл ни одного задания (отвалился по
+  // связи). Отметка «ответил» обязана означать ровно то, что написано.
+  const rivalAnsweredUid = plan && hud?.opponent.kind === 'answered'
     ? plan.opponent.seat
     : null;
   const introYou = playerIdentities.find((player) => player.uid === plan?.viewerSeat);
@@ -885,7 +919,7 @@ function ArenaMatchGenerationScreen({
       scroll={false}
       onBack={confirmForfeit}
     >
-      <ArenaPlayers compact={immersive} players={players} active={active} animateScore answeredUid={rivalAnsweredUid} />
+      <ArenaPlayers compact={immersive} players={players} active={active} animateScore answeredUid={rivalAnsweredUid} answeredLabel={arenaText(lang, 'rivalMovedA11y')} />
       <V2Segments
         total={hud.taskCount}
         done={match.state.phase === 'finished' ? hud.taskCount : Math.max(0, hud.taskOrdinal - 1)}

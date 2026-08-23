@@ -259,7 +259,10 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(copy).not.toContain('Тренировочный соперник');
     expect(copy).toContain('Без рейтинга и наград');
     const matchSource = fs.readFileSync(path.join(ROOT, 'app/arena_match.tsx'), 'utf8');
-    expect(matchSource).toContain('<ArenaPlayers compact={immersive} players={players} active={active} animateScore answeredUid={rivalAnsweredUid} />');
+    expect(matchSource).toContain('answeredUid={rivalAnsweredUid}');
+    // Подпись отметки — только для скринридера: видимого текста в HUD нет,
+    // запрет владельца был именно на загромождающую плашку.
+    expect(matchSource).toContain("answeredLabel={arenaText(lang, 'rivalMovedA11y')}");
     // Отметка «ответил» говорит про ФАКТ хода, а не про его верность: тик
     // приходит, пока игрок ещё отвечает на то же задание, и «верно/неверно»
     // соперника было бы подсказкой ответа.

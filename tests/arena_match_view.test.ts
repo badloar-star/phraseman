@@ -30,7 +30,7 @@ import { ARENA_ANSWER_MS, ARENA_COMBO_THRESHOLD } from '../modules/arena/stars';
 import { arenaTaskRenderable } from '../modules/arena/task_adapter';
 import * as fs from 'fs';
 import * as path from 'path';
-import { arenaText } from '../modules/arena/copy';
+import { arenaAwardReasonText, arenaText } from '../modules/arena/copy';
 import type { Lang } from '../constants/i18n';
 
 /**
@@ -1073,10 +1073,91 @@ describe('предварительный итог матча', () => {
     expect(preview?.outcome).toBe('win');
   });
 
+  /**
+   * Регрессия аудита 2026-08-23: сдача тоже доводит матч до `finished`, и без
+   * этой проверки игрок, нажавший «Выйти», получал бы экран итога вместо
+   * главной — то есть отмену собственного решения плюс гонку двух переходов.
+   */
+  it('сдавшемуся итог не показывается', () => {
+    const state = { ...finished({}, 3), abandoned: true };
+    expect(arenaResultPreview(PLAN, state)).toBeNull();
+  });
+
   it('несёт личность соперника: на экране результата плана уже нет', () => {
     const preview = arenaResultPreview(PLAN, finished({}, 4));
     expect(preview?.opponentName).toBe('Соперник');
     expect(preview?.opponentSeat).toBe('b');
     expect(preview?.viewerSeat).toBe('a');
+  });
+});
+
+/**
+ * Разбор награды говорит по-человечески.
+ *
+ * Регрессия 2026-08-23: экран печатал служебные идентификаторы причин, и игрок
+ * читал в интерфейсе «base_correct · combo». Плюс ноль звёзд по ЛЮБОЙ причине
+ * подписывался «Не совсем» — обвинением в ошибке даже там, где игрок просто не
+ * успел (владелец: «когда заканчивается время то написано "не совсем"»).
+ */
+describe('человеческие причины в разборе награды', () => {
+  const REASONS = ['base_correct', 'base_pairs', 'first', 'combo', 'wrong', 'timeout', 'broken'] as const;
+
+  it('у каждой причины есть перевод, и это не служебное имя', () => {
+    for (const reason of REASONS) {
+      const text = arenaAwardReasonText('ru' as Lang, reason);
+      expect(text.trim()).not.toBe('');
+      expect(text).not.toBe(reason);
+      expect(text).not.toMatch(/[a-z]+_[a-z]+/);
+    }
+  });
+
+  it('просрочка и ошибка называются по-разному', () => {
+    const timeout = arenaAwardReasonText('ru' as Lang, 'timeout');
+    const wrong = arenaAwardReasonText('ru' as Lang, 'wrong');
+    expect(timeout).not.toBe(wrong);
+    expect(timeout).toBe(arenaText('ru' as Lang, 'timeUp'));
+  });
+
+  it('экран берёт причину нуля звёзд из расчёта, а не из одного текста', () => {
+    const screen = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+    expect(screen).toContain("hud.award.headline.key === 'starTimeout' ? 'timeUp'");
+    expect(screen).toContain('arenaAwardReasonText(lang, line.reason)');
+    // Сырой идентификатор причины в разметку больше не попадает.
+    expect(screen).not.toContain('· {line.reason}');
+  });
+});
+
+/**
+ * Доставка отчёта переживает уход с экрана матча.
+ *
+ * Регрессия аудита 2026-08-23: с ранним переходом на результат (D-74) экран
+ * матча размонтируется РАНЬШЕ, чем отчёт доедет до диска. Пока доставка
+ * сторожилась по `mountedRef`, первая же проверка `isAlive()` проваливалась —
+ * отчёт не ложился даже в очередь, и матч пропадал вместе со звёздами и
+ * рейтингом. `arenaFlushOutbox` такое не чинит: он досылает только то, что в
+ * очередь ПОПАЛО.
+ */
+describe('отчёт не теряется при раннем переходе на результат', () => {
+  const screen = () => fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
+
+  it('доставка живёт своим флагом, а не монтированием экрана', () => {
+    expect(screen()).toContain('isAlive: () => deliveryAliveRef.current');
+    expect(screen()).not.toContain('isAlive: () => mountedRef.current');
+  });
+
+  it('награды и снимок кладутся даже на размонтированном экране', () => {
+    const source = screen();
+    // Ранний выход по живости экрана обязан стоять ПОСЛЕ записи снимка и
+    // выдачи спина, иначе поздняя награда теряется.
+    const handoff = source.indexOf('arenaRememberResultHandoff({');
+    const navigationGuard = source.indexOf('if (!mountedRef.current) return true;');
+    expect(handoff).toBeGreaterThan(0);
+    expect(navigationGuard).toBeGreaterThan(handoff);
+  });
+
+  it('на мёртвом экране не дёргает setState, но и не бросает доставку', () => {
+    const source = screen();
+    expect(source).toContain('const screenAlive = mountedRef.current;');
+    expect(source).toContain('if (screenAlive) setFinishQueued(true);');
   });
 });

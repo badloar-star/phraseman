@@ -313,7 +313,13 @@ export default function ArenaResultsScreen() {
   const quickKnown = quickResultAccountKey === resultAccountKey
     && quickResultState.matchId === matchId && quickResultState.quickKnown;
   const match = quickPresentation?.match ?? live.value;
-  const replayMode = arenaResultReplayMode(routeMode, match);
+  // зачем (2026-08-23): до ответа сервера `match` ещё нет, а нижние кнопки
+  // зависят от режима. Без этого при раннем открытии (D-74) друг-матч сначала
+  // показывал бы disabled «Сыграть снова», а потом подменял её другой кнопкой —
+  // прыжок на глазах у игрока. Режим известен локально, из плана.
+  const effectiveMode = match?.mode ?? preview?.mode ?? null;
+  const replayMode = arenaResultReplayMode(routeMode, match)
+    ?? (effectiveMode === 'quick' || effectiveMode === 'ranked' ? effectiveMode : null);
   const surfaceKind = arenaResultSurfaceKind({
     matchId,
     match,
@@ -527,7 +533,7 @@ export default function ArenaResultsScreen() {
           // набрал ничего», хотя счёт просто ещё не известен.
           <ArenaStat key={player.uid} label={player.name} value={player.score ?? '—'} />
         ))}</View>
-        {match?.mode !== 'quick' ? <ArenaRewards reward={reward} starsLabel={arenaText(lang, 'stars')} /> : null}
+        {effectiveMode !== 'quick' ? <ArenaRewards reward={reward} starsLabel={arenaText(lang, 'stars')} /> : null}
         {/* зачем: жалоба на игрока жила только в карточке профиля, а из Арены
             она не открывается — пожаловаться на оскорбительный ник было
             физически нечем. Ставим сюда, а не в бой: там таймер, и случайный
@@ -603,7 +609,7 @@ export default function ArenaResultsScreen() {
           (владелец, 2026-08-16). match.mode === 'series' остаётся валидным
           состоянием УЖЕ идущего матча (счёт серии выше по-прежнему честный),
           но начать новую серию отсюда больше нельзя — только сыграть снова. */}
-      {match?.mode === 'friend' ? (
+      {effectiveMode === 'friend' ? (
         <V2Cta onPress={() => router.replace('/arena_friend_duel' as never)}>
           {arenaText(lang, 'playAgain')}
         </V2Cta>

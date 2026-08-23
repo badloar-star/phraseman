@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import RuneGlyph from "../../components/RuneGlyph";
-import { runeWord } from "../../constants/runes";
+import RuneGlyph from "../../../components/RuneGlyph";
+import { runeWord } from "../../../constants/runes";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, {
   useEffect,

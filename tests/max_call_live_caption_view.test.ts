@@ -34,23 +34,40 @@ describe('MaxCallLiveCaptionView accessibility', () => {
     expect(rail.props.accessibilityLiveRegion).toBeUndefined();
     expect(view.queryByTestId('max-call-caption-announcement')).toBeNull();
     expect(rail.props.accessibilityRole).toBeUndefined();
-    expect(rail.props.style).toMatchObject({ minHeight: 132 });
+    // зачем (владелец 2026-08-23): «сделай чтобы экран не прыгал ниже выше из-за
+    // текста». Высота ФИКСИРОВАННАЯ (height), а не минимальная: раньше блок рос
+    // под содержимое и всё под ним ездило. Значение считается из кегля субтитров.
+    expect(typeof rail.props.style.height).toBe('number');
+    expect(rail.props.style.minHeight).toBeUndefined();
     expect(view.queryByText(/Ты:/)).toBeNull();
   });
 
-  it('показывает реплику целиком и подсвечивает уже сказанное', async () => {
-    // Владелец 2026-08-23: «реплики так быстро скроллятся, что не успеть ничего».
-    // Теперь видна вся фраза, а акцентом выделено то, что MAX произносит сейчас.
+  it('показывает реплику сразу целиком, без деления на сказанное и несказанное', async () => {
+    // Владелец 2026-08-23: «сделай так чтобы его реплики появлялись сразу целиком
+    // на экране и не были лаганые, то есть не прыгали туда сюда». Подсветка
+    // «уже сказано» переезжала на каждом куске речи и дёргала текст — снята.
     const view = await render(React.createElement(MaxCallLiveCaptionView, {
       visibleAssistantText: 'Where would you',
       fullAssistantText: 'Where would you like to go on holiday?',
       completedAssistantText: '',
       lang: 'ru',
     }));
-    const spoken = view.getByTestId('max-call-caption-spoken');
-    expect(spoken.props.children).toBe('Where would you');
-    // Хвост реплики виден заранее — глаз держит контекст.
-    expect(view.getByText(/like to go on holiday\?/)).toBeTruthy();
+    expect(view.queryByTestId('max-call-caption-spoken')).toBeNull();
+    // Вся фраза на экране одним куском, а не по мере произнесения.
+    expect(view.getByText('Where would you like to go on holiday?')).toBeTruthy();
+  });
+
+  it('метки MAX и ВЫ убраны — сторону речи задаёт выравнивание', async () => {
+    // Владелец 2026-08-23: «убери "макс говорит"» и обе подписи.
+    const view = await render(React.createElement(MaxCallLiveCaptionView, {
+      visibleAssistantText: 'Hello there',
+      fullAssistantText: 'Hello there',
+      completedAssistantText: '',
+      userText: 'hi',
+      lang: 'ru',
+    }));
+    expect(view.queryByText('MAX')).toBeNull();
+    expect(view.queryByText('ВЫ')).toBeNull();
   });
 
   it('очень длинную реплику всё же обрезает — лента не растёт бесконечно', async () => {
@@ -74,7 +91,6 @@ describe('MaxCallLiveCaptionView accessibility', () => {
     // Свойство живёт на самой строке субтитров; подсветка сказанного — вложенный
     // <Text> внутри неё и масштабируется вместе с родителем.
     expect(view.getByTestId('max-call-live-caption-text').props.maxFontSizeMultiplier).toBe(2);
-    expect(view.getByTestId('max-call-caption-spoken').props.children).toBe('A complete response');
-    expect(view.getByTestId('max-call-live-caption').props.style).toMatchObject({ minHeight: 132 });
+    expect(typeof view.getByTestId('max-call-live-caption').props.style.height).toBe('number');
   });
 });

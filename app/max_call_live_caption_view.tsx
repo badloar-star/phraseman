@@ -3,7 +3,7 @@ import { AccessibilityInfo, Text, useWindowDimensions, View } from 'react-native
 
 import { useTheme } from '../components/ThemeContext';
 import { FlowText } from '../components/text-integrity/FlowText';
-import { triLang, type Lang } from '../constants/i18n';
+import { type Lang } from '../constants/i18n';
 
 type Props = {
   /** Уже прозвучавшая часть текущей реплики — подсвечивается акцентом. */
@@ -38,48 +38,41 @@ export function captionRailTail(text: string, wordLimit = 10): string {
   return `… ${words.slice(-wordLimit).join(' ')}`;
 }
 
-/**
- * Делит показанную строку на «уже сказано» и «ещё прозвучит».
- *
- * зачем (владелец 2026-08-23): вместо уезжающего окна человек видит фразу
- * целиком, а акцентным цветом подсвечено то, что MAX произносит сейчас —
- * глаз держит контекст и успевает читать.
- */
-export function splitSpokenTail(rail: string, spokenText: string): { spoken: string; ahead: string } {
-  const spokenWords = spokenText.trim().split(/\s+/u).filter(Boolean);
-  if (spokenWords.length === 0) return { spoken: '', ahead: rail };
-  const lastSpoken = spokenWords[spokenWords.length - 1];
-  // Ищем конец последнего произнесённого слова в показанной строке: сравнение
-  // по словам, а не по длине — начало строки могло быть срезано многоточием.
-  const index = rail.lastIndexOf(lastSpoken);
-  if (index < 0) return { spoken: rail, ahead: '' };
-  const boundary = index + lastSpoken.length;
-  return { spoken: rail.slice(0, boundary), ahead: rail.slice(boundary) };
-}
-
 export function MaxCallLiveCaptionView({
   visibleAssistantText,
   fullAssistantText,
   completedAssistantText,
   userText = '',
   userSpeaking = false,
-  lang,
+  // lang больше не нужен в разметке: подписи «MAX» и «ВЫ» убраны по просьбе
+  // владельца, переводить стало нечего. Проп оставлен в типе — его передаёт
+  // экран звонка, и он пригодится, если подписи когда-нибудь вернутся.
 }: Props) {
   const { theme: t, f } = useTheme();
   const { fontScale } = useWindowDimensions();
+  // зачем (владелец 2026-08-23): «сделай размер шрифта в два раза меньше».
+  // Было f.bodyLg (16) у реплики учителя и f.body (14) у реплики ученика —
+  // теперь обе половины субтитров живут на одном вдвое меньшем кегле.
+  // Пол в 8 pt: ниже текст перестаёт читаться даже на крупном экране.
+  const captionFontSize = Math.max(8, Math.round(f.bodyLg / 2));
+  const captionLineHeight = Math.round(captionFontSize * 1.35);
+  // Полосы фиксированной высоты: сколько бы строк ни принесла реплика, блок
+  // занимает столько же места, и экран под ним не двигается.
+  const USER_LANE_LINES = 2;
+  const AI_LANE_LINES = 4;
+  const USER_LANE_HEIGHT = captionLineHeight * USER_LANE_LINES;
+  const AI_LANE_HEIGHT = captionLineHeight * AI_LANE_LINES;
+  const CAPTION_BOX_HEIGHT = USER_LANE_HEIGHT + AI_LANE_HEIGHT + 12;
   // Окно шире прежнего: показываем реплику, а не последние пять слов. При
   // крупном системном шрифте сужаем, чтобы текст не выпирал за пределы блока.
-  const wordLimit = fontScale >= 1.6 ? 12 : fontScale >= 1.3 ? 16 : 22;
+  // Кегль вдвое меньше — в ту же ширину влезает заметно больше слов, поэтому
+  // окно расширено: резать реплику раньше, чем она не помещается, незачем.
+  const wordLimit = fontScale >= 1.6 ? 18 : fontScale >= 1.3 ? 26 : 34;
   const source = (fullAssistantText ?? '').trim() !== '' ? fullAssistantText! : visibleAssistantText;
   const rail = captionRailTail(source, wordLimit);
-  const { spoken, ahead } = splitSpokenTail(rail, visibleAssistantText);
   // Свою реплику держим короче, чем реплику учителя: она нужна как
   // подтверждение «тебя услышали вот так», а не как второй экран текста.
   const userRail = captionRailTail(userText, Math.max(6, Math.round(wordLimit * 0.6)));
-  const youLabel = triLang(lang, {
-    ru: 'ВЫ', uk: 'ВИ', es: 'TÚ', 'pt-BR': 'VOCÊ',
-    vi: 'BẠN', id: 'ANDA', tr: 'SEN', pl: 'TY',
-  });
   const announcedRef = useRef('');
 
   useEffect(() => {
@@ -94,64 +87,59 @@ export function MaxCallLiveCaptionView({
       <View
         testID="max-call-live-caption"
         accessible={false}
-        style={{ minHeight: 132, marginHorizontal: 22, marginBottom: 8, justifyContent: 'center' }}
+        // зачем (владелец 2026-08-23): «сделай чтобы экран не прыгал ниже выше
+        // из-за текста». Высота была минимальной и росла под содержимое: реплика
+        // ученика то появлялась, то исчезала, и всё под блоком ездило. Теперь
+        // высота ФИКСИРОВАНА (height, не minHeight), а каждая половина держит
+        // свою полосу постоянно — первый кадр равен финальному.
+        style={{ height: CAPTION_BOX_HEIGHT, marginHorizontal: 22, marginBottom: 8, justifyContent: 'center' }}
       >
         {/* Реплика ученика — над репликой учителя, тоном тише и прижата вправо:
-            две стороны читаются как диалог, без рамок и подложек. */}
-        {userRail !== '' || userSpeaking ? (
-          <View style={{ alignSelf: 'flex-end', maxWidth: '92%', marginBottom: rail !== '' ? 12 : 0 }}>
-            <Text
-              style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textAlign: 'right' }}
-              maxFontSizeMultiplier={2}
-            >
-              {youLabel}
-            </Text>
-            <Text
-              testID="max-call-live-caption-user-text"
-              maxFontSizeMultiplier={2}
-              style={{
-                color: userRail !== '' ? t.textSecond : t.textGhost,
-                fontSize: f.body,
-                fontWeight: '700',
-                lineHeight: Math.round(f.body * 1.35),
-                marginTop: 4,
-                textAlign: 'right',
-              }}
-            >
-              {userRail !== '' ? userRail : '…'}
-            </Text>
-          </View>
-        ) : null}
-        {rail !== '' ? (
-          <>
+            две стороны читаются как диалог, без рамок и подложек.
+            зачем: полоса ученика занимает место ВСЕГДА (пустая строка вместо
+            условного рендера) — иначе её появление сдвигало реплику учителя вниз.
+            Метка «ВЫ» убрана по просьбе владельца: сторону речи задаёт
+            выравнивание вправо и более тихий тон, подпись не нужна. */}
+        <View style={{ alignSelf: 'flex-end', maxWidth: '92%', height: USER_LANE_HEIGHT, justifyContent: 'flex-end' }}>
           <Text
-            style={{ color: t.accent, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8 }}
+            testID="max-call-live-caption-user-text"
             maxFontSizeMultiplier={2}
+            numberOfLines={USER_LANE_LINES}
+            style={{
+              color: t.textSecond,
+              fontSize: captionFontSize,
+              fontWeight: '700',
+              lineHeight: captionLineHeight,
+              textAlign: 'right',
+            }}
           >
-            MAX
+            {userRail !== '' ? userRail : (userSpeaking ? '…' : ' ')}
           </Text>
+        </View>
+        {/* зачем (владелец 2026-08-23): «сделай так чтобы его реплики появлялись
+            сразу целиком на экране и не были лаганые, то есть не прыгали туда
+            сюда». Раньше строка перерисовывалась на КАЖДОМ куске речи: росла
+            видимая часть и переезжала граница подсветки «сказано / ещё нет» —
+            текст дёргался и перетекал между строками. Теперь показываем реплику
+            целиком одним куском, без деления на сказанное и несказанное.
+            Метка «MAX» убрана по просьбе владельца. */}
+        <View style={{ height: AI_LANE_HEIGHT, justifyContent: 'flex-start', marginTop: 12 }}>
           <FlowText
             testID="max-call-live-caption-text"
             provenance="external"
             integrityText={rail}
             maxFontSizeMultiplier={2}
+            numberOfLines={AI_LANE_LINES}
             style={{
-              // Базовый цвет — «ещё не прозвучало»: тон тише, чем у сказанного,
-              // разделяем тоном, без рамок и подложек.
-              color: t.textSecond,
-              fontSize: f.bodyLg,
+              color: t.textPrimary,
+              fontSize: captionFontSize,
               fontWeight: '800',
-              lineHeight: Math.round(f.bodyLg * 1.35),
-              marginTop: 6,
+              lineHeight: captionLineHeight,
             }}
           >
-            {spoken !== '' ? (
-              <Text testID="max-call-caption-spoken" style={{ color: t.textPrimary }}>{spoken}</Text>
-            ) : null}
-            {ahead}
+            {rail}
           </FlowText>
-          </>
-        ) : null}
+        </View>
       </View>
     </>
   );

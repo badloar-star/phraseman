@@ -87,16 +87,21 @@ type PickerThemeMode = keyof typeof PALETTES;
 
 // зачем: иконки тем сгенерированы через OpenAI по решению владельца (2026-08-02),
 // лежат бандл-ассетами — ноль сети и генераций в рантайме.
+// зачем webp (2026-08-23): владелец заметил, что «Янтарь» тяжелее соседей — PNG-иконки
+// весили 16–29 КБ каждая (197 КБ на девять). WebP в режиме LOSSLESS даёт те же
+// пиксели (проверено побайтово: 0 отличий на всех непрозрачных пикселях) при 86 КБ
+// на все девять. Палитровое сжатие PNG отвергнуто: 256 цветов рвут градиенты
+// иконок (средняя ошибка канала ~40/255 — заметно глазом).
 const THEME_ICONS: Record<PickerThemeMode, number> = {
-  indigo: require('../assets/theme-icons/indigo.png'),
-  sagePorcelain: require('../assets/theme-icons/sagePorcelain.png'),
-  olive: require('../assets/theme-icons/olive.png'),
-  midnight: require('../assets/theme-icons/midnight.png'),
-  ember: require('../assets/theme-icons/ember.png'),
-  aurora: require('../assets/theme-icons/aurora.png'),
-  volt: require('../assets/theme-icons/volt.png'),
-  dark: require('../assets/theme-icons/dark.png'),
-  gold: require('../assets/theme-icons/gold.png'),
+  indigo: require('../assets/theme-icons/indigo.webp'),
+  sagePorcelain: require('../assets/theme-icons/sagePorcelain.webp'),
+  olive: require('../assets/theme-icons/olive.webp'),
+  midnight: require('../assets/theme-icons/midnight.webp'),
+  ember: require('../assets/theme-icons/ember.webp'),
+  aurora: require('../assets/theme-icons/aurora.webp'),
+  volt: require('../assets/theme-icons/volt.webp'),
+  dark: require('../assets/theme-icons/dark.webp'),
+  gold: require('../assets/theme-icons/gold.webp'),
 };
 
 type ThemeTileProps = {

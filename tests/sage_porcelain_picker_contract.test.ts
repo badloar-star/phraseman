@@ -25,8 +25,11 @@ describe('Sage Porcelain picker contract', () => {
     // Запрет владельца: никаких обводок контейнеров — выделение тоном/тенью/подъёмом.
     expect(pickerSource).not.toMatch(/borderWidth/);
     // Иконки тем — бандл-ассеты, без сети и рантайм-генерации.
-    expect(pickerSource).toContain("require('../assets/theme-icons/sagePorcelain.png')");
-    expect(pickerSource).toContain("require('../assets/theme-icons/indigo.png')");
+    // зачем формат не зафиксирован: контракт сторожит СМЫСЛ («иконка лежит в бандле»),
+    // а не расширение файла. 2026-08-23 иконки переведены png→webp lossless (тот же
+    // пиксель, вдвое меньше вес) — сжатие ассетов не должно ронять контракт.
+    expect(pickerSource).toMatch(/require\('\.\.\/assets\/theme-icons\/sagePorcelain\.(png|webp)'\)/);
+    expect(pickerSource).toMatch(/require\('\.\.\/assets\/theme-icons\/indigo\.(png|webp)'\)/);
   });
 
   it('keeps the try-on preview scoped to the themes screen', () => {

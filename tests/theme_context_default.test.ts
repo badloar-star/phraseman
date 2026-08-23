@@ -30,7 +30,9 @@ describe('ThemeContext default theme', () => {
     expect(source).toMatch(/REMOVED_THEME_MODES[^\n]*'coral'/);
     expect(source).not.toContain("migrated === 'coral'");
     expect(settingsThemesSource).not.toMatch(/\{\s*mode: 'coral'/);
-    expect(settingsThemesSource).not.toContain("theme-icons/coral.png");
+    // зачем без расширения: иконки тем переведены png→webp (2026-08-23). Проверка на
+    // одно лишь «coral.png» стала бы дырявой — вернувшийся coral.webp прошёл бы мимо.
+    expect(settingsThemesSource).not.toContain("theme-icons/coral");
   });
 
   it('removes Coral theme assets while preserving independent Coral Sunset card backs', () => {

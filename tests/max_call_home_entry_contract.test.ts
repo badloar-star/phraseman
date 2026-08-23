@@ -105,12 +105,20 @@ describe('MAX call is a Home-owned preloaded experience', () => {
     expect(session).toContain('<MaxCallLiveCaptionView');
     expect(session).toContain("event.type === 'audio_out_started'");
     expect(session).toContain("type: 'audio_started'");
-    expect(session).toContain('liveCaptionChunkDelayMs');
-    expect(session).toContain("if (previousCaptionItemId !== event.itemId) setVisibleAssistantText('')");
+    // зачем (владелец 2026-08-23): пословная догонялка субтитров снята — она
+    // перерисовывала строку десятки раз за реплику и текст «прыгал туда сюда».
+    // Реплика показывается целиком, поэтому liveCaptionChunkDelayMs больше нет.
+    expect(session).not.toContain('liveCaptionChunkDelayMs');
+    // Смена реплики по-прежнему сбрасывает подпись, но публикацией нового
+    // состояния целиком, а не затиранием «уже произнесённой» части.
+    expect(session).toContain('if (previousCaptionItemId !== event.itemId) publishCaption()');
     expect(session).not.toContain('const lastTwo = turns.slice(-2)');
     expect(session).not.toContain('{lastTwo.map((turn, i) => (');
     expect(captionView).toContain('visibleAssistantText');
-    expect(captionView).toContain('minHeight:');
+    // Высота блока субтитров ФИКСИРОВАННАЯ (height), а не минимальная: раньше
+    // блок рос под содержимое и экран «прыгал ниже выше из-за текста».
+    expect(captionView).toContain('height: CAPTION_BOX_HEIGHT');
+    expect(captionView).not.toContain('minHeight: 132');
     expect(captionView).toContain('FlowText');
     expect(captionView).not.toContain('latestUserText');
     expect(captionView).not.toContain('onOpenTranscript');
@@ -120,16 +128,22 @@ describe('MAX call is a Home-owned preloaded experience', () => {
       .toBeLessThan(session.indexOf('testID="max-call-end-button"'));
   });
 
-  it('субтитры показывают реплику целиком и подсвечивают уже сказанное', () => {
-    // Владелец 2026-08-23: «реплики так быстро скроллятся, что не успеть ничего».
-    // Окно считается по ПОЛНОЙ реплике, а не по уже произнесённой части, иначе
-    // текст уезжает влево на каждом новом куске.
+  it('субтитры показывают реплику целиком, без пословной догонялки', () => {
+    // Владелец 2026-08-23: «сделай так чтобы его реплики появлялись сразу целиком
+    // на экране и не были лаганые, то есть не прыгали туда сюда». Пословный
+    // таймер (scheduleCaptionTick) перерисовывал строку десятки раз за реплику —
+    // от этого текст дёргался. Он снят; окно по-прежнему считается по ПОЛНОЙ
+    // реплике, иначе текст уезжал бы влево на каждом новом куске.
     const captionView = read('app/max_call_live_caption_view.tsx');
     const session = read('app/max_call_session.tsx');
     expect(captionView).toContain('captionRailTail(source, wordLimit)');
-    expect(captionView).toContain('splitSpokenTail(rail, visibleAssistantText)');
+    // Подсветки «сказано / ещё нет» больше нет: реплика рисуется одним куском.
+    expect(captionView).not.toContain('splitSpokenTail');
     expect(session).toContain('fullAssistantText={fullAssistantText}');
     expect(session).toContain('setFullAssistantText(liveCaptionRef.current.fullText)');
+    // Догонялка снята, а публикация идёт по росту полного текста.
+    expect(session).not.toContain('scheduleCaptionTick()');
+    expect(session).toContain('liveCaptionRef.current.fullText !== previousFullCaption');
   });
 
   it('keeps diagnostic retry direct while routing a normal call-again through preparation', () => {

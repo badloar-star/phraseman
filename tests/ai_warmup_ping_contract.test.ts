@@ -153,6 +153,21 @@ describe('повтор отправки диалога остаётся стро
     expect(quotaCharge).toBeLessThan(generation);
   });
 
+  it('отсутствие стриминговой функции (404/501) пускает в фолбэк', () => {
+    // Инцидент 2026-08-23: клиент уехал раньше функций, premiumDialogStream на
+    // сервере не было, и 404 помечался как «сервер начал работу» → фолбэк не
+    // срабатывал, диалог показывал «Сервис диалогов временно недоступен».
+    // Функции ещё нет = она точно ничего не выполняла и квоту не трогала.
+    const client = read('app/ai_dialog_stream_client.ts');
+    expect(client).toContain('xhr.status === 404 || xhr.status === 501');
+    // Признак «не начинал» в ветке HTTP-статуса обязан ЗАВИСЕТЬ от статуса,
+    // а не быть жёстким false. (Кадр `error` внутри уже идущего потока — другой
+    // случай: там false верен, поток шёл, сервер работу начал.)
+    const onload = client.slice(client.indexOf('xhr.onload'), client.indexOf('xhr.onerror'));
+    expect(onload).toContain('new DialogStreamError(code, functionMissing)');
+    expect(onload).not.toContain('new DialogStreamError(code, false)');
+  });
+
   it('стриминг падает в фолбэк ТОЛЬКО когда сервер не начал работу', () => {
     // Зеркало первого теста для стримингового пути: повтор после списанной
     // квоты снял бы вторую единицу и отправил сообщение дважды.

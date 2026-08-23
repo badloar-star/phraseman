@@ -84,7 +84,11 @@ export type StarOpReason =
   | 'arena_partner' | 'arena_tier' | 'spend_shop' | 'admin_grant' | 'admin_revoke' | 'coin_exchange'
   // «Вместе» (friends_together.ts): веха уровня дружбы и сундук недели — оба заработок
   // (клеймится только за реально накопленные дни/XP, не подарок).
-  | 'friends_together_level' | 'friends_together_chest';
+  | 'friends_together_level' | 'friends_together_chest'
+  // зачем: владелец 2026-08-23 — звёзды Арены, турниров и Learning V2 это одна
+  // валюта. Занятие оплачено учёбой, поэтому earn (обязано открывать награды
+  // сезона); открытие занятия — spend по лестнице 45/50/55/60/65.
+  | 'learning_v2_session' | 'learning_v2_unlock';
 
 export type StarOpClass = 'earn' | 'grant' | 'spend';
 
@@ -103,6 +107,8 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   coin_exchange: 'grant',
   friends_together_level: 'earn',
   friends_together_chest: 'earn',
+  learning_v2_session: 'earn',
+  learning_v2_unlock: 'spend',
 });
 
 export type StarOpMeta = Record<string, string | number | boolean>;

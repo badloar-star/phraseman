@@ -230,6 +230,41 @@ async function writeSentRequestIndex(
 }
 
 /**
+ * Ставит маркер «этот аккаунт ведёт индекс» при первом заходе на «Друзей».
+ *
+ * зачем: маркер нужен удалению аккаунта, чтобы отличить «индекс ведётся, заявок
+ * нет» от «аккаунт старше индекса». Раньше он появлялся ТОЛЬКО при отправке
+ * заявки в друзья — то есть у большинства людей не появлялся никогда, и они
+ * навсегда оставались на дорогом полном переборе базы. Найдено на аудите.
+ *
+ * Пишется один раз на аккаунт на устройство: локальный флаг в AsyncStorage
+ * не даёт бить в Firestore на каждом открытии вкладки.
+ */
+const SENT_INDEX_MARKER_LOCAL_KEY = 'friend_requests_sent_marker_v1';
+
+async function ensureFriendRequestsSentIndexMarker(myUid: string): Promise<void> {
+  if (!myUid) return;
+  const db = getFirestore();
+  if (!db) return;
+  try {
+    const localKey = `${SENT_INDEX_MARKER_LOCAL_KEY}:${myUid}`;
+    if (await AsyncStorage.getItem(localKey)) return;
+    await db
+      .collection('users').doc(myUid)
+      .collection(FRIEND_REQUESTS_SENT_INDEX)
+      .doc(FRIEND_REQUESTS_SENT_MARKER_ID)
+      .set({ createdAt: Date.now() }, { merge: true });
+    await AsyncStorage.setItem(localKey, '1');
+  } catch (e) {
+    // Маркер вторичен: без него удаление просто пойдёт медленным путём.
+    logFriendsHealth('friends:sent_index_marker_failed', e, {
+      action: 'ensure_sent_index_marker',
+      myUid,
+    });
+  }
+}
+
+/**
  * Снимает отметку об исходящей заявке, когда заявка перестала существовать
  * (принята, отклонена, отозвана, дружба разорвана). Маркер НЕ трогаем — он
  * означает «аккаунт ведёт индекс» и должен пережить опустошение списка.
@@ -563,7 +598,11 @@ export async function ensureFriendRequestViewerAuthLink(stableId?: string): Prom
     }
   }
   if (!myUid) return false;
-  return prepareFriendRequestViewerAuthLink(myUid);
+  const linked = await prepareFriendRequestViewerAuthLink(myUid);
+  // Маркер ставим только после успешной привязки — иначе правило откажет.
+  // Не ждём результат: экран не должен зависеть от служебной записи.
+  if (linked) void ensureFriendRequestsSentIndexMarker(myUid);
+  return linked;
 }
 
 // ── subscribeToFriends ─────────────────────────────────────────────────────

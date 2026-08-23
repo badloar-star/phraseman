@@ -2243,13 +2243,21 @@ service cloud.firestore {
     // Договор имён: shared/friend_requests_index_contract.ts.
     match /users/{senderUid}/friend_requests_sent/{toUid} {
       allow read: if canonicalUserMatchesAuth(senderUid) || isAdmin();
+      // зачем без тернарника: во всём этом файле нет ни одного `? :` — не
+      // рискуем конструкцией, которую проект ни разу не проверял на боевом
+      // деплое. Обычное ИЛИ читается так же и точно компилируется.
       allow create, update: if canonicalUserMatchesAuth(senderUid)
         && request.resource.data.createdAt is number
-        && (toUid == '__index__'
-          ? request.resource.data.keys().hasOnly(['createdAt'])
-          : (toUid != senderUid
+        && (
+          // Служебный маркер «аккаунт ведёт индекс»: только время, без адресата.
+          (toUid == '__index__'
+            && request.resource.data.keys().hasOnly(['createdAt']))
+          // Обычная отметка: id документа обязан совпасть с полем toUid.
+          || (toUid != '__index__'
+            && toUid != senderUid
             && request.resource.data.toUid == toUid
-            && request.resource.data.keys().hasOnly(['toUid', 'createdAt'])));
+            && request.resource.data.keys().hasOnly(['toUid', 'createdAt']))
+        );
       allow delete: if canonicalUserMatchesAuth(senderUid);
     }
 

@@ -40,8 +40,32 @@ describe('friend_requests_sent reverse index contract', () => {
     expect(server).toContain("from '../../shared/friend_requests_index_contract'");
     expect(server).toContain('collectSentRequestPeerUids');
     expect(server).toContain('hasFriendRequestsSentIndexMarker');
-    // Гибрид: без маркера обязан остаться аварийный полный перебор.
-    expect(server).toContain('listDocuments()');
+    // Гибрид: без маркера обязан остаться аварийный полный перебор — ОБЕ ветки.
+    // зачем именно так: toContain('listDocuments()') было бы бесполезно — в
+    // файле есть и другие вызовы (arena_season_leaderboard) и упоминание в
+    // комментарии, поэтому проверка оставалась бы зелёной даже после удаления
+    // обоих fallback. Считаем ровно ветки тернарника по коллекции users.
+    const fallbackBranches = server.match(
+      /: await db\.collection\('users'\)\.listDocuments\(\)/g,
+    ) ?? [];
+    expect(fallbackBranches).toHaveLength(2);
+    // И симметрично — узкий путь по peer-uid в тех же двух местах.
+    const narrowBranches = server.match(/\? peerUids\.map\(/g) ?? [];
+    expect(narrowBranches).toHaveLength(2);
+  });
+
+  test('peer-ы добираются из истории подарков, а не только из друзей', () => {
+    // зачем: дыра, найденная на аудите. Список друзей знает только ДЕЙСТВУЮЩУЮ
+    // дружбу. Подарок Ани Боре оставляет счётчик recipients.<Боря> в
+    // users/Аня/friend_gift_daily_limits/{дата}; если дружбу потом разорвать,
+    // Ани нет в списке друзей Бори — и при удалении его аккаунта этот uid
+    // остался бы у Ани навсегда. friend_gift_history лежит у ОБОИХ с полем
+    // peerUid и разрыв дружбы переживает, поэтому закрывает именно этот случай.
+    const server = read('functions/src/account_delete.ts');
+    expect(server).toContain('collectGiftPeerUids');
+    expect(server).toContain("collection('friend_gift_history')");
+    // Все три источника обязаны сливаться в один список peer-ов.
+    expect(server).toMatch(/\[\.\.\.friendPeers,\s*\.\.\.giftPeers,\s*\.\.\.sent\.peers\]/);
   });
 
   test('peer-uid собираются ДО удаления users/{uid}', () => {

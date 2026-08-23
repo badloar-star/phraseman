@@ -655,10 +655,11 @@ async function deleteCollectionGroupMatches(
  * Маркер «этот аккаунт ведёт обратный индекс исходящих заявок».
  *
  * зачем: пустая подколлекция `friend_requests_sent` неотличима от «индекса не
- * существует» — в обоих случаях запрос вернёт ноль документов. Клиент ставит
- * маркер при первом же входе (см. ensureFriendRequestsSentIndexMarker), поэтому
- * его наличие означает «узкому пути можно верить», а отсутствие — «аккаунт
- * старый, честно платим за полный перебор один раз».
+ * существует» — в обоих случаях запрос вернёт ноль документов. Маркер ставит
+ * `ensureFriendRequestsSentIndexMarker` (app/firestore_friend_requests.ts) при
+ * первом заходе на вкладку «Друзья», один раз на аккаунт на устройство.
+ * Наличие маркера означает «узкому пути можно верить», отсутствие — «аккаунт
+ * старше индекса, честно платим за полный перебор один раз».
  */
 async function hasFriendRequestsSentIndexMarker(
   db: admin.firestore.Firestore,
@@ -705,6 +706,39 @@ async function collectFriendPeerUids(
     const snap = await db.collection('users').doc(identity).collection('friends').get();
     for (const doc of snap.docs) {
       if (doc.id && !identities.includes(doc.id)) peers.add(doc.id);
+    }
+  }
+  return Array.from(peers);
+}
+
+/**
+ * Добирает peer-uid из СВОЕЙ истории подарков.
+ *
+ * зачем: список друзей покрывает только действующую дружбу. Если Аня подарила
+ * подарок Боре, а потом дружбу разорвали, счётчик `recipients.<Боря>` остаётся
+ * в `users/Аня/friend_gift_daily_limits/{дата}` — но Ани уже нет в списке
+ * друзей Бори, и при удалении его аккаунта этот uid уцелел бы навсегда.
+ * История подарков лежит у ОБОИХ участников с полем `peerUid` и разрыв дружбы
+ * переживает, поэтому закрывает ровно эту дыру.
+ *
+ * Стоит один индексированный запрос по своей подколлекции — не перебор базы.
+ */
+async function collectGiftPeerUids(
+  db: admin.firestore.Firestore,
+  identities: string[],
+  stats: DeleteStats,
+): Promise<string[]> {
+  const peers = new Set<string>();
+  for (const identity of identities) {
+    if (!identity) continue;
+    stats.queriesRun += 1;
+    const snap = await db
+      .collection('users').doc(identity)
+      .collection('friend_gift_history')
+      .get();
+    for (const doc of snap.docs) {
+      const peerUid = String(doc.data()?.peerUid ?? '').trim();
+      if (peerUid && !identities.includes(peerUid)) peers.add(peerUid);
     }
   }
   return Array.from(peers);
@@ -1057,9 +1091,11 @@ export async function executeAccountDeletion(
     // по-старому полным перебором» (гибрид для аккаунтов до 2026-08-23).
     const peerUids = await runDeleteStage(ctx, stats, 'collect_peers', async () => {
       const friendPeers = await collectFriendPeerUids(db, identities, stats);
+      // Подарки переживают разрыв дружбы — история закрывает эту дыру.
+      const giftPeers = await collectGiftPeerUids(db, identities, stats);
       const sent = await collectSentRequestPeerUids(db, identities, stats);
       const hasIndex = sent.indexPresent || await hasFriendRequestsSentIndexMarker(db, identities, stats);
-      const merged = Array.from(new Set([...friendPeers, ...sent.peers]));
+      const merged = Array.from(new Set([...friendPeers, ...giftPeers, ...sent.peers]));
       accountDeleteLog(ctx, 'collect_peers', stats, {
         peerCount: merged.length,
         sentIndexPresent: hasIndex,

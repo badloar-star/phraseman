@@ -27,7 +27,6 @@ import { getLessonData } from './lesson_data_all';
 import { lessonGrammarEntry } from './lesson_grammar_map';
 import {
   buildStableTutorSceneCatalog,
-  buildTutorSceneCatalog,
   renderTutorSceneCatalog,
   type TutorSceneItem,
 } from './max_call_tutor_tools';
@@ -153,10 +152,10 @@ export function guessLearnerCefr(): 'A1' | 'A2' | 'B1' {
   return lessons <= 8 ? 'A1' : lessons <= 20 ? 'A2' : 'B1';
 }
 
-/** Сцены, которые учитель может предложить в этом уроке (детерминировано по уровню и номеру урока). */
-export function tutorSceneItems(cefr: string | undefined, seed = 0): TutorSceneItem[] {
-  return buildTutorSceneCatalog(DIALOG_SCENARIOS, cefr ?? 'A1', seed);
-}
+// зачем (аудит 2026-08-23): tutorSceneItems(cefr, seed) удалена. После рычага 2
+// её не звал никто, но экспорт оставался ловушкой: любой новый вызов вернул бы
+// каталог, зависящий от уровня и дня, и молча развалил бы кэш префикса.
+// Единственная точка входа теперь — tutorStableSceneItems() ниже.
 
 /**
  * Каталог сцен для ПРОМПТА и для валидации id в звонке — один и тот же,

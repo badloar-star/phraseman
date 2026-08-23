@@ -15,7 +15,10 @@ import {
   materializeLearningV2CourseSessionLearnerChildV1,
   materializeLearningV2CourseSessionSavablePhraseV1,
 } from '../../runtime/course_session_client_children_v1';
-import type { LearningV2GeneratedSessionShardV1 } from '../generator_session_shard';
+import type {
+  LearningV2GeneratedSessionCardV1,
+  LearningV2GeneratedSessionShardV1,
+} from '../generator_session_shard';
 // зачем: капсула обязана собираться каноническим строителем, а не вручную —
 // он считает криптографические обязательства вместо открытых ответов и
 // заполняет восемь полей полномочий, которых у ручного объекта не было.
@@ -27,6 +30,25 @@ import { v2LocalEvaluatorInputKindForFamilyV1 } from '../../runtime/local_evalua
 // Metro падал с "Unable to resolve module node:crypto". sha256Utf8 — тот же
 // хеш, но чистый JS, уже используется остальными файлами этого модуля.
 import { sha256Utf8 } from '../../policies/decision_registry';
+import { lesson1SessionChoreographyV1 } from './lesson1_session_choreography_v1';
+import {
+  LEARNING_V2_INTERFACE_LOCALES,
+  type LearningV2InterfaceLocale,
+} from '../generator_course_contract';
+import { lesson1DistractorChoicesV2 } from './lesson1_distractor_catalog_v2';
+import { selectTaskDistractors } from './task_specific_distractors_v1';
+import {
+  episode01Session12FormFeedbackV1,
+  episode01Session12ListenFeedbackV1,
+} from './episode_01_session_12_task_feedback_v1';
+import {
+  episode01Session13FormFeedbackV1,
+  episode01Session13ListenFeedbackV1,
+} from './episode_01_session_13_task_feedback_v1';
+import {
+  episode01Session14FormFeedbackV1,
+  episode01Session14ListenFeedbackV1,
+} from './episode_01_session_14_task_feedback_v1';
 
 /**
  * Соль для криптографического обязательства ответа. Контракт требует ровно
@@ -106,6 +128,357 @@ function inputModeFor(family: string): 'ordered_tokens' | 'single_choice' | 'scr
   return mode;
 }
 
+type LearnerResponseOption = Readonly<{ responseId: string; text: string }>;
+type LearnerTaskProjection = Readonly<{
+  prompt: string;
+  responseOptions: readonly LearnerResponseOption[];
+  feedbackByResponseId: Readonly<Record<string, string>>;
+}>;
+
+function targetTokens(card: LearningV2GeneratedSessionCardV1): readonly string[] {
+  return card.contentItem.target.text
+    .replace(/[?.!,]/gu, '')
+    .split(/\s+/u)
+    .filter(Boolean);
+}
+
+function targetTiles(card: LearningV2GeneratedSessionCardV1): readonly string[] {
+  const tokens = targetTokens(card);
+  if (tokens.length <= 8) return tokens;
+  // Learner-child schema allows at most eight selectable options. Preserve the
+  // whole utterance by joining only the leading fixed chunk; the remaining
+  // words stay independently movable and the selected tiles still reconstruct
+  // the exact evaluator answer.
+  return [tokens.slice(0, tokens.length - 7).join(' '), ...tokens.slice(tokens.length - 7)];
+}
+
+function learnerMeaning(
+  card: LearningV2GeneratedSessionCardV1,
+  interfaceLocale: string,
+): string {
+  return (
+    card.contentItem.learnerMeanings.find(
+      (meaning) => meaning.locale === interfaceLocale,
+    )?.value ?? card.contentItem.learnerMeanings[0]?.value ?? card.contentItem.target.text
+  );
+}
+
+function distinctText(values: readonly string[]): readonly string[] {
+  const seen = new Set<string>();
+  return values.filter((value) => {
+    const key = value.normalize('NFKC').trim().toLocaleLowerCase();
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function singleChoiceOptions(
+  card: LearningV2GeneratedSessionCardV1,
+  correctText: string,
+  distractors: readonly Readonly<{ text: string; feedback: string }>[],
+): Pick<LearnerTaskProjection, 'responseOptions' | 'feedbackByResponseId'> {
+  const candidates = [
+    { text: correctText, feedback: null },
+    ...distractors,
+  ].filter((candidate, index, all) =>
+    all.findIndex(
+      (item) => item.text.normalize('NFKC').trim().toLowerCase() ===
+        candidate.text.normalize('NFKC').trim().toLowerCase(),
+    ) === index,
+  ).slice(0, 3);
+  if (candidates.length !== 3) {
+    throw new Error(`session_package_response_options_insufficient:${card.cardId}`);
+  }
+  const responseOptions = candidates.map((candidate, index) => ({
+    responseId:
+      index === 0
+        ? toChoiceToken(card.contentItem.target.text)
+        : `${card.cardId}:wrong:${index}`,
+    text: candidate.text,
+  }));
+  return {
+    responseOptions,
+    feedbackByResponseId: Object.freeze(Object.fromEntries(
+      responseOptions.flatMap((option, index) => {
+        const feedback = candidates[index]?.feedback;
+        return feedback ? [[option.responseId, feedback]] : [];
+      }),
+    )),
+  };
+}
+
+function normalizedToken(value: string): string {
+  return value.normalize('NFKC').replace(/[’]/gu, "'").toLowerCase();
+}
+
+/** Локали, на которых написаны авторские подсказки сессий 12-14. */
+const AUTHORED_FEEDBACK_LOCALES = [
+  'ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl',
+] as const;
+type AuthoredFeedbackLocale = (typeof AUTHORED_FEEDBACK_LOCALES)[number];
+
+function authoredDistractorFeedback(
+  card: LearningV2GeneratedSessionCardV1,
+  wrongValue: string,
+  locale: LearningV2InterfaceLocale,
+  correctHint?: string,
+): string {
+  // зачем: авторские подсказки сессий 12-14 написаны на восьми языках интерфейса.
+  // После добавления 'en' в LearningV2InterfaceLocale вызовы перестали проходить
+  // по типам и роняли сборку functions. Для английского интерфейса этих подсказок
+  // просто нет — сужаем локаль явной проверкой и уходим в общий путь ниже, а не
+  // подставляем русский текст молча.
+  const authoredLocale = AUTHORED_FEEDBACK_LOCALES.includes(
+    locale as AuthoredFeedbackLocale,
+  )
+    ? (locale as AuthoredFeedbackLocale)
+    : null;
+  const session12 = authoredLocale && card.cardId.includes('episode-01-s12-')
+    ? episode01Session12FormFeedbackV1(authoredLocale, card.contentItem.target.text, wrongValue)
+    : undefined;
+  if (session12) return session12;
+  const session13 = authoredLocale && card.cardId.includes('episode-01-s13-')
+    ? episode01Session13FormFeedbackV1(authoredLocale, card.contentItem.target.text, wrongValue)
+    : undefined;
+  if (session13) return session13;
+  const session14 = authoredLocale && card.cardId.includes('episode-01-s14-')
+    ? episode01Session14FormFeedbackV1(authoredLocale, card.contentItem.target.text, wrongValue)
+    : undefined;
+  if (session14) return session14;
+  const rejected = card.contentItem.rejectedAnswers.find(
+    (answer) => normalizedToken(answer.value) === normalizedToken(wrongValue),
+  );
+  const [, storedCorrect = ''] = rejected?.reasonCode.split(':') ?? [];
+  const correctToken = correctHint ?? storedCorrect;
+  const authored = correctToken
+      ? lesson1DistractorChoicesV2(
+        locale,
+        correctToken,
+        card.contentItem.target.text,
+        Number(card.cardId.match(/-s(\d+)-/u)?.[1] ?? 0),
+      ).find(
+        (choice) => normalizedToken(choice.value) === normalizedToken(wrongValue),
+      )
+    : undefined;
+  if (!authored) {
+    throw new Error(
+      `session_package_distractor_feedback_missing:${card.cardId}:${correctToken}:${wrongValue}:${locale}`,
+    );
+  }
+  return authored.reason;
+}
+
+function semanticChoiceFeedback(
+  locale: LearningV2InterfaceLocale,
+  correctCard: LearningV2GeneratedSessionCardV1,
+  wrongCard: LearningV2GeneratedSessionCardV1,
+): string {
+  const correctMeaning = learnerMeaning(correctCard, locale);
+  const wrongMeaning = learnerMeaning(wrongCard, locale);
+  const correct = correctCard.contentItem.target.text;
+  const wrong = wrongCard.contentItem.target.text;
+  // Те же авторские подсказки на восьми языках — см. authoredDistractorFeedback.
+  const authoredLocale = AUTHORED_FEEDBACK_LOCALES.includes(
+    locale as AuthoredFeedbackLocale,
+  )
+    ? (locale as AuthoredFeedbackLocale)
+    : null;
+  const session12 = authoredLocale ? episode01Session12ListenFeedbackV1(authoredLocale, correct, wrong) : undefined;
+  if (session12) return session12;
+  const session13 = authoredLocale ? episode01Session13ListenFeedbackV1(authoredLocale, correct, wrong) : undefined;
+  if (session13) return session13;
+  const session14 = authoredLocale ? episode01Session14ListenFeedbackV1(authoredLocale, correct, wrong) : undefined;
+  if (session14) return session14;
+  const copy: Record<LearningV2InterfaceLocale, string> = {
+    ru: `«${wrong}» значит «${wrongMeaning}». Здесь нужно «${correct}» — «${correctMeaning}»: тема близкая, но изменившееся слово даёт другой ответ.`,
+    uk: `«${wrong}» означає «${wrongMeaning}». Тут потрібно «${correct}» — «${correctMeaning}»: тема близька, але змінене слово дає іншу відповідь.`,
+    es: `«${wrong}» significa «${wrongMeaning}». Aquí corresponde «${correct}» — «${correctMeaning}»: el tema es cercano, pero la palabra distinta cambia la respuesta.`,
+    'pt-BR': `«${wrong}» significa «${wrongMeaning}». Aqui cabe «${correct}» — «${correctMeaning}»: o tema é próximo, mas a palavra diferente muda a resposta.`,
+    vi: `“${wrong}” nghĩa là “${wrongMeaning}”. Ở đây cần “${correct}” — “${correctMeaning}”: chủ đề gần nhau nhưng từ khác làm đáp án đổi.`,
+    id: `“${wrong}” berarti “${wrongMeaning}”. Di sini yang tepat “${correct}” — “${correctMeaning}”: topiknya dekat, tetapi kata yang berbeda mengubah jawaban.`,
+    tr: `«${wrong}», «${wrongMeaning}» demektir. Burada «${correct}» — «${correctMeaning}» gerekir: konu yakındır, fakat değişen sözcük cevabı değiştirir.`,
+    pl: `„${wrong}” znaczy „${wrongMeaning}”. Tutaj trzeba „${correct}” — „${correctMeaning}”: temat jest bliski, lecz inne słowo zmienia odpowiedź.`,
+    // Английский интерфейс при изучении английского — вырожденная пара, но
+    // Record требует полноты; текст общий, не авторский.
+    en: `“${wrong}” means “${wrongMeaning}”. The right one here is “${correct}” — “${correctMeaning}”: the topic is close, but the changed word gives a different answer.`,
+  };
+  return copy[locale];
+}
+
+function grammarGap(card: LearningV2GeneratedSessionCardV1): Readonly<{
+  prompt: string;
+  correct: string;
+  distractors: readonly string[];
+}> {
+  const tokens = targetTokens(card);
+  const selection = selectTaskDistractors({
+    family: card.family,
+    target: card.contentItem.target.text,
+    rejectedAnswers: card.contentItem.rejectedAnswers,
+    sessionOrdinal: Number(card.cardId.match(/-s(\d+)-/u)?.[1] ?? 0),
+  });
+  const resolvedIndex = tokens.findIndex(
+    (token) => normalizedToken(token) === normalizedToken(selection.correct),
+  );
+  if (resolvedIndex < 0)
+    throw new Error(`session_package_grammar_gap_focus_missing:${card.cardId}`);
+  return {
+    prompt: tokens
+      .map((token, index) => (index === resolvedIndex ? '____' : token))
+      .join(' '),
+    correct: selection.correct,
+    distractors: selection.distractors.map((item) => item.sourceValue),
+  };
+}
+
+function learnerTaskProjection(
+  card: LearningV2GeneratedSessionCardV1,
+  practiceCards: readonly LearningV2GeneratedSessionCardV1[],
+  interfaceLocale: string,
+): LearnerTaskProjection {
+  const locale = interfaceLocale as LearningV2InterfaceLocale;
+  const instruction =
+    (card.instructionByLocale as Record<string, string>)[interfaceLocale] ?? '';
+  const meaning = learnerMeaning(card, interfaceLocale);
+  const otherCards = practiceCards.filter((candidate) => candidate.cardId !== card.cardId);
+
+  if (card.family === 'phrase_builder' || card.family === 'listen_build_dictation') {
+    const tiles = targetTiles(card);
+    const selection = selectTaskDistractors({
+      family: card.family,
+      target: card.contentItem.target.text,
+      rejectedAnswers: card.contentItem.rejectedAnswers,
+      sessionOrdinal: Number(card.cardId.match(/-s(\d+)-/u)?.[1] ?? 0),
+    });
+    const trapValues = selection.distractors
+      .map((item) => item.sourceValue)
+      .slice(0, Math.min(2, Math.max(0, 8 - tiles.length)));
+    const trapOptions = trapValues.map((text, index) => ({
+      responseId: `${card.cardId}:wrong-builder:${index + 1}`,
+      text,
+    }));
+    return {
+      prompt: `${instruction} ${meaning}`,
+      responseOptions: [
+        ...tiles.map((text, index) => ({
+          responseId: `${card.cardId}:token:${index + 1}`,
+          text,
+        })),
+        ...trapOptions,
+      ],
+      feedbackByResponseId: Object.freeze(Object.fromEntries(
+        trapOptions.map((option) => [
+          option.responseId,
+          authoredDistractorFeedback(card, option.text, locale, selection.correct),
+        ]),
+      )),
+    };
+  }
+  if (card.family === 'listen_choose') {
+    const choices = singleChoiceOptions(
+      card,
+      meaning,
+      otherCards.map((candidate) => ({
+        text: learnerMeaning(candidate, interfaceLocale),
+        feedback: semanticChoiceFeedback(locale, card, candidate),
+      })),
+    );
+    return {
+      prompt: instruction,
+      ...choices,
+    };
+  }
+  if (card.family === 'context_gap_grammar') {
+    const gap = grammarGap(card);
+    const choices = singleChoiceOptions(
+      card,
+      gap.correct,
+      gap.distractors.map((text) => ({
+        text,
+        feedback: authoredDistractorFeedback(card, text, locale, gap.correct),
+      })),
+    );
+    return {
+      prompt: `${instruction} ${meaning} — ${gap.prompt}`,
+      ...choices,
+    };
+  }
+  if (card.family === 'sound_contrast') {
+    const choices = singleChoiceOptions(
+      card,
+      card.contentItem.target.text,
+      otherCards.map((candidate) => ({
+        text: candidate.contentItem.target.text,
+        feedback: semanticChoiceFeedback(locale, card, candidate),
+      })),
+    );
+    return {
+      prompt: instruction,
+      ...choices,
+    };
+  }
+  if (card.family === 'speed_match') {
+    const selection = selectTaskDistractors({
+      family: card.family,
+      target: card.contentItem.target.text,
+      rejectedAnswers: card.contentItem.rejectedAnswers,
+      sessionOrdinal: Number(card.cardId.match(/-s(\d+)-/u)?.[1] ?? 0),
+    });
+    const choices = singleChoiceOptions(
+      card,
+      card.contentItem.target.text,
+      selection.distractors.map((item) => ({
+        text: item.value,
+        feedback: authoredDistractorFeedback(
+          card,
+          item.sourceValue,
+          locale,
+          selection.correct,
+        ),
+      })),
+    );
+    return {
+      prompt: `${instruction} ${meaning}`,
+      ...choices,
+    };
+  }
+  if (card.family === 'scripted_repeat_compare') {
+    return {
+      prompt: `${instruction} ${card.contentItem.target.text}`,
+      responseOptions: [],
+      feedbackByResponseId: {},
+    };
+  }
+  throw new Error(`session_package_unsupported_family:${card.family}`);
+}
+
+function localizedResponseFeedback(
+  card: LearningV2GeneratedSessionCardV1,
+  practiceCards: readonly LearningV2GeneratedSessionCardV1[],
+): Readonly<Record<string, Readonly<Record<LearningV2InterfaceLocale, string>>>> {
+  const byLocale = Object.fromEntries(
+    LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+      locale,
+      learnerTaskProjection(card, practiceCards, locale).feedbackByResponseId,
+    ]),
+  ) as Record<LearningV2InterfaceLocale, Readonly<Record<string, string>>>;
+  const responseIds = [...new Set(
+    LEARNING_V2_INTERFACE_LOCALES.flatMap((locale) =>
+      Object.keys(byLocale[locale]),
+    ),
+  )];
+  return Object.freeze(Object.fromEntries(responseIds.map((responseId) => [
+    responseId,
+    Object.freeze(Object.fromEntries(
+      LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+        locale,
+        byLocale[locale][responseId] ?? '',
+      ]),
+    )) as Readonly<Record<LearningV2InterfaceLocale, string>>,
+  ])));
+}
+
 /**
  * Собирает пять детей пакета из написанного шарда.
  *
@@ -164,33 +537,39 @@ export function buildSessionChildBodiesFromShard(
 
   // Практика начинается со слота 4: слоты 1–3 заняты вопросами интро.
   const practiceCards = shard.cards.filter((card) => card.taskSlot >= 4);
+  const choreography = lesson1SessionChoreographyV1(
+    shard.requiredSessionOrdinal,
+  );
   const learner = materializeLearningV2CourseSessionLearnerChildV1({
     courseSessionId,
     targetLanguage: shard.targetLanguage,
-    interactionProfile: 'standard',
-    interactions: practiceCards.map((card, index) => ({
-      interactionId: card.cardId,
-      ordinal: index + 4,
-      purpose: purposeFor(card.purpose),
-      family: card.family,
-      inputMode: inputModeFor(card.family),
-      prompt: (card.instructionByLocale as Record<string, string>)[locale] ?? '',
-      responseOptions: [],
-      mediaIds: [],
-      audioTargetIds: [],
-      accessibilityLabel:
-        (card.accessibilityLabelByLocale as Record<string, string>)[locale] ?? '',
-      // зачем: запасной текстовый путь для голосового задания. Оба флага
-      // строго false — иначе голосовое упражнение можно было бы «сдать»
-      // текстом и получить за это награду как за произнесённое вслух.
-      scriptedAlternate: {
-        alternateId: `${card.cardId}:alt`,
-        instruction:
-          (card.hintByLocale as Record<string, string>)[locale] ?? '',
-        voiceEvidenceEquivalent: false,
-        canAward: false,
-      },
-    })) as never,
+    interactionProfile: choreography.interactionProfile,
+    interactions: practiceCards.map((card, index) => {
+      const task = learnerTaskProjection(card, practiceCards, interfaceLocale);
+      return {
+        interactionId: card.cardId,
+        ordinal: index + 4,
+        purpose: purposeFor(card.purpose),
+        family: card.family,
+        inputMode: inputModeFor(card.family),
+        prompt: task.prompt,
+        responseOptions: task.responseOptions,
+        mediaIds: [],
+        audioTargetIds: [],
+        accessibilityLabel:
+          (card.accessibilityLabelByLocale as Record<string, string>)[locale] ?? '',
+        // зачем: запасной текстовый путь для голосового задания. Оба флага
+        // строго false — иначе голосовое упражнение можно было бы «сдать»
+        // текстом и получить за это награду как за произнесённое вслух.
+        scriptedAlternate: {
+          alternateId: `${card.cardId}:alt`,
+          instruction:
+            (card.hintByLocale as Record<string, string>)[locale] ?? '',
+          voiceEvidenceEquivalent: false,
+          canAward: false,
+        },
+      };
+    }) as never,
   } as never);
 
   // Правильные ответы: остаются на сервере и клиенту не уезжают.
@@ -291,6 +670,12 @@ export function buildSessionChildBodiesFromShard(
   // Смысл правила прямой: кнопка сохранения должна быть на каждом экране, а не
   // только там, где есть задание.
   const introCards = shard.cards.filter((card) => card.taskSlot < 4);
+  const responseFeedbackByCardId = new Map(
+    practiceCards.map((card) => [
+      card.cardId,
+      localizedResponseFeedback(card, practiceCards),
+    ]),
+  );
   // зачем interactionId переопределён для интро-карточек (инцидент
   // 2026-08-17): card.cardId (card-episode-01-s01-01) и
   // page.question.questionId (...:intro-q-1) — РАЗНЫЕ строки для одного и
@@ -300,9 +685,7 @@ export function buildSessionChildBodiesFromShard(
   // три записи расходились с остальными тремя детьми, и пакет отвергался на
   // этой сверке. Не ловилось раньше, потому что ни один прогон не доходил до
   // createLearningV2CourseSessionDeviceRunV1 целиком.
-  const auxiliary = materializeLearningV2CourseSessionAuxiliaryChildV1({
-    courseSessionId,
-    entries: [...introCards, ...practiceCards].map((card) => {
+  const auxiliaryEntries = [...introCards, ...practiceCards].map((card) => {
       const introPage = shard.intro.pages.find(
         (page) => page.pageOrdinal === card.taskSlot,
       );
@@ -336,9 +719,44 @@ export function buildSessionChildBodiesFromShard(
           holdToTalkAllowed: true,
         },
         secondErrorExplanationRef: card.cardId,
-        secondErrorExplanationByLocale: card.errorExplanationByLocale as never,
+        // Exact visible wrong options are explained by responseFeedbackById.
+        // Repeating every rejected-answer essay here made rapid sessions exceed
+        // the immutable 256 KiB client-child limit (S44 was 301,219 bytes).
+        // This fallback is used only when no response id identifies the trap.
+        secondErrorExplanationByLocale:
+          (card.taskSlot < 4
+            ? card.errorExplanationByLocale
+            : card.hintByLocale) as never,
+        ...(responseFeedbackByCardId.get(card.cardId) &&
+        Object.keys(responseFeedbackByCardId.get(card.cardId)!).length > 0
+          ? {
+              responseFeedbackById:
+                responseFeedbackByCardId.get(card.cardId) as never,
+            }
+          : {}),
       };
-    }) as never,
+    });
+  const auxiliaryApproximateBytes = new TextEncoder().encode(
+    JSON.stringify({ courseSessionId, entries: auxiliaryEntries }),
+  ).length;
+  if (auxiliaryApproximateBytes > 250_000) {
+    const largestEntries = auxiliaryEntries
+      .map((entry) => ({
+        id: entry.interactionId,
+        bytes: new TextEncoder().encode(JSON.stringify(entry)).length,
+        feedbackBytes: new TextEncoder().encode(
+          JSON.stringify(entry.responseFeedbackById ?? {}),
+        ).length,
+      }))
+      .sort((left, right) => right.bytes - left.bytes)
+      .slice(0, 3);
+    throw new Error(
+      `session_package_auxiliary_too_large:${shard.requiredSessionOrdinal}:${auxiliaryApproximateBytes}:${largestEntries.map((entry) => `${entry.id}=${entry.bytes}/${entry.feedbackBytes}`).join(',')}`,
+    );
+  }
+  const auxiliary = materializeLearningV2CourseSessionAuxiliaryChildV1({
+    courseSessionId,
+    entries: auxiliaryEntries as never,
   } as never);
 
   return Object.freeze({

@@ -118,6 +118,8 @@ function assertRequest(request: unknown): asserts request is MaxVoiceFinalizeReq
     throw new Error('max_finalize_tutor_evidence_invalid');
   }
   if (evidence.nextTopic !== undefined) assertText(evidence.nextTopic, 'max_finalize_next_topic_invalid', 1_000);
+  if (evidence.preferredName !== undefined) assertText(evidence.preferredName, 'max_finalize_tutor_evidence_invalid', 60);
+  if (evidence.learningGoal !== undefined) assertText(evidence.learningGoal, 'max_finalize_tutor_evidence_invalid', 160);
   if (evidence.languagePreference !== undefined) {
     assertText(evidence.languagePreference, 'max_finalize_language_preference_invalid', 1_000);
   }

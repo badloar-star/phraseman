@@ -137,6 +137,9 @@ export interface TutorToolRunner {
   nextTopic(): string;
   /** Просьба ученика за урок, как говорить; '' — не просил (память не трогать). */
   languagePreference(): TutorLanguagePreference | '';
+  /** Знакомство в первом уроке: как обращаться и зачем учит (remember_learner). */
+  preferredName(): string;
+  learningGoal(): string;
   /** Флаги безопасности за урок (дедуп по виду). */
   safetyFlags(): TutorSafetyFlag[];
   activeScene(): TutorSceneItem | null;
@@ -162,6 +165,8 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
   let goalProgress: TutorGoalProgress | null = null;
   let nextTopic = '';
   let languagePreference: TutorLanguagePreference | '' = '';
+  let preferredName = '';
+  let learningGoal = '';
   const safetyFlags: TutorSafetyFlag[] = [];
   let activeScene: TutorSceneItem | null = null;
   let endRequested = false;
@@ -351,6 +356,17 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
         goalProgress = { goalId, mastery };
         return { output: `Goal ${goalId} mastery ${goalProgress.mastery}/3 recorded.`, respond: false };
       }
+      case 'remember_learner': {
+        // зачем (владелец 2026-08-23): вау-эффект «он меня помнит». В первом
+        // уроке учитель голосом спрашивает имя и цель; здесь копим ответы, а
+        // финализация кладёт их в память (PII-фильтр там же, на сервере).
+        const name = cleanPhrase(args.preferred_name).slice(0, 60);
+        const goal = cleanPhrase(args.learning_goal).slice(0, 160);
+        if (!name && !goal) return { output: 'Nothing to save.', respond: false };
+        if (name) preferredName = name;
+        if (goal) learningGoal = goal;
+        return { output: 'Saved. Use it naturally and never ask again.', respond: false };
+      }
       case 'set_language_preference': {
         // 'more_english' — старое имя из первых сборок; читаем как more_target.
         const raw = String(args.mode ?? '').trim();
@@ -384,6 +400,8 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
     goalProgress: () => (goalProgress ? { ...goalProgress } : null),
     nextTopic: () => nextTopic,
     languagePreference: () => languagePreference,
+    preferredName: () => preferredName,
+    learningGoal: () => learningGoal,
     safetyFlags: () => safetyFlags.map((f) => ({ ...f })),
     activeScene: () => activeScene,
     endRequested: () => endRequested,

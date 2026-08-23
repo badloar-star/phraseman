@@ -891,6 +891,8 @@ export default function MaxCallSession() {
             homework: tutorRunnerRef.current?.homework() ?? [],
             nextTopic: tutorRunnerRef.current?.nextTopic() ?? '',
             languagePreference: tutorRunnerRef.current?.languagePreference() ?? '',
+            preferredName: tutorRunnerRef.current?.preferredName() ?? '',
+            learningGoal: tutorRunnerRef.current?.learningGoal() ?? '',
             safetyFlags: tutorRunnerRef.current?.safetyFlags() ?? [],
             homeworkItems: tutorRunnerRef.current?.homeworkItems() ?? [],
             phraseResults: tutorRunnerRef.current?.phraseResults() ?? [],
@@ -927,6 +929,10 @@ export default function MaxCallSession() {
             ...(tutor?.nextTopic ? { nextTopic: tutor.nextTopic } : {}),
             homeworkItems: tutor?.homeworkItems ?? [],
             ...(tutor?.languagePreference ? { languagePreference: tutor.languagePreference } : {}),
+            // зачем: знакомство первого урока (владелец 2026-08-23) — сервер
+            // положит их в память через тот же PII-фильтр, что и прочие факты.
+            ...(tutor?.preferredName ? { preferredName: tutor.preferredName } : {}),
+            ...(tutor?.learningGoal ? { learningGoal: tutor.learningGoal } : {}),
             safetyFlags: tutor?.safetyFlags ?? [],
             ...(isTutor && tutorEndedByToolRef.current ? { endedByTutor: true } : {}),
           },

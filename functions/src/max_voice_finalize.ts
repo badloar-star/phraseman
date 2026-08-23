@@ -74,6 +74,9 @@ interface FinalizeRequest {
     nextTopic?: string;
     homeworkItems: { text: string; meaning: string }[];
     languagePreference?: string;
+    /** Знакомство первого урока (remember_learner, 2026-08-23). */
+    preferredName?: string;
+    learningGoal?: string;
     safetyFlags: { kind: string; note: string }[];
     /** Учитель сам вызвал end_call (телеметрия дисциплины боевой модели, 2026-08-22). */
     endedByTutor?: boolean;
@@ -114,6 +117,8 @@ interface MaxVoiceFinalizeMemoryUpdate {
   homework: readonly string[];
   nextTopic: string;
   languagePreference?: string;
+  preferredName?: string;
+  learningGoal?: string;
   phraseResults: readonly { text: string; result: PhraseResult }[];
   /** Цель урока из минта (mint.tutor.plan.goal.id) — для receipt.goal, когда учитель не отметил прогресс. */
   goalId: string;
@@ -283,7 +288,7 @@ function parseFinalizeData(raw: unknown): ParsedFinalizeData {
     };
   }
   const evidenceRaw = object(requestRaw.tutorEvidence, 'max_finalize_tutor_evidence_invalid');
-  onlyKeys(evidenceRaw, ['nextTopic', 'homeworkItems', 'languagePreference', 'safetyFlags', 'endedByTutor']);
+  onlyKeys(evidenceRaw, ['nextTopic', 'homeworkItems', 'languagePreference', 'safetyFlags', 'endedByTutor', 'preferredName', 'learningGoal']);
   if (evidenceRaw.endedByTutor !== undefined && typeof evidenceRaw.endedByTutor !== 'boolean') {
     throw new HttpsError('invalid-argument', 'max_finalize_tutor_evidence_invalid');
   }
@@ -328,6 +333,10 @@ function parseFinalizeData(raw: unknown): ParsedFinalizeData {
         ...(evidenceRaw.languagePreference === undefined
           ? {}
           : { languagePreference: cleanText(evidenceRaw.languagePreference, MAX_TURN_CHARS) }),
+        // Знакомство: значения проходят тот же PII-фильтр памяти
+        // (acceptMemoryCandidate внутри mergeTutorMemory), что и прочие факты.
+        ...(evidenceRaw.preferredName === undefined ? {} : { preferredName: cleanText(evidenceRaw.preferredName, 60) }),
+        ...(evidenceRaw.learningGoal === undefined ? {} : { learningGoal: cleanText(evidenceRaw.learningGoal, 160) }),
         // зачем: аудит 2026-08-22 — флаги учителя уходят в reviewSafety (журнал
         // safety_flags + Telegram); раньше они здесь молча выбрасывались.
         safetyFlags,
@@ -439,6 +448,8 @@ export async function finalizeMaxVoiceRequest(
       ...(data.request.tutorEvidence.languagePreference
         ? { languagePreference: data.request.tutorEvidence.languagePreference }
         : {}),
+      ...(data.request.tutorEvidence.preferredName ? { preferredName: data.request.tutorEvidence.preferredName } : {}),
+      ...(data.request.tutorEvidence.learningGoal ? { learningGoal: data.request.tutorEvidence.learningGoal } : {}),
       phraseResults: data.request.phraseResults,
       goalId: data.request.goalId ?? '',
       sceneOutcome: data.request.sceneOutcome ?? '',
@@ -641,6 +652,8 @@ function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalize
               nextTopic: args.memoryUpdate.nextTopic,
               cefr: args.memoryUpdate.cefr,
               languagePreference: args.memoryUpdate.languagePreference,
+              preferredName: args.memoryUpdate.preferredName,
+              learningGoal: args.memoryUpdate.learningGoal,
               phraseResults: args.memoryUpdate.phraseResults,
               sceneOutcome: args.memoryUpdate.sceneOutcome,
               goalProgress: args.memoryUpdate.goalProgress,

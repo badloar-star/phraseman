@@ -397,7 +397,7 @@ describe('tutor instructions', () => {
     const b = buildVoiceInstructions({ ...base, tutorMemoryBlock: 'M2', learnerSnapshot: 'S2' });
     const cut = (s: string) => s.slice(0, s.indexOf('=== LEARNER SNAPSHOT'));
     expect(cut(a)).toBe(cut(b));
-    expect(TUTOR_TOOLS.map((t) => t.name)).toEqual(['start_scene', 'end_scene', 'mark_phrase_result', 'assign_homework', 'set_next_topic', 'show_tutor_board', 'set_live_topic', 'mark_goal_progress', 'set_language_preference', 'flag_safety', 'end_call']);
+    expect(TUTOR_TOOLS.map((t) => t.name)).toEqual(['start_scene', 'end_scene', 'mark_phrase_result', 'assign_homework', 'set_next_topic', 'show_tutor_board', 'set_live_topic', 'mark_goal_progress', 'set_language_preference', 'remember_learner', 'flag_safety', 'end_call']);
     // Просьба ученика важнее дефолта уровня (владелец 2026-08-16).
     expect(a).toContain("THE LEARNER'S WISH WINS");
     expect(a).toContain('set_language_preference');

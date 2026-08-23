@@ -35,18 +35,24 @@ then read frame_passport.v1.json. Do not ask the user to explain the process.
 - «эмоции: все» = joy, surprise, sad, determined, wink (base smile already
   exists).
 
-## TWO STEPS PER ASSET (mandatory, in this order)
+## THE USER RECEIVES ONLY FINISHED ISOLATED ASSETS
 
-1. ON-MODEL: edit the correct base render using the matching
-   `prompts/<slot>.md` template with {{ITEM}} filled in. Output ONE PNG
-   1316x1195 — the character wearing the new item.
-2. GREEN ISOLATION (for hair, headwear, accessory): immediately apply
-   `prompts/isolate.md` to YOUR OWN step-1 output. Output a second PNG
-   1316x1195: ONLY the new item, exact same position and scale, on solid pure
-   #00FF00 — no skin, no face, no clothing, no shadows.
+The final deliverable for EVERY asset is exactly ONE image: the item ALONE on
+solid pure #00FF00 green — no character, no skin, no face, no clothing that is
+not the item itself. The user downloads ONLY these.
 
-So a batch «волосы: 5 мужских» = 10 images total (5 on-model + 5 green),
-generated pair by pair: asset 1 step 1, asset 1 step 2, asset 2 step 1, ...
+To make the item fit the character, you still work in two steps INTERNALLY:
+1. DRAFT (internal): edit the correct base render with the matching
+   `prompts/<slot>.md` template — the character wearing the new item. This
+   draft defines position, scale, perspective and lighting. Present it as
+   «черновик — скачивать не нужно» and do NOT count it as a deliverable.
+2. DELIVERABLE: immediately apply `prompts/isolate.md` to your own draft and
+   output the isolated item on pure #00FF00, in the EXACT same position and
+   scale as in the draft.
+
+So a batch «волосы: 5 мужских» = 5 deliverables (5 green isolated hairstyles);
+drafts are your internal working images. NEVER deliver an image that contains
+the whole character on green — that is the failure `layer_contains_character`.
 
 ## NON-NEGOTIABLE RULES
 

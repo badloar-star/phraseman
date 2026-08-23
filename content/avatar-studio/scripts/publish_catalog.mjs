@@ -140,6 +140,27 @@ async function bakePortrait(item) {
   return keyGreen(composed);
 }
 
+// Портрет из готового зелёного слоя (без on-model черновика): база + слой.
+// Для причёсок/уборов, если есть «лысая» база base_*_bald.png — берём её,
+// тогда родные волосы базы не торчат из-под новой причёски.
+async function bakeFromLayer(item) {
+  const hairLike = item.slot === 'hair' || item.slot === 'headwear';
+  const baldPath = path.join(pipelineRoot, 'base', item.base.replace('.png', '_bald.png'));
+  const baseFile = hairLike && existsSync(baldPath) ? baldPath : path.join(pipelineRoot, 'base', item.base);
+  const composed = Buffer.from(await loadRaw(baseFile));
+  const layer = await sharp(path.join(pipelineRoot, item.file)).ensureAlpha()
+    .resize(CANON_W, CANON_H, { fit: 'fill' }).raw().toBuffer();
+  for (let at = 0; at < CANON_W * CANON_H; at += 1) {
+    const alpha = layer[at * 4 + 3];
+    if (alpha <= 16) continue;
+    const weight = alpha / 255;
+    composed[at * 3] = Math.round(layer[at * 4] * weight + composed[at * 3] * (1 - weight));
+    composed[at * 3 + 1] = Math.round(layer[at * 4 + 1] * weight + composed[at * 3 + 1] * (1 - weight));
+    composed[at * 3 + 2] = Math.round(layer[at * 4 + 2] * weight + composed[at * 3 + 2] * (1 - weight));
+  }
+  return keyGreen(composed);
+}
+
 async function writeWebp(rgba, destination) {
   await mkdir(path.dirname(destination), { recursive: true });
   const bytes = await sharp(rgba, { raw: { width: CANON_W, height: CANON_H, channels: 4 } })
@@ -159,7 +180,8 @@ for (const item of manifest.items) {
     mapEntries.push(`  '${item.slot}/${item.id}': require('./${publishedFile}'),`);
     continue;
   }
-  const portraitRgba = await bakePortrait(item);
+  const layerOnly = item.layerOnly === true || item.file.startsWith('layers-src/');
+  const portraitRgba = layerOnly ? await bakeFromLayer(item) : await bakePortrait(item);
   const portraitFile = `portraits/${item.slot}/${item.id}.webp`;
   fileBytes = await writeWebp(portraitRgba, path.join(assetsRoot, portraitFile));
   // Плитка-превью — тот же запечённый портрет (микро-отличий нет по построению).

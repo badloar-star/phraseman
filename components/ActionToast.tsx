@@ -28,13 +28,14 @@ import {
 import { themedToastChrome } from '../constants/themedToastChrome';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { soundDirector } from '../modules/audio/sound_director';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { SoundEventId } from '../modules/audio/sound_events';
 import { actionToastToneLabel } from './action_toast_copy';
 
 type ToastPayload = {
   type: ToastType;
   soundEventId?: SoundEventId;
-  /** dev-only: витрина движения запускает гибрид рядом с боевым видом. Default 'classic'. */
+  /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
   messageRu: string;
   messageUk?: string;
@@ -89,7 +90,7 @@ const TOAST_TONES: Record<ToastType, ToastTone> = {
  * отскока. Ошибка — единственная дрожь TOAST.errorShakePx на жёсткой пружине
  * TOAST.errorSpring (закон Motion DNA: дрожь уместна только здесь). Награда —
  * bloom-подложка + микро-пульс иконки SUITE.pulse. Выход всегда короче входа
- * (LUM.exitMs < LUM.resolveMs). Полный cancelAnimation на unmount.
+ * (TOAST.exitMs < TOAST.enterMs). Полный cancelAnimation на unmount.
  */
 function ActionToastHybridCard({
   type,
@@ -104,6 +105,7 @@ function ActionToastHybridCard({
   icon: keyof typeof Ionicons.glyphMap;
   chrome: ReturnType<typeof themedToastChrome>;
 }) {
+  const reduceMotion = useReduceMotion();
   const opacity = useSharedValue(0);
   const y = useSharedValue(-14);
   const x = useSharedValue(0);
@@ -111,11 +113,19 @@ function ActionToastHybridCard({
   const iconScale = useSharedValue(1);
 
   useEffect(() => {
-    opacity.value = withTiming(1, { duration: LUM.resolveMs, easing: Easing.out(Easing.cubic) });
+    if (reduceMotion) {
+      opacity.value = 1;
+      y.value = 0;
+      x.value = 0;
+      bloom.value = 0;
+      iconScale.value = 1;
+      return;
+    }
+    opacity.value = withTiming(1, { duration: TOAST.enterMs, easing: Easing.out(Easing.cubic) });
     if (type === 'error' || type === 'warning') {
       y.value = withSpring(0, TOAST.errorSpring);
       x.value = withDelay(
-        LUM.resolveMs - 40,
+        TOAST.enterMs - 40,
         withSequence(
           ...TOAST.errorShakePx.map((v) => withTiming(v, { duration: TOAST.errorShakeStepMs, easing: Easing.linear })),
         ),
@@ -124,9 +134,9 @@ function ActionToastHybridCard({
       y.value = withSpring(0, LUM.settle);
     }
     if (type === 'reward') {
-      bloom.value = withDelay(LUM.resolveMs * 0.4, withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) }));
+      bloom.value = withDelay(TOAST.enterMs * 0.4, withTiming(1, { duration: LUM.contentMs, easing: Easing.out(Easing.cubic) }));
       iconScale.value = withDelay(
-        LUM.resolveMs + 40,
+        TOAST.enterMs + 40,
         withSequence(
           withSpring(1.14, SUITE.pulse),
           withSpring(1, SUITE.pulse),
@@ -141,7 +151,7 @@ function ActionToastHybridCard({
       cancelAnimation(iconScale);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [type]);
+  }, [reduceMotion, type]);
 
   const cardStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -151,7 +161,7 @@ function ActionToastHybridCard({
   const iconStyle = useAnimatedStyle(() => ({ transform: [{ scale: iconScale.value }] }));
 
   return (
-    <Reanimated.View style={cardStyle}>
+    <Reanimated.View style={[styles.toastMotion, cardStyle]}>
       <LinearGradient
         colors={chrome.cardColors}
         start={{ x: 0, y: 0 }}
@@ -186,10 +196,10 @@ function ActionToastHybridCard({
           <Ionicons name={icon} size={21} color={chrome.accent} />
         </Reanimated.View>
         <View style={styles.copy}>
-          <Text style={[styles.label, { color: chrome.accent }]} numberOfLines={1}>
+          <Text style={[styles.label, { color: chrome.accent }]}>
             {toneLabel}
           </Text>
-          <Text style={[styles.message, { color: chrome.title }]} numberOfLines={3}>
+          <Text style={[styles.message, { color: chrome.title }]}>
             {message}
           </Text>
         </View>
@@ -199,6 +209,11 @@ function ActionToastHybridCard({
 }
 
 const AUTO_DISMISS_MS = 3200;
+/** Запас поверх самой длинной анимации выхода, после которого тост снимается
+ *  принудительно, даже если Animated-колбэк не пришёл. */
+const HARD_DISMISS_GRACE_MS = 900;
+/** Сколько ждём слот арбитра, прежде чем отпустить очередь тостов. */
+const PENDING_SLOT_TIMEOUT_MS = 6000;
 /** Не копить длинный хвост из разных тостов после спама. */
 const MAX_QUEUE = 2;
 /**
@@ -237,6 +252,13 @@ function ActionToast() {
    *  кидает JSApplicationIllegalArgumentException (RedBox в dev, non-fatal в prod). */
   const rafIn = useRef<number | null>(null);
   const rafOut = useRef<number | null>(null);
+  /** зачем: жёсткий предохранитель от залипшего тоста. Скрытие раньше жило
+   *  ТОЛЬКО в колбэке Animated.start(finishDismiss). Если хост в этот момент
+   *  переставал рендериться (арбитр отобрал слот у actionToast — например под
+   *  нативной модалкой награды), Animated-колбэк на размонтированной вьюхе не
+   *  приходил, и плашка «Подарок применён» оставалась на экране навсегда.
+   *  Этот таймер снимает тост независимо от анимации. */
+  const hardDismissTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const runHaptics = (payload: ToastPayload) => {
     // зачем: предупреждение ощущается как ошибка (что-то требует внимания),
@@ -252,6 +274,7 @@ function ActionToast() {
   const startCycle = useCallback((payload: ToastPayload) => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
     if (timer.current) clearTimeout(timer.current);
+    if (hardDismissTimer.current) clearTimeout(hardDismissTimer.current);
     if (rafIn.current != null) cancelAnimationFrame(rafIn.current);
     if (rafOut.current != null) cancelAnimationFrame(rafOut.current);
     showingKeyRef.current = toastKey(payload);
@@ -262,7 +285,7 @@ function ActionToast() {
       queueIfBusy: true,
       rateLimit: { maxStarts: 4, windowMs: 1000 },
     });
-    const hybrid = payload.motionVariant === 'hybrid';
+    const hybrid = payload.motionVariant !== 'classic';
     // Reset animated values before mounting the Animated.View. On Fabric, doing
     // setValue immediately after setToast can trip the React insertion-effect
     // update warning while native animated props are being attached.
@@ -289,7 +312,12 @@ function ActionToast() {
     }
     runHaptics(payload);
     timer.current = setTimeout(() => {
+      let dismissed = false;
       const finishDismiss = () => {
+        if (dismissed) return;
+        dismissed = true;
+        if (hardDismissTimer.current) clearTimeout(hardDismissTimer.current);
+        hardDismissTimer.current = null;
         scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
           setToast(null);
           const dismissedKey = showingKeyRef.current;
@@ -316,6 +344,9 @@ function ActionToast() {
           }
         });
       };
+      // Предохранитель: если Animated-колбэк не придёт (хост размонтирован,
+      // пока слот арбитра занят), тост всё равно снимется по этому таймеру.
+      hardDismissTimer.current = setTimeout(finishDismiss, HARD_DISMISS_GRACE_MS);
       if (hybrid) {
         // Выход короче входа (закон №15): TOAST.exitMs вместо MOTION_DURATION.normal.
         Animated.timing(opacity, { toValue: 0, duration: TOAST.exitMs, useNativeDriver: true }).start(finishDismiss);
@@ -359,11 +390,29 @@ function ActionToast() {
     startCycle(next);
   }, [overlayVisible, startCycle, toast]);
 
+  // зачем: busyRef выставляется в enqueue ДО получения слота арбитра, а таймер
+  // авто-скрытия ставится только внутри startCycle. Если слот не дали (сверху
+  // висит нативная модалка), очередь оставалась «занятой» навсегда: ни этот
+  // тост, ни следующие больше не показывались. Ждём слот ограниченное время и
+  // освобождаем очередь, чтобы хост не залипал.
+  useEffect(() => {
+    if (overlayVisible || !pendingStartRef.current) return undefined;
+    const giveUp = setTimeout(() => {
+      if (!pendingStartRef.current) return;
+      pendingStartRef.current = null;
+      busyRef.current = false;
+      showingKeyRef.current = null;
+      setOverlayWanted(false);
+    }, PENDING_SLOT_TIMEOUT_MS);
+    return () => clearTimeout(giveUp);
+  }, [overlayVisible]);
+
   useEffect(() => {
     const sub = onAppEvent('action_toast', (payload) => enqueue(payload));
     return () => {
       sub.remove();
       if (timer.current) clearTimeout(timer.current);
+      if (hardDismissTimer.current) clearTimeout(hardDismissTimer.current);
       if (rafIn.current != null) cancelAnimationFrame(rafIn.current);
       if (rafOut.current != null) cancelAnimationFrame(rafOut.current);
       cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
@@ -394,14 +443,23 @@ function ActionToast() {
   const tone = TOAST_TONES[toast.type];
   const toneLabel = tone.label[lang] ?? tone.label.ru;
   const chrome = themedToastChrome(themeMode, t);
-  const isHybrid = toast.motionVariant === 'hybrid';
+  const isHybrid = toast.motionVariant !== 'classic';
 
   return (
+    // зачем: аудит 2026-08-17 (скрин владельца, iPhone) — тост показывался
+    // обрезанным слева, хотя host уже имел left:0/right:0. Внешняя обёртка
+    // задаёт геометрию БЕЗ transform (top/left/right/bottom одним куском,
+    // ничем не тронутые), а translateY уезжает во внутренний слой — так
+    // left/right гарантированно резолвятся от полной ширины экрана, а не
+    // пересчитываются вместе со сдвигом анимации на некоторых версиях Fabric.
+    <View
+      style={[styles.hostAnchor, { bottom: bottomOffset }]}
+      pointerEvents="none"
+    >
     <Animated.View
       style={[
         styles.host,
         {
-          bottom: bottomOffset,
           transform: [{ translateY: y }],
           opacity,
         },
@@ -443,29 +501,40 @@ function ActionToast() {
             <Ionicons name={tone.icon} size={21} color={chrome.accent} />
           </View>
           <View style={styles.copy}>
-            <Text style={[styles.label, { color: chrome.accent }]} numberOfLines={1}>
+            <Text style={[styles.label, { color: chrome.accent }]}>
               {toneLabel}
             </Text>
-            <Text style={[styles.message, { color: chrome.title }]} numberOfLines={3}>
+            <Text style={[styles.message, { color: chrome.title }]}>
               {message}
             </Text>
           </View>
         </LinearGradient>
       )}
     </Animated.View>
+    </View>
   );
 }
 
 export default memo(ActionToast);
 
 const styles = StyleSheet.create({
-  host: {
+  // зачем: геометрия (top/left/right) отделена от transform — см. комментарий
+  // у места использования выше.
+  hostAnchor: {
     position: 'absolute',
+    top: 0,
     left: 0,
     right: 0,
     zIndex: 9997,
+    justifyContent: 'flex-end',
+  },
+  host: {
     paddingHorizontal: 14,
     alignItems: 'center',
+  },
+  toastMotion: {
+    width: '100%',
+    maxWidth: 560,
   },
   toast: {
     width: '100%',

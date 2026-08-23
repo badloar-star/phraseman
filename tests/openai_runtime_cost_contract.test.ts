@@ -139,7 +139,7 @@ describe("OpenAI runtime cost controls", () => {
     expect(premiumDialog).toContain("resolveConfiguredDialogModel");
     expect(premiumDialog).toContain("resolveConfiguredDialogQuota");
     expect(premiumDialog).toContain(
-      "const [dialogModel, dialogQuota, stableUid, aiDialogGatedByPremium] = await Promise.all([",
+      "const [aiOff, dialogModel, dialogQuota, stableUid, aiDialogGatedByPremium] = await Promise.all([",
     );
     expect(premiumDialog).toContain(
       "resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL),",
@@ -152,8 +152,8 @@ describe("OpenAI runtime cost controls", () => {
     expect(modelConfig).toContain("const MODEL_DEFAULT = 'gpt-4o-mini'");
     expect(modelConfig).toContain("ALLOWED_DIALOG_MODELS");
     expect(modelConfig).toContain("'gpt-4.1-nano': false");
-    expect(modelConfig).toContain("DIALOG_FREE_DAILY_REPLIES_DEFAULT = 3");
-    expect(modelConfig).toContain("DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 100");
+    expect(modelConfig).toContain("DIALOG_FREE_DAILY_REPLIES_DEFAULT = 10");
+    expect(modelConfig).toContain("DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 200");
     expect(modelConfig).toContain("admin_runtime_config");
     expect(modelConfig).toContain("openAiDialogModelConfig");
     expect(modelConfig).toContain("openAiDialogQuotaConfig");
@@ -254,10 +254,15 @@ describe("OpenAI runtime cost controls", () => {
       "choice_explain_billing",
       "mistake_explain_billing",
       "tournament_ai_billing",
+      "voice_call_billing",
     ];
     for (const collectionName of REQUIRED_BILLING_COLLECTIONS) {
       expect(budgetFn).toContain(`collection: '${collectionName}'`);
     }
+    // Voice rows already contain the all-in estimate (Realtime audio/text plus
+    // transcription); the dashboard must not recalculate them as chat tokens.
+    expect(budgetFn).toContain("collectionName === 'voice_call_billing'");
+    expect(budgetFn).toContain("num(data.estCostUsd)");
     // График расхода по дням (series) отдаётся клиенту.
     expect(budgetFn).toContain("series");
   });

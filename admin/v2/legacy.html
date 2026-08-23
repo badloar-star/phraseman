@@ -16134,7 +16134,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       </label>
       <label style="display:grid;gap:5px;min-width:190px;color:#aaa;font-size:12px;font-weight:700">
         Plus tier replies/day
-        <input id="openai-dialog-premium-daily-replies" type="number" min="0" max="10000" step="1" value="100" style="min-height:38px">
+        <input id="openai-dialog-premium-daily-replies" type="number" min="0" max="10000" step="1" value="200" style="min-height:38px">
       </label>
       <button type="button" onclick="saveOpenAiDialogQuota()">Save quota</button>
       <button type="button" onclick="loadOpenAiDialogQuotaConfig(true)">Reload quota</button>
@@ -38201,11 +38201,11 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       const res = await callable({ action: 'get' });
       const data = res?.data || {};
       const freeDailyReplies = Number(data.freeDailyReplies ?? data.defaultFreeDailyReplies ?? 10);
-      const premiumDailyReplies = Number(data.premiumDailyReplies ?? data.defaultPremiumDailyReplies ?? 100);
+      const premiumDailyReplies = Number(data.premiumDailyReplies ?? data.defaultPremiumDailyReplies ?? 200);
       const freeInput = document.getElementById('openai-dialog-free-daily-replies');
       const premiumInput = document.getElementById('openai-dialog-premium-daily-replies');
       if (freeInput) freeInput.value = String(Number.isFinite(freeDailyReplies) ? freeDailyReplies : 10);
-      if (premiumInput) premiumInput.value = String(Number.isFinite(premiumDailyReplies) ? premiumDailyReplies : 100);
+      if (premiumInput) premiumInput.value = String(Number.isFinite(premiumDailyReplies) ? premiumDailyReplies : 200);
       const updated = Number(data.updatedAtMs || 0) > 0
         ? ` Updated: ${new Date(Number(data.updatedAtMs)).toLocaleString()}.`
         : ' Using default until saved.';

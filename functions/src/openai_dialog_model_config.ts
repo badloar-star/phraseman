@@ -11,8 +11,13 @@ const QUOTA_CONFIG_DOC = 'openai_dialog_quota';
 // аудит C1). Цена 4o-mini сопоставима с nano, остальные json-функции проекта
 // (stats_insights/weekly_review/explain_choice) тоже на 4o-mini.
 const MODEL_DEFAULT = 'gpt-4o-mini';
-export const DIALOG_FREE_DAILY_REPLIES_DEFAULT = 3;
-export const DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 100;
+// зачем: владелец 2026-08-23 поднял дневные капы — фри 3→10 реплик (3 реплики
+// это меньше одного связного диалога, человек упирался в лимит, не увидев
+// ценности), Plus 100→200 (кап 100 приводил к жалобам активных подписчиков,
+// при 4o-mini одна реплика стоит ~$0.0003, то есть даже полный расход 200
+// реплик/день ≈ $0.06 — на порядок дешевле подписки).
+export const DIALOG_FREE_DAILY_REPLIES_DEFAULT = 10;
+export const DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 200;
 const DIALOG_DAILY_REPLIES_MAX = 10000;
 
 export const ALLOWED_DIALOG_MODELS = [

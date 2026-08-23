@@ -21,7 +21,7 @@ import { resolveMaxVoiceConfig } from './max_voice_config';
 import { asVoiceCefr } from './max_voice_prompt';
 import {
   VOICE_QUOTA_COLLECTION,
-  settleVoiceSession,
+  settleVoiceSessionWithXp,
   voiceQuotaDocId,
   voiceSessionClockStartMs,
 } from './max_voice_quota';
@@ -203,39 +203,12 @@ export function detectSpeechDrift(clientSpeechSec: number, audioInputTokens: num
   return clientSpeechSec > serverEstSec * 1.3;
 }
 
-export interface VoiceXpAccrualArgs {
-  authUid: string;
-  stableUid: string;
-  /** «Сырой» XP этой сессии (уже с пер-сессионными клампами computeVoiceXp). */
-  xp: number;
-  xpDailyCap: number;
-  nowMs?: number;
-}
-
-/**
- * Честный дневной XP-кэп: аккумулятор xpAwardedToday живёт в доке квоты
- * (reset по UTC-дню) и обновляется транзакционно на сеттлменте. Кэп применяется
- * к НАКОПЛЕННОМУ за день, не к одной сессии — иначе N сессий в день давали бы
- * N×cap. Возвращает фактически начисленный остаток (0, если кэп уже выбран).
- */
-export async function accrueVoiceXpDaily(db: Firestore, args: VoiceXpAccrualArgs): Promise<number> {
-  const now = args.nowMs ?? Date.now();
-  const cap = Math.max(0, Math.floor(args.xpDailyCap));
-  const xp = Math.max(0, Math.floor(args.xp));
-  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
-  return db.runTransaction(async (tx) => {
-    const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
-    const dayKey = utcDayKey(now);
-    const already = String(data.xpDayKey ?? '') === dayKey ? nonNegInt(data.xpAwardedToday) : 0;
-    const granted = Math.max(0, Math.min(xp, cap - already));
-    tx.set(ref, {
-      xpDayKey: dayKey,
-      xpAwardedToday: already + granted,
-      updatedAtMs: now,
-    }, { merge: true });
-    return granted;
-  });
-}
+// зачем (P1-13, 2026-08-23): accrueVoiceXpDaily + VoiceXpAccrualArgs удалены.
+// Дневной XP-кэп теперь считается ВНУТРИ settleVoiceSessionWithXp, той же
+// транзакцией, что и сеттлмент. Оставлять вторую, отдельную точку начисления
+// на тот же документ опасно: вызов её вдобавок к транзакции начислил бы XP
+// дважды. Формула кэпа (аккумулятор xpAwardedToday + reset по UTC-дню)
+// перенесена в max_voice_quota.ts без изменений.
 
 // ── Billing row ─────────────────────────────────────────────────────────────
 
@@ -438,59 +411,107 @@ export const maxVoiceSessionEnd = onCall({
     resolveMaxVoiceConfig(db),
   ]);
 
-  // Снимок квоты ДО сеттлмента: серверный факт секунд и корень reconnect-чейна
-  // (callGroupId) живут именно там. После settle они уже стёрты.
+  // зачем (P1-13, 2026-08-23): раньше здесь шли ТРИ последовательных обращения
+  // к одному документу voice_call_quotas — quotaRef.get() ради снимка, затем
+  // транзакция settleVoiceSession, затем транзакция accrueVoiceXpDaily. Три
+  // раунд-трипа на каждый звонок, и между ними документ мог измениться
+  // (watchdog, второй end): XP начислялся уже по другому состоянию, чем то,
+  // что прочитал снимок.
+  //
+  // Теперь всё это — одна транзакция settleVoiceSessionWithXp. Она читает док
+  // один раз и отдаёт снимок наружу, поэтому расчёт секунд/usage/XP переехал
+  // в чистые функции, которые транзакция зовёт у себя внутри. Формулы, клампы
+  // и порядок вычислений сохранены 1:1 — менялась только «упаковка».
+  // Ссылка на док квоты нужна и после транзакции — как markerRef для
+  // идемпотентных ops-событий (recordMaxVoiceOpsOnce ниже).
   const quotaRef = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid));
-  const quotaSnap = await quotaRef.get();
-  const quotaData = (quotaSnap.data() ?? {}) as Record<string, unknown>;
-  // Часы разговора: activatedAtMs (первый heartbeat), без него — минт.
-  const startedAtMs = voiceSessionClockStartMs(quotaData);
-  // «Не активирована» = ни activatedAtMs, ни единого heartbeat после минта
-  // (док, заведённый до этой версии сервера, с heartbeat'ами — активна по-старому).
-  const mintedAtMs = num(quotaData.sessionStartedAtMs);
-  const activated = num(quotaData.activatedAtMs) > 0
-    || num(quotaData.lastHeartbeatMs, mintedAtMs) > mintedAtMs;
+
   const clientElapsedSec = nonNegInt(data.elapsedSec);
-  const ownActive = startedAtMs > 0 && text(quotaData.activeSessionId, 80) === sessionId;
-  const wallElapsedSec = ownActive ? Math.max(0, Math.ceil((nowMs - startedAtMs) / 1000)) : 0;
-  // Факт — серверные часы (клиент не может ни раздуть XP, ни ужать списание).
-  // Сессия без активации («алло» не было: брошенная заготовка минта с
-  // пре-экрана, провал SDP) — часы от минта врут; берём min(стена, клиент):
-  // release заготовки шлёт 0 и платит 0, старый клиент короткого звонка
-  // (первый heartbeat через 30с ещё не дошёл) списывается по своим секундам,
-  // но не больше стены.
-  const serverElapsedSec = ownActive
-    ? (activated ? wallElapsedSec : Math.min(wallElapsedSec, clientElapsedSec))
-    : clientElapsedSec;
+  const reportedUsage = sanitizeVoiceUsage(data.usage);
+  const endReason = asVoiceEndReason(data.endReason);
+  const cefr = asVoiceCefr(data.cefr);
+  const replies = nonNegInt(data.repliesCount);
+
+  /**
+   * Серверные часы разговора из снимка дока. Клиентским секундам в деньгах не
+   * верим: факт считается от activatedAtMs (первый heartbeat), иначе от минта.
+   */
+  const serverElapsedFrom = (quotaData: Record<string, unknown>): number => {
+    const startedAtMs = voiceSessionClockStartMs(quotaData);
+    // «Не активирована» = ни activatedAtMs, ни единого heartbeat после минта
+    // (док, заведённый до этой версии сервера, с heartbeat'ами — активна по-старому).
+    const mintedAtMs = num(quotaData.sessionStartedAtMs);
+    const activated = num(quotaData.activatedAtMs) > 0
+      || num(quotaData.lastHeartbeatMs, mintedAtMs) > mintedAtMs;
+    const ownActive = startedAtMs > 0 && text(quotaData.activeSessionId, 80) === sessionId;
+    const wallElapsedSec = ownActive ? Math.max(0, Math.ceil((nowMs - startedAtMs) / 1000)) : 0;
+    // Сессия без активации («алло» не было: брошенная заготовка минта с
+    // пре-экрана, провал SDP) — часы от минта врут; берём min(стена, клиент):
+    // release заготовки шлёт 0 и платит 0, старый клиент короткого звонка
+    // (первый heartbeat через 30с ещё не дошёл) списывается по своим секундам,
+    // но не больше стены.
+    return ownActive
+      ? (activated ? wallElapsedSec : Math.min(wallElapsedSec, clientElapsedSec))
+      : clientElapsedSec;
+  };
+
+  /**
+   * Usage: max(аккумулятор heartbeat'ов, финальный отчёт) — недоехавший последний
+   * пакет не обнуляет расход, а финальный отчёт не может занизить heartbeat'ы.
+   */
+  const usageFrom = (quotaData: Record<string, unknown>): SanitizedVoiceUsageTotals => {
+    const heartbeatUsage = sanitizeVoiceUsage(quotaData.usageTotals);
+    return sanitizeVoiceUsage({
+      audioInputTokens: Math.max(heartbeatUsage.audioInputTokens, reportedUsage.audioInputTokens),
+      audioOutputTokens: Math.max(heartbeatUsage.audioOutputTokens, reportedUsage.audioOutputTokens),
+      cachedTokens: Math.max(heartbeatUsage.cachedTokens, reportedUsage.cachedTokens),
+      textInputTokens: Math.max(heartbeatUsage.textInputTokens, reportedUsage.textInputTokens),
+      textOutputTokens: Math.max(heartbeatUsage.textOutputTokens, reportedUsage.textOutputTokens),
+      textTokens: Math.max(heartbeatUsage.textTokens, reportedUsage.textTokens),
+    });
+  };
+
+  const settle = await settleVoiceSessionWithXp(db, {
+    authUid,
+    stableUid,
+    sessionId,
+    // Секунды считаются из того же снимка, что видит сама транзакция.
+    actualSec: 0,
+    resolveActualSec: serverElapsedFrom,
+    endReason,
+    nowMs,
+    xpDayKey: utcDayKey(nowMs),
+    xpDailyCap: config.xpDailyCap,
+    // Чистая функция: зовётся ВНУТРИ транзакции, к БД не обращается.
+    computeXp: (chargedSec: number, quotaData: Record<string, unknown>) => computeVoiceXp({
+      clientSpeechSec: Math.min(nonNegInt(data.clientSpeechSec), chargedSec),
+      sessionSec: chargedSec,
+      transcriptWordCount: nonNegInt(data.transcriptWordCount),
+      replies,
+      // max(heartbeat-аккумулятор, финальный отчёт) — серверное подтверждение речи.
+      audioInputTokens: usageFrom(quotaData).audioInputTokens,
+      cefr,
+      xpRatePerSpeechMin: config.xpRatePerSpeechMin,
+      xpDailyCap: config.xpDailyCap,
+    }),
+  });
+
+  // зачем: снимок берём из РЕЗУЛЬТАТА транзакции, а не через побочный эффект
+  // колбэка — при alreadySettled (двойной end / гонка с watchdog) транзакция
+  // выходит раньше и resolveActualSec не зовётся, а снимок для drift-лога и
+  // billing нужен в обоих случаях.
+  const quotaData = settle.snapshot;
+  const startedAtMs = voiceSessionClockStartMs(quotaData);
+  const usage: SanitizedVoiceUsageTotals = usageFrom(quotaData);
+  const serverElapsedSec = serverElapsedFrom(quotaData);
+  const xpAwarded = settle.xpAwarded;
+
   if (Math.abs(serverElapsedSec - clientElapsedSec) > 30) {
     // Не фрод сам по себе (сон процесса, kill app) — но сигнал в аналитику.
     console.warn('max_voice_session_end timer drift', {
       sessionId, serverElapsedSec, clientElapsedSec,
     });
   }
-
-  // Usage: max(аккумулятор heartbeat'ов, финальный отчёт) — недоехавший последний
-  // пакет не обнуляет расход, а финальный отчёт не может занизить heartbeat'ы.
-  const heartbeatUsage = sanitizeVoiceUsage(quotaData.usageTotals);
-  const reportedUsage = sanitizeVoiceUsage(data.usage);
-  const usage: SanitizedVoiceUsageTotals = sanitizeVoiceUsage({
-    audioInputTokens: Math.max(heartbeatUsage.audioInputTokens, reportedUsage.audioInputTokens),
-    audioOutputTokens: Math.max(heartbeatUsage.audioOutputTokens, reportedUsage.audioOutputTokens),
-    cachedTokens: Math.max(heartbeatUsage.cachedTokens, reportedUsage.cachedTokens),
-    textInputTokens: Math.max(heartbeatUsage.textInputTokens, reportedUsage.textInputTokens),
-    textOutputTokens: Math.max(heartbeatUsage.textOutputTokens, reportedUsage.textOutputTokens),
-    textTokens: Math.max(heartbeatUsage.textTokens, reportedUsage.textTokens),
-  });
-
-  const endReason = asVoiceEndReason(data.endReason);
-  const settle = await settleVoiceSession(db, {
-    authUid,
-    stableUid,
-    sessionId,
-    actualSec: serverElapsedSec,
-    endReason,
-    nowMs,
-  });
 
   if (settle.alreadySettled) {
     // Двойной end / гонка с watchdog: ничего не списываем и не пишем второй billing.
@@ -501,7 +522,6 @@ export const maxVoiceSessionEnd = onCall({
   await refundVoiceBudgetEstimate(db, (settle.refundedSec / 60) * VOICE_EST_COST_USD_PER_MIN, nowMs)
     .catch(() => {});
 
-  const cefr = asVoiceCefr(data.cefr);
   const clientSpeechSec = Math.min(nonNegInt(data.clientSpeechSec), settle.chargedSec);
   if (detectSpeechDrift(nonNegInt(data.clientSpeechSec), usage.audioInputTokens)) {
     // Фрод-лог, не бан: клиентская оценка речи разошлась с серверной >30%.
@@ -511,28 +531,6 @@ export const maxVoiceSessionEnd = onCall({
       audioInputTokens: usage.audioInputTokens,
     });
   }
-
-  const replies = nonNegInt(data.repliesCount);
-  const sessionXp = computeVoiceXp({
-    clientSpeechSec,
-    sessionSec: settle.chargedSec,
-    transcriptWordCount: nonNegInt(data.transcriptWordCount),
-    replies,
-    // max(heartbeat-аккумулятор, финальный отчёт) — серверное подтверждение речи.
-    audioInputTokens: usage.audioInputTokens,
-    cefr,
-    xpRatePerSpeechMin: config.xpRatePerSpeechMin,
-    xpDailyCap: config.xpDailyCap,
-  });
-  // Честный дневной кэп: применяется к НАКОПЛЕННОМУ за день (док квоты),
-  // а не к каждой сессии в отдельности.
-  const xpAwarded = await accrueVoiceXpDaily(db, {
-    authUid,
-    stableUid,
-    xp: sessionXp,
-    xpDailyCap: config.xpDailyCap,
-    nowMs,
-  });
 
   const chain = (quotaData.reconnectChain ?? {}) as Record<string, unknown>;
   const channel = text(data.channel, 20) === 'half_duplex' ? 'half_duplex' : 'realtime';

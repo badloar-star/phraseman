@@ -280,6 +280,101 @@ export async function settleVoiceSession(db: Firestore, args: VoiceSettleArgs): 
   });
 }
 
+/** Снимок дока квоты ДО сеттлмента: после него activeSessionId/reservedSec стёрты. */
+export interface VoiceSettleSnapshot {
+  /** Сырые поля дока — вызывающему нужны usageTotals, reconnectChain, часы сессии. */
+  data: Record<string, unknown>;
+}
+
+export interface VoiceSettleWithXpArgs extends VoiceSettleArgs {
+  /**
+   * Считает фактические секунды сессии ИЗ СНИМКА дока (серверные часы разговора).
+   * Раньше вызывающий читал док отдельным get() и передавал готовое число —
+   * теперь снимок доступен только внутри транзакции, поэтому расчёт передаётся
+   * сюда. Обязана быть чистой; если не задана, берётся args.actualSec.
+   */
+  resolveActualSec?: (quotaData: Record<string, unknown>) => number;
+  /**
+   * Считает XP этой сессии из ФАКТИЧЕСКИ списанных секунд и снимка дока.
+   * Вызывается ВНУТРИ транзакции, поэтому обязана быть чистой (никаких
+   * обращений к БД/сети) — иначе транзакция станет недетерминированной
+   * при ретрае Firestore.
+   */
+  computeXp: (chargedSec: number, quotaData: Record<string, unknown>) => number;
+  /** UTC-ключ дня для дневного XP-кэпа (вычисляет вызывающий: quota не знает про utcDayKey). */
+  xpDayKey: string;
+  xpDailyCap: number;
+}
+
+export interface VoiceSettleWithXpResult extends VoiceSettleResult {
+  /** Фактически начисленный XP (0, если дневной кэп уже выбран). */
+  xpAwarded: number;
+  /** Снимок дока ДО записи — заменяет отдельный quotaRef.get() у вызывающего. */
+  snapshot: Record<string, unknown>;
+}
+
+/**
+ * Сеттлмент + дневной XP + снимок дока ОДНОЙ транзакцией.
+ *
+ * зачем (P1-13, 2026-08-23): maxVoiceSessionEnd делал три последовательных
+ * обращения к ОДНОМУ документу voice_call_quotas — get() ради снимка, затем
+ * транзакция settle, затем транзакция начисления XP. Три раунд-трипа на каждый
+ * звонок; при этом между ними документ мог измениться (watchdog, второй end),
+ * то есть XP начислялся уже по другому состоянию, чем то, что прочитал снимок.
+ *
+ * Здесь всё читается один раз и пишется одним `tx.set`: дешевле на 2 раунд-трипа
+ * и честнее по гонкам. `settleVoiceSession` НЕ трогаем — её отдельно зовёт
+ * watchdog, которому XP не нужен.
+ *
+ * Идемпотентность прежняя: чужой/закрытый sessionId → no-op, XP не начисляется
+ * (иначе двойной end давал бы XP дважды).
+ */
+export async function settleVoiceSessionWithXp(
+  db: Firestore,
+  args: VoiceSettleWithXpArgs,
+): Promise<VoiceSettleWithXpResult> {
+  const now = args.nowMs ?? Date.now();
+  const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.authUid, args.stableUid));
+  return db.runTransaction(async (tx) => {
+    const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
+    const reservedSec = Math.max(0, Math.floor(num(data.reservedSec)));
+    if (str(data.activeSessionId) !== str(args.sessionId) || reservedSec <= 0) {
+      return { chargedSec: 0, refundedSec: 0, alreadySettled: true, xpAwarded: 0, snapshot: data };
+    }
+    const win = normalizeWindows(data, now);
+    const actualSec = args.resolveActualSec ? args.resolveActualSec(data) : num(args.actualSec);
+    const chargedSec = Math.min(reservedSec, Math.max(0, Math.floor(actualSec)));
+    const refundedSec = reservedSec - chargedSec;
+
+    // Дневной XP-кэп применяется к НАКОПЛЕННОМУ за день, не к одной сессии,
+    // иначе N сессий в день давали бы N×cap.
+    const cap = Math.max(0, Math.floor(args.xpDailyCap));
+    const alreadyToday = str(data.xpDayKey) === args.xpDayKey
+      ? Math.max(0, Math.floor(num(data.xpAwardedToday)))
+      : 0;
+    const sessionXp = Math.max(0, Math.floor(args.computeXp(chargedSec, data)));
+    const xpAwarded = Math.max(0, Math.min(sessionXp, cap - alreadyToday));
+
+    tx.set(ref, {
+      resetAtMs: win.resetAtMs,
+      monthResetAtMs: win.monthResetAtMs,
+      // Кламп в 0: если день/месяц успел перещёлкнуться, возврат не уходит в минус.
+      dailyUsedSec: Math.max(0, win.dailyUsedSec - refundedSec),
+      monthlyUsedSec: Math.max(0, win.monthlyUsedSec - refundedSec),
+      activeSessionId: null,
+      reservedSec: 0,
+      expiresAtMs: 0,
+      lastSettledSessionId: args.sessionId,
+      lastEndReason: str(args.endReason).slice(0, 40) || 'completed',
+      xpDayKey: args.xpDayKey,
+      xpAwardedToday: alreadyToday + xpAwarded,
+      updatedAtMs: now,
+    }, { merge: true });
+
+    return { chargedSec, refundedSec, alreadySettled: false, xpAwarded, snapshot: data };
+  });
+}
+
 export interface VoiceReleaseArgs {
   authUid: string;
   stableUid: string;

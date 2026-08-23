@@ -6,6 +6,7 @@ import {
   releaseVoiceReservation,
   reserveVoiceSeconds,
   settleVoiceSession,
+  settleVoiceSessionWithXp,
   transferReserve,
   voiceQuotaDocId,
 } from './max_voice_quota';
@@ -463,3 +464,98 @@ describe('transferReserve', () => {
   });
 });
 
+describe('settleVoiceSessionWithXp (P1-13: settle + XP + снимок одной транзакцией)', () => {
+  const DAY = '2027-01-15';
+
+  it('списывает секунды и начисляет XP за один проход, отдавая снимок ДО записи', async () => {
+    const { db, state } = makeDb(liveDoc({ usageTotals: { audioInputTokens: 4321 } }));
+
+    const result = await settleVoiceSessionWithXp(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 's1',
+      actualSec: 0,
+      // Секунды считаются из снимка — как это делает maxVoiceSessionEnd.
+      resolveActualSec: (data) => Math.floor(Number(data.reservedSec) / 2),
+      xpDayKey: DAY, xpDailyCap: 100,
+      computeXp: (chargedSec) => chargedSec,
+      nowMs: NOW,
+    });
+
+    expect(result.alreadySettled).toBe(false);
+    expect(result.chargedSec).toBe(160);
+    expect(result.refundedSec).toBe(160);
+    expect(result.xpAwarded).toBe(100); // 160 обрезано дневным кэпом
+    // Снимок — состояние ДО записи: вызывающему нужны usageTotals и reconnectChain.
+    expect(result.snapshot.usageTotals).toEqual({ audioInputTokens: 4321 });
+    expect(result.snapshot.activeSessionId).toBe('s1');
+    // Резерв закрыт, возврат вернулся в дневной/месячный счётчик.
+    expect(state.data!.activeSessionId).toBeNull();
+    expect(state.data!.reservedSec).toBe(0);
+    expect(state.data!.dailyUsedSec).toBe(160);
+    expect(state.data!.xpAwardedToday).toBe(100);
+    expect(state.data!.xpDayKey).toBe(DAY);
+  });
+
+  it('дневной кэп считается от НАКОПЛЕННОГО за день, а не от одной сессии', async () => {
+    const { db, state } = makeDb(liveDoc({ xpDayKey: DAY, xpAwardedToday: 90 }));
+
+    const result = await settleVoiceSessionWithXp(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 's1',
+      actualSec: 60,
+      xpDayKey: DAY, xpDailyCap: 100,
+      computeXp: () => 50,
+      nowMs: NOW,
+    });
+
+    expect(result.xpAwarded).toBe(10); // остаток кэпа, не 50
+    expect(state.data!.xpAwardedToday).toBe(100);
+  });
+
+  it('новый день обнуляет накопленный XP', async () => {
+    const { db } = makeDb(liveDoc({ xpDayKey: '2027-01-14', xpAwardedToday: 100 }));
+
+    const result = await settleVoiceSessionWithXp(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 's1',
+      actualSec: 60,
+      xpDayKey: DAY, xpDailyCap: 100,
+      computeXp: () => 40,
+      nowMs: NOW,
+    });
+
+    expect(result.xpAwarded).toBe(40);
+  });
+
+  it('двойной end не списывает и НЕ начисляет XP второй раз', async () => {
+    const { db, state } = makeDb(liveDoc({ activeSessionId: null, reservedSec: 0, xpAwardedToday: 70, xpDayKey: DAY }));
+
+    const computeXp = jest.fn(() => 50);
+    const result = await settleVoiceSessionWithXp(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 's1',
+      actualSec: 60,
+      xpDayKey: DAY, xpDailyCap: 100,
+      computeXp,
+      nowMs: NOW,
+    });
+
+    expect(result.alreadySettled).toBe(true);
+    expect(result.xpAwarded).toBe(0);
+    expect(computeXp).not.toHaveBeenCalled();
+    expect(state.data!.xpAwardedToday).toBe(70); // не тронут
+    // Снимок отдаётся и здесь: вызывающему он нужен для drift-лога.
+    expect(result.snapshot.activeSessionId).toBeNull();
+  });
+
+  it('чужая сессия (гонка с watchdog) не списывает чужой резерв', async () => {
+    const { db, state } = makeDb(liveDoc({ activeSessionId: 'other' }));
+
+    const result = await settleVoiceSessionWithXp(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 's1',
+      actualSec: 60,
+      xpDayKey: DAY, xpDailyCap: 100,
+      computeXp: () => 50,
+      nowMs: NOW,
+    });
+
+    expect(result.alreadySettled).toBe(true);
+    expect(state.data!.activeSessionId).toBe('other'); // чужой резерв цел
+  });
+});

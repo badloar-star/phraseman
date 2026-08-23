@@ -67,6 +67,10 @@ import {
 } from "./learning_v2_course_released_session_client_v3";
 import { createLearningV2CourseSessionCompletedSpoolV1 } from "./learning_v2_course_session_completed_spool_v1";
 import {
+  learningV2SessionStars,
+  recordLearningV2SessionStarResult,
+} from "./learning_v2_session_star_results_store";
+import {
   resolveLearningV2CourseSessionFullPhraseAudioV1,
   resolveLearningV2CourseSessionSelectableAudioV1,
   type LearningV2CourseSessionAudioPreloadHandleV1,
@@ -215,6 +219,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [wrongCount, setWrongCount] = useState(0);
   const [hintUsed, setHintUsed] = useState(false);
   const [selectedChoiceId, setSelectedChoiceId] = useState<string | null>(null);
+  const [lastWrongResponseId, setLastWrongResponseId] = useState<string | null>(null);
   const [orderedIds, setOrderedIds] = useState<readonly string[]>([]);
   const [transcript, setTranscript] = useState("");
   const [savingPhrase, setSavingPhrase] = useState(false);
@@ -343,7 +348,9 @@ export default function LearningV2DirectSessionPlayerV1() {
   });
   const wrongExplanation =
     wrongCount >= 2 && auxiliary
-      ? auxiliary.secondErrorExplanationByLocale[lang]
+      ? (lastWrongResponseId
+          ? auxiliary.responseFeedbackById?.[lastWrongResponseId]?.[lang]
+          : null) ?? auxiliary.secondErrorExplanationByLocale[lang]
       : null;
   const progressOrdinal = introDone ? practiceIndex + 4 : 1;
   const totalInteractions = runSummary?.interactionCount ?? 10;
@@ -384,6 +391,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     setResult("idle");
     setAttempts(1);
     setWrongCount(0);
+    setLastWrongResponseId(null);
     setHintUsed(false);
     setSelectedChoiceId(null);
     setOrderedIds([]);
@@ -462,7 +470,53 @@ export default function LearningV2DirectSessionPlayerV1() {
         void hapticSuccess();
         return;
       }
+      if (verdict.resultCode === "technical_invalid") {
+        setSelectedChoiceId(null);
+        setOrderedIds([]);
+        setTranscript("");
+        void hapticError();
+        return;
+      }
+      if (
+        auxiliary &&
+        (studyTarget === "en" || studyTarget === "fr") &&
+        auxiliary.save.targetText
+      ) {
+        void captureCurrentAccountObjectiveAttempt({
+          attemptId: `learning-v2:${sessionRunIdRef.current}:${practice.interactionId}:${attempts}`,
+          studyTarget,
+          verdict: "wrong",
+          objective: true,
+          content: {
+            sourceKind: "learning_v2",
+            sourceId: practice.interactionId,
+            canonicalTarget: auxiliary.save.targetText,
+            sourceMeaning: auxiliary.save.meaningByLocale[lang],
+            lessonId: material?.lessonId,
+            tokens: auxiliary.save.targetText.split(/\s+/),
+            distractors: practice.responseOptions.map((option) => option.text),
+          },
+          facet: {
+            kind: practice.inputMode === "ordered_tokens"
+              ? "word_order"
+              : practice.inputMode === "scripted_speech"
+                ? "pronunciation"
+                : practice.family === "listen_choose" || practice.family === "sound_contrast"
+                  ? "listening"
+                  : "form",
+            expected: auxiliary.save.targetText,
+          },
+        }).catch(() => {});
+      }
       setWrongCount((value) => value + 1);
+      setLastWrongResponseId(
+        practice.inputMode === "single_choice"
+          ? selectedChoiceId
+          : orderedIds.find(
+              (responseId) =>
+                auxiliary?.responseFeedbackById?.[responseId] !== undefined,
+            ) ?? null,
+      );
       setAttempts((value) => Math.min(99, value + 1));
       setSelectedChoiceId(null);
       setOrderedIds([]);
@@ -477,7 +531,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         );
       }
     },
-    [answerShake, attempts, hintUsed, practice, reducedMotion, result, run],
+    [answerShake, attempts, auxiliary, hintUsed, lang, material?.lessonId, orderedIds, practice, reducedMotion, result, run, selectedChoiceId, studyTarget],
   );
 
   const finish = useCallback(async () => {
@@ -512,6 +566,15 @@ export default function LearningV2DirectSessionPlayerV1() {
         accountScopeHash,
         runSummary.courseSessionId,
       );
+      // зачем (владелец, 22.08): звёзды 0–3 на пройденных узлах карты. Пишем в
+      // ОТДЕЛЬНУЮ витрину, а не в канонический прогресс — тот объявляет
+      // masteryAuthority: "none" и запечатан fingerprint'ом. Сбой записи здесь
+      // не может помешать завершению сессии: функция глотает свои ошибки.
+      await recordLearningV2SessionStarResult({
+        accountScopeHash,
+        courseSessionId: runSummary.courseSessionId,
+        stars: learningV2SessionStars(completion.interactionCompletions),
+      });
       safeRouterBack(router, "/learning-v2/course");
     } catch {
       finishingRef.current = false;

@@ -92,6 +92,12 @@ import {
   type LearningV2WalletBalanceSnapshot,
 } from "../learning_v2_wallet_balance_store";
 import { WALLET_SUBUNITS_PER_STAR } from "../../modules/learning-v2/contracts/wallet";
+import {
+  hydrateLearningV2SessionStarResults,
+  peekLearningV2SessionStarResults,
+  subscribeLearningV2SessionStarResults,
+  type LearningV2SessionStarResultsV1,
+} from "../learning_v2_session_star_results_store";
 import { getExamMedalTier, getEarnedDots } from "../medal_utils";
 import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
@@ -1182,6 +1188,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   fonts,
   reduceMotion,
   runtimeActive,
+  earnedStars,
   onSessionPress,
   onSessionCompleted,
 }: Readonly<{
@@ -1192,6 +1199,8 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   reduceMotion: boolean;
   /** useRuntimeActive(ownerVisible) таба «Уроки» — гейт дыхания текущего узла. */
   runtimeActive: boolean;
+  /** Звёзды 0–3 за пройденную сессию (витрина, без авторитета). */
+  earnedStars?: 0 | 1 | 2 | 3;
   onSessionPress: (
     lessonOrdinal: number,
     sessionOrdinal: number,
@@ -1336,6 +1345,19 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
                   tr: "kilitli",
                   pl: "zablokowana",
                 })
+          }${
+            completed && !checkpoint && earnedStars !== undefined
+              ? `, ${earnedStars} ${triLang(lang, {
+                  ru: "из 3 звёзд",
+                  uk: "з 3 зірок",
+                  es: "de 3 estrellas",
+                  "pt-BR": "de 3 estrelas",
+                  vi: "trên 3 sao",
+                  id: "dari 3 bintang",
+                  tr: "/ 3 yıldız",
+                  pl: "z 3 gwiazdek",
+                })}`
+              : ""
           }`}
           onPress={() =>
             onSessionPress(row.lessonOrdinal, row.sessionOrdinal, row.state)
@@ -1376,6 +1398,35 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
             </Text>
           )}
         </LearningV2MapNode>
+        {completed && !checkpoint && earnedStars !== undefined ? (
+          // зачем (спека mock 08): три звезды результата под пройденным узлом.
+          // Место под них зарезервировано всегда (высота строки не зависит от
+          // наличия результата), поэтому появление звёзд не двигает карту.
+          <View
+            pointerEvents="none"
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+            style={{
+              position: "absolute",
+              top: nodeH + 8,
+              left: 0,
+              width: nodeW,
+              transform: [{ translateX: wave }],
+              flexDirection: "row",
+              justifyContent: "center",
+              gap: 2,
+            }}
+          >
+            {[0, 1, 2].map((slot) => (
+              <Ionicons
+                key={slot} // guard-ok: три фиксированных слота, вставок нет
+                name={slot < earnedStars ? "star" : "star-outline"}
+                size={9}
+                color={slot < earnedStars ? theme.gold : theme.textMuted}
+              />
+            ))}
+          </View>
+        ) : null}
         {checkpoint ? (
           <View
             pointerEvents="none"
@@ -1914,9 +1965,14 @@ export default function LessonsTab({
       let cancelled = false;
       void withAccountTransitionLock(async () => {
         const stableId = await getStableId();
+        const accountScopeHash =
+          deriveLocalOfflineProgressAccountScopeHash(stableId);
         const state = await createLearningV2CourseLocalProgressStoreV1(
           AsyncStorage,
-        ).load(deriveLocalOfflineProgressAccountScopeHash(stableId));
+        ).load(accountScopeHash);
+        // зачем: звёзды 0–3 на пройденных узлах читаются в том же прогреве, что
+        // и прогресс — один заход на диск вместо двух, ноль запросов к серверу.
+        await hydrateLearningV2SessionStarResults(accountScopeHash);
         return {
           completedSessionIds: state.completedSessionIds,
           currentSessionId: state.currentSessionId,
@@ -2106,6 +2162,19 @@ export default function LessonsTab({
       : new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 }).format(
           learningV2WalletBalance.balanceSubunits / WALLET_SUBUNITS_PER_STAR,
         );
+  // Витрина звёзд 0–3 за пройденные сессии: подписка на локальное хранилище,
+  // без авторитета над прогрессом и без сети.
+  const [learningV2StarResults, setLearningV2StarResults] =
+    useState<LearningV2SessionStarResultsV1>(() =>
+      peekLearningV2SessionStarResults(),
+    );
+  useEffect(() => {
+    const refresh = () =>
+      setLearningV2StarResults(peekLearningV2SessionStarResults());
+    const unsubscribe = subscribeLearningV2SessionStarResults(refresh);
+    refresh();
+    return unsubscribe;
+  }, []);
   const [learningV2StarFlight, setLearningV2StarFlight] = useState<{
     key: number;
     from: LearningV2StarFlightPoint;
@@ -3445,6 +3514,16 @@ export default function LessonsTab({
                       fonts={f}
                       reduceMotion={learningV2ReduceMotionPreference !== false}
                       runtimeActive={lessonsRuntimeActive}
+                      earnedStars={
+                        item.kind === "v2_session"
+                          ? learningV2StarResults[
+                              learningV2CourseSessionIdV1(
+                                item.row.lessonOrdinal,
+                                item.row.sessionOrdinal,
+                              )
+                            ]
+                          : undefined
+                      }
                       onSessionPress={handleLearningV2SessionPress}
                       onSessionCompleted={handleLearningV2SessionCompletedAt}
                     />

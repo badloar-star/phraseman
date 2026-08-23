@@ -450,26 +450,47 @@ describe('E2E: полный успешный звонок от старта до
 // ── 2. Barge-in ─────────────────────────────────────────────────────────────
 
 describe('E2E: перебивание ИИ (barge-in)', () => {
-  it('очередит ответ на речь ученика до полного окончания текущего аудио MAX', async () => {
+  it('НЕ отвечает на «речь», начавшуюся пока MAX говорил — это эхо громкой связи', async () => {
+    // Живой звонок владельца 2026-08-23: «говорит, обрывает на половине и снова
+    // говорит то же самое». Остаток эха из динамика доходит до VAD как речь
+    // ученика; раньше клиент ставил на неё ответ в очередь, MAX начинал
+    // реплику заново — и цикл повторялся.
     const h = createHarness();
     await bringUpCall(h);
     const dc = h.pc().dc;
 
-    // Приветствие уже запросило один response.create и сейчас звучит.
     dc.deliver({ type: 'response.created', response: {} });
     dc.deliver({ type: 'output_audio_buffer.started' });
     expect(dc.sentOfType('response.create')).toHaveLength(1);
 
-    // Ученик начал и закончил реплику на хвосте MAX. Новый ответ нельзя
-    // создавать ни поверх активной генерации, ни поверх доигрывающего буфера.
+    // «Речь» пришла ПОВЕРХ звучащего аудио MAX — подозрение на эхо.
     dc.deliver({ type: 'input_audio_buffer.speech_started' });
     dc.deliver({ type: 'input_audio_buffer.speech_stopped' });
     expect(dc.sentOfType('response.create')).toHaveLength(1);
 
     dc.deliver({ type: 'response.done', response: {} });
+    dc.deliver({ type: 'output_audio_buffer.stopped' });
+    // Ключевое: после окончания аудио НОВОГО ответа нет — MAX не отвечает сам себе.
     expect(dc.sentOfType('response.create')).toHaveLength(1);
 
+    await h.client.end();
+  });
+
+  it('настоящая реплика ученика в тишине по-прежнему получает ответ', async () => {
+    // Обратная сторона защиты от эха: если ученик заговорил ПОСЛЕ того, как MAX
+    // замолчал, ответ обязан создаться — иначе разговор бы умер.
+    const h = createHarness();
+    await bringUpCall(h);
+    const dc = h.pc().dc;
+
+    dc.deliver({ type: 'response.created', response: {} });
+    dc.deliver({ type: 'output_audio_buffer.started' });
+    dc.deliver({ type: 'response.done', response: {} });
     dc.deliver({ type: 'output_audio_buffer.stopped' });
+    expect(dc.sentOfType('response.create')).toHaveLength(1);
+
+    dc.deliver({ type: 'input_audio_buffer.speech_started' });
+    dc.deliver({ type: 'input_audio_buffer.speech_stopped' });
     expect(dc.sentOfType('response.create')).toHaveLength(2);
 
     await h.client.end();

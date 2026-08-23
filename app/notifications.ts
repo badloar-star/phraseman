@@ -2673,6 +2673,15 @@ export const setupNotificationTapHandler = (
             router.push({ pathname: '/premium_modal', params: { context: 'notification_upsell' } } as any);
           });
           break;
+        case 'max_lesson_reminder':
+          // зачем (2026-08-23, P2-1): напоминание обещает конкретный урок —
+          // тап ведёт прямо на подготовку звонка, а не на главную: лишний тап
+          // между обещанием и уроком ломает ритуал. format=tutor, потому что
+          // обещание темы даёт именно учитель.
+          scheduleNav(() => {
+            router.push({ pathname: '/max_call_prestart', params: { format: 'tutor' } } as any);
+          });
+          break;
         case 'gift_expiring':
           // Тап по «подарок сгорит» ведёт прямо к сгорающему — в раздел подарков.
           scheduleNav(() => {

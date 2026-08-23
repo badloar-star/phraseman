@@ -540,6 +540,8 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
   // Мягкое завершение (end_call учителя): ждём конца аудио, потом end().
   let remoteAudioPlaying = false;
+  /** Речь во входном буфере началась, пока MAX ещё говорил → подозрение на эхо. */
+  let speechStartedDuringOutput = false;
   let firstRemoteAudioLatencyMs: number | null = null;
   let endAfterAudioReason: MaxCallEndReason | null = null;
   let endAfterAudioTimer: ReturnType<typeof setTimeout> | null = null;
@@ -721,10 +723,23 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
     switch (type) {
       case 'input_audio_buffer.speech_started':
+        // зачем (владелец 2026-08-23, живой звонок): «говорит, обрывает на
+        // половине и снова говорит то же самое». Клиент играет через громкую
+        // связь, остаток эха доходит до VAD как речь ученика. Отмечаем речь,
+        // начавшуюся ПОКА MAX ГОВОРИЛ, — отвечать на неё заново нельзя.
+        if (remoteAudioPlaying) speechStartedDuringOutput = true;
         emitUi({ type: 'speech_started' });
         return;
       case 'input_audio_buffer.speech_stopped':
         emitUi({ type: 'speech_stopped' });
+        // Эхо собственной речи не должно порождать новый ответ: иначе MAX
+        // отвечает сам себе по кругу. Настоящее перебивание ученика приходит
+        // отдельной кнопкой barge-in, а его реплика после паузы даст новое
+        // speech_started уже в тишине.
+        if (speechStartedDuringOutput) {
+          speechStartedDuringOutput = false;
+          return;
+        }
         queueDefaultResponse();
         return;
       case 'response.created':
@@ -745,6 +760,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         return;
       case 'output_audio_buffer.stopped':
         remoteAudioPlaying = false;
+        speechStartedDuringOutput = false;
         noteGreetingAudioStopped();
         emitUi({ type: 'audio_out_stopped' });
         finishEndAfterAudioIfDue();
@@ -752,6 +768,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         return;
       case 'output_audio_buffer.cleared':
         remoteAudioPlaying = false;
+        speechStartedDuringOutput = false;
         noteGreetingAudioStopped();
         emitUi({ type: 'audio_out_cleared' });
         finishEndAfterAudioIfDue();

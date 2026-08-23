@@ -19,6 +19,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { SpeakingPanel, buildSpeakingPanelTheme, type SpeakingPanelStatus } from '../components/SpeakingPanel';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
+import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { triLang, type Lang } from '../constants/i18n';
 import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
@@ -648,6 +649,18 @@ function MistakePracticeSessionScreen() {
         >
           <Ionicons name="eye-off-outline" size={22} color={t.textMuted} />
         </Pressable>
+        {/* зачем: разбор собственных ошибок — самое обидное место для
+            бага: если задание составлено неверно, человек ошибётся снова и
+            снова, а сообщить об этом было негде. */}
+        <ReportErrorButton
+          screen="mistake_practice"
+          dataId={`mistake_${entry.exercise.exerciseId ?? 'unknown'}`}
+          dataText={`${entry.exercise.prompt}
+OK: ${entry.exercise.correctAnswer}`}
+          variant="icon-flag"
+          accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку у завданні', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan pada latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w zadaniu' })}
+          testID="mistake-practice-report"
+        />
       </View>
 
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">

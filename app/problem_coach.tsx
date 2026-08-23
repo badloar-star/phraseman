@@ -8,6 +8,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getVolumetricShadow, useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
@@ -134,14 +135,24 @@ export default function ProblemCoach() {
     } else {
       hapticError();
       setWrongCount((value) => value + 1);
-      logMistake(step.sentence, 0, 'coach', 'wrong_pick', {
-        tokenText: step.focusWords[0] ?? step.correctAnswerId,
-        expected: step.correctAnswerId,
-        picked: option.text,
-        rawCategory: diagnosisTraining.category,
-        category: diagnosisTraining.category,
-        grammarTag: diagnosisTraining.id,
-      }, studyTarget);
+      if (studyTarget === 'en' || studyTarget === 'fr') {
+        void captureCurrentAccountObjectiveAttempt({
+          attemptId: `diagnosis:${diagnosisTraining.id}:${step.id}:${Date.now()}`,
+          studyTarget,
+          verdict: 'wrong',
+          objective: true,
+          content: {
+            sourceKind: 'diagnosis_coach',
+            sourceId: `${diagnosisTraining.id}:${step.id}`,
+            canonicalTarget: step.sentence,
+            sourceMeaning: step.explanationBlock.ru,
+          },
+          facet: {
+            kind: 'form',
+            expected: step.focusWords[0] ?? step.correctAnswerId,
+          },
+        });
+      }
     }
   };
 
@@ -205,7 +216,22 @@ export default function ProblemCoach() {
           {copy(diagnosisTraining.title)}
         </Text>
       </View>
-      <View style={styles.backBtn} />
+      {/* зачем: справа стояла пустая заглушка ради симметрии — заняли
+          её флагом: разбор показывает предложение, варианты и объяснение,
+          а пожаловаться на них было негде. Без шага держим место пустым,
+          чтобы заголовок не сдвинулся. */}
+      {step ? (
+        <ReportErrorButton
+          screen="problem_coach"
+          dataId={`diagnosis_${diagnosisTraining.id}_${step.id}`}
+          dataText={step.sentence}
+          variant="icon-flag"
+          accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в разборе', uk: 'Повідомити про помилку в розборі', es: 'Informar de un error en el análisis', 'pt-BR': 'Relatar erro na análise', vi: 'Báo lỗi trong phân tích', id: 'Laporkan kesalahan pada pembahasan', tr: 'Çözümlemedeki hatayı bildir', pl: 'Zgłoś błąd w analizie' })}
+          testID="problem-coach-report"
+        />
+      ) : (
+        <View style={styles.backBtn} />
+      )}
     </View>
   );
 
@@ -395,7 +421,6 @@ export default function ProblemCoach() {
           </View>
           {renderScore()}
         </View>
-
         {shouldShowPracticeThought && (
           <View style={[styles.infoBox, { borderColor: accentBorder, backgroundColor: accentSoft }]}>
             <Text style={[styles.infoTitle, { color: t.accent, fontSize: f.label }]}>
@@ -415,17 +440,14 @@ export default function ProblemCoach() {
             </Text>
           </View>
         )}
-
         <Text style={[styles.questionText, { color: t.textPrimary, fontSize: f.sub }]}>
           {copy(step.microTask)}
         </Text>
-
         <View style={[styles.sentenceBox, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
           <Text style={[styles.sentenceText, { color: t.textPrimary, fontSize: Math.max(17, f.body) }]}>
             {step.sentence}
           </Text>
         </View>
-
         <View style={styles.optionsList}>
           {visibleOptions.map((option, idx) => {
             const isRight = option.id === step.correctAnswerId;
@@ -464,7 +486,6 @@ export default function ProblemCoach() {
             );
           })}
         </View>
-
         {feedback && (
           <>
             <View style={[styles.feedbackBox, { backgroundColor: softColor, borderColor }]}>

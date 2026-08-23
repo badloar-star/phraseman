@@ -6,11 +6,21 @@ describe('RevenueCat Premium access wiring', () => {
   const initSource = fs.readFileSync(path.join(root, 'app', 'revenuecat_init.ts'), 'utf8');
   const guardSource = fs.readFileSync(path.join(root, 'app', 'premium_guard.ts'), 'utf8');
 
+  // зачем: сторож охраняет ПРАВИЛО «премиум = канонический entitlement `premium`»,
+  // а не то, как записан тип аргумента. Раньше матч был прибит к тексту
+  // `(info as any)`; когда денежный путь типизировали по-настоящему
+  // (CustomerInfo вместо unknown), сторож упал, хотя правило не нарушено.
+  // Теперь матчим сам вызов, игнорируя приведение типа, — сторож переживает
+  // типизацию, но по-прежнему ловит возврат к подсчёту всех entitlement'ов
+  // (любой посторонний продукт открывал бы премиум).
+  const callsCanonicalEntitlement = (source: string) =>
+    /revenueCatCustomerInfoHasPremiumAccess\(\s*info(\s+as\s+any)?\s*\)/.test(source);
+
   it('uses the canonical premium entitlement at startup and in the live listener', () => {
-    expect(initSource).toContain('revenueCatCustomerInfoHasPremiumAccess(info as any)');
-    expect(initSource).not.toContain('Object.keys((info as any).entitlements.active).length > 0');
+    expect(callsCanonicalEntitlement(initSource)).toBe(true);
+    expect(initSource).not.toContain('.entitlements.active).length > 0');
     expect(initSource).not.toContain('const entitlementsActive = Object.keys');
-    expect(guardSource).toContain('revenueCatCustomerInfoHasPremiumAccess(info as any)');
+    expect(callsCanonicalEntitlement(guardSource)).toBe(true);
   });
 
   it('binds delayed listener and startup writes to the same account generation', () => {

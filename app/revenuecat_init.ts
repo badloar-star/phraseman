@@ -1,4 +1,4 @@
-import Purchases, { LOG_LEVEL, type PurchasesPackage } from 'react-native-purchases';
+import Purchases, { LOG_LEVEL, type CustomerInfo, type PurchasesPackage } from 'react-native-purchases';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
@@ -185,12 +185,17 @@ export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): P
     return true;
   }
 
-  let loginCustomerInfo: unknown = null;
+  // зачем: тип CustomerInfo здесь НЕ стираем в unknown. Раньше стирали, а ниже
+  // восстанавливали через `as any` — компилятор переставал проверять денежный
+  // путь (премиум/план/метаданные). Purchases.logIn уже отдаёт типизированный
+  // customerInfo, ему и доверяем; проверка полей всё равно живёт в
+  // revenuecat_premium_access.ts (?., clean, typeof), она никуда не делась.
+  let loginCustomerInfo: CustomerInfo | null = null;
   if (currentAppUserId !== canonicalUserId) {
     if (!isCurrent()) return false;
     const loginResult = await Purchases.logIn(canonicalUserId).catch(() => null);
     if (!isCurrent() || !loginResult) return false;
-    loginCustomerInfo = (loginResult as { customerInfo?: unknown } | null)?.customerInfo ?? null;
+    loginCustomerInfo = loginResult.customerInfo ?? null;
   }
 
   // logIn resolving is not proof that the SDK actually moved from A to B.
@@ -206,10 +211,10 @@ export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): P
   await Purchases.setAttributes(attributes).catch(() => {});
   if (!isCurrent()) return false;
 
-  if (revenueCatCustomerInfoHasPremiumAccess(loginCustomerInfo as any)) {
-    const metadata = revenueCatPremiumMetadata(loginCustomerInfo as any);
+  if (revenueCatCustomerInfoHasPremiumAccess(loginCustomerInfo)) {
+    const metadata = revenueCatPremiumMetadata(loginCustomerInfo);
     const plan = inferPremiumPlanFromProductId(
-      metadata.productId ?? (loginCustomerInfo as { activeSubscriptions?: string[] } | null)?.activeSubscriptions?.[0],
+      metadata.productId ?? loginCustomerInfo?.activeSubscriptions?.[0],
       'monthly',
     );
     if (!isCurrent()) return false;
@@ -238,16 +243,19 @@ export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): P
  * best-effort удаляет старый QA-флаг, чтобы не отобрать оплаченный доступ.
  */
 async function applyPushedCustomerInfo(
-  info: unknown,
+  // зачем: единственный вызывающий (слушатель RC) передаёт результат
+  // readCurrentRevenueCatCustomerInfo — уже типизированный CustomerInfo.
+  // Приём `unknown` заставлял восстанавливать тип через `as any` внутри.
+  info: CustomerInfo,
   isCurrent: () => boolean,
 ): Promise<void> {
   try {
     if (!isCurrent()) return;
     const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
     if (!isCurrent() || resolveTesterNoPremiumOverride(noPremium)) return;
-    const subs = (info as any)?.activeSubscriptions;
-    if (revenueCatCustomerInfoHasPremiumAccess(info as any)) {
-      const metadata = revenueCatPremiumMetadata(info as any);
+    const subs = info?.activeSubscriptions;
+    if (revenueCatCustomerInfoHasPremiumAccess(info)) {
+      const metadata = revenueCatPremiumMetadata(info);
       // Не понижаем уже сохранённый lifetime до monthly при пуш-апдейте без productId:
       // lifetime (non-consumable) RC может прислать без productId в активных подписках,
       // а inferPremiumPlanFromProductId без сигнала вернёт дефолт 'monthly'.
@@ -265,9 +273,13 @@ async function applyPushedCustomerInfo(
   }
 }
 
+// зачем: возвращаем настоящий CustomerInfo, а не `unknown`. Тип стирался тут,
+// и каждый вызывающий восстанавливал его через `as any` — на денежном пути
+// (премиум, план, expiry) компилятор молчал. Purchases.getCustomerInfo уже
+// типизирован; сужение до null делают проверки поколения аккаунта ниже.
 async function readCurrentRevenueCatCustomerInfo(
   isCurrent: () => boolean,
-): Promise<unknown | null> {
+): Promise<CustomerInfo | null> {
   if (!isCurrent()) return null;
   const canonicalUserId = await getCanonicalUserId().catch(() => null);
   if (!isCurrent() || !canonicalUserId) return null;
@@ -341,7 +353,7 @@ async function _doInit(): Promise<void> {
     if (info && isInitAccountCurrent()) {
       await withAccountTransitionLockWithDeadline(async () => {
       if (!isInitAccountCurrent()) return;
-      if (revenueCatCustomerInfoHasPremiumAccess(info as any)) {
+      if (revenueCatCustomerInfoHasPremiumAccess(info)) {
         const scopedVip = await readVipSnapshotForGeneration(initAccount);
         if (!isInitAccountCurrent()) return;
         // Тестер «Снять премиум» в dev/preview — не перезаписывать локальное
@@ -360,7 +372,7 @@ async function _doInit(): Promise<void> {
         if (resolveTesterNoPremiumOverride(noPremium)) {
           if (__DEV__) console.log('[RevenueCat] init: skip sync premium_active (tester_no_premium)');
         } else {
-          const metadata = revenueCatPremiumMetadata(info as any);
+          const metadata = revenueCatPremiumMetadata(info);
           const legacyAdminVip =
             adminOverride === 'true' ||
             (existingPlan.toLowerCase() === 'admin_grant' && adminOverride !== 'false');
@@ -391,7 +403,7 @@ async function _doInit(): Promise<void> {
               ? existingPlan as PremiumStorePlan
               : null;
           const plan = existingStorePlan ?? inferPremiumPlanFromProductId(
-            metadata.productId ?? (info as any).activeSubscriptions?.[0],
+            metadata.productId ?? info.activeSubscriptions?.[0],
             'monthly',
           );
           await persistStorePremiumLocally(plan, metadata, isInitAccountCurrent, false, true);

@@ -22,7 +22,6 @@ type NavigationSection =
   | 'dialogs'
   | 'lingman'
   | 'arena'
-  | 'tournaments'
   | 'friends'
   | 'settings'
   | 'league'
@@ -58,16 +57,13 @@ const SECTION_ROOTS: ReadonlyMap<string, NavigationSection> = new Map([
   ['/lessons_list', 'lessons'],
 
   ['/flashcards', 'flashcards'],
+  ['/flashcards_packs', 'flashcards'],
+  ['/flashcards_my_packs', 'flashcards'],
   ['/ai_dialog_home', 'dialogs'],
   ['/lingman_videos', 'lingman'],
 
   ['/arena', 'arena'],
-  ['/arena_ranks', 'arena'],
-  ['/arena_tops', 'arena'],
-  ['/arena_history', 'arena'],
 
-  ['/tournaments', 'tournaments'],
-  ['/(tabs)/tournaments', 'tournaments'],
 
   ['/friends', 'friends'],
   ['/(tabs)/friends', 'friends'],
@@ -111,9 +107,6 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/ai_dialog_consent_gate',
   '/ai_dialog_session',
   '/ai_companion_session',
-  '/max_call_prestart',
-  '/max_call_session',
-  '/max_voice_review',
 ]);
 
 // Единственный настоящий redirect в этой семье. premium_modal теперь сам
@@ -145,9 +138,7 @@ const SCREEN_OWNED_ANDROID_BACK_PATHS: ReadonlySet<string> = new Set([
   '/lesson_complete',
   '/lesson_words',
   '/pack_opening',
-  '/review',
   '/shards_shop',
-  '/tournament_lobby',
 ]);
 
 const MAX_HISTORY = 50;
@@ -230,6 +221,14 @@ function basePath(path: string): string {
 }
 
 function fixedChildSection(pathname: string): NavigationSection | null {
+  // MAX — самостоятельная поверхность главной. Даже старый deeplink или
+  // сохранённый стек из «Диалогов» не должен возвращать звонок в тот раздел.
+  if (
+    pathname === '/max_call_prestart'
+    || pathname === '/max_call_session'
+    || pathname === '/max_voice_review'
+  ) return 'home';
+
   if (
     pathname.startsWith('/learning-v2/')
     || pathname.startsWith('/learning_v2_')
@@ -249,14 +248,13 @@ function fixedChildSection(pathname: string): NavigationSection | null {
 
   if (
     pathname.startsWith('/flashcards')
+    || pathname === '/mistake_practice_session'
     || pathname === '/community_pack_create'
     || pathname === '/pack_opening'
   ) return 'flashcards';
 
-    || pathname === '/mistake_practice_session'
   if (pathname.startsWith('/lingman_')) return 'lingman';
   if (pathname.startsWith('/arena_')) return 'arena';
-  if (pathname.startsWith('/tournament_')) return 'tournaments';
 
   if (
     pathname.startsWith('/settings_')
@@ -294,9 +292,13 @@ function sourceSectionHint(href: string): NavigationSection | null {
   if (/settings/.test(hint)) return 'settings';
   if (/mistake|practice|diagnos/.test(hint)) return 'practice';
   if (/flash|card|pack/.test(hint)) return 'flashcards';
-  if (/lesson|dialog|max_call/.test(hint)) return 'lessons';
-  if (/arena/.test(hint)) return 'arena';
-  if (/tournament|season/.test(hint)) return 'tournaments';
+  if (/max_call|max_voice/.test(hint)) return 'home';
+  if (/lesson|dialog/.test(hint)) return 'lessons';
+  // зачем 2026-08-23: раздел «турниры» выключен и заархивирован. Подсказка
+  // season принадлежит ЖИВЫМ экранам сезонного пропуска Арены
+  // (season_pass.tsx, arena_season_pass.tsx) — иначе они остались бы без
+  // раздела и возврат уводил бы на общий запасной путь.
+  if (/arena|season/.test(hint)) return 'arena';
   if (/friend|referral/.test(hint)) return 'friends';
   if (/streak|stats/.test(hint)) return 'stats';
   if (/home|afterwin|winback/.test(hint)) return 'home';
@@ -521,7 +523,6 @@ function fallbackForSection(section: NavigationSection | null): string {
     case 'dialogs': return '/(tabs)/lessons';
     case 'lingman': return '/lingman_videos';
     case 'arena': return '/arena';
-    case 'tournaments': return '/(tabs)/tournaments';
     case 'friends': return '/(tabs)/friends';
     case 'settings': return '/(tabs)/settings';
     default: return HOME_BACK_FALLBACK;

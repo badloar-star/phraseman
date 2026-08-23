@@ -25,8 +25,8 @@ import { ArenaTimerRing } from '../components/arena/ArenaTimerRing';
 import { ArenaComboMeter } from '../components/arena/ArenaComboMeter';
 import { ArenaStarFlight } from '../components/arena/ArenaStarFlight';
 import { ArenaVersusIntro } from '../components/arena/ArenaVersusIntro';
-import { V2Cta, V2Segments } from '../components/tournament/tournament_v2_ui';
-import { useTournamentPalette, v2motion } from '../components/tournament/tournament_theme';
+import { V2Cta, V2Segments } from '../components/ui/v2_ui';
+import { useTournamentPalette, v2motion } from '../components/ui/v2_theme';
 import { arenaText } from '../modules/arena/copy';
 import type { ArenaMatch, ArenaMatchReward, ArenaPlayer } from '../modules/arena/contract';
 import {
@@ -928,4 +928,16 @@ const styles = StyleSheet.create({
   awardBox: { gap: 2, alignItems: 'center' },
   awardHead: { fontSize: 20, fontWeight: '900' },
   awardLine: { fontSize: 12, fontWeight: '700' },
+  // зачем 2026-08-23: шесть стилей алерта матча использовались в JSX, но в
+  // таблице отсутствовали — styles.alertBody и соседи резолвились в undefined,
+  // и все три окна (выход, ошибка отправки, отклонённый отчёт) рисовались без
+  // фона, отступов и формы кнопок. Восстановлены по родному образцу
+  // arena_invite.tsx, чтобы окна Арены выглядели одинаково. Скругление, тень и
+  // ширину карточки даёт сам HybridAlertShell — здесь только внутренняя вёрстка.
+  alertBody: { padding: 24 },
+  alertTitle: { fontWeight: '700', textAlign: 'center' },
+  alertText: { marginTop: 14, marginBottom: 22, textAlign: 'center' },
+  alertPrimary: { minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  alertSecondary: { minHeight: 52, marginTop: 10, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  alertButtonText: { fontSize: 16, fontWeight: '700' },
 });

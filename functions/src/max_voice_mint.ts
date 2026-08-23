@@ -18,7 +18,7 @@ import { createHash, randomUUID } from 'crypto';
 import type { Firestore } from 'firebase-admin/firestore';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
-import { resolvePremiumAccess } from './premium_status';
+import { resolveIsMaxTier, resolvePremiumAccess } from './premium_status';
 import { aiGloballyDisabled } from './remote_gates';
 import { resolveMaxVoiceConfig, type MaxVoiceConfig } from './max_voice_config';
 import {
@@ -273,6 +273,24 @@ export function resolveTrialState(
 
 export type VoiceTrialVariant = 'companion' | 'scenario';
 
+/**
+ * Пробный звонок для тех, у кого нет подписки: доступен, если ни разу не был
+ * использован или прошло trialRefreshDays (владелец 2026-08-23 — раз в полгода).
+ * null = пробник исчерпан или выключен, линия закрыта пейволом.
+ *
+ * Вариант берём из trialMode: 'auto' даёт сценарий (кофейня с Mia) — он ярче
+ * показывает живой голос, чем свободный разговор.
+ */
+export function resolveTrialAccess(
+  quotaData: Record<string, unknown> | undefined,
+  config: MaxVoiceConfig,
+  nowMs: number,
+): VoiceTrialVariant | null {
+  const { available } = resolveTrialState(quotaData, config, nowMs);
+  if (!available) return null;
+  return config.trialMode === 'companion' ? 'companion' : 'scenario';
+}
+
 /** Персона и сцена дефолтного пробника (сценарная ветка): кофейня с Mia. */
 export const TRIAL_PERSONA_NAME = 'Mia';
 export const TRIAL_PERSONA_ROLE = 'a friendly barista at a cozy coffee shop';
@@ -299,10 +317,34 @@ interface VoiceGateContext {
   stableUid: string;
   config: MaxVoiceConfig;
   isPremium: boolean;
+  /** Активна ли отдельная подписка MAX (большой пакет минут). */
+  isMaxTier: boolean;
   quotaData: Record<string, unknown>;
   access: 'max' | 'trial';
   trialVariant: VoiceTrialVariant | null;
   nowMs: number;
+}
+
+/**
+ * Месячный пакет минут по тиру (владелец 2026-08-23, релизные лимиты):
+ * MAX — большой, Плюс/Про — витринный, free — только пробный звонок.
+ *
+ * Дневной потолок общий для всех платных тиров: он растягивает месячный пакет,
+ * а не режет доступ.
+ */
+export function monthlyVoiceCapFor(
+  config: MaxVoiceConfig,
+  isMaxTier: boolean,
+  isPremium: boolean,
+  access: 'max' | 'trial' = 'max',
+): number {
+  if (isMaxTier) return config.monthlyVoiceSecMax;
+  if (isPremium) return config.premiumMonthlyVoiceSecMax;
+  // Пробник без подписки: месячного пакета у него нет, но своя единственная
+  // сессия должна поместиться — иначе резерв упрётся в ноль и звонок не
+  // состоится вовсе. Разовость держит trialUsedAtMs, а не месячный счётчик.
+  if (access === 'trial') return config.trialCallSec + config.graceTailSec;
+  return 0;
 }
 
 /**
@@ -346,19 +388,46 @@ async function resolveVoiceGates(
   }
 
   // Подписку резолвит сервер — телу запроса не верим (паттерн premium_dialog).
-  // Подписка и док квоты — независимые чтения, тоже параллельно.
-  const [isPremium, quotaSnap] = await Promise.all([
+  // Подписка, тир MAX и док квоты — независимые чтения, поэтому параллельно.
+  const [isPremium, isMaxTier, quotaSnap] = await Promise.all([
     resolvePremiumAccess(db, stableUid, Date.now(), authUid),
+    resolveIsMaxTier(db, stableUid, Date.now(), authUid),
     db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(authUid, stableUid)).get(),
   ]);
   const quotaData = (quotaSnap.data() ?? {}) as Record<string, unknown>;
 
-  // зачем: владелец 2026-08-16 — до релиза подписка звонок НЕ гейтит («единственный
-  // гейт будет пейвол, лимиты введу сам при релизе»). Поэтому доступ 'max' выдаётся
-  // всем, а исчерпанный пробник (voice_max_required) больше не закрывает линию.
-  // voiceForPremiumBeta оставлен в конфиге: он вернёт разделение одним переключением,
-  // когда владелец будет ставить пейвол перед релизом.
-  return { db, authUid, stableUid, config, isPremium, quotaData, access: 'max', trialVariant: null, nowMs };
+  // зачем (владелец 2026-08-23, релизный пейвол): до этого доступ 'max' выдавался
+  // ВСЕМ безусловно — звонки не гейтились вовсе, и один человек мог нажечь
+  // ~$173/мес. Теперь тир решает размер месячного пакета:
+  //   MAX      -> 120 мин/мес;
+  //   Плюс/Про -> 15 мин/мес (витрина);
+  //   без подписки -> только пробный звонок 3 мин раз в 180 дней.
+  // Админ приравнен к MAX: свои тестовые звонки не должны упираться в пейвол.
+  if (isMaxTier || isAdmin) {
+    return { db, authUid, stableUid, config, isPremium, isMaxTier: true, quotaData, access: 'max', trialVariant: null, nowMs };
+  }
+  if (isPremium) {
+    return { db, authUid, stableUid, config, isPremium, isMaxTier: false, quotaData, access: 'max', trialVariant: null, nowMs };
+  }
+
+  // Без подписки — пробник. Исчерпан (или выключен) -> линия закрыта, клиент
+  // показывает пейвол MAX по коду voice_max_required.
+  //
+  // ⚠️ РЕКОННЕКТ ИСКЛЮЧЁН ИЗ ПЕЙВОЛА: он продолжает УЖЕ оплаченную и уже
+  // начатую сессию. Иначе просадка сети посреди пробного урока обрывала бы
+  // человека пейволом — он терял бы звонок, за который уже «заплатил» своим
+  // единственным пробником. Резерв секунд при этом не выдаётся заново:
+  // reconnectOf переносит остаток прежней сессии (transferReserve ниже).
+  const isReconnect = text(data.reconnectOf, 80) !== '';
+  const trial = resolveTrialAccess(quotaData, config, nowMs);
+  if (!trial && isReconnect) {
+    return { db, authUid, stableUid, config, isPremium, isMaxTier: false, quotaData, access: 'trial', trialVariant: 'scenario', nowMs };
+  }
+  if (!trial) {
+    console.warn('max_voice_mint rejected', { reason: 'voice_max_required' });
+    throw new HttpsError('permission-denied', 'voice_max_required');
+  }
+  return { db, authUid, stableUid, config, isPremium, isMaxTier: false, quotaData, access: 'trial', trialVariant: trial, nowMs };
 }
 
 /** Read-only остаток дня/месяца (для preflight; резерв всё равно транзакционный). */
@@ -366,12 +435,17 @@ export function estimateQuotaRemaining(
   quotaData: Record<string, unknown>,
   config: MaxVoiceConfig,
   nowMs: number,
+  tier?: { isMaxTier: boolean; isPremium: boolean; access: 'max' | 'trial' },
 ): { dayRemainingSec: number; monthRemainingSec: number } {
   const dailyUsed = nowMs >= num(quotaData.resetAtMs) ? 0 : Math.max(0, num(quotaData.dailyUsedSec));
   const monthlyUsed = nowMs >= num(quotaData.monthResetAtMs) ? 0 : Math.max(0, num(quotaData.monthlyUsedSec));
+  // Без тира (старые вызовы) считаем по максимальному пакету — прежнее поведение.
+  const monthlyCap = tier
+    ? monthlyVoiceCapFor(config, tier.isMaxTier, tier.isPremium, tier.access)
+    : config.monthlyVoiceSecMax;
   return {
     dayRemainingSec: Math.max(0, config.dailyVoiceSecMax - dailyUsed),
-    monthRemainingSec: Math.max(0, config.monthlyVoiceSecMax - monthlyUsed),
+    monthRemainingSec: Math.max(0, monthlyCap - monthlyUsed),
   };
 }
 
@@ -441,7 +515,7 @@ export const maxVoicePreflight = onCall({
     nowMs,
     request.auth.token?.admin === true,
   );
-  const { dayRemainingSec, monthRemainingSec } = estimateQuotaRemaining(ctx.quotaData, ctx.config, nowMs);
+  const { dayRemainingSec, monthRemainingSec } = estimateQuotaRemaining(ctx.quotaData, ctx.config, nowMs, { isMaxTier: ctx.isMaxTier, isPremium: ctx.isPremium, access: ctx.access });
   if (Math.min(dayRemainingSec, monthRemainingSec) < 60) {
     console.warn('max_voice_preflight rejected', { reason: 'voice_quota_exhausted', dayRemainingSec, monthRemainingSec });
     throw new HttpsError('resource-exhausted', 'voice_quota_exhausted');
@@ -744,7 +818,7 @@ export const maxVoiceMint = onCall({
       nowMs,
     });
     reservedSec = transfer.reservedSec;
-    const remaining = estimateQuotaRemaining(ctx.quotaData, config, nowMs);
+    const remaining = estimateQuotaRemaining(ctx.quotaData, config, nowMs, { isMaxTier: ctx.isMaxTier, isPremium: ctx.isPremium, access: ctx.access });
     dayRemainingSec = remaining.dayRemainingSec;
     monthRemainingSec = remaining.monthRemainingSec;
   } else {
@@ -760,7 +834,9 @@ export const maxVoiceMint = onCall({
       formatCapSec: capSec,
       graceTailSec: config.graceTailSec,
       dailyVoiceSecMax: config.dailyVoiceSecMax,
-      monthlyVoiceSecMax: config.monthlyVoiceSecMax,
+      // Месячный пакет — по тиру: MAX 120 мин, Плюс/Про 15 мин (владелец
+      // 2026-08-23). Пробник сюда не попадает: у него свой одноразовый лимит.
+      monthlyVoiceSecMax: monthlyVoiceCapFor(config, ctx.isMaxTier, ctx.isPremium, ctx.access),
       nowMs,
     });
     reservedSec = reserve.reservedSec;

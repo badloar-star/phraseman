@@ -67,8 +67,18 @@ export interface MaxVoiceConfig {
   tutorName: string;
   tutorVoice: string;
   graceTailSec: number;
+  /** Дневной потолок — общий для всех платных тиров (растягивает месячный пакет). */
   dailyVoiceSecMax: number;
+  /** Месячный пакет тира MAX (отдельная подписка на голосового учителя). */
   monthlyVoiceSecMax: number;
+  /**
+   * Месячный пакет обычной подписки (Плюс/Про) — витрина MAX.
+   *
+   * зачем (владелец 2026-08-23): «Плюс/Про + отдельная MAX». Обычный подписчик
+   * платит те же деньги, а звонки идут сверху как чистый расход, поэтому пакет
+   * маленький: дать попробовать и захотеть MAX, но не жечь бюджет.
+   */
+  premiumMonthlyVoiceSecMax: number;
   trialCallSec: number;
   trialRefreshDays: number;
   trialMode: VoiceTrialMode;
@@ -114,13 +124,23 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   tutorName: 'Max',
   tutorVoice: 'cedar',
   graceTailSec: 20,
-  // зачем: владелец 2026-08-16 — «все лимиты снять, лимиты введу сам при релизе».
-  // Ставим верхнюю границу клампа (4ч/день, 48ч/месяц): счётчик продолжает считать
-  // минуты для будущего пейвола, но практически звонок не упирается в потолок.
-  dailyVoiceSecMax: 14_400,
-  monthlyVoiceSecMax: 172_800,
+  // зачем (владелец 2026-08-23, релизные лимиты): прежние 4ч/день и 48ч/месяц
+  // были ТЕСТОВЫМИ («лимиты введу сам при релизе») и позволяли одному человеку
+  // нажечь ~$173/мес. Теперь минуты разделены по тирам:
+  //   MAX      — 120 мин/мес (2 часа), большой пакет отдельной подписки;
+  //   Плюс/Про — 15 мин/мес, витрина: попробовать и захотеть MAX;
+  //   free     — только пробный звонок 3 мин раз в 6 месяцев (ниже).
+  // Дневной потолок 20 минут общий: он не мешает нормальному ученику (два урока
+  // по 10 минут), но растягивает месячный пакет минимум на 6 дней и не даёт
+  // выжечь его за один вечер.
+  dailyVoiceSecMax: 1_200,
+  monthlyVoiceSecMax: 7_200,
+  premiumMonthlyVoiceSecMax: 900,
   trialCallSec: 180,
-  trialRefreshDays: 30,
+  // Пробник free — раз в полгода (владелец 2026-08-23), а не раз в месяц:
+  // 3 минуты живого голоса дают почувствовать фичу, но повторять её каждый
+  // месяц бесплатно — чистый расход без выручки.
+  trialRefreshDays: 180,
   trialMode: 'auto',
   // зачем: владелец 2026-08-16 — «не договаривает до конца, будто обрывается»:
   // max_output_tokens считает АУДИО-токены (~20 на секунду речи), и 120/160
@@ -152,10 +172,12 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   reconnectChainMax: { auto: 2, manual: 1 },
   reconnectFreeGapSecTotal: 60,
   heartbeatSec: 30,
-  // зачем: владелец 2026-08-16 — лимиты снять до релиза. Бюджетная лестница
-  // остаётся живым механизмом (её планка задаётся доком), но дефолт поднят так,
-  // чтобы тестовые звонки в неё не упирались. Перед релизом вернуть реальное число.
-  globalDailyBudgetUsd: 5_000,
+  // зачем (владелец 2026-08-23): прежние $5000/день были ТЕСТОВЫМ значением
+  // («перед релизом вернуть реальное число»). $50/день — потолок трат НА ВСЕХ:
+  // при себестоимости ~$0.06/мин после кэш-рычагов этого хватает примерно на
+  // 80 активных подписчиков MAX, а в случае бага или атаки максимальная потеря
+  // за сутки — $50, а не весь баланс OpenAI. Поднимать по мере роста платящих.
+  globalDailyBudgetUsd: 50,
   budgetSoftPct: 0.8,
   // зачем: владелец 2026-08-16 — «звонок должен работать всегда без исключений».
   // Дефолт ВКЛ: линия открыта сразу, выключение — только явным админ-действием.
@@ -277,6 +299,7 @@ export function clampMaxVoiceConfig(raw: unknown): MaxVoiceConfig {
     graceTailSec: clampInt(r.graceTailSec, 0, 120, d.graceTailSec),
     dailyVoiceSecMax: clampInt(r.dailyVoiceSecMax, 60, 14_400, d.dailyVoiceSecMax),
     monthlyVoiceSecMax: clampInt(r.monthlyVoiceSecMax, 60, 172_800, d.monthlyVoiceSecMax),
+    premiumMonthlyVoiceSecMax: clampInt(r.premiumMonthlyVoiceSecMax, 0, 172_800, d.premiumMonthlyVoiceSecMax),
     trialCallSec: clampInt(r.trialCallSec, 30, HARD_MAX_SESSION_SEC, d.trialCallSec),
     trialRefreshDays: clampInt(r.trialRefreshDays, 1, 365, d.trialRefreshDays),
     trialMode: pickEnum(r.trialMode, ['auto', 'scenario', 'companion'] as const, d.trialMode),

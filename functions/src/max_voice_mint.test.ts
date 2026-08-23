@@ -84,8 +84,12 @@ jest.mock('./auth_identity', () => ({
 }));
 
 const mockResolvePremium = jest.fn(async () => false);
+// Тир MAX резолвится отдельно от премиума (владелец 2026-08-23: «Плюс/Про +
+// отдельная MAX»), поэтому у теста два независимых переключателя доступа.
+const mockResolveMaxTier = jest.fn(async () => false);
 jest.mock('./premium_status', () => ({
   resolvePremiumAccess: (...args: unknown[]) => mockResolvePremium(...(args as [])),
+  resolveIsMaxTier: (...args: unknown[]) => mockResolveMaxTier(...(args as [])),
 }));
 
 const mockAiDisabled = jest.fn(async () => false);
@@ -175,6 +179,8 @@ beforeEach(() => {
   docs.clear();
   setConfig();
   mockResolvePremium.mockReset().mockResolvedValue(false as never);
+  // По умолчанию тира MAX нет — тесты гейта включают его явно там, где нужно.
+  mockResolveMaxTier.mockReset().mockResolvedValue(false as never);
   mockAiDisabled.mockReset().mockResolvedValue(false as never);
   mockResolveStableUid.mockClear();
   fetchMock.mockReset();
@@ -205,15 +211,53 @@ describe('gate order (App Check → kill switch → subscription → quota → m
     await expect(callMint({}, null)).rejects.toMatchObject({ code: 'unauthenticated', message: 'auth_required' });
   });
 
-  // зачем: владелец 2026-08-16 снял DEV-гейт звонка навсегда («должно работать
-  // всегда без исключений, единственный гейт — пейвол»). Прежние три теста
-  // сторожили ОТМЕНЁННОЕ правило (dev_admin_required + аллоулист devTestUids) —
-  // они заменены на сторожа обратного контракта: линия открыта без админ-прав.
-  it('opens the line for an ordinary account with no admin claim and no allowlist', async () => {
+  // зачем (владелец 2026-08-23, релизный пейвол): до этого access:'max' выдавался
+  // ВСЕМ безусловно — звонки не гейтились вовсе, один человек мог нажечь ~$173/мес.
+  // Теперь тир решает: MAX -> 120 мин/мес, Плюс/Про -> 15 мин/мес, без подписки ->
+  // только пробник раз в 180 дней. Эти тесты сторожат сам пейвол.
+  it('без подписки и с израсходованным пробником линия ЗАКРЫТА пейволом', async () => {
     setConfig({ devTestUids: [] });
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS }); // пробник уже израсходован
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS }); // пробник использован вчера
 
-    await expect(callMint()).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
+    await expect(callMint()).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'voice_max_required',
+    });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('подписчик MAX получает линию и большой месячный пакет', async () => {
+    mockResolveMaxTier.mockResolvedValue(true as never);
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+
+    const res = await callMint();
+    expect(res).toMatchObject({ ok: true, value: 'ek_test_123' });
+    // 120 мин/мес = 7200 с; за вычетом резерва этой сессии остаток меньше, но
+    // существенно больше витринного пакета Плюс (900 с).
+    expect(Number(res.limits.monthRemainingSec)).toBeGreaterThan(900);
+  });
+
+  it('подписчик Плюс/Про получает линию, но витринный пакет 15 минут', async () => {
+    mockResolvePremium.mockResolvedValue(true as never);
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+
+    const res = await callMint();
+    expect(res).toMatchObject({ ok: true, value: 'ek_test_123' });
+    // Пакет Плюс — 900 с всего, поэтому остаток не может превышать его.
+    expect(Number(res.limits.monthRemainingSec)).toBeLessThanOrEqual(900);
+  });
+
+  it('без подписки, но со свежим пробником — звонок в пробном формате', async () => {
+    docs.set(QUOTA_PATH, {}); // пробник ни разу не использован
+
+    const res = await callMint();
+    expect(res).toMatchObject({ ok: true, value: 'ek_test_123' });
+    expect(res.trialVariant).toBeTruthy();
+  });
+
+  it('админ звонит как MAX — свои тестовые звонки не упираются в пейвол', async () => {
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    await expect(callAdminMint()).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
   });
 
   it('never answers dev_admin_required again (the DEV gate is gone for good)', async () => {
@@ -227,6 +271,8 @@ describe('gate order (App Check → kill switch → subscription → quota → m
   });
 
   it('fires gates strictly in order: kill switches → quota → mint', async () => {
+    // Пейвол приехал (2026-08-23): тест про другое, поэтому даём тир MAX.
+    mockResolveMaxTier.mockResolvedValue(true as never);
     // Всё закрыто сразу — побеждает самый ранний гейт.
     mockAiDisabled.mockResolvedValue(true as never);
     setConfig({ gate_ai_voice_call: false });
@@ -256,11 +302,15 @@ describe('gate order (App Check → kill switch → subscription → quota → m
   // зачем: до релиза подписка звонок не гейтит (решение владельца 2026-08-16).
   // Ни отсутствие премиума, ни снятый voiceForPremiumBeta не закрывают линию —
   // voice_max_required вернётся только вместе с пейволом перед релизом.
-  it('gives MAX access without premium and with the beta flag off', async () => {
+  // зачем: прежний тест сторожил ОТМЕНЁННОЕ правило «доступ без подписки».
+  // Владелец 2026-08-23 поставил пейвол — теперь сторожим обратное: без тира
+  // и без пробника линия закрыта, сколько бы флагов ни было выключено.
+  it('флаг беты не открывает линию без подписки — решает тир', async () => {
     mockResolvePremium.mockResolvedValue(false as never);
+    mockResolveMaxTier.mockResolvedValue(false as never);
     setConfig({ voiceForPremiumBeta: false });
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
-    await expect(callMint()).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
+    await expect(callMint()).rejects.toMatchObject({ message: 'voice_max_required' });
   });
 });
 
@@ -310,24 +360,37 @@ describe('rate limit — 60 fresh mints/hour, reconnects excluded', () => {
 // «пробник» (access: 'trial') сейчас НЕДОСТИЖИМА — все получают полный доступ.
 // Тесты здесь сторожат новое поведение: израсходованный
 // пробник больше никого не закрывает, а звонок идёт по обычному сценарному капу.
-describe('trial branch is bypassed until the paywall ships', () => {
-  it('gives a practiced learner a full call instead of a trial variant', async () => {
+// зачем (владелец 2026-08-23): пейвол приехал, и ветка пробника снова живая.
+// Прежние три теста сторожили ОТМЕНЁННОЕ правило «пробник обходится, доступ
+// всем» — заменены на сторожей реального поведения.
+describe('пробник без подписки', () => {
+  it('подписчик MAX звонит полноценно, без пробникового варианта', async () => {
+    mockResolveMaxTier.mockResolvedValue(true as never);
     const res = await callMint({ cefr: 'B1' });
     expect(res.trialVariant).toBeNull();
     expect(res.ok).toBe(true);
   });
 
-  it('does not stamp trialUsedAtMs and does not use the trial cap', async () => {
+  it('свежий пробник ставит trialUsedAtMs и режет сессию до пробникового капа', async () => {
     const res = await callMint({ cefr: 'A1' });
-    expect(res.trialVariant).toBeNull();
-    // Сценарный кап 300 + 20 хвоста, а не пробниковые 180 + 20.
-    expect(res.limits.reservedSec).toBe(320);
-    expect(docs.get(QUOTA_PATH)!.trialUsedAtMs).toBeUndefined();
+    expect(res.trialVariant).toBeTruthy();
+    // Пробниковые 180 + 20 хвоста, а не сценарные 300 + 20.
+    expect(res.limits.reservedSec).toBe(200);
+    expect(docs.get(QUOTA_PATH)!.trialUsedAtMs).toBeTruthy();
   });
 
-  it('a recently used trial no longer refuses access', async () => {
+  it('израсходованный пробник закрывает линию пейволом', async () => {
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
-    await expect(callMint({})).resolves.toMatchObject({ ok: true, trialVariant: null });
+    await expect(callMint({})).rejects.toMatchObject({
+      code: 'permission-denied',
+      message: 'voice_max_required',
+    });
+  });
+
+  it('пробник снова доступен через trialRefreshDays (полгода)', async () => {
+    // 181 день назад — окно обновления прошло.
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - 181 * DAY_MS });
+    await expect(callMint({})).resolves.toMatchObject({ ok: true });
   });
 });
 
@@ -347,6 +410,8 @@ describe('budget ladder', () => {
   // Один минт на тест: успешный звонок оставляет живой резерв, и второй подряд
   // упёрся бы в voice_session_active — это защита от двух параллельных звонков.
   it('80–100%: no trials to cut, sessions get capped at 300s', async () => {
+    // Пейвол приехал (2026-08-23): тест про другое, поэтому даём тир MAX.
+    mockResolveMaxTier.mockResolvedValue(true as never);
     docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 20 });
 
     const res = await callMint({ format: 'companion' }); // кап формата 480 → soft-кап 300
@@ -467,13 +532,15 @@ describe('mint response contract — both key spellings + limits', () => {
   });
 
   it('limits carry the per-session cap, per-CEFR hint delay and the daily max', async () => {
+    // Пейвол приехал (2026-08-23): тест про другое, поэтому даём тир MAX.
+    mockResolveMaxTier.mockResolvedValue(true as never);
     mockResolvePremium.mockResolvedValue(true as never);
     const res = await callMint({ cefr: 'B1' });
 
     expect(res.limits).toMatchObject({
-      dayRemainingSec: 14_080, // дневной потолок 14400 − резерв 320
+      dayRemainingSec: 880, // дневной потолок 1200 − резерв 320 (релизные лимиты 2026-08-23)
       sessionCapSec: 300, // число секунд ЭТОЙ сессии, не карта форматов
-      dailyVoiceSecMax: 14_400,
+      dailyVoiceSecMax: 1_200,
       heartbeatSec: 30,
       wrapUpLeadSec: 75,
       graceTailSec: 20,
@@ -638,11 +705,13 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
   });
 
   it('reports access and remaining quota without touching tokens or reserves', async () => {
+    // Пейвол приехал (2026-08-23): тест про другое, поэтому даём тир MAX.
+    mockResolveMaxTier.mockResolvedValue(true as never);
     mockResolvePremium.mockResolvedValue(true as never);
     const res = await preflight({ auth: { uid: AUTH }, data: {} });
 
     expect(res).toMatchObject({ ok: true, allowed: true, access: 'max', trialVariant: null });
-    expect(res.limits).toMatchObject({ dayRemainingSec: 14_400, monthRemainingSec: 172_800, dailyVoiceSecMax: 14_400 });
+    expect(res.limits).toMatchObject({ dayRemainingSec: 1_200, monthRemainingSec: 7_200, dailyVoiceSecMax: 1_200 });
     expect(fetchMock).not.toHaveBeenCalled();
     expect(docs.get(QUOTA_PATH)).toBeUndefined(); // резервов не создаёт
   });
@@ -664,6 +733,8 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
   // зачем: DEV-гейт снят навсегда (владелец 2026-08-16) — preflight обязан
   // пускать обычный аккаунт без админ-claim и без записи в devTestUids.
   it('lets an ordinary account preflight without an admin claim or allowlist', async () => {
+    // Пейвол приехал (2026-08-23): тест про другое, поэтому даём тир MAX.
+    mockResolveMaxTier.mockResolvedValue(true as never);
     setConfig({ devTestUids: [] });
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
 
@@ -672,6 +743,8 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
   });
 
   it('returns a read-only tutor preview without minting or reserving a call', async () => {
+    // Пейвол приехал (2026-08-23): тест про другое, поэтому даём тир MAX.
+    mockResolveMaxTier.mockResolvedValue(true as never);
     docs.set(`voice_tutor_memory/${voiceTutorMemoryDocId(AUTH, STABLE)}`, { callCount: 3, goalMastery: {} });
     const res = await preflight({
       auth: { uid: AUTH },

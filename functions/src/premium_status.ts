@@ -34,11 +34,26 @@ function hasMeaningfulPlan(plan: string): boolean {
   return plan !== '' && plan !== 'null' && plan !== 'undefined';
 }
 
+/**
+ * Планы тира MAX (голосовой учитель). Владелец 2026-08-23: «Плюс/Про + отдельная
+ * MAX», годовую не делаем — при неизвестном реальном потреблении годовой тариф
+ * фиксирует экономику на 12 месяцев вперёд.
+ *
+ * MAX включает в себя обычный премиум: подписчик MAX не должен терять доступ к
+ * тому, что уже даёт Плюс, поэтому план попадает и в isStorePremiumPlan ниже.
+ */
+export const MAX_TIER_PLANS: readonly string[] = ['max_monthly'];
+
+function isMaxTierPlan(plan: string): boolean {
+  return MAX_TIER_PLANS.includes(plan);
+}
+
 function isStorePremiumPlan(plan: string): boolean {
   // 'lifetime' — non-consumable «навсегда»: premium_expiry='0' (бессрочный).
   // Без этой ветки сервер счёл бы синхронизированный premium_plan='lifetime'
   // не-store-планом и отрезал бы платящему доступ.
-  return plan === 'monthly' || plan === 'yearly' || plan === 'annual' || plan === 'lifetime';
+  return plan === 'monthly' || plan === 'yearly' || plan === 'annual' || plan === 'lifetime'
+    || isMaxTierPlan(plan);
 }
 
 function isTruthyFlag(value: unknown): boolean {
@@ -348,6 +363,21 @@ export function isLifetimePlanActive(progress: ProgressLike, now: number = Date.
 }
 
 /**
+ * Активен ли тир MAX (голосовой учитель) — отдельная подписка поверх Плюс/Про.
+ *
+ * зачем (владелец 2026-08-23): до этого access:'max' выдавался ВСЕМ безусловно,
+ * то есть звонки не гейтились вовсе и один человек мог нажечь ~$173/мес.
+ * Теперь минуты разделены по тирам: free — пробник, Плюс/Про — малый пакет,
+ * MAX — большой. Проверка идёт по тому же store-контракту, что и премиум:
+ * план + живой срок из вебхука RevenueCat.
+ */
+export function isMaxTierActive(progress: ProgressLike, now: number = Date.now()): boolean {
+  const data = progress ?? {};
+  const plan = cleanPlan(data.premium_plan);
+  return isMaxTierPlan(plan) && isStorePremiumActive(progress, now);
+}
+
+/**
  * Серверная резолюция Pro-плана: читает users/{stableUid}.progress (с тем же обходом
  * auth_links / firebaseAuthUid, что и resolvePremiumAccess) и возвращает, активна ли
  * покупка «Навсегда». Источник правды — сервер, тело запроса не доверяем.
@@ -393,6 +423,60 @@ export async function resolveIsLifetimePlan(
       }
     }));
     if (lifetimeActive) return true;
+  }
+
+  return false;
+}
+
+/**
+ * Серверная резолюция тира MAX: тот же обход идентичностей, что и у премиума
+ * (auth_links / firebaseAuthUid / canonicalStableId), чтобы подписка не терялась
+ * после смены устройства или слияния аккаунтов.
+ *
+ * зачем отдельной функцией: minutes-квоты MAX (120/мес) выдаются только по этому
+ * признаку. Тело запроса не доверяем — источник правды всегда сервер.
+ */
+export async function resolveIsMaxTier(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+  now: number = Date.now(),
+  authUid?: string,
+): Promise<boolean> {
+  const candidates = new Set<string>();
+  const add = (value: unknown) => {
+    const id = cleanStr(value);
+    if (id) candidates.add(id);
+  };
+
+  add(stableUid);
+  add(authUid);
+
+  if (authUid) {
+    const [linkSnap, byAuth] = await Promise.all([
+      db.collection('auth_links').doc(authUid).get().catch(() => null),
+      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(() => null),
+    ]);
+    add(linkSnap?.data()?.stable_id);
+    byAuth?.docs.forEach((doc) => add(doc.id));
+  }
+
+  const checked = new Set<string>();
+  for (;;) {
+    const ids = [...candidates].filter((id) => !checked.has(id));
+    if (ids.length === 0) break;
+    let maxActive = false;
+    await Promise.all(ids.map(async (id) => {
+      checked.add(id);
+      const snap = await db.collection('users').doc(id).get().catch(() => null);
+      if (!snap?.exists) return;
+      const data = snap.data() ?? {};
+      add(data.canonicalStableId);
+      const progress = (data.progress ?? {}) as Record<string, unknown>;
+      if (isMaxTierActive(progress, now)) {
+        maxActive = true;
+      }
+    }));
+    if (maxActive) return true;
   }
 
   return false;

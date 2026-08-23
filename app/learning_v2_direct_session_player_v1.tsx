@@ -26,6 +26,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import LearningV2AnswerChoice from "../components/LearningV2AnswerChoice";
+import LearningV2SessionFinale from "../components/LearningV2SessionFinale";
 import ReportErrorButton from "../components/ReportErrorButton";
 import SaveToCardsButton from "../components/SaveToCardsButton";
 import { useLang } from "../components/LangContext";
@@ -228,6 +229,9 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [savePulse, setSavePulse] = useState(false);
   const [savedThisCard, setSavedThisCard] = useState(false);
   const [finishing, setFinishing] = useState(false);
+  // зачем (аудит анимаций 22.08): сессия завершалась молча — сразу возврат на
+  // карту. Теперь звёзды зажигаются по одной (<=700мс), и только потом уход.
+  const [finaleStars, setFinaleStars] = useState<0 | 1 | 2 | 3 | null>(null);
   const interruptedWhileBackgroundedRef = useRef(false);
   const finishingRef = useRef(false);
   const completionsRef = useRef(
@@ -572,12 +576,15 @@ export default function LearningV2DirectSessionPlayerV1() {
       // ОТДЕЛЬНУЮ витрину, а не в канонический прогресс — тот объявляет
       // masteryAuthority: "none" и запечатан fingerprint'ом. Сбой записи здесь
       // не может помешать завершению сессии: функция глотает свои ошибки.
+      const earned = learningV2SessionStars(completion.interactionCompletions);
       await recordLearningV2SessionStarResult({
         accountScopeHash,
         courseSessionId: runSummary.courseSessionId,
-        stars: learningV2SessionStars(completion.interactionCompletions),
+        stars: earned,
       });
-      safeRouterBack(router, "/learning-v2/course");
+      // Сцена сама уводит на карту в onDone — прогресс уже сохранён, поэтому
+      // выход по кнопке «назад» во время сцены ничего не теряет.
+      setFinaleStars(earned);
     } catch {
       finishingRef.current = false;
       setFinishing(false);
@@ -632,6 +639,24 @@ export default function LearningV2DirectSessionPlayerV1() {
         <Text style={[styles.errorText, { color: t.textPrimary }]}>
           {copy.unavailable}
         </Text>
+      </View>
+    );
+  }
+  if (finaleStars !== null) {
+    // Празднование поверх пустого экрана сессии: прогресс и звёзды уже
+    // записаны, сцена только показывает результат и уводит на карту.
+    const quality = finaleStars >= 1 ? copy.quality[finaleStars] : null;
+    return (
+      <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
+        <LearningV2SessionFinale
+          stars={finaleStars}
+          caption={quality ? quality.title : copy.supportFades}
+          starColor={t.gold}
+          mutedColor={t.textMuted}
+          textColor={t.textPrimary}
+          reduceMotion={reducedMotion}
+          onDone={() => safeRouterBack(router, "/learning-v2/course")}
+        />
       </View>
     );
   }
@@ -857,6 +882,18 @@ export default function LearningV2DirectSessionPlayerV1() {
           </View>
         </View>
 
+        {/* зачем (каталог активностей 04): переход к следующему заданию
+            обязан быть 200-240мс, а не мгновенной подменой. Ключ по индексу
+            перезапускает вход, поэтому новое задание въезжает, а не возникает.
+            Геометрия зоны не меняется — прыжка контента нет. */}
+        <Animated.View
+          key={`practice-${practiceIndex}`}
+          entering={
+            reducedMotion ? undefined : FadeInDown.duration(220).easing(
+              Easing.bezier(0.23, 1, 0.32, 1).factory(),
+            )
+          }
+        >
         <View style={styles.promptRow}>
           <Text
             style={[
@@ -1033,6 +1070,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               </View>
             </View>
           )}
+        </Animated.View>
         </Animated.View>
 
         {wrongExplanation && result !== "correct" && (

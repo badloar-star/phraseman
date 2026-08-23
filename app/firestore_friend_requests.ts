@@ -2,6 +2,10 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink, ensureStableAuthLinkForStableId } from './cloud_sync';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAuthUserId } from './user_id_policy';
+import {
+  FRIEND_REQUESTS_SENT_INDEX,
+  FRIEND_REQUESTS_SENT_MARKER_ID,
+} from '../shared/friend_requests_index_contract';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -190,6 +194,66 @@ function prepareFriendRequestViewerAuthLink(stableId: string): Promise<boolean> 
   return sharedPromise;
 }
 
+// ── Обратный индекс исходящих заявок ───────────────────────────────────────
+
+/**
+ * Ставит отметку `users/{myUid}/friend_requests_sent/{toUid}` рядом с заявкой.
+ *
+ * зачем: сама заявка лежит в подколлекции ПОЛУЧАТЕЛЯ и названа моим uid, так что
+ * свои исходящие заявки нельзя найти никаким запросом. Из-за этого удаление
+ * аккаунта было вынуждено перебирать всю коллекцию users (сотни тысяч чтений и
+ * таймаут при росте базы). Отметка — обратный индекс: удаление проходит по
+ * десяткам документов. Договор имён — shared/friend_requests_index_contract.ts.
+ *
+ * Никогда не бросает: индекс вторичен, его сбой не должен ломать сам сценарий
+ * дружбы. Потерянная отметка стоит лишь возврата к старому полному перебору.
+ */
+async function writeSentRequestIndex(
+  db: NonNullable<ReturnType<typeof getFirestore>>,
+  myUid: string,
+  toUid: string,
+  createdAt: number,
+): Promise<void> {
+  try {
+    const sent = db.collection('users').doc(myUid).collection(FRIEND_REQUESTS_SENT_INDEX);
+    await sent.doc(toUid).set({ toUid, createdAt });
+    // Маркер отличает «индекс ведётся, заявок нет» от «аккаунт старше индекса».
+    // Без него удаление не смогло бы доверять пустой подколлекции.
+    await sent.doc(FRIEND_REQUESTS_SENT_MARKER_ID).set({ createdAt }, { merge: true });
+  } catch (e) {
+    logFriendsHealth('friends:sent_index_write_failed', e, {
+      action: 'write_sent_request_index',
+      myUid,
+      targetUid: toUid,
+    });
+  }
+}
+
+/**
+ * Снимает отметку об исходящей заявке, когда заявка перестала существовать
+ * (принята, отклонена, отозвана, дружба разорвана). Маркер НЕ трогаем — он
+ * означает «аккаунт ведёт индекс» и должен пережить опустошение списка.
+ */
+function deleteSentRequestIndex(
+  db: NonNullable<ReturnType<typeof getFirestore>>,
+  myUid: string,
+  toUid: string,
+): void {
+  if (toUid === FRIEND_REQUESTS_SENT_MARKER_ID) return;
+  void db
+    .collection('users').doc(myUid)
+    .collection(FRIEND_REQUESTS_SENT_INDEX)
+    .doc(toUid)
+    .delete()
+    .catch((e: unknown) => {
+      logFriendsHealth('friends:sent_index_delete_failed', e, {
+        action: 'delete_sent_request_index',
+        myUid,
+        targetUid: toUid,
+      });
+    });
+}
+
 // ── sendFriendRequest ──────────────────────────────────────────────────────
 
 /**
@@ -274,12 +338,20 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
 
     // Write the pending request.
     const fromName = await senderNamePromise;
+    const createdAt = Date.now();
     await db
       .collection('users')
       .doc(toUid)
       .collection('friend_requests')
       .doc(myUid)
-      .set({ status: 'pending', createdAt: Date.now(), ...(fromName ? { fromName } : {}) });
+      .set({ status: 'pending', createdAt, ...(fromName ? { fromName } : {}) });
+
+    // зачем: заявка лежит у ПОЛУЧАТЕЛЯ и её id — мой uid, поэтому найти свои
+    // исходящие заявки запросом невозможно (documentId в collection-group
+    // сравнивается по полному пути). Без этой отметки удаление аккаунта было
+    // вынуждено перебирать всю коллекцию users. Пишем не в батче с заявкой
+    // намеренно: отметка вторична, её сбой не должен отменять саму заявку.
+    void writeSentRequestIndex(db, myUid, toUid, createdAt);
 
     return 'sent';
   } catch (e) {
@@ -343,6 +415,11 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
     db.collection('users').doc(fromUid).collection('friends').doc(myUid),
     { createdAt: now, acceptedAt: now, ...(myDisplayName ? { displayName: myDisplayName } : {}) },
   );
+  // зачем: отметку об исходящей заявке (users/{fromUid}/friend_requests_sent/{myUid})
+  // отсюда не убрать — она под ЧУЖИМ uid, правила такое запрещают. И убирать не
+  // нужно: после принятия мы друзья, а дружба симметрична, поэтому удаление
+  // аккаунта всё равно найдёт этого человека через свой список friends. Лишняя
+  // отметка ничего не ломает и уйдёт вместе с users/{fromUid}.
   // Удаляем request-документ после принятия — иначе он висит вечно и может блокировать повторные заявки.
   batch.delete(requestRef);
 
@@ -455,6 +532,11 @@ export async function deleteFriend(friendUid: string): Promise<void> {
   // Only delete own request doc — security rules forbid deleting the other user\'s subcollection.
   // Stale request on their side is handled by sendFriendRequest on next add attempt.
   batch.delete(db.collection('users').doc(myUid).collection('friend_requests').doc(friendUid));
+  // Моя отметка об исходящей заявке этому человеку больше не нужна: заявки нет,
+  // дружбы тоже. Отметка лежит под моим uid, так что правила разрешают удаление.
+  batch.delete(
+    db.collection('users').doc(myUid).collection(FRIEND_REQUESTS_SENT_INDEX).doc(friendUid),
+  );
 
   try {
     await batch.commit();

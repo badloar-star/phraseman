@@ -516,13 +516,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         stableId: string;
         dayKey: string;
     } | null>(null);
-    // зачем (аудит скорости 2026-08-22): раньше пересчитывался на КАЖДОМ кадре
-    // скролла (scrollEventThrottle=16 ≈ 60/с) — сам расчёт дешёвый, но лишняя
-    // работа на JS-потоке во время активного скролла. Троттлим по времени: при
-    // непрерывном скролле пересчёт идёт не чаще раза в ~100мс, а последний кадр
-    // после остановки досчитывается таймером — итоговое состояние всегда точное.
-    const dailyPhraseVisibilityThrottleRef = useRef(0);
-    const dailyPhraseVisibilitySettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const refreshDailyPhraseVisibility = useCallback(() => {
         const next = isDailyPhraseCardHalfVisible({
             cardTop: dailyPhraseLayoutRef.current.top,
@@ -535,26 +528,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const handleHomeScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
         topFadeScroll?.onScroll?.(event);
         homeScrollYRef.current = event.nativeEvent.contentOffset.y;
-        if (dailyPhraseVisibilitySettleTimerRef.current) {
-            clearTimeout(dailyPhraseVisibilitySettleTimerRef.current);
-        }
-        const now = Date.now();
-        if (now - dailyPhraseVisibilityThrottleRef.current >= 100) {
-            dailyPhraseVisibilityThrottleRef.current = now;
-            refreshDailyPhraseVisibility();
-        } else {
-            dailyPhraseVisibilitySettleTimerRef.current = setTimeout(() => {
-                dailyPhraseVisibilitySettleTimerRef.current = null;
-                dailyPhraseVisibilityThrottleRef.current = Date.now();
-                refreshDailyPhraseVisibility();
-            }, 100);
-        }
+        refreshDailyPhraseVisibility();
     }, [refreshDailyPhraseVisibility, topFadeScroll]);
-    useEffect(() => () => {
-        if (dailyPhraseVisibilitySettleTimerRef.current) {
-            clearTimeout(dailyPhraseVisibilitySettleTimerRef.current);
-        }
-    }, []);
     const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
     const [homeOnboardingDone, setHomeOnboardingDone] = useState(false);
     const isHomeOwner = runtimeOwnerId === 'home';
@@ -945,14 +920,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         hapticTap();
         const scheduleHide = () => {
             energyTooltipAnim.setValue(0);
-            // зачем (аудит скорости 2026-08-22): анимируются только
-            // opacity/translateY/scale (строки ниже) — все три поддерживают
-            // native driver, JS-поток гонять незачем.
-            Animated.spring(energyTooltipAnim, { toValue: 1, useNativeDriver: true, tension: 120, friction: 8 }).start();
+            Animated.spring(energyTooltipAnim, { toValue: 1, useNativeDriver: false, tension: 120, friction: 8 }).start();
             if (energyTooltipTimer.current)
                 clearTimeout(energyTooltipTimer.current);
             energyTooltipTimer.current = setTimeout(() => {
-                Animated.timing(energyTooltipAnim, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
+                Animated.timing(energyTooltipAnim, { toValue: 0, duration: 220, useNativeDriver: false }).start(() => {
                     setEnergyTooltip((p) => ({ ...p, visible: false }));
                 });
             }, 3000);

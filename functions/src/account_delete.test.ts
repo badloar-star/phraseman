@@ -14,6 +14,8 @@ const {
   removeFromFriendGiftDailyLimits,
   deleteCrossUserDocumentIdMatches,
   deleteArenaSeasonEntries,
+  deleteDirectDocs,
+  deleteMergeIdentityRecords,
   resolveAccountDeleteIdentityClosure,
 } = __accountDeleteTestHooks;
 
@@ -235,6 +237,102 @@ describe('accountDelete query plan', () => {
 });
 
 describe('accountDelete stable id resolver', () => {
+  it('follows a reserved loser-to-winner edge before deleting partially copied mistake history', async () => {
+    const db = makeDbStub({
+      users: {
+        loserA: { firebaseAuthUid: 'auth-1', mistakePracticeMergePending: true },
+        winnerB: { firebaseAuthUid: 'auth-1', mistakePracticeMergePending: true },
+      },
+      authLinks: { 'auth-1': { stable_id: 'loserA' } },
+      mergeOutbox: {
+        mergeAB: {
+          winnerStableId: 'winnerB', loserStableId: 'loserA',
+          publicationStatus: 'reserved', status: 'pending', mistakePracticeEventsCopiedAt: 123,
+        },
+      },
+    });
+
+    const identities = await resolveAccountDeleteIdentityClosure(db as any, 'loserA', 'auth-1');
+    expect(new Set(identities)).toEqual(new Set(['loserA', 'winnerB', 'auth-1']));
+
+    const direct = identities.flatMap((identity) => accountDeleteDirectDocumentPlan(identity, 'auth-1'));
+    expect(direct).toEqual(expect.arrayContaining([
+      expect.objectContaining({ collection: 'users', id: 'loserA' }),
+      expect.objectContaining({ collection: 'users', id: 'winnerB' }),
+      expect.objectContaining({ collection: 'auth_links', id: 'auth-1' }),
+    ]));
+
+    const stored = new Map<string, Record<string, unknown>>([
+      ['users/loserA', { firebaseAuthUid: 'auth-1' }],
+      ['users/loserA/progress_events/source-event', { ownerStableUid: 'loserA' }],
+      ['users/winnerB', { firebaseAuthUid: 'auth-1' }],
+      ['users/winnerB/progress_events/partially-copied-event', { ownerStableUid: 'winnerB' }],
+      ['auth_links/auth-1', { stable_id: 'loserA' }],
+      ['account_merge_outbox/mergeAB', {
+        winnerStableId: 'winnerB', loserStableId: 'loserA', publicationStatus: 'reserved',
+      }],
+    ]);
+    const refFor = (path: string) => ({ path });
+    const deleteDb = {
+      collection: (collection: string) => ({
+        doc: (id: string) => refFor(`${collection}/${id}`),
+        where: (field: string, _op: string, value: unknown) => ({
+          limit: (_limit: number) => ({
+            get: async () => {
+              const prefix = `${collection}/`;
+              const docs = [...stored.entries()].filter(([path, data]) =>
+                path.startsWith(prefix) && !path.slice(prefix.length).includes('/') && data[field] === value,
+              ).map(([path, data]) => ({ ref: refFor(path), data: () => data }));
+              return { empty: docs.length === 0, docs };
+            },
+          }),
+        }),
+      }),
+      recursiveDelete: async (ref: { path: string }) => {
+        for (const path of [...stored.keys()]) {
+          if (path === ref.path || path.startsWith(`${ref.path}/`)) stored.delete(path);
+        }
+      },
+    };
+    const ctx = {
+      db: deleteDb,
+      writer: { flush: jest.fn(async () => {}) },
+      seen: new Set<string>(),
+      runId: 'delete-reserved-merge', stableUidHash: 'a', authUidHash: 'b',
+      startedAtMs: 0, lastProgressLogDocs: 0, writerClosed: false,
+    };
+    const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+    for (const identity of identities) {
+      await deleteDirectDocs(deleteDb as any, identity, 'auth-1', ctx as any);
+    }
+    await deleteMergeIdentityRecords(deleteDb as any, identities, ctx as any, stats);
+
+    expect([...stored.keys()]).toEqual([]);
+  });
+
+  it('deduplicates bidirectional merge cycles in the identity closure', async () => {
+    const db = makeDbStub({
+      mergeOutbox: {
+        mergeAB: { winnerStableId: 'winnerB', loserStableId: 'loserA', status: 'pending' },
+        mergeBA: { winnerStableId: 'loserA', loserStableId: 'winnerB', status: 'pending' },
+      },
+    });
+
+    await expect(resolveAccountDeleteIdentityClosure(db as any, 'loserA', 'auth-1'))
+      .resolves.toEqual(expect.arrayContaining(['loserA', 'winnerB', 'auth-1']));
+  });
+
+  it('keeps the identity cardinality guard on loser-to-winner merge fanout', async () => {
+    const mergeOutbox = Object.fromEntries(Array.from({ length: 65 }, (_, index) => [
+      `merge-${index}`,
+      { winnerStableId: `winner-${index}`, loserStableId: 'loserA', status: 'pending' },
+    ]));
+    const db = makeDbStub({ mergeOutbox });
+
+    await expect(resolveAccountDeleteIdentityClosure(db as any, 'loserA', 'auth-1'))
+      .rejects.toMatchObject({ code: 'resource-exhausted', message: 'account_delete_identity_limit' });
+  });
+
   it('keeps merged loser aliases in the deletion closure after hidden user docs are gone', async () => {
     const db = makeDbStub({
       users: { winner: { firebaseAuthUid: 'auth-1' } },
@@ -365,7 +463,7 @@ describe('accountDelete query deletion safety', () => {
     const db = {
       collection: jest.fn((name: string) => {
         expect(name).toBe('users');
-        return { listDocuments };
+        return { listDocuments, doc: () => userRef };
       }),
       collectionGroup: jest.fn(() => {
         throw new Error('document-id collection-group query must not be used');
@@ -398,7 +496,135 @@ describe('accountDelete query deletion safety', () => {
     expect(stats.queriesRun).toBe(1);
   });
 
-  it('cleans dynamic gift-recipient keys with collection-scoped queries', async () => {
+  it('walks only known peers instead of the whole users collection', async () => {
+    // зачем: сторожит главный фикс — узкий путь по peer-uid. Если кто-то вернёт
+    // listDocuments() в этот путь, удаление аккаунта снова начнёт перебирать всю
+    // базу (сотни тысяч чтений и таймаут при росте) и тест упадёт.
+    const touched: string[] = [];
+    const makeUserRef = (uid: string) => ({
+      collection: (collection: string) => ({
+        doc: (id: string) => ({ path: `users/${uid}/${collection}/${id}` }),
+      }),
+    });
+    const listDocuments = jest.fn(async () => {
+      throw new Error('full users scan must not happen when peer uids are known');
+    });
+    const getAll = jest.fn(async (...docRefs: { path: string }[]) => {
+      touched.push(...docRefs.map((ref) => ref.path));
+      return docRefs.map((ref) => ({ exists: false, ref }));
+    });
+    const db = {
+      collection: jest.fn((name: string) => {
+        expect(name).toBe('users');
+        return { listDocuments, doc: (uid: string) => makeUserRef(uid) };
+      }),
+      collectionGroup: jest.fn(() => {
+        throw new Error('document-id collection-group query must not be used');
+      }),
+      getAll,
+      recursiveDelete: jest.fn(async () => {}),
+    };
+    const ctx = {
+      db,
+      writer: { flush: jest.fn(async () => {}) },
+      seen: new Set<string>(),
+      runId: 'test',
+      stableUidHash: 'stable',
+      authUidHash: 'auth',
+      startedAtMs: 0,
+      lastProgressLogDocs: 0,
+      writerClosed: false,
+    };
+    const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+
+    await deleteCrossUserDocumentIdMatches(
+      db as any, 'stable-123', 'auth-456', ctx as any, stats, ['peer-a', 'peer-b'],
+    );
+
+    expect(listDocuments).not.toHaveBeenCalled();
+    expect(getAll).toHaveBeenCalledTimes(2);
+    expect(touched).toContain('users/peer-a/friends/stable-123');
+    expect(touched).toContain('users/peer-b/friend_requests/auth-456');
+  });
+
+  it('keeps the full-scan fallback for accounts without the sent-request index', async () => {
+    // зачем: гибрид (решение владельца 2026-08-23). У аккаунтов, заведённых до
+    // появления индекса, отметок нет — узкий путь мог бы пропустить их заявки,
+    // поэтому один раз честно платим за полный перебор.
+    const userRef = {
+      collection: (collection: string) => ({
+        doc: (id: string) => ({ path: `users/legacy/${collection}/${id}` }),
+      }),
+    };
+    const listDocuments = jest.fn(async () => [userRef]);
+    const getAll = jest.fn(async (...docRefs: { path: string }[]) =>
+      docRefs.map((ref) => ({ exists: false, ref })));
+    const db = {
+      collection: jest.fn(() => ({ listDocuments })),
+      collectionGroup: jest.fn(() => {
+        throw new Error('document-id collection-group query must not be used');
+      }),
+      getAll,
+      recursiveDelete: jest.fn(async () => {}),
+    };
+    const ctx = {
+      db,
+      writer: { flush: jest.fn(async () => {}) },
+      seen: new Set<string>(),
+      runId: 'test',
+      stableUidHash: 'stable',
+      authUidHash: 'auth',
+      startedAtMs: 0,
+      lastProgressLogDocs: 0,
+      writerClosed: false,
+    };
+    const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+
+    await deleteCrossUserDocumentIdMatches(
+      db as any, 'stable-123', 'auth-456', ctx as any, stats, null,
+    );
+
+    expect(listDocuments).toHaveBeenCalledTimes(1);
+    expect(getAll).toHaveBeenCalledTimes(1);
+  });
+
+  it('cleans gift limits through friends only, never the whole users collection', async () => {
+    // зачем: подарок невозможен без двусторонней дружбы (friend_gifts.ts падает
+    // с 'Users are not friends'), поэтому список друзей — исчерпывающий источник
+    // отправителей. Возврат listDocuments() сюда снова взорвал бы стоимость.
+    const recipientDoc = { path: 'users/peer-a/friend_gift_daily_limits/2026-07-14' };
+    let reads = 0;
+    const get = jest.fn(async () => {
+      reads += 1;
+      return reads === 1 ? { empty: false, docs: [{ ref: recipientDoc }] } : { empty: true, docs: [] };
+    });
+    const senderRef = { collection: jest.fn(() => ({ where: () => ({ limit: () => ({ get }) }) })) };
+    const listDocuments = jest.fn(async () => {
+      throw new Error('full users scan must not happen when peer uids are known');
+    });
+    const update = jest.fn();
+    const commit = jest.fn(async () => {});
+    const db = {
+      collection: jest.fn((name: string) => {
+        expect(name).toBe('users');
+        return { listDocuments, doc: () => senderRef };
+      }),
+      collectionGroup: jest.fn(() => {
+        throw new Error('collection-group query must not be used for dynamic recipient keys');
+      }),
+      batch: jest.fn(() => ({ update, commit })),
+    };
+    const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+
+    await removeFromFriendGiftDailyLimits(db as any, 'recipient-stable', stats, ['peer-a']);
+
+    expect(listDocuments).not.toHaveBeenCalled();
+    expect(senderRef.collection).toHaveBeenCalledWith('friend_gift_daily_limits');
+    expect(update).toHaveBeenCalledTimes(1);
+    expect(stats.docsUpdated).toBe(1);
+  });
+
+  it('falls back to scanning all senders when peer uids are unknown', async () => {
     const recipientRef = { path: 'users/sender/friend_gift_daily_limits/2026-07-14' };
     let reads = 0;
     const get = jest.fn(async () => {

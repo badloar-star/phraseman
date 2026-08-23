@@ -10,6 +10,12 @@ import {
 // Префикс синтетических жителей: комната без ЖИВЫХ считается пустой и удаляется,
 // иначе после ухода последнего человека остался бы призрак из ботов.
 import { RESIDENT_UID_PREFIX } from './league_residents';
+// Обратный индекс исходящих заявок в друзья — без него удаление аккаунта
+// перебирало всю коллекцию users (см. shared/friend_requests_index_contract.ts).
+import {
+  FRIEND_REQUESTS_SENT_INDEX,
+  FRIEND_REQUESTS_SENT_MARKER_ID,
+} from '../../shared/friend_requests_index_contract';
 
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
@@ -181,6 +187,8 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   // данные) и квота минут; docId — хэш, поэтому удаляем по полям.
   { collection: 'voice_tutor_memory', field: 'stableUid', values: 'stable' },
   { collection: 'voice_tutor_memory', field: 'authUid', values: 'auth' },
+  { collection: 'voice_call_reviews', field: 'stableUid', values: 'stable' },
+  { collection: 'voice_call_reviews', field: 'authUid', values: 'auth' },
   { collection: 'voice_call_quotas', field: 'stableUid', values: 'stable' },
   { collection: 'voice_call_quotas', field: 'authUid', values: 'auth' },
 ];
@@ -380,15 +388,16 @@ async function closeDeleteWriter(ctx: DeleteContext): Promise<void> {
   await ctx.writer.close();
 }
 
-async function runDeleteStage(
+async function runDeleteStage<T = void>(
   ctx: DeleteContext,
   stats: DeleteStats,
   stage: string,
-  fn: () => Promise<void>,
-): Promise<void> {
+  fn: () => Promise<T>,
+): Promise<T> {
   accountDeleteLog(ctx, `${stage}:start`, stats);
-  await fn();
+  const result = await fn();
   accountDeleteLog(ctx, `${stage}:done`, stats);
+  return result;
 }
 
 async function getEmailsForDeletion(
@@ -518,7 +527,14 @@ export async function resolveAccountDeleteIdentityClosure(
 
   for (let cursor = 0; cursor < queue.length; cursor += 1) {
     const canonicalId = queue[cursor];
-    const [userSnap, directOwnerMap, hiddenUsers, reverseOwnerMaps, mergeOutbox] = await Promise.all([
+    const [
+      userSnap,
+      directOwnerMap,
+      hiddenUsers,
+      reverseOwnerMaps,
+      mergeOutboxAsWinner,
+      mergeOutboxAsLoser,
+    ] = await Promise.all([
       db.collection('users').doc(canonicalId).get(),
       db.collection('account_identity_owner_map').doc(canonicalId).get(),
       db.collection('users')
@@ -533,10 +549,15 @@ export async function resolveAccountDeleteIdentityClosure(
         .where('winnerStableId', '==', canonicalId)
         .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1)
         .get(),
+      db.collection('account_merge_outbox')
+        .where('loserStableId', '==', canonicalId)
+        .limit(MAX_ACCOUNT_DELETE_IDENTITIES + 1)
+        .get(),
     ]);
     if (hiddenUsers.docs.length > MAX_ACCOUNT_DELETE_IDENTITIES
       || reverseOwnerMaps.docs.length > MAX_ACCOUNT_DELETE_IDENTITIES
-      || mergeOutbox.docs.length > MAX_ACCOUNT_DELETE_IDENTITIES) {
+      || mergeOutboxAsWinner.docs.length > MAX_ACCOUNT_DELETE_IDENTITIES
+      || mergeOutboxAsLoser.docs.length > MAX_ACCOUNT_DELETE_IDENTITIES) {
       throw new HttpsError('resource-exhausted', 'account_delete_identity_limit');
     }
     if (userSnap.exists && userSnap.data()?.identityHidden === true) {
@@ -545,7 +566,8 @@ export async function resolveAccountDeleteIdentityClosure(
     if (directOwnerMap.exists) add(directOwnerMap.data()?.canonicalStableId);
     hiddenUsers.docs.forEach((doc) => add(doc.id));
     reverseOwnerMaps.docs.forEach((doc) => add(doc.id));
-    mergeOutbox.docs.forEach((doc) => add(doc.data()?.loserStableId));
+    mergeOutboxAsWinner.docs.forEach((doc) => add(doc.data()?.loserStableId));
+    mergeOutboxAsLoser.docs.forEach((doc) => add(doc.data()?.winnerStableId));
   }
 
   return [...identities];
@@ -620,12 +642,107 @@ async function deleteCollectionGroupMatches(
   authUid: string,
   ctx: DeleteContext,
   stats: DeleteStats,
+  peerUids?: string[] | null,
 ): Promise<void> {
   for (const spec of accountDeleteCollectionGroupPlan(stableUid, authUid)) {
     const q = db.collectionGroup(spec.collectionGroup).where(spec.field, spec.op, spec.value);
     await deleteQuery(q, ctx, stats);
   }
-  await deleteCrossUserDocumentIdMatches(db, stableUid, authUid, ctx, stats);
+  await deleteCrossUserDocumentIdMatches(db, stableUid, authUid, ctx, stats, peerUids);
+}
+
+/**
+ * Маркер «этот аккаунт ведёт обратный индекс исходящих заявок».
+ *
+ * зачем: пустая подколлекция `friend_requests_sent` неотличима от «индекса не
+ * существует» — в обоих случаях запрос вернёт ноль документов. Клиент ставит
+ * маркер при первом же входе (см. ensureFriendRequestsSentIndexMarker), поэтому
+ * его наличие означает «узкому пути можно верить», а отсутствие — «аккаунт
+ * старый, честно платим за полный перебор один раз».
+ */
+async function hasFriendRequestsSentIndexMarker(
+  db: admin.firestore.Firestore,
+  identities: string[],
+  stats: DeleteStats,
+): Promise<boolean> {
+  for (const identity of identities) {
+    if (!identity) continue;
+    stats.queriesRun += 1;
+    const snap = await db
+      .collection('users').doc(identity)
+      .collection(FRIEND_REQUESTS_SENT_INDEX)
+      .doc(FRIEND_REQUESTS_SENT_MARKER_ID)
+      .get();
+    if (snap.exists) return true;
+  }
+  return false;
+}
+
+/**
+ * Собирает peer-uid, у которых МОГУТ лежать документы про удаляемого игрока.
+ *
+ * зачем: раньше обе функции ниже перебирали `users.listDocuments()` — всю базу
+ * целиком, на каждое удаление аккаунта. При 100k игроков это ~700k чтений и
+ * почти гарантированный таймаут функции. Дружба и подарки симметричны:
+ * `users/{me}/friends/{peer}` существует ровно тогда, когда существует
+ * `users/{peer}/friends/{me}` (см. acceptFriendRequest/deleteFriend в
+ * app/firestore_friend_requests.ts), а подарок физически невозможен без
+ * двусторонней дружбы (functions/src/friend_gifts.ts проверяет ОБА документа).
+ * Поэтому свой же список друзей — это и есть готовый обратный индекс: десятки
+ * документов вместо сотен тысяч.
+ *
+ * Вызывать ДО удаления `users/{uid}` (стадия direct_docs), иначе список уже мёртв.
+ */
+async function collectFriendPeerUids(
+  db: admin.firestore.Firestore,
+  identities: string[],
+  stats: DeleteStats,
+): Promise<string[]> {
+  const peers = new Set<string>();
+  for (const identity of identities) {
+    if (!identity) continue;
+    stats.queriesRun += 1;
+    const snap = await db.collection('users').doc(identity).collection('friends').get();
+    for (const doc of snap.docs) {
+      if (doc.id && !identities.includes(doc.id)) peers.add(doc.id);
+    }
+  }
+  return Array.from(peers);
+}
+
+/**
+ * Односторонние заявки в друзья симметрии не имеют: `sendFriendRequest` пишет
+ * только `users/{toUid}/friend_requests/{myUid}`, у отправителя не остаётся
+ * следа. Обратный индекс `users/{myUid}/friend_requests_sent/{toUid}` пишется
+ * с этого коммита; для аккаунтов, заведённых раньше, индекса нет — на них
+ * работает fallback на полный перебор (гибрид, решение владельца 2026-08-23).
+ */
+async function collectSentRequestPeerUids(
+  db: admin.firestore.Firestore,
+  identities: string[],
+  stats: DeleteStats,
+): Promise<{ peers: string[]; indexPresent: boolean }> {
+  const peers = new Set<string>();
+  let indexPresent = false;
+  for (const identity of identities) {
+    if (!identity) continue;
+    stats.queriesRun += 1;
+    const snap = await db
+      .collection('users').doc(identity)
+      .collection(FRIEND_REQUESTS_SENT_INDEX)
+      .get();
+    for (const doc of snap.docs) {
+      if (doc.id === FRIEND_REQUESTS_SENT_MARKER_ID) {
+        indexPresent = true;
+        continue;
+      }
+      if (doc.id && !identities.includes(doc.id)) {
+        indexPresent = true;
+        peers.add(doc.id);
+      }
+    }
+  }
+  return { peers: Array.from(peers), indexPresent };
 }
 
 async function deleteCrossUserDocumentIdMatches(
@@ -634,9 +751,14 @@ async function deleteCrossUserDocumentIdMatches(
   authUid: string,
   ctx: DeleteContext,
   stats: DeleteStats,
+  peerUids?: string[] | null,
 ): Promise<void> {
   const plan = accountDeleteCollectionGroupDocumentIdPlan(stableUid, authUid);
-  const userRefs = await db.collection('users').listDocuments();
+  // зачем: узкий путь — идём только по известным peer-uid. Полный перебор базы
+  // остаётся аварийным fallback для старых аккаунтов без обратного индекса.
+  const userRefs = peerUids
+    ? peerUids.map((uid) => db.collection('users').doc(uid))
+    : await db.collection('users').listDocuments();
   const concurrency = 20;
   for (let offset = 0; offset < userRefs.length; offset += concurrency) {
     await Promise.all(userRefs.slice(offset, offset + concurrency).map(async (userRef) => {
@@ -748,12 +870,19 @@ async function removeFromFriendGiftDailyLimits(
   db: admin.firestore.Firestore,
   stableUid: string,
   stats: DeleteStats,
+  peerUids?: string[] | null,
 ): Promise<void> {
   const recipientPath = new admin.firestore.FieldPath('recipients', stableUid);
   // `recipients.<stableUid>` is a dynamic map path. Firestore cannot cover every
   // possible uid with one collection-group index, so query each fixed sender
   // subcollection instead. Collection-scoped map-field indexes are automatic.
-  const senderRefs = await db.collection('users').listDocuments();
+  //
+  // зачем: отправитель подарка обязан быть подтверждённым другом получателя —
+  // friend_gifts.ts падает с 'Users are not friends', если нет ОБОИХ документов
+  // дружбы. Значит достаточно обойти список друзей, а не всю базу.
+  const senderRefs = peerUids
+    ? peerUids.map((uid) => db.collection('users').doc(uid))
+    : await db.collection('users').listDocuments();
   const concurrency = 20;
   for (let offset = 0; offset < senderRefs.length; offset += concurrency) {
     await Promise.all(senderRefs.slice(offset, offset + concurrency).map(async (senderRef) => {
@@ -922,6 +1051,24 @@ export async function executeAccountDeletion(
       identities.map((identity) => getEmailsForDeletion(db, authUid, identity)),
     )).flat())];
     accountDeleteLog(ctx, 'start', stats, { emailCount: emails.length, identityCount: identities.length });
+    // зачем: peer-uid обязаны быть собраны ДО стадии direct_docs — она сносит
+    // users/{uid} вместе с подколлекцией friends, и после неё обратный индекс
+    // прочитать уже неоткуда. peerUids === null означает «индекса нет, работай
+    // по-старому полным перебором» (гибрид для аккаунтов до 2026-08-23).
+    const peerUids = await runDeleteStage(ctx, stats, 'collect_peers', async () => {
+      const friendPeers = await collectFriendPeerUids(db, identities, stats);
+      const sent = await collectSentRequestPeerUids(db, identities, stats);
+      const hasIndex = sent.indexPresent || await hasFriendRequestsSentIndexMarker(db, identities, stats);
+      const merged = Array.from(new Set([...friendPeers, ...sent.peers]));
+      accountDeleteLog(ctx, 'collect_peers', stats, {
+        peerCount: merged.length,
+        sentIndexPresent: hasIndex,
+        fallbackFullScan: !hasIndex,
+      });
+      // Без индекса исходящих заявок узкий путь может пропустить чужие
+      // friend_requests — честнее один раз заплатить за полный перебор.
+      return hasIndex ? merged : null;
+    });
     await runDeleteStage(ctx, stats, 'direct_docs', async () => {
       for (const identity of identities) await deleteDirectDocs(db, identity, authUid, ctx);
     });
@@ -938,7 +1085,9 @@ export async function executeAccountDeletion(
       for (const identity of identities) await deleteFieldMatches(db, identity, authUid, ctx, stats);
     });
     await runDeleteStage(ctx, stats, 'collection_group_matches', async () => {
-      for (const identity of identities) await deleteCollectionGroupMatches(db, identity, authUid, ctx, stats);
+      for (const identity of identities) {
+        await deleteCollectionGroupMatches(db, identity, authUid, ctx, stats, peerUids);
+      }
     });
     await runDeleteStage(ctx, stats, 'email_matches', () => deleteEmailMatches(db, emails, ctx, stats));
     await runDeleteStage(ctx, stats, 'league_groups', async () => {
@@ -951,7 +1100,9 @@ export async function executeAccountDeletion(
       for (const identity of identities) await anonymizeActivityLikeStats(db, identity, stats);
     });
     await runDeleteStage(ctx, stats, 'friend_gift_daily_limits', async () => {
-      for (const identity of identities) await removeFromFriendGiftDailyLimits(db, identity, stats);
+      for (const identity of identities) {
+        await removeFromFriendGiftDailyLimits(db, identity, stats, peerUids);
+      }
     });
     await runDeleteStage(ctx, stats, 'merge_identity_records', () => (
       deleteMergeIdentityRecords(db, identities, ctx, stats)
@@ -1064,5 +1215,7 @@ export const __accountDeleteTestHooks = {
   deleteCrossUserDocumentIdMatches,
   deleteArenaSeasonEntries,
   deleteQuery,
+  deleteDirectDocs,
+  deleteMergeIdentityRecords,
   ACCOUNT_DELETE_OPTIONS,
 };

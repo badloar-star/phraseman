@@ -15,6 +15,15 @@ service cloud.firestore {
         && request.auth.token.admin == true;
     }
 
+    function canReadAdminAuditLog() {
+      return isAdmin()
+        && (
+          !request.auth.token.keys().hasAny(['adminRole'])
+          || request.auth.token.adminRole == 'owner'
+          || request.auth.token.adminRole == 'admin'
+        );
+    }
+
     // These roots are callable/Admin-SDK only. Keep this as a compact,
     // code-owned namespace guard: a long chain of collection inequalities can
     // exceed the Firestore Rules expression-complexity limit, while exact deny
@@ -34,8 +43,8 @@ service cloud.firestore {
         || collection.matches('content_v2_(required_session|season_release|activity_auxiliary_release|activity_learner_core_release|activity_server_evaluator_release)_.*');
     }
 
-    // Support correspondence, sealed delivery operations, Telegram review state,
-    // and the automation switch are callable/Admin-SDK only. Keeping this list in
+    // Support correspondence, sealed delivery operations, broadcast mutations,
+    // Telegram review state, and the automation switch are callable/Admin-SDK only. Keeping this list in
     // one helper also keeps the legacy browser-admin catch-all below the Rules
     // expression-complexity ceiling.
     function isServerOwnedSupportRoot(collection) {
@@ -45,7 +54,7 @@ service cloud.firestore {
         || collection == 'support_inbox'
         || collection == 'support_conversations'
         || collection == 'support_email_message_index'
-        || collection == 'admin_command_operations'
+        || collection.matches('(admin_command_operations|global_broadcast_modals)')
         || collection == 'admin_config';
     }
 
@@ -141,6 +150,7 @@ service cloud.firestore {
         'identityCleanupAt',
         'identityCleanupReason',
         'levelSpinMergePending',
+        'mistakePracticeMergePending',
       ];
     }
 
@@ -150,7 +160,6 @@ service cloud.firestore {
     }
 
     function newDocHasNoServerIdentityWrites() {
-        'mistakePracticeMergePending',
       return !request.resource.data.keys().hasAny(serverOwnedUserIdentityFields());
     }
 
@@ -364,6 +373,10 @@ service cloud.firestore {
         'profile_card_level',
         // Survey completion timestamp is written only by submitShardSurvey (Admin SDK).
         'shard_survey_last_at_ms',
+        // Immutable production purchase facts observed by the achievement engine.
+        // Only the RevenueCat webhook may set them; restore/admin/trial client state cannot.
+        'achievement_access_plus_paid_v1',
+        'achievement_access_pro_paid_v1',
         // Прокруты рулетки Plus: начисляет/списывает ТОЛЬКО сервер
         // (referralClaimSpin / referralSpin, Admin SDK) — клиент не должен себе их рисовать.
         'referral_spin_credits',
@@ -1330,6 +1343,136 @@ service cloud.firestore {
         allow update, delete: if false;
       }
 
+      // Small server-owned live entitlement projection. Clients may observe
+      // their current access without subscribing to the giant users/{uid} doc.
+      match /access_projection/current {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create, update, delete: if false;
+      }
+
+      // Phone-authoritative personal state: clients append immutable, bounded
+      // transport documents. The server persists them but never recalculates or
+      // rejects an ordinary local result based on a server-side projection.
+      match /personal_sync_segments/{segmentId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create: if userDocOwnerMatchesAuth(userId)
+          && authLinkMapsToUser(userId)
+          && accountDeletionNotPending(userId)
+          && request.resource.data.keys().hasAll([
+            'schemaVersion', 'stableUid', 'accountGeneration', 'deviceId',
+            'firstSequence', 'lastSequence', 'operationCount', 'byteSize',
+            'createdAtMs', 'payloadCanonical', 'fingerprint'
+          ])
+          && request.resource.data.keys().hasOnly([
+            'schemaVersion', 'stableUid', 'accountGeneration', 'deviceId',
+            'firstSequence', 'lastSequence', 'operationCount', 'byteSize',
+            'createdAtMs', 'payloadCanonical', 'fingerprint'
+          ])
+          && request.resource.data.schemaVersion == 'personal-sync-segment.v1'
+          && request.resource.data.stableUid == userId
+          && request.resource.data.accountGeneration is int
+          && request.resource.data.accountGeneration >= 0
+          && request.resource.data.deviceId is string
+          && request.resource.data.deviceId.matches('^[A-Za-z0-9_-]{16,80}$')
+          && segmentId.matches('^[A-Za-z0-9_-]{16,80}_[0-9]{16,}$')
+          && request.resource.data.firstSequence is int
+          && request.resource.data.firstSequence > 0
+          && request.resource.data.lastSequence is int
+          && request.resource.data.lastSequence >= request.resource.data.firstSequence
+          && request.resource.data.operationCount is int
+          && request.resource.data.operationCount > 0
+          && request.resource.data.operationCount <= 50
+          && request.resource.data.lastSequence - request.resource.data.firstSequence + 1
+            == request.resource.data.operationCount
+          && request.resource.data.byteSize is int
+          && request.resource.data.byteSize > 0
+          && request.resource.data.byteSize <= 65536
+          && request.resource.data.createdAtMs is int
+          && request.resource.data.createdAtMs >= 0
+          && request.resource.data.payloadCanonical is string
+          && request.resource.data.payloadCanonical.size() <= 65536
+          && request.resource.data.fingerprint is string
+          && request.resource.data.fingerprint.matches('^[a-f0-9]{64}$');
+        allow update: if userDocOwnerMatchesAuth(userId)
+          && request.resource.data == resource.data;
+        allow delete: if false;
+      }
+
+      match /personal_sync_checkpoints/{checkpointId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create: if userDocOwnerMatchesAuth(userId)
+          && authLinkMapsToUser(userId)
+          && accountDeletionNotPending(userId)
+          && request.resource.data.keys().hasAll([
+            'schemaVersion', 'stableUid', 'accountGeneration', 'checkpointId',
+            'reducerVersions', 'vector', 'projectionsCanonical', 'byteSize',
+            'createdAtMs', 'fingerprint'
+          ])
+          && request.resource.data.keys().hasOnly([
+            'schemaVersion', 'stableUid', 'accountGeneration', 'checkpointId',
+            'reducerVersions', 'vector', 'projectionsCanonical', 'byteSize',
+            'createdAtMs', 'fingerprint'
+          ])
+          && request.resource.data.schemaVersion == 'personal-sync-checkpoint.v1'
+          && request.resource.data.stableUid == userId
+          && request.resource.data.accountGeneration is int
+          && request.resource.data.accountGeneration >= 0
+          && request.resource.data.checkpointId == checkpointId
+          && checkpointId.matches('^[A-Za-z0-9_-]{8,160}$')
+          && request.resource.data.reducerVersions is map
+          && request.resource.data.vector is map
+          && request.resource.data.projectionsCanonical is string
+          && request.resource.data.projectionsCanonical.size() <= 524288
+          && request.resource.data.byteSize is int
+          && request.resource.data.byteSize > 0
+          && request.resource.data.byteSize <= 524288
+          && request.resource.data.createdAtMs is int
+          && request.resource.data.createdAtMs >= 0
+          && request.resource.data.fingerprint is string
+          && request.resource.data.fingerprint.matches('^[a-f0-9]{64}$');
+        allow update: if userDocOwnerMatchesAuth(userId)
+          && request.resource.data == resource.data;
+        allow delete: if false;
+      }
+
+      // Discovery only. No mutable cursor/head is allowed in this manifest.
+      match /sync_devices/{deviceId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create: if userDocOwnerMatchesAuth(userId)
+          && authLinkMapsToUser(userId)
+          && accountDeletionNotPending(userId)
+          && request.resource.data.keys().hasAll([
+            'schemaVersion', 'stableUid', 'accountGeneration', 'deviceId',
+            'createdAtMs', 'fingerprint'
+          ])
+          && request.resource.data.keys().hasOnly([
+            'schemaVersion', 'stableUid', 'accountGeneration', 'deviceId',
+            'createdAtMs', 'fingerprint'
+          ])
+          && request.resource.data.schemaVersion == 'personal-sync-device.v1'
+          && request.resource.data.stableUid == userId
+          && request.resource.data.accountGeneration is int
+          && request.resource.data.accountGeneration >= 0
+          && request.resource.data.deviceId == deviceId
+          && deviceId.matches('^[A-Za-z0-9_-]{16,80}$')
+          && request.resource.data.createdAtMs is int
+          && request.resource.data.createdAtMs >= 0
+          && request.resource.data.fingerprint is string
+          && request.resource.data.fingerprint.matches('^[a-f0-9]{64}$');
+        allow update: if userDocOwnerMatchesAuth(userId)
+          && request.resource.data == resource.data;
+        allow delete: if false;
+      }
+
+      match /personal_external_events/{eventId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create, update, delete: if false;
+      }
+
+      match /personal_sync_server_state/{documentId} {
+        allow read, write: if false;
+      }
+
       // Personal economy is client-authoritative. The client publishes one
       // immutable composite operation only after its exact local result is
       // durable. Firestore stores the journal; it never approves a spend and
@@ -1705,6 +1848,27 @@ service cloud.firestore {
       allow read, update, delete: if isAdmin();
     }
 
+    // MAX durable review receipts contain only a bounded learning projection.
+    // They are server-owned: clients receive them through the authenticated,
+    // ownership-checked maxVoiceFinalize callable and cannot enumerate them.
+    match /voice_call_reviews/{docId} {
+      allow read, write: if false;
+    }
+
+    // MAX learning memory is personal and callable-only. The server resolves
+    // identity and sanitizes every field; direct browser access would bypass
+    // both controls, including for browser admins.
+    match /voice_tutor_memory/{docId} {
+      allow read, write: if false;
+    }
+
+    // Content-free operational aggregates are read only by bounded server
+    // callables and Jarvis. Direct reads still reveal internal reliability and
+    // cost data, so the browser never receives collection access.
+    match /max_voice_ops_daily/{docId} {
+      allow read, write: if false;
+    }
+
     // ── Возраст + согласия (для accountability/учёта в админке) ──
     // Документ ключуется stableId; владелец может читать свой, читать агрегаты —
     // только admin. Запись — ТОЛЬКО через Cloud Functions (Admin SDK, которые
@@ -1805,8 +1969,7 @@ service cloud.firestore {
 
     // â”€â”€ Ð“Ð»Ð¾Ð±Ð°Ð»ÑŒÐ½Ñ‹Ðµ Ð¾Ð´Ð½Ð¾Ñ€Ð°Ð·Ð¾Ð²Ñ‹Ðµ Ð¼Ð¾Ð´Ð°Ð»ÐºÐ¸ (Ð°Ð´Ð¼Ð¸Ð½-Ñ€Ð°ÑÑÑ‹Ð»ÐºÐ° Ð´Ð»Ñ Ð²ÑÐµÑ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹) â”€â”€
     match /global_broadcast_modals/{docId} {
-      allow read: if request.auth != null;
-      allow create, update, delete: if isAdmin();
+      allow read, create, update, delete: if false;
     }
 
     function appMessagePollVoteOk(messageId, userId) {
@@ -2069,6 +2232,27 @@ service cloud.firestore {
       allow delete: if canonicalUserMatchesAuth(targetUid) || canonicalUserMatchesAuth(senderUid);
     }
 
+    // Обратный индекс исходящих заявок: users/{senderUid}/friend_requests_sent/{toUid}.
+    //
+    // зачем: сама заявка лежит у ПОЛУЧАТЕЛЯ и названа uid отправителя, поэтому
+    // свои исходящие заявки невозможно найти запросом (documentId в
+    // collection-group сравнивается по полному пути). Из-за этого удаление
+    // аккаунта перебирало всю коллекцию users — сотни тысяч чтений и таймаут
+    // при росте базы. Отметка живёт под СВОИМ uid, никакого PII не несёт
+    // (только адресат и время) и читается лишь владельцем и админом.
+    // Договор имён: shared/friend_requests_index_contract.ts.
+    match /users/{senderUid}/friend_requests_sent/{toUid} {
+      allow read: if canonicalUserMatchesAuth(senderUid) || isAdmin();
+      allow create, update: if canonicalUserMatchesAuth(senderUid)
+        && request.resource.data.createdAt is number
+        && (toUid == '__index__'
+          ? request.resource.data.keys().hasOnly(['createdAt'])
+          : (toUid != senderUid
+            && request.resource.data.toUid == toUid
+            && request.resource.data.keys().hasOnly(['toUid', 'createdAt'])));
+      allow delete: if canonicalUserMatchesAuth(senderUid);
+    }
+
     // Friends list: users/{ownerUid}/friends/{friendUid}.
     // Read is scoped to the list owner OR the friend named in the doc (whose id is
     // their own uid) — the latter keeps legitimate reverse-edge reads
@@ -2191,7 +2375,8 @@ service cloud.firestore {
 
     // â”€â”€ Admin audit log â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /admin_log/{docId} {
-      allow read, create: if isAdmin();
+      allow read: if canReadAdminAuditLog();
+      allow create: if isAdmin();
       allow update, delete: if false;
     }
 
@@ -2238,16 +2423,19 @@ service cloud.firestore {
       allow update: if communityPackSocialCountersOnly();
 
       // «Кто лайкнул»: один пользователь — один лайк, повторное нажатие снимает.
+      // зачем: без likeUserId == auth.uid любой залогиненный мог лайкнуть/снять
+      // лайк от чужого имени (IDOR, аудит безопасности 2026-08-22) — докид всегда
+      // равен своему uid (см. app/community_packs/packSocialFirestore.ts membershipRef).
       match /pack_likes/{likeUserId} {
         allow read: if request.auth != null;
-        allow create, delete: if request.auth != null;
+        allow create, delete: if request.auth != null && likeUserId == request.auth.uid;
         allow update: if false;
       }
 
       // «Кто добавил себе»: дедупликация счётчика добавлений (снять добавление нельзя).
       match /pack_adds/{addUserId} {
         allow read: if request.auth != null;
-        allow create: if request.auth != null;
+        allow create: if request.auth != null && addUserId == request.auth.uid;
         allow update, delete: if false;
       }
     }
@@ -2510,8 +2698,22 @@ service cloud.firestore {
     // Активация идёт через CF promoCodeRedeem (Admin SDK) — клиентам прямой доступ
     // не нужен и запрещён (нельзя подсмотреть/подменить rewardDays/usedCount).
     match /promo_codes/{code} {
-      // Только админ. Не-админ запрещён дефолтным deny (и общим catch-all ниже).
-      allow read, write: if isAdmin();
+      allow read, write: if false;
+    }
+
+    // Certificate records and idempotency receipts are server-owned. The live
+    // admin receives bounded projections only through permission-checked callables.
+    match /gift_certificate_deliveries/{document=**} {
+      allow read, write: if false;
+    }
+    match /admin_gift_certificate_batch_operations/{document=**} {
+      allow read, write: if false;
+    }
+    match /gift_certificate_archive/{document=**} {
+      allow read, write: if false;
+    }
+    match /admin_user_briefs_rate_limits/{document=**} {
+      allow read, write: if false;
     }
 
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -2725,6 +2927,11 @@ service cloud.firestore {
     match /agent_manager_support_draft_operations/{document=**} {
       allow read, write: if false;
     }
+    // Real-money shard refund receipts contain account and transaction identity.
+    // Browser admins consume only the bounded, redacted callable projection.
+    match /revenuecat_shard_refunds/{document=**} {
+      allow read, write: if false;
+    }
 
     match /{collection}/{document=**} {
       allow read, write: if isAdmin()
@@ -2738,6 +2945,7 @@ service cloud.firestore {
         && collection != 'revenuecat_premium_events'
         && collection != 'revenuecat_premium_lineages'
         && collection != 'revenuecat_premium_denials'
+        && collection != 'revenuecat_shard_refunds'
         && collection != 'auth_recovery_codes'
         && collection != 'auth_recovery_rate_limits'
         && collection != 'auth_recovery_events'
@@ -2753,6 +2961,15 @@ service cloud.firestore {
         && collection != 'agent_office_control'
         && collection != 'agent_telegram_tokens'
         && collection != 'jarvis_approval_tokens'
+        && collection != 'admin_log'
+        && collection != 'voice_call_reviews'
+        && collection != 'voice_tutor_memory'
+        && collection != 'max_voice_ops_daily'
+        && collection != 'promo_codes'
+        && collection != 'gift_certificate_deliveries'
+        && collection != 'admin_gift_certificate_batch_operations'
+        && collection != 'gift_certificate_archive'
+        && collection != 'admin_user_briefs_rate_limits'
         && !isServerOwnedSupportRoot(collection)
         && collection != 'agent_observation_receipts'
         && collection != 'agent_manager_agents'

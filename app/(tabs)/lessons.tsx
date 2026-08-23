@@ -82,9 +82,11 @@ import { useTabContentBottomPad } from "../../hooks/use-tab-content-bottom-pad";
 import { useRuntimeActive } from "../../hooks/use_runtime_active";
 import LearningV2InlineNodeReveal from "../../components/LearningV2InlineNodeReveal";
 import LearningV2MapNode from "../../components/LearningV2MapNode";
-import LearningV2StarFlight, {
-  type LearningV2StarFlightPoint,
-} from "../../components/LearningV2StarFlight";
+import LearningV2RuneFlight, {
+  type LearningV2RuneFlightPoint,
+} from "../../components/LearningV2RuneFlight";
+import RuneGlyph from "../../components/RuneGlyph";
+import { runeWord } from "../../constants/runes";
 import {
   hydrateCurrentLearningV2WalletBalance,
   peekCurrentLearningV2WalletBalance,
@@ -1206,7 +1208,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
     sessionOrdinal: number,
     state: LearningV2AccordionSessionStateV1,
   ) => void;
-  onSessionCompleted?: (point: LearningV2StarFlightPoint) => void;
+  onSessionCompleted?: (point: LearningV2RuneFlightPoint) => void;
 }>) {
   if (row.kind === "chapter") {
     return (
@@ -2156,11 +2158,15 @@ export default function LessonsTab({
     learningV2WalletBalance?.walletStateFingerprint,
     learningV2WalletPulse,
   ]);
-  const learningV2WalletStarsLabel =
+  const learningV2WalletRunesValue =
     learningV2WalletBalance === null
+      ? null
+      : learningV2WalletBalance.balanceSubunits / WALLET_SUBUNITS_PER_STAR;
+  const learningV2WalletStarsLabel =
+    learningV2WalletRunesValue === null
       ? "—"
       : new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 }).format(
-          learningV2WalletBalance.balanceSubunits / WALLET_SUBUNITS_PER_STAR,
+          learningV2WalletRunesValue,
         );
   // Витрина звёзд 0–3 за пройденные сессии: подписка на локальное хранилище,
   // без авторитета над прогрессом и без сети.
@@ -2175,22 +2181,22 @@ export default function LessonsTab({
     refresh();
     return unsubscribe;
   }, []);
-  const [learningV2StarFlight, setLearningV2StarFlight] = useState<{
+  const [learningV2RuneFlight, setLearningV2RuneFlight] = useState<{
     key: number;
-    from: LearningV2StarFlightPoint;
-    to: LearningV2StarFlightPoint;
+    from: LearningV2RuneFlightPoint;
+    to: LearningV2RuneFlightPoint;
   } | null>(null);
-  const clearLearningV2StarFlight = useCallback(
-    () => setLearningV2StarFlight(null),
+  const clearLearningV2RuneFlight = useCallback(
+    () => setLearningV2RuneFlight(null),
     [],
   );
   const handleLearningV2SessionCompletedAt = useCallback(
-    (point: LearningV2StarFlightPoint) => {
+    (point: LearningV2RuneFlightPoint) => {
       if (learningV2ReduceMotionPreference !== false) return;
       const chip = learningV2WalletChipRef.current;
       if (!chip) return;
       chip.measureInWindow((x, y, width, height) => {
-        setLearningV2StarFlight({
+        setLearningV2RuneFlight({
           key: Date.now(),
           from: point,
           to: { x: x + width / 2, y: y + height / 2 },
@@ -3243,7 +3249,10 @@ export default function LessonsTab({
                   <View
                     ref={learningV2WalletChipRef}
                     collapsable={false}
-                    accessibilityLabel={`${learningV2WalletStarsLabel} ★`}
+                    accessibilityLabel={`${learningV2WalletStarsLabel} ${runeWord(
+                      lang,
+                      Math.round(learningV2WalletRunesValue ?? 0),
+                    )}`}
                     style={{
                       flexDirection: "row",
                       alignItems: "center",
@@ -3254,7 +3263,7 @@ export default function LessonsTab({
                       paddingVertical: 7,
                     }}
                   >
-                    <Ionicons name="star" size={14} color={t.gold} />
+                    <RuneGlyph size={14} color={t.gold} />
                     <Text
                       style={{
                         color: t.textPrimary,
@@ -3823,13 +3832,13 @@ export default function LessonsTab({
               }}
             />
           </BouncyWrap>
-          {learningV2StarFlight !== null ? (
-            <LearningV2StarFlight
-              key={learningV2StarFlight.key}
-              from={learningV2StarFlight.from}
-              to={learningV2StarFlight.to}
+          {learningV2RuneFlight !== null ? (
+            <LearningV2RuneFlight
+              key={learningV2RuneFlight.key}
+              from={learningV2RuneFlight.from}
+              to={learningV2RuneFlight.to}
               color={t.gold}
-              onDone={clearLearningV2StarFlight}
+              onDone={clearLearningV2RuneFlight}
             />
           ) : null}
           {learningV2DenialHint !== null ? (

@@ -79,6 +79,9 @@ export type AnalyticsEvent =
   | 'ai_dialog_started'
   | 'ai_dialog_message_sent'
   | 'ai_dialog_suggested_tapped'
+  // зачем (аудит 2026-08-23): экран диалога слал это событие, но в реестре его
+  // не было — открытия подсказки не измерялись. В событии только scenarioId.
+  | 'ai_dialog_hint_opened'
   | 'ai_dialog_completed'
   | 'ai_dialog_abandoned'
   | 'ai_dialog_limit_hit'

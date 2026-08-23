@@ -38,14 +38,31 @@ describe('MaxCallLiveCaptionView accessibility', () => {
     expect(view.queryByText(/Ты:/)).toBeNull();
   });
 
-  it('keeps a rolling word window instead of growing into a scrolling transcript', async () => {
+  it('показывает реплику целиком и подсвечивает уже сказанное', async () => {
+    // Владелец 2026-08-23: «реплики так быстро скроллятся, что не успеть ничего».
+    // Теперь видна вся фраза, а акцентом выделено то, что MAX произносит сейчас.
     const view = await render(React.createElement(MaxCallLiveCaptionView, {
-      visibleAssistantText: 'one two three four five six seven eight nine ten eleven twelve',
+      visibleAssistantText: 'Where would you',
+      fullAssistantText: 'Where would you like to go on holiday?',
       completedAssistantText: '',
       lang: 'ru',
     }));
-    expect(view.getByText('… three four five six seven eight nine ten eleven twelve')).toBeTruthy();
-    expect(view.queryByText(/^one two/)).toBeNull();
+    const spoken = view.getByTestId('max-call-caption-spoken');
+    expect(spoken.props.children).toBe('Where would you');
+    // Хвост реплики виден заранее — глаз держит контекст.
+    expect(view.getByText(/like to go on holiday\?/)).toBeTruthy();
+  });
+
+  it('очень длинную реплику всё же обрезает — лента не растёт бесконечно', async () => {
+    const long = Array.from({ length: 40 }, (_, i) => `w${i + 1}`).join(' ');
+    const view = await render(React.createElement(MaxCallLiveCaptionView, {
+      visibleAssistantText: '',
+      fullAssistantText: long,
+      completedAssistantText: '',
+      lang: 'ru',
+    }));
+    expect(view.queryByText(/^w1 w2/)).toBeNull();
+    expect(view.getByText(/w40$/)).toBeTruthy();
   });
 
   it('allows the subtitle to scale to 200 percent', async () => {
@@ -54,7 +71,10 @@ describe('MaxCallLiveCaptionView accessibility', () => {
       completedAssistantText: '',
       lang: 'ru',
     }));
-    expect(view.getByText('A complete response').props.maxFontSizeMultiplier).toBe(2);
+    // Свойство живёт на самой строке субтитров; подсветка сказанного — вложенный
+    // <Text> внутри неё и масштабируется вместе с родителем.
+    expect(view.getByTestId('max-call-live-caption-text').props.maxFontSizeMultiplier).toBe(2);
+    expect(view.getByTestId('max-call-caption-spoken').props.children).toBe('A complete response');
     expect(view.getByTestId('max-call-live-caption').props.style).toMatchObject({ minHeight: 132 });
   });
 });

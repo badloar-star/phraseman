@@ -364,6 +364,10 @@ export default function MaxCallSession() {
   const liveCaptionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [visibleAssistantText, setVisibleAssistantText] = useState('');
   const [completedAssistantText, setCompletedAssistantText] = useState('');
+  // зачем (владелец 2026-08-23): субтитры показывают реплику ЦЕЛИКОМ и
+  // подсвечивают акцентом уже произнесённое. Раньше окно из последних слов
+  // уезжало влево на каждом куске — «не успеть прочитать ничего».
+  const [fullAssistantText, setFullAssistantText] = useState('');
   const haloRef = useRef<MaxCallHaloRef>(null);
   const callOrbRef = useRef<MaxCallOrbRef>(null);
   // Таймер подсказок создаётся в onCallActivated из limits минта (per-CEFR
@@ -412,6 +416,7 @@ export default function MaxCallSession() {
   const publishCaption = (): void => {
     setVisibleAssistantText(liveCaptionRef.current.visibleText);
     setCompletedAssistantText(liveCaptionRef.current.announcementText);
+    setFullAssistantText(liveCaptionRef.current.fullText);
   };
 
   const dispatchCaption = (event: LiveCaptionEvent, publish = false): void => {
@@ -1303,6 +1308,7 @@ export default function MaxCallSession() {
         {phase !== 'failed' && ccEnabled ? (
           <MaxCallLiveCaptionView
             visibleAssistantText={visibleAssistantText}
+            fullAssistantText={fullAssistantText}
             completedAssistantText={completedAssistantText}
             lang={lang}
           />

@@ -102,7 +102,7 @@ describe('MAX call is a Home-owned preloaded experience', () => {
   it('pins controls below a stable MAX-only caption and scrolls only the tutor board', () => {
     expect(session).toContain('testID="max-call-dynamic-content"');
     expect(session).toContain("maxHeight: '32%'");
-    expect(session).toContain('<MaxCallLiveCaptionView visibleAssistantText={visibleAssistantText} lang={lang} />');
+    expect(session).toContain('<MaxCallLiveCaptionView');
     expect(session).toContain("event.type === 'audio_out_started'");
     expect(session).toContain("type: 'audio_started'");
     expect(session).toContain('liveCaptionChunkDelayMs');
@@ -111,7 +111,6 @@ describe('MAX call is a Home-owned preloaded experience', () => {
     expect(session).not.toContain('{lastTwo.map((turn, i) => (');
     expect(captionView).toContain('visibleAssistantText');
     expect(captionView).toContain('minHeight:');
-    expect(captionView).toContain('captionRailTail(visibleAssistantText)');
     expect(captionView).toContain('FlowText');
     expect(captionView).not.toContain('latestUserText');
     expect(captionView).not.toContain('onOpenTranscript');
@@ -119,6 +118,18 @@ describe('MAX call is a Home-owned preloaded experience', () => {
       .toBeLessThan(session.indexOf('testID="max-call-dynamic-content"'));
     expect(session.indexOf('testID="max-call-dynamic-content"'))
       .toBeLessThan(session.indexOf('testID="max-call-end-button"'));
+  });
+
+  it('субтитры показывают реплику целиком и подсвечивают уже сказанное', () => {
+    // Владелец 2026-08-23: «реплики так быстро скроллятся, что не успеть ничего».
+    // Окно считается по ПОЛНОЙ реплике, а не по уже произнесённой части, иначе
+    // текст уезжает влево на каждом новом куске.
+    const captionView = read('app/max_call_live_caption_view.tsx');
+    const session = read('app/max_call_session.tsx');
+    expect(captionView).toContain('captionRailTail(source, wordLimit)');
+    expect(captionView).toContain('splitSpokenTail(rail, visibleAssistantText)');
+    expect(session).toContain('fullAssistantText={fullAssistantText}');
+    expect(session).toContain('setFullAssistantText(liveCaptionRef.current.fullText)');
   });
 
   it('keeps diagnostic retry direct while routing a normal call-again through preparation', () => {

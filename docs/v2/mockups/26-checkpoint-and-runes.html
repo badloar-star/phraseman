@@ -1,0 +1,305 @@
+<title>Чекпоинт и руны</title>
+<style>
+  :root {
+    --bg: #0d1020; --card: #161a2e; --surface2: #1f2440;
+    --text: #eef1ff; --muted: #8b93b8; --accent: #7c8cff;
+    --correct: #45d47f; --gold: #ffc800;
+    --rune: #c9a84c;
+    --k: 1;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.55 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 30px 20px 90px; }
+  h1 { font-size: 30px; font-weight: 800; margin: 0 0 6px; letter-spacing: -.4px; }
+  .lede { color: var(--muted); max-width: 780px; margin: 0 0 22px; }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 26px; }
+  .toggle { background: var(--card); color: var(--text); border: 0; border-radius: 999px;
+    padding: 9px 15px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .toggle[aria-pressed="true"] { background: var(--accent); color: #0b0e1b; }
+  h2 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent);
+    margin: 40px 0 4px; font-weight: 800; }
+  .note { color: var(--muted); font-size: 14px; margin: 0 0 18px; max-width: 800px; }
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); }
+  .demo { background: var(--card); border-radius: 20px; padding: 18px; }
+  .demo h3 { font-size: 16px; margin: 0 0 8px; font-weight: 700; }
+  .demo p { color: var(--muted); font-size: 13.5px; margin: 0 0 12px; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { background: var(--surface2); color: var(--muted); border-radius: 999px;
+    padding: 3px 9px; font-size: 11px; font-weight: 700; }
+  .chip.new { background: rgba(124,140,255,.16); color: var(--accent); }
+  .stage { background: var(--bg); border-radius: 16px; padding: 20px; min-height: 200px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    position: relative; overflow: hidden; }
+  .btn { background: var(--accent); color: #0b0e1b; border: 0; border-radius: 12px;
+    padding: 10px 16px; font-weight: 700; font-size: 13px; cursor: pointer; }
+
+  /* ── РУНЫ ─────────────────────────────────────────── */
+  .rune {
+    font-family: "Segoe UI Symbol", "Noto Sans Runic", serif;
+    color: var(--rune); font-size: 22px; line-height: 1;
+    text-shadow: 0 0 12px rgba(201,168,76,.45);
+  }
+  .runechip {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--card); border-radius: 999px; padding: 7px 14px;
+    font-weight: 700; font-variant-numeric: tabular-nums;
+  }
+  .runechip .rune { font-size: 17px; }
+  .runechip.bump { animation: bump calc(360ms * var(--k)) cubic-bezier(.38,.70,.125,1); }
+  @keyframes bump { 0%{transform:scale(1)} 45%{transform:scale(1.16)} 100%{transform:scale(1)} }
+
+  .flyer { position: absolute; pointer-events: none; opacity: 0; }
+  .flyer.go { animation: fly calc(620ms * var(--k)) cubic-bezier(.33,.52,.25,.99) forwards; }
+  @keyframes fly {
+    0% { transform: translate(0,0) scale(1) rotate(0deg); opacity: 0; }
+    12% { opacity: 1; }
+    50% { transform: translate(var(--dx-half), calc(var(--dy-half) - 40px)) scale(.85) rotate(90deg); }
+    94% { opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(.5) rotate(180deg); opacity: 0; }
+  }
+
+  /* ── ЧЕКПОИНТ ─────────────────────────────────────── */
+  @property --pct { syntax: "<percentage>"; initial-value: 0%; inherits: false; }
+  .seal {
+    width: 116px; height: 116px; border-radius: 50%;
+    background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .seal .ring {
+    position: absolute; inset: -6px; border-radius: 50%;
+    background: conic-gradient(var(--gold) var(--pct, 0%), rgba(255,255,255,.06) 0);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+  }
+  .seal.fill .ring { animation: ringfill calc(900ms * var(--k)) cubic-bezier(.38,.70,.125,1) forwards; }
+  @keyframes ringfill { from { --pct: 0%; } to { --pct: 100%; } }
+  .seal .glyph { font-size: 44px; color: var(--gold);
+    font-family: "Segoe UI Symbol", "Noto Sans Runic", serif; }
+  .seal.pop { animation: sealpop calc(520ms * var(--k)) cubic-bezier(.38,.70,.125,1); }
+  @keyframes sealpop { 0%{transform:scale(.7)} 55%{transform:scale(1.12)} 100%{transform:scale(1)} }
+
+  .cando { display: flex; flex-direction: column; gap: 9px; width: 100%; max-width: 310px; }
+  .cando .row {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface2); border-radius: 12px; padding: 10px 13px; font-size: 13.5px;
+    opacity: 0; transform: translateY(8px);
+  }
+  .cando.run .row { animation: candoin calc(260ms * var(--k)) cubic-bezier(.38,.70,.125,1) forwards; }
+  .cando.run .row:nth-child(2) { animation-delay: calc(130ms * var(--k)); }
+  .cando.run .row:nth-child(3) { animation-delay: calc(260ms * var(--k)); }
+  @keyframes candoin { to { opacity: 1; transform: translateY(0); } }
+  .cando .tick { color: var(--correct); font-weight: 900; }
+  .cando .tick.weak { color: var(--gold); }
+
+  .strip { display: flex; gap: 5px; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .dot { width: 26px; height: 26px; border-radius: 50%; background: var(--surface2);
+    display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800;
+    color: var(--muted); transition: all calc(160ms * var(--k)) ease; }
+  .dot.done { background: var(--correct); color: #06280f; }
+  .dot.now { background: var(--accent); color: #0b0e1b; transform: scale(1.14); }
+
+  .caption { font-size: 13px; color: var(--muted); text-align: center; }
+  .big { font-size: 19px; font-weight: 800; text-align: center; }
+</style>
+
+<div class="wrap">
+  <h1>Чекпоинт главы и руны</h1>
+  <p class="lede">Два решения владельца от 22.08: проверочное занятие получает собственные экраны и движение,
+    а валюта открытия занятий переименовывается в <b>руны</b> — древние символы, которые вытягиваются
+    из занятий. Звёзды остаются только оценкой урока (1–3) и больше ничего не покупают.</p>
+
+  <div class="controls">
+    <button class="toggle" id="slow" aria-pressed="false">Замедлить 4×</button>
+    <button class="toggle" id="rm" aria-pressed="false">Reduced motion</button>
+  </div>
+
+  <h2>А. Руны — валюта открытия</h2>
+  <p class="note">Каждое начисление показывает <b>разные символы</b>, а не один повторённый: это «вытянутые
+    древние знаки», а не монетки из автомата. Счётчик везде показывает руну вместо звезды.</p>
+  <div class="grid">
+    <div class="demo">
+      <h3>Начисление рун</h3>
+      <div class="chips">
+        <span class="chip new">решение 22.08</span><span class="chip">620 мс</span>
+        <span class="chip">каскад 90 мс</span><span class="chip">5 разных символов</span>
+      </div>
+      <p>Руны вылетают из занятия, вращаются в полёте и садятся в счётчик. Символы каждый раз тянутся
+        случайно из набора — начисление никогда не выглядит одинаково.</p>
+      <div class="stage" id="runeStage">
+        <div class="runechip" id="runeChip"><span class="rune">ᚠ</span><span id="runeVal">120</span></div>
+        <button class="btn" onclick="flyRunes()">Завершить занятие</button>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Набор символов</h3>
+      <div class="chips">
+        <span class="chip new">решение 22.08</span><span class="chip">старший футарк</span>
+        <span class="chip">ноль ассетов</span>
+      </div>
+      <p>Настоящие рунические знаки — они есть в системных шрифтах, картинки не нужны, вес приложения
+        не растёт. В счётчике всегда одна «дежурная» руна, в анимации — разные.</p>
+      <div class="stage">
+        <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+          <span class="rune">ᚠ</span><span class="rune">ᚢ</span><span class="rune">ᚦ</span>
+          <span class="rune">ᚨ</span><span class="rune">ᚱ</span><span class="rune">ᚲ</span>
+          <span class="rune">ᚷ</span><span class="rune">ᚹ</span><span class="rune">ᛃ</span>
+          <span class="rune">ᛊ</span><span class="rune">ᛏ</span><span class="rune">ᛒ</span>
+        </div>
+        <div class="caption">Цвет берётся из активной темы, а не жёстко золотой</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Б. Чекпоинт главы</h2>
+  <p class="note">Сейчас проверочное занятие ничем не отличается от обычного, кроме значка на карте.
+    По спеке SB-14 это отдельный сценарий: без подсказок, смешанные задания, результат в понятных
+    «что я теперь умею», без красного «провалено».</p>
+  <div class="grid">
+    <div class="demo">
+      <h3>1. Печать главы — вход</h3>
+      <div class="chips">
+        <span class="chip new">новый экран</span><span class="chip">900 мс</span>
+        <span class="chip">кольцо прогресса</span>
+      </div>
+      <p>Вместо обычного окна «Начать» — печать главы: кольцо наливается по числу пройденных занятий,
+        печать выстреливает. Сразу понятно, что это рубеж, а не рядовой урок.</p>
+      <div class="stage">
+        <div class="seal" id="seal"><div class="ring"></div><div class="glyph">ᛝ</div></div>
+        <div class="big">Глава 1 — проверка</div>
+        <button class="btn" onclick="playSeal()">Показать вход</button>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>2. Ход проверки</h3>
+      <div class="chips">
+        <span class="chip new">новый экран</span><span class="chip">без подсказок</span>
+        <span class="chip">виден весь путь</span>
+      </div>
+      <p>Полоса из 8 заданий вместо обычного прогресса: видно, сколько осталось. Подсказки скрыты,
+        разбора после ошибки нет — он будет в конце. Спокойно, без давления таймером.</p>
+      <div class="stage">
+        <div class="strip" id="strip"></div>
+        <div class="caption">Задание 4 из 8 · подсказки выключены</div>
+        <button class="btn" onclick="stepStrip()">Ответить</button>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>3. Результат — «что я умею»</h3>
+      <div class="chips">
+        <span class="chip new">новый экран</span><span class="chip">каскад 130 мс</span>
+        <span class="chip">без «провалено»</span>
+      </div>
+      <p>Не оценка, а список умений: что закрепилось, что стоит повторить. Слабое место — не провал,
+        а мягкая строка с предложением повторить.</p>
+      <div class="stage">
+        <div class="cando" id="cando">
+          <div class="row"><span class="tick">✓</span> Могу представиться</div>
+          <div class="row"><span class="tick">✓</span> Могу спросить, как дела</div>
+          <div class="row"><span class="tick weak">↻</span> Стоит повторить: вопросы с «are»</div>
+        </div>
+        <button class="btn" onclick="playCando()">Показать результат</button>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>4. Награда за главу</h3>
+      <div class="chips">
+        <span class="chip new">новый экран</span><span class="chip">печать ставится</span>
+        <span class="chip">руны каскадом</span>
+      </div>
+      <p>Печать главы «ставится» с отдачей, следом сыплются руны. Это редкое событие — раз в восемь
+        занятий, поэтому празднование заметно щедрее обычного финала.</p>
+      <div class="stage" id="rewardStage">
+        <div class="seal" id="seal2"><div class="ring" style="--pct:100%"></div><div class="glyph">ᛝ</div></div>
+        <div class="runechip" id="rewardChip"><span class="rune">ᚱ</span><span id="rewardVal">120</span></div>
+        <button class="btn" onclick="playReward()">Показать награду</button>
+      </div>
+    </div>
+  </div>
+
+  <h2>В. Что решено и что осталось открытым</h2>
+  <p class="note">
+    <b>Решено:</b> звёзды — только оценка занятия (1–3), они ничего не покупают; следующий урок
+    открывается прохождением, а не оценкой; валюта открытия называется рунами.<br>
+    <b>Открыто:</b> объединять ли кошелёк Арены с кошельком курса. Сейчас это две отдельные валюты,
+    и слияние — уже не переименование, а миграция экономики с настоящими деньгами людей.
+    Нужна отдельная задача.
+  </p>
+</div>
+
+<script>
+  var root = document.documentElement, slow = false, reduced = false;
+  function applyK(){ root.style.setProperty('--k', reduced ? 0.001 : (slow ? 4 : 1)); }
+  function factor(){ return reduced ? 0.001 : (slow ? 4 : 1); }
+  document.getElementById('slow').onclick = function(){ slow=!slow; this.setAttribute('aria-pressed',slow); applyK(); };
+  document.getElementById('rm').onclick = function(){ reduced=!reduced; this.setAttribute('aria-pressed',reduced); applyK(); };
+
+  var RUNES = ['ᚠ','ᚢ','ᚦ','ᚨ','ᚱ','ᚲ','ᚷ','ᚹ','ᛃ','ᛊ','ᛏ','ᛒ','ᛗ','ᛚ','ᛜ'];
+  function pick(n){ var p = RUNES.slice(), out = [];
+    for (var i=0;i<n;i++) out.push(p.splice(Math.floor(Math.random()*p.length),1)[0]);
+    return out; }
+
+  function launch(stage, chip, valueEl, symbols, startTop, stepMs, delayMs, perRune){
+    var sr = stage.getBoundingClientRect(), cr = chip.getBoundingClientRect();
+    symbols.forEach(function(sym, i){
+      var el = document.createElement('span');
+      el.className = 'flyer rune'; el.textContent = sym;
+      el.style.left = (sr.width/2 - 10) + 'px';
+      el.style.top = startTop + 'px';
+      var dx = (cr.left - sr.left) + cr.width/2 - sr.width/2 + (i - symbols.length/2) * 5;
+      var dy = (cr.top - sr.top) + cr.height/2 - startTop;
+      el.style.setProperty('--dx', dx + 'px');
+      el.style.setProperty('--dy', dy + 'px');
+      el.style.setProperty('--dx-half', (dx * 0.5) + 'px');
+      el.style.setProperty('--dy-half', (dy * 0.5) + 'px');
+      stage.appendChild(el);
+      setTimeout(function(){ el.classList.add('go'); }, (delayMs + i * stepMs) * factor());
+      setTimeout(function(){
+        el.remove();
+        valueEl.textContent = (+valueEl.textContent) + perRune;
+        chip.classList.remove('bump'); void chip.offsetWidth; chip.classList.add('bump');
+      }, (delayMs + 620 + i * stepMs) * factor());
+    });
+  }
+
+  function flyRunes(){
+    var stage = document.getElementById('runeStage');
+    launch(stage, document.getElementById('runeChip'), document.getElementById('runeVal'),
+      pick(5), stage.getBoundingClientRect().height - 60, 90, 0, 1);
+  }
+
+  function playSeal(){
+    var s = document.getElementById('seal');
+    s.classList.remove('fill','pop'); void s.offsetWidth; s.classList.add('fill','pop');
+  }
+
+  var stripIdx = 3;
+  function renderStrip(){
+    var el = document.getElementById('strip'); el.innerHTML = '';
+    for (var i=0;i<8;i++){
+      var d = document.createElement('div');
+      d.className = 'dot' + (i < stripIdx ? ' done' : '') + (i === stripIdx ? ' now' : '');
+      d.textContent = i + 1; el.appendChild(d);
+    }
+  }
+  function stepStrip(){ stripIdx = (stripIdx + 1) % 9; renderStrip(); }
+  renderStrip();
+
+  function playCando(){
+    var c = document.getElementById('cando');
+    c.classList.remove('run'); void c.offsetWidth; c.classList.add('run');
+  }
+
+  function playReward(){
+    var s = document.getElementById('seal2');
+    s.classList.remove('pop'); void s.offsetWidth; s.classList.add('pop');
+    var stage = document.getElementById('rewardStage');
+    launch(stage, document.getElementById('rewardChip'), document.getElementById('rewardVal'),
+      pick(8), stage.getBoundingClientRect().height/2 - 40, 70, 200, 5);
+  }
+</script>

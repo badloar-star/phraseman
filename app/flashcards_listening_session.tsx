@@ -781,8 +781,12 @@ export default function FlashcardsListeningSession() {
               <ReportErrorButton
                 screen="flashcards_listening"
                 dataId={`flashcard_${card.id ?? 'unknown'}`}
-                dataText={`EN: ${card.en}
-RU: ${card.translation}`}
+                // зачем (аудит 2026-08-23): читались card.en/card.translation,
+                // которых у ListeningCard нет (поля зовутся front/back) — в
+                // жалобу уходило «EN: undefined / RU: undefined», и репорт был
+                // бесполезен. Проверка типов молчала: полный tsc падал по памяти.
+                dataText={`EN: ${card.front}
+RU: ${card.back}`}
                 variant="icon-flag"
                 accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в карточке', uk: 'Повідомити про помилку в картці', es: 'Informar de un error en la tarjeta', 'pt-BR': 'Relatar erro no cartão', vi: 'Báo lỗi trong thẻ', id: 'Laporkan kesalahan pada kartu', tr: 'Karttaki hatayı bildir', pl: 'Zgłoś błąd w fiszce' })}
                 testID="fc-listen-report"

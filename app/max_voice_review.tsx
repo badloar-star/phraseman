@@ -313,6 +313,14 @@ export default function MaxVoiceReview() {
         },
         facet: { kind: 'form', expected: correction.target },
       });
+      // зачем (аудит 2026-08-23): CaptureResult — размеченное объединение, и
+      // mistakeId есть только у ветки 'captured'. Проверки не было: при отказе
+      // захвата (ignored — верно/субъективно/технический сбой) в практику
+      // уходил focusMistakeId=undefined, и экран открывался без самой ошибки.
+      if (captured.kind !== 'captured') {
+        setPracticeOpening(false);
+        return;
+      }
       void trackEvent('max_tutor_review_practice_started', { session_id: activeSessionId });
       router.push({
         pathname: '/mistake_practice_session',
@@ -519,7 +527,11 @@ export default function MaxVoiceReview() {
                 >
                   <Text
                     style={{
-                      color: feedbackText.trim() === '' && feedbackRating === 0 ? t.textGhost : t.onAccent,
+                      // зачем (аудит 2026-08-23): t.onAccent в теме не существует —
+                      // цвет надписи на активной кнопке приходил undefined. Берём
+                      // t.correctText, которым красят текст поверх t.accent соседние
+                      // экраны (см. friends.tsx) — согласованно, а не выдумано.
+                      color: feedbackText.trim() === '' && feedbackRating === 0 ? t.textGhost : t.correctText,
                       fontSize: f.body,
                       fontWeight: '900',
                     }}

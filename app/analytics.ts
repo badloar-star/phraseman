@@ -83,7 +83,6 @@ export type AnalyticsEvent =
   | 'ai_dialog_abandoned'
   | 'ai_dialog_limit_hit'
   | 'ai_dialog_tts_used'
-  | 'ai_dialog_conversation_mode_toggled'
   | 'ai_dialog_phrase_tapped'
   | 'ai_dialog_translation_used'
   | 'ai_dialog_translate_requested'
@@ -99,6 +98,14 @@ export type AnalyticsEvent =
   | 'ai_dialog_retry'
   // Говорение («Устно»): успешная попытка проговорить фразу вслух (premium).
   | 'speaking_attempt_passed'
+  | 'max_tutor_board_shown'
+  | 'max_tutor_board_listened'
+  | 'max_tutor_board_dismissed'
+  | 'max_tutor_topic_changed'
+  | 'max_tutor_review_practice_started'
+  // зачем (аудит 2026-08-23): экран разбора звонка слал это событие, но в
+  // реестре его не было — событие терялось, а отклик на отзывы не измерялся.
+  | 'max_voice_feedback_sent'
   // «Объясни как для 5-летнего» (Фаза 5 — adoption/cohort + health кэш-хитов)
   | 'explain_button_shown'
   | 'explain_sheet_opened'

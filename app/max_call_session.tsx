@@ -1002,7 +1002,10 @@ export default function MaxCallSession() {
     learnerEndRequestedRef.current = false;
     endReasonRef.current = 'completed';
     setHardAtMs(null);
-    setDailyQuota(null);
+    // зачем (аудит 2026-08-23): setDailyQuota осталась от рефакторинга, который
+    // осознанно убрал квоту из состояния (см. комментарий у dailyQuotaFromLimits
+    // выше) — сеттера больше не существует, и повторный звонок падал с
+    // ReferenceError. Проверка типов этого не ловила: полный tsc падал по памяти.
     setUiState(MAX_CALL_UI_INITIAL);
     setConnectionRetryTick((value) => value + 1);
   };

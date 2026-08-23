@@ -32,10 +32,65 @@ export const TUTOR_HOMEWORK_PHRASE_MAX_CHARS = 80;
 const CEFR_RANK: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
 
 /**
+ * СТАБИЛЬНЫЙ каталог сцен: одинаковый для всех учеников и во все дни.
+ *
+ * зачем (владелец 2026-08-23, «урезать стоимость минуты хотя бы на 70»):
+ * prompt cache OpenAI совпадает по ТОЧНОМУ префиксу. Персональный каталог
+ * (фильтр по уровню + дневная ротация) давал 4 разных префикса в день и 28 за
+ * неделю — каждый со своим холодным кэшем, то есть ~500 токенов каталога плюс
+ * всё, что идёт после него, оплачивались по полной цене почти всегда.
+ *
+ * Педагогика не страдает: у КАЖДОЙ строки каталога уже написан её уровень
+ * ("level A2"), а промпт велит играть сцену "at their level". Уровень ученика
+ * учитель видит в блоке YOUR LEARNER, поэтому выбирает подходящую сцену сам —
+ * фильтр в коде лишь дублировал то, что и так видно в тексте.
+ *
+ * Порядок детерминирован (по уровню, затем по id), поэтому строка стабильна
+ * байт-в-байт между звонками и попадает в общий кэш организации.
+ */
+export function buildStableTutorSceneCatalog(
+  scenarios: readonly DialogScenario[],
+  limit = TUTOR_SCENE_CATALOG_LIMIT,
+): TutorSceneItem[] {
+  const eligible = scenarios
+    .filter((s) => s.active && typeof s.id === 'string' && s.id !== '' && s.role && s.setting)
+    .map((s) => ({ id: s.id, cefr: s.cefr, role: s.role, setting: s.setting }))
+    .sort((a, b) => (CEFR_RANK[a.cefr] ?? 1) - (CEFR_RANK[b.cefr] ?? 1) || a.id.localeCompare(b.id));
+  if (eligible.length <= limit) return eligible;
+
+  // Круговой обход уровней: каждый уровень обязан быть представлен, иначе
+  // простое slice(14) отдало бы только A1/A2 и учителю было бы нечего
+  // предложить сильному ученику.
+  const byLevel = new Map<string, TutorSceneItem[]>();
+  for (const item of eligible) {
+    const bucket = byLevel.get(item.cefr);
+    if (bucket) bucket.push(item);
+    else byLevel.set(item.cefr, [item]);
+  }
+  const levels = [...byLevel.keys()].sort((a, b) => (CEFR_RANK[a] ?? 1) - (CEFR_RANK[b] ?? 1));
+  const picked: TutorSceneItem[] = [];
+  for (let round = 0; picked.length < limit; round += 1) {
+    let addedThisRound = false;
+    for (const level of levels) {
+      const bucket = byLevel.get(level);
+      if (!bucket || round >= bucket.length) continue;
+      picked.push(bucket[round]);
+      addedThisRound = true;
+      if (picked.length >= limit) break;
+    }
+    if (!addedThisRound) break;
+  }
+  return picked;
+}
+
+/**
  * Каталог сцен под уровень: сцены уровня ученика и на одну ступень выше
  * (учитель сам подстроит язык), активные, детерминированный порядок — по
  * близости уровня, затем по id. Ротация «сегодня другие сцены» — параметром
  * seed (например, номер урока), чтобы список не был одинаковым каждый день.
+ *
+ * ⚠️ Для промпта учителя больше НЕ используется (ломало кэш) — см.
+ * buildStableTutorSceneCatalog выше. Оставлена для других вызовов и тестов.
  */
 export function buildTutorSceneCatalog(
   scenarios: readonly DialogScenario[],

@@ -41,7 +41,7 @@ import {
   performMaxVoiceMint,
   releaseUnusedMint,
   tutorSceneBlock,
-  tutorSceneItems,
+  tutorStableSceneItems,
   type MaxCallParams,
 } from './max_call_mint_request';
 import { createTutorToolRunner, type TutorToolRunner } from './max_call_tutor_tools';
@@ -82,7 +82,6 @@ import { MaxCallHalo, type MaxCallHaloRef } from './max_call_halo';
 import { dailyQuotaFromLimits } from './max_call_daily_quota';
 import {
   LIVE_CAPTION_INITIAL,
-  liveCaptionChunkDelayMs,
   reduceLiveCaption,
   type LiveCaptionEvent,
 } from './max_call_live_caption';
@@ -438,20 +437,6 @@ export default function MaxCallSession() {
     if (publish) publishCaption();
   };
 
-  const scheduleCaptionTick = (): void => {
-    stopCaptionTimer();
-    const before = liveCaptionRef.current.visibleText;
-    dispatchCaption({ type: 'tick' });
-    const after = liveCaptionRef.current.visibleText;
-    if (after !== before) publishCaption();
-    if (!liveCaptionRef.current.playing) return;
-    const added = after.slice(before.length);
-    liveCaptionTimerRef.current = setTimeout(
-      scheduleCaptionTick,
-      liveCaptionChunkDelayMs(added),
-    );
-  };
-
   // -------------------------------------------------------------------------
   // Жизненный цикл клиента: собрать deps → start; teardown идемпотентен.
   useEffect(() => {
@@ -472,10 +457,11 @@ export default function MaxCallSession() {
     const callParams: MaxCallParams = { format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget: isTutor ? 'en' : studyTarget };
     const key = premintKey(callParams);
     if (isTutor) {
-      // Тот же каталог, что ушёл в промпт (уровень + день): id совпадают.
-      const tutorCefr = cefr ?? guessLearnerCefr();
+      // Тот же каталог, что ушёл в промпт — теперь СТАБИЛЬНЫЙ (рычаг 2, кэш):
+      // не зависит ни от уровня, ни от дня. Обе точки обязаны звать одну и ту
+      // же функцию, иначе учитель предложит сцену, а клиент отвергнет её id.
       tutorRunnerRef.current = createTutorToolRunner({
-        scenes: tutorSceneItems(tutorCefr, Math.floor(Date.now() / 86_400_000)),
+        scenes: tutorStableSceneItems(),
         sceneBlock: tutorSceneBlock,
         onSceneChange: (scene) => {
           const sc = scene ? getScenarioById(scene.id) : undefined;
@@ -587,12 +573,17 @@ export default function MaxCallSession() {
         const buffer = bufferRef.current;
         if (event.kind === 'assistant_delta') {
           const previousCaptionItemId = liveCaptionRef.current.itemId;
-          const previousVisibleCaption = liveCaptionRef.current.visibleText;
+          // зачем: публикуем по росту ПОЛНОГО текста, а не «уже произнесённого».
+          // Пословную догонялку сняли (см. audio_out_started), поэтому visibleText
+          // больше не растёт — по старому условию реплика не появилась бы на
+          // экране до конца речи. Субтитры показывают фразу целиком, как просил
+          // владелец, и обновляются только когда реально пришёл новый текст.
+          const previousFullCaption = liveCaptionRef.current.fullText;
           lastAssistantItemRef.current = event.itemId;
           buffer.pushAssistantDelta(event.itemId, event.delta);
           dispatchCaption({ type: 'assistant_delta', itemId: event.itemId, delta: event.delta });
           if (previousCaptionItemId !== event.itemId) publishCaption();
-          if (liveCaptionRef.current.visibleText !== previousVisibleCaption) publishCaption();
+          if (liveCaptionRef.current.fullText !== previousFullCaption) publishCaption();
         } else if (event.kind === 'assistant_done') {
           buffer.completeAssistantItem(event.itemId);
           dispatchCaption({ type: 'assistant_done', itemId: event.itemId }, true);
@@ -679,8 +670,12 @@ export default function MaxCallSession() {
       bufferRef.current.markInterrupted(lastAssistantItemRef.current);
     }
     if (event.type === 'audio_out_started') {
-      dispatchCaption({ type: 'audio_started' });
-      scheduleCaptionTick();
+      // зачем (владелец 2026-08-23): «реплики появлялись сразу целиком и не были
+      // лаганые, не прыгали туда сюда». scheduleCaptionTick догонял речь ПО СЛОВАМ
+      // и перерисовывал субтитры десятки раз за реплику — от этого текст дёргался
+      // и перетекал между строками. Субтитры теперь показывают реплику целиком,
+      // догонялка больше не нужна: публикуем один раз и оставляем в покое.
+      dispatchCaption({ type: 'audio_started' }, true);
     }
     if (event.type === 'audio_out_stopped') {
       stopCaptionTimer();

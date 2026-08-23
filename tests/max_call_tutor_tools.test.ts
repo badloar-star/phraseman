@@ -4,6 +4,7 @@
 
 import {
   TUTOR_SCENE_CATALOG_LIMIT,
+  buildStableTutorSceneCatalog,
   buildTutorSceneCatalog,
   createTutorToolRunner,
   renderTutorSceneCatalog,
@@ -301,5 +302,50 @@ describe('createTutorToolRunner', () => {
   it('неизвестный инструмент — мягкий ответ, ничего не ломает', () => {
     const { runner } = makeRunner();
     expect(runner.handle('teleport', {}).output).toContain('Unknown tool');
+  });
+});
+
+// зачем (владелец 2026-08-23, «урезать стоимость минуты хотя бы на 70»):
+// каталог сцен уходит в промпт, а prompt cache OpenAI совпадает по ТОЧНОМУ
+// префиксу. Пока каталог зависел от уровня и дня, он давал 4 разных префикса
+// в день и 28 за неделю — кэш дробился и почти всегда был холодным.
+describe('стабильный каталог сцен (кэш-контракт)', () => {
+  const pool = [
+    scenario('a1_one', 'A1'), scenario('a1_two', 'A1'), scenario('a1_three', 'A1'),
+    scenario('a2_one', 'A2'), scenario('a2_two', 'A2'), scenario('a2_three', 'A2'),
+    scenario('b1_one', 'B1'), scenario('b1_two', 'B1'), scenario('b1_three', 'B1'),
+    scenario('b2_one', 'B2'), scenario('b2_two', 'B2'), scenario('b2_three', 'B2'),
+  ];
+
+  it('один и тот же список независимо от уровня и дня — префикс промпта стабилен', () => {
+    const a = renderTutorSceneCatalog(buildStableTutorSceneCatalog(pool));
+    const b = renderTutorSceneCatalog(buildStableTutorSceneCatalog(pool));
+    expect(a).toBe(b);
+    expect(a).not.toBe('');
+  });
+
+  it('каждый уровень представлен — сильному ученику есть что предложить', () => {
+    const items = buildStableTutorSceneCatalog(pool, 8);
+    const levels = new Set(items.map((s) => s.cefr));
+    expect(levels).toEqual(new Set(['A1', 'A2', 'B1', 'B2']));
+    expect(items).toHaveLength(8);
+  });
+
+  it('уровень каждой сцены виден в строке — учитель выбирает подходящую сам', () => {
+    const rendered = renderTutorSceneCatalog(buildStableTutorSceneCatalog(pool, 4));
+    expect(rendered).toContain('level A1');
+    expect(rendered).toContain('level B2');
+  });
+
+  it('неактивные сцены не попадают в каталог', () => {
+    const withDisabled = [...pool, scenario('disabled_one', 'A2', false)];
+    const ids = buildStableTutorSceneCatalog(withDisabled, 20).map((s) => s.id);
+    expect(ids).not.toContain('disabled_one');
+  });
+
+  it('не превышает лимит и не падает на пустом наборе', () => {
+    expect(buildStableTutorSceneCatalog(pool, 3)).toHaveLength(3);
+    expect(buildStableTutorSceneCatalog(pool).length).toBeLessThanOrEqual(TUTOR_SCENE_CATALOG_LIMIT);
+    expect(buildStableTutorSceneCatalog([])).toEqual([]);
   });
 });

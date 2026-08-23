@@ -26,6 +26,7 @@ import { peekHomeScreenHydration } from './home_screen_hydration';
 import { getLessonData } from './lesson_data_all';
 import { lessonGrammarEntry } from './lesson_grammar_map';
 import {
+  buildStableTutorSceneCatalog,
   buildTutorSceneCatalog,
   renderTutorSceneCatalog,
   type TutorSceneItem,
@@ -155,6 +156,16 @@ export function guessLearnerCefr(): 'A1' | 'A2' | 'B1' {
 /** Сцены, которые учитель может предложить в этом уроке (детерминировано по уровню и номеру урока). */
 export function tutorSceneItems(cefr: string | undefined, seed = 0): TutorSceneItem[] {
   return buildTutorSceneCatalog(DIALOG_SCENARIOS, cefr ?? 'A1', seed);
+}
+
+/**
+ * Каталог сцен для ПРОМПТА и для валидации id в звонке — один и тот же,
+ * стабильный для всех учеников и дней (рычаг 2, кэш префикса).
+ * Обе точки обязаны звать именно его, иначе учитель предложит сцену,
+ * которую клиент отвергнет как неизвестную.
+ */
+export function tutorStableSceneItems(): TutorSceneItem[] {
+  return buildStableTutorSceneCatalog(DIALOG_SCENARIOS);
 }
 
 /** Полный блок сцены по id — тот же формат, что у формата scenario. */
@@ -292,12 +303,15 @@ export function prefetchMaxTutorPreview(
  */
 export async function buildTutorMintExtras(params: MaxCallParams): Promise<Partial<MaxVoiceMintRequest>> {
   const cefr = params.cefr ?? guessLearnerCefr();
-  const daySeed = Math.floor(Date.now() / 86_400_000);
   return {
     cefr,
     interfaceLang: params.interfaceLang ?? 'ru',
     studyTarget: params.studyTarget ?? 'en',
-    sceneCatalog: renderTutorSceneCatalog(tutorSceneItems(cefr, daySeed)),
+    // зачем (рычаг 2, кэш): каталог больше НЕ зависит ни от уровня, ни от дня —
+    // одинаковая строка для всех попадает в общий prompt cache. Уровень каждой
+    // сцены написан прямо в строке ("level A2"), а уровень ученика учитель
+    // видит в блоке YOUR LEARNER, поэтому выбирает подходящую сам.
+    sceneCatalog: renderTutorSceneCatalog(tutorStableSceneItems()),
     learnerSnapshot: await buildLearnerSnapshot(cefr, params.studyTarget === 'fr' ? 'fr' : 'en'),
   };
 }

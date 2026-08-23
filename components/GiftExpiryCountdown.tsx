@@ -63,6 +63,17 @@ interface GiftExpiryCountdownProps {
    * иконки и без секунд. Полная строка чч:мм:сс на квадрате 118px не влезает.
    */
   compact?: boolean;
+  /**
+   * Смысл отсчёта.
+   *
+   * зачем 2026-08-23 (владелец: «таймер уже показывает не когда подарок
+   * сгорит, а сколько он действует»): один и тот же компонент считает две
+   * разные вещи. У неоткрытого подарка ноль = потеря («сгорит через…», и
+   * последние 6 часов честно тревожные). У уже активированного ноль = штатный
+   * конец действия («действует ещё…»), пугать красным там не за что — человек
+   * ничего не теряет, бонус просто отработал.
+   */
+  meaning?: 'expiry' | 'remaining';
   testID?: string;
 }
 
@@ -71,6 +82,7 @@ export default function GiftExpiryCountdown({
   accent,
   onExpired,
   compact = false,
+  meaning = 'expiry',
   testID,
 }: GiftExpiryCountdownProps) {
   const { lang } = useLang();
@@ -104,7 +116,10 @@ export default function GiftExpiryCountdown({
       setMsLeft(left);
       displayText.value = compact ? compactLabel(left) : giftCountdownLabel(left);
 
-      const nowWarn = left <= GIFT_EXPIRY_WARN_MS && left > 0;
+      // зачем 2026-08-23: у активного бонуса «последние 6 часов» — не тревога,
+      // а обычный остаток действия. Пульс и хаптик там читались бы как «ты
+      // что-то теряешь», хотя терять нечего.
+      const nowWarn = meaning === 'expiry' && left <= GIFT_EXPIRY_WARN_MS && left > 0;
       if (nowWarn && !wasWarnRef.current && !reduceMotion) {
         // Загорание: один микро-пульс + один хаптик — не на каждый тик,
         // а строго в момент пересечения порога «последние 6 часов».
@@ -125,9 +140,9 @@ export default function GiftExpiryCountdown({
       cancelAnimation(pulse);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [expiresAtMs, compact, reduceMotion]));
+  }, [expiresAtMs, compact, reduceMotion, meaning]));
 
-  const warn = msLeft <= GIFT_EXPIRY_WARN_MS;
+  const warn = meaning === 'expiry' && msLeft <= GIFT_EXPIRY_WARN_MS;
   // зачем: владелец не смог прочитать таймер — цвет наследовался от акцента
   // подарка (эпик = золото #FFD700), и жёлтые цифры 10px на светло-жёлтой
   // плашке давали контраст ~1.3:1. На светлой теме акцент подарка для текста
@@ -139,16 +154,30 @@ export default function GiftExpiryCountdown({
   const hoursLeft = Math.floor(msLeft / 3600000);
   const minutesLeft = Math.floor((msLeft % 3600000) / 60000);
   // VoiceOver/TalkBack: цифры «71:59:59» не читаются — озвучиваем смысл.
-  const a11yLabel = triLang(lang, {
-    ru: `Подарок сгорит через ${hoursLeft} ч ${minutesLeft} мин`,
-    uk: `Подарунок згорить через ${hoursLeft} год ${minutesLeft} хв`,
-    es: `El regalo caduca en ${hoursLeft} h ${minutesLeft} min`,
-    'pt-BR': `O presente expira em ${hoursLeft} h ${minutesLeft} min`,
-    vi: `Quà sẽ hết hạn sau ${hoursLeft} giờ ${minutesLeft} phút`,
-    id: `Hadiah hangus dalam ${hoursLeft} jam ${minutesLeft} menit`,
-    tr: `Hediye ${hoursLeft} sa ${minutesLeft} dk içinde yanacak`,
-    pl: `Prezent wygaśnie za ${hoursLeft} godz. ${minutesLeft} min`,
-  });
+  // зачем 2026-08-23: у активированного подарка отсчёт означает «действует
+  // ещё», а не «сгорит через» — скринридер обязан говорить то же, что видит
+  // зрячий, иначе активный бонус звучит как угроза потери.
+  const a11yLabel = meaning === 'remaining'
+    ? triLang(lang, {
+      ru: `Действует ещё ${hoursLeft} ч ${minutesLeft} мин`,
+      uk: `Діє ще ${hoursLeft} год ${minutesLeft} хв`,
+      es: `Activo ${hoursLeft} h ${minutesLeft} min más`,
+      'pt-BR': `Ativo por mais ${hoursLeft} h ${minutesLeft} min`,
+      vi: `Còn hiệu lực ${hoursLeft} giờ ${minutesLeft} phút`,
+      id: `Masih aktif ${hoursLeft} jam ${minutesLeft} menit`,
+      tr: `${hoursLeft} sa ${minutesLeft} dk daha geçerli`,
+      pl: `Działa jeszcze ${hoursLeft} godz. ${minutesLeft} min`,
+    })
+    : triLang(lang, {
+      ru: `Подарок сгорит через ${hoursLeft} ч ${minutesLeft} мин`,
+      uk: `Подарунок згорить через ${hoursLeft} год ${minutesLeft} хв`,
+      es: `El regalo caduca en ${hoursLeft} h ${minutesLeft} min`,
+      'pt-BR': `O presente expira em ${hoursLeft} h ${minutesLeft} min`,
+      vi: `Quà sẽ hết hạn sau ${hoursLeft} giờ ${minutesLeft} phút`,
+      id: `Hadiah hangus dalam ${hoursLeft} jam ${minutesLeft} menit`,
+      tr: `Hediye ${hoursLeft} sa ${minutesLeft} dk içinde yanacak`,
+      pl: `Prezent wygaśnie za ${hoursLeft} godz. ${minutesLeft} min`,
+    });
 
   // Подложка бейджа непрозрачная: плитка под ним — картинка подарка,
   // на пёстрой иконке 12-процентная заливка не отделяет цифры от фона.

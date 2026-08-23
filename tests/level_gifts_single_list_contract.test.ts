@@ -1,15 +1,18 @@
 // ════════════════════════════════════════════════════════════════════════════
-// level_gifts_tabs_contract.test.ts — вкладки «Инвентарь / Активные».
+// level_gifts_single_list_contract.test.ts — ЕДИНЫЙ список раздела «Подарки».
 //
-// зачем 2026-08-03 (владелец): «подарки после активации просто исчезают. Я хочу
-// видеть в этом же разделе подраздел активные, и там пусть показываются все
-// активные, в том числе бонус недели, дня, часа и т.д., буст лиги в том числе
-// если активен, и подарки что друзья подарили и ты заюзал — короче там всё, что
-// активное, со своим индивидуальным таймером. Раздел активные и просто подарки
-// разделены. Когда заходим в раздел подарки, то видим вкладку инвентарь, а
-// рядом кнопка переключает на активированные».
+// зачем 2026-08-23 (владелец): «убери в разделе подарки разделение на два
+// раздела активные и инвентарь, просто сделай так чтобы когда мы активируем
+// подарок чтобы он менял свой статус и вид внутри одного раздела чтобы мы сразу
+// видели этот активирует, и таймер уже показывает не когда подарок сгорит, а
+// сколько он действует».
 //
-// Плюс: «карточка горизонтальная (бонус), там жёлтая полоска наверху — удали её».
+// История: 2026-08-03 тот же владелец просил РАЗДЕЛИТЬ на вкладки «Инвентарь /
+// Активные» — лечили жалобу «подарки после активации просто исчезают». Вкладки
+// симптом сняли, но ценой переключения: активированный подарок уезжал на
+// соседнюю вкладку, и результат своего действия человек всё равно не видел там,
+// где действие совершил. Правило 2026-08-03 ОТМЕНЕНО, этот файл сторожит новое.
+// Если тест падает на «вкладок быть не должно» — чинить экран, а не тест.
 //
 // Экран в jest не поднимается (expo-router, reanimated), поэтому контракт
 // проверяется по исходнику — тот же приём, что в остальных контрактах экранов.
@@ -27,61 +30,91 @@ const ACTIVE_SOURCE = fs.readFileSync(
   'utf8',
 );
 
-describe('переключатель вкладок', () => {
-  test('есть состояние вкладки с двумя разделами', () => {
-    expect(SCREEN).toContain("useState<'inventory' | 'active'>('inventory')");
+const COUNTDOWN = fs.readFileSync(
+  path.join(__dirname, '..', 'components', 'GiftExpiryCountdown.tsx'),
+  'utf8',
+);
+
+describe('вкладок больше нет', () => {
+  test('состояние вкладки удалено полностью', () => {
+    expect(SCREEN).not.toContain("useState<'inventory' | 'active'>");
+    expect(SCREEN).not.toMatch(/\bsetTab\b/);
   });
 
-  test('обе вкладки отрисованы и нажимаются', () => {
-    expect(SCREEN).toContain('testID={`level-gifts-tab-${entry.key}`}');
-    expect(SCREEN).toContain("key: 'inventory' as const");
-    expect(SCREEN).toContain("key: 'active' as const");
+  test('переключатель разделов не рендерится', () => {
+    expect(SCREEN).not.toContain('level-gifts-tab-');
+    expect(SCREEN).not.toContain('isActiveTab');
   });
 
-  test('вкладки подписаны понятными словами', () => {
-    expect(SCREEN).toContain("ru: 'Инвентарь'");
-    expect(SCREEN).toContain("ru: 'Активные'");
+  test('подписи вкладок «Инвентарь» и «Активные» убраны', () => {
+    expect(SCREEN).not.toContain("ru: 'Инвентарь'");
+    expect(SCREEN).not.toContain("ru: 'Активные'");
   });
 
-  test('на вкладке видно количество — без лишнего переключения', () => {
-    expect(SCREEN).toContain('count: items.length');
-    expect(SCREEN).toContain('count: activeItems.length');
-  });
-
-  test('активная вкладка выделена тоном, а не обводкой', () => {
-    // Правило владельца: контейнеры разделяются тоном, обводки запрещены.
-    expect(SCREEN).toContain("backgroundColor: isActiveTab ? giftTone(t.accent, '2E') : t.bgSurface");
-  });
-
-  test('состояние вкладки объявлено скринридеру', () => {
-    expect(SCREEN).toContain('accessibilityState={{ selected: isActiveTab }}');
+  test('содержимое больше не спрятано за условием вкладки', () => {
+    expect(SCREEN).not.toMatch(/tab === 'active'/);
+    expect(SCREEN).not.toMatch(/tab === 'inventory'/);
   });
 });
 
-describe('разделение содержимого по вкладкам', () => {
-  test('действующие бонусы показываются ТОЛЬКО на вкладке «Активные»', () => {
-    // Корень жалобы: активные и неоткрытые лежали вперемешку в одном списке,
-    // поэтому применённый подарок будто пропадал.
-    expect(SCREEN).toContain("{tab === 'active' && activeItems.length > 0 && (");
+describe('один список: активные сверху, неоткрытые снизу', () => {
+  test('действующие бонусы показываются без всяких условий вкладки', () => {
+    expect(SCREEN).toContain('{activeItems.length > 0 && (');
   });
 
-  test('сетка неоткрытых подарков — только на вкладке «Инвентарь»', () => {
-    expect(SCREEN).toContain("{tab === 'inventory' && items.length > 0 ? (");
+  test('сетка неоткрытых подарков показывается в том же списке', () => {
+    expect(SCREEN).toContain('{items.length > 0 ? (');
   });
 
-  test('у пустой вкладки «Активные» своё объяснение', () => {
-    expect(SCREEN).toContain("{tab === 'active' && activeItems.length === 0 ? (");
-    expect(SCREEN).toContain("ru: 'Сейчас ничего не действует'");
+  test('активные бонусы стоят в разметке ВЫШЕ сетки неоткрытых', () => {
+    // Порядок владельца: «сразу видели, что этот активирован».
+    const activeAt = SCREEN.indexOf('{activeItems.length > 0 && (');
+    const tilesAt = SCREEN.indexOf('{items.length > 0 ? (');
+    expect(activeAt).toBeGreaterThan(-1);
+    expect(tilesAt).toBeGreaterThan(-1);
+    expect(activeAt).toBeLessThan(tilesAt);
   });
 
-  test('у пустого инвентаря своё объяснение', () => {
-    expect(SCREEN).toContain("{tab === 'inventory' && items.length === 0 ? (");
+  test('у списка один общий заголовок вместо двух вкладок', () => {
+    expect(SCREEN).toContain("ru: 'Твои подарки'");
+  });
+});
+
+describe('пустые состояния честны для единого списка', () => {
+  test('крупное пустое состояние — только когда нет НИЧЕГО', () => {
+    // Раньше это была пустая вкладка «Активные», и текст врал про половину
+    // экрана: говорил только про применённые бонусы.
+    expect(SCREEN).toContain('{activeItems.length === 0 && items.length === 0 ? (');
     expect(SCREEN).toContain("ru: 'Подарков пока нет'");
   });
+
+  test('когда активные есть, а неоткрытых нет — тихая строка, не блок на пол-экрана', () => {
+    expect(SCREEN).toContain('{items.length === 0 && activeItems.length > 0 ? (');
+    expect(SCREEN).toContain("ru: 'Неоткрытых подарков нет — новые за уровни появятся здесь.'");
+  });
 });
 
-describe('таймеры активных бонусов', () => {
-  test('у каждого активного бонуса свой индивидуальный отсчёт', () => {
+describe('таймер показывает срок ДЕЙСТВИЯ, а не сгорания', () => {
+  test('у компонента есть явный смысл отсчёта', () => {
+    expect(COUNTDOWN).toContain("meaning?: 'expiry' | 'remaining'");
+  });
+
+  test('активированный бонус считает остаток действия', () => {
+    expect(SCREEN).toContain('meaning="remaining"');
+  });
+
+  test('скринридер говорит «действует ещё», а не «сгорит через»', () => {
+    expect(COUNTDOWN).toContain("meaning === 'remaining'");
+    expect(COUNTDOWN).toContain('Действует ещё ');
+  });
+
+  test('тревожная подсветка последних часов — только у несгоревшего подарка', () => {
+    // У активного бонуса ноль = штатный конец действия, пугать красным нечем.
+    expect(COUNTDOWN).toContain("const warn = meaning === 'expiry' && msLeft <= GIFT_EXPIRY_WARN_MS");
+    expect(COUNTDOWN).toContain("const nowWarn = meaning === 'expiry' && left <= GIFT_EXPIRY_WARN_MS");
+  });
+
+  test('у каждого активного бонуса по-прежнему свой индивидуальный отсчёт', () => {
     expect(SCREEN).toContain('<GiftExpiryCountdown');
     expect(SCREEN).toContain('expiresAtMs={gift.expiresAtMs}');
   });

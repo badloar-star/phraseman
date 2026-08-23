@@ -5,6 +5,8 @@ type MaxSystemCopy = Readonly<{
   reconnecting: string;
   failed: string;
   wrappingUp: string;
+  /** Пауза перед первой фразой учителя: экран не должен молчать. */
+  connecting: string;
   maxSpeaking: string;
   speak: string;
   retry: string;
@@ -13,14 +15,14 @@ type MaxSystemCopy = Readonly<{
 
 /** Complete authored system-state copy for every supported interface locale. */
 export const MAX_COPY: Readonly<Record<Lang, MaxSystemCopy>> = {
-  ru: { reconnecting: 'Восстанавливаем связь', failed: 'Не удалось восстановить связь', wrappingUp: 'Завершаем разговор', maxSpeaking: 'MAX говорит', speak: 'Говори', retry: 'Повторить подключение', finish: 'Завершить и перейти к разбору' },
-  uk: { reconnecting: 'Відновлюємо зв’язок', failed: 'Не вдалося відновити зв’язок', wrappingUp: 'Завершуємо розмову', maxSpeaking: 'MAX говорить', speak: 'Говори', retry: 'Повторити підключення', finish: 'Завершити й перейти до розбору' },
-  es: { reconnecting: 'Recuperando la conexión', failed: 'No se pudo recuperar la conexión', wrappingUp: 'Finalizando la conversación', maxSpeaking: 'MAX está hablando', speak: 'Habla', retry: 'Reintentar conexión', finish: 'Finalizar e ir a la revisión' },
-  'pt-BR': { reconnecting: 'Restaurando a conexão', failed: 'Não foi possível restaurar a conexão', wrappingUp: 'Encerrando a conversa', maxSpeaking: 'MAX está falando', speak: 'Fale', retry: 'Tentar conectar novamente', finish: 'Encerrar e ir para a revisão' },
-  vi: { reconnecting: 'Đang khôi phục kết nối', failed: 'Không thể khôi phục kết nối', wrappingUp: 'Đang kết thúc cuộc trò chuyện', maxSpeaking: 'MAX đang nói', speak: 'Hãy nói', retry: 'Thử kết nối lại', finish: 'Kết thúc và xem đánh giá' },
-  id: { reconnecting: 'Memulihkan koneksi', failed: 'Koneksi tidak dapat dipulihkan', wrappingUp: 'Mengakhiri percakapan', maxSpeaking: 'MAX sedang berbicara', speak: 'Silakan bicara', retry: 'Coba sambungkan lagi', finish: 'Akhiri dan buka ulasan' },
-  tr: { reconnecting: 'Bağlantı yeniden kuruluyor', failed: 'Bağlantı yeniden kurulamadı', wrappingUp: 'Konuşma bitiriliyor', maxSpeaking: 'MAX konuşuyor', speak: 'Konuş', retry: 'Bağlantıyı tekrar dene', finish: 'Bitir ve değerlendirmeye geç' },
-  pl: { reconnecting: 'Przywracanie połączenia', failed: 'Nie udało się przywrócić połączenia', wrappingUp: 'Kończymy rozmowę', maxSpeaking: 'MAX mówi', speak: 'Mów', retry: 'Spróbuj połączyć ponownie', finish: 'Zakończ i przejdź do podsumowania' },
+  ru: { connecting: 'Учитель набирает вас', reconnecting: 'Восстанавливаем связь', failed: 'Не удалось восстановить связь', wrappingUp: 'Завершаем разговор', maxSpeaking: 'MAX говорит', speak: 'Говори', retry: 'Повторить подключение', finish: 'Завершить и перейти к разбору' },
+  uk: { connecting: 'Учитель набирає вас', reconnecting: 'Відновлюємо зв’язок', failed: 'Не вдалося відновити зв’язок', wrappingUp: 'Завершуємо розмову', maxSpeaking: 'MAX говорить', speak: 'Говори', retry: 'Повторити підключення', finish: 'Завершити й перейти до розбору' },
+  es: { connecting: 'El profesor te está llamando', reconnecting: 'Recuperando la conexión', failed: 'No se pudo recuperar la conexión', wrappingUp: 'Finalizando la conversación', maxSpeaking: 'MAX está hablando', speak: 'Habla', retry: 'Reintentar conexión', finish: 'Finalizar e ir a la revisión' },
+  'pt-BR': { connecting: 'O professor está te ligando', reconnecting: 'Restaurando a conexão', failed: 'Não foi possível restaurar a conexão', wrappingUp: 'Encerrando a conversa', maxSpeaking: 'MAX está falando', speak: 'Fale', retry: 'Tentar conectar novamente', finish: 'Encerrar e ir para a revisão' },
+  vi: { connecting: 'Giáo viên đang gọi bạn', reconnecting: 'Đang khôi phục kết nối', failed: 'Không thể khôi phục kết nối', wrappingUp: 'Đang kết thúc cuộc trò chuyện', maxSpeaking: 'MAX đang nói', speak: 'Hãy nói', retry: 'Thử kết nối lại', finish: 'Kết thúc và xem đánh giá' },
+  id: { connecting: 'Guru sedang menghubungi Anda', reconnecting: 'Memulihkan koneksi', failed: 'Koneksi tidak dapat dipulihkan', wrappingUp: 'Mengakhiri percakapan', maxSpeaking: 'MAX sedang berbicara', speak: 'Silakan bicara', retry: 'Coba sambungkan lagi', finish: 'Akhiri dan buka ulasan' },
+  tr: { connecting: 'Öğretmen sizi arıyor', reconnecting: 'Bağlantı yeniden kuruluyor', failed: 'Bağlantı yeniden kurulamadı', wrappingUp: 'Konuşma bitiriliyor', maxSpeaking: 'MAX konuşuyor', speak: 'Konuş', retry: 'Bağlantıyı tekrar dene', finish: 'Bitir ve değerlendirmeye geç' },
+  pl: { connecting: 'Nauczyciel do ciebie dzwoni', reconnecting: 'Przywracanie połączenia', failed: 'Nie udało się przywrócić połączenia', wrappingUp: 'Kończymy rozmowę', maxSpeaking: 'MAX mówi', speak: 'Mów', retry: 'Spróbuj połączyć ponownie', finish: 'Zakończ i przejdź do podsumowania' },
 };
 
 export const MAX_END_INTENTS = {
@@ -87,6 +89,11 @@ export function maxVoicePhaseLabel(
   if (phase === 'wrapping_up') return c.wrappingUp;
   if (eqOwner === 'ai') return c.maxSpeaking;
   if (eqOwner === 'user') return c.speak;
+  // зачем (владелец 2026-08-23): «когда начинаем разговор, оно долго думает
+  // перед тем как он начнёт говорить». Пауза до первой фразы читалась как
+  // зависание, потому что строка под сферой была пустой. Тему урока показывает
+  // полоса цели выше — здесь нужен только честный статус, что связь идёт.
+  if (phase === 'connecting') return c.connecting;
   return '';
 }
 

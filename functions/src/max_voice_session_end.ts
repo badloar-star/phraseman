@@ -42,7 +42,7 @@ export const VOICE_BILLING_COLLECTION = 'voice_call_billing';
  * Дата прайс-листа, по которому посчитан estCostUsd, — пишется в каждую
  * billing-запись, чтобы дневная сверка с Usage API знала, чем считали.
  */
-export const VOICE_PRICE_TABLE_DATE = '2026-08-21';
+export const VOICE_PRICE_TABLE_DATE = '2026-08-23';
 
 /** $/1M токенов gpt-realtime-2.1-mini + $/мин транскрипции входа. */
 export const VOICE_PRICES = {
@@ -51,7 +51,9 @@ export const VOICE_PRICES = {
   cachedPerM: 0.3,
   textInputPerM: 0.6,
   textOutputPerM: 2.4,
-  transcriptionPerMin: 0.006,
+  // gpt-4o-mini-transcribe официально $0.003/мин (прайс OpenAI на дату таблицы).
+  // Прежние 0.006 — цена gpt-4o-transcribe, не той модели, что стоит в конфиге.
+  transcriptionPerMin: 0.003,
 } as const;
 
 /**
@@ -129,8 +131,14 @@ export function estimateVoiceCostUsd(usage: VoiceUsageTotals, chargedSec: number
     normalized.textTokens - normalized.textInputTokens - normalized.textOutputTokens,
   );
   const transcriptionCostUsd = (Math.max(0, chargedSec) / 60) * VOICE_PRICES.transcriptionPerMin;
+  // зачем: владелец 2026-08-23 — «почему модели 0.016? разве не должно быть дешевле».
+  // Аудит нашёл двойной счёт: cached_tokens в Realtime — ПОДМНОЖЕСТВО input-токенов
+  // (они уже посчитаны внутри audio_tokens), а не отдельная корзина. Прежняя формула
+  // прибавляла их сверху, завышая расход. Считаем свежий аудиовход по полной цене,
+  // а кэшированную часть — по льготной $0.30/M, как и биллит OpenAI.
+  const freshAudioInputTokens = Math.max(0, normalized.audioInputTokens - normalized.cachedTokens);
   const tokensUsd =
-    (normalized.audioInputTokens / 1_000_000) * VOICE_PRICES.audioInputPerM +
+    (freshAudioInputTokens / 1_000_000) * VOICE_PRICES.audioInputPerM +
     (normalized.audioOutputTokens / 1_000_000) * VOICE_PRICES.audioOutputPerM +
     (normalized.cachedTokens / 1_000_000) * VOICE_PRICES.cachedPerM +
     (normalized.textInputTokens / 1_000_000) * VOICE_PRICES.textInputPerM +

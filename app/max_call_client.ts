@@ -79,6 +79,7 @@ export const MAX_CALL_GREETING_HOLD_MAX_MS = 20_000;
  */
 export const MAX_CALL_REMOTE_TRACK_GRACE_MS = 750;
 
+
 export async function completeLocalOfferSdp(
   connection: RtcPeerConnectionLike,
   initialSdp: string,
@@ -821,7 +822,15 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       // Реплика юзера — только финальная (interim в Realtime нет, спека §1).
       case 'conversation.item.input_audio_transcription.completed': {
         const text = typeof message.transcript === 'string' ? message.transcript : '';
-        if (text) emitTranscript({ kind: 'user_final', text });
+        if (text) {
+          emitTranscript({ kind: 'user_final', text });
+          return;
+        }
+        // зачем (владелец 2026-08-23): «я ничего не говорю, а он хвалит пустоту».
+        // Пустой транскрипт = VAD сработал на шум или эхо, слов не было. Ответ,
+        // поставленный в очередь по speech_stopped, снимаем — хвалить нечего.
+        // Реальную речь этот путь не трогает: у неё транскрипт непустой.
+        defaultResponseQueued = false;
         return;
       }
       case 'error':

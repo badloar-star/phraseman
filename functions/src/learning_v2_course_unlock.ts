@@ -27,6 +27,12 @@ import {
   readProgressAccountBinding,
   type ProgressAccountBinding,
 } from "./learning_v2/progress_event_callable";
+import { commitStarOperations, prepareStarOperations } from "./stars_ledger";
+import { getWeekKey } from "./progress_events";
+import {
+  learningV2UnlockStarOpByUnlockId,
+  starsFromWalletSubunits,
+} from "./learning_v2/stars_ledger_bridge";
 
 export const V2_COURSE_UNLOCK_RECEIPTS_SUBCOLLECTION =
   "v2_course_unlock_receipts";
@@ -43,6 +49,12 @@ export interface LearningV2CourseUnlockStore {
   putIfAbsent(input: {
     readonly stableUid: string;
     readonly receipt: ProtectedLearningV2CourseUnlockReceiptV1;
+    /**
+     * Цена открытия в подъединицах кошелька. Считает сервер по той же лестнице
+     * 45/50/55/60/65 (materializeServerCourseUnlockReceiptCandidate), клиент её
+     * не задаёт. Ноль — первое занятие бесплатно.
+     */
+    readonly chargeSubunits?: number;
   }): Promise<
     | { readonly status: "created"; readonly receipt: unknown }
     | { readonly status: "existing"; readonly receipt: unknown }
@@ -141,13 +153,44 @@ export const createFirestoreLearningV2CourseUnlockStore = (
   const ref = (stableUid: string, unlockId: string) => db.collection("users")
     .doc(stableUid).collection(V2_COURSE_UNLOCK_RECEIPTS_SUBCOLLECTION).doc(unlockId);
   return {
-    putIfAbsent: async ({ stableUid, receipt }) => db.runTransaction(async (transaction) => {
+    putIfAbsent: async ({ stableUid, receipt, chargeSubunits = 0 }) =>
+      db.runTransaction(async (transaction) => {
       const document = ref(stableUid, receipt.unlockId);
-      const snapshot = await transaction.get(document);
+      // зачем: владелец 2026-08-23 — звёзды Арены, турниров и Learning V2 это
+      // одна валюта, поэтому трата за открытие обязана идти в общий журнал, а
+      // не только в локальный кошелёк.
+      //
+      // Firebase-экономия: документ игрока читаем ТОЛЬКО когда есть что
+      // списывать. Первое занятие бесплатное, и за него лишнего чтения нет.
+      const starOp = learningV2UnlockStarOpByUnlockId({
+        unlockId: receipt.unlockId,
+        priceStars: starsFromWalletSubunits(chargeSubunits),
+        ruleVersion: 1,
+      });
+      const userRef = starOp ? db.collection("users").doc(stableUid) : null;
+      const [snapshot, userSnap] = await Promise.all([
+        transaction.get(document),
+        userRef ? transaction.get(userRef) : Promise.resolve(null),
+      ]);
       if (snapshot.exists) {
         return { status: "existing" as const, receipt: snapshot.data() };
       }
       transaction.create(document, receipt as unknown as FirebaseFirestore.DocumentData);
+      if (starOp && userSnap) {
+        const nowMs = Date.now();
+        const prepared = await prepareStarOperations(
+          transaction, db, stableUid, userSnap, [starOp],
+          {
+            nowMs,
+            activeSeasonId: "",
+            weekKeyNow: getWeekKey(new Date(nowMs).toISOString().slice(0, 10)),
+            authUid: stableUid,
+          },
+        );
+        // зачем (D-C): нехватку звёзд журнал отвергает сам, и это НЕ отменяет
+        // открытие — учёбу не отбираем. Долг гасится следующими начислениями.
+        commitStarOperations(transaction, prepared);
+      }
       return { status: "created" as const, receipt };
     }),
     read: async (stableUid, unlockId) => {
@@ -253,6 +296,10 @@ export const createLearningV2CourseUnlockHandler = (
   const write = await resolved.store.putIfAbsent({
     stableUid: binding.stableUid,
     receipt: protectedReceipt,
+    // зачем: цену считает сервер по лестнице 45/50/55/60/65 внутри
+    // materializeServerCourseUnlockReceiptCandidate — клиент её не задаёт.
+    // Отсюда трата уезжает в общий журнал звёзд (одна валюта на все разделы).
+    chargeSubunits: materialization.receipt.authorizedRequest.chargeSubunits,
   });
   let stored: ProtectedLearningV2CourseUnlockReceiptV1;
   try { stored = parseProtectedLearningV2CourseUnlockReceipt(write.receipt); }

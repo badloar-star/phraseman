@@ -86,7 +86,37 @@ export function learningV2SessionStarOp(input: {
 }
 
 /**
- * Списание за открытие занятия.
+ * Списание за открытие занятия по ГОТОВОМУ идентификатору открытия.
+ *
+ * зачем: сервер уже материализует уникальный unlockId для каждой расписки
+ * открытия, и он же — естественный ключ дедупа. Склеивать курс с номером
+ * занятия здесь не нужно: лишний суффикс только удлинил бы ключ и развёл бы
+ * два разных ключа для одного и того же открытия.
+ */
+export function learningV2UnlockStarOpByUnlockId(input: {
+  readonly unlockId: string;
+  readonly priceStars: number;
+  readonly ruleVersion: number;
+  readonly earnedAtMs?: number;
+}): StarOpRequest | null {
+  if (!Number.isSafeInteger(input.priceStars) || input.priceStars < 0) {
+    throw new LearningV2StarsBridgeError("subunits_not_whole_stars");
+  }
+  if (input.priceStars === 0) return null;
+  assertUsableSourceId(input.unlockId);
+  return {
+    opId: `${LEARNING_V2_UNLOCK_SOURCE_KIND}:${input.unlockId}`,
+    delta: -input.priceStars,
+    reason: "learning_v2_unlock",
+    sourceKind: LEARNING_V2_UNLOCK_SOURCE_KIND,
+    sourceId: input.unlockId,
+    ruleVersion: input.ruleVersion,
+    ...(input.earnedAtMs === undefined ? {} : { earnedAtMs: input.earnedAtMs }),
+  };
+}
+
+/**
+ * Списание за открытие занятия по паре «курс + порядковый номер».
  *
  * зачем: курс и порядковый номер склеиваются через '_', а не ':' — двоеточие
  * разделяет sourceKind и sourceId в ключе дедупа, и внутри id оно сделало бы

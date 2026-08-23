@@ -353,3 +353,9 @@ functions/src/generated/support_repo_context.json
 # 32 МБ). Никакой код на корневой prototypes/ не ссылается: единственное упоминание
 # в components/friends_together/FriendsChestCard.tsx ведёт на docs/prototypes/.
 /prototypes/
+
+# зачем: 2026-08-23 — окружение новых кодбаз (functions-max, functions-content)
+# копируется из functions/.env* и содержит боевые ключи. Правило ".env" выше
+# ловит только корень, поэтому вложенные пути закрываем явно.
+functions-*/.env
+functions-*/.env.*

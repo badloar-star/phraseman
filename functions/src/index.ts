@@ -1,3 +1,7 @@
+// зачем: 2026-08-23 — контент-фабрика Learning V2 (9 функций) переехала в
+// кодбазу functions-content. Замер: она тянула в память все авторские сессии
+// курса и стоила 236 МБ из 380 МБ основного бандла, то есть за неё платили
+// все 240 функций при каждом холодном старте. Деплой: functions:content.
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions/v2";
 import { getLevelFromXP } from "./xp_levels";
@@ -607,11 +611,6 @@ export {
 
 // Learning V2 learner-safe active-session descriptor. Auth + App Check are
 // enforced in the callable module; no private repository handle is serialized.
-export { learningV2ActivityAuxiliarySessionGetV1 } from "./content_factory/v2_activity_auxiliary_session_callable_v1";
-export { learningV2ActivityReleasedSessionGetV1 } from "./content_factory/v2_activity_released_session_callable_v1";
-export { learningV2CourseReleasedSessionGetV2 } from "./content_factory/v2_course_released_session_callable_v2";
-export { learningV2CourseReleasedSessionGetV3 } from "./content_factory/v2_course_released_session_callable_v3";
-export { learningV2CourseActiveCatalogGetV1 } from "./content_factory/v2_course_active_catalog_callable_v1";
 export { submitLearningV2ActivityReleasedCompletionV1 } from "./learning_v2/activity_released_session_completion_callable_v1";
 export { submitLearningV2CourseSessionCompletedV1 } from "./learning_v2/course_session_completed_summary_callable_v1";
 
@@ -838,7 +837,6 @@ export {
 // зачем: без экспорта функции просто нет на сервере. Именно её отсутствие
 // давало head_missing и «Сессия недоступна / NOT FOUND» — публиковать курс
 // было нечем.
-export { adminPublishAuthoredLearningV2Course } from "./content_factory/learning_v2_publish_authored_course_v1";
 export {
   adminGetContentFactoryJobDetail,
   adminGetContentFactoryUnitPreview,
@@ -1128,13 +1126,10 @@ export {
   adminCreateV2GenerationPlan,
   adminQueueV2GenerationPlan,
 } from "./admin_v2_generation";
-export { adminImportV2OwnerEpisodeStage } from "./content_factory/v2_owner_episode_stage_repository_v1";
-export { adminConfirmV2OwnerEpisode } from "./content_factory/v2_owner_episode_confirmation_adapter_v1";
 export {
   adminGetV2OwnerGeneratorWorkspace,
   adminPrepareV2OwnerEpisodeDraft,
 } from "./content_factory/v2_owner_generator_workspace_v1";
-export { adminGetV2OwnerGeneratorSetupCatalog } from "./content_factory/v2_owner_generator_setup_catalog_v1";
 export {
   adminSeedV2E1DemoSource,
   adminRunV2E1Compilation,

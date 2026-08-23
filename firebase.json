@@ -220,6 +220,21 @@
       ]
     },
     {
+      "source": "functions-content",
+      "codebase": "content",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "npm --prefix functions-content run build"
+      ],
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "**/*.test.ts"
+      ]
+    },
+    {
       "source": "functions-english-test",
       "codebase": "english-test",
       "runtime": "nodejs22",

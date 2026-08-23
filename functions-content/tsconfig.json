@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "rootDir": "..",
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": true,
+    // зачем: модули modules/learning-v2/** используют Array.prototype.at()
+    // (ES2022). Основная кодбаза их не компилирует, поэтому ей хватает es2020;
+    // здесь они входят в граф импорта — нужен более новый стандарт.
+    "target": "es2022",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["index.ts"],
+  "exclude": ["**/*.test.ts"]
+}

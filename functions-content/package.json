@@ -1,0 +1,14 @@
+{
+  "name": "phraseman-functions-content",
+  "version": "1.0.0",
+  "description": "Learning V2 content factory. Отдельная кодбаза: авторские сессии курса весят ~236 МБ в памяти и раздували старт ВСЕХ функций основного бандла.",
+  "engines": { "node": "22" },
+  "main": "lib/functions-content/index.js",
+  "scripts": { "build": "tsc" },
+  "dependencies": {
+    "firebase-admin": "^13.10.0",
+    "firebase-functions": "^7.2.5"
+  },
+  "devDependencies": { "typescript": "^5.6.3" },
+  "private": true
+}

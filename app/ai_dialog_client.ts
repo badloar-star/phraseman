@@ -34,7 +34,7 @@ export interface DialogChatTurn {
   content: string;
 }
 
-/** Память коуча для режима companion (собирается из профиля + SRS-истории). */
+/** Память коуча для режима companion (профиль + новая история ошибок). */
 export interface DialogMemory {
   profile?: string;
   weakWords?: string[];
@@ -111,6 +111,10 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
   if (
     text.includes('dialog_provider_failed') ||
     text.includes('dialog_empty_reply') ||
+    // Стриминг оборвался/недоступен — для человека это тот же «сбой у провайдера»
+    // с кнопкой «Повторить», а не загадочный код.
+    text.includes('dialog_stream_incomplete') ||
+    text.includes('stream_unavailable') ||
     text.includes('unavailable') ||
     text.includes('deadline-exceeded') ||
     text.includes('functions/internal')
@@ -372,11 +376,16 @@ export interface PremiumDialogReviewRequest {
   /** voice/tutor: id сессии звонка (дедуп журнала с мгновенными репортами). */
   sessionId?: string;
   /** tutor: итоги повторения речи (mark_phrase_result). */
-  phraseResults?: { text: string; ok: boolean }[];
+  phraseResults?: { text: string; result: 'pass' | 'needs_work' | 'uncertain' | 'invalid' }[];
   /** tutor: итог сцены-задачи (end_scene outcome). */
   sceneOutcome?: string;
   /** tutor: прогресс по текущей речевой цели (mark_goal_progress). */
-  goalProgress?: { goalId: string; mastery: number };
+  goalProgress?: {
+    goalId: string;
+    mastery: number;
+    evidence?: 'scene' | 'novel_context';
+    sceneId?: string;
+  };
 }
 
 /** Одно исправление: как сказал ученик → как естественнее + короткое пояснение. */
@@ -401,6 +410,13 @@ export interface PremiumDialogReviewResponse {
   corrections: PremiumDialogReviewCorrection[];
   /** Один практичный совет на следующий раз (язык интерфейса). */
   tip: string;
+  /** Tutor-only durable projection; UI must not claim mastery from local tool output. */
+  tutorMemory?: {
+    callCount: number;
+    homework: string[];
+    nextTopic: string;
+    acceptedGoalProgress?: { goalId: string; mastery: number };
+  };
 }
 
 function premiumDialogReviewRequestKey(req: PremiumDialogReviewRequest): string {
@@ -411,6 +427,13 @@ function premiumDialogReviewRequestKey(req: PremiumDialogReviewRequest): string 
     scenarioId: req.scenarioId,
     studyTarget: req.studyTarget ?? 'en',
     mode: req.mode ?? 'text',
+    sessionId: req.sessionId ?? '',
+    homework: req.homework ?? [],
+    nextTopic: req.nextTopic ?? '',
+    languagePreference: req.languagePreference ?? '',
+    phraseResults: req.phraseResults ?? [],
+    sceneOutcome: req.sceneOutcome ?? '',
+    goalProgress: req.goalProgress ?? null,
   });
 }
 
@@ -435,7 +458,8 @@ export async function callPremiumDialogReview(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogReview',
     );
-    // Идемпотентно: разбор только читает транскрипт и ничего не списывает.
+    // sessionId делает tutor-обновление памяти идемпотентным; ключ in-flight
+    // выше также включает все детерминированные итоги конкретного урока.
     const res = await withAiCallableRetry(
       (attempt) => withExplainCallableTimeout(
         fn(req),

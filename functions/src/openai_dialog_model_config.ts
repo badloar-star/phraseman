@@ -82,28 +82,65 @@ function quotaFromData(data: FirebaseFirestore.DocumentData | undefined): Dialog
   };
 }
 
+/**
+ * Кэш конфига в памяти инстанса.
+ * зачем: модель и квота диалога меняются админом раз в недели, а читались из
+ * Firestore на КАЖДУЮ реплику — это 2 лишних round-trip перед платным вызовом
+ * OpenAI на каждое сообщение пользователя. Держим значение 5 минут в памяти
+ * тёплого инстанса: админская правка доезжает максимум за 5 минут (инстансы
+ * ещё и перезапускаются чаще), а задержка ответа падает.
+ */
+const CONFIG_CACHE_TTL_MS = 5 * 60 * 1000;
+
+interface CacheEntry<T> {
+  value: T;
+  expiresAtMs: number;
+}
+
+let modelCache: CacheEntry<DialogModel> | null = null;
+let quotaCache: CacheEntry<DialogQuotaConfig> | null = null;
+
+/** Сброс кэша — для тестов и для мгновенного применения админской правки. */
+export function __resetDialogConfigCache(): void {
+  modelCache = null;
+  quotaCache = null;
+}
+
 export async function resolveConfiguredDialogModel(
   db: FirebaseFirestore.Firestore,
   envModel: unknown,
 ): Promise<DialogModel> {
+  const now = Date.now();
+  if (modelCache && modelCache.expiresAtMs > now) return modelCache.value;
+
+  const fallback = normalizeDialogModel(envModel) || MODEL_DEFAULT;
   try {
     const snap = await db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).get();
     const configured = normalizeDialogModel(snap.data()?.model);
-    if (configured) return configured;
+    const resolved = configured || fallback;
+    modelCache = { value: resolved, expiresAtMs: now + CONFIG_CACHE_TTL_MS };
+    return resolved;
   } catch (e) {
     console.warn('resolveConfiguredDialogModel failed, using fallback', e);
+    // Ошибку НЕ кэшируем: следующая реплика попробует прочитать конфиг заново.
+    return fallback;
   }
-  return normalizeDialogModel(envModel) || MODEL_DEFAULT;
 }
 
 export async function resolveConfiguredDialogQuota(
   db: FirebaseFirestore.Firestore,
 ): Promise<DialogQuotaConfig> {
+  const now = Date.now();
+  if (quotaCache && quotaCache.expiresAtMs > now) return quotaCache.value;
+
   try {
     const snap = await db.collection(CONFIG_COLLECTION).doc(QUOTA_CONFIG_DOC).get();
-    return quotaFromData(snap.data());
+    const resolved = quotaFromData(snap.data());
+    quotaCache = { value: resolved, expiresAtMs: now + CONFIG_CACHE_TTL_MS };
+    return resolved;
   } catch (e) {
     console.warn('resolveConfiguredDialogQuota failed, using fallback', e);
+    // Ошибку НЕ кэшируем — иначе дефолтная квота залипла бы на 5 минут.
     return quotaFromData(undefined);
   }
 }
@@ -129,6 +166,8 @@ export const openAiDialogModelConfig = onCall({ region: REGION, enforceAppCheck:
       updatedAtMs: Date.now(),
       updatedBy: text(request.auth?.token?.email, 200) || 'admin',
     }, { merge: true });
+    // зачем: без сброса админ увидел бы старую модель до истечения TTL кэша.
+    __resetDialogConfigCache();
   } else if (action !== 'get') {
     throw new HttpsError('invalid-argument', 'unsupported_action');
   }
@@ -179,6 +218,8 @@ export const openAiDialogQuotaConfig = onCall({ region: REGION, enforceAppCheck:
       updatedAtMs: Date.now(),
       updatedBy: text(request.auth?.token?.email, 200) || 'admin',
     }, { merge: true });
+    // зачем: см. выше — сброс кэша, чтобы новая квота применилась сразу.
+    __resetDialogConfigCache();
   } else if (action !== 'get') {
     throw new HttpsError('invalid-argument', 'unsupported_action');
   }

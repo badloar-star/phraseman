@@ -96,6 +96,21 @@ describe('warmupPing остаётся бесплатным', () => {
  * Тест текстовый намеренно: он охраняет именно ВЫБОР предиката в месте вызова,
  * который никакой юнит-тест логики не заметит.
  */
+
+/**
+ * true — фолбэк на callable стоит под проверкой notStarted, а не безусловно.
+ * Ищем сам предикат рядом с вызовом callPremiumDialogSend в блоке catch стрима.
+ */
+function s_canFallbackGuard(session: string): boolean {
+  const marks = [...session.matchAll(/const canFallback =[\s\S]{0,200}?notStarted/g)];
+  if (marks.length === 0) return false;
+  // Каждый такой блок обязан бросать дальше, если фолбэк недопустим.
+  return marks.every((m) => {
+    const after = session.slice(m.index ?? 0, (m.index ?? 0) + 400);
+    return after.includes('if (!canFallback) throw streamError;');
+  });
+}
+
 describe('повтор отправки диалога остаётся строгим', () => {
   it('premiumDialogSend повторяется ТОЛЬКО по isDefinitelyNotStarted', () => {
     const client = read('app/ai_dialog_client.ts');
@@ -113,11 +128,38 @@ describe('повтор отправки диалога остаётся стро
     // Именно этот порядок делает повтор по таймауту опасным. Если квоту начнут
     // снимать ПОСЛЕ успешной генерации, правило можно смягчить — но осознанно,
     // уронив сначала этот тест, а не молча.
+    //
+    // Ищем ВЫЗОВ enforceDailyQuota, а не литерал `await enforceDailyQuota(`:
+    // вызов может стоять внутри Promise.allSettled (лимит и квота идут
+    // параллельно — они в разных документах), и привязка к `await` ловила бы
+    // форму записи, а не охраняемый порядок «квота раньше генерации».
     const body = handlerBody(read('functions/src/premium_dialog.ts'), 'premiumDialogSend');
-    const quotaCharge = body.indexOf('await enforceDailyQuota(');
+    const quotaCharge = body.indexOf('enforceDailyQuota(');
     const generation = body.indexOf('fetch(OPENAI_CHAT_URL');
     expect(quotaCharge).toBeGreaterThan(-1);
     expect(generation).toBeGreaterThan(-1);
     expect(quotaCharge).toBeLessThan(generation);
+  });
+
+  it('стриминговый диалог соблюдает тот же порядок: квота ДО генерации', () => {
+    // У premiumDialogStream своя копия пути «доступ → лимиты → OpenAI». Правило
+    // об идемпотентности там точно такое же: клиент падает в фолбэк только по
+    // notStarted, и это безопасно ровно потому, что квота снимается заранее.
+    const stream = read('functions/src/premium_dialog_stream.ts');
+    const quotaCharge = stream.indexOf('enforceDailyQuota(');
+    const generation = stream.indexOf('fetch(OPENAI_CHAT_URL');
+    expect(quotaCharge).toBeGreaterThan(-1);
+    expect(generation).toBeGreaterThan(-1);
+    expect(quotaCharge).toBeLessThan(generation);
+  });
+
+  it('стриминг падает в фолбэк ТОЛЬКО когда сервер не начал работу', () => {
+    // Зеркало первого теста для стримингового пути: повтор после списанной
+    // квоты снял бы вторую единицу и отправил сообщение дважды.
+    const session = read('app/ai_dialog_session.tsx');
+    expect(session).toContain('streamError.notStarted');
+    // Условие фолбэка обязано опираться на признак «сервер не начинал»,
+    // а не просто на факт ошибки стрима.
+    expect(s_canFallbackGuard(session)).toBe(true);
   });
 });

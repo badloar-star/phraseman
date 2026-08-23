@@ -29,30 +29,36 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 const REGION = 'us-central1';
 const RATE_COLLECTION = 'premium_dialog_rate_limits';
 const QUOTA_COLLECTION = 'premium_dialog_quotas';
-const BILLING_COLLECTION = 'premium_dialog_billing';
+export const BILLING_COLLECTION = 'premium_dialog_billing';
 const TRANSLATION_CACHE_COLLECTION = 'premium_dialog_translations';
 
 const MAX_USER_TEXT = 2000;
-const MAX_HISTORY_TURNS = 8;
-const MAX_OUTPUT_TOKENS = 200;
+// ПЕРФ: 8 ходов x 1000 знаков давали до ~2000 токенов ввода на КАЖДУЮ реплику —
+// это и деньги, и время предзаполнения (ощущается как «ИИ долго думает»).
+// зачем: 6 ходов по 400 знаков — это ~3 полных обмена репликами, чего сцене на
+// 5-8 обменов хватает для связности; реплики диалога короткие (A1-B2, 6-30 слов),
+// поэтому 400 знаков почти никогда не режут живой ход.
+const MAX_HISTORY_TURNS = 6;
+const MAX_HISTORY_CONTENT = 400;
+export const MAX_OUTPUT_TOKENS = 200;
 // Игровой режим: reply (до ~1500 знаков) + mood + objectivesMet + outcome +
 // characterReaction (до 400) + coachTips (до 3×200). 600 токенов с запасом,
 // чтобы JSON не обрезался по бюджету (аудит M2).
-const GAME_OUTPUT_TOKENS = 600;
+export const GAME_OUTPUT_TOKENS = 600;
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 60;
 
-const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
+export const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL_DEFAULT = 'gpt-4.1-nano';
 
 type ChatRole = 'system' | 'user' | 'assistant';
 
-interface ChatMessage {
+export interface ChatMessage {
   role: ChatRole;
   content: string;
 }
 
-interface PremiumDialogRequest {
+export interface PremiumDialogRequest {
   mode?: unknown;
   userText?: unknown;
   cefr?: unknown;
@@ -67,7 +73,7 @@ interface PremiumDialogRequest {
   interfaceLang?: unknown;
   /** Language being LEARNED (StudyTarget 'en'|'fr'). Absent/unknown ⇒ 'en' (backward compatible). */
   studyTarget?: unknown;
-  /** Память коуча (режим companion): профиль + слабые слова из SRS + резюме прошлых бесед. */
+  /** Память коуча: профиль + активные ошибки + резюме прошлых бесед. */
   memory?: unknown;
   /**
    * «Диалог как игра» (scenario): под-цели сцены [{id, en}] и темперамент
@@ -79,17 +85,17 @@ interface PremiumDialogRequest {
   temperament?: unknown;
 }
 
-/** Память, собираемая клиентом из профиля + SRS-истории. Все поля опциональны. */
+/** Память из профиля и новой истории ошибок. Все поля опциональны. */
 interface DialogMemory {
   /** Короткий профиль: уровень, цель, родной язык. */
   profile?: string;
-  /** top-K слов/фраз, с которыми ученик мучается (из getTrainerPremiumItems('weak')). */
+  /** top-K слов/фраз из активной проекции новой системы ошибок. */
   weakWords?: string[];
   /** Скользящее резюме прошлых разговоров (в MVP-1 обычно пустое). */
   summary?: string;
 }
 
-function sanitizeMemory(value: unknown): DialogMemory {
+export function sanitizeMemory(value: unknown): DialogMemory {
   const m = (value ?? {}) as Record<string, unknown>;
   const weakRaw = Array.isArray(m.weakWords) ? m.weakWords : [];
   const weakWords = weakRaw
@@ -103,27 +109,27 @@ function sanitizeMemory(value: unknown): DialogMemory {
   };
 }
 
-interface OpenAIChatResponse {
+export interface OpenAIChatResponse {
   choices?: { message?: { content?: unknown } }[];
   usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
 }
 
-function text(value: unknown, max: number): string {
+export function text(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
 }
 
-function asCefr(value: unknown): string {
+export function asCefr(value: unknown): string {
   const c = text(value, 2).toUpperCase();
   return ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].includes(c) ? c : 'A2';
 }
 
-function sanitizeHistory(value: unknown): ChatMessage[] {
+export function sanitizeHistory(value: unknown): ChatMessage[] {
   if (!Array.isArray(value)) return [];
   const result: ChatMessage[] = [];
   for (const raw of value.slice(-MAX_HISTORY_TURNS)) {
     const item = (raw ?? {}) as Record<string, unknown>;
     const role = text(item.role, 12);
-    const content = text(item.content, 1000);
+    const content = text(item.content, MAX_HISTORY_CONTENT);
     if ((role === 'user' || role === 'assistant') && content) {
       result.push({ role, content });
     }
@@ -136,7 +142,7 @@ function docId(prefix: string, authUid: string, stableUid: string): string {
   return `${prefix}_${hash}`;
 }
 
-function identityFingerprint(value: string): string {
+export function identityFingerprint(value: string): string {
   return createHash('sha256').update(value).digest('hex').slice(0, 16);
 }
 
@@ -172,7 +178,7 @@ export async function enforceRateLimit(authUid: string, stableUid: string): Prom
  * Daily quota — SERVER is the source of truth (client gate is bypassable).
  * Returns remaining quota after consuming one.
  */
-async function enforceDailyQuota(
+export async function enforceDailyQuota(
   authUid: string,
   stableUid: string,
   isPremium: boolean,
@@ -209,7 +215,7 @@ async function enforceDailyQuota(
   });
 }
 
-async function releaseDailyQuota(authUid: string, stableUid: string): Promise<void> {
+export async function releaseDailyQuota(authUid: string, stableUid: string): Promise<void> {
   const db = admin.firestore();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('quota', authUid, stableUid));
   await db.runTransaction(async (tx) => {
@@ -333,7 +339,7 @@ function sanitizeObjectiveText(value: unknown, max: number): string {
   return text(value, max).replace(/[\u0000-\u001F]+/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
-function sanitizeObjectives(value: unknown): GameObjective[] {
+export function sanitizeObjectives(value: unknown): GameObjective[] {
   if (!Array.isArray(value)) return [];
   const out: GameObjective[] = [];
   for (const raw of value.slice(0, 6)) {
@@ -367,7 +373,7 @@ function startMood(patience: 'high' | 'medium' | 'low', warmth: 'warm' | 'neutra
 }
 
 /** true — клиент прислал под-цели, значит активируем игровой конверт. */
-function isGameMode(data: PremiumDialogRequest): boolean {
+export function isGameMode(data: PremiumDialogRequest): boolean {
   return sanitizeObjectives(data.objectives).length > 0;
 }
 
@@ -422,7 +428,7 @@ The "reply" field must contain ONLY your spoken line (the learner sees just this
  * «повтори», НЕ текст не на том языке). НЕ роняем диалог из-за единичного
  * эхо-слова: порог скрипта 40%.
  */
-function assertDialogReplyMatchesTarget(reply: string, studyTarget: StudyTarget = 'en'): void {
+export function assertDialogReplyMatchesTarget(reply: string, studyTarget: StudyTarget = 'en'): void {
   const stripped = reply.replace(/\[\[|\]\]/g, ' ').trim();
   if (!stripped) return;
   try {
@@ -455,7 +461,7 @@ function regulatedAdviceFallback(studyTarget: StudyTarget): string {
   return "I can't choose a real treatment here. Please ask a qualified professional. You can say: [[I need professional advice]].";
 }
 
-function sanitizeRegulatedAdviceReply(reply: string, studyTarget: StudyTarget = 'en'): string {
+export function sanitizeRegulatedAdviceReply(reply: string, studyTarget: StudyTarget = 'en'): string {
   return containsUnsafeRegulatedAdvice(reply) ? regulatedAdviceFallback(studyTarget) : reply;
 }
 
@@ -638,17 +644,19 @@ export const premiumDialogSend = onCall({
   }
 
   const db = admin.firestore();
-  // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
-  // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
-  // показывает забавную плашку.
-  if (await aiGloballyDisabled(db)) throw new HttpsError('failed-precondition', 'ai_globally_disabled');
   const authUid = request.auth.uid;
 
-  // ПЕРФ: эти четыре чтения Firestore не зависят друг от друга — раньше они шли
-  // строго друг за другом (4 последовательных round-trip к Firestore до платного
-  // вызова OpenAI). Группируем в один Promise.all → ~−3 round-trip latency на
-  // КАЖДУЮ реплику диалога, без изменения логики и порядка лимитов.
-  const [dialogModel, dialogQuota, stableUid, aiDialogGatedByPremium] = await Promise.all([
+  // ПЕРФ: пять чтений Firestore, ни одно из которых не зависит от остальных.
+  // Раньше рубильник ИИ и stableUid шли отдельными последовательными шагами
+  // (+2 round-trip к Firestore перед платным вызовом OpenAI на КАЖДУЮ реплику).
+  // зачем: пользователь жаловался, что диалог «долго думает» — до OpenAI успевало
+  // накопиться ~0.5с чистого ожидания Firestore. Логика и порядок отказов ниже
+  // не меняются: сначала рубильник, затем Plus-гейт, затем лимиты.
+  const [aiOff, dialogModel, dialogQuota, stableUid, aiDialogGatedByPremium] = await Promise.all([
+    // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
+    // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
+    // показывает забавную плашку.
+    aiGloballyDisabled(db),
     resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL),
     resolveConfiguredDialogQuota(db),
     resolveStableUidForAuth(db, authUid),
@@ -658,10 +666,13 @@ export const premiumDialogSend = onCall({
     resolveRemoteBool(db, 'gate_ai_dialog_premium', true),
   ]);
 
+  if (aiOff) throw new HttpsError('failed-precondition', 'ai_globally_disabled');
+
   const history = sanitizeHistory(data.history);
   // Сервер сам резолвит подписку: поле isPremium из тела запроса недоверенное.
   // Отказываем ДО rate/quota и до платного AI-вызова, чтобы прямой вызов callable
   // не обходил Plus-гейт и не создавал лишних лимитных записей.
+  // Зависит от stableUid — поэтому отдельным шагом, а не в Promise.all выше.
   const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
   if (!isPremium && aiDialogGatedByPremium) {
     console.warn('premium_dialog rejected', {
@@ -672,16 +683,39 @@ export const premiumDialogSend = onCall({
     });
     throw new HttpsError('permission-denied', 'dialog_plus_required');
   }
-  await enforceRateLimit(authUid, stableUid);
-
-  // Premium получает premium-кап. Режим «Фри» из админ-пульта сохраняет отдельный
-  // бюджетный cap, но не выдаёт premium-квоту.
-  const remaining = await enforceDailyQuota(
+  // ПЕРФ: часовой лимит и дневная квота живут в РАЗНЫХ документах и не зависят
+  // друг от друга — раньше это были две последовательные транзакции Firestore
+  // (~0.2-0.5с ожидания перед OpenAI). Запускаем параллельно.
+  // зачем: сохраняем прежнее поведение отказов — если сработал часовой лимит, а
+  // квота успела списаться, возвращаем её обратно, иначе реплика «сгорала» бы
+  // впустую при rate-limit.
+  const quotaPromise = enforceDailyQuota(
     authUid,
     stableUid,
     isPremium,
+    // Premium получает premium-кап. Режим «Фри» из админ-пульта сохраняет отдельный
+    // бюджетный cap, но не выдаёт premium-квоту.
     isPremium ? dialogQuota.premiumDailyReplies : dialogQuota.freeDailyReplies,
   );
+  const [rateResult, quotaResult] = await Promise.allSettled([
+    enforceRateLimit(authUid, stableUid),
+    quotaPromise,
+  ]);
+
+  if (rateResult.status === 'rejected') {
+    // Квота списалась, а лимит отказал → откатываем списание, чтобы отказ по
+    // частоте не съедал дневную реплику пользователя.
+    if (quotaResult.status === 'fulfilled') {
+      await releaseDailyQuota(authUid, stableUid).catch((releaseError) => {
+        console.error('premium_dialog quota release failed after rate limit', {
+          releaseError: String((releaseError as Error)?.message ?? releaseError).slice(0, 300),
+        });
+      });
+    }
+    throw rateResult.reason;
+  }
+  if (quotaResult.status === 'rejected') throw quotaResult.reason;
+  const remaining = quotaResult.value;
 
   const baseSystemPrompt =
     mode === 'companion'
@@ -844,7 +878,11 @@ export const premiumDialogSend = onCall({
   }
 
   const usage = json.usage ?? {};
-  await db.collection(BILLING_COLLECTION).doc().set({
+  // ПЕРФ: запись биллинга НЕ блокирует ответ — текст уже готов, а await держал
+  // пользователя ещё ~0.1-0.2с. Дожидаемся её вместе с safety-флагами ниже, одним
+  // Promise.all, чтобы обе записи гарантированно легли до завершения инстанса
+  // (fire-and-forget после return может быть убит рантаймом Cloud Functions).
+  const billingPromise = db.collection(BILLING_COLLECTION).doc().set({
     uid: stableUid,
     authUid,
     mode,
@@ -861,7 +899,16 @@ export const premiumDialogSend = onCall({
 
   // К этому моменту модерация (параллельная chat-вызову) почти наверняка готова —
   // await фактически бесплатный, но гарантирует запись флага до завершения инстанса.
-  await flushSafetyFlags();
+  // Биллинг идёт тем же параллельным шагом, а не последовательно после него.
+  await Promise.all([
+    flushSafetyFlags(),
+    billingPromise.catch((billingError) => {
+      // Потеря строки биллинга не стоит отказа пользователю в уже готовом ответе.
+      console.error('premium_dialog billing write failed', {
+        billingError: String((billingError as Error)?.message ?? billingError).slice(0, 300),
+      });
+    }),
+  ]);
 
   return {
     ok: true,
@@ -962,7 +1009,6 @@ export const premiumDialogTranslate = onCall({
 
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUidForAuth(db, authUid);
 
   // Кэш ПЕРЕД любой платной работой: одинаковая реплика+язык переводится один раз
   // на всё приложение. Повторный флип/повтор с другого устройства — бесплатно.
@@ -973,6 +1019,21 @@ export const premiumDialogTranslate = onCall({
   if (cachedTranslation && cachedData?.languageContractVersion === LANGUAGE_CONTRACT_VERSION) {
     assertDialogTranslationLanguage(cachedTranslation, targetLang);
     return { ok: true, translation: cachedTranslation, cached: true };
+  }
+
+  const [stableUid, aiDialogGatedByPremium] = await Promise.all([
+    resolveStableUidForAuth(db, authUid),
+    resolveRemoteBool(db, 'gate_ai_dialog_premium', true),
+  ]);
+
+  // зачем: аудит безопасности 2026-08-22 — этот callable вызывается напрямую
+  // (в обход premiumDialogSend), поэтому без своего гейта free-юзер получал
+  // 60 бесплатных OpenAI-переводов/час без подписки. Тот же гейт, что у send,
+  // и тот же рубильник — при gate_ai_dialog_premium=false фича намеренно общая.
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+  if (!isPremium && aiDialogGatedByPremium) {
+    console.warn('premium_dialog_translate rejected', { reason: 'dialog_plus_required' });
+    throw new HttpsError('permission-denied', 'dialog_plus_required');
   }
 
   // Rate-limit (та же коллекция/окно, что у send) — против абьюза перевода.
@@ -1065,7 +1126,11 @@ export const premiumDialogTranslate = onCall({
   });
 
   const usage = json.usage ?? {};
-  await db.collection(BILLING_COLLECTION).doc().set({
+  // ПЕРФ: запись биллинга НЕ блокирует ответ — текст уже готов, а await держал
+  // пользователя ещё ~0.1-0.2с. Дожидаемся её вместе с safety-флагами ниже, одним
+  // Promise.all, чтобы обе записи гарантированно легли до завершения инстанса
+  // (fire-and-forget после return может быть убит рантаймом Cloud Functions).
+  const billingPromise = db.collection(BILLING_COLLECTION).doc().set({
     uid: stableUid,
     authUid,
     mode: 'translate',

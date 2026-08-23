@@ -162,6 +162,8 @@ const {
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogReview } = require("./premium_dialog_review");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { premiumDialogStream } = require("./premium_dialog_stream");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { maxVoiceConfigAdmin } = require("./max_voice_config");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { adminWarmInstanceGauge } = require("./warm_instance_gauge");
@@ -327,6 +329,8 @@ exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.premiumDialogReview = premiumDialogReview;
+// Стриминговый диалог (SSE): первое слово ответа видно почти сразу.
+exports.premiumDialogStream = premiumDialogStream;
 exports.maxVoiceConfigAdmin = maxVoiceConfigAdmin;
 // зачем: шкала «когда можно отключать тёплый инстанс» в Пульте админки (2026-08-22).
 exports.adminWarmInstanceGauge = adminWarmInstanceGauge;

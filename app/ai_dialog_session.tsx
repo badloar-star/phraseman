@@ -23,6 +23,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AiTypingBubble from '../components/AiTypingBubble';
+import { callPremiumDialogStream, warmPremiumDialogStream, DialogStreamError } from './ai_dialog_stream_client';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
@@ -220,6 +221,9 @@ function AiDialogSession() {
   useEffect(() => {
     if (!accessResolved || !dialogAccess) return;
     warmPremiumDialog();
+    // зачем: стриминговая функция — отдельный инстанс со своим холодным стартом.
+    // Греем обе: стриминг основной путь, callable — фолбэк.
+    warmPremiumDialogStream();
   }, [accessResolved, dialogAccess]);
 
   // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
@@ -238,6 +242,10 @@ function AiDialogSession() {
   ]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
+  // Текст реплики, которая ПРЯМО СЕЙЧАС печатается стримом. Пустая строка —
+  // стрима нет (показываем обычный индикатор «печатает»).
+  // зачем: человек видит слова по мере генерации, а не пустой пузырь 3-6 секунд.
+  const [streamingText, setStreamingText] = useState('');
   const [ended, setEnded] = useState(false);
   // Ошибка ИИ (сеть/таймаут) показывается НЕ как реплика персонажа, а отдельной
   // системной плашкой с кнопкой «Повторить». Храним текст последней отправки,
@@ -747,26 +755,57 @@ function AiDialogSession() {
       setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
       setInput('');
       setSending(true);
+      setStreamingText('');
+      const payload = {
+        mode: 'scenario' as const,
+        userText: trimmed,
+        cefr: scenario.cefr,
+        history,
+        role: scenario.role,
+        setting: scenario.setting,
+        goalEn: scenario.goalEn,
+        persona: scenario.persona,
+        scenarioId: scenario.id,
+        interfaceLang: lang,
+        studyTarget,
+        isPremium: hasPremiumAccess,
+        ...gameRequestFields,
+      };
       try {
-        const res = await callPremiumDialogSend({
-          mode: 'scenario',
-          userText: trimmed,
-          cefr: scenario.cefr,
-          history,
-          role: scenario.role,
-          setting: scenario.setting,
-          goalEn: scenario.goalEn,
-          persona: scenario.persona,
-          scenarioId: scenario.id,
-          interfaceLang: lang,
-          studyTarget,
-          isPremium: hasPremiumAccess,
-          ...gameRequestFields,
-        });
+        // Основной путь — стриминг: реплика печатается по мере генерации.
+        // зачем: раньше ответ приходил целиком после последнего токена, и человек
+        // 3-6 секунд смотрел на пустой пузырь — это и есть «ИИ долго думает».
+        let res: { assistantMessage: string; turnState: unknown };
+        try {
+          let draft = '';
+          const streamed = await callPremiumDialogStream(payload, {
+            onDelta: (chunk) => {
+              draft += chunk;
+              setStreamingText(draft);
+            },
+          });
+          res = { assistantMessage: streamed.assistantMessage, turnState: streamed.turnState };
+        } catch (streamError) {
+          // Фолбэк на обычный callable — ТОЛЬКО когда сервер гарантированно не
+          // начал работу (не списал квоту, не звал OpenAI). Иначе повтор снял бы
+          // вторую единицу квоты и отправил сообщение дважды — см. разбор
+          // идемпотентности в ai_dialog_client.ts.
+          const canFallback =
+            streamError instanceof DialogStreamError && streamError.notStarted;
+          if (!canFallback) throw streamError;
+          setStreamingText('');
+          const fallback = await callPremiumDialogSend(payload);
+          res = { assistantMessage: fallback.assistantMessage, turnState: fallback.turnState };
+        }
+        // Финальный текст авторитетен (сервер применил постфильтры) — он и
+        // становится репликой, а черновик стрима гасим в том же кадре, чтобы
+        // пузырь не мигнул дважды.
+        setStreamingText('');
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
         applyTurnState(res.turnState);
       } catch (error) {
+        setStreamingText('');
         // Ошибка сети/таймаута: НЕ пишем её как реплику персонажа и НЕ списываем
         // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».
         void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, exchangeIndex });
@@ -837,25 +876,47 @@ function AiDialogSession() {
     setLastErrorMessage('');
     setLastErrorKind(null);
     setSending(true);
+    setStreamingText('');
+    const payload = {
+      mode: 'scenario' as const,
+      userText: trimmed,
+      cefr: scenario.cefr,
+      history,
+      role: scenario.role,
+      setting: scenario.setting,
+      goalEn: scenario.goalEn,
+      persona: scenario.persona,
+      scenarioId: scenario.id,
+      interfaceLang: lang,
+      studyTarget,
+      isPremium: hasPremiumAccess,
+      ...gameRequestFields,
+    };
     try {
-      const res = await callPremiumDialogSend({
-        mode: 'scenario',
-        userText: trimmed,
-        cefr: scenario.cefr,
-        history,
-        role: scenario.role,
-        setting: scenario.setting,
-        goalEn: scenario.goalEn,
-        persona: scenario.persona,
-        scenarioId: scenario.id,
-        interfaceLang: lang,
-        studyTarget,
-        isPremium: hasPremiumAccess,
-        ...gameRequestFields,
-      });
+      // Повтор тоже стримит — иначе после ошибки человек снова ждал бы молча.
+      let res: { assistantMessage: string; turnState: unknown };
+      try {
+        let draft = '';
+        const streamed = await callPremiumDialogStream(payload, {
+          onDelta: (chunk) => {
+            draft += chunk;
+            setStreamingText(draft);
+          },
+        });
+        res = { assistantMessage: streamed.assistantMessage, turnState: streamed.turnState };
+      } catch (streamError) {
+        // Фолбэк только когда сервер точно не начал работу (см. send выше).
+        const canFallback = streamError instanceof DialogStreamError && streamError.notStarted;
+        if (!canFallback) throw streamError;
+        setStreamingText('');
+        const fallback = await callPremiumDialogSend(payload);
+        res = { assistantMessage: fallback.assistantMessage, turnState: fallback.turnState };
+      }
+      setStreamingText('');
       setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
       applyTurnState(res.turnState);
     } catch (error) {
+      setStreamingText('');
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
       setLastErrorKind(classifyPremiumDialogError(error));
       setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
@@ -927,10 +988,19 @@ function AiDialogSession() {
       });
   }, [accessResolved, ended, userExchanges, messages, scenario, lang, studyTarget]);
 
+  // зачем: пузырь стрима РАСТЁТ по мере печати — без реакции на streamingText
+  // длинная реплика уезжала бы за нижний край и человек читал бы её вслепую.
+  // Во время печати скроллим без анимации: анимированный скролл на каждый чанк
+  // дёргает список и борется сам с собой.
   useEffect(() => {
+    const streaming = streamingText.length > 0;
+    if (streaming) {
+      scrollRef.current?.scrollToEnd({ animated: false });
+      return;
+    }
     const id = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 60);
     return () => clearTimeout(id);
-  }, [messages.length, sending]);
+  }, [messages.length, sending, streamingText]);
 
   const onBack = useCallback(() => {
     hapticTap();
@@ -1714,12 +1784,59 @@ function AiDialogSession() {
                 >
                   <Ionicons name={scenario.icon as any} size={15} color={scene.hue} />
                 </View>
-                <AiTypingBubble
-                  bubbleColor={t.bgCard}
-                  borderColor={'transparent'}
-                  dotColor={scene.hue}
-                  glowColor={scene.hue + '18'}
-                />
+                {streamingText ? (
+                  // Реплика ПЕЧАТАЕТСЯ: пузырь геометрически идентичен финальному
+                  // (тот же фон, радиусы, хвостик, градиент сцены и типографика),
+                  // поэтому подмена черновика на готовый текст не даёт скачка.
+                  // зачем: точки «печатает» держались 3-6 секунд и ощущались как
+                  // зависание — теперь слова появляются по мере генерации.
+                  <View
+                    accessibilityLiveRegion="polite"
+                    accessibilityLabel={stripMarkers(streamingText)}
+                    style={{
+                      backgroundColor: glassFill(t.bgCard, 0.46),
+                      borderRadius: 22,
+                      borderBottomLeftRadius: 7,
+                      paddingHorizontal: 16,
+                      paddingVertical: 12,
+                      maxWidth: '82%',
+                      flexShrink: 1,
+                      overflow: 'hidden',
+                      shadowColor: t.shadowDark,
+                      shadowOpacity: 0.18,
+                      shadowRadius: 6,
+                      shadowOffset: { width: 0, height: 2 },
+                      ...noAndroidOutline,
+                    }}
+                  >
+                    <LinearGradient
+                      pointerEvents="none"
+                      colors={[scene.hue + '12', 'transparent']}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 0.9, y: 1 }}
+                      style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                    />
+                    <Text
+                      style={{
+                        color: t.textPrimary,
+                        fontSize: f.bodyLg,
+                        fontWeight: '400',
+                        flexShrink: 1,
+                        lineHeight: Math.round(f.bodyLg * 1.4),
+                      }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {stripMarkers(streamingText)}
+                    </Text>
+                  </View>
+                ) : (
+                  <AiTypingBubble
+                    bubbleColor={t.bgCard}
+                    borderColor={'transparent'}
+                    dotColor={scene.hue}
+                    glowColor={scene.hue + '18'}
+                  />
+                )}
               </View>
             )}
 

@@ -1070,126 +1070,6 @@ function AiDialogSession() {
     lastErrorKind === 'network' ||
     lastErrorKind === 'unknown';
 
-  // Секция «Разбор твоих фраз» — общая для игрового вердикта и нейтрального
-  // финала. Показывает похвалу, мягкие исправления «как сказал → как естественнее»
-  // с пояснением на языке интерфейса и один совет на следующий раз.
-  const renderDialogReview = () => {
-    if (reviewStatus !== 'loading' && (reviewStatus !== 'ready' || !review)) return null;
-    const sectionTitle = triLang(lang, {
-      ru: 'Разбор твоих фраз',
-      uk: 'Розбір твоїх фраз',
-      es: 'Análisis de tus frases',
-      'pt-BR': 'Análise das suas frases',
-      vi: 'Phân tích câu của bạn',
-      id: 'Ulasan kalimatmu',
-      tr: 'Cümlelerinin analizi',
-      pl: 'Analiza twoich zdań',
-    });
-    return (
-      <View
-        style={{
-          backgroundColor: glassFill(t.bgSurface, 0.46),
-          borderRadius: 12,
-          padding: 12,
-          marginTop: 12,
-        }}
-      >
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-          <Ionicons name="school-outline" size={15} color={t.accent} />
-          <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
-            {sectionTitle}
-          </Text>
-        </View>
-        {reviewStatus === 'loading' ? (
-          <View>
-            <SkeletonBlock width={220} height={13} borderRadius={6} />
-            <View style={{ height: 8 }} />
-            <SkeletonBlock width={170} height={13} borderRadius={6} />
-          </View>
-        ) : (
-          <View>
-            {!!review?.praise && (
-              <Text
-                style={{ color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) }}
-                maxFontSizeMultiplier={1.2}
-              >
-                {review.praise}
-              </Text>
-            )}
-            {(review?.corrections ?? []).length === 0 ? (
-              <Text
-                style={{ color: t.correct, fontSize: f.sub, fontWeight: '700', marginTop: 8 }}
-                maxFontSizeMultiplier={1.2}
-              >
-                {triLang(lang, {
-                  ru: 'Ошибок не нашлось — отличная работа!',
-                  uk: 'Помилок не знайшлося — чудова робота!',
-                  es: '¡Sin errores — buen trabajo!',
-                  'pt-BR': 'Sem erros — ótimo trabalho!',
-                  vi: 'Không có lỗi — làm tốt lắm!',
-                  id: 'Tidak ada kesalahan — kerja bagus!',
-                  tr: 'Hata yok — harika iş!',
-                  pl: 'Bez błędów — świetna robota!',
-                })}
-              </Text>
-            ) : (
-              (review?.corrections ?? []).map((c, ci) => (
-                <View
-                  key={ci}
-                  style={{
-                    marginTop: 10,
-                    paddingTop: ci === 0 ? 0 : 10,
-                    borderTopWidth: ci === 0 ? 0 : 0.5,
-                    borderTopColor: t.border,
-                  }}
-                >
-                  <Text style={{ color: t.textMuted, fontSize: f.sub }} maxFontSizeMultiplier={1.2}>
-                    {c.original}
-                  </Text>
-                  <Text
-                    style={{ color: t.correct, fontSize: f.sub, fontWeight: '700', marginTop: 2 }}
-                    maxFontSizeMultiplier={1.2}
-                  >
-                    → {c.corrected}
-                  </Text>
-                  {!!c.note && (
-                    <Text
-                      style={{
-                        color: t.textSecond,
-                        fontSize: f.caption,
-                        marginTop: 3,
-                        lineHeight: Math.round(f.caption * 1.35),
-                      }}
-                      maxFontSizeMultiplier={1.2}
-                    >
-                      {c.note}
-                    </Text>
-                  )}
-                </View>
-              ))
-            )}
-            {!!review?.tip && (
-              <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 12 }}>
-                <Ionicons name="bulb-outline" size={14} color={t.accent} style={{ marginTop: 2 }} />
-                <Text
-                  style={{
-                    color: t.textSecond,
-                    fontSize: f.sub,
-                    flex: 1,
-                    lineHeight: Math.round(f.sub * 1.4),
-                  }}
-                  maxFontSizeMultiplier={1.2}
-                >
-                  {review.tip}
-                </Text>
-              </View>
-            )}
-          </View>
-        )}
-      </View>
-    );
-  };
-
   const voiceInputHint =
     voiceInputStatus === 'requesting'
       ? triLang(lang, {
@@ -1949,84 +1829,9 @@ function AiDialogSession() {
 
             {/* Финал-вердикт (редизайн 2026-08-23) вынесен из ленты чата в
                 полноэкранный DialogVerdictScreen — оверлей ниже по дереву.
-                Здесь, в ленте, терминальный исход ничего не рисует. */}
-
-
-            {/* Старый «нейтральный» финал — когда игра не активна ИЛИ юзер вышел
-                кнопкой «Завершить» без терминального исхода. */}
-            {ended && !(gameEnabled && isTerminalOutcome(outcome)) && (
-              <View
-                style={{
-                  backgroundColor: glassFill(t.bgSurface, 0.46),
-                  borderRadius: 16,
-                  padding: 16,
-                  marginTop: 6,
-                }}
-              >
-                <Text
-                  style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}
-                  maxFontSizeMultiplier={1.2}
-                >
-                  {triLang(lang, {
-                    ru: 'Разговор завершён',
-                    uk: 'Розмову завершено',
-                    es: 'Conversación terminada',
-                    'pt-BR': 'Conversa encerrada',
-                    vi: 'Cuộc trò chuyện đã kết thúc',
-                    id: 'Percakapan selesai',
-                    tr: 'Sohbet tamamlandı',
-                    pl: 'Rozmowa zakończona',
-                  })}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6 }}>
-                  {triLang(lang, {
-                    ru: `Твоих реплик: ${userExchanges}. Ориентир: около ${RECOMMENDED_EXCHANGES}, но завершать можно вручную.`,
-                    uk: `Твоїх реплік: ${userExchanges}. Орієнтир: близько ${RECOMMENDED_EXCHANGES}, але завершити можна вручну.`,
-                    es: `Tus respuestas: ${userExchanges}. Guía: unas ${RECOMMENDED_EXCHANGES}, pero puedes terminar manualmente.`,
-                    'pt-BR': `Suas respostas: ${userExchanges}. Referência: cerca de ${RECOMMENDED_EXCHANGES}, mas você pode encerrar manualmente.`,
-                    vi: `Lượt trả lời của bạn: ${userExchanges}. Gợi ý: khoảng ${RECOMMENDED_EXCHANGES}, nhưng bạn có thể tự kết thúc.`,
-                    id: `Jawabanmu: ${userExchanges}. Patokan: sekitar ${RECOMMENDED_EXCHANGES}, tetapi kamu bisa mengakhiri sendiri.`,
-                    tr: `${userExchanges} yanıt verdin. Hedef yaklaşık ${RECOMMENDED_EXCHANGES}; yine de elle bitirebilirsin.`,
-                    pl: `Twoje odpowiedzi: ${userExchanges}. Wskazówka: około ${RECOMMENDED_EXCHANGES}, ale możesz zakończyć ręcznie.`,
-                  })}
-                </Text>
-                {/* Разбор фраз ученика — и при ручном «Завершить» тоже. */}
-                {renderDialogReview()}
-                {!hasPremiumAccess && (
-                  <TouchableOpacity
-                    onPress={() => {
-                      if (!accessResolved) return;
-                      hapticTap();
-                      router.push({
-                        pathname: '/premium_modal',
-                        params: { context: 'dialog_limit' },
-                      } as never);
-                    }}
-                    activeOpacity={0.82}
-                    style={{
-                      borderRadius: 16,
-                      paddingVertical: 14,
-                      alignItems: 'center',
-                      marginTop: 14,
-                      backgroundColor: t.accent,
-                    }}
-                  >
-                    <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
-                      {triLang(lang, {
-                        ru: 'Продолжить без лимита',
-                        uk: 'Продовжити без ліміту',
-                        es: 'Continuar sin límite',
-                        'pt-BR': 'Continuar sem limite',
-                        vi: 'Tiếp tục không giới hạn',
-                        id: 'Lanjut tanpa batas',
-                        tr: 'Sınırsız devam et',
-                        pl: 'Kontynuuj bez limitu',
-                      })}
-                    </Text>
-                  </TouchableOpacity>
-                )}
-              </View>
-            )}
+                Здесь, в ленте, ЛЮБОЙ конец диалога (терминальный исход ИЛИ
+                нейтральное ручное «Завершить») ничего не рисует — единый
+                стиль финала вместо двух разных. */}
           </ScrollView>
 
           {/* Поле ввода — пилюля + круглая кнопка отправки */}
@@ -2311,8 +2116,12 @@ function AiDialogSession() {
 
         {/* Полноэкранный финал-вердикт (редизайн 2026-08-23): исход, настроение,
             цели, реакция персонажа и разбор — отдельным «экраном-праздником».
-            Переписка остаётся под ним: «Показать переписку» прячет оверлей. */}
-        {ended && gameEnabled && isTerminalOutcome(outcome) && !verdictHidden && (
+            Переписка остаётся под ним: «Показать переписку» прячет оверлей.
+            зачем (аудит 2026-08-23): companion-диалоги без целей и ручное
+            «Завершить» без исхода раньше рисовали свой, более бедный финал
+            прямо в ленте чата — второй стиль экрана конца диалога. Теперь это
+            тот же экран с neutralClosing (нейтральный тон, без хайфайва). */}
+        {ended && !verdictHidden && (
           <DialogVerdictScreen
             outcome={outcome}
             lang={lang}
@@ -2329,6 +2138,11 @@ function AiDialogSession() {
             reviewStatus={reviewStatus}
             xpAwarded={xpAwarded}
             locked={!hasPremiumAccess}
+            neutralClosing={
+              gameEnabled && isTerminalOutcome(outcome)
+                ? undefined
+                : { userExchanges, recommendedExchanges: RECOMMENDED_EXCHANGES }
+            }
             onRetry={() => {
               hapticTap();
               void trackEvent('ai_dialog_retry_scenario', { scenarioId: scenario.id, outcome });
@@ -2357,7 +2171,7 @@ function AiDialogSession() {
         )}
 
         {/* Пилюля «Итоги»: вернуться к финалу, пока читаешь переписку. */}
-        {ended && gameEnabled && isTerminalOutcome(outcome) && verdictHidden && (
+        {ended && verdictHidden && (
           <View
             pointerEvents="box-none"
             style={{ position: 'absolute', left: 0, right: 0, bottom: 22, alignItems: 'center' }}

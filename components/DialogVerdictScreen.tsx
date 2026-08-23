@@ -48,6 +48,14 @@ interface DialogVerdictScreenProps {
   xpAwarded: number;
   /** true — Free-пользователь: разбор закрыт, показываем ветку Plus. */
   locked: boolean;
+  /**
+   * зачем (аудит 2026-08-23): раньше companion-диалоги без целей и ручное
+   * «Завершить» без исхода жили в отдельном инлайн-блоке ленты чата —
+   * второй, более бедный стиль финала. Теперь это тот же полноэкранный
+   * вердикт, но с нейтральным (не победным/проигрышным) тоном: заголовок
+   * «Разговор завершён» + число реплик вместо счёта целей, без хайфайва.
+   */
+  neutralClosing?: { userExchanges: number; recommendedExchanges: number };
   onRetry: () => void;
   onExit: () => void;
   onShowChat: () => void;
@@ -70,6 +78,7 @@ export default function DialogVerdictScreen({
   reviewStatus,
   xpAwarded,
   locked,
+  neutralClosing,
   onRetry,
   onExit,
   onShowChat,
@@ -78,22 +87,59 @@ export default function DialogVerdictScreen({
   const { theme: t, f } = useTheme();
   const reduceMotion = useReduceMotion();
   const success = outcome === 'success';
+  const neutral = !!neutralClosing;
   const hapticFiredRef = useRef(false);
 
-  // Один тактильный аккорд на появление вердикта — успех и неуспех различимы.
+  // Один тактильный аккорд на появление вердикта — успех и неуспех различимы;
+  // нейтральное завершение (ручной выход) — без тактильного акцента вовсе,
+  // это не игровой момент.
   useEffect(() => {
-    if (hapticFiredRef.current) return;
+    if (hapticFiredRef.current || neutral) return;
     hapticFiredRef.current = true;
     if (success) void hapticSuccess();
     else void hapticWarning();
-  }, [success]);
+  }, [success, neutral]);
 
-  const outcomeIcon: keyof typeof Ionicons.glyphMap = success
-    ? 'trophy'
-    : outcome === 'lost_patience'
-      ? 'flame'
-      : 'moon';
-  const outcomeColor = success ? t.correct : outcome === 'lost_patience' ? t.wrong : scene.hue;
+  const outcomeIcon: keyof typeof Ionicons.glyphMap = neutral
+    ? 'chatbubble-ellipses-outline'
+    : success
+      ? 'trophy'
+      : outcome === 'lost_patience'
+        ? 'flame'
+        : 'moon';
+  const outcomeColor = neutral
+    ? scene.hue
+    : success
+      ? t.correct
+      : outcome === 'lost_patience'
+        ? t.wrong
+        : scene.hue;
+
+  const closingTitle = neutral
+    ? triLang(lang, {
+        ru: 'Разговор завершён',
+        uk: 'Розмову завершено',
+        es: 'Conversación terminada',
+        'pt-BR': 'Conversa encerrada',
+        vi: 'Cuộc trò chuyện đã kết thúc',
+        id: 'Percakapan selesai',
+        tr: 'Sohbet tamamlandı',
+        pl: 'Rozmowa zakończona',
+      })
+    : outcomeTitle(outcome, lang);
+
+  const neutralSubtitle = neutralClosing
+    ? triLang(lang, {
+        ru: `Твоих реплик: ${neutralClosing.userExchanges}. Ориентир: около ${neutralClosing.recommendedExchanges}, но завершать можно вручную.`,
+        uk: `Твоїх реплік: ${neutralClosing.userExchanges}. Орієнтир: близько ${neutralClosing.recommendedExchanges}, але завершити можна вручну.`,
+        es: `Tus respuestas: ${neutralClosing.userExchanges}. Guía: unas ${neutralClosing.recommendedExchanges}, pero puedes terminar manualmente.`,
+        'pt-BR': `Suas respostas: ${neutralClosing.userExchanges}. Referência: cerca de ${neutralClosing.recommendedExchanges}, mas você pode encerrar manualmente.`,
+        vi: `Lượt trả lời của bạn: ${neutralClosing.userExchanges}. Gợi ý: khoảng ${neutralClosing.recommendedExchanges}, nhưng bạn có thể tự kết thúc.`,
+        id: `Jawabanmu: ${neutralClosing.userExchanges}. Patokan: sekitar ${neutralClosing.recommendedExchanges}, tetapi kamu bisa mengakhiri sendiri.`,
+        tr: `${neutralClosing.userExchanges} yanıt verdin. Hedef yaklaşık ${neutralClosing.recommendedExchanges}; yine de elle bitirebilirsin.`,
+        pl: `Twoje odpowiedzi: ${neutralClosing.userExchanges}. Wskazówka: około ${neutralClosing.recommendedExchanges}, ale możesz zakończyć ręcznie.`,
+      })
+    : '';
 
   const enter = (delayMs: number) =>
     reduceMotion ? undefined : FadeInDown.delay(delayMs).duration(300);
@@ -174,29 +220,45 @@ export default function DialogVerdictScreen({
               style={{ color: t.textPrimary, fontSize: f.h1 + 3, fontWeight: '900', textAlign: 'center' }}
               maxFontSizeMultiplier={1.2}
             >
-              {outcomeTitle(outcome, lang)}
+              {closingTitle}
             </Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 }}>
-              <Ionicons name={scenarioIcon as never} size={15} color={scene.hue} />
-              <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
-                {scenarioTitle}
-              </Text>
+            {neutral ? (
               <Text
-                style={{ fontSize: f.h2 }}
-                accessibilityLabel={triLang(lang, {
-                  ru: 'Финальное настроение собеседника',
-                  uk: 'Фінальний настрій співрозмовника',
-                  es: 'Ánimo final del interlocutor',
-                  'pt-BR': 'Humor final do interlocutor',
-                  vi: 'Tâm trạng cuối của người kia',
-                  id: 'Suasana hati akhir lawan bicara',
-                  tr: 'Karşıdakinin son ruh hâli',
-                  pl: 'Końcowy nastrój rozmówcy',
-                })}
+                style={{
+                  color: t.textMuted,
+                  fontSize: f.body,
+                  fontWeight: '600',
+                  textAlign: 'center',
+                  lineHeight: Math.round(f.body * 1.4),
+                  marginTop: 8,
+                }}
+                maxFontSizeMultiplier={1.2}
               >
-                {moodFace}
+                {neutralSubtitle}
               </Text>
-            </View>
+            ) : (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 }}>
+                <Ionicons name={scenarioIcon as never} size={15} color={scene.hue} />
+                <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
+                  {scenarioTitle}
+                </Text>
+                <Text
+                  style={{ fontSize: f.h2 }}
+                  accessibilityLabel={triLang(lang, {
+                    ru: 'Финальное настроение собеседника',
+                    uk: 'Фінальний настрій співрозмовника',
+                    es: 'Ánimo final del interlocutor',
+                    'pt-BR': 'Humor final do interlocutor',
+                    vi: 'Tâm trạng cuối của người kia',
+                    id: 'Suasana hati akhir lawan bicara',
+                    tr: 'Karşıdakinin son ruh hâli',
+                    pl: 'Końcowy nastrój rozmówcy',
+                  })}
+                >
+                  {moodFace}
+                </Text>
+              </View>
+            )}
             {xpAwarded > 0 && (
               <View
                 style={{

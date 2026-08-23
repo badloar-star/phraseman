@@ -21,9 +21,10 @@ assert.ok(esRegistry.every((entry) => entry.status === "DRAFT"));
 // null для ещё не написанных сессий, а не пропускать ключ — иначе преflight
 // испанского курса будет падать на canonical_json_non_json_value для любого
 // диапазона с недостающими ключами, что и произошло здесь при первой попытке.
-const esActualFingerprints = Object.fromEntries(
-  Array.from({ length: 56 }, (_, index) => [index + 1, null]),
-) as unknown as Readonly<Record<number, string>>;
+const esActualFingerprints: Readonly<Record<number, string | null>> =
+  Object.freeze(
+    Object.fromEntries(Array.from({ length: 56 }, (_, index) => [index + 1, null])),
+  );
 
 const esPreflight = lesson1AuthoringPreflightV1(
   undefined,

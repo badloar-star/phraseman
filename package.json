@@ -14,6 +14,7 @@
     "learning-v2:lesson1-distractor-template-gate": "npx tsx tests/learning_v2_lesson1_distractor_template_gate.ts",
     "learning-v2:task-distractor-gate": "npx tsx tests/learning_v2_task_specific_distractors_gate.ts && npx tsx tests/learning_v2_task_specific_distractor_projection_gate.ts && npx tsx tests/learning_v2_task_distractor_authored_range_gate.ts",
     "learning-v2:lesson1-authoring-preflight": "npx tsx scripts/learning_v2_lesson1_authoring_preflight.ts",
+    "learning-v2:es-authoring-preflight": "npx tsx scripts/learning_v2_lesson1_authoring_preflight.ts -- --target es",
     "learning-v2:lesson1-authoring-gate": "npm run learning-v2:task-distractor-gate && npx tsx tests/learning_v2_episode_01_session_12_editorial_gate.ts && npx tsx tests/learning_v2_episode_01_session_13_editorial_gate.ts && npx tsx tests/learning_v2_episode_01_session_14_editorial_gate.ts && npx tsx tests/learning_v2_lesson1_authoring_registry_gate.ts && npx tsx tests/learning_v2_lesson1_review_scope_gate.ts && npx tsx tests/learning_v2_lesson1_target_language_visual_gate.ts",
     "learning-v2:session13-gate": "npx tsx tests/learning_v2_episode_01_session_13_editorial_gate.ts",
     "learning-v2:session14-gate": "npx tsx tests/learning_v2_episode_01_session_14_editorial_gate.ts",

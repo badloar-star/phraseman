@@ -166,7 +166,7 @@ export function authoringRegistryForTargetLanguage(
 
 function assertRegistryShape(
   entries: readonly Lesson1AuthoringRegistryEntryV1[],
-  actualFingerprints: Readonly<Record<number, string>>,
+  actualFingerprints: Readonly<Record<number, string | null>>,
 ): void {
   if (entries.length !== 56) {
     throw new Error(
@@ -237,7 +237,7 @@ function assertRegistryShape(
 
 export function lesson1AuthoringPreflightV1(
   requestedSessionOrdinal: number | undefined,
-  actualFingerprints: Readonly<Record<number, string>>,
+  actualFingerprints: Readonly<Record<number, string | null>>,
   entries: readonly Lesson1AuthoringRegistryEntryV1[] = LESSON1_AUTHORING_REGISTRY_V1,
 ): Lesson1AuthoringPreflightV1 {
   assertRegistryShape(entries, actualFingerprints);

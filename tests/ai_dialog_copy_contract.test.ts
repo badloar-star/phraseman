@@ -8,6 +8,10 @@ describe('ai dialog Phraseman copy contract', () => {
   const companionSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'ai_companion_session.tsx'), 'utf8');
   const homeSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'ai_dialog_home.tsx'), 'utf8');
   const dialogsContentSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'DialogsTabContent.tsx'), 'utf8');
+  // зачем (аудит 2026-08-23): полноэкранный финал-вердикт вынесен в отдельный
+  // компонент (фулл-редизайн Диалогов) — «Разговор завершён» и весь разбор
+  // фраз/нейтральный финал теперь живут там, а не в ai_dialog_session.tsx.
+  const verdictSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'DialogVerdictScreen.tsx'), 'utf8');
 
   it('keeps conversational UI copy emoji-free while allowing explicit game-state indicators', () => {
     const scenarioCopy = scenarioSource
@@ -24,8 +28,10 @@ describe('ai dialog Phraseman copy contract', () => {
     expect(scenarioSource).not.toContain('Ты говорил по-английски {userExchanges} раз');
     expect(scenarioSource).not.toContain('Отличный разговор!');
     expect(scenarioSource).toContain('userExchanges > 0');
-    expect(scenarioSource).toContain('Разговор завершён');
-    expect(scenarioSource).toContain('Твоїх реплік: ${userExchanges}');
+    // «Разговор завершён» и счётчик реплик теперь в полноэкранном вердикте
+    // (neutralClosing), не в самом session.tsx — см. verdictSource выше.
+    expect(verdictSource).toContain('Разговор завершён');
+    expect(verdictSource).toContain('Твоїх реплік: ${neutralClosing.userExchanges}');
   });
 
   it('labels companion as an open learning conversation, not a fixed scenario', () => {
@@ -34,6 +40,12 @@ describe('ai dialog Phraseman copy contract', () => {
     expect(companionSource).toContain('Запитай про фразу або свій шлях');
     expect(companionSource).not.toContain('Tell me more.');
     expect(companionSource).not.toContain('I’m not sure');
-    expect(homeSource).toContain('сценаріїв із Компасом');
+  });
+
+  it('keeps the dialogs home header self-sufficient (no caption under the title)', () => {
+    // зачем (аудит 2026-08-23): подпись-расшифровка «N сценариев с Компасом»
+    // под заголовком «Диалоги» нарушала прямой запрет владельца — убрана.
+    expect(homeSource).not.toContain('сценаріїв із Компасом');
+    expect(homeSource).not.toContain('getPublicDialogScenarios');
   });
 });

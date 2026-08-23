@@ -187,16 +187,6 @@ const LABELS: Record<string, ShardEarnLabel> = {
     tr: "Edat alıştırması tek hatasız",
     pl: "Trening przyimków bez ani jednego błędu",
   },
-  trainer_perfect_session: {
-    ru: 'Умная тренировка без ошибок — слабые места под контролем',
-    uk: 'Розумне тренування без помилок — слабкі місця під контролем',
-    es: 'Sesión inteligente sin fallos: tus puntos débiles bajo control',
-    'pt-BR': "Sessão inteligente sem erros: pontos fracos sob controle",
-    vi: "Phiên luyện thông minh không lỗi: điểm yếu trong tầm kiểm soát",
-    id: "Sesi pintar tanpa salah: titik lemah terkendali",
-    tr: "Hatasız akıllı seans: zayıf yönler kontrol altında",
-    pl: "Inteligentna sesja bez błędów: słabe punkty pod kontrolą",
-  },
   pos_mastery_level: {
     ru: 'Уровень части речи повышен — персональная отработка принесла награду',
     uk: 'Рівень частини мови підвищено — персональне тренування принесло нагороду',
@@ -218,7 +208,7 @@ const LABELS: Record<string, ShardEarnLabel> = {
     pl: "Diagnoza idealna: słaby punkt jest wyraźnie mocniejszy",
   },
   fc_checkpoint: {
-    ru: 'Сундук недельного трека карточек открыт — звёзды превратились в осколки',
+    ru: 'Сундук недельного трека карточек открыт — руны превратились в осколки',
     uk: 'Скриню тижневого треку карток відкрито — зірки стали осколками',
     es: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
 

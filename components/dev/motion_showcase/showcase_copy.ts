@@ -79,11 +79,11 @@ const RU = {
   arena_versus_intro_title: 'Старт матча: соперник → 3-2-1 → GO',
   arena_versus_intro_detail: 'реальный компонент — демо-игроки, звук/хаптик реальные',
   arena_versus_go_label: 'СТАРТ',
-  arena_star_flight_title: 'Полёт звёзд в кошелёк',
-  arena_star_flight_detail: 'реальный компонент — демо-траектория, 5 звёзд',
+  arena_star_flight_title: 'Полёт рун в кошелёк',
+  arena_star_flight_detail: 'реальный компонент — демо-траектория, 5 рун',
   arena_rewards_known_title: 'Награда за матч (известна)',
-  arena_rewards_known_detail: 'реальный компонент — демо-награда +12 звёзд, рейтинг +18',
-  arena_stars_label: 'звёзд за матч',
+  arena_rewards_known_detail: 'реальный компонент — демо-награда +12 рун, рейтинг +18',
+  arena_stars_label: 'рун за матч',
   arena_rewards_pending_title: 'Награда за матч (ещё не пришла)',
   arena_rewards_pending_detail: 'реальный компонент — состояние «отчёт в очереди»',
   arena_players_row_title: 'Счёт матча (ты vs соперник)',
@@ -398,7 +398,7 @@ const RU = {
   arena_tops_title: 'Арена · топы',
   arena_history_title: 'Арена · история матчей',
   arena_rivalries_title: 'Арена · соперничества',
-  arena_star_wallet_title: 'Арена · кошелёк звёзд',
+  arena_star_wallet_title: 'Арена · кошелёк рун',
   arena_season_pass_title: 'Арена · сезонный пропуск',
   arena_mastery_map_title: 'Арена · карта мастерства',
   arena_matchmaking_title: 'Арена · подбор соперника',
@@ -561,6 +561,10 @@ const RU = {
   skeleton_swap_reload_button: 'Загрузить',
   skeleton_swap_demo_name: 'Показательный игрок',
   skeleton_swap_demo_subtitle: 'Уровень 12 · серия 7 дней',
+  // метки приёмки: владелец видит глазами, что уже одобрено, а что ждёт решения
+  mark_accepted: 'принято',
+  mark_pending: 'ждёт',
+  screen_title: 'Движение · гибриды',
 };
 
 type Key = keyof typeof RU;

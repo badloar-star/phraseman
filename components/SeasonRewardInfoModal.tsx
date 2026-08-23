@@ -21,6 +21,7 @@
 import React, { useMemo } from 'react';
 import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import RuneGlyph from './RuneGlyph';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
@@ -33,7 +34,7 @@ import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
 import DuoPressable from './DuoPressable';
 import PressableHybrid from './PressableHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { LUM } from '../constants/motionHybrid';
+import { LUM, PRESS } from '../constants/motionHybrid';
 
 export type SeasonRewardCardStatus = 'claimable' | 'claimed' | 'locked' | 'upcoming';
 
@@ -65,13 +66,13 @@ interface Props {
   /**
    * зачем: гибрид «Световод» (макет .motion-mockups/phraseman-hybrid.html,
    * семья «Алерты и формы») — просмотровая модалка без удара-кульминации:
-   * вход из света + каскад строк. Боевой дефолт — 'classic'.
+   * вход из света + каскад строк. Production default — hybrid; classic — rollback.
    */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-export default function SeasonRewardInfoModal({ visible, reward, level, side, status, onClose, onClaim, onNeedPass, motionVariant = 'classic' }: Props) {
-  const { theme: t, themeMode } = useTheme();
+export default function SeasonRewardInfoModal({ visible, reward, level, side, status, onClose, onClaim, onNeedPass, motionVariant = 'hybrid' }: Props) {
+  const { theme: t, themeMode, ds } = useTheme();
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
   const pearlIcon = pearlIconForTheme(themeMode);
@@ -131,16 +132,16 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
           {status === 'upcoming' && (
             <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                <Ionicons name="star" size={14} color={t.textMuted} />
+                <RuneGlyph size={14} color={t.textMuted} />
                 {/* guard-ok: самостоятельный статус-индикатор доступности («сколько
                     ещё нужно накопить»), не подпись-расшифровка под заголовком —
                     тот же паттерн, что и «Уже забрано» строкой выше; классика
                     несёт идентичный guard-ok на этой же фразе. */}
                 <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '700' }}>
                   {triLang(lang, {
-                    ru: `Нужно накопить ${starsToUnlock} звёзд`, uk: `Потрібно назбирати ${starsToUnlock} зірок`, es: `Necesitas ${starsToUnlock} estrellas`,
-                    'pt-BR': `Precisa juntar ${starsToUnlock} estrelas`, vi: `Cần tích ${starsToUnlock} sao`, id: `Perlu kumpulkan ${starsToUnlock} bintang`,
-                    tr: `${starsToUnlock} yıldız toplaman gerekiyor`, pl: `Potrzebujesz ${starsToUnlock} gwiazd`,
+                    ru: `Нужно накопить ${starsToUnlock} рун`, uk: `Потрібно назбирати ${starsToUnlock} рун`, es: `Necesitas ${starsToUnlock} runas`,
+                    'pt-BR': `Precisa juntar ${starsToUnlock} runas`, vi: `Cần tích ${starsToUnlock} rune`, id: `Perlu kumpulkan ${starsToUnlock} rune`,
+                    tr: `${starsToUnlock} rün toplaman gerekiyor`, pl: `Potrzebujesz ${starsToUnlock} run`,
                   })}
                 </Text>
               </View>
@@ -154,7 +155,14 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                   testID="season-reward-info-later"
                   onPress={onDismiss}
                   variant="secondary"
-                  style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}
+                  style={{ flex: 1, paddingBottom: PRESS.edgeHeight.compact }}
+                  contentStyle={{
+                    minHeight: ds.buttonHeight,
+                    borderRadius: 16,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: t.bgSurface,
+                  }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700' }}>
                     {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
@@ -164,8 +172,9 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                   testID="season-reward-info-claim"
                   onPress={onPrimaryAction}
                   edgeColor={t.bgSurface2}
-                  edgeHeight={4}
-                  style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}
+                  edgeHeight={PRESS.edgeHeight.compact}
+                  wrapStyle={{ flex: 1 }}
+                  style={{ minHeight: ds.buttonHeight, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.gold }}
                 >
                   <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '700' }}>
                     {triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' })}
@@ -177,8 +186,9 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                 testID="season-reward-info-need-pass"
                 onPress={onPrimaryAction}
                 edgeColor={t.bgSurface2}
-                edgeHeight={4}
-                style={{ width: '100%', borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}
+                edgeHeight={PRESS.edgeHeight.compact}
+                wrapStyle={{ width: '100%' }}
+                style={{ minHeight: ds.buttonHeight, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.gold }}
               >
                 <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '700' }}>
                   {triLang(lang, {
@@ -192,8 +202,9 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                 testID="season-reward-info-close"
                 onPress={onDismiss}
                 edgeColor={t.bgSurface2}
-                edgeHeight={4}
-                style={{ width: '100%', borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.bgSurface }}
+                edgeHeight={PRESS.edgeHeight.compact}
+                wrapStyle={{ width: '100%' }}
+                style={{ minHeight: ds.buttonHeight, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}
               >
                 <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700' }}>
                   {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}
@@ -219,7 +230,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
             {art}
           </View>
 
-          <Text style={{ color: t.textPrimary, fontSize: 19, fontWeight: '900', textAlign: 'center' }}>
+          <Text style={{ color: t.textPrimary, fontSize: 19, fontWeight: '700', textAlign: 'center' }}>
             {/* зачем 2026-08-04 (владелец: «аура ... стадия ее надо название
                 добавить»): copy.title у aura_stage один на все 4 стадии
                 («Аура сезона») — просмотровая модалка не говорила, какая
@@ -250,21 +261,21 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
 
           {status === 'upcoming' && (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              <Ionicons name="star" size={14} color={t.textMuted} />
+              <RuneGlyph size={14} color={t.textMuted} />
               {/* зачем 2026-08-04 (владелец: «исправь "откроется на уровне" на
-                  нужно накопить звёзд, как в других игровых механиках»): номер
+                  нужно накопить рун, как в других игровых механиках»): номер
                   уровня ничего не говорил игроку — на карточке цена подарка уже
-                  давно считается в звёздах (seasonPassStarsToUnlockLevel), эта
+                  давно считается в рунах (seasonPassStarsToUnlockLevel), эта
                   подсказка была последним местом, где ещё жил абстрактный
                   уровень вместо реальной цены. */}
-              {/* зачем: владелец запретил эмодзи в UI (в т.ч. внутри переведённых
-                  строк) — звезда была декоративным суффиксом ⭐, убрана во всех
-                  8 языках, смысл фразы («нужно накопить N звёзд») не изменился. */}
+                  {/* зачем: владелец запретил эмодзи в UI (в т.ч. внутри переведённых
+                      строк) — звезда была декоративным суффиксом, убрана во всех
+                  8 языках, смысл фразы («нужно накопить N рун») не изменился. */}
               <Text /* guard-ok: самостоятельный статус-индикатор доступности («сколько ещё нужно»), не подпись-расшифровка под заголовком модалки — тот же паттерн, что и блок «Уже забрано» чуть выше */ style={{ color: t.textMuted, fontSize: 13, fontWeight: '700' }}>
                 {triLang(lang, {
-                  ru: `Нужно накопить ${starsToUnlock} звёзд`, uk: `Потрібно назбирати ${starsToUnlock} зірок`, es: `Necesitas ${starsToUnlock} estrellas`,
-                  'pt-BR': `Precisa juntar ${starsToUnlock} estrelas`, vi: `Cần tích ${starsToUnlock} sao`, id: `Perlu kumpulkan ${starsToUnlock} bintang`,
-                  tr: `${starsToUnlock} yıldız toplaman gerekiyor`, pl: `Potrzebujesz ${starsToUnlock} gwiazd`,
+                  ru: `Нужно накопить ${starsToUnlock} рун`, uk: `Потрібно назбирати ${starsToUnlock} рун`, es: `Necesitas ${starsToUnlock} runas`,
+                  'pt-BR': `Precisa juntar ${starsToUnlock} runas`, vi: `Cần tích ${starsToUnlock} rune`, id: `Perlu kumpulkan ${starsToUnlock} rune`,
+                  tr: `${starsToUnlock} rün toplaman gerekiyor`, pl: `Potrzebujesz ${starsToUnlock} run`,
                 })}
               </Text>
             </View>
@@ -290,7 +301,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
                 accessibilityRole="button"
                 style={{ flex: 1, borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}
               >
-                <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '900' }}>
+                <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '700' }}>
                   {triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Resgatar', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' })}
                 </Text>
               </TouchableOpacity>
@@ -303,7 +314,7 @@ export default function SeasonRewardInfoModal({ visible, reward, level, side, st
               accessibilityRole="button"
               style={{ width: '100%', borderRadius: 16, paddingVertical: 14, alignItems: 'center', backgroundColor: t.gold }}
             >
-              <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '900' }}>
+              <Text style={{ color: t.textOnGold, fontSize: 15, fontWeight: '700' }}>
                 {triLang(lang, {
                   ru: 'Нужен пропуск', uk: 'Потрібна перепустка', es: 'Necesitas el pase', 'pt-BR': 'Precisa do passe',
                   vi: 'Cần vé mùa', id: 'Butuh pass', tr: 'Bilet gerekli', pl: 'Potrzebna przepustka',

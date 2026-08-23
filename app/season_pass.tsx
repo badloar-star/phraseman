@@ -16,6 +16,7 @@ import Svg, { Path } from 'react-native-svg';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { Stack, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import RuneGlyph from '../components/RuneGlyph';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -477,7 +478,7 @@ export default function SeasonPassScreen() {
               ? (passBought && isPassLane && !passLaneAllowed
                 ? 'Правая линия подарков доступна с Plus'
                 : 'Нужен пропуск сезона, чтобы забрать подарок')
-              : `Откроется при ${starsToUnlock} звёздах`
+              : `Откроется при ${starsToUnlock} рунах`
       }`,
       testID: claimable
         ? `season-pass-claim-${side}-${level}`
@@ -495,7 +496,7 @@ export default function SeasonPassScreen() {
     // t.bgSurface — плоский тон, чуть темнее bgCard, этого не хватало
     // особенно на светлых темах (виден на скриншоте: sagePorcelain). Общий
     // t.cardGradient не годится заменой — он сам почти белый-в-белый на
-    // businessLight/sagePorcelain (задуман для других мест приложения, не
+    // sagePorcelain (задуман для других мест приложения, не
     // для этой карточки). seasonRewardGradient() — отдельная палитра именно
     // под эту карточку, с гарантированным контрастом к bgPrimary КАЖДОЙ темы
     // (см. constants/seasonPassRewardGradients.ts) — так карточка подарка
@@ -650,9 +651,9 @@ export default function SeasonPassScreen() {
           ) : (
             <Text
               testID={`season-pass-reward-threshold-${level}-${side}`}
-              style={{ color: t.textMuted, fontSize: 11, fontWeight: '800', fontVariant: ['tabular-nums'] }} /* guard-ok: ЦЕНА подарка в звёздах (число + ⭐), а не подпись-расшифровка названия — владелец запросил её явно */
+              style={{ color: t.textMuted, fontSize: 11, fontWeight: '800', fontVariant: ['tabular-nums'] }} /* guard-ok: ЦЕНА подарка в рунах (число + глиф), а не подпись-расшифровка названия — владелец запросил её явно */
             >
-              {starsToUnlock} ⭐
+              {starsToUnlock} <RuneGlyph size={11} color={t.textMuted} />
             </Text>
           )}
         </View>

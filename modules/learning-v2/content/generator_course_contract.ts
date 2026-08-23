@@ -1,10 +1,22 @@
 import { hashCanonicalBody, utf8ByteLengthV1 } from '../policies/decision_registry';
 
-/** Every generated Learning V2 package is atomic across these UI languages. */
+/**
+ * Every generated Learning V2 package is atomic across these UI languages.
+ *
+ * зачем 'en' девятой (владелец, 2026-08-23): список — языки ОБЪЯСНЕНИЯ, а не
+ * изучаемый язык. Пока курс был один (английский), 'es' работал объяснением.
+ * У испанского курса 'es' стал target, и объяснять его надо на 'en', которого
+ * в списке не было вовсе — то есть испанский курс физически не мог объяснить
+ * себя англоязычному ученику. Список общий на платформу, поэтому 'en'
+ * добавлен для всех курсов; у английского курса эта локаль остаётся
+ * незаполненной (англоязычный интерфейс, изучающий английский, — вырожденная
+ * пара) и покрывается обычным UNTRANSLATED_MARKER, а не молчаливой подменой.
+ */
 export const LEARNING_V2_INTERFACE_LOCALES = Object.freeze([
   'ru',
   'uk',
   'es',
+  'en',
   'pt-BR',
   'vi',
   'id',

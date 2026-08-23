@@ -83,8 +83,10 @@ export const SECTION: ShowcaseSection = {
       title: cs('arena_rewards_known_title'),
       detail: cs('arena_rewards_known_detail'),
       kind: 'render',
+      // зачем: звёздная лестница (2026-08-23) — рейтинг больше не очки;
+      // полка показывает опыт и руны кошелька, дельта ранга живёт в такте звезды.
       render: () => React.createElement(ArenaRewards, {
-        reward: { starsEarned: 12, ratingDelta: 18 },
+        reward: { starsEarned: 12, xpEarned: 40, ratingDelta: 1 },
         starsLabel: cs('arena_stars_label'),
       }),
     },

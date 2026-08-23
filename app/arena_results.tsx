@@ -22,7 +22,10 @@ import type { ArenaExpansionHome } from '../modules/arena/expansion_contract';
 import { useArenaSound } from '../hooks/use_arena_sound';
 import { arenaResultAnnounce, arenaResultHasAnnounce } from '../modules/arena/result_view';
 import { arenaRankView } from '../modules/arena/rank_engine';
-import { ArenaRankStars } from '../components/arena/ArenaRankStars';
+import { ArenaResultStarBeat } from '../components/arena/ArenaResultStarBeat';
+import { ImpactFlash, fireImpactFlash } from '../components/arena/ArenaImpactFx';
+import { useSharedValue } from 'react-native-reanimated';
+import { hapticSuccess } from '../hooks/use-haptics';
 import { ArenaRankChangeHybrid } from '../components/arena/ArenaRankHybrid';
 import { ResultsSequence } from '../components/feedback/ResultsSequence';
 import { arenaQuickXpPresentation } from '../modules/arena/quick_result';
@@ -39,6 +42,34 @@ import {
   arenaResultRouteOwnerMatches,
   createArenaResultOwnerGate,
 } from '../modules/arena/listener_scope';
+
+// зачем: константы модуля объявлены ДО компонента. Раньше они лежали в хвосте
+// файла, и на устройстве экран падал с ReferenceError: Property 'ROMAN_DIVISION'
+// doesn't exist — при lazy-бандле Hermes рендер успевал начаться раньше, чем
+// исполнялся хвост модуля, и const попадал во временную мёртвую зону (TDZ).
+const TIER_COPY = [
+  'tierBronze', 'tierSilver', 'tierGold', 'tierPlatinum',
+  'tierDiamond', 'tierMaster', 'tierGrandmaster', 'tierLegend',
+] as const;
+const ROMAN_DIVISION: Record<1 | 2 | 3, string> = { 1: 'I', 2: 'II', 3: 'III' };
+
+const styles = StyleSheet.create({
+  announce: { gap: 4, alignItems: 'center' },
+  announceHead: { fontSize: 20, fontWeight: '900', textAlign: 'center' },
+  announceLine: { fontSize: 15, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  stats: { flexDirection: 'row', gap: 10 },
+  resultSurface: { gap: 12 },
+  cosmeticTitle: { textAlign: 'center', fontSize: 13, fontWeight: '900' },
+  stamp: { textAlign: 'center', fontSize: 15, fontWeight: '900' },
+  reactions: { minHeight: 44, gap: 8 },
+  reactionHint: { fontSize: 12, fontWeight: '700', textAlign: 'center' },
+  seriesCard: { gap: 6, alignItems: 'center' },
+  seriesScore: { fontSize: 20, fontWeight: '900', fontVariant: ['tabular-nums'] },
+  error: { textAlign: 'center', fontWeight: '700' },
+  pending: { gap: 4, alignItems: 'center', paddingVertical: 8 },
+  pendingTitle: { fontSize: 17, fontWeight: '900', textAlign: 'center' },
+  pendingHint: { fontSize: 14, fontWeight: '600', textAlign: 'center' },
+});
 
 export default function ArenaResultsScreen() {
   const router = useRouter();
@@ -302,6 +333,19 @@ export default function ArenaResultsScreen() {
    * ни что случилось, ни что он получил.
    */
   const announce = useMemo(() => arenaResultAnnounce(reward), [reward]);
+  // зачем: премиум-такт звезды (владелец 2026-08-23) — вспышка экрана, звук и
+  // хаптика ровно в момент посадки победной звезды, а не при монтировании.
+  const announceFlash = useSharedValue(0);
+  const announceRankLabel = useMemo(() => {
+    if (typeof reward?.ratingAfter !== 'number') return '';
+    const view = arenaRankView(reward.ratingAfter);
+    return `${arenaText(lang, TIER_COPY[view.tierIndex])} · ${ROMAN_DIVISION[view.division]}`;
+  }, [lang, reward?.ratingAfter]);
+  const onStarBeatImpact = useCallback(() => {
+    playSound('starLand');
+    void hapticSuccess();
+    fireImpactFlash(announceFlash, 0.4);
+  }, [announceFlash, playSound]);
   const outcomeToldRef = useRef(false);
   useEffect(() => {
     if (!match || outcomeToldRef.current) return;
@@ -312,7 +356,9 @@ export default function ArenaResultsScreen() {
     playSound(!winner ? 'resultDraw' : winner === effectiveViewerSeat ? 'resultWin' : 'resultLoss');
     // Звёзды приземляются в кошелёк отдельным звуком: это другое событие, и
     // игрок должен услышать, что начисление действительно случилось.
-    if (Number(reward?.starsEarned ?? 0) > 0) playSound('starLand');
+    // зачем: в рейтинговом матче звук звезды играет такт ранга ровно в момент
+    // посадки (onStarBeatImpact) — дубль при монтировании убран.
+    if (Number(reward?.starsEarned ?? 0) > 0 && match.mode !== 'ranked') playSound('starLand');
     // Повышение и понижение ранга — самое громкое, что бывает после матча.
     const rankEvent = String((reward as { rankEvent?: unknown } | undefined)?.rankEvent ?? '');
     if (rankEvent === 'tier_up') playSound('rankUp');
@@ -395,7 +441,7 @@ export default function ArenaResultsScreen() {
   }
 
   return (
-    <ArenaScreen title={arenaText(lang, 'result')} subtitle={title} variant="results" fxRef={fxRef} onBack={() => router.replace('/arena' as never)} overlay={rankScene}>
+    <ArenaScreen title={arenaText(lang, 'result')} subtitle={title} variant="results" fxRef={fxRef} onBack={() => router.replace('/arena' as never)} overlay={rankScene ?? <ImpactFlash opacity={announceFlash} />}>
       {players.length ? <ArenaPlayers players={players} active={active} animateScore /> : null}
       {titleCosmetic ? <Text style={[styles.cosmeticTitle, { color: P.gold }]}>{titleCosmetic}</Text> : null}
       <V2Card style={[styles.resultSurface, resultTheme ? { backgroundColor: resultTheme.backgroundColor, borderColor: resultTheme.borderColor, borderWidth: 1 } : null]}>
@@ -408,7 +454,9 @@ export default function ArenaResultsScreen() {
         <SpinRewardPlaque amount={1} receiptId={reward.spinReceiptId} visible onComplete={() => {}} staticPresentation />
       ) : null}
       {match?.mode === 'series' ? <V2Card style={styles.seriesCard}><Text style={[styles.reactionHint, reactionLine, { color: P.muted }]}>{arenaExpansionText(lang, 'rivalryBody')}</Text><Text style={[styles.seriesScore, { color: P.gold }]}>{arenaExpansionText(lang, 'score').replace('{you}', String(seriesYou)).replace('{them}', String(seriesThem))}</Text></V2Card> : null}
-      {arenaResultHasAnnounce(announce) && !(motionVariant === 'hybrid' && !rankSceneDismissed && announce.rank.kind !== 'none') ? (
+      {/* Ничья тоже получает карточку: «звёзды на месте» — ответ, не молчание. */}
+      {(arenaResultHasAnnounce(announce) || reward?.outcome === 'draw')
+        && !(motionVariant === 'hybrid' && !rankSceneDismissed && announce.rank.kind !== 'none') ? (
         <V2Card style={styles.announce}>
           {announce.rank.kind === 'tier_up' || announce.rank.kind === 'tier_down' ? (
             <Text style={[styles.announceHead, {
@@ -426,24 +474,18 @@ export default function ArenaResultsScreen() {
             </Text>
           ) : null}
 
-          {/* Звезда ранга — со знаком: потерю скрывать нельзя.
-              зачем: владелец (2026-08-23) — победа +1 звезда, поражение −1,
-              никаких очков. */}
-          {announce.ratingDelta !== 0 ? (
-            <>
-              <Text style={[styles.announceLine, {
-                color: announce.ratingDelta > 0 ? P.accent : P.danger,
-              }]}>
-                {announce.ratingDelta > 0 ? `+${announce.ratingDelta} ★` : `−${Math.abs(announce.ratingDelta)} ★`}
-              </Text>
-              {typeof reward?.ratingAfter === 'number' ? (
-                <ArenaRankStars
-                  filled={arenaRankView(reward.ratingAfter).starsInRank}
-                  size={18}
-                  accessibilityLabel={`${arenaText(lang, 'rankStars')}: ${arenaRankView(reward.ratingAfter).starsInRank}/3`}
-                />
-              ) : null}
-            </>
+          {/* Звёздный такт — со знаком: потерю скрывать нельзя.
+              зачем: владелец (2026-08-23), премиум-макет A/B/C: победная
+              звезда прилетает и бьёт, потерянная «выдыхает», ничья дышит. */}
+          {typeof reward?.ratingAfter === 'number' ? (
+            <ArenaResultStarBeat
+              ratingAfter={reward.ratingAfter}
+              ratingDelta={announce.ratingDelta}
+              rankLabel={announceRankLabel}
+              isDraw={reward?.outcome === 'draw'}
+              reduceMotion={reduceMotion}
+              onImpact={onStarBeatImpact}
+            />
           ) : null}
 
           {/* Косметика за тир. Владелец (D-63): награда — предмет, не звёзды. */}
@@ -502,26 +544,3 @@ export default function ArenaResultsScreen() {
     </ArenaScreen>
   );
 }
-
-const TIER_COPY = [
-  'tierBronze', 'tierSilver', 'tierGold', 'tierPlatinum',
-  'tierDiamond', 'tierMaster', 'tierGrandmaster', 'tierLegend',
-] as const;
-
-const styles = StyleSheet.create({
-  announce: { gap: 4, alignItems: 'center' },
-  announceHead: { fontSize: 20, fontWeight: '900', textAlign: 'center' },
-  announceLine: { fontSize: 15, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  stats: { flexDirection: 'row', gap: 10 },
-  resultSurface: { gap: 12 },
-  cosmeticTitle: { textAlign: 'center', fontSize: 13, fontWeight: '900' },
-  stamp: { textAlign: 'center', fontSize: 15, fontWeight: '900' },
-  reactions: { minHeight: 44, gap: 8 },
-  reactionHint: { fontSize: 12, fontWeight: '700', textAlign: 'center' },
-  seriesCard: { gap: 6, alignItems: 'center' },
-  seriesScore: { fontSize: 20, fontWeight: '900', fontVariant: ['tabular-nums'] },
-  error: { textAlign: 'center', fontWeight: '700' },
-  pending: { gap: 4, alignItems: 'center', paddingVertical: 8 },
-  pendingTitle: { fontSize: 17, fontWeight: '900', textAlign: 'center' },
-  pendingHint: { fontSize: 14, fontWeight: '600', textAlign: 'center' },
-});

@@ -4487,8 +4487,15 @@ export async function tournamentClaimTransaction(
   });
 }
 
+// зачем 2026-08-23 (владелец): турниры выключены фулл, но ЗАБОР УЖЕ НАЧИСЛЕННЫХ
+// наград обязан работать — это чужие деньги, а не фича. Проверка прода показала
+// 0 зависших квитанций в 500 комнатах, однако владелец распорядился открыть забор
+// «на всякий случай»: вдруг всплывёт старая квитанция вне лимита проверки.
+// Поэтому здесь гейта НЕТ — намеренно, и это ЕДИНСТВЕННАЯ турнирная callable,
+// оставленная на сервере. Играть всё равно нельзя: join/submit/finalize удалены.
+// Новых наград не появится (кроны создания комнат удалены), функция может только
+// отдать уже записанное в tournament_receipts.
 export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
-  assertTournamentsReleased();
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const stableUid = await resolveStableUid(db, request.auth.uid);

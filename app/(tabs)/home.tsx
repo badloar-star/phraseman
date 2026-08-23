@@ -2521,11 +2521,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // Плитка «Уроки» сохраняет push-презентацию /lessons_list, а вкладка с
         // книжкой открывает тот же раздел как retained-tab. Продолжение последнего
         // урока остаётся на отдельной плашке ниже.
-        const maxTeacherSubtitle = triLang(lang, {
-            ru: 'Учитель английского', uk: 'Учитель англійської', es: 'Profesor de inglés',
-            'pt-BR': 'Professor de inglês', vi: 'Giáo viên tiếng Anh', id: 'Guru bahasa Inggris',
-            tr: 'İngilizce öğretmeni', pl: 'Nauczyciel angielskiego',
-        });
+        // зачем (владелец 2026-08-23): «на главной текст "учитель английского" — убери».
+        // Подпись-расшифровка мелким шрифтом под названием плитки запрещена стилем
+        // владельца: название «МАКС» самодостаточно. Уточнение осталось только в
+        // accessibilityLabel — оно не видно, но озвучивается скринридером.
         const maxTeacherA11yLabel = triLang(lang, {
             ru: 'МАКС, учитель английского', uk: 'МАКС, учитель англійської', es: 'MAX, profesor de inglés',
             'pt-BR': 'MAX, professor de inglês', vi: 'MAX, giáo viên tiếng Anh', id: 'MAX, guru bahasa Inggris',
@@ -3161,11 +3160,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                             «МАКС», «Карточки») в реальных локалях умещаются в одну строку;
                             FlowText переносит целиком вместо обрезания на случай длинных переводов. */}
                         <FlowText testID="home-quick-tile-label" provenance="authored" style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }}>{item.label}</FlowText>
-                        {item.key === 'max' ? (
-                          <FlowText provenance="authored" style={{ color: t.textMuted, fontSize: Math.max(11, f.caption - 1), fontWeight: '700', textAlign: 'center' }}>
-                            {maxTeacherSubtitle}
-                          </FlowText>
-                        ) : null}
                       </View>
                     </TouchableOpacity>
                   </Animated.View>

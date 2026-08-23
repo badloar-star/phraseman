@@ -42,14 +42,18 @@ describe('MAX call is a Home-owned preloaded experience', () => {
     const paramsStart = home.indexOf('const maxTutorCallParams');
     const paramsEnd = home.indexOf('useEffect(() =>', paramsStart);
     expect(home.slice(paramsStart, paramsEnd)).toContain("studyTarget: 'en'");
-    expect(home).toContain("ru: 'Учитель английского'");
-    expect(home).toContain("uk: 'Учитель англійської'");
-    expect(home).toContain("es: 'Profesor de inglés'");
-    expect(home).toContain("'pt-BR': 'Professor de inglês'");
-    expect(home).toContain("vi: 'Giáo viên tiếng Anh'");
-    expect(home).toContain("id: 'Guru bahasa Inggris'");
-    expect(home).toContain("tr: 'İngilizce öğretmeni'");
-    expect(home).toContain("pl: 'Nauczyciel angielskiego'");
+    // зачем (владелец 2026-08-23): видимая подпись «Учитель английского» под плиткой
+    // МАКС удалена (запрет на подписи-расшифровки мелким шрифтом). Уточнение живёт
+    // только в accessibilityLabel — сторожим его локали, а не вернувшуюся подпись.
+    expect(home).not.toContain('maxTeacherSubtitle');
+    expect(home).toContain("ru: 'МАКС, учитель английского'");
+    expect(home).toContain("uk: 'МАКС, учитель англійської'");
+    expect(home).toContain("es: 'MAX, profesor de inglés'");
+    expect(home).toContain("'pt-BR': 'MAX, professor de inglês'");
+    expect(home).toContain("vi: 'MAX, giáo viên tiếng Anh'");
+    expect(home).toContain("id: 'MAX, guru bahasa Inggris'");
+    expect(home).toContain("tr: 'MAX, İngilizce öğretmeni'");
+    expect(home).toContain("pl: 'MAX, nauczyciel angielskiego'");
     expect(home).toContain("accessibilityLabel={item.key === 'max' ? maxTeacherA11yLabel : item.label}");
   });
 

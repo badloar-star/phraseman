@@ -1,10 +1,12 @@
 import {
   createAudioLevelFanout,
+  orbAudioResponse,
   orbScale,
   parseAudioLevels,
   smoothRemoteAudioLevel,
   type AudioLevelSample,
 } from '../app/max_call_audio_level';
+import { MAX_CALL_ORB_HYBRID } from '../constants/motionHybrid';
 
 // Тест №3 спеки MAX Voice: парсинг обоих форматов статов, null-fallback при
 // отсутствии audioLevel (idle pulse), фан-аут одного тика двум подписчикам,
@@ -29,13 +31,48 @@ function toMapLikeReport(entries: Record<string, unknown>[]): unknown {
 }
 
 describe('max_call_audio_level', () => {
-  it('smooths remote energy with the bounded 72/28 EMA and ignores mic energy for orb scale', () => {
-    expect(smoothRemoteAudioLevel(0.5, 1)).toBeCloseTo(0.64);
-    expect(smoothRemoteAudioLevel(0.5, 9)).toBeCloseTo(0.64);
+  it('smooths remote energy with a bounded asymmetric EMA and ignores mic energy for orb scale', () => {
+    // Атака (сигнал вырос) быстрее спада — иначе слоги срезаются в прямую.
+    expect(smoothRemoteAudioLevel(0.5, 1)).toBeCloseTo(0.775);
+    // Мусор выше 1 клампится, а не пробрасывается как есть.
+    expect(smoothRemoteAudioLevel(0.5, 9)).toBeCloseTo(0.775);
+    // Спад медленнее атаки: хвост фразы угасает мягко.
+    expect(smoothRemoteAudioLevel(0.5, 0)).toBeCloseTo(0.41);
+    const attack = smoothRemoteAudioLevel(0.5, 1) - 0.5;
+    const release = 0.5 - smoothRemoteAudioLevel(0.5, 0);
+    expect(attack).toBeGreaterThan(release);
+
     expect(orbScale({ remote: 0.7, mic: 0, rttMs: null })).toBeGreaterThan(
       orbScale({ remote: 0, mic: 0.7, rttMs: null }),
     );
     expect(orbScale({ remote: null, mic: 1, rttMs: null })).toBe(1);
+  });
+
+  it('projects real speech levels into a visible orb travel, and rests at 1 in silence', () => {
+    // зачем (владелец 2026-08-23): «сфера не пульсирует». Реальный audioLevel
+    // речи ~0.02..0.25; линейная проекция давала ~1.5px хода на сфере 238px —
+    // втрое меньше её собственного дыхания. Сторожим именно ВИДИМОСТЬ.
+    let smoothed = 0;
+    const scales: number[] = [];
+    for (const level of [0.02, 0.12, 0.18, 0.09, 0.03, 0.15, 0.21, 0.11]) {
+      smoothed = smoothRemoteAudioLevel(smoothed, level);
+      scales.push(1 + orbAudioResponse(smoothed) * MAX_CALL_ORB_HYBRID.audioScaleMax);
+    }
+    const travelPx = (Math.max(...scales) - Math.min(...scales)) * MAX_CALL_ORB_HYBRID.size;
+    // Собственное дыхание шара ~5px — речь обязана быть заметно сильнее.
+    expect(travelPx).toBeGreaterThan(12);
+
+    // Тишина возвращает сферу ровно в покой, без залипания раздутой.
+    let quiet = 0.4;
+    for (let i = 0; i < 30; i += 1) quiet = smoothRemoteAudioLevel(quiet, 0);
+    expect(1 + orbAudioResponse(quiet) * MAX_CALL_ORB_HYBRID.audioScaleMax).toBeCloseTo(1, 2);
+  });
+
+  it('keeps the response curve bounded for garbage and extreme input', () => {
+    expect(orbAudioResponse(0)).toBe(0);
+    expect(orbAudioResponse(1)).toBeLessThanOrEqual(1);
+    expect(orbAudioResponse(Number.NaN)).toBe(0);
+    expect(orbAudioResponse(-5)).toBe(0);
   });
   describe('parseAudioLevels: оба формата статов', () => {
     it('парсит массив RTCStats-подобных объектов', () => {

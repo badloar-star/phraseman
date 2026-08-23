@@ -8,7 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import type { MaxHomeOrbLayers } from '../../app/max_home_orb_assets';
-import { smoothRemoteAudioLevel } from '../../app/max_call_audio_level';
+import { orbAudioResponse, smoothRemoteAudioLevel } from '../../app/max_call_audio_level';
 import { MAX_CALL_ORB_HYBRID } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import MaxHomeOrb from '../home/MaxHomeOrb';
@@ -61,7 +61,10 @@ export const MaxCallOrb = forwardRef<MaxCallOrbRef, Props>(function MaxCallOrb(
 
       const smoothed = smoothRemoteAudioLevel(smoothedLevelRef.current, level);
       smoothedLevelRef.current = smoothed;
-      const target = 1 + smoothed * MAX_CALL_ORB_HYBRID.audioScaleMax;
+      // зачем: кривая отклика живёт в чистом модуле и покрыта тестами —
+      // компонент не имеет права считать масштаб по-своему, иначе экран и
+      // юнит-тесты разъедутся (ровно так пульсация и потерялась).
+      const target = 1 + orbAudioResponse(smoothed) * MAX_CALL_ORB_HYBRID.audioScaleMax;
       const growing = target > lastTargetRef.current;
       lastTargetRef.current = target;
       scale.value = withTiming(target, {

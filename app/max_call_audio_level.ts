@@ -51,7 +51,25 @@ function clamp01(value: number): number {
 export function smoothRemoteAudioLevel(previous: number, remote: number): number {
   const safePrevious = Number.isFinite(previous) ? clamp01(previous) : 0;
   const safeRemote = Number.isFinite(remote) ? clamp01(remote) : 0;
-  return safePrevious * 0.72 + safeRemote * 0.28;
+  // зачем (владелец 2026-08-23): «сфера не пульсирует по звуку». Прежняя
+  // симметричная EMA 72/28 при тике 250мс имела постоянную времени ~1с и
+  // срезала вершины слогов почти в прямую линию. Атака быстрее спада: удар
+  // слога виден сразу, хвост угасает мягко — живая огибающая, не дрожь.
+  const alpha = safeRemote > safePrevious ? 0.55 : 0.18;
+  return safePrevious * (1 - alpha) + safeRemote * alpha;
+}
+
+/**
+ * Нелинейная кривая отклика: реальный WebRTC audioLevel живого голоса лежит
+ * в 0.01..0.25, а не в 0..1. Линейная проекция давала ~1.5px размаха на сфере
+ * 238px — визуально ноль на фоне 5px собственного дыхания шара. Корень
+ * растягивает рабочий диапазон речи в полный ход, не ломая границы 0..1.
+ */
+export function orbAudioResponse(level: number): number {
+  const safe = Number.isFinite(level) ? clamp01(level) : 0;
+  // sqrt(x / typical) даёт ~1.0 уже на обычной громкости речи.
+  const stretched = Math.sqrt(safe / MAX_CALL_ORB_HYBRID.typicalSpeechLevel);
+  return clamp01(stretched);
 }
 
 /** Чистая проекция уровня remote-аудио в масштаб сферы; микрофон не участвует. */
@@ -61,7 +79,8 @@ export function orbScale(
   reduceMotion = false,
 ): number {
   if (reduceMotion || sample.remote === null || !Number.isFinite(sample.remote)) return 1;
-  return 1 + smoothRemoteAudioLevel(previous, sample.remote) * MAX_CALL_ORB_HYBRID.audioScaleMax;
+  const smoothed = smoothRemoteAudioLevel(previous, sample.remote);
+  return 1 + orbAudioResponse(smoothed) * MAX_CALL_ORB_HYBRID.audioScaleMax;
 }
 
 /**

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { MAX_CALL_ORB_HYBRID } from '../constants/motionHybrid';
+import { MAX_CALL_ORB_HYBRID, MAX_HOME_ORB_HYBRID } from '../constants/motionHybrid';
 
 const orbPath = path.join(__dirname, '../components/max/MaxCallOrb.tsx');
 const orb = fs.existsSync(orbPath) ? fs.readFileSync(orbPath, 'utf8') : '';
@@ -8,12 +8,21 @@ const session = fs.readFileSync(path.join(__dirname, '../app/max_call_session.ts
 
 describe('MAX tutor call sphere', () => {
   it('uses the Home layers with smooth named audio tokens and no ring geometry', () => {
-    expect(MAX_CALL_ORB_HYBRID).toMatchObject({
-      size: 238,
-      audioScaleMax: 0.055,
-      attackMs: 420,
-      releaseMs: 680,
-    });
+    expect(MAX_CALL_ORB_HYBRID).toMatchObject({ size: 238 });
+    // зачем (владелец 2026-08-23): «сфера не пульсирует по звуку». Сторожим
+    // не конкретные цифры (владелец вправе их крутить), а физику эффекта:
+    // ход от голоса обязан быть заметно сильнее собственного дыхания шара
+    // (MAX_HOME_ORB_HYBRID даёт ~2.2%), иначе пульсация снова утонет.
+    const breathTravel = MAX_HOME_ORB_HYBRID.shellScaleMax - MAX_HOME_ORB_HYBRID.shellScaleMin;
+    expect(MAX_CALL_ORB_HYBRID.audioScaleMax).toBeGreaterThan(breathTravel * 3);
+    // Спад мягче атаки, но оба короче тика статов (250мс) — иначе огибающая
+    // размазывается обратно в прямую линию.
+    expect(MAX_CALL_ORB_HYBRID.attackMs).toBeLessThan(MAX_CALL_ORB_HYBRID.releaseMs);
+    expect(MAX_CALL_ORB_HYBRID.attackMs).toBeLessThanOrEqual(250);
+    expect(MAX_CALL_ORB_HYBRID.typicalSpeechLevel).toBeGreaterThan(0);
+    expect(MAX_CALL_ORB_HYBRID.typicalSpeechLevel).toBeLessThan(1);
+    // Компонент обязан считать масштаб общей кривой, а не своей формулой.
+    expect(orb).toContain('orbAudioResponse');
     expect(orb).toContain('MaxHomeOrb');
     expect(orb).toContain('setAudioLevel');
     expect(orb).toContain('useReduceMotion()');

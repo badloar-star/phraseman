@@ -15,8 +15,6 @@ import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
 import type { ArenaMatchReward, ArenaPlayer } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
-import { captureAccountGeneration } from './account_generation';
-import { grantLocalArenaRankedWinSpin } from './local_level_spins';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { TournamentFxApi } from '../components/ui/V2Fx';
 import { arenaExpansionHome, arenaFlushOutbox, arenaV2SyncMatchDispatch, createArenaRequestId, peekArenaViewerSeat, rememberArenaViewerSeat, useArenaMatch } from './arena_client';
@@ -40,7 +38,7 @@ import {
 } from '../modules/arena/quick_result_state';
 import { arenaResultReplayMode, arenaResultSurfaceKind } from '../modules/arena/result_surface_state';
 import { useArenaTerminalResultSync } from '../hooks/use_arena_terminal_result_sync';
-import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
+import { subscribeAccountGeneration } from './account_generation';
 import { arenaForgetResultHandoff, arenaPeekResultHandoff } from '../modules/arena/result_handoff';
 import {
   arenaResultRouteOwnerMatches,
@@ -306,6 +304,18 @@ export default function ArenaResultsScreen() {
   const publicReward = effectiveViewerSeat ? match?.result?.rewards?.[effectiveViewerSeat] : undefined;
   const quickReward = quickPresentation?.reward;
   const reward = match?.mode === 'quick' ? quickReward : privateReward ?? publicReward;
+  /**
+   * зачем (владелец, 23.08): победа в рейтинге над реальным игроком выдаёт
+   * спин из ОБЩЕГО каталога подарков — не отдельную награду Арены. Сервер
+   * лишь подтверждает факт (`spinAwarded`) и присылает `spinReceiptId` =
+   * matchId; локальная выдача идемпотентна по этому ключу, поэтому повторный
+   * рендер экрана (догрузка косметики, возврат назад) не выдаст второй спин.
+   */
+  useEffect(() => {
+    if (!reward || match?.mode === 'quick') return;
+    if (!reward.spinAwarded || !reward.spinReceiptId) return;
+    void grantLocalArenaRankedWinSpin(reward.spinReceiptId, captureAccountGeneration());
+  }, [match?.mode, reward]);
   const quickXp = useMemo(() => arenaQuickXpPresentation(quickReward), [quickReward]);
   const quickXpRewards = useMemo(() => quickXp.modifiers.length ? ({
     multipliers: quickXp.modifiers.map((modifier) => ({

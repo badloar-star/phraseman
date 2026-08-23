@@ -170,7 +170,12 @@ export async function applySeasonRewardLocal(
           current: await getEffectiveMaxEnergyValue(),
           lastRecoveryTime: nowMs,
         })]];
-      });
+      // зачем (аудит 2026-08-23): награда пишет energy_state НАПРЯМУЮ, мимо
+      // EnergyContext. Без оповещения счётчики на уже открытых экранах врали
+      // до следующего фокуса, а запланированный пуш «энергия восстановлена»
+      // не отменялся — приходил, когда заряд уже полный. Тот же приём, что в
+      // energy_shard_refill.ts после покупки за жемчужины.
+      }, () => { emitAppEvent('energy_reload'); });
     case 'turbo_regen':
       return commitIncrementalSeasonGift(idempotencyKey, async () => {
         const base = getEnergyRecoveryIntervalMs();
@@ -183,7 +188,9 @@ export async function applySeasonRewardLocal(
           now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0, 0,
         );
         return [[BOON_ENERGY_OVERRIDE_KEY, JSON.stringify({ expiresAt, recoveryMs })]];
-      });
+      // Интервал восстановления изменился — контекст обязан перечитать его,
+      // иначе таймер на экране считает по старому шагу до перезахода.
+      }, () => { emitAppEvent('energy_reload'); });
     case 'league_boost':
       return commitIncrementalSeasonGift(idempotencyKey, async () => {
         const nowMs = Date.now();

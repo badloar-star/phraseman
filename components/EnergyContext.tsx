@@ -9,6 +9,16 @@ import { applyAdminEnergyCommand, formatTimeUntilRecovery, getRecoveryIntervalMs
 import { readLeagueChestEnergyOverrideMs } from '../app/services/league_chest_rewards';
 import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs } from '../app/boons/boon_effects_energy';
 import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
+// зачем (аудит 2026-08-23, третий проход): ключ energy_state пишут ДЕВЯТЬ мест.
+// Подарки уровня, сезонный «полный заряд» и покупка за жемчужины идут под общим
+// withStorageLock, а EnergyContext писал мимо него — читал-менял-писал целиком.
+// Пересечение окон (получил подарок энергии и тут же начал урок) молча теряло
+// либо подарок, либо списание: побеждал тот, кто дописал последним. Теперь все
+// девять писателей стоят в одной очереди.
+// ВАЖНО: замок НЕреентерабельный (app/storage_mutex.ts — флаг + очередь, без
+// счётчика владельца). Внутри залоченной секции нельзя звать spendOne/refundOne
+// и любой другой код, который берёт этот же замок — будет вечная блокировка.
+import { withStorageLock } from '../app/storage_mutex';
 import { scheduleEnergyFullNotification, cancelEnergyFullNotification } from '../app/notifications';
 import type { Lang } from '../constants/i18n';
 import { energyCountdownClock } from './energy_countdown_clock';
@@ -207,7 +217,11 @@ async function readAndRecoverState(dynMax: number, recoveryMs: number): Promise<
       state.current = Math.min(state.current + recovered, dynMax);
       // Advance lastRecoveryTime by completed full intervals (keeps remainder accurate)
       state.lastRecoveryTime = state.lastRecoveryTime + recovered * recoveryMs;
-      await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+      // Под общим замком: восстановление идёт при каждой загрузке и легко
+      // пересекается с подарком энергии или покупкой за жемчужины.
+      await withStorageLock(async () => {
+        await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+      });
     }
   }
 
@@ -510,7 +524,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     setRecoveryEndsAtMs(safeRemaining > 0 ? now + safeRemaining : 0);
 
     const state: StoredEnergy = { current: newEnergy, lastRecoveryTime: newLastRecovery };
-    await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+    await withStorageLock(async () => {
+      await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+    });
     writePeekEnergy(newEnergy, dynMaxRef.current);
 
     // Энергия упала ниже максимума → (пере)планируем пуш о восстановлении.
@@ -560,7 +576,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     setEnergy(capped);
 
     const state: StoredEnergy = { current: capped, lastRecoveryTime: lastRecoveryRef.current };
-    await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+    await withStorageLock(async () => {
+      await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+    });
     writePeekEnergy(capped, dynMaxRef.current);
     // Баланс вырос — пуш о полном восстановлении мог стать неактуальным.
     void syncEnergyPushRef.current?.();
@@ -615,7 +633,11 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       setTimeUntilNextMs(safeRemaining);
       setRecoveryEndsAtMs(safeRemaining > 0 ? now + safeRemaining : 0);
       const state: StoredEnergy = { current: newE, lastRecoveryTime: newLastRecovery };
-      try { await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state)); } catch { /* best-effort */ }
+      try {
+        await withStorageLock(async () => {
+          await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+        });
+      } catch { /* best-effort */ }
       writePeekEnergy(newE, dynMaxRef.current);
     }
 
@@ -686,7 +708,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     let persisted = false;
     for (let attempt = 0; attempt < 2 && isCurrent(); attempt += 1) {
       try {
-        await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+        await withStorageLock(async () => {
+          await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+        });
         persisted = true;
         break;
       } catch {

@@ -177,6 +177,24 @@ describe('энергия платится за старт активности',
     expect(refund).toContain("pool === 'bonus'");
   });
 
+  it('все писатели energy_state стоят в одной очереди', () => {
+    // Третий аудит: ключ energy_state пишут девять мест. Подарки, сезонная
+    // награда и покупка за жемчужины шли под общим withStorageLock, а
+    // EnergyContext — мимо него, читая-меняя-записывая объект целиком.
+    // Пересечение окон теряло либо подарок, либо списание.
+    const context = read('components/EnergyContext.tsx');
+    expect(context).toContain("from '../app/storage_mutex'");
+    // Пять писателей: восстановление, spendOne, refundOne, spendAmount, refill.
+    expect((context.match(/withStorageLock\(async/g) ?? []).length).toBeGreaterThanOrEqual(5);
+  });
+
+  it('сезонные награды энергии оповещают контекст', () => {
+    // battery пишет energy_state напрямую: без события счётчики на открытых
+    // экранах врут, а пуш «энергия восстановлена» не отменяется вовремя.
+    const season = read('app/season_reward_apply.ts');
+    expect(season).toContain("emitAppEvent('energy_reload')");
+  });
+
   it('ускорения восстановления совпадают на клиенте и сервере', () => {
     // Сервер кладёт значение в награду, клиент им же валидирует: разойдутся —
     // сундук выдаст не то, что обещан.

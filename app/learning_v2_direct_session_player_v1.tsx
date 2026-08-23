@@ -20,14 +20,12 @@ import {
   View,
 } from "react-native";
 import Animated, {
-  ReduceMotion,
-  useAnimatedStyle,
+  Easing,
+  FadeInDown,
   useReducedMotion,
-  useSharedValue,
-  withSequence,
-  withTiming,
 } from "react-native-reanimated";
 
+import LearningV2AnswerChoice from "../components/LearningV2AnswerChoice";
 import ReportErrorButton from "../components/ReportErrorButton";
 import SaveToCardsButton from "../components/SaveToCardsButton";
 import { useLang } from "../components/LangContext";
@@ -235,10 +233,14 @@ export default function LearningV2DirectSessionPlayerV1() {
   const completionsRef = useRef(
     new Map<string, LearningV2CourseSessionInteractionCompletionV1>(),
   );
-  const answerShake = useSharedValue(0);
-  const answerShakeStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: answerShake.value }],
-  }));
+  // зачем (аудит анимаций 22.08): спека разрешает только точечный
+  // `wrong_option_nudge` самого неверного варианта, а не тряску всей зоны
+  // ответов. Счётчик растёт на каждой ошибке; вариант с этим responseId
+  // толкает сам себя, остальные не шевелятся.
+  const [wrongNudge, setWrongNudge] = useState<{
+    responseId: string | null;
+    token: number;
+  }>({ responseId: null, token: 0 });
   const [audioRequest, setAudioRequest] = useState<Readonly<{
     fileUri: string;
     requestId: number;
@@ -522,16 +524,16 @@ export default function LearningV2DirectSessionPlayerV1() {
       setOrderedIds([]);
       setTranscript("");
       void hapticError();
-      if (!reducedMotion) {
-        answerShake.value = withSequence(
-          withTiming(-7, { duration: 45, reduceMotion: ReduceMotion.System }),
-          withTiming(6, { duration: 55, reduceMotion: ReduceMotion.System }),
-          withTiming(-4, { duration: 55, reduceMotion: ReduceMotion.System }),
-          withTiming(0, { duration: 45, reduceMotion: ReduceMotion.System }),
-        );
+      if (!reducedMotion && practice.inputMode === "single_choice") {
+        const wrongId = selectedChoiceId;
+        if (wrongId)
+          setWrongNudge((prev) => ({
+            responseId: wrongId,
+            token: prev.token + 1,
+          }));
       }
     },
-    [answerShake, attempts, auxiliary, hintUsed, lang, material?.lessonId, orderedIds, practice, reducedMotion, result, run, selectedChoiceId, studyTarget],
+    [attempts, auxiliary, hintUsed, lang, material?.lessonId, orderedIds, practice, reducedMotion, result, run, selectedChoiceId, studyTarget],
   );
 
   const finish = useCallback(async () => {
@@ -888,17 +890,22 @@ export default function LearningV2DirectSessionPlayerV1() {
           )}
         </View>
 
-        <Animated.View style={[styles.answers, answerShakeStyle]}>
+        <Animated.View style={styles.answers}>
           {practice.inputMode === "single_choice" &&
             practice.responseOptions.map((option) => {
               const selected = selectedChoiceId === option.responseId;
               return (
-                <Pressable
+                <LearningV2AnswerChoice
                   key={option.responseId}
-                  accessibilityRole="button"
-                  accessibilityState={{ selected }}
-                  accessibilityLabel={option.text}
+                  label={option.text}
+                  selected={selected}
+                  nudgeToken={
+                    wrongNudge.responseId === option.responseId
+                      ? wrongNudge.token
+                      : 0
+                  }
                   disabled={result === "correct"}
+                  reduceMotion={reducedMotion}
                   onPress={() => {
                     localVoice.cancel();
                     playSelectableAudio(option.responseId);
@@ -909,7 +916,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                       value: option.responseId,
                     });
                   }}
-                  style={({ pressed }) => [
+                  style={[
                     styles.answer,
                     {
                       // зачем: владелец запретил обводки контейнеров — верный
@@ -920,14 +927,10 @@ export default function LearningV2DirectSessionPlayerV1() {
                           : selected
                             ? t.bgSurface2
                             : t.bgCard,
-                      opacity: pressed ? 0.78 : 1,
                     },
                   ]}
-                >
-                  <Text style={[styles.answerText, { color: t.textPrimary }]}>
-                    {option.text}
-                  </Text>
-                </Pressable>
+                  textStyle={[styles.answerText, { color: t.textPrimary }]}
+                />
               );
             })}
 
@@ -1033,8 +1036,18 @@ export default function LearningV2DirectSessionPlayerV1() {
         </Animated.View>
 
         {wrongExplanation && result !== "correct" && (
-          <View
+          // зачем (каталог активностей 04): панель разбора ошибки обязана
+          // въезжать opacity + translateY 8 за 180-220мс, а не возникать
+          // мгновенно. reduce motion оставляет финальный кадр.
+          <Animated.View
             accessibilityLiveRegion="polite"
+            entering={
+              reducedMotion
+                ? undefined
+                : FadeInDown.duration(200).easing(
+                    Easing.bezier(0.23, 1, 0.32, 1).factory(),
+                  )
+            }
             style={[
               styles.explanation,
               { backgroundColor: t.bgSurface2 },
@@ -1044,7 +1057,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             <Text style={[styles.explanationText, { color: t.textPrimary }]}>
               {wrongExplanation}
             </Text>
-          </View>
+          </Animated.View>
         )}
 
         <View style={styles.actionRow}>

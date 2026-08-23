@@ -46,7 +46,11 @@ export function ArenaResultStarBeat({ ratingAfter, ratingDelta, rankLabel, isDra
   const win = ratingDelta > 0;
   const loss = ratingDelta < 0;
   const from = Math.max(0, Math.min(3, win ? to - 1 : loss ? to + 1 : to));
-  const beatIndex = win ? to - 1 : loss ? to : -1;
+  // зачем: на ранг-апе to===0 (счётчик обнулился при переходе в новый ранг) —
+  // без клампа beatIndex уходил в -1, ни один из 3 слотов не совпадал, и удар
+  // (звук/хаптика/вспышка через onImpact) молча не срабатывал именно в момент
+  // повышения ранга. Клампим в последний слот: звезда переполнилась через край.
+  const beatIndex = win ? Math.max(0, Math.min(2, to - 1)) : loss ? to : -1;
   const [filled, setFilled] = useState(reduceMotion ? to : from);
   const [landed, setLanded] = useState(false);
 

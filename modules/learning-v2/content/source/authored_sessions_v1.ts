@@ -39,17 +39,240 @@ import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../course_topology_v1';
 //
 // Теперь источник строится при первом обращении именно к нему. Порядковый
 // номер известен без построения, поэтому выбор нужной сессии ничего не стоит.
-const SESSION_LOADERS: readonly (() => SessionSource)[] = Object.freeze(
-  Array.from({ length: LEARNING_V2_LESSON_SESSION_COUNT_V1 }, (_, index) => {
-    const ordinal = index + 1;
-    const padded = String(ordinal).padStart(2, '0');
-    return () =>
-      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-      require(`./episode_01_session_${padded}_v1`)[
-        `EPISODE_01_SESSION_${padded}_SOURCE`
-      ] as SessionSource;
-  }),
-);
+// ВАЖНО про статические пути (владелец, 2026-08-23): Metro — сборщик React
+// Native — разрешает require ТОЛЬКО со строкой-литералом. Первая версия
+// собирала путь из переменной (`./episode_01_session_${padded}_v1`), в Node
+// это работало, а на телефоне падало «Invalid call at line 48». Поэтому
+// пути перечислены явно: Metro видит каждый файл и кладёт его в бандл.
+//
+// Ленивость при этом сохраняется: require стоит ВНУТРИ функции и выполняется
+// только когда сессию действительно открыли.
+const SESSION_LOADERS: readonly (() => SessionSource)[] = Object.freeze([
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_01_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_01_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_02_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_02_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_03_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_03_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_04_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_04_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_05_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_05_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_06_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_06_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_07_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_07_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_08_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_08_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_09_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_09_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_10_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_10_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_11_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_11_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_12_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_12_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_13_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_13_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_14_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_14_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_15_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_15_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_16_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_16_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_17_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_17_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_18_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_18_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_19_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_19_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_20_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_20_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_21_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_21_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_22_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_22_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_23_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_23_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_24_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_24_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_25_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_25_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_26_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_26_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_27_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_27_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_28_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_28_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_29_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_29_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_30_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_30_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_31_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_31_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_32_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_32_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_33_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_33_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_34_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_34_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_35_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_35_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_36_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_36_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_37_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_37_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_38_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_38_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_39_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_39_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_40_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_40_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_41_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_41_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_42_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_42_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_43_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_43_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_44_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_44_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_45_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_45_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_46_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_46_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_47_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_47_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_48_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_48_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_49_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_49_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_50_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_50_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_51_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_51_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_52_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_52_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_53_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_53_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_54_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_54_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_55_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_55_SOURCE,
+  () =>
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+    (require('./episode_01_session_56_v1') as Record<string, SessionSource>)
+      .EPISODE_01_SESSION_56_SOURCE,
+]);
 
 const loadedSources = new Map<number, SessionSource>();
 
@@ -347,15 +570,25 @@ export function qualifiedAuthoredLearningV2SessionOrdinals(): readonly number[] 
 // у сессии, в которую играют прямо сейчас. Ошибку глотаем намеренно: это
 // подготовка впрок, её провал не должен ничего ломать — сессию всё равно
 // соберут при настоящем открытии.
-let prefetchScheduled = false;
+// зачем номер, а не булев флаг (аудит 2026-08-23): булев «предзагрузка уже
+// запланирована» ломался при быстром пролистывании. Сценарий: открыли
+// сессию 3 → запланирована предзагрузка 4 → до срабатывания таймера открыли
+// сессию 5 → запрос на предзагрузку 6 молча терялся, потому что флаг ещё был
+// занят старым запросом. Открытие 6 переставало быть мгновенным, хотя должно
+// было. Номер вместо флага делает «занято» специфичным для конкретного
+// запроса: новый запрос всегда перезаписывает старый.
+let scheduledPrefetchOrdinal: number | null = null;
 
 function scheduleNextSessionPrefetch(nextOrdinal: number): void {
-  if (prefetchScheduled) return;
   if (nextOrdinal > AUTHORED_EPISODE_01_CONTIGUOUS_CEILING_V1) return;
   if (lastBuilt?.source === sessionSourceIfLoaded(nextOrdinal)) return;
-  prefetchScheduled = true;
+  if (scheduledPrefetchOrdinal === nextOrdinal) return;
+  scheduledPrefetchOrdinal = nextOrdinal;
   setTimeout(() => {
-    prefetchScheduled = false;
+    // Пока ждали своей очереди, человек мог уйти дальше — тогда эта
+    // предзагрузка устарела, и класть её результат в prefetchedNext незачем.
+    if (scheduledPrefetchOrdinal !== nextOrdinal) return;
+    scheduledPrefetchOrdinal = null;
     try {
       prefetchedNext = { ordinal: nextOrdinal, shard: computeShardFor(nextOrdinal) };
     } catch {

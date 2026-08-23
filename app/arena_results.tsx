@@ -8,11 +8,15 @@ import { ArenaRewards } from '../components/arena/ArenaRewards';
 import { V2Card, V2Cta } from '../components/ui/v2_ui';
 import { useTournamentPalette } from '../components/ui/v2_theme';
 import { SpinRewardPlaque } from '../components/SpinRewardPlaque';
+import { captureAccountGeneration } from './account_generation';
+import { grantLocalArenaRankedWinSpin } from './local_level_spins';
 import { arenaText } from '../modules/arena/copy';
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { arenaExpansionText } from '../modules/arena/expansion_copy';
 import type { ArenaMatchReward, ArenaPlayer } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { captureAccountGeneration } from './account_generation';
+import { grantLocalArenaRankedWinSpin } from './local_level_spins';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { TournamentFxApi } from '../components/ui/V2Fx';
 import { arenaExpansionHome, arenaFlushOutbox, arenaV2SyncMatchDispatch, createArenaRequestId, peekArenaViewerSeat, rememberArenaViewerSeat, useArenaMatch } from './arena_client';
@@ -43,10 +47,12 @@ import {
   createArenaResultOwnerGate,
 } from '../modules/arena/listener_scope';
 
-// зачем: константы модуля объявлены ДО компонента. Раньше они лежали в хвосте
-// файла, и на устройстве экран падал с ReferenceError: Property 'ROMAN_DIVISION'
-// doesn't exist — при lazy-бандле Hermes рендер успевал начаться раньше, чем
-// исполнялся хвост модуля, и const попадал во временную мёртвую зону (TDZ).
+// зачем: константы модуля подняты выше компонента для читаемости (были в
+// хвосте файла). Крэш ReferenceError на 'ROMAN_DIVISION' наблюдался в dev-
+// сессии с активным Fast Refresh во время правки этого же файла — не в
+// прод-сборке (там нет HMR, модуль вычисляется целиком до первого рендера,
+// и «const после компонента» тут не является TDZ-уязвимостью). Другие файлы
+// Арены с тем же порядком объявлений не трогать «профилактически».
 const TIER_COPY = [
   'tierBronze', 'tierSilver', 'tierGold', 'tierPlatinum',
   'tierDiamond', 'tierMaster', 'tierGrandmaster', 'tierLegend',

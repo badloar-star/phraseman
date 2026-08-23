@@ -1,4 +1,4 @@
-// High-quality phrase audio playback (OpenAI TTS, voice "fable").
+// High-quality phrase audio playback (OpenAI TTS, voice "echo").
 //
 // Plays a pre-generated mp3 hosted on Firebase Storage for a given phrase text,
 // caching it on disk so each clip is downloaded at most once and then plays
@@ -105,8 +105,19 @@ function cacheDir(): Directory {
   return new Directory(Paths.cache, CACHE_DIR_NAME);
 }
 
+// Поколение озвучки корпуса. Входит в имя кэш-файла, поэтому смена значения
+// разом обесценивает все скачанные клипы — они перекачиваются по одному разу.
+//
+// зачем: 23.08.2026 весь корпус переозвучен с fable на echo. Файлы в Storage
+// перезаписаны ПО ТЕМ ЖЕ путям, а `&v=` в URL считается от ТЕКСТА фразы —
+// текст не менялся, значит и URL остался прежним. Без этого маркера у всех,
+// кто уже слушал фразу, на диске навсегда оставался бы старый голос: кэш
+// нашёл бы файл по совпадающей identity и не пошёл бы в сеть.
+// Меняешь голос корпуса — увеличивай поколение.
+const PHRASE_AUDIO_VOICE_GENERATION = 'echo-1';
+
 function phraseAudioCacheIdentity(textKey: string, url: string): string {
-  return `${textKey}\n${url}`;
+  return `${PHRASE_AUDIO_VOICE_GENERATION}\n${textKey}\n${url}`;
 }
 
 function phraseAudioCacheHash(value: string): string {
@@ -255,6 +266,58 @@ async function getCachedOrDownload(textKey: string, url: string): Promise<string
   // The timeout releases only this caller so fallback TTS can start; later callers
   // join the same native promise instead of starting a duplicate mp3 request.
   return downloadFileWithTimeout(nativeDownload);
+}
+
+/**
+ * Положить клип в кэш, ничего не проигрывая. Для фоновой докачки пачкой
+ * (hooks/phrase_audio_prefetch.ts).
+ *
+ * зачем отдельная функция, а не экспорт getCachedOrDownload: предзагрузке не
+ * нужен таймаут в 4.5 с. Таймаут существует, чтобы НАЖАТИЕ не ждало сеть и
+ * успело уйти в фолбэк-TTS; фоновая же качка никого не держит, и обрывать её
+ * по таймеру — значит зря выбрасывать почти скачанный файл. Поэтому здесь
+ * ждём нативную загрузку целиком, разделяя ту же карту inFlightDownloads:
+ * если тот же клип параллельно запросило нажатие, второй раз он не качается.
+ *
+ * Возвращает true, если после вызова клип лежит на диске.
+ */
+export async function ensurePhraseAudioCached(text: string, url: string): Promise<boolean> {
+  const key = normalizePhraseAudioKey(text);
+  if (!key || !url) return false;
+  const identity = phraseAudioCacheIdentity(key, url);
+  const file = cacheFileFor(identity);
+
+  try {
+    if (file.exists && (file.size ?? 0) > MIN_VALID_AUDIO_BYTES) return true;
+  } catch {
+    // повреждённая запись — просто перекачаем
+  }
+  if (getNetStatus() !== 'online') return false;
+
+  let nativeDownload = inFlightDownloads.get(identity);
+  if (!nativeDownload) {
+    nativeDownload = (async (): Promise<string | null> => {
+      try {
+        const dir = cacheDir();
+        if (!dir.exists) dir.create({ intermediates: true });
+        const downloaded = await (File.downloadFileAsync(url, file) as Promise<File>);
+        if (downloaded.exists && (downloaded.size ?? 0) > MIN_VALID_AUDIO_BYTES) {
+          maybeSweepPhraseAudioCache(downloaded.uri);
+          return downloaded.uri;
+        }
+        return null;
+      } catch {
+        return null;
+      }
+    })();
+    const ownedDownload = nativeDownload;
+    nativeDownload.finally(() => {
+      if (inFlightDownloads.get(identity) === ownedDownload) inFlightDownloads.delete(identity);
+    });
+    inFlightDownloads.set(identity, nativeDownload);
+  }
+
+  return (await nativeDownload) !== null;
 }
 
 export function stopPhraseAudio(): void {

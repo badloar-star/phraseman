@@ -45,6 +45,9 @@ import {
   materializeProtectedLearningV2WalletRewardReceipt,
   parseProtectedLearningV2WalletRewardReceipt,
 } from "../coin_exchange_wallet_reward";
+import { commitStarOperations, prepareStarOperations } from "../stars_ledger";
+import { getWeekKey } from "../progress_events";
+import { learningV2SessionStarOp } from "./stars_ledger_bridge";
 
 interface CompletionSubmitRequestV3 {
   readonly mutationId: string;
@@ -695,6 +698,37 @@ export const createFirestoreRequiredSessionCompletionInboxStore = (
         if (rewardRef && protectedReward && rewardSnapshot && !rewardSnapshot.exists) {
           transaction.create(rewardRef,
             protectedReward as unknown as FirebaseFirestore.DocumentData);
+        }
+      }
+      // зачем: владелец 2026-08-23 — звёзды Арены, турниров и Learning V2 это
+      // одна валюта. Кошелёк остаётся авторитетом (клиент главный), а журнал
+      // получает ту же награду целыми звёздами, чтобы баланс был общим для всех
+      // разделов и для второго устройства.
+      //
+      // Firebase-экономия: документ игрока уже прочитан выше вместе с остальными
+      // (transaction.get(userRef)), поэтому проводка не добавляет ни одного
+      // чтения. Дедуп по canonicalSessionId делает повторную доставку из
+      // очереди бесплатной — ни одной лишней записи.
+      if (projection.nextState !== null && projection.awardedSubunits > 0) {
+        const starOp = learningV2SessionStarOp({
+          courseSessionId: record.reconciledCandidate.canonicalSessionId,
+          awardedSubunits: projection.awardedSubunits,
+          ruleVersion: 1,
+        });
+        if (starOp) {
+          const nowMs = Date.now();
+          const preparedStars = await prepareStarOperations(
+            transaction, db, stableUid, user, [starOp],
+            {
+              nowMs,
+              activeSeasonId: "",
+              // getWeekKey из progress_events.ts — единственный законный
+              // производитель ключа недели, своего заводить нельзя.
+              weekKeyNow: getWeekKey(new Date(nowMs).toISOString().slice(0, 10)),
+              authUid,
+            },
+          );
+          commitStarOperations(transaction, preparedStars);
         }
       }
       return {

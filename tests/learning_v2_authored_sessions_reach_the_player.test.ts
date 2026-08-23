@@ -9,8 +9,10 @@
 import { EPISODE_01_SESSION_MAP_V1 } from "../modules/learning-v2/content/source/episode_01_session_map_v1";
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from "../modules/learning-v2/content/course_topology_v1";
 import {
+  AUTHORED_EPISODE_01_CONTIGUOUS_CEILING_V1,
   AUTHORED_EPISODE_01_SESSIONS,
   authoredLearningV2SessionShards,
+  recomputeContiguousPlayableCeiling,
 } from "../modules/learning-v2/content/source/authored_sessions_v1";
 import { validateLearningV2GeneratedSessionShardV1 } from "../modules/learning-v2/content/generator_session_shard";
 
@@ -21,6 +23,18 @@ import { validateLearningV2GeneratedSessionShardV1 } from "../modules/learning-v
 const MIN_PLAYABLE_SESSIONS_RATCHET = 14;
 
 describe("authored sessions reach the runtime, not just the test suite", () => {
+  // зачем этот сторож (владелец, 2026-08-23): граница непрерывности запечена
+  // константой, иначе телефон пересчитывал бы её при КАЖДОМ открытии сессии —
+  // именно это давало «висит секунды три». Константа быстрая, но может
+  // разойтись с реальностью после правки контента, поэтому здесь она честно
+  // пересчитывается. Разошлось — обнови константу, а не удаляй проверку:
+  // если реальная граница ВЫШЕ, значит готовые сессии зря заперты.
+  it("keeps the baked contiguous ceiling honest", () => {
+    expect(recomputeContiguousPlayableCeiling()).toBe(
+      AUTHORED_EPISODE_01_CONTIGUOUS_CEILING_V1,
+    );
+  });
+
   // зачем: главная проверка. Если этот список пуст или сюда забыли добавить
   // новую сессию, приложение её не увидит — именно так и вышло с сессиями 1–8.
   it("exposes every authored session through one registry", () => {

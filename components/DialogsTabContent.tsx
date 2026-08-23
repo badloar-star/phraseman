@@ -118,10 +118,9 @@ export default function DialogsTabContent({
   // X/N в мирах и выбора первого незавершённого сценария в блоке «Продолжить».
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set());
 
-  // Раскрытый мир. До первого тапа пользователя следует за героем «На очереди»,
-  // после — только ручное управление (эталонный паттерн разворота карточки).
+  // Раскрытый мир. При входе на экран все разделы свёрнуты — раскрытие только
+  // ручное, по тапу (эталонный паттерн разворота карточки).
   const [openWorld, setOpenWorld] = useState<WorldKey | null>(null);
-  const worldTouchedRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -387,19 +386,11 @@ export default function DialogsTabContent({
     return available.find((vm) => vm.status === 'available') ?? available[0];
   }, [courseGroupVMs, challengeVMs]);
 
-  // Мир героя — его карточка раскрыта по умолчанию, пока пользователь не начал
-  // управлять разворотами сам.
-  const heroWorld: WorldKey | null = heroVM
-    ? (heroVM.scene === CHALLENGE_SCENE_THEME ? 'challenge' : heroVM.scenario.category)
-    : null;
-  useEffect(() => {
-    if (worldTouchedRef.current || !heroWorld) return;
-    setOpenWorld(heroWorld);
-  }, [heroWorld]);
-
+  // зачем: владелец просил заходить в «Диалоги» с полностью свёрнутыми
+  // разделами — раньше мир героя («Каждый день») раскрывался сам, и экран
+  // открывался уже развёрнутым. Теперь развороты — только по тапу.
   const toggleWorld = useCallback((key: WorldKey) => {
     hapticTap();
-    worldTouchedRef.current = true;
     setOpenWorld((prev) => (prev === key ? null : key));
   }, []);
 

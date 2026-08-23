@@ -102,36 +102,38 @@
 | `app/shards_shop.tsx` | вход на «Биржу» (8 локалей) |
 | `tests/runes_currency_copy.test.ts` | НОВЫЙ: 11 тестов — блок Unicode Runic, отсутствие повторов в полёте, славянские склонения, все 8 локалей |
 
-### ЗАБЛОКИРОВАНО — файлы редактирует параллельная сессия
+### Доделано в этой же сессии
 
-На 23.08 09:46 следующие файлы имеют чужие незакоммиченные изменения, причём
-правки затрагивают ТЕ ЖЕ строки про валюту (проверено `git diff`):
+| Файл | Что |
+|---|---|
+| `components/ui/V2Fx.tsx` | `StarGlyph` (SVG-звезда) → рунический глиф; тип эффекта несёт свой символ. ОДНА правка покрыла 8 турнирных экранов |
+| `app/tournament_round.tsx` | счётчик тура, кнопка «Готово · N рун» — склонение через `runeWord` (старый код на 2–4 давал «2 звёзд») |
+| `app/tournament_season.tsx` | a11y строки таблицы сезона |
+| `app/tournament_results.tsx` | индикатор рун за сезон |
+| `components/arena/ArenaStarFlight.tsx` | каждая из 12 летящих рун несёт СВОЙ глиф |
+| `components/arena/ArenaExpansionUI.tsx` | кошелёк Арены |
+| `app/season_pass.tsx` + `components/SeasonRewardInfoModal.tsx` | пороги подарков, цена в рунах, обе иконки |
+| `app/level_gift_system.ts` | награды спина: `icon: '⭐'` → глиф, склонения на 3 локали |
+| `app/stars_view.ts` | «Две цифры про руны» |
+| `app/shard_earn_ui.ts` | сундук недельного трека |
+| `app/learning-v2/lesson/[id].tsx` | баланс кошелька (НЕ тронуты «звёзды качества» и счётчик сессий) |
+| `components/friends_together/FriendLevelUpModal.tsx` | награда уровня дружбы |
+| `components/league/LeagueResultHybrid.tsx` | «Руны и уроки сохранены» (8 локалей) |
+| `app/feature_intro_registry.ts` | описание Арены: «за победы — руны» (8 локалей) |
+| `components/dev/motion_showcase/showcase_copy.ts` | подписи витрины движения |
 
-`app/stars_view.ts` · `app/level_gift_system.ts` · `app/season_pass.tsx` ·
-`components/SeasonRewardInfoModal.tsx` · `app/tournament_round.tsx` ·
-`app/tournament_results.tsx` · `app/(tabs)/tournaments.tsx` ·
-`app/tournament_season.tsx` · `app/learning-v2/lesson/[id].tsx` ·
-`components/arena/ArenaStarFlight.tsx` · `components/arena/ArenaExpansionUI.tsx` ·
-`app/shard_earn_ui.ts` · `components/league/LeagueResultHybrid.tsx` ·
-`components/dev/motion_showcase/showcase_copy.ts`
+### Итоговая проверка
 
-Пример пересечения: в `app/stars_view.ts` параллельная сессия переписывает шапку
-файла ровно про «звезда — одна общая валюта».
+- **Сторож локализации: 1422 против 1437 в базе — СТАЛО МЕНЬШЕ** (расширил биржу с 3 до 8 локалей).
+- `guard_as_any_ratchet`: 306 против 314 — тоже лучше.
+- Тесты: `runes_currency_copy` 11/11, `arena_stars`, `arena_copy_completeness`,
+  `season_pass_stars_balance`, `level_gift_locale`, `level_spin_star_grants`,
+  `learning_v2_star_source_separation`, `arena_feature_intro_owner` — зелёные.
+- Полный `tsc -p tsconfig.json` падает по памяти (heap OOM) — ограничение машины,
+  не связано с правками; проверял точечно по файлам.
 
-Правка поверх означала бы затирание чужой работы. Раздел A реестра остаётся
-планом для этих файлов — доделать, когда дерево освободится.
+### Что осознанно осталось звёздами
 
-### Сторож локализации
-
-`node scripts/scan_untranslated_ui.mjs --report` → 2548 строк в 99 файлах.
-Рост с 2422 создан параллельной сессией (`app/(tabs)/friends.tsx` и др.);
-pre-commit хук на каждом коммите подтверждал: «твой диф не добавил ни одной
-непереведённой строки».
-
-### Тесты
-
-`tests/runes_currency_copy.test.ts` — 11/11 зелёные.
-`tests/learning_v2_star_source_separation.test.ts`, `tests/coin_exchange_wallet_outbox.test.ts` — зелёные.
-`tests/lessons_tab_locale_runtime.test.ts` — 2 падения, ПРЕДШЕСТВУЮЩИЕ этой работе
-(тест ждёт одинарные кавычки, файл переформатирован на двойные другой сессией;
-проверено на коммите до правок).
+Оценка занятия 1–3 (карта, финал сессии, SpeakingPanel «из 3 звёзд»), внутренняя
+шкала до 36, «звёзды качества» на карте урока, счётчик пройденных сессий,
+декор тем и карточек профиля, идиомы про stars, соцпруф пейвола, «созвездие фич».

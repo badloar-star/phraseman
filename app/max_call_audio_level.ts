@@ -43,6 +43,13 @@ function clamp01OrNull(value: unknown): number | null {
   return n < 0 ? 0 : n > 1 ? 1 : n;
 }
 
+/**
+ * Ниже этого уровня считаем, что говорящий замолчал: сглаживание затухает
+ * асимптотически и само в ноль не приходит, а «почти ноль» на экране читается
+ * как застрявшая раздутой сфера.
+ */
+const SILENCE_FLOOR = 0.004;
+
 function clamp01(value: number): number {
   return value < 0 ? 0 : value > 1 ? 1 : value;
 }
@@ -67,6 +74,9 @@ export function smoothRemoteAudioLevel(previous: number, remote: number): number
  */
 export function orbAudioResponse(level: number): number {
   const safe = Number.isFinite(level) ? clamp01(level) : 0;
+  // Порог тишины: EMA сходится к нулю асимптотически, поэтому без него после
+  // фразы оставался ~1% раздутия — сфера «зависала» чуть больше положенного.
+  if (safe < SILENCE_FLOOR) return 0;
   // sqrt(x / typical) даёт ~1.0 уже на обычной громкости речи.
   const stretched = Math.sqrt(safe / MAX_CALL_ORB_HYBRID.typicalSpeechLevel);
   return clamp01(stretched);

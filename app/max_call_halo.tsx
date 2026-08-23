@@ -10,6 +10,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
+import { orbAudioResponse, smoothRemoteAudioLevel } from './max_call_audio_level';
 import { MAX_CALL_HYBRID } from '../constants/motionHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 
@@ -79,6 +80,9 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
   // чтобы не пересоздавать императивный хендл на каждое изменение настройки.
   const reduceMotionRef = useRef(reduceMotion);
   reduceMotionRef.current = reduceMotion;
+  // Огибающая речи между тиками статов: живёт в ref, чтобы не перерисовывать
+  // экран от звука (ровно та же причина, что и у setMicLevel в целом).
+  const smoothedLevelRef = useRef(0);
 
   const breath = useSharedValue(1);
   const micPulse = useSharedValue(1);
@@ -112,12 +116,20 @@ export const MaxCallHalo = forwardRef<MaxCallHaloRef, MaxCallHaloProps>(function
       setMicLevel(level: number | null) {
         // Reduce motion / нет данных → кольцо спокойно возвращается к базе.
         if (reduceMotionRef.current || level === null || !Number.isFinite(level)) {
+          smoothedLevelRef.current = 0;
           micPulse.value = withTiming(1, { duration: MAX_CALL_HYBRID.micResetMs });
           return;
         }
-        // Оба перехода длиннее 250-мс тика статов: следующие слоги мягко
-        // перенаправляют уже идущее движение вместо отдельных толчков.
-        const target = 1 + clamp01(level) * MAX_CALL_HYBRID.micPulseMax;
+        // зачем (владелец 2026-08-23): «сфера не пульсирует по звуку» — тот же
+        // класс бага, что чинили у тьюторского орба. Реальный audioLevel речи
+        // живёт в 0.01..0.25, поэтому линейная проекция давала ~2.3px хода при
+        // 9.8px собственного дыхания ореола: сигнал тонул в фоне вчетверо.
+        // Общая кривая отклика (покрыта юнит-тестами) растягивает рабочий
+        // диапазон речи, а EMA держит огибающую — сырой уровень сюда приходил
+        // вообще без сглаживания и дёргал кольцо на каждом тике.
+        const smoothed = smoothRemoteAudioLevel(smoothedLevelRef.current, level);
+        smoothedLevelRef.current = smoothed;
+        const target = 1 + orbAudioResponse(smoothed) * MAX_CALL_HYBRID.micPulseMax;
         micPulse.value = withTiming(target, {
           duration: target > micPulse.value ? MAX_CALL_HYBRID.micAttackMs : MAX_CALL_HYBRID.micReleaseMs,
           easing: Easing.inOut(Easing.quad),

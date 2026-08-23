@@ -68,6 +68,14 @@ describe('max_call_audio_level', () => {
     expect(1 + orbAudioResponse(quiet) * MAX_CALL_ORB_HYBRID.audioScaleMax).toBeCloseTo(1, 2);
   });
 
+  it('settles to exact rest after speech, never lingering inflated', () => {
+    // зачем: EMA затухает асимптотически и сама в ноль не приходит — без порога
+    // тишины сфера зависала раздутой на ~1% после каждой фразы.
+    let level = 0.4;
+    for (let i = 0; i < 40; i += 1) level = smoothRemoteAudioLevel(level, 0);
+    expect(orbAudioResponse(level)).toBe(0);
+  });
+
   it('keeps the response curve bounded for garbage and extreme input', () => {
     expect(orbAudioResponse(0)).toBe(0);
     expect(orbAudioResponse(1)).toBeLessThanOrEqual(1);

@@ -79,6 +79,18 @@ export const MAX_CALL_GREETING_HOLD_MAX_MS = 20_000;
  */
 export const MAX_CALL_REMOTE_TRACK_GRACE_MS = 750;
 
+/**
+ * Сколько ждём вердикт транскрипта по реплике, начатой ПОВЕРХ речи MAX.
+ *
+ * зачем: в аварийном профиле транскрипции нет вовсе — без страховки
+ * удержанный ответ не выпустился бы НИКОГДА и звонок онемел бы
+ * («макс не слушает», владелец 2026-08-23). Не дождались вердикта —
+ * отвечаем: проглотить слова ученика хуже, чем разок ответить на эхо.
+ * Страховка только ВЫПУСКАЕТ уже поставленный ответ и никогда не
+ * создаёт второй, поэтому гонки «два ответа на реплику» здесь нет.
+ */
+export const MAX_CALL_ECHO_VERDICT_MS = 1_200;
+
 
 export async function completeLocalOfferSdp(
   connection: RtcPeerConnectionLike,
@@ -513,6 +525,14 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   let responseActive = false;
   let responseRequestPending = false;
   let defaultResponseQueued = false;
+  /**
+   * Ответ поставлен по речи, начавшейся ПОВЕРХ звучащего MAX, и ждёт
+   * вердикта транскрипта: слова есть — отвечаем, пусто (эхо/шум) — снимаем.
+   * Без этого флага ответ выпускался бы флашем по концу аудио, ДО транскрипта,
+   * и MAX отвечал бы собственному эху (владелец 2026-08-23).
+   */
+  let responseAwaitsTranscript = false;
+  let echoVerdictTimer: ReturnType<typeof setTimeout> | null = null;
 
   let heartbeatTimer: ReturnType<typeof setInterval> | null = null;
   let statsTimer: ReturnType<typeof setInterval> | null = null;
@@ -737,14 +757,37 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         emitUi({ type: 'speech_started' });
         return;
       case 'input_audio_buffer.speech_stopped':
-        // зачем (владелец 2026-08-23): ответ на реплику ученика создаёт СЕРВЕР
-        // (turn_detection.create_response:true). Клиент здесь только сообщает UI
-        // о границе хода. Раньше клиент ставил ответ сам — и вместе со
-        // страховочным таймером транскрипта давал ДВА ответа на одну реплику,
-        // а ожидание конца аудио-буфера добавляло паузу после речи ученика.
+        // зачем (владелец 2026-08-23, ЖИВОЙ ЗВОНОК): «макс не слушает, всё что я
+        // говорю игнорируется». Ставка на серверный create_response не сыграла:
+        // ответ на речь ученика не создавался ВООБЩЕ, и звонок превращался в
+        // поток подсказок «you could say...». Создание ответа возвращено клиенту.
+        //
+        // При этом два дефекта прежней схемы НЕ возвращены:
+        //   • ответ больше не ждёт доигрывания аудио-буфера (была пауза
+        //     «долго ждёт после моей речи») — см. requestResponse;
+        //   • нет придержания реплики и таймера 1500 мс, который давал ВТОРОЙ
+        //     ответ на одно высказывание.
+        // То есть здесь ровно один источник ответа и никакой гонки.
         emitUi({ type: 'speech_stopped' });
         // Ученик заговорил — цепочка догово́рок разорвана.
         finishTruncatedUsed = false;
+        // Речь ПОВЕРХ звучащего MAX — кандидат в эхо громкой связи. Ответ
+        // ставим в очередь, но не отправляем, пока динамик занят: транскрипт
+        // успеет его отменить, если слов не было (см. ветку completed ниже).
+        // Речь в тишине уходит мгновенно — паузы «долго ждёт» тут нет.
+        if (remoteAudioPlaying) {
+          defaultResponseQueued = true;
+          responseAwaitsTranscript = true;
+          if (echoVerdictTimer !== null) clearTimeout(echoVerdictTimer);
+          echoVerdictTimer = setTimeout(() => {
+            echoVerdictTimer = null;
+            if (isTornDown() || !responseAwaitsTranscript) return;
+            responseAwaitsTranscript = false;
+            flushQueuedDefaultResponse();
+          }, MAX_CALL_ECHO_VERDICT_MS);
+        } else {
+          queueDefaultResponse();
+        }
         return;
       case 'response.created':
         responseActive = true;
@@ -830,11 +873,23 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       // Реплика юзера — только финальная (interim в Realtime нет, спека §1).
       case 'conversation.item.input_audio_transcription.completed': {
         const text = typeof message.transcript === 'string' ? message.transcript : '';
-        // зачем: транскрипт теперь ТОЛЬКО показывает слова ученика. Раньше он был
-        // вторым источником ответа (придержанная реплика + страховочный таймер
-        // 1500 мс) — и на одно высказывание прилетали ДВА ответа. Создание ответа
-        // принадлежит серверу, у клиента этого решения больше нет.
-        if (text) emitTranscript({ kind: 'user_final', text });
+        if (text) {
+          emitTranscript({ kind: 'user_final', text });
+          // Слова есть — это была настоящая реплика ученика, а не эхо. Снимаем
+          // удержание и выпускаем поставленный ответ.
+          if (responseAwaitsTranscript) {
+            clearEchoVerdict();
+            flushQueuedDefaultResponse();
+          }
+          return;
+        }
+        clearEchoVerdict();
+        // зачем (владелец 2026-08-23): «я ничего не говорю, а он хвалит пустоту».
+        // Пустой транскрипт = VAD сработал на шум или эхо, слов не было. Ответ,
+        // поставленный в очередь по speech_stopped, СНИМАЕМ — хвалить нечего.
+        // Это не второй источник ответа: здесь ответ только отменяется, никогда
+        // не создаётся, поэтому гонки «два ответа на реплику» тут нет.
+        defaultResponseQueued = false;
         return;
       }
       case 'error':
@@ -937,8 +992,19 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     return sent;
   }
 
+  /** Снять удержание «ждём вердикт транскрипта» и погасить страховочный таймер. */
+  function clearEchoVerdict(): void {
+    responseAwaitsTranscript = false;
+    if (echoVerdictTimer !== null) {
+      clearTimeout(echoVerdictTimer);
+      echoVerdictTimer = null;
+    }
+  }
+
   function flushQueuedDefaultResponse(): void {
     if (!defaultResponseQueued) return;
+    // Ответ на возможное эхо не выпускаем, пока транскрипт не подтвердит слова.
+    if (responseAwaitsTranscript) return;
     if (requestResponse()) defaultResponseQueued = false;
   }
 
@@ -1094,6 +1160,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     remoteTrack = null;
     remoteStream = null;
     clearRemoteTrackTimer();
+    clearEchoVerdict();
 
     try {
       // Summary собирается локально по шаблону (без AI): сеть уже подвела,
@@ -1241,6 +1308,9 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     responseActive = false;
     responseRequestPending = false;
     defaultResponseQueued = false;
+    // Вердикт транскрипта вместе с линией тоже мог потеряться — иначе удержание
+    // ответа пережило бы реконнект и MAX замолчал бы навсегда.
+    clearEchoVerdict();
     setPhase('reconnecting');
     emitUi({ type: 'reconnect_started' });
     try {

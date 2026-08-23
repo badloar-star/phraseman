@@ -273,11 +273,10 @@ describe('happy-path: idle → … → active на моках deps', () => {
     ]);
   });
 
-  it('на речь ученика клиент не шлёт response.create — ход ведёт сервер', async () => {
-    // зачем (владелец 2026-08-23): ходы вернулись серверу штатной схемой OpenAI
-    // (turn_detection.create_response:true). Если клиент продолжит слать свой
-    // response.create на speech_stopped, на одну реплику уйдут ДВА ответа —
-    // это и был симптом «может начать отвечать дважды».
+  it('на речь ученика клиент создаёт ровно один response.create', async () => {
+    // зачем (владелец 2026-08-23, живой звонок): серверный create_response не
+    // сработал — ответ не создавался вообще, «макс не слушает». Создание
+    // вернулось клиенту, и на одну реплику должен уходить ровно ОДИН ответ.
     const h = makeHarness();
     await connect(h);
     dcMessage(h, { type: 'response.created' });
@@ -287,7 +286,7 @@ describe('happy-path: idle → … → active на моках deps', () => {
     dcMessage(h, { type: 'input_audio_buffer.speech_stopped' });
 
     const sent = h.dc.send.mock.calls.map(([raw]) => JSON.parse(raw as string) as { type: string });
-    expect(sent.filter((event) => event.type === 'response.create')).toHaveLength(0);
+    expect(sent.filter((event) => event.type === 'response.create')).toHaveLength(1);
   });
 
   it('битый JSON и неизвестные события — тихий no-op, не throw', async () => {

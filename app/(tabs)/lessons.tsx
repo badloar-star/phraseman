@@ -1292,9 +1292,13 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   ];
   // зачем: «плоский объём как у Duolingo» (владелец, 22.08) — площадка-эллипс
   // шире, чем выше, + цоколь 6px; размеры согласованы с макетом каталога движения.
-  const nodeW = checkpoint ? 66 : current ? 70 : 58;
-  const nodeH = checkpoint ? 56 : current ? 58 : 48;
-  const nodeR = checkpoint ? 20 : nodeH / 2;
+  // зачем (владелец 22.08, правка после первого показа): узлы обязаны быть
+  // КРУГЛЫМИ. В первой версии «плоского объёма» ширина была больше высоты
+  // (58x48) — получался овал. Ширина === высота, радиус = половина.
+  const nodeSize = checkpoint ? 62 : current ? 68 : 54;
+  const nodeW = nodeSize;
+  const nodeH = nodeSize;
+  const nodeR = checkpoint ? 20 : nodeSize / 2;
   const faceColor = current
     ? theme.accent
     : completed
@@ -1312,7 +1316,10 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
     >
       <LearningV2InlineNodeReveal
         index={revealIndex}
-        height={checkpoint ? 104 : 82}
+        // Высота строки держит самый крупный случай: круг 68 + цоколь 6 +
+        // отступ 8 + звёзды 9 = 91. Резерв постоянный, поэтому появление
+        // звёзд результата не двигает карту.
+        height={checkpoint ? 104 : 94}
         reduceMotion={reduceMotion}
       >
         <LearningV2MapNode

@@ -87,6 +87,18 @@ export type AppEventMap = {
     reason?: string;
     eligibleAchievementBalance?: number;
   };
+  /**
+   * Баланс РУН изменился (валюта; поле `stars`). Эмитит `app/runes_system.ts`.
+   *
+   * зачем (владелец, 23.08): у рун не было аналога `shards_balance_updated`,
+   * поэтому начисление за спин никуда не сообщалось и счётчики его не видели —
+   * «выиграл кучу рун, счётчик не изменился». `delta` нужна анимации начисления
+   * (полёт разных глифов футарка), знак показывает начисление/трату.
+   *
+   * НЕ путать с `level_spin_balance_changed` — то про количество спинов-подарков,
+   * а не про валюту.
+   */
+  runes_balance_updated: { balance: number; delta: number };
   /** Durable foreground tracker flush; achievement evaluator reuses the same five-minute cadence. */
   foreground_usage_changed: { totalMs: number };
   /** 48-год ваучер на безкоштовний паккарток виданий (з преміум-подарунка / broadcast) */

@@ -64,12 +64,24 @@ if (invalidRequestedIds.length > 0) {
 }
 
 // Match the corpus exactly (see .codex-tmp/tts-voicing/regen_one.mjs).
-const VOICE = 'fable';
+//
+// зачем: 23.08.2026 владелец забраковал голос fable и весь корпус (5014 файлов)
+// переозвучен голосом echo с подачей «спокойный, ровный» — см.
+// scripts/revoice_all_phrases_echo.mjs. Этот скрипт лечит дрейф текста точечно,
+// поэтому его голос ОБЯЗАН совпадать с корпусом: иначе исправленная фраза
+// заговорит старым голосом и разнобой вернётся по одному файлу за раз.
+// Меняешь голос корпуса — меняй и здесь, в том же коммите.
+const VOICE = 'echo';
 const MODEL = 'gpt-4o-mini-tts';
-const SPEED = 0.95;
+// Одиночные слова и глаголы читаются медленнее: на общем темпе одно слово
+// проскакивает за полсекунды и его не разобрать.
+const SPEED = 0.92;
+const SPEED_WORD = 0.90;
+const WORD_SOURCES = new Set(['word', 'verb']);
 const INSTRUCTIONS =
-  'Speak as a warm, friendly English teacher. Clear, natural English. ' +
-  'Calm, encouraging pace, slightly slow so a learner can follow every word. Friendly, not robotic.';
+  'Read short English phrases for a language learner. ' +
+  'Calm and steady, slightly slower than conversational, with clean articulation. ' +
+  'Keep the tone even and grounded — no brightness, no theatrics.';
 const BUCKET = 'phraseman-ea0b3.firebasestorage.app';
 const PREFIX = 'phrase-audio';
 
@@ -206,11 +218,12 @@ async function maxDb(file) {
   const ms = [...stderr.matchAll(/max_volume:\s*(-?[\d.]+) dB/g)].map((m) => parseFloat(m[1]));
   return ms.length ? ms[ms.length - 1] : null;
 }
-async function ttsOnce(text) {
+async function ttsOnce(text, source) {
+  const speed = WORD_SOURCES.has(source) ? SPEED_WORD : SPEED;
   const res = await fetch('https://api.openai.com/v1/audio/speech', {
     method: 'POST',
     headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model: MODEL, voice: VOICE, input: text, instructions: INSTRUCTIONS, response_format: 'mp3', speed: SPEED }),
+    body: JSON.stringify({ model: MODEL, voice: VOICE, input: text, instructions: INSTRUCTIONS, response_format: 'mp3', speed }),
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 140)}`);
   return Buffer.from(await res.arrayBuffer());
@@ -277,7 +290,7 @@ for (const p of plan) {
 
   let audible = false, buf = null;
   for (let attempt = 1; attempt <= 5; attempt++) {
-    buf = await ttsOnce(p.newText);
+    buf = await ttsOnce(p.newText, p.source);
     fs.writeFileSync(abs, buf);
     const max = await maxDb(abs);
     console.log(`   attempt ${attempt}: max=${max}dB size=${buf.length}B`);

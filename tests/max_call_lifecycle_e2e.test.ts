@@ -473,10 +473,12 @@ describe('E2E: перебивание ИИ (barge-in)', () => {
     await h.client.end();
   });
 
-  it('реплика, начатая ПОКА MAX говорил, не теряется — ответ уходит после его аудио', async () => {
-    // зачем (владелец 2026-08-23): «он меня не слушает, моей реплики вообще не
-    // появляется». MAX говорит длинно, и попытка вставить слово раньше
-    // выбрасывалась насовсем. Теперь она ждёт конца его речи и получает ответ.
+  it('на речь ученика клиент НЕ создаёт ответ — это делает сервер', async () => {
+    // зачем (владелец 2026-08-23, живой тест): «обрывает на полуслове, долго ждёт
+    // после моей речи, может начать отвечать дважды». Все три симптома давала
+    // самодельная очередь ходов на клиенте. Ходы вернулись серверу штатной схемой
+    // OpenAI Realtime (turn_detection.create_response:true), поэтому на речь
+    // ученика клиент обязан МОЛЧАТЬ: иначе на одну реплику уйдут два ответа.
     const h = createHarness();
     await bringUpCall(h);
     const dc = h.pc().dc;
@@ -485,38 +487,38 @@ describe('E2E: перебивание ИИ (barge-in)', () => {
     dc.deliver({ type: 'output_audio_buffer.started' });
     expect(dc.sentOfType('response.create')).toHaveLength(1);
 
-    // Ученик заговорил поверх речи MAX — настоящая речь, со словами.
+    // Ученик говорит поверх речи MAX — настоящая речь, со словами.
     dc.deliver({ type: 'input_audio_buffer.speech_started' });
     dc.deliver({ type: 'input_audio_buffer.speech_stopped' });
     dc.deliver({
       type: 'conversation.item.input_audio_transcription.completed',
       transcript: 'wait, I have a question',
     });
-
     dc.deliver({ type: 'response.done', response: {} });
     dc.deliver({ type: 'output_audio_buffer.stopped' });
-    // Ключевое: реплика НЕ потеряна — ответ ушёл, как только MAX замолчал.
-    expect(dc.sentOfType('response.create')).toHaveLength(2);
+
+    // Ключевое: клиент не добавил СВОЙ ответ ни на речь, ни на транскрипт.
+    // Ответ ученику создаст сервер; двойного ответа больше быть не может.
+    expect(dc.sentOfType('response.create')).toHaveLength(1);
 
     await h.client.end();
   });
 
-  it('настоящая реплика ученика в тишине по-прежнему получает ответ', async () => {
-    // Обратная сторона защиты от эха: если ученик заговорил ПОСЛЕ того, как MAX
-    // замолчал, ответ обязан создаться — иначе разговор бы умер.
+  it('вставки клиента (системная заметка, результат инструмента) отвечаются явно', async () => {
+    // Обратная сторона: create_response сервера работает на речь ученика, но НЕ
+    // на текст, который клиент вставил сам. Такие вставки обязаны просить ответ
+    // явно, иначе учитель промолчит в ответ на собственный сигнал.
     const h = createHarness();
     await bringUpCall(h);
     const dc = h.pc().dc;
 
     dc.deliver({ type: 'response.created', response: {} });
-    dc.deliver({ type: 'output_audio_buffer.started' });
     dc.deliver({ type: 'response.done', response: {} });
     dc.deliver({ type: 'output_audio_buffer.stopped' });
-    expect(dc.sentOfType('response.create')).toHaveLength(1);
+    const before = dc.sentOfType('response.create').length;
 
-    dc.deliver({ type: 'input_audio_buffer.speech_started' });
-    dc.deliver({ type: 'input_audio_buffer.speech_stopped' });
-    expect(dc.sentOfType('response.create')).toHaveLength(2);
+    h.client.sendSystemNote('ученик молчит уже минуту');
+    expect(dc.sentOfType('response.create')).toHaveLength(before + 1);
 
     await h.client.end();
   });

@@ -79,13 +79,6 @@ export const MAX_CALL_GREETING_HOLD_MAX_MS = 20_000;
  */
 export const MAX_CALL_REMOTE_TRACK_GRACE_MS = 750;
 
-/**
- * Сколько ждём транскрипт, решая судьбу реплики, начатой поверх речи MAX.
- * Не дождались — отвечаем: молча проглотить слова ученика хуже, чем ответить
- * на эхо (владелец 2026-08-23: «он меня не слушает»).
- */
-export const MAX_CALL_TRANSCRIPT_DECISION_MS = 1_500;
-
 
 export async function completeLocalOfferSdp(
   connection: RtcPeerConnectionLike,
@@ -548,11 +541,6 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
   // Мягкое завершение (end_call учителя): ждём конца аудио, потом end().
   let remoteAudioPlaying = false;
-  /** Речь во входном буфере началась, пока MAX ещё говорил → подозрение на эхо. */
-  let speechStartedDuringOutput = false;
-  /** Реплика поверх речи MAX придержана до транскрипта: слова → ответ, пусто → эхо. */
-  let awaitingTranscriptDecision = false;
-  let transcriptDecisionTimer: ReturnType<typeof setTimeout> | null = null;
   /** Догово́рка после обрыва по лимиту — не чаще одной подряд (защита от цепочки). */
   let finishTruncatedUsed = false;
   let firstRemoteAudioLatencyMs: number | null = null;
@@ -736,45 +724,21 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
     switch (type) {
       case 'input_audio_buffer.speech_started':
-        // зачем (владелец 2026-08-23, живой звонок): «говорит, обрывает на
-        // половине и снова говорит то же самое». Клиент играет через громкую
-        // связь, остаток эха доходит до VAD как речь ученика. Отмечаем речь,
-        // начавшуюся ПОКА MAX ГОВОРИЛ, — отвечать на неё заново нельзя.
-        if (remoteAudioPlaying) speechStartedDuringOutput = true;
+        // зачем: границу хода ведёт сервер (create_response/interrupt_response).
+        // Прежний флаг «речь началась, пока MAX говорил» здесь больше не нужен:
+        // от эха громкой связи защищает аудио-тракт (far_field + AEC), а не
+        // клиентский запрет отвечать.
         emitUi({ type: 'speech_started' });
         return;
       case 'input_audio_buffer.speech_stopped':
+        // зачем (владелец 2026-08-23): ответ на реплику ученика создаёт СЕРВЕР
+        // (turn_detection.create_response:true). Клиент здесь только сообщает UI
+        // о границе хода. Раньше клиент ставил ответ сам — и вместе со
+        // страховочным таймером транскрипта давал ДВА ответа на одну реплику,
+        // а ожидание конца аудио-буфера добавляло паузу после речи ученика.
         emitUi({ type: 'speech_stopped' });
-        // Эхо собственной речи не должно порождать новый ответ: иначе MAX
-        // отвечает сам себе по кругу. Настоящее перебивание ученика приходит
-        // отдельной кнопкой barge-in, а его реплика после паузы даст новое
-        // speech_started уже в тишине.
-        // зачем (владелец 2026-08-23): «он меня не слушает, моей реплики вообще
-        // не появляется». Раньше речь, начатая ПОКА MAX говорил, выбрасывалась
-        // насовсем — а MAX говорит долго, поэтому терялась почти каждая попытка
-        // вставить слово. Теперь она не выбрасывается, а ЖДЁТ транскрипта:
-        // есть слова — отвечаем, пусто (эхо/шум) — молчим. Решает содержание,
-        // а не то, звучал ли в этот момент динамик.
-        if (speechStartedDuringOutput) {
-          speechStartedDuringOutput = false;
-          awaitingTranscriptDecision = true;
-          finishTruncatedUsed = false;
-          // Страховка: в аварийном профиле транскрипции нет вовсе, и без неё
-          // придержанная реплика зависла бы навсегда. Не дождались решения —
-          // отвечаем: потерять слова ученика хуже, чем разок ответить на эхо.
-          if (transcriptDecisionTimer !== null) clearTimeout(transcriptDecisionTimer);
-          transcriptDecisionTimer = setTimeout(() => {
-            transcriptDecisionTimer = null;
-            if (!awaitingTranscriptDecision || isTornDown()) return;
-            awaitingTranscriptDecision = false;
-            queueDefaultResponse();
-          }, MAX_CALL_TRANSCRIPT_DECISION_MS);
-          return;
-        }
-        // Ученик заговорил — цепочка догово́рок разорвана, следующий обрыв
-        // снова имеет право быть договорённым.
+        // Ученик заговорил — цепочка догово́рок разорвана.
         finishTruncatedUsed = false;
-        queueDefaultResponse();
         return;
       case 'response.created':
         responseActive = true;
@@ -794,7 +758,6 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         return;
       case 'output_audio_buffer.stopped':
         remoteAudioPlaying = false;
-        speechStartedDuringOutput = false;
         noteGreetingAudioStopped();
         emitUi({ type: 'audio_out_stopped' });
         finishEndAfterAudioIfDue();
@@ -802,7 +765,6 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         return;
       case 'output_audio_buffer.cleared':
         remoteAudioPlaying = false;
-        speechStartedDuringOutput = false;
         noteGreetingAudioStopped();
         emitUi({ type: 'audio_out_cleared' });
         finishEndAfterAudioIfDue();
@@ -862,24 +824,11 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       // Реплика юзера — только финальная (interim в Realtime нет, спека §1).
       case 'conversation.item.input_audio_transcription.completed': {
         const text = typeof message.transcript === 'string' ? message.transcript : '';
-        const wasHeld = awaitingTranscriptDecision;
-        awaitingTranscriptDecision = false;
-        if (transcriptDecisionTimer !== null) {
-          clearTimeout(transcriptDecisionTimer);
-          transcriptDecisionTimer = null;
-        }
-        if (text) {
-          emitTranscript({ kind: 'user_final', text });
-          // Реплика была придержана как «возможное эхо», но слова есть — значит
-          // ученик действительно говорил, пока MAX вещал. Отвечаем.
-          if (wasHeld) queueDefaultResponse();
-          return;
-        }
-        // зачем (владелец 2026-08-23): «я ничего не говорю, а он хвалит пустоту».
-        // Пустой транскрипт = VAD сработал на шум или эхо, слов не было. Ответ,
-        // поставленный в очередь по speech_stopped, снимаем — хвалить нечего.
-        // Реальную речь этот путь не трогает: у неё транскрипт непустой.
-        defaultResponseQueued = false;
+        // зачем: транскрипт теперь ТОЛЬКО показывает слова ученика. Раньше он был
+        // вторым источником ответа (придержанная реплика + страховочный таймер
+        // 1500 мс) — и на одно высказывание прилетали ДВА ответа. Создание ответа
+        // принадлежит серверу, у клиента этого решения больше нет.
+        if (text) emitTranscript({ kind: 'user_final', text });
         return;
       }
       case 'error':
@@ -964,7 +913,11 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   }
 
   function requestResponse(response?: Record<string, unknown>): boolean {
-    if (isTornDown() || responseActive || responseRequestPending || remoteAudioPlaying) return false;
+    // зачем (владелец 2026-08-23): ожидание remoteAudioPlaying давало паузу
+    // «долго ждёт после моей речи» — ответ стоял в очереди, пока доигрывал
+    // аудио-буфер MAX. Границу хода теперь держит сервер; здесь остаётся
+    // только защита от двух одновременных response (Realtime принимает один).
+    if (isTornDown() || responseActive || responseRequestPending) return false;
     const sent = dcSend({
       type: 'response.create',
       response: {
@@ -1135,11 +1088,6 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     remoteTrack = null;
     remoteStream = null;
     clearRemoteTrackTimer();
-    if (transcriptDecisionTimer !== null) {
-      clearTimeout(transcriptDecisionTimer);
-      transcriptDecisionTimer = null;
-    }
-    awaitingTranscriptDecision = false;
 
     try {
       // Summary собирается локально по шаблону (без AI): сеть уже подвела,

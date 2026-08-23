@@ -273,7 +273,11 @@ describe('happy-path: idle → … → active на моках deps', () => {
     ]);
   });
 
-  it('запрашивает следующий ответ в том же событии, где речь ученика остановилась', async () => {
+  it('на речь ученика клиент не шлёт response.create — ход ведёт сервер', async () => {
+    // зачем (владелец 2026-08-23): ходы вернулись серверу штатной схемой OpenAI
+    // (turn_detection.create_response:true). Если клиент продолжит слать свой
+    // response.create на speech_stopped, на одну реплику уйдут ДВА ответа —
+    // это и был симптом «может начать отвечать дважды».
     const h = makeHarness();
     await connect(h);
     dcMessage(h, { type: 'response.created' });
@@ -283,7 +287,7 @@ describe('happy-path: idle → … → active на моках deps', () => {
     dcMessage(h, { type: 'input_audio_buffer.speech_stopped' });
 
     const sent = h.dc.send.mock.calls.map(([raw]) => JSON.parse(raw as string) as { type: string });
-    expect(sent.filter((event) => event.type === 'response.create')).toHaveLength(1);
+    expect(sent.filter((event) => event.type === 'response.create')).toHaveLength(0);
   });
 
   it('битый JSON и неизвестные события — тихий no-op, не throw', async () => {
@@ -896,7 +900,11 @@ describe('учитель: function calling, system notes, endAfterAudio', () => 
     expect(sent).toHaveLength(3);
   });
 
-  it('очередит tool/system response до response.done и конца output-аудио', async () => {
+  it('очередит tool/system response до response.done, но НЕ ждёт доигрывания аудио', async () => {
+    // зачем (владелец 2026-08-23): ожидание output_audio_buffer.stopped давало
+    // паузу «долго ждёт после моей речи». Realtime принимает один response за
+    // раз — значит ждать нужно ровно конца ГЕНЕРАЦИИ (response.done), а не того,
+    // когда доиграет звук в буфере. Очередь сохраняется, лишняя пауза уходит.
     const h = makeHarness();
     const client = await connect(h);
     dcMessage(h, { type: 'response.created', response: {} });
@@ -905,12 +913,11 @@ describe('учитель: function calling, system notes, endAfterAudio', () => 
 
     client.sendToolResult('tool-wait', { ok: true });
     client.sendSystemNote('TIME NOTE: finish the current activity');
+    // Пока генерация активна — второй response не уходит (защита Realtime).
     expect(sentBy(h).filter((event) => event.type === 'response.create')).toHaveLength(before);
 
+    // Генерация закончилась — вставка уходит сразу, не дожидаясь тишины.
     dcMessage(h, { type: 'response.done', response: {} });
-    expect(sentBy(h).filter((event) => event.type === 'response.create')).toHaveLength(before);
-
-    dcMessage(h, { type: 'output_audio_buffer.stopped' });
     expect(sentBy(h).filter((event) => event.type === 'response.create')).toHaveLength(before + 1);
   });
 
